@@ -40,7 +40,7 @@
 1. PR을 올린 뒤 `/code-review`(mattpocock-skills)로 두 축을 리뷰합니다.
    - Standards: 저장소 문서의 규칙을 지키는가
    - Spec: 이슈가 요구한 것과 맞는가
-2. 결과를 [리뷰 요약 템플릿](.github/REVIEW_SUMMARY_TEMPLATE.md) 꼴의 코멘트 하나로 PR에 남깁니다. 해당하는 것이 없는 줄은 지웁니다.
+2. 결과를 코멘트 하나로 PR에 남깁니다. 꼴은 [리뷰 요약 예시](.github/REVIEW_SUMMARY_TEMPLATE.md)를 따릅니다.
 3. 머지는 사람이 합니다.
 
 리뷰 에이전트에게는 소스 노트 접근을 주지 않습니다([ADR 0001](docs/adr/0001-isolation-boundary.md)).
