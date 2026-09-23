@@ -6,7 +6,7 @@
 
 ## 기여
 
-커밋, PR, 리뷰, 이슈는 `docs/contributing.md`를 따릅니다.
+커밋, PR, 리뷰, 이슈는 `CONTRIBUTING.md`를 따릅니다.
 
 ## Agent skills
 

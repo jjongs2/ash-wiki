@@ -7,11 +7,11 @@
 - 모든 변경은 PR로 들어옵니다. main에 직접 push하지 않습니다.
 - 머지는 squash만 씁니다. main에는 PR 하나가 커밋 하나로 남습니다.
 - 강제 수단은 CI(콘텐츠 검사기)와 룰셋뿐입니다. 로컬 훅과 PR 제목·본문 검사는 두지 않습니다.
-- 커밋, PR, 리뷰, 이슈에도 격리 경계가 적용됩니다. 소스 노트의 표현과 식별 정보를 쓰지 않습니다([ADR 0001](adr/0001-isolation-boundary.md)).
+- 커밋, PR, 리뷰, 이슈에도 격리 경계가 적용됩니다. 소스 노트의 표현과 식별 정보를 쓰지 않습니다([ADR 0001](docs/adr/0001-isolation-boundary.md)).
 
 ## PR 제목
 
-`<type>: <한국어 설명>` 꼴로 씁니다. scope는 붙이지 않고, 72자 이내로 씁니다. 브랜치의 커밋 메시지도 같은 꼴을 따릅니다.
+`<type>: <한국어 명사구>` 꼴로 씁니다. scope는 붙이지 않고, 72자 이내로 씁니다. 브랜치의 커밋 메시지도 같은 꼴을 따릅니다.
 
 | type       | 쓰는 곳                                     |
 | ---------- | ------------------------------------------- |
@@ -24,11 +24,11 @@
 | `test`     | 테스트와 픽스처                             |
 | `ci`       | CI 워크플로                                 |
 
-예: `feat: 인용이 번호로 렌더되고 표기 위반은 CI에서 막힌다`
+예: `feat: 번호 인용 렌더와 표기 위반 CI 검사`
 
 ## PR 본문
 
-[PR 템플릿](../.github/pull_request_template.md)의 세 부분을 채웁니다.
+[PR 템플릿](.github/PULL_REQUEST_TEMPLATE.md)의 세 부분을 채웁니다.
 
 - `## Changes`: 무엇이 바뀌었는지
 - `## Verification`: 어떻게 확인했는지(실행한 명령과 결과)
@@ -39,10 +39,10 @@
 1. PR을 올린 뒤 `/code-review`(mattpocock-skills)로 두 축을 리뷰합니다.
    - Standards: 저장소 문서의 규칙을 지키는가
    - Spec: 이슈가 요구한 것과 맞는가
-2. 결과를 PR에 요약 코멘트 하나로 남깁니다.
+2. 결과를 [리뷰 요약 템플릿](.github/REVIEW_SUMMARY_TEMPLATE.md) 꼴의 코멘트 하나로 PR에 남깁니다.
 3. 머지는 사람이 합니다.
 
-리뷰 에이전트에게는 소스 노트 접근을 주지 않습니다([ADR 0001](adr/0001-isolation-boundary.md)).
+리뷰 에이전트에게는 소스 노트 접근을 주지 않습니다([ADR 0001](docs/adr/0001-isolation-boundary.md)).
 
 ## 이슈
 
@@ -58,4 +58,4 @@
 
 그 밖의 이슈는 PR 타입을 접두사로 씁니다(`feat`, `docs`, `chore` 등).
 
-`gh` 사용법은 [이슈 트래커](agents/issue-tracker.md), 라벨은 [triage 라벨](agents/triage-labels.md)을 참고하세요.
+`gh` 사용법은 [이슈 트래커](docs/agents/issue-tracker.md), 라벨은 [triage 라벨](docs/agents/triage-labels.md)을 참고하세요.
