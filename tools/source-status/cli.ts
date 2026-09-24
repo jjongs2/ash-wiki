@@ -31,8 +31,8 @@ if ([...criteria.keys()].sort().join() !== ids.join()) {
 const staleDays = Number(criteria.get("verified"))
 
 const tree = loadTree(root)
-const inTopic = (page: Page) => {
-  const { topic } = values
+// 주제 태그를 주지 않으면 모든 페이지를 본다.
+function inTopic(page: Page, topic: string | undefined): boolean {
   const tags = fieldsOf(page)["tags"]
   return (
     topic === undefined ||
@@ -40,7 +40,7 @@ const inTopic = (page: Page) => {
       tags.some((tag) => tag === topic || String(tag).startsWith(`${topic}/`)))
   )
 }
-const pages = tree.pages.filter((page) => page.kind === "page" && inTopic(page))
+const pages = tree.pages.filter((page) => page.kind === "page" && inTopic(page, values.topic))
 
 async function checkUrls(tree: Tree, pages: Page[]): Promise<Violation[]> {
   const cited = new Set(pages.flatMap((page) => citations(page).map((c) => c.key)))
@@ -75,7 +75,7 @@ async function probe(url: string): Promise<string | null> {
   }
 }
 
-function checkVerified(pages: Page[]): Violation[] {
+function checkVerified(pages: Page[], today: string, staleDays: number): Violation[] {
   const violations: Violation[] = []
   for (const page of pages) {
     const verified = fieldsOf(page)["verified"]
@@ -91,6 +91,6 @@ function checkVerified(pages: Page[]): Violation[] {
 const statuses: Status[] = []
 const urls = await checkUrls(tree, pages)
 statuses.push(report("url", verdict(urls), urls))
-const stale = checkVerified(pages)
+const stale = checkVerified(pages, today, staleDays)
 statuses.push(report("verified", verdict(stale), stale))
 process.exitCode = statuses.includes("FAIL") ? 1 : 0
