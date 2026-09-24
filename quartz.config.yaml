@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
   pageTitle: Æ wiki
-  pageTitleSuffix: ""
+  pageTitleSuffix: " - Æ wiki"
   enableSPA: true
   enablePopovers: true
   # 기본값은 업스트림 문서 사이트의 plausible 설정이다. 이 위키는 분석 계정이 없다.

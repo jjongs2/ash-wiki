@@ -1,5 +1,5 @@
 ---
-title: Æ wiki
+title: 대문
 ---
 
 - [[tags/network|네트워크]]
