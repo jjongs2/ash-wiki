@@ -5,7 +5,7 @@ import { loadConventions } from "./conventions"
 import { sourceChecks } from "./source-checks"
 import { loadTree, type Violation } from "./tree"
 
-// 콘텐츠 검사기. 규칙과 검사 id는 docs/conventions.md에 있다.
+// 콘텐츠 검사기. 규칙과 검사 id는 docs/wiki-conventions.md에 있다.
 // 사용: npm run check:content [-- <트리 루트>]   트리 루트에는 content/와 bib/가 있다.
 type Status = "OK" | "FAIL" | "SKIP"
 

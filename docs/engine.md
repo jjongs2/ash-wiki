@@ -38,7 +38,7 @@ git diff --name-only --diff-filter=M 97a2d05f80c4c50534959b1d0d41cc4b3895625e HE
 
 ## 인용
 
-`[@키]`를 citations 플러그인이 IEEE 스타일의 번호로 바꾸고, 페이지 하단에 참고문헌을 붙입니다([ADR 0003](adr/0003-engine-and-citation-stack.md)). 표기 규칙은 [위키 규약](conventions.md)에 있습니다.
+`[@키]`를 citations 플러그인이 IEEE 스타일의 번호로 바꾸고, 페이지 하단에 참고문헌을 붙입니다([ADR 0003](adr/0003-engine-and-citation-stack.md)). 표기 규칙은 [위키 규약](wiki-conventions.md)에 있습니다.
 
 - `npm run build`의 prebuild(`npm run bib`)가 `bib/`의 엔트리 파일을 합본 `bibliography.bib`로 합칩니다. 합본은 추적하지 않습니다.
 - CSL은 저장소가 소유합니다(`csl/ieee.csl`). 고치지 않고 가져온 그대로 둡니다.

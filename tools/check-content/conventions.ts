@@ -3,7 +3,7 @@ import path from "node:path"
 import { repoRoot } from "../repo"
 
 // 위키 규약 문서의 표를 사본 없이 직접 읽는다. 표는 `<!-- table: <이름> -->` 주석 바로 뒤에 온다.
-export const conventionsPath = path.join(repoRoot, "docs", "conventions.md")
+export const conventionsPath = path.join(repoRoot, "docs", "wiki-conventions.md")
 
 export type Row = Record<string, string>
 
