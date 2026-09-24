@@ -18,6 +18,8 @@ verified: 2026-09-20
 > [!note]
 > 보충 설명이다.
 
+![[example-diagram.svg]]
+
 `[@not-a-citation]`과 `[[not-a-link]]`은 코드 안이라 검사하지 않는다.
 
 ## 비교·한계

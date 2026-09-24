@@ -12,34 +12,37 @@ configuration:
     - private
     - templates
     - .obsidian
+  # 색과 폰트 값의 정본은 이 theme다. 고른 근거와 대비 실측은 docs/palette.md에 있다.
+  # Pretendard는 Google Fonts에 없어 fontOrigin을 local로 두고, 폰트 CSS는 Head가 건다(quartz/util/localFonts.ts).
+  # OG 이미지 생성기가 쓰는 폰트는 prebuild가 캐시에 둔다(tools/og-fonts.ts).
   theme:
-    fontOrigin: googleFonts
+    fontOrigin: local
     cdnCaching: true
     typography:
-      header: Schibsted Grotesk
-      body: Source Sans Pro
+      header: Pretendard
+      body: Pretendard
       code: IBM Plex Mono
     colors:
       lightMode:
-        light: "#faf8f8"
-        lightgray: "#e5e5e5"
-        gray: "#b8b8b8"
-        darkgray: "#4e4e4e"
-        dark: "#2b2b2b"
-        secondary: "#284b63"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#fff23688"
+        light: "#f8fafd"
+        lightgray: "#e1e7ee"
+        gray: "#626a73"
+        darkgray: "#2f363f"
+        dark: "#151b23"
+        secondary: "#2b58b1"
+        tertiary: "#1b428f"
+        highlight: rgba(43, 88, 177, 0.08)
+        textHighlight: rgba(250, 204, 21, 0.35)
       darkMode:
-        light: "#161618"
-        lightgray: "#393639"
-        gray: "#646464"
-        darkgray: "#d4d4d4"
-        dark: "#ebebec"
-        secondary: "#7b97aa"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#b3aa0288"
+        light: "#0f1318"
+        lightgray: "#25292f"
+        gray: "#9299a1"
+        darkgray: "#d4d8dc"
+        dark: "#eceff2"
+        secondary: "#8ab1f9"
+        tertiary: "#abcbff"
+        highlight: rgba(138, 177, 249, 0.1)
+        textHighlight: rgba(202, 160, 0, 0.28)
 plugins:
   - source: "@quartz-community/created-modified-date"
     enabled: true
@@ -104,8 +107,10 @@ plugins:
   - source: "@quartz-community/roam"
     enabled: false
     order: 92
+  # 코어가 theme.typography로 폰트 변수를 이미 만든다. 이 플러그인은 theme을 읽지 않고
+  # 자기 기본값(Schibsted Grotesk 등)으로 h1~h6의 font-family를 덮어써, 폰트의 정본이 둘이 된다.
   - source: "@quartz-community/quartz-fonts"
-    enabled: true
+    enabled: false
   - source: "@quartz-themes/core"
     enabled: false
     options:

@@ -47,6 +47,7 @@ describe("check-content CLI", { concurrency: false }, () => {
       "OK citation",
       "OK callout",
       "OK emphasis",
+      "OK svg",
       "OK build",
       "OK output",
     ])
@@ -62,6 +63,7 @@ describe("check-content CLI", { concurrency: false }, () => {
       "FAIL citation",
       "FAIL callout",
       "FAIL emphasis",
+      "FAIL svg",
       "OK build",
       "FAIL output",
     ])
@@ -89,6 +91,21 @@ describe("check-content CLI", { concurrency: false }, () => {
       ],
       callout: ["content/bad-callout.md:12"],
       emphasis: ["content/bad-emphasis.md:12"],
+      svg: [
+        "content/bad-diagram.svg:1",
+        "content/bad-diagram.svg:5",
+        "content/bad-diagram.svg:7",
+        "content/bad-diagram.svg:9",
+        "content/bad-diagram.svg:12",
+        "content/bad-diagram.svg:15",
+        "content/bad-diagram.svg:16",
+        "content/bad-diagram.svg:17",
+        "content/bad-diagram.svg:18",
+        "content/bad-diagram.svg:20",
+        "content/bad-diagram.svg:22",
+        "content/bad-diagram.svg:24",
+        "content/bad-diagram.svg:26",
+      ],
       output: [
         "content/bad-citations.md:16",
         "content/bad-citations.md:20",
@@ -111,6 +128,7 @@ describe("check-content CLI", { concurrency: false }, () => {
       "OK citation",
       "OK callout",
       "OK emphasis",
+      "OK svg",
       "FAIL build",
       "SKIP output",
     ])
