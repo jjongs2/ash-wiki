@@ -9,7 +9,7 @@ verified: 2026-09-20
 
 ## 정의
 
-픽스처용 첫 문장이다.[@example-spec-2024] 둘째 문장은 쉼표 앞에서 인용하고,[@example-manual-2023] 셋째 문장은 같은 출처를 다시 인용한다.[@example-spec-2024]
+픽스처용 첫 문장이다.[@example-spec-2024] 둘째 문장은 쉼표 앞에서 인용하고[@example-manual-2023], 셋째 문장은 같은 출처를 다시 인용한다.[@example-spec-2024]
 
 ## 구조·동작
 
