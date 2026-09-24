@@ -37,18 +37,30 @@ export interface BibFile {
   entries: BibEntry[] | { error: Violation }
 }
 
+export interface SvgFile {
+  file: string // 트리 루트 기준 경로. 예: content/can-bus-topology.svg
+  source: string
+}
+
 export interface Tree {
   root: string
   pages: Page[]
+  files: Set<string> // content/ 기준 경로. 페이지가 아닌 파일(도해 등)도 든다.
+  svgs: SvgFile[]
   tags: Set<string>
   bib: BibFile[]
 }
 
 export function loadTree(root: string): Tree {
   const contentDir = path.join(root, "content")
-  const pages = walk(contentDir)
-    .filter((rel) => rel.endsWith(".md"))
-    .map((rel) => loadPage(root, rel))
+  const files = walk(contentDir)
+  const pages = files.filter((rel) => rel.endsWith(".md")).map((rel) => loadPage(root, rel))
+  const svgs = files
+    .filter((rel) => rel.endsWith(".svg"))
+    .map((rel) => ({
+      file: `content/${rel}`,
+      source: fs.readFileSync(path.join(contentDir, rel), "utf8"),
+    }))
   const tags = new Set(
     pages.filter((page) => page.kind === "tag").map((page) => page.name.slice("tags/".length)),
   )
@@ -56,7 +68,7 @@ export function loadTree(root: string): Tree {
   const bib = walk(bibDir)
     .filter((rel) => rel.endsWith(".bib"))
     .map((rel) => loadBib(`bib/${rel}`, fs.readFileSync(path.join(bibDir, rel), "utf8")))
-  return { root, pages, tags, bib }
+  return { root, pages, files: new Set(files), svgs, tags, bib }
 }
 
 function walk(dir: string, prefix = ""): string[] {

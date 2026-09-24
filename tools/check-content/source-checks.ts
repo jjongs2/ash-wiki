@@ -154,7 +154,6 @@ function* matchLines(page: Page, pattern: RegExp) {
 
 export const wikilink: SourceCheck = (tree) => {
   const slugs = new Set(tree.pages.filter((p) => p.kind !== "tag").map((p) => p.name))
-  const files = new Set(tree.pages.map((p) => p.rel))
   const violations: Violation[] = []
   for (const page of tree.pages) {
     for (const { match, line } of matchLines(page, /(!?)\[\[([^[\]\n]+?)\]\]/g)) {
@@ -166,7 +165,7 @@ export const wikilink: SourceCheck = (tree) => {
         if (!tree.tags.has(target.slice("tags/".length)))
           at(`표시 이름 파일이 없는 태그 목록: ${link}`)
       } else if (embed && /\.\w+$/.test(target) && !target.endsWith(".md")) {
-        if (!files.has(target)) at(`대상 파일이 없다: ${link}`)
+        if (!tree.files.has(target)) at(`대상 파일이 없다: ${link}`)
       } else if (!kebab.test(target)) {
         at(`위키링크 대상은 슬러그로만 쓴다: ${link}`)
       } else if (!slugs.has(target)) {
@@ -282,6 +281,46 @@ export const emphasis: SourceCheck = (tree) => {
   return violations
 }
 
+// 도해 SVG 한 벌이 두 테마에서 읽히도록, 색은 규약 문서의 도해 팔레트 값만 쓴다.
+const colorProperty = "fill|stroke|stop-color|flood-color|lighting-color|color"
+const colorAttribute = new RegExp(`\\s(${colorProperty})\\s*=\\s*(["'])(.*?)\\2`, "g")
+const colorDeclaration = new RegExp(`(?:^|[\\s;{"'])(${colorProperty})\\s*:\\s*([^;"'}<]+)`, "g")
+const colorKeywords = /^(none|transparent|inherit|url\(#[^)]+\))$/
+
+function normalizeHex(value: string): string | null {
+  const hex = value.toLowerCase().match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/)?.[1]
+  if (!hex) return null
+  return `#${hex.length === 3 ? [...hex].map((c) => c + c).join("") : hex}`
+}
+
+export const svg: SourceCheck = (tree, conventions) => {
+  const palette = new Set(conventions.column("diagram-palette", "값").map(normalizeHex))
+  const violations: Violation[] = []
+  for (const { file, source } of tree.svgs) {
+    const lineAt = (offset: number) => source.slice(0, offset).split("\n").length
+    // 주석 안의 색은 그려지지 않으므로, 길이를 지켜 지운 뒤 찾는다.
+    const text = source.replace(/<!--[\s\S]*?-->/g, (comment) => comment.replace(/[^\n]/g, " "))
+    const found = [
+      ...[...text.matchAll(colorAttribute)].map((m) => ({ match: m, value: m[3] })),
+      ...[...text.matchAll(colorDeclaration)].map((m) => ({ match: m, value: m[2] })),
+    ]
+    for (const { match, value } of found) {
+      const color = value.trim()
+      if (colorKeywords.test(color) || palette.has(normalizeHex(color))) continue
+      const line = lineAt(match.index + match[0].indexOf(match[1]))
+      violations.push({ file, line, message: `도해 팔레트 밖의 색: ${color}` })
+    }
+    for (const match of text.matchAll(/<image[\s>]/g)) {
+      violations.push({
+        file,
+        line: lineAt(match.index),
+        message: "<image>로 래스터나 외부 파일을 넣지 않는다",
+      })
+    }
+  }
+  return violations
+}
+
 export const sourceChecks: [string, SourceCheck][] = [
   ["frontmatter", frontmatter],
   ["namespace", namespace],
@@ -289,4 +328,5 @@ export const sourceChecks: [string, SourceCheck][] = [
   ["citation", citation],
   ["callout", callout],
   ["emphasis", emphasis],
+  ["svg", svg],
 ]

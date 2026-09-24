@@ -1,4 +1,4 @@
-# PR마다 콘텐츠 검사기와 테스트를 돌린다. 룰셋(.github/rulesets/main.json)이 이 job의 통과를 요구한다.
+# PR마다 콘텐츠 검사기, 대비 실측(docs/palette.md), 테스트를 돌린다. 룰셋(.github/rulesets/main.json)이 이 job의 통과를 요구한다.
 name: integrity
 
 on:
@@ -17,4 +17,5 @@ jobs:
       - run: npm run install-plugins
       - run: npx tsc --noEmit
       - run: npm run check:content
+      - run: npm run palette
       - run: npm test

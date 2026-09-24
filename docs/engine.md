@@ -21,7 +21,13 @@ git fetch https://github.com/jackyzha0/quartz.git 97a2d05f80c4c50534959b1d0d41cc
 git diff --name-only --diff-filter=M 97a2d05f80c4c50534959b1d0d41cc4b3895625e HEAD -- . ':!README.md'
 ```
 
-`README.md`는 이 저장소의 소개라 엔진 파일로 보지 않고 뺍니다. JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"` 키에 이유를 적습니다. `tsconfig.json`은 주석을 허용하는 JSONC라 주석으로 적습니다.
+`README.md`는 이 저장소의 소개라 엔진 파일로 보지 않고 뺍니다. 엔진 트리(`quartz/`) 안에 더한 파일은 `--diff-filter=A`로 봅니다. 더한 이유는 파일 맨 위의 주석에 있습니다.
+
+```sh
+git diff --name-only --diff-filter=A 97a2d05f80c4c50534959b1d0d41cc4b3895625e HEAD -- quartz
+```
+
+JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"` 키에 이유를 적습니다. `tsconfig.json`은 주석을 허용하는 JSONC라 주석으로 적습니다.
 
 ## 설정
 
