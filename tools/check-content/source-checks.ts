@@ -327,11 +327,18 @@ export const svg: SourceCheck = (tree, conventions) => {
       if (colorKeywords.test(color) || palette.has(normalizeHex(color) ?? "")) continue
       violations.push({ file, line: lineAt(offset), message: `도해 팔레트 밖의 색: ${color}` })
     }
-    for (const match of text.matchAll(/<image[\s/>]/gi)) {
+    // fill을 적지 않은 도형과 글자는 검정으로 그려져 다크 테마에서 보이지 않는다. 루트가 fill을
+    // 정하면 모든 요소가 루트까지 거슬러 올라가 팔레트 색이나 none을 물려받는다.
+    const root = text.match(/<(?:[\w-]+:)?svg[\s>][^>]*>/i)
+    if (root && !/\sfill\s*=|\sstyle\s*=\s*(["'])[^"']*\bfill\s*:/i.test(root[0])) {
+      violations.push({ file, line: lineAt(root.index!), message: "루트 <svg>에 fill이 없다" })
+    }
+    // 접두사(<svg:image>)가 붙어도, 필터 요소(<feImage>)로 넣어도 같다.
+    for (const match of text.matchAll(/<(?:[\w-]+:)?(?:image|feImage)[\s/>]/gi)) {
       violations.push({
         file,
         line: lineAt(match.index),
-        message: "<image>로 래스터나 외부 파일을 넣지 않는다",
+        message: "<image>나 <feImage>로 래스터나 외부 파일을 넣지 않는다",
       })
     }
   }

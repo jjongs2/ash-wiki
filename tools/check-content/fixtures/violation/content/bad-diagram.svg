@@ -1,12 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" font-family="sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" viewBox="0 0 240 100" font-family="sans-serif">
+  <!-- 위반(svg): 루트 <svg>에 fill이 없다. 색을 적지 않은 아래 rect가 검정으로 그려진다. -->
+  <rect x="0" y="0" width="40" height="20" />
   <!-- 위반(svg): 팔레트 밖의 hex 색이다. -->
   <rect x="10" y="10" width="90" height="40" fill="#ff0000" />
   <!-- 위반(svg): 이름으로 쓴 색이다. -->
   <line x1="10" y1="80" x2="230" y2="80" stroke="black" />
   <!-- 위반(svg): style 속성 안의 currentColor다. 사이트의 CSS가 닿지 않아 검정이 된다. -->
   <text x="130" y="35" style="fill: currentColor">ECU</text>
+  <!-- 위반(svg): <style> 요소 안의 팔레트 밖의 색이다. -->
+  <style>
+    .bad { stroke: #123456; }
+  </style>
+  <!-- 위반(svg): stop-color, flood-color, lighting-color, color 속성의 팔레트 밖의 색이다. -->
+  <stop offset="0" stop-color="#abcdef" />
+  <feFlood flood-color="#010203" />
+  <feDiffuseLighting lighting-color="#040506" />
+  <g color="#070809" />
   <!-- 위반(svg): <image>로 래스터를 넣었다. -->
   <image href="copied-figure.png" x="130" y="50" width="90" height="40" />
   <!-- 위반(svg): 공백 없이 닫은 <image/>도 같다. -->
   <image/>
+  <!-- 위반(svg): 접두사가 붙은 <svg:image>도 같다. -->
+  <svg:image href="copied-figure.png" />
+  <!-- 위반(svg): 필터 요소 <feImage>로 넣어도 같다. -->
+  <feImage href="copied-figure.png" />
 </svg>
