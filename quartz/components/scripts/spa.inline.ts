@@ -70,6 +70,14 @@ async function _navigate(url: URL, isBack: boolean = false) {
   p = p || new DOMParser()
   const contents = await fetchCanonical(url)
     .then((res) => {
+      // ash-wiki: 리다이렉트를 거친 응답이면 최종 URL을 기준으로 상대 경로를 풀고 주소창에도 남긴다.
+      // 요청 URL을 그대로 쓰면 breadcrumbs의 `tags/<구역>/` 링크처럼 깊이가 다른 경로로
+      // 리다이렉트될 때 CSS·JS 경로가 어긋나 404가 난다.
+      if (res.url) {
+        const finalUrl = new URL(res.url)
+        finalUrl.hash = url.hash
+        url = finalUrl
+      }
       const contentType = res.headers.get("content-type")
       if (contentType?.startsWith("text/html")) {
         return res.text()
