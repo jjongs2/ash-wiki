@@ -4,6 +4,7 @@ configuration:
   pageTitleSuffix: ""
   enableSPA: true
   enablePopovers: true
+  # 기본값은 업스트림 문서 사이트의 plausible 설정이다. 이 위키는 분석 계정이 없다.
   analytics: null
   locale: en-US
   baseUrl: ash-wiki.pages.dev
@@ -204,6 +205,7 @@ plugins:
   - source: "@quartz-community/footer"
     enabled: true
     options:
+      # 기본값은 업스트림의 GitHub와 Discord 링크다. 이 저장소로 바꿨다.
       links:
         GitHub: https://github.com/jjongs2/ash-wiki
     layout:

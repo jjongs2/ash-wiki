@@ -25,7 +25,7 @@ git diff --name-only --diff-filter=M 97a2d05f80c4c50534959b1d0d41cc4b3895625e HE
 
 ## 설정
 
-사이트 설정은 `quartz.config.yaml`에 둡니다. 업스트림 기본값인 `quartz.config.default.yaml`은 고치지 않고, 설정 로더가 `quartz.config.yaml`을 먼저 읽습니다. 기본값과 다르게 둔 항목의 이유는 `quartz.config.yaml`의 주석에 있습니다.
+사이트 설정은 `quartz.config.yaml`에 둡니다. 업스트림 기본값인 `quartz.config.default.yaml`은 고치지 않고, 설정 로더가 `quartz.config.yaml`을 먼저 읽습니다. 기본값과 다르게 둔 항목 가운데 값만 봐서 이유를 알 수 없는 것은 `quartz.config.yaml`의 주석에 이유를 적습니다.
 
 ## 태그 목록
 
@@ -33,3 +33,5 @@ git diff --name-only --diff-filter=M 97a2d05f80c4c50534959b1d0d41cc4b3895625e HE
 
 - 표시 이름 파일이 있으면, 그 태그를 쓰는 페이지가 없어도 태그 목록 페이지가 생깁니다. 이때 목록은 비어 있습니다.
 - 상위 태그 목록(`tags/network`)은 하위 태그 목록(`tags/network/can`)으로 링크하지 않습니다. 대문이 두 층을 모두 직접 링크하는 이유입니다.
+- 대문의 링크는 `[[tags/network|네트워크]]`처럼 표시 이름을 한 번 더 적습니다. 별칭이 없는 위키링크는 대상 페이지의 `title`이 아니라 경로의 마지막 부분(`network`)을 보여 주기 때문입니다.
+- 표시 이름 파일은 태그 경로를 따라 `content/tags/` 아래 폴더에 둘 수밖에 없습니다. 슬러그를 폴더 없는 한 네임스페이스로 두는 규칙에서 `tags/`는 예외입니다.

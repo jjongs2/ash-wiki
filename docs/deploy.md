@@ -4,21 +4,21 @@
 
 ## 대시보드 값
 
-| 항목               | 값                                                                                |
-| ------------------ | --------------------------------------------------------------------------------- |
-| 프로젝트 이름      | `ash-wiki`                                                                        |
-| 프로덕션 브랜치    | `main`                                                                            |
-| Framework preset   | `None`                                                                            |
-| 빌드 명령          | `npm run build`                                                                   |
-| 빌드 출력 디렉터리 | `public`                                                                          |
-| Node               | 22. 저장소의 `.node-version`이 정하므로 대시보드에 `NODE_VERSION`을 두지 않습니다 |
-| 프리뷰 배포        | 끔. Branch control에서 preview 브랜치를 `None`으로 둡니다                         |
+항목 이름은 대시보드의 표기를 따릅니다.
+
+| 항목                   | 값                                                                               |
+| ---------------------- | -------------------------------------------------------------------------------- |
+| Project name           | `ash-wiki`                                                                       |
+| Production branch      | `main`                                                                           |
+| Framework preset       | `None`                                                                           |
+| Build command          | `npm run build`                                                                  |
+| Build output directory | `public`                                                                         |
+| Node                   | 22. 저장소의 `.node-version`이 정하므로 `NODE_VERSION` 환경 변수는 두지 않습니다 |
+| Preview branch         | `None`(프리뷰 배포 끔)                                                           |
 
 ## 저장소 쪽 값
 
-- `package.json`의 `build` 스크립트: `prebuild`가 플러그인을 먼저 설치한 뒤 `quartz build`를 돌립니다.
-- `.node-version`: 빌드 이미지가 읽는 Node 버전입니다.
-- `quartz.config.yaml`의 `baseUrl`: `ash-wiki.pages.dev`
+대시보드 값과 맞물리는 저장소 쪽 값은 `package.json`의 `build` 스크립트, `.node-version`, `quartz.config.yaml`의 `baseUrl`입니다.
 
 ## 로컬 프리뷰
 
