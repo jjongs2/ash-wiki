@@ -1,7 +1,7 @@
 {
   "name": "@jackyzha0/quartz",
   "description": "🌱 publish your digital garden and notes as a website",
-  "//": "ash-wiki: scripts.build를 더했다. Cloudflare Pages 빌드 명령을 `npm run build` 하나로 두기 위해서다(prebuild가 플러그인 설치, bib 합치기, OG 이미지 폰트 준비를 먼저 돌린다). scripts.bib, scripts.og-fonts, scripts.palette, scripts.check:content는 참고문헌 합본, OG 이미지 폰트 준비와 대비 실측(docs/palette.md), 콘텐츠 검사기다(docs/wiki-conventions.md)",
+  "//": "ash-wiki: scripts.build를 더했다. Cloudflare Pages 빌드 명령을 `npm run build` 하나로 두기 위해서다(prebuild가 플러그인 설치, bib 합치기, OG 이미지 폰트 준비를 먼저 돌린다). scripts.bib, scripts.og-fonts, scripts.palette, scripts.check:content, scripts.source-status는 참고문헌 합본, OG 이미지 폰트 준비와 대비 실측(docs/palette.md), 콘텐츠 검사기(docs/wiki-conventions.md), 린트의 출처 상태 수집이다(docs/wiki-verification.md)",
   "private": true,
   "version": "5.0.0",
   "type": "module",
@@ -25,7 +25,8 @@
     "bib": "tsx tools/bib.ts",
     "og-fonts": "tsx tools/og-fonts.ts",
     "palette": "tsx tools/palette.ts",
-    "check:content": "tsx tools/check-content/cli.ts"
+    "check:content": "tsx tools/check-content/cli.ts",
+    "source-status": "tsx tools/source-status/cli.ts"
   },
   "engines": {
     "npm": ">=10.9.2",
