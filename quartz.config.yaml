@@ -86,8 +86,14 @@ plugins:
     options:
       renderEngine: katex
     order: 80
+  # 인용 스택(ADR 0003). bibliographyFile은 prebuild가 bib/를 합친 합본이고(tools/bib.ts),
+  # CSL은 저장소가 소유한 IEEE 스타일이다(docs/engine.md). 번호가 참고문헌 앵커로 링크된다.
   - source: "@quartz-community/citations"
-    enabled: false
+    enabled: true
+    options:
+      bibliographyFile: ./bibliography.bib
+      csl: ./csl/ieee.csl
+      linkCitations: true
     order: 85
   - source: "@quartz-community/hard-line-breaks"
     enabled: false

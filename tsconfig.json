@@ -17,7 +17,15 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
   },
-  "include": ["quartz/**/*.ts", "quartz/**/*.tsx", "*.ts", "*.tsx", "./package.json"],
+  // ash-wiki: tools/(콘텐츠 검사기, bib 합치기)도 타입 검사한다
+  "include": [
+    "quartz/**/*.ts",
+    "quartz/**/*.tsx",
+    "tools/**/*.ts",
+    "*.ts",
+    "*.tsx",
+    "./package.json"
+  ],
   "exclude": [
     "build/**/*.d.ts",
     ".quartz/**/src/**",

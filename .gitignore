@@ -12,3 +12,5 @@ replit.nix
 .quartz/
 quartz/cli/tui/dist/
 .turbo/
+# ash-wiki: bib/<키>.bib를 prebuild가 합친 참고문헌 합본(tools/bib.ts)
+bibliography.bib

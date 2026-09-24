@@ -21,7 +21,7 @@ git fetch https://github.com/jackyzha0/quartz.git 97a2d05f80c4c50534959b1d0d41cc
 git diff --name-only --diff-filter=M 97a2d05f80c4c50534959b1d0d41cc4b3895625e HEAD -- . ':!README.md'
 ```
 
-`README.md`는 이 저장소의 소개라 엔진 파일로 보지 않고 뺍니다. JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"` 키에 이유를 적습니다.
+`README.md`는 이 저장소의 소개라 엔진 파일로 보지 않고 뺍니다. JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"` 키에 이유를 적습니다. `tsconfig.json`은 주석을 허용하는 JSONC라 주석으로 적습니다.
 
 ## 설정
 
@@ -35,3 +35,17 @@ git diff --name-only --diff-filter=M 97a2d05f80c4c50534959b1d0d41cc4b3895625e HE
 - 상위 태그 목록(`tags/network`)은 하위 태그 목록(`tags/network/can`)으로 링크하지 않습니다. 대문이 두 층을 모두 직접 링크하는 이유입니다.
 - 대문의 링크는 `[[tags/network|네트워크]]`처럼 표시 이름을 한 번 더 적습니다. 별칭이 없는 위키링크는 대상 페이지의 `title`이 아니라 경로의 마지막 부분(`network`)을 보여 주기 때문입니다.
 - 표시 이름 파일은 태그 경로를 따라 `content/tags/` 아래 폴더에 둘 수밖에 없습니다. 슬러그를 폴더 없는 한 네임스페이스로 두는 규칙에서 `tags/`는 예외입니다.
+
+## 인용
+
+`[@키]`를 citations 플러그인이 IEEE 스타일의 번호로 바꾸고, 페이지 하단에 참고문헌을 붙입니다([ADR 0003](adr/0003-engine-and-citation-stack.md)). 표기 규칙은 [위키 규약](wiki-conventions.md)에 있습니다.
+
+- `npm run build`의 prebuild(`npm run bib`)가 `bib/`의 엔트리 파일을 합본 `bibliography.bib`로 합칩니다. 합본은 추적하지 않습니다.
+- CSL은 저장소가 소유합니다(`csl/ieee.csl`). 고치지 않고 가져온 그대로 둡니다.
+
+| 항목     | 값                                                      |
+| -------- | ------------------------------------------------------- |
+| 저장소   | https://github.com/citation-style-language/styles       |
+| 파일     | `ieee.csl`                                              |
+| 커밋     | `1ccf4696be22ea0b55f83cc9163bde3061fddb0a` (2026-01-07) |
+| 라이선스 | CC BY-SA 3.0(파일 안 `<rights>`)                        |
