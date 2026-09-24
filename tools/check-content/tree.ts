@@ -22,6 +22,7 @@ export interface Frontmatter {
 export interface Page {
   file: string // 트리 루트 기준 경로. 예: content/can-bus.md
   rel: string // content/ 기준 경로. 예: can-bus.md
+  name: string // rel에서 .md를 뗀 것. 예: can-bus, tags/network/can
   kind: "page" | "index" | "tag"
   source: string
   frontmatter: Frontmatter | { error: Violation }
@@ -49,7 +50,7 @@ export function loadTree(root: string): Tree {
     .filter((rel) => rel.endsWith(".md"))
     .map((rel) => loadPage(root, rel))
   const tags = new Set(
-    pages.filter((page) => page.kind === "tag").map((page) => page.rel.slice(5, -3)),
+    pages.filter((page) => page.kind === "tag").map((page) => page.name.slice("tags/".length)),
   )
   const bibDir = path.join(root, "bib")
   const bib = walk(bibDir)
@@ -88,7 +89,17 @@ function loadPage(root: string, rel: string): Page {
   }
   const body = lines.map((line, i) => (i < bodyStart ? "" : line)).join("\n")
   const mdast = unified().use(remarkParse).parse(body)
-  return { file, rel, kind, source, frontmatter, masked: maskCode(body, mdast), mdast }
+  const name = rel.slice(0, -".md".length)
+  return { file, rel, name, kind, source, frontmatter, masked: maskCode(body, mdast), mdast }
+}
+
+// 프론트매터 필드. 프론트매터가 없거나 깨졌거나 매핑이 아니면 빈 객체를 준다.
+export function fieldsOf(page: Page): Record<string, unknown> {
+  if ("error" in page.frontmatter) return {}
+  const data = page.frontmatter.data
+  return typeof data === "object" && data !== null && !Array.isArray(data)
+    ? (data as Record<string, unknown>)
+    : {}
 }
 
 // 프론트매터 YAML의 1행은 파일의 2행이다.

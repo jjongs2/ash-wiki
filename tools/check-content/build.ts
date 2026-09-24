@@ -3,9 +3,10 @@ import os from "node:os"
 import path from "node:path"
 import { spawnSync } from "node:child_process"
 import { slugifyFilePath, slugTag } from "@quartz-community/utils"
-import { mergeBib, mergedBibPath, repoRoot } from "../bib"
+import { mergeBib, mergedBibPath } from "../bib"
+import { repoRoot } from "../repo"
 import { bibKeys, citations } from "./source-checks"
-import type { Tree, Violation } from "./tree"
+import { fieldsOf, type Tree, type Violation } from "./tree"
 
 export interface BuildResult {
   violations: Violation[]
@@ -87,12 +88,14 @@ export function checkOutput(tree: Tree, outDir: string): Violation[] {
     }
     for (const [key, line] of cited) {
       const at = (message: string) => violations.push({ file: page.file, line, message })
-      const k = escapeRegExp(key)
+      const escapedKey = escapeRegExp(key)
       const entry = html.match(
-        new RegExp(`id="bib-${k}">\\s*<div class="csl-left-margin">\\[(\\d+)\\]`),
+        new RegExp(`id="bib-${escapedKey}">\\s*<div class="csl-left-margin">\\[(\\d+)\\]`),
       )
       const numbers = new Set(
-        [...html.matchAll(new RegExp(`href="#bib-${k}"[^>]*>(\\d+)</a>`, "g"))].map((m) => m[1]),
+        [...html.matchAll(new RegExp(`href="#bib-${escapedKey}"[^>]*>(\\d+)</a>`, "g"))].map(
+          (m) => m[1],
+        ),
       )
       if (!entry) at(`참고문헌에 항목이 없다: ${key}`)
       else if (numbers.size === 0) at(`번호 인용이 없다: ${key}`)
@@ -102,19 +105,26 @@ export function checkOutput(tree: Tree, outDir: string): Violation[] {
     }
     const frontmatter = page.frontmatter
     if ("error" in frontmatter) continue
-    const tags = (frontmatter.data as Record<string, unknown> | null)?.tags
+    const tags = fieldsOf(page).tags
     if (!Array.isArray(tags)) continue
+    // 계층 태그(<구역>/<주제>)를 단 페이지는 주제 목록과 구역 목록 모두에 나와야 한다.
+    const linked = new RegExp(`href="(?:\\.\\./)+${escapeRegExp(slug)}"`)
     tags.forEach((tag, index) => {
       if (typeof tag !== "string") return
       const line = frontmatter.lineOf("tags", index)
-      const tagPath = path.join(outDir, "tags", `${slugTag(tag)}.html`)
-      if (!fs.existsSync(tagPath)) {
-        violations.push({ file: page.file, line, message: `태그 목록이 없다: tags/${tag}` })
-        return
-      }
-      const linked = new RegExp(`href="(?:\\.\\./)+${escapeRegExp(slug)}"`)
-      if (!linked.test(fs.readFileSync(tagPath, "utf8"))) {
-        violations.push({ file: page.file, line, message: `태그 목록 tags/${tag}에 페이지가 없다` })
+      const segments = tag.split("/")
+      for (let depth = segments.length; depth > 0; depth--) {
+        const listed = segments.slice(0, depth).join("/")
+        const tagPath = path.join(outDir, "tags", `${slugTag(listed)}.html`)
+        if (!fs.existsSync(tagPath)) {
+          violations.push({ file: page.file, line, message: `태그 목록이 없다: tags/${listed}` })
+        } else if (!linked.test(fs.readFileSync(tagPath, "utf8"))) {
+          violations.push({
+            file: page.file,
+            line,
+            message: `태그 목록 tags/${listed}에 페이지가 없다`,
+          })
+        }
       }
     })
   }

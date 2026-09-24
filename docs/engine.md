@@ -21,7 +21,7 @@ git fetch https://github.com/jackyzha0/quartz.git 97a2d05f80c4c50534959b1d0d41cc
 git diff --name-only --diff-filter=M 97a2d05f80c4c50534959b1d0d41cc4b3895625e HEAD -- . ':!README.md'
 ```
 
-`README.md`는 이 저장소의 소개라 엔진 파일로 보지 않고 뺍니다. JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"` 키에 이유를 적습니다.
+`README.md`는 이 저장소의 소개라 엔진 파일로 보지 않고 뺍니다. JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"` 키에 이유를 적습니다. `tsconfig.json`은 주석을 허용하는 JSONC라 주석으로 적습니다.
 
 ## 설정
 
@@ -40,7 +40,7 @@ git diff --name-only --diff-filter=M 97a2d05f80c4c50534959b1d0d41cc4b3895625e HE
 
 `[@키]`를 citations 플러그인이 IEEE 스타일의 번호로 바꾸고, 페이지 하단에 참고문헌을 붙입니다([ADR 0003](adr/0003-engine-and-citation-stack.md)). 표기 규칙은 [위키 규약](conventions.md)에 있습니다.
 
-- 참고문헌은 엔트리 하나를 파일 하나(`bib/<키>.bib`)로 둡니다. `npm run build`의 prebuild(`npm run bib`)가 이를 합본 `bibliography.bib`로 합칩니다. 합본은 추적하지 않습니다.
+- `npm run build`의 prebuild(`npm run bib`)가 `bib/`의 엔트리 파일을 합본 `bibliography.bib`로 합칩니다. 합본은 추적하지 않습니다.
 - CSL은 저장소가 소유합니다(`csl/ieee.csl`). 고치지 않고 가져온 그대로 둡니다.
 
 | 항목     | 값                                                      |

@@ -1,7 +1,7 @@
 import { slugifyFilePath } from "@quartz-community/utils"
 import { visit } from "unist-util-visit"
 import type { Conventions } from "./conventions"
-import type { Page, Tree, Violation } from "./tree"
+import { fieldsOf, type Page, type Tree, type Violation } from "./tree"
 
 export type SourceCheck = (tree: Tree, conventions: Conventions) => Violation[]
 
@@ -9,11 +9,7 @@ const kebab = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 const citationKey = /^[a-z0-9]+-[a-z0-9]+(?:-[a-z0-9]+)*-\d{4}$/
 
 // 규약 문서의 "형식" 열 값마다 검사 방법이 하나씩 있다. 틀리면 이유를, 맞으면 null을 준다.
-function checkFormat(
-  format: string,
-  value: unknown,
-  context: { tags: Set<string>; statuses: string[] },
-): string | null {
+function checkFormat(format: string, value: unknown, statuses: string[]): string | null {
   const isText = (v: unknown) => typeof v === "string" && v.trim() !== ""
   switch (format) {
     case "문자열":
@@ -34,9 +30,9 @@ function checkFormat(
         ? null
         : "네 자리 정수(연도)여야 한다"
     case "상태":
-      return context.statuses.includes(value as string)
+      return statuses.includes(value as string)
         ? null
-        : `상태 표의 값(${context.statuses.join(", ")})이어야 한다`
+        : `상태 표의 값(${statuses.join(", ")})이어야 한다`
     case "URL":
       return typeof value === "string" && /^https?:\/\/\S+$/.test(value)
         ? null
@@ -68,7 +64,7 @@ export const frontmatter: SourceCheck = (tree, conventions) => {
       for (const field of Object.keys(fields)) {
         if (field !== "title") at(`대문과 태그 표시 이름 파일에는 title만 둔다: ${field}`, field)
       }
-      const reason = checkFormat("문자열", fields.title, { tags: tree.tags, statuses })
+      const reason = checkFormat("문자열", fields.title, statuses)
       if (reason) at(`title: ${reason}`, "title")
       continue
     }
@@ -84,7 +80,7 @@ export const frontmatter: SourceCheck = (tree, conventions) => {
         if (row[pageType] === "필수") at(`필수 필드가 없다: ${field}`)
         continue
       }
-      const reason = checkFormat(row["형식"], fields[field], { tags: tree.tags, statuses })
+      const reason = checkFormat(row["형식"], fields[field], statuses)
       if (reason) {
         at(`${field}: ${reason}`, field)
         continue
@@ -104,7 +100,7 @@ export const namespace: SourceCheck = (tree) => {
   const slugOwners = new Map<string, Page>()
   for (const page of tree.pages) {
     slugOwners.set(slugifyFilePath(page.rel as never), page)
-    const segments = page.rel.slice(0, -3).split("/")
+    const segments = page.name.split("/")
     if (page.kind === "page" && segments.length > 1) {
       violations.push({
         file: page.file,
@@ -121,9 +117,8 @@ export const namespace: SourceCheck = (tree) => {
   }
   const aliasOwners = new Map<string, Page>()
   for (const page of tree.pages) {
-    if ("error" in page.frontmatter) continue
-    const aliases = (page.frontmatter.data as Record<string, unknown> | null)?.aliases
-    if (!Array.isArray(aliases)) continue
+    const aliases = fieldsOf(page).aliases
+    if ("error" in page.frontmatter || !Array.isArray(aliases)) continue
     const { lineOf } = page.frontmatter
     aliases.forEach((alias, index) => {
       if (typeof alias !== "string") return
@@ -158,7 +153,7 @@ function* matchLines(page: Page, pattern: RegExp) {
 }
 
 export const wikilink: SourceCheck = (tree) => {
-  const slugs = new Set(tree.pages.filter((p) => p.kind !== "tag").map((p) => p.rel.slice(0, -3)))
+  const slugs = new Set(tree.pages.filter((p) => p.kind !== "tag").map((p) => p.name))
   const files = new Set(tree.pages.map((p) => p.rel))
   const violations: Violation[] = []
   for (const page of tree.pages) {
@@ -168,7 +163,8 @@ export const wikilink: SourceCheck = (tree) => {
       const at = (message: string) => violations.push({ file: page.file, line, message })
       if (target === "") continue
       if (target.startsWith("tags/")) {
-        if (!tree.tags.has(target.slice(5))) at(`표시 이름 파일이 없는 태그 목록: ${link}`)
+        if (!tree.tags.has(target.slice("tags/".length)))
+          at(`표시 이름 파일이 없는 태그 목록: ${link}`)
       } else if (embed && /\.\w+$/.test(target) && !target.endsWith(".md")) {
         if (!files.has(target)) at(`대상 파일이 없다: ${link}`)
       } else if (!kebab.test(target)) {
@@ -229,7 +225,7 @@ export const citation: SourceCheck = (tree, conventions) => {
           at(`필수 필드가 없다: ${row["필드"]}`)
           continue
         }
-        const reason = checkFormat(row["형식"], field.value, { tags: tree.tags, statuses: [] })
+        const reason = checkFormat(row["형식"], field.value, [])
         if (reason) at(`${row["필드"]}: ${reason}`, field.line)
       }
     }

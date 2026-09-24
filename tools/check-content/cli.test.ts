@@ -3,10 +3,10 @@ import assert from "node:assert"
 import { spawnSync } from "node:child_process"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
+import { repoRoot } from "../repo"
 
 // 검사기 CLI가 유일한 테스트 seam이다. 픽스처 트리를 넣고 출력 줄과 종료 코드만 본다.
 const here = path.dirname(fileURLToPath(import.meta.url))
-const repoRoot = path.resolve(here, "../..")
 
 interface Report {
   exitCode: number | null
@@ -85,14 +85,14 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-citations.md:12",
         "content/bad-citations.md:16",
         "content/bad-citations.md:20",
-        "content/bad-citations.md:22",
+        "content/bad-citations.md:24",
       ],
       callout: ["content/bad-callout.md:12"],
       emphasis: ["content/bad-emphasis.md:12"],
       output: [
         "content/bad-citations.md:16",
         "content/bad-citations.md:20",
-        "content/bad-citations.md:22",
+        "content/bad-citations.md:24",
       ],
     }
     for (const [check, locations] of Object.entries(expected)) {
@@ -102,7 +102,7 @@ describe("check-content CLI", { concurrency: false }, () => {
     assert.strictEqual(report.exitCode, 1)
   })
 
-  test("빌드가 실패해도 소스 검사는 돌고 산출물 검사만 SKIP한다", () => {
+  test("빌드가 실패해도 파일 검사는 돌고 산출물 검사만 SKIP한다", () => {
     const report = runChecker("build-fail")
     assert.deepStrictEqual(report.statuses, [
       "FAIL frontmatter",
