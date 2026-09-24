@@ -1,0 +1,20 @@
+# PR마다 콘텐츠 검사기와 테스트를 돌린다. 룰셋(.github/rulesets/main.json)이 이 job의 통과를 요구한다.
+name: integrity
+
+on:
+  pull_request:
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm run install-plugins
+      - run: npx tsc --noEmit
+      - run: npm run check:content
+      - run: npm test

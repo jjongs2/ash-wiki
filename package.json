@@ -1,7 +1,7 @@
 {
   "name": "@jackyzha0/quartz",
   "description": "🌱 publish your digital garden and notes as a website",
-  "//": "ash-wiki: scripts.build를 더했다. Cloudflare Pages 빌드 명령을 `npm run build` 하나로 두기 위해서다(prebuild가 플러그인 설치를 먼저 돌린다)",
+  "//": "ash-wiki: scripts.build를 더했다. Cloudflare Pages 빌드 명령을 `npm run build` 하나로 두기 위해서다(prebuild가 플러그인 설치와 bib 합치기를 먼저 돌린다). scripts.bib, scripts.check:content는 참고문헌 합본과 콘텐츠 검사기다(docs/conventions.md)",
   "private": true,
   "version": "5.0.0",
   "type": "module",
@@ -20,8 +20,10 @@
     "test": "tsx --test",
     "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1",
     "install-plugins": "npx tsx ./quartz/plugins/loader/install-plugins.ts",
-    "prebuild": "npm run install-plugins",
-    "build": "npx quartz build"
+    "prebuild": "npm run install-plugins && npm run bib",
+    "build": "npx quartz build",
+    "bib": "tsx tools/bib.ts",
+    "check:content": "tsx tools/check-content/cli.ts"
   },
   "engines": {
     "npm": ">=10.9.2",
