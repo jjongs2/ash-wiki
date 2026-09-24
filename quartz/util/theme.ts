@@ -49,7 +49,9 @@ export function getFontSpecificationName(spec: FontSpecification): string {
   return spec.name
 }
 
-function formatFontSpecification(
+// ash-wiki: fontOrigin이 local일 때 Head가 거는 Google Fonts URL도 같은 굵기 기본값을 쓰도록
+// 내보낸다(util/localFonts.ts).
+export function formatFontSpecification(
   type: "title" | "header" | "body" | "code",
   spec: FontSpecification,
 ) {

@@ -7,4 +7,6 @@
   <text x="130" y="35" style="fill: currentColor">ECU</text>
   <!-- 위반(svg): <image>로 래스터를 넣었다. -->
   <image href="copied-figure.png" x="130" y="50" width="90" height="40" />
+  <!-- 위반(svg): 공백 없이 닫은 <image/>도 같다. -->
+  <image/>
 </svg>

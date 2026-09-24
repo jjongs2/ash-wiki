@@ -283,9 +283,11 @@ export const emphasis: SourceCheck = (tree) => {
 
 // 도해 SVG 한 벌이 두 테마에서 읽히도록, 색은 규약 문서의 도해 팔레트 값만 쓴다.
 const colorProperty = "fill|stroke|stop-color|flood-color|lighting-color|color"
-const colorAttribute = new RegExp(`\\s(${colorProperty})\\s*=\\s*(["'])(.*?)\\2`, "g")
-const colorDeclaration = new RegExp(`(?:^|[\\s;{"'])(${colorProperty})\\s*:\\s*([^;"'}<]+)`, "g")
-const colorKeywords = /^(none|transparent|inherit|url\(#[^)]+\))$/
+const colorAttribute = new RegExp(`\\s(${colorProperty})\\s*=\\s*(["'])(.*?)\\2`, "gi")
+const colorDeclaration = new RegExp(`(?:^|[\\s;{])(${colorProperty})\\s*:\\s*([^;}]+)`, "gi")
+// CSS 선언은 style 속성과 <style> 요소 안에만 있다. 글자 노드의 "fill: ..."는 보지 않는다.
+const styleSources = [/\sstyle\s*=\s*(["'])(.*?)\1/gs, /<style[^>]*>([\s\S]*?)<\/style>/gi]
+const colorKeywords = /^(none|transparent|inherit|url\(#[^)]+\))$/i
 
 function normalizeHex(value: string): string | null {
   const hex = value.toLowerCase().match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/)?.[1]
@@ -294,23 +296,38 @@ function normalizeHex(value: string): string | null {
 }
 
 export const svg: SourceCheck = (tree, conventions) => {
-  const palette = new Set(conventions.column("diagram-palette", "값").map(normalizeHex))
+  const palette = new Set(
+    conventions.column("diagram-palette", "값").map((value) => {
+      const hex = normalizeHex(value)
+      if (!hex) throw new Error(`규약 문서의 도해 팔레트 값이 hex가 아니다: ${value}`)
+      return hex
+    }),
+  )
   const violations: Violation[] = []
   for (const { file, source } of tree.svgs) {
     const lineAt = (offset: number) => source.slice(0, offset).split("\n").length
     // 주석 안의 색은 그려지지 않으므로, 길이를 지켜 지운 뒤 찾는다.
     const text = source.replace(/<!--[\s\S]*?-->/g, (comment) => comment.replace(/[^\n]/g, " "))
-    const found = [
-      ...[...text.matchAll(colorAttribute)].map((m) => ({ match: m, value: m[3] })),
-      ...[...text.matchAll(colorDeclaration)].map((m) => ({ match: m, value: m[2] })),
-    ]
-    for (const { match, value } of found) {
-      const color = value.trim()
-      if (colorKeywords.test(color) || palette.has(normalizeHex(color))) continue
-      const line = lineAt(match.index + match[0].indexOf(match[1]))
-      violations.push({ file, line, message: `도해 팔레트 밖의 색: ${color}` })
+    // 찾은 색마다 값과 속성 이름이 시작하는 위치
+    const found = [...text.matchAll(colorAttribute)].map((m) => ({
+      value: m[3],
+      offset: m.index + m[0].indexOf(m[1]),
+    }))
+    for (const pattern of styleSources) {
+      for (const style of text.matchAll(pattern)) {
+        const css = style[style.length - 1]
+        const cssOffset = style.index + style[0].indexOf(css)
+        for (const m of css.matchAll(colorDeclaration)) {
+          found.push({ value: m[2], offset: cssOffset + m.index + m[0].indexOf(m[1]) })
+        }
+      }
     }
-    for (const match of text.matchAll(/<image[\s>]/g)) {
+    for (const { value, offset } of found) {
+      const color = value.replace(/!important/i, "").trim()
+      if (colorKeywords.test(color) || palette.has(normalizeHex(color) ?? "")) continue
+      violations.push({ file, line: lineAt(offset), message: `도해 팔레트 밖의 색: ${color}` })
+    }
+    for (const match of text.matchAll(/<image[\s/>]/gi)) {
       violations.push({
         file,
         line: lineAt(match.index),

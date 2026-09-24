@@ -10,11 +10,11 @@
 
 ## 방향
 
-시안 셋(청사진, 신호등, 계기판)을 라이트·다크로 나란히 그린 아티팩트로 보고, 소유자가 청사진을 골랐습니다(2026-09-25).
+`/design-taste-frontend`로 시안 셋(청사진, 신호등, 계기판)을 만들고, 라이트·다크로 나란히 그린 아티팩트로 보여 드려 소유자가 청사진을 골랐습니다(2026-09-25).
 
 - 긴 한국어 기술 문서를 읽는 사이트라 장식보다 읽기를 앞에 둡니다.
 - 무채색은 푸른 기가 조금 도는 슬레이트입니다. 순백과 순흑 대신 슬레이트 쪽으로 기운 흰색과 검정을 씁니다.
-- 강조색은 코발트 하나이고, 링크, 인용 번호, 콜아웃 테두리에만 씁니다.
+- 강조색은 코발트 하나이고, 링크와 인용 번호에 씁니다.
 - 다크 테마는 반전이 아닙니다. 같은 색상에서 밝기만 옮기고, 강조색은 어두운 배경에서 읽히도록 밝힌 코발트를 씁니다.
 
 ## 토큰
@@ -26,14 +26,14 @@
 | `gray`          | 보조 글자(날짜, 캡션, 경로 표시) |
 | `darkgray`      | 본문                             |
 | `dark`          | 제목, 인라인 코드 글자           |
-| `secondary`     | 링크, 인용 번호, 콜아웃          |
+| `secondary`     | 링크, 인용 번호                  |
 | `tertiary`      | 링크 hover                       |
 | `highlight`     | 내부 링크와 태그의 배경(반투명)  |
 | `textHighlight` | 형광펜 표시(`==`)의 배경(반투명) |
 
 ## 대비 하한
 
-`npm run palette`가 이 표를 읽어 두 테마에서 대비를 재고, 하한에 못 미치면 exit 1입니다. CI도 PR마다 돌립니다. `전경`과 `배경`은 theme 색 토큰이거나 `도해 <종류>`(도해 팔레트 표에서 그 종류의 색 전부)입니다. 반투명한 배경은 `light` 위에 합성해서 잽니다.
+`npm run palette`가 이 표를 읽어 두 테마에서 대비를 재고, 하한에 못 미치면 exit 1입니다. CI는 돌리지 않습니다. 색을 바꿀 때 사람이 돌립니다. `전경`과 `배경`은 theme 색 토큰이거나 `도해 <종류>`(도해 팔레트 표에서 그 종류의 색 전부)입니다. 반투명한 배경은 `light` 위에 합성해서 잽니다.
 
 <!-- table: contrast -->
 
@@ -86,8 +86,8 @@
 
 폰트 파일은 두 경로로 받습니다.
 
-- 웹: `theme.fontOrigin`이 `local`이라 코어는 폰트를 불러오지 않습니다. `Head`가 `quartz/util/localFonts.ts`의 CSS를 겁니다. Pretendard는 Google Fonts에 없어 공식 배포처인 jsDelivr에서 받습니다.
-- OG 이미지: 생성기(`@quartz-community/og-image`)는 `theme.typography`의 `header`(700)와 `body`(400)를 Google Fonts에서만 받고, 받기 전에 `quartz/.quartz-cache/fonts/<이름>-<굵기>`를 먼저 읽습니다. prebuild의 `npm run og-fonts`(`tools/og-fonts.ts`)가 웹 폰트와 같은 버전의 OTF를 그 자리에 둡니다. 없으면 한글이 없는 시스템 폰트로 넘어가 두부가 찍힙니다.
+- 웹: `theme.fontOrigin`이 `local`이라 코어는 폰트를 불러오지 않습니다. `Head`가 `theme.typography`의 폰트마다 CSS를 겁니다(`quartz/util/localFonts.ts`). Pretendard는 Google Fonts에 없어 공식 배포처인 jsDelivr에서, 나머지는 Google Fonts에서 받습니다.
+- OG 이미지: 생성기(`@quartz-community/og-image`)는 `theme.typography`의 `header`(700)와 `body`(400)를 Google Fonts에서만 받고, 받기 전에 `quartz/.quartz-cache/fonts/<이름>-<굵기>`를 먼저 읽습니다. prebuild의 `npm run og-fonts`(`tools/og-fonts.ts`)가 `header`나 `body`가 Pretendard이면 웹 폰트와 같은 버전의 OTF를 그 자리에 둡니다. 없으면 한글이 없는 시스템 폰트로 넘어가 두부가 찍힙니다.
 
 `@quartz-community/quartz-fonts` 플러그인은 끕니다. 이 플러그인은 `theme.typography`를 읽지 않고 자기 기본값(Schibsted Grotesk 등)으로 제목의 `font-family`를 덮어써, 폰트의 정본이 둘이 됩니다.
 
@@ -97,7 +97,7 @@
 
 - 채움 색은 두 배경 모두에서 3:1을 넘고, 그 위의 `on-fill` 글자도 4.5:1을 넘어야 합니다. 두 조건을 함께 맞추는 상대 휘도는 좁은 띠(약 0.13~0.17)여서, 채움 색 다섯은 색상만 다르고 밝기는 같습니다. 그래서 범주는 라벨로도 적습니다.
 - `ink`는 두 배경에서의 대비가 같아지는 휘도로 골랐고, 색상은 사이트의 슬레이트에 맞췄습니다.
-- `on-fill`은 라이트 테마의 배경색과 같은 값입니다.
+- `on-fill`은 라이트 테마의 배경색과 같은 값입니다. SVG는 사이트의 CSS 변수를 읽지 못해 값을 도해 팔레트 표에 따로 둡니다.
 
 ## 바꿀 때
 

@@ -13,7 +13,7 @@ configuration:
     - templates
     - .obsidian
   # 색과 폰트 값의 정본은 이 theme다. 고른 근거와 대비 실측은 docs/palette.md에 있다.
-  # Pretendard는 Google Fonts에 없어 fontOrigin을 local로 두고, 폰트 파일은 custom.scss가 불러온다.
+  # Pretendard는 Google Fonts에 없어 fontOrigin을 local로 두고, 폰트 CSS는 Head가 건다(quartz/util/localFonts.ts).
   # OG 이미지 생성기가 쓰는 폰트는 prebuild가 캐시에 둔다(tools/og-fonts.ts).
   theme:
     fontOrigin: local

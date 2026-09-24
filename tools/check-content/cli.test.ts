@@ -96,6 +96,7 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-diagram.svg:5",
         "content/bad-diagram.svg:7",
         "content/bad-diagram.svg:9",
+        "content/bad-diagram.svg:11",
       ],
       output: [
         "content/bad-citations.md:16",

@@ -8,7 +8,7 @@ import { repoRoot } from "./repo"
 // 대비 실측. 색의 정본(quartz.config.yaml의 theme, 규약 문서의 도해 팔레트)을 읽어
 // 팔레트 문서의 대비 하한 표를 두 테마에서 재고, 하한에 못 미치면 exit 1로 끝난다.
 // 사용: npm run palette
-export const palettePath = path.join(repoRoot, "docs", "palette.md")
+const palettePath = path.join(repoRoot, "docs", "palette.md")
 const configPath = path.join(repoRoot, "quartz.config.yaml")
 
 type Rgba = [number, number, number, number]
@@ -52,14 +52,12 @@ interface Swatch {
 
 interface Measurement {
   pair: string
-  foreground: string
-  background: string
   floor: number
   // 모드마다 가장 낮은 대비와 그 쌍. 도해 색 묶음은 묶음 안의 가장 낮은 값을 준다.
   worst: Record<Mode, { ratio: number; swatches: string }>
 }
 
-export function measure(): Measurement[] {
+function measure(): Measurement[] {
   const theme = parse(fs.readFileSync(configPath, "utf8")).configuration.theme
   const colors = theme.colors as Record<Mode, Record<string, string>>
   const diagram = loadConventions().table("diagram-palette", ["이름", "값", "종류"])
@@ -80,6 +78,9 @@ export function measure(): Measurement[] {
     return [{ name: token, color }]
   }
   return floors.map((row) => {
+    const floor = Number(row["하한"])
+    if (!(floor > 0))
+      throw new Error(`${palettePath}: "${row["쌍"]}"의 하한이 수가 아니다: ${row["하한"]}`)
     const worst = {} as Measurement["worst"]
     for (const mode of ["lightMode", "darkMode"] as Mode[]) {
       const page = parseColor(colors[mode].light)
@@ -93,13 +94,7 @@ export function measure(): Measurement[] {
       }
       worst[mode] = result
     }
-    return {
-      pair: row["쌍"],
-      foreground: row["전경"],
-      background: row["배경"],
-      floor: Number(row["하한"]),
-      worst,
-    }
+    return { pair: row["쌍"], floor, worst }
   })
 }
 

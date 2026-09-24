@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" font-family="sans-serif">
-  <!-- 통과(svg): 색은 도해 팔레트 값과 none, url(#id)만 쓴다. 주석 안의 색(#ff0000)은 보지 않는다. -->
+  <!-- 통과(svg): 색은 도해 팔레트 값과 키워드(대소문자 무관), url(#id)만 쓴다. 주석 안의 색(#ff0000)은 보지 않는다. -->
   <style>
-    .bus { stroke: #727981; fill: none; }
+    .bus { stroke: #727981 !important; fill: None; }
   </style>
   <defs>
     <linearGradient id="fade">
@@ -12,5 +12,7 @@
   <line class="bus" x1="10" y1="80" x2="230" y2="80" stroke-width="2" />
   <rect x="20" y="10" width="90" height="40" rx="4" fill="#b0540d" />
   <text x="65" y="35" text-anchor="middle" fill="#f8fafd">ECU</text>
+  <!-- 통과(svg): 글자 노드의 "fill: red"는 CSS 선언이 아니다. -->
+  <text x="120" y="95" text-anchor="middle" font-size="8" fill="#727981">fill: red</text>
   <rect x="130" y="10" width="90" height="40" rx="4" fill="url(#fade)" style="stroke: #337b47" />
 </svg>
