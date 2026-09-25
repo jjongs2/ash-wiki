@@ -78,9 +78,17 @@ describe("check-content CLI", { concurrency: false }, () => {
       namespace: [
         "content/Bad_Name.md:1",
         "content/alias-clash.md:7",
+        "content/alias-clash.md:9",
         "content/sub/nested-page.md:1",
       ],
-      wikilink: ["content/bad-links.md:12", "content/bad-links.md:16", "content/bad-links.md:20"],
+      wikilink: [
+        "content/bad-links.md:12",
+        "content/bad-links.md:16",
+        "content/bad-links.md:20",
+        "content/bad-links.md:24",
+        "content/bad-links.md:28",
+        "content/bad-links.md:32",
+      ],
       citation: [
         "bib/no-urldate-spec-2024.bib:2",
         "bib/renamed-entry-2024.bib:2",
