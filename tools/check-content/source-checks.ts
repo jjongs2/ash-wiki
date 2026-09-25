@@ -299,9 +299,13 @@ const colorKeywords = /^(none|transparent|inherit|url\(#[^)]+\))$/i
 // CSS 선언은 style 속성과 <style> 요소 안에만 있다. 글자 노드의 "fill: ..."는 보지 않는다.
 const styleSources = [/\sstyle\s*=\s*(["'])(.*?)\1/gs, /<style[^>]*>([\s\S]*?)<\/style>/gi]
 
-// 도해의 글자는 사이트와 같은 Pretendard로 그린다. 브라우저와 검사기가 같은 폰트로 그려야
-// 검사기가 잰 여백이 독자가 보는 여백과 맞는다.
-const fontFamily = "Pretendard, sans-serif"
+// 도해의 글자는 사이트와 같은 Pretendard로, 글리프 폭을 픽셀에 맞춰 반올림하지 않고 그린다.
+// 브라우저와 검사기가 같은 폭으로 그려야 검사기가 잰 여백이 독자가 보는 여백과 맞는다.
+// Linux의 Chromium은 geometricPrecision이 없으면 글리프 폭을 반올림해 여백이 한 변에서 4까지 달라진다.
+const textProperties = {
+  "font-family": "Pretendard, sans-serif",
+  "text-rendering": "geometricPrecision",
+}
 const fontImport = `@import url("${pretendardStylesheet}");`
 
 // 속성(`fill="..."`)과 CSS 선언(`fill: ...`)으로 준 값을 모두 찾는다. offset은 속성 이름이 시작하는 곳이다.
@@ -383,13 +387,15 @@ export const svg: SourceCheck = async (tree, conventions) => {
       if (colorKeywords.test(value) || palette.has(normalizeHex(value) ?? "")) continue
       violations.push({ file, line: lineAt(offset), message: `도해 팔레트 밖의 색: ${value}` })
     }
-    for (const { value, offset } of propertyValues(text, "font-family")) {
-      if (value.replace(/\s+/g, " ") === fontFamily) continue
-      violations.push({
-        file,
-        line: lineAt(offset),
-        message: `font-family는 ${fontFamily}로 둔다: ${value}`,
-      })
+    for (const [property, expected] of Object.entries(textProperties)) {
+      for (const { value, offset } of propertyValues(text, property)) {
+        if (value.replace(/\s+/g, " ") === expected) continue
+        violations.push({
+          file,
+          line: lineAt(offset),
+          message: `${property}="${expected}"로 둔다: ${value}`,
+        })
+      }
     }
     // fill을 적지 않은 도형과 글자는 검정으로 그려져 다크 테마에서 보이지 않는다. 루트가 fill을
     // 정하면 모든 요소가 루트까지 거슬러 올라가 팔레트 색이나 none을 물려받는다.
@@ -401,8 +407,10 @@ export const svg: SourceCheck = async (tree, conventions) => {
         atRoot("루트 <svg>에 fill이 없다")
       }
       if (/<(?:[\w-]+:)?text[\s>]/i.test(text)) {
-        if (!/\sfont-family\s*=/i.test(root[0])) {
-          atRoot(`루트 <svg>에 font-family="${fontFamily}"가 없다`)
+        for (const [property, expected] of Object.entries(textProperties)) {
+          if (!new RegExp(`\\s${property}\\s*=`, "i").test(root[0])) {
+            atRoot(`루트 <svg>에 ${property}="${expected}" 속성이 없다`)
+          }
         }
         if (!text.includes(fontImport)) {
           atRoot(`Pretendard를 불러오지 않는다: <style>${fontImport}</style>`)

@@ -7,9 +7,10 @@ import { cacheDir, ensurePretendard } from "../og-fonts"
 //
 // 도해는 글자를 Pretendard로 그리므로(docs/wiki-conventions.md 도해 절), fontconfig도 Pretendard만
 // 보게 한다. 시스템 폰트에 맡기면 한글 폰트가 없는 CI 러너(ubuntu-latest)에서 한글이 그려지지 않는다.
-// 같은 폰트로 그리면 렌더러 차이만 남는다. main의 도해 7개에서 이 측정(librsvg)과 Chromium의 여백은
-// 한 변에서 최대 0.5 달랐으므로, 두 변의 차는 최대 1 어긋난다. 위반 메시지가 원점을 0.5 단위로
-// 반올림해 알려 주므로 그대로 옮기면 여백의 차가 0.5 남을 수 있다. 허용치는 둘을 더한 1.5보다 크게 둔다.
+// 같은 폰트를 geometricPrecision으로 그리면 렌더러 차이만 남는다. main의 도해 7개에서 이 측정(librsvg)과
+// Linux Chromium 151(headless 포함)의 여백은 한 변에서 최대 0.25 달랐으므로, 두 변의 차는 최대 0.5
+// 어긋난다. 위반 메시지가 원점을 0.5 단위로 반올림해 알려 주므로 그대로 옮기면 여백의 차가 0.5 남을 수
+// 있다. 허용치는 둘을 더한 1보다 크게 둔다. Windows와 macOS의 브라우저에서는 재지 않았다.
 export const marginTolerance = 2
 
 // 1 viewBox 단위를 몇 픽셀로 그리는지. 가장자리를 0.25 단위로 잰다.
