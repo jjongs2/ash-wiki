@@ -11,6 +11,7 @@ import { repoRoot } from "../repo"
 
 // 출처 상태 CLI를 seam으로 본다. 트리와 로컬 HTTP 서버를 넣고 출력 줄과 종료 코드만 본다.
 // bib의 URL에 서버 포트가 들어가야 해서 트리는 테스트가 임시 디렉터리에 만든다.
+// 로컬 서버 밖의 URL은 preload(fake-hosts.ts)가 같은 경로로 로컬 서버에 돌린다.
 const here = path.dirname(fileURLToPath(import.meta.url))
 const today = "2026-09-25"
 
@@ -23,6 +24,8 @@ before(async () => {
     if (req.url === "/moved") res.writeHead(301, { location: "/alive" })
     // HEAD를 받지 않는 서버
     else if (req.url === "/no-head") res.statusCode = req.method === "HEAD" ? 405 : 200
+    // 봇 차단: 메서드와 헤더에 상관없이 막는다
+    else if (req.url === "/blocked") res.statusCode = 403
     else res.statusCode = req.url === "/alive" ? 200 : 404
     res.end()
   })
@@ -67,14 +70,24 @@ function runStatus(root: string, ...args: string[]): Promise<Report> {
   return new Promise((resolve) => {
     execFile(
       process.execPath,
-      ["--import", "tsx", path.join(here, "cli.ts"), root, "--today", today, ...args],
-      { cwd: repoRoot, encoding: "utf8" },
+      [
+        "--import",
+        "tsx",
+        "--import",
+        path.join(here, "fake-hosts.ts"),
+        path.join(here, "cli.ts"),
+        root,
+        "--today",
+        today,
+        ...args,
+      ],
+      { cwd: repoRoot, encoding: "utf8", env: { ...process.env, FAKE_HOSTS_ORIGIN: base } },
       (error, stdout) => {
         const statuses: string[] = []
         const locations = new Map<string, string[]>()
         let current = ""
         for (const line of stdout.split("\n")) {
-          const status = line.match(/^(OK|FAIL) +(\S+)/)
+          const status = line.match(/^(OK|FAIL|SKIP) +(\S+)/)
           if (status) {
             current = status[2]
             statuses.push(`${status[1]} ${current}`)
@@ -123,6 +136,44 @@ describe("source-status CLI", () => {
     assert.deepStrictEqual(report.locations.get("url"), [
       "bib/org-closed-2024.bib:3",
       "bib/org-dead-2024.bib:3",
+    ])
+    assert.strictEqual(report.exitCode, 1)
+  })
+
+  test("봇 차단 호스트의 403은 url-blocked에 따로 찍고, 그것만으로는 exit 0이다", async () => {
+    const root = makeTree({
+      "content/fresh.md": page(
+        ["network/can"],
+        "2026-09-01",
+        "하나[@iso-11898-1-2024], 둘.[@onsemi-ncv7340-2024]",
+      ),
+      "bib/iso-11898-1-2024.bib": bib("iso-11898-1-2024", "https://www.iso.org/blocked"),
+      "bib/onsemi-ncv7340-2024.bib": bib("onsemi-ncv7340-2024", "https://www.onsemi.com/blocked"),
+    })
+    const report = await runStatus(root)
+    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-blocked", "OK verified"])
+    assert.deepStrictEqual(report.locations.get("url-blocked"), [
+      "bib/iso-11898-1-2024.bib:3",
+      "bib/onsemi-ncv7340-2024.bib:3",
+    ])
+    assert.strictEqual(report.exitCode, 0)
+  })
+
+  test("목록 밖 호스트의 403과 목록 호스트의 403 아닌 실패는 url FAIL이다", async () => {
+    const root = makeTree({
+      "content/fresh.md": page(
+        ["network/can"],
+        "2026-09-01",
+        "하나[@org-blocked-2024], 둘.[@iso-dead-2024]",
+      ),
+      "bib/org-blocked-2024.bib": bib("org-blocked-2024", `${base}/blocked`),
+      "bib/iso-dead-2024.bib": bib("iso-dead-2024", "https://www.iso.org/dead"),
+    })
+    const report = await runStatus(root)
+    assert.deepStrictEqual(report.statuses, ["FAIL url", "OK verified"])
+    assert.deepStrictEqual(report.locations.get("url"), [
+      "bib/iso-dead-2024.bib:3",
+      "bib/org-blocked-2024.bib:3",
     ])
     assert.strictEqual(report.exitCode, 1)
   })
