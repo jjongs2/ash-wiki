@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="130 0 360 276" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+
+  <!-- 위에서 넘어온 (N) SDU -->
+  <rect x="250" y="20" width="220" height="40" rx="4" fill="#336fb8" />
+  <text x="360" y="45" text-anchor="middle" fill="#f8fafd">(N) SDU</text>
+  <line x1="360" y1="62" x2="360" y2="97" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="370" y="84" font-size="12" fill="#727981">(N) PCI를 붙임</text>
+
+  <!-- (N) PDU = PCI + 사용자 데이터 -->
+  <rect x="150" y="100" width="98" height="40" rx="4" fill="#b0540d" />
+  <text x="199" y="125" text-anchor="middle" fill="#f8fafd">(N) PCI</text>
+  <rect x="250" y="100" width="220" height="40" rx="4" fill="#336fb8" />
+  <text x="360" y="125" text-anchor="middle" fill="#f8fafd">사용자 데이터</text>
+  <path d="M150 146 V152 H470 V146" stroke="#727981" stroke-width="1.5" />
+  <text x="310" y="170" text-anchor="middle" fill="#727981">(N) PDU</text>
+
+  <!-- 아래 계층으로 -->
+  <line x1="310" y1="178" x2="310" y2="213" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="320" y="200" font-size="12" fill="#727981">일대일로 대응할 때</text>
+  <rect x="150" y="216" width="320" height="40" rx="4" fill="#337b47" />
+  <text x="310" y="241" text-anchor="middle" fill="#f8fafd">(N−1) SDU</text>
+</svg>

@@ -20,6 +20,8 @@ verified: 2026-09-25
 
 분할하면 (N) SDU가 여러 (N) PDU로 나뉘고, PDU마다 (N) 계층의 PCI(Protocol Control Information)가 붙는다. 연결 모드에서 전송 계층의 기능에는 종단 간 분할이 들어갈 수 있다.[@itu-t-x-200-1994]
 
+![[diagrams/segmentation-reassembly.svg]]
+
 ### CAN의 전송 프로토콜
 
 [[can|CAN]]에서는 ISO 15765-2가 ISO 11898-1의 CAN을 쓰는 차량 네트워크를 위한 전송 프로토콜과 네트워크 계층 서비스를 규정한다.[@iso-15765-2-2024] 2016년판은 Classical CAN 프레임과 CAN FD(CAN with Flexible Data-Rate) 프레임을 모두 다룬다.[@iso-15765-2-2016]
@@ -27,3 +29,5 @@ verified: 2026-09-25
 ## 비교·한계
 
 Classical CAN 프레임의 데이터는 최대 8바이트이고[@iso-11898-1-2015], CAN FD 프레임의 데이터는 최대 64바이트다.[@iso-15765-2-2016]
+
+![[diagrams/can-max-data-length.svg]]

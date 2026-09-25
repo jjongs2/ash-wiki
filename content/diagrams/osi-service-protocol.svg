@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="31 0 560.5 284" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+
+  <!-- 계층 이름 -->
+  <g text-anchor="end" fill="#727981">
+    <text x="112" y="47">(N+1) 계층</text>
+    <text x="112" y="147">(N) 계층</text>
+    <text x="112" y="247">(N−1) 계층</text>
+  </g>
+
+  <!-- 두 쪽의 개체 -->
+  <g fill="#825da9">
+    <rect x="130" y="20" width="140" height="44" rx="4" />
+    <rect x="430" y="20" width="140" height="44" rx="4" />
+  </g>
+  <g fill="#336fb8">
+    <rect x="130" y="120" width="140" height="44" rx="4" />
+    <rect x="430" y="120" width="140" height="44" rx="4" />
+  </g>
+  <g fill="#b0540d">
+    <rect x="130" y="220" width="140" height="44" rx="4" />
+    <rect x="430" y="220" width="140" height="44" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="#f8fafd">
+    <text x="200" y="47">(N+1) 개체</text>
+    <text x="500" y="47">(N+1) 개체</text>
+    <text x="200" y="147">(N) 개체</text>
+    <text x="500" y="147">(N) 개체</text>
+    <text x="200" y="247">(N−1) 개체</text>
+    <text x="500" y="247">(N−1) 개체</text>
+  </g>
+
+  <!-- 서비스: 아래 계층이 위 계층에 제공 -->
+  <g stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="200" y1="118" x2="200" y2="67" />
+    <line x1="500" y1="118" x2="500" y2="67" />
+    <line x1="200" y1="218" x2="200" y2="167" />
+    <line x1="500" y1="218" x2="500" y2="167" />
+  </g>
+  <g font-size="12" fill="#727981">
+    <text x="208" y="96">(N) 서비스</text>
+    <text x="508" y="96">(N) 서비스</text>
+    <text x="208" y="196">(N−1) 서비스</text>
+    <text x="508" y="196">(N−1) 서비스</text>
+  </g>
+
+  <!-- 프로토콜: 같은 계층의 개체끼리 -->
+  <line x1="273" y1="142" x2="427" y2="142" stroke="#727981" stroke-width="1.5" stroke-dasharray="5 4" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  <text x="350" y="133" text-anchor="middle" font-size="12" fill="#727981">(N) 프로토콜</text>
+</svg>

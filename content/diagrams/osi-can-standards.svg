@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="31.5 -0.5 515.5 231" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+
+  <!-- OSI 계층 이름 -->
+  <g text-anchor="end" fill="#727981">
+    <text x="136" y="45">전송 (4)</text>
+    <text x="136" y="95">네트워크 (3)</text>
+    <text x="136" y="145">데이터 링크 (2)</text>
+    <text x="136" y="195">물리 (1)</text>
+  </g>
+
+  <!-- ISO 15765-2 -->
+  <rect x="150" y="20" width="250" height="40" rx="4" fill="#b0540d" />
+  <text x="275" y="45" text-anchor="middle" fill="#f8fafd">전송 프로토콜</text>
+  <rect x="150" y="70" width="250" height="40" rx="4" fill="#b0540d" />
+  <text x="275" y="95" text-anchor="middle" fill="#f8fafd">네트워크 계층 서비스</text>
+  <path d="M410 20 H416 V110 H410" stroke="#727981" stroke-width="1.5" />
+  <text x="424" y="70" fill="#727981">ISO 15765-2</text>
+
+  <!-- ISO 11898 시리즈 -->
+  <rect x="150" y="120" width="120" height="40" rx="4" fill="#336fb8" />
+  <text x="210" y="145" text-anchor="middle" fill="#f8fafd">LLC</text>
+  <rect x="280" y="120" width="120" height="40" rx="4" fill="#336fb8" />
+  <text x="340" y="145" text-anchor="middle" fill="#f8fafd">MAC</text>
+  <rect x="150" y="170" width="250" height="40" rx="4" fill="#336fb8" />
+  <text x="275" y="195" text-anchor="middle" fill="#f8fafd">물리 계층</text>
+  <path d="M410 120 H416 V210 H410" stroke="#727981" stroke-width="1.5" />
+  <text x="424" y="170" fill="#727981">ISO 11898 시리즈</text>
+</svg>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18 0 302 328" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+  <!-- 아래에서부터 1~7 계층 -->
+  <g fill="#336fb8">
+    <rect x="60" y="20" width="240" height="36" rx="4" />
+    <rect x="60" y="62" width="240" height="36" rx="4" />
+    <rect x="60" y="104" width="240" height="36" rx="4" />
+    <rect x="60" y="146" width="240" height="36" rx="4" />
+    <rect x="60" y="188" width="240" height="36" rx="4" />
+    <rect x="60" y="230" width="240" height="36" rx="4" />
+    <rect x="60" y="272" width="240" height="36" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="#f8fafd">
+    <text x="180" y="43">응용 계층</text>
+    <text x="180" y="85">표현 계층</text>
+    <text x="180" y="127">세션 계층</text>
+    <text x="180" y="169">전송 계층</text>
+    <text x="180" y="211">네트워크 계층</text>
+    <text x="180" y="253">데이터 링크 계층</text>
+    <text x="180" y="295">물리 계층</text>
+  </g>
+  <g text-anchor="end" fill="#727981">
+    <text x="46" y="43">7</text>
+    <text x="46" y="85">6</text>
+    <text x="46" y="127">5</text>
+    <text x="46" y="169">4</text>
+    <text x="46" y="211">3</text>
+    <text x="46" y="253">2</text>
+    <text x="46" y="295">1</text>
+  </g>
+</svg>

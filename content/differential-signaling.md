@@ -11,6 +11,8 @@ verified: 2026-09-25
 
 **차동 신호** 방식은 신호 하나를 두 선에 서로 반대 극성으로 실어 보내고, 받는 쪽이 두 선의 전압 차로 값을 판정하는 전송 방식이다.[@ti-sn65hvd1780-2017] 이와 달리 단일 종단(single-ended) 수신기는 선 하나의 접지 기준 전압을 문턱 전압과 비교한다.[@nxp-tja1055-2013]
 
+![[diagrams/differential-vs-single-ended.svg]]
+
 ## 구조·동작
 
 ### 차동 전압과 공통 모드 전압
@@ -19,10 +21,15 @@ verified: 2026-09-25
 
 차동 수신기는 두 선의 전압 차로 판정하므로, 두 선에 똑같이 결합된 공통 모드 신호에 내성이 있다.[@ti-sn65lvds31-2021] 다만 수신기에는 정해진 공통 모드 입력 범위가 있어, 입력이 그 범위 안에 있고 $V_\mathrm{ID}$의 크기가 문턱 이상일 때에만 올바르게 판정한다.[@ti-sn65lvds32-2014]
 
+![[diagrams/differential-common-mode-noise.svg]]
+
 ### 쓰임
 
 - 고속 [[can|CAN]] 트랜시버 TJA1042는 CAN_H와 CAN_L 두 선의 버스를 쓴다. dominant에서는 CAN_H를 약 3.5 V, CAN_L을 약 1.5 V로 벌려 차동 전압이 1.5~3 V가 되고, recessive에서는 두 선을 약 0.5 VCC에 두어 차동 전압이 −50~50 mV가 된다.[@nxp-tja1042-2023] 버스의 전기적 동작은 [[can-physical-layer|CAN 물리 계층]]에서 다룬다.
 - TIA/EIA-485-A를 따르는 RS-485 트랜시버 SN65HVD178x는 $V_\mathrm{ID} > 200\,\mathrm{mV}$이면 High, $V_\mathrm{ID} < -200\,\mathrm{mV}$이면 Low를 낸다. 버스 단자 전압 $V_\mathrm{I}$의 권장 동작 조건은 $-7\,\mathrm{V} \le V_\mathrm{I} \le 12\,\mathrm{V}$다.[@ti-sn65hvd1780-2017]
+
+  ![[diagrams/rs485-receiver-threshold.svg]]
+
 - LVDS(Low-Voltage Differential Signaling) 드라이버 SN65LVDS31은 100 Ω 부하에 약 350 mV의 차동 전압으로 신호를 보낸다. 5 V 차동 규격인 TIA/EIA-422-B보다 출력 전압을 낮춰 소비 전력을 줄이고, 차동 출력 전압이 작아 방사 에너지도 적다.[@ti-sn65lvds31-2021]
 
 ## 비교·한계

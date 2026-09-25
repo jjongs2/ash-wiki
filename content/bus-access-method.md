@@ -12,6 +12,8 @@ verified: 2026-09-25
 
 FDDI(Fibre Distributed Data Interface) 규격에서 매체 접근 제어(MAC, Media Access Control)는 데이터 링크 계층의 가운데 부계층으로, 매체에 공정하고 결정적으로 접근하게 한다.[@iso-iec-9314-8-1998] ISO 11898-1:2024도 [[can|CAN]]의 데이터 링크 계층을 LLC(Logical Link Control) 부계층과 MAC 부계층으로 나눈다.[@iso-11898-1-2024]
 
+![[diagrams/osi-can-standards.svg]]
+
 ## 구조·동작
 
 ### 이더넷
@@ -21,6 +23,8 @@ IEEE 802.3에서 공유 매체(반이중) 동작은 CSMA/CD(Carrier Sense Multip
 ### CAN
 
 CAN은 멀티마스터 방식이라, 버스가 비어 있으면 어느 노드든 프레임을 보내기 시작할 수 있다.[@iso-11898-1-obp-2024] 여러 노드가 한꺼번에 보내기 시작하면 식별자를 한 비트씩 겨루는 중재가 일어난다. 중재에서 진 노드는 물러나 수신 노드가 되고, 이긴 프레임은 정보도 시간도 잃지 않고 전송된다.[@bosch-can-2-0-1991]
+
+![[diagrams/can-arbitration.svg]]
 
 ### FlexRay
 

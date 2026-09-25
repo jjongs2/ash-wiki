@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="80 12.5 555 280.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+
+  <!-- 두 선의 전압: 공통 모드 신호가 두 선에 똑같이 실림 -->
+  <text x="320" y="42" text-anchor="middle" font-size="12" fill="#727981">두 선에 똑같이 결합된 공통 모드 신호</text>
+  <path d="M260 56 V50 H380 V56" stroke="#727981" stroke-width="1" />
+  <path d="M100 110 H260 L290 84 H350 L380 110 H520" stroke="#727981" stroke-width="1.5" stroke-dasharray="5 4" />
+  <path d="M100 88 H170 V132 H240 V88 H260 L290 62 H350 L380 88 V132 H450 V88 H520" stroke="#336fb8" stroke-width="2" />
+  <path d="M100 132 H170 V88 H240 V132 H260 L290 106 H350 L380 132 V88 H450 V132 H520" stroke="#b0540d" stroke-width="2" />
+  <g fill="#727981">
+    <text x="532" y="93">V<tspan font-size="10" dy="3">A</tspan></text>
+    <text x="532" y="115">V<tspan font-size="10" dy="3">IC</tspan><tspan dx="6" dy="-3" font-size="12">평균</tspan></text>
+    <text x="532" y="137">V<tspan font-size="10" dy="3">B</tspan></text>
+  </g>
+
+  <!-- 수신기가 보는 차: 공통 모드 신호가 빠짐 -->
+  <line x1="100" y1="210" x2="520" y2="210" stroke="#727981" stroke-width="1" stroke-dasharray="2 5" />
+  <path d="M100 180 H170 V240 H240 V180 H380 V240 H450 V180 H520" stroke="#825da9" stroke-width="2" />
+  <text x="532" y="185" fill="#727981">V<tspan font-size="10" dy="3">ID</tspan><tspan dx="5" dy="-3">= V</tspan><tspan font-size="10" dy="3">A</tspan><tspan dx="5" dy="-3">− V</tspan><tspan font-size="10" dy="3">B</tspan></text>
+
+  <!-- 시간 축 -->
+  <line x1="100" y1="268" x2="530" y2="268" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="540" y="272" font-size="12" fill="#727981">시간</text>
+</svg>
