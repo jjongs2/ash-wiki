@@ -333,14 +333,16 @@ function normalizeHex(value: string): string | null {
   return `#${hex.length === 3 ? [...hex].map((c) => c + c).join("") : hex}`
 }
 
-// 여백이 치우쳤으면 이유와 옮긴 viewBox를, 아니면 null을 준다. viewBox가 없으면 재지 않는다.
+// 여백이 치우쳤거나 잴 수 없으면 그 이유를, 아니면 null을 준다.
 async function marginViolation(source: string, root: string): Promise<string | null> {
   const viewBox = root
     .match(/\sviewBox\s*=\s*(["'])(.*?)\1/i)?.[2]
     .trim()
     .split(/[\s,]+/)
     .map(Number)
-  if (viewBox?.length !== 4 || viewBox.some((n) => !Number.isFinite(n))) return null
+  if (viewBox?.length !== 4 || viewBox.some((n) => !Number.isFinite(n))) {
+    return "루트 <svg>에 viewBox가 없어 여백을 재지 못한다"
+  }
   const [x, y, width, height] = viewBox
   let margins
   try {
@@ -392,17 +394,23 @@ export const svg: SourceCheck = async (tree, conventions) => {
     // fill을 적지 않은 도형과 글자는 검정으로 그려져 다크 테마에서 보이지 않는다. 루트가 fill을
     // 정하면 모든 요소가 루트까지 거슬러 올라가 팔레트 색이나 none을 물려받는다.
     const root = text.match(/<(?:[\w-]+:)?svg[\s>][^>]*>/i)
-    if (root && !/\sfill\s*=|\sstyle\s*=\s*(["'])[^"']*\bfill\s*:/i.test(root[0])) {
-      violations.push({ file, line: lineAt(root.index!), message: "루트 <svg>에 fill이 없다" })
+    if (root) {
+      const atRoot = (message: string) =>
+        violations.push({ file, line: lineAt(root.index!), message })
+      if (!/\sfill\s*=|\sstyle\s*=\s*(["'])[^"']*\bfill\s*:/i.test(root[0])) {
+        atRoot("루트 <svg>에 fill이 없다")
+      }
+      if (/<(?:[\w-]+:)?text[\s>]/i.test(text)) {
+        if (!/\sfont-family\s*=/i.test(root[0])) {
+          atRoot(`루트 <svg>에 font-family="${fontFamily}"가 없다`)
+        }
+        if (!text.includes(fontImport)) {
+          atRoot(`Pretendard를 불러오지 않는다: <style>${fontImport}</style>`)
+        }
+      }
+      const marginMessage = await marginViolation(source, root[0])
+      if (marginMessage) atRoot(marginMessage)
     }
-    if (root && /<(?:[\w-]+:)?text[\s>]/i.test(text)) {
-      const at = (message: string) => violations.push({ file, line: lineAt(root.index!), message })
-      if (!/\sfont-family\s*=/i.test(root[0])) at(`루트 <svg>에 font-family="${fontFamily}"가 없다`)
-      if (!text.includes(fontImport))
-        at(`Pretendard를 불러오지 않는다: <style>${fontImport}</style>`)
-    }
-    const margin = root && (await marginViolation(source, root[0]))
-    if (margin) violations.push({ file, line: lineAt(root.index!), message: margin })
     // 접두사(<svg:image>)가 붙어도, 필터 요소(<feImage>)로 넣어도 같다.
     for (const match of text.matchAll(/<(?:[\w-]+:)?(?:image|feImage)[\s/>]/gi)) {
       violations.push({

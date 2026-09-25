@@ -122,6 +122,7 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-font.svg:1",
         "content/bad-font.svg:4",
         "content/bad-font.svg:5",
+        "content/no-viewbox.svg:1",
         "content/skewed-diagram.svg:1",
       ],
       output: [

@@ -8,13 +8,14 @@ import { cacheDir, ensurePretendard } from "../og-fonts"
 // 도해는 글자를 Pretendard로 그리므로(docs/wiki-conventions.md 도해 절), fontconfig도 Pretendard만
 // 보게 한다. 시스템 폰트에 맡기면 한글 폰트가 없는 CI 러너(ubuntu-latest)에서 한글이 그려지지 않는다.
 // 같은 폰트로 그리면 렌더러 차이만 남는다. main의 도해 7개에서 이 측정(librsvg)과 Chromium의 여백은
-// 한 변에서 최대 0.5 달랐다. 허용치는 이 오차에, 원점을 0.5 단위로 반올림해 생기는 차 1을 더해 잡는다.
+// 한 변에서 최대 0.5 달랐으므로, 두 변의 차는 최대 1 어긋난다. 위반 메시지가 원점을 0.5 단위로
+// 반올림해 알려 주므로 그대로 옮기면 여백의 차가 0.5 남을 수 있다. 허용치는 둘을 더한 1.5보다 크게 둔다.
 export const marginTolerance = 2
 
 // 1 viewBox 단위를 몇 픽셀로 그리는지. 가장자리를 0.25 단위로 잰다.
 const scale = 4
 
-export interface Margins {
+interface Margins {
   left: number
   right: number
   top: number
@@ -23,6 +24,7 @@ export interface Margins {
 
 const fontconfigDir = path.join(path.dirname(cacheDir), "fontconfig")
 
+// 굵기는 400과 700만 받는다. 다른 굵기를 쓰는 도해는 브라우저와 글자 폭이 달라진다.
 async function fontconfigFile(): Promise<string> {
   await ensurePretendard([400, 700])
   const file = path.join(fontconfigDir, "fonts.conf")
