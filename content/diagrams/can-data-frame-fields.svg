@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 460 380" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+  <text x="116" y="25" text-anchor="end" font-size="13" fill="#727981">SOF</text>
+  <rect x="130.75" y="0.75" width="48.5" height="38.5" stroke="#727981" stroke-width="1.5" />
+  <text x="155" y="25" text-anchor="middle" font-size="13" fill="#727981">SOF</text>
+  <line x1="190" y1="20" x2="354" y2="20" stroke="#727981" stroke-width="1" stroke-dasharray="2 4" />
+  <text x="440" y="25" text-anchor="end" font-size="12" fill="#727981">1비트</text>
+  <text x="116" y="73" text-anchor="end" font-size="13" fill="#727981">중재 필드</text>
+  <rect x="130.75" y="48.75" width="98.5" height="38.5" stroke="#727981" stroke-width="1.5" />
+  <text x="180" y="73" text-anchor="middle" font-size="13" fill="#727981">식별자</text>
+  <rect x="234.75" y="48.75" width="48.5" height="38.5" stroke="#727981" stroke-width="1.5" />
+  <text x="259" y="73" text-anchor="middle" font-size="13" fill="#727981">RTR</text>
+  <line x1="294" y1="68" x2="354" y2="68" stroke="#727981" stroke-width="1" stroke-dasharray="2 4" />
+  <text x="440" y="73" text-anchor="end" font-size="12" fill="#727981">11 + 1비트</text>
+  <text x="116" y="121" text-anchor="end" font-size="13" fill="#727981">제어 필드</text>
+  <rect x="130.75" y="96.75" width="48.5" height="38.5" stroke="#727981" stroke-width="1.5" />
+  <text x="155" y="121" text-anchor="middle" font-size="13" fill="#727981">IDE</text>
+  <rect x="184.75" y="96.75" width="48.5" height="38.5" stroke="#727981" stroke-width="1.5" />
+  <text x="209" y="121" text-anchor="middle" font-size="13" fill="#727981">예약</text>
+  <rect x="238.75" y="96.75" width="48.5" height="38.5" stroke="#727981" stroke-width="1.5" />
+  <text x="263" y="121" text-anchor="middle" font-size="13" fill="#727981">DLC</text>
+  <line x1="298" y1="116" x2="354" y2="116" stroke="#727981" stroke-width="1" stroke-dasharray="2 4" />
+  <text x="440" y="121" text-anchor="end" font-size="12" fill="#727981">1 + 1 + 4비트</text>
+  <text x="116" y="169" text-anchor="end" font-size="13" fill="#727981">데이터 필드</text>
+  <rect x="130.75" y="144.75" width="148.5" height="38.5" stroke="#727981" stroke-width="1.5" />
+  <text x="205" y="169" text-anchor="middle" font-size="13" fill="#727981">데이터</text>
+  <line x1="290" y1="164" x2="354" y2="164" stroke="#727981" stroke-width="1" stroke-dasharray="2 4" />
+  <text x="440" y="169" text-anchor="end" font-size="12" fill="#727981">0~8바이트</text>
+  <text x="116" y="217" text-anchor="end" font-size="13" fill="#727981">CRC 필드</text>
+  <rect x="130.75" y="192.75" width="94.5" height="38.5" stroke="#727981" stroke-width="1.5" />
+  <text x="178" y="217" text-anchor="middle" font-size="13" fill="#727981">CRC 시퀀스</text>
+  <rect x="230.75" y="192.75" width="102.5" height="38.5" stroke="#727981" stroke-width="1.5" />
+  <text x="282" y="217" text-anchor="middle" font-size="13" fill="#727981">CRC delimiter</text>
+  <line x1="344" y1="212" x2="354" y2="212" stroke="#727981" stroke-width="1" stroke-dasharray="2 4" />
+  <text x="440" y="217" text-anchor="end" font-size="12" fill="#727981">15 + 1비트</text>
+  <text x="116" y="265" text-anchor="end" font-size="13" fill="#727981">ACK 필드</text>
+  <rect x="130.75" y="240.75" width="78.5" height="38.5" stroke="#727981" stroke-width="1.5" />
+  <text x="170" y="265" text-anchor="middle" font-size="13" fill="#727981">ACK 슬롯</text>
+  <rect x="214.75" y="240.75" width="102.5" height="38.5" stroke="#727981" stroke-width="1.5" />
+  <text x="266" y="265" text-anchor="middle" font-size="13" fill="#727981">ACK delimiter</text>
+  <line x1="328" y1="260" x2="354" y2="260" stroke="#727981" stroke-width="1" stroke-dasharray="2 4" />
+  <text x="440" y="265" text-anchor="end" font-size="12" fill="#727981">1 + 1비트</text>
+  <text x="116" y="313" text-anchor="end" font-size="13" fill="#727981">EOF</text>
+  <rect x="130.75" y="288.75" width="48.5" height="38.5" stroke="#727981" stroke-width="1.5" />
+  <text x="155" y="313" text-anchor="middle" font-size="13" fill="#727981">EOF</text>
+  <line x1="190" y1="308" x2="354" y2="308" stroke="#727981" stroke-width="1" stroke-dasharray="2 4" />
+  <text x="440" y="313" text-anchor="end" font-size="12" fill="#727981">7비트</text>
+  <line x1="12" y1="4" x2="12" y2="324" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="0" y="358" font-size="12" fill="#727981">기본 포맷 데이터 프레임. 위에서 아래로 송신 순서</text>
+</svg>
