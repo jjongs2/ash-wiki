@@ -7,7 +7,7 @@ verified: 2026-09-25
 
 ## 정의
 
-CAN(Controller Area Network) 트랜시버는 [[can-controller|CAN 컨트롤러]]가 쓰는 디지털 신호와 CAN_H·CAN_L 버스의 차동 신호 사이를 변환한다.[@ti-tcan1042-q1-2021] 컨트롤러 쪽으로는 송신 데이터 입력 TXD와 수신 데이터 출력 RXD 핀을, 버스 쪽으로는 CAN_H와 CAN_L 핀을 둔다.[@nxp-tja1042-2023]
+[[can|CAN]] 트랜시버는 [[can-controller|CAN 컨트롤러]]가 쓰는 디지털 신호와 CAN_H·CAN_L 버스의 차동 신호 사이를 변환한다.[@ti-tcan1042-q1-2021] 컨트롤러 쪽으로는 송신 데이터 입력 TXD와 수신 데이터 출력 RXD 핀을, 버스 쪽으로는 CAN_H와 CAN_L 핀을 둔다.[@nxp-tja1042-2023]
 
 ![[can-node-bus.svg]]
 
@@ -15,7 +15,7 @@ CAN(Controller Area Network) 트랜시버는 [[can-controller|CAN 컨트롤러]]
 
 ### 송신과 수신
 
-TXD가 low이면 드라이버가 버스를 차동으로 구동해 dominant로 만든다.[@ti-tcan1042-q1-2021] high이면 구동하지 않고, 버스는 수신기 내부 저항으로 VCC/2에 바이어스된 recessive가 된다.[@ti-tcan1042-q1-2021] dominant와 recessive를 동시에 보내면 버스는 dominant가 된다.[@bosch-can-2-0-1991]
+TXD가 low이면 드라이버가 버스를 차동으로 구동해 dominant로 만든다. high이면 구동하지 않고, 버스는 수신기 내부 저항으로 VCC/2에 바이어스된 recessive가 된다.[@ti-tcan1042-q1-2021] dominant와 recessive를 동시에 보내면 버스는 dominant가 된다.[@bosch-can-2-0-1991]
 
 ![[hs-can-bus-voltage.svg]]
 
@@ -31,7 +31,7 @@ TJA1042는 TXD가 정해진 시간보다 오래 low로 머물면 송신기를 �
 
 ### 저전력 모드와 웨이크업
 
-TCAN1042의 Standby 모드에서는 드라이버와 일반 수신기를 끄고 저전력 수신기만 버스를 감시한다.[@ti-tcan1042-q1-2021] 웨이크업 패턴(WUP, wake-up pattern)을 감지하면 RXD를 low로 내려 MCU(Microcontroller Unit)에 웨이크업 요청을 알린다.[@ti-tcan1042-q1-2021] TJA1042는 Standby 모드에서 버스의 dominant가 정해진 시간보다 오래 이어지면 RXD를 high로 되돌려, 단락된 버스가 웨이크업 요청을 계속 만들지 않게 한다.[@nxp-tja1042-2023]
+TCAN1042의 Standby 모드에서는 드라이버와 일반 수신기를 끄고 저전력 수신기만 버스를 감시한다. 웨이크업 패턴(WUP, wake-up pattern)을 감지하면 RXD를 low로 내려 MCU에 웨이크업 요청을 알린다.[@ti-tcan1042-q1-2021] TJA1042는 Standby 모드에서 버스의 dominant가 정해진 시간보다 오래 이어지면 RXD를 high로 되돌려, 단락된 버스가 웨이크업 요청을 계속 만들지 않게 한다.[@nxp-tja1042-2023]
 
 TJA1145는 선택적 웨이크업을 켜면 버스에서 미리 설정한 웨이크업 프레임(WUF, wake-up frame)을 감시하고, 그 프레임을 받을 때만 노드를 깨운다.[@nxp-tja1145-2018]
 
