@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" viewBox="-5 -9.5 240 100" font-family="sans-serif">
-  <!-- 위반(svg): 루트 <svg>에 fill이 없다. 색을 적지 않은 아래 rect가 검정으로 그려진다. -->
+  <!-- 위반(svg): 루트 <svg>에 fill이 없다. 색을 적지 않은 아래 rect가 검정으로 그려진다. 여백은 대칭이 되게 viewBox를 잡았다. -->
   <rect x="0" y="0" width="40" height="20" />
   <!-- 위반(svg): 팔레트 밖의 hex 색이다. -->
   <rect x="10" y="10" width="90" height="40" fill="#ff0000" />

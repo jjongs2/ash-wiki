@@ -27,7 +27,7 @@ export async function ensureOgFonts(): Promise<void> {
   await ensurePretendard(weights)
 }
 
-// 콘텐츠 검사기의 도해 여백 측정(tools/check-content/diagram-margin.ts)도 이 파일을 쓴다.
+// 콘텐츠 검사기의 도해 여백 측정(tools/check-content/diagram-margin.ts)도 여기서 받은 Pretendard를 쓴다.
 export async function ensurePretendard(weights: number[]): Promise<void> {
   if (weights.length === 0) return
   fs.mkdirSync(cacheDir, { recursive: true })

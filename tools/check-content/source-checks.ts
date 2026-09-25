@@ -1,7 +1,7 @@
 import { slugifyFilePath } from "@quartz-community/utils"
 import { visit } from "unist-util-visit"
 import type { Conventions } from "./conventions"
-import { marginTolerance, measureMargins } from "./diagram-margin"
+import { marginTolerance, measureMargins, SvgRenderError } from "./diagram-margin"
 import { fieldsOf, type Page, type Tree, type Violation } from "./tree"
 
 export type SourceCheck = (
@@ -319,7 +319,8 @@ async function marginViolation(source: string, root: string): Promise<string | n
   try {
     margins = await measureMargins(source, { width, height })
   } catch (error) {
-    return `SVG를 그리지 못해 여백을 재지 못했다: ${(error as Error).message}`
+    if (!(error instanceof SvgRenderError)) throw error
+    return `SVG를 그리지 못해 여백을 재지 못했다: ${error.message}`
   }
   if (!margins) return null
   const { left, right, top, bottom } = margins
