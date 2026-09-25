@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="35 -15.5 629 379.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+  <!-- 공칭 비트 시간과 그 끝 -->
+  <text x="384" y="14" text-anchor="middle" font-size="12" fill="#727981">공칭 비트 시간</text>
+  <line x1="164" y1="24" x2="604" y2="24" stroke="#727981" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  <line x1="604" y1="30" x2="604" y2="292" stroke="#727981" stroke-width="1" stroke-dasharray="3 3" />
+
+  <!-- 위상 오차 0: 에지가 SYNC_SEG 안 -->
+  <text x="150" y="83" text-anchor="end" fill="#727981">위상 오차 0</text>
+  <path d="M164 40 H184 V54 H644" stroke="#727981" stroke-width="1.5" />
+  <rect x="164" y="62" width="40" height="32" fill="#825da9" />
+  <rect x="204" y="62" width="120" height="32" fill="#336fb8" />
+  <rect x="324" y="62" width="120" height="32" fill="#337b47" />
+  <rect x="444" y="62" width="160" height="32" fill="#b0540d" />
+  <g text-anchor="middle" font-size="12" fill="#f8fafd">
+    <text x="264" y="82">PROP_SEG</text>
+    <text x="384" y="82">PHASE_SEG1</text>
+    <text x="524" y="82">PHASE_SEG2</text>
+  </g>
+  <line x1="444" y1="58" x2="444" y2="100" stroke="#727981" stroke-width="1.5" />
+
+  <!-- 위상 오차 양수: 에지가 늦게 옴, PHASE_SEG1을 늘림 -->
+  <text x="150" y="156" text-anchor="end" fill="#727981">위상 오차 양수</text>
+  <text x="150" y="174" text-anchor="end" font-size="12" fill="#727981">PHASE_SEG1 늘림</text>
+  <path d="M164 120 H244 V134 H644" stroke="#727981" stroke-width="1.5" />
+  <rect x="164" y="142" width="40" height="32" fill="#825da9" />
+  <rect x="204" y="142" width="120" height="32" fill="#336fb8" />
+  <rect x="324" y="142" width="120" height="32" fill="#337b47" />
+  <rect x="445" y="142" width="39" height="32" fill="#337b47" />
+  <rect x="484" y="142" width="160" height="32" fill="#b0540d" />
+  <g text-anchor="middle" font-size="12" fill="#f8fafd">
+    <text x="264" y="162">PROP_SEG</text>
+    <text x="384" y="162">PHASE_SEG1</text>
+    <text x="564" y="162">PHASE_SEG2</text>
+  </g>
+  <line x1="484" y1="138" x2="484" y2="180" stroke="#727981" stroke-width="1.5" />
+  <path d="M445 182 V188 H483 V182" stroke="#727981" stroke-width="1.5" />
+  <text x="464" y="204" text-anchor="middle" font-size="12" fill="#727981">SJW 이하</text>
+
+  <!-- 위상 오차 음수: 에지가 일찍 옴, PHASE_SEG2를 줄임 -->
+  <text x="150" y="256" text-anchor="end" fill="#727981">위상 오차 음수</text>
+  <text x="150" y="274" text-anchor="end" font-size="12" fill="#727981">PHASE_SEG2 줄임</text>
+  <path d="M164 220 H564 V234 H644" stroke="#727981" stroke-width="1.5" />
+  <rect x="164" y="242" width="40" height="32" fill="#825da9" />
+  <rect x="204" y="242" width="120" height="32" fill="#336fb8" />
+  <rect x="324" y="242" width="120" height="32" fill="#337b47" />
+  <rect x="444" y="242" width="120" height="32" fill="#b0540d" />
+  <rect x="564.75" y="242.75" width="38.5" height="30.5" stroke="#727981" stroke-width="1.5" stroke-dasharray="4 3" />
+  <g text-anchor="middle" font-size="12" fill="#f8fafd">
+    <text x="264" y="262">PROP_SEG</text>
+    <text x="384" y="262">PHASE_SEG1</text>
+    <text x="504" y="262">PHASE_SEG2</text>
+  </g>
+  <line x1="444" y1="238" x2="444" y2="280" stroke="#727981" stroke-width="1.5" />
+  <path d="M565 282 V288 H603 V282" stroke="#727981" stroke-width="1.5" />
+  <text x="584" y="304" text-anchor="middle" font-size="12" fill="#727981">SJW 이하</text>
+
+  <!-- 범례 -->
+  <rect x="164" y="328" width="14" height="14" fill="#825da9" />
+  <text x="186" y="340" font-size="12" fill="#727981">SYNC_SEG</text>
+  <line x1="276" y1="326" x2="276" y2="344" stroke="#727981" stroke-width="1.5" />
+  <text x="286" y="340" font-size="12" fill="#727981">샘플 포인트</text>
+  <path d="M372 328 H384 V340 H396" stroke="#727981" stroke-width="1.5" />
+  <text x="404" y="340" font-size="12" fill="#727981">입력 신호의 recessive→dominant 에지</text>
+</svg>

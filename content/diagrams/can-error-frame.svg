@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -9 610 219" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <!-- 오류 프레임과 그 뒤의 프레임 간 공간 -->
+  <path d="M20 36 V30 H500 V36" stroke="#727981" stroke-width="1.5" />
+  <text x="260" y="22" text-anchor="middle" fill="#727981">오류 프레임</text>
+  <path d="M502 36 V30 H572 V36" stroke="#727981" stroke-width="1.5" />
+  <text x="537" y="22" text-anchor="middle" font-size="12" fill="#727981">프레임 간 공간</text>
+
+  <!-- 버스의 비트: dominant 6~12개, recessive 8개, recessive 3개 이상 -->
+  <g>
+    <rect x="20" y="44" width="23" height="36" fill="#bb464d" />
+    <rect x="44" y="44" width="23" height="36" fill="#bb464d" />
+    <rect x="68" y="44" width="23" height="36" fill="#bb464d" />
+    <rect x="92" y="44" width="23" height="36" fill="#bb464d" />
+    <rect x="116" y="44" width="23" height="36" fill="#bb464d" />
+    <rect x="140" y="44" width="23" height="36" fill="#bb464d" />
+  </g>
+  <g stroke="#bb464d" stroke-width="1.5" stroke-dasharray="3 3">
+    <rect x="164.75" y="44.75" width="22.5" height="34.5" />
+    <rect x="188.75" y="44.75" width="22.5" height="34.5" />
+    <rect x="212.75" y="44.75" width="22.5" height="34.5" />
+    <rect x="236.75" y="44.75" width="22.5" height="34.5" />
+    <rect x="260.75" y="44.75" width="22.5" height="34.5" />
+    <rect x="284.75" y="44.75" width="22.5" height="34.5" />
+  </g>
+  <g stroke="#727981" stroke-width="1.5">
+    <rect x="308.75" y="44.75" width="22.5" height="34.5" />
+    <rect x="332.75" y="44.75" width="22.5" height="34.5" />
+    <rect x="356.75" y="44.75" width="22.5" height="34.5" />
+    <rect x="380.75" y="44.75" width="22.5" height="34.5" />
+    <rect x="404.75" y="44.75" width="22.5" height="34.5" />
+    <rect x="428.75" y="44.75" width="22.5" height="34.5" />
+    <rect x="452.75" y="44.75" width="22.5" height="34.5" />
+    <rect x="476.75" y="44.75" width="22.5" height="34.5" />
+    <rect x="500.75" y="44.75" width="22.5" height="34.5" />
+    <rect x="524.75" y="44.75" width="22.5" height="34.5" />
+    <rect x="548.75" y="44.75" width="22.5" height="34.5" />
+  </g>
+
+  <!-- 구간 -->
+  <path d="M20 88 V94 H308 V88" stroke="#727981" stroke-width="1.5" />
+  <path d="M310 88 V94 H500 V88" stroke="#727981" stroke-width="1.5" />
+  <path d="M502 88 V94 H572 V88" stroke="#727981" stroke-width="1.5" />
+  <g text-anchor="middle" font-size="12" fill="#727981">
+    <text x="164" y="112">오류 플래그 필드</text><text x="164" y="128">dominant 6~12비트</text>
+    <text x="405" y="112">오류 구분자</text><text x="405" y="128">recessive 8비트</text>
+    <text x="537" y="112">인터미션</text><text x="537" y="128">recessive 3비트 이상</text>
+  </g>
+
+  <!-- 범례 -->
+  <rect x="20" y="152" width="14" height="14" fill="#bb464d" />
+  <text x="42" y="164" font-size="12" fill="#727981">오류를 찾은 노드의 오류 플래그</text>
+  <rect x="20.75" y="176.75" width="12.5" height="12.5" stroke="#bb464d" stroke-width="1.5" stroke-dasharray="3 3" />
+  <text x="42" y="188" font-size="12" fill="#727981">다른 노드들이 저마다 낸 오류 플래그가 겹쳐 늘어날 수 있는 부분</text>
+</svg>

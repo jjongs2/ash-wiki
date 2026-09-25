@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 0 541 163" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <!-- 프레임 필드: 오류를 보는 구간마다 색을 나눔 -->
+  <g fill="#336fb8">
+    <rect x="20" y="20" width="43" height="52" />
+    <rect x="64" y="20" width="55" height="52" />
+    <rect x="120" y="20" width="55" height="52" />
+    <rect x="176" y="20" width="63" height="52" />
+  </g>
+  <rect x="240" y="20" width="63" height="52" fill="#b0540d" />
+  <rect x="304" y="20" width="55" height="52" fill="#337b47" />
+  <rect x="360" y="20" width="55" height="52" fill="#bb464d" />
+  <rect x="416" y="20" width="55" height="52" fill="#337b47" />
+  <rect x="472" y="20" width="48" height="52" fill="#337b47" />
+  <g text-anchor="middle" font-size="12" fill="#f8fafd">
+    <text x="41.5" y="51">SOF</text>
+    <text x="91.5" y="43">중재</text><text x="91.5" y="59">필드</text>
+    <text x="147.5" y="43">제어</text><text x="147.5" y="59">필드</text>
+    <text x="207.5" y="43">데이터</text><text x="207.5" y="59">필드</text>
+    <text x="271.5" y="43">CRC</text><text x="271.5" y="59">시퀀스</text>
+    <text x="331.5" y="43">CRC</text><text x="331.5" y="59">구분자</text>
+    <text x="387.5" y="43">ACK</text><text x="387.5" y="59">슬롯</text>
+    <text x="443.5" y="43">ACK</text><text x="443.5" y="59">구분자</text>
+    <text x="496" y="51">EOF</text>
+  </g>
+
+  <!-- 한 필드인 구간 -->
+  <g stroke="#727981" stroke-width="1.5">
+    <line x1="271.5" y1="76" x2="271.5" y2="84" />
+    <line x1="387.5" y1="76" x2="387.5" y2="84" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="#727981">
+    <text x="271.5" y="100">CRC 오류</text>
+    <text x="387.5" y="100">ACK 오류</text>
+  </g>
+
+  <!-- 비트 스터핑 구간: SOF부터 CRC 시퀀스까지 -->
+  <path d="M20 118 V124 H303 V118" stroke="#727981" stroke-width="1.5" />
+  <text x="161.5" y="142" text-anchor="middle" font-size="12" fill="#727981">스터프 오류</text>
+
+  <!-- 모양이 고정된 필드: CRC 구분자, ACK 구분자, EOF -->
+  <path d="M304 80 V86 H359 V80 M416 80 V86 H520 V80 M331.5 86 V124 H468 V86" stroke="#727981" stroke-width="1.5" />
+  <text x="400" y="142" text-anchor="middle" font-size="12" fill="#727981">형식 오류</text>
+</svg>
