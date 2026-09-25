@@ -1,5 +1,6 @@
 import { slugifyFilePath } from "@quartz-community/utils"
 import { visit } from "unist-util-visit"
+import { pretendardStylesheet } from "../../quartz/util/localFonts"
 import type { Conventions } from "./conventions"
 import { marginTolerance, measureMargins, SvgRenderError } from "./diagram-margin"
 import { fieldsOf, type Page, type Tree, type Violation } from "./tree"
@@ -294,11 +295,37 @@ export const emphasis: SourceCheck = (tree) => {
 
 // 도해 SVG 한 벌이 두 테마에서 읽히도록, 색은 규약 문서의 도해 팔레트 값만 쓴다.
 const colorProperty = "fill|stroke|stop-color|flood-color|lighting-color|color"
-const colorAttribute = new RegExp(`\\s(${colorProperty})\\s*=\\s*(["'])(.*?)\\2`, "gi")
-const colorDeclaration = new RegExp(`(?:^|[\\s;{])(${colorProperty})\\s*:\\s*([^;}]+)`, "gi")
+const colorKeywords = /^(none|transparent|inherit|url\(#[^)]+\))$/i
 // CSS 선언은 style 속성과 <style> 요소 안에만 있다. 글자 노드의 "fill: ..."는 보지 않는다.
 const styleSources = [/\sstyle\s*=\s*(["'])(.*?)\1/gs, /<style[^>]*>([\s\S]*?)<\/style>/gi]
-const colorKeywords = /^(none|transparent|inherit|url\(#[^)]+\))$/i
+
+// 도해의 글자는 사이트와 같은 Pretendard로 그린다. 브라우저와 검사기가 같은 폰트로 그려야
+// 검사기가 잰 여백이 독자가 보는 여백과 맞는다.
+const fontFamily = "Pretendard, sans-serif"
+const fontImport = `@import url("${pretendardStylesheet}");`
+
+// 속성(`fill="..."`)과 CSS 선언(`fill: ...`)으로 준 값을 모두 찾는다. offset은 속성 이름이 시작하는 곳이다.
+function propertyValues(text: string, property: string) {
+  const attribute = new RegExp(`\\s(${property})\\s*=\\s*(["'])(.*?)\\2`, "gi")
+  const declaration = new RegExp(`(?:^|[\\s;{])(${property})\\s*:\\s*([^;}]+)`, "gi")
+  const found = [...text.matchAll(attribute)].map((m) => ({
+    value: m[3],
+    offset: m.index + m[0].indexOf(m[1]),
+  }))
+  for (const pattern of styleSources) {
+    for (const style of text.matchAll(pattern)) {
+      const css = style[style.length - 1]
+      const cssOffset = style.index + style[0].indexOf(css)
+      for (const m of css.matchAll(declaration)) {
+        found.push({ value: m[2], offset: cssOffset + m.index + m[0].indexOf(m[1]) })
+      }
+    }
+  }
+  return found.map(({ value, offset }) => ({
+    value: value.replace(/!important/i, "").trim(),
+    offset,
+  }))
+}
 
 function normalizeHex(value: string): string | null {
   const hex = value.toLowerCase().match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/)?.[1]
@@ -350,30 +377,29 @@ export const svg: SourceCheck = async (tree, conventions) => {
     const lineAt = (offset: number) => source.slice(0, offset).split("\n").length
     // 주석 안의 색은 그려지지 않으므로, 길이를 지켜 지운 뒤 찾는다.
     const text = source.replace(/<!--[\s\S]*?-->/g, (comment) => comment.replace(/[^\n]/g, " "))
-    // 찾은 색마다 값과 속성 이름이 시작하는 위치
-    const found = [...text.matchAll(colorAttribute)].map((m) => ({
-      value: m[3],
-      offset: m.index + m[0].indexOf(m[1]),
-    }))
-    for (const pattern of styleSources) {
-      for (const style of text.matchAll(pattern)) {
-        const css = style[style.length - 1]
-        const cssOffset = style.index + style[0].indexOf(css)
-        for (const m of css.matchAll(colorDeclaration)) {
-          found.push({ value: m[2], offset: cssOffset + m.index + m[0].indexOf(m[1]) })
-        }
-      }
+    for (const { value, offset } of propertyValues(text, colorProperty)) {
+      if (colorKeywords.test(value) || palette.has(normalizeHex(value) ?? "")) continue
+      violations.push({ file, line: lineAt(offset), message: `도해 팔레트 밖의 색: ${value}` })
     }
-    for (const { value, offset } of found) {
-      const color = value.replace(/!important/i, "").trim()
-      if (colorKeywords.test(color) || palette.has(normalizeHex(color) ?? "")) continue
-      violations.push({ file, line: lineAt(offset), message: `도해 팔레트 밖의 색: ${color}` })
+    for (const { value, offset } of propertyValues(text, "font-family")) {
+      if (value.replace(/\s+/g, " ") === fontFamily) continue
+      violations.push({
+        file,
+        line: lineAt(offset),
+        message: `font-family는 ${fontFamily}로 둔다: ${value}`,
+      })
     }
     // fill을 적지 않은 도형과 글자는 검정으로 그려져 다크 테마에서 보이지 않는다. 루트가 fill을
     // 정하면 모든 요소가 루트까지 거슬러 올라가 팔레트 색이나 none을 물려받는다.
     const root = text.match(/<(?:[\w-]+:)?svg[\s>][^>]*>/i)
     if (root && !/\sfill\s*=|\sstyle\s*=\s*(["'])[^"']*\bfill\s*:/i.test(root[0])) {
       violations.push({ file, line: lineAt(root.index!), message: "루트 <svg>에 fill이 없다" })
+    }
+    if (root && /<(?:[\w-]+:)?text[\s>]/i.test(text)) {
+      const at = (message: string) => violations.push({ file, line: lineAt(root.index!), message })
+      if (!/\sfont-family\s*=/i.test(root[0])) at(`루트 <svg>에 font-family="${fontFamily}"가 없다`)
+      if (!text.includes(fontImport))
+        at(`Pretendard를 불러오지 않는다: <style>${fontImport}</style>`)
     }
     const margin = root && (await marginViolation(source, root[0]))
     if (margin) violations.push({ file, line: lineAt(root.index!), message: margin })

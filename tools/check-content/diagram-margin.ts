@@ -5,13 +5,11 @@ import { cacheDir, ensurePretendard } from "../og-fonts"
 // 도해는 사이트가 틀 가운데에 놓으므로(quartz/styles/custom.scss), 그림이 viewBox 안에서 쏠리면 틀
 // 안에서도 쏠려 보인다. SVG를 래스터화해 그림이 칠한 영역을 재고, viewBox 가장자리까지의 여백을 준다.
 //
-// 글자 폭은 폰트마다 달라 측정도 폰트를 따른다. 시스템 폰트를 쓰면 한글 폰트가 없는 CI 러너
-// (ubuntu-latest)에서 한글이 그려지지 않아 환경마다 값이 달라지므로, fontconfig가 웹 폰트와 같은
-// Pretendard만 보게 한다. 브라우저는 시스템 sans-serif로 그리므로 측정은 브라우저와 어긋난다.
-// main의 도해 7개에서 좌우 여백의 차는, Pretendard로 잰 값과 DejaVu Sans·WenQuanYi Zen Hei로 잰
-// 값이 최대 15, 라틴을 Arial과 폭이 같은 Liberation Sans로 바꿔 잰 값과는 최대 1 달랐다.
-// 허용치는 그보다 크게 둔다.
-export const marginTolerance = 16
+// 도해는 글자를 Pretendard로 그리므로(docs/wiki-conventions.md 도해 절), fontconfig도 Pretendard만
+// 보게 한다. 시스템 폰트에 맡기면 한글 폰트가 없는 CI 러너(ubuntu-latest)에서 한글이 그려지지 않는다.
+// 같은 폰트로 그리면 렌더러 차이만 남는다. main의 도해 7개에서 이 측정(librsvg)과 Chromium의 여백은
+// 한 변에서 최대 0.5 달랐다. 허용치는 이 오차에, 원점을 0.5 단위로 반올림해 생기는 차 1을 더해 잡는다.
+export const marginTolerance = 2
 
 // 1 viewBox 단위를 몇 픽셀로 그리는지. 가장자리를 0.25 단위로 잰다.
 const scale = 4
