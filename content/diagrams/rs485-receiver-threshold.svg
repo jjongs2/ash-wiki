@@ -23,5 +23,5 @@
     <text x="220" y="102">−200 mV</text>
     <text x="340" y="102">200 mV</text>
   </g>
-  <text x="280" y="130" text-anchor="middle" font-size="12" fill="#727981">차동 입력 전압 V<tspan font-size="10" dy="3">ID</tspan><tspan dx="4" dy="-3">(SN65HVD178x)</tspan></text>
+  <text x="280" y="130" text-anchor="middle" font-size="12" fill="#727981">차동 입력 전압 V<tspan font-size="10" dy="3">diff</tspan><tspan dx="4" dy="-3">(SN65HVD178x)</tspan></text>
 </svg>

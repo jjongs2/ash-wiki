@@ -10,7 +10,7 @@ verified: 2026-09-25
 
 ## 정의
 
-**OSI 참조 모델**(Open Systems Interconnection Basic Reference Model)은 시스템 사이의 정보 교환을 다루는 개념적·기능적 틀이다. ITU-T X.200과 ISO/IEC 7498-1은 같은 본문으로 발행됐다. 참조 모델은 서비스와 프로토콜을 정하지 않고 구현 명세도 아니며, 표준 개발을 조율하는 공통 기반이자 서비스와 프로토콜을 정의할 때의 틀이 된다.[@itu-t-x-200-1994]
+**OSI 참조 모델**(Open Systems Interconnection Basic Reference Model)은 시스템 사이의 정보 교환을 다루는 개념적·기능적 틀이다. ITU-T(International Telecommunication Union Telecommunication Standardization Sector) X.200과, ISO와 IEC(International Electrotechnical Commission)의 ISO/IEC 7498-1은 같은 본문으로 발행됐다. 참조 모델은 서비스와 프로토콜을 정하지 않고 구현 명세도 아니며, 표준 개발을 조율하는 공통 기반이자 서비스와 프로토콜을 정의할 때의 틀이 된다.[@itu-t-x-200-1994]
 
 ## 구조·동작
 
@@ -38,7 +38,7 @@ verified: 2026-09-25
 
 ![[diagrams/osi-pdu-encapsulation.svg]]
 
-## 비교·한계
+### CAN 표준과의 대응
 
 [[can|CAN]]을 다루는 ISO 11898 시리즈는 데이터 링크 계층과 물리 계층을 규정한다.[@iso-11898-1-obp-2024] 그 가운데 ISO 11898-1:2024는 데이터 링크 계층을 LLC(Logical Link Control) 부계층과 MAC(Medium Access Control) 부계층으로 나눈다.[@iso-11898-1-2024] CAN 위의 전송 프로토콜과 네트워크 계층 서비스는 ISO 15765-2가 따로 규정한다.[@iso-15765-2-2024]
 

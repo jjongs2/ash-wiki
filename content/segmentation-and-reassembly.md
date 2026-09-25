@@ -10,7 +10,7 @@ verified: 2026-09-25
 
 ## 정의
 
-[[osi-model|OSI 참조 모델]]에서 **분할**(segmenting)은 (N) 개체가 (N) SDU(Service Data Unit) 하나를 여러 (N) PDU(Protocol Data Unit)에 나눠 담는 기능이다. 재조립(reassembling)은 여러 (N) PDU를 (N) SDU 하나로 되돌리는 기능으로, 분할의 역이다.[@itu-t-x-200-1994]
+[[osi-model|OSI(Open Systems Interconnection) 참조 모델]]에서 **분할**(segmenting)은 (N) 개체가 (N) SDU(Service Data Unit) 하나를 여러 (N) PDU(Protocol Data Unit)에 나눠 담는 기능이다. 재조립(reassembling)은 여러 (N) PDU를 (N) SDU 하나로 되돌리는 기능으로, 분할의 역이다.[@itu-t-x-200-1994]
 
 (N) SDU가 (N) PDU 하나에 담을 수 있는 사용자 데이터의 최대 크기를 넘으면 분할한다. 받는 쪽 개체가 SDU를 재조립할 수 있으려면 SDU의 조각을 식별하는 기능이 있어야 한다.[@itu-t-x-200-1994]
 
