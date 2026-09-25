@@ -20,10 +20,10 @@ verified: 2026-09-20
 
 ![[example-diagram.svg]]
 
-차동 전압 $V_\mathrm{diff}$가 $0.9\,\mathrm{V}$ 이상이면 dominant다. 세 길이를 더한 값은 다음과 같다.
+차동 전압 $V_\mathrm{diff} \ge 0.9\,\mathrm{V}$이면 dominant다. 전체 길이 $t_\mathrm{total}$은 세 길이 $t_\mathrm{A}$, $t_\mathrm{B}$, $t_\mathrm{C}$를 더한 값이다.
 
 $$
-t_\mathrm{A} + t_\mathrm{B} + t_\mathrm{C}
+t_\mathrm{total} = t_\mathrm{A} + t_\mathrm{B} + t_\mathrm{C}
 $$
 
 `[@not-a-citation]`과 `[[not-a-link]]`은 코드 안이라 검사하지 않는다.

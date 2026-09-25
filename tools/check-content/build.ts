@@ -73,19 +73,22 @@ export function checkOutput(tree: Tree, outDir: string): Violation[] {
       .replace(/<pre[\s>][\s\S]*?<\/pre>/g, "")
       .replace(/<code[\s>][\s\S]*?<\/code>/g, "")
     const sourceLines = page.source.split("\n")
+    const lineOf = (text: string) => {
+      const index = sourceLines.findIndex((line) => line.includes(text))
+      return index >= 0 ? index + 1 : undefined
+    }
     for (const marker of new Set([...html.matchAll(/\[@[^\]<]*\]/g)].map((m) => m[0]))) {
-      const index = sourceLines.findIndex((line) => line.includes(marker))
       violations.push({
         file: page.file,
-        line: index >= 0 ? index + 1 : undefined,
+        line: lineOf(marker),
         message: `번호로 렌더되지 않은 인용: ${marker}`,
       })
     }
-    const errors = new Map(katexErrors(html).map((e) => [`${e.kind}: ${e.tex}`, e.tex]))
-    for (const [message, tex] of errors) {
-      const firstLine = tex.trim().split("\n")[0].trim()
-      const index = sourceLines.findIndex((line) => line.includes(firstLine))
-      violations.push({ file: page.file, line: index >= 0 ? index + 1 : undefined, message })
+    // 디스플레이 식은 여러 줄이라, 식의 첫 줄로 원문 줄을 찾는다.
+    for (const { kind, tex } of katexErrors(html)) {
+      const message = `${kind}: ${tex}`
+      if (violations.some((v) => v.file === page.file && v.message === message)) continue
+      violations.push({ file: page.file, line: lineOf(tex.trim().split("\n")[0]), message })
     }
     // 키마다 본문의 번호 링크가 모두 같은 번호이고, 그 번호가 참고문헌 항목의 번호와 같아야 한다.
     const cited = new Map<string, number>()
