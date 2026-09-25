@@ -126,7 +126,14 @@ export const namespace: SourceCheck = (tree) => {
       const slugOwner = slugOwners.get(slug)
       const aliasOwner = aliasOwners.get(slug)
       const line = lineOf("aliases", index)
-      if (slugOwner && slugOwner !== page) {
+      if (slugOwner === page) {
+        // 슬러그 변환이 소문자로 바꾸므로 대소문자만 다른 alias도 자기 슬러그가 된다.
+        violations.push({
+          file: page.file,
+          line,
+          message: `alias "${alias}"가 자기 슬러그와 겹쳐 리다이렉트가 페이지를 덮어쓴다`,
+        })
+      } else if (slugOwner) {
         violations.push({
           file: page.file,
           line,
@@ -153,12 +160,14 @@ function* matchLines(page: Page, pattern: RegExp) {
 }
 
 export const wikilink: SourceCheck = (tree) => {
+  const titles = new Map(tree.pages.map((p) => [p.name, fieldsOf(p).title]))
   const slugs = new Set(tree.pages.filter((p) => p.kind !== "tag").map((p) => p.name))
   const violations: Violation[] = []
   for (const page of tree.pages) {
     for (const { match, line } of matchLines(page, /(!?)\[\[([^[\]\n]+?)\]\]/g)) {
       const [link, embed, inner] = match
-      const target = inner.split(/\\?\|/)[0].split("#")[0].trim()
+      const [path, display] = inner.split(/\\?\|/)
+      const [target, anchor] = path.split("#").map((part) => part.trim())
       const at = (message: string) => violations.push({ file: page.file, line, message })
       if (target === "") continue
       if (target.startsWith("tags/")) {
@@ -166,10 +175,19 @@ export const wikilink: SourceCheck = (tree) => {
           at(`표시 이름 파일이 없는 태그 목록: ${link}`)
       } else if (embed && /\.\w+$/.test(target) && !target.endsWith(".md")) {
         if (!tree.files.has(target)) at(`대상 파일이 없다: ${link}`)
+        continue
       } else if (!kebab.test(target)) {
         at(`위키링크 대상은 슬러그로만 쓴다: ${link}`)
+        continue
       } else if (!slugs.has(target)) {
         at(`대상 페이지가 없다: ${link}`)
+        continue
+      }
+      // 표시 이름이 없으면 Quartz는 대상(과 앵커)을 그대로 링크 글자로 쓴다.
+      const title = titles.get(target)
+      const shown = anchor ? `${target} > ${anchor}` : target
+      if (!embed && !display?.trim() && typeof title === "string" && title !== shown) {
+        at(`title이 슬러그와 다르면 [[슬러그|표시 이름]]으로 건다: ${link}`)
       }
     }
   }
