@@ -19,7 +19,7 @@ CAN(Controller Area Network) 물리 계층에서 [[can-controller|CAN 컨트롤�
 
 ### dominant와 recessive
 
-버스 상태는 dominant(논리 0)와 recessive(논리 1) 둘이고, 두 값을 동시에 내면 버스는 dominant가 된다.[@iso-11898-2-obp-2026] 중재는 dominant 비트가 recessive 비트를 덮어쓰는 이 성질에 기댄다.[@iso-11898-1-obp-2024] ACK도 마찬가지로, 송신 노드가 ACK 슬롯에 낸 recessive 비트 위에 메시지를 제대로 받은 노드가 dominant 비트를 덮어쓴다.[@bosch-can-2-0-1991]
+버스 상태는 dominant(논리 0)와 recessive(논리 1) 둘이고, 두 값을 동시에 내면 버스는 dominant가 된다.[@iso-11898-2-obp-2026] 중재는 dominant 비트가 recessive 비트를 덮어쓰는 이 성질에 기댄다.[@iso-11898-1-obp-2024] ACK(Acknowledgement)도 마찬가지로, 송신 노드가 ACK 슬롯에 낸 recessive 비트 위에 메시지를 제대로 받은 노드가 dominant 비트를 덮어쓴다.[@bosch-can-2-0-1991]
 
 ### 고속 CAN
 
@@ -29,7 +29,7 @@ CAN(Controller Area Network) 물리 계층에서 [[can-controller|CAN 컨트롤�
 
 ### 저속 내결함성 CAN
 
-저속 내결함성 CAN은 40 kbit/s 초과 125 kbit/s 이하에서 쓴다.[@iso-11898-3-obp-2006] 저속 내결함성 트랜시버 TJA1055는 한 선이 끊기거나, 전원이나 접지에 단락되거나, 두 선이 서로 단락돼도 통신을 이어 간다. 고장에 따라 차동 모드를 그대로 유지하기도 하고, 남은 한 선으로 송수신하는 단선 모드로 바꾸기도 한다.[@nxp-tja1055-2013]
+저속 내결함성 CAN은 40 kbit/s 초과 125 kbit/s 이하에서 쓴다.[@iso-11898-3-obp-2006] 저속 내결함성 트랜시버 TJA1055는 한 선이 끊기거나, 전원이나 접지에 단락되거나, 두 선이 서로 단락돼도 통신을 이어 간다.[@nxp-tja1055-2013] 고장에 따라 차동 모드를 그대로 유지하기도 하고, 남은 한 선으로 송수신하는 단선 모드로 바꾸기도 한다.[@nxp-tja1055-2013]
 
 ## 비교·한계
 
