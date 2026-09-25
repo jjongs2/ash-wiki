@@ -9,13 +9,19 @@ verified: 2026-09-25
 
 CAN(Controller Area Network) 트랜시버는 [[can-controller|CAN 컨트롤러]]가 쓰는 디지털 신호와 CAN_H·CAN_L 버스의 차동 신호 사이를 변환한다.[@ti-tcan1042-q1-2021] 컨트롤러 쪽으로는 송신 데이터 입력 TXD와 수신 데이터 출력 RXD 핀을, 버스 쪽으로는 CAN_H와 CAN_L 핀을 둔다.[@nxp-tja1042-2023]
 
+![[can-node-bus.svg]]
+
 ## 구조·동작
 
 ### 송신과 수신
 
 TXD가 low이면 드라이버가 버스를 차동으로 구동해 dominant로 만든다.[@ti-tcan1042-q1-2021] high이면 구동하지 않고, 버스는 수신기 내부 저항으로 VCC/2에 바이어스된 recessive가 된다.[@ti-tcan1042-q1-2021] dominant와 recessive를 동시에 보내면 버스는 dominant가 된다.[@bosch-can-2-0-1991]
 
+![[hs-can-bus-voltage.svg]]
+
 수신기는 CAN_H와 CAN_L의 전압 차를 판정해 RXD로 내보낸다.[@ti-tcan1042-q1-2021] 예를 들어 TJA1042는 Normal 모드에서 전압 차가 0.9 V 이상이면 dominant, 0.5 V 이하이면 recessive로 판정한다.[@nxp-tja1042-2023]
+
+![[tja1042-receiver-threshold.svg]]
 
 Normal 모드에서는 드라이버와 수신기가 함께 켜져 있어, 송신 중에도 RXD가 버스 상태를 따른다.[@ti-tcan1042-q1-2021] 송신 노드는 내보낸 비트를 버스에서 되읽어 대조하고, 중재 구간에서 자기가 낸 recessive 비트가 dominant로 읽히면 중재에서 밀려난다.[@bosch-can-2-0-1991]
 
@@ -32,5 +38,7 @@ TJA1145는 선택적 웨이크업을 켜면 버스에서 미리 설정한 웨이
 ## 비교·한계
 
 recessive 출력 전압은 고속 트랜시버 TJA1042가 두 선 모두 약 0.5 VCC(2~3 V)이고[@nxp-tja1042-2023], 저속 내결함성 트랜시버 TJA1055가 CAN_H 0.2 V 이하, CAN_L VCC − 0.2 V 이상이다.[@nxp-tja1055-2013]
+
+![[can-recessive-voltage-hs-ls.svg]]
 
 CAN FD(CAN with Flexible Data-Rate)의 데이터 구간에서 TCAN1042는 모든 변종이 2 Mbit/s를, G 변종이 5 Mbit/s를 지원하고[@ti-tcan1042-q1-2021], TJA1042는 fast phase에서 5 Mbit/s까지 타이밍을 보증한다.[@nxp-tja1042-2023]
