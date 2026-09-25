@@ -19,17 +19,23 @@ CAN은 멀티마스터 방식이라, 버스가 비어 있으면 어느 노드든
 
 [[iso-11898-1|ISO 11898-1]]은 데이터 링크 계층과 물리 부호화 부계층(PCS, Physical Coding Sublayer)을[@iso-11898-1-obp-2024], [[iso-11898-2|ISO 11898-2]]는 고속 물리 매체 접속(PMA, Physical Medium Attachment) 부계층을[@iso-11898-2-obp-2026], [[iso-11898-3|ISO 11898-3]]은 40 kbit/s 초과 125 kbit/s 이하의 저속 내결함성 매체 의존 인터페이스를 규정한다.[@iso-11898-3-2006]
 
+![[can-iso-11898-sublayers.svg]]
+
 ISO 11898-1은 CAN 프로토콜 컨트롤러를, ISO 11898-2는 CAN 트랜시버를 구현하는 칩 설계자를 위한 표준이다.[@iso-11898-1-obp-2024]
 
 ### 노드 구성
 
 [[can-controller|CAN 컨트롤러]]는 호스트 CPU에 붙어 ISO 11898-1에 따라 통신하고, 버스에 연결하려면 트랜시버가 따로 필요하다.[@bosch-m-can-2023] [[can-transceiver|CAN 트랜시버]]는 컨트롤러의 디지털 신호를 버스의 차동 신호로 바꾸고, 버스의 차동 전압을 다시 논리 레벨로 되돌린다.[@microchip-mcp2561-2fd-2014]
 
+![[can-node-bus.svg]]
+
 고속 CAN의 버스 인터페이스는 CAN_H와 CAN_L 두 선이다. 버스 상태는 dominant(논리 0)와 recessive(논리 1) 둘이고, 두 값을 동시에 내면 버스는 dominant가 된다.[@iso-11898-2-obp-2026] 전기적 동작은 [[can-physical-layer|CAN 물리 계층]]에서 다룬다.
 
 ### 중재
 
 여러 노드가 한꺼번에 송신에 나서면 식별자를 한 비트씩 겨루는 중재가 일어나며, 식별자는 최상위 비트부터 나간다. 자기가 낸 recessive 비트 자리에서 dominant를 읽은 노드는 거기서 물러나 수신 노드가 된다. 이긴 프레임은 정보도 시간도 잃지 않고 전송된다.[@bosch-can-2-0-1991]
+
+![[can-arbitration.svg]]
 
 ### 프레임
 

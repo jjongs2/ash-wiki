@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 1.5 600 330" font-family="sans-serif" font-size="14" fill="none">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+  <!-- TXD 입력에 따른 드라이버 동작 -->
+  <rect x="130" y="10" width="190" height="48" rx="4" fill="#825da9" />
+  <text x="225" y="31" text-anchor="middle" fill="#f8fafd">TXD high</text>
+  <text x="225" y="49" text-anchor="middle" font-size="12" fill="#f8fafd">드라이버 구동 안 함</text>
+  <rect x="360" y="10" width="190" height="48" rx="4" fill="#825da9" />
+  <text x="455" y="31" text-anchor="middle" fill="#f8fafd">TXD low</text>
+  <text x="455" y="49" text-anchor="middle" font-size="12" fill="#f8fafd">드라이버가 차동 구동</text>
+  <line x1="225" y1="60" x2="225" y2="88" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="455" y1="60" x2="455" y2="88" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <!-- 공통 전압 축 -->
+  <line x1="110" y1="95" x2="110" y2="265" stroke="#727981" stroke-width="1.5" />
+  <g stroke="#727981" stroke-width="1.5">
+    <line x1="104" y1="120" x2="110" y2="120" />
+    <line x1="104" y1="180" x2="110" y2="180" />
+    <line x1="104" y1="240" x2="110" y2="240" />
+  </g>
+  <g text-anchor="end" font-size="12" fill="#727981">
+    <text x="98" y="124">3.5 V</text>
+    <text x="98" y="184">2.5 V</text>
+    <text x="98" y="244">1.5 V</text>
+  </g>
+  <g stroke="#727981" stroke-width="1" stroke-dasharray="2 5">
+    <line x1="112" y1="120" x2="570" y2="120" />
+    <line x1="112" y1="180" x2="570" y2="180" />
+    <line x1="112" y1="240" x2="570" y2="240" />
+  </g>
+
+  <!-- recessive 칸: 두 선이 같은 전압 -->
+  <line x1="150" y1="180" x2="210" y2="180" stroke="#336fb8" stroke-width="4" />
+  <line x1="240" y1="180" x2="300" y2="180" stroke="#b0540d" stroke-width="4" />
+  <text x="180" y="170" text-anchor="middle" font-size="12" fill="#727981">CAN_H</text>
+  <text x="270" y="170" text-anchor="middle" font-size="12" fill="#727981">CAN_L</text>
+  <text x="225" y="210" text-anchor="middle" font-size="12" fill="#727981">차 ≈ 0</text>
+
+  <!-- dominant 칸: 두 선이 벌어짐 -->
+  <line x1="380" y1="120" x2="440" y2="120" stroke="#336fb8" stroke-width="4" />
+  <line x1="470" y1="240" x2="530" y2="240" stroke="#b0540d" stroke-width="4" />
+  <text x="410" y="110" text-anchor="middle" font-size="12" fill="#727981">CAN_H</text>
+  <text x="500" y="258" text-anchor="middle" font-size="12" fill="#727981">CAN_L</text>
+  <line x1="455" y1="124" x2="455" y2="236" stroke="#727981" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  <text x="463" y="160" font-size="12" fill="#727981">차 ≈ 2 V</text>
+
+  <!-- 칸 이름 -->
+  <text x="225" y="290" text-anchor="middle" fill="#727981">recessive · 논리 1</text>
+  <text x="455" y="290" text-anchor="middle" fill="#727981">dominant · 논리 0</text>
+  <text x="340" y="320" text-anchor="middle" font-size="12" fill="#727981">TJA1042 전형값 (5 V 전원)</text>
+</svg>

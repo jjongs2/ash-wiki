@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-11 -1 560 210" font-family="sans-serif" font-size="14" fill="none">
+  <!-- 같은 값 5개 -->
+  <path d="M130 30 V24 H350 V30" stroke="#727981" stroke-width="1.5" />
+  <text x="240" y="16" text-anchor="middle" font-size="12" fill="#727981">같은 값의 비트 5개</text>
+
+  <!-- 스터핑 전 -->
+  <text x="116" y="59" text-anchor="end" fill="#727981">보낼 비트</text>
+  <g stroke="#727981" stroke-width="1.5">
+    <rect x="130.75" y="34.75" width="42.5" height="38.5" />
+    <rect x="174.75" y="34.75" width="42.5" height="38.5" />
+    <rect x="218.75" y="34.75" width="42.5" height="38.5" />
+    <rect x="262.75" y="34.75" width="42.5" height="38.5" />
+    <rect x="306.75" y="34.75" width="42.5" height="38.5" />
+    <rect x="350.75" y="34.75" width="42.5" height="38.5" />
+    <rect x="394.75" y="34.75" width="42.5" height="38.5" />
+  </g>
+  <g text-anchor="middle" fill="#727981">
+    <text x="152" y="59">0</text><text x="196" y="59">0</text><text x="240" y="59">0</text><text x="284" y="59">0</text><text x="328" y="59">0</text><text x="372" y="59">0</text><text x="416" y="59">1</text>
+  </g>
+
+  <!-- 밀리는 비트 -->
+  <g stroke="#727981" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="372" y1="76" x2="416" y2="112" />
+    <line x1="416" y1="76" x2="460" y2="112" />
+  </g>
+
+  <!-- 버스에 나가는 비트 -->
+  <text x="116" y="139" text-anchor="end" fill="#727981">버스</text>
+  <g stroke="#727981" stroke-width="1.5">
+    <rect x="130.75" y="114.75" width="42.5" height="38.5" />
+    <rect x="174.75" y="114.75" width="42.5" height="38.5" />
+    <rect x="218.75" y="114.75" width="42.5" height="38.5" />
+    <rect x="262.75" y="114.75" width="42.5" height="38.5" />
+    <rect x="306.75" y="114.75" width="42.5" height="38.5" />
+    <rect x="394.75" y="114.75" width="42.5" height="38.5" />
+    <rect x="438.75" y="114.75" width="42.5" height="38.5" />
+  </g>
+  <rect x="350" y="114" width="44" height="40" fill="#b0540d" />
+  <g text-anchor="middle" fill="#727981">
+    <text x="152" y="139">0</text><text x="196" y="139">0</text><text x="240" y="139">0</text><text x="284" y="139">0</text><text x="328" y="139">0</text><text x="416" y="139">0</text><text x="460" y="139">1</text>
+  </g>
+  <text x="372" y="139" text-anchor="middle" fill="#f8fafd">1</text>
+  <text x="372" y="174" text-anchor="middle" font-size="12" fill="#727981">스터프 비트</text>
+  <text x="130" y="200" font-size="12" fill="#727981">수신 쪽은 스터프 비트를 걷어낸다.</text>
+</svg>
