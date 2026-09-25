@@ -13,6 +13,8 @@ verified: 2026-09-25
 
 리모트 프레임은 RTR(Remote Transmission Request) 비트가 recessive라는 점으로 데이터 프레임과 구별된다. 데이터 프레임의 RTR은 dominant다. 리모트 프레임에도 기본 포맷과 확장 포맷이 모두 있다.[@microchip-mcp2515-2019]
 
+![[diagrams/can-data-remote-frame.svg]]
+
 같은 식별자의 데이터 프레임과 리모트 프레임이 동시에 송신되면, 식별자 뒤의 RTR 비트에서 dominant를 낸 데이터 프레임이 [[can-arbitration|중재]]에서 이긴다.[@microchip-mcp2515-2019]
 
 MCP2515는 받은 리모트 프레임을 수신 버퍼에 넣고, 리모트 요청인지를 레지스터 비트로 표시한다.[@microchip-mcp2515-2019]

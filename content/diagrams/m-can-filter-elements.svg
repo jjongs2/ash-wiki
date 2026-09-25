@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -6 616 253" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+  <rect x="0.75" y="66.75" width="94.5" height="42.5" stroke="#727981" stroke-width="1.5" />
+  <text x="48" y="93" text-anchor="middle" font-size="13" fill="#727981">받은 프레임</text>
+  <rect x="140" y="20" width="189" height="44" fill="#336fb8" />
+  <text x="235" y="47" text-anchor="middle" font-size="13" fill="#f8fafd">기본 식별자용 필터 목록</text>
+  <rect x="140" y="112" width="189" height="44" fill="#336fb8" />
+  <text x="235" y="139" text-anchor="middle" font-size="13" fill="#f8fafd">확장 식별자용 필터 목록</text>
+  <path d="M96 88 H116 V42 H138" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <path d="M116 88 V134 H138" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <path d="M330 42 H360 V212" stroke="#727981" stroke-width="1.5" />
+  <path d="M330 134 H360" stroke="#727981" stroke-width="1.5" />
+  <path d="M360 88 H424" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <path d="M360 212 H424" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="392" y="80" text-anchor="middle" font-size="12" fill="#727981">일치</text>
+  <text x="392" y="204" text-anchor="middle" font-size="12" fill="#727981">불일치</text>
+  <rect x="446.75" y="4.75" width="148.5" height="34.5" stroke="#727981" stroke-width="1.5" />
+  <text x="521" y="27" text-anchor="middle" font-size="13" fill="#727981">수신 FIFO 0</text>
+  <rect x="446.75" y="46.75" width="148.5" height="34.5" stroke="#727981" stroke-width="1.5" />
+  <text x="521" y="69" text-anchor="middle" font-size="13" fill="#727981">수신 FIFO 1</text>
+  <rect x="446.75" y="88.75" width="148.5" height="34.5" stroke="#727981" stroke-width="1.5" />
+  <text x="521" y="111" text-anchor="middle" font-size="13" fill="#727981">전용 수신 버퍼</text>
+  <rect x="446.75" y="130.75" width="148.5" height="34.5" stroke="#727981" stroke-width="1.5" />
+  <text x="521" y="153" text-anchor="middle" font-size="13" fill="#727981">거부</text>
+  <path d="M438 6 H432 V164 H438" stroke="#727981" stroke-width="1.5" />
+  <rect x="430.75" y="190.75" width="164.5" height="42.5" stroke="#727981" stroke-width="1.5" />
+  <text x="513" y="210" text-anchor="middle" font-size="13" fill="#727981">받거나 버린다</text>
+  <text x="513" y="225" text-anchor="middle" font-size="11" fill="#727981">따로 설정</text>
+  <text x="140" y="180" font-size="12" fill="#727981">필터 요소마다 하나를 고른다</text>
+  <text x="150" y="200" font-size="12" fill="#727981">· 범위 필터</text>
+  <text x="150" y="218" font-size="12" fill="#727981">· 식별자 두 개를 받는 필터</text>
+  <text x="150" y="236" font-size="12" fill="#727981">· 마스크를 쓰는 고전적 필터</text>
+</svg>

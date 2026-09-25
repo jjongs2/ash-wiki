@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-75.5 4.5 597.5 241.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <text x="-14" y="67" text-anchor="end" fill="#727981">기본 포맷</text>
+  <text x="-14" y="139" text-anchor="end" fill="#727981">확장 포맷</text>
+  <rect x="0.75" y="40.75" width="38.5" height="42.5" stroke="#727981" stroke-width="1.5" />
+  <text x="20" y="67" text-anchor="middle" font-size="13" fill="#727981">SOF</text>
+  <rect x="40.75" y="40.75" width="108.5" height="42.5" stroke="#727981" stroke-width="1.5" />
+  <text x="95" y="60" text-anchor="middle" font-size="13" fill="#727981">식별자</text>
+  <text x="95" y="75" text-anchor="middle" font-size="11" fill="#727981">11비트</text>
+  <rect x="150.75" y="40.75" width="42.5" height="42.5" stroke="#727981" stroke-width="1.5" />
+  <text x="172" y="60" text-anchor="middle" font-size="13" fill="#727981">RTR</text>
+  <text x="172" y="75" text-anchor="middle" font-size="11" fill="#727981">D</text>
+  <rect x="194" y="40" width="43" height="44" fill="#336fb8" />
+  <text x="216" y="60" text-anchor="middle" font-size="13" fill="#f8fafd">IDE</text>
+  <text x="216" y="75" text-anchor="middle" font-size="11" fill="#f8fafd">D</text>
+  <rect x="238.75" y="40.75" width="42.5" height="42.5" stroke="#727981" stroke-width="1.5" />
+  <text x="260" y="67" text-anchor="middle" font-size="13" fill="#727981">예약</text>
+  <rect x="282.75" y="40.75" width="42.5" height="42.5" stroke="#727981" stroke-width="1.5" />
+  <text x="304" y="67" text-anchor="middle" font-size="13" fill="#727981">DLC</text>
+  <path d="M43 36 V30 H191 V36" stroke="#727981" stroke-width="1.5" />
+  <text x="117" y="24" text-anchor="middle" font-size="12" fill="#727981">중재 필드</text>
+  <path d="M197 36 V30 H323 V36" stroke="#727981" stroke-width="1.5" />
+  <text x="260" y="24" text-anchor="middle" font-size="12" fill="#727981">제어 필드</text>
+  <rect x="0.75" y="112.75" width="38.5" height="42.5" stroke="#727981" stroke-width="1.5" />
+  <text x="20" y="139" text-anchor="middle" font-size="13" fill="#727981">SOF</text>
+  <rect x="40.75" y="112.75" width="108.5" height="42.5" stroke="#727981" stroke-width="1.5" />
+  <text x="95" y="132" text-anchor="middle" font-size="13" fill="#727981">기본 식별자</text>
+  <text x="95" y="147" text-anchor="middle" font-size="11" fill="#727981">11비트</text>
+  <rect x="150.75" y="112.75" width="42.5" height="42.5" stroke="#727981" stroke-width="1.5" />
+  <text x="172" y="132" text-anchor="middle" font-size="13" fill="#727981">SRR</text>
+  <text x="172" y="147" text-anchor="middle" font-size="11" fill="#727981">R</text>
+  <rect x="194" y="112" width="43" height="44" fill="#336fb8" />
+  <text x="216" y="132" text-anchor="middle" font-size="13" fill="#f8fafd">IDE</text>
+  <text x="216" y="147" text-anchor="middle" font-size="11" fill="#f8fafd">R</text>
+  <rect x="238.75" y="112.75" width="148.5" height="42.5" stroke="#727981" stroke-width="1.5" />
+  <text x="313" y="132" text-anchor="middle" font-size="13" fill="#727981">확장 식별자</text>
+  <text x="313" y="147" text-anchor="middle" font-size="11" fill="#727981">18비트</text>
+  <rect x="388.75" y="112.75" width="42.5" height="42.5" stroke="#727981" stroke-width="1.5" />
+  <text x="410" y="132" text-anchor="middle" font-size="13" fill="#727981">RTR</text>
+  <text x="410" y="147" text-anchor="middle" font-size="11" fill="#727981">D</text>
+  <rect x="432.75" y="112.75" width="78.5" height="42.5" stroke="#727981" stroke-width="1.5" stroke-dasharray="4 4" />
+  <text x="472" y="139" text-anchor="middle" font-size="13" fill="#727981">제어 필드</text>
+  <path d="M43 160 V166 H429 V160" stroke="#727981" stroke-width="1.5" />
+  <text x="236" y="182" text-anchor="middle" font-size="12" fill="#727981">중재 필드</text>
+  <text x="0" y="208" font-size="12" fill="#727981">D: dominant · R: recessive. RTR은 데이터 프레임의 값</text>
+  <rect x="0" y="222" width="14" height="14" fill="#336fb8" />
+  <text x="22" y="234" font-size="12" fill="#727981">IDE는 두 포맷에서 같은 자리에 온다</text>
+</svg>

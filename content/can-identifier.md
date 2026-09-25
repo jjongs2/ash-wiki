@@ -15,9 +15,13 @@ verified: 2026-09-25
 
 식별자는 기본 포맷에서 11비트, 확장 포맷에서 29비트다.[@microchip-mcp2515-2019] 기본 포맷의 11비트 식별자는 0부터 2047까지 2048가지 값을 낼 수 있다.[@microchip-dspic30f-can-frm-2003] 확장 포맷의 29비트 식별자는 11비트 기본 식별자와 18비트 확장 식별자로 이뤄진다.[@microchip-mcp2515-2019]
 
+![[diagrams/can-base-extended-arbitration-field.svg]]
+
 ### 우선순위
 
 식별자는 최상위 비트부터 버스에 나간다. 여러 노드가 동시에 송신을 시작하면 식별자를 비트 단위로 겨루는 [[can-arbitration|중재]]가 일어나고, 수치가 가장 작은 식별자의 프레임이 버스를 차지한다. 그래서 식별자를 정하는 일은 곧 프레임의 우선순위를 정하는 일이다.[@microchip-dspic30f-can-frm-2003]
+
+![[diagrams/can-arbitration.svg]]
 
 ### 수신 쪽의 쓰임
 

@@ -17,6 +17,8 @@ classical [[can|CAN]]의 **프레임**에는 데이터 프레임, [[remote-frame
 
 데이터 프레임은 SOF(Start of Frame)로 시작해 EOF(End of Frame)로 끝나며, 그 사이에 중재, 제어, 데이터, CRC(Cyclic Redundancy Check), ACK(Acknowledgement) 필드가 있다.[@microchip-pic32-can-frm-2012]
 
+![[diagrams/can-data-frame-fields.svg]]
+
 SOF는 dominant 비트 하나로 프레임의 시작을 알린다. 모든 노드는 SOF의 recessive에서 dominant로 바뀌는 에지에 동기를 맞춘다(hard synchronization).[@microchip-mcp2515-2019]
 
 기본 포맷의 중재 필드는 식별자 11비트와 RTR(Remote Transmission Request) 비트다. RTR은 데이터 프레임에서 dominant, 리모트 프레임에서 recessive다. 제어 필드는 IDE(Identifier Extension) 비트, 예약 비트, [[data-length-code|DLC]](Data Length Code) 4비트로 이뤄진다. 데이터 필드는 0~8바이트다.[@microchip-mcp2515-2019]
@@ -31,9 +33,13 @@ CRC 필드는 15비트 CRC 시퀀스와 recessive인 CRC delimiter다. ACK 필�
 
 IDE는 기본 포맷에서 dominant, 확장 포맷에서 recessive이고, 수신 노드는 이 비트로 기본 프레임과 확장 프레임을 가린다.[@microchip-pic32-can-frm-2012] 29비트 식별자를 11비트와 18비트로 나눠 IDE의 위치를 두 포맷에서 같게 했으므로, 두 포맷의 프레임을 한 버스에 함께 쓸 수 있다.[@microchip-mcp2515-2019]
 
+![[diagrams/can-base-extended-arbitration-field.svg]]
+
 ### 비트 스터핑
 
 송신 노드는 같은 값의 비트가 5개 이어지면 반대 값의 비트를 하나 자동으로 넣고, 수신 노드는 받은 비트열에서 이 스터프 비트를 걷어낸다.[@bosch-can-2-0-1991] EOF는 스터핑하지 않는다.[@microchip-dspic30f-can-frm-2003]
+
+![[diagrams/can-bit-stuffing.svg]]
 
 ## 비교·한계
 

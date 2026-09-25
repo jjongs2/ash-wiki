@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="13.5 -10 636.5 244" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <rect x="130.75" y="0.75" width="508.5" height="46.5" stroke="#727981" stroke-width="1.5" />
+  <text x="385" y="22" text-anchor="middle" font-size="13" fill="#727981">SAE J1939 최상위 문서</text>
+  <text x="385" y="37" text-anchor="middle" font-size="11" fill="#727981">개요 · 하위 문서 구조 · 공통 용어</text>
+  <text x="116" y="93" text-anchor="end" font-size="13" fill="#727981">애플리케이션 계층</text>
+  <rect x="130" y="64" width="181" height="48" fill="#336fb8" />
+  <text x="221" y="86" text-anchor="middle" font-size="13" fill="#f8fafd">J1939-71</text>
+  <text x="221" y="101" text-anchor="middle" font-size="11" fill="#f8fafd">표기 규약 · SLOT</text>
+  <rect x="320" y="64" width="181" height="48" fill="#336fb8" />
+  <text x="411" y="86" text-anchor="middle" font-size="13" fill="#f8fafd">J1939DA</text>
+  <text x="411" y="101" text-anchor="middle" font-size="11" fill="#f8fafd">파라미터 · 파라미터 그룹 정의</text>
+  <text x="116" y="149" text-anchor="end" font-size="13" fill="#727981">데이터 링크 계층</text>
+  <rect x="130" y="120" width="181" height="48" fill="#337b47" />
+  <text x="221" y="142" text-anchor="middle" font-size="13" fill="#f8fafd">J1939-21</text>
+  <text x="221" y="157" text-anchor="middle" font-size="11" fill="#f8fafd">CAN · 29비트 식별자</text>
+  <rect x="320" y="120" width="181" height="48" fill="#337b47" />
+  <text x="411" y="142" text-anchor="middle" font-size="13" fill="#f8fafd">J1939-22</text>
+  <text x="411" y="157" text-anchor="middle" font-size="11" fill="#f8fafd">CAN FD</text>
+  <text x="116" y="205" text-anchor="end" font-size="13" fill="#727981">물리 계층</text>
+  <rect x="130" y="176" width="181" height="48" fill="#b0540d" />
+  <text x="221" y="198" text-anchor="middle" font-size="13" fill="#f8fafd">J1939-11</text>
+  <text x="221" y="213" text-anchor="middle" font-size="11" fill="#f8fafd">250 kbit/s</text>
+  <rect x="320" y="176" width="181" height="48" fill="#b0540d" />
+  <text x="411" y="198" text-anchor="middle" font-size="13" fill="#f8fafd">J1939-14</text>
+  <text x="411" y="213" text-anchor="middle" font-size="11" fill="#f8fafd">500 kbit/s</text>
+  <rect x="512" y="64" width="127" height="160" fill="#825da9" />
+  <text x="576" y="132" text-anchor="middle" font-size="13" fill="#f8fafd">J1939-81</text>
+  <text x="576" y="150" text-anchor="middle" font-size="11" fill="#f8fafd">네트워크 관리</text>
+  <text x="576" y="166" text-anchor="middle" font-size="11" fill="#f8fafd">주소 클레임</text>
+</svg>

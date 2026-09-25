@@ -30,6 +30,8 @@ CAN FD에는 [[remote-frame|리모트 프레임]]이 없으므로, classical 프
 - ESI(Error State Indicator): 송신 노드가 error passive면 recessive, error active면 dominant로 보낸다.[@bosch-m-can-2023]
 - [[data-length-code|DLC]](Data Length Code): 데이터 필드의 바이트 수를 나타내는 4비트다.[@microchip-mcp25xxfd-frm-2020]
 
+![[diagrams/can-classical-fd-header.svg]]
+
 ### 데이터 필드
 
 데이터 필드는 0~8, 12, 16, 20, 24, 32, 48, 64바이트 가운데 하나다.[@bosch-m-can-2023]
@@ -41,6 +43,8 @@ ISO 11898-1:2015를 따르는 CAN FD의 CRC(Cyclic Redundancy Check) 필드는 4
 ### 비트율 전환
 
 BRS가 recessive인 프레임에서는 BRS 비트의 샘플 포인트에서 data bit rate로 바꾸고, CRC delimiter의 샘플 포인트에서 nominal bit rate로 돌아온다. ACK(Acknowledgement) 필드와 EOF(End of Frame)는 다시 nominal bit rate로 보낸다.[@microchip-mcp25xxfd-frm-2020]
+
+![[diagrams/can-fd-bit-rate-switch.svg]]
 
 ## 비교·한계
 

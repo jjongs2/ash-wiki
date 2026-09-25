@@ -21,6 +21,8 @@ verified: 2026-09-25
 
 버스는 wired-AND로 동작해, dominant와 recessive가 겹치면 dominant가 된다. 각 노드는 식별자를 최상위 비트부터 보내며, 비트를 낼 때마다 버스 레벨을 읽어 자기가 낸 값과 비교한다. recessive를 냈는데 dominant를 읽었다면 그 노드가 졌다는 뜻이다. 진 노드는 그 자리에서 송신을 그만두고 수신 쪽으로 넘어간다.[@microchip-dspic30f-can-frm-2003]
 
+![[diagrams/can-arbitration.svg]]
+
 dominant는 논리 0이다. 따라서 처음으로 값이 갈리는 비트에서 0을 낸 쪽, 곧 식별자의 이진 값이 더 작은 쪽이 이긴다. 식별자의 값이 작을수록 우선순위가 높다.[@microchip-dspic30f-can-frm-2003]
 
 ### 식별자가 같을 때
@@ -28,6 +30,8 @@ dominant는 논리 0이다. 따라서 처음으로 값이 갈리는 비트에서
 식별자가 같은 데이터 프레임과 [[remote-frame|리모트 프레임]]이 동시에 송신되면, 식별자 뒤의 RTR 비트가 dominant인 데이터 프레임이 이긴다.[@microchip-mcp2515-2019]
 
 확장 포맷에서는 기본 식별자 11비트 뒤, 기본 포맷의 RTR 자리에 SRR(Substitute Remote Request) 비트가 오고 그 뒤에 IDE(Identifier Extension) 비트가 온다. 둘 다 recessive다. 그래서 앞 11비트로 중재가 가려지지 않은 채 기본 포맷 프레임과 확장 포맷 프레임이 겨루면, 기본 포맷 프레임이 이긴다.[@microchip-mcp2515-2019]
+
+![[diagrams/can-base-extended-arbitration-field.svg]]
 
 서로 다른 노드가 같은 식별자로 동시에 보내면 중재로 가려지지 않아, 프레임 뒷부분에서 충돌과 오류가 생길 수 있다.[@microchip-dspic30f-can-frm-2003]
 
@@ -38,6 +42,8 @@ dominant는 논리 0이다. 따라서 처음으로 값이 갈리는 비트에서
 ## 비교·한계
 
 중재 동안 송신 노드는 자기가 낸 비트와 버스의 비트를 비교하므로, 샘플 포인트를 최대 전파 지연 뒤에 두어야 한다. 이 지연은 두 노드 사이를 오가는 시간으로, 트랜시버 지연과 버스 지연을 더한 값의 두 배다. 그래서 중재 구간의 비트율은 네트워크의 전파 지연에 묶인다.[@microchip-mcp25xxfd-frm-2020]
+
+![[diagrams/can-arbitration-round-trip-delay.svg]]
 
 버스가 길수록 비트율을 낮춰야 한다. 1 Mbit/s는 버스 길이 40 m까지 쓸 수 있고, 그보다 긴 버스에서는 비트율을 낮춘다.[@microchip-dspic30f-can-frm-2003]
 
