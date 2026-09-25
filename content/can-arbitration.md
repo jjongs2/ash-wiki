@@ -41,11 +41,11 @@ dominant는 논리 0이다. 따라서 처음으로 값이 갈리는 비트에서
 
 ## 비교·한계
 
-중재 동안 송신 노드는 자기가 낸 비트와 버스의 비트를 비교하므로, 샘플 포인트를 최대 전파 지연 뒤에 두어야 한다. 이 지연은 두 노드 사이를 오가는 시간으로, 트랜시버 지연과 버스 지연을 더한 값의 두 배다. 그래서 중재 구간의 비트율은 네트워크의 전파 지연에 묶인다.[@microchip-mcp25xxfd-frm-2020]
+중재 동안 송신 노드는 자기가 낸 비트와 버스의 비트를 비교하므로, 샘플 포인트를 최대 전파 지연 뒤에 두어야 한다. 최대 전파 지연 $t_\mathrm{prop}$은 두 노드 사이를 오가는 시간으로, 트랜시버 지연 $t_\mathrm{trx}$와 버스 지연 $t_\mathrm{bus}$로 $t_\mathrm{prop} = 2(t_\mathrm{trx} + t_\mathrm{bus})$다. 그래서 중재 구간의 비트율은 네트워크의 전파 지연에 묶인다.[@microchip-mcp25xxfd-frm-2020]
 
 ![[diagrams/can-arbitration-round-trip-delay.svg]]
 
-버스가 길수록 비트율을 낮춰야 한다. 1 Mbit/s는 버스 길이 40 m까지 쓸 수 있고, 그보다 긴 버스에서는 비트율을 낮춘다.[@microchip-dspic30f-can-frm-2003]
+버스가 길수록 비트율을 낮춰야 한다. 비트율 1 Mbit/s는 버스 길이 $l$이 $l \le 40\,\mathrm{m}$일 때 쓸 수 있고, 그보다 긴 버스에서는 비트율을 낮춘다.[@microchip-dspic30f-can-frm-2003]
 
 [[can-fd|CAN FD]](CAN with Flexible Data-Rate)는 중재가 끝난 뒤의 데이터 구간에서만 비트율을 올린다. 이 구간에서는 송신 노드가 하나뿐이라, 전파 지연이 최대 비트율을 제한하지 않는다.[@microchip-mcp25xxfd-frm-2020]
 

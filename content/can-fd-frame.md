@@ -9,7 +9,7 @@ verified: 2026-09-25
 
 **CAN FD 프레임**은 [[can-fd|CAN FD]](CAN with Flexible Data-Rate)가 쓰는 데이터 프레임 포맷이다. 데이터 필드는 최대 64바이트다. 식별자가 11비트인 기본 포맷과 29비트인 확장 포맷이 모두 있다.[@microchip-mcp25xxfd-frm-2020]
 
-classical [[can-frame|CAN 프레임]]처럼 SOF(Start of Frame)와 중재 필드로 시작하지만, 중재 필드의 RTR(Remote Transmission Request) 자리에는 RRS(Remote Request Substitution) 비트가 온다. 제어 필드에는 CAN FD용 비트가 더해진다.[@microchip-mcp25xxfd-frm-2020]
+Classical [[can-frame|CAN 프레임]]처럼 SOF(Start of Frame)와 중재 필드로 시작하지만, 중재 필드의 RTR(Remote Transmission Request) 자리에는 RRS(Remote Request Substitution) 비트가 온다. 제어 필드에는 CAN FD용 비트가 더해진다.[@microchip-mcp25xxfd-frm-2020]
 
 ## 구조·동작
 
@@ -38,7 +38,7 @@ CAN FD에는 [[remote-frame|리모트 프레임]]이 없으므로, classical 프
 
 ### CRC 필드
 
-ISO 11898-1:2015를 따르는 CAN FD의 CRC(Cyclic Redundancy Check) 필드는 4비트 스터프 비트 개수, CRC 시퀀스, CRC delimiter로 이뤄진다. CRC 시퀀스는 데이터가 16바이트 이하면 17비트, 20바이트 이상이면 21비트다.[@microchip-mcp25xxfd-frm-2020] CRC 시퀀스에는 고정 스터프 비트가 들어간다.[@bosch-m-can-2023]
+ISO 11898-1:2015를 따르는 CAN FD의 CRC(Cyclic Redundancy Check) 필드는 4비트 스터프 비트 개수, CRC 시퀀스, CRC delimiter로 이뤄진다. CRC 시퀀스는 데이터 바이트 수 $n$이 $n \le 16$이면 17비트, $n \ge 20$이면 21비트다.[@microchip-mcp25xxfd-frm-2020] CRC 시퀀스에는 고정 스터프 비트가 들어간다.[@bosch-m-can-2023]
 
 ### 비트율 전환
 

@@ -7,7 +7,7 @@ verified: 2026-09-25
 
 ## 정의
 
-classical [[can|CAN]]의 **프레임**에는 데이터 프레임, [[remote-frame|리모트 프레임]], 오류 프레임, 과부하 프레임 네 종류가 있다. 데이터 프레임은 데이터를 나르고, 리모트 프레임은 같은 [[can-identifier|식별자]]의 데이터 프레임을 보내 달라고 요청한다. 오류 프레임은 노드가 오류를 찾았음을 알리고, 과부하 프레임은 이어지는 프레임 사이에 지연을 더한다.[@microchip-pic32-can-frm-2012]
+Classical [[can|CAN]]의 프레임에는 데이터 프레임, [[remote-frame|리모트 프레임]], 오류 프레임, 과부하 프레임 네 종류가 있다. 데이터 프레임은 데이터를 나르고, 리모트 프레임은 같은 [[can-identifier|식별자]]의 데이터 프레임을 보내 달라고 요청한다. 오류 프레임은 노드가 오류를 찾았음을 알리고, 과부하 프레임은 이어지는 프레임 사이에 지연을 더한다.[@microchip-pic32-can-frm-2012]
 
 데이터 프레임과 리모트 프레임에는 식별자가 11비트인 기본 포맷과 29비트인 확장 포맷이 있다.[@microchip-pic32-can-frm-2012]
 
@@ -43,6 +43,6 @@ IDE는 기본 포맷에서 dominant, 확장 포맷에서 recessive이고, 수신
 
 ## 비교·한계
 
-classical 프레임의 데이터는 8바이트를 넘지 못한다. 식별자와 제어·CRC·ACK 필드 같은 비트는 데이터 길이와 상관없이 붙으므로, 데이터가 짧을수록 프레임에서 데이터가 차지하는 몫이 작다.[@microchip-mcp2515-2019]
+Classical 프레임의 데이터는 8바이트를 넘지 못한다. 식별자와 제어·CRC·ACK 필드 같은 비트는 데이터 길이와 상관없이 붙으므로, 데이터가 짧을수록 프레임에서 데이터가 차지하는 몫이 작다.[@microchip-mcp2515-2019]
 
-[[can-fd-frame|CAN FD 프레임]]은 데이터 필드를 64바이트까지 늘렸다.[@microchip-mcp251xxfd-frm-2018]
+CAN FD(CAN with Flexible Data-Rate)의 [[can-fd-frame|프레임]]은 데이터 필드를 64바이트까지 늘렸다.[@microchip-mcp251xxfd-frm-2018]

@@ -15,11 +15,11 @@ CAN FD는 Bosch가 2012년에 CAN FD Specification Version 1.0으로 먼저 공�
 
 ### 두 비트율
 
-CAN FD 프레임의 중재 구간은 nominal bit rate로, 데이터 필드와 CRC(Cyclic Redundancy Check) 필드로 이뤄진 데이터 구간은 따로 설정한 data bit rate로 보낸다. data bit rate는 nominal bit rate와 같거나 더 높게 설정한다.[@bosch-m-can-2023]
+CAN FD 프레임의 중재 구간은 nominal bit rate로, 데이터 필드와 CRC(Cyclic Redundancy Check) 필드로 이뤄진 데이터 구간은 따로 설정한 data bit rate로 보낸다. nominal bit rate를 $R_\mathrm{nom}$, data bit rate를 $R_\mathrm{data}$라 하면 $R_\mathrm{data} \ge R_\mathrm{nom}$으로 설정한다.[@bosch-m-can-2023]
 
 ![[diagrams/can-fd-bit-rate-switch.svg]]
 
-nominal bit rate는 네트워크의 전파 지연에 묶이지만, 데이터 구간에서는 송신 노드가 하나만 남으므로 비트율을 높일 수 있다. 데이터 구간에서 비트율을 바꿀지는 프레임마다 BRS(Bit Rate Switch) 비트로 정한다.[@microchip-mcp25xxfd-frm-2020] 이 제약은 [[can-arbitration|CAN 중재]]에서 다룬다.
+nominal bit rate는 네트워크의 전파 지연에 묶이지만, 데이터 구간에서는 송신 노드가 하나만 남으므로 비트율을 높일 수 있다. 데이터 구간에서 비트율을 바꿀지는 프레임마다 BRS(Bit Rate Switch) 비트로 정한다.[@microchip-mcp25xxfd-frm-2020] 전파 지연의 제약은 [[can-arbitration|CAN 중재]]에서 다룬다.
 
 ### 프레임
 
@@ -27,11 +27,11 @@ CAN FD 프레임은 FDF(FD Format) 비트로 classical 프레임과 구별된다
 
 ![[diagrams/can-classical-fd-header.svg]]
 
-데이터 필드의 크기는 [[data-length-code|DLC]](Data Length Code) 값마다 정해진 크기 가운데 하나다. DLC가 8 이하면 classical CAN과 같고, 9 이상이면 8바이트보다 큰 크기에 따로 대응한다.[@bosch-m-can-2023]
+데이터 필드의 크기는 [[data-length-code|DLC]](Data Length Code) 값마다 정해진 크기 가운데 하나다. $\mathrm{DLC} \le 8$이면 classical CAN과 같고, $\mathrm{DLC} \ge 9$이면 8바이트보다 큰 크기에 따로 대응한다.[@bosch-m-can-2023]
 
 ![[diagrams/can-fd-dlc-data-length.svg]]
 
-CAN FD 프레임은 classical 프레임의 15비트 CRC보다 긴 CRC를 쓴다. 데이터가 16바이트 이하면 17비트, 20바이트 이상이면 21비트다. CAN FD에는 [[remote-frame|리모트 프레임]]이 없다.[@microchip-mcp25xxfd-frm-2020] 프레임의 비트 구성은 [[can-fd-frame|CAN FD 프레임]]에서 다룬다.
+CAN FD 프레임은 classical 프레임의 15비트 CRC보다 긴 CRC를 쓴다. 데이터 바이트 수 $n$이 $n \le 16$이면 17비트, $n \ge 20$이면 21비트다. CAN FD에는 [[remote-frame|리모트 프레임]]이 없다.[@microchip-mcp25xxfd-frm-2020] 프레임의 비트 구성은 [[can-fd-frame|CAN FD 프레임]]에서 다룬다.
 
 ### 오류 상태 표시
 
