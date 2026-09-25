@@ -143,9 +143,10 @@ npm run check:content
 - `<image>`나 `<feImage>`로 래스터나 외부 파일을 넣지 않습니다. `검사 svg`
 - 배경은 칠하지 않습니다. 사이트 배경이 그대로 비쳐야 두 테마에서 읽힙니다. `리뷰`
 - 테두리, 폭, 가운데 정렬은 사이트가 맡습니다(`quartz/styles/custom.scss`). SVG에는 그림을 두르는 틀을 그리지 않습니다. `리뷰`
+- 루트 `<svg>`에 `viewBox`를 둡니다. `viewBox`는 그림의 상하좌우 여백이 같게 잡습니다. 사이트는 `viewBox`를 틀 가운데에 놓으므로, 그림이 `viewBox` 안에서 쏠리면 틀 안에서도 쏠려 보입니다. 검사는 여백의 차가 허용치를 넘으면 옮긴 `viewBox`를 알려 줍니다. 허용치와 그 근거는 `tools/check-content/diagram-margin.ts`에 있습니다. `검사 svg`
 - 채움 도형 안의 글자는 `on-fill`, 도형 밖의 글자와 선은 `ink`로 씁니다. `on-fill` 글자는 `채움` 색 위에만 둡니다. `리뷰`
 - 범주는 색만으로 구분하지 않고 라벨로도 적습니다. 채움 색 다섯은 밝기가 같습니다. `리뷰`
-- 글자의 `font-family`는 `sans-serif`로 둡니다. SVG는 `<object>`로 들어가 별도 문서로 그려지므로, 사이트의 웹 폰트와 CSS를 쓰지 못합니다. `리뷰`
+- 글자는 Pretendard로 그립니다. 루트 `<svg>`에 `font-family="Pretendard, sans-serif"`와 `text-rendering="geometricPrecision"`을 두고, `<style>`에서 사이트와 같은 Pretendard CSS를 `@import`로 불러옵니다(넣을 줄은 검사가 알려 줍니다). SVG는 `<object>`로 들어가 별도 문서로 그려지므로 사이트의 웹 폰트를 물려받지 못합니다. 브라우저가 검사와 같은 폰트로, 글자 폭을 픽셀에 맞춰 반올림하지 않고 그려야 검사가 잰 여백이 독자가 보는 여백과 맞습니다. `검사 svg`
 - 반투명(`opacity`, `fill-opacity`)으로 색을 바꾸지 않습니다. 대비가 표의 값과 달라집니다. `리뷰`
 
 <!-- table: diagram-palette -->

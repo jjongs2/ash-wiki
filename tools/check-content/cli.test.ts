@@ -12,6 +12,7 @@ interface Report {
   exitCode: number | null
   statuses: string[]
   locations: Map<string, string[]>
+  messages: Map<string, string[]>
 }
 
 function runChecker(fixture: string): Report {
@@ -22,6 +23,7 @@ function runChecker(fixture: string): Report {
   )
   const statuses: string[] = []
   const locations = new Map<string, string[]>()
+  const messages = new Map<string, string[]>()
   let current = ""
   for (const line of result.stdout.split("\n")) {
     const status = line.match(/^(OK|FAIL|SKIP) +(\S+)/)
@@ -29,12 +31,16 @@ function runChecker(fixture: string): Report {
       current = status[2]
       statuses.push(`${status[1]} ${current}`)
       locations.set(current, [])
+      messages.set(current, [])
       continue
     }
-    const location = line.match(/^ +(\S+?(?::\d+)?): /)
-    if (location) locations.get(current)!.push(location[1])
+    const location = line.match(/^ +(\S+?(?::\d+)?): (.*)$/)
+    if (location) {
+      locations.get(current)!.push(location[1])
+      messages.get(current)!.push(`${location[1]}: ${location[2]}`)
+    }
   }
-  return { exitCode: result.status, statuses, locations }
+  return { exitCode: result.status, statuses, locations, messages }
 }
 
 describe("check-content CLI", { concurrency: false }, () => {
@@ -113,6 +119,12 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-diagram.svg:22",
         "content/bad-diagram.svg:24",
         "content/bad-diagram.svg:26",
+        "content/bad-font.svg:1",
+        "content/bad-font.svg:4",
+        "content/bad-font.svg:5",
+        "content/no-precision.svg:1",
+        "content/no-viewbox.svg:1",
+        "content/skewed-diagram.svg:1",
       ],
       output: [
         "content/bad-citations.md:16",
@@ -125,6 +137,13 @@ describe("check-content CLI", { concurrency: false }, () => {
       assert.deepStrictEqual(actual, [...locations].sort(), check)
     }
     assert.strictEqual(report.exitCode, 1)
+  })
+
+  test("여백이 치우친 도해는 viewBox 원점을 옮길 값을 알려 준다", () => {
+    const report = runChecker("violation")
+    const skewed = report.messages.get("svg")!.filter((m) => m.includes("skewed-diagram.svg"))
+    assert.strictEqual(skewed.length, 1)
+    assert.match(skewed[0], /viewBox="25 10 240 100"/)
   })
 
   test("빌드가 실패해도 파일 검사는 돌고 산출물 검사만 SKIP한다", () => {

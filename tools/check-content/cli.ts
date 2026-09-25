@@ -14,7 +14,7 @@ const conventions = loadConventions()
 const statuses: Status[] = []
 
 for (const [id, check] of sourceChecks) {
-  const violations = check(tree, conventions)
+  const violations = await check(tree, conventions)
   statuses.push(report(id, verdict(violations), violations))
 }
 
