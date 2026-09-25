@@ -1,0 +1,36 @@
+---
+title: CAN 트랜시버
+tags:
+  - network/can
+verified: 2026-09-25
+---
+
+## 정의
+
+CAN(Controller Area Network) 트랜시버는 [[can-controller|CAN 컨트롤러]]가 쓰는 디지털 신호와 CAN_H·CAN_L 버스의 차동 신호 사이를 변환한다.[@ti-tcan1042-q1-2021] 컨트롤러 쪽으로는 송신 데이터 입력 TXD와 수신 데이터 출력 RXD 핀을, 버스 쪽으로는 CAN_H와 CAN_L 핀을 둔다.[@nxp-tja1042-2023]
+
+## 구조·동작
+
+### 송신과 수신
+
+TXD가 low이면 드라이버가 버스를 차동으로 구동해 dominant로 만든다. high이면 구동하지 않고, 버스는 수신기 내부 저항으로 VCC/2에 바이어스된 recessive가 된다.[@ti-tcan1042-q1-2021] dominant와 recessive를 동시에 보내면 버스는 dominant가 된다.[@bosch-can-2-0-1991]
+
+수신기는 CAN_H와 CAN_L의 전압 차를 판정해 RXD로 내보낸다.[@ti-tcan1042-q1-2021] 예를 들어 TJA1042는 Normal 모드에서 전압 차가 0.9 V 이상이면 dominant, 0.5 V 이하이면 recessive로 판정한다.[@nxp-tja1042-2023]
+
+Normal 모드에서는 드라이버와 수신기가 함께 켜져 있어, 송신 중에도 RXD가 버스 상태를 따른다.[@ti-tcan1042-q1-2021] 송신 노드는 내보낸 비트를 버스에서 되읽어 대조하고, 중재 구간에서 자기가 낸 recessive 비트가 dominant로 읽히면 중재에서 밀려난다.[@bosch-can-2-0-1991]
+
+### 보호 기능
+
+TJA1042는 TXD가 정해진 시간보다 오래 low로 머물면 송신기를 끄고 버스를 recessive로 풀어 준다(TXD dominant time-out). 하드웨어나 소프트웨어 고장으로 버스가 계속 dominant에 묶여 통신 전체가 막히는 것을 막기 위해서다.[@nxp-tja1042-2023] TCAN1042는 과열되면 드라이버를 끄고, 버스 선이 단락되면 드라이버 전류를 제한한다.[@ti-tcan1042-q1-2021]
+
+### 저전력 모드와 웨이크업
+
+TCAN1042의 Standby 모드에서는 드라이버와 일반 수신기를 끄고 저전력 수신기만 버스를 감시한다. wake-up 패턴(WUP)을 감지하면 RXD를 low로 내려 MCU(Microcontroller Unit)에 웨이크업 요청을 알린다.[@ti-tcan1042-q1-2021] TJA1042는 Standby 모드에서 버스의 dominant가 정해진 시간보다 오래 이어지면 RXD를 high로 되돌려, 단락된 버스가 웨이크업 요청을 계속 만들지 않게 한다.[@nxp-tja1042-2023]
+
+TJA1145는 선택적 웨이크업을 켜면 버스에서 미리 설정한 wake-up frame(WUF)을 감시하고, 그 프레임을 받을 때만 노드를 깨운다.[@nxp-tja1145-2018]
+
+## 비교·한계
+
+recessive 출력 전압은 고속 트랜시버 TJA1042가 두 선 모두 약 0.5 VCC(2~3 V)이고[@nxp-tja1042-2023], 저속 내결함성 트랜시버 TJA1055가 CAN_H 0.2 V 이하, CAN_L VCC − 0.2 V 이상이다.[@nxp-tja1055-2013]
+
+CAN FD(CAN with Flexible Data-Rate)의 데이터 구간에서 TCAN1042는 모든 변종이 2 Mbit/s를, G 변종이 5 Mbit/s를 지원하고[@ti-tcan1042-q1-2021], TJA1042는 fast phase에서 5 Mbit/s까지 타이밍을 보증한다.[@nxp-tja1042-2023] TCAN1042 데이터시트는 짧고 대칭적인 전파 지연과 빠른 루프 시간이 타이밍 여유를 늘려, 부하가 큰 네트워크에서도 더 높은 데이터율을 낸다고 설명한다.[@ti-tcan1042-q1-2021]
