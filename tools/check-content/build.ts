@@ -145,7 +145,9 @@ export function checkOutput(tree: Tree, outDir: string): Violation[] {
 const katexErrorColor = "#cc0000"
 
 function katexErrors(html: string): { kind: string; tex: string }[] {
-  const errors = [...html.matchAll(/<span class="katex-error"[^>]*>([^<]*)<\/span>/g)].map((m) => ({
+  // title 속성에 식 원문이 그대로 들어가 >가 있을 수 있으므로, 따옴표 안은 통째로 넘긴다.
+  const errorSpan = /<span class="katex-error"(?:[^>"]|"[^"]*")*>([^<]*)<\/span>/g
+  const errors = [...html.matchAll(errorSpan)].map((m) => ({
     kind: "KaTeX 문법 오류",
     tex: decodeEntities(m[1]),
   }))
