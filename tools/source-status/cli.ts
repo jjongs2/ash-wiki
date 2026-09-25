@@ -46,6 +46,7 @@ const pages = tree.pages.filter((page) => page.kind === "page" && inTopic(page, 
 async function checkUrls(
   tree: Tree,
   pages: Page[],
+  blockedHosts: string[],
 ): Promise<{ dead: Violation[]; blocked: Violation[] }> {
   const cited = new Set(pages.flatMap((page) => citations(page).map((c) => c.key)))
   const targets = tree.bib.flatMap((bib) =>
@@ -61,31 +62,32 @@ async function checkUrls(
     targets.map(async ({ file, field }) => {
       const problem = await probe(field.value)
       if (!problem) return
-      const violation = { file, line: field.line, message: `${problem} ${field.value}` }
-      if (problem === "HTTP 403" && isBlockedHost(field.value)) blocked.push(violation)
+      const violation = { file, line: field.line, message: `${problem.reason} ${field.value}` }
+      if (problem.status === 403 && isBlockedHost(field.value, blockedHosts))
+        blocked.push(violation)
       else dead.push(violation)
     }),
   )
   return { dead, blocked }
 }
 
-function isBlockedHost(url: string): boolean {
+function isBlockedHost(url: string, blockedHosts: string[]): boolean {
   const host = new URL(url).hostname
   return blockedHosts.some((blocked) => host === blocked || host.endsWith(`.${blocked}`))
 }
 
-// 살아 있으면 null, 아니면 이유를 준다. 데이터시트 같은 큰 파일을 받지 않으려고 HEAD를 먼저 보내고,
+// 살아 있으면 null, 아니면 이유와 (응답이 있었으면) 상태 코드를 준다. 데이터시트 같은 큰 파일을 받지 않으려고 HEAD를 먼저 보내고,
 // HEAD를 받지 않는 서버가 있어 2xx가 아니면 GET으로 한 번 더 묻는다.
-async function probe(url: string): Promise<string | null> {
+async function probe(url: string): Promise<{ reason: string; status?: number } | null> {
   try {
     const head = await fetch(url, { method: "HEAD", signal: AbortSignal.timeout(15_000) })
     if (head.ok) return null
     const get = await fetch(url, { signal: AbortSignal.timeout(15_000) })
     await get.body?.cancel()
-    return get.ok ? null : `HTTP ${get.status}`
+    return get.ok ? null : { reason: `HTTP ${get.status}`, status: get.status }
   } catch (error) {
     const cause = (error as { cause?: { code?: string } }).cause?.code
-    return `응답 없음(${cause ?? (error as Error).name})`
+    return { reason: `응답 없음(${cause ?? (error as Error).name})` }
   }
 }
 
@@ -103,7 +105,7 @@ function checkVerified(pages: Page[], today: string, staleDays: number): Violati
 }
 
 const statuses: Status[] = []
-const urls = await checkUrls(tree, pages)
+const urls = await checkUrls(tree, pages, blockedHosts)
 statuses.push(report("url", verdict(urls.dead), urls.dead))
 if (urls.blocked.length > 0) {
   statuses.push(report("url-blocked", "SKIP", urls.blocked, "확인 불가, 브라우저로 확인"))

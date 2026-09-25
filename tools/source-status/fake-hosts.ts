@@ -5,5 +5,6 @@ const realFetch = globalThis.fetch
 
 globalThis.fetch = (input, init) => {
   const url = new URL(input instanceof Request ? input.url : String(input))
-  return realFetch(url.hostname === "127.0.0.1" ? url : new URL(url.pathname, serverOrigin), init)
+  const local = url.hostname === new URL(serverOrigin).hostname
+  return realFetch(local ? url : new URL(url.pathname, serverOrigin), init)
 }

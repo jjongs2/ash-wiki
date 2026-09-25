@@ -67,7 +67,7 @@
 
 ## 출처 상태
 
-린트는 게시된 출처가 아직 살아 있는지를 아래 기준으로 봅니다. `npm run source-status`가 이 표를 읽어 해당하는 곳을 모읍니다. 표의 열 이름이나 검사 이름을 바꾸면 스크립트(`tools/source-status/cli.ts`)도 함께 고쳐야 합니다.
+린트는 게시된 출처가 아직 살아 있는지를 아래 기준으로 봅니다. `npm run source-status`가 이 표를 읽어 해당하는 곳을 모읍니다. 이 절의 두 표(`source-status`, `bot-blocked-hosts`)의 열 이름이나 검사 이름을 바꾸면 스크립트(`tools/source-status/cli.ts`)도 함께 고쳐야 합니다.
 
 <!-- table: source-status -->
 
