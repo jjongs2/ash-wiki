@@ -21,7 +21,7 @@ CRC는 SOF(Start of Frame)부터 데이터 필드 끝까지의 비트로 계산�
 
 수신 노드는 받은 비트로 같은 방식의 CRC를 계산해 받은 CRC 시퀀스와 비교하고, 둘이 다르면 CRC 오류로 본다.[@microchip-mcp2515-2019] 다른 오류들은 [[can-error-detection|CAN 오류 검출]]에서 다룬다.
 
-프레임을 오류 없이 받은 노드는 그 메시지를 받아들이도록 설정되어 있는지와 상관없이 ACK 슬롯에서 dominant 비트를 낸다.[@microchip-mcp2515-2019] 이 절차는 [[can-acknowledgement|CAN ACK]]에서 다룬다.
+프레임을 오류 없이 받은 노드는 그 메시지를 받아들이도록 설정되어 있는지와 상관없이 ACK(Acknowledgement) 슬롯에서 dominant 비트를 낸다.[@microchip-mcp2515-2019] 이 절차는 [[can-acknowledgement|CAN ACK]]에서 다룬다.
 
 ## 비교·한계
 

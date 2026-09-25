@@ -7,7 +7,7 @@ verified: 2026-09-25
 
 ## 정의
 
-**CAN fault confinement**는 [[can-controller|CAN 컨트롤러]]가 송신 오류 계수기(TEC, Transmit Error Counter)와 수신 오류 계수기(REC, Receive Error Counter)의 값에 따라 자신을 error active, error passive, bus-off 가운데 한 상태에 두는 기능이다.[@microchip-mcp2515-2019]
+**CAN fault confinement**는 [[can|CAN]]의 [[can-controller|컨트롤러]]가 송신 오류 계수기(TEC, Transmit Error Counter)와 수신 오류 계수기(REC, Receive Error Counter)의 값에 따라 자신을 error active, error passive, bus-off 가운데 한 상태에 두는 기능이다.[@microchip-mcp2515-2019]
 
 ## 구조·동작
 
@@ -39,6 +39,6 @@ $\mathrm{REC} \ge 128$일 때 메시지를 제대로 받으면, REC는 $119 \le 
 
 ## 비교·한계
 
-MCP2515에서는 MCU가 TEC와 REC를 레지스터로 읽을 수 있다. $\mathrm{TEC} \ge 96$이거나 $\mathrm{REC} \ge 96$이면 오류 경고 플래그를 세우고, 둘 다 96보다 작아지면 지운다.[@microchip-mcp2515-2019]
+MCP2515에서는 MCU가 TEC와 REC를 레지스터로 읽을 수 있다. $\mathrm{TEC} \ge 96$이거나 $\mathrm{REC} \ge 96$이면 오류 경고 플래그를 세우고, $\mathrm{TEC} < 96$이고 $\mathrm{REC} < 96$이 되면 지운다.[@microchip-mcp2515-2019]
 
 CAN FD(CAN with Flexible Data-Rate) 프레임의 제어 필드에는 ESI(Error State Indicator) 비트가 있다. MCP25XXFD는 평소 이 비트로 자기 오류 상태를 알려, error active면 dominant로, error passive면 recessive로 낸다. 다만 게이트웨이 모드에서는 error active여도 ESI를 recessive로 낼 수 있다.[@microchip-mcp25xxfd-frm-2020] Bosch M_CAN도 error passive면 ESI를 늘 recessive로 내고, error active여도 송신 버퍼의 ESI 비트를 켜면 recessive로 낸다.[@bosch-m-can-2023]
