@@ -17,15 +17,15 @@ CAN 컨트롤러는 [[can|CAN]]의 데이터 링크 계층([[iso-11898-1|ISO 118
 
 애플리케이션은 빈 송신 버퍼에 식별자, DLC(Data Length Code), 데이터를 넣고 송신을 요청한다.[@st-rm0008-2021] 컨트롤러는 버퍼 내용으로 프레임을 부호화하고, 비트열로 직렬화해 내보낸다.[@microchip-mcp251xxfd-frm-2018] 이때 같은 값의 비트가 5개 이어지면 반대 값의 비트를 하나 자동으로 넣는다(비트 스터핑).[@bosch-can-2-0-1991]
 
-![[can-bit-stuffing.svg]]
+![[diagrams/can-bit-stuffing.svg]]
 
 컨트롤러의 송신 출력은 트랜시버의 TXD 핀에, 수신 입력은 트랜시버의 RXD 핀에 연결된다.[@microchip-mcp2561-2fd-2014]
 
-![[can-node-bus.svg]]
+![[diagrams/can-node-bus.svg]]
 
 송신 노드는 내보낸 비트를 버스에서 되읽어 대조한다. 중재 구간에서 자기가 낸 recessive 비트가 dominant로 읽히면 즉시 송신을 그만두고 수신 쪽으로 넘어간다.[@bosch-can-2-0-1991] Bosch M_CAN은 중재에서 졌거나 오류로 깨진 프레임을 기본 설정에서 자동으로 다시 보낸다.[@bosch-m-can-2023]
 
-![[can-arbitration.svg]]
+![[diagrams/can-arbitration.svg]]
 
 ### 수신
 

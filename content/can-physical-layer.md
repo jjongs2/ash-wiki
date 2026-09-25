@@ -11,7 +11,7 @@ verified: 2026-09-25
 
 고속 CAN의 PMA는 [[iso-11898-2|ISO 11898-2]]가 규정하고[@iso-11898-2-obp-2026], 저속 내결함성 CAN의 PMA와 MDI(Medium Dependent Interface)는 [[iso-11898-3|ISO 11898-3]]이 규정한다.[@iso-11898-3-obp-2006] 그 위의 PCS(Physical Coding Sublayer)는 [[iso-11898-1|ISO 11898-1]]이 규정하며, 비트 부호화·복호화와 동기화를 맡는다.[@iso-11898-2-obp-2026] 한 비트의 시간도 ISO 11898-1이 정하는데, 정해진 개수의 time quantum으로 이뤄진다.[@iso-11898-1-obp-2024]
 
-![[can-iso-11898-sublayers.svg]]
+![[diagrams/can-iso-11898-sublayers.svg]]
 
 ## 구조·동작
 
@@ -27,11 +27,11 @@ verified: 2026-09-25
 
 고속 트랜시버 TJA1042의 전형값으로 보면, recessive에서는 두 선이 모두 0.5 VCC(5 V 전원에서 2.5 V)라 전압 차가 거의 0이다. dominant에서는 CAN_H가 약 3.5 V, CAN_L이 약 1.5 V로 벌어져 전압 차가 약 2 V가 된다.[@nxp-tja1042-2023]
 
-![[hs-can-bus-voltage.svg]]
+![[diagrams/hs-can-bus-voltage.svg]]
 
 버스 양 끝에는 선의 특성 임피던스와 같은 120 Ω 종단 저항을 달아 신호 반사를 막는다.[@ti-tcan1042-q1-2021]
 
-![[can-node-bus.svg]]
+![[diagrams/can-node-bus.svg]]
 
 ### 저속 내결함성 CAN
 

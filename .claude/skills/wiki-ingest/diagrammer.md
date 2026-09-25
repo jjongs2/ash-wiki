@@ -22,7 +22,7 @@
 
 ```json
 {
-  "diagrams": [{ "file": "content/<파일 이름>.svg", "pages": ["<슬러그>"] }],
+  "diagrams": [{ "file": "content/diagrams/<파일 이름>.svg", "pages": ["<슬러그>"] }],
   "skipped": [{ "page": "<슬러그>", "사유": "" }]
 }
 ```

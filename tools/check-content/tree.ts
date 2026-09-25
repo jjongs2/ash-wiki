@@ -38,7 +38,7 @@ export interface BibFile {
 }
 
 export interface SvgFile {
-  file: string // 트리 루트 기준 경로. 예: content/can-bus-topology.svg
+  file: string // 트리 루트 기준 경로. 예: content/diagrams/can-bus-topology.svg
   source: string
 }
 
