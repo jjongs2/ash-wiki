@@ -15,7 +15,7 @@ verified: 2026-09-25
 
 ### 송신과 수신
 
-TXD가 low이면 드라이버가 버스를 차동으로 구동해 dominant로 만든다. high이면 구동하지 않고, 버스는 수신기 내부 저항으로 $\mathrm{VCC}/2$에 바이어스된 recessive가 된다.[@ti-tcan1042-q1-2021] dominant와 recessive를 동시에 보내면 버스는 dominant가 된다.[@bosch-can-2-0-1991]
+TXD가 low이면 드라이버가 버스를 차동으로 구동해 dominant로 만든다. high이면 구동하지 않고, 버스는 수신기 내부 저항으로 0.5 VCC에 바이어스된 recessive가 된다.[@ti-tcan1042-q1-2021] dominant와 recessive를 동시에 보내면 버스는 dominant가 된다.[@bosch-can-2-0-1991]
 
 ![[hs-can-bus-voltage.svg]]
 
@@ -37,7 +37,7 @@ TJA1145는 선택적 웨이크업을 켜면 버스에서 미리 설정한 웨이
 
 ## 비교·한계
 
-recessive 출력 전압은 고속 트랜시버 TJA1042가 두 선 모두 약 $\mathrm{VCC}/2$(2~3 V)이고[@nxp-tja1042-2023], 저속 내결함성 트랜시버 TJA1055가 CAN_H 전압 $V_\mathrm{CAN\_H} \le 0.2\,\mathrm{V}$, CAN_L 전압 $V_\mathrm{CAN\_L} \ge \mathrm{VCC} - 0.2\,\mathrm{V}$이다.[@nxp-tja1055-2013]
+recessive 출력 전압은 고속 트랜시버 TJA1042가 두 선 모두 약 0.5 VCC(2~3 V)이고[@nxp-tja1042-2023], 저속 내결함성 트랜시버 TJA1055가 $V_\mathrm{CAN\_H} \le 0.2\,\mathrm{V}$, $V_\mathrm{CAN\_L} \ge \mathrm{VCC} - 0.2\,\mathrm{V}$이다.[@nxp-tja1055-2013]
 
 ![[can-recessive-voltage-hs-ls.svg]]
 

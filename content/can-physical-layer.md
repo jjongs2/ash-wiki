@@ -25,7 +25,7 @@ verified: 2026-09-25
 
 ### 고속 CAN
 
-고속 트랜시버 TJA1042의 전형값으로 보면, recessive에서는 두 선이 모두 $\mathrm{VCC}/2$(5 V 전원에서 2.5 V)라 전압 차가 거의 0이다. dominant에서는 CAN_H가 약 3.5 V, CAN_L이 약 1.5 V로 벌어져 전압 차가 약 2 V가 된다.[@nxp-tja1042-2023]
+고속 트랜시버 TJA1042의 전형값으로 보면, recessive에서는 두 선이 모두 0.5 VCC(5 V 전원에서 2.5 V)라 전압 차가 거의 0이다. dominant에서는 CAN_H가 약 3.5 V, CAN_L이 약 1.5 V로 벌어져 전압 차가 약 2 V가 된다.[@nxp-tja1042-2023]
 
 ![[hs-can-bus-voltage.svg]]
 
