@@ -19,7 +19,7 @@ verified: 2026-09-25
 
 기본 포맷에서 중재 필드는 식별자 11비트와 RTR(Remote Transmission Request) 비트, 합해 12비트다.[@microchip-mcp2515-2019]
 
-버스는 wired-AND로 동작해, dominant와 recessive가 겹치면 dominant가 된다. 각 노드는 식별자를 최상위 비트부터 보내며, 비트를 낼 때마다 버스 레벨을 읽어 자기가 낸 값과 비교한다. recessive를 냈는데 dominant를 읽은 노드는 중재에서 진 것이므로, 송신을 멈추고 수신 모드로 바뀐다.[@microchip-dspic30f-can-frm-2003]
+버스는 wired-AND로 동작해, dominant와 recessive가 겹치면 dominant가 된다. 각 노드는 식별자를 최상위 비트부터 보내며, 비트를 낼 때마다 버스 레벨을 읽어 자기가 낸 값과 비교한다. recessive를 냈는데 dominant를 읽었다면 그 노드가 졌다는 뜻이다. 진 노드는 그 자리에서 송신을 그만두고 수신 쪽으로 넘어간다.[@microchip-dspic30f-can-frm-2003]
 
 dominant는 논리 0이다. 따라서 처음으로 값이 갈리는 비트에서 0을 낸 쪽, 곧 식별자의 이진 값이 더 작은 쪽이 이긴다. 식별자의 값이 작을수록 우선순위가 높다.[@microchip-dspic30f-can-frm-2003]
 
@@ -33,7 +33,7 @@ dominant는 논리 0이다. 따라서 처음으로 값이 갈리는 비트에서
 
 ### 진 노드
 
-중재에서 진 노드는 버스가 다시 idle이 되면 그 프레임을 자동으로 다시 보내려 한다.[@microchip-dspic30f-can-frm-2003] 예를 들어 M_CAN은 중재에서 진 프레임을 기본 설정에서 자동으로 다시 보내며, 이 기능을 끌 수도 있다.[@bosch-m-can-2023]
+버스가 idle로 돌아오면, 중재에서 밀린 노드는 같은 프레임의 송신을 자동으로 다시 시작한다.[@microchip-dspic30f-can-frm-2003] 예를 들어 M_CAN은 중재에서 진 프레임을 기본 설정에서 자동으로 다시 보내며, 이 기능을 끌 수도 있다.[@bosch-m-can-2023]
 
 ## 비교·한계
 
