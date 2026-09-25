@@ -1,9 +1,13 @@
 import { slugifyFilePath } from "@quartz-community/utils"
 import { visit } from "unist-util-visit"
 import type { Conventions } from "./conventions"
+import { marginTolerance, measureMargins } from "./diagram-margin"
 import { fieldsOf, type Page, type Tree, type Violation } from "./tree"
 
-export type SourceCheck = (tree: Tree, conventions: Conventions) => Violation[]
+export type SourceCheck = (
+  tree: Tree,
+  conventions: Conventions,
+) => Violation[] | Promise<Violation[]>
 
 const kebab = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 const citationKey = /^[a-z0-9]+-[a-z0-9]+(?:-[a-z0-9]+)*-\d{4}$/
@@ -302,7 +306,37 @@ function normalizeHex(value: string): string | null {
   return `#${hex.length === 3 ? [...hex].map((c) => c + c).join("") : hex}`
 }
 
-export const svg: SourceCheck = (tree, conventions) => {
+// 여백이 치우쳤으면 이유와 옮긴 viewBox를, 아니면 null을 준다. viewBox가 없으면 재지 않는다.
+async function marginViolation(source: string, root: string): Promise<string | null> {
+  const viewBox = root
+    .match(/\sviewBox\s*=\s*(["'])(.*?)\1/i)?.[2]
+    .trim()
+    .split(/[\s,]+/)
+    .map(Number)
+  if (viewBox?.length !== 4 || viewBox.some((n) => !Number.isFinite(n))) return null
+  const [x, y, width, height] = viewBox
+  let margins
+  try {
+    margins = await measureMargins(source, { width, height })
+  } catch (error) {
+    return `SVG를 그리지 못해 여백을 재지 못했다: ${(error as Error).message}`
+  }
+  if (!margins) return null
+  const { left, right, top, bottom } = margins
+  if (Math.abs(left - right) <= marginTolerance && Math.abs(top - bottom) <= marginTolerance) {
+    return null
+  }
+  // 그림을 가운데로 옮기려면 원점을 여백 차의 절반만큼 옮긴다. 0.5 단위로 반올림한다.
+  const round = (n: number) => Math.round(n * 2) / 2
+  const shifted = [round(x + (left - right) / 2), round(y + (top - bottom) / 2), width, height]
+  return (
+    `그림이 viewBox 가운데에서 치우쳤다(여백 좌 ${round(left)}, 우 ${round(right)}, ` +
+    `상 ${round(top)}, 하 ${round(bottom)}, 허용 차 ${marginTolerance}). ` +
+    `원점을 옮겨 viewBox="${shifted.join(" ")}"로 둔다`
+  )
+}
+
+export const svg: SourceCheck = async (tree, conventions) => {
   const palette = new Set(
     conventions.column("diagram-palette", "값").map((value) => {
       const hex = normalizeHex(value)
@@ -340,6 +374,8 @@ export const svg: SourceCheck = (tree, conventions) => {
     if (root && !/\sfill\s*=|\sstyle\s*=\s*(["'])[^"']*\bfill\s*:/i.test(root[0])) {
       violations.push({ file, line: lineAt(root.index!), message: "루트 <svg>에 fill이 없다" })
     }
+    const margin = root && (await marginViolation(source, root[0]))
+    if (margin) violations.push({ file, line: lineAt(root.index!), message: margin })
     // 접두사(<svg:image>)가 붙어도, 필터 요소(<feImage>)로 넣어도 같다.
     for (const match of text.matchAll(/<(?:[\w-]+:)?(?:image|feImage)[\s/>]/gi)) {
       violations.push({

@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" font-family="sans-serif" fill="none">
-  <!-- 통과(svg): 색은 도해 팔레트 값과 키워드(대소문자 무관), url(#id)만 쓴다. 주석 안의 색(#ff0000)은 보지 않는다. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2.5 240 100" font-family="sans-serif" fill="none">
+  <!-- 통과(svg): 색은 도해 팔레트 값과 키워드(대소문자 무관), url(#id)만 쓴다. 주석 안의 색(#ff0000)은 보지 않는다.
+       그림의 상하좌우 여백이 같다(좌우 10, 상하 7). -->
   <style>
     .bus { stroke: #727981 !important; fill: None; }
   </style>

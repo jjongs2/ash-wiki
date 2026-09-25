@@ -10,7 +10,7 @@ import { repoRoot } from "./repo"
 // Google Fonts에서만 받고, 받기 전에 quartz/.quartz-cache/fonts/<이름>-<굵기>를 먼저 읽는다.
 // Pretendard는 Google Fonts에 없으므로 웹 폰트와 같은 배포처와 버전(quartz/util/localFonts.ts)의
 // OTF를 그 자리에 미리 둔다. 없으면 생성기가 한글 없는 시스템 폰트로 넘어가 OG 이미지의 한글이 두부가 된다.
-const cacheDir = path.join(repoRoot, "quartz", ".quartz-cache", "fonts")
+export const cacheDir = path.join(repoRoot, "quartz", ".quartz-cache", "fonts")
 const configPath = path.join(repoRoot, "quartz.config.yaml")
 const ogWeights = { header: 700, body: 400 } as const
 const pretendardOtf: Record<number, string> = {
@@ -24,6 +24,11 @@ export async function ensureOgFonts(): Promise<void> {
   const weights = Object.entries(ogWeights)
     .filter(([role]) => getFontSpecificationName(typography[role]) === "Pretendard")
     .map(([, weight]) => weight)
+  await ensurePretendard(weights)
+}
+
+// 콘텐츠 검사기의 도해 여백 측정(tools/check-content/diagram-margin.ts)도 이 파일을 쓴다.
+export async function ensurePretendard(weights: number[]): Promise<void> {
   if (weights.length === 0) return
   fs.mkdirSync(cacheDir, { recursive: true })
   const stamp = path.join(cacheDir, "Pretendard.version")
