@@ -5,16 +5,16 @@
 // ash-wiki: 다크 테마는 루트에 color-scheme: dark를 건다. <object>로 넣은 도해 SVG는 color-scheme이
 // light인 별도 문서라, 둘이 다르면 브라우저가 SVG의 캔버스를 흰색으로 칠해 사이트 배경을 가린다.
 // <object>의 color-scheme을 SVG 문서와 같게 두어 캔버스를 투명하게 남긴다.
-// 도해 SVG는 viewBox만 두어 폭이 본문 전체로 늘어나므로, 폭을 제한해 가운데에 놓고 테마 색의
-// 테두리로 본문과 구별한다(docs/wiki-conventions.md 도해 절).
+// 도해는 테마 색의 테두리로 본문과 구별한다. 틀은 본문 폭에 맞추고, viewBox만 두어 폭 전체로
+// 늘어나는 SVG는 좌우 padding으로 42rem 안에 가두어 틀 가운데에 놓는다(docs/wiki-conventions.md 도해 절).
 article object[type="image/svg+xml"] {
   color-scheme: light;
   display: block;
   box-sizing: border-box;
-  width: min(100%, 42rem);
+  width: 100%;
   height: auto;
-  margin: 1rem auto;
-  padding: 0.75rem;
+  margin: 1rem 0;
+  padding: 0.75rem max(0.75rem, calc((100% - 42rem) / 2));
   border: 1px solid var(--lightgray);
   border-radius: 5px;
 }
