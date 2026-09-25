@@ -4,7 +4,7 @@
 
 // ash-wiki: 다크 테마는 루트에 color-scheme: dark를 건다. <object>로 넣은 도해 SVG는 color-scheme이
 // light인 별도 문서라, 둘이 다르면 브라우저가 SVG의 캔버스를 흰색으로 칠해 사이트 배경을 가린다.
-// <object>의 color-scheme을 SVG 문서와 같게 두어 캔버스를 투명하게 남긴다(docs/wiki-conventions.md 도해 절).
+// <object>의 color-scheme을 SVG 문서와 같게 두어 캔버스를 투명하게 남긴다.
 article object[type="image/svg+xml"] {
   color-scheme: light;
 }
