@@ -87,6 +87,7 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-links.md:20",
         "content/bad-links.md:24",
         "content/bad-links.md:28",
+        "content/bad-links.md:32",
       ],
       citation: [
         "bib/no-urldate-spec-2024.bib:2",

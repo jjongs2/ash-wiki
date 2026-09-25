@@ -27,4 +27,8 @@ verified: 2026-09-20
 
 [[tags/network]]로 간다.
 
+<!-- 위반(wikilink): 앵커가 있으면 링크 글자가 "슬러그 > 앵커"가 된다. -->
+
+[[target-page#정의]]로 간다.
+
 [[target-page|대상]]은 올바른 링크다.

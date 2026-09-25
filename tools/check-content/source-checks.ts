@@ -125,27 +125,14 @@ export const namespace: SourceCheck = (tree) => {
       const slug = slugifyFilePath(`${alias}.md` as never)
       const slugOwner = slugOwners.get(slug)
       const aliasOwner = aliasOwners.get(slug)
-      const line = lineOf("aliases", index)
-      if (slugOwner === page) {
-        // 슬러그 변환이 소문자로 바꾸므로 대소문자만 다른 alias도 자기 슬러그가 된다.
-        violations.push({
-          file: page.file,
-          line,
-          message: `alias "${alias}"가 자기 슬러그와 겹쳐 리다이렉트가 페이지를 덮어쓴다`,
-        })
-      } else if (slugOwner) {
-        violations.push({
-          file: page.file,
-          line,
-          message: `alias "${alias}"가 ${slugOwner.file}의 슬러그와 겹친다`,
-        })
-      } else if (aliasOwner && aliasOwner !== page) {
-        violations.push({
-          file: page.file,
-          line,
-          message: `alias "${alias}"가 ${aliasOwner.file}의 alias와 겹친다`,
-        })
-      }
+      const at = (message: string) =>
+        violations.push({ file: page.file, line: lineOf("aliases", index), message })
+      // 슬러그 변환이 소문자로 바꾸므로 대소문자만 다른 alias도 자기 슬러그가 된다.
+      if (slugOwner === page)
+        at(`alias "${alias}"가 자기 슬러그와 겹쳐 리다이렉트가 페이지를 덮어쓴다`)
+      else if (slugOwner) at(`alias "${alias}"가 ${slugOwner.file}의 슬러그와 겹친다`)
+      else if (aliasOwner && aliasOwner !== page)
+        at(`alias "${alias}"가 ${aliasOwner.file}의 alias와 겹친다`)
       aliasOwners.set(slug, page)
     })
   }
@@ -160,6 +147,7 @@ function* matchLines(page: Page, pattern: RegExp) {
 }
 
 export const wikilink: SourceCheck = (tree) => {
+  // 대문과 태그 표시 이름 파일도 링크 대상이므로 title을 모은다.
   const titles = new Map(tree.pages.map((p) => [p.name, fieldsOf(p).title]))
   const slugs = new Set(tree.pages.filter((p) => p.kind !== "tag").map((p) => p.name))
   const violations: Violation[] = []
@@ -170,6 +158,7 @@ export const wikilink: SourceCheck = (tree) => {
       const [target, anchor] = path.split("#").map((part) => part.trim())
       const at = (message: string) => violations.push({ file: page.file, line, message })
       if (target === "") continue
+      // 대상이 없거나 잘못되면 거기서 멈춘다. 태그 목록은 대상을 확인한 뒤 표시 이름도 본다.
       if (target.startsWith("tags/")) {
         if (!tree.tags.has(target.slice("tags/".length)))
           at(`표시 이름 파일이 없는 태그 목록: ${link}`)
@@ -183,11 +172,11 @@ export const wikilink: SourceCheck = (tree) => {
         at(`대상 페이지가 없다: ${link}`)
         continue
       }
-      // 표시 이름이 없으면 Quartz는 대상(과 앵커)을 그대로 링크 글자로 쓴다.
+      // 표시 이름이 없으면 Quartz는 대상(앵커가 있으면 "대상 > 앵커")을 그대로 링크 글자로 쓴다.
       const title = titles.get(target)
       const shown = anchor ? `${target} > ${anchor}` : target
       if (!embed && !display?.trim() && typeof title === "string" && title !== shown) {
-        at(`title이 슬러그와 다르면 [[슬러그|표시 이름]]으로 건다: ${link}`)
+        at(`링크 글자가 title과 다른 "${shown}"로 나오니 표시 이름을 쓴다: ${link}`)
       }
     }
   }
