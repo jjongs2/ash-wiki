@@ -7,7 +7,7 @@ verified: 2026-09-25
 
 ## 정의
 
-CAN 컨트롤러는 CAN(Controller Area Network)의 데이터 링크 계층([[iso-11898-1]])을 하드웨어로 구현하는 장치다.[@ti-tcan4550-2020] MCU(Microcontroller Unit) 안에 주변장치로 들어가기도 하고[@st-rm0008-2021], SPI(Serial Peripheral Interface)로 호스트 MCU에 붙는 독립형 칩으로 나오기도 한다.[@microchip-mcp2515-2019]
+CAN 컨트롤러는 CAN(Controller Area Network)의 데이터 링크 계층([[iso-11898-1|ISO 11898-1]])을 하드웨어로 구현하는 장치다.[@ti-tcan4550-2020] MCU(Microcontroller Unit) 안에 주변장치로 들어가기도 하고[@st-rm0008-2021], SPI(Serial Peripheral Interface)로 호스트 MCU에 붙는 독립형 칩으로 나오기도 한다.[@microchip-mcp2515-2019]
 
 컨트롤러는 버스에 직접 닿지 않고, [[can-transceiver|CAN 트랜시버]]를 거쳐 CAN_H와 CAN_L 버스에 연결된다.[@st-rm0008-2021]
 

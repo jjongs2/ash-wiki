@@ -9,7 +9,7 @@ verified: 2026-09-25
 
 CAN(Controller Area Network) 물리 계층에서 [[can-controller|CAN 컨트롤러]]의 논리 신호와 버스 선의 전기 신호 사이 변환은 ISO 11898의 PMA(Physical Medium Attachment) 부계층이 맡는다.[@iso-11898-2-obp-2026] PMA의 송신기는 디지털 신호를 CAN_H와 CAN_L의 아날로그 신호로 바꾸고, 수신기는 그 반대로 바꾼다.[@iso-11898-2-obp-2026]
 
-고속 CAN의 PMA는 [[iso-11898-2]]가 규정하고[@iso-11898-2-obp-2026], 저속 내결함성 CAN의 PMA와 MDI(Medium Dependent Interface)는 [[iso-11898-3]]이 규정한다.[@iso-11898-3-obp-2006] 그 위의 PCS(Physical Coding Sublayer)는 [[iso-11898-1]]이 규정하며, 비트 부호화·복호화와 동기화를 맡는다.[@iso-11898-2-obp-2026] 한 비트의 시간도 ISO 11898-1이 정하는데, 정해진 개수의 time quantum으로 이뤄진다.[@iso-11898-1-obp-2024]
+고속 CAN의 PMA는 [[iso-11898-2|ISO 11898-2]]가 규정하고[@iso-11898-2-obp-2026], 저속 내결함성 CAN의 PMA와 MDI(Medium Dependent Interface)는 [[iso-11898-3|ISO 11898-3]]이 규정한다.[@iso-11898-3-obp-2006] 그 위의 PCS(Physical Coding Sublayer)는 [[iso-11898-1|ISO 11898-1]]이 규정하며, 비트 부호화·복호화와 동기화를 맡는다.[@iso-11898-2-obp-2026] 한 비트의 시간도 ISO 11898-1이 정하는데, 정해진 개수의 time quantum으로 이뤄진다.[@iso-11898-1-obp-2024]
 
 ## 구조·동작
 
