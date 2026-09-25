@@ -130,6 +130,9 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-citations.md:16",
         "content/bad-citations.md:20",
         "content/bad-citations.md:24",
+        "content/bad-math.md:12",
+        "content/bad-math.md:16",
+        "content/bad-math.md:20",
       ],
     }
     for (const [check, locations] of Object.entries(expected)) {
@@ -144,6 +147,15 @@ describe("check-content CLI", { concurrency: false }, () => {
     const skewed = report.messages.get("svg")!.filter((m) => m.includes("skewed-diagram.svg"))
     assert.strictEqual(skewed.length, 1)
     assert.match(skewed[0], /viewBox="25 10 240 100"/)
+  })
+
+  test("KaTeX 렌더 오류는 문법 오류와 정의되지 않은 명령을 따로 알려 준다", () => {
+    const report = runChecker("violation")
+    const math = report.messages.get("output")!.filter((m) => m.includes("bad-math.md"))
+    assert.strictEqual(math.length, 3)
+    assert.match(math[0], /bad-math\.md:12: .*\\frac\{1\}\{/)
+    assert.match(math[1], /bad-math\.md:16: .*\\mathmr/)
+    assert.match(math[2], /bad-math\.md:20: KaTeX 문법 오류: a > \\frac\{b\}\{$/)
   })
 
   test("빌드가 실패해도 파일 검사는 돌고 산출물 검사만 SKIP한다", () => {

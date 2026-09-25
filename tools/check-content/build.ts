@@ -55,7 +55,7 @@ function buildErrors(tree: Tree, log: string): Violation[] {
   return [{ file: "build", message: lastLines.join(" / ") }]
 }
 
-// 산출물 검사: 인용이 번호로 렌더됐는지, 태그 목록에 페이지가 나오는지 본다.
+// 산출물 검사: 수식과 인용이 렌더됐는지, 태그 목록에 페이지가 나오는지 본다.
 export function checkOutput(tree: Tree, outDir: string): Violation[] {
   const violations: Violation[] = []
   const keys = bibKeys(tree)
@@ -73,13 +73,22 @@ export function checkOutput(tree: Tree, outDir: string): Violation[] {
       .replace(/<pre[\s>][\s\S]*?<\/pre>/g, "")
       .replace(/<code[\s>][\s\S]*?<\/code>/g, "")
     const sourceLines = page.source.split("\n")
+    const lineOf = (text: string) => {
+      const index = sourceLines.findIndex((line) => line.includes(text))
+      return index >= 0 ? index + 1 : undefined
+    }
     for (const marker of new Set([...html.matchAll(/\[@[^\]<]*\]/g)].map((m) => m[0]))) {
-      const index = sourceLines.findIndex((line) => line.includes(marker))
       violations.push({
         file: page.file,
-        line: index >= 0 ? index + 1 : undefined,
+        line: lineOf(marker),
         message: `번호로 렌더되지 않은 인용: ${marker}`,
       })
+    }
+    // 디스플레이 식은 여러 줄이라, 식의 첫 줄로 원문 줄을 찾는다.
+    for (const { kind, tex } of katexErrors(html)) {
+      const message = `${kind}: ${tex}`
+      if (violations.some((v) => v.file === page.file && v.message === message)) continue
+      violations.push({ file: page.file, line: lineOf(tex.trim().split("\n")[0]), message })
     }
     // 키마다 본문의 번호 링크가 모두 같은 번호이고, 그 번호가 참고문헌 항목의 번호와 같아야 한다.
     const cited = new Map<string, number>()
@@ -129,6 +138,47 @@ export function checkOutput(tree: Tree, outDir: string): Violation[] {
     })
   }
   return violations
+}
+
+// KaTeX는 렌더 오류를 빌드 실패로 올리지 않고 페이지에 남긴다. 문법 오류는 식 전체를
+// .katex-error로, 정의되지 않은 명령은 .katex 안에서 그 이름만 오류 색으로 그린다.
+const katexErrorColor = "#cc0000"
+
+function katexErrors(html: string): { kind: string; tex: string }[] {
+  // title 속성에 식 원문이 그대로 들어가 >가 있을 수 있으므로, 따옴표 안은 통째로 넘긴다.
+  const errorSpan = /<span class="katex-error"(?:[^>"]|"[^"]*")*>([^<]*)<\/span>/g
+  const errors = [...html.matchAll(errorSpan)].map((m) => ({
+    kind: "KaTeX 문법 오류",
+    tex: decodeEntities(m[1]),
+  }))
+  const errorText = new RegExp(`style="color:${katexErrorColor};?">([^<]+)<`, "g")
+  for (const start of html.matchAll(/<span class="katex">/g)) {
+    for (const m of spanAt(html, start.index).matchAll(errorText)) {
+      errors.push({ kind: "KaTeX 정의되지 않은 명령", tex: decodeEntities(m[1]) })
+    }
+  }
+  return errors
+}
+
+// index에서 여는 <span>부터 짝이 맞는 </span>까지를 돌려준다.
+function spanAt(html: string, index: number): string {
+  let depth = 0
+  for (const tag of html.slice(index).matchAll(/<span[\s>]|<\/span>/g)) {
+    depth += tag[0] === "</span>" ? -1 : 1
+    if (depth === 0) return html.slice(index, index + tag.index + tag[0].length)
+  }
+  return html.slice(index)
+}
+
+function decodeEntities(text: string): string {
+  const named: Record<string, string> = { amp: "&", lt: "<", gt: ">", quot: '"' }
+  return text.replace(/&(?:#x([0-9a-f]+)|#(\d+)|(\w+));/gi, (entity, hex, dec, name) =>
+    hex
+      ? String.fromCodePoint(parseInt(hex, 16))
+      : dec
+        ? String.fromCodePoint(Number(dec))
+        : (named[name] ?? entity),
+  )
 }
 
 function escapeRegExp(text: string): string {
