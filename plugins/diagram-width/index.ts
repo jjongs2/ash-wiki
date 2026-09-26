@@ -2,7 +2,7 @@
 // 사이트 스타일(quartz/styles/custom.scss)이 이 값으로 도해를 viewBox 폭에 비례한 크기로 그려, 폭이
 // 다른 도해도 같은 font-size의 글자가 같은 크기로 보인다. 배율과 크기 계산은 스타일에 있다.
 //
-// 빌드가 이 파일을 Node의 기본 타입 제거로 불러오므로, 타입만 지우면 돌아가는 문법만 쓴다. enum, namespace,
+// 빌드가 이 파일을 Node의 type stripping으로 불러오므로, 타입만 지우면 돌아가는 문법만 쓴다. enum, namespace,
 // parameter property를 쓰지 않고, 타입은 import type으로 가져온다.
 // <object>는 obsidian-flavored-markdown의 embed가 만든다. 그 뒤에 돌도록 quartz.config.yaml에서 order를 준다.
 import fs from "node:fs"
