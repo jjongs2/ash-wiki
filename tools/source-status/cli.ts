@@ -22,6 +22,7 @@ const root = path.resolve(positionals[0] ?? ".")
 const today = values.today ?? new Date().toISOString().slice(0, 10)
 // 요청 하나의 제한 시간. 테스트가 줄여 쓴다.
 const timeoutMs = Number(values.timeout ?? 15_000)
+if (!(timeoutMs > 0)) throw new Error(`--timeout은 양의 밀리초여야 한다: ${values.timeout}`)
 // 주소 계열 자동 선택(Happy Eyeballs)의 시도 제한. 기본 250ms로는 연결이 느린 호스트(예: itu.int)가 다음 주소로 넘어가 연결 시간 초과로 떨어진다.
 net.setDefaultAutoSelectFamilyAttemptTimeout(2_000)
 
@@ -97,7 +98,7 @@ async function probe(url: string): Promise<Outcome> {
   return outcome.kind === "timeout" ? ask(url) : outcome
 }
 
-// AbortSignal의 제한 초과와 연결 시간 초과. 연결 거부, DNS 실패 같은 그 밖의 오류는 출처 사망으로 센다.
+// 연결 시간 초과. AbortSignal의 제한 초과(TimeoutError)와 함께 시간 초과로 세고, 연결 거부, DNS 실패 같은 그 밖의 오류는 출처 사망으로 센다.
 const timeoutCodes = new Set(["UND_ERR_CONNECT_TIMEOUT", "ETIMEDOUT"])
 
 // 서버가 중간 인증서를 보내지 않아 leaf를 검증하지 못한 오류
@@ -181,11 +182,12 @@ function checkVerified(pages: Page[], today: string, staleDays: number): Violati
 const statuses: Status[] = []
 const urls = await checkUrls(tree, pages, blockedHosts)
 statuses.push(report("url", verdict(urls.dead), urls.dead))
-if (urls.blocked.length > 0) {
-  statuses.push(report("url-blocked", "SKIP", urls.blocked, "확인 불가, 브라우저로 확인"))
-}
-if (urls.timedOut.length > 0) {
-  statuses.push(report("url-timeout", "SKIP", urls.timedOut, "확인 불가, 브라우저로 확인"))
+for (const [id, unchecked] of [
+  ["url-blocked", urls.blocked],
+  ["url-timeout", urls.timedOut],
+] as const) {
+  if (unchecked.length > 0)
+    statuses.push(report(id, "SKIP", unchecked, "확인 불가, 브라우저로 확인"))
 }
 const stale = checkVerified(pages, today, staleDays)
 statuses.push(report("verified", verdict(stale), stale))
