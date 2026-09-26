@@ -108,25 +108,55 @@ const missingIssuerCodes = new Set([
 ])
 
 // 데이터시트 같은 큰 파일을 받지 않으려고 HEAD를 먼저 보내고, HEAD를 받지 않는 서버가 있어 2xx가 아니면 GET으로 한 번 더 묻는다.
-// 중간 인증서가 빠진 서버는 브라우저처럼 AIA에서 받아 와 한 번 더 묻는다.
+// 중간 인증서가 빠진 서버는 브라우저처럼 그 서버 leaf의 AIA에서 받아 와 원래 URL로 한 번 더 묻는다. 리다이렉트로 닿은 서버여도 같다.
 async function ask(url: string, followAia = true): Promise<Outcome> {
+  // 인증서 오류가 났을 때 어느 요청의 리다이렉트를 다시 따라갈지 가린다.
+  let method = "HEAD"
   try {
-    const head = await fetch(url, { method: "HEAD", signal: AbortSignal.timeout(timeoutMs) })
+    const head = await fetch(url, { method, signal: AbortSignal.timeout(timeoutMs) })
     if (head.ok) return { kind: "alive" }
-    const get = await fetch(url, { signal: AbortSignal.timeout(timeoutMs) })
+    method = "GET"
+    const get = await fetch(url, { method, signal: AbortSignal.timeout(timeoutMs) })
     await get.body?.cancel()
     return get.ok
       ? { kind: "alive" }
       : { kind: "dead", reason: `HTTP ${get.status}`, status: get.status }
   } catch (error) {
     const name = (error as Error).name
-    const code = (error as { cause?: { code?: string } }).cause?.code
+    const code = errorCode(error)
     const reason = `응답 없음(${code ?? name})`
     if (name === "TimeoutError" || timeoutCodes.has(code ?? "")) return { kind: "timeout", reason }
-    if (followAia && missingIssuerCodes.has(code ?? "") && (await trustIssuer(url))) {
-      return ask(url, false)
+    if (followAia && missingIssuerCodes.has(code ?? "")) {
+      const failedUrl = await certErrorAt(url, method)
+      if (failedUrl !== undefined && (await trustIssuer(failedUrl))) return ask(url, false)
     }
     return { kind: "dead", reason }
+  }
+}
+
+function errorCode(error: unknown): string | undefined {
+  return (error as { cause?: { code?: string } }).cause?.code
+}
+
+// fetch가 따라간 리다이렉트를 같은 메서드로 한 단계씩 다시 따라가, 중간 인증서 오류가 난 곳의 URL을 찾는다.
+// fetch처럼 리다이렉트는 20번까지 따라간다. 찾지 못하면 undefined다.
+async function certErrorAt(url: string, method: string): Promise<string | undefined> {
+  let current = url
+  for (let redirects = 0; ; redirects++) {
+    try {
+      const response = await fetch(current, {
+        method,
+        redirect: "manual",
+        signal: AbortSignal.timeout(timeoutMs),
+      })
+      await response.body?.cancel()
+      const location = response.headers.get("location")
+      if (response.status < 300 || response.status >= 400 || location === null) return undefined
+      if (redirects === 20) return undefined
+      current = new URL(location, current).href
+    } catch (error) {
+      return missingIssuerCodes.has(errorCode(error) ?? "") ? current : undefined
+    }
   }
 }
 
