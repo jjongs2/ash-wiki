@@ -7,7 +7,7 @@ verified: 2026-09-25
 
 ## 정의
 
-[[can|CAN]] 트랜시버는 [[can-controller|CAN 컨트롤러]]가 쓰는 디지털 신호와 CAN_H·CAN_L 버스의 차동 신호 사이를 변환한다.[@ti-tcan1042-q1-2021] 컨트롤러 쪽으로는 송신 데이터 입력 TXD와 수신 데이터 출력 RXD 핀을, 버스 쪽으로는 CAN_H와 CAN_L 핀을 둔다.[@nxp-tja1042-2023]
+**CAN 트랜시버**는 [[can-controller|CAN 컨트롤러]]가 쓰는 디지털 신호와 CAN_H·CAN_L 버스의 차동 신호 사이를 변환한다.[@ti-tcan1042-q1-2021] 컨트롤러 쪽으로는 송신 데이터 입력 TXD와 수신 데이터 출력 RXD 핀을, 버스 쪽으로는 CAN_H와 CAN_L 핀을 둔다.[@nxp-tja1042-2023]
 
 ![[diagrams/can-node-bus.svg]]
 
@@ -41,4 +41,4 @@ recessive 출력 전압은 고속 트랜시버 TJA1042가 두 선 모두 약 0.5
 
 ![[diagrams/can-recessive-voltage-hs-ls.svg]]
 
-CAN FD(CAN with Flexible Data-Rate)의 데이터 구간에서 TCAN1042는 모든 변종이 2 Mbit/s를, G 변종이 5 Mbit/s를 지원하고[@ti-tcan1042-q1-2021], TJA1042는 fast phase에서 5 Mbit/s까지 타이밍을 보증한다.[@nxp-tja1042-2023]
+CAN FD의 데이터 구간에서 TCAN1042는 모든 변종이 2 Mbit/s를, G 변종이 5 Mbit/s를 지원하고[@ti-tcan1042-q1-2021], TJA1042는 fast phase에서 5 Mbit/s까지 타이밍을 보증한다.[@nxp-tja1042-2023]
