@@ -7,7 +7,7 @@ verified: 2026-09-26
 
 ## 정의
 
-**CAN FD 프레임**은 CAN FD 포맷(FD format)으로 보내는 [[can-frame|CAN 프레임]]이다. 식별자가 11비트인 기본 포맷과 29비트인 확장 포맷이 있고, 데이터 필드는 최대 64바이트다.[@iso-11898-1-obp-2015] 중재가 끝난 뒤 데이터 구간의 비트율을 중재 구간보다 높일 수 있다. [[can-fd|CAN FD]] 포맷에는 데이터 프레임만 있고 [[remote-frame|리모트 프레임]]은 없다.[@bosch-can-fd-1-0-2012]
+**CAN FD 프레임**은 [[can-fd|CAN FD]] 포맷(FD format)으로 보내는 [[can-frame|CAN 프레임]]이다. 식별자가 11비트인 기본 포맷과 29비트인 확장 포맷이 있고, 데이터 필드는 최대 64바이트다.[@iso-11898-1-obp-2015] 중재가 끝난 뒤 데이터 구간의 비트율을 중재 구간보다 높일 수 있다. CAN FD 포맷에는 데이터 프레임만 있고 [[remote-frame|리모트 프레임]]은 없다.[@bosch-can-fd-1-0-2012]
 
 ## 구조·동작
 
@@ -30,7 +30,7 @@ CAN FD 포맷 프레임에서 classical 포맷의 RTR(Remote Transmission Reques
 
 ### CRC 필드
 
-[[can-crc|CRC]] 시퀀스는 데이터 필드가 16바이트 이하면 17비트, 16바이트를 넘으면 21비트다. CRC 시퀀스에는 [[can-bit-stuffing|스터프 비트]]를 고정 위치에 넣는다.[@bosch-can-fd-1-0-2012] MCP25xxFD 계열 컨트롤러의 매뉴얼에 따르면, ISO 11898-1:2015를 따르는 CAN FD의 CRC 필드는 CRC 시퀀스 앞에 스터프 비트 개수를 두며, 이 값은 Bosch 규격에는 없던 것이다.[@microchip-mcp25xxfd-frm-2020]
+[[can-crc|CRC]] 시퀀스는 데이터 필드의 바이트 수 $n$이 $n \le 16$이면 17비트, $n > 16$이면 21비트다. CRC 시퀀스에는 [[can-bit-stuffing|스터프 비트]]를 고정 위치에 넣는다.[@bosch-can-fd-1-0-2012]
 
 ### 확장 포맷
 
@@ -38,6 +38,6 @@ CAN FD 포맷 프레임에서 classical 포맷의 RTR(Remote Transmission Reques
 
 ## 비교·한계
 
-CAN FD 포맷에서 CRC 구분자는 recessive 1비트나 2비트일 수 있다. 송신 노드는 1비트만 보내지만, ACK 슬롯을 시작하는 dominant 에지 앞에 recessive 2비트가 와도 받아들인다. 이 여유는 노드마다 송신 노드와의 위상차가 달라서, 짧은 비트 시간에서 긴 비트 시간으로 돌아갈 때 그 차이를 보상하려고 둔다.[@bosch-can-fd-1-0-2012]
+CAN FD 포맷에서 CRC 구분자는 recessive 1비트나 2비트일 수 있다. 송신 노드는 1비트만 보내지만, [[can-acknowledgement|ACK]] 슬롯을 시작하는 dominant 에지 앞에 recessive 2비트가 와도 받아들인다. 이 여유는 노드마다 송신 노드와의 위상차가 달라서, 짧은 비트 시간에서 긴 비트 시간으로 돌아갈 때 그 차이를 보상하려고 둔다.[@bosch-can-fd-1-0-2012]
 
 Classical 포맷만 지원하고 CAN FD 포맷을 용인하지 않는 구현(FD intolerant)은 CAN FD 프레임을 방해해서, 이런 구현이 있는 네트워크에서 CAN FD 포맷을 쓰면 오류 프레임이 생긴다. CAN FD 포맷을 주고받지 못해도 방해하지 않는 구현(FD tolerant)도 있다.[@iso-11898-1-obp-2015]
