@@ -1,4 +1,4 @@
-import test, { describe } from "node:test"
+import test, { after, describe } from "node:test"
 import assert from "node:assert"
 import fs from "node:fs"
 import os from "node:os"
@@ -11,8 +11,11 @@ import DiagramWidth from "./index.js"
 
 // 플러그인의 htmlPlugins가 seam이다. 임시 content 폴더에 SVG를 두고, embed가 만든 꼴의 <object>를
 // 넣어 그 <object>의 style만 본다.
+const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "diagram-width-"))
+after(() => fs.rmSync(tmp, { recursive: true, force: true }))
+
 function transform(files: Record<string, string>, html: string): unknown {
-  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "diagram-width-"))
+  const directory = fs.mkdtempSync(path.join(tmp, "content-"))
   for (const [name, source] of Object.entries(files)) {
     fs.mkdirSync(path.dirname(path.join(directory, name)), { recursive: true })
     fs.writeFileSync(path.join(directory, name), source)
