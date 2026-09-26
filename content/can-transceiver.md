@@ -7,7 +7,7 @@ verified: 2026-09-25
 
 ## 정의
 
-**[[can|CAN]] 트랜시버**는 [[can-controller|CAN 컨트롤러]]가 쓰는 디지털 신호와 CAN_H·CAN_L 버스의 차동 신호 사이를 변환한다.[@ti-tcan1042-q1-2021] 컨트롤러 쪽으로는 송신 데이터 입력 TXD와 수신 데이터 출력 RXD 핀을, 버스 쪽으로는 CAN_H와 CAN_L 핀을 둔다.[@nxp-tja1042-2023]
+**CAN 트랜시버**는 [[can-controller|CAN 컨트롤러]]가 쓰는 디지털 신호와 CAN_H·CAN_L 버스의 차동 신호 사이를 변환한다.[@ti-tcan1042-q1-2021] 컨트롤러 쪽으로는 송신 데이터 입력 TXD와 수신 데이터 출력 RXD 핀을, 버스 쪽으로는 CAN_H와 CAN_L 핀을 둔다.[@nxp-tja1042-2023]
 
 ![[diagrams/can-node-bus.svg]]
 
