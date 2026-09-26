@@ -15,9 +15,7 @@
     "noUnusedParameters": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "preact",
-    // ash-wiki: 로컬 플러그인(plugins/)은 빌드가 그대로 불러오도록 JS로 쓰고, 파일 맨 위 // @ts-check로 검사한다
-    "allowJs": true
+    "jsxImportSource": "preact"
   },
   // ash-wiki: tools/(콘텐츠 검사기, bib 합치기)와 plugins/(로컬 플러그인)도 타입 검사한다
   "include": [
@@ -25,7 +23,6 @@
     "quartz/**/*.tsx",
     "tools/**/*.ts",
     "plugins/**/*.ts",
-    "plugins/**/*.js",
     "*.ts",
     "*.tsx",
     "./package.json"
