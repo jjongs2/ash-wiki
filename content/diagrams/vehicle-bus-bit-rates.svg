@@ -5,7 +5,7 @@
       <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
     </marker>
   </defs>
-  <!-- 가로축은 로그 눈금: x = 190 + 150 × (log10(비트율 bit/s) − 4) -->
+  <!-- 가로축은 로그 스케일: x = 190 + 150 × (log10(비트율 bit/s) − 4) -->
 
   <!-- 행 이름 -->
   <g text-anchor="end" fill="#727981">
@@ -36,5 +36,5 @@
 
   <!-- 축 -->
   <line x1="190" y1="214" x2="700" y2="214" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="700" y="236" text-anchor="end" font-size="12" fill="#727981">비트율 (로그 눈금)</text>
+  <text x="700" y="236" text-anchor="end" font-size="12" fill="#727981">비트율 (로그 스케일)</text>
 </svg>

@@ -23,10 +23,10 @@ ISO 15765-2는 CAN을 쓰는 차량 네트워크에서 진단 통신에 쓰는 �
 
 AUTOSAR의 CAN 전송 계층 모듈 CanTp는 이 프레임들을 다음처럼 쓴다.[@autosar-cp-sws-cantransportlayer-2023]
 
-- SF: 보낼 데이터 N-SDU(Network Service Data Unit)가 CAN 프레임 하나에 실리는 단위 N-PDU(Network Protocol Data Unit)에 들어가면 SF로 보낸다.[@autosar-cp-sws-cantransportlayer-2023]
-- FF: 분할된 메시지의 첫 부분과 메시지 전체 길이를 싣는다.[@autosar-cp-sws-cantransportlayer-2023]
-- CF: 나머지 페이로드를 SN(Sequence Number)과 함께 싣는다.[@autosar-cp-sws-cantransportlayer-2023]
-- FC: 수신 쪽이 송신 쪽 CF의 흐름을 조절한다. BS(Block Size)는 FC 하나 뒤에 이어지는 CF 수이고, STmin(Separation Time minimum)은 송신 쪽이 두 CF 사이에 기다릴 최소 시간이다.[@autosar-cp-sws-cantransportlayer-2023]
+- **SF**: 보낼 데이터 N-SDU(Network Service Data Unit)가 CAN 프레임 하나에 실리는 단위 N-PDU(Network Protocol Data Unit)에 들어가면 SF로 보낸다.[@autosar-cp-sws-cantransportlayer-2023]
+- **FF**: 분할된 메시지의 첫 부분과 메시지 전체 길이를 싣는다.[@autosar-cp-sws-cantransportlayer-2023]
+- **CF**: 나머지 페이로드를 SN(Sequence Number)과 함께 싣는다.[@autosar-cp-sws-cantransportlayer-2023]
+- **FC**: 수신 쪽이 송신 쪽 CF의 흐름을 조절한다. **BS**(Block Size)는 FC 하나 뒤에 이어지는 CF 수이고, **STmin**(Separation Time minimum)은 송신 쪽이 두 CF 사이에 기다릴 최소 시간이다.[@autosar-cp-sws-cantransportlayer-2023]
 
 ![[diagrams/cantp-segmented-transfer.svg]]
 

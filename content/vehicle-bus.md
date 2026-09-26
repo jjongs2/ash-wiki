@@ -39,7 +39,7 @@ SAE J2057/1은 차량 네트워크를 Class A, Class B, Class C로 나누고 그
 
 ### 버스 사이 연결
 
-LIN의 commander 노드는 LIN 프레임을 스케줄하고, 백본 네트워크에도 연결된다.[@iso-17987-1-obp-2025] commander는 ISO 17987의 2016년판이 마스터라 부르던 노드다.[@iso-17987-4-obp-2025]
+LIN의 commander 노드는 LIN 프레임을 스케줄하고, 백본 네트워크에도 연결된다.[@iso-17987-1-obp-2025] **commander**는 ISO 17987의 2016년판이 마스터라 부르던 노드다.[@iso-17987-4-obp-2025]
 
 AUTOSAR의 PDU Router는 한 통신 인터페이스 모듈로 받은 I-PDU(Interaction Layer Protocol Data Unit)를 고치지 않고 다른 통신 인터페이스 모듈로 보내는 게이트웨이 기능을 제공한다. CAN과 FlexRay 사이, CAN과 LIN 사이의 게이트웨이가 그 예다.[@autosar-cp-sws-pdurouter-2023]
 
