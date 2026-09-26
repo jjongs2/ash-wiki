@@ -23,20 +23,20 @@ verified: 2026-09-26
 
 꼬임쌍선 같은 평형 케이블은 외부 전자기 방사를 차동 모드가 아닌 공통 모드 잡음으로 받아들이고, 수신기가 이를 걸러 낸다. 평형 케이블은 장이 서로 상쇄되어 EMI(Electromagnetic Interference)도 덜 낸다.[@ti-ds90lv031a-2016]
 
-CAN 버스는 보통 특성 임피던스 120 Ω의 꼬임쌍선이다.[@ti-sn65hvd230-2018] LVDS(Low-Voltage Differential Signaling)의 전송 매체로는 꼬임쌍선, twinax, 평판 리본 케이블, PCB(Printed Circuit Board) 배선을 쓸 수 있다.[@ti-sn65lvds31-2021]
+SN65HVD23x의 전형적인 응용에서 CAN 버스는 특성 임피던스 120 Ω의 꼬임쌍선이다.[@ti-sn65hvd230-2018] LVDS(Low-Voltage Differential Signaling)의 전송 매체로는 꼬임쌍선, twinax, 평판 리본 케이블, PCB(Printed Circuit Board) 배선을 쓸 수 있다.[@ti-sn65lvds31-2021]
 
 ### 쓰이는 곳
 
-[[can|CAN]]은 CAN_H와 CAN_L의 전압 차로 [[dominant-and-recessive|dominant와 recessive]]를 구분한다. dominant는 두 선을 차동으로 구동한 상태이고, recessive는 두 선을 VCC/2로 바이어스한 상태다.[@ti-sn65hvd230-2018]
+고속 [[can|CAN]]은 CAN_H와 CAN_L 두 선의 전압 차로 버스 상태를 나타낸다.[@iso-11898-2-obp-2026] 트랜시버 SN65HVD23x는 [[dominant-and-recessive|dominant]]에서 두 선을 차동으로 구동하고, recessive일 때는 0.5 VCC로 바이어스만 한다.[@ti-sn65hvd230-2018]
 
-RS-485 수신기는 두 입력 선 A와 B의 전압 차 $V_\mathrm{ID}$로 출력을 정한다. 이때 $V_\mathrm{ID} = V_\mathrm{A} - V_\mathrm{B}$다.[@ti-thvd1450-2019]
+RS-485 수신기 THVD1450은 두 입력 선 A와 B의 차동 전압 $V_\mathrm{diff}$로 출력을 정한다. 이때 $V_\mathrm{diff} = V_\mathrm{A} - V_\mathrm{B}$다.[@ti-thvd1450-2019]
 
 LVDS도 차동 신호 방식이다. LVDS 드라이버의 차동 출력 전압은 100 Ω 부하에서 전형값 약 350 mV다.[@ti-sn65lvds31-2021]
 
-100BASE-T1 이더넷은 평형 꼬임쌍선 한 쌍으로 100 Mbit/s 점대점 전이중 통신을 하고[@ieee-802-3bw-2015], 100BASE-T1 트랜시버 DP83TC811R-Q1은 MDI(Medium Dependent Interface) 핀에서 양방향 차동 신호를 쓴다.[@ti-dp83tc811r-q1-2018]
+100BASE-T1 이더넷 트랜시버 DP83TC811R-Q1은 MDI(Medium Dependent Interface) 핀에서 양방향 차동 신호를 쓴다.[@ti-dp83tc811r-q1-2018] 100BASE-T1은 [[vehicle-bus|차량 버스]]에서 다룬다.
 
 ## 비교·한계
 
-차동 신호는 신호 하나를 두 선으로 보낸다.[@ti-sn65hvd230-2018] 그래서 RS-485로 전이중 통신을 하려면 신호 쌍 두 개, 곧 선 네 개가 필요하다.[@ti-thvd1450-2019]
+차동 신호는 신호 하나에 선 두 개를 쓴다. 그래서 RS-485로 전이중 통신을 하려면 신호 쌍 두 개, 곧 선 네 개가 필요하다.[@ti-thvd1450-2019]
 
 LVDS는 TIA/EIA-422B 같은 5 V 차동 표준보다 출력 전압 수준을 낮춰, 전력을 줄이고 스위칭 속도를 높인다.[@ti-sn65lvds31-2021]
