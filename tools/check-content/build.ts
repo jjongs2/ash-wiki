@@ -55,7 +55,7 @@ function buildErrors(tree: Tree, log: string): Violation[] {
   return [{ file: "build", message: lastLines.join(" / ") }]
 }
 
-// 산출물 검사: 수식과 인용이 렌더됐는지, 태그 목록에 페이지가 나오는지 본다.
+// 산출물 검사: 수식과 인용이 렌더됐는지, 취소선이 없는지, 태그 목록에 페이지가 나오는지 본다.
 export function checkOutput(tree: Tree, outDir: string): Violation[] {
   const violations: Violation[] = []
   const keys = bibKeys(tree)
@@ -74,6 +74,7 @@ export function checkOutput(tree: Tree, outDir: string): Violation[] {
       .replace(/<code[\s>][\s\S]*?<\/code>/g, "")
     const sourceLines = page.source.split("\n")
     const lineOf = (text: string) => {
+      if (!text) return undefined
       const index = sourceLines.findIndex((line) => line.includes(text))
       return index >= 0 ? index + 1 : undefined
     }
@@ -89,6 +90,15 @@ export function checkOutput(tree: Tree, outDir: string): Violation[] {
       const message = `${kind}: ${tex}`
       if (violations.some((v) => v.file === page.file && v.message === message)) continue
       violations.push({ file: page.file, line: lineOf(tex.trim().split("\n")[0]), message })
+    }
+    // GFM은 ~ 하나짜리 취소선도 받아서, 한 문단의 범위 표기 ~ 둘 사이가 <del>이 된다.
+    for (const m of html.matchAll(/<del[\s>][\s\S]*?<\/del>/g)) {
+      const text = decodeEntities(m[0].replace(/<[^>]*>/g, "")).trim()
+      violations.push({
+        file: page.file,
+        line: lineOf(text.split("\n")[0]),
+        message: `취소선으로 렌더된다(범위 표기 ~는 \\~로 쓴다): ${text.replace(/\s+/g, " ")}`,
+      })
     }
     // 키마다 본문의 번호 링크가 모두 같은 번호이고, 그 번호가 참고문헌 항목의 번호와 같아야 한다.
     const cited = new Map<string, number>()

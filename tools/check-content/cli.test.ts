@@ -133,6 +133,8 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-math.md:12",
         "content/bad-math.md:16",
         "content/bad-math.md:20",
+        "content/bad-tilde.md:12",
+        "content/bad-tilde.md:16",
       ],
     }
     for (const [check, locations] of Object.entries(expected)) {
@@ -156,6 +158,15 @@ describe("check-content CLI", { concurrency: false }, () => {
     assert.match(math[0], /bad-math\.md:12: .*\\frac\{1\}\{/)
     assert.match(math[1], /bad-math\.md:16: .*\\mathmr/)
     assert.match(math[2], /bad-math\.md:20: KaTeX 문법 오류: a > \\frac\{b\}\{$/)
+  })
+
+  test("본문에 렌더된 취소선은 안의 글과 \\~ 이스케이프 안내를 알려 준다", () => {
+    const report = runChecker("violation")
+    const tilde = report.messages.get("output")!.filter((m) => m.includes("bad-tilde.md"))
+    assert.strictEqual(tilde.length, 2)
+    assert.match(tilde[0], /bad-tilde\.md:12: .*8 tq이고, 한 비트는 8/)
+    assert.match(tilde[1], /bad-tilde\.md:16: .*두 개/)
+    for (const message of tilde) assert.match(message, /\\~/)
   })
 
   test("빌드가 실패해도 파일 검사는 돌고 산출물 검사만 SKIP한다", () => {
