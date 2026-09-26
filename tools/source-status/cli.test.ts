@@ -33,9 +33,9 @@ before(async () => {
     // 로컬 HTTPS 서버로 보내는 리다이렉트. 예: /to/aia
     // /via/aia는 상대 경로 /to/aia를 거친다.
     else if (req.url?.startsWith("/via/"))
-      res.writeHead(301, { location: `/to/${req.url.slice(5)}` })
+      res.writeHead(301, { location: `/to/${req.url.slice("/via/".length)}` })
     else if (req.url?.startsWith("/to/"))
-      res.writeHead(301, { location: secure.get(req.url.slice(4)) })
+      res.writeHead(301, { location: secure.get(req.url.slice("/to/".length)) })
     // HEAD를 받지 않는 서버
     else if (req.url === "/no-head") res.statusCode = req.method === "HEAD" ? 405 : 200
     // 봇 차단: 메서드와 헤더에 상관없이 막는다

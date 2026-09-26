@@ -110,6 +110,7 @@ const missingIssuerCodes = new Set([
 // 데이터시트 같은 큰 파일을 받지 않으려고 HEAD를 먼저 보내고, HEAD를 받지 않는 서버가 있어 2xx가 아니면 GET으로 한 번 더 묻는다.
 // 중간 인증서가 빠진 서버는 브라우저처럼 그 서버 leaf의 AIA에서 받아 와 원래 URL로 한 번 더 묻는다. 리다이렉트로 닿은 서버여도 같다.
 async function ask(url: string, followAia = true): Promise<Outcome> {
+  // 인증서 오류가 났을 때 어느 요청의 리다이렉트를 다시 따라갈지 가린다.
   let method = "HEAD"
   try {
     const head = await fetch(url, { method, signal: AbortSignal.timeout(timeoutMs) })
@@ -126,8 +127,8 @@ async function ask(url: string, followAia = true): Promise<Outcome> {
     const reason = `응답 없음(${code ?? name})`
     if (name === "TimeoutError" || timeoutCodes.has(code ?? "")) return { kind: "timeout", reason }
     if (followAia && missingIssuerCodes.has(code ?? "")) {
-      const failed = await certErrorAt(url, method)
-      if (failed !== undefined && (await trustIssuer(failed))) return ask(url, false)
+      const failedUrl = await certErrorAt(url, method)
+      if (failedUrl !== undefined && (await trustIssuer(failedUrl))) return ask(url, false)
     }
     return { kind: "dead", reason }
   }
