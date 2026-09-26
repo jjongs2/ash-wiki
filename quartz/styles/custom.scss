@@ -6,15 +6,20 @@
 // light인 별도 문서라, 둘이 다르면 브라우저가 SVG의 캔버스를 흰색으로 칠해 사이트 배경을 가린다.
 // <object>의 color-scheme을 SVG 문서와 같게 두어 캔버스를 투명하게 남긴다.
 // 도해는 테마 색의 테두리로 본문과 구별한다. 틀은 본문 폭에 맞추고, viewBox만 두어 폭 전체로
-// 늘어나는 SVG는 좌우 padding으로 42rem 안에 가두어 틀 가운데에 놓는다(docs/wiki-conventions.md 도해 절).
+// 늘어나는 SVG는 좌우 padding으로 폭을 정해 틀 가운데에 놓는다(docs/wiki-conventions.md 도해 절).
+// 그림 폭은 viewBox 1단위를 0.85rem / 12로 둔 크기라, 폭이 다른 도해도 12단위 글자가 본문의 0.85배로
+// 같다. viewBox 폭(--diagram-width)은 로컬 플러그인이 붙인다(plugins/diagram-width). 틀 안쪽보다 넓은
+// 도해는 padding이 최소값에 걸려 틀에 맞춰 줄어든다. padding을 셀 때 좌우 테두리 1px씩을 뺀다.
+// 플러그인이 viewBox를 읽지 못한 도해는 --diagram-drawn-width가 무효가 되어 42rem으로 그린다.
 article object[type="image/svg+xml"] {
+  --diagram-drawn-width: calc(var(--diagram-width) * 0.85rem / 12);
   color-scheme: light;
   display: block;
   box-sizing: border-box;
   width: 100%;
   height: auto;
   margin: 1rem 0;
-  padding: 0.75rem max(0.75rem, calc((100% - 42rem) / 2));
+  padding: 0.75rem max(0.75rem, calc((100% - 2px - var(--diagram-drawn-width, 42rem)) / 2));
   border: 1px solid var(--lightgray);
   border-radius: 5px;
 }

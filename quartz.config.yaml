@@ -67,6 +67,10 @@ plugins:
       enableInHtmlEmbed: false
       enableCheckbox: true
     order: 30
+  # 도해 <object>에 viewBox 폭을 붙인다(plugins/diagram-width). embed가 <object>를 만든 뒤에 돌아야 한다.
+  - source: ./plugins/diagram-width
+    enabled: true
+    order: 35
   - source: "@quartz-community/github-flavored-markdown"
     enabled: true
     order: 40
