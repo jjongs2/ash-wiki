@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="60 4 677 244.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+  <!-- 가로축은 로그 눈금: x = 190 + 150 × (log10(비트율 bit/s) − 4) -->
+
+  <!-- 행 이름 -->
+  <g text-anchor="end" fill="#727981">
+    <text x="178" y="37">LIN</text>
+    <text x="178" y="77">저속 내결함성 CAN</text>
+    <text x="178" y="117">Classical CAN</text>
+    <text x="178" y="157">CAN FD</text>
+    <text x="178" y="197">FlexRay</text>
+  </g>
+
+  <!-- 막대 -->
+  <rect x="190" y="20" width="45.2" height="24" fill="#337b47" />
+  <rect x="280.3" y="60" width="74.3" height="24" fill="#336fb8" />
+  <rect x="190" y="100" width="300" height="24" fill="#336fb8" />
+  <rect x="190" y="140" width="404.8" height="24" fill="#336fb8" />
+  <rect x="190" y="180" width="450" height="24" fill="#b0540d" />
+
+  <!-- 값 -->
+  <g font-size="12" fill="#727981">
+    <text x="243" y="36">최대 20 kbit/s</text>
+    <text x="363" y="76">40 kbit/s 초과, 125 kbit/s 이하</text>
+    <text x="498" y="116">최대 1 Mbit/s</text>
+    <text x="603" y="156">5 Mbit/s까지 (고속 PMA)</text>
+    <text x="648" y="196">최대 10 Mbit/s</text>
+  </g>
+
+  <!-- 축 -->
+  <line x1="190" y1="14" x2="190" y2="214" stroke="#727981" stroke-width="1.5" />
+  <line x1="190" y1="214" x2="700" y2="214" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="700" y="236" text-anchor="end" font-size="12" fill="#727981">비트율 (로그 눈금)</text>
+</svg>
