@@ -26,6 +26,12 @@ $$
 t_\mathrm{total} = t_\mathrm{A} + t_\mathrm{B} + t_\mathrm{C}
 $$
 
+범위 표기는 1\~8 tq, 8\~25 tq처럼 이스케이프한다.
+
+한 문단에 하나뿐인 범위 1~8 tq는 그대로 둔다.
+
+인라인 수식 안의 $a~b$와 $c~d$도 그대로 둔다.
+
 `[@not-a-citation]`과 `[[not-a-link]]`은 코드 안이라 검사하지 않는다.
 
 ## 비교·한계

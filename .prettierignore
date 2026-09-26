@@ -1,3 +1,5 @@
 public
 node_modules
 .quartz-cache
+# prettier가 ~ 하나짜리 취소선을 ~~로 바꿔, 픽스처가 겨냥한 경우가 사라진다
+tools/check-content/fixtures/violation/content/bad-tilde.md
