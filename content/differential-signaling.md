@@ -21,7 +21,7 @@ verified: 2026-09-26
 
 ### 꼬임쌍선
 
-꼬임쌍선 같은 평형 케이블은 외부 전자기 방사를 차동 모드가 아닌 공통 모드 잡음으로 받아들이고, 수신기가 이를 걸러 낸다. 평형 케이블은 장이 서로 상쇄되어 EMI(Electromagnetic Interference)도 덜 낸다. DS90LV031A 데이터시트는 차동 신호의 이점으로 자기장 상쇄를 든다. 쌍의 두 배선이 가까울수록 자기장이 더 많이 상쇄되어 잡음을 덜 방사하고, 쌍 안의 스큐는 이 상쇄를 깨뜨려 EMI를 낳는다.[@ti-ds90lv031a-2016]
+꼬임쌍선 같은 평형 케이블은 외부 전자기 방사를 차동 모드가 아닌 공통 모드 잡음으로 받아들이고, 수신기가 이를 걸러 낸다. 평형 케이블은 장이 서로 상쇄되어 EMI(Electromagnetic Interference)도 덜 낸다. DS90LV031A 데이터시트에 따르면 쌍의 두 배선이 가까울수록 자기장이 더 많이 상쇄되어 잡음을 덜 방사하고, 쌍 안의 스큐는 이 상쇄를 깨뜨려 EMI를 낳는다.[@ti-ds90lv031a-2016]
 
 SN65HVD23x의 전형적인 응용에서 CAN 버스는 특성 임피던스 120 Ω의 꼬임쌍선이다.[@ti-sn65hvd230-2018] LVDS(Low-Voltage Differential Signaling)의 전송 매체로는 꼬임쌍선, twinax, 평판 리본 케이블, PCB(Printed Circuit Board) 배선을 쓸 수 있다.[@ti-sn65lvds31-2021]
 
@@ -29,7 +29,7 @@ SN65HVD23x의 전형적인 응용에서 CAN 버스는 특성 임피던스 120 Ω
 
 고속 [[can|CAN]]은 CAN_H와 CAN_L 두 선의 전압 차로 버스 상태를 나타낸다.[@iso-11898-2-obp-2026] 트랜시버 SN65HVD23x는 [[dominant-and-recessive|dominant]]에서 두 선을 차동으로 구동하고, recessive일 때는 0.5 VCC로 바이어스만 한다.[@ti-sn65hvd230-2018]
 
-RS-485 수신기 THVD1450은 두 입력 선 A와 B의 차동 전압 $V_\mathrm{diff}$로 출력을 정한다. 이때 $V_\mathrm{diff} = V_\mathrm{A} - V_\mathrm{B}$다.[@ti-thvd1450-2019]
+RS-485 수신기 THVD1450은 두 입력 선 A와 B의 $V_\mathrm{diff}$로 출력을 정한다. 이때 $V_\mathrm{diff} = V_\mathrm{A} - V_\mathrm{B}$다.[@ti-thvd1450-2019]
 
 LVDS도 차동 신호 방식이다. LVDS 드라이버의 차동 출력 전압은 100 Ω 부하에서 전형값 약 350 mV다.[@ti-sn65lvds31-2021]
 
