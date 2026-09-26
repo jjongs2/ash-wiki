@@ -7,7 +7,7 @@ verified: 2026-09-26
 
 ## 정의
 
-CAN 비트 타이밍은 [[can|CAN]] 노드가 한 비트의 시간을 어떻게 나누고, 그 안의 어느 시점에 비트 값을 읽을지 정하는 규칙이다. 공칭 비트율 $R_\mathrm{b}$는 이상적인 송신 노드가 재동기화 없이 보내는 초당 비트 수이고, 공칭 비트 시간 $t_\mathrm{bit}$는 그 역수 $t_\mathrm{bit} = 1 / R_\mathrm{b}$다.[@bosch-can-2-0-1991]
+**CAN 비트 타이밍**은 [[can|CAN]] 노드가 한 비트의 시간을 어떻게 나누고, 그 안의 어느 시점에 비트 값을 읽을지 정하는 규칙이다. **공칭 비트율** $R_\mathrm{b}$는 이상적인 송신 노드가 재동기화 없이 보내는 초당 비트 수이고, **공칭 비트 시간** $t_\mathrm{bit}$는 그 역수 $t_\mathrm{bit} = 1 / R_\mathrm{b}$다.[@bosch-can-2-0-1991]
 
 ## 구조·동작
 
@@ -15,19 +15,19 @@ CAN 비트 타이밍은 [[can|CAN]] 노드가 한 비트의 시간을 어떻게 
 
 공칭 비트 시간은 서로 겹치지 않는 네 세그먼트로 나뉜다.[@bosch-can-2-0-1991]
 
-- SYNC_SEG: 버스의 에지가 이 구간에 오리라고 기대하는 구간이다.[@bosch-can-2-0-1991]
-- PROP_SEG: 버스 선의 신호 전파 시간과 송수신 회로(입력 비교기, 출력 드라이버)의 지연을 보상한다.[@bosch-can-2-0-1991]
-- PHASE_SEG1, PHASE_SEG2: 에지의 위상 오차를 보상하며, [[can-synchronization|재동기화]] 때 늘거나 줄어든다.[@bosch-can-2-0-1991]
+- **SYNC_SEG**: 버스의 에지가 이 구간에 오리라고 기대하는 구간이다.[@bosch-can-2-0-1991]
+- **PROP_SEG**: 버스 선의 신호 전파 시간과 송수신 회로(입력 비교기, 출력 드라이버)의 지연을 보상한다.[@bosch-can-2-0-1991]
+- **PHASE_SEG1**, **PHASE_SEG2**: 에지의 위상 오차를 보상하며, [[can-synchronization|재동기화]] 때 늘거나 줄어든다.[@bosch-can-2-0-1991]
 
 ### 샘플 포인트
 
-버스 값을 읽어 비트 값으로 삼는 시점은 PHASE_SEG1의 끝이고, 이 시점을 샘플 포인트라 한다.[@bosch-can-2-0-1991]
+버스 값을 읽어 비트 값으로 삼는 시점은 PHASE_SEG1의 끝이고, 이 시점을 **샘플 포인트**라 한다.[@bosch-can-2-0-1991]
 
 ![[diagrams/can-bit-timing-segments.svg]]
 
 ### time quantum
 
-세그먼트의 길이는 time quantum(tq) 단위로 정한다. time quantum은 발진기 주기에서 얻는 고정 시간 단위로, 그 길이 $t_\mathrm{q}$는 최소 time quantum $t_\mathrm{q,min}$과 프리스케일러 값 $m$의 곱 $t_\mathrm{q} = m \, t_\mathrm{q,min}$이다. $m$은 정수이고, 적어도 1\~32 범위에서 설정할 수 있다.[@bosch-can-2-0-1991]
+세그먼트의 길이는 time quantum(tq) 단위로 정한다. **time quantum**은 발진기 주기에서 얻는 고정 시간 단위로, 그 길이 $t_\mathrm{q}$는 최소 time quantum $t_\mathrm{q,min}$과 프리스케일러 값 $m$의 곱 $t_\mathrm{q} = m \, t_\mathrm{q,min}$이다. $m$은 정수이고, 적어도 1\~32 범위에서 설정할 수 있다.[@bosch-can-2-0-1991]
 
 Bosch CAN 2.0 규격에서 SYNC_SEG는 1 tq이고, PROP_SEG와 PHASE_SEG1은 각각 1\~8 tq로 설정할 수 있다. 한 비트의 tq 수는 적어도 8\~25 범위에서 설정할 수 있어야 한다.[@bosch-can-2-0-1991]
 

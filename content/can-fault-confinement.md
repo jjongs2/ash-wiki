@@ -7,7 +7,7 @@ verified: 2026-09-26
 
 ## 정의
 
-fault confinement는 [[can|CAN]] 노드가 잠깐의 교란과 영구 고장을 가려내고, 고장 난 노드를 버스에서 떼어 내는 장치다. 노드는 송신·수신 오류 계수에 따라 자기 오류 상태를 정하며, error active, error passive, bus-off 세 상태 가운데 하나에 있다.[@bosch-can-2-0-1991]
+**fault confinement**는 [[can|CAN]] 노드가 잠깐의 교란과 영구 고장을 가려내고, 고장 난 노드를 버스에서 떼어 내는 장치다. 노드는 송신·수신 오류 계수에 따라 자기 오류 상태를 정하며, error active, error passive, bus-off 세 상태 가운데 하나에 있다.[@bosch-can-2-0-1991]
 
 ## 구조·동작
 
@@ -36,9 +36,9 @@ TEC가 8 오르는 규칙에는 예외가 있다. error passive 송신 노드가
 
 ### 상태마다 할 수 있는 일
 
-- error active: 버스 통신에 정상적으로 참여하고, 오류를 찾으면 active 오류 플래그를 낸다.[@bosch-can-2-0-1991]
-- error passive: 오류를 찾으면 passive 오류 플래그를 낸다. 송신한 뒤에는 다음 송신을 시작하기 전에, 인터미션 다음으로 recessive 8비트를 더 보낸다(송신 정지).[@bosch-can-2-0-1991]
-- bus-off: 버스에 아무 영향도 주지 않는다.[@bosch-can-2-0-1991]
+- **error active**: 버스 통신에 정상적으로 참여하고, 오류를 찾으면 active 오류 플래그를 낸다.[@bosch-can-2-0-1991]
+- **error passive**: 오류를 찾으면 passive 오류 플래그를 낸다. 송신한 뒤에는 다음 송신을 시작하기 전에, 인터미션 다음으로 recessive 8비트를 더 보낸다(송신 정지).[@bosch-can-2-0-1991]
+- **bus-off**: 버스에 아무 영향도 주지 않는다.[@bosch-can-2-0-1991]
 
 오류 플래그의 모양은 [[can-error-frame|CAN 오류 프레임]]에서 다룬다.
 
