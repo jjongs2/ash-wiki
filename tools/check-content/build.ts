@@ -97,7 +97,7 @@ export function checkOutput(tree: Tree, outDir: string): Violation[] {
       violations.push({
         file: page.file,
         line: lineOf(text.split("\n")[0]),
-        message: `취소선으로 렌더된 글: ${text} (범위 표기 ~라면 \\~로 이스케이프한다)`,
+        message: `취소선으로 렌더된다(범위 표기 ~는 \\~로 쓴다): ${text.replace(/\s+/g, " ")}`,
       })
     }
     // 키마다 본문의 번호 링크가 모두 같은 번호이고, 그 번호가 참고문헌 항목의 번호와 같아야 한다.
