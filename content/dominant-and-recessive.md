@@ -7,7 +7,7 @@ verified: 2026-09-26
 
 ## 정의
 
-**dominant**와 recessive는 [[can|CAN]] 버스가 가질 수 있는 두 논리 상태이고, dominant는 논리 0, recessive는 논리 1을 나타낸다.[@iso-11898-1-obp-2024] 여러 노드가 같은 비트 시간에 dominant와 recessive를 함께 내면 버스는 dominant가 된다.[@iso-11898-1-obp-2015]
+dominant와 recessive는 [[can|CAN]] 버스가 가질 수 있는 두 논리 상태이고, dominant는 논리 0, recessive는 논리 1을 나타낸다.[@iso-11898-1-obp-2024] 여러 노드가 같은 비트 시간에 dominant와 recessive를 함께 내면 버스는 dominant가 된다.[@iso-11898-1-obp-2015]
 
 ![[diagrams/can-bus-state-wired-and.svg]]
 
@@ -28,7 +28,7 @@ Bosch CAN 2.0 규격은 버스를 wired-AND로 구현하는 경우를 예로 들
 ### 프로토콜이 기대는 곳
 
 - 중재: 식별자를 겨룰 때 recessive를 보냈는데 dominant를 읽은 노드는 중재에서 지고 물러난다.[@bosch-can-2-0-1991]
-- [[can-acknowledgement|ACK(Acknowledgement)]]: 송신 노드는 ACK 슬롯에 recessive를 내고, 메시지를 제대로 받은 노드가 그 위에 dominant를 덮어쓴다.[@bosch-can-2-0-1991]
+- [[can-acknowledgement|ACK]]: 송신 노드는 ACK 슬롯에 recessive를 내고, 메시지를 제대로 받은 노드가 그 위에 dominant를 덮어쓴다.[@bosch-can-2-0-1991]
 - [[can-error-frame|오류 프레임]]: error active 노드는 dominant 6비트로 된 active 오류 플래그를 낸다. 이 플래그는 비트 스터핑 규칙을 어기거나 ACK 필드와 EOF(End of Frame)의 고정된 모양을 깨서 진행 중인 프레임을 무너뜨린다. error passive 노드의 오류 플래그는 recessive 6비트라, 다른 노드가 낸 dominant 비트를 바꾸지 못하고 오히려 그 비트에 덮어쓰인다.[@bosch-can-2-0-1991]
 
 ## 비교·한계

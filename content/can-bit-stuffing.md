@@ -7,7 +7,7 @@ verified: 2026-09-26
 
 ## 정의
 
-**비트 스터핑**은 [[can|CAN]] 송신 노드가 같은 값의 비트 5개를 보내고 나면, 실제로 송신하는 비트열에 반대 값의 비트를 하나 자동으로 끼워 넣는 부호화 규칙이다.[@bosch-can-2-0-1991] 끼워 넣는 비트를 스터프 비트라 하고, 수신 노드는 같은 값 5비트 뒤에 오는 스터프 비트를 버린다.[@bosch-can-fd-1-0-2012]
+비트 스터핑은 [[can|CAN]] 송신 노드가 같은 값의 비트 5개를 보내고 나면, 실제로 송신하는 비트열에 반대 값의 비트를 하나 자동으로 끼워 넣는 부호화 규칙이다.[@bosch-can-2-0-1991] 끼워 넣는 비트를 스터프 비트라 하고, 수신 노드는 같은 값 5비트 뒤에 오는 스터프 비트를 버린다.[@bosch-can-fd-1-0-2012]
 
 ![[diagrams/can-bit-stuffing.svg]]
 
@@ -15,7 +15,7 @@ verified: 2026-09-26
 
 ### 적용 구간
 
-데이터 프레임과 리모트 프레임에서는 SOF(Start of Frame), 중재 필드, 제어 필드, 데이터 필드, CRC(Cyclic Redundancy Check) 시퀀스가 스터핑 대상이다. CRC 구분자, ACK(Acknowledgement) 필드, EOF(End of Frame)는 모양이 고정된 필드라 스터핑하지 않는다. 오류 프레임과 오버로드 프레임도 모양이 고정되어 있어 스터핑하지 않는다.[@bosch-can-2-0-1991]
+데이터 프레임과 리모트 프레임에서는 SOF(Start of Frame), 중재 필드, 제어 필드, 데이터 필드, [[can-crc|CRC]] 시퀀스가 스터핑 대상이다. CRC 구분자, [[can-acknowledgement|ACK]] 필드, EOF(End of Frame)는 모양이 고정된 필드라 스터핑하지 않는다. 오류 프레임과 오버로드 프레임도 모양이 고정되어 있어 스터핑하지 않는다.[@bosch-can-2-0-1991]
 
 ![[diagrams/can-bit-stuffing-range.svg]]
 
@@ -33,6 +33,6 @@ CAN 비트열은 NRZ(Non-Return-to-Zero)로 부호화되어, 한 비트 시간 �
 
 스터프 비트가 들어가는지는 데이터 바이트 패턴에 달려 있어, 예를 들어 0xCC 같은 패턴은 스터프 비트를 일으키지 않는다.[@bosch-can-fd-1-0-2012]
 
-CAN FD(CAN with Flexible Data-Rate) 포맷 프레임의 CRC 시퀀스에서는 스터프 비트를 고정 위치에 넣는다. 첫 비트 앞에 하나, 그 뒤로 4비트마다 하나를 넣고, 값은 바로 앞 비트의 반대다.[@bosch-can-fd-1-0-2012]
+CAN FD 포맷 프레임의 CRC 시퀀스에서는 스터프 비트를 고정 위치에 넣는다. 첫 비트 앞에 하나, 그 뒤로 4비트마다 하나를 넣고, 값은 바로 앞 비트의 반대다.[@bosch-can-fd-1-0-2012]
 
 ISO 11898-1:2015는 stuff bit count를 CRC 필드 앞까지 프레임에 들어간 스터프 비트의 수(고정 스터프 비트 제외)로 정의한다.[@iso-11898-1-obp-2015] MCP25xxFD 계열 CAN FD 컨트롤러는 ISO CRC 모드에서 CRC 필드에 4비트 stuff bit count를 넣어 보내고, ISO 이전 방식(non-ISO) 모드에서는 넣지 않는다.[@microchip-mcp25xxfd-frm-2020]

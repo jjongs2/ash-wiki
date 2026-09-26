@@ -7,7 +7,7 @@ verified: 2026-09-26
 
 ## 정의
 
-**CAN CRC**(Cyclic Redundancy Check)는 [[can|CAN]] 송신 노드가 계산해 프레임에 싣는 값이다. 수신 노드는 같은 방식으로 CRC를 계산해 받은 값과 비교하고, 이것으로 프레임에 생긴 오류를 찾아낸다.[@bosch-can-2-0-1991] Classical CAN 프레임은 15비트 CRC를 쓴다.[@bosch-can-fd-1-0-2012]
+CAN CRC(Cyclic Redundancy Check)는 [[can|CAN]] 송신 노드가 계산해 프레임에 싣는 값이다. 수신 노드는 같은 방식으로 CRC를 계산해 받은 값과 비교하고, 이것으로 프레임에 생긴 오류를 찾아낸다.[@bosch-can-2-0-1991] Classical CAN 프레임은 15비트 CRC를 쓴다.[@bosch-can-fd-1-0-2012]
 
 ## 구조·동작
 
@@ -29,7 +29,7 @@ $$
 
 ### 오류를 알리는 시점
 
-[[can-acknowledgement|ACK]](Acknowledgement) 슬롯에 dominant 비트를 내서 수신을 알리는 것은 CRC 시퀀스가 일치한 노드다. CRC 오류를 찾은 노드는 ACK 구분자 다음 비트에서 오류 플래그를 내기 시작하는데, 다른 오류로 이미 오류 플래그를 내기 시작했으면 그렇지 않다.[@bosch-can-2-0-1991] 다른 오류와의 비교는 [[can-error-detection|CAN 오류 검출]]에서 다룬다.
+[[can-acknowledgement|ACK]] 슬롯에 dominant 비트를 내서 수신을 알리는 것은 CRC 시퀀스가 일치한 노드다. CRC 오류를 찾은 노드는 ACK 구분자 다음 비트에서 오류 플래그를 내기 시작하는데, 다른 오류로 이미 오류 플래그를 내기 시작했으면 그렇지 않다.[@bosch-can-2-0-1991] 다른 오류와의 비교는 [[can-error-detection|CAN 오류 검출]]에서 다룬다.
 
 ### 검출 능력
 
@@ -37,6 +37,6 @@ CRC를 포함한 CAN의 오류 검출 수단(모니터링, CRC, 비트 스터핑
 
 ## 비교·한계
 
-CAN FD(CAN with Flexible Data-Rate) 포맷 프레임은 데이터 필드의 바이트 수 $n$이 $n \le 16$이면 17비트 CRC를, $n > 16$이면 21비트 CRC를 쓴다. 프레임이 시작되면 송신 노드를 포함한 모든 노드가 세 CRC를 함께 계산하고, 프레임의 EDL(Extended Data Length) 비트와 DLC(Data Length Code)가 그중 하나를 고른다. 수신 노드는 고른 CRC로만 CRC 오류를 판정한다.[@bosch-can-fd-1-0-2012]
+CAN FD 포맷 프레임은 데이터 필드의 바이트 수 $n$이 $n \le 16$이면 17비트 CRC를, $n > 16$이면 21비트 CRC를 쓴다. 프레임이 시작되면 송신 노드를 포함한 모든 노드가 세 CRC를 함께 계산하고, 프레임의 EDL(Extended Data Length) 비트와 DLC가 그중 하나를 고른다. 수신 노드는 고른 CRC로만 CRC 오류를 판정한다.[@bosch-can-fd-1-0-2012]
 
 CAN FD 포맷 프레임은 스터프 비트도 CRC 계산에 넣지만, classical 포맷 프레임은 넣지 않는다.[@bosch-can-fd-1-0-2012]

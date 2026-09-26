@@ -7,7 +7,7 @@ verified: 2026-09-26
 
 ## 정의
 
-**fault confinement**는 [[can|CAN]] 노드가 잠깐의 교란과 영구 고장을 가려내고, 고장 난 노드를 버스에서 떼어 내는 장치다. 노드는 송신·수신 오류 계수에 따라 자기 오류 상태를 정하며, error active, error passive, bus-off 세 상태 가운데 하나에 있다.[@bosch-can-2-0-1991]
+fault confinement는 [[can|CAN]] 노드가 잠깐의 교란과 영구 고장을 가려내고, 고장 난 노드를 버스에서 떼어 내는 장치다. 노드는 송신·수신 오류 계수에 따라 자기 오류 상태를 정하며, error active, error passive, bus-off 세 상태 가운데 하나에 있다.[@bosch-can-2-0-1991]
 
 ## 구조·동작
 
@@ -23,7 +23,7 @@ verified: 2026-09-26
 - 송신에 성공하면 TEC가 1 내려간다. 0이면 그대로다.[@bosch-can-2-0-1991]
 - 수신에 성공하면 REC가 1 내려간다. $\mathrm{REC} > 127$이면 119에서 127 사이의 값으로 되돌린다.[@bosch-can-2-0-1991]
 
-TEC가 8 오르는 규칙에는 예외가 있다. error passive 송신 노드가 [[can-acknowledgement|ACK]](Acknowledgement) 오류를 찾고, passive 오류 플래그를 내는 동안에도 dominant를 읽지 못하면 TEC는 그대로다. 그래서 시동 때 버스에 노드가 하나만 켜져 있으면, 그 노드는 송신할 때마다 ACK를 받지 못해 오류를 찾고 프레임을 다시 보내지만, 이것만으로는 error passive까지만 가고 bus-off는 되지 않는다.[@bosch-can-2-0-1991]
+TEC가 8 오르는 규칙에는 예외가 있다. error passive 송신 노드가 [[can-acknowledgement|ACK]] 오류를 찾고, passive 오류 플래그를 내는 동안에도 dominant를 읽지 못하면 TEC는 그대로다. 그래서 시동 때 버스에 노드가 하나만 켜져 있으면, 그 노드는 송신할 때마다 ACK를 받지 못해 오류를 찾고 프레임을 다시 보내지만, 이것만으로는 error passive까지만 가고 bus-off는 되지 않는다.[@bosch-can-2-0-1991]
 
 ### 상태 전이
 
