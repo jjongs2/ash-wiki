@@ -30,6 +30,12 @@ const roots: string[] = []
 before(async () => {
   server = http.createServer((req, res) => {
     if (req.url === "/moved") res.writeHead(301, { location: "/alive" })
+    // 로컬 HTTPS 서버로 보내는 리다이렉트. 예: /to/aia
+    // /via/aia는 상대 경로 /to/aia를 거친다.
+    else if (req.url?.startsWith("/via/"))
+      res.writeHead(301, { location: `/to/${req.url.slice(5)}` })
+    else if (req.url?.startsWith("/to/"))
+      res.writeHead(301, { location: secure.get(req.url.slice(4)) })
     // HEAD를 받지 않는 서버
     else if (req.url === "/no-head") res.statusCode = req.method === "HEAD" ? 405 : 200
     // 봇 차단: 메서드와 헤더에 상관없이 막는다
@@ -299,6 +305,35 @@ describe("source-status CLI", () => {
     assert.deepStrictEqual(report.locations.get("url"), [
       "bib/org-no-aia-2024.bib:3",
       "bib/org-stranger-2024.bib:3",
+    ])
+    assert.strictEqual(report.exitCode, 1)
+  })
+
+  test("상대 경로를 포함한 리다이렉트로 닿은 leaf만 보내는 HTTPS 서버도 AIA에서 받은 중간 인증서로 다시 물어 OK다", async () => {
+    const root = makeTree({
+      "content/fresh.md": page(["network/can"], "2026-09-01", "문장이다.[@org-via-aia-2024]"),
+      "bib/org-via-aia-2024.bib": bib("org-via-aia-2024", `${base}/via/aia`),
+    })
+    const report = await runStatus(root)
+    assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
+    assert.strictEqual(report.exitCode, 0)
+  })
+
+  test("리다이렉트로 닿은 서버에 AIA 주소가 없거나 신뢰하는 루트로 이어지지 않으면 url FAIL이다", async () => {
+    const root = makeTree({
+      "content/fresh.md": page(
+        ["network/can"],
+        "2026-09-01",
+        "하나[@org-to-no-aia-2024], 둘.[@org-to-stranger-2024]",
+      ),
+      "bib/org-to-no-aia-2024.bib": bib("org-to-no-aia-2024", `${base}/to/no-aia`),
+      "bib/org-to-stranger-2024.bib": bib("org-to-stranger-2024", `${base}/to/stranger`),
+    })
+    const report = await runStatus(root)
+    assert.deepStrictEqual(report.statuses, ["FAIL url", "OK verified"])
+    assert.deepStrictEqual(report.locations.get("url"), [
+      "bib/org-to-no-aia-2024.bib:3",
+      "bib/org-to-stranger-2024.bib:3",
     ])
     assert.strictEqual(report.exitCode, 1)
   })
