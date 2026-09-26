@@ -9,7 +9,7 @@ verified: 2026-09-26
 
 ## 정의
 
-**OSI 참조 모델**(Open Systems Interconnection Reference Model)은 시스템 상호 연결을 위한 표준 개발을 조율하는 공통 기반이 되는 모델이다.[@iso-iec-7498-1-1994] ISO/IEC 7498-1:1994가 이 모델을 정하고, ITU-T(International Telecommunication Union Telecommunication Standardization Sector) X.200(07/94)이 같은 본문을 담는다. 모델은 일곱 계층으로 이루어진다.[@itu-t-x-200-1994]
+**OSI 참조 모델**(Open Systems Interconnection Reference Model)은 시스템 상호 연결을 위한 표준 개발을 조율하는 공통 기반이 되는 모델이다.[@iso-iec-7498-1-1994] ISO/IEC 7498-1:1994가 이 모델을 정하고, ITU-T X.200(07/94)이 같은 본문을 담는다. 모델은 일곱 계층으로 이루어진다.[@itu-t-x-200-1994]
 
 ## 구조·동작
 
@@ -41,4 +41,4 @@ ISO 15765-2:2016은 차량 진단 통신 표준을 OSI 계층에 대응시킨다
 
 ISO 11898-1:2024는 [[can|CAN]]의 데이터 링크 계층과 PCS(Physical Coding Sublayer)를 정한다.[@iso-11898-1-obp-2024] ISO 15765-2:2024는 CAN을 쓰는 차량 네트워크의 전송 계층과 네트워크 계층 프로토콜, 그 서비스를 정하고[@iso-15765-2-obp-2024], ISO 14229-1은 UDS(Unified Diagnostic Services)의 응용 계층을 정한다.[@iso-14229-1-obp-2020]
 
-RFC(Request for Comments) 1122는 인터넷 프로토콜 모음을 링크, 인터넷, 전송, 응용의 네 계층으로 나눈다. 인터넷 모음의 응용 계층은 OSI 참조 모델의 표현 계층과 응용 계층 기능을 합친 것이다.[@ietf-rfc-1122-1989]
+RFC 1122는 인터넷 프로토콜 모음을 링크, 인터넷, 전송, 응용의 네 계층으로 나눈다. 인터넷 모음의 응용 계층은 OSI 참조 모델의 표현 계층과 응용 계층 기능을 합친 것이다.[@ietf-rfc-1122-1989]
