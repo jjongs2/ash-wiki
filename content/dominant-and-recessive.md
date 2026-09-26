@@ -17,7 +17,7 @@ Bosch CAN 2.0 규격은 버스를 wired-AND로 구현하는 경우를 예로 들
 
 ### 물리 표현
 
-고속 CAN에서 recessive는 두 선의 차동 전압이 거의 0인 상태이고, dominant는 트랜시버가 두 선을 차동으로 구동해 CAN_H를 CAN_L보다 높게 벌린 상태다. 예를 들어 TCAN1042-Q1에서 recessive는 버스가 수신기의 높은 내부 입력 저항을 거쳐 VCC/2로 바이어스된 상태다.[@ti-tcan1042-q1-2021] 전기적 값은 [[can-physical-layer|CAN 물리 계층]]에서 다룬다.
+고속 CAN에서 recessive는 두 선의 차동 전압이 거의 0인 상태이고, dominant는 트랜시버가 두 선을 차동으로 구동해 CAN_H를 CAN_L보다 높게 벌린 상태다. 예를 들어 TCAN1042-Q1에서 recessive는 버스가 수신기의 높은 내부 입력 저항을 거쳐 0.5 VCC로 바이어스된 상태다.[@ti-tcan1042-q1-2021] 전기적 값은 [[can-physical-layer|CAN 물리 계층]]에서 다룬다.
 
 ![[diagrams/hs-can-bus-voltage.svg]]
 
