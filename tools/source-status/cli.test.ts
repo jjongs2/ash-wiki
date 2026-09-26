@@ -1,8 +1,10 @@
 import test, { after, before, describe } from "node:test"
 import assert from "node:assert"
-import { execFile } from "node:child_process"
+import { execFile, execFileSync } from "node:child_process"
+import { X509Certificate } from "node:crypto"
 import fs from "node:fs"
 import http from "node:http"
+import https from "node:https"
 import type { AddressInfo } from "node:net"
 import os from "node:os"
 import path from "node:path"
@@ -12,11 +14,17 @@ import { repoRoot } from "../repo"
 // 출처 상태 CLI를 seam으로 본다. 트리와 로컬 HTTP 서버를 넣고 출력 줄과 종료 코드만 본다.
 // bib의 URL에 서버 포트가 들어가야 해서 트리는 테스트가 임시 디렉터리에 만든다.
 // 로컬 서버 밖의 URL은 preload(fake-hosts.ts)가 같은 경로로 로컬 서버에 돌린다.
+// 인증서 검사는 openssl로 만든 루트, 중간, leaf 인증서와 leaf만 보내는 로컬 HTTPS 서버로 한다.
+// 루트는 NODE_EXTRA_CA_CERTS로 CLI가 신뢰하게 하고, 중간 인증서는 로컬 HTTP 서버가 DER로 준다.
 const here = path.dirname(fileURLToPath(import.meta.url))
 const today = "2026-09-25"
 
 let server: http.Server
 let base: string
+let hungOnce = false
+let certDir: string
+const secure = new Map<string, string>()
+const secureServers: https.Server[] = []
 const roots: string[] = []
 
 before(async () => {
@@ -26,17 +34,74 @@ before(async () => {
     else if (req.url === "/no-head") res.statusCode = req.method === "HEAD" ? 405 : 200
     // 봇 차단: 메서드와 헤더에 상관없이 막는다
     else if (req.url === "/blocked") res.statusCode = 403
-    else res.statusCode = req.url === "/alive" ? 200 : 404
+    // 답하지 않는 서버
+    else if (req.url === "/hang") return
+    // 첫 요청에만 답하지 않는 서버
+    else if (req.url === "/hang-once" && !hungOnce) {
+      hungOnce = true
+      return
+    } else if (req.url?.startsWith("/certs/")) {
+      const pem = fs.readFileSync(path.join(certDir, `${path.basename(req.url, ".der")}.pem`))
+      return res.end(new X509Certificate(pem).raw)
+    } else res.statusCode = req.url === "/alive" || req.url === "/hang-once" ? 200 : 404
     res.end()
   })
   await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve))
   base = `http://127.0.0.1:${(server.address() as AddressInfo).port}`
+
+  certDir = fs.mkdtempSync(path.join(os.tmpdir(), "source-status-certs-"))
+  const ca = ["basicConstraints=critical,CA:TRUE", "keyUsage=critical,keyCertSign,cRLSign"]
+  const leaf = ["subjectAltName=IP:127.0.0.1", "extendedKeyUsage=serverAuth"]
+  const aia = (issuer: string) => `authorityInfoAccess=caIssuers;URI:${base}/certs/${issuer}.der`
+  issue("root", undefined, ca)
+  issue("intermediate", "root", ca)
+  // CLI가 신뢰하지 않는 루트에서 나온 중간 인증서
+  issue("stranger-root", undefined, ca)
+  issue("stranger-intermediate", "stranger-root", ca)
+  issue("aia", "intermediate", [...leaf, aia("intermediate")])
+  issue("no-aia", "intermediate", leaf)
+  issue("stranger", "stranger-intermediate", [...leaf, aia("stranger-intermediate")])
+  for (const name of ["aia", "no-aia", "stranger"]) {
+    const key = fs.readFileSync(path.join(certDir, `${name}.key`))
+    const cert = fs.readFileSync(path.join(certDir, `${name}.pem`))
+    const secureServer = https.createServer({ key, cert }, (_req, res) => res.end())
+    await new Promise<void>((resolve) => secureServer.listen(0, "127.0.0.1", resolve))
+    secure.set(name, `https://127.0.0.1:${(secureServer.address() as AddressInfo).port}/`)
+    secureServers.push(secureServer)
+  }
 })
 
 after(() => {
+  server.closeAllConnections()
   server.close()
-  for (const root of roots) fs.rmSync(root, { recursive: true, force: true })
+  for (const secureServer of secureServers) secureServer.close()
+  for (const dir of [...roots, certDir]) fs.rmSync(dir, { recursive: true, force: true })
 })
+
+let serial = 1
+// issuer가 없으면 자체 서명이다. 유효기간은 100년으로 잡는다.
+function issue(name: string, issuer: string | undefined, extensions: string[]) {
+  const openssl = (...args: string[]) =>
+    execFileSync("openssl", args, { cwd: certDir, stdio: "ignore" })
+  const key = ["-newkey", "ec", "-pkeyopt", "ec_paramgen_curve:prime256v1", "-nodes"]
+  openssl(
+    "req",
+    "-new",
+    ...key,
+    "-keyout",
+    `${name}.key`,
+    "-out",
+    `${name}.csr`,
+    "-subj",
+    `/CN=${name}`,
+  )
+  fs.writeFileSync(path.join(certDir, `${name}.ext`), extensions.join("\n"))
+  const signer = issuer
+    ? ["-CA", `${issuer}.pem`, "-CAkey", `${issuer}.key`, "-set_serial", String(serial++)]
+    : ["-signkey", `${name}.key`]
+  const out = ["-extfile", `${name}.ext`, "-out", `${name}.pem`]
+  openssl("x509", "-req", "-in", `${name}.csr`, ...signer, "-days", "36500", ...out)
+}
 
 interface Report {
   exitCode: number
@@ -81,7 +146,15 @@ function runStatus(root: string, ...args: string[]): Promise<Report> {
         today,
         ...args,
       ],
-      { cwd: repoRoot, encoding: "utf8", env: { ...process.env, FAKE_HOSTS_ORIGIN: base } },
+      {
+        cwd: repoRoot,
+        encoding: "utf8",
+        env: {
+          ...process.env,
+          FAKE_HOSTS_ORIGIN: base,
+          NODE_EXTRA_CA_CERTS: path.join(certDir, "root.pem"),
+        },
+      },
       (error, stdout) => {
         const statuses: string[] = []
         const locations = new Map<string, string[]>()
@@ -145,14 +218,16 @@ describe("source-status CLI", () => {
       "content/fresh.md": page(
         ["network/can"],
         "2026-09-01",
-        "하나[@iso-11898-1-2024], 둘.[@onsemi-ncv7340-2024]",
+        "하나[@iso-11898-1-2024], 둘[@onsemi-ncv7340-2024], 셋.[@iec-60050-2024]",
       ),
       "bib/iso-11898-1-2024.bib": bib("iso-11898-1-2024", "https://www.iso.org/blocked"),
       "bib/onsemi-ncv7340-2024.bib": bib("onsemi-ncv7340-2024", "https://www.onsemi.com/blocked"),
+      "bib/iec-60050-2024.bib": bib("iec-60050-2024", "https://www.electropedia.org/blocked"),
     })
     const report = await runStatus(root)
     assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-blocked", "OK verified"])
     assert.deepStrictEqual(report.locations.get("url-blocked"), [
+      "bib/iec-60050-2024.bib:3",
       "bib/iso-11898-1-2024.bib:3",
       "bib/onsemi-ncv7340-2024.bib:3",
     ])
@@ -174,6 +249,56 @@ describe("source-status CLI", () => {
     assert.deepStrictEqual(report.locations.get("url"), [
       "bib/iso-dead-2024.bib:3",
       "bib/org-blocked-2024.bib:3",
+    ])
+    assert.strictEqual(report.exitCode, 1)
+  })
+
+  test("제한 시간 안에 두 번 모두 답하지 않는 URL은 url-timeout에 따로 찍고, 그것만으로는 exit 0이다", async () => {
+    const root = makeTree({
+      "content/fresh.md": page(["network/can"], "2026-09-01", "문장이다.[@org-hang-2024]"),
+      "bib/org-hang-2024.bib": bib("org-hang-2024", `${base}/hang`),
+    })
+    const report = await runStatus(root, "--timeout", "300")
+    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-timeout", "OK verified"])
+    assert.deepStrictEqual(report.locations.get("url-timeout"), ["bib/org-hang-2024.bib:3"])
+    assert.strictEqual(report.exitCode, 0)
+  })
+
+  test("첫 요청만 제한 시간을 넘기고 다시 물었을 때 2xx로 답하는 URL은 OK다", async () => {
+    const root = makeTree({
+      "content/fresh.md": page(["network/can"], "2026-09-01", "문장이다.[@org-hang-once-2024]"),
+      "bib/org-hang-once-2024.bib": bib("org-hang-once-2024", `${base}/hang-once`),
+    })
+    const report = await runStatus(root, "--timeout", "300")
+    assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
+    assert.strictEqual(report.exitCode, 0)
+  })
+
+  test("leaf만 보내는 HTTPS 서버는 AIA에서 받은 중간 인증서로 다시 물어 OK다", async () => {
+    const root = makeTree({
+      "content/fresh.md": page(["network/can"], "2026-09-01", "문장이다.[@org-aia-2024]"),
+      "bib/org-aia-2024.bib": bib("org-aia-2024", secure.get("aia")!),
+    })
+    const report = await runStatus(root)
+    assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
+    assert.strictEqual(report.exitCode, 0)
+  })
+
+  test("AIA 주소가 없거나 받은 중간 인증서가 신뢰하는 루트로 이어지지 않으면 url FAIL이다", async () => {
+    const root = makeTree({
+      "content/fresh.md": page(
+        ["network/can"],
+        "2026-09-01",
+        "하나[@org-no-aia-2024], 둘.[@org-stranger-2024]",
+      ),
+      "bib/org-no-aia-2024.bib": bib("org-no-aia-2024", secure.get("no-aia")!),
+      "bib/org-stranger-2024.bib": bib("org-stranger-2024", secure.get("stranger")!),
+    })
+    const report = await runStatus(root)
+    assert.deepStrictEqual(report.statuses, ["FAIL url", "OK verified"])
+    assert.deepStrictEqual(report.locations.get("url"), [
+      "bib/org-no-aia-2024.bib:3",
+      "bib/org-stranger-2024.bib:3",
     ])
     assert.strictEqual(report.exitCode, 1)
   })

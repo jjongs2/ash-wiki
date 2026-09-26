@@ -1,7 +1,7 @@
 {
   "name": "@jackyzha0/quartz",
   "description": "🌱 publish your digital garden and notes as a website",
-  "//": "ash-wiki: scripts.build를 더했다. Cloudflare Pages 빌드 명령을 `npm run build` 하나로 두기 위해서다(prebuild가 플러그인 설치, bib 합치기, OG 이미지 폰트 준비를 먼저 돌린다). scripts.bib, scripts.og-fonts, scripts.palette, scripts.check:content, scripts.source-status는 참고문헌 합본, OG 이미지 폰트 준비와 대비 실측(docs/palette.md), 콘텐츠 검사기(docs/wiki-conventions.md), 린트의 출처 상태 수집이다(docs/wiki-verification.md)",
+  "//": "ash-wiki: scripts.build를 더했다. Cloudflare Pages 빌드 명령을 `npm run build` 하나로 두기 위해서다(prebuild가 플러그인 설치, bib 합치기, OG 이미지 폰트 준비를 먼저 돌린다). scripts.bib, scripts.og-fonts, scripts.palette, scripts.check:content, scripts.source-status는 참고문헌 합본, OG 이미지 폰트 준비와 대비 실측(docs/palette.md), 콘텐츠 검사기(docs/wiki-conventions.md), 린트의 출처 상태 수집이다(docs/wiki-verification.md). engines.node는 출처 상태가 쓰는 tls.setDefaultCACertificates가 있는 버전으로 좁혔다",
   "private": true,
   "version": "5.0.0",
   "type": "module",
@@ -30,7 +30,7 @@
   },
   "engines": {
     "npm": ">=10.9.2",
-    "node": ">=22"
+    "node": "^22.19.0 || >=24.5.0"
   },
   "keywords": [
     "site generator",
