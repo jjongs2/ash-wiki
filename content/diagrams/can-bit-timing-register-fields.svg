@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="4.5 0 733.5 166" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <!-- 세그먼트 -->
+  <rect x="80" y="10" width="72" height="40" fill="#825da9" />
+  <text x="116" y="34.5" text-anchor="middle" font-size="12" fill="#f8fafd">SYNC_SEG</text>
+  <rect x="152" y="10" width="144" height="40" fill="#336fb8" />
+  <text x="224" y="34.5" text-anchor="middle" font-size="12" fill="#f8fafd">PROP_SEG</text>
+  <rect x="296" y="10" width="216" height="40" fill="#337b47" />
+  <text x="404" y="34.5" text-anchor="middle" font-size="12" fill="#f8fafd">PHASE_SEG1</text>
+  <rect x="512" y="10" width="216" height="40" fill="#b0540d" />
+  <text x="620" y="34.5" text-anchor="middle" font-size="12" fill="#f8fafd">PHASE_SEG2</text>
+
+  <!-- MCP2515 -->
+  <text x="66" y="94" text-anchor="end" font-size="12" fill="#727981">MCP2515</text>
+  <rect x="153.75" y="70.75" width="140.5" height="34.5" stroke="#727981" stroke-width="1.5" />
+  <text x="224" y="92.5" text-anchor="middle" font-size="12" fill="#727981">PRSEG</text>
+  <rect x="297.75" y="70.75" width="212.5" height="34.5" stroke="#727981" stroke-width="1.5" />
+  <text x="404" y="92.5" text-anchor="middle" font-size="12" fill="#727981">PHSEG1</text>
+  <rect x="513.75" y="70.75" width="212.5" height="34.5" stroke="#727981" stroke-width="1.5" />
+  <text x="620" y="92.5" text-anchor="middle" font-size="12" fill="#727981">PHSEG2</text>
+
+  <!-- bxCAN -->
+  <text x="66" y="144" text-anchor="end" font-size="12" fill="#727981">bxCAN</text>
+  <rect x="153.75" y="120.75" width="356.5" height="34.5" stroke="#727981" stroke-width="1.5" />
+  <text x="332" y="142.5" text-anchor="middle" font-size="12" fill="#727981">BS1</text>
+  <rect x="513.75" y="120.75" width="212.5" height="34.5" stroke="#727981" stroke-width="1.5" />
+  <text x="620" y="142.5" text-anchor="middle" font-size="12" fill="#727981">BS2</text>
+</svg>

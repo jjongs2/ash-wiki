@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="66 -3.5 690 340.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <!-- 공칭 샘플 포인트 안내선 -->
+  <line x1="602" y1="70" x2="602" y2="250" stroke="#727981" stroke-width="1" stroke-dasharray="3 3" />
+
+  <!-- 공칭 -->
+  <text x="154" y="58" text-anchor="end" fill="#727981">공칭</text>
+  <path d="M170 30 V24 H314 V30" stroke="#727981" stroke-width="1.5" />
+  <text x="242" y="16" text-anchor="middle" font-size="12" fill="#727981">앞 비트</text>
+  <path d="M316 30 V24 H698 V30" stroke="#727981" stroke-width="1.5" />
+  <text x="507" y="16" text-anchor="middle" font-size="12" fill="#727981">이번 비트</text>
+  <rect x="170" y="36" width="144" height="34" fill="#b0540d" />
+  <text x="242" y="57.5" text-anchor="middle" font-size="12" fill="#f8fafd">PHASE_SEG2</text>
+  <rect x="314" y="36" width="48" height="34" fill="#825da9" />
+  <text x="338" y="87" text-anchor="middle" font-size="12" fill="#727981">SYNC_SEG</text>
+  <rect x="362" y="36" width="96" height="34" fill="#336fb8" />
+  <text x="410" y="57.5" text-anchor="middle" font-size="12" fill="#f8fafd">PROP_SEG</text>
+  <rect x="458" y="36" width="144" height="34" fill="#337b47" />
+  <text x="530" y="57.5" text-anchor="middle" font-size="12" fill="#f8fafd">PHASE_SEG1</text>
+  <rect x="602" y="36" width="96" height="34" fill="#b0540d" />
+  <text x="650" y="57.5" text-anchor="middle" font-size="12" fill="#f8fafd">PHASE_SEG2</text>
+  <path d="M170 72 L176 81 H164 z" fill="#727981" />
+  <path d="M602 72 L608 81 H596 z" fill="#727981" />
+
+  <!-- 위상 오차 > 0: PHASE_SEG1이 늘어남 -->
+  <text x="154" y="140" text-anchor="end" fill="#727981">위상 오차 &gt; 0</text>
+  <text x="154" y="157" text-anchor="end" font-size="12" fill="#727981">송신 노드가 느림</text>
+  <rect x="170" y="126" width="144" height="34" fill="#b0540d" />
+  <text x="242" y="147.5" text-anchor="middle" font-size="12" fill="#f8fafd">PHASE_SEG2</text>
+  <rect x="314" y="126" width="48" height="34" fill="#825da9" />
+  <text x="338" y="177" text-anchor="middle" font-size="12" fill="#727981">SYNC_SEG</text>
+  <rect x="362" y="126" width="96" height="34" fill="#336fb8" />
+  <text x="410" y="147.5" text-anchor="middle" font-size="12" fill="#f8fafd">PROP_SEG</text>
+  <rect x="458" y="126" width="192" height="34" fill="#337b47" />
+  <text x="554" y="147.5" text-anchor="middle" font-size="12" fill="#f8fafd">PHASE_SEG1</text>
+  <rect x="650" y="126" width="96" height="34" fill="#b0540d" />
+  <text x="698" y="147.5" text-anchor="middle" font-size="12" fill="#f8fafd">PHASE_SEG2</text>
+  <path d="M170 162 L176 171 H164 z" fill="#727981" />
+  <path d="M650 162 L656 171 H644 z" fill="#727981" />
+  <line x1="371.6" y1="122" x2="371.6" y2="164" stroke="#727981" stroke-width="2.5" />
+  <path d="M602 124 V118 H650 V124" stroke="#727981" stroke-width="1.5" />
+  <text x="594" y="122" text-anchor="end" font-size="12" fill="#727981">PHASE_SEG1이 늘어남</text>
+
+  <!-- 위상 오차 < 0: PHASE_SEG2가 줄어듦 -->
+  <text x="154" y="230" text-anchor="end" fill="#727981">위상 오차 &lt; 0</text>
+  <text x="154" y="247" text-anchor="end" font-size="12" fill="#727981">송신 노드가 빠름</text>
+  <rect x="170" y="216" width="96" height="34" fill="#b0540d" />
+  <text x="218" y="237.5" text-anchor="middle" font-size="12" fill="#f8fafd">PHASE_SEG2</text>
+  <rect x="266" y="216" width="48" height="34" fill="#825da9" />
+  <text x="290" y="267" text-anchor="middle" font-size="12" fill="#727981">SYNC_SEG</text>
+  <rect x="314" y="216" width="96" height="34" fill="#336fb8" />
+  <text x="362" y="237.5" text-anchor="middle" font-size="12" fill="#f8fafd">PROP_SEG</text>
+  <rect x="410" y="216" width="144" height="34" fill="#337b47" />
+  <text x="482" y="237.5" text-anchor="middle" font-size="12" fill="#f8fafd">PHASE_SEG1</text>
+  <rect x="554" y="216" width="96" height="34" fill="#b0540d" />
+  <text x="602" y="237.5" text-anchor="middle" font-size="12" fill="#f8fafd">PHASE_SEG2</text>
+  <path d="M170 252 L176 261 H164 z" fill="#727981" />
+  <path d="M554 252 L560 261 H548 z" fill="#727981" />
+  <line x1="280.4" y1="212" x2="280.4" y2="254" stroke="#727981" stroke-width="2.5" />
+  <path d="M266 214 V208 H314 V214" stroke="#727981" stroke-width="1.5" />
+  <text x="258" y="212" text-anchor="end" font-size="12" fill="#727981">PHASE_SEG2가 줄어듦</text>
+
+  <!-- 범례 -->
+  <path d="M176 293 L182 302 H170 z" fill="#727981" />
+  <text x="188" y="303" font-size="12" fill="#727981">샘플 포인트</text>
+  <line x1="284" y1="291" x2="284" y2="305" stroke="#727981" stroke-width="2.5" />
+  <text x="294" y="303" font-size="12" fill="#727981">에지</text>
+  <line x1="348" y1="291" x2="348" y2="305" stroke="#727981" stroke-width="1" stroke-dasharray="3 3" />
+  <text x="358" y="303" font-size="12" fill="#727981">공칭 샘플 포인트</text>
+  <text x="170" y="326" font-size="12" fill="#727981">늘이거나 줄이는 양의 상한은 SJW다.</text>
+</svg>
