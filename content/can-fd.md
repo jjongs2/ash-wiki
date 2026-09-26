@@ -37,7 +37,7 @@ Bosch CAN FD 1.0은 한 방법으로, CAN FD를 end-of-line 소프트웨어 다�
 
 ## 비교·한계
 
-ISO 11898-1:2015의 CAN FD와 Bosch CAN FD 1.0 규격의 차이는 [[iso-11898-1|ISO 11898-1]]에서 다룬다.
+ISO 11898-1:2015의 CAN FD 프레임 포맷은 Bosch CAN FD 1.0과 다르다. Bosch M_CAN과 TI TCAN4550은 설정 비트 NISO로 둘 가운데 하나를 고른다.[@bosch-m-can-2023][@ti-tcan4550-2020] Microchip MCP25XXFD 계열의 CAN FD 컨트롤러 모듈은 ISO 11898-1:2015를 따르는 ISO CRC와 non-ISO CRC를 모두 지원하고, ISO CRC 필드에는 원래 CAN FD 규격에 없던 스터프 비트 개수가 들어간다.[@microchip-mcp25xxfd-frm-2020] 두 규격의 차이는 [[iso-11898-1|ISO 11898-1]]에서 더 다룬다.
 
 CAN FD의 높은 비트율을 쓰려면 트랜시버가 loop delay symmetry를 보장해야 한다.[@microchip-mcp2561-2fd-2014] CAN FD용 트랜시버 데이터시트는 지원하는 CAN FD 비트율을 명시한다. 예를 들어 TCAN1042-Q1은 2 Mbit/s, G 옵션은 5 Mbit/s다.[@ti-tcan1042-q1-2021]
 

@@ -4,7 +4,7 @@ tags:
   - network/can
 aliases:
   - Controller Area Network
-verified: 2026-09-25
+verified: 2026-09-26
 ---
 
 ## 정의
@@ -25,7 +25,7 @@ ISO 11898-1은 CAN 프로토콜 컨트롤러를, ISO 11898-2는 CAN 트랜시버
 
 ### 노드 구성
 
-[[can-controller|CAN 컨트롤러]]는 호스트 CPU에 붙어 ISO 11898-1에 따라 통신하고, 버스에 연결하려면 트랜시버가 따로 필요하다.[@bosch-m-can-2023] [[can-transceiver|CAN 트랜시버]]는 컨트롤러의 디지털 신호를 버스의 차동 신호로 바꾸고, 버스의 차동 전압을 다시 논리 레벨로 되돌린다.[@microchip-mcp2561-2fd-2014]
+[[can-controller|CAN 컨트롤러]]는 호스트 CPU에 붙어 ISO 11898-1에 따라 통신하고, 버스에 연결하려면 트랜시버가 따로 필요하다.[@bosch-m-can-2023] CAN 컨트롤러는 STM32F103xx·STM32F105xx·STM32F107xx의 bxCAN(Basic Extended CAN)처럼 MCU에 주변장치로 들어가기도 하고[@st-rm0008-2021], MCP2515처럼 SPI(Serial Peripheral Interface)로 MCU에 붙는 단독 칩으로 나오기도 한다.[@microchip-mcp2515-2019] [[can-transceiver|CAN 트랜시버]]는 컨트롤러의 디지털 신호를 버스의 차동 신호로 바꾸고, 버스의 차동 전압을 다시 논리 레벨로 되돌린다.[@microchip-mcp2561-2fd-2014]
 
 ![[diagrams/can-node-bus.svg]]
 
@@ -33,9 +33,11 @@ ISO 11898-1은 CAN 프로토콜 컨트롤러를, ISO 11898-2는 CAN 트랜시버
 
 ### 중재
 
-여러 노드가 한꺼번에 송신에 나서면 식별자를 한 비트씩 겨루는 중재가 일어나며, 식별자는 최상위 비트부터 나간다. 자기가 낸 recessive 비트 자리에서 dominant를 읽은 노드는 거기서 물러나 수신 노드가 된다. 이긴 프레임은 정보도 시간도 잃지 않고 전송된다.[@bosch-can-2-0-1991]
+여러 노드가 한꺼번에 송신에 나서면 식별자를 한 비트씩 겨루는 중재가 일어나며, 식별자는 최상위 비트부터 나간다. 자기가 낸 recessive 비트 자리에서 dominant를 읽은 노드는 거기서 물러나 수신 노드가 된다. 이긴 프레임은 정보도 시간도 잃지 않고 전송된다.[@bosch-can-2-0-1991] 식별자 값이 작을수록 우선순위가 높아, 중재에서는 식별자 값이 가장 작은 프레임이 이긴다.[@bosch-m-can-2023][@st-rm0008-2021]
 
 ![[diagrams/can-arbitration.svg]]
+
+노드는 버스가 비어 있을 때만 송신을 시작할 수 있다.[@bosch-can-2-0-1991] 중재에서 진 프레임은 기본 설정에서 CAN 컨트롤러가 자동으로 다시 송신한다.[@bosch-m-can-2023][@microchip-mcp2515-2019]
 
 ### 프레임
 
