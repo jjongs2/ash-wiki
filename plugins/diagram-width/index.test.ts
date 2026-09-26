@@ -10,8 +10,8 @@ import type { Element, Root } from "hast"
 import type { BuildCtx } from "../../quartz/util/ctx"
 import DiagramWidth from "./index"
 
-// 플러그인의 htmlPlugins가 seam이다. 임시 content 폴더에 SVG를 두고, embed가 만든 꼴의 <object>를
-// 넣어 그 <object>의 style만 본다.
+// 플러그인의 htmlPlugins와 모듈 로드가 seam이다. 임시 content 폴더에 SVG를 두고, embed가 만든 꼴의
+// <object>를 넣어 그 <object>의 style만 본다. 모듈 로드는 빌드처럼 플래그 없는 node로 따로 본다.
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "diagram-width-"))
 after(() => fs.rmSync(tmp, { recursive: true, force: true }))
 
@@ -72,14 +72,16 @@ describe("diagram-width 플러그인", () => {
     assert.strictEqual(style, undefined)
   })
 
-  // 빌드는 이 파일을 Node의 type stripping으로 불러오고, 불러오지 못하면 경고 한 줄만 남기고 플러그인을 건너뛴다.
-  // tsx는 enum이나 type 없이 가져온 타입도 돌려 주므로, 플래그 없는 node로 따로 불러 본다.
+  // 빌드는 불러오지 못한 플러그인을 경고 한 줄만 남기고 건너뛴다. tsx는 머리 주석의 제약을 어겨도 돌려 준다.
   test("플래그 없는 node로 불러온다", () => {
     const url = new URL("./index.ts", import.meta.url).href
     const script = `const m = await import(${JSON.stringify(url)}); console.log(m.manifest.name, typeof m.default)`
     const env = { ...process.env }
     delete env.NODE_OPTIONS
-    const out = execFileSync(process.execPath, ["--input-type=module", "-e", script], { env })
-    assert.strictEqual(out.toString().trim(), "diagram-width function")
+    const out = execFileSync(process.execPath, ["--input-type=module", "-e", script], {
+      env,
+      encoding: "utf8",
+    })
+    assert.strictEqual(out.trim(), "diagram-width function")
   })
 })
