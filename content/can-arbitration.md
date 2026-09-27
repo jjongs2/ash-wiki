@@ -43,7 +43,7 @@ $$
 t_\mathrm{PROP\_SEG} = 2\,(t_\mathrm{bus} + t_\mathrm{cmp} + t_\mathrm{drv})
 $$
 
-Microchip 앱노트는 중재에 참여하는 모든 노드가 같은 비트 시간 안에 버스의 같은 비트를 샘플링할 수 있어야 중재가 성립한다고 설명한다.[@microchip-an754-2001] Bosch 논문은 이 비파괴 중재가 성립하려면 두 노드 사이의 신호 전파 시간 $t_\mathrm{prop}$이 비트 시간 $t_\mathrm{bit}$에 대해 $t_\mathrm{prop} < t_\mathrm{bit} / 2$여야 한다고 적는다.[@bosch-icc-can-fd-2012] MCP25xxFD 계열 레퍼런스 매뉴얼은 중재 구간에서 송신 노드가 보낸 비트와 버스에서 받은 비트를 비교하므로, 샘플 포인트를 최대 전파 지연 뒤에 두어야 한다고 설명한다.[@microchip-mcp25xxfd-frm-2020]
+Microchip 문서는 중재에 참여하는 모든 노드가 같은 비트 시간 안에 버스의 같은 비트를 샘플링할 수 있어야 중재가 성립하고, 송신 노드는 샘플 포인트를 최대 전파 지연 뒤에 두어야 한다고 설명한다.[@microchip-an754-2001][@microchip-mcp25xxfd-frm-2020]
 
 버스를 길게 쓰려면 비트율을 낮춰야 한다.[@ti-tcan1042-q1-2021] 비트 시간의 구성은 [[can-bit-timing|CAN 비트 타이밍]]에서 다룬다.
 
