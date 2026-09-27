@@ -4,7 +4,7 @@ tags:
   - network
 aliases:
   - OSI 모델
-verified: 2026-09-26
+verified: 2026-09-27
 ---
 
 ## 정의
@@ -35,10 +35,8 @@ verified: 2026-09-26
 
 ## 비교·한계
 
-ISO 15765-2:2016은 차량 진단 통신 표준을 OSI 계층에 대응시킨다. 응용 계층에 ISO 14229-1, 전송 계층과 네트워크 계층에 ISO 15765-2, 데이터 링크 계층에 [[iso-11898-1|ISO 11898-1]]을 둔다.[@iso-15765-2-obp-2016]
+[[iso-11898-1|ISO 11898-1]]:2024는 [[can|CAN]]의 데이터 링크 계층과 PCS(Physical Coding Sublayer)를 정한다.[@iso-11898-1-obp-2024] ISO 15765-2:2024는 CAN을 쓰는 차량 네트워크의 전송 계층과 네트워크 계층 프로토콜, 그 서비스를 정하고[@iso-15765-2-obp-2024], ISO 14229-1은 UDS(Unified Diagnostic Services)의 응용 계층을 정한다.[@iso-14229-1-obp-2026]
 
 ![[diagrams/osi-layers-vehicle-diagnostics.svg]]
-
-ISO 11898-1:2024는 [[can|CAN]]의 데이터 링크 계층과 PCS(Physical Coding Sublayer)를 정한다.[@iso-11898-1-obp-2024] ISO 15765-2:2024는 CAN을 쓰는 차량 네트워크의 전송 계층과 네트워크 계층 프로토콜, 그 서비스를 정하고[@iso-15765-2-obp-2024], ISO 14229-1은 UDS(Unified Diagnostic Services)의 응용 계층을 정한다.[@iso-14229-1-obp-2020]
 
 RFC 1122는 인터넷 프로토콜 모음을 링크, 인터넷, 전송, 응용의 네 계층으로 나눈다. 인터넷 모음의 응용 계층은 OSI 참조 모델의 표현 계층과 응용 계층 기능을 합친 것이다.[@ietf-rfc-1122-1989]

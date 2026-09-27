@@ -2,7 +2,7 @@
 title: CAN 비트 스터핑
 tags:
   - network/can
-verified: 2026-09-26
+verified: 2026-09-27
 ---
 
 ## 정의
@@ -27,7 +27,7 @@ verified: 2026-09-26
 
 ### 목적
 
-CAN 비트열은 NRZ(Non-Return-to-Zero)로 부호화되어, 한 비트 시간 내내 레벨이 dominant나 recessive 하나로 유지된다.[@bosch-can-2-0-1991] NRZ는 데이터에 클록을 싣지 않으므로, 에지가 적어도 6비트 시간마다 생기게 하려고 비트 스터핑을 쓴다.[@microchip-mcp2515-2019] [[iso-11898-1|ISO 11898-1]]:2015는 비트 스터핑을, NRZ 비트 표현에서 주기적 [[can-synchronization|재동기화]]에 필요한 버스 상태 변화를 만들어 주는 프레임 부호화 방식으로 정의한다.[@iso-11898-1-obp-2015]
+CAN 비트열은 NRZ(Non-Return-to-Zero)로 부호화되어, 한 비트 시간 내내 레벨이 dominant나 recessive 하나로 유지된다.[@bosch-can-2-0-1991] NRZ는 데이터에 클록을 싣지 않으므로, 에지가 적어도 6비트 시간마다 생기게 하려고 비트 스터핑을 쓴다.[@microchip-mcp2515-2019] [[iso-11898-1|ISO 11898-1]]은 비트 스터핑을, NRZ 비트 표현에서 주기적 [[can-synchronization|재동기화]]에 필요한 버스 상태 변화를 만들어 주는 프레임 부호화 방식으로 정의한다.[@iso-11898-1-obp-2024]
 
 ## 비교·한계
 
@@ -35,4 +35,4 @@ CAN 비트열은 NRZ(Non-Return-to-Zero)로 부호화되어, 한 비트 시간 �
 
 [[can-fd-frame|CAN FD 포맷 프레임]]의 CRC 시퀀스에서는 스터프 비트를 고정 위치에 넣는다. 첫 비트 앞에 하나, 그 뒤로 4비트마다 하나를 넣고, 값은 바로 앞 비트의 반대다.[@bosch-can-fd-1-0-2012]
 
-ISO 11898-1:2015는 **stuff bit count**를 CRC 필드 앞까지 프레임에 들어간 스터프 비트의 수(고정 스터프 비트 제외)로 정의한다.[@iso-11898-1-obp-2015] MCP25xxFD 계열 CAN FD 컨트롤러는 ISO CRC 모드에서 CRC 필드에 4비트 stuff bit count를 넣어 보내고, ISO 이전 방식(non-ISO) 모드에서는 넣지 않는다.[@microchip-mcp25xxfd-frm-2020]
+ISO 11898-1은 **stuff bit count**를 CRC 필드 앞까지 프레임에 들어간 스터프 비트의 수(고정 스터프 비트 제외)로 정의한다.[@iso-11898-1-obp-2024] MCP25xxFD 계열 CAN FD 컨트롤러는 ISO CRC 모드에서 CRC 필드에 4비트 stuff bit count를 넣어 보내고, ISO 이전 방식(non-ISO) 모드에서는 넣지 않는다.[@microchip-mcp25xxfd-frm-2020]

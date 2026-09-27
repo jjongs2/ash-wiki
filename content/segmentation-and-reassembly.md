@@ -2,7 +2,7 @@
 title: 분할과 재조립
 tags:
   - network
-verified: 2026-09-26
+verified: 2026-09-27
 ---
 
 ## 정의
@@ -19,18 +19,18 @@ verified: 2026-09-26
 
 Classical [[can|CAN]] [[can-frame|데이터 프레임]]의 데이터 필드는 0에서 8바이트다.[@bosch-can-2-0-1991]
 
-ISO 15765-2는 CAN을 쓰는 차량 네트워크에서 진단 통신에 쓰는 전송 프로토콜과 네트워크 계층 서비스를 정한다. 이 프로토콜은 분할된 PDU를 첫 프레임과 여러 연속 프레임에 나눠 보낸다. 프레임으로는 단일 프레임 SF(SingleFrame), 첫 프레임 FF(FirstFrame), 연속 프레임 CF(ConsecutiveFrame), 흐름 제어 프레임 FC(FlowControl)를 쓴다.[@iso-15765-2-obp-2016]
+ISO 15765-2는 CAN을 쓰는 차량 네트워크에서 진단 통신에 쓰는 전송 프로토콜과 네트워크 계층 서비스를 정한다. 이 프로토콜은 분할된 PDU를 첫 프레임 FF(FirstFrame)와 여러 연속 프레임 CF(ConsecutiveFrame)에 나눠 보낸다.[@iso-15765-2-obp-2024]
 
-AUTOSAR의 CAN 전송 계층 모듈 CanTp가 다루는 전송 프로토콜 프레임은 SF, FF, CF, FC이고, 이 프레임들을 다음처럼 쓴다.[@autosar-cp-sws-cantransportlayer-2023]
+AUTOSAR의 CAN 전송 계층 모듈 CanTp가 다루는 전송 프로토콜 프레임은 단일 프레임 SF(Single Frame), FF, CF, 흐름 제어 프레임 FC(Flow Control)이고, 이 프레임들을 다음처럼 쓴다.[@autosar-cp-sws-cantransportlayer-2025]
 
-- **SF**: 보낼 데이터 N-SDU(Network Service Data Unit)가 CAN 프레임 하나에 실리는 단위 N-PDU(Network Protocol Data Unit)에 들어가면 SF로 보낸다.[@autosar-cp-sws-cantransportlayer-2023]
-- **FF**: 분할된 메시지의 첫 부분과 메시지 전체 길이 FF_DL을 싣는다. $\mathrm{FF\_DL} \le 4095$이면 FF_DL을 첫 바이트 하위 4비트와 둘째 바이트에 싣고, $\mathrm{FF\_DL} > 4095$이면 그 자리를 0으로 두고 FF_DL을 셋째부터 여섯째 바이트에 싣는다. 두 형식 모두 CAN 2.0과 [[can-fd|CAN FD]]에 쓴다.[@autosar-cp-sws-cantransportlayer-2023]
-- **CF**: 나머지 페이로드를 SN(Sequence Number)과 함께 싣는다.[@autosar-cp-sws-cantransportlayer-2023]
-- **FC**: 수신 쪽이 송신 쪽 CF의 흐름을 조절한다. **BS**(Block Size)는 FC 하나 뒤에 이어지는 CF 수이고, **STmin**(Separation Time minimum)은 송신 쪽이 두 CF 사이에 기다릴 최소 시간이다.[@autosar-cp-sws-cantransportlayer-2023]
+- **SF**: 보낼 데이터 N-SDU(Network Service Data Unit)가 CAN 프레임 하나에 실리는 단위 N-PDU(Network Protocol Data Unit)에 들어가면 SF로 보낸다.[@autosar-cp-sws-cantransportlayer-2025]
+- **FF**: 분할된 메시지의 첫 부분과 메시지 전체 길이 FF_DL을 싣는다. $\mathrm{FF\_DL} \le 4095$이면 FF_DL을 첫 바이트 하위 4비트와 둘째 바이트에 싣고, $\mathrm{FF\_DL} > 4095$이면 그 자리를 0으로 두고 FF_DL을 셋째부터 여섯째 바이트에 싣는다. 두 형식 모두 CAN 2.0과 [[can-fd|CAN FD]]에 쓴다.[@autosar-cp-sws-cantransportlayer-2025]
+- **CF**: 나머지 페이로드를 SN(Sequence Number)과 함께 싣는다.[@autosar-cp-sws-cantransportlayer-2025]
+- **FC**: 수신 쪽이 송신 쪽 CF의 흐름을 조절한다. **BS**(Block Size)는 FC 하나 뒤에 이어지는 CF 수이고, **STmin**(Separation Time minimum)은 송신 쪽이 두 CF 사이에 기다릴 최소 시간이다.[@autosar-cp-sws-cantransportlayer-2025]
 
 ![[diagrams/cantp-segmented-transfer.svg]]
 
-CanTp는 분할된 메시지를 받는 동안 SN이 맞는지 검사하고, 틀리면 수신을 중단한다. 빠진 연속 프레임과 뒤바뀐 연속 프레임은 오류로 알린다.[@autosar-cp-sws-cantransportlayer-2023]
+CanTp는 분할된 메시지를 받는 동안 SN이 맞는지 검사하고, 틀리면 수신을 중단한다. 빠진 연속 프레임과 뒤바뀐 연속 프레임은 오류로 알린다.[@autosar-cp-sws-cantransportlayer-2025]
 
 ### IP 단편화
 
@@ -40,4 +40,4 @@ IPv4(Internet Protocol version 4) 데이터그램이 최대 패킷 크기가 더
 
 IPv4 호스트에는 재조립 타임아웃이 있어야 하고, 타임아웃이 지나면 재조립 중이던 데이터그램을 버린다.[@ietf-rfc-1122-1989]
 
-CanTp는 연속 프레임을 받을 때마다 N_Cr 타이머를 시작한다(블록의 마지막 연속 프레임은 뺀다). 다음 연속 프레임이 오기 전에 N_Cr이 끝나면 수신을 중단한다. CanTp에서 흐름 제어는 송신 쪽을 수신 쪽의 처리 능력에 맞춘다.[@autosar-cp-sws-cantransportlayer-2023]
+CanTp는 연속 프레임을 받을 때마다 N_Cr 타이머를 시작한다(블록의 마지막 연속 프레임은 뺀다). 다음 연속 프레임이 오기 전에 N_Cr이 끝나면 수신을 중단한다. CanTp에서 흐름 제어는 송신 쪽을 수신 쪽의 처리 능력에 맞춘다.[@autosar-cp-sws-cantransportlayer-2025]

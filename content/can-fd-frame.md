@@ -2,12 +2,12 @@
 title: CAN FD 프레임
 tags:
   - network/can
-verified: 2026-09-26
+verified: 2026-09-27
 ---
 
 ## 정의
 
-**CAN FD 프레임**은 [[can-fd|CAN FD]] 포맷(FD format)으로 보내는 [[can-frame|CAN 프레임]]이다. [[can-identifier|식별자]]가 11비트인 기본 포맷과 29비트인 확장 포맷이 있고, 데이터 필드는 최대 64바이트다.[@iso-11898-1-obp-2015] [[can-arbitration|중재]]가 끝난 뒤 데이터 구간의 비트율을 중재 구간보다 높일 수 있다. CAN FD 포맷에는 데이터 프레임만 있고 [[remote-frame|리모트 프레임]]은 없다.[@bosch-can-fd-1-0-2012]
+**CAN FD 프레임**은 [[can-fd|CAN FD]] 포맷(FD format)으로 보내는 [[can-frame|CAN 프레임]]이다. [[can-identifier|식별자]]가 11비트인 기본 포맷과 29비트인 확장 포맷이 있다.[@iso-11898-1-obp-2024] 데이터 필드는 최대 64바이트이고, [[can-arbitration|중재]]가 끝난 뒤 데이터 구간의 비트율을 중재 구간보다 높일 수 있다. CAN FD 포맷에는 데이터 프레임만 있고 [[remote-frame|리모트 프레임]]은 없다.[@bosch-can-fd-1-0-2012]
 
 ## 구조·동작
 
@@ -40,4 +40,4 @@ CAN FD 포맷 프레임에서 classical 포맷의 RTR(Remote Transmission Reques
 
 CAN FD 포맷에서 CRC 구분자는 recessive 1비트나 2비트일 수 있다. 송신 노드는 1비트만 보내지만, [[can-acknowledgement|ACK]] 슬롯을 시작하는 dominant 에지 앞에 recessive 2비트가 와도 받아들인다. 이 여유는 노드마다 송신 노드와의 위상차가 달라서, 짧은 비트 시간에서 긴 비트 시간으로 돌아갈 때 그 차이를 보상하려고 둔다.[@bosch-can-fd-1-0-2012]
 
-Classical 포맷만 지원하고 CAN FD 포맷을 용인하지 않는 구현(FD intolerant)은 CAN FD 프레임을 방해해서, 이런 구현이 있는 네트워크에서 CAN FD 포맷을 쓰면 [[can-error-frame|오류 프레임]]이 생긴다. CAN FD 포맷을 주고받지 못해도 방해하지 않는 구현(FD tolerant)도 있다.[@iso-11898-1-obp-2015]
+ISO 11898-1:2024는 classical 포맷만 지원하는 구현을 CAN FD 포맷을 용인하는지에 따라 둘로 나눈다. CAN FD 포맷을 주고받지 못해도 방해하지 않는 구현을 **FD tolerant**라 한다.[@iso-11898-1-obp-2024] ISO 11898-1:2015는 용인하지 않는 구현을 CAN FD 프레임을 방해하는 FD intolerant로 정의했고, 2024년판은 이 용어를 두지 않는다.[@iso-11898-1-obp-2024][@iso-11898-1-obp-2015]

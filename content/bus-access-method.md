@@ -35,9 +35,9 @@ FlexRay는 모든 노드에 공통 시간 기준을 제공하고, 사이클의 �
 
 CAN에서는 버스가 idle이면 어느 노드든 송신을 시작할 수 있다. 여러 노드가 동시에 시작하면 [[can-identifier|식별자]]로 비트 단위 중재를 하고, 중재에서 이긴 한 메시지만 송신을 이어 간다. 진 노드는 비트를 더 보내지 않고 물러나며, 이 중재에서는 정보도 시간도 잃지 않는다.[@bosch-can-2-0-1991] ISO 11898-1은 이 식별자 기반 중재를 CSMA/CR(Collision Resolution)이라 부른다.[@iso-11898-1-obp-2024] TI 앱노트에 따르면 CAN의 버스 접근은 이벤트 구동이며 무작위로 일어난다.[@ti-sloa101b-2016] 중재 과정은 [[can-arbitration|CAN 중재]]에서 다룬다.
 
-### 마스터-슬레이브
+### commander-responder
 
-LIN(Local Interconnect Network)의 마스터는 네트워크에 하나뿐인 노드로, 프레임을 스케줄한다. 마스터 태스크는 스케줄 테이블에 따라 모든 헤더를 버스에 보내고, 슬레이브 태스크는 헤더를 듣고 그에 맞춰 응답을 보내거나 받거나 무시한다. 스케줄 테이블은 보낼 프레임과 그 순서, 프레임 사이의 시간 간격을 정한다.[@iso-17987-1-obp-2016] ISO 17987의 2025년판은 마스터와 슬레이브를 commander와 responder로 바꿔 부른다.[@iso-17987-4-obp-2025]
+LIN(Local Interconnect Network)의 commander는 네트워크에 하나뿐인 노드로, 프레임을 스케줄한다. commander 태스크는 스케줄 테이블에 따라 모든 헤더를 버스에 보내고, responder 태스크는 헤더를 듣고 그에 맞춰 응답을 보내거나 받거나 무시한다. 스케줄 테이블은 보낼 프레임과 그 순서, 프레임 사이의 시간 간격을 정한다.[@iso-17987-1-obp-2025] ISO 17987-1:2016은 commander와 responder를 master와 slave라 불렀고, 2025년판에서 지금 이름으로 바뀌었다.[@iso-17987-1-obp-2025][@iso-17987-1-obp-2016]
 
 ![[diagrams/lin-header-response.svg]]
 

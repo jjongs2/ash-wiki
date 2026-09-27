@@ -2,12 +2,12 @@
 title: dominant와 recessive
 tags:
   - network/can
-verified: 2026-09-26
+verified: 2026-09-27
 ---
 
 ## 정의
 
-**dominant**와 **recessive**는 [[can|CAN]] 버스가 가질 수 있는 두 논리 상태이고, dominant는 논리 0, recessive는 논리 1을 나타낸다.[@iso-11898-1-obp-2024] 여러 노드가 같은 비트 시간에 dominant와 recessive를 함께 내면 버스는 dominant가 된다.[@iso-11898-1-obp-2015]
+**dominant**와 **recessive**는 [[can|CAN]] 버스가 가질 수 있는 두 논리 상태이고, dominant는 논리 0, recessive는 논리 1을 나타낸다.[@iso-11898-1-obp-2024] 여러 노드가 같은 비트 시간에 dominant와 recessive를 함께 내면 버스는 dominant가 된다.[@iso-11898-2-obp-2026]
 
 ![[diagrams/can-bus-state-wired-and.svg]]
 
