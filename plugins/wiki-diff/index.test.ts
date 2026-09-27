@@ -14,6 +14,7 @@ import { ObsidianFlavoredMarkdown } from "@quartz-community/obsidian-flavored-ma
 import { GitHubFlavoredMarkdown } from "@quartz-community/github-flavored-markdown"
 import { Latex } from "@quartz-community/latex"
 import { NoteProperties } from "@quartz-community/note-properties"
+import { VFile } from "vfile"
 import type { Root } from "mdast"
 import type { Jsx } from "hast-util-to-jsx-runtime"
 import type { PluggableList } from "unified"
@@ -58,6 +59,32 @@ function html(before: string | null, after: string, embedChanged?: (target: stri
   return render(
     toJsxRuntime(hast, { Fragment, jsx: jsx as Jsx, jsxs: jsxs as Jsx }) as preact.VNode,
   )
+}
+
+// callout은 빌드처럼 OFM의 text transform을 거친 원본으로 비교하고, 표시한 트리에 OFM의 변환을 돌려
+// OFM이 여전히 callout으로 알아보는지 본다
+const ofm = (ObsidianFlavoredMarkdown as unknown as () => Required<ReturnType<Plugin>>)()
+const ofmText = (source: string) =>
+  (ofm as unknown as { textTransform: (ctx: never, src: string) => string }).textTransform(
+    ctx as never,
+    source,
+  )
+type Callout = { type: string; data?: { hProperties?: Record<string, unknown> }; children: never[] }
+
+function callout(
+  before: string,
+  after: string,
+): { attributes: Record<string, unknown>; html: string } {
+  const [base, current] = [ofmText(before), ofmText(after)]
+  const root = parse(current)
+  markDiff(root, current, { root: parse(base), source: base })
+  const file = new VFile({ value: current, data: { slug: "page" as never } })
+  unified()
+    .use(ofm.markdownPlugins(ctx as never))
+    .runSync(root as never, file)
+  const quote = root.children.find((node) => node.type === "blockquote") as unknown as Callout
+  const title = (quote.children[0] as { value?: string }).value ?? ""
+  return { attributes: quote.data?.hProperties ?? {}, html: title }
 }
 
 describe("어절 나누기", () => {
@@ -255,6 +282,43 @@ describe("표시", () => {
     const out = html("가", "가\n\n```\nx\n```")
     assert.match(out, /<div class="wiki-diff-added"><pre><code>x\n<\/code><\/pre><\/div>/)
   })
+
+  test("지운 바깥 항목은 앞 항목의 안쪽 목록이 아니라 같은 깊이에 둔다", () => {
+    const out = html("- 가\n  - 가1\n- 나\n- 다", "- 가\n  - 가1\n- 다")
+    assert.match(
+      out,
+      /<li>가1<\/li>\s*<\/ul>\s*<\/li>\s*<li class="wiki-diff-removed"><del class="wiki-diff-source">- 나<\/del><\/li>\s*<li>다<\/li>/,
+    )
+  })
+
+  test("빠진 어절 바로 뒤에 글자가 오면 띄운다", () => {
+    const table = (row: string) => `| a | b |\n| - | - |\n${row}`
+    const out = html(table("| x y | p q |"), table("| x y | q |"))
+    assert.match(out, /<del class="wiki-diff-word">p<\/del> q/)
+  })
+})
+
+describe("callout", () => {
+  test("제목이 바뀌어도 callout으로 남고 제목에 어절 diff가 보인다", () => {
+    const { attributes, html } = callout("> [!note] 옛 제목\n> 본문", "> [!note] 새 제목\n> 본문")
+    assert.strictEqual(attributes["data-callout"], "note")
+    assert.match(html, /<del class="wiki-diff-word">옛<\/del>/)
+    assert.match(html, /<ins class="wiki-diff-word"><span>새<\/span><\/ins>/)
+  })
+
+  test("종류가 바뀌면 새 종류의 callout이고 옛 지시어는 제목에 del로 보인다", () => {
+    const { attributes, html } = callout("> [!note] 제목\n> 본문", "> [!warning] 제목\n> 본문")
+    assert.strictEqual(attributes["data-callout"], "warning")
+    assert.match(html, /<del class="wiki-diff-word">\[!note\]<\/del>/)
+  })
+
+  test("지운 블록을 callout의 맨 앞에 넣지 않는다", () => {
+    const { attributes } = callout(
+      "> [!note] 옛 제목 하나 둘 셋\n> 본문",
+      "> [!warning] 새것\n> 본문",
+    )
+    assert.strictEqual(attributes["data-callout"], "warning")
+  })
 })
 
 describe("바뀐 페이지 목록", () => {
@@ -333,11 +397,25 @@ describe("플러그인", () => {
     })
   })
 
-  test("WIKI_DIFF를 주면 CSS를 넣는다", () => {
+  test("WIKI_DIFF를 주면 CSS를 넣고 바뀐 페이지 목록을 찍는다", (t) => {
+    const log = t.mock.method(console, "log", () => {})
     withEnv("main", () => {
       const resources = WikiDiff().externalResources!(pluginCtx)
       assert.match(resources!.css![0].content, /wiki-diff-added/)
     })
+    assert.match(String(log.mock.calls[0].arguments[0]), /main 기준.*\n.*바뀐 페이지가 없다/)
+  })
+
+  // `--serve`의 재빌드는 목록을 찍은 뒤에야 ctx.allFiles를 고친다. 목록은 디스크에서 찾아야 한다.
+  test("목록은 ctx.allFiles가 아니라 content 폴더에서 찾는다", (t) => {
+    const log = t.mock.method(console, "log", () => {})
+    fs.writeFileSync(path.join(tmp, "content", "b.md"), "나")
+    try {
+      withEnv("main", () => WikiDiff().externalResources!(pluginCtx))
+    } finally {
+      fs.rmSync(path.join(tmp, "content", "b.md"))
+    }
+    assert.match(String(log.mock.calls[0].arguments[0]), /새 페이지 \(1\): b\.md/)
   })
 
   // 빌드는 불러오지 못한 플러그인을 경고 한 줄만 남기고 건너뛴다. tsx는 머리 주석의 제약을 어겨도 돌려 준다.

@@ -13,6 +13,7 @@ import { execFileSync } from "node:child_process"
 import fs from "node:fs"
 import path from "node:path"
 import { diffArrays } from "diff"
+import { globbySync } from "globby"
 import { minimatch } from "minimatch"
 import type { Nodes, Parent, Root, RootContent } from "mdast"
 import type { Processor } from "unified"
@@ -144,7 +145,6 @@ export function extractBlocks(root: Root, source: string): Block[] {
     for (const node of parent.children as RootContent[]) {
       switch (node.type) {
         case "yaml":
-        case "toml" as string:
           break
         case "blockquote":
         case "list":
@@ -327,15 +327,13 @@ function addClass(node: RootContent, className: string) {
   ]
 }
 
-// 속성이 그대로 요소에 가는 블록에는 클래스를 달고, 그렇지 않은 블록(코드, 수식, HTML 등)은 div로 감싼다
-const CLASSED = new Set(["paragraph", "heading", "listItem", "tableRow"])
-// 어절 diff를 표시하는 블록
-const PHRASING = new Set(["paragraph", "heading", "listItem", "tableRow"])
+// 속성이 그대로 요소에 가고 어절 diff를 표시하는 블록. 그 밖의 블록(코드, 수식, HTML 등)은 div로 감싸 표시한다.
+const INLINE = new Set(["paragraph", "heading", "listItem", "tableRow"])
 // 자식이 흐름 콘텐츠인 노드. 이 밑의 코드 블록 같은 잎은 ins로 감싸지 않는다.
 const FLOW = new Set(["root", "blockquote", "listItem", "footnoteDefinition"])
 
 function markBlock(block: Block, className: string) {
-  if (CLASSED.has(block.node.type)) return addClass(block.node, className)
+  if (INLINE.has(block.node.type)) return addClass(block.node, className)
   const parent = block.ancestors.at(-1)!
   const wrapper = element("wikiDiffBlock", "div", className, [block.node])
   parent.children[parent.children.indexOf(block.node as never)] = wrapper as never
@@ -359,9 +357,11 @@ function valueOffsets(value: string, source: string, start: number): number[] {
 
 type Deletion = WordDiff["deleted"][number]
 
-function deletionNodes(deletion: Deletion): RootContent[] {
+// 빠진 어절을 앞뒤 어절과 공백으로 띄운다. next는 바로 뒤에 오는 글자다.
+function deletionNodes(deletion: Deletion, next: string | undefined): RootContent[] {
   const node = del(deletion.text, CLASS.word)
-  return deletion.lead ? [text(" "), node] : [node, text(" ")]
+  if (!deletion.lead) return [node, text(" ")]
+  return next && /\S/.test(next) ? [text(" "), node, text(" ")] : [text(" "), node]
 }
 
 // 블록의 자기 내용에 어절 diff를 입힌다. 텍스트 노드는 어절 경계에서 쪼개고, 위키링크나 인라인 코드처럼
@@ -369,9 +369,9 @@ function deletionNodes(deletion: Deletion): RootContent[] {
 function applyWords(own: RootContent[], diff: WordDiff, source: string) {
   const inserted = (offset: number) => diff.inserted.some(([s, e]) => s <= offset && offset < e)
   const queue = [...diff.deleted].sort((a, b) => a.at - b.at)
-  const take = (limit: (at: number) => boolean) => {
+  const take = (limit: (at: number) => boolean, next?: string) => {
     const out: RootContent[] = []
-    while (queue.length > 0 && limit(queue[0].at)) out.push(...deletionNodes(queue.shift()!))
+    while (queue.length > 0 && limit(queue[0].at)) out.push(...deletionNodes(queue.shift()!, next))
     return out
   }
   let last: Parent | undefined
@@ -416,7 +416,7 @@ function applyWords(own: RootContent[], diff: WordDiff, source: string) {
     }
     for (let i = 0; i <= value.length; i++) {
       const offset = i < value.length ? at[i] : end
-      const deletions = take((position) => position <= offset)
+      const deletions = take((position) => position <= offset, value[i])
       if (deletions.length > 0) {
         flush()
         out.push(...deletions)
@@ -480,8 +480,10 @@ function insertRemoved(ops: BlockOp[], root: Root) {
     parent.children.splice(parent.children.indexOf(ref as never) + 1, 0, node as never)
     lastInserted.set(anchor, node)
   }
+  // callout의 제목 문단 앞에 넣으면 OFM이 callout을 알아보지 못하므로 그 뒤에 넣는다
   const insertBefore = (parent: Parent, anchor: RootContent, node: RootContent) => {
-    parent.children.splice(parent.children.indexOf(anchor as never), 0, node as never)
+    const at = parent.children.indexOf(anchor as never)
+    parent.children.splice(at === 0 && isCallout(parent) ? 1 : at, 0, node as never)
   }
   const nearest = (from: number, step: number) => {
     for (let k = from; k >= 0 && k < ops.length; k += step) if (ops[k].after) return ops[k].after
@@ -492,7 +494,12 @@ function insertRemoved(ops: BlockOp[], root: Root) {
     const block = op.before
     const prev = nearest(index - 1, -1)
     const next = nearest(index + 1, 1)
-    const slot = (other?: Block) => other && isSlot(block.kind) && other.kind === block.kind
+    // 같은 꼴로 옆에 넣으려면 종류와 깊이가 같아야 한다. 깊이가 다르면 바깥 항목이 안쪽 목록에 들어간다.
+    const slot = (other?: Block) =>
+      other &&
+      isSlot(block.kind) &&
+      other.kind === block.kind &&
+      other.ancestors.length === block.ancestors.length
     if (prev && slot(prev)) {
       insertAfter(prev.ancestors.at(-1)!, prev.outer ?? prev.node, removedNode(block, true))
     } else if (next && slot(next)) {
@@ -509,6 +516,39 @@ function insertRemoved(ops: BlockOp[], root: Root) {
   })
 }
 
+// OFM은 blockquote의 첫 문단에서 첫 텍스트 노드의 첫 줄이 `[!타입]`으로 시작하면 callout으로 본다.
+// OFM의 text transform이 제목 줄 뒤에 빈 줄을 넣어, 빌드에서 제목 줄은 따로 된 문단이다.
+const CALLOUT = /^\[![\w-]+\|?(?:.+?)?\][+-]?/
+
+function isCallout(parent: Parent): boolean {
+  const first = parent.children[0] as RootContent | undefined
+  if (parent.type !== "blockquote" || first?.type !== "paragraph") return false
+  const head = first.children[0]
+  return head?.type === "text" && CALLOUT.test(head.value)
+}
+
+// callout 제목 문단이면 원본에서 `[!타입]` 지시어의 범위
+function calloutDirective(block: Block, source: string): [number, number] | undefined {
+  const parent = block.ancestors.at(-1)!
+  if (block.kind !== "paragraph" || parent.children[0] !== block.node || !isCallout(parent)) {
+    return undefined
+  }
+  const { start } = offsets(block.node)
+  const match = source.slice(start).match(CALLOUT)
+  return match ? [start, start + match[0].length] : undefined
+}
+
+// 지시어는 표시 없이 맨 앞에 남긴다. 새 어절에서 빼고, 그 앞에 둘 빠진 어절은 지시어 뒤로 옮긴다.
+// 종류가 바뀌면 `[!warning] [!note]`처럼 옛 지시어가 제목에 <del>로 보인다.
+function keepDirective(diff: WordDiff, [start, end]: [number, number]): WordDiff {
+  return {
+    inserted: diff.inserted
+      .map(([s, e]): [number, number] => [s < end && e > start ? Math.max(s, end) : s, e])
+      .filter(([s, e]) => s < e),
+    deleted: diff.deleted.map((d) => (d.at < end ? { ...d, at: end, lead: true } : d)),
+  }
+}
+
 // 트리에 diff를 표시한다. base가 null이면 새 페이지라 모든 블록이 새 블록이다. 바뀐 곳이 있으면 true.
 export function markDiff(
   root: Root,
@@ -521,8 +561,10 @@ export function markDiff(
   for (const op of ops) {
     if (op.type === "changed") {
       markBlock(op.after, CLASS.changed)
-      if (PHRASING.has(op.after.kind)) {
-        applyWords(op.after.own, wordDiff(op.before.tokens, op.after.tokens), source)
+      if (INLINE.has(op.after.kind)) {
+        const diff = wordDiff(op.before.tokens, op.after.tokens)
+        const directive = calloutDirective(op.after, source)
+        applyWords(op.after.own, directive ? keepDirective(diff, directive) : diff, source)
       }
     } else if (op.type === "added") {
       markBlock(op.after, CLASS.added)
@@ -590,6 +632,8 @@ type Snapshot = {
   // content 폴더 기준 경로에서 blob id로
   baseFiles: Map<string, string>
   diskFiles: Map<string, string>
+  // Quartz가 처리하는 현재 파일(ignorePatterns와 .gitignore를 거친 것)
+  files: string[]
 }
 
 function git(cwd: string, args: string[], input?: string): string {
@@ -620,8 +664,13 @@ function snapshot(ctx: BuildCtx, ref: string): Snapshot {
     const match = entry.match(/^\S+ blob (\S+)\t(.+)$/s)
     if (match) baseFiles.set(match[2], match[1])
   }
-  // --stdin-paths는 경로를 저장소 루트 기준으로 읽으므로 절대 경로를 준다
-  const files = ctx.allFiles.filter((file) => fs.existsSync(path.join(cwd, file)))
+  // `--serve`의 재빌드는 ctx.allFiles를 파싱한 뒤에야 고치므로, 현재 파일은 빌드처럼 직접 찾는다
+  // (quartz/util/glob.ts). --stdin-paths는 경로를 저장소 루트 기준으로 읽으므로 절대 경로를 준다.
+  const files = globbySync("**/*.*", {
+    cwd,
+    ignore: ctx.cfg.configuration.ignorePatterns,
+    gitignore: true,
+  }).map((file) => file.split(path.sep).join("/"))
   const absolute = files.map((file) => path.join(cwd, file)).join("\n")
   const oids = files.length > 0 ? git(cwd, ["hash-object", "--stdin-paths"], absolute) : ""
   const diskFiles = new Map(
@@ -630,14 +679,14 @@ function snapshot(ctx: BuildCtx, ref: string): Snapshot {
       .filter(Boolean)
       .map((oid, i) => [files[i] as string, oid]),
   )
-  return { ref, base, baseFiles, diskFiles }
+  return { ref, base, baseFiles, diskFiles, files }
 }
 
 function changesOf(ctx: BuildCtx, snap: Snapshot): PageChanges {
   return pageChanges({
     base: snap.baseFiles,
     disk: snap.diskFiles,
-    files: ctx.allFiles,
+    files: snap.files,
     ignorePatterns: ctx.cfg.configuration.ignorePatterns,
     read: (file) => fs.readFileSync(path.join(ctx.argv.directory, file), "utf8"),
   })
