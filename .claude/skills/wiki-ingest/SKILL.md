@@ -7,7 +7,7 @@ description: 인제스트. `ingest:` 묶음 티켓 하나를 초안, 검증자 �
 
 묶음 티켓 하나가 PR 하나가 된다. 용어는 `CONTEXT.md`를 따른다.
 
-먼저 읽는다: 티켓(`gh issue view <n> --comments`), `docs/adr/0001-isolation-boundary.md`, `docs/adr/0002-source-hierarchy-by-claim-kind.md`, `docs/wiki-conventions.md`, `docs/wiki-verification.md`. 브랜치와 커밋은 `CONTRIBUTING.md`를 따르고, 타입은 `content`다.
+먼저 읽는다: 티켓(`gh issue view <n> --comments`), `docs/adr/0001-isolation-boundary.md`, `docs/adr/0005-source-hierarchy-with-background-claims.md`, `docs/wiki-conventions.md`, `docs/wiki-verification.md`. 브랜치와 커밋은 `CONTRIBUTING.md`를 따르고, 타입은 `content`다.
 
 ## 1. 초안
 
