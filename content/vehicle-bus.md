@@ -29,7 +29,7 @@ CAN 식별자는 받을 노드를 가리키지 않고 데이터의 뜻을 나타
 
 LIN의 비트율은 최대 20 kbit/s이며, LIN은 차량의 저비용·저속 제어 응용을 위한 것이다.[@iso-17987-4-obp-2025]
 
-Classical CAN의 비트율은 최대 1 Mbit/s다.[@bosch-can-2-0-1991] [[iso-11898-2|ISO 11898-2]]:2016의 고속 PMA(Physical Medium Attachment)는 [[can-fd|CAN FD]]용으로 5 Mbit/s까지의 비트 타이밍 파라미터를 둔다.[@iso-11898-2-obp-2016] 저속 내결함성 CAN은 비트율 $R_\mathrm{b}$가 $40\,\mathrm{kbit/s} < R_\mathrm{b} \le 125\,\mathrm{kbit/s}$인 범위에서 쓴다.[@iso-11898-3-obp-2006]
+Classical CAN의 비트율은 최대 1 Mbit/s다.[@bosch-can-2-0-1991] 저속 내결함성 CAN은 비트율 $R_\mathrm{b}$가 $40\,\mathrm{kbit/s} < R_\mathrm{b} \le 125\,\mathrm{kbit/s}$인 범위에서 쓴다.[@iso-11898-3-obp-2006]
 
 FlexRay의 비트율은 최대 10 Mbit/s이며, FlexRay는 차량의 고속 제어 응용을 위한 것이다.[@iso-17458-4-obp-2013]
 
@@ -43,8 +43,8 @@ SAE 기술 논문 931808에 따르면 데이터율 요구가 다른 하위 네�
 
 LIN의 commander 노드는 LIN 프레임을 스케줄하고, 백본 네트워크에도 연결된다.[@iso-17987-1-obp-2025] **commander**는 ISO 17987의 2016년판이 마스터라 부르던 노드다.[@iso-17987-4-obp-2025]
 
-AUTOSAR의 PDU Router는 한 통신 인터페이스 모듈로 받은 I-PDU(Interaction Layer Protocol Data Unit)를 고치지 않고 다른 통신 인터페이스 모듈로 보내는 게이트웨이 기능을 제공한다. CAN과 FlexRay 사이, CAN과 LIN 사이의 게이트웨이가 그 예다.[@autosar-cp-sws-pdurouter-2023]
+AUTOSAR의 PDU Router는 한 통신 인터페이스 모듈로 받은 I-PDU(Interaction Layer Protocol Data Unit)를 고치지 않고 다른 통신 인터페이스 모듈로 보내는 게이트웨이 기능을 제공한다. CAN과 FlexRay 사이, CAN과 LIN 사이의 게이트웨이가 그 예다.[@autosar-cp-sws-pdurouter-2025]
 
 ## 비교·한계
 
-차량 안에서는 IEEE 802.3 이더넷도 쓰인다. IEEE 802.1DG는 여러 장치를 브리지로 묶은 차량 내 이더넷 네트워크를 위한 TSN(Time-Sensitive Networking) 프로파일을 정한다.[@ieee-802-1dg-2025] 이더넷 물리 계층인 100BASE-T1은 두 장치를 잇는 점대점 링크이며, 꼬임쌍선 한 쌍으로 100 Mbit/s 전이중 전송을 한다.[@ieee-802-3bw-2015]
+차량 안에서는 IEEE 802.3 이더넷도 쓰인다. IEEE 802.1DG는 여러 장치를 브리지로 묶은 차량 내 이더넷 네트워크를 위한 TSN(Time-Sensitive Networking) 프로파일을 정한다.[@ieee-802-1dg-2025]
