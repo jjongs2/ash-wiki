@@ -780,25 +780,44 @@ li.wiki-diff-removed::marker { color: rgb(var(--wiki-diff-del)); }
 
 // ---------------------------------------------------------------------------------------------------
 // 바뀐 곳 훑기. 오른쪽 아래 막대에서 바뀌지 않은 블록을 숨기고(바뀐 곳만), ↑·↓나 n·p 키로 바뀐 블록을
-// 차례로 옮겨 다닌다. 숨길 때 바뀐 블록을 품은 인용문, 목록, 표는 남기고, 제목과 callout 제목, 표 머리는
-// 맥락으로 남긴다. 제목 밑에 남는 블록이 없으면 그 제목도 숨긴다. SPA 이동마다 `nav`에서 다시 계산한다.
+// 차례로 옮겨 다닌다. 페이지의 끝에 이르면 바뀐 페이지 목록(대문 배너와 같은 순서)의 다음이나 이전 페이지로
+// 넘어간다. 숨길 때 바뀐 블록을 품은 인용문, 목록, 표는 남기고, 제목과 callout 제목, 표 머리는 맥락으로
+// 남긴다. 제목 밑에 남는 블록이 없으면 그 제목도 숨긴다. SPA 이동마다 `nav`에서 다시 계산한다.
 // 빌드가 문자열로 넣는 브라우저 스크립트라 타입 검사를 받지 않는다.
+
+// 브라우저가 읽는 바뀐 페이지 목록. 재빌드는 리소스 파일을 다시 쓰지 않아 목록을 스크립트에 넣으면 낡으므로,
+// 빌드마다 출력 폴더에 쓰고 스크립트가 페이지를 옮길 때마다 읽는다.
+const PAGES_FILE = "static/wiki-diff-pages.json"
+
+// 새 페이지와 바뀐 페이지의 slug. 지운 페이지는 옮겨 갈 곳이 없어 뺀다.
+function writePages(output: string, changes: PageChanges) {
+  const pages = [...changes.added, ...changes.changed].map((file) => file.replace(/\.md$/, ""))
+  const file = path.join(output, PAGES_FILE)
+  fs.mkdirSync(path.dirname(file), { recursive: true })
+  fs.writeFileSync(file, JSON.stringify({ pages }))
+}
 
 const SCRIPT = `(() => {
   const MARK = ".wiki-diff-changed, .wiki-diff-added, .wiki-diff-removed"
   const CONTEXT = "h1, h2, h3, h4, h5, h6, thead, .callout-title, .wiki-diff-banner"
-  const KEY = "wiki-diff-only"
+  const ONLY = "wiki-diff-only"
+  const ENTER = "wiki-diff-enter"
   const level = (el) => (/^H([1-6])$/.exec(el.tagName) || [])[1]
   const article = () =>
     document.querySelector(".center article.popover-hint") || document.querySelector("article.popover-hint")
+  const slug = () => document.body.dataset.slug || ""
+  const toRoot = () => "../".repeat(slug().split("/").length - 1) || "./"
   let current = null
+  let pages = []
+  let setups = 0
 
-  function readOnly() {
-    try { return sessionStorage.getItem(KEY) === "1" } catch { return false }
+  function read(key) {
+    try { return sessionStorage.getItem(key) } catch { return null }
   }
-  function writeOnly(value) {
-    try { sessionStorage.setItem(KEY, value ? "1" : "0") } catch {}
+  function write(key, value) {
+    try { value === null ? sessionStorage.removeItem(key) : sessionStorage.setItem(key, value) } catch {}
   }
+  const readOnly = () => read(ONLY) === "1"
 
   function markQuiet(root) {
     const keep = new Set()
@@ -835,42 +854,71 @@ const SCRIPT = `(() => {
     })
   }
 
-  function move(step) {
+  const marksOf = () => {
     const root = article()
-    if (!root) return
-    const marks = [...root.querySelectorAll(MARK)]
-    if (marks.length === 0) return
-    let index = marks.indexOf(current)
-    if (index < 0) {
-      const tops = marks.map((mark) => mark.getBoundingClientRect().top)
-      index = step > 0 ? tops.findIndex((top) => top > 1) - 1 : tops.findIndex((top) => top >= 0)
-      if (step > 0 && index < -1) index = marks.length - 1
-      if (step < 0 && index < 0) index = marks.length
-    }
-    const next = marks[Math.min(Math.max(index + step, 0), marks.length - 1)]
+    return root ? [...root.querySelectorAll(MARK)] : []
+  }
+
+  function focus(mark, smooth) {
     if (current) current.classList.remove("wiki-diff-current")
-    current = next
+    current = mark
     current.classList.add("wiki-diff-current")
-    current.scrollIntoView({ block: "center", behavior: "smooth" })
+    current.scrollIntoView({ block: "center", behavior: smooth ? "smooth" : "auto" })
     render()
+  }
+
+  // 페이지 안에서 다음(step 1)이나 이전(step -1) 변경. 끝을 넘으면 옆 페이지로 넘어간다.
+  function move(step) {
+    const marks = marksOf()
+    let target = marks.indexOf(current) + step
+    if (!marks.includes(current)) {
+      const tops = marks.map((mark) => mark.getBoundingClientRect().top)
+      const below = tops.findIndex((top) => top > 1)
+      if (step > 0) target = below < 0 ? marks.length : below
+      else target = (below < 0 ? marks.length : below) - 1
+    }
+    if (target >= 0 && target < marks.length) return focus(marks[target], true)
+    const at = pages.indexOf(slug())
+    const next = at < 0 ? (step > 0 ? pages[0] : pages.at(-1)) : pages[at + step]
+    if (next === undefined) return
+    write(ENTER, step > 0 ? "first" : "last")
+    const url = new URL(toRoot() + next, location.href)
+    if (window.spaNavigate) window.spaNavigate(url)
+    else location.assign(url)
   }
 
   function render() {
     const bar = document.getElementById("wiki-diff-nav")
-    const root = article()
-    if (!bar || !root) return
-    const marks = [...root.querySelectorAll(MARK)]
+    if (!bar) return
+    const marks = marksOf()
     const at = marks.indexOf(current)
-    bar.querySelector("[data-count]").textContent = (at < 0 ? "–" : at + 1) + "/" + marks.length
+    const page = pages.indexOf(slug())
+    bar.querySelector("[data-count]").textContent =
+      (at < 0 ? "–" : at + 1) + "/" + marks.length +
+      " · 페이지 " + (page < 0 ? "–" : page + 1) + "/" + pages.length
     bar.querySelector("[data-only]").setAttribute("aria-pressed", String(readOnly()))
   }
 
-  function setup() {
+  async function loadPages() {
+    try {
+      const response = await fetch(toRoot() + "${PAGES_FILE}", { cache: "no-store" })
+      return (await response.json()).pages || []
+    } catch {
+      return []
+    }
+  }
+
+  async function setup() {
+    const run = ++setups
     current = null
     document.getElementById("wiki-diff-nav")?.remove()
-    document.documentElement.classList.toggle("wiki-diff-only", readOnly())
+    document.documentElement.classList.toggle(ONLY, readOnly())
+    const loaded = await loadPages()
+    if (run !== setups) return
+    pages = loaded
     const root = article()
-    if (!root || !root.querySelector(MARK)) return
+    const marks = marksOf()
+    if (!root || (marks.length === 0 && pages.length === 0)) return
     markQuiet(root)
     const bar = document.createElement("div")
     bar.id = "wiki-diff-nav"
@@ -884,13 +932,17 @@ const SCRIPT = `(() => {
       if (!button) return
       if (button.dataset.step) return move(Number(button.dataset.step))
       const only = !readOnly()
-      writeOnly(only)
-      document.documentElement.classList.toggle("wiki-diff-only", only)
+      write(ONLY, only ? "1" : "0")
+      document.documentElement.classList.toggle(ONLY, only)
       if (current) current.scrollIntoView({ block: "center" })
       render()
     })
     document.body.append(bar)
-    render()
+    // 옆 페이지에서 넘어왔으면 그 방향의 첫 변경에 선다
+    const enter = read(ENTER)
+    write(ENTER, null)
+    if (enter && marks.length > 0) focus(enter === "last" ? marks.at(-1) : marks[0], false)
+    else render()
   }
 
   document.addEventListener("keydown", (event) => {
@@ -951,7 +1003,9 @@ const WikiDiff: QuartzTransformerPlugin = () => {
       const ref = refOf()
       if (!ref) return undefined
       const snap = snapshot(ctx, ref)
-      console.log(report(snap, changesOf(ctx, snap)))
+      const changes = changesOf(ctx, snap)
+      console.log(report(snap, changes))
+      writePages(ctx.argv.output, changes)
       return {
         css: [{ content: CSS, inline: true }],
         js: [{ loadTime: "afterDOMReady", contentType: "inline", script: SCRIPT }],

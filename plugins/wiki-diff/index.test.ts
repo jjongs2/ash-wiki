@@ -376,7 +376,7 @@ describe("플러그인", () => {
   run(["-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "a"])
 
   const pluginCtx = {
-    argv: { directory: path.join(tmp, "content") },
+    argv: { directory: path.join(tmp, "content"), output: path.join(tmp, "public") },
     cfg: { configuration: { ignorePatterns: [] }, plugins: { transformers: [] } },
     allFiles: ["a.md"],
   } as unknown as BuildCtx
@@ -430,6 +430,12 @@ describe("플러그인", () => {
       fs.rmSync(path.join(tmp, "content", "b.md"))
     }
     assert.match(String(log.mock.calls[0].arguments[0]), /새 페이지 \(1\): b\.md/)
+    // 브라우저의 문서 간 이동도 같은 목록을 빌드마다 출력 폴더에서 읽는다
+    const pages = fs.readFileSync(
+      path.join(tmp, "public", "static", "wiki-diff-pages.json"),
+      "utf8",
+    )
+    assert.deepStrictEqual(JSON.parse(pages), { pages: ["b"] })
   })
 
   // 빌드는 불러오지 못한 플러그인을 경고 한 줄만 남기고 건너뛴다. tsx는 머리 주석의 제약을 어겨도 돌려 준다.
