@@ -2,7 +2,7 @@
 title: CAN 컨트롤러
 tags:
   - network/can
-verified: 2026-09-25
+verified: 2026-09-27
 ---
 
 ## 정의
@@ -45,6 +45,6 @@ MCP2515는 SPI로 MCU와 통신하는 독립형 컨트롤러다. CAN 2.0B를 1 M
 
 ## 비교·한계
 
-CAN FD를 지원하지 않는 컨트롤러는 CAN FD 프레임을 받으면 [[can-error-frame|오류 프레임]]을 낸다.[@microchip-mcp251xxfd-frm-2018] ISO 11898-1:2024는 이와 달리, CAN FD 프레임을 주고받지는 못해도 방해하지 않는 classical 구현(FD tolerant)도 규정한다.[@iso-11898-1-obp-2024] CAN FD 노드는 classical CAN 프레임도 주고받을 수 있다.[@bosch-can-fd-1-0-2012]
+Classical 포맷만 지원하고 CAN FD 포맷을 용인하지 않는 구현은 classical 포맷만 쓸 때 CAN FD·CAN XL 구현과 통신할 수 있고, CAN FD light responder와는 통신할 수 없어 통신을 시도하면 [[can-error-frame|오류 프레임]]이 생긴다. ISO 11898-1:2024는 CAN FD 프레임을 주고받지는 못해도 방해하지 않는 classical 구현(FD tolerant)도 규정한다.[@iso-11898-1-obp-2024] CAN FD 노드는 classical CAN 프레임도 주고받을 수 있다.[@bosch-can-fd-1-0-2012]
 
 논리 비트와 버스 차동 전압 사이의 변환은 트랜시버가 맡는다.[@microchip-mcp2561-2fd-2014]

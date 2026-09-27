@@ -37,15 +37,9 @@ Bosch M_CAN은 중재에서 진 프레임을 기본 설정에서 자동으로 �
 
 ## 비교·한계
 
-중재 중에는 송신 노드가 자기 비트와 버스 비트를 비교하므로, 비트 시간 안에 전파 구간을 둔다. 전파 구간의 길이 $t_\mathrm{PROP\_SEG}$는 버스의 신호 전파 시간 $t_\mathrm{bus}$, 입력 비교기 지연 $t_\mathrm{cmp}$, 출력 드라이버 지연 $t_\mathrm{drv}$를 더한 값의 두 배다.[@bosch-can-2-0-1991]
-
-$$
-t_\mathrm{PROP\_SEG} = 2\,(t_\mathrm{bus} + t_\mathrm{cmp} + t_\mathrm{drv})
-$$
-
 Microchip 문서에 따르면 중재에 참여하는 모든 노드가 같은 비트 시간 안에 버스의 같은 비트를 샘플링할 수 있어야 중재가 성립하고, 송신 노드는 샘플 포인트를 최대 전파 지연 뒤에 두어야 한다.[@microchip-an754-2001][@microchip-mcp25xxfd-frm-2020]
 
-버스를 길게 쓰려면 비트율을 낮춰야 한다.[@ti-tcan1042-q1-2021] 비트 시간의 구성은 [[can-bit-timing|CAN 비트 타이밍]]에서 다룬다.
+비트 시간의 구성과 전파 구간(PROP_SEG)의 길이는 [[can-bit-timing|CAN 비트 타이밍]]에서, 버스 길이와 비트율의 관계는 [[can-physical-layer|CAN 물리 계층]]에서 다룬다.
 
 같은 식별자의 데이터 프레임을 두 노드가 함께 보내면 중재 필드에서 승자가 가려지지 않아 둘 다 송신을 이어 간다. 중재 필드 밖에서 보낸 비트와 읽은 비트가 다르면 [[can-error-detection|비트 오류]]가 난다.[@bosch-can-2-0-1991]
 
