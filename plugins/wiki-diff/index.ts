@@ -706,49 +706,75 @@ function prepare(ctx: BuildCtx, source: string): string {
 
 const label = (snap: Snapshot) => `${snap.ref} 기준(merge-base ${snap.base.slice(0, 7)})`
 
-function groupsOf(changes: PageChanges): Array<[string, string[], boolean]> {
-  return [
-    ["새 페이지", changes.added, true],
-    ["바뀐 페이지", changes.changed, true],
-    ["지운 페이지", changes.removed, false],
+type Group = { title: string; files: string[]; kind: "added" | "changed" | "removed" }
+
+function groupsOf(changes: PageChanges): Group[] {
+  const groups: Group[] = [
+    { title: "새 페이지", files: changes.added, kind: "added" },
+    { title: "바뀐 페이지", files: changes.changed, kind: "changed" },
+    { title: "지운 페이지", files: changes.removed, kind: "removed" },
   ]
+  return groups.filter((group) => group.files.length > 0)
 }
 
 const NO_CHANGES = "기준 이후 바뀐 페이지가 없다."
 
+// 범례와 같은 견본. 새 블록, 바뀐 블록, 지운 블록의 표시를 줄여 그린다.
+const swatch = (kind: Group["kind"]) => ({
+  type: "wikiDiffSwatch",
+  data: { hName: "span", hProperties: { className: ["wiki-diff-swatch"], dataKind: kind } },
+  children: [],
+})
+
 function banner(snap: Snapshot, changes: PageChanges): RootContent {
-  const paragraph = (children: unknown[]) => ({ type: "paragraph", children })
+  const block = (tagName: string, className: string, children: unknown[]) =>
+    element("wikiDiffBannerPart", tagName, className, children)
   const link = (file: string) => ({
     type: "link",
     url: `./${file.replace(/\.md$/, "")}`,
-    children: [text(file)],
+    children: [text(file.replace(/\.md$/, ""))],
   })
+  const groups = groupsOf(changes)
   const children: unknown[] = [
-    paragraph([{ type: "strong", children: [text("바뀐 페이지")] }, text(` · ${label(snap)}`)]),
+    block("p", "wiki-diff-banner-title", [text("기준 이후 바뀐 페이지")]),
+    block("p", "wiki-diff-banner-meta", [
+      text(`${label(snap)}. 오른쪽 아래 막대나 n, p 키로 바뀐 곳을 차례로 본다.`),
+    ]),
   ]
-  const groups = groupsOf(changes).filter(([, files]) => files.length > 0)
-  if (groups.length === 0) children.push(paragraph([text(NO_CHANGES)]))
-  for (const [title, files, linked] of groups) {
-    children.push(paragraph([text(`${title} (${files.length})`)]))
-    children.push({
-      type: "list",
-      ordered: false,
-      spread: false,
-      children: files.map((file) => ({
-        type: "listItem",
-        spread: false,
-        children: [paragraph([linked ? link(file) : text(file)])],
-      })),
-    })
+  if (groups.length === 0) children.push(block("p", "wiki-diff-banner-empty", [text(NO_CHANGES)]))
+  else {
+    children.push(
+      block(
+        "div",
+        "wiki-diff-banner-groups",
+        groups.map(({ title, files, kind }) =>
+          block("section", `wiki-diff-banner-${kind}`, [
+            block("p", "wiki-diff-banner-heading", [
+              swatch(kind),
+              text(`${title} ${files.length}`),
+            ]),
+            block(
+              "ul",
+              "wiki-diff-banner-list",
+              files.map((file) =>
+                block("li", "", [
+                  kind === "removed" ? text(file.replace(/\.md$/, "")) : link(file),
+                ]),
+              ),
+            ),
+          ]),
+        ),
+      ),
+    )
   }
   return element("wikiDiffBanner", "div", "wiki-diff-banner", children)
 }
 
 function report(snap: Snapshot, changes: PageChanges): string {
-  const groups = groupsOf(changes).filter(([, files]) => files.length > 0)
+  const groups = groupsOf(changes)
   const lines = [`[wiki-diff] ${label(snap)}`]
   if (groups.length === 0) lines.push(`  ${NO_CHANGES}`)
-  for (const [title, files] of groups)
+  for (const { title, files } of groups)
     lines.push(`  ${title} (${files.length}): ${files.join(", ")}`)
   return lines.join("\n")
 }
@@ -757,25 +783,221 @@ function report(snap: Snapshot, changes: PageChanges): string {
 // 스타일. 변수가 있을 때만 넣는다. 사이트 스타일시트(custom.scss)를 건드리면 배포 CSS가 바뀐다.
 
 const CSS = `
-:root { --wiki-diff-ins: 46, 160, 67; --wiki-diff-del: 207, 34, 46; }
-:root[saved-theme="dark"] { --wiki-diff-ins: 63, 185, 80; --wiki-diff-del: 248, 81, 73; }
-.wiki-diff-added { background: rgba(var(--wiki-diff-ins), 0.12); box-shadow: -4px 0 0 rgb(var(--wiki-diff-ins)); }
-.wiki-diff-changed { box-shadow: -4px 0 0 rgba(var(--wiki-diff-ins), 0.5); }
-tr.wiki-diff-added > td { background: rgba(var(--wiki-diff-ins), 0.12); }
-tr.wiki-diff-changed > td:first-child { box-shadow: inset 4px 0 0 rgba(var(--wiki-diff-ins), 0.5); }
-li.wiki-diff-added, li.wiki-diff-changed { background: none; box-shadow: none; }
-li.wiki-diff-added::marker, li.wiki-diff-changed::marker { color: rgb(var(--wiki-diff-ins)); font-weight: bold; }
-ins.wiki-diff-word { background: rgba(var(--wiki-diff-ins), 0.2); text-decoration: none; border-radius: 2px; }
-del.wiki-diff-word, del.wiki-diff-source { color: rgb(var(--wiki-diff-del)); background: rgba(var(--wiki-diff-del), 0.08); }
-del.wiki-diff-source { white-space: pre-wrap; font-family: var(--codeFont); font-size: 0.9em; }
-div.wiki-diff-removed { border: 1px dashed rgb(var(--wiki-diff-del)); border-radius: 4px; padding: 0.25rem 0.5rem; margin: 1rem 0; }
-li.wiki-diff-removed::marker { color: rgb(var(--wiki-diff-del)); }
-.wiki-diff-banner { border: 1px solid rgb(var(--wiki-diff-ins)); border-radius: 4px; padding: 0 1rem; margin: 1rem 0; }
+:root {
+  --wiki-diff-add: #1f7a3d;
+  --wiki-diff-del: #b42318;
+  --wiki-diff-gutter: 0.6rem;
+}
+:root[saved-theme="dark"] {
+  --wiki-diff-add: #4cb870;
+  --wiki-diff-del: #f0776b;
+}
+:root {
+  --wiki-diff-add-tint: color-mix(in srgb, var(--wiki-diff-add) 7%, transparent);
+  --wiki-diff-add-word: color-mix(in srgb, var(--wiki-diff-add) 16%, transparent);
+  --wiki-diff-del-tint: color-mix(in srgb, var(--wiki-diff-del) 6%, transparent);
+  --wiki-diff-del-word: color-mix(in srgb, var(--wiki-diff-del) 8%, transparent);
+  --wiki-diff-solid: linear-gradient(var(--wiki-diff-add), var(--wiki-diff-add));
+  --wiki-diff-dashed: repeating-linear-gradient(to bottom, var(--wiki-diff-add) 0 6px, transparent 6px 10px);
+  --wiki-diff-removed: linear-gradient(var(--wiki-diff-del), var(--wiki-diff-del));
+}
+
+/* 블록. 글자 자리는 그대로 두고, 왼쪽 여백의 막대와 바깥으로 번지는 틴트로 표시한다. */
+:is(.wiki-diff-added, .wiki-diff-changed, .wiki-diff-removed):not(li, tr) {
+  position: relative;
+  border-radius: 5px;
+}
+:is(.wiki-diff-added, .wiki-diff-changed, .wiki-diff-removed):not(li, tr)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(-1 * var(--wiki-diff-gutter));
+  width: 3px;
+  border-radius: 3px;
+  background: var(--wiki-diff-solid);
+}
+.wiki-diff-added:not(li, tr) {
+  background: var(--wiki-diff-add-tint);
+  box-shadow: 0 0 0 var(--wiki-diff-gutter) var(--wiki-diff-add-tint);
+}
+.wiki-diff-changed:not(li, tr)::before { background: var(--wiki-diff-dashed); }
+div.wiki-diff-removed {
+  margin: 1.5rem 0;
+  background: var(--wiki-diff-del-tint);
+  box-shadow: 0 0 0 var(--wiki-diff-gutter) var(--wiki-diff-del-tint);
+}
+div.wiki-diff-removed::before { background: var(--wiki-diff-removed); }
+
+li.wiki-diff-added::marker, li.wiki-diff-changed::marker { color: var(--wiki-diff-add); font-weight: 700; }
+li.wiki-diff-removed::marker { color: var(--wiki-diff-del); }
+tr.wiki-diff-added > td { background: var(--wiki-diff-add-tint); }
+tr.wiki-diff-removed > td { background: var(--wiki-diff-del-tint); }
+tr.wiki-diff-added > td:first-child { background: var(--wiki-diff-solid) left / 3px 100% no-repeat, var(--wiki-diff-add-tint); }
+tr.wiki-diff-changed > td:first-child { background: var(--wiki-diff-dashed) left / 3px 100% no-repeat; }
+tr.wiki-diff-removed > td:first-child { background: var(--wiki-diff-removed) left / 3px 100% no-repeat, var(--wiki-diff-del-tint); }
+
+/* 어절 */
+ins.wiki-diff-word, del.wiki-diff-word {
+  border-radius: 3px;
+  padding: 0 0.1em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+ins.wiki-diff-word { background: var(--wiki-diff-add-word); color: inherit; text-decoration: none; }
+del.wiki-diff-word {
+  background: var(--wiki-diff-del-word);
+  color: var(--wiki-diff-del);
+  text-decoration: line-through 1px;
+}
+
+/* 지운 원문은 흐리게 두고 가는 취소선을 긋는다 */
+del.wiki-diff-source {
+  font-family: var(--codeFont);
+  font-size: 0.85em;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  color: var(--gray);
+  text-decoration: line-through 1px color-mix(in srgb, var(--wiki-diff-del) 60%, transparent);
+}
+
+.wiki-diff-current {
+  outline: 2px solid var(--secondary);
+  outline-offset: calc(var(--wiki-diff-gutter) + 2px);
+  border-radius: 5px;
+}
 .wiki-diff-only .wiki-diff-quiet { display: none !important; }
-.wiki-diff-current { outline: 2px solid rgb(var(--wiki-diff-ins)); outline-offset: 2px; }
-#wiki-diff-nav { position: fixed; right: 1rem; bottom: 1rem; z-index: 100; display: flex; gap: 0.25rem; align-items: center; padding: 0.25rem 0.5rem; background: var(--light); border: 1px solid var(--lightgray); border-radius: 6px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); font-size: 0.85rem; color: var(--darkgray); }
-#wiki-diff-nav button { font: inherit; color: inherit; background: none; border: 1px solid var(--lightgray); border-radius: 4px; padding: 0.1rem 0.5rem; cursor: pointer; }
-#wiki-diff-nav button[aria-pressed="true"] { background: rgba(var(--wiki-diff-ins), 0.2); border-color: rgb(var(--wiki-diff-ins)); }
+
+/* 견본. 범례와 배너에서 블록 표시를 줄여 그린다. */
+.wiki-diff-swatch {
+  display: inline-block;
+  flex: none;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 2px;
+}
+.wiki-diff-swatch[data-kind="added"] { background: var(--wiki-diff-solid) left / 3px 100% no-repeat, var(--wiki-diff-add-word); }
+.wiki-diff-swatch[data-kind="changed"] {
+  background: repeating-linear-gradient(to bottom, var(--wiki-diff-add) 0 3px, transparent 3px 5px) left / 3px 100% no-repeat;
+  box-shadow: inset 0 0 0 1px var(--lightgray);
+}
+.wiki-diff-swatch[data-kind="removed"] { background: var(--wiki-diff-removed) left / 3px 100% no-repeat, var(--wiki-diff-del-word); }
+
+/* 대문 배너 */
+.wiki-diff-banner {
+  margin: 1rem 0 2rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 5px;
+}
+.wiki-diff-banner p { margin: 0; }
+.wiki-diff-banner-title { color: var(--dark); font-weight: 600; }
+.wiki-diff-banner-meta, .wiki-diff-banner-empty { margin-top: 0.25rem !important; color: var(--gray); font-size: 0.9em; }
+.wiki-diff-banner-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem 1.5rem;
+  margin-top: 1rem;
+}
+.wiki-diff-banner-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--dark);
+  font-size: 0.9em;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.wiki-diff-banner-list { margin: 0.35rem 0 0; padding-left: 1.25rem; }
+.wiki-diff-banner-list li { margin: 0.1rem 0; }
+.wiki-diff-banner-removed li { color: var(--gray); text-decoration: line-through 1px; }
+
+/* 오른쪽 아래 막대. 페이지 끝의 내용을 가리지 않게 막대가 있을 때만 아래 여백을 둔다. */
+body:has(#wiki-diff-nav) { padding-bottom: 7rem; }
+#wiki-diff-nav {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 900;
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.6rem 0.7rem;
+  background: var(--light);
+  color: var(--darkgray);
+  border: 1px solid var(--lightgray);
+  border-radius: 5px;
+  box-shadow: 0 6px 24px color-mix(in srgb, var(--dark) 14%, transparent);
+  font-family: var(--bodyFont);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+.wiki-diff-nav-row { display: flex; align-items: center; gap: 0.4rem; }
+.wiki-diff-nav-count { min-width: 6.5em; color: var(--dark); font-weight: 600; white-space: nowrap; }
+.wiki-diff-nav-page { min-width: 6.5em; color: var(--gray); white-space: nowrap; }
+.wiki-diff-nav-rule { align-self: stretch; width: 1px; margin: 0 0.15rem; background: var(--lightgray); }
+#wiki-diff-nav button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.55rem;
+  font: inherit;
+  color: var(--dark);
+  background: transparent;
+  border: 1px solid var(--lightgray);
+  border-radius: 5px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+#wiki-diff-nav button:hover:not(:disabled) { background: var(--highlight); border-color: var(--secondary); }
+#wiki-diff-nav button:active:not(:disabled) { transform: translateY(1px); }
+#wiki-diff-nav button:focus-visible { outline: 2px solid var(--secondary); outline-offset: 1px; }
+#wiki-diff-nav button:disabled { color: var(--gray); opacity: 0.45; cursor: default; }
+#wiki-diff-nav [role="switch"] { border-color: transparent; padding-left: 0.3rem; }
+.wiki-diff-switch {
+  position: relative;
+  width: 1.75rem;
+  height: 1rem;
+  border-radius: 1rem;
+  background: var(--lightgray);
+  transition: background-color 0.15s;
+}
+.wiki-diff-switch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(1rem - 4px);
+  height: calc(1rem - 4px);
+  border-radius: 50%;
+  background: var(--light);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--dark) 30%, transparent);
+  transition: transform 0.15s;
+}
+[aria-checked="true"] > .wiki-diff-switch { background: var(--secondary); }
+[aria-checked="true"] > .wiki-diff-switch::after { transform: translateX(0.75rem); }
+.wiki-diff-nav-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.8rem; color: var(--gray); font-size: 0.8rem; }
+.wiki-diff-nav-legend > span { display: inline-flex; align-items: center; gap: 0.35rem; }
+.wiki-diff-nav-legend kbd {
+  padding: 0 0.3rem;
+  font-family: var(--codeFont);
+  font-size: 0.75rem;
+  color: var(--darkgray);
+  border: 1px solid var(--lightgray);
+  border-radius: 3px;
+}
+.wiki-diff-nav-keys { margin-left: auto; }
+@media (max-width: 800px) {
+  #wiki-diff-nav { left: 0.5rem; right: 0.5rem; bottom: max(0.5rem, env(safe-area-inset-bottom)); }
+  .wiki-diff-nav-keys { display: none !important; }
+  .wiki-diff-nav-count, .wiki-diff-nav-page { min-width: 0; }
+  .wiki-diff-nav-page { margin-left: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wiki-diff-switch, .wiki-diff-switch::after { transition: none; }
+}
 `
 
 // ---------------------------------------------------------------------------------------------------
@@ -863,7 +1085,8 @@ const SCRIPT = `(() => {
     if (current) current.classList.remove("wiki-diff-current")
     current = mark
     current.classList.add("wiki-diff-current")
-    current.scrollIntoView({ block: "center", behavior: smooth ? "smooth" : "auto" })
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches
+    current.scrollIntoView({ block: "center", behavior: smooth && !still ? "smooth" : "auto" })
     render()
   }
 
@@ -887,6 +1110,15 @@ const SCRIPT = `(() => {
     else location.assign(url)
   }
 
+  // 이 방향으로 갈 곳이 있는지. 페이지 안에 없으면 옆 페이지를 본다.
+  function canMove(step) {
+    const marks = marksOf()
+    const at = marks.indexOf(current)
+    if (at >= 0 ? marks[at + step] : marks.length > 0) return true
+    const page = pages.indexOf(slug())
+    return page < 0 ? pages.length > 0 : pages[page + step] !== undefined
+  }
+
   function render() {
     const bar = document.getElementById("wiki-diff-nav")
     if (!bar) return
@@ -894,9 +1126,11 @@ const SCRIPT = `(() => {
     const at = marks.indexOf(current)
     const page = pages.indexOf(slug())
     bar.querySelector("[data-count]").textContent =
-      (at < 0 ? "–" : at + 1) + "/" + marks.length +
-      " · 페이지 " + (page < 0 ? "–" : page + 1) + "/" + pages.length
-    bar.querySelector("[data-only]").setAttribute("aria-pressed", String(readOnly()))
+      marks.length === 0 ? "바뀐 블록 없음" : at < 0 ? "변경 " + marks.length + "개" : "변경 " + (at + 1) + " / " + marks.length
+    bar.querySelector("[data-page]").textContent =
+      page < 0 ? "페이지 " + pages.length + "개" : "페이지 " + (page + 1) + " / " + pages.length
+    bar.querySelector("[data-only]").setAttribute("aria-checked", String(readOnly()))
+    for (const button of bar.querySelectorAll("[data-step]")) button.disabled = !canMove(Number(button.dataset.step))
   }
 
   async function loadPages() {
@@ -922,11 +1156,24 @@ const SCRIPT = `(() => {
     markQuiet(root)
     const bar = document.createElement("div")
     bar.id = "wiki-diff-nav"
+    bar.setAttribute("role", "toolbar")
+    bar.setAttribute("aria-label", "바뀐 곳 훑기")
     bar.innerHTML =
-      '<button type="button" data-step="-1" title="이전 변경 (p)">↑</button>' +
-      '<span data-count></span>' +
-      '<button type="button" data-step="1" title="다음 변경 (n)">↓</button>' +
-      '<button type="button" data-only aria-pressed="false">바뀐 곳만</button>'
+      '<div class="wiki-diff-nav-row">' +
+      '<button type="button" data-step="-1" aria-label="이전 변경" title="이전 변경 (p)">↑</button>' +
+      '<button type="button" data-step="1" aria-label="다음 변경" title="다음 변경 (n)">↓</button>' +
+      '<span class="wiki-diff-nav-count" data-count aria-live="polite"></span>' +
+      '<span class="wiki-diff-nav-page" data-page></span>' +
+      '<span class="wiki-diff-nav-rule"></span>' +
+      '<button type="button" role="switch" aria-checked="false" data-only>' +
+      '<span class="wiki-diff-switch"></span>바뀐 곳만</button>' +
+      '</div>' +
+      '<div class="wiki-diff-nav-legend">' +
+      '<span><span class="wiki-diff-swatch" data-kind="added"></span>새 블록</span>' +
+      '<span><span class="wiki-diff-swatch" data-kind="changed"></span>바뀐 블록</span>' +
+      '<span><span class="wiki-diff-swatch" data-kind="removed"></span>지운 블록</span>' +
+      '<span class="wiki-diff-nav-keys"><kbd>n</kbd><kbd>p</kbd> 다음, 이전</span>' +
+      '</div>'
     bar.addEventListener("click", (event) => {
       const button = event.target.closest("button")
       if (!button) return
