@@ -9,7 +9,7 @@ verified: 2026-09-27
 
 ## 정의
 
-**CAN**(Controller Area Network)은 도로 차량의 ECU 사이에서 디지털 정보를 주고받는 직렬 통신 프로토콜이다.[@iso-11898-1993] Bosch 소속 연구진이 1986년 SAE 국제 회의에서 발표했고[@sae-860391-1986], 1993년에 ISO 11898로 국제 표준이 됐다.[@iso-11898-1993] CiA는 이 1986년 2월의 발표를 CAN이 태어난 때로 적는다.[@cia-can-history-2026] 지금은 ISO 11898 시리즈가 CAN의 데이터 링크 계층과 물리 계층을 규정한다.[@iso-11898-1-obp-2024]
+**CAN**(Controller Area Network)은 도로 차량의 ECU 사이에서 디지털 정보를 주고받는 직렬 통신 프로토콜이다.[@iso-11898-1993] Bosch 소속 연구진이 1986년 SAE 국제 회의에서 발표했고[@sae-860391-1986], 1993년에 ISO 11898로 국제 표준이 됐다.[@iso-11898-1993] CiA에 따르면 CAN은 이 1986년 2월의 발표로 태어났다.[@cia-can-history-2026] 지금은 ISO 11898 시리즈가 CAN의 데이터 링크 계층과 물리 계층을 규정한다.[@iso-11898-1-obp-2024]
 
 CAN은 멀티마스터 방식이라, 버스가 비어 있으면 어느 노드든 프레임을 보내기 시작할 수 있다.[@iso-11898-1-obp-2024] 식별자는 수신자를 가리키지 않고 데이터의 뜻을 나타내며, 버스를 차지할 때의 우선순위도 정한다. 프레임은 모든 노드가 받고, 그 데이터를 쓸지는 노드마다 메시지 필터링으로 정한다.[@bosch-can-2-0-1991]
 
@@ -25,7 +25,7 @@ ISO 11898-1은 CAN 프로토콜 컨트롤러를, ISO 11898-2는 CAN 트랜시버
 
 ### 노드 구성
 
-[[can-controller|CAN 컨트롤러]]는 호스트 CPU에 붙어 ISO 11898-1에 따라 통신하고, 버스에 연결하려면 트랜시버가 따로 필요하다.[@bosch-m-can-2023] CAN 컨트롤러는 STM32F103xx·STM32F105xx·STM32F107xx의 bxCAN(Basic Extended CAN)처럼 MCU에 주변장치로 들어가기도 하고[@st-rm0008-2021], MCP2515처럼 SPI(Serial Peripheral Interface)로 MCU에 붙는 단독 칩으로 나오기도 한다.[@microchip-mcp2515-2019] NXP는 CAN 컨트롤러가 MCU에 통합되는 경우가 많다고 적는다.[@nxp-can-101-2021] [[can-transceiver|CAN 트랜시버]]는 컨트롤러의 디지털 신호를 버스의 차동 신호로 바꾸고, 버스의 차동 전압을 다시 논리 레벨로 되돌린다.[@microchip-mcp2561-2fd-2014]
+[[can-controller|CAN 컨트롤러]]는 호스트 CPU에 붙어 ISO 11898-1에 따라 통신하고, 버스에 연결하려면 트랜시버가 따로 필요하다.[@bosch-m-can-2023] CAN 컨트롤러는 STM32F103xx·STM32F105xx·STM32F107xx의 bxCAN(Basic Extended CAN)처럼 MCU에 주변장치로 들어가기도 하고[@st-rm0008-2021], MCP2515처럼 SPI(Serial Peripheral Interface)로 MCU에 붙는 단독 칩으로 나오기도 한다.[@microchip-mcp2515-2019] NXP에 따르면 CAN 컨트롤러는 MCU에 통합되는 경우가 많다.[@nxp-can-101-2021] [[can-transceiver|CAN 트랜시버]]는 컨트롤러의 디지털 신호를 버스의 차동 신호로 바꾸고, 버스의 차동 전압을 다시 논리 레벨로 되돌린다.[@microchip-mcp2561-2fd-2014]
 
 ![[diagrams/can-node-bus.svg]]
 
@@ -52,4 +52,4 @@ ISO 11898-1:2024는 classical 프레임만 지원하는 구현을 둘로 나눈�
 버스를 길게 하려면 비트율을 낮춰야 한다.[@ti-tcan1042-q1-2021]
 
 > [!note]
-> Bosch의 CAN 2.0 규격은 버스 매체를 정하지 않는다. 단선과 접지, 차동 두 선, 광섬유 등을 예로 든다.[@bosch-can-2-0-1991]
+> Bosch의 CAN 2.0 규격은 버스 매체를 정하지 않는다. 매체의 예는 단선과 접지, 차동 두 선, 광섬유 등이다.[@bosch-can-2-0-1991]

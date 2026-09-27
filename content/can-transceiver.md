@@ -43,7 +43,7 @@ recessive 출력 전압은 고속 트랜시버 TJA1042가 두 선 모두 약 0.5
 
 ![[diagrams/can-recessive-voltage-hs-ls.svg]]
 
-TJA1055는 dominant에서는 반대로 CAN_H를 CAN_L보다 높게 구동한다.[@nxp-tja1055-2013] NXP의 TJA1055T 앱노트는 고속 트랜시버와 종단 저항을 단 CAN 도구를 내결함성 CAN 망에 이으면 두 선 사이에 종단 저항이 생겨, 시스템이 줄곧 [[can-physical-layer|단선 모드]]로 동작한다고 설명한다.[@nxp-ah0801-2016]
+TJA1055는 dominant에서는 반대로 CAN_H를 CAN_L보다 높게 구동한다.[@nxp-tja1055-2013] TJA1055T로 꾸린 내결함성 CAN 망은 고속 트랜시버와 종단 저항을 단 CAN 도구를 이으면 두 선 사이에 종단 저항이 생겨, 줄곧 [[can-physical-layer|단선 모드]]로 동작한다.[@nxp-ah0801-2016]
 
 트랜시버 지연 보상이 없으면, CAN FD 데이터 구간의 비트율은 송신 노드가 자기가 낸 비트를 그 비트의 샘플 포인트까지 되받아야 한다는 조건에 묶인다.[@bosch-can-fd-1-0-2012] CAN FD 트랜시버는 데이터 구간의 높은 비트율을 지원하려고 loop delay symmetry를 보증한다.[@microchip-mcp2561-2fd-2014][@nxp-tja1145-2018]
 

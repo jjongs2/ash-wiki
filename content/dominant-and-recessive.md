@@ -11,7 +11,7 @@ verified: 2026-09-26
 
 ![[diagrams/can-bus-state-wired-and.svg]]
 
-Bosch CAN 2.0 규격은 버스를 wired-AND로 구현하는 경우를 예로 들어, 이때 dominant가 논리 0, recessive가 논리 1이 된다고 설명한다.[@bosch-can-2-0-1991]
+Bosch CAN 2.0 규격은 버스를 wired-AND로 구현하는 경우를 예로 들어, 이때 dominant를 논리 0, recessive를 논리 1로 둔다.[@bosch-can-2-0-1991]
 
 ## 구조·동작
 
