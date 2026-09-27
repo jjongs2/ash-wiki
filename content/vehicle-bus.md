@@ -41,7 +41,7 @@ SAE J2057/1은 차량 네트워크를 Class A, Class B, Class C로 나눈다.[@s
 
 SAE 기술 논문 931808에 따르면 데이터율 요구가 다른 하위 네트워크들은 브리지나 게이트웨이로 이어져 차량 전체의 데이터 일관성을 지킨다. 이 논문은 그 예로 J1850(Class B)과 CAN(Class C)을 잇는 브리지를 다룬다.[@sae-931808-1993]
 
-LIN의 commander 노드는 LIN 프레임을 스케줄하고, 백본 네트워크에도 연결된다.[@iso-17987-1-obp-2025] **commander**는 ISO 17987의 2016년판이 마스터라 부르던 노드다.[@iso-17987-4-obp-2025]
+LIN의 **commander**는 LIN 프레임을 스케줄하고 백본 네트워크에도 연결되는 노드다.[@iso-17987-1-obp-2025] ISO 17987-1:2016은 commander를 master라 불렀고, 2025년판에서 지금 이름으로 바뀌었다.[@iso-17987-1-obp-2025][@iso-17987-1-obp-2016]
 
 AUTOSAR의 PDU Router는 한 통신 인터페이스 모듈로 받은 I-PDU(Interaction Layer Protocol Data Unit)를 고치지 않고 다른 통신 인터페이스 모듈로 보내는 게이트웨이 기능을 제공한다. CAN과 FlexRay 사이, CAN과 LIN 사이의 게이트웨이가 그 예다.[@autosar-cp-sws-pdurouter-2025]
 

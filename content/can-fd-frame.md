@@ -40,4 +40,4 @@ CAN FD 포맷 프레임에서 classical 포맷의 RTR(Remote Transmission Reques
 
 CAN FD 포맷에서 CRC 구분자는 recessive 1비트나 2비트일 수 있다. 송신 노드는 1비트만 보내지만, [[can-acknowledgement|ACK]] 슬롯을 시작하는 dominant 에지 앞에 recessive 2비트가 와도 받아들인다. 이 여유는 노드마다 송신 노드와의 위상차가 달라서, 짧은 비트 시간에서 긴 비트 시간으로 돌아갈 때 그 차이를 보상하려고 둔다.[@bosch-can-fd-1-0-2012]
 
-ISO 11898-1:2024는 classical 포맷만 지원하는 구현을 CAN FD 포맷을 용인하는지에 따라 둘로 나눈다. 용인하지 않는 구현은 CAN FD 포맷을 지원하는 구현과 classical 포맷만 쓸 때 통신할 수 있다. CAN FD 포맷을 주고받지 못해도 방해하지 않는 구현은 FD tolerant라 한다.[@iso-11898-1-obp-2024] ISO 11898-1:2015는 용인하지 않는 구현을 CAN FD 프레임을 방해하는 FD intolerant로 정의했고, 2024년판은 이 용어를 두지 않고 구현 선택지로만 적는다.[@iso-11898-1-obp-2024][@iso-11898-1-obp-2015]
+ISO 11898-1:2024는 classical 포맷만 지원하는 구현을 CAN FD 포맷을 용인하는지에 따라 둘로 나눈다. CAN FD 포맷을 주고받지 못해도 방해하지 않는 구현을 **FD tolerant**라 한다.[@iso-11898-1-obp-2024] ISO 11898-1:2015는 용인하지 않는 구현을 CAN FD 프레임을 방해하는 FD intolerant로 정의했고, 2024년판은 이 용어를 두지 않는다.[@iso-11898-1-obp-2024][@iso-11898-1-obp-2015]
