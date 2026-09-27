@@ -49,7 +49,5 @@ Classical CAN의 비트율은 최대 1 Mbit/s다.[@bosch-can-2-0-1991] [[can-fd|
 
 ISO 11898-1:2024는 classical 프레임만 지원하는 구현을 둘로 나눈다. CAN FD 프레임을 용인하지 않는 구현과, 주고받지는 못해도 방해하지 않는 **FD tolerant** 구현이다. 용인하지 않는 구현도 classical 프레임만 쓰는 동안에는 CAN FD나 CAN XL 노드와 통신할 수 있다.[@iso-11898-1-obp-2024]
 
-버스를 길게 하려면 비트율을 낮춰야 한다.[@ti-tcan1042-q1-2021]
-
 > [!note]
 > Bosch의 CAN 2.0 규격은 버스 매체를 정하지 않고, 단선과 접지, 차동 두 선, 광섬유 등을 예로 든다.[@bosch-can-2-0-1991]

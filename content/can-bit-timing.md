@@ -2,7 +2,7 @@
 title: CAN 비트 타이밍
 tags:
   - network/can
-verified: 2026-09-26
+verified: 2026-09-27
 ---
 
 ## 정의
@@ -18,6 +18,12 @@ verified: 2026-09-26
 - **SYNC_SEG**: 버스의 에지가 이 구간에 오리라고 기대하는 구간이다.[@bosch-can-2-0-1991]
 - **PROP_SEG**: 버스 선의 신호 전파 시간과 송수신 회로(입력 비교기, 출력 드라이버)의 지연을 보상한다.[@bosch-can-2-0-1991]
 - **PHASE_SEG1**, **PHASE_SEG2**: 에지의 위상 오차를 보상하며, [[can-synchronization|재동기화]] 때 늘거나 줄어든다.[@bosch-can-2-0-1991]
+
+PROP_SEG의 길이 $t_\mathrm{PROP\_SEG}$는 버스 선의 신호 전파 시간 $t_\mathrm{bus}$, 입력 비교기 지연 $t_\mathrm{cmp}$, 출력 드라이버 지연 $t_\mathrm{drv}$를 더한 값의 두 배다.[@bosch-can-2-0-1991]
+
+$$
+t_\mathrm{PROP\_SEG} = 2\,(t_\mathrm{bus} + t_\mathrm{cmp} + t_\mathrm{drv})
+$$
 
 ### 샘플 포인트
 
