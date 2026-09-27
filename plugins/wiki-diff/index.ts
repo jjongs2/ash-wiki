@@ -71,8 +71,8 @@ export type Block = {
   text: string
   // 지운 블록으로 보일 원본
   source: string
-  // 도해 임베드면 가리키는 파일(content 폴더 기준)
-  embed?: string
+  // 자기 내용에 든 도해 임베드가 가리키는 파일(content 폴더 기준)
+  diagrams: string[]
   // 표 행이면 칸마다의 원본
   cells?: string[]
   // 표시하려고 노드를 감쌌으면 그 감싼 노드
@@ -87,15 +87,15 @@ const offsets = (node: Nodes): Offsets => ({
 
 type Wikilink = { type: "wikilink"; embedded: boolean; path: string }
 
-// 문단 하나가 `![[….svg]]` 임베드 하나뿐이면 그 경로
-function embedTarget(node: RootContent): string | undefined {
-  if (node.type !== "paragraph") return undefined
-  const children = node.children.filter(
-    (child) => !(child.type === "text" && child.value.trim() === ""),
-  )
-  const link = children[0] as unknown as Wikilink | undefined
-  if (children.length !== 1 || link?.type !== "wikilink" || !link.embedded) return undefined
-  return link.path.toLowerCase().endsWith(".svg") ? link.path : undefined
+// 블록의 자기 내용에 든 `![[….svg]]` 임베드의 경로. 문단 하나뿐인 도해도, 목록 항목이나 글 가운데의 도해도 든다.
+function diagramsIn(nodes: readonly RootContent[]): string[] {
+  return nodes.flatMap((node) => {
+    const link = node as unknown as Wikilink
+    if (link.type === "wikilink") {
+      return link.embedded && link.path.toLowerCase().endsWith(".svg") ? [link.path] : []
+    }
+    return "children" in node ? diagramsIn(node.children as RootContent[]) : []
+  })
 }
 
 function block(
@@ -131,7 +131,7 @@ function block(
     tokens,
     text,
     source: shown,
-    embed: embedTarget(node),
+    diagrams: diagramsIn(own),
     cells,
   }
 }
@@ -203,7 +203,7 @@ export function alignBlocks(
       for (let k = 0; k < part.count; k++) {
         const a = before[i++]
         const b = after[j++]
-        const svg = b.embed !== undefined && embedChanged(b.embed)
+        const svg = b.diagrams.some(embedChanged)
         ops.push({ type: svg ? "changed" : "same", before: a, after: b })
       }
     }

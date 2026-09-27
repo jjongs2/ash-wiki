@@ -181,6 +181,16 @@ describe("블록 맞추기", () => {
       "same:![[diagrams/b.svg]]",
     ])
   })
+
+  test("목록 항목 안이나 글 가운데의 도해 임베드도 SVG가 바뀌면 바뀜이다", () => {
+    const source = "- ![[diagrams/a.svg]]\n- 글 ![[diagrams/a.svg]]\n- 글 ![[diagrams/b.svg]]"
+    const changed = (target: string) => target === "diagrams/a.svg"
+    assert.deepStrictEqual(ops(source, source, changed), [
+      "changed:![[diagrams/a.svg]]",
+      "changed:글 ![[diagrams/a.svg]]",
+      "same:글 ![[diagrams/b.svg]]",
+    ])
+  })
 })
 
 describe("어절 diff", () => {
