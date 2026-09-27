@@ -66,6 +66,7 @@ npm run check:content
 - 인용한 키는 모두 `bib/`에 엔트리가 있어야 합니다. `검사 citation`
 - 엔트리에는 아래 표의 필드가 모두 있어야 합니다. `검사 citation`
 - 인용은 `[1]` 같은 번호로 렌더되고, 인용한 페이지 하단에 참고문헌이 붙습니다. `검사 output`
+- 본문의 출처 표시는 [위키 검증의 좁혀 쓰기](wiki-verification.md#좁혀-쓰기)를 따릅니다. `리뷰`
 
 <!-- table: bib-fields -->
 
