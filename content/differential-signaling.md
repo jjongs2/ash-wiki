@@ -27,7 +27,7 @@ SN65HVD23x의 전형적인 응용에서 CAN 버스는 특성 임피던스 120 Ω
 
 ### 쓰이는 곳
 
-고속 [[can|CAN]]은 CAN_H와 CAN_L 두 선의 전압 차로 버스 상태를 나타낸다.[@iso-11898-2-obp-2026] 트랜시버 SN65HVD23x는 [[dominant-and-recessive|dominant]]에서 두 선을 차동으로 구동하고, recessive일 때는 0.5 VCC로 바이어스만 한다.[@ti-sn65hvd230-2018]
+고속 [[can|CAN]]은 CAN_H와 CAN_L 두 선의 전압 차로 버스 상태를 나타낸다.[@iso-11898-2-obp-2026] [[can-transceiver|트랜시버]] SN65HVD23x는 [[dominant-and-recessive|dominant]]에서 두 선을 차동으로 구동하고, recessive일 때는 0.5 VCC로 바이어스만 한다.[@ti-sn65hvd230-2018]
 
 RS-485 수신기 THVD1450은 두 입력 선 A와 B의 $V_\mathrm{diff}$로 출력을 정한다. 이때 $V_\mathrm{diff} = V_\mathrm{A} - V_\mathrm{B}$다.[@ti-thvd1450-2019]
 

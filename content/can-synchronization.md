@@ -13,7 +13,7 @@ verified: 2026-09-26
 
 ### 하드 동기화
 
-버스가 비어 있는 동안 recessive에서 dominant로 바뀌는 에지, 곧 SOF(Start of Frame)의 에지에서 노드는 하드 동기화를 한다. **하드 동기화**는 비트 시간을 SYNC_SEG부터 새로 시작해, 그 에지가 SYNC_SEG 안에 오게 한다.[@bosch-can-2-0-1991]
+버스가 비어 있는 동안 [[dominant-and-recessive|recessive에서 dominant]]로 바뀌는 에지, 곧 SOF(Start of Frame)의 에지에서 노드는 하드 동기화를 한다. **하드 동기화**는 비트 시간을 SYNC_SEG부터 새로 시작해, 그 에지가 SYNC_SEG 안에 오게 한다.[@bosch-can-2-0-1991]
 
 ### 재동기화
 

@@ -7,7 +7,7 @@ verified: 2026-09-26
 
 ## 정의
 
-**리모트 프레임**은 [[can|CAN]]에서 어떤 데이터를 받고 싶은 수신 노드가, 그 데이터의 송신 노드에게 같은 식별자의 데이터 프레임을 보내 달라고 요청하는 프레임이다.[@bosch-can-2-0-1991]
+**리모트 프레임**은 [[can|CAN]]에서 어떤 데이터를 받고 싶은 수신 노드가, 그 데이터의 송신 노드에게 같은 식별자의 [[can-frame|데이터 프레임]]을 보내 달라고 요청하는 프레임이다.[@bosch-can-2-0-1991]
 
 ## 구조·동작
 
@@ -15,7 +15,7 @@ verified: 2026-09-26
 
 리모트 프레임은 SOF(Start of Frame), 중재 필드, 제어 필드, [[can-crc|CRC]] 필드, [[can-acknowledgement|ACK]] 필드, EOF(End of Frame)의 여섯 필드로 이루어진다. 데이터 프레임과 달리 데이터 필드가 없다.[@bosch-can-2-0-1991]
 
-중재 필드의 RTR(Remote Transmission Request) 비트가 두 프레임을 가른다. RTR은 데이터 프레임에서 dominant, 리모트 프레임에서 recessive다. 확장 포맷에서도 RTR 비트는 중재 필드 끝에 오고, 규칙은 같다.[@bosch-can-2-0-1991]
+중재 필드의 RTR(Remote Transmission Request) 비트가 두 프레임을 가른다. RTR은 데이터 프레임에서 [[dominant-and-recessive|dominant]], 리모트 프레임에서 recessive다. 확장 포맷에서도 RTR 비트는 중재 필드 끝에 오고, 규칙은 같다.[@bosch-can-2-0-1991]
 
 ![[diagrams/can-data-remote-frame-fields.svg]]
 

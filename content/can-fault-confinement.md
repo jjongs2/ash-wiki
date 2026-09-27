@@ -17,8 +17,8 @@ verified: 2026-09-26
 
 주요 규칙은 다음과 같다.
 
-- 수신 노드가 오류를 찾으면 REC가 1 오른다. 다만 active 오류 플래그나 오버로드 플래그를 내는 동안 찾은 비트 오류는 여기서 빠진다.[@bosch-can-2-0-1991]
-- 수신 노드가 오류 플래그를 낸 직후 첫 비트로 dominant를 읽으면 REC가 8 오른다.[@bosch-can-2-0-1991]
+- 수신 노드가 오류를 찾으면 REC가 1 오른다. 다만 active 오류 플래그나 오버로드 플래그를 내는 동안 찾은 [[can-error-detection|비트 오류]]는 여기서 빠진다.[@bosch-can-2-0-1991]
+- 수신 노드가 오류 플래그를 낸 직후 첫 비트로 [[dominant-and-recessive|dominant]]를 읽으면 REC가 8 오른다.[@bosch-can-2-0-1991]
 - 송신 노드가 오류 플래그를 내면 TEC가 8 오른다.[@bosch-can-2-0-1991]
 - 송신에 성공하면 TEC가 1 내려간다. 0이면 그대로다.[@bosch-can-2-0-1991]
 - 수신에 성공하면 REC가 1 내려간다. $\mathrm{REC} > 127$이면 119에서 127 사이의 값으로 되돌린다.[@bosch-can-2-0-1991]
@@ -46,7 +46,7 @@ TEC가 8 오르는 규칙에는 예외가 있다. error passive 송신 노드가
 
 REC만으로는 bus-off가 되지 않는다. bus-off 조건에는 TEC만 들어간다.[@bosch-can-2-0-1991]
 
-Bosch CAN 2.0 규격은 계수기 값이 약 96을 넘으면 버스가 심하게 교란된 것으로 보고, 이를 검사할 수단을 두기를 권한다.[@bosch-can-2-0-1991] 이 값에 경고를 두는 컨트롤러의 예는 다음과 같다.
+Bosch CAN 2.0 규격은 계수기 값이 약 96을 넘으면 버스가 심하게 교란된 것으로 보고, 이를 검사할 수단을 두기를 권한다.[@bosch-can-2-0-1991] 이 값에 경고를 두는 [[can-controller|컨트롤러]]의 예는 다음과 같다.
 
 - MCP2515는 $\mathrm{TEC} \ge 96$이거나 $\mathrm{REC} \ge 96$이면 경고 플래그 EWARN을 세우고, $\mathrm{TEC} < 96$이고 $\mathrm{REC} < 96$이 되면 내린다.[@microchip-mcp2515-2019]
 - STM32F10x의 bxCAN은 $\mathrm{TEC} \ge 96$이거나 $\mathrm{REC} \ge 96$이면 경고 플래그 EWGF를 세운다.[@st-rm0008-2021]

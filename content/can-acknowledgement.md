@@ -7,7 +7,7 @@ verified: 2026-09-26
 
 ## 정의
 
-**CAN ACK**(Acknowledgement)는 [[can|CAN]] 프레임을 제대로 받은 수신 노드가 같은 프레임의 ACK 슬롯에서 dominant 비트를 보내, 송신 노드에 그 사실을 알리는 것이다. 데이터 프레임과 리모트 프레임에서 ACK 필드는 [[can-crc|CRC]] 필드 바로 뒤에 온다.[@bosch-can-2-0-1991]
+**CAN ACK**(Acknowledgement)는 [[can|CAN]] 프레임을 제대로 받은 수신 노드가 같은 프레임의 ACK 슬롯에서 dominant 비트를 보내, 송신 노드에 그 사실을 알리는 것이다. [[can-frame|데이터 프레임]]과 [[remote-frame|리모트 프레임]]에서 ACK 필드는 [[can-crc|CRC]] 필드 바로 뒤에 온다.[@bosch-can-2-0-1991]
 
 ## 구조·동작
 
@@ -21,7 +21,7 @@ CRC 시퀀스가 맞는 프레임을 받은 노드는 모두 ACK 슬롯에서 do
 
 ### ACK 오류
 
-송신 노드는 ACK 슬롯에서 dominant 비트를 읽지 못하면 **ACK 오류**로 판정하고, 다음 비트부터 오류 플래그를 보낸다. 버스에 송신 노드 하나만 있거나, CRC 시퀀스가 맞는 프레임을 받은 수신 노드가 하나도 없을 때 이렇게 된다.[@bosch-can-2-0-1991]
+송신 노드는 ACK 슬롯에서 dominant 비트를 읽지 못하면 **ACK 오류**로 판정하고, 다음 비트부터 [[can-error-frame|오류 플래그]]를 보낸다. 버스에 송신 노드 하나만 있거나, CRC 시퀀스가 맞는 프레임을 받은 수신 노드가 하나도 없을 때 이렇게 된다.[@bosch-can-2-0-1991]
 
 ACK 슬롯에서 송신 노드가 recessive를 보내고 dominant를 읽는 것은 비트 오류가 아니다. [[can-error-detection|CAN 오류 검출]]의 비트 오류 규칙에 있는 예외다.[@bosch-can-2-0-1991]
 
