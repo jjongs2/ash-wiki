@@ -2,7 +2,7 @@
 title: 차량 버스
 tags:
   - network
-verified: 2026-09-26
+verified: 2026-09-27
 ---
 
 ## 정의
@@ -35,7 +35,7 @@ FlexRay의 비트율은 최대 10 Mbit/s이며, FlexRay는 차량의 고속 제�
 
 ![[diagrams/vehicle-bus-bit-rates.svg]]
 
-SAE J2057/1은 차량 네트워크를 Class A, Class B, Class C로 나누고 그 차이를 설명한다.[@sae-j2057-1-2022] SAE 기술 논문 931808은 차량 내 네트워크가 저속·중속·고속의 데이터율 요구를 맡는 하위 네트워크로 이루어질 수 있다고 하고, 이 셋을 각각 SAE Class A, B, C라 부른다.[@sae-931808-1993]
+SAE J2057/1은 차량 네트워크를 Class A, Class B, Class C로 나누고 그 차이를 설명한다.[@sae-j2057-1-2022] SAE 기술 논문 931808은 차량 내 네트워크가 저속·중속·고속의 데이터율 요구를 맡는 하위 네트워크로 이루어질 수 있다고 하고, 이 셋을 각각 SAE Class A, B, C라 부른다.[@sae-931808-1993] Freescale(현 NXP)의 차량 네트워킹 브로셔는 한 차량에서 CAN, FlexRay, LIN을 함께 쓰는 예를 들고, LIN을 CAN의 대역폭이 필요 없는 센서와 액추에이터를 잇는 저비용 하위 네트워크로 설명한다.[@freescale-brinvehiclenet-2006]
 
 ### 버스 사이 연결
 

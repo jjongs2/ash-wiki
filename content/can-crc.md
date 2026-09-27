@@ -2,7 +2,7 @@
 title: CAN CRC
 tags:
   - network/can
-verified: 2026-09-26
+verified: 2026-09-27
 ---
 
 ## 정의
@@ -33,7 +33,7 @@ $$
 
 ### 검출 능력
 
-CRC를 포함한 CAN의 오류 검출 수단(모니터링, CRC, 비트 스터핑, 프레임 검사)은 한 메시지 안에서 임의로 흩어진 오류 5개까지와, 길이 $l$(비트)이 $l < 15$인 버스트 오류를 모두 찾아낸다.[@bosch-can-2-0-1991] Bosch CAN FD 1.0에 따르면 classical CAN 프레임의 15비트 CRC도 CAN FD의 17비트·21비트 CRC와 마찬가지로 해밍 거리 6을 준다.[@bosch-can-fd-1-0-2012]
+CRC를 포함한 CAN의 오류 검출 수단(모니터링, CRC, 비트 스터핑, 프레임 검사)은 한 메시지 안에서 임의로 흩어진 오류 5개까지와, 길이 $l$(비트)이 $l < 15$인 버스트 오류를 모두 찾아낸다.[@bosch-can-2-0-1991] Bosch CAN FD 1.0에 따르면 classical CAN 프레임의 15비트 CRC도 CAN FD의 17비트·21비트 CRC와 마찬가지로 해밍 거리 6을 준다.[@bosch-can-fd-1-0-2012] Bosch 논문은 해밍 거리 6이 길이가 정해진 프레임에서 비트 반전 5개까지를 찾아낸다는 뜻이라고 설명한다. 다만 classical CAN에서는 스터프 조건을 만들고 없애는 비트 반전 두 개를 CRC가 찾지 못하는 드문 경우가 알려져 있다고 적는다.[@bosch-icc-can-fd-error-detection-2015]
 
 ## 비교·한계
 
