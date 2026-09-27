@@ -17,11 +17,11 @@ verified: 2026-09-27
 
 ### 토폴로지
 
-ISO 11898-1은 CAN 버스를 토폴로지를 가리지 않는 공유 매체로 정의한다.[@iso-11898-1-obp-2024] FlexRay는 점대점 연결, 선형 수동 버스, 수동 스타, 능동 스타 토폴로지를 지원한다.[@iso-17458-4-obp-2013]
+[[iso-11898-1|ISO 11898-1]]은 CAN 버스를 토폴로지를 가리지 않는 공유 매체로 정의한다.[@iso-11898-1-obp-2024] FlexRay는 점대점 연결, 선형 수동 버스, 수동 스타, 능동 스타 토폴로지를 지원한다.[@iso-17458-4-obp-2013]
 
 ### 버스 접근과 주소
 
-CAN에서 버스를 한꺼번에 쓰려는 노드가 여럿이면 경합이 생기고, ISO 11898-1은 이 경합을 식별자 기반 중재로 푼다.[@iso-11898-1-obp-2024] 노드들이 매체를 나눠 쓰는 방법은 [[bus-access-method|버스 접근 방식]]에서 다룬다.
+CAN에서 버스를 한꺼번에 쓰려는 노드가 여럿이면 경합이 생기고, ISO 11898-1은 이 경합을 [[can-identifier|식별자]] 기반 [[can-arbitration|중재]]로 푼다.[@iso-11898-1-obp-2024] 노드들이 매체를 나눠 쓰는 방법은 [[bus-access-method|버스 접근 방식]]에서 다룬다.
 
 CAN 식별자는 받을 노드를 가리키지 않고 데이터의 뜻을 나타낸다.[@bosch-can-2-0-1991] 이 방식은 [[message-addressing|메시지 주소 지정]]에서 다룬다.
 
@@ -29,7 +29,7 @@ CAN 식별자는 받을 노드를 가리키지 않고 데이터의 뜻을 나타
 
 LIN의 비트율은 최대 20 kbit/s이며, LIN은 차량의 저비용·저속 제어 응용을 위한 것이다.[@iso-17987-4-obp-2025]
 
-Classical CAN의 비트율은 최대 1 Mbit/s다.[@bosch-can-2-0-1991] ISO 11898-2:2016의 고속 PMA(Physical Medium Attachment)는 [[can-fd|CAN FD]]용으로 5 Mbit/s까지의 비트 타이밍 파라미터를 둔다.[@iso-11898-2-obp-2016] 저속 내결함성 CAN은 비트율 $R_\mathrm{b}$가 $40\,\mathrm{kbit/s} < R_\mathrm{b} \le 125\,\mathrm{kbit/s}$인 범위에서 쓴다.[@iso-11898-3-obp-2006]
+Classical CAN의 비트율은 최대 1 Mbit/s다.[@bosch-can-2-0-1991] [[iso-11898-2|ISO 11898-2]]:2016의 고속 PMA(Physical Medium Attachment)는 [[can-fd|CAN FD]]용으로 5 Mbit/s까지의 비트 타이밍 파라미터를 둔다.[@iso-11898-2-obp-2016] 저속 내결함성 CAN은 비트율 $R_\mathrm{b}$가 $40\,\mathrm{kbit/s} < R_\mathrm{b} \le 125\,\mathrm{kbit/s}$인 범위에서 쓴다.[@iso-11898-3-obp-2006]
 
 FlexRay의 비트율은 최대 10 Mbit/s이며, FlexRay는 차량의 고속 제어 응용을 위한 것이다.[@iso-17458-4-obp-2013]
 

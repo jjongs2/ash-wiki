@@ -15,7 +15,7 @@ verified: 2026-09-26
 
 데이터 프레임은 SOF(Start of Frame), 중재 필드, 제어 필드, 데이터 필드, [[can-crc|CRC]] 필드, [[can-acknowledgement|ACK]] 필드, EOF(End of Frame)의 일곱 필드로 이루어진다.[@bosch-can-2-0-1991]
 
-- SOF: dominant 비트 하나로 프레임의 시작을 알린다. 노드는 버스가 idle일 때만 송신을 시작할 수 있고, 모든 노드가 먼저 송신을 시작한 노드의 SOF 앞 에지에 동기를 맞춘다.[@bosch-can-2-0-1991]
+- SOF: [[dominant-and-recessive|dominant]] 비트 하나로 프레임의 시작을 알린다. 노드는 버스가 idle일 때만 송신을 시작할 수 있고, 모든 노드가 먼저 송신을 시작한 노드의 SOF 앞 에지에 [[can-synchronization|동기를 맞춘다]].[@bosch-can-2-0-1991]
 - 중재 필드: 기본 포맷에서는 [[can-identifier|식별자]]와 RTR(Remote Transmission Request) 비트로 이루어진다. RTR 비트는 데이터 프레임에서 dominant, 리모트 프레임에서 recessive다.[@bosch-can-2-0-1991]
 - 제어 필드: 예약 비트 둘과 데이터 필드의 바이트 수를 나타내는 [[data-length-code|DLC]] 4비트, 모두 6비트다. 예약 비트는 dominant로 보내지만 수신 노드는 dominant와 recessive를 모두 받아들인다.[@bosch-can-2-0-1991]
 - 데이터 필드: 0~8바이트이고, 바이트마다 최상위 비트부터 보낸다.[@bosch-can-2-0-1991]
@@ -35,9 +35,9 @@ verified: 2026-09-26
 
 ### 프레임 사이
 
-데이터 프레임과 리모트 프레임은 앞 프레임이 어떤 종류든 인터프레임 공간으로 앞 프레임과 떨어진다. 오류 프레임과 오버로드 프레임 앞에는 인터프레임 공간이 없다.[@bosch-can-2-0-1991]
+데이터 프레임과 리모트 프레임은 앞 프레임이 어떤 종류든 프레임 간 공간으로 앞 프레임과 떨어진다. 오류 프레임과 오버로드 프레임 앞에는 프레임 간 공간이 없다.[@bosch-can-2-0-1991]
 
-인터프레임 공간은 인터미션과 버스 idle로 이루어진다. 앞 메시지를 보낸 노드가 error passive이면 그 사이에 서스펜드 트랜스미션이 더 들어간다. 인터미션은 recessive 3비트이고, 그동안 어느 노드도 데이터 프레임이나 리모트 프레임을 시작할 수 없다.[@bosch-can-2-0-1991]
+프레임 간 공간은 인터미션과 버스 idle로 이루어진다. 앞 메시지를 보낸 노드가 [[can-fault-confinement|error passive]]이면 그 사이에 송신 정지가 더 들어간다. 인터미션은 recessive 3비트이고, 그동안 어느 노드도 데이터 프레임이나 리모트 프레임을 시작할 수 없다.[@bosch-can-2-0-1991]
 
 ## 비교·한계
 

@@ -43,4 +43,4 @@ STM32F10x의 bxCAN은 CAN_BTR 레지스터로 프리스케일러(BRP)를 받고,
 
 신호가 갔다 돌아오는 전파 지연은 버스가 길수록 커진다. PROP_SEG의 길이 $t_\mathrm{PROP\_SEG}$는 최대 전파 지연 $t_\mathrm{prop}$보다 길어야($t_\mathrm{PROP\_SEG} > t_\mathrm{prop}$) 하므로, 전파 지연이 공칭 비트율을 제한한다.[@microchip-mcp25xxfd-frm-2020]
 
-CAN FD는 중재 구간과 데이터 구간에 비트율을 따로 두고, 각각 별도의 설정 레지스터와 프리스케일러로 비트 타이밍을 정한다.[@bosch-can-fd-1-0-2012] 데이터 구간에서는 송신 노드가 자기 비트를 트랜시버를 거쳐 되읽는 지연이 비트 시간보다 길어질 수 있다. 그래서 송신 지연 보상(TDC, Transmitter Delay Compensation)이 측정한 지연에 오프셋을 더해 보조 샘플 포인트(SSP, Secondary Sample Point)를 두고, 그 시점에 비트를 비교한다.[@microchip-mcp25xxfd-frm-2020]
+[[can-fd|CAN FD]]는 중재 구간과 데이터 구간에 비트율을 따로 두고, 각각 별도의 설정 레지스터와 프리스케일러로 비트 타이밍을 정한다.[@bosch-can-fd-1-0-2012] 데이터 구간에서는 송신 노드가 자기 비트를 [[can-transceiver|트랜시버]]를 거쳐 되읽는 지연이 비트 시간보다 길어질 수 있다. 그래서 송신 지연 보상(TDC, Transmitter Delay Compensation)이 측정한 지연에 오프셋을 더해 보조 샘플 포인트(SSP, Secondary Sample Point)를 두고, 그 시점에 비트를 비교한다.[@microchip-mcp25xxfd-frm-2020]
