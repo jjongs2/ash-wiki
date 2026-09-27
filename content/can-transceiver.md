@@ -2,7 +2,7 @@
 title: CAN 트랜시버
 tags:
   - network/can
-verified: 2026-09-25
+verified: 2026-09-27
 ---
 
 ## 정의
@@ -19,7 +19,7 @@ TXD가 low이면 드라이버가 버스를 차동으로 구동해 dominant로 �
 
 ![[diagrams/hs-can-bus-voltage.svg]]
 
-수신기는 CAN_H와 CAN_L의 차동 전압 $V_\mathrm{diff}$를 판정해 RXD로 내보낸다.[@ti-tcan1042-q1-2021] 예를 들어 TJA1042는 Normal 모드에서 $V_\mathrm{diff} \ge 0.9\,\mathrm{V}$이면 dominant, $V_\mathrm{diff} \le 0.5\,\mathrm{V}$이면 recessive로 판정한다.[@nxp-tja1042-2023]
+수신기는 CAN_H와 CAN_L의 차동 전압 $V_\mathrm{diff}$를 판정해 RXD로 내보낸다.[@ti-tcan1042-q1-2021] 고속 트랜시버는 Normal 모드에서 $V_\mathrm{diff} \ge 0.9\,\mathrm{V}$이면 dominant, $V_\mathrm{diff} \le 0.5\,\mathrm{V}$이면 recessive로 판정한다.[@ti-tcan1042-q1-2021][@nxp-tja1042-2023][@microchip-mcp2561-2fd-2014]
 
 ![[diagrams/tja1042-receiver-threshold.svg]]
 
@@ -27,18 +27,24 @@ Normal 모드에서는 드라이버와 수신기가 함께 켜져 있어, 송신
 
 ### 보호 기능
 
-TJA1042는 TXD가 정해진 시간보다 오래 low로 머물면 송신기를 끄고 버스를 recessive로 풀어 준다(TXD dominant time-out). 하드웨어나 소프트웨어 고장으로 버스가 계속 dominant에 묶여 통신 전체가 막히는 것을 막기 위해서다.[@nxp-tja1042-2023] TCAN1042는 과열되면 드라이버를 끄고, 버스 선이 단락되면 드라이버 전류를 제한한다.[@ti-tcan1042-q1-2021]
+CAN 트랜시버는 과열되면 출력 드라이버를 끄고, 버스 선 단락으로부터 드라이버를 보호한다.[@ti-tcan1042-q1-2021][@microchip-mcp2561-2fd-2014]
+
+TJA1042는 TXD가 정해진 시간보다 오래 low로 머물면 송신기를 끄고 버스를 recessive로 풀어 준다(TXD dominant time-out). 하드웨어나 소프트웨어 고장으로 버스가 계속 dominant에 묶여 통신 전체가 막히는 것을 막기 위해서다.[@nxp-tja1042-2023] TCAN1042는 버스 선이 단락되면 드라이버 전류를 제한한다.[@ti-tcan1042-q1-2021]
 
 ### 저전력 모드와 웨이크업
 
 TCAN1042의 Standby 모드에서는 드라이버와 일반 수신기를 끄고 저전력 수신기만 버스를 감시한다. 웨이크업 패턴(WUP, wake-up pattern)을 감지하면 RXD를 low로 내려 MCU에 웨이크업 요청을 알린다.[@ti-tcan1042-q1-2021] TJA1042는 Standby 모드에서 버스의 dominant가 정해진 시간보다 오래 이어지면 RXD를 high로 되돌려, 단락된 버스가 웨이크업 요청을 계속 만들지 않게 한다.[@nxp-tja1042-2023]
 
-TJA1145는 선택적 웨이크업을 켜면 버스에서 미리 설정한 웨이크업 프레임(WUF, wake-up frame)을 감시하고, 그 프레임을 받을 때만 노드를 깨운다.[@nxp-tja1145-2018]
+선택적 웨이크업을 켠 트랜시버는 웨이크업 패턴만으로는 깨어나지 않고, 식별자가 미리 설정한 값과 맞는 웨이크업 프레임(WUF, wake-up frame)을 받으면 깨어난다.[@nxp-tja1145-2018][@ti-tcan1145-q1-2022]
 
 ## 비교·한계
 
 recessive 출력 전압은 고속 트랜시버 TJA1042가 두 선 모두 약 0.5 VCC(2~3 V)이고[@nxp-tja1042-2023], 저속 내결함성 트랜시버 TJA1055가 $V_\mathrm{CAN\_H} \le 0.2\,\mathrm{V}$, $V_\mathrm{CAN\_L} \ge \mathrm{VCC} - 0.2\,\mathrm{V}$이다.[@nxp-tja1055-2013]
 
 ![[diagrams/can-recessive-voltage-hs-ls.svg]]
+
+TJA1055는 dominant에서는 반대로 CAN_H를 CAN_L보다 높게 구동한다.[@nxp-tja1055-2013] NXP의 TJA1055T 앱노트는 고속 트랜시버와 종단 저항을 단 CAN 도구를 내결함성 CAN 망에 이으면 두 선 사이에 종단 저항이 생겨, 시스템이 줄곧 [[can-physical-layer|단선 모드]]로 동작한다고 설명한다.[@nxp-ah0801-2016]
+
+트랜시버 지연 보상이 없으면, CAN FD 데이터 구간의 비트율은 송신 노드가 자기가 낸 비트를 그 비트의 샘플 포인트까지 되받아야 한다는 조건에 묶인다.[@bosch-can-fd-1-0-2012] CAN FD 트랜시버는 데이터 구간의 높은 비트율을 지원하려고 loop delay symmetry를 보증한다.[@microchip-mcp2561-2fd-2014][@nxp-tja1145-2018]
 
 CAN FD의 데이터 구간에서 TCAN1042는 모든 변종이 2 Mbit/s를, G 변종이 5 Mbit/s를 지원하고[@ti-tcan1042-q1-2021], TJA1042는 fast phase에서 5 Mbit/s까지 타이밍을 보증한다.[@nxp-tja1042-2023]
