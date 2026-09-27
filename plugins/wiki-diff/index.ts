@@ -771,6 +771,138 @@ del.wiki-diff-source { white-space: pre-wrap; font-family: var(--codeFont); font
 div.wiki-diff-removed { border: 1px dashed rgb(var(--wiki-diff-del)); border-radius: 4px; padding: 0.25rem 0.5rem; margin: 1rem 0; }
 li.wiki-diff-removed::marker { color: rgb(var(--wiki-diff-del)); }
 .wiki-diff-banner { border: 1px solid rgb(var(--wiki-diff-ins)); border-radius: 4px; padding: 0 1rem; margin: 1rem 0; }
+.wiki-diff-only .wiki-diff-quiet { display: none !important; }
+.wiki-diff-current { outline: 2px solid rgb(var(--wiki-diff-ins)); outline-offset: 2px; }
+#wiki-diff-nav { position: fixed; right: 1rem; bottom: 1rem; z-index: 100; display: flex; gap: 0.25rem; align-items: center; padding: 0.25rem 0.5rem; background: var(--light); border: 1px solid var(--lightgray); border-radius: 6px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); font-size: 0.85rem; color: var(--darkgray); }
+#wiki-diff-nav button { font: inherit; color: inherit; background: none; border: 1px solid var(--lightgray); border-radius: 4px; padding: 0.1rem 0.5rem; cursor: pointer; }
+#wiki-diff-nav button[aria-pressed="true"] { background: rgba(var(--wiki-diff-ins), 0.2); border-color: rgb(var(--wiki-diff-ins)); }
+`
+
+// ---------------------------------------------------------------------------------------------------
+// 바뀐 곳 훑기. 오른쪽 아래 막대에서 바뀌지 않은 블록을 숨기고(바뀐 곳만), ↑·↓나 n·p 키로 바뀐 블록을
+// 차례로 옮겨 다닌다. 숨길 때 바뀐 블록을 품은 인용문, 목록, 표는 남기고, 제목과 callout 제목, 표 머리는
+// 맥락으로 남긴다. 제목 밑에 남는 블록이 없으면 그 제목도 숨긴다. SPA 이동마다 `nav`에서 다시 계산한다.
+// 빌드가 문자열로 넣는 브라우저 스크립트라 타입 검사를 받지 않는다.
+
+const SCRIPT = `(() => {
+  const MARK = ".wiki-diff-changed, .wiki-diff-added, .wiki-diff-removed"
+  const CONTEXT = "h1, h2, h3, h4, h5, h6, thead, .callout-title, .wiki-diff-banner"
+  const KEY = "wiki-diff-only"
+  const level = (el) => (/^H([1-6])$/.exec(el.tagName) || [])[1]
+  const article = () =>
+    document.querySelector(".center article.popover-hint") || document.querySelector("article.popover-hint")
+  let current = null
+
+  function readOnly() {
+    try { return sessionStorage.getItem(KEY) === "1" } catch { return false }
+  }
+  function writeOnly(value) {
+    try { sessionStorage.setItem(KEY, value ? "1" : "0") } catch {}
+  }
+
+  function markQuiet(root) {
+    const keep = new Set()
+    for (const mark of root.querySelectorAll(MARK)) {
+      for (let el = mark; el && el !== root; el = el.parentElement) keep.add(el)
+    }
+    const walk = (parent) => {
+      for (const child of parent.children) {
+        if (child.matches(MARK)) {
+          for (const inner of child.children) if (inner.matches("ul, ol")) walk(inner)
+        } else if (keep.has(child)) {
+          walk(child)
+        } else if (!child.matches(CONTEXT)) {
+          child.classList.add("wiki-diff-quiet")
+        }
+      }
+    }
+    walk(root)
+    // 본문은 article 밑의 감싼 요소에 들어 있으므로, 제목이 있는 부모마다 따진다
+    const parents = new Set([...root.querySelectorAll("h1, h2, h3, h4, h5, h6")].map((h) => h.parentElement))
+    for (const parent of parents) hideEmptyHeadings([...parent.children])
+  }
+
+  function hideEmptyHeadings(top) {
+    top.forEach((el, i) => {
+      const own = level(el)
+      if (!own) return
+      for (const next of top.slice(i + 1)) {
+        const other = level(next)
+        if (other && other <= own) break
+        if (!other && !next.classList.contains("wiki-diff-quiet")) return
+      }
+      el.classList.add("wiki-diff-quiet")
+    })
+  }
+
+  function move(step) {
+    const root = article()
+    if (!root) return
+    const marks = [...root.querySelectorAll(MARK)]
+    if (marks.length === 0) return
+    let index = marks.indexOf(current)
+    if (index < 0) {
+      const tops = marks.map((mark) => mark.getBoundingClientRect().top)
+      index = step > 0 ? tops.findIndex((top) => top > 1) - 1 : tops.findIndex((top) => top >= 0)
+      if (step > 0 && index < -1) index = marks.length - 1
+      if (step < 0 && index < 0) index = marks.length
+    }
+    const next = marks[Math.min(Math.max(index + step, 0), marks.length - 1)]
+    if (current) current.classList.remove("wiki-diff-current")
+    current = next
+    current.classList.add("wiki-diff-current")
+    current.scrollIntoView({ block: "center", behavior: "smooth" })
+    render()
+  }
+
+  function render() {
+    const bar = document.getElementById("wiki-diff-nav")
+    const root = article()
+    if (!bar || !root) return
+    const marks = [...root.querySelectorAll(MARK)]
+    const at = marks.indexOf(current)
+    bar.querySelector("[data-count]").textContent = (at < 0 ? "–" : at + 1) + "/" + marks.length
+    bar.querySelector("[data-only]").setAttribute("aria-pressed", String(readOnly()))
+  }
+
+  function setup() {
+    current = null
+    document.getElementById("wiki-diff-nav")?.remove()
+    document.documentElement.classList.toggle("wiki-diff-only", readOnly())
+    const root = article()
+    if (!root || !root.querySelector(MARK)) return
+    markQuiet(root)
+    const bar = document.createElement("div")
+    bar.id = "wiki-diff-nav"
+    bar.innerHTML =
+      '<button type="button" data-step="-1" title="이전 변경 (p)">↑</button>' +
+      '<span data-count></span>' +
+      '<button type="button" data-step="1" title="다음 변경 (n)">↓</button>' +
+      '<button type="button" data-only aria-pressed="false">바뀐 곳만</button>'
+    bar.addEventListener("click", (event) => {
+      const button = event.target.closest("button")
+      if (!button) return
+      if (button.dataset.step) return move(Number(button.dataset.step))
+      const only = !readOnly()
+      writeOnly(only)
+      document.documentElement.classList.toggle("wiki-diff-only", only)
+      if (current) current.scrollIntoView({ block: "center" })
+      render()
+    })
+    document.body.append(bar)
+    render()
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.ctrlKey || event.metaKey || event.altKey || event.isComposing) return
+    const target = event.target
+    if (target.closest && target.closest("input, textarea, select, [contenteditable]")) return
+    if (event.key === "n") move(1)
+    else if (event.key === "p") move(-1)
+  })
+  document.addEventListener("nav", setup)
+  setup()
+})()
 `
 
 // ---------------------------------------------------------------------------------------------------
@@ -820,7 +952,10 @@ const WikiDiff: QuartzTransformerPlugin = () => {
       if (!ref) return undefined
       const snap = snapshot(ctx, ref)
       console.log(report(snap, changesOf(ctx, snap)))
-      return { css: [{ content: CSS, inline: true }] }
+      return {
+        css: [{ content: CSS, inline: true }],
+        js: [{ loadTime: "afterDOMReady", contentType: "inline", script: SCRIPT }],
+      }
     },
   }
 }

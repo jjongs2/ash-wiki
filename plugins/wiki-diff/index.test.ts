@@ -412,6 +412,10 @@ describe("플러그인", () => {
     withEnv("main", () => {
       const resources = WikiDiff().externalResources!(pluginCtx)
       assert.match(resources!.css![0].content, /wiki-diff-added/)
+      // 브라우저 스크립트는 문자열이라 타입 검사를 받지 않는다. 적어도 문법은 맞아야 한다.
+      const script = resources!.js![0]
+      assert.strictEqual(script.contentType, "inline")
+      assert.doesNotThrow(() => new Function(script.contentType === "inline" ? script.script : ""))
     })
     assert.match(String(log.mock.calls[0].arguments[0]), /main 기준.*\n.*바뀐 페이지가 없다/)
   })
