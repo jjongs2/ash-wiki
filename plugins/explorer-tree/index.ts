@@ -154,6 +154,34 @@ export function explorerInputs(entries: ContentEntry[]): {
   return { pages, tagNames, sectionOrder }
 }
 
+// 탐색기의 폴더와 링크는 모두 같은 파랑, 같은 크기라 층과 지금 페이지가 드러나지 않는다.
+// - 구역: 본문색으로 두어 파랑인 주제와 구분한다.
+// - 페이지가 없는 구역과 주제: 이름을 보조 글자색으로 흐린다. 접기 표시는 폴더임을 알리도록 흐리게 남기되,
+//   펼칠 것이 없으니 누를 수 없게 한다. 이름은 그대로 태그 목록으로 링크한다.
+// - 지금 페이지: 본문의 내부 링크처럼 highlight 배경을 깐다. 좌우 여백만큼 바깥 여백을 줄여 줄을 맞춘다.
+// 탐색기의 규칙(.folder-container div > a 등)보다 구체적인 선택자로 덮는다.
+const CSS = `.explorer-content .explorer-ul > li > .folder-container a {
+  color: var(--dark);
+}
+.explorer-content .explorer-ul > li > .folder-container a:hover {
+  color: var(--tertiary);
+}
+.explorer-content li:has(> .folder-outer > ul:empty) > .folder-container > .folder-icon {
+  color: var(--gray);
+  opacity: 0.4;
+  pointer-events: none;
+}
+.explorer-content li:has(> .folder-outer > ul:empty) > .folder-container a {
+  color: var(--gray);
+}
+.explorer-content ul li > a.active {
+  background-color: var(--highlight);
+  border-radius: 5px;
+  padding: 0 0.3rem;
+  margin: 0 -0.3rem;
+}
+`
+
 // 탐색기의 mapFn이 부르는 전역. 탐색기는 map을 뿌리부터 모든 노드에 부르므로, 뿌리에서만 자식을 갈아
 // 끼우고 나머지 노드는 그대로 둔다. 새 노드는 탐색기의 트라이 클래스(root.constructor)로 만든다.
 // 지금 페이지가 든 구역과 주제는 트리를 그린 뒤 펼친다.
@@ -234,6 +262,7 @@ const ExplorerTree: QuartzTransformerPlugin = () => {
     },
     externalResources() {
       return {
+        css: [{ content: CSS, inline: true }],
         js: [{ loadTime: "afterDOMReady", contentType: "inline", script: SCRIPT }],
       }
     },
