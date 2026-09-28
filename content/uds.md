@@ -37,16 +37,16 @@ ISO 14229-1은 서비스를 기능 단위(functional unit)로 묶는다. 진단�
 
 | 서비스                       | SID                           |
 | ---------------------------- | ----------------------------- |
-| DiagnosticSessionControl     | `0x10`                        |
+| DiagnosticSessionControl     | `0x10`[@iso-14229-1-obp-2026] |
 | ECUReset                     | `0x11`[@iso-14229-1-obp-2026] |
-| ClearDiagnosticInformation   | `0x14`                        |
-| ReadDTCInformation           | `0x19`                        |
+| ClearDiagnosticInformation   | `0x14`[@iso-27145-3-obp-2012] |
+| ReadDTCInformation           | `0x19`[@iso-27145-3-obp-2012] |
 | ReadDataByIdentifier         | `0x22`[@iso-27145-3-obp-2012] |
-| SecurityAccess               | `0x27`                        |
+| SecurityAccess               | `0x27`[@iso-14229-1-obp-2026] |
 | CommunicationControl         | `0x28`[@iso-14229-1-obp-2026] |
 | ReadDataByPeriodicIdentifier | `0x2A`[@iso-14229-4-obp-2012] |
 | RoutineControl               | `0x31`[@iso-27145-3-obp-2012] |
-| ResponseOnEvent              | `0x86`                        |
+| ResponseOnEvent              | `0x86`[@iso-14229-4-obp-2012] |
 | LinkControl                  | `0x87`[@iso-14229-4-obp-2012] |
 
 AUTOSAR Dcm 명세는 이 밖에 아래 서비스의 처리를 정한다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
