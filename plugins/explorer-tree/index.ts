@@ -163,8 +163,8 @@ export function explorerInputs(entries: ContentEntry[]): {
 //   페이지에만 쓴다.
 // - 폴더는 이름 버튼의 누름 영역(::after)을 줄 전체로 늘려, 꺾쇠를 포함해 줄 어디를 눌러도 접고 편다. 지금
 //   페이지에는 본문의 내부 링크와 같은 highlight 배경을 깔고 파랑으로 써서 hover의 무채색 배경과 구분한다.
-// - 꺾쇠는 이름 바로 뒤에 두어 이름이 층마다 같은 자리에서 시작하게 한다. 본문색으로 흐리게 두고, hover에도
-//   바꾸지 않는다. 하위 목록의 안내선은 상위 폴더 이름의 첫 글자 자리에 선다.
+// - 꺾쇠는 이름 바로 뒤에 두어 이름이 층마다 같은 자리에서 시작하게 한다. 이름보다 눈에 띄지 않도록 업스트림의
+//   12px보다 작은 10px로 줄이고, 본문색으로 흐리게 두며, hover에도 바꾸지 않는다. 하위 목록의 안내선은 상위 폴더 이름의 첫 글자 자리에 선다.
 // - 전환은 탐색기에 있던 폴더 펼침과 꺾쇠 회전만 두고, 동작 줄이기 설정에서는 그것도 끈다.
 // - 페이지가 없는 구역과 주제는 이름을 보조 글자색으로 흐린다. 꺾쇠는 폴더임을 알리도록 더 흐리게 남기되,
 //   펼칠 것이 없으니 줄 전체를 누를 수 없게 한다.
@@ -204,6 +204,8 @@ const CSS = `.explorer .explorer-content :is(.folder-button, ul li > a):focus-vi
 }
 .explorer .explorer-content .folder-icon {
   order: 1;
+  width: 10px;
+  height: 10px;
   margin: 0 0 0 0.3rem;
   color: var(--dark);
   opacity: 0.6;
