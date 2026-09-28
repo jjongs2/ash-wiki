@@ -90,11 +90,11 @@ describe("collapsible-sections 스크립트", () => {
   class Element {}
   type Section = { open: boolean; parentElement: null }
 
-  // 스크립트를 돌려 document에 건 click 리스너로 링크 클릭을 흉내 내는 함수를 준다. id가 target인 요소는
-  // section 안에 있다.
-  function clicker(section: Section) {
+  // 스크립트를 돌려 document에 건 리스너로 링크 클릭과 SPA 이동을 흉내 내는 함수를 준다. id가 target인
+  // 요소는 section 안에 있고, 스크롤된 횟수를 센다. hash는 지금 주소의 해시다.
+  function load(section: Section, hash = "") {
     const handlers: Record<string, (event: unknown) => void> = {}
-    const target = { closest: () => section }
+    const target = { closest: () => section, scrolled: 0, scrollIntoView: () => target.scrolled++ }
     const document = {
       addEventListener: (type: string, fn: (event: unknown) => void) => (handlers[type] = fn),
       getElementById: (id: string) => (id === "target" ? target : null),
@@ -103,7 +103,8 @@ describe("collapsible-sections 스크립트", () => {
     const location = {
       origin: "https://wiki.test",
       pathname: "/page",
-      href: "https://wiki.test/page",
+      href: `https://wiki.test/page${hash}`,
+      hash,
     }
     new Function("document", "window", "location", "Element", source)(
       document,
@@ -111,9 +112,14 @@ describe("collapsible-sections 스크립트", () => {
       location,
       Element,
     )
-    return (anchor: object) =>
-      handlers.click({ target: Object.assign(new Element(), { closest: () => anchor }) })
+    return {
+      target,
+      click: (anchor: object) =>
+        handlers.click({ target: Object.assign(new Element(), { closest: () => anchor }) }),
+      nav: () => handlers.nav({}),
+    }
   }
+  const clicker = (section: Section) => load(section).click
 
   const htmlAnchor = (href: string) => ({ href, getAttribute: () => href })
 
@@ -135,5 +141,19 @@ describe("collapsible-sections 스크립트", () => {
     const svgAnchor = { href: { baseVal: "#target" }, getAttribute: () => "#target" }
     assert.doesNotThrow(() => clicker(section)(svgAnchor))
     assert.strictEqual(section.open, true)
+  })
+
+  // 해시만 바뀐 뒤로·앞으로 가기에서 라우터는 페이지를 다시 그리고 스크롤하지 않는다. 다시 그리면 대상 위의
+  // 접힌 절이 모두 펼쳐져 대상이 아래로 밀린다.
+  test("SPA 이동이 끝나면 주소의 해시가 가리키는 대상으로 스크롤한다", () => {
+    const page = load({ open: true, parentElement: null }, "#target")
+    page.nav()
+    assert.strictEqual(page.target.scrolled, 1)
+  })
+
+  test("해시가 없는 주소로 이동하면 스크롤하지 않는다", () => {
+    const page = load({ open: true, parentElement: null })
+    page.nav()
+    assert.strictEqual(page.target.scrolled, 0)
   })
 })
