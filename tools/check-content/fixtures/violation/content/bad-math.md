@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-20
 ---
 
-## 정의
+머리말이다.
 
 <!-- 위반(output): 문법 오류라 KaTeX가 식을 .katex-error로 남긴다. -->
 

@@ -8,6 +8,6 @@ author: someone
 # 위반(frontmatter): verified가 없다.
 ---
 
-## 정의
+머리말이다.
 
 본문이다.
