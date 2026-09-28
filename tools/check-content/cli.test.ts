@@ -49,6 +49,7 @@ describe("check-content CLI", { concurrency: false }, () => {
     assert.deepStrictEqual(report.statuses, [
       "OK frontmatter",
       "OK namespace",
+      "OK lead",
       "OK wikilink",
       "OK citation",
       "OK callout",
@@ -65,6 +66,7 @@ describe("check-content CLI", { concurrency: false }, () => {
     assert.deepStrictEqual(report.statuses, [
       "FAIL frontmatter",
       "FAIL namespace",
+      "FAIL lead",
       "FAIL wikilink",
       "FAIL citation",
       "FAIL callout",
@@ -86,6 +88,12 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/alias-clash.md:7",
         "content/alias-clash.md:9",
         "content/sub/nested-page.md:1",
+      ],
+      lead: [
+        "content/bad-lead-callout.md:10",
+        "content/bad-lead-comment.md:10",
+        "content/bad-lead-heading.md:9",
+        "content/bad-lead-list.md:10",
       ],
       wikilink: [
         "content/bad-links.md:12",
@@ -174,6 +182,7 @@ describe("check-content CLI", { concurrency: false }, () => {
     assert.deepStrictEqual(report.statuses, [
       "FAIL frontmatter",
       "OK namespace",
+      "OK lead",
       "FAIL wikilink",
       "OK citation",
       "OK callout",

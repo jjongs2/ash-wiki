@@ -144,6 +144,43 @@ export const namespace: SourceCheck = (tree) => {
   return violations
 }
 
+const calloutMarker = /^\s*(?:>\s*)+\[!([^\]]+)\]/
+
+const blockNames: Record<string, string> = {
+  blockquote: "인용 블록",
+  list: "목록",
+  table: "표",
+  code: "코드 블록",
+  html: "HTML",
+  thematicBreak: "구분선",
+  definition: "링크 정의",
+}
+
+// 머리말은 첫 제목 앞의 블록이다. HTML 주석을 건너뛴 첫 블록이 문단이어야 한다.
+export const lead: SourceCheck = (tree) => {
+  const violations: Violation[] = []
+  for (const page of tree.pages) {
+    if (page.kind !== "page") continue
+    const blocks = page.mdast.children
+    const heading = blocks.find((node) => node.type === "heading")
+    const first = blocks
+      .slice(0, heading ? blocks.indexOf(heading) : undefined)
+      .find((node) => !(node.type === "html" && node.value.startsWith("<!--")))
+    if (first?.type === "paragraph") continue
+    const message = "첫 ## 앞에 머리말 문단이 없다"
+    if (!first) {
+      violations.push({ file: page.file, line: heading?.position!.start.line ?? 1, message })
+      continue
+    }
+    const line = first.position!.start.line
+    const isCallout =
+      first.type === "blockquote" && calloutMarker.test(page.masked.split("\n")[line - 1])
+    const name = isCallout ? "콜아웃" : (blockNames[first.type] ?? first.type)
+    violations.push({ file: page.file, line, message: `${message}(첫 블록: ${name})` })
+  }
+  return violations
+}
+
 function* matchLines(page: Page, pattern: RegExp) {
   const lines = page.masked.split("\n")
   for (let i = 0; i < lines.length; i++) {
@@ -260,7 +297,7 @@ export const callout: SourceCheck = (tree, conventions) => {
   const types = conventions.column("callout", "타입")
   const violations: Violation[] = []
   for (const page of tree.pages) {
-    for (const { match, line } of matchLines(page, /^\s*(?:>\s*)+\[!([^\]]+)\]/g)) {
+    for (const { match, line } of matchLines(page, new RegExp(calloutMarker, "g"))) {
       const type = match[1].trim().toLowerCase()
       if (!types.includes(type)) {
         violations.push({
@@ -434,6 +471,7 @@ export const svg: SourceCheck = async (tree, conventions) => {
 export const sourceChecks: [string, SourceCheck][] = [
   ["frontmatter", frontmatter],
   ["namespace", namespace],
+  ["lead", lead],
   ["wikilink", wikilink],
   ["citation", citation],
   ["callout", callout],
