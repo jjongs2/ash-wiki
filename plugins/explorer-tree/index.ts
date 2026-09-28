@@ -154,31 +154,93 @@ export function explorerInputs(entries: ContentEntry[]): {
   return { pages, tagNames, sectionOrder }
 }
 
-// 탐색기의 폴더와 링크는 모두 같은 파랑, 같은 크기라 층과 지금 페이지가 드러나지 않는다.
-// - 구역: 본문색으로 두어 파랑인 주제와 구분한다.
-// - 페이지가 없는 구역과 주제: 이름을 보조 글자색으로 흐린다. 접기 표시는 폴더임을 알리도록 흐리게 남기되,
+// 탐색기의 모양이다. 탐색기는 폴더와 링크를 모두 굵기 600으로, 폴더 이름은 파랑으로 그리고 페이지 링크를
+// 폴더 이름보다 크게 그려, 층과 지금 페이지가 드러나지 않는다. 꺾쇠, 전환, 모서리는 절 접기
+// (plugins/collapsible-sections)와 맞춘다.
+// - 층은 굵기와 크기로 가른다. 구역은 본문색 0.95rem 600, 주제는 0.9rem 600, 페이지는 0.9rem 400이다.
+//   파랑은 지금 페이지와 hover에만 쓴다.
+// - 줄마다 같은 안쪽 여백과 5px 모서리를 둔다. hover에는 무채색(lightgray를 반쯤 비친) 배경을, 지금
+//   페이지에는 본문의 내부 링크와 같은 highlight 배경을 깔고 파랑으로 써서 둘을 구분한다.
+// - 꺾쇠는 본문색으로 흐리게 두고 hover에 파랑으로 바꾼다. 하위 목록의 안내선은 꺾쇠 가운데에 선다.
+// - 폴더를 펼치면 하위 목록이 살짝 내려오며 나타난다. 동작 줄이기 설정에서는 전환을 모두 끈다.
+// - 페이지가 없는 구역과 주제는 이름을 보조 글자색으로 흐린다. 꺾쇠는 폴더임을 알리도록 더 흐리게 남기되,
 //   펼칠 것이 없으니 누를 수 없게 한다. 이름은 그대로 태그 목록으로 링크한다.
-// - 지금 페이지: 본문의 내부 링크처럼 highlight 배경을 깐다. 좌우 여백만큼 바깥 여백을 줄여 줄을 맞춘다.
 // 탐색기의 규칙(.folder-container div > a 등)보다 구체적인 선택자로 덮는다.
-const CSS = `.explorer-content .explorer-ul > li > .folder-container a {
+const CSS = `.explorer .explorer-content .folder-container,
+.explorer .explorer-content ul li > a {
+  border-radius: 5px;
+  padding: 0.1rem 0.4rem;
+  transition: background-color 0.15s ease;
+}
+.explorer .explorer-content .folder-container:hover,
+.explorer .explorer-content ul li > a:hover {
+  background-color: color-mix(in srgb, var(--lightgray) 50%, transparent);
+}
+.explorer .explorer-content :is(.folder-container, ul li > a):focus-visible,
+.explorer .explorer-content .folder-container a:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: -2px;
+}
+.explorer .explorer-content .folder-container div > a {
+  color: var(--darkgray);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+.explorer .explorer-content .explorer-ul > li > .folder-container div > a {
   color: var(--dark);
+  font-size: 0.95rem;
 }
-.explorer-content .explorer-ul > li > .folder-container a:hover {
-  color: var(--tertiary);
+.explorer .explorer-content ul li > a {
+  display: block;
+  color: var(--darkgray);
+  opacity: 1;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.5rem;
 }
-.explorer-content li:has(> .folder-outer > ul:empty) > .folder-container > .folder-icon {
+.explorer .explorer-content ul li > a.active {
+  background-color: var(--highlight);
+  color: var(--secondary);
+  font-weight: 600;
+}
+.explorer .explorer-content .folder-icon {
+  margin-right: 0.3rem;
+  color: var(--dark);
+  opacity: 0.6;
+  transition:
+    transform 0.3s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+.explorer .explorer-content .folder-container:hover .folder-icon {
+  color: var(--secondary);
+  opacity: 1;
+}
+.explorer .explorer-content .folder-outer > ul {
+  margin-left: calc(0.4rem + 5.5px);
+  padding-left: 0.4rem;
+  opacity: 0;
+  transform: translateY(-0.25rem);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+.explorer .explorer-content .folder-outer.open > ul {
+  opacity: 1;
+  transform: none;
+}
+.explorer .explorer-content li:has(> .folder-outer > ul:empty) > .folder-container div > a {
   color: var(--gray);
-  opacity: 0.4;
+}
+.explorer .explorer-content li:has(> .folder-outer > ul:empty) > .folder-container > .folder-icon {
+  opacity: 0.3;
   pointer-events: none;
 }
-.explorer-content li:has(> .folder-outer > ul:empty) > .folder-container a {
-  color: var(--gray);
-}
-.explorer-content ul li > a.active {
-  background-color: var(--highlight);
-  border-radius: 5px;
-  padding: 0 0.3rem;
-  margin: 0 -0.3rem;
+@media (prefers-reduced-motion: reduce) {
+  .explorer .explorer-content :is(.folder-container, ul li > a, .folder-icon, .folder-outer, .folder-outer > ul) {
+    transition: none;
+  }
 }
 `
 
@@ -224,10 +286,11 @@ const SCRIPT = `(() => {
         observer.disconnect()
         const active = list.querySelector("a.active")
         if (!active) return
-        // 폴더와 그 접기 표시(폴더가 열리면 돌아간다)
+        // 폴더와 그 접기 표시(폴더가 열리면 돌아간다), 하위 목록(나타나며 내려온다)
         const folders = []
         for (let outer = active.closest(".folder-outer"); outer; ) {
-          folders.push([outer, outer.previousElementSibling.querySelector(".folder-icon")])
+          const icon = outer.previousElementSibling.querySelector(".folder-icon")
+          folders.push([outer, icon, outer.firstElementChild])
           outer = outer.parentElement.closest(".folder-outer")
         }
         const animated = folders.flat()
