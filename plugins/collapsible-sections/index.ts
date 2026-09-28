@@ -46,7 +46,7 @@ function wrapSections(tree: Root) {
   tree.children = children
 }
 
-const read = (file: string) => fs.readFileSync(new URL(file, import.meta.url), "utf8")
+const readSibling = (file: string) => fs.readFileSync(new URL(file, import.meta.url), "utf8")
 
 const CollapsibleSections: QuartzTransformerPlugin = () => {
   return {
@@ -56,8 +56,8 @@ const CollapsibleSections: QuartzTransformerPlugin = () => {
     },
     externalResources() {
       return {
-        css: [{ content: read("./style.css"), inline: true }],
-        js: [{ script: read("./script.js"), loadTime: "afterDOMReady", contentType: "inline" }],
+        css: [{ content: readSibling("./style.css"), inline: true }],
+        js: [{ script: readSibling("./script.js"), loadTime: "afterDOMReady", contentType: "inline" }],
       }
     },
   }
