@@ -112,6 +112,8 @@ article #refs.csl-bib-body {
     background-color: color-mix(in srgb, var(--lightgray) 50%, transparent);
   }
 
+  // 글자는 항목 링크에만 건다. 폴더 줄은 flex 상자라 display를 바꾸면 안 되고, 글자는 층마다 달라
+  // 탐색기가 정한다.
   &:is(a) {
     display: block;
     color: var(--darkgray);
