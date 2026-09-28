@@ -19,25 +19,41 @@ TCP는 주고받은 세그먼트의 경계와 애플리케이션이 읽고 쓰�
 
 ### 헤더
 
-상호운용을 위해 SOME/IP 헤더의 배치는 모든 구현에서 같아야 한다. 헤더 필드는 모두 [[byte-order|네트워크 바이트 순서]]로 인코딩하며, 앞에서부터 아래 순서로 놓인다.[@autosar-fo-prs-someipprotocol-2025]
-
-| 필드              | 길이   | 내용                                      |
-| ----------------- | ------ | ----------------------------------------- |
-| Message ID        | 32비트 | 앞 16비트 Service ID, 뒤 16비트 Method ID |
-| Length            | 32비트 | Request ID부터 메시지 끝까지의 바이트 수  |
-| Request ID        | 32비트 | 앞 16비트 Client ID, 뒤 16비트 Session ID |
-| Protocol Version  | 8비트  | SOME/IP 프로토콜 버전. 1이다              |
-| Interface Version | 8비트  | 서비스 인터페이스의 주 버전               |
-| Message Type      | 8비트  | 메시지의 종류                             |
-| Return Code       | 8비트  | 요청의 처리 결과                          |
+상호운용을 위해 SOME/IP 헤더의 배치는 모든 구현에서 같아야 한다. 헤더 필드는 모두 [[byte-order|네트워크 바이트 순서]]로 인코딩하며, 앞에서부터 32비트 필드 Message ID, Length, Request ID와 8비트 필드 Protocol Version, Interface Version, Message Type, Return Code 순서로 놓인다. Message ID는 앞 16비트가 Service ID, 뒤 16비트가 Method ID이고, Request ID는 앞 16비트가 Client ID, 뒤 16비트가 Session ID다. Length는 Request ID부터 메시지 끝까지의 바이트 수다. Protocol Version은 SOME/IP 프로토콜 버전으로 1이고, Interface Version은 서비스 인터페이스의 주 버전이다. Message Type은 메시지의 종류를, Return Code는 요청의 처리 결과를 나타낸다.[@autosar-fo-prs-someipprotocol-2025]
 
 ![[diagrams/some-ip-header-layout.svg]]
 
 명세는 Method ID 공간을 나눠, 최상위 비트가 0인 `0x0000`\~`0x7FFF`를 메서드에, 최상위 비트가 1인 범위를 이벤트와 알림에 쓰기를 권한다. 서버는 요청의 Request ID를 응답에 그대로 옮기므로, 클라이언트는 요청을 여럿 보내 둔 상태에서도 응답을 요청과 짝지을 수 있다.[@autosar-fo-prs-someipprotocol-2025]
 
-Message Type 값은 REQUEST `0x00`, REQUEST_NO_RETURN `0x01`, NOTIFICATION `0x02`, RESPONSE `0x80`, ERROR `0x81`이다. SOME/IP-TP로 나눈 세그먼트는 여기에 TP-Flag `0x20`을 켠 값을 쓴다.[@autosar-fo-prs-someipprotocol-2025]
+Message Type 값은 아래와 같다.[@autosar-fo-prs-someipprotocol-2025]
 
-Return Code 값은 `0x00` E_OK, `0x01` E_NOT_OK, `0x02` E_UNKNOWN_SERVICE, `0x03` E_UNKNOWN_METHOD, `0x07` E_WRONG_PROTOCOL_VERSION, `0x08` E_WRONG_INTERFACE_VERSION, `0x09` E_MALFORMED_MESSAGE, `0x0A` E_WRONG_MESSAGE_TYPE 등이다. `0x04` E_NOT_READY, `0x05` E_NOT_REACHABLE, `0x06` E_TIMEOUT은 더는 쓰지 않는 값(deprecated)이다. REQUEST, REQUEST_NO_RETURN, NOTIFICATION 메시지의 Return Code는 `0x00`이고, ERROR 메시지는 `0x00`을 쓸 수 없다.[@autosar-fo-prs-someipprotocol-2025]
+| 값     | Message Type      |
+| ------ | ----------------- |
+| `0x00` | REQUEST           |
+| `0x01` | REQUEST_NO_RETURN |
+| `0x02` | NOTIFICATION      |
+| `0x80` | RESPONSE          |
+| `0x81` | ERROR             |
+
+SOME/IP-TP로 나눈 세그먼트는 여기에 TP-Flag `0x20`을 켠 값을 쓴다.[@autosar-fo-prs-someipprotocol-2025]
+
+Return Code 값 가운데 몇 가지는 아래와 같다.[@autosar-fo-prs-someipprotocol-2025]
+
+| 값     | Return Code               | 비고                       |
+| ------ | ------------------------- | -------------------------- |
+| `0x00` | E_OK                      |                            |
+| `0x01` | E_NOT_OK                  |                            |
+| `0x02` | E_UNKNOWN_SERVICE         |                            |
+| `0x03` | E_UNKNOWN_METHOD          |                            |
+| `0x04` | E_NOT_READY               | 더는 쓰지 않음(deprecated) |
+| `0x05` | E_NOT_REACHABLE           | 더는 쓰지 않음(deprecated) |
+| `0x06` | E_TIMEOUT                 | 더는 쓰지 않음(deprecated) |
+| `0x07` | E_WRONG_PROTOCOL_VERSION  |                            |
+| `0x08` | E_WRONG_INTERFACE_VERSION |                            |
+| `0x09` | E_MALFORMED_MESSAGE       |                            |
+| `0x0A` | E_WRONG_MESSAGE_TYPE      |                            |
+
+REQUEST, REQUEST_NO_RETURN, NOTIFICATION 메시지의 Return Code는 `0x00`이고, ERROR 메시지는 `0x00`을 쓸 수 없다.[@autosar-fo-prs-someipprotocol-2025]
 
 ### 통신 방식
 

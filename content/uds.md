@@ -49,7 +49,24 @@ ISO 14229-1은 서비스를 기능 단위(functional unit)로 묶는다. 진단�
 | ResponseOnEvent              | `0x86`[@iso-14229-4-obp-2012] |
 | LinkControl                  | `0x87`[@iso-14229-4-obp-2012] |
 
-AUTOSAR Dcm 명세는 이 밖에 Authentication(`0x29`), TesterPresent(`0x3E`), ControlDTCSetting(`0x85`), ReadMemoryByAddress(`0x23`), ReadScalingDataByIdentifier(`0x24`), DynamicallyDefineDataIdentifier(`0x2C`), WriteDataByIdentifier(`0x2E`), WriteMemoryByAddress(`0x3D`), InputOutputControlByIdentifier(`0x2F`), RequestDownload(`0x34`), RequestUpload(`0x35`), TransferData(`0x36`), RequestTransferExit(`0x37`), RequestFileTransfer(`0x38`)의 처리를 정한다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+AUTOSAR Dcm 명세는 이 밖에 아래 서비스의 처리를 정한다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+
+| 서비스                          | SID    |
+| ------------------------------- | ------ |
+| ReadMemoryByAddress             | `0x23` |
+| ReadScalingDataByIdentifier     | `0x24` |
+| Authentication                  | `0x29` |
+| DynamicallyDefineDataIdentifier | `0x2C` |
+| WriteDataByIdentifier           | `0x2E` |
+| InputOutputControlByIdentifier  | `0x2F` |
+| RequestDownload                 | `0x34` |
+| RequestUpload                   | `0x35` |
+| TransferData                    | `0x36` |
+| RequestTransferExit             | `0x37` |
+| RequestFileTransfer             | `0x38` |
+| WriteMemoryByAddress            | `0x3D` |
+| TesterPresent                   | `0x3E` |
+| ControlDTCSetting               | `0x85` |
 
 ### 진단 세션
 
