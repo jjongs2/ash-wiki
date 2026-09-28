@@ -46,8 +46,8 @@ REC만으로는 bus-off가 되지 않는다. bus-off 조건에는 TEC만 들어�
 
 Bosch CAN 2.0 규격은 계수기 값이 약 96을 넘으면 버스가 심하게 교란된 것으로 보고, 이를 검사할 수단을 두기를 권한다.[@bosch-can-2-0-1991] 이 값에 경고를 두는 [[can-controller|컨트롤러]]의 예는 다음과 같다.
 
-- MCP2515는 $\mathrm{TEC} \ge 96$이거나 $\mathrm{REC} \ge 96$이면 경고 플래그 EWARN을 세우고, $\mathrm{TEC} < 96$이고 $\mathrm{REC} < 96$이 되면 내린다.[@microchip-mcp2515-2019]
-- STM32F10x의 bxCAN은 $\mathrm{TEC} \ge 96$이거나 $\mathrm{REC} \ge 96$이면 경고 플래그 EWGF를 세운다.[@st-rm0008-2021]
+- MCP2515는 $\mathrm{TEC} \ge 96$이거나 $\mathrm{REC} \ge 96$이면 경고 플래그 `EWARN`을 세우고, $\mathrm{TEC} < 96$이고 $\mathrm{REC} < 96$이 되면 내린다.[@microchip-mcp2515-2019]
+- STM32F10x의 bxCAN은 $\mathrm{TEC} \ge 96$이거나 $\mathrm{REC} \ge 96$이면 경고 플래그 `EWGF`를 세운다.[@st-rm0008-2021]
 - Bosch M_CAN은 $\mathrm{TEC} \ge 96$이거나 $\mathrm{REC} \ge 96$이면 경고 상태 비트를 세운다.[@bosch-m-can-2023]
 
 Bosch M_CAN은 bus-off가 되면 스스로 초기화 비트를 세워 버스 활동을 멈춘다. CPU가 이 비트를 지워야 복귀 절차를 시작하며, 그 뒤 recessive 11비트 연속을 129번 기다린다.[@bosch-m-can-2023]

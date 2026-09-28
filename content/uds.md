@@ -29,7 +29,7 @@ ISO 14229-2는 ISO 14229-1과, DoCAN(Diagnostic communication over Controller Ar
 
 ### 요청과 응답
 
-ISO 14229-1은 서브펑션(SubFunction) 파라미터가 있는 요청 메시지와 없는 요청 메시지를 나눠 정한다.[@iso-14229-1-obp-2026] AUTOSAR의 진단 통신 관리자 Dcm(Diagnostic Communication Manager)은 진단 메시지의 첫 바이트를 서비스 식별자(SID, Service Identifier)로 보고 지원하는 서비스인지 검사한다. 서브펑션이 있는 서비스에서 메시지 둘째 바이트의 비트 7(`suppressPosRspMsgIndicationBit`)이 1이면 긍정 응답을 보내지 않는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+ISO 14229-1은 서브펑션(SubFunction) 파라미터가 있는 요청 메시지와 없는 요청 메시지를 나눠 정한다.[@iso-14229-1-obp-2026] AUTOSAR의 진단 통신 관리자 Dcm(Diagnostic Communication Manager)은 진단 메시지의 첫 바이트를 서비스 식별자(SID, Service Identifier)로 보고 지원하는 서비스인지 검사한다. 서브펑션이 있는 서비스에서 메시지 둘째 바이트의 비트 7(suppressPosRspMsgIndicationBit)이 1이면 긍정 응답을 보내지 않는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 ### 서비스
 
@@ -61,7 +61,7 @@ AUTOSAR Dcm은 초기화할 때 세션을 기본 세션으로 두고, 기본이 
 
 ### 데이터 식별자와 고장 코드
 
-AUTOSAR Dcm은 데이터 식별자(DID, Data Identifier)를 2바이트로 구성하고, ReadDataByIdentifier 요청 하나에 DID 여럿을 담은 요청을 처리한다. WriteDataByIdentifier 요청에서는 2바이트 DID와 기록할 `dataRecord`를 받는다. 진단 고장 코드(DTC, Diagnostic Trouble Code)는 상위·중간·하위 3바이트로 다룬다. ReadDTCInformation으로 서버에 저장된 DTC 정보를 보고하고, ClearDiagnosticInformation으로 고장 메모리를 지운다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+AUTOSAR Dcm은 데이터 식별자(DID, Data Identifier)를 2바이트로 구성하고, ReadDataByIdentifier 요청 하나에 DID 여럿을 담은 요청을 처리한다. WriteDataByIdentifier 요청에서는 2바이트 DID와 기록할 dataRecord를 받는다. 진단 고장 코드(DTC, Diagnostic Trouble Code)는 상위·중간·하위 3바이트로 다룬다. ReadDTCInformation으로 서버에 저장된 DTC 정보를 보고하고, ClearDiagnosticInformation으로 고장 메모리를 지운다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 ### 전송
 

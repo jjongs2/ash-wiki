@@ -37,9 +37,9 @@ Bosch CAN 2.0 규격에서 SYNC_SEG는 1 tq이고, PROP_SEG와 PHASE_SEG1은 각
 
 ### 컨트롤러 설정
 
-MCP2515는 프리스케일러(BRP, Baud Rate Prescaler)와 세그먼트 길이를 설정 레지스터 CNF1\~CNF3로 받는다. PROP_SEG, PHASE_SEG1, PHASE_SEG2의 길이는 각각 PRSEG, PHSEG1, PHSEG2 필드로 따로 설정한다. PHSEG2는 BTLMODE가 1일 때만 쓰이고, 0이면 PHASE_SEG2는 PHASE_SEG1과 정보 처리 시간 가운데 큰 값이 된다.[@microchip-mcp2515-2019]
+MCP2515는 프리스케일러(BRP, Baud Rate Prescaler)와 세그먼트 길이를 설정 레지스터 `CNF1`\~`CNF3`로 받는다. PROP_SEG, PHASE_SEG1, PHASE_SEG2의 길이는 각각 `PRSEG`, `PHSEG1`, `PHSEG2` 필드로 따로 설정한다. `PHSEG2`는 `BTLMODE`가 1일 때만 쓰이고, 0이면 PHASE_SEG2는 PHASE_SEG1과 정보 처리 시간 가운데 큰 값이 된다.[@microchip-mcp2515-2019]
 
-STM32F10x의 bxCAN은 CAN_BTR 레지스터로 프리스케일러(BRP)를 받고, PROP_SEG와 PHASE_SEG1을 합친 BS1과 PHASE_SEG2에 해당하는 BS2를 설정한다.[@st-rm0008-2021]
+STM32F10x의 bxCAN은 `CAN_BTR` 레지스터로 프리스케일러(`BRP`)를 받고, PROP_SEG와 PHASE_SEG1을 합친 `BS1`과 PHASE_SEG2에 해당하는 `BS2`를 설정한다.[@st-rm0008-2021]
 
 ![[diagrams/can-bit-timing-register-fields.svg]]
 
