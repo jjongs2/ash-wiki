@@ -20,11 +20,15 @@ function transform(html: string): string {
   )
 }
 
-const h2 = (id: string) =>
-  `<h2 id="${id}">${id}<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#${id}">§</a></h2>`
+const heading = (tag: string, id: string) =>
+  `<${tag} id="${id}">${id}<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#${id}">§</a></${tag}>`
+const h2 = (id: string) => heading("h2", id)
+const h3 = (id: string) => heading("h3", id)
 
-const section = (id: string, body: string) =>
-  `<details class="collapsible-section" open><summary>${h2(id)}</summary>${body}</details>`
+const details = (summary: string, body: string) =>
+  `<details class="collapsible-section" open><summary>${summary}</summary>${body}</details>`
+const section = (id: string, body: string) => details(h2(id), body)
+const subsection = (id: string, body: string) => details(h3(id), body)
 
 describe("collapsible-sections 플러그인", () => {
   test("## 제목마다 다음 ## 전까지를 펼친 절로 감싼다", () => {
@@ -41,17 +45,20 @@ describe("collapsible-sections 플러그인", () => {
     )
   })
 
-  test("### 절은 상위 ## 절 안에 남는다", () => {
-    const h3 = `<h3 id="a-1">a-1</h3>`
+  test("### 절은 상위 ## 절 안에서 다음 ### 전까지 따로 접힌다", () => {
     assert.strictEqual(
-      transform(`${h2("a")}${h3}<p>가</p>${h2("b")}`),
-      section("a", `${h3}<p>가</p>`) + section("b", ""),
+      transform(`${h2("a")}<p>들머리</p>${h3("a-1")}<p>가</p>${h3("a-2")}<p>나</p>${h2("b")}`),
+      section(
+        "a",
+        `<p>들머리</p>` + subsection("a-1", "<p>가</p>") + subsection("a-2", "<p>나</p>"),
+      ) + section("b", ""),
     )
   })
 
   test("제목의 id와 앵커 링크는 그대로 남는다", () => {
-    const out = transform(`${h2("can-fd")}<p>가</p>`)
+    const out = transform(`${h2("can-fd")}${h3("brs")}<p>가</p>`)
     assert.match(out, /<summary><h2 id="can-fd">can-fd<a role="anchor"[^>]* href="#can-fd">/)
+    assert.match(out, /<summary><h3 id="brs">brs<a role="anchor"[^>]* href="#brs">/)
   })
 
   test("다른 요소 안의 ##는 절을 나누지 않는다", () => {
@@ -59,8 +66,8 @@ describe("collapsible-sections 플러그인", () => {
     assert.strictEqual(transform(`${h2("a")}${quote}<p>가</p>`), section("a", `${quote}<p>가</p>`))
   })
 
-  test("## 제목이 없는 페이지는 그대로 둔다", () => {
-    const html = `<p>가</p><h3 id="x">x</h3><p>나</p>`
+  test("## 제목이 없는 페이지는 ### 제목이 있어도 그대로 둔다", () => {
+    const html = `<p>가</p>${h3("x")}<p>나</p>`
     assert.strictEqual(transform(html), html)
   })
 })
