@@ -15,7 +15,7 @@ verified: 2026-09-26
 
 오류 플래그는 노드의 오류 상태에 따라 두 가지다.[@bosch-can-2-0-1991]
 
-- **active 오류 플래그**: [[dominant-and-recessive|dominant]] 6비트다. [[can-fault-confinement|error active]] 노드가 낸다.[@bosch-can-2-0-1991]
+- **active 오류 플래그**: [[dominant-and-recessive|dominant]] 6비트다. [[can-fault-confinement|error active]] 노드가 낸다.
 - **passive 오류 플래그**: recessive 6비트다. error passive 노드가 낸다.[@bosch-can-2-0-1991]
 
 active 오류 플래그의 모양은 SOF(Start of Frame)부터 [[can-crc|CRC]] 구분자까지 적용되는 [[can-bit-stuffing|비트 스터핑]] 규칙을 어기거나, [[can-acknowledgement|ACK]] 필드나 EOF(End of Frame)의 고정된 모양을 깨뜨린다. 그래서 다른 노드도 모두 오류를 찾고 자기 오류 플래그를 낸다. 여러 노드의 플래그가 포개지므로, 버스에 나타나는 dominant 열은 짧게는 6비트, 길게는 12비트가 된다.[@bosch-can-2-0-1991]
