@@ -183,6 +183,9 @@ plugins:
     layout:
       position: right
       priority: 50
+  # Backlinks를 목차처럼 제목을 눌러 접고 편다(plugins/backlinks-collapse). backlinks 플러그인에는 접기 옵션이 없다.
+  - source: ./plugins/backlinks-collapse
+    enabled: true
   - source: "@quartz-community/article-title"
     enabled: true
     layout:
