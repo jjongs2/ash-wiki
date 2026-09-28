@@ -214,11 +214,14 @@ describe("explorerInputs", () => {
 // 탐색기는 브라우저에서 contentIndex로 트라이를 짓고 mapFn으로 window.explorerTree를 부른다. 실리는
 // 스크립트를 돌려 전역을 받고, 탐색기의 트라이와 같은 꼴인 엔진의 FileTrieNode에 map으로 건 뒤 트리를 본다.
 describe("브라우저 스크립트", () => {
+  // 탐색기의 트라이는 항목의 filePath도 읽는다
+  type Entry = ContentEntry & { filePath: string }
+
   const resources = ExplorerTree().externalResources!({} as BuildCtx)!
   const script = resources.js![0]
   const source = script.contentType === "inline" ? script.script : ""
 
-  const entries: (ContentEntry & { filePath: string })[] = [
+  const entries: Entry[] = [
     { slug: "index", title: "대문", links: ["tags/platform", "tags/network"] },
     { slug: "tags/network", title: "네트워크" },
     { slug: "tags/network/can", title: "CAN" },
@@ -235,7 +238,7 @@ describe("브라우저 스크립트", () => {
 
   function mapped() {
     const window: {
-      explorerTree?: (node: FileTrieNode<ContentEntry & { filePath: string }>) => void
+      explorerTree?: (node: FileTrieNode<Entry>) => void
     } = {}
     // tsx는 함수의 toString()에 __name 호출을 끼워 넣는다. 빌드는 이 파일을 플래그 없는 node로 불러
     // 그런 호출이 없으므로, 테스트에서만 그 이름을 채운다. new Function은 이 모듈의 이름을 보지 못하므로,
@@ -247,10 +250,17 @@ describe("브라우저 스크립트", () => {
   }
 
   type Shape = string | [string, string, Shape[]]
-  const shape = (node: FileTrieNode<ContentEntry & { filePath: string }>): Shape =>
+  const shape = (node: FileTrieNode<Entry>): Shape =>
     node.isFolder
       ? [node.displayName, node.slug, node.children.map(shape)]
       : `${node.displayName} (${node.slug})`
+
+  // 설정 로더는 이 셋 가운데 하나도 없는 transformer를 경고 한 줄만 남기고 건너뛴다(config-loader.ts의
+  // validateCategory). 그러면 빌드는 성공하지만 스크립트가 실리지 않아 탐색기가 비어 나온다.
+  test("설정 로더가 transformer로 받아들인다", () => {
+    const plugin = ExplorerTree()
+    assert.ok(["textTransform", "markdownPlugins", "htmlPlugins"].some((key) => key in plugin))
+  })
 
   test("페이지를 불러온 뒤 도는 인라인 스크립트를 싣는다", () => {
     assert.strictEqual(script.loadTime, "afterDOMReady")

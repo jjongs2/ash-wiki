@@ -166,9 +166,7 @@ plugins:
     enabled: false
   - source: "@quartz-community/tag-page"
     enabled: true
-  # 폴더 대신 태그로 구역 › 주제 › 페이지 트리를 그린다(plugins/explorer-tree). 탐색기는 이 함수 옵션들을
-  # 문자열로 받아 브라우저에서 돌린다. mapFn이 explorer-tree가 싣는 전역을 부르고, filterFn은 표시 이름을
-  # 읽을 tags 폴더를 남기며, sortFn은 대문의 구역 순서를 흩뜨리지 않게 순서를 그대로 둔다.
+  # 폴더 대신 태그로 구역 › 주제 › 페이지 트리를 그린다. 세 옵션을 둔 이유는 plugins/explorer-tree에 있다.
   - source: "@quartz-community/explorer"
     enabled: true
     options:

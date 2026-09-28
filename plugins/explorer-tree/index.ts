@@ -14,8 +14,7 @@
 //
 // 구역과 주제의 폴더는 태그 목록의 슬러그(tags/<태그>)를 갖는다. 그래서 탐색기가 폴더 이름을 그 태그
 // 목록으로 링크하고, 태그 목록 페이지에서는 그 구역과 주제를 펼쳐 둔다(탐색기는 지금 페이지의 슬러그가
-// 폴더의 슬러그로 시작하면 그 폴더를 연다). 페이지가 없는 구역과 주제도
-// 대문처럼 트리에 둔다.
+// 폴더의 슬러그로 시작하면 그 폴더를 연다).
 //
 // 빌드가 이 파일을 Node의 type stripping으로 불러오므로, 타입만 지우면 돌아가는 문법만 쓴다. enum, namespace,
 // parameter property를 쓰지 않고, 타입은 import type으로 가져온다. 두 순수 함수는 toString()으로 스크립트에
@@ -40,6 +39,8 @@ export type ExplorerItem =
   | { kind: "folder"; tag: string; name: string; children: ExplorerItem[] }
   | { kind: "page"; slug: string; name: string }
 
+export type ExplorerFolder = Extract<ExplorerItem, { kind: "folder" }>
+
 export interface ContentEntry {
   slug: string
   title: string
@@ -49,24 +50,31 @@ export interface ContentEntry {
 
 /**
  * 페이지 목록, 태그 표시 이름, 대문의 구역 순서로 구역 › 주제 › 페이지 트리를 짓는다.
+ * - 페이지가 없는 구역과 주제도 대문처럼 둔다.
  * - 구역은 대문의 순서를 따르고, 대문에 없는 구역은 그 뒤에 이름 오름차순으로 둔다.
  * - 주제와 페이지는 이름 오름차순이고, 구역에 바로 속한 페이지는 그 구역의 주제들 뒤에 둔다.
  *   정렬은 한국어 순서(가나다 뒤에 로마자)로 고정해, 브라우저의 언어에 따라 바뀌지 않게 한다.
  * - 태그가 없는 페이지는 구역들 뒤에 둔다.
- * - 페이지는 첫 태그 하나로 자리를 정한다. 지금은 페이지마다 태그가 하나다.
+ * - 페이지는 첫 태그 하나로 자리를 정한다. 여러 주제에 걸치는 페이지의 처리는 아직 정하지 않았다.
  */
 export function buildExplorerTree(
   pages: ExplorerPage[],
   tagNames: Record<string, string>,
   sectionOrder: string[],
 ): ExplorerItem[] {
-  type Folder = { kind: "folder"; tag: string; name: string; children: ExplorerItem[] }
-  type Page = { kind: "page"; slug: string; name: string }
-  type Section = { folder: Folder; topics: Map<string, Folder>; pages: Page[] }
+  type Section = {
+    folder: ExplorerFolder
+    topics: Map<string, ExplorerFolder>
+    pages: ExplorerItem[]
+  }
 
   const byName = (a: ExplorerItem, b: ExplorerItem) =>
     a.name.localeCompare(b.name, "ko", { numeric: true })
-  const folder = (tag: string): Folder => ({
+  const getOrAdd = <T>(map: Map<string, T>, key: string, make: () => T): T => {
+    if (!map.has(key)) map.set(key, make())
+    return map.get(key)!
+  }
+  const folder = (tag: string): ExplorerFolder => ({
     kind: "folder",
     tag,
     name: tagNames[tag] ?? tag.split("/").at(-1)!,
@@ -74,42 +82,27 @@ export function buildExplorerTree(
   })
 
   const sections = new Map<string, Section>()
-  const section = (tag: string): Section => {
-    let found = sections.get(tag)
-    if (!found) {
-      found = { folder: folder(tag), topics: new Map(), pages: [] }
-      sections.set(tag, found)
-    }
-    return found
-  }
-  const topic = (sectionTag: string, topicTag: string): Folder => {
-    const topics = section(sectionTag).topics
-    let found = topics.get(topicTag)
-    if (!found) {
-      found = folder(topicTag)
-      topics.set(topicTag, found)
-    }
-    return found
-  }
-
-  // 구역과 주제: 표시 이름이 있는 태그와 페이지가 쓰는 태그
-  for (const tag of [...Object.keys(tagNames), ...pages.flatMap((page) => page.tags.slice(0, 1))]) {
+  // 태그가 가리키는 자리(주제 태그면 그 주제, 구역 태그면 구역의 직속 페이지)를 필요하면 만들어 돌려준다
+  const slot = (tag: string): ExplorerItem[] => {
     const [sectionTag, topicSegment] = tag.split("/")
-    if (topicSegment) topic(sectionTag, `${sectionTag}/${topicSegment}`)
-    else section(sectionTag)
+    const section = getOrAdd(sections, sectionTag, () => ({
+      folder: folder(sectionTag),
+      topics: new Map(),
+      pages: [],
+    }))
+    if (!topicSegment) return section.pages
+    const topicTag = `${sectionTag}/${topicSegment}`
+    return getOrAdd(section.topics, topicTag, () => folder(topicTag)).children
   }
 
-  const loose: Page[] = []
+  // 표시 이름이 있는 태그는 페이지가 없어도 자리를 만들고, 페이지는 첫 태그의 자리에 넣는다
+  for (const tag of Object.keys(tagNames)) slot(tag)
+  const loose: ExplorerItem[] = []
   for (const page of pages) {
-    const item: Page = { kind: "page", slug: page.slug, name: page.title }
+    const item: ExplorerItem = { kind: "page", slug: page.slug, name: page.title }
     const tag = page.tags[0]
-    if (!tag) {
-      loose.push(item)
-      continue
-    }
-    const [sectionTag, topicSegment] = tag.split("/")
-    if (topicSegment) topic(sectionTag, `${sectionTag}/${topicSegment}`).children.push(item)
-    else section(sectionTag).pages.push(item)
+    if (tag) slot(tag).push(item)
+    else loose.push(item)
   }
 
   const rank = (tag: string) => {
@@ -142,14 +135,18 @@ export function explorerInputs(entries: ContentEntry[]): {
   const pages: ExplorerPage[] = []
   const tagNames: Record<string, string> = {}
   const sectionOrder: string[] = []
+  const tagOf = (slug: string) => (slug.startsWith("tags/") ? slug.slice("tags/".length) : null)
   for (const entry of entries) {
+    const tag = tagOf(entry.slug)
     if (entry.slug === "index") {
       for (const link of entry.links) {
-        const match = /^tags\/([^/]+)$/.exec(link)
-        if (match && !sectionOrder.includes(match[1])) sectionOrder.push(match[1])
+        const section = tagOf(link)
+        if (section && !section.includes("/") && !sectionOrder.includes(section)) {
+          sectionOrder.push(section)
+        }
       }
-    } else if (entry.slug.startsWith("tags/")) {
-      if (entry.slug !== "tags/index") tagNames[entry.slug.slice("tags/".length)] = entry.title
+    } else if (tag !== null) {
+      if (tag !== "index") tagNames[tag] = entry.title
     } else {
       pages.push({ slug: entry.slug, title: entry.title, tags: entry.tags })
     }
@@ -176,12 +173,13 @@ const SCRIPT = `(() => {
     const Node = root.constructor
     const toNode = (item) => {
       if (item.kind === "page") return new Node([item.slug], dataBySlug.get(item.slug))
-      const node = new Node(["tags", ...item.tag.split("/")])
+      const slug = "tags/" + item.tag
+      const node = new Node(slug.split("/"))
       node.isFolder = true
       node.displayName = item.name
       // 폴더의 slug는 <경로>/index라 탐색기가 /tags/<태그>/로 링크하는데, 태그 목록은 tags/<태그>.html로
       // 나와 그 주소에 페이지가 없다. 대문처럼 /tags/<태그>로 링크하게 slug를 덮는다.
-      Object.defineProperty(node, "slug", { value: "tags/" + item.tag })
+      Object.defineProperty(node, "slug", { value: slug })
       node.children = item.children.map(toNode)
       return node
     }
