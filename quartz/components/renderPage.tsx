@@ -335,7 +335,9 @@ export function renderPage(
   const Body = BodyConstructor()
   const frame = resolveFrame(frameName)
 
-  const lang = componentData.fileData.frontmatter?.lang ?? cfg.locale?.split("-")[0] ?? "en"
+  // ash-wiki: 본문은 한국어인데 UI locale은 en-US다(ADR 0003). locale에서 언어를 따오면 문서가
+  // lang="en"이 되어 브라우저가 번역을 권하고 스크린 리더가 영어 규칙으로 읽으므로, 기본값을 ko로 둔다.
+  const lang = componentData.fileData.frontmatter?.lang ?? "ko"
   const direction = i18n(cfg.locale).direction ?? "ltr"
   // During local dev (--serve), the dev server serves from root without the
   // baseUrl subpath, so basePath must be empty to avoid broken links.
