@@ -143,8 +143,7 @@ plugins:
   # CNAME 파일은 GitHub Pages용이다. 호스팅은 Cloudflare Pages다(ADR 0004).
   - source: "@quartz-community/cname"
     enabled: false
-  # 위키는 canvas, bases, 목록 제외, 암호화 페이지를 쓰지 않는다. 켜 두면 페이지마다 그 CSS를 받으므로
-  # 이 플러그인과 아래의 bases-page, unlisted-pages, encrypted-pages를 끈다.
+  # 위키는 canvas 페이지를 쓰지 않는다. 켜 두면 페이지마다 그 CSS와 스크립트를 받는다.
   - source: "@quartz-community/canvas-page"
     enabled: false
   - source: "@quartz-community/content-page"
@@ -243,6 +242,7 @@ plugins:
       position: left
       priority: 25
       display: mobile-only
+  # 위키는 bases 페이지를 쓰지 않는다. 켜 두면 페이지마다 그 CSS와 스크립트를 받는다.
   - source: "@quartz-community/bases-page"
     enabled: false
     options: {}
@@ -269,10 +269,12 @@ plugins:
       position: beforeBody
       priority: 15
       display: all
+  # 위키는 목록에서 빼는 페이지를 쓰지 않는다.
   - source: "@quartz-community/unlisted-pages"
     enabled: false
     options: {}
     order: 45
+  # 위키는 암호화 페이지를 쓰지 않는다. 켜 두면 페이지마다 그 CSS와 스크립트를 받는다.
   - source: "@quartz-community/encrypted-pages"
     enabled: false
     options:
