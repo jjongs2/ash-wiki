@@ -44,8 +44,23 @@ describe("backlinks-collapse 플러그인", () => {
     assert.doesNotThrow(() => new Function(source))
   })
 
+  // 가짜 document로 스크립트를 돌려, 무엇을 언제 찾고 어느 이벤트에 거는지 본다.
+  function run() {
+    const calls: string[] = []
+    const document = {
+      querySelectorAll: (selector: string) => (calls.push(`find ${selector}`), []),
+      addEventListener: (type: string) => calls.push(`listen ${type}`),
+    }
+    new Function("document", "window", source)(document, {})
+    return calls
+  }
+
+  test("첫 로드에는 nav를 기다리지 않고 곧바로 감싼다", () => {
+    assert.strictEqual(run()[0], "find .backlinks")
+  })
+
   test("SPA 이동마다 다시 붙도록 nav 이벤트에 건다", () => {
-    assert.match(source, /addEventListener\("nav"/)
+    assert.ok(run().includes("listen nav"))
   })
 
   test("접기 표시는 목차의 SVG와 같다", () => {

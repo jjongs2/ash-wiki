@@ -2,9 +2,13 @@
 // backlinks 플러그인에는 접기 옵션이 없어, 페이지에 스크립트와 CSS만 싣고 node_modules는 고치지 않는다.
 // 스크립트는 Backlinks의 <h3> 제목을 목차와 같은 꼴의 버튼(<button> 안에 <h3>와 접기 표시)으로 감싸고,
 // 누르면 버튼과 목록에 collapsed를 켜고 끄며 aria-expanded를 바꾼다. 처음엔 펼쳐 둔다.
-// SPA 이동은 사이드바를 새 페이지의 마크업으로 되돌리므로 nav 이벤트마다 다시 감싼다. Backlinks가 없는
-// 페이지에는 backlinks 플러그인이 칸을 내지 않으므로 할 일이 없다.
-// 버튼 CSS는 목차 컴포넌트의 `button.toc-header` 규칙을 이름만 바꿔 옮겼다. 목록은 display로 숨긴다.
+// SPA 이동은 사이드바를 새 페이지의 마크업으로 되돌리므로 nav 이벤트마다 다시 감싼다. 첫 로드의 nav는
+// 가장 늦게 도는 postscript가 보내 첫 페인트 뒤에야 오므로, 스크립트가 돌 때 곧바로 한 번 감싼다. 그러지
+// 않으면 접기 표시가 늦게 나타나며 목록이 밀린다. Backlinks가 없는 페이지에는 backlinks 플러그인이 칸을
+// 내지 않으므로 할 일이 없다.
+// 버튼 CSS는 목차 컴포넌트의 `button.toc-header` 규칙을 이름만 바꿔 옮겼다. 목록은 목차처럼 칸의
+// flex-basis를 줄여 잘라 내지 않고 display로 숨긴다. 모바일과 태블릿에서는 오른쪽 사이드바가 가로로 놓여,
+// flex-basis를 줄이면 높이가 아니라 폭이 줄어든다(목차는 거기서 숨겨져 이 문제가 없다).
 //
 // 빌드가 이 파일을 Node의 type stripping으로 불러오므로, 타입만 지우면 돌아가는 문법만 쓴다. enum, namespace,
 // parameter property를 쓰지 않고, 타입은 import type으로 가져온다.
@@ -75,6 +79,7 @@ const SCRIPT = `(() => {
     }
   }
 
+  setup()
   document.addEventListener("nav", setup)
 })()
 `
