@@ -199,6 +199,9 @@ plugins:
   # Backlinks를 목차처럼 제목을 눌러 접고 편다(plugins/backlinks-collapse). backlinks 플러그인에는 접기 옵션이 없다.
   - source: ./plugins/backlinks-collapse
     enabled: true
+  # 목차와 Backlinks의 목록이 잘리면 끝을 흐린다(plugins/overflow-lists). 업스트림은 목록 id가 겹쳐 탐색기만 흐린다.
+  - source: ./plugins/overflow-lists
+    enabled: true
   # 탐색기의 mapFn이 부르는 전역 window.explorerTree를 싣는다(plugins/explorer-tree).
   - source: ./plugins/explorer-tree
     enabled: true
