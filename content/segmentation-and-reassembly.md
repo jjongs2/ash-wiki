@@ -5,8 +5,6 @@ tags:
 verified: 2026-09-27
 ---
 
-## 정의
-
 **분할**(segmenting)은 한 계층이 SDU(Service Data Unit) 하나를 여러 PDU(Protocol Data Unit)로 나누는 기능이고, **재조립**(reassembling)은 받는 쪽이 그 PDU들을 원래 SDU로 되돌리는 기능이다. 계층 사이에서 데이터 단위의 크기가 맞지 않을 때 쓴다.[@itu-t-x-200-1994]
 
 ![[diagrams/sdu-segmentation-into-pdus.svg]]

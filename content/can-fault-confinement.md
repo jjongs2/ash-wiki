@@ -5,8 +5,6 @@ tags:
 verified: 2026-09-26
 ---
 
-## 정의
-
 **fault confinement**는 [[can|CAN]] 노드가 잠깐의 교란과 영구 고장을 가려내고, 고장 난 노드를 버스에서 떼어 내는 장치다. 노드는 송신·수신 오류 계수에 따라 자기 오류 상태를 정하며, error active, error passive, bus-off 세 상태 가운데 하나에 있다.[@bosch-can-2-0-1991]
 
 ## 구조·동작

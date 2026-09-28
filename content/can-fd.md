@@ -7,8 +7,6 @@ aliases:
 verified: 2026-09-27
 ---
 
-## 정의
-
 **CAN FD**(CAN with Flexible Data-Rate)는 [[can|CAN]] 프로토콜을 확장한 것으로, 중재가 끝난 뒤 한 프레임 안에서 더 빠른 비트율로 바꿀 수 있고 데이터 필드를 64바이트까지 늘렸다. Bosch가 2012년에 규격 1.0을 공개했다.[@bosch-can-fd-1-0-2012] ISO 11898-1:2015는 CAN FD 프레임 포맷을 새로 넣었다.[@iso-11898-1-obp-2015] 현행 2024년판은 [[can-frame|classical CAN 프레임]] 포맷, CAN FD 프레임 포맷, CAN XL 프레임 포맷을 규정한다.[@iso-11898-1-obp-2024]
 
 ## 구조·동작

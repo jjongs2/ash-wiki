@@ -7,8 +7,6 @@ aliases:
 verified: 2026-09-27
 ---
 
-## 정의
-
 **OSI 참조 모델**(Open Systems Interconnection Reference Model)은 시스템 상호 연결을 위한 표준 개발을 조율하는 공통 기반이 되는 모델이다.[@iso-iec-7498-1-1994] ISO/IEC 7498-1:1994가 이 모델을 정하고, ITU-T X.200(07/94)이 같은 본문을 담는다. 모델은 일곱 계층으로 이루어진다.[@itu-t-x-200-1994]
 
 ## 구조·동작

@@ -5,8 +5,6 @@ tags:
 verified: 2026-09-26
 ---
 
-## 정의
-
 **CAN ACK**(Acknowledgement)는 [[can|CAN]] 프레임을 제대로 받은 수신 노드가 같은 프레임의 ACK 슬롯에서 dominant 비트를 보내, 송신 노드에 그 사실을 알리는 것이다. [[can-frame|데이터 프레임]]과 [[remote-frame|리모트 프레임]]에서 ACK 필드는 [[can-crc|CRC]] 필드 바로 뒤에 온다.[@bosch-can-2-0-1991]
 
 ## 구조·동작
