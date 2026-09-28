@@ -166,8 +166,15 @@ plugins:
     enabled: false
   - source: "@quartz-community/tag-page"
     enabled: true
+  # 폴더 대신 태그로 구역 › 주제 › 페이지 트리를 그린다(plugins/explorer-tree). 탐색기는 이 함수 옵션들을
+  # 문자열로 받아 브라우저에서 돌린다. mapFn이 explorer-tree가 싣는 전역을 부르고, filterFn은 표시 이름을
+  # 읽을 tags 폴더를 남기며, sortFn은 대문의 구역 순서를 흩뜨리지 않게 순서를 그대로 둔다.
   - source: "@quartz-community/explorer"
     enabled: true
+    options:
+      filterFn: "() => true"
+      mapFn: "(node) => window.explorerTree(node)"
+      sortFn: "() => 0"
     layout:
       position: left
       priority: 50
@@ -191,6 +198,9 @@ plugins:
       priority: 50
   # Backlinks를 목차처럼 제목을 눌러 접고 편다(plugins/backlinks-collapse). backlinks 플러그인에는 접기 옵션이 없다.
   - source: ./plugins/backlinks-collapse
+    enabled: true
+  # 탐색기의 mapFn이 부르는 전역 window.explorerTree를 싣는다(plugins/explorer-tree).
+  - source: ./plugins/explorer-tree
     enabled: true
   - source: "@quartz-community/article-title"
     enabled: true
