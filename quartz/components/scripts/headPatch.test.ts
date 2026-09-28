@@ -2,6 +2,8 @@ import test, { describe } from "node:test"
 import assert from "node:assert"
 import { headKey, matchHeadElements } from "./headPatch"
 
+// ash-wiki: headPatch.ts(SPA 이동 때 같은 head 요소를 남기는 짝짓기)의 테스트다.
+
 // headKey가 쓰는 만큼만 흉내 낸 요소. outerHTML은 속성을 넣은 순서대로 적는다.
 function fakeElement(tagName: string, attrs: Record<string, string>) {
   const el = {

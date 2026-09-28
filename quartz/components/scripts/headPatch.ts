@@ -2,14 +2,12 @@
 // 스타일시트를 뗐다 붙이면 CSS가 같아도 이동마다 다시 파싱하고 페이지 전체의 스타일을 다시 계산해,
 // 이동 한 번에 메인 스레드가 100ms 안팎 멈춘다.
 
-type HeadElement = Pick<Element, "tagName" | "cloneNode">
-
 const URL_ATTRS = ["href", "src"]
 
 // 같은 요소인지 가를 키. 처음 불러온 페이지의 href는 "./x.css"처럼 상대 경로이고, 이동으로 받은
 // 페이지의 href는 normalizeRelativeURLs가 "/x.css"로 바꿔 두어 문자열이 다르다. 그래서 절대 URL로
 // 풀어 비교한다. script는 이전처럼 늘 새로 넣도록 null(짝 없음)을 준다.
-export function headKey(el: HeadElement, base: string | URL): string | null {
+export function headKey(el: Element, base: string | URL): string | null {
   if (el.tagName === "SCRIPT") return null
   const clone = el.cloneNode(true) as Element
   for (const attr of URL_ATTRS) {
@@ -33,6 +31,9 @@ export function matchHeadElements(
   })
 }
 
+// oldBase는 지금 head를 가져온 페이지의 주소다. 뒤로 가기(popstate)에서는 주소가 이미 목적지라 틀린 값이
+// 들어오지만, 첫 이동 뒤 head의 URL은 모두 절대 경로라 결과는 같다. 틀린 base로 상대 경로를 풀면 짝을 찾지
+// 못해 새 요소로 갈 뿐, 다른 요소와 잘못 짝지어지지는 않는다.
 export function patchHead(
   head: HTMLHeadElement,
   newHead: HTMLHeadElement,
@@ -46,9 +47,9 @@ export function patchHead(
     newEls.map((el) => headKey(el, newBase)),
   )
 
-  const matched = new Set(match)
+  const keptOld = new Set(match)
   oldEls.forEach((el, i) => {
-    if (!matched.has(i)) el.remove()
+    if (!keptOld.has(i)) el.remove()
   })
 
   // 뒤에서부터 넣어, 새 요소를 새 페이지에서 바로 뒤에 오는 요소 앞에 둔다. 뒤에 올 요소가 없으면 끝에 붙는다.
