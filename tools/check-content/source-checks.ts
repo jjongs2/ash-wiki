@@ -337,7 +337,7 @@ const styleSources = [/\sstyle\s*=\s*(["'])(.*?)\1/gs, /<style[^>]*>([\s\S]*?)<\
 // 도해의 글자는 사이트와 같은 Pretendard로, 글리프 폭을 픽셀에 맞춰 반올림하지 않고 그린다.
 // 브라우저와 검사기가 같은 폭으로 그려야 검사기가 잰 여백이 독자가 보는 여백과 맞는다.
 // Linux의 Chromium은 geometricPrecision이 없으면 글리프 폭을 반올림해 여백이 한 변에서 4까지 달라진다.
-// 합자를 끄지 않으면 Pretendard가 라틴 문자 뒤의 "0x"에서 x를 ×로 그린다.
+// 합자를 끄지 않으면 Pretendard가 "0x"의 x를 ×로 그리는 때가 있다(예: "ID 0x8100").
 const textProperties = {
   "font-family": "Pretendard, sans-serif",
   "text-rendering": "geometricPrecision",
