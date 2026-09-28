@@ -158,11 +158,11 @@ export function explorerInputs(entries: ContentEntry[]): {
 // 폴더 이름보다 크게 그려, 층과 지금 페이지가 드러나지 않는다. 꺾쇠, 전환, 모서리는 절 접기
 // (plugins/collapsible-sections)와 맞춘다.
 // - 층은 굵기와 크기로 가른다. 구역은 본문색 0.95rem 600, 주제는 0.9rem 600, 페이지는 0.9rem 400이다.
-//   파랑은 지금 페이지와 hover에만 쓴다.
+//   파랑은 지금 페이지에만 쓴다.
 // - 줄마다 같은 안쪽 여백과 5px 모서리를 둔다. 폴더는 이름 버튼을 줄 끝까지 늘려 줄 어디를 눌러도 접고
 //   편다. hover에는 무채색(lightgray를 반쯤 비친) 배경을, 지금
 //   페이지에는 본문의 내부 링크와 같은 highlight 배경을 깔고 파랑으로 써서 둘을 구분한다.
-// - 꺾쇠는 본문색으로 흐리게 두고 hover에 파랑으로 바꾼다. 하위 목록의 안내선은 꺾쇠 가운데에 선다.
+// - 꺾쇠는 본문색으로 흐리게 두고, hover에도 바꾸지 않는다. 하위 목록의 안내선은 꺾쇠 가운데에 선다.
 // - 폴더를 펼치면 하위 목록이 살짝 내려오며 나타난다. 동작 줄이기 설정에서는 전환을 모두 끈다.
 // - 페이지가 없는 구역과 주제는 이름을 보조 글자색으로 흐린다. 꺾쇠는 폴더임을 알리도록 더 흐리게 남기되,
 //   펼칠 것이 없으니 줄 전체를 누를 수 없게 한다.
@@ -219,14 +219,7 @@ const CSS = `.explorer .explorer-content .folder-container,
   margin-right: 0.3rem;
   color: var(--dark);
   opacity: 0.6;
-  transition:
-    transform 0.3s ease,
-    color 0.2s ease,
-    opacity 0.2s ease;
-}
-.explorer .explorer-content .folder-container:hover .folder-icon {
-  color: var(--secondary);
-  opacity: 1;
+  transition: transform 0.3s ease;
 }
 .explorer .explorer-content .folder-outer > ul {
   margin-left: calc(0.4rem + 5.5px);
