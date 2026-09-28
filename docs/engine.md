@@ -29,6 +29,10 @@ git diff --name-only --diff-filter=A 97a2d05f80c4c50534959b1d0d41cc4b3895625e HE
 
 JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"` 키에 이유를 적습니다. `tsconfig.json`은 주석을 허용하는 JSONC라 주석으로 적습니다.
 
+이미지도 주석을 달 수 없어서 이유를 여기 적습니다.
+
+- `quartz/static/icon.png`: 소유자의 손글씨 아이콘입니다(#85). favicon과 OG 이미지가 이 파일을 읽습니다.
+
 ## 설정
 
 사이트 설정은 `quartz.config.yaml`에 둡니다. 업스트림 기본값인 `quartz.config.default.yaml`은 고치지 않고, 설정 로더가 `quartz.config.yaml`을 먼저 읽습니다. 기본값과 다르게 둔 항목 가운데 값만 봐서 이유를 알 수 없는 것은 `quartz.config.yaml`의 주석에 이유를 적습니다.
