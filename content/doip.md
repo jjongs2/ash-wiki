@@ -21,15 +21,15 @@ verified: 2026-09-28
 
 ISO 13400-2는 차량 안의 서버와 통신하는 진단 장비를 클라이언트 DoIP 엔티티라 부른다.[@iso-13400-2-obp-2025] DoIP 엣지 노드는 차량 안의 호스트로, ISO 13400-3의 이더넷 활성화 선과 외부 네트워크의 첫 노드에서 오는 링크가 끝나는 곳이다.[@iso-13400-2-obp-2025][@iso-13400-3-obp-2016] IP 네트워크에 직접 연결되지 않은 차량 서브네트워크와는 거기에 연결된 DoIP 게이트웨이를 거쳐서만 데이터를 주고받는다. 논리 주소는 진단 응용 계층 엔티티를 가리키는 주소다.[@iso-13400-2-obp-2025]
 
-AUTOSAR의 DoIP 모듈은 DoIP 엔티티의 종류를 DoIP 게이트웨이와 DoIP 노드 가운데 하나로 설정하고, 엔티티 상태 응답의 Node Type 바이트에 게이트웨이는 0x00, 노드는 0x01로 싣는다. 메시지의 출발지 논리 주소와 목적지 논리 주소는 각각 2바이트다.[@autosar-cp-sws-diagnosticoverip-2025]
+AUTOSAR의 DoIP 모듈은 DoIP 엔티티의 종류를 DoIP 게이트웨이와 DoIP 노드 가운데 하나로 설정하고, 엔티티 상태 응답의 Node Type 바이트에 게이트웨이는 `0x00`, 노드는 `0x01`로 싣는다. 메시지의 출발지 논리 주소와 목적지 논리 주소는 각각 2바이트다.[@autosar-cp-sws-diagnosticoverip-2025]
 
 ### 헤더
 
-AUTOSAR의 DoIP 모듈에서 DoIP 메시지는 8바이트 일반 헤더로 시작한다. 1바이트 Protocol Version, 그 비트를 뒤집은 1바이트 Inverse Protocol Version(Protocol Version이 0x02이면 0xFD), 2바이트 Payload Type, 4바이트 Payload Length가 차례로 오고, Payload Length는 일반 헤더를 뺀 페이로드의 바이트 수다.[@autosar-cp-sws-diagnosticoverip-2025]
+AUTOSAR의 DoIP 모듈에서 DoIP 메시지는 8바이트 일반 헤더로 시작한다. 1바이트 Protocol Version, 그 비트를 뒤집은 1바이트 Inverse Protocol Version(Protocol Version이 `0x02`이면 `0xFD`), 2바이트 Payload Type, 4바이트 Payload Length가 차례로 오고, Payload Length는 일반 헤더를 뺀 페이로드의 바이트 수다.[@autosar-cp-sws-diagnosticoverip-2025]
 
 ![[diagrams/doip-generic-header.svg]]
 
-AUTOSAR의 DoIP 모듈은 프로토콜 정보가 틀린 헤더를 받으면 NACK(Negative Acknowledgement) 코드 0x00을 보내고 소켓을 닫는다. 설정에 따라 프로토콜 버전 0x02나 0x03을 받고, 차량 식별 요청에서는 0xFF(반전 값 0x00)를 기본값으로 받는다.[@autosar-cp-sws-diagnosticoverip-2025] ISO 13400-2:2025는 이 판의 DoIP 프로토콜 버전을 4로 정한다.[@iso-13400-2-obp-2025]
+AUTOSAR의 DoIP 모듈은 프로토콜 정보가 틀린 헤더를 받으면 NACK(Negative Acknowledgement) 코드 `0x00`을 보내고 소켓을 닫는다. 설정에 따라 프로토콜 버전 `0x02`나 `0x03`을 받고, 차량 식별 요청에서는 `0xFF`(반전 값 `0x00`)를 기본값으로 받는다.[@autosar-cp-sws-diagnosticoverip-2025] ISO 13400-2:2025는 이 판의 DoIP 프로토콜 버전을 4로 정한다.[@iso-13400-2-obp-2025]
 
 ### 포트
 
@@ -41,17 +41,17 @@ AUTOSAR의 DoIP 모듈이 다루는 Payload Type에는 아래 것들이 있다.[
 
 | Payload Type | 메시지                   |
 | ------------ | ------------------------ |
-| 0x0001       | 차량 식별 요청           |
-| 0x0004       | 차량 식별 응답·차량 알림 |
-| 0x0005       | 라우팅 활성화 요청       |
-| 0x0006       | 라우팅 활성화 응답       |
-| 0x0007       | 생존 확인 요청           |
-| 0x0008       | 생존 확인 응답           |
-| 0x8001       | 진단 메시지              |
-| 0x8002       | 진단 메시지 긍정 확인    |
-| 0x8003       | 진단 메시지 부정 확인    |
+| `0x0001`     | 차량 식별 요청           |
+| `0x0004`     | 차량 식별 응답·차량 알림 |
+| `0x0005`     | 라우팅 활성화 요청       |
+| `0x0006`     | 라우팅 활성화 응답       |
+| `0x0007`     | 생존 확인 요청           |
+| `0x0008`     | 생존 확인 응답           |
+| `0x8001`     | 진단 메시지              |
+| `0x8002`     | 진단 메시지 긍정 확인    |
+| `0x8003`     | 진단 메시지 부정 확인    |
 
-AUTOSAR의 DoIP 모듈은 차량 식별 요청을 받으면 차량 식별 응답·차량 알림으로 답하고, 차량 알림은 설정에 따라 스스로 보내기도 한다. TCP 연결에서 라우팅 활성화 요청을 받아 검사를 통과하면 응답 코드 0x10의 라우팅 활성화 응답을 보낸다. 그 연결이 라우팅 활성 상태가 되기 전에는 라우팅 활성화 요청과 인증·확인 밖의 메시지를 버린다. 진단 메시지는 요청과 응답에 모두 쓰이며, 출발지 논리 주소, 목적지 논리 주소, 사용자 데이터를 담는다. 진단 메시지를 받으면 긍정 확인이나 부정 확인으로 진단 장비에 먼저 알린다.[@autosar-cp-sws-diagnosticoverip-2025]
+AUTOSAR의 DoIP 모듈은 차량 식별 요청을 받으면 차량 식별 응답·차량 알림으로 답하고, 차량 알림은 설정에 따라 스스로 보내기도 한다. TCP 연결에서 라우팅 활성화 요청을 받아 검사를 통과하면 응답 코드 `0x10`의 라우팅 활성화 응답을 보낸다. 그 연결이 라우팅 활성 상태가 되기 전에는 라우팅 활성화 요청과 인증·확인 밖의 메시지를 버린다. 진단 메시지는 요청과 응답에 모두 쓰이며, 출발지 논리 주소, 목적지 논리 주소, 사용자 데이터를 담는다. 진단 메시지를 받으면 긍정 확인이나 부정 확인으로 진단 장비에 먼저 알린다.[@autosar-cp-sws-diagnosticoverip-2025]
 
 ![[diagrams/doip-message-sequence.svg]]
 

@@ -15,9 +15,7 @@ verified: 2026-09-28
 
 SOME/IP는 UDP와 TCP를 전송 프로토콜로 지원한다. 한 ECU의 서버 쪽에서 같은 서비스의 인스턴스가 여럿이면 인스턴스마다 다른 포트 번호를 쓴다. 명세는 UDP에서 SOME/IP 페이로드를 0\~1400바이트로 두고, 이보다 크면 TCP로 보내거나 나눠 보내기를 권한다. UDP로 보내기에 큰 메시지는 SOME/IP-TP(SOME/IP Transport Protocol)로 나눈다.[@autosar-fo-prs-someipprotocol-2025]
 
-AUTOSAR R4.2.1의 SOME/IP 예시 문서는 쓸 포트를 인터페이스 명세에서 정하게 했다. 인터페이스 명세가 따로 정하지 않았으면 30491을 동적 클라이언트 포트로, 30501을 첫 서버 포트로 쓰고, 서버 인스턴스가 더 있으면 30502, 30503처럼 이어 쓸 수 있다고 했다.[@autosar-cp-tr-someipexample-2014]
-
-TCP는 주고받은 세그먼트의 경계와 애플리케이션이 읽고 쓰는 단위의 경계가 서로 대응한다고 보장하지 않는다.[@ietf-rfc-9293-2022] SOME/IP는 시험 도구가 TCP로 오가는 SOME/IP 메시지의 경계를 찾을 수 있도록, TCP 메시지 스트림에 Magic Cookie 메시지를 일정 간격으로 끼워 넣을 수 있게 한다. Magic Cookie 메시지의 Service ID는 0xFFFF이고, Method ID는 클라이언트에서 서버로 갈 때 0x0000, 서버에서 클라이언트로 갈 때 0x8000이다.[@autosar-fo-prs-someipprotocol-2025]
+TCP는 주고받은 세그먼트의 경계와 애플리케이션이 읽고 쓰는 단위의 경계가 서로 대응한다고 보장하지 않는다.[@ietf-rfc-9293-2022] SOME/IP는 시험 도구가 TCP로 오가는 SOME/IP 메시지의 경계를 찾을 수 있도록, TCP 메시지 스트림에 Magic Cookie 메시지를 일정 간격으로 끼워 넣을 수 있게 한다. Magic Cookie 메시지의 Service ID는 `0xFFFF`이고, Method ID는 클라이언트에서 서버로 갈 때 `0x0000`, 서버에서 클라이언트로 갈 때 `0x8000`이다.[@autosar-fo-prs-someipprotocol-2025]
 
 ### 헤더
 
@@ -35,11 +33,11 @@ TCP는 주고받은 세그먼트의 경계와 애플리케이션이 읽고 쓰�
 
 ![[diagrams/some-ip-header-layout.svg]]
 
-명세는 Method ID 공간을 나눠, 최상위 비트가 0인 0x0000\~0x7FFF를 메서드에, 최상위 비트가 1인 범위를 이벤트와 알림에 쓰기를 권한다. 서버는 요청의 Request ID를 응답에 그대로 옮기므로, 클라이언트는 요청을 여럿 보내 둔 상태에서도 응답을 요청과 짝지을 수 있다.[@autosar-fo-prs-someipprotocol-2025]
+명세는 Method ID 공간을 나눠, 최상위 비트가 0인 `0x0000`\~`0x7FFF`를 메서드에, 최상위 비트가 1인 범위를 이벤트와 알림에 쓰기를 권한다. 서버는 요청의 Request ID를 응답에 그대로 옮기므로, 클라이언트는 요청을 여럿 보내 둔 상태에서도 응답을 요청과 짝지을 수 있다.[@autosar-fo-prs-someipprotocol-2025]
 
-Message Type 값은 REQUEST 0x00, REQUEST_NO_RETURN 0x01, NOTIFICATION 0x02, RESPONSE 0x80, ERROR 0x81이다. SOME/IP-TP로 나눈 세그먼트는 여기에 TP-Flag 0x20을 켠 값을 쓴다.[@autosar-fo-prs-someipprotocol-2025]
+Message Type 값은 REQUEST `0x00`, REQUEST_NO_RETURN `0x01`, NOTIFICATION `0x02`, RESPONSE `0x80`, ERROR `0x81`이다. SOME/IP-TP로 나눈 세그먼트는 여기에 TP-Flag `0x20`을 켠 값을 쓴다.[@autosar-fo-prs-someipprotocol-2025]
 
-Return Code 값은 0x00 E_OK, 0x01 E_NOT_OK, 0x02 E_UNKNOWN_SERVICE, 0x03 E_UNKNOWN_METHOD, 0x07 E_WRONG_PROTOCOL_VERSION, 0x08 E_WRONG_INTERFACE_VERSION, 0x09 E_MALFORMED_MESSAGE, 0x0A E_WRONG_MESSAGE_TYPE 등이다. 0x04 E_NOT_READY, 0x05 E_NOT_REACHABLE, 0x06 E_TIMEOUT은 더는 쓰지 않는 값(deprecated)이다. REQUEST, REQUEST_NO_RETURN, NOTIFICATION 메시지의 Return Code는 0x00이고, ERROR 메시지는 0x00을 쓸 수 없다.[@autosar-fo-prs-someipprotocol-2025]
+Return Code 값은 `0x00` E_OK, `0x01` E_NOT_OK, `0x02` E_UNKNOWN_SERVICE, `0x03` E_UNKNOWN_METHOD, `0x07` E_WRONG_PROTOCOL_VERSION, `0x08` E_WRONG_INTERFACE_VERSION, `0x09` E_MALFORMED_MESSAGE, `0x0A` E_WRONG_MESSAGE_TYPE 등이다. `0x04` E_NOT_READY, `0x05` E_NOT_REACHABLE, `0x06` E_TIMEOUT은 더는 쓰지 않는 값(deprecated)이다. REQUEST, REQUEST_NO_RETURN, NOTIFICATION 메시지의 Return Code는 `0x00`이고, ERROR 메시지는 `0x00`을 쓸 수 없다.[@autosar-fo-prs-someipprotocol-2025]
 
 ### 통신 방식
 
