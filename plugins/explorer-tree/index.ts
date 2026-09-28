@@ -163,7 +163,7 @@ export function explorerInputs(entries: ContentEntry[]): {
 //   편다. hover에는 무채색(lightgray를 반쯤 비친) 배경을, 지금
 //   페이지에는 본문의 내부 링크와 같은 highlight 배경을 깔고 파랑으로 써서 둘을 구분한다.
 // - 꺾쇠는 본문색으로 흐리게 두고, hover에도 바꾸지 않는다. 하위 목록의 안내선은 꺾쇠 가운데에 선다.
-// - 폴더를 펼치면 하위 목록이 살짝 내려오며 나타난다. 동작 줄이기 설정에서는 전환을 모두 끈다.
+// - 전환은 탐색기에 있던 폴더 펼침과 꺾쇠 회전만 두고, 동작 줄이기 설정에서는 그것도 끈다.
 // - 페이지가 없는 구역과 주제는 이름을 보조 글자색으로 흐린다. 꺾쇠는 폴더임을 알리도록 더 흐리게 남기되,
 //   펼칠 것이 없으니 줄 전체를 누를 수 없게 한다.
 // 탐색기의 규칙(.folder-container div > button span 등)보다 구체적인 선택자로 덮는다.
@@ -171,7 +171,6 @@ const CSS = `.explorer .explorer-content .folder-container,
 .explorer .explorer-content ul li > a {
   border-radius: 5px;
   padding: 0.1rem 0.4rem;
-  transition: background-color 0.15s ease;
 }
 .explorer .explorer-content .folder-container:hover,
 .explorer .explorer-content ul li > a:hover {
@@ -224,15 +223,6 @@ const CSS = `.explorer .explorer-content .folder-container,
 .explorer .explorer-content .folder-outer > ul {
   margin-left: calc(0.4rem + 5.5px);
   padding-left: 0.4rem;
-  opacity: 0;
-  transform: translateY(-0.25rem);
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
-}
-.explorer .explorer-content .folder-outer.open > ul {
-  opacity: 1;
-  transform: none;
 }
 .explorer .explorer-content li:has(> .folder-outer > ul:empty) > .folder-container {
   pointer-events: none;
@@ -245,7 +235,7 @@ const CSS = `.explorer .explorer-content .folder-container,
   pointer-events: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  .explorer .explorer-content :is(.folder-container, ul li > a, .folder-icon, .folder-outer, .folder-outer > ul) {
+  .explorer .explorer-content :is(.folder-icon, .folder-outer) {
     transition: none;
   }
 }
@@ -294,11 +284,10 @@ const SCRIPT = `(() => {
         observer.disconnect()
         const active = list.querySelector("a.active")
         if (!active) return
-        // 폴더와 그 접기 표시(폴더가 열리면 돌아간다), 하위 목록(나타나며 내려온다)
+        // 폴더와 그 접기 표시(폴더가 열리면 돌아간다)
         const folders = []
         for (let outer = active.closest(".folder-outer"); outer; ) {
-          const icon = outer.previousElementSibling.querySelector(".folder-icon")
-          folders.push([outer, icon, outer.firstElementChild])
+          folders.push([outer, outer.previousElementSibling.querySelector(".folder-icon")])
           outer = outer.parentElement.closest(".folder-outer")
         }
         const animated = folders.flat()
