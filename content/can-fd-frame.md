@@ -5,8 +5,6 @@ tags:
 verified: 2026-09-27
 ---
 
-## 정의
-
 **CAN FD 프레임**은 [[can-fd|CAN FD]] 포맷(FD format)으로 보내는 [[can-frame|CAN 프레임]]이다. [[can-identifier|식별자]]가 11비트인 기본 포맷과 29비트인 확장 포맷이 있다.[@iso-11898-1-obp-2024] 데이터 필드는 최대 64바이트이고, [[can-arbitration|중재]]가 끝난 뒤 데이터 구간의 비트율을 중재 구간보다 높일 수 있다. CAN FD 포맷에는 데이터 프레임만 있고 [[remote-frame|리모트 프레임]]은 없다.[@bosch-can-fd-1-0-2012]
 
 ## 구조·동작

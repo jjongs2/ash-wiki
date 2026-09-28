@@ -5,8 +5,6 @@ tags:
 verified: 2026-09-27
 ---
 
-## 정의
-
 **CAN 오류 검출**은 [[can|CAN]] 노드가 프레임을 주고받으며 전송 오류를 찾아내는 방법이다. 비트 오류, 스터프 오류, [[can-crc|CRC]] 오류, 형식 오류, [[can-acknowledgement|ACK]] 오류 다섯 가지를 검사한다.[@bosch-can-2-0-1991]
 
 ## 구조·동작

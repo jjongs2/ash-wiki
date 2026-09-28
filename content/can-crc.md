@@ -5,8 +5,6 @@ tags:
 verified: 2026-09-27
 ---
 
-## 정의
-
 **CAN CRC**(Cyclic Redundancy Check)는 [[can|CAN]] 송신 노드가 계산해 프레임에 싣는 값이다. 수신 노드는 같은 방식으로 CRC를 계산해 받은 값과 비교하고, 이것으로 프레임에 생긴 오류를 찾아낸다.[@bosch-can-2-0-1991] [[can-frame|Classical CAN 프레임]]은 15비트 CRC를 쓴다.[@bosch-can-fd-1-0-2012]
 
 ## 구조·동작
