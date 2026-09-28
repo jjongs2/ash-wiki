@@ -124,17 +124,45 @@ article #refs.csl-bib-body {
   }
 }
 
-// 목차는 지금 보이는 절(a.in-view)을 본문색으로, 나머지를 탐색기가 페이지 없는 폴더를 흐릴 때 쓰는 보조
-// 글자색으로 가른다. 업스트림은 투명도로 갈라, 흐린 절의 대비가 라이트 테마에서 2.18:1이다. 보조 글자색의
-// 대비는 docs/palette.md의 실측 표에 있다. 색 전환은 동작 줄이기 설정에서 끈다.
-.toc ul.toc-content.overflow > li > a {
-  transition: color 0.3s ease;
+// 목차는 읽기 시작한 절을 드러낸다. 업스트림 스크립트는 제목이 화면 아래 끝을 넘어서면 그 항목에 in-view를
+// 붙이고, 다시 아래로 내려가면 뗀다. 그래서 in-view는 지금 보이는 절이 아니라 읽은 절 전부이고, 스크롤할수록
+// 늘어난다.
+// - 글자: 읽은 절은 본문색, 나머지는 탐색기가 페이지 없는 폴더를 흐릴 때 쓰는 보조 글자색이다. 업스트림은
+//   투명도로 갈라, 흐린 절의 대비가 라이트 테마에서 2.18:1이다. 보조 글자색의 대비는 docs/palette.md에 있다.
+// - 레일: 목록 왼쪽에 줄을 긋고, 읽은 절의 구간은 파랑으로 채운다. 글자색만으로는 절이 모두 읽힌 뒤 위치가
+//   사라지고, 레일은 읽은 만큼 길어져 목록 어디까지 왔는지 보인다. 파랑은 탐색기처럼 위치 표시에만 쓴다.
+//   줄은 항목마다 그어 깊이 들여쓰기와 상관없이 한 줄로 이어지고, 항목은 줄에서 탐색기의 하위 목록과 같은
+//   간격을 둔다. 목록 끝의 li.overflow-end는 항목이 아니라 뺀다.
+// 색 전환은 동작 줄이기 설정에서 끈다.
+.toc ul.toc-content.overflow > li:not(.overflow-end) {
+  position: relative;
 
-  &:not(.in-view) {
-    color: var(--gray);
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 2px;
+    background-color: var(--lightgray);
+    transition: background-color 0.3s ease;
+  }
+
+  &:has(> a.in-view)::before {
+    background-color: var(--secondary);
+  }
+
+  & > a {
+    margin-left: calc(2px + 0.4rem);
+    transition: color 0.3s ease;
+
+    &:not(.in-view) {
+      color: var(--gray);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    transition: none;
+    &::before,
+    & > a {
+      transition: none;
+    }
   }
 }
