@@ -161,15 +161,16 @@ export function explorerInputs(entries: ContentEntry[]): {
 // 쓰는 줄 규칙이라 사용자 스타일시트(quartz/styles/custom.scss)에 있다. 여기에는 트리에만 있는 규칙을 둔다.
 // - 층은 굵기와 크기로 가른다. 구역은 제목색 0.95rem 600, 주제는 본문색 0.9rem 600이다. 파랑은 지금
 //   페이지에만 쓴다.
-// - 폴더는 이름 버튼을 줄 끝까지 늘려 줄 어디를 눌러도 접고 편다. 지금 페이지에는 본문의 내부 링크와 같은
-//   highlight 배경을 깔고 파랑으로 써서 hover의 무채색 배경과 구분한다.
-// - 꺾쇠는 본문색으로 흐리게 두고, hover에도 바꾸지 않는다. 하위 목록의 안내선은 꺾쇠 가운데에 선다.
+// - 폴더는 이름 버튼을 꺾쇠 앞까지 늘리고, 꺾쇠는 탐색기가 따로 눌림을 받아 줄 어디를 눌러도 접고 편다. 지금
+//   페이지에는 본문의 내부 링크와 같은 highlight 배경을 깔고 파랑으로 써서 hover의 무채색 배경과 구분한다.
+// - 꺾쇠는 줄 오른쪽 끝에 두어 이름이 층마다 같은 자리에서 시작하게 한다. 본문색으로 흐리게 두고, hover에도
+//   바꾸지 않는다. 하위 목록의 안내선은 상위 폴더 이름의 첫 글자 자리에 선다.
 // - 전환은 탐색기에 있던 폴더 펼침과 꺾쇠 회전만 두고, 동작 줄이기 설정에서는 그것도 끈다.
 // - 페이지가 없는 구역과 주제는 이름을 보조 글자색으로 흐린다. 꺾쇠는 폴더임을 알리도록 더 흐리게 남기되,
 //   펼칠 것이 없으니 줄 전체를 누를 수 없게 한다.
 // 탐색기의 규칙(.folder-container div > button span 등)보다 구체적인 선택자로 덮는다. 이 CSS는 사용자
-// 스타일시트보다 뒤에 실리므로, 줄 규칙과 구체성이 같은 선택자(폴더 줄의 padding-right, hover한 지금
-// 페이지의 배경)는 여기 적은 값이 이긴다.
+// 스타일시트보다 뒤에 실리므로, 줄 규칙과 구체성이 같은 선택자(hover한 지금 페이지의 배경)는 여기 적은 값이
+// 이긴다.
 const CSS = `.explorer .explorer-content :is(.folder-button, ul li > a):focus-visible {
   outline: 2px solid var(--secondary);
   outline-offset: 2px;
@@ -178,12 +179,8 @@ const CSS = `.explorer .explorer-content :is(.folder-button, ul li > a):focus-vi
 .explorer .explorer-content .folder-container > div {
   flex: 1;
 }
-.explorer .explorer-content .folder-container {
-  padding-right: 0;
-}
 .explorer .explorer-content .folder-container .folder-button {
   width: 100%;
-  padding-right: 0.4rem;
 }
 .explorer .explorer-content .folder-container .folder-title {
   color: var(--darkgray);
@@ -201,13 +198,14 @@ const CSS = `.explorer .explorer-content :is(.folder-button, ul li > a):focus-vi
   font-weight: 600;
 }
 .explorer .explorer-content .folder-icon {
-  margin-right: 0.3rem;
+  order: 1;
+  margin: 0 0 0 0.3rem;
   color: var(--dark);
   opacity: 0.6;
   transition: transform 0.3s ease;
 }
 .explorer .explorer-content .folder-outer > ul {
-  margin-left: calc(0.4rem + 5.5px);
+  margin-left: 0.4rem;
   padding-left: 0.4rem;
 }
 .explorer .explorer-content li:has(> .folder-outer > ul:empty) > .folder-container {
