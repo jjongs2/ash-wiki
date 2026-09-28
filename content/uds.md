@@ -29,11 +29,11 @@ ISO 14229-2는 ISO 14229-1과, DoCAN(Diagnostic communication over Controller Ar
 
 ### 요청과 응답
 
-ISO 14229-1은 SubFunction 파라미터가 있는 요청 메시지와 없는 요청 메시지를 나눠 정한다.[@iso-14229-1-obp-2026] AUTOSAR의 진단 통신 관리자 Dcm(Diagnostic Communication Manager)은 진단 메시지의 첫 바이트를 서비스 식별자(SID, Service Identifier)로 보고 지원하는 서비스인지 검사한다. 서브펑션이 있는 서비스에서 메시지 둘째 바이트의 비트 7(suppressPosRspMsgIndicationBit)이 1이면 긍정 응답을 보내지 않는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+ISO 14229-1은 서브펑션(SubFunction) 파라미터가 있는 요청 메시지와 없는 요청 메시지를 나눠 정한다.[@iso-14229-1-obp-2026] AUTOSAR의 진단 통신 관리자 Dcm(Diagnostic Communication Manager)은 진단 메시지의 첫 바이트를 서비스 식별자(SID, Service Identifier)로 보고 지원하는 서비스인지 검사한다. 서브펑션이 있는 서비스에서 메시지 둘째 바이트의 비트 7(suppressPosRspMsgIndicationBit)이 1이면 긍정 응답을 보내지 않는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 ### 서비스
 
-ISO 14229-1은 서비스를 기능 단위(functional unit)로 묶는다. 진단·통신 관리 기능 단위에는 DiagnosticSessionControl, ECUReset, SecurityAccess, CommunicationControl이 속한다.[@iso-14229-1-obp-2026] ISO 문서들이 밝힌 서비스의 SID는 아래와 같다.
+ISO 14229-1은 서비스를 기능 단위(functional unit)로 묶는다. 진단·통신 관리 기능 단위에는 DiagnosticSessionControl, ECUReset, SecurityAccess, CommunicationControl이 속한다.[@iso-14229-1-obp-2026] ISO 14229-1과, UDS를 쓰는 ISO 14229-4, ISO 27145-3의 공개된 목차가 밝힌 서비스의 SID는 아래와 같다.
 
 | 서비스                       | SID                         |
 | ---------------------------- | --------------------------- |
@@ -55,7 +55,7 @@ AUTOSAR Dcm 명세는 이 밖에 Authentication(0x29), TesterPresent(0x3E), Cont
 
 ISO 14229-1은 기본 세션과 기본이 아닌 세션을 두고, 세션마다 쓸 수 있는 서비스를 정한다.[@iso-14229-1-obp-2026]
 
-AUTOSAR Dcm은 초기화할 때 세션을 기본 세션으로 두고, 기본이 아닌 세션에서 S3Server 타이머가 만료되면 기본 세션으로 돌아간다. Dcm의 세션 형은 기본 세션이 0x01, 프로그래밍 세션이 0x02, 확장 진단 세션이 0x03이고, 이 값은 DiagnosticSessionControl 요청의 세션 종류 값을 따른다. Dcm 명세에서 Concurrent TesterPresent는 기본이 아닌 세션을 유지하고 S3 타이머를 다시 시작하는 데 쓴다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+AUTOSAR Dcm은 초기화할 때 세션을 기본 세션으로 두고, 기본이 아닌 세션에서 S3Server 타이머가 만료되면 기본 세션으로 돌아간다. Dcm의 세션 형은 기본 세션이 0x01, 프로그래밍 세션이 0x02, 확장 진단 세션이 0x03이다. Dcm 명세에서 Concurrent TesterPresent는 기본이 아닌 세션을 유지하고 S3 타이머를 다시 시작하는 데 쓴다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 ![[diagrams/uds-diagnostic-session-states.svg]]
 

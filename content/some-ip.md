@@ -13,7 +13,7 @@ verified: 2026-09-28
 
 ### 전송
 
-SOME/IP는 UDP와 TCP를 전송 프로토콜로 지원한다. 한 ECU의 서버 쪽에서 같은 서비스의 인스턴스가 여럿이면 인스턴스마다 다른 포트 번호를 쓴다. 명세는 UDP에서 SOME/IP 페이로드를 0\~1400바이트로 두고, 이보다 크면 TCP로 보내거나 나눠 보내기를 권한다. UDP로 보내기에 큰 메시지는 SOME/IP-TP로 나눈다.[@autosar-fo-prs-someipprotocol-2025]
+SOME/IP는 UDP와 TCP를 전송 프로토콜로 지원한다. 한 ECU의 서버 쪽에서 같은 서비스의 인스턴스가 여럿이면 인스턴스마다 다른 포트 번호를 쓴다. 명세는 UDP에서 SOME/IP 페이로드를 0\~1400바이트로 두고, 이보다 크면 TCP로 보내거나 나눠 보내기를 권한다. UDP로 보내기에 큰 메시지는 SOME/IP-TP(SOME/IP Transport Protocol)로 나눈다.[@autosar-fo-prs-someipprotocol-2025]
 
 AUTOSAR R4.2.1의 SOME/IP 예시 문서는 쓸 포트를 인터페이스 명세에서 정하게 했다. 인터페이스 명세가 따로 정하지 않았으면 30491을 동적 클라이언트 포트로, 30501을 첫 서버 포트로 쓰고, 서버 인스턴스가 더 있으면 30502, 30503처럼 이어 쓸 수 있다고 했다.[@autosar-cp-tr-someipexample-2014]
 
@@ -52,7 +52,7 @@ Return Code 값은 0x00 E_OK, 0x01 E_NOT_OK, 0x02 E_UNKNOWN_SERVICE, 0x03 E_UNKN
 
 ### 직렬화
 
-직렬화는 인터페이스 명세가 정한 파라미터 목록에 따른다. 기본 타입은 boolean(8비트), uint8\~uint64, sint8\~sint64, float32, float64이고, float32와 float64는 IEEE 754의 binary32와 binary64다.
+직렬화는 인터페이스 명세가 정한 파라미터 목록에 따른다. 기본 타입은 boolean(8비트), uint8\~uint64, sint8\~sint64, float32, float64이고, float32와 float64는 IEEE 754의 binary32와 binary64다.[@autosar-fo-prs-someipprotocol-2025]
 
 구조체는 멤버를 깊이 우선 순회 순서로 차례대로 직렬화한다. 가변 길이 문자열과 가변 길이 배열은 앞에 길이 필드를 둔다. 열거형은 부호 없는 정수로 보내고, 비트 필드는 uint8\~uint64로 보내며, 유니언(variant)도 쓸 수 있다.[@autosar-fo-prs-someipprotocol-2025]
 

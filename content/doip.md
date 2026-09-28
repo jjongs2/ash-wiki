@@ -29,7 +29,7 @@ AUTOSAR의 DoIP 모듈에서 DoIP 메시지는 8바이트 일반 헤더로 시�
 
 ![[diagrams/doip-generic-header.svg]]
 
-AUTOSAR의 DoIP 모듈은 프로토콜 정보가 틀린 헤더를 받으면 NACK 코드 0x00을 보내고 소켓을 닫는다. 설정에 따라 ISO 13400-2:2012의 프로토콜 버전 0x02나 ISO 13400-2:2019의 0x03을 받고, 차량 식별 요청에서는 0xFF(반전 값 0x00)를 기본값으로 받는다.[@autosar-cp-sws-diagnosticoverip-2025] ISO 13400-2:2025는 이 판의 DoIP 프로토콜 버전을 4로 정한다.[@iso-13400-2-obp-2025]
+AUTOSAR의 DoIP 모듈은 프로토콜 정보가 틀린 헤더를 받으면 NACK(Negative Acknowledgement) 코드 0x00을 보내고 소켓을 닫는다. 설정에 따라 프로토콜 버전 0x02나 0x03을 받고, 차량 식별 요청에서는 0xFF(반전 값 0x00)를 기본값으로 받는다.[@autosar-cp-sws-diagnosticoverip-2025] ISO 13400-2:2025는 이 판의 DoIP 프로토콜 버전을 4로 정한다.[@iso-13400-2-obp-2025]
 
 ### 포트
 
