@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2.5 240 100" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2.5 240 100" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" fill="none">
   <!-- 통과(svg): 색은 도해 팔레트 값과 키워드(대소문자 무관), url(#id)만 쓴다. 주석 안의 색(#ff0000)은 보지 않는다.
        글자는 Pretendard로 그리고, 그림의 상하좌우 여백이 같다. -->
   <style>
