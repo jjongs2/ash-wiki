@@ -1,8 +1,7 @@
 /* ash-wiki: 접는 절의 모양이다(plugins/collapsible-sections). 기본 삼각형 대신 목차와 같은 꺾쇠를 제목
-   글자 앞에 두고, 제목 아래에 참고문헌 위와 같은 색의 구분선을 긋는다. `##`의 선은 꺾쇠 밑까지 본문 폭
-   전체에 긋고, `###`의 선은 제목 글자가 시작하는 자리부터 그어 한 단계 안쪽 절임을 나타낸다. 이 색은
-   팔레트에서 가장 옅은 구분선 색이라 더 옅게 하면 다크 테마에서 보이지 않으므로, 두 선은 색이 아니라
-   시작점으로 구별한다.
+   글자 앞에 두고, 제목 아래에 본문 폭 전체로 구분선을 긋는다. 두 수준은 선의 진하기로 구별한다. `###`은
+   참고문헌 위 선과 같은 가장 옅은 구분선 색(--lightgray)을 쓰고, `##`은 거기에 --gray를 섞어 한 단계 진하게
+   한다. --lightgray보다 옅은 색은 다크 테마에서 보이지 않아, 위 수준을 진하게 하는 쪽으로 차이를 둔다.
 
    본문 왼쪽 여백은 좁아(1440px에서 사이드바까지 5px) 꺾쇠를 거기 걸치지 않고 제목만 그 폭만큼 들여 쓴다.
    `##`과 `###`은 같은 폭을 들여 제목 글자가 한 선에 서고, 꺾쇠는 제목 글자 크기에 맞추되 글자와의 틈은 같게
@@ -41,13 +40,12 @@ details.collapsible-section > summary > :is(h2, h3) {
 details.collapsible-section > summary > h2 {
   margin-top: 2.5rem;
   padding-bottom: 0.35rem;
-  border-bottom: 1px solid var(--lightgray);
+  border-bottom: 1px solid color-mix(in srgb, var(--gray) 40%, var(--lightgray));
 }
 
 details.collapsible-section > summary > h3 {
   padding-bottom: 0.3rem;
-  background: linear-gradient(var(--lightgray), var(--lightgray)) left 1.75rem bottom /
-    calc(100% - 1.75rem) 1px no-repeat;
+  border-bottom: 1px solid var(--lightgray);
 }
 
 details.collapsible-section > summary + details.collapsible-section > summary > h3 {
