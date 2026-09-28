@@ -2,6 +2,26 @@
 
 // put your custom CSS here!
 
+// ash-wiki: 한글은 어절 단위로 줄바꿈한다. 브라우저는 기본으로 한글 글자 사이 어디서나 끊으므로
+// ("밖/에서"), 사이트 전체에 keep-all을 걸어 공백에서만 끊게 한다. 그러면 공백이 없는 긴 URL, 코드,
+// 식별자, 어절이 한 덩어리로 남아 한 줄 폭을 넘기므로 넘칠 때만 아무 자리에서나 끊는다.
+// base.scss가 p, ul, ol, li, a에 직접 건 break-word는 최소 폭을 줄이지 않아, 폭이 내용에 맞춰지는
+// 브레드크럼, 탐색기, Backlinks에서 긴 제목이 넘친다. 그래서 이 요소들에도 anywhere를 다시 건다.
+// 표 안은 break-word로 되돌려 칸의 최소 폭을 지키고, 지금처럼 표 안에서 가로로 스크롤되게 한다.
+body,
+p,
+ul,
+ol,
+li,
+a {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.table-container * {
+  overflow-wrap: break-word;
+}
+
 // ash-wiki: 다크 테마는 루트에 color-scheme: dark를 건다. <object>로 넣은 도해 SVG는 color-scheme이
 // light인 별도 문서라, 둘이 다르면 브라우저가 SVG의 캔버스를 흰색으로 칠해 사이트 배경을 가린다.
 // <object>의 color-scheme을 SVG 문서와 같게 두어 캔버스를 투명하게 남긴다.
