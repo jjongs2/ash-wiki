@@ -10,6 +10,7 @@ import BacklinksCollapse from "./index"
 // 접기 표시와 같은지를 목차 컴포넌트와 견주어 본다.
 const resources = BacklinksCollapse().externalResources!({} as BuildCtx)!
 const script = resources.js![0]
+const source = script.contentType === "inline" ? script.script : ""
 const css = resources.css![0].content
 
 const toc = TableOfContents()
@@ -40,17 +41,17 @@ describe("backlinks-collapse 플러그인", () => {
     assert.strictEqual(script.loadTime, "afterDOMReady")
     assert.strictEqual(script.contentType, "inline")
     // 브라우저 스크립트는 문자열이라 타입 검사를 받지 않는다. 적어도 문법은 맞아야 한다.
-    assert.doesNotThrow(() => new Function(script.contentType === "inline" ? script.script : ""))
+    assert.doesNotThrow(() => new Function(source))
   })
 
   test("SPA 이동마다 다시 붙도록 nav 이벤트에 건다", () => {
-    assert.match(script.contentType === "inline" ? script.script : "", /addEventListener\("nav"/)
+    assert.match(source, /addEventListener\("nav"/)
   })
 
   test("접기 표시는 목차의 SVG와 같다", () => {
     const fold = tocHtml.match(/<svg\b[^>]*class="fold"[^>]*>.*?<\/svg>/)?.[0]
     assert.ok(fold, "목차 마크업에서 접기 표시를 찾지 못했다")
-    assert.ok(script.contentType === "inline" && script.script.includes(fold))
+    assert.ok(source.includes(fold))
   })
 
   test("버튼 모양은 목차 제목 버튼의 규칙과 같다", () => {
