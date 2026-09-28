@@ -30,15 +30,15 @@ article object[type="image/svg+xml"] {
 // 대괄호가 남아 있어 [1][2]처럼 이어진 인용도 나뉘어 보인다. line-height를 0으로 두어 마커가 있는
 // 줄만 줄 간격이 벌어지지 않게 한다.
 article span[id^="citation--"] {
-  font-size: 0.75em;
+  font-size: 0.65em;
   line-height: 0;
   vertical-align: super;
 }
 
 // 참고문헌(#refs)은 제목 없이 본문 바로 뒤에 붙는다. 제목을 heading으로 넣으면 목차에 들어가므로
-// ::before 라벨로 단다. 항목은 번호 열과 항목 열로 나누고, 번호 열 폭은 subgrid로 모든 항목이 같이
-// 쓴다([9]와 [10]의 항목 열이 같은 자리에서 시작한다). 항목의 긴 URL은 공백이 없어 줄바꿈되지 않고
-// 본문 폭을 넘기므로 아무 자리에서나 끊는다.
+// ::before 라벨로 달고, 크기와 굵기는 h3에 맞춘다. 항목은 번호 열과 항목 열로 나누고, 번호 열 폭은
+// subgrid로 모든 항목이 같이 쓴다([9]와 [10]의 항목 열이 같은 자리에서 시작한다). 항목의 긴 URL은
+// 공백이 없어 줄바꿈되지 않고 본문 폭을 넘기므로 아무 자리에서나 끊는다.
 article #refs.csl-bib-body {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
@@ -54,7 +54,9 @@ article #refs.csl-bib-body {
     content: "참고문헌";
     grid-column: 1 / -1;
     margin-bottom: 0.25rem;
-    font-weight: $semiBoldWeight;
+    font-family: var(--headerFont);
+    font-size: 1.12rem;
+    font-weight: $boldWeight;
     color: var(--dark);
   }
 
