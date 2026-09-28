@@ -157,39 +157,37 @@ export function explorerInputs(entries: ContentEntry[]): {
 // 탐색기의 모양이다. 탐색기는 폴더와 링크를 모두 굵기 600으로, 폴더 이름은 파랑으로 그리고 페이지 링크를
 // 폴더 이름보다 크게 그려, 층과 지금 페이지가 드러나지 않는다. 전환 시간과 모서리는 절 접기
 // (plugins/collapsible-sections)와 맞춘다.
-// - 층은 굵기와 크기로 가른다. 구역은 본문색 0.95rem 600, 주제는 0.9rem 600, 페이지는 0.9rem 400이다.
-//   파랑은 지금 페이지에만 쓴다.
-// - 줄마다 같은 안쪽 여백과 5px 모서리를 둔다. 폴더는 이름 버튼을 줄 끝까지 늘려 줄 어디를 눌러도 접고
-//   편다. hover에는 무채색(lightgray를 반쯤 비친) 배경을, 지금
-//   페이지에는 본문의 내부 링크와 같은 highlight 배경을 깔고 파랑으로 써서 둘을 구분한다.
-// - 꺾쇠는 본문색으로 흐리게 두고, hover에도 바꾸지 않는다. 하위 목록의 안내선은 꺾쇠 가운데에 선다.
+// 줄마다의 모서리, 안쪽 여백, hover 배경과 페이지 항목의 글자는 목차, Backlinks와 같이 쓰는 줄 규칙이라
+// 사용자 스타일시트(quartz/styles/custom.scss)에 있다. 여기에는 트리에만 있는 규칙을 둔다.
+// - 층은 굵기와 크기로 가른다. 구역은 제목색 0.95rem 600, 주제는 본문색 0.9rem 600이다. 파랑은 지금
+//   페이지에만 쓴다.
+// - 폴더는 이름 버튼의 누름 영역(::after)을 줄 전체로 늘려, 꺾쇠를 포함해 줄 어디를 눌러도 접고 편다. 지금
+//   페이지에는 본문의 내부 링크와 같은 highlight 배경을 깔고 파랑으로 써서 hover의 무채색 배경과 구분한다.
+// - 꺾쇠는 이름 바로 뒤에 두어 이름이 층마다 같은 자리에서 시작하게 한다. 이름보다 눈에 띄지 않도록
+//   업스트림의 12px보다 작은 10px로 줄이고, 제목색으로 흐리게 두며, hover에도 바꾸지 않는다.
+// - 하위 목록의 안내선은 상위 폴더 이름의 첫 글자 자리에 선다. 그 자리는 줄 규칙의 안쪽 여백(0.4rem)이라, 그
+//   여백을 바꾸면 안내선의 margin-left도 함께 바꾼다.
 // - 전환은 탐색기에 있던 폴더 펼침과 꺾쇠 회전만 두고, 동작 줄이기 설정에서는 그것도 끈다.
 // - 페이지가 없는 구역과 주제는 이름을 보조 글자색으로 흐린다. 꺾쇠는 폴더임을 알리도록 더 흐리게 남기되,
 //   펼칠 것이 없으니 줄 전체를 누를 수 없게 한다.
-// 탐색기의 규칙(.folder-container div > button span 등)보다 구체적인 선택자로 덮는다.
-const CSS = `.explorer .explorer-content .folder-container,
-.explorer .explorer-content ul li > a {
-  border-radius: 5px;
-  padding: 0.1rem 0.4rem;
-}
-.explorer .explorer-content .folder-container:hover,
-.explorer .explorer-content ul li > a:hover {
-  background-color: color-mix(in srgb, var(--lightgray) 50%, transparent);
-}
-.explorer .explorer-content :is(.folder-button, ul li > a):focus-visible {
+// 탐색기의 규칙(.folder-container div > button span 등)은 @layer quartz-base 안에 실려, layer 밖인 이 CSS가
+// 구체성과 상관없이 이긴다. 사용자 스타일시트도 layer 밖이라 둘은 구체성으로 겨루고, 이 CSS가 뒤에 실리므로
+// 구체성이 같은 선택자(hover한 지금 페이지의 배경)는 여기 적은 값이 이긴다.
+const CSS = `.explorer .explorer-content :is(.folder-button, ul li > a):focus-visible {
   outline: 2px solid var(--secondary);
   outline-offset: 2px;
   border-radius: 5px;
 }
-.explorer .explorer-content .folder-container > div {
-  flex: 1;
-}
 .explorer .explorer-content .folder-container {
-  padding-right: 0;
+  position: relative;
 }
-.explorer .explorer-content .folder-container .folder-button {
-  width: 100%;
-  padding-right: 0.4rem;
+.explorer .explorer-content .folder-container > div {
+  min-width: 0;
+}
+.explorer .explorer-content .folder-container .folder-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
 }
 .explorer .explorer-content .folder-container .folder-title {
   color: var(--darkgray);
@@ -201,27 +199,22 @@ const CSS = `.explorer .explorer-content .folder-container,
   color: var(--dark);
   font-size: 0.95rem;
 }
-.explorer .explorer-content ul li > a {
-  display: block;
-  color: var(--darkgray);
-  opacity: 1;
-  font-size: 0.9rem;
-  font-weight: 400;
-  line-height: 1.5rem;
-}
 .explorer .explorer-content ul li > a.active {
   background-color: var(--highlight);
   color: var(--secondary);
   font-weight: 600;
 }
 .explorer .explorer-content .folder-icon {
-  margin-right: 0.3rem;
+  order: 1;
+  width: 10px;
+  height: 10px;
+  margin: 0 0 0 0.3rem;
   color: var(--dark);
   opacity: 0.6;
   transition: transform 0.3s ease;
 }
 .explorer .explorer-content .folder-outer > ul {
-  margin-left: calc(0.4rem + 5.5px);
+  margin-left: 0.4rem;
   padding-left: 0.4rem;
 }
 .explorer .explorer-content li:has(> .folder-outer > ul:empty) > .folder-container {
