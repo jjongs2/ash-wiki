@@ -47,6 +47,7 @@ JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"
 `[@키]`를 citations 플러그인이 IEEE 스타일의 번호로 바꾸고, 페이지 하단에 참고문헌을 붙입니다([ADR 0003](adr/0003-engine-and-citation-stack.md)). 표기 규칙은 [위키 규약](wiki-conventions.md)에 있습니다.
 
 - `npm run build`의 prebuild(`npm run bib`)가 `bib/`의 엔트리 파일을 합본 `bibliography.bib`로 합칩니다. 합본은 추적하지 않습니다.
+- citations 플러그인은 참고문헌의 URL을 텍스트로 둡니다. 그 뒤에 도는 로컬 플러그인(`plugins/bibliography-links`)이 참고문헌 항목 안의 URL을 새 탭 링크로 바꿉니다. 본문의 외부 링크는 crawl-links의 `openLinksInNewTab`이 새 탭으로 엽니다.
 - CSL은 저장소가 소유합니다(`csl/ieee.csl`). 고치지 않고 가져온 그대로 둡니다.
 
 | 항목     | 값                                                      |

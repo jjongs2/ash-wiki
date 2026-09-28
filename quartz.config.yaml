@@ -85,10 +85,12 @@ plugins:
     layout:
       position: right
       priority: 30
+  # 본문의 외부 링크는 새 탭으로 연다. 위키링크, 제목 앵커 같은 내부 링크는 같은 탭 그대로다.
   - source: "@quartz-community/crawl-links"
     enabled: true
     options:
       markdownLinkResolution: shortest
+      openLinksInNewTab: true
     order: 60
   - source: "@quartz-community/description"
     enabled: true
@@ -107,6 +109,10 @@ plugins:
       csl: ./csl/ieee.csl
       linkCitations: true
     order: 85
+  # 참고문헌 항목의 URL을 새 탭 링크로 바꾼다(plugins/bibliography-links). 참고문헌이 붙은 뒤에 돌아야 한다.
+  - source: ./plugins/bibliography-links
+    enabled: true
+    order: 86
   - source: "@quartz-community/hard-line-breaks"
     enabled: false
     order: 90
