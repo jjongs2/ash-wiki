@@ -161,9 +161,9 @@ export function explorerInputs(entries: ContentEntry[]): {
 // 쓰는 줄 규칙이라 사용자 스타일시트(quartz/styles/custom.scss)에 있다. 여기에는 트리에만 있는 규칙을 둔다.
 // - 층은 굵기와 크기로 가른다. 구역은 제목색 0.95rem 600, 주제는 본문색 0.9rem 600이다. 파랑은 지금
 //   페이지에만 쓴다.
-// - 폴더는 이름 버튼을 꺾쇠 앞까지 늘리고, 꺾쇠는 탐색기가 따로 눌림을 받아 줄 어디를 눌러도 접고 편다. 지금
+// - 폴더는 이름 버튼의 누름 영역(::after)을 줄 전체로 늘려, 꺾쇠를 포함해 줄 어디를 눌러도 접고 편다. 지금
 //   페이지에는 본문의 내부 링크와 같은 highlight 배경을 깔고 파랑으로 써서 hover의 무채색 배경과 구분한다.
-// - 꺾쇠는 줄 오른쪽 끝에 두어 이름이 층마다 같은 자리에서 시작하게 한다. 본문색으로 흐리게 두고, hover에도
+// - 꺾쇠는 이름 바로 뒤에 두어 이름이 층마다 같은 자리에서 시작하게 한다. 본문색으로 흐리게 두고, hover에도
 //   바꾸지 않는다. 하위 목록의 안내선은 상위 폴더 이름의 첫 글자 자리에 선다.
 // - 전환은 탐색기에 있던 폴더 펼침과 꺾쇠 회전만 두고, 동작 줄이기 설정에서는 그것도 끈다.
 // - 페이지가 없는 구역과 주제는 이름을 보조 글자색으로 흐린다. 꺾쇠는 폴더임을 알리도록 더 흐리게 남기되,
@@ -176,11 +176,16 @@ const CSS = `.explorer .explorer-content :is(.folder-button, ul li > a):focus-vi
   outline-offset: 2px;
   border-radius: 5px;
 }
-.explorer .explorer-content .folder-container > div {
-  flex: 1;
+.explorer .explorer-content .folder-container {
+  position: relative;
 }
-.explorer .explorer-content .folder-container .folder-button {
-  width: 100%;
+.explorer .explorer-content .folder-container > div {
+  min-width: 0;
+}
+.explorer .explorer-content .folder-container .folder-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
 }
 .explorer .explorer-content .folder-container .folder-title {
   color: var(--darkgray);
