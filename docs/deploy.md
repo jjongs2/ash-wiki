@@ -6,20 +6,20 @@
 
 항목 이름은 대시보드의 표기를 따릅니다.
 
-| 항목                   | 값                                                                                                                  |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| Project name           | `ash-wiki`                                                                                                          |
-| Production branch      | `main`                                                                                                              |
-| Framework preset       | `None`                                                                                                              |
-| Build command          | `npm run build`                                                                                                     |
-| Build output directory | `public`                                                                                                            |
-| Node                   | 22. 저장소의 `.node-version`이 정하므로 `NODE_VERSION` 환경 변수는 두지 않습니다                                    |
-| Preview branch         | `None`(프리뷰 배포 끔)                                                                                              |
-| Web Analytics          | 켬(Metrics 탭). 다음 배포부터 Cloudflare가 스크립트를 넣으므로 `quartz.config.yaml`의 `analytics`는 `null`로 둡니다 |
+| 항목                   | 값                                                                               |
+| ---------------------- | -------------------------------------------------------------------------------- |
+| Project name           | `ash-wiki`                                                                       |
+| Production branch      | `main`                                                                           |
+| Framework preset       | `None`                                                                           |
+| Build command          | `npm run build`                                                                  |
+| Build output directory | `public`                                                                         |
+| Node                   | 22. 저장소의 `.node-version`이 정하므로 `NODE_VERSION` 환경 변수는 두지 않습니다 |
+| Preview branch         | `None`(프리뷰 배포 끔)                                                           |
+| Web Analytics          | 켬(Metrics 탭)                                                                   |
 
 ## 저장소 쪽 값
 
-대시보드 값과 맞물리는 저장소 쪽 값은 `package.json`의 `build` 스크립트, `.node-version`, `quartz.config.yaml`의 `baseUrl`입니다.
+대시보드 값과 맞물리는 저장소 쪽 값은 `package.json`의 `build` 스크립트, `.node-version`, `quartz.config.yaml`의 `baseUrl`과 `analytics`입니다. Web Analytics 스크립트는 Cloudflare가 배포 때 넣으므로 `analytics`는 `null`로 둡니다.
 
 ## 로컬 프리뷰
 
