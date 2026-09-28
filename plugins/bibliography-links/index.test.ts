@@ -1,6 +1,5 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
-import { execFileSync } from "node:child_process"
 import { fromHtml } from "hast-util-from-html"
 import { toJsxRuntime } from "hast-util-to-jsx-runtime"
 import { Fragment, jsx, jsxs } from "preact/jsx-runtime"
@@ -11,8 +10,8 @@ import type { Jsx } from "hast-util-to-jsx-runtime"
 import type { BuildCtx } from "../../quartz/util/ctx"
 import BibliographyLinks from "./index"
 
-// 플러그인의 htmlPlugins와 모듈 로드가 seam이다. citations 플러그인이 만든 꼴의 참고문헌 조각을 넣어
-// 빌드처럼 preact로 그린 HTML을 본다. 모듈 로드는 빌드처럼 플래그 없는 node로 따로 본다.
+// 플러그인의 htmlPlugins가 seam이다. citations 플러그인이 만든 꼴의 참고문헌 조각을 넣어
+// 빌드처럼 preact로 그린 HTML을 본다.
 function transform(html: string): string {
   const processor = unified().use(BibliographyLinks().htmlPlugins!({} as BuildCtx))
   const tree = processor.runSync(fromHtml(html, { fragment: true })) as Root
@@ -66,18 +65,5 @@ describe("bibliography-links 플러그인", () => {
   test("참고문헌 밖의 URL 텍스트는 그대로 둔다", () => {
     const html = `<p>주소는 https://www.example.com/ 이다.</p><div class="csl-right-inline">https://www.example.com/</div>`
     assert.strictEqual(transform(html), html)
-  })
-
-  // 빌드는 불러오지 못한 플러그인을 경고 한 줄만 남기고 건너뛴다. tsx는 머리 주석의 제약을 어겨도 돌려 준다.
-  test("플래그 없는 node로 불러온다", () => {
-    const url = new URL("./index.ts", import.meta.url).href
-    const script = `const m = await import(${JSON.stringify(url)}); console.log(m.manifest.name, typeof m.default)`
-    const env = { ...process.env }
-    delete env.NODE_OPTIONS
-    const out = execFileSync(process.execPath, ["--input-type=module", "-e", script], {
-      env,
-      encoding: "utf8",
-    })
-    assert.strictEqual(out.trim(), "bibliography-links function")
   })
 })

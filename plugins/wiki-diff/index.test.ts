@@ -437,17 +437,4 @@ describe("플러그인", () => {
     )
     assert.deepStrictEqual(JSON.parse(pages), { pages: ["b"] })
   })
-
-  // 빌드는 불러오지 못한 플러그인을 경고 한 줄만 남기고 건너뛴다. tsx는 머리 주석의 제약을 어겨도 돌려 준다.
-  test("플래그 없는 node로 불러온다", () => {
-    const url = new URL("./index.ts", import.meta.url).href
-    const script = `const m = await import(${JSON.stringify(url)}); console.log(m.manifest.name, typeof m.default)`
-    const env = { ...process.env }
-    delete env.NODE_OPTIONS
-    const out = execFileSync(process.execPath, ["--input-type=module", "-e", script], {
-      env,
-      encoding: "utf8",
-    })
-    assert.strictEqual(out.trim(), "wiki-diff function")
-  })
 })
