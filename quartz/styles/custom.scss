@@ -97,7 +97,8 @@ article #refs.csl-bib-body {
 
 // ash-wiki: 사이드바 항목의 줄 규칙이다. 탐색기의 폴더 줄과 페이지 항목, 목차와 Backlinks의 항목이 같이 쓴다.
 // 줄마다 5px 모서리와 안쪽 여백을 두고, hover에는 무채색(lightgray를 반쯤 비친) 배경만 깔고 글자색은 바꾸지
-// 않는다. 항목 링크는 본문색 0.9rem 400으로 쓰고 줄 전체를 채운다. 파랑은 탐색기의 지금 페이지에만 쓴다.
+// 않는다. 항목 링크는 줄 전체를 채우고, 글자는 본문색 0.9rem 400이다. 오른쪽 사이드바의 목록은 아래에서 글자를
+// 한 단계 올린다. 파랑은 위치 표시(탐색기의 지금 페이지, 목차의 읽은 절)에만 쓴다.
 // 폴더 줄의 글자(층), 꺾쇠, 지금 페이지처럼 트리에만 있는 규칙은 탐색기 플러그인(plugins/explorer-tree)에 있다.
 // 업스트림의 전역 a, a:hover, a.internal과 각 컴포넌트의 항목 규칙보다 구체적인 선택자로 덮는다. 이 파일은
 // 컴포넌트 CSS보다 먼저 실려, 순서가 아니라 구체성으로 이겨야 한다.
@@ -124,25 +125,42 @@ article #refs.csl-bib-body {
   }
 }
 
-// 목차는 읽기 시작한 절을 드러낸다. 업스트림 스크립트는 제목이 화면 아래 끝을 넘어서면 그 항목에 in-view를
-// 붙이고, 다시 아래로 내려가면 뗀다. 그래서 in-view는 지금 보이는 절이 아니라 읽은 절 전부이고, 스크롤할수록
-// 늘어난다.
-// - 글자: 읽은 절은 본문색, 나머지는 탐색기가 페이지 없는 폴더를 흐릴 때 쓰는 보조 글자색이다. 업스트림은
-//   투명도로 갈라, 흐린 절의 대비가 라이트 테마에서 2.18:1이다. 보조 글자색의 대비는 docs/palette.md에 있다.
-// - 레일: 목록 왼쪽에 줄을 긋고, 읽은 절의 구간은 파랑으로 채운다. 글자색만으로는 절이 모두 읽힌 뒤 위치가
-//   사라지고, 레일은 읽은 만큼 길어져 목록 어디까지 왔는지 보인다. 파랑은 탐색기처럼 위치 표시에만 쓴다.
-//   줄은 항목마다 그어 깊이 들여쓰기와 상관없이 한 줄로 이어지고, 항목은 줄에서 탐색기의 하위 목록과 같은
-//   간격을 둔다. 목록 끝의 li.overflow-end는 항목이 아니라 뺀다.
-// 색 전환은 동작 줄이기 설정에서 끈다.
-.toc ul.toc-content.overflow > li:not(.overflow-end) {
+// 오른쪽 사이드바의 목록(목차, Backlinks)은 본문을 읽는 동안 곁눈으로 보는 목록이라, 탐색기보다 한 단계 크고
+// 진하게 쓴다. 글자는 제목색 0.95rem 500이고, 두 목록이 같은 값을 쓴다. 줄 상자와 hover는 위의 줄 규칙을 따른다.
+// 목록 왼쪽에는 레일을 긋고, 항목은 레일에서 떨어뜨린다. 레일은 목록을 한 덩어리로 묶고 두 목록의 글자 시작점을
+// 맞춘다. 항목마다 그어 목차의 깊이 들여쓰기와 상관없이 한 줄로 이어진다. 목록 끝의 li.overflow-end는 항목이
+// 아니라 뺀다.
+.toc ul.toc-content.overflow > li:not(.overflow-end),
+.backlinks > ul.overflow > li:not(.overflow-end) {
   position: relative;
 
   &::before {
     content: "";
     position: absolute;
     inset: 0 auto 0 0;
-    width: 2px;
+    width: 3px;
     background-color: var(--lightgray);
+  }
+
+  & > a {
+    margin-left: calc(3px + 0.4rem);
+    color: var(--dark);
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.6rem;
+  }
+}
+
+// 목차는 읽기 시작한 절을 드러낸다. 업스트림 스크립트는 제목이 화면 아래 끝을 넘어서면 그 항목에 in-view를
+// 붙이고, 다시 아래로 내려가면 뗀다. 그래서 in-view는 지금 보이는 절이 아니라 읽은 절 전부이고, 스크롤할수록
+// 늘어난다.
+// - 레일: 읽은 절의 구간을 파랑으로 채운다. 글자색만으로는 절이 모두 읽힌 뒤 위치가 사라지고, 레일은 읽은
+//   만큼 길어져 목록 어디까지 왔는지 보인다. 파랑은 탐색기처럼 위치 표시에만 쓴다.
+// - 글자: 아직 읽지 않은 절은 보조 글자색으로 쓴다. 업스트림은 투명도로 갈라, 흐린 절의 대비가 라이트 테마에서
+//   2.18:1이다. 보조 글자색의 대비는 docs/palette.md에 있다.
+// 색 전환은 동작 줄이기 설정에서 끈다.
+.toc ul.toc-content.overflow > li:not(.overflow-end) {
+  &::before {
     transition: background-color 0.3s ease;
   }
 
@@ -151,7 +169,6 @@ article #refs.csl-bib-body {
   }
 
   & > a {
-    margin-left: calc(2px + 0.4rem);
     transition: color 0.3s ease;
 
     &:not(.in-view) {
