@@ -268,7 +268,7 @@ describe("브라우저 스크립트", () => {
     assert.strictEqual(script.contentType, "inline")
   })
 
-  test("뿌리의 자식을 구역 › 주제 › 페이지로 갈아 끼우고, 폴더는 태그 목록을 가리킨다", () => {
+  test("뿌리의 자식을 구역 › 주제 › 페이지로 갈아 끼우고, 폴더는 태그 목록의 슬러그를 갖는다", () => {
     assert.deepStrictEqual(mapped().children.map(shape), [
       ["소프트웨어 플랫폼", "tags/platform", []],
       [

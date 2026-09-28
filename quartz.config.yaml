@@ -173,6 +173,8 @@ plugins:
       filterFn: "() => true"
       mapFn: "(node) => window.explorerTree(node)"
       sortFn: "() => 0"
+      # 폴더 이름을 눌러도 페이지로 가지 않고 폴더를 접고 편다. 구역과 주제의 태그 목록은 대문에서 간다.
+      folderClickBehavior: collapse
     layout:
       position: left
       priority: 50

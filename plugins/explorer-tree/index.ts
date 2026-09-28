@@ -12,9 +12,9 @@
 // 탐색기를 로컬 컴포넌트로 새로 짓거나 엔진을 고치지 않고 옵션으로 이으면, 탐색기의 접기와 그 상태 저장,
 // 모바일 메뉴, SPA 이동 처리를 그대로 쓴다.
 //
-// 구역과 주제의 폴더는 태그 목록의 슬러그(tags/<태그>)를 갖는다. 그래서 탐색기가 폴더 이름을 그 태그
-// 목록으로 링크하고, 태그 목록 페이지에서는 그 구역과 주제를 펼쳐 둔다(탐색기는 지금 페이지의 슬러그가
-// 폴더의 슬러그로 시작하면 그 폴더를 연다).
+// 폴더 이름을 누르면 페이지로 가지 않고 폴더를 접고 편다(탐색기 옵션 folderClickBehavior: collapse). 구역과
+// 주제의 태그 목록은 대문에서 간다. 폴더는 태그 목록의 슬러그(tags/<태그>)를 가져, 태그 목록 페이지에서는
+// 그 구역과 주제를 펼쳐 둔다(탐색기는 지금 페이지의 슬러그가 폴더의 슬러그로 시작하면 그 폴더를 연다).
 //
 // 빌드가 이 파일을 Node의 type stripping으로 불러오므로, 타입만 지우면 돌아가는 문법만 쓴다. enum, namespace,
 // parameter property를 쓰지 않고, 타입은 import type으로 가져온다. 두 순수 함수는 toString()으로 스크립트에
@@ -159,13 +159,14 @@ export function explorerInputs(entries: ContentEntry[]): {
 // (plugins/collapsible-sections)와 맞춘다.
 // - 층은 굵기와 크기로 가른다. 구역은 본문색 0.95rem 600, 주제는 0.9rem 600, 페이지는 0.9rem 400이다.
 //   파랑은 지금 페이지와 hover에만 쓴다.
-// - 줄마다 같은 안쪽 여백과 5px 모서리를 둔다. hover에는 무채색(lightgray를 반쯤 비친) 배경을, 지금
+// - 줄마다 같은 안쪽 여백과 5px 모서리를 둔다. 폴더는 이름 버튼을 줄 끝까지 늘려 줄 어디를 눌러도 접고
+//   편다. hover에는 무채색(lightgray를 반쯤 비친) 배경을, 지금
 //   페이지에는 본문의 내부 링크와 같은 highlight 배경을 깔고 파랑으로 써서 둘을 구분한다.
 // - 꺾쇠는 본문색으로 흐리게 두고 hover에 파랑으로 바꾼다. 하위 목록의 안내선은 꺾쇠 가운데에 선다.
 // - 폴더를 펼치면 하위 목록이 살짝 내려오며 나타난다. 동작 줄이기 설정에서는 전환을 모두 끈다.
 // - 페이지가 없는 구역과 주제는 이름을 보조 글자색으로 흐린다. 꺾쇠는 폴더임을 알리도록 더 흐리게 남기되,
-//   펼칠 것이 없으니 누를 수 없게 한다. 이름은 그대로 태그 목록으로 링크한다.
-// 탐색기의 규칙(.folder-container div > a 등)보다 구체적인 선택자로 덮는다.
+//   펼칠 것이 없으니 줄 전체를 누를 수 없게 한다.
+// 탐색기의 규칙(.folder-container div > button span 등)보다 구체적인 선택자로 덮는다.
 const CSS = `.explorer .explorer-content .folder-container,
 .explorer .explorer-content ul li > a {
   border-radius: 5px;
@@ -176,18 +177,28 @@ const CSS = `.explorer .explorer-content .folder-container,
 .explorer .explorer-content ul li > a:hover {
   background-color: color-mix(in srgb, var(--lightgray) 50%, transparent);
 }
-.explorer .explorer-content :is(.folder-container, ul li > a):focus-visible,
-.explorer .explorer-content .folder-container a:focus-visible {
+.explorer .explorer-content :is(.folder-button, ul li > a):focus-visible {
   outline: 2px solid var(--secondary);
-  outline-offset: -2px;
+  outline-offset: 2px;
+  border-radius: 5px;
 }
-.explorer .explorer-content .folder-container div > a {
+.explorer .explorer-content .folder-container > div {
+  flex: 1;
+}
+.explorer .explorer-content .folder-container {
+  padding-right: 0;
+}
+.explorer .explorer-content .folder-container .folder-button {
+  width: 100%;
+  padding-right: 0.4rem;
+}
+.explorer .explorer-content .folder-container .folder-title {
   color: var(--darkgray);
   font-size: 0.9rem;
   font-weight: 600;
   line-height: 1.5rem;
 }
-.explorer .explorer-content .explorer-ul > li > .folder-container div > a {
+.explorer .explorer-content .explorer-ul > li > .folder-container .folder-title {
   color: var(--dark);
   font-size: 0.95rem;
 }
@@ -230,7 +241,10 @@ const CSS = `.explorer .explorer-content .folder-container,
   opacity: 1;
   transform: none;
 }
-.explorer .explorer-content li:has(> .folder-outer > ul:empty) > .folder-container div > a {
+.explorer .explorer-content li:has(> .folder-outer > ul:empty) > .folder-container {
+  pointer-events: none;
+}
+.explorer .explorer-content li:has(> .folder-outer > ul:empty) > .folder-container .folder-title {
   color: var(--gray);
 }
 .explorer .explorer-content li:has(> .folder-outer > ul:empty) > .folder-container > .folder-icon {
@@ -268,8 +282,9 @@ const SCRIPT = `(() => {
       const node = new Node(slug.split("/"))
       node.isFolder = true
       node.displayName = item.name
-      // 폴더의 slug는 <경로>/index라 탐색기가 /tags/<태그>/로 링크하는데, 태그 목록은 tags/<태그>.html로
-      // 나와 그 주소에 페이지가 없다. 대문처럼 /tags/<태그>로 링크하게 slug를 덮는다.
+      // 폴더의 slug는 <경로>/index라, 탐색기가 폴더를 열지 판단할 때 끝에 /가 붙은 tags/<태그>/로 본다.
+      // 그러면 태그 목록 페이지(tags/<태그>)에서 그 태그의 폴더가 열리지 않으므로 slug를 tags/<태그>로 덮는다.
+      // 탐색기는 이 slug를 접은 상태를 저장하는 키로도 쓴다.
       Object.defineProperty(node, "slug", { value: slug })
       node.children = item.children.map(toNode)
       return node
