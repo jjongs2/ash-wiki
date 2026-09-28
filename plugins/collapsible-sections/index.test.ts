@@ -71,3 +71,69 @@ describe("collapsible-sections 플러그인", () => {
     assert.strictEqual(transform(html), html)
   })
 })
+
+// 앵커로 이동할 때 절을 여는 스크립트는 externalResources가 싣는다. 가짜 document와 window로 스크립트를
+// 돌려 click 리스너를 받아 두고, 링크 클릭을 흉내 내 절이 열리는지 본다.
+describe("collapsible-sections 스크립트", () => {
+  const resources = CollapsibleSections().externalResources!({} as BuildCtx)!
+  const script = resources.js![0]
+  const source = script.contentType === "inline" ? script.script : ""
+
+  test("페이지를 불러온 뒤 도는 인라인 스크립트와 CSS를 싣는다", () => {
+    assert.strictEqual(script.loadTime, "afterDOMReady")
+    assert.strictEqual(script.contentType, "inline")
+    // 브라우저 스크립트는 문자열이라 타입 검사를 받지 않는다. 적어도 문법은 맞아야 한다.
+    assert.doesNotThrow(() => new Function(source))
+    assert.match(resources.css![0].content, /details\.collapsible-section/)
+  })
+
+  class Element {}
+  type Section = { open: boolean; parentElement: null }
+
+  // 스크립트를 돌려 document에 건 click 리스너로 링크 클릭을 흉내 내는 함수를 준다. id가 target인 요소는
+  // section 안에 있다.
+  function clicker(section: Section) {
+    const handlers: Record<string, (event: unknown) => void> = {}
+    const target = { closest: () => section }
+    const document = {
+      addEventListener: (type: string, fn: (event: unknown) => void) => (handlers[type] = fn),
+      getElementById: (id: string) => (id === "target" ? target : null),
+    }
+    const window = { addEventListener: () => {} }
+    const location = {
+      origin: "https://wiki.test",
+      pathname: "/page",
+      href: "https://wiki.test/page",
+    }
+    new Function("document", "window", "location", "Element", source)(
+      document,
+      window,
+      location,
+      Element,
+    )
+    return (anchor: object) =>
+      handlers.click({ target: Object.assign(new Element(), { closest: () => anchor }) })
+  }
+
+  const htmlAnchor = (href: string) => ({ href, getAttribute: () => href })
+
+  test("같은 페이지의 앵커를 누르면 대상이 든 접힌 절을 연다", () => {
+    const section = { open: false, parentElement: null }
+    clicker(section)(htmlAnchor("https://wiki.test/page#target"))
+    assert.strictEqual(section.open, true)
+  })
+
+  test("다른 페이지의 앵커는 이 페이지의 절을 열지 않는다", () => {
+    const section = { open: false, parentElement: null }
+    clicker(section)(htmlAnchor("https://wiki.test/other#target"))
+    assert.strictEqual(section.open, false)
+  })
+
+  // SVG의 <a>는 href가 문자열이 아니라 SVGAnimatedString이다.
+  test("SVG 안의 링크를 눌러도 예외 없이 절을 연다", () => {
+    const section = { open: false, parentElement: null }
+    const svgAnchor = { href: { baseVal: "#target" }, getAttribute: () => "#target" }
+    assert.doesNotThrow(() => clicker(section)(svgAnchor))
+    assert.strictEqual(section.open, true)
+  })
+})

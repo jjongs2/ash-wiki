@@ -24,13 +24,14 @@ function openSectionOf(hash) {
 }
 
 // 목차, 인용 번호, 제목 앵커처럼 같은 페이지의 앵커를 누를 때. SPA 라우터는 창에서 클릭을 받아 대상으로
-// 스크롤하므로, 그보다 먼저 문서의 캡처 단계에서 연다.
+// 스크롤하므로, 그보다 먼저 문서의 캡처 단계에서 연다. SVG의 <a>는 href 속성이 문자열이 아니므로
+// 속성 값을 읽어 이 페이지 기준으로 푼다.
 document.addEventListener(
   "click",
   (event) => {
     const a = event.target instanceof Element ? event.target.closest("a[href]") : null
     if (!a) return
-    const url = new URL(a.href)
+    const url = new URL(a.getAttribute("href"), location.href)
     if (url.origin !== location.origin || url.pathname !== location.pathname) return
     openSectionOf(url.hash)
   },
