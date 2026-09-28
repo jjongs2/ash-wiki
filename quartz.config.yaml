@@ -143,8 +143,9 @@ plugins:
   # CNAME 파일은 GitHub Pages용이다. 호스팅은 Cloudflare Pages다(ADR 0004).
   - source: "@quartz-community/cname"
     enabled: false
+  # 위키는 canvas 페이지를 쓰지 않는다. 켜 두면 페이지마다 그 CSS와 스크립트를 받는다.
   - source: "@quartz-community/canvas-page"
-    enabled: true
+    enabled: false
   - source: "@quartz-community/content-page"
     enabled: true
   # 위키는 폴더를 쓰지 않는다. 켜 두면 계층 태그의 표시 이름 파일(content/tags/<구역>/)이
@@ -241,8 +242,9 @@ plugins:
       position: left
       priority: 25
       display: mobile-only
+  # 위키는 bases 페이지를 쓰지 않는다. 켜 두면 페이지마다 그 CSS와 스크립트를 받는다.
   - source: "@quartz-community/bases-page"
-    enabled: true
+    enabled: false
     options: {}
     order: 50
   - source: "@quartz-community/note-properties"
@@ -253,6 +255,11 @@ plugins:
         - description
         - tags
         - aliases
+        # 검증일과 표준 페이지의 칸이다(docs/wiki-conventions.md). 값이 없는 키는 칸이 나오지 않는다.
+        - verified
+        - publisher
+        - edition
+        - status
       excludedProperties: []
       hidePropertiesView: false
       delimiters: ---
@@ -262,12 +269,14 @@ plugins:
       position: beforeBody
       priority: 15
       display: all
+  # 위키는 목록에서 빼는 페이지를 쓰지 않는다.
   - source: "@quartz-community/unlisted-pages"
-    enabled: true
+    enabled: false
     options: {}
     order: 45
+  # 위키는 암호화 페이지를 쓰지 않는다. 켜 두면 페이지마다 그 CSS와 스크립트를 받는다.
   - source: "@quartz-community/encrypted-pages"
-    enabled: true
+    enabled: false
     options:
       iterations: 600000
       passwordField: password
@@ -303,5 +312,3 @@ layout:
         - reader-mode
       positions:
         right: []
-    canvas: {}
-    bases: {}
