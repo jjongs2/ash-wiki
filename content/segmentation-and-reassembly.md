@@ -21,9 +21,9 @@ ISO 15765-2는 CAN을 쓰는 차량 네트워크에서 진단 통신에 쓰는 �
 
 AUTOSAR의 CAN 전송 계층 모듈 CanTp가 다루는 전송 프로토콜 프레임은 단일 프레임 SF(Single Frame), FF, CF, 흐름 제어 프레임 FC(Flow Control)이고, 이 프레임들을 다음처럼 쓴다.[@autosar-cp-sws-cantransportlayer-2025]
 
-- **SF**: 보낼 데이터 N-SDU(Network Service Data Unit)가 CAN 프레임 하나에 실리는 단위 N-PDU(Network Protocol Data Unit)에 들어가면 SF로 보낸다.[@autosar-cp-sws-cantransportlayer-2025]
-- **FF**: 분할된 메시지의 첫 부분과 메시지 전체 길이 FF_DL을 싣는다. $\mathrm{FF\_DL} \le 4095$이면 FF_DL을 첫 바이트 하위 4비트와 둘째 바이트에 싣고, $\mathrm{FF\_DL} > 4095$이면 그 자리를 0으로 두고 FF_DL을 셋째부터 여섯째 바이트에 싣는다. 두 형식 모두 CAN 2.0과 [[can-fd|CAN FD]]에 쓴다.[@autosar-cp-sws-cantransportlayer-2025]
-- **CF**: 나머지 페이로드를 SN(Sequence Number)과 함께 싣는다.[@autosar-cp-sws-cantransportlayer-2025]
+- **SF**: 보낼 데이터 N-SDU(Network Service Data Unit)가 CAN 프레임 하나에 실리는 단위 N-PDU(Network Protocol Data Unit)에 들어가면 SF로 보낸다.
+- **FF**: 분할된 메시지의 첫 부분과 메시지 전체 길이 FF_DL을 싣는다. $\mathrm{FF\_DL} \le 4095$이면 FF_DL을 첫 바이트 하위 4비트와 둘째 바이트에 싣고, $\mathrm{FF\_DL} > 4095$이면 그 자리를 0으로 두고 FF_DL을 셋째부터 여섯째 바이트에 싣는다. 두 형식 모두 CAN 2.0과 [[can-fd|CAN FD]]에 쓴다.
+- **CF**: 나머지 페이로드를 SN(Sequence Number)과 함께 싣는다.
 - **FC**: 수신 쪽이 송신 쪽 CF의 흐름을 조절한다. **BS**(Block Size)는 FC 하나 뒤에 이어지는 CF 수이고, **STmin**(Separation Time minimum)은 송신 쪽이 두 CF 사이에 기다릴 최소 시간이다.[@autosar-cp-sws-cantransportlayer-2025]
 
 ![[diagrams/cantp-segmented-transfer.svg]]

@@ -17,7 +17,7 @@ Classical 포맷이 [[dominant-and-recessive|dominant]] 예약 비트 r0을 보�
 
 CAN FD 포맷 프레임에서 classical 포맷의 RTR(Remote Transmission Request) 자리에는 늘 dominant로 보내는 예약 비트 r1이 온다. 제어 필드는 EDL, dominant 예약 비트 r0, BRS(Bit Rate Switch), ESI(Error State Indicator), [[data-length-code|DLC]] 4비트 순이다.[@bosch-can-fd-1-0-2012] ISO 11898-1:2015를 따르는 CAN FD 컨트롤러 매뉴얼은 r1 자리의 비트를 RRS(Remote Request Substitution)라 부른다.[@bosch-m-can-2023][@microchip-mcp25xxfd-frm-2020]
 
-- BRS: recessive이면 BRS 비트의 샘플 포인트 직후 데이터 구간의 비트율로 바꾸고, dominant이면 바꾸지 않는다.[@bosch-can-fd-1-0-2012]
+- BRS: recessive이면 BRS 비트의 샘플 포인트 직후 데이터 구간의 비트율로 바꾸고, dominant이면 바꾸지 않는다.
 - ESI: 송신 노드가 [[can-fault-confinement|error active]]이면 dominant, error passive이면 recessive다.[@bosch-can-fd-1-0-2012]
 
 ![[diagrams/can-fd-base-format-control-bits.svg]]

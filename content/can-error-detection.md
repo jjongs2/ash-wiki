@@ -11,10 +11,10 @@ verified: 2026-09-27
 
 ### 다섯 가지 오류
 
-- **비트 오류**: 비트를 보내는 노드가 버스에서 되읽은 값이 보낸 값과 다르다.[@bosch-can-2-0-1991]
-- **스터프 오류**: [[can-bit-stuffing|비트 스터핑]]으로 부호화하는 필드에서 같은 값의 비트가 6개 이어진다.[@bosch-can-2-0-1991]
-- **CRC 오류**: 수신 노드가 계산한 CRC가 받은 CRC 시퀀스와 다르다.[@bosch-can-2-0-1991]
-- **형식 오류**: CRC 구분자, ACK 구분자, EOF(End of Frame)처럼 모양이 정해진 필드에 허용되지 않는 비트가 있다.[@bosch-can-2-0-1991]
+- **비트 오류**: 비트를 보내는 노드가 버스에서 되읽은 값이 보낸 값과 다르다.
+- **스터프 오류**: [[can-bit-stuffing|비트 스터핑]]으로 부호화하는 필드에서 같은 값의 비트가 6개 이어진다.
+- **CRC 오류**: 수신 노드가 계산한 CRC가 받은 CRC 시퀀스와 다르다.
+- **형식 오류**: CRC 구분자, ACK 구분자, EOF(End of Frame)처럼 모양이 정해진 필드에 허용되지 않는 비트가 있다.
 - **ACK 오류**: 송신 노드가 ACK 슬롯에서 [[dominant-and-recessive|dominant]]를 읽지 못한다.[@bosch-can-2-0-1991]
 
 ![[diagrams/can-error-detection-fields.svg]]

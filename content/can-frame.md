@@ -13,12 +13,12 @@ verified: 2026-09-26
 
 데이터 프레임은 SOF(Start of Frame), 중재 필드, 제어 필드, 데이터 필드, [[can-crc|CRC]] 필드, [[can-acknowledgement|ACK]] 필드, EOF(End of Frame)의 일곱 필드로 이루어진다.[@bosch-can-2-0-1991]
 
-- SOF: [[dominant-and-recessive|dominant]] 비트 하나로 프레임의 시작을 알린다. 노드는 버스가 idle일 때만 송신을 시작할 수 있고, 모든 노드가 먼저 송신을 시작한 노드의 SOF 앞 에지에 [[can-synchronization|동기를 맞춘다]].[@bosch-can-2-0-1991]
-- 중재 필드: 기본 포맷에서는 [[can-identifier|식별자]]와 RTR(Remote Transmission Request) 비트로 이루어진다. RTR 비트는 데이터 프레임에서 dominant, 리모트 프레임에서 recessive다.[@bosch-can-2-0-1991]
-- 제어 필드: 예약 비트 둘과 데이터 필드의 바이트 수를 나타내는 [[data-length-code|DLC]] 4비트, 모두 6비트다. 예약 비트는 dominant로 보내지만 수신 노드는 dominant와 recessive를 모두 받아들인다.[@bosch-can-2-0-1991]
-- 데이터 필드: 0~8바이트이고, 바이트마다 최상위 비트부터 보낸다.[@bosch-can-2-0-1991]
-- CRC 필드: CRC 시퀀스와 recessive 비트 하나인 CRC 구분자로 이루어진다.[@bosch-can-2-0-1991]
-- ACK 필드: ACK 슬롯과 ACK 구분자 두 비트다.[@bosch-can-2-0-1991]
+- SOF: [[dominant-and-recessive|dominant]] 비트 하나로 프레임의 시작을 알린다. 노드는 버스가 idle일 때만 송신을 시작할 수 있고, 모든 노드가 먼저 송신을 시작한 노드의 SOF 앞 에지에 [[can-synchronization|동기를 맞춘다]].
+- 중재 필드: 기본 포맷에서는 [[can-identifier|식별자]]와 RTR(Remote Transmission Request) 비트로 이루어진다. RTR 비트는 데이터 프레임에서 dominant, 리모트 프레임에서 recessive다.
+- 제어 필드: 예약 비트 둘과 데이터 필드의 바이트 수를 나타내는 [[data-length-code|DLC]] 4비트, 모두 6비트다. 예약 비트는 dominant로 보내지만 수신 노드는 dominant와 recessive를 모두 받아들인다.
+- 데이터 필드: 0~8바이트이고, 바이트마다 최상위 비트부터 보낸다.
+- CRC 필드: CRC 시퀀스와 recessive 비트 하나인 CRC 구분자로 이루어진다.
+- ACK 필드: ACK 슬롯과 ACK 구분자 두 비트다.
 - EOF: recessive 7비트로 프레임을 닫는다.[@bosch-can-2-0-1991]
 
 ![[diagrams/can-data-remote-frame-fields.svg]]
