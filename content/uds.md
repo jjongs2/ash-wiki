@@ -37,19 +37,36 @@ ISO 14229-1은 서비스를 기능 단위(functional unit)로 묶는다. 진단�
 
 | 서비스                       | SID                           |
 | ---------------------------- | ----------------------------- |
-| DiagnosticSessionControl     | `0x10`[@iso-14229-1-obp-2026] |
+| DiagnosticSessionControl     | `0x10`                        |
 | ECUReset                     | `0x11`[@iso-14229-1-obp-2026] |
-| ClearDiagnosticInformation   | `0x14`[@iso-27145-3-obp-2012] |
-| ReadDTCInformation           | `0x19`[@iso-27145-3-obp-2012] |
+| ClearDiagnosticInformation   | `0x14`                        |
+| ReadDTCInformation           | `0x19`                        |
 | ReadDataByIdentifier         | `0x22`[@iso-27145-3-obp-2012] |
-| SecurityAccess               | `0x27`[@iso-14229-1-obp-2026] |
+| SecurityAccess               | `0x27`                        |
 | CommunicationControl         | `0x28`[@iso-14229-1-obp-2026] |
 | ReadDataByPeriodicIdentifier | `0x2A`[@iso-14229-4-obp-2012] |
 | RoutineControl               | `0x31`[@iso-27145-3-obp-2012] |
-| ResponseOnEvent              | `0x86`[@iso-14229-4-obp-2012] |
+| ResponseOnEvent              | `0x86`                        |
 | LinkControl                  | `0x87`[@iso-14229-4-obp-2012] |
 
-AUTOSAR Dcm 명세는 이 밖에 Authentication(`0x29`), TesterPresent(`0x3E`), ControlDTCSetting(`0x85`), ReadMemoryByAddress(`0x23`), ReadScalingDataByIdentifier(`0x24`), DynamicallyDefineDataIdentifier(`0x2C`), WriteDataByIdentifier(`0x2E`), WriteMemoryByAddress(`0x3D`), InputOutputControlByIdentifier(`0x2F`), RequestDownload(`0x34`), RequestUpload(`0x35`), TransferData(`0x36`), RequestTransferExit(`0x37`), RequestFileTransfer(`0x38`)의 처리를 정한다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+AUTOSAR Dcm 명세는 이 밖에 아래 서비스의 처리를 정한다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+
+| 서비스                          | SID    |
+| ------------------------------- | ------ |
+| ReadMemoryByAddress             | `0x23` |
+| ReadScalingDataByIdentifier     | `0x24` |
+| Authentication                  | `0x29` |
+| DynamicallyDefineDataIdentifier | `0x2C` |
+| WriteDataByIdentifier           | `0x2E` |
+| InputOutputControlByIdentifier  | `0x2F` |
+| RequestDownload                 | `0x34` |
+| RequestUpload                   | `0x35` |
+| TransferData                    | `0x36` |
+| RequestTransferExit             | `0x37` |
+| RequestFileTransfer             | `0x38` |
+| WriteMemoryByAddress            | `0x3D` |
+| TesterPresent                   | `0x3E` |
+| ControlDTCSetting               | `0x85` |
 
 ### 진단 세션
 
