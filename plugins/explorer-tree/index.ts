@@ -156,6 +156,7 @@ export function explorerInputs(entries: ContentEntry[]): {
 
 // 탐색기의 mapFn이 부르는 전역. 탐색기는 map을 뿌리부터 모든 노드에 부르므로, 뿌리에서만 자식을 갈아
 // 끼우고 나머지 노드는 그대로 둔다. 새 노드는 탐색기의 트라이 클래스(root.constructor)로 만든다.
+// 지금 페이지가 든 구역과 주제는 트리를 그린 뒤 펼친다.
 const SCRIPT = `(() => {
   const explorerInputs = ${explorerInputs.toString()}
   const buildExplorerTree = ${buildExplorerTree.toString()}
@@ -184,6 +185,18 @@ const SCRIPT = `(() => {
       return node
     }
     root.children = buildExplorerTree(pages, tagNames, sectionOrder).map(toNode)
+    // 탐색기는 지금 페이지의 슬러그가 폴더의 슬러그로 시작할 때만 폴더를 열어, tags/<태그> 폴더는 지금
+    // 페이지가 들어 있어도 접힌 채 나온다. 탐색기는 mapFn을 부른 뒤 같은 태스크에서 트리를 그리므로, 다음
+    // 태스크에서 지금 페이지의 링크(.active)를 품은 폴더를 연다. 탐색기가 여는 폴더처럼 저장하지는 않는다.
+    window.setTimeout(() => {
+      for (const active of document.querySelectorAll(".explorer-ul a.active")) {
+        let outer = active.closest(".folder-outer")
+        while (outer) {
+          outer.classList.add("open")
+          outer = outer.parentElement.closest(".folder-outer")
+        }
+      }
+    })
   }
 })()
 `
