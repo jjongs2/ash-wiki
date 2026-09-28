@@ -94,3 +94,45 @@ article #refs.csl-bib-body {
     overflow-wrap: anywhere;
   }
 }
+
+// ash-wiki: 사이드바 항목의 줄 규칙이다. 탐색기의 폴더 줄과 페이지 항목, 목차와 Backlinks의 항목이 같이 쓴다.
+// 줄마다 5px 모서리와 안쪽 여백을 두고, hover에는 무채색(lightgray를 반쯤 비친) 배경만 깔고 글자색은 바꾸지
+// 않는다. 항목 링크는 본문색 0.9rem 400으로 쓰고 줄 전체를 채운다. 파랑은 탐색기의 지금 페이지에만 쓴다.
+// 폴더 줄의 글자(층), 꺾쇠, 지금 페이지처럼 트리에만 있는 규칙은 탐색기 플러그인(plugins/explorer-tree)에 있다.
+// 업스트림의 전역 a, a:hover, a.internal과 각 컴포넌트의 항목 규칙보다 구체적인 선택자로 덮는다. 이 파일은
+// 컴포넌트 CSS보다 먼저 실려, 순서가 아니라 구체성으로 이겨야 한다.
+.explorer .explorer-content .folder-container,
+.explorer .explorer-content ul li > a,
+.toc ul.toc-content.overflow > li > a,
+.backlinks > ul.overflow > li > a {
+  border-radius: 5px;
+  padding: 0.1rem 0.4rem;
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--lightgray) 50%, transparent);
+  }
+
+  &:is(a) {
+    display: block;
+    color: var(--darkgray);
+    opacity: 1;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+  }
+}
+
+// 목차는 지금 보이는 절(a.in-view)을 본문색으로, 나머지를 탐색기가 페이지 없는 폴더를 흐릴 때 쓰는 보조
+// 글자색으로 가른다. 업스트림은 투명도로 갈라, 흐린 절의 대비가 라이트 테마에서 2.18:1이다. 보조 글자색의
+// 대비는 docs/palette.md의 실측 표에 있다. 색 전환은 동작 줄이기 설정에서 끈다.
+.toc ul.toc-content.overflow > li > a {
+  transition: color 0.3s ease;
+
+  &:not(.in-view) {
+    color: var(--gray);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
