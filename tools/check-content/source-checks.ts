@@ -149,11 +149,9 @@ const calloutMarker = /^\s*(?:>\s*)+\[!([^\]]+)\]/
 const blockNames: Record<string, string> = {
   blockquote: "인용 블록",
   list: "목록",
-  table: "표",
   code: "코드 블록",
   html: "HTML",
   thematicBreak: "구분선",
-  definition: "링크 정의",
 }
 
 // 머리말은 첫 제목 앞의 블록이다. HTML 주석을 건너뛴 첫 블록이 문단이어야 한다.
@@ -165,7 +163,7 @@ export const lead: SourceCheck = (tree) => {
     const heading = blocks.find((node) => node.type === "heading")
     const first = blocks
       .slice(0, heading ? blocks.indexOf(heading) : undefined)
-      .find((node) => !(node.type === "html" && node.value.startsWith("<!--")))
+      .find((node) => !(node.type === "html" && node.value.trimStart().startsWith("<!--")))
     if (first?.type === "paragraph") continue
     const message = "첫 ## 앞에 머리말 문단이 없다"
     if (!first) {
