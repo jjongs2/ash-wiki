@@ -1,6 +1,7 @@
 import micromorph from "micromorph"
 import { FullSlug, RelativeURL, getFullSlug, normalizeRelativeURLs } from "../../util/path"
 import { fetchCanonical } from "./util"
+import { patchHead } from "./headPatch"
 
 // adapted from `micromorph`
 // https://github.com/natemoo-re/micromorph
@@ -129,10 +130,8 @@ async function _navigate(url: URL, isBack: boolean = false) {
   }
 
   // now, patch head, re-executing scripts
-  const elementsToRemove = document.head.querySelectorAll(":not([data-persist])")
-  elementsToRemove.forEach((el) => el.remove())
-  const elementsToAdd = html.head.querySelectorAll(":not([data-persist])")
-  elementsToAdd.forEach((el) => document.head.appendChild(el))
+  // ash-wiki: 새 페이지와 같은 요소는 떼지 않고 그대로 둔다(headPatch.ts).
+  patchHead(document.head, html.head, window.location.href, url)
 
   // delay setting the url until now
   // at this point everything is loaded so changing the url should resolve to the correct addresses
