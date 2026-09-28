@@ -166,8 +166,15 @@ plugins:
     enabled: false
   - source: "@quartz-community/tag-page"
     enabled: true
+  # 폴더 대신 태그로 구역 › 주제 › 페이지 트리를 그린다. 세 옵션을 둔 이유는 plugins/explorer-tree에 있다.
   - source: "@quartz-community/explorer"
     enabled: true
+    options:
+      filterFn: "() => true"
+      mapFn: "(node) => window.explorerTree(node)"
+      sortFn: "() => 0"
+      # 폴더 이름을 눌러도 페이지로 가지 않고 폴더를 접고 편다. 구역과 주제의 태그 목록은 대문에서 간다.
+      folderClickBehavior: collapse
     layout:
       position: left
       priority: 50
@@ -191,6 +198,9 @@ plugins:
       priority: 50
   # Backlinks를 목차처럼 제목을 눌러 접고 편다(plugins/backlinks-collapse). backlinks 플러그인에는 접기 옵션이 없다.
   - source: ./plugins/backlinks-collapse
+    enabled: true
+  # 탐색기의 mapFn이 부르는 전역 window.explorerTree를 싣는다(plugins/explorer-tree).
+  - source: ./plugins/explorer-tree
     enabled: true
   - source: "@quartz-community/article-title"
     enabled: true
