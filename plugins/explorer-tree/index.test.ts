@@ -237,15 +237,14 @@ describe("브라우저 스크립트", () => {
   }))
 
   function mapped() {
-    // 트리를 그린 뒤 지금 페이지가 든 폴더를 여는 일은 DOM을 다루므로 브라우저에서 확인하고, 여기서는 돌리지 않는다
-    const window: {
-      explorerTree?: (node: FileTrieNode<Entry>) => void
-      setTimeout: () => void
-    } = { setTimeout: () => {} }
+    const window: { explorerTree?: (node: FileTrieNode<Entry>) => void } = {}
+    // 트리를 그린 뒤 지금 페이지가 든 폴더를 여는 일은 DOM을 다루므로 브라우저에서 확인한다. 여기서는
+    // 탐색기 목록이 없는 document를 주어 그 일을 건너뛴다.
+    const document = { querySelectorAll: () => [] }
     // tsx는 함수의 toString()에 __name 호출을 끼워 넣는다. 빌드는 이 파일을 플래그 없는 node로 불러
     // 그런 호출이 없으므로, 테스트에서만 그 이름을 채운다. new Function은 이 모듈의 이름을 보지 못하므로,
     // 스크립트에 실린 함수가 함수 밖의 이름을 쓰면 여기서 드러난다.
-    new Function("window", "__name", source)(window, (fn: unknown) => fn)
+    new Function("window", "document", "__name", source)(window, document, (fn: unknown) => fn)
     const trie = FileTrieNode.fromEntries(entries.map((entry) => [entry.slug as FullSlug, entry]))
     trie.map(window.explorerTree!)
     return trie

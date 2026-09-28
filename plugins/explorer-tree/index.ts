@@ -186,17 +186,41 @@ const SCRIPT = `(() => {
     }
     root.children = buildExplorerTree(pages, tagNames, sectionOrder).map(toNode)
     // 탐색기는 지금 페이지의 슬러그가 폴더의 슬러그로 시작할 때만 폴더를 열어, tags/<태그> 폴더는 지금
-    // 페이지가 들어 있어도 접힌 채 나온다. 탐색기는 mapFn을 부른 뒤 같은 태스크에서 트리를 그리므로, 다음
-    // 태스크에서 지금 페이지의 링크(.active)를 품은 폴더를 연다. 탐색기가 여는 폴더처럼 저장하지는 않는다.
-    window.setTimeout(() => {
-      for (const active of document.querySelectorAll(".explorer-ul a.active")) {
-        let outer = active.closest(".folder-outer")
-        while (outer) {
-          outer.classList.add("open")
+    // 페이지가 들어 있어도 접힌 채 그린다. 그래서 탐색기가 트리를 그리면 지금 페이지의 링크(.active)를 품은
+    // 폴더를 연다. MutationObserver는 그린 직후 화면에 나오기 전에 돌고, 여는 동안 전환을 꺼 둔다. 그러지
+    // 않으면 이동할 때마다 폴더가 접혔다 펴진다. 탐색기가 여는 폴더처럼 펼친 상태를 저장하지는 않는다.
+    // 탐색기는 그린 직후 목록의 스크롤을 맞추는데, 그때는 폴더가 접혀 목록이 짧아 스크롤이 잘린다. 그래서
+    // 폴더를 연 뒤 탐색기와 같은 규칙(이동 전에 저장한 위치, 없으면 지금 페이지)으로 다시 맞춘다.
+    for (const list of document.querySelectorAll(".explorer-ul")) {
+      const observer = new MutationObserver(() => {
+        observer.disconnect()
+        const active = list.querySelector("a.active")
+        if (!active) return
+        // 폴더와 그 접기 표시(폴더가 열리면 돌아간다)
+        const folders = []
+        for (let outer = active.closest(".folder-outer"); outer; ) {
+          folders.push([outer, outer.previousElementSibling.querySelector(".folder-icon")])
           outer = outer.parentElement.closest(".folder-outer")
         }
-      }
-    })
+        const animated = folders.flat()
+        for (const element of animated) element.style.transition = "none"
+        for (const [outer] of folders) outer.classList.add("open")
+        list.offsetHeight // 연 상태를 전환 없이 반영한다
+        for (const element of animated) element.style.transition = ""
+
+        const saved = sessionStorage.getItem("explorerScrollTop")
+        if (saved) {
+          list.scrollTop = Number(saved)
+        } else {
+          const box = list.getBoundingClientRect()
+          const link = active.getBoundingClientRect()
+          if (link.top < box.top || link.bottom > box.bottom) {
+            list.scrollTop += link.top - box.top - (box.height - link.height) / 2
+          }
+        }
+      })
+      observer.observe(list, { childList: true })
+    }
   }
 })()
 `
