@@ -25,7 +25,8 @@ const entry = (text: string) =>
   `<div id="refs" class="references csl-bib-body"><div class="csl-entry" id="bib-a">` +
   `<div class="csl-left-margin">[1]</div><div class="csl-right-inline">${text}</div></div></div>`
 
-const link = (url: string) => `<a href="${url}" target="_blank" class="external">${url}</a>`
+const link = (url: string) =>
+  `<a href="${url}" target="_blank" class="external external-link">${url}</a>`
 
 describe("bibliography-links 플러그인", () => {
   test("참고문헌 항목의 URL을 새 탭 링크로 바꾼다", () => {

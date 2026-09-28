@@ -1,6 +1,7 @@
 // ash-wiki: 참고문헌 항목 안의 URL 텍스트를 새 탭으로 열리는 링크로 바꾸는 로컬 플러그인이다.
 // citations 플러그인(rehype-citation)은 CSL이 낸 URL을 누를 수 없는 텍스트로 둔다. 본문의 외부 링크는
 // crawl-links의 openLinksInNewTab이 새 탭으로 열지만, crawl-links는 참고문헌이 붙기 전에 돈다.
+// 링크는 crawl-links가 외부 링크에 주는 target과 class를 따르고, 외부 링크 아이콘은 달지 않는다.
 //
 // 빌드가 이 파일을 Node의 type stripping으로 불러오므로, 타입만 지우면 돌아가는 문법만 쓴다. enum, namespace,
 // parameter property를 쓰지 않고, 타입은 import type으로 가져온다.
@@ -31,7 +32,7 @@ function linkify(value: string): ElementContent[] | null {
     nodes.push({
       type: "element",
       tagName: "a",
-      properties: { href: url, target: "_blank", className: ["external"] },
+      properties: { href: url, target: "_blank", className: ["external", "external-link"] },
       children: [{ type: "text", value: url }],
     })
     last = match.index + url.length
@@ -47,10 +48,10 @@ const BibliographyLinks: QuartzTransformerPlugin = () => {
     htmlPlugins() {
       return [
         () => (tree: Root) => {
-          visit(tree, "element", (entry) => {
-            const className = entry.properties.className
+          visit(tree, "element", (node) => {
+            const className = node.properties.className
             if (!Array.isArray(className) || !className.includes("csl-entry")) return
-            visit(entry, "text", (text, index, parent) => {
+            visit(node, "text", (text, index, parent) => {
               if (parent === undefined || index === undefined) return
               const nodes = linkify(text.value)
               if (nodes === null) return
