@@ -24,7 +24,7 @@ TI CPSW의 MAC merge 계층은 express 큐에 보낼 프레임이 있으면 pree
 
 선점된 preemptable 프레임은 조각으로 나뉘어 전송되고, 받는 쪽이 조각을 다시 합쳐 원래 프레임으로 되돌린다.[@adi-adin3310-adin6310-2025][@ti-processor-sdk-linux-am64x-iet-2026] 선점을 쓰는 링크에서는 프리앰블 끝의 SFD(Start Frame Delimiter) 자리에 SMD(Start mPacket Delimiter)를 두어 express 프레임, preemptable 프레임의 첫 조각, 이어지는 조각을 구분하고, 이어지는 조각에는 조각 번호가 붙는다.[@adi-adin3310-adin6310-2025][@nxp-realtimeedgeug-2026]
 
-ADIN3310/ADIN6310 데이터시트에 따르면 preemptable 프레임의 조각은 mCRC로 끝난다. mCRC가 기대한 CRC와 같으면 그 조각이 프레임의 끝이고, 기대한 CRC의 아래 16비트를 XOR한 값과 같으면 조각이 더 이어진다. ADIN6310은 마지막이 아닌 조각의 최소 크기를 64, 128, 192, 256바이트 가운데 하나로 설정할 수 있다.[@adi-adin3310-adin6310-2025]
+ADIN3310/ADIN6310 데이터시트에 따르면 preemptable 프레임의 조각은 mCRC로 끝난다. mCRC가 기대한 [[cyclic-redundancy-check|CRC]]와 같으면 그 조각이 프레임의 끝이고, 기대한 CRC의 아래 16비트를 XOR한 값과 같으면 조각이 더 이어진다. ADIN6310은 마지막이 아닌 조각의 최소 크기를 64, 128, 192, 256바이트 가운데 하나로 설정할 수 있다.[@adi-adin3310-adin6310-2025]
 
 ![[diagrams/frame-preemption-fragments.svg]]
 

@@ -8,9 +8,9 @@ aliases:
 verified: 2026-09-29
 ---
 
-**Time-aware shaper**(TAS)는 브리지나 종단 장치의 포트에서 큐마다 전송 게이트를 두고, 게이트 제어 목록에 따라 게이트를 여닫아 큐가 전송할 수 있는 시각을 정하는 기능이다.[@ti-processor-sdk-linux-am62x-est-2026][@intel-eci-gptp-2024] IEEE 802.1Qbv-2015가 IEEE 802.1Q-2014의 개정(Amendment 25: Enhancements for Scheduled Traffic)으로 넣었고, 이 개정은 IEEE 802.1Q-2018에 합쳐졌다.[@ieee-802-1-tsn-tg-2026] 이 기능은 time-aware shaper라는 이름으로도 불린다.[@ti-processor-sdk-linux-am62x-est-2026][@microchip-an1185-2025]
+**Time-aware shaper**(TAS)는 브리지나 종단국의 포트에서 큐마다 전송 게이트를 두고, 게이트 제어 목록에 따라 게이트를 여닫아 큐가 전송할 수 있는 시각을 정하는 기능이다.[@ti-processor-sdk-linux-am62x-est-2026][@intel-eci-gptp-2024] IEEE 802.1Qbv-2015가 IEEE 802.1Q-2014의 개정(Amendment 25: Enhancements for Scheduled Traffic)으로 넣었고, 이 개정은 IEEE 802.1Q-2018에 합쳐졌다.[@ieee-802-1-tsn-tg-2026] 802.1Qbv의 scheduled traffic은 time-aware shaper라고도 불린다.[@ti-processor-sdk-linux-am62x-est-2026][@microchip-an1185-2025]
 
-802.1Qbv는 브리지와 종단 장치가 [[ieee-802-1as|IEEE 802.1AS]]에서 얻은 시각에 따라 프레임 전송을 스케줄하도록 time-aware queue-draining 절차를 정했다.[@ieee-802-1qbv-project-2016] IEEE 802.1 작업 그룹의 [[tsn|TSN]] 요약은 scheduled traffic을 지연 상한을 위한 도구로 분류한다.[@ieee-802-1-tsn-summary-2026]
+IEEE 802.1Qbv 프로젝트는 브리지와 종단국이 [[ieee-802-1as|IEEE 802.1AS]]에서 얻은 시각에 따라 프레임 전송을 스케줄하도록 time-aware queue-draining 절차를 정하는 것을 범위로 삼았다.[@ieee-802-1qbv-project-2016] IEEE 802.1 작업 그룹의 [[tsn|TSN]] 요약은 scheduled traffic을 지연 상한을 위한 도구로 분류한다.[@ieee-802-1-tsn-summary-2026]
 
 ## 구조·동작
 
@@ -32,9 +32,9 @@ IEEE 802.1Q의 scheduled traffic은 포트의 [[traffic-class|트래픽 클래�
 
 guard band는 시간이 중요한 큐의 창 앞에 두어, 앞 창에서 보내던 프레임이 그 창을 침범하지 않게 하는 구간이다.[@ti-processor-sdk-linux-am62x-est-2026][@microchip-an1185-2025] 그 길이는 끼어들 수 있는 가장 긴 프레임 하나를 보내는 시간을 기준으로 잡는다.[@ti-processor-sdk-linux-am62x-est-2026][@microchip-pd-ies008x-tsn-2025]
 
-Microchip AN1185에 따르면 guard band 시간 $t_\mathrm{gb}$는 큐마다 설정한 `max-sdu`(바이트)와 링크 속도 $R$로 계산한다: $t_\mathrm{gb} = 8 \cdot \mathrm{max\text{-}sdu} / R$.[@microchip-an1185-2025]
+Microchip AN1185에 따르면 guard band 시간 $t_\mathrm{gb}$는 큐마다 설정한 `max-sdu`(바이트)와 링크 속도 $\mathrm{portTransmitRate}$로 계산한다: $t_\mathrm{gb} = 8 \cdot \mathrm{max\text{-}sdu} / \mathrm{portTransmitRate}$.[@microchip-an1185-2025]
 
-TI CPSW의 EST 하드웨어는 게이트가 닫히기 직전 큐에 들어온 프레임도 보내, 그 프레임이 다음 창으로 넘어갈 수 있다. TI는 이를 막으려면 창 사이에 모든 게이트를 닫은 항목을 guard band로 넣고, 그 길이를 MTU(Maximum Transmission Unit) 프레임의 전송 시간에 292 wire clock(1 Gbit/s에서 2336 ns)을 더한 값으로 잡기를 권한다.[@ti-processor-sdk-linux-am62x-est-2026]
+TI CPSW의 EST(Enhancements for Scheduled Traffic) 하드웨어는 게이트가 닫히기 직전 큐에 들어온 프레임도 보내, 그 프레임이 다음 창으로 넘어갈 수 있다. TI는 이를 막으려면 창 사이에 모든 게이트를 닫은 항목을 guard band로 넣고, 그 길이를 MTU(Maximum Transmission Unit) 프레임의 전송 시간에 292 wire clock(1 Gbit/s에서 2336 ns)을 더한 값으로 잡기를 권한다.[@ti-processor-sdk-linux-am62x-est-2026]
 
 ## 비교·한계
 
