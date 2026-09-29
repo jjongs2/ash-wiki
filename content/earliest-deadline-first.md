@@ -27,4 +27,6 @@ verified: 2026-09-29
 
 같은 가정에서 [[rate-monotonic-scheduling|RM]]이 늘 스케줄할 수 있는 이용률의 최소 상한은 태스크가 많아지면 $\ln 2$에 가까워지지만, EDF는 이용률 1까지 스케줄한다. 대신 EDF는 요청마다 우선순위를 다시 정해야 한다.[@liu-hard-real-time-1973]
 
+![[diagrams/utilization-bound-rm-edf.svg]]
+
 Linux 커널의 `SCHED_DEADLINE` 정책은 EDF에 CBS(Constant Bandwidth Server)를 더해 태스크를 스케줄한다. CBS는 태스크마다 스케줄링 마감 시한을 매겨 태스크끼리 서로 간섭하지 않게 한다.[@linux-sched-deadline-2026]

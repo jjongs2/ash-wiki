@@ -25,6 +25,8 @@ RM은 우선순위를 실행 시간과 상관없이 태스크의 주기만으로
 
 이 조건은 충분조건이다. 이용률이 상한을 넘어도 주기끼리 알맞은 관계에 있으면 RM으로 스케줄할 수 있다. 이런 태스크 집합은 태스크마다, 우선순위가 더 높은 모든 태스크와 함께 요청하는 [[response-time-analysis|critical instant]]에 낸 요청이 마감 시한 전에 끝나는지를 계산해 판정한다.[@liu-hard-real-time-1973]
 
+![[diagrams/utilization-bound-rm-edf.svg]]
+
 ## 비교·한계
 
 마감 시한이 주기와 다른 태스크가 있으면 RM은 최적이 아니다.[@faa-ar-05-27-2005] 마감 시한이 짧을수록 높은 우선순위를 주는 DM(Deadline Monotonic)은 [[fixed-priority-scheduling|고정 우선순위 스케줄링]]에서 다룬다.

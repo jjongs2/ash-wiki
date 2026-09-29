@@ -24,7 +24,9 @@ AUTOSAR의 Timing Analysis and Design 보고서에 따르면 주기적으로 활
 - **Data age**: 덮어쓰이지 않고 경로를 끝까지 지난 마지막 입력에서, 그 입력을 반영한 출력까지의 지연이다. 같은 입력을 반영한 출력이 여럿이면 그 가운데 마지막 것까지 잰다.
 - **Reaction**: 입력의 값 변화가 도착한 때에서, 시스템이 그 변화에 처음 반응한 출력까지의 지연이다. 도착한 값이 덮어쓰여 경로를 지나지 못하면, 다음에 경로를 끝까지 지나는 입력까지 기다린 시간도 들어간다.[@feiertag-end-to-end-path-delay-2008]
 
-AUTOSAR Timing Extensions는 자극(stimulus)에서 응답(response)까지 인과 관계에 있는 이벤트들을 event chain(TimingDescriptionEventChain)으로 기술하고, event chain에 거는 LatencyTimingConstraint의 종류로 age와 reaction을 둔다. age 제약은 응답 쪽에서 보아 주어진 응답에 대해 가장 최근 자극까지의 간격을 제한하고, reaction 제약은 자극 쪽에서 보아 주어진 자극에 대해 첫 응답까지의 간격을 제한한다.[@autosar-cp-tps-timingextensions-2025]
+![[diagrams/cause-effect-chain-data-age-reaction.svg]]
+
+AUTOSAR Timing Extensions는 자극(stimulus)에서 응답(response)까지 인과 관계에 있는 이벤트들을 event chain(TimingDescriptionEventChain)으로 기술하고, event chain에 거는 LatencyTimingConstraint의 종류로 age와 reaction을 둔다. age 제약은 주어진 응답과 그에 앞선 가장 최근 자극 사이의 간격을, reaction 제약은 주어진 자극과 그에 대응하는 첫 응답 사이의 간격을 제한한다.[@autosar-cp-tps-timingextensions-2025]
 
 AUTOSAR Timing Extensions에 따르면 data age 제약은 주기적으로 갱신하는 액추에이터 값이 너무 오래된 입력에 기대지 않게 할 때 쓰고, 주로 제어 공학에서 중요하다. reaction 제약은 자극에 대한 첫 반응이 중요할 때 쓰고, 바디 전장에서 흔하다.[@autosar-cp-tps-timingextensions-2025]
 

@@ -17,6 +17,8 @@ Giotto는 구간 안에서 실제 계산이 언제, 어디서, 어떻게 이뤄�
 
 모든 태스크가 자기 구간 안에 실행을 마치면, 입출력 동작은 하드웨어 플랫폼이나 소프트웨어 부하가 달라져도 바뀌지 않는다.[@kirsch-logical-execution-time-2012][@henzinger-giotto-2003] 태스크 사이에 오가는 값도 구간의 시작과 끝에서만 전달되므로, 센서 값이 주어지면 태스크 사이와 액추에이터로 가는 값이 모두 정해진다.[@henzinger-giotto-2003]
 
+![[diagrams/let-interval-read-write.svg]]
+
 AUTOSAR의 Timing Analysis and Design 보고서에 따르면 LET에서는 응답 시간과 데이터 흐름이 실제 스케줄링과 상관없이 고정되어, [[cause-effect-chain|cause-effect chain]]의 종단 간 동작을 결정적으로 명세하고 구현하기가 쉬워진다.[@autosar-fo-tr-timinganalysis-2025]
 
 ### System-level LET
