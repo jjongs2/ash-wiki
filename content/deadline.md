@@ -13,6 +13,8 @@ verified: 2026-09-29
 
 Linux 커널의 SCHED_DEADLINE 문서에 따르면 job의 **절대 마감 시한**은 job이 끝나야 하는 시각이고, job이 도착한 시각에 태스크의 **상대 마감 시한**을 더한 값이다. 도착 시각을 $r$, 상대 마감 시한을 $D_i$라 하면 절대 마감 시한은 $r + D_i$다. 이 문서는 태스크를 [[worst-case-execution-time|WCET]], 상대 마감 시한, 주기의 세 값으로 적는다.[@linux-sched-deadline-2026]
 
+![[diagrams/task-timing-parameters.svg]]
+
 ### hard와 soft
 
 Atmel 앱노트에 따르면 hard real-time 요구가 정한 마감 시한을 어기면 시스템이 완전히 실패하고, soft real-time 요구가 정한 마감 시한은 어겨도 시스템을 못 쓰게 되지는 않는다.[@atmel-at04056-2014]

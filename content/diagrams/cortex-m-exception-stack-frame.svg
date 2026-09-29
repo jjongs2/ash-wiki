@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="67.5 0 406.5 303" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+  <!-- 부동소수점 상태: 부동소수점 문맥이 활성일 때만 쌓는다 -->
+  <rect x="200.75" y="20.75" width="138.5" height="48.5" rx="4" stroke="#727981" stroke-width="1.5" stroke-dasharray="6 5" />
+  <text x="270" y="50" text-anchor="middle" fill="#727981">부동소수점 상태</text>
+
+  <!-- 8워드 프레임 -->
+  <g fill="#336fb8">
+    <rect x="200" y="76" width="140" height="24" rx="3" />
+    <rect x="200" y="102" width="140" height="24" rx="3" />
+    <rect x="200" y="128" width="140" height="24" rx="3" />
+    <rect x="200" y="154" width="140" height="24" rx="3" />
+    <rect x="200" y="180" width="140" height="24" rx="3" />
+    <rect x="200" y="206" width="140" height="24" rx="3" />
+    <rect x="200" y="232" width="140" height="24" rx="3" />
+    <rect x="200" y="258" width="140" height="24" rx="3" />
+  </g>
+  <g text-anchor="middle" fill="#f8fafd">
+    <text x="270" y="93">xPSR</text>
+    <text x="270" y="119">반환 주소</text>
+    <text x="270" y="145">LR</text>
+    <text x="270" y="171">R12</text>
+    <text x="270" y="197">R3</text>
+    <text x="270" y="223">R2</text>
+    <text x="270" y="249">R1</text>
+    <text x="270" y="275">R0</text>
+  </g>
+
+  <!-- 묶음 표시 -->
+  <path d="M350 21 H358 V69 H350" stroke="#727981" stroke-width="1.5" />
+  <text x="368" y="41" font-size="12" fill="#727981">부동소수점 문맥이</text>
+  <text x="368" y="57" font-size="12" fill="#727981">활성일 때만</text>
+  <path d="M350 76 H358 V282 H350" stroke="#727981" stroke-width="1.5" />
+  <text x="368" y="175" font-size="12" fill="#727981">8워드 프레임</text>
+  <text x="368" y="191" font-size="12" fill="#727981">하드웨어가 쌓는다</text>
+
+  <!-- 쌓은 뒤의 스택 포인터 -->
+  <line x1="150" y1="270" x2="196" y2="270" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="142" y="266" text-anchor="end" font-size="12" fill="#727981">쌓은 뒤의</text>
+  <text x="142" y="282" text-anchor="end" font-size="12" fill="#727981">스택 포인터</text>
+</svg>

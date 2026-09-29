@@ -17,6 +17,8 @@ Microchip MPLAB Harmony의 main 함수는 모든 모듈을 초기화한 뒤, 무
 
 RTOS 기반 소프트웨어는 일을 여러 태스크로 나누고, 태스크마다 우선순위를 준다.[@freertos-rtos-fundamentals-2026][@silabs-intro-rtos-2019]
 
+![[diagrams/superloop-vs-rtos-tasks.svg]]
+
 ### 구성
 
 **스케줄러**는 커널에서 어느 태스크를 언제 실행할지 정하는 부분이다.[@freertos-rtos-fundamentals-2026][@micrium-ucos-ii-rtsc-2026] RTOS가 다른 태스크를 실행하기로 하면 [[context-switch|문맥 전환]]이 일어나, 지금 태스크를 내보내고 새 태스크를 들인다.[@freertos-rtos-fundamentals-2026][@silabs-intro-rtos-2019] 스케줄링 방식은 [[real-time-scheduling|실시간 스케줄링]]에서 다룬다.

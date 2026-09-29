@@ -25,6 +25,8 @@ Liu와 Layland는 분석을 위해 hard 마감 시한이 있는 태스크의 요
 
 AUTOSAR Classic Platform의 타이밍 확장 명세는 주어진 시간 요구를 채우는 임베디드 실시간 시스템을 만들고 그 타이밍을 분석·검증하도록 돕는 것을 주목적으로 둔다. 이 명세는 센서 샘플링에서 액추에이터 접근까지의 인과 경로를 이벤트 사슬로 기술하고, 사슬의 자극과 응답 사이 시간을 지연 제약(LatencyTimingConstraint)으로 제한한다. 명세의 예시 사슬은 ECU 두 개와 [[can|CAN]] 버스를 거친다.[@autosar-cp-tps-timingextensions-2025]
 
+![[diagrams/event-chain-latency-constraint.svg]]
+
 ## 비교·한계
 
 Renesas 앱노트에 따르면 RTOS의 응답성은 처리 속도가 아니라 결정적 동작에 달려 있고, 정해진 시간 안에 응답한다고 해서 빠르다는 뜻은 아니다.[@renesas-res05b0008-2010] 실시간 시스템에서는 시간 동작이 결정적이어서, 태스크가 언제 실행될지 미리 예측할 수 있어야 한다.[@atmel-at04056-2014][@renesas-res05b0008-2010]

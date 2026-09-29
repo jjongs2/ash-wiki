@@ -23,6 +23,8 @@ Microchip TB3186에 따르면 캐시를 쓰는 시스템에서 코드 성능은 
 
 AUTOSAR 타이밍 분석 보고서에 따르면 측정은 쓴 입력 데이터가 어느 분기를 밟았느냐에 따라 값이 달라져 평균이나 분포만 줄 수 있고, 실행 시간의 상한은 정적 분석으로 얻는다. 측정과 시뮬레이션의 최댓값은 실제로 관측한 값이고, 분석이 내는 최악값은 분석 알고리즘 때문에 과대평가되기도 한다. 이 보고서는 분석이 최악값 같은 단일 값을 내고, 시뮬레이션과 측정은 실행 시간의 분포를 낸다고 나눈다. 정적 코드 분석은 소스 코드나 바이너리에서 호출 그래프와 명령어 순서를 재구성해 BCET(Best-Case Execution Time)의 하한과 WCET의 상한을 계산하며, 메모리 영역별 접근 시간이나 캐시 같은 대상 하드웨어의 동작을 자세히 알아야 한다. 코드 조각이 인터럽트되지 않는 한 실제 실행 시간은 이 구간 안에 든다. WCET 분석은 안전하면서도 정확한 값을 내야 하고, 하드웨어 동작 모델이 복잡하면 결과의 정밀도에 한계가 생길 수 있다.[@autosar-fo-tr-timinganalysis-2025]
 
+![[diagrams/wcet-analysis-measurement-bounds.svg]]
+
 측정이 서로 독립이고, 표본이 여러 환경 조건에 걸쳐 있으며, 일반화할 만큼 크면, 측정한 실행 시간 표본으로 확률 밀도 모델을 세워 정한 신뢰 수준에서 WCET를 추정할 수 있다.[@edgar-statistical-wcet-2001]
 
 ### 선점과 실행 시간
@@ -30,6 +32,8 @@ AUTOSAR 타이밍 분석 보고서에 따르면 측정은 쓴 입력 데이터�
 AUTOSAR는 실행 시간을 선점되거나 중단된 시간, 태스크 전환, 다른 소프트웨어의 실행을 뺀, 실제로 실행된 시간으로 둔다.[@autosar-fo-tr-glossary-2025][@autosar-fo-tr-timinganalysis-2025]
 
 AUTOSAR 타이밍 확장 명세는 다른 개체가 끼어든 시간과 외부 호출까지 포함해 실행을 끝내기까지 걸린 시간을 응답 시간이라 부른다. 이 명세의 실행 시간 제약(ExecutionTimeConstraint)은 실행 시간의 종류로 net과 gross를 둔다. 둘 다 다른 개체가 끼어든 시간을 빼고, gross는 외부 호출에 쓴 시간을 포함하며 net은 포함하지 않는다.[@autosar-cp-tps-timingextensions-2025]
+
+![[diagrams/execution-time-net-gross-response.svg]]
 
 스케줄 가능성 분석은 태스크의 WCET에 운영체제 오버헤드와 우선순위 같은 스케줄링의 영향을 더해 최악 응답 시간을 구한다.[@autosar-fo-tr-glossary-2025][@freescale-cwperformwp-2005] AUTOSAR 타이밍 분석 보고서에 따르면 스케줄링 분석은 코어 실행 시간의 최솟값과 최댓값, 애플리케이션 모델을 입력으로 받아 보장된 최악 응답 시간을 낸다.[@autosar-fo-tr-timinganalysis-2025]
 

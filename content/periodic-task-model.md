@@ -15,6 +15,8 @@ Liu와 Layland의 모델에서 태스크 $\tau_i$의 **요청 주기** $T_i$는 
 
 **상대 마감 시한** $D_i$는 태스크가 요청된 시각부터, 그 요청이 끝나야 하는 시각까지의 길이다.[@mok-fundamental-design-1983][@tindell-extendible-approach-1992] 마감 시한은 [[deadline|마감 시한]]에서 다룬다.
 
+![[diagrams/task-timing-parameters.svg]]
+
 태스크 집합의 **프로세서 이용률** $U$는 태스크 집합을 실행하는 데 쓰는 프로세서 시간의 비율이고, $U = \sum_i C_i / T_i$다.[@liu-hard-real-time-1973]
 
 ### Liu와 Layland의 가정
@@ -31,6 +33,8 @@ Liu와 Layland는 1973년 논문에서 아래 다섯 가지를 가정했고, 이
 
 - **periodic 태스크**: 일정한 주기마다 요청된다.[@liu-hard-real-time-1973]
 - **sporadic 태스크**: 아무 때나 요청될 수 있지만, 이웃한 두 요청은 정해진 최소 간격 이상 떨어져 있다.[@mok-fundamental-design-1983]
+
+![[diagrams/periodic-sporadic-arrivals.svg]]
 
 Mok은 1983년 MIT 박사 학위논문에서 periodic 프로세스와 함께 sporadic 프로세스를 모델링했다. 최소 간격은 sporadic 프로세스가 시스템 자원을 독점하지 못하게 하려고 둔다. sporadic 태스크의 $T_i$를 최소 간격으로 두면, periodic 태스크와 sporadic 태스크가 섞인 집합이 스케줄 가능하려면 $\sum_i C_i / T_i$가 프로세서 수를 넘지 않아야 한다.[@mok-fundamental-design-1983]
 

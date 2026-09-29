@@ -15,6 +15,8 @@ FreeRTOS 문서는 멈추는 태스크의 문맥을 저장하고 재개하는 �
 
 FreeRTOS는 태스크마다 스택을 따로 두고, 프로세서 레지스터를 그 태스크의 스택에 push해 문맥을 저장한다. FreeRTOS의 AVR 포트는 레지스터를 번호 순으로 하나씩 태스크 스택에 push한다.[@freertos-saving-context-2024] 태스크를 재개할 때는 그 태스크의 스택 포인터를 되찾은 뒤, 스택에서 레지스터를 pop해 문맥을 복원한다.[@freertos-restoring-context-2024]
 
+![[diagrams/context-switch-save-restore.svg]]
+
 ### x86
 
 IA-32 아키텍처는 보호 모드에서 하드웨어 태스크 전환 기구를 제공한다. 전환 때 프로세서가 현재 태스크의 상태를 그 태스크의 TSS(Task-State Segment)에 저장하고, 새 태스크의 TSS에서 상태를 읽어 온다. 64비트 모드는 이 기구를 지원하지 않아, 태스크 관리와 전환을 소프트웨어가 맡는다.[@intel-sdm-vol3a-2026]
@@ -24,6 +26,8 @@ Intel 64·IA-32 아키텍처의 XSAVE 기능 집합은 프로세서 상태를 �
 ### Cortex-M
 
 Armv7-M 프로세서는 예외에 들어갈 때 `R0`–`R3`, `R12`, `LR`, 반환 주소, `xPSR`로 된 8워드 프레임을 하드웨어로 현재 스택에 쌓는다. 부동소수점 확장이 있고 부동소수점 문맥이 활성이면 부동소수점 상태도 쌓는다. 프로세스를 바꿀 때는 소프트웨어가 옛 프로세스의 문맥 전부를 `EXC_RETURN` 값까지 저장하고, 그 프로세스로 돌아가기 전에 복원해야 한다.[@arm-ddi-0403-2021]
+
+![[diagrams/cortex-m-exception-stack-frame.svg]]
 
 Cortex-M4 Devices Generic User Guide는 운영체제 환경에서 다른 예외가 활성이 아닐 때 문맥 전환에 PendSV를 쓰라고 권한다.[@arm-dui-0553-2011] Armv7-M 아키텍처 매뉴얼은 SVCall과 PendSV를 같은 최저 우선순위로 두고, 문맥 전환 요청은 PendSV를 pending으로 만들어 내는 사용 모델을 제시한다. 이 모델에서 두 예외는 프로세서가 다른 예외를 모두 처리한 뒤 실행된다.[@arm-ddi-0403-2021]
 
