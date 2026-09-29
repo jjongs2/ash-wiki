@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**ECC**(Error Correction Code)는 오류 검출 부호 가운데, 찾아낸 오류의 일부를 자동으로 고칠 수 있게 하는 부호다.[@iec-60050-702-05-20-2016] 정보를 나타내는 데 꼭 필요한 것보다 많은 요소를 쓰는 중복 부호의 하나다.[@iec-60050-702-05-18-2016] ITU-T X.141은 재전송을 요청하는 대신 받은 데이터의 오류를 찾아 고치는 방식을 순방향 오류 정정(FEC, Forward Error Correction)이라 한다.[@itu-t-x-141-1988]
+**ECC**(Error Correction Code)는 오류 검출 부호 가운데, 찾아낸 오류의 일부를 자동으로 고칠 수 있게 하는 부호다.[@iec-60050-702-05-20-2016] 정보를 나타내는 데 꼭 필요한 것보다 많은 요소를 쓰는 중복 부호의 하나다.[@iec-60050-702-05-18-2016] ITU-T X.141은 재전송을 요청하는 대신 받은 데이터의 오류를 찾아 고치는 방식을 FEC(Forward Error Correction), 곧 순방향 오류 정정이라 한다.[@itu-t-x-141-1988]
 
 ## 구조·동작
 
@@ -27,7 +27,7 @@ verified: 2026-09-29
 
 메모리에 저장된 비트는 알파 입자나 중성자 같은 방사선 때문에 뒤집힐 수 있다.[@nxp-an12522-2019][@ti-spraco4a-2021]
 
-TI TMS570LS0914는 플래시와 RAM(Random-Access Memory)에 ECC를 두어, 단일 비트 오류를 고치고 다중 비트 오류는 알리기만 한다.[@ti-tms570ls0914-2016] NXP S32K1xx는 플래시와 SRAM(Static RAM)에 ECC를 두어 단일 비트 오류를 고치고, 고칠 수 없는 오류는 알린다. S32K11x의 SRAM_L에는 ECC가 없다.[@nxp-an12522-2019]
+TI TMS570LS0914는 플래시와 RAM(Random-Access Memory)에 ECC를 두어, 단일 비트 오류를 고치고 다중 비트 오류는 알리기만 한다.[@ti-tms570ls0914-2016] NXP S32K1xx는 플래시와 SRAM(Static Random-Access Memory)에 ECC를 두어 단일 비트 오류를 고치고, 고칠 수 없는 오류는 알린다. S32K11x의 SRAM_L에는 ECC가 없다.[@nxp-an12522-2019]
 
 TI 백서에 따르면 Hercules MCU는 SRAM과 플래시의 ECC를 실행 중의 하드웨어 안전 기제로 쓴다.[@ti-spry178-2011] NXP 앱노트 AN13566에 따르면 ECC 메모리는 ISO 26262 같은 기능 안전 준수가 필요한 시스템에 알맞다.[@nxp-an13566-2022]
 

@@ -15,7 +15,7 @@ CRC는 전송하거나 저장하는 데이터의 오류를 찾아내는 간단�
 
 ### 다항식 나눗셈
 
-CRC의 나눗셈은 모듈로 2 산술로 하며, 모듈로 2 덧셈과 뺄셈은 XOR다.[@microchip-an730-2000][@ti-spra530-1999]
+CRC의 나눗셈은 모듈로 2 산술로 하며, 모듈로 2 덧셈과 뺄셈은 XOR(exclusive OR)다.[@microchip-an730-2000][@ti-spra530-1999]
 
 생성 다항식의 차수가 $r$이면 송신 측은 데이터 뒤에 0을 $r$개 붙인 비트열을 생성 다항식으로 나누고, 나머지 $r$비트를 데이터 뒤에 붙여 보낸다. 이렇게 만든 비트열은 생성 다항식으로 나누어떨어진다.[@autosar-cp-sws-crclibrary-2025][@ti-spra530-1999]
 
@@ -23,7 +23,7 @@ CRC의 나눗셈은 모듈로 2 산술로 하며, 모듈로 2 덧셈과 뺄셈�
 
 ### 하드웨어 구현
 
-하드웨어에서는 CRC를 시프트 레지스터와 XOR로 계산한다. 시프트 레지스터의 비트 수는 생성 다항식의 차수와 같고, 데이터를 한 비트씩 밀어 넣으면서 생성 다항식의 계수가 1인 자리에서 XOR를 한다. 데이터를 모두 넣은 뒤 레지스터에 남은 값이 CRC다.[@microchip-an730-2000][@ti-spra530-1999]
+하드웨어에서는 CRC를 시프트 레지스터와 XOR로 계산한다. 시프트 레지스터의 비트 수는 생성 다항식의 차수와 같고, 데이터를 한 비트씩 밀어 넣으면서 생성 다항식의 계수가 1인 자리에서 XOR를 한다. 데이터를 모두 넣은 뒤 레지스터에 남은 값이 CRC다.[@microchip-an730-2000][@ti-spra530-1999] 아래 그림은 [[can|CAN]]이 쓰는 생성 다항식으로 그린 예다.
 
 ![[diagrams/can-crc-shift-register.svg]]
 
@@ -31,19 +31,19 @@ CRC의 나눗셈은 모듈로 2 산술로 하며, 모듈로 2 덧셈과 뺄셈�
 
 CRC는 Ethernet 같은 LAN(Local Area Network)에서 쓰인다.[@microchip-an730-2000][@ti-spra530-1999]
 
-ITU-T V.42는 32비트 FCS(Frame Check Sequence)의 생성 다항식을 차수가 32, 26, 23, 22, 16, 12, 11, 10, 8, 7, 5, 4, 2, 1, 0인 항으로 정한다.[@itu-t-v-42-2002]
+Bosch CAN 2.0 규격은 CAN의 CRC 시퀀스를 15비트로 둔다.[@bosch-can-2-0-1991] 자세한 것은 [[can-crc|CAN CRC]]에서 다룬다.
+
+모뎀의 오류 정정 절차를 정한 ITU-T V.42는 LAPM(Link Access Procedure for Modems)의 32비트 FCS(Frame Check Sequence) 생성 다항식을 차수가 32, 26, 23, 22, 16, 12, 11, 10, 8, 7, 5, 4, 2, 1, 0인 항으로 정한다.[@itu-t-v-42-2002]
 
 $$
 x^{32} + x^{26} + x^{23} + x^{22} + x^{16} + x^{12} + x^{11} + x^{10} + x^{8} + x^{7} + x^{5} + x^{4} + x^{2} + x + 1
 $$
 
-Bosch CAN 2.0 규격은 [[can|CAN]]의 CRC 시퀀스를 15비트로 둔다.[@bosch-can-2-0-1991] 자세한 것은 [[can-crc|CAN CRC]]에서 다룬다.
-
 ## 비교·한계
 
 CRC는 이웃한 비트들에 몰린 오류인 버스트 오류를 찾아내는 데 쓴다.[@microchip-an730-2000][@ti-spra530-1999] 오류 버스트의 길이는 첫 오류 비트부터 마지막 오류 비트까지의 비트 수다.[@iec-60050-721-08-10-1991]
 
-AUTOSAR CRC 라이브러리 규격은 32비트 다항식 `0xF4ACFB13`의 [[hamming-distance|해밍 거리]]를 CRC를 포함해 4096바이트까지 6으로 제시한다.[@autosar-cp-sws-crclibrary-2025] Bosch의 iCC 2015 논문에 따르면 Classical CAN의 CRC 다항식은 데이터 8바이트까지의 프레임에 맞춰 골랐고, [[can-fd|CAN FD]]는 더 긴 프레임에서도 해밍 거리 6을 지키려고 프레임 길이에 맞춘 더 긴 CRC 다항식을 쓴다.[@bosch-icc-can-fd-error-detection-2015]
+AUTOSAR CRC 라이브러리 규격은 32비트 다항식 `0xF4ACFB13`의 [[hamming-distance|해밍 거리]]를 CRC를 포함해 4096바이트까지 6으로 제시한다.[@autosar-cp-sws-crclibrary-2025]
 
 AUTOSAR CRC 라이브러리 규격에 따르면 생성 다항식이 추가로 대수적 성질을 가지면 오류 위치를 찾아 부호어를 고칠 수도 있다.[@autosar-cp-sws-crclibrary-2025]
 

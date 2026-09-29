@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**해밍 거리**(Hamming distance)는 길이가 같은 두 비트열에서 값이 서로 다른 자리의 수다. 예를 들어 `10110`과 `11100`은 둘째와 넷째 자리가 달라 해밍 거리가 2다.[@iec-60050-721-08-25-1991] Microchip 앱노트 AN2632에 따르면 해밍 거리는 두 값을 XOR한 결과에 있는 1의 개수로 나타낼 수 있다.[@microchip-an2632-2019]
+**해밍 거리**(Hamming distance)는 길이가 같은 두 비트열에서 값이 서로 다른 자리의 수다. 예를 들어 `10110`과 `11100`은 둘째와 넷째 자리가 달라 해밍 거리가 2다.[@iec-60050-721-08-25-1991] Microchip 앱노트 AN2632에 따르면 해밍 거리는 두 값을 XOR(exclusive OR)한 결과에 있는 1의 개수로 나타낼 수 있다.[@microchip-an2632-2019]
 
 ![[diagrams/hamming-distance-bit-comparison.svg]]
 
@@ -23,6 +23,6 @@ TI 앱노트 SPRA530에 따르면 블록 부호는 오류를 $d_\mathrm{min} - 1
 
 ## 비교·한계
 
-최소 해밍 거리가 4인 SECDED 부호는 비트 하나의 오류를 고치면서 비트 두 개의 오류를 찾아낸다.[@ti-spna139-2011][@microchip-coreedac-2025] SECDED는 [[error-correction-code|ECC]]에서 다룬다. TI Hercules MCU의 플래시 ECC는 SECDED라서 3비트 오류를 잘못 고칠 수 있고, 3비트 오류 검출이 더 중요하면 오류 검출 전용 모드로 둘 수 있다.[@ti-spna139-2011]
+최소 해밍 거리가 4인 SECDED(Single Error Correction, Double Error Detection) 부호는 비트 하나의 오류를 고치면서 비트 두 개의 오류를 찾아낸다.[@ti-spna139-2011][@microchip-coreedac-2025] SECDED는 [[error-correction-code|ECC]]에서 다룬다. TI Hercules MCU의 플래시 ECC는 SECDED라서 3비트 오류를 잘못 고칠 수 있고, 3비트 오류 검출이 더 중요하면 오류 검출 전용 모드로 둘 수 있다.[@ti-spna139-2011]
 
-Bosch의 iCC 2015 논문에 따르면 [[can|CAN]]과 [[can-fd|CAN FD]]의 CRC 다항식 셋(15비트, 17비트, 21비트)은 서로 다른 프레임 길이에 맞춰 골라 모두 해밍 거리 6을 유지한다. Classical CAN의 [[can-crc|CRC]]는 해밍 거리 6을 보장하지만, 스터프 조건을 만들거나 없애는 비트 반전 두 개를 찾지 못하는 드문 경우가 알려져 있다.[@bosch-icc-can-fd-error-detection-2015]
+[[can|CAN]]이 쓰는 [[cyclic-redundancy-check|CRC]]의 해밍 거리는 [[can-crc|CAN CRC]]에서 다룬다.
