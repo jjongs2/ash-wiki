@@ -192,10 +192,12 @@ describe("source-status CLI", () => {
       "content/fresh.md": page(
         ["network/can"],
         "2026-09-01",
-        "하나[@org-alive-2024], 둘.[@org-no-head-2024]",
+        "하나[@org-alive-2024], 둘[@org-no-head-2024], 셋.[@org-accepted-2024]",
       ),
       "bib/org-alive-2024.bib": bib("org-alive-2024", `${base}/alive`),
       "bib/org-no-head-2024.bib": bib("org-no-head-2024", `${base}/no-head`),
+      // 챌린지 헤더가 없는 202
+      "bib/org-accepted-2024.bib": bib("org-accepted-2024", `${base}/accepted`),
     })
     const report = await runStatus(root)
     assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
@@ -265,7 +267,7 @@ describe("source-status CLI", () => {
 
   test("봇 차단 호스트의 WAF 챌린지(202와 x-amzn-waf-action: challenge)는 url-blocked에 따로 찍고, 그것만으로는 exit 0이다", async () => {
     const root = makeTree({
-      "content/fresh.md": page(["network/ethernet"], "2026-09-01", "문장이다.[@ieee-802-3-2022]"),
+      "content/fresh.md": page(["network/can"], "2026-09-01", "문장이다.[@ieee-802-3-2022]"),
       "bib/ieee-802-3-2022.bib": bib("ieee-802-3-2022", "https://ieeexplore.ieee.org/challenge"),
     })
     const report = await runStatus(root)
@@ -274,19 +276,14 @@ describe("source-status CLI", () => {
     assert.strictEqual(report.exitCode, 0)
   })
 
-  test("목록 밖 호스트의 WAF 챌린지는 url FAIL이고, 챌린지 헤더가 없는 202는 OK다", async () => {
+  test("목록 밖 호스트의 WAF 챌린지는 url FAIL이다", async () => {
     const root = makeTree({
-      "content/fresh.md": page(
-        ["network/ethernet"],
-        "2026-09-01",
-        "하나[@ieee-sa-802-3-2022], 둘.[@org-accepted-2024]",
-      ),
+      "content/fresh.md": page(["network/can"], "2026-09-01", "문장이다.[@ieee-sa-802-3-2022]"),
       // 목록의 ieeexplore.ieee.org와 상위 도메인만 같은 호스트
       "bib/ieee-sa-802-3-2022.bib": bib(
         "ieee-sa-802-3-2022",
         "https://standards.ieee.org/challenge",
       ),
-      "bib/org-accepted-2024.bib": bib("org-accepted-2024", `${base}/accepted`),
     })
     const report = await runStatus(root)
     assert.deepStrictEqual(report.statuses, ["FAIL url", "OK verified"])

@@ -93,7 +93,7 @@ type Outcome =
   | { kind: "timeout"; reason: string }
 
 // AWS WAF가 자동 요청에 돌려주는 챌린지. 본문 없는 202라 2xx여도 출처가 살아 있는지 알 수 없다.
-function challenged(response: Response): boolean {
+function isWafChallenge(response: Response): boolean {
   return response.status === 202 && response.headers.get("x-amzn-waf-action") === "challenge"
 }
 
@@ -119,11 +119,12 @@ async function ask(url: string, followAia = true): Promise<Outcome> {
   let method = "HEAD"
   try {
     const head = await fetch(url, { method, signal: AbortSignal.timeout(timeoutMs) })
-    if (head.ok && !challenged(head)) return { kind: "alive" }
+    if (head.ok && !isWafChallenge(head)) return { kind: "alive" }
     method = "GET"
     const get = await fetch(url, { method, signal: AbortSignal.timeout(timeoutMs) })
     await get.body?.cancel()
-    if (challenged(get)) return { kind: "dead", reason: "HTTP 202 WAF 챌린지", botBlocked: true }
+    if (isWafChallenge(get))
+      return { kind: "dead", reason: "HTTP 202 WAF 챌린지", botBlocked: true }
     return get.ok
       ? { kind: "alive" }
       : { kind: "dead", reason: `HTTP ${get.status}`, botBlocked: get.status === 403 }
