@@ -97,14 +97,14 @@ npm run check:content
 - 아래 표의 약어는 풀이하지 않습니다. 널리 쓰이는 약어이거나, 풀이하면 오히려 읽기 어려운 이름입니다. `리뷰`
 - 조직 이름이거나 표준 번호의 앞머리로 굳은 약어도 풀이하지 않고, 표의 `표준화 기구`나 `표준·규격 이름` 줄에 올립니다. 예: `RS-485`, `RFC 1122` `리뷰`
 
-| 종류             | 약어                                                         |
-| ---------------- | ------------------------------------------------------------ |
-| 널리 쓰이는 약어 | CPU, ECU, MCU, XOR                                           |
-| 표준화 기구      | ISO, SAE, IEC, IEEE, ITU-T, TIA, EIA, CiA, NMEA, CCSDS, IETF |
-| 표준·규격 이름   | AUTOSAR, OSEK/VDX, RFC, RS, IEN                              |
-| 핀과 신호        | CAN_H, CAN_L, RXD, TXD                                       |
-| 전원             | GND, VCC                                                     |
-| ISO 위원회 번호  | SC, TC                                                       |
+| 종류             | 약어                                                                      |
+| ---------------- | ------------------------------------------------------------------------- |
+| 널리 쓰이는 약어 | CPU, ECU, MCU, XOR                                                        |
+| 표준화 기구      | ISO, SAE, IEC, IEEE, ITU-T, TIA, EIA, CiA, NMEA, CCSDS, IETF, ASAM, OASIS |
+| 표준·규격 이름   | AUTOSAR, OSEK/VDX, RFC, RS, IEN                                           |
+| 핀과 신호        | CAN_H, CAN_L, RXD, TXD, SCK, SCL, SDA                                     |
+| 전원             | GND, VCC                                                                  |
+| ISO 위원회 번호  | SC, TC                                                                    |
 
 - 자기 개념 페이지가 있는 약어와, 열린 `ingest:` 티켓의 `## Pages` 표에 자기 페이지가 계획된 약어는 그 페이지에서만 풀이합니다. 다른 페이지에서는 풀이하지 않고, 처음 나올 때 그 페이지로 한 번 링크합니다. 예: CAN은 `can`에서만 풀이하고, 다른 페이지에서는 `[[can|CAN]]`으로 겁니다. ACK는 `[[can-acknowledgement|ACK]]`로 겁니다. `리뷰`
 - 계획만 된 페이지는 아직 링크하지 않습니다. 풀이만 빼고, 링크는 페이지가 생긴 뒤 린트가 채웁니다. 예: CAN FD(`can-fd`), DLC(`data-length-code`) `리뷰`
