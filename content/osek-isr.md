@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**OSEK ISR**(Interrupt Service Routine)은 [[osek-os|OSEK OS]]에서 인터럽트를 처리하는 함수다. ISR은 운영체제 서비스를 쓰는지에 따라 category 1과 category 2로 나뉜다.[@osek-os-2-2-3-2005] [[osek-implementation-language|OIL]]의 ISR 객체는 `CATEGORY` 속성으로 1이나 2를 받는다.[@osek-oil-2-5-2004]
+**OSEK ISR**(Interrupt Service Routine)은 [[osek-os|OSEK OS]]에서 인터럽트를 처리하는 함수다. ISR은 운영체제 서비스를 쓰는지에 따라 category 1과 category 2로 나뉜다.[@osek-os-2-2-3-2005] [[osek-implementation-language|OIL]]의 `ISR` 객체는 `CATEGORY` 속성으로 1이나 2를 받는다.[@osek-oil-2-5-2004]
 
 ## 구조·동작
 
@@ -19,7 +19,7 @@ verified: 2026-09-30
 
 ### Category 2
 
-**Category 2 ISR**에서는 운영체제가 ISR 프레임을 마련해 사용자 루틴의 실행 환경을 준비한다. 어느 인터럽트에 어느 사용자 루틴이 붙는지는 시스템 생성 단계에서 정해진다. Category 2 ISR은 `ActivateTask`나 `SetEvent`처럼 일부 시스템 서비스를 부를 수 있다.[@osek-os-2-2-3-2005]
+**Category 2 ISR**은 운영체제가 ISR 프레임을 마련해 사용자 루틴의 실행 환경을 준비해 주는 ISR이다. 어느 인터럽트에 어느 사용자 루틴이 붙는지는 시스템 생성 단계에서 정해진다. Category 2 ISR은 `ActivateTask`나 `SetEvent`처럼 일부 시스템 서비스를 부를 수 있다.[@osek-os-2-2-3-2005]
 
 ### 재스케줄링
 

@@ -11,13 +11,13 @@ verified: 2026-09-30
 
 ### 태스크 상태
 
-**Basic 태스크**는 세 상태를 오간다.[@osek-os-2-2-3-2005]
+basic 태스크는 세 상태를 오간다.[@osek-os-2-2-3-2005]
 
 - running: CPU를 받아 명령을 실행하고 있는 상태다. running인 태스크는 언제나 하나뿐이다.
 - ready: 실행 조건이 모두 갖춰져 CPU 할당만 기다리는 상태다. 다음에 running이 될 태스크는 스케줄러가 ready 태스크 중에서 고른다.
 - suspended: 실행에 참여하지 않는 수동 상태다. 활성화되기를 기다린다.[@osek-os-2-2-3-2005]
 
-**Extended 태스크**는 여기에 waiting이 더해진 네 상태를 가진다. waiting은 적어도 하나의 [[osek-event|이벤트]]를 기다리느라 실행을 이어가지 못하는 상태다.[@osek-os-2-2-3-2005]
+extended 태스크는 여기에 waiting이 더해진 네 상태를 가진다. waiting은 적어도 하나의 [[osek-event|이벤트]]를 기다리느라 실행을 이어가지 못하는 상태다.[@osek-os-2-2-3-2005]
 
 두 종류 모두 시스템 서비스로 활성화되면(activate) suspended에서 ready로 옮긴다. 스케줄러가 고른 ready 태스크는 실행되며 running이 되고(start), 스케줄러가 다른 태스크를 시작하기로 하면 running에서 ready로 돌아간다(preempt). running 태스크가 시스템 서비스로 스스로 끝나면 suspended가 된다(terminate). extended 태스크만 가지는 전이는 둘이다. `WaitEvent`로 running에서 waiting으로 가고(wait), 기다리던 이벤트 가운데 적어도 하나가 일어나면 waiting에서 ready로 옮긴다(release). suspended에서 waiting으로 곧바로 가는 전이는 없다.[@osek-os-2-2-3-2005]
 
@@ -37,7 +37,7 @@ BCC2와 ECC2에서는 basic 태스크가 활성화 요청을 여러 번 받아 �
 
 스케줄러는 ready와 running 태스크 가운데 우선순위가 가장 높은 것들을 고르고, 그 안에서 가장 오래된 것을 고른다. 선점된 태스크는 그 우선순위에서 가장 오래된 것으로, waiting에서 풀린 태스크는 가장 새로운 것으로 친다. 같은 우선순위에 태스크를 여럿 두는 것은 BCC2와 ECC2에서만 된다.[@osek-os-2-2-3-2005]
 
-선점할 수 있는지는 태스크의 속성이다.[@osek-os-2-2-3-2005] 선점할 수 있는 태스크는 더 높은 우선순위 태스크가 ready가 되는 즉시 ready로 돌아가며, 문맥이 저장되어 선점된 자리에서 이어진다. 선점할 수 없는 태스크는 `TerminateTask`, `ChainTask`, `Schedule`을 부르거나 `WaitEvent`로 waiting에 들어갈 때만 재스케줄링된다. 선점할 수 있는 태스크와 없는 태스크를 한 시스템에 섞을 수 있으며, 이때 스케줄링 방식은 running 태스크의 속성을 따른다.[@osek-os-2-2-3-2005]
+선점할 수 있는지는 태스크의 속성이다. 선점할 수 있는 태스크는 더 높은 우선순위 태스크가 ready가 되는 즉시 ready로 돌아가며, 문맥이 저장되어 선점된 자리에서 이어진다. 선점할 수 없는 태스크는 `TerminateTask`, `ChainTask`, `Schedule`을 부르거나 `WaitEvent`로 waiting에 들어갈 때만 재스케줄링된다. 선점할 수 있는 태스크와 없는 태스크를 한 시스템에 섞을 수 있으며, 이때 스케줄링 방식은 running 태스크의 속성을 따른다.[@osek-os-2-2-3-2005]
 
 ### 설정
 
@@ -52,6 +52,6 @@ BCC2와 ECC2에서는 basic 태스크가 활성화 요청을 여러 번 받아 �
 
 ## 비교·한계
 
-basic 태스크는 waiting 상태가 없어 태스크의 시작과 끝에서만 동기화하며, 실행 문맥에 드는 RAM이 적다.[@osek-os-2-2-3-2005] 예를 들어 OSEKturbo OS/ARM7에서는 basic 태스크가 모두 한 스택을 함께 쓰고, extended 태스크는 저마다 정적으로 할당된 스택을 둔다.[@freescale-osekturbo-arm7-tr-2002]
+basic 태스크는 waiting 상태가 없어 태스크의 시작과 끝에서만 동기화하며, 실행 문맥에 드는 RAM(Random-Access Memory)이 적다.[@osek-os-2-2-3-2005] 예를 들어 OSEKturbo OS/ARM7에서는 basic 태스크가 모두 한 스택을 함께 쓰고, extended 태스크는 저마다 정적으로 할당된 스택을 둔다.[@freescale-osekturbo-arm7-tr-2002]
 
 extended 태스크는 끝나지 않은 채 waiting 상태로 들어가 CPU를 낮은 우선순위 태스크에 내줄 수 있다. 대신 운영체제가 관리하기에 더 복잡하고 시스템 자원을 더 쓴다.[@osek-os-2-2-3-2005]

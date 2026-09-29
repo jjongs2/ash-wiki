@@ -43,4 +43,4 @@ verified: 2026-09-30
 
 ### Autostart
 
-시스템 생성 때 알람을 autostart로 정해 두면, `StartOS`가 현재 application mode의 autostart 알람을 켠다.[@osek-os-2-2-3-2005] OIL에서는 `ALARM` 객체의 `AUTOSTART` 속성으로 정하며, 처음 만료 시각(`ALARMTIME`), 주기(`CYCLETIME`), application mode(`APPMODE`)를 함께 준다.[@osek-oil-2-5-2004]
+시스템 생성 때 알람을 autostart로 정해 두면, `StartOS`가 현재 application mode의 autostart 알람을 켠다.[@osek-os-2-2-3-2005] [[osek-implementation-language|OIL]]에서는 `ALARM` 객체의 `AUTOSTART` 속성으로 정하며, 처음 만료 시각(`ALARMTIME`), 주기(`CYCLETIME`), application mode(`APPMODE`)를 함께 준다.[@osek-oil-2-5-2004]
