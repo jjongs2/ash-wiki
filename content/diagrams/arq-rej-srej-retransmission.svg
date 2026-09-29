@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -6.5 660.5 365" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#336fb8" />
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b0540d" />
+    </marker>
+  </defs>
+  <!-- REJ (Go-back-N) -->
+  <text x="140" y="16" text-anchor="middle" fill="#727981">REJ (Go-back-N)</text>
+  <rect x="8" y="28" width="84" height="28" rx="4" fill="#825da9" />
+  <text x="50" y="47" text-anchor="middle" fill="#f8fafd">송신 측</text>
+  <rect x="188" y="28" width="84" height="28" rx="4" fill="#825da9" />
+  <text x="230" y="47" text-anchor="middle" fill="#f8fafd">수신 측</text>
+  <g stroke="#727981" stroke-width="1.5">
+    <line x1="50" y1="56" x2="50" y2="316" />
+    <line x1="230" y1="56" x2="230" y2="316" />
+  </g>
+  <line x1="52" y1="76" x2="228" y2="90" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <text x="140" y="77" text-anchor="middle" fill="#727981">A</text>
+  <line x1="52" y1="114" x2="170" y2="123.333" stroke="#bb464d" stroke-width="2" />
+  <path d="M164 117.333 L176 129.333 M164 129.333 L176 117.333" stroke="#bb464d" stroke-width="2" />
+  <text x="120" y="113" text-anchor="middle" fill="#727981">B</text>
+  <line x1="52" y1="152" x2="228" y2="166" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <text x="140" y="153" text-anchor="middle" fill="#727981">C</text>
+  <text x="240" y="170" font-size="12" fill="#727981">버림</text>
+  <line x1="228" y1="190" x2="52" y2="204" stroke="#b0540d" stroke-width="2" marker-end="url(#arrow-orange)" />
+  <text x="140" y="191" text-anchor="middle" fill="#727981">REJ B</text>
+  <line x1="52" y1="228" x2="228" y2="242" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <text x="140" y="229" text-anchor="middle" fill="#727981">B</text>
+  <line x1="52" y1="266" x2="228" y2="280" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <text x="140" y="267" text-anchor="middle" fill="#727981">C</text>
+  <!-- SREJ (selective repeat) -->
+  <text x="490" y="16" text-anchor="middle" fill="#727981">SREJ (selective repeat)</text>
+  <rect x="358" y="28" width="84" height="28" rx="4" fill="#825da9" />
+  <text x="400" y="47" text-anchor="middle" fill="#f8fafd">송신 측</text>
+  <rect x="538" y="28" width="84" height="28" rx="4" fill="#825da9" />
+  <text x="580" y="47" text-anchor="middle" fill="#f8fafd">수신 측</text>
+  <g stroke="#727981" stroke-width="1.5">
+    <line x1="400" y1="56" x2="400" y2="316" />
+    <line x1="580" y1="56" x2="580" y2="316" />
+  </g>
+  <line x1="402" y1="76" x2="578" y2="90" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <text x="490" y="77" text-anchor="middle" fill="#727981">A</text>
+  <line x1="402" y1="114" x2="520" y2="123.333" stroke="#bb464d" stroke-width="2" />
+  <path d="M514 117.333 L526 129.333 M514 129.333 L526 117.333" stroke="#bb464d" stroke-width="2" />
+  <text x="470" y="113" text-anchor="middle" fill="#727981">B</text>
+  <line x1="402" y1="152" x2="578" y2="166" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <text x="490" y="153" text-anchor="middle" fill="#727981">C</text>
+  <text x="590" y="170" font-size="12" fill="#727981">쥐고 있음</text>
+  <line x1="578" y1="190" x2="402" y2="204" stroke="#b0540d" stroke-width="2" marker-end="url(#arrow-orange)" />
+  <text x="490" y="191" text-anchor="middle" fill="#727981">SREJ B</text>
+  <line x1="402" y1="228" x2="578" y2="242" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <text x="490" y="229" text-anchor="middle" fill="#727981">B</text>
+  <text x="590" y="246" font-size="12" fill="#727981">B, C를 넘김</text>
+  <line x1="402" y1="266" x2="578" y2="280" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <text x="490" y="267" text-anchor="middle" fill="#727981">D</text>
+  <text x="50" y="344" font-size="12" fill="#727981">A, B, C, D: 차례로 보내는 정보 프레임 · ×: 잃거나 깨진 프레임</text>
+</svg>
