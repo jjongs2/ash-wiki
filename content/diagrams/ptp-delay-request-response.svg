@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 330" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#336fb8" />
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b0540d" />
+    </marker>
+  </defs>
+
+  <!-- 두 쪽 -->
+  <rect x="80" y="20" width="120" height="36" rx="4" fill="#825da9" />
+  <text x="140" y="43" text-anchor="middle" fill="#f8fafd">master</text>
+  <rect x="340" y="20" width="120" height="36" rx="4" fill="#825da9" />
+  <text x="400" y="43" text-anchor="middle" fill="#f8fafd">slave</text>
+  <g stroke="#727981" stroke-width="1.5">
+    <line x1="140" y1="56" x2="140" y2="310" />
+    <line x1="400" y1="56" x2="400" y2="310" />
+  </g>
+
+  <!-- Sync -->
+  <line x1="140" y1="90" x2="398" y2="130" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <text x="270" y="98" text-anchor="middle" font-size="12" fill="#727981">Sync</text>
+
+  <!-- Delay_Req -->
+  <line x1="400" y1="170" x2="142" y2="210" stroke="#b0540d" stroke-width="2" marker-end="url(#arrow-orange)" />
+  <text x="270" y="178" text-anchor="middle" font-size="12" fill="#727981">Delay_Req</text>
+
+  <!-- Delay_Resp -->
+  <line x1="140" y1="250" x2="398" y2="290" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <text x="270" y="258" text-anchor="middle" font-size="12" fill="#727981">Delay_Resp (t<tspan baseline-shift="sub" font-size="9">4</tspan>를 실음)</text>
+
+  <!-- 타임스탬프 -->
+  <g fill="#727981">
+    <circle cx="140" cy="90" r="3.5" />
+    <circle cx="400" cy="130" r="3.5" />
+    <circle cx="400" cy="170" r="3.5" />
+    <circle cx="140" cy="210" r="3.5" />
+  </g>
+  <g fill="#727981">
+    <text x="126" y="95" text-anchor="end">t<tspan baseline-shift="sub" font-size="10">1</tspan></text>
+    <text x="414" y="135">t<tspan baseline-shift="sub" font-size="10">2</tspan></text>
+    <text x="414" y="175">t<tspan baseline-shift="sub" font-size="10">3</tspan></text>
+    <text x="126" y="215" text-anchor="end">t<tspan baseline-shift="sub" font-size="10">4</tspan></text>
+  </g>
+</svg>

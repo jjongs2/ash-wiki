@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- MRP 응용 -->
+  <rect x="20" y="20" width="152" height="52" rx="4" fill="#b0540d" />
+  <text x="96" y="42" text-anchor="middle" fill="#f8fafd">MMRP</text>
+  <text x="96" y="61" text-anchor="middle" font-size="12" fill="#f8fafd">MAC 속성</text>
+  <rect x="184" y="20" width="152" height="52" rx="4" fill="#337b47" />
+  <text x="260" y="42" text-anchor="middle" fill="#f8fafd">MVRP</text>
+  <text x="260" y="61" text-anchor="middle" font-size="12" fill="#f8fafd">VLAN 속성</text>
+  <rect x="348" y="20" width="152" height="52" rx="4" fill="#825da9" />
+  <text x="424" y="42" text-anchor="middle" fill="#f8fafd">MSRP</text>
+  <text x="424" y="61" text-anchor="middle" font-size="12" fill="#f8fafd">SRP 속성</text>
+
+  <!-- 틀 -->
+  <rect x="20" y="80" width="480" height="40" rx="4" fill="#336fb8" />
+  <text x="260" y="105" text-anchor="middle" fill="#f8fafd">MRP: 스위치를 거쳐 속성을 전달하는 틀</text>
+</svg>
