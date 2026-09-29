@@ -1,5 +1,5 @@
 ---
-status: accepted
+status: superseded by ADR-0006
 ---
 
 # 출처 위계에 배경 주장과 벤더의 모든 문서를 넣는다
