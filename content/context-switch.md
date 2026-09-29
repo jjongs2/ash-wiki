@@ -21,7 +21,7 @@ FreeRTOS는 태스크마다 스택을 따로 두고, 프로세서 레지스터�
 
 IA-32 아키텍처는 보호 모드에서 하드웨어 태스크 전환 기구를 제공한다. 전환 때 프로세서가 현재 태스크의 상태를 그 태스크의 TSS(Task-State Segment)에 저장하고, 새 태스크의 TSS에서 상태를 읽어 온다. 64비트 모드는 이 기구를 지원하지 않아, 태스크 관리와 전환을 소프트웨어가 맡는다.[@intel-sdm-vol3a-2026]
 
-Intel 64·IA-32 아키텍처의 XSAVE 기능 집합은 프로세서 상태를 메모리에 저장하고 불러오는 명령을 둔다.[@intel-sdm-vol1-2026] 운영체제는 XSAVE 기능 집합으로 x87 부동소수점 상태, SSE(Streaming SIMD Extensions) 상태와 확장 프로세서 상태를 관리하며, 문맥 전환 때 이 상태를 저장하고 복원할 버퍼를 마련한다.[@intel-sdm-vol3a-2026]
+Intel 64·IA-32 아키텍처의 XSAVE 기능 집합은 프로세서 상태를 메모리에 저장하고 불러오는 명령을 둔다.[@intel-sdm-vol1-2026] 운영체제는 XSAVE 기능 집합으로 x87 부동소수점 상태와 확장 프로세서 상태를 관리하며, 문맥 전환 때 이 상태를 저장하고 복원할 버퍼를 마련한다.[@intel-sdm-vol3a-2026]
 
 ### Cortex-M
 
@@ -33,6 +33,6 @@ Cortex-M4 Devices Generic User Guide는 운영체제 환경에서 다른 예외�
 
 ## 비교·한계
 
-FreeRTOS 문서에 따르면 협력 스케줄러는 요청이 있을 때만 문맥 전환을 하므로, [[rtos|RTOS]]가 더하는 처리 오버헤드를 크게 줄인다.[@freertos-solution4-2024]
+FreeRTOS 문서에 따르면 협력형 스케줄러는 요청이 있을 때만 문맥 전환을 하므로, [[rtos|RTOS]]가 더하는 처리 오버헤드를 크게 줄인다.[@freertos-solution4-2024]
 
 스케줄링 알고리즘을 구현하면 오버헤드와 블로킹이 더해지고, 이는 시간 정확성을 검증할 때 반영해야 한다. Katcher, Arakawa, Strosnider는 1993년 이벤트 구동과 타이머 구동 구현을 분석해, 고정 우선순위 스케줄링에서 구현 비용을 넣으면 이상적인 breakdown 이용률이 90%를 넘는 태스크 집합도 스케줄할 수 없게 될 수 있음을 보였다.[@katcher-fixed-priority-schedulers-1993] 스케줄링 방식은 [[real-time-scheduling|실시간 스케줄링]]에서 다룬다.

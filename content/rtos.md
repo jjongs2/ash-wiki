@@ -11,9 +11,9 @@ verified: 2026-09-29
 
 ### superloop
 
-운영체제를 쓰지 않는 임베디드 소프트웨어는 흔히 **superloop** 구조를 쓰며, 복잡도가 낮은 작은 시스템이 대개 이렇게 설계된다. superloop는 무한 루프 안에서 할 일을 맡은 모듈의 함수를 호출한다. 루프 밖의 인터럽트 처리기는 비동기 사건을 맡고, 시간이 급한 일을 제때 하려면 인터럽트 처리기에서 해야 한다. 인터럽트가 넘긴 일도 루프가 그 모듈의 차례에 이르러야 처리되므로, 최악의 응답 시간은 루프 한 바퀴의 실행 시간에 달린다.[@micrium-ucos-ii-rtsc-2026][@microchip-harmony-overview-2017]
+운영체제를 쓰지 않는 임베디드 소프트웨어는 흔히 superloop 구조를 쓰며, 복잡도가 낮은 작은 시스템이 대개 이렇게 설계된다. **superloop**는 무한 루프 안에서 할 일을 맡은 모듈의 함수를 호출한다. 루프 밖의 인터럽트 처리기는 비동기 사건을 맡고, 시간이 급한 일을 제때 하려면 인터럽트 처리기에서 해야 한다. 인터럽트가 넘긴 일도 루프가 그 모듈의 차례에 이르러야 처리되므로, 최악의 응답 시간은 루프 한 바퀴의 실행 시간에 달린다.[@micrium-ucos-ii-rtsc-2026][@microchip-harmony-overview-2017]
 
-Microchip MPLAB Harmony의 main 함수는 모든 모듈을 초기화한 뒤, 무한 루프에서 각 모듈의 상태 기계 함수를 차례로 호출한다.[@microchip-harmony-overview-2017]
+Microchip MPLAB Harmony의 `main` 함수는 모든 모듈을 초기화한 뒤, 무한 루프에서 각 모듈의 상태 기계 함수를 차례로 호출한다.[@microchip-harmony-overview-2017]
 
 RTOS 기반 소프트웨어는 일을 여러 태스크로 나누고, 태스크마다 우선순위를 준다.[@freertos-rtos-fundamentals-2026][@silabs-intro-rtos-2019]
 
@@ -31,7 +31,7 @@ RTOS는 태스크 사이의 동기화와 통신에 세마포어, 뮤텍스, 메�
 
 ISO 17356-3은 차량용 멀티태스킹 실시간 운영체제인 OSEK/VDX OS의 개념을 기술하고, 그 API(Application Programming Interface)를 정한다. 이 운영체제는 분산 임베디드 제어 유닛용 단일 프로세서 운영체제다. ISO 17356-3은 특정 구현의 제품 설명이 아니다.[@iso-17356-3-2005] OSEK/VDX OS 2.2.3 규격에 따르면 이 규격을 따르는 구현은 여럿이고, 인증 절차로 각 구현이 규격에 맞는지 확인한다.[@osek-os-2-2-3-2005]
 
-AUTOSAR Classic Platform의 OS 명세는 ISO 17356-3을 바탕으로 두고 이를 확장하거나 제한하며, OSEK OS의 API와 하위 호환되는 API를 요구한다. 이 명세는 OSEK OS의 기능에 더해 schedule table, 타이밍 보호, 메모리 보호 같은 기능을 정한다.[@autosar-cp-sws-os-2025]
+AUTOSAR Classic Platform의 운영체제 명세는 ISO 17356-3을 바탕으로 두고 이를 확장하거나 제한하며, OSEK OS의 API와 하위 호환되는 API를 요구한다. 이 명세는 OSEK OS의 기능에 더해 schedule table, 타이밍 보호, 메모리 보호 같은 기능을 정한다.[@autosar-cp-sws-os-2025]
 
 ## 비교·한계
 
