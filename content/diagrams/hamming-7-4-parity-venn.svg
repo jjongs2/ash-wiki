@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="45 -11.5 390 412" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <!-- 패리티 비트마다 검사하는 자리의 묶음 -->
+  <g stroke="#727981" stroke-width="1.5">
+    <circle cx="240" cy="134" r="112" />
+    <circle cx="186.3" cy="227" r="112" />
+    <circle cx="293.7" cy="227" r="112" />
+  </g>
+  <g font-size="12" fill="#727981">
+    <text x="240" y="10" text-anchor="middle">4번 패리티가 검사: 4, 5, 6, 7</text>
+    <text x="232" y="362" text-anchor="end">2번 패리티가 검사: 2, 3, 6, 7</text>
+    <text x="248" y="362">1번 패리티가 검사: 1, 3, 5, 7</text>
+    <text x="240" y="386" text-anchor="middle">칸: 자리 번호와 그 이진수 · 1, 2, 4번 자리는 패리티 비트, 나머지는 데이터 비트</text>
+  </g>
+  <!-- 자리: 번호와 이진수 -->
+  <rect x="220" y="178" width="40" height="36" rx="4" fill="#336fb8" />
+  <rect x="220" y="56" width="40" height="36" rx="4" fill="#b0540d" />
+  <rect x="220" y="258" width="40" height="36" rx="4" fill="#336fb8" />
+  <rect x="114.3" y="239" width="40" height="36" rx="4" fill="#b0540d" />
+  <rect x="289.3" y="138" width="40" height="36" rx="4" fill="#336fb8" />
+  <rect x="325.7" y="239" width="40" height="36" rx="4" fill="#b0540d" />
+  <rect x="150.7" y="138" width="40" height="36" rx="4" fill="#336fb8" />
+  <g text-anchor="middle" fill="#f8fafd">
+    <text x="240" y="195">7</text>
+    <text x="240" y="208" font-size="10">111</text>
+    <text x="240" y="73">4</text>
+    <text x="240" y="86" font-size="10">100</text>
+    <text x="240" y="275">3</text>
+    <text x="240" y="288" font-size="10">011</text>
+    <text x="134.3" y="256">2</text>
+    <text x="134.3" y="269" font-size="10">010</text>
+    <text x="309.3" y="155">5</text>
+    <text x="309.3" y="168" font-size="10">101</text>
+    <text x="345.7" y="256">1</text>
+    <text x="345.7" y="269" font-size="10">001</text>
+    <text x="170.7" y="155">6</text>
+    <text x="170.7" y="168" font-size="10">110</text>
+  </g>
+</svg>

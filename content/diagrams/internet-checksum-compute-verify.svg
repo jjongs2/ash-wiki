@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="24.5 8 667.5 195" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+  <!-- 송신 측 -->
+  <text x="76" y="45" text-anchor="end" fill="#727981">송신 측</text>
+  <rect x="90.75" y="20.75" width="164.5" height="38.5" stroke="#727981" stroke-width="1.5" />
+  <text x="173" y="45" text-anchor="middle" fill="#727981">16비트 워드</text>
+  <rect x="260" y="20" width="96" height="40" fill="#b0540d" />
+  <text x="308" y="45" text-anchor="middle" fill="#f8fafd">체크섬 = 0</text>
+  <line x1="358" y1="40" x2="382" y2="40" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <rect x="384" y="20" width="110" height="40" fill="#336fb8" />
+  <text x="439" y="45" text-anchor="middle" fill="#f8fafd">1의 보수 합</text>
+  <line x1="494" y1="40" x2="518" y2="40" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <rect x="520" y="20" width="96" height="40" fill="#336fb8" />
+  <text x="568" y="45" text-anchor="middle" fill="#f8fafd">1의 보수</text>
+
+  <!-- 계산한 값이 체크섬 필드로 -->
+  <path d="M568 60 V90 H308 V118" stroke="#727981" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)" />
+  <text x="438" y="84" text-anchor="middle" font-size="12" fill="#727981">체크섬 필드에 넣어 보냄</text>
+
+  <!-- 수신 측 -->
+  <text x="76" y="145" text-anchor="end" fill="#727981">수신 측</text>
+  <rect x="90.75" y="120.75" width="164.5" height="38.5" stroke="#727981" stroke-width="1.5" />
+  <text x="173" y="145" text-anchor="middle" fill="#727981">16비트 워드</text>
+  <rect x="260" y="120" width="96" height="40" fill="#b0540d" />
+  <text x="308" y="145" text-anchor="middle" fill="#f8fafd">체크섬</text>
+  <line x1="358" y1="140" x2="382" y2="140" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <rect x="384" y="120" width="110" height="40" fill="#336fb8" />
+  <text x="439" y="145" text-anchor="middle" fill="#f8fafd">1의 보수 합</text>
+  <line x1="494" y1="140" x2="518" y2="140" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <rect x="520" y="120" width="160" height="40" fill="#337b47" />
+  <text x="600" y="145" text-anchor="middle" fill="#f8fafd">모든 비트가 1이면 통과</text>
+
+  <path d="M90 166 V172 H356 V166" stroke="#727981" stroke-width="1.5" />
+  <text x="223" y="190" text-anchor="middle" font-size="12" fill="#727981">체크섬 필드까지 더한다</text>
+</svg>
