@@ -23,6 +23,8 @@ AUTOSAR의 PDU Router는 I-PDU(Interaction Layer Protocol Data Unit)를 라우�
 
 AUTOSAR COM은 받은 I-PDU의 [[signal-based-communication|시그널]]을 송신할 I-PDU로 옮기는 시그널 게이트웨이를 둔다. 라우팅하는 시그널의 값은 설정에 따라 송신할 시그널로 복사한다.[@autosar-cp-sws-com-2025] AUTOSAR 게이트웨이 요구사항은 시그널 게이트웨이가 COM의 packing·unpacking과 타임아웃 처리 메커니즘을 쓰고, 개별 시그널을 I-PDU 사이에서 1:n으로 라우팅하도록 요구한다. 받은 시그널은 여러 버스로 보낼 수 있다.[@autosar-cp-rs-gateway-2025]
 
+![[diagrams/pdu-signal-gateway.svg]]
+
 ### 진단 게이트웨이
 
 ISO 13400-2는 IP(Internet Protocol) 기반 네트워크에 곧바로 이어지지 않은 차량 서브네트워크를 두고, 이 서브네트워크와 주고받는 데이터가 서브네트워크를 잇는 DoIP 게이트웨이만 거쳐 오간다고 정의한다. ISO 13400-2는 차량의 하위 구성요소로 오가는 데이터의 라우팅을 필수 기능으로 둔다.[@iso-13400-2-obp-2025]

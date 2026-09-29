@@ -17,11 +17,15 @@ LIN 컨소시엄이 LIN 명세를 처음 개발했고, LIN은 2016년부터 ISO 
 
 LIN 프레임은 헤더와 응답으로 이뤄진다. 헤더는 늘 commander가 보내며, break 필드, sync 바이트 필드, PID(Protected Identifier)로 이뤄진다. 응답은 헤더 뒤에 오는 부분이다.[@iso-17987-3-obp-2025] TI 앱노트에 따르면 응답은 PID에 따라 commander 노드나 responder 노드의 responder 태스크가 보낸다.[@ti-slla383a-2022]
 
+![[diagrams/lin-header-response.svg]]
+
 break 필드는 LIN 프레임의 시작을 알린다.[@iso-17987-3-obp-2025] break 필드는 도미넌트 부분(break)과 리세시브 부분(break delimiter)으로 이뤄지고[@iso-17987-1-obp-2025], break는 적어도 13비트 길이의 도미넌트 구간이다.[@ti-slla383a-2022][@atmel-avr308-2002] sync 바이트 필드는 값이 `0x55`로 정해진 바이트 필드다. PID는 6비트 프레임 ID와 2비트 패리티로 이뤄진 8비트 값이다. 응답의 데이터는 1\~8바이트다.[@iso-17987-3-obp-2025] 프레임 끝에는 체크섬 1바이트가 붙는다.[@iso-17987-1-obp-2025]
 
 TMS320F2803x 기술 참조 매뉴얼에 따르면 PID의 패리티 비트 두 개는 프레임 ID 비트들의 XOR로 계산한다. $P_0 = \mathrm{ID}_0 \oplus \mathrm{ID}_1 \oplus \mathrm{ID}_2 \oplus \mathrm{ID}_4$이고, $P_1$은 $\mathrm{ID}_1 \oplus \mathrm{ID}_3 \oplus \mathrm{ID}_4 \oplus \mathrm{ID}_5$의 반전이다.[@ti-sprui10a-2022]
 
 바이트 필드는 도미넌트 start 비트, 최하위 비트부터 보내는 8비트 페이로드, 리세시브 stop 비트로 된 10비트 단위다.[@iso-17987-1-obp-2025]
+
+![[diagrams/lin-header-fields.svg]]
 
 ### 동기화
 
@@ -42,6 +46,8 @@ TMS320F2803x의 LIN 모듈은 받은 데이터 바이트(enhanced 체크섬이�
 ### 물리 계층
 
 TI 앱노트에 따르면 LIN 버스는 배터리 전압 쪽으로 풀업되어 트랜시버가 꺼져 있으면 리세시브이고, 트랜시버가 버스를 접지 가까이 끌어내리면 도미넌트가 된다. 수신기는 버스 전압이 배터리 전압의 40%에 이르면 도미넌트, 60%에 이르면 리세시브로 읽는다. commander 노드는 흔히 1 kΩ 저항과 역극성 보호 다이오드를 직렬로 두어 배터리 전압에 풀업하고, responder 노드의 풀업은 보통 30 kΩ이며 트랜시버에 내장된다.[@ti-slla383a-2022]
+
+![[diagrams/lin-receiver-threshold.svg]]
 
 MCP2003B는 버스 전압이 배터리 공급 전압의 0.4배 이하이면 도미넌트, 0.6배 이상이면 리세시브로 읽는다. MCP2003B는 배터리 공급 핀과 버스 핀 사이에 약 30 kΩ 풀업을 내장하고, 데이터시트의 응용 예는 commander 노드에만 1 kΩ 풀업을 둔다.[@microchip-mcp2003b-2016]
 

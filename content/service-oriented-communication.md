@@ -19,9 +19,13 @@ SOME/IP 규격은 서비스 인스턴스를 제공하는 ECU를 서버, 그 서�
 
 SOME/IP에서 서비스는 메서드, 이벤트, 필드를 0개 이상 묶은 논리적 조합이다. **메서드**는 클라이언트가 원격 절차 호출(RPC, Remote Procedure Call)로 부르면 서버 쪽에서 실행되는 기능이다. **이벤트**는 값이 바뀔 때나 주기적으로 서버가 구독한 클라이언트에 보내는 단방향 데이터다. **필드**는 서버 쪽 상태를 나타내는 값으로, 클라이언트는 getter로 읽고 setter로 바꿀 수 있으며 notifier로 값이 바뀔 때 알림을 받을 수 있다.[@autosar-fo-prs-someipprotocol-2025]
 
+![[diagrams/some-ip-service-interface.svg]]
+
 ### 요청·응답
 
 SOME/IP의 요청·응답 통신에서는 클라이언트가 요청을 보내고 서버가 응답을 돌려준다. 응답 메시지가 없는 요청(fire&forget)도 있다.[@autosar-fo-prs-someipprotocol-2025]
+
+![[diagrams/some-ip-communication-patterns.svg]]
 
 ### 발행·구독
 

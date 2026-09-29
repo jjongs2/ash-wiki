@@ -29,6 +29,8 @@ I2C는 직렬 데이터 선 SDA와 직렬 클록 선 SCL, 두 선을 쓰고, 전
 
 UART는 문자마다 앞에 start 비트를, 뒤에 stop 비트를 붙여 보낸다.[@ti-tl16c550d-2008][@st-rm0008-2021][@microchip-atmega328p-2020] UART 선은 쉬는 동안 high이고, start 비트는 low, stop 비트는 high다.[@st-rm0008-2021][@microchip-atmega328p-2020] TL16C550D 데이터시트는 선의 high 수준을 marking 상태라 부른다.[@ti-tl16c550d-2008] UART 수신기는 idle(high)에서 start 비트(low)로 떨어지는 에지를 보고 문자의 시작을 알고, start 비트에 자기 클록을 맞춘 뒤 각 비트의 가운데를 샘플링한다.[@st-rm0008-2021][@adi-uart-clock-accuracy-2003][@microchip-atmega328p-2020] USART(Universal Synchronous/Asynchronous Receiver/Transmitter)는 클록 핀을 동기 모드에서만 쓴다.[@st-rm0008-2021][@microchip-atmega328p-2020]
 
+![[diagrams/uart-frame-sampling.svg]]
+
 비동기 수신기는 송신 측과 수신 측 클록의 편차가 허용 오차 안에 있어야 제대로 받으며, 허용되는 편차는 프레임이 길수록 작다.[@st-rm0008-2021][@microchip-atmega328p-2020] Analog Devices 기술 문서에 따르면 UART 수신기는 프레임마다 다시 동기하므로 클록 차이에 따른 타이밍 오차는 한 프레임 안에서 쌓이고, 가장 큰 오차는 마지막 샘플링 지점인 stop 비트에서 난다.[@adi-uart-clock-accuracy-2003]
 
 Bosch CAN 2.0 규격에서 버스는 비트를 나르는 채널 하나로 이루어지고, 이 데이터에서 재동기화 정보를 얻는다. 이 규격은 비트 값이 바뀌는 에지로 재동기화하고, 위상 버퍼 세그먼트를 늘이거나 줄여 에지의 위상 오차를 보정하도록 정한다.[@bosch-can-2-0-1991] 이 과정은 [[can-synchronization|CAN 동기화]]에서 다룬다.

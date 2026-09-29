@@ -15,6 +15,8 @@ Vector의 DBC 형식에서 시그널은 가장 작은 정보 단위이고, 메�
 
 AUTOSAR COM은 시그널마다 I-PDU 안의 시작 비트 위치(`ComBitPosition`), 비트 길이(`ComBitSize`), [[byte-order|바이트 순서]](`ComSignalEndianness`)를 설정값으로 미리 정한다.[@autosar-cp-sws-com-2025]
 
+![[diagrams/com-signal-ipdu-layout.svg]]
+
 ### 통신 매트릭스
 
 AUTOSAR System Template은 어떤 시그널을 어느 프레임에 싣고 ECU마다 무엇을 보내고 받는지를 System Configuration Description의 통신 매트릭스로 정하고, 이 기술을 입력으로 ECU 설정을 만든다. 통신 매트릭스는 프레임, 시그널, 타이밍을 담고, System Template은 게이트웨이 표도 기술한다.[@autosar-cp-tps-systemtemplate-2025]

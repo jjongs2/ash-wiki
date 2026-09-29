@@ -29,6 +29,8 @@ TI 기술 문서에 따르면 도메인마다 네트워크가 다를 수 있어 
 
 TI 문서에 따르면 존 모듈은 스마트 센서·액추에이터와 [[can-fd|CAN FD]]나 [[lin|LIN]] 같은 저속 버스로 잇고[@ti-spry345-2024], 대역폭이 작은 바디 모듈에는 [[can|CAN]], LIN과 10 Mbit/s 이더넷(10BASE-T1S)을 쓴다.[@ti-ssztd02-2025] Bosch Zone ECU는 이더넷 인터페이스를 최대 8개, CAN 인터페이스를 20개, LIN 인터페이스를 25개 둔다.[@bosch-zone-ecu-2026]
 
+![[diagrams/domain-zonal-architecture.svg]]
+
 존 아키텍처는 배선의 길이와 무게를 줄인다.[@bosch-ee-architecture-2026][@nxp-s32g2zoneconfs-2021] Renesas 백서에 따르면 가까이 있는 ECU를 그 구역의 존 제어기가 맡으므로 배선이 오가지 않아도 되어 배선량이 준다.[@renesas-ipd-power-distribution-2025]
 
 ### 중앙 컴퓨터와 소프트웨어
