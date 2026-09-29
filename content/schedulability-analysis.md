@@ -19,7 +19,7 @@ Liu와 Layland는 마감 시한, 곧 같은 태스크의 다음 요청 시각이
 
 ### 충분조건 검사와 필요충분조건 검사
 
-[[rate-monotonic-scheduling|RM]]에 대한 Liu와 Layland의 이용률 상한은 충분조건이다. 이용률이 상한 이하면 스케줄 가능하지만, 상한을 넘는 태스크 집합도 주기끼리 알맞은 관계에 있으면 스케줄 가능할 수 있다. 같은 가정에서 [[earliest-deadline-first|EDF]]로 모든 마감 시한을 지키는 것은 $U \le 1$일 때이고 그때뿐이다.[@liu-hard-real-time-1973]
+단일 프로세서에서 서로 독립인 주기 태스크의 마감 시한이 다음 요청 시각이고 실행 시간이 일정하며 선점할 수 있으면, [[rate-monotonic-scheduling|RM]]에 대한 Liu와 Layland의 이용률 상한은 충분조건이다. $U$가 상한 이하면 스케줄 가능하지만, 상한을 넘는 태스크 집합도 주기끼리 알맞은 관계에 있으면 스케줄 가능할 수 있다. 같은 가정에서 [[earliest-deadline-first|EDF]]로 모든 마감 시한을 지키는 것은 $U \le 1$일 때이고 그때뿐이다.[@liu-hard-real-time-1973]
 
 ![[diagrams/utilization-bound-rm-edf.svg]]
 
@@ -29,6 +29,6 @@ Liu와 Layland는 마감 시한, 곧 같은 태스크의 다음 요청 시각이
 
 ## 비교·한계
 
-고정 우선순위 선점 스케줄링에서 태스크들이 자원을 상호 배제로 공유하면 블로킹이 생긴다. 우선순위 상속 계열 프로토콜을 쓰면 블로킹이 태스크마다 최악 블로킹 시간 $B_i$로 묶이므로, 검사 조건은 $C_i + I_i + B_i \le D_i$가 되고 응답 시간 분석에도 $B_i$를 넣어야 한다. 여기서 $I_i$는 우선순위가 더 높은 태스크가 끼어든 시간, $D_i$는 마감 시한이다.[@audsley-flexible-scheduling-1993]
+고정 우선순위 선점 스케줄링에서 태스크들이 자원을 상호 배제로 공유하면 블로킹이 생기므로, 우선순위 상속 계열 프로토콜로 한정한 태스크마다의 최악 블로킹 시간 $B_i$를 검사에 넣어야 한다.[@audsley-flexible-scheduling-1993] $B_i$를 넣은 식은 [[response-time-analysis|응답 시간 분석]]에서 다룬다.
 
 AUTOSAR의 Timing Analysis and Design 보고서에 따르면 스케줄링 시뮬레이션은 결과를 계산하지 않고 실행 동작을 흉내 내어 타이밍 정보를 얻는다.[@autosar-fo-tr-timinganalysis-2025]
