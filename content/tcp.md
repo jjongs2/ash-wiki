@@ -33,6 +33,8 @@ TCP 헤더는 옵션이 없으면 20바이트이고, Data Offset이 4비트 32�
 
 ![[diagrams/tcp-header-layout.svg]]
 
+제어 비트 가운데 SYN은 순서 번호를 맞추는 세그먼트임을, ACK는 Acknowledgment Number 필드가 유효함을, FIN은 보내는 쪽의 데이터가 더 없음을 나타낸다. RST는 연결을 재설정한다.[@ietf-rfc-9293-2022]
+
 ### 연결 설정과 종료
 
 TCP는 3-way handshake로 연결을 맺는다. 연결을 여는 쪽이 SYN을 보내고, 상대가 SYN과 ACK를 함께 보내고, 여는 쪽이 ACK로 답한다. 이 과정에서 양쪽은 각자의 초기 순서 번호를 알리고 확인받는다.[@ietf-rfc-9293-2022]
@@ -47,9 +49,9 @@ TCP는 보내는 데이터의 바이트마다 순서 번호를 매긴다. 받는
 
 재전송 타이머가 만료되면 보내는 쪽은 아직 확인 응답을 받지 못한 가장 이른 세그먼트를 다시 보낸다.[@ietf-rfc-6298-2011]
 
-RFC 5681은 보낸 뒤 확인받지 못한 데이터가 있고, 들어온 확인 응답이 데이터를 싣지 않고 SYN과 FIN이 꺼져 있으며, 확인 응답 번호가 그 연결에서 받은 가장 큰 확인 응답 번호와 같고, 광고한 윈도가 직전과 같을 때 이를 중복 확인 응답으로 본다. 중복 확인 응답으로 손실을 찾아 재전송하는 fast retransmit은 TCP 혼잡 제어 알고리즘의 하나로, [[tcp-congestion-control|TCP 혼잡 제어]]에서 다룬다.[@ietf-rfc-5681-2009]
+중복 확인 응답으로 손실을 찾아 재전송하는 fast retransmit은 TCP 혼잡 제어 알고리즘의 하나로, [[tcp-congestion-control|TCP 혼잡 제어]]에서 다룬다.[@ietf-rfc-5681-2009]
 
-받는 쪽은 확인 응답을 곧바로 보내지 않고 미룰 수 있다. 이때 미루는 시간은 0.5초보다 짧아야 하고, 적어도 최대 크기 세그먼트 두 개마다 확인 응답을 보내도록 권고된다.[@ietf-rfc-9293-2022]
+받는 쪽은 확인 응답을 곧바로 보내지 않고 미룰 수 있다. 이때 미루는 시간 $t_\mathrm{d}$는 $t_\mathrm{d} < 0.5\,\mathrm{s}$여야 하고, 적어도 최대 크기 세그먼트 두 개마다 확인 응답을 보내도록 권고된다.[@ietf-rfc-9293-2022]
 
 ### 흐름 제어
 
@@ -65,4 +67,4 @@ TCP는 주고받은 세그먼트의 경계와 응용이 읽고 쓰는 버퍼의 
 
 [[udp|UDP]]는 연결을 맺지 않는 데이터그램 전송 서비스이고, 재전송과 흐름 제어가 필요하면 응용이 직접 맡아야 한다.[@ietf-rfc-1122-1989] UDP 헤더는 8바이트이고[@ietf-rfc-768-1980], TCP 헤더는 최소 20바이트다.[@ietf-rfc-9293-2022]
 
-AUTOSAR의 [[doip|DoIP]] 모듈은 진단 메시지를 TCP 연결로 받는다.[@autosar-cp-sws-diagnosticoverip-2025] [[some-ip|SOME/IP]] 명세는 UDP 바인딩이 "maybe", TCP 바인딩이 "exactly once" 신뢰성을 준다고 하고, 1400바이트가 넘는 큰 데이터를 보내야 하고 오류 시 지연 요구가 엄하지 않을 때만 TCP를 쓰도록 권한다.[@autosar-fo-prs-someipprotocol-2025]
+AUTOSAR의 [[doip|DoIP]] 모듈은 진단 메시지를 TCP 연결로 받는다.[@autosar-cp-sws-diagnosticoverip-2025] [[some-ip|SOME/IP]] 명세는 UDP 바인딩의 신뢰성을 "maybe", TCP 바인딩의 신뢰성을 "exactly once"로 정하고, 1400바이트가 넘는 큰 데이터를 보내야 하고 오류 시 지연 요구가 엄하지 않을 때만 TCP를 쓰도록 권한다.[@autosar-fo-prs-someipprotocol-2025]
