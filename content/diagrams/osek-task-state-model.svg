@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 0 520 280" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+  <!-- 상태 -->
+  <g fill="#336fb8">
+    <rect x="220" y="20" width="120" height="40" rx="4" />
+    <rect x="400" y="120" width="120" height="40" rx="4" />
+    <rect x="220" y="220" width="120" height="40" rx="4" />
+  </g>
+  <rect x="40" y="120" width="120" height="40" rx="4" fill="#b0540d" />
+  <g text-anchor="middle" fill="#f8fafd">
+    <text x="280" y="45">running</text>
+    <text x="460" y="145">suspended</text>
+    <text x="280" y="245">ready</text>
+    <text x="100" y="145">waiting</text>
+  </g>
+  <text x="100" y="178" text-anchor="middle" font-size="12" fill="#727981">extended 태스크만</text>
+
+  <!-- 전이 -->
+  <g stroke="#727981" stroke-width="1.5">
+    <line x1="265" y1="62" x2="265" y2="218" marker-end="url(#arrow)" />
+    <line x1="295" y1="218" x2="295" y2="62" marker-end="url(#arrow)" />
+    <line x1="232" y1="62" x2="118" y2="118" marker-end="url(#arrow)" />
+    <line x1="162" y1="150" x2="226" y2="218" marker-end="url(#arrow)" />
+    <line x1="328" y1="62" x2="442" y2="118" marker-end="url(#arrow)" />
+    <line x1="398" y1="150" x2="334" y2="218" marker-end="url(#arrow)" />
+  </g>
+  <g font-size="12" fill="#727981">
+    <text x="257" y="144" text-anchor="end">preempt</text>
+    <text x="303" y="144">start</text>
+    <text x="166" y="82" text-anchor="end">wait</text>
+    <text x="190" y="212" text-anchor="end">release</text>
+    <text x="394" y="82">terminate</text>
+    <text x="370" y="212">activate</text>
+  </g>
+</svg>
