@@ -17,7 +17,7 @@ verified: 2026-09-29
 
 UART(Universal Asynchronous Receiver/Transmitter)는 문자 프레임에서 데이터 비트 뒤, 정지 비트 앞에 패리티 비트를 둘 수 있다. 패리티를 쓸지와 짝수·홀수는 설정으로 고르고, 수신한 문자의 패리티가 맞지 않으면 패리티 오류로 알린다.[@st-rm0008-2021][@ti-tl16c550d-2008][@microchip-atmega328p-2020]
 
-ATmega328P의 USART(Universal Synchronous and Asynchronous Receiver Transmitter)는 데이터 비트를 모두 XOR(exclusive OR)해 패리티 비트를 계산하고, 홀수 패리티면 그 결과를 뒤집는다.[@microchip-atmega328p-2020]
+ATmega328P의 USART(Universal Synchronous and Asynchronous Receiver Transmitter)는 데이터 비트를 모두 XOR해 패리티 비트를 계산하고, 홀수 패리티면 그 결과를 뒤집는다.[@microchip-atmega328p-2020]
 
 ![[diagrams/uart-parity-bit-generation.svg]]
 
