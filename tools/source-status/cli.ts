@@ -50,7 +50,7 @@ function inTopic(page: Page, topic: string | undefined): boolean {
 }
 const pages = tree.pages.filter((page) => page.kind === "page" && inTopic(page, values.topic))
 
-// 봇 차단 호스트의 403과 두 번 물어도 시간 초과인 URL은 출처 사망이 아니라 확인 불가로 따로 모은다.
+// 봇 차단 호스트의 봇 차단 응답(403, WAF 챌린지)과 두 번 물어도 시간 초과인 URL은 출처 사망이 아니라 확인 불가로 따로 모은다.
 async function checkUrls(
   tree: Tree,
   pages: Page[],
@@ -73,7 +73,7 @@ async function checkUrls(
       if (outcome.kind === "alive") return
       const violation = { file, line: field.line, message: `${outcome.reason} ${field.value}` }
       if (outcome.kind === "timeout") timedOut.push(violation)
-      else if (outcome.status === 403 && isBlockedHost(field.value, blockedHosts))
+      else if (outcome.botBlocked && isBlockedHost(field.value, blockedHosts))
         blocked.push(violation)
       else dead.push(violation)
     }),
@@ -86,11 +86,16 @@ function isBlockedHost(url: string, blockedHosts: string[]): boolean {
   return blockedHosts.some((blocked) => host === blocked || host.endsWith(`.${blocked}`))
 }
 
-// 살아 있지 않으면 이유와 (응답이 있었으면) 상태 코드를 준다. 시간 초과는 출처 사망과 가를 수 있게 따로 준다.
+// 살아 있지 않으면 이유와 봇 차단 응답(403, WAF 챌린지)이었는지를 준다. 시간 초과는 출처 사망과 가를 수 있게 따로 준다.
 type Outcome =
   | { kind: "alive" }
-  | { kind: "dead"; reason: string; status?: number }
+  | { kind: "dead"; reason: string; botBlocked: boolean }
   | { kind: "timeout"; reason: string }
+
+// AWS WAF가 자동 요청에 돌려주는 챌린지. 본문 없는 202라 2xx여도 출처가 살아 있는지 알 수 없다.
+function challenged(response: Response): boolean {
+  return response.status === 202 && response.headers.get("x-amzn-waf-action") === "challenge"
+}
 
 // 제한 시간 안에 답이 없으면 한 번 더 묻는다.
 async function probe(url: string): Promise<Outcome> {
@@ -107,20 +112,21 @@ const missingIssuerCodes = new Set([
   "UNABLE_TO_GET_ISSUER_CERT_LOCALLY",
 ])
 
-// 데이터시트 같은 큰 파일을 받지 않으려고 HEAD를 먼저 보내고, HEAD를 받지 않는 서버가 있어 2xx가 아니면 GET으로 한 번 더 묻는다.
+// 데이터시트 같은 큰 파일을 받지 않으려고 HEAD를 먼저 보내고, HEAD를 받지 않는 서버가 있어 2xx가 아니거나 챌린지면 GET으로 한 번 더 묻는다.
 // 중간 인증서가 빠진 서버는 브라우저처럼 그 서버 leaf의 AIA에서 받아 와 원래 URL로 한 번 더 묻는다. 리다이렉트로 닿은 서버여도 같다.
 async function ask(url: string, followAia = true): Promise<Outcome> {
   // 인증서 오류가 났을 때 어느 요청의 리다이렉트를 다시 따라갈지 가린다.
   let method = "HEAD"
   try {
     const head = await fetch(url, { method, signal: AbortSignal.timeout(timeoutMs) })
-    if (head.ok) return { kind: "alive" }
+    if (head.ok && !challenged(head)) return { kind: "alive" }
     method = "GET"
     const get = await fetch(url, { method, signal: AbortSignal.timeout(timeoutMs) })
     await get.body?.cancel()
+    if (challenged(get)) return { kind: "dead", reason: "HTTP 202 WAF 챌린지", botBlocked: true }
     return get.ok
       ? { kind: "alive" }
-      : { kind: "dead", reason: `HTTP ${get.status}`, status: get.status }
+      : { kind: "dead", reason: `HTTP ${get.status}`, botBlocked: get.status === 403 }
   } catch (error) {
     const name = (error as Error).name
     const code = errorCode(error)
@@ -130,7 +136,7 @@ async function ask(url: string, followAia = true): Promise<Outcome> {
       const failedUrl = await certErrorAt(url, method)
       if (failedUrl !== undefined && (await trustIssuer(failedUrl))) return ask(url, false)
     }
-    return { kind: "dead", reason }
+    return { kind: "dead", reason, botBlocked: false }
   }
 }
 

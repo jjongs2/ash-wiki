@@ -40,6 +40,10 @@ before(async () => {
     else if (req.url === "/no-head") res.statusCode = req.method === "HEAD" ? 405 : 200
     // 봇 차단: 메서드와 헤더에 상관없이 막는다
     else if (req.url === "/blocked") res.statusCode = 403
+    // AWS WAF 챌린지: 메서드와 헤더에 상관없이 본문 없는 202를 돌려준다
+    else if (req.url === "/challenge") res.writeHead(202, { "x-amzn-waf-action": "challenge" })
+    // 챌린지 헤더가 없는 202
+    else if (req.url === "/accepted") res.statusCode = 202
     // 답하지 않는 서버
     else if (req.url === "/hang") return
     // 첫 요청에만 답하지 않는 서버
@@ -256,6 +260,37 @@ describe("source-status CLI", () => {
       "bib/iso-dead-2024.bib:3",
       "bib/org-blocked-2024.bib:3",
     ])
+    assert.strictEqual(report.exitCode, 1)
+  })
+
+  test("봇 차단 호스트의 WAF 챌린지(202와 x-amzn-waf-action: challenge)는 url-blocked에 따로 찍고, 그것만으로는 exit 0이다", async () => {
+    const root = makeTree({
+      "content/fresh.md": page(["network/ethernet"], "2026-09-01", "문장이다.[@ieee-802-3-2022]"),
+      "bib/ieee-802-3-2022.bib": bib("ieee-802-3-2022", "https://ieeexplore.ieee.org/challenge"),
+    })
+    const report = await runStatus(root)
+    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-blocked", "OK verified"])
+    assert.deepStrictEqual(report.locations.get("url-blocked"), ["bib/ieee-802-3-2022.bib:3"])
+    assert.strictEqual(report.exitCode, 0)
+  })
+
+  test("목록 밖 호스트의 WAF 챌린지는 url FAIL이고, 챌린지 헤더가 없는 202는 OK다", async () => {
+    const root = makeTree({
+      "content/fresh.md": page(
+        ["network/ethernet"],
+        "2026-09-01",
+        "하나[@ieee-sa-802-3-2022], 둘.[@org-accepted-2024]",
+      ),
+      // 목록의 ieeexplore.ieee.org와 상위 도메인만 같은 호스트
+      "bib/ieee-sa-802-3-2022.bib": bib(
+        "ieee-sa-802-3-2022",
+        "https://standards.ieee.org/challenge",
+      ),
+      "bib/org-accepted-2024.bib": bib("org-accepted-2024", `${base}/accepted`),
+    })
+    const report = await runStatus(root)
+    assert.deepStrictEqual(report.statuses, ["FAIL url", "OK verified"])
+    assert.deepStrictEqual(report.locations.get("url"), ["bib/ieee-sa-802-3-2022.bib:3"])
     assert.strictEqual(report.exitCode, 1)
   })
 
