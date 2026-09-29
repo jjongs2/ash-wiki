@@ -37,4 +37,4 @@ AUTOSAR COM은 시그널마다 네트워크 표현의 엔디언을 설정 파라
 
 ## 비교·한계
 
-IEN(Internet Experiment Note) 137에 따르면 비트 순서와 바이트 순서는 같을 수도 있고 다를 수도 있다. 이 글에서 Danny Cohen은 1980년, 워드의 어느 쪽 끝부터 보낼지로 나뉜 두 진영을 걸리버 여행기의 달걀 논쟁에 빗대어 Little-Endians와 Big-Endians라 불렀다.[@ietf-ien-137-1980]
+IEN 137에 따르면 비트 순서와 바이트 순서는 같을 수도 있고 다를 수도 있다. 이 글에서 Danny Cohen은 1980년, 워드의 어느 쪽 끝부터 보낼지로 나뉜 두 진영을 걸리버 여행기의 달걀 논쟁에 빗대어 Little-Endians와 Big-Endians라 불렀다.[@ietf-ien-137-1980]
