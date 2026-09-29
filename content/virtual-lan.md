@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-[[ieee-802-1q|IEEE 802.1Q]]는 개별 LAN(Local Area Network)들을 잇는 브리지를 정해, 브리지로 이어진 네트워크와 **VLAN**(Virtual LAN)을 제공한다.[@ieee-802-1q-rev-2025] 프레임이 속한 VLAN은 VLAN 태그에 실린 식별자로 나타내고, 브리지는 VID마다 프레임을 내보낼 포트를 따로 둔다.[@ieee-802-1q-types-yang-2022][@ieee-802-1q-bridge-yang-2022]
+**VLAN**(Virtual LAN)은 개별 LAN(Local Area Network)들을 잇는 브리지가 브리지로 이어진 네트워크와 함께 제공하는 가상 LAN으로, [[ieee-802-1q|IEEE 802.1Q]]가 이 브리지를 정한다.[@ieee-802-1q-rev-2025] 프레임이 속한 VLAN은 VLAN 태그에 실린 식별자로 나타내고, 브리지는 VLAN마다 프레임을 내보낼 포트를 따로 둔다.[@ieee-802-1q-types-yang-2022][@ieee-802-1q-bridge-yang-2022]
 
 ## 구조·동작
 
@@ -13,7 +13,7 @@ verified: 2026-09-29
 
 IEEE 802.1Q는 VLAN 태그를 정한다. C-VLAN(Customer VLAN) 태그는 EtherType `0x8100`을 쓴다.[@ieee-802-1q-types-yang-2022][@ieee-ra-ethertype-2024] 태그가 [[ethernet-frame|이더넷 프레임]]의 어디에 들어가는지는 그 페이지에서 다룬다.
 
-태그 안에서 프레임의 우선순위를 0부터 7까지의 값으로 나타내는 3비트 필드를 **PCP**(Priority Code Point)라 한다.[@ieee-802-1q-types-yang-2022] 프레임의 drop_eligible 파라미터는 **DEI**(Drop Eligible Indicator)에 실린다.[@ieee-802-1q-bridge-yang-2022] 프레임이 속한 VLAN은 12비트 값인 **VID**(VLAN Identifier)가 가리킨다.[@ieee-802-1q-types-yang-2022]
+태그 안에서 프레임의 우선순위를 0부터 7까지의 값으로 나타내는 3비트 필드를 **PCP**(Priority Code Point)라 한다.[@ieee-802-1q-types-yang-2022] 프레임의 drop_eligible 파라미터를 싣는 필드를 **DEI**(Drop Eligible Indicator)라 한다.[@ieee-802-1q-bridge-yang-2022] 프레임이 속한 VLAN을 가리키는 12비트 값을 **VID**(VLAN Identifier)라 한다.[@ieee-802-1q-types-yang-2022]
 
 VLAN을 가리키는 VID는 1부터 4094까지이고, 0과 4095(`0xFFF`)는 VLAN 번호로 쓰지 않는다. 그래서 쓸 수 있는 VID는 4094개다.[@ieee-802-1q-types-yang-2022]
 

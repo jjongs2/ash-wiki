@@ -5,13 +5,13 @@ tags:
 verified: 2026-09-29
 ---
 
-**이더넷 스위치**는 받은 [[ethernet-frame|이더넷 프레임]]의 목적지 [[mac-address|MAC 주소]]를 찾아, 그 주소에 연결된 포트로 프레임을 전달하는 장치다.[@microchip-ksz9477s-2019][@nxp-um10944-2017]
+**이더넷 스위치**는 받은 [[ethernet-frame|이더넷 프레임]]의 목적지 MAC(Media Access Control) 주소를 찾아, 그 주소에 연결된 포트로 프레임을 전달하는 장치다.[@microchip-ksz9477s-2019][@nxp-um10944-2017]
 
 ## 구조·동작
 
 ### 주소 학습
 
-스위치는 받은 프레임의 출발지 MAC 주소와 받은 포트를 주소 표에 기록하며, 이를 학습이라 한다. 학습한 기록은 그 주소에서 일정 시간 프레임이 오지 않으면 지워지며, 이를 에이징이라 한다.[@microchip-ksz9477s-2019][@nxp-um10944-2017]
+스위치는 받은 프레임의 출발지 [[mac-address|MAC 주소]]와 받은 포트를 주소 표에 기록하며, 이를 **학습**이라 한다. 학습한 기록은 그 주소에서 일정 시간 프레임이 오지 않으면 지워지며, 이를 **에이징**이라 한다.[@microchip-ksz9477s-2019][@nxp-um10944-2017]
 
 [[ieee-802-1q|IEEE 802.1Q]]-2022는 브리지가 프레임을 어느 포트로 전달할지 정하는 데 쓰는 필터링 정보를 필터링 데이터베이스(Filtering Database)에 두고, 동적으로 학습한 정보의 에이징 시간 기본값을 300초로 둔다.[@ieee-802-1q-bridge-yang-2022] KSZ9477S의 에이징 주기는 기본 약 300초(±75초)이고, 1초에서 30분 사이로 바꿀 수 있다.[@microchip-ksz9477s-2019]
 
@@ -25,7 +25,7 @@ KSZ9477S는 찾은 목적지 포트가 프레임을 받은 포트와 같으면 �
 
 ### 전달 방식
 
-KSZ9477S의 스위칭 엔진은 store-and-forward로 동작하고, FCS(Frame Check Sequence) 오류가 있는 패킷 등은 전달하지 않는다. KSZ9477S의 cut-through 모드는 패킷 전체를 기다리지 않고 처음 64바이트를 받은 뒤 전달을 시작해, 1 Gbit/s에서 지연이 패킷 크기와 상관없이 약 900 ns다. cut-through가 아닌 패킷의 최소 지연은 패킷 크기에 비례한다.[@microchip-ksz9477s-2019] SJA1105TEL의 수신 MAC은 CRC 오류를 찾으면 프레임을 바로 버리고, 검사를 통과한 프레임만 프레임 메모리에 저장한다.[@nxp-um10944-2017]
+KSZ9477S의 스위칭 엔진은 store-and-forward로 동작하고, FCS(Frame Check Sequence) 오류가 있는 패킷 등은 전달하지 않는다. KSZ9477S의 cut-through 모드는 패킷 전체를 기다리지 않고 처음 64바이트를 받은 뒤 전달을 시작해, 1 Gbit/s에서 지연이 패킷 크기와 상관없이 약 900 ns다. cut-through가 아닌 패킷의 최소 지연은 패킷 크기에 비례한다.[@microchip-ksz9477s-2019] SJA1105TEL의 수신 MAC은 [[cyclic-redundancy-check|CRC]] 오류를 찾으면 프레임을 바로 버리고, 검사를 통과한 프레임만 프레임 메모리에 저장한다.[@nxp-um10944-2017]
 
 ![[diagrams/switch-store-and-forward-cut-through.svg]]
 

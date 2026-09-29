@@ -30,7 +30,7 @@
   <!-- cut-through -->
   <rect x="232" y="98" width="280" height="28" rx="3" fill="#337b47" />
   <text x="372" y="117" text-anchor="middle" font-size="12" fill="#f8fafd">프레임 전달</text>
-  <text x="232" y="144" font-size="12" fill="#727981">처음 64바이트를 받은 뒤 전달을 시작한다</text>
+  <text x="232" y="144" font-size="12" fill="#727981">KSZ9477S: 처음 64바이트를 받은 뒤 전달을 시작한다</text>
 
   <!-- store-and-forward -->
   <rect x="452" y="164" width="280" height="28" rx="3" fill="#b0540d" />

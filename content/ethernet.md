@@ -11,7 +11,7 @@ verified: 2026-09-29
 
 ### MAC과 물리 계층
 
-이더넷 노드는 MAC과 물리 계층(PHY)으로 나뉜다.[@microchip-enc28j60-2012][@renesas-r01an6628-2025] MAC은 송수신 데이터를 프레임으로 캡슐화하고(프레임 경계 구분과 동기), 주소를 처리하며, 오류를 검출한다.[@st-rm0008-2021][@renesas-r01an6628-2025] ENC28J60의 PHY 모듈은 꼬임쌍선 인터페이스의 아날로그 데이터를 부호화하고 복호화한다.[@microchip-enc28j60-2012] MAC과 PHY 사이는 MII 같은 매체 독립 인터페이스로 잇는다.[@ieee-802-3-2022][@st-rm0008-2021][@renesas-r01an6628-2025]
+이더넷 노드는 MAC과 PHY로 나뉜다.[@microchip-enc28j60-2012][@renesas-r01an6628-2025] MAC은 송수신 데이터를 프레임으로 캡슐화하고(프레임 경계 구분과 동기), 주소를 처리하며, 오류를 검출한다.[@st-rm0008-2021][@renesas-r01an6628-2025] ENC28J60의 PHY 모듈은 꼬임쌍선 인터페이스의 아날로그 데이터를 부호화하고 복호화한다.[@microchip-enc28j60-2012] MAC과 PHY 사이는 MII 같은 매체 독립 인터페이스로 잇는다.[@ieee-802-3-2022][@st-rm0008-2021][@renesas-r01an6628-2025]
 
 ### 이더넷 MAC 컨트롤러
 
@@ -23,7 +23,7 @@ MCU에 내장된 이더넷 MAC은 전용 DMA(Direct Memory Access)를 둔다. ST
 
 ### 반이중과 전이중
 
-IEEE 802.3-1985는 둘 이상의 스테이션이 공통 버스 매체 하나를 나눠 쓰는 CSMA/CD 접근 방식을 정했다.[@ieee-802-3-1985] 현행판 IEEE 802.3-2022의 CSMA/CD MAC 프로토콜은 공유 매체에서의 반이중 동작과 함께 전이중 동작도 규정한다.[@ieee-802-3-2022] Microchip AN1120에 따르면 초기 이더넷 네트워크는 공유 매체로 구현되어 CSMA/CD가 필요했다.[@microchip-an1120-2008] CSMA/CD는 [[bus-access-method|버스 접근 방식]]에서 다룬다.
+IEEE 802.3-1985는 둘 이상의 스테이션이 공통 버스 매체 하나를 나눠 쓰는 CSMA/CD(Carrier Sense Multiple Access with Collision Detection) 접근 방식을 정했다.[@ieee-802-3-1985] 현행판 IEEE 802.3-2022의 CSMA/CD MAC 프로토콜은 공유 매체에서의 반이중 동작과 함께 전이중 동작도 규정한다.[@ieee-802-3-2022] Microchip AN1120에 따르면 초기 이더넷 네트워크는 공유 매체로 구현되어 CSMA/CD가 필요했다.[@microchip-an1120-2008] CSMA/CD는 [[bus-access-method|버스 접근 방식]]에서 다룬다.
 
 전이중 동작에서는 링크에 두 스테이션만 이어져 송신과 수신을 동시에 하고, 충돌이 생기지 않으므로 CSMA/CD를 쓰지 않는다.[@st-rm0008-2021][@microchip-enc28j60-2012] Microchip AN1120에 따르면 오늘날 이더넷 네트워크는 대부분 점대점이나 [[ethernet-switch|이더넷 스위치]]를 가운데 둔 스타 토폴로지로 구성되어, 각 노드가 전이중으로 동작할 수 있다.[@microchip-an1120-2008]
 
@@ -37,4 +37,4 @@ Microchip AN1120에 따르면 과도한 충돌로 프레임이 버려지면 응�
 
 [[can|CAN]]은 여러 노드가 동시에 송신을 시작하면 식별자로 비트 단위 중재를 해, 정보도 시간도 잃지 않고 한 메시지를 보낸다.[@bosch-can-2-0-1991] 반이중 이더넷에서는 동시에 송신하면 충돌이 생기고, 충돌한 스테이션은 백오프만큼 기다렸다가 다시 송신한다.[@st-rm0008-2021][@microchip-enc28j60-2012] CAN에서는 수신 노드가 [[can-acknowledgement|ACK]] 슬롯에 dominant 비트를 보내 프레임을 제대로 받았음을 알린다.[@bosch-can-2-0-1991]
 
-차량용 100BASE-T1 PHY는 한 쌍의 비차폐 꼬임선으로 100 Mbit/s를 송수신한다.[@nxp-tja1101b-2021][@ti-dp83tc811r-q1-2018] NXP TJA1101B 데이터시트에 따르면 100BASE-T1은 전이중 양방향 통신을 한다.[@nxp-tja1101b-2021]
+차량용 100BASE-T1 PHY는 한 쌍의 비차폐 꼬임선으로 100 Mbit/s를 송수신한다.[@nxp-tja1101b-2021][@ti-dp83tc811r-q1-2018] IEEE 802.3bw-2015는 단일 평형 꼬임쌍선 위에서 점대점 전이중 100 Mbit/s로 동작하는 100BASE-T1을 넣었다.[@ieee-802-3bw-2015]
