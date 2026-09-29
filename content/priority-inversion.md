@@ -23,6 +23,6 @@ T1이 블록된 동안 T1, T3와 자원을 공유하지 않는 T2가 준비되�
 
 우선순위 역전은 완전히 없앨 수 없다. 낮은 우선순위 태스크가 임계 구역에 있는 동안에는 그 공유 데이터가 필요한 높은 우선순위 태스크가 기다려야 한다.[@sha-real-time-scheduling-ada-1989][@davari-unbounded-priority-inversions-1992]
 
-[[priority-inheritance-protocol|기본 우선순위 상속 프로토콜]]과 [[priority-ceiling-protocol|우선순위 상한 프로토콜]]은 모두 제어되지 않는 우선순위 역전 문제를 푼다.[@sha-priority-inheritance-1990] 단일 프로세서에서 우선순위 상한 프로토콜은 높은 우선순위 태스크의 최악 블로킹 시간을 더 낮은 우선순위 태스크의 임계 구역 하나를 실행하는 시간 이하로 줄이고, [[deadlock|교착 상태]]를 막는다. 이 프로토콜을 쓰는 주기 태스크 집합은 태스크마다 최악 블로킹 시간을 넣은 충분조건으로 rate monotonic 스케줄 가능성을 판정할 수 있다.[@sha-real-time-scheduling-ada-1989][@sha-priority-inheritance-1990]
+[[priority-inheritance-protocol|기본 우선순위 상속 프로토콜]]과 [[priority-ceiling-protocol|우선순위 상한 프로토콜]]은 모두 제어되지 않는 우선순위 역전 문제를 푼다.[@sha-priority-inheritance-1990] 태스크가 이진 세마포어로 임계 구역을 보호하는 단일 프로세서에서, 우선순위 상한 프로토콜은 높은 우선순위 태스크의 최악 블로킹 시간을 더 낮은 우선순위 태스크의 임계 구역 하나를 실행하는 시간 이하로 줄이고, [[deadlock|교착 상태]]를 막는다. 이 프로토콜을 쓰는 주기 태스크 집합은 태스크마다 최악 블로킹 시간을 넣은 충분조건으로 rate monotonic 스케줄 가능성을 판정할 수 있다.[@sha-real-time-scheduling-ada-1989][@sha-priority-inheritance-1990]
 
 POSIX(Portable Operating System Interface) 근거 설명에 따르면 기본 우선순위 상속 프로토콜은 우선순위 역전을 임계 구역 길이로 제한해 타이밍 분석을 가능하게 한다.[@ieee-1003-1-preface-2024][@ieee-1003-1-rationale-threads-2024]

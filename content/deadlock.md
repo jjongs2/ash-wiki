@@ -34,4 +34,4 @@ Coffman 외(1971)는 교착 상태의 필요조건으로 아래 네 조건을 �
 
 네 필요조건 가운데 적어도 하나가 언제나 성립하지 않게 하면 교착 상태를 예방할 수 있다. 다만 상호 배제 조건은 모든 자원에서 깰 수는 없다.[@coffman-system-deadlocks-1971] 여러 락을 모든 스레드가 늘 같은 순서로 잡으면, 순서가 엇갈려 생기는 교착 상태는 생기지 않는다.[@linux-locking-guide-2026][@oracle-816-5137-lock-hierarchies-2010]
 
-태스크가 단일 프로세서에서 이진 세마포어로 임계 구역을 보호할 때, [[priority-ceiling-protocol|우선순위 상한 프로토콜]]은 교착 상태가 생기지 않게 한다.[@sha-real-time-scheduling-ada-1989][@sha-priority-inheritance-1990]
+태스크가 단일 프로세서에서 이진 세마포어로 임계 구역을 보호할 때, [[priority-ceiling-protocol|우선순위 상한 프로토콜]]은 교착 상태가 생기지 않게 한다.[@sha-real-time-scheduling-ada-1989][@sha-priority-inheritance-1990] [[priority-inheritance-protocol|기본 우선순위 상속 프로토콜]]은 교착 상태를 막지 않는다.[@borger-implementing-priority-inheritance-1989]

@@ -8,7 +8,7 @@ aliases:
 verified: 2026-09-30
 ---
 
-**우선순위 상한 프로토콜**(priority ceiling protocol)은 자원(세마포어)마다 그것을 잠글 수 있는 모든 태스크 가운데 가장 높은 우선순위를 **우선순위 상한**(priority ceiling)으로 두고, 이 값으로 임계 구역 진입과 태스크의 우선순위를 다루는 실시간 동기화 프로토콜이다.[@sha-real-time-scheduling-ada-1989] 단일 프로세서에서 태스크의 최악 블로킹 시간을 더 낮은 우선순위 태스크의 [[critical-section|임계 구역]] 하나를 실행하는 시간 이하로 줄이고, [[deadlock|교착 상태]]를 막는다.[@sha-real-time-scheduling-ada-1989][@sha-priority-inheritance-1990] Sha, Rajkumar, Lehoczky의 1990년 논문은 [[priority-inheritance-protocol|기본 우선순위 상속 프로토콜]]과 함께 이 프로토콜을 다룬다.[@sha-priority-inheritance-1990]
+**우선순위 상한 프로토콜**(priority ceiling protocol)은 자원(세마포어)마다 그것을 잠글 수 있는 모든 태스크 가운데 가장 높은 우선순위를 **우선순위 상한**(priority ceiling)으로 두고, 이 값으로 임계 구역 진입과 태스크의 우선순위를 다루는 실시간 동기화 프로토콜이다.[@sha-real-time-scheduling-ada-1989] 태스크가 이진 세마포어로 임계 구역을 보호하는 단일 프로세서에서, 이 프로토콜은 태스크의 최악 블로킹 시간을 더 낮은 우선순위 태스크의 [[critical-section|임계 구역]] 하나를 실행하는 시간 이하로 줄이고, [[deadlock|교착 상태]]를 막는다.[@sha-real-time-scheduling-ada-1989][@sha-priority-inheritance-1990] Sha, Rajkumar, Lehoczky의 1990년 논문은 [[priority-inheritance-protocol|기본 우선순위 상속 프로토콜]]과 함께 이 프로토콜을 다룬다.[@sha-priority-inheritance-1990]
 
 ## 구조·동작
 
@@ -26,6 +26,6 @@ OSEK/VDX OS 명세는 resource 관리에 이 방식인 OSEK 우선순위 상한 
 
 ## 비교·한계
 
-원형 프로토콜은 다른 태스크를 블록시킬 때만 우선순위를 올리고[@sha-real-time-scheduling-ada-1989], 자원을 잡는 즉시 올리는 방식은 블록된 태스크가 있든 없든 올린다.[@ieee-1003-1-pthread-mutexattr-getprotocol-2024] OSEK/VDX OS 명세에서 이 방식은 상한 이하의 우선순위를 가진 태스크를, 그 resource를 쓰지 않아도 기다리게 할 수 있다. 다만 기다리는 시간은 더 낮은 우선순위 태스크가 resource를 쥐는 가장 긴 시간을 넘지 않는다.[@osek-os-2-2-3-2005]
+원형 프로토콜은 다른 태스크를 블록시킬 때만 우선순위를 올리고[@sha-real-time-scheduling-ada-1989], 자원을 잡는 즉시 올리는 방식은 블록된 태스크가 있든 없든 올린다.[@ieee-1003-1-pthread-mutexattr-getprotocol-2024] OSEK/VDX OS 명세는 이 방식이 상한 이하의 우선순위를 가진 태스크를, 그 resource를 쓰지 않아도 기다리게 할 수 있다고 밝히고, 그 대기가 더 낮은 우선순위 태스크가 resource를 쥐는 가장 긴 시간을 넘지 않는다고 정한다.[@osek-os-2-2-3-2005]
 
 ![[diagrams/priority-ceiling-original-vs-immediate.svg]]
