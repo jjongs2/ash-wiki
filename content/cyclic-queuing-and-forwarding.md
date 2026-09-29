@@ -16,6 +16,8 @@ IEEE 802.1Qch-2017은 traffic scheduling과 스트림별 필터링과 policing(P
 
 NXP Real-time Edge 소프트웨어는 802.1Qch의 정의를 따라 IEEE 802.1Qbv와 IEEE 802.1Qci를 설정해 CQF를 구성하며, 이 CQF 설정은 기존 802.1Qbv 설정과 섞어 쓸 수 없다. NXP Real-time Edge 사용자 가이드에 따르면 CQF 설정에서 패킷은 경로의 노드마다 게이트가 열려 있는 시간(gate open time)만큼 지연된다. 모든 스트림의 cycle time과 gate open time은 같아야 하고, cycle time은 gate open time의 정수배여야 한다.[@nxp-realtimeedgeug-2026]
 
+![[diagrams/cqf-per-node-delay.svg]]
+
 ## 비교·한계
 
 IEEE 802.1Qch 프로젝트 페이지에 따르면 CQF가 있으면 네트워크 토폴로지와 상관없이 브리지 네트워크를 지나는 결정적인 지연을 쉽게 계산할 수 있다. CQF는 기존 기법보다 네트워크 지연을 훨씬 쉽게 정하게 하고, 전달 변동을 줄인다.[@ieee-802-1qch-project-2017]

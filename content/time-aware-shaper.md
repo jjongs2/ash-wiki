@@ -16,13 +16,17 @@ verified: 2026-09-29
 
 ### 게이트
 
-IEEE 802.1Q의 scheduled traffic은 포트의 [[traffic-class|트래픽 클래스]]마다 게이트를 두고, 게이트는 열림과 닫힘 두 상태를 가진다.[@ieee-802-1qcw-sched-yang-2023] 게이트가 열린 큐만 전송할 수 있고, 게이트가 닫힌 큐의 프레임은 전송에 선택되지 않는다.[@ti-processor-sdk-linux-am62x-est-2026][@intel-eci-gptp-2024] TI Processor SDK 문서에 따르면 게이트가 열린 큐의 프레임은 그 큐에 지정된 전송 선택 알고리즘에 따라 전송에 선택된다.[@ti-processor-sdk-linux-am62x-est-2026]
+IEEE 802.1Q의 scheduled traffic은 포트의 [[traffic-class|트래픽 클래스]]마다 게이트를 두고, 게이트는 열림과 닫힘 두 상태를 가진다.[@ieee-802-1qcw-sched-yang-2023] 전송할 수 있는 것은 게이트가 열린 큐뿐이고, 게이트가 닫힌 큐의 프레임은 전송에 선택되지 않는다.[@ti-processor-sdk-linux-am62x-est-2026][@intel-eci-gptp-2024] TI Processor SDK 문서에 따르면 게이트가 열린 큐의 프레임은 그 큐에 지정된 전송 선택 알고리즘에 따라 전송에 선택된다.[@ti-processor-sdk-linux-am62x-est-2026]
+
+![[diagrams/egress-queue-transmission-selection.svg]]
 
 ### 게이트 제어 목록
 
 포트마다 게이트 제어 목록을 두며, 목록은 게이트 동작을 순서대로 적은 것이다.[@intel-eci-gptp-2024][@microchip-an1185-2025] 목록의 항목마다 큐별 게이트의 열림·닫힘 상태와 그 상태를 유지할 시간을 적는다.[@microchip-an1185-2025][@nxp-an13995-2023] 게이트 스케줄은 정해진 길이의 주기로 되풀이된다.[@ti-processor-sdk-linux-am62x-est-2026][@nxp-an13995-2023]
 
 게이트 스케줄은 노드들이 [[ptp|PTP]]로 공유하는 시각을 기준으로 하므로, 여러 노드에 같은 시각에 적용할 수 있다.[@microchip-an1185-2025][@nxp-an13995-2023]
+
+![[diagrams/tas-gate-control-list-cycle.svg]]
 
 ### guard band
 
@@ -39,3 +43,5 @@ TAS는 정해진 시각에 한 트래픽 클래스나 그 묶음만 네트워크
 802.1Qbv 프로젝트 페이지에 따르면 이 개정은 engineered LAN에서 지연과 전달 변동을 보장하려 했다. credit-based shaper는 engineered가 아닌 네트워크에서도 잘 동작하며, 이 개정으로 두 종류의 네트워크를 하나로 합칠 수 있다.[@ieee-802-1qbv-project-2016]
 
 [[frame-preemption|프레임 선점]]을 함께 쓰면 guard band를 줄일 수 있다.[@adi-adin3310-adin6310-2025][@ti-processor-sdk-linux-am64x-iet-2026] Microchip의 TSN 앱노트에 따르면 이때 guard band는 끼어들 수 있는 가장 긴 프레임의 크기에서 가장 긴 조각의 크기로 줄어든다.[@microchip-pd-ies008x-tsn-2025]
+
+![[diagrams/guard-band-with-preemption.svg]]

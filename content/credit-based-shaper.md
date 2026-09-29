@@ -23,6 +23,8 @@ CBS는 큐마다 credit 값을 둔다.[@intel-i210-2019][@microchip-sam-e70-2026
 - 큐가 비고 credit이 양수이면 credit은 0이 된다.[@st-rm0436-2025][@intel-i210-2019]
 - 큐는 보낼 프레임이 있고 credit이 0 이상일 때 전송할 수 있다.[@intel-i210-2019][@microchip-sam-e70-2026]
 
+![[diagrams/cbs-credit-timeline.svg]]
+
 idleSlope는 큐에 예약한 대역폭에 해당한다.[@st-rm0436-2025][@intel-i210-2019] sendSlope의 크기는 포트의 전송 속도 portTransmitRate에서 idleSlope를 뺀 값, 곧 $\mathrm{portTransmitRate} - \mathrm{idleSlope}$다.[@st-rm0436-2025][@microchip-sam-e70-2026] I210 데이터시트는 sendSlope를 $\mathrm{idleSlope} - \mathrm{LinkRate}$로 계산하며, idleSlope는 LinkRate보다 작아야 하므로 sendSlope는 음수다.[@intel-i210-2019]
 
 credit에는 위 한계 hiCredit이 있다.[@st-rm0436-2025][@intel-i210-2019] I210 데이터시트는 우선순위가 가장 높은 큐의 hiCredit을 최대 전송 패킷 크기와 그 큐의 예약 대역폭으로 계산하게 하고, 다음 큐의 식에는 앞 큐의 프레임도 더한다.[@intel-i210-2019] STM32MP157의 이더넷은 아래 한계 loCredit도 둔다. RM0436은 hiCredit의 최댓값으로 best-effort 트래픽의 최대 패킷 크기를, loCredit 크기의 최댓값으로 그 큐가 내보내는 최대 프레임 크기를 제시한다.[@st-rm0436-2025]

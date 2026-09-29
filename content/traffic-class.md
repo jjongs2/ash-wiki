@@ -23,6 +23,8 @@ KSZ9477S의 credit-based shaper는 큐에 예약한 대역폭을 넘지 않는 �
 
 IEEE 802.1Q의 [[time-aware-shaper|scheduled traffic]]은 포트의 트래픽 클래스마다 게이트를 두고, 게이트는 열림과 닫힘 두 상태를 가진다.[@ieee-802-1qcw-sched-yang-2023]
 
+![[diagrams/egress-queue-transmission-selection.svg]]
+
 ## 비교·한계
 
 IEEE 802.1Qbu 프로젝트 페이지에 따르면, 시간이 중요하지 않은 큰 프레임이 먼저 전송을 시작하면 시간이 중요한 프레임의 지연이 크게 늘어난다. [[frame-preemption|프레임 선점]]은 시간이 중요하지 않은 프레임의 전송을 멈추고 시간이 중요한 프레임을 먼저 보낸 뒤 멈춘 프레임을 이어 보내, 시간이 중요한 프레임의 지연을 줄인다.[@ieee-802-1qbu-project-2016]
