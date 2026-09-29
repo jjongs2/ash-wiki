@@ -8,13 +8,13 @@ aliases:
 verified: 2026-09-29
 ---
 
-**SRP**(Stream Reservation Protocol)는 [[avb|AVB]]에서 스트림 예약을 맡는 프로토콜로, 브리지가 AV 스트림에 필요한 자원을 보장하게 한다.[@ieee-802-1-avb-tg-2013][@ti-snaa333-2020][@nxp-amf-aut-t2348-2016] IEEE 802.1Qat-2010이 처음 정했다. 이 개정은 브리지로 이어진 LAN을 지나는 스트림에 네트워크 자원을 예약하게 했고, 전송을 시작하기 전에 종단 간 경로 전체의 자원을 확보하도록 했다.[@ieee-802-1qat-project-2010] 지금은 IEEE 802.1Q가 SRP를 정한다.[@ieee-ra-ethertype-2024]
+**SRP**(Stream Reservation Protocol)는 [[avb|AVB]]에서 스트림 예약을 맡는 프로토콜로, 브리지가 오디오·비디오 스트림에 필요한 자원을 보장하게 한다.[@ieee-802-1-avb-tg-2013][@ti-snaa333-2020][@nxp-amf-aut-t2348-2016] IEEE 802.1Qat-2010이 처음 정했다. 이 개정은 브리지로 이어진 LAN(Local Area Network)을 지나는 스트림에 네트워크 자원을 예약하게 했고, 전송을 시작하기 전에 종단 간 경로 전체의 자원을 확보하도록 했다.[@ieee-802-1qat-project-2010] 지금은 IEEE 802.1Q가 SRP를 정한다.[@ieee-ra-ethertype-2024]
 
 ## 구조·동작
 
 ### MRP 응용
 
-IEEE 802.1ak-2007이 정한 MRP(Multiple Registration Protocol)는 MRP 응용의 참여자가 브리지로 이어진 LAN의 다른 참여자에게 속성을 등록하게 했다. 이 개정은 응용으로 VLAN을 등록하는 MVRP와 그룹 MAC 주소를 등록하는 MMRP 둘을 정했다.[@ieee-802-1ak-project-2015] 지금은 MVRP(Multiple VLAN Registration Protocol)와 MMRP(Multiple MAC Registration Protocol)도 IEEE 802.1Q가 정한다. EtherType은 SRP가 `0x22EA`, MVRP가 `0x88F5`, MMRP가 `0x88F6`이다.[@ieee-ra-ethertype-2024]
+IEEE 802.1ak-2007이 정한 MRP(Multiple Registration Protocol)는 MRP 응용의 참여자가 브리지로 이어진 LAN의 다른 참여자에게 속성을 등록하게 했다. 이 개정은 응용으로 VLAN을 등록하는 MVRP(Multiple VLAN Registration Protocol)와 그룹 MAC(Medium Access Control) 주소를 등록하는 MMRP(Multiple MAC Registration Protocol) 둘을 정했다.[@ieee-802-1ak-project-2015] 지금은 MVRP와 MMRP도 IEEE 802.1Q가 정한다. EtherType은 SRP가 `0x22EA`, MVRP가 `0x88F5`, MMRP가 `0x88F6`이다.[@ieee-ra-ethertype-2024]
 
 Micrel의 KSZ956X MRP 개발자 안내서에 따르면 MRP는 스위치를 거쳐 속성을 전달하는 틀이고, MMRP, MVRP, MSRP(Multiple Stream Registration Protocol)는 그 위에서 각각 MAC 속성, VLAN 속성, SRP 속성을 전달한다. KSZ956X는 AVB 스트림 예약을 위해 셋을 함께 다룬다.[@micrel-ksz956x-mrp-2014]
 
