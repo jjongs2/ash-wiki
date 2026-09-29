@@ -29,11 +29,11 @@ ASAM MCD-2 NET, 곧 **FIBEX**(Field Bus Data Exchange Format)는 차량 네트�
 
 ISO 17987 시리즈는 LIN의 통신 동작을 기술하는 네트워크 기술 파일로 LDF(LIN description file)를 두고, 그 형식은 ISO 17987-2가 다룬다.[@iso-17987-2-obp-2025]
 
-Vector는 DBC 형식을 통신 데이터를 기술하는 사실상의 표준(de facto standard)이라 부른다. Vector의 CANdb++ Admin 자료에 따르면 DBC 데이터베이스는 CAN·[[can-fd|CAN FD]] 네트워크, 버스에 이어진 ECU, 메시지와 시그널을 기술하고, 메시지의 송신 노드와 노드가 받는 시그널을 관계로 둔다.[@vector-candb-admin-factsheet-2024] 메시지 안에서 시그널의 위치는 시작 비트로 정한다.[@vector-an-ion-1-0521-2019]
+Vector는 DBC 형식을 통신 데이터를 기술하는 사실상의 표준(de facto standard)이라 부른다. DBC 데이터베이스는 CAN·[[can-fd|CAN FD]] 네트워크, 버스에 이어진 ECU, 메시지와 시그널을 기술하고, 메시지의 송신 노드와 노드가 받는 시그널을 관계로 둔다.[@vector-candb-admin-factsheet-2024] 메시지 안에서 시그널의 위치는 시작 비트로 정한다.[@vector-an-ion-1-0521-2019]
 
 ### 물리값 변환
 
-AUTOSAR에서 ISignal의 네트워크 표현은 CompuMethod로 물리값과 이어진다.[@autosar-cp-tps-systemtemplate-2025] LINEAR 범주의 CompuMethod는 내부값 $x$에 계수 $a$를 곱한 뒤 오프셋 $b$를 더해 물리값 $y = a\,x + b$를 얻는다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+AUTOSAR에서 ISignal의 네트워크 표현은 CompuMethod로 물리값과 이어진다.[@autosar-cp-tps-systemtemplate-2025] `LINEAR` 범주의 CompuMethod는 내부값 $x$에 계수 $a$를 곱한 뒤 오프셋 $b$를 더해 물리값 $y = a\,x + b$를 얻는다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ### 송신과 수신 감시
 
