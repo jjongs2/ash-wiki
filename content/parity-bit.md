@@ -25,4 +25,4 @@ ATmega328P의 USART(Universal Synchronous and Asynchronous Receiver Transmitter)
 
 패리티 검사는 비트 하나의 오류를 모두 찾아낸다.[@ti-spna109-2008][@microchip-an730-2000] 일부 STM32 MCU가 SRAM(Static Random-Access Memory)의 8비트 워드마다 두는 패리티 비트는 비트 하나의 오류와 홀수 개 비트의 오류를 찾아낸다.[@st-an4750-2015]
 
-패리티 비트는 오류를 찾아낼 뿐 고치지는 못한다.[@ti-spna109-2008][@st-an4750-2015] Xilinx XAPP645에 따르면 [[error-correction-code|해밍 부호]]는 데이터 워드의 특정 비트들을 XOR해 만든 패리티 비트 여러 개를 두고, 이 비트들로 비트 하나의 오류가 난 자리를 찾아 고친다.[@xilinx-xapp645-2006]
+패리티 비트는 오류를 찾아낼 뿐 고치지는 못한다.[@ti-spna109-2008][@st-an4750-2015] 패리티 비트 여러 개로 틀린 자리를 찾아 고치는 해밍 부호는 [[error-correction-code|ECC]]에서 다룬다.

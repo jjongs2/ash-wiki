@@ -5,24 +5,20 @@ tags:
 verified: 2026-09-29
 ---
 
-**해밍 거리**(Hamming distance)는 길이가 같은 두 비트열에서 값이 서로 다른 자리의 수다. 예를 들어 `10110`과 `11100`은 둘째와 넷째 자리가 달라 해밍 거리가 2다.[@iec-60050-721-08-25-1991] Microchip 앱노트 AN2632에 따르면 해밍 거리는 두 값을 XOR(exclusive OR)한 결과에 있는 1의 개수로 나타낼 수 있다.[@microchip-an2632-2019]
+**해밍 거리**(Hamming distance)는 길이가 같은 두 비트열에서 값이 서로 다른 자리의 수다. 예를 들어 `10110`과 `11100`은 둘째와 넷째 자리가 달라 해밍 거리가 2다. 오류로 비트 $k$개가 뒤집히면 받은 비트열과 원래 비트열의 해밍 거리는 $k$다.[@iec-60050-721-08-25-1991] Microchip 앱노트 AN2632에 따르면 해밍 거리는 두 값을 XOR(exclusive OR)한 결과에 있는 1의 개수로 나타낼 수 있다.[@microchip-an2632-2019]
 
 ![[diagrams/hamming-distance-bit-comparison.svg]]
 
 ## 구조·동작
 
-### 최소 해밍 거리
+### 최소 해밍 거리와 검출·정정 능력
 
-TI 앱노트 SPRA530에 따르면 부호의 **최소 해밍 거리** $d_\mathrm{min}$은 서로 다른 두 부호어 사이의 해밍 거리 가운데 가장 작은 값이다.[@ti-spra530-1999] 오류로 비트 $k$개가 뒤집히면 받은 비트열과 원래 부호어의 해밍 거리는 $k$다.[@iec-60050-721-08-25-1991]
-
-### 검출과 정정 능력
-
-TI 앱노트 SPRA530에 따르면 블록 부호는 오류를 $d_\mathrm{min} - 1$개까지 찾아내고, 오류 개수 $t$가 $2t + 1 \le d_\mathrm{min}$을 만족하면 고친다. 예를 들어 부호어가 `00000`과 `11111`뿐인 부호는 $d_\mathrm{min} = 5$라 오류 비트 4개까지 찾아내고 2개까지 고친다.[@ti-spra530-1999] TI 앱노트 SPNA139에 따르면 오류가 난 값은 가장 가까운 유효한 값으로 되돌려 고친다.[@ti-spna139-2011]
+TI 앱노트 SPRA530에 따르면 부호의 **최소 해밍 거리** $d_\mathrm{min}$은 서로 다른 두 부호어 사이의 해밍 거리 가운데 가장 작은 값이다. 블록 부호는 오류를 $d_\mathrm{min} - 1$개까지 찾아내고, 오류 개수 $t$가 $2t + 1 \le d_\mathrm{min}$을 만족하면 고친다. 예를 들어 부호어가 `00000`과 `11111`뿐인 부호는 $d_\mathrm{min} = 5$라 오류 비트 4개까지 찾아내고 2개까지 고친다.[@ti-spra530-1999]
 
 ![[diagrams/hamming-distance-dmin-detect-correct.svg]]
 
 ## 비교·한계
 
-최소 해밍 거리가 4인 SECDED(Single Error Correction, Double Error Detection) 부호는 비트 하나의 오류를 고치면서 비트 두 개의 오류를 찾아낸다.[@ti-spna139-2011][@microchip-coreedac-2025] SECDED는 [[error-correction-code|ECC]]에서 다룬다. TI Hercules MCU의 플래시 ECC는 SECDED라서 3비트 오류를 잘못 고칠 수 있고, 3비트 오류 검출이 더 중요하면 오류 검출 전용 모드로 둘 수 있다.[@ti-spna139-2011]
+최소 해밍 거리가 4인 SECDED(Single Error Correction, Double Error Detection) 부호는 비트 하나의 오류를 고치면서 비트 두 개의 오류를 찾아낸다.[@ti-spna139-2011][@microchip-coreedac-2025] SECDED는 [[error-correction-code|ECC]]에서 다룬다. TI Hercules MCU의 플래시 ECC는 SECDED라서 비트 하나의 오류를 가장 가까운 유효한 값으로 되돌려 고치지만, 3비트 오류는 잘못 고칠 수 있다. 이 ECC는 3비트 오류 검출이 더 중요하면 오류 검출 전용 모드로 둘 수 있다.[@ti-spna139-2011]
 
 [[can|CAN]]이 쓰는 [[cyclic-redundancy-check|CRC]]의 해밍 거리는 [[can-crc|CAN CRC]]에서 다룬다.
