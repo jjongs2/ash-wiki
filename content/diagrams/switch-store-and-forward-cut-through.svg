@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="47 24 712 219" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+  <!-- 줄 이름 -->
+  <g fill="#727981" text-anchor="end">
+    <text x="156" y="53">받는 포트</text>
+    <text x="156" y="104">보내는 포트</text>
+    <text x="156" y="120" font-size="12">cut-through</text>
+    <text x="156" y="170">보내는 포트</text>
+    <text x="156" y="186" font-size="12">store-and-forward</text>
+  </g>
+
+  <!-- 받는 프레임 -->
+  <rect x="170" y="34" width="60" height="28" rx="3" fill="#825da9" />
+  <text x="200" y="53" text-anchor="middle" font-size="12" fill="#f8fafd">64바이트</text>
+  <rect x="232" y="34" width="218" height="28" rx="3" fill="#336fb8" />
+  <text x="341" y="53" text-anchor="middle" font-size="12" fill="#f8fafd">나머지와 FCS</text>
+
+  <!-- 보내기 시작하는 때 -->
+  <g stroke="#727981" stroke-width="1" stroke-dasharray="4 4">
+    <line x1="231" y1="64" x2="231" y2="96" />
+    <line x1="451" y1="64" x2="451" y2="162" />
+  </g>
+
+  <!-- cut-through -->
+  <rect x="232" y="98" width="280" height="28" rx="3" fill="#337b47" />
+  <text x="372" y="117" text-anchor="middle" font-size="12" fill="#f8fafd">프레임 전달</text>
+  <text x="232" y="144" font-size="12" fill="#727981">처음 64바이트를 받은 뒤 전달을 시작한다</text>
+
+  <!-- store-and-forward -->
+  <rect x="452" y="164" width="280" height="28" rx="3" fill="#b0540d" />
+  <text x="592" y="183" text-anchor="middle" font-size="12" fill="#f8fafd">프레임 전달</text>
+  <text x="452" y="210" font-size="12" fill="#727981">프레임을 다 받고 FCS를 검사한 뒤 전달한다</text>
+
+  <!-- 시간 -->
+  <line x1="170" y1="228" x2="748" y2="228" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="156" y="232" text-anchor="end" font-size="12" fill="#727981">시간</text>
+</svg>
