@@ -22,7 +22,7 @@ MII는 데이터를 4비트 단위로 주고받는다.[@ti-dp83822-2026][@st-rm0
 | 유효 표시 | TX_EN    | RX_DV    |
 | 오류 표시 | TX_ER    | RX_ER    |
 
-TX_CLK와 RX_CLK는 모두 PHY가 내며, 100 Mbit/s에서 25 MHz, 10 Mbit/s에서 2.5 MHz다.[@ti-dp83822-2026][@st-rm0008-2021][@microchip-ksz9477s-2019][@nxp-tja1101b-2021] MAC은 TX_EN을 올린 동안 TX_CLK에 맞춰 TXD에 데이터를 싣고, PHY는 RXD에 유효한 데이터를 내는 동안 RX_DV를 올린다. 매체 상태를 알리는 신호도 둘 있다. CRS(Carrier Sense)는 송신이나 수신 매체가 쉬지 않음을 알린다.[@ti-dp83822-2026][@st-rm0008-2021] COL(Collision)은 반이중 동작에서 충돌을 알린다.[@ti-dp83822-2026][@microchip-ksz9477s-2019] TJA1100 데이터시트에 따르면 [[100base-t1|100BASE-T1]]은 전이중으로 양방향 통신을 하므로 COL과 CRS가 필요 없다.[@nxp-tja1100-2017]
+TX_CLK와 RX_CLK는 모두 PHY가 내며, 100 Mbit/s에서 25 MHz, 10 Mbit/s에서 2.5 MHz다.[@ti-dp83822-2026][@st-rm0008-2021][@microchip-ksz9477s-2019][@nxp-tja1101b-2021] MAC은 TX_EN을 올린 동안 TX_CLK에 맞춰 TXD에 데이터를 싣고, PHY는 RXD에 유효한 데이터를 내는 동안 RX_DV를 올린다. 매체 상태를 알리는 신호도 둘 있다. CRS(Carrier Sense)는 송신이나 수신 매체가 쉬지 않음을 알린다.[@ti-dp83822-2026][@st-rm0008-2021] COL(Collision)은 반이중 동작에서 충돌을 알린다.[@ti-dp83822-2026][@microchip-ksz9477s-2019] [[100base-t1|100BASE-T1]] PHY인 TJA1100은 COL과 CRS 핀을 두지 않는다.[@nxp-tja1100-2017]
 
 ### 관리 인터페이스
 

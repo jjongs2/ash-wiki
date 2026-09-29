@@ -9,6 +9,8 @@ verified: 2026-09-29
 
 ISO 21111 시리즈는 차량 내 이더넷의 요구사항과 시험 계획을 담는다. 이더넷 요구사항은 대체로 ISO/IEC/IEEE 8802-3에 있고, ISO 21111은 웨이크업과 입출력 기능처럼 차량 응용에 필요한 보충 명세를 더한다.[@iso-21111-1-obp-2020]
 
+OPEN Alliance는 2011년에 설립되었다.[@open-alliance-about-2026][@ti-sszt730-2018] 설립 무렵 OPEN Alliance의 핵심 목표는 100 Mbit/s BroadR-Reach 물리 계층 명세를 개방된 업계 표준이자 사실상 표준으로 세우는 것이었다.[@open-alliance-about-2014] OPEN Alliance는 100BASE-T1과 1000BASE-T1의 상호 운용성 시험 명세를 펴낸다.[@open-alliance-100base-t1-iop-2024][@open-alliance-1000base-t1-iop-2024]
+
 ## 구조·동작
 
 ### 물리 계층
@@ -32,11 +34,7 @@ P802.3ch 태스크 포스는 비차폐 꼬임쌍선, 차폐 꼬임쌍선, 차폐
 
 ![[diagrams/link-segment-inline-connectors.svg]]
 
-100BASE-T1은 비차폐 꼬임쌍선 한 쌍으로 동작할 수 있어 차폐 케이블이 필요 없고, 케이블의 무게와 비용이 준다.[@open-alliance-about-2014][@ti-sszt730-2018] IEEE 802.3 작업 그룹은 P802.3bw의 CSD(Criteria for Standards Development)에서, 선 쌍 수를 줄이면 무게가 줄어 설치와 운용 비용이 크게 떨어질 것으로 보았다.[@ieee-802-3bw-csd-2014]
-
-### 토폴로지
-
-TI 기술 기사에 따르면 이더넷은 스위치 네트워크를 이루어, [[can|CAN]], LIN, FlexRay, MOST(Media Oriented Systems Transport) 같은 공유 버스 토폴로지로는 얻을 수 없는 대역과 데이터 속도를 낸다.[@ti-sszt730-2018]
+100BASE-T1은 비차폐 꼬임쌍선 한 쌍으로 동작할 수 있어 차폐 케이블이 필요 없고, 케이블의 무게와 비용이 준다.[@ti-sszt730-2018][@open-alliance-about-2014] IEEE 802.3 작업 그룹은 P802.3bw의 CSD(Criteria for Standards Development)에서, 선 쌍 수를 줄이면 무게가 줄어 설치와 운용 비용이 크게 떨어질 것으로 보았다.[@ieee-802-3bw-csd-2014]
 
 ### 상위 프로토콜
 
@@ -48,7 +46,7 @@ IEEE 802.1 [[tsn|TSN]] 태스크 그룹은 IEEE 802 네트워크에서 지연 �
 
 ## 비교·한계
 
-OPEN Alliance는 2011년에 설립되었다.[@open-alliance-about-2026][@ti-sszt730-2018] 설립 무렵 OPEN Alliance의 핵심 목표는 100 Mbit/s BroadR-Reach 물리 계층 명세를 개방된 업계 표준이자 사실상 표준으로 세우는 것이었다.[@open-alliance-about-2014] OPEN Alliance는 100BASE-T1과 1000BASE-T1의 상호 운용성 시험 명세를 펴낸다.[@open-alliance-100base-t1-iop-2024][@open-alliance-1000base-t1-iop-2024]
+TI 기술 기사에 따르면 이더넷은 스위치 네트워크를 이루어, [[can|CAN]], LIN, FlexRay, MOST(Media Oriented Systems Transport) 같은 공유 버스 토폴로지로는 얻을 수 없는 대역과 데이터 속도를 낸다.[@ti-sszt730-2018]
 
 IEEE 802.3 작업 그룹은 차량용 이더넷 수요를 이끄는 것으로 카메라, 충돌 회피, 인포테인먼트처럼 대역을 많이 쓰는 차량 응용을 들었다.[@ieee-802-3bw-csd-2014] IEEE SA에 따르면 이더넷의 높은 속도는 펌웨어 업데이트를 빠르게 한다.[@ieee-tsn-automotive-flyer-2026] TI 기술 기사에 따르면 IEEE 802.3bw와 802.3bp의 차량용 요구사항은 인포테인먼트, ADAS(Advanced Driver Assistance Systems), 온보드 진단, 5G나 V2X(Vehicle-to-Everything) 같은 외부 연결이 퍼지는 바탕이 되었다.[@ti-sszt730-2018]
 
