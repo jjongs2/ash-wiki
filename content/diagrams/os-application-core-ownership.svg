@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -3 611 528" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <!-- 코어 틀 안에 OS-Application, 그 안에 소속 객체. 코어 0 위, 코어 1 아래.
+       resource와 스핀락은 어느 OS-Application에도 속하지 않고 접근 권한으로만 쓴다 -->
+
+  <!-- 코어 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20" y="40" width="400" height="168" rx="4" />
+    <rect x="20" y="270" width="400" height="200" rx="4" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="20" y="28">코어 0</text>
+    <text x="20" y="258">코어 1</text>
+  </g>
+
+  <!-- OS-Application -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="40" y="60" width="170" height="128" rx="4" />
+    <rect x="40" y="290" width="170" height="98" rx="4" />
+    <rect x="230" y="290" width="170" height="98" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="125" y="82">OS-Application A</text>
+    <text x="125" y="312">OS-Application B</text>
+    <text x="315" y="312">OS-Application C</text>
+  </g>
+
+  <!-- 소속 객체 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="50" y="94" width="150" height="24" rx="2" />
+    <rect x="50" y="124" width="150" height="24" rx="2" />
+    <rect x="50" y="154" width="150" height="24" rx="2" />
+    <rect x="50" y="324" width="150" height="24" rx="2" />
+    <rect x="50" y="354" width="150" height="24" rx="2" />
+    <rect x="240" y="324" width="150" height="24" rx="2" />
+    <rect x="240" y="354" width="150" height="24" rx="2" />
+  </g>
+  <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
+    <text x="125" y="110">태스크</text>
+    <text x="125" y="140">ISR</text>
+    <text x="125" y="170">알람</text>
+    <text x="125" y="340">태스크</text>
+    <text x="125" y="370">counter</text>
+    <text x="315" y="340">태스크</text>
+    <text x="315" y="370">schedule table</text>
+  </g>
+
+  <!-- 어느 OS-Application에도 속하지 않는 객체 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="150" y="430" width="140" height="24" rx="2" />
+    <rect x="470" y="227" width="120" height="24" rx="2" />
+  </g>
+  <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
+    <text x="220" y="446">resource</text>
+    <text x="530" y="243">스핀락</text>
+  </g>
+
+  <!-- 접근 권한 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4">
+    <line x1="180" y1="388" x2="180" y2="430" />
+    <line x1="260" y1="388" x2="260" y2="430" />
+    <path d="M210 124 H530 V227" />
+    <path d="M400 339 H530 V251" />
+    <line x1="20" y1="500" x2="60" y2="500" />
+  </g>
+  <text x="68" y="504" font-size="12" fill="var(--text, #727981)">설정으로 받은 접근 권한</text>
+</svg>

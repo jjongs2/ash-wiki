@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="47.5 19.5 585 229.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+  <!-- 위: 상위 event chain, 아래: 그 segment. 점은 timing event, 화살표는 인과 관계.
+       앞 segment의 응답이 뒤 segment의 자극이다 -->
+
+  <!-- 상위 event chain -->
+  <g fill="var(--ink, #727981)">
+    <circle cx="100" cy="60" r="6" />
+    <circle cx="580" cy="60" r="6" />
+  </g>
+  <line x1="108" y1="60" x2="571" y2="60" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="340" y="48" text-anchor="middle">event chain</text>
+    <text x="340" y="80" text-anchor="middle">전체 예산</text>
+    <text x="88" y="64" text-anchor="end">자극</text>
+    <text x="592" y="64">응답</text>
+  </g>
+
+  <!-- 같은 이벤트 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="100" y1="66" x2="100" y2="144" />
+    <line x1="580" y1="66" x2="580" y2="144" />
+  </g>
+
+  <!-- segment -->
+  <g fill="var(--ink, #727981)">
+    <circle cx="100" cy="150" r="6" />
+    <circle cx="260" cy="150" r="6" />
+    <circle cx="420" cy="150" r="6" />
+    <circle cx="580" cy="150" r="6" />
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="108" y1="150" x2="251" y2="150" />
+    <line x1="268" y1="150" x2="411" y2="150" />
+    <line x1="428" y1="150" x2="571" y2="150" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="180" y="138">segment 1</text>
+    <text x="340" y="138">segment 2</text>
+    <text x="500" y="138">segment 3</text>
+    <text x="180" y="170">예산 1</text>
+    <text x="340" y="170">예산 2</text>
+    <text x="500" y="170">예산 3</text>
+    <text x="260" y="192">응답 = 자극</text>
+    <text x="420" y="192">응답 = 자극</text>
+  </g>
+
+  <text x="340" y="228" text-anchor="middle" font-size="12" fill="var(--text, #727981)">예산 1 + 예산 2 + 예산 3 ≤ 전체 예산</text>
+</svg>
