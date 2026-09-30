@@ -19,9 +19,9 @@
     <text x="20" y="123">CAN 버스</text>
     <text x="20" y="173">ECU 2</text>
   </g>
-  <rect x="140" y="56" width="120" height="24" rx="3" fill="#336fb8" />
+  <rect x="140" y="56" width="120" height="24" rx="3" stroke="#727981" stroke-width="1.5" />
   <rect x="260" y="106" width="120" height="24" rx="3" fill="#b0540d" />
-  <rect x="380" y="156" width="140" height="24" rx="3" fill="#336fb8" />
+  <rect x="380" y="156" width="140" height="24" rx="3" stroke="#727981" stroke-width="1.5" />
   <g stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)">
     <line x1="260" y1="80" x2="260" y2="103" />
     <line x1="380" y1="130" x2="380" y2="153" />

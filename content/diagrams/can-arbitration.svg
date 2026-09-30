@@ -44,7 +44,7 @@
 
   <!-- 되읽은 버스 -->
   <text x="146" y="165" text-anchor="end" fill="#727981">버스에서 읽은 값</text>
-  <g fill="#337b47">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="160" y="140" width="59" height="40" />
     <rect x="220" y="140" width="59" height="40" />
     <rect x="280" y="140" width="59" height="40" />
@@ -53,7 +53,7 @@
     <rect x="460" y="140" width="59" height="40" />
     <rect x="520" y="140" width="60" height="40" />
   </g>
-  <g text-anchor="middle" fill="#f8fafd">
+  <g text-anchor="middle" fill="#727981">
     <text x="190" y="165">D</text><text x="250" y="165">R</text><text x="310" y="165">R</text><text x="370" y="165">D</text><text x="430" y="165">R</text><text x="490" y="165">D</text><text x="550" y="165">D</text>
   </g>
 

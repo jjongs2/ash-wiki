@@ -7,17 +7,17 @@
   </defs>
 
   <!-- 4비트 데이터 경로 -->
-  <rect x="20" y="30" width="140" height="52" rx="4" fill="#336fb8" />
-  <text x="90" y="52" text-anchor="middle" fill="#f8fafd">4비트 데이터 경로</text>
-  <text x="90" y="70" text-anchor="middle" font-size="12" fill="#f8fafd">25 MHz</text>
+  <rect x="20" y="30" width="140" height="52" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="90" y="52" text-anchor="middle" fill="#727981">4비트 데이터 경로</text>
+  <text x="90" y="70" text-anchor="middle" font-size="12" fill="#727981">25 MHz</text>
 
   <line x1="160" y1="56" x2="228" y2="56" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
   <text x="195" y="47" text-anchor="middle" font-size="12" fill="#727981">4B3B</text>
 
   <!-- 3비트 데이터 경로 -->
-  <rect x="230" y="30" width="140" height="52" rx="4" fill="#336fb8" />
-  <text x="300" y="52" text-anchor="middle" fill="#f8fafd">3비트 데이터 경로</text>
-  <text x="300" y="70" text-anchor="middle" font-size="12" fill="#f8fafd">33.334 MHz</text>
+  <rect x="230" y="30" width="140" height="52" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="300" y="52" text-anchor="middle" fill="#727981">3비트 데이터 경로</text>
+  <text x="300" y="70" text-anchor="middle" font-size="12" fill="#727981">33.334 MHz</text>
 
   <line x1="370" y1="56" x2="438" y2="56" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
 

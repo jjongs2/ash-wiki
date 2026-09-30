@@ -15,8 +15,8 @@
   <text x="190" y="92" font-size="12" fill="#727981">MII 계열</text>
 
   <!-- 가운데: PHY -->
-  <rect x="40" y="112" width="280" height="80" rx="4" fill="#b0540d" />
-  <text x="180" y="157" text-anchor="middle" fill="#f8fafd">PHY</text>
+  <rect x="40" y="112" width="280" height="80" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="180" y="157" text-anchor="middle" fill="#727981">PHY</text>
 
   <!-- 아래쪽: 매체 쪽 -->
   <line x1="180" y1="194" x2="180" y2="238" stroke="#727981" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />

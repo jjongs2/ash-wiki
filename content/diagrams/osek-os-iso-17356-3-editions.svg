@@ -8,13 +8,13 @@
 
   <!-- OSEK/VDX OS 명세의 판 -->
   <text x="20" y="30" font-size="12" fill="#727981">OSEK/VDX OS 명세</text>
-  <g fill="#336fb8">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="20" y="40" width="110" height="46" rx="4" />
     <rect x="170" y="40" width="110" height="46" rx="4" />
     <rect x="320" y="40" width="110" height="46" rx="4" />
     <rect x="520" y="40" width="110" height="46" rx="4" />
   </g>
-  <g text-anchor="middle" fill="#f8fafd">
+  <g text-anchor="middle" fill="#727981">
     <text x="75" y="68">2.2</text>
     <text x="225" y="60">2.2.1</text>
     <text x="225" y="77" font-size="12">2003년</text>

@@ -8,12 +8,12 @@
 
   <!-- superloop -->
   <text x="20" y="28" fill="#727981">superloop</text>
-  <rect x="20" y="50" width="150" height="34" rx="4" fill="#336fb8" />
-  <text x="95" y="72" text-anchor="middle" fill="#f8fafd">모듈 A의 함수</text>
-  <rect x="20" y="100" width="150" height="34" rx="4" fill="#336fb8" />
-  <text x="95" y="122" text-anchor="middle" fill="#f8fafd">모듈 B의 함수</text>
-  <rect x="20" y="150" width="150" height="34" rx="4" fill="#336fb8" />
-  <text x="95" y="172" text-anchor="middle" fill="#f8fafd">모듈 C의 함수</text>
+  <rect x="20" y="50" width="150" height="34" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="95" y="72" text-anchor="middle" fill="#727981">모듈 A의 함수</text>
+  <rect x="20" y="100" width="150" height="34" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="95" y="122" text-anchor="middle" fill="#727981">모듈 B의 함수</text>
+  <rect x="20" y="150" width="150" height="34" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="95" y="172" text-anchor="middle" fill="#727981">모듈 C의 함수</text>
   <g stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)">
     <line x1="95" y1="84" x2="95" y2="97" />
     <line x1="95" y1="134" x2="95" y2="147" />
@@ -37,12 +37,12 @@
     <line x1="520" y1="84" x2="520" y2="107" />
     <line x1="650" y1="84" x2="650" y2="107" />
   </g>
-  <g fill="#336fb8">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="330" y="110" width="120" height="48" rx="4" />
     <rect x="460" y="110" width="120" height="48" rx="4" />
     <rect x="590" y="110" width="120" height="48" rx="4" />
   </g>
-  <g text-anchor="middle" fill="#f8fafd">
+  <g text-anchor="middle" fill="#727981">
     <text x="390" y="131">태스크 1</text>
     <text x="390" y="149" font-size="12">우선순위 높음</text>
     <text x="520" y="131">태스크 2</text>

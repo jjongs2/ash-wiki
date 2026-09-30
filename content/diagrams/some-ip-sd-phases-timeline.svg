@@ -10,12 +10,12 @@
   </defs>
 
   <!-- 단계 -->
-  <rect x="20" y="16" width="178" height="32" rx="4" fill="#336fb8" />
-  <text x="109" y="37" text-anchor="middle" fill="#f8fafd">초기 대기 단계</text>
-  <rect x="202" y="16" width="176" height="32" rx="4" fill="#b0540d" />
-  <text x="290" y="37" text-anchor="middle" fill="#f8fafd">반복 단계</text>
-  <rect x="382" y="16" width="318" height="32" rx="4" fill="#337b47" />
-  <text x="541" y="37" text-anchor="middle" fill="#f8fafd">주 단계</text>
+  <rect x="20" y="16" width="178" height="32" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="109" y="37" text-anchor="middle" fill="#727981">초기 대기 단계</text>
+  <rect x="202" y="16" width="176" height="32" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="290" y="37" text-anchor="middle" fill="#727981">반복 단계</text>
+  <rect x="382" y="16" width="318" height="32" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="541" y="37" text-anchor="middle" fill="#727981">주 단계</text>
 
   <!-- 시간 축 -->
   <line x1="20" y1="120" x2="698" y2="120" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />

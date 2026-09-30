@@ -17,10 +17,10 @@
   <!-- 기본이 아닌 세션 -->
   <rect x="380.75" y="16.75" width="258.5" height="142.5" rx="6" stroke="#727981" stroke-width="1.5" stroke-dasharray="6 4" />
   <text x="510" y="36" text-anchor="middle" font-size="12" fill="#727981">기본이 아닌 세션</text>
-  <rect x="400" y="46" width="220" height="44" rx="4" fill="#b0540d" />
-  <text x="510" y="73" text-anchor="middle" fill="#f8fafd">프로그래밍 세션 (0x02)</text>
-  <rect x="400" y="100" width="220" height="44" rx="4" fill="#b0540d" />
-  <text x="510" y="127" text-anchor="middle" fill="#f8fafd">확장 진단 세션 (0x03)</text>
+  <rect x="400" y="46" width="220" height="44" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="510" y="73" text-anchor="middle" fill="#727981">프로그래밍 세션 (0x02)</text>
+  <rect x="400" y="100" width="220" height="44" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="510" y="127" text-anchor="middle" fill="#727981">확장 진단 세션 (0x03)</text>
 
   <!-- 세션 전환 -->
   <line x1="202" y1="76" x2="378" y2="76" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />

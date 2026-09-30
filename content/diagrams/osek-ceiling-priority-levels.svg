@@ -8,8 +8,8 @@
 
   <line x1="30" y1="270" x2="30" y2="14" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
   <text x="30" y="-2" text-anchor="middle" font-size="12" fill="#727981">우선순위</text>
-  <rect x="70" y="18" width="200" height="32" rx="4" fill="#337b47" />
-  <text x="170" y="39" text-anchor="middle" fill="#f8fafd">resource를 쓰지 않는 태스크</text>
+  <rect x="70" y="18" width="200" height="32" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="170" y="39" text-anchor="middle" fill="#727981">resource를 쓰지 않는 태스크</text>
   <text x="290" y="39" font-size="12" fill="#727981">쥔 동안에도 실행된다</text>
 
   <line x1="70" y1="86" x2="270" y2="86" stroke="#825da9" stroke-width="2" stroke-dasharray="6 4" />
@@ -18,8 +18,8 @@
   <rect x="70" y="122" width="200" height="32" rx="4" fill="#336fb8" />
   <text x="170" y="143" text-anchor="middle" fill="#f8fafd">resource를 쓰는 태스크</text>
   <text x="290" y="143" font-size="12" fill="#727981">쥔 동안 기다린다</text>
-  <rect x="70" y="174" width="200" height="32" rx="4" fill="#337b47" />
-  <text x="170" y="195" text-anchor="middle" fill="#f8fafd">resource를 쓰지 않는 태스크</text>
+  <rect x="70" y="174" width="200" height="32" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="170" y="195" text-anchor="middle" fill="#727981">resource를 쓰지 않는 태스크</text>
   <text x="290" y="195" font-size="12" fill="#727981">쥔 동안 기다린다</text>
   <rect x="70" y="226" width="200" height="32" rx="4" fill="#336fb8" />
   <text x="170" y="247" text-anchor="middle" fill="#f8fafd">resource를 쓰는 태스크</text>

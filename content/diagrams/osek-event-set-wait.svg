@@ -16,7 +16,7 @@
   </g>
 
   <!-- 이벤트 비트 -->
-  <g fill="#337b47">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="270" y="78" width="24" height="28" rx="2" />
     <rect x="302" y="78" width="24" height="28" rx="2" />
     <rect x="334" y="78" width="24" height="28" rx="2" />

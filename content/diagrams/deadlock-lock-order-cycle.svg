@@ -6,10 +6,10 @@
     </marker>
   </defs>
 
-  <rect x="40" y="60" width="120" height="44" rx="4" fill="#336fb8" />
-  <text x="100" y="87" text-anchor="middle" fill="#f8fafd">태스크 A</text>
-  <rect x="440" y="60" width="120" height="44" rx="4" fill="#336fb8" />
-  <text x="500" y="87" text-anchor="middle" fill="#f8fafd">태스크 B</text>
+  <rect x="40" y="60" width="120" height="44" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="100" y="87" text-anchor="middle" fill="#727981">태스크 A</text>
+  <rect x="440" y="60" width="120" height="44" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="500" y="87" text-anchor="middle" fill="#727981">태스크 B</text>
   <g stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)">
     <path d="M130 58 Q300 -10 470 58" />
     <path d="M470 106 Q300 174 130 106" />

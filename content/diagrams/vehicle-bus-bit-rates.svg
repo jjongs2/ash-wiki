@@ -16,12 +16,12 @@
   </g>
 
   <!-- 상한만 있는 버스는 점, 두 끝이 있는 저속 내결함성 CAN은 구간(열린 원은 그 값을 빼는 끝) -->
-  <circle cx="235.2" cy="32" r="6" fill="#337b47" />
-  <line x1="285.3" y1="72" x2="348.5" y2="72" stroke="#336fb8" stroke-width="4" />
-  <circle cx="280.3" cy="72" r="5" stroke="#336fb8" stroke-width="2" />
-  <circle cx="354.5" cy="72" r="6" fill="#336fb8" />
-  <circle cx="490" cy="112" r="6" fill="#336fb8" />
-  <circle cx="640" cy="152" r="6" fill="#b0540d" />
+  <circle cx="235.2" cy="32" r="6" fill="#727981" />
+  <line x1="285.3" y1="72" x2="348.5" y2="72" stroke="#727981" stroke-width="4" />
+  <circle cx="280.3" cy="72" r="5" stroke="#727981" stroke-width="2" />
+  <circle cx="354.5" cy="72" r="6" fill="#727981" />
+  <circle cx="490" cy="112" r="6" fill="#727981" />
+  <circle cx="640" cy="152" r="6" fill="#727981" />
 
   <!-- 값 -->
   <g font-size="12" fill="#727981">

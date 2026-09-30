@@ -24,14 +24,14 @@
   <!-- RM, n = 2 -->
   <rect x="200" y="26" width="414" height="24" fill="#337b47" />
   <rect x="614" y="26" width="86" height="24" fill="#b0540d" />
-  <rect x="700" y="26" width="80" height="24" fill="#bb464d" />
+  <rect x="700" y="26" width="80" height="24" stroke="#727981" stroke-width="1.5" />
   <!-- RM, n → ∞ -->
   <rect x="200" y="66" width="346.5" height="24" fill="#337b47" />
   <rect x="546.5" y="66" width="153.5" height="24" fill="#b0540d" />
-  <rect x="700" y="66" width="80" height="24" fill="#bb464d" />
+  <rect x="700" y="66" width="80" height="24" stroke="#727981" stroke-width="1.5" />
   <!-- EDF -->
   <rect x="200" y="106" width="500" height="24" fill="#337b47" />
-  <rect x="700" y="106" width="80" height="24" fill="#bb464d" />
+  <rect x="700" y="106" width="80" height="24" stroke="#727981" stroke-width="1.5" />
 
   <!-- 축 -->
   <line x1="200" y1="150" x2="800" y2="150" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
@@ -49,6 +49,6 @@
   <text x="220" y="206" font-size="12" fill="#727981">모든 마감 시한을 지킴</text>
   <rect x="360" y="194" width="14" height="14" fill="#b0540d" />
   <text x="380" y="206" font-size="12" fill="#727981">critical instant 검사로 판정</text>
-  <rect x="560" y="194" width="14" height="14" fill="#bb464d" />
+  <rect x="560" y="194" width="14" height="14" stroke="#727981" stroke-width="1.5" />
   <text x="580" y="206" font-size="12" fill="#727981">어떤 방식으로도 지키지 못함</text>
 </svg>

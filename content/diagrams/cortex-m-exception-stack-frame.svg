@@ -11,7 +11,7 @@
   <text x="270" y="50" text-anchor="middle" fill="#727981">부동소수점 상태</text>
 
   <!-- 8워드 프레임 -->
-  <g fill="#336fb8">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="200" y="76" width="140" height="24" rx="3" />
     <rect x="200" y="102" width="140" height="24" rx="3" />
     <rect x="200" y="128" width="140" height="24" rx="3" />
@@ -21,7 +21,7 @@
     <rect x="200" y="232" width="140" height="24" rx="3" />
     <rect x="200" y="258" width="140" height="24" rx="3" />
   </g>
-  <g text-anchor="middle" fill="#f8fafd">
+  <g text-anchor="middle" fill="#727981">
     <text x="270" y="93">xPSR</text>
     <text x="270" y="119">반환 주소</text>
     <text x="270" y="145">LR</text>

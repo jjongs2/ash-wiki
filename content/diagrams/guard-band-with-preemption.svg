@@ -12,7 +12,7 @@
 
   <!-- 두 guard band -->
   <text x="542" y="48" fill="#727981">guard band</text>
-  <g stroke="#bb464d" stroke-width="2">
+  <g stroke="#727981" stroke-width="2">
     <path d="M391 64 V56 H529 V64" />
     <path d="M491 96 V88 H529 V96" />
   </g>
@@ -24,8 +24,8 @@
   </g>
 
   <!-- 시간축 -->
-  <rect x="530" y="112" width="170" height="28" fill="#336fb8" />
-  <text x="615" y="130" text-anchor="middle" fill="#f8fafd">시간이 중요한 큐의 창</text>
+  <rect x="530" y="112" width="170" height="28" stroke="#727981" stroke-width="1.5" />
+  <text x="615" y="130" text-anchor="middle" fill="#727981">시간이 중요한 큐의 창</text>
   <line x1="220" y1="140" x2="736" y2="140" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
   <text x="736" y="158" text-anchor="end" fill="#727981">시간</text>
 </svg>

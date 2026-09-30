@@ -17,15 +17,15 @@
   <g stroke="#727981" stroke-width="1">
     <line x1="190" y1="62" x2="640" y2="62" />
     <line x1="190" y1="108" x2="640" y2="108" />
-    <line x1="190" y1="154" x2="640" y2="154" />
+    <line x1="300" y1="154" x2="580" y2="154" />
   </g>
 
   <!-- 실행 구간 -->
   <rect x="300" y="50" width="140" height="24" rx="2" fill="#bb464d" />
   <text x="370" y="66" text-anchor="middle" font-size="12" fill="#f8fafd">ActivateTask</text>
   <rect x="440" y="96" width="140" height="24" rx="2" fill="#b0540d" />
-  <rect x="190" y="142" width="110" height="24" rx="2" fill="#336fb8" />
-  <rect x="580" y="142" width="60" height="24" rx="2" fill="#336fb8" />
+  <rect x="190" y="142" width="110" height="24" rx="2" stroke="#727981" stroke-width="1.5" />
+  <rect x="580" y="142" width="60" height="24" rx="2" stroke="#727981" stroke-width="1.5" />
 
   <!-- 활성화: 아직 스케줄링되지 않음 -->
   <line x1="370" y1="76" x2="370" y2="104" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />

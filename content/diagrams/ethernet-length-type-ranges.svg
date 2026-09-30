@@ -10,9 +10,9 @@
   <rect x="40" y="36" width="260" height="42" rx="4" fill="#336fb8" />
   <text x="170" y="54" text-anchor="middle" fill="#f8fafd">길이</text>
   <text x="170" y="71" text-anchor="middle" font-size="12" fill="#f8fafd">데이터 필드의 옥텟 수</text>
-  <rect x="360" y="36" width="340" height="42" rx="4" fill="#b0540d" />
-  <text x="530" y="54" text-anchor="middle" fill="#f8fafd">EtherType</text>
-  <text x="530" y="71" text-anchor="middle" font-size="12" fill="#f8fafd">데이터 필드에 실린 상위 프로토콜</text>
+  <rect x="360" y="36" width="340" height="42" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="530" y="54" text-anchor="middle" fill="#727981">EtherType</text>
+  <text x="530" y="71" text-anchor="middle" font-size="12" fill="#727981">데이터 필드에 실린 상위 프로토콜</text>
 
   <!-- 값의 축 -->
   <line x1="40" y1="90" x2="712" y2="90" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />

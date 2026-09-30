@@ -16,7 +16,7 @@
     <text x="96" y="67">태스크 1</text>
     <text x="96" y="103">태스크 2</text>
   </g>
-  <g fill="#336fb8">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="110" y="50" width="50" height="24" rx="3" />
     <rect x="210" y="50" width="50" height="24" rx="3" />
     <rect x="310" y="50" width="50" height="24" rx="3" />

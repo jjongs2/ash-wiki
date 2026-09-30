@@ -3,17 +3,17 @@
 
   <!-- 세그먼트 -->
   <rect x="100" y="30" width="158" height="46" fill="#336fb8" />
-  <rect x="262" y="30" width="216" height="46" fill="#337b47" />
-  <rect x="482" y="30" width="98" height="46" fill="#b0540d" />
+  <rect x="262" y="30" width="216" height="46" stroke="#727981" stroke-width="1.5" />
+  <rect x="482" y="30" width="98" height="46" stroke="#727981" stroke-width="1.5" />
   <g text-anchor="middle" fill="#f8fafd">
     <text x="179" y="50">헤더</text>
-    <text x="370" y="50">페이로드</text>
-    <text x="531" y="50">트레일러</text>
+    <text x="370" y="50" fill="#727981">페이로드</text>
+    <text x="531" y="50" fill="#727981">트레일러</text>
   </g>
   <g text-anchor="middle" font-size="12" fill="#f8fafd">
     <text x="179" y="67">5바이트</text>
-    <text x="370" y="67">0~254바이트</text>
-    <text x="531" y="67">24비트 CRC</text>
+    <text x="370" y="67" fill="#727981">0~254바이트</text>
+    <text x="531" y="67" fill="#727981">24비트 CRC</text>
   </g>
   <text x="86" y="58" text-anchor="end" fill="#727981">프레임</text>
 

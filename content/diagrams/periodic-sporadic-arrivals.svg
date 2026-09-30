@@ -8,13 +8,13 @@
 
   <!-- periodic: 요청마다 T_i 막대, 막대가 끝나면 곧바로 다음 요청 -->
   <text x="20" y="85" fill="#727981">periodic</text>
-  <g fill="#336fb8">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="131" y="64" width="118" height="24" rx="3" />
     <rect x="251" y="64" width="118" height="24" rx="3" />
     <rect x="371" y="64" width="118" height="24" rx="3" />
     <rect x="491" y="64" width="118" height="24" rx="3" />
   </g>
-  <g font-size="12" text-anchor="middle" fill="#f8fafd">
+  <g font-size="12" text-anchor="middle" fill="#727981">
     <text x="190" y="81">요청 주기 <tspan font-style="italic">T</tspan><tspan font-style="italic" dy="3" font-size="9">i</tspan></text>
     <text x="310" y="81">요청 주기 <tspan font-style="italic">T</tspan><tspan font-style="italic" dy="3" font-size="9">i</tspan></text>
     <text x="430" y="81">요청 주기 <tspan font-style="italic">T</tspan><tspan font-style="italic" dy="3" font-size="9">i</tspan></text>
@@ -22,14 +22,14 @@
   </g>
   <line x1="110" y1="90" x2="658" y2="90" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
   <text x="666" y="94" font-size="12" fill="#727981">시간</text>
-  <g stroke="#336fb8" stroke-width="2">
+  <g stroke="#727981" stroke-width="2">
     <line x1="130" y1="90" x2="130" y2="38" />
     <line x1="250" y1="90" x2="250" y2="38" />
     <line x1="370" y1="90" x2="370" y2="38" />
     <line x1="490" y1="90" x2="490" y2="38" />
     <line x1="610" y1="90" x2="610" y2="38" />
   </g>
-  <g fill="#336fb8">
+  <g fill="#727981">
     <path d="M130 30 L135 40 L125 40 z" />
     <path d="M250 30 L255 40 L245 40 z" />
     <path d="M370 30 L375 40 L365 40 z" />

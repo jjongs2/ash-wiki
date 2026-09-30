@@ -22,13 +22,13 @@
   <text x="224" y="93" text-anchor="middle" fill="#f8fafd">02</text>
   <rect x="260" y="68" width="68" height="40" rx="4" fill="#b0540d" />
   <text x="294" y="93" text-anchor="middle" fill="#f8fafd">03</text>
-  <rect x="330" y="68" width="68" height="40" rx="4" fill="#825da9" />
-  <text x="364" y="93" text-anchor="middle" fill="#f8fafd">04</text>
+  <rect x="330" y="68" width="68" height="40" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="364" y="93" text-anchor="middle" fill="#727981">04</text>
 
   <!-- 리틀 엔디언 -->
   <text x="108" y="143" text-anchor="end" fill="#727981">리틀 엔디언</text>
-  <rect x="120" y="118" width="68" height="40" rx="4" fill="#825da9" />
-  <text x="154" y="143" text-anchor="middle" fill="#f8fafd">04</text>
+  <rect x="120" y="118" width="68" height="40" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="154" y="143" text-anchor="middle" fill="#727981">04</text>
   <rect x="190" y="118" width="68" height="40" rx="4" fill="#b0540d" />
   <text x="224" y="143" text-anchor="middle" fill="#f8fafd">03</text>
   <rect x="260" y="118" width="68" height="40" rx="4" fill="#337b47" />

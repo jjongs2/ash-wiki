@@ -32,8 +32,8 @@
   </g>
 
   <!-- 실제로 가능한 실행 시간 -->
-  <rect x="240" y="88" width="320" height="28" rx="3" fill="#336fb8" />
-  <text x="400" y="107" text-anchor="middle" fill="#f8fafd">가능한 실행 시간</text>
+  <rect x="240" y="88" width="320" height="28" rx="3" stroke="#727981" stroke-width="1.5" />
+  <text x="400" y="107" text-anchor="middle" fill="#727981">가능한 실행 시간</text>
   <text x="560" y="134" text-anchor="end" font-size="12" fill="#727981">최댓값 = WCET</text>
   <line x1="562" y1="102" x2="618" y2="102" stroke="#727981" stroke-width="1.5" marker-start="url(#tip)" marker-end="url(#tip)" />
   <text x="628" y="106" font-size="12" fill="#727981">과대평가될 수 있음</text>

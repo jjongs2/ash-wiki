@@ -11,14 +11,14 @@
   <text x="36" y="44" fill="#727981">CPU</text>
 
   <!-- 객체 -->
-  <g fill="#336fb8">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="40" y="60" width="100" height="40" rx="4" />
     <rect x="180" y="60" width="100" height="40" rx="4" />
     <rect x="400" y="60" width="100" height="40" rx="4" />
     <rect x="540" y="60" width="100" height="40" rx="4" />
     <rect x="290" y="176" width="100" height="40" rx="4" />
   </g>
-  <g text-anchor="middle" fill="#f8fafd">
+  <g text-anchor="middle" fill="#727981">
     <text x="90" y="85">RESOURCE</text>
     <text x="230" y="85">TASK</text>
     <text x="450" y="85">ALARM</text>

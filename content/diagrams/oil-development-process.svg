@@ -15,12 +15,12 @@
   </g>
 
   <!-- 입력 -->
-  <g fill="#337b47">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="20" y="50" width="140" height="44" rx="4" />
     <rect x="20" y="124" width="140" height="44" rx="4" />
   </g>
-  <rect x="20" y="198" width="140" height="44" rx="4" fill="#b0540d" />
-  <g text-anchor="middle" fill="#f8fafd">
+  <rect x="20" y="198" width="140" height="44" rx="4" stroke="#727981" stroke-width="1.5" />
+  <g text-anchor="middle" fill="#727981">
     <text x="90" y="77">OIL 구성 파일</text>
     <text x="90" y="151">사용자 소스 코드</text>
     <text x="90" y="225">OS 커널, OSEK COM</text>
@@ -39,8 +39,8 @@
   </g>
 
   <!-- 출력 -->
-  <rect x="540" y="124" width="120" height="44" rx="4" fill="#337b47" />
-  <text x="600" y="151" text-anchor="middle" fill="#f8fafd">실행 파일</text>
+  <rect x="540" y="124" width="120" height="44" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="600" y="151" text-anchor="middle" fill="#727981">실행 파일</text>
 
   <!-- 흐름 -->
   <g stroke="#727981" stroke-width="1.5">

@@ -48,8 +48,8 @@
   </g>
 
   <!-- 심볼 윈도, 네트워크 idle 시간 -->
-  <rect x="462" y="70" width="98" height="40" fill="#b0540d" />
-  <rect x="562" y="70" width="138" height="40" fill="#825da9" />
+  <rect x="462" y="70" width="98" height="40" stroke="#727981" stroke-width="1.5" />
+  <rect x="562" y="70" width="138" height="40" stroke="#727981" stroke-width="1.5" />
 
   <!-- 단위 이름 -->
   <g stroke="#727981" stroke-width="1.5">

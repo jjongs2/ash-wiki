@@ -32,6 +32,6 @@
     <line x1="211" y1="250" x2="211" y2="280" />
     <line x1="219" y1="250" x2="219" y2="280" />
   </g>
-  <rect x="160" y="280" width="110" height="30" rx="4" fill="#337b47" />
-  <text x="215" y="300" text-anchor="middle" fill="#f8fafd">꼬임쌍선</text>
+  <rect x="160" y="280" width="110" height="30" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="215" y="300" text-anchor="middle" fill="#727981">꼬임쌍선</text>
 </svg>

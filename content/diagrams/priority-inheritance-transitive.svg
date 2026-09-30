@@ -6,8 +6,8 @@
     </marker>
   </defs>
 
-  <rect x="20" y="30" width="90" height="40" rx="4" fill="#336fb8" />
-  <text x="65" y="55" text-anchor="middle" fill="#f8fafd">T1</text>
+  <rect x="20" y="30" width="90" height="40" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="65" y="55" text-anchor="middle" fill="#727981">T1</text>
   <rect x="290" y="30" width="90" height="40" rx="4" fill="#825da9" />
   <text x="335" y="55" text-anchor="middle" fill="#f8fafd">T2</text>
   <rect x="560" y="30" width="90" height="40" rx="4" fill="#825da9" />

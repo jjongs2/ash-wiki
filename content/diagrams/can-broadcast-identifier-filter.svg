@@ -47,12 +47,12 @@
   </g>
 
   <!-- 수용 필터 -->
-  <g fill="#336fb8">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="446" y="132" width="110" height="36" rx="4" />
     <rect x="166" y="212" width="110" height="36" rx="4" />
     <rect x="446" y="292" width="110" height="36" rx="4" />
   </g>
-  <g text-anchor="middle" fill="#f8fafd">
+  <g text-anchor="middle" fill="#727981">
     <text x="501" y="155">수용 필터</text>
     <text x="221" y="235">수용 필터</text>
     <text x="501" y="315">수용 필터</text>
