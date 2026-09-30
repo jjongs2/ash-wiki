@@ -19,7 +19,7 @@ ECU Abstraction Layer는 Onboard Device Abstraction, Memory Hardware Abstraction
 | Memory Hardware Abstraction        | 메모리 장치가 칩 안에 있는지 보드에 있는지와 ECU 하드웨어의 배치를 가리고, 내부·외부 메모리와 EEPROM(Electrically Erasable Programmable Read-Only Memory)·Flash 같은 메모리 종류를 가리지 않고 한 가지 방법으로 접근하게 한다. Flash로 EEPROM을 흉내 내는 Flash EEPROM Emulation 모듈도 이 그룹에 속한다. |
 | Crypto Hardware Abstraction        | 암호 기능이 칩 안팎의 하드웨어와 소프트웨어 가운데 어디서 구현되는지를 가린다.                                                                                                                                                                                                                            |
 | Communication Hardware Abstraction | 통신 컨트롤러가 어디에 있고 ECU 하드웨어가 어떻게 짜였는지를 가린다. [[lin\|LIN]], [[can\|CAN]], [[flexray\|FlexRay]]처럼 통신 시스템이 다르면 이 그룹도 따로 둔다. CAN Interface, CAN Transceiver Driver, [[ethernet\|Ethernet]] Interface가 이 그룹에 속한다.                                           |
-| I/O Hardware Abstraction           | I/O 장치의 위치와 ECU 하드웨어의 배치를 가린다.                                                                                                                                                                                                                                                           |
+| I/O Hardware Abstraction           | I/O 장치가 어디 있는지와 ECU 하드웨어가 어떻게 짜였는지를 가린다.                                                                                                                                                                                                                                         |
 
 마이크로컨트롤러 안에 있는 암호 장치의 예로 SHE(Secure Hardware Extension)와 HSM(Hardware Security Module)이 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
