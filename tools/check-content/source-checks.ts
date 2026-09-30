@@ -368,9 +368,9 @@ export const period: SourceCheck = (tree) => {
   for (const page of tree.pages) {
     visit(page.mdast, "paragraph", (node, _index, parent) => {
       const { start, end } = node.position!
-      const source = page.masked.slice(start.offset, end.offset)
-      if (tableDelimiterRow.test(source)) return
-      const text = source.replace(trailingCitations, "")
+      const masked = page.masked.slice(start.offset, end.offset)
+      if (tableDelimiterRow.test(masked)) return
+      const text = masked.replace(trailingCitations, "")
       if (!text.trimEnd().endsWith("다")) return
       const block = parent?.type === "listItem" ? "목록 항목" : "문단"
       violations.push({
