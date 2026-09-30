@@ -15,7 +15,7 @@ OSEK/VDX OS 규격은 명시적으로 정한 시스템 서비스에서만 태스
 
 ![[diagrams/preemptive-nonpreemptive-scheduling.svg]]
 
-**협력형 멀티태스킹**에서는 각 태스크가 스스로 CPU 시간을 다음 태스크에 넘긴다.[@microchip-an2751-2018][@renesas-res05b0008-2010] 비선점 스케줄링을 협력형 멀티태스킹이라고도 부르며, 우선순위가 더 높은 태스크가 준비되어도 실행 중인 태스크가 스스로 프로세서를 내놓아야 그 태스크가 실행된다.[@renesas-res05b0008-2010][@micrium-ucos-ii-rtsc-2026]
+**협력형 멀티태스킹**에서는 각 태스크가 스스로 CPU 시간을 다음 태스크에 넘긴다.[@microchip-an2751-2018][@renesas-res05b0008-2010] 비선점 스케줄링을 협력형 멀티태스킹이라고도 부른다.[@renesas-res05b0008-2010][@micrium-ucos-ii-rtsc-2026]
 
 ## 우선순위 기반
 

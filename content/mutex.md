@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## 소유권
 
-세마포어와 달리 뮤텍스에는 소유자가 있다.[@linux-locktypes-2026][@arm-cmsis-rtos2-mutex-2026]
+Linux 커널과 CMSIS-RTOS2에서는 세마포어와 달리 뮤텍스에 소유자가 있다.[@linux-locktypes-2026][@arm-cmsis-rtos2-mutex-2026]
 
 POSIX는 뮤텍스를 잠근 스레드를 그 뮤텍스의 소유자로 정의하고, 그 스레드가 풀 때까지 소유자로 남는다고 정한다.[@ieee-1003-1-definitions-2024][@ieee-1003-1-preface-2024]
 

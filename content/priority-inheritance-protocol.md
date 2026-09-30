@@ -21,7 +21,7 @@ verified: 2026-09-30
 
 기본 우선순위 상속 프로토콜에서는 높은 우선순위 태스크가 여러 세마포어를 잡아야 할 때, 세마포어마다 그것을 쥔 더 낮은 우선순위 태스크를 기다려야 할 수 있다. 이를 **chained blocking**이라 하며, 그래서 태스크의 최악 블로킹 시간은 공유 자원마다의 최악 블로킹 시간을 더한 값이다.[@davari-unbounded-priority-inversions-1992]
 
-기본 우선순위 상속 프로토콜은 [[deadlock|교착 상태]]를 막지 않는다. Ada 랑데부에 적용하면 서버 태스크들이 서로를 순환 순서로 엔트리 호출할 때 교착 상태가 생길 수 있어, 호출 순서를 부분 순서로 두는 것 같은 교착 방지책을 따로 써야 한다.[@borger-implementing-priority-inheritance-1989] 세마포어로 공유 자원을 보호할 때는 공유 자원을 잠그는 순서를 전순서로 정해 교착 상태를 피할 수 있다.[@davari-unbounded-priority-inversions-1992]
+기본 우선순위 상속 프로토콜은 [[deadlock|교착 상태]]를 막지 않는다. Ada 랑데부에 적용하면 서버 태스크들이 서로를 순환 순서로 엔트리 호출할 때 교착 상태가 생길 수 있어, 호출 순서를 부분 순서로 두는 것 같은 교착 방지책을 따로 써야 한다.[@borger-implementing-priority-inheritance-1989]
 
 ## 구현
 
