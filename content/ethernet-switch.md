@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**이더넷 스위치**는 받은 [[ethernet-frame|이더넷 프레임]]의 목적지 MAC(Media Access Control) 주소를 찾아, 그 주소에 연결된 포트로 프레임을 전달하는 장치다.[@microchip-ksz9477s-2019][@nxp-um10944-2017]
+**이더넷 스위치**는 받은 [[ethernet-frame|이더넷 프레임]]의 목적지 MAC(Medium Access Control) 주소를 찾아, 그 주소에 연결된 포트로 프레임을 전달하는 장치다.[@microchip-ksz9477s-2019][@nxp-um10944-2017]
 
 ## 주소 학습
 

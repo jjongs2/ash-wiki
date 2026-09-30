@@ -18,7 +18,7 @@ OSEK OS의 객체와 그것을 적는 OIL 객체는 다음과 같다.[@osek-os-2
 | [[osek-task\|태스크]]  | `TASK`     | 함수 실행의 틀. 스케줄러가 태스크의 실행 순서를 정한다.                                                   |
 | [[osek-isr\|ISR]]      | `ISR`      | 인터럽트를 처리한다.                                                                                      |
 | [[osek-event\|이벤트]] | `EVENT`    | 태스크를 동기화한다. extended 태스크에만 딸린다.                                                          |
-| 리소스                 | `RESOURCE` | 공유 자원에 여러 태스크가 함께 접근할 때 그 접근을 조정한다. ISR까지 넓힐 수 있다.                        |
+| resource               | `RESOURCE` | 공유 자원에 여러 태스크가 함께 접근할 때 그 접근을 조정한다. ISR까지 넓힐 수 있다.                        |
 | [[osek-alarm\|카운터]] | `COUNTER`  | 타이머나 각도 센서처럼 반복되는 사건을 틱 단위의 값으로 센다.                                             |
 | [[osek-alarm\|알람]]   | `ALARM`    | 카운터가 정해 둔 값에 이르면 만료되어 태스크를 활성화하거나, 이벤트를 설정하거나, callback 루틴을 부른다. |
 
@@ -49,7 +49,7 @@ OSEK OS 명세는 등급마다 구현이 적어도 갖춰야 할 개수를 정�
 | ECC1 | basic, extended | 안 됨                 | 안 됨                     | 16                 | 16                         | 8                  |
 | ECC2 | basic, extended | basic 태스크만 됨     | 됨                        | 16                 | 16                         | 8                  |
 
-리소스는 BCC1이 `RES_SCHEDULER` 하나만, 나머지 등급은 `RES_SCHEDULER`를 포함해 8개를 적어도 지원한다. internal resource는 2개, 알람과 application mode는 1개를 모든 등급이 적어도 지원한다.[@osek-os-2-2-3-2005]
+resource는 BCC1이 `RES_SCHEDULER` 하나만, 나머지 등급은 `RES_SCHEDULER`를 포함해 8개를 적어도 지원한다. internal resource는 2개, 알람과 application mode는 1개를 모든 등급이 적어도 지원한다.[@osek-os-2-2-3-2005]
 
 ## 시작과 종료
 

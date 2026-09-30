@@ -13,7 +13,7 @@ OPEN Alliance는 2011년에 설립되었다.[@open-alliance-about-2026][@ti-sszt
 
 ## 물리 계층
 
-IEEE 802.3은 여러 속도의 이더넷을 공통 MAC(Media Access Control) 명세 하나로 정하고, 속도마다 다른 [[ethernet-phy|PHY]]를 골라 쓰게 한다.[@ieee-802-3-2022] 차량용 PHY를 만든 IEEE 802.3의 네 태스크 포스(P802.3bw, P802.3bp, P802.3ch, P802.3cg)는 모두 MAC 클라이언트 서비스 인터페이스에서 IEEE 802.3의 프레임 포맷과 최소·최대 프레임 크기를 유지하고, EMC(Electromagnetic Compatibility)와 온도 같은 조건이 걸리는 차량 환경에서 동작하는 것을 목표로 두었다.[@ieee-802-3ch-objectives-2017][@ieee-802-3bw-objectives-2014][@ieee-802-3bp-objectives-2014][@ieee-802-3cg-objectives-2018]
+IEEE 802.3은 여러 속도의 이더넷을 공통 MAC(Medium Access Control) 명세 하나로 정하고, 속도마다 다른 [[ethernet-phy|PHY]]를 골라 쓰게 한다.[@ieee-802-3-2022] 차량용 PHY를 만든 IEEE 802.3의 네 태스크 포스(P802.3bw, P802.3bp, P802.3ch, P802.3cg)는 모두 MAC 클라이언트 서비스 인터페이스에서 IEEE 802.3의 프레임 포맷과 최소·최대 프레임 크기를 유지하고, EMC(Electromagnetic Compatibility)와 온도 같은 조건이 걸리는 차량 환경에서 동작하는 것을 목표로 두었다.[@ieee-802-3ch-objectives-2017][@ieee-802-3bw-objectives-2014][@ieee-802-3bp-objectives-2014][@ieee-802-3cg-objectives-2018]
 
 IEEE SA에 따르면 차량 배선의 무게와 공간이 큰 과제여서, 차량용 PHY로 10 Mbit/s부터 10 Gbit/s까지 나왔다.[@ieee-tsn-automotive-flyer-2026] 이 PHY들을 넣은 IEEE 802.3 개정은 아래와 같다.
 

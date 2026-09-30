@@ -44,16 +44,16 @@ standard status는 디버깅을 마친 애플리케이션을 위한 것이다. s
 
 오류 코드와 그것이 돌아오는 경우는 다음과 같다. standard status에서도 돌아오는 것은 E_OS_LIMIT, E_OS_NOFUNC, E_OS_STATE의 일부 경우뿐이다.[@osek-os-2-2-3-2005]
 
-| 값  | 오류 코드     | standard status에서도 돌아오는 경우                                               | extended status에서 더 돌아오는 경우                                                                                                                |
-| --- | ------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | E_OS_ACCESS   | —                                                                                 | 이미 점유된 리소스를 얻으려 하거나 우선순위가 리소스의 ceiling보다 높을 때, extended 태스크가 아닌 태스크가 이벤트 서비스를 쓰거나 대상으로 삼을 때 |
-| 2   | E_OS_CALLEVEL | —                                                                                 | `TerminateTask`, `ChainTask`, `Schedule`, `ClearEvent`, `WaitEvent`를 인터럽트 레벨에서 부를 때                                                     |
-| 3   | E_OS_ID       | —                                                                                 | 태스크, 리소스, 알람의 ID가 잘못됐을 때                                                                                                             |
-| 4   | E_OS_LIMIT    | `ActivateTask`, `ChainTask`에서 활성화 요청이 너무 많을 때. 그 활성화는 무시된다. | —                                                                                                                                                   |
-| 5   | E_OS_NOFUNC   | `GetAlarm`, `CancelAlarm`에서 알람이 쓰이고 있지 않을 때                          | `ReleaseResource`에서 점유하지 않은 리소스를 놓거나 다른 리소스를 먼저 놓아야 할 때                                                                 |
-| 6   | E_OS_RESOURCE | —                                                                                 | `TerminateTask`, `ChainTask`, `Schedule`, `WaitEvent`를 부른 태스크가 아직 리소스를 점유하고 있을 때                                                |
-| 7   | E_OS_STATE    | `SetRelAlarm`, `SetAbsAlarm`에서 알람이 이미 쓰이고 있을 때                       | `SetEvent`, `GetEvent`에서 대상 태스크가 suspended일 때                                                                                             |
-| 8   | E_OS_VALUE    | —                                                                                 | 알람 서비스의 시작값이나 주기가 카운터 상수가 허용하는 범위를 벗어날 때                                                                             |
+| 값  | 오류 코드     | standard status에서도 돌아오는 경우                                               | extended status에서 더 돌아오는 경우                                                                                                                    |
+| --- | ------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | E_OS_ACCESS   | —                                                                                 | 이미 점유된 resource를 얻으려 하거나 우선순위가 resource의 ceiling보다 높을 때, extended 태스크가 아닌 태스크가 이벤트 서비스를 쓰거나 대상으로 삼을 때 |
+| 2   | E_OS_CALLEVEL | —                                                                                 | `TerminateTask`, `ChainTask`, `Schedule`, `ClearEvent`, `WaitEvent`를 인터럽트 레벨에서 부를 때                                                         |
+| 3   | E_OS_ID       | —                                                                                 | 태스크, resource, 알람의 ID가 잘못됐을 때                                                                                                               |
+| 4   | E_OS_LIMIT    | `ActivateTask`, `ChainTask`에서 활성화 요청이 너무 많을 때. 그 활성화는 무시된다. | —                                                                                                                                                       |
+| 5   | E_OS_NOFUNC   | `GetAlarm`, `CancelAlarm`에서 알람이 쓰이고 있지 않을 때                          | `ReleaseResource`에서 점유하지 않은 resource를 놓거나 다른 resource를 먼저 놓아야 할 때                                                                 |
+| 6   | E_OS_RESOURCE | —                                                                                 | `TerminateTask`, `ChainTask`, `Schedule`, `WaitEvent`를 부른 태스크가 아직 resource를 점유하고 있을 때                                                  |
+| 7   | E_OS_STATE    | `SetRelAlarm`, `SetAbsAlarm`에서 알람이 이미 쓰이고 있을 때                       | `SetEvent`, `GetEvent`에서 대상 태스크가 suspended일 때                                                                                                 |
+| 8   | E_OS_VALUE    | —                                                                                 | 알람 서비스의 시작값이나 주기가 카운터 상수가 허용하는 범위를 벗어날 때                                                                                 |
 
 ## `ErrorHook`
 

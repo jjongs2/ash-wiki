@@ -30,7 +30,7 @@ OSEK/VDX OS 명세는 resource를 쓰는 규칙을 아래처럼 정한다.[@osek
 
 OSEK/VDX OS 명세는 resource 관리를 인터럽트 수준까지 넓히는 것을 선택 사항으로 두고, 카테고리 2 ISR에서도 `GetResource`와 `ReleaseResource`를 부를 수 있게 한다. 이 확장에서 ISR은 모든 태스크보다 높은 가상 우선순위를 받으므로, ceiling priority는 그 resource를 쓰는 태스크와 ISR의 우선순위 가운데 가장 높은 것 이상이 된다.[@osek-os-2-2-3-2005]
 
-## RES_SCHEDULER
+## `RES_SCHEDULER`
 
 OSEK/VDX OS 명세는 스케줄러를 모든 태스크가 쓸 수 있는 resource로 다루며, `RES_SCHEDULER`라는 resource를 미리 만들어 두게 한다. 태스크는 `RES_SCHEDULER`를 얻어 다른 태스크의 선점을 막을 수 있고, 인터럽트는 `RES_SCHEDULER`의 상태와 상관없이 받아 처리된다.[@osek-os-2-2-3-2005]
 

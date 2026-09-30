@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**이더넷**(Ethernet)은 [[ieee-802-3|IEEE 802.3]]이 정하는 유선 LAN(Local Area Network) 기술이다. IEEE 802.3은 공통 MAC(Media Access Control) 명세와, 1 Mbit/s부터 400 Gbit/s까지의 속도로 동축 케이블, 꼬임쌍선, 광섬유, 백플레인 위에서 동작하는 물리 계층을 정한다.[@ieee-802-3-2022] 이더넷에서 데이터는 [[ethernet-frame|이더넷 프레임]]에 담기고, 프레임의 목적지 주소 필드가 받을 스테이션의 [[mac-address|MAC 주소]]를 가리킨다.[@st-rm0008-2021][@microchip-enc28j60-2012]
+**이더넷**(Ethernet)은 [[ieee-802-3|IEEE 802.3]]이 정하는 유선 LAN(Local Area Network) 기술이다. IEEE 802.3은 공통 MAC(Medium Access Control) 명세와, 1 Mbit/s부터 400 Gbit/s까지의 속도로 동축 케이블, 꼬임쌍선, 광섬유, 백플레인 위에서 동작하는 물리 계층을 정한다.[@ieee-802-3-2022] 이더넷에서 데이터는 [[ethernet-frame|이더넷 프레임]]에 담기고, 프레임의 목적지 주소 필드가 받을 스테이션의 [[mac-address|MAC 주소]]를 가리킨다.[@st-rm0008-2021][@microchip-enc28j60-2012]
 
 ## MAC과 물리 계층
 
