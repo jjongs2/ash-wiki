@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="30 26 693 137" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+  <!-- 두 구간 -->
+  <rect x="40" y="36" width="260" height="42" rx="4" fill="#336fb8" />
+  <text x="170" y="54" text-anchor="middle" fill="#f8fafd">길이</text>
+  <text x="170" y="71" text-anchor="middle" font-size="12" fill="#f8fafd">데이터 필드의 옥텟 수</text>
+  <rect x="360" y="36" width="340" height="42" rx="4" fill="#b0540d" />
+  <text x="530" y="54" text-anchor="middle" fill="#f8fafd">EtherType</text>
+  <text x="530" y="71" text-anchor="middle" font-size="12" fill="#f8fafd">데이터 필드에 실린 상위 프로토콜</text>
+
+  <!-- 값의 축 -->
+  <line x1="40" y1="90" x2="712" y2="90" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <g stroke="#727981" stroke-width="1.5">
+    <line x1="40.75" y1="84" x2="40.75" y2="96" />
+    <line x1="300" y1="84" x2="300" y2="96" />
+    <line x1="360" y1="84" x2="360" y2="96" />
+    <line x1="470" y1="90" x2="470" y2="96" />
+    <line x1="560" y1="90" x2="560" y2="96" />
+    <line x1="650" y1="90" x2="650" y2="96" />
+  </g>
+  <g font-size="12" fill="#727981">
+    <text x="40" y="112">0</text>
+    <text x="304" y="112" text-anchor="end">1500</text>
+    <text x="356" y="112">0x0600(1536)</text>
+    <text x="470" y="112" text-anchor="middle">0x0800</text>
+    <text x="470" y="128" text-anchor="middle">IPv4</text>
+    <text x="560" y="112" text-anchor="middle">0x0806</text>
+    <text x="560" y="128" text-anchor="middle">ARP</text>
+    <text x="650" y="112" text-anchor="middle">0x86DD</text>
+    <text x="650" y="128" text-anchor="middle">IPv6</text>
+    <text x="40" y="152">눈금 사이의 거리는 값에 비례하지 않는다.</text>
+  </g>
+</svg>

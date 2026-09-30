@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10.5 0.5 727 425.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <!-- 32비트 한 행 -->
+  <path d="M21 34 V28 H659 V34" stroke="#727981" stroke-width="1.5" />
+  <text x="340" y="20" text-anchor="middle" font-size="12" fill="#727981">32비트</text>
+  <!-- 필드 -->
+  <g fill="#336fb8">
+    <rect x="21" y="40" width="78" height="34" rx="3" />
+    <rect x="101" y="40" width="158" height="34" rx="3" />
+    <rect x="261" y="40" width="398" height="34" rx="3" />
+    <rect x="21" y="78" width="318" height="34" rx="3" />
+    <rect x="341" y="78" width="158" height="34" rx="3" />
+    <rect x="501" y="78" width="158" height="34" rx="3" />
+    <rect x="21" y="116" width="638" height="148" rx="3" />
+    <rect x="21" y="268" width="638" height="148" rx="3" />
+  </g>
+  <text x="60" y="61" text-anchor="middle" font-size="12" fill="#f8fafd">Version</text>
+  <text x="180" y="62" text-anchor="middle" fill="#f8fafd">Traffic Class</text>
+  <text x="460" y="62" text-anchor="middle" fill="#f8fafd">Flow Label</text>
+  <text x="180" y="100" text-anchor="middle" fill="#f8fafd">Payload Length</text>
+  <text x="420" y="100" text-anchor="middle" fill="#f8fafd">Next Header</text>
+  <text x="580" y="100" text-anchor="middle" fill="#f8fafd">Hop Limit</text>
+  <text x="340" y="187" text-anchor="middle" fill="#f8fafd">Source Address</text>
+  <text x="340" y="204" text-anchor="middle" font-size="12" fill="#f8fafd">128비트</text>
+  <text x="340" y="339" text-anchor="middle" fill="#f8fafd">Destination Address</text>
+  <text x="340" y="356" text-anchor="middle" font-size="12" fill="#f8fafd">128비트</text>
+  <path d="M668 41 H674 V415 H668" stroke="#727981" stroke-width="1.5" />
+  <text x="682" y="232" font-size="12" fill="#727981">40바이트</text>
+</svg>
