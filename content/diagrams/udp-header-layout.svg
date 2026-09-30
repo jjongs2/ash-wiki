@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10.5 0.5 719.5 121.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <!-- 32비트 한 행 -->
+  <path d="M21 34 V28 H659 V34" stroke="#727981" stroke-width="1.5" />
+  <text x="340" y="20" text-anchor="middle" font-size="12" fill="#727981">32비트</text>
+  <!-- 필드 -->
+  <g fill="#336fb8">
+    <rect x="21" y="40" width="318" height="34" rx="3" />
+    <rect x="341" y="40" width="318" height="34" rx="3" />
+    <rect x="21" y="78" width="318" height="34" rx="3" />
+    <rect x="341" y="78" width="318" height="34" rx="3" />
+  </g>
+  <text x="180" y="62" text-anchor="middle" fill="#f8fafd">Source Port</text>
+  <text x="500" y="62" text-anchor="middle" fill="#f8fafd">Destination Port</text>
+  <text x="180" y="100" text-anchor="middle" fill="#f8fafd">Length</text>
+  <text x="500" y="100" text-anchor="middle" fill="#f8fafd">Checksum</text>
+  <path d="M668 41 H674 V111 H668" stroke="#727981" stroke-width="1.5" />
+  <text x="682" y="80" font-size="12" fill="#727981">8바이트</text>
+</svg>

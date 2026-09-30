@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 165" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+  <!-- 양 끝 PHY -->
+  <rect x="20" y="50" width="90" height="50" rx="4" fill="#336fb8" />
+  <text x="65" y="80" text-anchor="middle" fill="#f8fafd">PHY</text>
+  <rect x="550" y="50" width="90" height="50" rx="4" fill="#336fb8" />
+  <text x="595" y="80" text-anchor="middle" fill="#f8fafd">PHY</text>
+
+  <!-- 한 쌍 케이블 -->
+  <line x1="110" y1="68" x2="550" y2="68" stroke="#727981" stroke-width="1.5" />
+  <line x1="110" y1="82" x2="550" y2="82" stroke="#727981" stroke-width="1.5" />
+
+  <!-- 인라인 커넥터 4개 -->
+  <rect x="180" y="57" width="20" height="36" rx="2" fill="#b0540d" />
+  <rect x="270" y="57" width="20" height="36" rx="2" fill="#b0540d" />
+  <rect x="370" y="57" width="20" height="36" rx="2" fill="#b0540d" />
+  <rect x="460" y="57" width="20" height="36" rx="2" fill="#b0540d" />
+  <path d="M190 44 V38 H470 V44" stroke="#727981" stroke-width="1.5" />
+  <text x="330" y="30" text-anchor="middle" font-size="12" fill="#727981">인라인 커넥터 4개까지</text>
+
+  <!-- 길이 -->
+  <line x1="112" y1="120" x2="548" y2="120" stroke="#727981" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  <text x="330" y="144" text-anchor="middle" font-size="12" fill="#727981">링크 세그먼트 · 적어도 15 m</text>
+</svg>
