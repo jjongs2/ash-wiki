@@ -9,7 +9,7 @@ IEC 60050은 **실시간**(real-time)을, 컴퓨터가 바깥의 다른 프로�
 
 ## Hard와 soft
 
-hard real-time과 soft real-time 요구의 구분은 [[deadline|마감 시한]]에서 다룬다.
+hard real-time과 soft real-time 요구의 구분은 [[deadline#Hard와 soft|마감 시한]]에서 다룬다.
 
 Liu와 Layland는 1973년 논문에서, 각 태스크가 요청 뒤 정해진 시간 안에 끝나야 하고 그 시간 안의 서비스를 보장해야 하는 환경을 hard-real-time 환경이라 부르고, 응답 시간의 통계적 분포를 받아들이는 soft-real-time 환경과 대비했다. 이 논문은 그런 환경에서 단일 프로세서의 멀티프로그래밍 스케줄링을 분석했다.[@liu-hard-real-time-1973]
 

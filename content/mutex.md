@@ -11,7 +11,7 @@ verified: 2026-09-30
 
 POSIX는 뮤텍스를 잠근 스레드를 그 뮤텍스의 소유자로 정의하고, 그 스레드가 풀 때까지 소유자로 남는다고 정한다.[@ieee-1003-1-definitions-2024][@ieee-1003-1-preface-2024]
 
-Linux 커널의 mutex는 원자 변수 `owner` 하나로 잠금 상태를 추적한다. `owner`에는 소유 태스크의 포인터가 들어가고, 소유자가 없으면 `NULL`이다. 소유자만 mutex를 풀 수 있고, 경합이 없으면 `owner`를 현재 태스크로 `cmpxchg`해 원자적으로 락을 얻는다.[@linux-mutex-design-2026] 원자 명령은 [[spinlock|스핀락]]에서 다룬다. Linux 커널에서는 세마포어를 뺀 락 타입이 모두, 락을 얻은 태스크가 풀어야 하는 엄격한 소유 의미를 가진다.[@linux-locktypes-2026]
+Linux 커널의 mutex는 원자 변수 `owner` 하나로 잠금 상태를 추적한다. `owner`에는 소유 태스크의 포인터가 들어가고, 소유자가 없으면 `NULL`이다. 소유자만 mutex를 풀 수 있고, 경합이 없으면 `owner`를 현재 태스크로 `cmpxchg`해 원자적으로 락을 얻는다.[@linux-mutex-design-2026] 원자 명령은 [[spinlock#원자 명령|스핀락]]에서 다룬다. Linux 커널에서는 세마포어를 뺀 락 타입이 모두, 락을 얻은 태스크가 풀어야 하는 엄격한 소유 의미를 가진다.[@linux-locktypes-2026]
 
 FreeRTOS의 뮤텍스는 가져간 태스크가 반드시 돌려줘야 한다. FreeRTOS의 이진 세마포어는 가져간 뒤 돌려주지 않아도 되므로, 한 태스크나 인터럽트가 계속 주고 다른 태스크가 계속 가져가는 식으로 동기화에 쓴다.[@freertos-xsemaphorecreatemutex-2026][@freertos-binary-semaphores-2026]
 

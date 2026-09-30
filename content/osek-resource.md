@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## Ceiling priority
 
-OSEK/VDX OS 명세는 resource마다의 ceiling priority를 실행 중에 바꾸지 않고, 시스템을 생성하는 단계에서 미리 고정해 둔다. 그 값은 resource를 쓰는 태스크 가운데 우선순위가 가장 높은 태스크 이상이면서, resource를 쓰지 않는 태스크 가운데 그보다 우선순위가 높은 태스크 모두보다 낮게 정한다. 또 resource를 얻는 순간 태스크의 우선순위를 ceiling priority까지 올리고(이미 그 이상이면 그대로 둔다), 돌려주는 순간 얻기 전 값으로 내리도록 정한다.[@osek-os-2-2-3-2005] 자원을 잡는 즉시 우선순위를 올리는 이 규칙의 일반형은 [[priority-ceiling-protocol|우선순위 상한 프로토콜]]에서 다룬다.
+OSEK/VDX OS 명세는 resource마다의 ceiling priority를 실행 중에 바꾸지 않고, 시스템을 생성하는 단계에서 미리 고정해 둔다. 그 값은 resource를 쓰는 태스크 가운데 우선순위가 가장 높은 태스크 이상이면서, resource를 쓰지 않는 태스크 가운데 그보다 우선순위가 높은 태스크 모두보다 낮게 정한다. 또 resource를 얻는 순간 태스크의 우선순위를 ceiling priority까지 올리고(이미 그 이상이면 그대로 둔다), 돌려주는 순간 얻기 전 값으로 내리도록 정한다.[@osek-os-2-2-3-2005] 자원을 잡는 즉시 우선순위를 올리는 이 규칙의 일반형은 [[priority-ceiling-protocol#자원을 잡는 즉시 올리는 방식|우선순위 상한 프로토콜]]에서 다룬다.
 
 그 결과 resource를 쥔 태스크가 실행되는 동안, 같은 resource를 쓰는 태스크는 우선순위가 그보다 높지 않아 실행을 시작하지 못하고 resource가 풀리기를 기다린다. 그 resource를 쓰지 않고 우선순위가 ceiling priority보다 높은 태스크와, 그 resource를 쓰지 않는 인터럽트는 그동안에도 실행된다.[@osek-os-2-2-3-2005]
 

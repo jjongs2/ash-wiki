@@ -15,7 +15,7 @@ verified: 2026-09-30
 
 ![[diagrams/osek-event-set-wait.svg]]
 
-extended status에서는 extended 태스크가 아닌 태스크가 `WaitEvent`나 `ClearEvent`를 부르면 E_OS_ACCESS를 돌려주고, suspended 상태의 태스크에 `SetEvent`를 부르면 E_OS_STATE를 돌려준다.[@osek-os-2-2-3-2005] extended status는 [[osek-hook-routine|OSEK hook 루틴]]에서 다룬다.
+extended status에서는 extended 태스크가 아닌 태스크가 `WaitEvent`나 `ClearEvent`를 부르면 E_OS_ACCESS를 돌려주고, suspended 상태의 태스크에 `SetEvent`를 부르면 E_OS_STATE를 돌려준다.[@osek-os-2-2-3-2005] extended status는 [[osek-hook-routine#Standard status와 extended status|OSEK hook 루틴]]에서 다룬다.
 
 ## 기다림과 깨어남
 
