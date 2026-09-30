@@ -13,6 +13,8 @@ AUTOSAR COM 명세는 [[osek-vdx|OSEK/VDX]] COM인 ISO 17356-4:2005를 기능의
 
 시그널이 I-PDU에서 차지하는 자리는 시작 비트 위치(`ComBitPosition`), 비트 크기(`ComBitSize`), 네트워크 표현의 [[byte-order|바이트 순서]](`ComSignalEndianness`)로 설정한다. AUTOSAR COM은 시그널 그룹도 다룬다. 사용자가 복합 데이터 타입을 쪼갠 여러 시그널을 한 시그널 그룹으로 묶으면, AUTOSAR COM은 이 시그널들을 일관되게 다룬다.[@autosar-cp-sws-com-2025]
 
+![[diagrams/com-signal-ipdu-layout.svg]]
+
 AUTOSAR COM은 송신할 I-PDU를 PduR에 넘기고, 받은 I-PDU는 PduR에게서 통지받는다.[@autosar-cp-sws-com-2025]
 
 ## 전송 속성과 전송 모드
@@ -58,4 +60,6 @@ AUTOSAR COM은 수신 데드라인 감시로, 시그널이나 I-PDU가 설정한
 
 System Template에 따르면 원자 시그널에 대한 AUTOSAR COM의 설정은 대부분 System Template에서 끌어낼 수 있고, 송수신하는 I-PDU에 매핑된 ISignalToIPduMapping마다 ComSignal을 하나씩 둔다. ISignal은 Interaction Layer의 시그널이고, ISignalToIPduMapping이 ISignal을 I-PDU에 넣으면서 그 안의 자리를 정한다. System Signal은 서로 다른 ECU에 있는 SW-C끼리 주고받는 데이터를 통신 시스템 쪽에서 본 것으로, 주고받는 data element마다 하나씩 둔다.[@autosar-cp-tps-systemtemplate-2025]
 
-SW-C의 data element는 SenderReceiverToSignalMapping으로 System Signal에 매핑되고, ISignal이 그 System Signal을 가리킨다. AUTOSAR COM 설정의 ComSignal은 자신이 나타내는 ISignal의 ISignalToIPduMapping을 참조한다.[@autosar-cp-tps-systemtemplate-2025][@autosar-cp-sws-com-2025]
+SW-C의 data element는 SenderReceiverToSignalMapping으로 System Signal에 매핑되고, ISignal이 그 System Signal을 가리킨다. AUTOSAR COM 설정의 ComSignal은 자신이 나타내는 ISignal의 ISignalToIPduMapping을 참조한다.[@autosar-cp-sws-com-2025][@autosar-cp-tps-systemtemplate-2025]
+
+![[diagrams/com-system-template-signal-mapping.svg]]

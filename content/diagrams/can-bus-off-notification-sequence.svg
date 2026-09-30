@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="5 0 710 330" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 모듈 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="25" y="20" width="110" height="36" rx="4" />
+    <rect x="165" y="20" width="110" height="36" rx="4" />
+    <rect x="305" y="20" width="110" height="36" rx="4" />
+    <rect x="445" y="20" width="110" height="36" rx="4" />
+    <rect x="585" y="20" width="110" height="36" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="80" y="43">CAN Driver</text>
+    <text x="220" y="43">CanIf</text>
+    <text x="360" y="43">CanSM</text>
+    <text x="500" y="43">BswM</text>
+    <text x="640" y="43">DEM</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="80" y1="56" x2="80" y2="68" />
+    <line x1="80" y1="92" x2="80" y2="310" />
+    <line x1="220" y1="56" x2="220" y2="310" />
+    <line x1="360" y1="56" x2="360" y2="310" />
+    <line x1="500" y1="56" x2="500" y2="310" />
+    <line x1="640" y1="56" x2="640" y2="310" />
+  </g>
+
+  <!-- 컨트롤러 상태 -->
+  <rect x="35" y="68" width="90" height="24" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="80" y="85" text-anchor="middle" font-size="12" fill="var(--text, #727981)">STOPPED</text>
+
+  <!-- 알림과 요청 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="80" y1="130" x2="218" y2="130" marker-end="url(#arrow)" />
+    <line x1="220" y1="170" x2="358" y2="170" marker-end="url(#arrow)" />
+    <line x1="360" y1="210" x2="498" y2="210" marker-end="url(#arrow)" />
+    <line x1="360" y1="250" x2="638" y2="250" stroke-dasharray="5 4" marker-end="url(#arrow)" />
+    <line x1="360" y1="290" x2="222" y2="290" marker-end="url(#arrow)" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="150" y="122">bus-off 알림</text>
+    <text x="290" y="162">bus-off 알림</text>
+    <text x="430" y="202">bus-off 상태</text>
+    <text x="570" y="242">CANSM_E_BUS_OFF</text>
+    <text x="570" y="266">설정에 따라</text>
+    <text x="290" y="282">컨트롤러 재시작 요청</text>
+  </g>
+</svg>

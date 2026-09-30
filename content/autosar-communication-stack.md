@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**AUTOSAR 통신 스택**은 AUTOSAR Classic Platform의 BSW(Basic Software)에서 차량 네트워크 통신을 맡는 모듈들의 묶음이다. 스택은 BSW의 세 층에 걸쳐 Communication Services, Communication Hardware Abstraction, Communication Drivers로 나뉘고, Communication Services는 Communication Hardware Abstraction을 거쳐 드라이버와 이어진다. Communication Services는 버스의 프로토콜과 메시지의 속성을 응용에서 감춘다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 맨 위의 [[autosar-com|AUTOSAR COM]]은 RTE 같은 사용자에게 시그널 단위의 데이터 인터페이스를 준다.[@autosar-cp-sws-com-2025]
+**AUTOSAR 통신 스택**은 AUTOSAR Classic Platform의 BSW(Basic Software)에서 차량 네트워크 통신을 맡는 모듈들의 묶음이다. 스택은 BSW의 세 층에 걸쳐 Communication Services, Communication Hardware Abstraction, Communication Drivers로 나뉜다. Communication Services와 드라이버 사이에는 Communication Hardware Abstraction이 놓인다. Communication Services는 버스의 프로토콜과 메시지의 속성을 응용에서 감춘다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 맨 위의 [[autosar-com|AUTOSAR COM]]은 RTE 같은 사용자에게 시그널 단위의 데이터 인터페이스를 준다.[@autosar-cp-sws-com-2025]
 
 ## 층
 
@@ -13,7 +13,7 @@ verified: 2026-09-30
 - **Communication Hardware Abstraction**: ECU Abstraction Layer에 속하며, 통신 컨트롤러가 칩 안에 있든 보드 위에 있든 같은 방식으로 버스 채널에 접근하게 한다. 통신 시스템마다 따로 두며, 구현은 마이크로컨트롤러에서 독립적이고 ECU 하드웨어와 외부 장치에 의존한다.
 - **Communication Services**: Services Layer에 속하며, 차량 네트워크에 한결같은 통신 인터페이스, 네트워크 관리 서비스, 진단 통신 인터페이스를 준다. 구현은 마이크로컨트롤러와 ECU 하드웨어에서 독립적이고 버스 종류에 일부 의존한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-AUTOSAR COM, Generic NM(Network Management) Interface, DCM(Diagnostic Communication Manager)은 모든 차량 네트워크에 같은 모듈이며 ECU마다 하나씩 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+AUTOSAR COM, Generic NM(Network Management) Interface, DCM(Diagnostic Communication Manager)은 버스 종류가 달라도 같은 모듈을 쓰고, ECU 하나에 하나씩만 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## PDU의 이름
 
@@ -21,24 +21,26 @@ AUTOSAR는 데이터 단위 PDU(Protocol Data Unit)에 층마다 접두어를 �
 
 이 이름은 [[osi-model|OSI 참조 모델]]의 층과 대응한다. AUTOSAR COM, DCM, PduR, IPDU Multiplexer는 6층(표현 계층, AUTOSAR에서는 상호작용 계층)에, 전송 프로토콜 모듈은 3층(네트워크 계층)에, 버스 인터페이스와 드라이버는 2층(데이터 링크 계층)에 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
+![[diagrams/autosar-pdu-names-osi-layers.svg]]
+
 ## 버스별 스택
 
 State Manager, NM, 전송 프로토콜은 버스마다 따로 두는 모듈이고, 통신 드라이버에는 버스마다 둔 인터페이스를 거쳐 접근한다. 버스마다 스택을 이루는 모듈은 다음과 같다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-| 버스                 | State Manager          | NM         | 전송 프로토콜          | 그 밖의 모듈                                               |
-| -------------------- | ---------------------- | ---------- | ---------------------- | ---------------------------------------------------------- |
-| [[can\|CAN]]         | CAN State Manager      | CAN NM     | CAN Transport Protocol | CAN Interface, CAN Transceiver Driver, CAN Driver          |
-| [[lin\|LIN]]         | LIN State Manager      | —          | —                      | LIN Interface, LIN Transceiver Driver, LIN Driver          |
-| [[flexray\|FlexRay]] | FlexRay State Manager  | FlexRay NM | FrTp나 FrArTp          | FlexRay Interface, FlexRay Driver                          |
-| [[ethernet\|이더넷]] | Ethernet State Manager | UDP NM     | —                      | Socket Adaptor, TcpIp, Ethernet Interface, Ethernet Driver |
+| 버스                 | State Manager          | NM              | 전송 프로토콜                                                               | 그 밖의 모듈                                               |
+| -------------------- | ---------------------- | --------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| [[can\|CAN]]         | CAN State Manager      | CAN NM          | CAN Transport Protocol                                                      | CAN Interface, CAN Transceiver Driver, CAN Driver          |
+| [[lin\|LIN]]         | LIN State Manager      | —               | —                                                                           | LIN Interface, LIN Transceiver Driver, LIN Driver          |
+| [[flexray\|FlexRay]] | FlexRay State Manager  | FlexRay NM      | FrTp(FlexRay ISO Transport Layer)나 FrArTp(FlexRay AUTOSAR Transport Layer) | FlexRay Interface, FlexRay Driver                          |
+| [[ethernet\|이더넷]] | Ethernet State Manager | [[udp\|UDP]] NM | —                                                                           | Socket Adaptor, TcpIp, Ethernet Interface, Ethernet Driver |
 
-CAN 스택은 하드웨어가 지원하면 [[can-fd|CAN FD]]도 다룬다. FlexRay 스택은 전송 프로토콜로 ISO 기반의 FrTp(FlexRay ISO Transport Layer)와 AUTOSAR R3.x와 버스 호환되는 FrArTp(FlexRay AUTOSAR Transport Layer) 가운데 하나를 쓴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] CAN 스택의 구성은 [[autosar-can-stack|AUTOSAR CAN 스택]]에서 다룬다.
+CAN 스택은 [[can-fd|CAN FD]]도 다루되, 하드웨어가 이를 지원할 때에 한한다. FlexRay 스택은 전송 프로토콜로 ISO 기반의 FrTp와 AUTOSAR R3.x와 버스 호환되는 FrArTp 가운데 하나를 쓴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] CAN 스택의 구성은 [[autosar-can-stack|AUTOSAR CAN 스택]]에서 다룬다.
 
-LIN의 전송 프로토콜 LinTp는 LIN Interface 안에 있다. LIN Interface는 위층이 요청하면 마스터 노드의 스케줄 테이블을 바꾼다.[@autosar-cp-sws-lininterface-2025]
+LIN의 전송 프로토콜 LinTp(LIN Transport Protocol)는 LIN Interface 안에 있다. LIN Interface는 위층이 요청하면 마스터 노드의 스케줄 테이블을 바꾼다.[@autosar-cp-sws-lininterface-2025]
 
-## 이더넷과 SoAd
+## 이더넷
 
-TcpIp 모듈은 [[tcp|TCP]], [[udp|UDP]], [[ipv4|IPv4]], [[ipv6|IPv6]], [[arp|ARP]], [[icmp|ICMP]], DHCP(Dynamic Host Configuration Protocol)를 구현하고, 이더넷 위에서 소켓 기반 통신을 준다. SoAd(Socket Adaptor)는 TcpIp 모듈의 유일한 상위 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+TcpIp 모듈은 [[tcp|TCP]], UDP, [[ipv4|IPv4]], [[ipv6|IPv6]], [[arp|ARP]], [[icmp|ICMP]], DHCP(Dynamic Host Configuration Protocol)를 구현하고, 이더넷 위에서 소켓 기반 통신을 준다. TcpIp 모듈 바로 위에 놓이는 모듈은 SoAd(Socket Adaptor) 하나뿐이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 SoAd는 PDU를 쓰는 통신 서비스 모듈과 소켓 기반의 TCP/IP 스택을 잇고, I-PDU ID와 소켓 연결을 서로 대응시킨다. SoAd는 PDU 하나에 소켓 연결 하나를 대응시키거나, 선택 기능인 PDU 헤더를 붙여 여러 PDU를 한 소켓 연결로 보낸다. PDU 헤더는 PDU 식별자(4바이트)와 길이(4바이트)를 빅 엔디언으로 담는다.[@autosar-cp-sws-socketadaptor-2025]
 
@@ -54,4 +56,4 @@ BswM(Basic Software Mode Manager)은 SW-C와 다른 BSW 모듈이 보낸 모드 
 
 ## 그 밖의 모듈
 
-Communication Services에는 Dlt(Diagnostic Log and Trace), XCP(Universal Measurement and Calibration Protocol), 트랜스포머(SOME/IP, COM 기반, E2E), IPDU Multiplexer, Secure Onboard Communication, J1939Tp(J1939 Transport Layer)도 든다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] AUTOSAR CP R25-11은 LdCom(Large Data COM)의 기능을 AUTOSAR COM의 Large Data Path로 합쳤다.[@autosar-cp-sws-com-2025][@autosar-cp-exp-layeredsoftwarearchitecture-2025] [[uds|UDS]] 진단 서비스는 DCM이 맡는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+Communication Services에는 Dlt(Diagnostic Log and Trace), XCP(Universal Measurement and Calibration Protocol), 트랜스포머(SOME/IP, COM 기반, E2E(End-to-End)), IPDU Multiplexer, Secure Onboard Communication, J1939Tp(J1939 Transport Layer)도 든다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] AUTOSAR Classic Platform R25-11은 LdCom(Large Data COM)의 기능을 AUTOSAR COM의 Large Data Path로 합쳤다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025][@autosar-cp-sws-com-2025] [[uds|UDS]] 진단 서비스는 DCM이 맡는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]

@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**NVRAM 블록**은 [[nvram-manager|NvM]]이 비휘발성 데이터 한 덩이를 관리하고 저장하는 데 필요한 구조 전체다. NVRAM 블록에는 NV 블록, RAM(Random-Access Memory) 블록, administrative block이 반드시 있고, ROM(Read-Only Memory) 블록은 없어도 된다. 구성은 설정 때 NVRAM block descriptor가 정한다. 응용은 NvM API에 블록 ID를 넘겨 다룰 NVRAM 블록 하나를 고른다.[@autosar-cp-sws-nvrammanager-2025]
+**NVRAM 블록**(Non-Volatile Random-Access Memory block)은 [[nvram-manager|NvM]]이 비휘발성 데이터 한 덩이를 관리하고 저장하는 데 필요한 구조 전체다. NVRAM 블록에는 NV(Non-Volatile) 블록, RAM(Random-Access Memory) 블록, administrative block이 반드시 있고, ROM(Read-Only Memory) 블록은 없어도 된다. 구성은 설정 때 NVRAM block descriptor가 정한다. 응용은 NvM API(Application Programming Interface)에 블록 ID를 넘겨 다룰 NVRAM 블록 하나를 고른다.[@autosar-cp-sws-nvrammanager-2025]
 
 ## 기본 저장 객체
 
@@ -26,6 +26,8 @@ Redundant 블록을 읽을 때 첫째 NV 블록을 읽지 못하면 둘째 NV �
 
 Dataset 블록은 administrative block의 인덱스로 한 번에 원소 하나를 골라 읽고 쓴다. ROM 블록이 있으면 인덱스 범위가 ROM 블록까지 넓어져, 0부터 NV 블록 수에서 1을 뺀 값까지가 NV 블록이고 그 뒤가 ROM 블록이다. ROM 블록은 읽기만 할 수 있다.[@autosar-cp-sws-nvrammanager-2025]
 
+![[diagrams/nvram-block-management-types.svg]]
+
 ## CRC
 
 CRC를 쓸지(`NvMBlockUseCrc`)와 CRC의 종류(`NvMBlockCrcType`: `NVM_CRC8`, `NVM_CRC16`, `NVM_CRC32`)는 블록마다 설정한다. RAM 블록의 CRC는 짝을 이루는 NV 블록에 CRC가 있을 때만 쓸 수 있고, 종류도 NV 블록의 CRC와 같아야 한다.[@autosar-cp-sws-nvrammanager-2025]
@@ -35,5 +37,7 @@ NvM은 CRC를 설정한 블록을 쓸 때 CRC를 다시 계산해 NV 블록에 �
 ## 블록 번호
 
 Fee·Ea 블록 번호는 16비트다. `NvMDatasetSelectionBits`는 모든 블록에 공통인 설정으로, 블록 번호의 하위 몇 비트를 dataset이나 redundant 블록의 NV 블록을 고르는 데이터 인덱스로 쓸지 정한다. 블록마다 두는 `NvMNvBlockBaseNumber`는 SW-C가 쓰는 NvM 블록 ID와 Fee·Ea가 기대하는 블록 번호를 잇는 값으로, 블록 번호의 나머지 상위 비트에 놓인다. Dataset이나 redundant 블록이 없으면 `NvMDatasetSelectionBits`를 0으로, redundant 블록만 있으면 1로 둔다. 블록 번호는 base number를 데이터 인덱스 비트 수만큼 왼쪽으로 민 값에 데이터 인덱스를 더한 것으로, $\mathrm{FEE/EA\_BLOCK\_NUMBER} = (\mathrm{NvMNvBlockBaseNumber} \ll \mathrm{NvMDatasetSelectionBits}) + \mathrm{DataIndex}$다.[@autosar-cp-sws-nvrammanager-2025]
+
+![[diagrams/fee-ea-block-number-bits.svg]]
 
 Fee와 Ea는 [[autosar-memory-stack#Fee와 Ea|AUTOSAR 메모리 스택]]에서 다룬다.
