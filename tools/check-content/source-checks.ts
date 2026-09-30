@@ -1,5 +1,5 @@
 import { slugifyFilePath } from "@quartz-community/utils"
-import GithubSlugger, { slug } from "github-slugger"
+import GithubSlugger, { slug as anchorSlug } from "github-slugger"
 import { visit } from "unist-util-visit"
 import { pretendardStylesheet } from "../../quartz/util/localFonts"
 import type { Conventions } from "./conventions"
@@ -189,7 +189,9 @@ function* matchLines(page: Page, pattern: RegExp) {
 
 // Quartz가 제목에 다는 id다. rehype-slug가 제목의 글자를 github-slugger로 바꾸고, 같은 값이 또
 // 나오면 -1, -2를 붙인다. 위키링크의 앵커는 obsidian-flavored-markdown이 같은 slug로 #조각을 만든다.
-function headingIds(page: Page): Set<string> {
+// 제목의 글자는 text와 inlineCode만 모은다. 제목 안의 수식과 위키링크는 렌더된 글자가 원문과 달라
+// id가 어긋나지만, 지금 그런 제목은 없다.
+function sectionIds(page: Page): Set<string> {
   const slugger = new GithubSlugger()
   const ids = new Set<string>()
   visit(page.mdast, "heading", (heading) => {
@@ -205,7 +207,7 @@ function headingIds(page: Page): Set<string> {
 export const wikilink: SourceCheck = (tree) => {
   // 대문과 태그 표시 이름 파일도 링크 대상이므로 title을 모은다.
   const titles = new Map(tree.pages.map((p) => [p.name, fieldsOf(p).title]))
-  const sections = new Map(tree.pages.map((p) => [p.name, headingIds(p)]))
+  const sections = new Map(tree.pages.map((p) => [p.name, sectionIds(p)]))
   const slugs = new Set(tree.pages.filter((p) => p.kind !== "tag").map((p) => p.name))
   const violations: Violation[] = []
   for (const page of tree.pages) {
@@ -216,7 +218,7 @@ export const wikilink: SourceCheck = (tree) => {
       const at = (message: string) => violations.push({ file: page.file, line, message })
       // ^로 시작하는 앵커는 절이 아니라 블록을 가리킨다.
       const checkSection = (name: string) => {
-        if (anchor && !anchor.startsWith("^") && !sections.get(name)!.has(slug(anchor)))
+        if (anchor && !anchor.startsWith("^") && !sections.get(name)!.has(anchorSlug(anchor)))
           at(`앵커가 가리키는 절이 없다: ${link}`)
       }
       if (target === "") {
