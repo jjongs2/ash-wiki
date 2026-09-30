@@ -44,6 +44,8 @@ RTE 모듈의 ECU 설정에서 `RteEventToTaskMapping` 컨테이너는 runnable 
 
 `RtePositionInTask`는 태스크에 매핑된 runnable이 태스크 실행 안에서 차지하는 위치다. 주기로 실행하는 태스크는 이 순서대로 runnable을 실행하고, 이벤트로 활성화되는 runnable을 담은 태스크는 이 순서대로 실행할 runnable을 평가한다.[@autosar-cp-sws-rte-2025]
 
+![[diagrams/rte-event-runnable-task-mapping.svg]]
+
 RTE 생성기는 runnable이 매핑된 태스크의 본문을 만들고, 태스크 본문은 runnable 호출을 담는다. 태스크 자체는 만들지 않으며, 매핑은 RTE 설정의 일부로 생성기에 입력된다. RTE는 `SetEvent`나 `ActivateTask` 같은 운영체제 서비스를 불러 태스크를 직접 활성화하거나 재개한다. 시간 기반 활성화에서는 알람을 초기화하거나 schedule table을 시작해 태스크를 간접적으로 활성화한다.[@autosar-cp-sws-rte-2025]
 
 ## Timing event와 알람

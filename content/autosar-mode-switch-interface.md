@@ -15,7 +15,7 @@ runnable이 도는 동안에는 mode declaration group prototype마다 모드 �
 
 ## Mode manager와 mode user
 
-**mode manager**는 [[software-component-port|P-Port]]로 모드를 제공하고, **mode user**는 R-Port로 모드를 받는다. mode switch 통신은 mode manager 하나에서 여러 mode user로 가는 1:n 연결을 지원하고, [[autosar-rte|RTE]]는 한 mode user에 mode manager 여럿을 잇는 n:1 연결을 거부한다. [[autosar-software-component|SW-C]]도 mode manager가 될 수 있다.[@autosar-cp-sws-rte-2025]
+모드를 내는 쪽인 **mode manager**는 [[software-component-port|P-Port]]를 두고, 그 모드를 쓰는 쪽인 **mode user**는 R-Port를 둔다. mode switch 통신은 mode manager 하나에서 여러 mode user로 가는 1:n 연결을 지원하고, [[autosar-rte|RTE]]는 한 mode user에 mode manager 여럿을 잇는 n:1 연결을 거부한다. [[autosar-software-component|SW-C]]도 mode manager가 될 수 있다.[@autosar-cp-sws-rte-2025]
 
 BSW(Basic Software)에서는 BswM(BSW Mode Manager)이 mode manager의 예로, SW-C와 다른 BSW 모듈의 모드 요청을 설정된 규칙으로 중재하고 그 결과에 따라 모드를 전환한다.[@autosar-cp-sws-rte-2025][@autosar-cp-sws-bswmodemanager-2025]
 
@@ -30,6 +30,8 @@ mode user와 mode manager는 `Rte_Mode_<p>_<o>`로 현재 활성인 모드를 �
 swc mode switch event는 지정한 모드에 들어갈 때, 그 모드에서 나올 때, 또는 지정한 두 모드 사이를 전환할 때 runnable을 시작한다.[@autosar-cp-tps-softwarecomponenttemplate-2025] 이 가운데 어느 때인지는 on-entry, on-exit, on-transition 가운데 하나로 정한다.[@autosar-cp-sws-rte-2025]
 
 모드 전환 중에 RTE는 이전 모드의 on-exit runnable, 두 모드 사이의 on-transition runnable, 새 모드의 on-entry runnable 순서로 실행한다. 이 순서는 같은 코어에 있는 mode user의 무리 안에서 지키고, 코어가 다른 무리끼리는 병렬로 실행할 수 있다.[@autosar-cp-sws-rte-2025]
+
+![[diagrams/mode-switch-transition-order.svg]]
 
 mode manager의 제공 쪽에 acknowledgement를 켜면 RTE는 전환이 끝날 때 mode switched ack event를 일으키고, 이 event는 mode manager의 runnable을 시작할 수 있다. RTE가 시간 초과를 감지해도 이 event가 일어난다.[@autosar-cp-sws-rte-2025]
 

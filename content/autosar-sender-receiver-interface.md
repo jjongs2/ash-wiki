@@ -21,6 +21,8 @@ data element가 큐에 쌓이는지(queued)는 data element의 swImplPolicy가 �
 
 RTE는 receive 포트에서 queued data element마다 수신 큐를 둔다. 값은 큐의 끝에 넣고 앞에서부터 꺼내 읽는 FIFO(First-In First-Out)다. 큐 길이는 ECU 설정 파라미터 `RteQueuedReceiverQueueLength`로 정하고, 이 값이 없으면 receiver com spec의 queueLength로 정한다. 큐가 가득 찼을 때 새 값이 오면 RTE는 그 값을 버리고 오류 플래그를 세운다.[@autosar-cp-sws-rte-2025]
 
+![[diagrams/sender-receiver-last-is-best-queue.svg]]
+
 [[rte-event|RTE 이벤트]]의 하나인 data received event는 data element와 [[runnable-entity|runnable]]을 가리키며, 새 데이터가 오면 RTE가 그 runnable을 시작한다.[@autosar-cp-sws-rte-2025]
 
 ## 명시적 접근과 암묵적 접근
@@ -28,6 +30,8 @@ RTE는 receive 포트에서 queued data element마다 수신 큐를 둔다. 값�
 **명시적 접근**에서는 runnable이 API를 직접 불러 data element를 보내거나 받으므로, 언제 몇 번 보내고 받을지를 runnable이 정한다. queued가 아닌 data element는 `Rte_Write`로 보내고 `Rte_Read`로 읽으며, queued인 data element는 `Rte_Send`로 보내고 `Rte_Receive`로 받는다.[@autosar-cp-sws-rte-2025]
 
 **암묵적 접근**에서는 `Rte_IRead`로 읽고 `Rte_IWrite`로 쓴다. 읽을 때 RTE는 runnable이 시작되기 전에 데이터를 읽어 복사본으로 넘기므로, runnable이 실행되는 동안 그 값은 바뀌지 않는다. 쓴 값은 runnable이 끝난 뒤에 RTE가 보내며, 그보다 먼저 다른 쪽에 보이지 않는다.[@autosar-cp-sws-rte-2025] 암묵적 읽기는 swImplPolicy가 queued인 data element에 쓸 수 없다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+
+![[diagrams/sender-receiver-explicit-implicit-access.svg]]
 
 runnable은 data element에 어떻게 접근할지를 access point로 선언하며, 접근마다 쓰는 access point와 RTE가 만드는 API는 아래와 같다.[@autosar-cp-tps-softwarecomponenttemplate-2025][@autosar-cp-sws-rte-2025]
 

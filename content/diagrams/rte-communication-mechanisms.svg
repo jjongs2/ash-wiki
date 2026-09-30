@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 387" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- ECU 1 -->
+  <rect x="20.75" y="20.75" width="428.5" height="246.5" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="436" y="41" text-anchor="end" fill="var(--text, #727981)">ECU 1</text>
+
+  <!-- 파티션 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4">
+    <rect x="36.75" y="52.75" width="396.5" height="86.5" />
+    <rect x="36.75" y="154.75" width="396.5" height="94.5" />
+  </g>
+  <g text-anchor="end" font-size="12" fill="var(--text, #727981)">
+    <text x="420" y="72">파티션 1</text>
+    <text x="420" y="174">파티션 2</text>
+  </g>
+
+  <!-- ECU 2 -->
+  <rect x="20.75" y="283.75" width="428.5" height="82.5" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="436" y="304" text-anchor="end" fill="var(--text, #727981)">ECU 2</text>
+
+  <!-- SW-C -->
+  <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="52.75" y="86.75" width="98.5" height="38.5" rx="4" />
+    <rect x="320.75" y="86.75" width="98.5" height="38.5" rx="4" />
+    <rect x="320.75" y="188.75" width="98.5" height="38.5" rx="4" />
+    <rect x="320.75" y="315.75" width="98.5" height="38.5" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="102" y="111">SW-C A</text>
+    <text x="370" y="111">SW-C B</text>
+    <text x="370" y="213">SW-C C</text>
+    <text x="370" y="340">SW-C D</text>
+  </g>
+
+  <!-- 통신 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="153" y1="106" x2="318" y2="106" />
+    <path d="M128 127 V208 H318" />
+    <path d="M78 127 V335 H318" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="235" y="99">RTE 내부 버퍼·큐</text>
+    <text x="225" y="201">IOC, trusted function call</text>
+    <text x="200" y="328">AUTOSAR COM</text>
+  </g>
+</svg>

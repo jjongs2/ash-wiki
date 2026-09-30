@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 9.5 556 263.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--blue, #336fb8)" />
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--orange, #b0540d)" />
+    </marker>
+  </defs>
+
+  <!-- 행 이름 -->
+  <g fill="var(--text, #727981)">
+    <text x="20" y="90">명시적 접근</text>
+    <text x="20" y="190">암묵적 접근</text>
+  </g>
+
+  <!-- runnable 실행 -->
+  <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="150.75" y="70.75" width="338.5" height="28.5" rx="2" />
+    <rect x="150.75" y="170.75" width="338.5" height="28.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="320" y="90">runnable</text>
+    <text x="320" y="190">runnable</text>
+  </g>
+
+  <!-- 읽기 -->
+  <g stroke="var(--blue, #336fb8)" stroke-width="1.5">
+    <line x1="230" y1="46" x2="230" y2="68" marker-end="url(#arrow-blue)" />
+    <line x1="151" y1="146" x2="151" y2="168" marker-end="url(#arrow-blue)" />
+    <line x1="230" y1="200" x2="230" y2="212" />
+  </g>
+  <!-- 쓰기 -->
+  <g stroke="var(--orange, #b0540d)" stroke-width="1.5">
+    <line x1="400" y1="70" x2="400" y2="48" marker-end="url(#arrow-orange)" />
+    <line x1="489" y1="170" x2="489" y2="148" marker-end="url(#arrow-orange)" />
+    <line x1="400" y1="200" x2="400" y2="212" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="230" y="38">Rte_Read</text>
+    <text x="400" y="38">Rte_Write</text>
+    <text x="151" y="138">RTE가 읽어 복사</text>
+    <text x="489" y="138">RTE가 보냄</text>
+    <text x="230" y="227">Rte_IRead</text>
+    <text x="400" y="227">Rte_IWrite</text>
+  </g>
+
+  <!-- 시간 -->
+  <line x1="150" y1="248" x2="510" y2="248" stroke="var(--ink, #727981)" stroke-width="1" marker-end="url(#arrow)" />
+  <text x="516" y="252" font-size="12" fill="var(--text, #727981)">시간</text>
+</svg>

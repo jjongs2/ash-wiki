@@ -22,6 +22,8 @@ RTE 생성기는 component type마다 application header 파일을 만든다. �
 
 같은 파티션 안의 통신에는 RTE가 내부 버퍼와 큐를 쓸 수 있다. 같은 ECU의 다른 파티션 사이 통신에는 IOC나 trusted function call 같은 운영체제의 메커니즘을 쓸 수 있다. ECU 사이 통신에는 보통 AUTOSAR COM을 쓴다. primitive data element를 다른 ECU로 보낼 때 RTE는 그 data element가 매핑된 시그널마다 `Com_SendSignal`을 부른다.[@autosar-cp-sws-rte-2025]
 
+![[diagrams/rte-communication-mechanisms.svg]]
+
 ## API 이름 규칙
 
 RTE API 이름은 API의 기능을 나타내는 API root 이름과 access point를 합쳐 만든다. 포트를 거치는 API의 access point에는 포트 이름과 data element나 operation의 이름이 들어간다. C와 C++에서 RTE API 이름은 `Rte_`로 시작한다. 예를 들어 `Rte_Write_<p>_<o>`에서 `<p>`는 포트 이름이고, `<o>`는 그 포트의 sender-receiver 인터페이스에 있는 data element다.[@autosar-cp-sws-rte-2025]

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 710 202" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- composition -->
+  <rect x="40.75" y="20.75" width="628.5" height="128.5" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="56" y="44" fill="var(--text, #727981)">composition</text>
+
+  <!-- component prototype -->
+  <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="150.75" y="70.75" width="148.5" height="58.5" rx="4" />
+    <rect x="410.75" y="70.75" width="148.5" height="58.5" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="225" y="96">component</text>
+    <text x="225" y="114">prototype</text>
+    <text x="485" y="96">component</text>
+    <text x="485" y="114">prototype</text>
+  </g>
+
+  <!-- connector -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="49" y1="100" x2="141" y2="100" />
+    <line x1="309" y1="100" x2="401" y2="100" />
+    <line x1="569" y1="100" x2="661" y2="100" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="95" y="76">delegation</text>
+    <text x="95" y="91">connector</text>
+    <text x="355" y="76">assembly</text>
+    <text x="355" y="91">connector</text>
+    <text x="615" y="76">delegation</text>
+    <text x="615" y="91">connector</text>
+  </g>
+
+  <!-- 포트 -->
+  <rect x="31.75" y="91.75" width="16.5" height="16.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="40" y="104" text-anchor="middle" font-size="11" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="141.75" y="91.75" width="16.5" height="16.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="150" y="104" text-anchor="middle" font-size="11" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="291.75" y="91.75" width="16.5" height="16.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="300" y="104" text-anchor="middle" font-size="11" fill="var(--on-fill, #f8fafd)">P</text>
+  <rect x="401.75" y="91.75" width="16.5" height="16.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="410" y="104" text-anchor="middle" font-size="11" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="551.75" y="91.75" width="16.5" height="16.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="560" y="104" text-anchor="middle" font-size="11" fill="var(--on-fill, #f8fafd)">P</text>
+  <rect x="661.75" y="91.75" width="16.5" height="16.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="670" y="104" text-anchor="middle" font-size="11" fill="var(--on-fill, #f8fafd)">P</text>
+
+  <!-- 범례 -->
+  <rect x="273.75" y="164.75" width="16.5" height="16.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="282" y="177" text-anchor="middle" font-size="11" fill="var(--on-fill, #f8fafd)">P</text>
+  <text x="298" y="178" fill="var(--text, #727981)">P-Port</text>
+  <rect x="373.75" y="164.75" width="16.5" height="16.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="382" y="177" text-anchor="middle" font-size="11" fill="var(--on-fill, #f8fafd)">R</text>
+  <text x="398" y="178" fill="var(--text, #727981)">R-Port</text>
+</svg>
