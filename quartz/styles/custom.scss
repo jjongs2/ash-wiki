@@ -26,9 +26,16 @@ a {
 // 사방 1rem margin을 주는데, 스크롤 상자(.table-container) 안이라 문단의 margin과 겹치지 않고 더해져 표 위아래가
 // 2rem씩 벌어지고 표가 본문보다 들여써진다. 셀의 줄 간격은 업스트림의 2rem 대신 문단에 가깝게 1.5로 두어 두 줄
 // 셀이 한 칸으로 읽히게 하고, 줄어든 만큼 td의 위아래 여백을 th와 같게 늘려 한 줄 행이 비좁지 않게 한다.
-.table-container {
-  margin: 1rem 0;
+// 표 상자의 margin만은 업스트림과 같은 @layer quartz-base 안에 둔다. 콜아웃은 첫 자식의 margin-top과 접힌
+// 상태의 자식 margin을 layer 안에서 지우는데, layer 밖에 두면 구체성과 상관없이 그것을 이겨 표로 시작하는
+// 콜아웃의 제목 아래가 뜨고 접힌 콜아웃에 표의 margin이 남는다.
+@layer quartz-base {
+  .table-container {
+    margin: 1rem 0;
+  }
+}
 
+.table-container {
   & > table {
     margin: 0;
 
