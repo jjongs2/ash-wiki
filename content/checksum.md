@@ -9,9 +9,7 @@ verified: 2026-09-29
 
 체크섬은 데이터를 바이트나 워드 단위로 더한 합으로 만들기도 한다.[@ietf-rfc-1071-1988][@microchip-xc8-pic-ug-2026]
 
-## 구조·동작
-
-### 인터넷 체크섬
+## 인터넷 체크섬
 
 RFC 1071은 IP(Internet Protocol), UDP, TCP가 쓰는 체크섬을 **인터넷 체크섬**이라 부른다.[@ietf-rfc-1071-1988] RFC 791은 IP 헤더 체크섬을 헤더의 모든 16비트 워드를 1의 보수로 더한 합의 1의 보수로 정한다.[@ietf-rfc-791-1981] RFC 9293은 TCP 체크섬을 의사 헤더를 포함한 헤더와 데이터의 16비트 워드를 같은 방식으로 더해 구하도록 정한다.[@ietf-rfc-9293-2022] RFC 768은 UDP 체크섬을 의사 헤더, UDP 헤더, 데이터를 같은 방식으로 더해 구하도록 정한다.[@ietf-rfc-768-1980]
 
@@ -21,7 +19,7 @@ RFC 791과 RFC 9293은 체크섬을 계산할 때 체크섬 필드를 0으로 �
 
 ![[diagrams/internet-checksum-compute-verify.svg]]
 
-### Fletcher 체크섬과 Adler-32
+## Fletcher 체크섬과 Adler-32
 
 **Fletcher 체크섬**은 데이터를 더한 합 $A$와, $A$를 다시 누적한 합 $B$ 두 개를 체크섬으로 쓴다.[@microchip-xc8-pic-ug-2026][@ietf-rfc-1146-1990] RFC 1146에 따르면 $B$에는 옥텟마다 자리에 따른 가중치가 붙어서, Fletcher 알고리즘은 표준 TCP 체크섬과 달리 데이터그램 안에서 옥텟이나 워드가 자리를 바꾼 것을 찾아낸다.[@ietf-rfc-1146-1990]
 
@@ -29,6 +27,6 @@ RFC 1950에 따르면 **Adler-32**는 Fletcher 알고리즘을 32비트로 넓�
 
 LIN이 쓰는 체크섬은 [[lin#체크섬|LIN]]에서 다룬다.
 
-## 비교·한계
+## CRC와의 차이
 
 [[cyclic-redundancy-check|CRC]]는 체크섬보다 오류 검출 능력이 크다.[@microchip-an1148-2008][@ietf-rfc-1071-1988] RFC 1071에 부록으로 실린 IEN 45에 따르면 CRC 다항식 부호는 프로그램으로 구현하기에 비용이 크다.[@ietf-rfc-1071-1988]
