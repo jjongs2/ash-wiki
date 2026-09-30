@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 주제 전체를 놓고 봐야 드러나는 문제를 찾는다. 용어는 `CONTEXT.md`를 따른다. 주제 이름은 `content/tags/<주제 태그>.md`의 `title`이다(예: CAN).
 
-먼저 읽는다: `docs/wiki-conventions.md`, `docs/wiki-verification.md`의 출처 상태 절. 린트는 게시된 페이지와 출처만 본다.
+먼저 읽는다: `docs/wiki-conventions.md`, `docs/wiki-abbreviations.md`, `docs/wiki-verification.md`의 출처 상태 절. 린트는 게시된 페이지와 출처만 본다.
 
 ## 1. 모으기
 

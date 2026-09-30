@@ -7,7 +7,7 @@ description: 인제스트. `ingest:` 묶음 티켓 하나를 초안, 검증자 �
 
 묶음 티켓 하나가 PR 하나가 된다. 용어는 `CONTEXT.md`를 따른다.
 
-먼저 읽는다: 티켓(`gh issue view <n> --comments`), `docs/adr/0001-isolation-boundary.md`, `docs/adr/0006-source-hierarchy-with-theory-claims.md`, `docs/wiki-conventions.md`, `docs/wiki-verification.md`. 브랜치와 커밋은 `CONTRIBUTING.md`를 따르고, 타입은 `content`다.
+먼저 읽는다: 티켓(`gh issue view <n> --comments`), `docs/adr/0001-isolation-boundary.md`, `docs/adr/0006-source-hierarchy-with-theory-claims.md`, `docs/wiki-conventions.md`, `docs/wiki-abbreviations.md`, `docs/wiki-verification.md`. 브랜치와 커밋은 `CONTRIBUTING.md`를 따르고, 타입은 `content`다.
 
 티켓의 페이지 표에 `출처 후보` 열이 있으면 **출처 경로**, 없으면 **노트 경로**다. 출처 경로 티켓은 보강이 발행한 것으로, `ASH_WIKI_NOTES`를 열지 않고 표의 출처로 쓴다. 두 경로가 다른 단계는 따로 적는다.
 
@@ -93,9 +93,10 @@ description: 인제스트. `ingest:` 묶음 티켓 하나를 초안, 검증자 �
 
 ## 8. PR과 코멘트
 
-1. PR을 올린다. 제목은 `content: <묶음 이름>`, 본문은 `CONTRIBUTING.md`의 세 부분이다. `Closes #<묶음 티켓>`.
-2. 티켓의 인수 기준에 적힌 `verify:` 이슈에 이 묶음의 코멘트 하나를 단다. 꼴은 위키 검증 문서를 따른다.
-3. 티켓 본문의 인수 기준 체크박스를 체크한다.
-4. 리뷰는 `CONTRIBUTING.md`를 따른다.
+1. bib 엔트리를 더했으면 push 직전에 위키 규약의 인용 절대로 열린 PR과 키가 겹치는지 본다.
+2. PR을 올린다. 제목은 `content: <묶음 이름>`, 본문은 `CONTRIBUTING.md`의 세 부분이다. `Closes #<묶음 티켓>`.
+3. 티켓의 인수 기준에 적힌 `verify:` 이슈에 이 묶음의 코멘트 하나를 단다. 꼴은 위키 검증 문서를 따른다.
+4. 티켓 본문의 인수 기준 체크박스를 체크한다.
+5. 리뷰는 `CONTRIBUTING.md`를 따른다.
 
 완료: PR과 `verify:` 코멘트가 있고, 티켓의 인수 기준이 모두 체크됐다.
