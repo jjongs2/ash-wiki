@@ -79,8 +79,11 @@ plugins:
   - source: "@quartz-community/github-flavored-markdown"
     enabled: true
     order: 40
+  # 절이 하나뿐인 쪽에도 목차를 띄운다. 기본값(minEntries: 1)은 제목이 둘 이상일 때만 띄운다.
   - source: "@quartz-community/table-of-contents"
     enabled: true
+    options:
+      minEntries: 0
     order: 50
     layout:
       position: right
