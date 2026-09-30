@@ -6,12 +6,12 @@
     </marker>
   </defs>
   <!-- 상태: 한 줄로 -->
-  <rect x="20" y="40" width="130" height="48" fill="#337b47" />
-  <text x="85" y="69" text-anchor="middle" fill="#f8fafd">error active</text>
-  <rect x="350" y="40" width="130" height="48" fill="#b0540d" />
-  <text x="415" y="69" text-anchor="middle" fill="#f8fafd">error passive</text>
-  <rect x="600" y="40" width="130" height="48" fill="#bb464d" />
-  <text x="665" y="69" text-anchor="middle" fill="#f8fafd">bus-off</text>
+  <rect x="20" y="40" width="130" height="48" stroke="#727981" stroke-width="1.5" />
+  <text x="85" y="69" text-anchor="middle" fill="#727981">error active</text>
+  <rect x="350" y="40" width="130" height="48" stroke="#727981" stroke-width="1.5" />
+  <text x="415" y="69" text-anchor="middle" fill="#727981">error passive</text>
+  <rect x="600" y="40" width="130" height="48" stroke="#727981" stroke-width="1.5" />
+  <text x="665" y="69" text-anchor="middle" fill="#727981">bus-off</text>
 
   <!-- error active와 error passive 사이 -->
   <line x1="152" y1="54" x2="347" y2="54" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />

@@ -13,17 +13,17 @@
   <text x="400" y="42" text-anchor="middle" font-size="12" fill="#727981">자원을 놓음</text>
   <line x1="400" y1="46" x2="400" y2="112" stroke="#727981" stroke-width="1" />
   <text x="106" y="75" text-anchor="end" fill="#727981">T1 (높음)</text>
-  <rect x="240" y="56" width="40" height="28" fill="#336fb8" />
-  <text x="260.0" y="75" text-anchor="middle" fill="#f8fafd">실행</text>
+  <rect x="240" y="56" width="40" height="28" stroke="#727981" stroke-width="1.5" />
+  <text x="260.0" y="75" text-anchor="middle" fill="#727981">실행</text>
   <rect x="280.75" y="56.75" width="118.5" height="26.5" stroke="#727981" stroke-width="1.5" stroke-dasharray="4 4" />
   <text x="340.0" y="75" text-anchor="middle" fill="#727981">블록</text>
   <rect x="400" y="56" width="80" height="28" fill="#b0540d" />
   <text x="440.0" y="75" text-anchor="middle" fill="#f8fafd">임계 구역</text>
-  <rect x="480" y="56" width="40" height="28" fill="#336fb8" />
-  <text x="500.0" y="75" text-anchor="middle" fill="#f8fafd">실행</text>
+  <rect x="480" y="56" width="40" height="28" stroke="#727981" stroke-width="1.5" />
+  <text x="500.0" y="75" text-anchor="middle" fill="#727981">실행</text>
   <text x="106" y="103" text-anchor="end" fill="#727981">T2 (낮음)</text>
-  <rect x="120" y="84" width="40" height="28" fill="#336fb8" />
-  <text x="140.0" y="103" text-anchor="middle" fill="#f8fafd">실행</text>
+  <rect x="120" y="84" width="40" height="28" stroke="#727981" stroke-width="1.5" />
+  <text x="140.0" y="103" text-anchor="middle" fill="#727981">실행</text>
   <rect x="160" y="84" width="80" height="28" fill="#b0540d" />
   <text x="200.0" y="103" text-anchor="middle" fill="#f8fafd">임계 구역</text>
   <rect x="280" y="84" width="120" height="28" fill="#825da9" />
@@ -40,15 +40,15 @@
   <text x="106" y="231" text-anchor="end" fill="#727981">T1 (높음)</text>
   <rect x="240.75" y="212.75" width="118.5" height="26.5" stroke="#727981" stroke-width="1.5" stroke-dasharray="4 4" />
   <text x="300.0" y="231" text-anchor="middle" fill="#727981">대기</text>
-  <rect x="360" y="212" width="40" height="28" fill="#336fb8" />
-  <text x="380.0" y="231" text-anchor="middle" fill="#f8fafd">실행</text>
+  <rect x="360" y="212" width="40" height="28" stroke="#727981" stroke-width="1.5" />
+  <text x="380.0" y="231" text-anchor="middle" fill="#727981">실행</text>
   <rect x="400" y="212" width="80" height="28" fill="#b0540d" />
   <text x="440.0" y="231" text-anchor="middle" fill="#f8fafd">임계 구역</text>
-  <rect x="480" y="212" width="40" height="28" fill="#336fb8" />
-  <text x="500.0" y="231" text-anchor="middle" fill="#f8fafd">실행</text>
+  <rect x="480" y="212" width="40" height="28" stroke="#727981" stroke-width="1.5" />
+  <text x="500.0" y="231" text-anchor="middle" fill="#727981">실행</text>
   <text x="106" y="259" text-anchor="end" fill="#727981">T2 (낮음)</text>
-  <rect x="120" y="240" width="40" height="28" fill="#336fb8" />
-  <text x="140.0" y="259" text-anchor="middle" fill="#f8fafd">실행</text>
+  <rect x="120" y="240" width="40" height="28" stroke="#727981" stroke-width="1.5" />
+  <text x="140.0" y="259" text-anchor="middle" fill="#727981">실행</text>
   <rect x="160" y="240" width="200" height="28" fill="#825da9" />
   <text x="260.0" y="259" text-anchor="middle" fill="#f8fafd">우선순위 상한</text>
   <line x1="120" y1="288" x2="554" y2="288" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />

@@ -4,16 +4,16 @@
     <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="#336fb8" />
     </marker>
-    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#b0540d" />
+    <marker id="arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
     </marker>
   </defs>
 
   <!-- 두 쪽 -->
-  <rect x="80" y="20" width="120" height="36" rx="4" fill="#825da9" />
-  <text x="140" y="43" text-anchor="middle" fill="#f8fafd">진단 장비</text>
-  <rect x="400" y="20" width="140" height="36" rx="4" fill="#825da9" />
-  <text x="470" y="43" text-anchor="middle" fill="#f8fafd">AUTOSAR DoIP 모듈</text>
+  <rect x="80" y="20" width="120" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="140" y="43" text-anchor="middle" fill="#727981">진단 장비</text>
+  <rect x="400" y="20" width="140" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="470" y="43" text-anchor="middle" fill="#727981">AUTOSAR DoIP 모듈</text>
   <g stroke="#727981" stroke-width="1.5">
     <line x1="140" y1="56" x2="140" y2="400" />
     <line x1="470" y1="56" x2="470" y2="400" />
@@ -22,21 +22,21 @@
   <!-- UDP: 차량 식별 -->
   <line x1="142" y1="84" x2="468" y2="100" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
   <text x="305" y="84" text-anchor="middle" font-size="12" fill="#727981">차량 식별 요청 (0x0001)</text>
-  <line x1="468" y1="128" x2="142" y2="144" stroke="#b0540d" stroke-width="2" marker-end="url(#arrow-orange)" />
+  <line x1="468" y1="128" x2="142" y2="144" stroke="#727981" stroke-width="2" marker-end="url(#arrow-ink)" />
   <text x="305" y="128" text-anchor="middle" font-size="12" fill="#727981">차량 식별 응답·차량 알림 (0x0004)</text>
 
   <!-- TCP: 라우팅 활성화 -->
   <line x1="142" y1="186" x2="468" y2="202" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
   <text x="305" y="186" text-anchor="middle" font-size="12" fill="#727981">라우팅 활성화 요청 (0x0005)</text>
-  <line x1="468" y1="230" x2="142" y2="246" stroke="#b0540d" stroke-width="2" marker-end="url(#arrow-orange)" />
+  <line x1="468" y1="230" x2="142" y2="246" stroke="#727981" stroke-width="2" marker-end="url(#arrow-ink)" />
   <text x="305" y="230" text-anchor="middle" font-size="12" fill="#727981">라우팅 활성화 응답 (0x0006), 응답 코드 0x10</text>
 
   <!-- TCP: 진단 메시지 -->
   <line x1="142" y1="274" x2="468" y2="290" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
   <text x="305" y="274" text-anchor="middle" font-size="12" fill="#727981">진단 메시지 (0x8001)</text>
-  <line x1="468" y1="318" x2="142" y2="334" stroke="#b0540d" stroke-width="2" marker-end="url(#arrow-orange)" />
+  <line x1="468" y1="318" x2="142" y2="334" stroke="#727981" stroke-width="2" marker-end="url(#arrow-ink)" />
   <text x="305" y="318" text-anchor="middle" font-size="12" fill="#727981">진단 메시지 긍정 확인 (0x8002)</text>
-  <line x1="468" y1="362" x2="142" y2="378" stroke="#b0540d" stroke-width="2" marker-end="url(#arrow-orange)" />
+  <line x1="468" y1="362" x2="142" y2="378" stroke="#727981" stroke-width="2" marker-end="url(#arrow-ink)" />
   <text x="305" y="362" text-anchor="middle" font-size="12" fill="#727981">진단 메시지 (0x8001)</text>
 
   <!-- 전송 프로토콜 -->

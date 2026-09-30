@@ -5,27 +5,27 @@
   <text x="360" y="24" text-anchor="middle" font-size="12" fill="#727981">표준</text>
 
   <!-- 일곱 계층 -->
-  <rect x="40" y="40" width="200" height="36" rx="4" fill="#336fb8" />
-  <text x="54" y="63" font-size="12" fill="#f8fafd">7</text>
-  <text x="140" y="63" text-anchor="middle" fill="#f8fafd">응용 계층</text>
-  <rect x="40" y="82" width="200" height="36" rx="4" fill="#336fb8" />
-  <text x="54" y="105" font-size="12" fill="#f8fafd">6</text>
-  <text x="140" y="105" text-anchor="middle" fill="#f8fafd">표현 계층</text>
-  <rect x="40" y="124" width="200" height="36" rx="4" fill="#336fb8" />
-  <text x="54" y="147" font-size="12" fill="#f8fafd">5</text>
-  <text x="140" y="147" text-anchor="middle" fill="#f8fafd">세션 계층</text>
-  <rect x="40" y="166" width="200" height="36" rx="4" fill="#336fb8" />
-  <text x="54" y="189" font-size="12" fill="#f8fafd">4</text>
-  <text x="140" y="189" text-anchor="middle" fill="#f8fafd">전송 계층</text>
-  <rect x="40" y="208" width="200" height="36" rx="4" fill="#336fb8" />
-  <text x="54" y="231" font-size="12" fill="#f8fafd">3</text>
-  <text x="140" y="231" text-anchor="middle" fill="#f8fafd">네트워크 계층</text>
-  <rect x="40" y="250" width="200" height="36" rx="4" fill="#336fb8" />
-  <text x="54" y="273" font-size="12" fill="#f8fafd">2</text>
-  <text x="140" y="273" text-anchor="middle" fill="#f8fafd">데이터 링크 계층</text>
-  <rect x="40" y="292" width="200" height="36" rx="4" fill="#336fb8" />
-  <text x="54" y="315" font-size="12" fill="#f8fafd">1</text>
-  <text x="140" y="315" text-anchor="middle" fill="#f8fafd">물리 계층</text>
+  <rect x="40" y="40" width="200" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="54" y="63" font-size="12" fill="#727981">7</text>
+  <text x="140" y="63" text-anchor="middle" fill="#727981">응용 계층</text>
+  <rect x="40" y="82" width="200" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="54" y="105" font-size="12" fill="#727981">6</text>
+  <text x="140" y="105" text-anchor="middle" fill="#727981">표현 계층</text>
+  <rect x="40" y="124" width="200" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="54" y="147" font-size="12" fill="#727981">5</text>
+  <text x="140" y="147" text-anchor="middle" fill="#727981">세션 계층</text>
+  <rect x="40" y="166" width="200" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="54" y="189" font-size="12" fill="#727981">4</text>
+  <text x="140" y="189" text-anchor="middle" fill="#727981">전송 계층</text>
+  <rect x="40" y="208" width="200" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="54" y="231" font-size="12" fill="#727981">3</text>
+  <text x="140" y="231" text-anchor="middle" fill="#727981">네트워크 계층</text>
+  <rect x="40" y="250" width="200" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="54" y="273" font-size="12" fill="#727981">2</text>
+  <text x="140" y="273" text-anchor="middle" fill="#727981">데이터 링크 계층</text>
+  <rect x="40" y="292" width="200" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="54" y="315" font-size="12" fill="#727981">1</text>
+  <text x="140" y="315" text-anchor="middle" fill="#727981">물리 계층</text>
 
   <!-- 차량 진단 통신 표준 -->
   <rect x="280" y="40" width="160" height="36" rx="4" fill="#b0540d" />

@@ -9,8 +9,8 @@
   <!-- 판정 구간 -->
   <rect x="20" y="20" width="200" height="40" fill="#336fb8" />
   <text x="120" y="45" text-anchor="middle" fill="#f8fafd">도미넌트</text>
-  <rect x="320" y="20" width="200" height="40" fill="#337b47" />
-  <text x="420" y="45" text-anchor="middle" fill="#f8fafd">리세시브</text>
+  <rect x="320" y="20" width="200" height="40" stroke="#727981" stroke-width="1.5" />
+  <text x="420" y="45" text-anchor="middle" fill="#727981">리세시브</text>
 
   <!-- 축: 버스 전압 / 배터리 전압 -->
   <line x1="20" y1="80" x2="546" y2="80" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />

@@ -31,14 +31,14 @@
   </g>
 
   <!-- 태스크 1 -->
-  <g fill="#336fb8">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="150" y="50" width="16" height="20" rx="2" />
     <rect x="406" y="50" width="16" height="20" rx="2" />
     <rect x="662" y="50" width="16" height="20" rx="2" />
   </g>
 
   <!-- 태스크 2: 태스크 3이 읽기 전에 덮어쓰인 출력은 orange -->
-  <g fill="#336fb8">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="182" y="100" width="16" height="20" rx="2" />
     <rect x="310" y="100" width="16" height="20" rx="2" />
     <rect x="438" y="100" width="16" height="20" rx="2" />
@@ -52,7 +52,7 @@
   </g>
 
   <!-- 태스크 3 -->
-  <g fill="#336fb8">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="214" y="150" width="16" height="20" rx="2" />
     <rect x="342" y="150" width="16" height="20" rx="2" />
     <rect x="470" y="150" width="16" height="20" rx="2" />
@@ -87,7 +87,7 @@
   <text x="318" y="270" text-anchor="middle" font-size="12" fill="#727981">Reaction</text>
 
   <!-- 범례 -->
-  <rect x="150" y="288" width="14" height="14" rx="2" fill="#336fb8" />
+  <rect x="150" y="288" width="14" height="14" rx="2" stroke="#727981" stroke-width="1.5" />
   <text x="170" y="300" font-size="12" fill="#727981">실행을 시작할 때 읽고 끝날 때 씀</text>
   <rect x="400" y="288" width="14" height="14" rx="2" fill="#b0540d" />
   <text x="420" y="300" font-size="12" fill="#727981">태스크 3이 읽기 전에 덮어쓰인 출력</text>

@@ -13,14 +13,14 @@
   </g>
 
   <!-- 단계: 위에서 아래로 -->
-  <g fill="#336fb8">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="20" y="60" width="240" height="40" rx="4" />
     <rect x="20" y="122" width="240" height="40" rx="4" />
     <rect x="20" y="184" width="240" height="40" rx="4" />
     <rect x="20" y="246" width="240" height="40" rx="4" />
     <rect x="20" y="308" width="240" height="40" rx="4" />
   </g>
-  <g text-anchor="middle" fill="#f8fafd">
+  <g text-anchor="middle" fill="#727981">
     <text x="140" y="85">하드웨어별 초기화 코드</text>
     <text x="140" y="147">StartOS(application mode)</text>
     <text x="140" y="209">운영체제 내부 초기화</text>

@@ -7,8 +7,8 @@
   </defs>
 
   <!-- 판정 구간 -->
-  <rect x="20" y="30" width="200" height="40" fill="#337b47" />
-  <text x="120" y="55" text-anchor="middle" fill="#f8fafd">recessive</text>
+  <rect x="20" y="30" width="200" height="40" stroke="#727981" stroke-width="1.5" />
+  <text x="120" y="55" text-anchor="middle" fill="#727981">recessive</text>
   <rect x="340" y="30" width="200" height="40" fill="#336fb8" />
   <text x="440" y="55" text-anchor="middle" fill="#f8fafd">dominant</text>
 

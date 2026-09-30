@@ -7,10 +7,10 @@
   </defs>
 
   <!-- 양 끝 PHY -->
-  <rect x="20" y="50" width="90" height="50" rx="4" fill="#336fb8" />
-  <text x="65" y="80" text-anchor="middle" fill="#f8fafd">PHY</text>
-  <rect x="550" y="50" width="90" height="50" rx="4" fill="#336fb8" />
-  <text x="595" y="80" text-anchor="middle" fill="#f8fafd">PHY</text>
+  <rect x="20" y="50" width="90" height="50" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="65" y="80" text-anchor="middle" fill="#727981">PHY</text>
+  <rect x="550" y="50" width="90" height="50" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="595" y="80" text-anchor="middle" fill="#727981">PHY</text>
 
   <!-- 한 쌍 케이블 -->
   <line x1="110" y1="68" x2="550" y2="68" stroke="#727981" stroke-width="1.5" />

@@ -13,26 +13,26 @@
     <text x="240" y="386" text-anchor="middle">칸: 자리 번호와 그 이진수 · 1, 2, 4번 자리는 패리티 비트, 나머지는 데이터 비트</text>
   </g>
   <!-- 자리: 번호와 이진수 -->
-  <rect x="220" y="178" width="40" height="36" rx="4" fill="#336fb8" />
+  <rect x="220" y="178" width="40" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
   <rect x="220" y="56" width="40" height="36" rx="4" fill="#b0540d" />
-  <rect x="220" y="258" width="40" height="36" rx="4" fill="#336fb8" />
+  <rect x="220" y="258" width="40" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
   <rect x="114.3" y="239" width="40" height="36" rx="4" fill="#b0540d" />
-  <rect x="289.3" y="138" width="40" height="36" rx="4" fill="#336fb8" />
+  <rect x="289.3" y="138" width="40" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
   <rect x="325.7" y="239" width="40" height="36" rx="4" fill="#b0540d" />
-  <rect x="150.7" y="138" width="40" height="36" rx="4" fill="#336fb8" />
-  <g text-anchor="middle" fill="#f8fafd">
+  <rect x="150.7" y="138" width="40" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
+  <g text-anchor="middle" fill="#727981">
     <text x="240" y="195">7</text>
     <text x="240" y="208" font-size="10">111</text>
-    <text x="240" y="73">4</text>
-    <text x="240" y="86" font-size="10">100</text>
+    <text x="240" y="73" fill="#f8fafd">4</text>
+    <text x="240" y="86" font-size="10" fill="#f8fafd">100</text>
     <text x="240" y="275">3</text>
     <text x="240" y="288" font-size="10">011</text>
-    <text x="134.3" y="256">2</text>
-    <text x="134.3" y="269" font-size="10">010</text>
+    <text x="134.3" y="256" fill="#f8fafd">2</text>
+    <text x="134.3" y="269" font-size="10" fill="#f8fafd">010</text>
     <text x="309.3" y="155">5</text>
     <text x="309.3" y="168" font-size="10">101</text>
-    <text x="345.7" y="256">1</text>
-    <text x="345.7" y="269" font-size="10">001</text>
+    <text x="345.7" y="256" fill="#f8fafd">1</text>
+    <text x="345.7" y="269" font-size="10" fill="#f8fafd">001</text>
     <text x="170.7" y="155">6</text>
     <text x="170.7" y="168" font-size="10">110</text>
   </g>

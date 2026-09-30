@@ -21,22 +21,22 @@
   <text x="108" y="146" text-anchor="end" fill="#727981">노드 3</text>
 
   <!-- 노드마다 gate open time 하나만큼 늦게 나감 -->
-  <rect x="124" y="50" width="56" height="24" rx="3" fill="#336fb8" />
-  <text x="152" y="66" text-anchor="middle" fill="#f8fafd">패킷</text>
+  <rect x="124" y="50" width="56" height="24" rx="3" stroke="#727981" stroke-width="1.5" />
+  <text x="152" y="66" text-anchor="middle" fill="#727981">패킷</text>
   <path d="M180 62 H216 V88" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <rect x="188" y="90" width="56" height="24" rx="3" fill="#336fb8" />
-  <text x="216" y="106" text-anchor="middle" fill="#f8fafd">패킷</text>
+  <rect x="188" y="90" width="56" height="24" rx="3" stroke="#727981" stroke-width="1.5" />
+  <text x="216" y="106" text-anchor="middle" fill="#727981">패킷</text>
   <path d="M244 102 H280 V128" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <rect x="252" y="130" width="56" height="24" rx="3" fill="#336fb8" />
-  <text x="280" y="146" text-anchor="middle" fill="#f8fafd">패킷</text>
-  <rect x="380" y="50" width="56" height="24" rx="3" fill="#336fb8" />
-  <text x="408" y="66" text-anchor="middle" fill="#f8fafd">패킷</text>
+  <rect x="252" y="130" width="56" height="24" rx="3" stroke="#727981" stroke-width="1.5" />
+  <text x="280" y="146" text-anchor="middle" fill="#727981">패킷</text>
+  <rect x="380" y="50" width="56" height="24" rx="3" stroke="#727981" stroke-width="1.5" />
+  <text x="408" y="66" text-anchor="middle" fill="#727981">패킷</text>
   <path d="M436 62 H472 V88" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <rect x="444" y="90" width="56" height="24" rx="3" fill="#336fb8" />
-  <text x="472" y="106" text-anchor="middle" fill="#f8fafd">패킷</text>
+  <rect x="444" y="90" width="56" height="24" rx="3" stroke="#727981" stroke-width="1.5" />
+  <text x="472" y="106" text-anchor="middle" fill="#727981">패킷</text>
   <path d="M500 102 H536 V128" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <rect x="508" y="130" width="56" height="24" rx="3" fill="#336fb8" />
-  <text x="536" y="146" text-anchor="middle" fill="#f8fafd">패킷</text>
+  <rect x="508" y="130" width="56" height="24" rx="3" stroke="#727981" stroke-width="1.5" />
+  <text x="536" y="146" text-anchor="middle" fill="#727981">패킷</text>
 
   <!-- 시간 축 -->
   <line x1="120" y1="168" x2="656" y2="168" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />

@@ -43,13 +43,13 @@
       <line x1="60" y1="170" x2="60" y2="134" />
       <line x1="180" y1="130" x2="180" y2="166" />
     </g>
-    <g fill="#336fb8">
+    <g stroke="#727981" stroke-width="1.5">
       <rect x="40" y="172" width="40" height="26" rx="4" />
       <rect x="100" y="172" width="40" height="26" rx="4" />
       <rect x="160" y="172" width="40" height="26" rx="4" />
       <rect x="220" y="172" width="40" height="26" rx="4" />
     </g>
-    <g fill="#f8fafd" text-anchor="middle">
+    <g fill="#727981" text-anchor="middle">
       <text x="60" y="190">A</text>
       <text x="120" y="190">C</text>
       <text x="180" y="190">B</text>
@@ -90,13 +90,13 @@
       <line x1="180" y1="130" x2="180" y2="166" />
       <line x1="240" y1="130" x2="240" y2="166" />
     </g>
-    <g fill="#336fb8">
+    <g stroke="#727981" stroke-width="1.5">
       <rect x="40" y="172" width="40" height="26" rx="4" />
       <rect x="100" y="172" width="40" height="26" rx="4" />
       <rect x="160" y="172" width="40" height="26" rx="4" />
       <rect x="220" y="172" width="40" height="26" rx="4" />
     </g>
-    <g fill="#f8fafd" text-anchor="middle">
+    <g fill="#727981" text-anchor="middle">
       <text x="60" y="190">A</text>
       <text x="120" y="190">C</text>
       <text x="180" y="190">B</text>

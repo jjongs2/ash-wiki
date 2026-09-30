@@ -33,7 +33,7 @@
   <rect x="384" y="120" width="110" height="40" fill="#336fb8" />
   <text x="439" y="145" text-anchor="middle" fill="#f8fafd">1의 보수 합</text>
   <line x1="494" y1="140" x2="518" y2="140" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <rect x="520" y="120" width="160" height="40" fill="#337b47" />
+  <rect x="520" y="120" width="160" height="40" fill="#336fb8" />
   <text x="600" y="145" text-anchor="middle" fill="#f8fafd">모든 비트가 1이면 통과</text>
 
   <path d="M90 166 V172 H356 V166" stroke="#727981" stroke-width="1.5" />

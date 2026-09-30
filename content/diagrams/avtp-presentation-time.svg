@@ -4,23 +4,23 @@
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
     </marker>
-    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#336fb8" />
+    <marker id="arrow-stream" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
     </marker>
   </defs>
 
   <!-- 두 쪽 -->
-  <rect x="20" y="40" width="96" height="36" rx="4" fill="#825da9" />
-  <text x="68" y="63" text-anchor="middle" fill="#f8fafd">talker</text>
-  <rect x="20" y="130" width="96" height="36" rx="4" fill="#825da9" />
-  <text x="68" y="153" text-anchor="middle" fill="#f8fafd">listener</text>
+  <rect x="20" y="40" width="96" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="68" y="63" text-anchor="middle" fill="#727981">talker</text>
+  <rect x="20" y="130" width="96" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="68" y="153" text-anchor="middle" fill="#727981">listener</text>
   <g stroke="#727981" stroke-width="1.5">
     <line x1="116" y1="58" x2="600" y2="58" />
     <line x1="116" y1="148" x2="600" y2="148" />
   </g>
 
   <!-- 표현 시각을 적어 보냄 -->
-  <line x1="180" y1="58" x2="318" y2="145" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <line x1="180" y1="58" x2="318" y2="145" stroke="#727981" stroke-width="2" marker-end="url(#arrow-stream)" />
   <circle cx="180" cy="58" r="3.5" fill="#727981" />
   <text x="238" y="118" text-anchor="end" font-size="12" fill="#727981">표현 시각을 적은 스트림</text>
 

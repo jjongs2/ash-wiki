@@ -4,7 +4,7 @@
   <path d="M21 34 V28 H659 V34" stroke="#727981" stroke-width="1.5" />
   <text x="340" y="20" text-anchor="middle" font-size="12" fill="#727981">32비트</text>
   <!-- 필드 -->
-  <g fill="#336fb8">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="21" y="40" width="78" height="34" rx="3" />
     <rect x="101" y="40" width="158" height="34" rx="3" />
     <rect x="261" y="40" width="398" height="34" rx="3" />
@@ -14,16 +14,16 @@
     <rect x="21" y="116" width="638" height="148" rx="3" />
     <rect x="21" y="268" width="638" height="148" rx="3" />
   </g>
-  <text x="60" y="61" text-anchor="middle" font-size="12" fill="#f8fafd">Version</text>
-  <text x="180" y="62" text-anchor="middle" fill="#f8fafd">Traffic Class</text>
-  <text x="460" y="62" text-anchor="middle" fill="#f8fafd">Flow Label</text>
-  <text x="180" y="100" text-anchor="middle" fill="#f8fafd">Payload Length</text>
-  <text x="420" y="100" text-anchor="middle" fill="#f8fafd">Next Header</text>
-  <text x="580" y="100" text-anchor="middle" fill="#f8fafd">Hop Limit</text>
-  <text x="340" y="187" text-anchor="middle" fill="#f8fafd">Source Address</text>
-  <text x="340" y="204" text-anchor="middle" font-size="12" fill="#f8fafd">128비트</text>
-  <text x="340" y="339" text-anchor="middle" fill="#f8fafd">Destination Address</text>
-  <text x="340" y="356" text-anchor="middle" font-size="12" fill="#f8fafd">128비트</text>
+  <text x="60" y="61" text-anchor="middle" font-size="12" fill="#727981">Version</text>
+  <text x="180" y="62" text-anchor="middle" fill="#727981">Traffic Class</text>
+  <text x="460" y="62" text-anchor="middle" fill="#727981">Flow Label</text>
+  <text x="180" y="100" text-anchor="middle" fill="#727981">Payload Length</text>
+  <text x="420" y="100" text-anchor="middle" fill="#727981">Next Header</text>
+  <text x="580" y="100" text-anchor="middle" fill="#727981">Hop Limit</text>
+  <text x="340" y="187" text-anchor="middle" fill="#727981">Source Address</text>
+  <text x="340" y="204" text-anchor="middle" font-size="12" fill="#727981">128비트</text>
+  <text x="340" y="339" text-anchor="middle" fill="#727981">Destination Address</text>
+  <text x="340" y="356" text-anchor="middle" font-size="12" fill="#727981">128비트</text>
   <path d="M668 41 H674 V415 H668" stroke="#727981" stroke-width="1.5" />
   <text x="682" y="232" font-size="12" fill="#727981">40바이트</text>
 </svg>

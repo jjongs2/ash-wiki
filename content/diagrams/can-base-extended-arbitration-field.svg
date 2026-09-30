@@ -5,14 +5,14 @@
   <!-- 확장 포맷 -->
   <rect x="100.75" y="40.75" width="38.5" height="38.5" stroke="#727981" stroke-width="1.5" />
   <text x="120" y="65" text-anchor="middle" fill="#727981">SOF</text>
-  <rect x="144" y="40" width="160" height="40" fill="#336fb8" />
-  <text x="224" y="65" text-anchor="middle" fill="#f8fafd">기본 식별자 11비트</text>
+  <rect x="144" y="40" width="160" height="40" stroke="#727981" stroke-width="1.5" />
+  <text x="224" y="65" text-anchor="middle" fill="#727981">기본 식별자 11비트</text>
   <rect x="308.75" y="40.75" width="42.5" height="38.5" stroke="#727981" stroke-width="1.5" />
   <text x="330" y="65" text-anchor="middle" fill="#727981">SRR</text>
   <rect x="356.75" y="40.75" width="42.5" height="38.5" stroke="#727981" stroke-width="1.5" />
   <text x="378" y="65" text-anchor="middle" fill="#727981">IDE</text>
-  <rect x="404" y="40" width="200" height="40" fill="#336fb8" />
-  <text x="504" y="65" text-anchor="middle" fill="#f8fafd">확장 식별자 18비트</text>
+  <rect x="404" y="40" width="200" height="40" stroke="#727981" stroke-width="1.5" />
+  <text x="504" y="65" text-anchor="middle" fill="#727981">확장 식별자 18비트</text>
   <rect x="608.75" y="40.75" width="42.5" height="38.5" stroke="#727981" stroke-width="1.5" />
   <text x="630" y="65" text-anchor="middle" fill="#727981">RTR</text>
   <text x="330" y="96" text-anchor="middle" font-size="12" fill="#727981">R</text>

@@ -18,19 +18,19 @@
 
   <!-- 버스 위의 프레임: 헤더 + 응답 -->
   <text x="96" y="73" text-anchor="end" fill="#727981">버스</text>
-  <rect x="110" y="50" width="60" height="36" fill="#336fb8" />
+  <rect x="110" y="50" width="60" height="36" stroke="#727981" stroke-width="1.5" />
   <rect x="170" y="50" width="90" height="36" fill="#337b47" />
-  <rect x="310" y="50" width="60" height="36" fill="#336fb8" />
+  <rect x="310" y="50" width="60" height="36" stroke="#727981" stroke-width="1.5" />
   <rect x="370" y="50" width="90" height="36" fill="#337b47" />
-  <rect x="510" y="50" width="60" height="36" fill="#336fb8" />
+  <rect x="510" y="50" width="60" height="36" stroke="#727981" stroke-width="1.5" />
   <rect x="570" y="50" width="90" height="36" fill="#337b47" />
-  <g text-anchor="middle" font-size="12" fill="#f8fafd">
-    <text x="140" y="72">헤더</text>
-    <text x="215" y="72">응답</text>
-    <text x="340" y="72">헤더</text>
-    <text x="415" y="72">응답</text>
-    <text x="540" y="72">헤더</text>
-    <text x="615" y="72">응답</text>
+  <g text-anchor="middle" font-size="12">
+    <text x="140" y="72" fill="#727981">헤더</text>
+    <text x="215" y="72" fill="#f8fafd">응답</text>
+    <text x="340" y="72" fill="#727981">헤더</text>
+    <text x="415" y="72" fill="#f8fafd">응답</text>
+    <text x="540" y="72" fill="#727981">헤더</text>
+    <text x="615" y="72" fill="#f8fafd">응답</text>
   </g>
 
   <g stroke="#727981" stroke-width="1.5">

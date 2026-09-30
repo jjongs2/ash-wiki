@@ -25,8 +25,8 @@
   </g>
 
   <!-- 실행 -->
-  <rect x="90" y="124" width="140" height="36" rx="3" fill="#336fb8" />
-  <text x="160" y="147" text-anchor="middle" fill="#f8fafd">실행 시간 <tspan font-style="italic">C</tspan><tspan font-style="italic" dy="3" font-size="10">i</tspan></text>
+  <rect x="90" y="124" width="140" height="36" rx="3" stroke="#727981" stroke-width="1.5" />
+  <text x="160" y="147" text-anchor="middle" fill="#727981">실행 시간 <tspan font-style="italic">C</tspan><tspan font-style="italic" dy="3" font-size="10">i</tspan></text>
 
   <!-- 시간 축 -->
   <line x1="30" y1="160" x2="598" y2="160" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />

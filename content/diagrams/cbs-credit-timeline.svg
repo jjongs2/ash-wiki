@@ -10,16 +10,16 @@
   <text x="140" y="46" text-anchor="end" fill="#727981">포트</text>
   <rect x="174" y="30" width="48" height="24" fill="#336fb8" />
   <text x="198" y="46" text-anchor="middle" fill="#f8fafd">A</text>
-  <rect x="222" y="30" width="144" height="24" fill="#b0540d" />
-  <text x="294" y="46" text-anchor="middle" fill="#f8fafd">best-effort</text>
+  <rect x="222" y="30" width="144" height="24" stroke="#727981" stroke-width="1.5" />
+  <text x="294" y="46" text-anchor="middle" fill="#727981">best-effort</text>
   <rect x="366" y="30" width="48" height="24" fill="#336fb8" />
   <text x="390" y="46" text-anchor="middle" fill="#f8fafd">B</text>
-  <rect x="414" y="30" width="240" height="24" fill="#b0540d" />
-  <text x="534" y="46" text-anchor="middle" fill="#f8fafd">best-effort</text>
+  <rect x="414" y="30" width="240" height="24" stroke="#727981" stroke-width="1.5" />
+  <text x="534" y="46" text-anchor="middle" fill="#727981">best-effort</text>
   <rect x="654" y="30" width="24" height="24" fill="#336fb8" />
   <text x="666" y="46" text-anchor="middle" fill="#f8fafd">C</text>
-  <rect x="678" y="30" width="72" height="24" fill="#b0540d" />
-  <text x="714" y="46" text-anchor="middle" fill="#f8fafd">best-effort</text>
+  <rect x="678" y="30" width="72" height="24" stroke="#727981" stroke-width="1.5" />
+  <text x="714" y="46" text-anchor="middle" fill="#727981">best-effort</text>
 
   <!-- CBS 큐에서 기다리는 프레임 -->
   <text x="140" y="88" text-anchor="end" fill="#727981">CBS 큐에서 기다림</text>

@@ -9,13 +9,13 @@
   <!-- 공유 매체 -->
   <text x="172" y="24" text-anchor="middle" fill="#727981">공유 매체</text>
   <text x="172" y="42" text-anchor="middle" font-size="12" fill="#727981">반이중 · CSMA/CD</text>
-  <g fill="#336fb8">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="30" y="100" width="60" height="28" rx="4" />
     <rect x="105" y="100" width="60" height="28" rx="4" />
     <rect x="180" y="100" width="60" height="28" rx="4" />
     <rect x="255" y="100" width="60" height="28" rx="4" />
   </g>
-  <g font-size="12" fill="#f8fafd" text-anchor="middle">
+  <g font-size="12" fill="#727981" text-anchor="middle">
     <text x="60" y="118">스테이션</text>
     <text x="135" y="118">스테이션</text>
     <text x="210" y="118">스테이션</text>
@@ -34,13 +34,13 @@
   <text x="520" y="42" text-anchor="middle" font-size="12" fill="#727981">링크마다 전이중</text>
   <rect x="480" y="110" width="80" height="30" rx="4" fill="#b0540d" />
   <text x="520" y="130" text-anchor="middle" fill="#f8fafd">스위치</text>
-  <g fill="#336fb8">
+  <g stroke="#727981" stroke-width="1.5">
     <rect x="490" y="52" width="60" height="28" rx="4" />
     <rect x="490" y="170" width="60" height="28" rx="4" />
     <rect x="380" y="111" width="60" height="28" rx="4" />
     <rect x="600" y="111" width="60" height="28" rx="4" />
   </g>
-  <g font-size="12" fill="#f8fafd" text-anchor="middle">
+  <g font-size="12" fill="#727981" text-anchor="middle">
     <text x="520" y="70">스테이션</text>
     <text x="520" y="188">스테이션</text>
     <text x="410" y="129">스테이션</text>

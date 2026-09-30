@@ -4,15 +4,15 @@
   <rect x="20" y="44" width="150" height="44" rx="3" fill="#336fb8" />
   <text x="95" y="63" text-anchor="middle" fill="#f8fafd">IP 헤더</text>
   <text x="95" y="80" text-anchor="middle" font-size="12" fill="#f8fafd">Protocol 1</text>
-  <rect x="172" y="44" width="64" height="44" rx="3" fill="#b0540d" />
-  <text x="204" y="63" text-anchor="middle" fill="#f8fafd">Type</text>
-  <text x="204" y="80" text-anchor="middle" font-size="12" fill="#f8fafd">8비트</text>
-  <rect x="238" y="44" width="64" height="44" rx="3" fill="#b0540d" />
-  <text x="270" y="63" text-anchor="middle" fill="#f8fafd">Code</text>
-  <text x="270" y="80" text-anchor="middle" font-size="12" fill="#f8fafd">8비트</text>
-  <rect x="304" y="44" width="112" height="44" rx="3" fill="#b0540d" />
-  <text x="360" y="63" text-anchor="middle" fill="#f8fafd">Checksum</text>
-  <text x="360" y="80" text-anchor="middle" font-size="12" fill="#f8fafd">16비트</text>
+  <rect x="172" y="44" width="64" height="44" rx="3" stroke="#727981" stroke-width="1.5" />
+  <text x="204" y="63" text-anchor="middle" fill="#727981">Type</text>
+  <text x="204" y="80" text-anchor="middle" font-size="12" fill="#727981">8비트</text>
+  <rect x="238" y="44" width="64" height="44" rx="3" stroke="#727981" stroke-width="1.5" />
+  <text x="270" y="63" text-anchor="middle" fill="#727981">Code</text>
+  <text x="270" y="80" text-anchor="middle" font-size="12" fill="#727981">8비트</text>
+  <rect x="304" y="44" width="112" height="44" rx="3" stroke="#727981" stroke-width="1.5" />
+  <text x="360" y="63" text-anchor="middle" fill="#727981">Checksum</text>
+  <text x="360" y="80" text-anchor="middle" font-size="12" fill="#727981">16비트</text>
   <rect x="418.75" y="44.75" width="248.5" height="42.5" rx="3" stroke="#727981" stroke-width="1.5" stroke-dasharray="6 4" />
   <text x="543" y="71" text-anchor="middle" fill="#727981">Type마다 다른 내용</text>
   <path d="M173 38 V32 H667 V38" stroke="#727981" stroke-width="1.5" />

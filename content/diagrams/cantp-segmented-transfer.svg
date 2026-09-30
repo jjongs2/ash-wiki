@@ -13,10 +13,10 @@
   </defs>
 
   <!-- 두 쪽 -->
-  <rect x="80" y="20" width="120" height="36" rx="4" fill="#825da9" />
-  <text x="140" y="43" text-anchor="middle" fill="#f8fafd">송신 쪽</text>
-  <rect x="400" y="20" width="120" height="36" rx="4" fill="#825da9" />
-  <text x="460" y="43" text-anchor="middle" fill="#f8fafd">수신 쪽</text>
+  <rect x="80" y="20" width="120" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="140" y="43" text-anchor="middle" fill="#727981">송신 쪽</text>
+  <rect x="400" y="20" width="120" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="460" y="43" text-anchor="middle" fill="#727981">수신 쪽</text>
   <g stroke="#727981" stroke-width="1.5">
     <line x1="140" y1="56" x2="140" y2="400" />
     <line x1="460" y1="56" x2="460" y2="400" />
