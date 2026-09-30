@@ -17,7 +17,7 @@ LIN 프레임은 헤더와 응답으로 이뤄진다. 헤더는 늘 commander가
 
 ![[diagrams/lin-header-response.svg]]
 
-break 필드는 LIN 프레임의 시작을 알린다.[@iso-17987-3-obp-2025] break 필드는 도미넌트 부분(break)과 리세시브 부분(break delimiter)으로 이뤄지고[@iso-17987-1-obp-2025], break는 적어도 13비트 길이의 도미넌트 구간이다.[@ti-slla383a-2022][@atmel-avr308-2002] sync 바이트 필드는 값이 `0x55`로 정해진 바이트 필드다. PID는 6비트 프레임 ID와 2비트 패리티로 이뤄진 8비트 값이다. 응답의 데이터는 1\~8바이트다.[@iso-17987-3-obp-2025] 프레임 끝에는 체크섬 1바이트가 붙는다.[@iso-17987-1-obp-2025]
+break 필드는 LIN 프레임의 시작을 알린다.[@iso-17987-3-obp-2025] break 필드는 dominant 부분(break)과 recessive 부분(break delimiter)으로 이뤄지고[@iso-17987-1-obp-2025], break는 적어도 13비트 길이의 dominant 구간이다.[@ti-slla383a-2022][@atmel-avr308-2002] sync 바이트 필드는 값이 `0x55`로 정해진 바이트 필드다. PID는 6비트 프레임 ID와 2비트 패리티로 이뤄진 8비트 값이다. 응답의 데이터는 1\~8바이트다.[@iso-17987-3-obp-2025] 프레임 끝에는 체크섬 1바이트가 붙는다.[@iso-17987-1-obp-2025]
 
 TMS320F2803x의 LIN 모듈은 PID의 패리티 비트 두 개를 프레임 ID 비트의 XOR로 계산한다. 패리티 비트 $P_0$은 ID 비트 0, 1, 2, 4의 XOR이고, $P_1$은 ID 비트 1, 3, 4, 5의 XOR을 반전한 값이다.[@ti-sprui10a-2022]
 
@@ -25,7 +25,7 @@ $$P_0 = \mathrm{ID}_0 \oplus \mathrm{ID}_1 \oplus \mathrm{ID}_2 \oplus \mathrm{I
 
 $$P_1 = \overline{\mathrm{ID}_1 \oplus \mathrm{ID}_3 \oplus \mathrm{ID}_4 \oplus \mathrm{ID}_5}$$
 
-바이트 필드는 도미넌트 start 비트, 최하위 비트부터 보내는 8비트 페이로드, 리세시브 stop 비트로 된 10비트 단위다.[@iso-17987-1-obp-2025]
+바이트 필드는 dominant start 비트, 최하위 비트부터 보내는 8비트 페이로드, recessive stop 비트로 된 10비트 단위다.[@iso-17987-1-obp-2025]
 
 ![[diagrams/lin-header-fields.svg]]
 
@@ -47,15 +47,15 @@ TMS320F2803x의 LIN 모듈은 프레임 ID 0\~59를 신호를 싣는 프레임�
 
 ## 물리 계층
 
-TI 앱노트에 따르면 LIN 버스는 배터리 전압 쪽으로 풀업되어 트랜시버가 꺼져 있으면 리세시브이고, 트랜시버가 버스를 접지 가까이 끌어내리면 도미넌트가 된다. 수신기는 버스 전압 $V_\mathrm{bus}$와 배터리 전압 $V_\mathrm{BAT}$가 $V_\mathrm{bus} \le 0.4\,V_\mathrm{BAT}$이면 도미넌트, $V_\mathrm{bus} \ge 0.6\,V_\mathrm{BAT}$이면 리세시브로 읽는다. commander 노드는 흔히 1 kΩ 저항과 역극성 보호 다이오드를 직렬로 두어 배터리 전압에 풀업하고, responder 노드의 풀업은 보통 30 kΩ이며 트랜시버에 내장된다.[@ti-slla383a-2022]
+TI 앱노트에 따르면 LIN 버스는 배터리 전압 쪽으로 풀업되어 트랜시버가 꺼져 있으면 recessive이고, 트랜시버가 버스를 접지 가까이 끌어내리면 dominant가 된다. 수신기는 버스 전압 $V_\mathrm{bus}$와 배터리 전압 $V_\mathrm{BAT}$가 $V_\mathrm{bus} \le 0.4\,V_\mathrm{BAT}$이면 dominant, $V_\mathrm{bus} \ge 0.6\,V_\mathrm{BAT}$이면 recessive로 읽는다. commander 노드는 흔히 1 kΩ 저항과 역극성 보호 다이오드를 직렬로 두어 배터리 전압에 풀업하고, responder 노드의 풀업은 보통 30 kΩ이며 트랜시버에 내장된다.[@ti-slla383a-2022]
 
 ![[diagrams/lin-receiver-threshold.svg]]
 
-MCP2003B도 $V_\mathrm{bus} \le 0.4\,V_\mathrm{BAT}$이면 도미넌트, $V_\mathrm{bus} \ge 0.6\,V_\mathrm{BAT}$이면 리세시브로 읽는다. MCP2003B는 배터리 공급 핀과 버스 핀 사이에 약 30 kΩ 풀업을 내장하고, 데이터시트의 응용 예는 commander 노드에만 1 kΩ 풀업을 둔다.[@microchip-mcp2003b-2016]
+MCP2003B도 $V_\mathrm{bus} \le 0.4\,V_\mathrm{BAT}$이면 dominant, $V_\mathrm{bus} \ge 0.6\,V_\mathrm{BAT}$이면 recessive로 읽는다. MCP2003B는 배터리 공급 핀과 버스 핀 사이에 약 30 kΩ 풀업을 내장하고, 데이터시트의 응용 예는 commander 노드에만 1 kΩ 풀업을 둔다.[@microchip-mcp2003b-2016]
 
 ## 슬립과 웨이크업
 
-commander는 go-to-sleep 명령으로 responder 노드를 버스 슬립 상태로 보낸다.[@iso-17987-3-obp-2025] 슬립 중인 클러스터에서는 어느 노드든 웨이크업 신호를 보내 슬립을 끝낼 수 있다. 웨이크업 요청은 `0xF0` 바이트를 보내 만드는, 비트율에 따라 250 µs\~5 ms 길이의 도미넌트 펄스다.[@ti-sprui10a-2022][@microchip-an1099-2007]
+commander는 go-to-sleep 명령으로 responder 노드를 버스 슬립 상태로 보낸다.[@iso-17987-3-obp-2025] 슬립 중인 클러스터에서는 어느 노드든 웨이크업 신호를 보내 슬립을 끝낼 수 있다. 웨이크업 요청은 `0xF0` 바이트를 보내 만드는, 비트율에 따라 250 µs\~5 ms 길이의 dominant 펄스다.[@ti-sprui10a-2022][@microchip-an1099-2007]
 
 ## CAN과의 차이
 

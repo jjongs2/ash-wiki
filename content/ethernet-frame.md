@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**이더넷 프레임**은 [[ethernet|이더넷]]의 MAC(Media Access Control) 부계층이 주고받는 데이터 단위다.[@st-rm0008-2021][@microchip-an1120-2008] 프레임은 목적지 주소, 출발지 주소, 길이/타입, 데이터와 패드, FCS(Frame Check Sequence)로 이뤄지고, 매체로 보낼 때는 그 앞에 7옥텟 프리앰블과 1옥텟 SFD(Start Frame Delimiter)가 붙는다.[@st-rm0008-2021][@microchip-enc28j60-2012]
+**이더넷 프레임**은 [[ethernet|이더넷]]의 MAC(Medium Access Control) 부계층이 주고받는 데이터 단위다.[@st-rm0008-2021][@microchip-an1120-2008] 프레임은 목적지 주소, 출발지 주소, 길이/타입, 데이터와 패드, FCS(Frame Check Sequence)로 이뤄지고, 매체로 보낼 때는 그 앞에 7옥텟 프리앰블과 1옥텟 SFD(Start Frame Delimiter)가 붙는다.[@st-rm0008-2021][@microchip-enc28j60-2012]
 
 ## 필드
 
