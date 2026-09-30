@@ -168,8 +168,10 @@ export function explorerInputs(entries: ContentEntry[]): {
 // - 하위 목록의 안내선은 상위 폴더 이름의 첫 글자 자리에 선다. 그 자리는 줄 규칙의 안쪽 여백(0.4rem)이라, 그
 //   여백을 바꾸면 안내선의 margin-left도 함께 바꾼다.
 // - 전환은 탐색기에 있던 폴더 펼침과 꺾쇠 회전만 두고, 동작 줄이기 설정에서는 그것도 끈다.
-// - 페이지가 없는 구역과 주제는 이름을 보조 글자색으로 흐린다. 꺾쇠는 폴더임을 알리도록 더 흐리게 남기되,
-//   펼칠 것이 없으니 줄 전체를 누를 수 없게 한다.
+// - 페이지가 없는 구역과 주제는 이름을 보조 글자색으로 쓰고 투명도로 더 흐린다. 라이트 테마에서는 보조
+//   글자색과 본문색이 모두 어두워 색만으로는 잘 갈리지 않는다. 누를 수 없는 줄이라 글자 대비 하한(4.5:1)을
+//   따르지 않는다(WCAG 1.4.3은 비활성 UI를 뺀다). 꺾쇠는 폴더임을 알리도록 더 흐리게 남기되, 펼칠 것이 없으니
+//   줄 전체를 누를 수 없게 한다.
 // 탐색기의 규칙(.folder-container div > button span 등)은 @layer quartz-base 안에 실려, layer 밖인 이 CSS가
 // 구체성과 상관없이 이긴다. 사용자 스타일시트도 layer 밖이라 둘은 구체성으로 겨루고, 이 CSS가 뒤에 실리므로
 // 구체성이 같은 선택자(hover한 지금 페이지의 배경)는 여기 적은 값이 이긴다.
@@ -222,6 +224,7 @@ const CSS = `.explorer .explorer-content :is(.folder-button, ul li > a):focus-vi
 }
 .explorer .explorer-content li:has(> .folder-outer > ul:empty) > .folder-container .folder-title {
   color: var(--gray);
+  opacity: 0.6;
 }
 .explorer .explorer-content li:has(> .folder-outer > ul:empty) > .folder-container > .folder-icon {
   opacity: 0.3;
