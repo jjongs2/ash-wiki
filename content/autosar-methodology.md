@@ -17,16 +17,20 @@ verified: 2026-09-30
 
 SW-C는 시스템 설계와 나란히, VFB가 정한 인터페이스를 바탕으로 구현한다. SW-C의 구현은 ECU 설정과 대부분 무관하다.[@autosar-cp-tr-methodology-2025]
 
+![[diagrams/autosar-methodology-workflow.svg]]
+
 ## System Description
 
-System Description은 AUTOSAR 시스템 전체의 System Configuration을 기술하며, category가 `SYSTEM_DESCRIPTION`인 System 요소가 그 중심이다. System Template은 다섯 가지 주요 요소로 Topology, Software, Communication, Mapping, Mapping Constraints를 정한다. 최상위 요소 System은 Software, Mapping, Mapping Constraints를 직접 모으고, Communication과 Topology는 ASAM FIBEX 요소를 참조한다. 앞의 네 요소가 기술하는 것은 아래와 같다.[@autosar-cp-tps-systemtemplate-2025]
+System Description은 AUTOSAR 시스템 전체의 System Configuration을 기술하며, category가 `SYSTEM_DESCRIPTION`인 System 요소가 그 중심이다. System Template은 다섯 가지 주요 요소로 Topology, Software, Communication, Mapping, Mapping Constraints를 정한다. 최상위 요소 System은 Software, Mapping, Mapping Constraints를 직접 모으고, Topology와 Communication은 직접 담는 대신 ASAM FIBEX의 요소를 참조한다. 앞의 네 요소가 기술하는 것은 아래와 같다.[@autosar-cp-tps-systemtemplate-2025]
 
-| 요소          | 기술하는 것                                                                     |
-| ------------- | ------------------------------------------------------------------------------- |
-| Topology      | 어떤 ECU가 있고 어떻게 이어지는지, 곧 ECU 인스턴스와 통신 클러스터             |
-| Software      | 시스템의 모든 SW-C를 계층 구조로 담은 루트 소프트웨어 합성                      |
+| 요소          | 기술하는 것                                                                             |
+| ------------- | --------------------------------------------------------------------------------------- |
+| Topology      | 어떤 ECU가 있고 어떻게 이어지는지, 곧 ECU 인스턴스와 통신 클러스터                      |
+| Software      | 시스템의 모든 SW-C를 계층 구조로 담은 루트 소프트웨어 합성                              |
 | Communication | SystemSignal, ISignal, PDU(Protocol Data Unit), 프레임을 주요 요소로 하는 통신 매트릭스 |
-| Mapping       | SW-C를 ECU에 배치하는 것, 데이터 요소를 시그널에 대응시키는 것, 매핑 제약        |
+| Mapping       | SW-C를 ECU에 배치하는 것, 데이터 요소를 시그널에 대응시키는 것, 매핑 제약               |
+
+![[diagrams/autosar-system-template-elements.svg]]
 
 ## ECU Extract
 
@@ -45,6 +49,8 @@ ECU Configuration Parameter Definition은 설정 파라미터가 있는지와 �
 - Pre-compile time: 소스 코드를 컴파일하기 전에 값을 정한다. 컴파일한 뒤에는 바꿀 수 없어, 값을 바꾸려면 다시 컴파일해야 한다.
 - Link time: BSW 모듈의 목적 코드가 설정 일부를 다른 목적 파일에서 받거나 링커 옵션으로 받는다. 모듈을 목적 코드로 통합자에게 넘길 때 주로 쓴다.
 - Post-build time: BSW 모듈이나 ECU 소프트웨어를 빌드한 뒤에 설정한다. 별도 파일을 ECU 메모리에 내려받아, 다시 컴파일하거나 빌드하지 않고 설정을 바꾼다.[@autosar-cp-tr-methodology-2025]
+
+![[diagrams/autosar-configuration-classes.svg]]
 
 Layered Software Architecture 설명서에 따르면 pre-compile time 설정에 쓰는 `#define`은 대개 상수나 포인터로 값을 읽는 것보다 효율적인 코드를 낸다. 여러 설정 세트는 설정 클래스와 상관없이 variation point로 둘 수 있고, variation point가 실행 중에 묶이면 쓸 세트를 실행 중에 고른다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 

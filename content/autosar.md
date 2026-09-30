@@ -15,13 +15,13 @@ AUTOSAR는 소프트웨어 재사용을 목표로 든다. 계층화한 기본 �
 
 AUTOSAR는 파트너십 유형마다 다른 권리와 의무를 둔다. 파트너십 유형은 Premium Partner Plus, Premium Partner, Development Partner, Associate Partner, Associate Partner [Light], Attendee, Subscriber이고, 이와 따로 Core Partner가 있다.[@autosar-partners-2026] 그 가운데 다섯의 역할은 아래와 같다.
 
-| 유형                | 역할                                                                                                                                                                                             |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Core Partner        | AUTOSAR 개발 파트너십을 조직하고 관리하고 통제한다.[@autosar-core-partner-2026]                                                                                                                  |
-| Premium Partner     | AUTOSAR 표준을 설계하고 쓰며, 작업 그룹을 이끌거나 작업 그룹에 참여한다.[@autosar-home-2026]                                                                                                     |
+| 유형                | 역할                                                                                                                                                                                                                        |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Core Partner        | AUTOSAR 개발 파트너십을 조직하고 관리하고 통제한다.[@autosar-core-partner-2026]                                                                                                                                             |
+| Premium Partner     | AUTOSAR 표준을 설계하고 쓰며, 작업 그룹을 이끌거나 작업 그룹에 참여한다.[@autosar-home-2026]                                                                                                                                |
 | Development Partner | 작은 회사와 스타트업을 위한 유형으로, AUTOSAR 표준을 설계하고 쓰며 작업 그룹에 참여한다.[@autosar-home-2026] AUTOSAR의 자주 묻는 질문 페이지에 따르면 규격의 기술 개발에 특정 기여를 하기에 특히 알맞다.[@autosar-faq-2026] |
-| Associate Partner   | AUTOSAR 표준을 쓴다.[@autosar-home-2026]                                                                                                                                                         |
-| Attendee            | 대학과 비영리 단체를 위한 무료 유형으로, AUTOSAR 표준을 정의하는 일에 협력한다.[@autosar-home-2026]                                                                                              |
+| Associate Partner   | AUTOSAR 표준을 쓴다.[@autosar-home-2026]                                                                                                                                                                                    |
+| Attendee            | 대학과 비영리 단체를 위한 무료 유형으로, AUTOSAR 표준을 정의하는 일에 협력한다.[@autosar-home-2026]                                                                                                                         |
 
 ## 표준
 
@@ -35,16 +35,18 @@ Foundation은 Classic Platform과 Adaptive Platform의 공통 부분을 따로 �
 
 AUTOSAR 문서는 PDF로 펴내고, 문서마다 문서 종류 약어와 표준 약어를 메타데이터로 둔다. 발행 PDF 파일 이름에는 표준 약어, 문서 종류 약어, 문서 이름이 들어간다.[@autosar-fo-tps-standardizationtemplate-2025] 예를 들어 `AUTOSAR_CP_SWS_PortDriver`는 Classic Platform의 Port Driver 소프트웨어 명세(Specification of Port Driver)이고, 기능 명세, API(Application Programming Interface) 명세, 설정 명세를 담는다.[@autosar-cp-sws-portdriver-2025]
 
+![[diagrams/autosar-document-file-name.svg]]
+
 Standardization Template은 문서 종류를 열 가지로 정한다. 그 가운데 여섯은 아래와 같다.[@autosar-fo-tps-standardizationtemplate-2025]
 
-| 약어 | 이름                      | 내용                                                                         |
-| ---- | ------------------------- | ---------------------------------------------------------------------------- |
-| SWS  | Software Specification    | AUTOSAR 소프트웨어를 명세한다.                                               |
-| EXP  | Explanation               | 다른 문서에 이미 나온 내용을 설명한다.                                       |
-| TPS  | Template Specification    | 메타모델 정보와 제약 등을 담아 AUTOSAR 템플릿을 명세한다.                    |
-| PRS  | Protocol Specification    | AUTOSAR가 표준화한 프로토콜을 명세한다. Foundation에서 펴낸다.               |
+| 약어 | 이름                      | 내용                                                                            |
+| ---- | ------------------------- | ------------------------------------------------------------------------------- |
+| SWS  | Software Specification    | AUTOSAR 소프트웨어를 명세한다.                                                  |
+| EXP  | Explanation               | 다른 문서에 이미 나온 내용을 설명한다.                                          |
+| TPS  | Template Specification    | 메타모델 정보와 제약 등을 담아 AUTOSAR 템플릿을 명세한다.                       |
+| PRS  | Protocol Specification    | AUTOSAR가 표준화한 프로토콜을 명세한다. Foundation에서 펴낸다.                  |
 | RS   | Requirement Specification | 소프트웨어 명세와 따로 요구사항을 적는다. PRS와 SWS는 RS의 요구사항을 구현한다. |
-| TR   | Technical Report          | AUTOSAR에 관한 임의의 주제를 다루는 일반 기술 보고서                         |
+| TR   | Technical Report          | AUTOSAR에 관한 임의의 주제를 다루는 일반 기술 보고서                            |
 
 예를 들어 Layered Software Architecture 설명서는 요구사항을 담지 않고 정보 제공용일 뿐이라고 밝힌다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
@@ -53,6 +55,8 @@ SRS(Software Requirements Specification)는 이 문서 종류에 없다.[@autosa
 ## 규격 항목 ID와 API 명세
 
 AUTOSAR 규격 항목(specification item)의 ID는 표준 약어(생략 가능), 문서 종류 약어, 문서 이름 약어, 특수화(생략 가능), 번호를 밑줄로 이은 꼴이고, 번호는 00000부터 99999까지의 고유 번호다. ID는 [SWS_Port_00140]처럼 대괄호 안에 쓴다.[@autosar-fo-tps-standardizationtemplate-2025] BSW(Basic Software) 모듈의 규격 항목은 BSW 요구사항으로 추적되고, BSW 모듈 구현은 해당 규격 항목까지의 추적성을 보장해야 한다.[@autosar-cp-sws-bswgeneral-2025]
+
+![[diagrams/autosar-specification-item-id.svg]]
 
 Classic Platform의 BSW 모듈 SWS는 API 함수마다 표를 둔다. 표에는 Service name, Syntax, Service ID [hex], Sync/Async, Reentrancy, 매개변수(in, inout, out), Return value, Description, Available via(원형을 선언한 헤더)가 들어간다. Service ID는 BSW 모듈마다 `0x00`부터 매기는 서비스 번호이고, Default Error Tracer의 오류 보고 API에 매개변수로 넘긴다. Sync/Async 칸의 값은 Synchronous, Asynchronous, Depends on configuration 가운데 하나다.[@autosar-cp-sws-bswgeneral-2025]
 
