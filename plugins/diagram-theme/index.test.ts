@@ -49,7 +49,9 @@ function load(objects: FakeObject[], theme: "light" | "dark" = "light") {
   const handlers: Record<string, (event: unknown) => void> = {}
   const state = { theme }
   const document = {
-    documentElement: { getAttribute: (name: string) => (name === "saved-theme" ? state.theme : null) },
+    documentElement: {
+      getAttribute: (name: string) => (name === "saved-theme" ? state.theme : null),
+    },
     addEventListener: (type: string, fn: (event: unknown) => void) => (handlers[type] = fn),
     querySelectorAll: () => objects,
   }
@@ -120,7 +122,8 @@ describe("diagram-theme 플러그인", () => {
     const page = load(objects)
     page.setTheme("dark")
     page.fire("themechange")
-    for (const object of objects) assert.deepStrictEqual(object.properties, resolved("다크", "dark"))
+    for (const object of objects)
+      assert.deepStrictEqual(object.properties, resolved("다크", "dark"))
   })
 
   test("SPA 이동 뒤 남은 도해를 다시 칠해 표시를 되살린다", () => {

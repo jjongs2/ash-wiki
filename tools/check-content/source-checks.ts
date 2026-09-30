@@ -490,7 +490,11 @@ function inherited(element: SvgElement | undefined, attribute: string): string |
 }
 
 const lengthOf = (value: string) => Number(value.replace(/px$/i, ""))
-const dashOf = (value: string) => value.trim().split(/[\s,]+/).join(" ")
+const dashOf = (value: string) =>
+  value
+    .trim()
+    .split(/[\s,]+/)
+    .join(" ")
 
 // 척도 밖의 선 두께, 모서리 반경, 점선, 글자 크기를 찾는다. offset은 속성 이름이 시작하는 곳이다.
 function shapeViolations(text: string): { offset: number; message: string }[] {
@@ -509,7 +513,10 @@ function shapeViolations(text: string): { offset: number; message: string }[] {
       for (const radius of ["rx", "ry"]) {
         const value = attributes.get(radius)
         if (value !== undefined && !cornerRadii.includes(lengthOf(value))) {
-          add(radius, `<rect>의 모서리 반경은 ${cornerRadii.join(", ")}만 쓴다: ${radius}="${value}"`)
+          add(
+            radius,
+            `<rect>의 모서리 반경은 ${cornerRadii.join(", ")}만 쓴다: ${radius}="${value}"`,
+          )
         }
       }
     }
