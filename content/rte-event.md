@@ -14,7 +14,7 @@ RTE 이벤트는 열여섯 종류다. 종류마다 runnable을 시작하는 때�
 | 계기        | 이벤트                             | runnable을 시작하는 때                                                                          |
 | ----------- | ---------------------------------- | ----------------------------------------------------------------------------------------------- |
 | 시간        | TimingEvent                        | 정해진 주기(초 단위)마다                                                                        |
-| 시간        | BackgroundEvent                    | 백그라운드에서 실행할 때                                                                        |
+| 백그라운드  | BackgroundEvent                    | 백그라운드에서 실행할 runnable을 촉발할 때                                                      |
 | 시작        | InitEvent                          | 파티션을 시작하거나 다시 시작할 때처럼 초기화할 때                                              |
 | 태스크      | OsTaskExecutionEvent               | 이 이벤트를 매핑한 태스크가 실행될 때마다                                                       |
 | 데이터 수신 | DataReceivedEvent                  | 참조한 data element를 받았을 때                                                                 |
@@ -30,13 +30,13 @@ RTE 이벤트는 열여섯 종류다. 종류마다 runnable을 시작하는 때�
 | trigger     | InternalTriggerOccurredEvent       | 참조한 internal triggering point가 일어났을 때                                                  |
 | 변환 오류   | TransformerHardErrorEvent          | 서버 operation이나 external trigger를 일으킬 데이터를 변환하다 hard transformer error가 났을 때 |
 
-background event는 고정된 주기 없이 되풀이해 일어나며, 보통 가장 낮은 우선순위로만 활성화된다. RTE는 background event를 전용 백그라운드 태스크로 구현하거나, 알람이나 schedule table 만료점으로 ECU 통합자가 정한 고정 반복에 따라 timing event처럼 구현한다. 백그라운드 태스크로 구현하면 그 태스크는 코어에서 가장 낮은 우선순위여야 한다.[@autosar-cp-sws-rte-2025]
+BackgroundEvent는 고정된 주기 없이 되풀이해 일어나며, 보통 가장 낮은 우선순위로만 활성화된다. RTE는 background event를 전용 백그라운드 태스크로 구현하거나, 알람이나 schedule table 만료점으로 ECU 통합자가 정한 고정 반복에 따라 timing event처럼 구현한다. 백그라운드 태스크로 구현하면 그 태스크는 코어에서 가장 낮은 우선순위여야 한다.[@autosar-cp-sws-rte-2025]
 
 RTE는 `Rte_Start`를 실행할 때 init event로 촉발되는 runnable을 한 번 활성화한다.[@autosar-cp-sws-rte-2025] 그렇다고 init event가 가리키는 runnable이 다른 runnable보다 먼저 실행된다는 보장은 없고, 실행 순서는 태스크 매핑에 달려 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 external trigger occurred event는 trigger source인 SW-C나 BSW(Basic Software) 모듈이 trigger를 일으켰을 때, 연결된 trigger sink의 runnable을 시작한다. internal trigger occurred event는 같은 SW-C 인스턴스의 runnable이 internal triggering point로 trigger를 일으켰을 때 시작한다.[@autosar-cp-sws-rte-2025]
 
-os task execution event는 조건 없이 runnable을 시작하며, 주된 용도는 태스크 실행에 반응해야 하는 complex driver의 runnable이다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+OsTaskExecutionEvent는 조건 없이 runnable을 시작하며, 주된 용도는 태스크 실행에 반응해야 하는 complex driver의 runnable이다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ## 태스크 매핑
 

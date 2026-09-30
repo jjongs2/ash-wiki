@@ -41,6 +41,4 @@ exclusive area의 구현 방법은 ECU를 통합할 때 설정 파라미터 `Rte
 
 ## 태스크 안의 순서
 
-[[osek-task|태스크]]에 매핑한 runnable마다 설정 파라미터 `RtePositionInTask`로 태스크 안에서의 위치를 정한다. 주기로 실행되는 태스크에서는 이 값이 실행 순서이고, 이벤트로 활성화되는 runnable에서는 어느 runnable을 실행할지 평가하는 순서다.[@autosar-cp-sws-rte-2025]
-
-![[diagrams/rte-event-runnable-task-mapping.svg]]
+[[osek-task|태스크]]에 매핑한 runnable마다 설정 파라미터 `RtePositionInTask`로 태스크 안에서의 위치를 정한다.[@autosar-cp-sws-rte-2025] 매핑과 위치의 뜻은 [[rte-event#태스크 매핑|RTE 이벤트]]에서 다룬다.

@@ -23,7 +23,7 @@ client-server 인터페이스는 operation을 하나 이상 가진다.[@autosar-
 
 asynchronous server call returns event가 runnable을 가리키면, RTE는 결과가 준비되거나 타임아웃을 감지했을 때 그 runnable을 시작한다.[@autosar-cp-sws-rte-2025]
 
-server call point의 timeout 속성은 서버 호출이 시간 초과로 오류를 내며 돌아오기까지의 시간(초)이다.[@autosar-cp-tps-softwarecomponenttemplate-2025] 응답이 그 안에 오지 않으면 동기 호출은 `Rte_Call`이, 비동기 호출은 `Rte_Result`가 RTE_E_TIMEOUT을 돌려준다. `Rte_Call`이 RTE_E_TIMEOUT을 돌려주는 것은 태스크 사이와 ECU 사이의 동기 호출뿐이다.[@autosar-cp-sws-rte-2025]
+server call point의 timeout 속성은 서버 호출이 시간 초과로 오류를 내며 돌아오기까지의 시간(초)이다.[@autosar-cp-tps-softwarecomponenttemplate-2025] 응답이 그 안에 오지 않으면 동기 호출은 `Rte_Call`이, 비동기 호출은 `Rte_Result`가 RTE_E_TIMEOUT을 돌려준다. `Rte_Call`에서 응답 시간 초과를 알리는 RTE_E_TIMEOUT은 태스크 사이와 ECU 사이의 동기 호출에만 해당한다.[@autosar-cp-sws-rte-2025]
 
 ## 서버 runnable의 실행 context
 

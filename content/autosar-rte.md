@@ -37,7 +37,7 @@ API root마다 쓰임은 아래와 같다.[@autosar-cp-sws-rte-2025]
 | `Rte_IWrite`, `Rte_IRead`     | runnable이 쓰기나 읽기로 선언한 data element에 암묵적으로 쓰고 읽는다.                                                               |
 | `Rte_Call`                    | [[autosar-client-server-interface\|client-server]] 통신을 시작한다.                                                                  |
 | `Rte_Result`                  | 비동기 client-server 호출의 결과를 받는다.                                                                                           |
-| `Rte_Switch`                  | [[autosar-mode-switch-interface\|모드]] 전환을 시작한다.                                                                             |
+| `Rte_Switch`                  | [[autosar-mode-switch-interface\|mode switch]] 인터페이스의 모드 전환을 시작한다.                                                    |
 | `Rte_Mode`                    | mode switch 포트에서 지금 활성인 모드를 준다.                                                                                        |
 | `Rte_Enter`, `Rte_Exit`       | exclusive area에 들어가고 나온다.                                                                                                    |
 | `Rte_IrvWrite`, `Rte_IrvRead` | 명시적 접근으로 정한 inter-runnable 변수를 쓰고 읽는다.                                                                              |
@@ -49,4 +49,4 @@ component type이 multiple instantiation을 지원하면, 여러 인스턴스에
 
 ## RTE 설정
 
-RTE 모듈의 ECU 설정에서 `RteSwComponentInstance` 컨테이너는 설정할 ECU에 놓인 SW-C prototype 하나를 나타내며, 그 prototype을 `RteSoftwareComponentInstanceRef`로 가리킨다. 그 아래의 `RteEventToTaskMapping` 컨테이너는 runnable 인스턴스 하나를, 그것을 활성화하는 RTE 이벤트에 따라 [[osek-task|태스크]] 하나에 매핑한다.[@autosar-cp-sws-rte-2025]
+RTE 모듈의 ECU 설정에서 `RteSwComponentInstance` 컨테이너는 설정할 ECU에 놓인 SW-C prototype 하나를 나타내며, 그 prototype을 `RteSoftwareComponentInstanceRef`로 가리킨다. 그 아래의 `RteEventToTaskMapping` 컨테이너는 runnable을 [[osek-task|태스크]]에 매핑한다.[@autosar-cp-sws-rte-2025] 이 매핑은 [[rte-event#태스크 매핑|RTE 이벤트]]에서 다룬다.
