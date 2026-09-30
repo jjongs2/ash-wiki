@@ -281,10 +281,19 @@ describe("표시", () => {
     )
   })
 
-  test("새 페이지는 모든 블록이 새 블록이다", () => {
+  test("새 페이지는 블록을 칠하지 않고 맨 위에 안내 하나만 둔다", () => {
     assert.strictEqual(
       html(null, "가\n\n나"),
-      '<p class="wiki-diff-added">가</p>\n<p class="wiki-diff-added">나</p>',
+      '<div class="wiki-diff-added wiki-diff-new-page">새 페이지. 기준에 없던 페이지라 블록마다 표시하지 않는다.</div>\n<p>가</p>\n<p>나</p>',
+    )
+  })
+
+  test("새 페이지의 안내는 frontmatter 뒤에 둔다", () => {
+    const root = parse("---\ntitle: 가\n---\n\n나")
+    markDiff(root, "---\ntitle: 가\n---\n\n나", null)
+    assert.deepStrictEqual(
+      root.children.map((node) => node.type),
+      ["yaml", "wikiDiffNewPage", "paragraph"],
     )
   })
 
