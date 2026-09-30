@@ -10,9 +10,9 @@
   </defs>
   <!-- REJ (Go-back-N) -->
   <text x="140" y="16" text-anchor="middle" fill="var(--text, #727981)">REJ (Go-back-N)</text>
-  <rect x="8" y="28" width="84" height="28" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="8" y="28" width="84" height="28" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="50" y="47" text-anchor="middle" fill="var(--text, #727981)">송신 측</text>
-  <rect x="188" y="28" width="84" height="28" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="188" y="28" width="84" height="28" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="230" y="47" text-anchor="middle" fill="var(--text, #727981)">수신 측</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="50" y1="56" x2="50" y2="316" />
@@ -34,9 +34,9 @@
   <text x="140" y="267" text-anchor="middle" fill="var(--text, #727981)">C</text>
   <!-- SREJ (selective repeat) -->
   <text x="490" y="16" text-anchor="middle" fill="var(--text, #727981)">SREJ (selective repeat)</text>
-  <rect x="358" y="28" width="84" height="28" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="358" y="28" width="84" height="28" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="400" y="47" text-anchor="middle" fill="var(--text, #727981)">송신 측</text>
-  <rect x="538" y="28" width="84" height="28" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="538" y="28" width="84" height="28" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="580" y="47" text-anchor="middle" fill="var(--text, #727981)">수신 측</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="400" y1="56" x2="400" y2="316" />

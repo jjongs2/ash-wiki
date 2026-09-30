@@ -496,19 +496,33 @@ const dashOf = (value: string) =>
     .split(/[\s,]+/)
     .join(" ")
 
+// 값 하나가 척도 밖이면 그 이유를, 아니면 null을 준다. 속성과 CSS 선언이 함께 쓴다.
+const strokeWidthViolation = (value: string) =>
+  strokeWidths.includes(lengthOf(value))
+    ? null
+    : `선 두께는 ${strokeWidths.join(", ")}만 쓴다: ${value}`
+const dashViolation = (value: string) =>
+  value === "none" || dashes[dashOf(value)] ? null : `점선은 3 3(보조)과 5 4(윤곽)만 쓴다: ${value}`
+const fontSizeViolation = (value: string, subscript = false) => {
+  const min = subscript ? subscriptSizeMin : fontSizeMin
+  if (lengthOf(value) >= min) return null
+  return subscript
+    ? `첨자 <tspan>의 글자 크기는 ${min} 이상이다: ${value}`
+    : `글자 크기는 ${min} 이상이다(옮긴 첨자 <tspan>만 ${subscriptSizeMin}): ${value}`
+}
+
 // 척도 밖의 선 두께, 모서리 반경, 점선, 글자 크기를 찾는다. offset은 속성 이름이 시작하는 곳이다.
 function shapeViolations(text: string): { offset: number; message: string }[] {
   const found: { offset: number; message: string }[] = []
   for (const element of svgElements(text)) {
     const { attributes } = element
-    const add = (attribute: string, message: string) => {
+    const add = (attribute: string, message: string | null) => {
+      if (!message) return
       const index = element.source.search(new RegExp(`\\s${attribute}\\s*=`))
       found.push({ offset: element.offset + index + 1, message })
     }
     const width = attributes.get("stroke-width")
-    if (width !== undefined && !strokeWidths.includes(lengthOf(width))) {
-      add("stroke-width", `선 두께는 ${strokeWidths.join(", ")}만 쓴다: ${width}`)
-    }
+    if (width !== undefined) add("stroke-width", strokeWidthViolation(width))
     if (element.name === "rect") {
       for (const radius of ["rx", "ry"]) {
         const value = attributes.get(radius)
@@ -521,11 +535,11 @@ function shapeViolations(text: string): { offset: number; message: string }[] {
       }
     }
     const dasharray = attributes.get("stroke-dasharray")
-    if (dasharray !== undefined && dasharray !== "none") {
+    if (dasharray !== undefined) {
       const dash = dashes[dashOf(dasharray)]
       const drawnWidth = lengthOf(inherited(element, "stroke-width") ?? "1")
-      if (!dash) add("stroke-dasharray", `점선은 3 3(보조)과 5 4(윤곽)만 쓴다: ${dasharray}`)
-      else if (!dash.fits(drawnWidth)) {
+      add("stroke-dasharray", dashViolation(dasharray))
+      if (dash && !dash.fits(drawnWidth)) {
         add("stroke-dasharray", `${dash.rule}(이 선의 폭: ${drawnWidth})`)
       }
     }
@@ -533,29 +547,20 @@ function shapeViolations(text: string): { offset: number; message: string }[] {
     if (size !== undefined) {
       const subscript =
         element.name === "tspan" && (attributes.has("baseline-shift") || attributes.has("dy"))
-      const min = subscript ? subscriptSizeMin : fontSizeMin
-      if (!(lengthOf(size) >= min)) {
-        add(
-          "font-size",
-          subscript
-            ? `첨자 <tspan>의 글자 크기는 ${min} 이상이다: ${size}`
-            : `글자 크기는 ${min} 이상이다(옮긴 첨자 <tspan>만 ${subscriptSizeMin}): ${size}`,
-        )
-      }
+      add("font-size", fontSizeViolation(size, subscript))
     }
   }
-  // CSS로 준 값은 요소를 가리지 않고 값만 본다.
-  for (const { value, offset } of declarationValues(text, "stroke-width")) {
-    if (strokeWidths.includes(lengthOf(value))) continue
-    found.push({ offset, message: `선 두께는 ${strokeWidths.join(", ")}만 쓴다: ${value}` })
-  }
-  for (const { value, offset } of declarationValues(text, "stroke-dasharray")) {
-    if (value === "none" || dashes[dashOf(value)]) continue
-    found.push({ offset, message: `점선은 3 3(보조)과 5 4(윤곽)만 쓴다: ${value}` })
-  }
-  for (const { value, offset } of declarationValues(text, "font-size")) {
-    if (lengthOf(value) >= fontSizeMin) continue
-    found.push({ offset, message: `글자 크기는 ${fontSizeMin} 이상이다: ${value}` })
+  // CSS로 준 값은 요소를 가리지 않고 값만 본다. 점선과 폭의 짝, 첨자의 하한은 속성으로만 판정한다.
+  const declared: [string, (value: string) => string | null][] = [
+    ["stroke-width", strokeWidthViolation],
+    ["stroke-dasharray", dashViolation],
+    ["font-size", (value) => fontSizeViolation(value)],
+  ]
+  for (const [property, violation] of declared) {
+    for (const { value, offset } of declarationValues(text, property)) {
+      const message = violation(value)
+      if (message) found.push({ offset, message })
+    }
   }
   return found
 }

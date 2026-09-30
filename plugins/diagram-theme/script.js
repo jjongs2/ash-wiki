@@ -23,11 +23,12 @@ const paint = (object) => {
 const paintAll = () => document.querySelectorAll(selector).forEach(paint)
 
 // <object>의 load와 error는 거품이 일지 않으므로 캡처 단계에서 받는다. 첫 로드, SPA 이동, 팝오버에 들어온
-// 도해가 모두 여기로 온다. 칠하지 못한 도해(읽지 못한 파일 등)도 가려 둔 채로 남지 않게 표시를 단다.
+// 도해가 모두 여기로 온다.
 const onLoad = (event) => {
   const object = event.target
   if (!object?.matches?.(selector)) return
   paint(object)
+  // 칠하지 못한 도해(읽지 못한 파일 등)도 가려 둔 채로 남지 않게 표시를 단다.
   object.dataset.themed = ""
 }
 document.addEventListener("load", onLoad, true)
