@@ -1,0 +1,6 @@
+/* ash-wiki: 칠하기 전의 도해를 가린다(plugins/diagram-theme). 가리지 않으면 SVG가 대체값(옛 팔레트)으로
+   먼저 그려졌다가 테마 값으로 바뀌는 것이 보인다. saved-theme은 스크립트가 돌 때만 붙으므로, 스크립트를
+   끈 브라우저에서는 도해를 가리지 않고 대체값으로 그린다. */
+html[saved-theme] object[type="image/svg+xml"]:not([data-themed]) {
+  visibility: hidden;
+}

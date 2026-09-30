@@ -76,6 +76,10 @@ plugins:
   - source: ./plugins/diagram-width
     enabled: true
     order: 35
+  # 도해 SVG에 현재 테마의 색 토큰 값을 넣는 스크립트를 싣는다(plugins/diagram-theme).
+  - source: ./plugins/diagram-theme
+    enabled: true
+    order: 36
   - source: "@quartz-community/github-flavored-markdown"
     enabled: true
     order: 40
