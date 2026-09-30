@@ -357,6 +357,29 @@ export const emphasis: SourceCheck = (tree) => {
   return violations
 }
 
+// 문단과 목록 항목의 끝이 종결 어미 "다"인데 마침표가 없으면 위반이다. 명사구로 끝나는 항목은
+// 문장이 아니므로 보지 않는다. 끝에 붙은 인용은 떼고 본다(`…다.[@키]`는 마침표로 끝난다).
+// remark-parse는 GFM 표를 문단으로 읽지만, 표 문단은 `|`로 끝나 걸리지 않는다.
+const trailingCitations = /(?:\s*\[@[^[\]\n]*\])+\s*$/
+
+export const period: SourceCheck = (tree) => {
+  const violations: Violation[] = []
+  for (const page of tree.pages) {
+    visit(page.mdast, "paragraph", (node, _index, parent) => {
+      const { start, end } = node.position!
+      const text = page.masked.slice(start.offset, end.offset).replace(trailingCitations, "")
+      if (!text.trimEnd().endsWith("다")) return
+      const block = parent?.type === "listItem" ? "목록 항목" : "문단"
+      violations.push({
+        file: page.file,
+        line: end.line,
+        message: `문장으로 끝나는 ${block}에 마침표가 없다`,
+      })
+    })
+  }
+  return violations
+}
+
 // 도해 SVG 한 벌이 두 테마에서 읽히도록, 색은 규약 문서의 도해 팔레트 값만 쓴다.
 const colorProperty = "fill|stroke|stop-color|flood-color|lighting-color|color"
 const colorKeywords = /^(none|transparent|inherit|url\(#[^)]+\))$/i
@@ -505,5 +528,6 @@ export const sourceChecks: [string, SourceCheck][] = [
   ["citation", citation],
   ["callout", callout],
   ["emphasis", emphasis],
+  ["period", period],
   ["svg", svg],
 ]
