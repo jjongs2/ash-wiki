@@ -101,7 +101,7 @@ npm run check:content
 | ---------------- | ------------------------------------------------------------ |
 | 널리 쓰이는 약어 | CPU, ECU, MCU, XOR                                           |
 | 표준화 기구      | ISO, SAE, IEC, IEEE, ITU-T, TIA, EIA, CiA, NMEA, CCSDS, IETF |
-| 표준·규격 이름   | AUTOSAR, OSEK/VDX, RFC, RS, IEN                              |
+| 표준·규격 이름   | AUTOSAR, OSEK/VDX, RFC, RS, IEN, POSIX                       |
 | 핀과 신호        | CAN_H, CAN_L, RXD, TXD                                       |
 | 전원             | GND, VCC                                                     |
 | ISO 위원회 번호  | SC, TC                                                       |

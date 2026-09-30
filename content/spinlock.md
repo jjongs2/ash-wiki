@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## 구조·동작
 
-POSIX(Portable Operating System Interface)는 `pthread_spin_lock`이 락을 다른 스레드가 쥐고 있지 않으면 락을 얻고, 쥐고 있으면 락이 풀릴 때까지 돌아오지 않고 스핀하도록 정한다.[@ieee-1003-1-preface-2024][@ieee-1003-1-pthread-spin-lock-2024]
+POSIX는 `pthread_spin_lock`이 락을 다른 스레드가 쥐고 있지 않으면 락을 얻고, 쥐고 있으면 락이 풀릴 때까지 돌아오지 않고 스핀하도록 정한다.[@ieee-1003-1-preface-2024][@ieee-1003-1-pthread-spin-lock-2024]
 
 ### 원자 명령
 

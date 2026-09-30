@@ -23,7 +23,7 @@ verified: 2026-09-30
 
 ### 구현
 
-POSIX(Portable Operating System Interface)는 [[mutex|뮤텍스]] 속성 protocol의 값으로 `PTHREAD_PRIO_INHERIT`를 둔다. 이 프로토콜로 초기화한 뮤텍스를 하나 이상 쥐어 더 높은 우선순위 스레드를 블록시키는 스레드는, 자기 우선순위와 자기가 쥔 그런 뮤텍스를 기다리는 스레드 가운데 가장 높은 우선순위 중 높은 쪽으로 실행되도록 정한다. 또 그 스레드가 다시 다른 `PTHREAD_PRIO_INHERIT` 뮤텍스에서 블록되면, 같은 효과가 그 뮤텍스의 소유 스레드에게 재귀적으로 전해지도록 정한다.[@ieee-1003-1-preface-2024][@ieee-1003-1-pthread-mutexattr-getprotocol-2024] POSIX 근거 설명에 따르면 이 방식은 우선순위 역전을 임계 구역 길이로 묶어 타이밍 분석을 할 수 있게 한다.[@ieee-1003-1-rationale-threads-2024]
+POSIX는 [[mutex|뮤텍스]] 속성 protocol의 값으로 `PTHREAD_PRIO_INHERIT`를 둔다. 이 프로토콜로 초기화한 뮤텍스를 하나 이상 쥐어 더 높은 우선순위 스레드를 블록시키는 스레드는, 자기 우선순위와 자기가 쥔 그런 뮤텍스를 기다리는 스레드 가운데 가장 높은 우선순위 중 높은 쪽으로 실행되도록 정한다. 또 그 스레드가 다시 다른 `PTHREAD_PRIO_INHERIT` 뮤텍스에서 블록되면, 같은 효과가 그 뮤텍스의 소유 스레드에게 재귀적으로 전해지도록 정한다.[@ieee-1003-1-preface-2024][@ieee-1003-1-pthread-mutexattr-getprotocol-2024] POSIX 근거 설명에 따르면 이 방식은 우선순위 역전을 임계 구역 길이로 묶어 타이밍 분석을 할 수 있게 한다.[@ieee-1003-1-rationale-threads-2024]
 
 FreeRTOS의 뮤텍스는 우선순위 상속을 한다. 높은 우선순위 태스크가 낮은 우선순위 태스크가 쥔 뮤텍스를 얻으려다 블록되면, 쥔 태스크의 우선순위를 블록된 태스크의 우선순위까지 잠시 올린다. FreeRTOS는 메모리와 실행 사이클을 아끼려고 이를 단순화해, 태스크가 쥔 뮤텍스를 모두 풀 때까지 푸는 순서와 상관없이 물려받은 가장 높은 우선순위에 머물게 한다.[@freertos-mutexes-2026]
 

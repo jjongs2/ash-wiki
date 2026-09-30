@@ -17,7 +17,7 @@ verified: 2026-09-30
 
 ![[diagrams/deadlock-lock-order-cycle.svg]]
 
-한 스레드가 이미 쥔 락을 다시 잡으려 해도 스스로 교착 상태에 빠질 수 있다.[@linux-locking-guide-2026][@microsoft-driver-verifier-deadlock-2020] POSIX(Portable Operating System Interface)는 `PTHREAD_MUTEX_NORMAL` 타입 [[mutex|뮤텍스]]를 이미 잠근 스레드가 다시 잠그면 교착 상태가 된다고 정한다.[@ieee-1003-1-preface-2024][@ieee-1003-1-pthread-mutex-lock-2024]
+한 스레드가 이미 쥔 락을 다시 잡으려 해도 스스로 교착 상태에 빠질 수 있다.[@linux-locking-guide-2026][@microsoft-driver-verifier-deadlock-2020] POSIX는 `PTHREAD_MUTEX_NORMAL` 타입 [[mutex|뮤텍스]]를 이미 잠근 스레드가 다시 잠그면 교착 상태가 된다고 정한다.[@ieee-1003-1-preface-2024][@ieee-1003-1-pthread-mutex-lock-2024]
 
 ### 네 조건
 
