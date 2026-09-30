@@ -9,11 +9,11 @@ verified: 2026-09-29
 
 **MAC 주소**는 [[ethernet|이더넷]] 같은 IEEE 802 네트워크에서 하드웨어 인터페이스를 가리키는 주소로, 흔히 EUI-48(48-bit Extended Unique Identifier)을 쓴다. 이더넷 MAC 주소는 이더넷 인터페이스 하나에 고유한 EUI-48이다. IEEE 등록 기관은 전역에서 고유한 48비트 MAC 주소를 정식으로 EUI-48이라 부른다.[@ieee-ra-eui-2017][@ieee-ra-faq-2026]
 
-ST RM0008은 MAC을 media access control로, Microchip ENC28J60 데이터시트는 Medium Access Control로 풀어 쓴다.[@st-rm0008-2021][@microchip-enc28j60-2012] [[ethernet-frame|이더넷 프레임]]의 주소는 하나가 48비트(6옥텟)이고, MAC 주소는 프레임의 목적지 주소 필드와 출발지 주소 필드에 실린다.[@st-rm0008-2021][@microchip-enc28j60-2012]
+ST RM0008은 MAC을 media access control로, Microchip ENC28J60 데이터시트는 Medium Access Control로 풀어 쓴다.[@st-rm0008-2021][@microchip-enc28j60-2012] [[ethernet-frame|이더넷 프레임]]의 주소는 하나가 48비트(6옥텟)이고, MAC 주소는 프레임의 목적지 주소 필드와 출발지 주소 필드에 실린다.[@st-rm0008-2021][@microchip-enc28j60-2012] [[ieee-802-3|IEEE 802.3]]-2022는 목적지 주소 필드가 프레임을 받을 스테이션을 가리키도록 정한다.[@ieee-802-3-2022] [[ieee-802-1q|IEEE 802.1Q]]-2022의 [[ethernet-switch|브리지]]는 받은 프레임을 보낼 포트를 목적지 MAC 주소와 VLAN 식별자, 필터링 데이터베이스의 정보 등으로 정한다.[@ieee-802-1q-2022]
 
 ## 표기
 
-IEEE 등록 기관의 16진 표기는 EUI-48의 여섯 옥텟을 두 자리 16진수로 적고 하이픈으로 잇는다. 예: `AC-DE-48-23-45-67`. 하이픈 없이 16진수로 적기도 한다.[@ieee-ra-eui-2017]
+IEEE 등록 기관의 16진 표기는 EUI-48의 여섯 옥텟을 두 자리 16진수로 적고 하이픈으로 잇는다. 예: `AC-DE-48-23-45-67`. 하이픈 없이 16진수로 적기도 한다.[@ieee-ra-eui-2017] IETF RFC 9911의 YANG(Yet Another Next Generation) 데이터 타입 mac-address는 48비트 MAC 주소를 두 자리 16진수 여섯 개를 콜론으로 이은 꼴로 나타내고, 정식 표현에는 소문자를 쓴다.[@ietf-rfc-9911-2025]
 
 ## OUI
 
