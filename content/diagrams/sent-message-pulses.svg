@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="26 10 592 186.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+  <!-- 메시지의 부분 -->
+  <rect x="62" y="20" width="164" height="40" fill="#825da9" />
+  <text x="144" y="45" text-anchor="middle" font-size="12" fill="#f8fafd">동기·보정 펄스</text>
+  <rect x="230" y="20" width="68" height="40" fill="#b0540d" />
+  <text x="264" y="45" text-anchor="middle" font-size="12" fill="#f8fafd">상태·통신</text>
+  <rect x="302" y="20" width="113" height="40" fill="#336fb8" />
+  <text x="358.5" y="37" text-anchor="middle" font-size="12" fill="#f8fafd">데이터 니블</text>
+  <text x="358.5" y="53" text-anchor="middle" font-size="12" fill="#f8fafd">1~6개</text>
+  <rect x="419" y="20" width="62" height="40" fill="#337b47" />
+  <text x="450" y="45" text-anchor="middle" font-size="12" fill="#f8fafd">CRC</text>
+  <rect x="485.75" y="20.75" width="84.5" height="38.5" stroke="#727981" stroke-width="1.5" stroke-dasharray="4 3" />
+  <text x="528" y="37" text-anchor="middle" font-size="12" fill="#727981">휴지 펄스</text>
+  <text x="528" y="53" text-anchor="middle" font-size="12" fill="#727981">선택 사항</text>
+
+  <!-- 하강 에지 -->
+  <g stroke="#727981" stroke-width="1" stroke-dasharray="2 3">
+    <line x1="60" y1="64" x2="60" y2="144" />
+    <line x1="228" y1="64" x2="228" y2="144" />
+    <line x1="300" y1="64" x2="300" y2="144" />
+    <line x1="372" y1="64" x2="372" y2="144" />
+    <line x1="417" y1="64" x2="417" y2="144" />
+    <line x1="483" y1="64" x2="483" y2="144" />
+    <line x1="573" y1="64" x2="573" y2="144" />
+  </g>
+  <path d="M36 86 H60 V118 H75 V86 H228 V118 H243 V86 H300 V118 H315 V86 H372 V118 H387 V86 H417 V118 H432 V86 H483 V118 H498 V86 H573 V118 H588 V86 H608" stroke="#727981" stroke-width="2" />
+
+  <!-- 간격 -->
+  <g stroke="#727981" stroke-width="1.5">
+    <line x1="62" y1="136" x2="226" y2="136" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+    <line x1="230" y1="136" x2="298" y2="136" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="#727981">
+    <text x="144" y="156">56틱</text>
+    <text x="264" y="156">12 + v틱</text>
+  </g>
+  <text x="36" y="184" font-size="12" fill="#727981">니블 값 v는 하강 에지 사이의 간격 12 + v틱으로 싣는다. 12틱이 0, 27틱이 15다.</text>
+</svg>
