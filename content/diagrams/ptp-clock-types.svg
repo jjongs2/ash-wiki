@@ -2,23 +2,23 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
 
   <!-- 세 시계 -->
-  <rect x="20" y="88" width="180" height="56" rx="4" stroke="#727981" stroke-width="1.5" />
-  <text x="110" y="112" text-anchor="middle" fill="#727981">ordinary clock</text>
-  <text x="110" y="132" text-anchor="middle" font-size="12" fill="#727981">PTP 포트 하나</text>
-  <rect x="230" y="88" width="180" height="56" rx="4" stroke="#727981" stroke-width="1.5" />
-  <text x="320" y="112" text-anchor="middle" fill="#727981">boundary clock</text>
-  <text x="320" y="132" text-anchor="middle" font-size="12" fill="#727981">PTP 포트 여럿</text>
-  <rect x="440" y="88" width="180" height="56" rx="4" stroke="#727981" stroke-width="1.5" />
-  <text x="530" y="112" text-anchor="middle" fill="#727981">transparent clock</text>
-  <text x="530" y="132" text-anchor="middle" font-size="12" fill="#727981">master나 slave가 되지 않음</text>
+  <rect x="20" y="88" width="180" height="56" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="110" y="112" text-anchor="middle" fill="var(--text, #727981)">ordinary clock</text>
+  <text x="110" y="132" text-anchor="middle" font-size="12" fill="var(--text, #727981)">PTP 포트 하나</text>
+  <rect x="230" y="88" width="180" height="56" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="320" y="112" text-anchor="middle" fill="var(--text, #727981)">boundary clock</text>
+  <text x="320" y="132" text-anchor="middle" font-size="12" fill="var(--text, #727981)">PTP 포트 여럿</text>
+  <rect x="440" y="88" width="180" height="56" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="530" y="112" text-anchor="middle" fill="var(--text, #727981)">transparent clock</text>
+  <text x="530" y="132" text-anchor="middle" font-size="12" fill="var(--text, #727981)">master나 slave가 되지 않음</text>
 
   <!-- 포트까지의 선 -->
-  <g stroke="#727981" stroke-width="1.5">
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="110" y1="149" x2="110" y2="176" />
     <line x1="320" y1="44" x2="320" y2="83" />
     <line x1="280" y1="149" x2="280" y2="176" />
@@ -28,7 +28,7 @@
   </g>
 
   <!-- 포트 -->
-  <g fill="#727981">
+  <g fill="var(--ink, #727981)">
     <rect x="105" y="139" width="10" height="10" />
     <rect x="315" y="83" width="10" height="10" />
     <rect x="275" y="139" width="10" height="10" />
@@ -38,10 +38,10 @@
   </g>
 
   <!-- ordinary clock 포트의 역할 -->
-  <text x="110" y="192" text-anchor="middle" font-size="12" fill="#727981">master 또는 slave</text>
+  <text x="110" y="192" text-anchor="middle" font-size="12" fill="var(--text, #727981)">master 또는 slave</text>
 
   <!-- boundary clock 포트의 역할 -->
-  <g font-size="12" fill="#727981">
+  <g font-size="12" fill="var(--text, #727981)">
     <text x="320" y="32" text-anchor="middle">상위 master에 동기화</text>
     <text x="328" y="68">slave</text>
     <text x="280" y="192" text-anchor="middle">master</text>
@@ -50,7 +50,7 @@
   </g>
 
   <!-- transparent clock이 하는 일 -->
-  <g font-size="12" fill="#727981" text-anchor="middle">
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
     <text x="530" y="32">PTP 메시지</text>
     <text x="530" y="198">체류 시간을 재어</text>
     <text x="530" y="214">correctionField에 더해 넘김</text>

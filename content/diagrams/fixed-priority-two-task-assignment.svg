@@ -2,67 +2,67 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
     <marker id="tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
   <!-- 가로축: 왼쪽 x = 110 + 50 × 시각, 오른쪽 x = 500 + 50 × 시각 -->
 
   <!-- 왼쪽: 태스크 1이 높은 우선순위 -->
-  <text x="40" y="20" fill="#727981">태스크 1에 높은 우선순위 (RM)</text>
-  <g text-anchor="end" fill="#727981">
+  <text x="40" y="20" fill="var(--text, #727981)">태스크 1에 높은 우선순위 (RM)</text>
+  <g text-anchor="end" fill="var(--text, #727981)">
     <text x="96" y="67">태스크 1</text>
     <text x="96" y="103">태스크 2</text>
   </g>
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="110" y="50" width="50" height="24" rx="3" />
-    <rect x="210" y="50" width="50" height="24" rx="3" />
-    <rect x="310" y="50" width="50" height="24" rx="3" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="110" y="50" width="50" height="24" rx="2" fill="var(--surface, none)" />
+    <rect x="210" y="50" width="50" height="24" rx="2" fill="var(--surface, none)" />
+    <rect x="310" y="50" width="50" height="24" rx="2" fill="var(--surface, none)" />
   </g>
-  <g fill="#b0540d">
-    <rect x="160" y="86" width="50" height="24" rx="3" />
-    <rect x="260" y="86" width="50" height="24" rx="3" />
+  <g fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5">
+    <rect x="160.75" y="86.75" width="48.5" height="22.5" rx="2" />
+    <rect x="260.75" y="86.75" width="48.5" height="22.5" rx="2" />
   </g>
-  <g stroke="#727981" stroke-width="1.5" marker-end="url(#tip)">
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#tip)">
     <line x1="110" y1="38" x2="110" y2="49" />
     <line x1="210" y1="38" x2="210" y2="49" />
     <line x1="310" y1="38" x2="310" y2="49" />
     <line x1="110" y1="76" x2="110" y2="85" />
     <line x1="360" y1="76" x2="360" y2="85" />
   </g>
-  <line x1="110" y1="122" x2="380" y2="122" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <path d="M110 122 V127 M160 122 V127 M210 122 V127 M260 122 V127 M310 122 V127 M360 122 V127" stroke="#727981" stroke-width="1" />
-  <g font-size="12" fill="#727981" text-anchor="middle">
+  <line x1="110" y1="122" x2="380" y2="122" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <path d="M110 122 V127 M160 122 V127 M210 122 V127 M260 122 V127 M310 122 V127 M360 122 V127" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
     <text x="110" y="141">0</text>
     <text x="210" y="141">2</text>
     <text x="360" y="141">5</text>
   </g>
-  <text x="235" y="170" text-anchor="middle" font-size="12" fill="#727981">모든 마감 시한을 지킴</text>
+  <text x="235" y="170" text-anchor="middle" font-size="12" fill="var(--text, #727981)">모든 마감 시한을 지킴</text>
 
   <!-- 오른쪽: 태스크 2가 높은 우선순위 -->
-  <text x="430" y="20" fill="#727981">태스크 2에 높은 우선순위</text>
-  <g text-anchor="end" fill="#727981">
+  <text x="430" y="20" fill="var(--text, #727981)">태스크 2에 높은 우선순위</text>
+  <g text-anchor="end" fill="var(--text, #727981)">
     <text x="486" y="67">태스크 1</text>
     <text x="486" y="103">태스크 2</text>
   </g>
-  <rect x="500" y="86" width="100" height="24" rx="3" fill="#b0540d" />
-  <g stroke="#727981" stroke-width="1.5" marker-end="url(#tip)">
+  <rect x="500.75" y="86.75" width="98.5" height="22.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#tip)">
     <line x1="500" y1="38" x2="500" y2="49" />
     <line x1="600" y1="38" x2="600" y2="49" />
     <line x1="500" y1="76" x2="500" y2="85" />
   </g>
   <!-- 태스크 1의 첫 요청이 마감 시한까지 실행되지 못함 -->
-  <path d="M590 56 L610 68 M610 56 L590 68" stroke="#bb464d" stroke-width="2.5" />
-  <line x1="500" y1="122" x2="770" y2="122" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <path d="M500 122 V127 M550 122 V127 M600 122 V127 M650 122 V127 M700 122 V127 M750 122 V127" stroke="#727981" stroke-width="1" />
-  <g font-size="12" fill="#727981" text-anchor="middle">
+  <path d="M590 56 L610 68 M610 56 L590 68" stroke="var(--red, #bb464d)" stroke-width="3" />
+  <line x1="500" y1="122" x2="770" y2="122" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <path d="M500 122 V127 M550 122 V127 M600 122 V127 M650 122 V127 M700 122 V127 M750 122 V127" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
     <text x="500" y="141">0</text>
     <text x="600" y="141">2</text>
     <text x="750" y="141">5</text>
   </g>
-  <text x="625" y="170" text-anchor="middle" font-size="12" fill="#727981">태스크 1이 마감 시한을 놓침</text>
+  <text x="625" y="170" text-anchor="middle" font-size="12" fill="var(--text, #727981)">태스크 1이 마감 시한을 놓침</text>
 
-  <text x="405" y="204" text-anchor="middle" font-size="12" fill="#727981">화살표는 요청</text>
+  <text x="405" y="204" text-anchor="middle" font-size="12" fill="var(--text, #727981)">화살표는 요청</text>
 </svg>

@@ -2,27 +2,27 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
 
   <!-- 4비트 데이터 경로 -->
-  <rect x="20" y="30" width="140" height="52" rx="4" stroke="#727981" stroke-width="1.5" />
-  <text x="90" y="52" text-anchor="middle" fill="#727981">4비트 데이터 경로</text>
-  <text x="90" y="70" text-anchor="middle" font-size="12" fill="#727981">25 MHz</text>
+  <rect x="20" y="30" width="140" height="52" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="90" y="52" text-anchor="middle" fill="var(--text, #727981)">4비트 데이터 경로</text>
+  <text x="90" y="70" text-anchor="middle" font-size="12" fill="var(--text, #727981)">25 MHz</text>
 
-  <line x1="160" y1="56" x2="228" y2="56" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="195" y="47" text-anchor="middle" font-size="12" fill="#727981">4B3B</text>
+  <line x1="160" y1="56" x2="228" y2="56" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="195" y="47" text-anchor="middle" font-size="12" fill="var(--text, #727981)">4B3B</text>
 
   <!-- 3비트 데이터 경로 -->
-  <rect x="230" y="30" width="140" height="52" rx="4" stroke="#727981" stroke-width="1.5" />
-  <text x="300" y="52" text-anchor="middle" fill="#727981">3비트 데이터 경로</text>
-  <text x="300" y="70" text-anchor="middle" font-size="12" fill="#727981">33.334 MHz</text>
+  <rect x="230" y="30" width="140" height="52" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="300" y="52" text-anchor="middle" fill="var(--text, #727981)">3비트 데이터 경로</text>
+  <text x="300" y="70" text-anchor="middle" font-size="12" fill="var(--text, #727981)">33.334 MHz</text>
 
-  <line x1="370" y1="56" x2="438" y2="56" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="370" y1="56" x2="438" y2="56" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 
   <!-- PAM3 심볼 -->
-  <rect x="440" y="30" width="140" height="52" rx="4" fill="#b0540d" />
-  <text x="510" y="52" text-anchor="middle" fill="#f8fafd">PAM3 심볼</text>
-  <text x="510" y="70" text-anchor="middle" font-size="12" fill="#f8fafd">66.667 MHz</text>
+  <rect x="440.75" y="30.75" width="138.5" height="50.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="510" y="52" text-anchor="middle" fill="var(--on-fill, #f8fafd)">PAM3 심볼</text>
+  <text x="510" y="70" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">66.667 MHz</text>
 </svg>

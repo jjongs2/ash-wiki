@@ -2,56 +2,56 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
 
   <!-- 필드: 칸 위에 묶어 -->
-  <g stroke="#727981" stroke-width="1.5">
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <path d="M21 30 V24 H161 V30" />
     <path d="M165 30 V24 H305 V30" />
     <path d="M309 30 V24 H449 V30" />
   </g>
-  <g font-size="12" fill="#727981" text-anchor="middle">
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
     <text x="91" y="16">Message ID</text>
     <text x="235" y="16">Length</text>
     <text x="379" y="16">Request ID</text>
   </g>
 
   <!-- 헤더 16바이트: Message ID -->
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="20" y="36" width="34" height="40" rx="3" />
-    <rect x="56" y="36" width="34" height="40" rx="3" />
-    <rect x="92" y="36" width="34" height="40" rx="3" />
-    <rect x="128" y="36" width="34" height="40" rx="3" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20" y="36" width="34" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="56" y="36" width="34" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="92" y="36" width="34" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="128" y="36" width="34" height="40" rx="4" fill="var(--surface, none)" />
   </g>
 
   <!-- Length -->
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="164" y="36" width="34" height="40" rx="3" />
-    <rect x="200" y="36" width="34" height="40" rx="3" />
-    <rect x="236" y="36" width="34" height="40" rx="3" />
-    <rect x="272" y="36" width="34" height="40" rx="3" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="164" y="36" width="34" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="200" y="36" width="34" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="236" y="36" width="34" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="272" y="36" width="34" height="40" rx="4" fill="var(--surface, none)" />
   </g>
 
   <!-- Request ID -->
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="308" y="36" width="34" height="40" rx="3" />
-    <rect x="344" y="36" width="34" height="40" rx="3" />
-    <rect x="380" y="36" width="34" height="40" rx="3" />
-    <rect x="416" y="36" width="34" height="40" rx="3" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="308" y="36" width="34" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="344" y="36" width="34" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="380" y="36" width="34" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="416" y="36" width="34" height="40" rx="4" fill="var(--surface, none)" />
   </g>
 
   <!-- 1바이트 필드 넷 -->
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="452" y="36" width="34" height="40" rx="3" />
-    <rect x="488" y="36" width="34" height="40" rx="3" />
-    <rect x="524" y="36" width="34" height="40" rx="3" />
-    <rect x="560" y="36" width="34" height="40" rx="3" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="452" y="36" width="34" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="488" y="36" width="34" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="524" y="36" width="34" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="560" y="36" width="34" height="40" rx="4" fill="var(--surface, none)" />
   </g>
 
   <!-- 바이트 눈금: 칸 안의 번호 -->
-  <g font-size="12" fill="#727981" text-anchor="middle">
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
     <text x="37" y="60">0</text>
     <text x="73" y="60">1</text>
     <text x="109" y="60">2</text>
@@ -71,17 +71,17 @@
   </g>
 
   <!-- 페이로드 -->
-  <rect x="596.75" y="36.75" width="120.5" height="38.5" rx="3" stroke="#727981" stroke-width="1.5" stroke-dasharray="6 4" />
-  <text x="657" y="61" text-anchor="middle" fill="#727981">페이로드</text>
+  <rect x="596.75" y="36.75" width="120.5" height="38.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
+  <text x="657" y="61" text-anchor="middle" fill="var(--text, #727981)">페이로드</text>
 
   <!-- 두 번째 층: ID의 나눔 -->
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="20.75" y="84.75" width="68.5" height="26.5" rx="3" />
-    <rect x="92.75" y="84.75" width="68.5" height="26.5" rx="3" />
-    <rect x="308.75" y="84.75" width="68.5" height="26.5" rx="3" />
-    <rect x="380.75" y="84.75" width="68.5" height="26.5" rx="3" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20.75" y="84.75" width="68.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="92.75" y="84.75" width="68.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="308.75" y="84.75" width="68.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="380.75" y="84.75" width="68.5" height="26.5" rx="2" fill="var(--surface, none)" />
   </g>
-  <g font-size="12" fill="#727981" text-anchor="middle">
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
     <text x="55" y="102">Service ID</text>
     <text x="127" y="102">Method ID</text>
     <text x="343" y="102">Client ID</text>
@@ -89,13 +89,13 @@
   </g>
 
   <!-- 1바이트 필드의 이름 -->
-  <g stroke="#727981" stroke-width="1">
+  <g stroke="var(--ink, #727981)" stroke-width="1">
     <path d="M577 78 V94 H602" />
     <path d="M541 78 V114 H602" />
     <path d="M505 78 V134 H602" />
     <path d="M469 78 V154 H602" />
   </g>
-  <g font-size="12" fill="#727981">
+  <g font-size="12" fill="var(--text, #727981)">
     <text x="608" y="98">Return Code</text>
     <text x="608" y="118">Message Type</text>
     <text x="608" y="138">Interface Version</text>
@@ -103,6 +103,6 @@
   </g>
 
   <!-- Length가 세는 범위 -->
-  <line x1="310" y1="180" x2="716" y2="180" stroke="#727981" stroke-width="1.5" marker-start="url(#tip)" marker-end="url(#tip)" />
-  <text x="513" y="200" text-anchor="middle" font-size="12" fill="#727981">Length가 세는 범위</text>
+  <line x1="310" y1="180" x2="716" y2="180" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#tip)" marker-end="url(#tip)" />
+  <text x="513" y="200" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Length가 세는 범위</text>
 </svg>

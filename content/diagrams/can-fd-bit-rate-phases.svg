@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="10 0.5 771 174.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <!-- 구간 이름 -->
-  <text x="130" y="58" text-anchor="middle" font-size="12" fill="#727981">중재 구간</text>
-  <text x="400" y="58" text-anchor="middle" font-size="12" fill="#727981">데이터 구간</text>
-  <text x="650" y="58" text-anchor="middle" font-size="12" fill="#727981">중재 구간</text>
+  <text x="130" y="58" text-anchor="middle" font-size="12" fill="var(--text, #727981)">중재 구간</text>
+  <text x="400" y="58" text-anchor="middle" font-size="12" fill="var(--text, #727981)">데이터 구간</text>
+  <text x="650" y="58" text-anchor="middle" font-size="12" fill="var(--text, #727981)">중재 구간</text>
   <!-- 비트 눈금: 눈금 사이가 비트 하나 -->
-  <path d="M24 70 V96 M48 70 V96 M72 70 V96 M96 70 V96 M120 70 V96 M144 70 V96 M168 70 V96 M192 70 V96 M216 70 V96 M240 70 V96 M248 70 V96 M256 70 V96 M264 70 V96 M272 70 V96 M280 70 V96 M288 70 V96 M296 70 V96 M304 70 V96 M312 70 V96 M320 70 V96 M328 70 V96 M336 70 V96 M344 70 V96 M352 70 V96 M360 70 V96 M368 70 V96 M376 70 V96 M384 70 V96 M392 70 V96 M400 70 V96 M408 70 V96 M416 70 V96 M424 70 V96 M432 70 V96 M440 70 V96 M448 70 V96 M456 70 V96 M464 70 V96 M472 70 V96 M480 70 V96 M488 70 V96 M496 70 V96 M504 70 V96 M512 70 V96 M520 70 V96 M528 70 V96 M536 70 V96 M544 70 V96 M552 70 V96 M560 70 V96 M584 70 V96 M608 70 V96 M632 70 V96 M656 70 V96 M680 70 V96 M704 70 V96 M728 70 V96" stroke="#727981" stroke-width="1" />
-  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#727981" /></marker></defs>
-  <path d="M20 96 H770" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="770" y="116" text-anchor="end" font-size="12" fill="#727981">시간</text>
+  <path d="M24 70 V96 M48 70 V96 M72 70 V96 M96 70 V96 M120 70 V96 M144 70 V96 M168 70 V96 M192 70 V96 M216 70 V96 M240 70 V96 M248 70 V96 M256 70 V96 M264 70 V96 M272 70 V96 M280 70 V96 M288 70 V96 M296 70 V96 M304 70 V96 M312 70 V96 M320 70 V96 M328 70 V96 M336 70 V96 M344 70 V96 M352 70 V96 M360 70 V96 M368 70 V96 M376 70 V96 M384 70 V96 M392 70 V96 M400 70 V96 M408 70 V96 M416 70 V96 M424 70 V96 M432 70 V96 M440 70 V96 M448 70 V96 M456 70 V96 M464 70 V96 M472 70 V96 M480 70 V96 M488 70 V96 M496 70 V96 M504 70 V96 M512 70 V96 M520 70 V96 M528 70 V96 M536 70 V96 M544 70 V96 M552 70 V96 M560 70 V96 M584 70 V96 M608 70 V96 M632 70 V96 M656 70 V96 M680 70 V96 M704 70 V96 M728 70 V96" stroke="var(--ink, #727981)" stroke-width="1" />
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" /></marker></defs>
+  <path d="M20 96 H770" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="770" y="116" text-anchor="end" font-size="12" fill="var(--text, #727981)">시간</text>
   <!-- 전환 시점 -->
-  <path d="M240 28 V108" stroke="#727981" stroke-width="1.5" stroke-dasharray="4 3" />
-  <text x="240" y="20" text-anchor="middle" font-size="12" fill="#727981">BRS 샘플 포인트</text>
-  <path d="M560 28 V108" stroke="#727981" stroke-width="1.5" stroke-dasharray="4 3" />
-  <text x="560" y="20" text-anchor="middle" font-size="12" fill="#727981">CRC 구분자 샘플 포인트</text>
-  <text x="20" y="144" font-size="12" fill="#727981">눈금 사이 하나가 비트 하나다. 데이터 구간에서는 비트 시간을 더 줄일 수 있다.</text>
-  <text x="20" y="164" font-size="12" fill="#727981">BRS가 recessive일 때. dominant이면 비트율을 바꾸지 않는다.</text>
+  <path d="M240 28 V108" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="240" y="20" text-anchor="middle" font-size="12" fill="var(--text, #727981)">BRS 샘플 포인트</text>
+  <path d="M560 28 V108" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="560" y="20" text-anchor="middle" font-size="12" fill="var(--text, #727981)">CRC 구분자 샘플 포인트</text>
+  <text x="20" y="144" font-size="12" fill="var(--text, #727981)">눈금 사이 하나가 비트 하나다. 데이터 구간에서는 비트 시간을 더 줄일 수 있다.</text>
+  <text x="20" y="164" font-size="12" fill="var(--text, #727981)">BRS가 recessive일 때. dominant이면 비트율을 바꾸지 않는다.</text>
 </svg>

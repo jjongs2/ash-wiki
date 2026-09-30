@@ -2,60 +2,60 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
 
   <!-- 노드 하나의 신호 경로 -->
-  <rect x="10.75" y="80.75" width="458.5" height="138.5" rx="8" stroke="#727981" stroke-width="1.5" stroke-dasharray="6 5" />
-  <text x="24" y="104" fill="#727981">노드</text>
+  <rect x="10.75" y="80.75" width="458.5" height="138.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="24" y="104" fill="var(--text, #727981)">노드</text>
 
-  <rect x="24" y="130" width="100" height="44" rx="4" fill="#825da9" />
-  <text x="74" y="157" text-anchor="middle" fill="#f8fafd">호스트 CPU</text>
-  <line x1="124" y1="152" x2="156" y2="152" stroke="#727981" stroke-width="1.5" />
+  <rect x="24.75" y="130.75" width="98.5" height="42.5" rx="4" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
+  <text x="74" y="157" text-anchor="middle" fill="var(--on-fill, #f8fafd)">호스트 CPU</text>
+  <line x1="124" y1="152" x2="156" y2="152" stroke="var(--ink, #727981)" stroke-width="1.5" />
 
-  <rect x="156" y="124" width="118" height="56" rx="4" fill="#336fb8" />
-  <text x="215" y="157" text-anchor="middle" fill="#f8fafd">CAN 컨트롤러</text>
+  <rect x="156.75" y="124.75" width="116.5" height="54.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="215" y="157" text-anchor="middle" fill="var(--on-fill, #f8fafd)">CAN 컨트롤러</text>
 
-  <line x1="274" y1="138" x2="336" y2="138" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="305" y="131" text-anchor="middle" font-size="12" fill="#727981">TXD</text>
-  <line x1="338" y1="166" x2="276" y2="166" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="305" y="184" text-anchor="middle" font-size="12" fill="#727981">RXD</text>
+  <line x1="274" y1="138" x2="336" y2="138" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="305" y="131" text-anchor="middle" font-size="12" fill="var(--text, #727981)">TXD</text>
+  <line x1="338" y1="166" x2="276" y2="166" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="305" y="184" text-anchor="middle" font-size="12" fill="var(--text, #727981)">RXD</text>
 
-  <rect x="338" y="124" width="118" height="56" rx="4" fill="#b0540d" />
-  <text x="397" y="157" text-anchor="middle" fill="#f8fafd">CAN 트랜시버</text>
+  <rect x="338.75" y="124.75" width="116.5" height="54.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="397" y="157" text-anchor="middle" fill="var(--on-fill, #f8fafd)">CAN 트랜시버</text>
 
   <!-- 트랜시버에서 버스로 -->
-  <line x1="456" y1="138" x2="540" y2="138" stroke="#727981" stroke-width="1.5" />
-  <path d="M456 166 H533 A7 7 0 0 1 547 166 H570" stroke="#727981" stroke-width="1.5" />
-  <circle cx="540" cy="138" r="3.5" fill="#727981" />
-  <circle cx="570" cy="166" r="3.5" fill="#727981" />
-  <text x="505" y="131" text-anchor="middle" font-size="12" fill="#727981">CAN_H</text>
-  <text x="505" y="184" text-anchor="middle" font-size="12" fill="#727981">CAN_L</text>
+  <line x1="456" y1="138" x2="540" y2="138" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <path d="M456 166 H533 A7 7 0 0 1 547 166 H570" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <circle cx="540" cy="138" r="3.5" fill="var(--ink, #727981)" />
+  <circle cx="570" cy="166" r="3.5" fill="var(--ink, #727981)" />
+  <text x="505" y="131" text-anchor="middle" font-size="12" fill="var(--text, #727981)">CAN_H</text>
+  <text x="505" y="184" text-anchor="middle" font-size="12" fill="var(--text, #727981)">CAN_L</text>
 
   <!-- 세로로 놓은 버스 두 선 -->
-  <line x1="540" y1="40" x2="540" y2="260" stroke="#727981" stroke-width="2.5" />
-  <line x1="570" y1="40" x2="570" y2="260" stroke="#727981" stroke-width="2.5" />
+  <line x1="540" y1="40" x2="540" y2="260" stroke="var(--ink, #727981)" stroke-width="3" />
+  <line x1="570" y1="40" x2="570" y2="260" stroke="var(--ink, #727981)" stroke-width="3" />
 
   <!-- 위아래 끝 종단 저항 -->
-  <path d="M540 40 H545 M565 40 H570" stroke="#727981" stroke-width="1.5" />
-  <rect x="545" y="33" width="20" height="14" stroke="#727981" stroke-width="1.5" />
-  <text x="555" y="24" text-anchor="middle" font-size="12" fill="#727981">120 Ω</text>
-  <path d="M540 260 H545 M565 260 H570" stroke="#727981" stroke-width="1.5" />
-  <rect x="545" y="253" width="20" height="14" stroke="#727981" stroke-width="1.5" />
-  <text x="555" y="288" text-anchor="middle" font-size="12" fill="#727981">120 Ω</text>
+  <path d="M540 40 H545 M565 40 H570" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="545" y="33" width="20" height="14" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="555" y="24" text-anchor="middle" font-size="12" fill="var(--text, #727981)">120 Ω</text>
+  <path d="M540 260 H545 M565 260 H570" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="545" y="253" width="20" height="14" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="555" y="288" text-anchor="middle" font-size="12" fill="var(--text, #727981)">120 Ω</text>
 
   <!-- 버스의 다른 노드 -->
-  <path d="M540 86 H563 A7 7 0 0 1 577 86 H610" stroke="#727981" stroke-width="1.5" />
-  <line x1="570" y1="100" x2="610" y2="100" stroke="#727981" stroke-width="1.5" />
-  <circle cx="540" cy="86" r="3.5" fill="#727981" />
-  <circle cx="570" cy="100" r="3.5" fill="#727981" />
-  <rect x="610.75" y="72.75" width="58.5" height="40.5" rx="4" stroke="#727981" stroke-width="1.5" />
-  <text x="640" y="98" text-anchor="middle" fill="#727981">노드</text>
-  <path d="M540 200 H563 A7 7 0 0 1 577 200 H610" stroke="#727981" stroke-width="1.5" />
-  <line x1="570" y1="214" x2="610" y2="214" stroke="#727981" stroke-width="1.5" />
-  <circle cx="540" cy="200" r="3.5" fill="#727981" />
-  <circle cx="570" cy="214" r="3.5" fill="#727981" />
-  <rect x="610.75" y="186.75" width="58.5" height="40.5" rx="4" stroke="#727981" stroke-width="1.5" />
-  <text x="640" y="212" text-anchor="middle" fill="#727981">노드</text>
+  <path d="M540 86 H563 A7 7 0 0 1 577 86 H610" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <line x1="570" y1="100" x2="610" y2="100" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <circle cx="540" cy="86" r="3.5" fill="var(--ink, #727981)" />
+  <circle cx="570" cy="100" r="3.5" fill="var(--ink, #727981)" />
+  <rect x="610.75" y="72.75" width="58.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="640" y="98" text-anchor="middle" fill="var(--text, #727981)">노드</text>
+  <path d="M540 200 H563 A7 7 0 0 1 577 200 H610" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <line x1="570" y1="214" x2="610" y2="214" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <circle cx="540" cy="200" r="3.5" fill="var(--ink, #727981)" />
+  <circle cx="570" cy="214" r="3.5" fill="var(--ink, #727981)" />
+  <rect x="610.75" y="186.75" width="58.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="640" y="212" text-anchor="middle" fill="var(--text, #727981)">노드</text>
 </svg>

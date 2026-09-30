@@ -2,50 +2,50 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
   <!-- 노드 -->
-  <rect x="10" y="10" width="540" height="206" stroke="#727981" stroke-width="1.5" stroke-dasharray="4 3" />
-  <text x="24" y="32" font-size="12" fill="#727981">노드</text>
+  <rect x="10" y="10" width="540" height="206" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="24" y="32" font-size="12" fill="var(--text, #727981)">노드</text>
 
   <!-- 호스트 -->
-  <rect x="30" y="80" width="100" height="46" stroke="#727981" stroke-width="1.5" />
-  <text x="80" y="108" text-anchor="middle" fill="#727981">호스트</text>
-  <line x1="130" y1="103" x2="172" y2="103" stroke="#727981" stroke-width="1.5" />
+  <rect x="30" y="80" width="100" height="46" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="80" y="108" text-anchor="middle" fill="var(--text, #727981)">호스트</text>
+  <line x1="130" y1="103" x2="172" y2="103" stroke="var(--ink, #727981)" stroke-width="1.5" />
 
   <!-- 통신 컨트롤러 -->
-  <rect x="160.75" y="56.75" width="218.5" height="90.5" stroke="#727981" stroke-width="1.5" />
-  <text x="270" y="75" text-anchor="middle" font-size="12" fill="#727981">통신 컨트롤러 (CC)</text>
-  <rect x="172" y="84" width="52" height="46" stroke="#727981" stroke-width="1.5" />
-  <text x="198" y="112" text-anchor="middle" fill="#727981">CHI</text>
-  <rect x="230" y="84" width="138" height="46" stroke="#727981" stroke-width="1.5" />
-  <text x="299" y="112" text-anchor="middle" fill="#727981">프로토콜 엔진</text>
+  <rect x="160.75" y="56.75" width="218.5" height="90.5" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="270" y="75" text-anchor="middle" font-size="12" fill="var(--text, #727981)">통신 컨트롤러 (CC)</text>
+  <rect x="172" y="84" width="52" height="46" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="198" y="112" text-anchor="middle" fill="var(--text, #727981)">CHI</text>
+  <rect x="230" y="84" width="138" height="46" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="299" y="112" text-anchor="middle" fill="var(--text, #727981)">프로토콜 엔진</text>
 
   <!-- 버스 드라이버와 버스 가디언 -->
-  <path d="M368 94 H398 V80 H420 M368 120 H398 V144 H420" stroke="#727981" stroke-width="1.5" />
-  <rect x="420" y="62" width="110" height="36" stroke="#727981" stroke-width="1.5" />
-  <rect x="420" y="126" width="110" height="36" stroke="#727981" stroke-width="1.5" />
-  <g text-anchor="middle" fill="#727981">
+  <path d="M368 94 H398 V80 H420 M368 120 H398 V144 H420" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="420" y="62" width="110" height="36" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="420" y="126" width="110" height="36" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="475" y="85">버스 드라이버</text>
     <text x="475" y="149">버스 드라이버</text>
   </g>
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="420.75" y="20.75" width="108.5" height="28.5" stroke-dasharray="4 3" />
-    <rect x="420.75" y="174.75" width="108.5" height="28.5" stroke-dasharray="4 3" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="420.75" y="20.75" width="108.5" height="28.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
+    <rect x="420.75" y="174.75" width="108.5" height="28.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
     <line x1="475" y1="50" x2="475" y2="62" />
     <line x1="475" y1="162" x2="475" y2="174" />
   </g>
-  <g text-anchor="middle" font-size="12" fill="#727981">
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="475" y="39">버스 가디언</text>
     <text x="475" y="193">버스 가디언</text>
   </g>
 
   <!-- 채널 -->
-  <g stroke="#727981" stroke-width="2.5">
+  <g stroke="var(--ink, #727981)" stroke-width="3">
     <line x1="530" y1="80" x2="610" y2="80" />
     <line x1="530" y1="144" x2="610" y2="144" />
   </g>
-  <g fill="#727981">
+  <g fill="var(--text, #727981)">
     <text x="618" y="85">채널 A</text>
     <text x="618" y="149">채널 B</text>
   </g>
 
-  <text x="10" y="240" font-size="12" fill="#727981">점선 상자의 버스 가디언은 선택 사항이다.</text>
+  <text x="10" y="240" font-size="12" fill="var(--text, #727981)">점선 상자의 버스 가디언은 선택 사항이다.</text>
 </svg>

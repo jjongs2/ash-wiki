@@ -2,21 +2,21 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
   <!-- 역할 -->
-  <rect x="20" y="20" width="210" height="36" rx="4" fill="#825da9" />
-  <text x="125" y="43" text-anchor="middle" fill="#f8fafd">talker</text>
-  <rect x="242" y="20" width="210" height="36" rx="4" fill="#337b47" />
-  <text x="347" y="43" text-anchor="middle" fill="#f8fafd">브리지</text>
-  <rect x="464" y="20" width="210" height="36" rx="4" fill="#336fb8" />
-  <text x="569" y="43" text-anchor="middle" fill="#f8fafd">listener</text>
+  <rect x="20.75" y="20.75" width="208.5" height="34.5" rx="4" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
+  <text x="125" y="43" text-anchor="middle" fill="var(--on-fill, #f8fafd)">talker</text>
+  <rect x="242.75" y="20.75" width="208.5" height="34.5" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="347" y="43" text-anchor="middle" fill="var(--on-fill, #f8fafd)">브리지</text>
+  <rect x="464.75" y="20.75" width="208.5" height="34.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="569" y="43" text-anchor="middle" fill="var(--on-fill, #f8fafd)">listener</text>
 
   <!-- 역할마다 하는 일 -->
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="20.75" y="64.75" width="208.5" height="50.5" rx="3" />
-    <rect x="242.75" y="64.75" width="208.5" height="50.5" rx="3" />
-    <rect x="242.75" y="123.75" width="208.5" height="68.5" rx="3" />
-    <rect x="464.75" y="64.75" width="208.5" height="50.5" rx="3" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20.75" y="64.75" width="208.5" height="50.5" rx="4" fill="var(--surface, none)" />
+    <rect x="242.75" y="64.75" width="208.5" height="50.5" rx="4" fill="var(--surface, none)" />
+    <rect x="242.75" y="123.75" width="208.5" height="68.5" rx="4" fill="var(--surface, none)" />
+    <rect x="464.75" y="64.75" width="208.5" height="50.5" rx="4" fill="var(--surface, none)" />
   </g>
-  <g fill="#727981" text-anchor="middle">
+  <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="125" y="86">보낼 수 있는 스트림과</text>
     <text x="125" y="104">그 속성을 선언</text>
     <text x="347" y="86">선언을 조정하고</text>

@@ -1,40 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="94.5 0.5 385 252.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <!-- 비트 이름 -->
-  <g text-anchor="middle" font-size="12" fill="#727981">
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="215" y="20">CRC 구분자</text><text x="315" y="20">ACK 슬롯</text><text x="415" y="20">ACK 구분자</text>
   </g>
 
   <!-- 송신 노드: 세 비트 모두 recessive -->
-  <text x="156" y="59" text-anchor="end" fill="#727981">송신 노드</text>
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="170.75" y="34.75" width="88.5" height="38.5" />
-    <rect x="270.75" y="34.75" width="88.5" height="38.5" />
-    <rect x="370.75" y="34.75" width="88.5" height="38.5" />
+  <text x="156" y="59" text-anchor="end" fill="var(--text, #727981)">송신 노드</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="170.75" y="34.75" width="88.5" height="38.5" fill="var(--surface, none)" />
+    <rect x="270.75" y="34.75" width="88.5" height="38.5" fill="var(--surface, none)" />
+    <rect x="370.75" y="34.75" width="88.5" height="38.5" fill="var(--surface, none)" />
   </g>
-  <g text-anchor="middle" fill="#727981">
+  <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="215" y="59">R</text><text x="315" y="59">R</text><text x="415" y="59">R</text>
   </g>
 
   <!-- 수신 노드: ACK 슬롯에만 dominant -->
-  <text x="156" y="109" text-anchor="end" fill="#727981">수신 노드</text>
-  <rect x="270" y="84" width="90" height="40" fill="#336fb8" />
-  <text x="315" y="109" text-anchor="middle" fill="#f8fafd">D</text>
+  <text x="156" y="109" text-anchor="end" fill="var(--text, #727981)">수신 노드</text>
+  <rect x="270.75" y="84.75" width="88.5" height="38.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="315" y="109" text-anchor="middle" fill="var(--on-fill, #f8fafd)">D</text>
 
-  <line x1="170" y1="140" x2="460" y2="140" stroke="#727981" stroke-width="1" stroke-dasharray="3 3" />
+  <line x1="170" y1="140" x2="460" y2="140" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
 
   <!-- 버스 -->
-  <text x="156" y="179" text-anchor="end" fill="#727981">버스</text>
-  <g fill="#337b47">
-    <rect x="170" y="154" width="90" height="40" />
-    <rect x="270" y="154" width="90" height="40" />
-    <rect x="370" y="154" width="90" height="40" />
+  <text x="156" y="179" text-anchor="end" fill="var(--text, #727981)">버스</text>
+  <g fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5">
+    <rect x="170.75" y="154.75" width="88.5" height="38.5" />
+    <rect x="270.75" y="154.75" width="88.5" height="38.5" />
+    <rect x="370.75" y="154.75" width="88.5" height="38.5" />
   </g>
-  <g text-anchor="middle" fill="#f8fafd">
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="215" y="179">R</text><text x="315" y="179">D</text><text x="415" y="179">R</text>
   </g>
 
   <!-- 범례 -->
-  <text x="170" y="222" font-size="12" fill="#727981">D: dominant · R: recessive</text>
-  <text x="170" y="242" font-size="12" fill="#727981">CRC 시퀀스가 맞는 수신 노드가 ACK 슬롯의 R을 D로 덮어쓴다.</text>
+  <text x="170" y="222" font-size="12" fill="var(--text, #727981)">D: dominant · R: recessive</text>
+  <text x="170" y="242" font-size="12" fill="var(--text, #727981)">CRC 시퀀스가 맞는 수신 노드가 ACK 슬롯의 R을 D로 덮어쓴다.</text>
 </svg>
