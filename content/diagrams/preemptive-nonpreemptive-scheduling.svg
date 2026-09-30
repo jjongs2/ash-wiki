@@ -25,8 +25,8 @@
   <line x1="150" y1="112" x2="598" y2="112" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
   <text x="606" y="116" font-size="12" fill="#727981">시간</text>
   <g font-size="12" fill="#727981" text-anchor="middle">
-    <text x="260" y="130">문맥 전환</text>
-    <text x="400" y="130">문맥 전환</text>
+    <text x="260" y="130">context switch</text>
+    <text x="400" y="130">context switch</text>
   </g>
 
   <!-- 비선점 -->

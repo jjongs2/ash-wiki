@@ -10,7 +10,7 @@
   <text x="95" y="30" text-anchor="middle" fill="#727981">멈추는 태스크 A</text>
   <text x="95" y="50" text-anchor="middle" font-size="12" fill="#727981">태스크 A의 스택</text>
   <rect x="20" y="80" width="150" height="50" rx="4" fill="#336fb8" />
-  <text x="95" y="110" text-anchor="middle" fill="#f8fafd">저장한 A의 문맥</text>
+  <text x="95" y="110" text-anchor="middle" fill="#f8fafd">저장한 A의 context</text>
   <rect x="20.75" y="134.75" width="148.5" height="48.5" rx="4" stroke="#727981" stroke-width="1.5" />
   <text x="95" y="164" text-anchor="middle" fill="#727981">…</text>
 
@@ -23,7 +23,7 @@
   <text x="525" y="30" text-anchor="middle" fill="#727981">재개하는 태스크 B</text>
   <text x="525" y="50" text-anchor="middle" font-size="12" fill="#727981">태스크 B의 스택</text>
   <rect x="450" y="80" width="150" height="50" rx="4" fill="#b0540d" />
-  <text x="525" y="110" text-anchor="middle" fill="#f8fafd">저장해 둔 B의 문맥</text>
+  <text x="525" y="110" text-anchor="middle" fill="#f8fafd">저장해 둔 B의 context</text>
   <rect x="450.75" y="134.75" width="148.5" height="48.5" rx="4" stroke="#727981" stroke-width="1.5" />
   <text x="525" y="164" text-anchor="middle" fill="#727981">…</text>
 
