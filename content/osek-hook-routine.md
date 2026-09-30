@@ -21,7 +21,7 @@ hook 루틴마다 운영체제가 부르는 시점과, 쓸지 정하는 OIL 속�
 | `StartupHook`  | 운영체제 초기화가 끝난 뒤, 스케줄러가 돌기 전                | `STARTUPHOOK`  |
 | `ShutdownHook` | `ShutdownOS`가 불린 뒤, 운영체제가 멈추기 전                 | `SHUTDOWNHOOK` |
 
-`StartupHook`에서는 애플리케이션이 장치 드라이버 초기화 같은 일을 할 수 있다. `PreTaskHook`과 `PostTaskHook`은 태스크가 running 상태인 채로 불리므로, 그 안에서 `GetTaskID`가 INVALID_TASK를 돌려주지 않는다. 두 hook은 디버깅이나, 문맥 전환 시간을 포함한 시간 측정에 쓸 수 있다.[@osek-os-2-2-3-2005]
+`StartupHook`에서는 애플리케이션이 장치 드라이버 초기화 같은 일을 할 수 있다. `PreTaskHook`과 `PostTaskHook`은 태스크가 running 상태인 채로 불리므로, 그 안에서 `GetTaskID`가 INVALID_TASK를 돌려주지 않는다. 두 hook은 디버깅이나, context switch 시간을 포함한 시간 측정에 쓸 수 있다.[@osek-os-2-2-3-2005]
 
 ![[diagrams/osek-pre-post-task-hook.svg]]
 
