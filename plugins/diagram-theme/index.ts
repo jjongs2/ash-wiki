@@ -53,6 +53,10 @@ export function readPalette(markdown: string): Palette {
 const DiagramTheme: QuartzTransformerPlugin = () => {
   return {
     name: "DiagramTheme",
+    // 트리는 바꾸지 않는다. 로더는 transformer에 이 메서드가 없으면 플러그인을 건너뛴다.
+    htmlPlugins() {
+      return []
+    },
     externalResources() {
       const conventions = new URL("../../docs/wiki-conventions.md", import.meta.url)
       const palette = readPalette(fs.readFileSync(conventions, "utf8"))
