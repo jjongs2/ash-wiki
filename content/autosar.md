@@ -48,7 +48,7 @@ Standardization Template은 문서 종류를 열 가지로 정한다. 그 가운
 | RS   | Requirement Specification | 소프트웨어 명세와 따로 요구사항을 적는다. PRS와 SWS는 RS의 요구사항을 구현한다. |
 | TR   | Technical Report          | AUTOSAR에 관한 임의의 주제를 다루는 일반 기술 보고서                            |
 
-예를 들어 Layered Software Architecture 설명서는 요구사항을 담지 않고 정보 제공용일 뿐이라고 밝힌다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+예를 들어 Layered Software Architecture 설명서는 요구사항을 담지 않은 정보 제공용 문서다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 SRS(Software Requirements Specification)는 이 문서 종류에 없다.[@autosar-fo-tps-standardizationtemplate-2025] Port Driver SWS는 입력 요구사항 문서를 SRS 문서라 부르지만, 그 문서의 파일 이름은 `AUTOSAR_CP_RS_PortDriver`처럼 RS이고, 요구사항 ID에는 SRS_BSW_00358처럼 SRS 접두어가 붙는다.[@autosar-cp-sws-portdriver-2025]
 

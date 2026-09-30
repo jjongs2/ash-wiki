@@ -9,19 +9,19 @@ verified: 2026-09-30
 
 ## 작업 흐름
 
-방법론이 보여 주는 주요 흐름은 시스템 개발, ECU Extract 추출, ECU 통합이다.
+방법론이 보여 주는 주요 흐름은 시스템 개발, ECU Extract 추출, ECU 통합이다.[@autosar-cp-tr-methodology-2025]
 
 - 시스템 개발: VFB를 시스템으로 구체화한다. ECU와 네트워크의 토폴로지를 정하고, SW-C를 ECU에 배치하고, 통신 매트릭스를 도출해 System Description을 만든다.
 - ECU Extract 추출: 시스템 설계가 끝나면 ECU마다 그 ECU에 관련된 부분을 뽑아 ECU Extract를 만든다.
-- ECU 통합: ECU 설정 준비, BSW(Basic Software)와 RTE 설정, BSW와 RTE 생성, 실행 파일 빌드의 네 작업으로 이루어진다. RTE를 생성한 뒤 전체 코드를 컴파일하고 링크해 실행 파일을 만든다.
+- ECU 통합: ECU 설정 준비, BSW(Basic Software)와 RTE 설정, BSW와 RTE 생성, 실행 파일 빌드의 네 작업으로 이루어진다. RTE를 생성한 뒤 전체 코드를 컴파일하고 링크해 실행 파일을 만든다.[@autosar-cp-tr-methodology-2025]
 
 SW-C는 시스템 설계와 나란히, VFB가 정한 인터페이스를 바탕으로 구현한다. SW-C의 구현은 ECU 설정과 대부분 무관하다.[@autosar-cp-tr-methodology-2025]
 
 ![[diagrams/autosar-methodology-workflow.svg]]
 
-## System Description
+## System description
 
-System Description은 AUTOSAR 시스템 전체의 System Configuration을 기술하며, category가 `SYSTEM_DESCRIPTION`인 System 요소가 그 중심이다. System Template은 다섯 가지 주요 요소로 Topology, Software, Communication, Mapping, Mapping Constraints를 정한다. 최상위 요소 System은 Software, Mapping, Mapping Constraints를 직접 모으고, Topology와 Communication은 직접 담는 대신 ASAM FIBEX의 요소를 참조한다. 앞의 네 요소가 기술하는 것은 아래와 같다.[@autosar-cp-tps-systemtemplate-2025]
+System Description은 AUTOSAR 시스템 전체의 System Configuration을 기술하며, category가 `SYSTEM_DESCRIPTION`인 System 요소가 그 중심이다. System Template은 다섯 가지 주요 요소로 Topology, Software, Communication, Mapping, Mapping Constraints를 정한다. 최상위 요소 System은 Software, Mapping, Mapping Constraints를 직접 모으고, Topology와 Communication은 직접 담는 대신 ASAM FIBEX(Field Bus Exchange Format)의 요소를 참조한다. 앞의 네 요소가 기술하는 것은 아래와 같다.[@autosar-cp-tps-systemtemplate-2025]
 
 | 요소          | 기술하는 것                                                                             |
 | ------------- | --------------------------------------------------------------------------------------- |
@@ -32,13 +32,13 @@ System Description은 AUTOSAR 시스템 전체의 System Configuration을 기술
 
 ![[diagrams/autosar-system-template-elements.svg]]
 
-## ECU Extract
+## ECU extract
 
 ECU Extract는 전체 System Description 가운데 한 ECU에 해당하는 부분을 보는 기술이고, System Template의 System 요소(category `ECU_EXTRACT`)로 기술한다. ECU Extract는 완전히 분해되어 atomic SW-C만 담으며, ECU 설정의 기반이 된다.[@autosar-cp-tps-systemtemplate-2025] 방법론에서 ECU Extract를 만드는 과정에는 ECU의 소프트웨어 합성을 뽑아 평탄화하는 작업이 있다.[@autosar-cp-tr-methodology-2025]
 
 ## ECU 설정
 
-ECU 설정의 입력은 ECU Extract와 BSW Module Delivered Bundle이다.[@autosar-cp-tps-ecuconfiguration-2025] 설정의 결과인 ECU Configuration Values는 한 ECU의 모든 설정값을 모은 것이고, RTE를 포함한 모듈마다의 설정을 담는다.[@autosar-cp-tr-methodology-2025]
+ECU 설정의 입력은 ECU Extract와 BSW Module Delivered Bundle이다.[@autosar-cp-tps-ecuconfiguration-2025] 설정의 결과인 ECU Configuration Values는 한 ECU의 모든 설정값을 모은 것이고, RTE를 포함한 모듈마다의 설정을 담는다.[@autosar-cp-tr-methodology-2025] AUTOSAR 용어집에는 이 산출물이 옛 이름 ECU Configuration Description으로 남아 있다.[@autosar-fo-tr-glossary-2025]
 
 ECU Configuration Parameter Definition은 설정 파라미터가 있는지와 그 타입, 속성을 정하고, 컨테이너와 파라미터로 구조를 짠다. 어떤 컨테이너에 어떤 파라미터가 오는지, 값의 범위, 개수, 설정 클래스 같은 제약이 여기에 담긴다. AUTOSAR가 내놓는 표준 모듈 정의가 있고, 벤더는 여기에 파라미터, 컨테이너, 참조를 더한 벤더별 모듈 정의를 둔다.[@autosar-cp-tps-ecuconfiguration-2025]
 
@@ -56,10 +56,10 @@ Layered Software Architecture 설명서에 따르면 pre-compile time 설정에 
 
 ## AUTOSAR XML
 
-AUTOSAR XML 기술(ARXML)은 AUTOSAR 모델을 XML(Extensible Markup Language)로 나타낸 것이다. 각 파일은 AUTOSAR XML Schema에 맞아야 하고, 이 스키마는 AUTOSAR 메타모델에서 도출되며 AUTOSAR의 데이터 교환 형식을 정한다.[@autosar-fo-tr-glossary-2025] 방법론에서 SW-C 기술, System Description, ECU Extract, 표준과 벤더별 모듈 정의는 종류가 AUTOSAR XML인 산출물이다.[@autosar-cp-tr-methodology-2025] ECU Configuration Values는 ARXML 파일로 저장되고, Parameter Definition도 XML 파일이다. AUTOSAR는 AUTOSAR 호환 도구가 시스템 개발 중에 정보를 정의하고 공유하는 기술로 XML을 골랐다.[@autosar-cp-tps-ecuconfiguration-2025]
+XML(Extensible Markup Language)로 AUTOSAR 모델을 나타낸 것을 AUTOSAR XML 기술이라 한다. 각 파일은 AUTOSAR XML Schema에 맞아야 하고, 이 스키마는 AUTOSAR 메타모델에서 도출되며 AUTOSAR의 데이터 교환 형식을 정한다.[@autosar-fo-tr-glossary-2025] 방법론에서 SW-C 기술, System Description, ECU Extract, 표준과 벤더별 모듈 정의는 종류가 AUTOSAR XML인 산출물이다.[@autosar-cp-tr-methodology-2025] ECU Configuration Values는 ARXML 파일로 저장되고, Parameter Definition도 XML 파일이다. AUTOSAR는 AUTOSAR 호환 도구가 시스템 개발 중에 정보를 정의하고 공유하는 기술로 XML을 골랐다.[@autosar-cp-tps-ecuconfiguration-2025]
 
 ## 네트워크 기술 형식
 
-System Template은 통신과 토폴로지 기술에 ASAM FIBEX(Field Bus Exchange Format)의 기술을 담고, AUTOSAR의 요구에 맞게 PDU 개념 등을 더해 확장했다. FIBEX는 버스 통신 시스템을 다루는 도구 사이의 데이터 교환을 위한 XML 형식이다.[@autosar-cp-tps-systemtemplate-2025] ASAM MCD-2 NET(FIBEX)은 [[flexray|FlexRay]], [[can|CAN]], [[lin|LIN]], [[ethernet|Ethernet]] 등을 기술 확장으로 다룬다.[@asam-mcd-2-net-2017]
+System Template은 통신과 토폴로지 기술에 ASAM FIBEX의 기술을 담고, AUTOSAR의 요구에 맞게 PDU 개념 등을 더해 확장했다. FIBEX는 버스 통신 시스템을 다루는 도구 사이의 데이터 교환을 위한 XML 형식이다.[@autosar-cp-tps-systemtemplate-2025] ASAM MCD-2 NET(FIBEX)은 [[flexray|FlexRay]], [[can|CAN]], [[lin|LIN]], [[ethernet|Ethernet]] 등을 기술 확장으로 다룬다.[@asam-mcd-2-net-2017]
 
 Vector의 DBC 데이터베이스는 CAN·[[can-fd|CAN FD]] 네트워크, 버스에 이어진 ECU, 메시지와 시그널을 기술한다.[@vector-candb-admin-factsheet-2024] Vector DaVinci Configurator Classic의 Ecu Extract Producer는 DBC 같은 기존 형식의 파일을 ECU Extract로 변환한다.[@vector-davinci-configurator-classic-ecuxpro-2026] LIN을 규정하는 ISO 17987에서 LDF는 LIN description file을 뜻한다.[@iso-17987-2-obp-2025]

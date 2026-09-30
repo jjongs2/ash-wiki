@@ -30,19 +30,15 @@ MCAL은 비슷한 종류의 모듈을 묶은 여섯 모듈 그룹으로 이루�
 | Wireless Communication Drivers | 차량 안이나 차량 밖 통신에 쓰는 무선 네트워크 시스템의 드라이버. Wireless Ethernet Driver가 든다.                                                                                           |
 | I/O Drivers                    | 아날로그·디지털 입출력의 드라이버. Port, DIO(Digital Input/Output), ADC, PWM(Pulse Width Modulation), ICU(Input Capture Unit), OCU(Output Compare Unit) 드라이버가 든다.                    |
 
-MCU Driver는 MCU 클럭(PLL(Phase-Locked Loop), 클럭 프리스케일러, 클럭 분배)의 초기화, RAM(Random-Access Memory) 영역의 초기화, 저전력 모드 진입, 리셋 실행, 리셋 원인 조회를 맡는다.[@autosar-cp-sws-mcudriver-2025]
-
 ## Channel, channel group, port
 
-I/O 드라이버의 입출력 단위를 부르는 이름은 드라이버 규격마다 다르다. DIO Driver 규격은 다음 세 용어를 정의한다.
+DIO Driver 규격은 입출력 단위를 부르는 용어 셋을 정의한다.[@autosar-cp-sws-diodriver-2025]
 
 - **DIO channel**: 범용 디지털 입출력 핀 하나
 - **DIO port**: 하드웨어가 묶어 둔 여러 DIO channel. 대개 하드웨어 레지스터 하나로 제어된다.
 - **DIO channel group**: 한 DIO port 안의 이웃한 DIO channel 여러 개를 논리적으로 묶은 것[@autosar-cp-sws-diodriver-2025]
 
-DIO Driver는 channel group에 든 channel들을 한 번에 쓰는 서비스 `Dio_WriteChannelGroup`과 channel group의 레벨을 읽는 서비스 `Dio_ReadChannelGroup`을 둔다.[@autosar-cp-sws-diodriver-2025]
-
-Port Driver 규격은 MCU의 설정 가능한 입출력 핀 하나를 **port pin**, 설정 가능한 포트 전체를 port라 부른다. 이 규격은 DIO Driver의 channel을 port pin에, port를 port에 대응시키며, channel group에 대응하는 이름은 두지 않는다. Port Driver는 마이크로컨트롤러의 포트 구조 전체를 초기화하고, port와 port pin마다 기능(ADC, SPI, DIO 등), 방향, 초기 레벨, 실행 중 방향을 바꿀 수 있는지를 설정하게 한다.[@autosar-cp-sws-portdriver-2025]
+Port Driver 규격은 MCU의 설정 가능한 입출력 핀 하나를 **port pin**, 설정 가능한 포트 전체를 port라 부른다. 이 규격은 DIO Driver의 channel을 port pin에, port를 port에 대응시키며, channel group에 대응하는 이름은 두지 않는다.[@autosar-cp-sws-portdriver-2025]
 
 ![[diagrams/dio-channel-port-channel-group.svg]]
 

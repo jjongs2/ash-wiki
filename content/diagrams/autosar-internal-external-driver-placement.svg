@@ -35,7 +35,7 @@
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="275" y="46.5">외부 EEPROM 드라이버</text>
-    <text x="275" y="106.5">SPI Handler/Driver</text>
+    <text x="275" y="106.5">SPI Handler Driver</text>
     <text x="445" y="106.5">내부 EEPROM 드라이버</text>
     <text x="615" y="106.5">외부 Flash 드라이버</text>
     <text x="445" y="184.5">내부 EEPROM</text>
