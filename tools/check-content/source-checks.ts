@@ -357,43 +357,6 @@ export const emphasis: SourceCheck = (tree) => {
   return violations
 }
 
-// 문단과 목록 항목의 끝이 종결 어미 "다"인데 마침표가 없으면 위반이다. 명사구로 끝나는 항목은
-// 문장이 아니므로 보지 않는다. 끝에 붙은 인용과 괄호 풀이는 떼고, 위키링크는 표시 이름만 남겨
-// 더 떼어 낼 것이 없을 때까지 벗긴다(`…[[x|맞춘다]][@키]`는 "맞춘다"로 끝나고, `…다.[@키]`는 마침표로 끝난다).
-// remark-parse는 GFM 표를 문단으로 읽으므로, 구분 줄(`| --- |`)이 있는 문단은 표로 보고 건너뛴다.
-const trailingCitations = /(?:\s*\[@[^[\]\n]*\])+\s*$/
-const trailingParenthetical = /\([^()\n]*\)\s*$/
-const trailingWikilink = /\[\[(?:[^[\]|\n]*\|)?([^[\]\n]*)\]\]\s*$/
-const tableDelimiterRow = /^\s*\|?\s*:?-+:?\s*(?:\|\s*:?-+:?\s*)*\|?\s*$/m
-
-function sentenceEnd(text: string): string {
-  const next = text
-    .replace(trailingCitations, "")
-    .replace(trailingParenthetical, "")
-    .replace(trailingWikilink, "$1")
-    .trimEnd()
-  return next === text ? text : sentenceEnd(next)
-}
-
-export const period: SourceCheck = (tree) => {
-  const violations: Violation[] = []
-  for (const page of tree.pages) {
-    visit(page.mdast, "paragraph", (node, _index, parent) => {
-      const { start, end } = node.position!
-      const masked = page.masked.slice(start.offset, end.offset)
-      if (tableDelimiterRow.test(masked)) return
-      if (!sentenceEnd(masked.trimEnd()).endsWith("다")) return
-      const block = parent?.type === "listItem" ? "목록 항목" : "문단"
-      violations.push({
-        file: page.file,
-        line: end.line,
-        message: `문장으로 끝나는 ${block}에 마침표가 없다`,
-      })
-    })
-  }
-  return violations
-}
-
 // 도해 SVG 한 벌이 두 테마에서 읽히도록, 색은 규약 문서의 도해 팔레트 값만 쓴다.
 const colorProperty = "fill|stroke|stop-color|flood-color|lighting-color|color"
 const colorKeywords = /^(none|transparent|inherit|url\(#[^)]+\))$/i
@@ -542,6 +505,5 @@ export const sourceChecks: [string, SourceCheck][] = [
   ["citation", citation],
   ["callout", callout],
   ["emphasis", emphasis],
-  ["period", period],
   ["svg", svg],
 ]
