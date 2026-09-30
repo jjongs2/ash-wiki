@@ -30,6 +30,6 @@ Avnu Alliance는 네트워크·IT 인프라, 반도체, 장치 제조사가 모�
 
 KSZ9477S는 포트당 egress 큐 넷으로 SR(Stream Reservation) 트래픽 클래스를 둘까지 받을 수 있다. SR 클래스 트래픽은 높은 우선순위 큐에 두고, 큐마다 credit-based shaper로 예약 대역폭까지만 내보낸다.[@microchip-ksz9477s-2019]
 
-## TSN과의 차이
+## TSN과의 관계
 
 AV Bridging 태스크 그룹은 네트워크 지연을 더 줄이려고 프레임 선점(P802.1Qbu)과 scheduled traffic(P802.1Qbv) 프로젝트를 시작했다.[@ieee-802-1-avb-tg-2013] [[tsn|TSN]] 태스크 그룹은 AVB 태스크 그룹에서 이어졌고 AVB 표준을 이어받았으며, scheduled traffic(IEEE 802.1Qbv)과 프레임 선점(IEEE 802.1Qbu)을 더했다.[@ieee-802-1-tsn-tg-2017] 이중 전송을 위해 프레임을 복제하고 중복을 없애는 IEEE 802.1CB도 TSN 태스크 그룹에서 나왔다.[@ieee-802-1cb-project-2017]

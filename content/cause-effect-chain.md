@@ -17,7 +17,7 @@ AUTOSAR의 Timing Analysis and Design 보고서에 따르면 **cause-effect chai
 
 AUTOSAR의 Timing Analysis and Design 보고서에 따르면 주기적으로 활성화되는 태스크의 사슬에서는 한 인스턴스가 어느 생산자 인스턴스의 값을 읽는지가 앞 인스턴스들의 응답 시간에 따라 달라져, 데이터 흐름이 결정적이지 않다.[@autosar-fo-tr-timinganalysis-2025]
 
-[[logical-execution-time|LET]]은 입력을 읽는 시점과 출력을 쓰는 시점을 명시하고, 실제 실행이 끝나도 출력을 LET 구간 끝에 내보낸다.[@autosar-fo-tr-timinganalysis-2025][@kirsch-logical-execution-time-2012] AUTOSAR의 Timing Analysis and Design 보고서에 따르면 그래서 공통 시간 기준이 있고 LET 구간이 주기 이하이면, 사슬의 데이터 흐름이 LET 이벤트에만 달리고 실제 실행 시점에 영향받지 않으며, 입출력 타이밍은 응답 시간이 일정하고 지터가 없다.[@autosar-fo-tr-timinganalysis-2025]
+[[logical-execution-time|LET]]은 입력을 읽는 시점과 출력을 쓰는 시점을 명시하고, 실제 실행이 끝나도 출력을 LET 구간 끝에 내보낸다.[@autosar-fo-tr-timinganalysis-2025][@kirsch-logical-execution-time-2012] AUTOSAR의 Timing Analysis and Design 보고서에 따르면 LET에서는 공통 시간 기준이 있고 LET 구간이 주기 이하이면, 사슬의 데이터 흐름이 LET 이벤트에만 달리고 실제 실행 시점에 영향받지 않으며, 입출력 타이밍은 응답 시간이 일정하고 지터가 없다.[@autosar-fo-tr-timinganalysis-2025]
 
 ## Data age와 reaction
 

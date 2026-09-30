@@ -34,6 +34,6 @@ AUTOSAR OS 명세는 태스크가 스핀락을 쥔 동안 스케줄링을 제한
 
 ## 뮤텍스와의 차이
 
-[[mutex|뮤텍스]]는 락을 얻지 못한 스레드를 블록시켜 그동안 CPU를 쓰지 않게 하고, 스핀락은 기다리는 동안에도 CPU를 쓴다.[@ieee-1003-1-rationale-threads-2024][@linux-locking-guide-2026] POSIX 근거 설명에 따르면 아주 짧게 기다릴 때는 스핀락의 전체 오버헤드가 뮤텍스보다 작을 수 있고, 오래 기다릴 때는 뮤텍스 쪽이 작을 수 있다.[@ieee-1003-1-rationale-threads-2024] 스핀락은 짧게만 쥐고, 잠들거나 블록하는 동작 너머로 쥐고 있지 않아야 한다.[@ieee-1003-1-rationale-threads-2024][@linux-locking-guide-2026]
+[[mutex|뮤텍스]]는 락을 얻지 못한 스레드를 블록시켜 그동안 CPU를 쓰지 않게 하고, 스핀락은 기다리는 동안에도 CPU를 쓴다.[@ieee-1003-1-rationale-threads-2024][@linux-locking-guide-2026] POSIX 근거 설명에 따르면 아주 짧게 기다릴 때는 스핀락의 전체 오버헤드가 뮤텍스보다 작을 수 있고, 오래 기다릴 때는 뮤텍스 쪽이 작을 수 있으며, 스핀은 프로세서 사이클을 낭비한다.[@ieee-1003-1-rationale-threads-2024] 그래서 스핀락은 짧게만 쥐고, 잠들거나 블록하는 동작 너머로 쥐고 있지 않아야 한다.[@ieee-1003-1-rationale-threads-2024][@linux-locking-guide-2026]
 
 ![[diagrams/mutex-block-vs-spinlock-spin.svg]]

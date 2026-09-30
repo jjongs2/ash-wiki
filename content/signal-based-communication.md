@@ -43,4 +43,4 @@ AUTOSAR COM은 수신 시그널이 정해진 시간 안에 오지 않으면 수�
 
 ## 서비스 지향 통신과의 차이
 
-통신 경로를 실행 중에 세우는 방식은 [[service-oriented-communication#서비스 발견|서비스 지향 통신]]에서 다룬다.
+통신 경로를 실행 중에 세우는 방식은 [[service-oriented-communication#시그널 기반 통신과의 차이|서비스 지향 통신]]에서 다룬다.
