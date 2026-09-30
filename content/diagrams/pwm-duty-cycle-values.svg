@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 9 520 160" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <text x="20" y="26" fill="var(--text, #727981)">polarity PWM_HIGH</text>
+
+  <!-- duty cycle 값 -->
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="90" y="52">0x0000 · 0%</text>
+    <text x="270" y="52">0x4000 · 50%</text>
+    <text x="450" y="52">0x8000 · 100%</text>
+  </g>
+
+  <!-- 레벨 기준선과 주기 경계 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="20" y1="66" x2="160" y2="66" />
+    <line x1="20" y1="94" x2="160" y2="94" />
+    <line x1="200" y1="66" x2="340" y2="66" />
+    <line x1="200" y1="94" x2="340" y2="94" />
+    <line x1="380" y1="66" x2="520" y2="66" />
+    <line x1="380" y1="94" x2="520" y2="94" />
+    <line x1="20" y1="60" x2="20" y2="122" />
+    <line x1="160" y1="60" x2="160" y2="122" />
+    <line x1="200" y1="60" x2="200" y2="122" />
+    <line x1="340" y1="60" x2="340" y2="122" />
+    <line x1="380" y1="60" x2="380" y2="122" />
+    <line x1="520" y1="60" x2="520" y2="122" />
+  </g>
+
+  <!-- 파형: 한 주기 -->
+  <g stroke="var(--ink, #727981)" stroke-width="3">
+    <path d="M20 94 H160" />
+    <path d="M200 94 V66 H270 V94 H340" />
+    <path d="M380 66 H520" />
+  </g>
+
+  <!-- 주기 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)">
+    <line x1="22" y1="116" x2="158" y2="116" />
+    <line x1="202" y1="116" x2="338" y2="116" />
+    <line x1="382" y1="116" x2="518" y2="116" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="90" y="136">주기</text>
+    <text x="270" y="136">주기</text>
+    <text x="450" y="136">주기</text>
+    <text x="90" y="158">polarity 반대 레벨</text>
+    <text x="450" y="158">polarity 레벨</text>
+  </g>
+</svg>

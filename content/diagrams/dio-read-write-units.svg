@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="49.5 7.5 405 165.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- channel -->
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="132" y="26">channel</text>
+    <text x="132" y="44">Dio_ReadChannel</text>
+    <text x="132" y="59">Dio_WriteChannel</text>
+  </g>
+  <line x1="132" y1="66" x2="132" y2="78" stroke="var(--ink, #727981)" stroke-width="1" />
+
+  <!-- channel group -->
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="324" y="26">channel group</text>
+    <text x="324" y="44">Dio_ReadChannelGroup</text>
+    <text x="324" y="59">Dio_WriteChannelGroup</text>
+  </g>
+  <path d="M252 78 V70 H396 V78 M324 70 V64" stroke="var(--ink, #727981)" stroke-width="1" />
+
+  <!-- 포트의 채널 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="60" y="80" width="48" height="28" rx="2" />
+    <rect x="156" y="80" width="48" height="28" rx="2" />
+    <rect x="204" y="80" width="48" height="28" rx="2" />
+    <rect x="396" y="80" width="48" height="28" rx="2" />
+  </g>
+  <rect x="108.75" y="80.75" width="46.5" height="26.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <g fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5">
+    <rect x="252.75" y="80.75" width="46.5" height="26.5" rx="2" />
+    <rect x="300.75" y="80.75" width="46.5" height="26.5" rx="2" />
+    <rect x="348.75" y="80.75" width="46.5" height="26.5" rx="2" />
+  </g>
+
+  <!-- port -->
+  <path d="M60 110 V118 H444 V110 M252 118 V126" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="252" y="144">port</text>
+    <text x="252" y="162">Dio_ReadPort · Dio_WritePort</text>
+  </g>
+</svg>
