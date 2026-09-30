@@ -58,8 +58,8 @@ AUTOSAR COM은 수신 데드라인 감시로, 시그널이나 I-PDU가 설정한
 
 ## System Template과의 연결
 
-System Template에 따르면 원자 시그널에 대한 AUTOSAR COM의 설정은 대부분 System Template에서 끌어낼 수 있고, 송수신하는 I-PDU에 매핑된 ISignalToIPduMapping마다 ComSignal을 하나씩 둔다. ISignal은 Interaction Layer의 시그널이고, ISignalToIPduMapping이 ISignal을 I-PDU에 넣으면서 그 안의 자리를 정한다. System Signal은 서로 다른 ECU에 있는 SW-C끼리 주고받는 데이터를 통신 시스템 쪽에서 본 것으로, 주고받는 data element마다 하나씩 둔다.[@autosar-cp-tps-systemtemplate-2025]
+원자 시그널에 대한 AUTOSAR COM의 설정은 대부분 System Template에서 끌어낼 수 있다. System Template은 송수신하는 I-PDU에 매핑된 ISignalToIPduMapping마다 `ComSignal`을 하나씩 두도록 정한다. ISignal은 Interaction Layer의 시그널이고, ISignalToIPduMapping이 ISignal을 I-PDU에 넣으면서 그 안의 자리를 정한다. System Signal은 서로 다른 ECU에 있는 SW-C끼리 주고받는 데이터를 통신 시스템 쪽에서 본 것으로, 주고받는 data element마다 하나씩 둔다.[@autosar-cp-tps-systemtemplate-2025]
 
-SW-C의 data element는 SenderReceiverToSignalMapping으로 System Signal에 매핑되고, ISignal이 그 System Signal을 가리킨다. AUTOSAR COM 설정의 ComSignal은 자신이 나타내는 ISignal의 ISignalToIPduMapping을 참조한다.[@autosar-cp-sws-com-2025][@autosar-cp-tps-systemtemplate-2025]
+SW-C의 data element는 SenderReceiverToSignalMapping으로 System Signal에 매핑되고, ISignal이 그 System Signal을 가리킨다. AUTOSAR COM 설정의 `ComSignal`은 자신이 나타내는 ISignal의 ISignalToIPduMapping을 참조한다.[@autosar-cp-sws-com-2025][@autosar-cp-tps-systemtemplate-2025]
 
 ![[diagrams/com-system-template-signal-mapping.svg]]

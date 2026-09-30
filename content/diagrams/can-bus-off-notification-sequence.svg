@@ -19,7 +19,7 @@
     <text x="220" y="43">CanIf</text>
     <text x="360" y="43">CanSM</text>
     <text x="500" y="43">BswM</text>
-    <text x="640" y="43">DEM</text>
+    <text x="640" y="43">Dem</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
     <line x1="80" y1="56" x2="80" y2="68" />

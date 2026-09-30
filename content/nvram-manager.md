@@ -32,18 +32,18 @@ NvM은 API(Application Programming Interface) configuration class 1, 2, 3을 둔
 
 ## 결과 조회
 
-비동기 요청의 결과는 `NvM_GetErrorStatus`로 물어보거나(polling), job이 끝난 뒤 NvM이 부르는 블록별 콜백으로 알 수 있다. 요청 결과를 나타내는 `NvM_RequestResultType`은 `uint8` 기반 타입으로, 아래 값을 둔다. `0x07`은 쓰지 않는다.[@autosar-cp-sws-nvrammanager-2025]
+비동기 요청의 결과는 `NvM_GetErrorStatus`로 물어보거나(polling), job이 끝난 뒤 NvM이 부르는 블록별 콜백으로 알 수 있다. 요청 결과를 나타내는 NvM_RequestResultType은 uint8 기반 타입으로, 아래 값을 둔다. `0x07`은 쓰지 않는다.[@autosar-cp-sws-nvrammanager-2025]
 
-| 이름                        | 값     |
-| --------------------------- | ------ |
-| `NVM_REQ_OK`                | `0x00` |
-| `NVM_REQ_NOT_OK`            | `0x01` |
-| `NVM_REQ_PENDING`           | `0x02` |
-| `NVM_REQ_INTEGRITY_FAILED`  | `0x03` |
-| `NVM_REQ_BLOCK_SKIPPED`     | `0x04` |
-| `NVM_REQ_NV_INVALIDATED`    | `0x05` |
-| `NVM_REQ_CANCELED`          | `0x06` |
-| `NVM_REQ_RESTORED_DEFAULTS` | `0x08` |
+| 이름                      | 값     |
+| ------------------------- | ------ |
+| NVM_REQ_OK                | `0x00` |
+| NVM_REQ_NOT_OK            | `0x01` |
+| NVM_REQ_PENDING           | `0x02` |
+| NVM_REQ_INTEGRITY_FAILED  | `0x03` |
+| NVM_REQ_BLOCK_SKIPPED     | `0x04` |
+| NVM_REQ_NV_INVALIDATED    | `0x05` |
+| NVM_REQ_CANCELED          | `0x06` |
+| NVM_REQ_RESTORED_DEFAULTS | `0x08` |
 
 ## 동기화
 

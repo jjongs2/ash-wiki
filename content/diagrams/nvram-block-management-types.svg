@@ -74,6 +74,6 @@
   </g>
 
   <!-- 범례 -->
-  <rect x="20" y="300" width="28" height="16" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="20.75" y="300.75" width="26.5" height="14.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" stroke-dasharray="5 4" />
   <text x="56" y="313" font-size="12" fill="var(--text, #727981)">점선 테두리: 없어도 되는 블록</text>
 </svg>

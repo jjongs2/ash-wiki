@@ -15,7 +15,7 @@ verified: 2026-09-30
 
 ![[diagrams/autosar-memory-stack-layers.svg]]
 
-칩 안의 메모리 장치와 메모리 맵 외부 장치(예: 외부 플래시)의 드라이버는 MCAL의 Memory Drivers에 있다. 그 밖의 외부 메모리 장치(예: SPI(Serial Peripheral Interface)로 붙은 외부 EEPROM)의 드라이버는 ECU Abstraction Layer에 있으며, MCAL 드라이버를 거쳐 장치에 접근한다. AUTOSAR Classic Platform R25-11의 Layered Software Architecture는 이전 릴리스에 있던 Fls와 Eep를 뺐다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+칩 안의 메모리 장치와 메모리 맵 외부 장치(예: 외부 플래시)의 드라이버는 MCAL의 Memory Drivers에 있다. 그 밖의 외부 메모리 장치(예: SPI(Serial Peripheral Interface)로 붙은 외부 EEPROM)의 드라이버는 ECU Abstraction Layer에 있으며, MCAL 드라이버를 거쳐 장치에 접근한다. AUTOSAR Classic Platform R25-11의 Layered Software Architecture는 이전 릴리스에 있던 Fls(Flash Driver)와 Eep(EEPROM Driver)를 뺐다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## MemIf
 
@@ -25,18 +25,18 @@ MemIf, Fee, Ea는 NvM에 16비트 블록 번호와 16비트 블록 오프셋으�
 
 Fee는 플래시 위에 EEPROM을 흉내 내어, MemIf를 거쳐 두 종류의 장치에 같은 방식으로 접근하게 한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] Mem 명세는 섹터를 가장 작은 지우기 단위로 정하며, 어떤 메모리 기술은 쓰기 전에 따로 지워야 한다.[@autosar-cp-sws-memorydriver-2025]
 
-Fee는 16비트 블록 번호와 16비트 오프셋을 합쳐 아래 드라이버에 넘길 물리 주소를 얻는다. 플래시가 설정한 쓰기 횟수를 견디지 못하면, Fee는 쓰기를 여러 메모리 영역에 나눠 한 자리가 지나치게 지워지지 않게 한다. Fee는 블록 쓰기를 시작할 때 블록을 깨짐으로 표시하고, 성공적으로 끝나면 표시를 거둔다. 그래서 쓰기가 중단된 블록을 알아채고, 그런 블록의 job 결과로 `MEMIF_BLOCK_INCONSISTENT`를 돌려준다.[@autosar-cp-sws-flasheepromemulation-2025]
+Fee는 16비트 블록 번호와 16비트 오프셋을 합쳐 아래 드라이버에 넘길 물리 주소를 얻는다. 플래시가 설정한 쓰기 횟수를 견디지 못하면, Fee는 쓰기를 여러 메모리 영역에 나눠 한 자리가 지나치게 지워지지 않게 한다. Fee는 블록 쓰기를 시작할 때 블록을 깨짐으로 표시하고, 성공적으로 끝나면 표시를 거둔다. 그래서 쓰기가 중단된 블록을 알아채고, 그런 블록의 job 결과로 MEMIF_BLOCK_INCONSISTENT를 돌려준다.[@autosar-cp-sws-flasheepromemulation-2025]
 
 Ea는 EEPROM 장치의 주소 체계와 분할을 감추고, 위 층에 가상 주소 체계와 분할을 준다. Ea도 16비트 블록 번호와 16비트 블록 오프셋을 합쳐 EEPROM 물리 주소를 얻는다. 블록 쓰기를 시작할 때 블록을 불일치로 표시하고, 성공적으로 끝나면 일치로 되돌린다.[@autosar-cp-sws-eepromabstraction-2025]
 
-NvM 블록에서 Fee와 Ea의 블록 번호를 구하는 방법은 [[nvram-block#블록 번호|NVRAM 블록]]에서 다룬다.
+NvM 블록에서 Fee와 Ea의 블록 번호를 구하는 방법은 [[nvram-block#블록 번호|NVRAM(Non-Volatile Random-Access Memory) 블록]]에서 다룬다.
 
 ## 비동기 job
 
-NvM은 요청을 큐를 쓰는 비동기 인터페이스로 받아, 우선순위에 따라 하나씩 처리한다.[@autosar-cp-sws-nvrammanager-2025] Fee와 Ea의 쓰기 API는 요청을 받으면 인자를 모듈 안에 복사하고 job을 시작해 둔 뒤 `E_OK`로 돌아온다.[@autosar-cp-sws-flasheepromemulation-2025][@autosar-cp-sws-eepromabstraction-2025]
+NvM은 요청을 큐를 쓰는 비동기 인터페이스로 받아, 우선순위에 따라 하나씩 처리한다.[@autosar-cp-sws-nvrammanager-2025] Fee와 Ea의 쓰기 API는 요청을 받으면 인자를 모듈 안에 복사하고 job을 시작해 둔 뒤 E_OK로 돌아온다.[@autosar-cp-sws-flasheepromemulation-2025][@autosar-cp-sws-eepromabstraction-2025]
 
 NvM, Fee, Ea의 job은 각 모듈의 MainFunction이 처리한다. NvM과 Fee의 MainFunction은 설정한 주기마다 불리고, Fee의 내부 관리 작업은 `Fee_MainFunction` 호출 여러 번에 걸칠 수 있다.[@autosar-cp-sws-nvrammanager-2025][@autosar-cp-sws-flasheepromemulation-2025][@autosar-cp-sws-eepromabstraction-2025]
 
-NvM은 [[nvram-block|NVRAM]](Non-Volatile Random-Access Memory) 블록마다 설정한 장치 ID로 메모리 추상화 모듈을 고르고, MemIf를 거쳐 Fee나 Ea에 접근한다.[@autosar-cp-sws-nvrammanager-2025] Fee나 Ea는 MemAcc에 job을 내리고, MemAcc의 MainFunction이 Mem에 job을 내린다. Job이 끝나면 MemAcc가 Fee나 Ea의 완료 통지 함수를 부르고, Fee나 Ea는 설정되어 있으면 NvM의 완료 통지 함수를 부른다.[@autosar-cp-sws-flasheepromemulation-2025][@autosar-cp-sws-eepromabstraction-2025]
+NvM은 NVRAM 블록마다 설정한 장치 ID로 메모리 추상화 모듈을 고르고, MemIf를 거쳐 Fee나 Ea에 접근한다.[@autosar-cp-sws-nvrammanager-2025] Fee나 Ea는 MemAcc에 job을 내리고, MemAcc의 MainFunction이 Mem에 job을 내린다. Job이 끝나면 MemAcc가 Fee나 Ea의 완료 통지 함수를 부르고, Fee나 Ea는 설정되어 있으면 NvM의 완료 통지 함수를 부른다.[@autosar-cp-sws-flasheepromemulation-2025][@autosar-cp-sws-eepromabstraction-2025]
 
 ![[diagrams/memory-stack-job-sequence.svg]]

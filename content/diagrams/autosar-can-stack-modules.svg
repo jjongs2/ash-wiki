@@ -53,6 +53,7 @@
     <line x1="95" y1="58" x2="95" y2="108" marker-end="url(#arrow)" />
     <line x1="125" y1="108" x2="125" y2="58" marker-end="url(#arrow)" />
     <line x1="280" y1="58" x2="280" y2="108" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+    <path d="M352 38 H365 V198" marker-start="url(#arrow)" marker-end="url(#arrow)" />
     <line x1="110" y1="148" x2="110" y2="198" marker-end="url(#arrow)" />
     <line x1="280" y1="148" x2="280" y2="198" marker-start="url(#arrow)" marker-end="url(#arrow)" />
     <line x1="450" y1="148" x2="450" y2="198" marker-start="url(#arrow)" marker-end="url(#arrow)" />
@@ -63,6 +64,7 @@
     <text x="87" y="87" text-anchor="end">요청</text>
     <text x="133" y="87">모드 알림</text>
     <text x="288" y="87">I-PDU</text>
+    <text x="373" y="87">I-PDU</text>
     <text x="118" y="177">모드 변경</text>
     <text x="288" y="177">N-PDU</text>
     <text x="428" y="267">모드 변경</text>

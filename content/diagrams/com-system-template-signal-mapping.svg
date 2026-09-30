@@ -26,6 +26,7 @@
   <rect x="20.75" y="200.75" width="178.5" height="34.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="110" y="223" text-anchor="middle" fill="var(--on-fill, #f8fafd)">ComSignal</text>
   <text x="110" y="258" text-anchor="middle" font-size="12" fill="var(--text, #727981)">AUTOSAR COM 설정</text>
+  <text x="600" y="258" text-anchor="middle" font-size="12" fill="var(--text, #727981)">System Template</text>
 
   <!-- 관계 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
