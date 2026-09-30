@@ -32,6 +32,6 @@ MDC(Management Data Clock)와 MDIO(Management Data Input/Output)는 PHY의 레�
 
 RMII(Reduced MII)는 MII를 바탕으로 핀 수를 줄인 인터페이스다. RMII는 CRS와 RX_DV를 CRS_DV 하나로 합치고, 송신과 수신이 함께 쓰는 50 MHz 기준 클럭에 맞춰 데이터를 2비트씩 보낸다.[@ti-dp83822-2026][@microchip-ksz9477s-2019]
 
-GMII(Gigabit MII)는 1 Gbit/s용 인터페이스로, 데이터를 8비트 단위로 125 MHz 클럭에 맞춰 보낸다.[@ti-dp83867ir-2026][@microchip-ksz9031mnx-2017] RGMII(Reduced GMII)는 1 Gbit/s에서 데이터 선 넷으로 클럭의 두 에지에 데이터를 실어, GMII의 24핀을 12핀으로 줄인다.[@microchip-ksz9477s-2019][@ti-dp83867ir-2026]
+IEEE 802.3은 MII를 바탕으로 한 1 Gbit/s 전용 인터페이스로 GMII(Gigabit MII)를 정한다. GMII는 MII의 신호 이름과 관리 인터페이스를 이어받고, 10 Mbit/s와 100 Mbit/s는 MII가 맡는다.[@ieee-802-3-2022] GMII는 데이터를 8비트 단위로 125 MHz 클럭에 맞춰 보낸다.[@ti-dp83867ir-2026][@microchip-ksz9031mnx-2017] RGMII(Reduced GMII)는 1 Gbit/s에서 데이터 선 넷으로 클럭의 두 에지에 데이터를 실어, GMII의 24핀을 12핀으로 줄인다.[@microchip-ksz9477s-2019][@ti-dp83867ir-2026]
 
 차량용 PHY도 MII나 그 변형으로 MAC에 이어진다. 100BASE-T1 PHY인 DP83TC811R-Q1은 MII, RMII, RGMII를, TJA1101B는 MII와 RMII를 지원한다.[@ti-dp83tc811r-q1-2018][@nxp-tja1101b-2021]
