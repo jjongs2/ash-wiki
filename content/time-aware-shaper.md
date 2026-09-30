@@ -14,7 +14,7 @@ IEEE 802.1Qbv 프로젝트는 브리지와 종단국이 [[ieee-802-1as|IEEE 802.
 
 ## 게이트
 
-IEEE 802.1Q의 scheduled traffic은 포트의 [[traffic-class|트래픽 클래스]]마다 게이트를 두고, 게이트는 열림과 닫힘 두 상태를 가진다.[@ieee-802-1qcw-sched-yang-2023] 전송할 수 있는 것은 게이트가 열린 큐뿐이고, 게이트가 닫힌 큐의 프레임은 전송에 선택되지 않는다.[@ti-processor-sdk-linux-am62x-est-2026][@intel-eci-gptp-2024] TI Processor SDK 문서에 따르면 게이트가 열린 큐의 프레임은 그 큐에 지정된 전송 선택 알고리즘에 따라 전송에 선택된다.[@ti-processor-sdk-linux-am62x-est-2026]
+IEEE 802.1Q의 scheduled traffic은 포트의 [[traffic-class|트래픽 클래스]]마다 게이트를 두고, 게이트는 열림과 닫힘 두 상태를 가진다.[@ieee-802-1qcw-sched-yang-2023] 전송할 수 있는 것은 게이트가 열린 큐뿐이고, 게이트가 닫힌 큐의 프레임은 전송에 선택되지 않는다.[@ti-processor-sdk-linux-am62x-est-2026][@intel-eci-gptp-2024] TI Processor SDK 문서에 따르면 게이트가 열린 큐의 프레임은 그 큐에 지정된 전송 선택 알고리즘에 따라 전송에 선택된다.[@ti-processor-sdk-linux-am62x-est-2026] IEEE 802.1Q는 게이트가 열려 있어도 다음 게이트 닫힘 전까지 프레임 전체와 매체에 따른 오버헤드를 보낼 시간이 남지 않으면, 그 프레임을 전송할 수 없는 것으로 본다.[@ieee-802-1q-2022]
 
 ![[diagrams/egress-queue-transmission-selection.svg]]
 
@@ -31,6 +31,8 @@ TAS는 정해진 시각에 한 트래픽 클래스나 그 묶음만 네트워크
 ## Guard band
 
 guard band는 시간이 중요한 큐의 창 앞에 두어, 앞 창에서 보내던 프레임이 그 창을 침범하지 않게 하는 구간이다.[@ti-processor-sdk-linux-am62x-est-2026][@microchip-an1185-2025] 그 길이는 끼어들 수 있는 가장 긴 프레임 하나를 보내는 시간을 기준으로 잡는다.[@ti-processor-sdk-linux-am62x-est-2026][@microchip-pd-ies008x-tsn-2025]
+
+ADIN3310/ADIN6310 데이터시트에 따르면 guard band가 켜져 있는 동안 송신기는 다음 프레임을 가져오지 않는다. guard band의 길이를 가장 긴 프레임에 맞춰야 하므로, 큰 프레임이 있는 네트워크에서 guard band는 대역폭을 비효율적으로 쓰게 한다.[@adi-adin3310-adin6310-2025]
 
 Microchip AN1185에 따르면 guard band 시간 $t_\mathrm{gb}$는 큐마다 설정한 `max-sdu`(바이트)와 링크 속도 $\mathrm{portTransmitRate}$로 아래와 같이 계산한다.[@microchip-an1185-2025]
 
