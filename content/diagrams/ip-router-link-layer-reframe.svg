@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 10 700 208.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <!-- 노드와 링크 -->
+  <g stroke="#727981" stroke-width="1.5">
+    <line x1="150" y1="38" x2="310" y2="38" />
+    <line x1="430" y1="38" x2="590" y2="38" />
+  </g>
+  <rect x="30" y="20" width="120" height="36" rx="4" fill="#825da9" />
+  <text x="90" y="43" text-anchor="middle" fill="#f8fafd">발신 호스트</text>
+  <rect x="310" y="20" width="120" height="36" rx="4" fill="#825da9" />
+  <text x="370" y="43" text-anchor="middle" fill="#f8fafd">라우터</text>
+  <rect x="590" y="20" width="120" height="36" rx="4" fill="#825da9" />
+  <text x="650" y="43" text-anchor="middle" fill="#f8fafd">목적 호스트</text>
+  <!-- 첫 링크의 프레임 -->
+  <rect x="63.0" y="76" width="116" height="44" rx="3" fill="#b0540d" />
+  <text x="121" y="103" text-anchor="middle" fill="#f8fafd">링크 계층 헤더</text>
+  <rect x="181.0" y="76" width="150" height="44" rx="3" fill="#336fb8" />
+  <text x="256" y="95" text-anchor="middle" fill="#f8fafd">IP 헤더</text>
+  <text x="256" y="112" text-anchor="middle" font-size="12" fill="#f8fafd">목적 주소: 목적 호스트</text>
+  <rect x="333.75" y="76.75" width="62.5" height="42.5" rx="3" stroke="#727981" stroke-width="1.5" />
+  <text x="365" y="103" text-anchor="middle" fill="#727981">데이터</text>
+  <!-- 다음 홉으로 가는 새 프레임 -->
+  <rect x="335.0" y="136" width="132" height="44" rx="3" fill="#bb464d" />
+  <text x="401" y="163" text-anchor="middle" fill="#f8fafd">새 링크 계층 헤더</text>
+  <rect x="469.0" y="136" width="150" height="44" rx="3" fill="#336fb8" />
+  <text x="544" y="155" text-anchor="middle" fill="#f8fafd">IP 헤더</text>
+  <text x="544" y="172" text-anchor="middle" font-size="12" fill="#f8fafd">목적 주소: 목적 호스트</text>
+  <rect x="621.75" y="136.75" width="62.5" height="42.5" rx="3" stroke="#727981" stroke-width="1.5" />
+  <text x="653" y="163" text-anchor="middle" fill="#727981">데이터</text>
+  <text x="370" y="206" text-anchor="middle" font-size="12" fill="#727981">라우터는 링크 계층 헤더를 떼고, 데이터그램을 새 링크 계층 프레임에 다시 담는다</text>
+</svg>

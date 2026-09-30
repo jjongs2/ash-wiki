@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="103.5 8 709.5 212" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+  <!-- 가로축: x = 200 + 500 × U -->
+
+  <!-- 기준선 -->
+  <g stroke="#727981" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="546.5" y1="20" x2="546.5" y2="150" />
+    <line x1="614" y1="20" x2="614" y2="150" />
+    <line x1="700" y1="20" x2="700" y2="150" />
+  </g>
+
+  <!-- 행 이름 -->
+  <g text-anchor="end" fill="#727981">
+    <text x="182" y="43">RM, <tspan font-style="italic">n</tspan> = 2</text>
+    <text x="182" y="83">RM, <tspan font-style="italic">n</tspan> → ∞</text>
+    <text x="182" y="123">EDF</text>
+  </g>
+
+  <!-- RM, n = 2 -->
+  <rect x="200" y="26" width="414" height="24" fill="#337b47" />
+  <rect x="614" y="26" width="86" height="24" fill="#b0540d" />
+  <rect x="700" y="26" width="80" height="24" fill="#bb464d" />
+  <!-- RM, n → ∞ -->
+  <rect x="200" y="66" width="346.5" height="24" fill="#337b47" />
+  <rect x="546.5" y="66" width="153.5" height="24" fill="#b0540d" />
+  <rect x="700" y="66" width="80" height="24" fill="#bb464d" />
+  <!-- EDF -->
+  <rect x="200" y="106" width="500" height="24" fill="#337b47" />
+  <rect x="700" y="106" width="80" height="24" fill="#bb464d" />
+
+  <!-- 축 -->
+  <line x1="200" y1="150" x2="800" y2="150" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <path d="M200 150 V155 M546.5 150 V155 M614 150 V155 M700 150 V155" stroke="#727981" stroke-width="1" />
+  <g font-size="12" fill="#727981" text-anchor="middle">
+    <text x="200" y="169">0</text>
+    <text x="546.5" y="169">0.693</text>
+    <text x="614" y="169">0.828</text>
+    <text x="700" y="169">1</text>
+  </g>
+  <text x="800" y="169" text-anchor="end" font-size="12" fill="#727981">이용률 <tspan font-style="italic">U</tspan></text>
+
+  <!-- 범례 -->
+  <rect x="200" y="194" width="14" height="14" fill="#337b47" />
+  <text x="220" y="206" font-size="12" fill="#727981">모든 마감 시한을 지킴</text>
+  <rect x="360" y="194" width="14" height="14" fill="#b0540d" />
+  <text x="380" y="206" font-size="12" fill="#727981">critical instant 검사로 판정</text>
+  <rect x="560" y="194" width="14" height="14" fill="#bb464d" />
+  <text x="580" y="206" font-size="12" fill="#727981">어떤 방식으로도 지키지 못함</text>
+</svg>

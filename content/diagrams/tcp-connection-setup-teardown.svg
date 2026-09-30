@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="62 10 488 420" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#336fb8" />
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b0540d" />
+    </marker>
+    <marker id="arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+  <rect x="140" y="20" width="120" height="32" rx="4" fill="#825da9" />
+  <text x="200" y="41" text-anchor="middle" fill="#f8fafd">여는 쪽</text>
+  <rect x="420" y="20" width="120" height="32" rx="4" fill="#825da9" />
+  <text x="480" y="41" text-anchor="middle" fill="#f8fafd">상대</text>
+  <g stroke="#727981" stroke-width="1.5">
+    <line x1="200" y1="52" x2="200" y2="420" />
+    <line x1="480" y1="52" x2="480" y2="420" />
+  </g>
+  <!-- 3-way handshake -->
+  <line x1="202" y1="84" x2="478" y2="98" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <text x="340" y="80" text-anchor="middle" fill="#727981">SYN</text>
+  <line x1="478" y1="122" x2="202" y2="136" stroke="#b0540d" stroke-width="2" marker-end="url(#arrow-orange)" />
+  <text x="340" y="118" text-anchor="middle" fill="#727981">SYN, ACK</text>
+  <line x1="202" y1="160" x2="478" y2="174" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <text x="340" y="156" text-anchor="middle" fill="#727981">ACK</text>
+  <!-- 종료 -->
+  <line x1="202" y1="236" x2="478" y2="250" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <text x="340" y="232" text-anchor="middle" fill="#727981">FIN</text>
+  <line x1="478" y1="274" x2="202" y2="288" stroke="#b0540d" stroke-width="2" marker-end="url(#arrow-orange)" />
+  <text x="340" y="270" text-anchor="middle" fill="#727981">ACK</text>
+  <line x1="478" y1="312" x2="202" y2="326" stroke="#727981" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-ink)" />
+  <text x="340" y="308" text-anchor="middle" fill="#727981">남은 데이터</text>
+  <line x1="478" y1="350" x2="202" y2="364" stroke="#b0540d" stroke-width="2" marker-end="url(#arrow-orange)" />
+  <text x="340" y="346" text-anchor="middle" fill="#727981">FIN</text>
+  <line x1="202" y1="388" x2="478" y2="402" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <text x="340" y="384" text-anchor="middle" fill="#727981">ACK</text>
+  <g stroke="#727981" stroke-width="1.5">
+    <path d="M130 70 H124 V178 H130" />
+    <path d="M130 222 H124 V406 H130" />
+  </g>
+  <text x="116" y="128" text-anchor="end" font-size="12" fill="#727981">연결 설정</text>
+  <text x="116" y="318" text-anchor="end" font-size="12" fill="#727981">종료</text>
+</svg>

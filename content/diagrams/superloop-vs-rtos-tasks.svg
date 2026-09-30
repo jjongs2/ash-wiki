@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 730 270" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+  <!-- superloop -->
+  <text x="20" y="28" fill="#727981">superloop</text>
+  <rect x="20" y="50" width="150" height="34" rx="4" fill="#336fb8" />
+  <text x="95" y="72" text-anchor="middle" fill="#f8fafd">모듈 A의 함수</text>
+  <rect x="20" y="100" width="150" height="34" rx="4" fill="#336fb8" />
+  <text x="95" y="122" text-anchor="middle" fill="#f8fafd">모듈 B의 함수</text>
+  <rect x="20" y="150" width="150" height="34" rx="4" fill="#336fb8" />
+  <text x="95" y="172" text-anchor="middle" fill="#f8fafd">모듈 C의 함수</text>
+  <g stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="95" y1="84" x2="95" y2="97" />
+    <line x1="95" y1="134" x2="95" y2="147" />
+    <path d="M170 167 H200 V67 H173" />
+  </g>
+  <text x="208" y="121" font-size="12" fill="#727981">무한 루프</text>
+
+  <rect x="20" y="214" width="150" height="34" rx="4" fill="#bb464d" />
+  <text x="95" y="236" text-anchor="middle" fill="#f8fafd">인터럽트 처리기</text>
+  <line x1="95" y1="214" x2="95" y2="187" stroke="#727981" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrow)" />
+  <text x="103" y="205" font-size="12" fill="#727981">넘긴 일은 차례가 오면 처리</text>
+  <line x1="260" y1="231" x2="173" y2="231" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="216" y="224" text-anchor="middle" font-size="12" fill="#727981">비동기 사건</text>
+
+  <!-- RTOS -->
+  <text x="330" y="28" fill="#727981">RTOS</text>
+  <rect x="330" y="50" width="380" height="34" rx="4" fill="#825da9" />
+  <text x="520" y="72" text-anchor="middle" fill="#f8fafd">스케줄러</text>
+  <g stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="390" y1="84" x2="390" y2="107" />
+    <line x1="520" y1="84" x2="520" y2="107" />
+    <line x1="650" y1="84" x2="650" y2="107" />
+  </g>
+  <g fill="#336fb8">
+    <rect x="330" y="110" width="120" height="48" rx="4" />
+    <rect x="460" y="110" width="120" height="48" rx="4" />
+    <rect x="590" y="110" width="120" height="48" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="#f8fafd">
+    <text x="390" y="131">태스크 1</text>
+    <text x="390" y="149" font-size="12">우선순위 높음</text>
+    <text x="520" y="131">태스크 2</text>
+    <text x="520" y="149" font-size="12">우선순위 중간</text>
+    <text x="650" y="131">태스크 3</text>
+    <text x="650" y="149" font-size="12">우선순위 낮음</text>
+  </g>
+
+  <rect x="330" y="214" width="150" height="34" rx="4" fill="#bb464d" />
+  <text x="405" y="236" text-anchor="middle" fill="#f8fafd">인터럽트 처리기</text>
+  <line x1="405" y1="214" x2="405" y2="161" stroke="#727981" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrow)" />
+  <text x="413" y="192" font-size="12" fill="#727981">태스크를 깨워 넘김</text>
+  <line x1="570" y1="231" x2="483" y2="231" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="526" y="224" text-anchor="middle" font-size="12" fill="#727981">비동기 사건</text>
+</svg>
