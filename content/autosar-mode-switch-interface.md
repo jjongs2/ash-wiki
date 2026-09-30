@@ -31,7 +31,7 @@ SwcModeSwitchEvent는 지정한 모드에 들어갈 때, 그 모드에서 나올
 
 모드 전환 중에 RTE는 이전 모드의 on-exit runnable, 두 모드 사이의 on-transition runnable, 새 모드의 on-entry runnable 순서로 실행한다. 이 순서는 같은 코어에 있는 mode user의 무리 안에서 지키고, 코어가 다른 무리끼리는 병렬로 실행할 수 있다.[@autosar-cp-sws-rte-2025]
 
-mode manager의 제공 쪽에 acknowledgement를 켜면 RTE는 전환이 끝날 때 ModeSwitchedAckEvent를 일으키고, 이 event는 mode manager의 runnable을 시작할 수 있다. RTE가 시간 초과를 감지해도 이 event가 일어난다.[@autosar-cp-sws-rte-2025]
+mode manager의 제공 쪽에 acknowledgement를 켜면 RTE는 전환이 끝날 때 ModeSwitchedAckEvent를 일으키고, 이 이벤트는 mode manager의 runnable을 시작할 수 있다. RTE가 시간 초과를 감지해도 이 이벤트가 일어난다.[@autosar-cp-sws-rte-2025]
 
 ## 모드에 따른 비활성화
 

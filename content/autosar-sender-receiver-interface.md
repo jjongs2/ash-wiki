@@ -23,7 +23,7 @@ RTE는 receive 포트에서 queued data element마다 수신 큐를 둔다. 값�
 
 ![[diagrams/sender-receiver-last-is-best-queue.svg]]
 
-[[rte-event|RTE 이벤트]]의 하나인 data received event는 data element와 [[runnable-entity|runnable]]을 가리키며, 새 데이터가 오면 RTE가 그 runnable을 시작한다.[@autosar-cp-sws-rte-2025]
+[[rte-event|RTE 이벤트]]의 하나인 DataReceivedEvent는 data element와 [[runnable-entity|runnable]]을 가리키며, 새 데이터가 오면 RTE가 그 runnable을 시작한다.[@autosar-cp-sws-rte-2025]
 
 ## 명시적 접근과 암묵적 접근
 
