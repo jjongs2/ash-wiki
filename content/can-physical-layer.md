@@ -11,13 +11,11 @@ verified: 2026-09-27
 
 ![[diagrams/can-iso-11898-sublayers.svg]]
 
-## 구조·동작
-
-### 차동 전송
+## 차동 전송
 
 고속 CAN의 버스 인터페이스(MDI)는 CAN_H와 CAN_L 두 선이다.[@iso-11898-2-obp-2026] 수신기는 두 선의 전압 차를 문턱 전압과 비교해 비트를 판정한다.[@nxp-tja1042-2023] 두 선에 똑같이 실린 공통 모드 성분은 [[differential-signaling|차동 수신기]]가 걸러 내는데, 여기에는 접지 잡음과 버스에 결합된 잡음이 들어 있다.[@ti-sn65hvd230-2018] 두 선을 꼬는 것은 외부 잡음이 두 선에 거의 같게 실리게 하려는 것이다.[@ti-slld009-2002][@maxim-rs485-wiring-2001]
 
-### 고속 CAN
+## 고속 CAN
 
 고속 [[can-transceiver|트랜시버]] TJA1042의 전형값으로 보면, [[dominant-and-recessive|recessive]]에서는 두 선이 모두 0.5 VCC(5 V 전원에서 2.5 V)라 전압 차가 거의 0이다. dominant에서는 CAN_H가 약 3.5 V, CAN_L이 약 1.5 V로 벌어져 전압 차가 약 2 V가 된다.[@nxp-tja1042-2023]
 
@@ -27,12 +25,12 @@ verified: 2026-09-27
 
 ![[diagrams/can-node-bus.svg]]
 
-### 저속 내결함성 CAN
+버스를 길게 하려면 비트율을 낮춰야 한다.[@ti-slla270-2008][@microchip-an754-2001] 1 Mbit/s에서의 버스 길이로 TI 앱노트는 권장값 40 m를 제시하고[@ti-slla270-2008], Philips 앱노트는 PCA82C250을 고속 모드로 쓸 때의 경험칙으로 30 m를 제시한다.[@philips-an96116-1996] 비트 시간 안의 전파 구간(PROP_SEG) 길이는 [[can-bit-timing#세그먼트|CAN 비트 타이밍]]에서 다룬다.
+
+## 저속 내결함성 CAN
 
 저속 내결함성 CAN은 비트율 $R_\mathrm{b}$가 $40\,\mathrm{kbit/s} < R_\mathrm{b} \le 125\,\mathrm{kbit/s}$인 범위에서 쓴다.[@iso-11898-3-obp-2006] 저속 내결함성 트랜시버 TJA1055는 한 선이 끊기거나, 전원이나 접지에 단락되거나, 두 선이 서로 단락돼도 통신을 이어 간다. 고장에 따라 차동 모드를 그대로 유지하기도 하고, 남은 한 선으로 송수신하는 단선 모드로 바꾸기도 한다.[@nxp-tja1055-2013]
 
-## 비교·한계
-
-버스를 길게 하려면 비트율을 낮춰야 한다.[@ti-slla270-2008][@microchip-an754-2001] 1 Mbit/s에서의 버스 길이로 TI 앱노트는 권장값 40 m를 제시하고[@ti-slla270-2008], Philips 앱노트는 PCA82C250을 고속 모드로 쓸 때의 경험칙으로 30 m를 제시한다.[@philips-an96116-1996] 비트 시간 안의 전파 구간(PROP_SEG) 길이는 [[can-bit-timing|CAN 비트 타이밍]]에서 다룬다.
+## 단선 CAN과의 차이
 
 ISO 11898 밖의 물리 계층으로 SAE J2411이 있다. 이 표준은 선 하나를 매체로 쓰는 단선 CAN의 물리 계층을 정한다.[@sae-j2411-2000] 단선 CAN 트랜시버 NCV7356은 평소 약 33 kbit/s로 통신하고, 조립 라인과 정비용 고속 다운로드 모드에서는 83 kbit/s를 권장한다.[@onsemi-ncv7356-2026]

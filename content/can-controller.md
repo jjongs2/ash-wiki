@@ -9,15 +9,13 @@ verified: 2026-09-27
 
 컨트롤러는 버스에 직접 닿지 않고, [[can-transceiver|CAN 트랜시버]]를 거쳐 CAN_H와 CAN_L 버스에 연결된다.[@st-rm0008-2021]
 
-## 구조·동작
-
-### 송신
+## 송신
 
 애플리케이션은 빈 송신 버퍼에 [[can-identifier|식별자]], [[data-length-code|DLC]], 데이터를 넣고 송신을 요청한다.[@st-rm0008-2021] 컨트롤러는 버퍼 내용으로 프레임을 부호화하고, 비트열로 직렬화해 내보낸다.[@microchip-mcp251xxfd-frm-2018] 이때 같은 값의 비트가 5개 이어지면 반대 값의 비트를 하나 자동으로 넣는다([[can-bit-stuffing|비트 스터핑]]).[@bosch-can-2-0-1991]
 
 ![[diagrams/can-bit-stuffing.svg]]
 
-컨트롤러의 송신 출력은 트랜시버의 TXD 핀에, 수신 입력은 트랜시버의 RXD 핀에 연결된다.[@microchip-mcp2561-2fd-2014]
+컨트롤러의 송신 출력은 트랜시버의 TXD 핀에, 수신 입력은 트랜시버의 RXD 핀에 연결된다. 논리 비트와 버스 차동 전압 사이의 변환은 트랜시버가 맡는다.[@microchip-mcp2561-2fd-2014]
 
 ![[diagrams/can-node-bus.svg]]
 
@@ -25,7 +23,7 @@ verified: 2026-09-27
 
 ![[diagrams/can-arbitration.svg]]
 
-### 수신
+## 수신
 
 컨트롤러는 버스 입력의 에지에 [[can-bit-timing|비트 타이밍]]을 맞춘다. SOF(Start of Frame)의 에지에서 [[can-synchronization|하드 동기화]]를, 그 뒤의 에지에서 재동기화를 한다.[@microchip-mcp2515-2019] 받은 비트열에서는 스터프 비트를 걷어낸다.[@bosch-can-2-0-1991]
 
@@ -33,16 +31,14 @@ verified: 2026-09-27
 
 MCP2515는 오류 검사를 마친 메시지의 식별자를 [[acceptance-filter|수용 마스크와 필터]]에 비교한다. 일치한 메시지만 수신 버퍼에 넣고, 인터럽트 핀으로 MCU에 알린다.[@microchip-mcp2515-2019]
 
-### 설정과 오류 상태
+## 설정과 오류 상태
 
 비트율과 샘플 포인트는 컨트롤러의 설정 레지스터로 정한다. 컨트롤러는 송신 오류 계수기(TEC, Transmit Error Counter)와 수신 오류 계수기(REC, Receive Error Counter)를 관리하고, 계수기 값에 따라 [[can-fault-confinement|error active, error passive, bus-off]] 상태를 오간다.[@microchip-mcp2515-2019]
 
-### 제품 예
+## 제품 예
 
 MCP2515는 SPI로 MCU와 통신하는 독립형 컨트롤러다. CAN 2.0B를 1 Mbit/s까지 지원하고, 송신 버퍼 3개, 수신 버퍼 2개, 수용 마스크 2개, 수용 필터 6개를 둔다.[@microchip-mcp2515-2019] Bosch M_CAN은 [[can-fd|CAN FD]]를 64바이트 데이터까지 지원하는 컨트롤러 IP(Intellectual Property) 모듈이다.[@bosch-m-can-2023]
 
-## 비교·한계
+## CAN FD 컨트롤러와의 차이
 
 Classical 포맷만 지원하고 CAN FD 포맷을 용인하지 않는 구현은 classical 포맷만 쓸 때 CAN FD·CAN XL 구현과 통신할 수 있고, CAN FD light responder와는 통신할 수 없어 통신을 시도하면 [[can-error-frame|오류 프레임]]이 생긴다. ISO 11898-1:2024는 CAN FD 프레임을 주고받지는 못해도 방해하지 않는 classical 구현(FD tolerant)도 규정한다.[@iso-11898-1-obp-2024] CAN FD 노드는 classical CAN 프레임도 주고받을 수 있다.[@bosch-can-fd-1-0-2012]
-
-논리 비트와 버스 차동 전압 사이의 변환은 트랜시버가 맡는다.[@microchip-mcp2561-2fd-2014]
