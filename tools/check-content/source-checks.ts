@@ -1,4 +1,5 @@
 import { slugifyFilePath } from "@quartz-community/utils"
+import GithubSlugger, { slug } from "github-slugger"
 import { visit } from "unist-util-visit"
 import { pretendardStylesheet } from "../../quartz/util/localFonts"
 import type { Conventions } from "./conventions"
@@ -186,9 +187,25 @@ function* matchLines(page: Page, pattern: RegExp) {
   }
 }
 
+// Quartz가 제목에 다는 id다. rehype-slug가 제목의 글자를 github-slugger로 바꾸고, 같은 값이 또
+// 나오면 -1, -2를 붙인다. 위키링크의 앵커는 obsidian-flavored-markdown이 같은 slug로 #조각을 만든다.
+function headingIds(page: Page): Set<string> {
+  const slugger = new GithubSlugger()
+  const ids = new Set<string>()
+  visit(page.mdast, "heading", (heading) => {
+    let text = ""
+    visit(heading, (node) => {
+      if (node.type === "text" || node.type === "inlineCode") text += node.value
+    })
+    ids.add(slugger.slug(text))
+  })
+  return ids
+}
+
 export const wikilink: SourceCheck = (tree) => {
   // 대문과 태그 표시 이름 파일도 링크 대상이므로 title을 모은다.
   const titles = new Map(tree.pages.map((p) => [p.name, fieldsOf(p).title]))
+  const sections = new Map(tree.pages.map((p) => [p.name, headingIds(p)]))
   const slugs = new Set(tree.pages.filter((p) => p.kind !== "tag").map((p) => p.name))
   const violations: Violation[] = []
   for (const page of tree.pages) {
@@ -197,7 +214,15 @@ export const wikilink: SourceCheck = (tree) => {
       const [path, display] = inner.split(/\\?\|/)
       const [target, anchor] = path.split("#").map((part) => part.trim())
       const at = (message: string) => violations.push({ file: page.file, line, message })
-      if (target === "") continue
+      // ^로 시작하는 앵커는 절이 아니라 블록을 가리킨다.
+      const checkSection = (name: string) => {
+        if (anchor && !anchor.startsWith("^") && !sections.get(name)!.has(slug(anchor)))
+          at(`앵커가 가리키는 절이 없다: ${link}`)
+      }
+      if (target === "") {
+        checkSection(page.name)
+        continue
+      }
       // 대상이 없거나 잘못되면 거기서 멈춘다. 태그 목록은 대상을 확인한 뒤 표시 이름도 본다.
       if (target.startsWith("tags/")) {
         if (!tree.tags.has(target.slice("tags/".length)))
@@ -211,6 +236,8 @@ export const wikilink: SourceCheck = (tree) => {
       } else if (!slugs.has(target)) {
         at(`대상 페이지가 없다: ${link}`)
         continue
+      } else {
+        checkSection(target)
       }
       // 표시 이름이 없으면 Quartz는 대상(앵커가 있으면 "대상 > 앵커")을 그대로 링크 글자로 쓴다.
       const title = titles.get(target)
