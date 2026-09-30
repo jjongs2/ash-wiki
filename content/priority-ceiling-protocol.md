@@ -20,8 +20,10 @@ verified: 2026-09-30
 
 POSIX는 [[mutex|뮤텍스]]의 우선순위 상한을 그 뮤텍스를 잠글 수 있는 모든 스레드 가운데 가장 높은 우선순위 이상으로 두게 한다.[@ieee-1003-1-preface-2024][@ieee-1003-1-pthread-mutexattr-getprioceiling-2024] 또 뮤텍스 속성 protocol이 `PTHREAD_PRIO_PROTECT`이면, 뮤텍스를 쥔 스레드가 다른 스레드가 블록되었는지와 상관없이 자기 우선순위와 쥔 뮤텍스들의 우선순위 상한 가운데 가장 높은 값으로 실행되도록 정한다.[@ieee-1003-1-pthread-mutexattr-getprotocol-2024] POSIX 근거 설명은 이 방식을 우선순위 상한 프로토콜 에뮬레이션(priority ceiling protocol emulation)이라 부른다.[@ieee-1003-1-rationale-threads-2024]
 
+RTEMS(Real-Time Executive for Multiprocessor Systems) 문서는 이 방식을 Immediate Ceiling Priority Protocol(ICPP)이라 부른다. 이 문서에 따르면 ICPP는 상한을 그 뮤텍스를 얻으려 할 스레드 가운데 가장 높은 우선순위로 정해야 해서 애플리케이션 전체를 알아야 하고, 크고 복잡한 시스템에서는 그 스레드를 가려내기 어려울 수 있으며, 우선순위 상속 프로토콜은 이런 사전 정보가 필요 없다.[@rtems-key-concepts-2025]
+
 OSEK/VDX OS 명세는 resource 관리에 이 방식인 OSEK 우선순위 상한 프로토콜을 쓰게 한다. 상한은 시스템을 생성하는 단계에서 고정되고, resource에 접근하는 태스크 가운데 가장 높은 우선순위보다 낮지 않다. 같은 resource를 쓰는 태스크는 쥔 쪽보다 우선순위가 높을 수 없어 그동안 실행되지 못하므로, 이미 쥔 resource를 다른 태스크가 요청하는 일이 아예 일어나지 않는다.[@osek-os-2-2-3-2005] OSEK의 규칙은 [[osek-resource|OSEK resource]]에서 다룬다.
 
-원형 프로토콜은 다른 태스크를 블록시킬 때만 우선순위를 올리고[@sha-real-time-scheduling-ada-1989], 자원을 잡는 즉시 올리는 방식은 블록된 태스크가 있든 없든 올린다.[@ieee-1003-1-pthread-mutexattr-getprotocol-2024] OSEK/VDX OS 명세는 이 방식이 상한 이하의 우선순위를 가진 태스크를, 그 resource를 쓰지 않아도 기다리게 할 수 있다고 밝히고, 그 대기가 더 낮은 우선순위 태스크가 resource를 쥐는 가장 긴 시간을 넘지 않는다고 정한다.[@osek-os-2-2-3-2005]
+원형 프로토콜은 다른 태스크를 블록시킬 때만 우선순위를 올리고[@sha-real-time-scheduling-ada-1989], 자원을 잡는 즉시 올리는 방식은 블록된 태스크가 있든 없든 올린다.[@ieee-1003-1-pthread-mutexattr-getprotocol-2024] 구현은 자원을 잡는 즉시 올리는 방식이 단순하고, 원형 프로토콜은 비교적 복잡하다.[@davari-unbounded-priority-inversions-1992] OSEK/VDX OS 명세는 이 방식이 상한 이하의 우선순위를 가진 태스크를, 그 resource를 쓰지 않아도 기다리게 할 수 있다고 밝히고, 그 대기가 더 낮은 우선순위 태스크가 resource를 쥐는 가장 긴 시간을 넘지 않는다고 정한다.[@osek-os-2-2-3-2005]
 
 ![[diagrams/priority-ceiling-original-vs-immediate.svg]]

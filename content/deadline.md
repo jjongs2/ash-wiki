@@ -24,3 +24,5 @@ Renesas 앱노트에 따르면 hard real-time에서는 마감 시한을 놓쳐�
 Liu와 Layland는 1973년 논문에서 각 태스크가 같은 태스크의 다음 요청이 오기 전에 끝나야 한다고 가정했다. 곧 요청의 마감 시한은 같은 태스크의 다음 요청 시각이다.[@liu-hard-real-time-1973] 이 모델은 [[periodic-task-model|주기 태스크 모델]]에서 다룬다.
 
 Lehoczky는 1990년 마감 시한이 임의인 주기 태스크 집합의 고정 우선순위 스케줄링을 다뤄, 스케줄 가능성의 일반 판정 기준과 Liu와 Layland의 이용률 상한을 일반화한 최악 경우 상한을 냈다.[@lehoczky-arbitrary-deadlines-1990]
+
+Tindell의 1992년 [[response-time-analysis|응답 시간 분석]]에서는 태스크의 최악 응답 시간이 주기 $T_i$보다 길면, 앞 요청이 끝나기 전에 같은 태스크가 다시 도착할 수 있다. 그래서 $D_i \le T_i$인 태스크에 쓰는 응답 시간 식은 앞 요청의 계산을 넣지 않아, 마감 시한이 임의인 태스크에는 충분하지 않다.[@tindell-extendible-approach-1992]

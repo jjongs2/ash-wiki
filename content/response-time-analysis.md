@@ -37,4 +37,6 @@ $$
 
 태스크가 최소 도착 간격이 $T_i$인 산발적 태스크이고 같은 태스크의 요청은 도착 순서대로 실행된다고 두면, 마감 시한이 주기보다 길 때는 $R_i$가 $T_i$를 넘을 수 있다. 그러면 같은 태스크의 요청 여럿이 한 priority level-$i$ busy period 안에서 함께 활성일 수 있고, 그 가운데 어느 요청이든 최악 응답 시간을 낼 수 있다. 그래서 첫 요청만 보아서는 최악 응답 시간을 얻지 못하고, busy period 안의 요청을 모두 따져 그 최댓값을 취해야 한다.[@burns-arbitrary-deadlines-2017]
 
+FAA 보고서 DOT/FAA/TC-19/22에 따르면 실시간 스케줄링 알고리즘은 태스크가 명시된 [[worst-case-execution-time|WCET]]보다 오래 실행되지 않는다는 가정 아래 수학적으로 증명된다.[@faa-tc-19-22-2019]
+
 태스크가 서로 독립이고 선점할 수 있으면 응답 시간 분석은 필요충분조건 검사다.[@joseph-response-times-1986][@audsley-flexible-scheduling-1993] 그래서 [[rate-monotonic-scheduling|RM]]의 이용률 상한 같은 충분조건 검사가 판정하지 못하는 태스크 집합도 판정한다.[@joseph-response-times-1986][@liu-hard-real-time-1973] 검사의 종류는 [[schedulability-analysis|스케줄링 분석]]에서 다룬다.

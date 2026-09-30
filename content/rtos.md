@@ -15,6 +15,8 @@ Microchip MPLAB Harmony의 `main` 함수는 모든 모듈을 초기화한 뒤, �
 
 MPLAB Harmony 문서에 따르면 폴링 superloop는 가장 이해하기 쉬운 구성이다.[@microchip-harmony-overview-2017] 대신 superloop에 모듈이 늘수록 모든 일의 시간 요구를 맞추기 어려워지고, 코드를 고치면 루프의 타이밍이 바뀐다.[@micrium-ucos-ii-rtsc-2026][@microchip-harmony-overview-2017]
 
+Microchip 앱노트 AN2751에 따르면 superloop의 태스크마다 실행 주기가 다르면 복잡도가 커진다. 루프 한 바퀴는 시스템이 요구하는 지연보다 길 수 없고, 루프를 돌 때 그 태스크를 지금 실행할지 가리는 상태 기계 같은 제어 코드가 더 필요하다.[@microchip-an2751-2018]
+
 RTOS 기반 소프트웨어는 일을 여러 태스크로 나누고, 태스크마다 우선순위를 준다.[@freertos-rtos-fundamentals-2026][@silabs-intro-rtos-2019]
 
 ![[diagrams/superloop-vs-rtos-tasks.svg]]
