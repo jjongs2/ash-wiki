@@ -23,9 +23,9 @@ verified: 2026-09-27
 
 Microchip 문서에 따르면 중재에 참여하는 모든 노드가 같은 비트 시간 안에 버스의 같은 비트를 샘플링할 수 있어야 중재가 성립하고, 송신 노드는 샘플 포인트를 최대 전파 지연 뒤에 두어야 한다.[@microchip-an754-2001][@microchip-mcp25xxfd-frm-2020]
 
-비트 시간의 구성과 전파 구간(PROP_SEG)의 길이는 [[can-bit-timing#세그먼트|CAN 비트 타이밍]]에서, 버스 길이와 비트율의 관계는 [[can-physical-layer#고속 CAN|CAN 물리 계층]]에서 다룬다.
-
 [[can-fd|CAN FD]]는 중재가 끝난 뒤 데이터 구간에서 더 높은 비트율로 바꿀 수 있다.[@bosch-can-fd-1-0-2012] 데이터 구간에서는 한 노드만 송신하고 나머지는 모두 수신하므로, 버스 길이가 영향을 주지 않는다.[@bosch-m-can-2023]
+
+비트 시간의 구성과 전파 구간(PROP_SEG)의 길이는 [[can-bit-timing#세그먼트|CAN 비트 타이밍]]에서, 버스 길이와 비트율의 관계는 [[can-physical-layer#고속 CAN|CAN 물리 계층]]에서 다룬다.
 
 ## 승자
 

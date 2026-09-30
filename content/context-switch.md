@@ -11,11 +11,11 @@ FreeRTOS 문서는 멈추는 태스크의 context를 저장하고 재개하는 �
 
 스케줄러가 다른 태스크를 고르면 context switch가 일어난다.[@osek-os-2-2-3-2005][@freertos-tick-code-2023] context가 복원된 태스크는 멈췄던 자리에서 실행을 이어 간다.[@osek-os-2-2-3-2005][@freertos-avr-context-2024]
 
-FreeRTOS 문서에 따르면 협력형 스케줄러는 요청이 있을 때만 context switch를 하므로, [[rtos|RTOS]]가 더하는 처리 오버헤드를 크게 줄인다.[@freertos-solution4-2024]
-
 FreeRTOS는 태스크마다 스택을 따로 두고, 프로세서 레지스터를 그 태스크의 스택에 push해 context를 저장한다. FreeRTOS의 AVR 포트는 레지스터를 번호 순으로 하나씩 태스크 스택에 push한다.[@freertos-saving-context-2024] 태스크를 재개할 때는 그 태스크의 스택 포인터를 되찾은 뒤, 스택에서 레지스터를 pop해 context를 복원한다.[@freertos-restoring-context-2024]
 
 ![[diagrams/context-switch-save-restore.svg]]
+
+FreeRTOS 문서에 따르면 협력형 스케줄러는 요청이 있을 때만 context switch를 하므로, [[rtos|RTOS]]가 더하는 처리 오버헤드를 크게 줄인다.[@freertos-solution4-2024]
 
 스케줄링 알고리즘을 구현하면 오버헤드와 블로킹이 더해지고, 이는 시간 정확성을 검증할 때 반영해야 한다. Katcher, Arakawa, Strosnider는 1993년 이벤트 구동과 타이머 구동 구현을 분석해, 고정 우선순위 스케줄링에서 구현 비용을 넣으면 이상적인 breakdown 이용률이 90%를 넘는 태스크 집합도 스케줄할 수 없게 될 수 있음을 보였다.[@katcher-fixed-priority-schedulers-1993] 스케줄링 방식은 [[real-time-scheduling|실시간 스케줄링]]에서 다룬다.
 
