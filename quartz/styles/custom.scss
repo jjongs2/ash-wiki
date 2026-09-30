@@ -22,6 +22,26 @@ a {
   overflow-wrap: break-word;
 }
 
+// ash-wiki: 표는 문단처럼 본문 폭의 왼쪽 끝에 붙이고, 위아래는 문단 사이와 같은 1rem만 띄운다. 업스트림은 표에
+// 사방 1rem margin을 주는데, 스크롤 상자(.table-container) 안이라 문단의 margin과 겹치지 않고 더해져 표 위아래가
+// 2rem씩 벌어지고 표가 본문보다 들여써진다. 셀의 줄 간격은 업스트림의 2rem 대신 문단에 가깝게 1.5로 두어 두 줄
+// 셀이 한 칸으로 읽히게 하고, 줄어든 만큼 td의 위아래 여백을 th와 같게 늘려 한 줄 행이 비좁지 않게 한다.
+.table-container {
+  margin: 1rem 0;
+
+  & > table {
+    margin: 0;
+
+    & > * {
+      line-height: 1.5;
+    }
+
+    td {
+      padding-block: 0.4rem;
+    }
+  }
+}
+
 // ash-wiki: 다크 테마는 루트에 color-scheme: dark를 건다. <object>로 넣은 도해 SVG는 color-scheme이
 // light인 별도 문서라, 둘이 다르면 브라우저가 SVG의 캔버스를 흰색으로 칠해 사이트 배경을 가린다.
 // <object>의 color-scheme을 SVG 문서와 같게 두어 캔버스를 투명하게 남긴다.
