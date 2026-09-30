@@ -282,6 +282,7 @@ const CLASS = {
   changed: "wiki-diff-changed",
   added: "wiki-diff-added",
   removed: "wiki-diff-removed",
+  newPage: "wiki-diff-new-page",
   word: "wiki-diff-word",
   source: "wiki-diff-source",
 }
@@ -460,6 +461,20 @@ function removedNode(block: Block, sameSlot: boolean): RootContent {
   return element("wikiDiffBlock", "div", CLASS.removed, [del(block.source, CLASS.source)])
 }
 
+// 새 블록과 같은 표시라 막대의 n, p가 여기에 선다. 문구는 CSS로 그린다. 텍스트 노드로 두면 설명(description)과
+// 검색 본문의 첫 문장이 된다.
+function newPageNotice(): RootContent {
+  const node = element("wikiDiffNewPage", "div", CLASS.added, [])
+  addClass(node, CLASS.newPage)
+  return node
+}
+
+// 대문 배너와 새 페이지 안내는 frontmatter 바로 뒤에 둔다
+function insertAfterFrontmatter(root: Root, node: RootContent) {
+  const at = root.children.findIndex((child) => child.type !== "yaml")
+  root.children.splice(at < 0 ? root.children.length : at, 0, node as never)
+}
+
 const isSlot = (kind: string) => kind === "listItem" || kind === "tableRow"
 
 // 흐름 콘텐츠를 넣을 수 있는 자리. 목록 항목이나 표 행이면 그 목록이나 표 바깥이다.
@@ -549,14 +564,19 @@ function keepDirective(diff: WordDiff, [start, end]: [number, number]): WordDiff
   }
 }
 
-// 트리에 diff를 표시한다. base가 null이면 새 페이지라 모든 블록이 새 블록이다. 바뀐 곳이 있으면 true.
+// 트리에 diff를 표시한다. base가 null이면 새 페이지라, 블록마다 칠하면 본문 전체가 덮이므로 맨 위에
+// 안내 하나만 둔다. 바뀐 곳이 있으면 true.
 export function markDiff(
   root: Root,
   source: string,
   base: { root: Root; source: string } | null,
   embedChanged?: (target: string) => boolean,
 ): boolean {
-  const before = base ? extractBlocks(base.root, base.source) : []
+  if (!base) {
+    insertAfterFrontmatter(root, newPageNotice())
+    return true
+  }
+  const before = extractBlocks(base.root, base.source)
   const ops = alignBlocks(before, extractBlocks(root, source), embedChanged)
   for (const op of ops) {
     if (op.type === "changed") {
@@ -822,6 +842,8 @@ const CSS = `
   box-shadow: 0 0 0 var(--wiki-diff-gutter) var(--wiki-diff-add-tint);
 }
 .wiki-diff-changed:not(li, tr)::before { background: var(--wiki-diff-dashed); }
+div.wiki-diff-new-page { margin: 1rem 0 1.5rem; color: var(--darkgray); font-size: 0.9em; }
+div.wiki-diff-new-page::after { content: "새 페이지. 기준에 없던 페이지라 블록마다 표시하지 않는다."; }
 div.wiki-diff-removed {
   margin: 1.5rem 0;
   background: var(--wiki-diff-del-tint);
@@ -1041,7 +1063,13 @@ const SCRIPT = `(() => {
   }
   const readOnly = () => read(ONLY) === "1"
 
+  // 이 페이지의 새 페이지 안내. 끼워 넣은(transclude) 다른 페이지의 안내는 세지 않는다.
+  const newPage = (root) =>
+    [...root.querySelectorAll(".${CLASS.newPage}")].some((el) => !el.closest(".transclude"))
+
   function markQuiet(root) {
+    // 새 페이지는 전체가 바뀐 곳이라 숨기지 않는다
+    if (newPage(root)) return
     const keep = new Set()
     for (const mark of root.querySelectorAll(MARK)) {
       for (let el = mark; el && el !== root; el = el.parentElement) keep.add(el)
@@ -1126,7 +1154,7 @@ const SCRIPT = `(() => {
     const at = marks.indexOf(current)
     const page = pages.indexOf(slug())
     bar.querySelector("[data-count]").textContent =
-      marks.length === 0 ? "바뀐 블록 없음" : at < 0 ? "변경 " + marks.length + "개" : "변경 " + (at + 1) + " / " + marks.length
+      marks.length === 0 ? "바뀐 블록 없음" : newPage(article()) ? "새 페이지" : at < 0 ? "변경 " + marks.length + "개" : "변경 " + (at + 1) + " / " + marks.length
     bar.querySelector("[data-page]").textContent =
       page < 0 ? "페이지 " + pages.length + "개" : "페이지 " + (page + 1) + " / " + pages.length
     bar.querySelector("[data-only]").setAttribute("aria-checked", String(readOnly()))
@@ -1235,11 +1263,8 @@ const WikiDiff: QuartzTransformerPlugin = () => {
               }
               markDiff(tree, source, base, embedChanged)
             }
-            if (file.data.slug === "index") {
-              const at = tree.children.findIndex((node) => node.type !== "yaml")
-              const node = banner(snap, changesOf(ctx, snap))
-              tree.children.splice(at < 0 ? tree.children.length : at, 0, node as never)
-            }
+            if (file.data.slug === "index")
+              insertAfterFrontmatter(tree, banner(snap, changesOf(ctx, snap)))
           }
         },
       ]
