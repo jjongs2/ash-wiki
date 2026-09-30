@@ -21,7 +21,7 @@ verified: 2026-09-29
 
 ## SECDED
 
-해밍 부호에 패리티 비트를 하나 더하면, 비트 하나의 오류를 고치고 비트 두 개의 오류를 찾아내는 **SECDED**(Single Error Correction, Double Error Detection) 부호가 되고 최소 해밍 거리가 4로 는다.[@nxp-an13566-2022][@microchip-coreedac-2025]
+해밍 부호에 패리티 비트를 하나 더하면, 비트 하나의 오류를 고치고 비트 두 개의 오류를 찾아내는 **SECDED**(Single Error Correction, Double Error Detection) 부호가 되고 최소 해밍 거리가 4로 는다.[@nxp-an13566-2022][@microchip-coreedac-2025] 더하는 패리티 비트는 해밍 부호의 데이터 비트와 패리티 비트를 모두 짝수 패리티로 검사한다.[@hamming-error-detecting-1950]
 
 Microchip CoreEDAC 사용자 가이드에 따르면 고치는 오류가 많을수록 중복 비트가 더 필요하고, 부호기와 복호기가 복잡해져 지연이 늘어난다.[@microchip-coreedac-2025]
 
@@ -36,3 +36,5 @@ TI Hercules MCU는 SRAM과 플래시의 ECC를 실행 중의 하드웨어 안전
 ## ARQ와의 차이
 
 오류 검출 부호를 붙여 보내고 받는 쪽이 요청하면 다시 보내는 [[automatic-repeat-request|ARQ]]와 달리, ECC는 되돌려 보낼 통로 없이 오류를 고친다.[@iec-60050-702-05-20-2016][@itu-t-x-141-1988] Xilinx XAPP645에 따르면 위성 수신기 같은 통신 응용에서는 데이터를 다시 보내기보다 오류를 고치는 편이 성능과 비용에서 효율적이다.[@xilinx-xapp645-2006]
+
+RFC 3366에 따르면 링크 ARQ에서는 프레임을 다시 보낼 때마다 채널 접근, 전송, 전파, 프레임 처리 같은 단계가 되풀이되어 패킷의 지연이 늘어난다. 한편 FEC와 인터리빙은 프레임 처리에 상당한 지연을 더하고, 지터를 더하기도 한다.[@ietf-rfc-3366-2002]
