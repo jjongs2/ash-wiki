@@ -28,7 +28,7 @@ Avnu Alliance는 네트워크·IT 인프라, 반도체, 장치 제조사가 모�
 
 ## SR 클래스
 
-IEEE 802.1Q는 SRP로 시간에 민감한 스트림에 대역폭을 예약할 수 있는 트래픽 클래스를 SR(Stream Reservation) 클래스라 한다. 기본 설정은 SR 클래스 A와 B 두 개를 전제하며, 클래스 A는 우선순위 3, 클래스 B는 우선순위 2를 쓴다. 권장 매핑에서 SR 클래스의 우선순위는 credit-based shaper를 쓰는 트래픽 클래스에 매핑되고, 이 트래픽 클래스는 strict priority를 쓰는 트래픽 클래스보다 우선순위가 높다. credit-based shaper는 SRP로 예약된 대역폭인 operIdleSlope를 idleSlope로 써서 내보내는 트래픽을 조형한다. talker에서 스트림의 트래픽 명세를 재는 구간인 class measurement interval의 기본값은 클래스 A가 125 µs, 클래스 B가 250 µs다.[@ieee-802-1q-2022]
+IEEE 802.1Q는 SRP로 시간에 민감한 스트림에 대역폭을 예약할 수 있는 트래픽 클래스를 SR(Stream Reservation) 클래스라 한다. 기본 설정은 SR 클래스 A와 B 두 개를 전제하며, 클래스 A는 우선순위 3, 클래스 B는 우선순위 2를 쓴다. 권장 매핑에서 SR 클래스의 우선순위는 credit-based shaper를 쓰는 트래픽 클래스에 매핑되고, 이 트래픽 클래스는 strict priority를 쓰는 트래픽 클래스보다 우선순위가 높다. credit-based shaper는 SRP로 예약된 대역폭인 operIdleSlope를 idleSlope로 써서 내보내는 트래픽을 셰이핑한다. talker에서 스트림의 트래픽 명세를 재는 구간인 class measurement interval의 기본값은 클래스 A가 125 µs, 클래스 B가 250 µs다.[@ieee-802-1q-2022]
 
 IEEE 802.1BA-2021은 talker에서 listener까지의 최악 지연 목표를 SR 클래스 A는 2 ms, 클래스 B는 50 ms로 둔다. 100 Mbit/s 이더넷에서 최대 프레임 크기가 1522바이트면 클래스 A의 2 ms는 7홉까지 맞출 수 있다.[@ieee-802-1ba-2021]
 

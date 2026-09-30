@@ -34,7 +34,7 @@ TI CPSW의 MAC merge 계층은 express 큐에 보낼 프레임이 있으면 pree
 
 ADIN3310/ADIN6310 데이터시트에 따르면 preemptable 프레임의 조각은 mCRC로 끝난다. mCRC가 기대한 [[cyclic-redundancy-check|CRC]]와 같으면 그 조각이 프레임의 끝이고, 기대한 CRC의 아래 16비트를 XOR한 값과 같으면 조각이 더 이어진다. ADIN6310은 마지막이 아닌 조각의 최소 크기를 64, 128, 192, 256바이트 가운데 하나로 설정할 수 있다.[@adi-adin3310-adin6310-2025]
 
-IEEE 802.3은 preemptable 프레임이 적어도 60바이트 나갔고 프레임 CRC를 포함해 64바이트 이상 남았을 때만 선점하게 해, 조각이 64바이트보다 작아지지 않게 한다. 받는 쪽의 MAC Merge 부계층은 조각을 pMAC에 넘길 때 SMD 자리에 SFD를 넣고, 마지막이 아닌 조각의 mCRC는 넘기지 않으며, 이어지는 조각은 조각 번호 뒤의 데이터부터 넘긴다. 그래서 pMAC은 다시 합쳐진 프레임 하나를 받는다.[@ieee-802-3-2022]
+preemptable 프레임을 이미 $s$바이트 보냈고 프레임 CRC를 포함해 $r$바이트가 남았을 때, IEEE 802.3은 $s \ge 60$이고 $r \ge 64$일 때만 선점하게 해 조각이 64바이트보다 작아지지 않게 한다. 받는 쪽의 MAC Merge 부계층은 조각을 pMAC에 넘길 때 SMD 자리에 SFD를 넣고, 마지막이 아닌 조각의 mCRC는 넘기지 않으며, 이어지는 조각은 조각 번호 뒤의 데이터부터 넘긴다. 그래서 pMAC은 다시 합쳐진 프레임 하나를 받는다.[@ieee-802-3-2022]
 
 ![[diagrams/frame-preemption-fragments.svg]]
 

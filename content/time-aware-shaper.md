@@ -32,7 +32,7 @@ TAS는 정해진 시각에 한 트래픽 클래스나 그 묶음만 네트워크
 
 guard band는 시간이 중요한 큐의 창 앞에 두어, 앞 창에서 보내던 프레임이 그 창을 침범하지 않게 하는 구간이다.[@ti-processor-sdk-linux-am62x-est-2026][@microchip-an1185-2025] 그 길이는 끼어들 수 있는 가장 긴 프레임 하나를 보내는 시간을 기준으로 잡는다.[@ti-processor-sdk-linux-am62x-est-2026][@microchip-pd-ies008x-tsn-2025]
 
-ADIN3310/ADIN6310 데이터시트에 따르면 guard band가 켜져 있는 동안 송신기는 다음 프레임을 가져오지 않는다. guard band의 길이를 가장 긴 프레임에 맞춰야 하므로, 큰 프레임이 있는 네트워크에서 guard band는 대역폭을 비효율적으로 쓰게 한다.[@adi-adin3310-adin6310-2025]
+ADIN3310/ADIN6310은 guard band가 켜져 있는 동안 다음 프레임을 가져오지 않는다. ADIN3310/ADIN6310 데이터시트에 따르면 guard band의 길이를 가장 긴 프레임에 맞춰야 하므로, 큰 프레임이 있는 네트워크에서 guard band는 대역폭을 비효율적으로 쓰게 한다.[@adi-adin3310-adin6310-2025]
 
 Microchip AN1185에 따르면 guard band 시간 $t_\mathrm{gb}$는 큐마다 설정한 `max-sdu`(바이트)와 링크 속도 $\mathrm{portTransmitRate}$로 아래와 같이 계산한다.[@microchip-an1185-2025]
 

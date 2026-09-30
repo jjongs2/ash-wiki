@@ -23,7 +23,7 @@ gPTP는 IEEE 1588-2019가 정하는 [[ptp|PTP]]에 바탕을 두며, 특정한 �
 - **PTP End Instance**: PTP 포트가 하나인 PTP Instance. Grandmaster PTP Instance가 아니면 시각 정보를 받는 쪽이다.
 - **PTP Relay Instance**: Grandmaster PTP Instance가 아니면 Grandmaster PTP Instance에서 온 시각 정보를 받아, LAN과 자기 안에서 걸린 지연을 보정한 뒤 다시 내보낸다.[@ieee-802-1as-2025]
 
-gPTP 도메인의 모든 PTP Instance가 같은 Grandmaster PTP Instance를 따르도록 고르는 방법은 BTCA(best timeTransmitter clock algorithm)다. BTCA는 IEEE 1588-2019의 것과 거의 같되 조금 단순하다.[@ieee-802-1as-2025] IEEE 802.1AS-2020은 이 알고리즘을 BMCA(best master clock algorithm)라 불렀고, 2025년판은 BTCA라 부른다.[@ieee-802-1as-2025][@ieee-802-1as-2020]
+gPTP 도메인의 모든 PTP Instance가 같은 Grandmaster PTP Instance를 따르도록 고르는 방법은 BTCA(best timeTransmitter clock algorithm)다.[@ieee-802-1as-2025] IEEE 802.1AS-2020은 이 알고리즘을 BMCA(best master clock algorithm)라 불렀고, 2025년판은 BTCA라 부른다.[@ieee-802-1as-2025][@ieee-802-1as-2020]
 
 gPTP는 매체에 상관없는 부분과 매체마다 다른 부분으로 나누어 정한다. 다루는 매체는 전이중 점대점 링크의 [[ieee-802-3|IEEE 802.3]] 이더넷, IEEE 802.3 EPON(Ethernet Passive Optical Network), IEEE 802.11 무선, 일반 CSN(Coordinated Shared Network)이다.[@ieee-802-1as-2025]
 

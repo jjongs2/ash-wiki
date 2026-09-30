@@ -23,7 +23,7 @@ IEEE 802.1Q-2005는 태그의 TCI에서 PCP와 VID 사이의 1비트를 CFI(Cano
 
 ![[diagrams/vlan-tag-fields.svg]]
 
-IEEE 802.3-2022는 태그 없는 basic frame의 최대 길이를 1518옥텟으로, VLAN 태그를 넣은 Q-tagged frame의 최대 길이를 1522옥텟으로 정한다.[@ieee-802-3-2022] 이더넷 MAC(Medium Access Control)과 스위치 칩은 태그 없는 프레임은 1518바이트, VLAN 태그가 있는 프레임은 1522바이트까지 정상 길이로 받는다.[@microchip-ksz9477s-2019][@st-rm0008-2021]
+IEEE 802.3-2022는 태그 없는 basic frame의 최대 길이를 1518옥텟으로, VLAN 태그를 넣은 Q-tagged frame의 최대 길이를 1522옥텟으로 정한다.[@ieee-802-3-2022] 이더넷 MAC(Medium Access Control)과 스위치 칩은 태그 없는 프레임은 1518옥텟, VLAN 태그가 있는 프레임은 1522옥텟까지 정상 길이로 받는다.[@microchip-ksz9477s-2019][@st-rm0008-2021]
 
 IEEE 802.1ad-2005는 서비스 제공자가 IEEE 802.1Q의 구조와 프로토콜로 여러 고객에게 서로 분리된 LAN에 해당하는 서비스를 제공하게 하는 provider bridge를 정했다.[@ieee-802-1ad-2005] S-VLAN(Service VLAN) 태그는 EtherType `0x88A8`을 쓴다.[@ieee-802-1q-types-yang-2022][@ieee-ra-ethertype-2024] 이 값은 IEEE 802.1ad가 처음 들였고, IEEE 802.1Q-2011에 합쳐졌다.[@ieee-802-1q-types-yang-2022] IEEE 802.1Q-2022에서 provider bridge 네트워크는 C-VLAN 태그와 S-VLAN 태그를 함께 단 프레임을 코어로 나를 수 있고, 이때 S-VLAN 태그 뒤의 데이터는 C-VLAN 태그로 시작한다. C-VLAN 태그를 코어로 나르지 않는 provider bridge 네트워크도 있다.[@ieee-802-1q-2022] KSZ9477S는 서비스 제공자가 고객의 태그 위에 둘째 태그를 덧붙이는 double tagging(Q-in-Q)을 지원하며, 바깥 태그는 출발지 주소 바로 뒤에 오고 TPID가 안쪽 태그와 다르다.[@microchip-ksz9477s-2019]
 
