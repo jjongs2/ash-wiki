@@ -86,6 +86,20 @@ npm run check:content
 
 `urldate`는 접근일입니다. URL은 `http://`나 `https://`로 시작합니다.
 
+동시에 열린 PR끼리 같은 키의 엔트리를 따로 더하기도 합니다. bib 엔트리를 더한 브랜치는 push 직전에, 열린 PR 가운데 같은 키의 `bib/<키>.bib`을 더한 것이 있는지 봅니다. 아래 명령은 이 브랜치가 더한 bib 파일마다 그 파일을 건드리는 열린 PR을 `<파일> #<PR>`로 찍습니다. 자기 PR은 빼고 봅니다.
+
+```sh
+git fetch origin
+join <(git diff --name-only --diff-filter=A origin/main...HEAD -- bib/ | sort) \
+  <(gh pr list --state open --limit 200 --json number,files \
+      --jq '.[] | .number as $n | .files[] | "\(.path) #\($n)"' | sort)
+```
+
+찍힌 PR이 있으면 두 파일의 `url`만 비교합니다. 상대 파일은 `git fetch origin pull/<PR>/head`와 `git show FETCH_HEAD:bib/<키>.bib`로 봅니다. 제목 표기, `urldate`, 그 밖의 필드 차이는 판단에 쓰지 않습니다.
+
+- `url`이 같으면 같은 문서입니다. 내 파일을 상대 PR의 파일로 글자 그대로 덮어씁니다. 두 브랜치가 같은 내용의 파일을 더하면 git이 충돌 없이 합칩니다.
+- `url`이 다르면 다른 문서입니다. 내 키를 바꾸고, 파일 이름과 본문의 인용을 함께 고칩니다.
+
 ## 용어
 
 - 원어가 실무에서 자연스러운지 먼저 봅니다. 그다음 정착한 한국어, 정착한 음차 순으로 고릅니다. `리뷰`
