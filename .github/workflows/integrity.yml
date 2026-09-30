@@ -1,8 +1,12 @@
-# PR마다 콘텐츠 검사기와 테스트를 돌린다. 룰셋(.github/rulesets/main.json)이 이 job의 통과를 요구한다.
+# PR마다, 그리고 main에 push될 때 콘텐츠 검사기와 테스트를 돌린다. 룰셋(.github/rulesets/main.json)이
+# PR에서 이 job의 통과를 요구한다. 룰셋은 브랜치 최신화를 요구하지 않으므로, PR 여럿을 합친 뒤에야
+# 생기는 위반은 main의 push 실행이 잡는다.
 name: integrity
 
 on:
   pull_request:
+  push:
+    branches: [main]
 
 jobs:
   integrity:
