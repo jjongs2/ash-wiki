@@ -358,10 +358,22 @@ export const emphasis: SourceCheck = (tree) => {
 }
 
 // 문단과 목록 항목의 끝이 종결 어미 "다"인데 마침표가 없으면 위반이다. 명사구로 끝나는 항목은
-// 문장이 아니므로 보지 않는다. 끝에 붙은 인용은 떼고 본다(`…다.[@키]`는 마침표로 끝난다).
+// 문장이 아니므로 보지 않는다. 끝에 붙은 인용과 괄호 풀이는 떼고, 위키링크는 표시 이름만 남겨
+// 더 떼어 낼 것이 없을 때까지 벗긴다(`…[[x|맞춘다]][@키]`는 "맞춘다"로 끝나고, `…다.[@키]`는 마침표로 끝난다).
 // remark-parse는 GFM 표를 문단으로 읽으므로, 구분 줄(`| --- |`)이 있는 문단은 표로 보고 건너뛴다.
 const trailingCitations = /(?:\s*\[@[^[\]\n]*\])+\s*$/
+const trailingParenthetical = /\([^()\n]*\)\s*$/
+const trailingWikilink = /\[\[(?:[^[\]|\n]*\|)?([^[\]\n]*)\]\]\s*$/
 const tableDelimiterRow = /^\s*\|?\s*:?-+:?\s*(?:\|\s*:?-+:?\s*)*\|?\s*$/m
+
+function sentenceEnd(text: string): string {
+  const next = text
+    .replace(trailingCitations, "")
+    .replace(trailingParenthetical, "")
+    .replace(trailingWikilink, "$1")
+    .trimEnd()
+  return next === text ? text : sentenceEnd(next)
+}
 
 export const period: SourceCheck = (tree) => {
   const violations: Violation[] = []
@@ -370,8 +382,7 @@ export const period: SourceCheck = (tree) => {
       const { start, end } = node.position!
       const masked = page.masked.slice(start.offset, end.offset)
       if (tableDelimiterRow.test(masked)) return
-      const text = masked.replace(trailingCitations, "")
-      if (!text.trimEnd().endsWith("다")) return
+      if (!sentenceEnd(masked.trimEnd()).endsWith("다")) return
       const block = parent?.type === "listItem" ? "목록 항목" : "문단"
       violations.push({
         file: page.file,

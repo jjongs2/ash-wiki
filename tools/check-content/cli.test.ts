@@ -122,6 +122,9 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-period.md:17",
         "content/bad-period.md:22",
         "content/bad-period.md:27",
+        "content/bad-period.md:31",
+        "content/bad-period.md:32",
+        "content/bad-period.md:34",
       ],
       svg: [
         "content/bad-diagram.svg:1",
