@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 9 580 496.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 도메인 아키텍처 -->
+  <text x="140" y="30" text-anchor="middle" fill="#727981">도메인 아키텍처</text>
+  <rect x="20.75" y="50.75" width="238.5" height="398.5" rx="48" stroke="#727981" stroke-width="1.5" />
+  <g stroke-width="1.5">
+    <path d="M110 86 V170" stroke="#336fb8" />
+    <path d="M170 414 V404 H34 V184 H48" stroke="#336fb8" />
+    <path d="M216 86 V170" stroke="#b0540d" />
+    <path d="M110 414 V396 H252 V184 H232" stroke="#b0540d" />
+    <path d="M64 414 V330" stroke="#337b47" />
+    <path d="M170 86 V110 H240 V214 H40 V316 H48" stroke="#337b47" />
+    <path d="M216 414 V330" stroke="#bb464d" />
+    <path d="M64 86 V104 H28 V286 H246 V316 H232" stroke="#bb464d" />
+    <path d="M140 236 V229 H90 V198 M140 229 H190 V198 M140 264 V271 H90 V302 M140 271 H190 V302" stroke="#727981" />
+  </g>
+  <rect x="47.75" y="66.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="64" y="80" text-anchor="middle" font-size="11" fill="#727981">ECU</text>
+  <rect x="47.75" y="414.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="64" y="428" text-anchor="middle" font-size="11" fill="#727981">ECU</text>
+  <rect x="93.75" y="66.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="110" y="80" text-anchor="middle" font-size="11" fill="#727981">ECU</text>
+  <rect x="93.75" y="414.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="110" y="428" text-anchor="middle" font-size="11" fill="#727981">ECU</text>
+  <rect x="153.75" y="66.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="170" y="80" text-anchor="middle" font-size="11" fill="#727981">ECU</text>
+  <rect x="153.75" y="414.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="170" y="428" text-anchor="middle" font-size="11" fill="#727981">ECU</text>
+  <rect x="199.75" y="66.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="216" y="80" text-anchor="middle" font-size="11" fill="#727981">ECU</text>
+  <rect x="199.75" y="414.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="216" y="428" text-anchor="middle" font-size="11" fill="#727981">ECU</text>
+  <rect x="92" y="236" width="96" height="28" fill="#825da9" />
+  <text x="140" y="254" text-anchor="middle" font-size="12" fill="#f8fafd">중앙 게이트웨이</text>
+  <rect x="48" y="170" width="84" height="28" fill="#336fb8" />
+  <text x="90" y="188" text-anchor="middle" font-size="12" fill="#f8fafd">파워트레인</text>
+  <rect x="148" y="170" width="84" height="28" fill="#b0540d" />
+  <text x="190" y="188" text-anchor="middle" font-size="12" fill="#f8fafd">섀시</text>
+  <rect x="48" y="302" width="84" height="28" fill="#337b47" />
+  <text x="90" y="320" text-anchor="middle" font-size="12" fill="#f8fafd">바디</text>
+  <rect x="148" y="302" width="84" height="28" fill="#bb464d" />
+  <text x="190" y="320" text-anchor="middle" font-size="12" fill="#f8fafd">인포테인먼트</text>
+  <g text-anchor="middle" font-size="12" fill="#727981">
+    <text x="140" y="476">ECU를 기능 도메인으로 묶는다</text>
+    <text x="140" y="494">이름을 적은 색 상자: 도메인 제어기</text>
+  </g>
+
+  <!-- 존 아키텍처 -->
+  <text x="460" y="30" text-anchor="middle" fill="#727981">존 아키텍처</text>
+  <rect x="340.75" y="50.75" width="238.5" height="398.5" rx="48" stroke="#727981" stroke-width="1.5" />
+  <g stroke="#727981" stroke-width="1" stroke-dasharray="4 3">
+    <line x1="460" y1="52" x2="460" y2="448" />
+    <line x1="342" y1="250" x2="578" y2="250" />
+  </g>
+  <g stroke="#727981" stroke-width="3">
+    <line x1="408" y1="163" x2="460" y2="250" />
+    <line x1="512" y1="163" x2="460" y2="250" />
+    <line x1="408" y1="337" x2="460" y2="250" />
+    <line x1="512" y1="337" x2="460" y2="250" />
+  </g>
+  <g stroke="#727981" stroke-width="1.5">
+    <line x1="384" y1="86" x2="384" y2="150" />
+    <line x1="384" y1="414" x2="384" y2="350" />
+    <line x1="430" y1="86" x2="430" y2="150" />
+    <line x1="430" y1="414" x2="430" y2="350" />
+    <line x1="490" y1="86" x2="490" y2="150" />
+    <line x1="490" y1="414" x2="490" y2="350" />
+    <line x1="536" y1="86" x2="536" y2="150" />
+    <line x1="536" y1="414" x2="536" y2="350" />
+    <line x1="375" y1="200" x2="375" y2="176" />
+    <line x1="545" y1="200" x2="545" y2="176" />
+    <line x1="373" y1="300" x2="373" y2="324" />
+    <line x1="547" y1="300" x2="547" y2="324" />
+  </g>
+  <rect x="367.75" y="66.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="384" y="80" text-anchor="middle" font-size="11" fill="#727981">센서</text>
+  <rect x="367.75" y="414.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="384" y="428" text-anchor="middle" font-size="11" fill="#727981">ECU</text>
+  <rect x="413.75" y="66.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="430" y="80" text-anchor="middle" font-size="11" fill="#727981">ECU</text>
+  <rect x="413.75" y="414.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="430" y="428" text-anchor="middle" font-size="11" fill="#727981">센서</text>
+  <rect x="473.75" y="66.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="490" y="80" text-anchor="middle" font-size="11" fill="#727981">ECU</text>
+  <rect x="473.75" y="414.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="490" y="428" text-anchor="middle" font-size="11" fill="#727981">센서</text>
+  <rect x="519.75" y="66.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="536" y="80" text-anchor="middle" font-size="11" fill="#727981">센서</text>
+  <rect x="519.75" y="414.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="536" y="428" text-anchor="middle" font-size="11" fill="#727981">ECU</text>
+  <rect x="346.75" y="200.75" width="56.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="375" y="214" text-anchor="middle" font-size="11" fill="#727981">액추에이터</text>
+  <rect x="516.75" y="200.75" width="56.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="545" y="214" text-anchor="middle" font-size="11" fill="#727981">액추에이터</text>
+  <rect x="356.75" y="280.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="373" y="294" text-anchor="middle" font-size="11" fill="#727981">센서</text>
+  <rect x="530.75" y="280.75" width="32.5" height="18.5" stroke="#727981" stroke-width="1.5" />
+  <text x="547" y="294" text-anchor="middle" font-size="11" fill="#727981">센서</text>
+  <rect x="370" y="150" width="76" height="26" fill="#337b47" />
+  <text x="408" y="167" text-anchor="middle" font-size="12" fill="#f8fafd">존 제어기</text>
+  <rect x="474" y="150" width="76" height="26" fill="#337b47" />
+  <text x="512" y="167" text-anchor="middle" font-size="12" fill="#f8fafd">존 제어기</text>
+  <rect x="370" y="324" width="76" height="26" fill="#337b47" />
+  <text x="408" y="341" text-anchor="middle" font-size="12" fill="#f8fafd">존 제어기</text>
+  <rect x="474" y="324" width="76" height="26" fill="#337b47" />
+  <text x="512" y="341" text-anchor="middle" font-size="12" fill="#f8fafd">존 제어기</text>
+  <rect x="415" y="236" width="90" height="28" fill="#825da9" />
+  <text x="460" y="254" text-anchor="middle" font-size="12" fill="#f8fafd">중앙 컴퓨터</text>
+  <g text-anchor="middle" font-size="12" fill="#727981">
+    <text x="460" y="476">ECU를 차량 안의 위치로 묶는다</text>
+    <text x="460" y="494">점선: 구역 · 굵은 선: 이더넷 백본</text>
+  </g>
+</svg>

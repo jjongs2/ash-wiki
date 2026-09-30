@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 -7 646 308" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+  <!-- 선점형 -->
+  <text x="20" y="24" fill="#727981">선점형</text>
+  <g font-size="12" fill="#727981">
+    <text x="20" y="68">높은 우선순위</text>
+    <text x="20" y="100">낮은 우선순위</text>
+  </g>
+  <line x1="260" y1="46" x2="260" y2="112" stroke="#727981" stroke-width="1" stroke-dasharray="3 3" />
+  <text x="260" y="40" text-anchor="middle" font-size="12" fill="#727981">높은 우선순위 태스크 준비</text>
+  <rect x="260" y="50" width="140" height="26" rx="3" fill="#336fb8" />
+  <text x="330" y="68" text-anchor="middle" font-size="12" fill="#f8fafd">실행</text>
+  <rect x="150" y="82" width="110" height="26" rx="3" fill="#b0540d" />
+  <text x="205" y="100" text-anchor="middle" font-size="12" fill="#f8fafd">실행</text>
+  <rect x="260.75" y="82.75" width="138.5" height="24.5" rx="3" stroke="#727981" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="330" y="100" text-anchor="middle" font-size="12" fill="#727981">선점됨</text>
+  <rect x="400" y="82" width="120" height="26" rx="3" fill="#b0540d" />
+  <text x="460" y="100" text-anchor="middle" font-size="12" fill="#f8fafd">이어서 실행</text>
+  <line x1="150" y1="112" x2="598" y2="112" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="606" y="116" font-size="12" fill="#727981">시간</text>
+  <g font-size="12" fill="#727981" text-anchor="middle">
+    <text x="260" y="130">context switch</text>
+    <text x="400" y="130">context switch</text>
+  </g>
+
+  <!-- 비선점 -->
+  <text x="20" y="174" fill="#727981">비선점</text>
+  <g font-size="12" fill="#727981">
+    <text x="20" y="218">높은 우선순위</text>
+    <text x="20" y="250">낮은 우선순위</text>
+  </g>
+  <line x1="260" y1="196" x2="260" y2="262" stroke="#727981" stroke-width="1" stroke-dasharray="3 3" />
+  <text x="260" y="190" text-anchor="middle" font-size="12" fill="#727981">높은 우선순위 태스크 준비</text>
+  <rect x="260.75" y="200.75" width="138.5" height="24.5" rx="3" stroke="#727981" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="330" y="218" text-anchor="middle" font-size="12" fill="#727981">대기</text>
+  <rect x="400" y="200" width="140" height="26" rx="3" fill="#336fb8" />
+  <text x="470" y="218" text-anchor="middle" font-size="12" fill="#f8fafd">실행</text>
+  <rect x="150" y="232" width="250" height="26" rx="3" fill="#b0540d" />
+  <text x="275" y="250" text-anchor="middle" font-size="12" fill="#f8fafd">실행</text>
+  <line x1="150" y1="262" x2="598" y2="262" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="606" y="266" font-size="12" fill="#727981">시간</text>
+  <text x="400" y="280" text-anchor="middle" font-size="12" fill="#727981">태스크 종료</text>
+</svg>

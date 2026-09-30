@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="29.5 10 804 268" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+  <!-- 포트 -->
+  <text x="140" y="46" text-anchor="end" fill="#727981">포트</text>
+  <rect x="174" y="30" width="48" height="24" fill="#336fb8" />
+  <text x="198" y="46" text-anchor="middle" fill="#f8fafd">A</text>
+  <rect x="222" y="30" width="144" height="24" fill="#b0540d" />
+  <text x="294" y="46" text-anchor="middle" fill="#f8fafd">best-effort</text>
+  <rect x="366" y="30" width="48" height="24" fill="#336fb8" />
+  <text x="390" y="46" text-anchor="middle" fill="#f8fafd">B</text>
+  <rect x="414" y="30" width="240" height="24" fill="#b0540d" />
+  <text x="534" y="46" text-anchor="middle" fill="#f8fafd">best-effort</text>
+  <rect x="654" y="30" width="24" height="24" fill="#336fb8" />
+  <text x="666" y="46" text-anchor="middle" fill="#f8fafd">C</text>
+  <rect x="678" y="30" width="72" height="24" fill="#b0540d" />
+  <text x="714" y="46" text-anchor="middle" fill="#f8fafd">best-effort</text>
+
+  <!-- CBS 큐에서 기다리는 프레임 -->
+  <text x="140" y="88" text-anchor="end" fill="#727981">CBS 큐에서 기다림</text>
+  <line x1="150" y1="94" x2="750" y2="94" stroke="#727981" stroke-width="1.5" />
+  <rect x="198" y="72" width="168" height="22" fill="#336fb8" />
+  <text x="282" y="87" text-anchor="middle" fill="#f8fafd">B</text>
+  <rect x="390" y="72" width="264" height="22" fill="#336fb8" />
+  <text x="522" y="87" text-anchor="middle" fill="#f8fafd">C</text>
+
+  <!-- credit가 0에 이르는 때 B가 나간다 -->
+  <line x1="366" y1="58" x2="366" y2="190" stroke="#727981" stroke-width="1" stroke-dasharray="3 3" />
+
+  <!-- credit -->
+  <line x1="150" y1="258" x2="150" y2="122" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="140" y="140" text-anchor="end" fill="#727981">credit</text>
+  <text x="140" y="194" text-anchor="end" fill="#727981">0</text>
+  <line x1="150" y1="190" x2="766" y2="190" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="772" y="194" fill="#727981">시간</text>
+  <line x1="150" y1="136" x2="766" y2="136" stroke="#727981" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="772" y="140" fill="#727981">hiCredit</text>
+  <polyline points="150,190 174,190 222,244 366,190 414,244 654,154 678,181 678,190 750,190" stroke="#336fb8" stroke-width="2" stroke-linejoin="round" />
+  <text x="400" y="210" fill="#727981">sendSlope</text>
+  <text x="560" y="228" fill="#727981">idleSlope</text>
+  <text x="684" y="176" fill="#727981">큐가 비어 0으로</text>
+</svg>

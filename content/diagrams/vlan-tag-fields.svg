@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 10 595.5 264" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 태그 -->
+  <rect x="150.75" y="20.75" width="178.5" height="34.5" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="240" y="43" text-anchor="middle" fill="#727981">C-VLAN 태그 · 4옥텟</text>
+
+  <!-- 태그가 EtherType과 TCI로 갈라진다 -->
+  <path d="M240 56 V72 M100 88 V72 H380 V88" stroke="#727981" stroke-width="1.5" />
+  <rect x="30" y="88" width="140" height="36" rx="4" fill="#825da9" />
+  <text x="100" y="111" text-anchor="middle" fill="#f8fafd">EtherType 0x8100</text>
+  <text x="100" y="142" text-anchor="middle" font-size="12" fill="#727981">2옥텟</text>
+  <rect x="310.75" y="88.75" width="138.5" height="34.5" rx="4" stroke="#727981" stroke-width="1.5" />
+  <text x="380" y="111" text-anchor="middle" fill="#727981">TCI</text>
+
+  <!-- TCI가 PCP, DEI, VID로 갈라진다 -->
+  <path d="M330 124 V248 M330 160 H348 M330 204 H348 M330 248 H348" stroke="#727981" stroke-width="1.5" />
+  <rect x="348" y="144" width="70" height="32" rx="4" fill="#336fb8" />
+  <text x="383" y="165" text-anchor="middle" fill="#f8fafd">PCP</text>
+  <rect x="348" y="188" width="70" height="32" rx="4" fill="#b0540d" />
+  <text x="383" y="209" text-anchor="middle" fill="#f8fafd">DEI</text>
+  <rect x="348" y="232" width="70" height="32" rx="4" fill="#337b47" />
+  <text x="383" y="253" text-anchor="middle" fill="#f8fafd">VID</text>
+
+  <!-- 필드의 뜻 -->
+  <g font-size="12" fill="#727981">
+    <text x="430" y="164">3비트 · 우선순위 0~7</text>
+    <text x="430" y="200">1비트 · drop_eligible</text>
+    <text x="430" y="216">2005년판에서는 이 자리가 CFI</text>
+    <text x="430" y="244">12비트 · VLAN 1~4094</text>
+    <text x="430" y="260">0과 4095는 VLAN 번호로 쓰지 않음</text>
+  </g>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 10 686 190" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+    <marker id="tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+  <!-- 실행을 시작해서 끝낼 때까지 -->
+  <g>
+    <rect x="150" y="30" width="100" height="28" rx="3" fill="#336fb8" />
+    <rect x="250" y="30" width="90" height="28" rx="3" fill="#bb464d" />
+    <rect x="340" y="30" width="80" height="28" rx="3" fill="#336fb8" />
+    <rect x="420" y="30" width="100" height="28" rx="3" fill="#337b47" />
+    <rect x="520" y="30" width="90" height="28" rx="3" fill="#336fb8" />
+  </g>
+  <g font-size="12" text-anchor="middle" fill="#f8fafd">
+    <text x="200" y="48">실행</text>
+    <text x="295" y="48">다른 개체</text>
+    <text x="380" y="48">실행</text>
+    <text x="470" y="48">외부 호출</text>
+    <text x="565" y="48">실행</text>
+  </g>
+  <line x1="150" y1="64" x2="638" y2="64" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="646" y="68" font-size="12" fill="#727981">시간</text>
+
+  <!-- 응답 시간 -->
+  <text x="20" y="100" fill="#727981">응답 시간</text>
+  <line x1="152" y1="96" x2="608" y2="96" stroke="#727981" stroke-width="1.5" marker-start="url(#tip)" marker-end="url(#tip)" />
+
+  <!-- gross: 끼어든 시간을 빼고 외부 호출은 넣는다 -->
+  <text x="20" y="136" fill="#727981">gross 실행 시간</text>
+  <rect x="150" y="118" width="100" height="24" rx="3" fill="#336fb8" />
+  <rect x="250.75" y="118.75" width="88.5" height="22.5" rx="3" stroke="#727981" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="340" y="118" width="80" height="24" rx="3" fill="#336fb8" />
+  <rect x="420" y="118" width="100" height="24" rx="3" fill="#337b47" />
+  <rect x="520" y="118" width="90" height="24" rx="3" fill="#336fb8" />
+
+  <!-- net: 끼어든 시간과 외부 호출을 모두 뺀다 -->
+  <text x="20" y="174" fill="#727981">net 실행 시간</text>
+  <rect x="150" y="156" width="100" height="24" rx="3" fill="#336fb8" />
+  <rect x="250.75" y="156.75" width="88.5" height="22.5" rx="3" stroke="#727981" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="340" y="156" width="80" height="24" rx="3" fill="#336fb8" />
+  <rect x="420.75" y="156.75" width="98.5" height="22.5" rx="3" stroke="#727981" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="520" y="156" width="90" height="24" rx="3" fill="#336fb8" />
+
+  <g font-size="12" text-anchor="middle">
+    <text x="295" y="135" fill="#727981">뺌</text>
+    <text x="470" y="135" fill="#f8fafd">넣음</text>
+    <text x="295" y="173" fill="#727981">뺌</text>
+    <text x="470" y="173" fill="#727981">뺌</text>
+  </g>
+</svg>

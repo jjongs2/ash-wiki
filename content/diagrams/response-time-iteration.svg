@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="2 42.5 762.5 170.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+    <marker id="tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+  <!-- 가로축: 모든 태스크가 함께 도착한 때부터의 시간. 반복식의 값이 첫 값 C_i에서 커지다가 고정점에서 멈춘다. -->
+
+  <!-- 시간 축 -->
+  <line x1="40" y1="120" x2="720" y2="120" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="728" y="124" font-size="12" fill="#727981">시간</text>
+  <line x1="40" y1="112" x2="40" y2="128" stroke="#727981" stroke-width="1.5" />
+  <text x="40" y="146" text-anchor="middle" font-size="12" fill="#727981">함께 도착</text>
+
+  <!-- 반복식의 값 -->
+  <g fill="#336fb8">
+    <circle cx="170" cy="120" r="6" />
+    <circle cx="300" cy="120" r="6" />
+    <circle cx="390" cy="120" r="6" />
+  </g>
+  <circle cx="500" cy="120" r="7" fill="#337b47" />
+  <g font-size="12" fill="#727981" text-anchor="middle">
+    <text x="170" y="146">첫 값 <tspan font-style="italic">C</tspan><tspan baseline-shift="sub" font-size="10" font-style="italic">i</tspan></text>
+    <text x="300" y="146">둘째 값</text>
+    <text x="390" y="146">셋째 값</text>
+    <text x="445" y="114">…</text>
+    <text x="500" y="146">고정점 <tspan font-style="italic">R</tspan><tspan baseline-shift="sub" font-size="10" font-style="italic">i</tspan></text>
+  </g>
+
+  <!-- 반복: 오른쪽 변을 계산해 새 값으로 삼는다 -->
+  <g stroke="#727981" stroke-width="1.5" marker-end="url(#tip)">
+    <path d="M174 110 Q 235 62, 296 110" />
+    <path d="M304 110 Q 345 76, 386 110" />
+    <path d="M497 110 C 474 72, 526 72, 503 110" />
+  </g>
+  <text x="235" y="68" text-anchor="middle" font-size="12" fill="#727981">오른쪽 변을 계산해 새 값으로</text>
+  <text x="500" y="68" text-anchor="middle" font-size="12" fill="#727981">값이 바뀌지 않음</text>
+
+  <!-- 마감 시한 -->
+  <line x1="640" y1="60" x2="640" y2="130" stroke="#bb464d" stroke-width="2" stroke-dasharray="5 4" />
+  <g font-size="12" fill="#727981" text-anchor="middle">
+    <text x="640" y="146">마감 시한 <tspan font-style="italic">D</tspan><tspan baseline-shift="sub" font-size="10" font-style="italic">i</tspan></text>
+    <text x="640" y="164">넘으면 스케줄할 수 없다고 판정</text>
+  </g>
+
+  <!-- 값은 반복마다 줄지 않는다 -->
+  <line x1="170" y1="178" x2="496" y2="178" stroke="#727981" stroke-width="1.5" marker-end="url(#tip)" />
+  <text x="333" y="196" text-anchor="middle" font-size="12" fill="#727981">반복마다 줄지 않음</text>
+</svg>

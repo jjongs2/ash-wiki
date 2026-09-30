@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="39.5 10 558 215" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+    </marker>
+  </defs>
+
+  <!-- 송신 쪽과 수신 쪽의 시그널 -->
+  <rect x="130" y="20" width="100" height="32" fill="#336fb8" />
+  <rect x="430" y="20" width="100" height="32" fill="#336fb8" />
+  <g text-anchor="middle" fill="#f8fafd">
+    <text x="180" y="41">시그널</text>
+    <text x="480" y="41">시그널</text>
+  </g>
+  <g stroke="#727981" stroke-width="1.5">
+    <path d="M180 52 L268 98" marker-end="url(#arrow)" />
+    <path d="M322 98 L480 54" marker-end="url(#arrow)" />
+  </g>
+  <g font-size="12" fill="#727981">
+    <text x="222" y="86" text-anchor="end">송신: I-PDU에 채워 넣기</text>
+    <text x="408" y="84">수신: I-PDU에서 꺼내기</text>
+  </g>
+
+  <!-- I-PDU -->
+  <text x="86" y="123" text-anchor="end" fill="#727981">I-PDU</text>
+  <g stroke="#727981" stroke-width="1" stroke-dasharray="2 3">
+    <line x1="160" y1="101" x2="160" y2="135" />
+    <line x1="220" y1="101" x2="220" y2="135" />
+    <line x1="280" y1="101" x2="280" y2="135" />
+    <line x1="340" y1="101" x2="340" y2="135" />
+    <line x1="400" y1="101" x2="400" y2="135" />
+    <line x1="460" y1="101" x2="460" y2="135" />
+    <line x1="520" y1="101" x2="520" y2="135" />
+  </g>
+  <rect x="236" y="100" width="130" height="36" fill="#336fb8" />
+  <text x="301" y="123" text-anchor="middle" fill="#f8fafd">시그널</text>
+  <rect x="100.75" y="100.75" width="478.5" height="34.5" stroke="#727981" stroke-width="1.5" />
+
+  <!-- 배치 설정값 -->
+  <g stroke="#727981" stroke-width="1.5">
+    <line x1="100" y1="144" x2="100" y2="164" />
+    <line x1="236" y1="140" x2="236" y2="164" />
+    <line x1="366" y1="140" x2="366" y2="164" />
+    <line x1="102" y1="156" x2="234" y2="156" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+    <line x1="238" y1="156" x2="364" y2="156" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="#727981">
+    <text x="168" y="180">ComBitPosition</text>
+    <text x="301" y="180">ComBitSize</text>
+  </g>
+  <text x="100" y="212" font-size="12" fill="#727981">시작 비트 위치, 비트 길이, 바이트 순서(ComSignalEndianness)는 시그널마다 설정값으로 미리 정한다.</text>
+</svg>
