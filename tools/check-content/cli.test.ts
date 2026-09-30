@@ -129,6 +129,24 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-diagram.svg:22",
         "content/bad-diagram.svg:24",
         "content/bad-diagram.svg:26",
+        "content/bad-shape.svg:4",
+        "content/bad-shape.svg:5",
+        "content/bad-shape.svg:7",
+        "content/bad-shape.svg:9",
+        "content/bad-shape.svg:11",
+        "content/bad-shape.svg:12",
+        "content/bad-shape.svg:14",
+        "content/bad-shape.svg:16",
+        "content/bad-shape.svg:17",
+        "content/bad-shape.svg:18",
+        "content/bad-shape.svg:20",
+        "content/bad-tokens.svg:1",
+        "content/bad-tokens.svg:4",
+        "content/bad-tokens.svg:6",
+        "content/bad-tokens.svg:8",
+        "content/bad-tokens.svg:10",
+        "content/bad-tokens.svg:12",
+        "content/bad-tokens.svg:14",
         "content/bad-font.svg:1",
         "content/bad-font.svg:4",
         "content/bad-font.svg:5",
@@ -162,6 +180,26 @@ describe("check-content CLI", { concurrency: false }, () => {
     const skewed = report.messages.get("svg")!.filter((m) => m.includes("skewed-diagram.svg"))
     assert.strictEqual(skewed.length, 1)
     assert.match(skewed[0], /viewBox="25 10 240 100"/)
+  })
+
+  test("도해 색 위반은 표의 그 행으로 고칠 꼴을 알려 준다", () => {
+    const report = runChecker("violation")
+    const tokens = report.messages.get("svg")!.filter((m) => m.includes("bad-tokens.svg"))
+    const at = (line: number) => tokens.filter((m) => m.includes(`bad-tokens.svg:${line}:`))
+    assert.match(at(6).join("\n"), /var\(--<이름>, <대체값>\)/)
+    assert.match(at(8).join("\n"), /--cyan/)
+    assert.match(at(10).join("\n"), /var\(--ink, #727981\)/)
+    assert.match(at(12).join("\n"), /var\(--blue, #336fb8\)/)
+    assert.strictEqual(at(1).length, 2)
+  })
+
+  test("점선이 폭과 짝이 맞지 않으면 물려받은 폭까지 알려 준다", () => {
+    const report = runChecker("violation")
+    const shape = report.messages.get("svg")!.filter((m) => m.includes("bad-shape.svg"))
+    const at = (line: number) => shape.filter((m) => m.includes(`bad-shape.svg:${line}:`))
+    assert.match(at(11).join("\n"), /3 3.*폭: 1\.5\)/)
+    assert.match(at(12).join("\n"), /5 4.*폭: 1\)/)
+    assert.match(at(14).join("\n"), /5 4.*폭: 1\)/)
   })
 
   test("KaTeX 렌더 오류는 문법 오류와 정의되지 않은 명령을 따로 알려 준다", () => {

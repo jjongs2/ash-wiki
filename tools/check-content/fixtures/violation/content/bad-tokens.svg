@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" style="--ink-fill: none">
+  <!-- 위반(svg): 루트에 fill이 없다. 루트 style의 선언은 fill이 아니라 SVG 안의 변수 선언이다. -->
+  <!-- 위반(svg): <style> 안의 변수 선언이다. librsvg는 선언을 무시하고 대체값으로 그린다. -->
+  <style>svg { --blue: #ff0000; }</style>
+  <!-- 위반(svg): 토큰 없이 쓴 hex다. -->
+  <rect x="10" y="10" width="40" height="80" fill="#336fb8" />
+  <!-- 위반(svg): 도해 팔레트 표에 없는 토큰 이름이다. -->
+  <rect x="60" y="10" width="40" height="80" fill="var(--cyan, #336fb8)" />
+  <!-- 위반(svg): 대체값이 표의 그 행과 다르다. -->
+  <rect x="110" y="10" width="40" height="80" stroke="var(--ink, #000000)" />
+  <!-- 위반(svg): 대체값이 없다. -->
+  <rect x="160" y="10" width="40" height="80" fill="var(--blue)" />
+  <!-- 위반(svg): style 속성 안의 변수 선언이다. -->
+  <rect x="210" y="10" width="20" height="80" style="--text: #000000" />
+</svg>

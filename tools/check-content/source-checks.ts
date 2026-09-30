@@ -357,9 +357,13 @@ export const emphasis: SourceCheck = (tree) => {
   return violations
 }
 
-// 도해 SVG 한 벌이 두 테마에서 읽히도록, 색은 규약 문서의 도해 팔레트 값만 쓴다.
+// 도해 SVG는 색을 규약 문서의 도해 팔레트 토큰으로 쓴다(`var(--<이름>, <대체값>)`). 사이트가 현재 테마의
+// 값을 도해 문서에 넣고(plugins/diagram-theme), 스크립트가 돌지 않는 곳에서는 대체값으로 그려진다.
 const colorProperty = "fill|stroke|stop-color|flood-color|lighting-color|color"
 const colorKeywords = /^(none|transparent|inherit|url\(#[^)]+\))$/i
+const colorToken = /^var\(\s*--([\w-]+)\s*(?:,\s*(.*?))?\s*\)$/i
+// SVG 안의 변수 선언. 여백 검사의 librsvg는 선언을 무시하고 대체값으로 그려, 브라우저와 다르게 그린다.
+const variableDeclaration = /(?:^|[\s;{])(--[\w-]+)\s*:/g
 // CSS 선언은 style 속성과 <style> 요소 안에만 있다. 글자 노드의 "fill: ..."는 보지 않는다.
 const styleSources = [/\sstyle\s*=\s*(["'])(.*?)\1/gs, /<style[^>]*>([\s\S]*?)<\/style>/gi]
 
@@ -374,33 +378,179 @@ const textProperties = {
 }
 const fontImport = `@import url("${pretendardStylesheet}");`
 
-// 속성(`fill="..."`)과 CSS 선언(`fill: ...`)으로 준 값을 모두 찾는다. offset은 속성 이름이 시작하는 곳이다.
-function propertyValues(text: string, property: string) {
+// 속성(`fill="..."`)과 CSS 선언(`fill: ...`)으로 준 값을 찾는다. offset은 속성 이름이 시작하는 곳이다.
+function attributeValues(text: string, property: string) {
   const attribute = new RegExp(`\\s(${property})\\s*=\\s*(["'])(.*?)\\2`, "gi")
-  const declaration = new RegExp(`(?:^|[\\s;{])(${property})\\s*:\\s*([^;}]+)`, "gi")
-  const found = [...text.matchAll(attribute)].map((m) => ({
-    value: m[3],
+  return [...text.matchAll(attribute)].map((m) => ({
+    value: m[3].trim(),
     offset: m.index + m[0].indexOf(m[1]),
   }))
-  for (const pattern of styleSources) {
-    for (const style of text.matchAll(pattern)) {
+}
+
+// CSS는 style 속성과 <style> 요소 안에만 있다. offset은 CSS가 시작하는 곳이다.
+function styleBlocks(text: string) {
+  return styleSources.flatMap((pattern) =>
+    [...text.matchAll(pattern)].map((style) => {
       const css = style[style.length - 1]
-      const cssOffset = style.index + style[0].indexOf(css)
-      for (const m of css.matchAll(declaration)) {
-        found.push({ value: m[2], offset: cssOffset + m.index + m[0].indexOf(m[1]) })
-      }
-    }
-  }
-  return found.map(({ value, offset }) => ({
-    value: value.replace(/!important/i, "").trim(),
-    offset,
-  }))
+      return { css, offset: style.index + style[0].indexOf(css) }
+    }),
+  )
+}
+
+function declarationValues(text: string, property: string) {
+  const declaration = new RegExp(`(?:^|[\\s;{])(${property})\\s*:\\s*([^;}]+)`, "gi")
+  return styleBlocks(text).flatMap(({ css, offset }) =>
+    [...css.matchAll(declaration)].map((m) => ({
+      value: m[2].replace(/!important/i, "").trim(),
+      offset: offset + m.index + m[0].indexOf(m[1]),
+    })),
+  )
+}
+
+function propertyValues(text: string, property: string) {
+  return [...attributeValues(text, property), ...declarationValues(text, property)]
 }
 
 function normalizeHex(value: string): string | null {
   const hex = value.toLowerCase().match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/)?.[1]
   if (!hex) return null
   return `#${hex.length === 3 ? [...hex].map((c) => c + c).join("") : hex}`
+}
+
+// 표의 대체값(hex나 none)과 견줄 수 있게 맞춘다.
+function normalizeColor(value: string): string {
+  return normalizeHex(value) ?? value.trim().toLowerCase()
+}
+
+// 색 값이 틀렸으면 그 이유를, 맞으면 null을 준다. fallbacks는 토큰 이름마다 표의 대체값이다.
+function colorViolation(value: string, fallbacks: Map<string, string>): string | null {
+  if (colorKeywords.test(value)) return null
+  const token = value.match(colorToken)
+  if (!token) return `색은 var(--<이름>, <대체값>)으로 쓴다: ${value}`
+  const [, name, fallback] = token
+  const expected = fallbacks.get(name)
+  if (expected === undefined) return `도해 팔레트에 없는 토큰이다: --${name}`
+  if (fallback === undefined || normalizeColor(fallback) !== expected) {
+    return `대체값이 표와 다르다. var(--${name}, ${expected})로 쓴다: ${value}`
+  }
+  return null
+}
+
+// 모양 척도(docs/wiki-conventions.md 도해 절). 점선은 선 두께와 짝을 이룬다.
+const strokeWidths = [1, 1.5, 3]
+const cornerRadii = [0, 2, 4]
+const dashes: Record<string, { fits: (width: number) => boolean; rule: string }> = {
+  "3 3": { fits: (width) => width === 1, rule: "보조 점선 3 3은 폭 1에만 쓴다" },
+  "5 4": { fits: (width) => width >= 1.5, rule: "윤곽 점선 5 4는 폭 1.5 이상에만 쓴다" },
+}
+const fontSizeMin = 11
+// baseline-shift나 dy로 옮긴 첨자 <tspan>의 하한
+const subscriptSizeMin = 9
+
+interface SvgElement {
+  name: string // 접두사를 뗀 이름
+  source: string // 여는 태그
+  offset: number
+  attributes: Map<string, string>
+  parent?: SvgElement
+}
+
+// 여는 태그마다 속성과 부모를 준다. 주석을 지운 글을 받는다.
+function svgElements(text: string): SvgElement[] {
+  const elements: SvgElement[] = []
+  const open: SvgElement[] = []
+  const tags = /<(\/?)(?:[\w-]+:)?([\w-]+)((?:\s+[\w:-]+\s*=\s*(?:"[^"]*"|'[^']*'))*)\s*(\/?)>/g
+  for (const tag of text.matchAll(tags)) {
+    const [source, closing, name, attributes, selfClosing] = tag
+    if (closing) {
+      const index = open.map((element) => element.name).lastIndexOf(name)
+      if (index >= 0) open.length = index
+      continue
+    }
+    const element: SvgElement = {
+      name,
+      source,
+      offset: tag.index,
+      attributes: new Map(
+        [...attributes.matchAll(/([\w:-]+)\s*=\s*(["'])(.*?)\2/gs)].map((a) => [a[1], a[3].trim()]),
+      ),
+      parent: open.at(-1),
+    }
+    elements.push(element)
+    if (!selfClosing) open.push(element)
+  }
+  return elements
+}
+
+function inherited(element: SvgElement | undefined, attribute: string): string | undefined {
+  for (let e = element; e; e = e.parent) {
+    const value = e.attributes.get(attribute)
+    if (value !== undefined) return value
+  }
+}
+
+const lengthOf = (value: string) => Number(value.replace(/px$/i, ""))
+const dashOf = (value: string) => value.trim().split(/[\s,]+/).join(" ")
+
+// 척도 밖의 선 두께, 모서리 반경, 점선, 글자 크기를 찾는다. offset은 속성 이름이 시작하는 곳이다.
+function shapeViolations(text: string): { offset: number; message: string }[] {
+  const found: { offset: number; message: string }[] = []
+  for (const element of svgElements(text)) {
+    const { attributes } = element
+    const add = (attribute: string, message: string) => {
+      const index = element.source.search(new RegExp(`\\s${attribute}\\s*=`))
+      found.push({ offset: element.offset + index + 1, message })
+    }
+    const width = attributes.get("stroke-width")
+    if (width !== undefined && !strokeWidths.includes(lengthOf(width))) {
+      add("stroke-width", `선 두께는 ${strokeWidths.join(", ")}만 쓴다: ${width}`)
+    }
+    if (element.name === "rect") {
+      for (const radius of ["rx", "ry"]) {
+        const value = attributes.get(radius)
+        if (value !== undefined && !cornerRadii.includes(lengthOf(value))) {
+          add(radius, `<rect>의 모서리 반경은 ${cornerRadii.join(", ")}만 쓴다: ${radius}="${value}"`)
+        }
+      }
+    }
+    const dasharray = attributes.get("stroke-dasharray")
+    if (dasharray !== undefined && dasharray !== "none") {
+      const dash = dashes[dashOf(dasharray)]
+      const drawnWidth = lengthOf(inherited(element, "stroke-width") ?? "1")
+      if (!dash) add("stroke-dasharray", `점선은 3 3(보조)과 5 4(윤곽)만 쓴다: ${dasharray}`)
+      else if (!dash.fits(drawnWidth)) {
+        add("stroke-dasharray", `${dash.rule}(이 선의 폭: ${drawnWidth})`)
+      }
+    }
+    const size = attributes.get("font-size")
+    if (size !== undefined) {
+      const subscript =
+        element.name === "tspan" && (attributes.has("baseline-shift") || attributes.has("dy"))
+      const min = subscript ? subscriptSizeMin : fontSizeMin
+      if (!(lengthOf(size) >= min)) {
+        add(
+          "font-size",
+          subscript
+            ? `첨자 <tspan>의 글자 크기는 ${min} 이상이다: ${size}`
+            : `글자 크기는 ${min} 이상이다(옮긴 첨자 <tspan>만 ${subscriptSizeMin}): ${size}`,
+        )
+      }
+    }
+  }
+  // CSS로 준 값은 요소를 가리지 않고 값만 본다.
+  for (const { value, offset } of declarationValues(text, "stroke-width")) {
+    if (strokeWidths.includes(lengthOf(value))) continue
+    found.push({ offset, message: `선 두께는 ${strokeWidths.join(", ")}만 쓴다: ${value}` })
+  }
+  for (const { value, offset } of declarationValues(text, "stroke-dasharray")) {
+    if (value === "none" || dashes[dashOf(value)]) continue
+    found.push({ offset, message: `점선은 3 3(보조)과 5 4(윤곽)만 쓴다: ${value}` })
+  }
+  for (const { value, offset } of declarationValues(text, "font-size")) {
+    if (lengthOf(value) >= fontSizeMin) continue
+    found.push({ offset, message: `글자 크기는 ${fontSizeMin} 이상이다: ${value}` })
+  }
+  return found
 }
 
 // 여백이 치우쳤거나 잴 수 없으면 그 이유를, 아니면 null을 준다.
@@ -437,22 +587,35 @@ async function marginViolation(source: string, root: string): Promise<string | n
 }
 
 export const svg: SourceCheck = async (tree, conventions) => {
-  const palette = new Set(
-    conventions.column("diagram-palette", "값").map((value) => {
-      const hex = normalizeHex(value)
-      if (!hex) throw new Error(`규약 문서의 도해 팔레트 값이 hex가 아니다: ${value}`)
-      return hex
+  const fallbacks = new Map(
+    conventions.table("diagram-palette", ["이름", "대체값"]).map((row) => {
+      const fallback = normalizeColor(row["대체값"])
+      if (!normalizeHex(fallback) && fallback !== "none") {
+        throw new Error(`규약 문서의 도해 팔레트 대체값이 hex나 none이 아니다: ${row["대체값"]}`)
+      }
+      return [row["이름"], fallback]
     }),
   )
   const violations: Violation[] = []
   for (const { file, source } of tree.svgs) {
     const lineAt = (offset: number) => source.slice(0, offset).split("\n").length
+    const add = (offset: number, message: string) =>
+      violations.push({ file, line: lineAt(offset), message })
     // 주석 안의 색은 그려지지 않으므로, 길이를 지켜 지운 뒤 찾는다.
     const text = source.replace(/<!--[\s\S]*?-->/g, (comment) => comment.replace(/[^\n]/g, " "))
     for (const { value, offset } of propertyValues(text, colorProperty)) {
-      if (colorKeywords.test(value) || palette.has(normalizeHex(value) ?? "")) continue
-      violations.push({ file, line: lineAt(offset), message: `도해 팔레트 밖의 색: ${value}` })
+      const message = colorViolation(value, fallbacks)
+      if (message) add(offset, message)
     }
+    for (const { css, offset } of styleBlocks(text)) {
+      for (const m of css.matchAll(variableDeclaration)) {
+        add(
+          offset + m.index + m[0].indexOf(m[1]),
+          `SVG 안에서 변수를 선언하지 않는다(여백 검사의 librsvg는 선언을 무시한다): ${m[1]}`,
+        )
+      }
+    }
+    for (const { offset, message } of shapeViolations(text)) add(offset, message)
     for (const [property, expected] of Object.entries(textProperties)) {
       for (const { value, offset } of propertyValues(text, property)) {
         if (value.replace(/\s+/g, " ") === expected) continue
@@ -469,7 +632,8 @@ export const svg: SourceCheck = async (tree, conventions) => {
     if (root) {
       const atRoot = (message: string) =>
         violations.push({ file, line: lineAt(root.index!), message })
-      if (!/\sfill\s*=|\sstyle\s*=\s*(["'])[^"']*\bfill\s*:/i.test(root[0])) {
+      // style의 --ink-fill 같은 변수 선언은 fill이 아니다.
+      if (!/\sfill\s*=|\sstyle\s*=\s*(["'])[^"']*(?<![\w-])fill\s*:/i.test(root[0])) {
         atRoot("루트 <svg>에 fill이 없다")
       }
       if (/<(?:[\w-]+:)?text[\s>]/i.test(text)) {

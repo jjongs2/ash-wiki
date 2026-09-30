@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" fill="none">
   <!-- 위반(svg): 그림이 viewBox 안에서 오른쪽 아래로 쏠렸다. 여백이 왼쪽 60, 오른쪽 10, 위 30, 아래 10이다. -->
-  <rect x="60" y="30" width="80" height="60" fill="#336fb8" />
-  <rect x="150" y="30" width="80" height="60" fill="#b0540d" />
+  <rect x="60" y="30" width="80" height="60" fill="var(--blue-tint, #336fb8)" />
+  <rect x="150" y="30" width="80" height="60" fill="var(--orange-tint, #b0540d)" />
 </svg>
