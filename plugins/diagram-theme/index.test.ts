@@ -26,15 +26,23 @@ const resolved = (column: "라이트" | "다크", theme: "light" | "dark") =>
     ]),
   )
 
+const origin = "https://wiki.test/"
+
+// data는 <object>의 data 속성이고, 든 문서는 그 주소에서 읽은 것이다.
 class FakeObject {
   dataset: Record<string, string> = {}
   properties: Record<string, string> = {}
-  contentDocument: object | null
+  contentDocument: { URL: string; documentElement: object } | null
+  data = "diagrams/a.svg"
   constructor(root: "svg" | "html" | null) {
     const style = { setProperty: (name: string, value: string) => (this.properties[name] = value) }
-    this.contentDocument = root && { documentElement: { localName: root, style } }
+    this.contentDocument = root && {
+      URL: origin + this.data,
+      documentElement: { localName: root, style },
+    }
   }
   matches = (selector: string) => selector === 'object[type="image/svg+xml"]'
+  getAttribute = (name: string) => (name === "data" ? this.data : null)
 }
 
 function load(objects: FakeObject[], theme: "light" | "dark" = "light") {
@@ -48,7 +56,12 @@ function load(objects: FakeObject[], theme: "light" | "dark" = "light") {
   const getComputedStyle = () => ({
     getPropertyValue: (name: string) => ` ${site[state.theme][name as "--darkgray"]}`,
   })
-  new Function("document", "getComputedStyle", source)(document, getComputedStyle)
+  const location = { href: `${origin}page` }
+  new Function("document", "getComputedStyle", "location", source)(
+    document,
+    getComputedStyle,
+    location,
+  )
   return {
     fire: (type: string, target?: object) => handlers[type]({ target }),
     setTheme: (next: "light" | "dark") => (state.theme = next),
@@ -115,6 +128,19 @@ describe("diagram-theme 플러그인", () => {
     const page = load([object])
     delete object.dataset.themed
     page.fire("nav")
+    assert.strictEqual(object.dataset.themed, "")
+  })
+
+  // SPA 이동은 같은 자리의 <object>를 남긴 채 data만 바꾸기도 한다. 그 사이 옛 문서의 표시가 남으면 새
+  // 도해가 대체값으로 먼저 보인다.
+  test("SPA 이동으로 data만 바뀐 도해는 새 문서를 읽을 때까지 표시를 뗀다", () => {
+    const object = new FakeObject("svg")
+    const page = load([object])
+    object.data = "diagrams/b.svg"
+    page.fire("nav")
+    assert.strictEqual(object.dataset.themed, undefined)
+    object.contentDocument!.URL = origin + object.data
+    page.fire("load", object)
     assert.strictEqual(object.dataset.themed, "")
   })
 

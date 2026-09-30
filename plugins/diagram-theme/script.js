@@ -33,7 +33,14 @@ const onLoad = (event) => {
 document.addEventListener("load", onLoad, true)
 document.addEventListener("error", onLoad, true)
 document.addEventListener("themechange", paintAll)
-// SPA 이동은 같은 도해의 <object>를 다시 불러오지 않고 남기면서 표시를 지울 수 있다.
-document.addEventListener("nav", paintAll)
+// SPA 이동은 같은 자리의 <object>를 남긴 채 표시를 지우거나 data만 바꾼다. 같은 도해면 다시 칠하고,
+// data가 바뀌었으면 옛 문서의 표시를 떼어 새 문서를 읽을(load) 때까지 가린다.
+const onNav = () =>
+  document.querySelectorAll(selector).forEach((object) => {
+    const url = new URL(object.getAttribute("data") ?? "", location.href).href
+    if (object.contentDocument?.URL === url) paint(object)
+    else delete object.dataset.themed
+  })
+document.addEventListener("nav", onNav)
 // 이 스크립트보다 먼저 다 읽은 도해
 paintAll()
