@@ -17,13 +17,13 @@ timing description과 타이밍 제약은 타이밍 뷰로 나뉜다. 뷰는 Vfb
 
 event chain은 계층으로 짤 수 있고, 안에 든 하위 event chain을 **segment**라 부른다. event chain을 합성할 때는 앞 event chain의 응답 이벤트가 뒤 event chain의 자극 이벤트가 되도록 잇는다. segment를 가진 event chain에는 상위 event chain의 자극에서 segment들을 지나 상위 event chain의 응답까지 이어지는 경로가 적어도 하나 있어야 한다.[@autosar-cp-tps-timingextensions-2025]
 
-하향식 분해에서는 event chain에 LatencyTimingConstraint로 시간 예산을 걸고, event chain을 segment로 나누면 예산도 나뉜다. 이때 segment 예산의 합은 전체 예산을 넘지 않아야 한다. 상향식 합성에서도 합한 segment 예산은 상위 event chain의 예산 이하여야 한다. 뒤 개발 단계에서 시스템 동작을 더 알게 되면, event chain과 그 시간 예산을 시스템의 구성 요소들에 나눠 segment로 만들 수 있다.[@autosar-cp-tps-timingextensions-2025]
+하향식 분해에서는 event chain에 LatencyTimingConstraint로 시간 예산을 걸고, event chain을 segment로 나누면 예산도 나뉜다. segment $i$의 예산을 $B_i$, event chain 전체 예산을 $B$라 하면 $\sum_i B_i \le B$여야 한다. 상향식 합성에서 segment들을 합해 상위 event chain을 이룰 때도 같은 조건을 지켜야 한다. 뒤 개발 단계에서 시스템 동작을 더 알게 되면, event chain과 그 시간 예산을 시스템의 구성 요소들에 나눠 segment로 만들 수 있다.[@autosar-cp-tps-timingextensions-2025]
 
 ![[diagrams/event-chain-segments-budget.svg]]
 
 ## ECU 안과 밖
 
-AUTOSAR Timing Extensions가 드는 예에서, 센서 샘플링부터 액추에이터 접근까지의 종단 간 event chain은 I/O, BSW(Basic Software), RTE, SW-C, [[can|CAN]] 버스를 지나는 segment들로 나뉘고, ECU 안의 통신과 ECU 사이의 통신이 구분된다. SW-C가 같은 ECU에 있으면 통신은 RTE를 거치는 로컬 통신이고, 다른 ECU에 있으면 RTE, BSW의 통신 스택, 통신 버스를 거치는 원격 통신이다.[@autosar-cp-tps-timingextensions-2025]
+AUTOSAR Timing Extensions가 드는 예에서, 센서 샘플링부터 액추에이터 접근까지의 종단 간 event chain은 I/O(Input/Output), BSW(Basic Software), RTE, SW-C, [[can|CAN]] 버스를 지나는 segment들로 나뉘고, ECU 안의 통신과 ECU 사이의 통신이 구분된다. SW-C가 같은 ECU에 있으면 통신은 RTE를 거치는 로컬 통신이고, 다른 ECU에 있으면 RTE, BSW의 통신 스택, 통신 버스를 거치는 원격 통신이다.[@autosar-cp-tps-timingextensions-2025]
 
 ![[diagrams/event-chain-intra-inter-ecu.svg]]
 

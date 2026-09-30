@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 **IOC**(Inter OS-Application Communicator)는 [[autosar-os|AUTOSAR OS]]가 제공하는, [[autosar-os-application|OS-Application]] 사이의 통신 수단이며, IOC 구현은 OS의 일부다. 특히 메모리 보호 경계를 넘는 통신과, 멀티코어에서 코어 경계를 넘는 통신을 맡는다.[@autosar-cp-sws-os-2025]
 
-## 다른 통신과의 구분
+## 통신 범위
 
 같은 OS-Application 안의 통신은 RTE가, ECU 사이의 통신은 COM이 맡고, IOC는 같은 ECU나 Software Cluster 안에서 OS-Application 경계를 넘는 통신을 맡는다. IOC 서비스는 RTE가 부르며, RTE 밖의 클라이언트가 IOC를 직접 부르는 것은 지원하지 않는다. SW-C는 RTE를 거쳐서만 IOC에 접근하고, CDD(Complex Device Driver)에서 IOC를 쓰는 것은 권하지 않는다.[@autosar-cp-sws-os-2025]
 
@@ -26,7 +26,7 @@ IOC는 sender-receiver 통신만 제공하며, client-server 호출은 RTE가 se
 
 ## 인터페이스
 
-IOC는 범용 API를 두지 않고, 통신마다 전용 인터페이스를 생성한다. 각 통신은 설정에서 sender, receiver, 데이터 타입, notification, queuing으로 따로 정해지고, 서비스 API는 통신마다의 고유 Id로 구별된다. queued 통신에는 `IocSend_<IocId>`와 `IocReceive_<IocId>`가, unqueued 통신에는 `IocWrite_<IocId>`와 `IocRead_<IocId>`가 생성된다. N:1 통신에서는 송신자마다 자기 API를 쓰며, 송신 API 이름에 `_<SenderId>`가 붙는다.[@autosar-cp-sws-os-2025]
+IOC는 범용 API(Application Programming Interface)를 두지 않고, 통신마다 전용 인터페이스를 생성한다. 각 통신은 설정에서 sender, receiver, 데이터 타입, notification, queuing으로 따로 정해지고, 서비스 API는 통신마다의 고유 Id로 구별된다. queued 통신에는 `IocSend_<IocId>`와 `IocReceive_<IocId>`가, unqueued 통신에는 `IocWrite_<IocId>`와 `IocRead_<IocId>`가 생성된다. N:1 통신에서는 송신자마다 자기 API를 쓰며, 송신 API 이름에 `_<SenderId>`가 붙는다.[@autosar-cp-sws-os-2025]
 
 ![[diagrams/ioc-queued-unqueued.svg]]
 

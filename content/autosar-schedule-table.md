@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## Expiry point
 
-**Expiry point**는 schedule table 위의 한 시점으로, schedule table 시작에서 잰 틱 수인 offset과 그 시점에 할 동작을 가진다. expiry point는 [[osek-task|태스크]] 활성화, [[osek-event|이벤트]] 설정, 태스크 [[autosar-timing-protection|실행 예산]] 보충 가운데 적어도 하나를 해야 한다. 실행 예산 보충은 `OsTaskTimingProtectionDeferrableServer`가 TRUE인 태스크에만 허용된다. OS는 expiry point를 initial expiry point부터 final expiry point까지 offset이 커지는 순서로 처리하며, 한 schedule table 안의 offset은 서로 달라야 한다.[@autosar-cp-sws-os-2025]
+**Expiry point**는 schedule table 위의 한 시점으로, schedule table 시작에서 잰 틱 수인 offset과 그 시점에 할 동작을 가진다. expiry point는 [[osek-task|태스크]] 활성화, [[osek-event|이벤트]] 설정, 태스크 [[autosar-timing-protection|실행 예산]] 보충 가운데 적어도 하나를 해야 한다. 실행 예산 보충은 `OsTaskTimingProtectionDeferrableServer`가 `TRUE`인 태스크에만 허용된다. OS는 expiry point를 initial expiry point부터 final expiry point까지 offset이 커지는 순서로 처리하며, 한 schedule table 안의 offset은 서로 달라야 한다.[@autosar-cp-sws-os-2025]
 
 schedule table의 길이와 양 끝의 간격은 다음 셋으로 나타낸다.[@autosar-cp-sws-os-2025]
 
@@ -21,7 +21,7 @@ schedule table의 길이와 양 끝의 간격은 다음 셋으로 나타낸다.[
 
 ## Single-shot과 repeating
 
-schedule table은 설정으로 single-shot인지 repeating인지 정한다. **Single-shot** schedule table은 expiry point를 차례로 처리하고, final expiry point를 처리한 뒤 final delay만큼 틱이 지나면 멈춘다. **Repeating** schedule table은 final expiry point를 처리한 뒤 initial expiry point로 돌아가며, 각 expiry point는 duration과 같은 주기로 되풀이된다. 반복할 때 OS는 final expiry point를 처리하고 final delay와 initial offset을 더한 틱이 지난 뒤 다음 initial expiry point를 처리한다.[@autosar-cp-sws-os-2025]
+schedule table은 설정으로 single-shot인지 repeating인지 정한다. **Single-shot** schedule table은 expiry point를 차례로 처리하고, final expiry point를 처리한 뒤 final delay만큼 틱이 지나면 멈춘다. **Repeating** schedule table은 final expiry point를 처리한 뒤 initial expiry point로 돌아가며, 각 expiry point는 duration과 같은 주기로 되풀이된다. 반복할 때 OS는 final expiry point를 처리하고 $\mathrm{final\ delay} + \mathrm{initial\ offset}$만큼 틱이 지난 뒤 다음 initial expiry point를 처리한다.[@autosar-cp-sws-os-2025]
 
 ![[diagrams/autosar-schedule-table-single-shot-repeating.svg]]
 

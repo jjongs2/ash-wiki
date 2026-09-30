@@ -35,4 +35,4 @@ execution budget을 넘으면 OS는 protection hook을 E_OS_PROTECTION_TIME으�
 
 ## 위반 처리
 
-위반을 찾으면 OS는 protection hook을 부르고, 그 반환값에 따라 잘못한 태스크나 category 2 ISR을 강제로 끝내거나, 그것이 속한 [[autosar-os-application|OS-Application]]을 끝내거나, `ShutdownOS`를 부른다. 도착 간격 위반에서만 요청한 동작을 수행하게 하는 반환값(PRO_IGNORE)과 수행하지 않게 하는 반환값(PRO_PREVENT_ARRIVAL_RATE)도 쓸 수 있다. protection hook이 설정되지 않은 채 보호 오류가 나면 OS는 `ShutdownOS`를 부른다.[@autosar-cp-sws-os-2025] 반환값마다의 처리는 [[autosar-os#Protection hook|AUTOSAR OS]]에서 다룬다.
+위반을 찾으면 OS는 protection hook을 부르고, 그 반환값에 따라 이어서 할 일을 정한다.[@autosar-cp-sws-os-2025] 반환값마다의 처리는 [[autosar-os#Protection hook|AUTOSAR OS]]에서 다룬다.
