@@ -2,25 +2,25 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
   <!-- 필드 -->
-  <rect x="110" y="20" width="138" height="34" stroke="#727981" stroke-width="1.5" />
-  <rect x="252" y="20" width="196" height="34" stroke="#727981" stroke-width="1.5" />
-  <rect x="452" y="20" width="198" height="34" stroke="#727981" stroke-width="1.5" />
-  <g text-anchor="middle" fill="#727981">
+  <rect x="110" y="20" width="138" height="34" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="252" y="20" width="196" height="34" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="452" y="20" width="198" height="34" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="179" y="42">break 필드</text>
     <text x="350" y="42">sync 바이트 필드 (0x55)</text>
     <text x="551" y="42">PID</text>
   </g>
 
   <!-- 파형 -->
-  <g font-size="12" fill="#727981" text-anchor="end">
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="end">
     <text x="84" y="80">recessive</text>
     <text x="84" y="114">dominant</text>
   </g>
-  <path d="M92 76 H110 V110 H164 M176 110 H230 V76 H250 V110 H270 V76 H290 V110 H310 V76 H330 V110 H350 V76 H370 V110 H390 V76 H410 V110 H430 V76 H450 V110 H470" stroke="#727981" stroke-width="2" />
-  <path d="M470 110 L474 76 M470 110 L474 110 M474 76 H486 M474 110 H486 M486 76 L494 110 M486 110 L494 76 M494 76 H506 M494 110 H506 M506 76 L514 110 M506 110 L514 76 M514 76 H526 M514 110 H526 M526 76 L534 110 M526 110 L534 76 M534 76 H546 M534 110 H546 M546 76 L554 110 M546 110 L554 76 M554 76 H566 M554 110 H566 M566 76 L574 110 M566 110 L574 76 M574 76 H586 M574 110 H586 M586 76 L594 110 M586 110 L594 76 M594 76 H606 M594 110 H606 M606 76 L614 110 M606 110 L614 76 M614 76 H626 M614 110 H626 M626 76 L630 76 M626 110 L630 76" stroke="#727981" stroke-width="2" />
-  <path d="M630 76 H650 H670" stroke="#727981" stroke-width="2" />
-  <path d="M160 118 L168 102 M172 118 L180 102" stroke="#727981" stroke-width="1.5" />
-  <g stroke="#727981" stroke-width="1" stroke-dasharray="2 3">
+  <path d="M92 76 H110 V110 H164 M176 110 H230 V76 H250 V110 H270 V76 H290 V110 H310 V76 H330 V110 H350 V76 H370 V110 H390 V76 H410 V110 H430 V76 H450 V110 H470" stroke="var(--ink, #727981)" stroke-width="3" />
+  <path d="M470 110 L474 76 M470 110 L474 110 M474 76 H486 M474 110 H486 M486 76 L494 110 M486 110 L494 76 M494 76 H506 M494 110 H506 M506 76 L514 110 M506 110 L514 76 M514 76 H526 M514 110 H526 M526 76 L534 110 M526 110 L534 76 M534 76 H546 M534 110 H546 M546 76 L554 110 M546 110 L554 76 M554 76 H566 M554 110 H566 M566 76 L574 110 M566 110 L574 76 M574 76 H586 M574 110 H586 M586 76 L594 110 M586 110 L594 76 M594 76 H606 M594 110 H606 M606 76 L614 110 M606 110 L614 76 M614 76 H626 M614 110 H626 M626 76 L630 76 M626 110 L630 76" stroke="var(--ink, #727981)" stroke-width="3" />
+  <path d="M630 76 H650 H670" stroke="var(--ink, #727981)" stroke-width="3" />
+  <path d="M160 118 L168 102 M172 118 L180 102" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
     <line x1="230" y1="62" x2="230" y2="118" />
     <line x1="250" y1="62" x2="250" y2="118" />
     <line x1="270" y1="62" x2="270" y2="118" />
@@ -38,7 +38,7 @@
     <line x1="630" y1="62" x2="630" y2="118" />
     <line x1="650" y1="62" x2="650" y2="118" />
   </g>
-  <g text-anchor="middle" font-size="12" fill="#727981">
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="170" y="134">break (13비트 이상)</text>
     <text x="260" y="134">0</text>
     <text x="280" y="134">1</text>
@@ -57,6 +57,6 @@
     <text x="640" y="134">1</text>
     <text x="240" y="158">break delimiter</text>
   </g>
-  <line x1="240" y1="140" x2="240" y2="146" stroke="#727981" stroke-width="1" />
-  <text x="92" y="186" font-size="12" fill="#727981">sync 바이트 필드와 PID는 start 비트(0), 최하위 비트부터 보내는 8비트, stop 비트(1)로 된 10비트다.</text>
+  <line x1="240" y1="140" x2="240" y2="146" stroke="var(--ink, #727981)" stroke-width="1" />
+  <text x="92" y="186" font-size="12" fill="var(--text, #727981)">sync 바이트 필드와 PID는 start 비트(0), 최하위 비트부터 보내는 8비트, stop 비트(1)로 된 10비트다.</text>
 </svg>

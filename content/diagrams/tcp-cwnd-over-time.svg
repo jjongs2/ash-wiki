@@ -2,37 +2,37 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
   <!-- 축 -->
-  <g stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)">
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
     <path d="M60 314 V32" />
     <path d="M56 310 H620" />
   </g>
-  <text x="60" y="22" text-anchor="middle" font-size="12" fill="#727981">cwnd</text>
-  <text x="626" y="314" font-size="12" fill="#727981">시간</text>
+  <text x="60" y="22" text-anchor="middle" font-size="12" fill="var(--text, #727981)">cwnd</text>
+  <text x="626" y="314" font-size="12" fill="var(--text, #727981)">시간</text>
   <!-- ssthresh -->
-  <g stroke="#727981" stroke-width="1.5" stroke-dasharray="5 4">
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4">
     <line x1="174" y1="185.0" x2="395.0" y2="185.0" />
     <line x1="395.0" y1="215.0" x2="590" y2="215.0" />
   </g>
-  <text x="213" y="201" font-size="12" fill="#727981">ssthresh</text>
-  <text x="512" y="231" font-size="12" fill="#727981">ssthresh</text>
+  <text x="213" y="201" font-size="12" fill="var(--text, #727981)">ssthresh</text>
+  <text x="512" y="231" font-size="12" fill="var(--text, #727981)">ssthresh</text>
   <!-- 손실을 알아챈 때 -->
-  <g stroke="#727981" stroke-width="1" stroke-dasharray="3 3">
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
     <line x1="174" y1="48" x2="174" y2="61.0" />
     <line x1="395.0" y1="48" x2="395.0" y2="121.0" />
   </g>
-  <text x="174" y="40" text-anchor="middle" font-size="12" fill="#727981">중복 확인 응답 3번</text>
-  <text x="395" y="40" text-anchor="middle" font-size="12" fill="#727981">재전송 타이머 만료</text>
+  <text x="174" y="40" text-anchor="middle" font-size="12" fill="var(--text, #727981)">중복 확인 응답 3번</text>
+  <text x="395" y="40" text-anchor="middle" font-size="12" fill="var(--text, #727981)">재전송 타이머 만료</text>
   <!-- cwnd -->
-  <path d="M70 290 L96 275 L122 245 L148 185 L174 65 L174 162.5 L187 147.5 L187 185 L213 177.5 L239 170 L265 162.5 L291 155 L317 147.5 L343 140 L369 132.5 L395 125 L395 297.5 L421 290 L447 275 L473 245 L486 215 L512 207.5 L538 200 L564 192.5 L590 185" stroke="#336fb8" stroke-width="2" stroke-linejoin="round" />
-  <text x="149.8" y="130" text-anchor="end" font-size="12" fill="#727981">slow start</text>
-  <text x="291" y="132" text-anchor="middle" font-size="12" fill="#727981">congestion avoidance</text>
-  <line x1="231.20000000000002" y1="100" x2="192.2" y2="143.5" stroke="#727981" stroke-width="1" />
-  <text x="235.2" y="100" font-size="12" fill="#727981">fast recovery</text>
-  <text x="389" y="299.5" text-anchor="end" font-size="12" fill="#727981">1세그먼트</text>
-  <text x="483" y="268" font-size="12" fill="#727981">slow start</text>
-  <text x="543.2" y="177" text-anchor="middle" font-size="12" fill="#727981">congestion avoidance</text>
+  <path d="M70 290 L96 275 L122 245 L148 185 L174 65 L174 162.5 L187 147.5 L187 185 L213 177.5 L239 170 L265 162.5 L291 155 L317 147.5 L343 140 L369 132.5 L395 125 L395 297.5 L421 290 L447 275 L473 245 L486 215 L512 207.5 L538 200 L564 192.5 L590 185" stroke="var(--blue, #336fb8)" stroke-width="3" stroke-linejoin="round" />
+  <text x="149.8" y="130" text-anchor="end" font-size="12" fill="var(--text, #727981)">slow start</text>
+  <text x="291" y="132" text-anchor="middle" font-size="12" fill="var(--text, #727981)">congestion avoidance</text>
+  <line x1="231.20000000000002" y1="100" x2="192.2" y2="143.5" stroke="var(--ink, #727981)" stroke-width="1" />
+  <text x="235.2" y="100" font-size="12" fill="var(--text, #727981)">fast recovery</text>
+  <text x="389" y="299.5" text-anchor="end" font-size="12" fill="var(--text, #727981)">1세그먼트</text>
+  <text x="483" y="268" font-size="12" fill="var(--text, #727981)">slow start</text>
+  <text x="543.2" y="177" text-anchor="middle" font-size="12" fill="var(--text, #727981)">congestion avoidance</text>
 </svg>

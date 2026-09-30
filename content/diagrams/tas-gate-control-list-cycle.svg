@@ -2,51 +2,51 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
 
   <!-- 주기 -->
-  <path d="M150 36 V28 H570 V36" stroke="#727981" stroke-width="1.5" />
-  <text x="360" y="22" text-anchor="middle" fill="#727981">주기</text>
-  <text x="630" y="22" text-anchor="middle" fill="#727981">다음 주기</text>
+  <path d="M150 36 V28 H570 V36" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="360" y="22" text-anchor="middle" fill="var(--text, #727981)">주기</text>
+  <text x="630" y="22" text-anchor="middle" fill="var(--text, #727981)">다음 주기</text>
 
   <!-- 게이트 제어 목록 -->
-  <text x="140" y="60" text-anchor="end" fill="#727981">게이트 제어 목록</text>
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="150" y="44" width="120" height="24" />
-    <rect x="270" y="44" width="240" height="24" />
-    <rect x="510" y="44" width="60" height="24" />
-    <rect x="570" y="44" width="120" height="24" />
+  <text x="140" y="60" text-anchor="end" fill="var(--text, #727981)">게이트 제어 목록</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="150" y="44" width="120" height="24" fill="var(--surface, none)" />
+    <rect x="270" y="44" width="240" height="24" fill="var(--surface, none)" />
+    <rect x="510" y="44" width="60" height="24" fill="var(--surface, none)" />
+    <rect x="570" y="44" width="120" height="24" fill="var(--surface, none)" />
   </g>
-  <text x="210" y="60" text-anchor="middle" fill="#727981">항목 1</text>
-  <text x="390" y="60" text-anchor="middle" fill="#727981">항목 2</text>
-  <text x="540" y="60" text-anchor="middle" fill="#727981">항목 3</text>
-  <text x="630" y="60" text-anchor="middle" fill="#727981">항목 1</text>
+  <text x="210" y="60" text-anchor="middle" fill="var(--text, #727981)">항목 1</text>
+  <text x="390" y="60" text-anchor="middle" fill="var(--text, #727981)">항목 2</text>
+  <text x="540" y="60" text-anchor="middle" fill="var(--text, #727981)">항목 3</text>
+  <text x="630" y="60" text-anchor="middle" fill="var(--text, #727981)">항목 1</text>
 
   <!-- 트래픽 클래스 7의 게이트 -->
-  <text x="140" y="100" text-anchor="end" fill="#727981">트래픽 클래스 7</text>
-  <rect x="150" y="84" width="120" height="24" fill="#337b47" />
-  <text x="210" y="100" text-anchor="middle" fill="#f8fafd">열림</text>
-  <rect x="270" y="84" width="300" height="24" stroke="#727981" stroke-width="1.5" />
-  <text x="420" y="100" text-anchor="middle" fill="#727981">닫힘</text>
-  <rect x="570" y="84" width="120" height="24" fill="#337b47" />
-  <text x="630" y="100" text-anchor="middle" fill="#f8fafd">열림</text>
+  <text x="140" y="100" text-anchor="end" fill="var(--text, #727981)">트래픽 클래스 7</text>
+  <rect x="150.75" y="84.75" width="118.5" height="22.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="210" y="100" text-anchor="middle" fill="var(--on-fill, #f8fafd)">열림</text>
+  <rect x="270" y="84" width="300" height="24" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="420" y="100" text-anchor="middle" fill="var(--text, #727981)">닫힘</text>
+  <rect x="570.75" y="84.75" width="118.5" height="22.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="630" y="100" text-anchor="middle" fill="var(--on-fill, #f8fafd)">열림</text>
 
   <!-- 트래픽 클래스 0–6의 게이트 -->
-  <text x="140" y="140" text-anchor="end" fill="#727981">트래픽 클래스 0–6</text>
-  <rect x="150" y="124" width="120" height="24" stroke="#727981" stroke-width="1.5" />
-  <text x="210" y="140" text-anchor="middle" fill="#727981">닫힘</text>
-  <rect x="270" y="124" width="240" height="24" fill="#337b47" />
-  <text x="390" y="140" text-anchor="middle" fill="#f8fafd">열림</text>
-  <rect x="510" y="124" width="180" height="24" stroke="#727981" stroke-width="1.5" />
-  <text x="540" y="140" text-anchor="middle" fill="#727981">닫힘</text>
-  <text x="630" y="140" text-anchor="middle" fill="#727981">닫힘</text>
-  <line x1="570" y1="124" x2="570" y2="148" stroke="#727981" stroke-width="1.5" />
+  <text x="140" y="140" text-anchor="end" fill="var(--text, #727981)">트래픽 클래스 0–6</text>
+  <rect x="150" y="124" width="120" height="24" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="210" y="140" text-anchor="middle" fill="var(--text, #727981)">닫힘</text>
+  <rect x="270.75" y="124.75" width="238.5" height="22.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="390" y="140" text-anchor="middle" fill="var(--on-fill, #f8fafd)">열림</text>
+  <rect x="510" y="124" width="180" height="24" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="540" y="140" text-anchor="middle" fill="var(--text, #727981)">닫힘</text>
+  <text x="630" y="140" text-anchor="middle" fill="var(--text, #727981)">닫힘</text>
+  <line x1="570" y1="124" x2="570" y2="148" stroke="var(--ink, #727981)" stroke-width="1.5" />
 
   <!-- 시각 축 -->
-  <line x1="150" y1="168" x2="716" y2="168" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="716" y="186" text-anchor="end" fill="#727981">PTP 시각</text>
-  <path d="M510 176 V182 H570 V176" stroke="#727981" stroke-width="1.5" />
-  <text x="540" y="198" text-anchor="middle" fill="#727981">guard band</text>
+  <line x1="150" y1="168" x2="716" y2="168" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="716" y="186" text-anchor="end" fill="var(--text, #727981)">PTP 시각</text>
+  <path d="M510 176 V182 H570 V176" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="540" y="198" text-anchor="middle" fill="var(--text, #727981)">guard band</text>
 </svg>

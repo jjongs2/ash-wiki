@@ -24,9 +24,14 @@ describe("플래그 없는 node로 불러온다", () => {
   for (const name of plugins) {
     test(name, () => {
       const url = new URL(`${name}/index.ts`, pluginsDir).href
+      // 로더는 transformer 인스턴스에 아래 메서드가 하나도 없으면 경고만 남기고 건너뛴다
+      // (quartz/plugins/loader/config-loader.ts의 validateCategory).
       const script =
         `const m = await import(${JSON.stringify(url)}); ` +
-        `console.log(JSON.stringify({ name: m.manifest?.name, type: typeof m.default }))`
+        `const instance = m.manifest?.category === "transformer" ? m.default() : {}; ` +
+        `const loadable = m.manifest?.category !== "transformer" || ` +
+        `["textTransform", "markdownPlugins", "htmlPlugins"].some((key) => key in instance); ` +
+        `console.log(JSON.stringify({ name: m.manifest?.name, type: typeof m.default, loadable }))`
       const env = { ...process.env }
       delete env.NODE_OPTIONS
       const child = spawnSync(process.execPath, ["--input-type=module", "-e", script], {
@@ -34,7 +39,7 @@ describe("플래그 없는 node로 불러온다", () => {
         encoding: "utf8",
       })
       assert.strictEqual(child.status, 0, child.stderr)
-      assert.deepStrictEqual(JSON.parse(child.stdout), { name, type: "function" })
+      assert.deepStrictEqual(JSON.parse(child.stdout), { name, type: "function", loadable: true })
     })
   }
 })

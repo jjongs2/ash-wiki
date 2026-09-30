@@ -2,23 +2,23 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
 
   <!-- CPU: 다른 객체를 담는 컨테이너 -->
-  <rect x="20.75" y="20.75" width="638.5" height="218.5" rx="6" stroke="#727981" stroke-width="1.5" />
-  <text x="36" y="44" fill="#727981">CPU</text>
+  <rect x="20.75" y="20.75" width="638.5" height="218.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="36" y="44" fill="var(--text, #727981)">CPU</text>
 
   <!-- 객체 -->
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="40" y="60" width="100" height="40" rx="4" />
-    <rect x="180" y="60" width="100" height="40" rx="4" />
-    <rect x="400" y="60" width="100" height="40" rx="4" />
-    <rect x="540" y="60" width="100" height="40" rx="4" />
-    <rect x="290" y="176" width="100" height="40" rx="4" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="40" y="60" width="100" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="180" y="60" width="100" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="400" y="60" width="100" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="540" y="60" width="100" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="290" y="176" width="100" height="40" rx="4" fill="var(--surface, none)" />
   </g>
-  <g text-anchor="middle" fill="#727981">
+  <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="90" y="85">RESOURCE</text>
     <text x="230" y="85">TASK</text>
     <text x="450" y="85">ALARM</text>
@@ -27,20 +27,20 @@
   </g>
 
   <!-- 참조 -->
-  <g stroke="#727981" stroke-width="1.5">
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="178" y1="80" x2="142" y2="80" marker-end="url(#arrow)" />
     <line x1="398" y1="80" x2="282" y2="80" marker-end="url(#arrow)" />
     <line x1="502" y1="80" x2="538" y2="80" marker-end="url(#arrow)" />
     <line x1="250" y1="102" x2="318" y2="174" marker-end="url(#arrow)" />
     <line x1="430" y1="102" x2="362" y2="174" marker-end="url(#arrow)" />
   </g>
-  <g font-size="12" fill="#727981">
+  <g font-size="12" fill="var(--text, #727981)">
     <text x="340" y="72" text-anchor="middle">만료 동작에 따라</text>
     <text x="276" y="160" text-anchor="end">extended 태스크라면</text>
     <text x="404" y="160">만료 동작에 따라</text>
   </g>
 
   <!-- 범례 -->
-  <line x1="560" y1="260" x2="590" y2="260" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="598" y="264" font-size="12" fill="#727981">참조</text>
+  <line x1="560" y1="260" x2="590" y2="260" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="598" y="264" font-size="12" fill="var(--text, #727981)">참조</text>
 </svg>

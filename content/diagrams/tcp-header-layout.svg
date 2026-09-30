@@ -1,34 +1,34 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="10.5 0.5 726.5 273.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <!-- 32비트 한 행 -->
-  <path d="M21 34 V28 H659 V34" stroke="#727981" stroke-width="1.5" />
-  <text x="340" y="20" text-anchor="middle" font-size="12" fill="#727981">32비트</text>
+  <path d="M21 34 V28 H659 V34" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="340" y="20" text-anchor="middle" font-size="12" fill="var(--text, #727981)">32비트</text>
   <!-- 필드 -->
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="21" y="40" width="318" height="34" rx="3" />
-    <rect x="341" y="40" width="318" height="34" rx="3" />
-    <rect x="21" y="78" width="638" height="34" rx="3" />
-    <rect x="21" y="116" width="638" height="34" rx="3" />
-    <rect x="21" y="154" width="78" height="34" rx="3" />
-    <rect x="101" y="154" width="78" height="34" rx="3" />
-    <rect x="181" y="154" width="158" height="34" rx="3" />
-    <rect x="341" y="154" width="318" height="34" rx="3" />
-    <rect x="21" y="192" width="318" height="34" rx="3" />
-    <rect x="341" y="192" width="318" height="34" rx="3" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="21" y="40" width="318" height="34" rx="4" fill="var(--surface, none)" />
+    <rect x="341" y="40" width="318" height="34" rx="4" fill="var(--surface, none)" />
+    <rect x="21" y="78" width="638" height="34" rx="4" fill="var(--surface, none)" />
+    <rect x="21" y="116" width="638" height="34" rx="4" fill="var(--surface, none)" />
+    <rect x="21" y="154" width="78" height="34" rx="4" fill="var(--surface, none)" />
+    <rect x="101" y="154" width="78" height="34" rx="4" fill="var(--surface, none)" />
+    <rect x="181" y="154" width="158" height="34" rx="4" fill="var(--surface, none)" />
+    <rect x="341" y="154" width="318" height="34" rx="4" fill="var(--surface, none)" />
+    <rect x="21" y="192" width="318" height="34" rx="4" fill="var(--surface, none)" />
+    <rect x="341" y="192" width="318" height="34" rx="4" fill="var(--surface, none)" />
   </g>
-  <text x="180" y="62" text-anchor="middle" fill="#727981">Source Port</text>
-  <text x="500" y="62" text-anchor="middle" fill="#727981">Destination Port</text>
-  <text x="340" y="100" text-anchor="middle" fill="#727981">Sequence Number</text>
-  <text x="340" y="138" text-anchor="middle" fill="#727981">Acknowledgment Number</text>
-  <text x="60" y="175" text-anchor="middle" font-size="12" fill="#727981">Data Offset</text>
-  <text x="140" y="175" text-anchor="middle" font-size="12" fill="#727981">Reserved</text>
-  <text x="260" y="176" text-anchor="middle" fill="#727981">Control bits</text>
-  <text x="500" y="176" text-anchor="middle" fill="#727981">Window</text>
-  <text x="180" y="214" text-anchor="middle" fill="#727981">Checksum</text>
-  <text x="500" y="214" text-anchor="middle" fill="#727981">Urgent Pointer</text>
-  <path d="M668 41 H674 V225 H668" stroke="#727981" stroke-width="1.5" />
-  <text x="682" y="137" font-size="12" fill="#727981">20바이트</text>
+  <text x="180" y="62" text-anchor="middle" fill="var(--text, #727981)">Source Port</text>
+  <text x="500" y="62" text-anchor="middle" fill="var(--text, #727981)">Destination Port</text>
+  <text x="340" y="100" text-anchor="middle" fill="var(--text, #727981)">Sequence Number</text>
+  <text x="340" y="138" text-anchor="middle" fill="var(--text, #727981)">Acknowledgment Number</text>
+  <text x="60" y="175" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Data Offset</text>
+  <text x="140" y="175" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Reserved</text>
+  <text x="260" y="176" text-anchor="middle" fill="var(--text, #727981)">Control bits</text>
+  <text x="500" y="176" text-anchor="middle" fill="var(--text, #727981)">Window</text>
+  <text x="180" y="214" text-anchor="middle" fill="var(--text, #727981)">Checksum</text>
+  <text x="500" y="214" text-anchor="middle" fill="var(--text, #727981)">Urgent Pointer</text>
+  <path d="M668 41 H674 V225 H668" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="682" y="137" font-size="12" fill="var(--text, #727981)">20바이트</text>
   <!-- 옵션 -->
-  <rect x="21.75" y="230.75" width="636.5" height="32.5" rx="3" stroke="#727981" stroke-width="1.5" stroke-dasharray="6 4" />
-  <text x="340" y="252" text-anchor="middle" fill="#727981">Options (가변)</text>
+  <rect x="21.75" y="230.75" width="636.5" height="32.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
+  <text x="340" y="252" text-anchor="middle" fill="var(--text, #727981)">Options (가변)</text>
 </svg>

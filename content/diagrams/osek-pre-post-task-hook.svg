@@ -1,47 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 310" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="2.5 0 600 310" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
 
   <!-- 열 머리 -->
-  <g font-size="12" fill="#727981" text-anchor="middle">
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
     <text x="150" y="30">running을 떠나는 태스크</text>
     <text x="320" y="30">운영체제</text>
     <text x="490" y="30">새 태스크</text>
   </g>
 
   <!-- 시간: 위에서 아래로 -->
-  <line x1="36" y1="46" x2="36" y2="266" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="36" y="288" text-anchor="middle" font-size="12" fill="#727981">시간</text>
+  <line x1="36" y1="46" x2="36" y2="266" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="36" y="288" text-anchor="middle" font-size="12" fill="var(--text, #727981)">시간</text>
 
   <!-- 경계 -->
-  <g stroke="#727981" stroke-width="1" stroke-dasharray="4 4">
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
     <line x1="60" y1="140" x2="580" y2="140" />
     <line x1="60" y1="184" x2="580" y2="184" />
   </g>
 
   <!-- 떠나는 태스크 -->
-  <rect x="85" y="46" width="130" height="94" rx="2" fill="#336fb8" />
-  <text x="150" y="98" text-anchor="middle" font-size="12" fill="#f8fafd">running</text>
-  <line x1="150" y1="140" x2="150" y2="272" stroke="#727981" stroke-width="1" />
+  <rect x="85.75" y="46.75" width="128.5" height="92.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="150" y="98" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">running</text>
+  <line x1="150" y1="140" x2="150" y2="272" stroke="var(--ink, #727981)" stroke-width="1" />
 
   <!-- 운영체제 -->
-  <rect x="250" y="100" width="140" height="36" rx="2" fill="#337b47" />
-  <rect x="250.75" y="144.75" width="138.5" height="34.5" rx="2" stroke="#727981" stroke-width="1.5" />
-  <rect x="250" y="188" width="140" height="36" rx="2" fill="#337b47" />
+  <rect x="250.75" y="100.75" width="138.5" height="34.5" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <rect x="250.75" y="144.75" width="138.5" height="34.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="250.75" y="188.75" width="138.5" height="34.5" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
   <g text-anchor="middle" font-size="12">
-    <text x="320" y="122" fill="#f8fafd">PostTaskHook</text>
-    <text x="320" y="166" fill="#727981">운영체제 내부 처리</text>
-    <text x="320" y="210" fill="#f8fafd">PreTaskHook</text>
+    <text x="320" y="122" fill="var(--on-fill, #f8fafd)">PostTaskHook</text>
+    <text x="320" y="166" fill="var(--text, #727981)">운영체제 내부 처리</text>
+    <text x="320" y="210" fill="var(--on-fill, #f8fafd)">PreTaskHook</text>
   </g>
 
   <!-- 새 태스크 -->
-  <rect x="425" y="46" width="130" height="138" rx="2" fill="#b0540d" />
-  <rect x="425" y="184" width="130" height="88" rx="2" fill="#336fb8" />
-  <g text-anchor="middle" font-size="12" fill="#f8fafd">
+  <rect x="425.75" y="46.75" width="128.5" height="136.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="425.75" y="184.75" width="128.5" height="86.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <g text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">
     <text x="490" y="119">ready</text>
     <text x="490" y="232">running</text>
   </g>

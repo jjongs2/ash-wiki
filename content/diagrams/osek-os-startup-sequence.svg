@@ -2,32 +2,32 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
 
   <!-- 열 머리 -->
-  <g font-size="12" fill="#727981" text-anchor="middle">
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
     <text x="140" y="30">CPU 리셋</text>
     <text x="360" y="30">사용자 인터럽트</text>
   </g>
 
   <!-- 단계: 위에서 아래로 -->
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="20" y="60" width="240" height="40" rx="4" />
-    <rect x="20" y="122" width="240" height="40" rx="4" />
-    <rect x="20" y="184" width="240" height="40" rx="4" />
-    <rect x="20" y="246" width="240" height="40" rx="4" />
-    <rect x="20" y="308" width="240" height="40" rx="4" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20" y="60" width="240" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="20" y="122" width="240" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="20" y="184" width="240" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="20" y="246" width="240" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="20" y="308" width="240" height="40" rx="4" fill="var(--surface, none)" />
   </g>
-  <g text-anchor="middle" fill="#727981">
+  <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="140" y="85">하드웨어별 초기화 코드</text>
     <text x="140" y="147">StartOS(application mode)</text>
     <text x="140" y="209">운영체제 내부 초기화</text>
     <text x="140" y="271">StartupHook</text>
     <text x="140" y="333">사용자 인터럽트 켬, 스케줄링 시작</text>
   </g>
-  <g stroke="#727981" stroke-width="1.5">
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="140" y1="38" x2="140" y2="58" marker-end="url(#arrow)" />
     <line x1="140" y1="102" x2="140" y2="120" marker-end="url(#arrow)" />
     <line x1="140" y1="164" x2="140" y2="182" marker-end="url(#arrow)" />
@@ -36,13 +36,13 @@
   </g>
 
   <!-- 사용자 인터럽트 상태 열 -->
-  <rect x="310" y="246" width="100" height="40" rx="4" fill="#bb464d" />
-  <rect x="310" y="308" width="100" height="40" rx="4" fill="#337b47" />
-  <g text-anchor="middle" fill="#f8fafd">
+  <rect x="310.75" y="246.75" width="98.5" height="38.5" rx="4" fill="var(--red-tint, #bb464d)" stroke="var(--red, #bb464d)" stroke-width="1.5" />
+  <rect x="310.75" y="308.75" width="98.5" height="38.5" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="360" y="271">모두 꺼짐</text>
     <text x="360" y="333">켜짐</text>
   </g>
-  <g stroke="#727981" stroke-width="1" stroke-dasharray="2 3">
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
     <line x1="262" y1="266" x2="308" y2="266" />
     <line x1="262" y1="328" x2="308" y2="328" />
   </g>

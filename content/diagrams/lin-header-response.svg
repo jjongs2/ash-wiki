@@ -2,12 +2,12 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
 
   <!-- 누가 보내는가 -->
-  <g text-anchor="middle" font-size="12" fill="#727981">
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="140" y="42">commander</text>
     <text x="215" y="42">responder</text>
     <text x="340" y="42">commander</text>
@@ -17,40 +17,40 @@
   </g>
 
   <!-- 버스 위의 프레임: 헤더 + 응답 -->
-  <text x="96" y="73" text-anchor="end" fill="#727981">버스</text>
-  <rect x="110" y="50" width="60" height="36" stroke="#727981" stroke-width="1.5" />
-  <rect x="170" y="50" width="90" height="36" fill="#337b47" />
-  <rect x="310" y="50" width="60" height="36" stroke="#727981" stroke-width="1.5" />
-  <rect x="370" y="50" width="90" height="36" fill="#337b47" />
-  <rect x="510" y="50" width="60" height="36" stroke="#727981" stroke-width="1.5" />
-  <rect x="570" y="50" width="90" height="36" fill="#337b47" />
+  <text x="96" y="73" text-anchor="end" fill="var(--text, #727981)">버스</text>
+  <rect x="110" y="50" width="60" height="36" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="170.75" y="50.75" width="88.5" height="34.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <rect x="310" y="50" width="60" height="36" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="370.75" y="50.75" width="88.5" height="34.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <rect x="510" y="50" width="60" height="36" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="570.75" y="50.75" width="88.5" height="34.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
   <g text-anchor="middle" font-size="12">
-    <text x="140" y="72" fill="#727981">헤더</text>
-    <text x="215" y="72" fill="#f8fafd">응답</text>
-    <text x="340" y="72" fill="#727981">헤더</text>
-    <text x="415" y="72" fill="#f8fafd">응답</text>
-    <text x="540" y="72" fill="#727981">헤더</text>
-    <text x="615" y="72" fill="#f8fafd">응답</text>
+    <text x="140" y="72" fill="var(--text, #727981)">헤더</text>
+    <text x="215" y="72" fill="var(--on-fill, #f8fafd)">응답</text>
+    <text x="340" y="72" fill="var(--text, #727981)">헤더</text>
+    <text x="415" y="72" fill="var(--on-fill, #f8fafd)">응답</text>
+    <text x="540" y="72" fill="var(--text, #727981)">헤더</text>
+    <text x="615" y="72" fill="var(--on-fill, #f8fafd)">응답</text>
   </g>
 
-  <g stroke="#727981" stroke-width="1.5">
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <path d="M110 92 V98 H260 V92" />
     <path d="M310 92 V98 H460 V92" />
     <path d="M510 92 V98 H660 V92" />
   </g>
-  <g text-anchor="middle" font-size="12" fill="#727981">
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="185" y="116">프레임</text>
     <text x="385" y="116">프레임</text>
     <text x="585" y="116">프레임</text>
   </g>
 
   <!-- 스케줄 테이블이 정하는 간격 -->
-  <g stroke="#727981" stroke-width="1" stroke-dasharray="4 4">
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
     <line x1="110" y1="100" x2="110" y2="150" />
     <line x1="310" y1="100" x2="310" y2="150" />
     <line x1="510" y1="100" x2="510" y2="150" />
   </g>
-  <line x1="112" y1="140" x2="308" y2="140" stroke="#727981" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
-  <line x1="312" y1="140" x2="508" y2="140" stroke="#727981" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
-  <text x="310" y="172" text-anchor="middle" font-size="12" fill="#727981">프레임 순서와 프레임 사이의 시간 간격은 스케줄 테이블이 정한다</text>
+  <line x1="112" y1="140" x2="308" y2="140" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  <line x1="312" y1="140" x2="508" y2="140" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  <text x="310" y="172" text-anchor="middle" font-size="12" fill="var(--text, #727981)">프레임 순서와 프레임 사이의 시간 간격은 스케줄 테이블이 정한다</text>
 </svg>

@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="10 7 660 132" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
-  <rect x="20" y="50" width="9" height="48" fill="#336fb8" />
-  <rect x="30" y="50" width="469" height="48" stroke="#727981" stroke-width="1.5" />
-  <rect x="500" y="50" width="160" height="48" fill="#337b47" />
-  <text x="265" y="71" text-anchor="middle" fill="#727981">사용자 포트</text>
-  <text x="265" y="88" text-anchor="middle" font-size="12" fill="#727981">1024~49151</text>
-  <text x="580" y="71" text-anchor="middle" fill="#f8fafd">동적 포트</text>
-  <text x="580" y="88" text-anchor="middle" font-size="12" fill="#f8fafd">49152~65535</text>
-  <path d="M25 48 V36" stroke="#727981" stroke-width="1.5" />
-  <text x="20" y="28" fill="#727981">시스템 포트 0~1023</text>
-  <path d="M20.75 104 V110 H659.25 V104" stroke="#727981" stroke-width="1.5" />
-  <text x="340" y="128" text-anchor="middle" font-size="12" fill="#727981">16비트 번호 0~65535</text>
+  <rect x="20.75" y="50.75" width="7.5" height="46.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="30" y="50" width="469" height="48" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="500.75" y="50.75" width="158.5" height="46.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="265" y="71" text-anchor="middle" fill="var(--text, #727981)">사용자 포트</text>
+  <text x="265" y="88" text-anchor="middle" font-size="12" fill="var(--text, #727981)">1024~49151</text>
+  <text x="580" y="71" text-anchor="middle" fill="var(--on-fill, #f8fafd)">동적 포트</text>
+  <text x="580" y="88" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">49152~65535</text>
+  <path d="M25 48 V36" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="20" y="28" fill="var(--text, #727981)">시스템 포트 0~1023</text>
+  <path d="M20.75 104 V110 H659.25 V104" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="340" y="128" text-anchor="middle" font-size="12" fill="var(--text, #727981)">16비트 번호 0~65535</text>
 </svg>

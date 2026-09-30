@@ -2,13 +2,13 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
   <!-- 도구의 네 갈래 -->
-  <g fill="#336fb8">
-    <rect x="20" y="16" width="150" height="28" rx="3" />
-    <rect x="182" y="16" width="150" height="28" rx="3" />
-    <rect x="344" y="16" width="150" height="28" rx="3" />
-    <rect x="506" y="16" width="150" height="28" rx="3" />
+  <g fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5">
+    <rect x="20.75" y="16.75" width="148.5" height="26.5" rx="2" />
+    <rect x="182.75" y="16.75" width="148.5" height="26.5" rx="2" />
+    <rect x="344.75" y="16.75" width="148.5" height="26.5" rx="2" />
+    <rect x="506.75" y="16.75" width="148.5" height="26.5" rx="2" />
   </g>
-  <g font-size="14" fill="#f8fafd" text-anchor="middle">
+  <g font-size="14" fill="var(--on-fill, #f8fafd)" text-anchor="middle">
     <text x="95" y="35">시간 동기화</text>
     <text x="257" y="35">지연 상한</text>
     <text x="419" y="35">고가용성과 초신뢰성</text>
@@ -16,21 +16,21 @@
   </g>
 
   <!-- 갈래마다의 표준 -->
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="20.75" y="52.75" width="148.5" height="26.5" rx="3" />
-    <rect x="182.75" y="52.75" width="148.5" height="26.5" rx="3" />
-    <rect x="182.75" y="86.75" width="148.5" height="26.5" rx="3" />
-    <rect x="182.75" y="120.75" width="148.5" height="26.5" rx="3" />
-    <rect x="182.75" y="154.75" width="148.5" height="26.5" rx="3" />
-    <rect x="182.75" y="188.75" width="148.5" height="26.5" rx="3" />
-    <rect x="182.75" y="222.75" width="148.5" height="26.5" rx="3" />
-    <rect x="344.75" y="52.75" width="148.5" height="26.5" rx="3" />
-    <rect x="344.75" y="86.75" width="148.5" height="26.5" rx="3" />
-    <rect x="344.75" y="120.75" width="148.5" height="26.5" rx="3" />
-    <rect x="506.75" y="52.75" width="148.5" height="26.5" rx="3" />
-    <rect x="506.75" y="86.75" width="148.5" height="26.5" rx="3" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20.75" y="52.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="182.75" y="52.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="182.75" y="86.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="182.75" y="120.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="182.75" y="154.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="182.75" y="188.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="182.75" y="222.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="344.75" y="52.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="344.75" y="86.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="344.75" y="120.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="506.75" y="52.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="506.75" y="86.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
   </g>
-  <g fill="#727981" text-anchor="middle">
+  <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="95" y="70">IEEE 802.1AS</text>
     <text x="257" y="70">IEEE 802.1Qav</text>
     <text x="257" y="104">IEEE 802.1Qbu</text>
@@ -46,16 +46,16 @@
   </g>
 
   <!-- 프로파일 -->
-  <rect x="20" y="266" width="636" height="28" rx="3" fill="#b0540d" />
-  <text x="338" y="285" font-size="14" text-anchor="middle" fill="#f8fafd">프로파일</text>
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="20.75" y="302.75" width="116.5" height="26.5" rx="3" />
-    <rect x="150.25" y="302.75" width="116.5" height="26.5" rx="3" />
-    <rect x="279.75" y="302.75" width="116.5" height="26.5" rx="3" />
-    <rect x="409.25" y="302.75" width="116.5" height="26.5" rx="3" />
-    <rect x="538.75" y="302.75" width="116.5" height="26.5" rx="3" />
+  <rect x="20.75" y="266.75" width="634.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="338" y="285" font-size="14" text-anchor="middle" fill="var(--on-fill, #f8fafd)">프로파일</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20.75" y="302.75" width="116.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="150.25" y="302.75" width="116.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="279.75" y="302.75" width="116.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="409.25" y="302.75" width="116.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="538.75" y="302.75" width="116.5" height="26.5" rx="2" fill="var(--surface, none)" />
   </g>
-  <g fill="#727981" text-anchor="middle">
+  <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="79" y="320">IEEE 802.1BA</text>
     <text x="208.5" y="320">IEEE 802.1CM</text>
     <text x="338" y="320">IEC/IEEE 60802</text>

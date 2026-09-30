@@ -2,25 +2,25 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
   <!-- 문자 하나 -->
-  <rect x="122" y="20" width="40" height="32" stroke="#727981" stroke-width="1.5" />
-  <rect x="166" y="20" width="348" height="32" stroke="#727981" stroke-width="1.5" />
-  <rect x="518" y="20" width="40" height="32" stroke="#727981" stroke-width="1.5" />
-  <g text-anchor="middle" font-size="12" fill="#727981">
+  <rect x="122" y="20" width="40" height="32" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="166" y="20" width="348" height="32" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="518" y="20" width="40" height="32" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="142" y="40">start</text>
     <text x="340" y="40">데이터 비트</text>
     <text x="538" y="40">stop</text>
   </g>
-  <g text-anchor="middle" font-size="12" fill="#727981">
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="104" y="40">idle</text>
     <text x="580" y="40">idle</text>
   </g>
-  <g font-size="12" fill="#727981" text-anchor="end">
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="end">
     <text x="80" y="80">high</text>
     <text x="80" y="114">low</text>
   </g>
 
   <!-- 비트 경계 -->
-  <g stroke="#727981" stroke-width="1" stroke-dasharray="2 3">
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
     <line x1="120" y1="58" x2="120" y2="116" />
     <line x1="164" y1="58" x2="164" y2="116" />
     <line x1="208" y1="58" x2="208" y2="116" />
@@ -35,12 +35,12 @@
   </g>
 
   <!-- 파형 -->
-  <path d="M88 76 H120 V110 H164" stroke="#727981" stroke-width="2" />
-  <path d="M164 110 L169 76 M164 110 H169 M169 76 H203 M169 110 H203 M203 76 L213 110 M203 110 L213 76 M213 76 H247 M213 110 H247 M247 76 L257 110 M247 110 L257 76 M257 76 H291 M257 110 H291 M291 76 L301 110 M291 110 L301 76 M301 76 H335 M301 110 H335 M335 76 L345 110 M335 110 L345 76 M345 76 H379 M345 110 H379 M379 76 L389 110 M379 110 L389 76 M389 76 H423 M389 110 H423 M423 76 L433 110 M423 110 L433 76 M433 76 H467 M433 110 H467 M467 76 L477 110 M467 110 L477 76 M477 76 H511 M477 110 H511 M511 76 H516 M511 110 L516 76" stroke="#727981" stroke-width="2" />
-  <path d="M516 76 H600" stroke="#727981" stroke-width="2" />
+  <path d="M88 76 H120 V110 H164" stroke="var(--ink, #727981)" stroke-width="3" />
+  <path d="M164 110 L169 76 M164 110 H169 M169 76 H203 M169 110 H203 M203 76 L213 110 M203 110 L213 76 M213 76 H247 M213 110 H247 M247 76 L257 110 M247 110 L257 76 M257 76 H291 M257 110 H291 M291 76 L301 110 M291 110 L301 76 M301 76 H335 M301 110 H335 M335 76 L345 110 M335 110 L345 76 M345 76 H379 M345 110 H379 M379 76 L389 110 M379 110 L389 76 M389 76 H423 M389 110 H423 M423 76 L433 110 M423 110 L433 76 M433 76 H467 M433 110 H467 M467 76 L477 110 M467 110 L477 76 M477 76 H511 M477 110 H511 M511 76 H516 M511 110 L516 76" stroke="var(--ink, #727981)" stroke-width="3" />
+  <path d="M516 76 H600" stroke="var(--ink, #727981)" stroke-width="3" />
 
   <!-- 샘플링 지점 -->
-  <g fill="#bb464d">
+  <g fill="var(--red, #bb464d)">
     <path d="M142 120 l5 9 h-10 z" />
     <path d="M186 120 l5 9 h-10 z" />
     <path d="M230 120 l5 9 h-10 z" />
@@ -52,9 +52,9 @@
     <path d="M494 120 l5 9 h-10 z" />
     <path d="M538 120 l5 9 h-10 z" />
   </g>
-  <g font-size="12" fill="#727981">
+  <g font-size="12" fill="var(--text, #727981)">
     <text x="114" y="132" text-anchor="end">하강 에지</text>
     <text x="568" y="132">샘플링</text>
   </g>
-  <text x="40" y="166" font-size="12" fill="#727981">수신기는 idle(high)에서 start 비트(low)로 떨어지는 에지로 문자의 시작을 알고, 각 비트의 가운데를 샘플링한다.</text>
+  <text x="40" y="166" font-size="12" fill="var(--text, #727981)">수신기는 idle(high)에서 start 비트(low)로 떨어지는 에지로 문자의 시작을 알고, 각 비트의 가운데를 샘플링한다.</text>
 </svg>

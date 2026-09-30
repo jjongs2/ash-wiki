@@ -2,30 +2,30 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
 
   <!-- 위쪽: MAC 쪽 -->
-  <rect x="110" y="20" width="140" height="44" rx="4" fill="#336fb8" />
-  <text x="180" y="47" text-anchor="middle" fill="#f8fafd">MAC</text>
-  <text x="262" y="38" font-size="12" fill="#727981">별도 칩이나</text>
-  <text x="262" y="54" font-size="12" fill="#727981">프로세서·SoC 안</text>
-  <line x1="180" y1="66" x2="180" y2="110" stroke="#727981" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
-  <text x="190" y="92" font-size="12" fill="#727981">MII 계열</text>
+  <rect x="110.75" y="20.75" width="138.5" height="42.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="180" y="47" text-anchor="middle" fill="var(--on-fill, #f8fafd)">MAC</text>
+  <text x="262" y="38" font-size="12" fill="var(--text, #727981)">별도 칩이나</text>
+  <text x="262" y="54" font-size="12" fill="var(--text, #727981)">프로세서·SoC 안</text>
+  <line x1="180" y1="66" x2="180" y2="110" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  <text x="190" y="92" font-size="12" fill="var(--text, #727981)">MII 계열</text>
 
   <!-- 가운데: PHY -->
-  <rect x="40" y="112" width="280" height="80" rx="4" stroke="#727981" stroke-width="1.5" />
-  <text x="180" y="157" text-anchor="middle" fill="#727981">PHY</text>
+  <rect x="40" y="112" width="280" height="80" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="180" y="157" text-anchor="middle" fill="var(--text, #727981)">PHY</text>
 
   <!-- 아래쪽: 매체 쪽 -->
-  <line x1="180" y1="194" x2="180" y2="238" stroke="#727981" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
-  <text x="190" y="220" font-size="12" fill="#727981">MDI</text>
-  <rect x="40.75" y="240.75" width="278.5" height="108.5" rx="8" stroke="#727981" stroke-width="1.5" stroke-dasharray="6 5" />
-  <text x="54" y="264" fill="#727981">매체 쪽</text>
-  <rect x="56.75" y="276.75" width="108.5" height="42.5" rx="4" stroke="#727981" stroke-width="1.5" />
-  <text x="111" y="303" text-anchor="middle" fill="#727981">트랜스포머</text>
-  <path d="M166 291 H180 C190 291 190 305 200 305 C210 305 210 291 220 291 C230 291 230 305 240 305 C250 305 250 291 260 291 C270 291 270 305 280 305 H300" stroke="#727981" stroke-width="1.5" />
-  <path d="M166 305 H180 C190 305 190 291 200 291 C210 291 210 305 220 305 C230 305 230 291 240 291 C250 291 250 305 260 305 C270 305 270 291 280 291 H300" stroke="#727981" stroke-width="1.5" />
-  <text x="233" y="336" text-anchor="middle" font-size="12" fill="#727981">꼬임쌍선 케이블</text>
+  <line x1="180" y1="194" x2="180" y2="238" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  <text x="190" y="220" font-size="12" fill="var(--text, #727981)">MDI</text>
+  <rect x="40.75" y="240.75" width="278.5" height="108.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="54" y="264" fill="var(--text, #727981)">매체 쪽</text>
+  <rect x="56.75" y="276.75" width="108.5" height="42.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="111" y="303" text-anchor="middle" fill="var(--text, #727981)">트랜스포머</text>
+  <path d="M166 291 H180 C190 291 190 305 200 305 C210 305 210 291 220 291 C230 291 230 305 240 305 C250 305 250 291 260 291 C270 291 270 305 280 305 H300" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <path d="M166 305 H180 C190 305 190 291 200 291 C210 291 210 305 220 305 C230 305 230 291 240 291 C250 291 250 305 260 305 C270 305 270 291 280 291 H300" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="233" y="336" text-anchor="middle" font-size="12" fill="var(--text, #727981)">꼬임쌍선 케이블</text>
 </svg>

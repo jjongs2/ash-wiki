@@ -2,19 +2,19 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
 
   <!-- OSEK/VDX OS 명세의 판 -->
-  <text x="20" y="30" font-size="12" fill="#727981">OSEK/VDX OS 명세</text>
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="20" y="40" width="110" height="46" rx="4" />
-    <rect x="170" y="40" width="110" height="46" rx="4" />
-    <rect x="320" y="40" width="110" height="46" rx="4" />
-    <rect x="520" y="40" width="110" height="46" rx="4" />
+  <text x="20" y="30" font-size="12" fill="var(--text, #727981)">OSEK/VDX OS 명세</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20" y="40" width="110" height="46" rx="4" fill="var(--surface, none)" />
+    <rect x="170" y="40" width="110" height="46" rx="4" fill="var(--surface, none)" />
+    <rect x="320" y="40" width="110" height="46" rx="4" fill="var(--surface, none)" />
+    <rect x="520" y="40" width="110" height="46" rx="4" fill="var(--surface, none)" />
   </g>
-  <g text-anchor="middle" fill="#727981">
+  <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="75" y="68">2.2</text>
     <text x="225" y="60">2.2.1</text>
     <text x="225" y="77" font-size="12">2003년</text>
@@ -25,18 +25,18 @@
   </g>
 
   <!-- ISO -->
-  <g fill="#337b47">
-    <rect x="20" y="148" width="410" height="46" rx="4" />
-    <rect x="460" y="148" width="110" height="46" rx="4" />
+  <g fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5">
+    <rect x="20.75" y="148.75" width="408.5" height="44.5" rx="4" />
+    <rect x="460.75" y="148.75" width="108.5" height="44.5" rx="4" />
   </g>
-  <g text-anchor="middle" fill="#f8fafd">
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="225" y="176">ISO 표준화 과정</text>
     <text x="515" y="168">ISO 17356-3</text>
     <text x="515" y="185" font-size="12">2005년</text>
   </g>
 
   <!-- 판 사이 -->
-  <g stroke="#727981" stroke-width="1.5">
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="132" y1="63" x2="168" y2="63" marker-end="url(#arrow)" />
     <line x1="282" y1="63" x2="318" y2="63" marker-end="url(#arrow)" />
     <line x1="432" y1="63" x2="518" y2="63" marker-end="url(#arrow)" />
@@ -45,12 +45,12 @@
   </g>
 
   <!-- 편집상 변경 반영 -->
-  <g stroke="#727981" stroke-width="1.5" stroke-dasharray="5 4">
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4">
     <line x1="225" y1="146" x2="225" y2="88" marker-end="url(#arrow)" />
     <line x1="375" y1="146" x2="375" y2="88" marker-end="url(#arrow)" />
     <line x1="530" y1="146" x2="560" y2="88" marker-end="url(#arrow)" />
   </g>
-  <g font-size="12" fill="#727981">
+  <g font-size="12" fill="var(--text, #727981)">
     <text x="83" y="122">바탕</text>
     <text x="300" y="122" text-anchor="middle">편집상 변경 반영</text>
     <text x="554" y="122">편집상 변경 반영</text>

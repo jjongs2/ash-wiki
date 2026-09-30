@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 9.5 448 189.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <!-- 최소 해밍 거리 -->
-  <path d="M40 44 V38 H400 V44" stroke="#727981" stroke-width="1.5" />
-  <text x="220" y="30" text-anchor="middle" font-size="12" fill="#727981">d<tspan dy="3" font-size="9">min</tspan><tspan dx="3" dy="-3">= 5</tspan></text>
+  <path d="M40 44 V38 H400 V44" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="220" y="30" text-anchor="middle" font-size="12" fill="var(--text, #727981)">d<tspan dy="3" font-size="9">min</tspan><tspan dx="3" dy="-3">= 5</tspan></text>
 
   <!-- 두 부호어와 그 사이의 비트열 -->
-  <line x1="72" y1="68" x2="368" y2="68" stroke="#727981" stroke-width="1.5" />
-  <rect x="8" y="52" width="64" height="32" fill="#336fb8" />
-  <text x="40" y="73" text-anchor="middle" fill="#f8fafd">00000</text>
-  <rect x="368" y="52" width="64" height="32" fill="#336fb8" />
-  <text x="400" y="73" text-anchor="middle" fill="#f8fafd">11111</text>
-  <g fill="#727981">
+  <line x1="72" y1="68" x2="368" y2="68" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="8.75" y="52.75" width="62.5" height="30.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="40" y="73" text-anchor="middle" fill="var(--on-fill, #f8fafd)">00000</text>
+  <rect x="368.75" y="52.75" width="62.5" height="30.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="400" y="73" text-anchor="middle" fill="var(--on-fill, #f8fafd)">11111</text>
+  <g fill="var(--ink, #727981)">
     <circle cx="112" cy="68" r="5" />
     <circle cx="184" cy="68" r="5" />
     <circle cx="256" cy="68" r="5" />
@@ -18,14 +18,14 @@
   </g>
 
   <!-- 고치는 범위 -->
-  <path d="M40 94 V100 H184 V94" stroke="#337b47" stroke-width="2" />
-  <text x="112" y="118" text-anchor="middle" font-size="12" fill="#727981">2개까지 고침</text>
-  <path d="M256 94 V100 H400 V94" stroke="#337b47" stroke-width="2" />
-  <text x="328" y="118" text-anchor="middle" font-size="12" fill="#727981">2개까지 고침</text>
+  <path d="M40 94 V100 H184 V94" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="112" y="118" text-anchor="middle" font-size="12" fill="var(--text, #727981)">2개까지 고침</text>
+  <path d="M256 94 V100 H400 V94" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="328" y="118" text-anchor="middle" font-size="12" fill="var(--text, #727981)">2개까지 고침</text>
 
   <!-- 찾아내는 범위 -->
-  <path d="M40 134 V140 H328 V134" stroke="#b0540d" stroke-width="2" />
-  <text x="184" y="158" text-anchor="middle" font-size="12" fill="#727981">00000에서 4개까지 찾아냄</text>
+  <path d="M40 134 V140 H328 V134" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="184" y="158" text-anchor="middle" font-size="12" fill="var(--text, #727981)">00000에서 4개까지 찾아냄</text>
 
-  <text x="220" y="186" text-anchor="middle" font-size="12" fill="#727981">한 칸은 비트 하나의 차이다.</text>
+  <text x="220" y="186" text-anchor="middle" font-size="12" fill="var(--text, #727981)">한 칸은 비트 하나의 차이다.</text>
 </svg>

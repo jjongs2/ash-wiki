@@ -2,25 +2,25 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
-  <rect x="20" y="20" width="140" height="56" rx="3" stroke="#727981" stroke-width="1.5" />
-  <text x="90" y="43" text-anchor="middle" fill="#727981">기본 헤더</text>
-  <text x="90" y="62" text-anchor="middle" font-size="12" fill="#727981">Next Header</text>
-  <rect x="164" y="20" width="120" height="56" rx="3" fill="#b0540d" />
-  <text x="224" y="43" text-anchor="middle" fill="#f8fafd">확장 헤더</text>
-  <text x="224" y="62" text-anchor="middle" font-size="12" fill="#f8fafd">Next Header</text>
-  <rect x="288" y="20" width="120" height="56" rx="3" fill="#b0540d" />
-  <text x="348" y="43" text-anchor="middle" fill="#f8fafd">확장 헤더</text>
-  <text x="348" y="62" text-anchor="middle" font-size="12" fill="#f8fafd">Next Header</text>
-  <rect x="412" y="20" width="130" height="56" rx="3" fill="#337b47" />
-  <text x="477" y="53" text-anchor="middle" fill="#f8fafd">위 계층 헤더</text>
+  <rect x="20" y="20" width="140" height="56" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="90" y="43" text-anchor="middle" fill="var(--text, #727981)">기본 헤더</text>
+  <text x="90" y="62" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Next Header</text>
+  <rect x="164.75" y="20.75" width="118.5" height="54.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="224" y="43" text-anchor="middle" fill="var(--on-fill, #f8fafd)">확장 헤더</text>
+  <text x="224" y="62" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">Next Header</text>
+  <rect x="288.75" y="20.75" width="118.5" height="54.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="348" y="43" text-anchor="middle" fill="var(--on-fill, #f8fafd)">확장 헤더</text>
+  <text x="348" y="62" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">Next Header</text>
+  <rect x="412.75" y="20.75" width="128.5" height="54.5" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="477" y="53" text-anchor="middle" fill="var(--on-fill, #f8fafd)">위 계층 헤더</text>
   <!-- Next Header가 다음 헤더를 가리킴 -->
-  <g stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)">
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
     <path d="M106 78 V94 H208 V80" />
     <path d="M240 78 V94 H332 V80" />
     <path d="M364 78 V94 H461 V80" />
   </g>
-  <text x="281" y="120" text-anchor="middle" font-size="12" fill="#727981">각 헤더의 Next Header가 다음 헤더의 종류를 가리킨다</text>
+  <text x="281" y="120" text-anchor="middle" font-size="12" fill="var(--text, #727981)">각 헤더의 Next Header가 다음 헤더의 종류를 가리킨다</text>
 </svg>

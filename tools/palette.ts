@@ -53,30 +53,37 @@ interface Swatch {
 interface Measurement {
   pair: string
   floor: number
-  // 모드마다 가장 낮은 대비와 그 쌍. 도해 색 묶음은 묶음 안의 가장 낮은 값을 준다.
+  // 모드마다 가장 낮은 대비와 그 쌍. `<색>` 줄은 범주 색 다섯 가운데 가장 낮은 값을 준다.
   worst: Record<Mode, { ratio: number; swatches: string }>
 }
+
+// 도해 팔레트 표에서 모드마다 값을 읽는 열
+const diagramColumn: Record<Mode, string> = { lightMode: "라이트", darkMode: "다크" }
+// 대비 하한 표에서 범주 색 다섯으로 푸는 자리. 한 줄의 두 칸에 모두 있으면 같은 색끼리 짝짓는다.
+const category = "<색>"
 
 function measure(): Measurement[] {
   const theme = parse(fs.readFileSync(configPath, "utf8")).configuration.theme
   const colors = theme.colors as Record<Mode, Record<string, string>>
-  const diagram = loadConventions().table("diagram-palette", ["이름", "값", "종류"])
+  const diagram = loadConventions().table("diagram-palette", ["이름", "라이트", "다크"])
   const floors = new Conventions(fs.readFileSync(palettePath, "utf8"), palettePath).table(
     "contrast",
     ["쌍", "전경", "배경", "하한"],
   )
-  // `도해 <종류>`는 도해 팔레트에서 그 종류의 색 전부, 그 밖은 theme 색 토큰 하나다.
-  const resolve = (token: string, mode: Mode): Swatch[] => {
-    const kind = token.match(/^도해 (\S+)$/)?.[1]
-    if (kind) {
-      const rows = diagram.filter((row) => row["종류"] === kind)
-      if (rows.length === 0) throw new Error(`${palettePath}: 도해 팔레트에 종류 "${kind}"가 없다`)
-      return rows.map((row) => ({ name: row["이름"], color: row["값"] }))
-    }
-    const color = colors[mode][token]
-    if (!color) throw new Error(`${palettePath}: theme 색 토큰 "${token}"이 없다`)
-    return [{ name: token, color }]
+  // 범주 색은 `<색>-tint` 짝이 있는 이름이다.
+  const names = new Set(diagram.map((row) => row["이름"]))
+  const categories = [...names].filter((name) => names.has(`${name}-tint`))
+  // 도해 팔레트의 이름이면 그 모드의 값(hex나 theme 색 토큰), 아니면 theme 색 토큰이다.
+  const resolve = (token: string, mode: Mode): Swatch => {
+    const value = diagram.find((row) => row["이름"] === token)?.[diagramColumn[mode]] ?? token
+    const color = value.startsWith("#") ? value : colors[mode][value]
+    if (!color) throw new Error(`${palettePath}: 색 토큰 "${value}"이 없다`)
+    return { name: token, color }
   }
+  const pairs = (fg: string, bg: string): [string, string][] =>
+    fg.includes(category) || bg.includes(category)
+      ? categories.map((c) => [fg.replace(category, c), bg.replace(category, c)])
+      : [[fg, bg]]
   return floors.map((row) => {
     const floor = Number(row["하한"])
     if (!(floor > 0))
@@ -85,12 +92,11 @@ function measure(): Measurement[] {
     for (const mode of ["lightMode", "darkMode"] as Mode[]) {
       const page = parseColor(colors[mode].light)
       let result = { ratio: Infinity, swatches: "" }
-      for (const bg of resolve(row["배경"], mode)) {
+      for (const [fgToken, bgToken] of pairs(row["전경"], row["배경"])) {
+        const [fg, bg] = [resolve(fgToken, mode), resolve(bgToken, mode)]
         const background = over(parseColor(bg.color), page)
-        for (const fg of resolve(row["전경"], mode)) {
-          const ratio = contrast(over(parseColor(fg.color), background), background)
-          if (ratio < result.ratio) result = { ratio, swatches: `${fg.name} / ${bg.name}` }
-        }
+        const ratio = contrast(over(parseColor(fg.color), background), background)
+        if (ratio < result.ratio) result = { ratio, swatches: `${fg.name} / ${bg.name}` }
       }
       worst[mode] = result
     }

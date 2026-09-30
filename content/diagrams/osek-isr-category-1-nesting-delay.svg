@@ -2,36 +2,36 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
 
   <!-- 끊긴 태스크 -->
-  <rect x="40" y="20" width="260" height="40" rx="4" stroke="#727981" stroke-width="1.5" />
-  <text x="170" y="45" text-anchor="middle" fill="#727981">태스크</text>
-  <line x1="170" y1="62" x2="170" y2="88" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="180" y="80" font-size="12" fill="#727981">인터럽트</text>
+  <rect x="40" y="20" width="260" height="40" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="170" y="45" text-anchor="middle" fill="var(--text, #727981)">태스크</text>
+  <line x1="170" y1="62" x2="170" y2="88" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="180" y="80" font-size="12" fill="var(--text, #727981)">인터럽트</text>
 
   <!-- 바깥: category 1 ISR, 안쪽: category 2 ISR -->
-  <rect x="20.75" y="90.75" width="298.5" height="178.5" rx="6" stroke="#825da9" stroke-width="1.5" />
-  <text x="36" y="114" fill="#727981">category 1 ISR</text>
-  <rect x="50" y="128" width="240" height="64" rx="4" fill="#bb464d" />
-  <g text-anchor="middle" fill="#f8fafd">
+  <rect x="20.75" y="90.75" width="298.5" height="178.5" rx="4" stroke="var(--violet, #825da9)" stroke-width="1.5" />
+  <text x="36" y="114" fill="var(--text, #727981)">category 1 ISR</text>
+  <rect x="50.75" y="128.75" width="238.5" height="62.5" rx="4" fill="var(--red-tint, #bb464d)" stroke="var(--red, #bb464d)" stroke-width="1.5" />
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="170" y="154">category 2 ISR</text>
     <text x="170" y="176" font-size="12">ActivateTask</text>
   </g>
-  <text x="170" y="222" text-anchor="middle" font-size="12" fill="#727981">category 1 ISR이 끝남:</text>
-  <text x="170" y="240" text-anchor="middle" font-size="12" fill="#727981">운영체제로 들어가지 않음</text>
+  <text x="170" y="222" text-anchor="middle" font-size="12" fill="var(--text, #727981)">category 1 ISR이 끝남:</text>
+  <text x="170" y="240" text-anchor="middle" font-size="12" fill="var(--text, #727981)">운영체제로 들어가지 않음</text>
 
   <!-- 끊겼던 태스크가 이어서 돈다 -->
-  <line x1="170" y1="270" x2="170" y2="296" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <rect x="40" y="298" width="260" height="40" rx="4" stroke="#727981" stroke-width="1.5" />
-  <text x="170" y="323" text-anchor="middle" fill="#727981">태스크</text>
+  <line x1="170" y1="270" x2="170" y2="296" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <rect x="40" y="298" width="260" height="40" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="170" y="323" text-anchor="middle" fill="var(--text, #727981)">태스크</text>
 
   <!-- 활성화된 태스크는 밀린다 -->
-  <path d="M292 160 H500 V296" stroke="#727981" stroke-width="1.5" marker-end="url(#arrow)" />
-  <rect x="420.75" y="298.75" width="158.5" height="38.5" rx="4" stroke="#b0540d" stroke-width="1.5" stroke-dasharray="5 4" />
-  <text x="500" y="323" text-anchor="middle" fill="#727981">활성화된 태스크</text>
-  <text x="508" y="236" font-size="12" fill="#727981">다음 재스케줄링</text>
-  <text x="508" y="254" font-size="12" fill="#727981">시점까지 밀림</text>
+  <path d="M292 160 H500 V296" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <rect x="420.75" y="298.75" width="158.5" height="38.5" rx="4" stroke="var(--orange, #b0540d)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="500" y="323" text-anchor="middle" fill="var(--text, #727981)">활성화된 태스크</text>
+  <text x="508" y="236" font-size="12" fill="var(--text, #727981)">다음 재스케줄링</text>
+  <text x="508" y="254" font-size="12" fill="var(--text, #727981)">시점까지 밀림</text>
 </svg>

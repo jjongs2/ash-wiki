@@ -2,56 +2,56 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#336fb8" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--blue, #336fb8)" />
     </marker>
     <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#b0540d" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--orange, #b0540d)" />
     </marker>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
 
   <!-- 두 쪽 -->
-  <rect x="80" y="20" width="120" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
-  <text x="140" y="43" text-anchor="middle" fill="#727981">송신 쪽</text>
-  <rect x="400" y="20" width="120" height="36" rx="4" stroke="#727981" stroke-width="1.5" />
-  <text x="460" y="43" text-anchor="middle" fill="#727981">수신 쪽</text>
-  <g stroke="#727981" stroke-width="1.5">
+  <rect x="80" y="20" width="120" height="36" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="140" y="43" text-anchor="middle" fill="var(--text, #727981)">송신 쪽</text>
+  <rect x="400" y="20" width="120" height="36" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="460" y="43" text-anchor="middle" fill="var(--text, #727981)">수신 쪽</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="140" y1="56" x2="140" y2="400" />
     <line x1="460" y1="56" x2="460" y2="400" />
   </g>
 
   <!-- FF -->
-  <line x1="142" y1="80" x2="458" y2="96" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
-  <text x="300" y="80" text-anchor="middle" fill="#727981">FF</text>
+  <line x1="142" y1="80" x2="458" y2="96" stroke="var(--blue, #336fb8)" stroke-width="1.5" marker-end="url(#arrow-blue)" />
+  <text x="300" y="80" text-anchor="middle" fill="var(--text, #727981)">FF</text>
 
   <!-- FC -->
-  <line x1="458" y1="122" x2="142" y2="138" stroke="#b0540d" stroke-width="2" marker-end="url(#arrow-orange)" />
-  <text x="300" y="122" text-anchor="middle" fill="#727981">FC (BS, STmin)</text>
+  <line x1="458" y1="122" x2="142" y2="138" stroke="var(--orange, #b0540d)" stroke-width="1.5" marker-end="url(#arrow-orange)" />
+  <text x="300" y="122" text-anchor="middle" fill="var(--text, #727981)">FC (BS, STmin)</text>
 
   <!-- 첫 블록의 CF -->
-  <line x1="142" y1="164" x2="458" y2="180" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
-  <text x="300" y="164" text-anchor="middle" fill="#727981">CF</text>
-  <line x1="142" y1="210" x2="458" y2="226" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
-  <text x="300" y="210" text-anchor="middle" fill="#727981">CF</text>
-  <line x1="142" y1="256" x2="458" y2="272" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
-  <text x="300" y="256" text-anchor="middle" fill="#727981">CF</text>
+  <line x1="142" y1="164" x2="458" y2="180" stroke="var(--blue, #336fb8)" stroke-width="1.5" marker-end="url(#arrow-blue)" />
+  <text x="300" y="164" text-anchor="middle" fill="var(--text, #727981)">CF</text>
+  <line x1="142" y1="210" x2="458" y2="226" stroke="var(--blue, #336fb8)" stroke-width="1.5" marker-end="url(#arrow-blue)" />
+  <text x="300" y="210" text-anchor="middle" fill="var(--text, #727981)">CF</text>
+  <line x1="142" y1="256" x2="458" y2="272" stroke="var(--blue, #336fb8)" stroke-width="1.5" marker-end="url(#arrow-blue)" />
+  <text x="300" y="256" text-anchor="middle" fill="var(--text, #727981)">CF</text>
 
   <!-- STmin: 두 CF 사이 -->
-  <line x1="120" y1="166" x2="120" y2="208" stroke="#727981" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
-  <text x="112" y="191" text-anchor="end" font-size="12" fill="#727981">STmin 이상</text>
+  <line x1="120" y1="166" x2="120" y2="208" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  <text x="112" y="191" text-anchor="end" font-size="12" fill="var(--text, #727981)">STmin 이상</text>
 
   <!-- BS: 한 블록의 CF 수 -->
-  <path d="M474 180 H480 V272 H474" stroke="#727981" stroke-width="1.5" />
-  <text x="488" y="230" font-size="12" fill="#727981">CF BS개</text>
+  <path d="M474 180 H480 V272 H474" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="488" y="230" font-size="12" fill="var(--text, #727981)">CF BS개</text>
 
   <!-- 다음 블록 -->
-  <line x1="458" y1="298" x2="142" y2="314" stroke="#b0540d" stroke-width="2" marker-end="url(#arrow-orange)" />
-  <text x="300" y="298" text-anchor="middle" fill="#727981">FC</text>
-  <line x1="142" y1="340" x2="458" y2="356" stroke="#336fb8" stroke-width="2" marker-end="url(#arrow-blue)" />
-  <text x="300" y="340" text-anchor="middle" fill="#727981">CF</text>
-  <g fill="#727981">
+  <line x1="458" y1="298" x2="142" y2="314" stroke="var(--orange, #b0540d)" stroke-width="1.5" marker-end="url(#arrow-orange)" />
+  <text x="300" y="298" text-anchor="middle" fill="var(--text, #727981)">FC</text>
+  <line x1="142" y1="340" x2="458" y2="356" stroke="var(--blue, #336fb8)" stroke-width="1.5" marker-end="url(#arrow-blue)" />
+  <text x="300" y="340" text-anchor="middle" fill="var(--text, #727981)">CF</text>
+  <g fill="var(--ink, #727981)">
     <circle cx="300" cy="376" r="2" />
     <circle cx="300" cy="386" r="2" />
     <circle cx="300" cy="396" r="2" />

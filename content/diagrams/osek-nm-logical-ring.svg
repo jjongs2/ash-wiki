@@ -2,30 +2,30 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#727981" />
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
 
   <!-- 논리 링: 후속 노드로 -->
-  <g stroke="#727981" stroke-width="1.5">
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <path d="M140 130 C160 96, 200 96, 220 128" marker-end="url(#arrow)" />
     <path d="M280 130 C300 96, 340 96, 360 128" marker-end="url(#arrow)" />
     <path d="M420 130 C440 96, 480 96, 500 128" marker-end="url(#arrow)" />
     <path d="M530 130 V60 Q530 50 520 50 H120 Q110 50 110 60 V128" marker-end="url(#arrow)" />
   </g>
-  <text x="320" y="40" text-anchor="middle" fill="#727981">논리 링</text>
-  <text x="180" y="88" text-anchor="middle" font-size="12" fill="#727981">링 메시지</text>
-  <text x="320" y="88" text-anchor="middle" font-size="12" fill="#727981">링 메시지</text>
-  <text x="460" y="88" text-anchor="middle" font-size="12" fill="#727981">링 메시지</text>
+  <text x="320" y="40" text-anchor="middle" fill="var(--text, #727981)">논리 링</text>
+  <text x="180" y="88" text-anchor="middle" font-size="12" fill="var(--text, #727981)">링 메시지</text>
+  <text x="320" y="88" text-anchor="middle" font-size="12" fill="var(--text, #727981)">링 메시지</text>
+  <text x="460" y="88" text-anchor="middle" font-size="12" fill="var(--text, #727981)">링 메시지</text>
 
   <!-- 노드 -->
-  <g stroke="#727981" stroke-width="1.5">
-    <rect x="70" y="130" width="100" height="40" rx="4" />
-    <rect x="210" y="130" width="100" height="40" rx="4" />
-    <rect x="350" y="130" width="100" height="40" rx="4" />
-    <rect x="490" y="130" width="100" height="40" rx="4" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="70" y="130" width="100" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="210" y="130" width="100" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="350" y="130" width="100" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="490" y="130" width="100" height="40" rx="4" fill="var(--surface, none)" />
   </g>
-  <g text-anchor="middle" fill="#727981">
+  <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="120" y="155">노드</text>
     <text x="260" y="155">노드</text>
     <text x="400" y="155">노드</text>
@@ -33,12 +33,12 @@
   </g>
 
   <!-- 버스 -->
-  <g stroke="#727981" stroke-width="1.5">
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="120" y1="170" x2="120" y2="200" />
     <line x1="260" y1="170" x2="260" y2="200" />
     <line x1="400" y1="170" x2="400" y2="200" />
     <line x1="540" y1="170" x2="540" y2="200" />
     <line x1="40" y1="200" x2="620" y2="200" stroke-width="3" />
   </g>
-  <text x="330" y="222" text-anchor="middle" font-size="12" fill="#727981">버스</text>
+  <text x="330" y="222" text-anchor="middle" font-size="12" fill="var(--text, #727981)">버스</text>
 </svg>

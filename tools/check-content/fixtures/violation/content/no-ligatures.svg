@@ -2,6 +2,6 @@
   <!-- 위반(svg): 글자가 있는데 루트에 font-variant="none"이 없다. Pretendard가 "ID 0x8100"의 x를 ×로 그린다. -->
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <!-- 위반(svg): 속성과 style로 합자를 다시 켠다. -->
-  <text x="120" y="45" text-anchor="middle" font-variant="normal" fill="#727981">ID 0x8100</text>
-  <text x="120" y="70" text-anchor="middle" style="font-variant: normal" fill="#727981">ID 0x8100</text>
+  <text x="120" y="45" text-anchor="middle" font-variant="normal" fill="var(--text, #727981)">ID 0x8100</text>
+  <text x="120" y="70" text-anchor="middle" style="font-variant: normal" fill="var(--text, #727981)">ID 0x8100</text>
 </svg>
