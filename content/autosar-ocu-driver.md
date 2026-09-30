@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**OCU Driver**는 AUTOSAR Classic Platform에서 MCAL의 I/O Drivers 그룹에 드는 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 마이크로컨트롤러 안의 OCU(Output Compare Unit) 기능을 초기화하고 제어하며, 카운터 값이 정해 둔 threshold에 닿으면 notification을 부르거나 출력 핀을 바꾼다.[@autosar-cp-sws-ocudriver-2025]
+**OCU Driver**는 AUTOSAR Classic Platform에서 MCAL의 I/O Drivers 그룹에 드는 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 마이크로컨트롤러 안의 OCU(Output Compare Unit) 기능을 초기화하고 제어하며, counter 값이 정해 둔 threshold에 닿으면 notification을 부르거나 출력 핀을 바꾼다.[@autosar-cp-sws-ocudriver-2025]
 
 ## Free running counter와 compare threshold
 
@@ -20,7 +20,7 @@ OCU Driver 규격에서 OCU channel의 두 요소는 free running counter와 com
 OCU Driver는 threshold를 두 방식으로 정한다.[@autosar-cp-sws-ocudriver-2025]
 
 - **절대 threshold**: `Ocu_SetAbsoluteThreshold`는 threshold를 주어진 값 그대로 정한다. 호출자가 함께 넘기는 참조값에서 새 threshold까지의 구간(reference interval)을 보고, 이 구간 안에서 일치가 일어나거나 이미 일어났으면 OCU_CM_IN_REF_INTERVAL을, 일어나지 않으면 OCU_CM_OUT_REF_INTERVAL을 돌려준다.
-- **상대 threshold**: `Ocu_SetRelativeThreshold`는 호출하는 순간의 counter 값에 주어진 값을 더해 threshold로 정하고, 반환값은 절대 threshold와 같은 방식으로 준다.[@autosar-cp-sws-ocudriver-2025]
+- **상대 threshold**: `Ocu_SetRelativeThreshold`는 호출하는 순간의 counter 값 $C$와 주어진 값 $R$로 threshold를 $C + R$로 정하고, 반환값은 절대 threshold와 같은 방식으로 준다.[@autosar-cp-sws-ocudriver-2025]
 
 ## 일치 때 동작
 

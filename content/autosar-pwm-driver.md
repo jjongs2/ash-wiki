@@ -13,7 +13,6 @@ PWM Driver 규격은 아래 용어를 정의한다.[@autosar-cp-sws-pwmdriver-20
 
 | 용어       | 뜻                                                                                                                 |
 | ---------- | ------------------------------------------------------------------------------------------------------------------ |
-| Channel    | 하드웨어 PWM 하나에 연결된 숫자 식별자                                                                             |
 | Period     | PWM 신호의 주기                                                                                                    |
 | Polarity   | 채널이 주기를 시작하는 출력 상태. `PWM_HIGH`면 high로 시작해 duty cycle만큼 지나면 low가 되고, `PWM_LOW`면 반대다. |
 | Duty cycle | 주기 가운데 시작 레벨(polarity의 레벨)이 차지하는 비율                                                             |
@@ -31,11 +30,17 @@ PWM Driver 규격은 채널을 주기를 바꿀 수 있는지에 따라 세 clas
 
 ## 출력 설정과 읽기
 
-`Pwm_SetDutyCycle`은 채널의 duty cycle을 정하고, `Pwm_SetPeriodAndDuty`는 주기와 duty cycle을 함께 정한다. 주기를 바꿀 수 있는 채널은 variable period뿐이어서, 개발 오류 검출을 켠 상태로 다른 class의 채널에 `Pwm_SetPeriodAndDuty`를 부르면 PWM_E_PERIOD_UNCHANGEABLE 오류가 보고된다. `Pwm_GetOutputState`는 PWM 출력 신호의 내부 상태를 읽어 `PWM_HIGH`나 `PWM_LOW`로 돌려준다.[@autosar-cp-sws-pwmdriver-2025]
+`Pwm_SetDutyCycle`은 채널의 duty cycle을 정하고, `Pwm_SetPeriodAndDuty`는 주기와 duty cycle을 함께 정한다. 주기를 바꿀 수 있는 채널은 variable period뿐이어서, 개발 오류 검출을 켠 상태로 다른 class의 채널에 `Pwm_SetPeriodAndDuty`를 부르면 PWM_E_PERIOD_UNCHANGEABLE 오류가 보고된다. `Pwm_GetOutputState`는 PWM 출력 신호의 내부 상태를 읽어 PWM_HIGH나 PWM_LOW로 돌려준다.[@autosar-cp-sws-pwmdriver-2025]
 
 ## Duty cycle 표현
 
-duty cycle 파라미터는 16비트 부호 없는 정수다. `0x0000`이 0%, `0x8000`이 100%이고, 그 사이 값은 주기에 비례해 환산되므로 `0x4000`은 50%다. duty cycle이 0%면 출력은 polarity의 반대 레벨에, 100%면 polarity 레벨에 머문다.[@autosar-cp-sws-pwmdriver-2025]
+duty cycle 파라미터는 16비트 부호 없는 정수이고, `0x0000`이 0%, `0x8000`이 100%다. `0x8000`은 $2^{15}$이므로, 파라미터 값 $D$와 주기 $T$가 주어지면 polarity 레벨 구간의 길이 $t$는 아래와 같다.[@autosar-cp-sws-pwmdriver-2025]
+
+$$
+t = \frac{D}{2^{15}}\,T
+$$
+
+그래서 `0x4000`은 50%다. duty cycle이 0%면 출력은 polarity의 반대 레벨에, 100%면 polarity 레벨에 머문다.[@autosar-cp-sws-pwmdriver-2025]
 
 ![[diagrams/pwm-duty-cycle-values.svg]]
 

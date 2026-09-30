@@ -27,10 +27,6 @@ IoHwAb가 SW-C에 주는 것은 AUTOSAR Interface다. 위쪽 인터페이스가 
 
 AUTOSAR는 IoHwAb 모듈을 표준화하지 않고, 기능 인터페이스를 구현하는 지침만 둔다. IoHwAb는 SW-C의 요구를 특정 MCAL 구현이 가진 기능에 맞춰야 하므로 언제나 ECU마다 따로 구현한다. ECU 신호라는 개념은 하드웨어 플랫폼을 서로 바꿔 쓸 수 있게 하려고 둔 것이다.[@autosar-cp-sws-iohardwareabstraction-2025]
 
-## Sensor-actuator SW-C와의 관계
-
-Sensor/actuator SW-C는 센서 값의 평가와 액추에이터 제어를 맡는 SW-C로, RTE 위에 놓이고 RTE를 통해 IoHwAb의 I/O 신호에 접근한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
-
 ## 드라이버와 notification
 
 IoHwAb는 MCAL의 [[autosar-port-driver|Port]], [[autosar-dio-driver|DIO]], [[autosar-adc-driver|ADC]], [[autosar-pwm-driver|PWM]], [[autosar-icu-driver|ICU]], [[autosar-ocu-driver|OCU]], GPT(General Purpose Timer) 드라이버의 API를 부르고, 보드 위 장치를 다룰 때는 SPI(Serial Peripheral Interface) 같은 통신 드라이버에도 접근한다. 외부 ADC와, SPI로 연결된 외부 I/O ASIC(Application-Specific Integrated Circuit)의 드라이버도 IoHwAb에 든다. IoHwAb가 반드시 써야 하는 인터페이스는 없고, 어느 인터페이스를 쓸지는 SW-C가 정의한 채널에 기대하는 기능에 달렸다.[@autosar-cp-sws-iohardwareabstraction-2025]
@@ -38,3 +34,7 @@ IoHwAb는 MCAL의 [[autosar-port-driver|Port]], [[autosar-dio-driver|DIO]], [[au
 notification은 MCAL 드라이버가 내고 IoHwAb 안에서 처리된다. IoHwAb는 ADC, ICU, OCU, PWM, GPT 드라이버에게서 notification을 받으며, 신호마다 notification을 쓰려면 시스템 설계자가 드라이버 설정에서 켜야 한다. Port와 DIO 드라이버에게서는 notification을 받지 않는다.[@autosar-cp-sws-iohardwareabstraction-2025] 두 드라이버에는 callback notification이 없다.[@autosar-cp-sws-portdriver-2025][@autosar-cp-sws-diodriver-2025]
 
 ![[diagrams/iohwab-driver-calls-notifications.svg]]
+
+## Sensor/actuator SW-C와의 관계
+
+Sensor/actuator SW-C는 RTE 위에 놓이며, RTE를 통해 IoHwAb의 I/O 신호에 접근한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]

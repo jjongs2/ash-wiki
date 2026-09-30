@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## Hardware unit과 channel group
 
-**ADC hardware unit**은 AD 변환에 필요한 부분을 모두 담은 마이크로컨트롤러의 입력 장치이고, 마이크로컨트롤러 하나에 여럿 있을 수 있다. ADC Driver는 변환을 ADC channel group 단위로 다룬다. channel group은 같은 hardware unit에 연결된 channel의 묶음이며, 그룹 전체가 트리거 소스 하나로 변환된다.[@autosar-cp-sws-adcdriver-2025]
+**ADC hardware unit**은 AD 변환에 필요한 부분을 모두 담은 마이크로컨트롤러의 입력 장치이고, 마이크로컨트롤러 하나에 여럿 있을 수 있다. ADC Driver는 변환을 ADC channel group 단위로 다루며, 그룹 전체가 트리거 소스 하나로 변환된다.[@autosar-cp-sws-adcdriver-2025]
 
 ## 트리거
 
@@ -24,7 +24,7 @@ verified: 2026-09-30
 
 변환 모드는 두 가지다.[@autosar-cp-sws-adcdriver-2025]
 
-- **One-shot**: 트리거 한 번에 그룹의 채널을 하나씩 정확히 한 번 변환한다. hardware trigger 그룹은 이 모드만 쓴다.
+- **One-shot**: 트리거 한 번에 그룹의 channel을 하나씩 정확히 한 번 변환한다. hardware trigger 그룹은 이 모드만 쓴다.
 - **Continuous**: 한 번 시작하면 트리거를 더 받지 않고 그룹 변환을 되풀이하며, 멈춤 함수로 멈출 수 있다. software trigger 그룹에만 쓴다.[@autosar-cp-sws-adcdriver-2025]
 
 ![[diagrams/adc-trigger-conversion-modes.svg]]
@@ -33,8 +33,8 @@ verified: 2026-09-30
 
 변환 결과는 사용자가 `Adc_SetupResultBuffer`로 그룹마다 지정한 결과 버퍼에 담긴다. 담는 방식은 두 가지다.[@autosar-cp-sws-adcdriver-2025]
 
-- **Single access**: 그룹의 채널마다 결과를 하나씩 담는다.
-- **Streaming access**: 채널마다 설정한 개수만큼 결과를 담는다.[@autosar-cp-sws-adcdriver-2025]
+- **Single access**: 그룹의 channel마다 결과를 하나씩 담는다.
+- **Streaming access**: channel마다 설정한 개수만큼 결과를 담는다.[@autosar-cp-sws-adcdriver-2025]
 
 두 방식 모두 `Adc_GetStreamLastPointer`와 `Adc_ReadGroup`으로 결과를 읽는다. `Adc_GetStreamLastPointer`는 최신 결과의 위치와 유효한 결과 수를 알려 주고, `Adc_ReadGroup`은 최신 결과를 사용자 버퍼로 복사한다.[@autosar-cp-sws-adcdriver-2025]
 
@@ -45,8 +45,8 @@ streaming 버퍼는 두 가지 가운데 하나로 설정한다.[@autosar-cp-sws
 
 ## Notification
 
-notification이 설정되어 있고 켜져 있으면, ADC Driver는 그룹의 모든 채널 변환이 끝날 때마다 그 그룹의 notification 함수를 부른다. streaming access에서도 버퍼가 찼을 때만이 아니라 그룹 변환이 한 번 끝날 때마다 부른다. `Adc_EnableGroupNotification`으로 켜고 `Adc_DisableGroupNotification`으로 끈다.[@autosar-cp-sws-adcdriver-2025]
+notification이 설정되어 있고 켜져 있으면, ADC Driver는 그룹의 모든 channel 변환이 끝날 때마다 그 그룹의 notification 함수를 부른다. streaming access에서도 버퍼가 찼을 때만이 아니라 그룹 변환이 한 번 끝날 때마다 부른다. `Adc_EnableGroupNotification`으로 켜고 `Adc_DisableGroupNotification`으로 끈다.[@autosar-cp-sws-adcdriver-2025]
 
 ## 다른 드라이버와의 관계
 
-칩 안의 클록 소스와 clock prescaler는 MCU Driver가 초기화하고 제어하며, 그 클록 주파수는 ADC의 트리거 주파수, 변환 시간, 샘플링 시간에 영향을 줄 수 있다. 하드웨어가 지원하면 변환 유닛이 쓸 ADC 전용 클록 소스와 prescale 계수는 ADC Driver 설정에서 고른다. ADC가 쓰는 아날로그 입력 핀과 외부 트리거 핀은 [[autosar-port-driver|Port Driver]]가 설정한다.[@autosar-cp-sws-adcdriver-2025]
+칩 안의 클록 소스와 clock prescaler는 MCU Driver가 초기화하고 제어한다. 하드웨어가 지원하면 변환 유닛이 쓸 ADC 전용 클록 소스와 prescale 계수는 ADC Driver 설정에서 고른다. ADC가 쓰는 아날로그 입력 핀과 외부 트리거 핀은 [[autosar-port-driver|Port Driver]]가 설정한다.[@autosar-cp-sws-adcdriver-2025]
