@@ -59,7 +59,7 @@ npm run check:content
 - 비교 절은 다른 개념과 비교할 대상이 분명할 때만 두고, 제목에 비교 대상을 드러냅니다. 예: `CAN과의 차이` `리뷰`
 - 한계는 그 한계를 낳는 동작을 설명하는 내용 절에 씁니다. `리뷰`
 - 표준 페이지는 머리말 → 범위 → 개정 이력 순서로 씁니다. 다른 표준과의 비교는 그 뒤에 두고, 제목에 비교 대상을 드러냅니다. 예: `Bosch CAN FD와의 차이` `리뷰`
-- 영어 용어가 든 제목(`title`과 절 제목)은 sentence case로 씁니다. 첫 글자가 라틴 문자면 대문자로 쓰고, 나머지는 고유 이름과 표준·규격 이름이 아니면 소문자로 씁니다. 예: `Credit-based shaper`, `Context switch`, `Dominant와 recessive`, `OSEK hook 루틴` `리뷰`
+- 영어 용어가 든 제목(`title`과 절 제목)은 sentence case로 씁니다. 첫 글자가 라틴 문자면 대문자로 쓰고, 나머지는 고유 이름과 표준·규격 이름이 아니면 소문자로 씁니다. 첫 낱말이 정식 표기가 소문자로 시작하는 고유 이름이면 그 표기를 그대로 둡니다. 예: `Credit-based shaper`, `Context switch`, `Dominant와 recessive`, `OSEK hook 루틴`, `x86` `리뷰`
 
 ## 마침표
 
