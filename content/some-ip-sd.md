@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-28
 ---
 
-**SOME/IP-SD**(SOME/IP Service Discovery)는 [[some-ip|SOME/IP]] 서비스 인스턴스의 발견, 인스턴스가 쓸 수 있는 상태가 되었는지의 감지, 게시·구독(Publish/Subscribe)의 처리를 맡는 프로토콜이다. SOME/IP-SD 규격은 차량 네트워크에서는 서비스 인스턴스의 위치(IP 주소, 전송 프로토콜, 포트 번호)가 대개 알려져 있다고 보아, 인스턴스의 상태를 주된 관심사로 두고 위치는 부차적 관심사로 둔다. SOME/IP-SD 메시지는 SOME/IP 메시지로 실어 UDP로 보내며, 기본 포트(`SD_PORT`)는 30490이다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
+**SOME/IP-SD**(SOME/IP Service Discovery)는 [[some-ip|SOME/IP]] 서비스 인스턴스의 발견, 인스턴스가 쓸 수 있는 상태가 되었는지의 감지, 게시·구독(Publish/Subscribe)의 처리를 맡는 프로토콜이다. SOME/IP-SD 규격은 차량 네트워크에서는 서비스 인스턴스의 위치(IP 주소, 전송 프로토콜, [[port-number|포트 번호]])가 대개 알려져 있다고 보아, 인스턴스의 상태를 주된 관심사로 두고 위치는 부차적 관심사로 둔다. SOME/IP-SD 메시지는 SOME/IP 메시지로 실어 [[udp|UDP]]로 보내며, 기본 포트(`SD_PORT`)는 30490이다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
 
 ## 메시지
 
@@ -55,7 +55,7 @@ SOME/IP-SD는 서비스 인스턴스마다 적어도 세 단계를 둔다.[@auto
 
 ## 구독
 
-클라이언트는 OfferService에 SubscribeEventgroup으로 답해 구독하고, 서버는 SubscribeEventgroupAck로 받아들이거나 SubscribeEventgroupNack로 거절한다. 서비스가 TCP로 제공되고 클라이언트가 이벤트 그룹을 TCP로 받으려 하면, 클라이언트는 SubscribeEventgroup을 보내기 전에 서버와 TCP 연결을 맺는다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
+클라이언트는 OfferService에 SubscribeEventgroup으로 답해 구독하고, 서버는 SubscribeEventgroupAck로 받아들이거나 SubscribeEventgroupNack로 거절한다. 서비스가 [[tcp|TCP]]로 제공되고 클라이언트가 이벤트 그룹을 TCP로 받으려 하면, 클라이언트는 SubscribeEventgroup을 보내기 전에 서버와 TCP 연결을 맺는다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
 
 서버는 구독을 받으면 SubscribeEventgroupAck 바로 뒤에 필드 notifier의 초기값을 보낸다. 순수 이벤트의 초기값은 보내지 않고, 이미 유효한 구독을 갱신하는 SubscribeEventgroup에도 초기값을 보내지 않는다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
 

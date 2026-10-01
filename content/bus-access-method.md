@@ -15,7 +15,7 @@ ISO/IEC 2382:2015는 LAN(Local Area Network)의 MAC(Medium Access Control) 프�
 
 **TDMA**(Time Division Multiple Access)는 링크에 접근하는 단말마다 되풀이되는 시간 구간을 따로 배정해, 그 구간에 송신하게 하는 다중 접속 기법이다.[@iec-60050-725-14-12-1994]
 
-FlexRay는 통신 사이클을 주기적으로 되풀이한다. 사이클은 정적 세그먼트, 선택 사항인 동적 세그먼트와 심볼 윈도, 네트워크 idle 시간으로 이뤄진다. 정적 세그먼트는 정적 슬롯 여러 개로 나뉘고, 프레임은 이 슬롯에서 동기적으로 송신된다. 동적 세그먼트는 미니슬롯으로 나뉘며, 우선순위가 있는 이벤트 구동 전송을 지원한다.[@iso-17458-1-obp-2013] 정적 슬롯마다 그 슬롯을 쓸 노드가 배정된다.[@iso-17458-2-obp-2013] NXP 앱노트에 따르면 FlexRay의 정적 세그먼트는 버스 접근에 TDMA를 쓰고, 동적 세그먼트는 FTDMA(Flexible TDMA)를 쓴다.[@nxp-an12233-2021]
+[[flexray|FlexRay]]는 통신 사이클을 주기적으로 되풀이한다. 사이클은 정적 세그먼트, 선택 사항인 동적 세그먼트와 심볼 윈도, 네트워크 idle 시간으로 이뤄진다. 정적 세그먼트는 정적 슬롯 여러 개로 나뉘고, 프레임은 이 슬롯에서 동기적으로 송신된다. 동적 세그먼트는 미니슬롯으로 나뉘며, 우선순위가 있는 이벤트 구동 전송을 지원한다.[@iso-17458-1-obp-2013] 정적 슬롯마다 그 슬롯을 쓸 노드가 배정된다.[@iso-17458-2-obp-2013] NXP 앱노트에 따르면 FlexRay의 정적 세그먼트는 버스 접근에 TDMA를 쓰고, 동적 세그먼트는 FTDMA(Flexible TDMA)를 쓴다.[@nxp-an12233-2021]
 
 ![[diagrams/flexray-communication-cycle.svg]]
 
@@ -27,7 +27,7 @@ FlexRay는 동기 전송에서 프레임 지연과 지터를 보장한다. 정�
 
 전송 매체에서 송신이 동시에 일어나 생기는 상태를 **충돌**(collision)이라 한다. LAN에서 MAC 프로토콜이 둘 이상의 데이터 스테이션에 동시에 송신을 시작하도록 허용해 충돌 위험이 있는 상황은 **경합**(contention)이다.[@iso-iec-2382-obp-2015]
 
-이더넷의 CSMA/CD(Carrier Sense Multiple Access with Collision Detection) MAC 프로토콜은 공유 매체에서의 반이중 동작을 규정한다.[@ieee-802-3-2022] ISO/IEC 2382:2015는 CSMA/CD 네트워크를 MAC 프로토콜이 캐리어 감지를 요구하는 버스 네트워크로 정의한다. 캐리어 감지는 데이터 스테이션이 다른 스테이션이 송신 중인지 계속 살피는 활동이고, 전송 매체가 사용 중이면 스테이션은 진행 중인 송신과 충돌하지 않도록 송신을 미룬다. CSMA/CD 네트워크는 충돌로 생긴 예외 상황을 재전송으로 해결한다. truncated binary exponential backoff는 충돌 뒤 재전송을 slot time과 재전송 시도 횟수로 정한 시간만큼 늦추는 알고리즘이다.[@iso-iec-2382-obp-2015]
+[[ethernet|이더넷]]의 CSMA/CD(Carrier Sense Multiple Access with Collision Detection) MAC 프로토콜은 공유 매체에서의 반이중 동작을 규정한다.[@ieee-802-3-2022] ISO/IEC 2382:2015는 CSMA/CD 네트워크를 MAC 프로토콜이 캐리어 감지를 요구하는 버스 네트워크로 정의한다. 캐리어 감지는 데이터 스테이션이 다른 스테이션이 송신 중인지 계속 살피는 활동이고, 전송 매체가 사용 중이면 스테이션은 진행 중인 송신과 충돌하지 않도록 송신을 미룬다. CSMA/CD 네트워크는 충돌로 생긴 예외 상황을 재전송으로 해결한다. truncated binary exponential backoff는 충돌 뒤 재전송을 slot time과 재전송 시도 횟수로 정한 시간만큼 늦추는 알고리즘이다.[@iso-iec-2382-obp-2015]
 
 반이중 이더넷 MAC은 다른 스테이션이 송신하는 동안 송신을 미루고, 그 송신이 끝나면 송신을 시도한다. 충돌 뒤에는 무작위로 정한 백오프 시간만큼 기다렸다가 다시 송신한다.[@microchip-enc28j60-2012][@st-rm0008-2021] STM32F107의 이더넷 MAC은 반이중에서 송신 중 충돌을 감지하면 잼 패턴을 보내 다른 스테이션에 알리고, 백오프만큼 기다렸다가 프레임을 다시 보낸다.[@st-rm0008-2021]
 
@@ -35,7 +35,7 @@ CAN에서는 버스가 idle이면 어느 노드든 송신을 시작할 수 있�
 
 ## Commander-responder
 
-LIN(Local Interconnect Network)의 commander는 네트워크에 하나뿐인 노드로, 프레임을 스케줄한다. commander 태스크는 스케줄 테이블에 따라 모든 헤더를 버스에 보내고, responder 태스크는 헤더를 듣고 그에 맞춰 응답을 보내거나 받거나 무시한다. 스케줄 테이블은 보낼 프레임과 그 순서, 프레임 사이의 시간 간격을 정한다.[@iso-17987-1-obp-2025] ISO 17987-1:2016은 commander와 responder를 master와 slave라 불렀고, 2025년판에서 지금 이름으로 바뀌었다.[@iso-17987-1-obp-2025][@iso-17987-1-obp-2016]
+[[lin|LIN]]의 commander는 네트워크에 하나뿐인 노드로, 프레임을 스케줄한다. commander 태스크는 스케줄 테이블에 따라 모든 헤더를 버스에 보내고, responder 태스크는 헤더를 듣고 그에 맞춰 응답을 보내거나 받거나 무시한다. 스케줄 테이블은 보낼 프레임과 그 순서, 프레임 사이의 시간 간격을 정한다.[@iso-17987-1-obp-2025] ISO 17987-1:2016은 commander와 responder를 master와 slave라 불렀고, 2025년판에서 지금 이름으로 바뀌었다.[@iso-17987-1-obp-2025][@iso-17987-1-obp-2016]
 
 ![[diagrams/lin-header-response.svg]]
 
@@ -43,6 +43,6 @@ LIN(Local Interconnect Network)의 commander는 네트워크에 하나뿐인 노
 
 LAN의 **토큰**은 데이터 스테이션에서 다음 데이터 스테이션으로 차례로 넘겨지는 권한 표지로, 전송 매체를 잠시 제어하는 스테이션을 가리킨다. 토큰 전달 프로토콜은 데이터 스테이션이 토큰을 얻고, 쓰고, 넘기는 방법을 정한 규칙이다.[@iso-iec-2382-obp-2015]
 
-OSEK/VDX NM(Network Management)은 노드를 직접 감시할 때 전용 NM 통신과 토큰 원리를 쓴다. 노드마다 논리적 후속 노드를 정해 논리 링을 만들고, 링 메시지를 후속 노드로 넘기며 NM 통신을 동기화한다.[@osek-nm-2-5-3-2004]
+[[osek-vdx|OSEK/VDX]] NM(Network Management)은 노드를 직접 감시할 때 전용 NM 통신과 토큰 원리를 쓴다. 노드마다 논리적 후속 노드를 정해 논리 링을 만들고, 링 메시지를 후속 노드로 넘기며 NM 통신을 동기화한다.[@osek-nm-2-5-3-2004]
 
 ![[diagrams/osek-nm-logical-ring.svg]]

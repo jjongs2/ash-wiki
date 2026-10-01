@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**MII**(Media Independent Interface)는 이더넷의 MAC(Medium Access Control)과 [[ethernet-phy|PHY]]를 잇는 인터페이스로, 10 Mbit/s와 100 Mbit/s 데이터 전송에 쓴다.[@ti-dp83822-2026][@st-rm0008-2021] IEEE 802.3-2022는 속도마다 MII를 정하며, MII 덕분에 동축, 꼬임쌍선, 광케이블, 전기 백플레인 가운데 어느 매체에서 동작하는 PHY든 골라 쓸 수 있다.[@ieee-802-3-2022]
+**MII**(Media Independent Interface)는 [[ethernet|이더넷]]의 MAC(Medium Access Control)과 [[ethernet-phy|PHY]]를 잇는 인터페이스로, 10 Mbit/s와 100 Mbit/s 데이터 전송에 쓴다.[@ti-dp83822-2026][@st-rm0008-2021] [[ieee-802-3|IEEE 802.3]]-2022는 속도마다 MII를 정하며, MII 덕분에 동축, 꼬임쌍선, 광케이블, 전기 백플레인 가운데 어느 매체에서 동작하는 PHY든 골라 쓸 수 있다.[@ieee-802-3-2022]
 
 ## 신호
 

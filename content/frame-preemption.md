@@ -8,7 +8,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**프레임 선점**(frame preemption)은 전송 중인 preemptable 프레임을 멈추고 express 프레임을 먼저 보낸 뒤, 멈춘 프레임을 이어서 보내는 기능이다.[@adi-adin3310-adin6310-2025][@ti-processor-sdk-linux-am64x-iet-2026] IEEE 802.3br-2016은 IEEE 802.3-2015의 개정(Amendment 5)으로, 물리 링크 하나에서 Interspersing Express Traffic을 지원하는 내용을 더했다.[@ieee-802-3br-2016] IEEE 802.1Qbu-2016은 IEEE 802.1Q-2014의 개정(Amendment 26)으로, 프레임 선점을 지원하도록 전달 과정을 보강했다.[@ieee-802-1qbu-2016] IEEE 802.1 작업 그룹의 [[tsn|TSN]] 요약은 프레임 선점(IEEE 802.1Qbu, IEEE 802.3br)을 지연 상한을 위한 도구로 분류한다.[@ieee-802-1-tsn-summary-2026]
+**프레임 선점**(frame preemption)은 전송 중인 preemptable 프레임을 멈추고 express 프레임을 먼저 보낸 뒤, 멈춘 프레임을 이어서 보내는 기능이다.[@adi-adin3310-adin6310-2025][@ti-processor-sdk-linux-am64x-iet-2026] IEEE 802.3br-2016은 [[ieee-802-3|IEEE 802.3]]-2015의 개정(Amendment 5)으로, 물리 링크 하나에서 Interspersing Express Traffic을 지원하는 내용을 더했다.[@ieee-802-3br-2016] IEEE 802.1Qbu-2016은 [[ieee-802-1q|IEEE 802.1Q]]-2014의 개정(Amendment 26)으로, 프레임 선점을 지원하도록 전달 과정을 보강했다.[@ieee-802-1qbu-2016] IEEE 802.1 작업 그룹의 [[tsn|TSN]] 요약은 프레임 선점(IEEE 802.1Qbu, IEEE 802.3br)을 지연 상한을 위한 도구로 분류한다.[@ieee-802-1-tsn-summary-2026]
 
 802.1Qbu 프로젝트는 시간이 중요하지 않은 프레임의 전송을 멈추고 시간이 중요한 프레임을 보낸 뒤 멈춘 프레임을 다시 보내게 하는 서비스 클래스를 정의하는 것을 범위로 삼았고, 링크 양쪽이 모두 선점을 지원할 때만 선점을 켜도록 했다.[@ieee-802-1qbu-project-2016]
 

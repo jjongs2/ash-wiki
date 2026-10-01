@@ -38,7 +38,7 @@ UDP의 송신과 수신은 메시지 경계를 지킨다.[@ietf-rfc-8095-2017][@
 
 UDP로는 유니캐스트와 애니캐스트 데이터그램 말고도 브로드캐스트 데이터그램(IPv4)과 멀티캐스트 데이터그램(IPv4, IPv6)을 보낼 수 있다.[@ietf-rfc-8095-2017]
 
-[[some-ip-sd|SOME/IP-SD]] 메시지는 UDP로 보낸다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025] AUTOSAR의 [[doip|DoIP]] 모듈은 차량 식별 요청을 UDP로 받는다.[@autosar-cp-sws-diagnosticoverip-2025]
+[[some-ip-sd|SOME/IP-SD]] 메시지는 UDP로 보낸다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025] [[autosar|AUTOSAR]]의 [[doip|DoIP]] 모듈은 차량 식별 요청을 UDP로 받는다.[@autosar-cp-sws-diagnosticoverip-2025]
 
 ## TCP와의 차이
 

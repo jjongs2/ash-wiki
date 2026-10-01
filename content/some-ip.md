@@ -7,11 +7,11 @@ aliases:
 verified: 2026-09-28
 ---
 
-**SOME/IP**(Scalable service-Oriented MiddlewarE over IP)는 차량의 ECU 사이에서 IP 네트워크를 거쳐 서비스 지향 통신을 하게 하는 프로토콜이다. 원격 절차 호출(RPC, Remote Procedure Call), 이벤트 알림, 그리고 그 밑에 깔리는 직렬화 형식을 정한다. 프로토콜 명세는 AUTOSAR가 펴낸다.[@autosar-fo-prs-someipprotocol-2025] BMW가 쓴 SOME/IP 명세 초안은 2011년 11월에 처음 공개되었고, BMW는 이 초안을 ISO와 AUTOSAR 등에 표준화를 위해 제공했다.[@bmw-someip-specification-draft-2012] AUTOSAR Classic Platform에는 데이터를 SOME/IP 형식으로 직렬화하는 SOME/IP Transformer가 있고[@autosar-cp-sws-someiptransformer-2025], Adaptive Platform의 통신 관리는 SOME/IP와 [[some-ip-sd|SOME/IP-SD]]를 구현하는 SOME/IP 네트워크 바인딩을 둔다.[@autosar-ap-sws-communicationmanagement-2025]
+**SOME/IP**(Scalable service-Oriented MiddlewarE over IP)는 차량의 ECU 사이에서 IP 네트워크를 거쳐 [[service-oriented-communication|서비스 지향 통신]]을 하게 하는 프로토콜이다. 원격 절차 호출(RPC, Remote Procedure Call), 이벤트 알림, 그리고 그 밑에 깔리는 직렬화 형식을 정한다. 프로토콜 명세는 [[autosar|AUTOSAR]]가 펴낸다.[@autosar-fo-prs-someipprotocol-2025] BMW가 쓴 SOME/IP 명세 초안은 2011년 11월에 처음 공개되었고, BMW는 이 초안을 ISO와 AUTOSAR 등에 표준화를 위해 제공했다.[@bmw-someip-specification-draft-2012] [[autosar-classic-platform|AUTOSAR Classic Platform]]에는 데이터를 SOME/IP 형식으로 직렬화하는 SOME/IP Transformer가 있고[@autosar-cp-sws-someiptransformer-2025], Adaptive Platform의 통신 관리는 SOME/IP와 [[some-ip-sd|SOME/IP-SD]]를 구현하는 SOME/IP 네트워크 바인딩을 둔다.[@autosar-ap-sws-communicationmanagement-2025]
 
 ## 전송
 
-SOME/IP는 UDP와 TCP를 전송 프로토콜로 지원한다. 한 ECU의 서버 쪽에서 같은 서비스의 인스턴스가 여럿이면 인스턴스마다 다른 포트 번호를 쓴다. 명세는 UDP에서 SOME/IP 페이로드를 0\~1400바이트로 두고, 이보다 크면 TCP로 보내거나 나눠 보내기를 권한다. UDP로 보내기에 큰 메시지는 SOME/IP-TP(SOME/IP Transport Protocol)로 나눈다.[@autosar-fo-prs-someipprotocol-2025]
+SOME/IP는 [[udp|UDP]]와 [[tcp|TCP]]를 전송 프로토콜로 지원한다. 한 ECU의 서버 쪽에서 같은 서비스의 인스턴스가 여럿이면 인스턴스마다 다른 [[port-number|포트 번호]]를 쓴다. 명세는 UDP에서 SOME/IP 페이로드를 0\~1400바이트로 두고, 이보다 크면 TCP로 보내거나 나눠 보내기를 권한다. UDP로 보내기에 큰 메시지는 SOME/IP-TP(SOME/IP Transport Protocol)로 나눈다.[@autosar-fo-prs-someipprotocol-2025]
 
 UDP 바인딩에서 SOME/IP는 메시지가 닿을 수도 있다는 "maybe" 신뢰성만 제공하고, 그 이상의 오류 처리는 애플리케이션이 맡는다. TCP 바인딩에서는 "exactly once"다.[@autosar-fo-prs-someipprotocol-2025]
 
@@ -70,4 +70,4 @@ REQUEST, REQUEST_NO_RETURN, NOTIFICATION 메시지의 Return Code는 `0x00`이�
 
 구조체는 멤버를 깊이 우선 순회 순서로 차례대로 직렬화한다. 가변 길이 문자열과 가변 길이 배열은 앞에 길이 필드를 둔다. 열거형은 부호 없는 정수로 보내고, 비트 필드는 uint8\~uint64로 보내며, 유니언(variant)도 쓸 수 있다.[@autosar-fo-prs-someipprotocol-2025]
 
-Classic Platform에서는 SOME/IP Transformer가 데이터를 SOME/IP 형식으로 직렬화하고, 프로토콜의 나머지 일부는 SoAd(Socket Adaptor)와 Service Discovery 모듈이 맡는다.[@autosar-cp-sws-someiptransformer-2025] SoAd는 PDU(Protocol Data Unit)를 쓰는 통신 서비스 모듈과 소켓 기반 TCP/IP 스택을 잇고, SOME/IP 메시지는 SoAd를 거쳐 TCP/IP로 오간다.[@autosar-cp-sws-socketadaptor-2025]
+Classic Platform에서는 SOME/IP Transformer가 데이터를 SOME/IP 형식으로 직렬화하고, 프로토콜의 나머지 일부는 SoAd(Socket Adaptor)와 Service Discovery 모듈이 맡는다.[@autosar-cp-sws-someiptransformer-2025] SoAd는 PDU(Protocol Data Unit)를 쓰는 통신 서비스 모듈과 소켓 기반 [[internet-protocol-suite|TCP/IP]] 스택을 잇고, SOME/IP 메시지는 SoAd를 거쳐 TCP/IP로 오간다.[@autosar-cp-sws-socketadaptor-2025]

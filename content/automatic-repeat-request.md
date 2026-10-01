@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**ARQ**(Automatic Repeat Request)는 수신 측이 오류 검출 부호로 찾아낸 오류를 되돌림 통로로 송신 측에 알리고, 송신 측이 그 데이터를 다시 보내게 하는 오류 정정 방식이다.[@iec-60050-721-08-21-1991][@ietf-rfc-3819-2004] ITU-T X.141(11/88)은 ARQ의 오류 복구에서 정보 프레임에 보내는 차례대로 모듈러 순서 번호를 붙이고, 수신 측이 FCS(Frame Check Sequence)로 오류를 찾은 프레임과 유효하지 않은 프레임을 버리도록 정한다.[@itu-t-x-141-1988] RFC 9293은 TCP가 [[checksum|체크섬]] 검사에 실패한 세그먼트처럼 잃은 세그먼트를 재전송으로 메우도록 정한다.[@ietf-rfc-9293-2022]
+**ARQ**(Automatic Repeat Request)는 수신 측이 오류 검출 부호로 찾아낸 오류를 되돌림 통로로 송신 측에 알리고, 송신 측이 그 데이터를 다시 보내게 하는 오류 정정 방식이다.[@iec-60050-721-08-21-1991][@ietf-rfc-3819-2004] ITU-T X.141(11/88)은 ARQ의 오류 복구에서 정보 프레임에 보내는 차례대로 모듈러 순서 번호를 붙이고, 수신 측이 FCS(Frame Check Sequence)로 오류를 찾은 프레임과 유효하지 않은 프레임을 버리도록 정한다.[@itu-t-x-141-1988] RFC 9293은 [[tcp|TCP]]가 [[checksum|체크섬]] 검사에 실패한 세그먼트처럼 잃은 세그먼트를 재전송으로 메우도록 정한다.[@ietf-rfc-9293-2022]
 
 ## 확인 응답
 
@@ -43,4 +43,4 @@ CCSDS 232.1-B-2는 우주 링크의 COP-1(Communications Operation Procedure-1)�
 
 ARQ는 되돌림 통로가 있어야 한다.[@iec-60050-721-08-21-1991][@ietf-rfc-3366-2002] 반면 [[error-correction-code|오류 정정 부호]]는 되돌림 통로 없이 오류를 고친다.[@iec-60050-702-05-20-2016]
 
-IETF의 RFC 3819와 RFC 3366에 따르면 ARQ는 FEC(Forward Error Correction)와 달리 지연 변동을 키우고,[@ietf-rfc-3819-2004] 한 링크를 여러 흐름이 함께 쓸 때는 손실을 겪는 흐름 때문에 다른 TCP·UDP 흐름에도 지연 변동을 준다.[@ietf-rfc-3366-2002]
+IETF의 RFC 3819와 RFC 3366에 따르면 ARQ는 FEC(Forward Error Correction)와 달리 지연 변동을 키우고,[@ietf-rfc-3819-2004] 한 링크를 여러 흐름이 함께 쓸 때는 손실을 겪는 흐름 때문에 다른 TCP·[[udp|UDP]] 흐름에도 지연 변동을 준다.[@ietf-rfc-3366-2002]

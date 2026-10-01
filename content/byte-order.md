@@ -23,7 +23,7 @@ POSIX.1-2024는 호스트 바이트 순서와 네트워크 바이트 순서 사�
 
 IEN 137에 따르면 비트 순서와 바이트 순서는 같을 수도 있고 다를 수도 있다. 이 글에서 Danny Cohen은 1980년, 워드의 어느 쪽 끝부터 보낼지로 나뉜 두 진영을 걸리버 여행기의 달걀 논쟁에 빗대어 Little-Endians와 Big-Endians라 불렀다.[@ietf-ien-137-1980]
 
-[[ieee-802-3|IEEE 802.3-2022]]는 Ethernet MAC(Medium Access Control) 프레임의 옥텟을 FCS(Frame Check Sequence)만 빼고 모두 최하위 비트부터 보내도록 정한다. FCS에 담는 32비트 [[cyclic-redundancy-check|CRC]]는 최고차 항의 계수부터 보낸다.[@ieee-802-3-2022]
+[[ieee-802-3|IEEE 802.3-2022]]는 [[ethernet|이더넷]] MAC(Medium Access Control) 프레임의 옥텟을 FCS(Frame Check Sequence)만 빼고 모두 최하위 비트부터 보내도록 정한다. FCS에 담는 32비트 [[cyclic-redundancy-check|CRC]]는 최고차 항의 계수부터 보낸다.[@ieee-802-3-2022]
 
 ## 프로세서
 
@@ -35,4 +35,4 @@ Arm A-profile 아키텍처의 AArch64는 명시적 데이터 접근의 엔디언
 
 [[some-ip|SOME/IP]] 명세는 헤더 필드를 모두 네트워크 바이트 순서로 인코딩하도록 정한다. 페이로드 파라미터의 바이트 순서는 설정 파라미터 `BYTE_ORDER`가 정하며, 값은 `mostSignificantByteFirst`, `mostSignificantByteLast`, `opaque`이고 기본값은 `mostSignificantByteFirst`(빅 엔디언)다. 길이 필드, TLV(Tag-Length-Value) 태그, 유니언의 타입 필드 같은 일부 페이로드 필드는 `BYTE_ORDER`와 상관없이 네트워크 바이트 순서다.[@autosar-fo-prs-someipprotocol-2025]
 
-AUTOSAR COM은 시그널마다 네트워크 표현의 엔디언을 설정 파라미터 `ComSignalEndianness`로 정하며, 값으로 `BIG_ENDIAN`, `LITTLE_ENDIAN`, `OPAQUE`를 둔다.[@autosar-cp-sws-com-2025] AUTOSAR R25-11 System Template은 빅 엔디언을 Motorola 형식, 리틀 엔디언을 Intel 형식이라고도 부른다.[@autosar-cp-tps-systemtemplate-2025]
+[[autosar-com|AUTOSAR COM]]은 시그널마다 네트워크 표현의 엔디언을 설정 파라미터 `ComSignalEndianness`로 정하며, 값으로 `BIG_ENDIAN`, `LITTLE_ENDIAN`, `OPAQUE`를 둔다.[@autosar-cp-sws-com-2025] AUTOSAR R25-11 System Template은 빅 엔디언을 Motorola 형식, 리틀 엔디언을 Intel 형식이라고도 부른다.[@autosar-cp-tps-systemtemplate-2025]

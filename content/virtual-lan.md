@@ -13,7 +13,7 @@ IEEE 802.1Q-2022는 VLAN 태그를 정한다. C-VLAN(Customer VLAN) 태그는 Et
 
 태그 안에서 프레임의 우선순위를 0부터 7까지의 값으로 나타내는 3비트 필드를 **PCP**(Priority Code Point)라 한다.[@ieee-802-1q-types-yang-2022] 프레임의 drop_eligible 파라미터를 싣는 필드를 **DEI**(Drop Eligible Indicator)라 한다.[@ieee-802-1q-bridge-yang-2022] 프레임이 속한 VLAN을 가리키는 12비트 값을 **VID**(VLAN Identifier)라 한다.[@ieee-802-1q-types-yang-2022]
 
-VLAN 태그는 두 필드가 차례로 이어진 것이다. 앞의 **TPID**(Tag Protocol Identifier)는 태그의 종류를 가리키는 EtherType을 담은 2옥텟(16비트) 필드이고, 뒤의 **TCI**(Tag Control Information)는 2옥텟 필드로 VLAN 태그에서는 PCP, DEI, VID를 담는다. 이 표준의 부록 G가 보이는 IEEE 802.3 프레임의 예에서, TPID와 TCI를 합친 4옥텟은 출발지 주소 바로 뒤에 온다.[@ieee-802-1q-2022]
+VLAN 태그는 두 필드가 차례로 이어진 것이다. 앞의 **TPID**(Tag Protocol Identifier)는 태그의 종류를 가리키는 EtherType을 담은 2옥텟(16비트) 필드이고, 뒤의 **TCI**(Tag Control Information)는 2옥텟 필드로 VLAN 태그에서는 PCP, DEI, VID를 담는다. 이 표준의 부록 G가 보이는 [[ieee-802-3|IEEE 802.3]] 프레임의 예에서, TPID와 TCI를 합친 4옥텟은 출발지 주소 바로 뒤에 온다.[@ieee-802-1q-2022]
 
 VLAN을 가리키는 VID는 1부터 4094까지이고, 0과 4095(`0xFFF`)는 VLAN 번호로 쓰지 않는다. 그래서 쓸 수 있는 VID는 4094개다.[@ieee-802-1q-types-yang-2022] IEEE 802.1Q-2022는 VID 0을 **null VID**로 두며, 태그가 우선순위 정보만 싣고 프레임에 VID가 없다는 뜻이다.[@ieee-802-1q-2022]
 
@@ -21,7 +21,7 @@ IEEE 802.1Q-2005는 태그의 TCI에서 PCP와 VID 사이의 1비트를 CFI(Cano
 
 ![[diagrams/vlan-tag-fields.svg]]
 
-IEEE 802.3-2022는 태그 없는 basic frame의 최대 길이를 1518옥텟으로, VLAN 태그를 넣은 Q-tagged frame의 최대 길이를 1522옥텟으로 정하고[@ieee-802-3-2022], 이더넷 MAC(Medium Access Control)과 스위치 칩도 이 두 길이까지를 정상 길이로 받는다.[@microchip-ksz9477s-2019][@st-rm0008-2021]
+IEEE 802.3-2022는 태그 없는 basic frame의 최대 길이를 1518옥텟으로, VLAN 태그를 넣은 Q-tagged frame의 최대 길이를 1522옥텟으로 정하고[@ieee-802-3-2022], [[ethernet|이더넷]] MAC(Medium Access Control)과 스위치 칩도 이 두 길이까지를 정상 길이로 받는다.[@microchip-ksz9477s-2019][@st-rm0008-2021]
 
 IEEE 802.1ad-2005는 서비스 제공자가 IEEE 802.1Q의 구조와 프로토콜로 여러 고객에게 서로 분리된 LAN에 해당하는 서비스를 제공하게 하는 provider bridge를 정했다.[@ieee-802-1ad-2005] S-VLAN(Service VLAN) 태그는 EtherType `0x88A8`을 쓴다.[@ieee-802-1q-types-yang-2022][@ieee-ra-ethertype-2024] 이 값은 IEEE 802.1ad가 처음 들였고, IEEE 802.1Q-2011에 합쳐졌다.[@ieee-802-1q-types-yang-2022] provider bridge 네트워크는 C-VLAN 태그와 S-VLAN 태그를 함께 단 프레임을 코어로 나를 수 있고, 이때 S-VLAN 태그 뒤의 데이터는 C-VLAN 태그로 시작한다. C-VLAN 태그를 코어로 나르지 않는 provider bridge 네트워크도 있다.[@ieee-802-1q-2022] KSZ9477S는 서비스 제공자가 고객의 태그 위에 둘째 태그를 덧붙이는 double tagging(Q-in-Q)을 지원하며, 바깥 태그는 출발지 주소 바로 뒤에 오고 TPID가 안쪽 태그와 다르다.[@microchip-ksz9477s-2019]
 

@@ -17,7 +17,7 @@ Classical [[can|CAN]] [[can-frame|데이터 프레임]]의 데이터 필드는 0
 
 ISO 15765-2:2024는 CAN을 쓰는 차량 네트워크에서 진단 통신에 쓰는 전송 프로토콜과 네트워크 계층 서비스를 정한다. 이 프로토콜은 분할된 PDU를 첫 프레임 FF(FirstFrame)와 여러 연속 프레임 CF(ConsecutiveFrame)에 나눠 보낸다.[@iso-15765-2-obp-2024]
 
-AUTOSAR의 CAN 전송 계층 모듈 CanTp가 다루는 전송 프로토콜 프레임은 단일 프레임 SF(Single Frame), FF, CF, 흐름 제어 프레임 FC(Flow Control)이고, 이 프레임들을 다음처럼 쓴다.[@autosar-cp-sws-cantransportlayer-2025]
+[[autosar|AUTOSAR]]의 CAN 전송 계층 모듈 CanTp가 다루는 전송 프로토콜 프레임은 단일 프레임 SF(Single Frame), FF, CF, 흐름 제어 프레임 FC(Flow Control)이고, 이 프레임들을 다음처럼 쓴다.[@autosar-cp-sws-cantransportlayer-2025]
 
 - **SF**: 보낼 데이터 N-SDU(Network Service Data Unit)가 CAN 프레임 하나에 실리는 단위 N-PDU(Network Protocol Data Unit)에 들어가면 SF로 보낸다.
 - **FF**: 분할된 메시지의 첫 부분과 메시지 전체 길이 FF_DL을 싣는다. $\mathrm{FF\_DL} \le 4095$이면 FF_DL을 첫 바이트 하위 4비트와 둘째 바이트에 싣고, $\mathrm{FF\_DL} > 4095$이면 그 자리를 0으로 두고 FF_DL을 셋째부터 여섯째 바이트에 싣는다. 두 형식 모두 CAN 2.0과 [[can-fd|CAN FD]]에 쓴다.
@@ -32,6 +32,6 @@ CanTp는 연속 프레임을 받을 때마다 N_Cr 타이머를 시작한다(블
 
 ## IP 단편화
 
-IPv4(Internet Protocol version 4) 데이터그램이 최대 패킷 크기가 더 작은 네트워크를 지나야 하면 단편으로 나눈다. 단편마다 식별(Identification) 필드, 원래 데이터그램 안에서의 위치를 나타내는 단편 오프셋, 마지막 단편인지 나타내는 MF(More Fragments) 플래그가 있다. 받는 쪽 IP 모듈은 식별, 출발지, 목적지, 프로토콜 네 필드가 같은 단편을 모아, 단편 오프셋이 가리키는 자리에 데이터를 놓아 합친다.[@ietf-rfc-791-1981]
+[[ipv4|IPv4]] 데이터그램이 최대 패킷 크기가 더 작은 네트워크를 지나야 하면 단편으로 나눈다. 단편마다 식별(Identification) 필드, 원래 데이터그램 안에서의 위치를 나타내는 단편 오프셋, 마지막 단편인지 나타내는 MF(More Fragments) 플래그가 있다. 받는 쪽 IP 모듈은 식별, 출발지, 목적지, 프로토콜 네 필드가 같은 단편을 모아, 단편 오프셋이 가리키는 자리에 데이터를 놓아 합친다.[@ietf-rfc-791-1981]
 
 IPv4 호스트에는 재조립 타임아웃이 있어야 하고, 타임아웃이 지나면 재조립 중이던 데이터그램을 버린다.[@ietf-rfc-1122-1989]
