@@ -31,8 +31,8 @@ interface Margins {
   bottom: number
 }
 
-// 칠한 영역의 가장자리. viewBox 좌표다.
-interface Bounds {
+// 칠한 영역이나 상자의 가장자리. viewBox 좌표다.
+export interface Bounds {
   left: number
   right: number
   top: number
@@ -89,6 +89,19 @@ export function withViewBox(rootTag: string, viewBox: ViewBox): string {
   return rootTag.replace(/(\sviewBox\s*=\s*)(["']).*?\2/i, `$1"${viewBox.join(" ")}"`)
 }
 
+// root는 svg에서 루트 여는 태그가 있는 곳이다. 그 태그의 viewBox만 바꾼 문서를 준다.
+export function withRootViewBox(
+  svg: string,
+  root: { index: number; tag: string },
+  viewBox: ViewBox,
+): string {
+  return (
+    svg.slice(0, root.index) +
+    withViewBox(root.tag, viewBox) +
+    svg.slice(root.index + root.tag.length)
+  )
+}
+
 // svg는 루트의 viewBox가 viewBox인 문서다. 아무것도 칠하지 않았으면 null을 준다.
 export async function paintedBounds(svg: string, viewBox: ViewBox): Promise<Bounds | null> {
   const { data, info } = await render(svg)
@@ -126,11 +139,7 @@ export async function measureMargins(
   const padX = Math.ceil(width * overflowPadding * scale) / scale
   const padY = Math.ceil(height * overflowPadding * scale) / scale
   const expanded: ViewBox = [x - padX, y - padY, width + 2 * padX, height + 2 * padY]
-  const svg =
-    source.slice(0, root.index) +
-    withViewBox(root.tag, expanded) +
-    source.slice(root.index + root.tag.length)
-  const bounds = await paintedBounds(svg, expanded)
+  const bounds = await paintedBounds(withRootViewBox(source, root, expanded), expanded)
   if (!bounds) return null
   return {
     left: bounds.left - x,

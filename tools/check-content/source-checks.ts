@@ -10,7 +10,9 @@ import {
   overflowed,
   paintedBounds,
   SvgRenderError,
+  type Bounds,
   type ViewBox,
+  withRootViewBox,
   withViewBox,
 } from "./diagram-margin"
 import { fieldsOf, type Page, type Tree, type Violation } from "./tree"
@@ -664,7 +666,7 @@ function viewBoxOf(rootTag: string): ViewBox | null {
 }
 
 // 0.5 단위로 반올림한다.
-const round = (n: number) => Math.round(n * 2) / 2
+const roundHalf = (n: number) => Math.round(n * 2) / 2
 
 // 그림이 viewBox 밖으로 나갔거나, 여백이 치우쳤거나, 잴 수 없으면 그 이유를, 아니면 null을 준다.
 // 밖으로 나간 그림에는 여백 치우침을 알리지 않는다. 그 메시지대로 원점을 옮겨도 그림이 viewBox에 다
@@ -693,17 +695,22 @@ async function marginViolation(
   ]
   const outside = sides.filter(([, margin]) => overflowed(margin))
   if (outside.length > 0) {
-    const amounts = outside.map(([side, margin]) => `${side} ${round(-margin)}`)
+    const amounts = outside.map(([side, margin]) => `${side} ${roundHalf(-margin)}`)
     return `그림이 viewBox 밖으로 나갔다(${amounts.join(", ")}). 그림을 viewBox 안에 둔다`
   }
   if (Math.abs(left - right) <= marginTolerance && Math.abs(top - bottom) <= marginTolerance) {
     return null
   }
   // 그림을 가운데로 옮기려면 원점을 여백 차의 절반만큼 옮긴다.
-  const shifted = [round(x + (left - right) / 2), round(y + (top - bottom) / 2), width, height]
+  const shifted = [
+    roundHalf(x + (left - right) / 2),
+    roundHalf(y + (top - bottom) / 2),
+    width,
+    height,
+  ]
   return (
-    `그림이 viewBox 가운데에서 치우쳤다(여백 좌 ${round(left)}, 우 ${round(right)}, ` +
-    `상 ${round(top)}, 하 ${round(bottom)}, 허용 차 ${marginTolerance}). ` +
+    `그림이 viewBox 가운데에서 치우쳤다(여백 좌 ${roundHalf(left)}, 우 ${roundHalf(right)}, ` +
+    `상 ${roundHalf(top)}, 하 ${roundHalf(bottom)}, 허용 차 ${marginTolerance}). ` +
     `원점을 옮겨 viewBox="${shifted.join(" ")}"로 둔다`
   )
 }
@@ -733,19 +740,12 @@ function coordinate(element: SvgElement, attribute: string): number {
   return /^-?(\d+\.?\d*|\.\d+)(px)?$/i.test(value) ? lengthOf(value) : NaN
 }
 
-interface Box {
-  left: number
-  right: number
-  top: number
-  bottom: number
-}
-
-const contains = (box: Box, x: number, y: number) =>
+const contains = (box: Bounds, x: number, y: number) =>
   box.left <= x && x <= box.right && box.top <= y && y <= box.bottom
-const middle = (box: Box) => (box.top + box.bottom) / 2
+const middle = (box: Bounds) => (box.top + box.bottom) / 2
 
 // 다른 <rect>를 품지 않는 <rect>. 품는 것은 그룹 틀이다.
-function boxesOf(elements: SvgElement[]): Box[] {
+function boxesOf(elements: SvgElement[]): Bounds[] {
   const rects = elements
     .filter((element) => element.name === "rect" && placed(element))
     .map((element) => {
@@ -778,8 +778,9 @@ async function paintedOrSkip(svg: string, viewBox: ViewBox) {
 }
 
 // 같은 줄에 놓인 두 상자 사이에서 어느 상자에도 들지 않는 글자는 잉크의 세로 중심을 상자 세로 중심에
-// 맞춘다. 같은 줄은 두 상자가 글자의 baseline을 세로로 품는 것이다. 두 상자 사이 칸에 그 글자 말고도
-// 그린 것(화살표 같은)이 있으면 글자는 그것의 라벨이라 위아래로 비켜 두므로 보지 않는다.
+// 맞춘다. 두 상자 사이 칸에 그 글자 말고도 그린 것(화살표 같은)이 있으면 글자는 그것의 라벨이라
+// 위아래로 비켜 두므로 보지 않는다. 잉크의 가로 중심이 칸 가운데 절반 밖이면 한쪽 상자에 붙인 라벨이므로
+// 보지 않는다. main의 구분자(`:`, `…`)와 고치기 전의 `_`는 모두 칸 가운데에 있었다.
 // 글자는 조상과 <style>을 살려 홀로 그려 잉크를 잰다.
 async function textBetweenBoxesViolations(
   text: string,
@@ -797,6 +798,7 @@ async function textBetweenBoxesViolations(
     if (!Number.isFinite(x) || !Number.isFinite(y) || boxes.some((box) => contains(box, x, y))) {
       continue
     }
+    // 같은 줄은 두 상자가 baseline을 세로로 품고 세로 중심이 허용치 안에서 같은 것이다.
     const row = boxes.filter((box) => box.top <= y && y <= box.bottom)
     const before = row.filter((box) => box.right <= x).sort((a, b) => b.right - a.right)[0]
     const after = row.filter((box) => box.left >= x).sort((a, b) => a.left - b.left)[0]
@@ -809,6 +811,8 @@ async function textBetweenBoxesViolations(
     end.lastIndex = element.offset
     const close = end.exec(text)
     if (!before || !after || !Number.isFinite(fontSize) || !viewBox || !close) continue
+    const tolerance = betweenBoxesTolerance * fontSize
+    if (Math.abs(middle(before) - middle(after)) > tolerance) continue
     const elementEnd = close.index + close[0].length
 
     const top = Math.max(before.top, after.top)
@@ -819,17 +823,18 @@ async function textBetweenBoxesViolations(
       Math.min(before.bottom, after.bottom) - top,
     ]
     if (gap[2] <= 0 || gap[3] <= 0) continue
-    const others =
-      text.slice(0, root.offset) +
-      withViewBox(root.source, gap) +
-      text.slice(root.offset + root.source.length, element.offset) +
-      text.slice(elementEnd)
-    if ((await paintedOrSkip(others, gap)) !== null) continue
+    const gapWithoutText = withRootViewBox(
+      text.slice(0, element.offset) + text.slice(elementEnd),
+      { index: root.offset, tag: root.source },
+      gap,
+    )
+    if ((await paintedOrSkip(gapWithoutText, gap)) !== null) continue
 
     const center = (middle(before) + middle(after)) / 2
-    const half = Math.max(before.bottom - before.top, after.bottom - after.top) / 2 + 2 * fontSize
-    const band: ViewBox = [viewBox[0], center - half, viewBox[2], 2 * half]
-    const alone =
+    const bandHalf =
+      Math.max(before.bottom - before.top, after.bottom - after.top) / 2 + 2 * fontSize
+    const band: ViewBox = [viewBox[0], center - bandHalf, viewBox[2], 2 * bandHalf]
+    const textAlone =
       withViewBox(root.source, band) +
       styles +
       ancestors
@@ -838,22 +843,24 @@ async function textBetweenBoxesViolations(
         .join("") +
       text.slice(element.offset, elementEnd) +
       [...ancestors].reverse().map(closeTag).join("")
-    const ink = await paintedOrSkip(alone, band)
+    const ink = await paintedOrSkip(textAlone, band)
     if (!ink) continue
+    const gapMiddle = (before.right + after.left) / 2
+    const gapQuarter = (after.left - before.right) / 4
+    if (Math.abs((ink.left + ink.right) / 2 - gapMiddle) > gapQuarter) continue
     const offset = (ink.top + ink.bottom) / 2 - center
-    const tolerance = betweenBoxesTolerance * fontSize
     if (Math.abs(offset) <= tolerance) continue
     const content = text
       .slice(element.offset + element.source.length, close.index)
       .replace(/<[^>]*>/g, "")
       .replace(/\s+/g, " ")
       .trim()
-    const amount = (n: number) => Math.round(n * 10) / 10
+    const roundTenth = (n: number) => Math.round(n * 10) / 10
     found.push({
       offset: element.offset,
       message:
         `두 상자 사이 글자 \`${content}\`의 잉크 중심이 상자 세로 중심에서 ` +
-        `${amount(Math.abs(offset))} ${offset > 0 ? "아래" : "위"}에 있다(허용 ${amount(tolerance)}). ` +
+        `${roundTenth(Math.abs(offset))} ${offset > 0 ? "아래" : "위"}에 있다(허용 ${roundTenth(tolerance)}). ` +
         `글자를 옮기거나, 구분자는 상자 세로 중심의 선으로 그린다`,
     })
   }
