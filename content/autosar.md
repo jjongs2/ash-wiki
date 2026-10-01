@@ -33,7 +33,7 @@ Foundation은 Classic Platform과 Adaptive Platform의 공통 부분을 따로 �
 
 ## 규격 문서
 
-AUTOSAR 문서는 PDF로 펴내고, 문서마다 문서 종류 약어와 표준 약어를 메타데이터로 둔다. 발행 PDF 파일 이름에는 표준 약어, 문서 종류 약어, 문서 이름이 들어간다.[@autosar-fo-tps-standardizationtemplate-2025] 예를 들어 `AUTOSAR_CP_SWS_PortDriver`는 Classic Platform의 Port Driver 소프트웨어 명세(Specification of Port Driver)이고, 기능 명세, API(Application Programming Interface) 명세, 설정 명세를 담는다.[@autosar-cp-sws-portdriver-2025]
+AUTOSAR 문서는 PDF(Portable Document Format)로 펴내고, 문서마다 문서 종류 약어와 표준 약어를 메타데이터로 둔다. 발행 PDF 파일 이름에는 표준 약어, 문서 종류 약어, 문서 이름이 들어간다.[@autosar-fo-tps-standardizationtemplate-2025] 예를 들어 `AUTOSAR_CP_SWS_PortDriver`는 Classic Platform의 Port Driver 소프트웨어 명세(Specification of Port Driver)이고, 기능 명세, API(Application Programming Interface) 명세, 설정 명세를 담는다.[@autosar-cp-sws-portdriver-2025]
 
 ![[diagrams/autosar-document-file-name.svg]]
 
@@ -58,6 +58,6 @@ AUTOSAR 규격 항목(specification item)의 ID는 표준 약어(생략 가능),
 
 ![[diagrams/autosar-specification-item-id.svg]]
 
-Classic Platform의 BSW 모듈 SWS는 API 함수마다 표를 둔다. 표에는 Service name, Syntax, Service ID [hex], Sync/Async, Reentrancy, 매개변수(in, inout, out), Return value, Description, Available via(원형을 선언한 헤더)가 들어간다. Service ID는 BSW 모듈마다 `0x00`부터 매기는 서비스 번호이고, Default Error Tracer의 오류 보고 API에 매개변수로 넘긴다. Sync/Async 칸의 값은 Synchronous, Asynchronous, Depends on configuration 가운데 하나다.[@autosar-cp-sws-bswgeneral-2025]
+Classic Platform의 BSW 모듈 SWS는 API 함수마다 표를 둔다. 표에는 Service name, Syntax, Service ID [hex], Sync/Async, Reentrancy, 매개변수(in, inout, out), Return value, Description, Available via(원형을 선언한 헤더)가 들어간다. **Service ID**는 BSW 모듈마다 `0x00`부터 매기는 서비스 번호이고, Default Error Tracer의 오류 보고 API에 매개변수로 넘긴다. Sync/Async 칸의 값은 Synchronous, Asynchronous, Depends on configuration 가운데 하나다.[@autosar-cp-sws-bswgeneral-2025]
 
-동기 함수는 돌아올 때 기능이 끝났음이 보장되고, 비동기 함수는 그런 보장이 없다. 재진입 가능한(reentrant) 함수는 실행 도중에 끼어들림을 당한 뒤, 앞선 호출이 끝나기 전에 다시 안전하게 호출될 수 있다.[@autosar-fo-tr-glossary-2025] 예를 들어 Port Driver SWS는 `Port_Init`의 Service ID를 `0x00`으로 두고, 동기이며 재진입할 수 없다고 정하며, `Port.h`로 제공한다.[@autosar-cp-sws-portdriver-2025]
+**동기 함수**는 돌아올 때 기능이 끝났음이 보장되고, **비동기 함수**는 그런 보장이 없다. **재진입 가능한 함수**(reentrant function)는 실행 도중에 끼어들림을 당한 뒤, 앞선 호출이 끝나기 전에 다시 안전하게 호출될 수 있다.[@autosar-fo-tr-glossary-2025] 예를 들어 Port Driver SWS는 `Port_Init`의 Service ID를 `0x00`으로 두고, 동기이며 재진입할 수 없다고 정하며, `Port.h`로 제공한다.[@autosar-cp-sws-portdriver-2025]

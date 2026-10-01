@@ -31,4 +31,4 @@ ECU Abstraction Layer는 Onboard Device Abstraction, Memory Hardware Abstraction
 
 ## Watchdog Interface
 
-Watchdog Interface는 Onboard Device Abstraction에 드는 BSW 모듈이다. ECU가 watchdog 드라이버를 여럿 쓸 때(예: 내부 소프트웨어 watchdog과 외부 하드웨어 watchdog), Watchdog Interface는 아래 드라이버의 API와 기능을 그대로 두면서 위 모듈이 알맞은 드라이버를 고르게 하고, 모드 전환과 trigger condition 설정 같은 드라이버 서비스에 한결같은 접근을 준다. 드라이버는 매개변수 DeviceIndex로 고르며, 드라이버가 하나만 구성되면 DeviceIndex는 무시된다. 외부 watchdog 드라이버는 내부 watchdog 드라이버와 의미가 같은 API를 가져야 한다.[@autosar-cp-sws-watchdoginterface-2025] Watchdog Manager는 Watchdog Interface를 거쳐 watchdog 드라이버의 서비스를 쓴다.[@autosar-cp-sws-watchdogmanager-2025]
+**Watchdog Interface**는 Onboard Device Abstraction에 드는 BSW 모듈이다. ECU가 watchdog 드라이버를 여럿 쓸 때(예: 내부 소프트웨어 watchdog과 외부 하드웨어 watchdog), Watchdog Interface는 아래 드라이버의 API와 기능을 그대로 두면서 위 모듈이 알맞은 드라이버를 고르게 하고, 모드 전환과 trigger condition 설정 같은 드라이버 서비스에 한결같은 접근을 준다. 드라이버는 매개변수 DeviceIndex로 고르며, 드라이버가 하나만 구성되면 DeviceIndex는 무시된다. 외부 watchdog 드라이버는 내부 watchdog 드라이버와 의미가 같은 API를 가져야 한다.[@autosar-cp-sws-watchdoginterface-2025] Watchdog Manager는 Watchdog Interface를 거쳐 watchdog 드라이버의 서비스를 쓴다.[@autosar-cp-sws-watchdogmanager-2025]

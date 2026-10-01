@@ -14,7 +14,7 @@ status: 유효
 
 ## 범위
 
-Classic Platform의 대상은 실시간 요구가 높고(마이크로초 수준), 안전 중요도가 높으며(ASIL(Automotive Safety Integrity Level) D까지), 연산 능력은 낮은(약 1000 DMIPS(Dhrystone Million Instructions Per Second)) ECU다.[@autosar-exp-introduction-part1-2026] 계층의 구성은 [[autosar-layered-architecture|AUTOSAR 계층 구조]]에서, 설정과 코드 생성의 흐름은 [[autosar-methodology|AUTOSAR 방법론]]에서 다룬다.
+Classic Platform의 대상은 실시간 요구가 마이크로초 수준으로 높고, 안전 중요도가 ASIL(Automotive Safety Integrity Level) D까지 높으며, 연산 능력은 약 1000 DMIPS(Dhrystone Million Instructions Per Second)로 낮은 ECU다.[@autosar-exp-introduction-part1-2026] 계층의 구성은 [[autosar-layered-architecture|AUTOSAR 계층 구조]]에서, 설정과 코드 생성의 흐름은 [[autosar-methodology|AUTOSAR 방법론]]에서 다룬다.
 
 Classic Platform의 운영체제인 AUTOSAR OS는 핵심 기능을 [[osek-os|OSEK OS]]에 두고, OSEK OS의 기능 일부를 제한하거나 확장한다. AUTOSAR OS는 정적으로 설정되고 규모가 정해지며, 우선순위 기반 스케줄링 정책을 둔다.[@autosar-cp-sws-os-2025]
 
@@ -25,7 +25,7 @@ BSW 설정을 어느 단계에서 하는지는 [[autosar-methodology#설정 클�
 - 2005년 5월: 첫 릴리스인 Release 1.0이 나왔다.[@autosar-history-2026]
 - 2006년: Release 2.0(5월)과 Release 2.1(11월)이 나왔다.[@autosar-history-2026] Release 2.1에는 진단 모듈 Dcm(Diagnostic Communication Manager)과 Dem(Diagnostic Event Manager)의 규격이 이미 들어 있었다.[@autosar-cp-releaseoverview-r2-1-20-2010]
 - 2007년 12월과 2008년 8월: Release 3.0과 Release 3.1이 나왔다.[@autosar-history-2026]
-- 2009년 12월: Release 4.0이 나왔다.[@autosar-history-2026] 기능 안전 개념(메모리 분할, 프로그램 흐름 감시, E2E(End-to-End) 통신 보호 등)과 멀티코어 아키텍처 개념을 새로 넣고, [[ethernet|Ethernet]] 드라이버·인터페이스·State Manager 규격을 담았다.[@autosar-cp-releaseoverview-r4-0-3-2013]
+- 2009년 12월: Release 4.0이 나왔다.[@autosar-history-2026] 기능 안전 개념과 멀티코어 아키텍처 개념을 새로 넣고, [[ethernet|Ethernet]] 드라이버·인터페이스·State Manager 규격을 담았다. 새 기능 안전 개념에는 메모리 분할, 프로그램 흐름 감시, E2E(End-to-End) 통신 보호 등이 든다.[@autosar-cp-releaseoverview-r4-0-3-2013]
 - 2011년 5월: 3.x 계열의 Release 3.2가 Release 4.0보다 뒤에 나왔다. 3.1을 바탕으로 Partial Networking 같은 기능을 더하고, 4.0에 있던 기능 일부(E2E 통신 보호 등)를 역이식했다.[@autosar-history-2026][@autosar-cp-releaseoverview-r3-2-3-2014]
 - 2013년 3월: Release 4.1.0이 AUTOSAR Timing Concept, Ethernet Partial Networking, 응용이 [[internet-protocol-suite|TCP/IP]]로 통신하는 소켓 인터페이스, 대형 상용차와 [[j1939|J1939]] 지원 등을 새로 넣었다.[@autosar-cp-releaseoverview-r4-1-3-2014]
 - 2014년 6월: 인수 시험이 Classic Platform 릴리스와 따로 Acceptance Test Release 1.0.0으로 나왔다.[@autosar-history-2026]

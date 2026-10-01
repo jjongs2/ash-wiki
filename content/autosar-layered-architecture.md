@@ -21,7 +21,7 @@ BSW는 다시 Services Layer, [[ecu-abstraction-layer|ECU Abstraction Layer]], [
 
 | 층                    | 하는 일                                                                                                                                                                                                       | 구현의 하드웨어 의존                            |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| Services Layer        | BSW의 가장 위 층. 운영체제 기능, 차량 네트워크 통신과 관리, 메모리 서비스(NVRAM(Non-Volatile Random-Access Memory) 관리), 진단, ECU의 상태와 모드 관리 같은 기본 서비스를 응용, RTE, BSW 모듈에 준다.         | 대부분 마이크로컨트롤러와 ECU 하드웨어에서 독립 |
+| Services Layer        | BSW의 가장 위 층. 운영체제 기능, 차량 네트워크 통신과 관리, NVRAM(Non-Volatile Random-Access Memory)을 관리하는 메모리 서비스, 진단, ECU의 상태와 모드 관리 같은 기본 서비스를 응용, RTE, BSW 모듈에 준다.    | 대부분 마이크로컨트롤러와 ECU 하드웨어에서 독립 |
 | ECU Abstraction Layer | MCAL의 드라이버와 외부 장치의 드라이버를 담아, 장치가 마이크로컨트롤러 안에 있든 밖에 있든, 마이크로컨트롤러에 어떻게 연결되든 같은 API(Application Programming Interface)로 주변장치와 장치에 접근하게 한다. | 마이크로컨트롤러에서 독립, ECU 하드웨어에 의존  |
 | MCAL                  | BSW의 가장 아래 층. 마이크로컨트롤러와 내부 주변장치에 직접 접근하는 내부 드라이버를 담는다.                                                                                                                  | 마이크로컨트롤러에 의존                         |
 | Complex Drivers       | 하드웨어에서 RTE까지 걸친 층. AUTOSAR가 규정하지 않은 장치나 타이밍 제약이 매우 엄격한 장치의 드라이버처럼 특수 목적 기능을 통합하게 한다. 예로 분사 제어가 있다.                                             | —                                               |
@@ -32,7 +32,7 @@ Services Layer는 기능에 따라 System Services, Memory Services, Crypto Serv
 | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | System Services                  | 운영체제, EcuM(ECU State Manager), Det(Default Error Tracer), Dem(Diagnostic Event Manager), FiM(Function Inhibition Manager), WdgM(Watchdog Manager)이 든다.[@autosar-cp-sws-bswgeneral-2025]        |
 | Memory Services                  | NVRAM Manager 한 모듈로 이루어지며, 비휘발성 데이터를 관리한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                                                                     |
-| Crypto Services                  | 암호 프리미티브, IDS(Intrusion Detection System) 서비스, 키 저장을 응용에 한결같은 방식으로 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                                   |
+| Crypto Services                  | 암호 primitive, IDS(Intrusion Detection System) 서비스, 키 저장을 응용에 한결같은 방식으로 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                                    |
 | Communication Services           | 차량 네트워크 통신을 맡고, 네트워크 관리 서비스를 준다. XCP(Universal Measurement and Calibration Protocol) 모듈과 Dlt(Diagnostic Log and Trace) 모듈도 여기에 든다.[@autosar-cp-sws-bswgeneral-2025] |
 | Off-board Communication Services | V2X(Vehicle-to-X) 통신, 차량 안 무선 네트워크, ECU의 차량 밖 통신에 표준화된 접근을 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                                           |
 

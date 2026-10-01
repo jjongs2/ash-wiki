@@ -21,14 +21,14 @@ verified: 2026-09-30
 
 MCAL은 비슷한 종류의 모듈을 묶은 여섯 모듈 그룹으로 이루어진다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-| 모듈 그룹                      | 담는 것                                                                                                                                                                                     |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Microcontroller Drivers        | 내부 주변장치(watchdog, 범용 타이머 등)의 드라이버와 마이크로컨트롤러에 직접 접근하는 기능(core test 등). GPT(General Purpose Timer) Driver, Watchdog Driver, MCU Driver가 든다.            |
-| Memory Drivers                 | 온칩 메모리 장치(내부 Flash, 내부 EEPROM 등)와 메모리 맵 외부 메모리 장치(외부 Flash 등)의 드라이버                                                                                         |
-| Crypto Drivers                 | SHE(Secure Hardware Extension), HSM(Hardware Security Module) 같은 온칩 암호 장치의 드라이버                                                                                                |
-| Communication Drivers          | ECU 보드 안 통신(SPI(Serial Peripheral Interface) 등)과 차량 통신(CAN 등)의 드라이버. SPI Handler Driver와 [[lin\|LIN]], CAN, [[flexray\|FlexRay]], [[ethernet\|Ethernet]] 드라이버가 든다. |
-| Wireless Communication Drivers | 차량 안이나 차량 밖 통신에 쓰는 무선 네트워크 시스템의 드라이버. Wireless Ethernet Driver가 든다.                                                                                           |
-| I/O Drivers                    | 아날로그·디지털 입출력의 드라이버. Port, DIO(Digital Input/Output), ADC, PWM(Pulse Width Modulation), ICU(Input Capture Unit), OCU(Output Compare Unit) 드라이버가 든다.                    |
+| 모듈 그룹                      | 담는 것                                                                                                                                                                                       |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Microcontroller Drivers        | 내부 주변장치(watchdog, 범용 타이머 등)의 드라이버와 마이크로컨트롤러에 직접 접근하는 기능(core test 등). GPT(General Purpose Timer) Driver, Watchdog Driver, MCU Driver가 든다.              |
+| Memory Drivers                 | 온칩 메모리 장치(내부 Flash, 내부 EEPROM 등)와 메모리 맵 외부 메모리 장치(외부 Flash 등)의 드라이버                                                                                           |
+| Crypto Drivers                 | SHE(Secure Hardware Extension), HSM(Hardware Security Module) 같은 온칩 암호 장치의 드라이버                                                                                                  |
+| Communication Drivers          | SPI(Serial Peripheral Interface) 같은 ECU 보드 안 통신과 CAN 같은 차량 통신의 드라이버. SPI Handler Driver와 [[lin\|LIN]], CAN, [[flexray\|FlexRay]], [[ethernet\|Ethernet]] 드라이버가 든다. |
+| Wireless Communication Drivers | 차량 안이나 차량 밖 통신에 쓰는 무선 네트워크 시스템의 드라이버. Wireless Ethernet Driver가 든다.                                                                                             |
+| I/O Drivers                    | 아날로그·디지털 입출력의 드라이버. Port, DIO(Digital Input/Output), ADC, PWM(Pulse Width Modulation), ICU(Input Capture Unit), OCU(Output Compare Unit) 드라이버가 든다.                      |
 
 ## Channel, channel group, port
 
@@ -38,7 +38,7 @@ DIO Driver 규격은 입출력 단위를 부르는 용어 셋을 정의한다.[@
 - **DIO port**: 하드웨어가 묶어 둔 여러 DIO channel. 대개 하드웨어 레지스터 하나로 제어된다.
 - **DIO channel group**: 한 DIO port 안의 이웃한 DIO channel 여러 개를 논리적으로 묶은 것[@autosar-cp-sws-diodriver-2025]
 
-Port Driver 규격은 MCU의 설정 가능한 입출력 핀 하나를 **port pin**, 설정 가능한 포트 전체를 port라 부른다. 이 규격은 DIO Driver의 channel을 port pin에, port를 port에 대응시키며, channel group에 대응하는 이름은 두지 않는다.[@autosar-cp-sws-portdriver-2025]
+Port Driver 규격은 MCU의 설정 가능한 입출력 핀 하나를 **port pin**, 설정 가능한 포트 전체를 **port**라 부른다. 이 규격은 DIO Driver의 channel을 port pin에, port를 port에 대응시키며, channel group에 대응하는 이름은 두지 않는다.[@autosar-cp-sws-portdriver-2025]
 
 ![[diagrams/dio-channel-port-channel-group.svg]]
 
@@ -51,6 +51,6 @@ Port Driver 규격은 MCU의 설정 가능한 입출력 핀 하나를 **port pin
 | ICU      | 입력 신호 하나와, 설정된 측정 모드에 쓰는 하드웨어 자원에 묶인 논리 ICU 개체[@autosar-cp-sws-icudriver-2025]           |
 | OCU      | free-running counter, 비교 문턱값, 비교 결과로 하는 동작으로 이루어진 논리 개체[@autosar-cp-sws-ocudriver-2025]        |
 
-ADC Driver 규격은 channel group도 정의한다. ADC channel group은 같은 ADC 하드웨어 유닛에 연결된 ADC channel의 묶음이고, 그룹 전체의 변환은 트리거 하나로 시작된다. DIO의 channel group과 달리 한 port 안의 이웃한 channel이라는 조건이 없다.[@autosar-cp-sws-adcdriver-2025]
+ADC Driver 규격은 channel group도 정의한다. **ADC channel group**은 같은 ADC 하드웨어 유닛에 연결된 ADC channel의 묶음이고, 그룹 전체의 변환은 트리거 하나로 시작된다. DIO의 channel group과 달리 한 port 안의 이웃한 channel이라는 조건이 없다.[@autosar-cp-sws-adcdriver-2025]
 
 DIO, ADC, PWM, ICU, OCU 드라이버 규격은 모두 쓰는 port pin의 설정을 Port Driver에 맡긴다.[@autosar-cp-sws-diodriver-2025][@autosar-cp-sws-adcdriver-2025][@autosar-cp-sws-pwmdriver-2025][@autosar-cp-sws-icudriver-2025][@autosar-cp-sws-ocudriver-2025]
