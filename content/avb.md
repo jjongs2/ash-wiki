@@ -18,7 +18,7 @@ Avnu Alliance는 네트워크·IT 인프라, 반도체, 장치 제조사가 모�
 - IEEE 802.1Qat-2010은 [[srp|SRP]]를 정했다.[@ieee-802-1-tsn-tg-2017] 이 개정은 브리지로 이어진 LAN을 지나는 스트림에 네트워크 자원을 예약하고 그 자원을 유지하는 프로토콜과 절차를 정했다.[@ieee-802-1qat-project-2010]
 - IEEE 802.1Qav-2009는 [[credit-based-shaper|credit-based shaper]]를 정했다.[@ieee-802-1-tsn-tg-2017] 이 개정은 브리지가 시간에 민감한 오디오·비디오 트래픽에 지연과 전달 변동의 상한을 보장하게 하는 것을 목표로 했다.[@ieee-802-1qav-project-2009]
 
-802.1Qat와 802.1Qav는 IEEE 802.1Q-2014에 합쳐졌다.[@ieee-802-1-tsn-tg-2017] IEEE 1722-2025는 브리지로 이어진 LAN에서 시간에 민감한 응용에 쓰는 전송 프로토콜을 정하며, 오디오·비디오·제어를 다루는 엔드 스테이션이 IEEE 1722 기반 스트림으로 서로 운용되게 한다.[@ieee-1722-2025]
+802.1Qat와 802.1Qav는 IEEE 802.1Q-2011에 합쳐졌다.[@ieee-802-1q-2011] IEEE 1722-2025는 브리지로 이어진 LAN에서 시간에 민감한 응용에 쓰는 전송 프로토콜을 정하며, 오디오·비디오·제어를 다루는 엔드 스테이션이 IEEE 1722 기반 스트림으로 서로 운용되게 한다.[@ieee-1722-2025]
 
 ## Talker와 listener
 
@@ -30,7 +30,7 @@ Avnu Alliance는 네트워크·IT 인프라, 반도체, 장치 제조사가 모�
 
 IEEE 802.1Q-2022는 SRP로 시간에 민감한 스트림에 대역폭을 예약할 수 있는 [[traffic-class|트래픽 클래스]]를 **SR 클래스**(Stream Reservation class)라 한다. 기본 설정은 SR 클래스 A와 B 두 개를 전제하며, 클래스 A는 우선순위 3, 클래스 B는 우선순위 2를 쓴다. talker에서 스트림의 트래픽 명세를 재는 구간인 class measurement interval의 기본값은 클래스 A가 125 µs, 클래스 B가 250 µs다.[@ieee-802-1q-2022]
 
-SR 클래스 트래픽은 높은 우선순위 큐에 두고, 큐마다 credit-based shaper로 예약 대역폭까지만 내보낸다.[@ieee-802-1q-2022][@microchip-ksz9477s-2019] IEEE 802.1Q의 권장 매핑에서 SR 클래스의 우선순위가 매핑되는 credit-based shaper의 트래픽 클래스는 strict priority를 쓰는 트래픽 클래스보다 우선순위가 높고, credit-based shaper는 SRP로 예약된 대역폭인 operIdleSlope를 idleSlope로 써서 내보내는 트래픽을 셰이핑한다.[@ieee-802-1q-2022] KSZ9477S는 포트당 egress 큐 넷으로 SR 클래스를 둘까지 받을 수 있다.[@microchip-ksz9477s-2019]
+SR 클래스 트래픽은 높은 우선순위 큐에 두고, 큐마다 credit-based shaper로 예약 대역폭까지만 내보낸다.[@ieee-802-1q-2022][@microchip-ksz9477s-2019] 큐의 우선순위와 셰이핑은 [[credit-based-shaper#트래픽 클래스와의 관계|credit-based shaper]]에서 다룬다. KSZ9477S는 포트당 egress 큐 넷으로 SR 클래스를 둘까지 받을 수 있다.[@microchip-ksz9477s-2019]
 
 IEEE 802.1BA-2021은 talker에서 listener까지의 최악 지연 목표를 SR 클래스 A는 2 ms, 클래스 B는 50 ms로 둔다. 100 Mbit/s [[ethernet|이더넷]]에서 최대 프레임 크기가 1522바이트면 클래스 A의 2 ms는 7홉까지 맞출 수 있다.[@ieee-802-1ba-2021]
 

@@ -15,13 +15,7 @@ ISO/IEC 2382:2015는 LAN(Local Area Network)의 MAC(Medium Access Control) 프�
 
 **TDMA**(Time Division Multiple Access)는 링크에 접근하는 단말마다 되풀이되는 시간 구간을 따로 배정해, 그 구간에 송신하게 하는 다중 접속 기법이다.[@iec-60050-725-14-12-1994]
 
-[[flexray|FlexRay]]는 통신 사이클을 주기적으로 되풀이한다. 사이클은 정적 세그먼트, 선택 사항인 동적 세그먼트와 심볼 윈도, 네트워크 idle 시간으로 이뤄진다. 정적 세그먼트는 정적 슬롯 여러 개로 나뉘고, 프레임은 이 슬롯에서 동기적으로 송신된다. 동적 세그먼트는 미니슬롯으로 나뉘며, 우선순위가 있는 이벤트 구동 전송을 지원한다.[@iso-17458-1-obp-2013] 정적 슬롯마다 그 슬롯을 쓸 노드가 배정된다.[@iso-17458-2-obp-2013] NXP 앱노트에 따르면 FlexRay의 정적 세그먼트는 버스 접근에 TDMA를 쓰고, 동적 세그먼트는 FTDMA(Flexible TDMA)를 쓴다.[@nxp-an12233-2021]
-
-![[diagrams/flexray-communication-cycle.svg]]
-
-FlexRay는 모든 노드에 공통 시간 기준을 제공하고, 사이클의 시간 분할은 분산 클록에 기반한다.[@iso-17458-1-obp-2013]
-
-FlexRay는 동기 전송에서 프레임 지연과 지터를 보장한다. 정적 세그먼트에서 슬롯을 배정받은 노드는 보낼 데이터가 없어도 null 프레임을 보낸다.[@iso-17458-2-obp-2013]
+NXP 앱노트에 따르면 [[flexray|FlexRay]]의 정적 세그먼트는 버스 접근에 TDMA를 쓰고, 동적 세그먼트는 FTDMA(Flexible TDMA)를 쓴다.[@nxp-an12233-2021] FlexRay의 통신 사이클은 [[flexray#통신 사이클|FlexRay]]에서 다룬다.
 
 ## 경쟁 방식
 
@@ -35,9 +29,7 @@ CAN에서는 버스가 idle이면 어느 노드든 송신을 시작할 수 있�
 
 ## Commander-responder
 
-[[lin|LIN]]의 commander는 네트워크에 하나뿐인 노드로, 프레임을 스케줄한다. commander 태스크는 스케줄 테이블에 따라 모든 헤더를 버스에 보내고, responder 태스크는 헤더를 듣고 그에 맞춰 응답을 보내거나 받거나 무시한다. 스케줄 테이블은 보낼 프레임과 그 순서, 프레임 사이의 시간 간격을 정한다.[@iso-17987-1-obp-2025] ISO 17987-1:2016은 commander와 responder를 master와 slave라 불렀고, 2025년판에서 지금 이름으로 바뀌었다.[@iso-17987-1-obp-2025][@iso-17987-1-obp-2016]
-
-![[diagrams/lin-header-response.svg]]
+[[lin|LIN]]에서는 commander 태스크가 스케줄 테이블에 따라 모든 헤더를 버스에 보내고, responder 태스크는 헤더를 듣고 그에 맞춰 응답을 보내거나 받거나 무시한다.[@iso-17987-1-obp-2025] commander와 responder의 동작은 [[lin#Commander와 responder|LIN]]에서 다룬다.
 
 ## 토큰 원리
 

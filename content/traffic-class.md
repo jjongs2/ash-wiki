@@ -19,10 +19,10 @@ IEEE 802.1Q-2022는 [[credit-based-shaper|credit-based shaper]]를 지원하지 
 
 **strict priority**는 우선순위가 높은 큐부터 전송하는 스케줄링으로, 낮은 우선순위 큐는 그보다 높은 우선순위 큐에 보낼 패킷이 없을 때만 전송한다.[@microchip-ksz9477s-2019][@intel-i210-2019] IEEE 802.1Q-2022는 모든 브리지가 strict priority를 기본 전송 선택 알고리즘으로 지원하도록 요구한다. 이 표준에서 포트는 어느 알고리즘을 쓰든 한 트래픽 클래스의 큐에서 프레임을 고르되, 그 큐의 알고리즘이 보낼 프레임이 있다고 판단하고 번호가 더 높은 모든 트래픽 클래스의 큐에 보낼 프레임이 없을 때만 고른다. strict priority 큐는 프레임이 하나라도 있으면 보낼 프레임이 있다고 본다. 같은 포트로 받은 프레임 가운데 VID(VLAN Identifier), 우선순위, 주소 조합이 같은 프레임은 받은 순서를 지켜야 하고, strict priority와 credit-based shaper는 큐에서 프레임을 고를 때 이 순서를 지킨다.[@ieee-802-1q-2022]
 
-Credit-based shaper는 큐가 내보내는 속도를 그 큐에 예약한 대역폭까지로 제한한다.[@microchip-ksz9477s-2019][@st-rm0436-2025] credit-based shaper는 트래픽 클래스의 큐에 예약한 대역폭인 operIdleSlope(N)을 idleSlope로 써서 나가는 트래픽을 셰이핑한다. 이 알고리즘이 뜻대로 동작하려면 credit-based shaper를 쓰는 트래픽 클래스는 strict priority를 쓰는 어느 트래픽 클래스보다도 번호가 커야 한다.[@ieee-802-1q-2022]
+Credit-based shaper는 큐가 내보내는 속도를 그 큐에 예약한 대역폭까지로 제한한다.[@microchip-ksz9477s-2019][@st-rm0436-2025] credit-based shaper를 쓰는 트래픽 클래스를 어디에 두는지는 [[credit-based-shaper#트래픽 클래스와의 관계|credit-based shaper]]에서 다룬다.
 
-IEEE 802.1Q의 [[time-aware-shaper|scheduled traffic]]은 포트의 트래픽 클래스마다 게이트를 두고, 게이트는 열림과 닫힘 두 상태를 가진다.[@ieee-802-1qcw-sched-yang-2023] 게이트가 열린 큐의 프레임은 그 큐의 전송 선택 알고리즘에 따라 전송에 뽑히고, 닫힌 큐의 프레임은 뽑히지 않는다. scheduled traffic을 지원하지 않는 구현은 모든 게이트를 늘 열린 것으로 본다.[@ieee-802-1q-2022]
+IEEE 802.1Q의 [[time-aware-shaper|scheduled traffic]]은 포트의 트래픽 클래스마다 게이트를 두고, 게이트는 열림과 닫힘 두 상태를 가진다.[@ieee-802-1qcw-sched-yang-2023] 게이트 동작은 [[time-aware-shaper#게이트|time-aware shaper]]에서 다룬다.
 
 ![[diagrams/egress-queue-transmission-selection.svg]]
 
-우선순위만으로 전송을 고르면, 낮은 우선순위 프레임이 이미 전송 중일 때 높은 우선순위 프레임은 그 전송이 끝나야 매체에 접근하므로 최대 크기 프레임 하나만큼 늦게 전송을 시작할 수 있다.[@ieee-802-1q-2022] 이처럼 시간이 중요하지 않은 큰 프레임이 먼저 전송을 시작하면 시간이 중요한 프레임의 지연이 크게 늘어난다. [[frame-preemption|프레임 선점]]은 시간이 중요하지 않은 프레임의 전송을 멈추고 시간이 중요한 프레임을 먼저 보낸 뒤 멈춘 프레임을 이어 보내, 시간이 중요한 프레임의 지연을 줄인다.[@ieee-802-1qbu-project-2016][@adi-adin3310-adin6310-2025]
+우선순위만으로 전송을 고르면, 낮은 우선순위 프레임이 이미 전송 중일 때 높은 우선순위 프레임은 그 전송이 끝나야 매체에 접근하므로 최대 크기 프레임 하나만큼 늦게 전송을 시작할 수 있다. 이런 지연이 홉마다 생기면 쌓인 지연이 받아들일 수 없을 만큼 커질 수 있다.[@ieee-802-1q-2022] 이처럼 시간이 중요하지 않은 큰 프레임이 먼저 전송을 시작하면 시간이 중요한 프레임의 지연이 크게 늘어난다. [[frame-preemption|프레임 선점]]은 시간이 중요하지 않은 프레임의 전송을 멈추고 시간이 중요한 프레임을 먼저 보낸 뒤 멈춘 프레임을 이어 보내, 시간이 중요한 프레임의 지연을 줄인다.[@ieee-802-1qbu-project-2016][@adi-adin3310-adin6310-2025]

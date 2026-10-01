@@ -21,7 +21,7 @@ verified: 2026-09-27
 
 CAN에서 버스를 한꺼번에 쓰려는 노드가 여럿이면 경합이 생기고, ISO 11898-1:2024는 이 경합을 [[can-identifier|식별자]] 기반 [[can-arbitration|중재]]로 푼다.[@iso-11898-1-obp-2024] 노드들이 매체를 나눠 쓰는 방법은 [[bus-access-method|버스 접근 방식]]에서 다룬다.
 
-CAN 식별자는 받을 노드를 가리키지 않고 데이터의 뜻을 나타낸다.[@bosch-can-2-0-1991] 이 방식은 [[message-addressing|메시지 주소 지정]]에서 다룬다.
+CAN 식별자는 받을 노드를 가리키지 않고 데이터의 뜻을 나타낸다.[@bosch-can-2-0-1991] 식별자는 [[can-identifier|CAN 식별자]]에서, 이 주소 지정 방식은 [[message-addressing|메시지 주소 지정]]에서 다룬다.
 
 ## 비트율
 
@@ -37,8 +37,4 @@ SAE J2057/1:2022는 차량 네트워크를 Class A, Class B, Class C로 나눈�
 
 ## 버스 사이 연결
 
-SAE 기술 논문 931808에 따르면 데이터율 요구가 다른 하위 네트워크들은 브리지나 [[gateway|게이트웨이]]로 이어져 차량 전체의 데이터 일관성을 지킨다. 이 논문은 그 예로 J1850(Class B)과 CAN(Class C)을 잇는 브리지를 다룬다.[@sae-931808-1993]
-
-LIN의 **commander**는 LIN 프레임을 스케줄하고 백본 네트워크에도 연결되는 노드다.[@iso-17987-1-obp-2025] ISO 17987-1:2016은 commander를 master라 불렀고, 2025년판에서 지금 이름으로 바뀌었다.[@iso-17987-1-obp-2025][@iso-17987-1-obp-2016]
-
-[[autosar|AUTOSAR]]의 [[pdu-router|PDU Router]]는 한 통신 인터페이스 모듈로 받은 I-PDU(Interaction Layer Protocol Data Unit)를 고치지 않고 다른 통신 인터페이스 모듈로 보내는 게이트웨이 기능을 제공한다. CAN과 FlexRay 사이, CAN과 LIN 사이의 게이트웨이가 그 예다.[@autosar-cp-sws-pdurouter-2025]
+데이터율 요구가 다른 하위 네트워크를 잇는 브리지와 게이트웨이는 [[gateway|게이트웨이]]에서 다룬다. LIN의 commander는 백본 네트워크에도 연결된다.[@iso-17987-1-obp-2025]
