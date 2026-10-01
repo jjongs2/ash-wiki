@@ -114,6 +114,7 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-citation-order.md:12",
         "content/bad-citation-order.md:16",
         "content/bad-citation-order.md:24",
+        "content/bad-citation-order.md:33",
         "content/bad-citations.md:12",
         "content/bad-citations.md:16",
         "content/bad-citations.md:20",
@@ -213,7 +214,7 @@ describe("check-content CLI", { concurrency: false }, () => {
     const order = report.messages
       .get("citation")!
       .filter((m) => m.includes("bad-citation-order.md"))
-    assert.strictEqual(order.length, 3)
+    assert.strictEqual(order.length, 4)
     for (const message of order) {
       assert.match(message, /\[@example-manual-2023\]\[@example-spec-2024\]$/)
     }

@@ -366,7 +366,8 @@ function citationOrder(page: Page): Violation[] {
         (line > start.line || (line === start.line && column >= start.column - 1)) &&
         (line < end.line || (line === end.line && column < end.column - 1)),
     )
-  // 사이의 글은 원문에서 읽는다. 코드를 가린 본문에서는 인라인 코드가 공백으로 보인다.
+  // 사이의 글은 원문에서 읽는다. 코드를 가린 본문에서는 인라인 코드가 공백으로 보인다. HTML 주석은
+  // 렌더되지 않으므로 빼고 본다.
   const sourceLines = page.source.split("\n")
   const span = (from: Citation, to: Citation) => {
     const text = sourceLines.slice(from.line - 1, to.line).join("\n")
@@ -380,7 +381,7 @@ function citationOrder(page: Page): Violation[] {
       previous &&
       blockOf(previous) >= 0 &&
       blockOf(previous) === blockOf(citation) &&
-      gap.replace(/\n[ \t]*(?:>[ \t]*)*/g, "").trim() === ""
+      gap.replace(/<!--[\s\S]*?-->|\n[ \t]*(?:>[ \t]*)*/g, "").trim() === ""
     if (joined) runs.at(-1)!.push(citation)
     else runs.push([citation])
   })

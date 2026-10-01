@@ -27,3 +27,7 @@ verified: 2026-09-20
 <!-- 통과: 인라인 코드를 사이에 둔 인용은 다른 자리다. -->
 
 여섯째 문장이다.[@example-spec-2024] `FOO`[@example-manual-2023]
+
+<!-- 위반(citation): HTML 주석은 렌더되지 않아, 주석만 사이에 두어도 한 자리다. -->
+
+일곱째 문장이다.[@example-spec-2024]<!-- 메모 -->[@example-manual-2023]
