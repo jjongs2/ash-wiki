@@ -335,11 +335,15 @@ export const citation: SourceCheck = (tree, conventions) => {
 // 인용 번호는 키가 페이지에서 처음 나온 순서로 매겨진다. 한 자리(공백만 사이에 둔 인용들)의 키가 그
 // 순서를 따라야 [2][1]이 아니라 [1][2]로 렌더된다. 키가 하나가 아닌 대괄호는 앞의 검사가 맡는다.
 function citationOrder(page: Page): Violation[] {
-  const found = citations(page).filter((citation) => citation.key !== null)
+  const found = citations(page).filter(
+    (citation): citation is Citation & { key: string } => citation.key !== null,
+  )
   const first = new Map<string, number>()
-  found.forEach(({ key }, index) => first.has(key!) || first.set(key!, index))
+  found.forEach(({ key }, index) => {
+    if (!first.has(key)) first.set(key, index)
+  })
   const lines = page.masked.split("\n")
-  const runs: Citation[][] = []
+  const runs: (typeof found)[] = []
   found.forEach((citation, index) => {
     const previous = found[index - 1]
     const joined =
@@ -352,7 +356,7 @@ function citationOrder(page: Page): Violation[] {
   })
   const violations: Violation[] = []
   for (const run of runs) {
-    const sorted = [...run].sort((a, b) => first.get(a.key!)! - first.get(b.key!)!)
+    const sorted = [...run].sort((a, b) => first.get(a.key)! - first.get(b.key)!)
     if (sorted.every((citation, index) => citation === run[index])) continue
     const last = run.at(-1)!
     const written = lines[last.line - 1].slice(run[0].column, last.column + last.raw.length)
