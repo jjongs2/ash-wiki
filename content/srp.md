@@ -8,7 +8,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**SRP**(Stream Reservation Protocol)는 [[avb|AVB]]에서 스트림 예약을 맡는 프로토콜로, 브리지가 오디오·비디오 스트림에 필요한 자원을 보장하게 한다.[@ieee-802-1-avb-tg-2013][@nxp-amf-aut-t2348-2016] IEEE 802.1Qat-2010이 처음 정했다. 이 개정은 브리지로 이어진 LAN(Local Area Network)을 지나는 스트림에 네트워크 자원을 예약하게 했고, 전송을 시작하기 전에 종단 간 경로 전체의 자원을 확보하도록 했다.[@ieee-802-1qat-project-2010] 지금은 IEEE 802.1Q가 SRP를 정한다.[@ieee-ra-ethertype-2024] IEEE 802.1Q-2022에서 SRP는 35장(Clause 35)이다.[@ieee-802-1q-2022]
+**SRP**(Stream Reservation Protocol)는 [[avb|AVB]]에서 스트림 예약을 맡는 프로토콜로, 브리지가 오디오·비디오 스트림에 필요한 자원을 보장하게 한다.[@ieee-802-1-avb-tg-2013][@nxp-amf-aut-t2348-2016] IEEE 802.1Qat-2010이 처음 정했다. 이 개정은 브리지로 이어진 LAN(Local Area Network)을 지나는 스트림에 네트워크 자원을 예약하게 했고, 전송을 시작하기 전에 종단 간 경로 전체의 자원을 확보하도록 했다.[@ieee-802-1qat-project-2010] 지금은 IEEE 802.1Q가 SRP를 정한다.[@ieee-ra-ethertype-2024] IEEE 802.1Q-2022는 SRP를 35장(Clause 35)에서 정한다.[@ieee-802-1q-2022]
 
 ## MRP 응용
 
@@ -50,7 +50,7 @@ talker 속성의 등록이 풀리면 KSZ956X MRP 드라이버는 그 leave 메�
 
 ## 예약 과정
 
-IEEE 802.1Q에서 talker는 Talker Advertise로 자기가 낼 수 있는 스트림의 특성을 알리고, 브리지는 이를 등록해 일부 정보를 고친 뒤 다른 포트로 넘긴다. 경로의 브리지에 대역폭이나 자원이 모자라면, 그 브리지는 Talker Advertise를 Talker Failed로 바꿔 넘긴다. Talker Advertise를 받은 listener는 스트림을 받을 준비가 되면 Listener Ready를 talker 쪽으로 돌려보낸다. 브리지는 StreamID로 Listener Ready를 Talker Advertise와 짝지어 Talker Advertise를 등록한 포트로만 넘기고, 필요한 대역폭을 예약하며 큐와 필터링 데이터베이스를 설정한다. 대역폭이나 자원이 모자라면 Listener Ready는 Listener Asking Failed로 바뀐다. talker가 받은 listener 선언을 합친 결과가 Listener Ready나 Listener Ready Failed면 talker는 곧바로 스트림 전송을 시작할 수 있고, Listener Asking Failed면 전송을 멈춘다.[@ieee-802-1q-2022]
+talker는 Talker Advertise로 자기가 낼 수 있는 스트림의 특성을 알리고, 브리지는 이를 등록해 일부 정보를 고친 뒤 다른 포트로 넘긴다. 경로의 브리지에 대역폭이나 자원이 모자라면, 그 브리지는 Talker Advertise를 Talker Failed로 바꿔 넘긴다. Talker Advertise를 받은 listener는 스트림을 받을 준비가 되면 Listener Ready를 talker 쪽으로 돌려보낸다. 브리지는 StreamID로 Listener Ready를 Talker Advertise와 짝지어 Talker Advertise를 등록한 포트로만 넘기고, 필요한 대역폭을 예약하며 큐와 필터링 데이터베이스를 설정한다. 대역폭이나 자원이 모자라면 Listener Ready는 Listener Asking Failed로 바뀐다. talker가 받은 listener 선언을 합친 결과가 Listener Ready나 Listener Ready Failed면 talker는 곧바로 스트림 전송을 시작할 수 있고, Listener Asking Failed면 전송을 멈춘다.[@ieee-802-1q-2022]
 
 talker가 스트림의 광고를 거두면 MSRP 참여자는 talker 선언을 철회한다. 그러면 브리지는 그 스트림을 포워딩하던 포트에서 스트림을 필터링하도록 바꾸고, 그 트래픽 클래스의 예약 대역폭인 operIdleSlope를 줄인다.[@ieee-802-1q-2022]
 
@@ -58,4 +58,4 @@ talker가 스트림의 광고를 거두면 MSRP 참여자는 talker 선언을 �
 
 [[tsn|TSN]] 태스크 그룹의 IEEE 802.1Qcc-2018은 IEEE 802.1Q의 개정으로, SRP를 개선하고 시간에 민감한 스트림의 설정을 보강했다.[@ieee-802-1qcc-2018][@ieee-802-1qcc-project-2026]
 
-IEEE 802.1Q에서 SRP의 신호 방식은 TSN 설정 모델 가운데 완전 분산 모델에 해당한다. 이 모델에는 중앙 설정 장치가 없다. 사용자 요구가 스트림 경로의 브리지들을 거치며 퍼지고, 각 브리지는 자기가 아는 정보만으로 자원을 관리한다. SRP는 중앙 네트워크/분산 사용자 모델도 지원한다. 이 모델에서 SRP 메시지는 브리지를 거쳐 퍼지지 않고 CNC(Centralized Network Configuration)와 오가며, 네트워크의 물리 토폴로지와 각 브리지의 능력을 모두 아는 CNC가 원격 관리 프로토콜로 브리지를 설정한다. CNC가 브리지를 설정하는 데 쓰는 스트림 예약 원격 관리 기능은 IEEE 802.1Qcc가 처음 넣었다.[@ieee-802-1q-2022]
+IEEE 802.1Q가 정한 TSN 설정 모델 가운데 SRP의 신호 방식은 완전 분산 모델에 해당한다. 이 모델에는 중앙 설정 장치가 없다. 사용자 요구가 스트림 경로의 브리지들을 거치며 퍼지고, 각 브리지는 자기가 아는 정보만으로 자원을 관리한다. SRP는 중앙 네트워크/분산 사용자 모델도 지원한다. 이 모델에서 SRP 메시지는 브리지를 거쳐 퍼지지 않고 CNC(Centralized Network Configuration)와 오가며, 네트워크의 물리 토폴로지와 각 브리지의 능력을 모두 아는 CNC가 원격 관리 프로토콜로 브리지를 설정한다. CNC가 브리지를 설정하는 데 쓰는 스트림 예약 원격 관리 기능은 IEEE 802.1Qcc가 처음 넣었다.[@ieee-802-1q-2022]

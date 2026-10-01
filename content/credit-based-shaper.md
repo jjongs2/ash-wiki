@@ -18,7 +18,7 @@ CBS는 큐마다 credit 값을 둔다.[@intel-i210-2019][@microchip-sam-e70-2026
 
 - 큐에 보낼 프레임이 있지만 다른 큐가 전송하는 동안 기다리면 credit은 idleSlope의 비율로 오른다.[@intel-i210-2019][@microchip-sam-e70-2026]
 - 큐가 프레임을 내보내는 동안 credit은 sendSlope의 비율로 내려간다.[@st-rm0436-2025][@microchip-sam-e70-2026]
-- 큐가 비었을 때 $\mathrm{credit} > 0$이면 credit은 0이 된다.[@st-rm0436-2025][@intel-i210-2019] IEEE 802.1Q에서 credit은 큐가 전송하지 않는 동안([[time-aware-shaper|scheduled traffic]]을 쓰면 게이트가 열려 있는 동안) 큐가 비어 있어도 idleSlope의 비율로 오르고, 0으로 되돌려지는 것은 양수일 때뿐이다. 그래서 큐가 비었을 때 음수인 credit은 0이 될 때까지 오른다.[@ieee-802-1q-2022]
+- 큐가 비었을 때 $\mathrm{credit} > 0$이면 credit은 0이 된다.[@st-rm0436-2025][@intel-i210-2019] credit은 큐가 전송하지 않는 동안([[time-aware-shaper|scheduled traffic]]을 쓰면 게이트가 열려 있는 동안) 큐가 비어 있어도 idleSlope의 비율로 오르고, 0으로 되돌려지는 것은 양수일 때뿐이다. 그래서 큐가 비었을 때 음수인 credit은 0이 될 때까지 오른다.[@ieee-802-1q-2022]
 - 큐는 보낼 프레임이 있고 $\mathrm{credit} \ge 0$일 때 전송할 수 있다.[@intel-i210-2019][@microchip-sam-e70-2026]
 
 ![[diagrams/cbs-credit-timeline.svg]]
