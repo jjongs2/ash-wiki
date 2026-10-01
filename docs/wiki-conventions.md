@@ -99,19 +99,7 @@ npm run check:content
 
 `urldate`는 접근일입니다. URL은 `http://`나 `https://`로 시작합니다.
 
-동시에 열린 PR끼리 같은 키의 엔트리를 따로 더하기도 합니다. bib 엔트리를 더한 브랜치는 push 직전에, 열린 PR 가운데 같은 키의 `bib/<키>.bib`을 더한 것이 있는지 봅니다. 아래 명령은 이 브랜치가 더한 bib 파일마다 그 파일을 건드리는 열린 PR을 `<파일> #<PR>`로 찍습니다. 자기 PR은 빼고 봅니다. `리뷰`
-
-```sh
-git fetch origin
-join <(git diff --name-only --diff-filter=A origin/main...HEAD -- bib/ | sort) \
-  <(gh pr list --state open --limit 200 --json number,files \
-      --jq '.[] | .number as $n | .files[] | "\(.path) #\($n)"' | sort)
-```
-
-찍힌 PR이 있으면 두 파일의 `url`만 비교합니다. 상대 파일은 `git fetch origin pull/<PR>/head`와 `git show FETCH_HEAD:bib/<키>.bib`로 봅니다. 제목 표기, `urldate`, 그 밖의 필드 차이는 판단에 쓰지 않습니다.
-
-- `url`이 같으면 같은 문서입니다. 내 파일을 상대 PR의 파일로 글자 그대로 덮어씁니다. 두 브랜치가 같은 내용의 파일을 더하면 git이 충돌 없이 합칩니다. `리뷰`
-- `url`이 다르면 다른 문서입니다. 내 키를 바꾸고, 파일 이름과 본문의 인용을 함께 고칩니다. `리뷰`
+열린 PR이 같은 키의 엔트리를 더했는지는 [열린 PR과 겹치는 파일](#열린-pr과-겹치는-파일)대로 봅니다.
 
 ## 용어
 
@@ -196,7 +184,7 @@ join <(git diff --name-only --diff-filter=A origin/main...HEAD -- bib/ | sort) \
 - 도해는 SVG 파일 하나로 `content/diagrams/`에 두고 `![[diagrams/<파일 이름>.svg]]`로 넣습니다. 라이트·다크 두 테마가 같은 파일을 씁니다. `검사 wikilink`
 - 도해의 글자와 수치는 위키 페이지의 주장에 있는 것만 씁니다. 도해를 넣는 페이지의 주장이 아니어도 됩니다. `리뷰`
 - 도해는 그것이 나타내는 주장이 있는 문단 바로 뒤에 넣습니다. 여러 페이지에 맞는 도해는 파일 하나를 함께 씁니다. `리뷰`
-- 파일 이름은 그림의 내용을 나타내는 영문 소문자 kebab-case입니다. `리뷰`
+- 파일 이름은 그림의 내용을 나타내는 영문 소문자 kebab-case입니다. 열린 PR이 같은 이름의 도해를 더했는지는 [열린 PR과 겹치는 파일](#열린-pr과-겹치는-파일)대로 봅니다. `리뷰`
 - `<image>`나 `<feImage>`로 래스터나 외부 파일을 넣지 않습니다. `검사 svg`
 - 배경은 칠하지 않습니다. 사이트 배경이 그대로 비쳐야 두 테마에서 읽힙니다. `리뷰`
 - 테두리, 폭, 가운데 정렬은 사이트가 맡습니다(`quartz/styles/custom.scss`). SVG에는 그림을 두르는 틀을 그리지 않습니다. `리뷰`
@@ -250,6 +238,29 @@ join <(git diff --name-only --diff-filter=A origin/main...HEAD -- bib/ | sort) \
   - 윤곽 점선 `5 4`: 폭 1.5 이상인 틀, 선택·조건부 요소, 대기 구간, 간접 흐름, 계열을 구분하는 선
 - `<rect>`의 모서리 반경(`rx`, `ry`)은 0, 2, 4만 씁니다. `검사 svg` 높이 28 이하인 칸은 2, 그보다 높은 상자는 4입니다. `리뷰`
 - 글자 크기는 11 이상입니다. `baseline-shift`나 `dy`로 옮긴 첨자 `<tspan>`만 9 이상입니다. `검사 svg`
+
+## 열린 PR과 겹치는 파일
+
+동시에 열린 PR끼리 같은 경로의 bib 엔트리나 도해를 따로 더하기도 합니다. bib 엔트리나 도해를 더한 브랜치는 push 직전에, 열린 PR 가운데 같은 경로의 파일을 더한 것이 있는지 봅니다. 아래 명령은 이 브랜치가 더한 파일마다 그 파일을 건드리는 열린 PR을 `<파일> #<PR>`로 찍습니다. 자기 PR은 빼고 봅니다. `리뷰`
+
+```sh
+git fetch origin
+join <(git diff --name-only --diff-filter=A origin/main...HEAD -- bib/ content/diagrams/ | sort) \
+  <(gh pr list --state open --limit 200 --json number,files \
+      --jq '.[] | .number as $n | .files[] | "\(.path) #\($n)"' | sort)
+```
+
+찍힌 PR이 있으면 상대 파일을 `git fetch origin pull/<PR>/head`와 `git show FETCH_HEAD:<파일>`로 봅니다.
+
+bib 엔트리는 두 파일의 `url`만 비교합니다. 제목 표기, `urldate`, 그 밖의 필드 차이는 판단에 쓰지 않습니다.
+
+- `url`이 같으면 같은 문서입니다. 내 파일을 상대 PR의 파일로 글자 그대로 덮어씁니다. 두 브랜치가 같은 내용의 파일을 더하면 git이 충돌 없이 합칩니다. `리뷰`
+- `url`이 다르면 다른 문서입니다. 내 키를 바꾸고, 파일 이름과 본문의 인용을 함께 고칩니다. `리뷰`
+
+도해는 두 파일의 내용을 비교합니다.
+
+- 글자 그대로 같으면 그대로 둡니다. `리뷰`
+- 다르면 내 도해의 이름을 바꾸고, 그 도해를 넣은 줄(`![[diagrams/<파일 이름>.svg]]`)을 함께 고칩니다. `리뷰`
 
 ## 빌드
 
