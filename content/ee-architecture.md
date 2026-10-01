@@ -23,7 +23,7 @@ ECU는 파워트레인, 섀시, 바디, 인포테인먼트 같은 기능 도메�
 
 ## 존 아키텍처
 
-**존 아키텍처**(zonal architecture)는 ECU를 기능 도메인이 아니라 차량 안의 물리적 위치로 묶는다.[@renesas-ipd-power-distribution-2025][@ti-sszt211-2023] 차량을 여러 구역으로 나누고, 구역마다 둔 존 제어기가 그 구역의 센서, 액추에이터, ECU를 중앙 컴퓨터에 잇는다.[@ti-ssztd02-2025][@infineon-zcu-2026] Infineon은 존 제어기를 ZCU(Zone Control Unit)라 부른다.[@infineon-zcu-2026] 존 제어기는 그 구역의 전원 분배도 맡을 수 있다.[@renesas-ipd-power-distribution-2025][@infineon-zcu-2026]
+**존 아키텍처**(zonal architecture)는 ECU를 기능 도메인이 아니라 차량 안의 물리적 위치로 묶는다.[@renesas-ipd-power-distribution-2025][@ti-sszt211-2023] 차량을 여러 구역으로 나누고, 구역마다 둔 존 제어기가 그 구역의 센서, 액추에이터, ECU를 중앙 컴퓨터에 잇는다.[@ti-ssztd02-2025][@infineon-zcu-2026] 존 제어기는 ZCU(Zone Control Unit)라고도 부른다.[@guo-virtualisation-technologies-2025][@infineon-zcu-2026] 존 제어기는 그 구역의 전원 분배도 맡을 수 있다.[@renesas-ipd-power-distribution-2025][@infineon-zcu-2026]
 
 존 아키텍처는 배선의 길이와 무게를 줄인다.[@bosch-ee-architecture-2026][@nxp-s32g2zoneconfs-2021] Renesas 백서에 따르면 가까이 있는 ECU를 그 구역의 존 제어기가 맡으므로 배선이 오가지 않아도 되어 배선량이 준다.[@renesas-ipd-power-distribution-2025]
 
