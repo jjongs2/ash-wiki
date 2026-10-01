@@ -1,5 +1,6 @@
 import { slugifyFilePath } from "@quartz-community/utils"
 import GithubSlugger, { slug as anchorSlug } from "github-slugger"
+import type { Position } from "unist"
 import { visit } from "unist-util-visit"
 import { pretendardStylesheet } from "../../quartz/util/localFonts"
 import type { Conventions } from "./conventions"
@@ -204,6 +205,22 @@ function sectionIds(page: Page): Set<string> {
   return ids
 }
 
+const quoteMarker = /^\s*(?:>\s*)*/
+const delimiterRow = /^\|?\s*:?-+:?\s*(?:\|\s*:?-+:?\s*)*\|?\s*$/
+const unescapedPipe = /(?<!\\)\|/
+
+// GFM 표의 줄 번호. 머리 행 바로 다음에 구분 행(`--- | ---`)이 오면 표가 시작하고 빈 줄에서 끝난다.
+// 행 앞뒤의 |는 없어도 되고, 콜아웃 안의 표는 줄 앞에 >가 붙는다.
+function tableLines(page: Page): Set<number> {
+  const lines = page.masked.split("\n").map((line) => line.replace(quoteMarker, ""))
+  const rows = new Set<number>()
+  lines.forEach((line, index) => {
+    if (!line.includes("|") || !delimiterRow.test(line) || !lines[index - 1]?.trim()) return
+    for (let i = index - 1; i < lines.length && lines[i].trim() !== ""; i++) rows.add(i + 1)
+  })
+  return rows
+}
+
 export const wikilink: SourceCheck = (tree) => {
   // 대문과 태그 표시 이름 파일도 링크 대상이므로 title을 모은다.
   const titles = new Map(tree.pages.map((p) => [p.name, fieldsOf(p).title]))
@@ -211,11 +228,16 @@ export const wikilink: SourceCheck = (tree) => {
   const slugs = new Set(tree.pages.filter((p) => p.kind !== "tag").map((p) => p.name))
   const violations: Violation[] = []
   for (const page of tree.pages) {
+    const rows = tableLines(page)
     for (const { match, line } of matchLines(page, /(!?)\[\[([^[\]\n]+?)\]\]/g)) {
       const [link, embed, inner] = match
       const [path, display] = inner.split(/\\?\|/)
       const [target, anchor] = path.split("#").map((part) => part.trim())
       const at = (message: string) => violations.push({ file: page.file, line, message })
+      // 표 셀 안의 |는 prettier가 셀 경계로 보고 [[a | b]]로 갈라 열을 하나 더 만든다.
+      if (rows.has(line) && unescapedPipe.test(inner)) {
+        at(`표 셀 안의 위키링크는 |를 \\|로 쓴다: ${link} → ${link.replace(unescapedPipe, "\\|")}`)
+      }
       // ^로 시작하는 앵커는 절이 아니라 블록을 가리킨다.
       const checkSection = (name: string) => {
         if (anchor && !anchor.startsWith("^") && !sections.get(name)!.has(anchorSlug(anchor)))
@@ -256,13 +278,15 @@ export interface Citation {
   raw: string
   key: string | null // 대괄호 하나에 키 하나가 아니면 null
   line: number
+  column: number // 줄 안에서 [가 있는 곳
 }
 
 export function citations(page: Page): Citation[] {
   const found: Citation[] = []
   for (const { match, line } of matchLines(page, /\[([^[\]\n]*)\]/g)) {
     if (!/(^|[\s;])-?@\w/.test(match[1])) continue
-    found.push({ raw: match[0], key: match[1].match(/^@([^\s;,@]+)$/)?.[1] ?? null, line })
+    const key = match[1].match(/^@([^\s;,@]+)$/)?.[1] ?? null
+    found.push({ raw: match[0], key, line, column: match.index })
   }
   return found
 }
@@ -316,6 +340,62 @@ export const citation: SourceCheck = (tree, conventions) => {
       if (!citationKey.test(key)) at(`키가 <발행기관>-<식별자>-<연도> 꼴이 아니다: ${key}`)
       if (!keys.has(key)) at(`bib/에 엔트리가 없는 키: ${key}`)
     }
+    violations.push(...citationOrder(page))
+  }
+  return violations
+}
+
+// 인용 번호는 키가 페이지에서 처음 나온 순서로 매겨진다. 한 자리(한 문단이나 제목 안에서 공백과 줄바꿈만
+// 사이에 둔 인용들)의 키가 그 순서를 따라야 [2][1]이 아니라 [1][2]로 렌더된다. 키가 하나가 아닌 대괄호는
+// 앞의 검사가 맡는다.
+function citationOrder(page: Page): Violation[] {
+  const found = citations(page).filter(
+    (citation): citation is Citation & { key: string } => citation.key !== null,
+  )
+  const first = new Map<string, number>()
+  found.forEach(({ key }, index) => {
+    if (!first.has(key)) first.set(key, index)
+  })
+  const blocks: Position[] = []
+  visit(page.mdast, (node) => {
+    if (node.type === "paragraph" || node.type === "heading") blocks.push(node.position!)
+  })
+  const blockOf = ({ line, column }: Citation) =>
+    blocks.findIndex(
+      ({ start, end }) =>
+        (line > start.line || (line === start.line && column >= start.column - 1)) &&
+        (line < end.line || (line === end.line && column < end.column - 1)),
+    )
+  // 사이의 글은 원문에서 읽는다. 코드를 가린 본문에서는 인라인 코드가 공백으로 보인다. HTML 주석은
+  // 렌더되지 않으므로 빼고 본다.
+  const sourceLines = page.source.split("\n")
+  const span = (from: Citation, to: Citation) => {
+    const text = sourceLines.slice(from.line - 1, to.line).join("\n")
+    return text.slice(from.column, text.length - sourceLines[to.line - 1].length + to.column)
+  }
+  const runs: (typeof found)[] = []
+  found.forEach((citation, index) => {
+    const previous = found[index - 1]
+    const gap = previous && span(previous, citation).slice(previous.raw.length)
+    const joined =
+      previous &&
+      blockOf(previous) >= 0 &&
+      blockOf(previous) === blockOf(citation) &&
+      gap.replace(/<!--[\s\S]*?-->|\n[ \t]*(?:>[ \t]*)*/g, "").trim() === ""
+    if (joined) runs.at(-1)!.push(citation)
+    else runs.push([citation])
+  })
+  const violations: Violation[] = []
+  for (const run of runs) {
+    const sorted = [...run].sort((a, b) => first.get(a.key)! - first.get(b.key)!)
+    if (sorted.every((citation, index) => citation === run[index])) continue
+    const last = run.at(-1)!
+    const written = (span(run[0], last) + last.raw).replace(/\s*\n[\s>]*/g, " ")
+    violations.push({
+      file: page.file,
+      line: run[0].line,
+      message: `여러 인용은 페이지에서 처음 나온 순서로 쓴다: ${written} → ${sorted.map((c) => c.raw).join("")}`,
+    })
   }
   return violations
 }

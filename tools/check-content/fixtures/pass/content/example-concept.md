@@ -11,10 +11,14 @@ verified: 2026-09-20
 
 ## 동작
 
-**예시**(Example)는 강조와 조사가 함께 렌더되는 꼴이다. [[example-standard|예시 표준]]으로 가는 위키링크가 있고, title이 슬러그와 같은 [[example-term]]은 표시 이름 없이 건다.
+**예시**(Example)는 강조와 조사가 함께 렌더되는 꼴이다.[@example-spec-2024][@example-manual-2023] [[example-standard|예시 표준]]으로 가는 위키링크가 있고, title이 슬러그와 같은 [[example-term]]은 표시 이름 없이 건다.
 
 > [!note]
 > 보충 설명이다.
+
+| 링크                            | 꼴                  |
+| ------------------------------- | ------------------- |
+| [[example-standard\|예시 표준]] | 표 셀 안의 위키링크 |
 
 ![[example-diagram.svg]]
 

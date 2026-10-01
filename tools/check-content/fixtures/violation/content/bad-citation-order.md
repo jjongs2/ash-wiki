@@ -1,0 +1,33 @@
+---
+title: 인용 순서 위반
+tags:
+  - network
+verified: 2026-09-20
+---
+
+머리말이다.[@example-manual-2023]
+
+<!-- 위반(citation): 뒤 키가 앞 키보다 페이지에서 먼저 나와, 렌더 번호가 [2][1]이 된다. -->
+
+첫 문장이다.[@example-spec-2024][@example-manual-2023]
+
+<!-- 위반(citation): 사이에 공백만 있어도 한 자리다. -->
+
+둘째 문장이다.[@example-spec-2024] [@example-manual-2023]
+
+<!-- 통과: 첫 등장 순으로 쓴 자리와, 글을 사이에 둔 인용 -->
+
+셋째 문장이다.[@example-manual-2023][@example-spec-2024] 넷째 문장이다.[@example-manual-2023]
+
+<!-- 위반(citation): 줄바꿈을 사이에 두어도 한 문단 안이면 한 자리다. -->
+
+다섯째 문장이다.[@example-spec-2024]
+[@example-manual-2023]
+
+<!-- 통과: 인라인 코드를 사이에 둔 인용은 다른 자리다. -->
+
+여섯째 문장이다.[@example-spec-2024] `FOO`[@example-manual-2023]
+
+<!-- 위반(citation): HTML 주석은 렌더되지 않아, 주석만 사이에 두어도 한 자리다. -->
+
+일곱째 문장이다.[@example-spec-2024]<!-- 메모 -->[@example-manual-2023]
