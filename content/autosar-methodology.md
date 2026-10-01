@@ -60,6 +60,6 @@ XML(Extensible Markup Language)로 AUTOSAR 모델을 나타낸 것을 **AUTOSAR 
 
 ## 네트워크 기술 형식
 
-System Template은 통신과 토폴로지 기술에 ASAM FIBEX의 기술을 담고, AUTOSAR의 요구에 맞게 PDU 개념 등을 더해 확장했다. FIBEX는 버스 통신 시스템을 다루는 도구 사이의 데이터 교환을 위한 XML 형식이다.[@autosar-cp-tps-systemtemplate-2025] ASAM MCD-2 NET(FIBEX)은 [[flexray|FlexRay]], [[can|CAN]], [[lin|LIN]], [[ethernet|Ethernet]] 등을 기술 확장으로 다룬다.[@asam-mcd-2-net-2017]
+System Template은 통신과 토폴로지 기술에 ASAM FIBEX의 기술을 담고, AUTOSAR의 요구에 맞게 PDU 개념 등을 더해 확장했다. FIBEX는 버스 통신 시스템을 다루는 도구 사이의 데이터 교환을 위한 XML 형식이다.[@autosar-cp-tps-systemtemplate-2025] ASAM MCD-2 NET(FIBEX) 4.1.2는 [[flexray|FlexRay]], [[can|CAN]], [[lin|LIN]], [[ethernet|Ethernet]] 등을 기술 확장으로 다룬다.[@asam-mcd-2-net-2017]
 
 Vector의 DBC 데이터베이스는 CAN·[[can-fd|CAN FD]] 네트워크, 버스에 이어진 ECU, 메시지와 시그널을 기술한다.[@vector-candb-admin-factsheet-2024] Vector DaVinci Configurator Classic의 Ecu Extract Producer는 DBC 같은 기존 형식의 파일을 ECU Extract로 변환한다.[@vector-davinci-configurator-classic-ecuxpro-2026] LIN을 규정하는 ISO 17987에서 LDF는 LIN description file을 뜻한다.[@iso-17987-2-obp-2025]

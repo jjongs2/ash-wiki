@@ -82,4 +82,4 @@ CPU가 리셋되면 하드웨어별 초기화 코드가 돈 뒤, application mod
 
 ## AUTOSAR OS와의 관계
 
-OSEK OS는 단일 프로세서를 전제한다.[@osek-os-2-2-3-2005] AUTOSAR Classic Platform의 OS 명세는 OSEK OS를 바탕으로 삼아, 그것의 확장과 제한으로 AUTOSAR OS를 정한다.[@autosar-cp-sws-os-2025]
+OSEK OS는 단일 프로세서를 전제한다.[@osek-os-2-2-3-2005] AUTOSAR Classic Platform R25-11의 OS 명세는 OSEK OS를 바탕으로 삼아, 그것의 확장과 제한으로 AUTOSAR OS를 정한다.[@autosar-cp-sws-os-2025]
