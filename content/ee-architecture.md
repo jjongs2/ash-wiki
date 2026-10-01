@@ -17,13 +17,13 @@ ECU 수가 늘수록 전원 분배, 네트워크, 배선이 복잡해진다.[@ti
 
 ## 도메인 아키텍처
 
-ECU는 파워트레인, 섀시, 바디, 인포테인먼트 같은 기능 도메인으로 나뉜다.[@renesas-ipd-power-distribution-2025][@ti-sszt211-2023] **도메인 아키텍처**는 도메인마다 **도메인 제어기**(domain controller)를 두어 그 도메인의 기능을 모으고, 도메인 아래의 ECU는 도메인 제어기에 붙어 계층을 이룬다.[@renesas-ipd-power-distribution-2025][@ti-sszt211-2023] 도메인 제어기는 DCU(Domain Control Unit)라고도 부른다.[@guo-virtualisation-technologies-2025]
+ECU는 파워트레인, 섀시, 바디, 인포테인먼트 같은 기능 도메인으로 나뉜다. **도메인 아키텍처**는 도메인마다 **도메인 제어기**(domain controller)를 두어 그 도메인의 기능을 모으고, 도메인 아래의 ECU는 도메인 제어기에 붙어 계층을 이룬다.[@renesas-ipd-power-distribution-2025][@ti-sszt211-2023] 도메인 제어기는 DCU(Domain Control Unit)라고도 부른다.[@guo-virtualisation-technologies-2025]
 
 도메인마다 네트워크가 다를 수 있어 [[gateway|게이트웨이]]가 도메인 사이를 잇고, 중앙 게이트웨이 모듈이 여러 도메인에 붙는다.[@ti-sszt211-2023][@nxp-autogwdevwpus-2018] NXP 백서에 따르면 도메인 기반 네트워크에서는 이더넷이 도메인 제어기들을 잇는 통신 백본이 된다. 센서 데이터 처리와 알고리즘을 도메인 제어기가 맡을 수 있어, 그 아래 ECU는 덜 강력한 마이크로컨트롤러를 쓸 수 있다.[@nxp-fvnecua4wp-2017]
 
 ## 존 아키텍처
 
-**존 아키텍처**(zonal architecture)는 ECU를 기능 도메인이 아니라 차량 안의 물리적 위치로 묶는다.[@renesas-ipd-power-distribution-2025][@ti-sszt211-2023] 차량을 여러 구역으로 나누고, 구역마다 둔 존 제어기가 그 구역의 센서, 액추에이터, ECU를 중앙 컴퓨터에 잇는다.[@ti-ssztd02-2025][@infineon-zcu-2026] 존 제어기는 ZCU(Zone Control Unit)라고도 부른다.[@guo-virtualisation-technologies-2025][@infineon-zcu-2026] 존 제어기는 그 구역의 전원 분배도 맡을 수 있다.[@renesas-ipd-power-distribution-2025][@infineon-zcu-2026]
+**존 아키텍처**(zonal architecture)는 ECU를 기능 도메인이 아니라 차량 안의 물리적 위치로 묶는다.[@renesas-ipd-power-distribution-2025][@ti-sszt211-2023] 차량을 여러 구역으로 나누고, 구역마다 둔 존 제어기가 그 구역의 센서, 액추에이터, ECU를 중앙 컴퓨터에 잇는다.[@ti-ssztd02-2025][@infineon-zcu-2026] 존 제어기는 ZCU(Zone Control Unit)라고도 부른다.[@guo-virtualisation-technologies-2025] 존 제어기는 그 구역의 전원 분배도 맡을 수 있다.[@renesas-ipd-power-distribution-2025][@infineon-zcu-2026]
 
 존 아키텍처는 배선의 길이와 무게를 줄인다.[@bosch-ee-architecture-2026][@nxp-s32g2zoneconfs-2021] Renesas 백서에 따르면 가까이 있는 ECU를 그 구역의 존 제어기가 맡으므로 배선이 오가지 않아도 되어 배선량이 준다.[@renesas-ipd-power-distribution-2025]
 
