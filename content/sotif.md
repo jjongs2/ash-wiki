@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-01
 ---
 
-**SOTIF**(Safety Of The Intended Functionality)는 의도된 기능이나 그 구현의 기능 부족에서 오는 해저드 때문에 생기는 불합리한 리스크가 없는 상태다. [[iso-21448|ISO 21448]]이 SOTIF를 확보하는 조치의 틀과 지침을 준다.[@iso-21448-obp-2022]
+**SOTIF**(Safety Of The Intended Functionality)는 의도된 기능이나 그 구현의 기능 부족에서 오는 [[hazard-analysis-and-risk-assessment|해저드]] 때문에 생기는 불합리한 리스크가 없는 상태다. [[iso-21448|ISO 21448:2022]]가 SOTIF를 확보하는 조치의 틀과 지침을 준다.[@iso-21448-obp-2022]
 
 ## 기능 부족
 
@@ -18,7 +18,7 @@ ISO 21448:2022는 **기능 부족**(functional insufficiency)을 명세의 부�
 
 ## Triggering condition
 
-ISO 21448:2022는 **triggering condition**을 시나리오의 특정 조건으로 정의한다. 이 조건이 뒤따르는 시스템 반응을 일으켜, 해저드 동작에 기여하거나 합리적으로 예견할 수 있는 간접 오용을 막거나 감지하거나 완화하지 못하는 결과에 기여한다. 기능 부족을 활성화하는 것이 triggering condition이다.[@iso-21448-obp-2022]
+ISO 21448:2022는 **triggering condition**을 시나리오의 특정 조건으로 정의한다. 이 조건이 뒤따르는 시스템 반응을 일으켜, 해저드 동작이나 간접 오용에 대처하지 못하는 결과로 이어지게 한다. 기능 부족을 활성화하는 것이 triggering condition이다.[@iso-21448-obp-2022]
 
 ![[diagrams/sotif-triggering-condition-chain.svg]]
 
