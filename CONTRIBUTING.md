@@ -66,4 +66,6 @@
 
 그 밖의 이슈는 PR 타입을 접두사로 씁니다(`feat`, `docs`, `chore` 등).
 
+PR 안에서 고치기보다 규약부터 다시 정해야 하는 항목은 열린 `docs: 규약 검토 모음` 이슈에 코멘트로 쌓습니다. 열린 것이 없으면 [모음 이슈 템플릿](.github/ISSUE_TEMPLATE/convention-review.md)으로 엽니다.
+
 `gh` 사용법은 [이슈 트래커](docs/agents/issue-tracker.md), 라벨은 [triage 라벨](docs/agents/triage-labels.md)을 참고하세요.
