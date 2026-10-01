@@ -162,6 +162,8 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/no-ligatures.svg:6",
         "content/no-precision.svg:1",
         "content/no-viewbox.svg:1",
+        "content/overflow-diagram.svg:1",
+        "content/bad-separator.svg:10",
         "content/skewed-diagram.svg:1",
       ],
       output: [
@@ -187,6 +189,23 @@ describe("check-content CLI", { concurrency: false }, () => {
     const skewed = report.messages.get("svg")!.filter((m) => m.includes("skewed-diagram.svg"))
     assert.strictEqual(skewed.length, 1)
     assert.match(skewed[0], /viewBox="25 10 240 100"/)
+  })
+
+  test("viewBox 밖으로 나간 그림은 넘친 변과 양만 알리고 여백 치우침은 알리지 않는다", () => {
+    const report = runChecker("violation")
+    const overflow = report.messages.get("svg")!.filter((m) => m.includes("overflow-diagram.svg"))
+    assert.strictEqual(overflow.length, 1)
+    assert.match(overflow[0], /viewBox 밖으로 나갔다\(하 20\)/)
+  })
+
+  test("두 상자 사이 글자가 상자 세로 중심에서 벗어나면 그 글자와 어긋난 양을 알려 준다", () => {
+    const report = runChecker("violation")
+    const separator = report.messages.get("svg")!.filter((m) => m.includes("bad-separator.svg"))
+    assert.strictEqual(separator.length, 1)
+    assert.match(
+      separator[0],
+      /글자 `_`의 잉크 중심이 상자 세로 중심에서 [\d.]+ 아래에 있다\(허용 2\.8\)/,
+    )
   })
 
   test("도해 색 위반은 표의 그 행으로 고칠 꼴을 알려 준다", () => {

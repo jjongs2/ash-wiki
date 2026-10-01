@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="14" width="70" height="32" rx="4" />
+    <rect x="110" y="14" width="70" height="32" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="55" y="35">CP</text>
+    <!-- 위반(svg): 두 상자 사이 구분자 `_`가 baseline에 앉아 상자 세로 중심보다 아래에 있다. -->
+    <text x="100" y="35">_</text>
+    <text x="145" y="35">SWS</text>
+  </g>
+</svg>
