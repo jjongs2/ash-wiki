@@ -34,7 +34,7 @@
   <text x="415" y="201" text-anchor="middle" fill="var(--text, #727981)">PHY</text>
   <text x="415" y="219" text-anchor="middle" font-size="12" fill="var(--text, #727981)">주소 1</text>
 
-  <text x="500" y="210" text-anchor="middle" fill="var(--text, #727981)">…</text>
+  <text x="500" y="206" text-anchor="middle" fill="var(--text, #727981)">…</text>
 
   <!-- PHY 주소 31 -->
   <path d="M565 70 V103 A7 7 0 0 0 565 117 V178" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
