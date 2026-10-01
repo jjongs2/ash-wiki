@@ -7,7 +7,7 @@ description: 인제스트. `ingest:` 묶음 티켓 하나를 초안, 검증자 �
 
 묶음 티켓 하나가 PR 하나가 된다. 용어는 `CONTEXT.md`를 따른다.
 
-먼저 읽는다: 티켓(`gh issue view <n> --comments`), `docs/adr/0001-isolation-boundary.md`, `docs/adr/0007-source-hierarchy-with-self-history-and-survey-naming.md`, `docs/wiki-conventions.md`, `docs/wiki-abbreviations.md`, `docs/wiki-verification.md`. 브랜치와 커밋은 `CONTRIBUTING.md`를 따르고, 타입은 `content`다.
+먼저 읽는다: 티켓(`gh issue view <n> --comments`), `docs/adr/0001-isolation-boundary.md`, `docs/source-hierarchy.md`, `docs/wiki-conventions.md`, `docs/wiki-abbreviations.md`, `docs/wiki-verification.md`. 브랜치와 커밋은 `CONTRIBUTING.md`를 따르고, 타입은 `content`다.
 
 티켓의 페이지 표에 `출처 후보` 열이 있으면 **출처 경로**, 없으면 **노트 경로**다. 출처 경로 티켓은 보강이 발행한 것으로, `ASH_WIKI_NOTES`를 열지 않고 표의 출처로 쓴다. 두 경로가 다른 단계는 따로 적는다.
 
