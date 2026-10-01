@@ -14,7 +14,7 @@ SW-C는 BSW(Basic Software)가 제공하는 AUTOSAR 서비스와도 포트로 �
 
 ## P-Port와 R-Port
 
-**P-Port**는 port interface에 정의된 요소를 제공하고, **R-Port**는 요구하며, **PR-Port**는 둘을 함께 한다. sender-receiver 통신에서는 데이터를 내보내는 쪽이 P-Port이고, connector로 이은 R-Port가 그 데이터를 받는다. client-server 통신에서는 operation을 제공하는 서버가 P-Port이고, 그 operation을 호출하는 클라이언트가 R-Port다.[@autosar-cp-exp-vfb-2024]
+**P-Port**는 port interface에 정의된 요소를 제공하고, **R-Port**는 요구하며, **PR-Port**는 둘을 함께 한다. sender-receiver 통신에서는 데이터를 내보내는 쪽이 P-Port이고, connector로 이은 R-Port가 그 데이터를 받는다. client-server 통신에서는 operation을 제공하는 서버가 P-Port이고, 그 operation을 호출하는 클라이언트가 R-Port다.[@autosar-cp-exp-vfb-2024] operation의 인자는 operation에 넘기는 in, 돌려받는 out, 넘기고 돌려받는 inout으로 나뉘어서, R-Port 쪽 클라이언트도 operation을 호출하며 서버에 데이터를 넘긴다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ## Port interface
 

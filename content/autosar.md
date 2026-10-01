@@ -54,7 +54,7 @@ SRS(Software Requirements Specification)는 이 문서 종류에 없다.[@autosa
 
 ## 규격 항목 ID와 API 명세
 
-AUTOSAR 규격 항목(specification item)의 ID는 표준 약어(생략 가능), 문서 종류 약어, 문서 이름 약어, 특수화(생략 가능), 번호를 밑줄로 이은 꼴이고, 번호는 00000부터 99999까지의 고유 번호다. ID는 [SWS_Port_00140]처럼 대괄호 안에 쓴다.[@autosar-fo-tps-standardizationtemplate-2025] BSW(Basic Software) 모듈의 규격 항목은 BSW 요구사항으로 추적되고, BSW 모듈 구현은 해당 규격 항목까지의 추적성을 보장해야 한다.[@autosar-cp-sws-bswgeneral-2025]
+AUTOSAR 규격 항목(specification item)의 ID는 표준 약어(생략 가능), 문서 종류 약어, 문서 이름 약어, 특수화(생략 가능), 번호를 밑줄로 이은 꼴이고, 번호는 00000부터 99999까지의 고유 번호다. ID는 [SWS_Port_00140]처럼 대괄호 안에 쓴다.[@autosar-fo-tps-standardizationtemplate-2025] BSW(Basic Software) 모듈의 규격 항목은 BSW 요구사항으로 추적되고, BSW 모듈 구현은 해당 규격 항목까지의 추적성을 보장해야 한다.[@autosar-cp-sws-bswgeneral-2025] AUTOSAR R25-11의 Adaptive Platform System Tests 기술 보고서는 Adaptive Platform Demonstrator가 functional cluster의 요구사항을 채우는지 확인하는 시험 사례를 담는다. 시험 사례마다 [STS_CM_00007] 같은 ID가 붙고, 그 사례가 확인하는 RS 요구사항과 SWS 규격 항목의 ID가 함께 적힌다.[@autosar-ap-tr-systemtests-2025]
 
 ![[diagrams/autosar-specification-item-id.svg]]
 
