@@ -8,7 +8,7 @@ aliases:
 verified: 2026-09-30
 ---
 
-**우선순위 상한 프로토콜**(priority ceiling protocol)은 자원(세마포어)마다 그것을 잠글 수 있는 모든 태스크 가운데 가장 높은 우선순위를 **우선순위 상한**(priority ceiling)으로 두고, 이 값으로 임계 구역 진입과 태스크의 우선순위를 다루는 실시간 동기화 프로토콜이다.[@sha-real-time-scheduling-ada-1989] 태스크가 이진 세마포어로 임계 구역을 보호하는 단일 프로세서에서, 이 프로토콜은 태스크의 최악 블로킹 시간을 더 낮은 우선순위 태스크의 [[critical-section|임계 구역]] 하나를 실행하는 시간 이하로 줄이고, [[deadlock|교착 상태]]를 막는다.[@sha-real-time-scheduling-ada-1989][@sha-priority-inheritance-1990] Sha, Rajkumar, Lehoczky의 1990년 논문은 [[priority-inheritance-protocol|기본 우선순위 상속 프로토콜]]과 함께 이 프로토콜을 다룬다.[@sha-priority-inheritance-1990]
+**우선순위 상한 프로토콜**(priority ceiling protocol)은 자원(세마포어)마다 그것을 잠글 수 있는 모든 태스크 가운데 가장 높은 우선순위를 **우선순위 상한**(priority ceiling)으로 두고, 이 값으로 임계 구역 진입과 태스크의 우선순위를 다루는 실시간 동기화 프로토콜이다.[@sha-real-time-scheduling-ada-1989] 태스크가 이진 세마포어로 임계 구역을 보호하는 단일 프로세서에서, 이 프로토콜은 태스크의 최악 블로킹 시간을 더 낮은 우선순위 태스크의 [[critical-section|임계 구역]] 하나를 실행하는 시간 이하로 줄이고, [[deadlock|교착 상태]]를 막는다.[@sha-real-time-scheduling-ada-1989][@sha-priority-inheritance-1990] Sha, Rajkumar, Lehoczky는 1987년 Carnegie Mellon University 기술 보고서(CMU-CS-87-181)에서 [[priority-inheritance-protocol|기본 우선순위 상속 프로토콜]]과 함께 이 프로토콜을 정의하고, 교착 상태를 막고 블로킹을 제한한다는 성질을 보였다.[@sha-real-time-scheduling-ada-1989][@borger-implementing-priority-inheritance-1989] 이 보고서는 1990년 IEEE Transactions on Computers 논문으로 실렸다.[@sha-real-time-scheduling-ada-1989][@sha-priority-inheritance-1990]
 
 ## 원형 프로토콜
 

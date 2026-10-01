@@ -21,7 +21,15 @@ Renesas 앱노트에 따르면 hard real-time에서는 마감 시한을 놓쳐�
 
 ## 주기와의 관계
 
-Liu와 Layland는 1973년 논문에서 각 태스크가 같은 태스크의 다음 요청이 오기 전에 끝나야 한다고 가정했다. 곧 요청의 마감 시한은 같은 태스크의 다음 요청 시각이다.[@liu-hard-real-time-1973] 이 모델은 [[periodic-task-model|주기 태스크 모델]]에서 다룬다.
+상대 마감 시한 $D_i$와 주기 $T_i$의 관계에 따라 태스크의 마감 시한을 셋으로 나눈다.[@davis-survey-hard-real-time-2011]
+
+- **implicit deadline**: 마감 시한이 주기와 같다($D_i = T_i$).
+- **constrained deadline**: 마감 시한이 주기 이하다($D_i \le T_i$).
+- **arbitrary deadline**: 마감 시한이 주기보다 짧을 수도, 같을 수도, 길 수도 있다.[@davis-survey-hard-real-time-2011]
+
+그래서 implicit deadline은 constrained deadline의 특수한 경우이고, constrained deadline은 arbitrary deadline의 특수한 경우다.[@davis-survey-hard-real-time-2011]
+
+Liu와 Layland는 1973년 논문에서 각 태스크가 같은 태스크의 다음 요청이 오기 전에 끝나야 한다고 가정했다. 곧 요청의 마감 시한은 같은 태스크의 다음 요청 시각이다.[@liu-hard-real-time-1973] 마감 시한이 주기와 같으므로 이 태스크의 마감 시한은 implicit deadline이다.[@davis-survey-hard-real-time-2011] 이 모델은 [[periodic-task-model|주기 태스크 모델]]에서 다룬다.
 
 Lehoczky는 1990년 마감 시한이 임의인 주기 태스크 집합의 고정 우선순위 스케줄링을 다뤄, 스케줄 가능성의 일반 판정 기준과 Liu와 Layland의 이용률 상한을 일반화한 최악 경우 상한을 냈다.[@lehoczky-arbitrary-deadlines-1990]
 
