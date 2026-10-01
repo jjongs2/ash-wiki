@@ -12,7 +12,7 @@
   <text x="90" y="70" text-anchor="middle" font-size="12" fill="var(--text, #727981)">25 MHz</text>
 
   <line x1="160" y1="56" x2="228" y2="56" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="195" y="47" text-anchor="middle" font-size="12" fill="var(--text, #727981)">4B3B</text>
+  <text x="195" y="47" text-anchor="middle" font-size="12" fill="var(--text, #727981)">4B/3B</text>
 
   <!-- 3비트 데이터 경로 -->
   <rect x="230" y="30" width="140" height="52" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />

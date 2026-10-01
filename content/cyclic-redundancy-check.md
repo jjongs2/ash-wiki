@@ -33,14 +33,18 @@ AUTOSAR CRC 라이브러리 규격에 따르면 생성 다항식이 추가로 �
 
 ## 쓰는 곳
 
-CRC는 Ethernet 같은 LAN(Local Area Network)에서 쓰인다.[@microchip-an730-2000][@ti-spra530-1999]
+CRC는 Ethernet 같은 LAN(Local Area Network)에서 쓰인다.[@microchip-an730-2000][@ti-spra530-1999] Microchip 앱노트에 따르면 CRC는 데이터 메모리·프로그램 메모리에 든 데이터가 올바른지 확인하는 데도 흔히 쓰이고[@microchip-an2632-2019], CAN과 Ethernet을 비롯한 널리 쓰이는 통신 프로토콜 대부분이 CRC로 오류를 검출한다.[@microchip-an1148-2008]
 
-CRC는 이웃한 비트들에 몰린 오류인 버스트 오류를 찾아내는 데 쓴다.[@microchip-an730-2000][@ti-spra530-1999] 오류 버스트의 길이는 첫 오류 비트부터 마지막 오류 비트까지의 비트 수다.[@iec-60050-721-08-10-1991]
+CRC는 이웃한 비트들에 몰린 오류인 버스트 오류를 찾아내는 데 쓴다.[@microchip-an730-2000][@ti-spra530-1999] 오류 버스트의 길이는 첫 오류 비트부터 마지막 오류 비트까지의 비트 수다.[@iec-60050-721-08-10-1991] ITU-T X.141에 따르면 X.25 등의 패킷 전송 절차가 쓰는 16비트 FCS(Frame Check Sequence)는 길이가 16비트를 넘지 않는 오류 버스트를 모두 찾아낸다.[@itu-t-x-141-1988]
 
 Bosch CAN 2.0 규격은 CAN의 CRC 시퀀스를 15비트로 둔다.[@bosch-can-2-0-1991] 자세한 것은 [[can-crc|CAN CRC]]에서 다룬다.
 
-모뎀의 오류 정정 절차를 정한 ITU-T V.42는 LAPM(Link Access Procedure for Modems)의 32비트 FCS(Frame Check Sequence) 생성 다항식을 차수가 32, 26, 23, 22, 16, 12, 11, 10, 8, 7, 5, 4, 2, 1, 0인 항으로 정한다.[@itu-t-v-42-2002]
+모뎀의 오류 정정 절차를 정한 ITU-T V.42는 LAPM(Link Access Procedure for Modems)의 32비트 FCS 생성 다항식을 차수가 32, 26, 23, 22, 16, 12, 11, 10, 8, 7, 5, 4, 2, 1, 0인 항으로 정한다.[@itu-t-v-42-2002]
 
 $$
 x^{32} + x^{26} + x^{23} + x^{22} + x^{16} + x^{12} + x^{11} + x^{10} + x^{8} + x^{7} + x^{5} + x^{4} + x^{2} + x + 1
 $$
+
+[[ieee-802-3|IEEE 802.3-2022]]는 Ethernet MAC(Medium Access Control) 프레임의 FCS 필드에 32비트 CRC 값을 담도록 하고, 그 생성 다항식을 위와 같은 다항식으로 정한다. CRC 값은 목적지 주소, 출발지 주소, 길이/타입 필드, MAC 클라이언트 데이터, 패드, 곧 FCS를 뺀 모든 필드로 계산한다.[@ieee-802-3-2022]
+
+생성 다항식이 같아도 보장되는 해밍 거리는 CRC를 뺀 데이터 워드의 길이에 따라 달라서, 데이터 워드가 길수록 작아진다. 데이터 워드를 $k$비트라 하면, 위 다항식이 보장하는 해밍 거리는 $k \le 91$이면 8 이상, $k \le 171$이면 7 이상, $k \le 268$이면 6 이상, $k \le 2974$이면 5 이상, $k \le 91607$이면 4 이상이다.[@koopman-32-bit-crc-2002]

@@ -24,7 +24,7 @@ IEEE SA에 따르면 차량 배선의 무게와 공간이 큰 과제여서, 차�
 | IEEE 802.3bp-2016 | 1 Gbit/s          | 꼬임쌍선 한 쌍 위의 점대점 PHY인 [[1000base-t1\|1000BASE-T1]][@ieee-802-3bp-objectives-2014][@ieee-802-3bp-2016] |
 | IEEE 802.3ch-2020 | 2.5, 5, 10 Gbit/s | 평형 도체 한 쌍 위의 PHY[@ieee-802-3ch-2020]                                                                     |
 
-IEEE 802.3da-2026은 10BASE-T1S 물리 계층의 10 Mbit/s 공유 매체(멀티드롭) 모드를 보강한다.[@ieee-802-3da-2026] P802.3cg 목표에는 노드 8개 이상이 붙은 25 m 이상의 세그먼트에서 반이중 멀티드롭으로 동작하는 선택 사항이 있었다.[@ieee-802-3cg-objectives-2018]
+현행 IEEE 802.3은 평형 도체 한 쌍 위의 PHY로, 적어도 15 m를 잇는 10 Mbit/s의 10BASE-T1S와 2.5, 5, 10 Gbit/s 전이중의 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1을 둔다.[@ieee-802-3-2022] IEEE 802.3da-2026은 10BASE-T1S 물리 계층의 10 Mbit/s 공유 매체(멀티드롭) 모드를 보강한다.[@ieee-802-3da-2026] P802.3cg 목표에는 노드 8개 이상이 붙은 25 m 이상의 세그먼트에서 반이중 멀티드롭으로 동작하는 선택 사항이 있었다.[@ieee-802-3cg-objectives-2018]
 
 ## 케이블
 
@@ -44,10 +44,10 @@ IEEE 802.1 [[tsn|TSN]] 태스크 그룹은 IEEE 802 네트워크에서 지연 �
 
 ## 차량 응용
 
-IEEE 802.3 작업 그룹은 차량용 이더넷 수요를 이끄는 것으로 카메라, 충돌 회피, 인포테인먼트처럼 대역을 많이 쓰는 차량 응용을 들었다.[@ieee-802-3bw-csd-2014] 이더넷을 쓰면 차량의 펌웨어 업데이트가 빨라진다.[@ieee-tsn-automotive-flyer-2026][@ti-szzy009-2018] TI 기술 기사에 따르면 IEEE 802.3bw와 802.3bp의 차량용 요구사항은 인포테인먼트, ADAS(Advanced Driver Assistance Systems), 온보드 진단, 5G나 V2X(Vehicle-to-Everything) 같은 외부 연결이 퍼지는 바탕이 되었다.[@ti-sszt730-2018]
+IEEE 802.3 작업 그룹은 차량용 이더넷 수요를 이끄는 것으로 카메라, 충돌 회피, 인포테인먼트처럼 대역을 많이 쓰는 차량 응용을 들었다.[@ieee-802-3bw-csd-2014] 이더넷을 쓰면 차량의 펌웨어 업데이트가 빨라진다.[@ieee-tsn-automotive-flyer-2026][@ti-szzy009-2018] TI 기술 기사에 따르면 IEEE 802.3bw와 802.3bp의 차량용 요구사항은 인포테인먼트, ADAS(Advanced Driver Assistance Systems), 온보드 진단, 5G나 V2X(Vehicle-to-Everything) 같은 외부 연결이 퍼지는 바탕이 되었다.[@ti-sszt730-2018] 차량용 이더넷 PHY는 ADAS의 레이더, 라이다, 카메라 같은 센서에도 쓰인다.[@nxp-tja1103-2026][@ti-dp83tg720s-q1-2026]
 
 ## 차량 버스와의 차이
 
-TI 기술 기사에 따르면 이더넷은 스위치 네트워크를 이루어, [[can|CAN]], LIN, FlexRay, MOST(Media Oriented Systems Transport) 같은 공유 버스 토폴로지로는 얻을 수 없는 대역과 데이터 속도를 낸다.[@ti-sszt730-2018]
+TI 기술 기사에 따르면 이더넷은 스위치 네트워크를 이루어, [[can|CAN]], LIN, FlexRay, MOST(Media Oriented Systems Transport) 같은 공유 버스 토폴로지로는 얻을 수 없는 대역과 데이터 속도를 낸다.[@ti-sszt730-2018] IEEE 802.1Q는 브리지가 필터링 정보로 프레임을 출발지와 목적지 사이의 경로에 가두어 트래픽을 줄이게 한다.[@ieee-802-1q-2022] IEEE 802.3이 상정하는 전이중 동작의 가장 흔한 구성은 브리지(스위치)의 포트마다 장치 하나를 전용 링크로 잇는 것이고, 이때는 공유 매체를 두고 다투는 일이 없다.[@ieee-802-3-2022]
 
 차량 버스 전반은 [[vehicle-bus|차량 버스]]에서 다룬다.

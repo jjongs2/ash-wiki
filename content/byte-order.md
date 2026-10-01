@@ -23,6 +23,8 @@ POSIX는 호스트 바이트 순서와 네트워크 바이트 순서 사이에�
 
 IEN 137에 따르면 비트 순서와 바이트 순서는 같을 수도 있고 다를 수도 있다. 이 글에서 Danny Cohen은 1980년, 워드의 어느 쪽 끝부터 보낼지로 나뉜 두 진영을 걸리버 여행기의 달걀 논쟁에 빗대어 Little-Endians와 Big-Endians라 불렀다.[@ietf-ien-137-1980]
 
+[[ieee-802-3|IEEE 802.3-2022]]는 Ethernet MAC(Medium Access Control) 프레임의 옥텟을 FCS(Frame Check Sequence)만 빼고 모두 최하위 비트부터 보내도록 정한다. FCS에 담는 32비트 [[cyclic-redundancy-check|CRC]]는 최고차 항의 계수부터 보낸다.[@ieee-802-3-2022]
+
 ## 프로세서
 
 Intel 64와 IA-32(Intel Architecture, 32-bit) 프로세서는 리틀 엔디언이며, 워드의 바이트에 최하위 바이트부터 번호를 매긴다.[@intel-sdm-vol1-2026]
