@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -0.5 491 93.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- AUTOSAR_CP_SWS_PortDriver -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="20" width="90" height="32" rx="4" />
+    <rect x="130" y="20" width="90" height="32" rx="4" />
+    <rect x="240" y="20" width="100" height="32" rx="4" />
+    <rect x="360" y="20" width="110" height="32" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="65" y="41">AUTOSAR</text>
+    <text x="175" y="41">CP</text>
+    <text x="290" y="41">SWS</text>
+    <text x="415" y="41">PortDriver</text>
+  </g>
+
+  <!-- 부분의 이름 -->
+  <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
+    <text x="175" y="72">표준 약어</text>
+    <text x="290" y="72">문서 종류 약어</text>
+    <text x="415" y="72">문서 이름</text>
+  </g>
+  <!-- 부분을 잇는 밑줄: 상자 세로 중심 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="114" y1="36" x2="126" y2="36" />
+    <line x1="224" y1="36" x2="236" y2="36" />
+    <line x1="344" y1="36" x2="356" y2="36" />
+  </g>
+</svg>

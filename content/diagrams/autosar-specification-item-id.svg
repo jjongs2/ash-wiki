@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704 132" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 행 이름 -->
+  <g fill="var(--text, #727981)">
+    <text x="20" y="46.5">형식</text>
+    <text x="20" y="102.5">예</text>
+  </g>
+
+  <!-- 형식: 생략할 수 있는 부분은 점선 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="70" y="20" width="110" height="44" rx="4" stroke-dasharray="5 4" />
+    <rect x="196" y="20" width="110" height="44" rx="4" />
+    <rect x="322" y="20" width="110" height="44" rx="4" />
+    <rect x="448" y="20" width="110" height="44" rx="4" stroke-dasharray="5 4" />
+    <rect x="574" y="20" width="110" height="44" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="125" y="39">표준 약어</text>
+    <text x="125" y="55" font-size="12">생략 가능</text>
+    <text x="251" y="46.5">문서 종류 약어</text>
+    <text x="377" y="46.5">문서 이름 약어</text>
+    <text x="503" y="39">특수화</text>
+    <text x="503" y="55" font-size="12">생략 가능</text>
+    <text x="629" y="39">번호</text>
+    <text x="629" y="55" font-size="12">00000–99999</text>
+  </g>
+
+  <!-- 예: [SWS_Port_00140] -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="211" y="84" width="80" height="28" rx="2" />
+    <rect x="337" y="84" width="80" height="28" rx="2" />
+    <rect x="589" y="84" width="80" height="28" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="251" y="102.5">SWS</text>
+    <text x="377" y="102.5">Port</text>
+    <text x="629" y="102.5">00140</text>
+  </g>
+  <!-- 부분을 잇는 밑줄: 상자 세로 중심 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="184" y1="42" x2="192" y2="42" />
+    <line x1="310" y1="42" x2="318" y2="42" />
+    <line x1="436" y1="42" x2="444" y2="42" />
+    <line x1="562" y1="42" x2="570" y2="42" />
+  </g>
+</svg>
