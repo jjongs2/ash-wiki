@@ -11,13 +11,13 @@ verified: 2026-09-29
 
 ## 기능별 ECU
 
-NXP 백서에 따르면 오늘날 차량 네트워크의 ECU는 대개 엔진 제어, 윈도 리프터, 전동 조향처럼 응용 하나만 맡고, 센서 처리와 알고리즘도 그 ECU 안에서 돈다.[@nxp-fvnecua4wp-2017]
+기능마다 ECU를 따로 두는 E/E 아키텍처를 **분산 아키텍처**(distributed architecture)라 부른다.[@guo-virtualisation-technologies-2025] NXP 백서에 따르면 오늘날 차량 네트워크의 ECU는 대개 엔진 제어, 윈도 리프터, 전동 조향처럼 응용 하나만 맡고, 센서 처리와 알고리즘도 그 ECU 안에서 돈다.[@nxp-fvnecua4wp-2017]
 
 ECU 수가 늘수록 전원 분배, 네트워크, 배선이 복잡해진다.[@ti-spry345-2024][@renesas-ipd-power-distribution-2025]
 
 ## 도메인 아키텍처
 
-ECU는 파워트레인, 섀시, 바디, 인포테인먼트 같은 기능 도메인으로 나뉜다.[@renesas-ipd-power-distribution-2025][@ti-sszt211-2023] **도메인 아키텍처**는 도메인마다 **도메인 제어기**(domain controller)를 두어 그 도메인의 기능을 모으고, 도메인 아래의 ECU는 도메인 제어기에 붙어 계층을 이룬다.[@renesas-ipd-power-distribution-2025][@ti-sszt211-2023]
+ECU는 파워트레인, 섀시, 바디, 인포테인먼트 같은 기능 도메인으로 나뉜다.[@renesas-ipd-power-distribution-2025][@ti-sszt211-2023] **도메인 아키텍처**는 도메인마다 **도메인 제어기**(domain controller)를 두어 그 도메인의 기능을 모으고, 도메인 아래의 ECU는 도메인 제어기에 붙어 계층을 이룬다.[@renesas-ipd-power-distribution-2025][@ti-sszt211-2023] 도메인 제어기는 DCU(Domain Control Unit)라고도 부른다.[@guo-virtualisation-technologies-2025]
 
 도메인마다 네트워크가 다를 수 있어 [[gateway|게이트웨이]]가 도메인 사이를 잇고, 중앙 게이트웨이 모듈이 여러 도메인에 붙는다.[@ti-sszt211-2023][@nxp-autogwdevwpus-2018] NXP 백서에 따르면 도메인 기반 네트워크에서는 이더넷이 도메인 제어기들을 잇는 통신 백본이 된다. 센서 데이터 처리와 알고리즘을 도메인 제어기가 맡을 수 있어, 그 아래 ECU는 덜 강력한 마이크로컨트롤러를 쓸 수 있다.[@nxp-fvnecua4wp-2017]
 
@@ -27,7 +27,7 @@ ECU는 파워트레인, 섀시, 바디, 인포테인먼트 같은 기능 도메�
 
 존 아키텍처는 배선의 길이와 무게를 줄인다.[@bosch-ee-architecture-2026][@nxp-s32g2zoneconfs-2021] Renesas 백서에 따르면 가까이 있는 ECU를 그 구역의 존 제어기가 맡으므로 배선이 오가지 않아도 되어 배선량이 준다.[@renesas-ipd-power-distribution-2025]
 
-존 제어기들은 고속 이더넷 백본으로 중앙 컴퓨터에 이어진다.[@bosch-ee-architecture-2026][@ti-ssztd02-2025] Bosch는 중앙의 차량 컴퓨터(vehicle computer)를 고성능 컴퓨터라고도 부른다.[@bosch-vehicle-computer-2026] 존 아키텍처에서 차량 기능의 처리는 중앙 컴퓨터로 모인다.[@ti-sszt211-2023][@bosch-zone-ecu-2026]
+존 제어기들은 고속 이더넷 백본으로 중앙 컴퓨터에 이어진다.[@bosch-ee-architecture-2026][@ti-ssztd02-2025] 기능을 모으는 소수의 강력한 중앙 컴퓨터를 HPC(High-Performance Computer)라 부르며[@mauser-mixed-criticality-2025], Bosch는 이를 차량 컴퓨터(vehicle computer)라 부른다.[@bosch-vehicle-computer-2026] 존 아키텍처에서 차량 기능의 처리는 중앙 컴퓨터로 모인다.[@ti-sszt211-2023][@bosch-zone-ecu-2026]
 
 ![[diagrams/domain-zonal-architecture.svg]]
 
