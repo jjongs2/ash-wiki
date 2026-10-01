@@ -18,3 +18,12 @@ verified: 2026-09-20
 <!-- 통과: 첫 등장 순으로 쓴 자리와, 글을 사이에 둔 인용 -->
 
 셋째 문장이다.[@example-manual-2023][@example-spec-2024] 넷째 문장이다.[@example-manual-2023]
+
+<!-- 위반(citation): 줄바꿈을 사이에 두어도 한 문단 안이면 한 자리다. -->
+
+다섯째 문장이다.[@example-spec-2024]
+[@example-manual-2023]
+
+<!-- 통과: 인라인 코드를 사이에 둔 인용은 다른 자리다. -->
+
+여섯째 문장이다.[@example-spec-2024] `FOO`[@example-manual-2023]

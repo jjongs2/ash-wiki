@@ -1,5 +1,6 @@
 import { slugifyFilePath } from "@quartz-community/utils"
 import GithubSlugger, { slug as anchorSlug } from "github-slugger"
+import type { Position } from "unist"
 import { visit } from "unist-util-visit"
 import { pretendardStylesheet } from "../../quartz/util/localFonts"
 import type { Conventions } from "./conventions"
@@ -204,9 +205,21 @@ function sectionIds(page: Page): Set<string> {
   return ids
 }
 
-// 표 행. 콜아웃 안의 표는 줄 앞에 >가 붙는다.
-const tableRow = /^\s*(?:>\s*)*\|/
+const quoteMarker = /^\s*(?:>\s*)*/
+const delimiterRow = /^\|?\s*:?-+:?\s*(?:\|\s*:?-+:?\s*)*\|?\s*$/
 const unescapedPipe = /(?<!\\)\|/
+
+// GFM 표의 줄 번호. 머리 행 바로 다음에 구분 행(`--- | ---`)이 오면 표가 시작하고 빈 줄에서 끝난다.
+// 행 앞뒤의 |는 없어도 되고, 콜아웃 안의 표는 줄 앞에 >가 붙는다.
+function tableLines(page: Page): Set<number> {
+  const lines = page.masked.split("\n").map((line) => line.replace(quoteMarker, ""))
+  const rows = new Set<number>()
+  lines.forEach((line, index) => {
+    if (!line.includes("|") || !delimiterRow.test(line) || !lines[index - 1]?.trim()) return
+    for (let i = index - 1; i < lines.length && lines[i].trim() !== ""; i++) rows.add(i + 1)
+  })
+  return rows
+}
 
 export const wikilink: SourceCheck = (tree) => {
   // 대문과 태그 표시 이름 파일도 링크 대상이므로 title을 모은다.
@@ -215,14 +228,14 @@ export const wikilink: SourceCheck = (tree) => {
   const slugs = new Set(tree.pages.filter((p) => p.kind !== "tag").map((p) => p.name))
   const violations: Violation[] = []
   for (const page of tree.pages) {
-    const lines = page.masked.split("\n")
+    const rows = tableLines(page)
     for (const { match, line } of matchLines(page, /(!?)\[\[([^[\]\n]+?)\]\]/g)) {
       const [link, embed, inner] = match
       const [path, display] = inner.split(/\\?\|/)
       const [target, anchor] = path.split("#").map((part) => part.trim())
       const at = (message: string) => violations.push({ file: page.file, line, message })
       // 표 셀 안의 |는 prettier가 셀 경계로 보고 [[a | b]]로 갈라 열을 하나 더 만든다.
-      if (tableRow.test(lines[line - 1]) && unescapedPipe.test(inner)) {
+      if (rows.has(line) && unescapedPipe.test(inner)) {
         at(`표 셀 안의 위키링크는 |를 \\|로 쓴다: ${link} → ${link.replace(unescapedPipe, "\\|")}`)
       }
       // ^로 시작하는 앵커는 절이 아니라 블록을 가리킨다.
@@ -332,8 +345,9 @@ export const citation: SourceCheck = (tree, conventions) => {
   return violations
 }
 
-// 인용 번호는 키가 페이지에서 처음 나온 순서로 매겨진다. 한 자리(공백만 사이에 둔 인용들)의 키가 그
-// 순서를 따라야 [2][1]이 아니라 [1][2]로 렌더된다. 키가 하나가 아닌 대괄호는 앞의 검사가 맡는다.
+// 인용 번호는 키가 페이지에서 처음 나온 순서로 매겨진다. 한 자리(한 문단이나 제목 안에서 공백과 줄바꿈만
+// 사이에 둔 인용들)의 키가 그 순서를 따라야 [2][1]이 아니라 [1][2]로 렌더된다. 키가 하나가 아닌 대괄호는
+// 앞의 검사가 맡는다.
 function citationOrder(page: Page): Violation[] {
   const found = citations(page).filter(
     (citation): citation is Citation & { key: string } => citation.key !== null,
@@ -342,15 +356,31 @@ function citationOrder(page: Page): Violation[] {
   found.forEach(({ key }, index) => {
     if (!first.has(key)) first.set(key, index)
   })
-  const lines = page.masked.split("\n")
+  const blocks: Position[] = []
+  visit(page.mdast, (node) => {
+    if (node.type === "paragraph" || node.type === "heading") blocks.push(node.position!)
+  })
+  const blockOf = ({ line, column }: Citation) =>
+    blocks.findIndex(
+      ({ start, end }) =>
+        (line > start.line || (line === start.line && column >= start.column - 1)) &&
+        (line < end.line || (line === end.line && column < end.column - 1)),
+    )
+  // 사이의 글은 원문에서 읽는다. 코드를 가린 본문에서는 인라인 코드가 공백으로 보인다.
+  const sourceLines = page.source.split("\n")
+  const span = (from: Citation, to: Citation) => {
+    const text = sourceLines.slice(from.line - 1, to.line).join("\n")
+    return text.slice(from.column, text.length - sourceLines[to.line - 1].length + to.column)
+  }
   const runs: (typeof found)[] = []
   found.forEach((citation, index) => {
     const previous = found[index - 1]
+    const gap = previous && span(previous, citation).slice(previous.raw.length)
     const joined =
-      previous?.line === citation.line &&
-      lines[citation.line - 1]
-        .slice(previous.column + previous.raw.length, citation.column)
-        .trim() === ""
+      previous &&
+      blockOf(previous) >= 0 &&
+      blockOf(previous) === blockOf(citation) &&
+      gap.replace(/\n[ \t]*(?:>[ \t]*)*/g, "").trim() === ""
     if (joined) runs.at(-1)!.push(citation)
     else runs.push([citation])
   })
@@ -359,10 +389,10 @@ function citationOrder(page: Page): Violation[] {
     const sorted = [...run].sort((a, b) => first.get(a.key)! - first.get(b.key)!)
     if (sorted.every((citation, index) => citation === run[index])) continue
     const last = run.at(-1)!
-    const written = lines[last.line - 1].slice(run[0].column, last.column + last.raw.length)
+    const written = (span(run[0], last) + last.raw).replace(/\s*\n[\s>]*/g, " ")
     violations.push({
       file: page.file,
-      line: last.line,
+      line: run[0].line,
       message: `여러 인용은 페이지에서 처음 나온 순서로 쓴다: ${written} → ${sorted.map((c) => c.raw).join("")}`,
     })
   }
