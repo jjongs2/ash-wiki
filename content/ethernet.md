@@ -23,7 +23,7 @@ MCU에 내장된 이더넷 MAC은 전용 DMA(Direct Memory Access)를 둔다. ST
 
 ## 반이중과 전이중
 
-IEEE 802.3-1985는 둘 이상의 스테이션이 공통 버스 매체 하나를 나눠 쓰는 CSMA/CD(Carrier Sense Multiple Access with Collision Detection) 접근 방식을 정했다.[@ieee-802-3-1985] 현행판 IEEE 802.3-2022의 CSMA/CD MAC 프로토콜은 공유 매체에서의 반이중 동작과 함께 전이중 동작도 규정한다.[@ieee-802-3-2022] Microchip AN1120에 따르면 초기 이더넷 네트워크는 공유 매체로 구현되어 CSMA/CD가 필요했다.[@microchip-an1120-2008] CSMA/CD는 [[bus-access-method#경쟁 방식|버스 접근 방식]]에서 다룬다.
+IEEE 802.3-1985는 둘 이상의 스테이션이 공통 버스 매체 하나를 나눠 쓰는 CSMA/CD(Carrier Sense Multiple Access with Collision Detection) 접근 방식을 정했다.[@ieee-802-3-1985] IEEE 802.3-2022의 CSMA/CD MAC 프로토콜은 공유 매체에서의 반이중 동작과 함께 전이중 동작도 규정한다.[@ieee-802-3-2022] Microchip AN1120에 따르면 초기 이더넷 네트워크는 공유 매체로 구현되어 CSMA/CD가 필요했다.[@microchip-an1120-2008] CSMA/CD는 [[bus-access-method#경쟁 방식|버스 접근 방식]]에서 다룬다.
 
 전이중 동작에서는 링크에 두 스테이션만 이어져 송신과 수신을 동시에 하고, 충돌이 생기지 않으므로 CSMA/CD를 쓰지 않는다.[@st-rm0008-2021][@microchip-enc28j60-2012] Microchip AN1120에 따르면 오늘날 이더넷 네트워크는 대부분 점대점이나 [[ethernet-switch|이더넷 스위치]]를 가운데 둔 스타 토폴로지로 구성되어, 각 노드가 전이중으로 동작할 수 있다.[@microchip-an1120-2008]
 

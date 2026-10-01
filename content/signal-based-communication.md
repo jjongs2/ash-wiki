@@ -17,7 +17,7 @@ AUTOSAR COM은 시그널마다 I-PDU 안의 시작 비트 위치(`ComBitPosition
 
 ## 통신 매트릭스
 
-AUTOSAR System Template R25-11은 어떤 시그널을 어느 프레임에 싣고 ECU마다 무엇을 보내고 받는지를 System Configuration Description의 통신 매트릭스로 정하고, 이 기술을 입력으로 ECU 설정을 만든다. 통신 매트릭스는 프레임, 시그널, 타이밍을 담고, System Template은 게이트웨이 표도 기술한다.[@autosar-cp-tps-systemtemplate-2025]
+AUTOSAR R25-11 System Template은 어떤 시그널을 어느 프레임에 싣고 ECU마다 무엇을 보내고 받는지를 System Configuration Description의 통신 매트릭스로 정하고, 이 기술을 입력으로 ECU 설정을 만든다. 통신 매트릭스는 프레임, 시그널, 타이밍을 담고, System Template은 게이트웨이 표도 기술한다.[@autosar-cp-tps-systemtemplate-2025]
 
 Vector의 CANdb++ Admin은 통신 매트릭스를 설계하는 도구로, 통신 객체를 정의하고 송수신 관계를 정한다.[@vector-candb-admin-factsheet-2024]
 

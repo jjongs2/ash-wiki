@@ -9,7 +9,7 @@ AUTOSAR Timing Extensions에서 **event chain**(TimingDescriptionEventChain)은 
 
 ## Timing description
 
-AUTOSAR Timing Extensions R25-11은 시스템 안에서 특정 시점에 관측할 수 있는 동작을 **timing event**(TimingDescriptionEvent)로 적는다. 예를 들어 sender-receiver 포트에서 데이터를 받거나 보낸 때, runnable이 시작하거나 끝난 때, 버스에서 프레임 전송이 끝난 때가 timing event다. 시스템이나 SW-C의 timing description은 timing event와 그 인과 관계인 event chain으로 이루어지며, TimingDescriptionEvent와 TimingDescriptionEventChain은 모두 TimingDescription의 하위 클래스다. 타이밍 제약은 이 event와 event chain에 건다.[@autosar-cp-tps-timingextensions-2025]
+AUTOSAR R25-11 Timing Extensions는 시스템 안에서 특정 시점에 관측할 수 있는 동작을 **timing event**(TimingDescriptionEvent)로 적는다. 예를 들어 sender-receiver 포트에서 데이터를 받거나 보낸 때, runnable이 시작하거나 끝난 때, 버스에서 프레임 전송이 끝난 때가 timing event다. 시스템이나 SW-C의 timing description은 timing event와 그 인과 관계인 event chain으로 이루어지며, TimingDescriptionEvent와 TimingDescriptionEventChain은 모두 TimingDescription의 하위 클래스다. 타이밍 제약은 이 event와 event chain에 건다.[@autosar-cp-tps-timingextensions-2025]
 
 timing description과 타이밍 제약은 타이밍 뷰로 나뉜다. 뷰는 VfbTiming, SwcTiming, SystemTiming, BswModuleTiming과 BswCompositionTiming, EcuTiming이며, 뷰마다 timing description이 쓸 수 있는 timing event의 종류가 정해져 있다. 예를 들어 VfbTiming은 TDEventVfb만, EcuTiming은 모든 종류를 쓸 수 있다.[@autosar-cp-tps-timingextensions-2025]
 

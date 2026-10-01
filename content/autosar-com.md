@@ -7,7 +7,7 @@ verified: 2026-09-30
 
 **AUTOSAR COM**은 [[autosar-communication-stack|AUTOSAR 통신 스택]]에서 RTE 같은 사용자와 [[pdu-router|PduR]] 사이에 놓여, 사용자에게 [[signal-based-communication|시그널]] 단위의 데이터 인터페이스를 주는 모듈이다. 송신할 시그널은 I-PDU(Interaction Layer Protocol Data Unit)에 채워 넣고(packing), 받은 I-PDU에서는 시그널을 꺼내 사용자에게 넘긴다(unpacking).[@autosar-cp-sws-com-2025]
 
-AUTOSAR COM R25-11 명세는 [[osek-vdx|OSEK/VDX]] COM인 ISO 17356-4:2005를 기능의 바탕으로 두고, 그 기능 가운데 일부는 빼거나 다르게 정한다.[@autosar-cp-sws-com-2025]
+AUTOSAR R25-11 COM 명세는 [[osek-vdx|OSEK/VDX]] COM인 ISO 17356-4:2005를 기능의 바탕으로 두고, 그 기능 가운데 일부는 빼거나 다르게 정한다.[@autosar-cp-sws-com-2025]
 
 ## 시그널과 I-PDU
 

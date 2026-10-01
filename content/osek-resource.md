@@ -15,7 +15,7 @@ OSEK/VDX OS 2.2.3 명세는 resource마다의 ceiling priority를 실행 중에 
 
 ![[diagrams/osek-ceiling-priority-levels.svg]]
 
-OSEK/VDX OS 2.2.3 명세는 OSEK OS를 단일 프로세서 운영체제로 정한다.[@osek-os-2-2-3-2005] AUTOSAR OS R25-11 명세는 resource를 같은 코어에 묶인 태스크 사이에서만 쓰게 하고, 서로 다른 코어의 태스크 사이 상호 배제에는 [[spinlock|스핀락]]을 둔다.[@autosar-cp-sws-os-2025]
+OSEK/VDX OS 2.2.3 명세는 OSEK OS를 단일 프로세서 운영체제로 정한다.[@osek-os-2-2-3-2005] AUTOSAR R25-11 OS 명세는 resource를 같은 코어에 묶인 태스크 사이에서만 쓰게 하고, 서로 다른 코어의 태스크 사이 상호 배제에는 [[spinlock|스핀락]]을 둔다.[@autosar-cp-sws-os-2025]
 
 ## 사용 규칙
 

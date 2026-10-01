@@ -49,7 +49,7 @@ ISO 14229-1:2026은 서비스를 기능 단위(functional unit)로 묶는다. �
 | ResponseOnEvent              | `0x86`[@iso-14229-4-obp-2012] |
 | LinkControl                  | `0x87`[@iso-14229-4-obp-2012] |
 
-AUTOSAR Dcm R25-11 명세는 이 밖에 아래 서비스의 처리를 정한다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+AUTOSAR R25-11 Dcm 명세는 이 밖에 아래 서비스의 처리를 정한다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 | 서비스                          | SID    |
 | ------------------------------- | ------ |

@@ -21,7 +21,7 @@ $$
 
 5비트 코드 32개 가운데 16개는 데이터에 쓴다. 나머지 가운데 일부는 idle, 패킷 시작(J/K), 패킷 끝(T/R) 같은 제어 코드이고, 나머지는 무효 코드다.[@ti-dp83822-2026][@microchip-lan8720a-2024]
 
-100BASE-TX PHY의 송신 신호는 ANSI TP-PMD(Twisted Pair Physical Medium Dependent) 규격을 따른다.[@microchip-ksz8081mlx-2022][@ti-dp83822-2026] IEEE 802.3u-1995는 100BASE-X(100BASE-TX와 100BASE-FX)를 넣으면서 FDDI(Fiber Distributed Data Interface)용으로 만든 100 Mbit/s 물리 시그널링 규격 일부를 가져다 썼다.[@ieee-802-3u-1995] 현행 IEEE 802.3-2022도 100BASE-TX의 PMD(Physical Medium Dependent) 부계층을 FDDI의 TP-PMD 규격을 참조로 들여와 정하며, TP-PMD가 정한 125 Mbit/s 전이중 신호 방식이 100BASE-TX의 바탕이다.[@ieee-802-3-2022]
+100BASE-TX PHY의 송신 신호는 ANSI TP-PMD(Twisted Pair Physical Medium Dependent) 규격을 따른다.[@microchip-ksz8081mlx-2022][@ti-dp83822-2026] IEEE 802.3u-1995는 100BASE-X(100BASE-TX와 100BASE-FX)를 넣으면서 FDDI(Fiber Distributed Data Interface)용으로 만든 100 Mbit/s 물리 시그널링 규격 일부를 가져다 썼다.[@ieee-802-3u-1995] IEEE 802.3-2022도 100BASE-TX의 PMD(Physical Medium Dependent) 부계층을 FDDI의 TP-PMD 규격을 참조로 들여와 정하며, TP-PMD가 정한 125 Mbit/s 전이중 신호 방식이 100BASE-TX의 바탕이다.[@ieee-802-3-2022]
 
 ## MLT-3
 

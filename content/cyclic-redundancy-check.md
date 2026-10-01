@@ -21,7 +21,7 @@ CRC의 나눗셈은 모듈로 2 산술로 하며, 모듈로 2 덧셈과 뺄셈�
 
 ENC28J60은 `ERXFCON.CRCEN`이 설정되어 있으면 CRC가 틀린 패킷을 버린다.[@microchip-enc28j60-2012] [[automatic-repeat-request|ARQ]]는 오류 검출 부호로 찾은 오류를 되돌림 통로로 알려, 송신 측이 다시 보내게 한다.[@iec-60050-721-08-21-1991]
 
-AUTOSAR CRC 라이브러리 R25-11 규격은 32비트 다항식 `0xF4ACFB13`의 [[hamming-distance|해밍 거리]]를 CRC를 포함해 4096바이트까지 6으로 제시한다.[@autosar-cp-sws-crclibrary-2025]
+AUTOSAR R25-11 CRC 라이브러리 규격은 32비트 다항식 `0xF4ACFB13`의 [[hamming-distance|해밍 거리]]를 CRC를 포함해 4096바이트까지 6으로 제시한다.[@autosar-cp-sws-crclibrary-2025]
 
 AUTOSAR CRC 라이브러리 규격에 따르면 생성 다항식이 추가로 대수적 성질을 가지면 오류 위치를 찾아 부호어를 고칠 수도 있다.[@autosar-cp-sws-crclibrary-2025]
 
