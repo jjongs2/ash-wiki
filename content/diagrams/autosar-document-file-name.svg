@@ -10,11 +10,8 @@
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="65" y="41">AUTOSAR</text>
-    <text x="120" y="41">_</text>
     <text x="175" y="41">CP</text>
-    <text x="230" y="41">_</text>
     <text x="290" y="41">SWS</text>
-    <text x="350" y="41">_</text>
     <text x="415" y="41">PortDriver</text>
   </g>
 
@@ -23,5 +20,11 @@
     <text x="175" y="72">표준 약어</text>
     <text x="290" y="72">문서 종류 약어</text>
     <text x="415" y="72">문서 이름</text>
+  </g>
+  <!-- 부분을 잇는 밑줄: 상자 세로 중심 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="114" y1="36" x2="126" y2="36" />
+    <line x1="224" y1="36" x2="236" y2="36" />
+    <line x1="344" y1="36" x2="356" y2="36" />
   </g>
 </svg>
