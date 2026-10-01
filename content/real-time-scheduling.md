@@ -27,13 +27,13 @@ Liu와 Layland는 태스크에 우선순위를 한 번 정해 두는 알고리�
 
 job 선점을 허용하면, 우선순위를 주는 방식에 따라 스케줄링 알고리즘을 셋으로 나눈다.[@carpenter-categorization-2004]
 
-- **정적 우선순위**: 태스크마다 우선순위 하나를 두고, 그 태스크의 모든 job이 그 우선순위를 쓴다. 예: rate monotonic
-- **job 수준 동적 우선순위**: job마다 우선순위가 다를 수 있지만, 어느 순간 job A가 job B보다 우선순위가 높으면 A는 늘 B보다 높다. 곧 job 하나의 우선순위는 바뀌지 않는다. 예: earliest deadline first
-- **제한 없는 동적 우선순위**: 두 job의 상대 우선순위가 job이 실행되는 동안에도 아무 때나 바뀔 수 있다. 제한 없는 동적 우선순위는 job 수준 동적 우선순위를 일반화한 것이다.[@carpenter-categorization-2004]
-
-이 세 갈래를 차례로 **fixed task priority**, **fixed job priority**, **dynamic priority**라고도 부른다. deadline monotonic은 fixed task priority에, earliest deadline first는 fixed job priority에, LLF(Least Laxity First)는 dynamic priority에 드는 예다. 실행할 준비가 된 태스크가 있는 동안 프로세서가 놀지 않게 하는 스케줄링 알고리즘을 **work-conserving** 알고리즘이라 한다.[@davis-survey-hard-real-time-2011]
+- **정적 우선순위**(fixed task priority): 태스크마다 우선순위 하나를 두고, 그 태스크의 모든 job이 그 우선순위를 쓴다. 예: rate monotonic, deadline monotonic
+- **job 수준 동적 우선순위**(fixed job priority): job마다 우선순위가 다를 수 있지만, 어느 순간 job A가 job B보다 우선순위가 높으면 A는 늘 B보다 높다. 곧 job 하나의 우선순위는 바뀌지 않는다. 예: earliest deadline first
+- **제한 없는 동적 우선순위**(dynamic priority): 두 job의 상대 우선순위가 job이 실행되는 동안에도 아무 때나 바뀔 수 있다. 제한 없는 동적 우선순위는 job 수준 동적 우선순위를 일반화한 것이다.[@carpenter-categorization-2004][@davis-survey-hard-real-time-2011]
 
 job 선점을 허용하면, 마감 시한까지 남은 시간에서 남은 실행 시간을 뺀 slack이 가장 작은 준비된 프로세스를 먼저 실행하는 Mok의 least slack 알고리즘은 제한 없는 동적 우선순위에 든다.[@mok-fundamental-design-1983][@carpenter-categorization-2004]
+
+실행할 준비가 된 태스크가 있는 동안 프로세서가 놀지 않게 하는 스케줄링 알고리즘을 **work-conserving** 알고리즘이라 한다.[@davis-survey-hard-real-time-2011]
 
 ## 최적성
 
