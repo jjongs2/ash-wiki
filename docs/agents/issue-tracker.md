@@ -5,7 +5,7 @@
 ## 기본 사용법
 
 - **이슈 생성**: `gh issue create --title "..." --body "..."`. 본문이 여러 줄이면 heredoc을 사용합니다.
-- **템플릿으로 이슈 생성**: 템플릿 파일에서 프론트매터를 뺀 본문을 `--body-file -`로 넘기고, 제목과 라벨은 프론트매터 값을 직접 적습니다. `--template`은 `--body` 없이 쓰면 대화형으로 넘어가 비대화형에서는 실패합니다. 예: 규약 검토 모음 이슈는 `awk 'n > 1; /^---$/ { n++ }' .github/ISSUE_TEMPLATE/convention-review.md | gh issue create --title "docs: 규약 검토 모음" --label needs-triage --body-file -`
+- **템플릿으로 이슈 생성**: 템플릿 파일에서 프론트매터를 뺀 본문을 `--body-file -`로 넘기고, 제목과 라벨은 프론트매터 값을 직접 적습니다. `--template`은 `--body`와 함께 쓸 수 없고, 없이 쓰면 대화형으로 넘어가 비대화형에서는 실패합니다. 예: 규약 검토 모음 이슈는 `awk 'n > 1; /^---$/ { n++ }' .github/ISSUE_TEMPLATE/convention-review.md | gh issue create --title "docs: 규약 검토 모음" --label needs-triage --body-file -`
 - **이슈 읽기**: `gh issue view <number> --comments`. 필요하면 `jq`로 댓글을 걸러 내고, 라벨도 함께 가져옵니다.
 - **이슈 목록**: `gh issue list --state open --json number,title,body,labels,comments --jq '[.[] | {number, title, body, labels: [.labels[].name], comments: [.comments[].body]}]'`. 상황에 맞게 `--label`, `--state` 필터를 붙입니다.
 - **댓글 달기**: `gh issue comment <number> --body "..."`
