@@ -18,7 +18,7 @@ status: 개정 중
 
 gPTP는 IEEE 1588-2019가 정하는 [[ptp|PTP]]에 바탕을 두며, 특정한 구성에서는 IEEE 1588-2019의 프로파일이다. 전이중 점대점 링크로 시각을 전달하는 규정이 PTP 프로파일 하나를 이룬다.[@ieee-802-1as-2025]
 
-동기화에 참여하는 장치를 **time-aware system**이라 한다. 브리지, 라우터, 종단국 등 어떤 네트워크 장치든 time-aware system이 될 수 있다. **PTP Instance**는 한 gPTP 도메인에서 gPTP를 실행하는 실체이고, time-aware system은 PTP Instance를 하나 이상 담는다. time-aware system은 gPTP 도메인을 여럿 지원할 수 있고, 도메인마다 PTP Instance를 따로 둔다. PTP Instance는 두 가지다.[@ieee-802-1as-2025]
+동기화에 참여하는 장치를 **time-aware system**이라 한다. 브리지, 라우터, 엔드 스테이션 등 어떤 네트워크 장치든 time-aware system이 될 수 있다. **PTP Instance**는 한 gPTP 도메인에서 gPTP를 실행하는 실체이고, time-aware system은 PTP Instance를 하나 이상 담는다. time-aware system은 gPTP 도메인을 여럿 지원할 수 있고, 도메인마다 PTP Instance를 따로 둔다. PTP Instance는 두 가지다.[@ieee-802-1as-2025]
 
 - **PTP End Instance**: PTP 포트가 하나인 PTP Instance. Grandmaster PTP Instance가 아니면 시각 정보를 받는 쪽이다.
 - **PTP Relay Instance**: Grandmaster PTP Instance가 아니면 Grandmaster PTP Instance에서 온 시각 정보를 받아, LAN과 자기 안에서 걸린 지연을 보정한 뒤 다시 내보낸다.[@ieee-802-1as-2025]
