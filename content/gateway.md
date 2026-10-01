@@ -23,11 +23,11 @@ PDU 게이트웨이는 I-PDU를 고치지 않고 넘기므로 받은 PDU의 배�
 
 ## 시그널 게이트웨이
 
-AUTOSAR COM은 받은 I-PDU의 [[signal-based-communication|시그널]]을 송신할 I-PDU로 옮기는 시그널 게이트웨이를 둔다. 라우팅하는 시그널의 값은 설정에 따라 송신할 시그널로 복사한다.[@autosar-cp-sws-com-2025] AUTOSAR 게이트웨이 요구사항은 시그널 게이트웨이가 COM의 packing·unpacking과 타임아웃 처리 메커니즘을 쓰고, 개별 시그널을 I-PDU 사이에서 1:n으로 라우팅하도록 요구한다. 받은 시그널은 여러 버스로 보낼 수 있다.[@autosar-cp-rs-gateway-2025]
+AUTOSAR COM은 받은 I-PDU의 [[signal-based-communication|시그널]]을 송신할 I-PDU로 옮기는 시그널 게이트웨이를 둔다. 라우팅하는 시그널의 값은 설정에 따라 송신할 시그널로 복사한다.[@autosar-cp-sws-com-2025] AUTOSAR R25-11 게이트웨이 요구사항은 시그널 게이트웨이가 COM의 packing·unpacking과 타임아웃 처리 메커니즘을 쓰고, 개별 시그널을 I-PDU 사이에서 1:n으로 라우팅하도록 요구한다. 받은 시그널은 여러 버스로 보낼 수 있다.[@autosar-cp-rs-gateway-2025]
 
 ![[diagrams/pdu-signal-gateway.svg]]
 
-AUTOSAR 게이트웨이 요구사항은 시그널 라우팅의 쓰임새로 세 가지를 든다. 여러 ECU의 시그널을 모아 한 ECU가 받는 I-PDU 수를 줄이는 일, 게이트웨이가 보내는 I-PDU 수를 줄이는 일, 이어진 버스들의 페이로드 길이 차이에 맞추는 일이다.[@autosar-cp-rs-gateway-2025]
+AUTOSAR R25-11 게이트웨이 요구사항은 시그널 라우팅의 쓰임새로 세 가지를 든다. 여러 ECU의 시그널을 모아 한 ECU가 받는 I-PDU 수를 줄이는 일, 게이트웨이가 보내는 I-PDU 수를 줄이는 일, 이어진 버스들의 페이로드 길이 차이에 맞추는 일이다.[@autosar-cp-rs-gateway-2025]
 
 ## 진단 게이트웨이
 

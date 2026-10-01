@@ -48,7 +48,7 @@ POSIX.1-2024는 뮤텍스 타입으로 `PTHREAD_MUTEX_NORMAL`, `PTHREAD_MUTEX_ER
 
 뮤텍스를 쥔 낮은 우선순위 스레드는 높은 우선순위 스레드를 블록해 [[priority-inversion|우선순위 역전]]을 일으킬 수 있다.[@freertos-mutexes-2026][@ieee-1003-1-rationale-threads-2024]
 
-POSIX.1-2024는 뮤텍스 속성 protocol의 값으로 `PTHREAD_PRIO_NONE`, `PTHREAD_PRIO_INHERIT`, `PTHREAD_PRIO_PROTECT`를 두고, 기본값은 `PTHREAD_PRIO_NONE`이다. `PTHREAD_PRIO_NONE`이면 뮤텍스를 소유해도 우선순위가 바뀌지 않는다. `PTHREAD_PRIO_INHERIT`이면 높은 우선순위 스레드를 블록하는 소유자가, 기다리는 스레드 가운데 가장 높은 우선순위와 자기 우선순위 가운데 높은 쪽으로 실행된다. `PTHREAD_PRIO_PROTECT`이면 소유자가, 기다리는 스레드가 있든 없든, 소유한 뮤텍스들의 우선순위 상한 가운데 가장 높은 값과 자기 우선순위 가운데 높은 쪽으로 실행된다.[@ieee-1003-1-pthread-mutexattr-getprotocol-2024] POSIX 근거 설명은 앞의 방식을 기본 [[priority-inheritance-protocol|우선순위 상속 프로토콜]], 뒤의 방식을 [[priority-ceiling-protocol|우선순위 상한 프로토콜]] 에뮬레이션이라 부른다.[@ieee-1003-1-rationale-threads-2024]
+POSIX.1-2024는 뮤텍스 속성 protocol의 값으로 `PTHREAD_PRIO_NONE`, `PTHREAD_PRIO_INHERIT`, `PTHREAD_PRIO_PROTECT`를 두고, 기본값은 `PTHREAD_PRIO_NONE`이다. `PTHREAD_PRIO_NONE`이면 뮤텍스를 소유해도 우선순위가 바뀌지 않는다. `PTHREAD_PRIO_INHERIT`이면 높은 우선순위 스레드를 블록하는 소유자가, 기다리는 스레드 가운데 가장 높은 우선순위와 자기 우선순위 가운데 높은 쪽으로 실행된다. `PTHREAD_PRIO_PROTECT`이면 소유자가, 기다리는 스레드가 있든 없든, 소유한 뮤텍스들의 우선순위 상한 가운데 가장 높은 값과 자기 우선순위 가운데 높은 쪽으로 실행된다.[@ieee-1003-1-pthread-mutexattr-getprotocol-2024] POSIX.1-2024 근거 설명은 앞의 방식을 기본 [[priority-inheritance-protocol|우선순위 상속 프로토콜]], 뒤의 방식을 [[priority-ceiling-protocol|우선순위 상한 프로토콜]] 에뮬레이션이라 부른다.[@ieee-1003-1-rationale-threads-2024]
 
 FreeRTOS의 뮤텍스는 우선순위 상속을 하고, 이진 세마포어는 하지 않는다.[@freertos-mutexes-2026][@freertos-binary-semaphores-2026]
 
