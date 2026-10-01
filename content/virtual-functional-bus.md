@@ -19,7 +19,7 @@ VFB에서 애플리케이션은 서로 연결된 컴포넌트의 composition으�
 
 VFB로 시스템의 통신 전체를 모든 송신원과 수신처까지 지정할 수 있어서, SW-C 사이 통신이 타당한지 검사하는 데 VFB를 쓸 수 있다. 통신 연결과 연결된 SW-C는 기술(description) 하나에 저장되어, 매핑과 소프트웨어 구성 같은 다음 단계에 쓰인다.[@autosar-cp-exp-vfb-2024]
 
-AUTOSAR 방법론에서는 시스템의 모든 SW-C를 ECU와 네트워크에 상관없이 VFB로 먼저 정의할 수 있다. 그 뒤 ECU와 네트워크의 토폴로지를 정하고 SW-C를 ECU에 배치해 VFB를 시스템으로 구체화한다.[@autosar-cp-tr-methodology-2025] SW-C를 ECU에 통합하기 전에 VFB 수준에서 가상으로 통합하는 단계가 있고, 이 단계에서도 타이밍 제약을 정하고 분석한다.[@autosar-cp-exp-functionalsafetymeasures-2025] 가상 통합은 실제 하드웨어 없이 모의, 모델, 계산으로 소프트웨어를 묶어 시스템을 이루는 것으로, 필요한 연산 부하와 메모리, 인터페이스가 빠짐없는지, 타이밍 요구를 채우는지 같은 제약을 확인한다.[@autosar-fo-tr-glossary-2025]
+AUTOSAR 방법론에서는 시스템의 모든 SW-C를 ECU와 네트워크에 상관없이 VFB로 먼저 정의할 수 있다. 그 뒤 ECU와 네트워크의 토폴로지를 정하고 SW-C를 ECU에 배치해 VFB를 시스템으로 구체화한다.[@autosar-cp-tr-methodology-2025] 응용의 타이밍을 결정적으로 구현하려면, 마지막에 SW-C를 ECU에 통합할 때만이 아니라 그보다 앞선 VFB 수준의 가상 통합에서도 타이밍 제약을 정하고 분석할 수 있어야 한다.[@autosar-cp-exp-functionalsafetymeasures-2025] 가상 통합은 소프트웨어를 실제로 묶지 않고 모의나 계산으로 묶어 보는 것이어서, 실제 하드웨어가 없어도 타이밍, 메모리, 인터페이스에 걸린 요구를 확인할 수 있다.[@autosar-fo-tr-glossary-2025]
 
 AUTOSAR 서비스는 ECU 인프라인 BSW(Basic Software)의 표준화된 기능을 애플리케이션 SW-C에 제공한다. AUTOSAR 서비스는 대개 Standardized AUTOSAR Interface로 통신하며, VFB에서는 그 서비스를 요청하는 SW-C의 포트로만 보이고 BSW 쪽 상대는 보이지 않는다.[@autosar-cp-exp-vfb-2024]
 

@@ -20,7 +20,7 @@ Classic Platform의 운영체제인 AUTOSAR OS는 핵심 기능을 [[osek-os|OSE
 
 RTE 생성기가 만든 RTE 코드는 다른 BSW 모듈, 소프트웨어 컴포넌트의 코드와 함께 컴파일되고 링크된다. 멀티코어 ECU에서는 RTE를 한 이미지로 링크할 수도 있고, 코어마다 이미지를 나눌 수도 있다.[@autosar-cp-sws-rte-2025]
 
-AUTOSAR 소개 자료에 따르면 Classic Platform의 AUTOSAR 스택은 여러 벤더가 내놓는다.[@autosar-exp-introduction-part1-2026] BSW 모듈은 자기 구현의 벤더 ID를 AUTOSAR 벤더 목록에 따라 `<MIP>_VENDOR_ID`로 공개한다. 한 ECU에 여러 벤더의 CAN 드라이버가 함께 있으면, 모듈들이 함께 쓰는 타입 헤더를 맞추는 일은 프로젝트 통합자가 맡는다.[@autosar-cp-sws-bswgeneral-2025]
+AUTOSAR 소개 자료에 따르면 Classic Platform의 AUTOSAR 스택은 여러 벤더가 내놓는다.[@autosar-exp-introduction-part1-2026] BSW 모듈은 자기 구현의 벤더 ID를 AUTOSAR 벤더 목록에 따라 `<MIP>_VENDOR_ID`로 공개한다.[@autosar-cp-sws-bswgeneral-2025]
 
 BSW 설정을 어느 단계에서 하는지는 [[autosar-methodology#설정 클래스|AUTOSAR 방법론]]에서 다룬다.
 

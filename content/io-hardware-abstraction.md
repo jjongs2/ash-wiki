@@ -13,7 +13,7 @@ verified: 2026-09-30
 
 IoHwAb가 다루는 입출력은 마이크로컨트롤러 포트에 바로 물리거나 보드 위의 주변장치를 거친다. IoHwAb는 자기 전체를 초기화하는 서비스를 둔다.[@autosar-cp-sws-iohardwareabstraction-2025]
 
-센서 신호는 ECU 입력 단자에서 마이크로컨트롤러 핀까지 오는 동안 보드 회로의 증폭, 분압, 반전을 거쳐 ADC 같은 주변장치에 닿는다. 출력 신호도 마이크로컨트롤러 핀과 ECU 출력 단자 사이의 경로를 지난다. IoHwAb는 이 경로가 값에 남기는 정적인 영향(분압기, 하드웨어 반전 등)을 보상해, 값을 ECU 입출력 단자에서의 물리적 표현으로 정적으로 추상화하고 필요하면 반전한다.[@autosar-cp-rs-iohwabstraction-2025]
+센서 신호는 ECU 입력 단자에서 마이크로컨트롤러 핀까지 오는 동안 보드 회로의 증폭, 분압, 반전을 거쳐 마이크로컨트롤러 주변장치에 닿는다. 출력 신호도 마이크로컨트롤러 핀과 ECU 출력 단자 사이의 경로를 지난다. IoHwAb는 이 경로가 값에 남기는 정적인 영향(분압기, 하드웨어 반전 등)을 보상해, 값을 ECU 입출력 단자에서의 물리적 표현으로 정적으로 추상화하고 필요하면 반전한다.[@autosar-cp-rs-iohwabstraction-2025]
 
 IoHwAb는 I/O 신호를 전류, 전압, 주파수처럼 ECU 하드웨어에 물린 상태의 양으로 표현하고, ECU 하드웨어와 배치의 속성을 위 계층에서 감춘다. 그래서 IoHwAb의 구현은 마이크로컨트롤러에는 독립적이고 ECU 하드웨어에는 의존한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
@@ -29,7 +29,7 @@ IoHwAb가 SW-C에 주는 것은 AUTOSAR Interface다. 위쪽 인터페이스가 
 
 AUTOSAR는 IoHwAb 모듈을 표준화하지 않고, 기능 인터페이스를 구현하는 지침만 둔다. IoHwAb는 SW-C의 요구를 특정 MCAL 구현이 가진 기능에 맞춰야 하므로 언제나 ECU마다 따로 구현한다. ECU 신호라는 개념은 하드웨어 플랫폼을 서로 바꿔 쓸 수 있게 하려고 둔 것이다.[@autosar-cp-sws-iohardwareabstraction-2025]
 
-IoHwAb에서는 신호마다 고유한 기호 이름을 정적으로 설정할 수 있어야 한다. 하드웨어 할당이 바뀌어도 위 계층은 바뀌지 않게 하려는 것이다.[@autosar-cp-rs-iohwabstraction-2025] 예를 들어 ECU의 출력을 SPI 핸들러, DIO 드라이버, PWM 드라이버가 나눠 다루어도, IoHwAb의 신호 추상화는 이 출력들을 모두 포트에 매핑된 신호로 SW-C에 보인다.[@autosar-cp-sws-iohardwareabstraction-2025]
+IoHwAb에서는 신호마다 고유한 기호 이름을 정적으로 설정할 수 있어야 한다. 하드웨어 할당이 바뀌어도 위 계층은 바뀌지 않게 하려는 것이다.[@autosar-cp-rs-iohwabstraction-2025] 예를 들어 출력 전력단 드라이버가 여러 MCAL 드라이버와 통신 핸들러를 불러 출력을 다루어도, IoHwAb의 신호 추상화는 이 출력들을 모두 포트에 매핑된 신호로 SW-C에 보인다.[@autosar-cp-sws-iohardwareabstraction-2025]
 
 ## 드라이버와 notification
 

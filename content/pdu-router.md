@@ -20,7 +20,7 @@ PduR는 I-PDU를 주고받는 모듈을 쓰는 API(Application Programming Inter
 
 이 목록은 예일 뿐이고, 다른 모듈과 복합 드라이버도 설정으로 PduR에 붙일 수 있다.[@autosar-cp-sws-pdurouter-2025] 이더넷에서는 SoAd(Socket Adaptor)가 PduR 아래에서 I-PDU를 주고받는다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-LIN에서는 LinIf(LIN Interface)가 프레임을 주고받을 때 PduR가 아니라 L-SDU Router(LSduR)나 복합 드라이버 같은 위 모듈에 이어진다. LinIf 안의 LinTp 부분만은 PduR가 유일한 위 모듈이다.[@autosar-cp-sws-lininterface-2025]
+LIN에서는 LinIf(LIN Interface)가 프레임을 L-SDU Router(LSduR)나 복합 드라이버 같은 위 모듈과 주고받는다. LinIf 안의 LinTp 부분만 PduR를 위 모듈로 둔다.[@autosar-cp-sws-lininterface-2025]
 
 ## 라우팅 테이블
 
