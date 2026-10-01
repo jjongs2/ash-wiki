@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-30
 ---
 
-**우선순위 상속 프로토콜**(priority inheritance protocol)은 더 높은 우선순위 태스크를 블록시킨 태스크가, 자기가 블록시킨 태스크들 가운데 가장 높은 우선순위로 실행되게 하는 자원 공유 프로토콜이다.[@sha-real-time-scheduling-ada-1989][@borger-implementing-priority-inheritance-1989] 락을 쥔 태스크가 중간 우선순위 태스크에 선점되지 않게 해, 제한 없는 [[priority-inversion|우선순위 역전]]을 막는다.[@borger-implementing-priority-inheritance-1989] Sha, Rajkumar, Lehoczky의 1990년 논문은 priority inheritance protocols라는 부류에 드는 두 프로토콜로 기본 우선순위 상속 프로토콜(basic priority inheritance protocol)과 [[priority-ceiling-protocol|우선순위 상한 프로토콜]]을 다루며, 두 프로토콜은 모두 제어되지 않는 우선순위 역전 문제를 푼다.[@sha-priority-inheritance-1990]
+**우선순위 상속 프로토콜**(priority inheritance protocol)은 더 높은 우선순위 태스크를 블록시킨 태스크가, 자기가 블록시킨 태스크들 가운데 가장 높은 우선순위로 실행되게 하는 자원 공유 프로토콜이다.[@sha-real-time-scheduling-ada-1989][@borger-implementing-priority-inheritance-1989] 락을 쥔 태스크가 중간 우선순위 태스크에 선점되지 않게 해, 제한 없는 [[priority-inversion|우선순위 역전]]을 막는다. Sha, Rajkumar, Lehoczky는 1987년 Carnegie Mellon University 기술 보고서(CMU-CS-87-181)에서 기본 우선순위 상속 프로토콜과 우선순위 상한 프로토콜을 정의했고, 처음 정의할 때는 공유 자원 접근을 이진 세마포어로 동기화한다고 가정했다.[@borger-implementing-priority-inheritance-1989] Sha, Rajkumar, Lehoczky의 1990년 논문은 priority inheritance protocols라는 부류에 드는 두 프로토콜로 기본 우선순위 상속 프로토콜(basic priority inheritance protocol)과 [[priority-ceiling-protocol|우선순위 상한 프로토콜]]을 다루며, 두 프로토콜은 모두 제어되지 않는 우선순위 역전 문제를 푼다.[@sha-priority-inheritance-1990]
 
 ## 상속 규칙
 
@@ -18,6 +18,8 @@ verified: 2026-09-30
 우선순위 상속은 전이적이다. T2가 다시 태스크 T3가 쥔 자원에서 블록되면, T2가 물려받은 우선순위가 T3에게도 전해진다. 기본 우선순위 상속 프로토콜은 블로킹 시간에 상한을 두지만, 그 시간을 최소로 만들지는 않는다.[@borger-implementing-priority-inheritance-1989]
 
 ![[diagrams/priority-inheritance-transitive.svg]]
+
+기본 우선순위 상속 프로토콜에서는 높은 우선순위 태스크가 여러 세마포어를 잡아야 할 때, 세마포어마다 그것을 쥔 더 낮은 우선순위 태스크를 기다려야 할 수 있다. 이를 **chained blocking**이라 하며, 그래서 태스크의 최악 블로킹 시간은 공유 자원마다의 최악 블로킹 시간을 더한 값이다.[@davari-unbounded-priority-inversions-1992]
 
 기본 우선순위 상속 프로토콜은 [[deadlock|교착 상태]]를 막지 않는다. Ada 랑데부에 적용하면 서버 태스크들이 서로를 순환 순서로 엔트리 호출할 때 교착 상태가 생길 수 있어, 호출 순서를 부분 순서로 두는 것 같은 교착 방지책을 따로 써야 한다.[@borger-implementing-priority-inheritance-1989]
 

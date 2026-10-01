@@ -28,7 +28,7 @@ AUTOSAR의 Timing Analysis and Design 보고서에 따르면 주기적으로 활
 
 ![[diagrams/cause-effect-chain-data-age-reaction.svg]]
 
-AUTOSAR Timing Extensions는 자극(stimulus)에서 응답(response)까지 인과 관계에 있는 이벤트들을 event chain(TimingDescriptionEventChain)으로 기술하고, event chain에 거는 LatencyTimingConstraint의 종류로 age와 reaction을 둔다. age 제약은 주어진 응답과 그에 앞선 가장 최근 자극 사이의 간격을, reaction 제약은 주어진 자극과 그에 대응하는 첫 응답 사이의 간격을 제한한다.[@autosar-cp-tps-timingextensions-2025]
+AUTOSAR Timing Extensions는 자극(stimulus)에서 응답(response)까지 인과 관계에 있는 이벤트들을 event chain(TimingDescriptionEventChain)으로 기술하고, 그 예로 센서 샘플링에서 액추에이터 접근까지의 종단 간 event chain을 든다. 이 명세는 event chain에 거는 LatencyTimingConstraint의 종류로 age와 reaction을 둔다. age 제약은 주어진 응답과 그에 앞선 가장 최근 자극 사이의 간격을, reaction 제약은 주어진 자극과 그에 대응하는 첫 응답 사이의 간격을 제한한다.[@autosar-cp-tps-timingextensions-2025]
 
 data age 제약은 액추에이터를 계속 구동하는 값이 너무 오래된 입력에 기대지 않게 할 때 쓰고, 주로 제어 공학에서 중요하다. reaction 제약은 자극에 대한 첫 반응이 중요할 때 쓰고, 바디 전장이 그런 예다.[@feiertag-end-to-end-path-delay-2008][@autosar-cp-tps-timingextensions-2025]
 

@@ -9,11 +9,15 @@ verified: 2026-09-29
 
 ## 파라미터
 
+태스크가 한 번 요청될 때마다 실행되는 단위를 **job**이라 부른다.[@davis-survey-hard-real-time-2011]
+
 Liu와 Layland의 모델에서 태스크 $\tau_i$의 **요청 주기** $T_i$는 이웃한 두 요청 사이의 일정한 간격이고, **실행 시간** $C_i$는 프로세서가 태스크를 중단 없이 실행하는 데 드는 시간이다. 실행 시간은 태스크의 최대 처리 시간으로 해석할 수 있고, 그러면 다음 요청을 준비하는 비용과 선점 비용도 넣을 수 있다.[@liu-hard-real-time-1973] Tindell의 1992년 응답 시간 분석은 $C_i$를 [[worst-case-execution-time|WCET]]로 두고, [[context-switch|context switch]] 비용을 여기에 넣는다.[@tindell-extendible-approach-1992]
 
 **상대 마감 시한** $D_i$는 태스크가 요청된 시각부터, 그 요청이 끝나야 하는 시각까지의 길이다.[@mok-fundamental-design-1983][@tindell-extendible-approach-1992] 마감 시한은 [[deadline|마감 시한]]에서 다룬다.
 
 ![[diagrams/task-timing-parameters.svg]]
+
+Audsley의 1993년 분석에서는 태스크가 처음 시작하는 시각을 시스템 실행이 시작된 시각에서 떨어뜨릴 수 있고, 이 시작 시각을 **offset**이라 한다. 태스크 $\tau_i$의 offset이 $O_i$면 태스크는 $O_i$, $O_i + T_i$, $O_i + 2T_i$, …에 요청된다.[@audsley-flexible-scheduling-1993]
 
 ## Liu와 Layland의 가정
 
@@ -27,10 +31,15 @@ Liu와 Layland는 1973년 논문에서 아래 다섯 가지를 가정했고, 이
 
 Liu와 Layland는 다섯 가정 가운데 요청이 주기적이라는 가정과 실행 시간이 일정하다는 가정이 가장 중요하면서도 가장 방어하기 어렵다고 보았다. 또 이용률로 스케줄 가능성을 따질 때도, 태스크 사이를 전환하는 실제 비용은 따로 따져야 한다고 했다.[@liu-hard-real-time-1973]
 
+실제 태스크는 다른 태스크와 자원을 함께 쓰기도 한다.[@osek-os-2-2-3-2005][@freertos-resource-management-2026] [[osek-os|OSEK OS]]에서는 extended 태스크가 다른 태스크가 설정하는 이벤트를 기다릴 수 있다.[@osek-os-2-2-3-2005] 실행 시간은 입력 매개변수와 소프트웨어 상태 같은 논리적 맥락에 따라 달라진다.[@autosar-cp-tps-bswmoduledescriptiontemplate-2025]
+
+[[priority-ceiling-protocol|우선순위 상한 프로토콜]] 같은 우선순위 상속 계열 프로토콜로 공유 자원을 다루면 태스크 $\tau_i$가 블록되는 최악 시간 $B_i$가 묶이고, 스케줄 가능성 판정 조건에 $B_i$를 항으로 더해 자원 공유에서 오는 지연을 넣는다.[@audsley-flexible-scheduling-1993][@sha-real-time-scheduling-ada-1989]
+
 ## 주기 태스크와 sporadic 태스크
 
 - **주기 태스크**(periodic task): 일정한 주기마다 요청된다.[@liu-hard-real-time-1973]
 - **sporadic 태스크**: 아무 때나 요청될 수 있지만, 이웃한 두 요청은 정해진 최소 간격 이상 떨어져 있다.[@mok-fundamental-design-1983]
+- **aperiodic** job: 아무 때나 도착할 수 있다.[@davis-review-priority-assignment-2016]
 
 ![[diagrams/periodic-sporadic-arrivals.svg]]
 

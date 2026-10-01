@@ -19,6 +19,10 @@ FreeRTOS 문서에 따르면 협력형 스케줄러는 요청이 있을 때만 c
 
 스케줄링 알고리즘을 구현하면 오버헤드와 블로킹이 더해지고, 이는 시간 정확성을 검증할 때 반영해야 한다. Katcher, Arakawa, Strosnider는 1993년 이벤트 구동과 타이머 구동 구현을 분석해, 고정 우선순위 스케줄링에서 구현 비용을 넣으면 이상적인 breakdown 이용률이 90%를 넘는 태스크 집합도 스케줄할 수 없게 될 수 있음을 보였다.[@katcher-fixed-priority-schedulers-1993] 스케줄링 방식은 [[real-time-scheduling|실시간 스케줄링]]에서 다룬다.
 
+FAA의 실시간 스케줄링 분석 보고서(DOT/FAA/AR-05/27)에 따르면 선점형 스케줄링은 선점 때문에 생기는 context switch 시간 같은 시스템 오버헤드가 비선점형 스케줄링보다 크다.[@faa-ar-05-27-2005] AUTOSAR의 Timing Analysis and Design 보고서는 ECU 타이밍 최적화의 지표로, 선점 횟수를 줄여 운영체제 오버헤드를 줄이는 것을 든다.[@autosar-fo-tr-timinganalysis-2025]
+
+Tindell의 고정 우선순위 응답 시간 분석은 태스크의 최악 실행 시간에 context switch 오버헤드가 들어 있다고 보고, 선점 비용을 0으로 둔다.[@tindell-extendible-approach-1992] FAA의 실시간 스케줄링 분석 보고서도 context switch 시간을 무시할 만하다고 가정하고, 그렇지 않으면 태스크의 실행 시간을 늘려 context switch로 잃는 시간을 반영하게 한다.[@faa-ar-05-27-2005]
+
 ## x86
 
 IA-32 아키텍처는 보호 모드에서 하드웨어 태스크 전환 기구를 제공한다. 전환 때 프로세서가 현재 태스크의 상태를 그 태스크의 TSS(Task-State Segment)에 저장하고, 새 태스크의 TSS에서 상태를 읽어 온다. 64비트 모드는 이 기구를 지원하지 않아, 태스크 관리와 전환을 소프트웨어가 맡는다.[@intel-sdm-vol3a-2026]

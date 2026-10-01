@@ -17,6 +17,8 @@ verified: 2026-09-30
 - `TICKSPERBASE`: 카운터별 단위 하나에 이르는 데 드는 틱 수. 해석은 구현이 정한다.
 - `MINCYCLE`: 그 카운터에 딸린 주기 알람의 주기로 허용되는 가장 작은 틱 수[@osek-os-2-2-3-2005][@osek-oil-2-5-2004]
 
+OSEKturbo OS/ARM7에서는 카운터 값이 `MAXALLOWEDVALUE`에 이르면 0부터 다시 센다.[@freescale-osekturbo-arm7-tr-2002]
+
 ## 만료 동작
 
 알람이 만료되면 아래 가운데 정해 둔 동작 하나를 한다. 알람 하나에는 동작을 하나만 정할 수 있다.[@osek-oil-2-5-2004]

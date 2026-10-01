@@ -13,6 +13,7 @@
 - CCSDS: 표준화 기구
 - CiA: 표준화 기구
 - CISPR: 표준화 기구
+- CMSIS-RTOS2: 표준·규격 이름
 - CPU: 널리 쓰이는 약어
 - CRS_DV: 핀과 신호
 - ECU: 널리 쓰이는 약어
