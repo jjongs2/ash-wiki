@@ -7,13 +7,13 @@ aliases:
 verified: 2026-09-28
 ---
 
-**DoIP**(Diagnostic communication over Internet Protocol)는 진단 장비와 차량 안의 서버가 IP, TCP, UDP로 주고받는 진단 통신이며, ISO 13400 시리즈가 정한다. ISO 13400-2:2025는 [[iso-14229-1|ISO 14229-1]]([[uds|UDS]]), ISO 14229-2, ISO 14229-5와 함께 차량 진단 통신의 틀을 이룬다.[@iso-13400-2-obp-2025]
+**DoIP**(Diagnostic communication over Internet Protocol)는 진단 장비와 차량 안의 서버가 IP, [[tcp|TCP]], [[udp|UDP]]로 주고받는 진단 통신이며, ISO 13400 시리즈가 정한다. ISO 13400-2:2025는 [[iso-14229-1|ISO 14229-1]]([[uds|UDS]]), ISO 14229-2, ISO 14229-5와 함께 차량 진단 통신의 틀을 이룬다.[@iso-13400-2-obp-2025]
 
 ## 계층
 
 ISO 13400-2에 따르면 ECU의 메모리가 커져 갱신할 소프트웨어가 늘면서, 차량의 네트워크와 버스는 컴퓨터 네트워크에 가까운 복잡도와 속도를 요구받게 되었다.[@iso-13400-2-obp-2025]
 
-[[iso-13400-2|ISO 13400-2:2025]]는 IP, TCP, UDP를 쓰는 전송 프로토콜과 네트워크 계층 서비스를 정한다.[@iso-13400-2-obp-2025][@iso-13400-3-obp-2016] [[iso-13400-3|ISO 13400-3:2016]]은 IEEE 802.3의 100BASE-TX를 바탕으로 한 유선 차량 인터페이스로서 물리 계층과 데이터 링크 계층을 정하고, 차량 진단 이더넷 인터페이스의 활성화와 비활성화, 이더넷 활성화 선의 요구사항을 둔다.[@iso-13400-3-obp-2016] AUTOSAR의 DoIP 모듈은 활성화 선으로 제어하도록 설정한 인터페이스를 활성화 선이 감지될 때 시작하고, 활성화 선이 비활성이 되면 그 인터페이스의 연결을 모두 닫는다.[@autosar-cp-sws-diagnosticoverip-2025]
+[[iso-13400-2|ISO 13400-2:2025]]는 IP, TCP, UDP를 쓰는 전송 프로토콜과 네트워크 계층 서비스를 정한다.[@iso-13400-2-obp-2025][@iso-13400-3-obp-2016] [[iso-13400-3|ISO 13400-3:2016]]은 [[ieee-802-3|IEEE 802.3]]의 [[100base-tx|100BASE-TX]]를 바탕으로 한 유선 차량 인터페이스로서 물리 계층과 데이터 링크 계층을 정하고, 차량 진단 [[ethernet|이더넷]] 인터페이스의 활성화와 비활성화, 이더넷 활성화 선의 요구사항을 둔다.[@iso-13400-3-obp-2016] [[autosar|AUTOSAR]]의 DoIP 모듈은 활성화 선으로 제어하도록 설정한 인터페이스를 활성화 선이 감지될 때 시작하고, 활성화 선이 비활성이 되면 그 인터페이스의 연결을 모두 닫는다.[@autosar-cp-sws-diagnosticoverip-2025]
 
 ![[diagrams/uds-can-ip-layers.svg]]
 
@@ -33,7 +33,7 @@ AUTOSAR의 DoIP 모듈은 프로토콜 정보가 틀린 헤더를 받으면 NACK
 
 ## 포트
 
-IANA(Internet Assigned Numbers Authority)는 13400/udp를 doip-disc(DoIP Discovery)로, 13400/tcp를 doip-data(DoIP Data)로 등록해 두었다.[@iana-service-names-port-numbers-2026] AUTOSAR의 DoIP 모듈은 차량 식별 요청을 UDP로, 진단 메시지를 TCP로 받는다.[@autosar-cp-sws-diagnosticoverip-2025]
+IANA는 13400/udp를 doip-disc(DoIP Discovery)로, 13400/tcp를 doip-data(DoIP Data)로 등록해 두었다.[@iana-service-names-port-numbers-2026] AUTOSAR의 DoIP 모듈은 차량 식별 요청을 UDP로, 진단 메시지를 TCP로 받는다.[@autosar-cp-sws-diagnosticoverip-2025]
 
 ## 메시지와 절차
 

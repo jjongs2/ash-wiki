@@ -8,9 +8,9 @@ aliases:
 verified: 2026-09-29
 ---
 
-**Time-aware shaper**(TAS)는 브리지나 종단국의 포트에서 큐마다 전송 게이트를 두고, 게이트 제어 목록에 따라 게이트를 여닫아 큐가 전송할 수 있는 시각을 정하는 기능이다.[@ti-processor-sdk-linux-am62x-est-2026][@intel-eci-gptp-2024] IEEE 802.1Qbv-2015가 IEEE 802.1Q-2014의 개정(Amendment 25: Enhancements for Scheduled Traffic)으로 넣었고, 이 개정은 IEEE 802.1Q-2018에 합쳐졌다.[@ieee-802-1-tsn-tg-2026] 802.1Qbv의 scheduled traffic은 time-aware shaper라고도 불린다.[@ti-processor-sdk-linux-am62x-est-2026][@microchip-an1185-2025]
+**Time-aware shaper**(TAS)는 브리지나 엔드 스테이션의 포트에서 큐마다 전송 게이트를 두고, 게이트 제어 목록에 따라 게이트를 여닫아 큐가 전송할 수 있는 시각을 정하는 기능이다.[@ti-processor-sdk-linux-am62x-est-2026][@intel-eci-gptp-2024] IEEE 802.1Qbv-2015가 [[ieee-802-1q|IEEE 802.1Q]]-2014의 개정(Amendment 25: Enhancements for Scheduled Traffic)으로 넣었고, 이 개정은 IEEE 802.1Q-2018에 합쳐졌다.[@ieee-802-1-tsn-tg-2026] 802.1Qbv의 scheduled traffic은 time-aware shaper라고도 불린다.[@ti-processor-sdk-linux-am62x-est-2026][@microchip-an1185-2025]
 
-IEEE 802.1Qbv 프로젝트는 브리지와 종단국이 [[ieee-802-1as|IEEE 802.1AS]]에서 얻은 시각에 따라 프레임 전송을 스케줄하도록 time-aware queue-draining 절차를 정하는 것을 범위로 삼았다.[@ieee-802-1qbv-project-2016] IEEE 802.1 작업 그룹의 [[tsn|TSN]] 요약은 scheduled traffic을 지연 상한을 위한 도구로 분류한다.[@ieee-802-1-tsn-summary-2026]
+IEEE 802.1Qbv 프로젝트는 브리지와 엔드 스테이션이 [[ieee-802-1as|IEEE 802.1AS]]에서 얻은 시각에 따라 프레임 전송을 스케줄하도록 time-aware queue-draining 절차를 정하는 것을 범위로 삼았다.[@ieee-802-1qbv-project-2016] IEEE 802.1 작업 그룹의 [[tsn|TSN]] 요약은 scheduled traffic을 지연 상한을 위한 도구로 분류한다.[@ieee-802-1-tsn-summary-2026]
 
 ## 게이트
 

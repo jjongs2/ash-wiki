@@ -33,7 +33,7 @@ LVDS도 차동 신호 방식이다. LVDS 드라이버의 차동 출력 전압은
 
 LVDS는 TIA/EIA-422B 같은 5 V 차동 표준보다 출력 전압 수준을 낮춰, 전력을 줄이고 스위칭 속도를 높인다.[@ti-sn65lvds31-2021] ADI 앱노트에 따르면 LVDS는 출력 전압 폭이 작아서, 높은 데이터율을 낼 만큼 전이가 빠르면서도 슬루율은 지나치게 가파르지 않다.[@adi-an-1177-2012]
 
-100BASE-T1 이더넷 트랜시버 DP83TC811R-Q1은 MDI(Medium Dependent Interface) 핀에서 양방향 차동 신호를 쓴다.[@ti-dp83tc811r-q1-2018] 100BASE-T1은 [[vehicle-bus|차량 버스]]에서 다룬다.
+[[100base-t1|100BASE-T1]] [[ethernet|이더넷]] 트랜시버 DP83TC811R-Q1은 MDI(Medium Dependent Interface) 핀에서 양방향 차동 신호를 쓴다.[@ti-dp83tc811r-q1-2018]
 
 ## 단일 종단 신호와의 차이
 

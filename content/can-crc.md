@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-27
 ---
 
-**CAN CRC**(Cyclic Redundancy Check)는 [[can|CAN]] 송신 노드가 계산해 프레임에 싣는 값이다. 수신 노드는 같은 방식으로 CRC를 계산해 받은 값과 비교하고, 이것으로 프레임에 생긴 오류를 찾아낸다.[@bosch-can-2-0-1991] [[can-frame|Classical CAN 프레임]]은 15비트 CRC를 쓴다.[@bosch-can-fd-1-0-2012]
+**CAN CRC**는 [[can|CAN]] 송신 노드가 계산해 프레임에 싣는 값이다. 수신 노드는 같은 방식으로 [[cyclic-redundancy-check|CRC]]를 계산해 받은 값과 비교하고, 이것으로 프레임에 생긴 오류를 찾아낸다.[@bosch-can-2-0-1991] [[can-frame|Classical CAN 프레임]]은 15비트 CRC를 쓴다.[@bosch-can-fd-1-0-2012]
 
 ## CRC 필드
 
@@ -29,7 +29,7 @@ $$
 
 ## 검출 능력
 
-CRC를 포함한 CAN의 오류 검출 수단(모니터링, CRC, 비트 스터핑, 프레임 검사)은 한 메시지 안에서 임의로 흩어진 오류 5개까지와, 길이 $l$(비트)이 $l < 15$인 버스트 오류를 모두 찾아낸다.[@bosch-can-2-0-1991] Bosch CAN FD 1.0에 따르면 classical CAN 프레임의 15비트 CRC도 [[can-fd|CAN FD]]의 17비트·21비트 CRC와 마찬가지로 해밍 거리 6을 준다.[@bosch-can-fd-1-0-2012] 해밍 거리 6은 길이가 정해진 프레임에서 비트 반전 5개까지를 찾아낸다는 뜻이다.[@bosch-icc-can-fd-error-detection-2015][@ti-spra530-1999] Bosch 논문에 따르면 classical CAN에서는 스터프 조건을 만들고 없애는 비트 반전 두 개를 CRC가 찾지 못하는 드문 경우가 있다.[@bosch-icc-can-fd-error-detection-2015]
+CRC를 포함한 CAN의 오류 검출 수단(모니터링, CRC, 비트 스터핑, 프레임 검사)은 한 메시지 안에서 임의로 흩어진 오류 5개까지와, 길이 $l$(비트)이 $l < 15$인 버스트 오류를 모두 찾아낸다.[@bosch-can-2-0-1991] Bosch CAN FD 1.0에 따르면 classical CAN 프레임의 15비트 CRC도 [[can-fd|CAN FD]]의 17비트·21비트 CRC와 마찬가지로 [[hamming-distance|해밍 거리]] 6을 준다.[@bosch-can-fd-1-0-2012] 해밍 거리 6은 길이가 정해진 프레임에서 비트 반전 5개까지를 찾아낸다는 뜻이다.[@bosch-icc-can-fd-error-detection-2015][@ti-spra530-1999] Bosch 논문에 따르면 classical CAN에서는 스터프 조건을 만들고 없애는 비트 반전 두 개를 CRC가 찾지 못하는 드문 경우가 있다.[@bosch-icc-can-fd-error-detection-2015]
 
 ## CAN FD 프레임과의 차이
 

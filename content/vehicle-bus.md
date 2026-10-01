@@ -5,13 +5,13 @@ tags:
 verified: 2026-09-27
 ---
 
-**버스**는 모든 노드가 양방향 전송이 되는 수동 링크로 닿는 네트워크 토폴로지다. [[can|CAN]]은 도로 차량의 ECU 사이에서 디지털 정보를 주고받는 직렬 통신 프로토콜이다.[@iso-11898-3-obp-2006] LIN(Local Interconnect Network)은 차량 ECU를 잇는 저비용 네트워크이고[@iso-17987-4-obp-2025], FlexRay는 차량 ECU를 잇는 시간 트리거 네트워크다.[@iso-17458-4-obp-2013] 1993년 SAE 기술 논문 931808에 따르면 차량 내 네트워크는 제어기, 센서, 액추에이터가 정보를 나누는 매체다.[@sae-931808-1993]
+**버스**는 모든 노드가 양방향 전송이 되는 수동 링크로 닿는 네트워크 토폴로지다. [[can|CAN]]은 도로 차량의 ECU 사이에서 디지털 정보를 주고받는 [[serial-communication|직렬 통신]] 프로토콜이다.[@iso-11898-3-obp-2006] [[lin|LIN]]은 차량 ECU를 잇는 저비용 네트워크이고[@iso-17987-4-obp-2025], [[flexray|FlexRay]]는 차량 ECU를 잇는 시간 트리거 네트워크다.[@iso-17458-4-obp-2013] 1993년 SAE 기술 논문 931808에 따르면 차량 내 네트워크는 제어기, 센서, 액추에이터가 정보를 나누는 매체다.[@sae-931808-1993]
 
 ## 매체
 
 고속 CAN은 CAN_H와 CAN_L 두 선의 전압 차로 버스 상태를 나타낸다.[@iso-11898-2-obp-2026] 이 방식은 [[differential-signaling|차동 신호]]에서 다룬다. LIN은 접지를 기준으로 선 하나로 송수신하는 단선 매체를 쓴다.[@iso-17987-4-obp-2025]
 
-차량 안에서는 IEEE 802.3 이더넷도 쓰인다. IEEE 802.1DG-2025는 여러 장치를 브리지로 묶은 차량 내 이더넷 네트워크를 위한 TSN(Time-Sensitive Networking) 프로파일을 정한다.[@ieee-802-1dg-2025]
+차량 안에서는 [[ieee-802-3|IEEE 802.3]] [[ethernet|이더넷]]도 쓰인다. IEEE 802.1DG-2025는 여러 장치를 브리지로 묶은 차량 내 이더넷 네트워크를 위한 [[tsn|TSN]] 프로파일을 정한다.[@ieee-802-1dg-2025]
 
 ## 토폴로지
 
@@ -37,8 +37,8 @@ SAE J2057/1:2022는 차량 네트워크를 Class A, Class B, Class C로 나눈�
 
 ## 버스 사이 연결
 
-SAE 기술 논문 931808에 따르면 데이터율 요구가 다른 하위 네트워크들은 브리지나 게이트웨이로 이어져 차량 전체의 데이터 일관성을 지킨다. 이 논문은 그 예로 J1850(Class B)과 CAN(Class C)을 잇는 브리지를 다룬다.[@sae-931808-1993]
+SAE 기술 논문 931808에 따르면 데이터율 요구가 다른 하위 네트워크들은 브리지나 [[gateway|게이트웨이]]로 이어져 차량 전체의 데이터 일관성을 지킨다. 이 논문은 그 예로 J1850(Class B)과 CAN(Class C)을 잇는 브리지를 다룬다.[@sae-931808-1993]
 
 LIN의 **commander**는 LIN 프레임을 스케줄하고 백본 네트워크에도 연결되는 노드다.[@iso-17987-1-obp-2025] ISO 17987-1:2016은 commander를 master라 불렀고, 2025년판에서 지금 이름으로 바뀌었다.[@iso-17987-1-obp-2025][@iso-17987-1-obp-2016]
 
-AUTOSAR의 PDU Router는 한 통신 인터페이스 모듈로 받은 I-PDU(Interaction Layer Protocol Data Unit)를 고치지 않고 다른 통신 인터페이스 모듈로 보내는 게이트웨이 기능을 제공한다. CAN과 FlexRay 사이, CAN과 LIN 사이의 게이트웨이가 그 예다.[@autosar-cp-sws-pdurouter-2025]
+[[autosar|AUTOSAR]]의 [[pdu-router|PDU Router]]는 한 통신 인터페이스 모듈로 받은 I-PDU(Interaction Layer Protocol Data Unit)를 고치지 않고 다른 통신 인터페이스 모듈로 보내는 게이트웨이 기능을 제공한다. CAN과 FlexRay 사이, CAN과 LIN 사이의 게이트웨이가 그 예다.[@autosar-cp-sws-pdurouter-2025]

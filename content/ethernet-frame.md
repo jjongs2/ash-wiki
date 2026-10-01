@@ -31,7 +31,7 @@ IEEE 802.3-2022는 충돌 창 $t_\mathrm{slot}$이 물리 계층의 왕복 전�
 
 ## 길이/타입
 
-길이/타입 필드의 값 $v$는 $v \le 1500$이면 데이터 필드의 옥텟 수이고[@st-rm0008-2021][@microchip-enc28j60-2012], $v \ge 1536$(`0x0600`)이면 EtherType이다.[@st-rm0008-2021][@microchip-an1120-2008] EtherType은 데이터 필드에 실린 상위 프로토콜을 가리키며, IEEE 등록 기관이 신청을 받아 배정한다.[@ieee-ra-ethertype-2026] 예를 들어 `0x0800`은 IPv4, `0x86DD`는 IPv6, `0x0806`은 ARP다.[@ieee-ra-ethertype-2024]
+길이/타입 필드의 값 $v$는 $v \le 1500$이면 데이터 필드의 옥텟 수이고[@st-rm0008-2021][@microchip-enc28j60-2012], $v \ge 1536$(`0x0600`)이면 EtherType이다.[@st-rm0008-2021][@microchip-an1120-2008] EtherType은 데이터 필드에 실린 상위 프로토콜을 가리키며, IEEE 등록 기관이 신청을 받아 배정한다.[@ieee-ra-ethertype-2026] 예를 들어 `0x0800`은 [[ipv4|IPv4]], `0x86DD`는 [[ipv6|IPv6]], `0x0806`은 [[arp|ARP]]다.[@ieee-ra-ethertype-2024]
 
 ![[diagrams/ethernet-length-type-ranges.svg]]
 
@@ -43,4 +43,4 @@ VLAN 태그를 단 프레임은 출발지 주소와 길이/타입 필드 사이�
 
 ## 프레임 사이 간격
 
-송신 측은 보낸 프레임과 다음 프레임 사이에 유휴 간격을 두며, 이 간격을 **IPG**(Inter-Packet Gap)나 **IFG**(Inter-Frame Gap)라 한다.[@st-rm0008-2021][@microchip-an1120-2008] IEEE 802.3-2022는 모든 MAC 데이터율에서 IPG의 최소값을 96비트 시간으로 두고, 송신 측은 구현상 필요하면 이보다 긴 간격을 쓸 수 있다.[@ieee-802-3-2022] Microchip AN1120은 IPG로 10BASE-T에서 9.6 µs, 100BASE-TX에서 960 ns를 제시하며, 두 값은 각 방식의 96비트 시간이다.[@microchip-an1120-2008] STM32F107의 이더넷 MAC은 송신 프레임 사이의 최소 IFG를 96비트 시간부터 40비트 시간까지 8비트 시간 단위로 고르며, 리셋 값은 96비트 시간이다.[@st-rm0008-2021]
+송신 측은 보낸 프레임과 다음 프레임 사이에 유휴 간격을 두며, 이 간격을 **IPG**(Inter-Packet Gap)나 **IFG**(Inter-Frame Gap)라 한다.[@st-rm0008-2021][@microchip-an1120-2008] IEEE 802.3-2022는 모든 MAC 데이터율에서 IPG의 최소값을 96비트 시간으로 두고, 송신 측은 구현상 필요하면 이보다 긴 간격을 쓸 수 있다.[@ieee-802-3-2022] Microchip AN1120은 IPG로 10BASE-T에서 9.6 µs, [[100base-tx|100BASE-TX]]에서 960 ns를 제시하며, 두 값은 각 방식의 96비트 시간이다.[@microchip-an1120-2008] STM32F107의 이더넷 MAC은 송신 프레임 사이의 최소 IFG를 96비트 시간부터 40비트 시간까지 8비트 시간 단위로 고르며, 리셋 값은 96비트 시간이다.[@st-rm0008-2021]

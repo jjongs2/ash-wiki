@@ -14,7 +14,7 @@ verified: 2026-09-29
 
 RFC 1122가 나눈 네 계층은 아래와 같다.[@ietf-rfc-1122-1989]
 
-- **링크 계층**: 호스트가 직접 연결된 네트워크와 통신하는 프로토콜이다. 이더넷이 한 예다.
+- **링크 계층**: 호스트가 직접 연결된 네트워크와 통신하는 프로토콜이다. [[ethernet|이더넷]]이 한 예다.
 - **인터넷 계층**: IP가 데이터그램, 곧 비연결형 서비스로 데이터를 발신 호스트에서 목적 호스트까지 나른다. 오류 보고 같은 제어를 맡는 ICMP와, IP 멀티캐스트용 동적 호스트 그룹을 만드는 IGMP(Internet Group Management Protocol)도 이 계층에 속한다.
 - **전송 계층**: 응용에 끝과 끝 통신 서비스를 준다. 신뢰성 있는 연결형 서비스를 주는 TCP와, 비연결형 데이터그램 서비스를 주는 UDP가 있다.
 - **응용 계층**: 사용자에게 직접 서비스를 주는 사용자 프로토콜(Telnet, FTP(File Transfer Protocol), SMTP(Simple Mail Transfer Protocol) 등)과, 호스트 이름 매핑·부팅·관리 같은 공통 시스템 기능을 주는 지원 프로토콜(DNS(Domain Name System), SNMP(Simple Network Management Protocol) 등)이 속한다.[@ietf-rfc-1122-1989]

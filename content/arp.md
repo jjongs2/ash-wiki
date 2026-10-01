@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**ARP**(Address Resolution Protocol)는 [[ipv4|IPv4]] 주소 같은 프로토콜 주소를 이더넷 주소 같은 링크 계층 주소로 바꾸는 프로토콜이며, RFC 826이 정한다.[@ietf-rfc-826-1982] 이더넷에서 ARP 패킷은 EtherType `0x0806`으로 실린다.[@ieee-ra-ethertype-2024]
+**ARP**(Address Resolution Protocol)는 [[ipv4|IPv4]] 주소 같은 프로토콜 주소를 [[ethernet|이더넷]] 주소 같은 링크 계층 주소로 바꾸는 프로토콜이며, RFC 826이 정한다.[@ietf-rfc-826-1982] 이더넷에서 ARP 패킷은 EtherType `0x0806`으로 실린다.[@ieee-ra-ethertype-2024]
 
 ## 요청과 응답
 
