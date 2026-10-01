@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**100BASE-TX**는 꼬임쌍선 두 쌍으로 100 Mbit/s를 보내는 이더넷 물리 계층으로, 한 쌍은 송신에, 다른 한 쌍은 수신에 쓴다. Fast Ethernet이라고도 부른다.[@ti-szzy009-2018][@microchip-ksz8081mlx-2022] 현행 IEEE 802.3은 100BASE-TX를 Category 5 꼬임쌍선 두 쌍 위의 100 Mbit/s 물리 계층으로 정한다.[@ieee-802-3-2022] IEEE 802.3u-1995는 Category 5 평형 케이블 두 쌍이나 150 Ω 차폐 평형 케이블을 쓰는 100BASE-TX를, 100 Mbit/s 물리 계층 묶음인 100BASE-T의 하나로 넣었다.[@ieee-802-3u-1995]
+**100BASE-TX**는 꼬임쌍선 두 쌍으로 100 Mbit/s를 보내는 이더넷 물리 계층이다.[@ieee-802-3-2022][@ti-szzy009-2018] 한 쌍은 송신에, 다른 한 쌍은 수신에 쓰며, Fast Ethernet이라고도 부른다.[@ti-szzy009-2018][@microchip-ksz8081mlx-2022] IEEE 802.3u-1995는 Category 5 평형 케이블 두 쌍이나 150 Ω 차폐 평형 케이블을 쓰는 100BASE-TX를, 100 Mbit/s 물리 계층 묶음인 100BASE-T의 하나로 넣었다.[@ieee-802-3u-1995]
 
 ## 송신과 수신
 

@@ -11,9 +11,9 @@ verified: 2026-09-29
 
 ## 부계층
 
-IEEE 802.3은 PHY를 PCS(Physical Coding Sublayer), PMA(Physical Medium Attachment), PMD(Physical Medium Dependent) 같은 부계층으로 나누어 정한다. PCS는 데이터 비트를 부호화해 PMA로 넘기고 PMA에서 받은 신호를 복호한다. PMA는 송신과 수신을 맡고, PHY에 따라 충돌 검출과 클럭 복구도 맡는다. PMD는 MDI 바로 위에서 전송 매체와의 접속을 맡는다. 예를 들어 100BASE-TX의 PCS는 MII의 4비트 니블을 5비트 코드 그룹으로 바꾸고 받을 때 되돌리며, 코드 비트는 PMA를 거쳐 PMD로 간다. 부계층의 구성은 PHY 종류마다 달라서, 100BASE-T1 PHY와 1000BASE-T1 PHY는 PCS와 PMA로 이루어진다. MAC과 MII 사이의 RS(Reconciliation Sublayer)는 MII의 신호를 MAC이 쓰는 물리 계층 서비스 정의에 대응시킨다.[@ieee-802-3-2022]
+IEEE 802.3은 PHY를 PCS(Physical Coding Sublayer), PMA(Physical Medium Attachment), PMD(Physical Medium Dependent) 같은 부계층으로 나누어 정한다. PCS는 데이터 비트를 부호화해 PMA로 넘기고 PMA에서 받은 신호를 복호한다. PMA는 송신과 수신을 맡고, PHY에 따라 충돌 검출과 클럭 복구도 맡는다. PMD는 MDI 바로 위에서 전송 매체와의 접속을 맡는다. 예를 들어 [[100base-tx|100BASE-TX]]의 PCS는 MII의 4비트 니블을 5비트 코드 그룹으로 바꾸고 받을 때 되돌리며, 코드 비트는 PMA를 거쳐 PMD로 간다. 부계층의 구성은 PHY 종류마다 달라서, [[100base-t1|100BASE-T1]] PHY와 [[1000base-t1|1000BASE-T1]] PHY는 PCS와 PMA로 이루어진다. MAC과 MII 사이의 RS(Reconciliation Sublayer)는 MII의 신호를 MAC이 쓰는 물리 계층 서비스 정의에 대응시킨다.[@ieee-802-3-2022]
 
-[[100base-tx|100BASE-TX]] PHY는 송신 쌍과 수신 쌍, 두 쌍을 쓰고 4B/5B와 MLT-3(Multi-Level Transmit)으로 부호화한다.[@ti-dp83822-2026][@microchip-lan8742a-2015] [[100base-t1|100BASE-T1]] PHY는 꼬임쌍선 한 쌍에 PAM3(Pulse Amplitude Modulation 3)를 쓴다.[@ti-dp83tc811r-q1-2018][@microchip-lan8770-2020] [[1000base-t1|1000BASE-T1]] PHY도 꼬임쌍선 한 쌍을 쓴다.[@ti-dp83tg720s-q1-2026][@microchip-lan887x-2024]
+100BASE-TX PHY는 송신 쌍과 수신 쌍, 두 쌍을 쓰고 4B/5B와 MLT-3(Multi-Level Transmit)으로 부호화한다.[@ti-dp83822-2026][@microchip-lan8742a-2015] 100BASE-T1 PHY는 꼬임쌍선 한 쌍에 PAM3(Pulse Amplitude Modulation 3)를 쓴다.[@ti-dp83tc811r-q1-2018][@microchip-lan8770-2020] 1000BASE-T1 PHY도 꼬임쌍선 한 쌍을 쓴다.[@ti-dp83tg720s-q1-2026][@microchip-lan887x-2024]
 
 ![[diagrams/ethernet-phy-pair-comparison.svg]]
 

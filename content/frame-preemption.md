@@ -14,13 +14,11 @@ verified: 2026-09-29
 
 ## Express와 preemptable
 
-선점을 지원하는 MAC(Medium Access Control)은 express MAC(eMAC)과 preemptable MAC(pMAC)을 둔다. express 큐의 프레임은 eMAC이, preemptable 큐의 프레임은 pMAC이 보낸다.[@adi-adin3310-adin6310-2025][@nxp-realtimeedgeug-2026] 구현은 송신 큐나 [[traffic-class|트래픽 클래스]]마다 express인지 preemptable인지를 설정으로 정한다.[@ti-processor-sdk-linux-am64x-iet-2026][@nxp-realtimeedgeug-2026]
+선점을 지원하는 MAC(Medium Access Control)은 express MAC(eMAC)과 preemptable MAC(pMAC)을 둔다. express 큐의 프레임은 eMAC이, preemptable 큐의 프레임은 pMAC이 보낸다.[@adi-adin3310-adin6310-2025][@nxp-realtimeedgeug-2026] IEEE 802.3의 MAC Merge 부계층은 eMAC과 pMAC을 RS(Reconciliation Sublayer) 하나에 붙여, 두 MAC의 전송을 [[ethernet-phy|PHY]] 하나의 point-to-point 링크로 합친다.[@ieee-802-3-2022]
 
-IEEE 802.3의 MAC Merge 부계층은 eMAC과 pMAC을 RS(Reconciliation Sublayer) 하나에 붙여, 두 MAC의 전송을 [[ethernet-phy|PHY]] 하나의 point-to-point 링크로 합친다.[@ieee-802-3-2022]
+구현은 송신 큐나 [[traffic-class|트래픽 클래스]]마다 express인지 preemptable인지를 설정으로 정한다.[@ti-processor-sdk-linux-am64x-iet-2026][@nxp-realtimeedgeug-2026] IEEE 802.1Q는 선점을 지원하는 포트에서 priority 값마다 express인지 preemptable인지를 frame preemption status 표로 정하고, 그에 따라 프레임을 eMAC이나 pMAC으로 보낸다. 기본값은 모든 priority가 express이고, 같은 트래픽 클래스에 대응하는 priority들에는 같은 값을 주기를 권한다.[@ieee-802-1q-2022]
 
-IEEE 802.1Q는 선점을 지원하는 포트에서 priority 값마다 express인지 preemptable인지를 frame preemption status 표로 정하며, 기본값은 모든 priority가 express다. preemptable priority의 프레임은 pMAC으로, express priority의 프레임은 eMAC으로 보낸다. 같은 트래픽 클래스에 대응하는 priority들에는 같은 값을 주기를 권한다.[@ieee-802-1q-2022]
-
-TI CPSW의 MAC merge 계층은 express 큐에 보낼 프레임이 있으면 preemptable 큐에서 전송 중인 프레임을 선점한다.[@ti-processor-sdk-linux-am64x-iet-2026]
+TI CPSW의 MAC Merge 부계층은 express 큐에 보낼 프레임이 있으면 preemptable 큐에서 전송 중인 프레임을 선점한다.[@ti-processor-sdk-linux-am64x-iet-2026]
 
 선점이 없으면 시간이 중요한 프레임은 앞서 시작된 큰 프레임을 기다려야 해서 지연이 커진다.[@adi-adin3310-adin6310-2025][@ieee-802-1qbu-project-2016] ADIN3310/ADIN6310 데이터시트에 따르면 1 Gbit/s에서 선점이 없으면 1528바이트 프레임이 끼어들어 홉마다 지연이 12 µs 넘게 달라질 수 있고, 선점을 쓰면 끼어드는 것이 128바이트 조각으로 줄어 1.2 µs 미만이 된다.[@adi-adin3310-adin6310-2025]
 
