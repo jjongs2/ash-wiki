@@ -1,5 +1,5 @@
 ---
-status: accepted
+status: superseded by ADR-0007
 ---
 
 # 출처 위계에 이론 주장과 원 논문을 넣는다

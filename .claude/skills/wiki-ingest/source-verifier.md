@@ -8,7 +8,7 @@
 저장소 `<저장소 루트>`에서 먼저 읽는다.
 
 - `docs/wiki-verification.md`: 판정 세 갈래, 좁혀 쓰기, 이론 주장의 꼴, 표준의 판, 정정, 미검증 사유, 봇 차단 호스트
-- `docs/adr/0006-source-hierarchy-with-theory-claims.md`: 주장 종류마다 1층 출처와 원 논문의 범위
+- `docs/adr/0007-source-hierarchy-with-self-history-and-survey-naming.md`: 주장 종류마다 1층 출처와 원 논문의 범위
 
 초안의 주장은 끝에 `[@<키>] (<위치>)`를 달고 있다. 정정한 주장은 바로 뒤에 `(기존: <주장> [@<키>] (<위치>))`로 기존 주장을 달고 있다.
 
