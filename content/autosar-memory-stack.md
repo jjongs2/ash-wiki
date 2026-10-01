@@ -25,6 +25,8 @@ MemIf, Fee, Ea는 NvM에 16비트 블록 번호와 16비트 블록 오프셋으�
 
 Fee는 플래시 위에 EEPROM을 흉내 내어, MemIf를 거쳐 두 종류의 장치에 같은 방식으로 접근하게 한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] Mem 명세는 섹터를 가장 작은 지우기 단위로 정하며, 어떤 메모리 기술은 쓰기 전에 따로 지워야 한다.[@autosar-cp-sws-memorydriver-2025]
 
+TI 앱노트에 따르면 플래시로 EEPROM을 흉내 내는 루틴은 대개 값이 바뀔 때마다 새 항목을 연결 리스트에 덧붙여 쓰고, 섹터가 이런 항목으로 차면 가장 새 항목만 다른 섹터로 옮긴 뒤 앞 섹터를 지운다.[@ti-spna139-2011]
+
 Fee는 16비트 블록 번호와 16비트 오프셋을 합쳐 아래 드라이버에 넘길 물리 주소를 얻는다. 플래시가 설정한 쓰기 횟수를 견디지 못하면, Fee는 쓰기를 여러 메모리 영역에 나눠 한 자리가 지나치게 지워지지 않게 한다. Fee는 블록 쓰기를 시작할 때 블록을 깨짐으로 표시하고, 성공적으로 끝나면 표시를 거둔다. 그래서 쓰기가 중단된 블록을 알아채고, 그런 블록의 job 결과로 MEMIF_BLOCK_INCONSISTENT를 돌려준다.[@autosar-cp-sws-flasheepromemulation-2025]
 
 Ea는 EEPROM 장치의 주소 체계와 분할을 감추고, 위 층에 가상 주소 체계와 분할을 준다. Ea도 16비트 블록 번호와 16비트 블록 오프셋을 합쳐 EEPROM 물리 주소를 얻는다. 블록 쓰기를 시작할 때 블록을 불일치로 표시하고, 성공적으로 끝나면 일치로 되돌린다.[@autosar-cp-sws-eepromabstraction-2025]
