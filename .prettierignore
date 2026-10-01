@@ -3,3 +3,5 @@ node_modules
 .quartz-cache
 # prettier가 ~ 하나짜리 취소선을 ~~로 바꿔, 픽스처가 겨냥한 경우가 사라진다
 tools/check-content/fixtures/violation/content/bad-tilde.md
+# prettier가 표 셀 위키링크의 |를 셀 경계로 보고 열을 가른다
+tools/check-content/fixtures/violation/content/bad-table-link.md

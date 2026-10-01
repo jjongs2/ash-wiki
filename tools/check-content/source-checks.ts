@@ -204,6 +204,10 @@ function sectionIds(page: Page): Set<string> {
   return ids
 }
 
+// 표 행. 콜아웃 안의 표는 줄 앞에 >가 붙는다.
+const tableRow = /^\s*(?:>\s*)*\|/
+const unescapedPipe = /(?<!\\)\|/
+
 export const wikilink: SourceCheck = (tree) => {
   // 대문과 태그 표시 이름 파일도 링크 대상이므로 title을 모은다.
   const titles = new Map(tree.pages.map((p) => [p.name, fieldsOf(p).title]))
@@ -211,11 +215,16 @@ export const wikilink: SourceCheck = (tree) => {
   const slugs = new Set(tree.pages.filter((p) => p.kind !== "tag").map((p) => p.name))
   const violations: Violation[] = []
   for (const page of tree.pages) {
+    const lines = page.masked.split("\n")
     for (const { match, line } of matchLines(page, /(!?)\[\[([^[\]\n]+?)\]\]/g)) {
       const [link, embed, inner] = match
       const [path, display] = inner.split(/\\?\|/)
       const [target, anchor] = path.split("#").map((part) => part.trim())
       const at = (message: string) => violations.push({ file: page.file, line, message })
+      // 표 셀 안의 |는 prettier가 셀 경계로 보고 [[a | b]]로 갈라 열을 하나 더 만든다.
+      if (tableRow.test(lines[line - 1]) && unescapedPipe.test(inner)) {
+        at(`표 셀 안의 위키링크는 |를 \\|로 쓴다: ${link} → ${link.replace(unescapedPipe, "\\|")}`)
+      }
       // ^로 시작하는 앵커는 절이 아니라 블록을 가리킨다.
       const checkSection = (name: string) => {
         if (anchor && !anchor.startsWith("^") && !sections.get(name)!.has(anchorSlug(anchor)))
@@ -256,13 +265,15 @@ export interface Citation {
   raw: string
   key: string | null // 대괄호 하나에 키 하나가 아니면 null
   line: number
+  column: number // 줄 안에서 [가 있는 곳
 }
 
 export function citations(page: Page): Citation[] {
   const found: Citation[] = []
   for (const { match, line } of matchLines(page, /\[([^[\]\n]*)\]/g)) {
     if (!/(^|[\s;])-?@\w/.test(match[1])) continue
-    found.push({ raw: match[0], key: match[1].match(/^@([^\s;,@]+)$/)?.[1] ?? null, line })
+    const key = match[1].match(/^@([^\s;,@]+)$/)?.[1] ?? null
+    found.push({ raw: match[0], key, line, column: match.index })
   }
   return found
 }
@@ -316,6 +327,40 @@ export const citation: SourceCheck = (tree, conventions) => {
       if (!citationKey.test(key)) at(`키가 <발행기관>-<식별자>-<연도> 꼴이 아니다: ${key}`)
       if (!keys.has(key)) at(`bib/에 엔트리가 없는 키: ${key}`)
     }
+    violations.push(...citationOrder(page))
+  }
+  return violations
+}
+
+// 인용 번호는 키가 페이지에서 처음 나온 순서로 매겨진다. 한 자리(공백만 사이에 둔 인용들)의 키가 그
+// 순서를 따라야 [2][1]이 아니라 [1][2]로 렌더된다. 키가 하나가 아닌 대괄호는 앞의 검사가 맡는다.
+function citationOrder(page: Page): Violation[] {
+  const found = citations(page).filter((citation) => citation.key !== null)
+  const first = new Map<string, number>()
+  found.forEach(({ key }, index) => first.has(key!) || first.set(key!, index))
+  const lines = page.masked.split("\n")
+  const runs: Citation[][] = []
+  found.forEach((citation, index) => {
+    const previous = found[index - 1]
+    const joined =
+      previous?.line === citation.line &&
+      lines[citation.line - 1]
+        .slice(previous.column + previous.raw.length, citation.column)
+        .trim() === ""
+    if (joined) runs.at(-1)!.push(citation)
+    else runs.push([citation])
+  })
+  const violations: Violation[] = []
+  for (const run of runs) {
+    const sorted = [...run].sort((a, b) => first.get(a.key!)! - first.get(b.key!)!)
+    if (sorted.every((citation, index) => citation === run[index])) continue
+    const last = run.at(-1)!
+    const written = lines[last.line - 1].slice(run[0].column, last.column + last.raw.length)
+    violations.push({
+      file: page.file,
+      line: last.line,
+      message: `여러 인용은 페이지에서 처음 나온 순서로 쓴다: ${written} → ${sorted.map((c) => c.raw).join("")}`,
+    })
   }
   return violations
 }

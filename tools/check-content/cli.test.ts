@@ -104,10 +104,14 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-links.md:32",
         "content/bad-links.md:38",
         "content/bad-links.md:42",
+        "content/bad-table-link.md:14",
+        "content/bad-table-link.md:22",
       ],
       citation: [
         "bib/no-urldate-spec-2024.bib:2",
         "bib/renamed-entry-2024.bib:2",
+        "content/bad-citation-order.md:12",
+        "content/bad-citation-order.md:16",
         "content/bad-citations.md:12",
         "content/bad-citations.md:16",
         "content/bad-citations.md:20",
@@ -200,6 +204,24 @@ describe("check-content CLI", { concurrency: false }, () => {
     assert.match(at(11).join("\n"), /3 3.*폭: 1\.5\)/)
     assert.match(at(12).join("\n"), /5 4.*폭: 1\)/)
     assert.match(at(14).join("\n"), /5 4.*폭: 1\)/)
+  })
+
+  test("여러 인용의 순서 위반은 첫 등장 순으로 고친 꼴을 알려 준다", () => {
+    const report = runChecker("violation")
+    const order = report.messages
+      .get("citation")!
+      .filter((m) => m.includes("bad-citation-order.md"))
+    assert.strictEqual(order.length, 2)
+    for (const message of order) {
+      assert.match(message, /\[@example-manual-2023\]\[@example-spec-2024\]$/)
+    }
+  })
+
+  test("표 셀 위키링크 위반은 \\|로 고친 꼴을 알려 준다", () => {
+    const report = runChecker("violation")
+    const table = report.messages.get("wikilink")!.filter((m) => m.includes("bad-table-link.md"))
+    assert.strictEqual(table.length, 2)
+    for (const message of table) assert.match(message, /\[\[target-page\\\|대상\]\]$/)
   })
 
   test("KaTeX 렌더 오류는 문법 오류와 정의되지 않은 명령을 따로 알려 준다", () => {
