@@ -29,7 +29,7 @@ CAN에서는 버스가 idle이면 어느 노드든 송신을 시작할 수 있�
 
 ## Commander-responder
 
-[[lin|LIN]]에서는 commander 태스크가 스케줄 테이블에 따라 모든 헤더를 버스에 보내고, responder 태스크는 헤더를 듣고 그에 맞춰 응답을 보내거나 받거나 무시한다.[@iso-17987-1-obp-2025] commander와 responder의 동작은 [[lin#Commander와 responder|LIN]]에서 다룬다.
+[[lin|LIN]]에서는 네트워크에 하나뿐인 commander가 프레임을 스케줄한다.[@iso-17987-1-obp-2025] commander와 responder의 동작은 [[lin#Commander와 responder|LIN]]에서 다룬다.
 
 ## 토큰 원리
 

@@ -37,4 +37,4 @@ SAE J2057/1:2022는 차량 네트워크를 Class A, Class B, Class C로 나눈�
 
 ## 버스 사이 연결
 
-데이터율 요구가 다른 하위 네트워크를 잇는 브리지와 게이트웨이는 [[gateway|게이트웨이]]에서 다룬다. LIN의 commander는 백본 네트워크에도 연결된다.[@iso-17987-1-obp-2025]
+데이터율 요구가 다른 하위 네트워크를 잇는 브리지와 게이트웨이는 [[gateway|게이트웨이]]에서 다룬다. LIN의 commander는 백본 네트워크에도 연결된다.[@iso-17987-1-obp-2025] commander는 [[lin#Commander와 responder|LIN]]에서 다룬다.
