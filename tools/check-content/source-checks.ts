@@ -4,7 +4,17 @@ import type { Position } from "unist"
 import { visit } from "unist-util-visit"
 import { pretendardStylesheet } from "../../quartz/util/localFonts"
 import type { Conventions } from "./conventions"
-import { marginTolerance, measureMargins, SvgRenderError } from "./diagram-margin"
+import {
+  marginTolerance,
+  measureMargins,
+  overflowed,
+  paintedBounds,
+  SvgRenderError,
+  type Bounds,
+  type ViewBox,
+  withRootViewBox,
+  withViewBox,
+} from "./diagram-margin"
 import { fieldsOf, type Page, type Tree, type Violation } from "./tree"
 
 export type SourceCheck = (
@@ -645,37 +655,216 @@ function shapeViolations(text: string): { offset: number; message: string }[] {
   return found
 }
 
-// 여백이 치우쳤거나 잴 수 없으면 그 이유를, 아니면 null을 준다.
-async function marginViolation(source: string, root: string): Promise<string | null> {
-  const viewBox = root
+function viewBoxOf(rootTag: string): ViewBox | null {
+  const viewBox = rootTag
     .match(/\sviewBox\s*=\s*(["'])(.*?)\1/i)?.[2]
     .trim()
     .split(/[\s,]+/)
     .map(Number)
-  if (viewBox?.length !== 4 || viewBox.some((n) => !Number.isFinite(n))) {
-    return "루트 <svg>에 viewBox가 없어 여백을 재지 못한다"
-  }
+  if (viewBox?.length !== 4 || viewBox.some((n) => !Number.isFinite(n))) return null
+  return viewBox as ViewBox
+}
+
+// 0.5 단위로 반올림한다.
+const roundHalf = (n: number) => Math.round(n * 2) / 2
+
+// 그림이 viewBox 밖으로 나갔거나, 여백이 치우쳤거나, 잴 수 없으면 그 이유를, 아니면 null을 준다.
+// 밖으로 나간 그림에는 여백 치우침을 알리지 않는다. 그 메시지대로 원점을 옮겨도 그림이 viewBox에 다
+// 들어가지 않는다.
+async function marginViolation(
+  source: string,
+  root: { index: number; tag: string },
+): Promise<string | null> {
+  const viewBox = viewBoxOf(root.tag)
+  if (!viewBox) return "루트 <svg>에 viewBox가 없어 여백을 재지 못한다"
   const [x, y, width, height] = viewBox
   let margins
   try {
-    margins = await measureMargins(source, { width, height })
+    margins = await measureMargins(source, root, viewBox)
   } catch (error) {
     if (!(error instanceof SvgRenderError)) throw error
     return `SVG를 그리지 못해 여백을 재지 못했다: ${error.message}`
   }
   if (!margins) return null
   const { left, right, top, bottom } = margins
+  const sides: [string, number][] = [
+    ["좌", left],
+    ["우", right],
+    ["상", top],
+    ["하", bottom],
+  ]
+  const outside = sides.filter(([, margin]) => overflowed(margin))
+  if (outside.length > 0) {
+    const amounts = outside.map(([side, margin]) => `${side} ${roundHalf(-margin)}`)
+    return `그림이 viewBox 밖으로 나갔다(${amounts.join(", ")}). 그림을 viewBox 안에 둔다`
+  }
   if (Math.abs(left - right) <= marginTolerance && Math.abs(top - bottom) <= marginTolerance) {
     return null
   }
-  // 그림을 가운데로 옮기려면 원점을 여백 차의 절반만큼 옮긴다. 0.5 단위로 반올림한다.
-  const round = (n: number) => Math.round(n * 2) / 2
-  const shifted = [round(x + (left - right) / 2), round(y + (top - bottom) / 2), width, height]
+  // 그림을 가운데로 옮기려면 원점을 여백 차의 절반만큼 옮긴다.
+  const shifted = [
+    roundHalf(x + (left - right) / 2),
+    roundHalf(y + (top - bottom) / 2),
+    width,
+    height,
+  ]
   return (
-    `그림이 viewBox 가운데에서 치우쳤다(여백 좌 ${round(left)}, 우 ${round(right)}, ` +
-    `상 ${round(top)}, 하 ${round(bottom)}, 허용 차 ${marginTolerance}). ` +
+    `그림이 viewBox 가운데에서 치우쳤다(여백 좌 ${roundHalf(left)}, 우 ${roundHalf(right)}, ` +
+    `상 ${roundHalf(top)}, 하 ${roundHalf(bottom)}, 허용 차 ${marginTolerance}). ` +
     `원점을 옮겨 viewBox="${shifted.join(" ")}"로 둔다`
   )
+}
+
+// 두 상자 사이 글자의 잉크 세로 중심이 상자 세로 중심에서 벗어나도 되는 한도. font-size에 곱한다.
+// Pretendard로 잰 어긋남(#208): baseline 쪽에 앉는 `_`는 14에서 5.6(0.40배), 13에서 5.0(0.38배)
+// 아래였고(e53a1e99가 고치기 전의 도해), `…`는 14에서 4.3(0.31배) 아래였다. 합자를 끈 `:`는 14에서
+// 1.5(0.11배) 아래였다(규약이 감수한다). 가장 가까운 둘인 `…`와 `:`의 가운데인 0.2배(14에서 2.8)로 가른다.
+const betweenBoxesTolerance = 0.2
+
+// 그 안의 요소는 그려지지 않거나 다른 곳에 쓰여, 놓인 자리를 속성으로 알 수 없다.
+const unplacedContainers = new Set(["defs", "clipPath", "mask", "marker", "pattern", "symbol"])
+
+// 요소가 루트 좌표계에서 속성대로 놓였으면 true다. 자신이나 조상에 transform이 걸리거나 안쪽 <svg>가
+// 좌표계를 새로 열면 속성만으로 자리를 정할 수 없어 false를 준다.
+function placed(element: SvgElement): boolean {
+  for (let e: SvgElement | undefined = element; e; e = e.parent) {
+    if (e.attributes.has("transform") || unplacedContainers.has(e.name)) return false
+    if (e.name === "svg" && e.parent) return false
+  }
+  return true
+}
+
+// 길이 하나로 된 좌표만 읽는다. 목록(x="10 20")이나 단위가 붙은 값이면 NaN을 준다.
+function coordinate(element: SvgElement, attribute: string): number {
+  const value = element.attributes.get(attribute) ?? "0"
+  return /^-?(\d+\.?\d*|\.\d+)(px)?$/i.test(value) ? lengthOf(value) : NaN
+}
+
+const contains = (box: Bounds, x: number, y: number) =>
+  box.left <= x && x <= box.right && box.top <= y && y <= box.bottom
+const middle = (box: Bounds) => (box.top + box.bottom) / 2
+
+// 다른 <rect>를 품지 않는 <rect>. 품는 것은 그룹 틀이다.
+function boxesOf(elements: SvgElement[]): Bounds[] {
+  const rects = elements
+    .filter((element) => element.name === "rect" && placed(element))
+    .map((element) => {
+      const [x, y, width, height] = ["x", "y", "width", "height"].map((a) => coordinate(element, a))
+      return { left: x, right: x + width, top: y, bottom: y + height }
+    })
+    .filter((box) => Object.values(box).every(Number.isFinite) && box.right > box.left)
+  return rects.filter(
+    (box) =>
+      !rects.some(
+        (other) =>
+          other !== box &&
+          contains(box, other.left, other.top) &&
+          contains(box, other.right, other.bottom),
+      ),
+  )
+}
+
+// 두 상자 사이 칸을 볼 때 상자 쪽에서 덜어 내는 폭. 테두리(폭 1.5의 절반)와 그 가장자리의 앤티앨리어싱이
+// 칸에 들어오지 않게 한다.
+const gapInset = 2
+
+// 칠한 영역을 주고, 그리지 못하면 undefined를 준다. 도해 전체를 그리지 못한 것은 여백 검사가 알린다.
+async function paintedOrSkip(svg: string, viewBox: ViewBox) {
+  try {
+    return await paintedBounds(svg, viewBox)
+  } catch (error) {
+    if (!(error instanceof SvgRenderError)) throw error
+  }
+}
+
+// 같은 줄에 놓인 두 상자 사이에서 어느 상자에도 들지 않는 글자는 잉크의 세로 중심을 상자 세로 중심에
+// 맞춘다. 두 상자 사이 칸에 그 글자 말고도 그린 것(화살표 같은)이 있으면 글자는 그것의 라벨이라
+// 위아래로 비켜 두므로 보지 않는다. 잉크의 가로 중심이 칸 가운데 절반 밖이면 한쪽 상자에 붙인 라벨이므로
+// 보지 않는다. main의 구분자(`:`, `…`)와 고치기 전의 `_`는 모두 칸 가운데에 있었다.
+// 글자는 조상과 <style>을 살려 홀로 그려 잉크를 잰다.
+async function textBetweenBoxesViolations(
+  text: string,
+): Promise<{ offset: number; message: string }[]> {
+  const elements = svgElements(text)
+  const boxes = boxesOf(elements)
+  const styles = [...text.matchAll(/<(?:[\w-]+:)?style[\s>][\s\S]*?<\/(?:[\w-]+:)?style\s*>/gi)]
+    .map((m) => m[0])
+    .join("")
+  const closeTag = (e: SvgElement) => `</${e.source.match(/^<([\w:-]+)/)![1]}>`
+  const found: { offset: number; message: string }[] = []
+  for (const element of elements) {
+    if (element.name !== "text" || element.source.endsWith("/>") || !placed(element)) continue
+    const [x, y] = [coordinate(element, "x"), coordinate(element, "y")]
+    if (!Number.isFinite(x) || !Number.isFinite(y) || boxes.some((box) => contains(box, x, y))) {
+      continue
+    }
+    // 같은 줄은 두 상자가 baseline을 세로로 품고 세로 중심이 허용치 안에서 같은 것이다.
+    const row = boxes.filter((box) => box.top <= y && y <= box.bottom)
+    const before = row.filter((box) => box.right <= x).sort((a, b) => b.right - a.right)[0]
+    const after = row.filter((box) => box.left >= x).sort((a, b) => a.left - b.left)[0]
+    const fontSize = lengthOf(inherited(element, "font-size") ?? "16")
+    const ancestors: SvgElement[] = []
+    for (let e = element.parent; e; e = e.parent) ancestors.unshift(e)
+    const root = ancestors[0]
+    const viewBox = root && viewBoxOf(root.source)
+    const end = /<\/(?:[\w-]+:)?text\s*>/g
+    end.lastIndex = element.offset
+    const close = end.exec(text)
+    if (!before || !after || !Number.isFinite(fontSize) || !viewBox || !close) continue
+    const tolerance = betweenBoxesTolerance * fontSize
+    if (Math.abs(middle(before) - middle(after)) > tolerance) continue
+    const elementEnd = close.index + close[0].length
+
+    const top = Math.max(before.top, after.top)
+    const gap: ViewBox = [
+      before.right + gapInset,
+      top,
+      after.left - before.right - 2 * gapInset,
+      Math.min(before.bottom, after.bottom) - top,
+    ]
+    if (gap[2] <= 0 || gap[3] <= 0) continue
+    const gapWithoutText = withRootViewBox(
+      text.slice(0, element.offset) + text.slice(elementEnd),
+      { index: root.offset, tag: root.source },
+      gap,
+    )
+    if ((await paintedOrSkip(gapWithoutText, gap)) !== null) continue
+
+    const center = (middle(before) + middle(after)) / 2
+    const bandHalf =
+      Math.max(before.bottom - before.top, after.bottom - after.top) / 2 + 2 * fontSize
+    const band: ViewBox = [viewBox[0], center - bandHalf, viewBox[2], 2 * bandHalf]
+    const textAlone =
+      withViewBox(root.source, band) +
+      styles +
+      ancestors
+        .slice(1)
+        .map((e) => e.source)
+        .join("") +
+      text.slice(element.offset, elementEnd) +
+      [...ancestors].reverse().map(closeTag).join("")
+    const ink = await paintedOrSkip(textAlone, band)
+    if (!ink) continue
+    const gapMiddle = (before.right + after.left) / 2
+    const gapQuarter = (after.left - before.right) / 4
+    if (Math.abs((ink.left + ink.right) / 2 - gapMiddle) > gapQuarter) continue
+    const offset = (ink.top + ink.bottom) / 2 - center
+    if (Math.abs(offset) <= tolerance) continue
+    const content = text
+      .slice(element.offset + element.source.length, close.index)
+      .replace(/<[^>]*>/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+    const roundTenth = (n: number) => Math.round(n * 10) / 10
+    found.push({
+      offset: element.offset,
+      message:
+        `두 상자 사이 글자 \`${content}\`의 잉크 중심이 상자 세로 중심에서 ` +
+        `${roundTenth(Math.abs(offset))} ${offset > 0 ? "아래" : "위"}에 있다(허용 ${roundTenth(tolerance)}). ` +
+        `글자를 옮기거나, 구분자는 상자 세로 중심의 선으로 그린다`,
+    })
+  }
+  return found
 }
 
 export const svg: SourceCheck = async (tree, conventions) => {
@@ -738,9 +927,10 @@ export const svg: SourceCheck = async (tree, conventions) => {
           atRoot(`Pretendard를 불러오지 않는다: <style>${fontImport}</style>`)
         }
       }
-      const marginMessage = await marginViolation(source, root[0])
+      const marginMessage = await marginViolation(source, { index: root.index!, tag: root[0] })
       if (marginMessage) atRoot(marginMessage)
     }
+    for (const { offset, message } of await textBetweenBoxesViolations(text)) add(offset, message)
     // 접두사(<svg:image>)가 붙어도, 필터 요소(<feImage>)로 넣어도 같다.
     for (const match of text.matchAll(/<(?:[\w-]+:)?(?:image|feImage)[\s/>]/gi)) {
       violations.push({
