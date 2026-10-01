@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-AUTOSAR 용어집은 **최악 실행 시간**(WCET, Worst-Case Execution Time)을 프로그램이 실제로 실행되는 시간 가운데 가능한 최댓값으로 정의한다.[@autosar-fo-tr-glossary-2025] 스케줄 가능성 분석은 태스크의 WCET를 입력으로 쓴다.[@autosar-fo-tr-glossary-2025][@freescale-cwperformwp-2005]
+AUTOSAR R25-11 용어집은 **최악 실행 시간**(WCET, Worst-Case Execution Time)을 프로그램이 실제로 실행되는 시간 가운데 가능한 최댓값으로 정의한다.[@autosar-fo-tr-glossary-2025] 스케줄 가능성 분석은 태스크의 WCET를 입력으로 쓴다.[@autosar-fo-tr-glossary-2025][@freescale-cwperformwp-2005]
 
 ## 실행 시간이 달라지는 까닭
 
@@ -35,6 +35,6 @@ AUTOSAR 타이밍 분석 보고서에 따르면 측정은 쓴 입력 데이터�
 
 AUTOSAR는 실행 시간을 선점되거나 중단된 시간, 태스크 전환, 다른 소프트웨어의 실행을 뺀, 실제로 실행된 시간으로 둔다.[@autosar-fo-tr-glossary-2025][@autosar-fo-tr-timinganalysis-2025]
 
-AUTOSAR 타이밍 확장 명세는 다른 개체가 끼어든 시간과 외부 호출까지 포함해 실행을 끝내기까지 걸린 시간을 응답 시간이라 부른다. 이 명세의 실행 시간 제약(ExecutionTimeConstraint)은 실행 시간의 종류로 net과 gross를 둔다. 둘 다 다른 개체가 끼어든 시간을 빼고, gross는 외부 호출에 쓴 시간을 포함하며 net은 포함하지 않는다.[@autosar-cp-tps-timingextensions-2025]
+AUTOSAR R25-11 타이밍 확장 명세는 다른 개체가 끼어든 시간과 외부 호출까지 포함해 실행을 끝내기까지 걸린 시간을 응답 시간이라 부른다. 이 명세의 실행 시간 제약(ExecutionTimeConstraint)은 실행 시간의 종류로 net과 gross를 둔다. 둘 다 다른 개체가 끼어든 시간을 빼고, gross는 외부 호출에 쓴 시간을 포함하며 net은 포함하지 않는다.[@autosar-cp-tps-timingextensions-2025]
 
 ![[diagrams/execution-time-net-gross-response.svg]]

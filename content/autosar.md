@@ -25,7 +25,7 @@ AUTOSAR는 파트너십 유형마다 다른 권리와 의무를 둔다. 파트�
 
 ## 표준
 
-AUTOSAR 표준에는 Classic Platform, Adaptive Platform, Foundation이 있다.[@autosar-standards-2026] AUTOSAR 용어집은 [[autosar-classic-platform|Classic Platform]]을 깊이 임베디드된 시스템과, 예측 가능성·안전·응답성 요구가 높은 응용 소프트웨어를 위해 AUTOSAR가 정의한 소프트웨어 플랫폼으로 정의한다.[@autosar-fo-tr-glossary-2025] Adaptive Platform은 자율 주행 같은 쓰임새에서 fail-operational 시스템을 만드는 고성능 연산 ECU를 위한 AUTOSAR의 해법이다.[@autosar-standards-2026] Adaptive Platform은 주로 고성능 연산과 통신 메커니즘을 제공하고, 무선 소프트웨어 업데이트처럼 유연한 소프트웨어 구성을 지원하며, 서비스 지향 아키텍처를 따른다.[@autosar-ap-exp-platformdesign-2025]
+AUTOSAR 표준에는 Classic Platform, Adaptive Platform, Foundation이 있다.[@autosar-standards-2026] AUTOSAR R25-11 용어집은 [[autosar-classic-platform|Classic Platform]]을 깊이 임베디드된 시스템과, 예측 가능성·안전·응답성 요구가 높은 응용 소프트웨어를 위해 AUTOSAR가 정의한 소프트웨어 플랫폼으로 정의한다.[@autosar-fo-tr-glossary-2025] Adaptive Platform은 자율 주행 같은 쓰임새에서 fail-operational 시스템을 만드는 고성능 연산 ECU를 위한 AUTOSAR의 해법이다.[@autosar-standards-2026] Adaptive Platform은 주로 고성능 연산과 통신 메커니즘을 제공하고, 무선 소프트웨어 업데이트처럼 유연한 소프트웨어 구성을 지원하며, 서비스 지향 아키텍처를 따른다.[@autosar-ap-exp-platformdesign-2025]
 
 Foundation은 Classic Platform과 Adaptive Platform의 공통 부분을 따로 펴내는 표준으로, 버스 프로토콜과 [[autosar-methodology|방법론]]의 공통 측면이 그 예다.[@autosar-standards-2026] [[some-ip|SOME/IP]] 프로토콜 명세와 AUTOSAR 용어집은 Foundation에 속한다.[@autosar-fo-tr-glossary-2025][@autosar-fo-prs-someipprotocol-2025]
 

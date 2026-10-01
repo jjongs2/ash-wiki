@@ -30,17 +30,17 @@ RTE API 이름은 API의 기능을 나타내는 API root 이름과 access point�
 
 API root마다 쓰임은 아래와 같다.[@autosar-cp-sws-rte-2025]
 
-| API                           | 쓰임                                                                                                                                 |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `Rte_Write`, `Rte_Read`       | queued가 아닌 [[autosar-sender-receiver-interface\|sender-receiver]] data element를 명시적으로 쓰고 읽는다.                          |
-| `Rte_Send`, `Rte_Receive`     | queued인 sender-receiver data element를 명시적으로 보내고 받는다.                                                                    |
-| `Rte_IWrite`, `Rte_IRead`     | runnable이 쓰기나 읽기로 선언한 data element에 암묵적으로 쓰고 읽는다.                                                               |
-| `Rte_Call`                    | [[autosar-client-server-interface\|client-server]] 통신을 시작한다.                                                                  |
-| `Rte_Result`                  | 비동기 client-server 호출의 결과를 받는다.                                                                                           |
-| `Rte_Switch`                  | [[autosar-mode-switch-interface\|mode switch]] 인터페이스의 모드 전환을 시작한다.                                                    |
-| `Rte_Mode`                    | mode switch 포트에서 지금 활성인 모드를 준다.                                                                                        |
-| `Rte_Enter`, `Rte_Exit`       | exclusive area에 들어가고 나온다.                                                                                                    |
-| `Rte_IrvWrite`, `Rte_IrvRead` | 명시적 접근으로 정한 inter-runnable 변수를 쓰고 읽는다.                                                                              |
+| API                           | 쓰임                                                                                                                              |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `Rte_Write`, `Rte_Read`       | queued가 아닌 [[autosar-sender-receiver-interface\|sender-receiver]] data element를 명시적으로 쓰고 읽는다.                       |
+| `Rte_Send`, `Rte_Receive`     | queued인 sender-receiver data element를 명시적으로 보내고 받는다.                                                                 |
+| `Rte_IWrite`, `Rte_IRead`     | runnable이 쓰기나 읽기로 선언한 data element에 암묵적으로 쓰고 읽는다.                                                            |
+| `Rte_Call`                    | [[autosar-client-server-interface\|client-server]] 통신을 시작한다.                                                               |
+| `Rte_Result`                  | 비동기 client-server 호출의 결과를 받는다.                                                                                        |
+| `Rte_Switch`                  | [[autosar-mode-switch-interface\|mode switch]] 인터페이스의 모드 전환을 시작한다.                                                 |
+| `Rte_Mode`                    | mode switch 포트에서 지금 활성인 모드를 준다.                                                                                     |
+| `Rte_Enter`, `Rte_Exit`       | exclusive area에 들어가고 나온다.                                                                                                 |
+| `Rte_IrvWrite`, `Rte_IrvRead` | 명시적 접근으로 정한 inter-runnable 변수를 쓰고 읽는다.                                                                           |
 | `Rte_Trigger`                 | trigger 포트에서 external trigger를 일으킨다. 그러면 그 trigger에 ExternalTriggerOccurredEvent가 연결된 runnable이 모두 실행된다. |
 
 암묵적 접근 API는 이름에 runnable 이름도 넣는다. `Rte_IRead_<re>_<p>_<o>`에서 `<re>`는 runnable의 short name이다.[@autosar-cp-sws-rte-2025]

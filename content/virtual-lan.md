@@ -5,11 +5,11 @@ tags:
 verified: 2026-09-29
 ---
 
-**VLAN**(Virtual LAN)은 개별 LAN(Local Area Network)들을 잇는 브리지가 브리지로 이어진 네트워크와 함께 제공하는 가상 LAN으로, [[ieee-802-1q|IEEE 802.1Q]]가 이 브리지를 정한다.[@ieee-802-1q-rev-2025] 프레임이 속한 VLAN은 VLAN 태그에 실린 식별자로 나타내고, 브리지는 VLAN마다 프레임을 내보낼 포트를 따로 둔다.[@ieee-802-1q-types-yang-2022][@ieee-802-1q-bridge-yang-2022] VLAN은 스테이션의 논리적 그룹을 관리하기 쉽게 하며, 같은 VLAN의 스테이션은 한 LAN에 있는 것처럼 통신하고 VLAN 사이의 트래픽은 제한된다. VLAN 브리지와 스테이션을 관리해 스테이션을 VLAN에 더하거나 빼거나 VLAN 사이로 옮긴다.[@ieee-802-1q-2022]
+**VLAN**(Virtual LAN)은 개별 LAN(Local Area Network)들을 잇는 브리지가 브리지로 이어진 네트워크와 함께 제공하는 가상 LAN으로, [[ieee-802-1q|IEEE 802.1Q-2022]]가 이 브리지를 정한다.[@ieee-802-1q-rev-2025] 프레임이 속한 VLAN은 VLAN 태그에 실린 식별자로 나타내고, 브리지는 VLAN마다 프레임을 내보낼 포트를 따로 둔다.[@ieee-802-1q-types-yang-2022][@ieee-802-1q-bridge-yang-2022] VLAN은 스테이션의 논리적 그룹을 관리하기 쉽게 하며, 같은 VLAN의 스테이션은 한 LAN에 있는 것처럼 통신하고 VLAN 사이의 트래픽은 제한된다. VLAN 브리지와 스테이션을 관리해 스테이션을 VLAN에 더하거나 빼거나 VLAN 사이로 옮긴다.[@ieee-802-1q-2022]
 
 ## VLAN 태그
 
-IEEE 802.1Q는 VLAN 태그를 정한다. C-VLAN(Customer VLAN) 태그는 EtherType `0x8100`을 쓴다.[@ieee-802-1q-types-yang-2022][@ieee-ra-ethertype-2024] 태그가 프레임의 어디에 들어가는지는 [[ethernet-frame#VLAN 태그|이더넷 프레임]]에서 다룬다.
+IEEE 802.1Q-2022는 VLAN 태그를 정한다. C-VLAN(Customer VLAN) 태그는 EtherType `0x8100`을 쓴다.[@ieee-802-1q-types-yang-2022][@ieee-ra-ethertype-2024] 태그가 프레임의 어디에 들어가는지는 [[ethernet-frame#VLAN 태그|이더넷 프레임]]에서 다룬다.
 
 태그 안에서 프레임의 우선순위를 0부터 7까지의 값으로 나타내는 3비트 필드를 **PCP**(Priority Code Point)라 한다.[@ieee-802-1q-types-yang-2022] 프레임의 drop_eligible 파라미터를 싣는 필드를 **DEI**(Drop Eligible Indicator)라 한다.[@ieee-802-1q-bridge-yang-2022] 프레임이 속한 VLAN을 가리키는 12비트 값을 **VID**(VLAN Identifier)라 한다.[@ieee-802-1q-types-yang-2022]
 
@@ -17,7 +17,7 @@ VLAN 태그는 두 필드가 차례로 이어진 것이다. 앞의 **TPID**(Tag 
 
 VLAN을 가리키는 VID는 1부터 4094까지이고, 0과 4095(`0xFFF`)는 VLAN 번호로 쓰지 않는다. 그래서 쓸 수 있는 VID는 4094개다.[@ieee-802-1q-types-yang-2022] IEEE 802.1Q-2022는 VID 0을 **null VID**로 두며, 태그가 우선순위 정보만 싣고 프레임에 VID가 없다는 뜻이다.[@ieee-802-1q-2022]
 
-IEEE 802.1Q-2005는 태그의 TCI에서 PCP와 VID 사이의 1비트를 CFI(Canonical Format Indicator)로 두었고[@ieee-802-1q-2005], 현행판 IEEE 802.1Q-2022는 태그에 DEI를 둔다.[@ieee-802-1q-bridge-yang-2022] 이 표준에서 DEI는 TCI 첫 옥텟의 비트 5인 1비트로, 이전 판들이 C-VLAN 태그에서 CFI로 쓰던 비트다. DEI는 포트의 Use_DEI 파라미터가 참이면 drop_eligible 파라미터를 싣는다. Use_DEI의 기본값은 거짓이고, 거짓이면 DEI를 0으로 보내고 받을 때는 무시한다. 큐에서 drop_eligible이 참인 프레임을 지울 확률은 거짓인 프레임보다 낮으면 안 되고, 큐 관리 알고리즘은 drop_eligible이 참인 프레임을 먼저 버리는 것이 권장된다.[@ieee-802-1q-2022]
+IEEE 802.1Q-2005는 태그의 TCI에서 PCP와 VID 사이의 1비트를 CFI(Canonical Format Indicator)로 두었고[@ieee-802-1q-2005], IEEE 802.1Q-2022는 태그에 DEI를 둔다.[@ieee-802-1q-bridge-yang-2022] 이 표준에서 DEI는 TCI 첫 옥텟의 비트 5인 1비트로, 이전 판들이 C-VLAN 태그에서 CFI로 쓰던 비트다. DEI는 포트의 Use_DEI 파라미터가 참이면 drop_eligible 파라미터를 싣는다. Use_DEI의 기본값은 거짓이고, 거짓이면 DEI를 0으로 보내고 받을 때는 무시한다. 큐에서 drop_eligible이 참인 프레임을 지울 확률은 거짓인 프레임보다 낮으면 안 되고, 큐 관리 알고리즘은 drop_eligible이 참인 프레임을 먼저 버리는 것이 권장된다.[@ieee-802-1q-2022]
 
 ![[diagrams/vlan-tag-fields.svg]]
 

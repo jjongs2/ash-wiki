@@ -14,7 +14,7 @@ IEEE 802.1Qbv 프로젝트는 브리지와 종단국이 [[ieee-802-1as|IEEE 802.
 
 ## 게이트
 
-IEEE 802.1Q의 scheduled traffic은 포트의 [[traffic-class|트래픽 클래스]]마다 게이트를 두고, 게이트는 열림과 닫힘 두 상태를 가진다.[@ieee-802-1qcw-sched-yang-2023] 전송할 수 있는 것은 게이트가 열린 큐뿐이고, 게이트가 닫힌 큐의 프레임은 전송에 선택되지 않는다.[@ti-processor-sdk-linux-am62x-est-2026][@intel-eci-gptp-2024] TI Processor SDK 문서에 따르면 게이트가 열린 큐의 프레임은 그 큐에 지정된 전송 선택 알고리즘에 따라 전송에 선택된다.[@ti-processor-sdk-linux-am62x-est-2026] IEEE 802.1Q는 게이트가 열려 있어도 다음 게이트 닫힘 전까지 프레임 전체와 매체에 따른 오버헤드를 보낼 시간이 남지 않으면, 그 프레임을 전송할 수 없는 것으로 본다.[@ieee-802-1q-2022]
+IEEE 802.1Q의 scheduled traffic은 포트의 [[traffic-class|트래픽 클래스]]마다 게이트를 두고, 게이트는 열림과 닫힘 두 상태를 가진다.[@ieee-802-1qcw-sched-yang-2023] 전송할 수 있는 것은 게이트가 열린 큐뿐이고, 게이트가 닫힌 큐의 프레임은 전송에 선택되지 않는다.[@ti-processor-sdk-linux-am62x-est-2026][@intel-eci-gptp-2024] TI Processor SDK 문서에 따르면 게이트가 열린 큐의 프레임은 그 큐에 지정된 전송 선택 알고리즘에 따라 전송에 선택된다.[@ti-processor-sdk-linux-am62x-est-2026] IEEE 802.1Q-2022는 게이트가 열려 있어도 다음 게이트 닫힘 전까지 프레임 전체와 매체에 따른 오버헤드를 보낼 시간이 남지 않으면, 그 프레임을 전송할 수 없는 것으로 본다.[@ieee-802-1q-2022]
 
 ![[diagrams/egress-queue-transmission-selection.svg]]
 
