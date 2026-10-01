@@ -15,7 +15,7 @@ verified: 2026-09-27
 
 Classical [[can|CAN]] [[can-frame|데이터 프레임]]의 데이터 필드는 0에서 8바이트다.[@bosch-can-2-0-1991]
 
-ISO 15765-2는 CAN을 쓰는 차량 네트워크에서 진단 통신에 쓰는 전송 프로토콜과 네트워크 계층 서비스를 정한다. 이 프로토콜은 분할된 PDU를 첫 프레임 FF(FirstFrame)와 여러 연속 프레임 CF(ConsecutiveFrame)에 나눠 보낸다.[@iso-15765-2-obp-2024]
+ISO 15765-2:2024는 CAN을 쓰는 차량 네트워크에서 진단 통신에 쓰는 전송 프로토콜과 네트워크 계층 서비스를 정한다. 이 프로토콜은 분할된 PDU를 첫 프레임 FF(FirstFrame)와 여러 연속 프레임 CF(ConsecutiveFrame)에 나눠 보낸다.[@iso-15765-2-obp-2024]
 
 AUTOSAR의 CAN 전송 계층 모듈 CanTp가 다루는 전송 프로토콜 프레임은 단일 프레임 SF(Single Frame), FF, CF, 흐름 제어 프레임 FC(Flow Control)이고, 이 프레임들을 다음처럼 쓴다.[@autosar-cp-sws-cantransportlayer-2025]
 

@@ -16,7 +16,7 @@ verified: 2026-09-29
 
 선점을 지원하는 MAC(Medium Access Control)은 express MAC(eMAC)과 preemptable MAC(pMAC)을 둔다. express 큐의 프레임은 eMAC이, preemptable 큐의 프레임은 pMAC이 보낸다.[@adi-adin3310-adin6310-2025][@nxp-realtimeedgeug-2026] IEEE 802.3의 MAC Merge 부계층은 eMAC과 pMAC을 RS(Reconciliation Sublayer) 하나에 붙여, 두 MAC의 전송을 [[ethernet-phy|PHY]] 하나의 point-to-point 링크로 합친다.[@ieee-802-3-2022]
 
-구현은 송신 큐나 [[traffic-class|트래픽 클래스]]마다 express인지 preemptable인지를 설정으로 정한다.[@ti-processor-sdk-linux-am64x-iet-2026][@nxp-realtimeedgeug-2026] IEEE 802.1Q는 선점을 지원하는 포트에서 priority 값마다 express인지 preemptable인지를 frame preemption status 표로 정하고, 그에 따라 프레임을 eMAC이나 pMAC으로 보낸다. 기본값은 모든 priority가 express이고, 같은 트래픽 클래스에 대응하는 priority들에는 같은 값을 주기를 권한다.[@ieee-802-1q-2022]
+구현은 송신 큐나 [[traffic-class|트래픽 클래스]]마다 express인지 preemptable인지를 설정으로 정한다.[@ti-processor-sdk-linux-am64x-iet-2026][@nxp-realtimeedgeug-2026] IEEE 802.1Q-2022는 선점을 지원하는 포트에서 priority 값마다 express인지 preemptable인지를 frame preemption status 표로 정하고, 그에 따라 프레임을 eMAC이나 pMAC으로 보낸다. 기본값은 모든 priority가 express이고, 같은 트래픽 클래스에 대응하는 priority들에는 같은 값을 주기를 권한다.[@ieee-802-1q-2022]
 
 TI CPSW의 MAC Merge 부계층은 express 큐에 보낼 프레임이 있으면 preemptable 큐에서 전송 중인 프레임을 선점한다.[@ti-processor-sdk-linux-am64x-iet-2026]
 
@@ -32,7 +32,7 @@ TI CPSW의 MAC Merge 부계층은 express 큐에 보낼 프레임이 있으면 p
 
 ADIN3310/ADIN6310 데이터시트에 따르면 preemptable 프레임의 조각은 mCRC로 끝난다. mCRC가 기대한 [[cyclic-redundancy-check|CRC]]와 같으면 그 조각이 프레임의 끝이고, 기대한 CRC의 아래 16비트를 XOR한 값과 같으면 조각이 더 이어진다. ADIN6310은 마지막이 아닌 조각의 최소 크기를 64, 128, 192, 256바이트 가운데 하나로 설정할 수 있다.[@adi-adin3310-adin6310-2025]
 
-preemptable 프레임을 이미 $s$바이트 보냈고 프레임 CRC를 포함해 $r$바이트가 남았을 때, IEEE 802.3은 $s \ge 60$이고 $r \ge 64$일 때만 선점하게 해 조각이 64바이트보다 작아지지 않게 한다. 받는 쪽의 MAC Merge 부계층은 조각을 pMAC에 넘길 때 SMD 자리에 SFD를 넣고, 마지막이 아닌 조각의 mCRC는 넘기지 않으며, 이어지는 조각은 조각 번호 뒤의 데이터부터 넘긴다. 그래서 pMAC은 다시 합쳐진 프레임 하나를 받는다.[@ieee-802-3-2022]
+preemptable 프레임을 이미 $s$바이트 보냈고 프레임 CRC를 포함해 $r$바이트가 남았을 때, IEEE 802.3-2022는 $s \ge 60$이고 $r \ge 64$일 때만 선점하게 해 조각이 64바이트보다 작아지지 않게 한다. 받는 쪽의 MAC Merge 부계층은 조각을 pMAC에 넘길 때 SMD 자리에 SFD를 넣고, 마지막이 아닌 조각의 mCRC는 넘기지 않으며, 이어지는 조각은 조각 번호 뒤의 데이터부터 넘긴다. 그래서 pMAC은 다시 합쳐진 프레임 하나를 받는다.[@ieee-802-3-2022]
 
 ![[diagrams/frame-preemption-fragments.svg]]
 

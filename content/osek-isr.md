@@ -11,7 +11,7 @@ verified: 2026-09-30
 
 **Category 1 ISR**은 운영체제 서비스를 쓰지 않는다. 예외로 인터럽트를 켜고 끄는 서비스만 부를 수 있다. ISR이 끝나면 프로세서는 끊겼던 바로 그 명령으로 돌아가고, 태스크 관리는 인터럽트의 영향을 받지 않는다. 오버헤드가 가장 적은 종류다.[@osek-os-2-2-3-2005]
 
-category 2 ISR이 category 1 ISR을 끊고 태스크를 활성화하거나 이벤트를 설정해도, category 1 ISR의 끝에는 운영체제로 들어가는 길이 없다. 그래서 그 처리는 다음 재스케줄링 시점이 올 때까지 얼마든지 밀릴 수 있다. OSEK OS 명세는 이식성을 위한 경험칙으로, category 2 인터럽트가 category 1보다 높은 하드웨어 우선순위를 갖지 않게 하기를 제시한다.[@osek-os-2-2-3-2005]
+category 2 ISR이 category 1 ISR을 끊고 태스크를 활성화하거나 이벤트를 설정해도, category 1 ISR의 끝에는 운영체제로 들어가는 길이 없다. 그래서 그 처리는 다음 재스케줄링 시점이 올 때까지 얼마든지 밀릴 수 있다. OSEK OS 2.2.3 명세는 이식성을 위한 경험칙으로, category 2 인터럽트가 category 1보다 높은 하드웨어 우선순위를 갖지 않게 하기를 제시한다.[@osek-os-2-2-3-2005]
 
 ![[diagrams/osek-isr-category-1-nesting-delay.svg]]
 

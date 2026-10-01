@@ -21,4 +21,4 @@ Classical [[can|CAN]] 네트워크의 통신은 event-triggered라, 여러 메�
 
 ## AUTOSAR OS의 schedule table
 
-AUTOSAR OS 명세는 AUTOSAR OS의 핵심 기능의 바탕을 [[osek-os|OSEK OS]]에 두고, 정적으로 정한 expiry point의 묶음인 [[autosar-schedule-table|schedule table]]을 counter가 구동하게 한다.[@autosar-cp-sws-os-2025] 서로 관련된 태스크들의 활성화를 정적으로 정하는 해법으로 흔히 time-triggered 운영체제가 제안되지만, 시간도 사건일 뿐이므로 event-triggered 운영체제로도 정적으로 스케줄한 실시간 소프트웨어의 스케줄러를 구현할 수 있다.[@autosar-cp-srs-os-2023]
+AUTOSAR OS R25-11 명세는 AUTOSAR OS의 핵심 기능의 바탕을 [[osek-os|OSEK OS]]에 두고, 정적으로 정한 expiry point의 묶음인 [[autosar-schedule-table|schedule table]]을 counter가 구동하게 한다.[@autosar-cp-sws-os-2025] 서로 관련된 태스크들의 활성화를 정적으로 정하는 해법으로 흔히 time-triggered 운영체제가 제안되지만, 시간도 사건일 뿐이므로 event-triggered 운영체제로도 정적으로 스케줄한 실시간 소프트웨어의 스케줄러를 구현할 수 있다.[@autosar-cp-srs-os-2023]

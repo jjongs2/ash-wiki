@@ -21,7 +21,7 @@ verified: 2026-09-27
 - **표현 계층**: 응용 개체가 주고받는 정보의 표현을 맡는다. 공통 표현을 제공해 응용 개체가 구문에 매이지 않게 한다.
 - **응용 계층**: 응용 프로세스가 OSI 환경에 접근하는 유일한 수단이다.[@itu-t-x-200-1994]
 
-[[iso-11898-1|ISO 11898-1]]:2024는 [[can|CAN]]의 데이터 링크 계층과 PCS(Physical Coding Sublayer)를 정한다.[@iso-11898-1-obp-2024] ISO 15765-2:2024는 CAN을 쓰는 차량 네트워크의 전송 계층과 네트워크 계층 프로토콜, 그 서비스를 정하고[@iso-15765-2-obp-2024], ISO 14229-1은 UDS(Unified Diagnostic Services)의 응용 계층을 정한다.[@iso-14229-1-obp-2026]
+[[iso-11898-1|ISO 11898-1]]:2024는 [[can|CAN]]의 데이터 링크 계층과 PCS(Physical Coding Sublayer)를 정한다.[@iso-11898-1-obp-2024] ISO 15765-2:2024는 CAN을 쓰는 차량 네트워크의 전송 계층과 네트워크 계층 프로토콜, 그 서비스를 정하고[@iso-15765-2-obp-2024], ISO 14229-1:2026은 UDS(Unified Diagnostic Services)의 응용 계층을 정한다.[@iso-14229-1-obp-2026]
 
 ![[diagrams/osi-layers-vehicle-diagnostics.svg]]
 

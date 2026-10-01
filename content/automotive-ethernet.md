@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**차량용 이더넷**(Automotive Ethernet)은 차량 안에서 쓰는 이더넷이다. ISO 21111-1은 차량 내 이더넷(in-vehicle Ethernet)을 차량 안 구현에 맞춘 이더넷 네트워크 시스템으로 정의한다.[@iso-21111-1-obp-2020] "automotive Ethernet"이라는 이름은 IEEE 802.3 작업 그룹과 OPEN Alliance가 쓴다.[@ieee-802-3ch-objectives-2017][@open-alliance-about-2026]
+**차량용 이더넷**(Automotive Ethernet)은 차량 안에서 쓰는 이더넷이다. ISO 21111-1:2020은 차량 내 이더넷(in-vehicle Ethernet)을 차량 안 구현에 맞춘 이더넷 네트워크 시스템으로 정의한다.[@iso-21111-1-obp-2020] "automotive Ethernet"이라는 이름은 IEEE 802.3 작업 그룹과 OPEN Alliance가 쓴다.[@ieee-802-3ch-objectives-2017][@open-alliance-about-2026]
 
 ISO 21111 시리즈는 차량 내 이더넷의 요구사항과 시험 계획을 담는다. 이더넷 요구사항은 대체로 ISO/IEC/IEEE 8802-3에 있고, ISO 21111은 웨이크업과 입출력 기능처럼 차량 응용에 필요한 보충 명세를 더한다.[@iso-21111-1-obp-2020]
 
@@ -13,7 +13,7 @@ OPEN Alliance는 2011년에 설립되었다.[@open-alliance-about-2026][@ti-sszt
 
 ## 물리 계층
 
-IEEE 802.3은 여러 속도의 이더넷을 공통 MAC(Medium Access Control) 명세 하나로 정하고, 속도마다 다른 [[ethernet-phy|PHY]]를 골라 쓰게 한다.[@ieee-802-3-2022] 차량용 PHY를 만든 IEEE 802.3의 네 태스크 포스(P802.3bw, P802.3bp, P802.3ch, P802.3cg)는 모두 MAC 클라이언트 서비스 인터페이스에서 IEEE 802.3의 프레임 포맷과 최소·최대 프레임 크기를 유지하고, EMC(Electromagnetic Compatibility)와 온도 같은 조건이 걸리는 차량 환경에서 동작하는 것을 목표로 두었다.[@ieee-802-3ch-objectives-2017][@ieee-802-3bw-objectives-2014][@ieee-802-3bp-objectives-2014][@ieee-802-3cg-objectives-2018]
+IEEE 802.3-2022는 여러 속도의 이더넷을 공통 MAC(Medium Access Control) 명세 하나로 정하고, 속도마다 다른 [[ethernet-phy|PHY]]를 골라 쓰게 한다.[@ieee-802-3-2022] 차량용 PHY를 만든 IEEE 802.3의 네 태스크 포스(P802.3bw, P802.3bp, P802.3ch, P802.3cg)는 모두 MAC 클라이언트 서비스 인터페이스에서 IEEE 802.3의 프레임 포맷과 최소·최대 프레임 크기를 유지하고, EMC(Electromagnetic Compatibility)와 온도 같은 조건이 걸리는 차량 환경에서 동작하는 것을 목표로 두었다.[@ieee-802-3ch-objectives-2017][@ieee-802-3bw-objectives-2014][@ieee-802-3bp-objectives-2014][@ieee-802-3cg-objectives-2018]
 
 IEEE SA에 따르면 차량 배선의 무게와 공간이 큰 과제여서, 차량용 PHY로 10 Mbit/s부터 10 Gbit/s까지 나왔다.[@ieee-tsn-automotive-flyer-2026] 이 PHY들을 넣은 IEEE 802.3 개정은 아래와 같다.
 
@@ -24,7 +24,7 @@ IEEE SA에 따르면 차량 배선의 무게와 공간이 큰 과제여서, 차�
 | IEEE 802.3bp-2016 | 1 Gbit/s          | 꼬임쌍선 한 쌍 위의 점대점 PHY인 [[1000base-t1\|1000BASE-T1]][@ieee-802-3bp-objectives-2014][@ieee-802-3bp-2016] |
 | IEEE 802.3ch-2020 | 2.5, 5, 10 Gbit/s | 평형 도체 한 쌍 위의 PHY[@ieee-802-3ch-2020]                                                                     |
 
-현행 IEEE 802.3은 평형 도체 한 쌍 위의 PHY로, 적어도 15 m를 잇는 10 Mbit/s의 10BASE-T1S와 2.5, 5, 10 Gbit/s 전이중의 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1을 둔다.[@ieee-802-3-2022] IEEE 802.3da-2026은 10BASE-T1S 물리 계층의 10 Mbit/s 공유 매체(멀티드롭) 모드를 보강한다.[@ieee-802-3da-2026] P802.3cg 목표에는 노드 8개 이상이 붙은 25 m 이상의 세그먼트에서 반이중 멀티드롭으로 동작하는 선택 사항이 있었다.[@ieee-802-3cg-objectives-2018]
+IEEE 802.3-2022는 평형 도체 한 쌍 위의 PHY로, 적어도 15 m를 잇는 10 Mbit/s의 10BASE-T1S와 2.5, 5, 10 Gbit/s 전이중의 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1을 둔다.[@ieee-802-3-2022] IEEE 802.3da-2026은 10BASE-T1S 물리 계층의 10 Mbit/s 공유 매체(멀티드롭) 모드를 보강한다.[@ieee-802-3da-2026] P802.3cg 목표에는 노드 8개 이상이 붙은 25 m 이상의 세그먼트에서 반이중 멀티드롭으로 동작하는 선택 사항이 있었다.[@ieee-802-3cg-objectives-2018]
 
 ## 케이블
 
@@ -36,7 +36,7 @@ P802.3ch 태스크 포스는 비차폐 꼬임쌍선, 차폐 꼬임쌍선, 차폐
 
 ## 상위 프로토콜
 
-[[doip|DoIP]]를 정하는 ISO 13400-2는 IP(Internet Protocol), TCP, UDP를 써서 진단 테스터와 차량 안 서버 사이의 진단 통신 요구사항을 정한다.[@iso-13400-2-obp-2025] [[some-ip|SOME/IP]]는 서비스 지향 통신을 제공하며, 메시지를 IP 기반 차량 내 네트워크의 UDP나 TCP 페이로드로 나른다.[@autosar-fo-prs-someipprotocol-2025]
+[[doip|DoIP]]를 정하는 ISO 13400-2:2025는 IP(Internet Protocol), TCP, UDP를 써서 진단 테스터와 차량 안 서버 사이의 진단 통신 요구사항을 정한다.[@iso-13400-2-obp-2025] [[some-ip|SOME/IP]]는 서비스 지향 통신을 제공하며, 메시지를 IP 기반 차량 내 네트워크의 UDP나 TCP 페이로드로 나른다.[@autosar-fo-prs-someipprotocol-2025]
 
 ![[diagrams/automotive-ethernet-protocol-stack.svg]]
 
@@ -48,6 +48,6 @@ IEEE 802.3 작업 그룹은 차량용 이더넷 수요를 이끄는 것으로 �
 
 ## 차량 버스와의 차이
 
-TI 기술 기사에 따르면 이더넷은 스위치 네트워크를 이루어, [[can|CAN]], LIN, FlexRay, MOST(Media Oriented Systems Transport) 같은 공유 버스 토폴로지로는 얻을 수 없는 대역과 데이터 속도를 낸다.[@ti-sszt730-2018] IEEE 802.1Q는 브리지가 필터링 정보로 프레임을 출발지와 목적지 사이의 경로에 가두어 트래픽을 줄이게 한다.[@ieee-802-1q-2022] IEEE 802.3이 상정하는 전이중 동작의 가장 흔한 구성은 브리지(스위치)의 포트마다 장치 하나를 전용 링크로 잇는 것이고, 이때는 공유 매체를 두고 다투는 일이 없다.[@ieee-802-3-2022]
+TI 기술 기사에 따르면 이더넷은 스위치 네트워크를 이루어, [[can|CAN]], LIN, FlexRay, MOST(Media Oriented Systems Transport) 같은 공유 버스 토폴로지로는 얻을 수 없는 대역과 데이터 속도를 낸다.[@ti-sszt730-2018] IEEE 802.1Q-2022는 브리지가 필터링 정보로 프레임을 출발지와 목적지 사이의 경로에 가두어 트래픽을 줄이게 한다.[@ieee-802-1q-2022] IEEE 802.3이 상정하는 전이중 동작의 가장 흔한 구성은 브리지(스위치)의 포트마다 장치 하나를 전용 링크로 잇는 것이고, 이때는 공유 매체를 두고 다투는 일이 없다.[@ieee-802-3-2022]
 
 차량 버스 전반은 [[vehicle-bus|차량 버스]]에서 다룬다.

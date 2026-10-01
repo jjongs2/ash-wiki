@@ -13,7 +13,7 @@ Bosch CAN 2.0 규격은 버스를 wired-AND로 구현하는 경우를 예로 들
 
 ## 물리 표현
 
-dominant와 recessive는 버스 상태의 이름이고, 논리 0·1과의 대응은 데이터 링크 계층 표준인 [[iso-11898-1|ISO 11898-1]]이 정한다.[@iso-11898-1-obp-2024]
+dominant와 recessive는 버스 상태의 이름이고, 논리 0·1과의 대응은 데이터 링크 계층 표준인 [[iso-11898-1|ISO 11898-1:2024]]가 정한다.[@iso-11898-1-obp-2024]
 
 고속 CAN에서 recessive는 두 선의 차동 전압이 거의 0인 상태이고, dominant는 [[can-transceiver|트랜시버]]가 두 선을 [[differential-signaling|차동]]으로 구동해 CAN_H를 CAN_L보다 높게 벌린 상태다. 예를 들어 TCAN1042-Q1에서 recessive는 버스가 수신기의 높은 내부 입력 저항을 거쳐 0.5 VCC로 바이어스된 상태다.[@ti-tcan1042-q1-2021] 전기적 값은 [[can-physical-layer#고속 CAN|CAN 물리 계층]]에서 다룬다.
 

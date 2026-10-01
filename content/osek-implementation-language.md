@@ -53,4 +53,4 @@ OIL 명세가 예로 드는 개발 과정에서 **System Generator**는 OIL 구�
 
 ![[diagrams/oil-development-process.svg]]
 
-시스템 생성과 거기 쓰는 도구는 구현마다 다르다. OSEK OS 명세는 구현과 시스템 생성에 관한 사항을 OIL 명세로 넘긴다.[@osek-os-2-2-3-2005] OSEK/VDX OIL은 ISO 17356-6:2006으로 국제 표준이 됐다.[@iso-17356-6-2006]
+시스템 생성과 거기 쓰는 도구는 구현마다 다르다. OSEK OS 2.2.3 명세는 구현과 시스템 생성에 관한 사항을 OIL 명세로 넘긴다.[@osek-os-2-2-3-2005] OSEK/VDX OIL은 ISO 17356-6:2006으로 국제 표준이 됐다.[@iso-17356-6-2006]

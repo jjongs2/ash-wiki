@@ -40,7 +40,7 @@ MCAL의 Microcontroller Drivers에는 GPT(General Purpose Timer) 드라이버와
 
 ## 인터페이스
 
-AUTOSAR 규격은 인터페이스를 세 종류로 나눈다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+AUTOSAR R25-11 규격은 인터페이스를 세 종류로 나눈다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 - **AUTOSAR Interface**: SW-C와 BSW 모듈 사이에 오가는 정보를 정의하는 인터페이스다. 특정 프로그래밍 언어, ECU, 네트워크 기술과 상관없이 기술하며, SW-C와 BSW 모듈의 포트를 정의하는 데 쓴다. SW-C와 RTE 사이에 쓰이고, ECU Abstraction과 Complex Drivers가 RTE와 만나는 곳에도 쓰인다.
 - **Standardized AUTOSAR Interface**: 문법과 의미를 AUTOSAR가 표준으로 정한 AUTOSAR Interface다. 주로 BSW가 응용 SW-C에 주는 표준 서비스인 AUTOSAR Services를 정의하는 데 쓴다.

@@ -17,7 +17,7 @@ AUTOSAR COM은 시그널마다 I-PDU 안의 시작 비트 위치(`ComBitPosition
 
 ## 통신 매트릭스
 
-AUTOSAR System Template은 어떤 시그널을 어느 프레임에 싣고 ECU마다 무엇을 보내고 받는지를 System Configuration Description의 통신 매트릭스로 정하고, 이 기술을 입력으로 ECU 설정을 만든다. 통신 매트릭스는 프레임, 시그널, 타이밍을 담고, System Template은 게이트웨이 표도 기술한다.[@autosar-cp-tps-systemtemplate-2025]
+AUTOSAR System Template R25-11은 어떤 시그널을 어느 프레임에 싣고 ECU마다 무엇을 보내고 받는지를 System Configuration Description의 통신 매트릭스로 정하고, 이 기술을 입력으로 ECU 설정을 만든다. 통신 매트릭스는 프레임, 시그널, 타이밍을 담고, System Template은 게이트웨이 표도 기술한다.[@autosar-cp-tps-systemtemplate-2025]
 
 Vector의 CANdb++ Admin은 통신 매트릭스를 설계하는 도구로, 통신 객체를 정의하고 송수신 관계를 정한다.[@vector-candb-admin-factsheet-2024]
 
@@ -27,7 +27,7 @@ CAN의 [[can-identifier|식별자]]는 목적지가 아니라 데이터의 뜻�
 
 ASAM MCD-2 NET, 곧 **FIBEX**(Field Bus Data Exchange Format)는 차량 네트워크의 통신을 기술하는 XML(Extensible Markup Language) 기반 인터페이스 기술 표준이며, [[can|CAN]], LIN, [[flexray|FlexRay]], 이더넷 등을 위한 기술별 확장을 둔다. FIBEX 기술은 주고받는 시그널의 정의와 ECU마다 보내고 받는 시그널 목록을 담는다.[@asam-mcd-2-net-2017][@asam-mcd-2-net-toc-2017]
 
-ISO 17987 시리즈는 LIN의 통신 동작을 기술하는 네트워크 기술 파일로 LDF(LIN description file)를 두고, 그 형식은 ISO 17987-2가 다룬다.[@iso-17987-2-obp-2025]
+ISO 17987 시리즈는 LIN의 통신 동작을 기술하는 네트워크 기술 파일로 LDF(LIN description file)를 두고, 그 형식은 ISO 17987-2:2025가 다룬다.[@iso-17987-2-obp-2025]
 
 Vector는 DBC 형식을 통신 데이터를 기술하는 사실상의 표준(de facto standard)이라 부른다. DBC 데이터베이스는 CAN·[[can-fd|CAN FD]] 네트워크, 버스에 이어진 ECU, 메시지와 시그널을 기술하고, 메시지의 송신 노드와 노드가 받는 시그널을 관계로 둔다.[@vector-candb-admin-factsheet-2024] 메시지 안에서 시그널의 위치는 시작 비트로 정한다.[@vector-an-ion-1-0521-2019] Vector의 DBC 편집 도구 CANdb++에서 메시지는 이름, ID, [[data-length-code|DLC]]를 갖고, 시그널은 비트 길이, 바이트 순서, 부호 여부를 나타내는 값 형식, 계수(factor)와 오프셋, 최솟값과 최댓값, 단위를 갖는다.[@vector-candb-manual-2019]
 

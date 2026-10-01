@@ -13,11 +13,11 @@ CAN은 멀티마스터 방식이라, 버스가 비어 있으면 어느 노드든
 
 ## 표준의 분담
 
-[[iso-11898-1|ISO 11898-1]]은 데이터 링크 계층과 물리 부호화 부계층(PCS, Physical Coding Sublayer)을[@iso-11898-1-obp-2024], [[iso-11898-2|ISO 11898-2]]는 고속 물리 매체 접속(PMA, Physical Medium Attachment) 부계층을[@iso-11898-2-obp-2026], [[iso-11898-3|ISO 11898-3]]은 비트율 $R_\mathrm{b}$가 $40\,\mathrm{kbit/s} < R_\mathrm{b} \le 125\,\mathrm{kbit/s}$인 저속 내결함성 매체 의존 인터페이스를 규정한다.[@iso-11898-3-2006]
+[[iso-11898-1|ISO 11898-1:2024]]는 데이터 링크 계층과 물리 부호화 부계층(PCS, Physical Coding Sublayer)을[@iso-11898-1-obp-2024], [[iso-11898-2|ISO 11898-2:2026]]은 고속 물리 매체 접속(PMA, Physical Medium Attachment) 부계층을[@iso-11898-2-obp-2026], [[iso-11898-3|ISO 11898-3:2006]]은 비트율 $R_\mathrm{b}$가 $40\,\mathrm{kbit/s} < R_\mathrm{b} \le 125\,\mathrm{kbit/s}$인 저속 내결함성 매체 의존 인터페이스를 규정한다.[@iso-11898-3-2006]
 
 ![[diagrams/can-iso-11898-sublayers.svg]]
 
-ISO 11898-1은 CAN 프로토콜 컨트롤러를, ISO 11898-2는 CAN 트랜시버를 구현하는 칩 설계자를 위한 표준이다.[@iso-11898-1-obp-2024]
+ISO 11898-1:2024는 CAN 프로토콜 컨트롤러를, ISO 11898-2는 CAN 트랜시버를 구현하는 칩 설계자를 위한 표준이다.[@iso-11898-1-obp-2024]
 
 > [!note]
 > Bosch의 CAN 2.0 규격은 버스 매체를 정하지 않고, 단선과 접지, 차동 두 선, 광섬유 등을 예로 든다.[@bosch-can-2-0-1991]
