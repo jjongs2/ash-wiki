@@ -15,7 +15,7 @@ ISO/IEC 2382:2015는 LAN(Local Area Network)의 MAC(Medium Access Control) 프�
 
 **TDMA**(Time Division Multiple Access)는 링크에 접근하는 단말마다 되풀이되는 시간 구간을 따로 배정해, 그 구간에 송신하게 하는 다중 접속 기법이다.[@iec-60050-725-14-12-1994]
 
-NXP 앱노트에 따르면 [[flexray|FlexRay]]의 정적 세그먼트는 버스 접근에 TDMA를 쓰고, 동적 세그먼트는 FTDMA(Flexible TDMA)를 쓴다.[@nxp-an12233-2021] FlexRay의 통신 사이클은 [[flexray#통신 사이클|FlexRay]]에서 다룬다.
+NXP 앱노트에 따르면 [[flexray|FlexRay]]의 정적 세그먼트는 버스 접근에 TDMA를 쓰고, 동적 세그먼트는 FTDMA(Flexible TDMA)를 쓴다.[@nxp-an12233-2021] 세그먼트의 구성은 [[flexray#통신 사이클|FlexRay의 통신 사이클]]에서 다룬다.
 
 ## 경쟁 방식
 
@@ -29,7 +29,7 @@ CAN에서는 버스가 idle이면 어느 노드든 송신을 시작할 수 있�
 
 ## Commander-responder
 
-[[lin|LIN]]에서는 네트워크에 하나뿐인 commander가 프레임을 스케줄한다.[@iso-17987-1-obp-2025] commander와 responder의 동작은 [[lin#Commander와 responder|LIN]]에서 다룬다.
+[[lin|LIN]]에서는 네트워크에 하나뿐인 commander가 프레임을 스케줄한다.[@iso-17987-1-obp-2025] 그 동작은 [[lin#Commander와 responder|LIN의 commander와 responder]]에서 다룬다.
 
 ## 토큰 원리
 
