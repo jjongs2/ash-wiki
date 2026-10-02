@@ -104,6 +104,10 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-links.md:32",
         "content/bad-links.md:38",
         "content/bad-links.md:42",
+        "content/bad-section-link.md:12",
+        "content/bad-section-link.md:17",
+        "content/bad-section-link.md:23",
+        "content/bad-section-link.md:28",
         "content/bad-table-link.md:14",
         "content/bad-table-link.md:22",
         "content/bad-table-link.md:28",
@@ -244,6 +248,22 @@ describe("check-content CLI", { concurrency: false }, () => {
     const table = report.messages.get("wikilink")!.filter((m) => m.includes("bad-table-link.md"))
     assert.strictEqual(table.length, 3)
     for (const message of table) assert.match(message, /\[\[target-page\\\|대상\]\]$/)
+  })
+
+  test("같은 블록의 절 링크 표시 이름 위반은 절 링크 원문을 알려 준다", () => {
+    const report = runChecker("violation")
+    const section = report.messages
+      .get("wikilink")!
+      .filter((m) => m.includes("bad-section-link.md") && m.includes("같은 블록"))
+    assert.deepStrictEqual(
+      section.map((m) => m.match(/: (\[\[.*\]\])$/)?.[1]),
+      [
+        "[[target-page#정의|대상 페이지]]",
+        "[[target-page#정의|대상]]",
+        "[[target-page#정의\\|대상]]",
+        "[[target-page#정의]]",
+      ],
+    )
   })
 
   test("KaTeX 렌더 오류는 문법 오류와 정의되지 않은 명령을 따로 알려 준다", () => {

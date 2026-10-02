@@ -39,6 +39,6 @@ P802.3bw 태스크 포스는 인라인 커넥터를 4개까지 둔 한 쌍 균�
 
 ## 100BASE-TX와의 차이
 
-[[100base-tx|100BASE-TX]]는 송신 쌍과 수신 쌍, 두 쌍을 쓴다.[@ti-szzy009-2018][@microchip-ksz8081mlx-2022] 100BASE-TX가 차량에서 걸림돌이 된 점은 [[100base-tx#100BASE-T1과의 차이|100BASE-TX]]에서 다룬다.
+[[100base-tx|100BASE-TX]]는 송신 쌍과 수신 쌍, 두 쌍을 쓴다.[@ti-szzy009-2018][@microchip-ksz8081mlx-2022] 100BASE-TX가 차량에서 걸림돌이 된 점은 [[100base-tx#100BASE-T1과의 차이|100BASE-T1과의 차이]]에서 다룬다.
 
 ![[diagrams/ethernet-phy-pair-comparison.svg]]

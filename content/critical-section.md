@@ -37,6 +37,6 @@ AUTOSAR R25-11 OS 명세는 인터럽트 금지가 그것을 호출한 코어에
 
 ## 우선순위 상한
 
-OSEK/VDX OS 2.2.3 명세는 [[osek-resource|resource]]를 얻은 태스크의 우선순위를 미리 정한 상한까지 올리게 해, 같은 resource를 쓰는 다른 태스크가 그동안 실행되지 못하게 한다.[@osek-os-2-2-3-2005] 규칙은 [[osek-resource#Ceiling priority|OSEK resource]], 일반형은 [[priority-ceiling-protocol|우선순위 상한 프로토콜]]에서 다룬다.
+OSEK/VDX OS 2.2.3 명세는 [[osek-resource|resource]]를 얻은 태스크의 우선순위를 미리 정한 상한까지 올리게 해, 같은 resource를 쓰는 다른 태스크가 그동안 실행되지 못하게 한다.[@osek-os-2-2-3-2005] 규칙은 [[osek-resource#Ceiling priority|OSEK resource의 ceiling priority]], 일반형은 [[priority-ceiling-protocol|우선순위 상한 프로토콜]]에서 다룬다.
 
 AUTOSAR R25-11 OS 명세는 이 상호 배제를 같은 코어의 태스크 사이로 한정한다. 상한 프로토콜이 바꾸는 우선순위는 코어마다 따로라, 다른 코어의 접근에서는 임계 구역을 지키지 못하기 때문이다.[@autosar-cp-sws-os-2025]
