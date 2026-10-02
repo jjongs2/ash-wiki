@@ -39,4 +39,6 @@ CMMI 3.0은 프랙티스 영역마다 **능력 수준**(capability level)을 두
 
 CMMI 1.3은 두 표현 방식을 두었다. 연속형 표현(continuous representation)은 프로세스 영역마다 능력 수준 0\~3(Incomplete, Performed, Managed, Defined)을 매겼고, 단계형 표현(staged representation)은 여러 프로세스 영역에 걸친 조직의 개선 성취에 성숙도 수준 1\~5(Initial, Managed, Defined, Quantitatively Managed, Optimizing)를 매겼다. CMMI 3.0에서는 성숙도 수준 0이 생겼고, 능력 수준 1의 이름이 Performed에서 Initial로 바뀌었다.[@cmmi-institute-levels-2026][@cmmi-product-team-cmmi-development-2010]
 
+![[diagrams/cmmi-capability-maturity-levels.svg]]
+
 Automotive SPICE와의 차이는 [[automotive-spice#CMMI와의 차이|Automotive SPICE]]에서, Automotive SPICE가 쓰는 능력 수준은 [[process-capability-level|프로세스 능력 수준]]에서 다룬다.

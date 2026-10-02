@@ -54,3 +54,5 @@ ISO/IEC 25010:2023은 SQuaRE(Systems and software Quality Requirements and Evalu
 - ISO/IEC 9126:1991은 품질 특성 여섯을 정의했다.[@iso-iec-25010-obp-2011]
 - ISO/IEC 25010:2011은 ISO/IEC 9126-1:2001을 대체했다. 그 품질 특성을 일부 고쳐 이어받아, 제품 품질 특성을 여덟으로 두고 기능성의 부특성이던 보안과 새 특성인 호환성을 따로 특성으로 세웠다.[@iso-iec-25010-obp-2011]
 - ISO/IEC 25010:2023은 ISO/IEC 25002:2024, ISO/IEC 25019:2023과 함께 2011판을 대체했다. 2011판의 usability와 portability를 interaction capability와 flexibility로 바꾸고, safety를 새 특성으로 더해 아홉 특성을 둔다. 2011판의 제품 품질 모델 부분만 이어받고, 품질 모델 개요는 ISO/IEC 25002로, 사용 품질 모델은 ISO/IEC 25019로 옮겼다.[@iso-iec-25010-obp-2023][@iso-iec-25019-obp-2023][@iso-iec-25010-obp-2011]
+
+![[diagrams/iso-iec-25010-2011-split.svg]]

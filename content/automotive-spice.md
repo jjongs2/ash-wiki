@@ -16,6 +16,8 @@ status: 유효
 
 Automotive SPICE 4.1은 프로세스 참조 모델(PRM, process reference model)과 프로세스 평가 모델(PAM, process assessment model)을 한 문서에 담는다. 프로세스 참조 모델은 프로세스마다 목적과 성과(outcome)를 정의하고, 프로세스 평가 모델은 프로세스 성과와 프로세스 속성 달성이 있는지를 평가자가 판단할 지표를 둔다. Automotive SPICE 4.1은 ISO/IEC 33020:2019를 고쳐 맞춘 자체 측정 프레임워크를 두고, 이 프레임워크로 프로세스마다 능력 수준을 따로 매긴다.[@vda-automotive-spice-pam-4-1-2026]
 
+![[diagrams/aspice-assessment-indicators.svg]]
+
 Automotive SPICE 4.1의 프로세스 참조 모델과 프로세스 평가 모델은 프로세스가 무엇을 이뤄야 하는지를 다루고, 그것을 이룰 방법, 도구, 템플릿은 정하지 않는다. 문서는 VDA QMC 웹사이트에서 내려받아서만 얻을 수 있고, 받은 사람이 다시 배포할 수 없다.[@vda-automotive-spice-pam-4-1-2026]
 
 프로세스 목록과 평가 범위를 짜는 plug-in 컨셉은 [[automotive-spice-process-reference-model|Automotive SPICE 프로세스 참조 모델]]에서, 지표의 구조는 [[automotive-spice-process-assessment-model|Automotive SPICE 프로세스 평가 모델]]에서, 능력 수준과 등급은 [[process-capability-level|프로세스 능력 수준]]에서 다룬다.
@@ -38,6 +40,8 @@ ISO/IEC 330xx 계열은 ISO/IEC 15504 시리즈의 여러 부를 대체하고 �
 - 2017년: 3.1. 3.0을 조금 고친 판이다.[@vda-automotive-spice-pam-3-1-2017]
 - 2023년: 4.0. 하드웨어 엔지니어링(HWE), 머신러닝 엔지니어링(MLE), 확인(VAL) 프로세스 그룹을 더했고, 결과 쪽 지표를 작업 산출물 특성(WPC, work product characteristics)에서 정보 항목 특성(IIC, information item characteristics)으로 바꿨다.[@vda-automotive-spice-pam-3-1-2017][@vda-automotive-spice-pam-4-0-2023]
 - 2026년: 4.1. 현행판이다. MLE.2의 다섯째 BP(base practice)를 빼고 문구를 다듬었다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-publications-2026]
+
+![[diagrams/automotive-spice-release-timeline.svg]]
 
 ## CMMI와의 차이
 

@@ -14,6 +14,8 @@ Automotive SPICE 4.1은 지표를 두 종류로 둔다.[@vda-automotive-spice-pa
 - **프로세스 수행 지표**(process performance indicators): 프로세스 성과가 얼마나 이뤄졌는지 보이는 지표로, 프로세스마다 다르고 능력 수준 1에 쓴다
 - **프로세스 능력 지표**(process capability indicators): 프로세스 속성이 얼마나 이뤄졌는지 보이는 지표로, 모든 프로세스에 공통이고 능력 수준 1\~5에 쓴다[@vda-automotive-spice-pam-4-1-2026]
 
+![[diagrams/aspice-assessment-indicators.svg]]
+
 지표는 프로세스 성과와 속성 달성이 있는지 가리고 객관적 증거를 모으는 데 쓰는 안내이며, 꼭 따라야 할 점검표가 아니다.[@vda-automotive-spice-pam-4-1-2026] 능력 수준과 프로세스 속성, 그 등급은 [[process-capability-level|프로세스 능력 수준]]에서 다룬다.
 
 ## 프로세스 수행 지표
@@ -49,7 +51,7 @@ Automotive SPICE 4.1은 여러 엔지니어링 프로세스에 같은 이름의 
 
 ### 합의와 의사소통
 
-Automotive SPICE 4.1에서 SYS.2, SYS.3, SWE.1, SWE.2, SWE.3의 마지막 BP는 합의된 산출물을 영향받는 당사자 모두에게 알리게 하고, SYS.4, SYS.5, SWE.4, SWE.5, SWE.6의 마지막 BP는 검증 결과를 요약해 알리게 한다.[@vda-automotive-spice-pam-4-1-2026]
+Automotive SPICE 4.1은 SYS.2, SYS.3, SWE.1, SWE.2, SWE.3의 마지막 BP로 합의된 산출물을 영향받는 당사자 모두에게 알리게 하고, SYS.4, SYS.5, SWE.4, SWE.5, SWE.6의 마지막 BP로 검증 결과를 요약해 알리게 한다.[@vda-automotive-spice-pam-4-1-2026]
 
 Automotive SPICE 3.1은 핵심 개념 부록에서 V 모델 왼쪽의 정보 흐름을 합의된 산출물을 알리는 BP로, 오른쪽을 결과를 요약해 알리는 BP로 설명했다. 합의는 영향받는 당사자 사이의 공통 이해로 보고, 정식 승인은 GP 2.1.7의 몫이라 했다. Automotive SPICE 4.1은 같은 꼴의 BP를 두지만 핵심 개념 부록에 이 절이 없다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
@@ -59,7 +61,7 @@ Automotive SPICE 4.1은 SYS.2\~SYS.5, SWE.1\~SWE.6, HWE.1\~HWE.4, MLE.1\~MLE.4�
 
 ### Evaluate, verification criteria, ensuring compliance
 
-Automotive SPICE 3.1은 핵심 개념 부록에서 평가(evaluate), 검증 기준(verification criteria), 준수 보장(ensuring compliance)을 함께 설명했다. Automotive SPICE 4.1에서 이 셋은 다음처럼 바뀌었다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+Automotive SPICE 3.1은 핵심 개념 부록에서 평가(evaluate), 검증 기준(verification criteria), 준수 보장(ensuring compliance)을 함께 설명했다. Automotive SPICE 4.1은 이 셋을 다음처럼 바꿨다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 - 평가: 3.1은 시스템·소프트웨어 아키텍처와 소프트웨어 상세 설계에서 대안을 정한 기준으로 평가하고 선택 근거를 기록하게 했다(SYS.3.BP5, SWE.2.BP6, SWE.3.BP4). 4.1은 대안 평가 BP 대신 아키텍처를 기술적 측면에서 분석하고 설계 결정의 근거를 기록하게 한다(SYS.3.BP3, SWE.2.BP3)
 - 검증 기준: 3.1은 SYS.2와 SWE.1에서 요구사항마다 검증 기준을 세우게 했다. 4.1은 이 BP를 두지 않고, 검증 가능성을 요구사항 특성의 예로 든다
