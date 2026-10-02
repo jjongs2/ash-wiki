@@ -29,8 +29,10 @@
 - IETF: 표준화 기구
 - ISO: 표준화 기구
 - ITU-T: 표준화 기구
+- JTC: ISO 위원회 번호
 - MCD: 표준·규격 이름
 - MCU: 널리 쓰이는 약어
+- NATO: 널리 쓰이는 약어
 - NMEA: 표준화 기구
 - OASIS: 표준화 기구
 - OSEK/VDX: 표준·규격 이름
