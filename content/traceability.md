@@ -30,7 +30,7 @@ Automotive SPICE 4.1은 산출물 사이에 다음과 같은 연결을 요구한
 
 ![[diagrams/aspice-traceability-work-products.svg]]
 
-법규나 형식 승인 요구사항에서 도출된 확인 수단은 단방향 추적성으로 충분하다고 정한다.[@vda-automotive-spice-pam-4-1-2026] 변경 요청은 [[configuration-management|형상 관리]]에서 다룬다.
+Automotive SPICE 4.1은 법규나 형식 승인 요구사항에서 도출된 확인 수단에는 단방향 추적성으로 충분하다고 정한다.[@vda-automotive-spice-pam-4-1-2026] 변경 요청은 [[configuration-management|형상 관리]]에서 다룬다.
 
 ## 일관성
 
@@ -38,16 +38,16 @@ ISO/IEC/IEEE 24765 용어집은 **일관성**(consistency)을 문서들 사이, 
 
 Automotive SPICE 4.1은 추적성과 함께 일관성을 요구하며, 일관성은 MAN.3과 SYS·SWE·HWE 프로세스의 추적성·일관성 BP대로 갖추게 한다. 링크가 있다는 것 같은 추적성만으로는 정보가 일관됨을 뜻하지 않는다고 하고, 일관성 증거(13-51)를 관련 산출물을 따라 정보가 의미상 맞는다는 증거로 정한다. 일관성 증거에는 하이퍼링크, 저장소 위치, 편집상 참조 같은 추적 정보와 명명 규칙이 든다.[@vda-automotive-spice-pam-4-1-2026]
 
-Automotive SPICE 3.1은 추적성과 일관성을 서로 다른 두 BP로 다뤘고, 추적성은 산출물 사이에 참조나 링크가 있는 것, 일관성은 내용과 의미를 다루는 것으로 설명했다. 4.1은 둘을 한 BP로 묶는다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+Automotive SPICE 3.1은 추적성과 일관성을 서로 다른 두 BP로 두고, 추적성을 산출물 사이에 참조나 링크가 있는 것으로, 일관성을 내용과 의미의 문제로 정의했다. 4.1은 둘을 한 BP로 묶는다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 일관성은 개발 산출물 사이에만 걸리지 않는다. Automotive SPICE 4.1은 MAN.3에서 프로젝트의 추정, 자원, 기술, 작업 패키지와 그 의존성, 일정, 계획, 인터페이스, 약속을 정기적으로 조정해 작업 범위와 일관되게 하라고 요구한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 쓸모
 
-Automotive SPICE 4.1에 따르면 양방향 추적성은 일관성을 뒷받침하고, 변경 요청의 영향 분석과 커버리지 입증을 쉽게 한다. Automotive SPICE 3.1은 추적성이 커버리지, 영향 분석, 요구사항 구현 상태의 추적을 돕는다고 설명했다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+Automotive SPICE 3.1은 추적성이 돕는 일로 커버리지, 영향 분석, 요구사항 구현 상태의 추적을 들었다. Automotive SPICE 4.1은 추적성 BP의 주석에서 양방향 추적성이 일관성을 뒷받침하고, 변경 요청의 영향 분석과 커버리지 입증을 쉽게 한다고 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ## 추적표
 
 ISO/IEC/IEEE 29148:2018은 **요구사항 추적표**(requirements traceability matrix, RTM)를 요구사항을 상위 요구사항이나 요구(needs), 또는 하위 구현과 잇는 구조화된 정보 산출물로 정의한다.[@iso-iec-ieee-29148-obp-2018]
 
-ISO/IEC/IEEE 24765 용어집은 추적표(traceability matrix)를 개발 과정의 산출물 둘 이상 사이의 관계를 기록하는 행렬로 정의하고, 한 소프트웨어 구성요소의 요구사항과 설계 사이의 관계를 기록하는 행렬을 예로 든다. 요구사항 추적 도구는 항목별 소프트웨어 요구사항 명세, 설계 요소, 코드 요소, 시험 케이스 사이에 추적성을 세우는 개발 도구로 정의하고, 관련 질의, 분석, 보고서 생성도 지원한다고 적는다.[@ieee-cs-sevocab-2026]
+ISO/IEC/IEEE 24765 용어집은 추적표(traceability matrix)를 개발 과정의 산출물 둘 이상 사이의 관계를 기록하는 행렬로 정의하고, 한 소프트웨어 구성요소의 요구사항과 설계 사이의 관계를 기록하는 행렬을 예로 든다. 요구사항 추적 도구는 항목별 소프트웨어 요구사항 명세, 설계 요소, 코드 요소, 시험 케이스 사이에 추적성을 세우는 개발 도구로 정의하고, 관련 질의, 분석, 보고서 생성도 지원한다고 둔다.[@ieee-cs-sevocab-2026]

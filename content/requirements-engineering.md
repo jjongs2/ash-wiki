@@ -22,17 +22,17 @@ ISO/IEC/IEEE 29148:2018은 요구 공학의 활동 가운데 넷을 다음처럼
 | 요구사항 도출(elicitation)  | 프로토타이핑, 구조화된 설문 같은 체계적 기법으로 고객과 최종 사용자의 필요를 먼저 찾아 문서로 남기는 일 |
 | 요구사항 검증(verification) | 요구사항이 하나씩, 그리고 집합으로 잘 쓰였는지 검토로 확인하는 일                                       |
 | 요구사항 확인(validation)   | 요구사항이 하나씩, 그리고 집합으로 이해관계자가 뜻한 올바른 시스템을 정의하는지 확인하는 일             |
-| 요구사항 관리(management)   | 시스템·제품·서비스의 생애주기 내내 요구사항을 식별, 문서화, 유지, 전달, 추적하는 활동                   |
+| 요구사항 관리(management)   | 시스템·제품·서비스의 생명주기 내내 요구사항을 식별, 문서화, 유지, 전달, 추적하는 활동                   |
 
-Automotive SPICE 4.1의 SYS.1은 관련 이해관계자를 찾아 그들의 기대와 요청을 얻고, 그것을 요구사항으로 정리해 영향받는 당사자와 합의하게 한다. SYS.2와 SWE.1은 기능·비기능 요구사항을 정해 둔 요구사항 특성에 맞춰 찾아 문서로 남기고, 요구사항을 구조화하고 우선순위를 정하며, 상호 의존을 포함해 정확성과 기술적 실현 가능성을 분석하게 한다.[@vda-automotive-spice-pam-4-1-2026]
+Automotive SPICE 4.1의 SYS.1은 관련 이해관계자를 찾아 그들의 기대와 요청을 얻고(base practice 1, BP1), 그것을 요구사항으로 정리해 영향받는 당사자와 합의하게 한다(BP2). SYS.2와 SWE.1은 기능·비기능 요구사항을 정해 둔 요구사항 특성에 맞춰 찾아 문서로 남기고, 요구사항을 구조화하고 우선순위를 정하며, 상호 의존을 포함해 정확성과 기술적 실현 가능성을 분석하게 한다.[@vda-automotive-spice-pam-4-1-2026]
 
-요구사항을 모은 문서는 [[software-requirements-specification|SRS]]에서 다룬다. 분석에 쓰는 표기 가운데 use case를 ISO/IEC/IEEE 24765 용어집은 시스템의 행위 요구사항과 사용자와의 상호작용을 기술한 것으로 정의한다.[@ieee-cs-sevocab-2026]
+요구사항을 모은 문서는 [[software-requirements-specification|SRS]]에서 다룬다.
 
 ## 요구사항 관리
 
 ISO/IEC/IEEE 24765 용어집은 소프트웨어 요구사항 관리를, 시스템 수준에서 모듈·부품 수준까지 요구사항의 식별, 할당, 하향 전개를 인터페이스, 검증, 수정, 상태 감시까지 계획하고 통제하는 과정으로 정의한다.[@ieee-cs-sevocab-2026]
 
-Automotive SPICE 4.1의 SYS.1은 합의한 이해관계자 요구사항에 대한 변경을 분석해 영향과 위험을 평가하고 변경 통제를 시작하게 한다. Automotive SPICE 3.1의 SYS.1은 이해관계자 요구사항을 베이스라인으로 정하는 것을 BP(base practice)의 하나로 두었으나, 4.1의 SYS.1에는 베이스라인 BP가 없고 요구사항 합의와 변경 분석을 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+Automotive SPICE 4.1의 SYS.1은 합의한 이해관계자 요구사항에 대한 변경을 분석해 영향과 위험을 평가하고 변경 통제를 시작하게 한다(BP3). Automotive SPICE 3.1의 SYS.1은 이해관계자 요구사항을 베이스라인으로 정하는 것을 BP의 하나로 두었으나, 4.1의 SYS.1에는 베이스라인 BP가 없고 요구사항 합의와 변경 분석을 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 베이스라인과 변경 통제는 [[configuration-management|형상 관리]]에서, 요구사항과 다른 산출물 사이의 연결은 [[traceability|추적성]]에서 다룬다.
 
@@ -48,29 +48,29 @@ ISO/IEC/IEEE 29148:2018은 파생 요구사항(derived requirement)을, 요구�
 
 Automotive SPICE 4.1은 요구사항을 수준마다 다른 프로세스로 다룬다.[@vda-automotive-spice-pam-4-1-2026]
 
-- SYS.1(Requirements Elicitation): 생애주기 내내 변하는 이해관계자의 필요와 요구사항을 모으고 분석하고 추적해 합의된 요구사항을 세운다.
+- SYS.1(Requirements Elicitation): 생명주기 내내 변하는 이해관계자의 필요와 요구사항을 모으고 분석하고 추적해 합의된 요구사항을 세운다.
 - SYS.2(System Requirements Analysis): 이해관계자 요구사항과 일관되며 구조화·분석된 시스템 요구사항을 세운다.
-- SWE.1(Software Requirements Analysis): 시스템 요구사항 및 시스템 아키텍처와 일관되며 구조화·분석된 소프트웨어 요구사항을 세운다. 하드웨어 요구사항은 HWE.1이 같은 방식으로 세운다.
+- SWE.1(Software Requirements Analysis): 시스템 요구사항 및 시스템 아키텍처와 일관되며 구조화·분석된 소프트웨어 요구사항을 세운다. 하드웨어 요구사항은 HWE.1이 같은 방식으로 세운다.[@vda-automotive-spice-pam-4-1-2026]
 
 ![[diagrams/aspice-requirement-levels.svg]]
 
-Automotive SPICE 3.1은 SYS.2와 SWE.1의 목적을 상위 요구사항을 하위 요구사항으로 옮기는 일로 적었고, SWE.1은 시스템 요구사항 가운데 소프트웨어에 관한 부분을 옮겼다. 4.1은 이를 상위 요구사항과 일관된, 구조화·분석된 요구사항 집합을 세우는 일로 적는다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+Automotive SPICE 3.1은 SYS.2와 SWE.1의 목적을 상위 요구사항을 하위 요구사항으로 옮기는 일로 두었다. SWE.1이 옮기는 것은 시스템 요구사항 가운데 소프트웨어에 관한 부분이었다. 4.1은 이를 상위 요구사항과 일관된, 구조화·분석된 요구사항 집합을 세우는 일로 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
-Automotive SPICE 4.1의 SWE.1 BP는 다음과 같다.[@vda-automotive-spice-pam-4-1-2026]
+Automotive SPICE 4.1의 SWE.1과 SYS.2의 BP는 다음과 같다.[@vda-automotive-spice-pam-4-1-2026]
 
-| BP  | 하는 일                                                              |
-| --- | -------------------------------------------------------------------- |
-| BP1 | 소프트웨어 요구사항 명세                                             |
-| BP2 | 요구사항 구조화와 우선순위 지정                                      |
-| BP3 | 요구사항 분석                                                        |
-| BP4 | 운용 환경에 대한 영향 분석                                           |
-| BP5 | 시스템 요구사항·시스템 아키텍처와의 일관성 확보와 양방향 추적성 수립 |
-| BP6 | 합의한 요구사항과 영향 분석 결과의 전달                              |
+| BP  | SWE.1                                                                | SYS.2                                                    |
+| --- | -------------------------------------------------------------------- | -------------------------------------------------------- |
+| BP1 | 소프트웨어 요구사항 명세                                             | 시스템 요구사항 명세                                     |
+| BP2 | 요구사항 구조화와 우선순위 지정                                      | 요구사항 구조화와 우선순위 지정                          |
+| BP3 | 요구사항 분석                                                        | 요구사항 분석                                            |
+| BP4 | 운용 환경에 대한 영향 분석                                           | 시스템 컨텍스트에 대한 영향 분석                         |
+| BP5 | 시스템 요구사항·시스템 아키텍처와의 일관성 확보와 양방향 추적성 수립 | 이해관계자 요구사항과의 일관성 확보와 양방향 추적성 수립 |
+| BP6 | 합의한 요구사항과 영향 분석 결과의 전달                              | 합의한 요구사항의 전달                                   |
 
-SYS.2의 BP도 같은 꼴이지만, BP4는 운용 환경이 아니라 시스템 컨텍스트에 대한 영향을 분석하고 BP5의 상대는 이해관계자 요구사항이다.[@vda-automotive-spice-pam-4-1-2026] Automotive SPICE 3.1의 SWE.1은 BP를 여덟 두어 검증 기준 개발(BP5), 양방향 추적성 수립(BP6), 일관성 확보(BP7)를 따로 두었고, SYS.2도 같았다. 4.1은 추적성과 일관성을 BP 하나로 묶고 검증 기준 개발 BP를 두지 않는다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+Automotive SPICE 3.1의 SWE.1과 SYS.2는 BP를 여덟 두었고, 4.1은 여섯을 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017] 검증 기준 BP가 어떻게 바뀌었는지는 아래 검증 기준 절에서 다룬다.
 
 ## 검증 기준
 
-Automotive SPICE 3.1은 요구사항마다 검증 기준을 만들도록 두고, **검증 기준**(verification criteria)을 요구사항 검증의 정성적·정량적 척도로 정의했다. 검증 기준은 대개 시험 케이스나 다른 검증 수단을 만드는 입력이 된다고 적었다. Automotive SPICE 4.1은 이 BP를 두지 않고, 요구사항이 갖출 특성의 예로 검증 가능성을 들어 검증 기준이 요구사항 문장 안에 있게 한다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+Automotive SPICE 3.1은 요구사항마다 검증 기준을 만들도록 두고, **검증 기준**(verification criteria)을 요구사항 검증의 정성적·정량적 척도로 정의했다. Automotive SPICE 4.1은 이 BP를 두지 않고, 요구사항이 갖출 특성의 예로 검증 가능성을 들어 검증 기준이 요구사항 문장 안에 있게 한다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 Automotive SPICE 4.1은 요구사항을 모호하지 않고 시험·측정할 수 있으며, 제품이나 프로세스를 받아들이는 데 필요한 특성을 밝힌 진술로 정의한다. SWE.6에서는 통합된 소프트웨어가 기능·비기능 소프트웨어 요구사항을 따르는지 보일 검증 수단을 합격·불합격 기준과 함께 명세하게 한다.[@vda-automotive-spice-pam-4-1-2026] ISO/IEC/IEEE 29148:2018은 검증을 명세한 요구사항이 충족됐음을 객관적 증거로 확인하는 일로 정의한다.[@iso-iec-ieee-29148-obp-2018]

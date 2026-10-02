@@ -19,9 +19,9 @@ Automotive SPICE 4.1은 상세 설계에서 컴포넌트마다 그 유닛들의 
 
 - 데이터: 데이터 구조와 변수, 입출력 데이터의 형식
 - 로직: 알고리즘과 제어 흐름
-- 인터페이스: 유닛이 주고받는 입력과 출력. 입출력의 유효 값 범위와 물리 단위나 측정 단위를 넣는다.
+- 인터페이스: 유닛이 주고받는 입력과 출력. 입출력의 유효 값 범위와 물리 단위나 측정 단위를 넣는다.[@vda-automotive-spice-pam-4-1-2026]
 
-동적 측면으로는, 컴포넌트의 동적 동작을 이루는 유닛 사이의 상호작용을 아키텍처에 맞춰 명세하게 한다.[@vda-automotive-spice-pam-4-1-2026] ISO/IEC/IEEE 24765 용어집도 상세 설계 기술(detailed design description)이 하위 컴포넌트마다 입력, 출력, 데이터 구조, 제어 로직, 알고리즘을 밝힌다고 정의한다.[@ieee-cs-sevocab-2026]
+Automotive SPICE 4.1은 동적 측면으로, 컴포넌트의 동적 동작을 이루는 유닛 사이의 상호작용을 아키텍처에 맞춰 명세하게 한다.[@vda-automotive-spice-pam-4-1-2026] ISO/IEC/IEEE 24765 용어집도 상세 설계 기술(detailed design description)이 하위 컴포넌트마다 입력, 출력, 데이터 구조, 제어 로직, 알고리즘을 밝힌다고 정의한다.[@ieee-cs-sevocab-2026]
 
 ## Automotive SPICE SWE.3
 
@@ -37,7 +37,7 @@ Automotive SPICE 4.1은 유닛 설계와 코딩을 한 프로세스 SWE.3(Softwa
 
 코딩은 BP3이다. BP3은 유닛을 상세 설계와 일관되게, 코딩 원칙에 따라 개발하고 문서로 남기게 한다. Automotive SPICE 4.1은 코딩 원칙의 예로 암묵적 형 변환을 쓰지 않기, 서브프로그램의 입구와 출구를 하나씩 두기, 범위 검사를 들고, 더 많은 예로 ISO 26262-6의 8.4.5와 표 6을 가리킨다.[@vda-automotive-spice-pam-4-1-2026] 추적성과 일관성은 [[traceability|추적성]]에서 다룬다.
 
-Automotive SPICE 3.1은 SWE.3의 목적을 컴포넌트의 평가된 상세 설계를 내고 유닛을 명세해 만드는 것으로 적었고, BP 여덟 개를 두어 마지막 BP8에서 유닛을 개발하게 했다. Automotive SPICE 4.1은 이를 BP 다섯 개로 묶고 유닛 개발을 BP3에 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+Automotive SPICE 3.1은 SWE.3의 목적을 컴포넌트의 평가된 상세 설계를 내고 유닛을 명세해 만드는 것으로 두었고, BP 여덟 개를 두어 마지막 BP8에서 유닛을 개발하게 했다. Automotive SPICE 4.1은 이를 BP 다섯 개로 묶고 유닛 개발을 BP3에 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ## ISO 26262-6
 

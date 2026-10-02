@@ -15,12 +15,12 @@ Stevens 외는 결합도를 한 모듈에서 다른 모듈로 이어지는 연�
 
 ISO/IEC/IEEE 24765 용어집은 결합도의 종류로 내용 결합, 공통 결합, 제어 결합, 자료 결합, hybrid 결합, pathological 결합을 든다. 그 가운데 넷의 정의는 다음과 같다.[@ieee-cs-sevocab-2026]
 
-| 종류                                                    | 정의                                                          |
-| ------------------------------------------------------- | ------------------------------------------------------------- |
-| 내용 결합(content coupling)                             | 한 모듈의 내용 일부나 전부가 다른 모듈의 내용에 들어가 있다   |
-| 공통 결합(common coupling, common-environment coupling) | 두 모듈이 같은 공통 데이터 영역에 접근한다                    |
-| 제어 결합(control coupling)                             | 한 모듈이 다른 모듈의 실행에 영향을 줄 목적으로 정보를 넘긴다 |
-| 자료 결합(data coupling)                                | 한 모듈의 출력이 다른 모듈의 입력이 된다                      |
+| 종류                                                    | 정의                                                           |
+| ------------------------------------------------------- | -------------------------------------------------------------- |
+| 내용 결합(content coupling)                             | 한 모듈의 내용 일부나 전부가 다른 모듈의 내용에 들어가 있다.   |
+| 공통 결합(common coupling, common-environment coupling) | 두 모듈이 같은 공통 데이터 영역에 접근한다.                    |
+| 제어 결합(control coupling)                             | 한 모듈이 다른 모듈의 실행에 영향을 줄 목적으로 정보를 넘긴다. |
+| 자료 결합(data coupling)                                | 한 모듈의 출력이 다른 모듈의 입력이 된다.                      |
 
 ## 응집도
 
@@ -30,17 +30,17 @@ Stevens 외는 모듈의 응집성(cohesiveness)을 재는 척도를 binding이�
 
 ISO/IEC/IEEE 24765 용어집은 응집도의 종류로 우연적, 교환적, 기능적, 논리적, 절차적, 순차적, 시간적 응집을 든다.[@ieee-cs-sevocab-2026] 아래 표는 Stevens 외의 척도 순서를 따르고, 그 척도에 없는 절차적 응집은 끝에 둔다.
 
-| 종류                                  | 정의                                                                                                                   |
-| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| 우연적 응집(coincidental cohesion)    | 요소들 사이에 뜻 있는 관계가 없다[@ieee-cs-sevocab-2026][@stevens-structured-design-1974]                              |
-| 논리적 응집(logical cohesion)         | 요소들이 논리적으로 비슷한 일을 한다[@ieee-cs-sevocab-2026]                                                            |
-| 시간적 응집(temporal cohesion)        | 요소들이 초기화 같은 프로그램 실행의 특정 단계에 함께 필요하다[@ieee-cs-sevocab-2026][@stevens-structured-design-1974] |
-| 교환적 응집(communicational cohesion) | 요소들이 같은 입력 데이터를 쓰거나 같은 출력 데이터를 만든다[@ieee-cs-sevocab-2026][@stevens-structured-design-1974]   |
-| 순차적 응집(sequential cohesion)      | 한 요소의 출력이 다음 요소의 입력이 된다[@ieee-cs-sevocab-2026][@stevens-structured-design-1974]                       |
-| 기능적 응집(functional cohesion)      | 모든 요소가 하나의 기능을 수행하는 데 기여한다[@ieee-cs-sevocab-2026][@stevens-structured-design-1974]                 |
-| 절차적 응집(procedural cohesion)      | 요소들이 반복이나 판단 같은 한 프로그램 절차를 이루는 데 함께 기여한다[@ieee-cs-sevocab-2026]                          |
+| 종류                                  | 정의                                                                                                                    |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| 우연적 응집(coincidental cohesion)    | 요소들 사이에 뜻 있는 관계가 없다.[@ieee-cs-sevocab-2026][@stevens-structured-design-1974]                              |
+| 논리적 응집(logical cohesion)         | 요소들이 논리적으로 비슷한 일을 한다.[@ieee-cs-sevocab-2026]                                                            |
+| 시간적 응집(temporal cohesion)        | 요소들이 초기화 같은 프로그램 실행의 특정 단계에 함께 필요하다.[@ieee-cs-sevocab-2026][@stevens-structured-design-1974] |
+| 교환적 응집(communicational cohesion) | 요소들이 같은 입력 데이터를 쓰거나 같은 출력 데이터를 만든다.[@ieee-cs-sevocab-2026][@stevens-structured-design-1974]   |
+| 순차적 응집(sequential cohesion)      | 한 요소의 출력이 다음 요소의 입력이 된다.[@ieee-cs-sevocab-2026][@stevens-structured-design-1974]                       |
+| 기능적 응집(functional cohesion)      | 모든 요소가 하나의 기능을 수행하는 데 기여한다.[@ieee-cs-sevocab-2026][@stevens-structured-design-1974]                 |
+| 절차적 응집(procedural cohesion)      | 요소들이 반복이나 판단 같은 한 프로그램 절차를 이루는 데 함께 기여한다.[@ieee-cs-sevocab-2026]                          |
 
-Stevens 외에 따르면 논리적 binding 모듈은 흔히, 호출하는 쪽이 넘긴 매개변수로 여러 처리 가운데 무엇을 할지 고르는 꼴로 구현된다.[@stevens-structured-design-1974]
+Stevens 외는 논리적 binding 모듈이 흔히, 호출하는 쪽이 넘긴 매개변수로 여러 처리 가운데 무엇을 할지 고르는 꼴로 구현된다고 보았다.[@stevens-structured-design-1974]
 
 ## 관심사 분리
 
