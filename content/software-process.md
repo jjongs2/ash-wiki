@@ -15,7 +15,7 @@ SEI는 2010년 CMMI for Development 1.3에서 조직이 개선을 위해 흔히 
 
 SEI는 CMMI for Development 1.3에서 CMMI 모델을 프로세스나 프로세스 기술서가 아니라 프로세스를 만들 때 쓰는 지침으로 내놓았다. CMMI 모델은 어떤 조직이나 프로젝트에 맞는 프로세스를 정하지 않고, 조직이 고른 프로세스를 계획하고 구현하는 데 필요한 최소 기준을 기술한다고 했다. SEI는 조직이 실제로 쓰는 프로세스가 응용 분야, 조직 구조와 규모 같은 여러 요인에 따라 달라진다고 보았다.[@cmmi-product-team-cmmi-development-2010]
 
-Automotive SPICE 4.1은 PRM(Process Reference Model)과 PAM(Process Assessment Model)을 프로세스가 무엇을 왜 해야 하는지의 수준에 두고, 방법, 도구, 템플릿, 작업 흐름의 순서, 권한 정의 같은 '어떻게'는 정하지 않는다. '어떻게'는 회사, 조직 단위, 제품군 같은 맥락마다 따로 정하는 것으로 두며, 한 맥락의 방식을 다른 맥락에 그대로 옮겨 쓸 수는 없다고 본다.[@vda-qmc-automotive-spice-pam-4-1-2026]
+Automotive SPICE 4.1은 PRM(Process Reference Model)과 PAM(Process Assessment Model)을 프로세스가 무엇을 왜 해야 하는지의 수준에 두고, 방법, 도구, 템플릿, 작업 흐름의 순서, 권한 정의 같은 '어떻게'는 정하지 않는다. '어떻게'는 회사, 조직 단위, 제품군 같은 맥락마다 따로 정하는 것으로 두며, 한 맥락의 방식을 다른 맥락에 그대로 옮겨 쓸 수는 없다고 본다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 생명주기와의 관계
 

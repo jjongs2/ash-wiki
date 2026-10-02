@@ -13,7 +13,7 @@ V-Modell XT 문서에 따르면 V자 절차는 내려가는 가지에서 시스�
 
 ## 테스트 기준
 
-ISTQB 용어집은 **테스트 기준**(test basis)을 테스트 분석과 테스트 설계의 바탕이 되는 지식의 총체로 정의한다.[@istqb-glossary-test-basis-2026] Automotive SPICE 4.1은 시스템 통합과 소프트웨어 통합의 검증 조치를 각각 시스템 아키텍처와 소프트웨어 아키텍처의 정적·동적 측면에 맞춰 정하게 한다.[@vda-qmc-automotive-spice-pam-4-1-2026]
+ISTQB 용어집은 **테스트 기준**(test basis)을 테스트 분석과 테스트 설계의 바탕이 되는 지식의 총체로 정의한다.[@istqb-glossary-test-basis-2026] Automotive SPICE 4.1은 시스템 통합과 소프트웨어 통합의 검증 조치를 각각 시스템 아키텍처와 소프트웨어 아키텍처의 정적·동적 측면에 맞춰 정하게 한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 테스트 프로세스
 
@@ -35,10 +35,10 @@ V-Modell XT는 V자 모양의 개발 절차를 내용의 바탕으로 삼고 이
 
 V-Modell XT 2.4는 V를 한 번이 아니라 반복마다 여러 번 거치게 하여 기능을 점진적으로 늘리고, 점진 개발 전략과 프로토타입 개발 전략마다 V를 거치는 순서를 달리 둔다.[@weit-v-modell-xt-2-4-2024]
 
-Automotive SPICE 4.1의 PRM(Process Reference Model)과 PAM(Process Assessment Model)은 생명주기 모델이 아니어서 프로세스나 BP(base practice)를 수행할 순서를 정하지도 막지도 않고, 프로젝트 생명주기는 MAN.3.BP2에 따라 프로젝트가 정하게 둔다.[@vda-qmc-automotive-spice-pam-4-1-2026]
+Automotive SPICE 4.1의 PRM(Process Reference Model)과 PAM(Process Assessment Model)은 생명주기 모델이 아니어서 프로세스나 BP(base practice)를 수행할 순서를 정하지도 막지도 않고, 프로젝트 생명주기는 MAN.3.BP2에 따라 프로젝트가 정하게 둔다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## Automotive SPICE의 V 컨셉
 
-Automotive SPICE 4.1의 프로세스 참조 모델은 시스템 엔지니어링 프로세스와 소프트웨어 엔지니어링 프로세스를 각각 V 모양으로 배치한다. 시스템 V에서는 SYS.2 System Requirements Analysis와 SYS.5 System Verification, SYS.3 System Architectural Design과 SYS.4 System Integration and Integration Verification이 마주 본다. 소프트웨어 V에서는 SWE.1 Software Requirements Analysis와 SWE.6 Software Verification, SWE.2 Software Architectural Design과 SWE.5 Software Component Verification and Integration Verification이 마주 보고, 꼭짓점에는 SWE.3 Software Detailed Design and Unit Construction과 SWE.4 Software Unit Verification이 함께 놓인다. 마주 보는 짝마다 오른쪽의 검증 조치와 왼쪽 산출물 사이에 일관성과 양방향 추적성을 요구한다.[@vda-qmc-automotive-spice-pam-4-1-2026]
+Automotive SPICE 4.1의 프로세스 참조 모델은 시스템 엔지니어링 프로세스와 소프트웨어 엔지니어링 프로세스를 각각 V 모양으로 배치한다. 시스템 V에서는 SYS.2 System Requirements Analysis와 SYS.5 System Verification, SYS.3 System Architectural Design과 SYS.4 System Integration and Integration Verification이 마주 본다. 소프트웨어 V에서는 SWE.1 Software Requirements Analysis와 SWE.6 Software Verification, SWE.2 Software Architectural Design과 SWE.5 Software Component Verification and Integration Verification이 마주 보고, 꼭짓점에는 SWE.3 Software Detailed Design and Unit Construction과 SWE.4 Software Unit Verification이 함께 놓인다. 마주 보는 짝마다 오른쪽의 검증 조치와 왼쪽 산출물 사이에 일관성과 양방향 추적성을 요구한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ![[diagrams/automotive-spice-v-concept.svg]]
