@@ -7,7 +7,9 @@ aliases:
 verified: 2026-10-02
 ---
 
-ISO/IEC/IEEE 24765:2017은 소프트웨어 개발 주기(software development cycle)를, 소프트웨어 제품을 개발하기로 정한 때 시작해 소프트웨어를 인도할 때 끝나는 기간으로 정의한다. 이 기간에는 보통 요구, 설계, 구현, 테스트 단계와 때로 설치·점검 단계가 들고, 개발 접근 방식에 따라 단계가 겹치거나 반복된다. 이 용어가 개발자가 더는 개선하지 않을 때까지의 기간이나 소프트웨어 생명주기 전체를 뜻하기도 한다고 덧붙인다.[@iso-iec-ieee-24765-obp-2017] SWEBOK(Software Engineering Body of Knowledge) V4.0a는 **소프트웨어 개발 생명주기**(software development life cycle)를 SDLC로 줄여 쓴다.[@ieee-swebok-v4-0a-2026]
+SWEBOK(Software Engineering Body of Knowledge) V4.0a에 따르면 **소프트웨어 개발 생명주기**(software development life cycle, SDLC)는 소프트웨어를 처음 개발하는 과정이다. 소프트웨어 제품 생명주기의 운용, 유지보수, 폐기 활동은 SDLC보다 훨씬 긴 기간에 걸치고, SDLC의 활동보다 더 많은 노력과 자원을 쓴다.[@ieee-swebok-v4-0a-2026]
+
+ISO/IEC/IEEE 24765:2017은 소프트웨어 개발 주기(software development cycle)를, 소프트웨어 제품을 개발하기로 정한 때 시작해 소프트웨어를 인도할 때 끝나는 기간으로 정의한다. 이 기간에는 보통 요구, 설계, 구현, 테스트 단계와 때로 설치·점검 단계가 들고, 개발 접근 방식에 따라 단계가 겹치거나 반복된다. 이 용어가 개발자가 더는 개선하지 않을 때까지의 기간이나 소프트웨어 생명주기 전체를 뜻하기도 한다고 덧붙인다.[@iso-iec-ieee-24765-obp-2017]
 
 ISO/IEC/IEEE 24765:2017은 소프트웨어 생명주기를 사용자나 고객의 필요에서 시작해 제품을 더는 쓰지 않거나 쓸 수 없게 될 때 끝나는 주기로 정의한다.[@iso-iec-ieee-24765-obp-2017] SWEBOK V4.0a에 따르면 소프트웨어 공학에서 개발은 생명주기의 한 단계로, 이해관계자의 필요에 맞춰 소프트웨어 시스템을 만들거나 바꾸는 단계다.[@ieee-swebok-v4-0a-2026]
 
@@ -15,7 +17,7 @@ ISO/IEC/IEEE 24765:2017은 소프트웨어 생명주기를 사용자나 고객�
 
 ## 단계와 마일스톤
 
-[[iso-iec-ieee-12207|ISO/IEC/IEEE 12207]]:2026은 생명주기의 단계(stage)가 주요 진척·달성 마일스톤과 관련되고, 단계끼리 흔히 겹친다고 둔다. 이 표준은 특정 생명주기 모델이나 개발 방법론을 요구하지 않는다.[@iso-iec-ieee-12207-obp-2026] 생명주기 모델과 프로세스의 관계는 [[software-process|소프트웨어 프로세스]]에서 다룬다.
+[[iso-iec-ieee-12207|ISO/IEC/IEEE 12207]]:2026은 생명주기의 단계(stage)가 주요 진척·달성 마일스톤과 관련되고, 단계끼리 흔히 겹친다고 둔다.[@iso-iec-ieee-12207-obp-2026] 생명주기 모델과 프로세스의 관계는 [[software-process|소프트웨어 프로세스]]에서 다룬다.
 
 ISO/IEC/IEEE 24765:2017은 마일스톤을 진척을 재는 데 쓰는 예정된 사건으로 정의하고, 큰 마일스톤의 예로 인수자 승인, 명세의 기준선 설정, 시스템 통합 완료, 제품 인도를 든다.[@iso-iec-ieee-24765-obp-2017] SWEBOK V4.0a에 따르면 진척은 주요 프로젝트 마일스톤을 이루었을 때나, 제품 증분을 내는 반복 개발 주기를 마쳤을 때 평가한다.[@ieee-swebok-v4-0a-2026]
 
@@ -39,4 +41,4 @@ SWEBOK V4.0a에 따르면 prototyping은 대개 미완성이거나 기능을 최
 
 - [[waterfall-model|폭포수 모델]]: 개념, 요구, 설계, 구현, 테스트, 설치·점검 단계를 이 순서로 수행하고, 단계끼리 겹칠 수는 있지만 반복은 거의 없는 모델.[@iso-iec-ieee-24765-obp-2017]
 - [[spiral-model|나선형 모델]]: 주기를 거듭하며 소프트웨어를 만들고, 주기마다 대안의 위험을 평가한 뒤 남은 위험의 상대적 크기로 다음 단계를 정하는 위험 주도 모델.[@boehm-spiral-model-1986]
-- [[v-model|V 모델]]: 주요 개발 단계를 인수 테스트부터 컴포넌트 테스트까지의 테스트 레벨과 하나씩 짝짓는 순차 생명주기 모델. ISTQB(International Software Testing Qualifications Board) 용어집의 분류다.[@istqb-glossary-v-model-2026]
+- [[v-model|V 모델]]: ISTQB(International Software Testing Qualifications Board) 용어집은 주요 개발 단계를 인수 테스트부터 컴포넌트 테스트까지의 테스트 레벨과 하나씩 짝짓는 순차 생명주기 모델로 분류한다.[@istqb-glossary-v-model-2026]

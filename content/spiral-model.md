@@ -32,7 +32,7 @@ verified: 2026-10-02
 
 나선의 반지름은 그때까지의 단계에 든 누적 비용을, 각도는 각 바퀴를 완수해 가는 진척을 나타낸다. 그래서 바퀴를 거듭할수록 나선이 바깥으로 커진다.[@boehm-spiral-model-1986]
 
-## 원 저자의 후속 글
+## 원 저자의 글
 
 Boehm은 1986년 ACM SIGSOFT Software Engineering Notes 11권 4호에 나선형 모델 논문을 실었고[@boehm-spiral-model-1986], 1988년 IEEE Computer 21권 5호에 같은 제목의 논문을 실었다.[@boehm-spiral-model-1988]
 

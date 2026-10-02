@@ -9,7 +9,7 @@ verified: 2026-10-02
 
 ## 왼쪽과 오른쪽의 대응
 
-V-Modell XT 문서에 따르면 V자 절차는 내려가는 가지에서 시스템을 명세하며 분해하고, 올라가는 가지에서 구현하며 통합하고, 수평 단계마다 검증과 확인을 둔다. 시험 명세는 내려가는 가지에서 같은 수평 단계의 요구사항, 명세, 아키텍처로부터 만들고, 시험 기록은 올라가는 가지에서 남긴다.[@weit-v-modell-xt-2-4-2024]
+V-Modell XT 2.4는 V자 절차의 내려가는 가지에서 시스템을 명세하며 분해하고, 올라가는 가지에서 구현하며 통합하며, 수평 단계마다 검증과 확인을 둔다. 시험 명세는 내려가는 가지에서 같은 수평 단계의 요구사항, 명세, 아키텍처로부터 만들고, 시험 기록은 올라가는 가지에서 남긴다.[@weit-v-modell-xt-2-4-2024]
 
 ## 테스트 기준
 
@@ -29,13 +29,13 @@ ISTQB 용어집은 테스트와 품질 보증 활동을 [[software-development-l
 
 ## 기원
 
-V-Modell XT는 V자 모양의 개발 절차를 내용의 바탕으로 삼고 이름도 거기서 땄다.[@weit-v-modell-xt-2-4-2024] 독일 연방정부의 V-Modell은 1992년 처음 발표되어 국방 기술 분야에서 쓰였다. 후속판 V-Modell 97은 연방 행정의 소프트웨어 개발에 쓰도록 지정되었고, 2005년 2월부터는 V-Modell XT가 쓰인다.[@bmds-v-modell-xt-2026]
+V-Modell XT는 V자 모양의 개발 절차를 내용의 바탕으로 삼았고 이름도 거기서 땄다.[@weit-v-modell-xt-2-4-2024] 독일 연방정부의 V-Modell은 1992년 처음 발표되어 국방 기술 분야에서 쓰였다. 후속판 V-Modell 97은 연방 행정의 소프트웨어 개발에 쓰도록 지정되었고, 2005년 2월부터는 V-Modell XT가 쓰인다.[@bmds-v-modell-xt-2026]
 
 ## 반복 적용
 
 V-Modell XT 2.4는 V를 한 번이 아니라 반복마다 여러 번 거치게 하여 기능을 점진적으로 늘리고, 점진 개발 전략과 프로토타입 개발 전략마다 V를 거치는 순서를 달리 둔다.[@weit-v-modell-xt-2-4-2024]
 
-Automotive SPICE 4.1의 PRM(Process Reference Model)과 PAM(Process Assessment Model)은 생명주기 모델이 아니어서 프로세스나 BP(base practice)를 수행할 순서를 정하지도 막지도 않고, 프로젝트 생명주기는 MAN.3.BP2에 따라 프로젝트가 정하게 둔다.[@vda-automotive-spice-pam-4-1-2026]
+Automotive SPICE 4.1의 프로세스 참조 모델과 프로세스 평가 모델은 생명주기 모델이 아니어서 프로세스나 BP(base practice)를 수행할 순서를 정하지도 막지도 않고, 프로젝트 생명주기는 MAN.3.BP2에 따라 프로젝트가 정하게 둔다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## Automotive SPICE의 V 컨셉
 
