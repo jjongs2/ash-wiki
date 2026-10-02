@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-[[autosar|AUTOSAR]] Adaptive Platform의 통신 관리(Communication Management) 규격에서 **서비스 지향 통신**(service-oriented communication)은 서비스 제공자가 서비스를 내놓고(offer) 요청자가 그 서비스를 찾아(find) 호출하는(call) 통신이다. 이 규격에서 서비스 지향 통신은 Adaptive Platform 애플리케이션 사이의 주된 통신 방식이며, 통신 관리가 프로세스 안, 프로세스 사이, 머신 사이의 모든 수준에서 이를 맡는다.[@autosar-ap-sws-communicationmanagement-2025] Adaptive Platform은 통신 방식을 서비스 지향 통신으로 한정한다.[@autosar-cp-tps-systemtemplate-2025]
+[[autosar|AUTOSAR]] Adaptive Platform R25-11의 통신 관리(Communication Management) 규격은 **서비스 지향 통신**(service-oriented communication)을 서비스 제공자가 서비스를 내놓고(offer) 요청자가 그 서비스를 찾아(find) 호출하는(call) 통신으로 정의한다. 이 규격은 서비스 지향 통신을 Adaptive Platform 애플리케이션 사이의 주된 통신 방식으로 두고, 통신 관리가 프로세스 안, 프로세스 사이, 머신 사이의 모든 수준에서 이를 맡게 한다.[@autosar-ap-sws-communicationmanagement-2025] Adaptive Platform은 통신 방식을 서비스 지향 통신으로 한정한다.[@autosar-cp-tps-systemtemplate-2025]
 
 [[some-ip|SOME/IP]]는 네트워크로 서비스 지향 통신을 하는 프로토콜이다.[@autosar-fo-prs-someipprotocol-2025] The Open Group은 SOA(Service-Oriented Architecture)를 서비스 지향을 지원하는 아키텍처 스타일로 정의한다.[@opengroup-w074-2007]
 

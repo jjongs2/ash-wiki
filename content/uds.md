@@ -72,7 +72,7 @@ AUTOSAR R25-11 Dcm 명세는 이 밖에 아래 서비스의 처리를 정한다.
 
 ISO 14229-1:2026은 기본 세션과 기본이 아닌 세션을 두고, 세션마다 쓸 수 있는 서비스를 정한다.[@iso-14229-1-obp-2026]
 
-AUTOSAR Dcm은 초기화할 때 세션을 기본 세션으로 두고, 기본이 아닌 세션에서 S3Server 타이머가 만료되면 기본 세션으로 돌아간다. Dcm의 세션 형은 기본 세션이 `0x01`, 프로그래밍 세션이 `0x02`, 확장 진단 세션이 `0x03`이다. Dcm 명세에서 Concurrent TesterPresent는 기본이 아닌 세션을 유지하고 S3 타이머를 다시 시작하는 데 쓴다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+AUTOSAR Dcm은 초기화할 때 세션을 기본 세션으로 두고, 기본이 아닌 세션에서 S3Server 타이머가 만료되면 기본 세션으로 돌아간다. Dcm의 세션 형은 기본 세션이 `0x01`, 프로그래밍 세션이 `0x02`, 확장 진단 세션이 `0x03`이다. AUTOSAR R25-11의 Dcm 명세는 Concurrent TesterPresent의 목적을 기본이 아닌 세션을 유지하고 S3 타이머를 다시 시작하는 것으로 둔다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 ![[diagrams/uds-diagnostic-session-states.svg]]
 

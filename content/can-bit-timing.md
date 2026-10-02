@@ -37,7 +37,7 @@ $$
 
 세그먼트의 길이는 time quantum(tq) 단위로 정한다. **time quantum**은 발진기 주기에서 얻는 고정 시간 단위로, 그 길이 $t_\mathrm{q}$는 최소 time quantum $t_\mathrm{q,min}$과 프리스케일러 값 $m$의 곱 $t_\mathrm{q} = m \, t_\mathrm{q,min}$이다. $m$은 정수이고, 적어도 1\~32 범위에서 설정할 수 있다.[@bosch-can-2-0-1991]
 
-Bosch CAN 2.0 규격에서 SYNC_SEG는 1 tq이고, PROP_SEG와 PHASE_SEG1은 각각 1\~8 tq로 설정할 수 있다. 한 비트의 tq 수는 적어도 8\~25 범위에서 설정할 수 있어야 한다.[@bosch-can-2-0-1991]
+Bosch CAN 2.0 규격은 SYNC_SEG를 1 tq로 두고, PROP_SEG와 PHASE_SEG1을 각각 1\~8 tq로 설정할 수 있게 정한다. 한 비트의 tq 수는 적어도 8\~25 범위에서 설정할 수 있어야 한다.[@bosch-can-2-0-1991]
 
 ## 컨트롤러 설정
 

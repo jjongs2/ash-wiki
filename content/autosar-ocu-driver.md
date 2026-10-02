@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## Free running counter와 compare threshold
 
-OCU Driver 규격에서 OCU channel의 두 요소는 free running counter와 compare threshold다. free running counter는 최솟값부터 최댓값까지 센 뒤 저절로 최솟값부터 다시 세며, 최댓값에서 최솟값으로 세는 counter도 이 정의에 든다. OCU는 counter가 한 단위 늘 때마다 counter 값을 threshold와 견주고, 둘이 같으면 설정한 동작을 한다.[@autosar-cp-sws-ocudriver-2025]
+AUTOSAR R25-11의 OCU Driver 규격은 OCU channel을 free running counter와 compare threshold 두 요소로 둔다. free running counter는 최솟값부터 최댓값까지 센 뒤 저절로 최솟값부터 다시 세며, 최댓값에서 최솟값으로 세는 counter도 이 정의에 든다. OCU는 counter가 한 단위 늘 때마다 counter 값을 threshold와 견주고, 둘이 같으면 설정한 동작을 한다.[@autosar-cp-sws-ocudriver-2025]
 
 ![[diagrams/ocu-counter-threshold-match.svg]]
 

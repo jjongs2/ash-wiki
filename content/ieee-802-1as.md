@@ -43,5 +43,5 @@ IEEE 802.1 작업 그룹의 [[tsn|TSN]] 태스크 그룹은 IEEE 802.1AS-2025를
 gPTP는 IEEE 1588-2019의 PTP와 다음이 다르다.[@ieee-802-1as-2025]
 
 - 통신: gPTP는 PTP Instance 사이의 모든 통신이 IEEE 802 MAC(Medium Access Control) PDU(Protocol Data Unit)와 주소로만 이루어진다고 가정한다. IEEE 1588-2019는 2계층과 3·4계층의 여러 통신 방식을 지원한다.
-- 도메인 구성: gPTP는 gPTP 도메인 안의 모든 시스템이 time-aware system이기를 요구하며, time-aware가 아닌 시스템을 거쳐서는 시각을 전하지 않는다. PTP Relay Instance가 아닌 장치는 gPTP 정보를 중계할 수 없다. IEEE 1588-2019에서는 IEEE 1588을 모르는 중계 장치를 도메인 안에 둘 수 있다.
+- 도메인 구성: gPTP는 gPTP 도메인 안의 모든 시스템이 time-aware system이기를 요구하며, time-aware가 아닌 시스템을 거쳐서는 시각을 전하지 않는다. PTP Relay Instance가 아닌 장치는 gPTP 정보를 중계할 수 없다. IEEE 1588-2019는 IEEE 1588을 모르는 중계 장치도 도메인 안에 둘 수 있게 한다.
 - 지연 측정: 전이중 이더넷 링크에서 gPTP는 피어 지연 방식을 요구하고, IEEE 1588-2019는 종단 간(end-to-end) 지연 측정도 허용한다.[@ieee-802-1as-2025]

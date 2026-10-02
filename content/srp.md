@@ -8,11 +8,11 @@ aliases:
 verified: 2026-09-29
 ---
 
-**SRP**(Stream Reservation Protocol)는 [[avb|AVB]]에서 스트림 예약을 맡는 프로토콜로, 브리지가 오디오·비디오 스트림에 필요한 자원을 보장하게 한다.[@ieee-802-1-avb-tg-2013][@nxp-amf-aut-t2348-2016] IEEE 802.1Qat-2010이 처음 정했다. 이 개정은 브리지로 이어진 LAN(Local Area Network)을 지나는 스트림에 네트워크 자원을 예약하게 했고, 전송을 시작하기 전에 종단 간 경로 전체의 자원을 확보하도록 했다.[@ieee-802-1qat-project-2010] 지금은 [[ieee-802-1q|IEEE 802.1Q]]가 SRP를 정한다.[@ieee-ra-ethertype-2024] IEEE 802.1Q-2022는 SRP를 35장(Clause 35)에서 정한다.[@ieee-802-1q-2022]
+**SRP**(Stream Reservation Protocol)는 [[avb|AVB]]에서 스트림 예약을 맡는 프로토콜로, 브리지가 오디오·비디오 스트림에 필요한 자원을 보장하게 한다.[@ieee-802-1-avb-tg-2013][@nxp-amf-aut-t2348-2016] IEEE 802.1Qat-2010이 처음 정했다. 이 개정은 브리지로 이어진 LAN(Local Area Network)을 지나는 스트림에 네트워크 자원을 예약하게 했고, 전송을 시작하기 전에 종단 간 경로 전체의 자원을 확보하도록 했다.[@ieee-802-1qat-project-2010] [[ieee-802-1q|IEEE 802.1Q]]-2022는 SRP를 35장(Clause 35)에서 정한다.[@ieee-802-1q-2022]
 
 ## MRP 응용
 
-IEEE 802.1ak-2007이 정한 MRP(Multiple Registration Protocol)는 MRP 응용의 참여자가 브리지로 이어진 LAN의 다른 참여자에게 속성을 등록하게 했다. 이 개정은 응용으로 [[virtual-lan|VLAN]]을 등록하는 MVRP(Multiple VLAN Registration Protocol)와 그룹 MAC(Medium Access Control) 주소를 등록하는 MMRP(Multiple MAC Registration Protocol) 둘을 정했다.[@ieee-802-1ak-project-2015] 지금은 MVRP와 MMRP도 IEEE 802.1Q가 정한다. EtherType은 SRP가 `0x22EA`, MVRP가 `0x88F5`, MMRP가 `0x88F6`이다.[@ieee-ra-ethertype-2024]
+IEEE 802.1ak-2007이 정한 MRP(Multiple Registration Protocol)는 MRP 응용의 참여자가 브리지로 이어진 LAN의 다른 참여자에게 속성을 등록하게 했다. 이 개정은 응용으로 [[virtual-lan|VLAN]]을 등록하는 MVRP(Multiple VLAN Registration Protocol)와 그룹 MAC(Medium Access Control) 주소를 등록하는 MMRP(Multiple MAC Registration Protocol) 둘을 정했다.[@ieee-802-1ak-project-2015] IEEE 802.1Q-2022는 MVRP와 MMRP도 정한다.[@ieee-802-1q-2022] EtherType은 SRP가 `0x22EA`, MVRP가 `0x88F5`, MMRP가 `0x88F6`이다.[@ieee-ra-ethertype-2024]
 
 IEEE 802.1Q의 MRP에서 참여자는 속성을 선언하거나 철회하고, 선언을 받은 다른 참여자는 그 속성을 등록하거나 등록을 푼다. 브리지 포트에 등록된 속성은 활성 토폴로지에 든 그 브리지의 다른 포트에서 다시 선언되므로, 선언은 응용의 모든 참여자에게 퍼진다. IEEE 802.1Q-2022는 MMRP, MVRP에 이어 MSRP(Multiple Stream Registration Protocol)를 MRP 응용으로 정하며, MSRP는 데이터 스트림의 특성을 등록하고 예약 요청을 퍼뜨려, QoS(Quality of Service)를 보장하도록 브리지 자원을 예약한다.[@ieee-802-1q-2022]
 
@@ -58,4 +58,4 @@ talker가 스트림의 광고를 거두면 MSRP 참여자는 talker 선언을 �
 
 [[tsn|TSN]] 태스크 그룹의 IEEE 802.1Qcc-2018은 IEEE 802.1Q의 개정으로, SRP를 개선하고 시간에 민감한 스트림의 설정을 보강했다.[@ieee-802-1qcc-2018][@ieee-802-1qcc-project-2026]
 
-IEEE 802.1Q가 정한 TSN 설정 모델 가운데 SRP의 신호 방식은 완전 분산 모델에 해당한다. 이 모델에는 중앙 설정 장치가 없다. 사용자 요구가 스트림 경로의 브리지들을 거치며 퍼지고, 각 브리지는 자기가 아는 정보만으로 자원을 관리한다. SRP는 중앙 네트워크/분산 사용자 모델도 지원한다. 이 모델에서 SRP 메시지는 브리지를 거쳐 퍼지지 않고 CNC(Centralized Network Configuration)와 오가며, 네트워크의 물리 토폴로지와 각 브리지의 능력을 모두 아는 CNC가 원격 관리 프로토콜로 브리지를 설정한다. CNC가 브리지를 설정하는 데 쓰는 스트림 예약 원격 관리 기능은 IEEE 802.1Qcc가 처음 넣었다.[@ieee-802-1q-2022]
+IEEE 802.1Q-2022가 정한 TSN 설정 모델 가운데 SRP의 신호 방식은 완전 분산 모델에 해당한다. 이 모델에는 중앙 설정 장치가 없다. 사용자 요구가 스트림 경로의 브리지들을 거치며 퍼지고, 각 브리지는 자기가 아는 정보만으로 자원을 관리한다. SRP는 중앙 네트워크/분산 사용자 모델도 지원한다. 이 모델에서 SRP 메시지는 브리지를 거쳐 퍼지지 않고 CNC(Centralized Network Configuration)와 오가며, 네트워크의 물리 토폴로지와 각 브리지의 능력을 모두 아는 CNC가 원격 관리 프로토콜로 브리지를 설정한다. CNC가 브리지를 설정하는 데 쓰는 스트림 예약 원격 관리 기능은 IEEE 802.1Qcc가 처음 넣었다.[@ieee-802-1q-2022]
