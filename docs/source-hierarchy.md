@@ -34,7 +34,7 @@
 종류마다의 1층은 아래와 같습니다.
 
 - **규범 주장**: 표준·규제 원문과, 발행기관이 공개한 자료(카탈로그 레코드, OBP 미리보기, Working Draft 등). 발행기관은 자기가 펴낸 명세에 대해서만 1층입니다.
-  - **RFC**: Standards Track RFC(Proposed Standard, Draft Standard, Internet Standard)만 표준 원문입니다. Informational, Experimental, BCP, Historic RFC는 IETF라는 발행기관의 자료이고, 위키 검증의 [좁혀 쓰기](wiki-verification.md#좁혀-쓰기)를 따릅니다. RFC의 상태는 RFC Editor의 RFC 페이지에서 확인합니다.
+  - **RFC**: Standards Track RFC(Proposed Standard, Draft Standard, Internet Standard)만 표준 원문입니다. 그 밖의 RFC(Informational, Experimental, BCP 등)는 IETF라는 발행기관의 자료이고, 위키 검증의 [좁혀 쓰기](wiki-verification.md#좁혀-쓰기)를 따릅니다. RFC의 상태는 RFC Editor의 RFC 페이지에서 확인합니다.
 - **동작 주장**: 규범 주장의 1층(발행기관은 자기가 펴낸 명세에 대해서만)에 더해, 반도체 벤더의 모든 문서(데이터시트, 레퍼런스 매뉴얼, 앱노트, 핸드북, 사용자 가이드)
 - **배경 주장**: 발행기관의 자료(원 개발사는 자기 제품에 대해서만). 여기에 아래 둘을 더합니다. 위키백과, 블로그, 교재, 제3자 언론은 1층이 아닙니다.
   - **자기 역사**: 원 논문, 원 저자의 글, 연구소와 대학의 자료는 자기가 한 일(언제 무엇을 제안하고 만들고 겪었는지)에 대한 배경 주장의 1층입니다. 남의 일과 채택(어디에 쓰이는지)에는 1층이 아닙니다. 원 논문은 자기가 붙인 이름에 대해서도 1층입니다. 연구소와 대학이 이로써 발행기관이 되는 것은 아닙니다.
