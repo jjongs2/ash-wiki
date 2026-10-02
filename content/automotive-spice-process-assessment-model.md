@@ -11,8 +11,8 @@ verified: 2026-10-02
 
 Automotive SPICE 4.1은 지표를 두 종류로 둔다.[@vda-automotive-spice-pam-4-1-2026]
 
-- **프로세스 수행 지표**(process performance indicators): 프로세스 성과가 얼마나 이뤄졌는지 보이는 지표로, 프로세스마다 다르고 능력 수준 1에 쓴다
-- **프로세스 능력 지표**(process capability indicators): 프로세스 속성이 얼마나 이뤄졌는지 보이는 지표로, 모든 프로세스에 공통이고 능력 수준 1\~5에 쓴다[@vda-automotive-spice-pam-4-1-2026]
+- **프로세스 수행 지표**(process performance indicators): 프로세스 성과가 얼마나 이뤄졌는지 보이는 지표로, 프로세스마다 다르고 능력 수준 1에 쓴다.
+- **프로세스 능력 지표**(process capability indicators): 프로세스 속성이 얼마나 이뤄졌는지 보이는 지표로, 모든 프로세스에 공통이고 능력 수준 1\~5에 쓴다.[@vda-automotive-spice-pam-4-1-2026]
 
 ![[diagrams/aspice-assessment-indicators.svg]]
 
@@ -20,12 +20,12 @@ Automotive SPICE 4.1은 지표를 두 종류로 둔다.[@vda-automotive-spice-pa
 
 ## 프로세스 수행 지표
 
-Automotive SPICE 4.1의 프로세스 수행 지표는 BP와 출력 정보 항목이다.[@vda-automotive-spice-pam-4-1-2026]
+Automotive SPICE 4.1의 프로세스 수행 지표는 BP(base practice)와 출력 정보 항목이다.[@vda-automotive-spice-pam-4-1-2026]
 
-- **BP**(base practice): 프로세스 목적과 성과를 이루려고 하는 활동을 정한다. 활동 쪽 지표다
-- **정보 항목**(information item): 결과 쪽 지표다. ISO/IEC 33001을 따라 사람이 쓰도록 만들고 저장하고 전달하는, 따로 식별되는 정보로 정의한다[@vda-automotive-spice-pam-4-1-2026]
+- **BP**: 프로세스 목적과 성과를 이루려고 하는 활동을 정한다. 활동 쪽 지표다.
+- **정보 항목**(information item): 결과 쪽 지표다. ISO/IEC 33001을 따라 사람이 쓰도록 만들고 저장하고 전달하는, 따로 식별되는 정보로 정의한다.[@vda-automotive-spice-pam-4-1-2026]
 
-Automotive SPICE 4.1은 정보 항목을 평가받는 조직이 만든 작업 산출물과 구별하고, 둘이 일대일로 대응하지 않는다고 한다. BP는 하나 이상의 프로세스 성과에 연결되고, 프로세스마다 BP와 출력 정보 항목이 어느 성과에 닿는지 표로 보인다. 예를 들어 SWE.1에는 소프트웨어 요구사항을 구조화하고 우선순위를 매기는 BP(SWE.1.BP2)가 있다.[@vda-automotive-spice-pam-4-1-2026]
+Automotive SPICE 4.1은 정보 항목을 평가받는 조직이 만든 작업 산출물과 구별하고, 둘 사이에 일대일 대응을 두지 않는다. BP는 하나 이상의 프로세스 성과에 연결되고, 프로세스마다 BP와 출력 정보 항목이 어느 성과에 닿는지 표로 보인다. 예를 들어 SWE.1에는 소프트웨어 요구사항을 구조화하고 우선순위를 매기는 BP(SWE.1.BP2)가 있다.[@vda-automotive-spice-pam-4-1-2026]
 
 Automotive SPICE 3.1은 결과 쪽 수행 지표로 작업 산출물(WP, work product)과 그 특성(WPC, work product characteristics)을 두었다. Automotive SPICE 4.1은 그 자리에 정보 항목과 정보 항목 특성(IIC, information item characteristics)을 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
@@ -33,17 +33,17 @@ Automotive SPICE 3.1은 결과 쪽 수행 지표로 작업 산출물(WP, work pr
 
 Automotive SPICE 4.1의 프로세스 능력 지표는 GP와 정보 항목이다. **GP**(generic practice)는 프로세스 속성을 이루려고 하는 활동으로, 하나 이상의 프로세스 속성 달성 항목에 연결되며 모든 프로세스에 쓴다. 능력 수준 1의 프로세스 속성 PA(process attribute) 1.1에는 수행 지표를 가리키는 편집상의 GP 1.1.1 하나만 두고, 능력 수준 2 이상의 프로세스 속성마다 GP와 정보 항목을 둔다.[@vda-automotive-spice-pam-4-1-2026]
 
-Automotive SPICE 3.1은 프로세스 능력 지표로 GP와 GR(generic resource)을 두고, 이를 능력 수준 2\~5에 쓴다고 했다. GR은 인프라 쪽 지표로 하나 이상의 프로세스 속성 달성 항목에 연결되었다. 예: PA 2.2의 형상 관리 시스템. Automotive SPICE 4.1은 GR을 두지 않고 GP와 정보 항목만 쓰며, GP를 능력 수준 1\~5에 쓴다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+Automotive SPICE 3.1은 프로세스 능력 지표로 GP와 GR(generic resource)을 두고, 이를 능력 수준 2\~5에 썼다. GR은 인프라 쪽 지표로 하나 이상의 프로세스 속성 달성 항목에 연결되었다. 예: PA 2.2의 형상 관리 시스템. Automotive SPICE 4.1은 GR을 두지 않고 GP와 정보 항목만 쓰며, GP를 능력 수준 1\~5에 쓴다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ## 지표와 성과의 관계
 
-BP는 프로세스 성과가 얼마나 이뤄졌는지 가리킨다. Automotive SPICE 4.1이 ISO/IEC 33020:2019에서 가져온 평정 방법 R1에서는 프로세스 성과의 특성 판정을 모아 프로세스 수행 속성(PA 1.1)을 평정한다.[@vda-automotive-spice-pam-4-1-2026]
+Automotive SPICE 4.1이 ISO/IEC 33020:2019에서 가져온 평정 방법 R1에서는 프로세스 성과의 특성 판정을 모아 프로세스 수행 속성(PA 1.1)을 평정한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 전략과 계획
 
 Automotive SPICE 4.1은 PA 2.1의 GP 2.1.1에서 프로세스 수행 목표와 프로세스 수행 전략을 정하게 하고, GP 2.1.2에서 그 목표, 기준, 전략에 따라 수행을 계획하게 한다. 프로세스 수행 전략(정보 항목 19-01)은 수행 목표를 이루는 방안이다.[@vda-automotive-spice-pam-4-1-2026]
 
-Automotive SPICE 3.1은 SYS.4, SYS.5, SWE.4, SWE.5, SWE.6, SUP.1, SUP.8, SUP.9, SUP.10의 BP1을 전략 수립으로 두고, 그 전략이 프로세스별 계획에 대응한다고 했다. Automotive SPICE 4.1은 이 BP를 두지 않고 GP 2.1.1에서 프로세스 수행 전략을 정하게 한다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+Automotive SPICE 3.1은 SYS.4, SYS.5, SWE.4, SWE.5, SWE.6, SUP.1, SUP.8, SUP.9, SUP.10의 BP1을 전략 수립으로 두고, 그 전략을 프로세스별 계획에 대응시켰다. Automotive SPICE 4.1은 이 BP를 두지 않고 GP 2.1.1에서 프로세스 수행 전략을 정하게 한다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ## BP에 되풀이되는 개념
 
@@ -53,7 +53,7 @@ Automotive SPICE 4.1은 여러 엔지니어링 프로세스에 같은 이름의 
 
 Automotive SPICE 4.1은 SYS.2, SYS.3, SWE.1, SWE.2, SWE.3의 마지막 BP로 합의된 산출물을 영향받는 당사자 모두에게 알리게 하고, SYS.4, SYS.5, SWE.4, SWE.5, SWE.6의 마지막 BP로 검증 결과를 요약해 알리게 한다.[@vda-automotive-spice-pam-4-1-2026]
 
-Automotive SPICE 3.1은 핵심 개념 부록에서 V 모델 왼쪽의 정보 흐름을 합의된 산출물을 알리는 BP로, 오른쪽을 결과를 요약해 알리는 BP로 설명했다. 합의는 영향받는 당사자 사이의 공통 이해로 보고, 정식 승인은 GP 2.1.7의 몫이라 했다. Automotive SPICE 4.1은 같은 꼴의 BP를 두지만 핵심 개념 부록에 이 절이 없다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+Automotive SPICE 3.1은 핵심 개념 부록에서 V 모델 왼쪽의 정보 흐름을 합의된 산출물을 알리는 BP에, 오른쪽을 결과를 요약해 알리는 BP에 대응시켰다. 합의는 영향받는 당사자 사이의 공통 이해로 두고, 정식 승인은 GP 2.1.7에 맡겼다. Automotive SPICE 4.1은 같은 꼴의 BP를 두지만 핵심 개념 부록에 이 절이 없다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ### 추적성과 일관성
 
@@ -61,8 +61,8 @@ Automotive SPICE 4.1은 SYS.2\~SYS.5, SWE.1\~SWE.6, HWE.1\~HWE.4, MLE.1\~MLE.4�
 
 ### Evaluate, verification criteria, ensuring compliance
 
-Automotive SPICE 3.1은 핵심 개념 부록에서 평가(evaluate), 검증 기준(verification criteria), 준수 보장(ensuring compliance)을 함께 설명했다. Automotive SPICE 4.1은 이 셋을 다음처럼 바꿨다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+Automotive SPICE 3.1은 핵심 개념 부록에서 평가(evaluate), 검증 기준(verification criteria), 준수 보장(ensuring compliance)을 핵심 개념 하나로 묶었다. Automotive SPICE 4.1은 이 셋을 다음처럼 바꿨다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
-- 평가: 3.1은 시스템·소프트웨어 아키텍처와 소프트웨어 상세 설계에서 대안을 정한 기준으로 평가하고 선택 근거를 기록하게 했다(SYS.3.BP5, SWE.2.BP6, SWE.3.BP4). 4.1은 대안 평가 BP 대신 아키텍처를 기술적 측면에서 분석하고 설계 결정의 근거를 기록하게 한다(SYS.3.BP3, SWE.2.BP3)
-- 검증 기준: 3.1은 SYS.2와 SWE.1에서 요구사항마다 검증 기준을 세우게 했다. 4.1은 이 BP를 두지 않고, 검증 가능성을 요구사항 특성의 예로 든다
-- 준수 보장: 3.1은 시험 프로세스의 BP가 시험 명세를 V 모델 왼쪽의 대응 산출물에 대한 준수를 입증하기에 알맞게 만들게 했다. 4.1은 이를 아키텍처나 요구사항에 맞춰 검증 수단(verification measure)을 명세하는 BP로 둔다(예: SYS.4.BP1)[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+- 평가: 3.1은 시스템·소프트웨어 아키텍처와 소프트웨어 상세 설계에서 대안을 정한 기준으로 평가하고 선택 근거를 기록하게 했다(SYS.3.BP5, SWE.2.BP6, SWE.3.BP4). 4.1은 대안 평가 BP 대신 아키텍처를 기술적 측면에서 분석하고 설계 결정의 근거를 기록하게 한다(SYS.3.BP3, SWE.2.BP3).
+- 검증 기준: 3.1은 SYS.2와 SWE.1에서 요구사항마다 검증 기준을 세우게 했다. 4.1은 이 BP를 두지 않고, 검증 가능성을 요구사항 특성의 예로 든다.
+- 준수 보장: 3.1은 시험 프로세스의 BP가 시험 명세를 V 모델 왼쪽의 대응 산출물에 대한 준수를 입증하기에 알맞게 만들게 했다. 4.1은 이를 아키텍처나 요구사항에 맞춰 검증 수단(verification measure)을 명세하는 BP로 둔다(예: SYS.4.BP1).[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]

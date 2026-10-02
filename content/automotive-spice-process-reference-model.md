@@ -5,18 +5,18 @@ tags:
 verified: 2026-10-02
 ---
 
-**Automotive SPICE 프로세스 참조 모델**(process reference model, PRM)은 [[automotive-spice|Automotive SPICE]]가 평가할 프로세스를 모아 두고, 프로세스마다 ID, 이름, 목적, 성과를 정의한 모델이다. [[automotive-spice-process-assessment-model|프로세스 평가 모델]]은 이 모델에서 프로세스를 골라 지표를 더하고, 평가자는 그 지표로 객관적 증거를 모아 프로세스를 평정한다.[@vda-automotive-spice-pam-4-1-2026]
+**Automotive SPICE 프로세스 참조 모델**(process reference model, PRM)은 [[automotive-spice|Automotive SPICE]]가 평가할 프로세스를 모아 두고, 프로세스마다 ID(identifier), 이름, 목적, 성과를 정의한 모델이다. [[automotive-spice-process-assessment-model|프로세스 평가 모델]]은 이 모델에서 프로세스를 골라 지표를 더하고, 평가자는 그 지표로 객관적 증거를 모아 프로세스를 평정한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 프로세스의 정의 요소
 
 Automotive SPICE 4.1은 프로세스마다 다음 네 가지를 정의한다.[@vda-automotive-spice-pam-4-1-2026]
 
-| 요소          | 내용                                                                            |
-| ------------- | ------------------------------------------------------------------------------- |
-| 프로세스 ID   | 프로세스마다 고유한 식별자(identifier). 그룹 약어 뒤에 번호를 붙인다. 예: SWE.1 |
-| 프로세스 이름 | 예: Software Requirements Analysis                                              |
-| 프로세스 목적 | 프로세스를 특정 환경에서 수행할 때 이루려는 고유한 기능 목표                    |
-| 프로세스 성과 | 목적마다 딸린 목록. 프로세스를 수행해 기대하는 긍정적 결과                      |
+| 요소          | 내용                                                                |
+| ------------- | ------------------------------------------------------------------- |
+| 프로세스 ID   | 프로세스마다 고유한 식별자. 그룹 약어 뒤에 번호를 붙인다. 예: SWE.1 |
+| 프로세스 이름 | 예: Software Requirements Analysis                                  |
+| 프로세스 목적 | 프로세스를 특정 환경에서 수행할 때 이루려는 고유한 기능 목표        |
+| 프로세스 성과 | 목적마다 딸린 목록. 프로세스를 수행해 기대하는 긍정적 결과          |
 
 Automotive SPICE 4.1은 프로세스마다 표 하나에 이 네 요소와 프로세스 평가 모델의 수행 지표인 BP(base practice)와 출력 정보 항목을 함께 싣는다.[@vda-automotive-spice-pam-4-1-2026]
 
@@ -42,7 +42,7 @@ Automotive SPICE 4.1은 프로세스를 다루는 활동 분야에 따라 그룹
 | PIM(프로세스 개선)         | PIM.3 Process Improvement                                                                                                                                                                                                                                          |
 | REU(재사용)                | REU.2 Management of Products for Reuse                                                                                                                                                                                                                             |
 
-Automotive SPICE 3.1은 세 범주를 primary life cycle processes, organizational life cycle processes, supporting life cycle processes라 불렀고, 프로세스 32개를 두었다. ACQ에 ACQ.3, ACQ.4, ACQ.11\~ACQ.15를, SPL에 SPL.1과 SPL.2를, SUP에 SUP.1, SUP.2, SUP.4, SUP.7\~SUP.10을 두었고, HWE, MLE, VAL 그룹은 없었다. Automotive SPICE 4.1은 범주 이름에서 life cycle을 빼고, ACQ.4, SPL.2, SUP.1, SUP.8\~SUP.10을 남기고 SUP.11과 HWE, MLE, VAL 그룹을 더했다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+Automotive SPICE 3.1은 세 범주를 primary life cycle processes, organizational life cycle processes, supporting life cycle processes라 불렀고, 프로세스 32개를 두었다. ACQ에 ACQ.3, ACQ.4, ACQ.11\~ACQ.15를, SPL에 SPL.1과 SPL.2를, SUP에 SUP.1, SUP.2, SUP.4, SUP.7\~SUP.10을 두었고, HWE, MLE, VAL 그룹은 없었다. Automotive SPICE 4.1은 범주 이름에 life cycle을 쓰지 않고, 3.1의 ACQ, SPL, SUP 프로세스 가운데 ACQ.4, SPL.2, SUP.1, SUP.8\~SUP.10만 둔다. SUP.11과 HWE, MLE, VAL 그룹은 3.1에 없던 것이다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ## ISO/IEC 12207과의 관계
 
@@ -54,7 +54,7 @@ Automotive SPICE 4.1의 프로세스 참조 모델은 ISO/IEC 12207을 바탕으
 
 Automotive SPICE 4.1의 엔지니어링 프로세스 그룹은 SYS, SWE, MLE, HWE이고, 기계 엔지니어링 프로세스는 없다. 그 밖의 도메인 프로세스는 VDA가 만들지 않았고 Automotive SPICE에도 들지 않는다. 소프트웨어 아키텍처에서 머신러닝으로 개발할 소프트웨어 요소를 정하면, 그 요소에는 MLE 프로세스를, 나머지 component에는 SWE.3과 SWE.4를 적용한다.[@vda-automotive-spice-pam-4-1-2026]
 
-Automotive SPICE 3.1은 plug-in 컨셉의 도메인 예로 하드웨어(HWE), 기계(MEE), 소프트웨어(SWE)를 들고, HWE와 MEE 프로세스는 VDA QMC(VDA Quality Management Center)가 만들지 않은 예시로 그렸다. Automotive SPICE 4.1은 예로 HWE와 SWE만 들고, HWE.1\~HWE.4를 프로세스 참조 모델에 넣었다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+Automotive SPICE 3.1은 plug-in 컨셉의 도메인 예로 하드웨어(HWE), 기계(MEE), 소프트웨어(SWE)를 들고, HWE와 MEE 프로세스는 VDA QMC가 만들지 않은 예시로 그렸다. Automotive SPICE 4.1은 예로 HWE와 SWE만 들고, 프로세스 참조 모델에 HWE.1\~HWE.4를 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ## VDA scope
 

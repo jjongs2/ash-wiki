@@ -24,9 +24,9 @@ ISO 9000:2026은 **품질 보증**(quality assurance)을, 품질 요구사항이
 
 [[automotive-spice|Automotive SPICE]] 4.1은 품질 보증을 SUP.1(Quality Assurance) 프로세스로 둔다. SUP.1의 목적은 작업 산출물과 프로세스가 정해진 기준을 따르는지 독립적이고 객관적으로 보증하고, 어긋난 것을 해결하고 다시 생기지 않게 하는 것이다.[@vda-automotive-spice-pam-4-1-2026]
 
-## 심사, 감사, 검증
+## 평가, 감사, 검증
 
-- **프로세스 심사**(process assessment): ISO/IEC 33001:2015는 조직 단위의 프로세스를 프로세스 평가 모델에 견주어 규율 있게 평가하는 일로 정의한다.[@iso-iec-33001-obp-2015] Automotive SPICE 4.1의 프로세스 평가 모델은 ISO/IEC 33004:2015에 맞춘 프로세스 능력 심사용 모델이다.[@vda-automotive-spice-pam-4-1-2026]
+- **프로세스 평가**(process assessment): ISO/IEC 33001:2015는 조직 단위의 프로세스를 프로세스 평가 모델에 견주어 규율 있게 평가하는 일로 정의한다.[@iso-iec-33001-obp-2015] Automotive SPICE 4.1의 프로세스 평가 모델은 ISO/IEC 33004:2015에 맞춘 프로세스 능력 평가용 모델이다.[@vda-automotive-spice-pam-4-1-2026]
 - **감사**(audit): ISO 9000:2026은 감사 기준이 충족되는 정도를 판정하려고 증거를 얻어 객관적으로 평가하는 체계적이고 독립적인 프로세스로 정의한다.[@iso-9000-obp-2026]
 
 ISO/IEC 25000:2014는 소프트웨어 제품의 정적 속성은 리뷰, 인스펙션, 시뮬레이션, 자동화 도구로 검증할 수 있고, 동작의 속성은 테스트와 운용 중에 실행해 검증·확인할 수 있다고 둔다.[@iso-iec-25000-obp-2014]
