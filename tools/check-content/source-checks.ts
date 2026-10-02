@@ -231,6 +231,55 @@ function tableLines(page: Page): Set<number> {
   return rows
 }
 
+// 한 자리로 보는 블록: 문단, 제목, 표의 행 하나. 목록과 콜아웃은 그 안의 문단마다 따로 센다. 검사기의
+// mdast는 GFM 표를 읽지 않아 표 전체를 문단 하나로 잡으므로, 표의 줄은 줄마다 블록으로 센다. 받은 자리
+// (줄과 0부터 센 열)가 든 블록을 가리키는 값을 주고, 블록 밖이면 null을 준다.
+function blockLocator(
+  page: Page,
+  rows = tableLines(page),
+): (line: number, column: number) => string | null {
+  const blocks: Position[] = []
+  visit(page.mdast, (node) => {
+    if (node.type === "paragraph" || node.type === "heading") blocks.push(node.position!)
+  })
+  return (line, column) => {
+    if (rows.has(line)) return `row ${line}`
+    const index = blocks.findIndex(
+      ({ start, end }) =>
+        (line > start.line || (line === start.line && column >= start.column - 1)) &&
+        (line < end.line || (line === end.line && column < end.column - 1)),
+    )
+    return index < 0 ? null : `block ${index}`
+  }
+}
+
+interface ShownLink {
+  link: string
+  target: string
+  anchor?: string
+  text: string // 링크 글자
+  line: number
+  block: string | null
+}
+
+// 같은 블록에 같은 페이지로 가는 링크가 또 있으면, 절 링크의 링크 글자가 그 페이지의 title이나 다른
+// 링크의 링크 글자와 같을 때 독자에게는 같은 링크가 두 번 걸린 것으로 보인다.
+function confusableSectionLinks(links: ShownLink[], titles: Map<string, unknown>): ShownLink[] {
+  return links.filter(
+    (link) =>
+      link.block !== null &&
+      link.anchor &&
+      !link.anchor.startsWith("^") &&
+      links.some(
+        (other) =>
+          other !== link &&
+          other.block === link.block &&
+          other.target === link.target &&
+          (other.text === link.text || titles.get(link.target) === link.text),
+      ),
+  )
+}
+
 export const wikilink: SourceCheck = (tree) => {
   // 대문과 태그 표시 이름 파일도 링크 대상이므로 title을 모은다.
   const titles = new Map(tree.pages.map((p) => [p.name, fieldsOf(p).title]))
@@ -239,6 +288,8 @@ export const wikilink: SourceCheck = (tree) => {
   const violations: Violation[] = []
   for (const page of tree.pages) {
     const rows = tableLines(page)
+    const blockOf = blockLocator(page, rows)
+    const shownLinks: ShownLink[] = []
     for (const { match, line } of matchLines(page, /(!?)\[\[([^[\]\n]+?)\]\]/g)) {
       const [link, embed, inner] = match
       const [path, display] = inner.split(/\\?\|/)
@@ -279,6 +330,14 @@ export const wikilink: SourceCheck = (tree) => {
       if (!embed && !display?.trim() && typeof title === "string" && title !== shown) {
         at(`링크 글자가 title과 다른 "${shown}"로 나오니 표시 이름을 쓴다: ${link}`)
       }
+      if (!embed) {
+        const text = display?.trim() || shown
+        shownLinks.push({ link, target, anchor, text, line, block: blockOf(line, match.index) })
+      }
+    }
+    for (const { link, line } of confusableSectionLinks(shownLinks, titles)) {
+      const message = `같은 블록에 같은 페이지 링크가 있으니 절 링크의 링크 글자가 title이나 그 링크 글자와 달라야 한다: ${link}`
+      violations.push({ file: page.file, line, message })
     }
   }
   return violations
@@ -355,7 +414,7 @@ export const citation: SourceCheck = (tree, conventions) => {
   return violations
 }
 
-// 인용 번호는 키가 페이지에서 처음 나온 순서로 매겨진다. 한 자리(한 문단이나 제목 안에서 공백과 줄바꿈만
+// 인용 번호는 키가 페이지에서 처음 나온 순서로 매겨진다. 한 자리(한 블록 안에서 공백과 줄바꿈만
 // 사이에 둔 인용들)의 키가 그 순서를 따라야 [2][1]이 아니라 [1][2]로 렌더된다. 키가 하나가 아닌 대괄호는
 // 앞의 검사가 맡는다.
 function citationOrder(page: Page): Violation[] {
@@ -366,16 +425,8 @@ function citationOrder(page: Page): Violation[] {
   found.forEach(({ key }, index) => {
     if (!first.has(key)) first.set(key, index)
   })
-  const blocks: Position[] = []
-  visit(page.mdast, (node) => {
-    if (node.type === "paragraph" || node.type === "heading") blocks.push(node.position!)
-  })
-  const blockOf = ({ line, column }: Citation) =>
-    blocks.findIndex(
-      ({ start, end }) =>
-        (line > start.line || (line === start.line && column >= start.column - 1)) &&
-        (line < end.line || (line === end.line && column < end.column - 1)),
-    )
+  const locate = blockLocator(page)
+  const blockOf = ({ line, column }: Citation) => locate(line, column)
   // 사이의 글은 원문에서 읽는다. 코드를 가린 본문에서는 인라인 코드가 공백으로 보인다. HTML 주석은
   // 렌더되지 않으므로 빼고 본다.
   const sourceLines = page.source.split("\n")
@@ -389,7 +440,7 @@ function citationOrder(page: Page): Violation[] {
     const gap = previous && span(previous, citation).slice(previous.raw.length)
     const joined =
       previous &&
-      blockOf(previous) >= 0 &&
+      blockOf(previous) !== null &&
       blockOf(previous) === blockOf(citation) &&
       gap.replace(/<!--[\s\S]*?-->|\n[ \t]*(?:>[ \t]*)*/g, "").trim() === ""
     if (joined) runs.at(-1)!.push(citation)

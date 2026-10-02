@@ -31,4 +31,4 @@ PHY의 레지스터는 MDC(Management Data Clock)와 MDIO(Management Data Input/
 
 ## 마스터와 슬레이브
 
-[[100base-t1|100BASE-T1]] 링크에서는 두 PHY 가운데 하나가 마스터, 다른 하나가 슬레이브가 된다.[@ti-dp83tc811r-q1-2018][@nxp-an13236-2022] 역할과 클럭은 [[100base-t1#마스터와 슬레이브|100BASE-T1]]에서 다룬다.
+[[100base-t1|100BASE-T1]] 링크에서는 두 PHY 가운데 하나가 마스터, 다른 하나가 슬레이브가 된다.[@ti-dp83tc811r-q1-2018][@nxp-an13236-2022] 자세한 것은 100BASE-T1의 [[100base-t1#마스터와 슬레이브|마스터와 슬레이브]]에서 다룬다.
