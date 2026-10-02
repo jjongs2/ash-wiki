@@ -25,6 +25,8 @@ ISO 26262-1:2018은 FTTI와 관련된 시간 구간과 운용 모드를 다음�
 
 ISO 26262-1:2018은 FDTI와 FRTI의 합이 관련 FTTI보다 짧으면 safety mechanism이 그 fault를 제때 다룬다고 본다. 곧 $\mathrm{FHTI} = \mathrm{FDTI} + \mathrm{FRTI} < \mathrm{FTTI}$다.[@iso-26262-1-obp-2018]
 
+![[diagrams/ftti-time-intervals.svg]]
+
 안전 상태와 emergency operation은 [[safety-mechanism|안전 기제]]에서 다룬다.
 
 ## 2011판과의 차이

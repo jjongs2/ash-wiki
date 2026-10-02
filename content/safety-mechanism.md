@@ -25,4 +25,6 @@ AUTOSAR Watchdog Manager는 소프트웨어 실행을 세 가지로 감시한다
 - **Deadline supervision**: 두 체크포인트 사이의 시간이 설정한 범위 안인지 본다.
 - **Logical supervision**: 체크포인트를 정한 순서대로 지나는지 본다.[@autosar-cp-sws-watchdogmanager-2025]
 
+![[diagrams/watchdog-supervision-kinds.svg]]
+
 AUTOSAR R25-11의 E2E 통신 보호에서는 송신 측이 안전 관련 데이터에 제어 데이터를 붙이고, 수신 측이 그 제어 데이터로 받은 데이터를 검사한다. 이로써 송신자와 수신자 사이 통신 경로의 fault를 실행 중에 검출한다.[@autosar-fo-prs-e2eprotocol-2025] 수신 시그널이 정한 시간 안에 오지 않는 것은 [[autosar-com|AUTOSAR COM]]의 수신 데드라인 감시가 검출한다.[@autosar-cp-sws-com-2025]

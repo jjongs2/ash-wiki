@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10.5 9.5 687.5 159" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+  <text x="20" y="28" font-size="12" fill="var(--text, #727981)">TI Hercules MCU</text>
+
+  <!-- 입력: 두 CPU가 같은 입력을 받는다 -->
+  <text x="20" y="105" fill="var(--text, #727981)">입력</text>
+  <line x1="54" y1="100" x2="90" y2="100" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <circle cx="90" cy="100" r="3" fill="var(--ink, #727981)" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M90 100 V60 H138" />
+    <path d="M90 100 V140 H138" />
+  </g>
+
+  <!-- 상자 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="140" y="42" width="120" height="36" rx="4" />
+    <rect x="140" y="122" width="120" height="36" rx="4" />
+    <rect x="340" y="70" width="160" height="60" rx="4" />
+  </g>
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="200" y="65">기능 CPU</text>
+    <text x="200" y="145">checker CPU</text>
+    <text x="420" y="96">core compare 모듈</text>
+    <text x="420" y="116" font-size="12">출력을 사이클마다 감시</text>
+  </g>
+
+  <!-- 두 출력을 비교로 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M260 60 H300 V88 H338" />
+    <path d="M260 140 H300 V112 H338" />
+    <line x1="500" y1="100" x2="598" y2="100" />
+  </g>
+  <text x="549" y="92" font-size="12" fill="var(--text, #727981)" text-anchor="middle">다르면</text>
+  <text x="606" y="105" fill="var(--text, #727981)">시스템에 error</text>
+</svg>

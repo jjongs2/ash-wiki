@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="9.5 3.5 720.5 147" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+  <!-- 왼쪽: common cause failure. 근본 원인 하나가 두 요소를 직접 고장 나게 한다 -->
+  <text x="170" y="24" fill="var(--text, #727981)" text-anchor="middle">common cause failure</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="70" width="100" height="36" rx="4" />
+    <rect x="180" y="40" width="80" height="36" rx="4" />
+    <rect x="180" y="104" width="80" height="36" rx="4" />
+  </g>
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="70" y="93">근본 원인</text>
+    <text x="220" y="63">요소</text>
+    <text x="220" y="127">요소</text>
+  </g>
+  <text x="70" y="124" font-size="12" fill="var(--text, #727981)" text-anchor="middle">요소 안이나 밖</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M120 88 H150 V58 H178" />
+    <path d="M120 88 H150 V122 H178" />
+    <line x1="260" y1="58" x2="298" y2="58" />
+    <line x1="260" y1="122" x2="298" y2="122" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="306" y="63">고장</text>
+    <text x="306" y="127">고장</text>
+  </g>
+
+  <!-- 오른쪽: cascading failure. 한 요소의 고장이 다른 요소를 고장 나게 한다 -->
+  <text x="575" y="24" fill="var(--text, #727981)" text-anchor="middle">cascading failure</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="420" y="40" width="100" height="36" rx="4" />
+    <rect x="570" y="40" width="80" height="36" rx="4" />
+    <rect x="570" y="104" width="80" height="36" rx="4" />
+  </g>
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="470" y="63">근본 원인</text>
+    <text x="610" y="63">요소</text>
+    <text x="610" y="127">다른 요소</text>
+  </g>
+  <text x="470" y="94" font-size="12" fill="var(--text, #727981)" text-anchor="middle">요소 안이나 밖</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="520" y1="58" x2="568" y2="58" />
+    <line x1="610" y1="76" x2="610" y2="102" />
+    <line x1="650" y1="122" x2="688" y2="122" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="618" y="94" font-size="12">고장</text>
+    <text x="696" y="127">고장</text>
+  </g>
+</svg>

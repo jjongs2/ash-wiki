@@ -27,8 +27,12 @@ Randell(1975)에 따르면 하드웨어의 결함 허용 설계가 허용하는 
 
 TI Hercules MCU는 기능 CPU와 같은 입력을 받는 checker CPU를 lockstep으로 둔다. Core compare 모듈이 두 CPU의 출력을 사이클마다 감시하다가 다르면 시스템에 error를 알린다.[@ti-spry178-2011]
 
+![[diagrams/lockstep-core-compare.svg]]
+
 ## 소프트웨어의 결함 허용
 
 Recovery block은 소프트웨어의 설계 결함으로 생긴 error를 다루려고 마련한 방식이다.[@randell-software-fault-tolerance-1975] [[n-version-programming|N-version programming]]도 설계 fault를 허용하려는 방식이다.[@avizienis-n-version-1985]
 
 Randell은 1975년 논문에서 recovery block, conversation, fault-tolerant interface로 복잡한 컴퓨팅 시스템을 구조화하는 방법을 내놓았다. Recovery block의 기본 구조는 Horning, Lauer, Melliar-Smith, Randell이 1974년 논문에서 먼저 기술했다. Recovery block은 primary alternate를 실행한 뒤 그 결과를 acceptance test로 검사한다. 통과하지 못하면 프로세스 상태를 recovery point, 곧 primary alternate에 들어가기 직전의 상태로 되돌리고 다음 alternate를 실행한다. 마지막 alternate까지 통과하지 못하면 recovery block 전체가 실패한 것으로 본다.[@randell-software-fault-tolerance-1975]
+
+![[diagrams/recovery-block-flow.svg]]

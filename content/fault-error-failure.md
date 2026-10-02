@@ -19,7 +19,9 @@ IEC 60050은 사람이 한 행동이나 하지 않은 행동이 의도했거나 
 
 Avizienis 외(2004)는 사람의 행동에서 비롯한 fault를 human-made fault라 부르고, 그 가운데 개발자나 운용자가 의도하지 않은 실수(mistake)에서 비롯한 것을 non-deliberate fault로 나눈다. 프로그래머의 실수는 작성한 소프트웨어에 dormant fault를 남길 수 있다.[@avizienis-dependable-secure-computing-2004]
 
-Avizienis 외(2004)에 따르면 dormant fault는 활성화되어야 error를 만들고, error는 전파되어 서비스 인터페이스에 닿아 서비스를 올바른 서비스에서 벗어나게 할 때 failure가 된다. 구성 요소의 failure는 그 구성 요소를 포함하는 시스템에 fault를 일으키고, 시스템의 failure는 그 시스템에게서 서비스를 받는 다른 시스템에 external fault가 된다. 이렇게 fault → error → failure → fault의 사슬이 이어지며, 사슬은 구성 요소나 시스템 사이의 상호작용, 구성 요소를 시스템으로 묶는 일, 시스템을 만들거나 고치는 일을 거쳐 이어질 수 있다. 같은 분류에서 fault가 있어도 활성화되지 않으면 error가 생기지 않고, error가 있어도 서비스 인터페이스에 닿지 않으면 failure가 되지 않는다.[@avizienis-dependable-secure-computing-2004]
+Avizienis 외(2004)에 따르면 dormant fault는 활성화되어야 error를 만들고, error는 전파되어 서비스 인터페이스에 닿아 서비스를 올바른 서비스에서 벗어나게 할 때 failure가 된다. 구성 요소의 failure는 그 구성 요소를 포함하는 시스템에 fault를 일으키고, 시스템의 failure는 그 시스템에게서 서비스를 받는 다른 시스템에 external fault가 된다. 이렇게 fault → error → failure → fault의 사슬이 이어지며, 사슬은 구성 요소나 시스템 사이의 상호작용, 구성 요소를 시스템으로 묶는 일, 시스템을 만들거나 고치는 일을 거쳐 이어질 수 있다. 같은 분류에서 활성화되지 않은 fault는 error를 만들지 않으며, 서비스 인터페이스까지 번지지 못한 error는 failure로 이어지지 않는다.[@avizienis-dependable-secure-computing-2004]
+
+![[diagrams/fault-error-failure-chain.svg]]
 
 ## Dependability를 얻는 수단
 

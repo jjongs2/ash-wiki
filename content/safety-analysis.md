@@ -19,6 +19,8 @@ IEC 60050은 **FTA**(Fault Tree Analysis)를 fault tree를 쓰는 연역적 분�
 
 IEC 61025:2006에 따르면 FTA는 정해 둔 top event를 일으키거나 그에 기여하는 조건과 요인을 찾아 분석한다. **Top event**는 fault tree를 전개하는 대상 사건으로, 모든 입력 사건이 조합된 결과다. Fault tree에서 게이트는 입력 사건의 조합을 나타내고, 그 결과는 중간 사건이거나 top event다. IEC 61025:2006은 FTA의 원리, 수행 단계, 가정·사건·failure mode의 식별, 기호에 대한 지침을 둔다.[@iec-61025-preview-2006]
 
+![[diagrams/fault-tree-structure.svg]]
+
 ## HAZOP
 
 IEC 61882:2016에 따르면 **HAZOP**(Hazard and Operability study)은 정해진 시스템을 구조적이고 체계적으로 살펴 해저드 같은 위험과 운용상의 문제를 찾는 기법이며, guide word로 설계 의도에서 벗어난 것(deviation)을 찾는다.[@iec-61882-preview-2016]
@@ -29,5 +31,7 @@ ISO 26262-1:2018은 **종속 고장**(dependent failure)을 통계적으로 독�
 
 - **Common cause failure**: 아이템의 둘 이상의 요소가, 그 모든 요소의 안이나 밖에 있는 하나의 특정 사건이나 근본 원인 때문에 직접 고장 나는 것
 - **Cascading failure**: 아이템의 한 요소가 요소 안팎의 근본 원인으로 고장 나고, 그것이 같은 아이템이나 다른 아이템의 다른 요소를 고장 나게 하는 것[@iso-26262-1-obp-2018]
+
+![[diagrams/dependent-failure-common-cause-cascading.svg]]
 
 요소 사이에 cascading failure가 없는 것은 [[freedom-from-interference|FFI]]에서 다룬다.

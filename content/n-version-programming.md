@@ -13,6 +13,8 @@ Avizienis와 Chen은 1977년 COMPSAC 논문에서 이 방법을 처음 정의했
 
 N개의 버전은 개발 과정에서 서로 교류하지 않는 개인이나 팀이 따로 만든다. 버전들은 초기 명세에서 정해 둔 cross-check point(cc-point)에서 비교 벡터를 내고, 결정 알고리즘은 cc-point마다 버전들의 출력에서 합의 결과를 정한다.[@avizienis-n-version-methodology-1995]
 
+![[diagrams/n-version-programming-decision.svg]]
+
 버전이 둘이면 버전 사이의 불일치는 찾아내지만 합의를 정하지 못한다. 그래서 불일치가 나면 안전하게 멈추거나 따로 복구 과정을 불러야 한다.[@avizienis-n-version-methodology-1995]
 
 ## 다양화 요소
