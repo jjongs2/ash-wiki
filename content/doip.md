@@ -33,7 +33,7 @@ AUTOSAR의 DoIP 모듈은 프로토콜 정보가 틀린 헤더를 받으면 NACK
 
 ## 포트
 
-IANA는 13400/udp를 doip-disc(DoIP Discovery)로, 13400/tcp를 doip-data(DoIP Data)로 등록해 두었다.[@iana-service-names-port-numbers-2026] AUTOSAR의 DoIP 모듈은 차량 식별 요청을 UDP로, 진단 메시지를 TCP로 받는다.[@autosar-cp-sws-diagnosticoverip-2025]
+IANA는 13400/udp를 doip-disc(DoIP Discovery)로, 13400/tcp를 doip-data(DoIP Data)로 등록해 두었다.[@iana-service-names-port-numbers-registry-2026] AUTOSAR의 DoIP 모듈은 차량 식별 요청을 UDP로, 진단 메시지를 TCP로 받는다.[@autosar-cp-sws-diagnosticoverip-2025]
 
 ## 메시지와 절차
 

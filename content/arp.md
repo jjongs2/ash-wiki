@@ -43,4 +43,4 @@ IPv4의 Protocol type은 IP의 EtherType인 `0x0800`이다.[@ietf-rfc-826-1982][
 
 ## Neighbor Discovery와의 차이
 
-[[ipv6|IPv6]] 노드는 Neighbor Discovery 프로토콜로 같은 링크에 있는 이웃의 링크 계층 주소를 알아낸다. Neighbor Discovery는 IPv4의 ARP, [[icmp|ICMP]] Router Discovery, ICMP Redirect를 합친 것에 대응한다.[@ietf-rfc-4861-2007]
+[[ipv6|IPv6]] 노드는 IPv4에서 ARP가 하던 일, 곧 같은 링크에 있는 이웃의 링크 계층 주소를 알아내는 일을 Neighbor Discovery 프로토콜로 한다.[@ietf-rfc-4861-2007]
