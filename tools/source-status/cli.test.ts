@@ -468,6 +468,19 @@ describe("source-status CLI", () => {
     for (let i = 1; i < times.length; i++) assert.ok(times[i] - times[i - 1] >= 400)
   })
 
+  test("전체 자리를 기다린 요청도 한 호스트의 --interval을 지킨다", async () => {
+    // 답하지 않는 호스트 10개가 전체 8자리를 먼저 차지해, 같은 호스트의 요청이 함께 자리를 기다린다.
+    const urls: Record<string, string> = {}
+    for (const host of "abcdefghij")
+      urls[`org-hang-${host}-2024`] = `https://${host}.example.org/hang/${host}`
+    for (const n of [1, 2, 3])
+      urls[`org-tick${n}-2024`] = `https://queued.example.org/tick/queued/${n}`
+    await runStatus(citingTree(urls), "--interval", "500", "--timeout", "500")
+    const times = ticks.get("queued")!
+    assert.strictEqual(times.length, 3)
+    for (let i = 1; i < times.length; i++) assert.ok(times[i] - times[i - 1] >= 400)
+  })
+
   test("--url을 주면 그 URL만 하나씩 묻는다", async () => {
     const urls: Record<string, string> = {}
     for (const host of "abcd")
