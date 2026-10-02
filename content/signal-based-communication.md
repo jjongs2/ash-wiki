@@ -33,7 +33,7 @@ Vector는 DBC 형식을 통신 데이터를 기술하는 사실상의 표준(de 
 
 ## 물리값 변환
 
-AUTOSAR에서 ISignal의 네트워크 표현은 CompuMethod로 물리값과 이어진다.[@autosar-cp-tps-systemtemplate-2025] `LINEAR` 범주의 CompuMethod는 내부값 $x$에 계수 $a$를 곱한 뒤 오프셋 $b$를 더해 물리값 $y = a\,x + b$를 얻는다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+AUTOSAR Classic Platform R25-11의 System Template은 ISignal의 네트워크 표현을 CompuMethod로 물리값과 잇는다.[@autosar-cp-tps-systemtemplate-2025] `LINEAR` 범주의 CompuMethod는 내부값 $x$에 계수 $a$를 곱한 뒤 오프셋 $b$를 더해 물리값 $y = a\,x + b$를 얻는다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ## 송신과 수신 감시
 

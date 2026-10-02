@@ -7,7 +7,7 @@ verified: 2026-09-30
 
 **OSEK/VDX**는 차량의 분산 제어 유닛을 위한 개방형 구조를 산업 표준으로 만들려는 자동차 업계의 공동 프로젝트다. 그 프로젝트가 펴낸 명세의 묶음도 OSEK/VDX라 부른다.[@osek-binding-1-4-2-2004] OSEK은 독일어 "Offene Systeme und deren Schnittstellen für die Elektronik im Kraftfahrzeug"(차량 전자 장치를 위한 개방형 시스템과 그 인터페이스)의 머리글자이고, VDX는 Vehicle Distributed eXecutive의 머리글자다.[@osek-binding-1-4-2-2004][@osek-vdx-whats-osekvdx-2000]
 
-OSEK/VDX에 따르면 OSEK은 1993년 5월 독일 자동차 업계의 공동 프로젝트로 시작됐다. 1994년에 프랑스의 PSA와 Renault가 OSEK에 합류하면서, 프랑스 자동차 업계의 비슷한 프로젝트인 VDX의 방식을 들여왔다. 1995년 10월 첫 워크숍에서 OSEK/VDX 그룹은 OSEK과 VDX를 맞춘 명세의 결과를 발표했다.[@osek-vdx-whats-osekvdx-2000]
+OSEK은 1993년 5월 독일 자동차 업계의 공동 프로젝트로 시작됐다. 1994년에 프랑스의 PSA와 Renault가 OSEK에 합류하면서, 프랑스 자동차 업계의 비슷한 프로젝트인 VDX의 방식을 들여왔다. 1995년 10월 첫 워크숍에서 OSEK/VDX 그룹은 OSEK과 VDX를 맞춘 명세의 결과를 발표했다.[@osek-vdx-whats-osekvdx-2000]
 
 ## 명세
 

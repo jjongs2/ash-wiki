@@ -31,7 +31,7 @@ IEEE 802.3-1985는 둘 이상의 스테이션이 공통 버스 매체 하나를 
 
 ## 잃은 프레임
 
-IEEE 802.3-2022는 프레임에서 계산한 [[cyclic-redundancy-check|CRC]]가 받은 FCS 값과 다른 프레임을 **무효 MAC 프레임**(invalid MAC frame)으로 정하고, 그 내용을 LLC(Logical Link Control)나 MAC Control 부계층에 넘기지 않도록 정한다. 무효 MAC 프레임은 무시하거나 버리거나 따로 쓸 수 있다. 또 이 표준에서 MAC은 오류 일부를 클라이언트에게 알릴 뿐 오류 복구를 하지 않으며, 오류 복구는 MAC 클라이언트나 상위 계층이 맡을 수 있다.[@ieee-802-3-2022]
+IEEE 802.3-2022는 프레임에서 계산한 [[cyclic-redundancy-check|CRC]]가 받은 FCS 값과 다른 프레임을 **무효 MAC 프레임**(invalid MAC frame)으로 정하고, 그 내용을 LLC(Logical Link Control)나 MAC Control 부계층에 넘기지 않도록 정한다. 무효 MAC 프레임은 무시하거나 버리거나 따로 쓸 수 있다. 또 이 표준은 MAC이 오류 일부를 클라이언트에게 알리기만 하고 오류 복구는 하지 않도록 두며, 오류 복구는 MAC 클라이언트나 상위 계층이 맡을 수 있다.[@ieee-802-3-2022]
 
 Microchip AN1120에 따르면 과도한 충돌로 프레임이 버려지면 응용 소프트웨어가 이를 알아차리고 필요하면 다시 보내야 한다.[@microchip-an1120-2008] 상위 계층에서는 RFC 9293이 [[tcp|TCP]]가 오류나 혼잡으로 잃은 세그먼트를 재전송해 모든 세그먼트의 전달을 보장하도록 정한다.[@ietf-rfc-9293-2022]
 

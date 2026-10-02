@@ -15,7 +15,7 @@ $$
 100\,\mathrm{Mbit/s} \times \frac{5}{4} = 125\,\mathrm{Mbit/s}
 $$
 
-수신기는 들어온 신호에서 클럭을 복구한다.[@microchip-ksz8081mlx-2022][@ti-dp83822-2026] [[ieee-802-3|IEEE 802.3]]이 쓰는 4B/5B 부호는 스크램블하지 않을 때도 클럭 복구를 돕기에 충분한 천이 밀도를 준다.[@ieee-802-3-2022]
+수신기는 들어온 신호에서 클럭을 복구한다.[@microchip-ksz8081mlx-2022][@ti-dp83822-2026] [[ieee-802-3|IEEE 802.3]]-2022가 쓰는 4B/5B 부호는 스크램블하지 않을 때도 클럭 복구를 돕기에 충분한 천이 밀도를 준다.[@ieee-802-3-2022]
 
 ![[diagrams/100base-tx-transmit-chain.svg]]
 
