@@ -234,8 +234,10 @@ function tableLines(page: Page): Set<number> {
 // 한 자리로 보는 블록: 문단, 제목, 표의 행 하나. 목록과 콜아웃은 그 안의 문단마다 따로 센다. 검사기의
 // mdast는 GFM 표를 읽지 않아 표 전체를 문단 하나로 잡으므로, 표의 줄은 줄마다 블록으로 센다. 받은 자리
 // (줄과 0부터 센 열)가 든 블록을 가리키는 값을 주고, 블록 밖이면 null을 준다.
-function blockLocator(page: Page): (line: number, column: number) => string | null {
-  const rows = tableLines(page)
+function blockLocator(
+  page: Page,
+  rows = tableLines(page),
+): (line: number, column: number) => string | null {
   const blocks: Position[] = []
   visit(page.mdast, (node) => {
     if (node.type === "paragraph" || node.type === "heading") blocks.push(node.position!)
@@ -262,7 +264,7 @@ interface ShownLink {
 
 // 같은 블록에 같은 페이지로 가는 링크가 또 있으면, 절 링크의 링크 글자가 그 페이지의 title이나 다른
 // 링크의 링크 글자와 같을 때 독자에게는 같은 링크가 두 번 걸린 것으로 보인다.
-function sectionLinkLabels(links: ShownLink[], titles: Map<string, unknown>): ShownLink[] {
+function confusableSectionLinks(links: ShownLink[], titles: Map<string, unknown>): ShownLink[] {
   return links.filter(
     (link) =>
       link.block !== null &&
@@ -286,7 +288,7 @@ export const wikilink: SourceCheck = (tree) => {
   const violations: Violation[] = []
   for (const page of tree.pages) {
     const rows = tableLines(page)
-    const blockOf = blockLocator(page)
+    const blockOf = blockLocator(page, rows)
     const shownLinks: ShownLink[] = []
     for (const { match, line } of matchLines(page, /(!?)\[\[([^[\]\n]+?)\]\]/g)) {
       const [link, embed, inner] = match
@@ -333,8 +335,8 @@ export const wikilink: SourceCheck = (tree) => {
         shownLinks.push({ link, target, anchor, text, line, block: blockOf(line, match.index) })
       }
     }
-    for (const { link, line } of sectionLinkLabels(shownLinks, titles)) {
-      const message = `같은 블록에 같은 페이지 링크가 있으니 절 링크의 표시 이름을 title이나 그 링크 글자와 다르게 쓴다: ${link}`
+    for (const { link, line } of confusableSectionLinks(shownLinks, titles)) {
+      const message = `같은 블록에 같은 페이지 링크가 있으니 절 링크의 링크 글자가 title이나 그 링크 글자와 달라야 한다: ${link}`
       violations.push({ file: page.file, line, message })
     }
   }

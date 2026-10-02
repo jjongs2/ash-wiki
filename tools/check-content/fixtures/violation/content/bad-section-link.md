@@ -23,7 +23,7 @@ verified: 2026-09-20
 | [[target-page\|대상]] | [[target-page#정의\|대상]]               |
 | [[target-page\|대상]] | [[target-page#정의\|대상 페이지의 정의]] |
 
-<!-- 위반(wikilink): 표시 이름이 없으면 링크 글자는 "슬러그 > 앵커"다. -->
+<!-- 위반(wikilink): 표시 이름이 없으면 링크 글자는 "슬러그 > 앵커"다. 이 꼴은 다른 링크가 그 글자를 표시 이름으로 쓸 때만 걸린다. -->
 
 [[target-page|target-page > 정의]]는 억지 예다. [[target-page#정의]]에서 다룬다.
 
