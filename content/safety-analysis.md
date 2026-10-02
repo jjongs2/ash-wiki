@@ -5,25 +5,25 @@ tags:
 verified: 2026-10-02
 ---
 
-**안전 분석**(safety analysis)은 ISO 26262-9:2018이 종속 고장 분석과 함께 요구사항을 정하는 분석이다. ISO 26262-9:2018은 7절에서 종속 고장 분석을, 8절에서 안전 분석을 다룬다.[@iso-26262-9-obp-2018] 분석 기법인 FMEA, FTA, HAZOP은 IEC 60812:2018[@iec-60812-2018], IEC 61025:2006[@iec-61025-preview-2006], IEC 61882:2016이 각각 적용 지침을 둔다.[@iec-61882-preview-2016]
+**안전 분석**(safety analysis)은 ISO 26262-9:2018이 종속 고장 분석과 함께 요구사항을 정하는 분석이다. ISO 26262-9:2018은 7절에서 종속 고장 분석을, 8절에서 안전 분석을 다룬다.[@iso-26262-9-obp-2018] 분석 기법인 FMEA(Failure Modes and Effects Analysis), FTA(Fault Tree Analysis), HAZOP(Hazard and Operability study)은 IEC 60812:2018[@iec-60812-2018], IEC 61025:2006[@iec-61025-preview-2006], IEC 61882:2016이 각각 적용 지침을 둔다.[@iec-61882-preview-2016]
 
 ## FMEA
 
-IEC 60050은 **FMEA**(Failure Modes and Effects Analysis)를 하위 항목에서 일어날 수 있는 failure mode와 fault, 그리고 그것이 여러 계층(indenture level)에 주는 영향을 살피는 정성적 분석으로 정의한다.[@iec-60050-192-11-05-2015] IEC 60812:2018은 FMEA를 어떻게 계획하고 수행하고 문서로 남기고 유지하는지 설명한다.[@iec-60812-2018]
+IEC 60050은 **FMEA**를 하위 항목에서 일어날 수 있는 failure mode와 fault, 그리고 그것이 여러 계층(indenture level)에 주는 영향을 살피는 정성적 분석으로 정의한다.[@iec-60050-192-11-05-2015] IEC 60812:2018은 FMEA를 계획하고 수행하고 문서로 남기고 유지하는 지침을 둔다.[@iec-60812-2018]
 
 **Failure mode**는 요소나 아이템이 고장 나는 방식이다.[@iso-26262-1-obp-2018][@iec-60050-192-03-17-2024]
 
 ## FTA
 
-IEC 60050은 **FTA**(Fault Tree Analysis)를 fault tree를 쓰는 연역적 분석으로 정의하고[@iec-60050-192-11-08-2015], **fault tree**를 하위 항목의 fault, 외부 사건, 또는 그 조합이 미리 정한 원치 않는 사건을 일으키는 관계를 보이는 논리 그림으로 정의한다.[@iec-60050-192-11-07-2015]
+IEC 60050은 **FTA**를 fault tree를 쓰는 연역적 분석으로 정의하고[@iec-60050-192-11-08-2015], **fault tree**를 하위 항목의 fault, 외부 사건, 또는 그 조합이 미리 정한 원치 않는 사건을 일으키는 관계를 보이는 논리 그림으로 정의한다.[@iec-60050-192-11-07-2015]
 
-IEC 61025:2006에 따르면 FTA는 정해 둔 top event를 일으키거나 그에 기여하는 조건과 요인을 찾아 분석한다. **Top event**는 fault tree를 전개하는 대상 사건으로, 모든 입력 사건이 조합된 결과다. Fault tree에서 게이트는 입력 사건의 조합을 나타내고, 그 결과는 중간 사건이거나 top event다. IEC 61025:2006은 FTA의 원리, 수행 단계, 가정·사건·failure mode의 식별, 기호에 대한 지침을 둔다.[@iec-61025-preview-2006]
+IEC 61025:2006은 FTA를 정해 둔 top event를 일으키거나 그에 기여하는 조건과 요인을 찾아 분석하는 방법으로 둔다. **Top event**는 fault tree를 전개하는 대상 사건으로, 모든 입력 사건이 조합된 결과다. Fault tree에서 게이트는 입력 사건의 조합을 나타내고, 그 결과는 중간 사건이거나 top event다. IEC 61025:2006은 FTA의 원리, 수행 단계, 가정·사건·failure mode의 식별, 기호에 대한 지침을 둔다.[@iec-61025-preview-2006]
 
 ![[diagrams/fault-tree-structure.svg]]
 
 ## HAZOP
 
-IEC 61882:2016에 따르면 **HAZOP**(Hazard and Operability study)은 정해진 시스템을 구조적이고 체계적으로 살펴 해저드 같은 위험과 운용상의 문제를 찾는 기법이며, guide word로 설계 의도에서 벗어난 것(deviation)을 찾는다.[@iec-61882-preview-2016]
+IEC 61882:2016은 **HAZOP**을 정해진 시스템을 구조적이고 체계적으로 살펴 해저드 같은 위험과 운용상의 문제를 찾는 기법으로 두고, guide word로 설계 의도에서 벗어난 것(deviation)을 찾게 정한다.[@iec-61882-preview-2016]
 
 ## 종속 고장 분석
 

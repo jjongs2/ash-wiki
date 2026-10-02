@@ -40,7 +40,7 @@
 
   <!-- 축 위의 글자 -->
   <g font-size="12" fill="var(--text, #727981)">
-    <text x="50" y="60">safety mechanism이 동작하지 않을 때</text>
+    <text x="50" y="60">안전 메커니즘이 동작하지 않을 때</text>
     <text x="50" y="140">안전 상태에 바로 이를 때</text>
     <text x="50" y="250">emergency operation을 거칠 때</text>
   </g>

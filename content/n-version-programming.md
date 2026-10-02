@@ -7,7 +7,7 @@ verified: 2026-10-02
 
 **N-version programming**은 같은 초기 명세에서 기능이 같은 프로그램 N개($N \ge 2$)를 서로 독립적으로 만드는 소프트웨어 결함 허용 방법이다. 이렇게 만든 버전들을 함께 실행하고, 범용 결정 알고리즘이 버전들의 결과에서 합의 결과를 정한다.[@avizienis-n-version-methodology-1995] 같은 기능을 서로 다른 설계와 구현으로 실현하는 설계 다양성의 한 형태이며[@avizienis-dependable-secure-computing-2004], 다양성은 [[fault-tolerance#중복과 다양성|결함 허용]]에서 다룬다.
 
-Avizienis와 Chen은 1977년 COMPSAC 논문에서 이 방법을 처음 정의했다. UCLA는 1975년에 이 방법을 redundant programming이라는 이름으로 연구하기 시작했다.[@avizienis-n-version-methodology-1995]
+Avizienis와 Chen은 1977년 COMPSAC(Computer Software and Applications Conference) 논문에서 이 방법을 처음 정의했다. UCLA(University of California, Los Angeles)는 1975년에 이 방법을 redundant programming이라는 이름으로 연구하기 시작했다.[@avizienis-n-version-methodology-1995]
 
 ## 독립 개발과 합의
 
@@ -36,4 +36,4 @@ Knight와 Leveson은 1986년 논문에서 두 대학(버지니아 대학, UC 어
 
 ## Recovery block과의 차이
 
-두 방식의 가장 근본적인 차이는 판정 방식이다. N-version programming은 실행 환경이 주는 범용 결정 알고리즘으로 여러 버전 출력의 합의를 찾는다. Recovery block은 응용마다 따로 설계한 acceptance test를 대체 루틴 하나의 출력에 적용한다.[@avizienis-n-version-methodology-1995] Recovery block의 동작은 [[fault-tolerance#소프트웨어의 결함 허용|결함 허용]]에서 다룬다.
+Avizienis는 두 방식의 가장 근본적인 차이를 판정 방식으로 본다. N-version programming은 실행 환경이 주는 범용 결정 알고리즘으로 여러 버전 출력의 합의를 찾는다. Recovery block은 응용마다 따로 설계한 acceptance test를 대체 루틴 하나의 출력에 적용한다.[@avizienis-n-version-methodology-1995] Recovery block의 동작은 [[fault-tolerance#소프트웨어의 결함 허용|결함 허용]]에서 다룬다.

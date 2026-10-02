@@ -18,9 +18,9 @@ AUTOSAR R25-11은 FFI를 돕는 기능 안전 메커니즘을 간섭의 측면�
 | 메모리    | memory partitioning                                                                 |
 | 타이밍    | Watchdog Manager의 시간 감시, [[autosar-timing-protection\|OS의 timing protection]] |
 | 실행      | Watchdog Manager의 logical supervision                                              |
-| 정보 교환 | E2E 보호                                                                            |
+| 정보 교환 | E2E(End-to-End) 보호                                                                |
 
-AUTOSAR R25-11의 E2E 보호는 정보의 반복, 손실, 지연, 삽입, 위장, 잘못된 주소 지정, 잘못된 순서, 손상, 수신자마다 다른 정보, 일부 수신자만 받는 정보, 통신 채널 접근 막힘을 통신 결함으로 고려한다.[@autosar-cp-exp-functionalsafetymeasures-2025] Watchdog Manager는 [[safety-mechanism#오류 검출 기법|안전 기제]]에서 다룬다.
+AUTOSAR R25-11의 E2E 보호는 정보의 반복, 손실, 지연, 삽입, 위장, 잘못된 주소 지정, 잘못된 순서, 손상, 수신자마다 다른 정보, 일부 수신자만 받는 정보, 통신 채널 접근 막힘을 통신 결함으로 고려한다.[@autosar-cp-exp-functionalsafetymeasures-2025] Watchdog Manager는 [[safety-mechanism#오류 검출 기법|안전 메커니즘]]에서 다룬다.
 
 ## Memory partitioning
 
