@@ -7,9 +7,9 @@ aliases:
 verified: 2026-10-03
 ---
 
-**블록 암호 운용 모드**(block cipher mode of operation)는 블록 암호를 기본 요소로 삼아 기밀성이나 인증 같은 암호 서비스를 주는 알고리즘이다.[@nist-sp-800-175b-r1-2020] 운용 모드는 평문을 블록의 열로 나눠 처리하며, CFB 모드만 블록보다 작을 수 있는 조각의 열로 나눈다.[@nist-sp-800-38a-2001]
+**블록 암호 운용 모드**(block cipher mode of operation)는 블록 암호를 기본 요소로 삼아 기밀성이나 인증 같은 암호 서비스를 주는 알고리즘이다.[@nist-sp-800-175b-r1-2020] 운용 모드는 평문을 블록의 열로 나눠 처리하며, CFB(Cipher Feedback) 모드만 블록보다 작을 수 있는 조각의 열로 나눈다.[@nist-sp-800-38a-2001]
 
-NIST SP 800-38A는 기밀성을 위한 모드로 ECB(Electronic Codebook), CBC(Cipher Block Chaining), CFB(Cipher Feedback), OFB(Output Feedback), CTR(Counter) 다섯을 정하고, 다섯 모드를 AES(Advanced Encryption Standard)처럼 NIST가 승인한 대칭키 블록 암호와 함께 쓰게 한다.[@nist-sp-800-38a-2001] 기밀성과 인증을 함께 주는 모드는 SP 800-38C와 SP 800-38D가 따로 정한다.[@nist-sp-800-175b-r1-2020]
+NIST SP 800-38A는 기밀성을 위한 모드로 ECB(Electronic Codebook), CBC(Cipher Block Chaining), CFB, OFB(Output Feedback), CTR(Counter) 다섯을 정하고, 다섯 모드를 AES(Advanced Encryption Standard)처럼 NIST가 승인한 대칭키 블록 암호와 함께 쓰게 한다.[@nist-sp-800-38a-2001] 기밀성과 인증을 함께 주는 모드는 SP 800-38C와 SP 800-38D가 따로 정한다.[@nist-sp-800-175b-r1-2020]
 
 ## 기호
 
@@ -75,4 +75,4 @@ ECB와 CBC는 평문 길이가 블록의 정수배여야 하고, CFB는 조각 �
 
 **CCM**(Counter with CBC-MAC)은 CTR 모드로 기밀성을 주고 CBC-MAC으로 인증한다. NIST SP 800-38C가 CCM을 정하며, 블록 크기가 128비트인 블록 암호를 쓰도록 한다.[@nist-sp-800-38c-2004]
 
-**GCM**(Galois/Counter Mode)은 CTR 모드의 변형으로 암호화하고, 이진 갈루아체 위에서 해시 서브키와의 곱셈으로 정의한 해시 함수 GHASH로 인증한다. GHASH가 연관 데이터와 암호문을 한 블록으로 줄이고, 그 블록을 암호화해 인증 태그를 만든다. NIST SP 800-38D가 GCM을 정한다. SP 800-38D는 한 키 아래에서 IV가 한 번이라도 되풀이되면 위조 공격에 취약해질 수 있다고 보고, IV의 유일성 요구를 키를 비밀로 지키는 것만큼 중요하게 다룬다.[@nist-sp-800-38d-2007]
+**GCM**(Galois/Counter Mode)은 CTR 모드의 변형으로 암호화하고, 이진 갈루아체 위에서 해시 서브키와의 곱셈으로 정의한 해시 함수 GHASH로 인증한다. GHASH가 연관 데이터와 암호문을 한 블록으로 줄이고, 그 블록을 암호화해 인증 태그를 만든다. NIST SP 800-38D가 GCM을 정하며, 한 키 아래에서 IV가 되풀이되지 않게 한다. IV가 한 번이라도 되풀이되면 위조 공격에 취약해질 수 있다.[@nist-sp-800-38d-2007]

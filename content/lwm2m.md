@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**LwM2M**(Lightweight Machine to Machine)은 OMA SpecWorks가 펴내는 장치 관리 프로토콜이다. LwM2M 1.2.2 Core 명세는 LwM2M 장치의 장치 관리와 서비스 활성화(service enablement)를 다루며, LwM2M Client는 흔히 IoT(Internet of Things) 장치와 게이트웨이에 구현된다. 이 명세는 가벼운 프로토콜과 효율적인 데이터 모델을 쓰도록 LwM2M을 설계하고, 메시지 계층은 CoAP(Constrained Application Protocol)를 바탕으로 한 RESTful 설계를 따른다.[@oma-lwm2m-core-1-2-2-2024]
+**LwM2M**(Lightweight Machine to Machine)은 OMA SpecWorks가 펴내는 장치 관리 프로토콜이다. LwM2M 1.2.2 Core 명세는 LwM2M 장치의 장치 관리와 서비스 활성화(service enablement)를 다루며, LwM2M Client는 흔히 IoT(Internet of Things) 장치와 게이트웨이에 구현된다. 이 명세는 가벼운 프로토콜과 효율적인 데이터 모델을 쓰도록 LwM2M을 설계하고, 메시지 계층은 CoAP(Constrained Application Protocol)를 바탕으로 한 RESTful 설계를 따른다.[@oma-lwm2m-core-1-2-2-2024] oneM2M TS-0005 v5.0.0은 oneM2M 서비스 계층과 OMA의 관리 기술(OMA DM(Device Management) 1.3, OMA DM 2.0, LwM2M) 사이의 프로토콜 변환과 리소스 매핑을 정한다.[@onem2m-ts-0005-2026]
 
 ## 전송
 
@@ -69,13 +69,11 @@ OMA가 승인한 LwM2M의 판은 아래와 같다.
 | 1.2.1 | 2022-12-09[@oma-lwm2m-ereld-1-2-2-2024] |
 | 1.2.2 | 2024-06-13[@oma-lwm2m-ereld-1-2-2-2024] |
 
-oneM2M TS-0005 v5.0.0은 oneM2M 서비스 계층과 OMA의 관리 기술(OMA DM 1.3, OMA DM 2.0, LwM2M) 사이의 프로토콜 변환과 리소스 매핑을 정한다.[@onem2m-ts-0005-2026]
-
 ## OMA DM과의 차이
 
-**OMA DM**(Device Management)은 OMA가 LwM2M보다 앞서 펴낸 장치 관리 프로토콜이다. 첫 승인판인 OMA DM 1.1.2는 2003년 12월에 승인됐고, SyncML DM을 바탕으로 했다.[@oma-dm-ereld-1-1-2-2003] OMA의 LwM2M 1.0 요구사항 문서에 따르면 OMA DM은 주로 모바일 장치의 관리에 집중하는 반면, LwM2M은 관리에 더해 서비스 활성화도 다루고, 특히 자원이 제한된 장치를 겨냥해 가볍고 간결한 프로토콜과 평평한 데이터 구조를 쓴다.[@oma-lwm2m-rd-1-0-2017]
+**OMA DM**은 OMA가 LwM2M보다 앞서 펴낸 장치 관리 프로토콜이다. 첫 승인판인 OMA DM 1.1.2는 2003년 12월에 승인됐고, SyncML DM을 바탕으로 했다.[@oma-dm-ereld-1-1-2-2003] OMA의 LwM2M 1.0 요구사항 문서에 따르면 OMA DM은 주로 모바일 장치의 관리에 집중하는 반면, LwM2M은 관리에 더해 서비스 활성화도 다루고, 특히 자원이 제한된 장치를 겨냥해 가볍고 간결한 프로토콜과 평평한 데이터 구조를 쓴다.[@oma-lwm2m-rd-1-0-2017]
 
 OMA DM은 1.3과 2.0이 모두 승인된 판으로 남아 있다.[@oma-dm-ad-1-3-2016][@oma-dm-ad-2-0-2016]
 
-- OMA DM 1.3 명세는 DM Notification을 뺀 DM 메시지를 XML(Extensible Markup Language)로 정하고(WBXML 이진 인코딩도 가능), 메시지의 루트 요소를 SyncML로 둔다.[@oma-dm-protocol-1-3-2016][@oma-dm-reppro-1-3-2016] 클라이언트와 서버 사이의 프로토콜은 특정 전송에 묶이지 않고, HTTP와 HTTPS를 비롯한 표준 바인딩을 둔다.[@oma-dm-ad-1-3-2016] 장치의 관리 대상(Management Object)은 Management Tree라는 계층 트리로 나타내고, 트리의 노드는 URI로 가리킨다.[@oma-dm-protocol-1-3-2016]
+- OMA DM 1.3 명세는 DM Notification을 뺀 DM 메시지를 XML(Extensible Markup Language)로 정하고(WBXML(WAP Binary XML) 이진 인코딩도 가능), 메시지의 루트 요소를 SyncML로 둔다.[@oma-dm-protocol-1-3-2016][@oma-dm-reppro-1-3-2016] 클라이언트와 서버 사이의 프로토콜은 특정 전송에 묶이지 않고, HTTP와 HTTPS(HTTP over TLS)를 비롯한 표준 바인딩을 둔다.[@oma-dm-ad-1-3-2016] 장치의 관리 대상(Management Object)은 Management Tree라는 계층 트리로 나타내고, 트리의 노드는 URI로 가리킨다.[@oma-dm-protocol-1-3-2016]
 - OMA DM 2.0은 RESTful 설계를 따르는 HTTP 기반의 새 클라이언트·서버 프로토콜을 넣었고, DM 1.3까지의 Management Object는 그대로 쓴다.[@oma-dm-ad-2-0-2016] OMA DM 2.0 명세는 DM 세션 패키지의 JSON(JavaScript Object Notation) 형식을 정하고, 서버와 클라이언트가 모두 이를 지원하게 한다.[@oma-dm-protocol-2-0-2016]

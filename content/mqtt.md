@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**MQTT**(Message Queuing Telemetry Transport)는 클라이언트와 서버 사이에서 발행·구독(publish/subscribe) 방식으로 메시지를 나르는 프로토콜이다. OASIS가 표준으로 펴낸다.[@oasis-mqtt-5-0-2019] MQTT는 가볍고 단순하며 구현하기 쉽게 설계돼, 코드 크기가 작아야 하거나 네트워크 대역폭이 귀한 M2M(Machine to Machine)과 IoT(Internet of Things) 같은 제약 환경에 알맞다.[@oasis-mqtt-5-0-2019][@iso-iec-20922-2016]
+**MQTT**(Message Queuing Telemetry Transport)는 클라이언트와 서버 사이에서 발행·구독(publish/subscribe) 방식으로 메시지를 나르는 프로토콜이다. OASIS가 표준으로 펴낸다. MQTT는 가볍고 단순하며 구현하기 쉽게 설계돼, 코드 크기가 작아야 하거나 네트워크 대역폭이 귀한 M2M(Machine to Machine)과 IoT(Internet of Things) 같은 제약 환경에 알맞다.[@oasis-mqtt-5-0-2019]
 
 ## 클라이언트와 서버
 
@@ -15,7 +15,7 @@ verified: 2026-10-03
 
 ## 토픽
 
-MQTT 5.0은 메시지가 토픽 이름(topic name)을 달고 발행되고, 서버가 그 토픽 이름을 구독과 맞춰 보게 정한다. 토픽 이름은 `/`로 나뉜 층(topic level)을 이룬다. 구독은 토픽 필터(topic filter)와 최대 QoS로 이루어지며, 서버는 구독에 맞는 메시지를 그 클라이언트에게 보낸다.[@oasis-mqtt-5-0-2019]
+MQTT 5.0은 메시지가 토픽 이름(topic name)을 달고 발행되고, 서버가 그 토픽 이름을 구독과 맞춰 보게 정한다. 토픽 이름은 `/`로 나뉜 층(topic level)을 이룬다. 구독은 토픽 필터(topic filter)와 최대 QoS(Quality of Service)로 이루어지며, 서버는 구독에 맞는 메시지를 그 클라이언트에게 보낸다.[@oasis-mqtt-5-0-2019]
 
 ![[diagrams/mqtt-publish-subscribe.svg]]
 
@@ -23,7 +23,7 @@ MQTT 5.0은 와일드카드를 토픽 필터에만 쓰고 토픽 이름에는 �
 
 ## QoS
 
-MQTT 5.0은 메시지 전달의 보장 수준인 QoS(Quality of Service)를 셋으로 정한다.[@oasis-mqtt-5-0-2019]
+MQTT 5.0은 메시지 전달의 보장 수준인 QoS를 셋으로 정한다.[@oasis-mqtt-5-0-2019]
 
 - QoS 0(at most once): 받는 쪽이 응답하지 않고 보내는 쪽도 다시 보내지 않는다. 메시지는 한 번 도착하거나 사라진다.
 - QoS 1(at least once): 받는 쪽이 PUBACK으로 확인하고, 보내는 쪽은 PUBACK을 받을 때까지 메시지를 확인되지 않은 것으로 둔다. 메시지는 적어도 한 번 도착하지만 중복될 수 있다. 확인되지 않은 메시지를 다시 보내는 것은 세션을 이어 다시 연결할 때뿐이다.
@@ -33,7 +33,7 @@ MQTT 5.0은 메시지 전달의 보장 수준인 QoS(Quality of Service)를 셋�
 
 QoS는 보내는 쪽과 받는 쪽 한 쌍마다 따로 적용되므로, 서버가 구독자에게 보낼 때의 QoS는 발행될 때의 QoS와 다를 수 있다.[@oasis-mqtt-5-0-2019]
 
-## Retained message와 Will message
+## Retained message와 will message
 
 MQTT 5.0은 서버가 따로 다루는 메시지 두 가지를 정한다.[@oasis-mqtt-5-0-2019]
 
@@ -42,7 +42,7 @@ MQTT 5.0은 서버가 따로 다루는 메시지 두 가지를 정한다.[@oasis
 
 ## 전송
 
-MQTT 5.0은 클라이언트와 서버 사이에, 순서를 지키고 잃지 않는 양방향 바이트 스트림을 주는 전송을 요구한다. MQTT는 [[internet-protocol-suite|TCP/IP]] 위에서 동작하고, 순서를 지키고 잃지 않는 양방향 연결을 주는 다른 프로토콜 위에서도 동작한다. MQTT 5.0은 WebSocket 위에서 MQTT를 나르는 규칙도 정한다.[@oasis-mqtt-5-0-2019]
+MQTT 5.0은 클라이언트와 서버 사이에, 순서를 지키고 잃지 않는 양방향 바이트 스트림을 주는 전송을 요구한다. MQTT는 [[tcp|TCP]]/IP 위에서 동작하고, 순서를 지키고 잃지 않는 양방향 연결을 주는 다른 프로토콜 위에서도 동작한다. MQTT 5.0은 WebSocket 위에서 MQTT를 나르는 규칙도 정한다.[@oasis-mqtt-5-0-2019]
 
 IANA는 서비스 이름 mqtt에 포트 1883을, secure-mqtt에 포트 8883을 할당했다.[@iana-service-names-port-numbers-registry-2026] 포트 8883은 [[transport-layer-security|TLS]] 위의 MQTT, 포트 1883은 TLS 없는 MQTT를 위한 것이며, MQTT 5.0은 TLS를 제공하는 서버가 TCP 포트 8883을 쓰기를 강하게 권한다.[@oasis-mqtt-5-0-2019]
 

@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**TLS**(Transport Layer Security)는 클라이언트와 서버가 인터넷에서 도청, 변조, 메시지 위조를 막도록 설계된 방식으로 통신하게 하는 프로토콜이다. 서버는 늘 인증하고 클라이언트 인증은 선택이며, 핸드셰이크로 키 재료를 설정한 뒤 그 키로 오가는 데이터의 기밀성과 무결성을 지킨다. TLS가 아래 전송에 요구하는 것은 신뢰성 있고 순서를 지키는 데이터 스트림뿐이다.[@ietf-rfc-9846-2026] TLS는 그런 전송 채널, 대개 [[tcp|TCP]] 위에서 동작한다.[@ietf-rfc-9147-2022] RFC 9846은 TLS 1.3을 정하고, TLS 1.2를 비롯한 이전 판을 대체한다.[@ietf-rfc-9846-2026]
+**TLS**(Transport Layer Security)는 클라이언트와 서버가 인터넷에서 도청, 변조, 메시지 위조를 막도록 설계된 방식으로 통신하게 하는 프로토콜이다. 핸드셰이크로 키 재료를 설정한 뒤 그 키로 오가는 데이터의 기밀성과 무결성을 지킨다. TLS가 아래 전송에 요구하는 것은 신뢰성 있고 순서를 지키는 데이터 스트림뿐이다.[@ietf-rfc-9846-2026] TLS는 그런 전송 채널, 대개 [[tcp|TCP]] 위에서 동작한다.[@ietf-rfc-9147-2022] RFC 9846은 TLS 1.3을 정하고, TLS 1.2를 비롯한 이전 판을 대체한다.[@ietf-rfc-9846-2026]
 
 ## 판의 이력
 
@@ -50,7 +50,7 @@ TLS 1.3은 서버를 늘 인증하고, 클라이언트는 서버가 CertificateR
 
 ## Cipher suite
 
-TLS 1.3의 cipher suite는 레코드 보호에 쓰는 [[block-cipher-mode-of-operation|AEAD]](Authenticated Encryption with Associated Data) 알고리즘과, HKDF와 Transcript-Hash에 쓰는 해시 알고리즘의 짝을 정한다. 예: `TLS_AES_128_GCM_SHA256`. 키 교환 그룹과 서명 알고리즘은 cipher suite와 따로 supported_groups, key_share, signature_algorithms 확장으로 협상한다.[@ietf-rfc-9846-2026]
+TLS 1.3의 cipher suite는 레코드 보호에 쓰는 [[block-cipher-mode-of-operation|AEAD]](Authenticated Encryption with Associated Data) 알고리즘과, HKDF와 Transcript-Hash에 쓰는 해시 알고리즘의 짝을 정한다. 예: TLS_AES_128_GCM_SHA256. 키 교환 그룹과 서명 알고리즘은 cipher suite와 따로 supported_groups, key_share, signature_algorithms 확장으로 협상한다.[@ietf-rfc-9846-2026]
 
 RFC 5246은 cipher suite 하나가 키 교환 알고리즘, 대량 암호 알고리즘(비밀 키 길이 포함), MAC 알고리즘, PRF(Pseudorandom Function)를 정하게 했다. RFC 9846은 인증·키 교환 방식을 레코드 보호 알고리즘과 떼어 cipher suite의 뜻을 바꿨다.[@ietf-rfc-9846-2026][@ietf-rfc-5246-2008]
 
@@ -58,7 +58,7 @@ RFC 5246은 cipher suite 하나가 키 교환 알고리즘, 대량 암호 알고
 
 RFC 5246은 클라이언트가 premaster secret을 서버 인증서의 RSA 공개키로 암호화해 보내는 RSA 키 교환과, DHE_DSS·DHE_RSA(임시 Diffie-Hellman), DH_DSS·DH_RSA(인증서에 든 고정 Diffie-Hellman), DH_anon(익명 Diffie-Hellman)을 정했다. RFC 9846은 정적 RSA와 정적 Diffie-Hellman cipher suite를 없앴다.[@ietf-rfc-9846-2026][@ietf-rfc-5246-2008]
 
-RFC 5246은 서버가 DHE_DSS, DHE_RSA, DH_anon일 때만 ServerKeyExchange로 키 교환 값을 보내고, 클라이언트는 늘 ClientKeyExchange로 RSA로 암호화한 premaster secret이나 Diffie-Hellman 공개값을 보내게 했다.[@ietf-rfc-5246-2008] 또 양쪽이 보안 매개변수를 합의한 뒤 Finished 앞에 ChangeCipherSpec 메시지를 보내, 이후 레코드를 새로 협상한 방식과 키로 보호함을 알리게 했다. RFC 9846은 ChangeCipherSpec을 미들박스와의 호환을 위해서만 남겼다.[@ietf-rfc-9846-2026][@ietf-rfc-5246-2008]
+RFC 5246은 양쪽이 보안 매개변수를 합의한 뒤 Finished 앞에 ChangeCipherSpec 메시지를 보내, 이후 레코드를 새로 협상한 방식과 키로 보호함을 알리게 했다. RFC 9846은 ChangeCipherSpec을 미들박스와의 호환을 위해서만 남겼다.[@ietf-rfc-9846-2026][@ietf-rfc-5246-2008]
 
 ## DTLS
 
