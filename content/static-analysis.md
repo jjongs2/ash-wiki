@@ -14,7 +14,7 @@ ISTQB CTFL(Certified Tester Foundation Level) 강의계획서에 따르면 정�
 정적 분석 도구는 다음을 찾는다.[@absint-astree-2026][@cppcheck-home-2026]
 
 - [[misra-c|MISRA C]] 같은 [[coding-standard|코딩 표준]]의 규칙 위반[@absint-astree-2026][@cppcheck-manual-2026]
-- 0으로 나누기, 배열 경계 넘기, 널 포인터 역참조, 초기화하지 않은 변수 읽기 같은 정의되지 않은 동작[@absint-astree-2026][@cppcheck-home-2026]
+- 0으로 나누기, 배열 경계 넘기, 널 포인터 역참조, 초기화하지 않은 변수 읽기 같은 미정의 동작[@absint-astree-2026][@cppcheck-home-2026]
 
 제품마다 더 찾는 것도 있다. Astrée는 dead code를 찾고, 그 RuleChecker는 주석 밀도, 순환 복잡도 같은 코드 [[software-metric|메트릭]]도 검사한다.[@absint-astree-2026] Cppcheck는 값을 대입하고 쓰지 않는 변수를 알린다.[@cppcheck-manual-2026]
 
@@ -23,7 +23,7 @@ ISTQB CTFL(Certified Tester Foundation Level) 강의계획서에 따르면 정�
 - **False positive**: 실제로는 없는 결함을 결함으로 보고한 결과
 - **False negative**: 실제로 있는 결함을 찾아내지 못한 결과[@istqb-glossary-false-positive-result-2026][@istqb-glossary-false-negative-result-2026]
 
-ISO/IEC/IEEE 24765 용어집에 따르면 검증 도구의 false positive는 분석 규칙의 정밀도가 모자라서 생길 수 있다.[@ieee-cs-sevocab-2026] Coverity 논문에 따르면 Coverity의 정적 분석 제품을 쓰는 곳에서 false positive가 30%를 넘으면 사람들이 도구를 무시했고, 진짜 버그가 오탐 속에 묻혔다.[@coverity-few-billion-lines-2010]
+ISO/IEC/IEEE 24765 용어집은 검증 도구의 false positive가 분석 규칙의 정밀도가 모자라서 생길 수 있다고 둔다.[@ieee-cs-sevocab-2026] Coverity 논문에 따르면 Coverity의 정적 분석 제품을 쓰는 곳에서 false positive가 30%를 넘으면 사람들이 도구를 무시했고, 진짜 버그가 오탐 속에 묻혔다.[@coverity-few-billion-lines-2010]
 
 ## 건전성과 abstract interpretation
 
@@ -41,7 +41,7 @@ ISO/IEC/IEEE 24765 용어집은 **호출 그래프**(call graph)를, 시스템�
 
 Sangal, Jordan, Sinha, Jackson은 2005년 논문에서 DSM(Dependency Structure Matrix)으로 소프트웨어 아키텍처의 모듈 간 의존을 관리하는 방법을 내놓고, 이를 LDM이라는 도구로 구현했다. 이 방법은 정적 분석으로 코드에서 모듈 사이의 의존을 뽑는다. 의존은 한 모듈이 다른 모듈의 구문 요소를 명시적으로 참조하는 것이다. 어떤 의존을 허용하는지 design rule로 적어 두고, 시스템이 바뀔 때마다 다시 적용해 위반을 찾는다.[@sangal-dependency-models-2005]
 
-- DSM: 모듈을 가로축과 세로축에 같은 순서로 놓은 인접 행렬이다. $i$번째 모듈이 $j$번째 모듈에 의존하면 $i$열 $j$행에 표시하고, 대각선은 비운다.
+- DSM: Sangal 외의 DSM은 모듈을 가로축과 세로축에 같은 순서로 놓은 인접 행렬이다. $i$번째 모듈이 $j$번째 모듈에 의존하면 $i$열 $j$행에 표시하고, 대각선은 비운다.
 - 계층 위반: 아래 계층이 위 계층을 쓰지 못한다(cannot-use)는 design rule을 두면, 그 규칙이 걸린 칸에 있는 의존이 계층 위반으로 드러난다.
 - 순환 의존: DSM을 partitioning(행과 열을 다시 정렬하고 모듈을 묶음)하면 계층이 드러나고 순환 의존이 부각된다. 서로 의존하는 모듈은 하삼각 행렬로 정렬할 수 없고, 하나로 묶어야 순환이 없어진다.[@sangal-dependency-models-2005]
 
@@ -50,5 +50,3 @@ Sangal, Jordan, Sinha, Jackson은 2005년 논문에서 DSM(Dependency Structure 
 ## 개발 흐름 안의 자리
 
 ISTQB CTFL 강의계획서에 따르면 정적 분석은 흔히 CI 체계에 넣어 돌린다. 이 강의계획서는 테스트를 일찍 하면 결함이 뒤 산출물로 번지지 않아 시간과 비용을 아낀다고 보고, 동적 테스트 전에 또는 자동화된 프로세스 안에서 소스 코드의 정적 분석을 마치는 것을 shift left 관행으로 든다.[@istqb-ctfl-syllabus-2024]
-
-Astrée는 LSP(Language Server Protocol)로 편집기와 IDE(integrated development environment)에 붙이고, batch 모드로 빌드 도구 체인에 넣고, Jenkins 플러그인과 GitLab CI/CD로 CI에 넣을 수 있다.[@absint-astree-2026]

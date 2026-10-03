@@ -19,11 +19,11 @@ ISO/IEC/IEEE 24765 용어집은 SLOC(source lines of code)를 컴파일하기 �
 
 McCabe는 1976년 IEEE Transactions on Software Engineering 논문 "A Complexity Measure"에서 그래프 이론에 기반한 프로그램 복잡도 척도를 제안했고[@mccabe-complexity-measure-1976], 이 척도의 이름은 순환 복잡도(cyclomatic complexity)다.[@nist-sp-500-235-1996]
 
-SonarSource는 2016년 12월 cognitive complexity를 내놓았다. 메서드의 제어 흐름을 이해하기 어려운 정도를 상대적으로 재려는 메트릭이다.[@sonarsource-cognitive-complexity-blog-2016] 셈법은 다음과 같다.
+SonarSource는 2016년 12월 cognitive complexity를 내놓았다. 메서드의 제어 흐름을 이해하기 어려운 정도를 상대적으로 재려는 메트릭이다.[@sonarsource-cognitive-complexity-blog-2016] SonarSource 백서가 정한 셈법은 다음과 같다.
 
-- 코드의 선형 흐름을 끊는 구조마다 1을 더한다. 반복문, 조건문, catch, switch, 같은 종류의 이항 논리 연산자 열, 재귀 고리에 든 메서드, goto와 레이블로 가는 break·continue가 그런 구조다. 조기 return 같은 다른 점프에는 더하지 않는다.
-- 반복문, 조건문, catch 같은 구조가 다른 구조 안에 중첩되면 중첩 수준마다 1을 더 더한다. else if와 else는 중첩 가산을 받지 않는다.
-- 순환 복잡도는 switch의 case마다 1을 더하지만, cognitive complexity는 switch 전체에 1만 더한다. 같은 이항 논리 연산자가 이어지면 그 열 전체를 한 번만 센다.[@sonarsource-cognitive-complexity-2023]
+- 코드의 선형 흐름을 끊는 구조마다 1을 더한다. 반복문, 조건문, `catch`, `switch`, 같은 종류의 이항 논리 연산자 열, 재귀 고리에 든 메서드, `goto`와 레이블로 가는 `break`·`continue`가 그런 구조다. 조기 `return` 같은 다른 점프에는 더하지 않는다.
+- 반복문, 조건문, `catch` 같은 구조가 다른 구조 안에 중첩되면 중첩 수준마다 1을 더 더한다. `else if`와 `else`는 중첩 가산을 받지 않는다.
+- 백서에 따르면 순환 복잡도는 `switch`의 `case`마다 1을 더하지만, cognitive complexity는 `switch` 전체에 1만 더한다. 같은 이항 논리 연산자가 이어지면 그 열 전체를 한 번만 센다.[@sonarsource-cognitive-complexity-2023]
 
 ## 결합
 
