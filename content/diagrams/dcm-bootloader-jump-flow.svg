@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 772 316" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 단계 틀 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20" y="20" width="200" height="250" rx="4" />
+    <rect x="286" y="20" width="200" height="250" rx="4" />
+    <rect x="552" y="20" width="200" height="250" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)" font-weight="600">
+    <text x="120" y="44">애플리케이션의 Dcm</text>
+    <text x="386" y="44">부트로더</text>
+    <text x="652" y="44">새로 프로그래밍된 애플리케이션</text>
+  </g>
+
+  <!-- 단계 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="30" y="60" width="180" height="50" rx="4" />
+    <rect x="30" y="130" width="180" height="50" rx="4" />
+    <rect x="30" y="200" width="180" height="50" rx="4" />
+    <rect x="296" y="85" width="180" height="50" rx="4" />
+    <rect x="296" y="155" width="180" height="50" rx="4" />
+    <rect x="562" y="85" width="180" height="50" rx="4" />
+    <rect x="562" y="155" width="180" height="50" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="120" y="81">DiagnosticSessionControl</text>
+    <text x="120" y="98" font-size="12">programming session</text>
+    <text x="120" y="151">BswM에 모드 전환으로 알림</text>
+    <text x="120" y="168" font-size="12">부트로더로 넘어갈 준비</text>
+    <text x="120" y="221">Dcm_SetProgConditions</text>
+    <text x="120" y="238" font-size="12">ReprogrammingRequest</text>
+    <text x="386" y="114.5">애플리케이션 재프로그래밍</text>
+    <text x="386" y="184.5">ApplUpdated 갱신</text>
+    <text x="652" y="106">Dcm_GetProgConditions</text>
+    <text x="652" y="123" font-size="12">ApplUpdated 읽기</text>
+    <text x="652" y="176">BswM에 알림</text>
+    <text x="652" y="193" font-size="12">애플리케이션이 갱신됨</text>
+  </g>
+
+  <!-- 흐름 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="120" y1="110" x2="120" y2="128" />
+    <line x1="120" y1="180" x2="120" y2="198" />
+    <line x1="386" y1="135" x2="386" y2="153" />
+    <line x1="652" y1="135" x2="652" y2="153" />
+    <line x1="220" y1="145" x2="284" y2="145" />
+    <line x1="486" y1="145" x2="550" y2="145" />
+  </g>
+  <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
+    <text x="253" y="121">부트로더로</text>
+    <text x="253" y="137">전환</text>
+    <text x="519" y="121">ECU</text>
+    <text x="519" y="137">리셋</text>
+  </g>
+  <text x="20" y="294" font-size="12" fill="var(--text, #727981)">AUTOSAR R25-11: 부트로더로 전환할지는 세션마다의 설정(DcmDspSessionForBoot)이 정한다</text>
+</svg>
