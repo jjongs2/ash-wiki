@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 232" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 2011판이 담던 세 부분 -->
+  <rect x="20" y="20" width="220" height="192" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="34" y="40" font-size="13" fill="var(--text, #727981)">ISO/IEC 25010:2011</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="34" y="54" width="192" height="40" rx="4" />
+    <rect x="34" y="106" width="192" height="40" rx="4" />
+    <rect x="34" y="158" width="192" height="40" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="130" y="78">품질 모델 개요</text>
+    <text x="130" y="123">제품 품질 모델</text>
+    <text x="130" y="139" font-size="11">특성 8</text>
+    <text x="130" y="175">사용 품질 모델</text>
+    <text x="130" y="191" font-size="11">특성 5</text>
+  </g>
+
+  <!-- 2011판을 대체한 세 표준 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="226" y1="74" x2="328" y2="74" />
+    <line x1="226" y1="126" x2="328" y2="126" />
+    <line x1="226" y1="178" x2="328" y2="178" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="277" y="67">옮김</text>
+    <text x="277" y="119">이어받음</text>
+    <text x="277" y="171">옮김</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="330" y="54" width="200" height="40" rx="4" />
+    <rect x="330" y="106" width="200" height="40" rx="4" />
+    <rect x="330" y="158" width="200" height="40" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="430" y="71">ISO/IEC 25002:2024</text>
+    <text x="430" y="87" font-size="11">품질 모델 개요</text>
+    <text x="430" y="123">ISO/IEC 25010:2023</text>
+    <text x="430" y="139" font-size="11">제품 품질 모델, 특성 9</text>
+    <text x="430" y="175">ISO/IEC 25019:2023</text>
+    <text x="430" y="191" font-size="11">사용 품질 모델, 특성 3</text>
+  </g>
+</svg>
