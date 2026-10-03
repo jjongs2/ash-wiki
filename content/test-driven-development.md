@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**테스트 주도 개발**(test-driven development, TDD)은 실패하는 자동 테스트가 있을 때만 제품 코드를 새로 쓰는 개발 방법이다. 아직 통과하지 못하는 테스트를 하나 만들고, 이를 통과시킬 코드를 더한 다음 생긴 중복을 없애는 작은 단계를 되풀이한다.[@beck-test-driven-development-2002] ISTQB 용어집은 TDD를 테스트 케이스를 먼저 만들어 자동화한 뒤, 그 테스트를 통과하도록 소프트웨어를 점진적으로 개발하는 기법으로 정의한다.[@istqb-glossary-test-driven-development-2026]
+**테스트 주도 개발**(test-driven development, TDD)은 실패하는 자동 테스트가 있을 때만 제품 코드를 새로 쓰는 개발 방법이다. 아직 통과하지 못하는 테스트를 하나 만들고, 이를 통과시킬 코드를 더한 다음 생긴 중복을 없애는 작은 단계를 되풀이한다.[@beck-test-driven-development-2002] ISTQB(International Software Testing Qualifications Board) 용어집은 TDD를 테스트 케이스를 먼저 만들어 자동화한 뒤, 그 테스트를 통과하도록 소프트웨어를 점진적으로 개발하는 기법으로 정의한다.[@istqb-glossary-test-driven-development-2026]
 
 ## Red-green-refactor 사이클
 
@@ -36,4 +36,4 @@ Beck은 자기가 TDD를 재발견했다고 말한다. 그는 1994년에 SUnit�
 
 ## 다른 테스트와의 관계
 
-SWEBOK V4.0a에 따르면 TDD는 단위 테스트를 정의하고 유지해야 하는 관행이고, [[regression-testing|회귀 테스트]]는 TDD의 기본 활동이다.[@ieee-swebok-v4-0a-2026] ISTQB CTFL 강의계획서에 따르면 TDD 같은 테스트 주도 접근에서 만든 테스트는 자동 테스트로 남아, 이후의 수정과 리팩터링에서 코드 품질을 지키는 데 쓰일 수 있다.[@istqb-ctfl-syllabus-2024]
+SWEBOK(Software Engineering Body of Knowledge) V4.0a에 따르면 TDD는 단위 테스트를 정의하고 유지해야 하는 관행이고, [[regression-testing|회귀 테스트]]는 TDD의 기본 활동이다.[@ieee-swebok-v4-0a-2026] ISTQB CTFL(Certified Tester Foundation Level) 강의계획서에 따르면 TDD 같은 테스트 주도 접근에서 만든 테스트는 자동 테스트로 남아, 이후의 수정과 리팩터링에서 코드 품질을 지키는 데 쓰일 수 있다.[@istqb-ctfl-syllabus-2024]

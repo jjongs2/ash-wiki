@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-ISO/IEC/IEEE 24765 용어집은 **리팩터링**(refactoring)을 소프트웨어 코드의 동작을 바꾸지 않고 구조를 고치는 일로 정의하고, 그 목적으로 품질 특성 개선, 이후의 확장과 적응을 쉽게 하는 것, 아키텍처 스타일을 따르는 것을 든다.[@ieee-cs-sevocab-2026] SWEBOK V4.0a에 따르면 리팩터링은 프로그램의 동작을 바꾸지 않고 재구성하는 리엔지니어링 기법으로, 소프트웨어의 내부 구조와 유지보수성을 높이려는 것이다.[@ieee-swebok-v4-0a-2026]
+ISO/IEC/IEEE 24765 용어집은 **리팩터링**(refactoring)을 소프트웨어 코드의 동작을 바꾸지 않고 구조를 고치는 일로 정의하고, 그 목적으로 품질 특성 개선, 이후의 확장과 적응을 쉽게 하는 것, 아키텍처 스타일을 따르는 것을 든다.[@ieee-cs-sevocab-2026] SWEBOK(Software Engineering Body of Knowledge) V4.0a에 따르면 리팩터링은 프로그램의 동작을 바꾸지 않고 재구성하는 리엔지니어링 기법으로, 소프트웨어의 내부 구조와 유지보수성을 높이려는 것이다.[@ieee-swebok-v4-0a-2026]
 
 Martin Fowler는 『Refactoring』에서 명사 리팩터링을, 겉보기 동작을 바꾸지 않고 소프트웨어의 내부 구조를 바꿔 이해하기 쉽고 고치기 싸게 만드는 변경으로 정의했다. 동사 리팩터링은 그런 리팩터링을 잇달아 적용해 겉보기 동작을 바꾸지 않고 소프트웨어를 재구성하는 일로 정의했다.[@fowler-refactoring-2026]
 
@@ -21,7 +21,7 @@ Fowler는 리팩터링을 재구성(restructuring)의 한 특정 기법으로 �
 
 ## Code smell
 
-ISTQB 용어집은 **code smell**을, 설계나 유지보수성에 문제가 있을 수 있음을 드러내되 코드가 동작하는 것을 꼭 막지는 않는 소스 코드의 특징으로 정의한다.[@istqb-glossary-code-smell-2026] Fowler는 code smell을 대개 시스템의 더 깊은 문제와 맞닿아 있는, 겉으로 드러난 징후로 보고, smell이 늘 문제를 뜻하지는 않는다고 했다.[@fowler-code-smell-2006]
+ISTQB(International Software Testing Qualifications Board) 용어집은 **code smell**을, 설계나 유지보수성에 문제가 있을 수 있음을 드러내되 코드가 동작하는 것을 꼭 막지는 않는 소스 코드의 특징으로 정의한다.[@istqb-glossary-code-smell-2026] Fowler는 code smell을 대개 시스템의 더 깊은 문제와 맞닿아 있는, 겉으로 드러난 징후로 보고, smell이 늘 문제를 뜻하지는 않는다고 했다.[@fowler-code-smell-2006]
 
 Fowler와 Kent Beck은 『Refactoring』에서 언제 리팩터링할지를 smell로 설명하고, smell을 리팩터링으로 풀 수 있는 문제가 있다는 신호로 두었다. 이 착상은 Beck이 처음 내놓았다. 두 사람은 smell의 예로, 같은 코드 구조가 여러 곳에 나타나는 중복 코드(duplicated code)와 길수록 이해하기 어려운 긴 함수(long function)를 든다.[@fowler-bad-smells-2018]
 
