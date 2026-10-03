@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 573 132" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 행 이름 -->
+  <g fill="var(--text, #727981)">
+    <text x="20" y="46.5">형식</text>
+    <text x="20" y="102.5">예</text>
+  </g>
+
+  <!-- 형식 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="70" y="20" width="120" height="44" rx="4" />
+    <rect x="206" y="20" width="120" height="44" rx="4" />
+    <rect x="342" y="20" width="120" height="44" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="130" y="39">종류</text>
+    <text x="130" y="55" font-size="12">RQ, RC, PM, WP</text>
+    <text x="266" y="46.5">절 번호</text>
+    <text x="402" y="46.5">절 안의 순번</text>
+  </g>
+
+  <!-- 예: RQ-05-14 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="70" y="84" width="120" height="28" rx="2" />
+    <rect x="206" y="84" width="120" height="28" rx="2" />
+    <rect x="342" y="84" width="120" height="28" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="130" y="102.5">RQ</text>
+    <text x="266" y="102.5">05</text>
+    <text x="402" y="102.5">14</text>
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="478" y="94">5절의 열네 번째</text>
+    <text x="478" y="110">요구사항</text>
+  </g>
+
+  <!-- 하이픈: 상자 세로 중심 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="194" y1="42" x2="202" y2="42" />
+    <line x1="330" y1="42" x2="338" y2="42" />
+    <line x1="194" y1="98" x2="202" y2="98" />
+    <line x1="330" y1="98" x2="338" y2="98" />
+  </g>
+</svg>

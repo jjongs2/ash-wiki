@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 664 326" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 부속서 5의 세 부분 -->
+  <text x="20" y="26" fill="var(--text, #727981)">부속서 5</text>
+  <rect x="20" y="36" width="624" height="92" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="36" y="50" width="164" height="64" rx="4" />
+    <rect x="284" y="50" width="164" height="64" rx="4" />
+    <rect x="464" y="50" width="164" height="64" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="118" y="69.5" font-weight="600">Part A</text>
+    <text x="118" y="86.5" font-size="12">위협과 취약점,</text>
+    <text x="118" y="103.5" font-size="12">공격 방법의 기준 목록</text>
+    <text x="366" y="69.5" font-weight="600">Part B</text>
+    <text x="366" y="86.5" font-size="12">차량 형식에 대한</text>
+    <text x="366" y="103.5" font-size="12">위협의 완화 조치</text>
+    <text x="546" y="69.5" font-weight="600">Part C</text>
+    <text x="546" y="86.5" font-size="12">백엔드 서버처럼 차량 밖에</text>
+    <text x="546" y="103.5" font-size="12">대한 위협의 완화 조치</text>
+  </g>
+
+  <!-- 제조사가 하는 일 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="36" y="170" width="164" height="52" rx="4" />
+    <rect x="284" y="170" width="344" height="52" rx="4" />
+    <rect x="284" y="270" width="344" height="36" rx="4" stroke-dasharray="5 4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="118" y="192">차량 형식의 리스크 평가</text>
+    <text x="118" y="209" font-size="12">그 밖의 관련 리스크도 고려</text>
+    <text x="456" y="200.5">식별한 리스크에 맞는 완화 조치를 모두 구현</text>
+    <text x="456" y="292.5">다른 적절한 완화 조치 구현</text>
+  </g>
+
+  <!-- 흐름 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="118" y1="114" x2="118" y2="168" />
+    <line x1="366" y1="114" x2="366" y2="168" />
+    <line x1="546" y1="114" x2="546" y2="168" />
+    <line x1="200" y1="196" x2="282" y2="196" />
+    <line x1="456" y1="222" x2="456" y2="268" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="126" y="150">모든 위협</text>
+    <text x="242" y="186" text-anchor="middle">식별한 리스크</text>
+    <text x="464" y="250">맞지 않거나 충분하지 않으면</text>
+  </g>
+</svg>
