@@ -2,8 +2,6 @@
 title: SIL
 tags:
   - process/sw-process
-aliases:
-  - SIL
 verified: 2026-10-01
 ---
 

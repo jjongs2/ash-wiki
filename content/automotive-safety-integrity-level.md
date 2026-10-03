@@ -2,8 +2,6 @@
 title: ASIL
 tags:
   - process/sw-process
-aliases:
-  - ASIL
 verified: 2026-10-01
 ---
 

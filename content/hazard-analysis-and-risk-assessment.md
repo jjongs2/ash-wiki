@@ -2,8 +2,6 @@
 title: HARA
 tags:
   - process/sw-process
-aliases:
-  - HARA
 verified: 2026-10-01
 ---
 
