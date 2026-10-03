@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 550 200" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 표준 -->
+  <g text-anchor="middle" font-size="13" fill="var(--text, #727981)">
+    <text x="130" y="30">ISO 26262 · 기능 안전</text>
+    <text x="405" y="30">ISO 21448 · SOTIF</text>
+  </g>
+  <line x1="260" y1="20" x2="260" y2="112" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+
+  <!-- 해저드의 원인 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20.75" y="46.75" width="218.5" height="62.5" rx="4" />
+    <rect x="280.75" y="46.75" width="118.5" height="62.5" rx="4" />
+    <rect x="410.75" y="46.75" width="118.5" height="62.5" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="130" y="67" font-size="13">E/E 시스템의 오동작</text>
+    <text x="130" y="85">무작위 하드웨어 고장</text>
+    <text x="130" y="101">체계적 고장</text>
+    <text x="340" y="67" font-size="13">기능 부족</text>
+    <text x="340" y="85">명세의 부족</text>
+    <text x="340" y="101">성능의 부족</text>
+    <text x="470" y="76">합리적으로 예견할</text>
+    <text x="470" y="92">수 있는 오용</text>
+  </g>
+
+  <!-- 해저드 -->
+  <path d="M340 110 V124 M470 110 V124 M340 124 H470 M405 124 V136 H290" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M130 110 V136 H250 V146" />
+    <path d="M290 136 V146" />
+  </g>
+  <rect x="190.75" y="150.75" width="158.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="270" y="168" text-anchor="middle" fill="var(--text, #727981)">해저드</text>
+</svg>
