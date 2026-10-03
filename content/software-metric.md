@@ -17,7 +17,7 @@ ISO/IEC/IEEE 24765 용어집은 SLOC(source lines of code)를 컴파일하기 �
 
 ## 복잡도
 
-McCabe는 1976년 IEEE Transactions on Software Engineering 논문 "A Complexity Measure"에서 그래프 이론에 기반한 프로그램 복잡도 척도를 제안했고[@mccabe-complexity-measure-1976], 이 척도의 이름은 순환 복잡도(cyclomatic complexity)다.[@watson-structured-testing-1996]
+McCabe는 1976년 IEEE Transactions on Software Engineering 논문 "A Complexity Measure"에서 그래프 이론에 기반한 프로그램 복잡도 척도를 제안했고[@mccabe-complexity-measure-1976], 이 척도의 이름은 순환 복잡도(cyclomatic complexity)다.[@nist-sp-500-235-1996]
 
 SonarSource는 2016년 12월 cognitive complexity를 내놓았다. 메서드의 제어 흐름을 이해하기 어려운 정도를 상대적으로 재려는 메트릭이다.[@sonarsource-cognitive-complexity-blog-2016] 셈법은 다음과 같다.
 
