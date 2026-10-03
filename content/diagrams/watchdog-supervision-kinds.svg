@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 20.5 601 216" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+    <marker id="dim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+  <text x="20" y="40" font-size="12" fill="var(--text, #727981)">AUTOSAR Watchdog Manager</text>
+
+  <!-- 감시 이름 -->
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="20" y="64">Alive supervision</text>
+    <text x="20" y="139">Deadline supervision</text>
+    <text x="20" y="218">Logical supervision</text>
+  </g>
+
+  <!-- alive supervision: 주기적인 실행 -->
+  <text x="370" y="40" font-size="12" fill="var(--text, #727981)" text-anchor="middle">주기적인 실행</text>
+  <line x1="150" y1="60" x2="600" y2="60" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <g fill="var(--ink, #727981)">
+    <circle cx="190" cy="60" r="4" />
+    <circle cx="250" cy="60" r="4" />
+    <circle cx="310" cy="60" r="4" />
+    <circle cx="370" cy="60" r="4" />
+    <circle cx="430" cy="60" r="4" />
+    <circle cx="490" cy="60" r="4" />
+    <circle cx="550" cy="60" r="4" />
+  </g>
+
+  <!-- deadline supervision: 두 체크포인트 사이의 시간이 설정한 범위 안인지 -->
+  <line x1="150" y1="135" x2="600" y2="135" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <rect x="380" y="127" width="120" height="16" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <g fill="var(--ink, #727981)">
+    <circle cx="200" cy="135" r="4" />
+    <circle cx="450" cy="135" r="4" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="200" y="119">체크포인트</text>
+    <text x="450" y="119">체크포인트</text>
+    <text x="440" y="161">설정한 범위</text>
+  </g>
+
+  <!-- logical supervision: 정한 순서대로 지나는지 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="150" y="202" width="90" height="24" rx="2" />
+    <rect x="300" y="202" width="90" height="24" rx="2" />
+    <rect x="450" y="202" width="90" height="24" rx="2" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="195" y="218">체크포인트</text>
+    <text x="345" y="218">체크포인트</text>
+    <text x="495" y="218">체크포인트</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="240" y1="214" x2="298" y2="214" />
+    <line x1="390" y1="214" x2="448" y2="214" />
+  </g>
+  <text x="345" y="192" font-size="12" fill="var(--text, #727981)" text-anchor="middle">정한 순서</text>
+</svg>
