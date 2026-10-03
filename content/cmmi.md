@@ -28,7 +28,7 @@ CMMI 1.3은 두 표현 방식을 두었다. 연속형 표현(continuous represen
 
 CMMI 평가(appraisal)는 조직의 프로세스가 CMMI 모범 사례와 얼마나 맞는지 견주어 강점과 약점을 찾는 활동이다. 평가 방법은 CMMI Appraisal Method이고, 그 정의는 Method Definition Document에 있다.[@cmmi-institute-appraisals-2026] CMMI 1.3은 평가 방법으로 SCAMPI(Standard CMMI Appraisal Method for Process Improvement)를 두었다. SCAMPI에는 A, B, C 등급이 있고, 벤치마크 등급은 SCAMPI A로만 낼 수 있었다.[@cmmi-product-team-cmmi-development-2010] CMMI 2.0은 새 성과 중심 평가 방법을 들였다.[@cmmi-institute-cmmi-development-v2-0-2018]
 
-Automotive SPICE와의 차이는 [[automotive-spice#CMMI와의 차이|Automotive SPICE]]에서, Automotive SPICE가 쓰는 능력 수준은 [[process-capability-level|프로세스 능력 수준]]에서 다룬다.
+ASPICE와의 차이는 [[automotive-spice#CMMI와의 차이|ASPICE]]에서, ASPICE가 쓰는 능력 수준은 [[process-capability-level|프로세스 능력 수준]]에서 다룬다.
 
 ## 개정 이력
 

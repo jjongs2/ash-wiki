@@ -2,7 +2,7 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
   <!-- 판 -->
-  <text x="360" y="2" text-anchor="middle" font-size="13" fill="var(--text, #727981)">Automotive SPICE 4.1</text>
+  <text x="360" y="2" text-anchor="middle" font-size="13" fill="var(--text, #727981)">ASPICE 4.1</text>
 
   <!-- 범주: 그룹을 담는 틀 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
