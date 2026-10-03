@@ -7,13 +7,13 @@ aliases:
 verified: 2026-10-03
 ---
 
-**사이버보안 속성**(cybersecurity property)은 보호할 가치가 있을 수 있는 속성이다. [[iso-sae-21434|ISO/SAE 21434:2021]]은 이렇게 정의하고, 그 예로 기밀성, 무결성, 가용성을 든다.[@iso-sae-21434-obp-2021] 사이버보안 속성을 지니는 자산(asset)과, 그 속성을 침해하는 위협 시나리오(threat scenario)의 정의는 [[threat-analysis-and-risk-assessment#용어|TARA]]에서 다룬다.
+**사이버보안 속성**(cybersecurity property)은 보호할 가치가 있을 수 있는 속성이다. [[iso-sae-21434|ISO/SAE 21434:2021]]은 이렇게 정의하고, 그 예로 기밀성, 무결성, 가용성을 든다.[@iso-sae-21434-obp-2021] 사이버보안 속성을 지니는 자산(asset)과, 그 속성을 침해하는 위협 시나리오(threat scenario)의 정의는 [[threat-analysis-and-risk-assessment|TARA]]에서 다룬다.
 
-NIST는 기밀성, 무결성, 가용성 셋을 CIA triad라 부른다.[@nist-sp-1800-28-2024]
+NIST는 기밀성, 무결성, 가용성 셋을 **CIA triad**라 부른다.[@nist-sp-1800-28-2024]
 
 ## 기밀성, 무결성, 가용성
 
-FIPS 199는 미국 연방법(44 U.S.C. § 3542)의 정의를 따라 정보와 정보 시스템의 보안 목표 셋을 둔다.[@nist-fips-199-2004]
+FIPS 199는 미국 법전(United States Code) 44편 3542조의 정의를 따라 정보와 정보 시스템의 보안 목표 셋을 둔다.[@nist-fips-199-2004]
 
 - **기밀성**(confidentiality): 정보에 접근하고 정보를 공개하는 것에 둔 인가된 제한을 지키는 것. 개인 프라이버시와 독점 정보를 보호하는 수단을 포함한다. 기밀성을 잃는 것은 정보가 인가 없이 공개되는 것이다.
 - **무결성**(integrity): 정보가 부적절하게 수정되거나 파괴되지 않게 지키는 것. 정보의 부인 방지와 authenticity를 보장하는 것을 포함한다. 무결성을 잃는 것은 정보가 인가 없이 수정되거나 파괴되는 것이다.
