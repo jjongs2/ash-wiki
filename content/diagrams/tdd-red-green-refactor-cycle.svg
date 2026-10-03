@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -10 426 326" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 원 둘레를 시계 방향으로 도는 세 단계 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M296.6 65.4 A130 130 0 0 1 339.1 196.4" />
+    <path d="M300 261.6 A130 130 0 0 1 126 261.6" />
+    <path d="M86.9 196.4 A130 130 0 0 1 129.4 65.4" />
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="133" y="11" width="160" height="48" rx="4" />
+    <rect x="245.6" y="206" width="160" height="48" rx="4" />
+    <rect x="20.4" y="206" width="160" height="48" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="213" y="30" font-size="14" font-weight="600">Red</text>
+    <text x="213" y="49">실패하는 테스트를 하나 쓴다</text>
+    <text x="325.6" y="225" font-size="14" font-weight="600">Green</text>
+    <text x="325.6" y="244">테스트를 통과시킨다</text>
+    <text x="100.4" y="225" font-size="14" font-weight="600">Refactor</text>
+    <text x="100.4" y="244">중복을 없앤다</text>
+  </g>
+
+  <!-- 가운데 -->
+  <text x="213" y="169" text-anchor="middle" fill="var(--text, #727981)">작은 단계를 되풀이한다</text>
+</svg>
