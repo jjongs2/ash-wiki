@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 10 496.5 250" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--blue, #336fb8)" />
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--orange, #b0540d)" />
+    </marker>
+  </defs>
+  <rect x="60" y="20" width="140" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="130" y="41" text-anchor="middle" fill="var(--text, #727981)">검증자</text>
+  <rect x="360" y="20" width="140" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="430" y="41" text-anchor="middle" fill="var(--text, #727981)">주장자</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="130" y1="52" x2="130" y2="250" />
+    <line x1="430" y1="52" x2="430" y2="250" />
+  </g>
+
+  <!-- 챌린지 -->
+  <line x1="132" y1="84" x2="428" y2="100" stroke="var(--blue, #336fb8)" stroke-width="1.5" marker-end="url(#arrow-blue)" />
+  <text x="280" y="80" text-anchor="middle" font-size="12" fill="var(--text, #727981)">챌린지 (무작위로 고른 값)</text>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="438" y="126">비밀 정보와 챌린지로</text>
+    <text x="438" y="142">응답을 만듦</text>
+  </g>
+
+  <!-- 응답 -->
+  <line x1="428" y1="168" x2="132" y2="184" stroke="var(--orange, #b0540d)" stroke-width="1.5" marker-end="url(#arrow-orange)" />
+  <text x="280" y="164" text-anchor="middle" font-size="12" fill="var(--text, #727981)">응답</text>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="138" y="214">NIST 용어집: 응답을 검증해</text>
+    <text x="138" y="230">주장자가 비밀을 가지고 통제함을 확증</text>
+  </g>
+</svg>

@@ -11,7 +11,7 @@ verified: 2026-10-03
 
 ISO/SAE 21434:2021은 TARA에 쓰는 용어를 다음처럼 정의한다.[@iso-sae-21434-obp-2021]
 
-- **Asset**: 가치를 지니거나 가치에 이바지하는 대상. Asset은 cybersecurity property를 하나 이상 가지며, 그 property가 침해되면 damage scenario로 이어질 수 있다.
+- **Asset**: 가치를 지니거나 가치에 이바지하는 대상. Asset은 [[cybersecurity-property|cybersecurity property]]를 하나 이상 가지며, 그 property가 침해되면 damage scenario로 이어질 수 있다.
 - **Damage scenario**: 차량이나 차량 기능이 관여해 도로 사용자에게 미치는 부정적 결과
 - **Threat scenario**: 하나 이상의 asset이 가진 cybersecurity property를 침해해 damage scenario를 일으킬 수 있는 잠재적 원인
 - **Attack path**: threat scenario를 이루려고 일부러 하는 행위들의 묶음
