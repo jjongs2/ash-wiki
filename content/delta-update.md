@@ -21,8 +21,8 @@ verified: 2026-10-03
 ![[diagrams/delta-update-generate-apply.svg]]
 
 - Android의 incremental 패키지는 고칠 파일의 이전 상태를 모두 확인한 뒤에 손을 대므로, 다른 빌드에 설치하면 실패하고 기기는 이전 상태로 남는다.[@google-android-ota-tools-2026]
-- Android non-A/B 업데이트 스크립트의 `apply_patch`는 원본 파일의 SHA-1(Secure Hash Algorithm 1) 해시가 패치에 짝지어 둔 값과 같을 때만 패치를 적용한다. 결과 파일은 기대한 해시와 크기를 갖거나, 손대지 않은 채로 남는다.[@google-android-ota-inside-packages-2026]
-- Android A/B 업데이트는 연산을 모두 적용한 뒤 파티션 전체를 다시 읽어 기대한 해시와 대조한다.[@google-android-ota-ab-2026]
+- Android non-A/B 업데이트 스크립트의 `apply_patch`는 원본 파일의 SHA-1(Secure Hash Algorithm 1) [[cryptographic-hash-function|해시]]가 패치에 짝지어 둔 값과 같을 때만 패치를 적용한다. 결과 파일은 기대한 해시와 크기를 갖거나, 손대지 않은 채로 남는다.[@google-android-ota-inside-packages-2026]
+- Android [[ab-update|A/B 업데이트]]는 연산을 모두 적용한 뒤 파티션 전체를 다시 읽어 기대한 해시와 대조한다.[@google-android-ota-ab-2026]
 
 Arm Platform Security Boot Guide 1.1은 차분 업데이트에서 이미지 매니페스트에 패치를 적용한 뒤 나올 최종 이미지의 해시를 담게 한다.[@arm-den0072-2020]
 

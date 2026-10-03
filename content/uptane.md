@@ -17,7 +17,7 @@ Uptane Alliance는 2018년 IEEE-ISTO 아래 비영리 단체로 세워졌다. Up
 
 Uptane Standard 2.1.0은 저장소 둘을 정한다.[@uptane-standard-2-1-0-2023]
 
-- **Image repository**: OEM(Original Equipment Manufacturer)이나 공급사가 올린 설치용 이미지와 그 서명된 메타데이터를 차량에 내준다. 주로 사람이 관리하고 드물게 갱신된다.
+- **Image repository**: OEM(Original Equipment Manufacturer)이나 공급사가 올린 설치용 이미지와 그 [[digital-signature|서명]]된 메타데이터를 차량에 내준다. 주로 사람이 관리하고 드물게 갱신된다.
 - **Director repository**: 차량 버전 매니페스트와 비공개 인벤토리 데이터베이스를 보고 어느 ECU에 어느 이미지를 설치할지 정하고, 그 지시를 담은 메타데이터를 그때그때 서명해 만든다. 대개 자동화된 온라인 프로세스가 다룬다.[@uptane-standard-2-1-0-2023]
 
 Uptane Deployment Best Practices 2.1.0은 image repository의 root, targets와 위임 역할의 키를 오프라인에 두어, 저장소가 뚫려도 full verification을 하는 ECU에 곧바로 영향이 가지 않게 하기를 권한다. Director repository에는 timestamp, snapshot, targets 메타데이터를 온라인 키로 서명해 자동으로 곧바로 새 메타데이터를 만들고, root 메타데이터만 오프라인 키로 서명하기를 권한다.[@uptane-deployment-best-practices-2-1-0-2023]
@@ -42,7 +42,7 @@ Uptane Deployment Best Practices 2.1.0은 partial verification을 느리거나 �
 
 ## 차량 버전 매니페스트
 
-Uptane Standard 2.1.0에서 각 ECU는 지금 설치된 이미지의 파일 이름, 길이, 해시를 담아 서명한 ECU version report를 primary ECU에 보낸다. Primary ECU는 이를 모아 서명한 **차량 버전 매니페스트**(vehicle version manifest)를 director repository에 보내고, director repository는 여기서 설치된 이미지 정보를 읽어 차량이 최신인지와 무엇을 설치할지 정한다.[@uptane-standard-2-1-0-2023]
+Uptane Standard 2.1.0에서 각 ECU는 지금 설치된 이미지의 파일 이름, 길이, [[cryptographic-hash-function|해시]]를 담아 서명한 ECU version report를 primary ECU에 보낸다. Primary ECU는 이를 모아 서명한 **차량 버전 매니페스트**(vehicle version manifest)를 director repository에 보내고, director repository는 여기서 설치된 이미지 정보를 읽어 차량이 최신인지와 무엇을 설치할지 정한다.[@uptane-standard-2-1-0-2023]
 
 ![[diagrams/uptane-vehicle-version-manifest.svg]]
 

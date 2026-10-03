@@ -25,7 +25,7 @@ verified: 2026-10-03
 
 - ESP-IDF의 anti-rollback은 앱 이미지의 `secure_version`을 eFuse에 둔 보안 버전과 비교하고, 앱이 유효로 표시된 뒤에 eFuse의 보안 버전을 올린다.[@espressif-esp-idf-ota-2026]
 - Android Verified Boot는 VBMeta 구조체마다 rollback index를 두고, 그 값이 변조를 드러내는 저장소에 둔 값보다 작으면 이미지를 거부한다. 저장된 값은 슬롯이 부팅 성공으로 표시된 뒤에 갱신한다.[@google-avb-readme-2026]
-- MCUboot는 `MCUBOOT_HW_ROLLBACK_PROT`를 켜면, 서명된 이미지의 보호 영역에 둔 security counter를 기기의 비휘발성이며 신뢰할 수 있는 구성 요소에 둔 현재 값과 비교해 그보다 작은 이미지를 거부한다.[@mcuboot-design-2026]
+- MCUboot는 `MCUBOOT_HW_ROLLBACK_PROT`를 켜면, [[digital-signature|서명]]된 이미지의 보호 영역에 둔 security counter를 기기의 비휘발성이며 신뢰할 수 있는 구성 요소에 둔 현재 값과 비교해 그보다 작은 이미지를 거부한다.[@mcuboot-design-2026]
 
 ## 업데이트 메타데이터 쪽의 방어
 

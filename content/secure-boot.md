@@ -5,9 +5,9 @@ tags:
 verified: 2026-10-03
 ---
 
-**Secure boot**는 부팅할 때 다음에 실행할 코드([[bootloader|부트로더]], 운영체제 로더 등)의 서명을 확인해, 검증을 통과한 코드만 실행하게 하는 기능이다.[@uefi-spec-2-11-secure-boot-2024][@espressif-esp32-secure-boot-v2-2026]
+**Secure boot**는 부팅할 때 다음에 실행할 코드([[bootloader|부트로더]], 운영체제 로더 등)의 [[digital-signature|서명]]을 확인해, 검증을 통과한 코드만 실행하게 하는 기능이다.[@uefi-spec-2-11-secure-boot-2024][@espressif-esp32-secure-boot-v2-2026]
 
-NIST SP 800-193은 펌웨어 손상을 탐지하는 기법의 하나로, 탐지를 맡는 root of trust나 신뢰 사슬이 그 밖의 코드를 실행하기 전에 승인된 디지털 서명 알고리즘이나 암호 해시로 펌웨어 코드의 무결성을 확인하는 방법을 둔다.[@nist-sp-800-193-2018] NIST SP 800-147은 시스템 BIOS(Basic Input/Output System)의 업데이트가 디지털 서명으로 진본성을 확인하는 인증된 업데이트 메커니즘이나, 선택 사항인 보안 로컬 업데이트 메커니즘을 거치게 한다.[@nist-sp-800-147-2011]
+NIST SP 800-193은 펌웨어 손상을 탐지하는 기법의 하나로, 탐지를 맡는 root of trust나 신뢰 사슬이 그 밖의 코드를 실행하기 전에 승인된 디지털 서명 알고리즘이나 [[cryptographic-hash-function|암호 해시]]로 펌웨어 코드의 무결성을 확인하는 방법을 둔다.[@nist-sp-800-193-2018] NIST SP 800-147은 시스템 BIOS(Basic Input/Output System)의 업데이트가 디지털 서명으로 진본성을 확인하는 인증된 업데이트 메커니즘이나, 선택 사항인 보안 로컬 업데이트 메커니즘을 거치게 한다.[@nist-sp-800-147-2011]
 
 ## 신뢰 사슬
 
@@ -19,7 +19,7 @@ NIST SP 800-193은 펌웨어 손상을 탐지하는 기법의 하나로, 탐지�
 
 NIST SP 800-193은 모든 root of trust와 신뢰 사슬을 바꿀 수 없게 두거나, 무결성을 지키는 메커니즘으로 보호하게 한다. 또 업데이트, 탐지, 복구를 맡는 root of trust를 논리 구성 요소로 나누되, 이들이 서로 다른 구성 요소일 필요는 없다고 둔다.[@nist-sp-800-193-2018]
 
-TF-A(Trusted Firmware-A)의 Trusted Board Boot에서는 root of trust 공개키(ROTPK)나 그 해시와, ROM(Read-Only Memory)에 있어 바꿀 수 없다고 가정한 첫 부트로더 BL1이 신뢰의 기점이 된다.[@trustedfirmware-tf-a-trusted-board-boot-2026]
+TF-A(Trusted Firmware-A)의 Trusted Board Boot에서는 root of trust [[public-key-cryptography|공개키]](ROTPK)나 그 해시와, ROM(Read-Only Memory)에 있어 바꿀 수 없다고 가정한 첫 부트로더 BL1이 신뢰의 기점이 된다.[@trustedfirmware-tf-a-trusted-board-boot-2026]
 
 ## 구현 예
 
