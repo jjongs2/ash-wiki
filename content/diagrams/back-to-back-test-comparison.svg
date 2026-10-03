@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 30 676 175" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+  <!-- 상자 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="90" width="150" height="36" rx="4" />
+    <rect x="230" y="40" width="140" height="36" rx="4" />
+    <rect x="230" y="140" width="140" height="36" rx="4" />
+    <rect x="430" y="90" width="110" height="36" rx="4" />
+  </g>
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="95" y="113">같은 테스트 케이스</text>
+    <text x="300" y="63">테스트 대상</text>
+    <text x="300" y="163">pseudo-oracle</text>
+    <text x="485" y="113">결과 비교</text>
+  </g>
+  <text x="300" y="194" font-size="12" fill="var(--text, #727981)" text-anchor="middle">독립적으로 만든 변형</text>
+
+  <!-- 두 변형에 같은 입력 -->
+  <line x1="170" y1="108" x2="200" y2="108" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M200 108 V58 H228" />
+    <path d="M200 108 V158 H228" />
+  </g>
+
+  <!-- 두 결과를 비교 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M370 58 H400 V108" />
+    <path d="M370 158 H400 V108" />
+  </g>
+  <line x1="400" y1="108" x2="428" y2="108" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <!-- 판정 -->
+  <line x1="540" y1="108" x2="570" y2="108" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M570 108 V78 H618" />
+    <path d="M570 108 V138 H618" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="594" y="70">같으면</text>
+    <text x="594" y="130">다르면</text>
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="626" y="83">통과</text>
+    <text x="626" y="143">원인 분석</text>
+  </g>
+</svg>

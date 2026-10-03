@@ -1,0 +1,39 @@
+---
+title: 결함 주입
+tags:
+  - process/sw-testing
+verified: 2026-10-03
+---
+
+**결함 주입**(fault injection)은 결함 같은 이상 조건을 일부러 만들어, 컴포넌트나 시스템이 어떻게 반응하는지 평가하는 기법이다.[@iso-26262-1-obp-2018][@istqb-glossary-fault-injection-2026] [[iso-26262|ISO 26262]]-1:2018은 결함 주입을 요소 안에서 결함이 미치는 영향을 평가하려고 [[fault-error-failure|fault, error, failure]]를 넣고 관측점에서 반응을 살피는 방법으로 정의한다.[@iso-26262-1-obp-2018] ISTQB(International Software Testing Qualifications Board) 용어집은 결함 주입을 불리한 조건을 만들어 컴포넌트나 시스템이 그 조건을 검출하고 믿을 만하게 동작하는지 평가하는 기법으로 정의하고, fault insertion을 동의어로 둔다.[@istqb-glossary-fault-injection-2026]
+
+## 목적
+
+ISO 26262-1:2018은 결함 주입의 예로 다음을 든다.[@iso-26262-1-obp-2018]
+
+- 잠재 결함을 검출하는 전략의 하나로, 운용 중에 결함을 넣어 [[safety-mechanism|안전 메커니즘]]이 제대로 동작하는지 검증하는 것
+- 통합 테스트에서 하드웨어 디버그 포트나 전용 소프트웨어 명령으로 결함을 넣어 하드웨어와 소프트웨어 사이의 인터페이스(HSI, hardware-software interface)를 테스트하는 것
+- 하드웨어 부품 수준에서 stuck-at 결함이나 일시 결함을 흉내 내 안전 메커니즘의 진단 커버리지를 검증하는 것[@iso-26262-1-obp-2018]
+
+ISTQB CT-AuT(Certified Tester Automotive Software Tester) 강의계획서에 따르면 오류 처리 같은 프로그래밍 기법은 시스템이 내부와 외부의 결함에 견고하고 안전하게 반응하게 하려고 쓰고, 결함 주입 테스트는 결함 같은 불리한 조건에 컴포넌트나 시스템이 어떻게 반응하는지 평가한다.[@istqb-ct-aut-syllabus-2025]
+
+## 하드웨어 결함 주입과 소프트웨어 결함 주입
+
+결함 주입 기법의 주된 갈래로 하드웨어로 구현하는 하드웨어 결함 주입과 소프트웨어로 구현하는 소프트웨어 결함 주입이 있다.[@hsueh-fault-injection-1997][@ziade-fault-injection-2004]
+
+**하드웨어 결함 주입**은 따로 만든 하드웨어로 대상 시스템의 하드웨어에 결함을 넣는다.[@ziade-fault-injection-2004] 하드웨어 결함 주입은 접촉식과 비접촉식으로 나뉜다. 접촉식은 주입기가 대상에 직접 닿아 핀 수준의 능동 탐침이나 소켓 삽입으로 칩 밖에서 전압이나 전류를 바꾸고, 비접촉식은 중이온 방사나 전자기 간섭 같은 외부 현상으로 칩 안에 의도하지 않은 전류를 일으킨다.[@ziade-fault-injection-2004]
+
+**소프트웨어 결함 주입**은 대상에서 실행되는 소프트웨어를 고쳐 시스템 상태를 바꾸는 방식으로, 하드웨어 결함이 낳았을 오류를 소프트웨어 수준에서 재현한다.[@ziade-fault-injection-2004] 변화는 소프트웨어 상태 수준에서 바로 만든다.[@hsueh-fault-injection-1997]
+
+## 컴파일 시간 주입과 실행 시간 주입
+
+소프트웨어 결함 주입은 결함을 넣는 때에 따라 컴파일 시간 주입과 실행 시간 주입으로 나뉜다.[@ziade-fault-injection-2004]
+
+- **컴파일 시간 주입**: 프로그램 이미지를 적재해 실행하기 전에, 대상 프로그램의 소스 코드나 어셈블리 코드를 고쳐 결함을 넣는다.
+- **실행 시간 주입**: 실행 중에 결함 주입을 일으킬 방아쇠가 필요하며, 흔히 타임아웃, 예외나 트랩, 코드 삽입을 쓴다.[@ziade-fault-injection-2004]
+
+![[diagrams/fault-injection-techniques.svg]]
+
+## 주입 대상과 방식
+
+CT-AuT 강의계획서에 따르면 결함 주입 테스트에서 테스터는 외부 컴포넌트(예: 센서의 그럴듯하지 않은 값을 검출하는지), 인터페이스(예: 단락이나 메시지 손실), 애플리케이션 내부에 결함을 골라 넣을 수 있다. 결함을 넣는 방식은 시스템과 테스트 환경에 따라 다르다. 고전적 결함 주입은 물리적 시험 대상을 조작하고, 외부와 인터페이스의 결함은 [[x-in-the-loop|HiL]] 환경에서 FIU(fault insertion unit)로 실행 중에 흉내 내며, 소프트웨어 결함은 SiL 환경이나 개발 환경에서 디버거나 XCP(Universal Measurement and Calibration Protocol) 같은 도구로 흉내 내는 일이 많다.[@istqb-ct-aut-syllabus-2025]

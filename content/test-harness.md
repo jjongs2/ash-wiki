@@ -1,0 +1,38 @@
+---
+title: 테스트 하네스
+tags:
+  - process/sw-testing
+verified: 2026-10-03
+---
+
+ISTQB(International Software Testing Qualifications Board) 용어집은 **테스트 하네스**(test harness)를 테스트 스위트를 실행하는 데 필요한 드라이버와 test double의 모음으로 정의한다.[@istqb-glossary-test-harness-2026] ISO/IEC/IEEE 24765 용어집은 테스트 하네스를 상위 코드가 아직 없을 때 하위 코드를 실행해 보려고 작성한 비계 코드(scaffolding)로 정의한다.[@ieee-cs-sevocab-2026] SWEBOK(Software Engineering Body of Knowledge) V4.0a에 따르면 드라이버와 스텁 같은 테스트 하네스는 테스트 도구의 한 갈래로, 테스트를 시작하고 그 출력을 기록할 수 있는 통제된 환경을 주는 도구를 가리킨다.[@ieee-swebok-v4-0a-2026]
+
+ISTQB CTFL(Certified Tester Foundation Level) 강의계획서는 스텁, 드라이버, 시뮬레이터, 서비스 가상화를 테스트 환경 항목의 예로 든다.[@istqb-ctfl-syllabus-2024]
+
+## 드라이버와 스텁
+
+ISTQB 용어집은 **드라이버**(driver)를 test driver라고도 부르며, 다른 컴포넌트를 잠시 대신해 테스트 항목을 따로 떼어 놓은 채 제어하거나 호출하는 컴포넌트나 도구로 정의한다.[@istqb-glossary-driver-2026]
+
+ISO/IEC/IEEE 24765 용어집은 **스텁**(stub)을 소프트웨어 모듈을 뼈대만 두거나 특정 목적에 맞게 만든 구현으로, 그 모듈을 호출하거나 그것에 의존하는 모듈을 개발하거나 시험할 때 쓰는 것으로 정의한다.[@ieee-cs-sevocab-2026] ISTQB 용어집은 스텁을 미리 정한 응답을 주는 test double의 한 종류로 정의한다.[@istqb-glossary-stub-2026]
+
+SWEBOK V4.0a에 따르면 드라이버는 SUT(system under test)의 한 부분을 부르는 모듈을 흉내 내고, 스텁은 그 부분이 부르는 모듈을 흉내 낸다.[@ieee-swebok-v4-0a-2026]
+
+![[diagrams/test-harness-driver-stub.svg]]
+
+## 단위 테스트와 통합 테스트에서의 쓰임
+
+CTFL 강의계획서에 따르면 [[unit-testing|컴포넌트 테스트]]에는 테스트 하네스나 단위 테스트 프레임워크 같은 지원이 필요한 경우가 많다.[@istqb-ctfl-syllabus-2024]
+
+SWEBOK V4.0a에 따르면 [[integration-testing|통합 테스트]]를 점진적으로 하면 대개 스텁, 드라이버, mock object 같은 테스트 인프라가 더 쓰인다.[@ieee-swebok-v4-0a-2026]
+
+## Test double
+
+ISTQB 용어집은 **test double**을 테스트하려고 테스트 대상이 부르는 대체 컴포넌트로 정의한다.[@istqb-glossary-test-double-2026] Meszaros는 xUnit Test Patterns에서 SUT가 의존하는 실제 컴포넌트를 테스트에서 대신하는 객체들을 아우르는 이름으로 Test Double을 쓰고, 이를 다음 다섯으로 나눈다.[@meszaros-test-double-2008][@meszaros-mocks-fakes-stubs-2008]
+
+| 종류         | 하는 일                                                                              |
+| ------------ | ------------------------------------------------------------------------------------ |
+| Dummy object | 메서드 인자 자리를 채우려고 넘기기만 하고, 테스트도 SUT도 쓰지 않는다.               |
+| Test stub    | SUT의 간접 입력을 테스트가 정한 값으로 준다.                                         |
+| Test spy     | SUT가 내보낸 간접 출력을 기록해 두었다가 테스트가 나중에 확인하게 한다.              |
+| Mock object  | 받을 호출을 기대값으로 미리 설정받고, SUT의 간접 출력이 그와 맞는지 스스로 확인한다. |
+| Fake object  | 실제 의존 컴포넌트와 같은 기능을 훨씬 단순하고 가볍게 구현한다.                      |
