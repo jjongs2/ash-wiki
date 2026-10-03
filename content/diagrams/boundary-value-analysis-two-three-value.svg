@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="37 -5.5 524 201.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 범위 -->
+  <text x="140" y="24" text-anchor="end" fill="var(--text, #727981)">CTFL 강의계획서</text>
+
+  <!-- 분할 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1">
+    <path d="M160 44 V36 H374 V44" />
+    <path d="M386 44 V36 H530 V44" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="267" y="24">분할</text>
+    <text x="458" y="24">이웃한 분할</text>
+  </g>
+
+  <!-- 분할의 경계 -->
+  <line x1="380" y1="30" x2="380" y2="176" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+
+  <!-- 수직선 -->
+  <line x1="160" y1="64" x2="540" y2="64" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <g stroke="var(--ink, #727981)" stroke-width="1">
+    <path d="M180 58 V70 M260 58 V70 M340 58 V70 M420 58 V70 M500 58 V70" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="260" y="88">9</text>
+    <text x="340" y="88">10</text>
+    <text x="420" y="88">11</text>
+    <text x="340" y="104">경계값</text>
+  </g>
+
+  <!-- 커버리지 항목 -->
+  <g text-anchor="end" fill="var(--text, #727981)">
+    <text x="140" y="136">2값 경계값 분석</text>
+    <text x="140" y="166">3값 경계값 분석</text>
+  </g>
+  <g fill="var(--ink, #727981)">
+    <circle cx="340" cy="132" r="5" />
+    <circle cx="420" cy="132" r="5" />
+    <circle cx="260" cy="162" r="5" />
+    <circle cx="340" cy="162" r="5" />
+    <circle cx="420" cy="162" r="5" />
+  </g>
+</svg>

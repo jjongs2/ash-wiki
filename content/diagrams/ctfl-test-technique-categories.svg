@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 296" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 범위 -->
+  <text x="620" y="40" text-anchor="end" fill="var(--text, #727981)">ISTQB CTFL 강의계획서</text>
+
+  <!-- 연결선 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M320 52 V72 M110 92 V72 H530 V92 M320 72 V92" />
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1">
+    <path d="M32 124 V262 M32 154 H44 M32 190 H44 M32 226 H44 M32 262 H44" />
+    <path d="M242 124 V190 M242 154 H254 M242 190 H254" />
+    <path d="M452 124 V226 M452 154 H464 M452 190 H464 M452 226 H464" />
+  </g>
+
+  <!-- 상자 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="260" y="20" width="120" height="32" rx="4" />
+    <rect x="20" y="92" width="180" height="32" rx="4" />
+    <rect x="230" y="92" width="180" height="32" rx="4" />
+    <rect x="440" y="92" width="180" height="32" rx="4" />
+    <rect x="44" y="140" width="156" height="28" rx="2" />
+    <rect x="44" y="176" width="156" height="28" rx="2" />
+    <rect x="44" y="212" width="156" height="28" rx="2" />
+    <rect x="44" y="248" width="156" height="28" rx="2" />
+    <rect x="254" y="140" width="156" height="28" rx="2" />
+    <rect x="254" y="176" width="156" height="28" rx="2" />
+    <rect x="464" y="140" width="156" height="28" rx="2" />
+    <rect x="464" y="176" width="156" height="28" rx="2" />
+    <rect x="464" y="212" width="156" height="28" rx="2" />
+  </g>
+
+  <!-- 글자 -->
+  <g text-anchor="middle" fill="var(--text, #727981)" font-size="13">
+    <text x="320" y="41">테스트 기법</text>
+    <text x="110" y="113">블랙박스</text>
+    <text x="320" y="113">화이트박스</text>
+    <text x="530" y="113">경험 기반</text>
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="122" y="158">동치 분할</text>
+    <text x="122" y="194">경계값 분석</text>
+    <text x="122" y="230">결정 테이블 테스트</text>
+    <text x="122" y="266">상태 전이 테스트</text>
+    <text x="332" y="158">구문 테스트</text>
+    <text x="332" y="194">분기 테스트</text>
+    <text x="542" y="158">오류 추정</text>
+    <text x="542" y="194">탐색적 테스트</text>
+    <text x="542" y="230">체크리스트 기반 테스트</text>
+  </g>
+</svg>
