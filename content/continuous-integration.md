@@ -29,19 +29,19 @@ Fowler는 지속적 통합을, 팀원 각자가 적어도 하루에 한 번 변�
 - 누구나 진행 상황을 볼 수 있게 한다.
 - 배포를 자동화한다.[@fowler-continuous-integration-2024]
 
-## 단계적 통합과의 대비
-
-SWEBOK V4.0a에 따르면 단계적 통합(빅뱅 통합)은 한 버전에 내보낼 부분이 모두 완성될 때까지 통합을 미룬다. 점진적 통합은 단계적 통합보다 오류의 위치를 찾기 쉬운 것 같은 이점이 있다고 여겨진다.[@ieee-swebok-v4-0a-2026]
-
 ## 파이프라인에 넣는 검사
 
 SWEBOK V4.0a에 따르면 지속적 통합에서는 서버에서 도는 도구가 소스 저장소를 지켜보다가, 변경이 커밋될 때마다 단계로 이은 파이프라인을 시작해 코드를 컴파일하고 링크한다. 여기에 [[static-analysis|정적 분석]]으로 [[coding-standard|코딩 표준]]을 확인하는 단계와, 단위 테스트를 돌리고 코드 [[test-coverage|커버리지]]를 재는 단계를 함께 두는 일이 많다.[@ieee-swebok-v4-0a-2026] 지속적 통합에서는 자동화한 [[regression-testing|회귀 테스트]]도 함께 돌린다.[@ieee-swebok-v4-0a-2026][@istqb-ctfl-syllabus-2024]
 
 ![[diagrams/continuous-integration-pipeline.svg]]
 
-Jenkins는 단순한 지속적 통합부터 지속적 전달 파이프라인까지 지원하는 자동화 엔진이다.[@jenkins-pipeline-2026]
+Jenkins는 지속적 통합을 지원하는 자동화 엔진이다.[@jenkins-pipeline-2026]
 
 ## 지속적 전달과 지속적 배포
 
 - **지속적 전달**(continuous delivery): ISTQB(International Software Testing Qualifications Board) 용어집은 코드 변경을 자동으로 빌드하고 테스트해 운영 환경 출시를 준비하는 자동화된 개발 절차로 정의한다.[@istqb-glossary-continuous-delivery-2026] ISO/IEC/IEEE 24765 용어집은 자동화 도구로 새 시스템을 스테이징이나 여러 테스트 환경에 자주 내보낼 수 있게 하는 실천으로 정의한다.[@ieee-cs-sevocab-2026]
 - **지속적 배포**(continuous deployment): 정해진 테스트와 검증을 통과한 변경을 자동으로 운영 환경에 배포하는 절차다.[@ieee-cs-sevocab-2026][@istqb-glossary-continuous-deployment-2026]
+
+## 단계적 통합과의 대비
+
+SWEBOK V4.0a에 따르면 단계적 통합(빅뱅 통합)은 한 버전에 내보낼 부분이 모두 완성될 때까지 통합을 미룬다. 점진적 통합은 단계적 통합보다 오류의 위치를 찾기 쉬운 것 같은 이점이 있다고 여겨진다.[@ieee-swebok-v4-0a-2026]
