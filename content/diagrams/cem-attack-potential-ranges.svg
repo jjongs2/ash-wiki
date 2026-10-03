@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="22 14 409 236.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 열 이름 -->
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="50" y="51" font-size="12">합계</text>
+    <text x="175" y="34">CEM:2022</text>
+    <text x="175" y="51" font-size="12">필요한 attack potential</text>
+    <text x="345" y="34">CEM v3.1 Revision 5</text>
+    <text x="345" y="51" font-size="12">TOE가 견디는 attack potential</text>
+  </g>
+
+  <!-- 합계 구간 -->
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="50" y="84">0~9</text>
+    <text x="50" y="120">10~13</text>
+    <text x="50" y="156">14~19</text>
+    <text x="50" y="192">20~24</text>
+    <text x="50" y="228">25 이상</text>
+  </g>
+
+  <!-- 등급: 같은 이름은 같은 색 -->
+  <g stroke-width="1.5">
+    <rect x="100" y="64" width="150" height="32" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" />
+    <rect x="100" y="100" width="150" height="32" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" />
+    <rect x="100" y="136" width="150" height="32" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" />
+    <rect x="100" y="172" width="150" height="32" rx="4" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" />
+    <rect x="100" y="208" width="150" height="32" rx="4" fill="var(--surface, none)" stroke="var(--ink, #727981)" />
+    <rect x="270" y="64" width="150" height="32" rx="4" fill="var(--surface, none)" stroke="var(--ink, #727981)" />
+    <rect x="270" y="100" width="150" height="32" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" />
+    <rect x="270" y="136" width="150" height="32" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" />
+    <rect x="270" y="172" width="150" height="32" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" />
+    <rect x="270" y="208" width="150" height="32" rx="4" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" />
+  </g>
+  <g font-size="12" text-anchor="middle">
+    <g fill="var(--on-fill, #f8fafd)">
+      <text x="175" y="84">basic</text>
+      <text x="175" y="120">enhanced-basic</text>
+      <text x="175" y="156">moderate</text>
+      <text x="175" y="192">high</text>
+      <text x="345" y="120">basic</text>
+      <text x="345" y="156">enhanced-basic</text>
+      <text x="345" y="192">moderate</text>
+      <text x="345" y="228">high</text>
+    </g>
+    <g fill="var(--text, #727981)">
+      <text x="175" y="228">beyond high</text>
+      <text x="345" y="84">no rating</text>
+    </g>
+  </g>
+</svg>

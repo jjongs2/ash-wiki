@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="69.5 9.5 455 221" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 노드 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="255" y="20" width="110" height="44" rx="4" />
+    <rect x="125" y="104" width="110" height="44" rx="4" />
+    <rect x="400" y="104" width="80" height="32" rx="4" />
+    <rect x="80" y="188" width="80" height="32" rx="4" />
+    <rect x="200" y="188" width="80" height="32" rx="4" />
+  </g>
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="310" y="39">목표</text>
+    <text x="180" y="123">하위 목표</text>
+    <text x="440" y="125">잎</text>
+    <text x="120" y="209">잎</text>
+    <text x="240" y="209">잎</text>
+  </g>
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="310" y="56">OR 노드</text>
+    <text x="180" y="140">AND 노드</text>
+  </g>
+
+  <!-- 잇는 선 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="310" y1="64" x2="310" y2="84" />
+    <path d="M180 104 V84 H440 V104" />
+    <line x1="180" y1="148" x2="180" y2="168" />
+    <path d="M120 188 V168 H240 V188" />
+  </g>
+
+  <!-- 비용 -->
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="375" y="47">비용 = 자식 가운데 가장 싼 값</text>
+    <text x="245" y="131">비용 = 자식 비용의 합</text>
+  </g>
+</svg>

@@ -7,11 +7,13 @@
 - AC: 표준·규격 이름
 - ANSI: 표준화 기구
 - ASAM: 표준화 기구
+- Auto-ISAC: 표준화 기구
 - AUTOSAR: 표준·규격 이름
 - BS: 표준·규격 이름
 - BSI: 표준화 기구
 - CAN_H: 핀과 신호
 - CAN_L: 핀과 신호
+- CCRA: 표준화 기구
 - CCSDS: 표준화 기구
 - CERT: 표준화 기구
 - CiA: 표준화 기구
@@ -22,6 +24,7 @@
 - ECU: 널리 쓰이는 약어
 - EIA: 표준화 기구
 - FAA: 표준화 기구
+- FIRST: 표준화 기구
 - GND: 전원
 - HIS: 표준화 기구
 - I/O: 널리 쓰이는 약어
@@ -41,6 +44,7 @@
 - MISRA: 표준화 기구
 - NASA: 널리 쓰이는 약어
 - NATO: 널리 쓰이는 약어
+- NHTSA: 표준화 기구
 - NIST: 표준화 기구
 - NMEA: 표준화 기구
 - OASIS: 표준화 기구
