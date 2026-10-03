@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 20 530 136" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 키에서 만든 두 값 -->
+  <g stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)">
+    <rect x="20" y="30" width="110" height="36" rx="4" />
+    <rect x="20" y="110" width="110" height="36" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="75" y="53"><tspan font-style="italic">K</tspan><tspan baseline-shift="sub" font-size="10">0</tspan> ⊕ ipad</text>
+    <text x="75" y="133"><tspan font-style="italic">K</tspan><tspan baseline-shift="sub" font-size="10">0</tspan> ⊕ opad</text>
+  </g>
+
+  <!-- 이어 붙이기 -->
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="142" y="53">‖</text>
+    <text x="142" y="133">‖</text>
+  </g>
+
+  <!-- 메시지, 해시, 결과 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="154" y="30" width="80" height="36" rx="4" />
+    <rect x="272" y="30" width="40" height="36" rx="4" />
+    <rect x="154" y="110" width="180" height="36" rx="4" />
+    <rect x="372" y="110" width="40" height="36" rx="4" />
+    <rect x="450" y="110" width="80" height="36" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="194" y="53" font-style="italic">text</text>
+    <text x="292" y="53" font-style="italic">H</text>
+    <text x="244" y="133"><tspan font-style="italic">H</tspan>((<tspan font-style="italic">K</tspan><tspan baseline-shift="sub" font-size="10">0</tspan> ⊕ ipad) ‖ <tspan font-style="italic">text</tspan>)</text>
+    <text x="392" y="133" font-style="italic">H</text>
+    <text x="490" y="133">HMAC</text>
+  </g>
+
+  <!-- 화살표 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="234" y1="48" x2="270" y2="48" />
+    <path d="M292 66 V88 H244 V108" />
+    <line x1="334" y1="128" x2="370" y2="128" />
+    <line x1="412" y1="128" x2="448" y2="128" />
+  </g>
+</svg>
