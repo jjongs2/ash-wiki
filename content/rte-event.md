@@ -30,7 +30,7 @@ RTE 이벤트는 열여섯 종류다. 종류마다 runnable을 시작하는 때�
 | trigger     | InternalTriggerOccurredEvent       | 참조한 internal triggering point가 일어났을 때                                                  |
 | 변환 오류   | TransformerHardErrorEvent          | 서버 operation이나 external trigger를 일으킬 데이터를 변환하다 hard transformer error가 났을 때 |
 
-BackgroundEvent는 고정된 주기 없이 되풀이해 일어나며, 보통 가장 낮은 우선순위로만 활성화된다. RTE는 BackgroundEvent를 전용 백그라운드 태스크로 구현하거나, 알람이나 [[autosar-schedule-table|schedule table]] expiry point로 ECU 통합자가 정한 고정 반복에 따라 TimingEvent처럼 구현한다. 백그라운드 태스크로 구현하면 그 태스크는 코어에서 가장 낮은 우선순위여야 한다.[@autosar-cp-sws-rte-2025]
+BackgroundEvent는 고정된 주기 없이 되풀이해 일어나며, 보통 가장 낮은 우선순위로만 활성화된다. RTE는 BackgroundEvent를 전용 백그라운드 태스크로 구현하거나, [[osek-alarm|알람]]이나 [[autosar-schedule-table|schedule table]] expiry point로 ECU 통합자가 정한 고정 반복에 따라 TimingEvent처럼 구현한다. 백그라운드 태스크로 구현하면 그 태스크는 코어에서 가장 낮은 우선순위여야 한다.[@autosar-cp-sws-rte-2025]
 
 RTE는 `Rte_Start`를 실행할 때 InitEvent로 촉발되는 runnable을 한 번 활성화한다.[@autosar-cp-sws-rte-2025] 그렇다고 InitEvent가 가리키는 runnable이 다른 runnable보다 먼저 실행된다는 보장은 없고, 실행 순서는 태스크 매핑에 달려 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
@@ -50,6 +50,6 @@ RTE 생성기는 runnable이 매핑된 태스크의 본문을 만들고, 태스�
 
 ## TimingEvent와 알람
 
-RTE는 TimingEvent를 [[osek-alarm|알람]]이나 schedule table expiry point로 구현한다. 둘 다 설정하지 않으면 RTE가 골라 구현할 수 있다. `RteUsedOsAlarmRef`는 RTE 이벤트가 매핑된 태스크를 활성화하는 데 쓸 알람을 가리킨다. 이 참조를 설정하고 `RteEventRef`가 TimingEvent를 가리키면, RTE는 그 알람으로 TimingEvent를 구현한다.[@autosar-cp-sws-rte-2025]
+RTE는 TimingEvent를 알람이나 schedule table expiry point로 구현한다. 둘 다 설정하지 않으면 RTE가 골라 구현할 수 있다. `RteUsedOsAlarmRef`는 RTE 이벤트가 매핑된 태스크를 활성화하는 데 쓸 알람을 가리킨다. 이 참조를 설정하고 `RteEventRef`가 TimingEvent를 가리키면, RTE는 그 알람으로 TimingEvent를 구현한다.[@autosar-cp-sws-rte-2025]
 
 `RteActivationOffset`은 `RteEventToTaskMapping`에 두는 초 단위 활성화 오프셋이다. RTE는 한 태스크에 매핑된 runnable의 활성화 오프셋을 지켜야 한다. 이 오프셋은 시간으로 촉발되는 runnable에만 쓰며, 태스크가 공유하는 기준점에서 잰다.[@autosar-cp-sws-rte-2025]

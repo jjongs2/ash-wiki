@@ -26,4 +26,4 @@ LIN에서는 LinIf(LIN Interface)가 프레임을 L-SDU Router(LSduR)나 복합 
 
 PduR는 정적 설정 테이블에서 I-PDU ID로 목적지를 찾아 I-PDU를 넘긴다. 라우팅 경로는 I-PDU마다 정적으로 설정되며, 지원하면 ECU 프로그래밍 상태에서 post-build로 갱신하거나 초기화 때 post-build selectable로 고를 수 있다. PduR는 실행 중에 I-PDU를 동적으로 라우팅하지 않고, 페이로드에 따라 경로를 고르지도 않는다. 다만 라우팅 경로 그룹은 실행 중에 켜고 끌 수 있고, 보통 BswM(Basic Software Mode Manager)이 이 일을 한다.[@autosar-cp-sws-pdurouter-2025]
 
-PduR는 I-PDU를 고치지 않고 넘긴다.[@autosar-cp-sws-pdurouter-2025] PduR의 게이트웨이 기능은 [[gateway#PDU 게이트웨이|게이트웨이]]에서 다룬다.
+PduR는 I-PDU를 고치지 않고 넘긴다.[@autosar-cp-sws-pdurouter-2025] PduR의 게이트웨이 기능은 [[gateway#PDU 게이트웨이|PDU 게이트웨이]]에서 다룬다.
