@@ -39,6 +39,7 @@
 - IEC: 표준화 기구
 - IEEE: 표준화 기구
 - IEEE SA: 표준화 기구
+- IEEE-ISTO: 표준화 기구
 - IEN: 표준·규격 이름
 - IETF: 표준화 기구
 - ISACA: 표준화 기구

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="8 10 574 290" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <g fill="var(--text, #727981)">
+    <text x="40" y="49">이전 파일</text>
+    <text x="40" y="139">새 파일</text>
+  </g>
+
+  <!-- 이전 파일 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="130" y="30" width="20" height="28" rx="2" />
+    <rect x="270" y="30" width="60" height="28" rx="2" />
+    <rect x="490" y="30" width="60" height="28" rx="2" />
+  </g>
+
+  <!-- 대략 일치 구간 -->
+  <g stroke="var(--green, #337b47)" stroke-width="1.5" fill="var(--green-tint, #337b47)">
+    <rect x="150" y="30" width="120" height="28" rx="2" />
+    <rect x="330" y="30" width="160" height="28" rx="2" />
+    <rect x="130" y="120" width="120" height="28" rx="2" />
+    <rect x="350" y="120" width="160" height="28" rx="2" />
+  </g>
+  <g font-size="12" text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="210" y="48">대략 일치 구간</text>
+    <text x="410" y="48">대략 일치 구간</text>
+    <text x="190" y="138">대략 일치 구간</text>
+    <text x="430" y="138">대략 일치 구간</text>
+  </g>
+
+  <!-- 일치 구간 밖 -->
+  <rect x="250" y="120" width="100" height="28" rx="2" stroke="var(--violet, #825da9)" stroke-width="1.5" fill="var(--violet-tint, #825da9)" />
+  <text x="300" y="138" font-size="12" text-anchor="middle" fill="var(--on-fill, #f8fafd)">일치 구간 밖</text>
+
+  <!-- 구간의 대응 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="150" y1="60" x2="130" y2="118" />
+    <line x1="270" y1="60" x2="250" y2="118" />
+    <line x1="330" y1="60" x2="350" y2="118" />
+    <line x1="490" y1="60" x2="510" y2="118" />
+  </g>
+
+  <!-- 패치 -->
+  <rect x="28" y="188" width="534" height="72" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="40" y="200" width="150" height="48" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="205" y="200" width="185" height="48" rx="4" stroke="var(--green, #337b47)" stroke-width="1.5" fill="var(--green-tint, #337b47)" />
+  <rect x="405" y="200" width="145" height="48" rx="4" stroke="var(--violet, #825da9)" stroke-width="1.5" fill="var(--violet-tint, #825da9)" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="115" y="220">제어 파일</text>
+    <text x="115" y="238" font-size="12">명령</text>
+    <text x="295" y="280" font-size="12">패치</text>
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="297.5" y="220">차이 파일</text>
+    <text x="297.5" y="238" font-size="12">대략 일치 구간의 바이트 차이</text>
+    <text x="477.5" y="220">extra 파일</text>
+    <text x="477.5" y="238" font-size="12">일치 구간 밖의 바이트</text>
+  </g>
+</svg>
