@@ -17,6 +17,8 @@ SWEBOK(Software Engineering Body of Knowledge) V4.0a에 따르면 전통적인 �
 
 SWEBOK V4.0a에 따르면 [[agile-software-development|애자일 개발]]은 잦은 반복으로 구현에 이른 피드백을 주고, DevOps는 운영에서 오는 피드백으로 개발자가 자기 코드가 운영 환경에서 어떻게 동작하는지 더 빨리 알게 한다. DevOps는 여러 변경을 묶어 정해진 간격으로 내는 릴리스 대신, 작은 변경 단위를 필요할 때 서로 독립적으로 내보내려 한다.[@ieee-swebok-v4-0a-2026]
 
+![[diagrams/devops-feedback-loops.svg]]
+
 ## 원칙과 실천
 
 IEEE 2675-2021은 DevOps 원칙으로 임무 우선(mission first), 고객 중심(customer focus), 왼쪽으로 당기기(left-shift), 모든 것의 지속화(continuous everything), 시스템 사고(systems thinking)를 든다.[@ieee-2675-2021]

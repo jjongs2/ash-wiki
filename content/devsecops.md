@@ -23,17 +23,19 @@ NIST SP 800-218(SSDF 1.1)은 어느 SDLC 모델에도 넣을 수 있는 상위 �
 
 DevSecOps는 소프트웨어 생명주기의 모든 단계에 보안 활동을 두고, 운영 중에도 지속적으로 모니터링한다.[@nist-sp-800-204c-2022][@dod-devsecops-fundamentals-2-5-2024]
 
-DoD의 DevSecOps Activities & Tools 가이드북은 단계마다 아래 보안 활동을 둔다.[@dod-devsecops-activities-tools-2-2-2023]
+DoD의 DevSecOps Activities & Tools 가이드북이 생명주기 단계에 두는 보안 활동은 다음과 같다.[@dod-devsecops-activities-tools-2-2-2023]
 
-| 단계      | 보안 활동                                                                                                |
-| --------- | -------------------------------------------------------------------------------------------------------- |
-| Plan      | 위협 모델링                                                                                              |
-| Develop   | IDE 보안 플러그인으로 하는 커밋 전 정적 코드 스캔                                                        |
-| Build     | 의존성 취약점 검사                                                                                       |
-| Build 뒤  | SBOM(Software Bill of Materials)의 SCA(Software Composition Analysis)                                    |
-| Test      | DAST(Dynamic Application Security Testing), [[penetration-testing\|침투 테스트]] 같은 수동 보안 테스트 |
-| Deploy    | 배포 뒤 보안 스캔                                                                                        |
-| Monitor   | 시스템 보안 모니터링, RASP(Runtime Application Self-Protection)                                          |
+| 보안 활동                                                             | 두는 단계 |
+| --------------------------------------------------------------------- | --------- |
+| 위협 모델링                                                           | Plan      |
+| IDE 보안 플러그인의 커밋 전 정적 코드 스캔                            | Develop   |
+| 의존성 취약점 검사                                                    | Build     |
+| SBOM(Software Bill of Materials)의 SCA(Software Composition Analysis) | Build 뒤  |
+| DAST(Dynamic Application Security Testing)                            | Test      |
+| [[penetration-testing\|침투 테스트]] 같은 수동 보안 테스트            | Test      |
+| 배포 뒤 보안 스캔                                                     | Deploy    |
+| 시스템 보안 모니터링                                                  | Monitor   |
+| RASP(Runtime Application Self-Protection)                             | Monitor   |
 
 같은 가이드북은 [[software-review|코드 리뷰]]를 Develop 단계의 형상 관리 활동으로, [[regression-testing|회귀 테스트]]를 Build와 Test 단계의 테스트 활동으로 둔다.[@dod-devsecops-activities-tools-2-2-2023] NIST SP 800-204C에 따르면 [[static-analysis|정적 분석]] 도구는 IDE나 빌드 도구에, SCA 도구는 빌드 산출물을 받는 패키징 도구에 붙인다.[@nist-sp-800-204c-2022]
 

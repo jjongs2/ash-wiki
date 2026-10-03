@@ -33,6 +33,8 @@ The Scrum Guide 2020은 이벤트 다섯을 두며, 그 가운데 Sprint가 나�
 - **Sprint Review**: Sprint의 결과를 점검하고 앞으로 무엇을 조정할지 정한다. 한 달짜리 Sprint에서 최대 4시간이다.
 - **Sprint Retrospective**: 품질과 효과성을 높일 방법을 계획하며 Sprint를 닫는다. 한 달짜리 Sprint에서 최대 3시간이다.[@scrumguides-scrum-guide-2020]
 
+![[diagrams/scrum-sprint-events.svg]]
+
 ## 산출물과 약속
 
 The Scrum Guide 2020은 산출물 셋을 두고, 산출물마다 진척을 잴 기준이 되는 약속(commitment)을 하나씩 붙인다.[@scrumguides-scrum-guide-2020]
