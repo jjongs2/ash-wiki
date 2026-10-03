@@ -269,6 +269,25 @@ describe("source-status CLI", () => {
     assert.strictEqual(report.exitCode, 1)
   })
 
+  test("URL로 읽히지 않는 url은 url 검사가 bib 위치를 찍고, 나머지 URL도 묻는다", async () => {
+    const root = makeTree({
+      "content/fresh.md": page(
+        ["network/can"],
+        "2026-09-01",
+        "하나[@org-bad-2024], 둘.[@org-dead-2024]",
+      ),
+      "bib/org-bad-2024.bib": bib("org-bad-2024", "not a url"),
+      "bib/org-dead-2024.bib": bib("org-dead-2024", `${base}/dead`),
+    })
+    const report = await runStatus(root)
+    assert.deepStrictEqual(report.statuses, ["FAIL url", "OK verified"])
+    assert.deepStrictEqual(report.locations.get("url"), [
+      "bib/org-bad-2024.bib:3",
+      "bib/org-dead-2024.bib:3",
+    ])
+    assert.strictEqual(report.exitCode, 1)
+  })
+
   test("봇 차단 호스트의 403은 url-blocked에 따로 찍고, 그것만으로는 exit 0이다", async () => {
     const root = makeTree({
       "content/fresh.md": page(

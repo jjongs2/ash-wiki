@@ -105,7 +105,8 @@ async function checkUrls(
   const gates = new Map<string, Limiter>()
   await Promise.all(
     targets.map(async ({ file, field }) => {
-      const host = new URL(field.value).hostname
+      // URL로 읽히지 않는 값은 probe가 url FAIL로 판정한다. 호스트 대신 값 자체를 문의 키로 쓴다.
+      const host = URL.canParse(field.value) ? new URL(field.value).hostname : field.value
       if (!gates.has(host)) gates.set(host, gate(hostLimit, intervalMs, all))
       const outcome = await gates.get(host)!(() => probe(field.value))
       if (outcome.kind === "alive") return
