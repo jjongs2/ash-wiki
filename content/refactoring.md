@@ -17,6 +17,8 @@ Fowler는 리팩터링의 핵심을, 동작을 보존하는 작은 변환을 잇
 
 Fowler는 리팩터링을 재구성(restructuring)의 한 특정 기법으로 구별한다. 리팩터링하는 동안 시스템이 몇 분 넘게 깨져 있으면 안 되고, 며칠씩 깨진 채 하는 재구성은 리팩터링이 아니라고 본다.[@fowler-refactoring-malapropism-2004] 또 리팩터링과 기능 추가를 두 모자(two hats)로 나눠, 리팩터링 중의 변경은 모두 동작을 보존하는 작은 변경이고 그 밖의 코드 변경은 모두 기능 추가라고 한다.[@fowler-workflows-of-refactoring-2014]
 
+![[diagrams/refactoring-small-steps-vs-restructuring.svg]]
+
 ## Code smell
 
 ISTQB 용어집은 **code smell**을, 설계나 유지보수성에 문제가 있을 수 있음을 드러내되 코드가 동작하는 것을 꼭 막지는 않는 소스 코드의 특징으로 정의한다.[@istqb-glossary-code-smell-2026] Fowler는 code smell을 대개 시스템의 더 깊은 문제와 맞닿아 있는, 겉으로 드러난 징후로 보고, smell이 늘 문제를 뜻하지는 않는다고 했다.[@fowler-code-smell-2006]

@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**테스트 주도 개발**(test-driven development, TDD)은 제품 코드를 쓰기 전에 실패하는 자동 테스트를 먼저 쓰고, 그 테스트를 통과하는 코드를 쓴 뒤 중복을 없애는 작은 단계를 되풀이하는 개발 방법이다.[@beck-test-driven-development-2002] ISTQB 용어집은 TDD를 테스트 케이스를 먼저 만들어 자동화한 뒤, 그 테스트를 통과하도록 소프트웨어를 점진적으로 개발하는 기법으로 정의한다.[@istqb-glossary-test-driven-development-2026]
+**테스트 주도 개발**(test-driven development, TDD)은 실패하는 자동 테스트가 있을 때만 제품 코드를 새로 쓰는 개발 방법이다. 아직 통과하지 못하는 테스트를 하나 만들고, 이를 통과시킬 코드를 더한 다음 생긴 중복을 없애는 작은 단계를 되풀이한다.[@beck-test-driven-development-2002] ISTQB 용어집은 TDD를 테스트 케이스를 먼저 만들어 자동화한 뒤, 그 테스트를 통과하도록 소프트웨어를 점진적으로 개발하는 기법으로 정의한다.[@istqb-glossary-test-driven-development-2026]
 
 ## Red-green-refactor 사이클
 
@@ -17,11 +17,13 @@ TDD의 한 주기는 Red, Green, Refactor 세 단계다.[@beck-test-driven-devel
 2. Green: 그 테스트를 빨리 통과시키는 데만 집중하고, 그 과정에서 생기는 지저분한 코드는 받아들인다.
 3. Refactor: 테스트를 통과시키느라 생긴 중복을 [[refactoring|리팩터링]]으로 없앤다.[@beck-test-driven-development-2002]
 
+![[diagrams/tdd-red-green-refactor-cycle.svg]]
+
 Kent Beck은 2023년 글 "Canon TDD"에서 TDD의 흐름을 다음처럼 적었다. 먼저 다룰 테스트 시나리오의 목록을 적는다. 목록의 항목 하나를 실행할 수 있는 테스트로 바꿔 실패하는 테스트를 만들고, 그 테스트를 통과시킨 뒤, 필요하면 리팩터링한다. 이를 목록이 빌 때까지 되풀이하고, 하다가 떠오른 시나리오는 목록에 더한다. 통과시키는 단계에 리팩터링을 섞는 것과, 목록의 항목을 미리 모두 테스트로 바꿔 두는 것은 실수로 든다.[@beck-canon-tdd-2023]
 
 ## 작은 단계
 
-TDD에서는 테스트를 한 번에 하나만 더한다.[@beck-canon-tdd-2023] 새 코드는 자동 테스트가 실패했을 때만, 실패한 테스트가 요구하는 만큼만 쓴다. 문제가 어려울수록 테스트 하나가 다루는 범위를 좁힌다.[@beck-test-driven-development-2002]
+TDD에서는 테스트를 한 번에 하나만 더한다.[@beck-canon-tdd-2023] 새 코드는 실패한 테스트가 요구하는 만큼만 쓴다. 문제가 어려울수록 테스트 하나가 다루는 범위를 좁힌다.[@beck-test-driven-development-2002]
 
 ## 기원
 

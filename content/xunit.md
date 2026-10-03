@@ -24,6 +24,8 @@ JUnit, GoogleTest, Python unittest 같은 프레임워크는 다음 구성 요�
 | assertion       | 결과가 기대와 맞는지 검사하는 문. 실패하면 테스트가 실패한다.[@junit-4-faq-2025][@google-googletest-primer-2026] |
 | test runner     | 테스트 실행을 맡고 결과를 사용자에게 보여 주는 구성 요소[@psf-python-unittest-2026][@junit-4-test-runners-2020] |
 
+![[diagrams/xunit-test-runner-setup-teardown.svg]]
+
 ## C·C++ 프레임워크
 
 - GoogleTest: Google이 만든 C++ 테스트 프레임워크로, xUnit 아키텍처를 바탕으로 한다.[@google-googletest-primer-2026]
@@ -36,5 +38,7 @@ GoogleTest의 assertion은 같은 것을 검사하되 실패했을 때 현재 �
 
 - fatal assertion(`ASSERT_*`): 실패하면 fatal failure를 내고 현재 함수에서 곧바로 빠져나간다.
 - non-fatal assertion(`EXPECT_*`): 실패하면 non-fatal failure를 기록하고 현재 함수를 계속 실행하므로, 한 테스트에서 실패를 여럿 보고할 수 있다.[@google-googletest-primer-2026]
+
+![[diagrams/googletest-fatal-nonfatal-assertion.svg]]
 
 비교 assertion도 짝으로 나온다. 예를 들어 `EXPECT_EQ`와 `ASSERT_EQ`는 `val1 == val2`를, `EXPECT_LT`와 `ASSERT_LT`는 `val1 < val2`를 검사한다.[@google-googletest-assertions-2026]

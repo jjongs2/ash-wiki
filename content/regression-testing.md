@@ -17,6 +17,8 @@ ISTQB CTFL 강의계획서에 따르면 변경은 기능을 더해 개선하거�
 
 확인 테스트는 수정이 제대로 됐는지를 보고, 회귀 테스트는 변경이 다른 부분에 뜻하지 않은 영향을 주지 않았는지를 본다.[@ieee-cs-sevocab-2026][@istqb-ctfl-syllabus-2024]
 
+![[diagrams/confirmation-regression-testing-scope.svg]]
+
 ## 테스트 선택
 
 ISTQB CTFL 강의계획서는 먼저 영향 분석으로 소프트웨어의 어느 부분이 영향을 받을 수 있는지 보고, 회귀 테스트의 범위를 정하기를 권한다.[@istqb-ctfl-syllabus-2024]
@@ -31,6 +33,6 @@ ISTQB 용어집은 **테스트 자동화**(test automation)를 테스트 활동�
 
 ## Automotive SPICE
 
-[[automotive-spice|Automotive SPICE]] 4.1은 SYS.4, SYS.5, SWE.4, SWE.5, SWE.6에 검증 수단을 고르는 BP(base practice)를 두고, 그 선택 기준에 회귀 검증 기준을 넣게 한다. SWE.5는 통합 단계마다 통합 검증 수단의 선택을 문서로 남기게 하고, 선택 기준의 예로 소프트웨어 아키텍처나 상세 설계의 변경 등으로 지속적 통합·지속적 개발(continuous integration / continuous development)에서 회귀 검증이 필요한 경우를 든다.[@vda-automotive-spice-pam-4-1-2026]
+[[automotive-spice|Automotive SPICE]] 4.1은 SYS.4, SYS.5, SWE.4, SWE.5, SWE.6에 검증 수단을 고르는 BP(base practice)를 두고, 그 선택 기준에 회귀 검증 기준을 넣게 한다. SWE.5는 통합 단계마다 어떤 통합 검증 수단을 골랐는지 문서로 남기게 하고, 선택 기준의 예로 소프트웨어 아키텍처나 상세 설계의 변경 등으로 지속적 통합·지속적 개발(continuous integration / continuous development)에서 회귀 검증이 필요한 경우를 든다.[@vda-automotive-spice-pam-4-1-2026]
 
 Automotive SPICE 3.1은 SYS.5, SWE.4, SWE.6의 BP1과 SYS.4, SWE.5의 BP2에서 테스트나 검증의 전략을 세울 때 회귀 전략을 함께 세우게 했다. Automotive SPICE 4.1은 이를 검증 수단을 고르는 BP의 회귀 검증 기준으로 바꿨다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017] 전략 BP가 4.1에서 어디로 갔는지는 [[automotive-spice-process-assessment-model#전략과 계획|ASPICE 프로세스 평가 모델]]에서 다룬다.

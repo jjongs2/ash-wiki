@@ -37,6 +37,8 @@ SWEBOK V4.0a에 따르면 단계적 통합(빅뱅 통합)은 한 버전에 내�
 
 SWEBOK V4.0a에 따르면 지속적 통합에서는 서버에서 도는 도구가 소스 저장소를 지켜보다가, 변경이 커밋될 때마다 단계로 이은 파이프라인을 시작해 코드를 컴파일하고 링크한다. 여기에 정적 분석으로 코딩 표준을 확인하는 단계와, 단위 테스트를 돌리고 코드 커버리지를 재는 단계를 함께 두는 일이 많다.[@ieee-swebok-v4-0a-2026] 지속적 통합에서는 자동화한 [[regression-testing|회귀 테스트]]도 함께 돌린다.[@ieee-swebok-v4-0a-2026][@istqb-ctfl-syllabus-2024]
 
+![[diagrams/continuous-integration-pipeline.svg]]
+
 Jenkins는 단순한 지속적 통합부터 지속적 전달 파이프라인까지 지원하는 자동화 엔진이다.[@jenkins-pipeline-2026]
 
 ## 지속적 전달과 지속적 배포
