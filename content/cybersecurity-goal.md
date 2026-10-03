@@ -5,13 +5,13 @@ tags:
 verified: 2026-10-03
 ---
 
-ISO/SAE 21434:2021은 **cybersecurity goal**을 하나 이상의 threat scenario에 연관된 concept 수준의 사이버보안 요구사항으로 정의한다. 같은 표준은 **cybersecurity claim**을 리스크에 관한 진술로 정의하고, claim에 리스크를 보유하거나 공유하는 근거가 들 수 있다고 둔다. Goal을 정하는 활동(9.4절)은 이 표준의 concept 단계에 든다.[@iso-sae-21434-obp-2021] 단계의 구성은 [[cybersecurity-lifecycle|사이버보안 생명주기]]에서 다룬다.
+[[iso-sae-21434|ISO/SAE 21434]]:2021은 **cybersecurity goal**을 하나 이상의 threat scenario에 연관된 concept 수준의 사이버보안 요구사항으로 정의한다. 같은 표준은 **cybersecurity claim**을 리스크에 관한 진술로 정의하고, claim에 리스크를 보유하거나 공유하는 근거가 들 수 있다고 둔다. Goal을 정하는 활동(9.4절)은 이 표준의 concept 단계에 든다.[@iso-sae-21434-obp-2021] 단계의 구성은 [[cybersecurity-lifecycle|사이버보안 생명주기]]에서 다룬다.
 
 Goal에서 끌어낸 요구사항은 [[cybersecurity-concept|cybersecurity concept]]에서 다룬다. Goal이 적절하고 이루어졌는지는 [[cybersecurity-verification-and-validation|validation]]이 확인한다.[@iso-sae-21434-obp-2021]
 
 ## Automotive SPICE for Cybersecurity의 SEC.1
 
-Automotive SPICE for Cybersecurity 2.0은 goal과 요구사항을 정하는 일을 SEC.1(Cybersecurity Requirements Elicitation) 프로세스로 두고, 그 목적을 threat scenario를 다루는 사이버보안 리스크 관리의 결과로부터 cybersecurity goal과 사이버보안 요구사항을 정하는 것으로 둔다. SEC.1의 성과는 다음 넷이다.[@vda-automotive-spice-cybersecurity-2025]
+[[automotive-spice-for-cybersecurity|Automotive SPICE for Cybersecurity]] 2.0은 goal과 요구사항을 정하는 일을 SEC.1(Cybersecurity Requirements Elicitation) 프로세스로 두고, 그 목적을 threat scenario를 다루는 사이버보안 리스크 관리의 결과로부터 cybersecurity goal과 사이버보안 요구사항을 정하는 것으로 둔다. SEC.1의 성과는 다음 넷이다.[@vda-automotive-spice-cybersecurity-2025]
 
 | 성과 | 내용                                                                              |
 | ---- | --------------------------------------------------------------------------------- |

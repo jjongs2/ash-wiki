@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-ISO/SAE 21434:2021은 **cybersecurity specification**을 사이버보안 요구사항과 이에 맞춘 architectural design으로 정의한다. 이 표준의 10절(product development)은 cybersecurity specification을 정하고 사이버보안 요구사항을 구현하고 검증하는 활동을 담는다.[@iso-sae-21434-obp-2021] Architectural design 자체는 [[software-architecture|소프트웨어 아키텍처]]에서 다룬다.
+[[iso-sae-21434|ISO/SAE 21434]]:2021은 **cybersecurity specification**을 사이버보안 요구사항과 이에 맞춘 architectural design으로 정의한다. 이 표준의 10절(product development)은 cybersecurity specification을 정하고 사이버보안 요구사항을 구현하고 검증하는 활동을 담는다.[@iso-sae-21434-obp-2021] Architectural design 자체는 [[software-architecture|소프트웨어 아키텍처]]에서 다룬다.
 
 ![[diagrams/cybersecurity-concept-specification-contents.svg]]
 
@@ -17,7 +17,7 @@ C 언어에서는 SEI CERT C 코딩 표준이 보안 코딩 규칙을 담고[@se
 
 ## Automotive SPICE for Cybersecurity의 SEC.2
 
-Automotive SPICE for Cybersecurity 2.0은 SEC.2(Cybersecurity Implementation) 프로세스의 목적을 시스템, 소프트웨어, 하드웨어의 설계를 사이버보안 요구사항에 맞게 정련하고, 요구사항이 구현되도록 보장하는 것으로 둔다. SEC.2의 BP(base practice)는 다음 일곱이다.[@vda-automotive-spice-cybersecurity-2025]
+[[automotive-spice-for-cybersecurity|Automotive SPICE for Cybersecurity]] 2.0은 SEC.2(Cybersecurity Implementation) 프로세스의 목적을 시스템, 소프트웨어, 하드웨어의 설계를 사이버보안 요구사항에 맞게 정련하고, 요구사항이 구현되도록 보장하는 것으로 둔다. SEC.2의 BP(base practice)는 다음 일곱이다.[@vda-automotive-spice-cybersecurity-2025]
 
 | BP  | 하는 일                                                 |
 | --- | ------------------------------------------------------- |

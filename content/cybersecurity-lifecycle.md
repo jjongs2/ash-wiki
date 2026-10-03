@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-도로 차량 E/E(Electrical/Electronic) 시스템의 사이버보안은 개념부터 폐기까지 차량의 생명주기 전체에 걸쳐 다룬다.[@iso-sae-21434-obp-2021][@nhtsa-cybersecurity-best-practices-2022] ISO/SAE 21434:2021은 도로 차량 E/E 시스템과 그 컴포넌트, 인터페이스의 concept, product development, production, operation, maintenance, decommissioning에 걸친 사이버보안 리스크 관리의 엔지니어링 요구사항을 정한다.[@iso-sae-21434-obp-2021] UN R155는 차량 형식의 단계를 development phase, production phase, post-production phase로 나누어 정의하고, post-production phase를 차량 형식의 생산이 끝난 뒤부터 그 형식의 차량이 모두 운행을 마칠 때까지로 둔다.[@unece-r155-2021]
+도로 차량 E/E(Electrical/Electronic) 시스템의 [[cybersecurity|사이버보안]]은 개념부터 폐기까지 차량의 생명주기 전체에 걸쳐 다룬다.[@iso-sae-21434-obp-2021][@nhtsa-cybersecurity-best-practices-2022] [[iso-sae-21434|ISO/SAE 21434]]:2021은 도로 차량 E/E 시스템과 그 컴포넌트, 인터페이스의 concept, product development, production, operation, maintenance, decommissioning에 걸친 사이버보안 리스크 관리의 엔지니어링 요구사항을 정한다.[@iso-sae-21434-obp-2021] [[un-r155|UN R155]]는 차량 형식의 단계를 development phase, production phase, post-production phase로 나누어 정의하고, post-production phase를 차량 형식의 생산이 끝난 뒤부터 그 형식의 차량이 모두 운행을 마칠 때까지로 둔다.[@unece-r155-2021]
 
 ## ISO/SAE 21434의 단계
 

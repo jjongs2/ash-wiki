@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-ISO/SAE 21434:2021은 **검증**(verification)을 명시된 요구사항이 충족되었음을 객관적 증거로 확인하는 것으로, **확인**(validation)을 아이템의 [[cybersecurity-goal|cybersecurity goal]]이 적절하고 이루어졌음을 객관적 증거로 확인하는 것으로 정의한다. 두 정의에서 검증은 요구사항을, 확인은 goal을 기준으로 삼는다.[@iso-sae-21434-obp-2021] 일반적인 V&V는 [[verification-and-validation|검증과 확인]]에서 다룬다.
+[[iso-sae-21434|ISO/SAE 21434]]:2021은 **검증**(verification)을 명시된 요구사항이 충족되었음을 객관적 증거로 확인하는 것으로, **확인**(validation)을 아이템의 [[cybersecurity-goal|cybersecurity goal]]이 적절하고 이루어졌음을 객관적 증거로 확인하는 것으로 정의한다. 두 정의에서 검증은 요구사항을, 확인은 goal을 기준으로 삼는다.[@iso-sae-21434-obp-2021] 일반적인 V&V는 [[verification-and-validation|검증과 확인]]에서 다룬다.
 
 ## ISO/SAE 21434의 검증과 확인
 
@@ -13,7 +13,7 @@ ISO/SAE 21434:2021의 11절(cybersecurity validation)은 아이템의 확인을 
 
 ## Automotive SPICE for Cybersecurity의 SEC.3·SEC.4
 
-Automotive SPICE for Cybersecurity 2.0은 검증을 SEC.3(Risk Treatment Verification), 확인을 SEC.4(Risk Treatment Validation) 프로세스로 둔다. SEC.3의 목적은 설계의 구현과 컴포넌트의 [[integration-testing|통합]]이 사이버보안 요구사항, 정련한 architectural design, 상세 설계를 따르는지 확인하는 것이고, SEC.4의 목적은 통합된 시스템이 관련 cybersecurity goal을 이루는지 확인하는 것이다. 두 프로세스의 성과는 다음과 같다.[@vda-automotive-spice-cybersecurity-2025]
+[[automotive-spice-for-cybersecurity|Automotive SPICE for Cybersecurity]] 2.0은 검증을 SEC.3(Risk Treatment Verification), 확인을 SEC.4(Risk Treatment Validation) 프로세스로 둔다. SEC.3의 목적은 설계의 구현과 컴포넌트의 [[integration-testing|통합]]이 사이버보안 요구사항, 정련한 architectural design, 상세 설계를 따르는지 확인하는 것이고, SEC.4의 목적은 통합된 시스템이 관련 cybersecurity goal을 이루는지 확인하는 것이다. 두 프로세스의 성과는 다음과 같다.[@vda-automotive-spice-cybersecurity-2025]
 
 | 성과 | SEC.3                                                     | SEC.4                                                            |
 | ---- | --------------------------------------------------------- | ---------------------------------------------------------------- |

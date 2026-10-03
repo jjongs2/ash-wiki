@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-ISO/SAE 21434:2021은 **cybersecurity assessment**를 사이버보안에 대한 판단으로 정의한다. 이 표준은 6절(project dependent cybersecurity management)에서 프로젝트 수준의 사이버보안 관리와 활동을 다룬다.[@iso-sae-21434-obp-2021]
+[[iso-sae-21434|ISO/SAE 21434]]:2021은 **cybersecurity assessment**를 사이버보안에 대한 판단으로 정의한다. 이 표준은 6절(project dependent cybersecurity management)에서 프로젝트 수준의 사이버보안 관리와 활동을 다룬다.[@iso-sae-21434-obp-2021]
 
 ## Tailoring과 out-of-context
 
