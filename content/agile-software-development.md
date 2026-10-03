@@ -11,7 +11,7 @@ ISO/IEC/IEEE 24765:2017은 **애자일 개발**(agile development)을 반복 개
 
 ## 애자일 선언
 
-Extreme Programming, Scrum, DSDM 같은 경량 개발 방법을 대표하던 열일곱 명이 2001년 2월 11일부터 13일까지 미국 유타주 Snowbird에 모여 Manifesto for Agile Software Development(애자일 선언)에 합의했고, 참석자 모두가 선언에 서명했다.[@highsmith-agile-manifesto-history-2001] 선언의 저자들은 선언을 agilemanifesto.org에 공개하고, 저자가 아닌 지지자들의 서명도 받아 명단으로 실었다.[@beck-agile-manifesto-signatories-2016]
+Extreme Programming, [[scrum|Scrum]], DSDM(Dynamic Systems Development Method) 같은 경량 개발 방법을 대표하던 열일곱 명이 2001년 2월 11일부터 13일까지 미국 유타주 Snowbird에 모여 Manifesto for Agile Software Development(애자일 선언)에 합의했고, 참석자 모두가 선언에 서명했다.[@highsmith-agile-manifesto-history-2001] 선언의 저자들은 선언을 agilemanifesto.org에 공개하고, 저자가 아닌 지지자들의 서명도 받아 명단으로 실었다.[@beck-agile-manifesto-signatories-2016]
 
 선언의 저자들은 네 가지 가치를 두 항목을 견주는 꼴로 적고, 뒤 항목에도 가치가 있지만 앞 항목을 더 중시한다고 밝혔다.[@beck-agile-manifesto-2001]
 
@@ -39,14 +39,14 @@ Extreme Programming, Scrum, DSDM 같은 경량 개발 방법을 대표하던 열
 
 ## 대표 방법
 
-SWEBOK V4.0a에 따르면 널리 쓰이게 된 애자일 방법에는 XP(Extreme Programming)와 [[scrum|Scrum]] 등이 있다. 이 지침에 따르면 [[devops|DevOps]]는 애자일 개발의 잦은 반복이 주는 피드백에, 운영 환경에서 오는 피드백을 더한다.[@ieee-swebok-v4-0a-2026]
+SWEBOK V4.0a에 따르면 널리 쓰이게 된 애자일 방법에는 XP(Extreme Programming)와 Scrum 등이 있다. 이 지침에 따르면 [[devops|DevOps]]는 애자일 개발의 잦은 반복이 주는 피드백에, 운영 환경에서 오는 피드백을 더한다.[@ieee-swebok-v4-0a-2026]
 
 ## 폭포수 모델과의 차이
 
-SWEBOK V4.0a에 따르면 [[waterfall-model|폭포수 모델]]은 범위, 일정, 비용을 생명주기 초기에 정하는 예측형 생명주기의 한 예다. 이와 달리 적응형 생명주기는 새로 드러나는 요구를 받아들이고 계획을 반복마다 고치도록 짜인다. 짧은 반복 개발 주기를 거치며 요구를 점차 구체화하고, 처음 계획을 차츰 고쳐 가며 위험과 비용을 줄이며, 핵심 이해관계자가 계속 참여한다.[@ieee-swebok-v4-0a-2026]
+SWEBOK V4.0a에 따르면 [[waterfall-model|폭포수 모델]]은 예측형 생명주기의 한 예다. 이와 달리 적응형 생명주기는 새로 드러나는 요구를 받아들이고 계획을 반복마다 고치도록 짜인다. 짧은 반복 개발 주기를 거치며 요구를 점차 구체화하고, 처음 계획을 차츰 고쳐 가며 위험과 비용을 줄이며, 핵심 이해관계자가 계속 참여한다.[@ieee-swebok-v4-0a-2026]
 
 ISO/IEC/IEEE 24765:2017은 적응형 생명주기(adaptive life cycle)를 변경 주도 방법이나 애자일 방법이라고도 부르는 프로젝트 생명주기로 정의한다. 이 생명주기는 변경을 쉽게 받아들이고 이해관계자가 계속 깊이 참여해야 하며, 반복적이고 점진적이되 반복이 대개 2주에서 4주로 매우 짧고 시간과 자원이 고정된다.[@iso-iec-ieee-24765-obp-2017]
 
-SWEBOK V4.0a에 따르면 애자일 선언의 서명자들은 사용자의 요구가 바뀌면 개발의 어느 단계에서든 요구를 고칠 수 있도록 프로세스가 변경에 열려 있어야 한다고 보았다. 이들은 소프트웨어를 작은 단위로 점진적으로 인도하기를 내세웠는데, 이는 프로젝트 끝에 소프트웨어를 한 번 인도하는 폭포수 모델과 대비된다.[@ieee-swebok-v4-0a-2026]
+SWEBOK V4.0a에 따르면 애자일 선언의 서명자들은 사용자의 요구가 바뀌면 개발의 어느 단계에서든 요구를 고칠 수 있도록 프로세스가 변경에 열려 있어야 한다고 보았다. 이들은 소프트웨어를 작은 단위로 점진적으로 인도하기를 내세웠다.[@ieee-swebok-v4-0a-2026]
 
 ![[diagrams/predictive-adaptive-life-cycle-delivery.svg]]

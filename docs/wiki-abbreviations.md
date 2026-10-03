@@ -21,8 +21,8 @@
 - CISPR: 표준화 기구
 - CMSIS-RTOS2: 표준·규격 이름
 - CPU: 널리 쓰이는 약어
-- DoD: 표준화 기구
 - CRS_DV: 핀과 신호
+- DoD: 표준화 기구
 - ECU: 널리 쓰이는 약어
 - EIA: 표준화 기구
 - ENISA: 표준화 기구
