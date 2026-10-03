@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-ISTQB(International Software Testing Qualifications Board) 용어집은 **테스트 하네스**(test harness)를 테스트 스위트를 실행하는 데 필요한 드라이버와 test double의 모음으로 정의한다.[@istqb-glossary-test-harness-2026] ISO/IEC/IEEE 24765 용어집은 테스트 하네스를 상위 코드가 아직 없을 때 하위 코드를 실행해 보려고 작성한 비계 코드(scaffolding)로 정의한다.[@ieee-cs-sevocab-2026] SWEBOK(Software Engineering Body of Knowledge) V4.0a에 따르면 드라이버와 스텁 같은 테스트 하네스는 테스트를 실행하고 출력을 기록할 수 있는 통제된 환경을 준다.[@ieee-swebok-v4-0a-2026]
+ISTQB(International Software Testing Qualifications Board) 용어집은 **테스트 하네스**(test harness)를 테스트 스위트를 실행하는 데 필요한 드라이버와 test double의 모음으로 정의한다.[@istqb-glossary-test-harness-2026] ISO/IEC/IEEE 24765 용어집은 테스트 하네스를 상위 코드가 아직 없을 때 하위 코드를 실행해 보려고 작성한 비계 코드(scaffolding)로 정의한다.[@ieee-cs-sevocab-2026] SWEBOK(Software Engineering Body of Knowledge) V4.0a에 따르면 드라이버와 스텁 같은 테스트 하네스는 테스트 도구의 한 갈래로, 테스트를 시작하고 그 출력을 기록할 수 있는 통제된 환경을 주는 도구를 가리킨다.[@ieee-swebok-v4-0a-2026]
 
 ISTQB CTFL(Certified Tester Foundation Level) 강의계획서는 스텁, 드라이버, 시뮬레이터, 서비스 가상화를 테스트 환경 항목의 예로 든다.[@istqb-ctfl-syllabus-2024]
 
@@ -15,11 +15,13 @@ ISTQB 용어집은 **드라이버**(driver)를 test driver라고도 부르며, �
 
 ISO/IEC/IEEE 24765 용어집은 **스텁**(stub)을 소프트웨어 모듈을 뼈대만 두거나 특정 목적에 맞게 만든 구현으로, 그 모듈을 호출하거나 그것에 의존하는 모듈을 개발하거나 시험할 때 쓰는 것으로 정의한다.[@ieee-cs-sevocab-2026] ISTQB 용어집은 스텁을 미리 정한 응답을 주는 test double의 한 종류로 정의한다.[@istqb-glossary-stub-2026]
 
-SWEBOK V4.0a에 따르면 드라이버와 스텁은 SUT(system under test)의 일부를 실행하려고 그 부분을 부르는 모듈과 그 부분이 부르는 모듈을 흉내 낸다.[@ieee-swebok-v4-0a-2026]
+SWEBOK V4.0a에 따르면 드라이버는 SUT(system under test)의 한 부분을 부르는 모듈을 흉내 내고, 스텁은 그 부분이 부르는 모듈을 흉내 낸다.[@ieee-swebok-v4-0a-2026]
+
+![[diagrams/test-harness-driver-stub.svg]]
 
 ## 통합 테스트에서의 쓰임
 
-SWEBOK V4.0a에 따르면 [[integration-testing|통합 테스트]]를 점진적으로 하면 대개 스텁, 드라이버, mock object 같은 테스트 인프라가 더 필요하다.[@ieee-swebok-v4-0a-2026]
+SWEBOK V4.0a에 따르면 [[integration-testing|통합 테스트]]를 점진적으로 하면 대개 스텁, 드라이버, mock object 같은 테스트 인프라가 더 쓰인다.[@ieee-swebok-v4-0a-2026]
 
 ## Test double
 

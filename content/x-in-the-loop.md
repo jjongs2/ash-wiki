@@ -10,6 +10,8 @@ verified: 2026-10-03
 
 ISTQB(International Software Testing Qualifications Board) CT-AuT(Certified Tester Automotive Software Tester) 강의계획서는 MiL, SiL, HiL 같은 in-the-loop 테스트 환경을 묶어 **X-in-the-loop**(XiL)이라 부르고, X를 구체적인 테스트 환경의 이름이 들어갈 자리로 둔다. 이 강의계획서에 따르면 in-the-loop은 closed loop의 다른 이름이다. 환경 모델이 테스트 대상의 출력을 받아 바로 또는 다른 요소를 거쳐 입력으로 되돌리므로, 테스트 환경 안에 제어 루프가 생긴다.[@istqb-ct-aut-syllabus-2025]
 
+![[diagrams/xil-closed-loop.svg]]
+
 ISTQB 용어집은 **테스트 환경**(test environment)을 테스트를 수행하는 데 필요한 하드웨어, 계측 장비, 시뮬레이터, 소프트웨어 도구, 그 밖의 지원 요소를 담은 환경으로 정의한다.[@istqb-glossary-test-environment-2026]
 
 ## 환경의 종류
@@ -32,7 +34,7 @@ PiL(processor-in-the-loop)은 CT-AuT 강의계획서가 이름만 드는 환경�
 
 ### HiL
 
-ISTQB 용어집은 **HiL**(hardware-in-the-loop)을 소프트웨어가 통합된 실제 하드웨어를 시험하는 가상 테스트 환경으로 정의한다.[@istqb-glossary-hardware-in-the-loop-2026] CT-AuT 강의계획서에 따르면 HiL은 테스트 대상이 시제품으로 나왔거나 개발이 끝났을 때 쓰며, 시제품이나 완성된 ECU를 시험한다. 소프트웨어가 실제 하드웨어에서 돌기 때문에 시뮬레이션은 늘 실시간으로 진행되고 멈출 수 없다. 그래서 환경 모델은 정해진 시간 안에 필요한 신호를 모두 받고 내주는 실시간 처리 컴퓨터에서 돈다.[@istqb-ct-aut-syllabus-2025]
+ISTQB 용어집은 **HiL**(hardware-in-the-loop)을 소프트웨어가 통합된 실제 하드웨어를 시험하는 가상 테스트 환경으로 정의한다.[@istqb-glossary-hardware-in-the-loop-2026] CT-AuT 강의계획서에 따르면 HiL은 테스트 대상이 시제품으로 나왔거나 개발이 끝났을 때 쓰며, 시제품이나 완성된 ECU를 시험한다. 환경 모델은 실시간 처리가 되는 컴퓨터에서 돈다.[@istqb-ct-aut-syllabus-2025] dSPACE SCALEXIO는 HIL 테스트에서 ECU의 환경을 시뮬레이션하는 실시간 플랫폼으로, 큰 시뮬레이션 모델도 실시간으로 계산한다.[@dspace-scalexio-2026]
 
 ## HiL의 구성
 
@@ -50,7 +52,7 @@ dSPACE에 따르면 HIL 테스트는 실제 ECU를 현실처럼 시뮬레이션�
 
 ## 개발 단계와의 대응
 
-CT-AuT 강의계획서에 따르면 테스트 환경을 개발 단계에 맞춰 고르면 ECU가 다 만들어지기 전에 시험할 수 있다. 단락, 단선, 네트워크 통신 과부하처럼 실제 차량에서 재현하기 어려운 상황도 흉내 낼 수 있다. MiL은 개발 초기, 곧 [[v-model|V 모델]]의 왼쪽에서 모델의 기능 적합성을 시험하는 데 쓰고, SiL은 컴포넌트를 프로그래밍하고 컴파일한 뒤에 쓴다. 모델에서 생성한 코드가 모델과 다르게 동작하는 이상(모델의 부동소수점과 코드의 고정소수점, 메모리 차이)은 SiL에서 처음 시험할 수 있다. 실제 환경에 가까운 정도는 MiL이 낮고, SiL이 낮거나 중간이며, HiL이 높다.[@istqb-ct-aut-syllabus-2025]
+CT-AuT 강의계획서에 따르면 테스트 환경을 개발 단계에 맞춰 고르면 ECU가 다 만들어지기 전에 시험할 수 있다. 단락, 단선, 네트워크 통신 과부하처럼 실제 차량에서 재현하기 어려운 상황도 흉내 낼 수 있다. MiL은 개발 초기, 곧 [[v-model|V 모델]]의 왼쪽에서 모델의 기능 적합성을 시험하는 데 쓰고, SiL은 컴포넌트를 프로그래밍하고 컴파일한 뒤에 쓴다. 생성한 코드가 모델에서 기대한 대로 동작하는지는 SiL에서 처음 시험할 수 있다. 실제 환경에 가까운 정도는 MiL이 낮고, SiL이 낮거나 중간이며, HiL이 높다.[@istqb-ct-aut-syllabus-2025]
 
 Embedded Coder 문서는 평가 보드나 명령어 집합 시뮬레이터 같은 대상 하드웨어가 있을 때 processor-in-the-loop 시뮬레이션으로 대상 전용 코드의 동작과 컴파일러 설정·최적화의 영향을 확인하게 한다. 일반 시뮬레이션은 제한된 메모리나 대상에 맞춰 최적화한 코드의 동작 같은 하드웨어 제약을 반영하지 못한다.[@mathworks-ecoder-sil-pil-2026]
 

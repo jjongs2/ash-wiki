@@ -9,7 +9,7 @@ ISTQB(International Software Testing Qualifications Board) 용어집은 **통합
 
 ## 컴포넌트 통합과 시스템 통합
 
-CTFL 강의계획서에 따르면 **컴포넌트 통합 테스트**(component integration testing)는 컴포넌트 사이의 인터페이스와 상호작용을 시험하는 데 초점을 두며, 통합 전략에 크게 좌우된다. **시스템 통합 테스트**(system integration testing)는 시험 대상 시스템과 다른 시스템, 외부 서비스 사이의 인터페이스를 시험하는 데 초점을 둔다.[@istqb-ctfl-syllabus-2024] 테스트 기준은 [[v-model#테스트 기준|V 모델]]에서 다룬다.
+CTFL 강의계획서에 따르면 **컴포넌트 통합 테스트**(component integration testing)는 컴포넌트 사이의 인터페이스와 상호작용을 시험하는 데 초점을 둔다. **시스템 통합 테스트**(system integration testing)는 시험 대상 시스템과 다른 시스템, 외부 서비스 사이의 인터페이스를 시험하는 데 초점을 둔다.[@istqb-ctfl-syllabus-2024] 테스트 기준은 [[v-model#테스트 기준|V 모델]]에서 다룬다.
 
 ## 통합 전략
 
@@ -20,6 +20,8 @@ ISO/IEC/IEEE 24765 용어집은 각 전략의 이름을 다음과 같이 정의�
 - **빅뱅 테스트**(big-bang testing): 소프트웨어나 하드웨어 요소를 단계를 나누지 않고 한꺼번에 묶어 전체 시스템으로 만드는 통합 테스트
 - **하향식**(top-down): 계층의 가장 높은 컴포넌트에서 시작해 차례로 낮은 수준으로 나아가는 활동. 예로 top-down testing을 든다.
 - **상향식**(bottom-up): 계층의 가장 낮은 컴포넌트에서 시작해 차례로 높은 수준으로 나아가는 활동. 예로 bottom-up testing을 든다.[@ieee-cs-sevocab-2026]
+
+![[diagrams/integration-test-strategies.svg]]
 
 SWEBOK V4.0a에 따르면 빅뱅 통합은 릴리스할 모든 부분이 완성될 때까지 통합을 미루며, 점진적 통합은 이보다 오류의 위치를 찾기 쉬운 것으로 여겨진다.[@ieee-swebok-v4-0a-2026] 점진적 통합에 쓰는 스텁과 드라이버는 [[test-harness|테스트 하네스]]에서 다룬다.
 
