@@ -12,7 +12,7 @@ verified: 2026-10-03
 [[bootloader|부트로더]]는 슬롯마다의 상태를 담은 메타데이터를 읽어 어느 슬롯으로 부팅할지 정한다.[@google-android-ota-ab-2026][@espressif-esp-idf-ota-2026]
 
 - Android는 두 슬롯을 접미사 `_a`, `_b`로 부른다.[@google-android-ota-ab-implement-2026] 슬롯마다 부팅할 수 있는지(bootable)와 부팅에 성공했는지(successful)를 기록하고, 이 상태를 부트 제어 HAL(Hardware Abstraction Layer)로 읽고 바꾼다.[@google-android-ota-ab-2026]
-- ESP-IDF는 OTA 데이터 파티션(otadata)에 다음에 부팅할 OTA 앱 파티션을 기록한다. otadata는 플래시 섹터 둘로 이루어지며, 두 섹터를 따로 지워 같은 데이터를 쓰고 둘이 다르면 카운터로 더 최근에 쓴 섹터를 고른다. 기록하는 도중 전원이 끊겨 생기는 문제를 막기 위해서다.[@espressif-esp-idf-ota-2026]
+- ESP-IDF(Espressif IoT Development Framework)는 OTA 데이터 파티션(`otadata`)에 다음에 부팅할 OTA 앱 파티션을 기록한다. `otadata`는 플래시 섹터 둘로 이루어지며, 두 섹터를 따로 지워 같은 데이터를 쓰고 둘이 다르면 카운터로 더 최근에 쓴 섹터를 고른다. 기록하는 도중 전원이 끊겨 생기는 문제를 막기 위해서다.[@espressif-esp-idf-ota-2026]
 - MCUboot는 두 슬롯(primary, secondary) 각각의 끝에 둔 이미지 트레일러를 읽어 이미지를 맞바꿀지 정한다.[@mcuboot-design-2026]
 
 ## 확인 대기와 확정

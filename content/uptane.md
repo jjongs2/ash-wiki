@@ -24,7 +24,7 @@ Uptane Deployment Best Practices 2.1.0은 image repository의 root, targets와 �
 
 ## Primary ECU와 secondary ECU
 
-Uptane Standard 2.1.0에서 두 ECU는 아래처럼 일을 나눈다.[@uptane-standard-2-1-0-2023]
+Uptane Standard 2.1.0은 두 ECU의 일을 아래처럼 나눈다.[@uptane-standard-2-1-0-2023]
 
 - **Primary ECU**는 자신과 secondary ECU의 몫으로 최신 메타데이터와 이미지를 받아 검증하고, secondary ECU에 시간, 메타데이터, 이미지를 보낸다.
 - **Secondary ECU**는 primary ECU에게서 받은 메타데이터와 이미지를 설치하기 전에 스스로 검증한다.[@uptane-standard-2-1-0-2023]
@@ -42,7 +42,7 @@ Uptane Deployment Best Practices 2.1.0은 partial verification을 느리거나 �
 
 ## 차량 버전 매니페스트
 
-Uptane Standard 2.1.0에서 각 ECU는 지금 설치된 이미지의 파일 이름, 길이, [[cryptographic-hash-function|해시]]를 담아 서명한 ECU version report를 primary ECU에 보낸다. Primary ECU는 이를 모아 서명한 **차량 버전 매니페스트**(vehicle version manifest)를 director repository에 보내고, director repository는 여기서 설치된 이미지 정보를 읽어 차량이 최신인지와 무엇을 설치할지 정한다.[@uptane-standard-2-1-0-2023]
+Uptane Standard 2.1.0은 각 ECU가 지금 설치된 이미지의 파일 이름, 길이, [[cryptographic-hash-function|해시]]를 담아 서명한 ECU version report를 primary ECU에 보내게 한다. 또 primary ECU가 이를 모아 서명한 **차량 버전 매니페스트**(vehicle version manifest)를 director repository에 보내고, director repository가 여기서 설치된 이미지 정보를 읽어 차량이 최신인지와 무엇을 설치할지 정하게 한다.[@uptane-standard-2-1-0-2023]
 
 ![[diagrams/uptane-vehicle-version-manifest.svg]]
 
@@ -50,9 +50,9 @@ Uptane Standard 2.1.0에서 각 ECU는 지금 설치된 이미지의 파일 이�
 
 Uptane Standard 2.1.0은 공격자의 목표를 심각도가 낮은 것부터 넷으로 나누고, 위협 모델의 공격을 이 목표로 분류한다.[@uptane-standard-2-1-0-2023]
 
-| 목표            | 내용                                                                         | 공격                                                                                         |
-| --------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| 업데이트 읽기   | 기밀 정보를 알아내거나 펌웨어를 역공학하거나, 두 이미지를 견주어 고친 취약점을 찾는다. | eavesdrop                                                                                    |
-| 설치 막기       | 차량이 업데이트를 설치하지 못하게 한다.                                      | drop-request, slow retrieval, freeze, partial bundle installation, 저장소와 인프라에 대한 서비스 거부 |
-| ECU 기능 방해   | ECU가 제대로 동작하지 못하게 한다.                                           | rollback, endless data, mix-and-match                                                        |
-| ECU나 차량 제어 | 공격자가 고른 코드를 ECU가 설치하고 실행하게 한다. 가장 심각한 목표다.       | arbitrary software                                                                           |
+| 목표            | 내용                                                                                   | 공격                                                                                                  |
+| --------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| 업데이트 읽기   | 기밀 정보를 알아내거나 펌웨어를 역공학하거나, 두 이미지를 견주어 고친 취약점을 찾는다. | eavesdrop                                                                                             |
+| 설치 막기       | 차량이 업데이트를 설치하지 못하게 한다.                                                | drop-request, slow retrieval, freeze, partial bundle installation, 저장소와 인프라에 대한 서비스 거부 |
+| ECU 기능 방해   | ECU가 제대로 동작하지 못하게 한다.                                                     | [[rollback-protection\|rollback]], endless data, mix-and-match                                        |
+| ECU나 차량 제어 | 공격자가 고른 코드를 ECU가 설치하고 실행하게 한다. 가장 심각한 목표다.                 | arbitrary software                                                                                    |

@@ -7,7 +7,7 @@ verified: 2026-10-03
 
 **Secure boot**는 부팅할 때 다음에 실행할 코드([[bootloader|부트로더]], 운영체제 로더 등)의 [[digital-signature|서명]]을 확인해, 검증을 통과한 코드만 실행하게 하는 기능이다.[@uefi-spec-2-11-secure-boot-2024][@espressif-esp32-secure-boot-v2-2026]
 
-NIST SP 800-193은 펌웨어 손상을 탐지하는 기법의 하나로, 탐지를 맡는 root of trust나 신뢰 사슬이 그 밖의 코드를 실행하기 전에 승인된 디지털 서명 알고리즘이나 [[cryptographic-hash-function|암호 해시]]로 펌웨어 코드의 무결성을 확인하는 방법을 둔다.[@nist-sp-800-193-2018] NIST SP 800-147은 시스템 BIOS(Basic Input/Output System)의 업데이트가 디지털 서명으로 진본성을 확인하는 인증된 업데이트 메커니즘이나, 선택 사항인 보안 로컬 업데이트 메커니즘을 거치게 한다.[@nist-sp-800-147-2011]
+NIST SP 800-193은 펌웨어 손상을 탐지하는 기법의 하나로, 탐지를 맡는 root of trust나 신뢰 사슬이 그 밖의 코드를 실행하기 전에 승인된 디지털 서명 알고리즘이나 [[cryptographic-hash-function|암호 해시]]로 펌웨어 코드의 [[cybersecurity-property|무결성]]을 확인하는 방법을 둔다.[@nist-sp-800-193-2018]
 
 ## 신뢰 사슬
 
@@ -37,6 +37,6 @@ TF-A(Trusted Firmware-A)의 Trusted Board Boot에서는 root of trust [[public-k
 
 부팅의 각 단계가 다음 코드로 제어를 넘기기 전에 그 코드를 측정(해시)해 기록하는 방식도 있다.[@tcg-pc-client-pfp-1-06-2023][@trustedfirmware-tf-a-measured-boot-2026] TF-A 문서는 이를 **measured boot**라 부른다.[@trustedfirmware-tf-a-measured-boot-2026]
 
-측정의 시작점은 CRTM(Core Root of Trust for Measurement)이다.[@nist-sp-800-147-2011][@tcg-pc-client-pfp-1-06-2023] TCG PC Client Platform Firmware Profile 1.06은 플랫폼 펌웨어가 코드의 다이제스트를 TPM의 PCR(Platform Configuration Register)에 extend하고 그 측정을 이벤트 로그에 기록하게 한다.[@tcg-pc-client-pfp-1-06-2023] 부팅 측정값은 증명(attestation)에 쓰인다.[@tcg-pc-client-pfp-1-06-2023][@trustedfirmware-tf-a-measured-boot-2026]
+측정의 시작점은 CRTM(Core Root of Trust for Measurement)이다.[@tcg-pc-client-pfp-1-06-2023][@nist-sp-800-147-2011] TCG PC Client Platform Firmware Profile 1.06은 플랫폼 펌웨어가 코드의 다이제스트를 TPM(Trusted Platform Module)의 PCR(Platform Configuration Register)에 extend하고 그 측정을 이벤트 로그에 기록하게 한다.[@tcg-pc-client-pfp-1-06-2023] 부팅 측정값은 증명(attestation)에 쓰인다.[@tcg-pc-client-pfp-1-06-2023][@trustedfirmware-tf-a-measured-boot-2026]
 
-TF-A 문서에 따르면 measured boot는 코드나 중요 데이터를 인증하지 않고 부팅 중 무엇이 있었는지 기록할 뿐이며, 측정값은 부팅 뒤 원격 검증자에게 보내 증명에 쓸 수 있다. 그래서 TF-A에서 Trusted Board Boot는 인증에 실패하면 부팅을 멈추는 데 비해, measured boot는 기록만 한다.[@trustedfirmware-tf-a-trusted-board-boot-2026][@trustedfirmware-tf-a-measured-boot-2026]
+TF-A 문서에 따르면 measured boot는 코드나 중요 데이터를 인증하지 않고 부팅 중 무엇이 있었는지 기록할 뿐이다. 그래서 TF-A에서 Trusted Board Boot는 인증에 실패하면 부팅을 멈추는 데 비해, measured boot는 기록만 한다.[@trustedfirmware-tf-a-trusted-board-boot-2026][@trustedfirmware-tf-a-measured-boot-2026]

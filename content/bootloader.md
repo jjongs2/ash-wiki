@@ -11,14 +11,14 @@ verified: 2026-10-03
 
 - **1단계 부트로더**는 칩 안의 ROM(Read-Only Memory)에 들어 있어 고칠 수 없고, 리셋할 때마다 실행된다. 내장 플래시가 있는 MCU에서는 1단계 부트로더가 곧바로 내장 플래시의 응용 프로그램으로 넘어가기도 한다.[@nxp-an12278-2020][@ti-sprujh3-2025]
 - **2단계 부트로더**는 플래시에 두는, 고칠 수 있는 부트로더다. 1단계 부트로더가 이를 불러 실행하고, 2단계 부트로더가 실행할 응용 프로그램을 고른다.[@espressif-esp-idf-bootloader-2026][@nxp-an13843-2023]
-- ESP-IDF에서는 ROM의 1단계 부트로더가 플래시에서 2단계 부트로더를 읽어 실행하고, 2단계 부트로더가 파티션 테이블을 읽어 부팅할 앱 파티션을 정한다.[@espressif-esp-idf-startup-2026]
+- ESP-IDF(Espressif IoT Development Framework)에서는 ROM의 1단계 부트로더가 플래시에서 2단계 부트로더를 읽어 실행하고, 2단계 부트로더가 파티션 테이블을 읽어 부팅할 앱 파티션을 정한다.[@espressif-esp-idf-startup-2026]
 
 ![[diagrams/bootloader-two-stage-boot.svg]]
 
 ## 업데이트에서 맡는 일
 
 - 이미지가 여럿이면 실행할 이미지를 골라 그 시작 주소로 분기한다.[@nxp-an13843-2023][@espressif-esp-idf-startup-2026] 어느 이미지를 고르는지는 [[ab-update|A/B 업데이트]]에서 다룬다.
-- 새 이미지를 실행하기 전에 검증한다.[@infineon-an73854-2023][@espressif-esp-idf-startup-2026] 서명 검증은 [[secure-boot|secure boot]]에서 다룬다.
+- 새 이미지를 실행하기 전에 검증한다.[@infineon-an73854-2023][@espressif-esp-idf-startup-2026] [[digital-signature|서명]] 검증은 [[secure-boot|secure boot]]에서 다룬다.
 - 새 이미지를 플래시에 쓴다.[@infineon-an73854-2023][@silabs-bootloader-fundamentals-2026]
 
 ## 응용 프로그램이 업데이트할 때와 부트로더가 할 때

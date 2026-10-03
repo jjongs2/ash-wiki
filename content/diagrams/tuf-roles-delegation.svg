@@ -3,8 +3,8 @@
 
   <!-- 역할이 신뢰를 맡는 범위 -->
   <rect x="40" y="30" width="512" height="230" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <rect x="196" y="66" width="340" height="180" rx="4" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
-  <rect x="346" y="102" width="178" height="130" rx="4" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="196" y="66" width="340" height="180" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="346" y="102" width="178" height="130" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g font-size="12" fill="var(--text, #727981)">
     <text x="54" y="52">targets: 대상 전부</text>
     <text x="210" y="88">위임받은 역할: 일부</text>
@@ -20,14 +20,14 @@
     <rect x="104" y="124" width="24" height="24" rx="2" />
     <rect x="40" y="326" width="24" height="24" rx="2" />
   </g>
-  <g stroke="var(--blue, #336fb8)" stroke-width="1.5" fill="var(--blue-tint, #336fb8)">
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="212" y="108" width="24" height="24" rx="2" />
     <rect x="256" y="108" width="24" height="24" rx="2" />
     <rect x="300" y="108" width="24" height="24" rx="2" />
     <rect x="212" y="152" width="24" height="24" rx="2" />
     <rect x="256" y="152" width="24" height="24" rx="2" />
   </g>
-  <g stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)">
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="366" y="144" width="24" height="24" rx="2" />
     <rect x="410" y="144" width="24" height="24" rx="2" />
     <rect x="454" y="144" width="24" height="24" rx="2" />

@@ -30,7 +30,7 @@ Arm Platform Security Boot Guide 1.1은 차분 업데이트에서 이미지 매�
 
 Android 문서에 따르면 incremental 패키지가 작은 까닭은 바뀌지 않은 파일을 넣지 않아도 되고, 바뀐 파일도 이전 판과 비슷한 경우가 많아 차이만 담으면 되기 때문이다.[@google-android-ota-tools-2026]
 
-Android imgdiff 소스의 설명에 따르면 gzip으로 압축한 데이터는 원래 데이터가 조금만 바뀌어도 압축 비트스트림이 크게 바뀌어, 그대로 bsdiff로 만든 패치가 데이터 자체만큼 커지기 쉽다. imgdiff는 boot.img나 recovery.img처럼 gzip 구간이 섞인 이미지를 위한 차분 도구로, 이미지를 일반 청크와 gzip 청크로 나눠 일반 청크는 그대로, gzip 청크는 풀어서 bsdiff로 비교한다. 패치를 적용할 때는 패치한 데이터를 같은 인코더 파라미터로 다시 압축한다.[@google-aosp-imgdiff-2026]
+Android imgdiff 소스의 설명에 따르면 gzip으로 압축한 데이터는 원래 데이터가 조금만 바뀌어도 압축 비트스트림이 크게 바뀌어, 그대로 bsdiff로 만든 패치가 데이터 자체만큼 커지기 쉽다. imgdiff는 `boot.img`나 `recovery.img`처럼 gzip 구간이 섞인 이미지를 위한 차분 도구로, 이미지를 일반 청크와 gzip 청크로 나눠 일반 청크는 그대로, gzip 청크는 풀어서 bsdiff로 비교한다. 패치를 적용할 때는 패치한 데이터를 같은 인코더 파라미터로 다시 압축한다.[@google-aosp-imgdiff-2026]
 
 ## 알고리즘 예: bsdiff
 
