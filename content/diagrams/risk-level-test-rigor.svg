@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 -11.5 539.5 372.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+  <text x="20" y="18" font-size="12" fill="var(--text, #727981)">CTAL-TM 강의계획서</text>
+
+  <!-- 축: 발생 가능성(가로), 영향(세로) -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="100" y1="320" x2="452" y2="320" />
+    <line x1="100" y1="320" x2="100" y2="40" />
+  </g>
+  <path d="M430 320 v5 M100 62 h-5" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="100" y="340">매우 낮음</text>
+    <text x="430" y="340" text-anchor="middle">매우 높음</text>
+    <text x="90" y="324" text-anchor="end">매우 낮음</text>
+    <text x="90" y="66" text-anchor="end">매우 높음</text>
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="462" y="324">발생 가능성</text>
+    <text x="112" y="48">영향</text>
+  </g>
+
+  <!-- 리스크 수준과 테스트 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="290" y="56" width="140" height="62" rx="4" />
+    <rect x="114" y="242" width="140" height="62" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="360" y="77">리스크 수준 높음</text>
+    <text x="360" y="95" font-size="12">일찍 시작</text>
+    <text x="360" y="111" font-size="12">더 엄격한 테스트 기법</text>
+    <text x="184" y="263">리스크 수준 낮음</text>
+    <text x="184" y="281" font-size="12">늦게 시작해도 됨</text>
+    <text x="184" y="297" font-size="12">덜 엄격한 테스트 기법</text>
+  </g>
+  <line x1="230" y1="238" x2="314" y2="124" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+</svg>

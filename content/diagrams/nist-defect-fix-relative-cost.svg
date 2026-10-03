@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 -11 582.5 277.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="20" y="18">NIST Planning Report 02-3(2002)</text>
+    <text x="20" y="36">요구사항 수집·분석과 아키텍처 설계 단계에서 들어간 결함</text>
+  </g>
+
+  <!-- 열 머리: 막대 길이 1 = 10 단위 -->
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="230" y="64" text-anchor="end">고치는 단계</text>
+    <text x="248" y="64">고치는 상대 비용</text>
+  </g>
+
+  <!-- 단계 -->
+  <g text-anchor="end" fill="var(--text, #727981)">
+    <text x="230" y="94.5">요구사항 수집·분석과 아키텍처 설계</text>
+    <text x="230" y="130.5">코딩과 유닛 테스트</text>
+    <text x="230" y="166.5">통합·컴포넌트·시스템 테스트</text>
+    <text x="230" y="202.5">초기 고객 피드백과 베타 테스트</text>
+    <text x="230" y="238.5">출시 뒤</text>
+  </g>
+
+  <!-- 막대 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="240" y="78" width="10" height="24" rx="2" />
+    <rect x="240" y="114" width="50" height="24" rx="2" />
+    <rect x="240" y="150" width="100" height="24" rx="2" />
+    <rect x="240" y="186" width="150" height="24" rx="2" />
+    <rect x="240" y="222" width="300" height="24" rx="2" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="258" y="94.5">1</text>
+    <text x="298" y="130.5">5</text>
+    <text x="348" y="166.5">10</text>
+    <text x="398" y="202.5">15</text>
+    <text x="548" y="238.5">30</text>
+  </g>
+</svg>

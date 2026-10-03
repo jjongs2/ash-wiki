@@ -11,7 +11,6 @@ verified: 2026-10-03
 
 테스트 기법은 명세 기반([[black-box-testing|블랙박스]]), 구조 기반(화이트박스), 경험 기반의 세 갈래로 나뉜다.[@istqb-ctfl-syllabus-2024][@iso-iec-ieee-29119-4-obp-2021] 화이트박스 테스트는 단위 테스트에 한하지 않고, 시스템 테스트를 포함한 모든 테스트 레벨에서 쓸 수 있다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-ctfl-syllabus-2024]
 
-
 ## 커버리지로 케이스 끌어내기
 
 ISTQB CTFL(Certified Tester Foundation Level) 강의계획서에 따르면 화이트박스 테스트는 코드, 아키텍처, 작업 흐름, 데이터 흐름 같은 구현이나 내부 구조에서 테스트를 끌어낸다.[@istqb-ctfl-syllabus-2024]
