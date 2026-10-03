@@ -9,7 +9,7 @@ verified: 2026-10-03
 
 ## Attack potential
 
-CC:2022(Common Criteria for Information Technology Security Evaluation)는 **attack potential**을 평가 대상인 TOE(Target of Evaluation)의 취약점을 악용하는 데 드는 노력의 척도로 정의하고, 그 노력을 공격자의 전문성, 자원, 동기와 window of opportunity 같은 취약점의 성질로 나타낸다.[@ccra-cc-part-1-2022]
+CC:2022(Common Criteria for Information Technology Security Evaluation)는 **attack potential**을 평가 대상인 TOE(Target of Evaluation)의 [[vulnerability-management|취약점]]을 악용하는 데 드는 노력의 척도로 정의하고, 그 노력을 공격자의 전문성, 자원, 동기와 window of opportunity 같은 취약점의 성질로 나타낸다.[@ccra-cc-part-1-2022]
 
 CEM:2022(Common Methodology for Information Technology Security Evaluation)는 attack potential을 정할 때 다섯 요소에 값을 매겨 합한다. 요소와 값은 다음과 같다.[@ccra-cem-2022]
 

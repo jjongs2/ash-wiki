@@ -49,8 +49,8 @@ Base practice는 일곱이고, 성과와 일대일로 대응하지 않는다. �
 
 BP3의 노트는 리스크를 분석하는 방법의 예로 attack path analysis를 포함한 TARA, 시뮬레이션, ATA(Attack Tree Analysis), FTA(Fault Tree Analysis) 등을 든다. BP4는 리스크마다 retain, reduce, avoid, transfer(share) 가운데 하나를 처리 옵션으로 고르게 한다.[@vda-automotive-spice-cybersecurity-2025] Attack tree와 FTA는 각각 [[attack-tree|attack tree]]와 [[safety-analysis|안전 분석]]에서 다룬다.
 
-Automotive SPICE for Cybersecurity 1.0은 MAN.7에 성과 여덟과 BP 여덟을 두어 성과마다 BP 하나를 대응시켰고, 처리 옵션을 accept, reduce, avoid, share(transfer)로 두었다. accept나 share로 고른 리스크는 대개 cybersecurity claim이 된다고도 적었다.[@vda-automotive-spice-cybersecurity-2021] 2.0은 성과를 다섯, BP를 일곱으로 고치고, 옵션을 retain, reduce, avoid, transfer(share)로 둔다.[@vda-automotive-spice-cybersecurity-2025]
+Automotive SPICE for Cybersecurity 1.0은 MAN.7에 성과 여덟과 BP 여덟을 두어 성과마다 BP 하나를 대응시켰고, 처리 옵션을 accept, reduce, avoid, share(transfer)로 두었으며, accept나 share로 고른 리스크가 대개 cybersecurity claim을 정한다는 노트를 두었다.[@vda-automotive-spice-cybersecurity-2021] 2.0은 성과를 다섯, BP를 일곱으로 고치고, 옵션을 retain, reduce, avoid, transfer(share)로 둔다.[@vda-automotive-spice-cybersecurity-2025]
 
 ## HARA와의 차이
 
-[[hazard-analysis-and-risk-assessment|HARA]]는 아이템의 오동작이 일으키는 해저드 사건을 심각도, 노출, 통제 가능성으로 분류해 safety goal과 [[automotive-safety-integrity-level|ASIL]]을 정한다.[@iso-26262-1-obp-2018] TARA가 다루는 attack path는 공격자가 일부러 하는 행위들이고, 리스크는 attack feasibility와 impact로 나타낸다.[@iso-sae-21434-obp-2021] ISO/SAE 21434:2021은 ISO 26262-3:2018을 유일한 인용 규격으로 둔다.[@iso-sae-21434-obp-2021]
+[[hazard-analysis-and-risk-assessment|HARA]]는 아이템의 오동작이 일으키는 해저드 사건을 심각도, 노출, 통제 가능성으로 분류해 safety goal과 [[automotive-safety-integrity-level|ASIL]]을 정한다.[@iso-26262-1-obp-2018] TARA가 다루는 attack path는 공격자가 일부러 하는 행위들이고, 리스크는 attack feasibility와 impact로 나타낸다.[@iso-sae-21434-obp-2021]

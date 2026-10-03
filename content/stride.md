@@ -9,7 +9,7 @@ verified: 2026-10-03
 
 ## 여섯 위협
 
-Microsoft Threat Modeling Tool 문서는 여섯 위협을 아래처럼 설명하고, Microsoft의 2006년 MSDN Magazine 기사는 위협마다 그것을 막는 보안 속성을 하나씩 짝짓는다.[@microsoft-tmt-threats-2022][@microsoft-msdn-stride-2006]
+아래 표의 설명은 Microsoft Threat Modeling Tool 문서를 따르고, 막는 속성은 위협마다 보안 속성을 하나씩 짝지은 Microsoft의 2006년 MSDN Magazine 기사를 따른다.[@microsoft-tmt-threats-2022][@microsoft-msdn-stride-2006]
 
 | 위협                   | 설명                                                                          | 막는 속성       |
 | ---------------------- | ----------------------------------------------------------------------------- | --------------- |
