@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**테스트 케이스**(test case)는 사전 조건, 입력, 기대 결과를 담은 집합이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-test-case-2026] ISO/IEC/IEEE 29119-1:2022는 테스트 케이스를, 테스트 목표를 이루도록 테스트 항목의 실행을 이끄는 사전 조건, 입력, 기대 결과의 집합으로 정의한다. 이 정의에서 입력에는 필요하면 동작도 든다.[@iso-iec-ieee-29119-1-obp-2022] ISTQB(International Software Testing Qualifications Board) 용어집은 테스트 케이스를 테스트 조건을 바탕으로 만든 사전 조건, 입력, 동작(해당할 때), 기대 결과, 사후 조건의 집합으로 정의한다.[@istqb-glossary-test-case-2026]
+**테스트 케이스**(test case)는 사전 조건, 입력, 기대 결과를 담은 집합이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-test-case-2026] [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022는 테스트 케이스를, 테스트 목표를 이루도록 테스트 항목의 실행을 이끄는 사전 조건, 입력, 기대 결과의 집합으로 정의한다.[@iso-iec-ieee-29119-1-obp-2022] ISTQB(International Software Testing Qualifications Board) 용어집은 테스트 케이스를 테스트 조건을 바탕으로 만든 사전 조건, 입력, 동작(해당할 때), 기대 결과, 사후 조건의 집합으로 정의한다.[@istqb-glossary-test-case-2026]
 
 ISO/IEC/IEEE 24765:2017은 테스트 케이스를, 특정 프로그램 경로를 실행하거나 특정 요구사항을 지키는지 검증하는 것 같은 특정 목표를 위해 만든 테스트 입력, 실행 조건, 기대 결과의 집합으로도 정의한다.[@iso-iec-ieee-24765-obp-2017]
 
@@ -24,11 +24,11 @@ ISO/IEC/IEEE 24765:2017은 테스트 케이스를, 특정 프로그램 경로를
 
 **테스트 절차**(test procedure)는 실행할 순서로 늘어놓은 테스트 케이스에, 사전 조건을 갖추는 동작과 실행 뒤의 마무리 활동을 더한 것이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-test-procedure-2026]
 
-**테스트 스크립트**(test script)는 출처마다 정의가 다르다. ISO/IEC/IEEE 29119-1:2022는 테스트 스크립트를 테스트 절차 명세(test procedure specification)와 같은 말로 두고, 하나 이상의 테스트 절차를 명세한 문서로 정의한다.[@iso-iec-ieee-29119-1-obp-2022] ISTQB 용어집은 테스트 스크립트를 테스트를 실행하는 명령의 열로 정의한다.[@istqb-glossary-test-script-2026] CTFL 강의계획서에 따르면 테스트 구현에서 수동 테스트 스크립트와 자동 테스트 스크립트를 만든다.[@istqb-ctfl-syllabus-2024]
+ISO/IEC/IEEE 29119-1:2022는 **테스트 스크립트**(test script)를 테스트 절차 명세(test procedure specification)와 같은 말로 두고, 하나 이상의 테스트 절차를 명세한 문서로 정의한다.[@iso-iec-ieee-29119-1-obp-2022] ISTQB 용어집은 테스트 스크립트를 테스트를 실행하는 명령의 열로 정의한다.[@istqb-glossary-test-script-2026] CTFL 강의계획서에 따르면 테스트 구현에서 수동 테스트 스크립트와 자동 테스트 스크립트를 만든다.[@istqb-ctfl-syllabus-2024]
 
 ## 테스트 스위트
 
-**테스트 스위트**(test suite)도 출처마다 정의가 다르다. ISO/IEC/IEEE 29119-1:2022는 테스트 스위트를 테스트 케이스나 테스트 절차의 집합으로 정의하고, 보통 테스트를 언제 실행하는지에 따라 묶는다고 둔다.[@iso-iec-ieee-29119-1-obp-2022] ISTQB 용어집은 테스트 스위트를 한 번의 테스트 실행에서 돌릴 테스트 스크립트나 테스트 절차의 집합으로 정의한다.[@istqb-glossary-test-suite-2026]
+ISO/IEC/IEEE 29119-1:2022는 **테스트 스위트**(test suite)를 테스트 케이스나 테스트 절차의 집합으로 정의하고, 보통 테스트를 언제 실행하는지에 따라 묶는다고 둔다.[@iso-iec-ieee-29119-1-obp-2022] ISTQB 용어집은 테스트 스위트를 한 번의 테스트 실행에서 돌릴 테스트 스크립트나 테스트 절차의 집합으로 정의한다.[@istqb-glossary-test-suite-2026]
 
 ![[diagrams/test-suite-procedure-case-nesting.svg]]
 
@@ -42,10 +42,10 @@ ISO/IEC/IEEE 24765:2017은 테스트 케이스를, 특정 프로그램 경로를
 
 테스트를 실행하면 실제 결과를 기대 결과와 견주어, 맞으면 pass, 어긋나면 fail로 판정한다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-passed-2026][@istqb-glossary-failed-2026] fail의 원인 분석과 결함의 처리는 [[defect-management|결함 관리]]에서 다룬다.
 
-**테스트 오라클**(test oracle)도 출처마다 정의가 다르다. ISTQB 용어집은 테스트 오라클을 기대 결과를 정하는 근거가 되는 출처로 정의한다.[@istqb-glossary-test-oracle-2026] ISO/IEC/IEEE 29119-1:2022는 테스트 오라클을 테스트의 pass와 fail을 가리는 정보의 출처로 정의한다. 오라클은 흔히 기대 결과를 끌어내는 명세이지만, 비슷한 다른 프로그램이나 시스템의 실제 결과와 견주거나 사람 전문가에게 묻는 것도 오라클이 될 수 있다고 둔다.[@iso-iec-ieee-29119-1-obp-2022]
+ISTQB 용어집은 **테스트 오라클**(test oracle)을 기대 결과를 정하는 근거가 되는 출처로 정의한다.[@istqb-glossary-test-oracle-2026] ISO/IEC/IEEE 29119-1:2022는 테스트 오라클을 테스트의 pass와 fail을 가리는 정보의 출처로 정의한다. 오라클은 흔히 기대 결과를 끌어내는 명세이지만, 비슷한 다른 프로그램이나 시스템의 실제 결과와 견주거나 사람 전문가에게 묻는 것도 오라클이 될 수 있다고 둔다.[@iso-iec-ieee-29119-1-obp-2022]
 
 ## 테스트 케이스를 일찍 쓰기
 
-CTFL 강의계획서는 코드를 쓰기 전에 테스트 케이스를 쓰는 것과 테스터의 관점에서 명세를 리뷰하는 것을 shift left의 좋은 관행으로 든다.[@istqb-ctfl-syllabus-2024] 테스트 설계를 개발 단계와 짝지어 앞당기는 일은 [[v-model#테스트 설계를 앞당김|V 모델]]에서 다룬다.
+CTFL 강의계획서는 코드를 쓰기 전에 테스트 케이스를 쓰는 것과 테스터의 관점에서 명세를 리뷰하는 것을 shift left의 좋은 관행으로 든다.[@istqb-ctfl-syllabus-2024] 테스트 설계를 개발 단계와 짝지어 앞당기는 일은 [[v-model|V 모델]]에서 다룬다.
 
-같은 강의계획서에 따르면 테스트 분석에서는 [[v-model|테스트 기준]]과 테스트 대상도 평가해, 그 안의 결함을 찾고 테스트할 수 있게 쓰였는지(testability) 따진다. 테스터의 관점으로 명세를 리뷰하면 모호함, 빠진 것, 서로 맞지 않는 것 같은 결함을 흔히 찾는다.[@istqb-ctfl-syllabus-2024]
+같은 강의계획서에 따르면 테스트 분석에서는 테스트 기준과 테스트 대상도 평가해, 그 안의 결함을 찾고 테스트할 수 있게 쓰였는지(testability) 따진다. 테스터의 관점으로 명세를 리뷰하면 모호함, 빠진 것, 서로 맞지 않는 것 같은 결함을 흔히 찾는다.[@istqb-ctfl-syllabus-2024]

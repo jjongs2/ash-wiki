@@ -19,7 +19,7 @@ CTFL 강의계획서는 **리스크**(risk)를 일어나면 나쁜 영향을 낳
 
 ## 리스크 수준
 
-CTFL 강의계획서에 따르면 리스크는 **발생 가능성**(risk likelihood, 일어날 확률)과 **영향**(risk impact, 일어났을 때의 결과) 두 요소로 나타내고, 이 둘이 리스크의 척도인 리스크 수준을 정한다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 **리스크 수준**(risk level)을 리스크 영향과 발생 가능성으로 정하는 리스크의 척도로 정의한다.[@istqb-glossary-risk-level-2026]
+CTFL 강의계획서에 따르면 리스크는 **발생 가능성**(risk likelihood, 일어날 확률)과 **영향**(risk impact, 일어났을 때의 결과) 두 요소로 나타낸다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 **리스크 수준**(risk level)을 리스크 영향과 발생 가능성으로 정하는 리스크의 척도로 정의한다.[@istqb-glossary-risk-level-2026]
 
 CTFL 강의계획서에 따르면 리스크 평가는 정량적 방법이나 정성적 방법, 또는 둘을 섞어 할 수 있다. 정량적 방법에서는 리스크 수준을 발생 가능성과 영향의 곱으로 계산하고, 정성적 방법에서는 리스크 매트릭스로 정할 수 있다.[@istqb-ctfl-syllabus-2024] ISTQB CTAL-TM(Certified Tester Advanced Level Test Management) 강의계획서에 따르면 발생 가능성과 영향은 대개 "매우 높음"에서 "매우 낮음"까지 같은 순서 척도로만 정할 수 있고, 이 두 값을 리스크 매트릭스로 묶어 리스크 수준을 낸다.[@istqb-ctal-tm-syllabus-2024]
 

@@ -5,14 +5,14 @@ tags:
 verified: 2026-10-03
 ---
 
-**소프트웨어 테스트**(software testing)는 테스트 대상의 품질과 속성을 평가하는 활동이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-testing-2026] ISO/IEC/IEEE 29119-1:2022는 테스트를, 하나 이상의 테스트 항목이 지닌 속성을 찾아내고 평가하기 쉽게 하려고 하는 활동의 집합으로 정의한다.[@iso-iec-ieee-29119-1-obp-2022] ISTQB(International Software Testing Qualifications Board) 용어집은 테스트를 [[software-development-life-cycle|소프트웨어 개발 생명주기]] 안에서 컴포넌트나 시스템, 그리고 관련 작업 산출물의 품질을 평가하는 프로세스로 정의한다.[@istqb-glossary-testing-2026]
+**소프트웨어 테스트**(software testing)는 테스트 대상의 품질과 속성을 평가하는 활동이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-testing-2026] [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022는 테스트를, 하나 이상의 테스트 항목이 지닌 속성을 찾아내고 평가하기 쉽게 하려고 하는 활동의 집합으로 정의한다.[@iso-iec-ieee-29119-1-obp-2022] ISTQB(International Software Testing Qualifications Board) 용어집은 테스트를 [[software-development-life-cycle|소프트웨어 개발 생명주기]] 안에서 컴포넌트나 시스템, 그리고 관련 작업 산출물의 품질을 평가하는 프로세스로 정의한다.[@istqb-glossary-testing-2026]
 
 ## 테스트의 목적
 
 ISTQB CTFL(Certified Tester Foundation Level) 강의계획서는 테스트가 흔히 노리는 목적으로 아래 아홉 가지를 든다.[@istqb-ctfl-syllabus-2024]
 
 - 요구사항, 사용자 스토리, 설계, 코드 같은 작업 산출물 평가
-- failure를 일으키고 결함 찾기
+- [[fault-error-failure|failure]]를 일으키고 결함 찾기
 - 요구되는 커버리지 확보
 - 소프트웨어 품질이 모자라서 생기는 위험 줄이기
 - 명시된 요구사항을 채웠는지 확인
@@ -39,7 +39,7 @@ CTFL 강의계획서 2018 V3.1은 다섯째 원칙을 살충제 역설(pesticide
 
 ## 테스트와 디버깅
 
-CTFL 강의계획서에 따르면 동적 테스트는 결함 때문에 생기는 failure를 일으키고, 정적 테스트는 테스트 대상에서 결함을 곧바로 찾는다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 **디버깅**(debugging)을 컴포넌트나 시스템에서 failure의 원인을 찾아 분석하고 없애는 프로세스로 정의한다.[@istqb-glossary-debugging-2026] CTFL 강의계획서에 따르면 동적 테스트가 failure를 일으킨 뒤의 디버깅은 대개 failure를 재현하고, 원인인 결함을 진단하고, 그 결함을 고치는 순서로 간다. 고친 뒤에는 확인 테스트로 문제가 풀렸는지 보고, 회귀 테스트로 다른 곳에 failure가 생기지 않았는지 볼 수 있다.[@istqb-ctfl-syllabus-2024] 결함과 failure의 관계는 [[fault-error-failure|Fault, error, failure]]에서 다룬다.
+CTFL 강의계획서에 따르면 동적 테스트는 결함 때문에 생기는 failure를 일으키고, 정적 테스트는 테스트 대상에서 결함을 곧바로 찾는다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 **디버깅**(debugging)을 컴포넌트나 시스템에서 failure의 원인을 찾아 분석하고 없애는 프로세스로 정의한다.[@istqb-glossary-debugging-2026] CTFL 강의계획서에 따르면 동적 테스트가 failure를 일으킨 뒤의 디버깅은 대개 failure를 재현하고, 원인인 결함을 진단하고, 그 결함을 고치는 순서로 간다. 고친 뒤에는 확인 테스트로 문제가 풀렸는지 보고, 회귀 테스트로 다른 곳에 failure가 생기지 않았는지 볼 수 있다.[@istqb-ctfl-syllabus-2024]
 
 ![[diagrams/dynamic-test-debugging-flow.svg]]
 
@@ -47,7 +47,7 @@ CTFL 강의계획서에 따르면 동적 테스트는 결함 때문에 생기는
 
 **정적 테스트**(static testing)는 테스트 대상을 실행하지 않고, **동적 테스트**(dynamic testing)는 실행한다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-ctfl-syllabus-2024] V&V 전반에서 정적 기법과 동적 기법을 나누는 방식은 [[verification-and-validation|검증과 확인]]에서 다룬다.
 
-CTFL 강의계획서에 따르면 정적 테스트는 사람이 살펴보는 리뷰와 도구를 쓰는 정적 분석으로 이루어진다. 정적 테스트는 요구사항 명세나 테스트 계획서처럼 실행할 수 없는 작업 산출물에도 쓸 수 있지만, 동적 테스트는 실행할 수 있는 산출물에만 쓸 수 있다. 정적 테스트는 [[software-development-life-cycle|SDLC]]의 가장 이른 단계에서 결함을 찾을 수 있고, 도달할 수 없는 코드처럼 동적 테스트로는 찾지 못하는 결함도 찾는다. 유지보수성처럼 코드 실행과 상관없는 품질 특성도 잴 수 있다.[@istqb-ctfl-syllabus-2024]
+CTFL 강의계획서에 따르면 정적 테스트는 사람이 살펴보는 [[software-review|리뷰]]와 도구를 쓰는 [[static-analysis|정적 분석]]으로 이루어진다. 정적 테스트는 요구사항 명세나 테스트 계획서처럼 실행할 수 없는 작업 산출물에도 쓸 수 있지만, 동적 테스트는 실행할 수 있는 산출물에만 쓸 수 있다. 정적 테스트는 소프트웨어 개발 생명주기의 가장 이른 단계에서 결함을 찾을 수 있고, 도달할 수 없는 코드처럼 동적 테스트로는 찾지 못하는 결함도 찾는다. 유지보수성처럼 코드 실행과 상관없는 품질 특성도 잴 수 있다.[@istqb-ctfl-syllabus-2024]
 
 같은 강의계획서는 정적 테스트로 찾기가 더 쉽거나 더 싼 결함으로 다음을 든다.[@istqb-ctfl-syllabus-2024]
 
@@ -63,9 +63,9 @@ CTFL 강의계획서에 따르면 정적 테스트는 사람이 살펴보는 리
 
 테스트 기법은 블랙박스(명세 기반), 화이트박스(구조 기반), 경험 기반의 세 갈래로 나뉜다.[@istqb-ctfl-syllabus-2024][@iso-iec-ieee-29119-4-obp-2021] CTFL 강의계획서에 따르면 갈래마다 다음에 바탕을 둔다.[@istqb-ctfl-syllabus-2024]
 
-- 블랙박스 기법: 내부 구조를 보지 않고 테스트 대상의 명세된 동작을 분석한다. 강의계획서는 동치 분할, 경계값 분석, 결정 테이블 테스트, 상태 전이 테스트를 다룬다.
-- 화이트박스 기법: 테스트 대상의 내부 구조와 처리를 분석한다. 강의계획서는 구문 테스트와 분기 테스트를 다룬다.
-- 경험 기반 기법: 테스터의 지식과 경험으로 테스트 케이스를 설계하고 구현한다. 강의계획서는 오류 추정, 탐색적 테스트, 체크리스트 기반 테스트를 다룬다.[@istqb-ctfl-syllabus-2024]
+- [[black-box-testing|블랙박스 기법]]: 내부 구조를 보지 않고 테스트 대상의 명세된 동작을 분석한다. 강의계획서는 [[equivalence-partitioning|동치 분할]], [[boundary-value-analysis|경계값 분석]], 결정 테이블 테스트, 상태 전이 테스트를 다룬다.
+- [[white-box-testing|화이트박스 기법]]: 테스트 대상의 내부 구조와 처리를 분석한다. 강의계획서는 구문 테스트와 분기 테스트를 다룬다.
+- 경험 기반 기법: 테스터의 지식과 경험으로 [[test-case|테스트 케이스]]를 설계하고 구현한다. 강의계획서는 [[error-guessing|오류 추정]], 탐색적 테스트, 체크리스트 기반 테스트를 다룬다.[@istqb-ctfl-syllabus-2024]
 
 ## 테스트 레벨
 
