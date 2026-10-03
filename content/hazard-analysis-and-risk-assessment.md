@@ -1,5 +1,5 @@
 ---
-title: Hazard analysis and risk assessment
+title: HARA
 tags:
   - process/sw-process
 aliases:

@@ -1,5 +1,5 @@
 ---
-title: Safety integrity level
+title: SIL
 tags:
   - process/sw-process
 aliases:
