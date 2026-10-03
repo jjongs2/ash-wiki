@@ -29,6 +29,8 @@ Uptane Standard 2.1.0에서 두 ECU는 아래처럼 일을 나눈다.[@uptane-st
 - **Primary ECU**는 자신과 secondary ECU의 몫으로 최신 메타데이터와 이미지를 받아 검증하고, secondary ECU에 시간, 메타데이터, 이미지를 보낸다.
 - **Secondary ECU**는 primary ECU에게서 받은 메타데이터와 이미지를 설치하기 전에 스스로 검증한다.[@uptane-standard-2-1-0-2023]
 
+![[diagrams/uptane-repositories-primary-secondary.svg]]
+
 ## Full verification과 partial verification
 
 Uptane Standard 2.1.0은 primary ECU가 full verification을 하게 하고, secondary ECU는 할 수 있으면 full verification을, 못 하면 적어도 partial verification을 하게 한다.[@uptane-standard-2-1-0-2023]
@@ -41,6 +43,8 @@ Uptane Deployment Best Practices 2.1.0은 partial verification을 느리거나 �
 ## 차량 버전 매니페스트
 
 Uptane Standard 2.1.0에서 각 ECU는 지금 설치된 이미지의 파일 이름, 길이, 해시를 담아 서명한 ECU version report를 primary ECU에 보낸다. Primary ECU는 이를 모아 서명한 **차량 버전 매니페스트**(vehicle version manifest)를 director repository에 보내고, director repository는 여기서 설치된 이미지 정보를 읽어 차량이 최신인지와 무엇을 설치할지 정한다.[@uptane-standard-2-1-0-2023]
+
+![[diagrams/uptane-vehicle-version-manifest.svg]]
 
 ## 위협 모델
 

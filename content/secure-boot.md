@@ -27,6 +27,10 @@ TF-A(Trusted Firmware-A)의 Trusted Board Boot에서는 root of trust 공개키(
 - TF-A의 Trusted Board Boot에서는 BL1이 ROTPK 해시로 BL2 인증서를 검증하고 BL2 이미지의 해시를 확인한 뒤 제어를 넘기며, 나머지 이미지(BL31, BL32, BL33 등)는 BL2가 인증서 사슬로 확인한다.[@trustedfirmware-tf-a-trusted-board-boot-2026]
 - ESP32의 Secure Boot v2는 부트로더와 앱의 서명을 확인하고, 서명 공개키의 해시를 eFuse에 기록한다.[@espressif-esp32-secure-boot-v2-2026]
 
+![[diagrams/uefi-secure-boot-key-databases.svg]]
+
+![[diagrams/tf-a-trusted-board-boot-chain.svg]]
+
 부트로더가 보안 버전이 기기에 저장된 값보다 낮은 이미지를 실행하지 않게 하는 기능은 [[rollback-protection|롤백 방지]]다.[@espressif-esp-idf-ota-2026][@google-avb-readme-2026]
 
 ## Measured boot와의 차이

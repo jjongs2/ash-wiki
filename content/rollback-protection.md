@@ -19,6 +19,8 @@ verified: 2026-10-03
 
 이전 이미지로 롤백할 수 있는 구성에서는, 저장된 보안 버전을 새 이미지가 정상 동작으로 확인되어 유효로 표시된 뒤에 올린다.[@espressif-esp-idf-ota-2026][@google-avb-readme-2026] Android 문서에 따르면, 슬롯이 부팅 성공으로 표시되기 전에 롤백 방지 메타데이터를 갱신하면 업데이트가 실패해 이전 슬롯으로 돌아가도 이전 버전이 부팅되지 않는다.[@google-android-boot-flow-2026]
 
+![[diagrams/rollback-protection-counter-update-order.svg]]
+
 ## 구현 예
 
 - ESP-IDF의 anti-rollback은 앱 이미지의 `secure_version`을 eFuse에 둔 보안 버전과 비교하고, 앱이 유효로 표시된 뒤에 eFuse의 보안 버전을 올린다.[@espressif-esp-idf-ota-2026]

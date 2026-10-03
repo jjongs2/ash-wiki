@@ -13,6 +13,8 @@ verified: 2026-10-03
 - **2단계 부트로더**는 플래시에 두는, 고칠 수 있는 부트로더다. 1단계 부트로더가 이를 불러 실행하고, 2단계 부트로더가 실행할 응용 프로그램을 고른다.[@espressif-esp-idf-bootloader-2026][@nxp-an13843-2023]
 - ESP-IDF에서는 ROM의 1단계 부트로더가 플래시에서 2단계 부트로더를 읽어 실행하고, 2단계 부트로더가 파티션 테이블을 읽어 부팅할 앱 파티션을 정한다.[@espressif-esp-idf-startup-2026]
 
+![[diagrams/bootloader-two-stage-boot.svg]]
+
 ## 업데이트에서 맡는 일
 
 - 이미지가 여럿이면 실행할 이미지를 골라 그 시작 주소로 분기한다.[@nxp-an13843-2023][@espressif-esp-idf-startup-2026] 어느 이미지를 고르는지는 [[ab-update|A/B 업데이트]]에서 다룬다.

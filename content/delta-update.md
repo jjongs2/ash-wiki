@@ -18,6 +18,8 @@ verified: 2026-10-03
 
 패치를 적용하려면 기기의 이전 이미지가 패치를 만들 때 쓴 이전 이미지와 같아야 한다.[@google-android-ota-tools-2026][@silabs-ug489-2025]
 
+![[diagrams/delta-update-generate-apply.svg]]
+
 - Android의 incremental 패키지는 고칠 파일의 이전 상태를 모두 확인한 뒤에 손을 대므로, 다른 빌드에 설치하면 실패하고 기기는 이전 상태로 남는다.[@google-android-ota-tools-2026]
 - Android non-A/B 업데이트 스크립트의 `apply_patch`는 원본 파일의 SHA-1(Secure Hash Algorithm 1) 해시가 패치에 짝지어 둔 값과 같을 때만 패치를 적용한다. 결과 파일은 기대한 해시와 크기를 갖거나, 손대지 않은 채로 남는다.[@google-android-ota-inside-packages-2026]
 - Android A/B 업데이트는 연산을 모두 적용한 뒤 파티션 전체를 다시 읽어 기대한 해시와 대조한다.[@google-android-ota-ab-2026]
@@ -35,6 +37,8 @@ Android imgdiff 소스의 설명에 따르면 gzip으로 압축한 데이터는 
 Colin Percival은 2003년 논문에서 실행 파일의 바이너리 패치를 만드는 bsdiff를 제안했다.[@percival-naive-differences-2003][@percival-bsdiff-2026]
 
 소스 코드를 조금 고쳐도 코드 덩어리의 상대 위치가 바뀌어, 그 구간을 건너뛰는 상대 분기의 거리와 뒤쪽 데이터를 가리키는 포인터가 파일 곳곳에서 바뀐다. 그래도 수정이 닿지 않은 구간에서는 바이트가 다른 곳이 드물고, 코드와 데이터가 덩어리째 옮겨져 가까운 주소들이 같은 양만큼 바뀐다. bsdiff는 이 관찰을 바탕으로 이전 파일을 해싱이나 접미사 정렬로 색인해, 새 파일에서 이전 파일과 정확히 일치하는 구간을 찾고 이를 앞뒤로 늘려 서로 겹치지 않는 대략 일치 구간을 만든다. 패치는 명령을 담은 제어 파일, 대략 일치 구간의 바이트 차이를 담은 차이 파일, 일치 구간 밖의 바이트를 담은 extra 파일로 이루어진다. 위 관찰대로라면 바이트 차이는 대부분 0이어서, 제어 파일과 차이 파일이 잘 압축된다.[@percival-naive-differences-2003]
+
+![[diagrams/bsdiff-patch-structure.svg]]
 
 bsdiff 도구는 색인에 접미사 정렬 알고리즘인 Larsson과 Sadakane의 qsufsort를 쓴다.[@percival-bsdiff-2026]
 

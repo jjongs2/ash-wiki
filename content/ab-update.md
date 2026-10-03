@@ -19,6 +19,8 @@ verified: 2026-10-03
 
 새 이미지로 처음 부팅하면 곧바로 확정하지 않고 확인 대기 상태로 둔다. 새 이미지가 스스로 점검해 이상이 없으면 자신을 유효로 표시하고, 점검에 실패하거나 표시하기 전에 재부팅되면 부트로더가 이전 이미지로 돌아간다. 이를 **롤백**이라 한다.[@espressif-esp-idf-ota-2026][@mcuboot-design-2026]
 
+![[diagrams/ab-update-slot-switch.svg]]
+
 - ESP-IDF는 앱 롤백 기능(`CONFIG_BOOTLOADER_APP_ROLLBACK_ENABLE`)을 켜면 새 앱을 확인 대기 상태로 부팅하고, 앱이 유효 표시 함수를 부르지 않은 채 재부팅되면 이전 앱으로 돌아간다.[@espressif-esp-idf-ota-2026]
 - Android는 새 슬롯으로 부팅한 뒤 `update_verifier`의 검증이 끝나야 그 슬롯을 부팅 성공으로 표시하고, 표시 전에 부팅이 여러 번 실패하면 이전 슬롯으로 돌아간다.[@google-android-ota-ab-2026]
 - MCUboot는 새 이미지를 시험(test) swap으로 맞바꾼 뒤, 이미지가 자신을 확정하지 않은 채 재부팅되면 이전 이미지로 되돌린다.[@mcuboot-design-2026]
