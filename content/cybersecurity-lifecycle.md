@@ -15,7 +15,7 @@ ISO/SAE 21434:2021은 9절부터 14절까지에 단계별 활동을 두고, 이�
 - Product development 단계: 10절의 설계, 통합과 검증, 11절의 cybersecurity validation이 든다.
 - Post-development 단계: 12절 production, 13절 operations and maintenance, 14절 end of cybersecurity support and decommissioning이 든다. 13절에는 cybersecurity incident response와 updates가 있다.[@iso-sae-21434-obp-2021]
 
-8절과 15절은 이 단계들 밖에 둔다. 8절의 지속 활동은 cybersecurity monitoring, cybersecurity event evaluation, vulnerability analysis, vulnerability management로 이루어지며, 진행 중인 리스크 평가에 정보를 대고 사이버보안 지원이 끝날 때까지의 취약점 관리를 정한다. 15절은 TARA를 모듈식 분석·평가 방법으로 정한다.[@iso-sae-21434-obp-2021]
+8절의 지속 활동과 15절의 TARA 방법은 이 단계들 밖에 둔다.[@iso-sae-21434-obp-2021] 지속 활동은 vulnerability management 페이지가 다룬다.
 
 Tailoring과 out-of-context 컴포넌트처럼 프로젝트의 활동을 정하는 데 쓰는 개념은 [[cybersecurity-assessment|cybersecurity assessment]]에서 다룬다. ISO 26262의 아이템과 안전 생명주기는 [[safety-lifecycle|안전 생명주기]]에서 다룬다.
 

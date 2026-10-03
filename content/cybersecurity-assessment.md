@@ -22,4 +22,4 @@ ISO/SAE 21434:2021은 **cybersecurity case**를 리스크가 불합리하지 않
 
 ISO/SAE 21434:2021은 **audit**을 프로세스의 목적이 어느 정도 이루어졌는지 판단하는 검토로 정의한다. 두 정의를 견주면 audit은 프로세스를 검토하고, cybersecurity assessment는 사이버보안을 판단한다. 조직의 사이버보안 정책, 규칙, 프로세스는 이 표준의 5절(organizational cybersecurity management)이 다룬다.[@iso-sae-21434-obp-2021]
 
-ISO/PAS 5112:2022는 ISO/SAE 21434의 프로세스에 바탕을 둔 CSMS를 조직 차원에서 감사하는 지침을 주며, 감사 프로그램의 관리, 감사의 수행, 감사원의 역량을 다룬다. 이 지침의 감사는 조직 차원의 사이버보안 활동을 겨냥하고 프로젝트와 제품 수준은 다루지 않으며, ISO/PAS 5112:2022는 cybersecurity assessment에 대한 지침을 주지 않는다.[@iso-pas-5112-obp-2022]
+조직 감사의 지침인 ISO/PAS 5112:2022는 조직 차원의 사이버보안 활동을 겨냥해 프로젝트와 제품 수준은 다루지 않으며, cybersecurity assessment에 대한 지침도 주지 않는다.[@iso-pas-5112-obp-2022]

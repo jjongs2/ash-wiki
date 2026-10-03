@@ -11,8 +11,6 @@ ISO/SAE 21434:2021은 **검증**(verification)을 명시된 요구사항이 충�
 
 ISO/SAE 21434:2021의 11절(cybersecurity validation)은 아이템의 확인을 차량 수준에서 다룬다.[@iso-sae-21434-obp-2021] 요구사항을 구현하고 검증하는 10절은 [[cybersecurity-specification|cybersecurity specification]]에서 다룬다.
 
-NHTSA 지침은 제조사가 개발 과정에서 침투 테스트를 포함한 제품 사이버보안 테스트를 하고, 개발팀에 속하지 않은 테스터를 쓰기를 권한다.[@nhtsa-cybersecurity-best-practices-2022]
-
 ## Automotive SPICE for Cybersecurity의 SEC.3·SEC.4
 
 Automotive SPICE for Cybersecurity는 VDA QMC가 펴내는 [[automotive-spice|ASPICE]]의 사이버보안 확장이다.[@vda-automotive-spice-publications-2026] Automotive SPICE for Cybersecurity 2.0은 검증을 SEC.3(Risk Treatment Verification), 확인을 SEC.4(Risk Treatment Validation) 프로세스로 둔다. SEC.3의 목적은 설계의 구현과 컴포넌트의 통합이 사이버보안 요구사항, 정련한 architectural design, 상세 설계를 따르는지 확인하는 것이고, SEC.4의 목적은 통합된 시스템이 관련 cybersecurity goal을 이루는지 확인하는 것이다.
