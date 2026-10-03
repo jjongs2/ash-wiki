@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**AUTOSAR CAN 스택**은 [[autosar-communication-stack|AUTOSAR 통신 스택]] 가운데 [[can|CAN]] 통신을 맡는 모듈 묶음이다. CAN Driver는 MCAL의 Communication Drivers에 들고, CanTrcv(CAN Transceiver Driver)와 CanIf(CAN Interface)는 Communication Hardware Abstraction에 든다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 그 위에서 CanSM(CAN State Manager)은 CAN 네트워크의 통신 모드를 제어하고[@autosar-cp-sws-canstatemanager-2025], CanTp(CAN Transport Layer)는 긴 메시지를 분할하고 재조립하며[@autosar-cp-sws-cantransportlayer-2025], CanNm(CAN Network Management)은 네트워크 관리를 맡는다.[@autosar-cp-sws-cannetworkmanagement-2025]
+**AUTOSAR CAN 스택**은 [[autosar-communication-stack|AUTOSAR 통신 스택]] 가운데 [[can|CAN]] 통신을 맡는 모듈 묶음이다. CAN Driver는 [[microcontroller-abstraction-layer|MCAL]]의 Communication Drivers에 들고, CanTrcv(CAN Transceiver Driver)와 CanIf(CAN Interface)는 Communication Hardware Abstraction에 든다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 그 위에서 CanSM(CAN State Manager)은 CAN 네트워크의 통신 모드를 제어하고[@autosar-cp-sws-canstatemanager-2025], CanTp(CAN Transport Layer)는 긴 메시지를 분할하고 재조립하며[@autosar-cp-sws-cantransportlayer-2025], CanNm(CAN Network Management)은 네트워크 관리를 맡는다.[@autosar-cp-sws-cannetworkmanagement-2025]
 
 ## 모듈
 
@@ -20,7 +20,7 @@ verified: 2026-09-30
 
 ## 하드웨어 오브젝트
 
-하드웨어 오브젝트(hardware object)는 CAN 컨트롤러의 CAN RAM(Random-Access Memory) 안에 있는 PDU(Protocol Data Unit) 버퍼로, CAN 식별자, [[data-length-code|DLC]], 데이터를 담는다. CanIf는 하드웨어 오브젝트를 HOH(Hardware Object Handle)로 가리키며, HOH는 송신용 HTH(Hardware Transmit Handle)와 수신용 HRH(Hardware Receive Handle) 두 가지다.[@autosar-cp-sws-caninterface-2025]
+하드웨어 오브젝트(hardware object)는 CAN 컨트롤러의 CAN RAM(Random-Access Memory) 안에 있는 PDU(Protocol Data Unit) 버퍼로, [[can-identifier|CAN 식별자]], [[data-length-code|DLC]], 데이터를 담는다. CanIf는 하드웨어 오브젝트를 HOH(Hardware Object Handle)로 가리키며, HOH는 송신용 HTH(Hardware Transmit Handle)와 수신용 HRH(Hardware Receive Handle) 두 가지다.[@autosar-cp-sws-caninterface-2025]
 
 하드웨어 오브젝트의 handle type(`CanHandleType`)은 `BASIC`과 `FULL` 두 가지다.[@autosar-cp-sws-candriver-2025] `BASIC` 하드웨어 오브젝트 하나는 여러 CAN 식별자를 주고받고, 이런 수신 오브젝트에서는 CanIf가 소프트웨어 필터로 받을 PDU만 골라 올린다. `FULL` 하드웨어 오브젝트 하나는 CAN 식별자 하나만 다룬다.[@autosar-cp-sws-caninterface-2025]
 

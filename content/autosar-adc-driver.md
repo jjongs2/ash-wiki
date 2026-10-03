@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**ADC Driver**는 AUTOSAR Classic Platform에서 MCAL의 I/O Drivers 그룹에 드는 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 마이크로컨트롤러 안의 ADC(Analogue Digital Converter) 유닛을 초기화하고 제어하며, 변환의 시작과 정지, 하드웨어 트리거와 notification의 켜고 끄기, 변환 상태와 결과 읽기를 서비스로 준다.[@autosar-cp-sws-adcdriver-2025]
+**ADC Driver**는 [[autosar-classic-platform|AUTOSAR Classic Platform]]에서 [[microcontroller-abstraction-layer|MCAL]]의 I/O Drivers 그룹에 드는 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 마이크로컨트롤러 안의 ADC(Analogue Digital Converter) 유닛을 초기화하고 제어하며, 변환의 시작과 정지, 하드웨어 트리거와 notification의 켜고 끄기, 변환 상태와 결과 읽기를 서비스로 준다.[@autosar-cp-sws-adcdriver-2025]
 
 ## Hardware unit과 channel group
 

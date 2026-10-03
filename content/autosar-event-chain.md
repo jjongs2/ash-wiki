@@ -5,11 +5,11 @@ tags:
 verified: 2026-09-30
 ---
 
-AUTOSAR Timing Extensions에서 **event chain**(TimingDescriptionEventChain)은 기능상 의존하는 timing event 사이의 인과 관계를 나타내며, 시작점 이벤트는 자극(stimulus), 끝점 이벤트는 응답(response) 역할을 한다. 시간이 중요한 경로는 event chain으로 적고, 그 event chain에 시간 예산을 정하는 타이밍 제약을 건다. 예를 들어 센서 샘플링부터 액추에이터 접근까지의 최대 지연을 제한할 수 있다.[@autosar-cp-tps-timingextensions-2025] 지연이 무엇을 재는지와 data age, reaction은 [[cause-effect-chain|cause-effect chain]]에서 다룬다.
+[[autosar|AUTOSAR]] Timing Extensions에서 **event chain**(TimingDescriptionEventChain)은 기능상 의존하는 timing event 사이의 인과 관계를 나타내며, 시작점 이벤트는 자극(stimulus), 끝점 이벤트는 응답(response) 역할을 한다. 시간이 중요한 경로는 event chain으로 적고, 그 event chain에 시간 예산을 정하는 타이밍 제약을 건다. 예를 들어 센서 샘플링부터 액추에이터 접근까지의 최대 지연을 제한할 수 있다.[@autosar-cp-tps-timingextensions-2025] 지연이 무엇을 재는지와 data age, reaction은 [[cause-effect-chain|cause-effect chain]]에서 다룬다.
 
 ## Timing description
 
-AUTOSAR R25-11 Timing Extensions는 시스템 안에서 특정 시점에 관측할 수 있는 동작을 **timing event**(TimingDescriptionEvent)로 적는다. 예를 들어 sender-receiver 포트에서 데이터를 받거나 보낸 때, runnable이 시작하거나 끝난 때, 버스에서 프레임 전송이 끝난 때가 timing event다. 시스템이나 SW-C의 timing description은 timing event와 그 인과 관계인 event chain으로 이루어지며, TimingDescriptionEvent와 TimingDescriptionEventChain은 모두 TimingDescription의 하위 클래스다. 타이밍 제약은 이 event와 event chain에 건다.[@autosar-cp-tps-timingextensions-2025]
+AUTOSAR R25-11 Timing Extensions는 시스템 안에서 특정 시점에 관측할 수 있는 동작을 **timing event**(TimingDescriptionEvent)로 적는다. 예를 들어 [[autosar-sender-receiver-interface|sender-receiver]] [[software-component-port|포트]]에서 데이터를 받거나 보낸 때, [[runnable-entity|runnable]]이 시작하거나 끝난 때, 버스에서 프레임 전송이 끝난 때가 timing event다. 시스템이나 [[autosar-software-component|SW-C]]의 timing description은 timing event와 그 인과 관계인 event chain으로 이루어지며, TimingDescriptionEvent와 TimingDescriptionEventChain은 모두 TimingDescription의 하위 클래스다. 타이밍 제약은 이 event와 event chain에 건다.[@autosar-cp-tps-timingextensions-2025]
 
 timing description과 타이밍 제약은 타이밍 뷰로 나뉜다. 뷰는 VfbTiming, SwcTiming, SystemTiming, BswModuleTiming과 BswCompositionTiming, EcuTiming이며, 뷰마다 timing description이 쓸 수 있는 timing event의 종류가 정해져 있다. 예를 들어 VfbTiming은 TDEventVfb만, EcuTiming은 모든 종류를 쓸 수 있다.[@autosar-cp-tps-timingextensions-2025]
 
@@ -23,7 +23,7 @@ event chain은 계층으로 짤 수 있고, 안에 든 하위 event chain을 **s
 
 ## ECU 안과 밖
 
-AUTOSAR Timing Extensions가 드는 예에서, 센서 샘플링부터 액추에이터 접근까지의 종단 간 event chain은 I/O(Input/Output), BSW(Basic Software), RTE, SW-C, [[can|CAN]] 버스를 지나는 segment들로 나뉘고, ECU 안의 통신과 ECU 사이의 통신이 구분된다. SW-C가 같은 ECU에 있으면 통신은 RTE를 거치는 로컬 통신이고, 다른 ECU에 있으면 RTE, BSW의 통신 스택, 통신 버스를 거치는 원격 통신이다.[@autosar-cp-tps-timingextensions-2025]
+AUTOSAR Timing Extensions가 드는 예에서, 센서 샘플링부터 액추에이터 접근까지의 종단 간 event chain은 I/O, BSW(Basic Software), [[autosar-rte|RTE]], SW-C, [[can|CAN]] 버스를 지나는 segment들로 나뉘고, ECU 안의 통신과 ECU 사이의 통신이 구분된다. SW-C가 같은 ECU에 있으면 통신은 RTE를 거치는 로컬 통신이고, 다른 ECU에 있으면 RTE, BSW의 [[autosar-communication-stack|통신 스택]], 통신 버스를 거치는 원격 통신이다.[@autosar-cp-tps-timingextensions-2025]
 
 ![[diagrams/event-chain-intra-inter-ecu.svg]]
 

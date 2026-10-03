@@ -24,7 +24,7 @@ OIL 2.5의 객체는 다음과 같다.[@osek-oil-2-5-2004]
 | `APPMODE`        | 애플리케이션의 동작 모드. CPU 하나에 적어도 하나를 둔다.                                                        |
 | `TASK`           | 운영체제가 다루는 [[osek-task\|태스크]]                                                                         |
 | `ISR`            | 운영체제가 지원하는 [[osek-isr\|ISR]]                                                                           |
-| `RESOURCE`       | 공유 자원에 대한 태스크와 ISR의 접근을 조정하는 resource                                                        |
+| `RESOURCE`       | 공유 자원에 대한 태스크와 ISR의 접근을 조정하는 [[osek-resource\|resource]]                                     |
 | `EVENT`          | 태스크가 반응할 수 있는 [[osek-event\|이벤트]]. 마스크로 나타낸다.                                              |
 | `COUNTER`        | 알람의 하드웨어·소프트웨어 틱 소스                                                                              |
 | `ALARM`          | 카운터 값에 따라 만료되어 태스크를 활성화하거나 이벤트를 설정하거나 callback 루틴을 부르는 [[osek-alarm\|알람]] |

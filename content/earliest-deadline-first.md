@@ -7,7 +7,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**EDF 스케줄링**은 현재 요청의 마감 시한이 가장 가까운 태스크에 가장 높은 우선순위를 주고, 매 순간 우선순위가 가장 높은 미완료 요청을 실행하는 스케줄링이다. 우선순위가 태스크마다 고정되지 않고 요청마다 바뀔 수 있으므로 동적 우선순위 방식이다. Liu와 Layland는 1973년 논문에서 이 방식을 deadline driven 스케줄링이라 불렀다.[@liu-hard-real-time-1973] 지금은 EDF(Earliest Deadline First)라고도 부른다.[@linux-sched-deadline-2026][@faa-ar-05-27-2005]
+**EDF 스케줄링**은 현재 요청의 [[deadline|마감 시한]]이 가장 가까운 태스크에 가장 높은 우선순위를 주고, 매 순간 우선순위가 가장 높은 미완료 요청을 실행하는 스케줄링이다. 우선순위가 태스크마다 고정되지 않고 요청마다 바뀔 수 있으므로 [[real-time-scheduling|동적 우선순위]] 방식이다. Liu와 Layland는 1973년 논문에서 이 방식을 deadline driven 스케줄링이라 불렀다.[@liu-hard-real-time-1973] 지금은 EDF(Earliest Deadline First)라고도 부른다.[@linux-sched-deadline-2026][@faa-ar-05-27-2005]
 
 ## 우선순위
 
@@ -21,6 +21,6 @@ Linux 커널의 `SCHED_DEADLINE` 정책은 EDF에 CBS(Constant Bandwidth Server)
 
 ## RM과의 차이
 
-단일 프로세서에서 서로 독립인 주기 태스크의 마감 시한이 다음 요청 시각이고 실행 시간이 일정하며 선점할 수 있으면, [[rate-monotonic-scheduling|RM]]이 늘 스케줄할 수 있는 이용률의 최소 상한은 태스크가 많아지면 $\ln 2$에 가까워지지만, EDF는 $U \le 1$이면 스케줄한다. 대신 EDF는 요청마다 우선순위를 다시 정해야 한다.[@liu-hard-real-time-1973]
+단일 프로세서에서 서로 독립인 [[periodic-task-model|주기 태스크]]의 마감 시한이 다음 요청 시각이고 실행 시간이 일정하며 선점할 수 있으면, [[rate-monotonic-scheduling|RM]]이 늘 스케줄할 수 있는 이용률의 최소 상한은 태스크가 많아지면 $\ln 2$에 가까워지지만, EDF는 $U \le 1$이면 스케줄한다. 대신 EDF는 요청마다 우선순위를 다시 정해야 한다.[@liu-hard-real-time-1973]
 
 ![[diagrams/utilization-bound-rm-edf.svg]]

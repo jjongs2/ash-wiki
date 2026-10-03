@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**응답 시간 분석**(response time analysis)은 태스크가 서로 독립이고 선점할 수 있는 [[fixed-priority-scheduling|고정 우선순위 스케줄링]]에서, 태스크마다 최악 응답 시간을 구해 그 태스크의 마감 시한과 비교하는 스케줄 가능성 검사다.[@joseph-response-times-1986][@audsley-flexible-scheduling-1993] 요청의 **응답 시간**(response time)은 요청이 도착한 때부터 그 요청의 처리를 마칠 때까지의 시간이다.[@joseph-response-times-1986][@liu-hard-real-time-1973] **최악 응답 시간**(worst-case response time)은 한 태스크의 요청이 가질 수 있는 가장 긴 응답 시간이다.[@joseph-response-times-1986]
+**응답 시간 분석**(response time analysis)은 태스크가 서로 독립이고 선점할 수 있는 [[fixed-priority-scheduling|고정 우선순위 스케줄링]]에서, 태스크마다 최악 응답 시간을 구해 그 태스크의 [[deadline|마감 시한]]과 비교하는 스케줄 가능성 검사다.[@joseph-response-times-1986][@audsley-flexible-scheduling-1993] 요청의 **응답 시간**(response time)은 요청이 도착한 때부터 그 요청의 처리를 마칠 때까지의 시간이다.[@joseph-response-times-1986][@liu-hard-real-time-1973] **최악 응답 시간**(worst-case response time)은 한 태스크의 요청이 가질 수 있는 가장 긴 응답 시간이다.[@joseph-response-times-1986]
 
 태스크 $i$의 주기를 $T_i$, 마감 시한을 $D_i$, 최악 응답 시간을 $R_i$라 하자. 모든 태스크가 $D_i \le T_i$이고 같은 시각에 도착할 수 있는 태스크 집합에서, 모든 태스크가 $R_i \le D_i$를 만족하면 태스크 집합은 스케줄 가능하다.[@audsley-flexible-scheduling-1993]
 
@@ -25,7 +25,7 @@ $R_i$가 양변에 있으므로 반복해 푼다. 첫 값을 $C_i$로 두고 오
 
 ![[diagrams/response-time-iteration.svg]]
 
-공유 자원을 우선순위 상속 계열 프로토콜로 다루어, 우선순위가 낮은 태스크가 자원을 잡고 있어 태스크 $i$가 기다리는 시간이 $B_i$ 이하로 묶이면, 이를 블로킹 항으로 더한다.[@audsley-flexible-scheduling-1993]
+공유 자원을 [[priority-inheritance-protocol|우선순위 상속]] 계열 프로토콜로 다루어, 우선순위가 낮은 태스크가 자원을 잡고 있어 태스크 $i$가 기다리는 시간이 $B_i$ 이하로 묶이면, 이를 블로킹 항으로 더한다.[@audsley-flexible-scheduling-1993]
 
 $$
 R_i = C_i + B_i + \sum_{j \in \mathrm{hp}(i)} \left\lceil \frac{R_i}{T_j} \right\rceil C_j
@@ -35,8 +35,8 @@ $$
 
 이 반복식은 마감 시한이 주기 이하($D_i \le T_i$)인 태스크에 그대로 맞는다.[@audsley-flexible-scheduling-1993][@burns-arbitrary-deadlines-2017]
 
-태스크가 최소 도착 간격이 $T_i$인 산발적 태스크이고 같은 태스크의 요청은 도착 순서대로 실행된다고 두면, 마감 시한이 주기보다 길 때는 $R_i$가 $T_i$를 넘을 수 있다. 그러면 같은 태스크의 요청 여럿이 한 priority level-$i$ busy period 안에서 함께 활성일 수 있고, 그 가운데 어느 요청이든 최악 응답 시간을 낼 수 있다. 그래서 첫 요청만 보아서는 최악 응답 시간을 얻지 못하고, busy period 안의 요청을 모두 따져 그 최댓값을 취해야 한다.[@burns-arbitrary-deadlines-2017]
+태스크가 최소 도착 간격이 $T_i$인 [[periodic-task-model|sporadic 태스크]]이고 같은 태스크의 요청은 도착 순서대로 실행된다고 두면, 마감 시한이 주기보다 길 때는 $R_i$가 $T_i$를 넘을 수 있다. 그러면 같은 태스크의 요청 여럿이 한 priority level-$i$ busy period 안에서 함께 활성일 수 있고, 그 가운데 어느 요청이든 최악 응답 시간을 낼 수 있다. 그래서 첫 요청만 보아서는 최악 응답 시간을 얻지 못하고, busy period 안의 요청을 모두 따져 그 최댓값을 취해야 한다.[@burns-arbitrary-deadlines-2017]
 
-FAA 보고서 DOT/FAA/TC-19/22에 따르면 실시간 스케줄링 알고리즘은 태스크가 명시된 [[worst-case-execution-time|WCET]]보다 오래 실행되지 않는다는 가정 아래 수학적으로 증명된다.[@faa-tc-19-22-2019]
+FAA 보고서 DOT/FAA/TC-19/22에 따르면 [[real-time-scheduling|실시간 스케줄링]] 알고리즘은 태스크가 명시된 [[worst-case-execution-time|WCET]]보다 오래 실행되지 않는다는 가정 아래 수학적으로 증명된다.[@faa-tc-19-22-2019]
 
 태스크가 서로 독립이고 선점할 수 있으면 응답 시간 분석은 필요충분조건 검사다.[@joseph-response-times-1986][@audsley-flexible-scheduling-1993] 그래서 [[rate-monotonic-scheduling|RM]]의 이용률 상한 같은 충분조건 검사가 판정하지 못하는 태스크 집합도 판정한다.[@joseph-response-times-1986][@liu-hard-real-time-1973] 검사의 종류는 [[schedulability-analysis|스케줄링 분석]]에서 다룬다.

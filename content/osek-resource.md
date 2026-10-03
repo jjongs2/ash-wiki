@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**OSEK resource**는 OSEK/VDX OS에서 공유 자원 접근을 조율하는 단위 객체다. 서로 다른 우선순위의 태스크들이 메모리, 하드웨어 영역, 스케줄러, 코드의 특정 구간 같은 공유 자원을 함께 쓸 때, 운영체제는 resource를 통해 그 접근을 조율한다. OSEK/VDX OS 2.2.3 명세는 resource를 [[critical-section|임계 구역]]에 배정하고, 태스크가 `GetResource`로 임계 구역에 들어가 `ReleaseResource`로 나오게 한다. 또 [[priority-inversion|우선순위 역전]]과 [[deadlock|교착 상태]]를 막으려고 OSEK 우선순위 상한 프로토콜을 정한다.[@osek-os-2-2-3-2005] OSEK/VDX의 구성 언어 OIL은 `RESOURCE`를 시스템 객체의 하나로 둔다.[@osek-oil-2-5-2004]
+**OSEK resource**는 [[osek-os|OSEK/VDX OS]]에서 공유 자원 접근을 조율하는 단위 객체다. 서로 다른 우선순위의 [[osek-task|태스크]]들이 메모리, 하드웨어 영역, 스케줄러, 코드의 특정 구간 같은 공유 자원을 함께 쓸 때, 운영체제는 resource를 통해 그 접근을 조율한다. OSEK/VDX OS 2.2.3 명세는 resource를 [[critical-section|임계 구역]]에 배정하고, 태스크가 `GetResource`로 임계 구역에 들어가 `ReleaseResource`로 나오게 한다. 또 [[priority-inversion|우선순위 역전]]과 [[deadlock|교착 상태]]를 막으려고 OSEK [[priority-ceiling-protocol|우선순위 상한 프로토콜]]을 정한다.[@osek-os-2-2-3-2005] OSEK/VDX의 구성 언어 [[osek-implementation-language|OIL]]은 `RESOURCE`를 시스템 객체의 하나로 둔다.[@osek-oil-2-5-2004]
 
 ## Ceiling priority
 
@@ -23,12 +23,12 @@ OSEK/VDX OS 2.2.3 명세는 resource를 쓰는 규칙을 아래처럼 정한다.
 
 - 쥐고 있는 resource를 또 얻는 중첩 접근은 금지된다.
 - 여러 resource를 쥘 때는 나중에 얻은 것부터 먼저 돌려준다(LIFO, Last In, First Out).
-- resource를 쥔 채 `TerminateTask`, `ChainTask`, `Schedule`, `WaitEvent`를 부를 수 없고, ISR도 resource를 쥔 채 끝날 수 없다.
-- 확장 상태에서 `GetResource`는 어떤 태스크나 ISR이 이미 쥔 resource를 얻으려 하거나, 부른 쪽의 정적 우선순위가 ceiling priority보다 높으면 E_OS_ACCESS를 돌려준다. `ReleaseResource`는 어느 태스크나 ISR도 쥐지 않은 resource를 돌려주려 하거나, 다른 resource를 먼저 돌려줘야 하면 E_OS_NOFUNC를 돌려준다.[@osek-os-2-2-3-2005]
+- resource를 쥔 채 `TerminateTask`, `ChainTask`, `Schedule`, `WaitEvent`를 부를 수 없고, [[osek-isr|ISR]]도 resource를 쥔 채 끝날 수 없다.
+- extended status에서 `GetResource`는 어떤 태스크나 ISR이 이미 쥔 resource를 얻으려 하거나, 부른 쪽의 정적 우선순위가 ceiling priority보다 높으면 E_OS_ACCESS를 돌려준다. `ReleaseResource`는 어느 태스크나 ISR도 쥐지 않은 resource를 돌려주려 하거나, 다른 resource를 먼저 돌려줘야 하면 E_OS_NOFUNC를 돌려준다.[@osek-os-2-2-3-2005]
 
 ## 인터럽트 수준으로 넓히기
 
-OSEK/VDX OS 2.2.3 명세는 resource 관리를 인터럽트 수준까지 넓히는 것을 선택 사항으로 두고, 카테고리 2 ISR에서도 `GetResource`와 `ReleaseResource`를 부를 수 있게 한다. 이 확장에서 ISR은 모든 태스크보다 높은 가상 우선순위를 받으므로, ceiling priority는 그 resource를 쓰는 태스크와 ISR의 우선순위 가운데 가장 높은 것 이상이 된다.[@osek-os-2-2-3-2005]
+OSEK/VDX OS 2.2.3 명세는 resource 관리를 인터럽트 수준까지 넓히는 것을 선택 사항으로 두고, category 2 ISR에서도 `GetResource`와 `ReleaseResource`를 부를 수 있게 한다. 이 확장에서 ISR은 모든 태스크보다 높은 가상 우선순위를 받으므로, ceiling priority는 그 resource를 쓰는 태스크와 ISR의 우선순위 가운데 가장 높은 것 이상이 된다.[@osek-os-2-2-3-2005]
 
 ## `RES_SCHEDULER`
 

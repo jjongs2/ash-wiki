@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**PWM Driver**는 AUTOSAR Classic Platform에서 MCAL의 I/O Drivers 그룹에 드는 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 마이크로컨트롤러 안의 PWM(Pulse Width Modulation) 하드웨어를 초기화하고 제어하며, 내보낼 펄스의 duty cycle과 주기를 고르게 한다.[@autosar-cp-sws-pwmdriver-2025]
+**PWM Driver**는 [[autosar-classic-platform|AUTOSAR Classic Platform]]에서 [[microcontroller-abstraction-layer|MCAL]]의 I/O Drivers 그룹에 드는 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 마이크로컨트롤러 안의 PWM(Pulse Width Modulation) 하드웨어를 초기화하고 제어하며, 내보낼 펄스의 duty cycle과 주기를 고르게 한다.[@autosar-cp-sws-pwmdriver-2025]
 
 ## 용어
 

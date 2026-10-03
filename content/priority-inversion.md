@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**우선순위 역전**(priority inversion)은 높은 우선순위 태스크의 실행이 더 낮은 우선순위 태스크 때문에 늦어지는 상황이다. 우선순위 기반 선점형 스케줄링에서 우선순위가 다른 태스크들이 공유 자원을 두고 다툴 때 생길 수 있다.[@sha-real-time-scheduling-ada-1989][@davari-unbounded-priority-inversions-1992]
+**우선순위 역전**(priority inversion)은 높은 우선순위 태스크의 실행이 더 낮은 우선순위 태스크 때문에 늦어지는 상황이다. 우선순위 기반 [[real-time-scheduling|선점형 스케줄링]]에서 우선순위가 다른 태스크들이 공유 자원을 두고 다툴 때 생길 수 있다.[@sha-real-time-scheduling-ada-1989][@davari-unbounded-priority-inversions-1992]
 
 ## 생기는 과정
 
@@ -19,7 +19,7 @@ T1이 블록된 동안 T1, T3와 자원을 공유하지 않는 T2가 준비되�
 
 ![[diagrams/priority-inversion-unbounded-timeline.svg]]
 
-[[priority-inheritance-protocol|기본 우선순위 상속 프로토콜]]과 [[priority-ceiling-protocol|우선순위 상한 프로토콜]]은 모두 제어되지 않는 우선순위 역전 문제를 푼다.[@sha-priority-inheritance-1990] 태스크가 이진 세마포어로 임계 구역을 보호하는 단일 프로세서에서, 우선순위 상한 프로토콜은 높은 우선순위 태스크의 최악 블로킹 시간을 더 낮은 우선순위 태스크의 임계 구역 하나를 실행하는 시간 이하로 줄이고, [[deadlock|교착 상태]]를 막는다. 이 프로토콜을 쓰는 주기 태스크 집합은 태스크마다 최악 블로킹 시간을 넣은 충분조건으로 rate monotonic 스케줄 가능성을 판정할 수 있다.[@sha-real-time-scheduling-ada-1989][@sha-priority-inheritance-1990]
+[[priority-inheritance-protocol|기본 우선순위 상속 프로토콜]]과 [[priority-ceiling-protocol|우선순위 상한 프로토콜]]은 모두 제한 없는 우선순위 역전 문제를 푼다.[@sha-priority-inheritance-1990] 태스크가 이진 세마포어로 임계 구역을 보호하는 단일 프로세서에서, 우선순위 상한 프로토콜은 높은 우선순위 태스크의 최악 블로킹 시간을 더 낮은 우선순위 태스크의 임계 구역 하나를 실행하는 시간 이하로 줄이고, [[deadlock|교착 상태]]를 막는다. 이 프로토콜을 쓰는 [[periodic-task-model|주기 태스크]] 집합은 태스크마다 최악 블로킹 시간을 넣은 충분조건으로 [[rate-monotonic-scheduling|rate monotonic]] 스케줄 가능성을 판정할 수 있다.[@sha-real-time-scheduling-ada-1989][@sha-priority-inheritance-1990]
 
 POSIX 근거 설명에 따르면 기본 우선순위 상속 프로토콜은 우선순위 역전을 임계 구역 길이로 제한해 타이밍 분석을 가능하게 한다.[@ieee-1003-1-preface-2024][@ieee-1003-1-rationale-threads-2024]
 

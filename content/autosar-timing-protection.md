@@ -5,13 +5,13 @@ tags:
 verified: 2026-09-30
 ---
 
-**Timing protection**은 [[autosar-os|AUTOSAR OS]]가 태스크와 category 2 [[osek-isr|ISR]]의 시간 동작을 감시해 timing fault를 찾고 그 전파를 막는 기능이다. 태스크와 category 2 ISR에만 적용되며, category 1 ISR은 보호하지 않는다. scalability class 가운데 SC2와 SC4에 든다.[@autosar-cp-sws-os-2025]
+**Timing protection**은 [[autosar-os|AUTOSAR OS]]가 [[osek-task|태스크]]와 category 2 [[osek-isr|ISR]]의 시간 동작을 감시해 timing fault를 찾고 그 전파를 막는 기능이다. 태스크와 category 2 ISR에만 적용되며, category 1 ISR은 보호하지 않는다. scalability class 가운데 SC2와 SC4에 든다.[@autosar-cp-sws-os-2025]
 
 ## Timing fault
 
-실시간 시스템에서 **timing fault**는 태스크나 인터럽트가 실행 중에 [[deadline|마감 시한]]을 놓치는 것이다. 그런데 마감을 놓친 태스크나 ISR이 원인이 아닐 수 있다. 관련 없는 태스크나 ISR이 너무 오래 간섭하거나 막으면, 그 fault가 번져 다른 태스크나 ISR이 마감을 놓친다.[@autosar-cp-sws-os-2025]
+[[real-time-system|실시간 시스템]]에서 **timing fault**는 태스크나 인터럽트가 실행 중에 [[deadline|마감 시한]]을 놓치는 것이다. 그런데 마감을 놓친 태스크나 ISR이 원인이 아닐 수 있다. 관련 없는 태스크나 ISR이 너무 오래 간섭하거나 막으면, 그 fault가 번져 다른 태스크나 ISR이 마감을 놓친다.[@autosar-cp-sws-os-2025]
 
-[[fixed-priority-scheduling|고정 우선순위]] 선점형 OS에서 마감을 지키는지는 세 요인으로 정해진다. 실행 시간, 우선순위가 낮은 태스크나 ISR이 공유 resource를 잠그거나 인터럽트를 막아 생기는 blocking 시간, 도착 간격이다. AUTOSAR OS는 timing protection에 deadline monitoring을 두지 않고, 대신 이 세 요인을 실행 중에 통제한다.[@autosar-cp-sws-os-2025]
+[[fixed-priority-scheduling|고정 우선순위]] 선점형 OS에서 마감을 지키는지는 세 요인으로 정해진다. 실행 시간, 우선순위가 낮은 태스크나 ISR이 공유 [[osek-resource|resource]]를 잠그거나 인터럽트를 막아 생기는 blocking 시간, 도착 간격이다. AUTOSAR OS는 timing protection에 deadline monitoring을 두지 않고, 대신 이 세 요인을 실행 중에 통제한다.[@autosar-cp-sws-os-2025]
 
 ## Execution budget
 

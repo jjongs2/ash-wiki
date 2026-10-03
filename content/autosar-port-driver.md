@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**Port Driver**는 AUTOSAR Classic Platform에서 MCAL의 I/O Drivers 그룹에 드는 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 마이크로컨트롤러의 포트 구조 전체, 곧 포트와 port pin을 설정하고 초기화한다.[@autosar-cp-sws-portdriver-2025]
+**Port Driver**는 [[autosar-classic-platform|AUTOSAR Classic Platform]]에서 [[microcontroller-abstraction-layer|MCAL]]의 I/O Drivers 그룹에 드는 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 마이크로컨트롤러의 포트 구조 전체, 곧 포트와 port pin을 설정하고 초기화한다.[@autosar-cp-sws-portdriver-2025]
 
 ## 핀 설정
 

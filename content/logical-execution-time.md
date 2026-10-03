@@ -17,7 +17,7 @@ Giotto는 구간 안에서 실제 계산이 언제, 어디서, 어떻게 이뤄�
 
 ![[diagrams/let-interval-read-write.svg]]
 
-AUTOSAR의 Timing Analysis and Design 보고서에 따르면 LET에서는 응답 시간과 데이터 흐름이 실제 스케줄링과 상관없이 고정되어, [[cause-effect-chain|cause-effect chain]]의 종단 간 동작을 결정적으로 명세하고 구현하기가 쉬워진다.[@autosar-fo-tr-timinganalysis-2025]
+[[autosar|AUTOSAR]]의 Timing Analysis and Design 보고서에 따르면 LET에서는 [[response-time-analysis|응답 시간]]과 데이터 흐름이 실제 스케줄링과 상관없이 고정되어, [[cause-effect-chain|cause-effect chain]]의 종단 간 동작을 결정적으로 명세하고 구현하기가 쉬워진다.[@autosar-fo-tr-timinganalysis-2025]
 
 출력은 실행을 마친 때가 아니라 구간이 끝날 때 쓰이므로, 실행이 일찍 끝나도 출력은 앞당겨지지 않는다. 더 빠른 기계를 써도 논리적으로 실행이 빨라지지 않고 기계 이용률만 줄어든다.[@kirsch-logical-execution-time-2012]
 
@@ -29,10 +29,10 @@ SL-LET(System-Level LET)은 LET을 분산 시스템으로 넓힌 것이다. 고�
 
 ## AUTOSAR
 
-AUTOSAR Classic Platform의 Timing Extensions는 LET 구간을 `LET_INTERVAL` 범주의 TimingDescriptionEventChain으로 기술하고, 로컬 ECU에서 runnable이 실행되는 구간을 정하는 데 쓴다. 여러 ECU의 포트 사이 데이터 흐름은 `SL_LET_INTERVAL` 범주의 SL-LET 구간으로 기술한다. SL-LET 구간은 주기보다 길 수 있고, 동기 정확도가 유한한 분산 클럭을 다룬다.[@autosar-cp-tps-timingextensions-2025]
+[[autosar-classic-platform|AUTOSAR Classic Platform]]의 Timing Extensions는 LET 구간을 `LET_INTERVAL` 범주의 [[autosar-event-chain|TimingDescriptionEventChain]]으로 기술하고, 로컬 ECU에서 [[runnable-entity|runnable]]이 실행되는 구간을 정하는 데 쓴다. 여러 ECU의 [[software-component-port|포트]] 사이 데이터 흐름은 `SL_LET_INTERVAL` 범주의 SL-LET 구간으로 기술한다. SL-LET 구간은 주기보다 길 수 있고, 동기 정확도가 유한한 분산 클럭을 다룬다.[@autosar-cp-tps-timingextensions-2025]
 
 ## BET와의 차이
 
-BET(Bounded Execution Time) 모델에서 마감 시한은 상한일 뿐이지만, LET에서 구간의 끝은 출력 시점의 상한이자 논리적 하한이다.[@kirsch-logical-execution-time-2012]
+BET(Bounded Execution Time) 모델에서 [[deadline|마감 시한]]은 상한일 뿐이지만, LET에서 구간의 끝은 출력 시점의 상한이자 논리적 하한이다.[@kirsch-logical-execution-time-2012]
 
 SL-LET은 최적화를 하지 않으면, BET 모델에서는 드물게 나타나는 최악 지연을 보통의 경우로 만든다.[@gemlau-system-level-let-2021]

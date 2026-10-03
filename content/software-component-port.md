@@ -10,7 +10,7 @@ verified: 2026-09-30
 SW-C는 BSW(Basic Software)가 제공하는 AUTOSAR 서비스와도 포트로 이어진다. AUTOSAR 서비스는 표준 port interface로 타입을 정한 포트를 두고, [[autosar-rte|RTE]]가 이 서비스 포트를 SW-C의 포트에 잇는다.[@autosar-cp-sws-rte-2025]
 
 > [!note]
-> AUTOSAR의 MCAL에는 Port Driver라는 BSW 모듈도 있다. Port Driver는 마이크로컨트롤러의 포트 구조 전체를 초기화하고 포트 핀을 설정한다.[@autosar-cp-sws-portdriver-2025]
+> AUTOSAR의 [[microcontroller-abstraction-layer|MCAL]]에는 [[autosar-port-driver|Port Driver]]라는 BSW 모듈도 있다. Port Driver는 마이크로컨트롤러의 포트 구조 전체를 초기화하고 포트 핀을 설정한다.[@autosar-cp-sws-portdriver-2025]
 
 ## P-Port와 R-Port
 
