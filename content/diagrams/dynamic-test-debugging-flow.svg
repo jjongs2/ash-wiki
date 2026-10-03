@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 866 120" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 디버깅 틀 -->
+  <rect x="186" y="20" width="388" height="80" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="200" y="38" font-size="12" fill="var(--text, #727981)">디버깅</text>
+
+  <!-- 테스트 활동 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="50" width="96" height="36" rx="4" />
+    <rect x="614" y="50" width="96" height="36" rx="4" />
+    <rect x="750" y="50" width="96" height="36" rx="4" stroke-dasharray="5 4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="68" y="72.5">동적 테스트</text>
+    <text x="662" y="72.5">확인 테스트</text>
+    <text x="798" y="72.5">회귀 테스트</text>
+  </g>
+
+  <!-- 디버깅 단계 -->
+  <g stroke="var(--blue, #336fb8)" stroke-width="1.5" fill="var(--blue-tint, #336fb8)">
+    <rect x="200" y="50" width="96" height="36" rx="4" />
+    <rect x="332" y="50" width="96" height="36" rx="4" />
+    <rect x="464" y="50" width="96" height="36" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="248" y="72.5">failure 재현</text>
+    <text x="380" y="72.5">결함 진단</text>
+    <text x="512" y="72.5">결함 수정</text>
+  </g>
+
+  <!-- 흐름 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="116" y1="68" x2="198" y2="68" />
+    <line x1="296" y1="68" x2="330" y2="68" />
+    <line x1="428" y1="68" x2="462" y2="68" />
+    <line x1="560" y1="68" x2="612" y2="68" />
+    <line x1="710" y1="68" x2="748" y2="68" stroke-dasharray="5 4" />
+  </g>
+  <text x="151" y="60" text-anchor="middle" font-size="12" fill="var(--text, #727981)">failure</text>
+</svg>

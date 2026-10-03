@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 706 218" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 틀: 테스트 스위트, 펼친 테스트 절차 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4">
+    <rect x="20" y="20" width="666" height="178" rx="4" />
+    <rect x="34" y="50" width="638" height="90" rx="4" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="32" y="38">테스트 스위트</text>
+    <text x="46" y="68">테스트 절차</text>
+  </g>
+
+  <!-- 펼친 테스트 절차: 실행 순서 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="48" y="80" width="100" height="44" rx="4" />
+    <rect x="178" y="80" width="160" height="44" rx="4" />
+    <rect x="368" y="80" width="160" height="44" rx="4" />
+    <rect x="558" y="80" width="100" height="44" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="98" y="98">사전 조건을</text>
+    <text x="98" y="115">갖추는 동작</text>
+    <text x="258" y="98">테스트 케이스</text>
+    <text x="258" y="115" font-size="12">사전 조건, 입력, 기대 결과</text>
+    <text x="448" y="98">테스트 케이스</text>
+    <text x="448" y="115" font-size="12">사전 조건, 입력, 기대 결과</text>
+    <text x="608" y="98">실행 뒤의</text>
+    <text x="608" y="115">마무리 활동</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="148" y1="102" x2="176" y2="102" />
+    <line x1="338" y1="102" x2="366" y2="102" />
+    <line x1="528" y1="102" x2="556" y2="102" />
+  </g>
+
+  <!-- 접은 테스트 절차 -->
+  <rect x="34" y="152" width="638" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="353" y="172.5" text-anchor="middle" fill="var(--text, #727981)">테스트 절차</text>
+</svg>
