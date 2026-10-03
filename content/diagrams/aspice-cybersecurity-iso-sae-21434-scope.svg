@@ -17,6 +17,6 @@
   <path d="M328 118 V124 H604 V118" stroke="var(--ink, #727981)" stroke-width="1" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="466" y="146" font-size="12">Automotive SPICE for Cybersecurity 2.0의 범위 밖</text>
-    <text x="466" y="164" font-size="12">ISO/PAS 5112가 다룸, CSMS 감사의 대상</text>
+    <text x="466" y="164" font-size="12">ISO/PAS 5112와 CSMS 감사의 몫</text>
   </g>
 </svg>

@@ -37,7 +37,7 @@ ISO/SAE 21434:2021은 5절부터 15절까지 절마다 목표, 조항, 작업 �
 
 ![[diagrams/iso-sae-21434-provision-identifier.svg]]
 
-조직 수준의 사이버보안 관리가 UN R155의 CSMS와 어떻게 이어지는지는 [[cybersecurity-management-system#ISO/SAE 21434와의 관계|CSMS와 ISO/SAE 21434의 관계]]에서 다룬다.
+조직 수준의 사이버보안 관리가 [[un-r155|UN R155]]의 [[cybersecurity-management-system|CSMS]]와 어떻게 이어지는지는 [[cybersecurity-management-system#ISO/SAE 21434와의 관계|CSMS와 ISO/SAE 21434의 관계]]에서 다룬다.
 
 ## 개정 이력
 
@@ -46,4 +46,4 @@ ISO/SAE 21434:2021은 5절부터 15절까지 절마다 목표, 조항, 작업 �
 
 ## ISO 26262와의 관계
 
-[[iso-26262|ISO 26262]]는 [[functional-safety|기능 안전]]을, ISO/SAE 21434는 사이버보안을 다루며, 두 표준은 서로 보완한다.[@iso-sae-21434-2021] ISO/SAE 21434:2021은 인용 규격으로 ISO 26262-3:2018 하나를 두고, 아이템(item)과 감사(audit)의 정의를 ISO 26262-1:2018의 정의를 고쳐 가져온다.[@iso-sae-21434-obp-2021]
+[[iso-26262|ISO 26262]]:2018은 [[functional-safety|기능 안전]]을, ISO/SAE 21434:2021은 사이버보안을 다루며, 두 표준은 서로 보완한다.[@iso-sae-21434-2021] ISO/SAE 21434:2021은 인용 규격으로 ISO 26262-3:2018 하나를 두고, 아이템(item)과 감사(audit)의 정의를 ISO 26262-1:2018의 정의를 고쳐 가져온다.[@iso-sae-21434-obp-2021]

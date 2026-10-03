@@ -10,7 +10,7 @@ edition: 2025
 status: 유효
 ---
 
-**Automotive SPICE for Cybersecurity**는 사이버보안 엔지니어링을 위한 [[automotive-spice-process-reference-model|프로세스 참조 모델]]과 프로세스 평가 모델을 정의해 [[automotive-spice|ASPICE]]를 보완하는 VDA QMC의 문서다.[@vda-automotive-spice-cybersecurity-2025]
+**Automotive SPICE for Cybersecurity**는 [[cybersecurity|사이버보안]] 엔지니어링을 위한 [[automotive-spice-process-reference-model|프로세스 참조 모델]]과 [[automotive-spice-process-assessment-model|프로세스 평가 모델]]을 정의해 [[automotive-spice|ASPICE]]를 보완하는 VDA QMC의 문서다.[@vda-automotive-spice-cybersecurity-2025]
 
 ## 범위
 
@@ -25,15 +25,15 @@ Automotive SPICE for Cybersecurity 2.0은 ASPICE 4.0을 보완해, ASPICE의 평
 | SEC.3    | Risk Treatment Verification            | 주 프로세스   |
 | SEC.4    | Risk Treatment Validation              | 주 프로세스   |
 
-ACQ.2는 ASPICE 4.0의 프로세스 참조 모델에는 없고, Automotive SPICE for Cybersecurity 2.0이 정의한다.[@vda-automotive-spice-cybersecurity-2025][@vda-automotive-spice-pam-4-0-2023]
+ACQ.2는 ASPICE 4.1의 프로세스 참조 모델에는 없고, Automotive SPICE for Cybersecurity 2.0이 정의한다.[@vda-automotive-spice-cybersecurity-2025][@vda-automotive-spice-pam-4-1-2026]
 
 Automotive SPICE for Cybersecurity 2.0으로 평가하려면 권장 VDA scope에 대한 ASPICE 평가 결과가 먼저 있어야 한다. 그것이 없으면 VDA scope의 프로세스를 이 문서의 프로세스 평가 모델과 ASPICE의 프로세스 평가 모델로 함께 평가해야 한다. 평가 범위는 평가 의뢰자가 정한다. 기존 평가 결과를 쓰면 SUP(지원) 그룹은 다시 평가하지 않아도 되고, 공급자가 사이버보안 목표의 확인(validation)에 관여하지 않으면 SEC.4를 범위에서 뺄 수 있다.[@vda-automotive-spice-cybersecurity-2025]
 
-Automotive SPICE for Cybersecurity 2.0은 [[iso-sae-21434|ISO/SAE 21434]] 가운데 개발 프로젝트 안에서 하지 않는 측면을 범위에서 뺀다. 이 측면은 ISO/PAS(Publicly Available Specification) 5112가 다루고 [[cybersecurity-management-system|CSMS]] 감사의 대상이다.[@vda-automotive-spice-cybersecurity-2025]
+Automotive SPICE for Cybersecurity 2.0은 [[iso-sae-21434|ISO/SAE 21434]] 가운데 개발 프로젝트 안에서 하지 않는 측면을 범위에서 빼고, 이 측면을 ISO/PAS(Publicly Available Specification) 5112와 [[cybersecurity-management-system|CSMS]] 감사의 몫으로 둔다.[@vda-automotive-spice-cybersecurity-2025]
 
 ![[diagrams/aspice-cybersecurity-iso-sae-21434-scope.svg]]
 
-Automotive SPICE for Cybersecurity 2판은 두 부로 이뤄진다. Part I은 사이버보안 엔지니어링의 프로세스 참조 모델과 프로세스 평가 모델이고, Part II는 Part I의 프로세스에 대해 프로세스 수행([[process-capability-level|능력 수준]] 1)을 평정하는 지침이다. VDA QMC는 Part I에 해당하는 프로세스 평가 모델 2.0을 무료 PDF로 공개하고, 두 부를 묶은 2판은 인쇄본으로 판다.[@vda-automotive-spice-cybersecurity-webshop-2025][@vda-automotive-spice-publications-2026]
+Automotive SPICE for Cybersecurity 2.0의 인쇄본(2판)은 두 부로 이뤄진다. Part I은 사이버보안 엔지니어링의 프로세스 참조 모델과 프로세스 평가 모델이고, Part II는 Part I의 프로세스에 대해 프로세스 수행([[process-capability-level|능력 수준]] 1)을 평정하는 지침이다. VDA QMC는 Part I에 해당하는 프로세스 평가 모델 2.0을 무료 PDF로 공개하고, 두 부를 묶은 인쇄본을 판다.[@vda-automotive-spice-cybersecurity-webshop-2025][@vda-automotive-spice-publications-2026]
 
 ## 개정 이력
 
