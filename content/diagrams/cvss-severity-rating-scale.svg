@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -0.5 662.5 118.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <text x="40" y="18" font-size="12" fill="var(--text, #727981)">CVSS v4.0</text>
+
+  <!-- 점수 1.0 = 60 단위, 0.0 = x 40, 10.0 = x 640 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="46" y="30" width="234" height="44" rx="4" />
+    <rect x="280" y="30" width="180" height="44" rx="4" />
+    <rect x="460" y="30" width="120" height="44" rx="4" />
+    <rect x="580" y="30" width="60" height="44" rx="4" />
+  </g>
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="163" y="49">low</text>
+    <text x="370" y="49">medium</text>
+    <text x="520" y="49">high</text>
+    <text x="610" y="49">critical</text>
+  </g>
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="163" y="66">0.1~3.9</text>
+    <text x="370" y="66">4.0~6.9</text>
+    <text x="520" y="66">7.0~8.9</text>
+    <text x="610" y="66">9.0~10.0</text>
+  </g>
+  <text x="34" y="57" text-anchor="end" font-size="12" fill="var(--text, #727981)">none</text>
+
+  <!-- 점수 축 -->
+  <line x1="40" y1="86" x2="640" y2="86" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <path d="M40 86 v6 M280 86 v6 M460 86 v6 M580 86 v6 M640 86 v6" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="40" y="108">0.0</text>
+    <text x="640" y="108">10.0</text>
+  </g>
+</svg>
