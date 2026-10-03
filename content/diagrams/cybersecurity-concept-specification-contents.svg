@@ -10,7 +10,7 @@
   <rect x="20.75" y="20.75" width="238.5" height="158.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="140" y="41" font-size="13">Cybersecurity concept</text>
-    <text x="140" y="58">9 Concept</text>
+    <text x="140" y="58">9절 Concept</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="32.75" y="70.75" width="214.5" height="26.5" rx="2" />
@@ -27,7 +27,7 @@
   <rect x="300.75" y="20.75" width="238.5" height="158.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="420" y="41" font-size="13">Cybersecurity specification</text>
-    <text x="420" y="58">10 Product development</text>
+    <text x="420" y="58">10절 Product development</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="312.75" y="70.75" width="214.5" height="26.5" rx="2" />

@@ -11,11 +11,11 @@ ISO/SAE 21434:2021은 **cybersecurity concept**을 세 가지, 곧 아이템의 
 
 ## Cybersecurity requirement
 
-Automotive SPICE for Cybersecurity 2.0은 SEC.1 프로세스에서 사이버보안 요구사항을 cybersecurity goal에서 끌어내게 한다.[@vda-automotive-spice-cybersecurity-2-0-2025] 설계 단계에서 요구사항에 대응하는 설계를 함께 정한 것은 [[cybersecurity-specification|cybersecurity specification]]에서 다룬다.
+Automotive SPICE for Cybersecurity 2.0은 SEC.1 프로세스에서 사이버보안 요구사항을 cybersecurity goal에서 끌어내게 한다.[@vda-automotive-spice-cybersecurity-2025] 설계 단계에서 요구사항에 대응하는 설계를 함께 정한 것은 [[cybersecurity-specification|cybersecurity specification]]에서 다룬다.
 
 ## Cybersecurity control
 
-ISO/SAE 21434:2021은 **cybersecurity control**을 리스크를 바꾸는 조치로 정의한다.[@iso-sae-21434-obp-2021] Automotive SPICE for Cybersecurity 2.0은 control을 대개 사이버보안 리스크를 탐지하거나, 그에 대응하거나, 줄이는 기술적 조치나 그 밖의 해결책으로 두고, 하나 이상의 사이버보안 요구사항과 연결된 것으로 둔다.[@vda-automotive-spice-cybersecurity-2-0-2025]
+ISO/SAE 21434:2021은 **cybersecurity control**을 리스크를 바꾸는 조치로 정의한다.[@iso-sae-21434-obp-2021] Automotive SPICE for Cybersecurity 2.0은 control을 대개 사이버보안 리스크를 탐지하거나, 그에 대응하거나, 줄이는 기술적 조치나 그 밖의 해결책으로 두고, 하나 이상의 사이버보안 요구사항과 연결된 것으로 둔다.[@vda-automotive-spice-cybersecurity-2025]
 
 NIST 용어집은 security control을 시스템과 그 컴포넌트, 프로세스, 데이터의 기밀성, 무결성, 가용성을 지키려고 시스템에 정한 관리적, 운영적, 기술적 control로 정의하며, safeguard나 countermeasure라고도 부른다.[@nist-csrc-glossary-security-control-2026]
 
