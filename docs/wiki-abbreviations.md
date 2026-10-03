@@ -17,10 +17,12 @@
 - CCSDS: 표준화 기구
 - CERT: 표준화 기구
 - CiA: 표준화 기구
+- CISA: 표준화 기구
 - CISPR: 표준화 기구
 - CMSIS-RTOS2: 표준·규격 이름
 - CPU: 널리 쓰이는 약어
 - CRS_DV: 핀과 신호
+- DoD: 표준화 기구
 - ECU: 널리 쓰이는 약어
 - EIA: 표준화 기구
 - ENISA: 표준화 기구
@@ -51,6 +53,7 @@
 - NHTSA: 표준화 기구
 - NIST: 표준화 기구
 - NMEA: 표준화 기구
+- NSA: 표준화 기구
 - OASIS: 표준화 기구
 - OMA: 표준화 기구
 - OSEK/VDX: 표준·규격 이름
