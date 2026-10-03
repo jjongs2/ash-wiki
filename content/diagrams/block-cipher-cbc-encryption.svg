@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 10 504 228" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--blue, #336fb8)" />
+    </marker>
+  </defs>
+
+  <!-- 평문 블록 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="118" y="20" width="64" height="28" rx="2" />
+    <rect x="278" y="20" width="64" height="28" rx="2" />
+    <rect x="438" y="20" width="64" height="28" rx="2" />
+    <rect x="30" y="76" width="56" height="28" rx="2" />
+    <rect x="106" y="128" width="88" height="36" rx="4" />
+    <rect x="266" y="128" width="88" height="36" rx="4" />
+    <rect x="426" y="128" width="88" height="36" rx="4" />
+  </g>
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="150" y="39">P<tspan dy="4" font-size="10">1</tspan></text>
+    <text x="310" y="39">P<tspan dy="4" font-size="10">2</tspan></text>
+    <text x="470" y="39">P<tspan dy="4" font-size="10">3</tspan></text>
+    <text x="58" y="95">IV</text>
+    <text x="150" y="151">CIPH<tspan dy="4" font-size="10">K</tspan></text>
+    <text x="310" y="151">CIPH<tspan dy="4" font-size="10">K</tspan></text>
+    <text x="470" y="151">CIPH<tspan dy="4" font-size="10">K</tspan></text>
+  </g>
+
+  <!-- 배타적 논리합 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <circle cx="150" cy="90" r="10" />
+    <path d="M140 90 H160 M150 80 V100" />
+    <circle cx="310" cy="90" r="10" />
+    <path d="M300 90 H320 M310 80 V100" />
+    <circle cx="470" cy="90" r="10" />
+    <path d="M460 90 H480 M470 80 V100" />
+  </g>
+
+  <!-- 평문, IV, 순방향 함수로 가는 화살표 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow-ink)">
+    <line x1="150" y1="48" x2="150" y2="78" />
+    <line x1="310" y1="48" x2="310" y2="78" />
+    <line x1="470" y1="48" x2="470" y2="78" />
+    <line x1="86" y1="90" x2="138" y2="90" />
+    <line x1="150" y1="100" x2="150" y2="126" />
+    <line x1="310" y1="100" x2="310" y2="126" />
+    <line x1="470" y1="100" x2="470" y2="126" />
+  </g>
+
+  <!-- 암호문 블록과 되먹임 -->
+  <g stroke="var(--blue, #336fb8)" stroke-width="1.5" marker-end="url(#arrow-blue)">
+    <line x1="150" y1="164" x2="150" y2="198" />
+    <line x1="310" y1="164" x2="310" y2="198" />
+    <line x1="470" y1="164" x2="470" y2="198" />
+    <path d="M150 182 H230 V90 H298" />
+    <path d="M310 182 H390 V90 H458" />
+  </g>
+  <g fill="var(--blue, #336fb8)">
+    <circle cx="150" cy="182" r="3" />
+    <circle cx="310" cy="182" r="3" />
+  </g>
+  <g stroke="var(--blue, #336fb8)" stroke-width="1.5" fill="var(--blue-tint, #336fb8)">
+    <rect x="118" y="200" width="64" height="28" rx="2" />
+    <rect x="278" y="200" width="64" height="28" rx="2" />
+    <rect x="438" y="200" width="64" height="28" rx="2" />
+  </g>
+  <g fill="var(--on-fill, #f8fafd)" text-anchor="middle">
+    <text x="150" y="219">C<tspan dy="4" font-size="10">1</tspan></text>
+    <text x="310" y="219">C<tspan dy="4" font-size="10">2</tspan></text>
+    <text x="470" y="219">C<tspan dy="4" font-size="10">3</tspan></text>
+  </g>
+</svg>
