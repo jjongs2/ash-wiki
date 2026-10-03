@@ -42,4 +42,4 @@ R156 해석 문서는 [[iso-24089|ISO 24089]]:2023이 SUMS 요구를 구현하�
 
 ## CSMS와의 관계
 
-R156 해석 문서는 업데이트를 조작에서 보호하고 업데이트 프로세스를 침해에서 보호함을 입증하는 데 CSMS를 쓸 수 있다고 본다.[@unece-r156-interpretation-2025]
+R156 해석 문서는 업데이트를 조작에서 보호하고 업데이트 프로세스를 침해에서 보호함을 입증하는 데 [[cybersecurity-management-system|CSMS]]를 쓸 수 있다고 본다.[@unece-r156-interpretation-2025]
