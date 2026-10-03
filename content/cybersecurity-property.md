@@ -7,9 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**사이버보안 속성**(cybersecurity property)은 보호할 가치가 있을 수 있는 속성이다. [[iso-sae-21434|ISO/SAE 21434:2021]]은 이렇게 정의하고, 그 예로 기밀성, 무결성, 가용성을 든다. 이 표준은 자산(asset)이 사이버보안 속성을 하나 이상 지니고 그 속성이 훼손되면 피해 시나리오(damage scenario)가 하나 이상 생길 수 있다고 보고, 위협 시나리오(threat scenario)를 피해 시나리오를 실현하려고 자산의 사이버보안 속성을 침해할 수 있는 원인으로 정의한다.[@iso-sae-21434-obp-2021] 자산과 위협 시나리오를 비롯한 용어는 [[threat-analysis-and-risk-assessment#용어|TARA]]에서 다룬다.
-
-![[diagrams/cybersecurity-property-threat-damage.svg]]
+**사이버보안 속성**(cybersecurity property)은 보호할 가치가 있을 수 있는 속성이다. [[iso-sae-21434|ISO/SAE 21434:2021]]은 이렇게 정의하고, 그 예로 기밀성, 무결성, 가용성을 든다.[@iso-sae-21434-obp-2021] 사이버보안 속성을 지니는 자산(asset)과, 그 속성을 침해하는 위협 시나리오(threat scenario)의 정의는 [[threat-analysis-and-risk-assessment#용어|TARA]]에서 다룬다.
 
 NIST는 기밀성, 무결성, 가용성 셋을 CIA triad라 부른다.[@nist-sp-1800-28-2024]
 

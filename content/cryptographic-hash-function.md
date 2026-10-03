@@ -13,9 +13,9 @@ FIPS 180-4가 정한 해시 알고리즘은 메시지가 조금이라도 바뀌�
 
 ## 보안 성질
 
-- 역상 저항(preimage resistance): 해시 값 하나가 주어질 때, 그 해시 값을 내는 입력을 찾는 것이 계산상 불가능하다.
-- 제2역상 저항(second preimage resistance): 입력 하나가 주어질 때, 같은 해시 값을 내는 다른 입력을 찾는 것이 계산상 불가능하다.
-- 충돌 저항(collision resistance): 해시 값이 같은 서로 다른 두 입력을 찾는 것이 계산상 불가능하다.[@nist-sp-800-107-r1-2012][@ietf-rfc-4949-2007]
+- **역상 저항**(preimage resistance): 해시 값 하나가 주어질 때, 그 해시 값을 내는 입력을 찾는 것이 계산상 불가능하다.
+- **제2역상 저항**(second preimage resistance): 입력 하나가 주어질 때, 같은 해시 값을 내는 다른 입력을 찾는 것이 계산상 불가능하다.
+- **충돌 저항**(collision resistance): 해시 값이 같은 서로 다른 두 입력을 찾는 것이 계산상 불가능하다.[@nist-sp-800-107-r1-2012][@ietf-rfc-4949-2007]
 
 ![[diagrams/hash-function-security-properties.svg]]
 

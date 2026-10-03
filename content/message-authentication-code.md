@@ -25,7 +25,7 @@ FIPS 198-1은 [[cryptographic-hash-function|암호학적 해시 함수]]와 비�
 
 ![[diagrams/hmac-nested-hash.svg]]
 
-NIST SP 800-175B Rev. 1은 HMAC을 FIPS 180이나 FIPS 202에 정한 승인된 해시 함수와 함께 쓰도록 승인한다.[@nist-sp-800-175b-r1-2020]
+NIST SP 800-175B Rev. 1은 HMAC을 FIPS 180-4나 FIPS 202에 정한 승인된 해시 함수와 함께 쓰도록 승인한다.[@nist-sp-800-175b-r1-2020]
 
 ## 해시만 쓸 때와의 차이
 
