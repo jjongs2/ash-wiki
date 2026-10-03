@@ -7,11 +7,11 @@ aliases:
 verified: 2026-10-03
 ---
 
-[[un-r156|UN R156]]에서 **OTA**(Over-The-Air) 업데이트는 케이블이나 다른 로컬 연결 대신 무선으로 데이터를 전송하는 모든 방법이다.[@unece-r156-2021]
+[[un-r156|UN R156]] 원판과 01 시리즈는 **OTA**(Over-The-Air) 업데이트를 케이블이나 다른 로컬 연결 대신 무선으로 데이터를 전송하는 모든 방법으로 정의한다.[@unece-r156-2021]
 
 ## 유선 업데이트와의 차이
 
-[[iso-24089|ISO 24089]]:2023의 소개에 따르면 차량 소프트웨어는 정비소에서 숙련자가 업데이트하거나, 차량 사용자가 무선으로 업데이트한다. ISO 24089:2023은 소프트웨어 업데이트 배포 방법의 예로 유선(도구, USB 플래시 드라이브), 무선(셀룰러, Wi-Fi), 하드웨어 교체를 든다.[@iso-24089-obp-2023]
+[[iso-24089|ISO 24089]]:2023은 소개에서, 차량 소프트웨어를 정비소에서 숙련자가 업데이트하거나 차량 사용자가 무선으로 업데이트한다고 밝힌다. ISO 24089:2023은 소프트웨어 업데이트 배포 방법의 예로 유선(도구, USB 플래시 드라이브), 무선(셀룰러, Wi-Fi), 하드웨어 교체를 든다.[@iso-24089-obp-2023]
 
 산업통상자원부에 따르면 전에는 정비소를 찾아야만 전자제어장치의 소프트웨어를 업데이트할 수 있었고, OTA 업데이트는 정비소에 가지 않고 원하는 시간과 장소에서 무선 통신으로 업데이트하게 한다.[@motie-sandbox-ota-2020] 정비소에서 진단 통신으로 하는 재프로그래밍은 [[ecu-reprogramming|ECU 재프로그래밍]]에서 다룬다.
 
@@ -23,7 +23,11 @@ verified: 2026-10-03
 
 Uptane은 지상 차량의 소프트웨어 업데이트 시스템을 보호하는 보안 프레임워크다. Uptane 표준 2.1.0은 차량의 버전 정보를 모아 서버에 보내고 자기와 다른 ECU를 위한 메타데이터와 이미지를 내려받아 검증하는 ECU를 primary ECU라 하고, primary ECU에게서 이미지를 받아 검증한 뒤 설치하는 ECU를 secondary ECU라 한다. primary ECU는 서버와 통신하는 ECU와 같은 ECU여도 된다.[@uptane-standard-2023]
 
+![[diagrams/uptane-primary-secondary-ecu.svg]]
+
 [[autosar|AUTOSAR]] R25-11의 Adaptive Platform에서는 기능 클러스터 UCM(Update and Configuration Management)이 Adaptive Platform 하나의 소프트웨어 변경을 맡는다. 백엔드는 소프트웨어 패키지를 보관하는 서버이고, 백엔드에서 패키지를 내려받는 일은 UCM이 아닌 OTA Client가 맡는다.[@autosar-ap-sws-updateandconfigurationmanagement-2025] V-UCM(Vehicle Update and Configuration Management)은 차량 안의 업데이트 캠페인을 조율하는 기능 클러스터로, 차량 패키지를 해석해 각 머신의 UCM이나 Flashing Adapter에 소프트웨어 패키지를 보내고 처리, 활성화, 롤백을 조율한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] AUTOSAR R23-11은 UCM Master를 V-UCM이라는 별도 명세로 나눴다.[@autosar-ap-sws-updateandconfigurationmanagement-2025] 진단으로 플래시하는 ECU를 V-UCM이 업데이트하는 방식은 [[ecu-reprogramming#정비소와 OTA|ECU 재프로그래밍의 정비소와 OTA]]에서 다룬다.
+
+![[diagrams/autosar-v-ucm-update-targets.svg]]
 
 기능을 중앙 컴퓨터에 모은 [[ee-architecture|E/E 아키텍처]]는 OTA 업데이트로 차량 기능을 바꾸거나 더하기 쉽게 한다.[@bosch-ee-architecture-2026][@ti-slyy236-2025]
 
@@ -35,7 +39,7 @@ ISO 24089:2023은 차량, 차량 시스템, ECU에서 업데이트 패키지를 
 - **설치**(installation): 패키지의 해당 부분을 쓰되 아직 활성화하지 않은 단계
 - **활성화**(activation): 설치된 부분이 실행 가능해지는 단계[@iso-24089-obp-2023]
 
-패키지를 대상 차량에 배포하고 결과를 기록하는 일은 [[iso-24089#용어|ISO 24089의 소프트웨어 업데이트 캠페인]]에 든다.[@iso-24089-obp-2023] UN R156에서 실행(execution)은 내려받은 업데이트를 설치하고 활성화하는 과정이다.[@unece-r156-2021] AUTOSAR R25-11의 UCM은 업데이트 한 주기를 패키지를 전송하고 처리하는 준비 단계, 의존성을 검사하고 활성화하고 검증하는 활성화 단계, 정리 단계로 나눈다.[@autosar-ap-sws-updateandconfigurationmanagement-2025]
+패키지를 대상 차량에 배포하고 결과를 기록하는 일은 [[iso-24089#용어|ISO 24089의 소프트웨어 업데이트 캠페인]]에 든다.[@iso-24089-obp-2023] UN R156 원판과 01 시리즈는 내려받은 업데이트를 설치하고 활성화하는 과정을 실행(execution)으로 정의한다.[@unece-r156-2021] AUTOSAR R25-11의 UCM은 업데이트 한 주기를 패키지를 전송하고 처리하는 준비 단계, 의존성을 검사하고 활성화하고 검증하는 활성화 단계, 정리 단계로 나눈다.[@autosar-ap-sws-updateandconfigurationmanagement-2025]
 
 ### 안전 조건과 사용자
 

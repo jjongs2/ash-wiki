@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -25 640 259.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 3년 = 300 단위, 발급 = x 20 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="44" width="300" height="32" rx="4" />
+    <rect x="320" y="44" width="300" height="32" rx="4" stroke-dasharray="5 4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="170" y="64.5">SUMS 적합 인증서의 유효 기간</text>
+    <text x="470" y="64.5">유효 기간을 3년 늘림</text>
+  </g>
+
+  <!-- 또는 새 인증서 -->
+  <circle cx="320" cy="104" r="4" fill="var(--ink, #727981)" />
+  <text x="332" y="108.5" fill="var(--text, #727981)">또는 새 인증서 발급</text>
+
+  <!-- 유효 기간이 끝날 때 -->
+  <line x1="320" y1="34" x2="320" y2="132" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+  <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
+    <text x="320" y="4">유효 기간이 끝날 때</text>
+    <text x="320" y="20">긍정적 평가를 거쳐</text>
+  </g>
+
+  <!-- 기간 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1">
+    <path d="M20 146 V152 H320 V146" />
+    <path d="M320 146 V152 H620 V146" />
+  </g>
+  <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
+    <text x="170" y="170">발급일부터 최대 3년</text>
+    <text x="470" y="170">3년</text>
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="20" y="196">요구를 더는 충족하지 않으면 승인 당국이 인증서를 철회할 수 있다</text>
+    <text x="20" y="214">인증서가 만료돼도 기존 차량 형식 승인은 유효하다</text>
+  </g>
+</svg>

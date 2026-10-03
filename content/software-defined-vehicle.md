@@ -13,6 +13,8 @@ verified: 2026-10-03
 
 SDV에서는 하드웨어를 바꾸지 않고 소프트웨어만 갱신해 기능을 더할 수 있다.[@ti-slyy236-2025][@bosch-software-defined-vehicle-2026] SDV는 응용 소프트웨어를 특정 하드웨어에 묶지 않는 플랫폼 위에서 개발해, 같은 소프트웨어를 여러 차종에 다시 쓸 수 있게 한다.[@ti-slyy236-2025][@nxp-future-of-sdvs-2024] NXP에 따르면 하드웨어와 소프트웨어를 떼어 내면 시제품 하드웨어가 나오기 전에도 소프트웨어를 개발할 수 있다.[@nxp-future-of-sdvs-2024]
 
+![[diagrams/sdv-software-reuse-across-vehicles.svg]]
+
 ## 수명주기
 
 SDV에서는 소프트웨어 개발이 차량의 수명주기 내내 이어진다.[@nxp-future-of-sdvs-2024][@bosch-software-defined-vehicle-2026] Bosch에 따르면 지금까지의 차량은 공장을 떠날 때 가장 좋은 상태였고, 구성 선택지가 구매 시점에 한정됐다.[@bosch-software-defined-vehicle-2026] NXP에 따르면 기존 차량의 펌웨어 업데이트는 대개 정비 때만 적용하는 필수적이거나 제한된 것이었다.[@nxp-future-of-sdvs-2024]

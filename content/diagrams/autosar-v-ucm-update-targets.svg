@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 370" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 차량 -->
+  <rect x="186" y="20" width="574" height="330" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="202" y="42" fill="var(--text, #727981)" font-weight="600">차량</text>
+
+  <!-- 상자 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="56" width="136" height="52" rx="4" />
+    <rect x="210" y="56" width="136" height="52" rx="4" />
+    <rect x="410" y="56" width="150" height="52" rx="4" />
+    <path d="M216 168 V162 H352 V214 H346" fill="none" />
+    <rect x="210" y="168" width="136" height="52" rx="4" />
+    <rect x="410" y="168" width="150" height="52" rx="4" />
+    <rect x="620" y="168" width="120" height="52" rx="4" />
+    <rect x="210" y="280" width="136" height="52" rx="4" />
+    <rect x="620" y="280" width="120" height="52" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="88" y="78">백엔드</text>
+    <text x="88" y="96" font-size="12">소프트웨어 패키지 보관</text>
+    <text x="278" y="78">OTA Client</text>
+    <text x="278" y="96" font-size="12">패키지 내려받기</text>
+    <text x="485" y="78">V-UCM</text>
+    <text x="485" y="96" font-size="12">업데이트 캠페인 조율</text>
+    <text x="278" y="198.5">각 머신의 UCM</text>
+    <text x="485" y="198.5">Flashing Adapter</text>
+    <text x="680" y="190">D-PDU API</text>
+    <text x="680" y="208" font-size="12">ISO 22900-2</text>
+    <text x="278" y="310.5">진단 애플리케이션</text>
+    <text x="680" y="302">Classic Platform</text>
+    <text x="680" y="320">ECU</text>
+  </g>
+
+  <!-- 흐름 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="156" y1="82" x2="208" y2="82" />
+    <line x1="346" y1="82" x2="408" y2="82" />
+    <path d="M450 108 V138 H278 V160" />
+    <line x1="485" y1="108" x2="485" y2="166" />
+    <line x1="560" y1="194" x2="618" y2="194" />
+    <line x1="680" y1="220" x2="680" y2="278" />
+    <line x1="278" y1="280" x2="278" y2="222" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="364" y="131" text-anchor="middle">소프트웨어 패키지</text>
+    <text x="670" y="246" text-anchor="end">CAN 위의 UDS</text>
+    <text x="670" y="262" text-anchor="end">DoIP 위의 UDS</text>
+    <text x="20" y="346">AUTOSAR R25-11</text>
+  </g>
+</svg>
