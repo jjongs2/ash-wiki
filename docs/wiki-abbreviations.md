@@ -8,6 +8,7 @@
 - ANSI: 표준화 기구
 - ASAM: 표준화 기구
 - AUTOSAR: 표준·규격 이름
+- BSI: 표준화 기구
 - CAN_H: 핀과 신호
 - CAN_L: 핀과 신호
 - CCSDS: 표준화 기구
