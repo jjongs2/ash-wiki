@@ -29,16 +29,18 @@ Automotive SPICE for Cybersecurity는 VDA QMC가 펴내는 [[automotive-spice|AS
 
 ### 수단과 기법
 
-SEC.3의 검증 수단에는 명세되지 않은 기능의 확인, 제어 흐름과 데이터 흐름의 동적 검증, 보안 코딩 표준에 초점을 둔 [[static-analysis|정적 분석]]이 들 수 있다. 검증 방법과 기법으로는 비인가 명령, 잘못된 해시 키를 가진 신호, 메시지 폭주처럼 공격을 모사하는 네트워크 테스트와 brute force 공격 모사가 들 수 있고, 감사와 리뷰 같은 기법도 들 수 있다.
+SEC.3의 검증 수단에는 명세되지 않은 기능의 확인, 제어 흐름과 데이터 흐름의 동적 검증, 보안 코딩 표준에 초점을 둔 [[static-analysis|정적 분석]]이 들 수 있다. 검증 방법과 기법으로는 비인가 명령, 잘못된 해시 키를 가진 신호, 메시지 폭주처럼 공격을 모사하는 네트워크 테스트와 brute force 공격 모사가 들 수 있고, 감사와 리뷰 같은 기법도 들 수 있다.[@vda-automotive-spice-cybersecurity-2-0-2025]
 
-SEC.3.BP2는 회귀 검증 기준을 포함한 선택 기준으로 검증 수단을 고르고 그 선택을 문서로 남기게 하며, 고른 수단은 릴리스 범위에 맞는 충분한 커버리지를 가져야 한다. 선택 기준의 예로는 요구사항 우선순위, 지속적 개발, 회귀 검증의 필요, 테스트 벤치나 테스트 트랙, 공공 도로 같은 릴리스의 용도가 있다.
+SEC.3.BP2는 회귀 검증 기준을 포함한 선택 기준으로 검증 수단을 고르고 그 선택을 문서로 남기게 하며, 고른 수단은 릴리스 범위를 충분히 덮어야 한다. 선택 기준의 예로는 요구사항 우선순위, 지속적 개발, 회귀 검증의 필요, 테스트 벤치나 테스트 트랙, 공공 도로 같은 릴리스의 용도가 있다.[@vda-automotive-spice-cybersecurity-2-0-2025]
 
-SEC.4의 확인 수단은 보통 아직 찾지 못한 취약점을 찾는 사이버보안 방법을 쓰며, 침투 테스트가 그 예다.
+SEC.4의 확인 수단은 보통 아직 찾지 못한 취약점을 찾는 사이버보안 방법을 쓰며, 침투 테스트가 그 예다.[@vda-automotive-spice-cybersecurity-2-0-2025]
 
 두 프로세스 모두 test case를 [[equivalence-partitioning|동치 분할]], [[boundary-value-analysis|경계값 분석]], 지식이나 경험에 기반한 [[error-guessing|오류 추정]]으로 끌어낼 수 있고, SEC.4는 여기에 negative test를 더한다. 기대 결과와 다른 검증·확인 결과는 두 프로세스 모두 SUP.9(Problem Resolution Management)로 처리한다.[@vda-automotive-spice-cybersecurity-2-0-2025]
 
 ### 추적성
 
-SEC.3.BP4는 검증 수단과 사이버보안 요구사항, 검증 수단과 정련한 architectural design·상세 설계·소프트웨어 유닛 사이에 일관성과 양방향 추적성을 세우고, 검증 결과와 검증 수단 사이에 양방향 추적성을 세운다. SEC.4.BP4는 확인 수단과 cybersecurity goal 사이에 일관성과 양방향 추적성을, 확인 결과와 확인 수단 사이에 양방향 추적성을 세운다. 양방향 추적성은 일관성을 뒷받침하고, 영향 분석을 쉽게 하며, 검증과 확인의 커버리지를 보이는 데 쓰인다.
+SEC.3.BP4는 검증 수단과 사이버보안 요구사항, 검증 수단과 정련한 architectural design·상세 설계·소프트웨어 유닛 사이에 일관성과 양방향 추적성을 세우고, 검증 결과와 검증 수단 사이에 양방향 추적성을 세운다. SEC.4.BP4는 확인 수단과 cybersecurity goal 사이에 일관성과 양방향 추적성을, 확인 결과와 확인 수단 사이에 양방향 추적성을 세운다. 양방향 추적성은 일관성을 뒷받침하고, 영향 분석을 쉽게 하며, 검증과 확인의 커버리지를 보이는 데 쓰인다.[@vda-automotive-spice-cybersecurity-2-0-2025]
 
-SEC.4.BP5가 요약해 전하는 결과에는 확인 활동의 정보와 추가 취약점에 관한 중요한 발견이 들 수 있다.[@vda-automotive-spice-cybersecurity-2-0-2025] 추적성 자체는 [[traceability|추적성]]에서 다룬다.
+![[diagrams/aspice-cybersecurity-traceability.svg]]
+
+SEC.4.BP5가 요약해 전하는 결과에는 확인 활동에서 얻은 정보와, 새로 드러난 취약점에 관한 중요한 발견이 들 수 있다.[@vda-automotive-spice-cybersecurity-2-0-2025] 추적성 자체는 [[traceability|추적성]]에서 다룬다.

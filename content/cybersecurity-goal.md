@@ -20,9 +20,11 @@ Automotive SPICE for Cybersecurity는 VDA QMC가 펴내는 [[automotive-spice|AS
 | 3    | 요구사항과 goal, goal과 threat scenario 사이에 일관성과 양방향 추적성이 유지된다 |
 | 4    | 요구사항이 합의되어 영향받는 모든 당사자에게 전달된다                            |
 
-SEC.1의 BP(base practice)는 셋으로, goal과 요구사항의 명세(BP1), 일관성 확보와 양방향 추적성 수립(BP2), 합의한 요구사항의 전달(BP3)이다.
+SEC.1의 BP(base practice)는 셋으로, goal과 요구사항의 명세(BP1), 일관성 확보와 양방향 추적성 수립(BP2), 합의한 요구사항의 전달(BP3)이다.[@vda-automotive-spice-cybersecurity-2-0-2025]
 
 - BP1은 리스크 감소를 이루도록 리스크 처리 결정에 따라 threat scenario에 대한 goal을 정하고, goal에 대해 기능·비기능 사이버보안 요구사항을 정해 둔 요구사항 특성에 따라 쓰게 한다. 요구사항에는 생산, 운용, 정비, 폐기 같은 post-development 단계에 대한 것도 든다.
 - BP2가 잇는 짝은 둘로, 사이버보안 요구사항과 cybersecurity goal, cybersecurity goal과 threat scenario다.[@vda-automotive-spice-cybersecurity-2-0-2025]
+
+![[diagrams/aspice-cybersecurity-traceability.svg]]
 
 같은 문서의 정보 항목 17-51(Cybersecurity goals)은 goal에 담을 수 있는 정보로 핵심 지표와 성공 기준 등을 든다.[@vda-automotive-spice-cybersecurity-2-0-2025] 양방향 추적성과 일관성 자체는 [[traceability|추적성]]에서 다룬다.

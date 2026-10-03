@@ -9,16 +9,11 @@ verified: 2026-10-03
 
 ## ISO/SAE 21434의 단계
 
-ISO/SAE 21434:2021은 9절부터 14절까지에 단계별 활동을 두고, 이를 concept, product development, post-development의 세 단계로 묶는다. 이 묶음은 활동의 실행 순서를 정하지 않는다.[@iso-sae-21434-obp-2021]
+ISO/SAE 21434:2021은 9절부터 14절까지에 단계별 활동을 두고, 이를 세 단계로 묶는다. 이 묶음은 활동의 실행 순서를 정하지 않는다.[@iso-sae-21434-obp-2021]
 
-| 절  | 제목                                             | 단계                | 하위 활동                                                   |
-| --- | ------------------------------------------------ | ------------------- | ----------------------------------------------------------- |
-| 9   | Concept                                          | Concept             | Item definition, cybersecurity goals, cybersecurity concept |
-| 10  | Product development                              | Product development | 설계, 통합과 검증                                           |
-| 11  | Cybersecurity validation                         | Product development | —                                                           |
-| 12  | Production                                       | Post-development    | —                                                           |
-| 13  | Operations and maintenance                       | Post-development    | Cybersecurity incident response, updates                    |
-| 14  | End of cybersecurity support and decommissioning | Post-development    | —                                                           |
+- Concept 단계: 9절. Item definition, cybersecurity goals, cybersecurity concept이 든다.
+- Product development 단계: 10절의 설계, 통합과 검증, 11절의 cybersecurity validation이 든다.
+- Post-development 단계: 12절 production, 13절 operations and maintenance, 14절 end of cybersecurity support and decommissioning이 든다. 13절에는 cybersecurity incident response와 updates가 있다.[@iso-sae-21434-obp-2021]
 
 8절과 15절은 이 단계들 밖에 둔다. 8절의 지속 활동은 cybersecurity monitoring, cybersecurity event evaluation, vulnerability analysis, vulnerability management로 이루어지며, 진행 중인 리스크 평가에 정보를 대고 사이버보안 지원이 끝날 때까지의 취약점 관리를 정한다. 15절은 TARA를 모듈식 분석·평가 방법으로 정한다.[@iso-sae-21434-obp-2021]
 
@@ -26,7 +21,7 @@ Tailoring과 out-of-context 컴포넌트처럼 프로젝트의 활동을 정하�
 
 ## 아이템과 운용 환경
 
-ISO/SAE 21434:2021은 사이버보안 활동의 대상을 다음 용어로 정의한다.
+ISO/SAE 21434:2021은 사이버보안 활동의 대상을 다음 용어로 정의한다.[@iso-sae-21434-obp-2021]
 
 - **아이템**(item): 차량 수준의 기능을 구현하는 컴포넌트나 컴포넌트의 집합
 - **컴포넌트**(component): 논리적·기술적으로 떼어 낼 수 있는 부분
