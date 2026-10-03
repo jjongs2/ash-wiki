@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="79.5 7 521 303.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <text x="340" y="28" text-anchor="middle" fill="var(--text, #727981)">공개 매개변수: p, g</text>
+
+  <!-- 당사자 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="100" y="44" width="120" height="32" rx="4" />
+    <rect x="460" y="44" width="120" height="32" rx="4" />
+    <rect x="90" y="214" width="140" height="52" rx="4" />
+    <rect x="450" y="214" width="140" height="52" rx="4" />
+  </g>
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="160" y="65">A</text>
+    <text x="520" y="65">B</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="160" y1="76" x2="160" y2="214" />
+    <line x1="520" y1="76" x2="520" y2="214" />
+  </g>
+  <g fill="var(--text, #727981)" font-size="12">
+    <text x="168" y="104">비밀 정수 x<tspan dy="3" font-size="9">A</tspan></text>
+    <text x="512" y="104" text-anchor="end">비밀 정수 x<tspan dy="3" font-size="9">B</tspan></text>
+  </g>
+
+  <!-- 공개값 교환 -->
+  <line x1="162" y1="140" x2="518" y2="140" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow-ink)" />
+  <text x="340" y="132" text-anchor="middle" fill="var(--text, #727981)">g<tspan dy="-6" font-size="10">x</tspan><tspan dy="3" font-size="9">A</tspan><tspan dx="4" dy="3">mod p</tspan></text>
+  <line x1="518" y1="186" x2="162" y2="186" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow-ink)" />
+  <text x="340" y="178" text-anchor="middle" fill="var(--text, #727981)">g<tspan dy="-6" font-size="10">x</tspan><tspan dy="3" font-size="9">B</tspan><tspan dx="4" dy="3">mod p</tspan></text>
+
+  <!-- 같은 값 -->
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="160" y="236">(g<tspan dy="-6" font-size="10">x</tspan><tspan dy="3" font-size="9">B</tspan><tspan dy="3">)</tspan><tspan dy="-6" font-size="10">x</tspan><tspan dy="3" font-size="9">A</tspan><tspan dx="4" dy="3">mod p</tspan></text>
+    <text x="160" y="257">= g<tspan dy="-6" font-size="10">x</tspan><tspan dy="3" font-size="9">A</tspan><tspan dy="-3" font-size="10">x</tspan><tspan dy="3" font-size="9">B</tspan><tspan dx="4" dy="3">mod p</tspan></text>
+    <text x="520" y="236">(g<tspan dy="-6" font-size="10">x</tspan><tspan dy="3" font-size="9">A</tspan><tspan dy="3">)</tspan><tspan dy="-6" font-size="10">x</tspan><tspan dy="3" font-size="9">B</tspan><tspan dx="4" dy="3">mod p</tspan></text>
+    <text x="520" y="257">= g<tspan dy="-6" font-size="10">x</tspan><tspan dy="3" font-size="9">A</tspan><tspan dy="-3" font-size="10">x</tspan><tspan dy="3" font-size="9">B</tspan><tspan dx="4" dy="3">mod p</tspan></text>
+  </g>
+
+  <!-- 도청자 -->
+  <line x1="340" y1="146" x2="340" y2="266" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrow-ink)" />
+  <rect x="280" y="268" width="120" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="340" y="289" text-anchor="middle" fill="var(--text, #727981)">도청자</text>
+  <text x="348" y="236" font-size="12" fill="var(--text, #727981)">p, g와</text>
+  <text x="348" y="252" font-size="12" fill="var(--text, #727981)">두 공개값을 봄</text>
+</svg>
