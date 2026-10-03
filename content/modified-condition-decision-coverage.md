@@ -41,4 +41,4 @@ and 연산자에서는 한쪽 피연산자를 거짓으로 두면 다른 쪽이 
 
 ## 기원
 
-Chilenski와 Miller는 1994년 논문에서 MC/DC 기준과 그 성질을 설명했다.[@chilenski-applicability-mcdc-1994]
+Chilenski와 Miller는 1994년 논문에서 MC/DC 기준과 그 성질을 제시했다.[@chilenski-applicability-mcdc-1994]
