@@ -21,7 +21,14 @@ const today = "2026-09-25"
 
 let server: http.Server
 let base: string
+// 열었다 닫은 포트. 연결이 거부된다. 포트 1처럼 fetch가 막는 포트는 연결을 시도하지 않는다.
+let closed: string
 let hungOnce = false
+// /slow/<호스트>/…에 동시에 걸린 요청 수와 그 최댓값. 호스트는 bib URL의 호스트 이름을 경로에 옮겨 적은 것이다.
+const inFlight = new Map<string, number>()
+let maxInFlight = { total: 0, host: 0 }
+// /tick/<호스트>/…의 요청이 닿은 시각
+const ticks = new Map<string, number[]>()
 let certDir: string
 const secure = new Map<string, string>()
 const secureServers: https.Server[] = []
@@ -45,7 +52,25 @@ before(async () => {
     // 챌린지 헤더가 없는 202
     else if (req.url === "/accepted") res.statusCode = 202
     // 답하지 않는 서버
-    else if (req.url === "/hang") return
+    else if (req.url === "/hang" || req.url?.startsWith("/hang/")) return
+    else if (req.url?.startsWith("/slow/")) {
+      const host = req.url.split("/")[2]
+      inFlight.set(host, (inFlight.get(host) ?? 0) + 1)
+      const total = [...inFlight.values()].reduce((a, b) => a + b, 0)
+      maxInFlight = {
+        total: Math.max(maxInFlight.total, total),
+        host: Math.max(maxInFlight.host, inFlight.get(host)!),
+      }
+      setTimeout(() => {
+        inFlight.set(host, inFlight.get(host)! - 1)
+        res.end()
+      }, 200)
+      return
+    } else if (req.url?.startsWith("/tick/")) {
+      const host = req.url.split("/")[2]
+      ticks.set(host, [...(ticks.get(host) ?? []), Date.now()])
+      res.statusCode = 200
+    }
     // 첫 요청에만 답하지 않는 서버
     else if (req.url === "/hang-once" && !hungOnce) {
       hungOnce = true
@@ -58,6 +83,10 @@ before(async () => {
   })
   await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve))
   base = `http://127.0.0.1:${(server.address() as AddressInfo).port}`
+  const probe = http.createServer()
+  await new Promise<void>((resolve) => probe.listen(0, "127.0.0.1", resolve))
+  closed = `http://127.0.0.1:${(probe.address() as AddressInfo).port}`
+  await new Promise((resolve) => probe.close(resolve))
 
   certDir = fs.mkdtempSync(path.join(os.tmpdir(), "source-status-certs-"))
   const ca = ["basicConstraints=critical,CA:TRUE", "keyUsage=critical,keyCertSign,cRLSign"]
@@ -141,6 +170,19 @@ function bib(key: string, url: string): string {
     .join("\n")
 }
 
+// 엔트리마다 bib 파일 하나와, 그 엔트리를 모두 인용하는 페이지 하나로 된 트리
+function citingTree(urls: Record<string, string>): string {
+  const body = Object.keys(urls)
+    .map((key) => `문장이다.[@${key}]`)
+    .join(" ")
+  return makeTree({
+    "content/fresh.md": page(["network/can"], "2026-09-01", body),
+    ...Object.fromEntries(
+      Object.entries(urls).map(([key, url]) => [`bib/${key}.bib`, bib(key, url)]),
+    ),
+  })
+}
+
 function runStatus(root: string, ...args: string[]): Promise<Report> {
   return new Promise((resolve) => {
     execFile(
@@ -154,6 +196,8 @@ function runStatus(root: string, ...args: string[]): Promise<Report> {
         root,
         "--today",
         today,
+        "--interval",
+        "0",
         ...args,
       ],
       {
@@ -213,13 +257,32 @@ describe("source-status CLI", () => {
       ),
       "bib/org-moved-2024.bib": bib("org-moved-2024", `${base}/moved`),
       "bib/org-dead-2024.bib": bib("org-dead-2024", `${base}/dead`),
-      // 닫힌 포트: 연결이 거부된다
-      "bib/org-closed-2024.bib": bib("org-closed-2024", "http://127.0.0.1:1/closed"),
+      // 닫힌 포트: 한 호스트에서 하나뿐인 연결 거부는 출처 사망으로 센다
+      "bib/org-closed-2024.bib": bib("org-closed-2024", `${closed}/closed`),
     })
     const report = await runStatus(root)
     assert.deepStrictEqual(report.statuses, ["FAIL url", "OK verified"])
     assert.deepStrictEqual(report.locations.get("url"), [
       "bib/org-closed-2024.bib:3",
+      "bib/org-dead-2024.bib:3",
+    ])
+    assert.strictEqual(report.exitCode, 1)
+  })
+
+  test("URL로 읽히지 않는 url은 url 검사가 bib 위치를 찍고, 나머지 URL도 묻는다", async () => {
+    const root = makeTree({
+      "content/fresh.md": page(
+        ["network/can"],
+        "2026-09-01",
+        "하나[@org-bad-2024], 둘.[@org-dead-2024]",
+      ),
+      "bib/org-bad-2024.bib": bib("org-bad-2024", "not a url"),
+      "bib/org-dead-2024.bib": bib("org-dead-2024", `${base}/dead`),
+    })
+    const report = await runStatus(root)
+    assert.deepStrictEqual(report.statuses, ["FAIL url", "OK verified"])
+    assert.deepStrictEqual(report.locations.get("url"), [
+      "bib/org-bad-2024.bib:3",
       "bib/org-dead-2024.bib:3",
     ])
     assert.strictEqual(report.exitCode, 1)
@@ -398,5 +461,109 @@ describe("source-status CLI", () => {
     assert.deepStrictEqual(topic.statuses, ["OK url", "OK verified"])
     const area = await runStatus(root, "--topic", "network")
     assert.deepStrictEqual(area.statuses, ["FAIL url", "FAIL verified"])
+  })
+
+  test("동시 요청은 전체 8건, 호스트마다 2건까지다", async () => {
+    // 호스트 10개에 URL 3개씩. 제한이 없으면 30건이 한꺼번에 걸린다.
+    const urls: Record<string, string> = {}
+    for (const host of "abcdefghij")
+      for (const n of [1, 2, 3])
+        urls[`org-slow-${host}${n}-2024`] = `https://${host}.example.org/slow/${host}/${n}`
+    maxInFlight = { total: 0, host: 0 }
+    const report = await runStatus(citingTree(urls))
+    assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
+    assert.deepStrictEqual(maxInFlight, { total: 8, host: 2 })
+  })
+
+  test("한 호스트의 요청은 시작 사이에 --interval만큼 띄운다", async () => {
+    const urls = Object.fromEntries(
+      [1, 2, 3].map((n) => [`org-tick${n}-2024`, `https://tick.example.org/tick/tick/${n}`]),
+    )
+    const report = await runStatus(citingTree(urls), "--interval", "500")
+    assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
+    const times = ticks.get("tick")!
+    assert.strictEqual(times.length, 3)
+    // 서버가 받은 시각이라 첫 요청의 연결 수립만큼 짧게 잴 수 있다. 간격을 두지 않으면 몇 밀리초다.
+    for (let i = 1; i < times.length; i++) assert.ok(times[i] - times[i - 1] >= 400)
+  })
+
+  test("전체 자리를 기다린 요청도 한 호스트의 --interval을 지킨다", async () => {
+    // 답하지 않는 호스트 10개가 전체 8자리를 먼저 차지해, 같은 호스트의 요청이 함께 자리를 기다린다.
+    const urls: Record<string, string> = {}
+    for (const host of "abcdefghij")
+      urls[`org-hang-${host}-2024`] = `https://${host}.example.org/hang/${host}`
+    for (const n of [1, 2, 3])
+      urls[`org-tick${n}-2024`] = `https://queued.example.org/tick/queued/${n}`
+    await runStatus(citingTree(urls), "--interval", "500", "--timeout", "500")
+    const times = ticks.get("queued")!
+    assert.strictEqual(times.length, 3)
+    for (let i = 1; i < times.length; i++) assert.ok(times[i] - times[i - 1] >= 400)
+  })
+
+  test("--url을 주면 그 URL만 하나씩 묻는다", async () => {
+    const urls: Record<string, string> = {}
+    for (const host of "abcd")
+      urls[`org-recheck-${host}-2024`] = `https://${host}.example.org/slow/${host}/0`
+    urls["org-dead-2024"] = `${base}/dead`
+    maxInFlight = { total: 0, host: 0 }
+    const report = await runStatus(
+      citingTree(urls),
+      ...["a", "b", "c"].flatMap((host) => ["--url", urls[`org-recheck-${host}-2024`]]),
+    )
+    // 주지 않은 /dead는 묻지 않는다.
+    assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
+    assert.deepStrictEqual(maxInFlight, { total: 1, host: 1 })
+  })
+
+  test("--url로 다시 물은 URL은 시간 초과가 많아도 url-timeout이 SKIP이다", async () => {
+    const urls: Record<string, string> = {}
+    for (const host of "abcde")
+      urls[`org-hang-${host}-2024`] = `https://${host}.example.org/hang/${host}`
+    const args = Object.values(urls).flatMap((url) => ["--url", url])
+    const report = await runStatus(citingTree(urls), "--timeout", "300", ...args)
+    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-timeout", "OK verified"])
+    assert.strictEqual(report.exitCode, 0)
+  })
+
+  test("인용한 엔트리의 url이 아닌 --url을 주면 아무것도 찍지 않고 멈춘다", async () => {
+    const root = citingTree({ "org-alive-2024": `${base}/alive` })
+    const report = await runStatus(root, "--url", `${base}/typo`)
+    assert.deepStrictEqual(report.statuses, [])
+    assert.notStrictEqual(report.exitCode, 0)
+  })
+
+  test("한 호스트에서 둘 이상의 URL이 연결 거부되면 url-refused에 따로 찍고, 그것만으로는 exit 0이다", async () => {
+    const report = await runStatus(
+      citingTree({
+        "org-closed-a-2024": `${closed}/a`,
+        "org-closed-b-2024": `${closed}/b`,
+      }),
+    )
+    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-refused", "OK verified"])
+    assert.deepStrictEqual(report.locations.get("url-refused"), [
+      "bib/org-closed-a-2024.bib:3",
+      "bib/org-closed-b-2024.bib:3",
+    ])
+    assert.strictEqual(report.exitCode, 0)
+  })
+
+  test("시간 초과가 5건 이상이고 확인한 URL의 5% 이상이면 url-timeout이 FAIL이고 exit 1이다", async () => {
+    const urls: Record<string, string> = {}
+    for (const host of "abcde")
+      urls[`org-hang-${host}-2024`] = `https://${host}.example.org/hang/${host}`
+    const report = await runStatus(citingTree(urls), "--timeout", "300")
+    assert.deepStrictEqual(report.statuses, ["OK url", "FAIL url-timeout", "OK verified"])
+    assert.strictEqual(report.locations.get("url-timeout")!.length, 5)
+    assert.strictEqual(report.exitCode, 1)
+  })
+
+  test("시간 초과가 5건 이상이어도 확인한 URL의 5%보다 적으면 url-timeout은 SKIP이다", async () => {
+    const urls: Record<string, string> = {}
+    for (const host of "abcde")
+      urls[`org-hang-${host}-2024`] = `https://${host}.example.org/hang/${host}`
+    for (let n = 0; n < 100; n++) urls[`org-alive${n}-2024`] = `${base}/alive`
+    const report = await runStatus(citingTree(urls), "--timeout", "300")
+    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-timeout", "OK verified"])
+    assert.strictEqual(report.exitCode, 0)
   })
 })

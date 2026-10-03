@@ -15,8 +15,10 @@ disable-model-invocation: true
 - 주제가 속한 구역의 페이지를 모두 읽는다. 구역 태그 `network`면 `network`와 그 하위 태그를 단 페이지다. 주제 태그가 빠진 페이지도 보기 위해서다.
 - 위키 전체의 슬러그, `title`, `aliases`를 훑는다. 다른 구역에 같은 개념이 있는지 보기 위해서다.
 - `npm run source-status -- --topic <주제 태그>`를 돌린다.
+- `FAIL url-timeout`이면 결과를 믿을 수 없다. 원인(네트워크 등)을 찾아 다시 돌린다.
+- `SKIP url-timeout`과 `SKIP url-refused`로 남은 URL은 그것만 `npm run source-status -- --topic <주제 태그> --timeout 60000 --url <URL> --url <URL> …`로 하나씩 다시 묻는다. 다시 물어 `url` FAIL이 된 것은 출처 상태로 세고, 그래도 남은 것은 [6. 확인 불가](#6-확인-불가)로 넘긴다.
 
-완료: 읽을 페이지를 모두 읽었고, `source-status` 출력이 있다.
+완료: 읽을 페이지를 모두 읽었고, `url-timeout`이 FAIL이 아닌 `source-status` 출력이 있고, `url-timeout`과 `url-refused`로 남은 URL을 다시 물었다.
 
 ## 2. 찾기
 
@@ -26,10 +28,10 @@ disable-model-invocation: true
 | 중복 개념      | 두 페이지가 같은 개념을 다루거나 같은 주장을 되풀이한다(위키 규약의 중복 절) |
 | 용어 불일치    | 같은 개념을 페이지마다 다른 용어나 표기로 부른다                             |
 | 태그 정합      | 주제에 속하는데 주제 태그가 없거나, 속하지 않는데 달려 있다                  |
-| 위키링크       | 다른 페이지의 개념이 처음 나오는 자리에 위키링크가 없다                      |
-| 출처 상태      | `source-status`가 `FAIL`로 찍은 URL과 검증일                                 |
+| 위키링크       | 위키 규약 위키링크 절의 첫 등장 링크 규칙을 어긴 자리                        |
+| 출처 상태      | `source-status`가 `url`과 `verified`에서 `FAIL`로 찍은 URL과 검증일          |
 
-`SKIP url-blocked`로 찍힌 URL은 봇 차단 호스트라 `확인 불가`다. 출처 상태로 세지 않고 [6. 확인 불가](#6-확인-불가)로 넘긴다.
+`SKIP url-blocked`로 찍힌 URL은 봇 차단 호스트라 `확인 불가`다. 1단계에서 다시 물어도 남은 `url-timeout`, `url-refused`의 URL과 함께, 출처 상태로 세지 않고 [6. 확인 불가](#6-확인-불가)로 넘긴다.
 
 위키링크는 인제스트가 아직 없는 페이지로 걸지 않고 남긴 자리를 채우려고 본다.
 
@@ -50,7 +52,7 @@ disable-model-invocation: true
 
 수정이 있으면 PR 하나로 올린다. 제목은 `content: <주제> 린트 수정`, 브랜치와 본문은 `CONTRIBUTING.md`를 따른다. 이 린트를 부른 티켓이 있으면 그 번호를 쓴다.
 
-완료: `npm run check:content`가 모두 `OK`이고 PR이 올라갔다.
+완료: `npm run check:content`가 모두 `OK`이고, PR이 올라갔고, `CONTRIBUTING.md`의 리뷰를 마쳤다.
 
 ## 5. 이슈
 
@@ -66,4 +68,4 @@ disable-model-invocation: true
 
 `확인 불가` URL은 이슈로 넘기지 않는다. 린트의 마지막 응답에 사람이 브라우저로 확인할 목록으로 적는다. 줄마다 bib 파일과 URL을 적는다.
 
-완료: `SKIP url-blocked`의 URL이 모두 목록에 있다.
+완료: `SKIP url-blocked`의 URL과, 1단계에서 다시 물어도 남은 `url-timeout`, `url-refused`의 URL이 모두 목록에 있다.
