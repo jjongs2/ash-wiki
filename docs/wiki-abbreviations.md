@@ -11,6 +11,7 @@
 - CAN_H: 핀과 신호
 - CAN_L: 핀과 신호
 - CCSDS: 표준화 기구
+- CERT: 표준화 기구
 - CiA: 표준화 기구
 - CISPR: 표준화 기구
 - CMSIS-RTOS2: 표준·규격 이름
@@ -35,6 +36,7 @@
 - JTC: ISO 위원회 번호
 - MCD: 표준·규격 이름
 - MCU: 널리 쓰이는 약어
+- MISRA: 표준화 기구
 - NASA: 널리 쓰이는 약어
 - NATO: 널리 쓰이는 약어
 - NIST: 표준화 기구
@@ -68,4 +70,5 @@
 - VCC: 전원
 - VDA: 표준화 기구
 - VDA QMC: 표준화 기구
+- WG: ISO 위원회 번호
 - XOR: 널리 쓰이는 약어

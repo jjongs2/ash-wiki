@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="49.5 19.5 501 234.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 오류 상태 -->
+  <rect x="380" y="30" width="160" height="180" rx="4" stroke="var(--red, #bb464d)" stroke-width="1.5" fill="var(--red-tint, #bb464d)" />
+  <text x="480" y="125" text-anchor="middle" fill="var(--on-fill, #f8fafd)">오류 상태</text>
+
+  <!-- 실제 실행과 그것을 덮는 추상 의미 -->
+  <ellipse cx="200" cy="120" rx="100" ry="50" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="200" y="125" text-anchor="middle" fill="var(--text, #727981)">실제 실행</text>
+  <ellipse cx="240" cy="120" rx="180" ry="90" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="220" y="56">추상 의미가 덮는 실행</text>
+    <text x="220" y="196" font-size="12">over-approximation</text>
+  </g>
+
+  <!-- false alarm -->
+  <line x1="400" y1="140" x2="400" y2="226" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+  <circle cx="400" cy="140" r="3" fill="var(--ink, #727981)" />
+  <text x="400" y="244" text-anchor="middle" font-size="12" fill="var(--text, #727981)">false alarm</text>
+</svg>
