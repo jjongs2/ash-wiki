@@ -42,4 +42,6 @@ R156 해석 문서는 [[iso-24089|ISO 24089]]:2023을 SUMS 요구를 구현하�
 
 ## CSMS와의 관계
 
-R156 해석 문서는 업데이트를 조작에서 보호하고 업데이트 프로세스를 침해에서 보호함을 입증하는 데 [[cybersecurity-management-system|CSMS]]를 쓸 수 있다고 본다.[@unece-r156-interpretation-2025]
+[[cybersecurity-management-system|CSMS]] 적합 인증서는 [[un-r155|UN R155]]가 따로 정하며, 그 발급은 [[cybersecurity-management-system#적합 인증서|사이버보안 관리 시스템의 적합 인증서]]에서 다룬다.[@unece-r155-2021]
+
+R156 해석 문서는 업데이트를 조작에서 보호하고 업데이트 프로세스를 침해에서 보호함을 입증하는 데 CSMS를 쓸 수 있다고 본다.[@unece-r156-interpretation-2025]
