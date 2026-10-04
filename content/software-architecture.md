@@ -5,11 +5,13 @@ tags:
 verified: 2026-10-02
 ---
 
-Automotive SPICE 4.1에서 **소프트웨어 아키텍처**는 소프트웨어를 알맞은 계층에 걸쳐, 가장 낮은 수준의 소프트웨어 컴포넌트까지 소프트웨어 컴포넌트로 나눈다.[@vda-automotive-spice-pam-4-1-2026] ISO/IEC/IEEE 42010:2022는 아키텍처를 어떤 대상이 그 환경 안에서 갖는 기본 개념이나 속성과, 그 대상과 관련 생명주기 프로세스의 실현과 발전을 다스리는 원칙으로 정의한다.[@iso-iec-ieee-42010-obp-2022] ISO/IEC/IEEE 24765 용어집은 **아키텍처 설계**(architectural design)를 컴퓨터 시스템 개발의 틀을 세우려고 하드웨어·소프트웨어 컴포넌트와 그 인터페이스의 집합을 정하는 것으로 정의한다.[@ieee-cs-sevocab-2026]
+Automotive SPICE 4.1에서 **소프트웨어 아키텍처**는 소프트웨어를 알맞은 계층에 걸쳐, 가장 낮은 수준의 소프트웨어 컴포넌트까지 소프트웨어 컴포넌트로 나눈다.[@vda-automotive-spice-pam-4-1-2026] ISO/IEC/IEEE 42010:2022는 아키텍처를 어떤 대상이 그 환경 안에서 갖는 기본 개념이나 속성과, 그 대상과 관련 생명주기 프로세스의 실현과 발전을 다스리는 원칙으로 정의한다.[@iso-iec-ieee-42010-obp-2022] SWEBOK V4.0a는 소프트웨어 아키텍처를, 시스템을 추론하는 데 필요한 구조의 집합이며 그 구조는 소프트웨어 요소, 요소 사이의 관계, 둘의 속성으로 이루어진다고 보는 정의를 든다.[@ieee-swebok-v4-0a-2026] ISO/IEC/IEEE 24765 용어집은 **아키텍처 설계**(architectural design)를 컴퓨터 시스템 개발의 틀을 세우려고 하드웨어·소프트웨어 컴포넌트와 그 인터페이스의 집합을 정하는 것으로 정의한다.[@ieee-cs-sevocab-2026]
 
 ## 아키텍처와 아키텍처 기술
 
 ISO/IEC/IEEE 42010:2022는 아키텍처와, 아키텍처를 표현하는 작업 산출물인 **아키텍처 기술**(architecture description, AD)을 구분한다. 이 표준은 AD가 대상을 만들고 쓰고 관리하는 이들 사이의 의사소통과 협력을 높여 함께 일하게 하는 데 쓰인다고 둔다.[@iso-iec-ieee-42010-obp-2022]
+
+SWEBOK V4.0a에 따르면 잘 계획하고 문서로 남긴 아키텍처는 소프트웨어 설계와 컴포넌트의 적용성과 재사용성을 높이는 한 방법이고, 아키텍처는 프로그램 군이나 소프트웨어 제품군 설계의 바탕이 된다.[@ieee-swebok-v4-0a-2026]
 
 ## 정적 측면과 동적 측면
 
@@ -17,6 +19,8 @@ Automotive SPICE 4.1은 소프트웨어 아키텍처를 정적 측면과 동적 
 
 - 정적 측면: 외부 인터페이스와, 정해 둔 소프트웨어 컴포넌트 집합 및 그 인터페이스와 관계
 - 동적 측면: 소프트웨어 컴포넌트의 동작, 소프트웨어 모드마다의 컴포넌트 상호작용, 인터럽트 처리·선점 처리·멀티스레딩 같은 동시성[@vda-automotive-spice-pam-4-1-2026]
+
+정보 항목 04-04(Software architecture)는 소프트웨어 아키텍처가 밝힐 내용으로, 전체 소프트웨어 구조와 함께 시작·종료·캘리브레이션 같은 상태와 운용 모드마다의 동적 동작, 타임 슬라이스나 주기 같은 타이밍 정의, 프로세스와 스레드의 우선순위, 인터럽트와 그 우선순위 같은 이벤트 처리를 든다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 구조 관계
 
@@ -48,10 +52,10 @@ Automotive SPICE 3.1은 SWE.2의 목적을 아키텍처 설계를 세우고, 소
 
 ## ISO 26262-6
 
-ISO 26262-6:2018은 7절에서 소프트웨어 아키텍처 설계를 다룬다.[@iso-26262-6-obp-2018] ISO 26262-1:2018은 freedom from interference를, 안전 요구 위반으로 이어질 수 있는 연쇄 고장(cascading failure)이 둘 이상의 요소 사이에 없는 것으로 정의한다.[@iso-26262-1-obp-2018]
+ISO 26262-6:2018은 7절에서 소프트웨어 아키텍처 설계를 다룬다.[@iso-26262-6-obp-2018] ISO 26262-1:2018은 [[freedom-from-interference|freedom from interference]]를, 안전 요구 위반으로 이어질 수 있는 연쇄 고장(cascading failure)이 둘 이상의 요소 사이에 없는 것으로 정의한다.[@iso-26262-1-obp-2018] AUTOSAR R25-11은 소프트웨어 컴포넌트를 서로 보호되는 메모리 partition에 나눠 실행하는 memory partitioning으로 컴포넌트 사이의 freedom from interference를 돕는다.[@autosar-cp-exp-functionalsafetymeasures-2025]
 
 ## 아키텍처 평가
 
-아키텍처 평가 방법으로는 SEI(Software Engineering Institute)의 Kazman, Klein, Clements가 만든 ATAM(Architecture Tradeoff Analysis Method)이 있다.[@kazman-atam-2000]
+아키텍처 평가 방법으로는 SEI(Software Engineering Institute)의 Kazman, Klein, Clements가 만든 ATAM(Architecture Tradeoff Analysis Method)이 있다. 이들은 아키텍처를 시스템의 기능·품질 목표 달성을 가르는 열쇠로 보고, 큰 자원을 들이기 전에 구상된 아키텍처로 그 목표를 이룰 수 있는지 가리는 방법으로 ATAM을 제시했다. ATAM은 품질 속성 요구사항에 비추어 아키텍처 결정의 결과를 평가하며, 개발 생명주기 초기에 할 수 있다.[@kazman-atam-2000]
 
 Automotive SPICE 3.1의 SWE.2는 아키텍처 평가 기준을 정해 대안 아키텍처를 견주고 고른 근거를 기록하게 했고, 기준의 예로 모듈성·유지보수성·확장성·신뢰성 같은 품질 특성과, 직접 만들지·사올지·다시 쓸지(make-buy-reuse)를 따진 결과를 들었다. Automotive SPICE 4.1은 대안 평가 대신 BP3의 아키텍처 분석을 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]

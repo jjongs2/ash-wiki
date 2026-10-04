@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-01
 ---
 
-**SIL**(Safety Integrity Level)은 [[iec-61508|IEC 61508]]이 E/E/PE(Electrical/Electronic/Programmable Electronic) 안전 관련 시스템이 수행할 안전 기능의 목표 안전 무결성을 정하려고 두는 등급이다.[@iec-61508-1-preview-2010] 네 단계로 나뉘며, 단계마다 안전 기능이 실패할 목표 가능성의 구간 하나가 대응한다.[@iec-functional-safety-faq-2023] SIL 4가 안전 무결성이 가장 높고 SIL 1이 가장 낮다.[@iec-acos-61508-overview-2022] 안전 무결성 요구사항은 [[functional-safety#안전 기능과 안전 무결성|기능 안전]]에서 다룬다.
+**SIL**(Safety Integrity Level)은 [[iec-61508|IEC 61508]]이 E/E/PE(Electrical/Electronic/Programmable Electronic) 안전 관련 시스템이 수행할 안전 기능의 목표 안전 무결성을 정하려고 두는 등급이다.[@iec-61508-1-preview-2010] 네 단계로 나뉘며, 단계마다 안전 기능이 실패할 목표 가능성의 구간 하나가 대응한다.[@iec-functional-safety-faq-2023] SIL 4가 안전 무결성이 가장 높고 SIL 1이 가장 낮다. 안전 무결성이 높다는 것은 위험한 실패율이나, 동작이 요구될 때 안전 기능이 실패할 확률이 낮다는 뜻이다.[@iec-acos-61508-overview-2022] 안전 무결성 요구사항은 [[functional-safety#안전 기능과 안전 무결성|기능 안전]]에서 다룬다.
 
 ## Demand mode
 

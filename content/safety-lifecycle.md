@@ -55,3 +55,5 @@ IEC 61508-1:2010은 **overall safety lifecycle**을 다음 16개 단계로 정�
 14. 전체 운용, 유지보수, 수리
 15. 전체 수정과 개조
 16. 폐기나 처분[@iec-61508-1-preview-2010]
+
+[[functional-safety#안전 기능과 안전 무결성|기능 안전]]에서 다루듯, IEC 61508은 필요한 안전 기능을 해저드와 리스크 분석에서 끌어낸다.[@iec-functional-safety-faq-2023]

@@ -25,6 +25,8 @@ Avizienis 외(2004)는 결함 허용을 구현하는 방법의 하나로 여러 
 
 ## 다중 채널과 비교
 
+Lockstep 구조는 같은 입력을 받아 함께 동작하는 두 처리 장치의 출력을 비교기로 견주어, 다르면 불일치를 알린다.[@ti-spry178-2011][@infineon-aurix-tc3xx-spulckstp-training-2020]
+
 TI Hercules MCU는 기능 CPU와 같은 입력을 받는 checker CPU를 lockstep으로 둔다. Core compare 모듈이 두 CPU의 출력을 사이클마다 감시하다가 다르면 시스템에 error를 알린다.[@ti-spry178-2011]
 
 ![[diagrams/lockstep-core-compare.svg]]

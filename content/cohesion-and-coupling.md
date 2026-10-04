@@ -45,3 +45,5 @@ Stevens 외는 논리적 binding 모듈이 흔히, 호출하는 쪽이 넘긴 �
 ## 관심사 분리
 
 Dijkstra는 1974년 글 "On the role of scientific thought"(EWD447)에서 **관심사 분리**(separation of concerns)라는 말을 썼다. 그가 이 말로 가리킨 것은 주제의 한 측면만 다루고 있음을 알면서 그 측면을 다른 측면과 떼어 깊이 살피는 것이고, 다른 측면을 무시한다는 뜻은 아니다.[@dijkstra-scientific-thought-1974]
+
+SWEBOK V4.0a에 따르면 모듈화는 관심사 분리 같은 더 일반적인 전략의 특수한 경우로 볼 수 있고, 전통적으로 서로 다른 기능과 책임을 서로 다른 컴포넌트에 두는 것을 목표로 한다.[@ieee-swebok-v4-0a-2026]

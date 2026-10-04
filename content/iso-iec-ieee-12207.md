@@ -16,7 +16,14 @@ ISO/IEC/IEEE 12207:2026은 소프트웨어 시스템과 소프트웨어 제품·
 
 ### 프로세스 그룹
 
-ISO/IEC/IEEE 12207:2026은 생명주기 프로세스를 합의(agreement) 프로세스, 조직의 프로젝트 지원(organizational project-enabling) 프로세스, 기술 관리(technical management) 프로세스, 기술(technical) 프로세스의 네 그룹으로 나눈다. 기술 관리 프로세스에는 위험 관리와 형상 관리가 들고, 기술 프로세스에는 비즈니스·임무 분석, 시스템 아키텍처 정의, 구현, 통합, 운용, 유지보수가 든다.[@iso-iec-ieee-12207-obp-2026]
+ISO/IEC/IEEE 12207:2026은 생명주기 프로세스를 네 그룹으로 나누고, 그룹마다 다음 프로세스를 둔다.[@iso-iec-ieee-12207-obp-2026]
+
+| 그룹                                                           | 프로세스                                                                                                                                                                                                                                                                             |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 합의(agreement) 프로세스                                       | Acquisition, Supply                                                                                                                                                                                                                                                                  |
+| 조직의 프로젝트 지원(organizational project-enabling) 프로세스 | Life cycle model management, Infrastructure management, Portfolio management, Human resource management, Quality management, Knowledge management                                                                                                                                    |
+| 기술 관리(technical management) 프로세스                       | Project planning, Project assessment and control, Decision management, Risk management, Configuration management, Information management, Measurement, Quality assurance                                                                                                             |
+| 기술(technical) 프로세스                                       | Business or mission analysis, Stakeholder needs and requirements definition, System requirements definition, System architecture definition, Design definition, System analysis, Implementation, Integration, Verification, Transition, Validation, Operation, Maintenance, Disposal |
 
 이 표준은 프로세스의 목적과 결과를 시스템 생명주기 프로세스 표준 ISO/IEC/IEEE 15288:2023과 같게 두고, 활동과 태스크만 달리 정한다.[@iso-iec-ieee-12207-obp-2026]
 
