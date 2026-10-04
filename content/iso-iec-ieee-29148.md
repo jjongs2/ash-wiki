@@ -12,7 +12,7 @@ status: 개정 중
 
 ## 범위
 
-ISO/IEC/IEEE 29148:2018은 요구사항을 낳는 공학 활동에서 구현할 프로세스를 정하고, ISO/IEC/IEEE 15288과 ISO/IEC/IEEE 12207이 기술한 요구사항 관련 프로세스를 적용하는 지침을 둔다. 요구사항 프로세스와 함께, 잘 짜인 텍스트 요구사항의 구성과 요구사항의 특성·속성을 다룬다. 요구사항 프로세스가 만드는 정보 항목과 그 내용도 정한다. 정보 항목에는 BRS(business requirements specification), StRS(stakeholder requirements specification), SyRS(system requirements specification), [[software-requirements-specification|SRS]]가 있다.[@iso-iec-ieee-29148-obp-2018]
+ISO/IEC/IEEE 29148:2018은 요구사항을 낳는 공학 활동에서 구현할 프로세스를 정하고, ISO/IEC/IEEE 15288과 ISO/IEC/IEEE 12207이 기술한 요구사항 관련 프로세스를 적용하는 지침을 둔다. 요구사항 프로세스와 함께, 잘 짜인 텍스트 요구사항의 구성과 요구사항의 특성·속성을 다룬다. 요구사항 프로세스가 만드는 정보 항목과 그 내용을 정하고, 정보 항목의 형식에는 지침을 둔다. 정보 항목에는 BRS(business requirements specification), StRS(stakeholder requirements specification), SyRS(system requirements specification), [[software-requirements-specification|SRS]]가 있다.[@iso-iec-ieee-29148-obp-2018]
 
 요구 공학의 개념과 활동은 [[requirements-engineering|요구 공학]]에서 다룬다.
 

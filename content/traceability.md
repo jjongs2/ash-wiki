@@ -11,6 +11,8 @@ ISO/IEC/IEEE 24765 용어집은 **추적성**(traceability)을 요구사항, 시
 
 ISO/IEC/IEEE 24765 용어집은 **양방향 추적성**(bidirectional traceability)을 둘 이상의 논리적 실체 사이의 연관을 어느 쪽에서든, 곧 그 실체로 향하는 쪽에서도 그 실체에서 나가는 쪽에서도 알아볼 수 있는 것으로 정의한다.[@ieee-cs-sevocab-2026]
 
+SWEBOK V4.0a에 따르면 소프트웨어 요구사항은 backward 방향으로는 시스템 요구사항이나 표준 문서 같은 원천 문서로 거슬러 추적하고, forward 방향으로는 설계 요소, 요구사항 기반 테스트 케이스, 구현한 기능을 설명하는 사용자 매뉴얼의 절로 추적할 수 있다. 이 지침서는 backward 추적성의 예로 테스트 스크립트를 그에 딸린 요구사항과 설계에 잇는 링크를 든다.[@ieee-swebok-v4-0a-2026]
+
 Automotive SPICE 4.1은 산출물 사이에 다음과 같은 연결을 요구한다. 이 요구는 엔지니어링 프로세스마다 "Ensure consistency and establish bidirectional traceability" BP(base practice)로, 변경 요청 관리(SUP.10)에는 "Establish bidirectional traceability" BP로 들어 있다.[@vda-automotive-spice-pam-4-1-2026]
 
 | 산출물               | 상대                                      | 요구                  |
@@ -32,6 +34,10 @@ Automotive SPICE 4.1은 산출물 사이에 다음과 같은 연결을 요구한
 
 Automotive SPICE 4.1은 법규나 형식 승인 요구사항에서 도출된 확인 수단에는 단방향 추적성으로 충분하다고 정한다.[@vda-automotive-spice-pam-4-1-2026] 변경 요청은 [[configuration-management|형상 관리]]에서 다룬다.
 
+## Vertical 추적성과 horizontal 추적성
+
+추적성은 링크로 잇는 산출물이 같은 추상화 수준에 있는지에 따라 나누기도 한다. 같은 수준의 산출물을 잇는 것(예: 요구사항끼리)을 **horizontal 추적성**(horizontal traceability), 다른 수준의 산출물을 잇는 것(예: 요구사항에서 설계로)을 **vertical 추적성**(vertical traceability)이라 부른다.[@tian-traceability-maintenance-2021]
+
 ## 일관성
 
 ISO/IEC/IEEE 24765 용어집은 **일관성**(consistency)을 문서들 사이, 또는 시스템이나 구성요소의 부분들 사이에 균일하고 표준화되어 있으며 서로 모순이 없는 정도로 정의한다.[@ieee-cs-sevocab-2026]
@@ -42,12 +48,18 @@ Automotive SPICE 3.1은 추적성과 일관성을 서로 다른 두 BP로 두고
 
 일관성은 개발 산출물 사이에만 걸리지 않는다. Automotive SPICE 4.1은 MAN.3에서 프로젝트의 추정, 자원, 기술, 작업 패키지와 그 의존성, 일정, 계획, 인터페이스, 약속을 정기적으로 조정해 작업 범위와 일관되게 하라고 요구한다.[@vda-automotive-spice-pam-4-1-2026]
 
+SWEBOK V4.0a에 따르면 소프트웨어 품질 계획의 품질 활동과 작업은 비용, 자원 요구, 목표, 일정과 함께 소프트웨어 공학 관리 계획, 개발 계획, 유지보수 계획에 명시되고, 품질 계획은 형상 관리 계획이나 그 밖의 프로젝트 계획 산출물과 어긋나지 않아야 한다.[@ieee-swebok-v4-0a-2026]
+
 ## 쓸모
 
 Automotive SPICE 3.1은 추적성이 돕는 일로 커버리지, 영향 분석, 요구사항 구현 상태의 추적을 들었다. Automotive SPICE 4.1은 추적성 BP의 주석에서 양방향 추적성이 일관성을 뒷받침하고, 변경 요청의 영향 분석과 커버리지 입증을 쉽게 한다고 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+
+SWEBOK V4.0a에 따르면 추적성으로 요구사항마다 그것을 만족시킬 설계 요소가 있는지, 설계 요소마다 그것을 있게 한 요구사항이 있는지 따질 수 있다. 설계 요소가 없는 요구사항은 설계가 그 요구사항을 만족하지 못하거나 그 요구사항을 지워도 되는 경우이고, 요구사항이 없는 설계 요소는 불필요하거나 요구사항이 덜 적힌 경우다.[@ieee-swebok-v4-0a-2026] ISTQB CTFL 강의계획서에 따르면 테스트 케이스와 요구사항 사이의 추적성으로 요구사항이 테스트 케이스로 다뤄졌는지 확인할 수 있다.[@istqb-ctfl-syllabus-2024]
 
 ## 추적표
 
 ISO/IEC/IEEE 29148:2018은 **요구사항 추적표**(requirements traceability matrix, RTM)를 요구사항을 상위 요구사항이나 요구(needs), 또는 하위 구현과 잇는 구조화된 정보 산출물로 정의한다.[@iso-iec-ieee-29148-obp-2018]
 
 ISO/IEC/IEEE 24765 용어집은 추적표(traceability matrix)를 개발 과정의 산출물 둘 이상 사이의 관계를 기록하는 행렬로 정의하고, 한 소프트웨어 구성요소의 요구사항과 설계 사이의 관계를 기록하는 행렬을 예로 든다. 요구사항 추적 도구는 항목별 소프트웨어 요구사항 명세, 설계 요소, 코드 요소, 시험 케이스 사이에 추적성을 세우는 개발 도구로 정의하고, 관련 질의, 분석, 보고서 생성도 지원한다고 둔다.[@ieee-cs-sevocab-2026]
+
+SWEBOK V4.0a에 따르면 요구사항 관리 도구는 요구사항 속성 저장, 추적, 문서 생성, 변경 통제를 지원하고, 추적과 변경 통제는 도구의 지원이 있어야 실용적일 수 있다.[@ieee-swebok-v4-0a-2026]

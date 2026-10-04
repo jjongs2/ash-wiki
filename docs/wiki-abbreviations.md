@@ -15,6 +15,7 @@
 - CAN_L: 핀과 신호
 - CCRA: 표준화 기구
 - CCSDS: 표준화 기구
+- CENELEC: 표준화 기구
 - CERT: 표준화 기구
 - CiA: 표준화 기구
 - CISA: 표준화 기구
@@ -51,6 +52,7 @@
 - JTC: ISO 위원회 번호
 - MCD: 표준·규격 이름
 - MCU: 널리 쓰이는 약어
+- MIL-HDBK: 표준·규격 이름
 - MISRA: 표준화 기구
 - NASA: 널리 쓰이는 약어
 - NATO: 널리 쓰이는 약어

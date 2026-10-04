@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-02
 ---
 
-**EARS**(Easy Approach to Requirements Syntax)는 글로 쓰는 요구사항을 적은 수의 정해진 패턴에 맞춰 쓰게 해 가볍게 제약하는 요구사항 표기법이다. 몇 개의 키워드(While, When, Where, If–Then)가 요구사항 문장의 각 절을 나타낸다. EARS는 제약 없는 자연어 요구사항에 정해진 문법과 그 밑에 깔린 규칙을 더한다.[@mavin-ears-guide-2026]
+**EARS**(Easy Approach to Requirements Syntax)는 글로 쓰는 요구사항을 적은 수의 정해진 패턴에 맞춰 쓰게 해 가볍게 제약하는 요구사항 표기법이다. 몇 개의 키워드(While, When, Where, If–Then)가 요구사항 문장의 각 절을 나타낸다. EARS는 제약 없는 자연어 요구사항에 정해진 문법과 그 밑에 깔린 규칙을 더한다. Mavin의 EARS 공식 안내에 따르면 EARS는 자연어 요구사항에 흔한 문제를 줄이거나 없앤다.[@mavin-ears-guide-2026]
 
 ## 개발과 발표
 
@@ -34,6 +34,6 @@ EARS의 패턴은 다음과 같다.[@mavin-ears-guide-2026]
 | Optional feature   | Where   | 지정한 기능을 갖춘 제품이나 시스템에 | Where <기능이 있음>, the <시스템 이름> shall <시스템 응답>                 |
 | Complex            | 둘 이상 | 위 조건이 겹칠 때                    | While <전제 조건>, when <트리거>, the <시스템 이름> shall <시스템 응답> 등 |
 
-원하지 않는 동작을 다루는 Complex 요구사항에는 If–Then도 든다.[@mavin-ears-guide-2026]
+Unwanted behaviour 패턴은 잘못된 입력 같은 원하지 않는 상황에 대한 시스템 응답을 정한다. 원하지 않는 동작을 다루는 Complex 요구사항에는 If–Then도 든다.[@mavin-ears-guide-2026]
 
 요구사항 표기의 정형도는 [[software-requirements-specification#표기의 정형도|SRS]]에서 다룬다.

@@ -13,11 +13,15 @@ IEC 60050은 **FMEA**를 하위 항목에서 일어날 수 있는 failure mode�
 
 **Failure mode**는 요소나 아이템이 고장 나는 방식이다.[@iso-26262-1-obp-2018][@iec-60050-192-03-17-2024]
 
+미국 NRC(Nuclear Regulatory Commission)가 펴낸 Fault Tree Handbook에 따르면 시스템 분석의 접근은 귀납적 접근과 연역적 접근 둘이다. 귀납적 접근은 부품의 어떤 상태나 초기 사건을 가정하고 그것이 시스템 전체에 주는 영향을 찾고, 연역적 접근은 시스템이 어떤 방식으로 고장 났다고 가정하고 그 고장에 기여하는 부품이나 시스템의 동작을 찾는다. FMEA는 귀납적 접근의 예다.[@nrc-nureg-0492-1981]
+
 ## FTA
 
 IEC 60050은 **FTA**를 fault tree를 쓰는 연역적 분석으로 정의하고[@iec-60050-192-11-08-2015], **fault tree**를 하위 항목의 fault, 외부 사건, 또는 그 조합이 미리 정한 원치 않는 사건을 일으키는 관계를 보이는 논리 그림으로 정의한다.[@iec-60050-192-11-07-2015]
 
 IEC 61025:2006은 FTA를 정해 둔 top event를 일으키거나 그에 기여하는 조건과 요인을 찾아 분석하는 방법으로 둔다. **Top event**는 fault tree를 전개하는 대상 사건으로, 모든 입력 사건이 조합된 결과다. Fault tree에서 게이트는 입력 사건의 조합을 나타내고, 그 결과는 중간 사건이거나 top event다. IEC 61025:2006은 FTA의 원리, 수행 단계, 가정·사건·failure mode의 식별, 기호에 대한 지침을 둔다.[@iec-61025-preview-2006]
+
+NRC가 펴낸 Fault Tree Handbook에 따르면 **basic event**는 분해의 한계에 이르러 더 전개하지 않는 기본 초기 fault 사건이다. AND 게이트는 입력 fault가 모두 일어날 때, OR 게이트는 입력 fault가 하나라도 일어날 때 출력 fault가 일어남을 나타낸다.[@nrc-nureg-0492-1981]
 
 ![[diagrams/fault-tree-structure.svg]]
 

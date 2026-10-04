@@ -18,7 +18,7 @@ ISO 21448:2022는 **기능 부족**(functional insufficiency)을 명세의 부�
 
 ## Triggering condition
 
-ISO 21448:2022는 **triggering condition**을 시나리오의 특정 조건으로 정의한다. 이 조건이 뒤따르는 시스템 반응을 일으켜, 해저드 동작이나 간접 오용에 대처하지 못하는 결과로 이어지게 한다. 기능 부족을 활성화하는 것이 triggering condition이다.[@iso-21448-obp-2022]
+ISO 21448:2022는 **triggering condition**을 시나리오의 특정 조건으로 정의한다. 이 조건이 뒤따르는 시스템 반응을 일으켜, 해저드 동작이나 간접 오용에 대처하지 못하는 결과로 이어지게 한다. 기능 부족을 활성화하는 것이 triggering condition이다. Triggering condition이 속하는 시나리오는 이어진 장면(scene) 사이의 시간 관계를 기술한 것이고, 장면에는 날씨나 조명 같은 환경 요소, 도로와 교통 표지 같은 기반 시설, 움직이거나 서 있는 객체와 행위자가 들 수 있다.[@iso-21448-obp-2022]
 
 ![[diagrams/sotif-triggering-condition-chain.svg]]
 
