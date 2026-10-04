@@ -19,15 +19,15 @@ POSIX.1-2024는 데이터 경쟁(data race)을 피하도록, 둘 이상의 스�
 
 ## 인터럽트 금지
 
-임계 구역 동안 인터럽트를 모두 끄면 그 구간은 인터럽트에 끊기지 않는다.[@osek-os-2-2-3-2005][@microchip-harmony-osal-2018] FreeRTOS에서는 선점형 context switch가 인터럽트 안에서만 일어나므로, `taskENTER_CRITICAL()`로 인터럽트를 끈 태스크는 임계 구역을 나올 때까지 실행 상태에 머문다. 다만 포트가 `configMAX_SYSCALL_INTERRUPT_PRIORITY`를 쓰면 그 우선순위 이하의 인터럽트만 꺼지고, 더 높은 인터럽트는 켜진 채 남는다.[@freertos-taskenter-critical-2026]
+임계 구역 동안 인터럽트를 모두 끄면 그 구간은 인터럽트에 끊기지 않는다.[@osek-os-2-2-3-2005][@microchip-harmony-osal-2018] FreeRTOS에서는 선점형 [[context-switch|context switch]]가 인터럽트 안에서만 일어나므로, `taskENTER_CRITICAL()`로 인터럽트를 끈 태스크는 임계 구역을 나올 때까지 실행 상태에 머문다. 다만 포트가 `configMAX_SYSCALL_INTERRUPT_PRIORITY`를 쓰면 그 우선순위 이하의 인터럽트만 꺼지고, 더 높은 인터럽트는 켜진 채 남는다.[@freertos-taskenter-critical-2026]
 
-AUTOSAR R25-11 OS 명세는 인터럽트 금지가 그것을 호출한 코어에만 걸리게 정한다. 그래서 다른 코어에서는 스케줄링과 인터럽트 처리가 계속된다.[@autosar-cp-sws-os-2025]
+[[autosar-os|AUTOSAR R25-11 OS]] 명세는 인터럽트 금지가 그것을 호출한 코어에만 걸리게 정한다. 그래서 다른 코어에서는 스케줄링과 인터럽트 처리가 계속된다.[@autosar-cp-sws-os-2025]
 
 인터럽트를 끄는 임계 구역은 짧게 둔다.[@osek-os-2-2-3-2005][@freertos-taskenter-critical-2026] 인터럽트를 끄는 임계 구역이 길면 인터럽트 응답 시간이 나빠진다.[@freertos-taskenter-critical-2026][@micrium-ucos-ii-rtsc-2026]
 
 ## 스케줄러 잠금
 
-스케줄러 잠금은 임계 구역 동안 태스크 전환을 막지만, 인터럽트는 계속 받아 처리한다.[@osek-os-2-2-3-2005][@freertos-vtasksuspendall-2026] FreeRTOS에 따르면 인터럽트를 끄기에는 너무 긴 임계 구역은 스케줄러를 멈춰 만들 수 있다.[@freertos-resource-management-2026] OSEK/VDX OS에서는 태스크가 [[osek-resource|resource]]의 하나인 `RES_SCHEDULER`를 얻어 스케줄러를 잠근다.[@osek-os-2-2-3-2005]
+스케줄러 잠금은 임계 구역 동안 태스크 전환을 막지만, 인터럽트는 계속 받아 처리한다.[@osek-os-2-2-3-2005][@freertos-vtasksuspendall-2026] FreeRTOS에 따르면 인터럽트를 끄기에는 너무 긴 임계 구역은 스케줄러를 멈춰 만들 수 있다.[@freertos-resource-management-2026] [[osek-os|OSEK/VDX OS]]에서는 태스크가 [[osek-resource|resource]]의 하나인 `RES_SCHEDULER`를 얻어 스케줄러를 잠근다.[@osek-os-2-2-3-2005]
 
 ## 락
 

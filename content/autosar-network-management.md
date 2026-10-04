@@ -10,8 +10,8 @@ verified: 2026-09-30
 ## 모듈
 
 - **Nm interface**(Generic Network Management Interface): ComM(Communication Manager)과 버스별 NM 모듈 사이의 버스 독립 적응 계층이다. ComM이 부른 일반 함수는 버스별 NM의 함수로 바꾸고, 버스별 NM이 부른 콜백은 ComM에 주는 일반 콜백으로 바꾼다.
-- **NM coordinator**: Nm interface의 선택 기능으로, 게이트웨이 ECU가 자신이 이어진 여러 버스를 함께 재우도록 조정한다. 조정하는 버스들을 함께 깨우는 것은 Nm interface의 범위 밖이며 응용의 몫이다.
-- **버스별 NM**: [[can|CAN]]의 CanNm, [[flexray|FlexRay]]의 FrNm(FlexRay Network Management), [[ethernet|이더넷]]의 UdpNm(UDP Network Management), [[j1939|J1939]]의 J1939Nm(J1939 Network Management)이 있다.[@autosar-cp-sws-networkmanagementinterface-2025]
+- **NM coordinator**: Nm interface의 선택 기능으로, [[gateway|게이트웨이]] ECU가 자신이 이어진 여러 버스를 함께 재우도록 조정한다. 조정하는 버스들을 함께 깨우는 것은 Nm interface의 범위 밖이며 응용의 몫이다.
+- **버스별 NM**: [[can|CAN]]의 CanNm, [[flexray|FlexRay]]의 FrNm(FlexRay Network Management), [[ethernet|이더넷]]의 UdpNm([[udp|UDP]] Network Management), [[j1939|J1939]]의 J1939Nm(J1939 Network Management)이 있다.[@autosar-cp-sws-networkmanagementinterface-2025]
 
 ComM은 [[autosar-communication-stack#통신 모드 관리|AUTOSAR 통신 스택]]에서 다룬다.
 
@@ -32,7 +32,7 @@ Network Mode에서 NM 메시지를 받거나 NM 메시지 송신에 성공하면
 
 ## Direct NM과 indirect NM
 
-AUTOSAR의 버스별 NM은 분산 direct NM 전략을 따른다. 각 노드는 자신이 받거나 보낸 NM 메시지만을 바탕으로 스스로 동작한다.[@autosar-cp-sws-cannetworkmanagement-2025][@autosar-cp-sws-udpnetworkmanagement-2025] CanNm에서는 NM 메시지 송신 주기 `CanNmMsgCycleTime`, `CanNmTimeoutTime`, `CanNmWaitBusSleepTime`을 클러스터의 모든 노드가 같은 값으로 둔다.[@autosar-cp-sws-cannetworkmanagement-2025]
+[[autosar|AUTOSAR]]의 버스별 NM은 분산 direct NM 전략을 따른다. 각 노드는 자신이 받거나 보낸 NM 메시지만을 바탕으로 스스로 동작한다.[@autosar-cp-sws-cannetworkmanagement-2025][@autosar-cp-sws-udpnetworkmanagement-2025] CanNm에서는 NM 메시지 송신 주기 `CanNmMsgCycleTime`, `CanNmTimeoutTime`, `CanNmWaitBusSleepTime`을 클러스터의 모든 노드가 같은 값으로 둔다.[@autosar-cp-sws-cannetworkmanagement-2025]
 
 [[osek-vdx|OSEK]] NM 명세의 direct NM은 노드를 [[bus-access-method|논리 링]]으로 잇는다. OSEK NM 명세의 indirect NM은 전용 NM 메시지를 쓰지 않고, 주기적으로 오가는 응용 메시지를 감시해 노드의 상태를 판단한다. 그래서 정상 동작 중 메시지를 주기적으로 보내는 노드만 감시할 수 있다.[@osek-nm-2-5-3-2004]
 

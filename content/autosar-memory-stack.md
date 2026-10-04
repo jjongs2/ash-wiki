@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**AUTOSAR 메모리 스택**은 AUTOSAR Classic Platform의 BSW(Basic Software)에서 내부·외부 비휘발성 메모리에 표준화된 접근을 주는 모듈들의 묶음이다. 위에서부터 [[nvram-manager|NvM]], MemIf(Memory Abstraction Interface), Fee(Flash EEPROM Emulation)와 Ea(EEPROM Abstraction), MemAcc(Memory Access), Mem(Memory Driver)이 층을 이룬다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025][@autosar-cp-sws-memoryabstractioninterface-2025] NvM은 메모리 스택의 유일한 접근점으로, 응용에 비휘발성 데이터를 한결같은 방식으로 주고 메모리의 위치와 성질을 감춘다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+**AUTOSAR 메모리 스택**은 [[autosar-classic-platform|AUTOSAR Classic Platform]]의 BSW(Basic Software)에서 내부·외부 비휘발성 메모리에 표준화된 접근을 주는 모듈들의 묶음이다. 위에서부터 [[nvram-manager|NvM]], MemIf(Memory Abstraction Interface), Fee(Flash EEPROM Emulation)와 Ea(EEPROM Abstraction), MemAcc(Memory Access), Mem(Memory Driver)이 층을 이룬다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025][@autosar-cp-sws-memoryabstractioninterface-2025] NvM은 메모리 스택의 유일한 접근점으로, 응용에 비휘발성 데이터를 한결같은 방식으로 주고 메모리의 위치와 성질을 감춘다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## 층
 
@@ -15,7 +15,7 @@ verified: 2026-09-30
 
 ![[diagrams/autosar-memory-stack-layers.svg]]
 
-칩 안의 메모리 장치와 메모리 맵 외부 장치(예: 외부 플래시)의 드라이버는 MCAL의 Memory Drivers에 있다. 그 밖의 외부 메모리 장치(예: SPI(Serial Peripheral Interface)로 붙은 외부 EEPROM)의 드라이버는 ECU Abstraction Layer에 있으며, MCAL 드라이버를 거쳐 장치에 접근한다. AUTOSAR Classic Platform R25-11의 Layered Software Architecture는 이전 릴리스에 있던 Fls(Flash Driver)와 Eep(EEPROM Driver)를 뺐다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+칩 안의 메모리 장치와 메모리 맵 외부 장치(예: 외부 플래시)의 드라이버는 [[microcontroller-abstraction-layer|MCAL]]의 Memory Drivers에 있다. 그 밖의 외부 메모리 장치(예: SPI(Serial Peripheral Interface)로 붙은 외부 EEPROM)의 드라이버는 [[ecu-abstraction-layer|ECU Abstraction Layer]]에 있으며, MCAL 드라이버를 거쳐 장치에 접근한다. AUTOSAR Classic Platform R25-11의 [[autosar-layered-architecture|Layered Software Architecture]]는 이전 릴리스에 있던 Fls(Flash Driver)와 Eep(EEPROM Driver)를 뺐다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## MemIf
 

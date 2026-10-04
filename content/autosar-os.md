@@ -5,26 +5,26 @@ tags:
 verified: 2026-09-30
 ---
 
-**AUTOSAR OS**는 AUTOSAR Classic Platform의 운영체제다. [[osek-os|OSEK OS]]를 바탕으로 삼아 그것을 확장하고 일부를 제한하는 것으로 정의되며, OSEK OS의 API(Application Programming Interface)와 역호환되는 API를 제공한다. OSEK OS 기능에 더해 counter API, [[autosar-schedule-table|schedule table]], stack monitoring, [[autosar-os-application|memory protection]], [[autosar-timing-protection|timing protection]], service protection 등을 둔다.[@autosar-cp-sws-os-2025]
+**AUTOSAR OS**는 [[autosar-classic-platform|AUTOSAR Classic Platform]]의 운영체제다. [[osek-os|OSEK OS]]를 바탕으로 삼아 그것을 확장하고 일부를 제한하는 것으로 정의되며, OSEK OS의 API(Application Programming Interface)와 역호환되는 API를 제공한다. OSEK OS 기능에 더해 counter API, [[autosar-schedule-table|schedule table]], stack monitoring, [[autosar-os-application#Memory protection|memory protection]], [[autosar-timing-protection|timing protection]], service protection 등을 둔다.[@autosar-cp-sws-os-2025]
 
 ## Scalability class
 
 AUTOSAR OS는 기능을 SC1부터 SC4까지 네 scalability class로 묶고, OS마다 애플리케이션의 필요에 맞춰 하나를 고른다. 기능마다 드는 등급은 다음과 같다.[@autosar-cp-sws-os-2025]
 
-| 기능                                       | SC1 | SC2 | SC3 | SC4 |
-| ------------------------------------------ | --- | --- | --- | --- |
-| OSEK OS 기능(모든 conformance class)       | 예  | 예  | 예  | 예  |
-| counter API                                | 예  | 예  | 예  | 예  |
-| 소프트웨어 free-running timer API          | 예  | 예  | 예  | 예  |
-| schedule table                             | 예  | 예  | 예  | 예  |
-| stack monitoring                           | 예  | 예  | 예  | 예  |
-| protection hook                            | —   | 예  | 예  | 예  |
-| timing protection                          | —   | 예  | —   | 예  |
-| 전역 시간·동기화 지원                      | —   | 예  | —   | 예  |
-| memory protection                          | —   | —   | 예  | 예  |
-| [[autosar-os-application\|OS-Application]] | —   | —   | 예  | 예  |
-| service protection                         | —   | —   | 예  | 예  |
-| `CallTrustedFunction`                      | —   | —   | 예  | 예  |
+| 기능                                 | SC1 | SC2 | SC3 | SC4 |
+| ------------------------------------ | --- | --- | --- | --- |
+| OSEK OS 기능(모든 conformance class) | 예  | 예  | 예  | 예  |
+| counter API                          | 예  | 예  | 예  | 예  |
+| 소프트웨어 free-running timer API    | 예  | 예  | 예  | 예  |
+| schedule table                       | 예  | 예  | 예  | 예  |
+| stack monitoring                     | 예  | 예  | 예  | 예  |
+| protection hook                      | —   | 예  | 예  | 예  |
+| timing protection                    | —   | 예  | —   | 예  |
+| 전역 시간·동기화 지원                | —   | 예  | —   | 예  |
+| memory protection                    | —   | —   | 예  | 예  |
+| OS-Application                       | —   | —   | 예  | 예  |
+| service protection                   | —   | —   | 예  | 예  |
+| `CallTrustedFunction`                | —   | —   | 예  | 예  |
 
 SC2와 SC3은 서로를 포함하지 않는다. SC2는 SC1에 timing protection을, SC3은 SC1에 memory protection을 더한 갈래이며, SC4는 두 갈래를 아우른다.[@autosar-cp-sws-os-2025][@autosar-cp-rs-os-2025]
 
@@ -38,7 +38,7 @@ OSEK OS는 [[osek-alarm|counter]]를 직접 다루는 표준 API를 두지 않�
 
 ## Stack monitoring
 
-**Stack monitoring**은 태스크와 category 2 [[osek-isr|ISR]]이 정해 둔 스택 사용량을 넘었는지 검사하는 기능이다. 검사는 [[context-switch|문맥 전환]] 때 하므로, 넘침이 일어난 뒤 그것을 찾기까지 시간이 꽤 걸릴 수 있다. 넘침을 찾으면 OS는 protection hook을 E_OS_STACKFAULT로 부르고, protection hook이 없으면 E_OS_STACKFAULT로 `ShutdownOS`를 부른다. MPU(Memory Protection Unit)를 쓰는 SC3·SC4 시스템에서는 stack monitoring이 찾기 전에 스택 넘침이 메모리 예외를 일으킬 수 있다.[@autosar-cp-sws-os-2025]
+**Stack monitoring**은 태스크와 category 2 [[osek-isr|ISR]]이 정해 둔 스택 사용량을 넘었는지 검사하는 기능이다. 검사는 [[context-switch|context switch]] 때 하므로, 넘침이 일어난 뒤 그것을 찾기까지 시간이 꽤 걸릴 수 있다. 넘침을 찾으면 OS는 protection hook을 E_OS_STACKFAULT로 부르고, protection hook이 없으면 E_OS_STACKFAULT로 `ShutdownOS`를 부른다. MPU(Memory Protection Unit)를 쓰는 SC3·SC4 시스템에서는 stack monitoring이 찾기 전에 스택 넘침이 메모리 예외를 일으킬 수 있다.[@autosar-cp-sws-os-2025]
 
 ## Service protection
 
@@ -51,7 +51,7 @@ OSEK OS는 [[osek-alarm|counter]]를 직접 다루는 표준 API를 두지 않�
 | 허용되지 않은 context에서 서비스를 부른다. 예: `StartupHook`에서 `ActivateTask` | category 1 ISR 안이 아니면 요청을 수행하지 않고 E_OS_CALLEVEL이나 그 서비스의 무효 값을 돌려준다. |
 | 태스크가 `TerminateTask`나 `ChainTask` 없이 끝난다.                             | 태스크를 끝내고, error hook이 있으면 `ErrorHook`을 E_OS_MISSINGEND로 부른다.                      |
 | category 2 ISR이 인터럽트를 막은 채 끝난다.                                     | 빠진 해제를 대신 하고 `ErrorHook`을 E_OS_DISABLEDINT로 부른다.                                    |
-| category 2 ISR이 resource를 쥔 채 끝난다.                                       | resource를 대신 놓고 `ErrorHook`을 E_OS_RESOURCE로 부른다.                                        |
+| category 2 ISR이 [[osek-resource\|resource]]를 쥔 채 끝난다.                    | resource를 대신 놓고 `ErrorHook`을 E_OS_RESOURCE로 부른다.                                        |
 | 접근 권한이 설정되지 않은 OS 객체를 서비스로 다룬다.                            | E_OS_ACCESS를 돌려준다.                                                                           |
 | non-trusted OS-Application이 `ShutdownOS`를 부른다.                             | 무시한다.                                                                                         |
 
@@ -84,6 +84,6 @@ protection hook을 두지 않으면 OS는 보호 오류에서 `ShutdownOS`를 �
 
 알람이 만료될 때 할 수 있는 동작에는 AUTOSAR OS에서 소프트웨어 counter를 올리는 것이 더해졌다.[@autosar-cp-sws-os-2025]
 
-OSEK OS는 스케줄러를 잠그는 [[osek-resource|resource]] `RES_SCHEDULER`를 자동으로 만든다.[@osek-os-2-2-3-2005] AUTOSAR OS는 `RES_SCHEDULER`를 다른 resource와 똑같이 다루며 자동으로 만들지 않는다.[@autosar-cp-sws-os-2025]
+OSEK OS는 스케줄러를 잠그는 resource `RES_SCHEDULER`를 자동으로 만든다.[@osek-os-2-2-3-2005] AUTOSAR OS는 `RES_SCHEDULER`를 다른 resource와 똑같이 다루며 자동으로 만들지 않는다.[@autosar-cp-sws-os-2025]
 
 OSEK OS는 `ShutdownHook`이 돌아온 뒤 `ShutdownOS`가 어떻게 동작할지를 구현에 맡긴다.[@osek-os-2-2-3-2005] AUTOSAR OS에서는 `ShutdownHook`이 돌아오면 OS가 모든 인터럽트를 끄고 끝없는 루프에 든다.[@autosar-cp-sws-os-2025]

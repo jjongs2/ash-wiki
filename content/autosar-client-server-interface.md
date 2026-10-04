@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**Client-server 인터페이스**는 클라이언트가 서버에서 호출할 수 있는 operation들을 선언하는 port interface다.[@autosar-cp-tps-softwarecomponenttemplate-2025] 서버는 operation을 제공하는 [[software-component-port|P-Port]]를, 클라이언트는 그것을 요구하는 R-Port를 가진다. [[autosar-rte|RTE]]는 여러 클라이언트가 같은 서버 operation을 호출하는 n:1 통신을 지원한다.[@autosar-cp-sws-rte-2025]
+**Client-server 인터페이스**는 클라이언트가 서버에서 호출할 수 있는 operation들을 선언하는 port interface다.[@autosar-cp-tps-softwarecomponenttemplate-2025] 서버는 operation을 제공하는 [[software-component-port#P-Port와 R-Port|P-Port]]를, 클라이언트는 그것을 요구하는 R-Port를 가진다. [[autosar-rte|RTE]]는 여러 클라이언트가 같은 서버 operation을 호출하는 n:1 통신을 지원한다.[@autosar-cp-sws-rte-2025]
 
 ## Operation과 argument
 

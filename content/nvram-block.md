@@ -36,7 +36,7 @@ NvM은 CRC를 설정한 블록을 쓸 때 CRC를 다시 계산해 NV 블록에 �
 
 ## 블록 번호
 
-Fee·Ea 블록 번호 $\mathrm{FEE/EA\_BLOCK\_NUMBER}$는 16비트다. `NvMDatasetSelectionBits`는 모든 블록에 공통인 설정으로, 블록 번호의 하위 몇 비트를 dataset이나 redundant 블록의 NV 블록을 고르는 데이터 인덱스 $\mathrm{DataIndex}$로 쓸지 정한다. 블록마다 두는 `NvMNvBlockBaseNumber`는 SW-C가 쓰는 NvM 블록 ID와 Fee·Ea가 기대하는 블록 번호를 잇는 값으로, 블록 번호의 나머지 상위 비트에 놓인다. Dataset이나 redundant 블록이 없으면 `NvMDatasetSelectionBits`를 0으로, redundant 블록만 있으면 1로 둔다. 블록 번호는 base number를 데이터 인덱스 비트 수만큼 왼쪽으로 민 값에 데이터 인덱스를 더한 것으로, $\mathrm{FEE/EA\_BLOCK\_NUMBER} = (\mathrm{NvMNvBlockBaseNumber} \ll \mathrm{NvMDatasetSelectionBits}) + \mathrm{DataIndex}$다.[@autosar-cp-sws-nvrammanager-2025]
+Fee·Ea 블록 번호 $\mathrm{FEE/EA\_BLOCK\_NUMBER}$는 16비트다. `NvMDatasetSelectionBits`는 모든 블록에 공통인 설정으로, 블록 번호의 하위 몇 비트를 dataset이나 redundant 블록의 NV 블록을 고르는 데이터 인덱스 $\mathrm{DataIndex}$로 쓸지 정한다. 블록마다 두는 `NvMNvBlockBaseNumber`는 [[autosar-software-component|SW-C]]가 쓰는 NvM 블록 ID와 Fee·Ea가 기대하는 블록 번호를 잇는 값으로, 블록 번호의 나머지 상위 비트에 놓인다. Dataset이나 redundant 블록이 없으면 `NvMDatasetSelectionBits`를 0으로, redundant 블록만 있으면 1로 둔다. 블록 번호는 base number를 데이터 인덱스 비트 수만큼 왼쪽으로 민 값에 데이터 인덱스를 더한 것으로, $\mathrm{FEE/EA\_BLOCK\_NUMBER} = (\mathrm{NvMNvBlockBaseNumber} \ll \mathrm{NvMDatasetSelectionBits}) + \mathrm{DataIndex}$다.[@autosar-cp-sws-nvrammanager-2025]
 
 ![[diagrams/fee-ea-block-number-bits.svg]]
 

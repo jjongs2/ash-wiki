@@ -9,8 +9,8 @@
     </marker>
   </defs>
 
-  <!-- 이벤트 사슬 -->
-  <text x="330" y="20" text-anchor="middle" fill="var(--text, #727981)">이벤트 사슬</text>
+  <!-- event chain -->
+  <text x="330" y="20" text-anchor="middle" fill="var(--text, #727981)">event chain</text>
   <path d="M140 36 V28 H520 V36" stroke="var(--ink, #727981)" stroke-width="1.5" />
 
   <!-- 사슬이 거치는 곳 -->

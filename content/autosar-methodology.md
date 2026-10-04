@@ -5,15 +5,15 @@ tags:
 verified: 2026-09-30
 ---
 
-**AUTOSAR 방법론**은 [[autosar-classic-platform|AUTOSAR Classic Platform]]으로 시스템을 개발하는 주요 단계, 곧 VFB 정의부터 ECU 실행 파일 생성까지를 다루며, 역할이 수행해 산출물(work product)을 만드는 작업(activity)을 정한다. 완전한 프로세스 기술이 아니고 작업의 정확한 순서도 정하지 않으며, 작업이 어떤 산출물에 의존하는지만 정하는 산출물 흐름이다.[@autosar-cp-tr-methodology-2025]
+**AUTOSAR 방법론**은 [[autosar-classic-platform|AUTOSAR Classic Platform]]으로 시스템을 개발하는 주요 단계, 곧 [[virtual-functional-bus|VFB]] 정의부터 ECU 실행 파일 생성까지를 다루며, 역할이 수행해 산출물(work product)을 만드는 작업(activity)을 정한다. 완전한 프로세스 기술이 아니고 작업의 정확한 순서도 정하지 않으며, 작업이 어떤 산출물에 의존하는지만 정하는 산출물 흐름이다.[@autosar-cp-tr-methodology-2025]
 
 ## 작업 흐름
 
 방법론이 보여 주는 주요 흐름은 시스템 개발, ECU Extract 추출, ECU 통합이다.[@autosar-cp-tr-methodology-2025]
 
-- **시스템 개발**: VFB를 시스템으로 구체화한다. ECU와 네트워크의 토폴로지를 정하고, SW-C를 ECU에 배치하고, 통신 매트릭스를 도출해 System Description을 만든다.
+- **시스템 개발**: VFB를 시스템으로 구체화한다. ECU와 네트워크의 토폴로지를 정하고, [[autosar-software-component|SW-C]]를 ECU에 배치하고, 통신 매트릭스를 도출해 System Description을 만든다.
 - **ECU Extract 추출**: 시스템 설계가 끝나면 ECU마다 그 ECU에 관련된 부분을 뽑아 ECU Extract를 만든다.
-- **ECU 통합**: ECU 설정 준비, BSW(Basic Software)와 RTE 설정, BSW와 RTE 생성, 실행 파일 빌드의 네 작업으로 이루어진다. RTE를 생성한 뒤 전체 코드를 컴파일하고 링크해 실행 파일을 만든다.[@autosar-cp-tr-methodology-2025]
+- **ECU 통합**: ECU 설정 준비, BSW(Basic Software)와 [[autosar-rte|RTE]] 설정, BSW와 RTE 생성, 실행 파일 빌드의 네 작업으로 이루어진다. RTE를 생성한 뒤 전체 코드를 컴파일하고 링크해 실행 파일을 만든다.[@autosar-cp-tr-methodology-2025]
 
 SW-C는 시스템 설계와 나란히, VFB가 정한 인터페이스를 바탕으로 구현한다. SW-C의 구현은 ECU 설정과 대부분 무관하다.[@autosar-cp-tr-methodology-2025]
 
@@ -60,6 +60,6 @@ XML(Extensible Markup Language)로 AUTOSAR 모델을 나타낸 것을 **AUTOSAR 
 
 ## 네트워크 기술 형식
 
-System Template은 통신과 토폴로지 기술에 ASAM FIBEX의 기술을 담고, AUTOSAR의 요구에 맞게 PDU 개념 등을 더해 확장했다. FIBEX는 버스 통신 시스템을 다루는 도구 사이의 데이터 교환을 위한 XML 형식이다.[@autosar-cp-tps-systemtemplate-2025] ASAM MCD-2 NET(FIBEX) 4.1.2는 [[flexray|FlexRay]], [[can|CAN]], [[lin|LIN]], [[ethernet|Ethernet]] 등을 기술 확장으로 다룬다.[@asam-mcd-2-net-2017]
+System Template은 통신과 토폴로지 기술에 ASAM FIBEX의 기술을 담고, AUTOSAR의 요구에 맞게 PDU 개념 등을 더해 확장했다. FIBEX는 버스 통신 시스템을 다루는 도구 사이의 데이터 교환을 위한 XML 형식이다.[@autosar-cp-tps-systemtemplate-2025] ASAM MCD-2 NET(FIBEX) 4.1.2는 [[flexray|FlexRay]], [[can|CAN]], [[lin|LIN]], [[ethernet|이더넷]] 등을 기술 확장으로 다룬다.[@asam-mcd-2-net-2017]
 
 Vector의 DBC 데이터베이스는 CAN·[[can-fd|CAN FD]] 네트워크, 버스에 이어진 ECU, 메시지와 시그널을 기술한다.[@vector-candb-admin-factsheet-2024] LIN을 규정하는 ISO 17987 시리즈 가운데 ISO 17987-2:2025는 약어 LDF를 LIN description file로 정의한다.[@iso-17987-2-obp-2025] Vector DaVinci Configurator Classic의 Ecu Extract Producer는 DBC 같은 기존 형식의 파일을 ECU Extract로 변환한다.[@vector-davinci-configurator-classic-ecuxpro-2026] ECU Extract를 만들 때 DBC, LDF, FIBEX 같은 기존 통신 파일을 함께 넣으면, 따로 설치하는 Legacy Converter가 이 파일들을 ARXML로 변환해 함께 넣은 ARXML 파일에 합친다.[@vector-davinci-configurator-classic-invariant-ecu-extract-2026]

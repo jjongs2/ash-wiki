@@ -10,7 +10,7 @@ verified: 2026-09-30
 SW-C는 BSW(Basic Software)가 제공하는 AUTOSAR 서비스와도 포트로 이어진다. AUTOSAR 서비스는 표준 port interface로 타입을 정한 포트를 두고, [[autosar-rte|RTE]]가 이 서비스 포트를 SW-C의 포트에 잇는다.[@autosar-cp-sws-rte-2025]
 
 > [!note]
-> AUTOSAR의 MCAL에는 Port Driver라는 BSW 모듈도 있다. Port Driver는 마이크로컨트롤러의 포트 구조 전체를 초기화하고 포트 핀을 설정한다.[@autosar-cp-sws-portdriver-2025]
+> AUTOSAR의 [[microcontroller-abstraction-layer|MCAL]]에는 [[autosar-port-driver|Port Driver]]라는 BSW 모듈도 있다. Port Driver는 마이크로컨트롤러의 포트 구조 전체를 초기화하고 포트 핀을 설정한다.[@autosar-cp-sws-portdriver-2025]
 
 ## P-Port와 R-Port
 
@@ -31,7 +31,7 @@ port interface는 여섯 종류다.[@autosar-cp-tps-softwarecomponenttemplate-20
 
 connector로 잇는 두 포트는 서로 호환되어야 한다. 한쪽의 P-Port나 PR-Port를 다른 쪽의 호환되는 R-Port나 PR-Port에 잇는다. 같은 port interface로 타입을 정한 포트끼리는 정의상 이을 수 있고, port interface가 달라도 호환되면 이을 수 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
-포트는 [[autosar-sender-receiver-interface|com spec]]으로 port interface의 요소마다 통신 속성을 덧붙인다. 요구하는 포트는 RPortComSpec을, 제공하는 포트는 PPortComSpec을 둔다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+포트는 [[autosar-sender-receiver-interface#Com spec|com spec]]으로 port interface의 요소마다 통신 속성을 덧붙인다. 요구하는 포트는 RPortComSpec을, 제공하는 포트는 PPortComSpec을 둔다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ## Connector
 

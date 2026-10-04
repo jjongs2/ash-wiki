@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**ICU Driver**는 AUTOSAR Classic Platform에서 MCAL의 I/O Drivers 그룹에 드는 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] ICU(Input Capture Unit)를 써서 PWM(Pulse Width Modulation) 신호를 복조하고, 펄스를 세고, 주파수와 duty cycle을 재고, 단순 인터럽트와 wakeup 인터럽트를 만든다.[@autosar-cp-sws-icudriver-2025]
+**ICU Driver**는 [[autosar-classic-platform|AUTOSAR Classic Platform]]에서 [[microcontroller-abstraction-layer|MCAL]]의 I/O Drivers 그룹에 드는 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] ICU(Input Capture Unit)를 써서 PWM(Pulse Width Modulation) 신호를 복조하고, 펄스를 세고, 주파수와 duty cycle을 재고, 단순 인터럽트와 wakeup 인터럽트를 만든다.[@autosar-cp-sws-icudriver-2025]
 
 ## 측정 모드
 

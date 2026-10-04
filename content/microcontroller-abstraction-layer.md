@@ -13,7 +13,7 @@ verified: 2026-09-30
 
 ## Internal driver
 
-마이크로컨트롤러 안에 있는 장치를 **internal device**라 한다. 예로 내부 EEPROM(Electrically Erasable Programmable Read-Only Memory), 내부 [[can|CAN]] 컨트롤러, 내부 ADC(Analog Digital Converter)가 있다. internal device의 드라이버인 **internal driver**는 MCAL에 놓인다. 마이크로컨트롤러 밖 장치의 드라이버는 [[ecu-abstraction-layer|ECU Abstraction Layer]]에 놓이며 MCAL의 드라이버를 거쳐 장치에 접근한다. 다만 메모리 맵 방식 외부 장치(외부 Flash 등)의 드라이버는 마이크로컨트롤러에 직접 접근할 수 있고 마이크로컨트롤러에 의존하므로 MCAL에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+마이크로컨트롤러 안에 있는 장치를 **internal device**라 한다. 예로 내부 EEPROM(Electrically Erasable Programmable Read-Only Memory), 내부 [[can-controller|CAN 컨트롤러]], 내부 ADC(Analogue Digital Converter)가 있다. internal device의 드라이버인 **internal driver**는 MCAL에 놓인다. 마이크로컨트롤러 밖 장치의 드라이버는 [[ecu-abstraction-layer|ECU Abstraction Layer]]에 놓이며 MCAL의 드라이버를 거쳐 장치에 접근한다. 다만 메모리 맵 방식 외부 장치(외부 Flash 등)의 드라이버는 마이크로컨트롤러에 직접 접근할 수 있고 마이크로컨트롤러에 의존하므로 MCAL에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ![[diagrams/autosar-internal-external-driver-placement.svg]]
 
@@ -21,14 +21,14 @@ verified: 2026-09-30
 
 MCAL은 비슷한 종류의 모듈을 묶은 여섯 모듈 그룹으로 이루어진다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-| 모듈 그룹                      | 담는 것                                                                                                                                                                                       |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Microcontroller Drivers        | 내부 주변장치(watchdog, 범용 타이머 등)의 드라이버와 마이크로컨트롤러에 직접 접근하는 기능(core test 등). GPT(General Purpose Timer) Driver, Watchdog Driver, MCU Driver가 든다.              |
-| Memory Drivers                 | 온칩 메모리 장치(내부 Flash, 내부 EEPROM 등)와 메모리 맵 외부 메모리 장치(외부 Flash 등)의 드라이버                                                                                           |
-| Crypto Drivers                 | SHE(Secure Hardware Extension), HSM(Hardware Security Module) 같은 온칩 암호 장치의 드라이버                                                                                                  |
-| Communication Drivers          | SPI(Serial Peripheral Interface) 같은 ECU 보드 안 통신과 CAN 같은 차량 통신의 드라이버. SPI Handler Driver와 [[lin\|LIN]], CAN, [[flexray\|FlexRay]], [[ethernet\|Ethernet]] 드라이버가 든다. |
-| Wireless Communication Drivers | 차량 안이나 차량 밖 통신에 쓰는 무선 네트워크 시스템의 드라이버. Wireless Ethernet Driver가 든다.                                                                                             |
-| I/O Drivers                    | 아날로그·디지털 입출력의 드라이버. Port, DIO(Digital Input/Output), ADC, PWM(Pulse Width Modulation), ICU(Input Capture Unit), OCU(Output Compare Unit) 드라이버가 든다.                      |
+| 모듈 그룹                                              | 담는 것                                                                                                                                                                                                                                                                                                                   |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Microcontroller Drivers                                | 내부 주변장치(watchdog, 범용 타이머 등)의 드라이버와 마이크로컨트롤러에 직접 접근하는 기능(core test 등). GPT(General Purpose Timer) Driver, Watchdog Driver, MCU Driver가 든다.                                                                                                                                          |
+| [[autosar-memory-stack\|Memory Drivers]]               | 온칩 메모리 장치(내부 Flash, 내부 EEPROM 등)와 메모리 맵 외부 메모리 장치(외부 Flash 등)의 드라이버                                                                                                                                                                                                                       |
+| Crypto Drivers                                         | SHE(Secure Hardware Extension), HSM(Hardware Security Module) 같은 온칩 암호 장치의 드라이버                                                                                                                                                                                                                              |
+| [[autosar-communication-stack\|Communication Drivers]] | SPI(Serial Peripheral Interface) 같은 ECU 보드 안 통신과 [[can\|CAN]] 같은 차량 통신의 드라이버. SPI Handler Driver와 [[lin\|LIN]], CAN, [[flexray\|FlexRay]], [[ethernet\|Ethernet]] 드라이버가 든다.                                                                                                                    |
+| Wireless Communication Drivers                         | 차량 안이나 차량 밖 통신에 쓰는 무선 네트워크 시스템의 드라이버. Wireless Ethernet Driver가 든다.                                                                                                                                                                                                                         |
+| I/O Drivers                                            | 아날로그·디지털 입출력의 드라이버. [[autosar-port-driver\|Port]], [[autosar-dio-driver\|DIO]](Digital Input/Output), [[autosar-adc-driver\|ADC]], [[autosar-pwm-driver\|PWM]](Pulse Width Modulation), [[autosar-icu-driver\|ICU]](Input Capture Unit), [[autosar-ocu-driver\|OCU]](Output Compare Unit) 드라이버가 든다. |
 
 ## Channel, channel group, port
 

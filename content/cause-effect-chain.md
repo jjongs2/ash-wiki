@@ -5,9 +5,9 @@ tags:
 verified: 2026-09-29
 ---
 
-AUTOSAR의 Timing Analysis and Design 보고서에 따르면 **cause-effect chain**은 통신하는 구성 요소 사이의 데이터 흐름으로, 소비자 구성 요소의 읽기 이벤트를 그에 대응하는 생산자 구성 요소의 쓰기 이벤트에 잇는다. 구성 요소는 추상화 수준에 따라 기능 블록, 소프트웨어 컴포넌트, 태스크일 수 있다.[@autosar-fo-tr-timinganalysis-2025]
+[[autosar|AUTOSAR]]의 Timing Analysis and Design 보고서에 따르면 **cause-effect chain**은 통신하는 구성 요소 사이의 데이터 흐름으로, 소비자 구성 요소의 읽기 이벤트를 그에 대응하는 생산자 구성 요소의 쓰기 이벤트에 잇는다. 구성 요소는 추상화 수준에 따라 기능 블록, 소프트웨어 컴포넌트, 태스크일 수 있다.[@autosar-fo-tr-timinganalysis-2025]
 
-태스크와 메시지가 저마다의 주기로 활성화되어 서로 맞춰지지 않고, 받는 쪽이 활성화될 때 가장 최근 값을 읽으면, 사슬의 종단 간 지연에는 태스크마다의 응답 시간에 더해, 데이터가 받는 쪽의 다음 활성화를 기다리는 시간이 연결마다 최대 한 주기 들어간다.[@davare-period-optimization-2007]
+태스크와 메시지가 저마다의 주기로 활성화되어 서로 맞춰지지 않고, 받는 쪽이 활성화될 때 가장 최근 값을 읽으면, 사슬의 종단 간 지연에는 태스크마다의 [[response-time-analysis|응답 시간]]에 더해, 데이터가 받는 쪽의 다음 활성화를 기다리는 시간이 연결마다 최대 한 주기 들어간다.[@davare-period-optimization-2007]
 
 ## 태스크 사이의 통신
 
@@ -28,7 +28,7 @@ AUTOSAR의 Timing Analysis and Design 보고서에 따르면 주기적으로 활
 
 ![[diagrams/cause-effect-chain-data-age-reaction.svg]]
 
-AUTOSAR R25-11 Timing Extensions는 자극(stimulus)에서 응답(response)까지 인과 관계에 있는 이벤트들을 event chain(TimingDescriptionEventChain)으로 기술하고, 그 예로 센서 샘플링에서 액추에이터 접근까지의 종단 간 event chain을 든다. 이 명세는 event chain에 거는 LatencyTimingConstraint의 종류로 age와 reaction을 둔다. age 제약은 주어진 응답과 그에 앞선 가장 최근 자극 사이의 간격을, reaction 제약은 주어진 자극과 그에 대응하는 첫 응답 사이의 간격을 제한한다.[@autosar-cp-tps-timingextensions-2025]
+AUTOSAR R25-11 Timing Extensions는 자극(stimulus)에서 응답(response)까지 인과 관계에 있는 이벤트들을 [[autosar-event-chain|event chain]](TimingDescriptionEventChain)으로 기술하고, 그 예로 센서 샘플링에서 액추에이터 접근까지의 종단 간 event chain을 든다. 이 명세는 event chain에 거는 LatencyTimingConstraint의 종류로 age와 reaction을 둔다. age 제약은 주어진 응답과 그에 앞선 가장 최근 자극 사이의 간격을, reaction 제약은 주어진 자극과 그에 대응하는 첫 응답 사이의 간격을 제한한다.[@autosar-cp-tps-timingextensions-2025]
 
 data age 제약은 액추에이터를 계속 구동하는 값이 너무 오래된 입력에 기대지 않게 할 때 쓰고, 주로 제어 공학에서 중요하다. reaction 제약은 자극에 대한 첫 반응이 중요할 때 쓰고, 바디 전장이 그런 예다.[@feiertag-end-to-end-path-delay-2008][@autosar-cp-tps-timingextensions-2025]
 

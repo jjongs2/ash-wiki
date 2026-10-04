@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-30
 ---
 
-**NVRAM Manager**(Non-Volatile Random-Access Memory Manager, NvM)는 [[autosar-memory-stack|AUTOSAR 메모리 스택]]의 맨 위 층인 Memory Services에서 비휘발성 데이터를 관리하는 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] SW-C와 BSW(Basic Software) 모듈은 [[nvram-block|NVRAM 블록]] 단위로 NvM에 읽기와 쓰기를 요청하고, NvM은 요청을 MemIf(Memory Abstraction Interface)로 내려 비휘발성 메모리와 RAM(Random-Access Memory) 사이에서 블록을 옮긴다.[@autosar-cp-sws-nvrammanager-2025]
+**NVRAM Manager**(Non-Volatile Random-Access Memory Manager, NvM)는 [[autosar-memory-stack|AUTOSAR 메모리 스택]]의 맨 위 층인 Memory Services에서 비휘발성 데이터를 관리하는 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] [[autosar-software-component|SW-C]]와 BSW(Basic Software) 모듈은 [[nvram-block|NVRAM 블록]] 단위로 NvM에 읽기와 쓰기를 요청하고, NvM은 요청을 MemIf(Memory Abstraction Interface)로 내려 비휘발성 메모리와 RAM(Random-Access Memory) 사이에서 블록을 옮긴다.[@autosar-cp-sws-nvrammanager-2025]
 
 ## Job 큐와 우선순위
 
@@ -56,4 +56,4 @@ NvM과 응용이 RAM 블록의 데이터를 주고받는 방식은 두 가지다
 
 ## Service port
 
-SW-C는 RTE를 거쳐 NvM의 서비스를 쓴다. NvM은 `NvMBlockUsePort`가 켜진 NVRAM 블록마다 NvMService 인터페이스의 service port 하나를 두고, 포트마다 그 블록의 ID를 port-defined argument로 정해 둔다. 그래서 SW-C는 블록 ID를 인자로 넘기지 않는다.[@autosar-cp-sws-nvrammanager-2025]
+SW-C는 [[autosar-rte|RTE]]를 거쳐 NvM의 서비스를 쓴다. NvM은 `NvMBlockUsePort`가 켜진 NVRAM 블록마다 NvMService 인터페이스의 service port 하나를 두고, 포트마다 그 블록의 ID를 port-defined argument로 정해 둔다. 그래서 SW-C는 블록 ID를 인자로 넘기지 않는다.[@autosar-cp-sws-nvrammanager-2025]

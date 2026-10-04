@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**OCU Driver**는 AUTOSAR Classic Platform에서 MCAL의 I/O Drivers 그룹에 드는 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 마이크로컨트롤러 안의 OCU(Output Compare Unit) 기능을 초기화하고 제어하며, counter 값이 정해 둔 threshold에 닿으면 notification을 부르거나 출력 핀을 바꾼다.[@autosar-cp-sws-ocudriver-2025]
+**OCU Driver**는 [[autosar-classic-platform|AUTOSAR Classic Platform]]에서 [[microcontroller-abstraction-layer|MCAL]]의 I/O Drivers 그룹에 드는 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 마이크로컨트롤러 안의 OCU(Output Compare Unit) 기능을 초기화하고 제어하며, counter 값이 정해 둔 threshold에 닿으면 notification을 부르거나 출력 핀을 바꾼다.[@autosar-cp-sws-ocudriver-2025]
 
 ## Free running counter와 compare threshold
 

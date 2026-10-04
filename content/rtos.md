@@ -29,16 +29,16 @@ RTOS는 흔히 주기적인 타이머 인터럽트인 **시스템 틱**으로 �
 
 RTOS를 쓰면 틱을 돌리고 태스크를 전환하는 데 CPU 시간이 더 든다.[@freertos-faq-what-is-this-all-about-2026][@silabs-intro-rtos-2019] Silicon Labs 자료에 따르면 RTOS의 서비스 부담은 대개 CPU 사이클의 2\~10%이고, RTOS 코드는 플래시를 대개 6\~20 KB 더 쓰며, 태스크마다 스택과 TCB(Task Control Block)로 RAM(Random-Access Memory)을 더 쓴다.[@silabs-intro-rtos-2019]
 
-RTOS는 태스크 사이의 동기화와 통신에 세마포어, 뮤텍스, 메시지 큐, 이벤트 플래그 같은 객체를 제공한다.[@silabs-intro-rtos-2019][@arm-cmsis-rtos2-using-2026] 인터럽트 처리기는 태스크를 깨워 처리를 그 태스크에 넘길 수 있다.[@silabs-intro-rtos-2019][@freertos-deferred-interrupt-handling-2026]
+RTOS는 태스크 사이의 동기화와 통신에 세마포어, [[mutex|뮤텍스]], 메시지 큐, 이벤트 플래그 같은 객체를 제공한다.[@silabs-intro-rtos-2019][@arm-cmsis-rtos2-using-2026] 인터럽트 처리기는 태스크를 깨워 처리를 그 태스크에 넘길 수 있다.[@silabs-intro-rtos-2019][@freertos-deferred-interrupt-handling-2026]
 
 ## 차량용 RTOS
 
-ISO 17356-3:2005는 차량용 멀티태스킹 실시간 운영체제인 OSEK/VDX OS의 개념을 기술하고, 그 API(Application Programming Interface)를 정한다. 이 운영체제는 분산 임베디드 제어 유닛용 단일 프로세서 운영체제다. 이 표준은 특정 구현의 제품 설명이 아니다.[@iso-17356-3-2005] OSEK/VDX OS 2.2.3 규격에 따르면 이 규격을 따르는 구현은 여럿이고, 인증 절차로 각 구현이 규격에 맞는지 확인한다.[@osek-os-2-2-3-2005]
+[[iso-17356-3|ISO 17356-3]]:2005는 차량용 멀티태스킹 실시간 운영체제인 [[osek-os|OSEK/VDX OS]]의 개념을 기술하고, 그 API(Application Programming Interface)를 정한다. 이 운영체제는 분산 임베디드 제어 유닛용 단일 프로세서 운영체제다. 이 표준은 특정 구현의 제품 설명이 아니다.[@iso-17356-3-2005] OSEK/VDX OS 2.2.3 명세에 따르면 이 명세를 따르는 구현은 여럿이고, 인증 절차로 각 구현이 명세에 맞는지 확인한다.[@osek-os-2-2-3-2005]
 
-AUTOSAR Classic Platform R25-11의 운영체제 명세는 ISO 17356-3을 바탕으로 두고 이를 확장하거나 제한하며, OSEK OS의 API와 하위 호환되는 API를 요구한다. 이 명세는 OSEK OS의 기능에 더해 schedule table, 타이밍 보호, 메모리 보호 같은 기능을 정한다.[@autosar-cp-sws-os-2025]
+[[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 [[autosar-os|운영체제 명세]]는 ISO 17356-3을 바탕으로 두고 이를 확장하거나 제한하며, OSEK OS의 API와 하위 호환되는 API를 요구한다. 이 명세는 OSEK OS의 기능에 더해 [[autosar-schedule-table|schedule table]], [[autosar-timing-protection|timing protection]], [[autosar-os-application#Memory protection|memory protection]] 같은 기능을 정한다.[@autosar-cp-sws-os-2025]
 
 AUTOSAR Adaptive Platform은 주로 고성능 연산과 통신 기능을 제공하는 플랫폼이고, 그 설계 설명서는 이 플랫폼의 운영체제가 다중 프로세스 POSIX 운영체제 기능을 제공하도록 한다.[@autosar-ap-exp-platformdesign-2025] 운영체제 인터페이스 명세는 IEEE 1003.13-2003의 PSE51 인터페이스로 운영체제 기능을 제공하도록 요구한다.[@autosar-ap-sws-operatingsysteminterface-2025]
 
 ## 비실시간 시스템과의 차이
 
-FreeRTOS 문서에 따르면 비실시간 다중 사용자 시스템의 스케줄링 정책은 각 태스크에 처리기 시간을 공정하게 나눈다.[@freertos-rtos-fundamentals-2026] RTOS의 스케줄링 정책은 실세계 사건의 마감 시한을 모두 지키도록 처리기 시간을 나눠야 한다.[@freertos-rtos-fundamentals-2026][@atmel-at04056-2014]
+FreeRTOS 문서에 따르면 비실시간 다중 사용자 시스템의 스케줄링 정책은 각 태스크에 처리기 시간을 공정하게 나눈다.[@freertos-rtos-fundamentals-2026] RTOS의 스케줄링 정책은 실세계 사건의 [[deadline|마감 시한]]을 모두 지키도록 처리기 시간을 나눠야 한다.[@freertos-rtos-fundamentals-2026][@atmel-at04056-2014]

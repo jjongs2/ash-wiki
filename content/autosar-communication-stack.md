@@ -5,12 +5,12 @@ tags:
 verified: 2026-09-30
 ---
 
-**AUTOSAR 통신 스택**은 AUTOSAR Classic Platform의 BSW(Basic Software)에서 차량 네트워크 통신을 맡는 모듈들의 묶음이다. 스택은 BSW의 세 층에 걸쳐 Communication Services, Communication Hardware Abstraction, Communication Drivers로 나뉜다. Communication Services와 드라이버 사이에는 Communication Hardware Abstraction이 놓인다. Communication Services는 버스의 프로토콜과 메시지의 속성을 응용에서 감춘다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 맨 위의 [[autosar-com|AUTOSAR COM]]은 RTE 같은 사용자에게 시그널 단위의 데이터 인터페이스를 준다.[@autosar-cp-sws-com-2025]
+**AUTOSAR 통신 스택**은 [[autosar-classic-platform|AUTOSAR Classic Platform]]의 BSW(Basic Software)에서 차량 네트워크 통신을 맡는 모듈들의 묶음이다. 스택은 BSW의 세 층에 걸쳐 Communication Services, Communication Hardware Abstraction, Communication Drivers로 나뉜다. Communication Services와 드라이버 사이에는 Communication Hardware Abstraction이 놓인다. Communication Services는 버스의 프로토콜과 메시지의 속성을 응용에서 감춘다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 맨 위의 [[autosar-com|AUTOSAR COM]]은 [[autosar-rte|RTE]] 같은 사용자에게 [[signal-based-communication|시그널]] 단위의 데이터 인터페이스를 준다.[@autosar-cp-sws-com-2025]
 
 ## 층
 
-- **Communication Drivers**: MCAL에 속하며, ECU 안의 통신(SPI(Serial Peripheral Interface) 등)과 차량 통신([[can|CAN]] 등)의 드라이버를 담는다. SPI Handler Driver, [[lin|LIN]] Driver, CAN Driver, [[flexray|FlexRay]] Driver, [[ethernet|Ethernet]] Driver가 여기에 든다.
-- **Communication Hardware Abstraction**: ECU Abstraction Layer에 속하며, 통신 컨트롤러가 칩 안에 있든 보드 위에 있든 같은 방식으로 버스 채널에 접근하게 한다. 통신 시스템마다 따로 두며, 구현은 마이크로컨트롤러에서 독립적이고 ECU 하드웨어와 외부 장치에 의존한다.
+- **Communication Drivers**: [[microcontroller-abstraction-layer|MCAL]]에 속하며, ECU 안의 통신(SPI(Serial Peripheral Interface) 등)과 차량 통신([[can|CAN]] 등)의 드라이버를 담는다. SPI Handler Driver, [[lin|LIN]] Driver, CAN Driver, [[flexray|FlexRay]] Driver, [[ethernet|Ethernet]] Driver가 여기에 든다.
+- **Communication Hardware Abstraction**: [[ecu-abstraction-layer|ECU Abstraction Layer]]에 속하며, 통신 컨트롤러가 칩 안에 있든 보드 위에 있든 같은 방식으로 버스 채널에 접근하게 한다. 통신 시스템마다 따로 두며, 구현은 마이크로컨트롤러에서 독립적이고 ECU 하드웨어와 외부 장치에 의존한다.
 - **Communication Services**: Services Layer에 속하며, 차량 네트워크에 한결같은 통신 인터페이스, 네트워크 관리 서비스, 진단 통신 인터페이스를 준다. 구현은 마이크로컨트롤러와 ECU 하드웨어에서 독립적이고 버스 종류에 일부 의존한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 AUTOSAR COM, Generic [[autosar-network-management|NM]] Interface, Dcm(Diagnostic Communication Manager)은 버스 종류가 달라도 같은 모듈을 쓰고, ECU 하나에 하나씩만 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
@@ -42,7 +42,7 @@ LIN의 전송 프로토콜 LinTp(LIN Transport Protocol)는 LIN Interface 안에
 
 TcpIp 모듈은 [[tcp|TCP]], UDP, [[ipv4|IPv4]], [[ipv6|IPv6]], [[arp|ARP]], [[icmp|ICMP]], DHCP(Dynamic Host Configuration Protocol)를 구현하고, 이더넷 위에서 소켓 기반 통신을 준다. TcpIp 모듈 바로 위에 놓이는 모듈은 SoAd(Socket Adaptor) 하나뿐이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-SoAd는 PDU를 쓰는 통신 서비스 모듈과 소켓 기반의 TCP/IP 스택을 잇고, I-PDU ID와 소켓 연결을 서로 대응시킨다. SoAd는 PDU 하나에 소켓 연결 하나를 대응시키거나, 선택 기능인 PDU 헤더를 붙여 여러 PDU를 한 소켓 연결로 보낸다. PDU 헤더는 PDU 식별자(4바이트)와 길이(4바이트)를 빅 엔디언으로 담는다.[@autosar-cp-sws-socketadaptor-2025]
+SoAd는 PDU를 쓰는 통신 서비스 모듈과 소켓 기반의 [[internet-protocol-suite|TCP/IP]] 스택을 잇고, I-PDU ID와 소켓 연결을 서로 대응시킨다. SoAd는 PDU 하나에 소켓 연결 하나를 대응시키거나, 선택 기능인 PDU 헤더를 붙여 여러 PDU를 한 소켓 연결로 보낸다. PDU 헤더는 PDU 식별자(4바이트)와 길이(4바이트)를 [[byte-order|빅 엔디언]]으로 담는다.[@autosar-cp-sws-socketadaptor-2025]
 
 SOME/IP Transformer와 SoAd의 SOME/IP 역할은 [[some-ip|SOME/IP]]에서, DoIP 모듈은 [[doip|DoIP]]에서 다룬다.
 
@@ -52,7 +52,7 @@ ComM(Communication Manager)은 사용자의 버스 통신 요청을 모아 조�
 
 통신 모드는 통신 없음(NO), 송신을 끄고 수신만 하는 silent, 송수신 모두(FULL) 셋이다. 사용자가 요청할 수 있는 것은 NO와 FULL뿐이고, silent는 네트워크 동기화에만 쓴다.[@autosar-cp-sws-commanager-2025]
 
-BswM(Basic Software Mode Manager)은 SW-C와 다른 BSW 모듈이 보낸 모드 요청과 모드 표시를 입력으로 받아 설정된 규칙(rule)을 평가하고, 그 결과에 따라 동작 목록(action list)을 실행한다. 동작의 예로 I-PDU 그룹을 켜거나 끄는 일이 있다.[@autosar-cp-sws-bswmodemanager-2025]
+BswM(Basic Software Mode Manager)은 [[autosar-software-component|SW-C]]와 다른 BSW 모듈이 보낸 모드 요청과 모드 표시를 입력으로 받아 설정된 규칙(rule)을 평가하고, 그 결과에 따라 동작 목록(action list)을 실행한다. 동작의 예로 I-PDU 그룹을 켜거나 끄는 일이 있다.[@autosar-cp-sws-bswmodemanager-2025]
 
 ## 그 밖의 모듈
 

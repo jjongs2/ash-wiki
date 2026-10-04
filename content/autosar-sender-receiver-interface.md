@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**Sender-receiver 인터페이스**는 보내고 받을 data element를 선언하는 port interface다. sender가 내는 데이터를 receiver 하나 이상이 받는 통신 패턴을 기술한다.[@autosar-cp-tps-softwarecomponenttemplate-2025] 이 인터페이스로 타입을 정한 [[software-component-port|P-Port]]는 data element를 쓰고, R-Port는 읽는다. sender-receiver 통신은 한 방향이며, receiver가 보내는 응답은 별도의 sender-receiver 통신으로 보낸다.[@autosar-cp-sws-rte-2025] 이 인터페이스로 타입을 정한 포트는 sender 하나와 receiver 여럿의 1:n으로도, sender 여럿과 receiver 하나의 n:1로도 이을 수 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+**Sender-receiver 인터페이스**는 보내고 받을 data element를 선언하는 port interface다. sender가 내는 데이터를 receiver 하나 이상이 받는 통신 패턴을 기술한다.[@autosar-cp-tps-softwarecomponenttemplate-2025] 이 인터페이스로 타입을 정한 [[software-component-port#P-Port와 R-Port|P-Port]]는 data element를 쓰고, R-Port는 읽는다. sender-receiver 통신은 한 방향이며, receiver가 보내는 응답은 별도의 sender-receiver 통신으로 보낸다.[@autosar-cp-sws-rte-2025] 이 인터페이스로 타입을 정한 포트는 sender 하나와 receiver 여럿의 1:n으로도, sender 여럿과 receiver 하나의 n:1로도 이을 수 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ## Data element
 

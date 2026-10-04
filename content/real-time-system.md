@@ -17,7 +17,7 @@ Liu와 Layland는 1973년 논문에서, 각 태스크가 요청 뒤 정해진 �
 
 Liu와 Layland의 논문은 스케줄링 알고리즘을 특정 시점에 실행할 태스크를 정하는 규칙의 집합으로 정의했다.[@liu-hard-real-time-1973] 이 논문의 가정과 태스크 모델은 [[periodic-task-model|주기 태스크 모델]], 실행 시간의 상한은 [[worst-case-execution-time|WCET]], 스케줄링 방식은 [[real-time-scheduling|실시간 스케줄링]]에서 다룬다.
 
-AUTOSAR의 Timing Analysis and Design 보고서에 따르면 실행 시간의 최악, 최선, 평균 가운데 실시간 시스템의 타이밍 속성을 검증하는 데 가장 흔히 쓰는 것은 최악인 WCET이고, 타이밍 분석은 대개 응답 시간의 상한인 최악 응답 시간을 구해 타이밍 요구를 채우는지 가린다.[@autosar-fo-tr-timinganalysis-2025]
+[[autosar|AUTOSAR]]의 Timing Analysis and Design 보고서에 따르면 실행 시간의 최악, 최선, 평균 가운데 실시간 시스템의 타이밍 속성을 검증하는 데 가장 흔히 쓰는 것은 최악인 WCET이고, 타이밍 분석은 대개 응답 시간의 상한인 [[response-time-analysis|최악 응답 시간]]을 구해 타이밍 요구를 채우는지 가린다.[@autosar-fo-tr-timinganalysis-2025]
 
 [[rtos|RTOS]]는 실행 준비가 된 태스크 가운데 어느 것을 실행할지 정해 CPU를 배정하는 스케줄러를 둔다.[@atmel-at04056-2014][@renesas-res05b0008-2010]
 
@@ -27,7 +27,7 @@ Renesas 앱노트에 따르면 RTOS의 응답성은 처리 속도가 아니라 �
 
 FreeRTOS 문서에 따르면 RTOS는 의료 기기나 차량 ECU처럼 엄격한 시간 제약 안에서 외부 사건에 반응해야 하는 임베디드 시스템에 흔히 쓰인다.[@freertos-rtos-fundamentals-2026]
 
-AUTOSAR Classic Platform R25-11의 타이밍 확장 명세는 주어진 시간 요구를 채우는 임베디드 실시간 시스템을 만들고 그 타이밍을 분석·검증하도록 돕는 것을 주목적으로 둔다. 이 명세는 센서 샘플링에서 액추에이터 접근까지의 인과 경로를 이벤트 사슬로 기술하고, 사슬의 자극과 응답 사이 시간을 지연 제약(LatencyTimingConstraint)으로 제한한다. 명세의 예시 사슬은 ECU 두 개와 [[can|CAN]] 버스를 거친다.[@autosar-cp-tps-timingextensions-2025]
+[[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 타이밍 확장 명세는 주어진 시간 요구를 채우는 임베디드 실시간 시스템을 만들고 그 타이밍을 분석·검증하도록 돕는 것을 주목적으로 둔다. 이 명세는 센서 샘플링에서 액추에이터 접근까지의 인과 경로를 [[autosar-event-chain|event chain]]으로 기술하고, event chain의 자극과 응답 사이 시간을 지연 제약(LatencyTimingConstraint)으로 제한한다. 명세의 예시 event chain은 ECU 두 개와 [[can|CAN]] 버스를 거친다.[@autosar-cp-tps-timingextensions-2025]
 
 ![[diagrams/event-chain-latency-constraint.svg]]
 

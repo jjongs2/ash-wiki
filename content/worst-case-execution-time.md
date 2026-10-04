@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-AUTOSAR R25-11 용어집은 **최악 실행 시간**(WCET, Worst-Case Execution Time)을 프로그램이 실제로 실행되는 시간 가운데 가능한 최댓값으로 정의한다.[@autosar-fo-tr-glossary-2025] 스케줄 가능성 분석은 태스크의 WCET를 입력으로 쓴다.[@autosar-fo-tr-glossary-2025][@freescale-cwperformwp-2005]
+[[autosar|AUTOSAR]] R25-11 용어집은 **최악 실행 시간**(WCET, Worst-Case Execution Time)을 프로그램이 실제로 실행되는 시간 가운데 가능한 최댓값으로 정의한다.[@autosar-fo-tr-glossary-2025] [[schedulability-analysis|스케줄 가능성 분석]]은 태스크의 WCET를 입력으로 쓴다.[@autosar-fo-tr-glossary-2025][@freescale-cwperformwp-2005]
 
 ## 실행 시간이 달라지는 까닭
 
