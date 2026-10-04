@@ -50,7 +50,7 @@
   </g>
 
   <g font-size="12" fill="var(--text, #727981)">
-    <text x="288" y="74">User mode에서 개인키로</text>
+    <text x="288" y="74">User mode에서 개인 키로</text>
     <text x="288" y="90">서명한 데이터로만 고침</text>
     <text x="142" y="278" text-anchor="end">서명이 있어야 함</text>
     <text x="418" y="278">서명이 없어야 함</text>

@@ -19,7 +19,7 @@ ISO/IEC 2382:2015는 둘을 나눠, **사용자 식별자**(user ID)를 데이�
 
 ISO/IEC 9798-1:2010은 메시지가 재전송된 것이 아님을 확인하는 데 쓰는 값을 **시간 가변 매개변수**(time variant parameter)라 하고, 그 예로 난수, 타임스탬프, 순번을 든다.[@iso-iec-9798-1-obp-2010] 챌린지 같은 시간 가변 매개변수를 쓰는 인증은, 지난 인증 메시지를 녹음해 다시 보내는 재전송 공격을 막는다. 다시 보낸 옛 메시지에는 맞는 챌린지나 시각 정보가 없기 때문이다.[@iso-iec-9798-4-obp-1999][@nist-sp-800-63b-4-2025]
 
-## 대칭키 방식과 공개키 방식
+## 대칭 키 방식과 공개 키 방식
 
 ISO/IEC 9798의 부마다 개체 인증 메커니즘이 쓰는 기법은 아래와 같다.
 
@@ -30,11 +30,11 @@ ISO/IEC 9798의 부마다 개체 인증 메커니즘이 쓰는 기법은 아래�
 | ISO/IEC 9798-4:1999 | 암호 검사 함수[@iso-iec-9798-4-obp-1999]                                             |
 | ISO/IEC 9798-5:2009 | 영지식 기법[@iso-iec-9798-5-2009]                                                    |
 
-ISO/IEC 9798-1:2010은 **암호 검사 함수**(cryptographic check function)를 비밀키와 임의의 문자열을 받아 암호 검사 값을 내는 암호 변환으로 정의한다.[@iso-iec-9798-1-obp-2010] ISO/IEC 9798-4:1999는 그 예를 [[message-authentication-code|메시지 인증 코드]] 표준인 ISO/IEC 9797에서 찾게 하고, 난수를 쓰는 챌린지-응답 방식도 메커니즘에 둔다.[@iso-iec-9798-4-obp-1999]
+ISO/IEC 9798-1:2010은 **암호 검사 함수**(cryptographic check function)를 비밀 키와 임의의 문자열을 받아 암호 검사 값을 내는 암호 변환으로 정의한다.[@iso-iec-9798-1-obp-2010] ISO/IEC 9798-4:1999는 그 예를 [[message-authentication-code|메시지 인증 코드]] 표준인 ISO/IEC 9797에서 찾게 하고, 난수를 쓰는 챌린지-응답 방식도 메커니즘에 둔다.[@iso-iec-9798-4-obp-1999]
 
-ISO/IEC 9798-1:2010은 [[symmetric-key-cryptography|대칭 암호]] 기법을 보내는 쪽과 받는 쪽의 변환에 같은 비밀키를 쓰는 기법으로 정의하고, 그 비밀을 미리 나눠 갖거나 신뢰할 수 있는 제3자의 도움으로 정하는 경우를 든다.[@iso-iec-9798-1-obp-2010] ISO/IEC 9798-2:2019의 메커니즘 가운데 넷은 신뢰할 수 있는 제3자 없이 두 개체 사이에서 동작하고, 나머지는 공통 비밀키를 정하는 데 온라인 신뢰 제3자를 쓴다.[@iso-iec-9798-2-obp-2019] NIST 용어집에 따르면 공유 비밀을 쓰는 챌린지-응답에서는 주장자가 챌린지와 공유 비밀을 함께 [[cryptographic-hash-function|해시]]해 응답을 만들고, 검증자는 그 해시를 다시 계산해 응답과 견준다.[@nist-csrc-glossary-challenge-response-protocol-2026]
+ISO/IEC 9798-1:2010은 [[symmetric-key-cryptography|대칭 암호]] 기법을 보내는 쪽과 받는 쪽의 변환에 같은 비밀 키를 쓰는 기법으로 정의하고, 그 비밀을 미리 나눠 갖거나 신뢰할 수 있는 제3자의 도움으로 정하는 경우를 든다.[@iso-iec-9798-1-obp-2010] ISO/IEC 9798-2:2019의 메커니즘 가운데 넷은 신뢰할 수 있는 제3자 없이 두 개체 사이에서 동작하고, 나머지는 공통 비밀 키를 정하는 데 온라인 신뢰 제3자를 쓴다.[@iso-iec-9798-2-obp-2019] NIST 용어집에 따르면 공유 비밀을 쓰는 챌린지-응답에서는 주장자가 챌린지와 공유 비밀을 함께 [[cryptographic-hash-function|해시]]해 응답을 만들고, 검증자는 그 해시를 다시 계산해 응답과 견준다.[@nist-csrc-glossary-challenge-response-protocol-2026]
 
-[[public-key-cryptography|공개키]] 방식에서 주장자는 자기 개인키로 챌린지에 서명하고, 검증자는 주장자의 공개키로 그 서명을 확인한다.[@nist-csrc-glossary-challenge-response-protocol-2026][@iso-iec-9798-3-obp-2019]
+[[public-key-cryptography|공개 키]] 방식에서 주장자는 자기 개인 키로 챌린지에 서명하고, 검증자는 주장자의 공개 키로 그 서명을 확인한다.[@nist-csrc-glossary-challenge-response-protocol-2026][@iso-iec-9798-3-obp-2019]
 
 ## 접근 제어에서 쓰는 자리
 

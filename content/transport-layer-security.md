@@ -37,12 +37,12 @@ TLS 1.3의 전체 핸드셰이크에서 공유 키는 ClientHello와 ServerHello
 
 1. 클라이언트는 ClientHello에 지원하는 판, cipher suite 목록, 그리고 key_share 확장에 담은 비대칭 키 교환 값이나 pre_shared_key 확장에 담은 PSK(Pre-Shared Key) 라벨, 또는 둘 다를 넣어 보낸다.
 2. 서버는 ServerHello로 협상한 연결 매개변수를 알리고, 비대칭 키 교환을 쓰면 자기의 임시 키 교환 값을 key_share 확장에 담아 보낸다.
-3. 서버는 이어서 EncryptedExtensions, 클라이언트 인증을 원하면 CertificateRequest, [[public-key-cryptography#공개키를 믿게 하는 수단|인증서]]로 인증하면 Certificate와 CertificateVerify, 그리고 Finished를 보낸다. CertificateVerify는 Certificate의 [[public-key-cryptography|공개키]]에 대응하는 개인키로 핸드셰이크 전체에 단 [[digital-signature|서명]]으로, 보낸 쪽이 그 개인키를 가졌음을 보인다.
+3. 서버는 이어서 EncryptedExtensions, 클라이언트 인증을 원하면 CertificateRequest, [[public-key-cryptography#공개 키를 믿게 하는 수단|인증서]]로 인증하면 Certificate와 CertificateVerify, 그리고 Finished를 보낸다. CertificateVerify는 Certificate의 [[public-key-cryptography|공개 키]]에 대응하는 개인 키로 핸드셰이크 전체에 단 [[digital-signature|서명]]으로, 보낸 쪽이 그 개인 키를 가졌음을 보인다.
 4. 클라이언트는 서버의 CertificateVerify 서명과 Finished를 확인하고, 요청받았으면 자기 Certificate와 CertificateVerify를 보낸 뒤 Finished를 보낸다.[@ietf-rfc-9846-2026]
 
 ![[diagrams/tls-1-3-handshake.svg]]
 
-TLS 1.3의 기본 키 교환 방식은 비대칭 키 교환, PSK, PSK와 비대칭 키 교환을 함께 쓰는 방식 셋이다. RFC 9846의 비대칭 키 교환은 유한체나 타원 곡선 위의 [[diffie-hellman-key-exchange|Diffie-Hellman]]이고, KEM(Key Encapsulation Mechanism)은 다른 확장이 정한다. 키는 HKDF(HMAC-based Extract-and-Expand Key Derivation Function)의 Extract와 Expand로 유도한다. TLS 1.3은 정적 RSA(Rivest-Shamir-Adleman)와 정적 Diffie-Hellman cipher suite를 없애, 공개키 기반의 키 교환은 모두 [[key-establishment#안전성 성질|forward secrecy]]를 준다.[@ietf-rfc-9846-2026]
+TLS 1.3의 기본 키 교환 방식은 비대칭 키 교환, PSK, PSK와 비대칭 키 교환을 함께 쓰는 방식 셋이다. RFC 9846의 비대칭 키 교환은 유한체나 타원 곡선 위의 [[diffie-hellman-key-exchange|Diffie-Hellman]]이고, KEM(Key Encapsulation Mechanism)은 다른 확장이 정한다. 키는 HKDF(HMAC-based Extract-and-Expand Key Derivation Function)의 Extract와 Expand로 유도한다. TLS 1.3은 정적 RSA(Rivest-Shamir-Adleman)와 정적 Diffie-Hellman cipher suite를 없애, 공개 키 기반의 키 교환은 모두 [[key-establishment#안전성 성질|forward secrecy]]를 준다.[@ietf-rfc-9846-2026]
 
 ## 인증
 
@@ -56,7 +56,7 @@ RFC 5246은 cipher suite 하나가 키 교환 알고리즘, 대량 암호 알고
 
 ## TLS 1.2의 키 교환
 
-RFC 5246은 클라이언트가 premaster secret을 서버 인증서의 RSA 공개키로 암호화해 보내는 RSA 키 교환과, DHE_DSS·DHE_RSA(임시 Diffie-Hellman), DH_DSS·DH_RSA(인증서에 든 고정 Diffie-Hellman), DH_anon(익명 Diffie-Hellman)을 정했다. RFC 9846은 정적 RSA와 정적 Diffie-Hellman cipher suite를 없앴다.[@ietf-rfc-9846-2026][@ietf-rfc-5246-2008]
+RFC 5246은 클라이언트가 premaster secret을 서버 인증서의 RSA 공개 키로 암호화해 보내는 RSA 키 교환과, DHE_DSS·DHE_RSA(임시 Diffie-Hellman), DH_DSS·DH_RSA(인증서에 든 고정 Diffie-Hellman), DH_anon(익명 Diffie-Hellman)을 정했다. RFC 9846은 정적 RSA와 정적 Diffie-Hellman cipher suite를 없앴다.[@ietf-rfc-9846-2026][@ietf-rfc-5246-2008]
 
 RFC 5246은 양쪽이 보안 매개변수를 합의한 뒤 Finished 앞에 ChangeCipherSpec 메시지를 보내, 이후 레코드를 새로 협상한 방식과 키로 보호함을 알리게 했다. RFC 9846은 ChangeCipherSpec을 미들박스와의 호환을 위해서만 남겼다.[@ietf-rfc-9846-2026][@ietf-rfc-5246-2008]
 

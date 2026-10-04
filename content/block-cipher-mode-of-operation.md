@@ -9,7 +9,7 @@ verified: 2026-10-03
 
 **블록 암호 운용 모드**(block cipher mode of operation)는 [[symmetric-key-cryptography|블록 암호]]를 기본 요소로 삼아 기밀성이나 인증 같은 암호 서비스를 주는 알고리즘이다.[@nist-sp-800-175b-r1-2020] 운용 모드는 평문을 블록의 열로 나눠 처리하며, CFB(Cipher Feedback) 모드만 블록보다 작을 수 있는 조각의 열로 나눈다.[@nist-sp-800-38a-2001]
 
-NIST SP 800-38A는 기밀성을 위한 모드로 ECB(Electronic Codebook), CBC(Cipher Block Chaining), CFB, OFB(Output Feedback), CTR(Counter) 다섯을 정하고, 다섯 모드를 [[symmetric-key-cryptography#AES|AES]]처럼 NIST가 승인한 대칭키 블록 암호와 함께 쓰게 한다.[@nist-sp-800-38a-2001] 기밀성과 인증을 함께 주는 모드는 SP 800-38C와 SP 800-38D가 따로 정한다.[@nist-sp-800-175b-r1-2020]
+NIST SP 800-38A는 기밀성을 위한 모드로 ECB(Electronic Codebook), CBC(Cipher Block Chaining), CFB, OFB(Output Feedback), CTR(Counter) 다섯을 정하고, 다섯 모드를 [[symmetric-key-cryptography#AES|AES]]처럼 NIST가 승인한 대칭 키 블록 암호와 함께 쓰게 한다.[@nist-sp-800-38a-2001] 기밀성과 인증을 함께 주는 모드는 SP 800-38C와 SP 800-38D가 따로 정한다.[@nist-sp-800-175b-r1-2020]
 
 ## 기호
 

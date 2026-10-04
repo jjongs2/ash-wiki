@@ -9,8 +9,8 @@
     </marker>
   </defs>
 
-  <!-- 대칭키 암호 -->
-  <text x="20" y="20" font-size="12" fill="var(--text, #727981)">대칭키 암호</text>
+  <!-- 대칭 키 암호 -->
+  <text x="20" y="20" font-size="12" fill="var(--text, #727981)">대칭 키 암호</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="20" y="32" width="130" height="110" rx="4" />
     <rect x="260" y="32" width="130" height="110" rx="4" />
@@ -27,8 +27,8 @@
     <rect x="275" y="72" width="100" height="28" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
-    <text x="85" y="91">비밀키</text>
-    <text x="325" y="91">같은 비밀키</text>
+    <text x="85" y="91">비밀 키</text>
+    <text x="325" y="91">같은 비밀 키</text>
   </g>
   <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
     <text x="205" y="62">안전한 채널로</text>
@@ -37,8 +37,8 @@
   </g>
   <line x1="150" y1="124" x2="258" y2="124" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 
-  <!-- 공개키 암호 -->
-  <text x="20" y="170" font-size="12" fill="var(--text, #727981)">공개키 암호</text>
+  <!-- 공개 키 암호 -->
+  <text x="20" y="170" font-size="12" fill="var(--text, #727981)">공개 키 암호</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="20" y="182" width="130" height="110" rx="4" />
     <rect x="260" y="182" width="130" height="110" rx="4" />
@@ -50,12 +50,12 @@
     <text x="325" y="278" font-size="12">복호화</text>
   </g>
   <rect x="27" y="222" width="116" height="28" rx="2" stroke="var(--blue, #336fb8)" stroke-width="1.5" fill="var(--blue-tint, #336fb8)" />
-  <text x="85" y="241" text-anchor="middle" fill="var(--on-fill, #f8fafd)">수신자의 공개키</text>
+  <text x="85" y="241" text-anchor="middle" fill="var(--on-fill, #f8fafd)">수신자의 공개 키</text>
   <rect x="275" y="222" width="100" height="28" rx="2" stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)" />
-  <text x="325" y="241" text-anchor="middle" fill="var(--on-fill, #f8fafd)">개인키</text>
+  <text x="325" y="241" text-anchor="middle" fill="var(--on-fill, #f8fafd)">개인 키</text>
   <line x1="260" y1="236" x2="145" y2="236" stroke="var(--blue, #336fb8)" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrow-blue)" />
   <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
-    <text x="205" y="227">공개키만 알림</text>
+    <text x="205" y="227">공개 키만 알림</text>
     <text x="205" y="266">암호문</text>
   </g>
   <line x1="150" y1="274" x2="258" y2="274" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
