@@ -25,7 +25,7 @@ $U$는 태스크 집합을 실행하는 데 쓰인 프로세서 시간의 비율
 
 ## 충분조건 검사와 필요충분조건 검사
 
-단일 프로세서에서 서로 독립인 [[periodic-task-model|주기 태스크]]의 마감 시한이 다음 요청 시각이고 실행 시간이 일정하며 선점할 수 있으면, [[rate-monotonic-scheduling|RM]]에 대한 Liu와 Layland의 [[rate-monotonic-scheduling#이용률 상한|이용률 상한]]은 충분조건이어서, 상한을 넘는 태스크 집합도 스케줄 가능할 수 있다. 같은 가정에서 [[earliest-deadline-first|EDF]]로 모든 마감 시한을 지키는 것은 $U \le 1$일 때이고 그때뿐이다.[@liu-hard-real-time-1973]
+단일 프로세서에서 서로 독립인 [[periodic-task-model|주기 태스크]]의 마감 시한이 다음 요청 시각이고 실행 시간이 일정하며 선점할 수 있으면, [[rate-monotonic-scheduling|RM]]에 대한 Liu와 Layland의 [[rate-monotonic-scheduling#이용률 상한|이용률 상한]]은 충분조건일 뿐이라, 상한을 넘는 태스크 집합도 스케줄 가능할 수 있다. 같은 가정에서 [[earliest-deadline-first|EDF]]로 모든 마감 시한을 지키는 것은 $U \le 1$일 때이고 그때뿐이다.[@liu-hard-real-time-1973]
 
 ![[diagrams/utilization-bound-rm-edf.svg]]
 

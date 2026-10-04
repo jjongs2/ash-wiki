@@ -15,7 +15,7 @@ verified: 2026-09-30
 
 ![[diagrams/autosar-memory-stack-layers.svg]]
 
-칩 안의 메모리 장치와 메모리 맵 외부 장치의 드라이버는 [[microcontroller-abstraction-layer|MCAL]]의 Memory Drivers에, 그 밖의 외부 메모리 장치의 드라이버는 [[ecu-abstraction-layer#External driver|ECU Abstraction Layer]]에 놓인다. AUTOSAR Classic Platform R25-11의 [[autosar-layered-architecture|Layered Software Architecture]]는 이전 릴리스에 있던 Fls(Flash Driver)와 Eep(EEPROM Driver)를 뺐다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+칩 안의 메모리 장치와 메모리 맵 외부 장치의 드라이버는 [[microcontroller-abstraction-layer|MCAL]]의 Memory Drivers에, 그 밖의 외부 메모리 장치를 다루는 [[ecu-abstraction-layer#External driver|external driver]]는 ECU Abstraction Layer에 놓인다. AUTOSAR Classic Platform R25-11의 [[autosar-layered-architecture|Layered Software Architecture]]는 이전 릴리스에 있던 Fls(Flash Driver)와 Eep(EEPROM Driver)를 뺐다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## MemIf
 

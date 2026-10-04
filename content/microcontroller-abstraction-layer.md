@@ -13,7 +13,7 @@ verified: 2026-09-30
 
 ## Internal driver
 
-마이크로컨트롤러 안에 있는 장치를 **internal device**라 한다. 예로 내부 EEPROM(Electrically Erasable Programmable Read-Only Memory), 내부 [[can-controller|CAN 컨트롤러]], 내부 ADC(Analogue Digital Converter)가 있다. internal device의 드라이버인 **internal driver**는 MCAL에 놓인다. 다만 [[ecu-abstraction-layer#External driver|외부 장치]] 가운데 메모리 맵 방식 장치(외부 플래시 등)의 드라이버는 마이크로컨트롤러에 의존하므로 MCAL에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+마이크로컨트롤러 안에 있는 장치를 **internal device**라 한다. 예로 내부 EEPROM(Electrically Erasable Programmable Read-Only Memory), 내부 [[can-controller|CAN 컨트롤러]], 내부 ADC(Analogue Digital Converter)가 있다. internal device의 드라이버인 **internal driver**는 MCAL에 놓인다. [[ecu-abstraction-layer#External driver|외부 장치]] 가운데서도 메모리 맵 방식 장치(외부 플래시 등)의 드라이버는 마이크로컨트롤러에 의존하므로 MCAL에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ![[diagrams/autosar-internal-external-driver-placement.svg]]
 
@@ -51,6 +51,6 @@ Port Driver 규격은 MCU의 설정 가능한 입출력 핀 하나를 **port pin
 | ICU      | 입력 신호 하나와, 설정된 [[autosar-icu-driver#측정 모드\|측정 모드]]에 쓰는 하드웨어 자원에 묶인 논리 ICU 개체[@autosar-cp-sws-icudriver-2025] |
 | OCU      | free-running counter, 비교 문턱값, 비교 결과로 하는 동작으로 이루어진 논리 개체[@autosar-cp-sws-ocudriver-2025]                                |
 
-ADC Driver 규격의 [[autosar-adc-driver#Hardware unit과 channel group|ADC channel group]]은 같은 ADC 하드웨어 유닛의 channel을 묶을 뿐, DIO의 channel group처럼 한 port 안의 이웃한 channel이어야 한다는 조건은 없다.[@autosar-cp-sws-adcdriver-2025]
+ADC Driver 규격의 [[autosar-adc-driver#Hardware unit과 channel group|ADC channel group]]은 같은 ADC hardware unit의 channel을 묶을 뿐, DIO의 channel group과 달리 한 port 안의 이웃한 channel이어야 한다는 조건은 없다.[@autosar-cp-sws-adcdriver-2025]
 
 DIO, ADC, PWM, ICU, OCU 드라이버 규격은 모두 쓰는 port pin의 설정을 Port Driver에 맡긴다.[@autosar-cp-sws-diodriver-2025][@autosar-cp-sws-adcdriver-2025][@autosar-cp-sws-pwmdriver-2025][@autosar-cp-sws-icudriver-2025][@autosar-cp-sws-ocudriver-2025]

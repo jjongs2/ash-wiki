@@ -11,7 +11,7 @@ Vector의 DBC 형식에서 시그널은 가장 작은 정보 단위이고, 메�
 
 ## 시그널 배치
 
-AUTOSAR COM은 시그널마다 I-PDU 안의 시작 비트 위치(`ComBitPosition`), 비트 길이(`ComBitSize`), [[byte-order|바이트 순서]](`ComSignalEndianness`)를 설정값으로 미리 정한다.[@autosar-cp-sws-com-2025]
+AUTOSAR COM은 시그널마다 I-PDU 안의 시작 비트 위치(`ComBitPosition`), 비트 크기(`ComBitSize`), [[byte-order|바이트 순서]](`ComSignalEndianness`)를 설정값으로 미리 정한다.[@autosar-cp-sws-com-2025]
 
 ## 통신 매트릭스
 
