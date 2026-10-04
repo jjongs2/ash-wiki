@@ -20,4 +20,4 @@ ISO/SAE 21434:2021은 **cybersecurity case**를 리스크가 불합리하지 않
 
 ## Cybersecurity audit과의 차이
 
-ISO/SAE 21434:2021은 **audit**을 프로세스의 목표가 어느 정도 이루어졌는지 판단하는 검토로 정의한다. 두 정의를 견주면 audit은 프로세스를 검토하고, cybersecurity assessment는 사이버보안을 판단한다. 이 표준은 [[cybersecurity-management-system#ISO/SAE 21434와의 관계|organizational cybersecurity audit]]을 5절(organizational cybersecurity management)의 요구사항과 권고에 둔다.[@iso-sae-21434-obp-2021]
+ISO/SAE 21434:2021은 **audit**을 프로세스의 목표가 어느 정도 이루어졌는지 판단하는 검토로 정의한다. 두 정의를 견주면 audit은 프로세스를 검토하고, cybersecurity assessment는 사이버보안을 판단한다. 이 표준은 [[cybersecurity-management-system#ISO/SAE 21434와의 관계|조직 사이버보안 감사]](organizational cybersecurity audit)를 5절(organizational cybersecurity management)의 요구사항과 권고에 둔다.[@iso-sae-21434-obp-2021]
