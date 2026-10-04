@@ -19,7 +19,7 @@ NXP 백서에 따르면 차량 네트워크가 이더넷으로 옮겨 가면 게
 
 ## PDU 게이트웨이
 
-[[autosar|AUTOSAR]]의 [[pdu-router|PDU Router]]는 I-PDU(Interaction Layer Protocol Data Unit)를 라우팅한다. 통신 인터페이스 모듈로 받은 I-PDU는 같은 통신 인터페이스 모듈이나 다른 통신 인터페이스 모듈로 곧바로 보내고, TP(Transport Protocol) 모듈로 받은 I-PDU도 같은 TP 모듈이나 다른 TP 모듈로 보낸다. 라우팅은 I-PDU를 고치지 않으며, 명세는 이 동작을 PDU Gateway라 부른다. PDU Router는 받은 I-PDU 하나를 여러 목적지로 한꺼번에 보낼 수 있다(1:n). 1:1과 n:1도 지원하지만 n:m은 지원하지 않는다.[@autosar-cp-sws-pdurouter-2025]
+[[autosar|AUTOSAR]]의 [[pdu-router|PDU Router]]는 I-PDU(Interaction Layer Protocol Data Unit)를 라우팅한다. 통신 인터페이스 모듈로 받은 I-PDU는 같은 통신 인터페이스 모듈이나 다른 통신 인터페이스 모듈로 곧바로 보내고, TP(Transport Protocol) 모듈로 받은 I-PDU도 같은 TP 모듈이나 다른 TP 모듈로 보낸다. 라우팅은 I-PDU를 고치지 않으며, 명세는 이 동작을 PDU(Protocol Data Unit) Gateway라 부른다. PDU Router는 받은 I-PDU 하나를 여러 목적지로 한꺼번에 보낼 수 있다(1:n). 1:1과 n:1도 지원하지만 n:m은 지원하지 않는다.[@autosar-cp-sws-pdurouter-2025]
 
 PDU 게이트웨이는 I-PDU를 고치지 않고 넘기므로 받은 PDU의 배치를 바꾸지 않는다.[@autosar-cp-sws-pdurouter-2025]
 

@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**DIO Driver**(Digital Input/Output Driver)는 [[autosar-classic-platform|AUTOSAR Classic Platform]]에서 [[microcontroller-abstraction-layer|MCAL]]의 I/O Drivers 그룹에 드는 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025][@autosar-fo-tr-glossary-2025] DIO Driver는 마이크로컨트롤러 칩 안의 DIO 핀과 port를 읽고 쓰는 서비스를 준다. 핀에 기능과 방향을 정하고 초기화하는 일은 하지 않으며, [[autosar-port-driver|Port Driver]]가 설정해 둔 핀을 쓴다.[@autosar-cp-sws-diodriver-2025]
+**DIO Driver**는 [[autosar-classic-platform|AUTOSAR Classic Platform]]에서 [[microcontroller-abstraction-layer|MCAL]]의 I/O Drivers 그룹에 드는 모듈이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025][@autosar-fo-tr-glossary-2025] DIO Driver는 마이크로컨트롤러 칩 안의 DIO(Digital Input/Output) 핀과 port를 읽고 쓰는 서비스를 준다. 핀에 기능과 방향을 정하고 초기화하는 일은 하지 않으며, [[autosar-port-driver|Port Driver]]가 설정해 둔 핀을 쓴다.[@autosar-cp-sws-diodriver-2025]
 
 ## 읽기와 쓰기
 

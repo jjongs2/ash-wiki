@@ -31,7 +31,7 @@ Fee는 16비트 블록 번호와 16비트 오프셋을 합쳐 아래 드라이�
 
 Ea는 EEPROM 장치의 주소 체계와 분할을 감추고, 위 층에 가상 주소 체계와 분할을 준다. Ea도 16비트 블록 번호와 16비트 블록 오프셋을 합쳐 EEPROM 물리 주소를 얻는다. 블록 쓰기를 시작할 때 블록을 불일치로 표시하고, 성공적으로 끝나면 일치로 되돌린다.[@autosar-cp-sws-eepromabstraction-2025]
 
-NvM 블록에서 Fee와 Ea의 블록 번호를 구하는 방법은 [[nvram-block#블록 번호|NVRAM(Non-Volatile Random-Access Memory) 블록]]에서 다룬다.
+NvM 블록에서 Fee와 Ea의 블록 번호를 구하는 방법은 [[nvram-block#블록 번호|NVRAM 블록]]에서 다룬다.
 
 ## 비동기 job
 
