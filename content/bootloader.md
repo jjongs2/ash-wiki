@@ -37,4 +37,4 @@ verified: 2026-10-03
 
 ## 부트로더 자체의 업데이트
 
-Microchip TB3207에 따르면 USB, SD 카드, Ethernet처럼 제품 사용자가 쓰는 인터페이스까지 구현한 부트로더는, 그 프로토콜 구현의 결함을 고치거나 외부 기기의 변화에 맞추려면 부트로더 자체를 업데이트해야 한다.[@microchip-tb3207-2018] 부트로더를 고쳐 쓰는 도중 전원이 끊기는 등으로 부트로더 이미지가 망가지면 기기가 부팅하지 못하게 될 수 있다.[@infineon-an73854-2023][@espressif-esp-idf-ota-2026] 바꿀 수 없는 1단계 부트로더를 두고 그 뒤의 부트로더만 고칠 수 있게 하는 구성이 쓰인다.[@ti-mcu-plus-sdk-am64x-bootflow-2026][@silabs-gecko-bootloader-about-2026] Infineon 앱노트는 현장에서 스스로를 고쳐 쓰는 부트로더를 만들 수는 있지만 복잡하므로 피하기를 권한다.[@infineon-an73854-2023]
+Microchip TB3207에 따르면 USB, SD(Secure Digital) 카드, [[ethernet|이더넷]]처럼 제품 사용자가 쓰는 인터페이스까지 구현한 부트로더는, 그 프로토콜 구현의 결함을 고치거나 외부 기기의 변화에 맞추려면 부트로더 자체를 업데이트해야 한다.[@microchip-tb3207-2018] 부트로더를 고쳐 쓰는 도중 전원이 끊기는 등으로 부트로더 이미지가 망가지면 기기가 부팅하지 못하게 될 수 있다.[@infineon-an73854-2023][@espressif-esp-idf-ota-2026] 바꿀 수 없는 1단계 부트로더를 두고 그 뒤의 부트로더만 고칠 수 있게 하는 구성이 쓰인다.[@ti-mcu-plus-sdk-am64x-bootflow-2026][@silabs-gecko-bootloader-about-2026] Infineon 앱노트는 현장에서 스스로를 고쳐 쓰는 부트로더를 만들 수는 있지만 복잡하므로 피하기를 권한다.[@infineon-an73854-2023]

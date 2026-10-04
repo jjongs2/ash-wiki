@@ -31,7 +31,7 @@ Vector의 Flash Bootloader 기술 문서가 정한 UDS 다운로드 시퀀스에
 
 이 시퀀스에서 세 단계는 다음처럼 동작한다.[@vector-fbl-oem-download-sequence-2024]
 
-- SecurityAccess: ECU에 데이터를 쓰는 서비스처럼 일부 서비스의 접근을 제한하는 데 쓴다. 테스터는 seed를 요청한 뒤, 자기가 계산한 key를 보낸다.
+- SecurityAccess: 이 부트로더에서 ECU에 데이터를 쓰는 서비스처럼 일부 서비스의 접근을 제한한다. 테스터는 seed를 요청한 뒤, 자기가 계산한 key를 보낸다.
 - 메모리 지우기: RoutineControl로 루틴 식별자 `0xFF00`(Erase Memory)을 시작하며, 지울 메모리 주소와 길이를 함께 보낸다.
 - 검사: 루틴 `0x0202`는 [[checksum|체크섬]] 계산이나 [[digital-signature|서명]] 검증으로 내려받은 데이터의 무결성을 확인하고, 루틴 `0xFF01`은 프로그래밍 의존성을 확인한다.[@vector-fbl-oem-download-sequence-2024]
 

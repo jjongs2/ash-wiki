@@ -41,6 +41,6 @@ SP 800-56B Rev. 2에 따르면 KTS-OAEP에서 받는 쪽의 RSA 개인키를 손
 
 **Unknown key share 저항**은 세션 키를 A와 B만 알지만, 둘이 그 키를 누구와 공유하는지를 서로 다르게 아는 공격을 견디는 성질이다. ISO/IEC 11770-3:2021이 이 성질을 정의한다.[@iso-iec-11770-3-obp-2021]
 
-키 합의 프로토콜이 실행마다 서로 다른 세션 키를 만들고, 공격자가 다른 세션 키 몇 개를 알아도 목표를 이루는 성질을 **known-key security**라 부른다.[@blake-wilson-authenticated-diffie-hellman-1999]
+키 합의 프로토콜이 실행마다 서로 다른 세션 키를 만들고, 공격자가 다른 세션 키 몇 개를 알아도 프로토콜이 여전히 목표를 이루는 성질을 **known-key security**라 부른다.[@blake-wilson-authenticated-diffie-hellman-1999]
 
 **Session state reveal 저항**은 공격자가 다른 세션의 내부 상태, 예를 들어 Diffie-Hellman의 지수 같은 임시 비밀 값을 알아내도, 노출되지 않은 세션의 키가 지켜지는 성질이다. 이 성질은 장기 비밀을 다루는 연산이 세션 상태와 분리된 모듈에서 이뤄진다고 가정한다.[@canetti-key-exchange-2001]
