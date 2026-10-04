@@ -35,7 +35,7 @@ IETF의 보안 용어집 RFC 4949는 대칭 암호에서 임시로 또는 비교
 
 **Forward secrecy**는 장기 개인키가 나중에 드러나도 그 전에 설정한 키가 지켜지는 성질이다.[@nist-sp-800-52-r2-2019] ISO/IEC 11770-3:2021은 개체 A에 대한 forward secrecy를, 키 합의 연산 뒤에 공격자가 A의 장기 개인키를 알아도 앞서 유도된 키를 다시 계산하지 못하는 성질로 정의한다. 두 개체의 장기 개인키를 모두 알아도 그런 성질은 mutual forward secrecy로 따로 정의한다.[@iso-iec-11770-3-obp-2021]
 
-SP 800-56B Rev. 2에 따르면 KTS-OAEP에서 받는 쪽의 RSA 개인키를 손에 넣은 공격자가 지난 거래의 암호문도 얻으면, 그 거래로 전송된 키 재료를 알아낼 수 있다.[@nist-sp-800-56b-r2-2019] NIST SP 800-52 Rev. 2는 [[transport-layer-security|TLS]]의 RSA 키 전송이 forward secrecy를 주지 못한다는 점 등을 들어, RSA 키 전송을 쓰는 cipher suite를 권하지 않는다.[@nist-sp-800-52-r2-2019]
+SP 800-56B Rev. 2에 따르면 KTS-OAEP에서 받는 쪽의 RSA 개인키를 손에 넣은 공격자가 지난 거래의 암호문도 얻으면, 그 거래로 전송된 키 재료를 알아낼 수 있다.[@nist-sp-800-56b-r2-2019] NIST SP 800-52 Rev. 2는 [[transport-layer-security|TLS]]의 RSA 키 전송이 forward secrecy를 주지 못한다는 점 등을 들어, RSA 키 전송을 쓰는 [[transport-layer-security#Cipher suite|cipher suite]]를 권하지 않는다.[@nist-sp-800-52-r2-2019]
 
 **Key compromise impersonation 저항**은 A의 장기 개인키가 드러나도, 공격자가 그 키로 다른 개체인 척하며 A와 통신하지 못하는 성질이다. ISO/IEC 11770-3:2021이 이 성질을 정의한다.[@iso-iec-11770-3-obp-2021] SP 800-56A Rev. 3에 따르면 C(2e, 2s) 방식에서 어떤 개체의 정적 개인키를 손에 넣은 공격자는 그 개체인 척할 수 있고, Full Unified model과 dhHybrid1에서는 그 개체에게 다른 개체인 척할 수도 있다.[@nist-sp-800-56a-r3-2018]
 

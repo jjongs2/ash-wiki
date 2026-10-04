@@ -17,7 +17,7 @@ ISO/SAE 21434:2021은 9절부터 14절까지에 단계별 활동을 두고, 이�
 
 8절의 지속 활동과 15절의 TARA 방법은 이 단계들 밖에 둔다.[@iso-sae-21434-obp-2021] 지속 활동은 취약점 관리 페이지가 다룬다.
 
-Tailoring과 out-of-context 컴포넌트처럼 프로젝트의 활동을 정하는 데 쓰는 개념은 [[cybersecurity-assessment|cybersecurity assessment]]에서 다룬다. ISO 26262의 아이템과 안전 생명주기는 [[safety-lifecycle|안전 생명주기]]에서 다룬다.
+Tailoring과 out-of-context 컴포넌트처럼 프로젝트의 활동을 정하는 데 쓰는 개념은 [[cybersecurity-assessment#Tailoring과 out-of-context|cybersecurity assessment]]에서 다룬다. ISO 26262의 아이템과 안전 생명주기는 [[safety-lifecycle|안전 생명주기]]에서 다룬다.
 
 ## 아이템과 운용 환경
 

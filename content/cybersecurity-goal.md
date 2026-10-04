@@ -13,12 +13,12 @@ Goal에서 끌어낸 요구사항은 [[cybersecurity-concept|cybersecurity conce
 
 [[automotive-spice-for-cybersecurity|Automotive SPICE for Cybersecurity]] 2.0은 goal과 요구사항을 정하는 일을 SEC.1(Cybersecurity Requirements Elicitation) 프로세스로 두고, 그 목적을 threat scenario를 다루는 사이버보안 리스크 관리의 결과로부터 cybersecurity goal과 사이버보안 요구사항을 정하는 것으로 둔다. SEC.1의 성과는 다음 넷이다.[@vda-automotive-spice-cybersecurity-2025]
 
-| 성과 | 내용                                                                              |
-| ---- | --------------------------------------------------------------------------------- |
-| 1    | Cybersecurity goal이 정해진다.                                                    |
-| 2    | 사이버보안 요구사항이 goal에서 도출된다.                                          |
-| 3    | 요구사항과 goal, goal과 threat scenario 사이에 일관성과 양방향 추적성이 유지된다. |
-| 4    | 요구사항이 합의되어 영향받는 모든 당사자에게 전달된다.                            |
+| 성과 | 내용                                                                                                                                       |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1    | Cybersecurity goal이 정해진다.                                                                                                             |
+| 2    | 사이버보안 요구사항이 goal에서 도출된다.                                                                                                   |
+| 3    | 요구사항과 goal, goal과 threat scenario 사이에 [[traceability#일관성\|일관성]]과 [[traceability#양방향 추적성\|양방향 추적성]]이 유지된다. |
+| 4    | 요구사항이 합의되어 영향받는 모든 당사자에게 전달된다.                                                                                     |
 
 SEC.1의 BP(base practice)는 셋으로, goal과 요구사항의 명세(BP1), 일관성 확보와 양방향 추적성 수립(BP2), 합의한 요구사항의 전달(BP3)이다.[@vda-automotive-spice-cybersecurity-2025]
 

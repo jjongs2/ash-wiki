@@ -43,6 +43,6 @@ ACQ.2의 BP(base practice)는 다음 넷이다.[@vda-automotive-spice-cybersecur
 | BP4 | 약정이나 합의의 협상과 체결 |
 
 - BP1의 평가 기준에는 기능·비기능 요구사항, TARA·공격 모델·취약점 분석 같은 사이버보안 개념과 방법에 대한 공급자의 기술 역량, 개발과 post-development(생산, 운용, 폐기)·거버넌스·품질·정보 보안에서 조직이 갖춘 사이버보안 역량, 사이버보안을 포함한 지속 운영, 이전 프로젝트의 공급자 모니터링으로 얻은 사이버보안 역량과 성과의 증거가 들 수 있다.
-- BP2의 후보 평가는 이전 Automotive SPICE for Cybersecurity 평가의 요약, 조직의 [[cybersecurity-management-system|사이버보안 관리 시스템]]의 증거(가능하면 조직 감사 결과), ISMS(information security management system)의 증거, 사이버보안 엔지니어링을 뒷받침할 수 있는 QMS(quality management system)의 증거, 이전 구매 경험으로 뒷받침할 수 있다.
+- BP2의 후보 평가는 이전 Automotive SPICE for Cybersecurity 평가의 요약, 조직의 [[cybersecurity-management-system|사이버보안 관리 시스템]]의 증거(가능하면 조직 [[cybersecurity-management-system#감사|감사]] 결과), ISMS(information security management system)의 증거, 사이버보안 엔지니어링을 뒷받침할 수 있는 QMS(quality management system)의 증거, 이전 구매 경험으로 뒷받침할 수 있다.
 - BP3에서는 평가를 바탕으로 후보 공급자를 정하고, 드러난 편차에 대한 시정 조치 계획을 담은 RFQ를 준비해 발행한다.
 - BP4에서 분산 사이버보안 활동은 연락 담당, 책임, tailoring, 정보 공유, 일정, 마일스톤 같은 측면을 고려해 cybersecurity interface agreement로 정할 수 있다. 자유·오픈소스 소프트웨어처럼 지원이 전혀 없는 인도물에는 interface agreement가 필요 없다.[@vda-automotive-spice-cybersecurity-2025]

@@ -19,19 +19,19 @@ C 언어에서는 SEI CERT C 코딩 표준이 보안 코딩 규칙을 담고[@se
 
 [[automotive-spice-for-cybersecurity|Automotive SPICE for Cybersecurity]] 2.0은 SEC.2(Cybersecurity Implementation) 프로세스의 목적을 시스템, 소프트웨어, 하드웨어의 설계를 사이버보안 요구사항에 맞게 정련하고, 요구사항이 구현되도록 보장하는 것으로 둔다. SEC.2의 BP(base practice)는 다음 일곱이다.[@vda-automotive-spice-cybersecurity-2025]
 
-| BP  | 하는 일                                                 |
-| --- | ------------------------------------------------------- |
-| BP1 | 아키텍처의 세부 정련                                    |
-| BP2 | 사이버보안 요구사항의 일관성 확보와 양방향 추적성 수립  |
-| BP3 | Cybersecurity control 선택                              |
-| BP4 | 아키텍처의 약점 분석                                    |
-| BP5 | 상세 설계의 정련                                        |
-| BP6 | 아키텍처와 상세 설계의 일관성 확보와 양방향 추적성 수립 |
-| BP7 | 합의한 구현 결과의 전달                                 |
+| BP  | 하는 일                                                                                                         |
+| --- | --------------------------------------------------------------------------------------------------------------- |
+| BP1 | 아키텍처의 세부 정련                                                                                            |
+| BP2 | 사이버보안 요구사항의 [[traceability#일관성\|일관성]] 확보와 [[traceability#양방향 추적성\|양방향 추적성]] 수립 |
+| BP3 | Cybersecurity control 선택                                                                                      |
+| BP4 | 아키텍처의 약점 분석                                                                                            |
+| BP5 | 상세 설계의 정련                                                                                                |
+| BP6 | 아키텍처와 상세 설계의 일관성 확보와 양방향 추적성 수립                                                         |
+| BP7 | 합의한 구현 결과의 전달                                                                                         |
 
 - BP1의 정련은 사이버보안 요구사항을 근거로 시스템, 소프트웨어, 하드웨어 아키텍처의 요소를 더하거나, 맞추거나, 다시 만드는 것이다.
 - BP4는 인터페이스와 상세 설계를 포함한 시스템, 소프트웨어, 하드웨어 아키텍처를 약점의 관점에서 분석해 취약점을 찾고, 설계 결정을 문서로 남긴다.
 - BP6이 잇는 짝은 소프트웨어 아키텍처와 소프트웨어 상세 설계, 하드웨어 아키텍처의 컴포넌트와 하드웨어 상세 설계다.
 - BP7은 합의한 구현 결과를 영향받는 모든 당사자에게 전하며, 전하는 내용에는 아키텍처에서 찾은 취약점이 들 수 있다.[@vda-automotive-spice-cybersecurity-2025]
 
-Control 자체는 [[cybersecurity-concept|cybersecurity concept]]에서, 추적성과 일관성은 [[traceability|추적성]]에서 다룬다.
+Control 자체는 [[cybersecurity-concept#Cybersecurity control|cybersecurity concept]]에서, 추적성과 일관성은 [[traceability|추적성]]에서 다룬다.

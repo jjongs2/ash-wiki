@@ -42,4 +42,4 @@ NIST SP 800-57 Part 1 Rev. 5는 공개키를 배포할 때, 받는 쪽이 키의
 | 키 길이      | 같은 보안 강도에서 더 짧다.                                                       | 같은 보안 강도에서 더 길다.[@nist-sp-800-175b-r1-2020]                                                                                 |
 | 관리할 키 수 | 사용자 $n$명이 저마다 따로 비밀 통신하려면 짝마다 하나씩 $n(n-1)/2$개가 필요하다. | 사람마다 키 쌍 하나씩 $n$쌍이면 된다.[@diffie-new-directions-1976]                                                                     |
 
-NIST SP 800-57 Part 1 Rev. 5는 128비트 보안 강도에 128비트 키의 AES(Advanced Encryption Standard), 3072비트 RSA, 256~383비트 타원 곡선 암호를 대응시킨다.[@nist-sp-800-57-pt1-r5-2020]
+NIST SP 800-57 Part 1 Rev. 5는 128비트 보안 강도에 128비트 키의 [[symmetric-key-cryptography#AES|AES]](Advanced Encryption Standard), 3072비트 RSA, 256~383비트 타원 곡선 암호를 대응시킨다.[@nist-sp-800-57-pt1-r5-2020]
