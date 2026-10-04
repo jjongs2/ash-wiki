@@ -7,7 +7,7 @@ description: 인제스트. `ingest:` 묶음 티켓 하나를 초안, 검증자 �
 
 묶음 티켓 하나가 PR 하나가 된다. 용어는 `CONTEXT.md`를 따른다.
 
-먼저 읽는다: 티켓(`gh issue view <n> --comments`), `docs/adr/0001-isolation-boundary.md`, `docs/source-hierarchy.md`, `docs/wiki-conventions.md`, `docs/wiki-abbreviations.md`, `docs/wiki-verification.md`. 브랜치와 커밋은 `CONTRIBUTING.md`를 따르고, 타입은 `content`다.
+먼저 읽는다: 티켓(`gh issue view <n> --comments`), `docs/adr/0001-isolation-boundary.md`, `docs/source-hierarchy.md`, `docs/wiki-conventions.md`, `docs/wiki-abbreviations.md`, `docs/wiki-terms.md`, `docs/wiki-verification.md`. 브랜치와 커밋은 `CONTRIBUTING.md`를 따르고, 타입은 `content`다.
 
 티켓의 페이지 표에 `출처 후보` 열이 있으면 **출처 경로**, 없으면 **노트 경로**다. 출처 경로 티켓은 보강이 발행한 것으로, `ASH_WIKI_NOTES`를 열지 않고 표의 출처로 쓴다. 두 경로가 다른 단계는 따로 적는다.
 
@@ -19,7 +19,7 @@ description: 인제스트. `ingest:` 묶음 티켓 하나를 초안, 검증자 �
 
 - 주인 페이지 표에서 이 묶음의 페이지가 링크만 하는 곳인 개념은 용어집의 주인 페이지 정의대로 쓴다.
 - 표에 없는 개념도 `content/`를 grep해 주인 페이지가 이미 있으면 같은 정의대로 그 페이지로 링크한다.
-- 새 용어나 기호를 쓰기 전에 `content/`를 grep해 기존 표기를 따른다. grep은 main만 보므로, 병렬로 도는 형제 묶음과의 표기는 범위 절의 alias 표를 따른다.
+- 용어는 `docs/wiki-terms.md`에 결정이 있으면 따른다. 결정이 없는 용어와 기호는 쓰기 전에 `content/`를 grep해 기존 표기를 따른다. grep은 main만 보므로, 병렬로 도는 형제 묶음과의 표기는 범위 절의 alias 표를 따른다.
 - 표기 선택이 갈리면 위키 규약의 용어 절을 따른다.
 
 노트 경로에서는 티켓의 페이지 표에 있는 페이지마다 `ASH_WIKI_NOTES`의 노트를 읽고, 자기 말로 초안을 쓴다. 표기는 위키 규약을 따른다. 인용은 아직 달지 않는다.

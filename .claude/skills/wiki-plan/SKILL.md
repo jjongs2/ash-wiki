@@ -7,7 +7,7 @@ description: 주제 계획. 주제 하나의 소스 노트를 읽어 페이지 �
 
 주제 하나(예: CAN)를 페이지 묶음으로 나눠, 인제스트가 frontier에서 바로 집어 들 티켓으로 발행한다. 용어는 `CONTEXT.md`를 따른다.
 
-먼저 읽는다: `docs/adr/0001-isolation-boundary.md`(격리 경계), `docs/wiki-conventions.md`(슬러그, 페이지 타입, 태그), `docs/wiki-verification.md`의 `verify:` 이슈 절.
+먼저 읽는다: `docs/adr/0001-isolation-boundary.md`(격리 경계), `docs/wiki-conventions.md`(슬러그, 페이지 타입, 태그), `docs/wiki-terms.md`(용어 표기 결정), `docs/wiki-verification.md`의 `verify:` 이슈 절.
 
 ## 1. 노트 읽기
 
@@ -33,7 +33,7 @@ description: 주제 계획. 주제 하나의 소스 노트를 읽어 페이지 �
 
 ## 3. 비평
 
-Agent 도구로 빈 컨텍스트 서브에이전트(`general-purpose`) 하나를 띄운다. 계획 파일 경로를 주고, 노트는 `ASH_WIKI_NOTES`에서 읽게 한다. 저장소 문서는 이 스킬이 먼저 읽은 셋을 읽게 한다. 볼 것:
+Agent 도구로 빈 컨텍스트 서브에이전트(`general-purpose`) 하나를 띄운다. 계획 파일 경로를 주고, 노트는 `ASH_WIKI_NOTES`에서 읽게 한다. 저장소 문서는 이 스킬이 먼저 읽은 넷을 읽게 한다. 볼 것:
 
 - 빠진 개념, 겹치는 페이지, 너무 넓거나 좁은 페이지
 - 슬러그, 타입, 태그가 규약에 맞는가
