@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**테스트 커버리지**(test coverage)는 테스트가 정해진 커버리지 항목을 얼마나 실행했는지를 백분율로 나타낸 정도다.[@istqb-glossary-coverage-2026][@ieee-cs-sevocab-2026] ISTQB(International Software Testing Qualifications Board) 용어집은 커버리지 항목을 테스트 기법으로 하나 이상의 테스트 조건에서 끌어낸 속성이나 속성의 조합으로 정의한다.[@istqb-glossary-coverage-item-2026] ISTQB CTFL(Certified Tester Foundation Level) 강의계획서에 따르면 달성한 커버리지는 테스트가 얼마나 철저한지 재는 척도이고, 테스트를 끝낼지 정하는 흔한 종료 기준 가운데 하나다.[@istqb-ctfl-syllabus-2024]
+**테스트 커버리지**(test coverage)는 테스트가 정해진 커버리지 항목을 얼마나 실행했는지를 백분율로 나타낸 정도다.[@istqb-glossary-coverage-2026][@ieee-cs-sevocab-2026] ISTQB 용어집은 커버리지 항목을 테스트 기법으로 하나 이상의 테스트 조건에서 끌어낸 속성이나 속성의 조합으로 정의한다.[@istqb-glossary-coverage-item-2026] ISTQB CTFL 강의계획서에 따르면 달성한 커버리지는 테스트가 얼마나 철저한지 재는 척도이고, 테스트를 끝낼지 정하는 흔한 종료 기준 가운데 하나다.[@istqb-ctfl-syllabus-2024]
 
 ## 기법마다 다른 커버리지 항목
 

@@ -36,6 +36,6 @@ Avizienis 외(2004)는 dependability와 security를 얻는 수단을 넷으로 �
 
 ## 테스트 용어와의 차이
 
-ISTQB(International Software Testing Qualifications Board) 용어집은 error를 defect를 낳는 사람의 행동으로 정의하고 mistake를 그 동의어로 둔다.[@istqb-glossary-error-2026] 같은 용어집은 요구사항이나 명세를 충족하지 못하거나 의도된 쓰임을 해치는 작업 산출물의 불완전하거나 모자란 점을 defect라 하고, bug, fault, flaw를 그 동의어로 둔다.[@istqb-glossary-defect-2026] Failure는 구성 요소나 시스템이 실행 중에 정한 한계 안에서 요구사항을 충족하지 못하는 사건으로 정의한다.[@istqb-glossary-failure-2026]
+ISTQB 용어집은 error를 defect를 낳는 사람의 행동으로 정의하고 mistake를 그 동의어로 둔다.[@istqb-glossary-error-2026] 같은 용어집은 요구사항이나 명세를 충족하지 못하거나 의도된 쓰임을 해치는 작업 산출물의 불완전하거나 모자란 점을 defect라 하고, bug, fault, flaw를 그 동의어로 둔다.[@istqb-glossary-defect-2026] Failure는 구성 요소나 시스템이 실행 중에 정한 한계 안에서 요구사항을 충족하지 못하는 사건으로 정의한다.[@istqb-glossary-failure-2026]
 
 그래서 ISTQB 용어집에서 error는 사람의 행동을 가리키고, ISO 26262-1:2018과 IEC 60050에서 error는 값이나 조건이 맞는 것과 어긋나는 것을 가리킨다.[@iso-26262-1-obp-2018][@iec-60050-192-03-02-2024][@istqb-glossary-error-2026]

@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**테스트 프로세스**(test process)는 테스트 목표를 이루려고 하는 테스트 활동의 묶음이다.[@iso-iec-ieee-29119-2-obp-2021][@istqb-glossary-test-process-2026] ISTQB(International Software Testing Qualifications Board) CTFL(Certified Tester Foundation Level) 강의계획서에 따르면 테스트 프로세스는 상황에 맞게 조정할 수 있고, 테스트를 어떻게 하는지는 개발 생명주기, 테스트 대상의 중요도와 리스크, 일정과 예산 같은 프로젝트 제약 등 맥락에 따라 달라진다.[@istqb-ctfl-syllabus-2024]
+**테스트 프로세스**(test process)는 테스트 목표를 이루려고 하는 테스트 활동의 묶음이다.[@iso-iec-ieee-29119-2-obp-2021][@istqb-glossary-test-process-2026] ISTQB CTFL 강의계획서에 따르면 테스트 프로세스는 상황에 맞게 조정할 수 있고, 테스트를 어떻게 하는지는 개발 생명주기, 테스트 대상의 중요도와 리스크, 일정과 예산 같은 프로젝트 제약 등 맥락에 따라 달라진다.[@istqb-ctfl-syllabus-2024]
 
 ## ISO/IEC/IEEE 29119-2의 프로세스 모델
 

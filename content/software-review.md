@@ -7,9 +7,9 @@ aliases:
 verified: 2026-10-03
 ---
 
-**소프트웨어 리뷰**(software review)는 사람이 작업 산출물이나 프로세스를 살펴 평가하거나 의견을 내는 활동이다.[@istqb-glossary-review-2026][@ieee-cs-sevocab-2026] ISTQB(International Software Testing Qualifications Board) 용어집은 리뷰를 사람이 작업 산출물이나 프로세스의 품질을 평가하는 정적 테스트의 한 유형으로 정의한다.[@istqb-glossary-review-2026] ISO/IEC/IEEE 24765 용어집은 리뷰를 작업 산출물을 프로젝트 인원, 관리자, 사용자, 고객 같은 이해관계자에게 보여 의견이나 승인을 받는 프로세스나 회의로 정의한다.[@ieee-cs-sevocab-2026]
+**소프트웨어 리뷰**(software review)는 사람이 작업 산출물이나 프로세스를 살펴 평가하거나 의견을 내는 활동이다.[@istqb-glossary-review-2026][@ieee-cs-sevocab-2026] ISTQB 용어집은 리뷰를 사람이 작업 산출물이나 프로세스의 품질을 평가하는 정적 테스트의 한 유형으로 정의한다.[@istqb-glossary-review-2026] ISO/IEC/IEEE 24765 용어집은 리뷰를 작업 산출물을 프로젝트 인원, 관리자, 사용자, 고객 같은 이해관계자에게 보여 의견이나 승인을 받는 프로세스나 회의로 정의한다.[@ieee-cs-sevocab-2026]
 
-정적 기법과 동적 기법의 구분은 [[verification-and-validation|검증과 확인]]에서 다룬다. ISTQB CTFL(Certified Tester Foundation Level) 강의계획서에 따르면 사람이 읽고 이해할 수 있는 작업 산출물이면 무엇이든 리뷰할 수 있다. 요구사항 명세, 소스 코드, 테스트 계획, 테스트 케이스, 모델이 그 예다.[@istqb-ctfl-syllabus-2024]
+정적 기법과 동적 기법의 구분은 [[verification-and-validation|검증과 확인]]에서 다룬다. ISTQB CTFL 강의계획서에 따르면 사람이 읽고 이해할 수 있는 작업 산출물이면 무엇이든 리뷰할 수 있다. 요구사항 명세, 소스 코드, 테스트 계획, 테스트 케이스, 모델이 그 예다.[@istqb-ctfl-syllabus-2024]
 
 ## 리뷰 유형
 

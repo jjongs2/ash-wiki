@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-ISTQB(International Software Testing Qualifications Board) 용어집은 **코딩 표준**(coding standard)을 코드가 갖춰야 할 특성을 정하는 품질 표준으로 정의한다.[@istqb-glossary-coding-standard-2026]
+ISTQB 용어집은 **코딩 표준**(coding standard)을 코드가 갖춰야 할 특성을 정하는 품질 표준으로 정의한다.[@istqb-glossary-coding-standard-2026]
 
 ## C 언어에서 피하려는 동작
 
@@ -33,7 +33,7 @@ MISRA는 MISRA C:2012 Addendum 3에서 Amendment 1을 포함한 MISRA C:2012가 
 
 MISRA Compliance:2020은 MISRA 지침 대부분의 위반은 분석 도구나 컴파일러로 찾는 것이 가장 쉽고 믿을 만하며 비용이 적다고 보고, 도구로 완전히 검사할 수 없는 지침에는 수작업 [[software-review|리뷰]]가 필요할 수 있다고 둔다.[@misra-compliance-2020] SEI CERT C 코딩 표준은 규칙의 요건 하나로, 자동 분석(정적이나 동적), 형식 기법, 수작업 검사로 준수 여부를 판정할 수 있을 것을 든다.[@sei-cert-c-rules-versus-recommendations-2026] 도구로 하는 검사는 [[static-analysis|정적 분석]]에서 다룬다.
 
-ISTQB CTFL(Certified Tester Foundation Level) 강의계획서에 따르면 코딩 표준의 이름 짓기 관례를 지키지 않은 것 같은 표준 위반은 정적 테스트로 찾기가 더 쉽고 비용이 적으며, 코딩 표준 검사는 테스트 자동화로 얻는 이점에 든다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL 강의계획서에 따르면 코딩 표준의 이름 짓기 관례를 지키지 않은 것 같은 표준 위반은 정적 테스트로 찾기가 더 쉽고 비용이 적으며, 코딩 표준 검사는 테스트 자동화로 얻는 이점에 든다.[@istqb-ctfl-syllabus-2024]
 
 MISRA Compliance:2020은 코드 배치와 들여쓰기, 중괄호 위치, 이름 짓기 관례, 주석처럼 코드의 정확성에 직접 영향을 주지 않는 겉모양은 조직의 사내 스타일 가이드로 다루기를 권하고, 그 시행은 문서의 범위 밖에 둔다.[@misra-compliance-2020]
 

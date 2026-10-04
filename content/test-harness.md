@@ -5,9 +5,9 @@ tags:
 verified: 2026-10-03
 ---
 
-ISTQB(International Software Testing Qualifications Board) 용어집은 **테스트 하네스**(test harness)를 테스트 스위트를 실행하는 데 필요한 드라이버와 test double의 모음으로 정의한다.[@istqb-glossary-test-harness-2026] ISO/IEC/IEEE 24765 용어집은 테스트 하네스를 상위 코드가 아직 없을 때 하위 코드를 실행해 보려고 작성한 비계 코드(scaffolding)로 정의한다.[@ieee-cs-sevocab-2026] SWEBOK(Software Engineering Body of Knowledge) V4.0a에 따르면 드라이버와 스텁 같은 테스트 하네스는 테스트 도구의 한 갈래로, 테스트를 시작하고 그 출력을 기록할 수 있는 통제된 환경을 주는 도구를 가리킨다.[@ieee-swebok-v4-0a-2026]
+ISTQB 용어집은 **테스트 하네스**(test harness)를 테스트 스위트를 실행하는 데 필요한 드라이버와 test double의 모음으로 정의한다.[@istqb-glossary-test-harness-2026] ISO/IEC/IEEE 24765 용어집은 테스트 하네스를 상위 코드가 아직 없을 때 하위 코드를 실행해 보려고 작성한 비계 코드(scaffolding)로 정의한다.[@ieee-cs-sevocab-2026] SWEBOK V4.0a에 따르면 드라이버와 스텁 같은 테스트 하네스는 테스트 도구의 한 갈래로, 테스트를 시작하고 그 출력을 기록할 수 있는 통제된 환경을 주는 도구를 가리킨다.[@ieee-swebok-v4-0a-2026]
 
-ISTQB CTFL(Certified Tester Foundation Level) 강의계획서는 스텁, 드라이버, 시뮬레이터, 서비스 가상화를 테스트 환경 항목의 예로 든다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL 강의계획서는 스텁, 드라이버, 시뮬레이터, 서비스 가상화를 테스트 환경 항목의 예로 든다.[@istqb-ctfl-syllabus-2024]
 
 ## 드라이버와 스텁
 

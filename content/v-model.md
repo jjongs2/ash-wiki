@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-02
 ---
 
-**V 모델**(V-model)은 개발 단계와 그에 대응하는 테스트 단계를 하나씩 짝지은 개발 생명주기 모델이다.[@istqb-glossary-v-model-2026][@weit-v-modell-xt-2-4-2024] ISTQB(International Software Testing Qualifications Board) 용어집은 V 모델을 순차 개발 생명주기 모델로 분류한다.[@istqb-glossary-v-model-2026]
+**V 모델**(V-model)은 개발 단계와 그에 대응하는 테스트 단계를 하나씩 짝지은 개발 생명주기 모델이다.[@istqb-glossary-v-model-2026][@weit-v-modell-xt-2-4-2024] ISTQB 용어집은 V 모델을 순차 개발 생명주기 모델로 분류한다.[@istqb-glossary-v-model-2026]
 
 ## 왼쪽과 오른쪽의 대응
 
@@ -21,7 +21,7 @@ ISTQB 용어집에 따르면 V 모델이 개발 단계마다 짝짓는 테스트
 
 ## 테스트 설계를 앞당김
 
-V 모델에서는 테스트 설계를 코딩이 끝난 뒤가 아니라 대응하는 개발 단계에서 시작한다.[@weit-v-modell-xt-2-4-2024][@istqb-ctfl-syllabus-2024] ISTQB CTFL(Certified Tester Foundation Level) 강의계획서는 이를 개발 생명주기 모델과 상관없이 지킬 좋은 관행으로 권한다. 이 강의계획서에 따르면 순차 모델에서는 초기 단계에 테스터가 요구 검토, 테스트 분석, 설계에 참여한다.[@istqb-ctfl-syllabus-2024]
+V 모델에서는 테스트 설계를 코딩이 끝난 뒤가 아니라 대응하는 개발 단계에서 시작한다.[@weit-v-modell-xt-2-4-2024][@istqb-ctfl-syllabus-2024] ISTQB CTFL 강의계획서는 이를 개발 생명주기 모델과 상관없이 지킬 좋은 관행으로 권한다. 이 강의계획서에 따르면 순차 모델에서는 초기 단계에 테스터가 요구 검토, 테스트 분석, 설계에 참여한다.[@istqb-ctfl-syllabus-2024]
 
 ISTQB 용어집은 테스트와 품질 보증 활동을 [[software-development-life-cycle|SDLC]]에서 가능한 한 일찍 수행하는 테스트 접근법을 shift left라 부른다.[@istqb-glossary-shift-left-2026] CTFL 강의계획서에 따르면 일찍 테스트하면 시간과 비용이 준다. 일찍 없앤 결함은 뒤 산출물에 결함을 낳지 않고, 뒤에 생기는 실패가 줄어 품질 비용이 준다.[@istqb-ctfl-syllabus-2024]
 

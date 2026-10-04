@@ -23,7 +23,7 @@ Cybersecurity property는 보호할 가치가 있을 수 있는 속성으로, �
 
 ![[diagrams/tara-risk-elements.svg]]
 
-ISO/SAE 21434:2021은 cybersecurity goal을 threat scenario에 관련된 concept 수준의 사이버보안 요구사항으로, cybersecurity claim을 리스크를 retain하거나 share하는 근거를 담을 수 있는, 리스크에 관한 진술로 정의한다.[@iso-sae-21434-obp-2021]
+이 표준은 cybersecurity goal을 threat scenario에 관련된 concept 수준의 사이버보안 요구사항으로, cybersecurity claim을 리스크를 retain하거나 share하는 근거를 담을 수 있는, 리스크에 관한 진술로 정의한다.[@iso-sae-21434-obp-2021]
 
 ## Automotive SPICE for Cybersecurity의 MAN.7
 

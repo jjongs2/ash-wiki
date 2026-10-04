@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-ISTQB(International Software Testing Qualifications Board) 용어집은 결함을 알아채고, 기록하고, 분류하고, 조사하고, 고치고, 처분하는 프로세스를 **결함 관리**(defect management)라 부른다.[@istqb-glossary-defect-management-2026] ISTQB CTFL(Certified Tester Foundation Level) 강의계획서에 따르면 결함을 찾는 것이 테스트의 주된 목적 가운데 하나이므로, 자리 잡힌 결함 관리 프로세스가 꼭 있어야 한다.[@istqb-ctfl-syllabus-2024] 결함과 failure의 정의는 [[fault-error-failure|Fault, error, failure]]에서 다룬다.
+ISTQB 용어집은 결함을 알아채고, 기록하고, 분류하고, 조사하고, 고치고, 처분하는 프로세스를 **결함 관리**(defect management)라 부른다.[@istqb-glossary-defect-management-2026] ISTQB CTFL 강의계획서에 따르면 결함을 찾는 것이 테스트의 주된 목적 가운데 하나이므로, 자리 잡힌 결함 관리 프로세스가 꼭 있어야 한다.[@istqb-ctfl-syllabus-2024] 결함과 failure의 정의는 [[fault-error-failure|Fault, error, failure]]에서 다룬다.
 
 ## 결함 보고서와 사건 보고서
 

@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**리스크 기반 테스트**(risk-based testing)는 리스크의 종류와 수준을 바탕으로 테스트 활동과 자원을 관리하고, 고르고, 우선순위를 매기고, 쓰는 테스트 접근법이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-risk-based-testing-2026] ISTQB(International Software Testing Qualifications Board) CTFL(Certified Tester Foundation Level) 강의계획서에 따르면 아주 단순한 경우가 아니면 모든 것을 테스트할 수 없으므로, 리스크 기반 테스트 같은 방법으로 테스트 노력을 모아야 한다. 제품 리스크 분석의 목표는 남는 제품 리스크 수준이 가장 작아지도록 테스트 노력을 모으는 것이다.[@istqb-ctfl-syllabus-2024]
+**리스크 기반 테스트**(risk-based testing)는 리스크의 종류와 수준을 바탕으로 테스트 활동과 자원을 관리하고, 고르고, 우선순위를 매기고, 쓰는 테스트 접근법이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-risk-based-testing-2026] ISTQB CTFL 강의계획서에 따르면 아주 단순한 경우가 아니면 모든 것을 테스트할 수 없으므로, 리스크 기반 테스트 같은 방법으로 테스트 노력을 모아야 한다. 제품 리스크 분석의 목표는 남는 제품 리스크 수준이 가장 작아지도록 테스트 노력을 모으는 것이다.[@istqb-ctfl-syllabus-2024]
 
 ## 리스크
 
@@ -32,7 +32,7 @@ CTFL 강의계획서에 따르면 리스크 관리의 주된 활동은 **리스�
 - **리스크 완화**(risk mitigation): 리스크 평가에서 제안한 조치를 실행해 리스크 수준을 낮추는 일.
 - **리스크 모니터링**(risk monitoring): 완화 조치가 효과가 있는지 확인하고, 평가를 다듬을 정보를 얻고, 새로 생기는 리스크를 찾는 일.[@istqb-ctfl-syllabus-2024]
 
-앞의 둘이 리스크 분석, 뒤의 둘이 리스크 통제다. CTFL 강의계획서에 따르면 분석한 제품 리스크에 대응하는 방법에는 테스트로 완화하기, 리스크를 받아들이기, 리스크를 넘기기, 비상 계획 세우기가 있다.[@istqb-ctfl-syllabus-2024]
+앞의 둘이 리스크 분석, 뒤의 둘이 리스크 통제다. 분석한 제품 리스크에 대응하는 방법에는 테스트로 완화하기, 리스크를 받아들이기, 리스크를 넘기기, 비상 계획 세우기가 있다.[@istqb-ctfl-syllabus-2024]
 
 ![[diagrams/risk-analysis-control-activities.svg]]
 

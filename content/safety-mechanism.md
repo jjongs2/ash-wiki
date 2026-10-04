@@ -11,7 +11,7 @@ ISO 26262-1:2018은 **안전 메커니즘**(safety mechanism)을 E/E(Electrical/
 
 ISO 26262-1:2018은 **안전 상태**(safe state)를 failure가 났을 때 불합리한 리스크가 없는 아이템의 운용 모드로 정의하고, fault tolerant가 아닌 시스템의 안전 상태 예로 꺼진 모드를 든다. 같은 표준은 fault를 검출한 뒤 안전 상태에 바로 또는 제때 이르지 못하거나 그 상태에 머물 수 없으면, 안전 메커니즘이 아이템을 emergency operation으로 옮겨 안전 상태에 이를 때까지 안전을 지킬 수 있게 둔다.[@iso-26262-1-obp-2018]
 
-ISO 26262-1:2018은 **성능 저하**(degradation)를 아이템이나 요소의 기능, 성능 또는 둘 다가 줄어든 상태나 그 상태로 옮겨 가는 것으로 정의한다. 또 **warning and degradation strategy**를, 기능이 줄 수 있음을 운전자에게 어떻게 알리고 줄어든 기능을 어떻게 제공해 안전 상태에 이를지 정한 명세로 정의한다. 이 strategy는 운전자에게 주는 경고 신호, 안전 상태, 안전 상태로 옮기는 조건과 돌아오는 조건, 해당하면 emergency operation을 담는다.[@iso-26262-1-obp-2018]
+이 표준은 **성능 저하**(degradation)를 아이템이나 요소의 기능, 성능 또는 둘 다가 줄어든 상태나 그 상태로 옮겨 가는 것으로 정의한다. 또 **warning and degradation strategy**를, 기능이 줄 수 있음을 운전자에게 어떻게 알리고 줄어든 기능을 어떻게 제공해 안전 상태에 이를지 정한 명세로 정의한다. 이 strategy는 운전자에게 주는 경고 신호, 안전 상태, 안전 상태로 옮기는 조건과 돌아오는 조건, 해당하면 emergency operation을 담는다.[@iso-26262-1-obp-2018]
 
 안전 메커니즘이 대응을 마쳐야 하는 시간은 [[fault-tolerant-time-interval|FTTI]]에서 다룬다.
 

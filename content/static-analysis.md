@@ -5,9 +5,9 @@ tags:
 verified: 2026-10-03
 ---
 
-**정적 분석**(static analysis)은 구성 요소나 시스템을 그 형태, 구조, 내용, 문서를 근거로 평가하는 일이다.[@istqb-glossary-static-analysis-2026][@ieee-cs-sevocab-2026] ISTQB(International Software Testing Qualifications Board) 용어집은 정적 분석을, 구성 요소나 시스템을 실행하지 않고 이런 것을 근거로 평가하는 자동화된 프로세스로 정의한다.[@istqb-glossary-static-analysis-2026] ISO/IEC/IEEE 24765 용어집은 정적 분석을 같은 근거로 하는 평가 프로세스로 정의하고, 실행 중의 동작을 근거로 한 평가를 동적 분석(dynamic analysis)으로 정의한다.[@ieee-cs-sevocab-2026]
+**정적 분석**(static analysis)은 구성 요소나 시스템을 그 형태, 구조, 내용, 문서를 근거로 평가하는 일이다.[@istqb-glossary-static-analysis-2026][@ieee-cs-sevocab-2026] ISTQB 용어집은 정적 분석을, 구성 요소나 시스템을 실행하지 않고 이런 것을 근거로 평가하는 자동화된 프로세스로 정의한다.[@istqb-glossary-static-analysis-2026] ISO/IEC/IEEE 24765 용어집은 정적 분석을 같은 근거로 하는 평가 프로세스로 정의하고, 실행 중의 동작을 근거로 한 평가를 동적 분석(dynamic analysis)으로 정의한다.[@ieee-cs-sevocab-2026]
 
-ISTQB CTFL(Certified Tester Foundation Level) 강의계획서에 따르면 정적 분석에는 흔히 도구를 쓴다.[@istqb-ctfl-syllabus-2024] 사람이 하는 정적 기법인 리뷰는 [[software-review|소프트웨어 리뷰]]에서, 정적 기법과 동적 기법의 구분은 [[verification-and-validation|검증과 확인]]에서 다룬다.
+ISTQB CTFL 강의계획서에 따르면 정적 분석에는 흔히 도구를 쓴다.[@istqb-ctfl-syllabus-2024] 사람이 하는 정적 기법인 리뷰는 [[software-review|소프트웨어 리뷰]]에서, 정적 기법과 동적 기법의 구분은 [[verification-and-validation|검증과 확인]]에서 다룬다.
 
 ## 찾는 것
 

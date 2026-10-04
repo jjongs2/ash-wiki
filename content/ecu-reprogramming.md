@@ -11,7 +11,7 @@ verified: 2026-10-03
 
 [[autosar|AUTOSAR]] R25-11의 Dcm(Diagnostic Communication Manager) 명세는 [[uds|UDS]]의 DiagnosticSessionControl로 요청된 세션이 부트로더 전환을 허용하도록 설정돼 있으면(`DcmDspSessionForBoot`), Dcm이 BswM(Basic Software Mode Manager)에 모드 전환으로 알려 OEM(Original Equipment Manufacturer) 부트로더나 시스템 공급자 부트로더로 넘어갈 준비를 하게 정한다. 전환할지는 세션의 이름이 아니라 세션마다의 설정이 정한다. programming session을 시작하는 요청을 받으면 Dcm은 `Dcm_SetProgConditions`로 재프로그래밍을 요청하는 ReprogrammingRequest 플래그를 세운다. 이 명세는 Dcm을 부트로더 안에서 쓰도록 의도하지 않는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
-같은 명세에서는 부트로더가 애플리케이션 재프로그래밍을 마치면 ApplUpdated 플래그를 갱신한다. ECU가 리셋된 뒤 새로 프로그래밍된 애플리케이션이 처음 시작되면, Dcm은 `Dcm_GetProgConditions`로 이 플래그를 읽어 BswM에 애플리케이션이 갱신됐음을 알린다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+부트로더가 애플리케이션 재프로그래밍을 마치면 ApplUpdated 플래그를 갱신한다. ECU가 리셋된 뒤 새로 프로그래밍된 애플리케이션이 처음 시작되면, Dcm은 `Dcm_GetProgConditions`로 이 플래그를 읽어 BswM에 애플리케이션이 갱신됐음을 알린다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 ![[diagrams/dcm-bootloader-jump-flow.svg]]
 
