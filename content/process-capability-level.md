@@ -22,7 +22,7 @@ verified: 2026-10-02
 | CL 4 | Predictable process | 정한 한계 안에서 예측할 수 있게 수행한다. 정량 관리 요구를 정하고 측정 데이터를 모아 분석해 변동의 원인을 찾고 시정한다. |
 | CL 5 | Innovating process  | 조직의 변화에 대응하도록 프로세스를 지속적으로 개선한다.                                                                 |
 
-ASPICE 4.1은 CL 1부터 CL 5까지 수준마다 **프로세스 속성**(process attribute, PA)을 배정한다. CL 0에는 프로세스 속성이 없다.[@vda-automotive-spice-pam-4-1-2026]
+이 표준은 CL 1부터 CL 5까지 수준마다 **프로세스 속성**(process attribute, PA)을 배정한다. CL 0에는 프로세스 속성이 없다.[@vda-automotive-spice-pam-4-1-2026]
 
 | 프로세스 속성 | 이름                              | 수준 |
 | ------------- | --------------------------------- | ---- |
