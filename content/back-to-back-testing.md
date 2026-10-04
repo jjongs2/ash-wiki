@@ -15,6 +15,8 @@ ISTQB CT-AuT 강의계획서에 따르면 back-to-back 테스트에서는 모든
 
 모델 기반 개발에서는 실행 가능한 모델과 그 모델에서 만든 코드를 같은 입력으로 실행해 결과를 견주는 데 back-to-back 테스트를 쓴다. 모델 시뮬레이션([[x-in-the-loop#MiL|MiL]])의 결과를 [[x-in-the-loop#SiL|SiL]]에서 실행한 생성 코드의 결과와 견주는 것이 그 예다.[@istqb-ct-aut-syllabus-2025][@mathworks-sltest-back-to-back-equivalence-2026]
 
+CT-AuT 강의계획서에 따르면 모델에서 만든 코드는 기대와 다르게 동작할 수 있다. 모델은 대개 부동소수점을, 컴파일한 코드는 대개 고정소수점을 쓰는 것처럼 데이터 타입이 다르거나 메모리 공간이 다르면 그런 차이가 생길 수 있다.[@istqb-ct-aut-syllabus-2025]
+
 Embedded Coder에서는 수치적 동등성을 확인하려고 normal mode 시뮬레이션의 결과를 software-in-the-loop나 processor-in-the-loop 시뮬레이션의 결과와 견준다.[@mathworks-ecoder-sil-pil-2026]
 
 ## 허용 오차

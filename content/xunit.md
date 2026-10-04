@@ -9,7 +9,7 @@ verified: 2026-10-03
 
 ## 기원
 
-Kent Beck은 Smalltalk 테스트 프레임워크를 만들었고, 1994년 10월 The Smalltalk Report의 칼럼 "Simple Smalltalk Testing"에서 그 테스트 전략과 프레임워크를 설명했다.[@beck-simple-smalltalk-testing-1997] SUnit은 Beck의 이 프레임워크에서 시작했고, 처음에는 클래스 4개와 메서드 10개였다.[@sunit-manual-2006] JUnit은 Erich Gamma와 Kent Beck이 처음 만들었다.[@junit-4-faq-2025]
+Kent Beck은 Smalltalk 테스트 프레임워크를 만들었고, 1994년 10월 The Smalltalk Report의 칼럼 "Simple Smalltalk Testing"에서 그 테스트 전략과 프레임워크를 설명했다. 프레임워크는 literate program 꼴로 실었다.[@beck-simple-smalltalk-testing-1997] SUnit은 Beck의 이 프레임워크에서 시작했고, 처음에는 클래스 4개와 메서드 10개였다.[@sunit-manual-2006] JUnit은 Erich Gamma와 Kent Beck이 처음 만들었다.[@junit-4-faq-2025]
 
 ## 공통 구성
 

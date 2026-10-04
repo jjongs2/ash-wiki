@@ -13,7 +13,7 @@ ISTQB CTFL 강의계획서는 테스트 기법을 블랙박스, [[white-box-test
 
 ## 테스트 기준
 
-ISO/IEC/IEEE 29119-1:2022는 테스트 기준(test basis)을 테스트 케이스를 설계하고 구현할 때 바탕으로 삼는 정보로 정의한다. 테스트 기준은 [[software-requirements-specification|요구사항 명세]], 설계 명세, 모듈 명세 같은 문서일 수도 있고, 문서로 남지 않은 요구 동작의 이해일 수도 있다.[@iso-iec-ieee-29119-1-obp-2022]
+ISO/IEC/IEEE 29119-1:2022는 테스트 기준(test basis)을 테스트 케이스를 설계하고 구현할 때 바탕으로 삼는 정보로 정의한다. 테스트 기준은 [[software-requirements-specification|요구사항 명세]], 설계 명세, 모듈 명세 같은 문서일 수도 있고, 문서로 남지 않은 요구 동작의 이해일 수도 있다.[@iso-iec-ieee-29119-1-obp-2022] ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 따르면 유스케이스도 테스트 기준이 될 수 있다.[@istqb-ctal-ta-syllabus-2025]
 
 ## 요구사항 기반 테스트
 

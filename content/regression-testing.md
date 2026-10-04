@@ -21,7 +21,9 @@ SWEBOK V4.0a에 따르면 실행할 테스트가 많아 회귀 테스트는 시�
 
 ISTQB 용어집은 **테스트 자동화**(test automation)를 테스트 활동을 자동으로 돌아가게 바꾸는 일로 정의한다.[@istqb-glossary-test-automation-2026] ISTQB CTFL 강의계획서에 따르면 회귀 테스트 스위트는 여러 번 돌리고 회귀 테스트 케이스의 수는 대개 반복이나 릴리스마다 늘어나므로, 회귀 테스트는 자동화에 알맞은 대상이고 그 자동화는 프로젝트 초기에 시작해야 한다.[@istqb-ctfl-syllabus-2024]
 
-[[continuous-integration|지속적 통합]]에서는 자동화한 회귀 테스트도 함께 돌린다.[@ieee-swebok-v4-0a-2026][@istqb-ctfl-syllabus-2024]
+테스트 자동화는 테스트 실행만이 아니라 테스트 케이스와 테스트 데이터를 만드는 일에도 쓰인다.[@ieee-swebok-v4-0a-2026][@istqb-ctfl-syllabus-2024] ISTQB CTFL 강의계획서에 따르면 테스트 자동화는 회귀 테스트 실행, 같은 테스트 데이터 다시 입력하기, 기대 결과와 실제 결과 비교하기처럼 되풀이하는 수작업을 줄일 수 있고, 테스터가 새롭고 더 효과적인 테스트를 설계할 시간을 늘릴 수 있다.[@istqb-ctfl-syllabus-2024]
+
+[[continuous-integration|지속적 통합]]에서는 자동화한 회귀 테스트도 함께 돌린다.[@ieee-swebok-v4-0a-2026][@istqb-ctfl-syllabus-2024] ISTQB CTAL-TAE(Certified Tester Advanced Level Test Automation Engineering) 강의계획서에 따르면 실행에 오래 걸리는 회귀 테스트 스위트는 파이프라인에서 매일 밤처럼 주기적으로 돌릴 수 있다.[@istqb-ctal-tae-syllabus-2024]
 
 ## Automotive SPICE
 

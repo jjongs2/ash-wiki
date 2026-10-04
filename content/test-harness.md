@@ -25,6 +25,8 @@ CTFL 강의계획서에 따르면 [[unit-testing#컴포넌트 테스트|컴포�
 
 SWEBOK V4.0a에 따르면 [[integration-testing|통합 테스트]]를 점진적으로 하면 대개 스텁, 드라이버, mock object 같은 테스트 인프라가 더 쓰인다.[@ieee-swebok-v4-0a-2026]
 
+[[basis-path-testing|구조적 테스트]]에서 모듈 테스트와 [[integration-testing#통합 전략|상향식 통합]]을 함께 하는 전략은 스텁 없이 드라이버만 쓴다. 가장 낮은 모듈부터 드라이버로 모듈마다 구조적 테스트를 하고, 설계 계층을 한 단계씩 올라가며 새 모듈을 그 아래 모듈 전체와 통합해 드라이버로 같은 테스트를 한다.[@nist-sp-500-235-1996]
+
 ## Test double
 
 ISTQB 용어집은 **test double**을 테스트하려고 테스트 대상이 부르는 대체 컴포넌트로 정의한다.[@istqb-glossary-test-double-2026] Meszaros는 xUnit Test Patterns에서 SUT가 의존하는 실제 컴포넌트를 테스트에서 대신하는 객체들을 아우르는 이름으로 Test Double을 쓰고, 이를 다음 다섯으로 나눈다.[@meszaros-test-double-2008][@meszaros-mocks-fakes-stubs-2008]

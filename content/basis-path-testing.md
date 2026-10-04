@@ -9,7 +9,7 @@ verified: 2026-10-03
 
 ## 기원
 
-McCabe는 1982년 NBS(National Bureau of Standards) SP 500-99에서 순환 복잡도를 쓰는 구조적 테스트(structured testing) 방법론을 펴냈다.[@nbs-sp-500-99-1982] Watson과 McCabe는 1996년 NIST SP 500-235에서 구조적 테스트를 넓히고 고쳐 다시 정리하며, 기본 경로 테스트를 그 다른 이름으로 불렀다.[@nist-sp-500-235-1996]
+McCabe는 1976년 ICSE(International Conference on Software Engineering) 논문에서 자신이 내놓은 복잡도 척도와 함께 쓰는 테스트 전략을 정의했다. 프로그램이 일정한 최소 수준의 테스트를 받아들이거나, 그러지 못하면 구조를 줄여야 한다는 전략이다.[@mccabe-complexity-measure-icse-1976] McCabe는 1982년 NBS(National Bureau of Standards) SP 500-99에서 순환 복잡도를 쓰는 구조적 테스트(structured testing) 방법론을 펴냈다.[@nbs-sp-500-99-1982] Watson과 McCabe는 1996년 NIST SP 500-235에서 구조적 테스트를 넓히고 고쳐 다시 정리하며, 기본 경로 테스트를 그 다른 이름으로 불렀다.[@nist-sp-500-235-1996]
 
 ## 제어 흐름 그래프
 
@@ -30,5 +30,7 @@ baseline 방법은 먼저 모듈의 대표 기능을 나타내는 경로 하나�
 ## 다른 커버리지와의 관계
 
 기본 경로 집합은 그래프의 모든 간선과 노드를 덮으므로, 기본 경로 테스트를 만족하면 [[test-coverage|분기 커버리지]]와 구문 커버리지도 만족한다. 거꾸로 분기 커버리지를 만족한 테스트가 기본 경로 집합을 덮는 것은 아니다.[@nist-sp-500-235-1996]
+
+ISO/IEC/IEEE 24765 용어집은 프로그램의 모든 경로나 고른 경로를 실행하도록 설계한 테스트를 **경로 테스트**(path testing)라 부른다.[@ieee-cs-sevocab-2026]
 
 반복문이 있는 프로그램은 대개 경로가 무한히 많을 수 있어, 원리적으로도 모든 경로를 테스트할 수 없다. 반복문이 없는 단순한 모듈은 모든 경로를 테스트할 수도 있다. $v(G)$개를 넘어 더 테스트하는 경로는 기본 경로의 선형 결합이라 중복이다.[@nist-sp-500-235-1996]
