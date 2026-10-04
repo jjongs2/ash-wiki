@@ -31,7 +31,7 @@ AUTOSAR는 IoHwAb 모듈을 표준화하지 않고, 기능 인터페이스를 �
 
 ## 드라이버와 notification
 
-IoHwAb는 MCAL의 [[autosar-port-driver|Port]], [[autosar-dio-driver|DIO]](Digital Input/Output), [[autosar-adc-driver|ADC]], [[autosar-pwm-driver|PWM]](Pulse Width Modulation), [[autosar-icu-driver|ICU]](Input Capture Unit), [[autosar-ocu-driver|OCU]](Output Compare Unit), GPT(General Purpose Timer) 드라이버의 API를 부르고, 보드 위 장치를 다룰 때는 SPI(Serial Peripheral Interface) 같은 통신 드라이버에도 접근한다. 외부 ADC(Analogue Digital Converter)와, SPI로 연결된 외부 I/O ASIC(Application-Specific Integrated Circuit)의 드라이버도 IoHwAb에 든다. IoHwAb가 반드시 써야 하는 인터페이스는 없고, 어느 인터페이스를 쓸지는 SW-C가 정의한 채널에 기대하는 기능에 달렸다.[@autosar-cp-sws-iohardwareabstraction-2025]
+IoHwAb는 MCAL의 [[autosar-port-driver|Port]], [[autosar-dio-driver|DIO]], [[autosar-adc-driver|ADC]], [[autosar-pwm-driver|PWM]], [[autosar-icu-driver|ICU]], [[autosar-ocu-driver|OCU]], GPT(General Purpose Timer) 드라이버의 API를 부르고, 보드 위 장치를 다룰 때는 SPI(Serial Peripheral Interface) 같은 통신 드라이버에도 접근한다. 외부 ADC와, SPI로 연결된 외부 I/O ASIC(Application-Specific Integrated Circuit)의 드라이버도 IoHwAb에 든다. IoHwAb가 반드시 써야 하는 인터페이스는 없고, 어느 인터페이스를 쓸지는 SW-C가 정의한 채널에 기대하는 기능에 달렸다.[@autosar-cp-sws-iohardwareabstraction-2025]
 
 notification은 MCAL 드라이버가 내고 IoHwAb 안에서 처리된다. IoHwAb는 ADC, ICU, OCU, PWM, GPT 드라이버에게서 notification을 받으며, 신호마다 notification을 쓰려면 시스템 설계자가 드라이버 설정에서 켜야 한다. Port와 DIO 드라이버에게서는 notification을 받지 않는다.[@autosar-cp-sws-iohardwareabstraction-2025] 두 드라이버에는 callback notification이 없다.[@autosar-cp-sws-portdriver-2025][@autosar-cp-sws-diodriver-2025]
 

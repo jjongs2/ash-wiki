@@ -18,7 +18,7 @@ verified: 2026-09-30
 - **Software trigger**: `Adc_StartGroupConversion` 호출이 변환을 시작하고, `Adc_StopGroupConversion`이 멈춘다.
 - **Hardware trigger**: 타이머 만료나 입력선의 edge 같은 하드웨어 이벤트가 변환을 시작하며, 이벤트 한 번에 그룹을 한 번 변환한다. `Adc_EnableHardwareTrigger`로 켜고 `Adc_DisableHardwareTrigger`로 끈다.[@autosar-cp-sws-adcdriver-2025]
 
-하드웨어 트리거가 없는 ADC에서는 GPT(General Purpose Timer)나 [[autosar-icu-driver|ICU]](Input Capture Unit) Driver와 software trigger를 함께 써서 비슷한 동작을 만들 수 있다. 예로 GPT 타이머의 notification에서 변환을 시작한다.[@autosar-cp-sws-adcdriver-2025]
+하드웨어 트리거가 없는 ADC에서는 GPT(General Purpose Timer)나 [[autosar-icu-driver|ICU Driver]]와 software trigger를 함께 써서 비슷한 동작을 만들 수 있다. 예로 GPT 타이머의 notification에서 변환을 시작한다.[@autosar-cp-sws-adcdriver-2025]
 
 ## One-shot과 continuous
 

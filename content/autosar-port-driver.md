@@ -34,8 +34,8 @@ Port Driver는 GPIO(General Purpose Input/Output)로도 특수 목적 I/O로도 
 
 ## DIO보다 먼저 초기화
 
-[[autosar-dio-driver|DIO Driver]]는 Port Driver가 설정한 핀과 포트 위에서만 동작하며, 포트 구조를 스스로 설정하거나 초기화하지 않는다. 그래서 DIO(Digital Input/Output) 함수를 쓰기 전에 Port Driver를 초기화해야 하고, 그러지 않으면 DIO Driver의 동작은 정의되지 않는다.[@autosar-cp-sws-portdriver-2025]
+[[autosar-dio-driver|DIO Driver]]는 Port Driver가 설정한 핀과 포트 위에서만 동작하며, 포트 구조를 스스로 설정하거나 초기화하지 않는다. 그래서 DIO 함수를 쓰기 전에 Port Driver를 초기화해야 하고, 그러지 않으면 DIO Driver의 동작은 정의되지 않는다.[@autosar-cp-sws-portdriver-2025]
 
-다른 I/O 드라이버가 쓰는 핀도 Port Driver가 설정한다. [[autosar-adc-driver|ADC Driver]]의 아날로그 입력 핀과 외부 트리거 핀[@autosar-cp-sws-adcdriver-2025], [[autosar-pwm-driver|PWM Driver]]가 쓰는 핀의 기능[@autosar-cp-sws-pwmdriver-2025], [[autosar-icu-driver|ICU]](Input Capture Unit) Driver의 입력 핀[@autosar-cp-sws-icudriver-2025], [[autosar-ocu-driver|OCU]](Output Compare Unit) Driver의 출력 핀이 그렇다.[@autosar-cp-sws-ocudriver-2025] ICU Driver와 OCU Driver 규격은 그래서 자기 함수를 쓰기 전에 Port Driver를 초기화하도록 한다.[@autosar-cp-sws-icudriver-2025][@autosar-cp-sws-ocudriver-2025]
+다른 I/O 드라이버가 쓰는 핀도 Port Driver가 설정한다. [[autosar-adc-driver|ADC Driver]]의 아날로그 입력 핀과 외부 트리거 핀[@autosar-cp-sws-adcdriver-2025], [[autosar-pwm-driver|PWM Driver]]가 쓰는 핀의 기능[@autosar-cp-sws-pwmdriver-2025], [[autosar-icu-driver|ICU Driver]]의 입력 핀[@autosar-cp-sws-icudriver-2025], [[autosar-ocu-driver|OCU Driver]]의 출력 핀이 그렇다.[@autosar-cp-sws-ocudriver-2025] ICU Driver와 OCU Driver 규격은 그래서 자기 함수를 쓰기 전에 Port Driver를 초기화하도록 한다.[@autosar-cp-sws-icudriver-2025][@autosar-cp-sws-ocudriver-2025]
 
 ![[diagrams/port-pin-config-driver-use.svg]]
