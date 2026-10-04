@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-[[iso-sae-21434|ISO/SAE 21434]]:2021은 책임이 고객과 공급자에게 나뉜 아이템이나 컴포넌트의 사이버보안 활동을 **분산 사이버보안 활동**(distributed cybersecurity activities)으로 정의하고, 분산 사이버보안 활동에 관한 고객과 공급자 사이의 합의를 **cybersecurity interface agreement**로 정의한다. 이 표준의 7절(distributed cybersecurity activities)은 고객과 공급자 사이에 사이버보안 활동의 책임을 나누는 요구사항을 둔다.[@iso-sae-21434-obp-2021]
+[[iso-sae-21434|ISO/SAE 21434]]:2021은 책임이 고객과 공급자에게 나뉜 아이템이나 컴포넌트의 사이버보안 활동을 **분산 사이버보안 활동**(distributed cybersecurity activities)으로 정의하고, 분산 사이버보안 활동에 관한 고객과 공급자 사이의 합의를 **cybersecurity interface agreement**로 정의한다. 이 표준의 7절(distributed cybersecurity activities)은 고객과 공급자 사이에 사이버보안 활동의 책임을 나누는 요구사항을 둔다. 7절은 공급자 역량(supplier capability), 견적 요청(request for quotation), 책임 정렬(alignment of responsibilities)을 하위 절로 둔다.[@iso-sae-21434-obp-2021]
 
 ## 합의에 담는 것
 
@@ -24,7 +24,7 @@ ISO/SAE 21434:2021은 RASIC을 responsible, accountable, supporting, informed, c
 
 ## Automotive SPICE for Cybersecurity의 ACQ.2
 
-Automotive SPICE for Cybersecurity 2.0은 공급자 선정을 ACQ.2(Supplier Request and Selection) 프로세스로 두고, 그 목적을 관련 기준에 따라 약정이나 합의를 맺을 공급자를 고르는 것으로 둔다. ACQ.2의 성과는 다음 넷이다.[@vda-automotive-spice-cybersecurity-2025]
+Automotive SPICE for Cybersecurity 2.0은 공급자 선정을 ACQ.2(Supplier Request and Selection) 프로세스로 두고, 그 목적을 관련 기준에 따라 약정이나 합의를 맺을 공급자를 고르는 것으로 둔다. ACQ.2가 드는 획득(ACQ) 프로세스 그룹은 고객이 제품이나 서비스를 얻으려고 수행하는 프로세스로 이루어지고, 공급자도 자기 공급자에게 고객으로 나설 때 이 프로세스를 수행한다. ACQ.2의 성과는 다음 넷이다.[@vda-automotive-spice-cybersecurity-2025]
 
 | 성과 | 내용                                                                          |
 | ---- | ----------------------------------------------------------------------------- |

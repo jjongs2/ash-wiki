@@ -22,6 +22,8 @@ NIST SP 800-115는 침투 테스트를 네 단계로 나누는 방법을 한 예
 
 NIST SP 800-115는 외부 공격 시나리오에서 시험자에게 대상 IP(Internet Protocol) 주소나 주소 범위 말고는 대상 환경의 실제 정보를 주지 않게 하고, 내부 공격 시나리오에서는 그 접근 수준의 사용자, 대개 일반 직원이 가질 네트워크 정보를 주게 한다. 또 NIST SP 800-115는 조직의 IT(information technology) 직원이 알고 동의한 가운데 하는 overt 테스트와, IT 직원 모르게 상위 경영진의 승인만 받고 하는 covert 테스트를 나눈다.[@nist-sp-800-115-2008]
 
+PCI SSC의 2017년 Penetration Testing Guidance는 테스트를 시작하기 전에 시험자에게 대상 정보를 얼마나 주는지에 따라 침투 테스트를 블랙박스, 화이트박스, 그레이박스의 세 가지로 나눈다. 블랙박스에서는 정보를 주지 않고, 화이트박스에서는 네트워크와 애플리케이션의 세부를 모두 줄 수 있으며, 그레이박스에서는 일부를 줄 수 있다.[@pci-ssc-penetration-testing-guidance-2017]
+
 ## 차량 사이버보안에서의 자리
 
 ISO/SAE 21434:2021의 11절은 아이템의 cybersecurity validation을 차량 수준에서 다룬다.[@iso-sae-21434-obp-2021] Automotive SPICE for Cybersecurity 2.0의 SEC.4 Risk Treatment Validation에서 BP1은 risk treatment validation 조치를 정하게 하고, 그 노트는 이런 조치에 흔히 쓰는 방법으로 침투 테스트처럼 아직 찾지 못한 취약점을 찾는 사이버보안 방법을 든다.[@vda-automotive-spice-cybersecurity-2025]
@@ -31,3 +33,7 @@ NHTSA의 2022년 Cybersecurity Best Practices for the Safety of Modern Vehicles�
 ## 취약점 스캐닝과 퍼즈 테스트
 
 NIST SP 800-115에 따르면 취약점 스캐닝(vulnerability scanning)은 호스트의 운영체제와 소프트웨어를 알아낸 뒤, 스캐너의 데이터베이스에 담긴 알려진 취약점과 맞춰 본다.[@nist-sp-800-115-2008] NIST 용어집에 따르면 퍼즈 테스트(fuzz testing)는 대상에 잘못된 데이터를 넣어 대상이 어떻게 반응하는지 드러낸다.[@nist-csrc-glossary-fuzz-testing-2026]
+
+## 명세 준수 테스트와의 차이
+
+침투 테스트는 대상이 명세에 맞는지 확인하는 테스트와 다르다.[@ccra-cc-part-3-2022][@enisa-smart-cars-2016] CC:2022(Common Criteria for Information Technology Security Evaluation)는 평가 대상의 보안 기능이 기능 명세와 설계대로 동작하는지 확인하는 테스트에 침투 테스트를 넣지 않고, 설계와 구현의 취약점을 찾는 침투 테스트를 취약점 평가의 한 부분으로 따로 다룬다.[@ccra-cc-part-3-2022]
