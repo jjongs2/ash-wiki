@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**OSEK resource**는 [[osek-os|OSEK/VDX OS]]에서 공유 자원 접근을 조율하는 단위 객체다. 서로 다른 우선순위의 [[osek-task|태스크]]들이 메모리, 하드웨어 영역, 스케줄러, 코드의 특정 구간 같은 공유 자원을 함께 쓸 때, 운영체제는 resource를 통해 그 접근을 조율한다. OSEK/VDX OS 2.2.3 명세는 resource를 [[critical-section|임계 구역]]에 배정하고, 태스크가 `GetResource`로 임계 구역에 들어가 `ReleaseResource`로 나오게 한다. 또 [[priority-inversion|우선순위 역전]]과 [[deadlock|교착 상태]]를 막으려고 OSEK [[priority-ceiling-protocol|우선순위 상한 프로토콜]]을 정한다.[@osek-os-2-2-3-2005] OSEK/VDX의 구성 언어 [[osek-implementation-language|OIL]]은 `RESOURCE`를 시스템 객체의 하나로 둔다.[@osek-oil-2-5-2004]
+**OSEK resource**는 [[osek-os|OSEK OS]]에서 공유 자원 접근을 조율하는 단위 객체다. 서로 다른 우선순위의 [[osek-task|태스크]]들이 메모리, 하드웨어 영역, 스케줄러, 코드의 특정 구간 같은 공유 자원을 함께 쓸 때, 운영체제는 resource를 통해 그 접근을 조율한다. OSEK/VDX OS 2.2.3 명세는 resource를 [[critical-section|임계 구역]]에 배정하고, 태스크가 `GetResource`로 임계 구역에 들어가 `ReleaseResource`로 나오게 한다. 또 [[priority-inversion|우선순위 역전]]과 [[deadlock|교착 상태]]를 막으려고 OSEK [[priority-ceiling-protocol|우선순위 상한 프로토콜]]을 정한다.[@osek-os-2-2-3-2005] OSEK/VDX의 구성 언어 [[osek-implementation-language|OIL]]은 `RESOURCE`를 시스템 객체의 하나로 둔다.[@osek-oil-2-5-2004]
 
 ## Ceiling priority
 

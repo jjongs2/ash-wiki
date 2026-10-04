@@ -13,7 +13,7 @@ AUTOSAR R25-11의 OCU Driver 규격은 OCU channel을 free running counter와 co
 
 ![[diagrams/ocu-counter-threshold-match.svg]]
 
-`Ocu_StartChannel`은 채널을 시작해 일치 때 설정한 동작이 일어나게 한다. `Ocu_StopChannel`은 그 동작을 멈추지만 free running counter는 멈추지 않는다. `Ocu_GetCounter`는 채널 counter의 현재 값을 tick 단위로 돌려준다.[@autosar-cp-sws-ocudriver-2025]
+`Ocu_StartChannel`은 channel을 시작해 일치 때 설정한 동작이 일어나게 한다. `Ocu_StopChannel`은 그 동작을 멈추지만 free running counter는 멈추지 않는다. `Ocu_GetCounter`는 channel counter의 현재 값을 tick 단위로 돌려준다.[@autosar-cp-sws-ocudriver-2025]
 
 ## 절대 threshold와 상대 threshold
 
@@ -26,10 +26,10 @@ OCU Driver는 threshold를 두 방식으로 정한다.[@autosar-cp-sws-ocudriver
 
 counter가 threshold와 같아지면 OCU Driver는 두 가지 동작을 할 수 있다.[@autosar-cp-sws-ocudriver-2025]
 
-- 채널의 notification 함수를 부른다. `Ocu_EnableNotification`과 `Ocu_DisableNotification`으로 켜고 끈다.
+- channel의 notification 함수를 부른다. `Ocu_EnableNotification`과 `Ocu_DisableNotification`으로 켜고 끈다.
 - 출력 핀을 바꾼다. `Ocu_SetPinAction`은 다음 일치 때 하드웨어가 출력 핀에 할 동작을 high로 두기, low로 두기, 뒤집기, 그대로 두기 가운데 하나로 정한다.[@autosar-cp-sws-ocudriver-2025]
 
-`Ocu_SetPinState`는 일치와 상관없이 출력 핀을 곧바로 high나 low로 두며, 채널이 RUNNING 상태가 아닐 때만 쓸 수 있다.[@autosar-cp-sws-ocudriver-2025]
+`Ocu_SetPinState`는 일치와 상관없이 출력 핀을 곧바로 high나 low로 두며, channel이 RUNNING 상태가 아닐 때만 쓸 수 있다.[@autosar-cp-sws-ocudriver-2025]
 
 ## 다른 드라이버와의 관계
 

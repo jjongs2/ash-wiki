@@ -26,7 +26,7 @@
     <line x1="600" y1="56" x2="600" y2="340" />
   </g>
 
-  <!-- 요청과 통지 -->
+  <!-- 요청과 notification -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="80" y1="100" x2="258" y2="100" marker-end="url(#arrow)" />
     <line x1="260" y1="140" x2="82" y2="140" marker-end="url(#arrow)" />
@@ -40,7 +40,8 @@
     <text x="170" y="132">E_OK로 돌아온다</text>
     <text x="350" y="182">job</text>
     <text x="520" y="222">MainFunction에서 job</text>
-    <text x="350" y="272">완료 통지</text>
-    <text x="170" y="312">완료 통지 (설정되어 있으면)</text>
+    <text x="350" y="272">완료 notification</text>
+    <text x="170" y="297">완료 notification</text>
+    <text x="170" y="312">(설정되어 있으면)</text>
   </g>
 </svg>

@@ -51,4 +51,4 @@ Tindell의 1992년 분석에서는 도착한 태스크가 우선순위 순 실�
 
 Tindell은 1992년 고정 우선순위 선점 스케줄링의 응답 시간 분석을 넓혀, 임의 마감 시한, release jitter, 버스트형 sporadic 태스크를 다뤘다.[@tindell-extendible-approach-1992]
 
-[[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 타이밍 확장 명세는 주기적으로 일어나는 이벤트의 타이밍 제약(PeriodicEventTriggering)에 주기, jitter, 최소 발생 간격을 둔다. 이 명세는 jitter를 주기적 이벤트의 발생이 주기에서 벗어날 수 있는 최대 폭으로 정의한다.[@autosar-cp-tps-timingextensions-2025]
+[[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 Timing Extensions 명세는 주기적으로 일어나는 이벤트의 타이밍 제약(PeriodicEventTriggering)에 주기, jitter, 최소 발생 간격을 둔다. 이 명세는 jitter를 주기적 이벤트의 발생이 주기에서 벗어날 수 있는 최대 폭으로 정의한다.[@autosar-cp-tps-timingextensions-2025]

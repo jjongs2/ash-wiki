@@ -17,7 +17,7 @@
   </g>
   <path d="M252 78 V70 H396 V78 M324 70 V64" stroke="var(--ink, #727981)" stroke-width="1" />
 
-  <!-- 포트의 채널 -->
+  <!-- 포트의 channel -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="60" y="80" width="48" height="28" rx="2" />
     <rect x="156" y="80" width="48" height="28" rx="2" />

@@ -27,7 +27,7 @@ POSIX.1-2024는 데이터 경쟁(data race)을 피하도록, 둘 이상의 스�
 
 ## 스케줄러 잠금
 
-스케줄러 잠금은 임계 구역 동안 태스크 전환을 막지만, 인터럽트는 계속 받아 처리한다.[@osek-os-2-2-3-2005][@freertos-vtasksuspendall-2026] FreeRTOS에 따르면 인터럽트를 끄기에는 너무 긴 임계 구역은 스케줄러를 멈춰 만들 수 있다.[@freertos-resource-management-2026] [[osek-os|OSEK/VDX OS]]에서는 태스크가 [[osek-resource|resource]]의 하나인 `RES_SCHEDULER`를 얻어 스케줄러를 잠근다.[@osek-os-2-2-3-2005]
+스케줄러 잠금은 임계 구역 동안 태스크 전환을 막지만, 인터럽트는 계속 받아 처리한다.[@osek-os-2-2-3-2005][@freertos-vtasksuspendall-2026] FreeRTOS에 따르면 인터럽트를 끄기에는 너무 긴 임계 구역은 스케줄러를 멈춰 만들 수 있다.[@freertos-resource-management-2026] [[osek-os|OSEK OS]]에서는 태스크가 [[osek-resource|resource]]의 하나인 `RES_SCHEDULER`를 얻어 스케줄러를 잠근다.[@osek-os-2-2-3-2005]
 
 ## 락
 

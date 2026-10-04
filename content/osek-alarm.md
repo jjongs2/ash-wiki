@@ -5,19 +5,19 @@ tags:
 verified: 2026-09-30
 ---
 
-**OSEK 알람**은 [[osek-os|OSEK OS]]에서 카운터가 미리 정한 값에 이르면 만료되어 정해 둔 동작을 하는 객체다. 만료될 때 할 동작은 정적으로 정한다. 알람은 시스템 생성 때 카운터 하나에 정적으로 배정되며, 한 카운터에 알람을 여럿 붙일 수 있다.[@osek-os-2-2-3-2005]
+**OSEK 알람**은 [[osek-os|OSEK OS]]에서 counter가 미리 정한 값에 이르면 만료되어 정해 둔 동작을 하는 객체다. 만료될 때 할 동작은 정적으로 정한다. 알람은 시스템 생성 때 counter 하나에 정적으로 배정되며, 한 counter에 알람을 여럿 붙일 수 있다.[@osek-os-2-2-3-2005]
 
-## 카운터
+## Counter
 
-타이머 인터럽트나 축의 엔코더처럼 반복되는 사건은 구현이 제공하는 카운터에 등록된다. **카운터**는 틱 단위로 잰 카운터 값과 카운터별 상수로 나타낸다. 타이머에서 나오는 카운터는 적어도 하나 있으며, 그 타이머는 하드웨어일 수도 소프트웨어일 수도 있다.[@osek-os-2-2-3-2005]
+타이머 인터럽트나 축의 엔코더처럼 반복되는 사건은 구현이 제공하는 counter에 등록된다. **counter**는 틱 단위로 잰 counter 값과 counter별 상수로 나타낸다. 타이머에서 나오는 counter는 적어도 하나 있으며, 그 타이머는 하드웨어일 수도 소프트웨어일 수도 있다.[@osek-os-2-2-3-2005]
 
-카운터마다 아래 상수를 둔다.[@osek-os-2-2-3-2005][@osek-oil-2-5-2004]
+counter마다 아래 상수를 둔다.[@osek-os-2-2-3-2005][@osek-oil-2-5-2004]
 
-- `MAXALLOWEDVALUE`: 카운터 값으로 허용되는 최댓값(틱 단위)
-- `TICKSPERBASE`: 카운터별 단위 하나에 이르는 데 드는 틱 수. 해석은 구현이 정한다.
-- `MINCYCLE`: 그 카운터에 딸린 주기 알람의 주기로 허용되는 가장 작은 틱 수[@osek-os-2-2-3-2005][@osek-oil-2-5-2004]
+- `MAXALLOWEDVALUE`: counter 값으로 허용되는 최댓값(틱 단위)
+- `TICKSPERBASE`: counter별 단위 하나에 이르는 데 드는 틱 수. 해석은 구현이 정한다.
+- `MINCYCLE`: 그 counter에 딸린 주기 알람의 주기로 허용되는 가장 작은 틱 수[@osek-os-2-2-3-2005][@osek-oil-2-5-2004]
 
-OSEKturbo OS/ARM7에서는 카운터 값이 `MAXALLOWEDVALUE`에 이르면 0부터 다시 센다.[@freescale-osekturbo-arm7-tr-2002]
+OSEKturbo OS/ARM7에서는 counter 값이 `MAXALLOWEDVALUE`에 이르면 0부터 다시 센다.[@freescale-osekturbo-arm7-tr-2002]
 
 ## 만료 동작
 
@@ -33,13 +33,13 @@ OSEKturbo OS/ARM7에서는 카운터 값이 `MAXALLOWEDVALUE`에 이르면 0부�
 
 ## 한 번과 주기
 
-알람은 한 번만 만료되는 단일 알람으로도, 주기적으로 만료되는 주기 알람으로도 정할 수 있다. `SetRelAlarm`은 지정한 틱 수가 지난 뒤에, `SetAbsAlarm`은 카운터가 지정한 절댓값에 이르면 알람이 처음 만료되게 한다. 두 서비스 모두 주기를 받는다. 주기가 0이면 단일 알람이고, 0이 아니면 만료 직후 그 주기만큼 뒤로 다시 걸린다.[@osek-os-2-2-3-2005]
+알람은 한 번만 만료되는 단일 알람으로도, 주기적으로 만료되는 주기 알람으로도 정할 수 있다. `SetRelAlarm`은 지정한 틱 수가 지난 뒤에, `SetAbsAlarm`은 counter가 지정한 절댓값에 이르면 알람이 처음 만료되게 한다. 두 서비스 모두 주기를 받는다. 주기가 0이면 단일 알람이고, 0이 아니면 만료 직후 그 주기만큼 뒤로 다시 걸린다.[@osek-os-2-2-3-2005]
 
 ![[diagrams/osek-alarm-single-cyclic.svg]]
 
-`SetAbsAlarm`에 준 절댓값을 호출 전에 이미 지났으면, 카운터가 넘친 뒤 그 값에 다시 이를 때 알람이 만료된다.[@osek-os-2-2-3-2005]
+`SetAbsAlarm`에 준 절댓값을 호출 전에 이미 지났으면, counter가 넘친 뒤 그 값에 다시 이를 때 알람이 만료된다.[@osek-os-2-2-3-2005]
 
-`CancelAlarm`은 알람을 취소한다. `GetAlarm`은 만료까지 남은 틱 수를 돌려주고, `GetAlarmBase`는 알람이 딸린 카운터의 상수를 읽는다.[@osek-os-2-2-3-2005]
+`CancelAlarm`은 알람을 취소한다. `GetAlarm`은 만료까지 남은 틱 수를 돌려주고, `GetAlarmBase`는 알람이 딸린 counter의 상수를 읽는다.[@osek-os-2-2-3-2005]
 
 ## Autostart
 
