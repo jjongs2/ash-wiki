@@ -15,22 +15,22 @@
 
 - API 풀이 Application Programming Interface: Application Program Interface (#165)
 - ASPICE: Automotive SPICE, A-SPICE (#231). 판을 붙이면 `ASPICE 4.1` 꼴. 정식 이름은 `automotive-spice` 머리말의 풀이에만, A-SPICE는 그 페이지의 alias로만. 문서 이름 "Automotive SPICE for Cybersecurity"와 슬러그는 예외
-- asset: 통일하지 않음 (#252). `cybersecurity-property`는 "자산", `threat-analysis-and-risk-assessment`는 원어
 - context: 문맥 (#142)
 - context switch: 문맥 전환 (#142)
-- cybersecurity property: 통일하지 않음 (#252). `cybersecurity-property`는 "사이버보안 속성", `threat-analysis-and-risk-assessment`는 원어
 - dominant: 도미넌트 (#165). 조사는 원어의 발음대로. 예: "dominant가"
 - GMII 풀이: 통일하지 않음 (#196). 페이지마다 그대로. `mii`는 Gigabit MII, `1000base-t1`은 Gigabit Media Independent Interface
 - MAC 풀이 Medium Access Control: Media Access Control (#165). 출처마다의 풀이를 비교하는 문장은 예외
 - RAM 풀이 Random-Access Memory: Random Access Memory (#165)
 - recessive: 리세시브 (#165). 조사는 원어의 발음대로. 예: "recessive이고"
 - resource: 리소스 (#165). OSEK 객체일 때. 일반적인 뜻이면 "자원"
-- threat scenario: 통일하지 않음 (#252). `cybersecurity-property`는 "위협 시나리오", `threat-analysis-and-risk-assessment`는 원어
 - USART 풀이 Universal Synchronous/Asynchronous Receiver/Transmitter: Universal Synchronous and Asynchronous Receiver Transmitter (#196)
 - 결함 허용: - (#223)
 - 리프 노드: 잎 노드 (#250)
+- 사이버보안 속성: cybersecurity property (#252)
 - 송신 정지: 서스펜드 트랜스미션 (#68). 원어는 병기하지 않음
 - 안전 메커니즘: 안전 기제 (#223)
 - 암호 primitive: 암호 프리미티브 (#169)
 - 엔드 스테이션: 종단국 (#196)
+- 위협 시나리오: threat scenario (#252)
+- 자산: asset (#252)
 - 프레임 간 공간: 인터프레임 공간 (#68). 원어는 병기하지 않음
