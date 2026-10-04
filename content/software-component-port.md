@@ -20,14 +20,14 @@ SW-C는 BSW(Basic Software)가 제공하는 AUTOSAR 서비스와도 포트로 �
 
 port interface는 여섯 종류다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
-| 종류                                                   | 메타클래스              | 쓰임                                                                                                                  |
-| ------------------------------------------------------ | ----------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| [[autosar-sender-receiver-interface\|Sender-Receiver]] | SenderReceiverInterface | 보내고 받을 data element를 정한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]                                    |
-| NV Data                                                | NvDataInterface         | NV Block SW-C와 다른 SW-C 사이에서 비휘발성 데이터를 주고받는다.[@autosar-cp-tps-softwarecomponenttemplate-2025]      |
-| Parameter                                              | ParameterInterface      | 캘리브레이션 데이터나 고정 데이터, 상수 같은 파라미터를 SW-C가 읽을 수 있게 한다.[@autosar-cp-exp-vfb-2024]           |
-| [[autosar-mode-switch-interface\|Mode Switch]]         | ModeSwitchInterface     | mode manager가 모드 전환을 알리는 데 쓴다.[@autosar-cp-tps-softwarecomponenttemplate-2025]                            |
-| [[autosar-client-server-interface\|Client-Server]]     | ClientServerInterface   | 클라이언트가 서버에서 호출할 수 있는 operation을 정한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]              |
-| Trigger                                                | TriggerInterface        | trigger source가 이어진 trigger sink의 runnable 실행을 시작하게 한다.[@autosar-cp-tps-softwarecomponenttemplate-2025] |
+| 종류                                                   | 메타클래스              | 쓰임                                                                                                                                   |
+| ------------------------------------------------------ | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| [[autosar-sender-receiver-interface\|Sender-Receiver]] | SenderReceiverInterface | 보내고 받을 [[autosar-sender-receiver-interface#Data element\|data element]]를 정한다.[@autosar-cp-tps-softwarecomponenttemplate-2025] |
+| NV Data                                                | NvDataInterface         | NV Block SW-C와 다른 SW-C 사이에서 비휘발성 데이터를 주고받는다.[@autosar-cp-tps-softwarecomponenttemplate-2025]                       |
+| Parameter                                              | ParameterInterface      | 캘리브레이션 데이터나 고정 데이터, 상수 같은 파라미터를 SW-C가 읽을 수 있게 한다.[@autosar-cp-exp-vfb-2024]                            |
+| [[autosar-mode-switch-interface\|Mode Switch]]         | ModeSwitchInterface     | mode manager가 모드 전환을 알리는 데 쓴다.[@autosar-cp-tps-softwarecomponenttemplate-2025]                                             |
+| [[autosar-client-server-interface\|Client-Server]]     | ClientServerInterface   | 클라이언트가 서버에서 호출할 수 있는 operation을 정한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]                               |
+| Trigger                                                | TriggerInterface        | trigger source가 이어진 trigger sink의 runnable 실행을 시작하게 한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]                  |
 
 connector로 잇는 두 포트는 서로 호환되어야 한다. 한쪽의 P-Port나 PR-Port를 다른 쪽의 호환되는 R-Port나 PR-Port에 잇는다. 같은 port interface로 타입을 정한 포트끼리는 정의상 이을 수 있고, port interface가 달라도 호환되면 이을 수 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
@@ -35,7 +35,7 @@ connector로 잇는 두 포트는 서로 호환되어야 한다. 한쪽의 P-Por
 
 ## Connector
 
-composition은 connector로 그 안에 있는 component prototype의 포트를 잇는다. connector에는 아래 것들이 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+[[autosar-software-component#Composition|composition]]은 connector로 그 안에 있는 component prototype의 포트를 잇는다. connector에는 아래 것들이 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 - **assembly connector**: 같은 composition 안의 component prototype들의 포트를 잇는다. 한쪽의 P-Port나 PR-Port를 다른 쪽의 R-Port나 PR-Port에 잇는다.
 - **delegation connector**: composition 안 component prototype의 포트(inner)를 composition 자신의 포트(outer)에 잇는다. inner와 outer는 방향이 같아야 해서 R-Port끼리나 P-Port끼리만 잇고, R-Port를 P-Port에 잇지는 못한다. PR-Port가 끼면 허용되는 짝은 port interface 종류마다 다르다.[@autosar-cp-tps-softwarecomponenttemplate-2025]

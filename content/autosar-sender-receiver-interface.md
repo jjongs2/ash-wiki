@@ -33,7 +33,7 @@ RTE는 receive 포트에서 queued data element마다 수신 큐를 둔다. 값�
 
 ![[diagrams/sender-receiver-explicit-implicit-access.svg]]
 
-runnable은 data element에 어떻게 접근할지를 access point로 선언하며, 접근마다 쓰는 access point와 RTE가 만드는 API는 아래와 같다.[@autosar-cp-tps-softwarecomponenttemplate-2025][@autosar-cp-sws-rte-2025]
+runnable은 data element에 어떻게 접근할지를 [[runnable-entity#Access point|access point]]로 선언하며, 접근마다 쓰는 access point와 RTE가 만드는 API는 아래와 같다.[@autosar-cp-tps-softwarecomponenttemplate-2025][@autosar-cp-sws-rte-2025]
 
 | 접근        | access point                   | API                       |
 | ----------- | ------------------------------ | ------------------------- |

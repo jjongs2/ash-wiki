@@ -23,7 +23,7 @@ hook 루틴마다 운영체제가 부르는 시점과, 쓸지 정하는 OIL 속�
 
 ![[diagrams/osek-pre-post-task-hook.svg]]
 
-hook 루틴은 모든 태스크보다 우선순위가 높고, category 2 [[osek-isr|ISR]]이 끼어들지 못한다. hook 루틴은 시스템 서비스 가운데 일부만 부를 수 있으며, 허용되지 않은 서비스를 부른 동작은 정의되지 않는다.[@osek-os-2-2-3-2005]
+hook 루틴은 모든 태스크보다 우선순위가 높고, [[osek-isr#Category 2|category 2 ISR]]이 끼어들지 못한다. hook 루틴은 시스템 서비스 가운데 일부만 부를 수 있으며, 허용되지 않은 서비스를 부른 동작은 정의되지 않는다.[@osek-os-2-2-3-2005]
 
 OSEK OS 2.2.3 명세는 hook 루틴의 인터페이스를 표준화하지만, hook 루틴의 환경과 동작 같은 기능은 표준화하지 않는다. 그래서 hook 루틴은 대개 이식성이 없고, OSEK 구현마다 hook 루틴의 규약을 기술해야 한다.[@osek-os-2-2-3-2005]
 
@@ -53,7 +53,7 @@ standard status는 디버깅을 마친 애플리케이션을 위한 것이다. s
 | 5   | E_OS_NOFUNC   | `GetAlarm`, `CancelAlarm`에서 알람이 쓰이고 있지 않을 때                          | `ReleaseResource`에서 점유하지 않은 resource를 놓거나 다른 resource를 먼저 놓아야 할 때                                                                                                    |
 | 6   | E_OS_RESOURCE | —                                                                                 | `TerminateTask`, `ChainTask`, `Schedule`, `WaitEvent`를 부른 태스크가 아직 resource를 점유하고 있을 때                                                                                     |
 | 7   | E_OS_STATE    | `SetRelAlarm`, `SetAbsAlarm`에서 알람이 이미 쓰이고 있을 때                       | `SetEvent`, `GetEvent`에서 대상 태스크가 suspended일 때                                                                                                                                    |
-| 8   | E_OS_VALUE    | —                                                                                 | 알람 서비스의 시작값이나 주기가 카운터 상수가 허용하는 범위를 벗어날 때                                                                                                                    |
+| 8   | E_OS_VALUE    | —                                                                                 | 알람 서비스의 시작값이나 주기가 [[osek-alarm#카운터\|카운터]] 상수가 허용하는 범위를 벗어날 때                                                                                             |
 
 ## `ErrorHook`
 

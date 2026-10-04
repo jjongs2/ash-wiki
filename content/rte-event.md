@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**RTE 이벤트**(RTEEvent)는 [[autosar-rte|RTE]]가 [[runnable-entity|runnable]]을 시작하는 계기다. RTE만이 runnable의 실행을 촉발하며, 여러 RTE 이벤트에 응해 촉발한다.[@autosar-cp-sws-rte-2025] RTE 이벤트는 [[autosar-software-component|SW-C]]의 internal behavior에 속하며, 자신이 일어나는 계기와 일어났을 때 시작할 runnable을 정한다. 가리키는 runnable은 많아야 하나이고, 한 runnable은 여러 RTE 이벤트로 시작될 수 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+**RTE 이벤트**(RTEEvent)는 [[autosar-rte|RTE]]가 [[runnable-entity|runnable]]을 시작하는 계기다. RTE만이 runnable의 실행을 촉발하며, 여러 RTE 이벤트에 응해 촉발한다.[@autosar-cp-sws-rte-2025] RTE 이벤트는 SW-C의 [[autosar-software-component#Internal behavior|internal behavior]]에 속하며, 자신이 일어나는 계기와 일어났을 때 시작할 runnable을 정한다. 가리키는 runnable은 많아야 하나이고, 한 runnable은 여러 RTE 이벤트로 시작될 수 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ## 종류
 
@@ -30,7 +30,7 @@ RTE 이벤트는 열여섯 종류다. 종류마다 runnable을 시작하는 때�
 | trigger     | InternalTriggerOccurredEvent       | 참조한 internal triggering point가 일어났을 때                                                  |
 | 변환 오류   | TransformerHardErrorEvent          | 서버 operation이나 external trigger를 일으킬 데이터를 변환하다 hard transformer error가 났을 때 |
 
-BackgroundEvent는 고정된 주기 없이 되풀이해 일어나며, 보통 가장 낮은 우선순위로만 활성화된다. RTE는 BackgroundEvent를 전용 백그라운드 태스크로 구현하거나, [[osek-alarm|알람]]이나 [[autosar-schedule-table|schedule table]] expiry point로 ECU 통합자가 정한 고정 반복에 따라 TimingEvent처럼 구현한다. 백그라운드 태스크로 구현하면 그 태스크는 코어에서 가장 낮은 우선순위여야 한다.[@autosar-cp-sws-rte-2025]
+BackgroundEvent는 고정된 주기 없이 되풀이해 일어나며, 보통 가장 낮은 우선순위로만 활성화된다. RTE는 BackgroundEvent를 전용 백그라운드 태스크로 구현하거나, [[osek-alarm|알람]]이나 schedule table [[autosar-schedule-table#Expiry point|expiry point]]로 ECU 통합자가 정한 고정 반복에 따라 TimingEvent처럼 구현한다. 백그라운드 태스크로 구현하면 그 태스크는 코어에서 가장 낮은 우선순위여야 한다.[@autosar-cp-sws-rte-2025]
 
 RTE는 `Rte_Start`를 실행할 때 InitEvent로 촉발되는 runnable을 한 번 활성화한다.[@autosar-cp-sws-rte-2025] 그렇다고 InitEvent가 가리키는 runnable이 다른 runnable보다 먼저 실행된다는 보장은 없고, 실행 순서는 태스크 매핑에 달려 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 

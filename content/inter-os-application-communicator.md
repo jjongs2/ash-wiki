@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-30
 ---
 
-**IOC**(Inter OS-Application Communicator)는 [[autosar-os|AUTOSAR OS]]가 제공하는, [[autosar-os-application|OS-Application]] 사이의 통신 수단이며, IOC 구현은 OS의 일부다. 특히 memory protection 경계를 넘는 통신과, 멀티코어에서 코어 경계를 넘는 통신을 맡는다.[@autosar-cp-sws-os-2025]
+**IOC**(Inter OS-Application Communicator)는 [[autosar-os|AUTOSAR OS]]가 제공하는, [[autosar-os-application|OS-Application]] 사이의 통신 수단이며, IOC 구현은 OS의 일부다. 특히 [[autosar-os-application#Memory protection|memory protection]] 경계를 넘는 통신과, 멀티코어에서 코어 경계를 넘는 통신을 맡는다.[@autosar-cp-sws-os-2025]
 
 ## 통신 범위
 

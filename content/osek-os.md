@@ -13,14 +13,14 @@ verified: 2026-09-30
 
 OSEK OS의 객체와 그것을 적는 OIL 객체는 다음과 같다.[@osek-os-2-2-3-2005][@osek-oil-2-5-2004]
 
-| 객체                        | OIL 객체   | 하는 일                                                                                                   |
-| --------------------------- | ---------- | --------------------------------------------------------------------------------------------------------- |
-| [[osek-task\|태스크]]       | `TASK`     | 함수 실행의 틀. 스케줄러가 태스크의 실행 순서를 정한다.                                                   |
-| [[osek-isr\|ISR]]           | `ISR`      | 인터럽트를 처리한다.                                                                                      |
-| [[osek-event\|이벤트]]      | `EVENT`    | 태스크를 동기화한다. extended 태스크에만 딸린다.                                                          |
-| [[osek-resource\|resource]] | `RESOURCE` | 공유 자원에 여러 태스크가 함께 접근할 때 그 접근을 조정한다. ISR까지 넓힐 수 있다.                        |
-| [[osek-alarm\|카운터]]      | `COUNTER`  | 타이머나 각도 센서처럼 반복되는 사건을 틱 단위의 값으로 센다.                                             |
-| [[osek-alarm\|알람]]        | `ALARM`    | 카운터가 정해 둔 값에 이르면 만료되어 태스크를 활성화하거나, 이벤트를 설정하거나, callback 루틴을 부른다. |
+| 객체                          | OIL 객체   | 하는 일                                                                                                   |
+| ----------------------------- | ---------- | --------------------------------------------------------------------------------------------------------- |
+| [[osek-task\|태스크]]         | `TASK`     | 함수 실행의 틀. 스케줄러가 태스크의 실행 순서를 정한다.                                                   |
+| [[osek-isr\|ISR]]             | `ISR`      | 인터럽트를 처리한다.                                                                                      |
+| [[osek-event\|이벤트]]        | `EVENT`    | 태스크를 동기화한다. extended 태스크에만 딸린다.                                                          |
+| [[osek-resource\|resource]]   | `RESOURCE` | 공유 자원에 여러 태스크가 함께 접근할 때 그 접근을 조정한다. ISR까지 넓힐 수 있다.                        |
+| [[osek-alarm#카운터\|카운터]] | `COUNTER`  | 타이머나 각도 센서처럼 반복되는 사건을 틱 단위의 값으로 센다.                                             |
+| [[osek-alarm\|알람]]          | `ALARM`    | 카운터가 정해 둔 값에 이르면 만료되어 태스크를 활성화하거나, 이벤트를 설정하거나, callback 루틴을 부른다. |
 
 운영체제가 부르고 사용자가 구현하는 [[osek-hook-routine|hook 루틴]]도 있다.[@osek-os-2-2-3-2005]
 
@@ -49,7 +49,7 @@ OSEK OS 2.2.3 명세는 등급마다 구현이 적어도 갖춰야 할 개수를
 | ECC1 | basic, extended | 안 됨                 | 안 됨                     | 16                 | 16                         | 8                  |
 | ECC2 | basic, extended | basic 태스크만 됨     | 됨                        | 16                 | 16                         | 8                  |
 
-resource는 BCC1이 `RES_SCHEDULER` 하나만, 나머지 등급은 `RES_SCHEDULER`를 포함해 8개를 적어도 지원한다. internal resource는 2개, 알람과 application mode는 1개를 모든 등급이 적어도 지원한다.[@osek-os-2-2-3-2005]
+resource는 BCC1이 `RES_SCHEDULER` 하나만, 나머지 등급은 `RES_SCHEDULER`를 포함해 8개를 적어도 지원한다. [[osek-resource#Internal resource|internal resource]]는 2개, 알람과 application mode는 1개를 모든 등급이 적어도 지원한다.[@osek-os-2-2-3-2005]
 
 ## 시작과 종료
 
@@ -67,16 +67,16 @@ CPU가 리셋되면 하드웨어별 초기화 코드가 돈 뒤, application mod
 
 시스템 서비스는 태스크, ISR, hook 루틴, 알람 callback 루틴에서 부르며, 서비스마다 부를 수 있는 context가 다르다. context마다 부를 수 있는 서비스는 다음과 같다.[@osek-os-2-2-3-2005]
 
-| context                       | 부를 수 있는 서비스                                                                                                                                                                                                                            |
-| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 태스크                        | `StartOS`를 뺀 모든 서비스                                                                                                                                                                                                                     |
-| category 1 ISR                | 인터럽트를 멈추고 되살리는 서비스 여섯                                                                                                                                                                                                         |
-| category 2 ISR                | `ActivateTask`, `GetTaskID`, `GetTaskState`, 인터럽트 서비스 여섯, `GetResource`, `ReleaseResource`, `SetEvent`, `GetEvent`, `GetAlarmBase`, `GetAlarm`, `SetRelAlarm`, `SetAbsAlarm`, `CancelAlarm`, `GetActiveApplicationMode`, `ShutdownOS` |
-| `ErrorHook`                   | `GetTaskID`, `GetTaskState`, `SuspendAllInterrupts`, `ResumeAllInterrupts`, `GetEvent`, `GetAlarmBase`, `GetAlarm`, `GetActiveApplicationMode`, `ShutdownOS`                                                                                   |
-| `PreTaskHook`, `PostTaskHook` | `ErrorHook`에서 부를 수 있는 서비스 가운데 `ShutdownOS`를 뺀 것                                                                                                                                                                                |
-| `StartupHook`                 | `GetActiveApplicationMode`, `ShutdownOS`                                                                                                                                                                                                       |
-| `ShutdownHook`                | `GetActiveApplicationMode`                                                                                                                                                                                                                     |
-| 알람 callback 루틴            | `SuspendAllInterrupts`, `ResumeAllInterrupts`                                                                                                                                                                                                  |
+| context                                 | 부를 수 있는 서비스                                                                                                                                                                                                                            |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 태스크                                  | `StartOS`를 뺀 모든 서비스                                                                                                                                                                                                                     |
+| [[osek-isr#Category 1\|category 1 ISR]] | [[osek-isr#인터럽트 서비스\|인터럽트를 멈추고 되살리는 서비스]] 여섯                                                                                                                                                                           |
+| [[osek-isr#Category 2\|category 2 ISR]] | `ActivateTask`, `GetTaskID`, `GetTaskState`, 인터럽트 서비스 여섯, `GetResource`, `ReleaseResource`, `SetEvent`, `GetEvent`, `GetAlarmBase`, `GetAlarm`, `SetRelAlarm`, `SetAbsAlarm`, `CancelAlarm`, `GetActiveApplicationMode`, `ShutdownOS` |
+| `ErrorHook`                             | `GetTaskID`, `GetTaskState`, `SuspendAllInterrupts`, `ResumeAllInterrupts`, `GetEvent`, `GetAlarmBase`, `GetAlarm`, `GetActiveApplicationMode`, `ShutdownOS`                                                                                   |
+| `PreTaskHook`, `PostTaskHook`           | `ErrorHook`에서 부를 수 있는 서비스 가운데 `ShutdownOS`를 뺀 것                                                                                                                                                                                |
+| `StartupHook`                           | `GetActiveApplicationMode`, `ShutdownOS`                                                                                                                                                                                                       |
+| `ShutdownHook`                          | `GetActiveApplicationMode`                                                                                                                                                                                                                     |
+| 알람 callback 루틴                      | `SuspendAllInterrupts`, `ResumeAllInterrupts`                                                                                                                                                                                                  |
 
 그래서 `TerminateTask`, `ChainTask`, `Schedule`, `WaitEvent`, `ClearEvent`는 태스크만 부를 수 있다. 이 다섯을 인터럽트 레벨에서 부르면 extended status에서 E_OS_CALLEVEL을 돌려준다. 표에 없는 조합의 동작은 정의되지 않는다.[@osek-os-2-2-3-2005]
 

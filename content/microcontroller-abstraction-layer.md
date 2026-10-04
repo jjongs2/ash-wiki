@@ -44,13 +44,13 @@ Port Driver 규격은 MCU의 설정 가능한 입출력 핀 하나를 **port pin
 
 다른 I/O 드라이버 규격은 channel을 저마다 다르게 정의한다.
 
-| 드라이버 | channel의 정의                                                                                                         |
-| -------- | ---------------------------------------------------------------------------------------------------------------------- |
-| ADC      | port pin 하나에 묶인 논리 ADC 개체. 여러 ADC channel을 같은 port pin에 매핑할 수 있다.[@autosar-cp-sws-adcdriver-2025] |
-| PWM      | 하드웨어 PWM 하나에 연결된 숫자 식별자[@autosar-cp-sws-pwmdriver-2025]                                                 |
-| ICU      | 입력 신호 하나와, 설정된 측정 모드에 쓰는 하드웨어 자원에 묶인 논리 ICU 개체[@autosar-cp-sws-icudriver-2025]           |
-| OCU      | free-running counter, 비교 문턱값, 비교 결과로 하는 동작으로 이루어진 논리 개체[@autosar-cp-sws-ocudriver-2025]        |
+| 드라이버 | channel의 정의                                                                                                                                 |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| ADC      | port pin 하나에 묶인 논리 ADC 개체. 여러 ADC channel을 같은 port pin에 매핑할 수 있다.[@autosar-cp-sws-adcdriver-2025]                         |
+| PWM      | 하드웨어 PWM 하나에 연결된 숫자 식별자[@autosar-cp-sws-pwmdriver-2025]                                                                         |
+| ICU      | 입력 신호 하나와, 설정된 [[autosar-icu-driver#측정 모드\|측정 모드]]에 쓰는 하드웨어 자원에 묶인 논리 ICU 개체[@autosar-cp-sws-icudriver-2025] |
+| OCU      | free-running counter, 비교 문턱값, 비교 결과로 하는 동작으로 이루어진 논리 개체[@autosar-cp-sws-ocudriver-2025]                                |
 
-ADC Driver 규격은 channel group도 정의한다. **ADC channel group**은 같은 ADC 하드웨어 유닛에 연결된 ADC channel의 묶음이고, 그룹 전체의 변환은 트리거 하나로 시작된다. DIO의 channel group과 달리 한 port 안의 이웃한 channel이라는 조건이 없다.[@autosar-cp-sws-adcdriver-2025]
+ADC Driver 규격은 channel group도 정의한다. **ADC channel group**은 같은 ADC 하드웨어 유닛에 연결된 ADC channel의 묶음이고, 그룹 전체의 변환은 [[autosar-adc-driver#트리거|트리거]] 하나로 시작된다. DIO의 channel group과 달리 한 port 안의 이웃한 channel이라는 조건이 없다.[@autosar-cp-sws-adcdriver-2025]
 
 DIO, ADC, PWM, ICU, OCU 드라이버 규격은 모두 쓰는 port pin의 설정을 Port Driver에 맡긴다.[@autosar-cp-sws-diodriver-2025][@autosar-cp-sws-adcdriver-2025][@autosar-cp-sws-pwmdriver-2025][@autosar-cp-sws-icudriver-2025][@autosar-cp-sws-ocudriver-2025]

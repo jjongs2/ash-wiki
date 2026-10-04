@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-30
 ---
 
-**교착 상태**(deadlock)는 둘 이상의 실행 흐름이 저마다 자원을 쥔 채 서로가 쥔 자원이 풀리기를 기다려, 어느 쪽도 더 나아가지 못하는 상태다.[@coffman-system-deadlocks-1971] 락으로 [[critical-section|임계 구역]]을 보호할 때 생길 수 있다.[@linux-locking-guide-2026][@microsoft-driver-verifier-deadlock-2020]
+**교착 상태**(deadlock)는 둘 이상의 실행 흐름이 저마다 자원을 쥔 채 서로가 쥔 자원이 풀리기를 기다려, 어느 쪽도 더 나아가지 못하는 상태다.[@coffman-system-deadlocks-1971] [[critical-section#락|락]]으로 [[critical-section|임계 구역]]을 보호할 때 생길 수 있다.[@linux-locking-guide-2026][@microsoft-driver-verifier-deadlock-2020]
 
 ## 생기는 과정
 

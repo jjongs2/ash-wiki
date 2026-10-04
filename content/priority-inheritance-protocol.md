@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-30
 ---
 
-**우선순위 상속 프로토콜**(priority inheritance protocol)은 더 높은 우선순위 태스크를 블록시킨 태스크가, 자기가 블록시킨 태스크들 가운데 가장 높은 우선순위로 실행되게 하는 자원 공유 프로토콜이다.[@sha-real-time-scheduling-ada-1989][@borger-implementing-priority-inheritance-1989] 락을 쥔 태스크가 중간 우선순위 태스크에 선점되지 않게 해, 제한 없는 [[priority-inversion|우선순위 역전]]을 막는다. Sha, Rajkumar, Lehoczky는 1987년 Carnegie Mellon University 기술 보고서(CMU-CS-87-181)에서 기본 우선순위 상속 프로토콜과 우선순위 상한 프로토콜을 정의했고, 처음 정의할 때는 공유 자원 접근을 이진 세마포어로 동기화한다고 가정했다.[@borger-implementing-priority-inheritance-1989] Sha, Rajkumar, Lehoczky의 1990년 논문은 priority inheritance protocols라는 부류에 드는 두 프로토콜로 기본 우선순위 상속 프로토콜(basic priority inheritance protocol)과 [[priority-ceiling-protocol|우선순위 상한 프로토콜]]을 다루며, 두 프로토콜은 모두 제한 없는 우선순위 역전 문제를 푼다.[@sha-priority-inheritance-1990]
+**우선순위 상속 프로토콜**(priority inheritance protocol)은 더 높은 우선순위 태스크를 블록시킨 태스크가, 자기가 블록시킨 태스크들 가운데 가장 높은 우선순위로 실행되게 하는 자원 공유 프로토콜이다.[@sha-real-time-scheduling-ada-1989][@borger-implementing-priority-inheritance-1989] [[critical-section#락|락]]을 쥔 태스크가 중간 우선순위 태스크에 선점되지 않게 해, [[priority-inversion#제한 없는 우선순위 역전|제한 없는 우선순위 역전]]을 막는다. Sha, Rajkumar, Lehoczky는 1987년 Carnegie Mellon University 기술 보고서(CMU-CS-87-181)에서 기본 우선순위 상속 프로토콜과 우선순위 상한 프로토콜을 정의했고, 처음 정의할 때는 공유 자원 접근을 이진 세마포어로 동기화한다고 가정했다.[@borger-implementing-priority-inheritance-1989] Sha, Rajkumar, Lehoczky의 1990년 논문은 priority inheritance protocols라는 부류에 드는 두 프로토콜로 기본 우선순위 상속 프로토콜(basic priority inheritance protocol)과 [[priority-ceiling-protocol|우선순위 상한 프로토콜]]을 다루며, 두 프로토콜은 모두 제한 없는 우선순위 역전 문제를 푼다.[@sha-priority-inheritance-1990]
 
 ## 상속 규칙
 

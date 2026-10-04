@@ -7,7 +7,7 @@ verified: 2026-09-30
 
 **Runnable entity**는 원자 [[autosar-software-component|SW-C]]의 일부로, 같은 SW-C의 다른 runnable entity와 따로 실행되고 스케줄될 수 있다. [[autosar-rte|RTE]]는 runnable entity를 명령의 한 흐름으로 보고 그 실행을 시작한다.[@autosar-fo-tr-glossary-2025] RTE 명세는 runnable entity를 줄여 runnable이라 부른다.[@autosar-cp-sws-rte-2025]
 
-runnable은 SW-C의 internal behavior에 여럿 둘 수 있으며, 원자 SW-C만 runnable을 가질 수 있다. [[rte-event|RTE 이벤트]]가 runnable을 가리키면, 그 이벤트가 일어날 때 RTE가 runnable의 실행을 시작한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+runnable은 SW-C의 [[autosar-software-component#Internal behavior|internal behavior]]에 여럿 둘 수 있으며, 원자 SW-C만 runnable을 가질 수 있다. [[rte-event|RTE 이벤트]]가 runnable을 가리키면, 그 이벤트가 일어날 때 RTE가 runnable의 실행을 시작한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ## Symbol과 시그니처
 

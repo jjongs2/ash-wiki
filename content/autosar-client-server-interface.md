@@ -27,7 +27,7 @@ server call point의 timeout 속성은 서버 호출이 시간 초과로 오류�
 
 ## 서버 runnable의 실행 context
 
-서버 runnable은 [[rte-event|RTE 이벤트]] 가운데 OperationInvokedEvent로만 시작된다. OperationInvokedEvent를 [[osek-task|태스크]]나 category 2 [[osek-isr|ISR]]에 매핑하면 서버는 그 태스크에서 실행되고, RTE는 들어온 요청을 큐에 넣어 받은 순서대로 하나씩 처리한다.[@autosar-cp-sws-rte-2025]
+서버 runnable은 [[rte-event|RTE 이벤트]] 가운데 OperationInvokedEvent로만 시작된다. OperationInvokedEvent를 [[osek-task|태스크]]나 [[osek-isr#Category 2|category 2 ISR]]에 [[rte-event#태스크 매핑|매핑]]하면 서버는 그 태스크에서 실행되고, RTE는 들어온 요청을 큐에 넣어 받은 순서대로 하나씩 처리한다.[@autosar-cp-sws-rte-2025]
 
 OperationInvokedEvent를 태스크나 ISR에 매핑하지 않으면, 서버는 직접 함수 호출이나 trusted function call로 실행된다. 이때 서버 runnable은 호출한 쪽의 context, 곧 server call point를 가진 클라이언트 runnable의 태스크에서 실행된다.[@autosar-cp-sws-rte-2025]
 
