@@ -52,7 +52,7 @@ ASPICE 4.1의 프로세스 참조 모델은 [[iso-iec-ieee-12207|ISO/IEC 12207]]
 
 **Plug-in 컨셉**은 맨 위에 시스템 엔지니어링 프로세스를 두고, 개발할 제품에 따라 해당 엔지니어링 분야의 도메인 프로세스(예: HWE, SWE)를 평가 범위에 더하는 방식이다. ASPICE 4.1은 시스템 엔지니어링 프로세스를 시스템 V로 배치하고, plug-in 그림에서 SWE와 HWE 프로세스도 V 모양으로 그린다. 관리, 지원, 획득 같은 나머지 프로세스는 도메인에 묶이지 않아 시스템 수준과 도메인 수준 어디에나 적용할 수 있다.[@vda-automotive-spice-pam-4-1-2026] 개발 프로세스와 검증 프로세스를 마주 놓는 V 배치는 [[v-model|V 모델]]에서 다룬다.
 
-ASPICE 4.1의 엔지니어링 프로세스 그룹은 SYS, SWE, MLE, HWE이고, 기계 엔지니어링 프로세스는 없다. 그 밖의 도메인 프로세스는 VDA가 만들지 않았고 ASPICE에도 들지 않는다. 소프트웨어 아키텍처에서 머신러닝으로 개발할 소프트웨어 요소를 정하면, 그 요소에는 MLE 프로세스를, 나머지 component에는 SWE.3과 SWE.4를 적용한다.[@vda-automotive-spice-pam-4-1-2026]
+ASPICE 4.1의 엔지니어링 프로세스 그룹은 SYS, SWE, MLE, HWE이고, 기계 엔지니어링 프로세스는 없다. 그 밖의 도메인 프로세스는 VDA가 만들지 않았고 ASPICE에도 들지 않는다. [[software-architecture|소프트웨어 아키텍처]]에서 머신러닝으로 개발할 소프트웨어 요소를 정하면, 그 요소에는 MLE 프로세스를, 나머지 component에는 SWE.3과 SWE.4를 적용한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ASPICE 3.1은 plug-in 컨셉의 도메인 예로 하드웨어(HWE), 기계(MEE), 소프트웨어(SWE)를 들고, HWE와 MEE 프로세스는 VDA QMC가 만들지 않은 예시로 그렸다. ASPICE 4.1은 예로 HWE와 SWE만 들고, 프로세스 참조 모델에 HWE.1\~HWE.4를 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 

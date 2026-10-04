@@ -14,9 +14,9 @@ ISTQB CTFL 강의계획서에 따르면 정적 분석에는 흔히 도구를 쓴
 정적 분석 도구는 다음을 찾는다.[@absint-astree-2026][@cppcheck-home-2026]
 
 - [[misra-c|MISRA C]] 같은 [[coding-standard|코딩 표준]]의 규칙 위반[@absint-astree-2026][@cppcheck-manual-2026]
-- 0으로 나누기, 배열 경계 넘기, 널 포인터 역참조, 초기화하지 않은 변수 읽기 같은 미정의 동작[@absint-astree-2026][@cppcheck-home-2026]
+- 0으로 나누기, 배열 경계 넘기, 널 포인터 역참조, 초기화하지 않은 변수 읽기 같은 [[coding-standard#C 언어에서 피하려는 동작|미정의 동작]][@absint-astree-2026][@cppcheck-home-2026]
 
-제품마다 더 찾는 것도 있다. Astrée는 dead code를 찾고, 그 RuleChecker는 주석 밀도, 순환 복잡도 같은 코드 [[software-metric|메트릭]]도 검사한다.[@absint-astree-2026] Cppcheck는 값을 대입하고 쓰지 않는 변수를 알린다.[@cppcheck-manual-2026]
+제품마다 더 찾는 것도 있다. Astrée는 dead code를 찾고, 그 RuleChecker는 주석 밀도, [[cyclomatic-complexity|순환 복잡도]] 같은 코드 [[software-metric|메트릭]]도 검사한다.[@absint-astree-2026] Cppcheck는 값을 대입하고 쓰지 않는 변수를 알린다.[@cppcheck-manual-2026]
 
 ## False positive와 false negative
 
@@ -53,4 +53,4 @@ Sangal, Jordan, Sinha, Jackson은 2005년 논문에서 DSM으로 소프트웨어
 
 ## 개발 흐름 안의 자리
 
-ISTQB CTFL 강의계획서에 따르면 정적 분석은 흔히 [[continuous-integration|CI]] 체계에 넣어 돌린다. 이 강의계획서는 테스트를 일찍 하면 결함이 뒤 산출물로 번지지 않아 시간과 비용을 아낀다고 보고, 동적 테스트 전에 또는 자동화된 프로세스 안에서 소스 코드의 정적 분석을 마치는 것을 shift left 관행으로 든다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL 강의계획서에 따르면 정적 분석은 흔히 [[continuous-integration|CI]] 체계에 넣어 돌린다. 이 강의계획서는 테스트를 일찍 하면 결함이 뒤 산출물로 번지지 않아 시간과 비용을 아낀다고 보고, 동적 테스트 전에 또는 자동화된 프로세스 안에서 소스 코드의 정적 분석을 마치는 것을 [[v-model#테스트 설계를 앞당김|shift left]] 관행으로 든다.[@istqb-ctfl-syllabus-2024]

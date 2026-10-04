@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-02
 ---
 
-ISO 26262-1:2018은 **FTTI**(Fault Tolerant Time Interval)를 안전 메커니즘이 동작하지 않을 때, 아이템에서 fault가 일어난 때부터 해저드 사건이 일어날 수 있는 때까지의 최소 시간 간격으로 정의한다. FTTI는 그 해저드에서 끌어낸 safety goal의 속성이고, 아이템 수준에서만 정의한다.[@iso-26262-1-obp-2018]
+[[iso-26262|ISO 26262]]-1:2018은 **FTTI**(Fault Tolerant Time Interval)를 [[safety-mechanism|안전 메커니즘]]이 동작하지 않을 때, [[safety-lifecycle#ISO 26262의 안전 생명주기|아이템]]에서 [[fault-error-failure|fault]]가 일어난 때부터 [[hazard-analysis-and-risk-assessment#용어|해저드 사건]]이 일어날 수 있는 때까지의 최소 시간 간격으로 정의한다. FTTI는 그 해저드에서 끌어낸 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]]의 속성이고, 아이템 수준에서만 정의한다.[@iso-26262-1-obp-2018]
 
 ## 시간 구간과 운용 모드
 
@@ -27,7 +27,7 @@ ISO 26262-1:2018은 FDTI와 FRTI의 합이 관련 FTTI보다 짧으면 안전 �
 
 ![[diagrams/ftti-time-intervals.svg]]
 
-안전 상태는 [[safety-mechanism|안전 메커니즘]]에서 다룬다.
+안전 상태는 [[safety-mechanism#안전 상태와 성능 저하|안전 메커니즘]]에서 다룬다.
 
 ## 2011판과의 차이
 

@@ -17,7 +17,7 @@ ISTQB 용어집은 결함이 일어났음과 그 성질, 상태를 적은 문서
 - 제목과 짧은 요약
 - 이상을 본 날짜, 보고한 조직, 작성자와 그 역할
 - 테스트 대상과 테스트 환경
-- 결함의 맥락(실행한 테스트 케이스, 테스트 활동, 개발 단계, 쓴 기법·체크리스트·테스트 데이터 등)
+- 결함의 맥락(실행한 [[test-case|테스트 케이스]], 테스트 활동, 개발 단계, 쓴 기법·체크리스트·테스트 데이터 등)
 - 재현 단계와 로그·스크린숏 같은 근거를 담은 failure의 설명
 - 기대 결과와 실제 결과
 - 심각도
@@ -35,11 +35,11 @@ CTFL 강의계획서에 따르면 보고된 이상은 실제 결함일 수도 �
 
 CTFL 강의계획서에 따르면 결함 관리 프로세스는 적어도 이상 하나하나를 발견부터 종료까지 다루는 워크플로와 분류 규칙을 담는다. 워크플로는 대개 보고된 이상을 기록하고, 분석하고 분류하고, 고칠지 그대로 둘지 대응을 정하고, 결함 보고서를 닫는 활동으로 이루어진다. 강의계획서는 결함 상태의 예로 open, deferred, duplicate, waiting to be fixed, awaiting confirmation testing, re-opened, closed, rejected를 든다.[@istqb-ctfl-syllabus-2024] Bugzilla의 기본 워크플로는 해결(resolution) 값으로 FIXED, DUPLICATE, WONTFIX, WORKSFORME, INVALID를 두고[@bugzilla-editing-a-bug-2026], Jira는 기본 해결 값으로 Done, Won't do, Duplicate, Cannot reproduce를 둔다.[@atlassian-jira-statuses-resolutions-2026]
 
-ISTQB 용어집에 따르면 결함을 고친 뒤에는 확인 테스트로 그 결함이 일으킨 failure가 다시 일어나지 않는지 본다.[@istqb-glossary-confirmation-testing-2026] 확인 테스트에서 고쳐지지 않은 것으로 드러나면 결함 보고서를 다시 연다.[@bugzilla-editing-a-bug-2026][@istqb-ctal-tm-syllabus-2024]
+ISTQB 용어집에 따르면 결함을 고친 뒤에는 [[regression-testing#확인 테스트와의 차이|확인 테스트]]로 그 결함이 일으킨 failure가 다시 일어나지 않는지 본다.[@istqb-glossary-confirmation-testing-2026] 확인 테스트에서 고쳐지지 않은 것으로 드러나면 결함 보고서를 다시 연다.[@bugzilla-editing-a-bug-2026][@istqb-ctal-tm-syllabus-2024]
 
 ## 분류 속성
 
-IEEE 1044-2009는 소프트웨어 이상이 생명주기의 언제 생기거나 드러나든 그것을 한 가지 방식으로 분류하는 방법을 정했다. failure와 결함을 분류하는 핵심 속성의 집합을 두되, 응용이나 업무마다 고유한 속성이 따로 있을 수 있음을 인정하고, 생명주기에 맞춰 속성 값을 어느 정도 고쳐 쓰리라 보았다. 분류 데이터는 결함 원인 분석, 프로젝트 관리, 그리고 결함이 들어갈 가능성을 줄이거나 일찍 찾을 가능성을 높이는 소프트웨어 프로세스 개선에 쓸 수 있는 것으로 두었다.[@ieee-1044-2009] IEEE SA는 IEEE 1044-2009를 2020년 3월에 비활성(Inactive-Reserved) 표준으로 돌렸다.[@ieee-1044-status-2026]
+IEEE 1044-2009는 소프트웨어 이상이 생명주기의 언제 생기거나 드러나든 그것을 한 가지 방식으로 분류하는 방법을 정했다. failure와 결함을 분류하는 핵심 속성의 집합을 두되, 응용이나 업무마다 고유한 속성이 따로 있을 수 있음을 인정하고, 생명주기에 맞춰 속성 값을 어느 정도 고쳐 쓰리라 보았다. 분류 데이터는 결함 원인 분석, 프로젝트 관리, 그리고 결함이 들어갈 가능성을 줄이거나 일찍 찾을 가능성을 높이는 [[software-process|소프트웨어 프로세스]] 개선에 쓸 수 있는 것으로 두었다.[@ieee-1044-2009] IEEE SA는 IEEE 1044-2009를 2020년 3월에 비활성(Inactive-Reserved) 표준으로 돌렸다.[@ieee-1044-status-2026]
 
 ISTQB CTAL-TM(Certified Tester Advanced Level Test Management) 강의계획서에 따르면 결함 보고서에 결함이 들어간 단계와 찾은 단계를 적어 두면, 결함을 들어간 단계 안에서 없애는지(phase containment)를 평가할 수 있다. 들어간 단계의 정보로는 결함이 가장 많이 들어가는 단계를 가려 결함 예방을 위한 개선을 그 단계에 겨눌 수 있다.[@istqb-ctal-tm-syllabus-2024]
 
@@ -58,7 +58,7 @@ NIST 보고서에 따르면 결함은 늦게 찾을수록 고치는 비용이 �
 
 Boehm과 Basili는 2001년 글에서, 인도한 뒤에 소프트웨어 문제를 찾아 고치는 비용이 요구사항이나 설계 단계에서 찾아 고치는 비용의 100배가 되는 일이 흔하다고 적었다. 작은 비핵심 시스템에서는 그 비율이 100:1보다 5:1에 가깝다고 덧붙였다.[@boehm-defect-reduction-2001] 결함을 일찍 찾는 shift left는 [[v-model|V 모델]]에서 다룬다.
 
-품질 보증 활동은 결함을 다루는 방식에 따라 세 갈래로 나뉜다.[@tian-quality-assurance-alternatives-2001]
+[[software-quality#품질 보증|품질 보증]] 활동은 결함을 다루는 방식에 따라 세 갈래로 나뉜다.[@tian-quality-assurance-alternatives-2001]
 
 - **결함 예방**(defect prevention): 오류를 없애 결함이 들어가지 않게 한다.
 - **결함 감소**(defect reduction): 들어간 fault를 찾아 없앤다.
@@ -80,7 +80,7 @@ Boehm과 Basili는 2001년 글에서, 인도한 뒤에 소프트웨어 문제를
 | BP6 | 문제가 닫힐 때까지 추적    |
 | BP7 | 문제 해결 활동의 상태 보고 |
 
-프로세스 목록은 [[automotive-spice-process-reference-model|ASPICE 프로세스 참조 모델]]에서, 변경 요청 관리(SUP.10)는 [[configuration-management|형상 관리]]에서 다룬다.
+프로세스 목록은 [[automotive-spice-process-reference-model#프로세스 범주와 그룹|ASPICE 프로세스 참조 모델]]에서, 변경 요청 관리(SUP.10)는 [[configuration-management#ASPICE|형상 관리]]에서 다룬다.
 
 ASPICE 3.1은 SUP.9에 BP를 아홉 두었다. 그 가운데 문제 해결 관리 전략 수립(BP1), 문제 상태 기록(BP3), 문제 경향 분석(BP9)이 있었고, 상태를 보고하는 BP는 없었다. ASPICE 4.1은 상태 보고를 BP7로 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017] SUP.9의 BP는 ASPICE 4.0에서 일곱이 되었다.[@vda-automotive-spice-pam-4-0-2023]
 

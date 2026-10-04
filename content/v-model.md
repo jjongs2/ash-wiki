@@ -9,15 +9,15 @@ verified: 2026-10-02
 
 ## 왼쪽과 오른쪽의 대응
 
-V-Modell XT 2.4는 V자 절차의 내려가는 가지에서 시스템을 명세하며 분해하고, 올라가는 가지에서 구현하며 통합하며, 수평 단계마다 검증과 확인을 둔다. 시험 명세는 내려가는 가지에서 같은 수평 단계의 요구사항, 명세, 아키텍처로부터 만들고, 시험 기록은 올라가는 가지에서 남긴다.[@weit-v-modell-xt-2-4-2024]
+V-Modell XT 2.4는 V자 절차의 내려가는 가지에서 시스템을 명세하며 분해하고, 올라가는 가지에서 구현하며 통합하며, 수평 단계마다 [[verification-and-validation|검증과 확인]]을 둔다. 시험 명세는 내려가는 가지에서 같은 수평 단계의 요구사항, 명세, 아키텍처로부터 만들고, 시험 기록은 올라가는 가지에서 남긴다.[@weit-v-modell-xt-2-4-2024]
 
 V의 가장 아래 단계에서는 유닛을 구현한다.[@weit-v-modell-xt-2-4-2024][@vda-automotive-spice-pam-4-1-2026]
 
 ## 테스트 기준
 
-ISTQB 용어집은 **테스트 기준**(test basis)을 테스트 분석과 테스트 설계의 바탕이 되는 지식의 총체로 정의한다.[@istqb-glossary-test-basis-2026] V 모델에서는 오른쪽 단계의 검증을 같은 수평 단계에 있는 왼쪽 단계의 산출물, 곧 요구사항, 아키텍처, 설계를 바탕으로 명세한다.[@weit-v-modell-xt-2-4-2024][@vda-automotive-spice-pam-4-1-2026] Automotive SPICE 4.1은 시스템 통합과 소프트웨어 통합의 검증 조치를 각각 시스템 아키텍처와 소프트웨어 아키텍처의 정적·동적 측면에 맞춰 정하게 한다.[@vda-automotive-spice-pam-4-1-2026]
+ISTQB 용어집은 **테스트 기준**(test basis)을 테스트 분석과 테스트 설계의 바탕이 되는 지식의 총체로 정의한다.[@istqb-glossary-test-basis-2026] V 모델에서는 오른쪽 단계의 검증을 같은 수평 단계에 있는 왼쪽 단계의 산출물, 곧 요구사항, 아키텍처, 설계를 바탕으로 명세한다.[@weit-v-modell-xt-2-4-2024][@vda-automotive-spice-pam-4-1-2026] [[automotive-spice|ASPICE]] 4.1은 시스템 통합과 소프트웨어 통합의 검증 조치를 각각 시스템 아키텍처와 [[software-architecture|소프트웨어 아키텍처]]의 정적·동적 측면에 맞춰 정하게 한다.[@vda-automotive-spice-pam-4-1-2026]
 
-ISTQB CTFL 강의계획서 2018 V3.1은 테스트 레벨마다 테스트 기준으로 쓸 수 있는 산출물의 예로, 인수 테스트에는 사용자·비즈니스 요구사항을, 시스템 테스트에는 시스템·소프트웨어 요구사항 명세를, 통합 테스트에는 소프트웨어·시스템 설계와 아키텍처를, 컴포넌트 테스트에는 상세 설계를 들었다.[@istqb-ctfl-syllabus-2019] v4.0.1은 테스트 기준을 테스트 레벨을 가르는 속성의 하나로 들 뿐, 레벨마다의 예는 들지 않는다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL 강의계획서 2018 V3.1은 [[software-testing#테스트 레벨|테스트 레벨]]마다 테스트 기준으로 쓸 수 있는 산출물의 예로, [[acceptance-testing|인수 테스트]]에는 사용자·비즈니스 요구사항을, [[system-testing|시스템 테스트]]에는 시스템·[[software-requirements-specification|소프트웨어 요구사항 명세]]를, [[integration-testing|통합 테스트]]에는 소프트웨어·시스템 설계와 아키텍처를, [[unit-testing|컴포넌트 테스트]]에는 상세 설계를 들었다.[@istqb-ctfl-syllabus-2019] v4.0.1은 테스트 기준을 테스트 레벨을 가르는 속성의 하나로 들 뿐, 레벨마다의 예는 들지 않는다.[@istqb-ctfl-syllabus-2024]
 
 ## 테스트 프로세스
 
@@ -27,7 +27,7 @@ ISTQB 용어집에 따르면 V 모델이 개발 단계마다 짝짓는 테스트
 
 V 모델에서는 테스트 설계를 코딩이 끝난 뒤가 아니라 대응하는 개발 단계에서 시작한다.[@weit-v-modell-xt-2-4-2024][@istqb-ctfl-syllabus-2024] ISTQB CTFL 강의계획서는 이를 개발 생명주기 모델과 상관없이 지킬 좋은 관행으로 권한다. 이 강의계획서에 따르면 순차 모델에서는 초기 단계에 테스터가 요구 검토, 테스트 분석, 설계에 참여한다.[@istqb-ctfl-syllabus-2024]
 
-ISTQB 용어집은 테스트와 품질 보증 활동을 [[software-development-life-cycle|SDLC]]에서 가능한 한 일찍 수행하는 테스트 접근법을 shift left라 부른다.[@istqb-glossary-shift-left-2026] CTFL 강의계획서에 따르면 일찍 테스트하면 시간과 비용이 준다. 일찍 없앤 결함은 뒤 산출물에 결함을 낳지 않고, 뒤에 생기는 실패가 줄어 품질 비용이 준다.[@istqb-ctfl-syllabus-2024]
+ISTQB 용어집은 테스트와 [[software-quality#품질 보증|품질 보증]] 활동을 [[software-development-life-cycle|SDLC]]에서 가능한 한 일찍 수행하는 테스트 접근법을 shift left라 부른다.[@istqb-glossary-shift-left-2026] CTFL 강의계획서에 따르면 일찍 테스트하면 시간과 비용이 준다. 일찍 없앤 결함은 뒤 산출물에 결함을 낳지 않고, 뒤에 생기는 실패가 줄어 품질 비용이 준다.[@istqb-ctfl-syllabus-2024]
 
 ## 기원
 
@@ -39,10 +39,10 @@ Forsberg와 Mooz는 1991년 논문에서 시스템 공학이 프로젝트에서 
 
 V-Modell XT 2.4는 V를 한 번이 아니라 반복마다 여러 번 거치게 하여 기능을 점진적으로 늘리고, 점진 개발 전략과 프로토타입 개발 전략마다 V를 거치는 순서를 달리 둔다. 이 모델의 점진 개발 전략에서는 시스템을 증분이라는 단계로 나누어 설계, 구현, 인도하고, 증분마다 따로 인수한다. 반복의 계획은 적어도 증분 하나의 인도와 인수까지를 다룬다.[@weit-v-modell-xt-2-4-2024]
 
-Automotive SPICE 4.1의 프로세스 참조 모델과 프로세스 평가 모델은 생명주기 모델이 아니어서 프로세스나 BP(base practice)를 수행할 순서를 정하지도 막지도 않고, 프로젝트 생명주기는 MAN.3.BP2에 따라 프로젝트가 정하게 둔다.[@vda-automotive-spice-pam-4-1-2026]
+ASPICE 4.1의 [[automotive-spice-process-reference-model|프로세스 참조 모델]]과 [[automotive-spice-process-assessment-model|프로세스 평가 모델]]은 생명주기 모델이 아니어서 프로세스나 BP(base practice)를 수행할 순서를 정하지도 막지도 않고, 프로젝트 생명주기는 MAN.3.BP2에 따라 프로젝트가 정하게 둔다.[@vda-automotive-spice-pam-4-1-2026]
 
-## Automotive SPICE의 V 컨셉
+## ASPICE의 V 컨셉
 
-Automotive SPICE 4.1의 프로세스 참조 모델은 시스템 엔지니어링 프로세스와 소프트웨어 엔지니어링 프로세스를 각각 V 모양으로 배치한다. 시스템 V에서는 SYS.2 System Requirements Analysis와 SYS.5 System Verification, SYS.3 System Architectural Design과 SYS.4 System Integration and Integration Verification이 마주 본다. 소프트웨어 V에서는 SWE.1 Software Requirements Analysis와 SWE.6 Software Verification, SWE.2 Software Architectural Design과 SWE.5 Software Component Verification and Integration Verification이 마주 보고, 꼭짓점에는 SWE.3 Software Detailed Design and Unit Construction과 SWE.4 Software Unit Verification이 함께 놓인다. 마주 보는 짝마다 오른쪽의 검증 조치와 왼쪽 산출물 사이에 일관성과 양방향 추적성을 요구한다.[@vda-automotive-spice-pam-4-1-2026]
+ASPICE 4.1의 프로세스 참조 모델은 시스템 엔지니어링 프로세스와 소프트웨어 엔지니어링 프로세스를 각각 V 모양으로 배치한다. 시스템 V에서는 SYS.2 System Requirements Analysis와 SYS.5 System Verification, SYS.3 System Architectural Design과 SYS.4 System Integration and Integration Verification이 마주 본다. 소프트웨어 V에서는 SWE.1 Software Requirements Analysis와 SWE.6 Software Verification, SWE.2 Software Architectural Design과 SWE.5 Software Component Verification and Integration Verification이 마주 보고, 꼭짓점에는 SWE.3 Software Detailed Design and Unit Construction과 SWE.4 Software Unit Verification이 함께 놓인다. 마주 보는 짝마다 오른쪽의 검증 조치와 왼쪽 산출물 사이에 [[traceability#일관성|일관성]]과 [[traceability#양방향 추적성|양방향 추적성]]을 요구한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ![[diagrams/automotive-spice-v-concept.svg]]

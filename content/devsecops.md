@@ -9,7 +9,7 @@ verified: 2026-10-03
 
 ## 정의
 
-DoD Enterprise DevSecOps Fundamentals는 DevSecOps를 소프트웨어 개발, 보안, 운영을 하나로 묶는 소프트웨어 공학 방법론, 실천, 도구의 조합으로 정의한다. DoD는 DevSecOps 문화로 옮겨 가는 원칙의 하나로, 보안을 끝에 덧붙이지 않고 처음부터 넣는 것을 든다.[@dod-devsecops-fundamentals-2-5-2024]
+DoD Enterprise DevSecOps Fundamentals는 DevSecOps를 소프트웨어 개발, 보안, 운영을 하나로 묶는 [[software-engineering|소프트웨어 공학]] 방법론, 실천, 도구의 조합으로 정의한다. DoD는 DevSecOps 문화로 옮겨 가는 원칙의 하나로, 보안을 끝에 덧붙이지 않고 처음부터 넣는 것을 든다.[@dod-devsecops-fundamentals-2-5-2024]
 
 NIST SP 800-204C에 따르면 DevSecOps라는 말은 보안 팀의 역할과, 보안을 SDLC의 모든 단계에서 시험하고 넣어야 함을 강조하려고 만들어졌다. 이 말에는 업계 전체의 합의가 없고, 따로 이름을 둘 필요 없이 DevOps라는 이름을 계속 쓰는 쪽도 있다.[@nist-sp-800-204c-2022]
 

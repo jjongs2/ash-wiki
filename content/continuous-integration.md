@@ -31,7 +31,7 @@ Fowler는 지속적 통합을, 팀원 각자가 적어도 하루에 한 번 변�
 
 ## 파이프라인에 넣는 검사
 
-SWEBOK V4.0a에 따르면 지속적 통합에서는 서버에서 도는 도구가 소스 저장소를 지켜보다가, 변경이 커밋될 때마다 단계로 이은 파이프라인을 시작해 코드를 컴파일하고 링크한다. 여기에 [[static-analysis|정적 분석]]으로 [[coding-standard|코딩 표준]]을 확인하는 단계와, 단위 테스트를 돌리고 코드 [[test-coverage|커버리지]]를 재는 단계를 함께 두는 일이 많다.[@ieee-swebok-v4-0a-2026] 지속적 통합에서는 자동화한 [[regression-testing|회귀 테스트]]도 함께 돌린다.[@ieee-swebok-v4-0a-2026][@istqb-ctfl-syllabus-2024]
+SWEBOK V4.0a에 따르면 지속적 통합에서는 서버에서 도는 도구가 소스 저장소를 지켜보다가, 변경이 커밋될 때마다 단계로 이은 파이프라인을 시작해 코드를 컴파일하고 링크한다. 여기에 [[static-analysis|정적 분석]]으로 [[coding-standard|코딩 표준]]을 확인하는 단계와, [[unit-testing|단위 테스트]]를 돌리고 코드 [[test-coverage|커버리지]]를 재는 단계를 함께 두는 일이 많다.[@ieee-swebok-v4-0a-2026] 지속적 통합에서는 자동화한 [[regression-testing|회귀 테스트]]도 함께 돌린다.[@ieee-swebok-v4-0a-2026][@istqb-ctfl-syllabus-2024]
 
 ![[diagrams/continuous-integration-pipeline.svg]]
 

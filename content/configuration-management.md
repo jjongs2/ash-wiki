@@ -28,7 +28,7 @@ SWEBOK V4.0a에 따르면 형상 관리는 형상 항목을 식별하고, 변경
 
 ## 형상 항목
 
-ISO/IEC/IEEE 24765 용어집은 **형상 항목**(configuration item)을 형상 관리 대상으로 지정해 형상 관리 프로세스에서 하나로 다루는 항목이나 그 묶음으로 정의하고, 형상 항목은 하드웨어·소프트웨어·문서를 모두 담은 시스템 전체부터 모듈이나 작은 하드웨어 구성품 하나까지 복잡도, 크기, 종류가 다양하다고 둔다.[@ieee-cs-sevocab-2026] Automotive SPICE 4.1도 형상 항목을 하나의 단위로 형상 관리를 받는 작업 산출물이나 그 묶음으로 정의하고, 그 범위가 시스템 전체부터 요소나 문서 하나까지 걸친다고 둔다.[@vda-automotive-spice-pam-4-1-2026]
+ISO/IEC/IEEE 24765 용어집은 **형상 항목**(configuration item)을 형상 관리 대상으로 지정해 형상 관리 프로세스에서 하나로 다루는 항목이나 그 묶음으로 정의하고, 형상 항목은 하드웨어·소프트웨어·문서를 모두 담은 시스템 전체부터 모듈이나 작은 하드웨어 구성품 하나까지 복잡도, 크기, 종류가 다양하다고 둔다.[@ieee-cs-sevocab-2026] [[automotive-spice|ASPICE]] 4.1도 형상 항목을 하나의 단위로 형상 관리를 받는 작업 산출물이나 그 묶음으로 정의하고, 그 범위가 시스템 전체부터 요소나 문서 하나까지 걸친다고 둔다.[@vda-automotive-spice-pam-4-1-2026]
 
 SWEBOK V4.0a에 따르면 소프트웨어 형상 항목이 될 수 있는 항목에는 계획서, 명세서와 설계 문서, 테스트 자료, 소프트웨어 도구, 소스 코드와 실행 코드, 코드 라이브러리 등이 있다. 예전에 빌드한 소프트웨어 형상 항목을 똑같이 다시 빌드해야 하면, 맞는 버전의 도구를 쓸 수 있도록 컴파일러 같은 지원 도구와 빌드 지시도 형상 관리 아래 두어야 한다.[@ieee-swebok-v4-0a-2026]
 
@@ -52,11 +52,11 @@ MIL-HDBK-61B Change 1도 주요 형상 베이스라인으로 기능, 할당, 제
 
 ISO/IEC/IEEE 24765 용어집은 **변경 요청**(change request)을 형상 항목을 조정해 달라고 요청을 내는 공식 절차로 정의한다. **영향 분석**(impact analysis)은 변경 요청이 영향을 주는 시스템·소프트웨어 산출물을 모두 찾고 변경에 드는 자원을 어림하는 일로 정의하고, 변경 범위를 정하고 비용과 이익을 분석하는 일도 여기에 든다고 둔다.[@ieee-cs-sevocab-2026] SWEBOK V4.0a에 따르면 형상 항목의 변경 요청은 소프트웨어 생명주기의 어느 시점에서든 누구나 낼 수 있다.[@ieee-swebok-v4-0a-2026] 영향 분석을 돕는 산출물 사이의 연결은 [[traceability|추적성]]에서 다룬다.
 
-같은 용어집은 **CCB**(configuration control board 또는 change control board)를 형상 항목에 제안된 변경을 평가해 승인하거나 기각하고, 승인한 변경이 구현되도록 책임지는 사람들의 모임으로 정의한다.[@ieee-cs-sevocab-2026] Automotive SPICE 4.1은 CCB를 변경 요청 승인 메커니즘의 예로 든다.[@vda-automotive-spice-pam-4-1-2026]
+같은 용어집은 **CCB**(configuration control board 또는 change control board)를 형상 항목에 제안된 변경을 평가해 승인하거나 기각하고, 승인한 변경이 구현되도록 책임지는 사람들의 모임으로 정의한다.[@ieee-cs-sevocab-2026] ASPICE 4.1은 CCB를 변경 요청 승인 메커니즘의 예로 든다.[@vda-automotive-spice-pam-4-1-2026]
 
-## Automotive SPICE
+## ASPICE
 
-Automotive SPICE 4.1은 지원 프로세스 그룹(SUP)에 형상 관리를 SUP.8(Configuration Management)로, 변경 요청 관리를 SUP.10(Change Request Management)으로 둔다. SUP.8의 목적은 관련 형상 항목과 베이스라인의 무결성을 확립·유지하고, 이를 영향받는 모든 당사자가 쓸 수 있게 하는 것이다. SUP.10의 목적은 변경 요청이 기록, 분석, 추적, 승인, 구현되게 하는 것이다. SUP.8의 BP(base practice)는 다음과 같다.[@vda-automotive-spice-pam-4-1-2026]
+ASPICE 4.1은 지원 프로세스 그룹(SUP)에 형상 관리를 SUP.8(Configuration Management)로, 변경 요청 관리를 SUP.10(Change Request Management)으로 둔다. SUP.8의 목적은 관련 형상 항목과 베이스라인의 무결성을 확립·유지하고, 이를 영향받는 모든 당사자가 쓸 수 있게 하는 것이다. SUP.10의 목적은 변경 요청이 기록, 분석, 추적, 승인, 구현되게 하는 것이다. SUP.8의 BP(base practice)는 다음과 같다.[@vda-automotive-spice-pam-4-1-2026]
 
 | BP  | 하는 일                                            |
 | --- | -------------------------------------------------- |
@@ -80,8 +80,8 @@ Automotive SPICE 4.1은 지원 프로세스 그룹(SUP)에 형상 관리를 SUP.
 | BP5 | 구현 확인                                                                                                |
 | BP6 | 종결까지의 추적과 상태 전달                                                                              |
 
-Automotive SPICE 3.1은 SUP.8의 목적을 프로세스나 프로젝트의 모든 작업 산출물의 무결성을 확립·유지하는 것으로, SUP.10의 목적을 변경 요청의 관리, 추적, 구현으로 두었다. BP는 SUP.8에 아홉(형상 관리 전략 수립, 브랜치 관리, 형상 항목·베이스라인 보관 관리 포함), SUP.10에 여덟(변경 요청 관리 전략 수립과 상태 기록 포함)을 두었다. Automotive SPICE 4.1은 위처럼 SUP.8에 여덟, SUP.10에 여섯을 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+ASPICE 3.1은 SUP.8의 목적을 프로세스나 프로젝트의 모든 작업 산출물의 무결성을 확립·유지하는 것으로, SUP.10의 목적을 변경 요청의 관리, 추적, 구현으로 두었다. BP는 SUP.8에 아홉(형상 관리 전략 수립, 브랜치 관리, 형상 항목·베이스라인 보관 관리 포함), SUP.10에 여덟(변경 요청 관리 전략 수립과 상태 기록 포함)을 두었다. ASPICE 4.1은 위처럼 SUP.8에 여덟, SUP.10에 여섯을 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ## ISO 26262-8
 
-ISO 26262-8:2018은 지원 프로세스로 형상 관리(7절)와 변경 관리(8절)를 둔다.[@iso-26262-8-obp-2018]
+[[iso-26262|ISO 26262]]-8:2018은 지원 프로세스로 형상 관리(7절)와 변경 관리(8절)를 둔다.[@iso-26262-8-obp-2018]

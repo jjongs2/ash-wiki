@@ -34,9 +34,9 @@ ISO/IEC/IEEE 12207:2026은 생명주기 프로세스를 네 그룹으로 나누�
 - 2017년: ISO/IEC/IEEE 12207:2017. ISO/IEC/IEEE 12207로는 첫판이고, ISO/IEC 12207:2008을 대체했다.[@iso-iec-ieee-12207-obp-2017]
 - 2026년: ISO/IEC/IEEE 12207:2026. 2판으로, 2017년판을 대체했다.[@iso-iec-ieee-12207-obp-2026]
 
-## Automotive SPICE, ISO/IEC TS 33061과의 관계
+## ASPICE, ISO/IEC TS 33061과의 관계
 
-Automotive SPICE 4.1에 따르면 그 프로세스 참조 모델은 ISO/IEC 12207을 바탕으로 만든 뒤 자동차 산업에 맞게 발전시키고 다듬은 것이다.[@vda-automotive-spice-pam-4-1-2026] Automotive SPICE의 프로세스 참조 모델 4.5판(2010)은 ISO/IEC 12207 Amd 1:2002의 부속서 F와 H, Amd 2:2004에서 프로세스 일부를 가져와 자동차 분야에 맞게 고쳤다.[@automotive-sig-aspice-prm-4-5-2010] Automotive SPICE 4.1은 자기 범위 밖의 프로세스가 필요하면 ISO/IEC 12207이나 ISO/IEC/IEEE 15288 같은 다른 프로세스 참조 모델에서 가져와 더할 수 있게 둔다.[@vda-automotive-spice-pam-4-1-2026]
+[[automotive-spice|ASPICE]] 4.1에 따르면 그 [[automotive-spice-process-reference-model|프로세스 참조 모델]]은 ISO/IEC 12207을 바탕으로 만든 뒤 자동차 산업에 맞게 발전시키고 다듬은 것이다.[@vda-automotive-spice-pam-4-1-2026] ASPICE의 프로세스 참조 모델 4.5판(2010)은 ISO/IEC 12207 Amd 1:2002의 부속서 F와 H, Amd 2:2004에서 프로세스 일부를 가져와 자동차 분야에 맞게 고쳤다.[@automotive-sig-aspice-prm-4-5-2010] ASPICE 4.1은 자기 범위 밖의 프로세스가 필요하면 ISO/IEC 12207이나 ISO/IEC/IEEE 15288 같은 다른 프로세스 참조 모델에서 가져와 더할 수 있게 둔다.[@vda-automotive-spice-pam-4-1-2026]
 
 ISO/IEC TS 33061:2021은 ISO/IEC 330xx 계열의 소프트웨어 생명주기 프로세스 평가 모델로, ISO/IEC/IEEE 12207이 정의한 프로세스 참조 모델을 바탕으로 한다. 이 표준은 ISO/IEC 12207:2008의 프로세스 정의로 프로세스 참조 모델을 삼았던 ISO/IEC 15504-5:2012를 대체했다.[@iso-iec-ts-33061-obp-2021][@iso-iec-15504-5-2012]
 

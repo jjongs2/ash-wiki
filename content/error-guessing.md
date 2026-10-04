@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**오류 추정**(error guessing)은 ISTQB CTFL 강의계획서가 탐색적 테스트, 체크리스트 기반 테스트와 함께 경험 기반 테스트 기법으로 분류하는 기법이다. 이 강의계획서에 따르면 오류 추정은 테스터의 지식으로 오류, 결함, 실패가 일어날 것을 예상하는 기법이다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 오류 추정을 테스터가 과거의 실패나 실패 모드에 대해 아는 것을 바탕으로 테스트 조건을 정하는 기법으로 정의한다.[@istqb-glossary-error-guessing-2026]
+**오류 추정**(error guessing)은 ISTQB CTFL 강의계획서가 탐색적 테스트, 체크리스트 기반 테스트와 함께 경험 기반 테스트 기법으로 분류하는 기법이다. 이 강의계획서에 따르면 오류 추정은 테스터의 지식으로 오류, 결함, 실패가 일어날 것을 예상하는 기법이다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 오류 추정을 테스터가 과거의 실패나 실패 모드에 대해 아는 것을 바탕으로 [[test-case#테스트 조건|테스트 조건]]을 정하는 기법으로 정의한다.[@istqb-glossary-error-guessing-2026]
 
 CTFL 강의계획서는 테스트 기법을 [[black-box-testing|블랙박스]], [[white-box-testing|화이트박스]], 경험 기반의 세 갈래로 나눈다.[@istqb-ctfl-syllabus-2024]
 

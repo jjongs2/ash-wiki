@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-소프트웨어 공학에서 **메트릭**(metric)은 측정 척도와 측정 방법을 함께 정한 것이다.[@istqb-glossary-metric-2026][@ieee-cs-sevocab-2026] ISO/IEC/IEEE 24765 용어집은 품질 메트릭(quality metric)을, 어떤 항목이 주어진 품질 속성을 갖는 정도를 정량적으로 나타낸 척도로 정의한다. 소프트웨어 데이터를 받아 그 정도로 해석할 수 있는 수치 하나를 내는 함수로도 정의한다.[@ieee-cs-sevocab-2026]
+[[software-engineering|소프트웨어 공학]]에서 **메트릭**(metric)은 측정 척도와 측정 방법을 함께 정한 것이다.[@istqb-glossary-metric-2026][@ieee-cs-sevocab-2026] ISO/IEC/IEEE 24765 용어집은 품질 메트릭(quality metric)을, 어떤 항목이 주어진 품질 속성을 갖는 정도를 정량적으로 나타낸 척도로 정의한다. 소프트웨어 데이터를 받아 그 정도로 해석할 수 있는 수치 하나를 내는 함수로도 정의한다.[@ieee-cs-sevocab-2026]
 
 ISO/IEC/IEEE 24765 용어집은 제품 자체를 재는 척도를 내부 척도(internal measure)로 정의하고, 코드 줄 수와 복잡도 척도를 그 예로 든다.[@ieee-cs-sevocab-2026] 내부 품질과 외부 품질은 [[software-quality-model|소프트웨어 품질 모델]]에서 다룬다.
 
@@ -19,7 +19,7 @@ SonarQube Server는 물리적 줄 수(lines)와, 공백이나 탭이 아니고 �
 
 ## 복잡도
 
-McCabe는 1976년 IEEE Transactions on Software Engineering 논문 "A Complexity Measure"에서 그래프 이론에 기반한 프로그램 복잡도 척도를 제안했고[@mccabe-complexity-measure-1976], 이 척도의 이름은 순환 복잡도(cyclomatic complexity)다.[@nist-sp-500-235-1996]
+McCabe는 1976년 IEEE Transactions on Software Engineering 논문 "A Complexity Measure"에서 그래프 이론에 기반한 프로그램 복잡도 척도를 제안했고[@mccabe-complexity-measure-1976], 이 척도의 이름은 [[cyclomatic-complexity|순환 복잡도]](cyclomatic complexity)다.[@nist-sp-500-235-1996]
 
 SonarSource는 2016년 12월 cognitive complexity를 내놓았다. 메서드의 제어 흐름을 이해하기 어려운 정도를 상대적으로 재려는 메트릭이다.[@sonarsource-cognitive-complexity-blog-2016] SonarSource 백서가 정한 셈법은 다음과 같다.
 

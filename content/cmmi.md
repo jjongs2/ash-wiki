@@ -14,7 +14,7 @@ status: 유효
 
 ## 범위
 
-ISACA에 따르면 CMMI는 소프트웨어 공학을 넘어 업종에 관계없이 쓰인다.[@isaca-cmmi-performance-solutions-2026] CMMI 모델과 조직의 프로세스 사이의 관계는 [[software-process#프로세스 모델과 조직의 프로세스|소프트웨어 프로세스]]에서 다룬다. CMMI 3.0은 개발(Development), 서비스(Services), 공급자 관리(Supplier Management), 보안(Security), 안전(Safety), 데이터 관리(Data Management), 인력 관리(People Management), 가상 업무(Virtual Work)의 여덟 도메인을 한 모델 안에 둔다.[@isaca-cmmi-three-new-domains-2023] CMMI 3.0은 모범 사례를 프랙티스 영역(practice area)으로 묶고, 프랙티스 영역 안의 프랙티스를 Level 0\~3의 프랙티스 그룹으로 나눈다.[@cmmi-institute-levels-2026]
+ISACA에 따르면 CMMI는 [[software-engineering|소프트웨어 공학]]을 넘어 업종에 관계없이 쓰인다.[@isaca-cmmi-performance-solutions-2026] CMMI 모델과 조직의 프로세스 사이의 관계는 [[software-process#프로세스 모델과 조직의 프로세스|소프트웨어 프로세스]]에서 다룬다. CMMI 3.0은 개발(Development), 서비스(Services), 공급자 관리(Supplier Management), 보안(Security), 안전(Safety), 데이터 관리(Data Management), 인력 관리(People Management), 가상 업무(Virtual Work)의 여덟 도메인을 한 모델 안에 둔다.[@isaca-cmmi-three-new-domains-2023] CMMI 3.0은 모범 사례를 프랙티스 영역(practice area)으로 묶고, 프랙티스 영역 안의 프랙티스를 Level 0\~3의 프랙티스 그룹으로 나눈다.[@cmmi-institute-levels-2026]
 
 ### 성숙도 수준과 능력 수준
 

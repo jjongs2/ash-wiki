@@ -13,7 +13,7 @@ CTFL 강의계획서에 따르면 커버리지 항목은 테스트 기법마다 
 
 이 강의계획서에 따르면 [[traceability|추적성]]은 커버리지 평가를 돕는다.[@istqb-ctfl-syllabus-2024]
 
-ISTQB CT-AuT 강의계획서에 따르면 [[black-box-testing#요구사항 기반 테스트|요구사항 기반 테스트]]의 **요구사항 커버리지** $C_\mathrm{req}$는 적어도 한 테스트 케이스가 다룬 원자 요구사항의 수 $n_\mathrm{covered}$와 전체 원자 요구사항의 수 $n_\mathrm{total}$로 다음과 같이 잰다.[@istqb-ct-aut-syllabus-2025]
+ISTQB CT-AuT 강의계획서에 따르면 [[black-box-testing#요구사항 기반 테스트|요구사항 기반 테스트]]의 **요구사항 커버리지** $C_\mathrm{req}$는 적어도 한 [[test-case|테스트 케이스]]가 다룬 원자 요구사항의 수 $n_\mathrm{covered}$와 전체 원자 요구사항의 수 $n_\mathrm{total}$로 다음과 같이 잰다.[@istqb-ct-aut-syllabus-2025]
 
 $$
 C_\mathrm{req} = \frac{n_\mathrm{covered}}{n_\mathrm{total}}
@@ -54,10 +54,10 @@ NASA의 MC/DC 튜토리얼에 따르면 조건/결정 커버리지는 결정 커
 
 ## 결정 커버리지와 분기 커버리지
 
-ISTQB 용어집은 결정 커버리지를 결정 결과의 커버리지로, **분기 커버리지**(branch coverage)를 제어 흐름 그래프의 분기의 커버리지로 따로 정의한다.[@istqb-glossary-decision-coverage-2026][@istqb-glossary-branch-coverage-2026]
+ISTQB 용어집은 결정 커버리지를 결정 결과의 커버리지로, **분기 커버리지**(branch coverage)를 [[basis-path-testing#제어 흐름 그래프|제어 흐름 그래프]]의 분기의 커버리지로 따로 정의한다.[@istqb-glossary-decision-coverage-2026][@istqb-glossary-branch-coverage-2026]
 
 NIST SP 500-235에 따르면 분기 커버리지 방식에서는 테스트 중에 모든 결정 결과를 실행해야 한다.[@nist-sp-500-235-1996] ISO/IEC/IEEE 24765 용어집은 **분기 테스트**(branch testing)를 프로그램의 각 결정 지점의 각 결과를 실행하도록 설계한 테스트로 정의한다.[@ieee-cs-sevocab-2026]
 
 ## ISO 26262-6
 
-ISO 26262-6:2018은 소프트웨어 유닛 검증을 9절에, 소프트웨어 통합과 검증을 10절에 둔다. 소프트웨어 유닛 수준의 구조적 커버리지 척도는 표 9에서, 소프트웨어 아키텍처 수준의 구조적 커버리지는 표 12에서 다룬다.[@iso-26262-6-obp-2018]
+[[iso-26262|ISO 26262]]-6:2018은 소프트웨어 유닛 검증을 9절에, 소프트웨어 통합과 검증을 10절에 둔다. 소프트웨어 유닛 수준의 구조적 커버리지 척도는 표 9에서, [[software-architecture|소프트웨어 아키텍처]] 수준의 구조적 커버리지는 표 12에서 다룬다.[@iso-26262-6-obp-2018]

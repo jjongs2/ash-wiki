@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**xUnit** 계열(xUnit family)은 JUnit, NUnit, PHPUnit, Test::Unit 같은 단위 테스트 프레임워크를 함께 부르는 이름이다.[@garousi-smells-test-code-2018] JUnit은 Java와 JVM(Java Virtual Machine)용 테스트 프레임워크로[@junit-home-2026], 단위 테스트 프레임워크의 xUnit 아키텍처를 따르는 한 사례다.[@junit-4-faq-2025] NUnit은 .NET 언어 전체를 위한 단위 테스트 프레임워크로, 처음에 JUnit을 옮겨 만들었다.[@nunit-home-2026] Python의 unittest는 JUnit에서 영감을 받아 만들어졌다.[@psf-python-unittest-2026]
+**xUnit** 계열(xUnit family)은 JUnit, NUnit, PHPUnit, Test::Unit 같은 [[unit-testing|단위 테스트]] 프레임워크를 함께 부르는 이름이다.[@garousi-smells-test-code-2018] JUnit은 Java와 JVM(Java Virtual Machine)용 테스트 프레임워크로[@junit-home-2026], 단위 테스트 프레임워크의 xUnit 아키텍처를 따르는 한 사례다.[@junit-4-faq-2025] NUnit은 .NET 언어 전체를 위한 단위 테스트 프레임워크로, 처음에 JUnit을 옮겨 만들었다.[@nunit-home-2026] Python의 unittest는 JUnit에서 영감을 받아 만들어졌다.[@psf-python-unittest-2026]
 
 ## 기원
 

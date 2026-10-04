@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-01
 ---
 
-**ASIL**(Automotive Safety Integrity Level)은 [[iso-26262|ISO 26262]]가 아이템이나 요소에 적용할 요구사항과 안전 조치를 정해 불합리한 리스크를 피하려고 두는 네 등급 가운데 하나다. ASIL D가 가장 엄격하고 ASIL A가 가장 덜 엄격하다.[@iso-26262-1-obp-2018]
+**ASIL**(Automotive Safety Integrity Level)은 [[iso-26262|ISO 26262]]가 [[safety-lifecycle#ISO 26262의 안전 생명주기|아이템]]이나 요소에 적용할 요구사항과 안전 조치를 정해 불합리한 리스크를 피하려고 두는 네 등급 가운데 하나다. ASIL D가 가장 엄격하고 ASIL A가 가장 덜 엄격하다.[@iso-26262-1-obp-2018]
 
 ## S·E·C 파라미터
 
@@ -21,7 +21,7 @@ ASIL은 [[hazard-analysis-and-risk-assessment|HARA]]에서 정한다. HARA는 �
 
 ## ASIL decomposition
 
-ISO 26262-1:2018은 **ASIL decomposition**을 같은 safety goal에 기여하는 중복된 안전 요구사항을 충분히 독립된 요소들에 나누어 할당하는 것으로 정의한다. 그 요소들에 할당한 중복 요구사항의 ASIL을 낮추는 것이 목적이다.[@iso-26262-1-obp-2018]
+ISO 26262-1:2018은 **ASIL decomposition**을 같은 safety goal에 기여하는 중복된 [[safety-requirement|안전 요구사항]]을 충분히 독립된 요소들에 나누어 할당하는 것으로 정의한다. 그 요소들에 할당한 중복 요구사항의 ASIL을 낮추는 것이 목적이다.[@iso-26262-1-obp-2018]
 
 ## SIL과의 차이
 

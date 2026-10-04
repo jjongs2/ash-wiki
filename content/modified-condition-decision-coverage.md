@@ -7,7 +7,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**변형 조건/결정 커버리지**(modified condition/decision coverage, MC/DC)는 결정 안의 각 조건이 결정의 결과에 독립적으로 영향을 준다는 것을 보이도록 요구하는 [[test-coverage|구조적 커버리지]] 기준이다.[@nasa-tm-2001-210876-2001][@chilenski-applicability-mcdc-1994] MC/DC를 이루려면 다음을 모두 만족해야 한다.
+**변형 조건/결정 커버리지**(modified condition/decision coverage, MC/DC)는 [[test-coverage#조건과 결정|결정]] 안의 각 조건이 결정의 결과에 독립적으로 영향을 준다는 것을 보이도록 요구하는 [[test-coverage#기법마다 다른 커버리지 항목|구조적 커버리지]] 기준이다.[@nasa-tm-2001-210876-2001][@chilenski-applicability-mcdc-1994] MC/DC를 이루려면 다음을 모두 만족해야 한다.
 
 - 프로그램의 모든 진입점과 출구가 적어도 한 번 실행되었다.
 - 모든 결정이 가능한 모든 결과를 적어도 한 번 가졌다.

@@ -28,7 +28,7 @@ ISO 9000:2026은 **품질 보증**(quality assurance)을, 품질 요구사항이
 
 ## 평가, 감사, 검증
 
-- **프로세스 평가**(process assessment): ISO/IEC 33001:2015는 조직 단위의 프로세스를 프로세스 평가 모델에 견주어 규율 있게 평가하는 일로 정의하고, ISO/IEC 330xx 계열을 구현된 프로세스에서 나온 객관적 증거를 바탕으로 프로세스 품질 특성을 평가하는 틀로 둔다.[@iso-iec-33001-obp-2015] ASPICE 4.1의 프로세스 평가 모델은 ISO/IEC 33004:2015에 맞춘 프로세스 능력 평가용 모델이다.[@vda-automotive-spice-pam-4-1-2026]
+- **프로세스 평가**(process assessment): ISO/IEC 33001:2015는 조직 단위의 프로세스를 프로세스 평가 모델에 견주어 규율 있게 평가하는 일로 정의하고, ISO/IEC 330xx 계열을 구현된 프로세스에서 나온 객관적 증거를 바탕으로 프로세스 품질 특성을 평가하는 틀로 둔다.[@iso-iec-33001-obp-2015] ASPICE 4.1의 [[automotive-spice-process-assessment-model|프로세스 평가 모델]]은 ISO/IEC 33004:2015에 맞춘 프로세스 능력 평가용 모델이다.[@vda-automotive-spice-pam-4-1-2026]
 - **감사**(audit): ISO 9000:2026은 감사 기준이 충족되는 정도를 판정하려고 증거를 얻어 객관적으로 평가하는 체계적이고 독립적인 프로세스로 정의한다.[@iso-9000-obp-2026]
 
-ISO/IEC 25000:2014는 소프트웨어 제품의 정적 속성은 리뷰, 인스펙션, 시뮬레이션, 자동화 도구로 검증할 수 있고, 동작의 속성은 테스트와 운용 중에 실행해 [[verification-and-validation|검증·확인]]할 수 있다고 둔다.[@iso-iec-25000-obp-2014]
+ISO/IEC 25000:2014는 소프트웨어 제품의 정적 속성은 [[software-review|리뷰]], [[software-inspection|인스펙션]], 시뮬레이션, 자동화 도구로 검증할 수 있고, 동작의 속성은 테스트와 운용 중에 실행해 [[verification-and-validation|검증·확인]]할 수 있다고 둔다.[@iso-iec-25000-obp-2014]

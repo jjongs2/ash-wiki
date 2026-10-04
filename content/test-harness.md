@@ -21,7 +21,7 @@ SWEBOK V4.0a에 따르면 드라이버는 SUT(system under test)의 한 부분�
 
 ## 단위 테스트와 통합 테스트에서의 쓰임
 
-CTFL 강의계획서에 따르면 [[unit-testing#컴포넌트 테스트|컴포넌트 테스트]]에는 테스트 하네스나 단위 테스트 프레임워크 같은 지원이 필요한 경우가 많다.[@istqb-ctfl-syllabus-2024]
+CTFL 강의계획서에 따르면 [[unit-testing#컴포넌트 테스트|컴포넌트 테스트]]에는 테스트 하네스나 [[xunit|단위 테스트 프레임워크]] 같은 지원이 필요한 경우가 많다.[@istqb-ctfl-syllabus-2024]
 
 SWEBOK V4.0a에 따르면 [[integration-testing|통합 테스트]]를 점진적으로 하면 대개 스텁, 드라이버, mock object 같은 테스트 인프라가 더 쓰인다.[@ieee-swebok-v4-0a-2026]
 
