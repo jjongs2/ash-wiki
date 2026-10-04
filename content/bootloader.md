@@ -24,15 +24,17 @@ verified: 2026-10-03
 ## 응용 프로그램이 업데이트할 때와 부트로더가 할 때
 
 - 응용 프로그램이 새 이미지를 받아 쉬는 영역에 쓰면, 다음 부팅에서 부트로더가 그 이미지를 실행하거나 실행 영역으로 옮겨 쓴다.[@silabs-bootloader-fundamentals-2026][@espressif-esp-idf-ota-2026]
+- Microchip TB3207에 따르면 응용 프로그램이 이미지를 받아 단순한 부트로더가 쓸 수 있는 저수준 꼴로 저장해 두면, 복잡한 업데이트 인터페이스를 쓰면서도 부트로더는 단순하고 작게 둘 수 있다.[@microchip-tb3207-2018]
 - 부트로더가 다운로드와 쓰기까지 맡으면 응용 프로그램은 부트로더로 넘어가기만 한다.[@nxp-an13843-2023][@silabs-bootloader-fundamentals-2026]
+- 부트로더가 맡는 기능이 늘면 부트로더를 작게 유지하기 어려워진다.[@infineon-an73854-2023][@microchip-tb3207-2018]
 - Silicon Labs의 Gecko Bootloader는 standalone 모드에서, 응용 프로그램이 SRAM(Static Random-Access Memory) 맨 아래의 공유 메모리에 명령을 써 두고 소프트웨어 리셋을 하면 그 명령을 보고 업데이트 모드에 들어가 통신으로 받은 이미지를 플래시에 쓴다.[@silabs-gecko-bootloader-gsdk4-2026]
 
 리셋을 거치지 않고 다른 이미지로 넘어가면, 앞서 실행한 코드가 설정한 주변 장치 레지스터가 리셋 기본값으로 돌아가지 않는다. 그래서 새 이미지가 리셋 기본값을 전제하면 예상과 다른 상태에서 시작한다.[@infineon-an73854-2023][@st-an2606-2025]
 
 ## 플래시 쓰기
 
-TI의 C2000 flash kernel은 받은 연속 블록을 버퍼에 모으다가, 버퍼가 차거나 불연속 블록이 오면 버퍼의 내용을 플래시에 쓴다.[@ti-sprujh3-2025] 플래시를 지우거나 쓰는 동안 같은 플래시 블록(뱅크)에서 코드를 읽을 수 없는 MCU에서는 쓰기 루틴을 RAM(Random-Access Memory)이나 다른 플래시 뱅크에서 실행한다.[@ti-sprujh3-2025][@nxp-an4695-2013]
+부트로더는 받은 데이터를 RAM(Random-Access Memory) 버퍼에 담아 두었다가, 플래시가 한 번에 쓰는 단위로 플래시에 쓴다.[@ti-sprujh3-2025][@microchip-an851-2002] TI의 C2000 flash kernel은 받은 연속 블록을 버퍼에 모으다가, 버퍼가 차거나 불연속 블록이 오면 버퍼의 내용을 플래시에 쓴다.[@ti-sprujh3-2025] 플래시를 지우거나 쓰는 동안 같은 플래시 블록(뱅크)에서 코드를 읽을 수 없는 MCU에서는 쓰기 루틴을 RAM이나 다른 플래시 뱅크에서 실행한다.[@ti-sprujh3-2025][@nxp-an4695-2013]
 
 ## 부트로더 자체의 업데이트
 
-부트로더를 고쳐 쓰는 도중 전원이 끊기는 등으로 부트로더 이미지가 망가지면 기기가 부팅하지 못하게 될 수 있다.[@infineon-an73854-2023][@espressif-esp-idf-ota-2026] 바꿀 수 없는 1단계 부트로더를 두고 그 뒤의 부트로더만 고칠 수 있게 하는 구성이 쓰인다.[@ti-mcu-plus-sdk-am64x-bootflow-2026][@silabs-gecko-bootloader-about-2026] Infineon 앱노트는 현장에서 스스로를 고쳐 쓰는 부트로더를 만들 수는 있지만 복잡하므로 피하기를 권한다.[@infineon-an73854-2023]
+Microchip TB3207에 따르면 USB, SD(Secure Digital) 카드, [[ethernet|이더넷]]처럼 제품 사용자가 쓰는 인터페이스까지 구현한 부트로더는, 그 프로토콜 구현의 결함을 고치거나 외부 기기의 변화에 맞추려면 부트로더 자체를 업데이트해야 한다.[@microchip-tb3207-2018] 부트로더를 고쳐 쓰는 도중 전원이 끊기는 등으로 부트로더 이미지가 망가지면 기기가 부팅하지 못하게 될 수 있다.[@infineon-an73854-2023][@espressif-esp-idf-ota-2026] 바꿀 수 없는 1단계 부트로더를 두고 그 뒤의 부트로더만 고칠 수 있게 하는 구성이 쓰인다.[@ti-mcu-plus-sdk-am64x-bootflow-2026][@silabs-gecko-bootloader-about-2026] Infineon 앱노트는 현장에서 스스로를 고쳐 쓰는 부트로더를 만들 수는 있지만 복잡하므로 피하기를 권한다.[@infineon-an73854-2023]

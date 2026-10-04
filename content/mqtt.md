@@ -40,9 +40,11 @@ MQTT 5.0은 서버가 따로 다루는 메시지 두 가지를 정한다.[@oasis
 - **Retained message**: 발행할 때 RETAIN 플래그를 켜면, 서버는 그 토픽에 저장해 둔 retained message를 새 메시지로 바꿔 저장한다. 그래서 토픽마다 하나만 남는다. 새 구독이 생기면 서버는 맞는 토픽의 retained message를 보내며, 이 동작은 Retain Handling 구독 옵션으로 바꿀 수 있다.
 - **Will message**: 클라이언트가 CONNECT에 넣어 두는 메시지다. 정상 종료를 알리는 DISCONNECT 없이 네트워크 연결이 닫히면, 서버는 Will Delay Interval이 지나거나 세션이 끝난 뒤 이 메시지를 발행한다.[@oasis-mqtt-5-0-2019]
 
+Will message는 LWT(Last Will and Testament) 메시지라고도 부른다.[@aws-iot-core-mqtt-2026][@eclipse-paho-java-mqttconnectoptions-2026]
+
 ## 전송
 
-MQTT 5.0은 클라이언트와 서버 사이에, 순서를 지키고 잃지 않는 양방향 바이트 스트림을 주는 전송을 요구한다. MQTT는 [[tcp|TCP]]/IP 위에서 동작하고, 순서를 지키고 잃지 않는 양방향 연결을 주는 다른 프로토콜 위에서도 동작한다. MQTT 5.0은 WebSocket 위에서 MQTT를 나르는 규칙도 정한다.[@oasis-mqtt-5-0-2019]
+MQTT 5.0은 클라이언트와 서버 사이에, 순서를 지키고 잃지 않는 양방향 바이트 스트림을 주는 전송을 요구한다. MQTT는 [[tcp|TCP]]/IP 위에서 동작하고, 순서를 지키고 잃지 않는 양방향 연결을 주는 다른 프로토콜 위에서도 동작한다. MQTT 5.0은 WebSocket 위에서 MQTT를 나르는 규칙도 정한다.[@oasis-mqtt-5-0-2019] Eclipse Paho의 JavaScript 클라이언트는 브라우저에서 동작하는 MQTT 클라이언트 라이브러리로, WebSocket으로 MQTT 브로커에 연결한다.[@eclipse-paho-javascript-2026]
 
 IANA는 서비스 이름 mqtt에 포트 1883을, secure-mqtt에 포트 8883을 할당했다.[@iana-service-names-port-numbers-registry-2026] 포트 8883은 [[transport-layer-security|TLS]] 위의 MQTT, 포트 1883은 TLS 없는 MQTT를 위한 것이며, MQTT 5.0은 TLS를 제공하는 서버가 TCP 포트 8883을 쓰기를 강하게 권한다.[@oasis-mqtt-5-0-2019]
 
