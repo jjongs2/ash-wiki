@@ -11,15 +11,15 @@ verified: 2026-10-03
 
 ISO/SAE 21434:2021은 9절부터 14절까지에 단계별 활동을 두고, 이를 세 단계로 묶는다. 이 묶음은 활동의 실행 순서를 정하지 않는다.[@iso-sae-21434-obp-2021]
 
-- Concept 단계: 9절. Item definition, cybersecurity goals, cybersecurity concept이 든다.
+- Concept 단계: 9절. Item definition, [[cybersecurity-goal|cybersecurity goals]], [[cybersecurity-concept|cybersecurity concept]]이 든다.
 - Product development 단계: 10절의 설계, 통합과 검증, 11절의 차량 수준 [[cybersecurity-verification-and-validation|cybersecurity validation]]이 든다.
-- Post-development 단계: 12절 production, 13절 operations and maintenance, 14절 end of cybersecurity support and decommissioning이 든다. 13절에는 cybersecurity incident response와 updates가 있다.[@iso-sae-21434-obp-2021] 소프트웨어 업데이트는 ISO 24089와 UN R156도 다룬다.[@iso-24089-obp-2023][@unece-r156-2021]
+- Post-development 단계: 12절 production, 13절 operations and maintenance, 14절 end of cybersecurity support and decommissioning이 든다. 13절에는 cybersecurity incident response와 updates가 있다.[@iso-sae-21434-obp-2021] 소프트웨어 업데이트는 [[iso-24089|ISO 24089]]와 [[un-r156|UN R156]]도 다룬다.[@iso-24089-obp-2023][@unece-r156-2021]
 
 ISO/SAE 21434:2021은 product development 단계의 활동을 [[v-model|V 모델]]에 놓은 예를 그림으로 든다.[@iso-sae-21434-obp-2021]
 
-8절의 지속 활동과 15절의 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA]] 방법은 이 단계들 밖에 둔다.[@iso-sae-21434-obp-2021] 지속 활동은 취약점 관리 페이지가 다룬다.
+8절의 지속 활동과 15절의 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA]] 방법은 이 단계들 밖에 둔다.[@iso-sae-21434-obp-2021] 지속 활동은 [[vulnerability-management|취약점 관리]]에서 다룬다.
 
-Tailoring과 out-of-context 컴포넌트처럼 프로젝트의 활동을 정하는 데 쓰는 개념은 [[cybersecurity-assessment#Tailoring과 out-of-context|cybersecurity assessment]]에서 다룬다. ISO 26262의 아이템과 안전 생명주기는 [[safety-lifecycle|안전 생명주기]]에서 다룬다.
+Tailoring과 out-of-context 컴포넌트처럼 프로젝트의 활동을 정하는 데 쓰는 개념은 [[cybersecurity-assessment#Tailoring과 out-of-context|cybersecurity assessment]]에서 다룬다. [[iso-26262|ISO 26262]]의 아이템과 안전 생명주기는 [[safety-lifecycle|안전 생명주기]]에서 다룬다.
 
 ## 아이템과 운용 환경
 

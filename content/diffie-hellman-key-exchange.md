@@ -15,7 +15,7 @@ Diffie와 Hellman의 방식에서 사용자들은 소수 $p$와, $p$를 법으�
 
 ![[diagrams/diffie-hellman-exchange.svg]]
 
-NIST SP 800-56A Rev. 3의 dhEphem 방식은 이 교환을 두 당사자가 값을 서로 보내는 꼴로 정한다. 각 당사자는 임시 키 쌍을 만들어 공개키를 상대에게 보내고, 자기 개인키와 상대 공개키로 Diffie-Hellman 원시 연산을 해서 공유 비밀 $Z$를 얻는다. SP 800-56A Rev. 3은 이렇게 얻은 공유 비밀을 승인된 키 유도 방법의 입력으로만 쓰고, 다른 용도로는 쓰지 않게 한다.[@nist-sp-800-56a-r3-2018]
+NIST SP 800-56A Rev. 3의 dhEphem 방식은 이 교환을 두 당사자가 값을 서로 보내는 꼴로 정한다. 각 당사자는 [[key-establishment#정적 키, 임시 키, 세션 키|임시 키 쌍]]을 만들어 [[public-key-cryptography|공개키]]를 상대에게 보내고, 자기 개인키와 상대 공개키로 Diffie-Hellman 원시 연산을 해서 공유 비밀 $Z$를 얻는다. SP 800-56A Rev. 3은 이렇게 얻은 공유 비밀을 승인된 키 유도 방법의 입력으로만 쓰고, 다른 용도로는 쓰지 않게 한다.[@nist-sp-800-56a-r3-2018]
 
 ## 안전성
 
@@ -28,7 +28,7 @@ NIST SP 800-56A Rev. 3은 Diffie-Hellman 원시 연산을 둘 둔다.[@nist-sp-8
 - FFC(Finite Field Cryptography) DH(Diffie-Hellman): 도메인 매개변수 $(p, q, g)$를 쓰고, 상대 공개키를 자기 개인키로 거듭제곱해 $p$를 법으로 공유 비밀을 계산한다. 여기서 $g$는 위수가 $q$인 부분군의 생성원이다.
 - ECC(Elliptic Curve Cryptography) CDH(Cofactor Diffie-Hellman): 상대 공개키인 타원 곡선 위의 점에 cofactor $h$와 자기 개인키를 곱한 점 $P$를 구하고, $P$의 x좌표를 공유 비밀로 쓴다.[@nist-sp-800-56a-r3-2018]
 
-이 문서는 키 합의 방식을 두 당사자가 쓰는 임시 키 쌍의 수에 따라 C(2e), C(1e), C(0e)로 나누고, 정적 키 쌍의 수로 다시 C(2e, 2s) 같은 하위 갈래로 나눈다. 두 당사자가 모두 임시 키 쌍을 쓰는 C(2e) 방식은 두 당사자 모두에게 forward secrecy를 준다.[@nist-sp-800-56a-r3-2018]
+이 문서는 키 합의 방식을 두 당사자가 쓰는 임시 키 쌍의 수에 따라 C(2e), C(1e), C(0e)로 나누고, 정적 키 쌍의 수로 다시 C(2e, 2s) 같은 하위 갈래로 나눈다. 두 당사자가 모두 임시 키 쌍을 쓰는 C(2e) 방식은 두 당사자 모두에게 [[key-establishment#안전성 성질|forward secrecy]]를 준다.[@nist-sp-800-56a-r3-2018]
 
 ## 중간자 공격
 
@@ -38,13 +38,13 @@ RFC 4949에 따르면 두 당사자가 서로를 인증하는 장치 없이 Diff
 
 SP 800-56A Rev. 3은 임시 키 쌍만 쓰는 C(2e, 0s) 방식이 그것만으로는 상대가 누구인지 보증하지 않으므로, 임시 공개키와 신원의 연결을 그 방식을 쓰는 프로토콜처럼 방식 밖에서 보장하게 한다. SP 800-56A Rev. 3의 방식 가운데 암묵적 키 인증을 주는 것은 정적 키 쌍을 쓰는 방식뿐이다.[@nist-sp-800-56a-r3-2018]
 
-인증을 키 교환과 떼어, 서명이 지수값과 상관없는 값에만 걸리면 중간자 공격이 성립한다. 공격자는 오가는 지수값을 자기 것으로 바꿔 A와는 키 $K_A$를, B와는 키 $K_B$를 공유하고, 한 키로 복호한 메시지를 다른 키로 다시 암호화해 넘긴다. A와 B는 서로를 받아들이지만, 실제로 키를 나눈 상대는 공격자다.[@diffie-authenticated-key-exchanges-1992]
+인증을 키 교환과 떼어, [[digital-signature|서명]]이 지수값과 상관없는 값에만 걸리면 중간자 공격이 성립한다. 공격자는 오가는 지수값을 자기 것으로 바꿔 A와는 키 $K_A$를, B와는 키 $K_B$를 공유하고, 한 키로 복호한 메시지를 다른 키로 다시 암호화해 넘긴다. A와 B는 서로를 받아들이지만, 실제로 키를 나눈 상대는 공격자다.[@diffie-authenticated-key-exchanges-1992]
 
 ![[diagrams/diffie-hellman-man-in-the-middle.svg]]
 
 ## STS 프로토콜
 
-**STS**(Station-to-Station) 프로토콜은 Diffie-Hellman 키 설정 뒤에 인증 서명을 주고받는 프로토콜이다. Diffie, van Oorschot, Wiener는 1992년 논문에서 STS를 자세히 다뤘다. 이른 판은 1987년에 발표했고, 1989년에 지금의 꼴이 됐다. 인증서를 쓰는 STS의 절차는 아래와 같다.[@diffie-authenticated-key-exchanges-1992]
+**STS**(Station-to-Station) 프로토콜은 Diffie-Hellman 키 설정 뒤에 인증 서명을 주고받는 프로토콜이다. Diffie, van Oorschot, Wiener는 1992년 논문에서 STS를 자세히 다뤘다. 이른 판은 1987년에 발표했고, 1989년에 지금의 꼴이 됐다. [[public-key-cryptography#공개키를 믿게 하는 수단|인증서]]를 쓰는 STS의 절차는 아래와 같다.[@diffie-authenticated-key-exchanges-1992]
 
 1. A는 임의의 $x$를 골라 $g^x$를, 자기가 쓰는 Diffie-Hellman 매개변수 $g$, $p$와 함께 B에게 보낸다.
 2. B는 임의의 $y$로 $g^y$를 만들고 공유 키 $K = (g^x)^y$를 계산한다. B는 $g^y$와 자기 인증서, 그리고 $(g^y, g^x)$에 대한 자기 서명을 $K$로 암호화한 것을 보낸다.

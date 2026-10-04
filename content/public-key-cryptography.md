@@ -11,7 +11,7 @@ verified: 2026-10-03
 
 ## 기원
 
-Diffie와 Hellman은 1976년 IEEE Transactions on Information Theory에 낸 논문 "New Directions in Cryptography"에서 공개키 암호 시스템을 제안했다. 같은 논문에서 두 사용자가 공개된 채널로만 값을 주고받아 공유 비밀키를 정하는 공개키 분배 방법도 제안했다.[@diffie-new-directions-1976]
+Diffie와 Hellman은 1976년 IEEE Transactions on Information Theory에 낸 논문 "New Directions in Cryptography"에서 공개키 암호 시스템을 제안했다. 같은 논문에서 두 사용자가 공개된 채널로만 값을 주고받아 공유 비밀키를 정하는 [[diffie-hellman-key-exchange|공개키 분배 방법]]도 제안했다.[@diffie-new-directions-1976]
 
 Rivest, Shamir, Adleman은 1977년 4월 MIT(Massachusetts Institute of Technology) 기술 보고서 MIT/LCS/TM-82로 공개키 암호 방식을 먼저 내고[@rivest-digital-signatures-1977], 1978년 Communications of the ACM에 논문 "A Method for Obtaining Digital Signatures and Public-Key Cryptosystems"로 발표했다. 이 방식의 안전성은 일부, 공개된 법 $n$을 소인수분해하기 어렵다는 데 기댄다. $n$은 큰 두 비밀 소수 $p$와 $q$의 곱이다.[@rivest-digital-signatures-1978] NIST SP 800-175B Rev. 1에 따르면 RSA(Rivest–Shamir–Adleman)는 Rivest, Shamir, Adleman이 만든 것으로 알려진 공개키 알고리즘이다.[@nist-sp-800-175b-r1-2020]
 
@@ -21,7 +21,7 @@ Miller는 CRYPTO '85에서 발표하고 1986년 논문집에 실린 논문 "Use 
 
 - 암호화: 송신자가 수신자의 공개키로 암호화하고, 수신자가 자기 개인키로 복호화한다.
 - [[digital-signature|디지털 서명]]: 서명자가 자기 개인키로 메시지를 변환하고, 누구나 서명자의 공개키로 그 결과를 검증한다. 이 꼴은 암호화와 복호화가 서로의 역인 공개키 암호 시스템을 전제한다.[@diffie-new-directions-1976]
-- 키 설정: NIST SP 800-175B Rev. 1에 따르면 공개키 알고리즘은 키 전송과 키 합의로 키를 설정하는 데 쓰인다. **키 전송**(key transport)은 한쪽이 비밀키 값을 골라 상대에게 안전하게 보내는 것이고, **키 합의**(key agreement)는 두 참여자가 낸 정보로 비밀키 값을 만들어 어느 쪽도 혼자 값을 정하지 못하게 하는 것이다.[@nist-sp-800-175b-r1-2020]
+- [[key-establishment|키 설정]]: NIST SP 800-175B Rev. 1에 따르면 공개키 알고리즘은 키 전송과 키 합의로 키를 설정하는 데 쓰인다. **키 전송**(key transport)은 한쪽이 비밀키 값을 골라 상대에게 안전하게 보내는 것이고, **키 합의**(key agreement)는 두 참여자가 낸 정보로 비밀키 값을 만들어 어느 쪽도 혼자 값을 정하지 못하게 하는 것이다.[@nist-sp-800-175b-r1-2020]
 
 ![[diagrams/symmetric-public-key-encryption.svg]]
 
@@ -42,4 +42,4 @@ NIST SP 800-57 Part 1 Rev. 5는 공개키를 배포할 때, 받는 쪽이 키의
 | 키 길이      | 같은 보안 강도에서 더 짧다.                                                       | 같은 보안 강도에서 더 길다.[@nist-sp-800-175b-r1-2020]                                                                                 |
 | 관리할 키 수 | 사용자 $n$명이 저마다 따로 비밀 통신하려면 짝마다 하나씩 $n(n-1)/2$개가 필요하다. | 사람마다 키 쌍 하나씩 $n$쌍이면 된다.[@diffie-new-directions-1976]                                                                     |
 
-NIST SP 800-57 Part 1 Rev. 5는 128비트 보안 강도에 128비트 키의 [[symmetric-key-cryptography#AES|AES]](Advanced Encryption Standard), 3072비트 RSA, 256~383비트 타원 곡선 암호를 대응시킨다.[@nist-sp-800-57-pt1-r5-2020]
+NIST SP 800-57 Part 1 Rev. 5는 128비트 보안 강도에 128비트 키의 [[symmetric-key-cryptography#AES|AES]], 3072비트 RSA, 256~383비트 타원 곡선 암호를 대응시킨다.[@nist-sp-800-57-pt1-r5-2020]

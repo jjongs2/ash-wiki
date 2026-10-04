@@ -36,7 +36,7 @@
     <rect x="460.75" y="329.75" width="178.5" height="26.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="130" y="70">Threat scenario</text>
+    <text x="130" y="70">위협 시나리오</text>
     <text x="340" y="70">Cybersecurity goal</text>
     <text x="550" y="70">사이버보안 요구사항</text>
 

@@ -16,9 +16,9 @@
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="85" y="63">attack path</text>
-    <text x="265" y="63">threat scenario</text>
-    <text x="460" y="55">asset</text>
-    <text x="460" y="72" font-size="12">cybersecurity property</text>
+    <text x="265" y="63">위협 시나리오</text>
+    <text x="460" y="55">자산</text>
+    <text x="460" y="72" font-size="12">사이버보안 속성</text>
     <text x="655" y="63">damage scenario</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">

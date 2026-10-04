@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**롤백 방지**는 기기에 기록된 버전보다 오래된 버전, 곧 알려진 취약점이 있을 수 있는 이전 버전으로 되돌리는 다운그레이드를 막는 기능이다.[@google-android-verified-boot-2026][@mcuboot-design-2026] 새 이미지가 기능 점검을 통과하지 못할 때 이전 이미지로 돌아가는 [[ab-update|롤백]]과 달리, 롤백 방지는 정해 둔 보안 버전보다 낮은 이미지가 실행되지 않게 한다.[@espressif-esp-idf-ota-2026][@google-avb-readme-2026]
+**롤백 방지**는 기기에 기록된 버전보다 오래된 버전, 곧 알려진 [[vulnerability-management|취약점]]이 있을 수 있는 이전 버전으로 되돌리는 다운그레이드를 막는 기능이다.[@google-android-verified-boot-2026][@mcuboot-design-2026] 새 이미지가 기능 점검을 통과하지 못할 때 이전 이미지로 돌아가는 [[ab-update#확인 대기와 확정|롤백]]과 달리, 롤백 방지는 정해 둔 보안 버전보다 낮은 이미지가 실행되지 않게 한다.[@espressif-esp-idf-ota-2026][@google-avb-readme-2026]
 
 ## 보안 버전과 그 저장
 

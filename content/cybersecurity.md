@@ -19,7 +19,7 @@ Charlie Miller와 Chris Valasek는 2015년 8월 논문에서, 개조하지 않�
 
 ![[diagrams/jeep-cherokee-remote-attack-path.svg]]
 
-Chrysler는 2015년 7월 23일 NHTSA에 리콜 15V-461을 신고했다. 사유는 RA3·RA4 라디오의 소프트웨어 취약점으로 제3자가 일부 차량 제어 시스템에 무단으로 접근할 수 있다는 것이었고, 대상은 2013\~2015년형 Ram, Jeep, Dodge, Chrysler 일부 차종 약 140만 대였다.[@chrysler-15v461-2015] EU 사이버보안 기관 ENISA의 보고서에 따르면 이 리콜은 Miller와 Valasek의 원격 공격 시연에서 비롯했다.[@enisa-smart-cars-2016]
+Chrysler는 2015년 7월 23일 NHTSA에 리콜 15V-461을 신고했다. 사유는 RA3·RA4 라디오의 소프트웨어 [[vulnerability-management|취약점]]으로 제3자가 일부 차량 제어 시스템에 무단으로 접근할 수 있다는 것이었고, 대상은 2013\~2015년형 Ram, Jeep, Dodge, Chrysler 일부 차종 약 140만 대였다.[@chrysler-15v461-2015] EU 사이버보안 기관 ENISA의 보고서에 따르면 이 리콜은 Miller와 Valasek의 원격 공격 시연에서 비롯했다.[@enisa-smart-cars-2016]
 
 Edward Markey 미국 상원의원실은 2015년 2월 보고서 "Tracking & Hacking"에서 16개 제조사의 답변을 분석했다. 보고서는 시판 차량의 거의 100%가 해킹이나 개인정보 침해에 취약할 수 있는 무선 기술을 갖췄고, 차량 전자 장치에 대한 원격 접근을 막는 보안 조치가 제조사마다 일관되지 않다고 지적했다.[@markey-tracking-hacking-2015]
 

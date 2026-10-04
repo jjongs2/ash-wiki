@@ -21,7 +21,7 @@ verified: 2026-10-03
 
 ## 시스템 구성
 
-Uptane 표준 2.1.0은 차량의 버전 정보를 모아 서버에 보내고 자기와 다른 ECU를 위한 이미지를 내려받아 검증하는 ECU를 primary ECU라 한다.[@uptane-standard-2023] [[autosar|AUTOSAR]] R25-11의 Adaptive Platform에서는 기능 클러스터 V-UCM(Vehicle Update and Configuration Management)이 차량 안의 업데이트 캠페인을 조율해, 각 머신의 UCM(Update and Configuration Management)에 소프트웨어 패키지를 보낸다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] 진단으로 플래시하는 ECU를 V-UCM이 업데이트하는 방식은 [[ecu-reprogramming#정비소와 OTA|ECU 재프로그래밍의 정비소와 OTA]]에서 다룬다.
+[[uptane|Uptane]] 표준 2.1.0은 차량의 버전 정보를 모아 서버에 보내고 자기와 다른 ECU를 위한 이미지를 내려받아 검증하는 ECU를 primary ECU라 한다.[@uptane-standard-2023] [[autosar|AUTOSAR]] R25-11의 Adaptive Platform에서는 기능 클러스터 V-UCM(Vehicle Update and Configuration Management)이 차량 안의 업데이트 캠페인을 조율해, 각 머신의 UCM(Update and Configuration Management)에 소프트웨어 패키지를 보낸다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] 진단으로 플래시하는 ECU를 V-UCM이 업데이트하는 방식은 [[ecu-reprogramming#정비소와 OTA|ECU 재프로그래밍의 정비소와 OTA]]에서 다룬다.
 
 NXP 백서에 따르면 OTA 업데이트에서 차량과 제조사 서버 사이의 연결은 보통 텔레매틱스 유닛이 셀룰러 망 위에 맺고, 차량 안 ECU들의 업데이트를 관리하는 OTA 매니저는 [[gateway#중앙 게이트웨이|중앙 게이트웨이]]에 두기 알맞다.[@nxp-making-full-vehicle-ota-updates-reality-2016] AWS(Amazon Web Services) 백서에 따르면 AWS IoT(Internet of Things) Jobs로 차량 소프트웨어를 OTA 업데이트할 때, 차량의 에이전트는 [[mqtt|MQTT]]나 HTTPS(Hypertext Transfer Protocol Secure)로 Jobs 서비스에 접속해 예정된 업데이트가 있는지 확인한다.[@aws-vehicle-communication-mqtt-2024]
 

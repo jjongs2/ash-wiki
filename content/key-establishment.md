@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**키 설정**(key establishment)은 서로 다른 당사자들이 함께 쓰는 비밀 키 재료를 만들어 내는 절차다.[@nist-sp-800-56a-r3-2018] ISO/IEC 11770-3:2021은 키 설정을 하나 이상의 개체가 공유 비밀 키를 쓸 수 있게 하는 과정으로 정의하고, 이 과정에 키 합의와 키 전송이 든다고 한다. 이 표준은 대칭 암호 기법에 쓸 공유 비밀 키를 두 개체 사이에 키 합의나 키 전송으로 설정하는 메커니즘을 정한다.[@iso-iec-11770-3-obp-2021]
+**키 설정**(key establishment)은 서로 다른 당사자들이 함께 쓰는 비밀 키 재료를 만들어 내는 절차다.[@nist-sp-800-56a-r3-2018] ISO/IEC 11770-3:2021은 키 설정을 하나 이상의 개체가 공유 비밀 키를 쓸 수 있게 하는 과정으로 정의하고, 이 과정에 키 합의와 키 전송이 든다고 한다. 이 표준은 [[symmetric-key-cryptography|대칭 암호]] 기법에 쓸 공유 비밀 키를 두 개체 사이에 키 합의나 키 전송으로 설정하는 메커니즘을 정한다.[@iso-iec-11770-3-obp-2021]
 
 ## 키 합의와 키 전송
 
@@ -20,7 +20,7 @@ NIST SP 800-56A Rev. 3은 이산 로그 기반의 키 합의 방식인 [[diffie-
 
 ## 공개키로 감싼 키 전송
 
-SP 800-56B Rev. 2의 KTS-OAEP(Key-Transport Scheme with Optimal Asymmetric Encryption Padding) 방식에서 보내는 쪽은 받는 쪽의 RSA 공개키로 키 재료를 RSA-OAEP 암호화해 보내고, 받는 쪽은 자기 개인키로 복호해 키 재료를 꺼낸다. SP 800-56B Rev. 2에 따르면 받는 쪽의 RSA 개인키가 드러나지 않는 한, 받는 쪽 말고는 누구도 암호문에서 키 재료를 꺼내지 못한다.[@nist-sp-800-56b-r2-2019]
+SP 800-56B Rev. 2의 KTS-OAEP(Key-Transport Scheme with Optimal Asymmetric Encryption Padding) 방식에서 보내는 쪽은 받는 쪽의 RSA [[public-key-cryptography|공개키]]로 키 재료를 RSA-OAEP 암호화해 보내고, 받는 쪽은 자기 개인키로 복호해 키 재료를 꺼낸다. SP 800-56B Rev. 2에 따르면 받는 쪽의 RSA 개인키가 드러나지 않는 한, 받는 쪽 말고는 누구도 암호문에서 키 재료를 꺼내지 못한다.[@nist-sp-800-56b-r2-2019]
 
 ## 정적 키, 임시 키, 세션 키
 

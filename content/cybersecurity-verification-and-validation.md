@@ -39,7 +39,7 @@ SEC.3의 검증 수단에는 명세되지 않은 기능의 확인, 제어 흐름
 
 SEC.3.BP2는 [[regression-testing|회귀]] 검증 기준을 포함한 선택 기준으로 검증 수단을 고르고 그 선택을 문서로 남기게 하며, 고른 수단은 릴리스 범위를 충분히 덮어야 한다. 선택 기준의 예로는 요구사항 우선순위, 지속적 개발, 회귀 검증의 필요, 테스트 벤치나 테스트 트랙, 공공 도로 같은 릴리스의 용도가 있다.[@vda-automotive-spice-cybersecurity-2025]
 
-SEC.4의 확인 수단은 보통 아직 찾지 못한 취약점을 찾는 사이버보안 방법을 쓰며, 침투 테스트가 그 예다.[@vda-automotive-spice-cybersecurity-2025]
+SEC.4의 확인 수단은 보통 아직 찾지 못한 [[vulnerability-management|취약점]]을 찾는 사이버보안 방법을 쓰며, [[penetration-testing|침투 테스트]]가 그 예다.[@vda-automotive-spice-cybersecurity-2025]
 
 두 프로세스 모두 test case를 [[equivalence-partitioning|동치 분할]], [[boundary-value-analysis|경계값 분석]], 지식이나 경험에 기반한 [[error-guessing|오류 추정]]으로 끌어낼 수 있고, SEC.4는 여기에 negative test를 더한다. 기대 결과와 다른 검증·확인 결과는 두 프로세스 모두 SUP.9(Problem Resolution Management)로 처리한다.[@vda-automotive-spice-cybersecurity-2025] SUP.9 자체는 [[defect-management#ASPICE의 SUP.9|결함 관리]]에서 다룬다.
 

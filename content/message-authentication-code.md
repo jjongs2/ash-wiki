@@ -17,7 +17,7 @@ MAC은 대개 비밀키를 나눠 가진 두 쪽 사이에서 쓴다. 송신자�
 
 ## 블록 암호 기반: CMAC
 
-NIST SP 800-38B는 대칭키 [[symmetric-key-cryptography|블록 암호]]에 기반한 MAC 알고리즘인 **CMAC**(Cipher-based Message Authentication Code)을 정하고, 바탕 블록 암호로 [[symmetric-key-cryptography#AES|AES]](Advanced Encryption Standard) 같은 승인된 블록 암호를 쓰게 한다. CMAC의 검증은 받은 메시지에 MAC 생성을 다시 적용해 얻은 값이 받은 MAC과 같은지 보는 것이다.[@nist-sp-800-38b-2016]
+NIST SP 800-38B는 대칭키 [[symmetric-key-cryptography|블록 암호]]에 기반한 MAC 알고리즘인 **CMAC**(Cipher-based Message Authentication Code)을 정하고, 바탕 블록 암호로 [[symmetric-key-cryptography#AES|AES]] 같은 승인된 블록 암호를 쓰게 한다. CMAC의 검증은 받은 메시지에 MAC 생성을 다시 적용해 얻은 값이 받은 MAC과 같은지 보는 것이다.[@nist-sp-800-38b-2016]
 
 ## 해시 기반: HMAC
 
