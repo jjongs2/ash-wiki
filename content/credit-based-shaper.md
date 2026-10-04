@@ -10,7 +10,7 @@ verified: 2026-09-29
 
 **Credit-based shaper**(CBS)는 큐가 내보내는 속도를 그 큐에 예약한 대역폭까지로 제한하는 shaper다.[@microchip-ksz9477s-2019][@st-rm0436-2025] [[ieee-802-1q|IEEE 802.1Q]]가 정하는 알고리즘으로, 브리지와 엔드 스테이션에 쓰인다.[@ieee-802-1q-2022] IEEE 802.1Qav-2009가 CBS를 정했고[@ieee-802-1-tsn-tg-2017], 이 개정은 IEEE 802.1Q-2011에 합쳐졌다.[@ieee-802-1q-2011] 현행판은 IEEE 802.1Q-2022다.[@ieee-802-1q-2022]
 
-IEEE 802.1Qav 프로젝트는 브리지가 시간에 민감한 오디오·비디오 트래픽에 지연과 전달 변동의 상한을 보장하게 하는 것을 목표로 했다.[@ieee-802-1qav-project-2009] IEEE 802.1 작업 그룹의 [[tsn|TSN]] 요약은 CBS를 지연 상한을 위한 도구로 분류한다.[@ieee-802-1-tsn-summary-2026] CBS는 [[avb|AVB]]의 [[avb#SR 클래스|SR(Stream Reservation) 클래스]] 트래픽을 내보내는 데 쓰인다.[@microchip-ksz9477s-2019][@intel-i210-2019]
+IEEE 802.1Qav 프로젝트는 브리지가 시간에 민감한 오디오·비디오 트래픽에 지연과 전달 변동의 상한을 보장하게 하는 것을 목표로 했다.[@ieee-802-1qav-project-2009] IEEE 802.1 작업 그룹의 [[tsn|TSN]] 요약은 CBS를 지연 상한을 위한 도구로 분류한다.[@ieee-802-1-tsn-summary-2026] CBS는 AVB의 [[avb#SR 클래스|SR(Stream Reservation) 클래스]] 트래픽을 내보내는 데 쓰인다.[@microchip-ksz9477s-2019][@intel-i210-2019]
 
 ## Credit
 
