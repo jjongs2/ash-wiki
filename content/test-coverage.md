@@ -13,7 +13,11 @@ CTFL 강의계획서에 따르면 커버리지 항목은 테스트 기법마다 
 
 이 강의계획서에 따르면 [[traceability|추적성]]은 커버리지 평가를 돕는다. 테스트 케이스와 요구사항 사이의 추적성으로 요구사항이 테스트 케이스로 다뤄졌는지 확인할 수 있다.[@istqb-ctfl-syllabus-2024]
 
-ISTQB CT-AuT 강의계획서에 따르면 [[black-box-testing#요구사항 기반 테스트|요구사항 기반 테스트]]의 요구사항 커버리지는 적어도 한 테스트 케이스가 다룬 원자 요구사항의 수를 전체 원자 요구사항의 수로 나눈 비율로 잰다.[@istqb-ct-aut-syllabus-2025]
+ISTQB CT-AuT 강의계획서에 따르면 [[black-box-testing#요구사항 기반 테스트|요구사항 기반 테스트]]의 **요구사항 커버리지** $C_\mathrm{req}$는 적어도 한 테스트 케이스가 다룬 원자 요구사항의 수 $n_\mathrm{covered}$와 전체 원자 요구사항의 수 $n_\mathrm{total}$로 다음과 같이 잰다.[@istqb-ct-aut-syllabus-2025]
+
+$$
+C_\mathrm{req} = \frac{n_\mathrm{covered}}{n_\mathrm{total}}
+$$
 
 ISTQB 용어집은 **구조적 커버리지**(structural coverage)를 구성 요소나 시스템의 내부 구조에 바탕을 둔 커버리지 척도로 정의한다.[@istqb-glossary-structural-coverage-2026]
 
@@ -36,7 +40,7 @@ ISO/IEC/IEEE 24765 용어집은 결정 결과(decision outcome)를 실행할 분
 | MC/DC                                           | 조건/결정 커버리지에 더해, 각 조건이 결정의 결과에 독립적으로 영향을 준다는 것을 보였다.[@nasa-tm-2001-210876-2001]                |
 | 다중 조건 커버리지(multiple condition coverage) | 각 결정 안 조건 값의 모든 조합이 실행되었다.[@nasa-tm-2001-210876-2001][@istqb-glossary-multiple-condition-coverage-2026]          |
 
-llvm-cov의 커버리지 요약에서 함수 커버리지(function coverage)는 적어도 한 번 실행된 함수의 비율이다.[@llvm-source-based-code-coverage-2026]
+llvm-cov의 커버리지 요약에서 **함수 커버리지**(function coverage)는 적어도 한 번 실행된 함수의 비율이다.[@llvm-source-based-code-coverage-2026]
 
 ## 포함 관계
 
@@ -52,7 +56,7 @@ NASA의 MC/DC 튜토리얼에 따르면 조건/결정 커버리지는 결정 커
 
 ISTQB 용어집은 결정 커버리지를 결정 결과의 커버리지로, **분기 커버리지**(branch coverage)를 제어 흐름 그래프의 분기의 커버리지로 따로 정의한다.[@istqb-glossary-decision-coverage-2026][@istqb-glossary-branch-coverage-2026]
 
-NIST SP 500-235에 따르면 분기 커버리지 방식에서는 테스트 중에 모든 결정 결과를 실행해야 한다.[@nist-sp-500-235-1996] ISO/IEC/IEEE 24765 용어집은 분기 테스트를 프로그램의 각 결정 지점의 각 결과를 실행하도록 설계한 테스트로 정의한다.[@ieee-cs-sevocab-2026]
+NIST SP 500-235에 따르면 분기 커버리지 방식에서는 테스트 중에 모든 결정 결과를 실행해야 한다.[@nist-sp-500-235-1996] ISO/IEC/IEEE 24765 용어집은 **분기 테스트**(branch testing)를 프로그램의 각 결정 지점의 각 결과를 실행하도록 설계한 테스트로 정의한다.[@ieee-cs-sevocab-2026]
 
 ## ISO 26262-6
 

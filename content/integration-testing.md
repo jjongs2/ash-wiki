@@ -9,7 +9,7 @@ ISTQB 용어집은 **통합 테스트**(integration testing)를 컴포넌트나 
 
 ## 컴포넌트 통합과 시스템 통합
 
-CTFL 강의계획서에 따르면 **컴포넌트 통합 테스트**(component integration testing)는 컴포넌트 사이의 인터페이스와 상호작용을 시험하는 데 초점을 두며, 상향식, 하향식, 빅뱅 같은 통합 전략에 크게 좌우된다. **시스템 통합 테스트**(system integration testing)는 시험 대상 시스템과 다른 시스템, 외부 서비스 사이의 인터페이스를 시험하는 데 초점을 둔다.[@istqb-ctfl-syllabus-2024] 테스트 기준은 [[v-model#테스트 기준|V 모델]]에서 다룬다.
+CTFL 강의계획서에 따르면 **컴포넌트 통합 테스트**(component integration testing)는 컴포넌트 사이의 인터페이스와 상호작용을 시험하는 데 초점을 두며, 통합 전략에 크게 좌우된다. **시스템 통합 테스트**(system integration testing)는 시험 대상 시스템과 다른 시스템, 외부 서비스 사이의 인터페이스를 시험하는 데 초점을 둔다.[@istqb-ctfl-syllabus-2024] 테스트 기준은 [[v-model#테스트 기준|V 모델]]에서 다룬다.
 
 ## 통합 전략
 

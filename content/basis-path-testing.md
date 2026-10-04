@@ -9,7 +9,7 @@ verified: 2026-10-03
 
 ## 기원
 
-McCabe는 1976년 논문에서 자신이 내놓은 복잡도 척도와 함께 쓰는 테스트 전략을 정의했다. 프로그램이 일정한 최소 수준의 테스트를 받아들이거나, 그러지 못하면 구조를 줄여야 한다는 전략이다.[@mccabe-complexity-measure-icse-1976] McCabe는 1982년 NBS(National Bureau of Standards) SP 500-99에서 순환 복잡도를 쓰는 구조적 테스트(structured testing) 방법론을 펴냈다.[@nbs-sp-500-99-1982] Watson과 McCabe는 1996년 NIST SP 500-235에서 구조적 테스트를 넓히고 고쳐 다시 정리하며, 기본 경로 테스트를 그 다른 이름으로 불렀다.[@nist-sp-500-235-1996]
+McCabe는 1976년 ICSE(International Conference on Software Engineering) 논문에서 자신이 내놓은 복잡도 척도와 함께 쓰는 테스트 전략을 정의했다. 프로그램이 일정한 최소 수준의 테스트를 받아들이거나, 그러지 못하면 구조를 줄여야 한다는 전략이다.[@mccabe-complexity-measure-icse-1976] McCabe는 1982년 NBS(National Bureau of Standards) SP 500-99에서 순환 복잡도를 쓰는 구조적 테스트(structured testing) 방법론을 펴냈다.[@nbs-sp-500-99-1982] Watson과 McCabe는 1996년 NIST SP 500-235에서 구조적 테스트를 넓히고 고쳐 다시 정리하며, 기본 경로 테스트를 그 다른 이름으로 불렀다.[@nist-sp-500-235-1996]
 
 ## 제어 흐름 그래프
 
