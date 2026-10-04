@@ -29,7 +29,7 @@ Liu와 Layland는 1973년 논문에서 아래 다섯 가지를 가정했고, 이
 - 태스크마다 실행 시간이 일정하고, 시간에 따라 바뀌지 않는다.
 - 주기적이지 않은 태스크는 초기화나 고장 복구 루틴 같은 특별한 경우다. 이런 태스크는 실행되는 동안 주기 태스크를 밀어내고, hard 마감 시한이 없다.[@liu-hard-real-time-1973]
 
-Liu와 Layland는 다섯 가정 가운데 요청이 주기적이라는 가정과 실행 시간이 일정하다는 가정이 가장 중요하면서도 가장 방어하기 어렵다고 보았다. 또 [[schedulability-analysis|이용률]]로 스케줄 가능성을 따질 때도, 태스크 사이를 전환하는 실제 비용은 따로 따져야 한다고 했다.[@liu-hard-real-time-1973]
+Liu와 Layland는 다섯 가정 가운데 요청이 주기적이라는 가정과 실행 시간이 일정하다는 가정이 가장 중요하면서도 가장 방어하기 어렵다고 보았다. 또 [[schedulability-analysis#이용률|이용률]]로 스케줄 가능성을 따질 때도, 태스크 사이를 전환하는 실제 비용은 따로 따져야 한다고 했다.[@liu-hard-real-time-1973]
 
 실제 태스크는 다른 태스크와 자원을 함께 쓰기도 한다.[@osek-os-2-2-3-2005][@freertos-resource-management-2026] [[osek-os|OSEK OS]]에서는 [[osek-task|extended 태스크]]가 다른 태스크가 설정하는 [[osek-event|이벤트]]를 기다릴 수 있다.[@osek-os-2-2-3-2005] 실행 시간은 입력 매개변수와 소프트웨어 상태 같은 논리적 맥락에 따라 달라진다.[@autosar-cp-tps-bswmoduledescriptiontemplate-2025]
 

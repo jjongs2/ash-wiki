@@ -31,7 +31,7 @@ port interface는 여섯 종류다.[@autosar-cp-tps-softwarecomponenttemplate-20
 
 connector로 잇는 두 포트는 서로 호환되어야 한다. 한쪽의 P-Port나 PR-Port를 다른 쪽의 호환되는 R-Port나 PR-Port에 잇는다. 같은 port interface로 타입을 정한 포트끼리는 정의상 이을 수 있고, port interface가 달라도 호환되면 이을 수 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
-포트는 [[autosar-sender-receiver-interface|com spec]]으로 port interface의 요소마다 통신 속성을 덧붙인다. 요구하는 포트는 RPortComSpec을, 제공하는 포트는 PPortComSpec을 둔다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+포트는 [[autosar-sender-receiver-interface#Com spec|com spec]]으로 port interface의 요소마다 통신 속성을 덧붙인다. 요구하는 포트는 RPortComSpec을, 제공하는 포트는 PPortComSpec을 둔다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ## Connector
 

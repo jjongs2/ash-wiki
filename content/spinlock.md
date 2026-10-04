@@ -32,7 +32,7 @@ POSIX 근거 설명에 따르면 스핀락은 주로 공유 메모리 다중 프
 
 `CONFIG_SMP` 없이 `CONFIG_PREEMPT`로 빌드한 Linux 커널에서 스핀락은 선점을 끄는 일만 하고, 둘 다 없이 빌드하면 스핀락은 아예 없다.[@linux-locking-guide-2026]
 
-AUTOSAR R25-11 OS 명세는 태스크가 스핀락을 쥔 동안 스케줄링을 제한하도록 정하고, 스핀락을 `SuspendAllInterrupts`로 감싸는 일을 운영체제가 대신하는 설정 `OsSpinlockLockMethod`를 둔다. 또 서로 다른 코어의 태스크 사이 상호 배제를 위해 스핀락을 두고, 같은 코어의 태스크나 [[osek-isr|category 2 ISR]]이 이미 쥔 스핀락을 잡으려 하면 오류를 내도록 정한다. 같은 코어의 높은 우선순위 태스크가 그 락에서 돌면 교착 상태가 되기 때문이다.[@autosar-cp-sws-os-2025]
+AUTOSAR R25-11 OS 명세는 태스크가 스핀락을 쥔 동안 스케줄링을 제한하도록 정하고, 스핀락을 `SuspendAllInterrupts`로 감싸는 일을 운영체제가 대신하는 설정 `OsSpinlockLockMethod`를 둔다. 또 서로 다른 코어의 태스크 사이 상호 배제를 위해 스핀락을 두고, 같은 코어의 태스크나 [[osek-isr#Category 2|category 2 ISR]]이 이미 쥔 스핀락을 잡으려 하면 오류를 내도록 정한다. 같은 코어의 높은 우선순위 태스크가 그 락에서 돌면 교착 상태가 되기 때문이다.[@autosar-cp-sws-os-2025]
 
 ## 뮤텍스와의 차이
 
