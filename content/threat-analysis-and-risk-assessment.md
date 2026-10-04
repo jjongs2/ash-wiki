@@ -35,7 +35,7 @@ ISO/SAE 21434:2021은 15절의 TARA 방법을 15.3절부터 15.9절까지 일곱
 
 Automotive SPICE for Cybersecurity 2.0의 MAN.7 Cybersecurity Risk Management는 관련 이해관계자에게 미칠 피해의 리스크를 정기적으로 찾고, 분석하고, 우선순위를 매기고, 감시하는 것을 목적으로 둔다. 성과는 다섯이다.[@vda-automotive-spice-cybersecurity-2025]
 
-1. 아이템을 그 기능과 경계까지 정의한다.
+1. [[cybersecurity-lifecycle#아이템과 운용 환경|아이템]]을 그 기능과 경계까지 정의한다.
 2. 관련 자산, 위협, damage scenario를 찾고 정기적으로 갱신한다.
 3. 처리 우선순위를 정할 수 있게 impact rating과 attack feasibility rating으로 리스크를 분석한다.
 4. 리스크의 상태와 처리 활동의 진척을 파악한다.

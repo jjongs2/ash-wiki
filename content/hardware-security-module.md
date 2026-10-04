@@ -21,13 +21,13 @@ verified: 2026-10-03
 
 **SHE**(Secure Hardware Extension)는 HIS가 정한 온칩 보안 확장으로, 키 저장 영역과 AES [[symmetric-key-cryptography|블록 암호]]를 두고 모든 암호 연산을 AES-128로 처리한다.[@autosar-fo-tr-securehardwareextensions-2025]
 
-AUTOSAR R25-11의 [[autosar-layered-architecture|Layered Software Architecture]]는 SHE나 HSM 같은 온칩 암호 장치를 [[microcontroller-abstraction-layer|MCAL]]의 Crypto Driver가 다루게 한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+[[autosar|AUTOSAR]] R25-11의 [[autosar-layered-architecture|Layered Software Architecture]]는 SHE나 HSM 같은 온칩 암호 장치를 [[microcontroller-abstraction-layer|MCAL]]의 Crypto Driver가 다루게 한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## EVITA의 HSM 등급
 
 EVITA(E-safety Vehicle Intrusion proTected Applications)는 유럽 공동체 제7차 연구 프레임워크 프로그램의 공동 프로젝트로, 2008년 7월부터 2011년 12월까지 차량 온보드 네트워크의 보안 구조를 설계했다. EVITA는 충분한 처리량과 공격 저항성을 얻으려고 [[secure-boot#Root of trust|신뢰의 뿌리]]를 HSM에 두고, 서로 다른 비용 제약과 보안 요구에 맞춰 HSM을 세 등급으로 정했다.[@evita-d0-2012]
 
-- Full HSM: V2X(Vehicle-to-X) 통신 장치나 중앙 게이트웨이처럼 차량 밖과 통신하는 자리를 위한 등급이다. 타원 곡선 암호와 해시를 하드웨어로 가속해 V2X 메시지의 [[digital-signature|서명]]을 빠르게 만들고 검증한다.[@evita-d1-2-5-2-2011]
+- Full HSM: V2X(Vehicle-to-X) 통신 장치나 [[gateway#중앙 게이트웨이|중앙 게이트웨이]]처럼 차량 밖과 통신하는 자리를 위한 등급이다. 타원 곡선 암호와 해시를 하드웨어로 가속해 V2X 메시지의 [[digital-signature|서명]]을 빠르게 만들고 검증한다.[@evita-d1-2-5-2-2011]
 - Medium HSM: 차량 안 통신을 지키는 등급이다. 대칭키 암호 엔진은 하드웨어로 두지만 비대칭 암호 엔진은 두지 않고, 시간이 급하지 않은 비대칭 연산은 소프트웨어로 처리한다.
 - Light HSM: ECU와 센서·액추에이터 사이의 통신을 지키는 등급이다. 센서와 액추에이터의 빠듯한 비용·효율 요구에 맞춰, 암호 엔진으로는 대칭키 암호 엔진만 둔다.[@evita-d0-2012]
 

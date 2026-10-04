@@ -46,4 +46,4 @@ ISO/SAE 21434:2021은 도로 차량의 E/E(Electrical/Electronic) 시스템과 �
 
 ## ISO 26262와의 관계
 
-[[iso-26262|ISO 26262]]:2018은 [[functional-safety|기능 안전]]을, ISO/SAE 21434:2021은 사이버보안을 다루며, 두 표준은 서로 보완한다.[@iso-sae-21434-2021] ISO/SAE 21434:2021은 인용 규격으로 ISO 26262-3:2018 하나를 두고, 아이템(item)과 [[cybersecurity-management-system#감사|감사]](audit)의 정의를 ISO 26262-1:2018의 정의를 고쳐 가져온다.[@iso-sae-21434-obp-2021]
+[[iso-26262|ISO 26262]]:2018은 [[functional-safety|기능 안전]]을, ISO/SAE 21434:2021은 사이버보안을 다루며, 두 표준은 서로 보완한다.[@iso-sae-21434-2021] ISO/SAE 21434:2021은 인용 규격으로 ISO 26262-3:2018 하나를 두고, [[cybersecurity-lifecycle#아이템과 운용 환경|아이템]](item)과 [[cybersecurity-management-system#감사|감사]](audit)의 정의를 ISO 26262-1:2018의 정의를 고쳐 가져온다.[@iso-sae-21434-obp-2021]

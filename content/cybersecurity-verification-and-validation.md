@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-[[iso-sae-21434|ISO/SAE 21434]]:2021은 **검증**(verification)을 명시된 요구사항이 충족되었음을 객관적 증거로 확인하는 것으로, **확인**(validation)을 아이템의 [[cybersecurity-goal|cybersecurity goal]]이 적절하고 이루어졌음을 객관적 증거로 확인하는 것으로 정의한다. 두 정의에서 검증은 요구사항을, 확인은 goal을 기준으로 삼는다.[@iso-sae-21434-obp-2021] 일반적인 V&V는 [[verification-and-validation|검증과 확인]]에서 다룬다.
+[[iso-sae-21434|ISO/SAE 21434]]:2021은 **검증**(verification)을 명시된 요구사항이 충족되었음을 객관적 증거로 확인하는 것으로, **확인**(validation)을 [[cybersecurity-lifecycle#아이템과 운용 환경|아이템]]의 [[cybersecurity-goal|cybersecurity goal]]이 적절하고 이루어졌음을 객관적 증거로 확인하는 것으로 정의한다. 두 정의에서 검증은 요구사항을, 확인은 goal을 기준으로 삼는다.[@iso-sae-21434-obp-2021] 일반적인 V&V는 [[verification-and-validation|검증과 확인]]에서 다룬다.
 
 ## ISO/SAE 21434의 검증과 확인
 
