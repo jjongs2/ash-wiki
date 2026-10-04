@@ -177,6 +177,17 @@ function isWafChallenge(response: Response): boolean {
   return response.status === 202 && response.headers.get("x-amzn-waf-action") === "challenge"
 }
 
+// 도구가 보내는 모든 HTTP 요청. Node fetch의 기본 User-Agent(node)만 막는 호스트가 있어, 도구를 밝히는 User-Agent를 붙인다.
+// 값은 docs/wiki-verification.md의 출처 상태 절에 적는다. 값을 바꾸면 인용한 URL 전체의 판정을 바꾸기 전과 견준다.
+const userAgent = "Mozilla/5.0 (compatible; source-status/1.0)"
+function request(url: string, init: RequestInit = {}): Promise<Response> {
+  return fetch(url, {
+    ...init,
+    headers: { "user-agent": userAgent },
+    signal: AbortSignal.timeout(timeoutMs),
+  })
+}
+
 // 제한 시간 안에 답이 없으면 한 번 더 묻는다.
 async function probe(url: string): Promise<Outcome> {
   const outcome = await ask(url)
@@ -198,10 +209,10 @@ async function ask(url: string, followAia = true): Promise<Outcome> {
   // 인증서 오류가 났을 때 어느 요청의 리다이렉트를 다시 따라갈지 가린다.
   let method = "HEAD"
   try {
-    const head = await fetch(url, { method, signal: AbortSignal.timeout(timeoutMs) })
+    const head = await request(url, { method })
     if (head.ok && !isWafChallenge(head)) return { kind: "alive" }
     method = "GET"
-    const get = await fetch(url, { method, signal: AbortSignal.timeout(timeoutMs) })
+    const get = await request(url, { method })
     await get.body?.cancel()
     if (isWafChallenge(get))
       return { kind: "dead", reason: "HTTP 202 WAF 챌린지", botBlocked: true }
@@ -232,11 +243,7 @@ async function certErrorAt(url: string, method: string): Promise<string | undefi
   let current = url
   for (let redirects = 0; ; redirects++) {
     try {
-      const response = await fetch(current, {
-        method,
-        redirect: "manual",
-        signal: AbortSignal.timeout(timeoutMs),
-      })
+      const response = await request(current, { method, redirect: "manual" })
       await response.body?.cancel()
       const location = response.headers.get("location")
       if (response.status < 300 || response.status >= 400 || location === null) return undefined
@@ -271,7 +278,7 @@ async function trustIssuer(url: string): Promise<boolean> {
   })
   for (const issuer of leaf?.infoAccess?.["CA Issuers - URI"] ?? []) {
     try {
-      const response = await fetch(issuer, { signal: AbortSignal.timeout(timeoutMs) })
+      const response = await request(issuer)
       if (!response.ok) continue
       const pem = new X509Certificate(Buffer.from(await response.arrayBuffer())).toString()
       const current = tls.getCACertificates("default")

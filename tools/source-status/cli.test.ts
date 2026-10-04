@@ -18,6 +18,8 @@ import { repoRoot } from "../repo"
 // 루트는 NODE_EXTRA_CA_CERTS로 CLI가 신뢰하게 하고, 중간 인증서는 로컬 HTTP 서버가 DER로 준다.
 const here = path.dirname(fileURLToPath(import.meta.url))
 const today = "2026-09-25"
+// 도구가 보내는 User-Agent. docs/wiki-verification.md의 출처 상태 절에 적은 값이다.
+const userAgent = "Mozilla/5.0 (compatible; source-status/1.0)"
 
 let server: http.Server
 let base: string
@@ -45,6 +47,10 @@ before(async () => {
       res.writeHead(301, { location: secure.get(req.url.slice("/to/".length)) })
     // HEAD를 받지 않는 서버
     else if (req.url === "/no-head") res.statusCode = req.method === "HEAD" ? 405 : 200
+    // User-Agent로 거르는 서버: 도구의 User-Agent가 아니면 막는다. HEAD는 받지 않아 GET에도 User-Agent가 붙어야 열린다.
+    else if (req.url === "/agent-gated")
+      res.statusCode =
+        req.headers["user-agent"] !== userAgent ? 403 : req.method === "HEAD" ? 405 : 200
     // 봇 차단: 메서드와 헤더에 상관없이 막는다
     else if (req.url === "/blocked") res.statusCode = 403
     // AWS WAF 챌린지: 메서드와 헤더에 상관없이 본문 없는 202를 돌려준다
@@ -306,6 +312,13 @@ describe("source-status CLI", () => {
       "bib/iso-11898-1-2024.bib:3",
       "bib/onsemi-ncv7340-2024.bib:3",
     ])
+    assert.strictEqual(report.exitCode, 0)
+  })
+
+  test("도구의 User-Agent에만 답하는 URL은 HEAD와 GET에 그 User-Agent를 보내 OK다", async () => {
+    const root = citingTree({ "org-agent-gated-2024": `${base}/agent-gated` })
+    const report = await runStatus(root)
+    assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
     assert.strictEqual(report.exitCode, 0)
   })
 
