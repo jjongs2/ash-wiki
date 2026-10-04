@@ -17,7 +17,7 @@ V의 가장 아래 단계에서는 유닛을 구현한다.[@weit-v-modell-xt-2-4
 
 ISTQB 용어집은 **테스트 기준**(test basis)을 테스트 분석과 테스트 설계의 바탕이 되는 지식의 총체로 정의한다.[@istqb-glossary-test-basis-2026] V 모델에서는 오른쪽 단계의 검증을 같은 수평 단계에 있는 왼쪽 단계의 산출물, 곧 요구사항, 아키텍처, 설계를 바탕으로 명세한다.[@weit-v-modell-xt-2-4-2024][@vda-automotive-spice-pam-4-1-2026] [[automotive-spice|ASPICE]] 4.1은 시스템 통합과 소프트웨어 통합의 검증 조치를 각각 시스템 아키텍처와 [[software-architecture|소프트웨어 아키텍처]]의 정적·동적 측면에 맞춰 정하게 한다.[@vda-automotive-spice-pam-4-1-2026]
 
-ISTQB CTFL 강의계획서 2018 V3.1은 [[software-testing#테스트 레벨|테스트 레벨]]마다 테스트 기준으로 쓸 수 있는 산출물의 예로, [[acceptance-testing|인수 테스트]]에는 사용자·비즈니스 요구사항을, [[system-testing|시스템 테스트]]에는 시스템·[[software-requirements-specification|소프트웨어 요구사항 명세]]를, [[integration-testing|통합 테스트]]에는 소프트웨어·시스템 설계와 아키텍처를, [[unit-testing|컴포넌트 테스트]]에는 상세 설계를 들었다.[@istqb-ctfl-syllabus-2019] v4.0.1은 테스트 기준을 테스트 레벨을 가르는 속성의 하나로 들 뿐, 레벨마다의 예는 들지 않는다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL 강의계획서 2018 V3.1은 [[software-testing#테스트 레벨|테스트 레벨]]마다 테스트 기준으로 쓸 수 있는 산출물의 예로, [[acceptance-testing|인수 테스트]]에는 사용자·비즈니스 요구사항을, [[system-testing|시스템 테스트]]에는 시스템·[[software-requirements-specification|소프트웨어 요구사항 명세]]를, [[integration-testing|통합 테스트]]에는 소프트웨어·시스템 설계와 아키텍처를, [[unit-testing#컴포넌트 테스트|컴포넌트 테스트]]에는 상세 설계를 들었다.[@istqb-ctfl-syllabus-2019] v4.0.1은 테스트 기준을 테스트 레벨을 가르는 속성의 하나로 들 뿐, 레벨마다의 예는 들지 않는다.[@istqb-ctfl-syllabus-2024]
 
 ## 테스트 프로세스
 

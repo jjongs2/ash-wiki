@@ -39,7 +39,7 @@
     <rect x="528" y="170" width="100" height="44" rx="4" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="215" y="187">Automotive SPICE</text>
+    <text x="215" y="187">ASPICE</text>
     <text x="215" y="203">참조 모델 4.5판(2010)</text>
     <text x="418" y="187">ISO/IEC</text>
     <text x="418" y="203">15504-5:2012</text>

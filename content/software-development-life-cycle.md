@@ -41,4 +41,4 @@ SWEBOK V4.0a에 따르면 prototyping은 대개 미완성이거나 기능을 최
 
 - [[waterfall-model|폭포수 모델]]: 개념, 요구, 설계, 구현, 테스트, 설치·점검 단계를 이 순서로 수행하고, 단계끼리 겹칠 수는 있지만 반복은 거의 없는 모델.[@iso-iec-ieee-24765-obp-2017]
 - [[spiral-model|나선형 모델]]: 주기를 거듭하며 소프트웨어를 만들고, 주기마다 대안의 위험을 평가한 뒤 남은 위험의 상대적 크기로 다음 단계를 정하는 위험 주도 모델.[@boehm-spiral-model-1986]
-- [[v-model|V 모델]]: ISTQB 용어집은 주요 개발 단계를 [[acceptance-testing|인수 테스트]]부터 [[unit-testing|컴포넌트 테스트]]까지의 [[software-testing#테스트 레벨|테스트 레벨]]과 하나씩 짝짓는 순차 생명주기 모델로 분류한다.[@istqb-glossary-v-model-2026]
+- [[v-model|V 모델]]: ISTQB 용어집은 주요 개발 단계를 [[acceptance-testing|인수 테스트]]부터 [[unit-testing#컴포넌트 테스트|컴포넌트 테스트]]까지의 [[software-testing#테스트 레벨|테스트 레벨]]과 하나씩 짝짓는 순차 생명주기 모델로 분류한다.[@istqb-glossary-v-model-2026]
