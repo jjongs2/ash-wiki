@@ -8,7 +8,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**소프트웨어 인스펙션**(software inspection)은 정해진 팀 역할과 측정을 써서 작업 산출물의 결함을 찾는 공식 리뷰다. ISTQB 용어집은 인스펙션을 이런 방법으로 작업 산출물의 결함을 찾고, 리뷰 프로세스와 개발 프로세스를 개선하는 공식 리뷰로 정의한다.[@istqb-glossary-inspection-2026] ISO/IEC/IEEE 24765 용어집은 인스펙션을 개발 산출물을 눈으로 살펴 오류, 개발 표준 위반 같은 문제를 찾는 [[static-analysis|정적 분석]] 기법으로 정의한다.[@ieee-cs-sevocab-2026]
+**소프트웨어 인스펙션**(software inspection)은 정해진 팀 역할과 측정을 써서 작업 산출물의 결함을 찾는 공식 리뷰다. ISTQB 용어집은 인스펙션을 이런 방법으로 작업 산출물의 결함을 찾고, 리뷰 프로세스와 개발 프로세스를 개선하는 공식 리뷰로 정의한다.[@istqb-glossary-inspection-2026] ISO/IEC/IEEE 24765 용어집은 인스펙션을 개발 산출물을 눈으로 살펴 오류, 개발 표준 위반 같은 문제를 찾는 [[static-analysis|정적 분석]] 기법으로 정의한다.[@ieee-cs-sevocab-2026] [[ieee-1028|IEEE 1028-2008]]은 인스펙션의 목적을 소프트웨어 산출물의 이상(anomaly)을 찾아 밝히는 것으로 둔다.[@ieee-swebok-v3-2014]
 
 인스펙션은 [[software-review|소프트웨어 리뷰]]의 한 유형이다.[@istqb-glossary-inspection-2026]
 

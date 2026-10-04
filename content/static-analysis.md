@@ -23,6 +23,8 @@ ISTQB CTFL 강의계획서에 따르면 정적 분석에는 흔히 도구를 쓴
 - **False positive**: 실제로는 없는 결함을 결함으로 보고한 결과
 - **False negative**: 실제로 있는 결함을 찾아내지 못한 결과[@istqb-glossary-false-positive-result-2026][@istqb-glossary-false-negative-result-2026]
 
+NIST의 OSAC(Organization of Scientific Area Committees for Forensic Science) 용어집에 따르면 통계적 가설 검정에서 참인 귀무가설을 기각하는 1종 오류(type I error)를 false positive라고도 하고, 거짓인 귀무가설을 받아들이는 2종 오류(type II error)를 false negative라고도 한다.[@nist-osac-type-i-error-2026][@nist-osac-type-ii-error-2026]
+
 ISO/IEC/IEEE 24765 용어집은 검증 도구의 false positive가 분석 규칙의 정밀도가 모자라서 생길 수 있다고 둔다.[@ieee-cs-sevocab-2026] Coverity 논문에 따르면 Coverity의 정적 분석 제품을 쓰는 곳에서 false positive가 30%를 넘으면 사람들이 도구를 무시했고, 진짜 버그가 오탐 속에 묻혔다.[@coverity-few-billion-lines-2010]
 
 ## 건전성과 abstract interpretation
@@ -39,7 +41,9 @@ Cousot와 Cousot는 1977년 논문에서 abstract interpretation을 형식적으
 
 ISO/IEC/IEEE 24765 용어집은 **호출 그래프**(call graph)를, 시스템이나 프로그램의 모듈들을 보이고 어느 모듈이 어느 모듈을 부르는지 나타내는 그림으로 정의한다.[@ieee-cs-sevocab-2026]
 
-Sangal, Jordan, Sinha, Jackson은 2005년 논문에서 DSM(Dependency Structure Matrix)으로 소프트웨어 아키텍처의 모듈 간 의존을 관리하는 방법을 내놓고, 이를 LDM이라는 도구로 구현했다. 이 방법은 정적 분석으로 코드에서 모듈 사이의 의존을 뽑는다. 의존은 한 모듈이 다른 모듈의 구문 요소를 명시적으로 참조하는 것이다. 어떤 의존을 허용하는지 design rule로 적어 두고, 시스템이 바뀔 때마다 다시 적용해 위반을 찾는다.[@sangal-dependency-models-2005]
+DSM(Design Structure Matrix)은 Dependency Structure Matrix라고도 부른다.[@browning-dsm-survey-2016]
+
+Sangal, Jordan, Sinha, Jackson은 2005년 논문에서 DSM으로 소프트웨어 아키텍처의 모듈 간 의존을 관리하는 방법을 내놓고, 이를 LDM이라는 도구로 구현했다. 이 방법은 정적 분석으로 코드에서 모듈 사이의 의존을 뽑는다. 의존은 한 모듈이 다른 모듈의 구문 요소를 명시적으로 참조하는 것이다. 어떤 의존을 허용하는지 design rule로 적어 두고, 시스템이 바뀔 때마다 다시 적용해 위반을 찾는다.[@sangal-dependency-models-2005]
 
 - DSM: Sangal 외의 DSM은 모듈을 가로축과 세로축에 같은 순서로 놓은 인접 행렬이다. $i$번째 모듈이 $j$번째 모듈에 의존하면 $i$열 $j$행에 표시하고, 대각선은 비운다.
 - 계층 위반: 아래 계층이 위 계층을 쓰지 못한다(cannot-use)는 design rule을 두면, 그 규칙이 걸린 칸에 있는 의존이 계층 위반으로 드러난다.
@@ -49,4 +53,4 @@ Sangal, Jordan, Sinha, Jackson은 2005년 논문에서 DSM(Dependency Structure 
 
 ## 개발 흐름 안의 자리
 
-ISTQB CTFL 강의계획서에 따르면 정적 분석은 흔히 CI 체계에 넣어 돌린다. 이 강의계획서는 테스트를 일찍 하면 결함이 뒤 산출물로 번지지 않아 시간과 비용을 아낀다고 보고, 동적 테스트 전에 또는 자동화된 프로세스 안에서 소스 코드의 정적 분석을 마치는 것을 shift left 관행으로 든다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL 강의계획서에 따르면 정적 분석은 흔히 [[continuous-integration|CI]] 체계에 넣어 돌린다. 이 강의계획서는 테스트를 일찍 하면 결함이 뒤 산출물로 번지지 않아 시간과 비용을 아낀다고 보고, 동적 테스트 전에 또는 자동화된 프로세스 안에서 소스 코드의 정적 분석을 마치는 것을 shift left 관행으로 든다.[@istqb-ctfl-syllabus-2024]
