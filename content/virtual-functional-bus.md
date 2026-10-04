@@ -39,6 +39,6 @@ SW-C를 ECU에 매핑하는 것은 [[autosar-methodology#System description|Syst
 
 시스템을 만드는 과정에서는 SW-C를 ECU에 매핑한 뒤, SW-C 사이에 오가는 data element를 버스 프레임에 매핑한다. data mapping은 SW-C 포트의 data element나 client-server operation을 system signal에 매핑한다.[@autosar-cp-tps-systemtemplate-2025]
 
-RTE는 특정 ECU에서 VFB의 인터페이스를 실현한 것이며, VFB 개념은 RTE가 [[autosar-os|운영체제]]와 통신 모듈 같은 BSW 모듈과 함께 구현한다. RTE는 ECU 인스턴스마다 따로 구성되고 생성된다.[@autosar-cp-sws-rte-2025] ECU 하나의 소프트웨어를 컴파일하고 링크한 뒤에는 VFB의 인터페이스를 RTE가 실현한다.[@autosar-fo-tr-glossary-2025]
+VFB 개념은 ECU마다 생성되는 RTE가 [[autosar-os|운영체제]]와 통신 모듈 같은 BSW 모듈과 함께 구현한다.[@autosar-cp-sws-rte-2025]
 
 배치가 끝나면 ECU마다 System Description에서 그 ECU의 몫만 담은 [[autosar-methodology#ECU extract|ECU Extract]]를 만들어, ECU 구성의 바탕으로 쓴다.[@autosar-cp-tps-systemtemplate-2025]

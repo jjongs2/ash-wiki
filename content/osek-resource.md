@@ -38,4 +38,4 @@ OSEK/VDX OS 2.2.3 명세는 스케줄러를 모든 태스크가 쓸 수 있는 r
 
 OSEK/VDX OS 2.2.3 명세는 사용자에게 보이지 않아 `GetResource`와 `ReleaseResource`로 다룰 수 없는 resource를 **internal resource**로 정의하고, 그 밖의 동작(우선순위 상한 프로토콜 등)은 일반 resource와 같게 둔다. 또 internal resource를 태스크에만 쓰게 하고, 시스템 생성 때 태스크 하나에 많아야 하나를 배정하게 한다.[@osek-os-2-2-3-2005] OIL은 `RESOURCEPROPERTY` 값으로 `STANDARD`, `LINKED`, `INTERNAL`을 두고, `INTERNAL`을 애플리케이션이 접근할 수 없는 internal resource로 정한다.[@osek-oil-2-5-2004]
 
-명세에 따라 운영체제는 태스크가 실행을 시작할 때 internal resource를 그 태스크에 쥐여 주고, 태스크가 재스케줄링 지점에 이르면 거둬들인다. 재스케줄링 지점은 `TerminateTask`, `ChainTask`, `Schedule`을 부를 때와 `WaitEvent`로 waiting 상태가 될 때다. 태스크가 선점될 때는 풀리지 않는다. 그래서 같은 internal resource를 배정받은 태스크 묶음은 묶음 안에서 비선점 태스크처럼 동작한다. 재스케줄링은 재스케줄링 지점에서만 일어나고, 묶음의 가장 높은 우선순위보다 높은 태스크에는 선점된다. 이를 써서 태스크 묶음 안의 원치 않는 재스케줄링을 막을 수 있다.[@osek-os-2-2-3-2005]
+명세에 따라 운영체제는 태스크가 실행을 시작할 때 internal resource를 그 태스크에 쥐여 주고, 태스크가 [[osek-task#우선순위와 스케줄링|재스케줄링 지점]]에 이르면 거둬들인다. 태스크가 선점될 때는 풀리지 않는다. 그래서 같은 internal resource를 배정받은 태스크 묶음은 묶음 안에서 비선점 태스크처럼 동작한다. 재스케줄링은 재스케줄링 지점에서만 일어나고, 묶음의 가장 높은 우선순위보다 높은 태스크에는 선점된다. 이를 써서 태스크 묶음 안의 원치 않는 재스케줄링을 막을 수 있다.[@osek-os-2-2-3-2005]

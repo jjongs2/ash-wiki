@@ -39,4 +39,4 @@ $$
 
 FAA 보고서 DOT/FAA/TC-19/22에 따르면 [[real-time-scheduling|실시간 스케줄링]] 알고리즘은 태스크가 명시된 [[worst-case-execution-time|WCET]]보다 오래 실행되지 않는다는 가정 아래 수학적으로 증명된다.[@faa-tc-19-22-2019]
 
-태스크가 서로 독립이고 선점할 수 있으면 응답 시간 분석은 필요충분조건 검사다.[@joseph-response-times-1986][@audsley-flexible-scheduling-1993] 그래서 RM의 [[rate-monotonic-scheduling#이용률 상한|이용률 상한]] 같은 충분조건 검사가 판정하지 못하는 태스크 집합도 판정한다.[@joseph-response-times-1986][@liu-hard-real-time-1973] 검사의 종류는 [[schedulability-analysis|스케줄링 분석]]에서 다룬다.
+태스크가 서로 독립이고 선점할 수 있으면 응답 시간 분석은 필요충분조건 검사이며, 우선순위를 어떻게 정했든 적용된다.[@joseph-response-times-1986][@audsley-flexible-scheduling-1993] 그래서 RM의 [[rate-monotonic-scheduling#이용률 상한|이용률 상한]] 같은 충분조건 검사가 판정하지 못하는 태스크 집합도 판정한다.[@joseph-response-times-1986][@liu-hard-real-time-1973] 검사의 종류는 [[schedulability-analysis|스케줄링 분석]]에서 다룬다.

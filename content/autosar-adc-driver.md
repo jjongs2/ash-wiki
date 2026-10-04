@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## Hardware unit과 channel group
 
-**ADC hardware unit**은 AD 변환에 필요한 부분을 모두 담은 마이크로컨트롤러의 입력 장치이고, 마이크로컨트롤러 하나에 여럿 있을 수 있다. ADC Driver는 변환을 ADC channel group 단위로 다루며, 그룹 전체가 트리거 소스 하나로 변환된다.[@autosar-cp-sws-adcdriver-2025]
+**ADC hardware unit**은 AD 변환에 필요한 부분을 모두 담은 마이크로컨트롤러의 입력 장치이고, 마이크로컨트롤러 하나에 여럿 있을 수 있다. **ADC channel group**은 같은 ADC hardware unit에 연결된 ADC channel의 묶음이다. ADC Driver는 변환을 이 그룹 단위로 다루며, 그룹 전체가 트리거 소스 하나로 변환된다.[@autosar-cp-sws-adcdriver-2025]
 
 ## 트리거
 

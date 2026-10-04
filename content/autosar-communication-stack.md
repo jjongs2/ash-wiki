@@ -10,7 +10,7 @@ verified: 2026-09-30
 ## 층
 
 - **Communication Drivers**: [[microcontroller-abstraction-layer|MCAL]]에 속하며, ECU 안의 통신(SPI(Serial Peripheral Interface) 등)과 차량 통신([[can|CAN]] 등)의 드라이버를 담는다. SPI Handler Driver, [[lin|LIN]] Driver, CAN Driver, [[flexray|FlexRay]] Driver, [[ethernet|Ethernet]] Driver가 여기에 든다.
-- **Communication Hardware Abstraction**: [[ecu-abstraction-layer|ECU Abstraction Layer]]에 속하며, 통신 컨트롤러가 칩 안에 있든 보드 위에 있든 같은 방식으로 버스 채널에 접근하게 한다. 통신 시스템마다 따로 두며, 구현은 마이크로컨트롤러에서 독립적이고 ECU 하드웨어와 외부 장치에 의존한다.
+- **Communication Hardware Abstraction**: [[ecu-abstraction-layer|ECU Abstraction Layer]]에 속하며, 통신 컨트롤러가 칩 안에 있든 보드 위에 있든 같은 방식으로 버스 채널에 접근하게 한다. 통신 시스템마다 따로 두며, 구현은 마이크로컨트롤러에서 독립적이고 ECU 하드웨어와 외부 장치에 의존한다. CAN Interface, CAN Transceiver Driver, Ethernet Interface 같은 모듈이 여기에 든다.
 - **Communication Services**: Services Layer에 속하며, 차량 네트워크에 한결같은 통신 인터페이스, 네트워크 관리 서비스, 진단 통신 인터페이스를 준다. 구현은 마이크로컨트롤러와 ECU 하드웨어에서 독립적이고 버스 종류에 일부 의존한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 AUTOSAR COM, Generic [[autosar-network-management|NM]] Interface, Dcm(Diagnostic Communication Manager)은 버스 종류가 달라도 같은 모듈을 쓰고, ECU 하나에 하나씩만 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
@@ -25,14 +25,14 @@ AUTOSAR는 데이터 단위 PDU(Protocol Data Unit)에 층마다 접두어를 �
 
 ## 버스별 스택
 
-State Manager, NM, 전송 프로토콜은 버스마다 따로 두는 모듈이고, 통신 드라이버에는 버스마다 둔 인터페이스를 거쳐 접근한다. 버스마다 스택을 이루는 모듈은 다음과 같다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+State Manager, NM, 전송 프로토콜은 버스마다 따로 두는 모듈이고, 통신 드라이버에는 버스마다 둔 인터페이스를 거쳐 접근한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] 버스마다 스택을 이루는 모듈은 다음과 같다.
 
-| 버스    | State Manager          | NM              | 전송 프로토콜                                                               | 그 밖의 모듈                                               |
-| ------- | ---------------------- | --------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| CAN     | CAN State Manager      | CAN NM          | CAN Transport Protocol                                                      | CAN Interface, CAN Transceiver Driver, CAN Driver          |
-| LIN     | LIN State Manager      | —               | 진단용 전송 프로토콜                                                        | LIN Interface, LIN Transceiver Driver, LIN Driver          |
-| FlexRay | FlexRay State Manager  | FlexRay NM      | FrTp(FlexRay ISO Transport Layer)나 FrArTp(FlexRay AUTOSAR Transport Layer) | FlexRay Interface, FlexRay Driver                          |
-| 이더넷  | Ethernet State Manager | [[udp\|UDP]] NM | —                                                                           | Socket Adaptor, TcpIp, Ethernet Interface, Ethernet Driver |
+| 버스    | State Manager          | NM              | 전송 프로토콜                                                               | 그 밖의 모듈                                                                                                                                |
+| ------- | ---------------------- | --------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| CAN     | CAN State Manager      | CAN NM          | CanTp(CAN Transport Layer)                                                  | CAN Interface, CAN Transceiver Driver, CAN Driver[@autosar-cp-exp-layeredsoftwarearchitecture-2025][@autosar-cp-sws-cantransportlayer-2025] |
+| LIN     | LIN State Manager      | —               | 진단용 전송 프로토콜                                                        | LIN Interface, LIN Transceiver Driver, LIN Driver[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                         |
+| FlexRay | FlexRay State Manager  | FlexRay NM      | FrTp(FlexRay ISO Transport Layer)나 FrArTp(FlexRay AUTOSAR Transport Layer) | FlexRay Interface, FlexRay Driver[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                                         |
+| 이더넷  | Ethernet State Manager | [[udp\|UDP]] NM | —                                                                           | Socket Adaptor, TcpIp, Ethernet Interface, Ethernet Driver[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                |
 
 CAN 스택은 [[can-fd|CAN FD]]도 다루되, 하드웨어가 이를 지원할 때에 한한다. FlexRay 스택은 전송 프로토콜로 FrTp와 FrArTp 가운데 하나를 쓴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] CAN 스택의 구성은 [[autosar-can-stack|AUTOSAR CAN 스택]]에서 다룬다.
 

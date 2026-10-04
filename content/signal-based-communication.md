@@ -13,8 +13,6 @@ Vector의 DBC 형식에서 시그널은 가장 작은 정보 단위이고, 메�
 
 AUTOSAR COM은 시그널마다 I-PDU 안의 시작 비트 위치(`ComBitPosition`), 비트 길이(`ComBitSize`), [[byte-order|바이트 순서]](`ComSignalEndianness`)를 설정값으로 미리 정한다.[@autosar-cp-sws-com-2025]
 
-![[diagrams/com-signal-ipdu-layout.svg]]
-
 ## 통신 매트릭스
 
 AUTOSAR R25-11 System Template은 어떤 시그널을 어느 프레임에 싣고 ECU마다 무엇을 보내고 받는지를 System Configuration Description의 통신 매트릭스로 정하고, 이 기술을 입력으로 ECU 설정을 만든다. 통신 매트릭스는 프레임, 시그널, 타이밍을 담고, System Template은 [[gateway|게이트웨이]] 표도 기술한다.[@autosar-cp-tps-systemtemplate-2025]
@@ -37,9 +35,7 @@ AUTOSAR Classic Platform R25-11의 System Template은 ISignal의 네트워크 �
 
 ## 송신과 수신 감시
 
-AUTOSAR COM은 I-PDU의 송신 모드로 주기 송신 `PERIODIC`, 이벤트 송신 `DIRECT`, 둘을 조합한 `MIXED`를 둔다. `DIRECT`나 `MIXED`인 I-PDU는 `TRIGGERED` 시그널이 쓰이면 곧 보내고, `TRIGGERED_ON_CHANGE` 시그널은 값이 바뀔 때만 보낸다.[@autosar-cp-sws-com-2025]
-
-AUTOSAR COM은 수신 시그널이 정해진 시간 안에 오지 않으면 수신 데드라인 감시로 알아챈다. `ComRxDataTimeoutAction`이 `REPLACE`면 시그널 값을 초깃값으로, `SUBSTITUTE`면 대체값(`ComTimeoutSubstitutionValue`)으로 바꾸고, 설정이 없거나 `NONE`이면 마지막 값을 둔다.[@autosar-cp-sws-com-2025]
+AUTOSAR COM은 I-PDU를 주기 송신, 이벤트 송신, 둘을 섞은 [[autosar-com#전송 속성과 전송 모드|전송 모드]]로 보내고, 수신 시그널이 정해진 시간 안에 오지 않으면 [[autosar-com#수신 notification과 감시|수신 데드라인 감시]]로 알아챈다.[@autosar-cp-sws-com-2025]
 
 ## 서비스 지향 통신과의 차이
 

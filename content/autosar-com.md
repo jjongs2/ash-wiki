@@ -48,13 +48,13 @@ I-PDU 그룹의 상태는 BswM(Basic Software Mode Manager)이 관리한다. Bsw
 
 ## 시그널 게이트웨이
 
-AUTOSAR COM에는 시그널 게이트웨이가 들어 있다. 받은 I-PDU의 시그널과 그룹 시그널을 보낼 I-PDU로 옮기며(1:n), 옮길 관계는 `ComGwMapping`으로 정적으로 설정한다.[@autosar-cp-sws-com-2025] [[gateway|게이트웨이]] 일반은 따로 다룬다.
+AUTOSAR COM에는 받은 I-PDU의 시그널을 보낼 I-PDU로 옮기는 [[gateway#시그널 게이트웨이|시그널 게이트웨이]]가 들어 있다.[@autosar-cp-sws-com-2025]
 
 ## 수신 notification과 감시
 
 AUTOSAR COM은 시그널이나 시그널 그룹을 받으면 사용자에게 수신 notification 콜백을 부른다. I-PDU마다 시그널 처리 방식(`ComIPduSignalProcessing`)을 `IMMEDIATE`와 `DEFERRED` 가운데 하나로 정한다. `IMMEDIATE`는 수신 indication 함수(`Com_RxIndication`, TP(Transport Protocol) 수신이면 `Com_TpRxIndication`) 안에서 곧바로 통지한다. `DEFERRED`는 받은 I-PDU의 필요한 데이터를 그 안에서 먼저 복사해 두고, 다음 `Com_MainFunctionRx` 호출에서 통지한다.[@autosar-cp-sws-com-2025]
 
-AUTOSAR COM은 수신 데드라인 감시로, 시그널이나 I-PDU가 설정한 시간(`ComFirstTimeout`, `ComTimeout`) 안에 들어오지 않았는지 감시한다.[@autosar-cp-sws-com-2025]
+AUTOSAR COM은 수신 데드라인 감시로, 시그널이나 I-PDU가 설정한 시간(`ComFirstTimeout`, `ComTimeout`) 안에 들어오지 않았는지 감시한다. 시간 안에 오지 않으면, `ComRxDataTimeoutAction`이 `REPLACE`일 때 시그널 값을 초깃값으로, `SUBSTITUTE`일 때 대체값(`ComTimeoutSubstitutionValue`)으로 바꾸고, 설정이 없거나 `NONE`이면 마지막 값을 둔다.[@autosar-cp-sws-com-2025]
 
 ## System Template과의 연결
 

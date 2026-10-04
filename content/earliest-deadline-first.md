@@ -22,5 +22,3 @@ Linux 커널의 `SCHED_DEADLINE` 정책은 EDF에 CBS(Constant Bandwidth Server)
 ## RM과의 차이
 
 단일 프로세서에서 서로 독립인 [[periodic-task-model|주기 태스크]]의 마감 시한이 다음 요청 시각이고 실행 시간이 일정하며 선점할 수 있으면, [[rate-monotonic-scheduling|RM]]이 늘 스케줄할 수 있는 이용률의 최소 상한은 태스크가 많아지면 $\ln 2$에 가까워지지만, EDF는 $U \le 1$이면 스케줄한다. 대신 EDF는 요청마다 우선순위를 다시 정해야 한다.[@liu-hard-real-time-1973]
-
-![[diagrams/utilization-bound-rm-edf.svg]]
