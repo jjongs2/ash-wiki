@@ -10,7 +10,7 @@ edition: 2021
 status: 개정 중
 ---
 
-**ISO/SAE 21434**는 도로 차량의 [[cybersecurity|사이버보안]] 엔지니어링을 다루는 국제 표준이다. 제목은 "Road vehicles — Cybersecurity engineering"이고, ISO와 SAE International이 함께 만들었다.[@iso-sae-21434-2021] ISO/SAE 21434:2021은 ISO/TC 22/SC 32와 SAE의 Vehicle Cybersecurity Systems Engineering Committee가 함께 마련했다.[@iso-sae-21434-obp-2021]
+**ISO/SAE 21434**는 도로 차량의 [[cybersecurity|사이버보안]] 엔지니어링을 다루는 국제 표준이다. 제목은 "Road vehicles — Cybersecurity engineering"이고, ISO와 SAE International이 함께 만들었다.[@iso-sae-21434-2021] ISO/SAE 21434:2021은 ISO/TC 22/SC 32와 SAE의 Vehicle Cybersecurity Systems Engineering Committee가 함께 마련했다.[@iso-sae-21434-obp-2021] ISO 기사에 따르면 ISO/TC 22/SC 32 산하의 작업반 WG 11은 도로 차량 전기·전자 컴포넌트의 사이버보안을 다루고, 이 작업반의 프로젝트 리더들이 ISO/SAE 21434 개발에 참여했다.[@iso-cybersecurity-drivers-seat-2020]
 
 ## 범위
 
@@ -37,7 +37,7 @@ ISO/SAE 21434:2021은 도로 차량의 E/E(Electrical/Electronic) 시스템과 �
 
 ![[diagrams/iso-sae-21434-provision-identifier.svg]]
 
-조직 수준의 사이버보안 관리가 [[un-r155|UN R155]]의 [[cybersecurity-management-system|CSMS]]와 어떻게 이어지는지는 [[cybersecurity-management-system#ISO/SAE 21434와의 관계|CSMS와 ISO/SAE 21434의 관계]]에서 다룬다.
+조직 수준의 사이버보안 관리가 [[un-r155|UN R155]]의 [[cybersecurity-management-system|CSMS]]와 어떻게 이어지는지는 [[cybersecurity-management-system#ISO/SAE 21434와의 관계|CSMS와 ISO/SAE 21434의 관계]]에서 다룬다. 15절의 TARA 방법과 부속서의 impact rating 기준 예는 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA]]에서 다룬다.
 
 ## 개정 이력
 

@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**STRIDE**는 Microsoft가 위협의 유형을 분류하는 데 쓰는 모델로, 위협을 여섯 범주로 나눈다.[@microsoft-tmt-threats-2022] 이름은 여섯 범주 Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege의 머리글자다.[@microsoft-msdn-stride-2006] Microsoft의 Loren Kohnfelder와 Praerit Garg는 1999년 문서 "The threats to our products"에서 STRIDE를 내놓았다.[@microsoft-threat-modeling-devops-2022]
+**STRIDE**는 Microsoft가 위협의 유형을 분류하는 데 쓰는 모델로, 위협을 여섯 범주로 나눈다.[@microsoft-tmt-threats-2022] 이름은 여섯 범주 Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege의 머리글자다.[@microsoft-msdn-stride-2006] Microsoft의 Loren Kohnfelder와 Praerit Garg는 1999년 사내 문서 "The threats to our products"에서 STRIDE를 내놓았다.[@microsoft-threat-modeling-devops-2022][@microsoft-threats-to-our-products-2009]
 
 ## 여섯 위협
 
@@ -27,3 +27,5 @@ Microsoft의 2006년 MSDN 기사에 따르면 STRIDE는 시스템을 구성 요�
 Microsoft Threat Modeling Tool은 Microsoft SDL(Security Development Lifecycle)의 핵심 요소이고, SDL의 위협 모델링은 설계를 분석하는 기법이다. 이 도구는 요소마다 STRIDE를 적용해(STRIDE per Element) 위협과 완화책을 안내한다.[@microsoft-tmt-overview-2022] 데이터 흐름도를 그리고 분석 화면을 열면, STRIDE를 쓰는 기본 템플릿으로 만든 위협 목록이 나온다.[@microsoft-tmt-getting-started-2022]
 
 Microsoft patterns & practices의 2003년 위협 모델링 지침에 따르면 Microsoft는 위협의 위험 등급을 매기는 데 DREAD(Damage potential, Reproducibility, Exploitability, Affected users, Discoverability) 모델을 쓴다.[@microsoft-pnp-threat-modeling-2003]
+
+Tony UcedaVélez와 Marco M. Morana는 STRIDE와는 별개인 위협 모델링 방법론 PASTA(Process for Attack Simulation and Threat Analysis)를 함께 만들었다.[@versprite-pasta-methodologies-2026]

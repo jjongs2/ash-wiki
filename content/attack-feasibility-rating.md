@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**Attack feasibility**는 attack path가 가진 속성으로, 그 attack path에 해당하는 행위들을 성공시키기가 얼마나 쉬운지를 말한다. ISO/SAE 21434:2021은 이를 3절에서 이렇게 정의한다.[@iso-sae-21434-obp-2021] Attack feasibility로 리스크를 정하는 분석은 [[threat-analysis-and-risk-assessment|TARA]]에서 다룬다.
+**Attack feasibility**는 attack path가 가진 속성으로, 그 attack path에 해당하는 행위들을 성공시키기가 얼마나 쉬운지를 말한다. ISO/SAE 21434:2021은 이를 3절에서 이렇게 정의하고, attack feasibility rating을 15절에 모은 [[threat-analysis-and-risk-assessment|TARA]] 방법 가운데 하나로 둔다.[@iso-sae-21434-obp-2021] Attack feasibility로 리스크를 정하는 분석도 TARA에서 다룬다.
 
 ## Attack potential
 
@@ -26,6 +26,10 @@ CEM:2022는 합계를 그 공격 시나리오를 실행하는 데 필요한 atta
 CEM v3.1 Revision 5의 표는 TOE가 견디는 attack potential을 열로 따로 두어, 합계 0\~9를 no rating, 10\~13을 basic, 14\~19를 enhanced-basic, 20\~24를 moderate, 25 이상을 high에 대응시켰다.[@ccra-cem-3-1-r5-2017] CEM:2022의 표에는 이 열이 없다.[@ccra-cem-2022]
 
 ![[diagrams/cem-attack-potential-ranges.svg]]
+
+## ISO/SAE 21434의 rating 예
+
+ISO/SAE 21434:2021은 attack vector 기반 방법과 attack potential 기반 방법으로 attack feasibility를 매긴 예를 부속서 H의 표로 든다. 부속서 G에는 attack vector 기반 방법의 표와 [[common-vulnerability-scoring-system|CVSS]] exploitability를 대응시키는 예의 표가 있다. 또 Elapsed time, Specialist expertise, Knowledge of the item or component, Window of opportunity, Equipment를 제목으로 한 표 다섯과, attack potential을 합산하는 예와 대응시키는 예의 표가 있다.[@iso-sae-21434-obp-2021]
 
 ## ISO/IEC 18045와의 관계
 

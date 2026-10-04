@@ -25,6 +25,12 @@ Cybersecurity property는 보호할 가치가 있을 수 있는 속성으로, [[
 
 이 표준은 cybersecurity goal을 threat scenario에 관련된 concept 수준의 사이버보안 요구사항으로, cybersecurity claim을 리스크를 retain하거나 share하는 근거를 담을 수 있는, 리스크에 관한 진술로 정의한다.[@iso-sae-21434-obp-2021]
 
+## ISO/SAE 21434의 TARA 방법
+
+ISO/SAE 21434:2021은 15절의 TARA 방법을 15.3절부터 15.9절까지 일곱 절로 나눠 둔다. 절 제목은 15.3절부터 차례로 asset identification, threat scenario identification, impact rating, attack path analysis, attack feasibility rating, risk value determination, risk treatment decision이다.[@iso-sae-21434-obp-2021]
+
+이 표준은 부속서 F에 safety, financial, operational, privacy 각각의 impact rating 기준을 예로 들고, 부속서 H에 리스크 매트릭스의 예를 둔다.[@iso-sae-21434-obp-2021]
+
 ## Automotive SPICE for Cybersecurity의 MAN.7
 
 Automotive SPICE for Cybersecurity 2.0의 MAN.7 Cybersecurity Risk Management는 관련 이해관계자에게 미칠 피해의 리스크를 정기적으로 찾고, 분석하고, 우선순위를 매기고, 감시하는 것을 목적으로 둔다. 성과는 다섯이다.[@vda-automotive-spice-cybersecurity-2025]

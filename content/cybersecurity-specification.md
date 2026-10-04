@@ -13,7 +13,7 @@ verified: 2026-10-03
 
 NIST SP 800-160 Vol. 1 Rev. 1은 신뢰할 수 있는 보안 설계 원칙 30개를 분류 없이 한 목록으로 두며, least privilege, least sharing, reduced complexity, protective defaults가 그 가운데 있다. 이 문서는 이전 판의 설계 원칙 분류 가운데 둘을 없앴다. 또 원칙을 지켜야 할 규칙이나 적합성을 판단하는 근거로 쓰지 말고, 시스템을 추론하는 바탕으로 삼으라고 한다.[@nist-sp-800-160v1r1-2022]
 
-C 언어에서는 SEI CERT C 코딩 표준이 보안 코딩 규칙을 담고[@sei-cert-c-introduction-2026], MISRA C:2012 Amendment 1이 보안 관련 지침을 더했다.[@misra-c-2012-amd1-2016] 두 표준은 [[coding-standard|코딩 표준]]과 [[misra-c|MISRA C]]에서 다룬다.
+C 언어에서는 SEI CERT C 코딩 표준이 보안 코딩 규칙을 담고[@sei-cert-c-introduction-2026], MISRA C:2012 Amendment 1이 보안 관련 지침을 더했다.[@misra-c-2012-amd1-2016] ISO/SAE 21434:2021은 참고문헌에 MISRA C:2012와 SEI CERT C 코딩 표준을 든다.[@iso-sae-21434-obp-2021] 두 표준은 [[coding-standard|코딩 표준]]과 [[misra-c|MISRA C]]에서 다룬다.
 
 ## Automotive SPICE for Cybersecurity의 SEC.2
 
