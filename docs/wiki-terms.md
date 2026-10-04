@@ -24,12 +24,12 @@
 - GMII 풀이: 통일하지 않음 (#196). 페이지마다 그대로. `mii`는 Gigabit MII, `1000base-t1`은 Gigabit Media Independent Interface
 - MAC 풀이 Medium Access Control: Media Access Control (#165). 출처마다의 풀이를 비교하는 문장은 예외
 - notification: 통지 (#257). AUTOSAR 모듈이 부르는 notification 콜백일 때. 동사로 쓴 자리("통지받는다")와 그 밖의 통지는 "통지"
-- OSEK OS: OSEK/VDX OS (#257). OS를 가리킬 때. 명세를 가리키면 "OSEK/VDX OS". 예: "OSEK/VDX OS 2.2.3 명세"
+- OSEK OS: OSEK/VDX OS (#257). OS를 가리킬 때. 명세를 가리키는 "OSEK/VDX OS"는 그대로. 예: "OSEK/VDX OS 2.2.3 명세"
 - RAM 풀이 Random-Access Memory: Random Access Memory (#165)
 - recessive: 리세시브 (#165). 조사는 원어의 발음대로. 예: "recessive이고"
 - resource: 리소스 (#165). OSEK 객체일 때. 일반적인 뜻이면 "자원"
-- Timing Analysis and Design 보고서: AUTOSAR 타이밍 분석 보고서 (#257)
-- Timing Extensions 명세: 타이밍 확장 명세 (#257)
+- Timing Analysis and Design 보고서: AUTOSAR 타이밍 분석 보고서 (#257). 본문에서 AUTOSAR 문서를 부르는 이름
+- Timing Extensions 명세: 타이밍 확장 명세 (#257). 본문에서 AUTOSAR 문서를 부르는 이름. "명세" 없이 쓴 "Timing Extensions"도 그대로
 - USART 풀이 Universal Synchronous/Asynchronous Receiver/Transmitter: Universal Synchronous and Asynchronous Receiver Transmitter (#196)
 - V2X 풀이 Vehicle-to-X: Vehicle-to-Everything (#257)
 - wakeup: 웨이크업 (#257). AUTOSAR가 다루는 wakeup일 때. 예: EcuM에 알리는 wakeup. 트랜시버와 버스의 웨이크업은 "웨이크업"
