@@ -44,7 +44,7 @@ IEEE 802.1 [[tsn|TSN]] 태스크 그룹은 IEEE 802 네트워크에서 지연 �
 
 ## 차량 응용
 
-IEEE 802.3 작업 그룹은 차량용 이더넷 수요를 이끄는 것으로 카메라, 충돌 회피, 인포테인먼트처럼 대역을 많이 쓰는 차량 응용을 들었다.[@ieee-802-3bw-csd-2014] 이더넷을 쓰면 차량의 펌웨어 업데이트가 빨라진다.[@ieee-tsn-automotive-flyer-2026][@ti-szzy009-2018] TI 기술 기사에 따르면 IEEE 802.3bw와 802.3bp의 차량용 요구사항은 인포테인먼트, ADAS(Advanced Driver Assistance Systems), 온보드 진단, 5G나 V2X(Vehicle-to-Everything) 같은 외부 연결이 퍼지는 바탕이 되었다.[@ti-sszt730-2018] 차량용 이더넷 PHY는 ADAS의 레이더, 라이다, 카메라 같은 센서에도 쓰인다.[@nxp-tja1103-2026][@ti-dp83tg720s-q1-2026]
+IEEE 802.3 작업 그룹은 차량용 이더넷 수요를 이끄는 것으로 카메라, 충돌 회피, 인포테인먼트처럼 대역을 많이 쓰는 차량 응용을 들었다.[@ieee-802-3bw-csd-2014] 이더넷을 쓰면 차량의 펌웨어 업데이트가 빨라진다.[@ieee-tsn-automotive-flyer-2026][@ti-szzy009-2018] TI 기술 기사에 따르면 IEEE 802.3bw와 802.3bp의 차량용 요구사항은 인포테인먼트, ADAS(Advanced Driver Assistance Systems), 온보드 진단, 5G나 V2X(Vehicle-to-X) 같은 외부 연결이 퍼지는 바탕이 되었다.[@ti-sszt730-2018] 차량용 이더넷 PHY는 ADAS의 레이더, 라이다, 카메라 같은 센서에도 쓰인다.[@nxp-tja1103-2026][@ti-dp83tg720s-q1-2026]
 
 ## 차량 버스와의 차이
 

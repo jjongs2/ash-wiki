@@ -11,18 +11,18 @@ verified: 2026-09-30
 
 PWM Driver 규격은 아래 용어를 정의한다.[@autosar-cp-sws-pwmdriver-2025]
 
-| 용어       | 뜻                                                                                                                 |
-| ---------- | ------------------------------------------------------------------------------------------------------------------ |
-| Period     | PWM 신호의 주기                                                                                                    |
-| Polarity   | 채널이 주기를 시작하는 출력 상태. `PWM_HIGH`면 high로 시작해 duty cycle만큼 지나면 low가 되고, `PWM_LOW`면 반대다. |
-| Duty cycle | 주기 가운데 시작 레벨(polarity의 레벨)이 차지하는 비율                                                             |
-| Idle state | `Pwm_SetOutputToIdle`이나 `Pwm_DeInit`을 부른 뒤 채널이 머무는 출력 상태. `PWM_HIGH`나 `PWM_LOW`로 설정한다.       |
+| 용어       | 뜻                                                                                                                    |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- |
+| Period     | PWM 신호의 주기                                                                                                       |
+| Polarity   | channel이 주기를 시작하는 출력 상태. `PWM_HIGH`면 high로 시작해 duty cycle만큼 지나면 low가 되고, `PWM_LOW`면 반대다. |
+| Duty cycle | 주기 가운데 시작 레벨(polarity의 레벨)이 차지하는 비율                                                                |
+| Idle state | `Pwm_SetOutputToIdle`이나 `Pwm_DeInit`을 부른 뒤 channel이 머무는 출력 상태. `PWM_HIGH`나 `PWM_LOW`로 설정한다.       |
 
 ![[diagrams/pwm-polarity-duty-period.svg]]
 
 ## Channel class
 
-PWM Driver 규격은 채널을 주기를 바꿀 수 있는지에 따라 세 class로 나눈다.[@autosar-cp-sws-pwmdriver-2025]
+PWM Driver 규격은 channel을 주기를 바꿀 수 있는지에 따라 세 class로 나눈다.[@autosar-cp-sws-pwmdriver-2025]
 
 - **Fixed period**: 주기가 고정되고 duty cycle만 바꿀 수 있다.
 - **Fixed period shifted**: 주기가 shift된 채 고정되고 duty cycle만 바꿀 수 있다. 하드웨어가 지원할 때만 쓴다.
@@ -30,7 +30,7 @@ PWM Driver 규격은 채널을 주기를 바꿀 수 있는지에 따라 세 clas
 
 ## 출력 설정과 읽기
 
-`Pwm_SetDutyCycle`은 채널의 duty cycle을 정하고, `Pwm_SetPeriodAndDuty`는 주기와 duty cycle을 함께 정한다. 주기를 바꿀 수 있는 채널은 variable period뿐이어서, 개발 오류 검출을 켠 상태로 다른 class의 채널에 `Pwm_SetPeriodAndDuty`를 부르면 PWM_E_PERIOD_UNCHANGEABLE 오류가 보고된다. `Pwm_GetOutputState`는 PWM 출력 신호의 내부 상태를 읽어 PWM_HIGH나 PWM_LOW로 돌려준다.[@autosar-cp-sws-pwmdriver-2025]
+`Pwm_SetDutyCycle`은 channel의 duty cycle을 정하고, `Pwm_SetPeriodAndDuty`는 주기와 duty cycle을 함께 정한다. 주기를 바꿀 수 있는 channel은 variable period뿐이어서, 개발 오류 검출을 켠 상태로 다른 class의 channel에 `Pwm_SetPeriodAndDuty`를 부르면 PWM_E_PERIOD_UNCHANGEABLE 오류가 보고된다. `Pwm_GetOutputState`는 PWM 출력 신호의 내부 상태를 읽어 PWM_HIGH나 PWM_LOW로 돌려준다.[@autosar-cp-sws-pwmdriver-2025]
 
 ## Duty cycle 표현
 
@@ -46,7 +46,7 @@ $$
 
 ## Notification
 
-`Pwm_EnableNotification`은 채널의 rising edge, falling edge, 두 edge 가운데 인자로 고른 쪽에서 notification이 불리게 하고, `Pwm_DisableNotification`은 이를 끈다.[@autosar-cp-sws-pwmdriver-2025]
+`Pwm_EnableNotification`은 channel의 rising edge, falling edge, 두 edge 가운데 인자로 고른 쪽에서 notification이 불리게 하고, `Pwm_DisableNotification`은 이를 끈다.[@autosar-cp-sws-pwmdriver-2025]
 
 ## 다른 드라이버와의 관계
 

@@ -39,6 +39,6 @@ NvM은 요청을 큐를 쓰는 비동기 인터페이스로 받아, 우선순위
 
 NvM, Fee, Ea의 job은 각 모듈의 MainFunction이 처리한다. NvM과 Fee의 MainFunction은 설정한 주기마다 불리고, Fee의 내부 관리 작업은 `Fee_MainFunction` 호출 여러 번에 걸칠 수 있다.[@autosar-cp-sws-nvrammanager-2025][@autosar-cp-sws-flasheepromemulation-2025][@autosar-cp-sws-eepromabstraction-2025]
 
-NvM은 NVRAM 블록마다 설정한 장치 ID로 메모리 추상화 모듈을 고르고, MemIf를 거쳐 Fee나 Ea에 접근한다.[@autosar-cp-sws-nvrammanager-2025] Fee나 Ea는 MemAcc에 job을 내리고, MemAcc의 MainFunction이 Mem에 job을 내린다. Job이 끝나면 MemAcc가 Fee나 Ea의 완료 통지 함수를 부르고, Fee나 Ea는 설정되어 있으면 NvM의 완료 통지 함수를 부른다.[@autosar-cp-sws-flasheepromemulation-2025][@autosar-cp-sws-eepromabstraction-2025]
+NvM은 NVRAM 블록마다 설정한 장치 ID로 메모리 추상화 모듈을 고르고, MemIf를 거쳐 Fee나 Ea에 접근한다.[@autosar-cp-sws-nvrammanager-2025] Fee나 Ea는 MemAcc에 job을 내리고, MemAcc의 MainFunction이 Mem에 job을 내린다. Job이 끝나면 MemAcc가 Fee나 Ea의 완료 notification 함수를 부르고, Fee나 Ea는 설정되어 있으면 NvM의 완료 notification 함수를 부른다.[@autosar-cp-sws-flasheepromemulation-2025][@autosar-cp-sws-eepromabstraction-2025]
 
 ![[diagrams/memory-stack-job-sequence.svg]]

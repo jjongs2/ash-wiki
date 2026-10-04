@@ -53,7 +53,7 @@ standard status는 디버깅을 마친 애플리케이션을 위한 것이다. s
 | 5   | E_OS_NOFUNC   | `GetAlarm`, `CancelAlarm`에서 알람이 쓰이고 있지 않을 때                          | `ReleaseResource`에서 점유하지 않은 resource를 놓거나 다른 resource를 먼저 놓아야 할 때                                                                                                    |
 | 6   | E_OS_RESOURCE | —                                                                                 | `TerminateTask`, `ChainTask`, `Schedule`, `WaitEvent`를 부른 태스크가 아직 resource를 점유하고 있을 때                                                                                     |
 | 7   | E_OS_STATE    | `SetRelAlarm`, `SetAbsAlarm`에서 알람이 이미 쓰이고 있을 때                       | `SetEvent`, `GetEvent`에서 대상 태스크가 suspended일 때                                                                                                                                    |
-| 8   | E_OS_VALUE    | —                                                                                 | 알람 서비스의 시작값이나 주기가 [[osek-alarm#카운터\|카운터]] 상수가 허용하는 범위를 벗어날 때                                                                                             |
+| 8   | E_OS_VALUE    | —                                                                                 | 알람 서비스의 시작값이나 주기가 [[osek-alarm#Counter\|counter]] 상수가 허용하는 범위를 벗어날 때                                                                                           |
 
 ## `ErrorHook`
 
