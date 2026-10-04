@@ -5,11 +5,16 @@ tags:
 aliases:
   - Lightweight Machine to Machine
 verified: 2026-10-03
+publisher: OMA
+edition: 2024
+status: 유효
 ---
 
 **LwM2M**(Lightweight Machine to Machine)은 OMA SpecWorks가 펴내는 장치 관리 프로토콜이다. LwM2M 1.2.2 Core 명세는 LwM2M 장치의 장치 관리와 서비스 활성화(service enablement)를 다루며, LwM2M Client는 흔히 IoT(Internet of Things) 장치와 게이트웨이에 구현된다. 이 명세는 가벼운 프로토콜과 효율적인 데이터 모델을 쓰도록 LwM2M을 설계하고, 메시지 계층은 CoAP(Constrained Application Protocol)를 바탕으로 한 RESTful 설계를 따른다.[@oma-lwm2m-core-1-2-2-2024] oneM2M TS-0005 v5.0.0은 oneM2M 서비스 계층과 OMA의 관리 기술(OMA DM(Device Management) 1.3, OMA DM 2.0, LwM2M) 사이의 프로토콜 변환과 리소스 매핑을 정한다.[@onem2m-ts-0005-2026]
 
-## 전송
+## 범위
+
+### 전송
 
 LwM2M 1.2.2 Transport 명세는 LwM2M 메시지를 나르는 바인딩으로 [[udp|UDP]], DTLS(Datagram Transport Layer Security), SMS(Short Message Service), [[tcp|TCP]], [[transport-layer-security|TLS]], Non-IP 전송(셀룰러 IoT, LoRaWAN) 위의 CoAP와, TLS 위의 [[mqtt|MQTT]], TLS 위의 HTTP(Hypertext Transfer Protocol)를 정한다.[@oma-lwm2m-transport-1-2-2-2024] LwM2M 1.0은 UDP와 SMS 위의 CoAP를 지원했고, LwM2M 1.1이 TCP·TLS 위의 CoAP와 Non-IP 위의 CoAP를 더했다.[@oma-lwm2m-transport-1-1-2018] LwM2M 1.2는 MQTT와 HTTP 위의 전송을 새로 넣었다.[@oma-lwm2m-core-1-2-2-2024]
 
@@ -19,7 +24,7 @@ LwM2M 1.2.2 Transport 명세는 LwM2M 메시지를 나르는 바인딩으로 [[u
 
 LwM2M 1.2.2 Transport 명세는 UDP 위의 CoAP를 DTLS 1.2로, TCP 위의 CoAP를 TLS로 보호하게 정하고, TLS 1.3과 DTLS 1.3은 선택으로 쓸 수 있게 한다. 자격 증명은 인증서, Raw Public Key, 사전 공유 비밀(PSK, Pre-Shared Key) 세 종류를 지원하며, Bootstrap-Server는 셋을 모두 지원해야 한다.[@oma-lwm2m-transport-1-2-2-2024]
 
-## 구성 요소와 객체 모델
+### 구성 요소와 객체 모델
 
 LwM2M 1.2.2 Core 명세는 LwM2M을 세 구성 요소로 이루고, 그 사이에 인터페이스 넷을 둔다.[@oma-lwm2m-core-1-2-2-2024]
 
@@ -29,7 +34,7 @@ LwM2M 1.2.2 Core 명세는 LwM2M을 세 구성 요소로 이루고, 그 사이�
 
 객체(Object)는 서로 관련된 리소스(Resource)를 모은 것이다. 객체를 인스턴스로 만들어야 그 리소스를 쓸 수 있고, 객체와 리소스는 인스턴스를 여럿 가질 수 있다. 객체, 객체 인스턴스, 리소스, 리소스 인스턴스는 16비트 부호 없는 정수 ID로 가리킨다. 객체 ID는 OMNA(OMA Naming Authority)가 배정하고 관리한다. 예를 들어 Object 3은 Device, Object 5는 Firmware Update다.[@oma-lwm2m-core-1-2-2-2024] 리소스는 `/3/0/1`처럼 객체 ID, 객체 인스턴스 ID, 리소스 ID를 이은 경로로 가리킨다.[@oma-lwm2m-transport-1-2-2-2024]
 
-## 인터페이스
+### 인터페이스
 
 LwM2M 1.2.2 Core 명세는 Client와 Server 사이의 동작을 네 인터페이스로 나눈다.[@oma-lwm2m-core-1-2-2-2024]
 
@@ -40,7 +45,7 @@ LwM2M 1.2.2 Core 명세는 Client와 Server 사이의 동작을 네 인터페이
 
 ![[diagrams/lwm2m-client-server-interfaces.svg]]
 
-## 펌웨어 업데이트 객체
+### 펌웨어 업데이트 객체
 
 Object 5(Firmware Update)는 장치의 펌웨어 업데이트를 관리하는 객체로, 펌웨어 패키지의 설치, 업데이트, 업데이트 뒤의 동작을 다룬다. Server는 펌웨어 패키지를 Package 리소스에 직접 써 넣거나(push), 패키지를 받을 URI를 Package URI 리소스에 써 넣는다(pull). Update 리소스는 State가 Downloaded일 때만 실행할 수 있고, 실행되면 받은 패키지로 업데이트를 시작한다.[@oma-lwm2m-core-1-2-2-2024]
 
@@ -57,7 +62,7 @@ State 리소스는 업데이트가 어디까지 왔는지를 네 값으로 나�
 
 Update Result 리소스는 내려받기나 업데이트의 결과(성공, 플래시 부족, 무결성 검사 실패 등)를 정수로 알린다.[@oma-lwm2m-core-1-2-2-2024]
 
-## 판
+## 개정 이력
 
 OMA가 승인한 LwM2M의 판은 아래와 같다.
 

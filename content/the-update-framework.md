@@ -5,15 +5,18 @@ tags:
 aliases:
   - TUF
 verified: 2026-10-03
+publisher: TUF project
+edition: 2026
+status: 유효
 ---
 
 **The Update Framework**(TUF)는 소프트웨어 업데이트 시스템을 지키는 프레임워크다. [[digital-signature|서명]] 키 하나나 필요한 서명 수보다 적은 키가 공격자에게 넘어가도, 또 공격자가 클라이언트의 요청에 대신 답할 수 있어도 클라이언트가 공격당하지 않게 하는 것이 목표이고, 이때 공격자가 할 수 있는 최악은 업데이트를 막는 것이다.[@tuf-specification-1-0-36-2026]
 
-## 원 논문과 명세
+## 범위
 
-Justin Samuel, Nick Mathewson, Justin Cappos, Roger Dingledine은 2010년 논문에서 TUF를 설계하고 구현했다.[@samuel-survivable-key-compromise-2010] TUF 명세 1.0.36은 메타데이터가 담을 필드와 클라이언트의 업데이트 절차를 정하고, 메타데이터의 데이터 형식은 구현에 맡긴다.[@tuf-specification-1-0-36-2026]
+TUF 명세 1.0.36은 메타데이터가 담을 필드와 클라이언트의 업데이트 절차를 정하고, 메타데이터의 데이터 형식은 구현에 맡긴다.[@tuf-specification-1-0-36-2026]
 
-## 역할과 위임
+### 역할과 위임
 
 TUF 명세 1.0.36은 기본 최상위 역할 넷과 선택 역할인 mirrors를 정한다. 역할마다 키를 하나 이상 두고, 클라이언트가 메타데이터를 믿으려면 그 역할 키의 서명이 정해진 수(임계값)만큼 있어야 한다. 기본 최상위 역할이 서명하는 것은 아래와 같다.[@tuf-specification-1-0-36-2026]
 
@@ -28,11 +31,11 @@ targets 역할은 대상 전부나 일부에 대한 신뢰를 다른 역할에 �
 
 ![[diagrams/tuf-roles-delegation.svg]]
 
-## 만료와 최신성
+### 만료와 최신성
 
 TUF 명세 1.0.36은 모든 메타데이터에 만료 시각을 두고, 클라이언트가 만료된 메타데이터를 믿지 않게 한다. 클라이언트는 메타데이터의 만료 시각이 지났으면 업데이트를 멈추고 freeze 공격일 수 있음을 알린다. 그래서 공격자가 낡은 메타데이터를 계속 보여 주어도 만료 시각이 지나면 드러난다. 클라이언트는 지금 믿는 메타데이터를 버전 번호가 더 낮은 것으로 바꾸지도 않는다.[@tuf-specification-1-0-36-2026]
 
-## 막는 공격
+### 막는 공격
 
 TUF 명세 1.0.36은 막으려는 공격으로 아래 열 가지를 든다.[@tuf-specification-1-0-36-2026]
 
@@ -49,6 +52,8 @@ TUF 명세 1.0.36은 막으려는 공격으로 아래 열 가지를 든다.[@tuf
 | vulnerability to key compromises     | 키 하나나 필요한 서명 수보다 적은 키를 손에 넣은 공격자가 클라이언트를 공격한다.           |
 | wrong software installation          | 클라이언트가 원한 것이 아닌 파일을 보낸다.                                                 |
 
-## 현황
+## 개정 이력
+
+Justin Samuel, Nick Mathewson, Justin Cappos, Roger Dingledine은 2010년 논문에서 TUF를 설계하고 구현했다.[@samuel-survivable-key-compromise-2010]
 
 TUF는 2017년 CNCF(Cloud Native Computing Foundation)에 incubating 프로젝트로 들어갔고, 2019년 graduated 프로젝트가 됐다.[@cncf-tuf-project-2026]
