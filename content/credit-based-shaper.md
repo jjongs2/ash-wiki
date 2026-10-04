@@ -18,7 +18,7 @@ CBS는 큐마다 credit 값을 둔다.[@intel-i210-2019][@microchip-sam-e70-2026
 
 - 큐에 보낼 프레임이 있지만 다른 큐가 전송하는 동안 기다리면 credit은 idleSlope의 비율로 오른다.[@intel-i210-2019][@microchip-sam-e70-2026]
 - 큐가 프레임을 내보내는 동안 credit은 sendSlope의 비율로 내려간다.[@st-rm0436-2025][@microchip-sam-e70-2026]
-- 큐가 비었을 때 $\mathrm{credit} > 0$이면 credit은 0이 된다.[@st-rm0436-2025][@intel-i210-2019] credit은 큐가 전송하지 않는 동안([[time-aware-shaper|scheduled traffic]]을 쓰면 게이트가 열려 있는 동안) 큐가 비어 있어도 idleSlope의 비율로 오르고, 0으로 되돌려지는 것은 양수일 때뿐이다. 그래서 큐가 비었을 때 음수인 credit은 0이 될 때까지 오른다.[@ieee-802-1q-2022]
+- 큐가 비었을 때 $\mathrm{credit} > 0$이면 credit은 0이 된다.[@st-rm0436-2025][@intel-i210-2019] credit은 큐가 전송하지 않는 동안([[time-aware-shaper|scheduled traffic]]을 쓰면 [[time-aware-shaper#게이트|게이트]]가 열려 있는 동안) 큐가 비어 있어도 idleSlope의 비율로 오르고, 0으로 되돌려지는 것은 양수일 때뿐이다. 그래서 큐가 비었을 때 음수인 credit은 0이 될 때까지 오른다.[@ieee-802-1q-2022]
 - 큐는 보낼 프레임이 있고 $\mathrm{credit} \ge 0$일 때 전송할 수 있다.[@intel-i210-2019][@microchip-sam-e70-2026]
 
 ![[diagrams/cbs-credit-timeline.svg]]
@@ -29,7 +29,7 @@ credit에는 위 한계 hiCredit이 있다.[@st-rm0436-2025][@intel-i210-2019] I
 
 ## 트래픽 클래스와의 관계
 
-IEEE 802.1Q-2022는 모든 브리지가 기본으로 지원해야 하는 [[traffic-class|strict priority]]에 더해 지원할 수 있는 전송 선택 알고리즘의 하나로 CBS를 두고, 포트의 전송 선택 알고리즘 표로 트래픽 클래스마다 쓸 알고리즘을 정한다. 이 표에서 CBS의 식별자는 1이다. 이 표준이 권하는 기본 설정은 SR 클래스 A(우선순위 3)와 SR 클래스 B(우선순위 2)를 CBS를 쓰는 트래픽 클래스에 대응시킨다. 트래픽 클래스가 셋 이상이면 두 SR 클래스를 서로 다른 트래픽 클래스에, 둘뿐이면 한 트래픽 클래스에 둔다. CBS는 트래픽 클래스 N의 큐에 지금 예약된 대역폭인 operIdleSlope(N)을 idleSlope로 써서 나가는 트래픽을 셰이핑한다.[@ieee-802-1q-2022]
+IEEE 802.1Q-2022는 모든 브리지가 기본으로 지원해야 하는 [[traffic-class|strict priority]]에 더해 지원할 수 있는 [[traffic-class#전송 선택|전송 선택 알고리즘]]의 하나로 CBS를 두고, 포트의 전송 선택 알고리즘 표로 트래픽 클래스마다 쓸 알고리즘을 정한다. 이 표에서 CBS의 식별자는 1이다. 이 표준이 권하는 기본 설정은 SR 클래스 A(우선순위 3)와 SR 클래스 B(우선순위 2)를 CBS를 쓰는 트래픽 클래스에 대응시킨다. 트래픽 클래스가 셋 이상이면 두 SR 클래스를 서로 다른 트래픽 클래스에, 둘뿐이면 한 트래픽 클래스에 둔다. CBS는 트래픽 클래스 N의 큐에 지금 예약된 대역폭인 operIdleSlope(N)을 idleSlope로 써서 나가는 트래픽을 셰이핑한다.[@ieee-802-1q-2022]
 
 IEEE 802.1Q-2022는 CBS가 뜻대로 동작하려면 CBS를 쓰는 트래픽 클래스가 strict priority를 쓰는 어느 트래픽 클래스보다도 번호가 커야 한다고 정한다.[@ieee-802-1q-2022] CBS 큐가 credit 때문에 전송할 수 없는 동안에는 낮은 우선순위의 큐가 전송한다.[@intel-i210-2019][@microchip-sam-e70-2026] CBS를 쓰는 트래픽 클래스가 예약 대역폭을 다 쓰지 않으면, 남는 대역폭을 strict priority의 낮은 트래픽 클래스가 쓸 수 있다.[@microchip-ksz9477s-2019][@st-rm0436-2025]
 

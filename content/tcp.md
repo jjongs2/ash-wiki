@@ -65,6 +65,6 @@ TCP는 주고받은 세그먼트의 경계와 응용이 읽고 쓰는 버퍼의 
 
 ## UDP와의 차이
 
-[[udp|UDP]]는 연결을 맺지 않는 데이터그램 전송 서비스이고, 재전송과 흐름 제어가 필요하면 응용이 직접 맡아야 한다.[@ietf-rfc-1122-1989] UDP 헤더는 8바이트이고[@ietf-rfc-768-1980], TCP 헤더는 최소 20바이트다.[@ietf-rfc-9293-2022]
+[[udp|UDP]]는 연결을 맺지 않는 데이터그램 전송 서비스이고, 재전송과 흐름 제어가 필요하면 응용이 직접 맡아야 한다.[@ietf-rfc-1122-1989] [[udp#헤더|UDP 헤더]]는 8바이트이고[@ietf-rfc-768-1980], TCP 헤더는 최소 20바이트다.[@ietf-rfc-9293-2022]
 
 [[autosar|AUTOSAR]]의 [[doip|DoIP]] 모듈은 진단 메시지를 TCP 연결로 받는다.[@autosar-cp-sws-diagnosticoverip-2025] [[some-ip|SOME/IP]] 명세는 UDP 바인딩의 신뢰성을 "maybe", TCP 바인딩의 신뢰성을 "exactly once"로 정하고, 1400바이트가 넘는 큰 데이터를 보내야 하고 오류 시 지연 요구가 엄하지 않을 때만 TCP를 쓰도록 권한다.[@autosar-fo-prs-someipprotocol-2025]

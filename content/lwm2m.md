@@ -11,7 +11,7 @@ verified: 2026-10-03
 
 ## 전송
 
-LwM2M 1.2.2 Transport 명세는 LwM2M 메시지를 나르는 바인딩으로 [[udp|UDP]], DTLS(Datagram Transport Layer Security), SMS(Short Message Service), [[tcp|TCP]], [[transport-layer-security|TLS]], Non-IP 전송(셀룰러 IoT, LoRaWAN) 위의 CoAP와, TLS 위의 [[mqtt|MQTT]], TLS 위의 HTTP(Hypertext Transfer Protocol)를 정한다.[@oma-lwm2m-transport-1-2-2-2024] LwM2M 1.0은 UDP와 SMS 위의 CoAP를 지원했고, LwM2M 1.1이 TCP·TLS 위의 CoAP와 Non-IP 위의 CoAP를 더했다.[@oma-lwm2m-transport-1-1-2018] LwM2M 1.2는 MQTT와 HTTP 위의 전송을 새로 넣었다.[@oma-lwm2m-core-1-2-2-2024]
+LwM2M 1.2.2 Transport 명세는 LwM2M 메시지를 나르는 바인딩으로 [[udp|UDP]], [[transport-layer-security#DTLS|DTLS]](Datagram Transport Layer Security), SMS(Short Message Service), [[tcp|TCP]], [[transport-layer-security|TLS]], Non-IP 전송(셀룰러 IoT, LoRaWAN) 위의 CoAP와, TLS 위의 [[mqtt|MQTT]], TLS 위의 HTTP(Hypertext Transfer Protocol)를 정한다.[@oma-lwm2m-transport-1-2-2-2024] LwM2M 1.0은 UDP와 SMS 위의 CoAP를 지원했고, LwM2M 1.1이 TCP·TLS 위의 CoAP와 Non-IP 위의 CoAP를 더했다.[@oma-lwm2m-transport-1-1-2018] LwM2M 1.2는 MQTT와 HTTP 위의 전송을 새로 넣었다.[@oma-lwm2m-core-1-2-2-2024]
 
 ![[diagrams/lwm2m-transport-bindings.svg]]
 

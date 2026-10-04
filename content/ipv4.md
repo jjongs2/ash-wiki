@@ -46,7 +46,7 @@ IPv4 헤더는 옵션이 없으면 20바이트이고, 옵션을 포함해 최대
 
 RFC 791은 Type of Service를 원하는 서비스 품질을 가리키는 필드로 정했다. RFC 2474는 이 8비트를 DS(Differentiated Services) 필드로 대체해, 그 가운데 6비트를 DSCP(Differentiated Services Code Point)로 쓴다.[@ietf-rfc-791-1981][@ietf-rfc-2474-1998]
 
-헤더 필드는 가장 높은 자리 바이트부터 보내는 [[byte-order|네트워크 바이트 순서]]로 보낸다.[@ietf-rfc-791-1981]
+헤더 필드는 가장 높은 자리 바이트부터 보내는 [[byte-order#네트워크 바이트 순서|네트워크 바이트 순서]]로 보낸다.[@ietf-rfc-791-1981]
 
 Protocol 필드 값은 IANA가 관리한다. [[icmp|ICMP]]는 1, TCP는 6, [[udp|UDP]]는 17이다.[@iana-protocol-numbers-2026]
 

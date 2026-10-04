@@ -11,7 +11,7 @@ verified: 2026-09-29
 
 ## 혼잡 윈도
 
-송신 측이 확인 응답을 받지 않고 보낼 수 있는 양에 스스로 두는 한도를 **혼잡 윈도**(cwnd, congestion window)라 한다. 송신 측은 보내는 양을 수신 윈도(rwnd)와 cwnd 가운데 작은 쪽으로 제한한다.[@ietf-rfc-5681-2009] 수신 윈도는 수신 측이 TCP 헤더의 Window 필드로 알린 값이다.[@ietf-rfc-5681-2009][@ietf-rfc-9293-2022]
+송신 측이 확인 응답을 받지 않고 보낼 수 있는 양에 스스로 두는 한도를 **혼잡 윈도**(cwnd, congestion window)라 한다. 송신 측은 보내는 양을 수신 윈도(rwnd)와 cwnd 가운데 작은 쪽으로 제한한다.[@ietf-rfc-5681-2009] 수신 윈도는 수신 측이 [[tcp#헤더|TCP 헤더]]의 Window 필드로 알린 값이다.[@ietf-rfc-5681-2009][@ietf-rfc-9293-2022]
 
 송신 측은 slow start 임계값(ssthresh)을 함께 유지한다. $\mathrm{cwnd} < \mathrm{ssthresh}$이면 slow start를, $\mathrm{cwnd} > \mathrm{ssthresh}$이면 congestion avoidance를 쓴다. RFC 5681은 초기 cwnd의 상한을 SMSS(Sender Maximum Segment Size)에 따라 2\~4세그먼트로 정하고, 초기 ssthresh는 임의로 크게 두도록 권한다.[@ietf-rfc-5681-2009]
 

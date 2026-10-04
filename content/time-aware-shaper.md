@@ -14,7 +14,7 @@ IEEE 802.1Qbv 프로젝트는 브리지와 엔드 스테이션이 [[ieee-802-1as
 
 ## 게이트
 
-IEEE 802.1Q의 scheduled traffic은 포트의 [[traffic-class|트래픽 클래스]]마다 게이트를 두고, 게이트는 열림과 닫힘 두 상태를 가진다.[@ieee-802-1qcw-sched-yang-2023] 전송할 수 있는 것은 게이트가 열린 큐뿐이고, 게이트가 닫힌 큐의 프레임은 전송에 선택되지 않는다.[@ti-processor-sdk-linux-am62x-est-2026][@intel-eci-gptp-2024] IEEE 802.1Q-2022는 게이트가 열린 큐의 프레임을 그 큐에 지정된 전송 선택 알고리즘에 따라 전송에 선택하도록 정하고, scheduled traffic을 지원하지 않는 구현에서는 모든 게이트를 늘 열린 것으로 본다. 이 표준은 게이트가 열려 있어도 다음 게이트 닫힘 전까지 프레임 전체와 매체에 따른 오버헤드를 보낼 시간이 남지 않으면, 그 프레임을 전송할 수 없는 것으로 본다.[@ieee-802-1q-2022]
+IEEE 802.1Q의 scheduled traffic은 포트의 [[traffic-class|트래픽 클래스]]마다 게이트를 두고, 게이트는 열림과 닫힘 두 상태를 가진다.[@ieee-802-1qcw-sched-yang-2023] 전송할 수 있는 것은 게이트가 열린 큐뿐이고, 게이트가 닫힌 큐의 프레임은 전송에 선택되지 않는다.[@ti-processor-sdk-linux-am62x-est-2026][@intel-eci-gptp-2024] IEEE 802.1Q-2022는 게이트가 열린 큐의 프레임을 그 큐에 지정된 [[traffic-class#전송 선택|전송 선택 알고리즘]]에 따라 전송에 선택하도록 정하고, scheduled traffic을 지원하지 않는 구현에서는 모든 게이트를 늘 열린 것으로 본다. 이 표준은 게이트가 열려 있어도 다음 게이트 닫힘 전까지 프레임 전체와 매체에 따른 오버헤드를 보낼 시간이 남지 않으면, 그 프레임을 전송할 수 없는 것으로 본다.[@ieee-802-1q-2022]
 
 ![[diagrams/egress-queue-transmission-selection.svg]]
 
@@ -40,7 +40,7 @@ $$
 
 TI CPSW의 EST(Enhancements for Scheduled Traffic) 하드웨어는 게이트가 닫히기 직전 큐에 들어온 프레임도 보내, 그 프레임이 다음 창으로 넘어갈 수 있다. TI는 이를 막으려면 창 사이에 모든 게이트를 닫은 항목을 guard band로 넣고, 그 길이를 MTU(Maximum Transmission Unit) 프레임의 전송 시간에 292 wire clock(1 Gbit/s에서 2336 ns)을 더한 값으로 잡기를 권한다.[@ti-processor-sdk-linux-am62x-est-2026]
 
-[[frame-preemption|프레임 선점]]을 함께 쓰면 guard band를 줄일 수 있다.[@adi-adin3310-adin6310-2025][@ti-processor-sdk-linux-am64x-iet-2026] Microchip의 TSN 앱노트에 따르면 이때 guard band는 끼어들 수 있는 가장 긴 프레임의 크기에서 가장 긴 조각의 크기로 줄어든다.[@microchip-pd-ies008x-tsn-2025]
+[[frame-preemption|프레임 선점]]을 함께 쓰면 guard band를 줄일 수 있다.[@adi-adin3310-adin6310-2025][@ti-processor-sdk-linux-am64x-iet-2026] Microchip의 TSN 앱노트에 따르면 이때 guard band는 끼어들 수 있는 가장 긴 프레임의 크기에서 가장 긴 [[frame-preemption#조각|조각]]의 크기로 줄어든다.[@microchip-pd-ies008x-tsn-2025]
 
 ![[diagrams/guard-band-with-preemption.svg]]
 

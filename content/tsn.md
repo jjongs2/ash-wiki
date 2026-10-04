@@ -20,7 +20,7 @@ IEEE 802.1 작업 그룹의 TSN 요약은 TSN 도구를 네 갈래로 나눈다.
 
 시간 동기화는 시간 기반 스케줄링 같은 여러 TSN QoS(Quality of Service) 기능의 바탕이다.[@ieee-tsn-industrial-flyer-2026][@microchip-an1185-2025]
 
-[[ieee-802-1q|IEEE 802.1Q]]의 scheduled traffic은 포트의 게이트 제어 목록에 따라 큐마다 둔 전송 게이트를 알려진 시간 척도에 맞춰 여닫으며, 그 타이밍은 [[ptp|PTP]] 시각을 쓸 수 있다고 전제한다.[@ieee-802-1q-2022]
+[[ieee-802-1q|IEEE 802.1Q]]의 scheduled traffic은 포트의 [[time-aware-shaper#게이트 제어 목록|게이트 제어 목록]]에 따라 큐마다 둔 전송 게이트를 알려진 시간 척도에 맞춰 여닫으며, 그 타이밍은 [[ptp|PTP]] 시각을 쓸 수 있다고 전제한다.[@ieee-802-1q-2022]
 
 TSN 태스크 그룹이 마친 프로젝트에는 802.1AS, 802.1CB, 802.1Qbv, 802.1Qbu, 802.1Qci, 802.1Qch, 802.1Qcc, 802.1Qcr, 802.1CM, 802.1DG 등이 있다.[@ieee-802-1-tsn-tg-2026]
 

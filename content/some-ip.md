@@ -19,7 +19,7 @@ TCP는 주고받은 세그먼트의 경계와 애플리케이션이 읽고 쓰�
 
 ## 헤더
 
-상호운용을 위해 SOME/IP 헤더의 배치는 모든 구현에서 같아야 한다. 헤더 필드는 모두 [[byte-order|네트워크 바이트 순서]]로 인코딩하며, 앞에서부터 32비트 필드 Message ID, Length, Request ID와 8비트 필드 Protocol Version, Interface Version, Message Type, Return Code 순서로 놓인다. Message ID는 앞 16비트가 Service ID, 뒤 16비트가 Method ID이고, Request ID는 앞 16비트가 Client ID, 뒤 16비트가 Session ID다. Length는 Request ID부터 메시지 끝까지의 바이트 수다. Protocol Version은 SOME/IP 프로토콜 버전으로 1이고, Interface Version은 서비스 인터페이스의 주 버전이다. Message Type은 메시지의 종류를, Return Code는 요청의 처리 결과를 나타낸다.[@autosar-fo-prs-someipprotocol-2025]
+상호운용을 위해 SOME/IP 헤더의 배치는 모든 구현에서 같아야 한다. 헤더 필드는 모두 [[byte-order#네트워크 바이트 순서|네트워크 바이트 순서]]로 인코딩하며, 앞에서부터 32비트 필드 Message ID, Length, Request ID와 8비트 필드 Protocol Version, Interface Version, Message Type, Return Code 순서로 놓인다. Message ID는 앞 16비트가 Service ID, 뒤 16비트가 Method ID이고, Request ID는 앞 16비트가 Client ID, 뒤 16비트가 Session ID다. Length는 Request ID부터 메시지 끝까지의 바이트 수다. Protocol Version은 SOME/IP 프로토콜 버전으로 1이고, Interface Version은 [[service-oriented-communication#서비스 인터페이스|서비스 인터페이스]]의 주 버전이다. Message Type은 메시지의 종류를, Return Code는 요청의 처리 결과를 나타낸다.[@autosar-fo-prs-someipprotocol-2025]
 
 ![[diagrams/some-ip-header-layout.svg]]
 

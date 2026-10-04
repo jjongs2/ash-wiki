@@ -40,7 +40,7 @@ P802.3ch 태스크 포스는 비차폐 꼬임쌍선, 차폐 꼬임쌍선, 차폐
 
 ![[diagrams/automotive-ethernet-protocol-stack.svg]]
 
-IEEE 802.1 [[tsn|TSN]] 태스크 그룹은 IEEE 802 네트워크에서 지연 상한이 있는 패킷 전달을 목표로 삼으며, 옛 [[avb|AVB]] 태스크 그룹에서 이어졌다.[@ieee-802-1-tsn-tg-2026] IEEE SA에 따르면 AVB 표준은 차량 인포테인먼트 시스템에 쓰인다.[@ieee-tsn-automotive-flyer-2026] IEEE 802.1DG-2025는 TSN 표준에 기반해, 지연 상한이 있는 차량 내 브리지 IEEE 802.3 이더넷 네트워크의 프로파일을 정한다.[@ieee-802-1dg-2025]
+IEEE 802.1 [[tsn|TSN]] 태스크 그룹은 IEEE 802 네트워크에서 지연 상한이 있는 패킷 전달을 목표로 삼으며, 옛 [[avb|AVB]] 태스크 그룹에서 이어졌다.[@ieee-802-1-tsn-tg-2026] IEEE SA에 따르면 AVB 표준은 차량 인포테인먼트 시스템에 쓰인다.[@ieee-tsn-automotive-flyer-2026] IEEE 802.1DG-2025는 TSN 표준에 기반해, 지연 상한이 있는 차량 내 브리지 IEEE 802.3 이더넷 네트워크의 [[tsn#프로파일|프로파일]]을 정한다.[@ieee-802-1dg-2025]
 
 ## 차량 응용
 

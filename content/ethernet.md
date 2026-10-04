@@ -15,7 +15,7 @@ verified: 2026-09-29
 
 ## 이더넷 MAC 컨트롤러
 
-STM32F107xx와 Renesas RA MCU는 이더넷 MAC을 내장한다.[@st-rm0008-2021][@renesas-r01an6628-2025] 수신 쪽에서 이더넷 MAC 컨트롤러는 목적지 주소 필터로 받을 프레임을 고르고, FCS(Frame Check Sequence)를 검사해 설정에 따라 오류 프레임을 버린다. 송신 쪽에서는 목적지 주소, 출발지 주소, 길이/타입 필드, 데이터를 소프트웨어에게서 받아 프레임을 조립하며, FCS를 계산해 덧붙일지는 설정으로 정한다.[@st-rm0008-2021][@microchip-enc28j60-2012]
+STM32F107xx와 Renesas RA MCU는 이더넷 MAC을 내장한다.[@st-rm0008-2021][@renesas-r01an6628-2025] 수신 쪽에서 이더넷 MAC 컨트롤러는 목적지 주소 필터로 받을 프레임을 고르고, FCS(Frame Check Sequence)를 검사해 설정에 따라 오류 프레임을 버린다. 송신 쪽에서는 목적지 주소, 출발지 주소, [[ethernet-frame#길이/타입|길이/타입]] 필드, 데이터를 소프트웨어에게서 받아 프레임을 조립하며, FCS를 계산해 덧붙일지는 설정으로 정한다.[@st-rm0008-2021][@microchip-enc28j60-2012]
 
 MCU에 내장된 이더넷 MAC은 전용 DMA(Direct Memory Access)를 둔다. STM32F107xx와 Renesas RA의 이더넷 MAC은 MCU 밖의 PHY와 MII나 RMII(Reduced MII)로 이어진다.[@st-rm0008-2021][@renesas-r01an6628-2025]
 

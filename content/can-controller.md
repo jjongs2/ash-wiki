@@ -25,7 +25,7 @@ verified: 2026-09-27
 
 ## 수신
 
-컨트롤러는 버스 입력의 에지에 [[can-bit-timing|비트 타이밍]]을 맞춘다. SOF(Start of Frame)의 에지에서 [[can-synchronization|하드 동기화]]를, 그 뒤의 에지에서 재동기화를 한다.[@microchip-mcp2515-2019] 받은 비트열에서는 스터프 비트를 걷어낸다.[@bosch-can-2-0-1991]
+컨트롤러는 버스 입력의 에지에 [[can-bit-timing|비트 타이밍]]을 맞춘다. SOF(Start of Frame)의 에지에서 [[can-synchronization#하드 동기화|하드 동기화]]를, 그 뒤의 에지에서 [[can-synchronization#재동기화|재동기화]]를 한다.[@microchip-mcp2515-2019] 받은 비트열에서는 스터프 비트를 걷어낸다.[@bosch-can-2-0-1991]
 
 컨트롤러는 버스의 모든 메시지에서 비트, 스터프, [[can-crc|CRC]], 형식, [[can-acknowledgement|ACK]] 오류를 검사한다.[@microchip-mcp251xxfd-frm-2018] 메시지를 제대로 받은 수신 노드는 ACK 슬롯에서 dominant 비트를 보내 송신 노드에 알린다.[@bosch-can-2-0-1991]
 
@@ -33,7 +33,7 @@ MCP2515는 오류 검사를 마친 메시지의 식별자를 [[acceptance-filter
 
 ## 설정과 오류 상태
 
-비트율과 샘플 포인트는 컨트롤러의 설정 레지스터로 정한다. 컨트롤러는 송신 오류 계수기(TEC, Transmit Error Counter)와 수신 오류 계수기(REC, Receive Error Counter)를 관리하고, 계수기 값에 따라 [[can-fault-confinement|error active, error passive, bus-off]] 상태를 오간다.[@microchip-mcp2515-2019]
+비트율과 [[can-bit-timing#샘플 포인트|샘플 포인트]]는 컨트롤러의 설정 레지스터로 정한다. 컨트롤러는 [[can-fault-confinement#오류 계수기|송신 오류 계수기]](TEC, Transmit Error Counter)와 수신 오류 계수기(REC, Receive Error Counter)를 관리하고, 계수기 값에 따라 [[can-fault-confinement|error active, error passive, bus-off]] 상태를 오간다.[@microchip-mcp2515-2019]
 
 ## 제품 예
 

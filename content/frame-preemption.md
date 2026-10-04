@@ -22,7 +22,7 @@ TI CPSW의 MAC Merge 부계층은 express 큐에 보낼 프레임이 있으면 p
 
 선점이 없으면 시간이 중요한 프레임은 앞서 시작된 큰 프레임을 기다려야 해서 지연이 커진다.[@adi-adin3310-adin6310-2025][@ieee-802-1qbu-project-2016] ADIN3310/ADIN6310 데이터시트에 따르면 1 Gbit/s에서 선점이 없으면 1528바이트 프레임이 끼어들어 홉마다 지연이 12 µs 넘게 달라질 수 있고, 선점을 쓰면 끼어드는 것이 128바이트 조각으로 줄어 1.2 µs 미만이 된다.[@adi-adin3310-adin6310-2025]
 
-선점을 [[time-aware-shaper|scheduled traffic]]과 함께 쓰면 express 창 앞의 guard band를 줄일 수 있다.[@adi-adin3310-adin6310-2025][@ti-processor-sdk-linux-am64x-iet-2026] ADIN3310/ADIN6310 데이터시트에 따르면 guard band를 줄이면 guard band 때문에 비는 대역폭이 줄어든다.[@adi-adin3310-adin6310-2025]
+선점을 [[time-aware-shaper|scheduled traffic]]과 함께 쓰면 express 창 앞의 [[time-aware-shaper#Guard band|guard band]]를 줄일 수 있다.[@adi-adin3310-adin6310-2025][@ti-processor-sdk-linux-am64x-iet-2026] ADIN3310/ADIN6310 데이터시트에 따르면 guard band를 줄이면 guard band 때문에 비는 대역폭이 줄어든다.[@adi-adin3310-adin6310-2025]
 
 ![[diagrams/guard-band-with-preemption.svg]]
 

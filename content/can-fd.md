@@ -11,7 +11,7 @@ verified: 2026-09-27
 
 ## 두 비트율
 
-CAN FD 프레임은 중재 구간(arbitration phase)과 데이터 구간(data phase)으로 나뉘고, 중재 구간은 classical CAN과 같은 비트율을 쓴다. BRS(Bit Rate Switch) 비트가 [[dominant-and-recessive|recessive]]이면 미리 설정한 데이터 구간 비트율로 바꾸고, dominant이면 바꾸지 않는다. 데이터 구간은 BRS 비트의 샘플 포인트에서 시작해 [[can-crc|CRC]] 구분자의 샘플 포인트에서 끝난다.[@bosch-can-fd-1-0-2012]
+CAN FD 프레임은 중재 구간(arbitration phase)과 데이터 구간(data phase)으로 나뉘고, 중재 구간은 classical CAN과 같은 비트율을 쓴다. BRS(Bit Rate Switch) 비트가 [[dominant-and-recessive|recessive]]이면 미리 설정한 데이터 구간 비트율로 바꾸고, dominant이면 바꾸지 않는다. 데이터 구간은 BRS 비트의 [[can-bit-timing#샘플 포인트|샘플 포인트]]에서 시작해 [[can-crc|CRC]] 구분자의 샘플 포인트에서 끝난다.[@bosch-can-fd-1-0-2012]
 
 ![[diagrams/can-fd-bit-rate-phases.svg]]
 

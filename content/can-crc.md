@@ -25,7 +25,7 @@ $$
 
 ## 오류를 알리는 시점
 
-[[can-acknowledgement|ACK]] 슬롯에 [[dominant-and-recessive|dominant]] 비트를 내서 수신을 알리는 것은 CRC 시퀀스가 일치한 노드다. CRC 오류를 찾은 노드는 ACK 구분자 다음 비트에서 [[can-error-frame|오류 플래그]]를 내기 시작하는데, 다른 오류로 이미 오류 플래그를 내기 시작했으면 그렇지 않다.[@bosch-can-2-0-1991] 다른 오류와의 비교는 [[can-error-detection#오류를 알리는 시점|CAN 오류 검출]]에서 다룬다.
+[[can-acknowledgement|ACK]] 슬롯에 [[dominant-and-recessive|dominant]] 비트를 내서 수신을 알리는 것은 CRC 시퀀스가 일치한 노드다. CRC 오류를 찾은 노드는 ACK 구분자 다음 비트에서 [[can-error-frame#오류 플래그|오류 플래그]]를 내기 시작하는데, 다른 오류로 이미 오류 플래그를 내기 시작했으면 그렇지 않다.[@bosch-can-2-0-1991] 다른 오류와의 비교는 [[can-error-detection#오류를 알리는 시점|CAN 오류 검출]]에서 다룬다.
 
 ## 검출 능력
 
