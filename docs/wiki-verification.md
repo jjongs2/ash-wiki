@@ -192,12 +192,14 @@ DNS 실패, 404 같은 그 밖의 실패는 `url` FAIL입니다.
 
 <!-- table: bot-blocked-hosts -->
 
-| 호스트                | 출처                  |
-| --------------------- | --------------------- |
-| `iso.org`             | ISO 표준              |
-| `onsemi.com`          | onsemi 데이터시트     |
-| `electropedia.org`    | IEC 60050 용어        |
-| `ieeexplore.ieee.org` | IEEE Xplore 표준 문서 |
+| 호스트                      | 출처                  |
+| --------------------------- | --------------------- |
+| `iso.org`                   | ISO 표준              |
+| `onsemi.com`                | onsemi 데이터시트     |
+| `electropedia.org`          | IEC 60050 용어        |
+| `ieeexplore.ieee.org`       | IEEE Xplore 표준 문서 |
+| `unece.org`                 | UN 규정과 WP.29 문서  |
+| `trustedcomputinggroup.org` | TCG 명세와 용어집     |
 
 ## 호스트별 여는 법
 
@@ -213,10 +215,19 @@ DNS 실패, 404 같은 그 밖의 실패는 `url` FAIL입니다.
 | `www.iec.ch`                          | 403이나 WAF 챌린지                                            | Wayback. `assets.iec.ch`의 PDF는 그대로 열립니다                                                                                                                                                   |
 | `webstore.iec.ch`                     | 레코드와 미리보기는 200. 옛 미리보기 주소(`/preview/…`)는 301 | 레코드(`/en/publication/<번호>`)와 미리보기(`/en/iec_catalog/product/preview/?id=<미리보기 PDF 경로의 base64>`)는 연 주소 그대로 인용합니다. 레코드 HTML에 다음 판의 단계와 발행 예정일이 있습니다 |
 | `www.sae.org/standards/content/…`     | 봇 확인, 리다이렉트, 내용 없는 페이지                         | `https://saemobilus.sae.org/standards/<문서>_<판>-<제목>`으로 열고 그 주소로 인용합니다. 현행판은 판 목록(revisions)에서 고릅니다                                                                  |
+| `glossary.istqb.org`                  | 본문 없는 SPA 셸                                              | API(`https://api.glossary.istqb.org/v1/terms/<slug>`)의 JSON으로 읽고, `https://glossary.istqb.org/en_US/term/<slug>` 꼴로 인용합니다. 아래 ISTQB 용어집 문단을 봅니다                             |
+| `unece.org`                           | 봇 차단 응답(Cloudflare 챌린지 403)                           | UN 규정 원문은 `https://documents.un.org/api/symbol/access?s=<문서 기호>&l=en&t=pdf`로 PDF를 받습니다. 그 밖의 문서는 브라우저로 엽니다. 아래 UN 규정 문단을 봅니다                                |
+| `trustedcomputinggroup.org`           | 봇 차단 응답(Cloudflare 챌린지 403)                           | Wayback                                                                                                                                                                                            |
+| `www.nhtsa.gov`                       | `curl`에는 User-Agent와 상관없이 Akamai 403                   | Node `fetch`로 받습니다. `static.nhtsa.gov`(리콜 PDF)와 `api.nhtsa.gov`는 `curl`로도 열립니다                                                                                                      |
+| `www.markey.senate.gov`               | `curl`에는 User-Agent와 상관없이 Akamai 403                   | Node `fetch`로 받습니다                                                                                                                                                                            |
 
 ISO와 IEC의 미리보기는 대개 서문, 소개, 적용 범위, 용어 정의(3절)까지만 보입니다. 4절 이후의 요구사항과 표에만 있는 주장은 미리보기로 검증하지 못하므로 사유가 `공개 범위 밖`입니다.
 
-Wayback은 `https://web.archive.org/web/<연도>/<원래 URL>`로 열면 그 연도에 가까운 스냅샷으로 넘어갑니다. 스냅샷 가운데에는 403 페이지를 저장한 것도 있으니, 원래 문서가 담긴 가장 최근 스냅샷을 고릅니다. 엔트리의 `url`에는 스냅샷 주소를, `note`에는 원래 URL을 적습니다. 예: `bib/nxp-tja1100-2017.bib`
+ISTQB 용어집의 슬러그는 용어와 다를 수 있습니다. 예: checklist-based reviewing은 `checklist-based-review`. 응답의 `version`이 2 이상이면 정의가 바뀐 용어이고, 옛 정의의 본문은 응답에 없습니다. 요청 한도(`X-RateLimit-Limit`)는 IP 하나에 걸려 병렬로 부르면 나눠 쓰므로, `X-RateLimit-Remaining`을 보고 간격을 둡니다.
+
+UN 규정의 문서 기호는 Add 번호가 규정 번호와 다릅니다. 예: R155는 `E/ECE/TRANS/505/Rev.3/Add.154`, R156은 `Add.155`. `https://docs.un.org/en/<문서 기호>`는 본문 없는 문서 뷰어입니다. `documents.un.org`에는 원본과 개정(Amend)만 있으므로, UNECE가 올린 통합본은 브라우저로 엽니다. 브라우저도 첫 요청은 챌린지를 받고, 통과한 뒤로는 열립니다.
+
+Wayback은 `https://web.archive.org/web/<연도>/<원래 URL>`로 열면 그 연도에 가까운 스냅샷으로 넘어갑니다. 스냅샷 가운데에는 403 페이지를 저장한 것도 있으니, 원래 문서가 담긴 가장 최근 스냅샷을 고릅니다. 옛 주소가 새 판으로 넘어가는 호스트에서는 스냅샷도 새 판으로 넘어가 그 판을 놓칠 수 있습니다. 예: `unece.org`의 R155 `2021-03/R155e.pdf`는 `2023-02/R155e (2).pdf`로 넘어갑니다. 엔트리의 `url`에는 스냅샷 주소를, `note`에는 원래 URL을 적습니다. 예: `bib/nxp-tja1100-2017.bib`
 
 ### 접속 확인
 
