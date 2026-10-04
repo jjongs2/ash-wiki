@@ -5,11 +5,11 @@ tags:
 verified: 2026-10-03
 ---
 
-**소프트웨어 테스트**(software testing)는 테스트 대상의 품질과 속성을 평가하는 활동이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-testing-2026] [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022는 테스트를, 하나 이상의 테스트 항목이 지닌 속성을 찾아내고 평가하기 쉽게 하려고 하는 활동의 집합으로 정의한다.[@iso-iec-ieee-29119-1-obp-2022] ISTQB(International Software Testing Qualifications Board) 용어집은 테스트를 [[software-development-life-cycle|소프트웨어 개발 생명주기]] 안에서 컴포넌트나 시스템, 그리고 관련 작업 산출물의 품질을 평가하는 프로세스로 정의한다.[@istqb-glossary-testing-2026]
+**소프트웨어 테스트**(software testing)는 테스트 대상의 품질과 속성을 평가하는 활동이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-testing-2026] [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022는 테스트를, 하나 이상의 테스트 항목이 지닌 속성을 찾아내고 평가하기 쉽게 하려고 하는 활동의 집합으로 정의한다.[@iso-iec-ieee-29119-1-obp-2022] ISTQB 용어집은 테스트를 [[software-development-life-cycle|소프트웨어 개발 생명주기]] 안에서 컴포넌트나 시스템, 그리고 관련 작업 산출물의 품질을 평가하는 프로세스로 정의한다.[@istqb-glossary-testing-2026]
 
 ## 테스트의 목적
 
-ISTQB CTFL(Certified Tester Foundation Level) 강의계획서는 테스트가 흔히 노리는 목적으로 아래 아홉 가지를 든다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL 강의계획서는 테스트가 흔히 노리는 목적으로 아래 아홉 가지를 든다.[@istqb-ctfl-syllabus-2024]
 
 - 요구사항, 사용자 스토리, 설계, 코드 같은 작업 산출물 평가
 - [[fault-error-failure|failure]]를 일으키고 결함 찾기

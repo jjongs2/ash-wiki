@@ -8,7 +8,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-ISTQB(International Software Testing Qualifications Board) CT-AuT(Certified Tester Automotive Software Tester) 강의계획서는 MiL(model-in-the-loop), SiL(software-in-the-loop), HiL(hardware-in-the-loop) 같은 in-the-loop 테스트 환경을 묶어 **X-in-the-loop**(XiL)이라 부르고, X를 구체적인 테스트 환경의 이름이 들어갈 자리로 둔다. 이 강의계획서에 따르면 in-the-loop은 closed loop의 다른 이름이다. 환경 모델이 테스트 대상의 출력을 받아 바로 또는 다른 요소를 거쳐 입력으로 되돌리므로, 테스트 환경 안에 제어 루프가 생긴다.[@istqb-ct-aut-syllabus-2025]
+ISTQB CT-AuT 강의계획서는 MiL(model-in-the-loop), SiL(software-in-the-loop), HiL(hardware-in-the-loop) 같은 in-the-loop 테스트 환경을 묶어 **X-in-the-loop**(XiL)이라 부르고, X를 구체적인 테스트 환경의 이름이 들어갈 자리로 둔다. 이 강의계획서에 따르면 in-the-loop은 closed loop의 다른 이름이다. 환경 모델이 테스트 대상의 출력을 받아 바로 또는 다른 요소를 거쳐 입력으로 되돌리므로, 테스트 환경 안에 제어 루프가 생긴다.[@istqb-ct-aut-syllabus-2025]
 
 ![[diagrams/xil-closed-loop.svg]]
 

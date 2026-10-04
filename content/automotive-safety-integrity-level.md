@@ -15,7 +15,7 @@ ASIL은 [[hazard-analysis-and-risk-assessment|HARA]]에서 정한다. HARA는 �
 - **노출**(exposure, E): 분석하는 고장 모드와 겹치면 위험해질 수 있는 운용 상황에 놓인 상태
 - **통제 가능성**(controllability, C): 관련된 사람이 제때 반응해 특정한 해나 손상을 피할 수 있는 능력. 관련된 사람에는 운전자, 승객, 차 밖의 사람이 들 수 있고, 외부 조치가 그 반응을 도울 수 있다.[@iso-26262-1-obp-2018]
 
-ISO 26262-1:2018은 QM(Quality Management)을 ASIL로 보지 않지만, HARA에서 QM을 지정할 수 있게 한다.[@iso-26262-1-obp-2018]
+이 표준은 QM(Quality Management)을 ASIL로 보지 않지만, HARA에서 QM을 지정할 수 있게 한다.[@iso-26262-1-obp-2018]
 
 ![[diagrams/hara-hazardous-event-parameters-results.svg]]
 

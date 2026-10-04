@@ -7,11 +7,11 @@ aliases:
 verified: 2026-10-03
 ---
 
-**단위 테스트**(unit testing)는 소프트웨어의 개별 부분을 하나씩 따로 시험하는 테스트다.[@istqb-glossary-unit-testing-2026][@ieee-cs-sevocab-2026] ISTQB(International Software Testing Qualifications Board) 용어집은 단위 테스트를 따로 떼어 시험할 수 있는 가장 작은 코드 부분을 평가하는 데 초점을 둔 테스트 레벨로 정의한다.[@istqb-glossary-unit-testing-2026]
+**단위 테스트**(unit testing)는 소프트웨어의 개별 부분을 하나씩 따로 시험하는 테스트다.[@istqb-glossary-unit-testing-2026][@ieee-cs-sevocab-2026] ISTQB 용어집은 단위 테스트를 따로 떼어 시험할 수 있는 가장 작은 코드 부분을 평가하는 데 초점을 둔 테스트 레벨로 정의한다.[@istqb-glossary-unit-testing-2026]
 
 ## 컴포넌트 테스트
 
-**컴포넌트 테스트**(component testing)는 개별 하드웨어나 소프트웨어 컴포넌트를 시험하는 데 초점을 둔다.[@ieee-cs-sevocab-2026][@istqb-glossary-component-testing-2026] ISTQB CTFL(Certified Tester Foundation Level) 강의계획서는 컴포넌트 테스트를 단위 테스트라고도 부른다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 두 용어를 정의가 다른 별개의 항목으로 두고, 컴포넌트 테스트의 동의어로는 module testing만 둔다.[@istqb-glossary-unit-testing-2026][@istqb-glossary-component-testing-2026]
+**컴포넌트 테스트**(component testing)는 개별 하드웨어나 소프트웨어 컴포넌트를 시험하는 데 초점을 둔다.[@ieee-cs-sevocab-2026][@istqb-glossary-component-testing-2026] ISTQB CTFL 강의계획서는 컴포넌트 테스트를 단위 테스트라고도 부른다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 두 용어를 정의가 다른 별개의 항목으로 두고, 컴포넌트 테스트의 동의어로는 module testing만 둔다.[@istqb-glossary-unit-testing-2026][@istqb-glossary-component-testing-2026]
 
 ## 대상과 수행 주체
 

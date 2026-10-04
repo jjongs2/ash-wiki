@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**테스트 케이스**(test case)는 사전 조건, 입력, 기대 결과를 담은 집합이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-test-case-2026] [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022는 테스트 케이스를, 테스트 목표를 이루도록 테스트 항목의 실행을 이끄는 사전 조건, 입력, 기대 결과의 집합으로 정의한다.[@iso-iec-ieee-29119-1-obp-2022] ISTQB(International Software Testing Qualifications Board) 용어집은 테스트 케이스를 테스트 조건을 바탕으로 만든 사전 조건, 입력, 동작(해당할 때), 기대 결과, 사후 조건의 집합으로 정의한다.[@istqb-glossary-test-case-2026]
+**테스트 케이스**(test case)는 사전 조건, 입력, 기대 결과를 담은 집합이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-test-case-2026] [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022는 테스트 케이스를, 테스트 목표를 이루도록 테스트 항목의 실행을 이끄는 사전 조건, 입력, 기대 결과의 집합으로 정의한다.[@iso-iec-ieee-29119-1-obp-2022] ISTQB 용어집은 테스트 케이스를 테스트 조건을 바탕으로 만든 사전 조건, 입력, 동작(해당할 때), 기대 결과, 사후 조건의 집합으로 정의한다.[@istqb-glossary-test-case-2026]
 
 ISO/IEC/IEEE 24765:2017은 테스트 케이스를, 특정 프로그램 경로를 실행하거나 특정 요구사항을 지키는지 검증하는 것 같은 특정 목표를 위해 만든 테스트 입력, 실행 조건, 기대 결과의 집합으로도 정의한다.[@iso-iec-ieee-24765-obp-2017]
 
@@ -18,7 +18,7 @@ ISO/IEC/IEEE 24765:2017은 테스트 케이스를, 특정 프로그램 경로를
 
 ## 테스트 조건
 
-**테스트 조건**(test condition)은 컴포넌트나 시스템에서 테스트로 확인할 수 있는 측면이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-test-condition-2026] ISTQB CTFL(Certified Tester Foundation Level) 강의계획서에 따르면 테스트 조건은 테스트 분석에서 정하고, 테스트 설계에서 테스트 케이스로 다듬는다.[@istqb-ctfl-syllabus-2024] 두 활동은 [[test-process|테스트 프로세스]]에서 다룬다. ISO/IEC/IEEE 29119 시리즈는 테스트 설계에 테스트 조건 대신 테스트 모델이라는 개념을 쓴다.[@iso-iec-ieee-29119-1-obp-2022]
+**테스트 조건**(test condition)은 컴포넌트나 시스템에서 테스트로 확인할 수 있는 측면이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-test-condition-2026] ISTQB CTFL 강의계획서에 따르면 테스트 조건은 테스트 분석에서 정하고, 테스트 설계에서 테스트 케이스로 다듬는다.[@istqb-ctfl-syllabus-2024] 두 활동은 [[test-process|테스트 프로세스]]에서 다룬다. ISO/IEC/IEEE 29119 시리즈는 테스트 설계에 테스트 조건 대신 테스트 모델이라는 개념을 쓴다.[@iso-iec-ieee-29119-1-obp-2022]
 
 ## 테스트 절차와 스크립트
 

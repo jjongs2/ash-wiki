@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-ISTQB(International Software Testing Qualifications Board) 용어집은 **통합 테스트**(integration testing)를 컴포넌트나 시스템 사이의 상호작용에 초점을 둔 테스트 레벨로 정의한다.[@istqb-glossary-integration-testing-2026] ISTQB CTFL(Certified Tester Foundation Level) 강의계획서는 통합 테스트를 컴포넌트 통합 테스트와 시스템 통합 테스트의 두 테스트 레벨로 나눈다.[@istqb-ctfl-syllabus-2024]
+ISTQB 용어집은 **통합 테스트**(integration testing)를 컴포넌트나 시스템 사이의 상호작용에 초점을 둔 테스트 레벨로 정의한다.[@istqb-glossary-integration-testing-2026] ISTQB CTFL 강의계획서는 통합 테스트를 컴포넌트 통합 테스트와 시스템 통합 테스트의 두 테스트 레벨로 나눈다.[@istqb-ctfl-syllabus-2024]
 
 ## 컴포넌트 통합과 시스템 통합
 
@@ -13,7 +13,7 @@ CTFL 강의계획서에 따르면 **컴포넌트 통합 테스트**(component in
 
 ## 통합 전략
 
-대표적인 통합 전략으로 하향식, 상향식, 빅뱅이 있다.[@istqb-ctfl-syllabus-2024][@ieee-swebok-v4-0a-2026] SWEBOK(Software Engineering Body of Knowledge) V4.0a는 여기에 혼합(샌드위치) 통합을 더해 대표적인 통합 테스트 전략으로 든다.[@ieee-swebok-v4-0a-2026]
+대표적인 통합 전략으로 하향식, 상향식, 빅뱅이 있다.[@istqb-ctfl-syllabus-2024][@ieee-swebok-v4-0a-2026] SWEBOK V4.0a는 여기에 혼합(샌드위치) 통합을 더해 대표적인 통합 테스트 전략으로 든다.[@ieee-swebok-v4-0a-2026]
 
 ISO/IEC/IEEE 24765 용어집은 각 전략의 이름을 다음과 같이 정의한다.[@ieee-cs-sevocab-2026]
 

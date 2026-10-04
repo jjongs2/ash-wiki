@@ -7,13 +7,13 @@ tags:
 verified: 2026-10-03
 ---
 
-**화이트박스 테스트**(white-box testing)는 테스트 대상의 구조를 살펴 테스트를 끌어내는 테스트다. 구조 기반 테스트(structure-based testing)라고도 부른다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-ctfl-syllabus-2024] ISTQB(International Software Testing Qualifications Board) 용어집은 구성 요소나 시스템의 내부 구조에 바탕을 둔 테스트 기법을 화이트박스 테스트 기법(white-box test technique)이라 부르고, 구조 기반 테스트 기법(structure-based test technique)을 같은 뜻의 이름으로 둔다.[@istqb-glossary-white-box-test-technique-2026]
+**화이트박스 테스트**(white-box testing)는 테스트 대상의 구조를 살펴 테스트를 끌어내는 테스트다. 구조 기반 테스트(structure-based testing)라고도 부른다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-ctfl-syllabus-2024] ISTQB 용어집은 구성 요소나 시스템의 내부 구조에 바탕을 둔 테스트 기법을 화이트박스 테스트 기법(white-box test technique)이라 부르고, 구조 기반 테스트 기법(structure-based test technique)을 같은 뜻의 이름으로 둔다.[@istqb-glossary-white-box-test-technique-2026]
 
 테스트 기법은 명세 기반([[black-box-testing|블랙박스]]), 구조 기반(화이트박스), 경험 기반의 세 갈래로 나뉜다.[@istqb-ctfl-syllabus-2024][@iso-iec-ieee-29119-4-obp-2021] 화이트박스 테스트는 단위 테스트에 한하지 않고, 시스템 테스트를 포함한 모든 테스트 레벨에서 쓸 수 있다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-ctfl-syllabus-2024]
 
 ## 커버리지로 케이스 끌어내기
 
-ISTQB CTFL(Certified Tester Foundation Level) 강의계획서에 따르면 화이트박스 테스트는 코드, 아키텍처, 작업 흐름, 데이터 흐름 같은 구현이나 내부 구조에서 테스트를 끌어낸다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL 강의계획서에 따르면 화이트박스 테스트는 코드, 아키텍처, 작업 흐름, 데이터 흐름 같은 구현이나 내부 구조에서 테스트를 끌어낸다.[@istqb-ctfl-syllabus-2024]
 
 구문 테스트는 실행 가능한 구문을, 분기 테스트는 제어 흐름의 분기를 커버리지 항목으로 삼는 구조 기반 기법이다.[@istqb-ctfl-syllabus-2024][@iso-iec-ieee-29119-4-obp-2021] CTFL 강의계획서에 따르면 두 기법은 코드에 관련된 화이트박스 기법이고, 받아들일 만한 커버리지에 이를 때까지 커버리지 항목을 실행하는 테스트 케이스를 설계하고, 화이트박스 커버리지 측정은 커버리지를 높일 추가 테스트를 만드는 데 필요한 정보를 준다.[@istqb-ctfl-syllabus-2024] 커버리지 기준의 종류는 [[test-coverage|테스트 커버리지]]에서 다룬다.
 

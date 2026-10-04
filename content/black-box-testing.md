@@ -7,9 +7,9 @@ tags:
 verified: 2026-10-03
 ---
 
-**블랙박스 테스트**(black-box testing)는 구현(소스 코드)이 아니라 명세, 곧 테스트 대상의 외부 입력과 출력을 바탕으로 하는 테스트다. 명세 기반 테스트(specification-based testing)라고도 부른다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-black-box-testing-2026] ISTQB(International Software Testing Qualifications Board) 용어집은 명세에 근거한 테스트 기법을 블랙박스 테스트 기법(black-box test technique)이라 부르고, 명세 기반 테스트 기법(specification-based test technique)을 같은 뜻의 이름으로 둔다.[@istqb-glossary-black-box-test-technique-2026]
+**블랙박스 테스트**(black-box testing)는 구현(소스 코드)이 아니라 명세, 곧 테스트 대상의 외부 입력과 출력을 바탕으로 하는 테스트다. 명세 기반 테스트(specification-based testing)라고도 부른다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-black-box-testing-2026] ISTQB 용어집은 명세에 근거한 테스트 기법을 블랙박스 테스트 기법(black-box test technique)이라 부르고, 명세 기반 테스트 기법(specification-based test technique)을 같은 뜻의 이름으로 둔다.[@istqb-glossary-black-box-test-technique-2026]
 
-ISTQB CTFL(Certified Tester Foundation Level) 강의계획서는 테스트 기법을 블랙박스, [[white-box-testing|화이트박스]], 경험 기반의 세 갈래로 나눈다. 이 강의계획서에 따르면 블랙박스 기법은 명세된 동작을 분석해 테스트를 만들므로 케이스가 구현과 독립이고, 구현이 바뀌어도 요구 동작이 그대로면 케이스를 계속 쓸 수 있다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL 강의계획서는 테스트 기법을 블랙박스, [[white-box-testing|화이트박스]], 경험 기반의 세 갈래로 나눈다. 이 강의계획서에 따르면 블랙박스 기법은 명세된 동작을 분석해 테스트를 만들므로 케이스가 구현과 독립이고, 구현이 바뀌어도 요구 동작이 그대로면 케이스를 계속 쓸 수 있다.[@istqb-ctfl-syllabus-2024]
 
 ## 테스트 기준
 

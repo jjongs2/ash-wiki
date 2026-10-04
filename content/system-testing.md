@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-ISTQB(International Software Testing Qualifications Board) 용어집은 **시스템 테스트**(system testing)를 시스템 전체가 명세된 요구사항을 만족하는지 검증하는 데 초점을 둔 테스트 레벨로 정의한다.[@istqb-glossary-system-testing-2026] ISTQB CTFL(Certified Tester Foundation Level) 강의계획서에 따르면 시스템 테스트는 시스템이나 제품 전체의 동작과 능력에 초점을 두고, 끝에서 끝까지 이어지는 작업의 기능 테스트와 성능 효율, 사용성, 보안 같은 품질 특성의 비기능 테스트를 흔히 포함한다. 시스템 명세에 바탕을 두며, 독립된 테스트 팀이 수행하기도 한다.[@istqb-ctfl-syllabus-2024]
+ISTQB 용어집은 **시스템 테스트**(system testing)를 시스템 전체가 명세된 요구사항을 만족하는지 검증하는 데 초점을 둔 테스트 레벨로 정의한다.[@istqb-glossary-system-testing-2026] ISTQB CTFL 강의계획서에 따르면 시스템 테스트는 시스템이나 제품 전체의 동작과 능력에 초점을 두고, 끝에서 끝까지 이어지는 작업의 기능 테스트와 성능 효율, 사용성, 보안 같은 품질 특성의 비기능 테스트를 흔히 포함한다. 시스템 명세에 바탕을 두며, 독립된 테스트 팀이 수행하기도 한다.[@istqb-ctfl-syllabus-2024]
 
 ## 테스트 환경
 
@@ -22,7 +22,7 @@ ASPICE 3.1은 SWE.6을 Software Qualification Test, SYS.5를 System Qualificatio
 
 ## 테스트 레벨의 대응
 
-ISTQB CT-AuT(Certified Tester Automotive Software Tester) 강의계획서는 CTFL의 시스템 테스트를 [[iso-26262|ISO 26262]]:2018의 임베디드 소프트웨어 테스트(6부 11절)와 ASPICE 4.0의 SWE.6에 대응시키고, SYS.5는 여러 이종 분산 시스템을 시험하는 system of systems testing에 대응시킨다. CT-AuT 강의계획서에 따르면 이렇게 대응하는 것은 CTFL 강의계획서가 system을 소프트웨어만 가리키는 말로 쓰기 때문이다.[@istqb-ct-aut-syllabus-2025]
+ISTQB CT-AuT 강의계획서는 CTFL의 시스템 테스트를 [[iso-26262|ISO 26262]]:2018의 임베디드 소프트웨어 테스트(6부 11절)와 ASPICE 4.0의 SWE.6에 대응시키고, SYS.5는 여러 이종 분산 시스템을 시험하는 system of systems testing에 대응시킨다. CT-AuT 강의계획서에 따르면 이렇게 대응하는 것은 CTFL 강의계획서가 system을 소프트웨어만 가리키는 말로 쓰기 때문이다.[@istqb-ct-aut-syllabus-2025]
 
 ## ISO 26262-6
 

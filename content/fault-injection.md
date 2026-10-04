@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**결함 주입**(fault injection)은 결함 같은 이상 조건을 일부러 만들어, 컴포넌트나 시스템이 어떻게 반응하는지 평가하는 기법이다.[@iso-26262-1-obp-2018][@istqb-glossary-fault-injection-2026] [[iso-26262|ISO 26262]]-1:2018은 결함 주입을 요소 안에서 결함이 미치는 영향을 평가하려고 [[fault-error-failure|fault, error, failure]]를 넣고 관측점에서 반응을 살피는 방법으로 정의한다.[@iso-26262-1-obp-2018] ISTQB(International Software Testing Qualifications Board) 용어집은 결함 주입을 불리한 조건을 만들어 컴포넌트나 시스템이 그 조건을 검출하고 믿을 만하게 동작하는지 평가하는 기법으로 정의하고, fault insertion을 동의어로 둔다.[@istqb-glossary-fault-injection-2026]
+**결함 주입**(fault injection)은 결함 같은 이상 조건을 일부러 만들어, 컴포넌트나 시스템이 어떻게 반응하는지 평가하는 기법이다.[@iso-26262-1-obp-2018][@istqb-glossary-fault-injection-2026] [[iso-26262|ISO 26262]]-1:2018은 결함 주입을 요소 안에서 결함이 미치는 영향을 평가하려고 [[fault-error-failure|fault, error, failure]]를 넣고 관측점에서 반응을 살피는 방법으로 정의한다.[@iso-26262-1-obp-2018] ISTQB 용어집은 결함 주입을 불리한 조건을 만들어 컴포넌트나 시스템이 그 조건을 검출하고 믿을 만하게 동작하는지 평가하는 기법으로 정의하고, fault insertion을 동의어로 둔다.[@istqb-glossary-fault-injection-2026]
 
 ## 목적
 
@@ -15,7 +15,7 @@ ISO 26262-1:2018은 결함 주입의 예로 다음을 든다.[@iso-26262-1-obp-2
 - 통합 테스트에서 하드웨어 디버그 포트나 전용 소프트웨어 명령으로 결함을 넣어 하드웨어와 소프트웨어 사이의 인터페이스(HSI, hardware-software interface)를 테스트하는 것
 - 하드웨어 부품 수준에서 stuck-at 결함이나 일시 결함을 흉내 내 안전 메커니즘의 진단 커버리지를 검증하는 것[@iso-26262-1-obp-2018]
 
-ISTQB CT-AuT(Certified Tester Automotive Software Tester) 강의계획서에 따르면 오류 처리 같은 프로그래밍 기법은 시스템이 내부와 외부의 결함에 견고하고 안전하게 반응하게 하려고 쓰고, 결함 주입 테스트는 결함 같은 불리한 조건에 컴포넌트나 시스템이 어떻게 반응하는지 평가한다.[@istqb-ct-aut-syllabus-2025]
+ISTQB CT-AuT 강의계획서에 따르면 오류 처리 같은 프로그래밍 기법은 시스템이 내부와 외부의 결함에 견고하고 안전하게 반응하게 하려고 쓰고, 결함 주입 테스트는 결함 같은 불리한 조건에 컴포넌트나 시스템이 어떻게 반응하는지 평가한다.[@istqb-ct-aut-syllabus-2025]
 
 ## 하드웨어 결함 주입과 소프트웨어 결함 주입
 

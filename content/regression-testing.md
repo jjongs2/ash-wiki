@@ -5,11 +5,11 @@ tags:
 verified: 2026-10-03
 ---
 
-**회귀 테스트**(regression testing)는 소프트웨어나 그 운영 환경을 바꾼 뒤, 바꾸지 않은 부분에 결함이 새로 생기거나 드러났는지 찾는 테스트다.[@ieee-cs-sevocab-2026][@istqb-glossary-regression-testing-2026] ISTQB(International Software Testing Qualifications Board) 용어집은 회귀 테스트를 변경 관련 테스트(change-related testing)의 한 종류로 둔다.[@istqb-glossary-regression-testing-2026] SWEBOK(Software Engineering Body of Knowledge) V4.0a에 따르면 실무의 회귀 테스트는 테스트 대상이 스위트에서 전에 통과한 테스트를 여전히 통과하는지 보인다.[@ieee-swebok-v4-0a-2026]
+**회귀 테스트**(regression testing)는 소프트웨어나 그 운영 환경을 바꾼 뒤, 바꾸지 않은 부분에 결함이 새로 생기거나 드러났는지 찾는 테스트다.[@ieee-cs-sevocab-2026][@istqb-glossary-regression-testing-2026] ISTQB 용어집은 회귀 테스트를 변경 관련 테스트(change-related testing)의 한 종류로 둔다.[@istqb-glossary-regression-testing-2026] SWEBOK V4.0a에 따르면 실무의 회귀 테스트는 테스트 대상이 스위트에서 전에 통과한 테스트를 여전히 통과하는지 보인다.[@ieee-swebok-v4-0a-2026]
 
 ## 회귀 테스트의 계기
 
-ISTQB CTFL(Certified Tester Foundation Level) 강의계획서에 따르면 변경은 기능을 더해 개선하거나 결함을 없애 고치려고 하고, 그 뒤의 테스트에는 확인 테스트와 회귀 테스트가 든다. 회귀 테스트는 확인 테스트를 마친 수정까지 포함해, 변경이 나쁜 결과를 낳지 않았는지 확인한다. 회귀 테스트는 테스트 대상만이 아니라 환경과도 관련될 수 있고, 운영 환경의 업그레이드나 다른 플랫폼으로의 이전은 유지보수 테스트의 계기다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL 강의계획서에 따르면 변경은 기능을 더해 개선하거나 결함을 없애 고치려고 하고, 그 뒤의 테스트에는 확인 테스트와 회귀 테스트가 든다. 회귀 테스트는 확인 테스트를 마친 수정까지 포함해, 변경이 나쁜 결과를 낳지 않았는지 확인한다. 회귀 테스트는 테스트 대상만이 아니라 환경과도 관련될 수 있고, 운영 환경의 업그레이드나 다른 플랫폼으로의 이전은 유지보수 테스트의 계기다.[@istqb-ctfl-syllabus-2024]
 
 ## 테스트 선택
 

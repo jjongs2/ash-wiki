@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-ISO/IEC/IEEE 24765 용어집은 **Scrum**을, [[agile-software-development|애자일 개발]]에서 팀이 요구사항 백로그에서 개발할 항목을 합의하고 몇 주 정도의 짧은 기간 안에 만들어 내는 반복형 프로젝트 관리 프레임워크로 정의한다.[@ieee-cs-sevocab-2026] SWEBOK(Software Engineering Body of Knowledge) V4.0a에 따르면 Scrum은 널리 쓰이게 된 애자일 방법 가운데 하나로, 다른 애자일 방법보다 프로젝트 관리에 잘 맞는다.[@ieee-swebok-v4-0a-2026]
+ISO/IEC/IEEE 24765 용어집은 **Scrum**을, [[agile-software-development|애자일 개발]]에서 팀이 요구사항 백로그에서 개발할 항목을 합의하고 몇 주 정도의 짧은 기간 안에 만들어 내는 반복형 프로젝트 관리 프레임워크로 정의한다.[@ieee-cs-sevocab-2026] SWEBOK V4.0a에 따르면 Scrum은 널리 쓰이게 된 애자일 방법 가운데 하나로, 다른 애자일 방법보다 프로젝트 관리에 잘 맞는다.[@ieee-swebok-v4-0a-2026]
 
 The Scrum Guide 2020은 Scrum을, 복잡한 문제에 맞춰 해결책을 바꿔 가며 가치를 내도록 사람과 팀, 조직을 돕는 가벼운 프레임워크로 정의한다. Ken Schwaber와 Jeff Sutherland는 1990년대 초에 Scrum을 만들어 1995년 OOPSLA(Object-Oriented Programming, Systems, Languages & Applications) 학회에서 처음 함께 발표했고, 2010년에 Scrum의 정의를 담은 The Scrum Guide를 처음 썼다.[@scrumguides-scrum-guide-2020]
 

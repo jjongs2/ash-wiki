@@ -8,7 +8,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**소프트웨어 인스펙션**(software inspection)은 정해진 팀 역할과 측정을 써서 작업 산출물의 결함을 찾는 공식 리뷰다. ISTQB(International Software Testing Qualifications Board) 용어집은 인스펙션을 이런 방법으로 작업 산출물의 결함을 찾고, 리뷰 프로세스와 개발 프로세스를 개선하는 공식 리뷰로 정의한다.[@istqb-glossary-inspection-2026] ISO/IEC/IEEE 24765 용어집은 인스펙션을 개발 산출물을 눈으로 살펴 오류, 개발 표준 위반 같은 문제를 찾는 [[static-analysis|정적 분석]] 기법으로 정의한다.[@ieee-cs-sevocab-2026]
+**소프트웨어 인스펙션**(software inspection)은 정해진 팀 역할과 측정을 써서 작업 산출물의 결함을 찾는 공식 리뷰다. ISTQB 용어집은 인스펙션을 이런 방법으로 작업 산출물의 결함을 찾고, 리뷰 프로세스와 개발 프로세스를 개선하는 공식 리뷰로 정의한다.[@istqb-glossary-inspection-2026] ISO/IEC/IEEE 24765 용어집은 인스펙션을 개발 산출물을 눈으로 살펴 오류, 개발 표준 위반 같은 문제를 찾는 [[static-analysis|정적 분석]] 기법으로 정의한다.[@ieee-cs-sevocab-2026]
 
 인스펙션은 [[software-review|소프트웨어 리뷰]]의 한 유형이다.[@istqb-glossary-inspection-2026]
 
@@ -48,6 +48,6 @@ Fagan은 1986년 논문에서 인스펙션이 대개 기계 테스트보다 더 
 
 ## 워크스루와의 차이
 
-ISTQB 용어집은 워크스루를 저자가 리뷰 참여자를 이끌며 작업 산출물을 함께 짚고, 참여자가 질문하고 의견을 내는 리뷰로 정의한다.[@istqb-glossary-walkthrough-2026] ISO/IEC/IEEE 24765 용어집은 인스펙션을, 인스펙션 기법을 훈련받은 공정한 진행자가 이끄는 동료 리뷰로 둔다.[@ieee-cs-sevocab-2026] ISTQB CTFL(Certified Tester Foundation Level) 강의계획서에 따르면 인스펙션에서는 저자가 리뷰 리더나 기록자를 맡을 수 없다.[@istqb-ctfl-syllabus-2024]
+ISTQB 용어집은 워크스루를 저자가 리뷰 참여자를 이끌며 작업 산출물을 함께 짚고, 참여자가 질문하고 의견을 내는 리뷰로 정의한다.[@istqb-glossary-walkthrough-2026] ISO/IEC/IEEE 24765 용어집은 인스펙션을, 인스펙션 기법을 훈련받은 공정한 진행자가 이끄는 동료 리뷰로 둔다.[@ieee-cs-sevocab-2026] ISTQB CTFL 강의계획서에 따르면 인스펙션에서는 저자가 리뷰 리더나 기록자를 맡을 수 없다.[@istqb-ctfl-syllabus-2024]
 
 Fagan은 1976년 논문에서 두 방법을 견주었다. 인스펙션은 훈련받은 진행자가 이끌고 역할이 정해져 있지만, 워크스루는 대상의 저자(설계자나 구현자)가 이끌고 진행자 훈련도 정해진 역할도 없다. 워크스루 회의는 교육, 설계 대안 논의, 오류 찾기를 함께 하지만, 인스펙션 회의는 오류 찾기만을 목적으로 둔다.[@fagan-design-code-inspections-1999]

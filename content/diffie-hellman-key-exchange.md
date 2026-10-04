@@ -28,7 +28,7 @@ NIST SP 800-56A Rev. 3은 Diffie-Hellman 원시 연산을 둘 둔다.[@nist-sp-8
 - FFC(Finite Field Cryptography) DH(Diffie-Hellman): 도메인 매개변수 $(p, q, g)$를 쓰고, 상대 공개키를 자기 개인키로 거듭제곱해 $p$를 법으로 공유 비밀을 계산한다. 여기서 $g$는 위수가 $q$인 부분군의 생성원이다.
 - ECC(Elliptic Curve Cryptography) CDH(Cofactor Diffie-Hellman): 상대 공개키인 타원 곡선 위의 점에 cofactor $h$와 자기 개인키를 곱한 점 $P$를 구하고, $P$의 x좌표를 공유 비밀로 쓴다.[@nist-sp-800-56a-r3-2018]
 
-SP 800-56A Rev. 3은 키 합의 방식을 두 당사자가 쓰는 임시 키 쌍의 수에 따라 C(2e), C(1e), C(0e)로 나누고, 정적 키 쌍의 수로 다시 C(2e, 2s) 같은 하위 갈래로 나눈다. 두 당사자가 모두 임시 키 쌍을 쓰는 C(2e) 방식은 두 당사자 모두에게 forward secrecy를 준다.[@nist-sp-800-56a-r3-2018]
+이 문서는 키 합의 방식을 두 당사자가 쓰는 임시 키 쌍의 수에 따라 C(2e), C(1e), C(0e)로 나누고, 정적 키 쌍의 수로 다시 C(2e, 2s) 같은 하위 갈래로 나눈다. 두 당사자가 모두 임시 키 쌍을 쓰는 C(2e) 방식은 두 당사자 모두에게 forward secrecy를 준다.[@nist-sp-800-56a-r3-2018]
 
 ## 중간자 공격
 
