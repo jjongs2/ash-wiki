@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-30
 ---
 
-**PDU Router**(PduR)는 [[autosar-communication-stack|AUTOSAR 통신 스택]]의 중심 모듈로, I-PDU(Interaction Layer Protocol Data Unit)를 한 모듈에서 다른 모듈로 넘긴다. [[autosar-com|AUTOSAR COM]]이나 Dcm(Diagnostic Communication Manager) 같은 상위 모듈과, L-SDU(Link Layer Service Data Unit) Router(LSduR) 같은 통신 인터페이스 모듈과 TP(Transport Protocol) 모듈 같은 하위 모듈 사이에 놓인다.[@autosar-cp-sws-pdurouter-2025] [[can|CAN]]·[[flexray|FlexRay]]·[[lin|LIN]]의 버스 인터페이스 모듈은 LIN의 TP 부분을 빼면 PduR 바로 아래가 아니라 LSduR 아래에 놓인다.[@autosar-cp-sws-caninterface-2025][@autosar-cp-sws-flexrayinterface-2025][@autosar-cp-sws-lininterface-2025]
+**PDU Router**(PduR)는 [[autosar-communication-stack|AUTOSAR 통신 스택]]의 중심 모듈로, I-PDU(Interaction Layer Protocol Data Unit)를 한 모듈에서 다른 모듈로 넘긴다. [[autosar-com|AUTOSAR COM]]이나 Dcm(Diagnostic Communication Manager) 같은 상위 모듈과, L-SDU Router(LSduR) 같은 통신 인터페이스 모듈과 TP(Transport Protocol) 모듈 같은 하위 모듈 사이에 놓인다.[@autosar-cp-sws-pdurouter-2025] [[can|CAN]]·[[flexray|FlexRay]]·[[lin|LIN]]의 버스 인터페이스 모듈은 LIN의 TP 부분을 빼면 PduR 바로 아래가 아니라 LSduR 아래에 놓인다.[@autosar-cp-sws-caninterface-2025][@autosar-cp-sws-flexrayinterface-2025][@autosar-cp-sws-lininterface-2025]
 
 ## 상위 모듈과 하위 모듈
 
@@ -20,10 +20,10 @@ PduR는 I-PDU를 주고받는 모듈을 쓰는 API(Application Programming Inter
 
 이 목록은 예일 뿐이고, 다른 모듈과 복합 드라이버도 설정으로 PduR에 붙일 수 있다.[@autosar-cp-sws-pdurouter-2025] [[ethernet|이더넷]]에서는 SoAd(Socket Adaptor)가 PduR 아래에서 I-PDU를 주고받는다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-**LSduR**는 정적으로 정한 ID에 따라 L-SDU를 라우팅하는 모듈이다. PduR와 버스별 네트워크 관리·전송 프로토콜 모듈은 LSduR를 거쳐 그 아래의 버스 인터페이스 모듈과 이어진다.[@autosar-cp-sws-lsdurouter-2025] [[autosar-can-stack|CanIf]](CAN Interface)와 FrIf(FlexRay Interface)는 수신과 송신 확인을 LSduR의 콜백으로 알린다.[@autosar-cp-sws-caninterface-2025][@autosar-cp-sws-flexrayinterface-2025] LinIf(LIN Interface)도 프레임을 LSduR나 복합 드라이버 같은 위 모듈과 주고받는다. 다만 LinIf 안의 LinTp 부분은 LSduR를 거치지 않고 PduR를 위 모듈로 둔다.[@autosar-cp-sws-lininterface-2025]
+**LSduR**는 정적으로 정한 ID에 따라 L-SDU(Link Layer Service Data Unit)를 라우팅하는 모듈이다. PduR와 버스별 네트워크 관리·전송 프로토콜 모듈은 LSduR를 거쳐 그 아래의 버스 인터페이스 모듈과 이어진다.[@autosar-cp-sws-lsdurouter-2025] [[autosar-can-stack|CanIf]](CAN Interface)와 FrIf(FlexRay Interface)는 수신과 송신 확인을 LSduR의 콜백으로 알린다.[@autosar-cp-sws-caninterface-2025][@autosar-cp-sws-flexrayinterface-2025] LinIf(LIN Interface)도 프레임을 LSduR나 복합 드라이버 같은 위 모듈과 주고받는다. 다만 LinIf 안의 LinTp 부분은 LSduR를 거치지 않고 PduR를 위 모듈로 둔다.[@autosar-cp-sws-lininterface-2025]
 
 ## 라우팅 테이블
 
 PduR는 정적 설정 테이블에서 I-PDU ID로 목적지를 찾아 I-PDU를 넘긴다. 라우팅 경로는 I-PDU마다 정적으로 설정되며, 지원하면 ECU 프로그래밍 상태에서 post-build로 갱신하거나 초기화 때 post-build selectable로 고를 수 있다. PduR는 실행 중에 I-PDU를 동적으로 라우팅하지 않고, 페이로드에 따라 경로를 고르지도 않는다. 다만 라우팅 경로 그룹은 실행 중에 켜고 끌 수 있고, 보통 BswM(Basic Software Mode Manager)이 이 일을 한다.[@autosar-cp-sws-pdurouter-2025]
 
-PduR는 I-PDU를 고치지 않고 넘긴다.[@autosar-cp-sws-pdurouter-2025] PduR의 게이트웨이 기능은 [[gateway#PDU 게이트웨이|PDU 게이트웨이]]에서 다룬다.
+PduR는 I-PDU를 고치지 않고 넘긴다.[@autosar-cp-sws-pdurouter-2025] PduR의 게이트웨이 기능은 [[gateway#PDU 게이트웨이|PDU(Protocol Data Unit) 게이트웨이]]에서 다룬다.
