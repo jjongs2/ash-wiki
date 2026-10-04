@@ -13,7 +13,7 @@ verified: 2026-09-30
 
 ## Internal driver
 
-마이크로컨트롤러 안에 있는 장치를 **internal device**라 한다. 예로 내부 EEPROM(Electrically Erasable Programmable Read-Only Memory), 내부 [[can-controller|CAN 컨트롤러]], 내부 ADC(Analogue Digital Converter)가 있다. internal device의 드라이버인 **internal driver**는 MCAL에 놓인다. 마이크로컨트롤러 밖 장치의 드라이버는 [[ecu-abstraction-layer|ECU Abstraction Layer]]에 놓이며 MCAL의 드라이버를 거쳐 장치에 접근한다. 다만 메모리 맵 방식 외부 장치(외부 플래시 등)의 드라이버는 마이크로컨트롤러에 직접 접근할 수 있고 마이크로컨트롤러에 의존하므로 MCAL에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+마이크로컨트롤러 안에 있는 장치를 **internal device**라 한다. 예로 내부 EEPROM(Electrically Erasable Programmable Read-Only Memory), 내부 [[can-controller|CAN 컨트롤러]], 내부 ADC(Analogue Digital Converter)가 있다. internal device의 드라이버인 **internal driver**는 MCAL에 놓인다. [[ecu-abstraction-layer#External driver|외부 장치]] 가운데서도 메모리 맵 방식 장치(외부 플래시 등)의 드라이버는 마이크로컨트롤러에 의존하므로 MCAL에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ![[diagrams/autosar-internal-external-driver-placement.svg]]
 
@@ -26,7 +26,7 @@ MCAL은 비슷한 종류의 모듈을 묶은 여섯 모듈 그룹으로 이루�
 | Microcontroller Drivers                                | 내부 주변장치(watchdog, 범용 타이머 등)의 드라이버와 마이크로컨트롤러에 직접 접근하는 기능(core test 등). GPT(General Purpose Timer) Driver, Watchdog Driver, MCU Driver가 든다.                                                   |
 | [[autosar-memory-stack\|Memory Drivers]]               | 온칩 메모리 장치(내부 플래시, 내부 EEPROM 등)와 메모리 맵 외부 메모리 장치(외부 플래시 등)의 드라이버                                                                                                                              |
 | Crypto Drivers                                         | SHE(Secure Hardware Extension), HSM(Hardware Security Module) 같은 온칩 암호 장치의 드라이버                                                                                                                                       |
-| [[autosar-communication-stack\|Communication Drivers]] | SPI(Serial Peripheral Interface) 같은 ECU 보드 안 통신과 [[can\|CAN]] 같은 차량 통신의 드라이버. SPI Handler Driver와 [[lin\|LIN]], CAN, [[flexray\|FlexRay]], [[ethernet\|Ethernet]] 드라이버가 든다.                             |
+| [[autosar-communication-stack\|Communication Drivers]] | SPI(Serial Peripheral Interface) 같은 ECU 보드 안 통신과 [[can\|CAN]] 같은 차량 통신의 드라이버                                                                                                                                    |
 | Wireless Communication Drivers                         | 차량 안이나 차량 밖 통신에 쓰는 무선 네트워크 시스템의 드라이버. Wireless Ethernet Driver가 든다.                                                                                                                                  |
 | I/O Drivers                                            | 아날로그·디지털 입출력의 드라이버. [[autosar-port-driver\|Port]], [[autosar-dio-driver\|DIO]], [[autosar-adc-driver\|ADC]], [[autosar-pwm-driver\|PWM]], [[autosar-icu-driver\|ICU]], [[autosar-ocu-driver\|OCU]] 드라이버가 든다. |
 
@@ -51,6 +51,6 @@ Port Driver 규격은 MCU의 설정 가능한 입출력 핀 하나를 **port pin
 | ICU      | 입력 신호 하나와, 설정된 [[autosar-icu-driver#측정 모드\|측정 모드]]에 쓰는 하드웨어 자원에 묶인 논리 ICU 개체[@autosar-cp-sws-icudriver-2025] |
 | OCU      | free-running counter, 비교 문턱값, 비교 결과로 하는 동작으로 이루어진 논리 개체[@autosar-cp-sws-ocudriver-2025]                                |
 
-ADC Driver 규격은 channel group도 정의한다. **ADC channel group**은 같은 ADC 하드웨어 유닛에 연결된 ADC channel의 묶음이고, 그룹 전체의 변환은 [[autosar-adc-driver#트리거|트리거]] 하나로 시작된다. DIO의 channel group과 달리 한 port 안의 이웃한 channel이라는 조건이 없다.[@autosar-cp-sws-adcdriver-2025]
+ADC Driver 규격의 [[autosar-adc-driver#Hardware unit과 channel group|ADC channel group]]은 같은 ADC hardware unit의 channel을 묶을 뿐, DIO의 channel group과 달리 한 port 안의 이웃한 channel이어야 한다는 조건은 없다.[@autosar-cp-sws-adcdriver-2025]
 
 DIO, ADC, PWM, ICU, OCU 드라이버 규격은 모두 쓰는 port pin의 설정을 Port Driver에 맡긴다.[@autosar-cp-sws-diodriver-2025][@autosar-cp-sws-adcdriver-2025][@autosar-cp-sws-pwmdriver-2025][@autosar-cp-sws-icudriver-2025][@autosar-cp-sws-ocudriver-2025]

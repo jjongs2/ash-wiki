@@ -33,9 +33,9 @@ RTOS는 태스크 사이의 동기화와 통신에 세마포어, [[mutex|뮤텍�
 
 ## 차량용 RTOS
 
-[[iso-17356-3|ISO 17356-3]]:2005는 차량용 멀티태스킹 실시간 운영체제인 [[osek-os|OSEK OS]]의 개념을 기술하고, 그 API(Application Programming Interface)를 정한다. 이 운영체제는 분산 임베디드 제어 유닛용 단일 프로세서 운영체제다. 이 표준은 특정 구현의 제품 설명이 아니다.[@iso-17356-3-2005] OSEK/VDX OS 2.2.3 명세에 따르면 이 명세를 따르는 구현은 여럿이고, 인증 절차로 각 구현이 명세에 맞는지 확인한다.[@osek-os-2-2-3-2005]
+[[iso-17356-3|ISO 17356-3]]:2005는 차량용 멀티태스킹 실시간 운영체제인 [[osek-os|OSEK OS]]의 개념을 기술하고, 그 API(Application Programming Interface)를 정한다.[@iso-17356-3-2005] OSEK/VDX OS 2.2.3 명세에 따르면 이 명세를 따르는 구현은 여럿이고, 인증 절차로 각 구현이 명세에 맞는지 확인한다.[@osek-os-2-2-3-2005]
 
-[[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 [[autosar-os|운영체제 명세]]는 ISO 17356-3을 바탕으로 두고 이를 확장하거나 제한하며, OSEK OS의 API와 하위 호환되는 API를 요구한다. 이 명세는 OSEK OS의 기능에 더해 [[autosar-schedule-table|schedule table]], [[autosar-timing-protection|timing protection]], [[autosar-os-application#Memory protection|memory protection]] 같은 기능을 정한다.[@autosar-cp-sws-os-2025]
+[[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 [[autosar-os|운영체제 명세]]는 ISO 17356-3을 바탕으로 두고 이를 확장하거나 제한한다.[@autosar-cp-sws-os-2025]
 
 AUTOSAR Adaptive Platform은 주로 고성능 연산과 통신 기능을 제공하는 플랫폼이고, 그 설계 설명서는 이 플랫폼의 운영체제가 다중 프로세스 POSIX 운영체제 기능을 제공하도록 한다.[@autosar-ap-exp-platformdesign-2025] 운영체제 인터페이스 명세는 IEEE 1003.13-2003의 PSE51 인터페이스로 운영체제 기능을 제공하도록 요구한다.[@autosar-ap-sws-operatingsysteminterface-2025]
 

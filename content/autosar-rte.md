@@ -11,7 +11,7 @@ verified: 2026-09-30
 
 ## 생성되는 코드
 
-RTE는 ECU마다 하나씩 생성된다. RTE 생성기는 ECU Configuration Description의 정보로 그 ECU에서 VFB를 구현하는 코드를 만든다. 다만 RTE 명세는 RTE의 전부나 일부를 생성하지 않고 설정하는 구현도 허용한다.[@autosar-cp-sws-rte-2025]
+RTE는 ECU마다 하나씩 생성된다. RTE 생성기는 [[autosar-methodology#ECU 설정|ECU Configuration Values]]의 정보로 그 ECU에서 VFB를 구현하는 코드를 만든다. 다만 RTE 명세는 RTE의 전부나 일부를 생성하지 않고 설정하는 구현도 허용한다.[@autosar-cp-sws-rte-2025]
 
 SW-C에 대한 RTE 생성은 크게 두 단계다.[@autosar-cp-sws-rte-2025]
 

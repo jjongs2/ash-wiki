@@ -19,7 +19,7 @@ ECU에 매핑된 원자 SW-C는 그 ECU용으로 생성된 [[autosar-rte|RTE]]�
 
 한 SW-C 기술에서 인스턴스를 여럿 만드는 것을 **multiple instantiation**이라 한다.[@autosar-cp-sws-rte-2025] 원자 SW-C를 한 ECU에서 여러 번 인스턴스화할 수 있는지는 SwcInternalBehavior의 supportsMultipleInstantiation 속성이 나타낸다.[@autosar-cp-tps-softwarecomponenttemplate-2025] 같은 component type의 인스턴스는 보통 내부 상태를 따로 가지면서 코드는 함께 쓴다.[@autosar-cp-exp-vfb-2024]
 
-multiple instantiation이 필요한데 supportsMultipleInstantiation이 거짓이면 RTE 생성기는 그 구성을 거부한다. RTE는 multiple instantiation을 코드를 함께 쓰는 방식으로만 지원하며, SW-C가 multiple instantiation을 지원하면 인스턴스 핸들을 API의 첫 인자로 넘겨 인스턴스를 가른다.[@autosar-cp-sws-rte-2025]
+multiple instantiation이 필요한데 supportsMultipleInstantiation이 거짓이면 RTE 생성기는 그 구성을 거부한다. RTE는 multiple instantiation을 코드를 함께 쓰는 방식으로만 지원한다.[@autosar-cp-sws-rte-2025]
 
 ## 종류
 

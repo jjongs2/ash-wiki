@@ -21,11 +21,9 @@ NXP 백서에 따르면 차량 네트워크가 이더넷으로 옮겨 가면 게
 
 [[autosar|AUTOSAR]]의 [[pdu-router|PDU Router]]는 I-PDU(Interaction Layer Protocol Data Unit)를 라우팅한다. 통신 인터페이스 모듈로 받은 I-PDU는 같은 통신 인터페이스 모듈이나 다른 통신 인터페이스 모듈로 곧바로 보내고, TP(Transport Protocol) 모듈로 받은 I-PDU도 같은 TP 모듈이나 다른 TP 모듈로 보낸다. 라우팅은 I-PDU를 고치지 않으며, 명세는 이 동작을 PDU(Protocol Data Unit) Gateway라 부른다. PDU Router는 받은 I-PDU 하나를 여러 목적지로 한꺼번에 보낼 수 있다(1:n). 1:1과 n:1도 지원하지만 n:m은 지원하지 않는다.[@autosar-cp-sws-pdurouter-2025]
 
-PDU 게이트웨이는 I-PDU를 고치지 않고 넘기므로 받은 PDU의 배치를 바꾸지 않는다.[@autosar-cp-sws-pdurouter-2025]
-
 ## 시그널 게이트웨이
 
-[[autosar-com|AUTOSAR COM]]은 받은 I-PDU의 [[signal-based-communication|시그널]]을 송신할 I-PDU로 옮기는 시그널 게이트웨이를 둔다. 라우팅하는 시그널의 값은 설정에 따라 송신할 시그널로 복사한다.[@autosar-cp-sws-com-2025] AUTOSAR R25-11 게이트웨이 요구사항은 시그널 게이트웨이가 COM의 packing·unpacking과 타임아웃 처리 메커니즘을 쓰고, 개별 시그널을 I-PDU 사이에서 1:n으로 라우팅하도록 요구한다. 받은 시그널은 여러 버스로 보낼 수 있다.[@autosar-cp-rs-gateway-2025]
+[[autosar-com|AUTOSAR COM]]은 받은 I-PDU의 [[signal-based-communication|시그널]]과 그룹 시그널을 송신할 I-PDU로 옮기는 시그널 게이트웨이를 둔다. 옮길 관계는 `ComGwMapping`으로 정적으로 설정하고, 라우팅하는 시그널의 값은 설정에 따라 송신할 시그널로 복사한다.[@autosar-cp-sws-com-2025] AUTOSAR R25-11 게이트웨이 요구사항은 시그널 게이트웨이가 COM의 packing·unpacking과 타임아웃 처리 메커니즘을 쓰고, 개별 시그널을 I-PDU 사이에서 1:n으로 라우팅하도록 요구한다. 받은 시그널은 여러 버스로 보낼 수 있다.[@autosar-cp-rs-gateway-2025]
 
 ![[diagrams/pdu-signal-gateway.svg]]
 
@@ -37,4 +35,4 @@ AUTOSAR R25-11 게이트웨이 요구사항은 시그널 라우팅의 쓰임새�
 
 ## 네트워크 관리
 
-[[autosar-network-management|AUTOSAR Nm]]은 게이트웨이 ECU가 이어진 여러 버스를 함께 잠재우는 NM(Network Management) Coordinator 기능을 선택 기능으로 둔다. 여러 네트워크를 함께 깨우는 일은 Nm의 범위 밖이며, 한 네트워크의 시작 요청에 따라 여러 네트워크를 시작하는 일은 ComM 설정이 맡는다.[@autosar-cp-sws-networkmanagementinterface-2025]
+[[autosar-network-management|AUTOSAR Nm]]은 게이트웨이 ECU가 이어진 여러 버스를 함께 잠재우는 NM(Network Management) Coordinator 기능을 선택 기능으로 둔다.[@autosar-cp-sws-networkmanagementinterface-2025]

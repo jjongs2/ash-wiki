@@ -27,7 +27,7 @@ Renesas 앱노트에 따르면 RTOS의 응답성은 처리 속도가 아니라 �
 
 FreeRTOS 문서에 따르면 RTOS는 의료 기기나 차량 ECU처럼 엄격한 시간 제약 안에서 외부 사건에 반응해야 하는 임베디드 시스템에 흔히 쓰인다.[@freertos-rtos-fundamentals-2026]
 
-[[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 Timing Extensions 명세는 주어진 시간 요구를 채우는 임베디드 실시간 시스템을 만들고 그 타이밍을 분석·검증하도록 돕는 것을 주목적으로 둔다. 이 명세는 센서 샘플링에서 액추에이터 접근까지의 인과 경로를 [[autosar-event-chain|event chain]]으로 기술하고, event chain의 자극과 응답 사이 시간을 지연 제약(LatencyTimingConstraint)으로 제한한다. 명세의 예시 event chain은 ECU 두 개와 [[can|CAN]] 버스를 거친다.[@autosar-cp-tps-timingextensions-2025]
+[[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 Timing Extensions 명세는 주어진 시간 요구를 채우는 임베디드 실시간 시스템을 만들고 그 타이밍을 분석·검증하도록 돕는 것을 주목적으로 둔다. 이 명세는 센서 샘플링에서 액추에이터 접근까지의 인과 경로를 [[autosar-event-chain|event chain]]으로 기술하고, event chain의 자극과 응답 사이 시간을 지연 제약(LatencyTimingConstraint)으로 제한한다.[@autosar-cp-tps-timingextensions-2025]
 
 ![[diagrams/event-chain-latency-constraint.svg]]
 

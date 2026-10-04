@@ -49,5 +49,5 @@
     <text x="168" y="180">ComBitPosition</text>
     <text x="301" y="180">ComBitSize</text>
   </g>
-  <text x="100" y="212" font-size="12" fill="var(--text, #727981)">시작 비트 위치, 비트 길이, 바이트 순서(ComSignalEndianness)는 시그널마다 설정값으로 미리 정한다.</text>
+  <text x="100" y="212" font-size="12" fill="var(--text, #727981)">시작 비트 위치, 비트 크기, 바이트 순서(ComSignalEndianness)는 시그널마다 설정값으로 미리 정한다.</text>
 </svg>

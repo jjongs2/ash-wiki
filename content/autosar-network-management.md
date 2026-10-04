@@ -10,7 +10,7 @@ verified: 2026-09-30
 ## 모듈
 
 - **Nm interface**(Generic Network Management Interface): ComM(Communication Manager)과 버스별 NM 모듈 사이의 버스 독립 적응 계층이다. ComM이 부른 일반 함수는 버스별 NM의 함수로 바꾸고, 버스별 NM이 부른 콜백은 ComM에 주는 일반 콜백으로 바꾼다.
-- **NM coordinator**: Nm interface의 선택 기능으로, [[gateway|게이트웨이]] ECU가 자신이 이어진 여러 버스를 함께 재우도록 조정한다. 조정하는 버스들을 함께 깨우는 것은 Nm interface의 범위 밖이며 응용의 몫이다.
+- **NM coordinator**: Nm interface의 선택 기능으로, [[gateway|게이트웨이]] ECU가 자신이 이어진 여러 버스를 함께 재우도록 조정한다. 조정하는 버스들을 함께 깨우는 것은 Nm interface의 범위 밖이며 응용의 몫이다. ComM은 설정에 따라, 한 네트워크가 시작했다는 표시를 받으면 여러 네트워크를 함께 시작할 수 있다.
 - **버스별 NM**: [[can|CAN]]의 CanNm, [[flexray|FlexRay]]의 FrNm(FlexRay Network Management), [[ethernet|이더넷]]의 UdpNm([[udp|UDP]] Network Management), [[j1939|J1939]]의 J1939Nm(J1939 Network Management)이 있다.[@autosar-cp-sws-networkmanagementinterface-2025]
 
 ComM은 [[autosar-communication-stack#통신 모드 관리|AUTOSAR 통신 스택]]에서 다룬다.

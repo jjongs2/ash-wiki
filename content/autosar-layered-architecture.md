@@ -28,13 +28,13 @@ BSW는 다시 Services Layer, [[ecu-abstraction-layer|ECU Abstraction Layer]], [
 
 Services Layer는 기능에 따라 System Services, [[autosar-memory-stack|Memory Services]], Crypto Services, [[autosar-communication-stack|Communication Services]], Off-board Communication Services로 나뉜다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-| 갈래                             | 내용                                                                                                                                                                                                                                  |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| System Services                  | 운영체제, EcuM(ECU State Manager), Det(Default Error Tracer), Dem(Diagnostic Event Manager), FiM(Function Inhibition Manager), WdgM(Watchdog Manager)이 든다.[@autosar-cp-sws-bswgeneral-2025]                                        |
-| Memory Services                  | [[nvram-manager\|NVRAM Manager]] 한 모듈로 이루어지며, 비휘발성 데이터를 관리한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                                                                                  |
-| Crypto Services                  | 암호 primitive, IDS(Intrusion Detection System) 서비스, 키 저장을 응용에 한결같은 방식으로 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                                                                    |
-| Communication Services           | 차량 네트워크 통신을 맡고, [[autosar-network-management\|네트워크 관리]] 서비스를 준다. XCP(Universal Measurement and Calibration Protocol) 모듈과 Dlt(Diagnostic Log and Trace) 모듈도 여기에 든다.[@autosar-cp-sws-bswgeneral-2025] |
-| Off-board Communication Services | V2X(Vehicle-to-X) 통신, 차량 안 무선 네트워크, ECU의 차량 밖 통신에 표준화된 접근을 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                                                                           |
+| 갈래                             | 내용                                                                                                                                                                                           |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| System Services                  | 운영체제, EcuM(ECU State Manager), Det(Default Error Tracer), Dem(Diagnostic Event Manager), FiM(Function Inhibition Manager), WdgM(Watchdog Manager)이 든다.[@autosar-cp-sws-bswgeneral-2025] |
+| Memory Services                  | [[nvram-manager\|NVRAM Manager]] 한 모듈로 이루어지며, 비휘발성 데이터를 관리한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                                           |
+| Crypto Services                  | 암호 primitive, IDS(Intrusion Detection System) 서비스, 키 저장을 응용에 한결같은 방식으로 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                             |
+| Communication Services           | 차량 네트워크 통신을 맡고, [[autosar-network-management\|네트워크 관리]] 서비스를 준다.[@autosar-cp-sws-bswgeneral-2025]                                                                       |
+| Off-board Communication Services | V2X(Vehicle-to-X) 통신, 차량 안 무선 네트워크, ECU의 차량 밖 통신에 표준화된 접근을 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                                    |
 
 MCAL의 Microcontroller Drivers에는 GPT(General Purpose Timer) 드라이버와 MCU 드라이버가 든다.[@autosar-cp-sws-bswgeneral-2025]
 

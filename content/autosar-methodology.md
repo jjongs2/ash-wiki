@@ -38,7 +38,7 @@ SW-C는 시스템 설계와 나란히, VFB가 정한 인터페이스를 바탕�
 
 ## ECU 설정
 
-ECU 설정의 입력은 ECU Extract와 BSW Module Delivered Bundle이다.[@autosar-cp-tps-ecuconfiguration-2025] 설정의 결과인 **ECU Configuration Values**는 한 ECU의 모든 설정값을 모은 것이고, RTE를 포함한 모듈마다의 설정을 담는다.[@autosar-cp-tr-methodology-2025] AUTOSAR 용어집에는 이 산출물이 옛 이름 ECU Configuration Description으로 남아 있다.[@autosar-fo-tr-glossary-2025]
+ECU 설정의 입력은 ECU Extract와 BSW Module Delivered Bundle이다.[@autosar-cp-tps-ecuconfiguration-2025] 설정의 결과인 **ECU Configuration Values**는 한 ECU의 모든 설정값을 모은 것이고, RTE를 포함한 모듈마다의 설정을 담는다.[@autosar-cp-tr-methodology-2025] AUTOSAR 용어집은 이 산출물을 ECU Configuration Description이라는 표제어로 싣는다.[@autosar-fo-tr-glossary-2025]
 
 **ECU Configuration Parameter Definition**은 설정 파라미터가 있는지와 그 타입, 속성을 정하고, 컨테이너와 파라미터로 구조를 짠다. 어떤 컨테이너에 어떤 파라미터가 오는지, 값의 범위, 개수, 설정 클래스 같은 제약이 여기에 담긴다. AUTOSAR가 내놓는 표준 모듈 정의가 있고, 벤더는 여기에 파라미터, 컨테이너, 참조를 더한 벤더별 모듈 정의를 둔다.[@autosar-cp-tps-ecuconfiguration-2025]
 
@@ -62,4 +62,4 @@ XML(Extensible Markup Language)로 AUTOSAR 모델을 나타낸 것을 **AUTOSAR 
 
 System Template은 통신과 토폴로지 기술에 ASAM FIBEX의 기술을 담고, AUTOSAR의 요구에 맞게 PDU 개념 등을 더해 확장했다. FIBEX는 버스 통신 시스템을 다루는 도구 사이의 데이터 교환을 위한 XML 형식이다.[@autosar-cp-tps-systemtemplate-2025] ASAM MCD-2 NET(FIBEX) 4.1.2는 [[flexray|FlexRay]], [[can|CAN]], [[lin|LIN]], [[ethernet|이더넷]] 등을 기술 확장으로 다룬다.[@asam-mcd-2-net-2017]
 
-Vector의 DBC 데이터베이스는 CAN·[[can-fd|CAN FD]] 네트워크, 버스에 이어진 ECU, 메시지와 시그널을 기술한다.[@vector-candb-admin-factsheet-2024] LIN을 규정하는 ISO 17987 시리즈 가운데 ISO 17987-2:2025는 약어 LDF를 LIN description file로 정의한다.[@iso-17987-2-obp-2025] Vector DaVinci Configurator Classic의 Ecu Extract Producer는 DBC 같은 기존 형식의 파일을 ECU Extract로 변환한다.[@vector-davinci-configurator-classic-ecuxpro-2026] ECU Extract를 만들 때 DBC, LDF, FIBEX 같은 기존 통신 파일을 함께 넣으면, 따로 설치하는 Legacy Converter가 이 파일들을 ARXML로 변환해 함께 넣은 ARXML 파일에 합친다.[@vector-davinci-configurator-classic-invariant-ecu-extract-2026]
+Vector의 [[signal-based-communication#통신 기술 파일|DBC 데이터베이스]]는 CAN·[[can-fd|CAN FD]] 네트워크, 버스에 이어진 ECU, 메시지와 시그널을 기술한다.[@vector-candb-admin-factsheet-2024] LIN을 규정하는 ISO 17987 시리즈 가운데 ISO 17987-2:2025는 약어 LDF를 LIN description file로 정의한다.[@iso-17987-2-obp-2025] Vector DaVinci Configurator Classic의 Ecu Extract Producer는 DBC 같은 기존 형식의 파일을 ECU Extract로 변환한다.[@vector-davinci-configurator-classic-ecuxpro-2026] ECU Extract를 만들 때 DBC, LDF, FIBEX 같은 기존 통신 파일을 함께 넣으면, 따로 설치하는 Legacy Converter가 이 파일들을 ARXML로 변환해 함께 넣은 ARXML 파일에 합친다.[@vector-davinci-configurator-classic-invariant-ecu-extract-2026]
