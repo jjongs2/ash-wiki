@@ -11,7 +11,7 @@ verified: 2026-09-28
 
 ## 메시지
 
-SOME/IP-SD 메시지의 [[some-ip#헤더|SOME/IP 헤더]]는 Service ID `0xFFFF`, Method ID `0x8100`, Message Type `0x02`(NOTIFICATION), Return Code `0x00`(E_OK)으로 정해져 있다. 헤더 뒤에는 8비트 Flags, 24비트 Reserved, 32비트 엔트리 배열 길이와 엔트리 배열, 32비트 옵션 배열 길이와 옵션 배열이 온다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
+SOME/IP-SD 메시지의 SOME/IP [[some-ip#헤더|헤더]]는 Service ID `0xFFFF`, Method ID `0x8100`, Message Type `0x02`(NOTIFICATION), Return Code `0x00`(E_OK)으로 정해져 있다. 헤더 뒤에는 8비트 Flags, 24비트 Reserved, 32비트 엔트리 배열 길이와 엔트리 배열, 32비트 옵션 배열 길이와 옵션 배열이 온다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
 
 Flags의 최상위 비트는 Reboot 플래그, 그다음 비트는 Unicast 플래그다. Reboot 플래그는 재부팅 뒤 SOME/IP 헤더의 Session ID가 한 바퀴 돌아 다시 1이 될 때까지 1이고, 그 뒤로는 0이다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
 

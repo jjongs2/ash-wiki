@@ -19,11 +19,11 @@ verified: 2026-09-27
 
 ## 비트 오류의 예외
 
-중재 필드에서 recessive를 보내고 dominant를 읽은 것은 [[can-arbitration|중재]]에서 진 것이라 비트 오류가 아니다. ACK 슬롯에서 recessive를 보내고 dominant를 읽은 것도 비트 오류가 아니다. passive 오류 플래그를 보내는 송신 노드가 dominant를 읽은 것도 비트 오류로 보지 않는다.[@bosch-can-2-0-1991]
+중재 필드에서 recessive를 보내고 dominant를 읽은 것은 [[can-arbitration|중재]]에서 진 것이라 비트 오류가 아니다. ACK 슬롯에서 recessive를 보내고 dominant를 읽은 것도 비트 오류가 아니다. [[can-error-frame#오류 플래그|passive 오류 플래그]]를 보내는 송신 노드가 dominant를 읽은 것도 비트 오류로 보지 않는다.[@bosch-can-2-0-1991]
 
 ## 오류를 알리는 시점
 
-비트 오류, 스터프 오류, 형식 오류, ACK 오류를 찾은 노드는 다음 비트에서 [[can-error-frame#오류 플래그|오류 플래그]]를 내기 시작한다. CRC 오류만은 ACK 구분자 다음 비트에서 시작하는데, 다른 오류로 이미 오류 플래그를 내기 시작했다면 그대로 둔다.[@bosch-can-2-0-1991]
+비트 오류, 스터프 오류, 형식 오류, ACK 오류를 찾은 노드는 다음 비트에서 오류 플래그를 내기 시작한다. CRC 오류만은 ACK 구분자 다음 비트에서 시작하는데, 다른 오류로 이미 오류 플래그를 내기 시작했다면 그대로 둔다.[@bosch-can-2-0-1991]
 
 ## 프레임이 유효해지는 시점
 
