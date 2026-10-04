@@ -178,9 +178,13 @@ function isWafChallenge(response: Response): boolean {
 }
 
 // 도구가 보내는 모든 HTTP 요청. Node fetch의 기본 User-Agent(node)만 막는 호스트가 있어, 도구를 밝히는 User-Agent를 붙인다.
-// 값은 docs/wiki-verification.md의 출처 상태 절에 적는다. 값을 바꾸면 인용한 URL 전체의 판정을 바꾸기 전과 견준다.
+// 값은 docs/wiki-verification.md의 출처 상태 절에 적는다. 값을 바꾸면 인용한 URL 전체를 옛 값과 새 값으로 돌려 판정을 견준다.
+// 헤더와 제한 시간은 이 함수가 정하므로 호출자는 메서드와 리다이렉트 방식만 넘긴다.
 const userAgent = "Mozilla/5.0 (compatible; source-status/1.0)"
-function request(url: string, init: RequestInit = {}): Promise<Response> {
+function request(
+  url: string,
+  init: Pick<RequestInit, "method" | "redirect"> = {},
+): Promise<Response> {
   return fetch(url, {
     ...init,
     headers: { "user-agent": userAgent },
