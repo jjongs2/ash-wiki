@@ -36,7 +36,7 @@ verified: 2026-10-02
 | PA 5.1        | Process innovation                | CL 5 |
 | PA 5.2        | Process innovation implementation | CL 5 |
 
-ASPICE 4.1의 PA 2.1은 프로세스 수행을 계획하고, 감시하고, 계획에 맞게 조정하기를 요구한다.[@vda-automotive-spice-pam-4-1-2026]
+PA 2.1은 프로세스 수행을 계획하고, 감시하고, 계획에 맞게 조정하기를 요구한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 등급 척도
 
