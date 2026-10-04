@@ -30,4 +30,4 @@ ISTQB CTFL 강의계획서는 흔히 쓰는 블랙박스 기법으로 다음 넷
 
 ![[diagrams/ctfl-test-technique-categories.svg]]
 
-매개변수 값의 조합을 실행하는 조합 테스트 기법도 명세 기반 기법이고, [[pairwise-testing|페어와이즈 테스트]]가 그 예다.[@iso-iec-ieee-29119-4-obp-2021] ISTQB 용어집은 유스케이스 테스트도 블랙박스 기법으로 둔다.[@istqb-glossary-use-case-testing-2026]
+매개변수 값의 조합을 실행하는 [[pairwise-testing#조합 테스트|조합 테스트]] 기법도 명세 기반 기법이고, [[pairwise-testing|페어와이즈 테스트]]가 그 예다.[@iso-iec-ieee-29119-4-obp-2021] ISTQB 용어집은 유스케이스 테스트도 블랙박스 기법으로 둔다.[@istqb-glossary-use-case-testing-2026]

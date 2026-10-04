@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**순환 복잡도**(cyclomatic complexity)는 소프트웨어 모듈 하나에 든 결정 논리의 양을 재는 척도이고, 모듈의 제어 흐름 그래프 구조만으로 정해진다.[@nist-sp-500-235-1996] McCabe는 1976년 논문에서 프로그램 복잡도를 관리하고 통제하려고 그래프 이론에 기반한 이 복잡도 척도를 제안했다.[@mccabe-complexity-measure-1976]
+**순환 복잡도**(cyclomatic complexity)는 소프트웨어 모듈 하나에 든 결정 논리의 양을 재는 척도이고, 모듈의 [[basis-path-testing#제어 흐름 그래프|제어 흐름 그래프]] 구조만으로 정해진다.[@nist-sp-500-235-1996] McCabe는 1976년 논문에서 프로그램 복잡도를 관리하고 통제하려고 그래프 이론에 기반한 이 복잡도 척도를 제안했다.[@mccabe-complexity-measure-1976]
 
 ## 정의
 

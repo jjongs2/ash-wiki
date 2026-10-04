@@ -57,7 +57,7 @@ ASPICE 3.1은 핵심 개념 부록에서 V 모델 왼쪽의 정보 흐름을 합
 
 ### 추적성과 일관성
 
-ASPICE 4.1은 SYS.2\~SYS.5, SWE.1\~SWE.6, HWE.1\~HWE.4, MLE.1\~MLE.4에 일관성을 보장하고 양방향 추적성을 세우는 BP를 하나씩 둔다.[@vda-automotive-spice-pam-4-1-2026] 두 개념은 [[traceability|추적성]]에서 다룬다.
+ASPICE 4.1은 SYS.2\~SYS.5, SWE.1\~SWE.6, HWE.1\~HWE.4, MLE.1\~MLE.4에 [[traceability#일관성|일관성]]을 보장하고 [[traceability#양방향 추적성|양방향 추적성]]을 세우는 BP를 하나씩 둔다.[@vda-automotive-spice-pam-4-1-2026] 두 개념은 [[traceability|추적성]]에서 다룬다.
 
 ### Evaluate, verification criteria, ensuring compliance
 

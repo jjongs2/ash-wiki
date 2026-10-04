@@ -18,7 +18,7 @@ ASPICE 4.1은 프로세스 참조 모델과 프로세스 평가 모델을 한 �
 
 ASPICE 4.1의 프로세스 참조 모델과 프로세스 평가 모델은 프로세스가 무엇을 이뤄야 하는지를 다루고, 그것을 이룰 방법, 도구, 템플릿은 정하지 않는다. 문서는 VDA QMC 웹사이트에서 내려받아서만 얻을 수 있고, 받은 사람이 다시 배포할 수 없다.[@vda-automotive-spice-pam-4-1-2026]
 
-프로세스 목록과 평가 범위를 짜는 plug-in 컨셉은 [[automotive-spice-process-reference-model|ASPICE 프로세스 참조 모델]]에서, 지표의 구조는 [[automotive-spice-process-assessment-model|ASPICE 프로세스 평가 모델]]에서, 능력 수준과 등급은 [[process-capability-level|프로세스 능력 수준]]에서 다룬다.
+프로세스 목록과 평가 범위를 짜는 plug-in 컨셉은 [[automotive-spice-process-reference-model#Plug-in 컨셉|ASPICE 프로세스 참조 모델]]에서, 지표의 구조는 [[automotive-spice-process-assessment-model|ASPICE 프로세스 평가 모델]]에서, 능력 수준과 등급은 [[process-capability-level|프로세스 능력 수준]]에서 다룬다.
 
 VDA QMC는 ASPICE에 사이버보안 내용을 더하는 확장으로 Automotive SPICE for Cybersecurity를 따로 펴낸다.[@vda-automotive-spice-publications-2026]
 
