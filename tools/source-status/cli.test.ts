@@ -18,6 +18,10 @@ import { repoRoot } from "../repo"
 // 루트는 NODE_EXTRA_CA_CERTS로 CLI가 신뢰하게 하고, 중간 인증서는 로컬 HTTP 서버가 DER로 준다.
 const here = path.dirname(fileURLToPath(import.meta.url))
 const today = "2026-09-25"
+// 도구가 보내는 User-Agent. docs/wiki-verification.md의 출처 상태 절에서 읽어, 문서가 도구와 어긋나면 User-Agent 검사가 실패한다.
+const userAgent = fs
+  .readFileSync(path.join(repoRoot, "docs", "wiki-verification.md"), "utf8")
+  .match(/User-Agent `([^`]+)`을 보냅니다/)![1]
 
 let server: http.Server
 let base: string
@@ -36,7 +40,11 @@ const roots: string[] = []
 
 before(async () => {
   server = http.createServer((req, res) => {
-    if (req.url === "/moved") res.writeHead(301, { location: "/alive" })
+    // 리다이렉트를 다시 따라가는 요청과 중간 인증서를 받는 요청도 도구의 User-Agent가 아니면 막는다.
+    // 그래서 AIA 검사가 OK이면 그 요청들에도 User-Agent가 붙은 것이다.
+    const agentOnly = ["/via/", "/to/", "/certs/"].some((prefix) => req.url?.startsWith(prefix))
+    if (agentOnly && req.headers["user-agent"] !== userAgent) res.statusCode = 403
+    else if (req.url === "/moved") res.writeHead(301, { location: "/alive" })
     // 로컬 HTTPS 서버로 보내는 리다이렉트. 예: /to/aia
     // /via/aia는 상대 경로 /to/aia를 거친다.
     else if (req.url?.startsWith("/via/"))
@@ -45,6 +53,10 @@ before(async () => {
       res.writeHead(301, { location: secure.get(req.url.slice("/to/".length)) })
     // HEAD를 받지 않는 서버
     else if (req.url === "/no-head") res.statusCode = req.method === "HEAD" ? 405 : 200
+    // User-Agent로 거르는 서버: 도구의 User-Agent를 붙인, 경로 끝의 메서드 요청에만 답한다. 예: /agent-gated/HEAD
+    else if (req.url?.startsWith("/agent-gated/"))
+      res.statusCode =
+        req.headers["user-agent"] === userAgent && req.url.endsWith(`/${req.method}`) ? 200 : 403
     // 봇 차단: 메서드와 헤더에 상관없이 막는다
     else if (req.url === "/blocked") res.statusCode = 403
     // AWS WAF 챌린지: 메서드와 헤더에 상관없이 본문 없는 202를 돌려준다
@@ -306,6 +318,16 @@ describe("source-status CLI", () => {
       "bib/iso-11898-1-2024.bib:3",
       "bib/onsemi-ncv7340-2024.bib:3",
     ])
+    assert.strictEqual(report.exitCode, 0)
+  })
+
+  test("도구의 User-Agent에만 답하는 URL은 HEAD와 GET 모두 그 User-Agent를 보내 OK다", async () => {
+    const root = citingTree({
+      "org-agent-head-2024": `${base}/agent-gated/HEAD`,
+      "org-agent-get-2024": `${base}/agent-gated/GET`,
+    })
+    const report = await runStatus(root)
+    assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
     assert.strictEqual(report.exitCode, 0)
   })
 
