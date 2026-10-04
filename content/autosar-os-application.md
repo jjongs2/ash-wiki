@@ -38,7 +38,7 @@ OS-Application은 두 상태 가운데 하나에 있다. APPLICATION_ACCESSIBLE�
 
 ## Memory protection
 
-**Memory protection**은 실행 프로그램의 데이터, 코드, 스택 섹션을 바탕으로 하는 AUTOSAR OS의 보호다. scalability class 가운데 SC3과 SC4에 들고, 하드웨어 요건은 MPU(Memory Protection Unit)다. memory protection은 하드웨어 지원이 있는 프로세서에서만 할 수 있다. 보호는 OS가 관리하는 객체에만 할 수 있어, category 1 ISR이 실행되는 동안이나, 같은 태스크나 category 2 ISR 본문에서 부른 함수 사이는 보호하지 못한다.[@autosar-cp-sws-os-2025]
+**Memory protection**은 실행 프로그램의 데이터, 코드, 스택 섹션을 바탕으로 하는 AUTOSAR OS의 보호다. [[autosar-os#Scalability class|scalability class]] 가운데 SC3과 SC4에 들고, 하드웨어 요건은 MPU(Memory Protection Unit)다. memory protection은 하드웨어 지원이 있는 프로세서에서만 할 수 있다. 보호는 OS가 관리하는 객체에만 할 수 있어, [[osek-isr#Category 1|category 1 ISR]]이 실행되는 동안이나, 같은 태스크나 [[osek-isr#Category 2|category 2 ISR]] 본문에서 부른 함수 사이는 보호하지 못한다.[@autosar-cp-sws-os-2025]
 
 OS는 공유 라이브러리 코드를 모든 OS-Application이 실행할 수 있는 섹션에 둘 수 있게 한다.[@autosar-cp-sws-os-2025] 라이브러리는 부른 쪽의 context에서, 부른 쪽과 같은 보호 환경으로 실행된다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
@@ -46,4 +46,4 @@ OS는 non-trusted OS-Application이 OS 자신의 데이터 섹션과 스택, 다
 
 ## Trusted function
 
-trusted OS-Application은 다른 OS-Application이 부를 수 있는 서비스인 **trusted function**을 내놓을 수 있다. OS-Application은 trusted든 non-trusted든 `CallTrustedFunction`으로 trusted function을 부르고, 그 함수는 그것을 내놓은 OS-Application의 프로세서 모드, memory protection 경계, service protection 제한으로 실행된다. 멀티코어 시스템에서 `CallTrustedFunction`은 같은 코어의 OS-Application 사이에서만 쓸 수 있고, 대상 trusted function이 다른 코어의 OS-Application에 있으면 extended status에서 E_OS_ACCESS를 돌려준다.[@autosar-cp-sws-os-2025]
+trusted OS-Application은 다른 OS-Application이 부를 수 있는 서비스인 **trusted function**을 내놓을 수 있다. OS-Application은 trusted든 non-trusted든 `CallTrustedFunction`으로 trusted function을 부르고, 그 함수는 그것을 내놓은 OS-Application의 프로세서 모드, memory protection 경계, [[autosar-os#Service protection|service protection]] 제한으로 실행된다. 멀티코어 시스템에서 `CallTrustedFunction`은 같은 코어의 OS-Application 사이에서만 쓸 수 있고, 대상 trusted function이 다른 코어의 OS-Application에 있으면 extended status에서 E_OS_ACCESS를 돌려준다.[@autosar-cp-sws-os-2025]

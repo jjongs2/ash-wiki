@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**Timing protection**은 [[autosar-os|AUTOSAR OS]]가 [[osek-task|태스크]]와 category 2 [[osek-isr|ISR]]의 시간 동작을 감시해 timing fault를 찾고 그 전파를 막는 기능이다. 태스크와 category 2 ISR에만 적용되며, category 1 ISR은 보호하지 않는다. scalability class 가운데 SC2와 SC4에 든다.[@autosar-cp-sws-os-2025]
+**Timing protection**은 [[autosar-os|AUTOSAR OS]]가 [[osek-task|태스크]]와 [[osek-isr#Category 2|category 2 ISR]]의 시간 동작을 감시해 timing fault를 찾고 그 전파를 막는 기능이다. 태스크와 category 2 ISR에만 적용되며, [[osek-isr#Category 1|category 1 ISR]]은 보호하지 않는다. [[autosar-os#Scalability class|scalability class]] 가운데 SC2와 SC4에 든다.[@autosar-cp-sws-os-2025]
 
 ## Timing fault
 

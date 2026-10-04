@@ -29,6 +29,6 @@ AUTOSAR Timing Extensions가 드는 예에서, 센서 샘플링부터 액추에�
 
 ## SW-C 단위 지연
 
-VfbTiming 뷰는 센서와 액추에이터까지 포함한 종단 간 타이밍 제약을 담는 뷰로, 이 제약을 설계 초기에 형식화하게 해 준다. 이 뷰에서는 atomic SW-C 하나를 두고, 입력 포트로 값을 받은 때부터 새로 계산한 값을 출력 포트로 보낸 때까지의 지연에 상한을 걸 수 있다. 예: 최대 2 ms. composition 수준에서는 컴포넌트 사이의 타이밍 관계, 예를 들어 한 컴포넌트의 provided port에서 다른 컴포넌트의 required port까지의 관계도 다룰 수 있다.[@autosar-cp-tps-timingextensions-2025]
+VfbTiming 뷰는 센서와 액추에이터까지 포함한 종단 간 타이밍 제약을 담는 뷰로, 이 제약을 설계 초기에 형식화하게 해 준다. 이 뷰에서는 atomic SW-C 하나를 두고, 입력 포트로 값을 받은 때부터 새로 계산한 값을 출력 포트로 보낸 때까지의 지연에 상한을 걸 수 있다. 예: 최대 2 ms. [[autosar-software-component#Composition|composition]] 수준에서는 컴포넌트 사이의 타이밍 관계, 예를 들어 한 컴포넌트의 provided port에서 다른 컴포넌트의 required port까지의 관계도 다룰 수 있다.[@autosar-cp-tps-timingextensions-2025]
 
 SwcTiming 뷰는 SW-C의 내부 동작을 runnable 단위로 보며, runnable의 활성화, 시작, 종료와 변수 접근을 timing event로 쓸 수 있다. AUTOSAR Timing Extensions가 드는 예에서 SW-C 안의 데이터 흐름은 required port를 읽는 runnable, runnable 사이 통신, provided port에 쓰는 runnable을 거친다.[@autosar-cp-tps-timingextensions-2025]

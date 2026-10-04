@@ -16,7 +16,7 @@ status: 개정 중
 
 동기화된 시각의 전달, 시각의 원천(best timeTransmitter) 선택, 위상이나 주파수가 끊기는 시각 장애가 일어났는지와 그 크기의 표시를 다룬다.[@ieee-802-1as-2025] [[ieee-802-1q|IEEE 802.1Q]]의 맥락에서 해당하는 곳에는 [[ieee-1588|IEEE 1588]] 규격을 쓰도록 정한다.[@ieee-802-1as-2020-rev-2026]
 
-gPTP는 IEEE 1588-2019가 정하는 [[ptp|PTP]]에 바탕을 두며, 특정한 구성에서는 IEEE 1588-2019의 프로파일이다. 전이중 점대점 링크로 시각을 전달하는 규정이 PTP 프로파일 하나를 이룬다.[@ieee-802-1as-2025]
+gPTP는 IEEE 1588-2019가 정하는 [[ptp|PTP]]에 바탕을 두며, 특정한 구성에서는 IEEE 1588-2019의 [[ptp#프로파일|프로파일]]이다. 전이중 점대점 링크로 시각을 전달하는 규정이 PTP 프로파일 하나를 이룬다.[@ieee-802-1as-2025]
 
 동기화에 참여하는 장치를 **time-aware system**이라 한다. 브리지, 라우터, 엔드 스테이션 등 어떤 네트워크 장치든 time-aware system이 될 수 있다. **PTP Instance**는 한 gPTP 도메인에서 gPTP를 실행하는 실체이고, time-aware system은 PTP Instance를 하나 이상 담는다. time-aware system은 gPTP 도메인을 여럿 지원할 수 있고, 도메인마다 PTP Instance를 따로 둔다. PTP Instance는 두 가지다.[@ieee-802-1as-2025]
 
@@ -27,7 +27,7 @@ gPTP 도메인의 모든 PTP Instance가 같은 Grandmaster PTP Instance를 따�
 
 gPTP는 매체에 상관없는 부분과 매체마다 다른 부분으로 나누어 정한다. 다루는 매체는 전이중 점대점 링크의 [[ieee-802-3|IEEE 802.3]] 이더넷, IEEE 802.3 EPON(Ethernet Passive Optical Network), IEEE 802.11 무선, 일반 CSN(Coordinated Shared Network)이다.[@ieee-802-1as-2025]
 
-전이중 점대점 링크에서는 링크 양 끝의 포트가 저마다 피어 지연(peer-to-peer delay) 방식으로 링크의 전파 지연을 잰다. 시각 정보는 Sync와 Follow_Up 메시지로 전한다. PTP Relay Instance는 상류 링크의 전파 지연과 자기 체류 시간(residence time)을 더해 correctionField에 보태고, 이를 하류로 보내는 시각 정보에 싣는다.[@ieee-802-1as-2025]
+전이중 점대점 링크에서는 링크 양 끝의 포트가 저마다 [[ptp#피어 지연|피어 지연]](peer-to-peer delay) 방식으로 링크의 전파 지연을 잰다. 시각 정보는 Sync와 Follow_Up 메시지로 전한다. PTP Relay Instance는 상류 링크의 전파 지연과 자기 체류 시간(residence time)을 더해 correctionField에 보태고, 이를 하류로 보내는 시각 정보에 싣는다.[@ieee-802-1as-2025]
 
 IEEE 802.1 작업 그룹의 [[tsn|TSN]] 태스크 그룹은 IEEE 802.1AS-2025를 TSN의 기반 표준 가운데 하나로 꼽는다.[@ieee-802-1-tsn-tg-2026]
 

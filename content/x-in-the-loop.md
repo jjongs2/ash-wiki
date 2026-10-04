@@ -58,6 +58,6 @@ Embedded Coder에서는 평가 보드나 명령어 집합 시뮬레이터 같은
 
 ## 테스트 레벨별 환경
 
-CT-AuT 강의계획서에 따르면 SiL의 전형적인 테스트는 [[unit-testing|컴포넌트 테스트]]와 [[integration-testing|통합 테스트]]이고, 모델과 테스트 환경을 더 발전시키면 MiL에서도 컴포넌트 테스트와 통합 테스트를 할 수 있다. HiL은 컴포넌트 테스트와 통합 테스트에도 쓰고, [[system-testing|시스템 테스트]]도 HiL에서 할 수 있다. 테스트 대상이 ECU 하나면 component HiL, 여러 ECU를 묶었으면 system HiL이라 하며, system HiL은 ECU 사이의 데이터 교환과 시스템 테스트에 초점을 둔다.[@istqb-ct-aut-syllabus-2025]
+CT-AuT 강의계획서에 따르면 SiL의 전형적인 테스트는 [[unit-testing#컴포넌트 테스트|컴포넌트 테스트]]와 [[integration-testing|통합 테스트]]이고, 모델과 테스트 환경을 더 발전시키면 MiL에서도 컴포넌트 테스트와 통합 테스트를 할 수 있다. HiL은 컴포넌트 테스트와 통합 테스트에도 쓰고, [[system-testing|시스템 테스트]]도 HiL에서 할 수 있다. 테스트 대상이 ECU 하나면 component HiL, 여러 ECU를 묶었으면 system HiL이라 하며, system HiL은 ECU 사이의 데이터 교환과 시스템 테스트에 초점을 둔다.[@istqb-ct-aut-syllabus-2025]
 
 Embedded Coder의 software-in-the-loop·processor-in-the-loop 시뮬레이션으로는 부모 모델에서 생성한 코드 가운데 서브시스템 코드의 단위 테스트를 할 수 있다.[@mathworks-ecoder-sil-pil-2026]

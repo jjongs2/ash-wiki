@@ -27,6 +27,6 @@ $$
 
 CTFL 강의계획서에 따르면 커버리지 100%를 이루려면 무효 분할을 포함해 식별한 모든 분할을 적어도 한 번씩 실행해야 한다.[@istqb-ctfl-syllabus-2024]
 
-CTFL 강의계획서에 따르면 입력 매개변수가 여럿인 것처럼 분할 집합이 여럿이면, 집합마다 각 분할을 적어도 한 번 실행하게 하는 가장 단순한 기준이 **each choice 커버리지**다. each choice 커버리지는 분할의 조합을 따지지 않는다.[@istqb-ctfl-syllabus-2024] ISO/IEC/IEEE 29119-4:2021은 매개변수 값의 조합을 실행하는 조합 테스트 설계 기법의 예로 [[pairwise-testing|페어와이즈 테스트]]와 each choice 테스트를 든다.[@iso-iec-ieee-29119-4-obp-2021]
+CTFL 강의계획서에 따르면 입력 매개변수가 여럿인 것처럼 분할 집합이 여럿이면, 집합마다 각 분할을 적어도 한 번 실행하게 하는 가장 단순한 기준이 **each choice 커버리지**다. each choice 커버리지는 분할의 조합을 따지지 않는다.[@istqb-ctfl-syllabus-2024] ISO/IEC/IEEE 29119-4:2021은 매개변수 값의 조합을 실행하는 [[pairwise-testing#조합 테스트|조합 테스트]] 설계 기법의 예로 [[pairwise-testing|페어와이즈 테스트]]와 each choice 테스트를 든다.[@iso-iec-ieee-29119-4-obp-2021]
 
 분할의 경계를 실행하는 기법은 [[boundary-value-analysis|경계값 분석]]이다.[@iso-iec-ieee-29119-4-obp-2021][@istqb-ctfl-syllabus-2024]

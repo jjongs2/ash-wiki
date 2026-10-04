@@ -27,4 +27,4 @@ Automotive SPICE for Cybersecurity 2.0은 리스크를 분석하는 방법의 �
 
 ## FTA와의 차이
 
-IEC 61025:2006은 FTA(Fault Tree Analysis)를 정해 둔 top event를 일으키는 조건과 요인을 찾아, 입력 사건의 조합을 게이트로 나타내는 [[safety-analysis|안전 분석]] 기법으로 둔다.[@iec-61025-preview-2006] Attack tree도 AND·OR로 하위 노드를 묶지만, 루트는 공격자가 노리는 목표이고, 노드는 그 목표를 이루는 하위 목표이며, 리프 노드에서 루트까지의 경로 하나가 공격 하나다.[@schneier-attack-trees-1999]
+IEC 61025:2006은 [[safety-analysis#FTA|FTA]](Fault Tree Analysis)를 정해 둔 top event를 일으키는 조건과 요인을 찾아, 입력 사건의 조합을 게이트로 나타내는 [[safety-analysis|안전 분석]] 기법으로 둔다.[@iec-61025-preview-2006] Attack tree도 AND·OR로 하위 노드를 묶지만, 루트는 공격자가 노리는 목표이고, 노드는 그 목표를 이루는 하위 목표이며, 리프 노드에서 루트까지의 경로 하나가 공격 하나다.[@schneier-attack-trees-1999]

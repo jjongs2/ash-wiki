@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**스핀락**(spinlock)은 락이 풀릴 때까지 락 변수를 되풀이해 검사하며 기다리는 락이다. 기다리는 쪽은 블록되지 않고, 기다리는 동안에도 CPU를 쓰며 돈다.[@autosar-cp-sws-os-2025][@ieee-1003-1-rationale-threads-2024] [[autosar-os|AUTOSAR R25-11 OS]] 명세는 스핀락을 바쁜 대기(busy waiting) 메커니즘으로 정의한다.[@autosar-cp-sws-os-2025] 상호 배제 자체는 [[critical-section|임계 구역]]에서 다룬다.
+**스핀락**(spinlock)은 [[critical-section#락|락]]이 풀릴 때까지 락 변수를 되풀이해 검사하며 기다리는 락이다. 기다리는 쪽은 블록되지 않고, 기다리는 동안에도 CPU를 쓰며 돈다.[@autosar-cp-sws-os-2025][@ieee-1003-1-rationale-threads-2024] [[autosar-os|AUTOSAR R25-11 OS]] 명세는 스핀락을 바쁜 대기(busy waiting) 메커니즘으로 정의한다.[@autosar-cp-sws-os-2025] 상호 배제 자체는 [[critical-section|임계 구역]]에서 다룬다.
 
 ## 원자 명령
 

@@ -52,7 +52,7 @@ ComM(Communication Manager)은 사용자의 버스 통신 요청을 모아 조�
 
 통신 모드는 통신 없음(NO), 송신을 끄고 수신만 하는 silent, 송수신 모두(FULL) 셋이다. 사용자가 요청할 수 있는 것은 NO와 FULL뿐이고, silent는 네트워크 동기화에만 쓴다.[@autosar-cp-sws-commanager-2025]
 
-BswM(Basic Software Mode Manager)은 [[autosar-software-component|SW-C]]와 다른 BSW 모듈이 보낸 모드 요청과 모드 표시를 입력으로 받아 설정된 규칙(rule)을 평가하고, 그 결과에 따라 동작 목록(action list)을 실행한다. 동작의 예로 I-PDU 그룹을 켜거나 끄는 일이 있다.[@autosar-cp-sws-bswmodemanager-2025]
+BswM(Basic Software Mode Manager)은 [[autosar-software-component|SW-C]]와 다른 BSW 모듈이 보낸 모드 요청과 모드 표시를 입력으로 받아 설정된 규칙(rule)을 평가하고, 그 결과에 따라 동작 목록(action list)을 실행한다. 동작의 예로 [[autosar-com#I-PDU 그룹|I-PDU 그룹]]을 켜거나 끄는 일이 있다.[@autosar-cp-sws-bswmodemanager-2025]
 
 ## 그 밖의 모듈
 

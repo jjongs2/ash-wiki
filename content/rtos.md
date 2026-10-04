@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**RTOS**(Real-Time Operating System)는 사건에 제때, 결정적으로 응답하는 것을 주목적으로 하는 운영체제다.[@freertos-faq-what-is-this-all-about-2026][@st-um1722-2019] RTOS는 흔히 우선순위 기반 선점형 스케줄러를 두고, 실행할 수 있는 태스크 가운데 우선순위가 가장 높은 것을 실행한다.[@freertos-rtos-fundamentals-2026][@silabs-intro-rtos-2019] 실시간이라는 요구는 [[real-time-system|실시간 시스템]]에서 다룬다.
+**RTOS**(Real-Time Operating System)는 사건에 제때, 결정적으로 응답하는 것을 주목적으로 하는 운영체제다.[@freertos-faq-what-is-this-all-about-2026][@st-um1722-2019] RTOS는 흔히 우선순위 기반 [[real-time-scheduling#선점|선점형 스케줄러]]를 두고, 실행할 수 있는 태스크 가운데 우선순위가 가장 높은 것을 실행한다.[@freertos-rtos-fundamentals-2026][@silabs-intro-rtos-2019] 실시간이라는 요구는 [[real-time-system|실시간 시스템]]에서 다룬다.
 
 ## Superloop
 

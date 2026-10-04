@@ -17,7 +17,7 @@ ISO 26262-1:2018은 HARA의 용어를 다음처럼 정의한다.[@iso-26262-1-ob
 - **운용 상황**(operational situation): 차량의 수명 동안 일어날 수 있는 시나리오
 - **오동작**(malfunctioning behaviour): 설계 의도에 비춘 아이템의 고장이나 의도하지 않은 동작[@iso-26262-1-obp-2018]
 
-안전과 리스크의 정의는 [[functional-safety|기능 안전]]에서, HARA의 파라미터인 심각도, 노출, 통제 가능성은 [[automotive-safety-integrity-level#S·E·C 파라미터|ASIL]]에서 다룬다.
+안전과 리스크의 정의는 [[functional-safety#안전과 리스크|기능 안전]]에서, HARA의 파라미터인 심각도, 노출, 통제 가능성은 [[automotive-safety-integrity-level#S·E·C 파라미터|ASIL]]에서 다룬다.
 
 ![[diagrams/hara-hazardous-event-parameters-results.svg]]
 

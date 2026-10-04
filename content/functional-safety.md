@@ -25,7 +25,7 @@ ISO/IEC Guide 51:2014는 안전하다는 것을 모든 해저드가 아니라 �
 
 ![[diagrams/functional-safety-risk-reduction.svg]]
 
-해저드(hazard), 해저드 사건(hazardous event) 같은 용어는 [[hazard-analysis-and-risk-assessment|HARA]]에서 다룬다.
+해저드(hazard), 해저드 사건(hazardous event) 같은 용어는 [[hazard-analysis-and-risk-assessment#용어|HARA]]에서 다룬다.
 
 ## 능동적인 수단
 

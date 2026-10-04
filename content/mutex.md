@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**뮤텍스**(mutex)는 공유 데이터나 [[critical-section|임계 구역]]에 한 번에 한 스레드만 들어가게 하는 락이다.[@ieee-1003-1-definitions-2024][@linux-locking-guide-2026] 다른 스레드가 잠근 뮤텍스를 잠그려는 스레드는 뮤텍스가 풀릴 때까지 블록된다.[@linux-locking-guide-2026][@ieee-1003-1-pthread-mutex-lock-2024] 이름은 mutual exclusion에서 왔다.[@ieee-1003-1-definitions-2024][@freertos-mutexes-2026]
+**뮤텍스**(mutex)는 공유 데이터나 [[critical-section|임계 구역]]에 한 번에 한 스레드만 들어가게 하는 [[critical-section#락|락]]이다.[@ieee-1003-1-definitions-2024][@linux-locking-guide-2026] 다른 스레드가 잠근 뮤텍스를 잠그려는 스레드는 뮤텍스가 풀릴 때까지 블록된다.[@linux-locking-guide-2026][@ieee-1003-1-pthread-mutex-lock-2024] 이름은 mutual exclusion에서 왔다.[@ieee-1003-1-definitions-2024][@freertos-mutexes-2026]
 
 ## 소유권
 

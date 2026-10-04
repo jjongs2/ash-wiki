@@ -27,7 +27,7 @@ MQTT 5.0 규격은 MQTT를 클라이언트·서버 구조의 발행·구독 메�
 
 ## 서비스 발견
 
-SOME/IP-SD는 서비스 인스턴스의 위치를 찾고, 그 인스턴스를 쓸 수 있게 되었는지 알아내는 데 쓰인다. 서버는 Offer Service 엔트리로 서비스를 제공한다고 알리고, 클라이언트는 Find Service 엔트리로 필요한 서비스 인스턴스를 찾는다. 그래서 클라이언트 쪽에 서비스 인스턴스의 엔드포인트를 정적으로 설정하지 않아도 되고, 클라이언트를 실행 중에 서비스 인스턴스에 연결할 수 있다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
+SOME/IP-SD는 서비스 인스턴스의 위치를 찾고, 그 인스턴스를 쓸 수 있게 되었는지 알아내는 데 쓰인다. 서버는 Offer Service [[some-ip-sd#엔트리|엔트리]]로 서비스를 제공한다고 알리고, 클라이언트는 Find Service 엔트리로 필요한 서비스 인스턴스를 찾는다. 그래서 클라이언트 쪽에 서비스 인스턴스의 엔드포인트를 정적으로 설정하지 않아도 되고, 클라이언트를 실행 중에 서비스 인스턴스에 연결할 수 있다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
 
 AUTOSAR Adaptive Platform의 통신 관리는 머신 안과 머신 사이의 서비스 지향 통신을 애플리케이션에 투명하게 제공한다. 그래서 서비스가 같은 ECU에 있든 다른 ECU에 있든 애플리케이션 코드가 같다.[@autosar-ap-exp-platformdesign-2025]
 

@@ -19,7 +19,7 @@ ISO/SAE 21434:2021은 TARA에 쓰는 용어를 다음처럼 정의한다.[@iso-s
 - **Road user**: 도로를 쓰는 사람. 운전자와 승객, 보행자, 자전거 타는 사람, 차량 소유자가 그 예다.
 - **Risk**: 불확실성이 도로 차량의 사이버보안에 주는 영향으로, attack feasibility와 impact로 나타낸다.[@iso-sae-21434-obp-2021]
 
-Cybersecurity property는 보호할 가치가 있을 수 있는 속성으로, 기밀성, 무결성, 가용성이 그 예다.[@iso-sae-21434-obp-2021] Attack path가 얼마나 쉽게 실행되는지는 [[attack-feasibility-rating|attack feasibility]]에서 다룬다.
+Cybersecurity property는 보호할 가치가 있을 수 있는 속성으로, [[cybersecurity-property#기밀성, 무결성, 가용성|기밀성, 무결성, 가용성]]이 그 예다.[@iso-sae-21434-obp-2021] Attack path가 얼마나 쉽게 실행되는지는 [[attack-feasibility-rating|attack feasibility]]에서 다룬다.
 
 ![[diagrams/tara-risk-elements.svg]]
 
@@ -47,10 +47,10 @@ Base practice는 일곱이고, 성과와 일대일로 대응하지 않는다. �
 | BP6 | Monitor risks                                |
 | BP7 | Take corrective action                       |
 
-BP3의 노트는 리스크를 분석하는 방법의 예로 attack path analysis를 포함한 TARA, 시뮬레이션, ATA(Attack Tree Analysis), FTA(Fault Tree Analysis) 등을 든다. BP4는 리스크마다 retain, reduce, avoid, transfer(share) 가운데 하나를 처리 옵션으로 고르게 한다.[@vda-automotive-spice-cybersecurity-2025] Attack tree와 FTA는 각각 [[attack-tree|attack tree]]와 [[safety-analysis|안전 분석]]에서 다룬다.
+BP3의 노트는 리스크를 분석하는 방법의 예로 attack path analysis를 포함한 TARA, 시뮬레이션, ATA(Attack Tree Analysis), FTA(Fault Tree Analysis) 등을 든다. BP4는 리스크마다 retain, reduce, avoid, transfer(share) 가운데 하나를 처리 옵션으로 고르게 한다.[@vda-automotive-spice-cybersecurity-2025] Attack tree와 FTA는 각각 [[attack-tree|attack tree]]와 [[safety-analysis#FTA|안전 분석]]에서 다룬다.
 
 Automotive SPICE for Cybersecurity 1.0은 MAN.7에 성과 여덟과 BP 여덟을 두어 성과마다 BP 하나를 대응시켰고, 처리 옵션을 accept, reduce, avoid, share(transfer)로 두었으며, accept나 share로 고른 리스크가 대개 cybersecurity claim을 정한다는 노트를 두었다.[@vda-automotive-spice-cybersecurity-2021] 2.0은 성과를 다섯, BP를 일곱으로 고치고, 옵션을 retain, reduce, avoid, transfer(share)로 둔다.[@vda-automotive-spice-cybersecurity-2025]
 
 ## HARA와의 차이
 
-[[hazard-analysis-and-risk-assessment|HARA]]는 아이템의 오동작이 일으키는 해저드 사건을 심각도, 노출, 통제 가능성으로 분류해 safety goal과 [[automotive-safety-integrity-level|ASIL]]을 정한다.[@iso-26262-1-obp-2018] TARA가 다루는 attack path는 공격자가 일부러 하는 행위들이고, 리스크는 attack feasibility와 impact로 나타낸다.[@iso-sae-21434-obp-2021]
+[[hazard-analysis-and-risk-assessment|HARA]]는 아이템의 오동작이 일으키는 해저드 사건을 심각도, 노출, 통제 가능성으로 분류해 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]]과 [[automotive-safety-integrity-level|ASIL]]을 정한다.[@iso-26262-1-obp-2018] TARA가 다루는 attack path는 공격자가 일부러 하는 행위들이고, 리스크는 attack feasibility와 impact로 나타낸다.[@iso-sae-21434-obp-2021]

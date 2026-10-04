@@ -11,7 +11,7 @@ verified: 2026-09-30
 
 이벤트를 가진 extended 태스크를 그 이벤트의 **소유자**라 한다. extended 태스크마다 정해진 수의 이벤트가 있고, 이벤트 하나는 소유 태스크와 이름(또는 마스크)으로 가린다. 시스템 서비스는 이벤트를 비트로 다루며 이벤트 마스크를 인자로 받는다.[@osek-os-2-2-3-2005]
 
-어느 태스크든, 그리고 category 2 [[osek-isr|ISR]]도 `SetEvent`로 suspended가 아닌 extended 태스크의 이벤트를 설정할 수 있다. 설정하는 쪽은 basic 태스크여도 된다. 이벤트를 지우는 `ClearEvent`와 기다리는 `WaitEvent`는 소유 태스크만 부를 수 있다. `GetEvent`는 extended 태스크의 모든 이벤트 비트의 현재 상태를 돌려준다.[@osek-os-2-2-3-2005]
+어느 태스크든, 그리고 [[osek-isr#Category 2|category 2 ISR]]도 `SetEvent`로 suspended가 아닌 extended 태스크의 이벤트를 설정할 수 있다. 설정하는 쪽은 basic 태스크여도 된다. 이벤트를 지우는 `ClearEvent`와 기다리는 `WaitEvent`는 소유 태스크만 부를 수 있다. `GetEvent`는 extended 태스크의 모든 이벤트 비트의 현재 상태를 돌려준다.[@osek-os-2-2-3-2005]
 
 ![[diagrams/osek-event-set-wait.svg]]
 

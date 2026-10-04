@@ -43,7 +43,7 @@ Service Proxy의 대표적인 쓰임은 차량 모드 전환 요청을 전달하
 
 ## Composition
 
-composition은 component prototype과 connector를 담고, delegation 포트로 자기 포트를 드러낸다. composition 자체가 component type이어서 더 큰 composition 안에 다시 들어갈 수 있으며, 그래서 SW-C는 계층 구조를 이룬다. 차량 전체의 애플리케이션 소프트웨어는 결국 composition 하나로 나타내며, 이를 **top-level composition**이라 한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+composition은 component prototype과 [[software-component-port#Connector|connector]]를 담고, delegation 포트로 자기 포트를 드러낸다. composition 자체가 component type이어서 더 큰 composition 안에 다시 들어갈 수 있으며, 그래서 SW-C는 계층 구조를 이룬다. 차량 전체의 애플리케이션 소프트웨어는 결국 composition 하나로 나타내며, 이를 **top-level composition**이라 한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ![[diagrams/composition-assembly-delegation-connectors.svg]]
 
@@ -51,6 +51,6 @@ System Description의 System은 RootSwCompositionPrototype 하나로 top-level c
 
 ## Internal behavior
 
-원자 SW-C의 **internal behavior**(SwcInternalBehavior)는 RTE에 관련된 SW-C의 측면, 곧 [[runnable-entity|runnable]]과 그것이 반응하는 [[rte-event|RTE 이벤트]]를 기술한다. internal behavior에는 runnable, RTE 이벤트, inter-runnable 변수, exclusive area가 든다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+원자 SW-C의 **internal behavior**(SwcInternalBehavior)는 RTE에 관련된 SW-C의 측면, 곧 [[runnable-entity|runnable]]과 그것이 반응하는 [[rte-event|RTE 이벤트]]를 기술한다. internal behavior에는 runnable, RTE 이벤트, [[runnable-entity#Inter-runnable 변수|inter-runnable 변수]], [[runnable-entity#Exclusive area|exclusive area]]가 든다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 SW-C의 실제 구현은 internal behavior와 따로 implementation 기술이 기술하며, 여기에는 메모리 사용량 같은 자원 소비가 든다.[@autosar-cp-sws-rte-2025]
