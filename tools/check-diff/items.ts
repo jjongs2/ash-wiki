@@ -1,0 +1,446 @@
+import fs from "node:fs"
+import path from "node:path"
+import { citationRuns, citations } from "../check-content/source-checks"
+import { fieldsOf, type Page, type Tree, type Violation } from "../check-content/tree"
+import { repoRoot } from "../repo"
+import type { ChangedFile } from "./diff"
+import {
+  blocks,
+  citedSentences,
+  excerpt,
+  lineAt,
+  lineStarts,
+  listNames,
+  sentences,
+  similarity,
+  touches,
+} from "./text"
+import { ownerPage } from "./owner"
+
+// 반영 뒤 점검의 항목들. 항목마다 규칙은 docs/wiki-verification.md의 반영 뒤 점검 절이 가리키는 절에
+// 있고, 여기 있는 것은 후보를 뽑는 패턴뿐이다. 판정은 사람이 한다.
+export interface Context {
+  tree: Tree
+  changed: { page: Page; change: ChangedFile }[]
+  ticketBody?: string
+}
+
+export type Item = (context: Context) => Violation[]
+
+// 표준 이름 바로 뒤의 "…에서(는)", "…에 따르면"과, 표준이 주어인 문장의 사실을 전하기만 하는 보고 동사를
+// 잡는다. 이름은 번호와 판까지 이어 본다(Bosch CAN FD 1.0, [[iso-11898-1|ISO 11898-1]]:2024).
+const standardSubject = "(?:ISO|IEC|IEEE|SAE|AUTOSAR|RFC|ITU-T|Bosch|OSEK|POSIX|표준|규격|명세)"
+const standardSentence = new RegExp(
+  `${standardSubject}(?:[ :/-]?[A-Za-z0-9.:/_\\]-]+)*(?:에서는?|에 따르면) |` +
+    `${standardSubject}(?:[^.]|\\.[0-9])*?(?:적는|설명한|밝힌|적었|설명했|밝혔)다`,
+)
+
+const standardSentenceItem: Item = ({ changed }) =>
+  changed.flatMap(({ page, change }) =>
+    addedLines(page, change).flatMap(({ line, text }) => {
+      const match = text.match(standardSentence)
+      return match ? [{ file: page.file, line, message: excerpt(match[0]) }] : []
+    }),
+  )
+
+// 같은 인용으로 같은 주장을 한 다른 페이지: 더한 문장과 인용 키를 함께 쓰는 다른 페이지의 문장 가운데 글이
+// 비슷한 것. 더한 줄의 정의 강조를 다른 페이지도 강조한 곳, 새 페이지의 title과 alias를 링크 없이 쓰는 다른
+// 페이지도 보인다.
+const similarClaim = 0.6
+
+const duplicateItem: Item = ({ tree, changed }) => {
+  const byKey = new Map<string, { page: Page; line: number; text: string }[]>()
+  for (const page of tree.pages) {
+    if (page.kind !== "page") continue
+    page.masked.split("\n").forEach((text, i) => {
+      for (const sentence of citedSentences(text.replace(/(?<!\\)\|/g, " "))) {
+        for (const key of new Set(sentence.keys)) {
+          byKey.set(key, [...(byKey.get(key) ?? []), { page, line: i + 1, text: sentence.text }])
+        }
+      }
+    })
+  }
+  const found: Violation[] = []
+  for (const { page, change } of changed) {
+    const at = (line: number, message: string) => found.push({ file: page.file, line, message })
+    for (const { line, text } of addedLines(page, change)) {
+      const best = new Map<string, { score: number; other: string; text: string }>()
+      for (const sentence of citedSentences(text.replace(/(?<!\\)\|/g, " "))) {
+        for (const key of new Set(sentence.keys)) {
+          for (const other of byKey.get(key) ?? []) {
+            if (other.page === page) continue
+            const score = similarity(sentence.text, other.text)
+            const previous = best.get(other.page.name)
+            if (score >= similarClaim && (!previous || score > previous.score))
+              best.set(other.page.name, {
+                score,
+                other: `${other.page.name}:${other.line}`,
+                text: other.text,
+              })
+          }
+        }
+      }
+      for (const { score, other, text: otherText } of best.values())
+        at(line, `같은 인용의 비슷한 문장(${score.toFixed(2)}) ${other}: ${excerpt(otherText, 60)}`)
+      for (const [term] of text.matchAll(/\*\*[^*]+\*\*/g)) {
+        const names = tree.pages
+          .filter((other) => other !== page && other.kind === "page" && other.masked.includes(term))
+          .map((other) => other.name)
+        if (names.length > 0) at(line, `${term}를 강조한 다른 페이지: ${listNames(names)}`)
+      }
+    }
+    if (isNew(page, change)) {
+      const fields = fieldsOf(page)
+      const link = new RegExp(`\\[\\[${escapeRegExp(page.name)}(?:[#|\\\\\\]])`)
+      for (const name of [fields.title, ...(Array.isArray(fields.aliases) ? fields.aliases : [])]) {
+        if (typeof name !== "string" || name.length < 2) continue
+        const names = tree.pages
+          .filter(
+            (other) =>
+              other !== page &&
+              other.kind === "page" &&
+              other.masked.includes(name) &&
+              !link.test(other.masked),
+          )
+          .map((other) => other.name)
+        if (names.length > 0)
+          at(1, `새 페이지의 이름 "${name}"을 링크 없이 쓰는 다른 페이지: ${listNames(names)}`)
+      }
+    }
+  }
+  return found
+}
+
+// 인용이 없는 블록. 도해, 디스플레이 식, 제목, 여는 문장에 인용이 있는 표, 목록을 여는 문장, 다른
+// 페이지로 넘기는 문장은 뺀다.
+const uncitedBlockItem: Item = ({ changed }) =>
+  changed.flatMap(({ page, change }) => {
+    const list = blocks(page)
+    return list.flatMap((block, index) => {
+      if (!touches(block, change.added) || block.text.includes("[@")) return []
+      if (!["paragraph", "table", "list", "callout"].includes(block.kind)) return []
+      const previous = list[index - 1]
+      const next = list[index + 1]
+      const flat = block.text.replace(/\s+/g, " ").trim()
+      if (block.kind === "table" && previous?.text.includes("[@")) return []
+      if (
+        block.kind === "paragraph" &&
+        (next?.kind === "list" || next?.kind === "table") &&
+        (/:$/.test(flat) ||
+          /(?:다음(?:과 같|이)다|(?:아래|다음)(?:처럼|와 같이) [^.]*다)\.$/.test(flat))
+      )
+        return []
+      if (
+        block.kind === "paragraph" &&
+        flat.includes("[[") &&
+        sentences(flat).length === 1 &&
+        /(?:에서|을|를) (?:다룬다|참고한다)\.$/.test(flat)
+      )
+        return []
+      return [{ file: page.file, line: block.start, message: excerpt(flat) }]
+    })
+  })
+
+// 정의 자리: 정의 문장, 연결어미로 이어지는 정의, 정의 목록 항목, 강조한 주제어가 주어인 문장.
+// "…라고도 부른다"는 정의 자리가 아니다.
+const definitionPlace =
+  /(?:이)?라고? (?:한다|하며|하고|부른다|부르며|부르고|불린다|불리며)|(?:으)?로 정의(?:한다|하며|하고|된다|되며)/
+const definitionItem = /^\s*(?:[-*]|\d+\.) (?![0-9])[^:]+: /
+const boldTerm = String.raw`\*\*[^*]+\*\*(?:\([^)]*\))?`
+const boldSubject = new RegExp(
+  String.raw`^(?:[-*] |\d+\. |>\s*)*(?:${boldTerm}(?:와|과|,) ?)*${boldTerm}(?:은|는|이란|란) `,
+)
+const boldPredicate = new RegExp(String.raw`${boldTerm}(?:이)?다(?:[.\[]|$)`)
+const bold = /\*\*[^*]+\*\*/g
+
+const emphasisItem: Item = ({ changed }) =>
+  changed.flatMap(({ page, change }) => {
+    const found: Violation[] = []
+    const at = (line: number, message: string) => found.push({ file: page.file, line, message })
+    for (const { line, text } of addedLines(page, change)) {
+      sentences(text).forEach((sentence, index) => {
+        const place =
+          definitionPlace.test(sentence.text) ||
+          boldSubject.test(sentence.text) ||
+          boldPredicate.test(sentence.text) ||
+          (index === 0 && definitionItem.test(text))
+        const emphasized = sentence.text.match(bold)
+        if (place && !emphasized) at(line, `정의 자리에 강조가 없다: ${excerpt(sentence.text)}`)
+        if (!place && emphasized)
+          at(line, `정의 자리가 아닌 곳의 강조 ${emphasized.join(" ")}: ${excerpt(sentence.text)}`)
+      })
+    }
+    // 같은 용어는 한 페이지에서 한 번만 강조한다.
+    const starts = lineStarts(page.masked)
+    const terms = new Map<string, number[]>()
+    for (const match of page.masked.matchAll(bold)) {
+      terms.set(match[0], [...(terms.get(match[0]) ?? []), lineAt(starts, match.index)])
+    }
+    for (const [term, lines] of terms) {
+      const added = lines.filter((line) => change.added.has(line))
+      if (lines.length > 1 && added.length > 0)
+        at(
+          added[0],
+          `같은 강조가 페이지에 ${lines.length}번 있다: ${term} (줄 ${lines.join(", ")})`,
+        )
+    }
+    return found
+  })
+
+// 한 문단 안에서 같은 인용 자리가 이어진 곳. 목록은 통째로, 콜아웃은 하나하나를 문단 하나로 본다.
+// 표의 행은 따로 읽히므로 보지 않는다.
+const repeatedCitationItem: Item = ({ changed }) =>
+  changed.flatMap(({ page, change }) => {
+    const runs = citationRuns(page, citations(page))
+    return blocks(page).flatMap((block) => {
+      if (!["paragraph", "list", "callout"].includes(block.kind)) return []
+      if (!touches(block, change.added)) return []
+      const inside = runs.filter((run) => run[0].line >= block.start && run[0].line <= block.end)
+      const keyOf = (run: (typeof inside)[number]) =>
+        run
+          .map((c) => c.raw)
+          .sort()
+          .join("")
+      return inside.flatMap((run, index) => {
+        const previous = inside[index - 1]
+        if (!previous || keyOf(previous) !== keyOf(run)) return []
+        return [
+          {
+            file: page.file,
+            line: run[0].line,
+            message: `같은 인용이 이어진다(앞: ${previous[0].line}줄): ${run.map((c) => c.raw).join("")}`,
+          },
+        ]
+      })
+    })
+  })
+
+// 줄이거나 표기를 바꾼 곳: 고친 줄에서 지시어·접속어로 여는 문장, 지운 뒤 이어지는 문장, 고친 줄에서
+// 빠진 표준 이름, 고친 줄에서 빠졌는데 도해에 남은 글자.
+const pointer =
+  /^(?:(?:이|그)(?: |런 |러한 |렇게 |때 |래서 |러나 |러면 |리고 |에 |와 같은 )|(?:따라서|하지만|또한|반면|즉|한편|여기서|다만|게다가|특히)[ ,])/
+const standardName =
+  /(?:ISO(?:\/[A-Z]+)*|IEC|IEEE|SAE|ITU-T|RFC) ?[0-9][0-9.\-:]*|AUTOSAR R[0-9-]+|Bosch CAN(?: FD)? [0-9.]+/g
+
+const shortenedItem: Item = ({ tree, changed }) => {
+  const labels = diagramLabels(tree)
+  return changed.flatMap(({ page, change }) => {
+    if (change.untracked) return []
+    const found: Violation[] = []
+    const at = (line: number, message: string) => found.push({ file: page.file, line, message })
+    const lines = page.source.split("\n")
+    for (const hunk of change.hunks) {
+      if (hunk.removed.length === 0) continue
+      // 그대로 남은 지시어 문장인데 바로 앞 문장이 바뀐 곳. 가리키던 것이 앞 문장에 있었을 수 있다.
+      const before = new Map<string, string | undefined>()
+      for (const text of hunk.removed) {
+        sentences(text).forEach((sentence, i, list) => before.set(sentence.text, list[i - 1]?.text))
+      }
+      for (const { line, text } of hunk.added) {
+        sentences(text).forEach((sentence, i, list) => {
+          if (i === 0 || !pointer.test(sentence.text) || !before.has(sentence.text)) return
+          if (before.get(sentence.text) !== list[i - 1].text)
+            at(line, `앞 문장이 바뀐 지시어·접속어 문장: ${excerpt(sentence.text)}`)
+        })
+      }
+      if (hunk.added.length === 0) {
+        const next = lines.findIndex((text, i) => i >= hunk.at && text.trim() !== "")
+        const first = next >= 0 ? sentences(lines[next])[0] : undefined
+        if (first && pointer.test(first.text))
+          at(next + 1, `지운 곳 뒤의 지시어·접속어 문장: ${excerpt(first.text)}`)
+      }
+      const removed = hunk.removed.join("\n")
+      const added = hunk.added.map((a) => a.text).join("\n")
+      const line = hunk.added[0]?.line ?? hunk.at
+      const dropped = new Set(
+        [...removed.matchAll(standardName)]
+          .map((m) => m[0].trim())
+          .filter((n) => !added.includes(n)),
+      )
+      for (const name of dropped) at(line, `고친 줄에서 표준 이름이 빠졌다: ${name}`)
+      // 고친 줄에서 빠져 페이지 어디에도 남지 않은 말(낱말 셋까지)이 도해 글자로 있으면 옛 표기일 수 있다.
+      for (const phrase of phrases(removed)) {
+        if (added.includes(phrase) || page.source.includes(phrase)) continue
+        const files = labels.get(phrase)
+        if (files)
+          at(line, `고친 줄에서 빠진 "${phrase}"이 도해 글자에 남아 있다: ${listNames(files)}`)
+      }
+    }
+    return found
+  })
+}
+
+// 이어진 낱말 하나에서 셋까지의 묶음.
+function phrases(text: string): Set<string> {
+  const found = new Set<string>()
+  for (const line of text.split("\n")) {
+    const words = line.split(/[\s,.()[\]|*:;"']+/).filter(Boolean)
+    for (let n = 1; n <= 3; n++) {
+      for (let i = 0; i + n <= words.length; i++) found.add(words.slice(i, i + n).join(" "))
+    }
+  }
+  return found
+}
+
+// 도해의 <text> 글자마다 그것이 든 도해 파일.
+function diagramLabels(tree: Tree): Map<string, string[]> {
+  const labels = new Map<string, string[]>()
+  for (const svg of tree.svgs) {
+    for (const match of svg.source.matchAll(/<text[\s>][\s\S]*?<\/text>/g)) {
+      const label = decode(match[0].replace(/<[^>]*>/g, ""))
+        .replace(/\s+/g, " ")
+        .trim()
+      if (label.length < 2 || !/[A-Za-z가-힣]/.test(label)) continue
+      const name = path.basename(svg.file)
+      const files = labels.get(label) ?? []
+      if (!files.includes(name)) labels.set(label, [...files, name])
+    }
+  }
+  return labels
+}
+
+function decode(text: string): string {
+  const named: Record<string, string> = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'" }
+  return text.replace(/&(?:#x([0-9a-f]+)|#(\d+)|(\w+));/gi, (entity, hex, dec, name) =>
+    hex
+      ? String.fromCodePoint(parseInt(hex, 16))
+      : dec
+        ? String.fromCodePoint(Number(dec))
+        : (named[name] ?? entity),
+  )
+}
+
+// 약어: 더한 줄의 대문자 약어 가운데, 페이지에서 처음 나온 자리에 풀이가 없고 풀이하지 않는 약어 목록에 없는
+// 것. 링크 글자에 그 약어가 든 링크가 페이지에 있으면 링크가 풀이를 대신한다(위키 규약의 약어 절). 글자와 숫자가
+// 섞인 낱말(부품 번호, 판 번호)과 로마 숫자는 거른다.
+const abbreviationsPath = path.join(repoRoot, "docs", "wiki-abbreviations.md")
+const abbreviationPart = /^[A-Z][A-Z_]*[A-Z]s?$/
+const romanNumeral = /^[IVX]+$/
+const token = /(?<![A-Za-z0-9_])[A-Za-z0-9_]+(?:[/.-][A-Za-z0-9_]+)*/g
+
+function exemptAbbreviations(): string[] {
+  return [...fs.readFileSync(abbreviationsPath, "utf8").matchAll(/^- (.+?): \S/gm)].map((m) => m[1])
+}
+
+const blank = (text: string) => text.replace(/[^\n]/g, " ")
+
+// 약어를 찾을 글. 줄 번호와 오프셋을 원문과 맞추려고 지울 곳은 공백으로 바꾼다. 위키링크는 표시 글자만
+// 남기고 그 자리를 따로 준다.
+function abbreviationText(page: Page, exempt: string[]) {
+  const links: [number, number][] = []
+  let text = page.masked
+    .replace(/!\[\[[^\]\n]*\]\]/g, blank)
+    .replace(/\$\$[\s\S]*?\$\$|\$[^$\n]+\$/g, blank)
+    .replace(/\[@[^\]\n]*\]/g, blank)
+    .replace(/https?:\/\/\S+/g, blank)
+    .replace(/<[^>\n]+>/g, blank)
+  text = text.replace(/\[\[([^\]\n|]*\\?\|)?([^\]\n]*)\]\]/g, (_link, target, display, offset) => {
+    const shown = target ? display : display.replace(/^[^#]*/, blank)
+    const start = offset + 2 + (target?.length ?? 0)
+    links.push([start, start + shown.length])
+    return `  ${target ? blank(target) : ""}${shown}  `
+  })
+  for (const name of exempt.filter((n) => /\s/.test(n))) {
+    text = text.replace(
+      new RegExp(`(?<![A-Za-z0-9_])${escapeRegExp(name)}(?![A-Za-z0-9_])`, "g"),
+      blank,
+    )
+  }
+  return { text, links }
+}
+
+const abbreviationItem: Item = ({ changed }) => {
+  const exempt = exemptAbbreviations()
+  const exemptSet = new Set(exempt)
+  return changed.flatMap(({ page, change }) => {
+    const { text, links } = abbreviationText(page, exempt)
+    const starts = lineStarts(text)
+    const first = new Map<string, { offset: number; token: string; explained: boolean }>()
+    const inAdded = new Set<string>()
+    const linked = new Set<string>()
+    for (const match of text.matchAll(token)) {
+      const word = match[0]
+      if (exemptSet.has(word)) continue
+      const parts = word.split(/[/.-]/)
+      if (parts.some((part) => /[A-Za-z]/.test(part) && /[0-9]/.test(part))) continue
+      const offset = match.index
+      const line = lineAt(starts, offset)
+      for (const part of parts) {
+        if (!abbreviationPart.test(part) || romanNumeral.test(part) || exemptSet.has(part)) continue
+        if (change.added.has(line)) inAdded.add(part)
+        if (links.some(([s, e]) => offset >= s && offset < e)) linked.add(part)
+        if (first.has(part)) continue
+        const before = text.slice(Math.max(0, offset - 4), offset).replace(/\*+$/, "")
+        const after = text.slice(offset + word.length, offset + word.length + 4).replace(/^\*+/, "")
+        first.set(part, {
+          offset,
+          token: word,
+          explained: after.startsWith("(") || /\(\s*$/.test(before),
+        })
+      }
+    }
+    return [...inAdded].flatMap((part) => {
+      const at = first.get(part)!
+      if (at.explained || linked.has(part)) return []
+      const shown = at.token === part ? part : `${part} (${at.token})`
+      return [
+        { file: page.file, line: lineAt(starts, at.offset), message: `풀이가 없다: ${shown}` },
+      ]
+    })
+  })
+}
+
+// 도해 위치: 이 브랜치 전부터 있던 도해 바로 앞의 문단이 새로 들어온 문단이면, 기존 문단과 도해 사이에
+// 새 내용이 끼어든 것일 수 있다. 지운 줄과 글이 비슷한 문단은 기존 문단을 고친 것으로 본다.
+const rewritten = 0.5
+const diagramPlaceItem: Item = ({ changed }) =>
+  changed.flatMap(({ page, change }) => {
+    const list = blocks(page).filter((block) => block.kind !== "other" || block.text.trim())
+    return list.flatMap((block, index) => {
+      const previous = list[index - 1]
+      if (block.kind !== "embed" || change.added.has(block.start) || !previous) return []
+      if (previous.kind === "heading" || previous.kind === "embed") return []
+      for (let line = previous.start; line <= previous.end; line++)
+        if (!change.added.has(line)) return []
+      const hunk = change.hunks.find((h) => h.added.some((a) => a.line === previous.start))
+      if (hunk?.removed.some((text) => similarity(text, previous.text) >= rewritten)) return []
+      return [
+        {
+          file: page.file,
+          line: block.start,
+          message: `기존 도해 앞의 문단이 새로 들어왔다(${previous.start}줄): ${excerpt(previous.text, 50)}`,
+        },
+      ]
+    })
+  })
+
+function addedLines(page: Page, change: ChangedFile) {
+  const lines = page.masked.split("\n")
+  return [...change.added]
+    .sort((a, b) => a - b)
+    .map((line) => ({ line, text: lines[line - 1] ?? "" }))
+    .filter(({ text }) => text.trim() !== "")
+}
+
+function isNew(page: Page, change: ChangedFile): boolean {
+  if (change.untracked) return true
+  const count = page.source.split("\n").length
+  for (let line = 1; line < count; line++) if (!change.added.has(line)) return false
+  return true
+}
+
+function escapeRegExp(text: string): string {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+}
+
+export const items: [string, Item][] = [
+  ["standard-sentence", standardSentenceItem],
+  ["duplicate", duplicateItem],
+  ["uncited-block", uncitedBlockItem],
+  ["emphasis", emphasisItem],
+  ["repeated-citation", repeatedCitationItem],
+  ["shortened", shortenedItem],
+  ["owner-page", ownerPage],
+  ["abbreviation", abbreviationItem],
+  ["diagram-place", diagramPlaceItem],
+]

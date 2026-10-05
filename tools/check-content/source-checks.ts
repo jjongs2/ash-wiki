@@ -262,7 +262,7 @@ const unescapedPipe = /(?<!\\)\|/
 
 // GFM 표의 줄 번호. 머리 행 바로 다음에 구분 행(`--- | ---`)이 오면 표가 시작하고 빈 줄에서 끝난다.
 // 행 앞뒤의 |는 없어도 되고, 콜아웃 안의 표는 줄 앞에 >가 붙는다.
-function tableLines(page: Page): Set<number> {
+export function tableLines(page: Page): Set<number> {
   const lines = page.masked.split("\n").map((line) => line.replace(quoteMarker, ""))
   const rows = new Set<number>()
   lines.forEach((line, index) => {
@@ -512,7 +512,7 @@ function sourceSpan(sourceLines: string[], from: Citation, to: Citation): string
 
 // 한 자리는 한 블록 안에서 공백, 줄바꿈, HTML 주석만 사이에 둔 인용들이다. HTML 주석은 렌더되지 않으므로
 // 빼고 본다.
-function citationRuns<T extends Citation>(page: Page, found: T[]): T[][] {
+export function citationRuns<T extends Citation>(page: Page, found: T[]): T[][] {
   const locate = blockLocator(page)
   const blockOf = ({ line, column }: Citation) => locate(line, column)
   const sourceLines = page.source.split("\n")
