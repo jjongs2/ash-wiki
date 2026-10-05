@@ -7,7 +7,7 @@
 - 모든 변경은 PR로 들어옵니다. main에 직접 push하지 않습니다.
 - 머지는 squash만 씁니다. main에는 PR 하나가 커밋 하나로 남습니다.
 - 강제 수단은 CI(콘텐츠 검사기)와 룰셋뿐입니다. 로컬 훅과 PR 제목·본문 검사는 두지 않습니다. CI는 [무결성 워크플로](.github/workflows/integrity.yml), 룰셋은 [`main.json`](.github/rulesets/main.json)입니다.
-- PR을 올리기 전에 `npm run check:content`로 표기 위반을 고칩니다. 규칙은 [위키 규약](docs/wiki-conventions.md)에 있습니다.
+- **PR 전 확인**: PR을 올리기 전에 `npm run check:content`로 표기 위반을 고칩니다. 규칙은 [위키 규약](docs/wiki-conventions.md)에 있습니다.
 - 이슈, PR 본문, 리뷰 코멘트는 간결하게 씁니다.
 - 커밋, PR, 리뷰, 이슈에도 격리 경계가 적용됩니다. 소스 노트의 표현과 식별 정보를 쓰지 않습니다([ADR 0001](docs/adr/0001-isolation-boundary.md)).
 
