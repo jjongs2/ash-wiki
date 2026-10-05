@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-ISTQB 용어집은 결함을 알아채고, 기록하고, 분류하고, 조사하고, 고치고, 처분하는 프로세스를 **결함 관리**(defect management)라 부른다.[@istqb-glossary-defect-management-2026] ISTQB CTFL 강의계획서에 따르면 결함을 찾는 것이 테스트의 주된 목적 가운데 하나이므로, 자리 잡힌 결함 관리 프로세스가 꼭 있어야 한다.[@istqb-ctfl-syllabus-2024] 결함과 failure의 정의는 [[fault-error-failure|Fault, error, failure]]에서 다룬다.
+ISTQB 용어집은 결함을 알아채고, 기록하고, 분류하고, 조사하고, 고치고, 처분하는 프로세스를 **결함 관리**(defect management)라 부른다.[@istqb-glossary-defect-management-2026] ISTQB CTFL 강의계획서에 따르면 결함을 찾는 것이 테스트의 주된 목적 가운데 하나이므로, 자리 잡힌 결함 관리 프로세스가 꼭 있어야 한다.[@istqb-ctfl-syllabus-2024] 결함과 장애(failure)의 정의는 [[fault-error-failure|Fault, error, failure]]에서 다룬다.
 
 ## 결함 보고서와 사건 보고서
 
@@ -29,17 +29,17 @@ ISO/IEC/IEEE 24765:2017은 이슈 추적 시스템의 이슈 기록이 식별자
 
 [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-2:2021은 **사건**(incident)을 프로젝트, 제품, 서비스, 시스템의 생명주기 어느 때든 일어나는 이상하거나 예상하지 못한 사건이나 조건으로 정의하고, **사건 보고서**(incident report)를 사건의 발생, 성질, 상태를 적은 문서로 정의하고, 이를 이상 보고서, 버그 보고서, 결함 보고서, 문제 보고서 같은 이름으로도 부른다고 둔다. 같은 표준의 프로세스 모델에서는 테스트 사건 보고 프로세스가 사건 보고를 맡는다.[@iso-iec-ieee-29119-2-obp-2021] 이 모델은 [[test-process|테스트 프로세스]]에서 다룬다.
 
-CTFL 강의계획서에 따르면 보고된 이상은 실제 결함일 수도 있고, 거짓 양성 결과나 변경 요청 같은 다른 것일 수도 있으며, 어느 쪽인지는 결함 보고서를 처리하면서 가린다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 테스트 대상에 실제로 없는 결함이 보고된 테스트 결과를 **거짓 양성 결과**(false-positive result)라 부른다.[@istqb-glossary-false-positive-result-2026] ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 따르면 테스트 실행에서 나온 이상은 테스트 대상의 결함 말고도 갖춰지지 않은 사전 조건, 잘못된 테스트 데이터, 테스트 스크립트나 테스트 환경의 결함, 명세를 잘못 이해한 것 때문에 생길 수 있다.[@istqb-ctal-ta-syllabus-2025]
+CTFL 강의계획서에 따르면 보고된 이상은 실제 결함일 수도 있고, false-positive result나 변경 요청 같은 다른 것일 수도 있으며, 어느 쪽인지는 결함 보고서를 처리하면서 가린다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 테스트 대상에 실제로 없는 결함이 보고된 테스트 결과를 **false-positive result**라 부른다.[@istqb-glossary-false-positive-result-2026] ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 따르면 테스트 실행에서 나온 이상은 테스트 대상의 결함 말고도 갖춰지지 않은 사전 조건, 잘못된 테스트 데이터, 테스트 스크립트나 테스트 환경의 결함, 명세를 잘못 이해한 것 때문에 생길 수 있다.[@istqb-ctal-ta-syllabus-2025]
 
 ## 결함의 처리 흐름
 
 CTFL 강의계획서에 따르면 결함 관리 프로세스는 적어도 이상 하나하나를 발견부터 종료까지 다루는 워크플로와 분류 규칙을 담는다. 워크플로는 대개 보고된 이상을 기록하고, 분석하고 분류하고, 고칠지 그대로 둘지 대응을 정하고, 결함 보고서를 닫는 활동으로 이루어진다. 강의계획서는 결함 상태의 예로 open, deferred, duplicate, waiting to be fixed, awaiting confirmation testing, re-opened, closed, rejected를 든다.[@istqb-ctfl-syllabus-2024] Bugzilla의 기본 워크플로는 해결(resolution) 값으로 FIXED, DUPLICATE, WONTFIX, WORKSFORME, INVALID를 두고[@bugzilla-editing-a-bug-2026], Jira는 기본 해결 값으로 Done, Won't do, Duplicate, Cannot reproduce를 둔다.[@atlassian-jira-statuses-resolutions-2026]
 
-ISTQB 용어집에 따르면 결함을 고친 뒤에는 [[regression-testing#확인 테스트와의 차이|확인 테스트]]로 그 결함이 일으킨 failure가 다시 일어나지 않는지 본다.[@istqb-glossary-confirmation-testing-2026] 확인 테스트에서 고쳐지지 않은 것으로 드러나면 결함 보고서를 다시 연다.[@bugzilla-editing-a-bug-2026][@istqb-ctal-tm-syllabus-2024]
+ISTQB 용어집에 따르면 결함을 고친 뒤에는 [[regression-testing#확인 테스트와의 차이|확인 테스트]]로 그 결함이 일으킨 장애가 다시 일어나지 않는지 본다.[@istqb-glossary-confirmation-testing-2026] 확인 테스트에서 고쳐지지 않은 것으로 드러나면 결함 보고서를 다시 연다.[@bugzilla-editing-a-bug-2026][@istqb-ctal-tm-syllabus-2024]
 
 ## 분류 속성
 
-IEEE 1044-2009는 소프트웨어 이상이 생명주기의 언제 생기거나 드러나든 그것을 한 가지 방식으로 분류하는 방법을 정했다. failure와 결함을 분류하는 핵심 속성의 집합을 두되, 응용이나 업무마다 고유한 속성이 따로 있을 수 있음을 인정하고, 생명주기에 맞춰 속성 값을 어느 정도 고쳐 쓰리라 보았다. 분류 데이터는 결함 원인 분석, 프로젝트 관리, 그리고 결함이 들어갈 가능성을 줄이거나 일찍 찾을 가능성을 높이는 [[software-process|소프트웨어 프로세스]] 개선에 쓸 수 있는 것으로 두었다.[@ieee-1044-2009] IEEE SA는 IEEE 1044-2009를 2020년 3월에 비활성(Inactive-Reserved) 표준으로 돌렸다.[@ieee-1044-status-2026]
+IEEE 1044-2009는 소프트웨어 이상이 생명주기의 언제 생기거나 드러나든 그것을 한 가지 방식으로 분류하는 방법을 정했다. 장애와 결함을 분류하는 핵심 속성의 집합을 두되, 응용이나 업무마다 고유한 속성이 따로 있을 수 있음을 인정하고, 생명주기에 맞춰 속성 값을 어느 정도 고쳐 쓰리라 보았다. 분류 데이터는 결함 원인 분석, 프로젝트 관리, 그리고 결함이 들어갈 가능성을 줄이거나 일찍 찾을 가능성을 높이는 [[software-process|소프트웨어 프로세스]] 개선에 쓸 수 있는 것으로 두었다.[@ieee-1044-2009] IEEE SA는 IEEE 1044-2009를 2020년 3월에 비활성(Inactive-Reserved) 표준으로 돌렸다.[@ieee-1044-status-2026]
 
 ISTQB CTAL-TM(Certified Tester Advanced Level Test Management) 강의계획서에 따르면 결함 보고서에 결함이 들어간 단계와 찾은 단계를 적어 두면, 결함을 들어간 단계 안에서 없애는지(phase containment)를 평가할 수 있다. 들어간 단계의 정보로는 결함이 가장 많이 들어가는 단계를 가려 결함 예방을 위한 개선을 그 단계에 겨눌 수 있다.[@istqb-ctal-tm-syllabus-2024]
 
@@ -52,7 +52,7 @@ CTFL 강의계획서에 따르면 결함 보고서의 심각도는 이해관계�
 
 ## 늦게 찾을수록 커지는 비용
 
-NIST 보고서에 따르면 결함은 늦게 찾을수록 고치는 비용이 커지고, 어느 단계에서 들어갔든 뒤 단계에서 고칠수록 비용이 크다. NIST가 2002년 펴낸 Planning Report 02-3은 요구사항 수집·분석과 아키텍처 설계 단계에서 들어간 결함을 고치는 상대 비용을 그 단계에서 1, 코딩과 유닛 테스트 단계에서 5, 통합·컴포넌트·시스템 테스트 단계에서 10, 초기 고객 피드백과 베타 테스트 단계에서 15, 출시 뒤 30으로 예시한다.[@nist-planning-report-02-3-2002]
+NIST 보고서에 따르면 결함은 늦게 찾을수록 고치는 비용이 커지고, 어느 단계에서 들어갔든 뒤 단계에서 고칠수록 비용이 크다. NIST가 2002년 펴낸 Planning Report 02-3은 요구사항 수집·분석과 아키텍처 설계 단계에서 들어간 결함을 고치는 상대 비용을 그 단계에서 1, 코딩과 단위 테스트 단계에서 5, 통합·컴포넌트·시스템 테스트 단계에서 10, 초기 고객 피드백과 베타 테스트 단계에서 15, 출시 뒤 30으로 예시한다.[@nist-planning-report-02-3-2002]
 
 ![[diagrams/nist-defect-fix-relative-cost.svg]]
 
@@ -60,7 +60,7 @@ Boehm과 Basili는 2001년 글에서, 인도한 뒤에 소프트웨어 문제를
 
 [[software-quality#품질 보증|품질 보증]] 활동은 결함을 다루는 방식에 따라 세 갈래로 나뉜다.[@tian-quality-assurance-alternatives-2001]
 
-- **결함 예방**(defect prevention): 오류를 없애 결함이 들어가지 않게 한다.
+- **결함 예방**(defect prevention): 실수를 없애 결함이 들어가지 않게 한다.
 - **결함 감소**(defect reduction): 들어간 fault를 찾아 없앤다.
 - **결함 봉쇄**(defect containment): fault와 failure의 인과를 끊어, 국소적인 fault가 전역적인 failure로 번지지 않게 한다.[@tian-quality-assurance-alternatives-2001]
 

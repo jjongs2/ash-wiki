@@ -33,7 +33,7 @@ ASPICE 3.1은 SYS.5, SWE.4, SWE.6의 BP1과 SYS.4, SWE.5의 BP2에서 테스트�
 
 ## 확인 테스트와의 차이
 
-**확인 테스트**(confirmation testing)는 결함을 고친 뒤 그 결함이 일으킨 장애가 다시 일어나지 않는지 확인하는 변경 관련 테스트로, 재테스트(retesting)라고도 부른다.[@istqb-glossary-confirmation-testing-2026] ISO/IEC/IEEE 24765 용어집은 재테스트를 결함을 고치려고 한 수정이 그 결함을 실제로 없앴는지 확인하는 테스트로 정의하고, 그 주석에서 재테스트를 흔히 회귀 테스트로 보완하는 것으로 둔다.[@ieee-cs-sevocab-2026]
+**확인 테스트**(confirmation testing)는 결함을 고친 뒤 그 결함이 일으킨 장애(failure)가 다시 일어나지 않는지 확인하는 변경 관련 테스트로, 재테스트(retesting)라고도 부른다.[@istqb-glossary-confirmation-testing-2026] ISO/IEC/IEEE 24765 용어집은 재테스트를 결함을 고치려고 한 수정이 그 결함을 실제로 없앴는지 확인하는 테스트로 정의하고, 그 주석에서 재테스트를 흔히 회귀 테스트로 보완하는 것으로 둔다.[@ieee-cs-sevocab-2026]
 
 확인 테스트는 수정이 제대로 됐는지를 보고, 회귀 테스트는 변경이 다른 부분에 뜻하지 않은 영향을 주지 않았는지를 본다.[@ieee-cs-sevocab-2026][@istqb-ctfl-syllabus-2024]
 

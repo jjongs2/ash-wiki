@@ -15,7 +15,9 @@
 
 - API 풀이 Application Programming Interface: Application Program Interface (#165)
 - ASPICE: Automotive SPICE, A-SPICE (#231). 판을 붙이면 `ASPICE 4.1` 꼴. 정식 이름은 `automotive-spice` 머리말의 풀이에만, A-SPICE는 그 페이지의 alias로만. 문서 이름 "Automotive SPICE for Cybersecurity"와 슬러그는 예외
+- cascading failure: 연쇄 고장 (#291)
 - channel: 채널 (#257). MCAL I/O 드라이버(ADC·DIO·ICU·OCU·PWM)의 channel일 때. 그 밖의 채널은 "채널". 예: ComM·NM의 채널, FlexRay 채널
+- common cause failure: 공통 원인 고장 (#291)
 - context: 문맥 (#142)
 - context switch: 문맥 전환 (#142)
 - counter: 카운터 (#257). OSEK·AUTOSAR OS 객체일 때. 다른 counter는 이 결정에 들지 않음
@@ -23,10 +25,14 @@
 - Diffie-Hellman: Diffie–Hellman (#288)
 - dominant: 도미넌트 (#165). 조사는 원어의 발음대로. 예: "dominant가"
 - edge: 에지 (#257). AUTOSAR 드라이버가 설정과 API로 다루는 edge일 때. 그 밖의 신호 에지는 "에지". 예: CAN 동기화의 에지
+- failure: 실패, 고장, 장애 (#291). 합성어 포함. 예: dependent failure, failure mode, target failure measure. 동사("고장 나다", "실패하다"), 테스트의 pass/fail, 일반 낱말 "실패"는 그대로. ISTQB의 error·defect와 같은 문장, 곧 "실수"나 "결함"과 같은 문장에서는 "장애", 페이지에서 처음 쓸 때 "장애(failure)"
+- false positive: 거짓 양성 (#291). ISTQB 용어 이름은 false-positive result
 - GMII 풀이: 통일하지 않음 (#196). 페이지마다 그대로. `mii`는 Gigabit MII, `1000base-t1`은 Gigabit Media Independent Interface
 - MAC 풀이 Medium Access Control: Media Access Control (#165). 출처마다의 풀이를 비교하는 문장은 예외
 - notification: 통지 (#257). AUTOSAR 모듈이 부르는 notification 콜백일 때. 동사로 쓴 자리("통지받는다")와 그 밖의 통지는 "통지"
+- OOPSLA 풀이 Object-Oriented Programming, Systems, Languages, and Applications: Object-Oriented Programming, Systems, Languages & Applications (#291)
 - OSEK OS: OSEK/VDX OS (#257). OS를 가리킬 때. 명세를 가리키는 "OSEK/VDX OS"는 그대로. 예: "OSEK/VDX OS 2.2.3 명세"
+- prototyping: 프로토타이핑 (#291). prototype도 같다. AUTOSAR의 prototype은 이 결정에 들지 않음
 - RAM 풀이 Random-Access Memory: Random Access Memory (#165)
 - recessive: 리세시브 (#165). 조사는 원어의 발음대로. 예: "recessive이고"
 - resource: 리소스 (#165). OSEK 객체일 때. 일반적인 뜻이면 "자원"
@@ -41,6 +47,7 @@
 - 개인 키: 개인키 (#288)
 - 결함 허용: - (#223)
 - 공개 키: 공개키 (#288)
+- 단위 테스트: 유닛 테스트 (#291)
 - 대칭 키: 대칭키 (#288)
 - 리프 노드: 잎 노드 (#250)
 - 비대칭 키: 비대칭키 (#288)
@@ -49,12 +56,15 @@
 - 생명주기: 수명주기 (#288)
 - 서명 키: 서명키 (#288)
 - 송신 정지: 서스펜드 트랜스미션 (#68). 원어는 병기하지 않음
+- 실수: 오류 (#291). ISTQB의 error(사람의 실수)일 때. 기법 이름 "오류 추정"과 일반적인 error는 "오류"
 - 안전 메커니즘: 안전 기제 (#223)
 - 암호 primitive: 암호 프리미티브 (#169)
 - 엔드 스테이션: 종단국 (#196)
 - 위협 시나리오: threat scenario (#252)
 - 자산: asset (#252)
 - 타원 곡선 암호: ECC (#289). 타원 곡선 암호를 가리킬 때. ECDSA·ECDH 같은 알고리즘 이름은 그대로. 예: SP 800-56A의 ECC CDH는 "타원 곡선 CDH"
+- 테스트 기준: test basis (#291)
+- 테스트 케이스: 시험 사례, 시험 케이스 (#291)
 - 프레임 간 공간: 인터프레임 공간 (#68). 원어는 병기하지 않음
 - 플래시: Flash (#257). 일반 낱말일 때. 모듈과 구성 요소의 이름(Fls(Flash Driver), Flash EEPROM Emulation, Flashing Adapter)은 예외
 - 하위 호환: 역호환 (#257)

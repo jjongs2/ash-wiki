@@ -52,7 +52,7 @@ ASPICE 3.1은 SWE.2의 목적을 아키텍처 설계를 세우고, 소프트웨�
 
 ## ISO 26262-6
 
-[[iso-26262|ISO 26262]]-6:2018은 7절에서 소프트웨어 아키텍처 설계를 다룬다.[@iso-26262-6-obp-2018] ISO 26262-1:2018은 [[freedom-from-interference|freedom from interference]]를, 안전 요구 위반으로 이어질 수 있는 연쇄 고장(cascading failure)이 둘 이상의 요소 사이에 없는 것으로 정의한다.[@iso-26262-1-obp-2018] [[autosar|AUTOSAR]] R25-11은 소프트웨어 컴포넌트를 서로 보호되는 메모리 partition에 나눠 실행하는 memory partitioning으로 컴포넌트 사이의 freedom from interference를 돕는다.[@autosar-cp-exp-functionalsafetymeasures-2025]
+[[iso-26262|ISO 26262]]-6:2018은 7절에서 소프트웨어 아키텍처 설계를 다룬다.[@iso-26262-6-obp-2018] ISO 26262-1:2018은 [[freedom-from-interference|freedom from interference]]를, 안전 요구 위반으로 이어질 수 있는 cascading failure가 둘 이상의 요소 사이에 없는 것으로 정의한다.[@iso-26262-1-obp-2018] [[autosar|AUTOSAR]] R25-11은 소프트웨어 컴포넌트를 서로 보호되는 메모리 partition에 나눠 실행하는 memory partitioning으로 컴포넌트 사이의 freedom from interference를 돕는다.[@autosar-cp-exp-functionalsafetymeasures-2025]
 
 ## 아키텍처 평가
 

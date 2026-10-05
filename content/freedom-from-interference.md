@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-02
 ---
 
-[[iso-26262|ISO 26262]]-1:2018은 **FFI**(Freedom From Interference)를 둘 이상의 요소 사이에 [[safety-requirement|안전 요구사항]] 위반으로 이어질 수 있는 cascading failure가 없는 것으로 정의한다.[@iso-26262-1-obp-2018] Cascading failure는 [[safety-analysis#종속 고장 분석|안전 분석]]에서 다룬다. ISO 26262-9:2018은 요소의 공존 기준(criteria for coexistence of elements)을 정한다.[@iso-26262-9-obp-2018]
+[[iso-26262|ISO 26262]]-1:2018은 **FFI**(Freedom From Interference)를 둘 이상의 요소 사이에 [[safety-requirement|안전 요구사항]] 위반으로 이어질 수 있는 cascading failure가 없는 것으로 정의한다.[@iso-26262-1-obp-2018] Cascading failure는 [[safety-analysis#Dependent failure 분석|안전 분석]]에서 다룬다. ISO 26262-9:2018은 요소의 공존 기준(criteria for coexistence of elements)을 정한다.[@iso-26262-9-obp-2018]
 
 ## AUTOSAR의 FFI 수단
 

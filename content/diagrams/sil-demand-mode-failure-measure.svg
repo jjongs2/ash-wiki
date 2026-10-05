@@ -36,7 +36,7 @@
     <path d="M510 116 V146" />
   </g>
 
-  <!-- 목표 실패 척도 -->
+  <!-- target failure measure -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="30.75" y="150.75" width="208.5" height="44.5" rx="4" />
     <rect x="260.75" y="150.75" width="328.5" height="44.5" rx="4" />

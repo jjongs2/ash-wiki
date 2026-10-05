@@ -12,7 +12,7 @@ verified: 2026-10-03
 ISTQB CTFL 강의계획서는 테스트가 흔히 노리는 목적으로 아래 아홉 가지를 든다.[@istqb-ctfl-syllabus-2024]
 
 - 요구사항, 사용자 스토리, 설계, 코드 같은 작업 산출물 평가
-- [[fault-error-failure|failure]]를 일으키고 결함 찾기
+- [[fault-error-failure|장애]](failure)를 일으키고 결함 찾기
 - 요구되는 [[test-coverage|커버리지]] 확보
 - [[software-quality|소프트웨어 품질]]이 모자라서 생기는 위험 줄이기
 - 명시된 요구사항을 채웠는지 확인
@@ -39,7 +39,7 @@ CTFL 강의계획서 2018 V3.1은 다섯째 원칙을 살충제 역설(pesticide
 
 ## 테스트와 디버깅
 
-CTFL 강의계획서에 따르면 동적 테스트는 결함 때문에 생기는 failure를 일으키고, 정적 테스트는 테스트 대상에서 결함을 곧바로 찾는다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 **디버깅**(debugging)을 컴포넌트나 시스템에서 failure의 원인을 찾아 분석하고 없애는 프로세스로 정의한다.[@istqb-glossary-debugging-2026] CTFL 강의계획서에 따르면 동적 테스트가 failure를 일으킨 뒤의 디버깅은 대개 failure를 재현하고, 원인인 결함을 진단하고, 그 결함을 고치는 순서로 간다. 고친 뒤에는 [[regression-testing#확인 테스트와의 차이|확인 테스트]]로 문제가 풀렸는지 보고, [[regression-testing|회귀 테스트]]로 다른 곳에 failure가 생기지 않았는지 볼 수 있다.[@istqb-ctfl-syllabus-2024]
+CTFL 강의계획서에 따르면 동적 테스트는 결함 때문에 생기는 장애를 일으키고, 정적 테스트는 테스트 대상에서 결함을 곧바로 찾는다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 **디버깅**(debugging)을 컴포넌트나 시스템에서 failure의 원인을 찾아 분석하고 없애는 프로세스로 정의한다.[@istqb-glossary-debugging-2026] CTFL 강의계획서에 따르면 동적 테스트가 장애를 일으킨 뒤의 디버깅은 대개 장애를 재현하고, 원인인 결함을 진단하고, 그 결함을 고치는 순서로 간다. 고친 뒤에는 [[regression-testing#확인 테스트와의 차이|확인 테스트]]로 문제가 풀렸는지 보고, [[regression-testing|회귀 테스트]]로 다른 곳에 failure가 생기지 않았는지 볼 수 있다.[@istqb-ctfl-syllabus-2024]
 
 ![[diagrams/dynamic-test-debugging-flow.svg]]
 
@@ -71,7 +71,7 @@ CTFL 강의계획서에 따르면 정적 테스트는 사람이 살펴보는 [[s
 
 CTFL 강의계획서에 따르면 **테스트 레벨**(test level)은 함께 조직하고 관리하는 테스트 활동의 묶음이고, 레벨마다 [[test-process|테스트 프로세스]]의 한 인스턴스다. 강의계획서는 다섯 레벨을 든다.[@istqb-ctfl-syllabus-2024]
 
-- [[unit-testing#컴포넌트 테스트|컴포넌트 테스트]](유닛 테스트): 컴포넌트를 따로 떼어 테스트한다.
+- [[unit-testing#컴포넌트 테스트|컴포넌트 테스트]](단위 테스트): 컴포넌트를 따로 떼어 테스트한다.
 - [[integration-testing#컴포넌트 통합과 시스템 통합|컴포넌트 통합 테스트]]: 컴포넌트 사이의 인터페이스와 상호작용을 테스트한다.
 - [[system-testing|시스템 테스트]]: 시스템 전체의 동작과 기능을 테스트한다.
 - 시스템 통합 테스트: 시스템과 다른 시스템, 외부 서비스 사이의 인터페이스를 테스트한다.
