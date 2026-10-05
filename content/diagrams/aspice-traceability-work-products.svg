@@ -69,6 +69,6 @@
   <g font-size="12" fill="var(--text, #727981)">
     <text x="110" y="474">양방향 추적성</text>
     <text x="270" y="474">추적성</text>
-    <text x="640" y="474" text-anchor="end">Automotive SPICE 4.1</text>
+    <text x="640" y="474" text-anchor="end">ASPICE 4.1</text>
   </g>
 </svg>

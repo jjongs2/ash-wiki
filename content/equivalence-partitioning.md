@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**동치 분할**(equivalence partitioning)은 테스트 대상이 같게 다루리라 기대되는 입력이나 출력의 값을 분할(partition)로 묶고, 분할마다 대표값으로 그 분할을 실행하는 [[black-box-testing|블랙박스]] 기법이다.[@iso-iec-ieee-29119-4-obp-2021][@istqb-glossary-equivalence-partitioning-2026] ISO/IEC/IEEE 29119-4:2021은 동치 클래스(equivalence class)를 분할과 같은 뜻의 용어로 둔다.[@iso-iec-ieee-29119-4-obp-2021]
+**동치 분할**(equivalence partitioning)은 테스트 대상이 같게 다루리라 기대되는 입력이나 출력의 값을 분할(partition)로 묶고, 분할마다 대표값으로 그 분할을 실행하는 [[black-box-testing|블랙박스]] 기법이다.[@iso-iec-ieee-29119-4-obp-2021][@istqb-glossary-equivalence-partitioning-2026] [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-4:2021은 동치 클래스(equivalence class)를 분할과 같은 뜻의 용어로 둔다.[@iso-iec-ieee-29119-4-obp-2021]
 
 ISTQB CTFL 강의계획서에 따르면 동치 분할은 한 분할의 값 하나로 결함이 드러나면 같은 분할의 다른 값으로도 그 결함이 드러나리라는 생각에 기댄다. 그래서 분할마다 테스트 하나면 된다.[@istqb-ctfl-syllabus-2024]
 
@@ -19,7 +19,7 @@ CTFL 강의계획서는 유효한 값을 담은 분할을 **유효 분할**(vali
 
 ## 커버리지
 
-CTFL 강의계획서에 따르면 동치 분할의 커버리지 항목은 분할이다. 식별한 분할의 수가 $N$이고 그 가운데 테스트 케이스가 하나라도 실행한 분할의 수가 $N_\mathrm{exec}$이면, 커버리지는 다음과 같다.[@istqb-ctfl-syllabus-2024]
+CTFL 강의계획서에 따르면 동치 분할의 [[test-coverage|커버리지]] 항목은 분할이다. 식별한 분할의 수가 $N$이고 그 가운데 [[test-case|테스트 케이스]]가 하나라도 실행한 분할의 수가 $N_\mathrm{exec}$이면, 커버리지는 다음과 같다.[@istqb-ctfl-syllabus-2024]
 
 $$
 C = \frac{N_\mathrm{exec}}{N} \times 100\,\%

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="9.5 3.5 720.5 147" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="9.5 3.5 735 147" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -25,11 +25,11 @@
     <line x1="260" y1="122" x2="298" y2="122" />
   </g>
   <g fill="var(--text, #727981)">
-    <text x="306" y="63">고장</text>
-    <text x="306" y="127">고장</text>
+    <text x="306" y="63">failure</text>
+    <text x="306" y="127">failure</text>
   </g>
 
-  <!-- 오른쪽: cascading failure. 한 요소의 고장이 다른 요소를 고장 나게 한다 -->
+  <!-- 오른쪽: cascading failure. 한 요소의 failure가 다른 요소를 고장 나게 한다 -->
   <text x="575" y="24" fill="var(--text, #727981)" text-anchor="middle">cascading failure</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="420" y="40" width="100" height="36" rx="4" />
@@ -48,7 +48,7 @@
     <line x1="650" y1="122" x2="688" y2="122" />
   </g>
   <g fill="var(--text, #727981)">
-    <text x="618" y="94" font-size="12">고장</text>
-    <text x="696" y="127">고장</text>
+    <text x="618" y="94" font-size="12">failure</text>
+    <text x="696" y="127">failure</text>
   </g>
 </svg>

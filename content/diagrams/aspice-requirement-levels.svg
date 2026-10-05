@@ -13,7 +13,7 @@
     <rect x="60" y="206" width="150" height="46" rx="4" />
     <rect x="250" y="206" width="150" height="46" rx="4" />
   </g>
-  <text x="440" y="36" font-size="12" text-anchor="end" fill="var(--text, #727981)">Automotive SPICE 4.1</text>
+  <text x="440" y="36" font-size="12" text-anchor="end" fill="var(--text, #727981)">ASPICE 4.1</text>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="105" y="40">이해관계자 요구사항</text>
     <text x="105" y="57" font-size="12">SYS.1</text>

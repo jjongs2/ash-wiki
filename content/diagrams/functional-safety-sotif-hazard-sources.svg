@@ -21,8 +21,8 @@
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="130" y="67" font-size="13">E/E 시스템의 오동작</text>
-    <text x="130" y="85">무작위 하드웨어 고장</text>
-    <text x="130" y="101">체계적 고장</text>
+    <text x="130" y="85">random hardware failure</text>
+    <text x="130" y="101">systematic failure</text>
     <text x="340" y="67" font-size="13">기능 부족</text>
     <text x="340" y="85">명세의 부족</text>
     <text x="340" y="101">성능의 부족</text>

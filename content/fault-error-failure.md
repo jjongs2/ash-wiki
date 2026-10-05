@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-02
 ---
 
-**Fault**, **error**, **failure**는 시스템이 잘못 동작하기까지의 원인과 결과를 나누는 용어다. ISO 26262-1:2018은 fault를 요소나 아이템이 고장 날 수 있게 하는 비정상 조건으로, error를 계산·관측·측정한 값이나 조건이 참값, 명세값, 이론적으로 맞는 값이나 조건과 어긋나는 것으로 정의한다. Failure는 fault가 드러나 요소나 아이템의 의도된 거동이 끝나는 것이고, 이 종료는 영구적일 수도 일시적일 수도 있다.[@iso-26262-1-obp-2018] Avizienis 외(2004)는 셋을 dependability와 security를 위협하는 것으로 묶고, fault가 error를 낳고 error가 failure로 이어지는 인과 사슬로 잇는다.[@avizienis-dependable-secure-computing-2004]
+**Fault**, **error**, **failure**는 시스템이 잘못 동작하기까지의 원인과 결과를 나누는 용어다. [[iso-26262|ISO 26262]]-1:2018은 fault를 요소나 [[safety-lifecycle#ISO 26262의 안전 생명주기|아이템]]이 고장 날 수 있게 하는 비정상 조건으로, error를 계산·관측·측정한 값이나 조건이 참값, 명세값, 이론적으로 맞는 값이나 조건과 어긋나는 것으로 정의한다. Failure는 fault가 드러나 요소나 아이템의 의도된 거동이 끝나는 것이고, 이 종료는 영구적일 수도 일시적일 수도 있다.[@iso-26262-1-obp-2018] Avizienis 외(2004)는 셋을 dependability와 security를 위협하는 것으로 묶고, fault가 error를 낳고 error가 failure로 이어지는 인과 사슬로 잇는다.[@avizienis-dependable-secure-computing-2004]
 
 ## 정의
 
@@ -32,7 +32,7 @@ Avizienis 외(2004)는 dependability와 security를 얻는 수단을 넷으로 �
 - **Fault removal**: fault의 수와 심각도를 줄인다.
 - **Fault forecasting**: 현재 fault의 수, 앞으로 생길 fault, 그 결과를 추정한다.[@avizienis-dependable-secure-computing-2004]
 
-같은 분류는 개발 중의 fault removal을 검증, 진단, 수정의 세 단계로 나누고, 검증에 정적 분석 같은 정적 검증과 테스트 같은 동적 검증을 넣는다.[@avizienis-dependable-secure-computing-2004] Fault tolerance는 [[fault-tolerance|결함 허용]]에서 다룬다.
+같은 분류는 개발 중의 fault removal을 검증, 진단, 수정의 세 단계로 나누고, 검증에 [[static-analysis|정적 분석]] 같은 정적 검증과 테스트 같은 동적 검증을 넣는다.[@avizienis-dependable-secure-computing-2004] Fault tolerance는 [[fault-tolerance|결함 허용]]에서 다룬다.
 
 ## 테스트 용어와의 차이
 

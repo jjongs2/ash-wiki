@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-02
 ---
 
-ISO 26262-1:2018은 **안전 메커니즘**(safety mechanism)을 E/E(Electrical/Electronic) 기능이나 요소, 또는 다른 기술로 구현해 fault를 검출하고 완화하거나 허용하며, failure를 제어하거나 피해서 의도한 기능을 유지하거나 안전 상태에 이르거나 머물게 하는 기술적 해결책으로 정의한다. 같은 정의의 주석은 안전 메커니즘이 아이템을 안전 상태로 옮기거나 그 상태에 머물게 하거나, functional safety concept에 정한 대로 운전자에게 경고해 운전자가 failure의 영향을 제어하게 하는 것으로 둔다.[@iso-26262-1-obp-2018] Fault와 failure의 정의는 [[fault-error-failure|Fault, error, failure]]에서 다룬다.
+[[iso-26262|ISO 26262]]-1:2018은 **안전 메커니즘**(safety mechanism)을 E/E(Electrical/Electronic) 기능이나 요소, 또는 다른 기술로 구현해 fault를 검출하고 완화하거나 허용하며, failure를 제어하거나 피해서 의도한 기능을 유지하거나 안전 상태에 이르거나 머물게 하는 기술적 해결책으로 정의한다. 같은 정의의 주석은 안전 메커니즘이 [[safety-lifecycle#ISO 26262의 안전 생명주기|아이템]]을 안전 상태로 옮기거나 그 상태에 머물게 하거나, [[safety-requirement#요구사항의 전개|functional safety concept]]에 정한 대로 운전자에게 경고해 운전자가 failure의 영향을 제어하게 하는 것으로 둔다.[@iso-26262-1-obp-2018] Fault와 failure의 정의는 [[fault-error-failure|Fault, error, failure]]에서 다룬다.
 
 ## 안전 상태와 성능 저하
 
@@ -17,9 +17,9 @@ ISO 26262-1:2018은 **안전 상태**(safe state)를 failure가 났을 때 불�
 
 ## 오류 검출 기법
 
-TI Hercules MCU는 하드웨어 안전 메커니즘으로 lockstep CPU, [[error-correction-code|ECC]], BIST(Built-In Self-Test)를 둔다.[@ti-spry178-2011]
+TI Hercules MCU는 하드웨어 안전 메커니즘으로 [[fault-tolerance#다중 채널과 비교|lockstep]] CPU, [[error-correction-code|ECC]], BIST(Built-In Self-Test)를 둔다.[@ti-spry178-2011]
 
-AUTOSAR Watchdog Manager는 소프트웨어 실행을 세 가지로 감시한다.[@autosar-cp-sws-watchdogmanager-2025]
+[[autosar|AUTOSAR]] Watchdog Manager는 소프트웨어 실행을 세 가지로 감시한다.[@autosar-cp-sws-watchdogmanager-2025]
 
 - **Alive supervision**: 주기적인 실행이 너무 잦거나 너무 드물지 않은지 본다.
 - **Deadline supervision**: 두 체크포인트 사이의 시간이 설정한 범위 안인지 본다.

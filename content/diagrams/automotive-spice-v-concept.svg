@@ -6,7 +6,7 @@
     </marker>
   </defs>
 
-  <text x="426" y="30" text-anchor="middle" font-size="13" fill="var(--text, #727981)">Automotive SPICE 4.1 프로세스 참조 모델</text>
+  <text x="426" y="30" text-anchor="middle" font-size="13" fill="var(--text, #727981)">ASPICE 4.1 프로세스 참조 모델</text>
 
   <!-- 시스템 V -->
   <text x="426" y="54" text-anchor="middle" font-size="13" fill="var(--text, #727981)">시스템 엔지니어링 프로세스</text>

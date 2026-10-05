@@ -35,7 +35,7 @@ MISRA Compliance:2020은 지침 위반을 정해진 절차로 승인받고 devia
 ## 개정 이력
 
 - 1998년: 첫판 MISRA C:1998. 4월에 "Guidelines for the Use of the C Language in Vehicle Based Software"라는 제목으로 나왔다.[@misra-c-1998-intro-1999][@misra-publications-2015] ISO/ANSI 표준 C를 대상으로 규칙 127개를 두었다.[@misra-c-1998-intro-1999]
-- 2004년: 둘째 판 MISRA C:2004. 사용자 의견과 여러 산업에서의 쓰임을 반영했다.[@misra-faqs-2025] 원래의 자동차 산업을 넘어 철도, 군사, 항공우주, 의료 분야에서도 쓰이게 된 것을 반영해, 제목을 "Guidelines for the use of the C language in critical systems"로 바꿨다.[@misra-c-2004-press-2004] 미정의 동작을 포괄적으로 다루던 규칙을 미정의 동작을 겨냥한 구체적 규칙들로 바꿨다.[@misra-c-overview-2025] C90을 기준으로 규칙 141개를 두었고, C99는 다루지 않았다.[@misra-c-2004-faqs-2004]
+- 2004년: 둘째 판 MISRA C:2004. 사용자 의견과 여러 산업에서의 쓰임을 반영했다.[@misra-faqs-2025] 원래의 자동차 산업을 넘어 철도, 군사, 항공우주, 의료 분야에서도 쓰이게 된 것을 반영해, 제목을 "Guidelines for the use of the C language in critical systems"로 바꿨다.[@misra-c-2004-press-2004] [[coding-standard#C 언어에서 피하려는 동작|미정의 동작]]을 포괄적으로 다루던 규칙을 미정의 동작을 겨냥한 구체적 규칙들로 바꿨다.[@misra-c-overview-2025] C90을 기준으로 규칙 141개를 두었고, C99는 다루지 않았다.[@misra-c-2004-faqs-2004]
 - 2013년: 셋째 판 MISRA C:2012. 3월 18일에 나왔다. C99 지원을 넣고 C90 지원도 유지했으며, rule마다 결정 가능성을 밝혔다.[@misra-c-overview-2025] 지침을 rule과 directive로 나누고, Mandatory 분류를 새로 넣었다.[@misra-compliance-2020]
 - 2016년: MISRA C:2012 Amendment 1. 4월에 나왔고, 보안 관련 지침을 더했다.[@misra-c-2012-amd1-2016]
 - 2019년: MISRA C:2012의 개정본(셋째 판 첫 개정)이 2월에 나왔다. Amendment 1과 Technical Corrigendum 1을 합쳤다.[@misra-c-overview-2025]

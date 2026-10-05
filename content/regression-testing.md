@@ -13,9 +13,9 @@ ISTQB CTFL 강의계획서에 따르면 변경은 기능을 더해 개선하거�
 
 ## 테스트 선택
 
-ISTQB CTFL 강의계획서는 먼저 영향 분석으로 소프트웨어의 어느 부분이 영향을 받을 수 있는지 보고, 회귀 테스트의 범위를 정하기를 권한다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL 강의계획서는 먼저 [[configuration-management#변경 통제|영향 분석]]으로 소프트웨어의 어느 부분이 영향을 받을 수 있는지 보고, 회귀 테스트의 범위를 정하기를 권한다.[@istqb-ctfl-syllabus-2024]
 
-SWEBOK V4.0a에 따르면 실행할 테스트가 많아 회귀 테스트는 시간이 많이 들 수 있어서, 변경마다 얻는 보증과 드는 자원 사이에서 절충해야 할 때가 있다. 회귀 테스트에서는 기존 스위트에서 테스트 케이스를 고르거나 줄이고, 우선순위가 높은 테스트가 먼저 실행되도록 순서를 정하기도 한다.[@ieee-swebok-v4-0a-2026]
+SWEBOK V4.0a에 따르면 실행할 테스트가 많아 회귀 테스트는 시간이 많이 들 수 있어서, 변경마다 얻는 보증과 드는 자원 사이에서 절충해야 할 때가 있다. 회귀 테스트에서는 기존 스위트에서 [[test-case|테스트 케이스]]를 고르거나 줄이고, 우선순위가 높은 테스트가 먼저 실행되도록 순서를 정하기도 한다.[@ieee-swebok-v4-0a-2026]
 
 ## 테스트 자동화와 지속적 통합
 
@@ -25,15 +25,15 @@ ISTQB 용어집은 **테스트 자동화**(test automation)를 테스트 활동�
 
 [[continuous-integration|지속적 통합]]에서는 자동화한 회귀 테스트도 함께 돌린다.[@ieee-swebok-v4-0a-2026][@istqb-ctfl-syllabus-2024] ISTQB CTAL-TAE(Certified Tester Advanced Level Test Automation Engineering) 강의계획서에 따르면 실행에 오래 걸리는 회귀 테스트 스위트는 파이프라인에서 매일 밤처럼 주기적으로 돌릴 수 있다.[@istqb-ctal-tae-syllabus-2024]
 
-## Automotive SPICE
+## ASPICE
 
-[[automotive-spice|Automotive SPICE]] 4.1은 SYS.4, SYS.5, SWE.4, SWE.5, SWE.6에 검증 수단을 고르는 BP(base practice)를 두고, 그 선택 기준에 회귀 검증 기준을 넣게 한다. SWE.5에서는 그 선택 기준의 예로 소프트웨어 아키텍처나 상세 설계의 변경 등으로 지속적 통합·지속적 개발(continuous integration / continuous development)에서 회귀 검증이 필요한 경우를 든다.[@vda-automotive-spice-pam-4-1-2026]
+[[automotive-spice|ASPICE]] 4.1은 SYS.4, SYS.5, SWE.4, SWE.5, SWE.6에 검증 수단을 고르는 BP(base practice)를 두고, 그 선택 기준에 회귀 검증 기준을 넣게 한다. SWE.5에서는 그 선택 기준의 예로 [[software-architecture|소프트웨어 아키텍처]]나 상세 설계의 변경 등으로 지속적 통합·지속적 개발(continuous integration / continuous development)에서 회귀 검증이 필요한 경우를 든다.[@vda-automotive-spice-pam-4-1-2026]
 
-Automotive SPICE 3.1은 SYS.5, SWE.4, SWE.6의 BP1과 SYS.4, SWE.5의 BP2에서 테스트나 검증의 전략을 세울 때 회귀 전략을 함께 세우게 했다. Automotive SPICE 4.1은 이를 검증 수단을 고르는 BP의 회귀 검증 기준으로 바꿨다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017] 전략 BP가 4.1에서 어디로 갔는지는 [[automotive-spice-process-assessment-model#전략과 계획|ASPICE 프로세스 평가 모델]]에서 다룬다.
+ASPICE 3.1은 SYS.5, SWE.4, SWE.6의 BP1과 SYS.4, SWE.5의 BP2에서 테스트나 검증의 전략을 세울 때 회귀 전략을 함께 세우게 했다. ASPICE 4.1은 이를 검증 수단을 고르는 BP의 회귀 검증 기준으로 바꿨다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017] 전략 BP가 4.1에서 어디로 갔는지는 [[automotive-spice-process-assessment-model#전략과 계획|ASPICE 프로세스 평가 모델]]에서 다룬다.
 
 ## 확인 테스트와의 차이
 
-**확인 테스트**(confirmation testing)는 결함을 고친 뒤 그 결함이 일으킨 장애가 다시 일어나지 않는지 확인하는 변경 관련 테스트로, 재테스트(retesting)라고도 부른다.[@istqb-glossary-confirmation-testing-2026] ISO/IEC/IEEE 24765 용어집은 재테스트를 결함을 고치려고 한 수정이 그 결함을 실제로 없앴는지 확인하는 테스트로 정의하고, 그 주석에서 재테스트를 흔히 회귀 테스트로 보완하는 것으로 둔다.[@ieee-cs-sevocab-2026]
+**확인 테스트**(confirmation testing)는 결함을 고친 뒤 그 결함이 일으킨 장애(failure)가 다시 일어나지 않는지 확인하는 변경 관련 테스트로, 재테스트(retesting)라고도 부른다.[@istqb-glossary-confirmation-testing-2026] ISO/IEC/IEEE 24765 용어집은 재테스트를 결함을 고치려고 한 수정이 그 결함을 실제로 없앴는지 확인하는 테스트로 정의하고, 그 주석에서 재테스트를 흔히 회귀 테스트로 보완하는 것으로 둔다.[@ieee-cs-sevocab-2026]
 
 확인 테스트는 수정이 제대로 됐는지를 보고, 회귀 테스트는 변경이 다른 부분에 뜻하지 않은 영향을 주지 않았는지를 본다.[@ieee-cs-sevocab-2026][@istqb-ctfl-syllabus-2024]
 

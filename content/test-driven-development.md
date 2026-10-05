@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**테스트 주도 개발**(test-driven development, TDD)은 실패하는 자동 테스트가 있을 때만 제품 코드를 새로 쓰는 개발 방법이다. 아직 통과하지 못하는 테스트를 하나 만들고, 이를 통과시킬 코드를 더한 다음 생긴 중복을 없애는 작은 단계를 되풀이한다.[@beck-test-driven-development-2002] ISTQB 용어집은 TDD를 테스트 케이스를 먼저 만들어 자동화한 뒤, 그 테스트를 통과하도록 소프트웨어를 점진적으로 개발하는 기법으로 정의한다.[@istqb-glossary-test-driven-development-2026]
+**테스트 주도 개발**(test-driven development, TDD)은 실패하는 자동 테스트가 있을 때만 제품 코드를 새로 쓰는 개발 방법이다. 아직 통과하지 못하는 테스트를 하나 만들고, 이를 통과시킬 코드를 더한 다음 생긴 중복을 없애는 작은 단계를 되풀이한다.[@beck-test-driven-development-2002] ISTQB 용어집은 TDD를 [[test-case|테스트 케이스]]를 먼저 만들어 자동화한 뒤, 그 테스트를 통과하도록 소프트웨어를 점진적으로 개발하는 기법으로 정의한다.[@istqb-glossary-test-driven-development-2026]
 
 ## Red-green-refactor 사이클
 
@@ -31,9 +31,9 @@ Beck은 자기가 TDD를 재발견했다고 말한다. 그는 1994년에 [[xunit
 
 ## 효과에 관한 연구
 
-- Nagappan 등은 Microsoft의 세 팀과 IBM의 한 팀을 사례 연구했다. TDD를 쓴 네 제품의 출시 전 결함 밀도는 TDD를 쓰지 않은 비슷한 프로젝트보다 40\~90% 낮았다(IBM 40%, Microsoft 60\~90%). 관리자들은 초기 개발 시간이 15\~35% 늘었다고 추정했다.[@nagappan-realizing-quality-improvement-2008]
+- Nagappan 등은 Microsoft의 세 팀과 IBM의 한 팀을 사례 연구했다. TDD를 쓴 네 제품의 출시 전 [[software-metric#결함 밀도|결함 밀도]]는 TDD를 쓰지 않은 비슷한 프로젝트보다 40\~90% 낮았다(IBM 40%, Microsoft 60\~90%). 관리자들은 초기 개발 시간이 15\~35% 늘었다고 추정했다.[@nagappan-realizing-quality-improvement-2008]
 - Fucci 등은 전문 개발자 39명의 작업 82건을 분석해, 품질과 생산성의 향상이 주로 주기가 잘고 고른 것과 관련이 있고 테스트와 제품 코드를 쓰는 순서는 뚜렷한 영향이 없었다고 보고했다. 이들은 TDD의 효과가 테스트를 먼저 쓰는 것보다 잘고 꾸준한 단계에서 올 수 있다고 결론지었다.[@fucci-dissection-tdd-2017]
 
 ## 다른 테스트와의 관계
 
-SWEBOK V4.0a에 따르면 TDD는 단위 테스트를 정의하고 유지해야 하는 관행이고, [[regression-testing|회귀 테스트]]는 TDD의 기본 활동이다.[@ieee-swebok-v4-0a-2026] ISTQB CTFL 강의계획서에 따르면 TDD 같은 테스트 주도 접근에서 만든 테스트는 자동 테스트로 남아, 이후의 수정과 리팩터링에서 코드 품질을 지키는 데 쓰일 수 있다.[@istqb-ctfl-syllabus-2024]
+SWEBOK V4.0a에 따르면 TDD는 [[unit-testing|단위 테스트]]를 정의하고 유지해야 하는 관행이고, [[regression-testing|회귀 테스트]]는 TDD의 기본 활동이다.[@ieee-swebok-v4-0a-2026] ISTQB CTFL 강의계획서에 따르면 TDD 같은 테스트 주도 접근에서 만든 테스트는 자동 테스트로 남아, 이후의 수정과 리팩터링에서 코드 품질을 지키는 데 쓰일 수 있다.[@istqb-ctfl-syllabus-2024]
