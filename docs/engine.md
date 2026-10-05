@@ -60,6 +60,7 @@ JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"
 
 - `npm run build`의 prebuild(`npm run bib`)가 `bib/`의 엔트리 파일을 합본 `bibliography.bib`로 합칩니다. 합본은 추적하지 않습니다.
 - citations 플러그인은 참고문헌의 URL을 텍스트로 둡니다. 그 뒤에 도는 로컬 플러그인(`plugins/bibliography-links`)이 참고문헌 항목 안의 URL을 새 탭 링크로 바꿉니다. 본문의 외부 링크는 crawl-links의 `openLinksInNewTab`이 새 탭으로 엽니다.
+- 인용 번호는 대괄호째 위첨자로 보이고, 참고문헌은 "참고문헌" 라벨 아래 번호 열과 항목 열로 보입니다. 모양은 `quartz/styles/custom.scss`가 맡습니다.
 - CSL은 저장소가 소유합니다(`csl/ieee.csl`). 고치지 않고 가져온 그대로 둡니다.
 
 | 항목     | 값                                                      |
