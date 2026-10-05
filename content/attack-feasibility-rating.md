@@ -29,7 +29,7 @@ CEM v3.1 Revision 5의 표는 TOE가 견디는 attack potential을 열로 따로
 
 ## ISO/SAE 21434의 rating 예
 
-ISO/SAE 21434:2021은 attack vector 기반 방법과 attack potential 기반 방법으로 attack feasibility를 매긴 예를 부속서 H의 표로 든다. 부속서 G에는 attack vector 기반 방법의 표와 [[common-vulnerability-scoring-system|CVSS]] exploitability를 대응시키는 예의 표가 있다. 또 Elapsed time, Specialist expertise, Knowledge of the item or component, Window of opportunity, Equipment를 제목으로 한 표 다섯과, attack potential을 합산하는 예와 대응시키는 예의 표가 있다.[@iso-sae-21434-obp-2021]
+ISO/SAE 21434:2021은 attack vector 기반 방법과 attack potential 기반 방법으로 attack feasibility를 매긴 예를 Annex H의 표로 든다. Annex G에는 attack vector 기반 방법의 표와 [[common-vulnerability-scoring-system|CVSS]] exploitability를 대응시키는 예의 표가 있다. 또 Elapsed time, Specialist expertise, Knowledge of the item or component, Window of opportunity, Equipment를 제목으로 한 표 다섯과, attack potential을 합산하는 예와 대응시키는 예의 표가 있다.[@iso-sae-21434-obp-2021]
 
 ## ISO/IEC 18045와의 관계
 

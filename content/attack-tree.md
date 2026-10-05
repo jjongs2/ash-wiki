@@ -25,7 +25,7 @@ J. D. Weiss는 1991년 National Computer Security Conference 논문에서 위협
 
 [[automotive-spice-for-cybersecurity|Automotive SPICE for Cybersecurity]] 2.0은 리스크를 분석하는 방법의 예로 ATA(Attack Tree Analysis)를 든다.[@vda-automotive-spice-cybersecurity-2025] 이 예가 있는 MAN.7은 [[threat-analysis-and-risk-assessment#Automotive SPICE for Cybersecurity의 MAN.7|TARA]]에서 다룬다.
 
-[[iso-sae-21434|ISO/SAE 21434]]:2021은 15절의 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA 방법]]에 attack path analysis를 두고, 부속서 H에서 attack tree 분석으로 attack path를 끌어낸 예를 그림으로 든다.[@iso-sae-21434-obp-2021]
+[[iso-sae-21434|ISO/SAE 21434]]:2021은 15절의 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA 방법]]에 attack path analysis를 두고, Annex H에서 attack tree 분석으로 attack path를 끌어낸 예를 그림으로 든다.[@iso-sae-21434-obp-2021]
 
 ## FTA와의 차이
 

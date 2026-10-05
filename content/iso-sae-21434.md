@@ -37,7 +37,7 @@ ISO/SAE 21434:2021은 도로 차량의 E/E(Electrical/Electronic) 시스템과 �
 
 ![[diagrams/iso-sae-21434-provision-identifier.svg]]
 
-조직 수준의 사이버보안 관리가 [[un-r155|UN R155]]의 [[cybersecurity-management-system|CSMS]]와 어떻게 이어지는지는 [[cybersecurity-management-system#ISO/SAE 21434와의 관계|CSMS와 ISO/SAE 21434의 관계]]에서 다룬다. 15절의 TARA 방법과 부속서의 impact rating 기준 예는 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA]]에서 다룬다.
+조직 수준의 사이버보안 관리가 [[un-r155|UN R155]]의 [[cybersecurity-management-system|CSMS]]와 어떻게 이어지는지는 [[cybersecurity-management-system#ISO/SAE 21434와의 관계|CSMS와 ISO/SAE 21434의 관계]]에서 다룬다. 15절의 TARA 방법과 Annex의 impact rating 기준 예는 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA]]에서 다룬다.
 
 ## 개정 이력
 
