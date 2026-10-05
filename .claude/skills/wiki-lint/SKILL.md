@@ -1,24 +1,25 @@
 ---
 name: wiki-lint
-description: 주제 하나의 린트. 의미를 바꾸지 않는 수정은 PR로, 나머지는 `lint:` 이슈로 넘긴다. 인자는 주제 태그(예: network/can).
+description: 주제나 구역 하나의 린트. 의미를 바꾸지 않는 수정은 PR로, 나머지는 `lint:` 이슈로 넘긴다. 인자는 주제 태그(예: network/can)나 구역 태그(예: network).
 disable-model-invocation: true
 ---
 
 # 린트
 
-주제 전체를 놓고 봐야 드러나는 문제를 찾는다. 용어는 `CONTEXT.md`를 따른다. 주제 이름은 `content/tags/<주제 태그>.md`의 `title`이다(예: CAN).
+주제나 구역 전체를 놓고 봐야 드러나는 문제를 찾는다. 용어는 `CONTEXT.md`를 따른다. 인자가 주제 태그면 주제, 구역 태그면 구역이 린트의 대상이고, 아래 `<대상>`은 그 이름이다. 이름은 `content/tags/<태그>.md`의 `title`이다(예: CAN, 네트워크).
 
 먼저 읽는다: `docs/wiki-conventions.md`, `docs/wiki-abbreviations.md`, `docs/wiki-terms.md`, `docs/wiki-verification.md`의 출처 상태 절. 린트는 게시된 페이지와 출처만 본다.
 
 ## 1. 모으기
 
-- 주제가 속한 구역의 페이지를 모두 읽는다. 구역 태그 `network`면 `network`와 그 하위 태그를 단 페이지다. 주제 태그가 빠진 페이지도 보기 위해서다.
+- 읽기 전에 `git fetch origin`으로 로컬 HEAD가 `origin/main`과 같은지 본다(`git log --oneline HEAD..origin/main`이 비었는가). 다르면 최신 main에서 읽는다. 다른 세션이 체크아웃을 쓰면 pull하지 않고 `origin/main`에서 worktree를 만들어 읽는다.
+- 대상이 속한 구역의 페이지를 모두 읽는다. 구역 태그 `network`면 `network`와 그 하위 태그를 단 페이지다. 주제 태그가 빠진 페이지도 보기 위해서다.
 - 위키 전체의 슬러그, `title`, `aliases`를 훑는다. 다른 구역에 같은 개념이 있는지 보기 위해서다.
-- `npm run source-status -- --topic <주제 태그>`를 돌린다.
+- `npm run source-status -- --topic <태그>`를 돌린다.
 - `FAIL url-timeout`이면 결과를 믿을 수 없다. 원인(네트워크 등)을 찾아 다시 돌린다.
-- `SKIP url-timeout`과 `SKIP url-refused`로 남은 URL은 그것만 `npm run source-status -- --topic <주제 태그> --timeout 60000 --url <URL> --url <URL> …`로 하나씩 다시 묻는다. 다시 물어 `url` FAIL이 된 것은 출처 상태로 세고, 그래도 남은 것은 [6. 확인 불가](#6-확인-불가)로 넘긴다.
+- `SKIP url-timeout`과 `SKIP url-refused`로 남은 URL은 그것만 `npm run source-status -- --topic <태그> --timeout 60000 --url <URL> --url <URL> …`로 하나씩 다시 묻는다. 다시 물어 `url` FAIL이 된 것은 출처 상태로 세고, 그래도 남은 것은 [6. 확인 불가](#6-확인-불가)로 넘긴다.
 
-완료: 읽을 페이지를 모두 읽었고, `url-timeout`이 FAIL이 아닌 `source-status` 출력이 있고, `url-timeout`과 `url-refused`로 남은 URL을 다시 물었다.
+완료: 최신 main에서 읽을 페이지를 모두 읽었고, `url-timeout`이 FAIL이 아닌 `source-status` 출력이 있고, `url-timeout`과 `url-refused`로 남은 URL을 다시 물었다.
 
 ## 2. 찾기
 
@@ -35,34 +36,39 @@ disable-model-invocation: true
 
 위키링크는 인제스트가 아직 없는 페이지로 걸지 않고 남긴 자리를 채우려고 본다.
 
-완료: 주제의 모든 페이지를 여섯 항목마다 봤다. 모순과 중복은 페이지 쌍마다 봤다.
+완료: 대상의 모든 페이지를 여섯 항목마다 봤다. 모순과 중복은 페이지 쌍마다 봤다.
 
 ## 3. 가르기
+
+가르기 전에 열린 이슈 가운데 구역의 페이지를 다루는 것을 찾는다(`gh issue list --state open --search "<슬러그> in:body"`). 찾은 것과 겹치는 항목은 그 이슈 번호를 단다. 겹치는 항목을 린트 이슈로 옮기면, 5단계에서 린트 이슈를 올린 뒤 원래 이슈에 옮긴 곳을 코멘트로 적고 그 이슈를 린트 이슈의 중복으로 닫는다(`gh issue close <n> --duplicate-of <린트 이슈>`). 원래 이슈의 항목을 린트 수정 PR이 다 고치면 PR 본문에 `Closes #<원래 이슈>`를 적는다.
 
 찾은 것마다 둘 중 하나로 가른다. 기준은 **고친 뒤에도 모든 주장의 내용과 인용이 그대로인가**다.
 
 - 그대로면 **수정**: 태그, 위키링크, `docs/wiki-terms.md`에 결정이 있는 표기로 통일
 - 아니면 **이슈**: 그 밖의 모든 것. 출처 상태는 주장을 다시 판정해야 하므로 항상 이슈다.
 
-`docs/wiki-terms.md`에 결정이 없고 용어 선택 자체가 갈리면 위키 규약의 용어 절대로 `term:` 이슈를 따로 올린다.
+`docs/wiki-terms.md`에 결정이 없고 용어 선택 자체가 갈리면 위키 규약의 용어 절대로 `term:` 이슈를 따로 올린다. 그 결정이 린트 수정 PR이 열려 있는 동안 나면 그 PR에서 적용한다.
 
-완료: 찾은 것마다 수정, 이슈, `term:` 가운데 하나로 갈랐다.
+완료: 겹치는 열린 이슈를 찾았고, 찾은 것마다 수정, 이슈, `term:` 가운데 하나로 갈랐다.
 
 ## 4. 수정 PR
 
-수정이 있으면 PR 하나로 올린다. 제목은 `content: <주제> 린트 수정`, 브랜치와 본문은 `CONTRIBUTING.md`를 따른다. 이 린트를 부른 티켓이 있으면 그 번호를 쓴다.
+수정이 있으면 PR 하나로 올린다. 제목은 `content: <대상> 린트 수정`, 브랜치와 본문은 `CONTRIBUTING.md`를 따른다. 이 린트를 부른 티켓이 있으면 그 번호를 쓴다.
 
-완료: `npm run check:content`가 모두 `OK`이고, PR이 올라갔고, `CONTRIBUTING.md`의 리뷰를 마쳤다.
+- 표기를 바꾸면 도해 SVG의 글자도 같이 고친다.
+- 고친 뒤 위키 검증 문서의 반영 뒤 점검과 `CONTRIBUTING.md`의 PR 전 확인을 돌린다.
+
+완료: PR 전 확인이 통과하고, PR이 올라갔고, `CONTRIBUTING.md`의 리뷰를 마쳤다.
 
 ## 5. 이슈
 
 이슈로 간 것이 있으면 이슈 하나를 올린다.
 
-- 제목: `lint: <주제> <YYYY-MM-DD>`
+- 제목: `lint: <대상> <YYYY-MM-DD>`
 - 라벨: `needs-triage`
 - 본문: 항목마다 `## <항목>` 절. 줄마다 관련 페이지 슬러그(또는 bib 파일)와 한 줄 설명을 적는다.
 
-완료: 이슈로 간 것이 모두 이슈 본문에 있다.
+완료: 이슈로 간 것이 모두 이슈 본문에 있다. 항목을 옮겨 온 원래 이슈는 코멘트를 달고 중복으로 닫았다.
 
 ## 6. 확인 불가
 
