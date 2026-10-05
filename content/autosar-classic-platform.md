@@ -22,7 +22,7 @@ RTE 생성기가 만든 RTE 코드는 다른 BSW 모듈, 소프트웨어 컴포�
 
 AUTOSAR 소개 자료에 따르면 Classic Platform의 AUTOSAR 스택은 여러 벤더가 내놓는다.[@autosar-exp-introduction-part1-2026] BSW 모듈은 자기 구현의 벤더 ID를 AUTOSAR 벤더 목록에 따라 `<MIP>_VENDOR_ID`로 공개한다.[@autosar-cp-sws-bswgeneral-2025]
 
-BSW 설정을 어느 단계에서 하는지는 [[autosar-methodology#설정 클래스|AUTOSAR 방법론]]에서 다룬다.
+BSW 설정을 어느 단계에서 하는지는 [[autosar-methodology#ECU 설정|AUTOSAR 방법론]]에서 다룬다.
 
 ## 개정 이력
 

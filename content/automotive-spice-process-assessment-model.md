@@ -53,7 +53,7 @@ ASPICE 4.1은 여러 엔지니어링 프로세스에 같은 이름의 BP를 되�
 
 ASPICE 4.1은 SYS.2, SYS.3, SWE.1, SWE.2, SWE.3의 마지막 BP로 합의된 산출물을 영향받는 당사자 모두에게 알리게 하고, SYS.4, SYS.5, SWE.4, SWE.5, SWE.6의 마지막 BP로 검증 결과를 요약해 알리게 한다.[@vda-automotive-spice-pam-4-1-2026]
 
-ASPICE 3.1은 핵심 개념 부록에서 [[v-model|V 모델]] 왼쪽의 정보 흐름을 합의된 산출물을 알리는 BP에, 오른쪽을 결과를 요약해 알리는 BP에 대응시켰다. 합의는 영향받는 당사자 사이의 공통 이해로 두고, 정식 승인은 GP 2.1.7에 맡겼다. ASPICE 4.1은 같은 꼴의 BP를 두지만 핵심 개념 부록에 이 절이 없다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+ASPICE 3.1은 Annex D(Key concepts)에서 [[v-model|V 모델]] 왼쪽의 정보 흐름을 합의된 산출물을 알리는 BP에, 오른쪽을 결과를 요약해 알리는 BP에 대응시켰다. 합의는 영향받는 당사자 사이의 공통 이해로 두고, 정식 승인은 GP 2.1.7에 맡겼다. ASPICE 4.1은 같은 꼴의 BP를 두지만 Annex C(Key concepts)에 이 절이 없다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ### 추적성과 일관성
 
@@ -61,7 +61,7 @@ ASPICE 4.1은 SYS.2\~SYS.5, SWE.1\~SWE.6, HWE.1\~HWE.4, MLE.1\~MLE.4에 [[tracea
 
 ### Evaluate, verification criteria, ensuring compliance
 
-ASPICE 3.1은 핵심 개념 부록에서 평가(evaluate), 검증 기준(verification criteria), 준수 보장(ensuring compliance)을 핵심 개념 하나로 묶었다. ASPICE 4.1은 이 셋을 다음처럼 바꿨다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+ASPICE 3.1은 Annex D(Key concepts)에서 평가(evaluate), 검증 기준(verification criteria), 준수 보장(ensuring compliance)을 핵심 개념 하나로 묶었다. ASPICE 4.1은 이 셋을 다음처럼 바꿨다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 - 평가: 3.1은 시스템·[[software-architecture|소프트웨어 아키텍처]]와 [[software-unit-design|소프트웨어 상세 설계]]에서 대안을 정한 기준으로 평가하고 선택 근거를 기록하게 했다(SYS.3.BP5, SWE.2.BP6, SWE.3.BP4). 4.1은 대안 평가 BP 대신 아키텍처를 기술적 측면에서 분석하고 설계 결정의 근거를 기록하게 한다(SYS.3.BP3, SWE.2.BP3).
 - 검증 기준: 3.1은 SYS.2와 SWE.1에서 요구사항마다 검증 기준을 세우게 했고, 4.1은 이 BP를 두지 않는다. 검증 기준은 [[requirements-engineering#검증 기준|요구 공학]]에서 다룬다.

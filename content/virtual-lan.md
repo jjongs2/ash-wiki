@@ -13,7 +13,7 @@ IEEE 802.1Q-2022는 VLAN 태그를 정한다. C-VLAN(Customer VLAN) 태그는 Et
 
 태그 안에서 프레임의 우선순위를 0부터 7까지의 값으로 나타내는 3비트 필드를 **PCP**(Priority Code Point)라 한다.[@ieee-802-1q-types-yang-2022] 프레임의 drop_eligible 파라미터를 싣는 필드를 **DEI**(Drop Eligible Indicator)라 한다.[@ieee-802-1q-bridge-yang-2022] 프레임이 속한 VLAN을 가리키는 12비트 값을 **VID**(VLAN Identifier)라 한다.[@ieee-802-1q-types-yang-2022]
 
-VLAN 태그는 두 필드가 차례로 이어진 것이다. 앞의 **TPID**(Tag Protocol Identifier)는 태그의 종류를 가리키는 EtherType을 담은 2옥텟(16비트) 필드이고, 뒤의 **TCI**(Tag Control Information)는 2옥텟 필드로 VLAN 태그에서는 PCP, DEI, VID를 담는다. 이 표준의 부록 G가 보이는 [[ieee-802-3|IEEE 802.3]] 프레임의 예에서, TPID와 TCI를 합친 4옥텟은 출발지 주소 바로 뒤에 온다.[@ieee-802-1q-2022]
+VLAN 태그는 두 필드가 차례로 이어진 것이다. 앞의 **TPID**(Tag Protocol Identifier)는 태그의 종류를 가리키는 EtherType을 담은 2옥텟(16비트) 필드이고, 뒤의 **TCI**(Tag Control Information)는 2옥텟 필드로 VLAN 태그에서는 PCP, DEI, VID를 담는다. 이 표준의 Annex G가 보이는 [[ieee-802-3|IEEE 802.3]] 프레임의 예에서, TPID와 TCI를 합친 4옥텟은 출발지 주소 바로 뒤에 온다.[@ieee-802-1q-2022]
 
 VLAN을 가리키는 VID는 1부터 4094까지이고, 0과 4095(`0xFFF`)는 VLAN 번호로 쓰지 않는다. 그래서 쓸 수 있는 VID는 4094개다.[@ieee-802-1q-types-yang-2022] IEEE 802.1Q-2022는 VID 0을 **null VID**로 두며, 태그가 우선순위 정보만 싣고 프레임에 VID가 없다는 뜻이다.[@ieee-802-1q-2022]
 

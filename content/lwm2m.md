@@ -14,6 +14,8 @@ status: 유효
 
 ## 범위
 
+LwM2M 1.2.2는 명세를 둘로 나눈다. Core 명세는 인터페이스 여럿과 데이터 모델로 이루어진 메시지 계층을 정하고, Transport 명세는 그 메시지 계층을 개별 전송에 대응시킨다.[@oma-lwm2m-core-1-2-2-2024]
+
 ### 전송
 
 LwM2M 1.2.2 Transport 명세는 LwM2M 메시지를 나르는 바인딩으로 [[udp|UDP]], [[transport-layer-security#DTLS|DTLS]](Datagram Transport Layer Security), SMS(Short Message Service), [[tcp|TCP]], [[transport-layer-security|TLS]], Non-IP 전송(셀룰러 IoT, LoRaWAN) 위의 CoAP와, TLS 위의 [[mqtt|MQTT]], TLS 위의 HTTP(Hypertext Transfer Protocol)를 정한다.[@oma-lwm2m-transport-1-2-2-2024] LwM2M 1.0은 UDP와 SMS 위의 CoAP를 지원했고, LwM2M 1.1이 TCP·TLS 위의 CoAP와 Non-IP 위의 CoAP를 더했다.[@oma-lwm2m-transport-1-1-2018] LwM2M 1.2는 MQTT와 HTTP 위의 전송을 새로 넣었다.[@oma-lwm2m-core-1-2-2-2024]

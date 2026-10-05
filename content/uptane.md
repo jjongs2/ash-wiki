@@ -12,6 +12,8 @@ status: 유효
 
 ## 범위
 
+Uptane Standard 2.1.0은 구현 세부를 구현자에게 맡기고, 표준을 따르는 구현이 갖출 구성 요소와 그 요구사항을 정한다. 서버 쪽의 두 저장소와 차량 안의 primary ECU, secondary ECU가 그 중심이고, 공격자의 목표와 공격은 위협 모델로 따로 정리한다.[@uptane-standard-2-1-0-2023]
+
 ### 두 저장소
 
 Uptane Standard 2.1.0은 저장소 둘을 정한다.[@uptane-standard-2-1-0-2023]

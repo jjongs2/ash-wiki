@@ -6,8 +6,8 @@
     </marker>
   </defs>
 
-  <!-- 부속서 5의 세 부분 -->
-  <text x="20" y="26" fill="var(--text, #727981)">부속서 5</text>
+  <!-- Annex 5의 세 부분 -->
+  <text x="20" y="26" fill="var(--text, #727981)">Annex 5</text>
   <rect x="20" y="36" width="624" height="92" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="36" y="50" width="164" height="64" rx="4" />
