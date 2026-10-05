@@ -28,4 +28,4 @@ IEEE 802.3-2022는 1000BASE-T1 PHY가 EEE를 선택으로 지원할 수 있게 �
 
 ## OPEN Alliance TC16
 
-OPEN Alliance의 TC16은 EEE의 상호 운용성과 적합성을 다루는 위원회로, 차량 응용에서 EEE를 쓰기 위한 명세 문서를 펴낸다. TC16이 가장 최근에 승인한 문서는 2024년 8월의 MultiGBASE-T1 EEE Test Suite V1.0이다.[@open-alliance-tc16-2026]
+OPEN Alliance의 TC16은 EEE의 상호 운용성과 적합성을 다루는 위원회로, 차량 응용에서 EEE를 쓰기 위한 명세 문서를 펴낸다. TC16은 2024년 8월에 MultiGBASE-T1 EEE Test Suite V1.0을 승인했다.[@open-alliance-tc16-2026]

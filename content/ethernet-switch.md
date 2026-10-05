@@ -41,7 +41,7 @@ KSZ9477S의 포트는 전이중과 반이중을 모두 지원한다.[@microchip-
 
 NXP SJA1110은 [[tsn|TSN]] 표준을 여럿 지원하는 차량용 이더넷 스위치 제품군이다.[@nxp-sja1110autesfs-2022]
 
-OPEN Alliance TC11은 차량용 이더넷 네트워크에 맞는 이더넷 스위치 반도체의 하드웨어 요구사항과 적합성 시험을 정한다. 그 범위는 MAC 주소와 VLAN 처리에 기반한 스위칭, 큐잉·하드웨어 타임스탬프·policing·셰이핑에 기반한 서비스 품질 기능([[avb|AVB]]·TSN 기능 포함), 성능, 설정과 진단, 필터링과 미러링이다. 승인된 최신판은 Ethernet Switch Requirements V1.0(2016년 9월)과 Ethernet Switch Test Specification V1.0(2018년 11월)이다.[@open-alliance-tc11-2026]
+OPEN Alliance TC11은 차량용 이더넷 네트워크에 맞는 이더넷 스위치 반도체의 하드웨어 요구사항과 적합성 시험을 정한다. 그 범위는 MAC 주소와 VLAN 처리에 기반한 스위칭, 큐잉·하드웨어 타임스탬프·policing·셰이핑에 기반한 서비스 품질 기능([[avb|AVB]]·TSN 기능 포함), 성능, 설정과 진단, 필터링과 미러링이다. TC11은 2016년 9월에 Ethernet Switch Requirements V1.0을, 2018년 11월에 Ethernet Switch Test Specification V1.0을 승인했다.[@open-alliance-tc11-2026]
 
 ## 관리형과 비관리형
 
