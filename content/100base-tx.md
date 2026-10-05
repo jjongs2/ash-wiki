@@ -33,6 +33,8 @@ IEEE 802.3-2022는 100BASE-TX의 링크 세그먼트를 공칭 임피던스 100 
 
 IEEE 802.3-2022는 100BASE-TX가 꼬임쌍선 MDI(Medium Dependent Interface)의 접점 배치를 10BASE-T에서 그대로 가져오도록 정한다. 내부 크로스오버가 없는 PHY는 1·2번 접점으로 송신하고 3·6번 접점으로 수신하며, 내부 크로스오버가 있는 PHY는 그 반대다.[@ieee-802-3-2022]
 
+![[diagrams/100base-tx-mdi-contacts.svg]]
+
 100BASE-TX PHY는 보통 트랜스포머를 거쳐 선에 이어진다. 커넥터는 8핀 RJ-45다.[@microchip-ksz8081mlx-2022][@ti-dp83822-2026]
 
 MDI 포트와 MDI-X 포트는 송신 쌍과 수신 쌍의 핀이 서로 바뀌어 있다.[@microchip-ksz8081mlx-2022][@marvell-88e3015-2020] KSZ8081MLX 데이터시트에 따르면 크로스오버 케이블은 MDI 장치끼리나 MDI-X 장치끼리 잇고, 스트레이트 케이블은 MDI 장치와 MDI-X 장치를 잇는다.[@microchip-ksz8081mlx-2022] Auto MDI-X를 지원하는 PHY는 송수신 쌍을 스스로 맞춰, 스트레이트와 크로스오버 어느 케이블로도 이을 수 있다.[@microchip-ksz8081mlx-2022][@marvell-88e3015-2020]

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 1 546 161.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 한 주기 -->
+  <path d="M20 44 V38 H404 V44" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="212" y="30" text-anchor="middle" font-size="12" fill="var(--text, #727981)">송신 기회의 한 주기</text>
+
+  <!-- BEACON -->
+  <g fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5">
+    <rect x="20.75" y="50.75" width="94.5" height="34.5" rx="4" />
+    <rect x="404.75" y="50.75" width="94.5" height="34.5" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="68" y="73">BEACON</text>
+    <text x="452" y="73">BEACON</text>
+  </g>
+
+  <!-- 노드 ID 순서의 송신 기회 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="120" y="50" width="76" height="36" rx="4" />
+    <rect x="200" y="50" width="76" height="36" rx="4" />
+    <rect x="280" y="50" width="76" height="36" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="158" y="73">ID 0</text>
+    <text x="238" y="73">ID 1</text>
+    <text x="318" y="73">ID 2</text>
+    <text x="380" y="73">⋯</text>
+  </g>
+
+  <!-- 설명 -->
+  <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
+    <text x="68" y="106">ID 0 노드가 보냄</text>
+    <text x="260" y="114">노드 ID 순서로 돌아가는 송신 기회</text>
+  </g>
+  <path d="M122 92 V98 H398 V92" stroke="var(--ink, #727981)" stroke-width="1.5" />
+
+  <!-- 시간 -->
+  <line x1="20" y1="138" x2="498" y2="138" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="506" y="142" font-size="12" fill="var(--text, #727981)">시간</text>
+</svg>

@@ -15,6 +15,8 @@ IEEE 802.3-2022는 모든 10BASE-T1S [[ethernet-phy|PHY]]가 링크 상대 하�
 
 점대점 링크 세그먼트는 인라인 커넥터를 4개까지 두고 적어도 15 m를 잇는다. 반이중에서는 두 방향이 10 Mbit/s를 나눠 쓰고, 전이중에서는 방향마다 10 Mbit/s를 동시에 쓴다. 멀티드롭 모드의 mixing segment는 적어도 25 m의 trunk에 PHY를 적어도 8개 잇고, PHY는 trunk에 바로 붙거나 10 cm까지의 스텁 끝에 붙는다. 노드들은 10 Mbit/s를 나눠 쓴다.[@ieee-802-3-2022]
 
+![[diagrams/10base-t1s-link-mixing-segment.svg]]
+
 10BASE-T1S의 [[ethernet-phy#자동 협상|자동 협상]]은 Clause 98이 정하며 멀티드롭 모드에서는 쓸 수 없고, 멀티드롭과 점대점 가운데 어느 모드로 동작할지는 설정 비트로 고른다.[@ieee-802-3-2022]
 
 ## 부호화
@@ -26,6 +28,8 @@ IEEE 802.3-2022는 10BASE-T1S PHY를 PCS(Physical Coding Sublayer)와 PMA(Physic
 IEEE 802.3-2022는 mixing segment에서 동작하는 10BASE-T1S에 송신 기회를 만들어 주는 방법을 **PLCA**(Physical Layer Collision Avoidance)라 부르고, Clause 148의 RS(Reconciliation Sublayer)로 정한다. PLCA는 멀티드롭 모드의 반이중 10BASE-T1S PHY에서 쓰는 선택 기능이고, 관리 인터페이스로 켜고 끌 수 있으며, 끄면 RS의 대응은 Clause 22와 같다. 켜면 PLCA RS는 MAC(Medium Access Control)의 데이터를 물리 계층의 송신 기회에 맞춘다. PLCA를 켠 물리 계층은 부하가 큰 [[bus-access-method#경쟁 방식|CSMA/CD]](Carrier Sense Multiple Access with Collision Detection) 반이중 공유 매체 네트워크에서 대역을 더 쓰게 하고 접근 지연을 줄일 수 있다.[@ieee-802-3-2022]
 
 mixing segment의 송신 기회는 로컬 충돌 도메인 안에서 겹치지 않는 노드 ID(identifier) 순서로 돌아가며 주어진다. 노드 ID는 관리 엔티티가 정하며, 정하는 방법은 이 표준의 범위 밖이다. ID가 0인 노드가 매체에 BEACON을 보내고, BEACON을 받으면 송신 기회의 새 주기가 시작된다. 노드는 자기 송신 기회에 패킷 하나를 보내고, 설정한 한도까지 패킷을 더 보내도록 할 수도 있다.[@ieee-802-3-2022]
+
+![[diagrams/plca-transmit-opportunity-cycle.svg]]
 
 ID 0인 노드가 고장 나도 네트워크는 PLCA가 없는 CSMA/CD 네트워크와 같은 성능으로 계속 동작한다. PLCA를 켠 노드와 켜지 않은 노드는 같은 mixing segment에서 함께 IEEE 802.3 CSMA/CD로 동작할 수 있지만, 켜지 않은 노드의 비율이 늘수록 성능 이득은 줄어든다.[@ieee-802-3-2022]
 

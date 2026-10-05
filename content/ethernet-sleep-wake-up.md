@@ -25,6 +25,8 @@ TJA1100은 Sleep 모드로 넘어가는 중간 상태로 Sleep Request 모드를
 
 TJA1100은 웨이크업 원인을 셋으로 나눈다. Standby와 Sleep 모드에서 MDI의 이더넷 활동은 원격 웨이크업을 일으킨다. `LED_ENABLE`이 0이면 Standby, Sleep Request, Sleep 모드에서 WAKE 핀의 하강 에지가 로컬 웨이크업을 일으킨다. Sleep Request 모드에서 MDI나 MII의 이더넷 프레임은 데이터 감지 웨이크업을 일으킨다.[@nxp-tja1100-2017]
 
+![[diagrams/tja1100-sleep-modes.svg]]
+
 TJA1103은 OPEN Alliance TC10을 따르는 슬립·웨이크업을 지원하며, 전용 핀으로 PHY 수준의 웨이크업 전달을 하고 버스 선으로 원격 웨이크업을 감지한다. TC10 슬립으로 설정한 TJA1103은 두 PHY가 모두 슬립에 들도록 하는 슬립 핸드셰이크를 거쳐 슬립에 드는 것을 정해진 방식으로 둔다.[@nxp-tja1103-2026] DP83TG720S-Q1은 절전 기능으로 standby와 sleep, 로컬 웨이크업과 원격 웨이크업을 둔다.[@ti-dp83tg720s-q1-2026]
 
 ## AUTOSAR

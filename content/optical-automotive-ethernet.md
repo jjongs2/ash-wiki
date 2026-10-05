@@ -14,6 +14,8 @@ verified: 2026-10-06
 
 IEEE 802.3-2022는 이중 POF 위에서 1000 Mbit/s로 동작하는 PCS(Physical Coding Sublayer)와 PMA(Physical Medium Attachment)를 **1000BASE-H**라 부르고, 이 PCS와 PMA가 지원하는 PMD(Physical Medium Dependent)를 달리한 포트 타입 셋, 1000BASE-RHA, 1000BASE-RHB, 1000BASE-RHC를 두어 이를 **1000BASE-RHx**라 부른다. 셋 모두 약 650 nm의 붉은빛을 쓴다. 1000BASE-RHA는 가정과 소비자 네트워크, 1000BASE-RHB는 산업 응용, 1000BASE-RHC는 차량 응용의 요구사항에서 나왔다.[@ieee-802-3-2022]
 
+![[diagrams/1000base-rhx-port-types.svg]]
+
 1000BASE-RHC의 PMD는 리셉터클과 짝 플러그로 SI-POF(Step Index POF) 매체에 이어지고, PMD, 인라인 커넥터, 케이블은 Kojiri-safe, 먼지 보호, 진동 견딤, 인장 강도처럼 차량에 설치하는 데 필요한 요구를 맞춰야 한다. 1000BASE-H PCS는 GMII(Gigabit Media Independent Interface)의 송신 데이터를 65비트 블록으로 묶어 스크램블하고, MLCC(Multi-Level Coset Code)로 부호화해 PAM16(Pulse Amplitude Modulation 16) 심볼의 코드워드를 만든다. 심볼은 공칭 325 MBd로 보낸다.[@ieee-802-3-2022]
 
 P802.3bv PAR(Project Authorization Request)는 POF가 설치가 쉽고, 차량과 산업 네트워크 같은 거친 환경에서 견고함으로 이점을 주며, 이들 네트워크가 이더넷으로 옮겨 가고 있어 많은 제조사에게 POF를 매체 선택지로 남기는 것이 필요하다고 밝혔다.[@ieee-802-3bv-par-2014]

@@ -16,17 +16,19 @@ IEEE 802.3bu-2016이 한 쌍 꼬임쌍선 이더넷의 PoDL을 IEEE 802.3에 넣
 
 IEEE 802.3-2022는 PoDL 시스템을 PSE, 링크 세그먼트, PD로 이루어진 것으로 정하고, mixing segment용 PoDL 시스템은 정하지 않는다. PSE와 PD는 전력을 넣기 전과 전체 동작 전압을 걷어 낸 뒤에, 보통의 이더넷 트래픽 밖에 있는 데이터를 MDI(Medium Dependent Interface)로 SCCP(Serial Communication Classification Protocol)를 써서 주고받을 수 있다. Clause 104는 전력을 요청하는 장치를 검출하고 그 전력 요구에 따라 분류하는 물리 계층 프로토콜, PSE와 PD가 전력을 협상하고 할당하는 방법, 전체 동작 전압이 더는 필요 없을 때 공급 전압을 sleep 수준으로 낮추는 방법을 정한다.[@ieee-802-3-2022]
 
+![[diagrams/podl-pse-pd-link-segment.svg]]
+
 ## 타입
 
 IEEE 802.3-2022는 PSE와 PD를 타입으로 나누고, 타입마다 함께 쓸 수 있는 PHY를 아래와 같이 정한다.[@ieee-802-3-2022]
 
-| 타입 | 함께 쓸 수 있는 PHY |
-| --- | --- |
-| Type A | [[10base-t1s\|10BASE-T1S]], [[100base-t1\|100BASE-T1]][@ieee-802-3-2022] |
-| Type B | [[1000base-t1\|1000BASE-T1]][@ieee-802-3-2022] |
-| Type C | 10BASE-T1S, 100BASE-T1, 1000BASE-T1[@ieee-802-3-2022] |
-| Type D | IEEE 802.3 PHY와 맞지 않을 수 있고, 데이터 엔티티가 없을 수도 있다.[@ieee-802-3-2022] |
-| Type E | 10BASE-T1L[@ieee-802-3-2022] |
+| 타입   | 함께 쓸 수 있는 PHY                                                                                                              |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| Type A | [[10base-t1s\|10BASE-T1S]], [[100base-t1\|100BASE-T1]][@ieee-802-3-2022]                                                         |
+| Type B | [[1000base-t1\|1000BASE-T1]][@ieee-802-3-2022]                                                                                   |
+| Type C | 10BASE-T1S, 100BASE-T1, 1000BASE-T1[@ieee-802-3-2022]                                                                            |
+| Type D | IEEE 802.3 PHY와 맞지 않을 수 있고, 데이터 엔티티가 없을 수도 있다.[@ieee-802-3-2022]                                            |
+| Type E | 10BASE-T1L[@ieee-802-3-2022]                                                                                                     |
 | Type F | [[multigbase-t1\|2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1]][@ieee-802-3-2022], IEEE 802.3cy-2023이 더한 25GBASE-T1[@ieee-802-3cy-2023] |
 
 ## 도입 배경

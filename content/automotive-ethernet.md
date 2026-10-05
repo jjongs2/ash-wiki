@@ -17,15 +17,15 @@ IEEE 802.3-2022는 여러 속도의 이더넷을 공통 MAC(Medium Access Contro
 
 IEEE SA에 따르면 차량 배선의 무게와 공간이 큰 과제여서 차량을 겨냥한 PHY가 여럿 나왔고, 10 Mbit/s(IEEE 802.3cg), 100 Mbit/s(IEEE 802.3bw), 1 Gbit/s(IEEE 802.3bp), 2.5·5·10 Gbit/s(IEEE 802.3ch)가 그 예다.[@ieee-tsn-automotive-flyer-2026] IEEE 802.3-2022와 그 개정 IEEE 802.3cy-2023, IEEE 802.3cz-2023이 정하는 차량용 PHY는 아래와 같다. 각 PHY를 넣은 개정은 [[ieee-802-3#개정 이력|IEEE 802.3의 개정 이력]]에서 다룬다.
 
-| PHY | 속도 | 매체 |
-| --- | --- | --- |
-| [[10base-t1s\|10BASE-T1S]] | 10 Mbit/s | 평형 도체 한 쌍[@ieee-802-3-2022][@ieee-802-3cg-par-2018] |
-| [[100base-t1\|100BASE-T1]] | 100 Mbit/s | 평형 꼬임쌍선 한 쌍[@ieee-802-3-2022][@ieee-802-3bw-par-2014] |
-| [[1000base-t1\|1000BASE-T1]] | 1 Gbit/s | 꼬임쌍선 한 쌍[@ieee-802-3-2022] |
-| [[optical-automotive-ethernet\|1000BASE-RHC]] | 1 Gbit/s | 이중 플라스틱 광섬유[@ieee-802-3-2022] |
-| [[multigbase-t1\|2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1]] | 2.5, 5, 10 Gbit/s | 평형 도체 한 쌍[@ieee-802-3-2022] |
-| 25GBASE-T1 | 25 Gbit/s | 평형 도체 한 쌍[@ieee-802-3cy-2023] |
-| [[optical-automotive-ethernet#BASE-AU\|2.5GBASE-AU부터 50GBASE-AU까지]] | 2.5, 5, 10, 25, 50 Gbit/s | 다중 모드 유리 광섬유[@ieee-802-3cz-2023] |
+| PHY                                                                     | 속도                      | 매체                                                          |
+| ----------------------------------------------------------------------- | ------------------------- | ------------------------------------------------------------- |
+| [[10base-t1s\|10BASE-T1S]]                                              | 10 Mbit/s                 | 평형 도체 한 쌍[@ieee-802-3-2022][@ieee-802-3cg-par-2018]     |
+| [[100base-t1\|100BASE-T1]]                                              | 100 Mbit/s                | 평형 꼬임쌍선 한 쌍[@ieee-802-3-2022][@ieee-802-3bw-par-2014] |
+| [[1000base-t1\|1000BASE-T1]]                                            | 1 Gbit/s                  | 꼬임쌍선 한 쌍[@ieee-802-3-2022]                              |
+| [[optical-automotive-ethernet\|1000BASE-RHC]]                           | 1 Gbit/s                  | 이중 플라스틱 광섬유[@ieee-802-3-2022]                        |
+| [[multigbase-t1\|2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1]]                   | 2.5, 5, 10 Gbit/s         | 평형 도체 한 쌍[@ieee-802-3-2022]                             |
+| 25GBASE-T1                                                              | 25 Gbit/s                 | 평형 도체 한 쌍[@ieee-802-3cy-2023]                           |
+| [[optical-automotive-ethernet#BASE-AU\|2.5GBASE-AU부터 50GBASE-AU까지]] | 2.5, 5, 10, 25, 50 Gbit/s | 다중 모드 유리 광섬유[@ieee-802-3cz-2023]                     |
 
 10BASE-T1S는 여러 노드가 한 쌍을 나눠 쓰는 멀티드롭 모드도 선택 사항으로 둔다.[@ieee-802-3-2022]
 

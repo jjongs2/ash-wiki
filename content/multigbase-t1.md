@@ -26,6 +26,8 @@ IEEE 802.3-2022는 MultiGBASE-T1의 PCS가 [[mii|MII]] 계열의 XGMII(10 Gigabi
 
 IEEE 802.3-2022는 MultiGBASE-T1이 인라인 커넥터를 4개까지 둔 평형 도체 한 쌍의 차량용 링크 세그먼트에서 적어도 15 m를 지원하도록 정한다. 이 링크 세그먼트 명세는 차량 요구사항에서 나왔지만, 차량 밖 응용에도 쓸 수 있다.[@ieee-802-3-2022]
 
+![[diagrams/link-segment-inline-connectors.svg]]
+
 ## 마스터와 슬레이브
 
 IEEE 802.3-2022는 MultiGBASE-T1 PHY가 실행 중 설정에 따라 마스터로도 슬레이브로도 동작할 수 있도록 정한다. 마스터는 로컬 클럭으로, 슬레이브는 받은 신호에서 복구한 클럭으로 송신 타이밍을 정한다. Clause 98의 [[ethernet-phy#자동 협상|자동 협상]]은 선택 사항이며, 쓰면 그 과정에서 두 PHY의 역할이 정해진다. 쓰지 않으면 관리나 하드웨어 설정으로 역할을 정하고, PHY Link Synchronization 기능으로 마스터와 슬레이브를 맞춘다.[@ieee-802-3-2022]

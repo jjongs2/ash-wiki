@@ -24,6 +24,8 @@ TX_CLK와 RX_CLK는 모두 PHY가 내며, 100 Mbit/s에서 25 MHz, 10 Mbit/s에�
 
 IEEE 802.3-2022는 MII가 옥텟마다 니블 둘로 주고받되, 옥텟의 비트 0부터 3까지를 먼저 보내는 니블에, 비트 4부터 7까지를 다음 니블에 싣도록 정한다. 송신할 때 [[ethernet-frame#필드|프리앰블]]과 SFD(Start Frame Delimiter)는 TX_EN을 올린 때부터 니블로 보낸다. 프리앰블의 니블 14개와 SFD의 첫 니블은 TXD0과 TXD2가 1, TXD1과 TXD3이 0이고, SFD의 둘째 니블은 TXD3도 1이다.[@ieee-802-3-2022]
 
+![[diagrams/mii-preamble-sfd-nibbles.svg]]
+
 ## 관리 인터페이스
 
 MDC(Management Data Clock)와 MDIO(Management Data Input/Output)는 PHY의 레지스터를 읽고 쓰는 관리 인터페이스로, MII 신호에 함께 든다. MDC는 PHY 바깥의 관리 쪽이 주는 클럭이고, MDIO는 양방향 데이터 선이다. 관리 프레임은 PHY 주소 5비트와 레지스터 주소 5비트를 담는다.[@ti-dp83822-2026][@st-rm0008-2021]

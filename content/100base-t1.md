@@ -45,6 +45,8 @@ IEEE 802.3-2022는 100BASE-T1 PMA가 MDI에 AC 결합으로 이어지도록 정�
 
 100BASE-T1 PHY는 보통 커패시터로 선에 결합하고, 공통 모드 초크(CMC, Common-Mode Choke)로 공통 모드 잡음을 거르며, ESD(Electrostatic Discharge) 보호 소자를 둔다.[@nxp-tja1100-2017][@ti-szzy009-2018] TJA1100의 MDI는 저역 통과 필터, ESD 보호, CMC, 용량성 결합, 선택 사항인 공통 모드 종단, 커넥터로 이뤄진다.[@nxp-tja1100-2017] TI 백서에 따르면 100BASE-TX가 보통 트랜스포머로 직류 절연을 하는 것과 달리, 100BASE-T1은 커패시터 둘로 직류 절연을 하고 회로 크기를 줄인다.[@ti-szzy009-2018]
 
+![[diagrams/tja1100-mdi-components.svg]]
+
 ## 100BASE-TX와의 차이
 
 [[100base-tx|100BASE-TX]]는 송신 쌍과 수신 쌍, 두 쌍을 쓴다.[@ti-szzy009-2018][@microchip-ksz8081mlx-2022] 100BASE-TX가 차량에서 걸림돌이 된 점은 [[100base-tx#100BASE-T1과의 차이|100BASE-T1과의 차이]]에서 다룬다.

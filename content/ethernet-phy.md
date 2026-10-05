@@ -31,6 +31,8 @@ IEEE 802.3-2022는 Clause 98에서 꼬임쌍선 한 쌍의 자동 협상을 정�
 
 차량용 PHY는 케이블의 단선과 단락을 진단한다.[@ti-dp83tg720s-q1-2026][@nxp-tja1103-2026] DP83TC811R-Q1은 TDR(Time Domain Reflectometry)로 꼬임쌍선 케이블에 시험 펄스를 보내고, 결함마다 돌아오는 반사의 시간과 세기를 재어 단선과 단락을 찾고 그 위치를 추정한다.[@ti-dp83tc811r-q1-2018] DP83TG720S-Q1도 TDR로 단선과 단락을 찾고 그 위치를 추정한다.[@ti-dp83tg720s-q1-2026]
 
+![[diagrams/phy-tdr-cable-fault.svg]]
+
 차량용 PHY는 링크 품질을 SQI(Signal Quality Indicator)로 알린다.[@ti-dp83tg720s-q1-2026][@nxp-tja1103-2026] DP83TC811R-Q1과 DP83TG720S-Q1은 PHY가 잰 SNR(Signal-to-Noise Ratio)로 SQI를 정한다.[@ti-dp83tc811r-q1-2018][@ti-dp83tg720s-q1-2026] SQI의 단계 수와 단계가 뜻하는 BER(Bit Error Ratio)은 칩마다 다르다. DP83TC811R-Q1은 SQI를 네 단계의 상태와 백분율로 나타낸다.[@ti-dp83tc811r-q1-2018] DP83TG720S-Q1은 여덟 단계로 나타내며, 5단계에서 BER이 $10^{-10}$보다 낫다.[@ti-dp83tg720s-q1-2026] TJA1103은 0(가장 나쁨, 링크 없음)부터 7(가장 좋음)까지로 나타내며, 가우스 잡음을 가정하면 3 이상에서 BER이 $10^{-10}$ 이하다.[@nxp-tja1103-2026]
 
 ## 관리
