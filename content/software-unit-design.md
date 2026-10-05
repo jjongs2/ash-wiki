@@ -7,9 +7,9 @@ aliases:
 verified: 2026-10-02
 ---
 
-**소프트웨어 유닛 설계**는 [[software-architecture|소프트웨어 아키텍처]]를 받아 소프트웨어 유닛의 내부 구조와 동작을 정하는 설계로, **상세 설계**(detailed design)라고도 부른다.[@vda-automotive-spice-pam-4-1-2026][@ieee-cs-sevocab-2026] ISO/IEC/IEEE 24765 용어집은 상세 설계 단계를 시스템 설계와 소프트웨어 아키텍처를 받아 유닛마다 코딩할 수 있는 상세 로직을 만드는 단계로 정의하고, 상세 설계를 앞선 설계를 구현할 수 있을 만큼 다듬고 넓히는 것으로 정의한다.[@ieee-cs-sevocab-2026]
+**소프트웨어 유닛 설계**는 [[software-architecture|소프트웨어 아키텍처]]를 받아 [[automotive-spice-process-reference-model#Element, component, unit|소프트웨어 유닛]]의 내부 구조와 동작을 정하는 설계로, **상세 설계**(detailed design)라고도 부른다.[@vda-automotive-spice-pam-4-1-2026][@ieee-cs-sevocab-2026] ISO/IEC/IEEE 24765 용어집은 상세 설계 단계를 시스템 설계와 소프트웨어 아키텍처를 받아 유닛마다 코딩할 수 있는 상세 로직을 만드는 단계로 정의하고, 상세 설계를 앞선 설계를 구현할 수 있을 만큼 다듬고 넓히는 것으로 정의한다.[@ieee-cs-sevocab-2026]
 
-[[automotive-spice|ASPICE]] 4.1은 [[automotive-spice-process-reference-model#Element, component, unit|소프트웨어 유닛]]을, 소프트웨어 컴포넌트를 분해해 얻은 것 가운데 더 나누지 않기로 정한 소프트웨어 요소로 정의한다.[@vda-automotive-spice-pam-4-1-2026]
+[[automotive-spice|ASPICE]] 4.1은 소프트웨어 유닛을, 소프트웨어 컴포넌트를 분해해 얻은 것 가운데 더 나누지 않기로 정한 소프트웨어 요소로 정의한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ![[diagrams/aspice-software-decomposition.svg]]
 

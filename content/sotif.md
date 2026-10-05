@@ -30,7 +30,7 @@ ISO 21448:2022는 합리적으로 예견할 수 있는 오용을 범위에 넣�
 
 ## ISO 26262와의 차이
 
-[[functional-safety|기능 안전]]은 E/E 시스템의 [[hazard-analysis-and-risk-assessment#용어|오동작]]이 일으키는 해저드를 다룬다.[@iso-26262-1-obp-2018] ISO 26262가 다루는 failure가 없어도, 의도된 기능과 그 구현이 해저드 동작을 일으킬 수 있다. ISO 21448:2022는 이런 기능 부족과 합리적으로 예견할 수 있는 오용에서 오는 해저드를 다루고, ISO 26262가 다루는 failure는 범위에서 뺀다.[@iso-21448-obp-2022]
+ISO 26262-1:2018은 [[functional-safety|기능 안전]]을 E/E 시스템의 [[hazard-analysis-and-risk-assessment#용어|오동작]]이 일으키는 해저드에 관한 것으로 정의한다.[@iso-26262-1-obp-2018] ISO 26262가 다루는 failure가 없어도, 의도된 기능과 그 구현이 해저드 동작을 일으킬 수 있다. ISO 21448:2022는 이런 기능 부족과 합리적으로 예견할 수 있는 오용에서 오는 해저드를 다루고, ISO 26262가 다루는 failure는 범위에서 뺀다.[@iso-21448-obp-2022]
 
 ![[diagrams/functional-safety-sotif-hazard-sources.svg]]
 
