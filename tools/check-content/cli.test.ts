@@ -15,10 +15,10 @@ interface Report {
   messages: Map<string, string[]>
 }
 
-function runChecker(fixture: string): Report {
+function runChecker(fixture: string, ...args: string[]): Report {
   const result = spawnSync(
     process.execPath,
-    ["--import", "tsx", path.join(here, "cli.ts"), path.join(here, "fixtures", fixture)],
+    ["--import", "tsx", path.join(here, "cli.ts"), path.join(here, "fixtures", fixture), ...args],
     { cwd: repoRoot, encoding: "utf8" },
   )
   const statuses: string[] = []
@@ -197,6 +197,21 @@ describe("check-content CLI", { concurrency: false }, () => {
       assert.deepStrictEqual(actual, [...locations].sort(), check)
     }
     assert.strictEqual(report.exitCode, 1)
+  })
+
+  test("--no-build는 빌드와 산출물 검사만 SKIP하고, 파일 검사 결과는 옵션이 없을 때와 같다", () => {
+    const full = runChecker("violation")
+    const fast = runChecker("violation", "--no-build")
+    const sourceIds = full.statuses.slice(0, -2).map((status) => status.split(" ")[1])
+    assert.deepStrictEqual(fast.statuses, [
+      ...full.statuses.slice(0, -2),
+      "SKIP build",
+      "SKIP output",
+    ])
+    for (const id of sourceIds)
+      assert.deepStrictEqual(fast.messages.get(id), full.messages.get(id), id)
+    assert.strictEqual(fast.exitCode, 1)
+    assert.strictEqual(runChecker("pass", "--no-build").exitCode, 0)
   })
 
   test("여백이 치우친 도해는 viewBox 원점을 옮길 값을 알려 준다", () => {
