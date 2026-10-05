@@ -2,68 +2,68 @@
 
 위키 페이지에서 풀이하지 않는 약어의 목록입니다. 어떤 약어를 올리는지는 [위키 규약](wiki-conventions.md#약어)에 있습니다.
 
-한 줄에 약어 하나를 `- <약어>: <종류>`로 적습니다. 종류는 `널리 쓰이는 약어`, `표준화 기구`, `표준·규격 이름`, `핀과 신호`, `전원`, `ISO 위원회 번호` 가운데 하나입니다. 줄은 대소문자를 가리지 않는 알파벳순으로 두고, 기호와 공백은 글자보다 앞에 둡니다. 예: `TX_CLK`, `TXD` 순서. 약어를 더하는 PR끼리 같은 줄을 고치지 않게 하려는 꼴입니다.
+한 줄에 약어 하나를 `- <약어>: <종류>`로 적습니다. 종류는 `널리 쓰이는 약어`, `조직`, `표준·규격 이름`, `핀과 신호`, `전원`, `ISO 위원회 번호` 가운데 하나입니다. 줄은 대소문자를 가리지 않는 알파벳순으로 두고, 기호와 공백은 글자보다 앞에 둡니다. 예: `TX_CLK`, `TXD` 순서. 약어를 더하는 PR끼리 같은 줄을 고치지 않게 하려는 꼴입니다.
 
 - AC: 표준·규격 이름
-- ANSI: 표준화 기구
-- ASAM: 표준화 기구
-- Auto-ISAC: 표준화 기구
+- ANSI: 조직
+- ASAM: 조직
+- Auto-ISAC: 조직
 - AUTOSAR: 표준·규격 이름
 - BS: 표준·규격 이름
-- BSI: 표준화 기구
+- BSI: 조직
 - CAN_H: 핀과 신호
 - CAN_L: 핀과 신호
-- CCRA: 표준화 기구
-- CCSDS: 표준화 기구
-- CENELEC: 표준화 기구
-- CERT: 표준화 기구
-- CiA: 표준화 기구
-- CISA: 표준화 기구
-- CISPR: 표준화 기구
+- CCRA: 조직
+- CCSDS: 조직
+- CENELEC: 조직
+- CERT: 조직
+- CiA: 조직
+- CISA: 조직
+- CISPR: 조직
 - CMSIS-RTOS2: 표준·규격 이름
 - CPU: 널리 쓰이는 약어
 - CRS_DV: 핀과 신호
 - CT-AuT: 표준·규격 이름
 - CTFL: 표준·규격 이름
-- DoD: 표준화 기구
+- DoD: 조직
 - ECU: 널리 쓰이는 약어
-- EIA: 표준화 기구
-- ENISA: 표준화 기구
-- EU: 널리 쓰이는 약어
-- FAA: 표준화 기구
+- EIA: 조직
+- ENISA: 조직
+- EU: 조직
+- FAA: 조직
 - FIPS: 표준·규격 이름
-- FIRST: 표준화 기구
+- FIRST: 조직
 - GND: 전원
-- GRVA: 표준화 기구
-- HIS: 표준화 기구
+- GRVA: 조직
+- HIS: 조직
 - I/O: 널리 쓰이는 약어
-- IANA: 표준화 기구
-- IBM: 널리 쓰이는 약어
-- IEC: 표준화 기구
-- IEEE: 표준화 기구
-- IEEE SA: 표준화 기구
-- IEEE-ISTO: 표준화 기구
+- IANA: 조직
+- IBM: 조직
+- IEC: 조직
+- IEEE: 조직
+- IEEE SA: 조직
+- IEEE-ISTO: 조직
 - IEN: 표준·규격 이름
-- IETF: 표준화 기구
-- ISACA: 표준화 기구
-- ISO: 표준화 기구
-- ISTQB: 표준화 기구
-- ITU-T: 표준화 기구
+- IETF: 조직
+- ISACA: 조직
+- ISO: 조직
+- ISTQB: 조직
+- ITU-T: 조직
 - JTC: ISO 위원회 번호
 - MCD: 표준·규격 이름
 - MCU: 널리 쓰이는 약어
 - MIL-HDBK: 표준·규격 이름
-- MISRA: 표준화 기구
-- NASA: 널리 쓰이는 약어
-- NATO: 널리 쓰이는 약어
-- NHTSA: 표준화 기구
-- NIST: 표준화 기구
-- NMEA: 표준화 기구
-- NSA: 표준화 기구
-- OASIS: 표준화 기구
-- OMA: 표준화 기구
+- MISRA: 조직
+- NASA: 조직
+- NATO: 조직
+- NHTSA: 조직
+- NIST: 조직
+- NMEA: 조직
+- NSA: 조직
+- OASIS: 조직
+- OMA: 조직
 - OSEK/VDX: 표준·규격 이름
-- PCI SSC: 표준화 기구
+- PCI SSC: 조직
 - PDF: 널리 쓰이는 약어
 - POSIX: 표준·규격 이름
 - PSE51: 표준·규격 이름
@@ -74,31 +74,31 @@
 - RX_DV: 핀과 신호
 - RX_ER: 핀과 신호
 - RXD: 핀과 신호
-- SAE: 표준화 기구
+- SAE: 조직
 - SC: ISO 위원회 번호
 - SCK: 핀과 신호
 - SCL: 핀과 신호
 - SDA: 핀과 신호
-- SEI: 표준화 기구
+- SEI: 조직
 - SP: 표준·규격 이름
 - SPICE: 표준·규격 이름
 - SWEBOK: 표준·규격 이름
 - TC: ISO 위원회 번호
-- TCG: 표준화 기구
-- TI: 널리 쓰이는 약어
-- TIA: 표준화 기구
+- TCG: 조직
+- TI: 조직
+- TIA: 조직
 - TR: 표준·규격 이름
 - TS: 표준·규격 이름
 - TX_CLK: 핀과 신호
 - TX_EN: 핀과 신호
 - TX_ER: 핀과 신호
 - TXD: 핀과 신호
-- UN: 표준화 기구
-- UNECE: 표준화 기구
+- UN: 조직
+- UNECE: 조직
 - USB: 널리 쓰이는 약어
 - VCC: 전원
-- VDA: 표준화 기구
-- VDA QMC: 표준화 기구
+- VDA: 조직
+- VDA QMC: 조직
 - WG: ISO 위원회 번호
-- WP.29: 표준화 기구
+- WP.29: 조직
 - XOR: 널리 쓰이는 약어
