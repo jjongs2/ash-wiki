@@ -36,4 +36,4 @@ NIST SP 800-115에 따르면 취약점 스캐닝(vulnerability scanning)은 호�
 
 ## 명세 준수 테스트와의 차이
 
-침투 테스트는 대상이 명세에 맞는지 확인하는 테스트와 다르다.[@ccra-cc-part-3-2022][@enisa-smart-cars-2016] CC:2022(Common Criteria for Information Technology Security Evaluation)는 평가 대상의 보안 기능이 기능 명세와 설계대로 동작하는지 확인하는 테스트에 침투 테스트를 넣지 않고, 설계와 구현의 취약점을 찾는 침투 테스트를 취약점 평가의 한 부분으로 따로 다룬다.[@ccra-cc-part-3-2022]
+CC:2022(Common Criteria for Information Technology Security Evaluation)는 평가 대상의 보안 기능이 기능 명세와 설계대로 동작하는지 확인하는 테스트에 침투 테스트를 넣지 않고, 설계와 구현의 취약점을 찾는 침투 테스트를 취약점 평가의 한 부분으로 따로 다룬다.[@ccra-cc-part-3-2022]

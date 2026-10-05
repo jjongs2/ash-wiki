@@ -7,7 +7,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**Rate monotonic 스케줄링**은 [[periodic-task-model|주기 태스크]]에 주기가 짧을수록, 곧 요청 빈도가 높을수록 높은 우선순위를 주고, 그 우선순위를 한 번 정하면 바꾸지 않는 우선순위 배정 규칙이다. Liu와 Layland가 1973년 논문에서 이 규칙과 그 이용률 상한을 제시했고, 요청 빈도(rate)에 따라 우선순위가 정해진다는 뜻에서 rate-monotonic priority assignment라 불렀다.[@liu-hard-real-time-1973] Federal Aviation Administration의 보고서 DOT/FAA/AR-05/27은 이 알고리즘을 RM(Rate-Monotonic)으로 줄여 쓴다.[@faa-ar-05-27-2005]
+**Rate monotonic 스케줄링**은 [[periodic-task-model|주기 태스크]]에 주기가 짧을수록, 곧 요청 빈도가 높을수록 높은 우선순위를 주고, 그 우선순위를 한 번 정하면 바꾸지 않는 우선순위 배정 규칙이다. Liu와 Layland가 1973년 논문에서 이 규칙과 그 이용률 상한을 제시했고, 요청 빈도(rate)에 따라 우선순위가 정해진다는 뜻에서 rate-monotonic priority assignment라 불렀다.[@liu-hard-real-time-1973] 이 규칙은 RM(Rate Monotonic)으로 줄여 부른다.[@davis-survey-hard-real-time-2011]
 
 ## 배정 규칙
 
@@ -17,7 +17,7 @@ RM은 우선순위를 실행 시간과 상관없이 태스크의 주기만으로
 
 단일 프로세서에서 태스크가 일정한 간격으로 요청되는 주기 태스크이고, 서로 독립이며, 각 요청의 [[deadline|마감 시한]]이 다음 요청 시각이고, 실행 시간이 일정하며, 선점할 수 있으면, RM은 고정 우선순위 배정 가운데 최적이다. 어떤 고정 우선순위 배정으로 모든 마감 시한을 지킬 수 있는 태스크 집합은 RM으로도 지킬 수 있다.[@liu-hard-real-time-1973]
 
-마감 시한이 주기와 같다는 가정이 빠지면 RM의 최적성은 성립하지 않는다.[@faa-ar-05-27-2005] 마감 시한이 짧을수록 높은 우선순위를 주는 DM(Deadline Monotonic)은 [[fixed-priority-scheduling#우선순위 배정|고정 우선순위 스케줄링]]에서 다룬다.
+마감 시한이 주기와 같다는 가정이 빠지면 RM의 최적성은 성립하지 않는다.[@leung-real-time-scheduling-analysis-2005] 마감 시한이 짧을수록 높은 우선순위를 주는 DM(Deadline Monotonic)은 [[fixed-priority-scheduling#우선순위 배정|고정 우선순위 스케줄링]]에서 다룬다.
 
 ## 이용률 상한
 
