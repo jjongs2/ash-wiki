@@ -54,6 +54,7 @@
 - 엔드 스테이션: 종단국 (#196)
 - 위협 시나리오: threat scenario (#252)
 - 자산: asset (#252)
+- 타원 곡선 암호: ECC (#289). 타원 곡선 암호를 가리킬 때. ECDSA·ECDH 같은 알고리즘 이름은 그대로. 예: SP 800-56A의 ECC CDH는 "타원 곡선 CDH"
 - 프레임 간 공간: 인터프레임 공간 (#68). 원어는 병기하지 않음
 - 플래시: Flash (#257). 일반 낱말일 때. 모듈과 구성 요소의 이름(Fls(Flash Driver), Flash EEPROM Emulation, Flashing Adapter)은 예외
 - 하위 호환: 역호환 (#257)

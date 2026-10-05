@@ -35,7 +35,7 @@ Edward Markey 미국 상원의원실은 2015년 2월 보고서 "Tracking & Hacki
 | [[automotive-spice-for-cybersecurity\|Automotive SPICE for Cybersecurity]] | 프로세스 평가 모델 | VDA QMC가 펴내는, [[automotive-spice\|ASPICE]] 4.0을 보완하는 사이버보안 엔지니어링의 프로세스 참조 모델과 프로세스 평가 모델이다.[@vda-automotive-spice-cybersecurity-2025]                                                         |
 | Cybersecurity Best Practices for the Safety of Modern Vehicles             | 지침               | NHTSA가 자동차 업계에 내는 구속력 없는 자발적 지침이다. 2016년 10월 판의 권고를 2022년 9월 연구 결과, 업계 표준, 실제 사고 등을 바탕으로 고쳤다.[@nhtsa-cybersecurity-best-practices-2022][@nhtsa-cybersecurity-best-practices-2016] |
 | Cyber Security and Resilience of Smart Cars                                | 보고서             | ENISA가 2016년 12월 낸 보고서다. 스마트 카의 민감한 자산, 그에 대한 위협과 리스크, 완화 요인, 보안 대책을 정리했다.[@enisa-smart-cars-2016]                                                                                          |
-| Auto-ISAC                                                                  | 정보 공유 조직     | 자동차 제조사들이 2015년 8월 세운 정보 공유·분석 센터다. 커넥티드 차량의 사이버 위협, 취약점, 사고 정보를 모아 분석하고 회원과 나눈다.[@auto-isac-faq-2026]                                                                          |
+| Auto-ISAC                                                                  | 정보 공유 조직     | 자동차 제조사들이 2015년 8월 세운 정보 공유·분석 센터다.[@auto-isac-faq-2026]                                                                                                                                                        |
 
 ## 차량 사이버보안이 노리는 것
 

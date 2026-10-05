@@ -21,7 +21,7 @@ ECU Abstraction Layer는 Onboard Device Abstraction, [[autosar-memory-stack|Memo
 | Communication Hardware Abstraction | 통신 컨트롤러가 어디에 있고 ECU 하드웨어가 어떻게 짜였는지를 가린다.                                                                            |
 | I/O Hardware Abstraction           | I/O 장치가 어디 있는지와 ECU 하드웨어가 어떻게 짜였는지를 가린다.                                                                               |
 
-마이크로컨트롤러 안에 있는 암호 장치의 예로 SHE(Secure Hardware Extension)와 HSM(Hardware Security Module)이 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+마이크로컨트롤러 안에 있는 암호 장치의 예로 SHE(Secure Hardware Extension)와 [[hardware-security-module|HSM]]이 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 중국 V2X(Vehicle-to-X) 표준을 따르는 통신 스택의 예에서는, SPI(Serial Peripheral Interface)로 이은 외부 cellular V2X 컨트롤러의 드라이버가 Wireless Communication Hardware Abstraction에 놓이고, 마이크로컨트롤러에 든 cellular V2X 컨트롤러의 드라이버는 MCAL의 Wireless Communication Drivers에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 

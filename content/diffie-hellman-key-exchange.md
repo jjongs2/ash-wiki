@@ -26,7 +26,7 @@ NIST SP 800-56A Rev. 3의 dhEphem 방식은 이 교환을 두 당사자가 값�
 NIST SP 800-56A Rev. 3은 Diffie-Hellman 원시 연산을 둘 둔다.[@nist-sp-800-56a-r3-2018]
 
 - FFC(Finite Field Cryptography) DH(Diffie-Hellman): 도메인 매개변수 $(p, q, g)$를 쓰고, 상대 공개 키를 자기 개인 키로 거듭제곱해 $p$를 법으로 공유 비밀을 계산한다. 여기서 $g$는 위수가 $q$인 부분군의 생성원이다.
-- ECC(Elliptic Curve Cryptography) CDH(Cofactor Diffie-Hellman): 상대 공개 키인 타원 곡선 위의 점에 cofactor $h$와 자기 개인 키를 곱한 점 $P$를 구하고, $P$의 x좌표를 공유 비밀로 쓴다.[@nist-sp-800-56a-r3-2018]
+- 타원 곡선 CDH(Cofactor Diffie-Hellman): 상대 공개 키인 타원 곡선 위의 점에 cofactor $h$와 자기 개인 키를 곱한 점 $P$를 구하고, $P$의 x좌표를 공유 비밀로 쓴다.[@nist-sp-800-56a-r3-2018]
 
 이 문서는 키 합의 방식을 두 당사자가 쓰는 임시 키 쌍의 수에 따라 C(2e), C(1e), C(0e)로 나누고, 정적 키 쌍의 수로 다시 C(2e, 2s) 같은 하위 갈래로 나눈다. 두 당사자가 모두 임시 키 쌍을 쓰는 C(2e) 방식은 두 당사자 모두에게 [[key-establishment#안전성 성질|forward secrecy]]를 준다.[@nist-sp-800-56a-r3-2018]
 
@@ -51,4 +51,4 @@ SP 800-56A Rev. 3은 임시 키 쌍만 쓰는 C(2e, 0s) 방식이 그것만으�
 3. A는 $K$를 계산해 받은 서명을 복호하고, B의 인증서에서 꺼낸 B의 공개 키로 서명을 검증한다. A는 자기 인증서와, $(g^x, g^y)$에 대한 자기 서명을 $K$로 암호화한 것을 보낸다.
 4. B는 $K$와 A의 공개 키로 A의 서명을 검증하고, 1단계에서 받은 매개변수가 A의 인증서에 든 매개변수와 같은지 확인한다.[@diffie-authenticated-key-exchanges-1992]
 
-서명은 이번 실행의 두 지수값에 걸리므로 그 실행에 묶인다. 서명을 $K$로 암호화해 보내면, 서명한 쪽이 지수를 만들어 $K$를 아는 당사자임을 보인다. 이 보증은 받는 쪽이 상대의 진짜 공개 키를 안다는 가정 아래에서 성립한다.[@diffie-authenticated-key-exchanges-1992]
+서명은 이번 실행의 두 지수값에 걸리므로 그 실행에 묶인다. 서명을 $K$로 암호화해 보내면, 서명한 쪽이 지수를 만들어 $K$를 아는 당사자임을 보인다. 이 보증은 받는 쪽이 상대의 진짜 공개 키를 안다는 가정 아래에서 성립한다. 또 이 논문은 바탕이 되는 개별 암호 메커니즘이 깨지지 않는다고 보고, 프로토콜 자체에 대한 공격만 따진다.[@diffie-authenticated-key-exchanges-1992]

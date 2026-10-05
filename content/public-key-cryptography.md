@@ -21,7 +21,7 @@ Miller는 CRYPTO '85에서 발표하고 1986년 논문집에 실린 논문 "Use 
 
 - 암호화: 송신자가 수신자의 공개 키로 암호화하고, 수신자가 자기 개인 키로 복호화한다.
 - [[digital-signature|디지털 서명]]: 서명자가 자기 개인 키로 메시지를 변환하고, 누구나 서명자의 공개 키로 그 결과를 검증한다. 이 꼴은 암호화와 복호화가 서로의 역인 공개 키 암호 시스템을 전제한다.[@diffie-new-directions-1976]
-- [[key-establishment|키 설정]]: NIST SP 800-175B Rev. 1에 따르면 공개 키 알고리즘은 키 전송과 키 합의로 키를 설정하는 데 쓰인다. **키 전송**(key transport)은 한쪽이 비밀 키 값을 골라 상대에게 안전하게 보내는 것이고, **키 합의**(key agreement)는 두 참여자가 낸 정보로 비밀 키 값을 만들어 어느 쪽도 혼자 값을 정하지 못하게 하는 것이다.[@nist-sp-800-175b-r1-2020]
+- [[key-establishment|키 설정]]: NIST SP 800-175B Rev. 1에 따르면 공개 키 알고리즘은 키 전송과 키 합의로 키를 설정하는 데 쓰인다.[@nist-sp-800-175b-r1-2020]
 
 ![[diagrams/symmetric-public-key-encryption.svg]]
 
