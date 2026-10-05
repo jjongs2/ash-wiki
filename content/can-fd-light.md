@@ -7,7 +7,7 @@ verified: 2026-10-06
 
 [[iso-11898-1|ISO 11898-1:2024]]는 **CAN FD light**를 [[can|CAN]] 기능의 일부에 바탕을 둔 responder 노드의 구현 옵션으로 정의한다. CAN FD light 통신을 시작하려고 responder 노드에 데이터 프레임을 보내는 노드를 **commander 노드**로, commander 노드가 CAN FD light 통신으로 제어하는 노드를 **responder 노드**로 정의한다.[@iso-11898-1-obp-2024]
 
-이 표준은 CAN FD light responder를 위해 [[can-fd|CAN FD]] 프레임 포맷을 지원하는 구현을 [[iso-11898-1#범위|구현 옵션]] 다섯째로 두고, 그 요구사항을 Annex A에 둔다. 이 표준은 classic 포맷만 지원하고 CAN FD 포맷을 용인하지 않는 노드가 responder 노드와 통신할 수 없다고 정한다.[@iso-11898-1-obp-2024] 옵션 사이의 통신 범위는 [[can-fd#호환성|CAN FD의 호환성]]에서 다룬다.
+ISO 11898-1:2024는 CAN FD light responder를 위해 [[can-fd|CAN FD]] 프레임 포맷을 지원하는 구현을 [[iso-11898-1#범위|구현 옵션]] 다섯째로 두고, 그 요구사항을 Annex A에 둔다. 이 표준은 classic 포맷만 지원하고 CAN FD 포맷을 용인하지 않는 노드가 responder 노드와 통신할 수 없다고 정한다.[@iso-11898-1-obp-2024] 옵션 사이의 통신 범위는 [[can-fd#호환성|CAN FD의 호환성]]에서 다룬다.
 
 ## 배경
 
@@ -25,4 +25,4 @@ CiA 604 시리즈는 CAN FD light의 사용 지침과 응용 노트를 계속 �
 
 XS_CAN 매뉴얼에 따르면 CAN FD light는 중재 구간과 데이터 구간에 같은 비트율을 쓰므로, 최대 비트율은 중재 구간에서 낼 수 있는 최대 비트율과 [[can-acknowledgement|ACK]] 비트의 응답 시간이 정하고, 쓰는 트랜시버도 비트율을 제한한다. 비트율을 가장 크게 제한하는 것은 commander 노드의 버스 감시다. commander 노드는 자기가 보내는 값과 버스의 값이 같은지 감시하는데, 비트 시간이 너무 짧으면 이 감시를 할 수 없다. responder 노드는 송신하는 동안 버스를 감시하지 않는다.[@bosch-xs-can-2026]
 
-commander 노드는 버스 감시, 송신 뒤 ACK 응답 요구, 오류 프레임과 오버로드 프레임 송신, 송신 중 동기화를 끄면 비트율을 높일 수 있다. XS_CAN의 프로토콜 컨트롤러(PRT)는 CAN FD light commander 모드를 `MODE` 레지스터의 `LCHB` 비트로 켠다. 이 모드의 데이터 구간 비트율은 8 Mbit/s까지다.[@bosch-xs-can-2026]
+commander 노드는 버스 감시, 송신 뒤 ACK 응답 요구, [[can-error-frame|오류 프레임]]과 [[can-overload-frame|오버로드 프레임]] 송신, 송신 중 동기화를 끄면 비트율을 높일 수 있다. XS_CAN의 프로토콜 컨트롤러(PRT)는 CAN FD light commander 모드를 `MODE` 레지스터의 `LCHB` 비트로 켠다. 이 모드의 데이터 구간 비트율은 8 Mbit/s까지다.[@bosch-xs-can-2026]

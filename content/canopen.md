@@ -11,7 +11,7 @@ CiA에 따르면 CANopen CC는 처음에 핸들링 시스템 같은 동작 중�
 
 ## 하위 계층
 
-CiA 301 version 4.2.0은 CANopen CC가 ISO 11898-1에 따른 데이터 링크 계층을 쓰고, ISO 11898-2에 따른 물리 계층을 전제하되 다른 물리 계층도 배제하지 않게 정한다. 비트 타이밍도 이 규격이 정하며 10 kbit/s에서 1000 kbit/s까지 고를 수 있다. 정해진 CAN 식별자(CAN-ID) 배정은 모두 11비트 [[can-identifier|식별자]]를 바탕으로 하지만, 29비트 식별자도 지원한다.[@cia-canopen-2026]
+CiA 301 version 4.2.0은 CANopen CC가 [[iso-11898-1|ISO 11898-1]]에 따른 데이터 링크 계층을 쓰고, [[iso-11898-2|ISO 11898-2]]에 따른 물리 계층을 전제하되 다른 물리 계층도 배제하지 않게 정한다. [[can-bit-timing|비트 타이밍]]도 이 규격이 정하며, 비트율 $R_\mathrm{b}$는 $10\,\mathrm{kbit/s} \le R_\mathrm{b} \le 1000\,\mathrm{kbit/s}$에서 고를 수 있다. 정해진 CAN 식별자(CAN-ID) 배정은 모두 11비트 [[can-identifier|식별자]]를 바탕으로 하지만, 29비트 식별자도 지원한다.[@cia-canopen-2026]
 
 ## 장치 구조
 
@@ -35,7 +35,7 @@ NMT 상태 기계는 모든 CANopen CC 장치가 지원해야 하고, 초기화,
 
 특수 기능 프로토콜은 셋이다. SYNC 프로토콜은 동기 동작을 위해 SYNC producer가 주기적으로 보내고, 기본으로는 데이터가 없다. EMCY(Emergency) 프로토콜은 장치 내부 오류를 알리며, 오류 사건마다 한 번 보낸다. TIME(Time Stamp) 프로토콜은 네트워크 시각을 맞추며, 자정 뒤의 밀리초와 1984년 1월 1일 뒤의 날수를 6바이트에 싣는다.[@cia-special-function-protocols-2026]
 
-오류 제어 프로토콜에는 heartbeat, node/life guarding, boot-up 프로토콜이 있다. heartbeat 프로토콜은 producer가 주기적으로 보내 자기가 살아 있음과 NMT 상태를 알린다. node/life guarding은 리모트 프레임으로 장치를 하나씩 불러 상태를 묻는 방식이다. CiA에 따르면 이는 옛 방식이라 새 설계에서는 heartbeat를 쓴다.[@cia-error-control-protocols-2026]
+오류 제어 프로토콜에는 heartbeat, node/life guarding, boot-up 프로토콜이 있다. heartbeat 프로토콜은 producer가 주기적으로 보내 자기가 살아 있음과 NMT 상태를 알린다. node/life guarding은 [[remote-frame|리모트 프레임]]으로 장치를 하나씩 불러 상태를 묻는 방식이다. CiA에 따르면 이는 옛 방식이라 새 설계에서는 heartbeat를 쓴다.[@cia-error-control-protocols-2026]
 
 통신 객체가 쓰는 CAN-ID는 아래와 같다.
 
