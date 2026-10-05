@@ -43,4 +43,4 @@ CCSDS 232.1-B-2는 우주 링크의 COP-1(Communications Operation Procedure-1)�
 
 ARQ는 되돌림 통로가 있어야 한다.[@iec-60050-721-08-21-1991][@ietf-rfc-3366-2002] 반면 [[error-correction-code|오류 정정 부호]]는 되돌림 통로 없이 오류를 고친다.[@iec-60050-702-05-20-2016]
 
-IETF의 RFC 3819와 RFC 3366에 따르면 ARQ는 FEC(Forward Error Correction)와 달리 지연 변동을 키우고,[@ietf-rfc-3819-2004] 한 링크를 여러 흐름이 함께 쓸 때는 손실을 겪는 흐름 때문에 다른 TCP·[[udp|UDP]] 흐름에도 지연 변동을 준다.[@ietf-rfc-3366-2002]
+IETF의 RFC 3819와 RFC 3366에 따르면 ARQ는 FEC(Forward Error Correction)와 달리 지연 변동을 키우고[@ietf-rfc-3819-2004], 한 링크를 여러 흐름이 함께 쓸 때는 손실을 겪는 흐름 때문에 다른 TCP·[[udp|UDP]] 흐름에도 지연 변동을 준다.[@ietf-rfc-3366-2002]
