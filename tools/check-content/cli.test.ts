@@ -125,6 +125,7 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-citation-place.md:12",
         "content/bad-citation-place.md:16",
         "content/bad-citation-place.md:20",
+        "content/bad-citation-place.md:24",
         "content/bad-citation-order.md:12",
         "content/bad-citation-order.md:16",
         "content/bad-citation-order.md:24",
@@ -258,10 +259,14 @@ describe("check-content CLI", { concurrency: false }, () => {
     const place = report.messages
       .get("citation")!
       .filter((m) => m.includes("bad-citation-place.md"))
-    assert.strictEqual(place.length, 3)
+    assert.strictEqual(place.length, 4)
     assert.match(place[0], /:12: .*,\[@example-spec-2024\] → \[@example-spec-2024\],$/)
     assert.match(place[1], /:16: .*, \[@example-spec-2024\] → \[@example-spec-2024\],$/)
     assert.match(place[2], /:20: .*\[@example-spec-2024\]\. → \.\[@example-spec-2024\]$/)
+    assert.match(
+      place[3],
+      /:24: .* → \.\[@example-manual-2023\]<!-- 주석 -->\[@example-spec-2024\]$/,
+    )
   })
 
   test("url이 겹치는 bib 엔트리는 서로의 키를 알려 준다", () => {

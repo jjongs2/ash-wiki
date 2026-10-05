@@ -122,7 +122,7 @@ npm run check:content
 엔트리 타입(`@techreport`)과 `type` 필드는 다릅니다. `type` 필드는 참고문헌에서 보고서는 번호 앞에, 학위 논문은 제목 뒤에 찍히고, 비어 있으면 엔트리 타입 이름(`techreport`)이 대신 찍힙니다. 값은 [IEEE Reference Guide](https://journals.ieeeauthorcenter.ieee.org/wp-content/uploads/sites/7/IEEE_Reference_Guide.pdf)의 보고서·학위 논문 꼴을 따릅니다.
 
 - 보고서는 발행기관이 적은 종류를 IEEE 약어(Technical → Tech., Report → Rep.)로 줄여 씁니다. 예: `Tech. Rep.`, `Tech. Memo.`, `Special Rep.`. 종류가 드러나지 않으면 `Tech. Rep.`입니다. `리뷰`
-- 번호에 계열 이름이 든 보고서는 계열 이름을 `type`에, 나머지를 `number`에 둡니다. 예: `type = {NIST Special Publication}`, `number = {800-53 Revision 5}`. 계열 이름이 두 번 찍히지 않습니다. `리뷰`
+- 번호에 계열 이름이 든 보고서는 계열 이름을 `type`에, 나머지를 `number`에 둡니다. 예: `type = {NIST Special Publication}`, `number = {800-53 Revision 5}`. 그래야 계열 이름이 두 번 찍히지 않습니다. 계열 이름은 줄이지 않고 원문대로 씁니다. 예: `Planning Report`, `CS-Report` `리뷰`
 - 학위 논문은 원문이 적은 대로 `Ph.D. thesis`나 `Ph.D. dissertation`으로 씁니다. 학위만 보고 고르지 않습니다. `리뷰`
 
 열린 PR이 같은 키의 엔트리를 더했는지는 [열린 PR과 겹치는 파일](#열린-pr과-겹치는-파일)대로 봅니다.
@@ -308,7 +308,7 @@ bib 엔트리는 두 파일의 정규화한 `url`만 비교합니다. 정규화�
 
 - 정규화한 `url`이 같으면 같은 문서입니다. 내 파일을 상대 PR의 파일로 글자 그대로 덮어씁니다. 두 브랜치가 같은 내용의 파일을 더하면 git이 충돌 없이 합칩니다. `리뷰`
 - 정규화한 `url`이 다르면 다른 문서입니다. 내 키를 바꾸고, 파일 이름과 본문의 인용을 함께 고칩니다. `리뷰`
-- 같은 절을 가리키는 키는 하나로 합치고, 지운 키를 인용하던 페이지는 남은 키를 인용합니다. 한 HTML 페이지의 다른 절을 따로 인용하면 `url`에 그 절의 앵커를 달아 엔트리를 따로 둡니다. 예: `…/xrat/V4_xsh_chap01.html#tag_22_02_09`(B.2.9 Threads) `검사 citation`
+- 같은 절을 가리키는 키는 하나로 합치고, 지운 키를 인용하던 페이지는 남은 키를 인용합니다. 한 HTML 페이지의 다른 절을 따로 인용하면 `url`에 그 절의 앵커를 달아 엔트리를 따로 둡니다. 예: `…/xrat/V4_xsh_chap01.html#tag_22_02_09`(B.2.9 Threads) `리뷰`
 
 도해는 두 파일의 내용을 비교합니다.
 

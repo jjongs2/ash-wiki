@@ -60,18 +60,20 @@ function checkFormat(format: string, value: unknown, statuses: string[]): string
   }
 }
 
-// 표준 페이지에만 있는 필드가 하나라도 있으면 표준 페이지다.
-function pageTypeOf(fields: Record<string, unknown>, conventions: Conventions): "표준" | "개념" {
-  const standardOnly = conventions
+const standardOnlyFields = (conventions: Conventions) =>
+  conventions
     .table("frontmatter", ["필드", "개념"])
     .filter((row) => row["개념"] === "—")
     .map((row) => row["필드"])
-  return Object.keys(fields).some((field) => standardOnly.includes(field)) ? "표준" : "개념"
-}
+
+// 표준 페이지에만 있는 필드가 하나라도 있으면 표준 페이지다.
+const pageTypeOf = (fields: Record<string, unknown>, standardOnly: string[]) =>
+  Object.keys(fields).some((field) => standardOnly.includes(field)) ? "표준" : "개념"
 
 export const frontmatter: SourceCheck = (tree, conventions) => {
   const schema = conventions.table("frontmatter", ["필드", "개념", "표준", "형식"])
   const statuses = conventions.column("status", "값")
+  const standardOnly = standardOnlyFields(conventions)
   const violations: Violation[] = []
   for (const page of tree.pages) {
     if ("error" in page.frontmatter) {
@@ -94,7 +96,7 @@ export const frontmatter: SourceCheck = (tree, conventions) => {
       if (reason) at(`title: ${reason}`, "title")
       continue
     }
-    const pageType = pageTypeOf(fields, conventions)
+    const pageType = pageTypeOf(fields, standardOnly)
     for (const field of Object.keys(fields)) {
       if (!schema.some((row) => row["필드"] === field)) at(`스키마 밖의 필드: ${field}`, field)
     }
@@ -207,28 +209,28 @@ function headingText(heading: Heading): string {
   return text
 }
 
-// 표준 페이지의 첫 두 ##는 범위, 개정 이력 순서다. 제목은 앞머리로 맞춰 `개정 이력(2024)`도 받는다.
+// 표준 페이지의 첫 두 ##(docs/wiki-conventions.md 절). 제목은 앞머리로 맞춰 `개정 이력(2024)`도 받는다.
 const standardSections = ["범위", "개정 이력"]
 
 export const section: SourceCheck = (tree, conventions) => {
+  const standardOnly = standardOnlyFields(conventions)
   const violations: Violation[] = []
   for (const page of tree.pages) {
     if (page.kind !== "page" || "error" in page.frontmatter) continue
-    if (pageTypeOf(fieldsOf(page), conventions) !== "표준") continue
-    const headings = page.mdast.children.filter(
-      (node): node is Heading => node.type === "heading" && node.depth === 2,
+    if (pageTypeOf(fieldsOf(page), standardOnly) !== "표준") continue
+    const titles = page.mdast.children
+      .filter((node): node is Heading => node.type === "heading" && node.depth === 2)
+      .slice(0, standardSections.length)
+    const mismatch = standardSections.findIndex(
+      (name, index) => !titles[index] || !headingText(titles[index]).trim().startsWith(name),
     )
-    const first = headings.slice(0, standardSections.length)
-    const wrong = standardSections.findIndex(
-      (name, index) => !first[index] || !headingText(first[index]).trim().startsWith(name),
-    )
-    if (wrong < 0) continue
-    const at = first[wrong] ?? first.at(-1)
-    const now = first.map((heading) => headingText(heading).trim()).join(", ") || "없음"
+    if (mismatch < 0) continue
+    const misplaced = titles[mismatch] ?? titles.at(-1)
+    const written = titles.map((heading) => headingText(heading).trim()).join(", ") || "없음"
     violations.push({
       file: page.file,
-      line: at?.position!.start.line ?? 1,
-      message: `표준 페이지의 첫 두 ##는 ${standardSections.join(", ")} 순서로 쓴다(지금: ${now})`,
+      line: misplaced?.position!.start.line ?? 1,
+      message: `표준 페이지의 첫 두 ##는 ${standardSections.join(", ")} 순서로 쓴다(지금: ${written})`,
     })
   }
   return violations
@@ -407,7 +409,7 @@ export function bibKeys(tree: Tree): Set<string> {
 
 // 같은 문서를 가리키는 url을 맞춘다. 스킴, `www.`, 끝 슬래시만 맞추고 조각(같은 페이지의 다른 절),
 // 쿼리(ITU처럼 쿼리로 갈리는 문서), Wayback 접두(시점이 다른 문서)는 그대로 둔다.
-export function normalizeUrl(url: string): string {
+function normalizeUrl(url: string): string {
   const [, base, rest] = url
     .trim()
     .replace(/^https?:\/\//i, "")
@@ -501,60 +503,23 @@ export const citation: SourceCheck = (tree, conventions) => {
   return violations
 }
 
-// 인용 자리는 쉼표 앞, 마침표 뒤다. 붙여 쓴 인용(`[@a][@b]`)은 한 덩어리로 옮긴다. 앞뒤 글자는 원문에서
-// 읽는다. 코드를 가린 본문에서는 인라인 코드가 공백으로 보여, 코드 안의 쉼표가 사라진다.
-function citationPlace(page: Page): Violation[] {
-  const sourceLines = page.source.split("\n")
-  const runs: Citation[][] = []
-  for (const citation of citations(page)) {
-    const previous = runs.at(-1)?.at(-1)
-    const line = sourceLines[citation.line - 1]
-    const adjacent =
-      previous &&
-      previous.line === citation.line &&
-      line.slice(previous.column + previous.raw.length, citation.column).trim() === ""
-    if (adjacent) runs.at(-1)!.push(citation)
-    else runs.push([citation])
-  }
-  const violations: Violation[] = []
-  for (const run of runs) {
-    const { line, column } = run[0]
-    const last = run.at(-1)!
-    const end = last.column + last.raw.length
-    const source = sourceLines[line - 1]
-    const written = source.slice(column, end)
-    const at = (message: string) => violations.push({ file: page.file, line, message })
-    const comma = source.slice(0, column).match(/,[ \t]*$/)
-    if (comma) at(`인용은 쉼표 앞에 둔다: ${comma[0]}${written} → ${written},`)
-    if (source[end] === ".") at(`인용은 마침표 뒤에 둔다: ${written}. → .${written}`)
-  }
-  return violations
+// 원문에서 from의 [부터 to의 [ 앞까지의 글. 코드를 가린 본문에서는 인라인 코드가 공백으로 보이므로
+// 사이의 글은 원문에서 읽는다.
+function sourceSpan(sourceLines: string[], from: Citation, to: Citation): string {
+  const text = sourceLines.slice(from.line - 1, to.line).join("\n")
+  return text.slice(from.column, text.length - sourceLines[to.line - 1].length + to.column)
 }
 
-// 인용 번호는 키가 페이지에서 처음 나온 순서로 매겨진다. 한 자리(한 블록 안에서 공백과 줄바꿈만
-// 사이에 둔 인용들)의 키가 그 순서를 따라야 [2][1]이 아니라 [1][2]로 렌더된다. 키가 하나가 아닌 대괄호는
-// 앞의 검사가 맡는다.
-function citationOrder(page: Page): Violation[] {
-  const found = citations(page).filter(
-    (citation): citation is Citation & { key: string } => citation.key !== null,
-  )
-  const first = new Map<string, number>()
-  found.forEach(({ key }, index) => {
-    if (!first.has(key)) first.set(key, index)
-  })
+// 한 자리는 한 블록 안에서 공백, 줄바꿈, HTML 주석만 사이에 둔 인용들이다. HTML 주석은 렌더되지 않으므로
+// 빼고 본다.
+function citationRuns<T extends Citation>(page: Page, found: T[]): T[][] {
   const locate = blockLocator(page)
   const blockOf = ({ line, column }: Citation) => locate(line, column)
-  // 사이의 글은 원문에서 읽는다. 코드를 가린 본문에서는 인라인 코드가 공백으로 보인다. HTML 주석은
-  // 렌더되지 않으므로 빼고 본다.
   const sourceLines = page.source.split("\n")
-  const span = (from: Citation, to: Citation) => {
-    const text = sourceLines.slice(from.line - 1, to.line).join("\n")
-    return text.slice(from.column, text.length - sourceLines[to.line - 1].length + to.column)
-  }
-  const runs: (typeof found)[] = []
+  const runs: T[][] = []
   found.forEach((citation, index) => {
     const previous = found[index - 1]
-    const gap = previous && span(previous, citation).slice(previous.raw.length)
+    const gap = previous && sourceSpan(sourceLines, previous, citation).slice(previous.raw.length)
     const joined =
       previous &&
       blockOf(previous) !== null &&
@@ -563,16 +528,52 @@ function citationOrder(page: Page): Violation[] {
     if (joined) runs.at(-1)!.push(citation)
     else runs.push([citation])
   })
+  return runs
+}
+
+// 한 자리를 원문에 쓰인 대로 한 줄로 준다.
+function writtenRun(sourceLines: string[], run: Citation[]): string {
+  const last = run.at(-1)!
+  return (sourceSpan(sourceLines, run[0], last) + last.raw).replace(/\s*\n[\s>]*/g, " ")
+}
+
+// 인용 자리는 쉼표 앞, 마침표 뒤다. 한 자리의 인용은 한 덩어리로 옮긴다. 앞뒤 글자도 원문에서 읽는다.
+function citationPlace(page: Page): Violation[] {
+  const sourceLines = page.source.split("\n")
   const violations: Violation[] = []
-  for (const run of runs) {
+  for (const run of citationRuns(page, citations(page))) {
+    const first = run[0]
+    const last = run.at(-1)!
+    const written = writtenRun(sourceLines, run)
+    const add = (message: string) => violations.push({ file: page.file, line: first.line, message })
+    const comma = sourceLines[first.line - 1].slice(0, first.column).match(/,[ \t]*$/)
+    if (comma) add(`인용은 쉼표 앞에 둔다: ${comma[0]}${written} → ${written},`)
+    if (sourceLines[last.line - 1][last.column + last.raw.length] === ".") {
+      add(`인용은 마침표 뒤에 둔다: ${written}. → .${written}`)
+    }
+  }
+  return violations
+}
+
+// 인용 번호는 키가 페이지에서 처음 나온 순서로 매겨진다. 한 자리의 키가 그 순서를 따라야 [2][1]이 아니라
+// [1][2]로 렌더된다. 키가 하나가 아닌 대괄호는 앞의 검사가 맡는다.
+function citationOrder(page: Page): Violation[] {
+  const found = citations(page).filter(
+    (citation): citation is Citation & { key: string } => citation.key !== null,
+  )
+  const first = new Map<string, number>()
+  found.forEach(({ key }, index) => {
+    if (!first.has(key)) first.set(key, index)
+  })
+  const sourceLines = page.source.split("\n")
+  const violations: Violation[] = []
+  for (const run of citationRuns(page, found)) {
     const sorted = [...run].sort((a, b) => first.get(a.key)! - first.get(b.key)!)
     if (sorted.every((citation, index) => citation === run[index])) continue
-    const last = run.at(-1)!
-    const written = (span(run[0], last) + last.raw).replace(/\s*\n[\s>]*/g, " ")
     violations.push({
       file: page.file,
       line: run[0].line,
-      message: `여러 인용은 페이지에서 처음 나온 순서로 쓴다: ${written} → ${sorted.map((c) => c.raw).join("")}`,
+      message: `여러 인용은 페이지에서 처음 나온 순서로 쓴다: ${writtenRun(sourceLines, run)} → ${sorted.map((c) => c.raw).join("")}`,
     })
   }
   return violations
