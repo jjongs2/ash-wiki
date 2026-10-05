@@ -25,9 +25,11 @@
 
 ```sh
 npm ci
-npm run build
+npm run prebuild
 npx quartz build --serve
 ```
+
+`prebuild`는 `npm run build`가 빌드 전에 돌리는 준비 단계이고, 빌드는 `--serve`가 합니다.
 
 `http://localhost:8080`에서 대문이 열립니다.
 

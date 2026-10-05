@@ -7,7 +7,7 @@ description: 재조사. `verify:` 이슈 하나의 미검증 주장을 재조사
 
 `verify:` 이슈 하나가 PR 하나가 된다. 절차의 정본은 위키 검증 문서의 재조사 절이고, 이 스킬은 그것을 실행 단계로 옮긴다. 용어는 `CONTEXT.md`를 따른다.
 
-먼저 읽는다: 이슈(`gh issue view <n> --comments`), `docs/wiki-verification.md`, `docs/source-hierarchy.md`, `docs/wiki-conventions.md`. 브랜치와 커밋은 `CONTRIBUTING.md`를 따르고, 타입은 `content`다.
+먼저 읽는다: 이슈(`docs/agents/issue-tracker.md`의 이슈 읽기), `docs/wiki-verification.md`, `docs/source-hierarchy.md`, `docs/wiki-conventions.md`. 브랜치와 커밋은 `CONTRIBUTING.md`를 따르고, 타입은 `content`다.
 
 `ASH_WIKI_NOTES`는 열지 않는다. 재조사는 이슈에 모인 주장과 출처, 게시된 페이지만 본다.
 
