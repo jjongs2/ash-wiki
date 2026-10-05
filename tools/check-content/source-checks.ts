@@ -1,5 +1,6 @@
 import { slugifyFilePath } from "@quartz-community/utils"
 import GithubSlugger, { slug as anchorSlug } from "github-slugger"
+import type { Heading } from "mdast"
 import type { Position } from "unist"
 import { visit } from "unist-util-visit"
 import { pretendardStylesheet } from "../../quartz/util/localFonts"
@@ -59,10 +60,18 @@ function checkFormat(format: string, value: unknown, statuses: string[]): string
   }
 }
 
+// 표준 페이지에만 있는 필드가 하나라도 있으면 표준 페이지다.
+function pageTypeOf(fields: Record<string, unknown>, conventions: Conventions): "표준" | "개념" {
+  const standardOnly = conventions
+    .table("frontmatter", ["필드", "개념"])
+    .filter((row) => row["개념"] === "—")
+    .map((row) => row["필드"])
+  return Object.keys(fields).some((field) => standardOnly.includes(field)) ? "표준" : "개념"
+}
+
 export const frontmatter: SourceCheck = (tree, conventions) => {
   const schema = conventions.table("frontmatter", ["필드", "개념", "표준", "형식"])
   const statuses = conventions.column("status", "값")
-  const standardOnly = schema.filter((row) => row["개념"] === "—").map((row) => row["필드"])
   const violations: Violation[] = []
   for (const page of tree.pages) {
     if ("error" in page.frontmatter) {
@@ -85,9 +94,7 @@ export const frontmatter: SourceCheck = (tree, conventions) => {
       if (reason) at(`title: ${reason}`, "title")
       continue
     }
-    const pageType = Object.keys(fields).some((field) => standardOnly.includes(field))
-      ? "표준"
-      : "개념"
+    const pageType = pageTypeOf(fields, conventions)
     for (const field of Object.keys(fields)) {
       if (!schema.some((row) => row["필드"] === field)) at(`스키마 밖의 필드: ${field}`, field)
     }
@@ -191,6 +198,42 @@ export const lead: SourceCheck = (tree) => {
   return violations
 }
 
+// 제목의 글자. text와 inlineCode만 모은다.
+function headingText(heading: Heading): string {
+  let text = ""
+  visit(heading, (node) => {
+    if (node.type === "text" || node.type === "inlineCode") text += node.value
+  })
+  return text
+}
+
+// 표준 페이지의 첫 두 ##는 범위, 개정 이력 순서다. 제목은 앞머리로 맞춰 `개정 이력(2024)`도 받는다.
+const standardSections = ["범위", "개정 이력"]
+
+export const section: SourceCheck = (tree, conventions) => {
+  const violations: Violation[] = []
+  for (const page of tree.pages) {
+    if (page.kind !== "page" || "error" in page.frontmatter) continue
+    if (pageTypeOf(fieldsOf(page), conventions) !== "표준") continue
+    const headings = page.mdast.children.filter(
+      (node): node is Heading => node.type === "heading" && node.depth === 2,
+    )
+    const first = headings.slice(0, standardSections.length)
+    const wrong = standardSections.findIndex(
+      (name, index) => !first[index] || !headingText(first[index]).trim().startsWith(name),
+    )
+    if (wrong < 0) continue
+    const at = first[wrong] ?? first.at(-1)
+    const now = first.map((heading) => headingText(heading).trim()).join(", ") || "없음"
+    violations.push({
+      file: page.file,
+      line: at?.position!.start.line ?? 1,
+      message: `표준 페이지의 첫 두 ##는 ${standardSections.join(", ")} 순서로 쓴다(지금: ${now})`,
+    })
+  }
+  return violations
+}
+
 function* matchLines(page: Page, pattern: RegExp) {
   const lines = page.masked.split("\n")
   for (let i = 0; i < lines.length; i++) {
@@ -206,11 +249,7 @@ function sectionIds(page: Page): Set<string> {
   const slugger = new GithubSlugger()
   const ids = new Set<string>()
   visit(page.mdast, "heading", (heading) => {
-    let text = ""
-    visit(heading, (node) => {
-      if (node.type === "text" || node.type === "inlineCode") text += node.value
-    })
-    ids.add(slugger.slug(text))
+    ids.add(slugger.slug(headingText(heading)))
   })
   return ids
 }
@@ -366,8 +405,49 @@ export function bibKeys(tree: Tree): Set<string> {
   )
 }
 
+// 같은 문서를 가리키는 url을 맞춘다. 스킴, `www.`, 끝 슬래시만 맞추고 조각(같은 페이지의 다른 절),
+// 쿼리(ITU처럼 쿼리로 갈리는 문서), Wayback 접두(시점이 다른 문서)는 그대로 둔다.
+export function normalizeUrl(url: string): string {
+  const [, base, rest] = url
+    .trim()
+    .replace(/^https?:\/\//i, "")
+    .replace(/^www\./i, "")
+    .match(/^([^?#]*)(.*)$/s)!
+  return base.replace(/\/+$/, "") + rest
+}
+
+// 한 문서에 키가 둘이면 같은 인용끼리의 페이지 사이 중복이 가려진다.
+function duplicateUrls(tree: Tree): Violation[] {
+  const owners = new Map<string, { file: string; key: string; line: number }[]>()
+  for (const bib of tree.bib) {
+    if ("error" in bib.entries) continue
+    for (const entry of bib.entries) {
+      const url = entry.fields.get("url")
+      if (!url) continue
+      const normalized = normalizeUrl(url.value)
+      owners.set(normalized, [
+        ...(owners.get(normalized) ?? []),
+        { file: bib.file, key: entry.key, line: url.line },
+      ])
+    }
+  }
+  return [...owners.values()]
+    .filter((group) => group.length > 1)
+    .flatMap((group) =>
+      group.map(({ file, key, line }) => ({
+        file,
+        line,
+        message: `정규화한 url이 같은 엔트리가 있다: ${group
+          .filter((other) => other.key !== key)
+          .map((other) => other.key)
+          .join(", ")}`,
+      })),
+    )
+}
+
 export const citation: SourceCheck = (tree, conventions) => {
   const required = conventions.table("bib-fields", ["필드", "형식"])
+  const typeFields = conventions.table("bib-type-fields", ["엔트리 타입", "필드"])
   const violations: Violation[] = []
   for (const bib of tree.bib) {
     if ("error" in bib.entries) {
@@ -396,8 +476,14 @@ export const citation: SourceCheck = (tree, conventions) => {
         const reason = checkFormat(row["형식"], field.value, [])
         if (reason) at(`${row["필드"]}: ${reason}`, field.line)
       }
+      for (const row of typeFields) {
+        if (entry.type === row["엔트리 타입"] && !entry.fields.get(row["필드"])?.value) {
+          at(`@${entry.type}에는 ${row["필드"]} 필드를 둔다`)
+        }
+      }
     }
   }
+  violations.push(...duplicateUrls(tree))
   const keys = bibKeys(tree)
   for (const page of tree.pages) {
     for (const { raw, key, line } of citations(page)) {
@@ -410,6 +496,37 @@ export const citation: SourceCheck = (tree, conventions) => {
       if (!keys.has(key)) at(`bib/에 엔트리가 없는 키: ${key}`)
     }
     violations.push(...citationOrder(page))
+    violations.push(...citationPlace(page))
+  }
+  return violations
+}
+
+// 인용 자리는 쉼표 앞, 마침표 뒤다. 붙여 쓴 인용(`[@a][@b]`)은 한 덩어리로 옮긴다. 앞뒤 글자는 원문에서
+// 읽는다. 코드를 가린 본문에서는 인라인 코드가 공백으로 보여, 코드 안의 쉼표가 사라진다.
+function citationPlace(page: Page): Violation[] {
+  const sourceLines = page.source.split("\n")
+  const runs: Citation[][] = []
+  for (const citation of citations(page)) {
+    const previous = runs.at(-1)?.at(-1)
+    const line = sourceLines[citation.line - 1]
+    const adjacent =
+      previous &&
+      previous.line === citation.line &&
+      line.slice(previous.column + previous.raw.length, citation.column).trim() === ""
+    if (adjacent) runs.at(-1)!.push(citation)
+    else runs.push([citation])
+  }
+  const violations: Violation[] = []
+  for (const run of runs) {
+    const { line, column } = run[0]
+    const last = run.at(-1)!
+    const end = last.column + last.raw.length
+    const source = sourceLines[line - 1]
+    const written = source.slice(column, end)
+    const at = (message: string) => violations.push({ file: page.file, line, message })
+    const comma = source.slice(0, column).match(/,[ \t]*$/)
+    if (comma) at(`인용은 쉼표 앞에 둔다: ${comma[0]}${written} → ${written},`)
+    if (source[end] === ".") at(`인용은 마침표 뒤에 둔다: ${written}. → .${written}`)
   }
   return violations
 }
@@ -998,6 +1115,7 @@ export const sourceChecks: [string, SourceCheck][] = [
   ["frontmatter", frontmatter],
   ["namespace", namespace],
   ["lead", lead],
+  ["section", section],
   ["wikilink", wikilink],
   ["citation", citation],
   ["callout", callout],
