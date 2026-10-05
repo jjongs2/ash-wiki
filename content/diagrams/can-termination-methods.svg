@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 13.5 636.5 261" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 표준 종단: 120 Ω 하나 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M30 40 H130 V95" />
+    <path d="M30 200 H130 V145" />
+    <rect x="123" y="95" width="14" height="50" rx="4" fill="var(--surface, none)" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="30" y="32">CAN_H</text>
+    <text x="30" y="216">CAN_L</text>
+    <text x="115" y="124" text-anchor="end">120 Ω</text>
+  </g>
+
+  <!-- 분할 종단: 60 Ω 둘과 가운데의 커패시터 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M210 40 H310 V60" />
+    <path d="M210 200 H310 V180" />
+    <rect x="303" y="60" width="14" height="50" rx="4" fill="var(--surface, none)" />
+    <rect x="303" y="130" width="14" height="50" rx="4" fill="var(--surface, none)" />
+    <path d="M310 110 V130" />
+    <path d="M310 120 H350 V150" />
+    <path d="M340 150 H360 M340 158 H360" />
+    <path d="M350 158 V174 M340 174 H360 M344 180 H356 M348 186 H352" />
+  </g>
+  <circle cx="310" cy="120" r="3.5" fill="var(--ink, #727981)" />
+  <g fill="var(--text, #727981)">
+    <text x="210" y="32">CAN_H</text>
+    <text x="210" y="216">CAN_L</text>
+    <text x="295" y="89" text-anchor="end">60 Ω</text>
+    <text x="295" y="159" text-anchor="end">60 Ω</text>
+  </g>
+
+  <!-- 바이어스 분할 종단: 분할 종단에 전압 분배기를 더함 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M420 40 H520 V60" />
+    <path d="M420 200 H520 V180" />
+    <rect x="513" y="60" width="14" height="50" rx="4" fill="var(--surface, none)" />
+    <rect x="513" y="130" width="14" height="50" rx="4" fill="var(--surface, none)" />
+    <path d="M520 110 V130" />
+    <path d="M520 120 H600" />
+    <path d="M560 120 V150" />
+    <path d="M550 150 H570 M550 158 H570" />
+    <path d="M560 158 V174 M550 174 H570 M554 180 H566 M558 186 H562" />
+    <path d="M592 48 H608 M600 48 V60" />
+    <rect x="593" y="60" width="14" height="50" rx="4" fill="var(--surface, none)" />
+    <rect x="593" y="130" width="14" height="50" rx="4" fill="var(--surface, none)" />
+    <path d="M600 110 V130" />
+    <path d="M600 180 V196 M590 196 H610 M594 202 H606 M598 208 H602" />
+  </g>
+  <circle cx="520" cy="120" r="3.5" fill="var(--ink, #727981)" />
+  <circle cx="600" cy="120" r="3.5" fill="var(--ink, #727981)" />
+  <circle cx="560" cy="120" r="3.5" fill="var(--ink, #727981)" />
+  <g fill="var(--text, #727981)">
+    <text x="420" y="32">CAN_H</text>
+    <text x="420" y="216">CAN_L</text>
+    <text x="505" y="89" text-anchor="end">60 Ω</text>
+    <text x="505" y="159" text-anchor="end">60 Ω</text>
+    <text x="600" y="40" text-anchor="middle">VCC</text>
+    <text x="612" y="116">VCC/2</text>
+  </g>
+
+  <!-- 방식 이름 -->
+  <g text-anchor="middle" font-size="14" fill="var(--text, #727981)">
+    <text x="84" y="244">표준 종단</text>
+    <text x="285" y="244">분할 종단</text>
+    <text x="520" y="244">바이어스 분할 종단</text>
+  </g>
+  <text x="520" y="262" text-anchor="middle" fill="var(--text, #727981)">(Microchip 앱노트)</text>
+</svg>

@@ -36,5 +36,5 @@
 
   <!-- 범례 -->
   <text x="140" y="208" font-size="12" fill="var(--text, #727981)">D: dominant (논리 0) · R: recessive (논리 1)</text>
-  <text x="140" y="228" font-size="12" fill="var(--text, #727981)">한 노드라도 D를 내면 버스는 D가 된다.</text>
+  <text x="140" y="228" font-size="12" fill="var(--text, #727981)">중재 모드에서 한 노드라도 D를 내면 버스는 D가 된다.</text>
 </svg>

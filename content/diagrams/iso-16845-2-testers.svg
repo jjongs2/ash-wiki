@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 20 300 240" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 시험 시스템의 두 부분 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="30" y="30" width="280" height="48" rx="4" />
+    <rect x="30" y="202" width="280" height="48" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="170" y="50">upper tester</text>
+    <text x="170" y="68" font-size="12">위 OSI 계층의 인터페이스를 흉내</text>
+    <text x="170" y="222">lower tester</text>
+    <text x="170" y="240" font-size="12">아래 OSI 계층의 인터페이스를 흉내</text>
+  </g>
+
+  <!-- 시험 대상 -->
+  <rect x="30.75" y="116.75" width="278.5" height="46.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="170" y="136">IUT: 고속 PMA</text>
+    <text x="170" y="154" font-size="12">예: 단독 트랜시버</text>
+  </g>
+
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)">
+    <line x1="170" y1="80" x2="170" y2="114" />
+    <line x1="170" y1="166" x2="170" y2="200" />
+  </g>
+</svg>
