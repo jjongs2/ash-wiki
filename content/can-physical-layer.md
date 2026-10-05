@@ -13,7 +13,7 @@ verified: 2026-09-27
 
 ## PMA 선택지
 
-CiA는 CAN의 PMA 선택지로 고속(HS) 트랜시버, [[can-fd|CAN FD]] 트랜시버, [[can-transceiver#SIC|CAN SIC]] 트랜시버, CAN SIC XL 트랜시버, 저속 내결함성 트랜시버(ISO 11898-3:2006), 트럭·트레일러용 트랜시버(ISO 11992-1), 단선 CAN 트랜시버(SAE J2411)를 든다. 이 가운데 저속 내결함성 트랜시버와 단선 CAN 트랜시버는 새 설계에 더는 권하지 않는다.[@cia-physical-layer-options-2026]
+CiA는 CAN의 PMA 선택지로 고속 트랜시버, [[can-fd|CAN FD]] 트랜시버, [[can-transceiver#SIC|CAN SIC]] 트랜시버, CAN SIC XL 트랜시버, 저속 내결함성 트랜시버(ISO 11898-3:2006), 트럭·트레일러용 트랜시버(ISO 11992-1), 단선 CAN 트랜시버(SAE J2411)를 든다. 이 가운데 저속 내결함성 트랜시버와 단선 CAN 트랜시버는 새 설계에 더는 권하지 않는다.[@cia-physical-layer-options-2026]
 
 ## 차동 전송
 
@@ -23,9 +23,9 @@ CiA는 CAN의 PMA 선택지로 고속(HS) 트랜시버, [[can-fd|CAN FD]] 트랜
 
 ## 고속 CAN
 
-고속 [[can-transceiver|트랜시버]]는 dominant에서 CAN_H를 약 3.5 V, CAN_L을 약 1.5 V로 구동해 두 선의 전압 차를 약 2 V로 벌린다.[@nxp-tja1042-2023][@microchip-an228-2002]
+고속 [[can-transceiver|트랜시버]]는 [[dominant-and-recessive|dominant]]에서 CAN_H를 약 3.5 V, CAN_L을 약 1.5 V로 구동해 두 선의 전압 차를 약 2 V로 벌린다.[@nxp-tja1042-2023][@microchip-an228-2002]
 
-[[dominant-and-recessive|recessive]]에서 고속 트랜시버는 Normal 모드일 때 두 선을 0.5 VCC(5 V 전원에서 2.5 V)로 바이어스해 전압 차가 거의 0이다. Standby 모드에서는 공급 전류를 줄이려고 버스 선을 접지로 바이어스한다.[@nxp-tja1042-2023][@ti-tcan1042-q1-2021]
+recessive에서 고속 트랜시버는 Normal 모드일 때 두 선을 0.5 VCC(5 V 전원에서 2.5 V)로 바이어스해 전압 차가 거의 0이다. Standby 모드에서는 공급 전류를 줄이려고 버스 선을 접지로 바이어스한다.[@nxp-tja1042-2023][@ti-tcan1042-q1-2021]
 
 ![[diagrams/hs-can-bus-voltage.svg]]
 
@@ -49,7 +49,7 @@ Philips 앱노트는 PCA82C250을 고속 모드로 쓸 때 1 Mbit/s에서의 버
 
 종단 방식에는 양 끝에 120 Ω 저항을 하나씩 다는 표준 종단과, 그 저항을 60 Ω 둘로 나누고 그 사이를 커패시터로 접지에 잇는 분할 종단이 있다. 분할 종단은 고주파 잡음을 접지로 흘려 EMC(Electromagnetic Compatibility)를 높이며, 두 저항을 되도록 똑같이 맞춰야 한다.[@microchip-an228-2002][@ti-slla270-2008]
 
-분할 종단의 가운데를 VCC/2로 잡아 recessive의 공통 모드 전압을 일정하게 두는 방식도 있다. Microchip 앱노트는 이를 바이어스 분할 종단이라 부르며, 분할 종단에 전압 분배기를 더해 두 60 Ω 저항 사이를 전원 전압의 절반으로 만든다.[@microchip-an228-2002] TI 앱노트에 따르면 트랜시버의 V-split 핀을 분할 종단의 가운데에 이으면 버스 전압이 VCC/2로 안정되어, 버스가 쉬는 동안 공통 모드 전압이 높게 떠도는 것을 막는다.[@ti-sloa101b-2016]
+분할 종단의 가운데를 VCC/2로 잡아 recessive의 공통 모드 전압을 일정하게 두는 방식도 있다. Microchip 앱노트는 이를 **바이어스 분할 종단**이라 부르며, 분할 종단에 전압 분배기를 더해 두 60 Ω 저항 사이를 전원 전압의 절반으로 만든다.[@microchip-an228-2002] TI 앱노트에 따르면 트랜시버의 V-split 핀을 분할 종단의 가운데에 이으면 버스 전압이 VCC/2로 안정되어, 버스가 쉬는 동안 공통 모드 전압이 높게 떠도는 것을 막는다.[@ti-sloa101b-2016]
 
 ![[diagrams/can-termination-methods.svg]]
 

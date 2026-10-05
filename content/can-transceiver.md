@@ -15,7 +15,7 @@ ISO 11898-2:2026은 TXD를 PCS(Physical Coding Sublayer)가 구동해 PMA가 버
 
 ## 송신과 수신
 
-TCAN1042의 Normal 모드에서 TXD가 low이면 드라이버가 버스를 차동으로 구동해 [[dominant-and-recessive|dominant]]로 만든다. high이면 구동하지 않고, 버스는 수신기 내부 저항으로 0.5 VCC에 바이어스된 recessive가 된다.[@ti-tcan1042-q1-2021] ISO 11898-2:2026은 PMA가 중재 모드에 있을 때 dominant와 recessive를 동시에 보내면 버스가 dominant가 된다고 정한다.[@iso-11898-2-obp-2026]
+TCAN1042의 Normal 모드에서 TXD가 low이면 드라이버가 버스를 차동으로 구동해 [[dominant-and-recessive|dominant]]로 만든다. high이면 구동하지 않고, 버스는 수신기 내부 저항으로 0.5 VCC에 바이어스된 recessive가 된다.[@ti-tcan1042-q1-2021] 모드에 따른 버스 바이어스는 [[can-physical-layer#고속 CAN|CAN 물리 계층]]에서 다룬다. ISO 11898-2:2026은 PMA가 중재 모드에 있을 때 dominant와 recessive를 동시에 보내면 버스가 dominant가 된다고 정한다.[@iso-11898-2-obp-2026]
 
 ![[diagrams/hs-can-bus-voltage.svg]]
 
@@ -27,7 +27,7 @@ Normal 모드에서는 드라이버와 수신기가 함께 켜져 있어, 송신
 
 TI 앱노트에 따르면 송신 노드가 자기 비트를 되읽을 수 있도록 드라이버의 CANH·CANL 출력이 트랜시버 안에서 수신기 입력에 이어져 있다. 드라이버 입력에서 이 내부 루프를 거쳐 수신기 출력까지 걸리는 전파 지연을 **루프 지연**(loop time)이라 하고, 트랜시버의 성능을 견주는 척도로 흔히 쓴다. TI 데이터시트는 이를 tLOOP라 부르고, 벤더마다 부르는 이름이 다르다.[@ti-sloa101b-2016]
 
-TJA1462의 루프 지연은 TXD에서 버스까지의 지연과 버스에서 RXD까지의 지연으로 이뤄진다. 전원 전압이 4.75 V에서 5.25 V 사이일 때 앞의 지연은 최대 80 ns, 뒤의 지연은 최대 110 ns이고, TXD low에서 RXD low까지는 최대 190 ns다.[@nxp-tja1462-2025]
+TJA1462의 루프 지연은 TXD에서 버스까지의 지연과 버스에서 RXD까지의 지연으로 이뤄진다. 전원 전압이 $4.75\,\mathrm{V} \le \mathrm{VCC} \le 5.25\,\mathrm{V}$일 때 앞의 지연은 최대 80 ns, 뒤의 지연은 최대 110 ns이고, TXD low에서 RXD low까지는 최대 190 ns다.[@nxp-tja1462-2025]
 
 ![[diagrams/tja1462-loop-delay.svg]]
 
@@ -43,19 +43,19 @@ ISO 11898-2:2026은 SIC 모드와 FAST 모드를 갖춘 PMA를 Annex A에 따로
 
 ### SIC
 
-ISO 11898-2:2026은 **SIC**(Signal Improvement Capability)를 MDI(Medium Dependent Interface)의 링잉을 억제하는 능력으로 정의한다. 이 표준은 dominant나 level_0에서 recessive로 넘어갈 때 정해진 시간 동안 공칭보다 낮은 임피던스로 구동하는 중간 출력을 **active recessive**로, 그 뒤 공칭 임피던스로 구동하는 마지막 출력을 **passive recessive**로 정의한다. passive recessive는 이 표준의 앞 판들에서 recessive라 부르던 것과 같다.[@iso-11898-2-obp-2026]
+ISO 11898-2:2026은 **SIC**(Signal Improvement Capability)를 MDI(Medium Dependent Interface)의 링잉을 억제하는 능력으로 정의한다. 이 표준은 dominant나 [[dominant-and-recessive#트랜시버 모드와 버스 상태|level_0]]에서 recessive로 넘어갈 때 정해진 시간 동안 공칭보다 낮은 임피던스로 구동하는 중간 출력을 **active recessive**로, 그 뒤 공칭 임피던스로 구동하는 마지막 출력을 **passive recessive**로 정의한다.[@iso-11898-2-obp-2026]
 
 TJA1462는 ISO 11898-2:2024 파라미터 세트 C의 SIC를 갖춰 망의 링잉을 크게 줄이고, 그만큼 더 큰 토폴로지에서도 CAN FD 통신이 안정되게 한다.[@nxp-tja1462-2025]
 
-전원 전압이 4.75 V에서 5.25 V 사이일 때, TJA1462의 Normal 모드에서 TXD가 low에서 high로 바뀌면 버스는 70\~120 ns 뒤 active recessive를 시작해 355\~480 ns 뒤 끝내고, 415\~530 ns 뒤 passive recessive로 들어간다. active recessive 동안 CAN_H와 CAN_L의 입력 저항은 저마다 37.5\~62.5 Ω이다.[@nxp-tja1462-2025]
+전원 전압이 $4.75\,\mathrm{V} \le \mathrm{VCC} \le 5.25\,\mathrm{V}$일 때, TJA1462의 Normal 모드에서 TXD가 low에서 high로 바뀌면 버스는 70\~120 ns 뒤 active recessive를 시작해 355\~480 ns 뒤 끝내고, 415\~530 ns 뒤 passive recessive로 들어간다. active recessive 동안 CAN_H와 CAN_L의 입력 저항은 저마다 37.5\~62.5 Ω이다.[@nxp-tja1462-2025]
 
 ![[diagrams/tja1462-sic-recessive-timing.svg]]
 
-TJA1462는 표준 CAN FD 트랜시버보다 비트 타이밍 대칭을 더 좁게 맞춰 8 Mbit/s까지의 CAN FD를 지원한다. 전원 전압이 같은 범위이고 TXD의 비트 시간이 125 ns 이상일 때 버스로 나간 recessive 비트의 폭은 TXD의 비트 폭과 ±10 ns 안에서, RXD로 받은 recessive 비트의 폭은 −30\~+20 ns 안에서 다르다.[@nxp-tja1462-2025]
+TJA1462는 표준 CAN FD 트랜시버보다 비트 타이밍 대칭을 더 좁게 맞춰 8 Mbit/s까지의 CAN FD를 지원한다. 전원 전압이 같은 범위이고 TXD의 비트 시간 $t_\mathrm{bit}$이 $t_\mathrm{bit} \ge 125\,\mathrm{ns}$일 때 버스로 나간 recessive 비트의 폭은 TXD의 비트 폭과 ±10 ns 안에서, RXD로 받은 recessive 비트의 폭은 −30\~+20 ns 안에서 다르다.[@nxp-tja1462-2025]
 
 ### FAST 모드
 
-ISO 11898-2:2026은 PMA가 버스를 level_0과 level_1 두 상태로 구동하는 모드를 **FAST TX 모드**로 정의한다. 두 상태는 서로 보완 관계이고, 함께 구동하면 결과가 정해지지 않는다. PMA가 버스를 recessive로 두고 수신 문턱을 level_0과 level_1을 가르도록 맞추는 모드는 **FAST RX 모드**로 정의한다.[@iso-11898-2-obp-2026]
+ISO 11898-2:2026은 PMA가 버스를 level_0과 level_1 두 상태로 구동하는 모드를 **FAST TX 모드**로 정의한다. PMA가 버스를 recessive로 두고 수신 문턱을 level_0과 level_1을 가르도록 맞추는 모드는 **FAST RX 모드**로 정의한다.[@iso-11898-2-obp-2026]
 
 CiA는 SIC 모드와 FAST 모드를 함께 지원하는 트랜시버를 **CAN SIC XL 트랜시버**라 부른다.[@cia-physical-layer-options-2026]
 
@@ -63,7 +63,7 @@ CiA는 SIC 모드와 FAST 모드를 함께 지원하는 트랜시버를 **CAN SI
 
 CAN 트랜시버는 과열되면 출력 드라이버를 끄고, 버스 선 단락으로부터 드라이버를 보호한다.[@ti-tcan1042-q1-2021][@microchip-mcp2561-2fd-2014]
 
-TXD가 정해진 시간보다 오래 low로 머물면 송신기를 끄는 트랜시버가 있다(TXD dominant time-out). 고장 난 노드가 버스를 계속 망가뜨리는 것을 막기 위해서다.[@nxp-tja1042-2023][@microchip-an228-2002] TJA1042는 이때 버스를 recessive로 풀어 주어, 하드웨어나 소프트웨어 고장이 버스를 계속 dominant에 묶어 통신 전체를 막지 않게 한다.[@nxp-tja1042-2023] ISO 11898-2:2026은 송신 dominant time-out을 선택 기능으로 둔다.[@iso-11898-2-obp-2026] TCAN1042는 버스 선이 단락되면 드라이버 전류를 제한한다.[@ti-tcan1042-q1-2021]
+TXD가 정해진 시간보다 오래 low로 머물면 송신기를 끄는 트랜시버가 있다(TXD dominant time-out). 고장 난 노드가 버스를 계속 망가뜨리는 것을 막기 위해서다.[@nxp-tja1042-2023][@microchip-an228-2002] TJA1042는 이때 버스를 recessive로 풀어 준다.[@nxp-tja1042-2023] ISO 11898-2:2026은 송신 dominant time-out을 선택 기능으로 둔다.[@iso-11898-2-obp-2026] TCAN1042는 버스 선이 단락되면 드라이버 전류를 제한한다.[@ti-tcan1042-q1-2021]
 
 TI CAN 트랜시버는 전원이 있든 없든 출력 임피던스가 높아, 회로에서 전원이나 접지가 빠져도 버스를 해치지 않는다. TI 앱노트에 따르면 시중의 많은 트랜시버는 전원이 없을 때 출력 임피던스가 낮아 버스의 신호를 끌어들이고 데이터 전송을 모두 막는다.[@ti-sloa101b-2016] TJA1462도 공급 전압이 문턱 아래로 떨어지면 Off 모드로 들어가 CAN 핀을 고임피던스로 둔다.[@nxp-tja1462-2025]
 
@@ -81,7 +81,7 @@ TJA1463은 Listen-only 모드에서 수신기만 켜고 송신기는 끈다.[@nx
 
 선택적 웨이크업을 켠 트랜시버는 웨이크업 패턴만으로는 깨어나지 않고, [[can-identifier|식별자]]가 미리 설정한 값과 맞는 웨이크업 프레임을 받으면 깨어난다.[@nxp-tja1145-2018][@ti-tcan1145-q1-2022] TJA1465는 웨이크업 프레임을 식별자만으로 거르거나, 식별자에 [[data-length-code|DLC]]와 데이터 마스크를 더해 거른다.[@nxp-tja1465-2024]
 
-선택적 웨이크업 기능을 갖춘 고속 트랜시버는 이 기능을 위해 CAN 데이터 링크 계층의 일부를 구현한다. [[iso-16845-2|ISO 16845-2:2018]]의 동적 시험은 이렇게 부분 구현된 Classical CAN과 CAN FD 프로토콜의 시험 케이스를 담는다.[@iso-16845-2-obp-2018]
+선택적 웨이크업 기능을 갖춘 고속 트랜시버는 이 기능을 위해 CAN 데이터 링크 계층의 일부를 구현한다. [[iso-16845-2|ISO 16845-2:2018]]은 동적 시험에 이렇게 부분 구현된 Classical CAN과 CAN FD 프로토콜의 시험 케이스를 둔다.[@iso-16845-2-obp-2018]
 
 ## 저속 내결함성 트랜시버와의 차이
 

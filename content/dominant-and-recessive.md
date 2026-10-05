@@ -25,9 +25,9 @@ dominant와 recessive는 버스 상태의 이름이고, 논리 0·1과의 대응
 
 ## 트랜시버 모드와 버스 상태
 
-ISO 11898-1:2024는 dominant와 recessive를 트랜시버 모드와 상관없이 MAC(Medium Access Control) 프레임의 비트 값 이름으로 쓴다.[@iso-11898-1-obp-2024]
+ISO 11898-1:2024는 dominant와 recessive를 트랜시버 모드와 상관없이 MAC(Medium Access Control) 프레임의 비트 값 이름으로 둔다.[@iso-11898-1-obp-2024]
 
-버스 위의 상태는 PMA 모드에 따라 이름이 갈린다. ISO 11898-2:2026은 PMA가 중재 모드일 때의 버스 상태를 dominant와 recessive로, 그 밖의 모드일 때의 버스 상태를 level_0(논리 0)과 level_1(논리 1)로 정의한다. [[can-transceiver#FAST 모드|FAST TX 모드]]의 PMA는 버스를 level_0과 level_1로 구동하는데, 두 상태를 함께 구동하면 결과가 정해지지 않는다.[@iso-11898-2-obp-2026]
+버스 위의 상태는 PMA 모드에 따라 이름이 갈린다. ISO 11898-2:2026은 PMA가 중재 모드일 때의 버스 상태를 dominant와 recessive로, 그 밖의 모드일 때의 버스 상태를 **level_0**(논리 0)과 **level_1**(논리 1)로 정의한다. [[can-transceiver#FAST 모드|FAST TX 모드]]의 PMA는 버스를 level_0과 level_1로 구동하는데, 두 상태를 함께 구동하면 결과가 정해지지 않는다.[@iso-11898-2-obp-2026]
 
 저속 내결함성 CAN을 규정하는 ISO 11898-3:2006도 버스 값을 dominant와 recessive로 두고, 둘을 함께 보내면 버스 값이 dominant가 된다고 정한다.[@iso-11898-3-obp-2006]
 
