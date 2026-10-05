@@ -15,7 +15,7 @@ verified: 2026-09-27
 
 ![[diagrams/can-bit-stuffing-range.svg]]
 
-스터프 비트가 들어가는지는 데이터 바이트 패턴에 달려 있어, 예를 들어 `0xCC` 같은 패턴은 스터프 비트를 일으키지 않는다.[@bosch-can-fd-1-0-2012]
+스터프 비트가 들어가는지는 데이터 바이트 패턴에 달려 있어, 예를 들어 `0xCC` 같은 패턴은 스터프 비트를 일으키지 않는다.[@bosch-can-fd-1-0-2012] 스터프 비트가 가장 많이 들어갈 때의 프레임 전송 시간은 [[can-response-time-analysis#전송 시간|CAN 응답 시간 분석]]에서 다룬다.
 
 ## 스터프 오류
 
@@ -29,6 +29,10 @@ CAN 비트열은 NRZ(Non-Return-to-Zero)로 부호화되어, 한 비트 시간 �
 
 ## CAN FD 프레임과의 차이
 
-[[can-fd-frame|CAN FD 포맷 프레임]]의 CRC 시퀀스에서는 스터프 비트를 고정 위치에 넣는다. 첫 비트 앞에 하나, 그 뒤로 4비트마다 하나를 넣고, 값은 바로 앞 비트의 반대다.[@bosch-can-fd-1-0-2012]
+[[iso-11898-1|ISO 11898-1:2024]]는 비트 스터핑을 동적 비트 스터핑과 고정 비트 스터핑 두 가지로 나눈다. 송신 노드가 스터프 비트를 넣고, 수신 노드가 거꾸로 걷어낸다.[@iso-11898-1-obp-2024]
+
+[[can-fd-frame|CAN FD 포맷 프레임]]의 CRC 시퀀스에서는 스터프 비트를 고정 위치에 넣는다. 첫 비트 앞에 하나, 그 뒤로 4비트마다 하나를 넣고, 값은 바로 앞 비트의 반대다. Bosch CAN FD 1.0은 고정 스터프 비트의 수를 classical 포맷의 스터핑 방식을 적용했을 때 생길 수 있는 스터프 비트의 최대 수와 같게 두고, 수신 노드가 CRC를 검사할 때 고정 스터프 비트를 빼고 계산하게 정한다.[@bosch-can-fd-1-0-2012]
+
+![[diagrams/can-fd-crc-fixed-stuff-bits.svg]]
 
 ISO 11898-1:2024는 **stuff bit count**를 CRC 필드 앞까지 프레임에 들어간 스터프 비트의 수(고정 스터프 비트 제외)로 정의한다.[@iso-11898-1-obp-2024] MCP25xxFD 계열 [[can-fd|CAN FD]] 컨트롤러는 ISO CRC 모드에서 CRC 필드에 4비트 stuff bit count를 넣어 보내고, ISO 이전 방식(non-ISO) 모드에서는 넣지 않는다.[@microchip-mcp25xxfd-frm-2020]

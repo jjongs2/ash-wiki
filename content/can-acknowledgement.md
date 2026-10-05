@@ -24,3 +24,9 @@ ACK 슬롯의 dominant가 알려 주는 것은 프레임을 제대로 받은 노
 ACK 슬롯에서 송신 노드가 recessive를 보내고 dominant를 읽는 것은 비트 오류가 아니다. [[can-error-detection#비트 오류의 예외|CAN 오류 검출]]의 비트 오류 규칙에 있는 예외다.[@bosch-can-2-0-1991]
 
 ACK를 받지 못한 송신 노드는 오류를 찾고 프레임을 다시 보낸다. error passive 송신 노드가 ACK 오류를 찾고, passive 오류 플래그를 보내는 동안 dominant 비트를 읽지 않으면 송신 오류 계수기는 오르지 않는다. 그래서 수신 노드가 없는 버스에서 재전송이 되풀이되어도 노드는 error passive까지만 가고 bus-off로는 가지 않는다.[@bosch-can-2-0-1991] 계수기 규칙은 [[can-fault-confinement#오류 계수기|CAN fault confinement]]에서 다룬다.
+
+## CAN FD 프레임과의 차이
+
+Bosch CAN FD 1.0은 [[can-fd-frame|CAN FD 포맷 프레임]]에서 모든 노드가, 여러 수신 노드의 ACK 비트가 겹쳐 생긴 2비트 길이의 dominant 구간도 유효한 ACK로 받아들이게 정한다. 수신 노드마다 송신 노드와의 위상차가 달라서다. classical 포맷에서는 ACK 슬롯 한 비트 뒤에 dominant가 이어지면 형식 오류다.[@bosch-can-fd-1-0-2012]
+
+![[diagrams/can-fd-ack-overlap.svg]]

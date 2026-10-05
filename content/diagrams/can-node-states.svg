@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="12 1 680 260" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 상태 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="40.75" y="95.75" width="118.5" height="38.5" rx="4" />
+    <rect x="300.75" y="95.75" width="98.5" height="38.5" rx="4" />
+    <rect x="520.75" y="20.75" width="118.5" height="48.5" rx="4" />
+    <rect x="520.75" y="160.75" width="118.5" height="48.5" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="100" y="120">integrating</text>
+    <text x="350" y="120">idle</text>
+    <text x="580" y="41">receiver</text>
+    <text x="580" y="59" font-size="12">수신 노드</text>
+    <text x="580" y="181">transmitter</text>
+    <text x="580" y="199" font-size="12">송신 노드</text>
+  </g>
+
+  <!-- 전이 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M100 42 V94" />
+    <path d="M160 115 H298" />
+    <path d="M400 105 H460 V60 H518" />
+    <path d="M400 125 H460 V170 H518" />
+    <path d="M520 30 H350 V93" />
+    <path d="M520 200 H350 V137" />
+    <path d="M600 160 V71" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="100" y="32">시작 · bus-off 복구</text>
+    <text x="229" y="107">recessive 11비트</text>
+    <text x="229" y="131">idle condition</text>
+    <text x="435" y="22">버스 idle</text>
+    <text x="435" y="216">버스 idle</text>
+    <text x="610" y="119" text-anchor="start">중재에서 짐</text>
+  </g>
+
+  <!-- 범례 -->
+  <text x="40" y="248" font-size="12" fill="var(--text, #727981)">ISO 11898-1:2024와 Bosch CAN FD 1.0이 정한 노드 상태</text>
+</svg>
