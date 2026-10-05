@@ -10,13 +10,13 @@ const here = path.dirname(fileURLToPath(import.meta.url))
 
 interface Report {
   exitCode: number | null
-  statuses: string[]
-  locations: Map<string, string[]>
-  messages: Map<string, string[]>
+  statuses: readonly string[]
+  locations: ReadonlyMap<string, readonly string[]>
+  messages: ReadonlyMap<string, readonly string[]>
 }
 
 // 같은 픽스처와 옵션의 출력은 늘 같으니, 처음 부른 테스트가 돌린 결과를 다른 테스트가 함께 쓴다.
-// 테스트는 결과를 읽기만 한다.
+// 테스트는 결과를 읽기만 하고, Report의 readonly가 이를 지킨다.
 const reports = new Map<string, Report>()
 
 function runChecker(fixture: string, ...args: string[]): Report {
