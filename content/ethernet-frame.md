@@ -23,6 +23,8 @@ verified: 2026-09-29
 
 IEEE 802.3-2022는 목적지 주소부터 FCS까지를 MAC 프레임으로, MAC 프레임 앞에 프리앰블과 SFD를 붙이고 물리 계층에 맞게 부호화한 것을 **패킷**으로 정의해 둘을 구분한다. 이 표준은 물리 계층마다 매체 위에서 전송의 시작과 끝을 표시하는 부호를 따로 정한다. 100BASE-X에서는 SSD(Start-of-Stream Delimiter)가 코드 그룹 /J/K/이고 ESD(End-of-Stream Delimiter)가 /T/R/이며, 송신할 때 프리앰블의 첫 8비트를 SSD로 바꾸고 수신할 때 되돌린다. [[100base-t1|100BASE-T1]]에서는 SSD와 ESD가 저마다 삼진 심볼 쌍 세 개로 이뤄지며, (0, 0)이 세 번 이어지면 SSD, (0, 0), (0, 0), (1, 1)이면 ESD다.[@ieee-802-3-2022]
 
+![[diagrams/ethernet-mac-frame-packet-delimiters.svg]]
+
 Microchip AN1120에 따르면 프레임 크기에는 보통 프리앰블과 SFD를 넣지 않는다.[@microchip-an1120-2008] 태그 없는 프레임의 길이는 최소 64옥텟, 최대 1518옥텟이다.[@st-rm0008-2021][@microchip-an1120-2008]
 
 IEEE 802.3-2022는 데이터 필드의 최대 크기로 태그 없는 프레임의 1500옥텟, VLAN 태그를 단 프레임의 1504옥텟, envelope 프레임의 1982옥텟 셋을 두고, 구현이 그 가운데 하나 이상을 지원하도록 정한다. **envelope 프레임**은 상위 캡슐화 프로토콜이 덧붙이는 앞뒤 정보를 담기 위한 것으로, 원래 데이터의 최대는 1500옥텟 그대로이고 캡슐화 프로토콜이 482옥텟까지 더할 수 있다. 이 표준은 더한 옥텟을 다른 용도로 쓰는 것을 권하지 않는다.[@ieee-802-3-2022] KSZ9477S는 모든 포트에서 64바이트(VLAN 태그 제외, FCS 포함)보다 작거나 최대 크기보다 큰 패킷을 받으면 버린다. 최대 크기는 기본 1518바이트이고, 9000바이트까지의 jumbo 패킷을 받도록 설정할 수 있다.[@microchip-ksz9477s-2019]
@@ -50,6 +52,8 @@ RFC 894는 이더넷 위의 IP(Internet Protocol) 데이터그램을 타입 방�
 RFC 1042는 IEEE 802 네트워크 위의 IP 데이터그램과 ARP 메시지를 IEEE 802.2 LLC(Logical Link Control) Type 1의 UI(Unnumbered Information) 형식에 SNAP(Sub-Network Access Protocol) 확장을 붙여 싣도록 정한다. DSAP(Destination Service Access Point)와 SSAP(Source Service Access Point)는 SNAP에 배정된 전역 값 170, 제어 필드는 3이고, SNAP의 24비트 조직 코드는 0이며, 나머지 16비트에 EtherType이 들어간다. LLC와 SNAP 헤더가 8옥텟을 차지하므로, 10BASE5의 최대 패킷 1518옥텟에서 MAC 헤더와 트레일러 18옥텟을 빼면 IP 데이터그램에 남는 것은 1492옥텟이다.[@ietf-rfc-1042-1988]
 
 RFC 1122는 10 Mbit/s 이더넷 케이블에 연결된 인터넷 호스트가 RFC 894 캡슐화로 패킷을 보내고 받을 수 있어야 하고(MUST), RFC 894 패킷 사이에 섞여 오는 RFC 1042 패킷을 받을 수 있어야 하며(SHOULD), RFC 1042 캡슐화로 보낼 수도 있다(MAY)고 정한다. 두 캡슐화로 모두 보낼 수 있는 호스트는 어느 쪽으로 보낼지 고르는 설정 스위치를 두고, 그 기본값을 RFC 894로 해야 한다. 이 RFC는 이더넷의 MTU(Maximum Transmission Unit)를 1500, IEEE 802.3의 MTU를 1492로 둔다.[@ietf-rfc-1122-1989]
+
+![[diagrams/ethernet-ip-encapsulation-rfc-894-1042.svg]]
 
 ## VLAN 태그
 

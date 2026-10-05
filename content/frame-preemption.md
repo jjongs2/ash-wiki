@@ -48,4 +48,6 @@ IEEE 802.1Q-2022의 부속서 S(참고)는 마지막이 아닌 조각의 최소 
 
 IEEE 802.3-2022는 링크 상대가 Nearest Bridge 그룹 주소로 보낸 LLDPDU(LLDP Data Unit)의 Additional Ethernet Capabilities TLV로 선점 지원을 알렸을 때만 송신 방향의 선점을 켜고, MAC Merge 부계층이 링크 고장 표시를 받으면 끄도록 정한다. 이 표준은 검증(verification)을 켜면 검증이 성공한 뒤에만 선점이 동작하게 한다. 검증은 verify mPacket을 보내고 respond mPacket을 받아 상대가 선점을 지원하는지 확인하는 절차로, SMD-V와 올바른 mCRC를 담은 mPacket을 받은 쪽은 respond mPacket을 돌려보내고, SMD-R과 올바른 mCRC를 담은 mPacket을 받은 쪽은 선점 기능이 확인된 것으로 본다. 검증은 끌 수 있으며, 검증을 끄는 것은 링크가 선점을 지원함을 설계로 보장한 닫힌 망(engineered closed network)을 위한 것이다.[@ieee-802-3-2022]
 
+![[diagrams/frame-preemption-verify-respond.svg]]
+
 IEEE 802.3-2022는 받는 쪽이 Additional Ethernet Capabilities TLV의 additional fragment size 필드로, 마지막이 아닌 조각에 64옥텟을 넘어 더 필요한 최소 옥텟 수를 64옥텟 단위의 2비트 정수로 알리게 한다. 이 표준은 그 값을 $a$라 하면, 보내는 쪽이 preemptable 프레임을 적어도 $64(1 + a) - 4$옥텟 보낸 뒤에야 선점하도록 정한다.[@ieee-802-3-2022]

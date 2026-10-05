@@ -23,6 +23,8 @@ IEEE 802.1Q-2022는 PSFP를 구현하는 브리지 구성 요소나 엔드 스�
 - 스트림 필터가 가리키는 스트림 게이트는 허용된 수신 구간 밖에서 받은 프레임과, 한 수신 구간의 데이터 한도를 넘은 프레임을 버릴 수 있다. 스트림 게이트는 프레임의 우선순위를 IPV(Internal Priority Value)로 바꿀 수 있다.
 - 스트림 필터가 flow meter를 정하면, flow meter의 트래픽 한도를 넘은 프레임을 버리거나 drop eligible로 표시할 수 있다.[@ieee-802-1q-2022]
 
+![[diagrams/psfp-processing-order.svg]]
+
 ## 스트림 필터
 
 IEEE 802.1Q-2022는 받은 프레임을 stream_handle과 우선순위로 스트림 필터에 대응시키도록 정한다. stream_handle은 IEEE 802.1CB의 스트림 식별 기능이 준다. 스트림 필터는 stream_handle 값 하나나 아무 값에나 맞는 와일드카드, 우선순위 값 하나나 와일드카드, 최대 SDU 크기, 스트림 게이트 식별자를 갖고, flow meter 식별자를 가질 수 있다. flow meter 식별자가 없으면 그 스트림 필터의 프레임은 flow meter를 거치지 않는다. 프레임은 stream_handle과 우선순위가 맞는 스트림 필터 가운데 식별자가 가장 작은 것에 대응된다.[@ieee-802-1q-2022]

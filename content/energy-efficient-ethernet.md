@@ -24,6 +24,8 @@ IEEE 802.3-2022는 1000BASE-T1 PHY가 EEE를 선택으로 지원할 수 있게 �
 
 송신 쪽은 GMII(Gigabit Media Independent Interface)에서 PHY 프레임의 마지막 80B/81B 블록에 "Assert Low Power Idle" 조건을 보면, wake 창에 맞춘 다음 PHY 프레임 전체를 LP_IDLE로 채운 sleep 신호로 보내고, 그 직후 LPI 송신 모드에 든다. LPI 송신 모드에서 PHY는 데이터 경로와 제어 논리를 꺼 전력을 더 아낄 수 있고, quiet 신호와 주기적인 refresh 프레임을 되풀이한다. 링크 상대는 refresh 프레임으로 적응 필터와 타이밍 회로를 갱신할 수 있다. GMII의 조건이 Assert Low Power Idle이 아니게 되면 PHY는 다음 PHY 프레임 전체를 Idle로 채운 wake 프레임으로 보내고, 그다음 PHY 프레임부터 정상 전력 모드로 돌아온다. LPI 수신 모드로 들고 나는 것은 링크 상대가 sleep과 wake 신호로 정한다.[@ieee-802-3-2022]
 
+![[diagrams/eee-1000base-t1-lpi-transmit.svg]]
+
 ## OPEN Alliance TC16
 
 OPEN Alliance의 TC16은 EEE의 상호 운용성과 적합성을 다루는 위원회로, 차량 응용에서 EEE를 쓰기 위한 명세 문서를 펴낸다. TC16이 가장 최근에 승인한 문서는 2024년 8월의 MultiGBASE-T1 EEE Test Suite V1.0이다.[@open-alliance-tc16-2026]

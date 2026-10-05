@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -5.5 803.5 236.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <text x="20" y="24" fill="var(--text, #727981)">1000BASE-T1 송신 쪽</text>
+
+  <!-- GMII 조건 -->
+  <path d="M110 50 V42 H590 V50" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="350" y="34" text-anchor="middle" fill="var(--text, #727981)">GMII: Assert Low Power Idle</text>
+
+  <!-- 매체로 나가는 신호 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="56" width="110" height="28" rx="2" />
+    <rect x="134" y="56" width="90" height="28" rx="2" />
+    <rect x="322" y="56" width="60" height="28" rx="2" />
+    <rect x="480" y="56" width="60" height="28" rx="2" />
+    <rect x="608" y="56" width="80" height="28" rx="2" />
+    <rect x="692" y="56" width="90" height="28" rx="2" />
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)">
+    <rect x="228" y="56" width="90" height="28" rx="2" />
+    <rect x="386" y="56" width="90" height="28" rx="2" />
+    <rect x="544" y="56" width="60" height="28" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="75" y="74">PHY 프레임</text>
+    <text x="179" y="74">sleep</text>
+    <text x="273" y="74">quiet</text>
+    <text x="352" y="74">refresh</text>
+    <text x="431" y="74">quiet</text>
+    <text x="510" y="74">refresh</text>
+    <text x="574" y="74">quiet</text>
+    <text x="648" y="74">wake</text>
+    <text x="737" y="74">PHY 프레임</text>
+  </g>
+
+  <!-- 신호마다 담는 것 -->
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="179" y="104">LP_IDLE로 채운</text>
+    <text x="179" y="120">PHY 프레임</text>
+    <text x="431" y="104">refresh: 링크 상대가 적응 필터와</text>
+    <text x="431" y="120">타이밍 회로를 갱신할 수 있음</text>
+    <text x="648" y="104">Idle로 채운</text>
+    <text x="648" y="120">PHY 프레임</text>
+  </g>
+
+  <!-- 전력 모드 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M20 132 V140 H130 V132" />
+    <path d="M224 132 V140 H608 V132" />
+    <path d="M692 132 V140 H782 V132" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="75" y="158">정상 전력 모드</text>
+    <text x="416" y="158">LPI 송신 모드</text>
+    <text x="416" y="174">데이터 경로와 제어 논리를 꺼 전력을 더 아낄 수 있음</text>
+    <text x="737" y="158">정상 전력 모드</text>
+  </g>
+
+  <!-- 시간축 -->
+  <line x1="20" y1="192" x2="782" y2="192" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="782" y="210" text-anchor="end" fill="var(--text, #727981)">시간</text>
+</svg>

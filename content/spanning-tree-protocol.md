@@ -41,6 +41,8 @@ IEEE 802.1Q-2022는 RSTP에서 브리지마다 Configuration Message를 보내�
 
 이 표준은 안정된 네트워크에서 Root Port와 Designated Port를 Forwarding으로, Alternate Port, Backup Port, Disabled Port를 Discarding으로 둔다. 포트 역할이 바뀔 때 Learning과 Forwarding으로 가는 전이는 늦춰지고, 루프를 막으려고 포트가 잠시 Discarding으로 갈 수 있다. RSTP는 새 Root Port와 점대점 LAN에 붙은 Designated Port가 프로토콜 타이머를 기다리지 않고 Forwarding으로 가게 해 연결을 빨리 되살린다. 다른 브리지가 없는 LAN에 붙은 포트는 Edge Port로 설정할 수 있고, Edge Port는 루프에 낄 일이 없으므로 바로 Forwarding으로 간다.[@ieee-802-1q-2022]
 
+![[diagrams/stp-port-roles.svg]]
+
 ## MSTP와 SPB
 
 IEEE 802.1Q-2022는 MSTP가 CIST(Common and Internal Spanning Tree)와 MSTI(Multiple Spanning Tree Instance)라는 여러 스패닝 트리를 만들고 트리마다 포트 상태를 두도록 정한다. MSTP를 쓰는 브리지는 MST(Multiple Spanning Tree) Configuration Table로 한 VLAN에 속한 프레임을 모두 CIST나 MSTI 하나에 배정한다. 관리자는 VLAN 식별자마다 활성 토폴로지로 공통 스패닝 트리, (MSTP를 구현했으면) 여러 스패닝 트리 가운데 하나, (SPB를 구현했으면) 최단 경로를 고를 수 있다.[@ieee-802-1q-2022]
