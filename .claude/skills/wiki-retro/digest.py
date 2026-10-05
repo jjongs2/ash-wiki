@@ -6,9 +6,11 @@ python3 digest.py --out <폴더> <기록.jsonl>...
 <이름>-<agent id>.md를 쓴다. <이름>은 세션 제목과 uuid 앞 8자다.
 
 소스 노트를 연 도구 호출은 입력과 결과를 지우고, 그 입력을 <이름>-notes.txt에
-모은다. 입력에 노트 디렉터리(ASH_WIKI_NOTES의 값)나 그 변수의 참조($ASH_WIKI_NOTES,
-${ASH_WIKI_NOTES)가 있거나, 결과에 노트 디렉터리가 나오는 호출이다. 변수 이름만
-적은 호출("ASH_WIKI_NOTES는 열지 않는다")은 노트를 연 것으로 보지 않는다.
+모은다. 입력에 노트 디렉터리(ASH_WIKI_NOTES의 값, ~나 $HOME으로 쓴 꼴 포함)나 그
+변수의 참조($ASH_WIKI_NOTES, ${ASH_WIKI_NOTES)가 있거나, 결과에 노트 디렉터리가
+나오는 호출이다. 지운 결과가 너무 커서 tool-results/ 파일로 저장됐으면, 그 파일을
+다시 읽은 호출도 지운다. 변수 이름만 적은 호출("ASH_WIKI_NOTES는 열지 않는다")은
+노트를 연 것으로 보지 않는다.
 파일마다 지운 수를 출력한다. 0이 아니면 노트를 연 기록이다.
 
 지우기는 노출을 줄일 뿐이다. 노트 디렉터리로 옮긴 뒤 상대 경로로 연 결과처럼
@@ -22,8 +24,17 @@ import os
 import re
 import sys
 
-NOTES = os.environ.get("ASH_WIKI_NOTES", "")
+NOTES = os.environ.get("ASH_WIKI_NOTES", "").rstrip("/")
 NOTE_REFS = ("$ASH_WIKI_NOTES", "${ASH_WIKI_NOTES")
+PERSISTED = re.compile(r"tool-results/[\w.-]+")
+
+
+def note_forms():
+    home = os.path.expanduser("~")
+    if not NOTES.startswith(home + "/"):
+        return [NOTES]
+    rest = NOTES[len(home) :]
+    return [NOTES] + [prefix + rest for prefix in ("~", "$HOME", "${HOME}")]
 
 
 def clip(text, n):
@@ -64,12 +75,13 @@ def blocks(message):
     return [x for x in content or [] if isinstance(x, dict)]
 
 
-def opens_notes(raw):
-    return bool(NOTES and NOTES in raw) or any(r in raw for r in NOTE_REFS)
+def opens_notes(raw, persisted):
+    return any(f in raw for f in note_forms()) or any(r in raw for r in (*NOTE_REFS, *persisted))
 
 
 def digest(path, out_path):
     hidden = set()
+    persisted = set()
     note_inputs = []
     with open(path) as transcript, open(out_path, "w") as out:
         for line in transcript:
@@ -88,8 +100,9 @@ def digest(path, out_path):
                         out.write(f"\n### USER {ts}\n{text}\n")
                     elif block.get("type") == "tool_result":
                         text = result_text(block.get("content"))
-                        if block.get("tool_use_id") in hidden or (NOTES and NOTES in text):
+                        if block.get("tool_use_id") in hidden or any(f in text for f in note_forms()):
                             hidden.add(block.get("tool_use_id"))
+                            persisted.update(PERSISTED.findall(text))
                             out.write("  [res] (노트, 지움)\n")
                         elif block.get("is_error"):
                             out.write(f"  [ERR] {clip(text, 600)}\n")
@@ -102,7 +115,7 @@ def digest(path, out_path):
                     elif block.get("type") == "tool_use":
                         name, inp = block.get("name", ""), block.get("input") or {}
                         raw = json.dumps(inp, ensure_ascii=False)
-                        if opens_notes(raw):
+                        if opens_notes(raw, persisted):
                             hidden.add(block.get("id"))
                             note_inputs.append(raw)
                             out.write(f"- {name}: (노트, 지움)\n")
