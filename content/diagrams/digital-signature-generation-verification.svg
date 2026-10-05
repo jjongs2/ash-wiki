@@ -23,14 +23,14 @@
     <line x1="430" y1="92" x2="430" y2="290" />
   </g>
   <rect x="90" y="64" width="80" height="28" rx="2" stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)" />
-  <text x="130" y="83" text-anchor="middle" fill="var(--on-fill, #f8fafd)">개인키</text>
+  <text x="130" y="83" text-anchor="middle" fill="var(--on-fill, #f8fafd)">개인 키</text>
   <rect x="370" y="64" width="120" height="28" rx="2" stroke="var(--blue, #336fb8)" stroke-width="1.5" fill="var(--blue-tint, #336fb8)" />
-  <text x="430" y="83" text-anchor="middle" fill="var(--on-fill, #f8fafd)">서명자의 공개키</text>
+  <text x="430" y="83" text-anchor="middle" fill="var(--on-fill, #f8fafd)">서명자의 공개 키</text>
 
   <!-- 생성 -->
   <g font-size="12" fill="var(--text, #727981)">
     <text x="138" y="124">승인된 해시 함수로 다이제스트를</text>
-    <text x="138" y="140">구해 개인키로 서명 생성</text>
+    <text x="138" y="140">구해 개인 키로 서명 생성</text>
   </g>
 
   <!-- 보냄 -->
@@ -41,7 +41,7 @@
   <g font-size="12" fill="var(--text, #727981)">
     <text x="438" y="210">받은 데이터에서 같은 해시</text>
     <text x="438" y="226">함수로 다이제스트를 다시</text>
-    <text x="438" y="242">구해 공개키로 서명 검증</text>
+    <text x="438" y="242">구해 공개 키로 서명 검증</text>
     <text x="438" y="274">서명한 뒤 데이터가</text>
     <text x="438" y="290">바뀌었는지 알아냄</text>
   </g>

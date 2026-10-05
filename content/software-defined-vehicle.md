@@ -15,9 +15,9 @@ SDV에서는 하드웨어를 바꾸지 않고 소프트웨어만 갱신해 기�
 
 ![[diagrams/sdv-software-reuse-across-vehicles.svg]]
 
-## 수명주기
+## 생명주기
 
-SDV에서는 소프트웨어 개발이 차량의 수명주기 내내 이어진다.[@nxp-future-of-sdvs-2024][@bosch-software-defined-vehicle-2026] Bosch에 따르면 지금까지의 차량은 공장을 떠날 때 가장 좋은 상태였고, 구성 선택지가 구매 시점에 한정됐다.[@bosch-software-defined-vehicle-2026] NXP에 따르면 기존 차량의 펌웨어 업데이트는 대개 정비 때만 적용하는 필수적이거나 제한된 것이었다.[@nxp-future-of-sdvs-2024]
+SDV에서는 소프트웨어 개발이 차량의 생명주기 내내 이어진다.[@nxp-future-of-sdvs-2024][@bosch-software-defined-vehicle-2026] Bosch에 따르면 지금까지의 차량은 공장을 떠날 때 가장 좋은 상태였고, 구성 선택지가 구매 시점에 한정됐다.[@bosch-software-defined-vehicle-2026] NXP에 따르면 기존 차량의 펌웨어 업데이트는 대개 정비 때만 적용하는 필수적이거나 제한된 것이었다.[@nxp-future-of-sdvs-2024]
 
 TI 백서에 따르면 자동차 제조사는 SDV가 보낸 데이터로 특정 차종에 공통된 문제를 찾아, 큰 문제가 되기 전에 고칠 수 있다.[@ti-slyy236-2025]
 

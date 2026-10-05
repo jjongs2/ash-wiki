@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-ISO/SAE 21434:2021은 **침투 테스트**(penetration testing)를 실제 공격을 흉내 내어 cybersecurity goal을 침해할 방법을 찾는 사이버보안 테스트로 정의한다.[@iso-sae-21434-obp-2021] NIST SP 800-115는 평가자가 실제 공격을 흉내 내어 애플리케이션, 시스템, 네트워크의 보안 기능을 우회할 방법을 찾는 보안 테스트로 정의한다. NIST SP 800-115에 따르면 침투 테스트에서는 흔히 공격자가 쓰는 도구와 기법으로 실제 시스템과 데이터에 실제 공격을 가한다.[@nist-sp-800-115-2008]
+[[iso-sae-21434|ISO/SAE 21434]]:2021은 **침투 테스트**(penetration testing)를 실제 공격을 흉내 내어 [[cybersecurity-goal|cybersecurity goal]]을 침해할 방법을 찾는 사이버보안 테스트로 정의한다.[@iso-sae-21434-obp-2021] NIST SP 800-115는 평가자가 실제 공격을 흉내 내어 애플리케이션, 시스템, 네트워크의 보안 기능을 우회할 방법을 찾는 보안 테스트로 정의한다. NIST SP 800-115에 따르면 침투 테스트에서는 흔히 공격자가 쓰는 도구와 기법으로 실제 시스템과 데이터에 실제 공격을 가한다.[@nist-sp-800-115-2008]
 
 ## 단계
 
@@ -26,7 +26,7 @@ PCI SSC의 2017년 Penetration Testing Guidance는 테스트를 시작하기 전
 
 ## 차량 사이버보안에서의 자리
 
-ISO/SAE 21434:2021의 11절은 아이템의 cybersecurity validation을 차량 수준에서 다룬다.[@iso-sae-21434-obp-2021] Automotive SPICE for Cybersecurity 2.0의 SEC.4 Risk Treatment Validation에서 BP1은 risk treatment validation 조치를 정하게 하고, 그 노트는 이런 조치에 흔히 쓰는 방법으로 침투 테스트처럼 아직 찾지 못한 취약점을 찾는 사이버보안 방법을 든다.[@vda-automotive-spice-cybersecurity-2025]
+ISO/SAE 21434:2021의 11절은 [[cybersecurity-lifecycle#아이템과 운용 환경|아이템]]의 [[cybersecurity-verification-and-validation|cybersecurity validation]]을 차량 수준에서 다룬다.[@iso-sae-21434-obp-2021] [[automotive-spice-for-cybersecurity|Automotive SPICE for Cybersecurity]] 2.0의 SEC.4 Risk Treatment Validation에서 BP1은 risk treatment validation 조치를 정하게 하고, 그 노트는 이런 조치에 흔히 쓰는 방법으로 침투 테스트처럼 아직 찾지 못한 취약점을 찾는 사이버보안 방법을 든다.[@vda-automotive-spice-cybersecurity-2025]
 
 NHTSA의 2022년 Cybersecurity Best Practices for the Safety of Modern Vehicles는 제조사가 개발 과정에서 침투 테스트를 포함한 제품 사이버보안 테스트를 하기를 권한다. 또 테스트 단계에 자격을 갖추고 취약점을 찾을 동기가 있으며 개발팀에 속하지 않았던 시험자를 쓰기를 권한다.[@nhtsa-cybersecurity-best-practices-2022]
 

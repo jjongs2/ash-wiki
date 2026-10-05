@@ -19,6 +19,8 @@
 - context: 문맥 (#142)
 - context switch: 문맥 전환 (#142)
 - counter: 카운터 (#257). OSEK·AUTOSAR OS 객체일 때. 다른 counter는 이 결정에 들지 않음
+- cybersecurity goal: 사이버보안 목표 (#288)
+- Diffie-Hellman: Diffie–Hellman (#288)
 - dominant: 도미넌트 (#165). 조사는 원어의 발음대로. 예: "dominant가"
 - edge: 에지 (#257). AUTOSAR 드라이버가 설정과 API로 다루는 edge일 때. 그 밖의 신호 에지는 "에지". 예: CAN 동기화의 에지
 - GMII 풀이: 통일하지 않음 (#196). 페이지마다 그대로. `mii`는 Gigabit MII, `1000base-t1`은 Gigabit Media Independent Interface
@@ -28,14 +30,24 @@
 - RAM 풀이 Random-Access Memory: Random Access Memory (#165)
 - recessive: 리세시브 (#165). 조사는 원어의 발음대로. 예: "recessive이고"
 - resource: 리소스 (#165). OSEK 객체일 때. 일반적인 뜻이면 "자원"
+- root of trust: 신뢰의 뿌리 (#288)
+- RSA 풀이 Rivest-Shamir-Adleman: Rivest–Shamir–Adleman (#288)
 - Timing Analysis and Design 보고서: AUTOSAR 타이밍 분석 보고서 (#257). 본문에서 AUTOSAR 문서를 부르는 이름
 - Timing Extensions 명세: 타이밍 확장 명세 (#257). 본문에서 AUTOSAR 문서를 부르는 이름. "명세" 없이 쓴 "Timing Extensions"도 그대로
 - USART 풀이 Universal Synchronous/Asynchronous Receiver/Transmitter: Universal Synchronous and Asynchronous Receiver Transmitter (#196)
 - V2X 풀이 Vehicle-to-X: Vehicle-to-Everything (#257)
+- validation: 통일하지 않음 (#288). "확인"과 원어 cybersecurity validation을 맥락에 따라. 페이지 `cybersecurity-verification-and-validation`의 title과 정의는 "확인"
 - wakeup: 웨이크업 (#257). AUTOSAR가 다루는 wakeup일 때. 예: EcuM에 알리는 wakeup. 트랜시버와 버스의 웨이크업은 "웨이크업"
+- 개인 키: 개인키 (#288)
 - 결함 허용: - (#223)
+- 공개 키: 공개키 (#288)
+- 대칭 키: 대칭키 (#288)
 - 리프 노드: 잎 노드 (#250)
+- 비대칭 키: 비대칭키 (#288)
+- 비밀 키: 비밀키 (#288)
 - 사이버보안 속성: cybersecurity property (#252)
+- 생명주기: 수명주기 (#288)
+- 서명 키: 서명키 (#288)
 - 송신 정지: 서스펜드 트랜스미션 (#68). 원어는 병기하지 않음
 - 안전 메커니즘: 안전 기제 (#223)
 - 암호 primitive: 암호 프리미티브 (#169)
