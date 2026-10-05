@@ -18,6 +18,7 @@
 - ASPICE: Automotive SPICE, A-SPICE (#231). 판을 붙이면 `ASPICE 4.1` 꼴. 정식 이름은 `automotive-spice` 머리말의 풀이에만, A-SPICE는 그 페이지의 alias로만. 문서 이름 "Automotive SPICE for Cybersecurity"와 슬러그는 예외
 - cascading failure: 연쇄 고장 (#291)
 - channel: 채널 (#257). MCAL I/O 드라이버(ADC·DIO·ICU·OCU·PWM)의 channel일 때. 그 밖의 채널은 "채널". 예: ComM·NM의 채널, FlexRay 채널
+- classic: classical (#311). ISO 11898-1:2024를 주어로 한 문장에서 이 판의 이름(약어 CC)을 쓸 때. 위키의 개념 이름 "Classical CAN"은 그대로
 - common cause failure: 공통 원인 고장 (#291)
 - context: 문맥 (#142)
 - context switch: 문맥 전환 (#142)
@@ -66,6 +67,7 @@
 - 타원 곡선 암호: ECC (#289). 타원 곡선 암호를 가리킬 때. ECDSA·ECDH 같은 알고리즘 이름은 그대로. 예: SP 800-56A의 ECC CDH는 "타원 곡선 CDH"
 - 테스트 기준: test basis (#291)
 - 테스트 케이스: 시험 사례, 시험 케이스 (#291)
+- 트랜시버 지연 보상: 송신 지연 보상, Transmitter Delay Compensation (#311). 풀이는 `트랜시버 지연 보상(TDC, Transceiver Delay Compensation)`
 - 프레임 간 공간: 인터프레임 공간 (#68). 원어는 병기하지 않음
 - 플래시: Flash (#257). 일반 낱말일 때. 모듈과 구성 요소의 이름(Fls(Flash Driver), Flash EEPROM Emulation, Flashing Adapter)은 예외
 - 하위 호환: 역호환 (#257)

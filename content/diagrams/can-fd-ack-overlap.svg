@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="56 2 480 260" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="215" y="20">CRC 구분자</text><text x="315" y="20">ACK 슬롯</text><text x="415" y="20">ACK 구분자</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <path d="M170 26 V196 M270 26 V196 M370 26 V196 M470 26 V196" />
+  </g>
+
+  <text x="156" y="59" text-anchor="end" fill="var(--text, #727981)">수신 노드 1</text>
+  <rect x="270.75" y="34.75" width="98.5" height="38.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="320" y="59" text-anchor="middle" fill="var(--on-fill, #f8fafd)">D</text>
+
+  <text x="156" y="109" text-anchor="end" fill="var(--text, #727981)">수신 노드 2</text>
+  <rect x="330.75" y="84.75" width="98.5" height="38.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="380" y="109" text-anchor="middle" fill="var(--on-fill, #f8fafd)">D</text>
+
+  <line x1="170" y1="140" x2="470" y2="140" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+
+  <text x="156" y="179" text-anchor="end" fill="var(--text, #727981)">버스</text>
+  <rect x="170.75" y="154.75" width="98.5" height="38.5" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="220" y="179" text-anchor="middle" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="270.75" y="154.75" width="158.5" height="38.5" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="350" y="179" text-anchor="middle" fill="var(--on-fill, #f8fafd)">D</text>
+  <path d="M270 200 V206 H430 V200" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="350" y="224" text-anchor="middle" font-size="12" fill="var(--text, #727981)">겹친 ACK 비트 · 2비트 길이까지 유효</text>
+
+  <text x="80" y="252" font-size="12" fill="var(--text, #727981)">Bosch CAN FD 1.0의 CAN FD 포맷 프레임. 수신 노드마다 송신 노드와의 위상차가 다르다.</text>
+</svg>

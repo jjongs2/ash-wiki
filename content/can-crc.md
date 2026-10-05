@@ -15,7 +15,7 @@ verified: 2026-09-27
 
 ## 계산
 
-CRC 시퀀스를 만들 때는 SOF(Start of Frame), 중재 필드, 제어 필드, 데이터 필드(있으면)의 스터핑하기 전 비트를 계수로 삼는다. 그 뒤에 0을 15자리 붙인 다항식을 생성 다항식으로 나눈 나머지가 **CRC 시퀀스**다. 생성 다항식은 차수가 15, 14, 10, 8, 7, 4, 3, 0인 항으로 이루어진다.[@bosch-can-2-0-1991]
+Bosch CAN 2.0 규격은 CRC 시퀀스를 비트 수가 127 미만인 프레임에 가장 알맞은 BCH 부호에서 얻도록 정한다. CRC 시퀀스를 만들 때는 SOF(Start of Frame), 중재 필드, 제어 필드, 데이터 필드(있으면)의 스터핑하기 전 비트를 계수로 삼는다. 그 뒤에 0을 15자리 붙인 다항식을 생성 다항식으로 나눈 나머지가 **CRC 시퀀스**다. 생성 다항식은 차수가 15, 14, 10, 8, 7, 4, 3, 0인 항으로 이루어진다.[@bosch-can-2-0-1991]
 
 $$
 x^{15} + x^{14} + x^{10} + x^{8} + x^{7} + x^{4} + x^{3} + 1
@@ -29,10 +29,20 @@ $$
 
 ## 검출 능력
 
-CRC를 포함한 CAN의 오류 검출 수단(모니터링, CRC, 비트 스터핑, 프레임 검사)은 한 메시지 안에서 임의로 흩어진 오류 5개까지와, 길이 $l$(비트)이 $l < 15$인 버스트 오류를 모두 찾아낸다.[@bosch-can-2-0-1991] Bosch CAN FD 1.0에 따르면 classical CAN 프레임의 15비트 CRC도 [[can-fd|CAN FD]]의 17비트·21비트 CRC와 마찬가지로 [[hamming-distance|해밍 거리]] 6을 준다.[@bosch-can-fd-1-0-2012] 해밍 거리 6은 길이가 정해진 프레임에서 비트 반전 5개까지를 찾아낸다는 뜻이다.[@bosch-icc-can-fd-error-detection-2015][@ti-spra530-1999] Bosch 논문에 따르면 classical CAN에서는 스터프 조건을 만들고 없애는 비트 반전 두 개를 CRC가 찾지 못하는 드문 경우가 있다.[@bosch-icc-can-fd-error-detection-2015]
+CRC를 포함한 CAN의 오류 검출 수단(모니터링, CRC, 비트 스터핑, 프레임 검사)은 한 메시지 안에서 임의로 흩어진 오류 5개까지와, 길이 $l$(비트)이 $l < 15$인 버스트 오류를 모두 찾아낸다. Bosch CAN 2.0 규격에 따르면 이 수단들은 전역 오류, 송신 노드의 국부 오류, 홀수 개의 오류도 모두 찾아낸다. 찾지 못한 채 남는 오류의 확률 $p_\mathrm{res}$는 메시지 오류율 $p_\mathrm{msg}$에 대해 $p_\mathrm{res} < 4.7 \times 10^{-11}\, p_\mathrm{msg}$이다.[@bosch-can-2-0-1991] Bosch CAN FD 1.0에 따르면 classical CAN 프레임의 15비트 CRC도 [[can-fd|CAN FD]]의 17비트·21비트 CRC와 마찬가지로 [[hamming-distance|해밍 거리]] 6을 준다.[@bosch-can-fd-1-0-2012] 해밍 거리 6은 길이가 정해진 프레임에서 비트 반전 5개까지를 찾아낸다는 뜻이다.[@bosch-icc-can-fd-error-detection-2015][@ti-spra530-1999] Bosch 논문에 따르면 classical CAN에서는 스터프 조건을 만들고 없애는 비트 반전 두 개를 CRC가 찾지 못하는 드문 경우가 있다.[@bosch-icc-can-fd-error-detection-2015]
 
 ## CAN FD 프레임과의 차이
 
 CAN FD 포맷 프레임은 데이터 필드의 바이트 수 $n$이 $n \le 16$이면 17비트 CRC를, $n > 16$이면 21비트 CRC를 쓴다. 프레임이 시작되면 송신 노드를 포함한 모든 노드가 세 CRC를 함께 계산하고, 프레임의 EDL(Extended Data Length) 비트와 [[data-length-code|DLC]]가 그중 하나를 고른다. 수신 노드는 고른 CRC로만 CRC 오류를 판정한다.[@bosch-can-fd-1-0-2012]
 
 CAN FD 포맷 프레임은 스터프 비트도 CRC 계산에 넣지만, classical 포맷 프레임은 넣지 않는다.[@bosch-can-fd-1-0-2012]
+
+Bosch CAN FD 1.0은 17비트 CRC(CRC_17)와 21비트 CRC(CRC_21)의 생성 다항식을 아래처럼 정한다.[@bosch-can-fd-1-0-2012]
+
+$$
+x^{17} + x^{16} + x^{14} + x^{13} + x^{11} + x^{6} + x^{4} + x^{3} + x + 1
+$$
+
+$$
+x^{21} + x^{20} + x^{13} + x^{11} + x^{7} + x^{4} + x^{3} + 1
+$$

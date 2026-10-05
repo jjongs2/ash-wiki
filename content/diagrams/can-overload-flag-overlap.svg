@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="53.5 -3.5 560 300" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 인터미션 첫째 비트 -->
+  <text x="134" y="16" text-anchor="middle" font-size="12" fill="var(--text, #727981)">인터미션 첫째 비트</text>
+  <path d="M134 22 V30" stroke="var(--ink, #727981)" stroke-width="1.5" />
+
+  <!-- 노드 1 -->
+  <text x="106" y="54" text-anchor="end" fill="var(--text, #727981)">노드 1</text>
+  <rect x="120.75" y="36.75" width="26.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="134" y="54.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="152.75" y="36.75" width="26.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="166" y="54.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="184.75" y="36.75" width="26.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="198" y="54.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="216.75" y="36.75" width="26.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="230" y="54.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="248.75" y="36.75" width="26.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="262" y="54.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="280.75" y="36.75" width="26.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="294" y="54.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="312.75" y="36.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="326" y="54.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="344.75" y="36.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="358" y="54.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="376.75" y="36.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="390" y="54.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="408.75" y="36.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="422" y="54.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="440.75" y="36.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="454" y="54.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="472.75" y="36.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="486" y="54.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="504.75" y="36.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="518" y="54.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="536.75" y="36.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="550" y="54.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="568.75" y="36.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="582" y="54.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+
+  <!-- 노드 2 -->
+  <text x="106" y="94" text-anchor="end" fill="var(--text, #727981)">노드 2</text>
+  <rect x="152.75" y="76.75" width="26.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="166" y="94.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="184.75" y="76.75" width="26.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="198" y="94.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="216.75" y="76.75" width="26.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="230" y="94.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="248.75" y="76.75" width="26.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="262" y="94.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="280.75" y="76.75" width="26.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="294" y="94.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="312.75" y="76.75" width="26.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="326" y="94.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="344.75" y="76.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="358" y="94.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="376.75" y="76.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="390" y="94.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="408.75" y="76.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="422" y="94.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="440.75" y="76.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="454" y="94.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="472.75" y="76.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="486" y="94.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="504.75" y="76.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="518" y="94.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="536.75" y="76.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="550" y="94.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="568.75" y="76.75" width="26.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="582" y="94.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+
+  <line x1="120" y1="116" x2="596" y2="116" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+
+  <!-- 버스 -->
+  <text x="106" y="150" text-anchor="end" fill="var(--text, #727981)">버스</text>
+  <rect x="120.75" y="132.75" width="26.5" height="26.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="134" y="150.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="152.75" y="132.75" width="26.5" height="26.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="166" y="150.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="184.75" y="132.75" width="26.5" height="26.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="198" y="150.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="216.75" y="132.75" width="26.5" height="26.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="230" y="150.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="248.75" y="132.75" width="26.5" height="26.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="262" y="150.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="280.75" y="132.75" width="26.5" height="26.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="294" y="150.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="312.75" y="132.75" width="26.5" height="26.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="326" y="150.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="344.75" y="132.75" width="26.5" height="26.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="358" y="150.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="376.75" y="132.75" width="26.5" height="26.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="390" y="150.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="408.75" y="132.75" width="26.5" height="26.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="422" y="150.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="440.75" y="132.75" width="26.5" height="26.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="454" y="150.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="472.75" y="132.75" width="26.5" height="26.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="486" y="150.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="504.75" y="132.75" width="26.5" height="26.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="518" y="150.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="536.75" y="132.75" width="26.5" height="26.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="550" y="150.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="568.75" y="132.75" width="26.5" height="26.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="582" y="150.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
+  <path d="M120 166 V172 H340 V166" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="230.0" y="190" text-anchor="middle" font-size="12" fill="var(--text, #727981)">노드마다 낸 오버로드 플래그</text>
+  <path d="M344 166 V172 H596 V166" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="470.0" y="190" text-anchor="middle" font-size="12" fill="var(--text, #727981)">오버로드 구분자 · recessive 8비트</text>
+
+  <!-- 범례 -->
+  <g font-size="12" fill="var(--text, #727981)">
+    <rect x="120.75" y="208.75" width="12.5" height="12.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+    <text x="142" y="220">오버로드 플래그 · Bosch CAN 2.0 규격</text>
+    <text x="120" y="244">노드 1은 내부 사정으로 오버로드 플래그를 낸다.</text>
+    <text x="120" y="264">노드 2는 노드 1의 플래그를 찾고 다음 비트에서 자기 오버로드 플래그를 낸다.</text>
+    <text x="120" y="284">버스가 recessive로 바뀐 것을 본 뒤 모든 노드가 함께 recessive 7비트를 더 낸다.</text>
+  </g>
+</svg>

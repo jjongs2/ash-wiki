@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="38 -3 500 310" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 인터미션 -->
+  <text x="258" y="16" text-anchor="middle" font-size="12" fill="var(--text, #727981)">인터미션 · recessive 3비트</text>
+  <path d="M200 30 V24 H316 V30" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="218" y="48">1</text><text x="258" y="48">2</text><text x="298" y="48">3</text>
+  </g>
+
+  <!-- 수신 노드의 내부 사정 -->
+  <text x="186" y="77" text-anchor="end" font-size="12" fill="var(--text, #727981)">수신 노드의 내부 사정</text>
+  <rect x="200.75" y="58.75" width="234.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="318" y="76.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">오버로드 플래그 · D 6비트</text>
+
+  <!-- 첫째 비트에서 D -->
+  <text x="186" y="117" text-anchor="end" font-size="12" fill="var(--text, #727981)">첫째 비트에서 D</text>
+  <rect x="200.75" y="98.75" width="34.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="218" y="116.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">D</text>
+  <rect x="240.75" y="98.75" width="234.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="358" y="116.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">오버로드 플래그 · D 6비트</text>
+
+  <!-- 둘째 비트에서 D -->
+  <text x="186" y="157" text-anchor="end" font-size="12" fill="var(--text, #727981)">둘째 비트에서 D</text>
+  <rect x="200.75" y="138.75" width="34.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="218" y="156.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="240.75" y="138.75" width="34.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="258" y="156.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">D</text>
+  <rect x="280.75" y="138.75" width="234.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="398" y="156.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">오버로드 플래그 · D 6비트</text>
+
+  <!-- 셋째 비트에서 D -->
+  <text x="186" y="197" text-anchor="end" font-size="12" fill="var(--text, #727981)">셋째 비트에서 D</text>
+  <rect x="200.75" y="178.75" width="34.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="218" y="196.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="240.75" y="178.75" width="34.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="258" y="196.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="280.75" y="178.75" width="34.5" height="26.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="298" y="196.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">SOF</text>
+  <rect x="320.75" y="178.75" width="154.5" height="26.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="398" y="196.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">식별자 첫 비트부터</text>
+
+  <!-- 범례 -->
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="60" y="236">Bosch CAN 2.0 규격. D: dominant · R: recessive</text>
+    <text x="60" y="256">오버로드 플래그는 D를 찾은 다음 비트에서 시작한다.</text>
+    <text x="60" y="276">셋째 비트의 D는 SOF로 해석하고,</text>
+    <text x="60" y="296">보낼 메시지가 있는 노드는 다음 비트부터 식별자를 보낸다.</text>
+  </g>
+</svg>

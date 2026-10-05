@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="6.5 -5.5 560 170" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <rect x="40.75" y="40.75" width="24.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="53.0" y="58.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">S</text>
+  <rect x="70.75" y="40.75" width="24.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="100.75" y="40.75" width="24.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="130.75" y="40.75" width="24.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="160.75" y="40.75" width="24.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="190.75" y="40.75" width="24.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="203.0" y="58.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">S</text>
+  <rect x="220.75" y="40.75" width="24.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="250.75" y="40.75" width="24.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="280.75" y="40.75" width="24.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="310.75" y="40.75" width="24.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="340.75" y="40.75" width="24.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="353.0" y="58.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">S</text>
+  <rect x="370.75" y="40.75" width="24.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="400.75" y="40.75" width="24.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="430.75" y="40.75" width="24.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="460.75" y="40.75" width="24.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="490.75" y="40.75" width="24.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="503.0" y="58.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">S</text>
+  <text x="524" y="58.5" font-size="12" fill="var(--text, #727981)">…</text>
+  <path d="M53.0 34 V24" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="40" y="16" font-size="12" fill="var(--text, #727981)">CRC 시퀀스의 첫 비트 앞</text>
+  <path d="M70 74 V80 H186 V74" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="128.0" y="98" text-anchor="middle" font-size="12" fill="var(--text, #727981)">4비트</text>
+  <path d="M220 74 V80 H336 V74" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="278.0" y="98" text-anchor="middle" font-size="12" fill="var(--text, #727981)">4비트</text>
+  <path d="M370 74 V80 H486 V74" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="428.0" y="98" text-anchor="middle" font-size="12" fill="var(--text, #727981)">4비트</text>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="40" y="130">Bosch CAN FD 1.0. S: 고정 스터프 비트. 값은 바로 앞 비트의 반대다.</text>
+    <text x="40" y="150">수신 노드는 S가 바로 앞 비트와 같으면 오류로 검출하고, CRC를 검사할 때 S를 빼고 계산한다.</text>
+  </g>
+</svg>
