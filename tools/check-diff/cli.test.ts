@@ -148,6 +148,20 @@ describe("check-diff CLI", { concurrency: false }, () => {
     assert.ok(has(lines, "content/definitions.md:", "BCH"))
     assert.ok(has(lines, "content/definitions.md:", "DIS (ISO/DIS)"))
     assert.ok(has(lines, "content/definitions.md:", "CRC"))
+    assert.ok(
+      has(lines, "content/definitions.md:", "풀이가 없다: RAM"),
+      "괄호 안이어도 풀이가 아니다",
+    )
+    assert.ok(
+      has(lines, "content/definitions.md:", "풀이가 없다: ICU"),
+      "링크가 약어보다 뒤에 있다",
+    )
+    for (const word of ["DIO", "PWM"]) {
+      assert.ok(
+        !has(lines, `풀이가 없다: ${word}`),
+        `이름과 풀이 안의 약어는 처음 나온 것으로 세지 않는다: ${word}`,
+      )
+    }
     for (const word of ["HS", "TJA", "CAN", "ECU", "SA"]) {
       assert.ok(!has(lines, `definitions.md`, `풀이가 없다: ${word}`), word)
     }

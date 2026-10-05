@@ -317,8 +317,7 @@ function decode(text: string): string {
 }
 
 // 약어: 더한 줄의 대문자 약어 가운데, 페이지에서 처음 나온 자리에 풀이가 없고 풀이하지 않는 약어 목록에 없는
-// 것. 링크 글자에 그 약어가 든 링크가 페이지에 있으면 링크가 풀이를 대신한다(위키 규약의 약어 절). 글자와 숫자가
-// 섞인 낱말(부품 번호, 판 번호)과 로마 숫자는 거른다.
+// 것. 글자와 숫자가 섞인 낱말(부품 번호, 판 번호)과 로마 숫자는 거른다.
 const abbreviationsPath = path.join(repoRoot, "docs", "wiki-abbreviations.md")
 const abbreviationPart = /^[A-Z][A-Z_]*[A-Z]s?$/
 const romanNumeral = /^[IVX]+$/
@@ -362,8 +361,18 @@ const abbreviationItem: Item = ({ changed }) => {
     const { text, links } = abbreviationText(page, exempt)
     const starts = lineStarts(text)
     const first = new Map<string, { offset: number; token: string; explained: boolean }>()
+    const firstInName = new Map<string, { offset: number; token: string; explained: boolean }>()
     const inAdded = new Set<string>()
-    const linked = new Set<string>()
+    // 강조한 이름과, 약어 바로 뒤 괄호 안의 풀이.
+    const names = [
+      ...[...text.matchAll(/\*\*[^*\n]+\*\*/g)].map((m) => [m.index, m.index + m[0].length]),
+      ...[...text.matchAll(/[A-Za-z0-9_]\**\(([^()\n]*)\)/g)].map((m) => [
+        m.index + m[0].length - m[1].length - 1,
+        m.index + m[0].length - 1,
+      ]),
+    ]
+    const inside = (spans: number[][], offset: number) =>
+      spans.some(([s, e]) => offset >= s && offset < e)
     for (const match of text.matchAll(token)) {
       const word = match[0]
       if (exemptSet.has(word)) continue
@@ -374,20 +383,27 @@ const abbreviationItem: Item = ({ changed }) => {
       for (const part of parts) {
         if (!abbreviationPart.test(part) || romanNumeral.test(part) || exemptSet.has(part)) continue
         if (change.added.has(line)) inAdded.add(part)
-        if (links.some(([s, e]) => offset >= s && offset < e)) linked.add(part)
         if (first.has(part)) continue
+        // 풀이는 `ABBR(풀이)`나 `풀이(ABBR)`, `풀이(ABBR, 원어)` 꼴이다. 괄호 안에 약어가 있어도 뒤에 다른
+        // 말이 이어지면(`오류(RAM 워드의 …)`) 풀이가 아니다. 약어가 든 링크가 먼저 나오면 링크가 풀이를 대신한다.
         const before = text.slice(Math.max(0, offset - 4), offset).replace(/\*+$/, "")
         const after = text.slice(offset + word.length, offset + word.length + 4).replace(/^\*+/, "")
-        first.set(part, {
-          offset,
-          token: word,
-          explained: after.startsWith("(") || /\(\s*$/.test(before),
-        })
+        const explained =
+          inside(links, offset) ||
+          after.startsWith("(") ||
+          (/\(\s*$/.test(before) && /^\s*[),]/.test(after))
+        // 강조한 이름(정의하는 주제어, 모듈 이름)과 풀이 안의 약어는 풀이가 없으면 처음 나온 것으로 세지
+        // 않는다(위키 규약의 약어 절). 그 밖에 나오지 않는 약어는 그 안의 첫 자리를 본다.
+        if (!explained && inside(names, offset)) {
+          if (!firstInName.has(part)) firstInName.set(part, { offset, token: word, explained })
+          continue
+        }
+        first.set(part, { offset, token: word, explained })
       }
     }
     return [...inAdded].flatMap((part) => {
-      const at = first.get(part)!
-      if (at.explained || linked.has(part)) return []
+      const at = first.get(part) ?? firstInName.get(part)!
+      if (at.explained) return []
       const shown = at.token === part ? part : `${part} (${at.token})`
       return [
         { file: page.file, line: lineAt(starts, at.offset), message: `풀이가 없다: ${shown}` },
