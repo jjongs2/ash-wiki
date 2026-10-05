@@ -27,19 +27,25 @@ export interface Context {
 
 export type Item = (context: Context) => Violation[]
 
-// 표준 이름 바로 뒤의 "…에서(는)", "…에 따르면"과, 표준이 주어인 문장의 사실을 전하기만 하는 보고 동사를
-// 잡는다. 이름은 번호와 판까지 이어 본다(Bosch CAN FD 1.0, [[iso-11898-1|ISO 11898-1]]:2024).
+// 표준 이름 바로 뒤나 "<표준>의 <말 한둘>" 뒤의 "…에서(는)", "…에 따르면"과, 표준이 주어인 문장의 사실을
+// 전하기만 하는 보고 동사를 잡는다. 이름은 번호와 판까지 이어 본다(Bosch CAN FD 1.0,
+// [[iso-11898-1|ISO 11898-1]]:2024). 이름과 "에서" 사이에 아무 말이나 두면 "중재에서"처럼 표준과 상관없는
+// "에서"까지 걸려, #318·#319의 diff에서 후보 25개 가운데 21개가 그런 것이었다.
 const standardSubject = "(?:ISO|IEC|IEEE|SAE|AUTOSAR|RFC|ITU-T|Bosch|OSEK|POSIX|표준|규격|명세)"
 const standardSentence = new RegExp(
-  `${standardSubject}(?:[ :/-]?[A-Za-z0-9.:/_\\]-]+)*(?:에서는?|에 따르면) |` +
+  `${standardSubject}(?:[ :/-]?[A-Za-z0-9.:/_\\]-]+)*(?:의 [^\\s.]+(?: [^\\s.]+)?)?(?:에서는?|에 따르면) |` +
     `${standardSubject}(?:[^.]|\\.[0-9])*?(?:적는|설명한|밝힌|적었|설명했|밝혔)다`,
+  "g",
 )
 
 const standardSentenceItem: Item = ({ changed }) =>
   changed.flatMap(({ page, change }) =>
     addedLines(page, change).flatMap(({ line, text }) => {
-      const match = text.match(standardSentence)
-      return match ? [{ file: page.file, line, message: excerpt(match[0]) }] : []
+      return [...text.matchAll(standardSentence)].map((match) => ({
+        file: page.file,
+        line,
+        message: excerpt(match[0]),
+      }))
     }),
   )
 
@@ -392,7 +398,7 @@ const abbreviationItem: Item = ({ changed }) => {
 
 // 도해 위치: 이 브랜치 전부터 있던 도해 바로 앞의 문단이 새로 들어온 문단이면, 기존 문단과 도해 사이에
 // 새 내용이 끼어든 것일 수 있다. 지운 줄과 글이 비슷한 문단은 기존 문단을 고친 것으로 본다.
-const rewritten = 0.5
+const rewrittenSimilarity = 0.5
 const diagramPlaceItem: Item = ({ changed }) =>
   changed.flatMap(({ page, change }) => {
     const list = blocks(page).filter((block) => block.kind !== "other" || block.text.trim())
@@ -403,7 +409,8 @@ const diagramPlaceItem: Item = ({ changed }) =>
       for (let line = previous.start; line <= previous.end; line++)
         if (!change.added.has(line)) return []
       const hunk = change.hunks.find((h) => h.added.some((a) => a.line === previous.start))
-      if (hunk?.removed.some((text) => similarity(text, previous.text) >= rewritten)) return []
+      if (hunk?.removed.some((text) => similarity(text, previous.text) >= rewrittenSimilarity))
+        return []
       return [
         {
           file: page.file,

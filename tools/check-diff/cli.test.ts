@@ -92,6 +92,7 @@ describe("check-diff CLI", { concurrency: false }, () => {
     const lines = report.items.get("standard-sentence")
     assert.ok(has(lines, "content/controller.md:", "Bosch CAN FD 1.0에서는"), "integrating 행")
     assert.ok(has(lines, "content/controller.md:", "밝힌다"))
+    assert.ok(has(lines, "content/controller.md:", "의 부록 A에서"))
     assert.ok(has(lines, "content/new-page.md:", "규격에서는"))
   })
 
@@ -137,7 +138,8 @@ describe("check-diff CLI", { concurrency: false }, () => {
     assert.ok(has(lines, "content/linker-b.md:", "링크가 없다"))
     assert.ok(has(lines, "content/missing-page.md:", "페이지가 없다"))
     assert.ok(has(lines, "content/linker-b.md:", "planned-page", "아직 없다"))
-    assert.ok(!has(lines, "other-page"), "단서 속 슬러그는 링크만 하는 곳이 아니다")
+    assert.ok(has(lines, "content/linker-a.md:", "두 주인", "링크가 없는 주인 페이지: other-page"))
+    assert.ok(!has(lines, "content/other-page.md"), "단서 속 슬러그는 링크만 하는 곳이 아니다")
     assert.ok(!has(lines, "계획 없는 것"), "이름만인 줄은 건너뛴다")
   })
 

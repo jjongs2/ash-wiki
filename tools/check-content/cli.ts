@@ -9,8 +9,7 @@ import { loadTree } from "./tree"
 
 // 콘텐츠 검사기. 규칙과 검사 id는 docs/wiki-conventions.md에 있다.
 // 사용: npm run check:content [-- [<트리 루트>] [--no-build]]   트리 루트에는 content/와 bib/가 있다.
-// --no-build는 사이트 빌드와 산출물 검사를 건너뛰고 파일 검사만 돌린다. 빌드가 회당 1분 남짓 걸려서,
-// 도해처럼 파일 검사만 되풀이할 때 쓴다.
+// --no-build는 docs/wiki-conventions.md의 검사기 절을 따른다.
 const { values, positionals } = parseArgs({
   allowPositionals: true,
   options: { "no-build": { type: "boolean", default: false } },

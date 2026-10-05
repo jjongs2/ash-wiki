@@ -2,7 +2,9 @@ import fs from "node:fs"
 import path from "node:path"
 import { spawnSync } from "node:child_process"
 import { parseArgs } from "node:util"
+import { Conventions } from "../check-content/conventions"
 import { loadTree } from "../check-content/tree"
+import { repoRoot } from "../repo"
 import { changedFiles, mergeBase, repoTop } from "./diff"
 import { items } from "./items"
 
@@ -10,7 +12,7 @@ import { items } from "./items"
 // 항목마다 후보를 찍는다. 판정은 사람이 하므로 후보가 있어도 exit 0이다. 항목과 규칙은
 // docs/wiki-verification.md의 반영 뒤 점검 절에 있다.
 // 사용: npm run check:diff -- [--base <ref>] [--ticket <묶음 티켓 번호>] [--only <항목>]...
-//   --ticket-body <파일>은 --ticket 대신 티켓 본문을 파일로 준다.
+//   --ticket-body <파일>은 --ticket 대신 티켓 본문을 파일로 준다. 테스트가 쓴다.
 const { values } = parseArgs({
   options: {
     base: { type: "string", default: "origin/main" },
@@ -20,6 +22,14 @@ const { values } = parseArgs({
   },
 })
 const ids = items.map(([id]) => id)
+// 문서의 항목 표와 이 명령의 항목이 어긋나면 조용히 넘어가지 않고 멈춘다.
+const verificationPath = path.join(repoRoot, "docs", "wiki-verification.md")
+const documented = new Conventions(fs.readFileSync(verificationPath, "utf8"), verificationPath)
+  .column("check-diff", "항목")
+  .join(", ")
+if (documented !== ids.join(", ")) {
+  throw new Error(`${verificationPath}: check-diff 표의 항목은 ${ids.join(", ")}여야 한다`)
+}
 for (const id of values.only ?? []) {
   if (!ids.includes(id)) throw new Error(`--only의 항목은 ${ids.join(", ")} 가운데 하나다: ${id}`)
 }
