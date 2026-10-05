@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-27
 ---
 
-**dominant**와 **recessive**는 [[can|CAN]] 버스가 가질 수 있는 두 논리 상태이고, dominant는 논리 0, recessive는 논리 1을 나타낸다.[@iso-11898-1-obp-2024] 여러 노드가 같은 비트 시간에 dominant와 recessive를 함께 내면 버스는 dominant가 된다.[@iso-11898-2-obp-2026]
+**dominant**와 **recessive**는 [[can|CAN]] 버스가 가질 수 있는 두 논리 상태이고, dominant는 논리 0, recessive는 논리 1을 나타낸다.[@iso-11898-1-obp-2024] ISO 11898-2:2026은 PMA(Physical Medium Attachment)가 중재 모드에 있을 때 여러 노드가 같은 비트 시간에 dominant와 recessive를 함께 내면 버스가 dominant가 된다고 정한다.[@iso-11898-2-obp-2026]
 
 ![[diagrams/can-bus-state-wired-and.svg]]
 
@@ -15,13 +15,21 @@ Bosch CAN 2.0 규격은 버스를 wired-AND로 구현하는 경우를 예로 들
 
 dominant와 recessive는 버스 상태의 이름이고, 논리 0·1과의 대응은 데이터 링크 계층 표준인 [[iso-11898-1|ISO 11898-1:2024]]가 정한다.[@iso-11898-1-obp-2024]
 
-고속 CAN에서 recessive는 두 선의 차동 전압이 거의 0인 상태이고, dominant는 [[can-transceiver|트랜시버]]가 두 선을 [[differential-signaling|차동]]으로 구동해 CAN_H를 CAN_L보다 높게 벌린 상태다. 예를 들어 TCAN1042-Q1에서 recessive는 버스가 수신기의 높은 내부 입력 저항을 거쳐 0.5 VCC로 바이어스된 상태다.[@ti-tcan1042-q1-2021] 전기적 값은 [[can-physical-layer#고속 CAN|CAN 물리 계층]]에서 다룬다.
+고속 CAN에서 recessive는 두 선의 차동 전압이 거의 0인 상태이고, dominant는 [[can-transceiver|트랜시버]]가 두 선을 [[differential-signaling|차동]]으로 구동해 CAN_H를 CAN_L보다 높게 벌린 상태다.[@ti-tcan1042-q1-2021] 전기적 값과 모드에 따른 바이어스는 [[can-physical-layer#고속 CAN|CAN 물리 계층]]에서 다룬다.
 
 ![[diagrams/hs-can-bus-voltage.svg]]
 
-고속 CAN의 recessive에서는 두 선이 모두 약 0.5 VCC(2~3 V)에 있다.[@ti-tcan1042-q1-2021] [[can-physical-layer#저속 내결함성 CAN|저속 내결함성 CAN]] 트랜시버도 dominant와 recessive 두 상태로 구동하지만, recessive에서는 CAN_L이 CAN_H보다 높아 전압 배치가 다르다. TJA1055의 recessive 출력은 $V_\mathrm{CAN\_H} \le 0.2\,\mathrm{V}$, $V_\mathrm{CAN\_L} \ge \mathrm{VCC} - 0.2\,\mathrm{V}$이다.[@nxp-tja1055-2013]
+고속 트랜시버가 Normal 모드에 있을 때, recessive에서는 두 선이 모두 약 0.5 VCC(2~3 V)에 있다.[@ti-tcan1042-q1-2021][@nxp-tja1042-2023] [[can-physical-layer#저속 내결함성 CAN|저속 내결함성 CAN]] 트랜시버도 dominant와 recessive 두 상태로 구동하지만, recessive에서는 CAN_L이 CAN_H보다 높아 전압 배치가 다르다. TJA1055의 recessive 출력은 $V_\mathrm{CAN\_H} \le 0.2\,\mathrm{V}$, $V_\mathrm{CAN\_L} \ge \mathrm{VCC} - 0.2\,\mathrm{V}$이다.[@nxp-tja1055-2013]
 
 ![[diagrams/can-recessive-voltage-hs-ls.svg]]
+
+## 트랜시버 모드와 버스 상태
+
+ISO 11898-1:2024는 dominant와 recessive를 트랜시버 모드와 상관없이 MAC(Medium Access Control) 프레임의 비트 값 이름으로 쓴다.[@iso-11898-1-obp-2024]
+
+버스 위의 상태는 PMA 모드에 따라 이름이 갈린다. ISO 11898-2:2026은 PMA가 중재 모드일 때의 버스 상태를 dominant와 recessive로, 그 밖의 모드일 때의 버스 상태를 level_0(논리 0)과 level_1(논리 1)로 정의한다. [[can-transceiver#FAST 모드|FAST TX 모드]]의 PMA는 버스를 level_0과 level_1로 구동하는데, 두 상태를 함께 구동하면 결과가 정해지지 않는다.[@iso-11898-2-obp-2026]
+
+저속 내결함성 CAN을 규정하는 ISO 11898-3:2006도 버스 값을 dominant와 recessive로 두고, 둘을 함께 보내면 버스 값이 dominant가 된다고 정한다.[@iso-11898-3-obp-2006]
 
 ## 버스가 비어 있을 때
 

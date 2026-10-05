@@ -18,7 +18,7 @@
   <line x1="90" y1="134" x2="190" y2="134" stroke="var(--orange, #b0540d)" stroke-width="3" stroke-dasharray="5 4" />
   <text x="198" y="124" font-size="12" fill="var(--text, #727981)">CAN_H, CAN_L</text>
   <text x="198" y="140" font-size="12" fill="var(--text, #727981)">약 0.5 VCC (2~3 V)</text>
-  <text x="165" y="255" text-anchor="middle" fill="var(--text, #727981)">고속 · TJA1042</text>
+  <text x="165" y="255" text-anchor="middle" fill="var(--text, #727981)">고속 · TJA1042 Normal 모드</text>
 
   <!-- 저속 내결함성: TJA1055 -->
   <line x1="380" y1="30" x2="380" y2="220" stroke="var(--ink, #727981)" stroke-width="1.5" />
