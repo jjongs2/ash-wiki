@@ -3,125 +3,156 @@
 python3 digest.py --out <폴더> <기록.jsonl>...
 
 기록마다 <이름>-main.md를, 기록 옆 <uuid>/subagents/의 서브에이전트 기록마다
-<이름>-<agent id>.md를 쓴다. <이름>은 세션 제목이고, 없으면 uuid 앞 8자다.
+<이름>-<agent id>.md를 쓴다. <이름>은 세션 제목과 uuid 앞 8자다.
 
-입력에 ASH_WIKI_NOTES(이름이나 값)가 든 도구 호출은 입력과 결과를 지운다. Agent 호출은
-프롬프트가 "ASH_WIKI_NOTES는 열지 않는다"를 담기도 해서 이름으로는 지우지 않는다.
-파일마다 지운 수를 출력한다. 0이 아니면 노트를 연 세션이다.
+소스 노트를 연 도구 호출은 입력과 결과를 지우고, 그 입력을 <이름>-notes.txt에
+모은다. 입력에 노트 디렉터리(ASH_WIKI_NOTES의 값)나 그 변수의 참조($ASH_WIKI_NOTES,
+${ASH_WIKI_NOTES)가 있거나, 결과에 노트 디렉터리가 나오는 호출이다. 변수 이름만
+적은 호출("ASH_WIKI_NOTES는 열지 않는다")은 노트를 연 것으로 보지 않는다.
+파일마다 지운 수를 출력한다. 0이 아니면 노트를 연 기록이다.
+
+지우기는 노출을 줄일 뿐이다. 노트 디렉터리로 옮긴 뒤 상대 경로로 연 결과처럼
+빠지는 것이 있다. 격리 경계는 회고 스킬의 대조로 지킨다.
 """
 
 import argparse
 import glob
 import json
 import os
+import re
+import sys
+
+NOTES = os.environ.get("ASH_WIKI_NOTES", "")
+NOTE_REFS = ("$ASH_WIKI_NOTES", "${ASH_WIKI_NOTES")
 
 
-def short(s, n):
-    s = s if isinstance(s, str) else json.dumps(s, ensure_ascii=False)
-    s = s.replace("\n", "⏎ ")
-    return s if len(s) <= n else s[:n] + f"…(+{len(s) - n})"
+def clip(text, n):
+    if not isinstance(text, str):
+        text = json.dumps(text, ensure_ascii=False)
+    text = text.replace("\n", "⏎ ")
+    return text if len(text) <= n else text[:n] + f"…(+{len(text) - n})"
+
+
+def stem(path):
+    return path[: -len(".jsonl")]
 
 
 def tool_input(name, inp):
     if name == "Bash":
-        return short(inp.get("description", "") + " | " + inp.get("command", ""), 400)
+        return clip(inp.get("description", "") + " | " + inp.get("command", ""), 400)
     if name in ("Read", "Write"):
         return inp.get("file_path", "")
     if name == "Edit":
-        return (
-            inp.get("file_path", "")
-            + " old="
-            + short(inp.get("old_string", ""), 120)
-            + " new="
-            + short(inp.get("new_string", ""), 160)
-        )
+        old = clip(inp.get("old_string", ""), 120)
+        new = clip(inp.get("new_string", ""), 160)
+        return f"{inp.get('file_path', '')} old={old} new={new}"
     if name == "Agent":
-        return short(inp.get("description", "") + " | " + inp.get("prompt", ""), 1500)
-    return short(inp, 300)
+        return clip(inp.get("description", "") + " | " + inp.get("prompt", ""), 1500)
+    return clip(inp, 300)
 
 
 def result_text(content):
     if isinstance(content, list):
         content = " ".join(x.get("text", "") for x in content if isinstance(x, dict))
-    return content or ""
+    return content if isinstance(content, str) else ""
 
 
-def touches_notes(name, raw):
-    value = os.environ.get("ASH_WIKI_NOTES")
-    if value and value in raw:
-        return True
-    return name != "Agent" and "ASH_WIKI_NOTES" in raw
+def blocks(message):
+    content = message.get("content") if isinstance(message, dict) else None
+    if isinstance(content, str):
+        return [{"type": "text", "text": content}]
+    return [x for x in content or [] if isinstance(x, dict)]
 
 
-def digest(path, out):
+def opens_notes(raw):
+    return bool(NOTES and NOTES in raw) or any(r in raw for r in NOTE_REFS)
+
+
+def digest(path, out_path):
     hidden = set()
-    with open(path) as f, open(out, "w") as o:
-        for line in f:
+    note_inputs = []
+    with open(path) as transcript, open(out_path, "w") as out:
+        for line in transcript:
             try:
-                d = json.loads(line)
+                entry = json.loads(line)
             except json.JSONDecodeError:
                 continue
-            ts = d.get("timestamp", "")[:16]
-            if d.get("type") == "user":
-                content = d["message"].get("content")
-                if isinstance(content, str):
-                    content = [{"type": "text", "text": content}]
-                for x in content:
-                    if x.get("type") == "text":
-                        text = x["text"]
+            ts = (entry.get("timestamp") or "")[:16]
+            kind = entry.get("type")
+            if kind == "user":
+                for block in blocks(entry.get("message")):
+                    if block.get("type") == "text":
+                        text = block.get("text", "")
                         if text.startswith("Base directory for this skill"):
-                            text = short(text, 200)
-                        o.write(f"\n### USER {ts}\n{text}\n")
-                    elif x.get("type") == "tool_result":
-                        if x.get("tool_use_id") in hidden:
-                            o.write("  [res] (지움)\n")
-                            continue
-                        text = result_text(x.get("content"))
-                        if x.get("is_error"):
-                            o.write(f"  [ERR] {short(text, 600)}\n")
+                            text = clip(text, 200)
+                        out.write(f"\n### USER {ts}\n{text}\n")
+                    elif block.get("type") == "tool_result":
+                        text = result_text(block.get("content"))
+                        if block.get("tool_use_id") in hidden or (NOTES and NOTES in text):
+                            hidden.add(block.get("tool_use_id"))
+                            out.write("  [res] (노트, 지움)\n")
+                        elif block.get("is_error"):
+                            out.write(f"  [ERR] {clip(text, 600)}\n")
                         else:
-                            o.write(f"  [res] {short(text, 250)}\n")
-            elif d.get("type") == "assistant":
-                for x in d["message"].get("content", []):
-                    if x.get("type") == "text" and x["text"].strip():
-                        o.write(f"\n### ASSISTANT {ts}\n{x['text']}\n")
-                    elif x.get("type") == "tool_use":
-                        raw = json.dumps(x.get("input", {}), ensure_ascii=False)
-                        if touches_notes(x["name"], raw):
-                            hidden.add(x["id"])
-                            o.write(f"- {x['name']}: (노트, 지움)\n")
+                            out.write(f"  [res] {clip(text, 250)}\n")
+            elif kind == "assistant":
+                for block in blocks(entry.get("message")):
+                    if block.get("type") == "text" and block.get("text", "").strip():
+                        out.write(f"\n### ASSISTANT {ts}\n{block['text']}\n")
+                    elif block.get("type") == "tool_use":
+                        name, inp = block.get("name", ""), block.get("input") or {}
+                        raw = json.dumps(inp, ensure_ascii=False)
+                        if opens_notes(raw):
+                            hidden.add(block.get("id"))
+                            note_inputs.append(raw)
+                            out.write(f"- {name}: (노트, 지움)\n")
                         else:
-                            o.write(f"- {x['name']}: {tool_input(x['name'], x.get('input', {}))}\n")
-            elif d.get("type") == "system" and d.get("content"):
-                o.write(f"\n[system {ts}] {short(d['content'], 300)}\n")
-    return len(hidden)
+                            out.write(f"- {name}: {tool_input(name, inp)}\n")
+            elif kind == "system" and entry.get("content"):
+                out.write(f"\n[system {ts}] {clip(entry['content'], 300)}\n")
+    return hidden, note_inputs
 
 
-def title(path):
-    name = os.path.basename(path)[:8]
-    with open(path) as f:
-        for line in f:
+def session_name(path):
+    title = ""
+    with open(path) as transcript:
+        for line in transcript:
             if '"custom-title"' in line:
-                name = json.loads(line)["customTitle"]
-    return name
+                try:
+                    title = json.loads(line).get("customTitle") or title
+                except json.JSONDecodeError:
+                    pass
+    uuid = os.path.basename(path)[:8]
+    title = re.sub(r"[^\w.-]+", "-", title).strip("-")
+    return f"{title}-{uuid}" if title else uuid
+
+
+def write(out_dir, name, path, label=""):
+    hidden, note_inputs = digest(path, f"{out_dir}/{name}.md")
+    if note_inputs:
+        with open(f"{out_dir}/{name}-notes.txt", "w") as notes:
+            notes.write("\n".join(note_inputs) + "\n")
+    print(f"{name}.md\t지움 {len(hidden)}\t{label}".rstrip())
 
 
 def main():
-    p = argparse.ArgumentParser()
-    p.add_argument("--out", required=True)
-    p.add_argument("transcripts", nargs="+")
-    a = p.parse_args()
-    os.makedirs(a.out, exist_ok=True)
-    for t in a.transcripts:
-        name = title(t)
-        n = digest(t, f"{a.out}/{name}-main.md")
-        print(f"{name}-main.md\t지움 {n}")
-        for s in sorted(glob.glob(f"{t[:-len('.jsonl')]}/subagents/*.jsonl")):
-            aid = os.path.basename(s)[: -len(".jsonl")]
-            meta = s[: -len(".jsonl")] + ".meta.json"
-            desc = json.load(open(meta)).get("description", "") if os.path.exists(meta) else ""
-            n = digest(s, f"{a.out}/{name}-{aid}.md")
-            print(f"{name}-{aid}.md\t지움 {n}\t{desc}")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--out", required=True)
+    parser.add_argument("transcripts", nargs="+")
+    args = parser.parse_args()
+    if not NOTES:
+        sys.exit("ASH_WIKI_NOTES가 비어 있다. 노트를 연 기록을 가리지 못하니 설정한 뒤 다시 돌린다.")
+    os.makedirs(args.out, exist_ok=True)
+    for path in args.transcripts:
+        name = session_name(path)
+        write(args.out, f"{name}-main", path)
+        for sub in sorted(glob.glob(f"{stem(path)}/subagents/*.jsonl")):
+            meta_path = stem(sub) + ".meta.json"
+            label = ""
+            if os.path.exists(meta_path):
+                with open(meta_path) as meta:
+                    label = json.load(meta).get("description", "")
+            write(args.out, f"{name}-{os.path.basename(stem(sub))}", sub, label)
 
 
 if __name__ == "__main__":
