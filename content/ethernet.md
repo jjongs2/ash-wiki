@@ -17,6 +17,8 @@ verified: 2026-09-29
 
 STM32F107xx와 Renesas RA MCU는 이더넷 MAC을 내장한다.[@st-rm0008-2021][@renesas-r01an6628-2025] 수신 쪽에서 이더넷 MAC 컨트롤러는 목적지 주소 필터로 받을 프레임을 고르고, FCS(Frame Check Sequence)를 검사해 설정에 따라 오류 프레임을 버린다. 송신 쪽에서는 목적지 주소, 출발지 주소, [[ethernet-frame#길이/타입|길이/타입]] 필드, 데이터를 소프트웨어에게서 받아 프레임을 조립하며, FCS를 계산해 덧붙일지는 설정으로 정한다.[@st-rm0008-2021][@microchip-enc28j60-2012]
 
+IEEE 802.3-2022는 MAC 부계층이 목적지 주소 필드에 자기 개별 주소, 브로드캐스트 주소, 상위 계층이 활성화한 그룹 주소가 든 프레임을 알아보고 받도록 정한다. MAC 부계층은 promiscuous 수신 모드를 둘 수 있고, 이 모드에서는 목적지 주소와 상관없이 유효한 프레임을 모두 받는다. 이 표준은 관리 속성 aPromiscuousStatus를 참으로 두면 이 모드가 켜지게 하고, 이 모드 때문에만 받은 프레임도 오류가 없으면 정상 수신으로, 오류가 있으면 해당 오류 카운터로 세도록 정한다.[@ieee-802-3-2022]
+
 MCU에 내장된 이더넷 MAC은 전용 DMA(Direct Memory Access)를 둔다. STM32F107xx와 Renesas RA의 이더넷 MAC은 MCU 밖의 PHY와 MII나 RMII(Reduced MII)로 이어진다.[@st-rm0008-2021][@renesas-r01an6628-2025]
 
 ![[diagrams/ethernet-mcu-mac-phy.svg]]
@@ -29,11 +31,19 @@ IEEE 802.3-1985는 둘 이상의 스테이션이 공통 버스 매체 하나를 
 
 ![[diagrams/ethernet-shared-bus-switched-star.svg]]
 
+IEEE 802.3-2022는 두 MDI(Medium Dependent Interface)만을 잇는 점대점 전이중 매체 연결을 **링크 세그먼트**라 정의한다. 이 표준은 전이중 10 Mbit/s, 100 Mbit/s, 1000 Mbit/s 네트워크의 물리적 크기가 반이중 CSMA/CD 네트워크와 달리 왕복 충돌 전파 지연으로 제한되지 않고, DTE(Data Terminal Equipment) 사이의 최대 링크 길이가 케이블이나 링크의 신호 전송 특성으로만 제한된다고 정한다.[@ieee-802-3-2022]
+
 ## 잃은 프레임
 
 IEEE 802.3-2022는 프레임에서 계산한 [[cyclic-redundancy-check|CRC]]가 받은 FCS 값과 다른 프레임을 **무효 MAC 프레임**(invalid MAC frame)으로 정하고, 그 내용을 LLC(Logical Link Control)나 MAC Control 부계층에 넘기지 않도록 정한다. 무효 MAC 프레임은 무시하거나 버리거나 따로 쓸 수 있다. 또 이 표준은 MAC이 오류 일부를 클라이언트에게 알리기만 하고 오류 복구는 하지 않도록 정하며, 그 복구는 MAC 클라이언트나 상위 계층이 맡을 수 있다.[@ieee-802-3-2022]
 
 Microchip AN1120에 따르면 과도한 충돌로 프레임이 버려지면 응용 소프트웨어가 이를 알아차리고 필요하면 다시 보내야 한다.[@microchip-an1120-2008] 상위 계층에서는 RFC 9293이 [[tcp|TCP]]가 오류나 혼잡으로 잃은 세그먼트를 재전송해 모든 세그먼트의 전달을 보장하도록 정한다.[@ietf-rfc-9293-2022]
+
+## 역사
+
+IEEE SA에 따르면 이더넷은 1973년 Xerox PARC(Palo Alto Research Center)에서 Robert Metcalfe가 발명했다. IEEE 802 LAN 표준 위원회는 1983년 6월 이더넷을 [[ieee-802-3#개정 이력|IEEE 표준]]으로 채택했다.[@ieee-ethernet-50th-anniversary-2023]
+
+Xerox PARC의 Metcalfe와 Boggs는 1976년 논문에서 동축 케이블 약 1 km에 노드 100개를 이어 운용 중인 이더넷의 경험을 바탕으로 그 설계 원칙과 구현을 발표했다. 그들은 중앙 제어가 없는 수동 방송 매체(Ether)를 여러 스테이션이 나눠 쓰게 하고, 송신하려는 스테이션들이 통계적 중재로 매체 접근을 조정하며, 받는 스테이션이 패킷의 주소를 보고 자기에게 온 패킷을 고르게 했다. 그들은 Aloha Network의 패킷 충돌과 재전송 착상에서 설계를 시작했고, 이더넷이라는 이름은 전자기파가 지난다고 한때 여겨졌던 luminiferous ether에서 따왔다. 실험용 이더넷의 변수로는 케이블 1 km, 3 Mbit/s, 스테이션 256개를 골랐다.[@metcalfe-ethernet-1976]
 
 ## CAN과의 차이
 
