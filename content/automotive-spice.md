@@ -41,7 +41,7 @@ ISO/IEC 330xx 계열은 ISO/IEC 15504 시리즈의 여러 부를 대체하고 �
 
 ## CMMI와의 차이
 
-ISACA의 [[cmmi|CMMI]]는 업종을 가리지 않고 쓰는 프로세스 개선 모델이고,[@isaca-cmmi-performance-solutions-2026] ASPICE 4.1은 차량용 임베디드 시스템 개발을 대상으로 한다.[@vda-automotive-spice-pam-4-1-2026]
+ISACA의 [[cmmi|CMMI]]는 업종을 가리지 않고 쓰는 프로세스 개선 모델이고[@isaca-cmmi-performance-solutions-2026], ASPICE 4.1은 차량용 임베디드 시스템 개발을 대상으로 한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ASPICE 4.1은 평가 대상 프로세스마다 능력 수준을 0부터 5까지 여섯 단계로 매긴다.[@vda-automotive-spice-pam-4-1-2026] CMMI는 프랙티스 영역마다 매기는 능력 수준 0\~3과, 정해 둔 프랙티스 영역 묶음에 매기는 성숙도 수준 0\~5를 함께 둔다.[@cmmi-institute-levels-2026]
 

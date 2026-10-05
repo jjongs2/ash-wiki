@@ -10,7 +10,7 @@ edition: 2023
 status: 유효
 ---
 
-**CMMI**(Capability Maturity Model Integration)는 조직이 업무 성과를 높이도록 돕는 모범 사례(best practice) 모델이다.[@isaca-cmmi-performance-solutions-2026] 처음에는 산업계, 정부, SEI 사람으로 꾸린 CMMI Product Team이 만들었고,[@sei-cmmi-short-history-2009] 지금은 ISACA가 펴낸다.[@isaca-cmmi-three-new-domains-2023]
+**CMMI**(Capability Maturity Model Integration)는 조직이 업무 성과를 높이도록 돕는 모범 사례(best practice) 모델이다.[@isaca-cmmi-performance-solutions-2026] 처음에는 산업계, 정부, SEI 사람으로 꾸린 CMMI Product Team이 만들었고[@sei-cmmi-short-history-2009], 지금은 ISACA가 펴낸다.[@isaca-cmmi-three-new-domains-2023]
 
 ## 범위
 

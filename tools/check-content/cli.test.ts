@@ -50,6 +50,7 @@ describe("check-content CLI", { concurrency: false }, () => {
       "OK frontmatter",
       "OK namespace",
       "OK lead",
+      "OK section",
       "OK wikilink",
       "OK citation",
       "OK callout",
@@ -67,6 +68,7 @@ describe("check-content CLI", { concurrency: false }, () => {
       "FAIL frontmatter",
       "FAIL namespace",
       "FAIL lead",
+      "FAIL section",
       "FAIL wikilink",
       "FAIL citation",
       "FAIL callout",
@@ -95,6 +97,7 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-lead-heading.md:9",
         "content/bad-lead-list.md:10",
       ],
+      section: ["content/bad-section-missing.md:19", "content/bad-section-order.md:15"],
       wikilink: [
         "content/bad-links.md:12",
         "content/bad-links.md:16",
@@ -113,8 +116,16 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-table-link.md:28",
       ],
       citation: [
+        "bib/duplicate-url-spec-2024.bib:5",
+        "bib/example-spec-2024.bib:5",
+        "bib/no-type-report-2024.bib:2",
+        "bib/no-type-thesis-2024.bib:2",
         "bib/no-urldate-spec-2024.bib:2",
         "bib/renamed-entry-2024.bib:2",
+        "content/bad-citation-place.md:12",
+        "content/bad-citation-place.md:16",
+        "content/bad-citation-place.md:20",
+        "content/bad-citation-place.md:24",
         "content/bad-citation-order.md:12",
         "content/bad-citation-order.md:16",
         "content/bad-citation-order.md:24",
@@ -243,6 +254,47 @@ describe("check-content CLI", { concurrency: false }, () => {
     }
   })
 
+  test("인용 자리 위반은 쉼표 앞, 마침표 뒤로 옮긴 꼴을 알려 준다", () => {
+    const report = runChecker("violation")
+    const place = report.messages
+      .get("citation")!
+      .filter((m) => m.includes("bad-citation-place.md"))
+    assert.strictEqual(place.length, 4)
+    assert.match(place[0], /:12: .*,\[@example-spec-2024\] → \[@example-spec-2024\],$/)
+    assert.match(place[1], /:16: .*, \[@example-spec-2024\] → \[@example-spec-2024\],$/)
+    assert.match(place[2], /:20: .*\[@example-spec-2024\]\. → \.\[@example-spec-2024\]$/)
+    assert.match(
+      place[3],
+      /:24: .* → \.\[@example-manual-2023\]<!-- 주석 -->\[@example-spec-2024\]$/,
+    )
+  })
+
+  test("url이 겹치는 bib 엔트리는 서로의 키를 알려 준다", () => {
+    const report = runChecker("violation")
+    const duplicate = report.messages.get("citation")!.filter((m) => m.includes("url이 같은"))
+    assert.deepStrictEqual(duplicate, [
+      "bib/duplicate-url-spec-2024.bib:5: 정규화한 url이 같은 엔트리가 있다: example-spec-2024",
+      "bib/example-spec-2024.bib:5: 정규화한 url이 같은 엔트리가 있다: duplicate-url-spec-2024",
+    ])
+  })
+
+  test("type 필드가 없는 보고서와 학위 논문 엔트리는 엔트리 타입과 필드를 알려 준다", () => {
+    const report = runChecker("violation")
+    const type = report.messages.get("citation")!.filter((m) => m.includes("no-type-"))
+    assert.deepStrictEqual(type, [
+      "bib/no-type-report-2024.bib:2: @techreport에는 type 필드를 둔다",
+      "bib/no-type-thesis-2024.bib:2: @phdthesis에는 type 필드를 둔다",
+    ])
+  })
+
+  test("표준 페이지의 절 순서 위반은 지금의 첫 두 ## 제목을 알려 준다", () => {
+    const report = runChecker("violation")
+    assert.deepStrictEqual(report.messages.get("section"), [
+      "content/bad-section-missing.md:19: 표준 페이지의 첫 두 ##는 범위, 개정 이력 순서로 쓴다(지금: 범위, 다른 표준과의 차이)",
+      "content/bad-section-order.md:15: 표준 페이지의 첫 두 ##는 범위, 개정 이력 순서로 쓴다(지금: 개정 이력, 범위)",
+    ])
+  })
+
   test("표 셀 위키링크 위반은 \\|로 고친 꼴을 알려 준다", () => {
     const report = runChecker("violation")
     const table = report.messages.get("wikilink")!.filter((m) => m.includes("bad-table-link.md"))
@@ -290,6 +342,7 @@ describe("check-content CLI", { concurrency: false }, () => {
       "FAIL frontmatter",
       "OK namespace",
       "OK lead",
+      "OK section",
       "FAIL wikilink",
       "OK citation",
       "OK callout",
