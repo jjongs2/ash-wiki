@@ -9,7 +9,7 @@ verified: 2026-10-03
 
 **화이트박스 테스트**(white-box testing)는 테스트 대상의 구조를 살펴 테스트를 끌어내는 테스트다. 구조 기반 테스트(structure-based testing)라고도 부른다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-ctfl-syllabus-2024] ISTQB 용어집은 구성 요소나 시스템의 내부 구조에 바탕을 둔 테스트 기법을 화이트박스 테스트 기법(white-box test technique)이라 부르고, 구조 기반 테스트 기법(structure-based test technique)을 같은 뜻의 이름으로 둔다.[@istqb-glossary-white-box-test-technique-2026]
 
-테스트 기법은 명세 기반([[black-box-testing|블랙박스]]), 구조 기반(화이트박스), 경험 기반의 세 갈래로 나뉜다.[@istqb-ctfl-syllabus-2024][@iso-iec-ieee-29119-4-obp-2021] 화이트박스 테스트는 [[unit-testing|단위 테스트]]에 한하지 않고, [[system-testing|시스템 테스트]]를 포함한 모든 [[software-testing#테스트 레벨|테스트 레벨]]에서 쓸 수 있다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-ctfl-syllabus-2024]
+[[software-testing#테스트 기법의 분류|테스트 기법]]은 명세 기반([[black-box-testing|블랙박스]]), 구조 기반(화이트박스), 경험 기반의 세 갈래로 나뉜다.[@istqb-ctfl-syllabus-2024][@iso-iec-ieee-29119-4-obp-2021] 화이트박스 테스트는 [[unit-testing|단위 테스트]]에 한하지 않고, [[system-testing|시스템 테스트]]를 포함한 모든 [[software-testing#테스트 레벨|테스트 레벨]]에서 쓸 수 있다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-ctfl-syllabus-2024]
 
 ## 커버리지로 케이스 끌어내기
 

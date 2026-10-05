@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-02
 ---
 
-[[automotive-spice|ASPICE]] 4.1에서 **소프트웨어 아키텍처**는 소프트웨어를 알맞은 계층에 걸쳐, 가장 낮은 수준의 소프트웨어 컴포넌트까지 소프트웨어 컴포넌트로 나눈다.[@vda-automotive-spice-pam-4-1-2026] ISO/IEC/IEEE 42010:2022는 아키텍처를 어떤 대상이 그 환경 안에서 갖는 기본 개념이나 속성과, 그 대상과 관련 생명주기 프로세스의 실현과 발전을 다스리는 원칙으로 정의한다.[@iso-iec-ieee-42010-obp-2022] SWEBOK V4.0a는 소프트웨어 아키텍처를, 시스템을 추론하는 데 필요한 구조의 집합이며 그 구조는 소프트웨어 요소, 요소 사이의 관계, 둘의 속성으로 이루어진다고 보는 정의를 든다.[@ieee-swebok-v4-0a-2026] ISO/IEC/IEEE 24765 용어집은 **아키텍처 설계**(architectural design)를 컴퓨터 시스템 개발의 틀을 세우려고 하드웨어·소프트웨어 컴포넌트와 그 인터페이스의 집합을 정하는 것으로 정의한다.[@ieee-cs-sevocab-2026]
+[[automotive-spice|ASPICE]] 4.1은 **소프트웨어 아키텍처**가 소프트웨어를 알맞은 계층에 걸쳐, 가장 낮은 수준의 것까지 [[automotive-spice-process-reference-model#Element, component, unit|소프트웨어 컴포넌트]]로 나누는 것으로 둔다.[@vda-automotive-spice-pam-4-1-2026] ISO/IEC/IEEE 42010:2022는 아키텍처를 어떤 대상이 그 환경 안에서 갖는 기본 개념이나 속성과, 그 대상과 관련 생명주기 프로세스의 실현과 발전을 다스리는 원칙으로 정의한다.[@iso-iec-ieee-42010-obp-2022] SWEBOK V4.0a는 소프트웨어 아키텍처를, 시스템을 추론하는 데 필요한 구조의 집합이며 그 구조는 소프트웨어 요소, 요소 사이의 관계, 둘의 속성으로 이루어진다고 보는 정의를 든다.[@ieee-swebok-v4-0a-2026] ISO/IEC/IEEE 24765 용어집은 **아키텍처 설계**(architectural design)를 컴퓨터 시스템 개발의 틀을 세우려고 하드웨어·소프트웨어 컴포넌트와 그 인터페이스의 집합을 정하는 것으로 정의한다.[@ieee-cs-sevocab-2026]
 
 ## 아키텍처와 아키텍처 기술
 
@@ -44,7 +44,7 @@ ASPICE 4.1은 소프트웨어 아키텍처 설계를 SWE.2(Software Architectura
 
 BP3은 기능, 타이밍, 자원 소비 같은 기술적 설계 측면과 프로젝트 추정의 관점에서 아키텍처를 분석하고 설계 결정의 근거를 기록하게 한다. 근거에는 proven-in-use, 소프트웨어 프레임워크나 제품군의 재사용, make-or-buy 결정 등이 들 수 있고, 분석에는 기존 컴포넌트가 이번 응용에 맞는지가 들 수 있다.[@vda-automotive-spice-pam-4-1-2026] BP4의 추적성과 일관성은 [[traceability|추적성]]에서 다룬다.
 
-ASPICE 4.1에서 소프트웨어 요소(software element)는 소프트웨어 컴포넌트나 소프트웨어 유닛을 가리킨다.[@vda-automotive-spice-pam-4-1-2026] 유닛과 그 설계는 [[software-unit-design|소프트웨어 유닛 설계]]에서 다룬다.
+ASPICE 4.1은 소프트웨어 요소(software element)를 소프트웨어 컴포넌트나 소프트웨어 유닛을 가리키는 말로 정의한다.[@vda-automotive-spice-pam-4-1-2026] 유닛과 그 설계는 [[software-unit-design|소프트웨어 유닛 설계]]에서 다룬다.
 
 ![[diagrams/aspice-software-decomposition.svg]]
 

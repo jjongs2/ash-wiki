@@ -9,11 +9,11 @@ verified: 2026-10-03
 
 **블랙박스 테스트**(black-box testing)는 구현(소스 코드)이 아니라 명세, 곧 테스트 대상의 외부 입력과 출력을 바탕으로 하는 테스트다. 명세 기반 테스트(specification-based testing)라고도 부른다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-black-box-testing-2026] ISTQB 용어집은 명세에 근거한 테스트 기법을 블랙박스 테스트 기법(black-box test technique)이라 부르고, 명세 기반 테스트 기법(specification-based test technique)을 같은 뜻의 이름으로 둔다.[@istqb-glossary-black-box-test-technique-2026]
 
-ISTQB CTFL 강의계획서는 테스트 기법을 블랙박스, [[white-box-testing|화이트박스]], 경험 기반의 세 갈래로 나눈다. 이 강의계획서에 따르면 블랙박스 기법은 명세된 동작을 분석해 테스트를 만들므로 케이스가 구현과 독립이고, 구현이 바뀌어도 요구 동작이 그대로면 케이스를 계속 쓸 수 있다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL 강의계획서는 [[software-testing#테스트 기법의 분류|테스트 기법]]을 블랙박스, [[white-box-testing|화이트박스]], 경험 기반의 세 갈래로 나눈다. 이 강의계획서에 따르면 블랙박스 기법은 명세된 동작을 분석해 테스트를 만들므로 케이스가 구현과 독립이고, 구현이 바뀌어도 요구 동작이 그대로면 케이스를 계속 쓸 수 있다.[@istqb-ctfl-syllabus-2024]
 
 ## 테스트 기준
 
-[[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022는 테스트 기준(test basis)을 [[test-case|테스트 케이스]]를 설계하고 구현할 때 바탕으로 삼는 정보로 정의한다. 테스트 기준은 [[software-requirements-specification|요구사항 명세]], 설계 명세, 모듈 명세 같은 문서일 수도 있고, 문서로 남지 않은 요구 동작의 이해일 수도 있다.[@iso-iec-ieee-29119-1-obp-2022] ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 따르면 유스케이스도 테스트 기준이 될 수 있다.[@istqb-ctal-ta-syllabus-2025]
+[[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022는 [[test-case|테스트 케이스]]를 설계하고 구현하는 바탕인 테스트 기준(test basis)이 [[software-requirements-specification|요구사항 명세]], 설계 명세 같은 문서일 수도 있고, 문서로 남지 않은 요구 동작의 이해일 수도 있다고 둔다.[@iso-iec-ieee-29119-1-obp-2022] ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 따르면 유스케이스도 테스트 기준이 될 수 있다.[@istqb-ctal-ta-syllabus-2025] 테스트 기준의 정의는 [[v-model#테스트 기준|V 모델]]에서 다룬다.
 
 ## 요구사항 기반 테스트
 
@@ -27,7 +27,5 @@ ISTQB CTFL 강의계획서는 흔히 쓰는 블랙박스 기법으로 다음 넷
 - [[boundary-value-analysis|경계값 분석]]
 - 결정 테이블 테스트
 - 상태 전이 테스트[@istqb-ctfl-syllabus-2024]
-
-![[diagrams/ctfl-test-technique-categories.svg]]
 
 매개변수 값의 조합을 실행하는 [[pairwise-testing#조합 테스트|조합 테스트]] 기법도 명세 기반 기법이고, [[pairwise-testing|페어와이즈 테스트]]가 그 예다.[@iso-iec-ieee-29119-4-obp-2021] ISTQB 용어집은 유스케이스 테스트도 블랙박스 기법으로 둔다.[@istqb-glossary-use-case-testing-2026]
