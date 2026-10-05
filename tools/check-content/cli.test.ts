@@ -15,7 +15,21 @@ interface Report {
   messages: Map<string, string[]>
 }
 
+// 같은 픽스처와 옵션의 출력은 늘 같으니, 처음 부른 테스트가 돌린 결과를 다른 테스트가 함께 쓴다.
+// 테스트는 결과를 읽기만 한다.
+const reports = new Map<string, Report>()
+
 function runChecker(fixture: string, ...args: string[]): Report {
+  const key = [fixture, ...args].join(" ")
+  let report = reports.get(key)
+  if (!report) {
+    report = spawnChecker(fixture, args)
+    reports.set(key, report)
+  }
+  return report
+}
+
+function spawnChecker(fixture: string, args: string[]): Report {
   const result = spawnSync(
     process.execPath,
     ["--import", "tsx", path.join(here, "cli.ts"), path.join(here, "fixtures", fixture), ...args],
