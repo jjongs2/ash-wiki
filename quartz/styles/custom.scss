@@ -71,7 +71,7 @@ article object[type="image/svg+xml"] {
   border-radius: 5px;
 }
 
-// ash-wiki: 인용과 참고문헌의 모양이다(docs/wiki-conventions.md 인용 절). CSL 스타일(csl/ieee.csl)은
+// ash-wiki: 인용과 참고문헌의 모양이다(docs/engine.md 인용 절). CSL 스타일(csl/ieee.csl)은
 // 가져온 그대로 두고, citations 플러그인이 내는 마크업을 CSS로만 다듬는다.
 // 인용 마커(citation--로 시작하는 id의 span)는 번호 링크를 감싼 대괄호까지 통째로 위첨자로 올린다.
 // 대괄호가 남아 있어 [1][2]처럼 이어진 인용도 나뉘어 보인다. line-height를 0으로 두어 마커가 있는

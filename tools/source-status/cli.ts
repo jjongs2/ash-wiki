@@ -31,15 +31,19 @@ const today = values.today ?? new Date().toISOString().slice(0, 10)
 const timeoutMs = Number(values.timeout ?? 15_000)
 if (!(timeoutMs > 0)) throw new Error(`--timeout은 양의 밀리초여야 한다: ${values.timeout}`)
 // 한 호스트의 URL을 묻기 시작하는 사이의 최소 간격. 테스트가 줄여 쓴다.
+// web.archive.org는 2초 간격에서도 연결 거부가 남았고, 3초 간격에서는 없었다.
 const intervalMs = Number(values.interval ?? 3_000)
 if (!(intervalMs >= 0)) throw new Error(`--interval은 0 이상의 밀리초여야 한다: ${values.interval}`)
 // --url은 앞선 실행에서 남은 URL을 다시 묻는다.
 const recheck = values.url !== undefined
 // 동시 요청 수. 한꺼번에 물으면 도구 자신의 부하로 연결이 시간 초과되고, 호스트가 연결을 거부한다.
+// 제한 없이 물으면 network 주제의 URL 419개 가운데 300개 가까이가 연결 시간 초과가 되거나,
+// web.archive.org의 URL 72개 가운데 40개 넘게 연결이 거부됐다. 어느 쪽이 나오는지는 실행마다 달랐다.
 // 다시 물을 때는 하나씩 묻는다.
 const totalLimit = recheck ? 1 : 8
 const hostLimit = recheck ? 1 : 2
 // 시간 초과가 이만큼 많으면 출처가 아니라 환경의 문제로 보고 실패로 끝낸다. 다시 물을 때는 남은 URL만 물어 비율이 늘 높으므로 보지 않는다.
+// 동시 요청을 제한한 뒤 network 주제의 시간 초과는 419개 가운데 3개에서 14개(3.3%)였다. 5%는 그 위에 둔 문턱이다.
 const timeoutFlood = { count: 5, ratio: 0.05 }
 // 한 호스트에서 연결 거부가 이만큼 나오면 출처 사망이 아니라 호스트가 이 도구를 막은 것일 수 있다.
 const refusedCluster = 2
