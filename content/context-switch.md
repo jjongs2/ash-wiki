@@ -21,7 +21,7 @@ FreeRTOS 문서에 따르면 협력형 스케줄러는 요청이 있을 때만 c
 
 [[autosar|AUTOSAR]]의 Timing Analysis and Design 보고서는 ECU 타이밍 최적화의 지표로, 선점 횟수를 줄여 운영체제 오버헤드를 줄이는 것을 든다.[@autosar-fo-tr-timinganalysis-2025]
 
-Tindell의 고정 우선순위 [[response-time-analysis|응답 시간 분석]]은 태스크의 [[worst-case-execution-time|최악 실행 시간]]에 context switch 오버헤드가 들어 있다고 보고, 선점 비용을 0으로 둔다.[@tindell-extendible-approach-1992] Leung과 Zhao의 FAA 보고서 DOT/FAA/AR-05/27도 context switch 시간을 무시할 만하다고 가정하고, 그렇지 않으면 태스크의 실행 시간을 늘려 context switch로 잃는 시간을 반영하게 한다.[@leung-real-time-scheduling-analysis-2005]
+Tindell의 고정 우선순위 [[response-time-analysis|응답 시간 분석]]은 태스크의 [[worst-case-execution-time|최악 실행 시간]]에 context switch 오버헤드가 들어 있다고 보고, 선점 비용을 0으로 둔다.[@tindell-extendible-approach-1992] Leung과 Zhao도 FAA 보고서 DOT/FAA/AR-05/27에서 context switch 시간을 무시할 만하다고 가정하고, 그렇지 않으면 태스크의 실행 시간을 늘려 context switch로 잃는 시간을 반영하게 했다.[@leung-real-time-scheduling-analysis-2005]
 
 ## x86
 

@@ -23,7 +23,7 @@ ISTQB 용어집은 **구조적 커버리지**(structural coverage)를 구성 요
 
 ## 조건과 결정
 
-ISO/IEC/IEEE 24765 용어집은 **조건**(condition)을 불 연산자를 담지 않은 불 식으로, 결정 결과(decision outcome)를 실행할 분기를 정하는 결정의 결과로 정의한다.[@ieee-cs-sevocab-2026]
+ISO/IEC/IEEE 24765 용어집은 **조건**(condition)을 불 연산자를 담지 않은 불 식으로, **결정**(decision)을 둘 이상의 가능한 결과 사이의 선택이 어떤 동작들이 일어날지를 정하는 문의 종류로, **결정 결과**(decision outcome)를 실행할 분기를 정하는 결정의 결과로 정의한다.[@ieee-cs-sevocab-2026]
 
 ## 구조적 커버리지 기준
 
