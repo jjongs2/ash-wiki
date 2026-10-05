@@ -5,3 +5,5 @@ node_modules
 tools/check-content/fixtures/violation/content/bad-tilde.md
 # prettier가 표 셀 위키링크의 |를 셀 경계로 보고 열을 가른다
 tools/check-content/fixtures/violation/content/bad-table-link.md
+# 다른 worktree는 git의 로컬 exclude에만 있어 prettier가 모른다. 그 안의 위반 픽스처를 훑지 않게 뺀다
+.claude/worktrees/

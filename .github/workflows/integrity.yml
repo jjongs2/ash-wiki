@@ -1,4 +1,5 @@
-# PR마다, 그리고 main에 push될 때 서식 검사, 콘텐츠 검사기, 테스트를 돌린다. 룰셋(.github/rulesets/main.json)이
+# PR마다, 그리고 main에 push될 때 `npm run check`(서식, 타입, 콘텐츠 검사기, 테스트)를 돌린다. 검사 목록과
+# 순서는 package.json의 scripts.check 한 곳에만 둔다. 룰셋(.github/rulesets/main.json)이
 # PR에서 이 job의 통과를 요구한다. 룰셋은 브랜치 최신화를 요구하지 않으므로, PR 여럿을 합친 뒤에야
 # 생기는 위반은 main의 push 실행이 잡는다.
 name: integrity
@@ -18,9 +19,4 @@ jobs:
           node-version-file: .node-version
           cache: npm
       - run: npm ci
-      # 다음 단계들이 파일을 만들기 전에, 저장소 파일만 훑도록 먼저 돌린다
-      - run: npx prettier . --check
-      - run: npm run install-plugins
-      - run: npx tsc --noEmit
-      - run: npm run check:content
-      - run: npm test
+      - run: npm run check
