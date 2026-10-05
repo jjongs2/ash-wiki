@@ -13,11 +13,11 @@ verified: 2026-09-26
 
 주요 규칙은 다음과 같다.
 
-- [[can-controller#노드 상태|수신 노드]]가 오류를 찾으면 REC가 1 오른다. 다만 active 오류 플래그나 오버로드 플래그를 내는 동안 찾은 [[can-error-detection|비트 오류]]는 여기서 빠진다.
+- [[can-controller#노드 상태|수신 노드]]가 오류를 찾으면 REC가 1 오른다. 다만 active 오류 플래그나 [[can-overload-frame#오버로드 플래그|오버로드 플래그]]를 내는 동안 찾은 [[can-error-detection|비트 오류]]는 여기서 빠진다.
 - 수신 노드가 오류 플래그를 낸 직후 첫 비트로 [[dominant-and-recessive|dominant]]를 읽으면 REC가 8 오른다.
 - 송신 노드가 오류 플래그를 내면 TEC가 8 오른다.
-- active 오류 플래그나 [[can-overload-frame|오버로드 플래그]]를 내는 동안 비트 오류를 찾으면, 송신 노드는 TEC가, 수신 노드는 REC가 8 오른다.[@bosch-can-2-0-1991]
-- 노드는 active 오류 플래그, passive 오류 플래그, 오버로드 플래그를 낸 뒤 dominant가 7비트까지 이어지는 것은 견딘다. active 오류 플래그나 오버로드 플래그는 플래그를 포함해 dominant가 14번째, passive 오류 플래그는 플래그 뒤에 dominant가 8번째 이어질 때, 그리고 그 뒤로 dominant가 8비트 더 이어질 때마다 송신 노드는 TEC를, 수신 노드는 REC를 8 올린다.[@bosch-can-2-0-1991]
+- active 오류 플래그나 오버로드 플래그를 내는 동안 비트 오류를 찾으면, 송신 노드는 TEC가, 수신 노드는 REC가 8 오른다.
+- 노드는 active 오류 플래그, passive 오류 플래그, 오버로드 플래그를 낸 뒤 dominant가 7비트까지 이어지는 것은 견딘다. active 오류 플래그나 오버로드 플래그는 플래그를 포함해 dominant가 14번째, passive 오류 플래그는 플래그 뒤에 dominant가 8번째 이어질 때, 그리고 그 뒤로 dominant가 8비트 더 이어질 때마다 송신 노드는 TEC를, 수신 노드는 REC를 8 올린다.
 - 송신에 성공하면 TEC가 1 내려간다. 0이면 그대로다.
 - 수신에 성공하면 REC가 1 내려간다. $\mathrm{REC} > 127$이면 119에서 127 사이의 값으로 되돌린다.[@bosch-can-2-0-1991]
 

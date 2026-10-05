@@ -13,27 +13,26 @@ CAN의 [[can-arbitration|중재]] 방식 때문에, 메시지는 모든 노드�
 
 분석은 아래 가정을 둔다.[@davis-can-schedulability-2007]
 
-- 중재가 시작될 때마다, 노드마다 큐에 있는 메시지 가운데 우선순위가 가장 높은 것이 중재에 들어간다.
 - 메시지 집합은 고정되어 있고, 메시지 $m$마다 고정된 [[can-identifier|식별자]], 곧 고유한 우선순위가 있다.
 - 메시지는 호스트의 태스크나 인터럽트 처리기가 큐에 넣는다. 사건이 일어난 뒤 메시지가 큐에 들어가기까지는 0부터 큐잉 지터 $J_m$까지 걸린다.
-- 메시지를 보내게 하는 사건 사이의 최소 간격 $T_m$을 메시지의 주기라 한다. 주기적 사건, 최소 간격이 $T_m$인 산발적 사건, 한 번만 일어나는 사건($T_m$이 무한대)을 모두 다룬다.
+- 메시지를 보내게 하는 사건 사이의 최소 간격 $T_m$을 메시지의 **주기**라 한다. 주기적 사건, 최소 간격이 $T_m$인 산발적 사건, 한 번만 일어나는 사건($T_m$이 무한대)을 모두 다룬다.
 - 마감 시한 $D_m$은 사건이 일어난 때부터 메시지 송신을 성공적으로 마칠 때까지 허용되는 가장 긴 시간이다.[@davis-can-schedulability-2007]
 
 컨트롤러의 송신 슬롯에 버퍼가 하나뿐이면 앞 인스턴스가 나가기 전에 새 데이터를 쓰면 앞 메시지를 잃으므로, 마감 시한이 주기 이하($D_m \le T_m$)라는 제약이 더 붙는다.[@davis-can-schedulability-2007]
 
 ## 전송 시간
 
-[[can-bit-stuffing|스터프 비트]]가 가장 많이 들어가는 경우와 프레임 간 공간까지 넣으면, 데이터가 $s_m$바이트인 메시지 $m$의 최대 전송 시간 $C_m$은 아래와 같다. $\tau_\mathrm{bit}$는 한 비트의 전송 시간이고, $g$는 기본 포맷(11비트 식별자)에서 34, 확장 포맷(29비트 식별자)에서 54다.[@davis-can-schedulability-2007]
+[[can-bit-stuffing|스터프 비트]]가 가장 많이 들어가는 경우와 프레임 간 공간까지 넣으면, 데이터가 $s_m$바이트인 메시지 $m$의 최대 전송 시간 $C_m$은 아래와 같다. $t_\mathrm{bit}$는 한 비트의 전송 시간이고, $g$는 기본 포맷(11비트 식별자)에서 34, 확장 포맷(29비트 식별자)에서 54다.[@davis-can-schedulability-2007]
 
 $$
-C_m = \left( g + 8 s_m + 13 + \left\lfloor \frac{g + 8 s_m - 1}{4} \right\rfloor \right) \tau_\mathrm{bit}
+C_m = \left( g + 8 s_m + 13 + \left\lfloor \frac{g + 8 s_m - 1}{4} \right\rfloor \right) t_\mathrm{bit}
 $$
 
-이 식은 기본 포맷에서 $C_m = (55 + 10 s_m)\,\tau_\mathrm{bit}$, 확장 포맷에서 $C_m = (80 + 10 s_m)\,\tau_\mathrm{bit}$가 된다.[@davis-can-schedulability-2007]
+이 식은 기본 포맷에서 $C_m = (55 + 10 s_m)\,t_\mathrm{bit}$, 확장 포맷에서 $C_m = (80 + 10 s_m)\,t_\mathrm{bit}$가 된다.[@davis-can-schedulability-2007]
 
 ## 응답 시간
 
-메시지 $m$의 최악 응답 시간은 큐잉 지터 $J_m$, 큐잉 지연 $w_m$, 전송 시간 $C_m$의 합이다. 큐잉 지연은 메시지가 컨트롤러의 슬롯이나 드라이버 큐에 머물다가 송신을 성공적으로 시작하기까지 걸리는 가장 긴 시간이다.[@davis-can-schedulability-2007]
+메시지 $m$의 최악 응답 시간은 큐잉 지터 $J_m$, 큐잉 지연 $w_m$, 전송 시간 $C_m$의 합이다. **큐잉 지연**은 메시지가 컨트롤러의 슬롯이나 드라이버 큐에 머물다가 송신을 성공적으로 시작하기까지 걸리는 가장 긴 시간이다.[@davis-can-schedulability-2007]
 
 $$
 R_m = J_m + w_m + C_m
@@ -49,19 +48,33 @@ $$
 
 비선점이라, $m$이 송신을 마칠 때 더 높은 우선순위 메시지가 기다리고 있을 수 있고, busy period가 $T_m$을 넘어 이어질 수 있다. 그러면 busy period 안의 $m$의 인스턴스를 모두 따져야 한다.[@davis-can-schedulability-2007]
 
-$m$ 이상의 우선순위를 가진 메시지의 집합을 $\mathrm{hep}(m)$이라 하면, busy period의 길이 $t_m$은 $t_m^0 = C_m$에서 시작해 값이 바뀌지 않을 때까지 아래 식을 되풀이해 구한다. 이 반복은 $\mathrm{hep}(m)$의 버스 이용률 $U_m = \sum_{k \in \mathrm{hep}(m)} C_k / T_k$가 $U_m < 1$이면 끝난다.[@davis-can-schedulability-2007]
+$m$ 이상의 우선순위를 가진 메시지의 집합을 $\mathrm{hep}(m)$이라 하면, busy period의 길이 $t_m$은 $t_m^0 = C_m$에서 시작해 값이 바뀌지 않을 때까지 아래 식을 되풀이해 구한다. 이 반복은 $\mathrm{hep}(m)$의 버스 이용률 $U_m$이 $U_m < 1$이면 끝난다.[@davis-can-schedulability-2007]
+
+$$
+U_m = \sum_{k \in \mathrm{hep}(m)} \frac{C_k}{T_k}
+$$
 
 $$
 t_m^{n+1} = B_m + \sum_{k \in \mathrm{hep}(m)} \left\lceil \frac{t_m^n + J_k}{T_k} \right\rceil C_k
 $$
 
-busy period가 끝나기 전에 송신 준비가 되는 $m$의 인스턴스 수는 $Q_m = \lceil (t_m + J_m) / T_m \rceil$이다. 인스턴스 $q$($q = 0, 1, \ldots, Q_m - 1$)가 busy period 시작부터 송신을 성공적으로 시작하기까지의 가장 긴 시간 $w_m(q)$는, $m$보다 우선순위가 높은 메시지의 집합을 $\mathrm{hp}(m)$이라 할 때 아래 식을 되풀이해 구한다.[@davis-can-schedulability-2007]
+busy period가 끝나기 전에 송신 준비가 되는 $m$의 인스턴스 수 $Q_m$은 아래와 같다.[@davis-can-schedulability-2007]
 
 $$
-w_m^{n+1}(q) = B_m + q\, C_m + \sum_{k \in \mathrm{hp}(m)} \left\lceil \frac{w_m^n(q) + J_k + \tau_\mathrm{bit}}{T_k} \right\rceil C_k
+Q_m = \left\lceil \frac{t_m + J_m}{T_m} \right\rceil
 $$
 
-인스턴스 $q$의 응답 시간은 $R_m(q) = J_m + w_m(q) - q\, T_m + C_m$이고, 최악 응답 시간 $R_m$은 그 가운데 가장 큰 값이다. 이 분석은 마감 시한이 주기보다 긴 메시지에도 맞지만, 그때는 드라이버나 컨트롤러가 한 메시지의 인스턴스를 둘 이상 버퍼에 담아야 할 수 있다.[@davis-can-schedulability-2007]
+인스턴스 $q$($q = 0, 1, \ldots, Q_m - 1$)가 busy period 시작부터 송신을 성공적으로 시작하기까지의 가장 긴 시간 $w_m(q)$는, $m$보다 우선순위가 높은 메시지의 집합을 $\mathrm{hp}(m)$이라 할 때 아래 식을 되풀이해 구한다.[@davis-can-schedulability-2007]
+
+$$
+w_m^{n+1}(q) = B_m + q\, C_m + \sum_{k \in \mathrm{hp}(m)} \left\lceil \frac{w_m^n(q) + J_k + t_\mathrm{bit}}{T_k} \right\rceil C_k
+$$
+
+인스턴스 $q$의 응답 시간 $R_m(q)$는 아래와 같고, 최악 응답 시간 $R_m$은 그 가운데 가장 큰 값이다. 이 분석은 마감 시한이 주기보다 긴 메시지에도 맞지만, 그때는 드라이버나 컨트롤러가 한 메시지의 인스턴스를 둘 이상 버퍼에 담아야 할 수 있다.[@davis-can-schedulability-2007]
+
+$$
+R_m(q) = J_m + w_m(q) - q\, T_m + C_m
+$$
 
 ## 충분조건 검사
 
@@ -70,7 +83,7 @@ $$
 첫째 검사는 큐잉 지연 반복식의 블로킹 항을 $\max(B_m, C_m)$으로 둔다. 인스턴스 하나는 더 낮은 우선순위 메시지로 $B_m$만큼, 또는 자기 앞 인스턴스의 비선점 송신으로 $C_m$만큼 블로킹될 수 있다는 뜻이다.[@davis-can-schedulability-2007]
 
 $$
-w_m^{n+1} = \max(B_m, C_m) + \sum_{k \in \mathrm{hp}(m)} \left\lceil \frac{w_m^n + J_k + \tau_\mathrm{bit}}{T_k} \right\rceil C_k
+w_m^{n+1} = \max(B_m, C_m) + \sum_{k \in \mathrm{hp}(m)} \left\lceil \frac{w_m^n + J_k + t_\mathrm{bit}}{T_k} \right\rceil C_k
 $$
 
 둘째 검사는 블로킹 항을 시스템과 상관없이 가장 긴 CAN 메시지(데이터 8바이트)의 전송 시간 $B^\mathrm{MAX}$로 둔다.[@davis-can-schedulability-2007]
@@ -80,7 +93,7 @@ $$
 길이 $t$인 구간에서 버스에 생길 수 있는 오류의 최대 수를 $t$에 대해 줄지 않는 함수 $F(t)$로 둔다. 비트 오류 하나는 최악의 경우 오류 복구에 31비트를 더 쓰고 그 메시지를 다시 보내게 하며, $m$을 늦추는 것은 $m$이나 더 높은 우선순위 메시지에 생긴 오류뿐이다. 그래서 오류 복구로 더해지는 최대 지연 $E_m(t)$는 아래와 같다.[@davis-can-schedulability-2007]
 
 $$
-E_m(t) = \left( 31\, \tau_\mathrm{bit} + \max_{k \in \mathrm{hep}(m)} C_k \right) F(t)
+E_m(t) = \left( 31\, t_\mathrm{bit} + \max_{k \in \mathrm{hep}(m)} C_k \right) F(t)
 $$
 
 busy period 식에는 $E_m(t_m^n)$을, 인스턴스마다의 큐잉 지연 식에는 $m$의 전송 시간까지 넣은 구간의 $E_m(w_m^n(q) + C_m)$을 더한다.[@davis-can-schedulability-2007]

@@ -40,4 +40,4 @@ error passive 수신 노드에 국부 오류가 있으면, error passive 노드�
 
 [[can-fd-frame|CAN FD 포맷 프레임]]에는 ESI(Error State Indicator) 비트가 있고, classical 포맷 프레임에는 없다. ESI는 error active 노드가 보내면 dominant, error passive 노드가 보내면 recessive다.[@bosch-can-fd-1-0-2012]
 
-Bosch CAN FD 1.0은 [[can-fd|데이터 구간]]에 있던 노드가 오류 플래그를 내기 시작하면 중재 구간으로 돌아가고, CAN FD의 오류 프레임을 공칭 비트율로 보내게 정한다.[@bosch-can-fd-1-0-2012]
+Bosch CAN FD 1.0은 [[can-fd#두 비트율|데이터 구간]]에 있던 노드가 오류 플래그를 내기 시작하면 중재 구간으로 돌아가고, CAN FD의 오류 프레임을 공칭 비트율로 보내게 정한다.[@bosch-can-fd-1-0-2012]
