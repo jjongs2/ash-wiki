@@ -47,7 +47,7 @@
     <text x="526" y="76">Arm Cortex-M3</text>
     <text x="678" y="83">메모리</text>
     <text x="526" y="139">AES-128</text>
-    <text x="678" y="132">ECC</text>
+    <text x="678" y="132">타원 곡선</text>
     <text x="526" y="195">SHA-224/256</text>
     <text x="678" y="195">TRNG</text>
   </g>
