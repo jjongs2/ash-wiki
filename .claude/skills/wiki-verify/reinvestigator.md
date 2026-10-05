@@ -11,7 +11,6 @@
 - `docs/source-hierarchy.md`: 주장 종류마다 1층 출처
 - `docs/wiki-conventions.md`의 출처 문장, 인용, 용어, 약어, 강조, 중복 절과 `docs/wiki-abbreviations.md`, `docs/wiki-terms.md`
 - `.claude/skills/wiki-verify/SKILL.md`의 판정 라벨 절: 라벨, 언제 쓰는지, 이슈 본문 메모의 꼴
-- `CONTEXT.md`의 주인 페이지
 
 할 일:
 
