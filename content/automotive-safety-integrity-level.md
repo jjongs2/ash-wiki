@@ -9,7 +9,7 @@ verified: 2026-10-01
 
 ## S·E·C 파라미터
 
-ASIL은 [[hazard-analysis-and-risk-assessment|HARA]]에서 정한다. HARA는 아이템의 해저드 사건을 찾아 분류하고, 관련된 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]]과 ASIL을 정하는 방법이다. ISO 26262-1:2018은 HARA의 파라미터 셋을 다음처럼 정의한다.[@iso-26262-1-obp-2018]
+ASIL은 [[hazard-analysis-and-risk-assessment|HARA]]에서 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]]과 함께 정한다. ISO 26262-1:2018은 HARA의 파라미터 셋을 다음처럼 정의한다.[@iso-26262-1-obp-2018]
 
 - **심각도**(severity, S): 잠재적 해저드 사건에서 한 명 이상이 입을 수 있는 해의 정도를 추정한 값
 - **노출**(exposure, E): 분석하는 failure mode와 겹치면 위험해질 수 있는 운용 상황에 놓인 상태

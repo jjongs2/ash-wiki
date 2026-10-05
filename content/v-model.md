@@ -17,11 +17,9 @@ V의 가장 아래 단계에서는 유닛을 구현한다.[@weit-v-modell-xt-2-4
 
 ISTQB 용어집은 **테스트 기준**(test basis)을 테스트 분석과 테스트 설계의 바탕이 되는 지식의 총체로 정의한다.[@istqb-glossary-test-basis-2026] V 모델에서는 오른쪽 단계의 검증을 같은 수평 단계에 있는 왼쪽 단계의 산출물, 곧 요구사항, 아키텍처, 설계를 바탕으로 명세한다.[@weit-v-modell-xt-2-4-2024][@vda-automotive-spice-pam-4-1-2026] [[automotive-spice|ASPICE]] 4.1은 시스템 통합과 소프트웨어 통합의 검증 조치를 각각 시스템 아키텍처와 [[software-architecture|소프트웨어 아키텍처]]의 정적·동적 측면에 맞춰 정하게 한다.[@vda-automotive-spice-pam-4-1-2026]
 
-ISTQB CTFL 강의계획서 2018 V3.1은 [[software-testing#테스트 레벨|테스트 레벨]]마다 테스트 기준으로 쓸 수 있는 산출물의 예로, [[acceptance-testing|인수 테스트]]에는 사용자·비즈니스 요구사항을, [[system-testing|시스템 테스트]]에는 시스템·[[software-requirements-specification|소프트웨어 요구사항 명세]]를, [[integration-testing|통합 테스트]]에는 소프트웨어·시스템 설계와 아키텍처를, [[unit-testing#컴포넌트 테스트|컴포넌트 테스트]]에는 상세 설계를 들었다.[@istqb-ctfl-syllabus-2019] v4.0.1은 테스트 기준을 테스트 레벨을 가르는 속성의 하나로 들 뿐, 레벨마다의 예는 들지 않는다.[@istqb-ctfl-syllabus-2024]
-
 ## 테스트 프로세스
 
-ISTQB 용어집에 따르면 V 모델이 개발 단계마다 짝짓는 테스트 레벨은 각각 [[test-process|테스트 프로세스]]의 한 인스턴스다.[@istqb-glossary-v-model-2026][@istqb-glossary-test-level-2026]
+ISTQB 용어집에 따르면 V 모델이 개발 단계마다 짝짓는 [[software-testing#테스트 레벨|테스트 레벨]]은 각각 [[test-process|테스트 프로세스]]의 한 인스턴스다.[@istqb-glossary-v-model-2026][@istqb-glossary-test-level-2026]
 
 ## 테스트 설계를 앞당김
 
@@ -43,6 +41,6 @@ ASPICE 4.1의 [[automotive-spice-process-reference-model|프로세스 참조 모
 
 ## ASPICE의 V 컨셉
 
-ASPICE 4.1의 프로세스 참조 모델은 시스템 엔지니어링 프로세스와 소프트웨어 엔지니어링 프로세스를 각각 V 모양으로 배치한다. 시스템 V에서는 SYS.2 System Requirements Analysis와 SYS.5 System Verification, SYS.3 System Architectural Design과 SYS.4 System Integration and Integration Verification이 마주 본다. 소프트웨어 V에서는 SWE.1 Software Requirements Analysis와 SWE.6 Software Verification, SWE.2 Software Architectural Design과 SWE.5 Software Component Verification and Integration Verification이 마주 보고, 꼭짓점에는 SWE.3 Software Detailed Design and Unit Construction과 SWE.4 Software Unit Verification이 함께 놓인다. 마주 보는 짝마다 오른쪽의 검증 조치와 왼쪽 산출물 사이에 [[traceability#일관성|일관성]]과 [[traceability#양방향 추적성|양방향 추적성]]을 요구한다.[@vda-automotive-spice-pam-4-1-2026]
+ASPICE 4.1의 프로세스 참조 모델은 시스템 엔지니어링 프로세스와 소프트웨어 엔지니어링 프로세스를 각각 V 모양으로 배치해, 왼쪽의 요구사항 분석과 설계 프로세스가 오른쪽의 검증 프로세스와 짝을 이뤄 마주 보게 한다. 마주 보는 짝마다 오른쪽의 검증 조치와 왼쪽 산출물 사이에 [[traceability#일관성|일관성]]과 [[traceability#양방향 추적성|양방향 추적성]]을 요구한다.[@vda-automotive-spice-pam-4-1-2026] 프로세스마다의 ID와 이름은 프로세스 참조 모델의 [[automotive-spice-process-reference-model#프로세스 범주와 그룹|프로세스 범주와 그룹]]에서 다룬다.
 
 ![[diagrams/automotive-spice-v-concept.svg]]

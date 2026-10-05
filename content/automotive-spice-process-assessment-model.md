@@ -64,5 +64,5 @@ ASPICE 4.1은 SYS.2\~SYS.5, SWE.1\~SWE.6, HWE.1\~HWE.4, MLE.1\~MLE.4에 [[tracea
 ASPICE 3.1은 핵심 개념 부록에서 평가(evaluate), 검증 기준(verification criteria), 준수 보장(ensuring compliance)을 핵심 개념 하나로 묶었다. ASPICE 4.1은 이 셋을 다음처럼 바꿨다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 - 평가: 3.1은 시스템·[[software-architecture|소프트웨어 아키텍처]]와 [[software-unit-design|소프트웨어 상세 설계]]에서 대안을 정한 기준으로 평가하고 선택 근거를 기록하게 했다(SYS.3.BP5, SWE.2.BP6, SWE.3.BP4). 4.1은 대안 평가 BP 대신 아키텍처를 기술적 측면에서 분석하고 설계 결정의 근거를 기록하게 한다(SYS.3.BP3, SWE.2.BP3).
-- 검증 기준: 3.1은 SYS.2와 SWE.1에서 요구사항마다 검증 기준을 세우게 했다. 4.1은 이 BP를 두지 않고, 검증 가능성을 요구사항 특성의 예로 든다. 검증 기준은 [[requirements-engineering#검증 기준|요구 공학]]에서 다룬다.
+- 검증 기준: 3.1은 SYS.2와 SWE.1에서 요구사항마다 검증 기준을 세우게 했고, 4.1은 이 BP를 두지 않는다. 검증 기준은 [[requirements-engineering#검증 기준|요구 공학]]에서 다룬다.
 - 준수 보장: 3.1은 시험 프로세스의 BP가 시험 명세를 V 모델 왼쪽의 대응 산출물에 대한 준수를 입증하기에 알맞게 만들게 했다. 4.1은 이를 아키텍처나 요구사항에 맞춰 검증 수단(verification measure)을 명세하는 BP로 둔다(예: SYS.4.BP1).[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
