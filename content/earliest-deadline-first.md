@@ -7,7 +7,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**EDF 스케줄링**은 현재 요청의 [[deadline|마감 시한]]이 가장 가까운 태스크에 가장 높은 우선순위를 주고, 매 순간 우선순위가 가장 높은 미완료 요청을 실행하는 스케줄링이다. 우선순위가 태스크마다 고정되지 않고 요청마다 바뀔 수 있으므로 [[real-time-scheduling#우선순위의 분류|동적 우선순위]] 방식이다. Liu와 Layland는 1973년 논문에서 이 방식을 deadline driven 스케줄링이라 불렀다.[@liu-hard-real-time-1973] 지금은 EDF(Earliest Deadline First)라고도 부른다.[@linux-sched-deadline-2026][@faa-ar-05-27-2005]
+**EDF 스케줄링**은 현재 요청의 [[deadline|마감 시한]]이 가장 가까운 태스크에 가장 높은 우선순위를 주고, 매 순간 우선순위가 가장 높은 미완료 요청을 실행하는 스케줄링이다. 우선순위가 태스크마다 고정되지 않고 요청마다 바뀔 수 있으므로 [[real-time-scheduling#우선순위의 분류|동적 우선순위]] 방식이다. Liu와 Layland는 1973년 논문에서 이 방식을 deadline driven 스케줄링이라 불렀다.[@liu-hard-real-time-1973] 지금은 EDF(Earliest Deadline First)라고도 부른다.[@linux-sched-deadline-2026][@davis-survey-hard-real-time-2011]
 
 ## 우선순위
 

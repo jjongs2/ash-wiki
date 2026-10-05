@@ -9,7 +9,7 @@ verified: 2026-09-29
 
 ## 절대와 상대
 
-job의 **절대 마감 시한**은 job이 끝나야 하는 시각이고, job이 도착한 시각에 태스크의 **상대 마감 시한**을 더한 값이다. 도착 시각을 $r$, 상대 마감 시한을 $D_i$라 하면 절대 마감 시한은 $r + D_i$다.[@linux-sched-deadline-2026][@faa-ar-05-27-2005] Linux 커널의 `SCHED_DEADLINE` 문서에 따르면 태스크는 [[worst-case-execution-time|WCET]], 상대 마감 시한, 주기의 세 값으로 나타낸다.[@linux-sched-deadline-2026]
+Linux 커널의 `SCHED_DEADLINE` 문서에 따르면 job의 **절대 마감 시한**은 job이 끝나야 하는 시각이고, job이 도착한 시각에 태스크의 **상대 마감 시한**을 더한 값이다. 도착 시각을 $r$, 상대 마감 시한을 $D_i$라 하면 절대 마감 시한은 $r + D_i$다. 태스크는 [[worst-case-execution-time|WCET]], 상대 마감 시한, 주기의 세 값으로 나타낸다.[@linux-sched-deadline-2026]
 
 ![[diagrams/task-timing-parameters.svg]]
 
