@@ -1,7 +1,5 @@
 ---
 title: LET
-aliases:
-  - LET
 tags:
   - platform/rtos
 verified: 2026-09-29
