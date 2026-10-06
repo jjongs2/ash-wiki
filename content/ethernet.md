@@ -43,7 +43,7 @@ Microchip AN1120에 따르면 과도한 충돌로 프레임이 버려지면 응�
 
 IEEE SA에 따르면 이더넷은 1973년 Xerox PARC(Palo Alto Research Center)에서 Robert Metcalfe가 발명했다. IEEE 802 LAN 표준 위원회는 1983년 6월 이더넷을 [[ieee-802-3#개정 이력|IEEE 표준]]으로 채택했다.[@ieee-ethernet-50th-anniversary-2023]
 
-Xerox PARC의 Metcalfe와 Boggs는 1976년 논문에서 동축 케이블 약 1 km에 노드 100개를 이어 운용 중인 이더넷의 경험을 바탕으로 그 설계 원칙과 구현을 발표했다. 그들은 중앙 제어가 없는 수동 방송 매체(Ether)를 여러 스테이션이 나눠 쓰게 하고, 송신하려는 스테이션들이 통계적 중재로 매체 접근을 조정하며, 받는 스테이션이 패킷의 주소를 보고 자기에게 온 패킷을 고르게 했다. 그들은 Aloha Network의 패킷 충돌과 재전송 착상에서 설계를 시작했고, 이더넷이라는 이름은 전자기파가 지난다고 한때 여겨졌던 luminiferous ether에서 따왔다. 실험용 이더넷의 변수로는 케이블 1 km, 3 Mbit/s, 스테이션 256개를 골랐다.[@metcalfe-ethernet-1976]
+Xerox PARC의 Metcalfe와 Boggs는 1976년 논문에서 동축 케이블 약 1 km에 노드 100개를 이어 운용 중인 이더넷의 경험을 바탕으로 그 설계 원칙과 구현을 발표했다. 그들은 중앙 제어가 없는 수동 방송 매체(Ether)를 여러 스테이션이 나눠 쓰게 하고, 송신하려는 스테이션들이 통계적 중재로 매체 접근을 조정하며, 받는 스테이션이 패킷의 주소를 보고 자기에게 온 패킷을 고르게 했다. 그들은 Aloha Network의 패킷 충돌과 재전송 착상에서 설계를 시작했고, 이더넷이라는 이름은 전자기파가 지난다고 한때 여겨졌던 luminiferous ether에서 따왔다. 실험용 이더넷의 변수로는 케이블 1 km, 3 Mbit/s, 스테이션 256개를 골랐다.[@metcalfe-ethernet-1976] Xerox PARC는 이 설계 원칙을 처음 구현한 실험용 이더넷 시스템을 개발했다.[@shoch-ethernet-performance-1980]
 
 ## CAN과의 차이
 
