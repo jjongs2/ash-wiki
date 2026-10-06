@@ -23,13 +23,15 @@ RTOS 기반 소프트웨어는 일을 여러 태스크로 나누고, 태스크�
 
 ## 구성
 
+µC/OS-III 문서는 실시간 커널에 파일 관리, 프로토콜 스택, 그래픽 사용자 인터페이스 같은 상위 서비스를 더한 것을 RTOS라 부른다.[@micrium-ucos-iii-rtos-2026]
+
 **스케줄러**는 커널에서 어느 태스크를 언제 실행할지 정하는 부분이다.[@freertos-rtos-fundamentals-2026][@micrium-ucos-ii-rtsc-2026] RTOS가 다른 태스크를 실행하기로 하면 [[context-switch|context switch]]가 일어나, 지금 태스크를 내보내고 새 태스크를 들인다.[@freertos-rtos-fundamentals-2026][@silabs-intro-rtos-2019] 스케줄링 방식은 [[real-time-scheduling|실시간 스케줄링]]에서 다룬다.
 
 RTOS는 흔히 주기적인 타이머 인터럽트인 **시스템 틱**으로 시간을 재고, 이것으로 태스크의 지연과 대기 타임아웃을 처리한다.[@silabs-intro-rtos-2019][@freertos-rtos-tick-2026]
 
-RTOS를 쓰면 틱을 돌리고 태스크를 전환하는 데 CPU 시간이 더 든다.[@freertos-faq-what-is-this-all-about-2026][@silabs-intro-rtos-2019] Silicon Labs 자료에 따르면 RTOS의 서비스 부담은 대개 CPU 사이클의 2\~10%이고, RTOS 코드는 플래시를 대개 6\~20 KB 더 쓰며, 태스크마다 스택과 TCB(Task Control Block)로 RAM(Random-Access Memory)을 더 쓴다.[@silabs-intro-rtos-2019]
+RTOS를 쓰면 틱을 돌리고 태스크를 전환하는 데 CPU 시간이 더 든다.[@freertos-faq-what-is-this-all-about-2026][@silabs-intro-rtos-2019] Silicon Labs 자료에 따르면 RTOS의 서비스 부담은 대개 CPU 사이클의 2\~10%이고, RTOS 코드는 플래시를 대개 6\~20 KB 더 쓰며, 태스크마다 스택과 TCB(Task Control Block)로 RAM(Random-Access Memory)을 더 쓴다.[@silabs-intro-rtos-2019] µC/OS-III 문서는 RTOS 전체가 아니라 커널만 놓고, 잘 설계된 애플리케이션에서 커널이 CPU 시간의 2\~4%를 쓴다고 본다.[@micrium-ucos-iii-real-time-kernels-2026]
 
-RTOS는 태스크 사이의 동기화와 통신에 세마포어, [[mutex|뮤텍스]], 메시지 큐, 이벤트 플래그 같은 객체를 제공한다.[@silabs-intro-rtos-2019][@arm-cmsis-rtos2-using-2026] 인터럽트 처리기는 태스크를 깨워 처리를 그 태스크에 넘길 수 있다.[@silabs-intro-rtos-2019][@freertos-deferred-interrupt-handling-2026]
+RTOS는 태스크 사이의 동기화와 통신에 [[semaphore|세마포어]], [[mutex|뮤텍스]], [[message-queue|메시지 큐]], [[event-flags|이벤트 플래그]] 같은 객체를 제공한다.[@silabs-intro-rtos-2019][@arm-cmsis-rtos2-using-2026] 인터럽트 처리기는 태스크를 깨워 처리를 그 태스크에 넘길 수 있다.[@silabs-intro-rtos-2019][@freertos-deferred-interrupt-handling-2026]
 
 ## 차량용 RTOS
 
@@ -37,7 +39,7 @@ RTOS는 태스크 사이의 동기화와 통신에 세마포어, [[mutex|뮤텍�
 
 [[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 [[autosar-os|운영체제 명세]]는 ISO 17356-3을 바탕으로 두고 이를 확장하거나 제한한다.[@autosar-cp-sws-os-2025]
 
-AUTOSAR Adaptive Platform은 주로 고성능 연산과 통신 기능을 제공하는 플랫폼이고, 그 설계 설명서는 이 플랫폼의 운영체제가 다중 프로세스 POSIX 운영체제 기능을 제공하도록 한다.[@autosar-ap-exp-platformdesign-2025] 운영체제 인터페이스 명세는 IEEE 1003.13-2003의 PSE51 인터페이스로 운영체제 기능을 제공하도록 요구한다.[@autosar-ap-sws-operatingsysteminterface-2025]
+AUTOSAR Adaptive Platform은 주로 고성능 연산과 통신 기능을 제공하는 플랫폼이고, 그 설계 설명서는 이 플랫폼의 운영체제가 다중 프로세스 POSIX 운영체제 기능을 제공하도록 한다.[@autosar-ap-exp-platformdesign-2025] 운영체제 인터페이스 명세는 [[ieee-1003-13|IEEE 1003.13]]-2003의 PSE51 인터페이스로 운영체제 기능을 제공하도록 요구한다.[@autosar-ap-sws-operatingsysteminterface-2025]
 
 ## 비실시간 시스템과의 차이
 
