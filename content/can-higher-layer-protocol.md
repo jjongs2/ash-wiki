@@ -27,7 +27,9 @@ CiA에 따르면 승용차 산업의 응용 계층은 대개 독자 규격이다
 
 CiA에 따르면 DeviceNet은 ODVA의 상표로, 공장 자동화에서 PLC(Programmable Logic Controller) 같은 컨트롤러와 산업용 I/O 장치, 전기 드라이브, HMI(Human Machine Interface)를 잇는 데 주로 쓰인다. CAN CC 데이터 링크 계층을 바탕으로 하고, IEC 62026-3으로 국제 표준이 되었다.[@cia-devicenet-2026]
 
-CiA에 따르면 드론 커뮤니티는 2022년 전에 UAVCAN으로 알려졌던 오픈 소스 HLP Cyphal을 만들었고, 이는 응용 계층이다. DroneCAN은 UAVCAN v0 프로토콜의 개발을 잇고자 만들어졌고, ArduPilot과 PX4 프로젝트가 CAN 주변 장치와 통신하는 데 쓴다.[@cia-uavcan-dronecan-2026]
+DeviceNet은 데이터 링크 계층에 CAN을 고치지 않고 그대로 쓰고, CAN이 정한 프레임 종류 가운데 주로 [[can-frame|데이터 프레임]]을 쓴다. 세션 계층과 그 위(OSI 5\~7계층)에는 ODVA의 CIP(Common Industrial Protocol)를 쓴다. 노드는 64개까지 지원하고, 굵은 원형 케이블(thick round cable)로 잇는 네트워크의 끝에서 끝까지 길이는 125 kbit/s에서 500 m, 250 kbit/s에서 250 m, 500 kbit/s에서 100 m까지다.[@odva-pub00026-2021]
+
+CiA에 따르면 드론 커뮤니티는 2022년 전에 UAVCAN으로 알려졌던 오픈 소스 HLP Cyphal을 만들었고, 이는 응용 계층이다. DroneCAN은 UAVCAN v0 프로토콜의 개발을 잇고자 만들어졌고, ArduPilot과 PX4 프로젝트가 CAN 주변 장치와 통신하는 데 쓴다.[@cia-uavcan-dronecan-2026] DroneCAN 명세는 classical CAN 버스와 CAN FD 버스 위의 전송 계층을 따로 정한다.[@dronecan-can-transport-2025][@dronecan-canfd-transport-2025]
 
 ## 역사
 
