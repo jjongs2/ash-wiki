@@ -1,16 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="19.5 -0.5 601 321" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="19.5 -0.5 601 325" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
   <!-- LAN -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <line x1="256" y1="62" x2="150" y2="190" />
-    <line x1="384" y1="62" x2="490" y2="190" />
-    <line x1="206" y1="214" x2="434" y2="214" />
+    <line x1="240" y1="38" x2="150" y2="196" />
+    <line x1="400" y1="38" x2="490" y2="196" />
+    <line x1="200" y1="214" x2="440" y2="214" />
   </g>
   <g fill="var(--text, #727981)">
-    <text x="192" y="130" text-anchor="end">LAN</text>
-    <text x="448" y="130">LAN</text>
-    <text x="320" y="232" text-anchor="middle">LAN</text>
+    <text x="180" y="121" text-anchor="end">LAN</text>
+    <text x="460" y="121">LAN</text>
+    <text x="320" y="234" text-anchor="middle">LAN</text>
   </g>
 
   <!-- 브리지 -->
@@ -21,28 +21,28 @@
   <rect x="440" y="196" width="160" height="36" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="520" y="218" text-anchor="middle" fill="var(--text, #727981)">브리지</text>
 
-  <!-- 포트와 역할 -->
+  <!-- 포트와 역할: 이름표는 포트 표지의 바깥 위에 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="250" y="50" width="12" height="12" rx="2" />
-    <rect x="378" y="50" width="12" height="12" rx="2" />
+    <rect x="234" y="32" width="12" height="12" rx="2" />
+    <rect x="394" y="32" width="12" height="12" rx="2" />
     <rect x="144" y="190" width="12" height="12" rx="2" />
     <rect x="484" y="190" width="12" height="12" rx="2" />
     <rect x="194" y="208" width="12" height="12" rx="2" />
   </g>
   <rect x="434" y="208" width="12" height="12" rx="2" fill="var(--red-tint, #bb464d)" stroke="var(--red, #bb464d)" stroke-width="1.5" />
   <g fill="var(--text, #727981)">
-    <text x="244" y="60" text-anchor="end">Designated Port</text>
-    <text x="396" y="60">Designated Port</text>
-    <text x="138" y="194" text-anchor="end">Root Port</text>
-    <text x="502" y="194">Root Port</text>
-    <text x="212" y="204">Designated Port</text>
-    <text x="428" y="204" text-anchor="end">Alternate Port</text>
+    <text x="226" y="28" text-anchor="end">Designated Port</text>
+    <text x="414" y="28">Designated Port</text>
+    <text x="136" y="184" text-anchor="end">Root Port</text>
+    <text x="504" y="184">Root Port</text>
+    <text x="214" y="202">Designated Port</text>
+    <text x="426" y="202" text-anchor="end">Alternate Port</text>
   </g>
 
   <!-- 안정된 네트워크의 포트 상태 -->
-  <text x="40" y="258" fill="var(--text, #727981)">안정된 네트워크의 포트 상태</text>
-  <rect x="40" y="268" width="12" height="12" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="60" y="278" fill="var(--text, #727981)">Forwarding: Root Port, Designated Port</text>
-  <rect x="40" y="288" width="12" height="12" rx="2" fill="var(--red-tint, #bb464d)" stroke="var(--red, #bb464d)" stroke-width="1.5" />
-  <text x="60" y="298" fill="var(--text, #727981)">Discarding: Alternate Port</text>
+  <text x="40" y="262" fill="var(--text, #727981)">안정된 네트워크의 포트 상태</text>
+  <rect x="40" y="272" width="12" height="12" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="60" y="282" fill="var(--text, #727981)">Forwarding: Root Port, Designated Port</text>
+  <rect x="40" y="292" width="12" height="12" rx="2" fill="var(--red-tint, #bb464d)" stroke="var(--red, #bb464d)" stroke-width="1.5" />
+  <text x="60" y="302" fill="var(--text, #727981)">Discarding: Alternate Port</text>
 </svg>
