@@ -53,6 +53,7 @@
 - JTC: ISO 위원회 번호
 - MCD: 표준·규격 이름
 - MCU: 널리 쓰이는 약어
+- MEF: 표준·규격 이름
 - MIL-HDBK: 표준·규격 이름
 - MISRA: 조직
 - NASA: 조직

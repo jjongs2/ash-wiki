@@ -27,6 +27,18 @@ idleSlope는 큐에 예약한 대역폭에 해당한다.[@st-rm0436-2025][@intel
 
 credit에는 위 한계 hiCredit이 있다.[@st-rm0436-2025][@intel-i210-2019] I210 데이터시트는 우선순위가 가장 높은 큐의 hiCredit을 최대 전송 패킷 크기와 그 큐의 예약 대역폭으로 계산하게 하고, 다음 큐의 식에는 앞 큐의 프레임도 더한다.[@intel-i210-2019] STM32MP157의 [[ethernet|이더넷]]은 아래 한계 loCredit도 둔다. RM0436은 hiCredit의 최댓값으로 best-effort 트래픽의 최대 패킷 크기를, loCredit 크기의 최댓값으로 그 큐가 내보내는 최대 프레임 크기를 제시한다.[@st-rm0436-2025]
 
+IEEE 802.1Q-2022의 부속서 L(참고)은 loCredit과 hiCredit을 아래 식으로 제시한다. maxFrameSize는 그 트래픽 클래스가 포트로 보낼 수 있는 가장 큰 프레임의 크기이고, maxInterferenceSize는 그 트래픽 클래스의 프레임 전송을 늦출 수 있는 트래픽 버스트의 가장 큰 크기(비트)다.[@ieee-802-1q-2022]
+
+$$
+\mathrm{loCredit} = \mathrm{maxFrameSize} \cdot \frac{\mathrm{sendSlope}}{\mathrm{portTransmitRate}}
+$$
+
+$$
+\mathrm{hiCredit} = \mathrm{maxInterferenceSize} \cdot \frac{\mathrm{idleSlope}}{\mathrm{portTransmitRate}}
+$$
+
+이 부속서는 번호가 가장 큰 트래픽 클래스의 maxInterferenceSize로 포트로 보낼 수 있는 가장 큰 프레임의 크기를 제시하고, 다른 트래픽 클래스에서는 더 높은 트래픽 클래스의 CBS 큐가 전송을 늦출 수 있는 것까지 셈에 넣는다고 제시한다. 이 부속서의 알고리즘에서 credit 값은 hiCredit을 넘지 않는다.[@ieee-802-1q-2022]
+
 ## 트래픽 클래스와의 관계
 
 IEEE 802.1Q-2022는 모든 브리지가 기본으로 지원해야 하는 [[traffic-class|strict priority]]에 더해 지원할 수 있는 [[traffic-class#전송 선택|전송 선택 알고리즘]]의 하나로 CBS를 두고, 포트의 전송 선택 알고리즘 표로 트래픽 클래스마다 쓸 알고리즘을 정한다. 이 표에서 CBS의 식별자는 1이다. 이 표준이 권하는 기본 설정은 SR 클래스 A(우선순위 3)와 SR 클래스 B(우선순위 2)를 CBS를 쓰는 트래픽 클래스에 대응시킨다. 트래픽 클래스가 셋 이상이면 두 SR 클래스를 서로 다른 트래픽 클래스에, 둘뿐이면 한 트래픽 클래스에 둔다. CBS는 트래픽 클래스 N의 큐에 지금 예약된 대역폭인 operIdleSlope(N)을 idleSlope로 써서 나가는 트래픽을 셰이핑한다.[@ieee-802-1q-2022]
@@ -34,6 +46,12 @@ IEEE 802.1Q-2022는 모든 브리지가 기본으로 지원해야 하는 [[traff
 IEEE 802.1Q-2022는 CBS가 뜻대로 동작하려면 CBS를 쓰는 트래픽 클래스가 strict priority를 쓰는 어느 트래픽 클래스보다도 번호가 커야 한다고 정한다.[@ieee-802-1q-2022] CBS 큐가 credit 때문에 전송할 수 없는 동안에는 낮은 우선순위의 큐가 전송한다.[@intel-i210-2019][@microchip-sam-e70-2026] CBS를 쓰는 트래픽 클래스가 예약 대역폭을 다 쓰지 않으면, 남는 대역폭을 strict priority의 낮은 트래픽 클래스가 쓸 수 있다.[@microchip-ksz9477s-2019][@st-rm0436-2025]
 
 가장 높은 SR 클래스의 CBS 큐도 바로 전에 전송을 시작한 다른 프레임이 끝나기를 기다려야 하므로, 그 큐의 프레임은 매체가 지원하는 가장 긴 프레임을 보내는 시간만큼 늦어질 수 있다. 저전력 모드에서 돌아오는 매체 접근 지연이 그보다 길면 그만큼 늦어진다. 낮은 SR 클래스의 프레임은 여기에 더해 더 높은 SR 클래스가 몰아 보내는 프레임만큼 기다린다.[@ieee-802-1q-2022] KSZ9477S 데이터시트에 따르면 best-effort 큐의 큰 패킷 전송은 CBS의 성능을 떨어뜨릴 수 있다.[@microchip-ksz9477s-2019]
+
+## 예약할 수 있는 대역폭
+
+IEEE 802.1Q-2022는 SR 클래스로 설정한 트래픽 클래스 $N$마다, [[srp|SRP]]가 그 트래픽 클래스의 큐에 예약할 수 있는 대역폭을 portTransmitRate에 대한 백분율 deltaBandwidth($N$)으로 둔다. lockClassBandwidth($N$)이 기본값인 거짓이면, deltaBandwidth($N$)은 lockClassBandwidth가 거짓인 더 높은 트래픽 클래스들의 deltaBandwidth에 더해 예약할 수 있는 몫이다. 트래픽 클래스 $N$이 예약할 수 있는 대역폭은 $N$과, lockClassBandwidth가 거짓인 그보다 높은 트래픽 클래스들의 deltaBandwidth를 합한 것에서, 더 높은 트래픽 클래스가 이미 예약한 대역폭을 뺀 것이다. deltaBandwidth($N$)의 기본값은 번호가 가장 큰 트래픽 클래스에서 75%, 그보다 낮은 트래픽 클래스에서 0%다.[@ieee-802-1q-2022]
+
+이 표준은 deltaBandwidth의 합을 예약하지 않는 트래픽(best-effort, strict priority)에 대역폭이 충분히 남도록 고르기를 권한다. 기본값의 합은 75%이므로, 기본 설정에서는 포트 대역폭의 25% 이상이 예약하지 않는 트래픽에 남는다. 이 기본값은 관리로 바꿀 수 있다.[@ieee-802-1q-2022]
 
 ## Time-aware shaper와의 차이
 
