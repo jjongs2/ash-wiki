@@ -11,7 +11,7 @@
   <text x="85" y="67" text-anchor="middle" fill="var(--text, #727981)">DP83TC811R-Q1</text>
   <line x1="150" y1="56" x2="440" y2="56" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <line x1="150" y1="68" x2="440" y2="68" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <path d="M432 50 L448 74 M448 50 L432 74" stroke="var(--red, #bb464d)" stroke-width="1.5" />
+  <path d="M432 50 L448 74 M448 50 L432 74" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="458" y="66" font-size="12" fill="var(--text, #727981)">단선이나 단락</text>
 
   <!-- 시험 펄스와 되돌아오는 반사 -->

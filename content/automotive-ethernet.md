@@ -49,7 +49,7 @@ IEEE 802.1 [[tsn|TSN]] 태스크 그룹은 IEEE 802 네트워크에서 지연 �
 
 ## OPEN Alliance 명세
 
-OPEN Alliance TC12는 100BASE-T1과 1000BASE-T1 PHY의 적합성 시험과 상호 운용성 시험 명세를 만들고 관리한다.[@open-alliance-tc12-2026] OPEN Alliance는 100BASE-T1과 1000BASE-T1의 상호 운용성 시험 명세를 펴낸다.[@open-alliance-100base-t1-iop-2024][@open-alliance-1000base-t1-iop-2024]
+OPEN Alliance TC12는 100BASE-T1과 1000BASE-T1 PHY의 적합성 시험과 상호 운용성 시험 명세를 만들고 관리하며[@open-alliance-tc12-2026], OPEN Alliance는 두 PHY의 상호 운용성 시험 명세를 펴낸다.[@open-alliance-100base-t1-iop-2024][@open-alliance-1000base-t1-iop-2024]
 
 TC8은 [[osi-model|OSI]] 일곱 계층 전체에 걸쳐 차량용 이더넷 ECU의 시험 명세와 적합성 명세를 만들고 유지해, ECU 적합성 인증의 통일된 바탕을 세우려 한다. 시험 서비스를 하는 시험 기관의 자격을 위한 시험 절차와 요구사항도 정한다.[@open-alliance-tc8-2026]
 

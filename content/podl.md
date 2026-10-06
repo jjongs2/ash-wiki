@@ -18,6 +18,8 @@ IEEE 802.3-2022는 PoDL 시스템을 PSE, 링크 세그먼트, PD로 이루어�
 
 ![[diagrams/podl-pse-pd-link-segment.svg]]
 
+mixing segment 위의 전력 공급은 [[10base-t1s#멀티드롭 보강|10BASE-T1S의 멀티드롭 보강]]에서 다룬다.
+
 ## 타입
 
 IEEE 802.3-2022는 PSE와 PD를 타입으로 나누고, 타입마다 함께 쓸 수 있는 PHY를 아래와 같이 정한다.[@ieee-802-3-2022]

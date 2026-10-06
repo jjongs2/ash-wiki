@@ -16,11 +16,11 @@ IEEE 802.3ch-2020이 2.5, 5, 10 Gbit/s의 차량용 전기 이더넷 물리 계�
 
 ## 동작
 
-IEEE 802.3-2022는 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1이 평형 도체 한 쌍 위에서 방향마다 2.5 Gbit/s, 5 Gbit/s, 10 Gbit/s로 동시에 주고받는 전이중 PHY로 차량 환경의 EMC와 온도 요구를 맞추도록 정한다. 데이터율에 따라 바뀌는 파라미터에는 비례 계수 S를 쓰며, S는 10GBASE-T1이 1, 5GBASE-T1이 0.5, 2.5GBASE-T1이 0.25다.[@ieee-802-3-2022]
+IEEE 802.3-2022는 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1이 평형 도체 한 쌍 위에서 방향마다 2.5 Gbit/s, 5 Gbit/s, 10 Gbit/s로 동시에 주고받는 전이중 PHY로 차량 환경의 EMC와 온도 요구를 맞추도록 정한다. 데이터율에 따라 바뀌는 파라미터에는 비례 계수 $S$를 쓰며, $S$는 10GBASE-T1이 1, 5GBASE-T1이 0.5, 2.5GBASE-T1이 0.25다.[@ieee-802-3-2022]
 
 ## 부호화
 
-IEEE 802.3-2022는 MultiGBASE-T1의 PCS가 [[mii|MII]] 계열의 XGMII(10 Gigabit Media Independent Interface)로 MAC(Medium Access Control) 쪽과 이어지도록 정한다. PCS는 XGMII의 TX_D, TX_EN, TX_ER를 64B/65B로 부호화하고, 64B/65B 블록 50개마다 RS-FEC(Reed–Solomon Forward Error Correction) 패리티 340비트를 더해 $\mathrm{BER} \le 10^{-12}$를 유지한다. 33비트 스크램블러로 EMC 성능을 높이고, 네 준위의 PAM4(Pulse Amplitude Modulation 4)로 보낸다. 심볼률은 2.5GBASE-T1이 1406.25 MBd, 5GBASE-T1이 2812.5 MBd, 10GBASE-T1이 5625 MBd다.[@ieee-802-3-2022]
+IEEE 802.3-2022는 MultiGBASE-T1의 PCS가 [[mii|MII]] 계열의 XGMII(10 Gigabit Media Independent Interface)로 MAC(Medium Access Control) 쪽과 이어지도록 정한다. PCS는 XGMII의 TX_D, TX_EN, TX_ER를 64B/65B로 부호화하고, 64B/65B 블록 50개마다 RS-FEC(Reed–Solomon Forward Error Correction) 패리티 340비트를 더해 비트 오류율 BER(Bit Error Ratio)을 $\mathrm{BER} \le 10^{-12}$로 유지한다. 33비트 스크램블러로 EMC 성능을 높이고, 네 준위의 PAM4(Pulse Amplitude Modulation 4)로 보낸다. 심볼률은 2.5GBASE-T1이 1406.25 MBd, 5GBASE-T1이 2812.5 MBd, 10GBASE-T1이 5625 MBd다.[@ieee-802-3-2022]
 
 ## 링크 세그먼트
 
