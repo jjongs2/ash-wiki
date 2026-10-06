@@ -30,10 +30,13 @@ export type Item = (context: Context) => Violation[]
 // 표준 이름 바로 뒤나 "<표준>의 <말 한둘>" 뒤의 "…에서(는)", "…에 따르면"과, 표준이 주어인 문장의 사실을
 // 전하기만 하는 보고 동사를 잡는다. 이름은 번호와 판까지 이어 본다(Bosch CAN FD 1.0,
 // [[iso-11898-1|ISO 11898-1]]:2024). 이름과 "에서" 사이에 아무 말이나 두면 "중재에서"처럼 표준과 상관없는
-// "에서"까지 걸려, #318·#319의 diff에서 후보 25개 가운데 21개가 그런 것이었다.
+// "에서"까지 걸려, #318·#319의 diff에서 후보 25개 가운데 21개가 그런 것이었다. 이름 안의 토큰은 공백
+// 하나로만 나눈다. 구분자를 생략할 수 있으면 영문 낱말 하나를 여러 방법으로 쪼개, "에서"가 없는 긴 영문
+// 제목 줄에서 역추적이 지수적으로 늘어난다(#339).
 const standardSubject = "(?:ISO|IEC|IEEE|SAE|AUTOSAR|RFC|ITU-T|Bosch|OSEK|POSIX|표준|규격|명세)"
+const standardNameToken = "[A-Za-z0-9.:/_\\]-]+"
 const standardSentence = new RegExp(
-  `${standardSubject}(?:[ :/-]?[A-Za-z0-9.:/_\\]-]+)*(?:의 [^\\s.]+(?: [^\\s.]+)?)?(?:에서는?|에 따르면) |` +
+  `${standardSubject}(?: ?${standardNameToken}(?: ${standardNameToken})*)?(?:의 [^\\s.]+(?: [^\\s.]+)?)?(?:에서는?|에 따르면) |` +
     `${standardSubject}(?:[^.]|\\.[0-9])*?(?:적는|설명한|밝힌|적었|설명했|밝혔)다`,
   "g",
 )
