@@ -26,14 +26,16 @@ interface Report {
   items: Map<string, string[]>
 }
 
+const timeoutMs = 30_000
+
 function run(repo: string, ...args: string[]): Report {
   const result = spawnSync(
     process.execPath,
     ["--import", import.meta.resolve("tsx"), path.join(here, "cli.ts"), "--base", "main", ...args],
     // 정규식이 역추적에 빠지면 CLI가 끝나지 않으니, 멈추는 대신 실패하게 시간을 정한다.
-    { cwd: repo, encoding: "utf8", timeout: 30_000 },
+    { cwd: repo, encoding: "utf8", timeout: timeoutMs },
   )
-  assert.strictEqual(result.signal, null, "CLI가 30초 안에 끝나지 않았다")
+  assert.strictEqual(result.signal, null, `CLI가 ${timeoutMs}ms 안에 끝나지 않았다`)
   assert.strictEqual(result.stderr.includes("Error"), false, result.stderr)
   const headers: string[] = []
   const items = new Map<string, string[]>()
@@ -98,8 +100,8 @@ describe("check-diff CLI", { concurrency: false }, () => {
     assert.ok(has(lines, "content/new-page.md:", "규격에서는"))
   })
 
-  test("표준 문장: 표준 이름 뒤에 긴 영문 제목이 오고 에서가 없는 줄에서 멈추지 않는다", () => {
-    assert.strictEqual(report.exitCode, 0)
+  // 이 줄에서 멈추면 before()의 run()이 시간 초과로 실패한다.
+  test("표준 문장: 표준 이름 뒤에 긴 영문 제목이 오고 에서가 없는 줄은 후보가 없다", () => {
     assert.ok(!has(report.items.get("standard-sentence"), "content/standard-title.md:"))
   })
 
