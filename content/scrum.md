@@ -11,11 +11,11 @@ The Scrum Guide 2020은 Scrum을, 복잡한 문제에 맞춰 해결책을 바꿔
 
 ## 이론
 
-The Scrum Guide 2020은 Scrum의 바탕을 경험주의와 린 사고에 둔다. 가이드에서 경험주의는 지식이 경험에서 나오고, 결정은 관찰한 것에 근거한다는 생각이다. 가이드는 투명성, 점검, 적응을 Scrum의 세 기둥으로 둔다.[@scrumguides-scrum-guide-2020]
+이 가이드는 Scrum의 바탕을 경험주의와 린 사고에 둔다. 가이드에서 경험주의는 지식이 경험에서 나오고, 결정은 관찰한 것에 근거한다는 생각이다. 가이드는 투명성, 점검, 적응을 Scrum의 세 기둥으로 둔다.[@scrumguides-scrum-guide-2020]
 
 ## Scrum Team
 
-The Scrum Guide 2020은 Scrum Team을 Scrum Master 한 명, Product Owner 한 명, Developers로 구성하고, 팀 안에 하위 팀이나 위계를 두지 않는다. 팀은 대개 10명 이하다. Scrum Team은 여러 기능을 갖추어 매 Sprint 가치를 만드는 데 필요한 기술을 모두 가지며, 누가 무엇을 언제 어떻게 할지 팀 안에서 스스로 정한다(self-managing).[@scrumguides-scrum-guide-2020]
+이 가이드는 Scrum Team을 Scrum Master 한 명, Product Owner 한 명, Developers로 구성하고, 팀 안에 하위 팀이나 위계를 두지 않는다. 팀은 대개 10명 이하다. Scrum Team은 여러 기능을 갖추어 매 Sprint 가치를 만드는 데 필요한 기술을 모두 가지며, 누가 무엇을 언제 어떻게 할지 팀 안에서 스스로 정한다(self-managing).[@scrumguides-scrum-guide-2020]
 
 가이드는 Scrum Team 안에 세 책임(accountability)을 둔다.[@scrumguides-scrum-guide-2020]
 
@@ -25,7 +25,7 @@ The Scrum Guide 2020은 Scrum Team을 Scrum Master 한 명, Product Owner 한 �
 
 ## 이벤트
 
-The Scrum Guide 2020은 이벤트 다섯을 두며, 그 가운데 Sprint가 나머지 넷을 담는다.[@scrumguides-scrum-guide-2020]
+이 가이드는 이벤트 다섯을 두며, 그 가운데 Sprint가 나머지 넷을 담는다.[@scrumguides-scrum-guide-2020]
 
 - **Sprint**: 길이가 고정된 한 달 이하의 이벤트다. 한 Sprint가 끝나면 곧바로 다음 Sprint가 시작된다. Sprint Goal이 쓸모없어지면 Sprint를 취소할 수 있고, 그 권한은 Product Owner에게만 있다.
 - **Sprint Planning**: Sprint에서 할 일을 정하며 Sprint를 연다. 이 Sprint가 왜 가치 있는지(Sprint Goal), 무엇을 할지, 어떻게 할지를 다루고, 한 달짜리 Sprint에서 최대 8시간이다.
@@ -37,7 +37,7 @@ The Scrum Guide 2020은 이벤트 다섯을 두며, 그 가운데 Sprint가 나�
 
 ## 산출물과 약속
 
-The Scrum Guide 2020은 산출물 셋을 두고, 산출물마다 진척을 잴 기준이 되는 약속(commitment)을 하나씩 붙인다.[@scrumguides-scrum-guide-2020]
+이 가이드는 산출물 셋을 두고, 산출물마다 진척을 잴 기준이 되는 약속(commitment)을 하나씩 붙인다.[@scrumguides-scrum-guide-2020]
 
 - **Product Backlog**: 제품을 낫게 하는 데 필요한 것을 순서대로 늘어놓은 목록으로, Scrum Team이 하는 일의 유일한 원천이다. 약속은 **Product Goal**로, Scrum Team이 계획의 목표로 삼는 제품의 미래 상태다.
 - **Sprint Backlog**: Sprint Goal, 이번 Sprint에 고른 Product Backlog 항목, Increment를 인도할 실행 계획으로 이루어진다. 약속은 **Sprint Goal**로, Sprint의 단일한 목표다.
