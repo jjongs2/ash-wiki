@@ -66,7 +66,7 @@ talker가 스트림의 광고를 거두면 MSRP 참여자는 talker 선언을 �
 
 [[tsn|TSN]] 태스크 그룹의 IEEE 802.1Qcc-2018은 IEEE 802.1Q의 개정으로, SRP를 개선하고 시간에 민감한 스트림의 설정을 보강했다.[@ieee-802-1qcc-2018][@ieee-802-1qcc-project-2026]
 
-SRP는 IEEE 802.1Q-2022의 [[tsn-configuration|TSN 설정]] 모델 가운데 완전 분산 모델과 중앙 네트워크/분산 사용자 모델에 쓰인다. CNC(Centralized Network Configuration)가 브리지를 설정하는 데 쓰는 스트림 예약 원격 관리 기능은 IEEE 802.1Qcc가 처음 넣었다.[@ieee-802-1q-2022]
+SRP는 IEEE 802.1Q-2022의 [[tsn-configuration|TSN 설정]] 모델 가운데 완전 분산 모델과 중앙 네트워크/분산 사용자 모델에 쓰이며, 뒤 모델에서 CNC(Centralized Network Configuration)가 브리지를 설정하는 데 쓰는 스트림 예약 원격 관리 기능은 IEEE 802.1Qcc가 처음 넣었다.[@ieee-802-1q-2022]
 
 ## LRP와 RAP
 

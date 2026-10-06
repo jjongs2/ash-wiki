@@ -31,7 +31,7 @@ gPTP는 매체에 상관없는 부분과 매체마다 다른 부분으로 나누
 
 ![[diagrams/gptp-relay-correction-field.svg]]
 
-지연과 체류 시간의 측정이 같은 시간 축을 쓰도록, PTP Relay Instance는 발진기의 주파수를 실제로 맞추지 않고 측정값을 Grandmaster Clock과의 주파수 비로 보정한다. 각 PTP Instance는 포트마다 링크 건너편 PTP Instance와 자기 클럭의 주파수 비를 재고, Grandmaster Clock과 자기 클럭의 누적 주파수 비를 Follow_Up 메시지에 붙은 TLV(type, length, value)에 쌓아 전한다. 이를 **논리적 syntonization**이라 한다.[@ieee-802-1as-2025]
+지연과 체류 시간의 측정이 같은 시간 축을 쓰도록, PTP Relay Instance는 발진기의 주파수를 실제로 맞추지 않고 측정값을 Grandmaster Clock과의 주파수 비로 보정한다. 각 PTP Instance는 포트마다 링크 건너편 PTP Instance와 자기 클럭의 주파수 비를 재고, Grandmaster Clock과 자기 클럭의 누적 주파수 비를 Follow_Up 메시지에 붙은 TLV(Type-Length-Value)에 쌓아 전한다. 이를 **논리적 syntonization**이라 한다.[@ieee-802-1as-2025]
 
 IEEE 802.1AS-2025는 이 표준과 매체마다 참조하는 표준의 요구를 만족하면, 사이에 PTP Instance가 여섯 개 이하인 두 PTP Instance, 곧 일곱 홉 이하로 떨어진 두 PTP Instance가 정상 상태에서 서로 1 µs(peak-to-peak) 안으로 동기화되도록 정한다.[@ieee-802-1as-2025]
 
@@ -61,7 +61,7 @@ gPTP는 IEEE 1588-2019의 PTP와 다음이 다르다.[@ieee-802-1as-2025]
 
 이 명세가 참조하는 IEEE 802.1AS-2011과 다르게 정하는 점은 아래와 같다.[@autosar-fo-prs-timesyncoverethernetprotocol-2025]
 
-- BMCA: IEEE 802.1AS-2011이 정한 BMCA(best master clock algorithm)를 지원하지 않는다.
+- BMCA: IEEE 802.1AS-2011이 정한 BMCA를 지원하지 않는다.
 - 메시지: Announce와 Signaling 메시지를 지원하지 않는다.
 - Sync 송신 시작: Pdelay_Req를 받는 것을 Sync 메시지 송신을 시작할 전제 조건으로 삼지 않는다.
 - VLAN: 스위치 하드웨어가 예약 멀티캐스트 주소(`01:80:C2:00:00:00`에서 `0F`까지)의 전달을 지원하면 [[virtual-lan|VLAN]] 위의 시간 동기화를 허용한다.[@autosar-fo-prs-timesyncoverethernetprotocol-2025]

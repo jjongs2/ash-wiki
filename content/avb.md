@@ -42,7 +42,7 @@ IEEE 802.1BA-2021은 talker에서 listener까지의 최악 지연 목표를 SR �
 
 IEEE 802.1Q-2022는 수신 포트마다 SRP 도메인 경계 포트용 우선순위 재생성 표를 두어, 포트가 어떤 SR 클래스의 도메인 경계에 있으면 이 표의 값을 재생성한 우선순위로 쓴다. 기본값은 클래스 A의 우선순위 3과 클래스 B의 우선순위 2를 모두 0으로 바꾸므로, 도메인 밖에서 SR 클래스의 우선순위를 달고 들어온 트래픽은 경계의 브리지에서 더 낮은 우선순위로 전달된다. 예약한 트래픽과 예약하지 않은 트래픽이 같은 우선순위를 나눠 쓰면 예약한 트래픽의 최악 지연을 예측할 수 없게 된다.[@ieee-802-1q-2022]
 
-IEEE 802.1BA-2021은 포트가 gPTP를 지원하지 않거나, gPTP가 그 포트의 도메인 0에서 asCapable을 거짓으로 정했거나, 포트에 붙은 LAN이 AVB를 지원하지 못하면 그 포트를 그 포트가 지원하는 모든 SR 클래스의 SRP 도메인 경계 포트로 둔다. 이 포트로 넘어갈 Talker Advertise는 실패 코드 8("Egress port is not AVB-capable")을 단 Talker Failed로 바뀌므로, 스트림 예약은 talker와 listener가 같은 SRP 도메인에 있을 때만 이루어진다. 이 표준은 반이중이거나 100 Mb/s보다 느린 IEEE 802.3을 AVB를 지원하지 못하는 LAN 기술로 꼽는다.[@ieee-802-1ba-2021]
+IEEE 802.1BA-2021은 포트가 gPTP를 지원하지 않거나, gPTP가 그 포트의 도메인 0에서 asCapable을 거짓으로 정했거나, 포트에 붙은 LAN이 AVB를 지원하지 못하면 그 포트를 그 포트가 지원하는 모든 SR 클래스의 SRP 도메인 경계 포트로 둔다. 이 포트로 넘어갈 Talker Advertise는 실패 코드 8("Egress port is not AVB-capable")을 단 Talker Failed로 바뀌므로, 스트림 예약은 talker와 listener가 같은 SRP 도메인에 있을 때만 이루어진다. 이 표준은 반이중이거나 100 Mbit/s보다 느린 IEEE 802.3을 AVB를 지원하지 못하는 LAN 기술로 꼽는다.[@ieee-802-1ba-2021]
 
 ![[diagrams/avb-domain-boundary-port.svg]]
 
@@ -78,7 +78,7 @@ Avnu Alliance의 Automotive Ethernet AVB Functional and Interoperability Specifi
 
 tpl_250의 10 ms는 무선 구간 둘을 전제한 IEEE 802.1BA의 클래스 B 값을 차량에 맞게 줄인 값이다. 장치가 SR 클래스를 동시에 둘보다 많이 지원할 필요는 없다.[@avnu-automotive-avb-1-6-2019]
 
-미디어 형식으로는, AAF(AVTP Audio Format)를 지원하는 오디오 장치가 [[ieee-1722|IEEE 1722]]-2016의 AAF와 16비트 정수 샘플 형식, 48 kHz와 44.1 kHz 가운데 하나 이상의 샘플링 레이트를 지원하게 한다. 미디어 클럭 기준을 주고받는 장치 가운데 오디오 talker가 IEEE 1722-2016의 오디오 샘플 CRF(Clock Reference Format)를 지원하게 한다.[@avnu-automotive-avb-1-6-2019]
+미디어 형식으로는, AAF(AVTP Audio Format)를 지원하는 오디오 장치가 IEEE 1722-2016의 AAF와 16비트 정수 샘플 형식, 48 kHz와 44.1 kHz 가운데 하나 이상의 샘플링 레이트를 지원하게 한다. 미디어 클럭 기준을 주고받는 장치 가운데 오디오 talker가 IEEE 1722-2016의 오디오 샘플 CRF(Clock Reference Format)를 지원하게 한다.[@avnu-automotive-avb-1-6-2019]
 
 ## TSN과의 관계
 

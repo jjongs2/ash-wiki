@@ -28,9 +28,9 @@ IEEE 802.1AE-2018은 MAC 클라이언트에 드러나지 않게 동작하고 매
 
 ![[diagrams/macsec-ca-sc-sa.svg]]
 
-SecTAG는 MACsec EtherType `0x88E5`로 시작한다.[@ieee-802-1ae-2018] IEEE 등록기관의 EtherType 공개 목록도 `0x88E5`를 IEEE 802.1AE의 MACsec 태그에, `0x888E`를 IEEE 802.1X가 정하는 EAPOL(EAP over LAN)용 PAE(Port Access Entity)에 배정한다.[@ieee-ra-ethertype-2024]
+IEEE 802.1AE-2018은 SecTAG가 MACsec EtherType `0x88E5`로 시작하도록 정한다.[@ieee-802-1ae-2018] IEEE 등록기관의 EtherType 공개 목록도 `0x88E5`를 IEEE 802.1AE의 MACsec 태그에, `0x888E`를 IEEE 802.1X가 정하는 EAPOL(EAP over LAN)용 PAE(Port Access Entity)에 배정한다.[@ieee-ra-ethertype-2024]
 
-기본 cipher suite는 [[symmetric-key-cryptography#AES|AES]]-128 블록 암호를 [[block-cipher-mode-of-operation#인증 암호 모드|GCM]]으로 운용하는 GCM-AES-128이다. 키는 128비트 SAK이고, 96비트 IV의 상위 64비트는 SCI, 하위 32비트는 PN이고, ICV는 128비트다.[@ieee-802-1ae-2018]
+IEEE 802.1AE-2018은 [[symmetric-key-cryptography#AES|AES]]-128 블록 암호를 [[block-cipher-mode-of-operation#인증 암호 모드|GCM]]으로 운용하는 GCM-AES-128을 기본 cipher suite로 정한다. 키는 128비트 SAK이고, 96비트 IV의 상위 64비트는 SCI, 하위 32비트는 PN이고, ICV는 128비트다.[@ieee-802-1ae-2018]
 
 ![[diagrams/macsec-gcm-aes-128-iv.svg]]
 
