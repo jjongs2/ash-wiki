@@ -16,6 +16,7 @@ import {
   touches,
 } from "./text"
 import { ownerPage } from "./owner"
+import { attributed, claimBlocks, opensRun } from "./runs"
 
 // 반영 뒤 점검의 항목들. 항목마다 규칙은 docs/wiki-verification.md의 반영 뒤 점검 절이 가리키는 절에
 // 있고, 여기 있는 것은 후보를 뽑는 패턴뿐이다. 판정은 사람이 한다.
@@ -279,6 +280,39 @@ const shortenedItem: Item = ({ tree, changed }) => {
   })
 }
 
+// 출처 구간: 더하거나 지우거나 고친 자리의 주장 블록과 그 뒤에 처음 오는 주장 블록 가운데, 구간을 여는데
+// 출처 표시가 없는 것. 뒤 블록은 바뀌지 않았어도 찍는다. 끼워 넣은 블록이나 지운 구간 첫 블록 때문에 몇 절
+// 떨어진 블록이 구간을 열 수 있기 때문이다. 같은 출처인지는 인용 키로만 가린다.
+const sourceRunItem: Item = ({ changed }) =>
+  changed.flatMap(({ page, change }) => {
+    const list = claimBlocks(page)
+    const picked = new Set<number>()
+    for (const hunk of change.hunks) {
+      const lines = hunk.added.map((a) => a.line)
+      list.forEach((claim, index) => {
+        if (lines.some((line) => claim.start <= line && line <= claim.end)) picked.add(index)
+      })
+      const after =
+        lines.length > 0
+          ? list.findIndex((claim) => claim.start > Math.max(...lines))
+          : list.findIndex((claim) => claim.end > hunk.at)
+      if (after >= 0) picked.add(after)
+    }
+    return [...picked]
+      .sort((a, b) => a - b)
+      .filter((index) => opensRun(list, index) && !attributed(list[index]))
+      .map((index) => {
+        const claim = list[index]
+        const previous = list[index - 1]
+        const before = previous ? `${previous.end}줄 ${previous.last}` : "없음"
+        return {
+          file: page.file,
+          line: claim.start,
+          message: `구간을 여는데 출처 표시가 없다(앞: ${before}, 이: ${claim.first}): ${excerpt(claim.opening)}`,
+        }
+      })
+  })
+
 // 이어진 낱말 하나에서 셋까지의 묶음.
 function phrases(text: string): Set<string> {
   const found = new Set<string>()
@@ -466,6 +500,7 @@ export const items: [string, Item][] = [
   ["emphasis", emphasisItem],
   ["repeated-citation", repeatedCitationItem],
   ["shortened", shortenedItem],
+  ["source-run", sourceRunItem],
   ["owner-page", ownerPage],
   ["abbreviation", abbreviationItem],
   ["diagram-place", diagramPlaceItem],

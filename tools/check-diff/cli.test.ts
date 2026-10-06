@@ -85,6 +85,7 @@ describe("check-diff CLI", { concurrency: false }, () => {
         "emphasis",
         "repeated-citation",
         "shortened",
+        "source-run",
         "owner-page",
         "abbreviation",
         "diagram-place",
@@ -138,6 +139,24 @@ describe("check-diff CLI", { concurrency: false }, () => {
     const lines = report.items.get("shortened")
     assert.ok(has(lines, "content/controller.md:", "이 응답은"))
     assert.ok(has(lines, "content/controller.md:", '"master"', "lin-header.svg"))
+  })
+
+  test("출처 구간: 다른 출처를 끼워 넣은 뒤 구간을 다시 여는 바뀌지 않은 문단을 잡는다", () => {
+    const lines = report.items.get("source-run") ?? []
+    assert.ok(has(lines, "content/run-insert.md:18:", "PHY는 링크 세그먼트"))
+    assert.ok(!has(lines, "content/run-insert.md:14:"), "끼워 넣은 문단은 출처를 밝혔다")
+    assert.ok(!has(lines, "content/run-insert.md:12:"), "끼워 넣은 자리 앞의 구간은 그대로다")
+    assert.ok(!has(lines, "content/run-insert.md:26:"), "바뀐 자리에서 먼 곳은 보지 않는다")
+  })
+
+  test("출처 구간: 구간 첫 문단을 지운 뒤 '이 표준'으로 구간을 여는 문단을 잡는다", () => {
+    const lines = report.items.get("source-run") ?? []
+    assert.deepStrictEqual(
+      lines
+        .filter((line) => line.startsWith("content/run-delete.md"))
+        .map((l) => l.replace(/: 구간.*/, "")),
+      ["content/run-delete.md:12"],
+    )
   })
 
   test("주인 페이지: 행마다 링크, 절 앵커, 문단의 문장 수를 보인다", () => {
