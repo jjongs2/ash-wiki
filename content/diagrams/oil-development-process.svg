@@ -16,10 +16,10 @@
 
   <!-- 입력 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="20" y="50" width="140" height="44" rx="4" fill="var(--surface, none)" />
-    <rect x="20" y="124" width="140" height="44" rx="4" fill="var(--surface, none)" />
+    <rect x="20" y="50" width="140" height="44" rx="2" fill="var(--surface, none)" />
+    <rect x="20" y="124" width="140" height="44" rx="2" fill="var(--surface, none)" />
   </g>
-  <rect x="20" y="198" width="140" height="44" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20" y="198" width="140" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="90" y="77">OIL 구성 파일</text>
     <text x="90" y="151">사용자 소스 코드</text>
@@ -28,9 +28,9 @@
 
   <!-- 도구 -->
   <g fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5">
-    <rect x="200.75" y="50.75" width="138.5" height="42.5" rx="4" />
-    <rect x="200.75" y="124.75" width="138.5" height="42.5" rx="4" />
-    <rect x="380.75" y="124.75" width="118.5" height="42.5" rx="4" />
+    <rect x="200.75" y="50.75" width="138.5" height="42.5" rx="2" />
+    <rect x="200.75" y="124.75" width="138.5" height="42.5" rx="2" />
+    <rect x="380.75" y="124.75" width="118.5" height="42.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="270" y="77">System Generator</text>
@@ -39,7 +39,7 @@
   </g>
 
   <!-- 출력 -->
-  <rect x="540" y="124" width="120" height="44" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="540" y="124" width="120" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="600" y="151" text-anchor="middle" fill="var(--text, #727981)">실행 파일</text>
 
   <!-- 흐름 -->

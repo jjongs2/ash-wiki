@@ -9,10 +9,10 @@
   <!-- OSEK/VDX OS 명세의 판 -->
   <text x="20" y="30" font-size="12" fill="var(--text, #727981)">OSEK/VDX OS 명세</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="20" y="40" width="110" height="46" rx="4" fill="var(--surface, none)" />
-    <rect x="170" y="40" width="110" height="46" rx="4" fill="var(--surface, none)" />
-    <rect x="320" y="40" width="110" height="46" rx="4" fill="var(--surface, none)" />
-    <rect x="520" y="40" width="110" height="46" rx="4" fill="var(--surface, none)" />
+    <rect x="20" y="40" width="110" height="46" rx="2" fill="var(--surface, none)" />
+    <rect x="170" y="40" width="110" height="46" rx="2" fill="var(--surface, none)" />
+    <rect x="320" y="40" width="110" height="46" rx="2" fill="var(--surface, none)" />
+    <rect x="520" y="40" width="110" height="46" rx="2" fill="var(--surface, none)" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="75" y="68">2.2</text>
@@ -26,8 +26,8 @@
 
   <!-- ISO -->
   <g fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5">
-    <rect x="20.75" y="148.75" width="408.5" height="44.5" rx="4" />
-    <rect x="460.75" y="148.75" width="108.5" height="44.5" rx="4" />
+    <rect x="20.75" y="148.75" width="408.5" height="44.5" rx="2" />
+    <rect x="460.75" y="148.75" width="108.5" height="44.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="225" y="176">ISO 표준화 과정</text>

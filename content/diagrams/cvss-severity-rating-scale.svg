@@ -4,10 +4,10 @@
 
   <!-- 점수 1.0 = 60 단위, 0.0 = x 40, 10.0 = x 640 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="46" y="30" width="234" height="44" rx="4" />
-    <rect x="280" y="30" width="180" height="44" rx="4" />
-    <rect x="460" y="30" width="120" height="44" rx="4" />
-    <rect x="580" y="30" width="60" height="44" rx="4" />
+    <rect x="46" y="30" width="234" height="44" />
+    <rect x="280" y="30" width="180" height="44" />
+    <rect x="460" y="30" width="120" height="44" />
+    <rect x="580" y="30" width="60" height="44" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="163" y="49">low</text>

@@ -13,11 +13,11 @@
 
   <!-- 유효 표시 뒤에 올릴 때 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="40" y="32" width="150" height="48" rx="4" />
-    <rect x="240" y="32" width="150" height="48" rx="4" />
-    <rect x="40" y="122" width="150" height="36" rx="4" />
+    <rect x="40" y="32" width="150" height="48" rx="2" />
+    <rect x="240" y="32" width="150" height="48" rx="2" />
+    <rect x="40" y="122" width="150" height="36" rx="2" />
   </g>
-  <rect x="440" y="32" width="150" height="48" rx="4" stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)" />
+  <rect x="440" y="32" width="150" height="48" rx="2" stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="115" y="61">새 이미지로 부팅</text>
     <text x="315" y="61">유효 표시</text>
@@ -30,10 +30,10 @@
 
   <!-- 부팅 성공 표시 전에 갱신할 때 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="40" y="212" width="150" height="48" rx="4" />
-    <rect x="215" y="302" width="200" height="48" rx="4" />
+    <rect x="40" y="212" width="150" height="48" rx="2" />
+    <rect x="215" y="302" width="200" height="48" rx="2" />
   </g>
-  <rect x="240" y="212" width="150" height="48" rx="4" stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)" />
+  <rect x="240" y="212" width="150" height="48" rx="2" stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="115" y="241">새 슬롯으로 부팅</text>
     <text x="315" y="322">이전 슬롯으로 돌아가도</text>

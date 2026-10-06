@@ -12,8 +12,8 @@
   <!-- 대칭 키 암호 -->
   <text x="20" y="20" font-size="12" fill="var(--text, #727981)">대칭 키 암호</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="32" width="130" height="110" rx="4" />
-    <rect x="260" y="32" width="130" height="110" rx="4" />
+    <rect x="20" y="32" width="130" height="110" rx="2" />
+    <rect x="260" y="32" width="130" height="110" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="85" y="54">송신자</text>
@@ -40,8 +40,8 @@
   <!-- 공개 키 암호 -->
   <text x="20" y="170" font-size="12" fill="var(--text, #727981)">공개 키 암호</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="182" width="130" height="110" rx="4" />
-    <rect x="260" y="182" width="130" height="110" rx="4" />
+    <rect x="20" y="182" width="130" height="110" rx="2" />
+    <rect x="260" y="182" width="130" height="110" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="85" y="204">송신자</text>

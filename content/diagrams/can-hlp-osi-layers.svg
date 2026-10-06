@@ -5,35 +5,35 @@
   <text x="140" y="24" text-anchor="middle" font-size="12" fill="var(--text, #727981)">OSI 참조 모델</text>
   <text x="360" y="24" text-anchor="middle" font-size="12" fill="var(--text, #727981)">표준화된 HLP 스택(CiA)</text>
   <!-- 일곱 계층 -->
-  <rect x="40.75" y="40.75" width="198.5" height="34.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="40.75" y="40.75" width="198.5" height="34.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="54" y="63" font-size="12" fill="var(--text, #727981)">7</text>
   <text x="140" y="63" text-anchor="middle" fill="var(--text, #727981)">응용 계층</text>
-  <rect x="40.75" y="82.75" width="198.5" height="34.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="40.75" y="82.75" width="198.5" height="34.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="54" y="105" font-size="12" fill="var(--text, #727981)">6</text>
   <text x="140" y="105" text-anchor="middle" fill="var(--text, #727981)">표현 계층</text>
-  <rect x="40.75" y="124.75" width="198.5" height="34.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="40.75" y="124.75" width="198.5" height="34.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="54" y="147" font-size="12" fill="var(--text, #727981)">5</text>
   <text x="140" y="147" text-anchor="middle" fill="var(--text, #727981)">세션 계층</text>
-  <rect x="40.75" y="166.75" width="198.5" height="34.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="40.75" y="166.75" width="198.5" height="34.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="54" y="189" font-size="12" fill="var(--text, #727981)">4</text>
   <text x="140" y="189" text-anchor="middle" fill="var(--text, #727981)">전송 계층</text>
-  <rect x="40.75" y="208.75" width="198.5" height="34.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="40.75" y="208.75" width="198.5" height="34.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="54" y="231" font-size="12" fill="var(--text, #727981)">3</text>
   <text x="140" y="231" text-anchor="middle" fill="var(--text, #727981)">네트워크 계층</text>
-  <rect x="40.75" y="250.75" width="198.5" height="34.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="40.75" y="250.75" width="198.5" height="34.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="54" y="273" font-size="12" fill="var(--text, #727981)">2</text>
   <text x="140" y="273" text-anchor="middle" fill="var(--text, #727981)">데이터 링크 계층</text>
-  <rect x="40.75" y="292.75" width="198.5" height="34.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="40.75" y="292.75" width="198.5" height="34.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="54" y="315" font-size="12" fill="var(--text, #727981)">1</text>
   <text x="140" y="315" text-anchor="middle" fill="var(--text, #727981)">물리 계층</text>
   <!-- HLP 스택이 맡는 계층 -->
-  <rect x="280.75" y="40.75" width="158.5" height="34.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="280.75" y="40.75" width="158.5" height="34.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="360" y="63" text-anchor="middle" font-size="12" fill="var(--text, #727981)">대개 구현</text>
-  <rect x="280.75" y="82.75" width="158.5" height="76.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
+  <rect x="280.75" y="82.75" width="158.5" height="76.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
   <text x="360" y="125" text-anchor="middle" font-size="12" fill="var(--text, #727981)">기능 일부</text>
-  <rect x="280.75" y="166.75" width="158.5" height="34.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="280.75" y="166.75" width="158.5" height="34.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="360" y="189" text-anchor="middle" font-size="12" fill="var(--text, #727981)">대개 구현</text>
-  <rect x="280.75" y="208.75" width="158.5" height="34.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
+  <rect x="280.75" y="208.75" width="158.5" height="34.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
   <text x="360" y="231" text-anchor="middle" font-size="12" fill="var(--text, #727981)">기능 일부</text>
   <!-- HLP와 ISO 11898 시리즈 -->
   <path d="M452 40 H458 V244 H452" stroke="var(--ink, #727981)" stroke-width="1.5" />

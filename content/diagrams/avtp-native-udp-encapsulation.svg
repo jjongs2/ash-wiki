@@ -9,10 +9,10 @@
 
   <!-- 머리 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="150.75" y="20.75" width="219.25" height="40.5" rx="4" />
-    <rect x="150.75" y="74.75" width="219.25" height="40.5" rx="4" />
-    <rect x="370" y="74.75" width="70" height="40.5" rx="4" />
-    <rect x="440" y="74.75" width="70" height="40.5" rx="4" />
+    <rect x="150.75" y="20.75" width="219.25" height="40.5" />
+    <rect x="150.75" y="74.75" width="219.25" height="40.5" />
+    <rect x="370" y="74.75" width="70" height="40.5" />
+    <rect x="440" y="74.75" width="70" height="40.5" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="260" y="37">IEEE 802 헤더</text>
@@ -24,8 +24,8 @@
 
   <!-- AVTP -->
   <g fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5">
-    <rect x="370" y="20.75" width="119.25" height="40.5" rx="4" />
-    <rect x="510" y="74.75" width="119.25" height="40.5" rx="4" />
+    <rect x="370" y="20.75" width="119.25" height="40.5" />
+    <rect x="510" y="74.75" width="119.25" height="40.5" />
   </g>
   <g font-size="14" text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="430" y="46">AVTP</text>

@@ -7,7 +7,7 @@
   </defs>
 
   <!-- 내부 크로스오버가 없는 PHY -->
-  <rect x="20" y="30" width="130" height="110" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20" y="30" width="130" height="110" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="85" y="80">내부 크로스오버</text>
     <text x="85" y="98">없는 PHY</text>
@@ -22,7 +22,7 @@
   </g>
 
   <!-- 내부 크로스오버가 있는 PHY -->
-  <rect x="340" y="30" width="130" height="110" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="340" y="30" width="130" height="110" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="405" y="80">내부 크로스오버</text>
     <text x="405" y="98">있는 PHY</text>

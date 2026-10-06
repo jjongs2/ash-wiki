@@ -32,7 +32,7 @@
   <!-- 스위치를 가운데 둔 스타 -->
   <text x="520" y="24" text-anchor="middle" fill="var(--text, #727981)">스위치를 가운데 둔 스타</text>
   <text x="520" y="42" text-anchor="middle" font-size="12" fill="var(--text, #727981)">링크마다 전이중</text>
-  <rect x="480.75" y="110.75" width="78.5" height="28.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="480.75" y="110.75" width="78.5" height="28.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
   <text x="520" y="130" text-anchor="middle" fill="var(--on-fill, #f8fafd)">스위치</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <rect x="490" y="52" width="60" height="28" rx="2" fill="var(--surface, none)" />

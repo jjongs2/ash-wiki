@@ -8,8 +8,8 @@
   <text x="20" y="18" font-size="12" fill="var(--text, #727981)">ISO/SAE 21434:2021</text>
 
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="36" width="190" height="48" rx="4" />
-    <rect x="320" y="36" width="190" height="48" rx="4" />
+    <rect x="20" y="36" width="190" height="48" rx="2" />
+    <rect x="320" y="36" width="190" height="48" rx="2" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="115" y="56">cybersecurity information</text>

@@ -19,8 +19,8 @@
 
   <!-- ECU -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="40" y="50" width="260" height="182" rx="4" />
-    <rect x="340" y="50" width="260" height="182" rx="4" />
+    <rect x="40" y="50" width="260" height="182" rx="2" />
+    <rect x="340" y="50" width="260" height="182" rx="2" />
   </g>
   <g fill="var(--text, #727981)">
     <text x="40" y="42">ECU 1</text>

@@ -11,29 +11,29 @@
   <text x="280" y="20" text-anchor="middle" font-size="12" fill="var(--text, #727981)">프로세스 하드웨어</text>
   <line x1="280" y1="28" x2="280" y2="90" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
   <!-- 장치 틀 -->
-  <rect x="20.75" y="60.75" width="518.5" height="280.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="none" />
+  <rect x="20.75" y="60.75" width="518.5" height="280.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="none" />
   <text x="34" y="80" font-size="12" fill="var(--text, #727981)">CANopen 장치</text>
-  <rect x="40.75" y="92.75" width="478.5" height="46.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="40.75" y="92.75" width="478.5" height="46.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="280" y="112" text-anchor="middle" fill="var(--text, #727981)">응용 소프트웨어</text>
   <text x="280" y="130" text-anchor="middle" font-size="12" fill="var(--text, #727981)">내부 제어 기능</text>
   <line x1="280" y1="140" x2="280" y2="152" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <!-- object dictionary와 인덱스 범위 -->
-  <rect x="40.75" y="152.75" width="478.5" height="112.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="none" />
+  <rect x="40.75" y="152.75" width="478.5" height="112.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="none" />
   <text x="280" y="174" text-anchor="middle" fill="var(--text, #727981)">object dictionary</text>
   <path d="M196 206 V200 H500 V206" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="348" y="193" text-anchor="middle" font-size="12" fill="var(--text, #727981)">응용 파라미터</text>
-  <rect x="60.75" y="210.75" width="130.5" height="42.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="60.75" y="210.75" width="130.5" height="42.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="126" y="228" text-anchor="middle" font-size="12" fill="var(--text, #727981)">1000h~1FFFh</text>
   <text x="126" y="245" text-anchor="middle" font-size="12" fill="var(--text, #727981)">통신 파라미터</text>
-  <rect x="196.75" y="210.75" width="148.5" height="42.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="196.75" y="210.75" width="148.5" height="42.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="271" y="228" text-anchor="middle" font-size="12" fill="var(--text, #727981)">2000h~5FFFh</text>
   <text x="271" y="245" text-anchor="middle" font-size="12" fill="var(--text, #727981)">제조사 고유</text>
-  <rect x="350.75" y="210.75" width="148.5" height="42.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="350.75" y="210.75" width="148.5" height="42.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="425" y="228" text-anchor="middle" font-size="12" fill="var(--text, #727981)">6000h~9FFFh</text>
   <text x="425" y="245" text-anchor="middle" font-size="12" fill="var(--text, #727981)">표준화</text>
   <line x1="280" y1="266" x2="280" y2="278" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <!-- 프로토콜 스택과 CAN 네트워크 -->
-  <rect x="40.75" y="278.75" width="478.5" height="38.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="40.75" y="278.75" width="478.5" height="38.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="280" y="303" text-anchor="middle" fill="var(--text, #727981)">프로토콜 스택</text>
   <line x1="280" y1="318" x2="280" y2="364" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <circle cx="280" cy="364" r="3.5" fill="var(--ink, #727981)" />

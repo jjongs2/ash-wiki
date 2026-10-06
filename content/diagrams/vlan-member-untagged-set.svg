@@ -12,7 +12,7 @@
   <line x1="112" y1="120" x2="188" y2="120" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 
   <!-- 브리지 -->
-  <rect x="190.75" y="30.75" width="258.5" height="160.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="190.75" y="30.75" width="258.5" height="160.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="204" y="52" fill="var(--text, #727981)">브리지</text>
   <g font-size="12" fill="var(--text, #727981)">
     <text x="202" y="124">포트 A</text>

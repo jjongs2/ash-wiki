@@ -7,35 +7,35 @@
   </defs>
 
   <!-- MII 입력 -->
-  <rect x="20.75" y="20.75" width="94.5" height="50.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20.75" y="20.75" width="94.5" height="50.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="68" y="42" text-anchor="middle" fill="var(--text, #727981)">MII</text>
   <text x="68" y="60" text-anchor="middle" font-size="12" fill="var(--text, #727981)">4비트 니블</text>
   <line x1="116" y1="46" x2="146" y2="46" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 
   <!-- 4B/5B -->
-  <rect x="148.75" y="20.75" width="94.5" height="50.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="148.75" y="20.75" width="94.5" height="50.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="196" y="42" text-anchor="middle" fill="var(--on-fill, #f8fafd)">4B/5B</text>
   <text x="196" y="60" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">5비트 코드 그룹</text>
   <line x1="244" y1="46" x2="274" y2="46" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 
   <!-- 스크램블 -->
-  <rect x="276.75" y="20.75" width="94.5" height="50.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="276.75" y="20.75" width="94.5" height="50.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="324" y="51" text-anchor="middle" fill="var(--on-fill, #f8fafd)">스크램블</text>
   <line x1="372" y1="46" x2="402" y2="46" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 
   <!-- NRZI -->
-  <rect x="404.75" y="20.75" width="94.5" height="50.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="404.75" y="20.75" width="94.5" height="50.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="452" y="51" text-anchor="middle" fill="var(--on-fill, #f8fafd)">NRZI</text>
   <line x1="500" y1="46" x2="530" y2="46" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 
   <!-- MLT-3 -->
-  <rect x="532.75" y="20.75" width="94.5" height="50.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="532.75" y="20.75" width="94.5" height="50.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="580" y="42" text-anchor="middle" fill="var(--on-fill, #f8fafd)">MLT-3</text>
   <text x="580" y="60" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">세 준위</text>
   <line x1="628" y1="46" x2="658" y2="46" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 
   <!-- 선로 -->
-  <rect x="660.75" y="20.75" width="94.5" height="50.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="660.75" y="20.75" width="94.5" height="50.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="708" y="42" text-anchor="middle" fill="var(--text, #727981)">선로</text>
   <text x="708" y="60" text-anchor="middle" font-size="12" fill="var(--text, #727981)">125 Mbit/s</text>
 </svg>

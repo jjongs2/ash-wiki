@@ -22,10 +22,10 @@
 
   <!-- 주어진 것 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="300" y="36" width="120" height="36" rx="4" />
-    <rect x="130" y="88" width="120" height="36" rx="4" />
-    <rect x="300" y="88" width="120" height="36" rx="4" />
-    <rect x="300" y="140" width="120" height="36" rx="4" />
+    <rect x="300" y="36" width="120" height="36" rx="2" />
+    <rect x="130" y="88" width="120" height="36" rx="2" />
+    <rect x="300" y="88" width="120" height="36" rx="2" />
+    <rect x="300" y="140" width="120" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="360" y="59">주어진 해시 값</text>
@@ -36,10 +36,10 @@
 
   <!-- 찾을 것 -->
   <g stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)">
-    <rect x="130" y="36" width="120" height="36" rx="4" />
-    <rect x="470" y="88" width="120" height="36" rx="4" />
-    <rect x="130" y="140" width="120" height="36" rx="4" />
-    <rect x="470" y="140" width="120" height="36" rx="4" />
+    <rect x="130" y="36" width="120" height="36" rx="2" />
+    <rect x="470" y="88" width="120" height="36" rx="2" />
+    <rect x="130" y="140" width="120" height="36" rx="2" />
+    <rect x="470" y="140" width="120" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="190" y="59">찾을 입력</text>

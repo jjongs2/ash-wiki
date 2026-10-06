@@ -8,10 +8,10 @@
 
   <!-- 상자 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20.75" y="28.75" width="168.5" height="46.5" rx="4" />
-    <rect x="250.75" y="20.75" width="148.5" height="62.5" rx="4" />
+    <rect x="20.75" y="28.75" width="168.5" height="46.5" rx="2" />
+    <rect x="250.75" y="20.75" width="148.5" height="62.5" rx="2" />
     <rect x="450.75" y="38.75" width="108.5" height="26.5" rx="2" />
-    <rect x="200.75" y="130.75" width="208.5" height="62.5" rx="4" />
+    <rect x="200.75" y="130.75" width="208.5" height="62.5" rx="2" />
     <rect x="450.75" y="130.75" width="108.5" height="26.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">

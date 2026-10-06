@@ -19,10 +19,10 @@
 
   <!-- 각 단계가 시작하거나 끝나는 시간 범위 -->
   <g fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5">
-    <rect x="309" y="90" width="35" height="20" rx="2" />
-    <rect x="508.5" y="124" width="87.5" height="20" rx="2" />
+    <rect x="309" y="90" width="35" height="20" />
+    <rect x="508.5" y="124" width="87.5" height="20" />
   </g>
-  <rect x="550.5" y="158" width="80.5" height="20" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="550.5" y="158" width="80.5" height="20" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g fill="var(--text, #727981)">
     <text x="190" y="104" text-anchor="end">active recessive 시작</text>
     <text x="190" y="138" text-anchor="end">active recessive 끝</text>

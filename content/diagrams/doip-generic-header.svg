@@ -7,13 +7,13 @@
   </defs>
 
   <!-- 일반 헤더: 위에서 아래로 -->
-  <rect x="110" y="20" width="220" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="110" y="20" width="220" height="32" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="220" y="41" text-anchor="middle" fill="var(--text, #727981)">Protocol Version</text>
-  <rect x="110" y="56" width="220" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="110" y="56" width="220" height="32" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="220" y="77" text-anchor="middle" fill="var(--text, #727981)">Inverse Protocol Version</text>
-  <rect x="110" y="92" width="220" height="40" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="110" y="92" width="220" height="40" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="220" y="117" text-anchor="middle" fill="var(--text, #727981)">Payload Type</text>
-  <rect x="110" y="136" width="220" height="48" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="110" y="136" width="220" height="48" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="220" y="165" text-anchor="middle" fill="var(--text, #727981)">Payload Length</text>
 
   <!-- 필드 길이 -->
@@ -28,7 +28,7 @@
   <text x="414" y="114" font-size="12" fill="var(--text, #727981)">8바이트</text>
 
   <!-- 페이로드 -->
-  <rect x="110.75" y="200.75" width="218.5" height="58.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="110.75" y="200.75" width="218.5" height="58.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="220" y="235" text-anchor="middle" fill="var(--text, #727981)">페이로드</text>
 
   <!-- Payload Length가 페이로드의 바이트 수 -->

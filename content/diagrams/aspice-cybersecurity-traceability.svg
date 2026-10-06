@@ -8,9 +8,9 @@
 
   <!-- 프로세스 틀 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="20.75" y="20.75" width="638.5" height="70.5" rx="4" />
-    <rect x="20.75" y="106.75" width="638.5" height="175.5" rx="4" />
-    <rect x="20.75" y="297.75" width="638.5" height="70.5" rx="4" />
+    <rect x="20.75" y="20.75" width="638.5" height="70.5" rx="2" />
+    <rect x="20.75" y="106.75" width="638.5" height="175.5" rx="2" />
+    <rect x="20.75" y="297.75" width="638.5" height="70.5" rx="2" />
   </g>
   <g fill="var(--text, #727981)">
     <text x="34" y="41">SEC.1 BP2 (Cybersecurity Requirements Elicitation)</text>

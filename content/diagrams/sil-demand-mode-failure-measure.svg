@@ -16,9 +16,9 @@
 
   <!-- 동작 모드 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="30.75" y="70.75" width="208.5" height="44.5" rx="4" />
-    <rect x="260.75" y="70.75" width="158.5" height="44.5" rx="4" />
-    <rect x="430.75" y="70.75" width="158.5" height="44.5" rx="4" />
+    <rect x="30.75" y="70.75" width="208.5" height="44.5" rx="2" />
+    <rect x="260.75" y="70.75" width="158.5" height="44.5" rx="2" />
+    <rect x="430.75" y="70.75" width="158.5" height="44.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="135" y="89" font-size="13">Low demand mode</text>
@@ -38,8 +38,8 @@
 
   <!-- target failure measure -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="30.75" y="150.75" width="208.5" height="44.5" rx="4" />
-    <rect x="260.75" y="150.75" width="328.5" height="44.5" rx="4" />
+    <rect x="30.75" y="150.75" width="208.5" height="44.5" rx="2" />
+    <rect x="260.75" y="150.75" width="328.5" height="44.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="135" y="169" font-size="13">PFDavg</text>

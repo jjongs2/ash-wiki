@@ -7,12 +7,12 @@
   </defs>
 
   <!-- 2011판이 담던 세 부분 -->
-  <rect x="20" y="20" width="220" height="192" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="20" y="20" width="220" height="192" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="34" y="40" font-size="13" fill="var(--text, #727981)">ISO/IEC 25010:2011</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="34" y="54" width="192" height="40" rx="4" />
-    <rect x="34" y="106" width="192" height="40" rx="4" />
-    <rect x="34" y="158" width="192" height="40" rx="4" />
+    <rect x="34" y="54" width="192" height="40" rx="2" />
+    <rect x="34" y="106" width="192" height="40" rx="2" />
+    <rect x="34" y="158" width="192" height="40" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="130" y="78">품질 모델 개요</text>
@@ -34,9 +34,9 @@
     <text x="277" y="171">옮김</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="330" y="54" width="200" height="40" rx="4" />
-    <rect x="330" y="106" width="200" height="40" rx="4" />
-    <rect x="330" y="158" width="200" height="40" rx="4" />
+    <rect x="330" y="54" width="200" height="40" rx="2" />
+    <rect x="330" y="106" width="200" height="40" rx="2" />
+    <rect x="330" y="158" width="200" height="40" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="430" y="71">ISO/IEC 25002:2024</text>

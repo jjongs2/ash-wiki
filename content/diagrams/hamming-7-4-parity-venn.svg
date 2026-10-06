@@ -13,13 +13,13 @@
     <text x="240" y="386" text-anchor="middle">칸: 자리 번호와 그 이진수 · 1, 2, 4번 자리는 패리티 비트, 나머지는 데이터 비트</text>
   </g>
   <!-- 자리: 번호와 이진수 -->
-  <rect x="220" y="178" width="40" height="36" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <rect x="220.75" y="56.75" width="38.5" height="34.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <rect x="220" y="258" width="40" height="36" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <rect x="115.05" y="239.75" width="38.5" height="34.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <rect x="289.3" y="138" width="40" height="36" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <rect x="326.45" y="239.75" width="38.5" height="34.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <rect x="150.7" y="138" width="40" height="36" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="220" y="178" width="40" height="36" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="220.75" y="56.75" width="38.5" height="34.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="220" y="258" width="40" height="36" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="115.05" y="239.75" width="38.5" height="34.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="289.3" y="138" width="40" height="36" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="326.45" y="239.75" width="38.5" height="34.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="150.7" y="138" width="40" height="36" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="240" y="195">7</text>
     <text x="240" y="208" font-size="11">111</text>

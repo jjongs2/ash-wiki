@@ -5,8 +5,8 @@
 
   <!-- 코어 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="20" y="40" width="400" height="168" rx="4" />
-    <rect x="20" y="270" width="400" height="200" rx="4" />
+    <rect x="20" y="40" width="400" height="168" rx="2" />
+    <rect x="20" y="270" width="400" height="200" rx="2" />
   </g>
   <g fill="var(--text, #727981)">
     <text x="20" y="28">코어 0</text>
@@ -15,9 +15,9 @@
 
   <!-- OS-Application -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="40" y="60" width="170" height="128" rx="4" />
-    <rect x="40" y="290" width="170" height="98" rx="4" />
-    <rect x="230" y="290" width="170" height="98" rx="4" />
+    <rect x="40" y="60" width="170" height="128" rx="2" />
+    <rect x="40" y="290" width="170" height="98" rx="2" />
+    <rect x="230" y="290" width="170" height="98" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="125" y="82">OS-Application A</text>

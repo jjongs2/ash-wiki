@@ -19,7 +19,7 @@
   <line x1="300" y1="30" x2="300" y2="52" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 
   <!-- Rte_Mode가 돌려주는 값 -->
-  <rect x="170.75" y="54.75" width="508.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="170.75" y="54.75" width="508.5" height="26.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <path d="M300 55.5 V80.5 M580 55.5 V80.5" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="235" y="73">이전 모드</text>
@@ -29,9 +29,9 @@
 
   <!-- 전환 중에 실행하는 runnable -->
   <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="304.75" y="96.75" width="86.5" height="26.5" rx="2" />
-    <rect x="396.75" y="96.75" width="86.5" height="26.5" rx="2" />
-    <rect x="488.75" y="96.75" width="86.5" height="26.5" rx="2" />
+    <rect x="304.75" y="96.75" width="86.5" height="26.5" />
+    <rect x="396.75" y="96.75" width="86.5" height="26.5" />
+    <rect x="488.75" y="96.75" width="86.5" height="26.5" />
   </g>
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="348" y="114">on-exit</text>
@@ -41,8 +41,8 @@
 
   <!-- disabled mode -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4">
-    <rect x="170.75" y="138.75" width="408.5" height="26.5" rx="2" />
-    <rect x="300.75" y="174.75" width="378.5" height="26.5" rx="2" />
+    <rect x="170.75" y="138.75" width="408.5" height="26.5" />
+    <rect x="300.75" y="174.75" width="378.5" height="26.5" />
   </g>
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="375" y="156">이전 모드를 disabled mode로 건 이벤트</text>

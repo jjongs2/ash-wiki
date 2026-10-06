@@ -7,8 +7,8 @@
 
   <!-- 필드 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20.75" y="44.75" width="335.25" height="42.5" rx="4" />
-    <rect x="356" y="44.75" width="111.25" height="42.5" rx="4" />
+    <rect x="20.75" y="44.75" width="335.25" height="42.5" />
+    <rect x="356" y="44.75" width="111.25" height="42.5" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="188" y="63" font-size="14">MAC 주소</text>

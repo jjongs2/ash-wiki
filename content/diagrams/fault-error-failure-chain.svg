@@ -9,9 +9,9 @@
 
   <!-- 틀: 구성 요소, 그 구성 요소를 포함하는 시스템, 서비스를 받는 다른 시스템 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4">
-    <rect x="20" y="30" width="304" height="90" rx="4" />
-    <rect x="360" y="30" width="304" height="90" rx="4" />
-    <rect x="700" y="30" width="170" height="90" rx="4" />
+    <rect x="20" y="30" width="304" height="90" rx="2" />
+    <rect x="360" y="30" width="304" height="90" rx="2" />
+    <rect x="700" y="30" width="170" height="90" rx="2" />
   </g>
   <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
     <text x="172" y="50">구성 요소</text>
@@ -21,13 +21,13 @@
 
   <!-- 상자 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="32" y="64" width="60" height="36" rx="4" />
-    <rect x="142" y="64" width="60" height="36" rx="4" />
-    <rect x="252" y="64" width="60" height="36" rx="4" />
-    <rect x="372" y="64" width="60" height="36" rx="4" />
-    <rect x="482" y="64" width="60" height="36" rx="4" />
-    <rect x="592" y="64" width="60" height="36" rx="4" />
-    <rect x="729" y="64" width="112" height="36" rx="4" />
+    <rect x="32" y="64" width="60" height="36" rx="2" />
+    <rect x="142" y="64" width="60" height="36" rx="2" />
+    <rect x="252" y="64" width="60" height="36" rx="2" />
+    <rect x="372" y="64" width="60" height="36" rx="2" />
+    <rect x="482" y="64" width="60" height="36" rx="2" />
+    <rect x="592" y="64" width="60" height="36" rx="2" />
+    <rect x="729" y="64" width="112" height="36" rx="2" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="62" y="87">fault</text>

@@ -10,10 +10,10 @@
 
   <!-- 당사자 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="100" y="44" width="120" height="32" rx="4" />
-    <rect x="460" y="44" width="120" height="32" rx="4" />
-    <rect x="90" y="214" width="140" height="52" rx="4" />
-    <rect x="450" y="214" width="140" height="52" rx="4" />
+    <rect x="100" y="44" width="120" height="32" rx="2" />
+    <rect x="460" y="44" width="120" height="32" rx="2" />
+    <rect x="90" y="214" width="140" height="52" rx="2" />
+    <rect x="450" y="214" width="140" height="52" rx="2" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="160" y="65">A</text>
@@ -44,7 +44,7 @@
 
   <!-- 도청자 -->
   <line x1="340" y1="146" x2="340" y2="266" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrow-ink)" />
-  <rect x="280" y="268" width="120" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="280" y="268" width="120" height="32" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="340" y="289" text-anchor="middle" fill="var(--text, #727981)">도청자</text>
   <text x="348" y="236" font-size="12" fill="var(--text, #727981)">p, g와</text>
   <text x="348" y="252" font-size="12" fill="var(--text, #727981)">두 공개값을 봄</text>

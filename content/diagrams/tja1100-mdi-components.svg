@@ -3,13 +3,13 @@
 
   <!-- 칩과 MDI 부품 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="40" width="80" height="56" rx="4" />
-    <rect x="120" y="40" width="80" height="56" rx="4" />
-    <rect x="220" y="40" width="80" height="56" rx="4" />
-    <rect x="320" y="40" width="80" height="56" rx="4" />
-    <rect x="420" y="40" width="80" height="56" rx="4" />
-    <rect x="520" y="40" width="80" height="56" rx="4" stroke-dasharray="5 4" />
-    <rect x="620" y="40" width="52" height="56" rx="4" />
+    <rect x="20" y="40" width="80" height="56" rx="2" />
+    <rect x="120" y="40" width="80" height="56" rx="2" />
+    <rect x="220" y="40" width="80" height="56" rx="2" />
+    <rect x="320" y="40" width="80" height="56" rx="2" />
+    <rect x="420" y="40" width="80" height="56" rx="2" />
+    <rect x="520" y="40" width="80" height="56" rx="2" stroke-dasharray="5 4" />
+    <rect x="620" y="40" width="52" height="56" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="60" y="73">TJA1100</text>

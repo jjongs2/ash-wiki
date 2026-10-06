@@ -26,10 +26,10 @@
 
   <!-- SW-C -->
   <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="52.75" y="86.75" width="98.5" height="38.5" rx="4" />
-    <rect x="320.75" y="86.75" width="98.5" height="38.5" rx="4" />
-    <rect x="320.75" y="188.75" width="98.5" height="38.5" rx="4" />
-    <rect x="320.75" y="315.75" width="98.5" height="38.5" rx="4" />
+    <rect x="52.75" y="86.75" width="98.5" height="38.5" rx="2" />
+    <rect x="320.75" y="86.75" width="98.5" height="38.5" rx="2" />
+    <rect x="320.75" y="188.75" width="98.5" height="38.5" rx="2" />
+    <rect x="320.75" y="315.75" width="98.5" height="38.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="102" y="111">SW-C A</text>

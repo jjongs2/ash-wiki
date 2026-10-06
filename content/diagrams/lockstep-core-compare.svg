@@ -18,9 +18,9 @@
 
   <!-- 상자 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="140" y="42" width="120" height="36" rx="4" />
-    <rect x="140" y="122" width="120" height="36" rx="4" />
-    <rect x="340" y="70" width="160" height="60" rx="4" />
+    <rect x="140" y="42" width="120" height="36" rx="2" />
+    <rect x="140" y="122" width="120" height="36" rx="2" />
+    <rect x="340" y="70" width="160" height="60" rx="2" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="200" y="65">기능 CPU</text>

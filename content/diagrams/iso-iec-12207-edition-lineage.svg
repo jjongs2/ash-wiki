@@ -10,14 +10,14 @@
   </defs>
 
   <!-- 12207의 판 -->
-  <rect x="20" y="30" width="290" height="64" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="20" y="30" width="290" height="64" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="30" y="40" width="90" height="44" rx="4" />
-    <rect x="130" y="40" width="80" height="44" rx="4" />
-    <rect x="220" y="40" width="80" height="44" rx="4" />
-    <rect x="348" y="40" width="140" height="44" rx="4" />
-    <rect x="528" y="40" width="100" height="44" rx="4" />
-    <rect x="668" y="40" width="100" height="44" rx="4" />
+    <rect x="30" y="40" width="90" height="44" rx="2" />
+    <rect x="130" y="40" width="80" height="44" rx="2" />
+    <rect x="220" y="40" width="80" height="44" rx="2" />
+    <rect x="348" y="40" width="140" height="44" rx="2" />
+    <rect x="528" y="40" width="100" height="44" rx="2" />
+    <rect x="668" y="40" width="100" height="44" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="75" y="57">ISO/IEC</text>
@@ -34,9 +34,9 @@
 
   <!-- 12207을 바탕으로 한 다른 표준 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="150" y="170" width="130" height="44" rx="4" />
-    <rect x="368" y="170" width="100" height="44" rx="4" />
-    <rect x="528" y="170" width="100" height="44" rx="4" />
+    <rect x="150" y="170" width="130" height="44" rx="2" />
+    <rect x="368" y="170" width="100" height="44" rx="2" />
+    <rect x="528" y="170" width="100" height="44" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="215" y="187">ASPICE</text>

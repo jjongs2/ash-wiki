@@ -21,11 +21,11 @@
   </g>
 
   <!-- 실행 구간 -->
-  <rect x="300.75" y="50.75" width="138.5" height="22.5" rx="2" fill="var(--red-tint, #bb464d)" stroke="var(--red, #bb464d)" stroke-width="1.5" />
+  <rect x="300.75" y="50.75" width="138.5" height="22.5" fill="var(--red-tint, #bb464d)" stroke="var(--red, #bb464d)" stroke-width="1.5" />
   <text x="370" y="66" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">ActivateTask</text>
-  <rect x="440.75" y="96.75" width="138.5" height="22.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <rect x="190" y="142" width="110" height="24" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <rect x="580" y="142" width="60" height="24" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="440.75" y="96.75" width="138.5" height="22.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="190" y="142" width="110" height="24" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="580" y="142" width="60" height="24" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
 
   <!-- 활성화: 아직 스케줄링되지 않음 -->
   <line x1="370" y1="76" x2="370" y2="104" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />

@@ -7,16 +7,16 @@
   </defs>
 
   <!-- CPU: 다른 객체를 담는 컨테이너 -->
-  <rect x="20.75" y="20.75" width="638.5" height="218.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="20.75" y="20.75" width="638.5" height="218.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="36" y="44" fill="var(--text, #727981)">CPU</text>
 
   <!-- 객체 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="40" y="60" width="100" height="40" rx="4" fill="var(--surface, none)" />
-    <rect x="180" y="60" width="100" height="40" rx="4" fill="var(--surface, none)" />
-    <rect x="400" y="60" width="100" height="40" rx="4" fill="var(--surface, none)" />
-    <rect x="540" y="60" width="100" height="40" rx="4" fill="var(--surface, none)" />
-    <rect x="290" y="176" width="100" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="40" y="60" width="100" height="40" rx="2" fill="var(--surface, none)" />
+    <rect x="180" y="60" width="100" height="40" rx="2" fill="var(--surface, none)" />
+    <rect x="400" y="60" width="100" height="40" rx="2" fill="var(--surface, none)" />
+    <rect x="540" y="60" width="100" height="40" rx="2" fill="var(--surface, none)" />
+    <rect x="290" y="176" width="100" height="40" rx="2" fill="var(--surface, none)" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="90" y="85">RESOURCE</text>

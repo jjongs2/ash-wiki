@@ -18,7 +18,7 @@
     <line x1="10" y1="65" x2="230" y2="65" stroke-width="1" stroke-dasharray="3,3" />
   </g>
   <line x1="10" y1="70" x2="230" y2="70" stroke="var(--ink, #727981)" stroke-dasharray="3 3" />
-  <rect x="20.75" y="10.75" width="88.5" height="38.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="20.75" y="10.75" width="88.5" height="38.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
   <!-- 통과(svg): dy나 baseline-shift로 옮긴 첨자 tspan은 9까지 쓴다. -->
   <text x="65" y="35" text-anchor="middle" fill="var(--on-fill, #f8fafd)">ECU<tspan dy="3" font-size="9">1</tspan><tspan baseline-shift="sub" font-size="9">2</tspan></text>
   <!-- 통과(svg): 글자 노드의 "fill: red"는 CSS 선언이 아니다. -->

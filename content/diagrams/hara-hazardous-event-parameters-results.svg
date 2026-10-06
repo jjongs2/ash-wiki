@@ -3,7 +3,7 @@
 
   <!-- Concept phase의 절 순서 -->
   <text x="20" y="24" font-size="13" fill="var(--text, #727981)">Concept phase · ISO 26262-3</text>
-  <rect x="20.75" y="34.75" width="598.5" height="56.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="20.75" y="34.75" width="598.5" height="56.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="40.75" y="48.75" width="168.5" height="26.5" rx="2" />
     <rect x="235.75" y="48.75" width="168.5" height="26.5" rx="2" />
@@ -22,7 +22,7 @@
   </g>
 
   <!-- HARA -->
-  <rect x="20.75" y="120.75" width="598.5" height="178.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="20.75" y="120.75" width="598.5" height="178.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
   <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
     <line x1="243" y1="134" x2="243" y2="288" />
     <line x1="397" y1="134" x2="397" y2="288" />

@@ -9,10 +9,10 @@
   <!-- Implicit synchronization: 응용과 NvM이 같은 RAM 블록을 쓴다 -->
   <text x="20" y="28" font-size="12" fill="var(--text, #727981)">Implicit synchronization</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="40" width="90" height="36" rx="4" />
-    <rect x="160" y="40" width="110" height="36" rx="4" />
-    <rect x="380" y="40" width="150" height="36" rx="4" />
-    <rect x="580" y="40" width="110" height="36" rx="4" />
+    <rect x="20" y="40" width="90" height="36" rx="2" />
+    <rect x="160" y="40" width="110" height="36" rx="2" />
+    <rect x="380" y="40" width="150" height="36" rx="2" />
+    <rect x="580" y="40" width="110" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="65" y="63">응용</text>
@@ -29,12 +29,12 @@
   <!-- Explicit synchronization: NvM의 RAM mirror와 콜백 복사 -->
   <text x="20" y="128" font-size="12" fill="var(--text, #727981)">Explicit synchronization</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="157" width="90" height="36" rx="4" />
-    <rect x="160" y="157" width="110" height="36" rx="4" />
-    <rect x="395" y="157" width="120" height="36" rx="4" />
-    <rect x="580" y="157" width="110" height="36" rx="4" />
+    <rect x="20" y="157" width="90" height="36" rx="2" />
+    <rect x="160" y="157" width="110" height="36" rx="2" />
+    <rect x="395" y="157" width="120" height="36" rx="2" />
+    <rect x="580" y="157" width="110" height="36" rx="2" />
   </g>
-  <rect x="380" y="140" width="150" height="64" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="380" y="140" width="150" height="64" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="65" y="180">응용</text>
     <text x="215" y="180">RAM 블록</text>

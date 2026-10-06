@@ -11,15 +11,15 @@
   <line x1="120" y1="30" x2="120" y2="62" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 
   <!-- 기본 세션 -->
-  <rect x="40.75" y="64.75" width="158.5" height="46.5" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <rect x="40.75" y="64.75" width="158.5" height="46.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
   <text x="120" y="93" text-anchor="middle" fill="var(--on-fill, #f8fafd)">기본 세션 (0x01)</text>
 
   <!-- 기본이 아닌 세션 -->
-  <rect x="380.75" y="16.75" width="258.5" height="142.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="380.75" y="16.75" width="258.5" height="142.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
   <text x="510" y="36" text-anchor="middle" font-size="12" fill="var(--text, #727981)">기본이 아닌 세션</text>
-  <rect x="400" y="46" width="220" height="44" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="400" y="46" width="220" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="510" y="73" text-anchor="middle" fill="var(--text, #727981)">프로그래밍 세션 (0x02)</text>
-  <rect x="400" y="100" width="220" height="44" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="400" y="100" width="220" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="510" y="127" text-anchor="middle" fill="var(--text, #727981)">확장 진단 세션 (0x03)</text>
 
   <!-- 세션 전환 -->

@@ -13,14 +13,14 @@
   </g>
 
   <!-- 1단계: SUMS 적합 인증서 -->
-  <rect x="20" y="36" width="336" height="196" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="20" y="36" width="336" height="196" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="188" y="58">SUMS 적합 인증서</text>
     <text x="188" y="75" font-size="12">7.1절의 SUMS 요구</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="36" y="132" width="130" height="48" rx="4" />
-    <rect x="210" y="132" width="130" height="48" rx="4" />
+    <rect x="36" y="132" width="130" height="48" rx="2" />
+    <rect x="210" y="132" width="130" height="48" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="101" y="152">승인 당국의</text>
@@ -30,15 +30,15 @@
   </g>
 
   <!-- 2단계: 차량 형식 승인 -->
-  <rect x="464" y="36" width="240" height="196" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="464" y="36" width="240" height="196" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="584" y="58">차량 형식 승인</text>
     <text x="584" y="75" font-size="12">7.2절의 차량 형식 요구</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="478" y="88" width="212" height="32" rx="4" />
-    <rect x="478" y="128" width="212" height="32" rx="4" />
-    <rect x="478" y="168" width="212" height="50" rx="4" />
+    <rect x="478" y="88" width="212" height="32" rx="2" />
+    <rect x="478" y="128" width="212" height="32" rx="2" />
+    <rect x="478" y="168" width="212" height="50" rx="2" />
   </g>
   <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
     <text x="584" y="108.5">업데이트의 진위성과 무결성 보호</text>

@@ -14,17 +14,17 @@
 
   <!-- 매체로 나가는 신호 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="56" width="110" height="28" rx="2" />
-    <rect x="134" y="56" width="90" height="28" rx="2" />
-    <rect x="322" y="56" width="60" height="28" rx="2" />
-    <rect x="480" y="56" width="60" height="28" rx="2" />
-    <rect x="608" y="56" width="80" height="28" rx="2" />
-    <rect x="692" y="56" width="90" height="28" rx="2" />
+    <rect x="20" y="56" width="110" height="28" />
+    <rect x="134" y="56" width="90" height="28" />
+    <rect x="322" y="56" width="60" height="28" />
+    <rect x="480" y="56" width="60" height="28" />
+    <rect x="608" y="56" width="80" height="28" />
+    <rect x="692" y="56" width="90" height="28" />
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)">
-    <rect x="228" y="56" width="90" height="28" rx="2" />
-    <rect x="386" y="56" width="90" height="28" rx="2" />
-    <rect x="544" y="56" width="60" height="28" rx="2" />
+    <rect x="228" y="56" width="90" height="28" />
+    <rect x="386" y="56" width="90" height="28" />
+    <rect x="544" y="56" width="60" height="28" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="75" y="74">PHY 프레임</text>

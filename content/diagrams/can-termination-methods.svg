@@ -5,7 +5,7 @@
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <path d="M30 40 H130 V95" />
     <path d="M30 200 H130 V145" />
-    <rect x="123" y="95" width="14" height="50" rx="4" fill="var(--surface, none)" />
+    <rect x="123" y="95" width="14" height="50" rx="2" fill="var(--surface, none)" />
   </g>
   <g fill="var(--text, #727981)">
     <text x="30" y="32">CAN_H</text>
@@ -17,8 +17,8 @@
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <path d="M210 40 H310 V60" />
     <path d="M210 200 H310 V180" />
-    <rect x="303" y="60" width="14" height="50" rx="4" fill="var(--surface, none)" />
-    <rect x="303" y="130" width="14" height="50" rx="4" fill="var(--surface, none)" />
+    <rect x="303" y="60" width="14" height="50" rx="2" fill="var(--surface, none)" />
+    <rect x="303" y="130" width="14" height="50" rx="2" fill="var(--surface, none)" />
     <path d="M310 110 V130" />
     <path d="M310 120 H350 V150" />
     <path d="M340 150 H360 M340 158 H360" />
@@ -36,16 +36,16 @@
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <path d="M420 40 H520 V60" />
     <path d="M420 200 H520 V180" />
-    <rect x="513" y="60" width="14" height="50" rx="4" fill="var(--surface, none)" />
-    <rect x="513" y="130" width="14" height="50" rx="4" fill="var(--surface, none)" />
+    <rect x="513" y="60" width="14" height="50" rx="2" fill="var(--surface, none)" />
+    <rect x="513" y="130" width="14" height="50" rx="2" fill="var(--surface, none)" />
     <path d="M520 110 V130" />
     <path d="M520 120 H600" />
     <path d="M560 120 V150" />
     <path d="M550 150 H570 M550 158 H570" />
     <path d="M560 158 V174 M550 174 H570 M554 180 H566 M558 186 H562" />
     <path d="M592 48 H608 M600 48 V60" />
-    <rect x="593" y="60" width="14" height="50" rx="4" fill="var(--surface, none)" />
-    <rect x="593" y="130" width="14" height="50" rx="4" fill="var(--surface, none)" />
+    <rect x="593" y="60" width="14" height="50" rx="2" fill="var(--surface, none)" />
+    <rect x="593" y="130" width="14" height="50" rx="2" fill="var(--surface, none)" />
     <path d="M600 110 V130" />
     <path d="M600 180 V196 M590 196 H610 M594 202 H606 M598 208 H602" />
   </g>

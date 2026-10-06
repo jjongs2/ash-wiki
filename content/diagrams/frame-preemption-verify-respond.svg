@@ -13,9 +13,9 @@
   </defs>
 
   <!-- 두 쪽 -->
-  <rect x="140" y="12" width="160" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="140" y="12" width="160" height="32" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="220" y="32" text-anchor="middle" fill="var(--text, #727981)">보내는 쪽</text>
-  <rect x="480" y="12" width="160" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="480" y="12" width="160" height="32" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="560" y="32" text-anchor="middle" fill="var(--text, #727981)">링크 상대</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="220" y1="44" x2="220" y2="256" />
@@ -28,7 +28,7 @@
   <line x1="558" y1="86" x2="222" y2="98" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 
   <!-- 검증 -->
-  <rect x="160" y="110" width="460" height="100" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="160" y="110" width="460" height="100" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
   <text x="390" y="200" text-anchor="middle" fill="var(--text, #727981)">검증을 켰을 때</text>
   <line x1="222" y1="134" x2="558" y2="146" stroke="var(--green, #337b47)" stroke-width="1.5" marker-end="url(#arrow-green)" />
   <text x="390" y="130" text-anchor="middle" fill="var(--text, #727981)">verify mPacket (SMD-V, mCRC)</text>

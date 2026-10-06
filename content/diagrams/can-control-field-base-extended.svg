@@ -8,41 +8,41 @@
   <text x="599" y="20" text-anchor="middle" font-size="12" fill="var(--text, #727981)">제어 필드</text>
 
   <text x="88" y="66" text-anchor="end" fill="var(--text, #727981)">기본 포맷</text>
-  <rect x="352.75" y="40.75" width="118.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="352.75" y="40.75" width="118.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="412" y="66" text-anchor="middle" fill="var(--text, #727981)">식별자 11비트</text>
-  <rect x="476.75" y="40.75" width="38.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="476.75" y="40.75" width="38.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="496" y="66" text-anchor="middle" fill="var(--text, #727981)">RTR</text>
-  <rect x="520.75" y="40.75" width="38.5" height="40.5" rx="4" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
+  <rect x="520.75" y="40.75" width="38.5" height="40.5" rx="2" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
   <text x="540" y="59" text-anchor="middle" fill="var(--on-fill, #f8fafd)">IDE</text>
   <text x="540" y="75" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="564.75" y="40.75" width="38.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="564.75" y="40.75" width="38.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="584" y="59" text-anchor="middle" fill="var(--text, #727981)">r0</text>
   <text x="584" y="75" text-anchor="middle" font-size="12" fill="var(--text, #727981)">D</text>
-  <rect x="608.75" y="40.75" width="68.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="608.75" y="40.75" width="68.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="643" y="59" text-anchor="middle" fill="var(--text, #727981)">DLC</text>
   <text x="643" y="75" text-anchor="middle" font-size="12" fill="var(--text, #727981)">4비트</text>
 
   <!-- 확장 포맷 -->
   <text x="88" y="132" text-anchor="end" fill="var(--text, #727981)">확장 포맷</text>
-  <rect x="100.75" y="106.75" width="138.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="100.75" y="106.75" width="138.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="170" y="132" text-anchor="middle" fill="var(--text, #727981)">기본 식별자 11비트</text>
-  <rect x="244.75" y="106.75" width="38.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="244.75" y="106.75" width="38.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="264" y="125" text-anchor="middle" fill="var(--text, #727981)">SRR</text>
   <text x="264" y="141" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="288.75" y="106.75" width="38.5" height="40.5" rx="4" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
+  <rect x="288.75" y="106.75" width="38.5" height="40.5" rx="2" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
   <text x="308" y="125" text-anchor="middle" fill="var(--on-fill, #f8fafd)">IDE</text>
   <text x="308" y="141" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
-  <rect x="332.75" y="106.75" width="138.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="332.75" y="106.75" width="138.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="402" y="132" text-anchor="middle" fill="var(--text, #727981)">확장 식별자 18비트</text>
-  <rect x="476.75" y="106.75" width="38.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="476.75" y="106.75" width="38.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="496" y="132" text-anchor="middle" fill="var(--text, #727981)">RTR</text>
-  <rect x="520.75" y="106.75" width="38.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="520.75" y="106.75" width="38.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="540" y="125" text-anchor="middle" fill="var(--text, #727981)">r1</text>
   <text x="540" y="141" text-anchor="middle" font-size="12" fill="var(--text, #727981)">D</text>
-  <rect x="564.75" y="106.75" width="38.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="564.75" y="106.75" width="38.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="584" y="125" text-anchor="middle" fill="var(--text, #727981)">r0</text>
   <text x="584" y="141" text-anchor="middle" font-size="12" fill="var(--text, #727981)">D</text>
-  <rect x="608.75" y="106.75" width="68.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="608.75" y="106.75" width="68.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="643" y="125" text-anchor="middle" fill="var(--text, #727981)">DLC</text>
   <text x="643" y="141" text-anchor="middle" font-size="12" fill="var(--text, #727981)">4비트</text>
 

@@ -21,17 +21,17 @@
   </g>
 
   <!-- 마이크로컨트롤러 -->
-  <rect x="200" y="146" width="490" height="68" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="200" y="146" width="490" height="68" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
 
   <!-- 드라이버와 장치 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="200" y="24" width="150" height="36" rx="4" />
-    <rect x="200" y="84" width="150" height="36" rx="4" />
-    <rect x="370" y="84" width="150" height="36" rx="4" />
-    <rect x="540" y="84" width="150" height="36" rx="4" />
-    <rect x="370" y="162" width="150" height="36" rx="4" />
-    <rect x="200" y="240" width="150" height="36" rx="4" />
-    <rect x="540" y="240" width="150" height="36" rx="4" />
+    <rect x="200" y="24" width="150" height="36" rx="2" />
+    <rect x="200" y="84" width="150" height="36" rx="2" />
+    <rect x="370" y="84" width="150" height="36" rx="2" />
+    <rect x="540" y="84" width="150" height="36" rx="2" />
+    <rect x="370" y="162" width="150" height="36" rx="2" />
+    <rect x="200" y="240" width="150" height="36" rx="2" />
+    <rect x="540" y="240" width="150" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="275" y="46.5">외부 EEPROM 드라이버</text>

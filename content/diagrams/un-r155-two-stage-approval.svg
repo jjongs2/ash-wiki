@@ -11,12 +11,12 @@
     <text x="188" y="26">1단계</text>
     <text x="584" y="26">2단계</text>
   </g>
-  <rect x="20" y="36" width="336" height="184" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="20" y="36" width="336" height="184" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
 
   <!-- 1단계: CSMS 적합 인증서 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="36" y="104" width="130" height="48" rx="4" />
-    <rect x="210" y="104" width="130" height="48" rx="4" />
+    <rect x="36" y="104" width="130" height="48" rx="2" />
+    <rect x="210" y="104" width="130" height="48" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="101" y="124">승인 당국의</text>
@@ -26,14 +26,14 @@
   </g>
 
   <!-- 2단계: 차량 형식 승인 -->
-  <rect x="464" y="36" width="240" height="184" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="464" y="36" width="240" height="184" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="584" y="58">차량 형식 승인</text>
     <text x="584" y="75" font-size="12">승인 당국이나 기술 기관이 확인</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="478" y="86" width="212" height="62" rx="4" />
-    <rect x="478" y="158" width="212" height="48" rx="4" />
+    <rect x="478" y="86" width="212" height="62" rx="2" />
+    <rect x="478" y="158" width="212" height="48" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="584" y="105" font-weight="600">문서 검토</text>

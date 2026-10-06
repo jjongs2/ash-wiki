@@ -10,11 +10,11 @@
   </defs>
 
   <!-- 단계 -->
-  <rect x="20" y="16" width="178" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20" y="16" width="178" height="32" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="109" y="37" text-anchor="middle" fill="var(--text, #727981)">초기 대기 단계</text>
-  <rect x="202" y="16" width="176" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="202" y="16" width="176" height="32" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="290" y="37" text-anchor="middle" fill="var(--text, #727981)">반복 단계</text>
-  <rect x="382" y="16" width="318" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="382" y="16" width="318" height="32" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="541" y="37" text-anchor="middle" fill="var(--text, #727981)">주 단계</text>
 
   <!-- 시간 축 -->

@@ -7,11 +7,11 @@
   </defs>
 
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="106" width="150" height="44" rx="4" />
-    <rect x="340" y="98" width="140" height="60" rx="4" />
-    <rect x="640" y="30" width="160" height="44" rx="4" />
-    <rect x="640" y="106" width="160" height="44" rx="4" />
-    <rect x="640" y="182" width="160" height="44" rx="4" />
+    <rect x="20" y="106" width="150" height="44" rx="2" />
+    <rect x="340" y="98" width="140" height="60" rx="2" />
+    <rect x="640" y="30" width="160" height="44" rx="2" />
+    <rect x="640" y="106" width="160" height="44" rx="2" />
+    <rect x="640" y="182" width="160" height="44" rx="2" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="95" y="133">발행 클라이언트</text>

@@ -19,16 +19,16 @@
 
   <!-- 포트의 channel -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="60" y="80" width="48" height="28" rx="2" />
-    <rect x="156" y="80" width="48" height="28" rx="2" />
-    <rect x="204" y="80" width="48" height="28" rx="2" />
-    <rect x="396" y="80" width="48" height="28" rx="2" />
+    <rect x="60" y="80" width="48" height="28" />
+    <rect x="156" y="80" width="48" height="28" />
+    <rect x="204" y="80" width="48" height="28" />
+    <rect x="396" y="80" width="48" height="28" />
   </g>
-  <rect x="108.75" y="80.75" width="46.5" height="26.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="108.75" y="80.75" width="46.5" height="26.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <g fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5">
-    <rect x="252.75" y="80.75" width="46.5" height="26.5" rx="2" />
-    <rect x="300.75" y="80.75" width="46.5" height="26.5" rx="2" />
-    <rect x="348.75" y="80.75" width="46.5" height="26.5" rx="2" />
+    <rect x="252.75" y="80.75" width="46.5" height="26.5" />
+    <rect x="300.75" y="80.75" width="46.5" height="26.5" />
+    <rect x="348.75" y="80.75" width="46.5" height="26.5" />
   </g>
 
   <!-- port -->

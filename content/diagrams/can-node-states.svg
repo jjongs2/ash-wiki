@@ -8,10 +8,10 @@
 
   <!-- 상태 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="40.75" y="95.75" width="118.5" height="38.5" rx="4" />
-    <rect x="300.75" y="95.75" width="98.5" height="38.5" rx="4" />
-    <rect x="520.75" y="20.75" width="118.5" height="48.5" rx="4" />
-    <rect x="520.75" y="160.75" width="118.5" height="48.5" rx="4" />
+    <rect x="40.75" y="95.75" width="118.5" height="38.5" rx="2" />
+    <rect x="300.75" y="95.75" width="98.5" height="38.5" rx="2" />
+    <rect x="520.75" y="20.75" width="118.5" height="48.5" rx="2" />
+    <rect x="520.75" y="160.75" width="118.5" height="48.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="100" y="120">integrating</text>

@@ -7,8 +7,8 @@
   </defs>
 
   <!-- 설정하는 쪽 -->
-  <rect x="20.75" y="20.75" width="158.5" height="46.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
-  <rect x="20.75" y="116.75" width="158.5" height="46.5" rx="4" fill="var(--red-tint, #bb464d)" stroke="var(--red, #bb464d)" stroke-width="1.5" />
+  <rect x="20.75" y="20.75" width="158.5" height="46.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="20.75" y="116.75" width="158.5" height="46.5" rx="2" fill="var(--red-tint, #bb464d)" stroke="var(--red, #bb464d)" stroke-width="1.5" />
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="100" y="40">태스크</text>
     <text x="100" y="57" font-size="12">basic 또는 extended</text>
@@ -25,7 +25,7 @@
   <text x="330" y="126" text-anchor="middle" font-size="12" fill="var(--text, #727981)">이벤트 비트</text>
 
   <!-- 소유자 -->
-  <rect x="460.75" y="68.75" width="158.5" height="46.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="460.75" y="68.75" width="158.5" height="46.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="540" y="88">소유자</text>
     <text x="540" y="105" font-size="12">extended 태스크</text>

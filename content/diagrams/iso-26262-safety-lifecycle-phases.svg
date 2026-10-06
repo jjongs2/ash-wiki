@@ -7,7 +7,7 @@
   </defs>
 
   <!-- Concept phase -->
-  <rect x="20.75" y="20.75" width="148.5" height="210.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="20.75" y="20.75" width="148.5" height="210.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="95" y="42" font-size="13">Concept phase</text>
     <text x="95" y="58">Part 3</text>
@@ -15,7 +15,7 @@
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="35.75" y="70.75" width="118.5" height="26.5" rx="2" />
     <rect x="35.75" y="122.75" width="118.5" height="26.5" rx="2" />
-    <rect x="35.75" y="174.75" width="118.5" height="42.5" rx="4" />
+    <rect x="35.75" y="174.75" width="118.5" height="42.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="95" y="88">Item definition</text>
@@ -30,9 +30,9 @@
 
   <!-- 제품 개발 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="210.75" y="20.75" width="288.5" height="44.5" rx="4" />
-    <rect x="235.75" y="160.75" width="118.5" height="58.5" rx="4" />
-    <rect x="365.75" y="160.75" width="118.5" height="58.5" rx="4" />
+    <rect x="210.75" y="20.75" width="288.5" height="44.5" rx="2" />
+    <rect x="235.75" y="160.75" width="118.5" height="58.5" rx="2" />
+    <rect x="365.75" y="160.75" width="118.5" height="58.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="355" y="40" font-size="13">시스템 수준 제품 개발</text>
@@ -51,7 +51,7 @@
   <text x="355" y="118" text-anchor="middle" fill="var(--text, #727981)">V 모델</text>
 
   <!-- 생산 이후 -->
-  <rect x="540.75" y="20.75" width="118.5" height="58.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="540.75" y="20.75" width="118.5" height="58.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="600" y="40">생산, 운용,</text>
     <text x="600" y="56">서비스, 폐기</text>

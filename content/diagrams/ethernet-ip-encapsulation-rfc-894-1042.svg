@@ -4,11 +4,11 @@
   <!-- RFC 894 -->
   <text x="20" y="44" fill="var(--text, #727981)">RFC 894</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="100" y="20" width="72" height="40" rx="4" />
-    <rect x="176" y="20" width="72" height="40" rx="4" />
-    <rect x="252" y="20" width="62" height="40" rx="4" />
-    <rect x="318" y="20" width="384" height="40" rx="4" />
-    <rect x="706" y="20" width="40" height="40" rx="4" />
+    <rect x="100" y="20" width="72" height="40" />
+    <rect x="176" y="20" width="72" height="40" />
+    <rect x="252" y="20" width="62" height="40" />
+    <rect x="318" y="20" width="384" height="40" />
+    <rect x="706" y="20" width="40" height="40" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="136" y="44">목적지 주소</text>
@@ -35,18 +35,18 @@
   <!-- RFC 1042 -->
   <text x="20" y="156" fill="var(--text, #727981)">RFC 1042</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="100" y="132" width="72" height="40" rx="4" />
-    <rect x="176" y="132" width="72" height="40" rx="4" />
-    <rect x="252" y="132" width="62" height="40" rx="4" />
-    <rect x="602" y="132" width="100" height="40" rx="4" />
-    <rect x="706" y="132" width="40" height="40" rx="4" />
+    <rect x="100" y="132" width="72" height="40" />
+    <rect x="176" y="132" width="72" height="40" />
+    <rect x="252" y="132" width="62" height="40" />
+    <rect x="602" y="132" width="100" height="40" />
+    <rect x="706" y="132" width="40" height="40" />
   </g>
   <g fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5">
-    <rect x="318" y="132" width="46" height="40" rx="4" />
-    <rect x="368" y="132" width="46" height="40" rx="4" />
-    <rect x="418" y="132" width="40" height="40" rx="4" />
-    <rect x="462" y="132" width="62" height="40" rx="4" />
-    <rect x="528" y="132" width="70" height="40" rx="4" />
+    <rect x="318" y="132" width="46" height="40" />
+    <rect x="368" y="132" width="46" height="40" />
+    <rect x="418" y="132" width="40" height="40" />
+    <rect x="462" y="132" width="62" height="40" />
+    <rect x="528" y="132" width="70" height="40" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="136" y="156">목적지 주소</text>

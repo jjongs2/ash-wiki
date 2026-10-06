@@ -13,9 +13,9 @@
     <path d="M86.9 196.4 A130 130 0 0 1 129.4 65.4" />
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="133" y="11" width="160" height="48" rx="4" />
-    <rect x="245.6" y="206" width="160" height="48" rx="4" />
-    <rect x="20.4" y="206" width="160" height="48" rx="4" />
+    <rect x="133" y="11" width="160" height="48" rx="2" />
+    <rect x="245.6" y="206" width="160" height="48" rx="2" />
+    <rect x="20.4" y="206" width="160" height="48" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="213" y="30" font-size="14" font-weight="600">Red</text>

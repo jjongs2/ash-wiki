@@ -5,9 +5,9 @@
 
   <!-- 층 틀 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4">
-    <rect x="20" y="30" width="644" height="100" rx="4" />
-    <rect x="20" y="146" width="644" height="100" rx="4" />
-    <rect x="20" y="262" width="644" height="106" rx="4" />
+    <rect x="20" y="30" width="644" height="100" rx="2" />
+    <rect x="20" y="146" width="644" height="100" rx="2" />
+    <rect x="20" y="262" width="644" height="106" rx="2" />
   </g>
   <g font-size="12" fill="var(--text, #727981)">
     <text x="32" y="48">조직</text>
@@ -17,14 +17,14 @@
 
   <!-- 프로세스 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="32" y="58" width="146" height="44" rx="4" />
-    <rect x="32" y="174" width="146" height="44" rx="4" />
-    <rect x="190" y="174" width="146" height="44" rx="4" />
-    <rect x="348" y="174" width="146" height="44" rx="4" />
-    <rect x="32" y="290" width="146" height="44" rx="4" />
-    <rect x="190" y="290" width="146" height="44" rx="4" />
-    <rect x="348" y="290" width="146" height="44" rx="4" />
-    <rect x="506" y="290" width="146" height="44" rx="4" />
+    <rect x="32" y="58" width="146" height="44" rx="2" />
+    <rect x="32" y="174" width="146" height="44" rx="2" />
+    <rect x="190" y="174" width="146" height="44" rx="2" />
+    <rect x="348" y="174" width="146" height="44" rx="2" />
+    <rect x="32" y="290" width="146" height="44" rx="2" />
+    <rect x="190" y="290" width="146" height="44" rx="2" />
+    <rect x="348" y="290" width="146" height="44" rx="2" />
+    <rect x="506" y="290" width="146" height="44" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="105" y="84.5">조직 테스트 프로세스</text>

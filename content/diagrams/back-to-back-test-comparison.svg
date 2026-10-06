@@ -7,10 +7,10 @@
   </defs>
   <!-- 상자 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="90" width="150" height="36" rx="4" />
-    <rect x="230" y="40" width="140" height="36" rx="4" />
-    <rect x="230" y="140" width="140" height="36" rx="4" />
-    <rect x="430" y="90" width="110" height="36" rx="4" />
+    <rect x="20" y="90" width="150" height="36" rx="2" />
+    <rect x="230" y="40" width="140" height="36" rx="2" />
+    <rect x="230" y="140" width="140" height="36" rx="2" />
+    <rect x="430" y="90" width="110" height="36" rx="2" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="95" y="113">같은 테스트 케이스</text>

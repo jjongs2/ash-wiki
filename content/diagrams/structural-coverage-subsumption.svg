@@ -25,11 +25,11 @@
 
   <!-- 커버리지 기준 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="40" width="140" height="32" rx="4" />
-    <rect x="260" y="40" width="140" height="32" rx="4" />
-    <rect x="20" y="132" width="140" height="32" rx="4" />
-    <rect x="20" y="212" width="140" height="32" rx="4" />
-    <rect x="260" y="172" width="140" height="32" rx="4" />
+    <rect x="20" y="40" width="140" height="32" rx="2" />
+    <rect x="260" y="40" width="140" height="32" rx="2" />
+    <rect x="20" y="132" width="140" height="32" rx="2" />
+    <rect x="20" y="212" width="140" height="32" rx="2" />
+    <rect x="260" y="172" width="140" height="32" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="90" y="60">구문 커버리지</text>

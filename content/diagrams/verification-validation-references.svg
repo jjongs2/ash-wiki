@@ -9,9 +9,9 @@
     </marker>
   </defs>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="40" width="120" height="30" rx="4" />
-    <rect x="340" y="40" width="70" height="30" rx="4" />
-    <rect x="610" y="40" width="220" height="30" rx="4" />
+    <rect x="20" y="40" width="120" height="30" rx="2" />
+    <rect x="340" y="40" width="70" height="30" rx="2" />
+    <rect x="610" y="40" width="220" height="30" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="80" y="59">명시된 요구사항</text>

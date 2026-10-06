@@ -12,10 +12,10 @@
 
   <!-- 절 -->
   <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="20" y="52" width="124" height="46" rx="4" stroke-dasharray="5 4" />
-    <rect x="160" y="52" width="124" height="46" rx="4" stroke-dasharray="5 4" />
-    <rect x="300" y="52" width="124" height="46" rx="4" />
-    <rect x="440" y="52" width="124" height="46" rx="4" />
+    <rect x="20" y="52" width="124" height="46" rx="2" stroke-dasharray="5 4" />
+    <rect x="160" y="52" width="124" height="46" rx="2" stroke-dasharray="5 4" />
+    <rect x="300" y="52" width="124" height="46" rx="2" />
+    <rect x="440" y="52" width="124" height="46" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="82" y="71">While</text>

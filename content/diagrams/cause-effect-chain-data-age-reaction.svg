@@ -32,31 +32,31 @@
 
   <!-- 태스크 1 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="150" y="50" width="16" height="20" rx="2" fill="var(--surface, none)" />
-    <rect x="406" y="50" width="16" height="20" rx="2" fill="var(--surface, none)" />
-    <rect x="662" y="50" width="16" height="20" rx="2" fill="var(--surface, none)" />
+    <rect x="150" y="50" width="16" height="20" fill="var(--surface, none)" />
+    <rect x="406" y="50" width="16" height="20" fill="var(--surface, none)" />
+    <rect x="662" y="50" width="16" height="20" fill="var(--surface, none)" />
   </g>
 
   <!-- 태스크 2: 태스크 3이 읽기 전에 덮어쓰인 출력은 orange -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="182" y="100" width="16" height="20" rx="2" fill="var(--surface, none)" />
-    <rect x="310" y="100" width="16" height="20" rx="2" fill="var(--surface, none)" />
-    <rect x="438" y="100" width="16" height="20" rx="2" fill="var(--surface, none)" />
-    <rect x="566" y="100" width="16" height="20" rx="2" fill="var(--surface, none)" />
+    <rect x="182" y="100" width="16" height="20" fill="var(--surface, none)" />
+    <rect x="310" y="100" width="16" height="20" fill="var(--surface, none)" />
+    <rect x="438" y="100" width="16" height="20" fill="var(--surface, none)" />
+    <rect x="566" y="100" width="16" height="20" fill="var(--surface, none)" />
   </g>
   <g fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5">
-    <rect x="246.75" y="100.75" width="14.5" height="18.5" rx="2" />
-    <rect x="374.75" y="100.75" width="14.5" height="18.5" rx="2" />
-    <rect x="502.75" y="100.75" width="14.5" height="18.5" rx="2" />
-    <rect x="630.75" y="100.75" width="14.5" height="18.5" rx="2" />
+    <rect x="246.75" y="100.75" width="14.5" height="18.5" />
+    <rect x="374.75" y="100.75" width="14.5" height="18.5" />
+    <rect x="502.75" y="100.75" width="14.5" height="18.5" />
+    <rect x="630.75" y="100.75" width="14.5" height="18.5" />
   </g>
 
   <!-- 태스크 3 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="214" y="150" width="16" height="20" rx="2" fill="var(--surface, none)" />
-    <rect x="342" y="150" width="16" height="20" rx="2" fill="var(--surface, none)" />
-    <rect x="470" y="150" width="16" height="20" rx="2" fill="var(--surface, none)" />
-    <rect x="598" y="150" width="16" height="20" rx="2" fill="var(--surface, none)" />
+    <rect x="214" y="150" width="16" height="20" fill="var(--surface, none)" />
+    <rect x="342" y="150" width="16" height="20" fill="var(--surface, none)" />
+    <rect x="470" y="150" width="16" height="20" fill="var(--surface, none)" />
+    <rect x="598" y="150" width="16" height="20" fill="var(--surface, none)" />
   </g>
 
   <!-- 태스크 1이 쓴 값 하나가 지나는 길 -->
@@ -87,8 +87,8 @@
   <text x="318" y="270" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Reaction</text>
 
   <!-- 범례 -->
-  <rect x="150" y="288" width="14" height="14" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="150" y="288" width="14" height="14" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="170" y="300" font-size="12" fill="var(--text, #727981)">실행을 시작할 때 읽고 끝날 때 씀</text>
-  <rect x="400.75" y="288.75" width="12.5" height="12.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="400.75" y="288.75" width="12.5" height="12.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
   <text x="420" y="300" font-size="12" fill="var(--text, #727981)">태스크 3이 읽기 전에 덮어쓰인 출력</text>
 </svg>

@@ -12,8 +12,8 @@
 
   <!-- BEACON -->
   <g fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5">
-    <rect x="20.75" y="50.75" width="94.5" height="34.5" rx="4" />
-    <rect x="404.75" y="50.75" width="94.5" height="34.5" rx="4" />
+    <rect x="20.75" y="50.75" width="94.5" height="34.5" />
+    <rect x="404.75" y="50.75" width="94.5" height="34.5" />
   </g>
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="68" y="73">BEACON</text>
@@ -22,9 +22,9 @@
 
   <!-- 노드 ID 순서의 송신 기회 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="120" y="50" width="76" height="36" rx="4" />
-    <rect x="200" y="50" width="76" height="36" rx="4" />
-    <rect x="280" y="50" width="76" height="36" rx="4" />
+    <rect x="120" y="50" width="76" height="36" />
+    <rect x="200" y="50" width="76" height="36" />
+    <rect x="280" y="50" width="76" height="36" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="158" y="73">ID 0</text>

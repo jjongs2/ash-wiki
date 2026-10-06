@@ -29,9 +29,9 @@
     <path d="M98.8 207 A72 72 0 0 1 124 140.6" />
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="128" y="104" width="84" height="40" rx="4" />
-    <rect x="190.4" y="212" width="84" height="40" rx="4" />
-    <rect x="65.6" y="212" width="84" height="40" rx="4" />
+    <rect x="128" y="104" width="84" height="40" rx="2" />
+    <rect x="190.4" y="212" width="84" height="40" rx="2" />
+    <rect x="65.6" y="212" width="84" height="40" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="170" y="121">명세</text>

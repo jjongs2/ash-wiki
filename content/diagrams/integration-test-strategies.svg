@@ -50,7 +50,7 @@
     <rect x="540" y="160" width="40" height="20" rx="2" />
     <rect x="600" y="160" width="40" height="20" rx="2" />
   </g>
-  <rect x="468" y="50" width="184" height="140" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="468" y="50" width="184" height="140" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
 
   <!-- 통합 방향 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">

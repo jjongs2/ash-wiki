@@ -7,9 +7,9 @@
   </defs>
 
   <!-- 양 끝 PHY -->
-  <rect x="20" y="50" width="90" height="50" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20" y="50" width="90" height="50" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="65" y="80" text-anchor="middle" fill="var(--text, #727981)">PHY</text>
-  <rect x="550" y="50" width="90" height="50" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="550" y="50" width="90" height="50" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="595" y="80" text-anchor="middle" fill="var(--text, #727981)">PHY</text>
 
   <!-- 한 쌍 케이블 -->
@@ -17,10 +17,10 @@
   <line x1="110" y1="82" x2="550" y2="82" stroke="var(--ink, #727981)" stroke-width="1.5" />
 
   <!-- 인라인 커넥터 4개 -->
-  <rect x="180.75" y="57.75" width="18.5" height="34.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <rect x="270.75" y="57.75" width="18.5" height="34.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <rect x="370.75" y="57.75" width="18.5" height="34.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <rect x="460.75" y="57.75" width="18.5" height="34.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="180.75" y="57.75" width="18.5" height="34.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="270.75" y="57.75" width="18.5" height="34.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="370.75" y="57.75" width="18.5" height="34.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="460.75" y="57.75" width="18.5" height="34.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
   <path d="M190 44 V38 H470 V44" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="330" y="30" text-anchor="middle" font-size="12" fill="var(--text, #727981)">인라인 커넥터 4개까지</text>
 

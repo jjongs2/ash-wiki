@@ -11,46 +11,46 @@
   <text x="773" y="16" text-anchor="middle" font-size="12" fill="var(--text, #727981)">중재 구간</text>
   <text x="773" y="31" text-anchor="middle" font-size="11" fill="var(--text, #727981)">1 Mbit/s 이하</text>
   <!-- 필드 -->
-  <rect x="20.75" y="52.75" width="70.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20.75" y="52.75" width="70.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="56" y="71" text-anchor="middle" font-size="12" fill="var(--text, #727981)">우선순위 ID</text>
   <text x="56" y="86" text-anchor="middle" font-size="11" fill="var(--text, #727981)">11비트</text>
-  <rect x="96.75" y="52.75" width="58.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="96.75" y="52.75" width="58.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="126" y="77" text-anchor="middle" font-size="12" fill="var(--text, #727981)">포맷 전환</text>
-  <rect x="160.75" y="52.75" width="34.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="160.75" y="52.75" width="34.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="178" y="77" text-anchor="middle" font-size="12" fill="var(--text, #727981)">ADS</text>
-  <rect x="200.75" y="52.75" width="34.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="200.75" y="52.75" width="34.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="218" y="71" text-anchor="middle" font-size="12" fill="var(--text, #727981)">SDT</text>
   <text x="218" y="86" text-anchor="middle" font-size="11" fill="var(--text, #727981)">8비트</text>
-  <rect x="240.75" y="52.75" width="34.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="240.75" y="52.75" width="34.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="258" y="71" text-anchor="middle" font-size="12" fill="var(--text, #727981)">SEC</text>
   <text x="258" y="86" text-anchor="middle" font-size="11" fill="var(--text, #727981)">1비트</text>
-  <rect x="280.75" y="52.75" width="38.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="280.75" y="52.75" width="38.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="300" y="71" text-anchor="middle" font-size="12" fill="var(--text, #727981)">DLC</text>
   <text x="300" y="86" text-anchor="middle" font-size="11" fill="var(--text, #727981)">11비트</text>
-  <rect x="324.75" y="52.75" width="34.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="324.75" y="52.75" width="34.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="342" y="77" text-anchor="middle" font-size="12" fill="var(--text, #727981)">SBC</text>
-  <rect x="364.75" y="52.75" width="42.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="364.75" y="52.75" width="42.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="386" y="71" text-anchor="middle" font-size="12" fill="var(--text, #727981)">PCRC</text>
   <text x="386" y="86" text-anchor="middle" font-size="11" fill="var(--text, #727981)">13비트</text>
-  <rect x="412.75" y="52.75" width="42.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="412.75" y="52.75" width="42.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="434" y="71" text-anchor="middle" font-size="12" fill="var(--text, #727981)">VCID</text>
   <text x="434" y="86" text-anchor="middle" font-size="11" fill="var(--text, #727981)">8비트</text>
-  <rect x="460.75" y="52.75" width="46.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="460.75" y="52.75" width="46.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="484" y="71" text-anchor="middle" font-size="12" fill="var(--text, #727981)">AF</text>
   <text x="484" y="86" text-anchor="middle" font-size="11" fill="var(--text, #727981)">32비트</text>
-  <rect x="512.75" y="52.75" width="98.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="512.75" y="52.75" width="98.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="562" y="71" text-anchor="middle" font-size="12" fill="var(--text, #727981)">데이터</text>
   <text x="562" y="86" text-anchor="middle" font-size="11" fill="var(--text, #727981)">1~2048바이트</text>
-  <rect x="616.75" y="52.75" width="42.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="616.75" y="52.75" width="42.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="638" y="71" text-anchor="middle" font-size="12" fill="var(--text, #727981)">FCRC</text>
   <text x="638" y="86" text-anchor="middle" font-size="11" fill="var(--text, #727981)">32비트</text>
-  <rect x="664.75" y="52.75" width="34.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="664.75" y="52.75" width="34.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="682" y="77" text-anchor="middle" font-size="12" fill="var(--text, #727981)">FCP</text>
-  <rect x="704.75" y="52.75" width="34.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="704.75" y="52.75" width="34.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="722" y="77" text-anchor="middle" font-size="12" fill="var(--text, #727981)">DAS</text>
-  <rect x="744.75" y="52.75" width="34.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="744.75" y="52.75" width="34.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="762" y="77" text-anchor="middle" font-size="12" fill="var(--text, #727981)">ACK</text>
-  <rect x="784.75" y="52.75" width="38.5" height="40.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="784.75" y="52.75" width="38.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="804" y="77" text-anchor="middle" font-size="12" fill="var(--text, #727981)">EOF</text>
   <!-- 범례 -->
   <text x="20" y="120" font-size="12" fill="var(--text, #727981)">Bosch CAN XL 개요의 필드 순서. ADS와 DAS에서 비트율을 바꾼다.</text>

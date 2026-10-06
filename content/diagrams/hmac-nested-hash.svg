@@ -8,8 +8,8 @@
 
   <!-- 키에서 만든 두 값 -->
   <g stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)">
-    <rect x="20" y="30" width="110" height="36" rx="4" />
-    <rect x="20" y="110" width="110" height="36" rx="4" />
+    <rect x="20" y="30" width="110" height="36" rx="2" />
+    <rect x="20" y="110" width="110" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="75" y="53"><tspan font-style="italic">K</tspan><tspan baseline-shift="sub" font-size="10">0</tspan> ⊕ ipad</text>
@@ -24,11 +24,11 @@
 
   <!-- 메시지, 해시, 결과 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="154" y="30" width="80" height="36" rx="4" />
-    <rect x="272" y="30" width="40" height="36" rx="4" />
-    <rect x="154" y="110" width="180" height="36" rx="4" />
-    <rect x="372" y="110" width="40" height="36" rx="4" />
-    <rect x="450" y="110" width="80" height="36" rx="4" />
+    <rect x="154" y="30" width="80" height="36" rx="2" />
+    <rect x="272" y="30" width="40" height="36" rx="2" />
+    <rect x="154" y="110" width="180" height="36" rx="2" />
+    <rect x="372" y="110" width="40" height="36" rx="2" />
+    <rect x="450" y="110" width="80" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="194" y="53" font-style="italic">text</text>

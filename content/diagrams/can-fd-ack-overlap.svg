@@ -8,19 +8,19 @@
   </g>
 
   <text x="156" y="59" text-anchor="end" fill="var(--text, #727981)">수신 노드 1</text>
-  <rect x="270.75" y="34.75" width="98.5" height="38.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="270.75" y="34.75" width="98.5" height="38.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="320" y="59" text-anchor="middle" fill="var(--on-fill, #f8fafd)">D</text>
 
   <text x="156" y="109" text-anchor="end" fill="var(--text, #727981)">수신 노드 2</text>
-  <rect x="330.75" y="84.75" width="98.5" height="38.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="330.75" y="84.75" width="98.5" height="38.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="380" y="109" text-anchor="middle" fill="var(--on-fill, #f8fafd)">D</text>
 
   <line x1="170" y1="140" x2="470" y2="140" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
 
   <text x="156" y="179" text-anchor="end" fill="var(--text, #727981)">버스</text>
-  <rect x="170.75" y="154.75" width="98.5" height="38.5" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <rect x="170.75" y="154.75" width="98.5" height="38.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
   <text x="220" y="179" text-anchor="middle" fill="var(--on-fill, #f8fafd)">R</text>
-  <rect x="270.75" y="154.75" width="158.5" height="38.5" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <rect x="270.75" y="154.75" width="158.5" height="38.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
   <text x="350" y="179" text-anchor="middle" fill="var(--on-fill, #f8fafd)">D</text>
   <path d="M270 200 V206 H430 V200" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="350" y="224" text-anchor="middle" font-size="12" fill="var(--text, #727981)">겹친 ACK 비트 · 2비트 길이까지 유효</text>

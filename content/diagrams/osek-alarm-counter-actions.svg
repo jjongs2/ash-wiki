@@ -7,21 +7,21 @@
   </defs>
 
   <!-- 반복되는 사건 -->
-  <rect x="20" y="74" width="180" height="48" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20" y="74" width="180" height="48" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="110" y="94">반복되는 사건</text>
     <text x="110" y="111" font-size="12">타이머 인터럽트, 축의 엔코더</text>
   </g>
 
   <!-- counter -->
-  <rect x="240.75" y="74.75" width="98.5" height="46.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="240.75" y="74.75" width="98.5" height="46.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="290" y="103" text-anchor="middle" fill="var(--on-fill, #f8fafd)">counter</text>
 
   <!-- 알람 -->
   <g fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5">
-    <rect x="380.75" y="20.75" width="98.5" height="38.5" rx="4" />
-    <rect x="380.75" y="78.75" width="98.5" height="38.5" rx="4" />
-    <rect x="380.75" y="136.75" width="98.5" height="38.5" rx="4" />
+    <rect x="380.75" y="20.75" width="98.5" height="38.5" rx="2" />
+    <rect x="380.75" y="78.75" width="98.5" height="38.5" rx="2" />
+    <rect x="380.75" y="136.75" width="98.5" height="38.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="430" y="45">알람</text>
@@ -31,9 +31,9 @@
 
   <!-- 만료 동작 -->
   <g fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5">
-    <rect x="520.75" y="20.75" width="158.5" height="38.5" rx="4" />
-    <rect x="520.75" y="78.75" width="158.5" height="38.5" rx="4" />
-    <rect x="520.75" y="136.75" width="158.5" height="38.5" rx="4" />
+    <rect x="520.75" y="20.75" width="158.5" height="38.5" rx="2" />
+    <rect x="520.75" y="78.75" width="158.5" height="38.5" rx="2" />
+    <rect x="520.75" y="136.75" width="158.5" height="38.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="600" y="45">태스크 활성화</text>

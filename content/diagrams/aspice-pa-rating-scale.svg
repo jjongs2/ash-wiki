@@ -23,10 +23,10 @@
 
   <!-- 등급 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="140" y="278" width="80" height="42" rx="4" />
-    <rect x="140" y="180" width="80" height="98" rx="4" />
-    <rect x="140" y="82" width="80" height="98" rx="4" />
-    <rect x="140" y="40" width="80" height="42" rx="4" />
+    <rect x="140" y="278" width="80" height="42" />
+    <rect x="140" y="180" width="80" height="98" />
+    <rect x="140" y="82" width="80" height="98" />
+    <rect x="140" y="40" width="80" height="42" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="180" y="303">N</text>
@@ -37,10 +37,10 @@
 
   <!-- P와 L의 세분 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="232" y="229" width="80" height="49" rx="4" />
-    <rect x="232" y="180" width="80" height="49" rx="4" />
-    <rect x="232" y="131" width="80" height="49" rx="4" />
-    <rect x="232" y="82" width="80" height="49" rx="4" />
+    <rect x="232" y="229" width="80" height="49" />
+    <rect x="232" y="180" width="80" height="49" />
+    <rect x="232" y="131" width="80" height="49" />
+    <rect x="232" y="82" width="80" height="49" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="272" y="257.5">P-</text>

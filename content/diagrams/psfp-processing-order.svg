@@ -19,16 +19,16 @@
     <line x1="540" y1="70" x2="578" y2="70" marker-end="url(#arrow)" />
     <line x1="690" y1="70" x2="728" y2="70" marker-end="url(#arrow)" />
   </g>
-  <rect x="120" y="48" width="110" height="44" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="120" y="48" width="110" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="175" y="74" text-anchor="middle" fill="var(--text, #727981)">스트림 필터</text>
-  <rect x="260" y="48" width="140" height="44" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="260" y="48" width="140" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="330" y="74" text-anchor="middle" fill="var(--text, #727981)">최대 SDU 크기 필터</text>
-  <rect x="430" y="48" width="110" height="44" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="430" y="48" width="110" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="485" y="74" text-anchor="middle" fill="var(--text, #727981)">스트림 게이트</text>
-  <rect x="580" y="48" width="110" height="44" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
+  <rect x="580" y="48" width="110" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
   <text x="635" y="66" text-anchor="middle" fill="var(--text, #727981)">flow meter</text>
   <text x="635" y="82" text-anchor="middle" fill="var(--text, #727981)">(있을 때만)</text>
-  <rect x="730" y="48" width="50" height="44" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="730" y="48" width="50" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="755" y="74" text-anchor="middle" fill="var(--text, #727981)">큐</text>
 
   <!-- 단계마다 하는 일 -->

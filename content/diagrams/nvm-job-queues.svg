@@ -11,13 +11,13 @@
 
   <!-- 우선순위 처리를 켰을 때: 큐 둘 -->
   <text x="20" y="30" font-size="12" fill="var(--text, #727981)">NvMJobPrioritization을 켰을 때</text>
-  <rect x="20.75" y="44.75" width="238.5" height="34.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="20.75" y="44.75" width="238.5" height="34.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
   <text x="140" y="67" text-anchor="middle" fill="var(--on-fill, #f8fafd)">immediate 쓰기 job 큐</text>
-  <rect x="20" y="104" width="240" height="50" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20" y="104" width="240" height="50" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="140" y="125" text-anchor="middle" fill="var(--text, #727981)">그 밖의 job 큐</text>
   <text x="140" y="143" text-anchor="middle" font-size="12" fill="var(--text, #727981)">immediate 읽기·지우기 포함</text>
 
-  <rect x="400" y="75" width="180" height="50" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="400" y="75" width="180" height="50" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="490" y="96" text-anchor="middle" fill="var(--text, #727981)">NvM_MainFunction</text>
   <text x="490" y="114" text-anchor="middle" font-size="12" fill="var(--text, #727981)">하나씩 처리</text>
 
@@ -30,10 +30,10 @@
 
   <!-- 우선순위 처리를 껐을 때: 큐 하나 -->
   <text x="20" y="204" font-size="12" fill="var(--text, #727981)">NvMJobPrioritization을 껐을 때</text>
-  <rect x="20" y="218" width="240" height="50" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20" y="218" width="240" height="50" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="140" y="239" text-anchor="middle" fill="var(--text, #727981)">모든 job 큐</text>
   <text x="140" y="257" text-anchor="middle" font-size="12" fill="var(--text, #727981)">온 순서대로</text>
-  <rect x="400" y="218" width="180" height="50" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="400" y="218" width="180" height="50" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="490" y="239" text-anchor="middle" fill="var(--text, #727981)">NvM_MainFunction</text>
   <text x="490" y="257" text-anchor="middle" font-size="12" fill="var(--text, #727981)">하나씩 처리</text>
   <line x1="262" y1="243" x2="398" y2="243" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />

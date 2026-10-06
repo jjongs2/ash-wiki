@@ -10,9 +10,9 @@
   </defs>
 
   <!-- 두 쪽 -->
-  <rect x="20" y="40" width="96" height="36" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20" y="40" width="96" height="36" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="68" y="63" text-anchor="middle" fill="var(--text, #727981)">talker</text>
-  <rect x="20" y="130" width="96" height="36" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20" y="130" width="96" height="36" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="68" y="153" text-anchor="middle" fill="var(--text, #727981)">listener</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="116" y1="58" x2="600" y2="58" />
