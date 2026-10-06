@@ -13,11 +13,11 @@
   <text x="132" y="185" text-anchor="end" fill="var(--text, #727981)">물리 계층</text>
 
   <!-- ISO 11898-1: LLC, MAC, PCS -->
-  <rect x="150.75" y="20.75" width="148.5" height="38.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="150.75" y="20.75" width="148.5" height="38.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="225" y="45" text-anchor="middle" fill="var(--on-fill, #f8fafd)">LLC</text>
-  <rect x="310.75" y="20.75" width="148.5" height="38.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="310.75" y="20.75" width="148.5" height="38.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="385" y="45" text-anchor="middle" fill="var(--on-fill, #f8fafd)">MAC</text>
-  <rect x="150.75" y="70.75" width="308.5" height="38.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="150.75" y="70.75" width="308.5" height="38.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="305" y="95" text-anchor="middle" fill="var(--on-fill, #f8fafd)">PCS</text>
   <path d="M470 20 H476 V110 H470" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="484" y="70" fill="var(--text, #727981)">ISO 11898-1</text>
@@ -29,20 +29,20 @@
   <text x="305" y="150" text-anchor="middle" font-size="12" fill="var(--text, #727981)">TXD · RXD</text>
 
   <!-- PMA: 고속과 저속 내결함성 -->
-  <rect x="150.75" y="160.75" width="148.5" height="48.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="150.75" y="160.75" width="148.5" height="48.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
   <text x="225" y="181" text-anchor="middle" fill="var(--on-fill, #f8fafd)">고속 PMA</text>
   <text x="225" y="199" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">ISO 11898-2</text>
-  <rect x="310.75" y="160.75" width="148.5" height="48.5" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <rect x="310.75" y="160.75" width="148.5" height="48.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
   <text x="385" y="181" text-anchor="middle" fill="var(--on-fill, #f8fafd)">저속 내결함성</text>
   <text x="385" y="199" text-anchor="middle" fill="var(--on-fill, #f8fafd)">PMA</text>
 
   <!-- MDI -->
   <line x1="225" y1="210" x2="225" y2="240" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <line x1="385" y1="210" x2="385" y2="240" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <rect x="150.75" y="240.75" width="148.5" height="48.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="150.75" y="240.75" width="148.5" height="48.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="225" y="261" text-anchor="middle" fill="var(--text, #727981)">MDI</text>
   <text x="225" y="279" text-anchor="middle" font-size="12" fill="var(--text, #727981)">CAN_H · CAN_L</text>
-  <rect x="310.75" y="240.75" width="148.5" height="48.5" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <rect x="310.75" y="240.75" width="148.5" height="48.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
   <text x="385" y="261" text-anchor="middle" fill="var(--on-fill, #f8fafd)">MDI</text>
   <text x="385" y="279" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">CAN_H · CAN_L</text>
   <path d="M470 160 H476 V290 H470" stroke="var(--ink, #727981)" stroke-width="1.5" />

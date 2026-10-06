@@ -7,13 +7,13 @@
   </defs>
 
   <!-- 세 시계 -->
-  <rect x="20" y="88" width="180" height="56" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20" y="88" width="180" height="56" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="110" y="112" text-anchor="middle" fill="var(--text, #727981)">ordinary clock</text>
   <text x="110" y="132" text-anchor="middle" font-size="12" fill="var(--text, #727981)">PTP 포트 하나</text>
-  <rect x="230" y="88" width="180" height="56" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="230" y="88" width="180" height="56" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="320" y="112" text-anchor="middle" fill="var(--text, #727981)">boundary clock</text>
   <text x="320" y="132" text-anchor="middle" font-size="12" fill="var(--text, #727981)">PTP 포트 여럿</text>
-  <rect x="440" y="88" width="180" height="56" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="440" y="88" width="180" height="56" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="530" y="112" text-anchor="middle" fill="var(--text, #727981)">transparent clock</text>
   <text x="530" y="132" text-anchor="middle" font-size="12" fill="var(--text, #727981)">master나 slave가 되지 않음</text>
 

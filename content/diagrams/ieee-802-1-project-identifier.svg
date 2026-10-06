@@ -9,9 +9,9 @@
 
   <!-- P802.1CS -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="110" y="24" width="60" height="40" rx="4" />
-    <rect x="170" y="24" width="90" height="40" rx="4" />
-    <rect x="260" y="24" width="120" height="40" rx="4" />
+    <rect x="110" y="24" width="60" height="40" />
+    <rect x="170" y="24" width="90" height="40" />
+    <rect x="260" y="24" width="120" height="40" />
   </g>
   <g font-size="16" text-anchor="middle" fill="var(--text, #727981)">
     <text x="140" y="50">P</text>
@@ -25,10 +25,10 @@
 
   <!-- P802.1Qcw -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="110" y="108" width="60" height="40" rx="4" />
-    <rect x="170" y="108" width="90" height="40" rx="4" />
-    <rect x="260" y="108" width="80" height="40" rx="4" />
-    <rect x="340" y="108" width="120" height="40" rx="4" />
+    <rect x="110" y="108" width="60" height="40" />
+    <rect x="170" y="108" width="90" height="40" />
+    <rect x="260" y="108" width="80" height="40" />
+    <rect x="340" y="108" width="120" height="40" />
   </g>
   <g font-size="16" text-anchor="middle" fill="var(--text, #727981)">
     <text x="140" y="134">P</text>

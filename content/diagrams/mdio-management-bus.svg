@@ -7,7 +7,7 @@
   </defs>
 
   <!-- 관리 쪽 -->
-  <rect x="20.75" y="50.75" width="98.5" height="78.5" rx="4" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
+  <rect x="20.75" y="50.75" width="98.5" height="78.5" rx="2" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
   <text x="70" y="95" text-anchor="middle" fill="var(--on-fill, #f8fafd)">관리 쪽</text>
 
   <!-- 버스 두 선 -->
@@ -21,7 +21,7 @@
   <line x1="315" y1="112" x2="315" y2="178" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
   <circle cx="275" cy="70" r="3.5" fill="var(--ink, #727981)" />
   <circle cx="315" cy="110" r="3.5" fill="var(--ink, #727981)" />
-  <rect x="240" y="180" width="110" height="50" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="240" y="180" width="110" height="50" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="295" y="201" text-anchor="middle" fill="var(--text, #727981)">PHY</text>
   <text x="295" y="219" text-anchor="middle" font-size="12" fill="var(--text, #727981)">주소 0</text>
 
@@ -30,7 +30,7 @@
   <line x1="435" y1="112" x2="435" y2="178" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
   <circle cx="395" cy="70" r="3.5" fill="var(--ink, #727981)" />
   <circle cx="435" cy="110" r="3.5" fill="var(--ink, #727981)" />
-  <rect x="360" y="180" width="110" height="50" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="360" y="180" width="110" height="50" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="415" y="201" text-anchor="middle" fill="var(--text, #727981)">PHY</text>
   <text x="415" y="219" text-anchor="middle" font-size="12" fill="var(--text, #727981)">주소 1</text>
 
@@ -41,7 +41,7 @@
   <line x1="605" y1="112" x2="605" y2="178" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
   <circle cx="565" cy="70" r="3.5" fill="var(--ink, #727981)" />
   <circle cx="605" cy="110" r="3.5" fill="var(--ink, #727981)" />
-  <rect x="530" y="180" width="110" height="50" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="530" y="180" width="110" height="50" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="585" y="201" text-anchor="middle" fill="var(--text, #727981)">PHY</text>
   <text x="585" y="219" text-anchor="middle" font-size="12" fill="var(--text, #727981)">주소 31</text>
 

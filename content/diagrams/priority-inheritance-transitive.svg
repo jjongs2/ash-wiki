@@ -6,11 +6,11 @@
     </marker>
   </defs>
 
-  <rect x="20" y="30" width="90" height="40" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20" y="30" width="90" height="40" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="65" y="55" text-anchor="middle" fill="var(--text, #727981)">T1</text>
-  <rect x="290.75" y="30.75" width="88.5" height="38.5" rx="4" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
+  <rect x="290.75" y="30.75" width="88.5" height="38.5" rx="2" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
   <text x="335" y="55" text-anchor="middle" fill="var(--on-fill, #f8fafd)">T2</text>
-  <rect x="560.75" y="30.75" width="88.5" height="38.5" rx="4" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
+  <rect x="560.75" y="30.75" width="88.5" height="38.5" rx="2" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
   <text x="605" y="55" text-anchor="middle" fill="var(--on-fill, #f8fafd)">T3</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
     <line x1="110" y1="50" x2="288" y2="50" />

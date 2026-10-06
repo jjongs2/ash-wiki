@@ -8,8 +8,8 @@
 
   <!-- 개발과 운영 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="200" y="78" width="120" height="44" rx="4" />
-    <rect x="460" y="78" width="120" height="44" rx="4" />
+    <rect x="200" y="78" width="120" height="44" rx="2" />
+    <rect x="460" y="78" width="120" height="44" rx="2" />
   </g>
   <g font-size="14" text-anchor="middle" fill="var(--text, #727981)">
     <text x="260" y="105">개발</text>

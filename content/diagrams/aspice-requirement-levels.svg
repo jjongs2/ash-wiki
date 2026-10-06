@@ -7,11 +7,11 @@
   </defs>
 
   <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="20" y="20" width="170" height="46" rx="4" />
-    <rect x="20" y="106" width="170" height="46" rx="4" />
-    <rect x="270" y="106" width="170" height="46" rx="4" />
-    <rect x="60" y="206" width="150" height="46" rx="4" />
-    <rect x="250" y="206" width="150" height="46" rx="4" />
+    <rect x="20" y="20" width="170" height="46" rx="2" />
+    <rect x="20" y="106" width="170" height="46" rx="2" />
+    <rect x="270" y="106" width="170" height="46" rx="2" />
+    <rect x="60" y="206" width="150" height="46" rx="2" />
+    <rect x="250" y="206" width="150" height="46" rx="2" />
   </g>
   <text x="440" y="36" font-size="12" text-anchor="end" fill="var(--text, #727981)">ASPICE 4.1</text>
   <g text-anchor="middle" fill="var(--text, #727981)">

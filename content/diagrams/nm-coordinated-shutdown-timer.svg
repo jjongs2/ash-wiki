@@ -20,12 +20,12 @@
     <text x="108" y="151">채널 2</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4">
-    <rect x="120.75" y="70.75" width="198.5" height="30.5" rx="4" />
-    <rect x="120.75" y="130.75" width="348.5" height="30.5" rx="4" />
+    <rect x="120.75" y="70.75" width="198.5" height="30.5" />
+    <rect x="120.75" y="130.75" width="348.5" height="30.5" />
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="320.75" y="70.75" width="298.5" height="30.5" rx="4" />
-    <rect x="470.75" y="130.75" width="148.5" height="30.5" rx="4" />
+    <rect x="320.75" y="70.75" width="298.5" height="30.5" />
+    <rect x="470.75" y="130.75" width="148.5" height="30.5" />
   </g>
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="220" y="90">셧다운 지연 타이머</text>

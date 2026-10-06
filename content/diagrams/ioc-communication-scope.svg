@@ -12,8 +12,8 @@
 
   <!-- ECU -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="20" y="40" width="450" height="130" rx="4" />
-    <rect x="530" y="40" width="150" height="130" rx="4" />
+    <rect x="20" y="40" width="450" height="130" rx="2" />
+    <rect x="530" y="40" width="150" height="130" rx="2" />
   </g>
   <g fill="var(--text, #727981)">
     <text x="20" y="28">ECU 1</text>
@@ -22,8 +22,8 @@
 
   <!-- OS-Application -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="40" y="60" width="210" height="90" rx="4" />
-    <rect x="290" y="60" width="160" height="90" rx="4" />
+    <rect x="40" y="60" width="210" height="90" rx="2" />
+    <rect x="290" y="60" width="160" height="90" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="145" y="82">OS-Application 1</text>

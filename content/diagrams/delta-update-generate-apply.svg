@@ -15,8 +15,8 @@
 
   <!-- 이전 이미지 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="40" y="96" width="140" height="36" rx="4" />
-    <rect x="40" y="200" width="140" height="36" rx="4" />
+    <rect x="40" y="96" width="140" height="36" rx="2" />
+    <rect x="40" y="200" width="140" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="110" y="119">이전 이미지</text>
@@ -25,8 +25,8 @@
 
   <!-- 새 이미지 -->
   <g stroke="var(--blue, #336fb8)" stroke-width="1.5" fill="var(--blue-tint, #336fb8)">
-    <rect x="40" y="40" width="140" height="36" rx="4" />
-    <rect x="220" y="280" width="140" height="36" rx="4" />
+    <rect x="40" y="40" width="140" height="36" rx="2" />
+    <rect x="220" y="280" width="140" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="110" y="63">새 이미지</text>
@@ -35,8 +35,8 @@
 
   <!-- 패치 -->
   <g stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)">
-    <rect x="400" y="68" width="140" height="36" rx="4" />
-    <rect x="400" y="200" width="140" height="36" rx="4" />
+    <rect x="400" y="68" width="140" height="36" rx="2" />
+    <rect x="400" y="200" width="140" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="470" y="91">패치</text>

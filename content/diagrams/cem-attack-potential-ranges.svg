@@ -21,16 +21,16 @@
 
   <!-- 등급: 같은 이름은 같은 색 -->
   <g stroke-width="1.5">
-    <rect x="100" y="64" width="150" height="32" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" />
-    <rect x="100" y="100" width="150" height="32" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" />
-    <rect x="100" y="136" width="150" height="32" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" />
-    <rect x="100" y="172" width="150" height="32" rx="4" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" />
-    <rect x="100" y="208" width="150" height="32" rx="4" fill="var(--surface, none)" stroke="var(--ink, #727981)" />
-    <rect x="270" y="64" width="150" height="32" rx="4" fill="var(--surface, none)" stroke="var(--ink, #727981)" />
-    <rect x="270" y="100" width="150" height="32" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" />
-    <rect x="270" y="136" width="150" height="32" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" />
-    <rect x="270" y="172" width="150" height="32" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" />
-    <rect x="270" y="208" width="150" height="32" rx="4" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" />
+    <rect x="100" y="64" width="150" height="32" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" />
+    <rect x="100" y="100" width="150" height="32" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" />
+    <rect x="100" y="136" width="150" height="32" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" />
+    <rect x="100" y="172" width="150" height="32" rx="2" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" />
+    <rect x="100" y="208" width="150" height="32" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" />
+    <rect x="270" y="64" width="150" height="32" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" />
+    <rect x="270" y="100" width="150" height="32" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" />
+    <rect x="270" y="136" width="150" height="32" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" />
+    <rect x="270" y="172" width="150" height="32" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" />
+    <rect x="270" y="208" width="150" height="32" rx="2" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" />
   </g>
   <g font-size="12" text-anchor="middle">
     <g fill="var(--on-fill, #f8fafd)">

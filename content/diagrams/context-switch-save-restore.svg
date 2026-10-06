@@ -9,22 +9,22 @@
   <!-- 멈추는 태스크 A와 그 스택 -->
   <text x="95" y="30" text-anchor="middle" fill="var(--text, #727981)">멈추는 태스크 A</text>
   <text x="95" y="50" text-anchor="middle" font-size="12" fill="var(--text, #727981)">태스크 A의 스택</text>
-  <rect x="20.75" y="80.75" width="148.5" height="48.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="20.75" y="80.75" width="148.5" height="48.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="95" y="110" text-anchor="middle" fill="var(--on-fill, #f8fafd)">저장한 A의 context</text>
-  <rect x="20.75" y="134.75" width="148.5" height="48.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20.75" y="134.75" width="148.5" height="48.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="95" y="164" text-anchor="middle" fill="var(--text, #727981)">…</text>
 
   <!-- 프로세서 레지스터 -->
   <text x="310" y="68" text-anchor="middle" font-size="12" fill="var(--text, #727981)">프로세서</text>
-  <rect x="240.75" y="80.75" width="138.5" height="48.5" rx="4" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
+  <rect x="240.75" y="80.75" width="138.5" height="48.5" rx="2" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
   <text x="310" y="110" text-anchor="middle" fill="var(--on-fill, #f8fafd)">레지스터</text>
 
   <!-- 재개하는 태스크 B와 그 스택 -->
   <text x="525" y="30" text-anchor="middle" fill="var(--text, #727981)">재개하는 태스크 B</text>
   <text x="525" y="50" text-anchor="middle" font-size="12" fill="var(--text, #727981)">태스크 B의 스택</text>
-  <rect x="450.75" y="80.75" width="148.5" height="48.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="450.75" y="80.75" width="148.5" height="48.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
   <text x="525" y="110" text-anchor="middle" fill="var(--on-fill, #f8fafd)">저장해 둔 B의 context</text>
-  <rect x="450.75" y="134.75" width="148.5" height="48.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="450.75" y="134.75" width="148.5" height="48.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="525" y="164" text-anchor="middle" fill="var(--text, #727981)">…</text>
 
   <!-- 저장과 복원 -->

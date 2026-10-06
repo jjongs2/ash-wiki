@@ -11,8 +11,8 @@
 
   <!-- 양 끝의 PHY -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="28" width="110" height="44" rx="4" />
-    <rect x="510" y="28" width="110" height="44" rx="4" />
+    <rect x="20" y="28" width="110" height="44" rx="2" />
+    <rect x="510" y="28" width="110" height="44" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="75" y="55">PHY</text>
@@ -21,8 +21,8 @@
 
   <!-- PSE와 PD -->
   <g fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5">
-    <rect x="20.75" y="108.75" width="108.5" height="42.5" rx="4" />
-    <rect x="510.75" y="108.75" width="108.5" height="42.5" rx="4" />
+    <rect x="20.75" y="108.75" width="108.5" height="42.5" rx="2" />
+    <rect x="510.75" y="108.75" width="108.5" height="42.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="75" y="135">PSE</text>

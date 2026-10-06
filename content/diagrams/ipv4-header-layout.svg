@@ -5,18 +5,18 @@
   <text x="340" y="20" text-anchor="middle" font-size="12" fill="var(--text, #727981)">32비트</text>
   <!-- 필드 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="21" y="40" width="78" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="101" y="40" width="78" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="181" y="40" width="158" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="341" y="40" width="318" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="21" y="78" width="318" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="341" y="78" width="58" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="401" y="78" width="258" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="21" y="116" width="158" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="181" y="116" width="158" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="341" y="116" width="318" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="21" y="154" width="638" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="21" y="192" width="638" height="34" rx="4" fill="var(--surface, none)" />
+    <rect x="21" y="40" width="78" height="34" fill="var(--surface, none)" />
+    <rect x="101" y="40" width="78" height="34" fill="var(--surface, none)" />
+    <rect x="181" y="40" width="158" height="34" fill="var(--surface, none)" />
+    <rect x="341" y="40" width="318" height="34" fill="var(--surface, none)" />
+    <rect x="21" y="78" width="318" height="34" fill="var(--surface, none)" />
+    <rect x="341" y="78" width="58" height="34" fill="var(--surface, none)" />
+    <rect x="401" y="78" width="258" height="34" fill="var(--surface, none)" />
+    <rect x="21" y="116" width="158" height="34" fill="var(--surface, none)" />
+    <rect x="181" y="116" width="158" height="34" fill="var(--surface, none)" />
+    <rect x="341" y="116" width="318" height="34" fill="var(--surface, none)" />
+    <rect x="21" y="154" width="638" height="34" fill="var(--surface, none)" />
+    <rect x="21" y="192" width="638" height="34" fill="var(--surface, none)" />
   </g>
   <text x="60" y="61" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Version</text>
   <text x="140" y="61" text-anchor="middle" font-size="12" fill="var(--text, #727981)">IHL</text>
@@ -33,6 +33,6 @@
   <path d="M668 41 H674 V225 H668" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="682" y="137" font-size="12" fill="var(--text, #727981)">20바이트</text>
   <!-- 옵션 -->
-  <rect x="21.75" y="230.75" width="636.5" height="32.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
+  <rect x="21.75" y="230.75" width="636.5" height="32.5" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
   <text x="340" y="252" text-anchor="middle" fill="var(--text, #727981)">Options (가변)</text>
 </svg>

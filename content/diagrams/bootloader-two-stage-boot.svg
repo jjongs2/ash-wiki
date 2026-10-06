@@ -8,9 +8,9 @@
 
   <!-- 부트로더와 응용 프로그램 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="40" y="60" width="200" height="48" rx="4" />
-    <rect x="320" y="60" width="200" height="48" rx="4" />
-    <rect x="320" y="190" width="200" height="36" rx="4" />
+    <rect x="40" y="60" width="200" height="48" rx="2" />
+    <rect x="320" y="60" width="200" height="48" rx="2" />
+    <rect x="320" y="190" width="200" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="140" y="80">1단계 부트로더</text>

@@ -22,10 +22,10 @@
 
   <!-- 상위 모듈 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="168" y="40" width="120" height="34" rx="4" />
-    <rect x="296" y="40" width="68" height="34" rx="4" />
-    <rect x="550" y="40" width="120" height="34" rx="4" />
-    <rect x="678" y="40" width="68" height="34" rx="4" />
+    <rect x="168" y="40" width="120" height="34" rx="2" />
+    <rect x="296" y="40" width="68" height="34" rx="2" />
+    <rect x="550" y="40" width="120" height="34" rx="2" />
+    <rect x="678" y="40" width="68" height="34" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="228" y="62">AUTOSAR COM</text>
@@ -35,19 +35,19 @@
   </g>
 
   <!-- PduR -->
-  <rect x="80" y="116" width="716" height="36" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="80" y="116" width="716" height="36" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="438" y="139" text-anchor="middle" fill="var(--text, #727981)">PduR</text>
 
   <!-- 하위 모듈 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="118" y="194" width="68" height="34" rx="4" />
-    <rect x="194" y="194" width="68" height="34" rx="4" />
-    <rect x="270" y="194" width="68" height="34" rx="4" />
-    <rect x="346" y="194" width="68" height="34" rx="4" />
-    <rect x="500" y="194" width="68" height="34" rx="4" />
-    <rect x="576" y="194" width="68" height="34" rx="4" />
-    <rect x="652" y="194" width="68" height="34" rx="4" />
-    <rect x="728" y="194" width="68" height="34" rx="4" />
+    <rect x="118" y="194" width="68" height="34" rx="2" />
+    <rect x="194" y="194" width="68" height="34" rx="2" />
+    <rect x="270" y="194" width="68" height="34" rx="2" />
+    <rect x="346" y="194" width="68" height="34" rx="2" />
+    <rect x="500" y="194" width="68" height="34" rx="2" />
+    <rect x="576" y="194" width="68" height="34" rx="2" />
+    <rect x="652" y="194" width="68" height="34" rx="2" />
+    <rect x="728" y="194" width="68" height="34" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="152" y="216">CanNm</text>

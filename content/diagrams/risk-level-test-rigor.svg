@@ -26,8 +26,8 @@
 
   <!-- 리스크 수준과 테스트 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="290" y="56" width="140" height="62" rx="4" />
-    <rect x="114" y="242" width="140" height="62" rx="4" />
+    <rect x="290" y="56" width="140" height="62" rx="2" />
+    <rect x="114" y="242" width="140" height="62" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="360" y="77">리스크 수준 높음</text>

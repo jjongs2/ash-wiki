@@ -20,14 +20,14 @@
 
   <!-- 여섯 옥텟 -->
   <g fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5">
-    <rect x="40.75" y="54.75" width="48.5" height="30.5" rx="4" />
-    <rect x="94.75" y="54.75" width="48.5" height="30.5" rx="4" />
-    <rect x="148.75" y="54.75" width="48.5" height="30.5" rx="4" />
+    <rect x="40.75" y="54.75" width="48.5" height="30.5" rx="2" />
+    <rect x="94.75" y="54.75" width="48.5" height="30.5" rx="2" />
+    <rect x="148.75" y="54.75" width="48.5" height="30.5" rx="2" />
   </g>
   <g fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5">
-    <rect x="202.75" y="54.75" width="48.5" height="30.5" rx="4" />
-    <rect x="256.75" y="54.75" width="48.5" height="30.5" rx="4" />
-    <rect x="310.75" y="54.75" width="48.5" height="30.5" rx="4" />
+    <rect x="202.75" y="54.75" width="48.5" height="30.5" rx="2" />
+    <rect x="256.75" y="54.75" width="48.5" height="30.5" rx="2" />
+    <rect x="310.75" y="54.75" width="48.5" height="30.5" rx="2" />
   </g>
   <g fill="var(--on-fill, #f8fafd)" text-anchor="middle">
     <text x="65" y="75">AC</text>

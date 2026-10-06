@@ -7,10 +7,10 @@
   </defs>
 
   <!-- TXD 입력에 따른 드라이버 동작 -->
-  <rect x="130" y="10" width="190" height="48" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="130" y="10" width="190" height="48" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="225" y="31" text-anchor="middle" fill="var(--text, #727981)">TXD high</text>
   <text x="225" y="49" text-anchor="middle" font-size="12" fill="var(--text, #727981)">드라이버 구동 안 함</text>
-  <rect x="360" y="10" width="190" height="48" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="360" y="10" width="190" height="48" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="455" y="31" text-anchor="middle" fill="var(--text, #727981)">TXD low</text>
   <text x="455" y="49" text-anchor="middle" font-size="12" fill="var(--text, #727981)">드라이버가 차동 구동</text>
   <line x1="225" y1="60" x2="225" y2="88" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />

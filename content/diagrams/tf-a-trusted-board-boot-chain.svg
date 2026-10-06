@@ -7,10 +7,10 @@
   </defs>
 
   <!-- 신뢰의 기점 -->
-  <rect x="28" y="18" width="364" height="72" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="28" y="18" width="364" height="72" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="40" y="30" width="140" height="48" rx="4" />
-    <rect x="200" y="30" width="180" height="48" rx="4" />
+    <rect x="40" y="30" width="140" height="48" rx="2" />
+    <rect x="200" y="30" width="180" height="48" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="110" y="59">ROTPK 해시</text>
@@ -19,15 +19,15 @@
   </g>
 
   <!-- BL2 -->
-  <rect x="210" y="150" width="160" height="36" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="210" y="150" width="160" height="36" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="290" y="173" text-anchor="middle" fill="var(--text, #727981)">BL2</text>
 
   <!-- 나머지 이미지 -->
-  <rect x="28" y="228" width="364" height="60" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="28" y="228" width="364" height="60" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="40" y="240" width="110" height="36" rx="4" />
-    <rect x="155" y="240" width="110" height="36" rx="4" />
-    <rect x="270" y="240" width="110" height="36" rx="4" />
+    <rect x="40" y="240" width="110" height="36" rx="2" />
+    <rect x="155" y="240" width="110" height="36" rx="2" />
+    <rect x="270" y="240" width="110" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="95" y="263">BL31</text>

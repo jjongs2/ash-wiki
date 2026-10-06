@@ -12,13 +12,13 @@
   <text x="598" y="30" font-size="12" text-anchor="end" fill="var(--text, #727981)">ISO/IEC/IEEE 24765 용어집</text>
 
   <!-- 베이스라인 -->
-  <rect x="20" y="56" width="120" height="32" rx="4" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="20" y="56" width="120" height="32" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="80" y="77" text-anchor="middle" fill="var(--text, #727981)">베이스라인</text>
 
   <!-- 승인된 변경 -->
   <g fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5">
-    <rect x="176" y="56" width="120" height="32" rx="4" />
-    <rect x="332" y="56" width="120" height="32" rx="4" />
+    <rect x="176" y="56" width="120" height="32" rx="2" />
+    <rect x="332" y="56" width="120" height="32" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="236" y="77">승인된 변경</text>

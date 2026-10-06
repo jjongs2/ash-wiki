@@ -8,19 +8,19 @@
   </g>
 
   <!-- 포트와 핀 -->
-  <rect x="140" y="90" width="400" height="50" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="140" y="90" width="400" height="50" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="154" y="97" width="36" height="36" rx="4" />
-    <rect x="202" y="97" width="36" height="36" rx="4" />
-    <rect x="394" y="97" width="36" height="36" rx="4" />
-    <rect x="442" y="97" width="36" height="36" rx="4" />
-    <rect x="490" y="97" width="36" height="36" rx="4" />
+    <rect x="154" y="97" width="36" height="36" rx="2" />
+    <rect x="202" y="97" width="36" height="36" rx="2" />
+    <rect x="394" y="97" width="36" height="36" rx="2" />
+    <rect x="442" y="97" width="36" height="36" rx="2" />
+    <rect x="490" y="97" width="36" height="36" rx="2" />
   </g>
   <!-- channel group에 든 channel -->
   <g stroke="var(--blue, #336fb8)" stroke-width="1.5" fill="var(--blue-tint, #336fb8)">
-    <rect x="250" y="97" width="36" height="36" rx="4" />
-    <rect x="298" y="97" width="36" height="36" rx="4" />
-    <rect x="346" y="97" width="36" height="36" rx="4" />
+    <rect x="250" y="97" width="36" height="36" rx="2" />
+    <rect x="298" y="97" width="36" height="36" rx="2" />
+    <rect x="346" y="97" width="36" height="36" rx="2" />
   </g>
 
   <!-- DIO Driver의 이름 -->

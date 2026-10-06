@@ -8,11 +8,11 @@
 
   <!-- Annex 5의 세 부분 -->
   <text x="20" y="26" fill="var(--text, #727981)">Annex 5</text>
-  <rect x="20" y="36" width="624" height="92" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="20" y="36" width="624" height="92" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="36" y="50" width="164" height="64" rx="4" />
-    <rect x="284" y="50" width="164" height="64" rx="4" />
-    <rect x="464" y="50" width="164" height="64" rx="4" />
+    <rect x="36" y="50" width="164" height="64" rx="2" />
+    <rect x="284" y="50" width="164" height="64" rx="2" />
+    <rect x="464" y="50" width="164" height="64" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="118" y="69.5" font-weight="600">Part A</text>
@@ -28,9 +28,9 @@
 
   <!-- 제조사가 하는 일 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="36" y="170" width="164" height="52" rx="4" />
-    <rect x="284" y="170" width="344" height="52" rx="4" />
-    <rect x="284" y="270" width="344" height="36" rx="4" stroke-dasharray="5 4" />
+    <rect x="36" y="170" width="164" height="52" rx="2" />
+    <rect x="284" y="170" width="344" height="52" rx="2" />
+    <rect x="284" y="270" width="344" height="36" rx="2" stroke-dasharray="5 4" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="118" y="192">차량 형식의 리스크 평가</text>

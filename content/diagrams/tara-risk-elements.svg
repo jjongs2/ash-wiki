@@ -9,10 +9,10 @@
 
   <!-- 공격에서 피해까지 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="36" width="130" height="44" rx="4" />
-    <rect x="200" y="36" width="130" height="44" rx="4" />
-    <rect x="380" y="36" width="160" height="44" rx="4" />
-    <rect x="590" y="36" width="130" height="44" rx="4" />
+    <rect x="20" y="36" width="130" height="44" rx="2" />
+    <rect x="200" y="36" width="130" height="44" rx="2" />
+    <rect x="380" y="36" width="160" height="44" rx="2" />
+    <rect x="590" y="36" width="130" height="44" rx="2" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="85" y="63">attack path</text>
@@ -34,9 +34,9 @@
 
   <!-- 리스크 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="136" width="130" height="44" rx="4" />
-    <rect x="315" y="136" width="110" height="44" rx="4" />
-    <rect x="590" y="136" width="130" height="44" rx="4" />
+    <rect x="20" y="136" width="130" height="44" rx="2" />
+    <rect x="315" y="136" width="110" height="44" rx="2" />
+    <rect x="590" y="136" width="130" height="44" rx="2" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="85" y="163">attack feasibility</text>

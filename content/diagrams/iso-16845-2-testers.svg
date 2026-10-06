@@ -8,8 +8,8 @@
 
   <!-- 시험 시스템의 두 부분 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="30" y="30" width="280" height="48" rx="4" />
-    <rect x="30" y="202" width="280" height="48" rx="4" />
+    <rect x="30" y="30" width="280" height="48" rx="2" />
+    <rect x="30" y="202" width="280" height="48" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="170" y="50">upper tester</text>
@@ -19,7 +19,7 @@
   </g>
 
   <!-- 시험 대상 -->
-  <rect x="30.75" y="116.75" width="278.5" height="46.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="30.75" y="116.75" width="278.5" height="46.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="170" y="136">IUT: 고속 PMA</text>
     <text x="170" y="154" font-size="12">예: 단독 트랜시버</text>

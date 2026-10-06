@@ -10,7 +10,7 @@
   <text x="20" y="116" fill="var(--text, #727981)">프레임</text>
   <text x="20" y="132" fill="var(--text, #727981)">(PCP 0–7)</text>
   <line x1="78" y1="120" x2="100" y2="120" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
-  <rect x="102" y="84" width="96" height="72" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="102" y="84" width="96" height="72" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="150" y="108" text-anchor="middle" fill="var(--text, #727981)">우선순위</text>
   <text x="150" y="124" text-anchor="middle" fill="var(--text, #727981)">→ 트래픽 클래스</text>
   <text x="150" y="140" text-anchor="middle" fill="var(--text, #727981)">표</text>
@@ -74,7 +74,7 @@
     <path d="M572 52 H600 V108 H618" marker-end="url(#arrow)" />
     <path d="M572 188 H600 V132 H618" marker-end="url(#arrow)" />
   </g>
-  <rect x="620" y="96" width="80" height="48" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="620" y="96" width="80" height="48" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="660" y="116" text-anchor="middle" fill="var(--text, #727981)">전송</text>
   <text x="660" y="132" text-anchor="middle" fill="var(--text, #727981)">선택</text>
   <line x1="700" y1="120" x2="730" y2="120" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />

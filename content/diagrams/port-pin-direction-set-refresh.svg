@@ -8,8 +8,8 @@
 
   <!-- 함수 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="20" width="200" height="36" rx="4" />
-    <rect x="20" y="110" width="200" height="36" rx="4" />
+    <rect x="20" y="20" width="200" height="36" rx="2" />
+    <rect x="20" y="110" width="200" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="120" y="42">Port_SetPinDirection</text>
@@ -17,9 +17,9 @@
   </g>
 
   <!-- 핀 -->
-  <rect x="380.75" y="20.75" width="158.5" height="34.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="380.75" y="20.75" width="158.5" height="34.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="460" y="42" text-anchor="middle" fill="var(--on-fill, #f8fafd)">방향 변경 가능 핀</text>
-  <rect x="380" y="110" width="160" height="36" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="380" y="110" width="160" height="36" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="460" y="132" text-anchor="middle" fill="var(--text, #727981)">방향 변경 불가 핀</text>
 
   <!-- 동작 -->

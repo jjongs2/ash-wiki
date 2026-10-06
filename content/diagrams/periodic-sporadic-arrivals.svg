@@ -9,10 +9,10 @@
   <!-- periodic: 요청마다 T_i 막대, 막대가 끝나면 곧바로 다음 요청 -->
   <text x="20" y="85" fill="var(--text, #727981)">periodic</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="131" y="64" width="118" height="24" rx="2" fill="var(--surface, none)" />
-    <rect x="251" y="64" width="118" height="24" rx="2" fill="var(--surface, none)" />
-    <rect x="371" y="64" width="118" height="24" rx="2" fill="var(--surface, none)" />
-    <rect x="491" y="64" width="118" height="24" rx="2" fill="var(--surface, none)" />
+    <rect x="131" y="64" width="118" height="24" fill="var(--surface, none)" />
+    <rect x="251" y="64" width="118" height="24" fill="var(--surface, none)" />
+    <rect x="371" y="64" width="118" height="24" fill="var(--surface, none)" />
+    <rect x="491" y="64" width="118" height="24" fill="var(--surface, none)" />
   </g>
   <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
     <text x="190" y="81">요청 주기 <tspan font-style="italic">T</tspan><tspan font-style="italic" dy="3" font-size="9">i</tspan></text>
@@ -41,10 +41,10 @@
   <!-- sporadic: 요청마다 최소 간격 막대, 다음 요청은 막대가 끝난 뒤에만 -->
   <text x="20" y="185" fill="var(--text, #727981)">sporadic</text>
   <g fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5">
-    <rect x="131.75" y="164.75" width="96.5" height="22.5" rx="2" />
-    <rect x="301.75" y="164.75" width="96.5" height="22.5" rx="2" />
-    <rect x="401.75" y="164.75" width="96.5" height="22.5" rx="2" />
-    <rect x="541.75" y="164.75" width="96.5" height="22.5" rx="2" />
+    <rect x="131.75" y="164.75" width="96.5" height="22.5" />
+    <rect x="301.75" y="164.75" width="96.5" height="22.5" />
+    <rect x="401.75" y="164.75" width="96.5" height="22.5" />
+    <rect x="541.75" y="164.75" width="96.5" height="22.5" />
   </g>
   <g font-size="12" text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="180" y="181">최소 간격</text>

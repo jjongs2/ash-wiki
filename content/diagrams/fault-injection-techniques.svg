@@ -9,13 +9,13 @@
 
   <!-- 상자 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="290" y="20" width="120" height="36" rx="4" />
-    <rect x="95" y="90" width="170" height="36" rx="4" />
-    <rect x="435" y="90" width="170" height="36" rx="4" />
-    <rect x="20" y="160" width="150" height="36" rx="4" />
-    <rect x="190" y="160" width="150" height="36" rx="4" />
-    <rect x="360" y="160" width="150" height="36" rx="4" />
-    <rect x="530" y="160" width="150" height="36" rx="4" />
+    <rect x="290" y="20" width="120" height="36" rx="2" />
+    <rect x="95" y="90" width="170" height="36" rx="2" />
+    <rect x="435" y="90" width="170" height="36" rx="2" />
+    <rect x="20" y="160" width="150" height="36" rx="2" />
+    <rect x="190" y="160" width="150" height="36" rx="2" />
+    <rect x="360" y="160" width="150" height="36" rx="2" />
+    <rect x="530" y="160" width="150" height="36" rx="2" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="350" y="43">결함 주입</text>

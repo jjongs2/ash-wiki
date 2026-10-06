@@ -6,8 +6,8 @@
   <path d="M20 50 V42 H176 V50" stroke="var(--ink, #727981)" stroke-width="1" />
 
   <!-- 소프트웨어 -->
-  <rect x="20" y="58" width="156" height="40" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <rect x="184" y="58" width="356" height="40" rx="4" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="20" y="58" width="156" height="40" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="184" y="58" width="356" height="40" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="98" y="82" text-anchor="middle" fill="var(--on-fill, #f8fafd)">결함 수정</text>
   <text x="362" y="82" text-anchor="middle" fill="var(--text, #727981)">바꾸지 않은 부분</text>
 

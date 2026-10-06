@@ -7,7 +7,7 @@
   </defs>
 
   <!-- 4비트 단어 흐름 -->
-  <rect x="20" y="30" width="150" height="52" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20" y="30" width="150" height="52" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="95" y="52" text-anchor="middle" fill="var(--text, #727981)">4비트 단어 흐름</text>
   <text x="95" y="70" text-anchor="middle" font-size="12" fill="var(--text, #727981)">25 MBd</text>
 
@@ -15,7 +15,7 @@
   <text x="217" y="47" text-anchor="middle" font-size="12" fill="var(--text, #727981)">4B/3B</text>
 
   <!-- 3비트 단어 흐름 -->
-  <rect x="265" y="30" width="150" height="52" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="265" y="30" width="150" height="52" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="340" y="52" text-anchor="middle" fill="var(--text, #727981)">3비트 단어 흐름</text>
   <text x="340" y="70" text-anchor="middle" font-size="12" fill="var(--text, #727981)">33.333 MBd</text>
 
@@ -25,7 +25,7 @@
   <text x="471" y="90" text-anchor="middle" font-size="12" fill="var(--text, #727981)">심볼 둘</text>
 
   <!-- PAM3 심볼 -->
-  <rect x="530.75" y="30.75" width="128.5" height="50.5" rx="4" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="530.75" y="30.75" width="128.5" height="50.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
   <text x="595" y="52" text-anchor="middle" fill="var(--on-fill, #f8fafd)">PAM3 심볼</text>
   <text x="595" y="70" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">66.666 MBd</text>
 </svg>

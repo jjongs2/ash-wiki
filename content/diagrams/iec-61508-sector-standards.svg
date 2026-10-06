@@ -7,7 +7,7 @@
   </defs>
 
   <!-- 일반 표준 -->
-  <rect x="172.75" y="20.75" width="299.5" height="48.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="172.75" y="20.75" width="299.5" height="48.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="322.5" y="41" font-size="14">IEC 61508</text>
     <text x="322.5" y="59">일반 표준 · 모든 E/E/PE 안전 관련 시스템</text>
@@ -27,10 +27,10 @@
 
   <!-- 분야별 표준 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20.75" y="120.75" width="138.5" height="48.5" rx="4" />
-    <rect x="175.75" y="120.75" width="138.5" height="48.5" rx="4" />
-    <rect x="330.75" y="120.75" width="138.5" height="48.5" rx="4" />
-    <rect x="485.75" y="120.75" width="138.5" height="48.5" rx="4" />
+    <rect x="20.75" y="120.75" width="138.5" height="48.5" rx="2" />
+    <rect x="175.75" y="120.75" width="138.5" height="48.5" rx="2" />
+    <rect x="330.75" y="120.75" width="138.5" height="48.5" rx="2" />
+    <rect x="485.75" y="120.75" width="138.5" height="48.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="90" y="141" font-size="14">IEC 61511-1</text>

@@ -8,17 +8,17 @@
 
   <!-- 점대점 링크 세그먼트 -->
   <text x="20" y="24" fill="var(--text, #727981)">점대점 링크 세그먼트</text>
-  <rect x="20" y="50" width="90" height="44" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20" y="50" width="90" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="65" y="77" text-anchor="middle" fill="var(--text, #727981)">PHY</text>
-  <rect x="610" y="50" width="90" height="44" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="610" y="50" width="90" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="655" y="77" text-anchor="middle" fill="var(--text, #727981)">PHY</text>
   <line x1="110" y1="65" x2="610" y2="65" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <line x1="110" y1="79" x2="610" y2="79" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5">
-    <rect x="200.75" y="54.75" width="18.5" height="34.5" rx="4" />
-    <rect x="300.75" y="54.75" width="18.5" height="34.5" rx="4" />
-    <rect x="400.75" y="54.75" width="18.5" height="34.5" rx="4" />
-    <rect x="500.75" y="54.75" width="18.5" height="34.5" rx="4" />
+    <rect x="200.75" y="54.75" width="18.5" height="34.5" rx="2" />
+    <rect x="300.75" y="54.75" width="18.5" height="34.5" rx="2" />
+    <rect x="400.75" y="54.75" width="18.5" height="34.5" rx="2" />
+    <rect x="500.75" y="54.75" width="18.5" height="34.5" rx="2" />
   </g>
   <path d="M210 48 V42 H510 V48" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="360" y="34" text-anchor="middle" font-size="12" fill="var(--text, #727981)">인라인 커넥터 4개까지</text>
@@ -28,14 +28,14 @@
   <!-- 멀티드롭 모드의 mixing segment -->
   <text x="20" y="176" fill="var(--text, #727981)">멀티드롭 모드의 mixing segment</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="236" width="56" height="36" rx="4" />
-    <rect x="86" y="196" width="56" height="36" rx="4" />
-    <rect x="152" y="236" width="56" height="36" rx="4" />
-    <rect x="218" y="196" width="56" height="36" rx="4" />
-    <rect x="284" y="236" width="56" height="36" rx="4" />
-    <rect x="350" y="196" width="56" height="36" rx="4" />
-    <rect x="416" y="236" width="56" height="36" rx="4" />
-    <rect x="482" y="196" width="56" height="36" rx="4" />
+    <rect x="20" y="236" width="56" height="36" rx="2" />
+    <rect x="86" y="196" width="56" height="36" rx="2" />
+    <rect x="152" y="236" width="56" height="36" rx="2" />
+    <rect x="218" y="196" width="56" height="36" rx="2" />
+    <rect x="284" y="236" width="56" height="36" rx="2" />
+    <rect x="350" y="196" width="56" height="36" rx="2" />
+    <rect x="416" y="236" width="56" height="36" rx="2" />
+    <rect x="482" y="196" width="56" height="36" rx="2" />
   </g>
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="48" y="258">PHY</text>

@@ -15,9 +15,9 @@
     <rect x="278" y="20" width="64" height="28" rx="2" />
     <rect x="438" y="20" width="64" height="28" rx="2" />
     <rect x="30" y="76" width="56" height="28" rx="2" />
-    <rect x="106" y="128" width="88" height="36" rx="4" />
-    <rect x="266" y="128" width="88" height="36" rx="4" />
-    <rect x="426" y="128" width="88" height="36" rx="4" />
+    <rect x="106" y="128" width="88" height="36" rx="2" />
+    <rect x="266" y="128" width="88" height="36" rx="2" />
+    <rect x="426" y="128" width="88" height="36" rx="2" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="150" y="39">P<tspan dy="4" font-size="10">1</tspan></text>

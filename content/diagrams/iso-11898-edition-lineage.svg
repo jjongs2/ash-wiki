@@ -10,22 +10,22 @@
   </defs>
 
   <!-- ISO 11898:1993과 추록 -->
-  <rect x="20" y="30" width="136" height="92" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="20" y="30" width="136" height="92" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
 
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="30" y="40" width="116" height="32" rx="4" />
-    <rect x="30" y="80" width="116" height="32" rx="4" />
-    <rect x="196" y="30" width="116" height="32" rx="4" />
-    <rect x="348" y="30" width="116" height="32" rx="4" />
-    <rect x="500" y="30" width="116" height="32" rx="4" />
-    <rect x="196" y="90" width="116" height="32" rx="4" />
-    <rect x="348" y="90" width="116" height="32" rx="4" />
-    <rect x="500" y="90" width="116" height="32" rx="4" />
-    <rect x="652" y="90" width="116" height="32" rx="4" />
-    <rect x="196" y="150" width="116" height="32" rx="4" />
-    <rect x="196" y="200" width="116" height="32" rx="4" />
-    <rect x="30" y="250" width="116" height="32" rx="4" />
-    <rect x="196" y="250" width="116" height="32" rx="4" />
+    <rect x="30" y="40" width="116" height="32" rx="2" />
+    <rect x="30" y="80" width="116" height="32" rx="2" />
+    <rect x="196" y="30" width="116" height="32" rx="2" />
+    <rect x="348" y="30" width="116" height="32" rx="2" />
+    <rect x="500" y="30" width="116" height="32" rx="2" />
+    <rect x="196" y="90" width="116" height="32" rx="2" />
+    <rect x="348" y="90" width="116" height="32" rx="2" />
+    <rect x="500" y="90" width="116" height="32" rx="2" />
+    <rect x="652" y="90" width="116" height="32" rx="2" />
+    <rect x="196" y="150" width="116" height="32" rx="2" />
+    <rect x="196" y="200" width="116" height="32" rx="2" />
+    <rect x="30" y="250" width="116" height="32" rx="2" />
+    <rect x="196" y="250" width="116" height="32" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="88" y="60">ISO 11898:1993</text>

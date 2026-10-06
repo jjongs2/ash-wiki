@@ -5,12 +5,12 @@
 
   <!-- 응용 계층 프로토콜 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="30" y="42" width="140" height="44" rx="4" />
-    <rect x="180" y="42" width="140" height="44" rx="4" />
-    <rect x="330" y="42" width="140" height="44" rx="4" />
-    <rect x="480" y="42" width="140" height="44" rx="4" />
+    <rect x="30" y="42" width="140" height="44" rx="2" />
+    <rect x="180" y="42" width="140" height="44" rx="2" />
+    <rect x="330" y="42" width="140" height="44" rx="2" />
+    <rect x="480" y="42" width="140" height="44" rx="2" />
     <rect x="30" y="96" width="590" height="24" rx="2" />
-    <rect x="30" y="184" width="590" height="44" rx="4" />
+    <rect x="30" y="184" width="590" height="44" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="100" y="69">확장 차량 진단</text>
@@ -26,7 +26,7 @@
   </g>
 
   <!-- 이 표준 -->
-  <rect x="30.75" y="130.75" width="588.5" height="42.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="30.75" y="130.75" width="588.5" height="42.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="325" y="148">ISO 15765-2 (DoCAN)</text>
     <text x="325" y="166" font-size="12">전송 계층 · 네트워크 계층</text>

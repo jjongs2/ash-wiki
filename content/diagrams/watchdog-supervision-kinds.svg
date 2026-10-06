@@ -32,7 +32,7 @@
 
   <!-- deadline supervision: 두 체크포인트 사이의 시간이 설정한 범위 안인지 -->
   <line x1="150" y1="135" x2="600" y2="135" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
-  <rect x="380" y="127" width="120" height="16" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="380" y="127" width="120" height="16" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
   <g fill="var(--ink, #727981)">
     <circle cx="200" cy="135" r="4" />
     <circle cx="450" cy="135" r="4" />

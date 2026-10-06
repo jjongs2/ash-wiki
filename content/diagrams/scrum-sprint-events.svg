@@ -4,25 +4,25 @@
   <text x="20" y="32" fill="var(--text, #727981)">The Scrum Guide 2020</text>
 
   <!-- Sprint: 나머지 네 이벤트를 담는다 -->
-  <rect x="20" y="44" width="540" height="148" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="20" y="44" width="540" height="148" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="32" y="64" fill="var(--text, #727981)">Sprint: 길이 고정, 한 달 이하</text>
 
   <!-- 다음 Sprint -->
-  <rect x="572" y="44" width="88" height="148" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="572" y="44" width="88" height="148" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
   <text x="584" y="64" fill="var(--text, #727981)">다음 Sprint</text>
   <text x="584" y="80" fill="var(--text, #727981)">곧바로 시작</text>
 
   <!-- 이벤트 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="32" y="92" width="112" height="44" rx="4" />
-    <rect x="160" y="92" width="12" height="44" rx="4" />
-    <rect x="182" y="92" width="12" height="44" rx="4" />
-    <rect x="204" y="92" width="12" height="44" rx="4" />
-    <rect x="226" y="92" width="12" height="44" rx="4" />
-    <rect x="248" y="92" width="12" height="44" rx="4" />
-    <rect x="270" y="92" width="12" height="44" rx="4" />
-    <rect x="298" y="92" width="104" height="44" rx="4" />
-    <rect x="412" y="92" width="136" height="44" rx="4" />
+    <rect x="32" y="92" width="112" height="44" rx="2" />
+    <rect x="160" y="92" width="12" height="44" rx="2" />
+    <rect x="182" y="92" width="12" height="44" rx="2" />
+    <rect x="204" y="92" width="12" height="44" rx="2" />
+    <rect x="226" y="92" width="12" height="44" rx="2" />
+    <rect x="248" y="92" width="12" height="44" rx="2" />
+    <rect x="270" y="92" width="12" height="44" rx="2" />
+    <rect x="298" y="92" width="104" height="44" rx="2" />
+    <rect x="412" y="92" width="136" height="44" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="88" y="110">Sprint Planning</text>

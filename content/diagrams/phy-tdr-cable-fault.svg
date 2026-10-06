@@ -7,7 +7,7 @@
   </defs>
 
   <!-- PHY와 꼬임쌍선 케이블 -->
-  <rect x="20" y="40" width="130" height="44" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="20" y="40" width="130" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="85" y="67" text-anchor="middle" fill="var(--text, #727981)">DP83TC811R-Q1</text>
   <line x1="150" y1="56" x2="440" y2="56" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <line x1="150" y1="68" x2="440" y2="68" stroke="var(--ink, #727981)" stroke-width="1.5" />

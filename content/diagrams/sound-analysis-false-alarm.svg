@@ -2,7 +2,7 @@
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
   <!-- 오류 상태 -->
-  <rect x="380" y="30" width="160" height="180" rx="4" stroke="var(--red, #bb464d)" stroke-width="1.5" fill="var(--red-tint, #bb464d)" />
+  <rect x="380" y="30" width="160" height="180" rx="2" stroke="var(--red, #bb464d)" stroke-width="1.5" fill="var(--red-tint, #bb464d)" />
   <text x="480" y="125" text-anchor="middle" fill="var(--on-fill, #f8fafd)">오류 상태</text>
 
   <!-- 실제 실행과 그것을 덮는 추상 의미 -->

@@ -7,9 +7,9 @@
   </defs>
   <!-- 상자 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="40" width="110" height="36" rx="4" />
-    <rect x="230" y="40" width="120" height="36" rx="4" />
-    <rect x="450" y="40" width="110" height="36" rx="4" />
+    <rect x="20" y="40" width="110" height="36" rx="2" />
+    <rect x="230" y="40" width="120" height="36" rx="2" />
+    <rect x="450" y="40" width="110" height="36" rx="2" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="75" y="63">드라이버</text>

@@ -7,8 +7,8 @@
 
   <!-- component prototype -->
   <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="150.75" y="70.75" width="148.5" height="58.5" rx="4" />
-    <rect x="410.75" y="70.75" width="148.5" height="58.5" rx="4" />
+    <rect x="150.75" y="70.75" width="148.5" height="58.5" rx="2" />
+    <rect x="410.75" y="70.75" width="148.5" height="58.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="225" y="96">component</text>

@@ -12,10 +12,10 @@
 
   <!-- 당사자와 공격자 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="100" width="120" height="32" rx="4" />
-    <rect x="580" y="100" width="120" height="32" rx="4" />
+    <rect x="20" y="100" width="120" height="32" rx="2" />
+    <rect x="580" y="100" width="120" height="32" rx="2" />
   </g>
-  <rect x="300" y="100" width="120" height="32" rx="4" stroke="var(--red, #bb464d)" stroke-width="1.5" fill="var(--red-tint, #bb464d)" />
+  <rect x="300" y="100" width="120" height="32" rx="2" stroke="var(--red, #bb464d)" stroke-width="1.5" fill="var(--red-tint, #bb464d)" />
   <g text-anchor="middle">
     <text x="80" y="121" fill="var(--text, #727981)">A</text>
     <text x="360" y="121" fill="var(--on-fill, #f8fafd)">공격자</text>

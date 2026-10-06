@@ -7,8 +7,8 @@
 
   <!-- IV -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20.75" y="44.75" width="319.25" height="42.5" rx="4" />
-    <rect x="340" y="44.75" width="159.25" height="42.5" rx="4" />
+    <rect x="20.75" y="44.75" width="319.25" height="42.5" />
+    <rect x="340" y="44.75" width="159.25" height="42.5" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="180" y="63" font-size="14">SCI</text>
@@ -19,8 +19,8 @@
 
   <!-- SCI의 구성 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20.75" y="96.75" width="239.25" height="26.5" rx="2" />
-    <rect x="260" y="96.75" width="79.25" height="26.5" rx="2" />
+    <rect x="20.75" y="96.75" width="239.25" height="26.5" />
+    <rect x="260" y="96.75" width="79.25" height="26.5" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="140" y="114">MAC 주소</text>

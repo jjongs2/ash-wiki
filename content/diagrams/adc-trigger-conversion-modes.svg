@@ -26,14 +26,14 @@
 
   <!-- 그룹 변환 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="212" y="36" width="76" height="24" rx="2" />
-    <rect x="212" y="136" width="76" height="24" rx="2" />
-    <rect x="290" y="136" width="76" height="24" rx="2" />
-    <rect x="368" y="136" width="76" height="24" rx="2" />
-    <rect x="446" y="136" width="76" height="24" rx="2" />
-    <rect x="212" y="236" width="76" height="24" rx="2" />
-    <rect x="382" y="236" width="76" height="24" rx="2" />
-    <rect x="552" y="236" width="76" height="24" rx="2" />
+    <rect x="212" y="36" width="76" height="24" />
+    <rect x="212" y="136" width="76" height="24" />
+    <rect x="290" y="136" width="76" height="24" />
+    <rect x="368" y="136" width="76" height="24" />
+    <rect x="446" y="136" width="76" height="24" />
+    <rect x="212" y="236" width="76" height="24" />
+    <rect x="382" y="236" width="76" height="24" />
+    <rect x="552" y="236" width="76" height="24" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="250" y="52">그룹 변환</text>

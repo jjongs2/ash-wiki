@@ -8,9 +8,9 @@
 
   <!-- 빌드 흐름 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="20" width="100" height="36" rx="4" />
-    <rect x="190" y="20" width="100" height="36" rx="4" />
-    <rect x="360" y="20" width="100" height="36" rx="4" />
+    <rect x="20" y="20" width="100" height="36" rx="2" />
+    <rect x="190" y="20" width="100" height="36" rx="2" />
+    <rect x="360" y="20" width="100" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="70" y="43">소스 코드</text>
@@ -28,9 +28,9 @@
   </g>
 
   <!-- ECU 메모리와 따로 둔 설정 데이터 구역 -->
-  <rect x="560" y="20" width="140" height="130" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="560" y="20" width="140" height="130" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="630" y="43" text-anchor="middle" fill="var(--text, #727981)">ECU 메모리</text>
-  <rect x="575" y="96" width="110" height="40" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="575" y="96" width="110" height="40" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
     <text x="630" y="112">post-build</text>
     <text x="630" y="127">설정 데이터</text>
@@ -38,9 +38,9 @@
 
   <!-- 설정 클래스마다 설정이 들어가는 자리 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="105" y="96" width="100" height="40" rx="4" />
-    <rect x="270" y="96" width="110" height="40" rx="4" />
-    <rect x="410" y="96" width="110" height="40" rx="4" />
+    <rect x="105" y="96" width="100" height="40" rx="2" />
+    <rect x="270" y="96" width="110" height="40" rx="2" />
+    <rect x="410" y="96" width="110" height="40" rx="2" />
   </g>
   <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
     <text x="155" y="120">#define 설정</text>

@@ -16,12 +16,12 @@
 
   <!-- RTE 이벤트와 runnable -->
   <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="20.75" y="50.75" width="188.5" height="34.5" rx="4" />
-    <rect x="20.75" y="100.75" width="188.5" height="34.5" rx="4" />
-    <rect x="20.75" y="188.75" width="188.5" height="34.5" rx="4" />
-    <rect x="250.75" y="50.75" width="98.5" height="34.5" rx="4" />
-    <rect x="250.75" y="100.75" width="98.5" height="34.5" rx="4" />
-    <rect x="250.75" y="188.75" width="98.5" height="34.5" rx="4" />
+    <rect x="20.75" y="50.75" width="188.5" height="34.5" rx="2" />
+    <rect x="20.75" y="100.75" width="188.5" height="34.5" rx="2" />
+    <rect x="20.75" y="188.75" width="188.5" height="34.5" rx="2" />
+    <rect x="250.75" y="50.75" width="98.5" height="34.5" rx="2" />
+    <rect x="250.75" y="100.75" width="98.5" height="34.5" rx="2" />
+    <rect x="250.75" y="188.75" width="98.5" height="34.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="115" y="73">TimingEvent</text>
@@ -33,7 +33,7 @@
   </g>
 
   <!-- 태스크 -->
-  <rect x="464.75" y="40.75" width="198.5" height="104.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="464.75" y="40.75" width="198.5" height="104.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
     <rect x="480.75" y="54.75" width="158.5" height="26.5" rx="2" />
     <rect x="480.75" y="104.75" width="158.5" height="26.5" rx="2" />
@@ -45,7 +45,7 @@
   <text x="560" y="164" text-anchor="middle" font-size="12" fill="var(--text, #727981)">RtePositionInTask 순서</text>
 
   <!-- 태스크에 매핑하지 않은 runnable -->
-  <rect x="480.75" y="182.75" width="158.5" height="46.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="480.75" y="182.75" width="158.5" height="46.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="560" y="202">직접 함수 호출이나</text>
     <text x="560" y="219">trusted function call</text>

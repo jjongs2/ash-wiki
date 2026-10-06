@@ -8,15 +8,15 @@
   </defs>
 
   <!-- 상태 -->
-  <rect x="40.75" y="20.75" width="198.5" height="42.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="40.75" y="20.75" width="198.5" height="42.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="140" y="47" text-anchor="middle" fill="var(--text, #727981)">초기화</text>
-  <rect x="40.75" y="120.75" width="198.5" height="48.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="40.75" y="120.75" width="198.5" height="48.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="140" y="141" text-anchor="middle" fill="var(--text, #727981)">pre-operational</text>
   <text x="140" y="160" text-anchor="middle" font-size="12" fill="var(--text, #727981)">SDO 가능 · PDO 불가</text>
-  <rect x="40.75" y="226.75" width="198.5" height="48.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="40.75" y="226.75" width="198.5" height="48.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="140" y="247" text-anchor="middle" fill="var(--text, #727981)">operational</text>
   <text x="140" y="266" text-anchor="middle" font-size="12" fill="var(--text, #727981)">PDO 가능</text>
-  <rect x="380.75" y="173.75" width="198.5" height="48.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="380.75" y="173.75" width="198.5" height="48.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="480" y="194" text-anchor="middle" fill="var(--text, #727981)">stopped</text>
   <text x="480" y="213" text-anchor="middle" font-size="12" fill="var(--text, #727981)">NMT 명령에만 반응</text>
   <!-- 전환 -->

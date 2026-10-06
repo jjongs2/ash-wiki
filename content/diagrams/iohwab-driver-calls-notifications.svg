@@ -10,32 +10,32 @@
   </defs>
 
   <!-- SW-C와 RTE -->
-  <rect x="230" y="20" width="180" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="230" y="20" width="180" height="32" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="320" y="40" text-anchor="middle" fill="var(--text, #727981)">Sensor/actuator SW-C</text>
   <line x1="320" y1="54" x2="320" y2="78" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
   <text x="330" y="70" fill="var(--text, #727981)">GET · SET</text>
-  <rect x="230" y="80" width="180" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="230" y="80" width="180" height="32" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="320" y="100" text-anchor="middle" fill="var(--text, #727981)">RTE</text>
   <line x1="320" y1="114" x2="320" y2="164" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 
   <!-- ECU Abstraction Layer -->
-  <rect x="8.75" y="140.75" width="642.5" height="76.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="8.75" y="140.75" width="642.5" height="76.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
   <text x="20" y="158" fill="var(--text, #727981)">ECU Abstraction Layer</text>
-  <rect x="40" y="166" width="580" height="36" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="40" y="166" width="580" height="36" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="330" y="188" text-anchor="middle" fill="var(--text, #727981)">IoHwAb</text>
 
   <!-- MCAL -->
-  <rect x="8.75" y="262.75" width="642.5" height="84.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="8.75" y="262.75" width="642.5" height="84.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
   <text x="20" y="280" fill="var(--text, #727981)">MCAL</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="40" y="290" width="62" height="40" rx="4" />
-    <rect x="114" y="290" width="62" height="40" rx="4" />
-    <rect x="188" y="290" width="62" height="40" rx="4" />
-    <rect x="262" y="290" width="62" height="40" rx="4" />
-    <rect x="336" y="290" width="62" height="40" rx="4" />
-    <rect x="410" y="290" width="62" height="40" rx="4" />
-    <rect x="484" y="290" width="62" height="40" rx="4" />
-    <rect x="558" y="290" width="62" height="40" rx="4" />
+    <rect x="40" y="290" width="62" height="40" rx="2" />
+    <rect x="114" y="290" width="62" height="40" rx="2" />
+    <rect x="188" y="290" width="62" height="40" rx="2" />
+    <rect x="262" y="290" width="62" height="40" rx="2" />
+    <rect x="336" y="290" width="62" height="40" rx="2" />
+    <rect x="410" y="290" width="62" height="40" rx="2" />
+    <rect x="484" y="290" width="62" height="40" rx="2" />
+    <rect x="558" y="290" width="62" height="40" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="71" y="314">Port</text>

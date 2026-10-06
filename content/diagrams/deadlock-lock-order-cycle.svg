@@ -6,9 +6,9 @@
     </marker>
   </defs>
 
-  <rect x="40" y="60" width="120" height="44" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="40" y="60" width="120" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="100" y="87" text-anchor="middle" fill="var(--text, #727981)">태스크 A</text>
-  <rect x="440" y="60" width="120" height="44" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="440" y="60" width="120" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="500" y="87" text-anchor="middle" fill="var(--text, #727981)">태스크 B</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
     <path d="M130 58 Q300 -10 470 58" />

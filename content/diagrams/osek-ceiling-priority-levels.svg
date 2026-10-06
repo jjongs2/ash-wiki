@@ -8,20 +8,20 @@
 
   <line x1="30" y1="270" x2="30" y2="14" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
   <text x="30" y="-2" text-anchor="middle" font-size="12" fill="var(--text, #727981)">우선순위</text>
-  <rect x="70" y="18" width="200" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="70" y="18" width="200" height="32" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="170" y="39" text-anchor="middle" fill="var(--text, #727981)">resource를 쓰지 않는 태스크</text>
   <text x="290" y="39" font-size="12" fill="var(--text, #727981)">쥔 동안에도 실행된다</text>
 
   <line x1="70" y1="86" x2="270" y2="86" stroke="var(--violet, #825da9)" stroke-width="1.5" stroke-dasharray="5 4" />
   <text x="290" y="82" font-size="12" fill="var(--text, #727981)">ceiling priority: 쓰는 태스크의 가장 높은 우선순위 이상,</text>
   <text x="290" y="98" font-size="12" fill="var(--text, #727981)">그보다 높은 쓰지 않는 태스크보다 낮다</text>
-  <rect x="70.75" y="122.75" width="198.5" height="30.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="70.75" y="122.75" width="198.5" height="30.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="170" y="143" text-anchor="middle" fill="var(--on-fill, #f8fafd)">resource를 쓰는 태스크</text>
   <text x="290" y="143" font-size="12" fill="var(--text, #727981)">쥔 동안 기다린다</text>
-  <rect x="70" y="174" width="200" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="70" y="174" width="200" height="32" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="170" y="195" text-anchor="middle" fill="var(--text, #727981)">resource를 쓰지 않는 태스크</text>
   <text x="290" y="195" font-size="12" fill="var(--text, #727981)">쥔 동안 기다린다</text>
-  <rect x="70.75" y="226.75" width="198.5" height="30.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="70.75" y="226.75" width="198.5" height="30.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="170" y="247" text-anchor="middle" fill="var(--on-fill, #f8fafd)">resource를 쓰는 태스크</text>
   <text x="290" y="247" font-size="12" fill="var(--text, #727981)">resource를 얻으면 ceiling priority로 오른다</text>
 

@@ -17,13 +17,13 @@
 
   <!-- 버스 -->
   <text x="165" y="53" text-anchor="end" fill="var(--text, #727981)">버스</text>
-  <rect x="175.75" y="35.75" width="128.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="175.75" y="35.75" width="128.5" height="26.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
   <text x="240" y="53" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">더 낮은 우선순위</text>
-  <rect x="305.75" y="35.75" width="118.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="305.75" y="35.75" width="118.5" height="26.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="365" y="53" text-anchor="middle" font-size="12" fill="var(--text, #727981)">더 높은 우선순위</text>
-  <rect x="425.75" y="35.75" width="118.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="425.75" y="35.75" width="118.5" height="26.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="485" y="53" text-anchor="middle" font-size="12" fill="var(--text, #727981)">더 높은 우선순위</text>
-  <rect x="545.75" y="35.75" width="108.5" height="26.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="545.75" y="35.75" width="108.5" height="26.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="600" y="53" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">메시지 <tspan font-style="italic">m</tspan></text>
 
   <!-- 기준선 -->

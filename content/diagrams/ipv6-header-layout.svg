@@ -5,14 +5,14 @@
   <text x="340" y="20" text-anchor="middle" font-size="12" fill="var(--text, #727981)">32비트</text>
   <!-- 필드 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="21" y="40" width="78" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="101" y="40" width="158" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="261" y="40" width="398" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="21" y="78" width="318" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="341" y="78" width="158" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="501" y="78" width="158" height="34" rx="4" fill="var(--surface, none)" />
-    <rect x="21" y="116" width="638" height="148" rx="4" fill="var(--surface, none)" />
-    <rect x="21" y="268" width="638" height="148" rx="4" fill="var(--surface, none)" />
+    <rect x="21" y="40" width="78" height="34" fill="var(--surface, none)" />
+    <rect x="101" y="40" width="158" height="34" fill="var(--surface, none)" />
+    <rect x="261" y="40" width="398" height="34" fill="var(--surface, none)" />
+    <rect x="21" y="78" width="318" height="34" fill="var(--surface, none)" />
+    <rect x="341" y="78" width="158" height="34" fill="var(--surface, none)" />
+    <rect x="501" y="78" width="158" height="34" fill="var(--surface, none)" />
+    <rect x="21" y="116" width="638" height="148" fill="var(--surface, none)" />
+    <rect x="21" y="268" width="638" height="148" fill="var(--surface, none)" />
   </g>
   <text x="60" y="61" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Version</text>
   <text x="180" y="62" text-anchor="middle" fill="var(--text, #727981)">Traffic Class</text>

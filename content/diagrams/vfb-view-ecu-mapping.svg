@@ -43,14 +43,14 @@
 
   <!-- SW-C -->
   <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="40.75" y="60.75" width="78.5" height="34.5" rx="4" />
-    <rect x="160.75" y="60.75" width="78.5" height="34.5" rx="4" />
-    <rect x="160.75" y="164.75" width="78.5" height="34.5" rx="4" />
-    <rect x="40.75" y="164.75" width="78.5" height="34.5" rx="4" />
-    <rect x="370.75" y="60.75" width="78.5" height="34.5" rx="4" />
-    <rect x="640.75" y="60.75" width="78.5" height="34.5" rx="4" />
-    <rect x="640.75" y="164.75" width="78.5" height="34.5" rx="4" />
-    <rect x="510.75" y="164.75" width="78.5" height="34.5" rx="4" />
+    <rect x="40.75" y="60.75" width="78.5" height="34.5" rx="2" />
+    <rect x="160.75" y="60.75" width="78.5" height="34.5" rx="2" />
+    <rect x="160.75" y="164.75" width="78.5" height="34.5" rx="2" />
+    <rect x="40.75" y="164.75" width="78.5" height="34.5" rx="2" />
+    <rect x="370.75" y="60.75" width="78.5" height="34.5" rx="2" />
+    <rect x="640.75" y="60.75" width="78.5" height="34.5" rx="2" />
+    <rect x="640.75" y="164.75" width="78.5" height="34.5" rx="2" />
+    <rect x="510.75" y="164.75" width="78.5" height="34.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="80" y="83">SW-C A</text>

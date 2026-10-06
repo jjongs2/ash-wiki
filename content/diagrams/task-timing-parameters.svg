@@ -25,7 +25,7 @@
   </g>
 
   <!-- 실행 -->
-  <rect x="90" y="124" width="140" height="36" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="90" y="124" width="140" height="36" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="160" y="147" text-anchor="middle" fill="var(--text, #727981)">실행 시간 <tspan font-style="italic">C</tspan><tspan font-style="italic" dy="3" font-size="10">i</tspan></text>
 
   <!-- 시간 축 -->

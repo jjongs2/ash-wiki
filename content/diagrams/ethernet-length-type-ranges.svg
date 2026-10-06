@@ -7,10 +7,10 @@
   </defs>
 
   <!-- 두 구간 -->
-  <rect x="40.75" y="36.75" width="258.5" height="40.5" rx="4" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="40.75" y="36.75" width="258.5" height="40.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="170" y="54" text-anchor="middle" fill="var(--on-fill, #f8fafd)">길이</text>
   <text x="170" y="71" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">데이터 필드의 옥텟 수</text>
-  <rect x="360" y="36" width="340" height="42" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="360" y="36" width="340" height="42" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="530" y="54" text-anchor="middle" fill="var(--text, #727981)">EtherType</text>
   <text x="530" y="71" text-anchor="middle" font-size="12" fill="var(--text, #727981)">데이터 필드에 실린 상위 프로토콜</text>
 

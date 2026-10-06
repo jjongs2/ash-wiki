@@ -9,10 +9,10 @@
 
   <!-- 틀 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="20" y="100" width="170" height="68" rx="4" />
-    <rect x="270" y="20" width="170" height="98" rx="4" />
-    <rect x="270" y="150" width="170" height="98" rx="4" />
-    <rect x="520" y="70" width="170" height="128" rx="4" />
+    <rect x="20" y="100" width="170" height="68" rx="2" />
+    <rect x="270" y="20" width="170" height="98" rx="2" />
+    <rect x="270" y="150" width="170" height="98" rx="2" />
+    <rect x="520" y="70" width="170" height="128" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="105" y="122">SC1</text>

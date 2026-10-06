@@ -15,9 +15,9 @@
 
   <!-- 해저드의 원인 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20.75" y="46.75" width="218.5" height="62.5" rx="4" />
-    <rect x="280.75" y="46.75" width="118.5" height="62.5" rx="4" />
-    <rect x="410.75" y="46.75" width="118.5" height="62.5" rx="4" />
+    <rect x="20.75" y="46.75" width="218.5" height="62.5" rx="2" />
+    <rect x="280.75" y="46.75" width="118.5" height="62.5" rx="2" />
+    <rect x="410.75" y="46.75" width="118.5" height="62.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="130" y="67" font-size="13">E/E 시스템의 오동작</text>

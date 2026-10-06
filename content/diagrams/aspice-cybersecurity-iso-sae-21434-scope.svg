@@ -3,10 +3,10 @@
 
   <!-- ISO/SAE 21434의 두 측면 -->
   <text x="20" y="26" fill="var(--text, #727981)">ISO/SAE 21434</text>
-  <rect x="20" y="36" width="600" height="68" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="20" y="36" width="600" height="68" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="36" y="52" width="276" height="36" rx="4" />
-    <rect x="328" y="52" width="276" height="36" rx="4" />
+    <rect x="36" y="52" width="276" height="36" rx="2" />
+    <rect x="328" y="52" width="276" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="174" y="74.5">개발 프로젝트 안에서 하는 측면</text>

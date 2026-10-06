@@ -10,9 +10,9 @@
 
   <!-- PTP Instance -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="60" width="150" height="52" rx="4" />
-    <rect x="290" y="60" width="150" height="52" rx="4" />
-    <rect x="560" y="60" width="150" height="52" rx="4" />
+    <rect x="20" y="60" width="150" height="52" rx="2" />
+    <rect x="290" y="60" width="150" height="52" rx="2" />
+    <rect x="560" y="60" width="150" height="52" rx="2" />
   </g>
   <g font-size="13" text-anchor="middle" fill="var(--text, #727981)">
     <text x="95" y="82">Grandmaster</text>

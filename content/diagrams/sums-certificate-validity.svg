@@ -3,8 +3,8 @@
 
   <!-- 3년 = 300 단위, 발급 = x 20 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="44" width="300" height="32" rx="4" />
-    <rect x="320" y="44" width="300" height="32" rx="4" stroke-dasharray="5 4" />
+    <rect x="20" y="44" width="300" height="32" />
+    <rect x="320" y="44" width="300" height="32" stroke-dasharray="5 4" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="170" y="64.5">SUMS 적합 인증서의 유효 기간</text>

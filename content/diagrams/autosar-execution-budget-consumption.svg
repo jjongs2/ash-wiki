@@ -18,10 +18,10 @@
 
   <!-- 실행 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="210" y="40" width="40" height="20" rx="2" />
-    <rect x="150" y="80" width="60" height="20" rx="2" />
-    <rect x="250" y="80" width="40" height="20" rx="2" />
-    <rect x="330" y="80" width="120" height="20" rx="2" />
+    <rect x="210" y="40" width="40" height="20" />
+    <rect x="150" y="80" width="60" height="20" />
+    <rect x="250" y="80" width="40" height="20" />
+    <rect x="330" y="80" width="120" height="20" />
   </g>
   <text x="258" y="55" font-size="12" fill="var(--text, #727981)">선점</text>
 

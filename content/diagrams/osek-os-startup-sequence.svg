@@ -14,11 +14,11 @@
 
   <!-- 단계: 위에서 아래로 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="20" y="60" width="240" height="40" rx="4" fill="var(--surface, none)" />
-    <rect x="20" y="122" width="240" height="40" rx="4" fill="var(--surface, none)" />
-    <rect x="20" y="184" width="240" height="40" rx="4" fill="var(--surface, none)" />
-    <rect x="20" y="246" width="240" height="40" rx="4" fill="var(--surface, none)" />
-    <rect x="20" y="308" width="240" height="40" rx="4" fill="var(--surface, none)" />
+    <rect x="20" y="60" width="240" height="40" rx="2" fill="var(--surface, none)" />
+    <rect x="20" y="122" width="240" height="40" rx="2" fill="var(--surface, none)" />
+    <rect x="20" y="184" width="240" height="40" rx="2" fill="var(--surface, none)" />
+    <rect x="20" y="246" width="240" height="40" rx="2" fill="var(--surface, none)" />
+    <rect x="20" y="308" width="240" height="40" rx="2" fill="var(--surface, none)" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="140" y="85">하드웨어별 초기화 코드</text>
@@ -36,8 +36,8 @@
   </g>
 
   <!-- 사용자 인터럽트 상태 열 -->
-  <rect x="310.75" y="246.75" width="98.5" height="38.5" rx="4" fill="var(--red-tint, #bb464d)" stroke="var(--red, #bb464d)" stroke-width="1.5" />
-  <rect x="310.75" y="308.75" width="98.5" height="38.5" rx="4" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <rect x="310.75" y="246.75" width="98.5" height="38.5" rx="2" fill="var(--red-tint, #bb464d)" stroke="var(--red, #bb464d)" stroke-width="1.5" />
+  <rect x="310.75" y="308.75" width="98.5" height="38.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="360" y="271">모두 꺼짐</text>
     <text x="360" y="333">켜짐</text>

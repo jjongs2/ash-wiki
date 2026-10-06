@@ -8,9 +8,9 @@
   <!-- 왼쪽: common cause failure. 근본 원인 하나가 두 요소를 직접 고장 나게 한다 -->
   <text x="170" y="24" fill="var(--text, #727981)" text-anchor="middle">common cause failure</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="70" width="100" height="36" rx="4" />
-    <rect x="180" y="40" width="80" height="36" rx="4" />
-    <rect x="180" y="104" width="80" height="36" rx="4" />
+    <rect x="20" y="70" width="100" height="36" rx="2" />
+    <rect x="180" y="40" width="80" height="36" rx="2" />
+    <rect x="180" y="104" width="80" height="36" rx="2" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="70" y="93">근본 원인</text>
@@ -32,9 +32,9 @@
   <!-- 오른쪽: cascading failure. 한 요소의 failure가 다른 요소를 고장 나게 한다 -->
   <text x="575" y="24" fill="var(--text, #727981)" text-anchor="middle">cascading failure</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="420" y="40" width="100" height="36" rx="4" />
-    <rect x="570" y="40" width="80" height="36" rx="4" />
-    <rect x="570" y="104" width="80" height="36" rx="4" />
+    <rect x="420" y="40" width="100" height="36" rx="2" />
+    <rect x="570" y="40" width="80" height="36" rx="2" />
+    <rect x="570" y="104" width="80" height="36" rx="2" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
     <text x="470" y="63">근본 원인</text>

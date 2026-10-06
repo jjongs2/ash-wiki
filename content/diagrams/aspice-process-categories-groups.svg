@@ -6,9 +6,9 @@
 
   <!-- 범주: 그룹을 담는 틀 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="20" y="20" width="680" height="186" rx="4" />
-    <rect x="20" y="222" width="164" height="110" rx="4" />
-    <rect x="192" y="222" width="508" height="110" rx="4" />
+    <rect x="20" y="20" width="680" height="186" rx="2" />
+    <rect x="20" y="222" width="164" height="110" rx="2" />
+    <rect x="192" y="222" width="508" height="110" rx="2" />
   </g>
   <g fill="var(--text, #727981)" font-size="13">
     <text x="34" y="40">주 프로세스</text>
@@ -18,17 +18,17 @@
 
   <!-- 프로세스 그룹 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="34" y="52" width="136" height="64" rx="4" />
-    <rect x="206" y="52" width="136" height="64" rx="4" />
-    <rect x="378" y="52" width="136" height="64" rx="4" />
-    <rect x="550" y="52" width="136" height="64" rx="4" />
-    <rect x="34" y="128" width="136" height="64" rx="4" />
-    <rect x="206" y="128" width="136" height="64" rx="4" />
-    <rect x="378" y="128" width="136" height="64" rx="4" />
-    <rect x="34" y="254" width="136" height="64" rx="4" />
-    <rect x="206" y="254" width="136" height="64" rx="4" />
-    <rect x="378" y="254" width="136" height="64" rx="4" />
-    <rect x="550" y="254" width="136" height="64" rx="4" />
+    <rect x="34" y="52" width="136" height="64" rx="2" />
+    <rect x="206" y="52" width="136" height="64" rx="2" />
+    <rect x="378" y="52" width="136" height="64" rx="2" />
+    <rect x="550" y="52" width="136" height="64" rx="2" />
+    <rect x="34" y="128" width="136" height="64" rx="2" />
+    <rect x="206" y="128" width="136" height="64" rx="2" />
+    <rect x="378" y="128" width="136" height="64" rx="2" />
+    <rect x="34" y="254" width="136" height="64" rx="2" />
+    <rect x="206" y="254" width="136" height="64" rx="2" />
+    <rect x="378" y="254" width="136" height="64" rx="2" />
+    <rect x="550" y="254" width="136" height="64" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="102" y="72" font-size="13">ACQ</text>

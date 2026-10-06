@@ -9,7 +9,7 @@
   <!-- 목적지를 알 때 -->
   <g>
     <text x="150" y="18" text-anchor="middle" fill="var(--text, #727981)">B가 주소 표에 있을 때</text>
-    <rect x="30.75" y="30.75" width="238.5" height="98.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+    <rect x="30.75" y="30.75" width="238.5" height="98.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
     <text x="44" y="52" fill="var(--text, #727981)">스위치</text>
     <!-- 주소 표 -->
     <rect x="120.75" y="84.75" width="128.5" height="20.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
@@ -60,7 +60,7 @@
   <!-- 목적지를 모를 때 -->
   <g transform="translate(300 0)">
     <text x="150" y="18" text-anchor="middle" fill="var(--text, #727981)">B가 주소 표에 없을 때</text>
-    <rect x="30.75" y="30.75" width="238.5" height="98.5" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" />
+    <rect x="30.75" y="30.75" width="238.5" height="98.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
     <text x="44" y="52" fill="var(--text, #727981)">스위치</text>
     <!-- 주소 표 -->
     <rect x="120.75" y="62.75" width="128.5" height="20.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />

@@ -5,9 +5,9 @@
       <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
-  <rect x="140" y="20" width="120" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="140" y="20" width="120" height="32" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="200" y="41" text-anchor="middle" fill="var(--text, #727981)">여는 쪽</text>
-  <rect x="420" y="20" width="120" height="32" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="420" y="20" width="120" height="32" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="480" y="41" text-anchor="middle" fill="var(--text, #727981)">상대</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="200" y1="52" x2="200" y2="420" />

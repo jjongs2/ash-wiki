@@ -13,8 +13,8 @@
 
   <!-- 한 슬롯 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="40" y="32" width="220" height="36" rx="4" />
-    <rect x="40" y="230" width="220" height="36" rx="4" />
+    <rect x="40" y="32" width="220" height="36" rx="2" />
+    <rect x="40" y="230" width="220" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="150" y="55">동작 중인 이미지</text>
@@ -23,9 +23,9 @@
 
   <!-- 다른 슬롯 -->
   <g stroke="var(--blue, #336fb8)" stroke-width="1.5" fill="var(--blue-tint, #336fb8)">
-    <rect x="320" y="32" width="220" height="36" rx="4" />
-    <rect x="320" y="120" width="220" height="36" rx="4" />
-    <rect x="320" y="230" width="220" height="36" rx="4" />
+    <rect x="320" y="32" width="220" height="36" rx="2" />
+    <rect x="320" y="120" width="220" height="36" rx="2" />
+    <rect x="320" y="230" width="220" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="430" y="55">새 이미지 쓰기</text>
