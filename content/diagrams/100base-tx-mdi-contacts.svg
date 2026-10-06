@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 10 617 150" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 내부 크로스오버가 없는 PHY -->
+  <rect x="20" y="30" width="130" height="110" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="85" y="80">내부 크로스오버</text>
+    <text x="85" y="98">없는 PHY</text>
+  </g>
+  <line x1="150" y1="60" x2="248" y2="60" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="250" y1="110" x2="152" y2="110" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="200" y="52" text-anchor="middle">1·2번 접점</text>
+    <text x="200" y="102" text-anchor="middle">3·6번 접점</text>
+    <text x="258" y="64">송신</text>
+    <text x="258" y="114">수신</text>
+  </g>
+
+  <!-- 내부 크로스오버가 있는 PHY -->
+  <rect x="340" y="30" width="130" height="110" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="405" y="80">내부 크로스오버</text>
+    <text x="405" y="98">있는 PHY</text>
+  </g>
+  <line x1="570" y1="60" x2="472" y2="60" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="470" y1="110" x2="568" y2="110" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="520" y="52" text-anchor="middle">1·2번 접점</text>
+    <text x="520" y="102" text-anchor="middle">3·6번 접점</text>
+    <text x="578" y="64">수신</text>
+    <text x="578" y="114">송신</text>
+  </g>
+</svg>

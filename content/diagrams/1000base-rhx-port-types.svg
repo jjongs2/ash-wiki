@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 210" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 함께 쓰는 PCS와 PMA -->
+  <rect x="20" y="20" width="600" height="44" rx="4" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="320" y="47" text-anchor="middle" fill="var(--text, #727981)">1000BASE-H PCS · PMA</text>
+
+  <!-- PMD 셋 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="110" y1="64" x2="110" y2="104" />
+    <line x1="320" y1="64" x2="320" y2="104" />
+    <line x1="530" y1="64" x2="530" y2="104" />
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="104" width="180" height="56" rx="4" />
+    <rect x="230" y="104" width="180" height="56" rx="4" />
+    <rect x="440" y="104" width="180" height="56" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="110" y="128">1000BASE-RHA PMD</text>
+    <text x="320" y="128">1000BASE-RHB PMD</text>
+    <text x="530" y="128">1000BASE-RHC PMD</text>
+    <g font-size="12">
+      <text x="110" y="148">가정과 소비자 네트워크</text>
+      <text x="320" y="148">산업 응용</text>
+      <text x="530" y="148">차량 응용</text>
+    </g>
+  </g>
+
+  <!-- 포트 타입 묶음 -->
+  <path d="M20 166 V172 H620 V166" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="320" y="190" text-anchor="middle" font-size="12" fill="var(--text, #727981)">1000BASE-RHx: 이중 POF 위의 포트 타입 셋</text>
+</svg>

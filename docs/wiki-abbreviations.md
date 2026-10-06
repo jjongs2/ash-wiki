@@ -46,6 +46,7 @@
 - IEEE-ISTO: 조직
 - IEN: 표준·규격 이름
 - IETF: 조직
+- INH: 핀과 신호
 - ISACA: 조직
 - ISO: 조직
 - ISTQB: 조직
@@ -55,6 +56,7 @@
 - MCU: 널리 쓰이는 약어
 - MEF: 표준·규격 이름
 - MIL-HDBK: 표준·규격 이름
+- MIPI: 조직
 - MISRA: 조직
 - NASA: 조직
 - NATO: 조직
@@ -94,6 +96,7 @@
 - TR: 표준·규격 이름
 - TS: 표준·규격 이름
 - TX_CLK: 핀과 신호
+- TX_D: 핀과 신호
 - TX_EN: 핀과 신호
 - TX_ER: 핀과 신호
 - TXD: 핀과 신호
@@ -103,6 +106,7 @@
 - VCC: 전원
 - VDA: 조직
 - VDA QMC: 조직
+- WAKE: 핀과 신호
 - WG: ISO 위원회 번호
 - WP.29: 조직
 - XOR: 널리 쓰이는 약어
