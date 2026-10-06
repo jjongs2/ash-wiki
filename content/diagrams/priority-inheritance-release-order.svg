@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="8.5 -3.5 666 166.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 무엇을 그리는지 -->
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="20" y="18">뮤텍스 1, 2를 쥔</text>
+    <text x="20" y="34">태스크의 우선순위</text>
+  </g>
+
+  <!-- 사건 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="210" y1="40" x2="210" y2="134" />
+    <line x1="315" y1="40" x2="315" y2="134" />
+    <line x1="420" y1="40" x2="420" y2="134" />
+    <line x1="570" y1="40" x2="570" y2="134" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="210" y="18">높은 대기자가</text>
+    <text x="210" y="34">뮤텍스 1에서 블록</text>
+    <text x="315" y="18">중간 대기자가</text>
+    <text x="315" y="34">뮤텍스 2에서 블록</text>
+    <text x="420" y="34">뮤텍스 1을 풂</text>
+    <text x="570" y="34">뮤텍스 2를 풂</text>
+  </g>
+
+  <!-- FreeRTOS -->
+  <text x="140" y="67" text-anchor="end" fill="var(--text, #727981)">FreeRTOS</text>
+  <rect x="150" y="48" width="60" height="28" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="180" y="67" text-anchor="middle" fill="var(--text, #727981)">원래</text>
+  <rect x="210.75" y="48.75" width="358.5" height="26.5" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
+  <text x="390" y="67" text-anchor="middle" fill="var(--on-fill, #f8fafd)">높은 대기자의 우선순위</text>
+  <rect x="570" y="48" width="60" height="28" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="600" y="67" text-anchor="middle" fill="var(--text, #727981)">원래</text>
+
+  <!-- Zephyr -->
+  <text x="140" y="115" text-anchor="end" fill="var(--text, #727981)">Zephyr</text>
+  <rect x="150" y="96" width="60" height="28" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="180" y="115" text-anchor="middle" fill="var(--text, #727981)">원래</text>
+  <rect x="210.75" y="96.75" width="208.5" height="26.5" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
+  <text x="315" y="115" text-anchor="middle" fill="var(--on-fill, #f8fafd)">높은 대기자의 우선순위</text>
+  <rect x="420.75" y="96.75" width="148.5" height="26.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="495" y="115" text-anchor="middle" fill="var(--on-fill, #f8fafd)">중간 대기자의 우선순위</text>
+  <rect x="570" y="96" width="60" height="28" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="600" y="115" text-anchor="middle" fill="var(--text, #727981)">원래</text>
+
+  <!-- 시간 -->
+  <line x1="150" y1="146" x2="634" y2="146" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="642" y="150" font-size="12" fill="var(--text, #727981)">시간</text>
+</svg>

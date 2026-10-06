@@ -9,9 +9,19 @@ verified: 2026-09-30
 
 **cyclic executive**(순환 실행기)는 주기 프로세스를 제어하는 실행 구조다.[@baker-cyclic-executive-1988] POSIX 근거 문서에 따르면 cyclic executive에서는 주기적인 타이머 인터럽트가 다음 일련의 계산을 시작한다.[@ieee-1003-1-rationale-clocks-and-timers-2024] 실시간 스케줄링 방식은 [[real-time-scheduling|실시간 스케줄링]]에서 다룬다.
 
+## 오버런 검사
+
+같은 타이머 인터럽트는 지금 계산이 끝났는지도 검사해, 끝나지 않았으면 오류 복구를 할 수 있게 한다. 이 근거 문서는 이런 응용에 POSIX 운영체제를 쓰려면 같은 수준의 보호를 제공해야 한다는 것을 실행 시간 클록을 둔 동기로 든다.[@ieee-1003-1-rationale-clocks-and-timers-2024]
+
+![[diagrams/cyclic-executive-timer-overrun.svg]]
+
 ## Baker와 Shaw의 모델
 
 Baker와 Shaw는 1988년 IEEE Real-Time Systems Symposium 논문에서 이 모델을 제시하고 평가했고, Ada로 cyclic executive를 짤 때의 한계와 이를 피하는 기법을 다뤘다.[@baker-cyclic-executive-1988] 같은 제목의 논문이 1989년 Real-Time Systems 저널 1권에 실렸다.[@baker-cyclic-executive-1989]
+
+## 고정 우선순위 스케줄링으로의 이동
+
+Lui Sha 등은 Carnegie Mellon University와 그 Software Engineering Institute에서, 실시간 시스템의 기반을 cyclic executive에서 고정 우선순위 스케줄링 이론으로 옮기는 연구와 기술 이전을 이끌었다.[@sha-real-time-scheduling-theory-2004]
 
 ## Time-triggered와 event-triggered
 
