@@ -697,7 +697,7 @@ function colorViolation(value: string, fallbacks: Map<string, string>): string |
 
 // 모양 척도(docs/wiki-conventions.md 도해 절). 점선은 선 두께와 짝을 이룬다.
 const strokeWidths = [1, 1.5, 3]
-const cornerRadii = [0, 2, 4]
+const cornerRadii = [0, 2]
 const dashes: Record<string, { fits: (width: number) => boolean; rule: string }> = {
   "3 3": { fits: (width) => width === 1, rule: "보조 점선 3 3은 폭 1에만 쓴다" },
   "5 4": { fits: (width) => width >= 1.5, rule: "윤곽 점선 5 4는 폭 1.5 이상에만 쓴다" },
