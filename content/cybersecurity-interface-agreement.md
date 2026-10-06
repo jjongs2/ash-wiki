@@ -24,7 +24,7 @@ ISO/SAE 21434:2021은 RASIC을 responsible, accountable, supporting, informed, c
 
 ## Automotive SPICE for Cybersecurity의 ACQ.2
 
-Automotive SPICE for Cybersecurity 2.0은 공급자 선정을 ACQ.2(Supplier Request and Selection) 프로세스로 두고, 그 목적을 관련 기준에 따라 약정이나 합의를 맺을 공급자를 고르는 것으로 둔다. ACQ.2가 드는 획득(ACQ) 프로세스 그룹은 고객이 제품이나 서비스를 얻으려고 수행하는 프로세스로 이루어지고, 공급자도 자기 공급자에게 고객으로 나설 때 이 프로세스를 수행한다. ACQ.2의 성과는 다음 넷이다.[@vda-automotive-spice-cybersecurity-2025]
+이 모델은 공급자 선정을 ACQ.2(Supplier Request and Selection) 프로세스로 두고, 그 목적을 관련 기준에 따라 약정이나 합의를 맺을 공급자를 고르는 것으로 둔다. ACQ.2가 드는 획득(ACQ) 프로세스 그룹은 고객이 제품이나 서비스를 얻으려고 수행하는 프로세스로 이루어지고, 공급자도 자기 공급자에게 고객으로 나설 때 이 프로세스를 수행한다. ACQ.2의 성과는 다음 넷이다.[@vda-automotive-spice-cybersecurity-2025]
 
 | 성과 | 내용                                                                          |
 | ---- | ----------------------------------------------------------------------------- |

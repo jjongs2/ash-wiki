@@ -18,7 +18,7 @@ ISACA에 따르면 CMMI는 [[software-engineering|소프트웨어 공학]]을 �
 
 ### 성숙도 수준과 능력 수준
 
-CMMI 3.0은 프랙티스 영역마다 **능력 수준**(capability level)을 두고, 정해 둔 프랙티스 영역 묶음에는 단계형 경로로 **성숙도 수준**(maturity level)을 둔다. 성숙도 수준은 0\~5(Incomplete, Initial, Managed, Defined, Quantitatively Managed, Optimizing), 능력 수준은 0\~3(Incomplete, Initial, Managed, Defined)이다.[@cmmi-institute-levels-2026]
+이 모델은 프랙티스 영역마다 **능력 수준**(capability level)을 두고, 정해 둔 프랙티스 영역 묶음에는 단계형 경로로 **성숙도 수준**(maturity level)을 둔다. 성숙도 수준은 0\~5(Incomplete, Initial, Managed, Defined, Quantitatively Managed, Optimizing), 능력 수준은 0\~3(Incomplete, Initial, Managed, Defined)이다.[@cmmi-institute-levels-2026]
 
 CMMI 1.3은 두 표현 방식을 두었다. 연속형 표현(continuous representation)은 프로세스 영역마다 능력 수준 0\~3(Incomplete, Performed, Managed, Defined)을 매겼고, 단계형 표현(staged representation)은 여러 프로세스 영역에 걸친 조직의 개선 성취에 성숙도 수준 1\~5(Initial, Managed, Defined, Quantitatively Managed, Optimizing)를 매겼다.[@cmmi-product-team-cmmi-development-2010] CMMI 3.0과 달리 능력 수준 1의 이름은 Performed였고, 성숙도 수준에는 0(Incomplete)이 없었다.[@cmmi-institute-levels-2026][@cmmi-product-team-cmmi-development-2010]
 

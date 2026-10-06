@@ -48,5 +48,5 @@ Kemerer와 Paulk는 2009년 논문에서 PSP(Personal Software Process) 과정�
 
 - **동료 리뷰**(peer review): 그 산출물을 만들 역량을 갖춘 다른 사람이 하는 리뷰[@ieee-cs-sevocab-2026][@istqb-glossary-peer-review-2026]
 - **경영 리뷰**(management review): ISO/IEC/IEEE 24765 용어집은 소프트웨어 획득, 공급, 개발, 운용, 유지보수 프로세스를 관리자가 하거나 관리자를 대신해 하는 체계적 평가로 정의한다.
-- **데스크 체크**(desk checking): ISO/IEC/IEEE 24765 용어집은 코드 목록, 테스트 결과 같은 문서를 대개 그것을 만든 사람이 눈으로 살펴 오류나 개발 표준 위반 같은 문제를 찾는 [[static-analysis|정적 분석]] 기법으로 정의한다.
-- **페어 프로그래밍**(pair programming): ISO/IEC/IEEE 24765 용어집은 한 개발자가 코드를 쓰는 동안 다른 개발자가 지켜보며 오류를 찾고 결과가 요구사항을 만족하는지 확인하는 관행으로 정의하고, 두 사람은 주기적으로 역할을 바꾼다고 적는다.[@ieee-cs-sevocab-2026] Kent Beck은 1999년 『Extreme Programming Explained: Embrace Change』에서 모든 소프트웨어를 두 프로그래머가 한 화면 앞에서 짝을 지어 만드는 것을 XP(Extreme Programming)의 기본으로 들었다.[@beck-extreme-programming-explained-1999]
+- **데스크 체크**(desk checking): 이 용어집은 코드 목록, 테스트 결과 같은 문서를 대개 그것을 만든 사람이 눈으로 살펴 오류나 개발 표준 위반 같은 문제를 찾는 [[static-analysis|정적 분석]] 기법으로 정의한다.
+- **페어 프로그래밍**(pair programming): 이 용어집은 한 개발자가 코드를 쓰는 동안 다른 개발자가 지켜보며 오류를 찾고 결과가 요구사항을 만족하는지 확인하는 관행으로 정의하고, 두 사람은 주기적으로 역할을 바꾼다고 적는다.[@ieee-cs-sevocab-2026] Kent Beck은 1999년 『Extreme Programming Explained: Embrace Change』에서 모든 소프트웨어를 두 프로그래머가 한 화면 앞에서 짝을 지어 만드는 것을 XP(Extreme Programming)의 기본으로 들었다.[@beck-extreme-programming-explained-1999]

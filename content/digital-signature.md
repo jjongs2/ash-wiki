@@ -21,7 +21,7 @@ RSA(Rivest-Shamir-Adleman), ECDSA(Elliptic Curve Digital Signature Algorithm), H
 
 ## 서명 표준
 
-FIPS 186-5는 디지털 서명 기법으로 RSA, ECDSA, EdDSA 셋을 승인한다. ECDSA는 FIPS 186-5가 직접 정하고, RSA는 RFC 8017이, EdDSA는 RFC 8032가 정한 것을 승인하면서 요구사항을 더한다. FIPS 186-5는 DSA(Digital Signature Algorithm)를 서명 생성에 더는 승인하지 않고, 이 표준이 시행되기 전에 만든 서명의 검증에만 쓰게 한다.[@nist-fips-186-5-2023]
+FIPS 186-5는 디지털 서명 기법으로 RSA, ECDSA, EdDSA 셋을 승인한다. ECDSA는 FIPS 186-5가 직접 정하고, RSA는 RFC 8017이, EdDSA는 RFC 8032가 정한 것을 승인하면서 요구사항을 더한다. 이 표준은 DSA(Digital Signature Algorithm)를 서명 생성에 더는 승인하지 않고, 이 표준이 시행되기 전에 만든 서명의 검증에만 쓰게 한다.[@nist-fips-186-5-2023]
 
 ## MAC과의 차이
 

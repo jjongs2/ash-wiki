@@ -63,7 +63,7 @@ IEEE 802.1BA-2021은 AVB를 지원한다고 내세우는 장치의 최소 요구
 
 ## 차량 프로파일
 
-Avnu Alliance의 Automotive Ethernet AVB Functional and Interoperability Specification은 자동차 AVB 장치의 기본 기능을 정해 인증의 바탕으로 삼는 명세로, Revision 1.6이 2019년 11월에 나왔다. Avnu 자동차 AVB 명세 Rev 1.6은 인포테인먼트와 기본 카메라를 대상으로 하고, 엔진 제어나 운전자 보조 같은 장치는 범위 밖에 둔다.[@avnu-automotive-avb-1-6-2019]
+Avnu Alliance의 Automotive Ethernet AVB Functional and Interoperability Specification은 자동차 AVB 장치의 기본 기능을 정해 인증의 바탕으로 삼는 명세로, Revision 1.6이 2019년 11월에 나왔다. 이 명세는 인포테인먼트와 기본 카메라를 대상으로 하고, 엔진 제어나 운전자 보조 같은 장치는 범위 밖에 둔다.[@avnu-automotive-avb-1-6-2019]
 
 이 명세는 차량 네트워크가 닫혀 있고 미리 설정되어 바뀌지 않는다는 점을 들어 gPTP의 동작을 단순화한다. 차량 네트워크에 grandmaster를 하나로 고정해 두고, BMCA를 돌리지 않으며, Announce 메시지도 쓰지 않는다. 장치가 모든 AVB 스트림에 정적으로 설정한 예약을 지원하게 한다. 시험 모드의 엔드 스테이션이 보내는 Test Status Message는 [[ieee-1722-1|IEEE 1722.1]]의 응답 메시지를 바탕으로 정하지만, 엔드 스테이션이 스스로 보내므로 처리하는 데 1722.1 제어 기반이 필요 없다고 둔다.[@avnu-automotive-avb-1-6-2019]
 
