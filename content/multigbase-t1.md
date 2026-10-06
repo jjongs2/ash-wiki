@@ -20,18 +20,18 @@ IEEE 802.3-2022는 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1이 평형 도체 한 쌍 �
 
 ## 부호화
 
-IEEE 802.3-2022는 MultiGBASE-T1의 PCS가 [[mii|MII]] 계열의 XGMII(10 Gigabit Media Independent Interface)로 MAC(Medium Access Control) 쪽과 이어지도록 정한다. PCS는 XGMII의 TX_D, TX_EN, TX_ER를 64B/65B로 부호화하고, 64B/65B 블록 50개마다 RS-FEC(Reed–Solomon Forward Error Correction) 패리티 340비트를 더해 비트 오류율 BER(Bit Error Ratio)을 $\mathrm{BER} \le 10^{-12}$로 유지한다. 33비트 스크램블러로 EMC 성능을 높이고, 네 준위의 PAM4(Pulse Amplitude Modulation 4)로 보낸다. 심볼률은 2.5GBASE-T1이 1406.25 MBd, 5GBASE-T1이 2812.5 MBd, 10GBASE-T1이 5625 MBd다.[@ieee-802-3-2022]
+이 표준은 MultiGBASE-T1의 PCS가 [[mii|MII]] 계열의 XGMII(10 Gigabit Media Independent Interface)로 MAC(Medium Access Control) 쪽과 이어지도록 정한다. PCS는 XGMII의 TX_D, TX_EN, TX_ER를 64B/65B로 부호화하고, 64B/65B 블록 50개마다 RS-FEC(Reed–Solomon Forward Error Correction) 패리티 340비트를 더해 비트 오류율 BER(Bit Error Ratio)을 $\mathrm{BER} \le 10^{-12}$로 유지한다. 33비트 스크램블러로 EMC 성능을 높이고, 네 준위의 PAM4(Pulse Amplitude Modulation 4)로 보낸다. 심볼률은 2.5GBASE-T1이 1406.25 MBd, 5GBASE-T1이 2812.5 MBd, 10GBASE-T1이 5625 MBd다.[@ieee-802-3-2022]
 
 ## 링크 세그먼트
 
-IEEE 802.3-2022는 MultiGBASE-T1이 인라인 커넥터를 4개까지 둔 평형 도체 한 쌍의 차량용 링크 세그먼트에서 적어도 15 m를 지원하도록 정한다. 이 링크 세그먼트 명세는 차량 요구사항에서 나왔지만, 차량 밖 응용에도 쓸 수 있다.[@ieee-802-3-2022]
+이 표준은 MultiGBASE-T1이 인라인 커넥터를 4개까지 둔 평형 도체 한 쌍의 차량용 링크 세그먼트에서 적어도 15 m를 지원하도록 정한다. 이 링크 세그먼트 명세는 차량 요구사항에서 나왔지만, 차량 밖 응용에도 쓸 수 있다.[@ieee-802-3-2022]
 
 ![[diagrams/link-segment-inline-connectors.svg]]
 
 ## 마스터와 슬레이브
 
-IEEE 802.3-2022는 MultiGBASE-T1 PHY가 실행 중 설정에 따라 마스터로도 슬레이브로도 동작할 수 있도록 정한다. 마스터는 로컬 클럭으로, 슬레이브는 받은 신호에서 복구한 클럭으로 송신 타이밍을 정한다. Clause 98의 [[ethernet-phy#자동 협상|자동 협상]]은 선택 사항이며, 쓰면 그 과정에서 두 PHY의 역할이 정해진다. 쓰지 않으면 관리나 하드웨어 설정으로 역할을 정하고, PHY Link Synchronization 기능으로 마스터와 슬레이브를 맞춘다.[@ieee-802-3-2022]
+이 표준은 MultiGBASE-T1 PHY가 실행 중 설정에 따라 마스터로도 슬레이브로도 동작할 수 있도록 정한다. 마스터는 로컬 클럭으로, 슬레이브는 받은 신호에서 복구한 클럭으로 송신 타이밍을 정한다. Clause 98의 [[ethernet-phy#자동 협상|자동 협상]]은 선택 사항이며, 쓰면 그 과정에서 두 PHY의 역할이 정해진다. 쓰지 않으면 관리나 하드웨어 설정으로 역할을 정하고, PHY Link Synchronization 기능으로 마스터와 슬레이브를 맞춘다.[@ieee-802-3-2022]
 
 ## EEE와 OAM
 
-IEEE 802.3-2022는 MultiGBASE-T1 PHY가 선택 사항으로 EEE를 지원해, 링크 사용률이 낮은 동안 저전력 모드로 들어가 전력을 줄일 수 있게 한다. 선택 사항인 MultiGBASE-T1 OAM(Operations, Administration, and Maintenance)은 PCS 기반으로, 두 PHY가 링크 상태와 메시지를 이더넷 데이터 흐름 밖에서 주고받아 링크 동작을 감시하게 한다.[@ieee-802-3-2022]
+이 표준은 MultiGBASE-T1 PHY가 선택 사항으로 EEE를 지원해, 링크 사용률이 낮은 동안 저전력 모드로 들어가 전력을 줄일 수 있게 한다. 선택 사항인 MultiGBASE-T1 OAM(Operations, Administration, and Maintenance)은 PCS 기반으로, 두 PHY가 링크 상태와 메시지를 이더넷 데이터 흐름 밖에서 주고받아 링크 동작을 감시하게 한다.[@ieee-802-3-2022]

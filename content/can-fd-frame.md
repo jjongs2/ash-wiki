@@ -40,4 +40,4 @@ CAN FD 포맷에서 CRC 구분자는 recessive 1비트나 2비트일 수 있다.
 
 확장 포맷에서는 기본 식별자 11비트, SRR(Substitute Remote Request), IDE, 확장 식별자 18비트 뒤에 r1이 오고, 이어서 EDL이 온다. 그 뒤 필드는 기본 포맷과 같다.[@bosch-can-fd-1-0-2012]
 
-Bosch CAN FD 1.0은 수신 노드가 SRR 비트를 dominant로 받아도 받아들이게 정한다.[@bosch-can-fd-1-0-2012]
+이 규격은 수신 노드가 SRR 비트를 dominant로 받아도 받아들이게 정한다.[@bosch-can-fd-1-0-2012]

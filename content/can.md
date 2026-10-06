@@ -48,9 +48,9 @@ Bosch CAN 2.0 규격은 버스에 잇는 노드 수에 이론적 한계를 두�
 
 CiA에 따르면 1980년대 초 Bosch의 엔지니어들은 기존 직렬 버스가 승용차의 요구를 채우지 못한다고 보았고, Uwe Kiencke가 1983년에 새 직렬 버스 개발을 시작했다. 자문으로 참여한 Wolfhard Lawrenz 교수가 'Controller Area Network'라는 이름을 붙였고, 1986년 발표 때의 이름은 'Automotive Serial Controller Area Network'였다.[@cia-can-history-2026]
 
-CiA에 따르면 첫 CAN 컨트롤러 칩은 Intel이 1987년 중반에 내놓은 82526이고, 곧이어 Philips Semiconductors가 82C200을 내놓았다. 두 칩은 수용 필터링과 프레임 처리가 달라, Intel의 FullCAN은 Philips의 BasicCAN보다 연결된 MCU의 CPU 부하를 덜었지만 받을 수 있는 프레임 수가 제한되었다. 지금의 CAN 컨트롤러는 두 방식을 섞어 구현하므로 BasicCAN과 FullCAN이라는 말은 쓰이지 않게 되었다.[@cia-can-history-2026]
+첫 CAN 컨트롤러 칩은 Intel이 1987년 중반에 내놓은 82526이고, 곧이어 Philips Semiconductors가 82C200을 내놓았다. 두 칩은 수용 필터링과 프레임 처리가 달라, Intel의 FullCAN은 Philips의 BasicCAN보다 연결된 MCU의 CPU 부하를 덜었지만 받을 수 있는 프레임 수가 제한되었다. 지금의 CAN 컨트롤러는 두 방식을 섞어 구현하므로 BasicCAN과 FullCAN이라는 말은 쓰이지 않게 되었다.[@cia-can-history-2026]
 
-CiA에 따르면 Mercedes-Benz는 1991년부터 고급 승용차에 CAN을 썼고, 처음에는 엔진 관리 ECU들을 CAN으로 이었다.[@cia-can-history-2026]
+Mercedes-Benz는 1991년부터 고급 승용차에 CAN을 썼고, 처음에는 엔진 관리 ECU들을 CAN으로 이었다.[@cia-can-history-2026]
 
 CiA에 따르면 CAN은 철도 차량, 항공기, 선박, 우주 같은 운송 시스템, 산업 기계 제어, 홈·빌딩 자동화, 건설·농업 장비 같은 이동 기계, 의료 기기와 실험실 자동화 등에 쓰이고, 해마다 CAN 노드가 20억 개 넘게 팔린다.[@cia-can-dll-generations-2026]
 
@@ -58,6 +58,6 @@ CiA에 따르면 CAN은 철도 차량, 항공기, 선박, 우주 같은 운송 �
 
 Bosch CAN 2.0 규격은 CAN의 속도가 시스템마다 다를 수 있지만 한 시스템 안에서는 비트율이 하나로 고정된다고 정한다. 이 규격은 자동차 전자 장치에서 엔진 제어 장치, 센서, 미끄럼 방지 시스템 등을 1 Mbit/s까지의 비트율로 CAN에 잇는 예를 든다.[@bosch-can-2-0-1991] [[can-fd|CAN FD]]는 데이터 구간의 비트율을 중재 구간보다 높게 둘 수 있어, 1 Mbit/s를 넘는 데이터율을 낸다.[@bosch-can-fd-1-0-2012] ISO 11898-1:2024는 여기에 데이터가 최대 2048바이트인 [[can-xl|CAN XL]] 프레임 포맷을 더했다.[@iso-11898-1-obp-2024]
 
-ISO 11898-1:2024는 classic 프레임만 지원하는 구현을 CAN FD 프레임을 용인하는지에 따라 둘로 나눈다.[@iso-11898-1-obp-2024] 두 구현의 통신 범위는 [[can-fd#호환성|CAN FD]]에서 다룬다.
+이 표준은 classic 프레임만 지원하는 구현을 CAN FD 프레임을 용인하는지에 따라 둘로 나눈다.[@iso-11898-1-obp-2024] 두 구현의 통신 범위는 [[can-fd#호환성|CAN FD]]에서 다룬다.
 
 CiA는 CAN 데이터 링크 계층을 CAN CC(classic), CAN FD, CAN XL 세 세대로 나눈다.[@cia-can-dll-generations-2026] ISO 11898-1:2024는 CAN 기능의 일부에 바탕을 둔 responder 노드의 구현 옵션으로 [[can-fd-light|CAN FD light]]를 둔다.[@iso-11898-1-obp-2024]

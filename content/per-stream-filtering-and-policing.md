@@ -27,7 +27,7 @@ IEEE 802.1Q-2022는 PSFP를 구현하는 브리지 구성 요소나 엔드 스�
 
 ## 스트림 필터
 
-IEEE 802.1Q-2022는 받은 프레임을 stream_handle과 우선순위로 스트림 필터에 대응시키도록 정한다. stream_handle은 IEEE 802.1CB의 스트림 식별 기능이 준다. 스트림 필터는 stream_handle 값 하나나 아무 값에나 맞는 와일드카드, 우선순위 값 하나나 와일드카드, 최대 SDU 크기, 스트림 게이트 식별자를 갖고, flow meter 식별자를 가질 수 있다. flow meter 식별자가 없으면 그 스트림 필터의 프레임은 flow meter를 거치지 않는다. 프레임은 stream_handle과 우선순위가 맞는 스트림 필터 가운데 식별자가 가장 작은 것에 대응된다.[@ieee-802-1q-2022]
+이 표준은 받은 프레임을 stream_handle과 우선순위로 스트림 필터에 대응시키도록 정한다. stream_handle은 IEEE 802.1CB의 스트림 식별 기능이 준다. 스트림 필터는 stream_handle 값 하나나 아무 값에나 맞는 와일드카드, 우선순위 값 하나나 와일드카드, 최대 SDU 크기, 스트림 게이트 식별자를 갖고, flow meter 식별자를 가질 수 있다. flow meter 식별자가 없으면 그 스트림 필터의 프레임은 flow meter를 거치지 않는다. 프레임은 stream_handle과 우선순위가 맞는 스트림 필터 가운데 식별자가 가장 작은 것에 대응된다.[@ieee-802-1q-2022]
 
 어느 스트림에도 대응되지 않는 프레임을 거르지 않고 넘기는 대신 버리려면, 표의 끝에 stream_handle과 우선순위가 모두 와일드카드이고 늘 닫힌 스트림 게이트를 가리키는 스트림 필터를 둔다.[@ieee-802-1q-2022]
 
@@ -35,7 +35,7 @@ IEEE 802.1Q-2022는 받은 프레임을 stream_handle과 우선순위로 스트�
 
 ## 스트림 게이트
 
-IEEE 802.1Q-2022는 스트림 게이트가 시간 스케줄에 어긋나는 시각에 받은 프레임을 버리도록 정한다. 또 스트림 게이트는 프레임의 우선순위를 IPV로 바꿔 큐잉 결정에 쓰게 하고, 전송할 때는 프레임의 원래 우선순위를 그대로 둔다. 스트림 게이트를 지원하는 브리지는 프레임에 IPV가 정해지면 우선순위 대신 IPV로 프레임의 트래픽 클래스를 정한다.[@ieee-802-1q-2022]
+이 표준은 스트림 게이트가 시간 스케줄에 어긋나는 시각에 받은 프레임을 버리도록 정한다. 또 스트림 게이트는 프레임의 우선순위를 IPV로 바꿔 큐잉 결정에 쓰게 하고, 전송할 때는 프레임의 원래 우선순위를 그대로 둔다. 스트림 게이트를 지원하는 브리지는 프레임에 IPV가 정해지면 우선순위 대신 IPV로 프레임의 트래픽 클래스를 정한다.[@ieee-802-1q-2022]
 
 스트림 게이트의 상태는 열림과 닫힘 둘이고, 닫힌 게이트는 프레임을 통과시키지 않는다. IPV 명세는 null이거나 특정 IPV 값이며, null이면 받은 프레임의 우선순위를 IPV로 쓴다. PSFP를 지원하는 스트림 게이트는 스트림 게이트 제어 목록을 두고, 상태 기계가 목록의 동작을 주기적으로 실행해 게이트 상태와 IPV를 정한다. 목록의 동작 SetGateAndIPV는 게이트 상태와 IPV를 정하고 TimeInterval이 지나면 다음 동작으로 넘어가며, 선택 파라미터 IntervalOctetMax로 그 구간에 게이트를 지날 수 있는 MSDU(MAC Service Data Unit) 옥텟 수를 제한한다.[@ieee-802-1q-2022]
 
@@ -43,6 +43,6 @@ IEEE 802.1Q-2022는 스트림 게이트가 시간 스케줄에 어긋나는 시�
 
 ## Flow meter
 
-IEEE 802.1Q-2022는 flow meter가 MEF 10.3의 bandwidth profile 파라미터와 알고리즘을 따르도록 정한다. flow meter는 committed information rate, committed burst size, excess information rate, excess burst size, coupling flag, color mode를 갖는다. MEF 10.3 알고리즘이 yellow로 표시한 프레임은 DropOnYellow 파라미터가 참이면 버려지고, 거짓이면 drop_eligible 파라미터가 참으로 바뀐다. 설정에 따라 flow meter가 프레임을 하나 버린 뒤로는 관리 동작으로 풀 때까지 모든 프레임을 버리게 할 수 있고, 이 설정의 기본값은 꺼짐이다.[@ieee-802-1q-2022]
+이 표준은 flow meter가 MEF 10.3의 bandwidth profile 파라미터와 알고리즘을 따르도록 정한다. flow meter는 committed information rate, committed burst size, excess information rate, excess burst size, coupling flag, color mode를 갖는다. MEF 10.3 알고리즘이 yellow로 표시한 프레임은 DropOnYellow 파라미터가 참이면 버려지고, 거짓이면 drop_eligible 파라미터가 참으로 바뀐다. 설정에 따라 flow meter가 프레임을 하나 버린 뒤로는 관리 동작으로 풀 때까지 모든 프레임을 버리게 할 수 있고, 이 설정의 기본값은 꺼짐이다.[@ieee-802-1q-2022]
 
 PSFP와 [[asynchronous-traffic-shaping|ATS]]는 스트림 필터와 스트림 게이트 같은 스트림별 분류와 미터링의 요소를 함께 쓴다.[@ieee-802-1q-2022]

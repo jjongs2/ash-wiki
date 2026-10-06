@@ -21,7 +21,7 @@ ASIL은 [[hazard-analysis-and-risk-assessment|HARA]]에서 [[hazard-analysis-and
 
 ## ASIL decomposition
 
-ISO 26262-1:2018은 **ASIL decomposition**을 같은 safety goal에 기여하는 중복된 [[safety-requirement|안전 요구사항]]을 충분히 독립된 요소들에 나누어 할당하는 것으로 정의한다. 그 요소들에 할당한 중복 요구사항의 ASIL을 낮추는 것이 목적이다.[@iso-26262-1-obp-2018]
+이 표준은 **ASIL decomposition**을 같은 safety goal에 기여하는 중복된 [[safety-requirement|안전 요구사항]]을 충분히 독립된 요소들에 나누어 할당하는 것으로 정의한다. 그 요소들에 할당한 중복 요구사항의 ASIL을 낮추는 것이 목적이다.[@iso-26262-1-obp-2018]
 
 ## SIL과의 차이
 

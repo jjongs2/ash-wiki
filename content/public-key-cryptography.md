@@ -25,7 +25,7 @@ Miller는 CRYPTO '85에서 발표하고 1986년 논문집에 실린 논문 "Use 
 
 ![[diagrams/symmetric-public-key-encryption.svg]]
 
-NIST SP 800-175B Rev. 1에 따르면 공개 키 알고리즘으로 [[symmetric-key-cryptography|대칭 키]]를 정한 뒤 그 대칭 키로 데이터를 암호화하는 혼합 방식을 흔히 쓴다.[@nist-sp-800-175b-r1-2020]
+공개 키 알고리즘으로 [[symmetric-key-cryptography|대칭 키]]를 정한 뒤 그 대칭 키로 데이터를 암호화하는 혼합 방식을 흔히 쓴다.[@nist-sp-800-175b-r1-2020]
 
 ## 공개 키를 믿게 하는 수단
 

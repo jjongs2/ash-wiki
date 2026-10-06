@@ -9,11 +9,11 @@ verified: 2026-10-03
 
 [[software-engineering|소프트웨어 공학]]에서 **메트릭**(metric)은 측정 척도와 측정 방법을 함께 정한 것이다.[@istqb-glossary-metric-2026][@ieee-cs-sevocab-2026] ISO/IEC/IEEE 24765 용어집은 품질 메트릭(quality metric)을, 어떤 항목이 주어진 품질 속성을 갖는 정도를 정량적으로 나타낸 척도로 정의한다. 소프트웨어 데이터를 받아 그 정도로 해석할 수 있는 수치 하나를 내는 함수로도 정의한다.[@ieee-cs-sevocab-2026]
 
-ISO/IEC/IEEE 24765 용어집은 제품 자체를 재는 척도를 내부 척도(internal measure)로 정의하고, 코드 줄 수와 복잡도 척도를 그 예로 든다.[@ieee-cs-sevocab-2026] 내부 품질과 외부 품질은 [[software-quality-model|소프트웨어 품질 모델]]에서 다룬다.
+이 용어집은 제품 자체를 재는 척도를 내부 척도(internal measure)로 정의하고, 코드 줄 수와 복잡도 척도를 그 예로 든다.[@ieee-cs-sevocab-2026] 내부 품질과 외부 품질은 [[software-quality-model|소프트웨어 품질 모델]]에서 다룬다.
 
 ## 규모
 
-ISO/IEC/IEEE 24765 용어집은 SLOC(source lines of code)를 컴파일하기 전 프로그램에 든 프로그래밍 언어 코드의 줄 수로 정의하고, LOC를 lines of code의 약어로 둔다. 이 용어집은 **line of code**를 주석도 빈 줄도 아닌, 인도되는 소스 문장으로 정의한다.[@ieee-cs-sevocab-2026]
+이 용어집은 SLOC(source lines of code)를 컴파일하기 전 프로그램에 든 프로그래밍 언어 코드의 줄 수로 정의하고, LOC를 lines of code의 약어로 둔다. 이 용어집은 **line of code**를 주석도 빈 줄도 아닌, 인도되는 소스 문장으로 정의한다.[@ieee-cs-sevocab-2026]
 
 SonarQube Server는 물리적 줄 수(lines)와, 공백이나 탭이 아니고 주석의 일부도 아닌 글자를 하나 이상 담은 줄의 수(lines of code)를 따로 센다.[@sonarsource-sonarqube-metrics-definition-2026]
 

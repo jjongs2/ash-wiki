@@ -9,7 +9,7 @@ verified: 2026-10-03
 
 ## 기법마다 다른 커버리지 항목
 
-CTFL 강의계획서에 따르면 커버리지 항목은 테스트 기법마다 다르다. [[equivalence-partitioning|동치 분할]]은 분할을, [[boundary-value-analysis|경계값 분석]]은 [[boundary-value-analysis#경계값|경계값]]을, 구문 테스트는 구문을, 분기 테스트는 분기를 커버리지 항목으로 삼는다. 이 강의계획서가 다루는 [[black-box-testing|블랙박스]] 기법은 명세된 동작에서 고른 항목으로 커버리지를 재고, [[white-box-testing|화이트박스]] 기법인 구문 테스트와 분기 테스트는 코드의 구문과 분기로 커버리지를 잰다. 코드와 상관없는 커버리지를 쓰는 화이트박스 기법도 있다.[@istqb-ctfl-syllabus-2024]
+커버리지 항목은 테스트 기법마다 다르다. [[equivalence-partitioning|동치 분할]]은 분할을, [[boundary-value-analysis|경계값 분석]]은 [[boundary-value-analysis#경계값|경계값]]을, 구문 테스트는 구문을, 분기 테스트는 분기를 커버리지 항목으로 삼는다. 이 강의계획서가 다루는 [[black-box-testing|블랙박스]] 기법은 명세된 동작에서 고른 항목으로 커버리지를 재고, [[white-box-testing|화이트박스]] 기법인 구문 테스트와 분기 테스트는 코드의 구문과 분기로 커버리지를 잰다. 코드와 상관없는 커버리지를 쓰는 화이트박스 기법도 있다.[@istqb-ctfl-syllabus-2024]
 
 이 강의계획서에 따르면 [[traceability|추적성]]은 커버리지 평가를 돕는다.[@istqb-ctfl-syllabus-2024]
 

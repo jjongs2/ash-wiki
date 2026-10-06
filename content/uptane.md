@@ -16,7 +16,7 @@ Uptane Standard 2.1.0은 구현 세부를 구현자에게 맡기고, 표준을 �
 
 ### 두 저장소
 
-Uptane Standard 2.1.0은 저장소 둘을 정한다.[@uptane-standard-2-1-0-2023]
+이 표준은 저장소 둘을 정한다.[@uptane-standard-2-1-0-2023]
 
 - **Image repository**: OEM(Original Equipment Manufacturer)이나 공급사가 올린 설치용 이미지와 그 [[digital-signature|서명]]된 메타데이터를 차량에 내준다. 주로 사람이 관리하고 드물게 갱신된다.
 - **Director repository**: 차량 버전 매니페스트와 비공개 인벤토리 데이터베이스를 보고 어느 ECU에 어느 이미지를 설치할지 정하고, 그 지시를 담은 메타데이터를 그때그때 서명해 만든다. 대개 자동화된 온라인 프로세스가 다룬다.[@uptane-standard-2-1-0-2023]
@@ -34,7 +34,7 @@ Uptane Standard 2.1.0은 두 ECU의 일을 아래처럼 나눈다.[@uptane-stand
 
 ### Full verification과 partial verification
 
-Uptane Standard 2.1.0은 primary ECU가 full verification을 하게 하고, secondary ECU는 할 수 있으면 full verification을, 못 하면 적어도 partial verification을 하게 한다.[@uptane-standard-2-1-0-2023]
+이 표준은 primary ECU가 full verification을 하게 하고, secondary ECU는 할 수 있으면 full verification을, 못 하면 적어도 partial verification을 하게 한다.[@uptane-standard-2-1-0-2023]
 
 - **Full verification**: 두 저장소의 root, timestamp, snapshot, targets 메타데이터를 차례로 검증한 뒤, 두 저장소의 targets 메타데이터가 같은 이미지에 대해 일치하는지 대조한다.
 - **Partial verification**: 적어도 시간을 확인하고 director repository의 targets 메타데이터를 검증한다. ECU는 검사를 더할 수 있다.[@uptane-standard-2-1-0-2023]
@@ -49,7 +49,7 @@ Uptane Standard 2.1.0은 각 ECU가 지금 설치된 이미지의 파일 이름,
 
 ### 위협 모델
 
-Uptane Standard 2.1.0은 공격자의 목표를 심각도가 낮은 것부터 넷으로 나누고, 위협 모델의 공격을 이 목표로 분류한다.[@uptane-standard-2-1-0-2023]
+이 표준은 공격자의 목표를 심각도가 낮은 것부터 넷으로 나누고, 위협 모델의 공격을 이 목표로 분류한다.[@uptane-standard-2-1-0-2023]
 
 | 목표            | 내용                                                                                                                 | 공격                                                                                                  |
 | --------------- | -------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |

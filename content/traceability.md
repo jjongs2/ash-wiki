@@ -32,7 +32,7 @@ SWEBOK V4.0a에 따르면 소프트웨어 요구사항은 backward 방향으로�
 
 ![[diagrams/aspice-traceability-work-products.svg]]
 
-ASPICE 4.1은 법규나 형식 승인 요구사항에서 도출된 확인 수단에는 단방향 추적성으로 충분하다고 정한다.[@vda-automotive-spice-pam-4-1-2026] 변경 요청은 [[configuration-management|형상 관리]]에서 다룬다.
+이 모델은 법규나 형식 승인 요구사항에서 도출된 확인 수단에는 단방향 추적성으로 충분하다고 정한다.[@vda-automotive-spice-pam-4-1-2026] 변경 요청은 [[configuration-management|형상 관리]]에서 다룬다.
 
 ## Vertical 추적성과 horizontal 추적성
 

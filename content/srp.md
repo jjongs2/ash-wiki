@@ -34,11 +34,11 @@ IEEE 802.1Q-2022는 MSRP 선언을 다섯 가지로 나눈다. talker의 선언�
 - **Listener Ready Failed**: 둘 이상의 listener가 스트림을 요청했고, 적어도 하나는 받을 수 있지만 하나 이상은 대역폭이나 자원 문제로 받을 수 없다.
 - **Listener Asking Failed**: 스트림을 요청한 listener 가운데 어느 것도 대역폭이나 자원 문제로 스트림을 받을 수 없다.[@ieee-802-1q-2022]
 
-IEEE 802.1Q-2022는 **StreamID**를 스트림을 유일하게 가리는 64비트 필드로 정의하며, StreamID는 talker 등록을 그에 맞는 listener 등록과 짝짓는 데 쓰인다. StreamID는 스트림을 내보내는 talker에 연관된 48비트 MAC 주소와, 같은 talker가 내보내는 여러 스트림을 가리는 16비트 Unique ID로 이루어진다.[@ieee-802-1q-2022]
+이 표준은 **StreamID**를 스트림을 유일하게 가리는 64비트 필드로 정의하며, StreamID는 talker 등록을 그에 맞는 listener 등록과 짝짓는 데 쓰인다. StreamID는 스트림을 내보내는 talker에 연관된 48비트 MAC 주소와, 같은 talker가 내보내는 여러 스트림을 가리는 16비트 Unique ID로 이루어진다.[@ieee-802-1q-2022]
 
 ![[diagrams/srp-stream-id-fields.svg]]
 
-IEEE 802.1Q-2022는 확장 스트림 예약을 위한 속성 타입 Talker Enhanced와 Listener Enhanced도 정한다. 이 두 타입은 원래 속성 타입과 달리 MSRP FirstValue를 TLV(Type-Length-Value) 목록으로 부호화해, 선택 기능을 넣을 수 있는 유연한 구조를 준다.[@ieee-802-1q-2022]
+이 표준은 확장 스트림 예약을 위한 속성 타입 Talker Enhanced와 Listener Enhanced도 정한다. 이 두 타입은 원래 속성 타입과 달리 MSRP FirstValue를 TLV(Type-Length-Value) 목록으로 부호화해, 선택 기능을 넣을 수 있는 유연한 구조를 준다.[@ieee-802-1q-2022]
 
 KSZ956X MRP 드라이버는 SRP 속성을 talker 속성과 listener 속성으로 나눠 다룬다. talker 속성은 StreamID, 목적지 주소, VLAN ID, MaxFrameSize, MaxIntervalFrames, 우선순위, rank, AccumulatedLatency와, 실패를 보고할 bridge ID와 FailureCode를 담는다. FailureCode에는 대역폭 부족, 자원 부족 등이 있다. talker나 listener 속성이 등록되면 드라이버는 스위치에 그 스트림을 실을 대역폭이 있는지 확인한다.[@micrel-ksz956x-mrp-2014]
 

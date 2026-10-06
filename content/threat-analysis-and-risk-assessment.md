@@ -27,7 +27,7 @@ ISO/SAE 21434:2021은 TARA에 쓰는 용어를 다음처럼 정의한다.[@iso-s
 
 ## ISO/SAE 21434의 TARA 방법
 
-ISO/SAE 21434:2021은 15절의 TARA 방법을 15.3절부터 15.9절까지 일곱 절로 나눠 둔다. 절 제목은 15.3절부터 차례로 asset identification, threat scenario identification, impact rating, attack path analysis, attack feasibility rating, risk value determination, risk treatment decision이다.[@iso-sae-21434-obp-2021]
+이 표준은 15절의 TARA 방법을 15.3절부터 15.9절까지 일곱 절로 나눠 둔다. 절 제목은 15.3절부터 차례로 asset identification, threat scenario identification, impact rating, attack path analysis, attack feasibility rating, risk value determination, risk treatment decision이다.[@iso-sae-21434-obp-2021]
 
 이 표준은 Annex F에 safety, financial, operational, privacy 각각의 impact rating 기준을 예로 들고, Annex H에 리스크 매트릭스의 예를 둔다.[@iso-sae-21434-obp-2021]
 

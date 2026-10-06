@@ -20,14 +20,14 @@ NIST SP 800-56A Rev. 3은 이산 로그 기반의 키 합의 방식인 [[diffie-
 
 ## 공개 키로 감싼 키 전송
 
-SP 800-56B Rev. 2의 KTS-OAEP(Key-Transport Scheme with Optimal Asymmetric Encryption Padding) 방식에서 보내는 쪽은 받는 쪽의 RSA [[public-key-cryptography|공개 키]]로 키 재료를 RSA-OAEP 암호화해 보내고, 받는 쪽은 자기 개인 키로 복호해 키 재료를 꺼낸다. SP 800-56B Rev. 2에 따르면 받는 쪽의 RSA 개인 키가 드러나지 않는 한, 받는 쪽 말고는 누구도 암호문에서 키 재료를 꺼내지 못한다.[@nist-sp-800-56b-r2-2019]
+SP 800-56B Rev. 2의 KTS-OAEP(Key-Transport Scheme with Optimal Asymmetric Encryption Padding) 방식에서 보내는 쪽은 받는 쪽의 RSA [[public-key-cryptography|공개 키]]로 키 재료를 RSA-OAEP 암호화해 보내고, 받는 쪽은 자기 개인 키로 복호해 키 재료를 꺼낸다. 받는 쪽의 RSA 개인 키가 드러나지 않는 한, 받는 쪽 말고는 누구도 암호문에서 키 재료를 꺼내지 못한다.[@nist-sp-800-56b-r2-2019]
 
 ## 정적 키, 임시 키, 세션 키
 
 SP 800-56A Rev. 3은 키 설정에 쓰는 키 쌍을 정적 키 쌍과 임시 키 쌍으로 나눈다.[@nist-sp-800-56a-r3-2018]
 
-- **정적 키 쌍**(static key pair): 비교적 오랜 기간, 대개 여러 키 설정 거래에 걸쳐 쓰는 키 쌍이다. SP 800-56A Rev. 3에 따르면 정적 키 쌍은 키를 함께 설정할 상대를 바르게 식별했다는 확신을 어느 정도 준다.
-- **임시 키 쌍**(ephemeral key pair): 아주 짧은 기간, 보통 거래 하나에만 쓰는 키 쌍이다. SP 800-56A Rev. 3은 임시 개인 키를 키 설정 거래 하나에만 쓰고 되도록 빨리 없애게 정한다.[@nist-sp-800-56a-r3-2018]
+- **정적 키 쌍**(static key pair): 비교적 오랜 기간, 대개 여러 키 설정 거래에 걸쳐 쓰는 키 쌍이다. 정적 키 쌍은 키를 함께 설정할 상대를 바르게 식별했다는 확신을 어느 정도 준다.
+- **임시 키 쌍**(ephemeral key pair): 아주 짧은 기간, 보통 거래 하나에만 쓰는 키 쌍이다. 이 문서는 임시 개인 키를 키 설정 거래 하나에만 쓰고 되도록 빨리 없애게 정한다.[@nist-sp-800-56a-r3-2018]
 
 보안 용어집 RFC 4949는 대칭 암호에서 임시로 또는 비교적 짧은 기간 쓰는 키를 **세션 키**라 부른다. 세션 키는 한 연결이나 트랜잭션 묶음처럼 정해진 통신 기간 동안 쓰며, Diffie-Hellman 같은 키 합의로 계산한 공유 비밀 값에서 유도하기도 한다.[@ietf-rfc-4949-2007]
 

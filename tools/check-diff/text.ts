@@ -1,6 +1,9 @@
 import type { Page } from "../check-content/tree"
 import { tableLines } from "../check-content/source-checks"
 
+// 문장에서 표준 원문을 가리키는 표준 기구와 발행기관의 이름.
+export const standardBodies = "ISO|IEC|IEEE|SAE|AUTOSAR|RFC|ITU-T|Bosch|OSEK|POSIX"
+
 // 줄 번호와 오프셋을 서로 바꾼다. 줄 번호는 1부터 센다.
 export function lineStarts(text: string): number[] {
   const starts = [0]

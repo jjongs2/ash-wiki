@@ -9,15 +9,15 @@ verified: 2026-10-06
 
 ## PAUSE
 
-IEEE 802.3-2022는 **PAUSE**를 전이중 흐름 제어 메커니즘으로 정의한다. PAUSE 프레임은 MAC Control 프레임의 하나이고, MAC Control 프레임은 MAC(Medium Access Control)이 주고받는 다른 프레임과 [[ethernet-frame#길이/타입|길이/타입]] 필드로만 구별된다. 이 표준은 MAC Control 프레임의 길이/타입 필드 값을 EtherType `0x8808`로 정한다.[@ieee-802-3-2022]
+이 표준은 **PAUSE**를 전이중 흐름 제어 메커니즘으로 정의한다. PAUSE 프레임은 MAC Control 프레임의 하나이고, MAC Control 프레임은 MAC(Medium Access Control)이 주고받는 다른 프레임과 [[ethernet-frame#길이/타입|길이/타입]] 필드로만 구별된다. 이 표준은 MAC Control 프레임의 길이/타입 필드 값을 EtherType `0x8808`로 정한다.[@ieee-802-3-2022]
 
-IEEE 802.3-2022는 다른 스테이션의 데이터 프레임 송신을 막으려는 MAC Control 클라이언트가 멀티캐스트 주소 `01-80-C2-00-00-01`, PAUSE opcode, 막을 시간을 지정해 PAUSE를 요청하도록 정한다. PAUSE로는 MAC Control 프레임의 송신을 막을 수 없고, PAUSE 프레임은 전이중 모드로 설정된 DTE(Data Terminal Equipment)만 보낸다. [[ieee-802-1q|IEEE 802.1Q]]를 따르는 브리지는 포트의 상태나 MAC Control 부계층 구현 여부와 상관없이 이 멀티캐스트 주소로 가는 프레임을 전달하지 않으며, PAUSE를 구현하는 스테이션은 이 주소의 프레임을 받도록 MAC을 설정해야 한다.[@ieee-802-3-2022]
+이 표준은 다른 스테이션의 데이터 프레임 송신을 막으려는 MAC Control 클라이언트가 멀티캐스트 주소 `01-80-C2-00-00-01`, PAUSE opcode, 막을 시간을 지정해 PAUSE를 요청하도록 정한다. PAUSE로는 MAC Control 프레임의 송신을 막을 수 없고, PAUSE 프레임은 전이중 모드로 설정된 DTE(Data Terminal Equipment)만 보낸다. [[ieee-802-1q|IEEE 802.1Q]]를 따르는 브리지는 포트의 상태나 MAC Control 부계층 구현 여부와 상관없이 이 멀티캐스트 주소로 가는 프레임을 전달하지 않으며, PAUSE를 구현하는 스테이션은 이 주소의 프레임을 받도록 MAC을 설정해야 한다.[@ieee-802-3-2022]
 
-IEEE 802.3-2022는 막을 시간 pause_time을 2옥텟 부호 없는 정수로 두고, 그 단위 pause_quanta를 그 구현에서 512비트를 보내는 시간으로, 범위를 0부터 65535 pause_quanta까지로 정한다.[@ieee-802-3-2022]
+이 표준은 막을 시간 pause_time을 2옥텟 부호 없는 정수로 두고, 그 단위 pause_quanta를 그 구현에서 512비트를 보내는 시간으로, 범위를 0부터 65535 pause_quanta까지로 정한다.[@ieee-802-3-2022]
 
-IEEE 802.3-2022는 [[ethernet-phy#자동 협상|자동 협상]]의 기본 링크 코드워드에 PAUSE 비트와 ASM_DIR 비트를 두고, PAUSE 비트가 대칭 PAUSE 기능을, ASM_DIR 비트가 비대칭 PAUSE 지원을 나타내도록 정하며, ASM_DIR 비트가 설정되면 PAUSE 비트의 값이 PAUSE 프레임을 지원하는 방향을 나타내게 한다. 비대칭 PAUSE 설정에서는 PAUSE 수신 기능과 송신 기능을 따로 켠다.[@ieee-802-3-2022]
+이 표준은 [[ethernet-phy#자동 협상|자동 협상]]의 기본 링크 코드워드에 PAUSE 비트와 ASM_DIR 비트를 두고, PAUSE 비트가 대칭 PAUSE 기능을, ASM_DIR 비트가 비대칭 PAUSE 지원을 나타내도록 정하며, ASM_DIR 비트가 설정되면 PAUSE 비트의 값이 PAUSE 프레임을 지원하는 방향을 나타내게 한다. 비대칭 PAUSE 설정에서는 PAUSE 수신 기능과 송신 기능을 따로 켠다.[@ieee-802-3-2022]
 
-IEEE 802.3-2022는 [[frame-preemption|프레임 선점]]의 eMAC이나 pMAC에 붙은 MAC Control 부계층이 PAUSE를 만들지 않도록 정한다.[@ieee-802-3-2022]
+이 표준은 [[frame-preemption|프레임 선점]]의 eMAC이나 pMAC에 붙은 MAC Control 부계층이 PAUSE를 만들지 않도록 정한다.[@ieee-802-3-2022]
 
 IEEE 802.1BA-2021은 흐름 제어 프로토콜이 [[avb|AVB]] 동작이 주는 지연 보장을 깨뜨릴 수 있으므로, 흐름 제어를 지원하는 AVB 시스템이 오디오·비디오 스트림을 지원하는 포트에서 MAC Control PAUSE를 끄도록 요구한다. 이 표준은 어느 포트에서 [[avb#SR 클래스|SR 클래스]]에 대응하는 우선순위에 PFC를 켜면, 그 포트와 SR 클래스의 SRPdomainBoundaryPort 파라미터를 TRUE로 두게 한다.[@ieee-802-1ba-2021]
 

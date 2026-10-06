@@ -23,4 +23,4 @@ ISO 26262-1:2018은 HARA의 용어를 다음처럼 정의한다.[@iso-26262-1-ob
 
 ## Safety goal
 
-ISO 26262-1:2018은 **safety goal**을 차량 수준에서 HARA의 결과로 나오는 최상위 [[safety-requirement|안전 요구사항]]으로 정의한다. Safety goal 하나가 여러 해저드에 관련될 수 있고, 여러 safety goal이 해저드 하나에 관련될 수도 있다. 또 [[fault-tolerant-time-interval|FTTI]]를 safety goal의 속성으로 두고, [[safety-mechanism#안전 상태와 성능 저하|안전 상태]]를 고장이 났을 때 불합리한 리스크가 없는 아이템의 운용 모드로 정의한다.[@iso-26262-1-obp-2018]
+이 표준은 **safety goal**을 차량 수준에서 HARA의 결과로 나오는 최상위 [[safety-requirement|안전 요구사항]]으로 정의한다. Safety goal 하나가 여러 해저드에 관련될 수 있고, 여러 safety goal이 해저드 하나에 관련될 수도 있다. 또 [[fault-tolerant-time-interval|FTTI]]를 safety goal의 속성으로 두고, [[safety-mechanism#안전 상태와 성능 저하|안전 상태]]를 고장이 났을 때 불합리한 리스크가 없는 아이템의 운용 모드로 정의한다.[@iso-26262-1-obp-2018]

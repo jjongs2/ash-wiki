@@ -50,4 +50,4 @@ IEEE 802.3-2022는 링크 상대가 Nearest Bridge 그룹 주소로 보낸 LLDPD
 
 ![[diagrams/frame-preemption-verify-respond.svg]]
 
-IEEE 802.3-2022는 받는 쪽이 Additional Ethernet Capabilities TLV의 additional fragment size 필드로, 마지막이 아닌 조각에 64옥텟을 넘어 더 필요한 최소 옥텟 수를 64옥텟 단위의 2비트 정수로 알리게 한다. 이 표준은 그 값을 $a$라 하면, 보내는 쪽이 preemptable 프레임을 적어도 $64(1 + a) - 4$옥텟 보낸 뒤에야 선점하도록 정한다.[@ieee-802-3-2022]
+이 표준은 받는 쪽이 Additional Ethernet Capabilities TLV의 additional fragment size 필드로, 마지막이 아닌 조각에 64옥텟을 넘어 더 필요한 최소 옥텟 수를 64옥텟 단위의 2비트 정수로 알리게 한다. 이 표준은 그 값을 $a$라 하면, 보내는 쪽이 preemptable 프레임을 적어도 $64(1 + a) - 4$옥텟 보낸 뒤에야 선점하도록 정한다.[@ieee-802-3-2022]

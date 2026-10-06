@@ -25,7 +25,7 @@ verified: 2026-09-29
 
 IEEE 802.3-2022는 자동 협상을 Clause 28, Clause 37, Clause 73, Clause 98에서 정한다. Clause 37은 1000BASE-X의 자동 협상을, Clause 73은 백플레인 이더넷 PHY의 자동 협상을 정한다. Clause 28의 자동 협상은 변형한 10BASE-T 링크 무결성 시험 펄스열로 동작한다. 링크 양 끝의 장치는 자기 능력을 알리고 함께 가진 동작 모드를 확인하며, 공통 모드가 여럿이면 미리 정한 우선순위로 하나를 고른다. 자동 협상을 지원하지 않는 링크 상대는 parallel detection으로 알아내지만, 이때는 고른 PMA에 해당하는 반이중 모드만 자동으로 알아낼 수 있다. 1000BASE-T PHY는 Clause 28의 자동 협상을 반드시 지원해야 한다.[@ieee-802-3-2022]
 
-IEEE 802.3-2022는 Clause 98에서 꼬임쌍선 한 쌍의 자동 협상을 정한다. 이 자동 협상은 DME(Differential Manchester Encoding) 페이지를 반이중으로 주고받으며, 링크 양 끝이 공통 모드를 고르게 하는 것에 더해 링크 트레이닝 전에 두 장치의 시간 기준을 맞추는 것도 목표로 한다. [[100base-t1|100BASE-T1]], [[1000base-t1|1000BASE-T1]], [[10base-t1s|10BASE-T1S]], [[multigbase-t1|MultiGBASE-T1]]의 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1은 Clause 98의 자동 협상을 선택 사항으로 쓴다.[@ieee-802-3-2022] IEEE 802.3cy-2023이 정하는 25GBASE-T1도 Clause 98의 자동 협상을 선택 사항으로 쓴다.[@ieee-802-3cy-2023]
+이 표준은 Clause 98에서 꼬임쌍선 한 쌍의 자동 협상을 정한다. 이 자동 협상은 DME(Differential Manchester Encoding) 페이지를 반이중으로 주고받으며, 링크 양 끝이 공통 모드를 고르게 하는 것에 더해 링크 트레이닝 전에 두 장치의 시간 기준을 맞추는 것도 목표로 한다. [[100base-t1|100BASE-T1]], [[1000base-t1|1000BASE-T1]], [[10base-t1s|10BASE-T1S]], [[multigbase-t1|MultiGBASE-T1]]의 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1은 Clause 98의 자동 협상을 선택 사항으로 쓴다.[@ieee-802-3-2022] IEEE 802.3cy-2023이 정하는 25GBASE-T1도 Clause 98의 자동 협상을 선택 사항으로 쓴다.[@ieee-802-3cy-2023]
 
 ## 진단
 

@@ -17,7 +17,7 @@ verified: 2026-10-03
 
 ## 다운로드 서비스
 
-AUTOSAR R25-11의 Dcm 명세는 다운로드에 쓰는 세 서비스를 다음처럼 다룬다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+이 명세는 다운로드에 쓰는 세 서비스를 다음처럼 다룬다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 - RequestDownload: 다운로드의 시작을 요청한다. Dcm은 데이터를 쓸 서버 메모리의 시작 주소와 압축하기 전의 크기를 콜아웃 `Dcm_ProcessRequestDownload`에 넘기고, 긍정 응답의 maxNumberOfBlockLength로 한 블록의 최대 길이를 돌려준다.
 - TransferData: 다운로드나 업로드 중에 데이터를 보낸다. Dcm은 그 앞에 RequestDownload나 RequestUpload를 받았는지 추적해 순서 오류를 검사하고, 블록 순서 계수기를 초기화한다.

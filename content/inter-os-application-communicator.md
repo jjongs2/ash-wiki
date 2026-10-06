@@ -30,8 +30,8 @@ IOC는 범용 API(Application Programming Interface)를 두지 않고, 통신마
 
 ![[diagrams/ioc-queued-unqueued.svg]]
 
-AUTOSAR R25-11 OS 명세는 구현 예로, IOC 송신 서비스가 받는 쪽과 공유하는 메모리 영역의 버퍼에 데이터를 쓰고 받는 쪽이 그 버퍼에서 읽는 방식을 든다. 구현 방식은 하드웨어에 따라 다를 수 있고, RTE에는 드러나지 않아야 한다.[@autosar-cp-sws-os-2025]
+이 명세는 구현 예로, IOC 송신 서비스가 받는 쪽과 공유하는 메모리 영역의 버퍼에 데이터를 쓰고 받는 쪽이 그 버퍼에서 읽는 방식을 든다. 구현 방식은 하드웨어에 따라 다를 수 있고, RTE에는 드러나지 않아야 한다.[@autosar-cp-sws-os-2025]
 
 ## Notification
 
-IOC는 받는 쪽에서 전송된 데이터에 접근할 수 있게 되는 즉시, 통신 사용자가 제공하고 설정한 callback 함수를 불러 받는 쪽에 알릴 수 있다. 이 notification은 선택이며, IOC가 아니라 IOC의 클라이언트인 RTE가 맡을 수도 있다. AUTOSAR R25-11 OS 명세는 예로 두 방식을 든다. IOC notification 없이 받는 쪽 [[runnable-entity|runnable]]을 [[osek-alarm|알람]] 등으로 주기적으로 불러 데이터를 받게 하는 방식과, RTE가 받는 쪽 [[osek-task|태스크]]를 활성화해 알리는 방식이다.[@autosar-cp-sws-os-2025]
+IOC는 받는 쪽에서 전송된 데이터에 접근할 수 있게 되는 즉시, 통신 사용자가 제공하고 설정한 callback 함수를 불러 받는 쪽에 알릴 수 있다. 이 notification은 선택이며, IOC가 아니라 IOC의 클라이언트인 RTE가 맡을 수도 있다. 이 명세는 예로 두 방식을 든다. IOC notification 없이 받는 쪽 [[runnable-entity|runnable]]을 [[osek-alarm|알람]] 등으로 주기적으로 불러 데이터를 받게 하는 방식과, RTE가 받는 쪽 [[osek-task|태스크]]를 활성화해 알리는 방식이다.[@autosar-cp-sws-os-2025]

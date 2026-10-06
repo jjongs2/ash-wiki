@@ -22,7 +22,7 @@ PWM Driver 규격은 아래 용어를 정의한다.[@autosar-cp-sws-pwmdriver-20
 
 ## Channel class
 
-PWM Driver 규격은 channel을 주기를 바꿀 수 있는지에 따라 세 class로 나눈다.[@autosar-cp-sws-pwmdriver-2025]
+이 규격은 channel을 주기를 바꿀 수 있는지에 따라 세 class로 나눈다.[@autosar-cp-sws-pwmdriver-2025]
 
 - **Fixed period**: 주기가 고정되고 duty cycle만 바꿀 수 있다.
 - **Fixed period shifted**: 주기가 shift된 채 고정되고 duty cycle만 바꿀 수 있다. 하드웨어가 지원할 때만 쓴다.

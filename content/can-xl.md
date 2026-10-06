@@ -13,19 +13,19 @@ verified: 2026-10-06
 
 ## 프레임 포맷
 
-ISO 11898-1:2024는 **XL 프레임 포맷**(XLFF, XL Frame Format)을 11비트 [[can-identifier|식별자]]를 쓰고 데이터를 2048바이트까지 담으며, [[can-fd#두 비트율|데이터 구간]]의 시작과 끝에서 비트율을 바꾸는 데이터 프레임 포맷으로 정의한다. 이 포맷을 쓰는 데이터 프레임은 **XL 프레임**으로 정의한다.[@iso-11898-1-obp-2024] 다른 프레임 포맷과의 비교는 [[can-frame#기본 포맷과 확장 포맷|CAN 프레임]]에서 다룬다.
+이 표준은 **XL 프레임 포맷**(XLFF, XL Frame Format)을 11비트 [[can-identifier|식별자]]를 쓰고 데이터를 2048바이트까지 담으며, [[can-fd#두 비트율|데이터 구간]]의 시작과 끝에서 비트율을 바꾸는 데이터 프레임 포맷으로 정의한다. 이 포맷을 쓰는 데이터 프레임은 **XL 프레임**으로 정의한다.[@iso-11898-1-obp-2024] 다른 프레임 포맷과의 비교는 [[can-frame#기본 포맷과 확장 포맷|CAN 프레임]]에서 다룬다.
 
 이 표준은 데이터 링크 계층을 LLC(Logical Link Control)와 MAC(Medium Access Control) 부계층으로 나누고, 둘 사이의 서비스 데이터 단위를 LLC 프레임으로 구현한다. LLC 프레임에는 상위 계층 프로토콜의 설정과 식별 정보를 주는 SDT(Service Data Unit Type)와 VCID(Virtual CAN Channel Identifier)를 두고, 상위 계층 기능을 어떻게 다루는지는 정하지 않는다.[@iso-11898-1-obp-2024]
 
 ## 물리 부호화와 트랜시버 모드
 
-ISO 11898-1:2024는 PCS(Physical Coding Sublayer)가 [[can-transceiver#FAST 모드|CAN SIC XL 트랜시버]]로 넘길 PWM(Pulse-Width Modulation) 부호화를 맡고, 그 복호화는 트랜시버가 맡는다고 정한다.[@iso-11898-1-obp-2024]
+이 표준은 PCS(Physical Coding Sublayer)가 [[can-transceiver#FAST 모드|CAN SIC XL 트랜시버]]로 넘길 PWM(Pulse-Width Modulation) 부호화를 맡고, 그 복호화는 트랜시버가 맡는다고 정한다.[@iso-11898-1-obp-2024]
 
 이 표준은 [[dominant-and-recessive|dominant]] 비트가 recessive 비트를 덮어쓸 수 있는 PCS의 동작 모드를 **중재 모드**(arbitration mode)로 정의한다. PMA(Physical Medium Attachment) 부계층의 동작 모드는 **트랜시버 모드**로 정의하고, 그 가운데 PMA가 버스 상태를 중재 모드와 다르게 구동할 수 있는 모드를 **data TX 모드**, 버스 상태가 중재 모드 때와 다를 수 있는 모드를 **data RX 모드**로 정의한다.[@iso-11898-1-obp-2024]
 
 ## 오류 신호
 
-ISO 11898-1:2024는 **protocol exception event**를, 앞으로 나올 새 프레임 포맷을 용인하려고 정해진 규칙에서 벗어나는 것이나 오류 신호를 끈 CAN XL에서 오류에 반응하는 것으로 정의한다. 이 표준은 protocol exception event 뒤에 idle 조건을 기다리는 노드도 [[can-controller#노드 상태|integrating]] 상태에 둔다.[@iso-11898-1-obp-2024]
+이 표준은 **protocol exception event**를, 앞으로 나올 새 프레임 포맷을 용인하려고 정해진 규칙에서 벗어나는 것이나 오류 신호를 끈 CAN XL에서 오류에 반응하는 것으로 정의한다. 이 표준은 protocol exception event 뒤에 idle 조건을 기다리는 노드도 [[can-controller#노드 상태|integrating]] 상태에 둔다.[@iso-11898-1-obp-2024]
 
 Bosch의 CAN XL 개요에 따르면 CAN XL에는 오류 신호를 켠 모드와 끈 모드가 있고, 모드는 실행 중에 소프트웨어로 설정하며, 한 네트워크의 노드는 모두 같은 모드를 써야 한다. 오류 신호를 켜면 CAN FD처럼 오류를 [[can-error-frame#오류 플래그|오류 플래그]]로 알리고, 버스에 classical CAN, CAN FD, CAN XL 프레임이 함께 다닐 수 있다. 오류 신호를 끄면 오류를 알리지 않는다. 수신 노드는 오류가 나면 진행 중인 송신이 끝나기를 기다려 다시 통합하고, 송신 노드는 송신 오류를 검사하지 않고 프레임을 끝까지 보낸다. 이 모드는 CAN FD와 호환되지 않아 버스에는 CAN XL 프레임만 다닌다.[@bosch-can-xl-overview-2023]
 
@@ -62,11 +62,11 @@ CAN XL은 버스 접근 우선순위를 정하는 짧은 11비트 우선순위 I
 
 ## CAN FD와 섞어 쓰기
 
-Bosch의 CAN XL 개요에 따르면 CAN FD 프레임의 res 비트는 앞으로의 프로토콜 확장을 위해 남겨 둔 비트다. CAN FD 노드는 이 비트가 0이면 CAN FD 프레임을 기대하고, 1이면 수동으로 기다리는 버스 통합 상태에 들어가 recessive 11비트를 보고 CAN XL 프레임이 끝나면 통합을 마친다. 그래서 CAN FD 노드와 CAN XL 노드를 한 버스에 섞어 쓸 수 있고, 이때 CAN XL은 SIC(Signal Improvement Capability) 모드로만 동작해 트랜시버 모드를 바꾸지 않는다. 섞어 쓰려면 CAN XL의 오류 신호를 켜야 한다.[@bosch-can-xl-overview-2023]
+CAN FD 프레임의 res 비트는 앞으로의 프로토콜 확장을 위해 남겨 둔 비트다. CAN FD 노드는 이 비트가 0이면 CAN FD 프레임을 기대하고, 1이면 수동으로 기다리는 버스 통합 상태에 들어가 recessive 11비트를 보고 CAN XL 프레임이 끝나면 통합을 마친다. 그래서 CAN FD 노드와 CAN XL 노드를 한 버스에 섞어 쓸 수 있고, 이때 CAN XL은 SIC(Signal Improvement Capability) 모드로만 동작해 트랜시버 모드를 바꾸지 않는다. 섞어 쓰려면 CAN XL의 오류 신호를 켜야 한다.[@bosch-can-xl-overview-2023]
 
 ## 비트율
 
-Bosch의 CAN XL 개요에 따르면 CAN XL의 중재 구간 비트율 $R_\mathrm{b,N}$은 1 Mbit/s 이하이고, 데이터 구간 비트율 $R_\mathrm{b,D}$는 사용자가 트랜시버와 토폴로지에 맞춰 20 Mbit/s까지 정한다. 두 비트율은 $2R_\mathrm{b,N} \le R_\mathrm{b,D} \le 40R_\mathrm{b,N}$을 만족한다.[@bosch-can-xl-overview-2023]
+CAN XL의 중재 구간 비트율 $R_\mathrm{b,N}$은 1 Mbit/s 이하이고, 데이터 구간 비트율 $R_\mathrm{b,D}$는 사용자가 트랜시버와 토폴로지에 맞춰 20 Mbit/s까지 정한다. 두 비트율은 $2R_\mathrm{b,N} \le R_\mathrm{b,D} \le 40R_\mathrm{b,N}$을 만족한다.[@bosch-can-xl-overview-2023]
 
 이 개요는 CAN XL에 쓸 수 있는 트랜시버마다 데이터 구간 비트율을 아래처럼 제시한다. 고속 CAN 트랜시버와 CAN FD 트랜시버의 값은 기존 버스 토폴로지에서 현실적인 값이다.[@bosch-can-xl-overview-2023]
 

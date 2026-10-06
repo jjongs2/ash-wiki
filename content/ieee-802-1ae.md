@@ -14,7 +14,7 @@ status: 개정 중
 
 ## 범위
 
-IEEE 802.1AE-2018은 MAC 클라이언트에 드러나지 않게 동작하고 매체 접근 방식에 매이지 않는 프로토콜과 실체로, 비연결형 사용자 데이터의 기밀성, 프레임 데이터의 무결성, 데이터 출처의 진정성을 제공하는 것을 정한다. 이 표준은 MACsec을 네트워크 기반 구조의 신뢰하는 구성 요소 사이의 통신을 보호하는 수단으로 두며, 그 구성 요소 자체를 이용한 공격은 막지 못하므로 응용 사이의 종단 간 보안 프로토콜을 대신하지 않고 보완한다고 둔다.[@ieee-802-1ae-2018]
+이 표준은 MAC 클라이언트에 드러나지 않게 동작하고 매체 접근 방식에 매이지 않는 프로토콜과 실체로, 비연결형 사용자 데이터의 기밀성, 프레임 데이터의 무결성, 데이터 출처의 진정성을 제공하는 것을 정한다. 이 표준은 MACsec을 네트워크 기반 구조의 신뢰하는 구성 요소 사이의 통신을 보호하는 수단으로 두며, 그 구성 요소 자체를 이용한 공격은 막지 못하므로 응용 사이의 종단 간 보안 프로토콜을 대신하지 않고 보완한다고 둔다.[@ieee-802-1ae-2018]
 
 이 표준이 쓰는 보안 관계와 식별자는 아래와 같다.[@ieee-802-1ae-2018]
 
@@ -28,15 +28,15 @@ IEEE 802.1AE-2018은 MAC 클라이언트에 드러나지 않게 동작하고 매
 
 ![[diagrams/macsec-ca-sc-sa.svg]]
 
-IEEE 802.1AE-2018은 SecTAG가 MACsec EtherType `0x88E5`로 시작하도록 정한다.[@ieee-802-1ae-2018] IEEE 등록기관의 EtherType 공개 목록도 `0x88E5`를 IEEE 802.1AE의 MACsec 태그에, `0x888E`를 IEEE 802.1X가 정하는 EAPOL(EAP over LAN)용 PAE(Port Access Entity)에 배정한다.[@ieee-ra-ethertype-2024]
+이 표준은 SecTAG가 MACsec EtherType `0x88E5`로 시작하도록 정한다.[@ieee-802-1ae-2018] IEEE 등록기관의 EtherType 공개 목록도 `0x88E5`를 IEEE 802.1AE의 MACsec 태그에, `0x888E`를 IEEE 802.1X가 정하는 EAPOL(EAP over LAN)용 PAE(Port Access Entity)에 배정한다.[@ieee-ra-ethertype-2024]
 
 IEEE 802.1AE-2018은 [[symmetric-key-cryptography#AES|AES]]-128 블록 암호를 [[block-cipher-mode-of-operation#인증 암호 모드|GCM]]으로 운용하는 GCM-AES-128을 기본 cipher suite로 정한다. 키는 128비트 SAK이고, 96비트 IV의 상위 64비트는 SCI, 하위 32비트는 PN이고, ICV는 128비트다.[@ieee-802-1ae-2018]
 
 ![[diagrams/macsec-gcm-aes-128-iv.svg]]
 
-IEEE 802.1X-2020은 포트 기반 네트워크 접근 제어를 정하는 표준으로, 서로 통신할 시스템이 EAP(Extensible Authentication Protocol)와 그 LAN 캡슐화인 EAPOL로 상호 인증하게 하고, MACsec으로 통신을 보호하는 데 쓰는 MKA(MACsec Key Agreement) 프로토콜을 정한다.[@ieee-802-1x-project-2026][@ieee-802-1x-2020] MKA는 서로 인증된 MACsec 피어를 찾고 그 가운데 하나를 Key Server로 뽑으며, Key Server가 MACsec이 프레임 보호에 쓰는 대칭 SAK를 나눠 준다.[@ieee-802-1ae-project-2026] IEEE 802.1Q-2022의 부속서 R(참고)은 CA 구성원이 공유하는 비밀 키인 CAK(Connectivity Association Key)를 가져야 CA에 참여할 수 있고, MKA가 이 키로 CA 구성원을 서로 확인하고 SAK를 나눈다는 설명을 제시한다.[@ieee-802-1q-2022]
+IEEE 802.1X-2020은 포트 기반 네트워크 접근 제어를 정하는 표준으로, 서로 통신할 시스템이 EAP(Extensible Authentication Protocol)와 그 LAN 캡슐화인 EAPOL로 상호 인증하게 하고, MACsec으로 통신을 보호하는 데 쓰는 MKA(MACsec Key Agreement) 프로토콜을 정한다.[@ieee-802-1x-project-2026][@ieee-802-1x-2020] MKA는 서로 인증된 MACsec 피어를 찾고 그 가운데 하나를 Key Server로 뽑으며, Key Server가 MACsec이 프레임 보호에 쓰는 대칭 SAK를 나눠 준다.[@ieee-802-1ae-project-2026] [[ieee-802-1q|IEEE 802.1Q]]-2022의 부속서 R(참고)은 CA 구성원이 공유하는 비밀 키인 CAK(Connectivity Association Key)를 가져야 CA에 참여할 수 있고, MKA가 이 키로 CA 구성원을 서로 확인하고 SAK를 나눈다는 설명을 제시한다.[@ieee-802-1q-2022]
 
-[[ieee-802-1q|IEEE 802.1Q]]-2022의 부속서 R(참고)은 [[frame-preemption|프레임 선점]]과 MACsec을 함께 쓸 때의 물음에 답을 제시한다. 이 부속서는 선점으로 프레임이 조각나도 ICV가 프레임 전체를 보호하므로 조각을 빼거나 바꿔치기할 수 없고, 그 값은 프레임 전체를 보호한 뒤 보낼 때와 같다는 답을 제시한다. 또 MKA Key Server가 새 SAK로 바꾸라고 알린 뒤 3초 동안은 이전 수신 SA와 새 수신 SA를 함께 받을 수 있으므로, 새 SAK로 보호한 express 프레임을 받은 뒤에도 이전 SAK로 보호한 선점 프레임을 마지막 조각까지 받아 검증할 수 있다는 답도 제시한다.[@ieee-802-1q-2022]
+부속서 R은 [[frame-preemption|프레임 선점]]과 MACsec을 함께 쓸 때의 물음에 답을 제시한다. 이 부속서는 선점으로 프레임이 조각나도 ICV가 프레임 전체를 보호하므로 조각을 빼거나 바꿔치기할 수 없고, 그 값은 프레임 전체를 보호한 뒤 보낼 때와 같다는 답을 제시한다. 또 MKA Key Server가 새 SAK로 바꾸라고 알린 뒤 3초 동안은 이전 수신 SA와 새 수신 SA를 함께 받을 수 있으므로, 새 SAK로 보호한 express 프레임을 받은 뒤에도 이전 SAK로 보호한 선점 프레임을 마지막 조각까지 받아 검증할 수 있다는 답도 제시한다.[@ieee-802-1q-2022]
 
 TI의 DP83TC817S-Q1은 IEEE 802.1AE MACsec 하드웨어 엔진을 내장한 [[100base-t1|100BASE-T1]] 차량용 이더넷 [[ethernet-phy|PHY]]로, 송신과 수신 경로 모두에서 선로 속도로 암호화와 인증을 한다. cipher suite는 GCM-AES-128/256과, 확장 패킷 번호(XPN, Extended Packet Numbering)를 쓰는 GCM-AES-XPN-128/256을 지원하고, SAK를 16개까지 두어 송수신 SC 8개를 지원한다.[@ti-dp83tc817s-q1-2024]
 

@@ -1,5 +1,5 @@
 ---
-status: accepted
+status: superseded by ADR-0014
 ---
 
 # 한 출처만 이어지는 절은 출처 표시를 절 첫 문단에 한 번 둔다
