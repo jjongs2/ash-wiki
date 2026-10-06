@@ -27,7 +27,7 @@ gPTP 도메인의 모든 PTP Instance가 같은 Grandmaster PTP Instance를 따�
 
 gPTP는 매체에 상관없는 부분과 매체마다 다른 부분으로 나누어 정한다. 다루는 매체는 전이중 점대점 링크의 [[ieee-802-3|IEEE 802.3]] 이더넷, IEEE 802.3 EPON(Ethernet Passive Optical Network), IEEE 802.11 무선, 일반 CSN(Coordinated Shared Network)이다.[@ieee-802-1as-2025]
 
-전이중 점대점 링크에서는 링크 양 끝의 포트가 저마다 [[ptp#피어 지연|피어 지연]](peer-to-peer delay) 방식으로 링크의 전파 지연을 잰다. 시각 정보는 Sync와 Follow_Up 메시지로 전한다. PTP Relay Instance는 상류 링크의 전파 지연과 자기 체류 시간(residence time)을 더해 correctionField에 보태고, 이를 하류로 보내는 시각 정보에 싣는다.[@ieee-802-1as-2025]
+전이중 점대점 링크에서는 링크 양 끝의 포트가 저마다 [[ptp#피어 지연|피어 지연]](peer-to-peer delay) 방식으로 링크의 전파 지연을 잰다. 시각 정보는 Sync와 Follow_Up 메시지로 전한다. PTP Relay Instance는 상류 링크의 전파 지연과 자기 체류 시간(residence time)을 더해 correctionField에 보태고, 이를 하류로 보내는 시각 정보에 싣는다. 이 링크에서 gPTP 메시지를 싣는 프레임은 [[virtual-lan#VLAN 태그|VLAN 태그]]를 달지 않아야 하고, 우선순위만 태그된 프레임이어서도 안 된다.[@ieee-802-1as-2025]
 
 ![[diagrams/gptp-relay-correction-field.svg]]
 
