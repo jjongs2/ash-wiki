@@ -29,7 +29,7 @@
   <text x="390" y="116" text-anchor="middle" fill="var(--text, #727981)">PAUSE (최대 pause_time)</text>
 
   <!-- 송신을 멈춘 구간 -->
-  <rect x="552" y="136" width="16" height="68" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
+  <rect x="552" y="136" width="16" height="68" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
   <text x="576" y="174" fill="var(--text, #727981)">데이터 프레임 송신 멈춤</text>
 
   <!-- 흐름 제어를 풂 -->
