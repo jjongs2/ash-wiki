@@ -51,10 +51,11 @@ export function claimBlocks(page: Page): ClaimBlock[] {
   return found
 }
 
-// 출처 표시로 보는 것: "…에 따르면", 표준 기구의 이름, 첫 인용 키의 발행기관·저자 마디(키의 첫 마디)와
-// 부품 번호 마디(글자와 숫자가 섞인 마디). "이 표준"처럼 가리키는 말은 구간을 열지 못하므로 치지 않는다.
+// 출처 표시로 보는 것: "…에 따르면", 표준 기구와 키의 발행기관 마디로는 드러나지 않는 출판물의 이름, 첫 인용
+// 키의 발행기관·저자 마디(키의 첫 마디)와 부품 번호 마디(글자와 숫자가 섞인 마디). "이 표준"처럼 가리키는
+// 말은 구간을 열지 못하므로 치지 않는다.
 const standardBody =
-  /(?<![A-Za-z0-9])(?:ISO|IEC|IEEE|SAE|AUTOSAR|RFC|ITU-T|Bosch|OSEK|POSIX)(?![A-Za-z])/
+  /(?<![A-Za-z0-9])(?:ISO|IEC|IEEE|SAE|AUTOSAR|RFC|ITU-T|Bosch|OSEK|POSIX|ASPICE|Automotive SPICE|CTFL|SWEBOK|UN R[0-9]+)(?![A-Za-z])/
 
 export function attributed(claim: ClaimBlock): boolean {
   if (/에 따르면/.test(claim.opening) || standardBody.test(claim.opening)) return true
