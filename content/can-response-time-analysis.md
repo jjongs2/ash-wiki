@@ -30,7 +30,7 @@ $$
 
 이 식은 기본 포맷에서 $C_m = (55 + 10 s_m)\,t_\mathrm{bit}$, 확장 포맷에서 $C_m = (80 + 10 s_m)\,t_\mathrm{bit}$가 된다.[@davis-can-schedulability-2007]
 
-Bosch 기사에 따르면, Classical CAN에서 스터프 비트가 가장 많이 들어가는 비트열에서는 넣은 스터프 비트가 뒤따르는 같은 값 비트 4개와 함께 다시 같은 값 5비트를 이루어, 그 뒤에 또 스터프 비트가 들어간다.[@bosch-can-xl-clock-tolerances-2024]
+Bosch 기사에 따르면 Classical CAN에서 스터프 비트가 가장 많이 들어가는 비트열에서는 넣은 스터프 비트가 뒤따르는 같은 값 비트 4개와 함께 다시 같은 값 5비트를 이루어, 그 뒤에 또 스터프 비트가 들어간다.[@bosch-can-xl-clock-tolerances-2024]
 
 ## 응답 시간
 
