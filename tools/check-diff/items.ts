@@ -13,6 +13,7 @@ import {
   listNames,
   sentences,
   similarity,
+  standardBodies,
   touches,
 } from "./text"
 import { ownerPage } from "./owner"
@@ -34,7 +35,7 @@ export type Item = (context: Context) => Violation[]
 // "에서"까지 걸려, #318·#319의 diff에서 후보 25개 가운데 21개가 그런 것이었다. 이름 안의 토큰은 공백
 // 하나로만 나눈다. 구분자를 생략할 수 있으면 영문 낱말 하나를 여러 방법으로 쪼개, "에서"가 없는 긴 영문
 // 제목 줄에서 역추적이 지수적으로 늘어난다(#339).
-const standardSubject = "(?:ISO|IEC|IEEE|SAE|AUTOSAR|RFC|ITU-T|Bosch|OSEK|POSIX|표준|규격|명세)"
+const standardSubject = `(?:${standardBodies}|표준|규격|명세)`
 const standardNameToken = "[A-Za-z0-9.:/_\\]-]+"
 const standardSentence = new RegExp(
   `${standardSubject}(?: ?${standardNameToken}(?: ${standardNameToken})*)?(?:의 [^\\s.]+(?: [^\\s.]+)?)?(?:에서는?|에 따르면) |` +
