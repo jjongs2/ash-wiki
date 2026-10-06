@@ -9,6 +9,8 @@ verified: 2026-10-07
 
 **이벤트 플래그**(event flag)는 사건이 일어났는지를 비트 하나로 나타내는 동기화 수단이다. 플래그 비트 여러 개가 한 객체에 묶이고, 태스크는 그 가운데 고른 비트들 중 하나라도 설정되기를(OR) 기다리거나 모두 설정되기를(AND) 기다린다. 플래그는 태스크뿐 아니라 인터럽트 처리기도 설정할 수 있다.[@micrium-ucos-iii-event-flags-2026][@arm-cmsis-rtos2-event-flags-2026] FreeRTOS는 이벤트 플래그의 묶음을 **event group**이라 부른다.[@freertos-event-groups-2026]
 
+![[diagrams/event-flags-or-and-wait.svg]]
+
 FreeRTOS의 [[semaphore|세마포어]]와 [[message-queue|큐]]는 사건 하나를 기다리게 하고 사건이 일어나면 우선순위가 가장 높은 대기자 하나만 깨우지만, event group은 여러 사건의 조합을 기다리게 하고 같은 사건을 기다리던 태스크를 모두 깨운다. 그래서 여러 태스크를 동기화하거나 사건을 여러 태스크에 알리는 데 쓴다.[@freertos-event-groups-2026]
 
 ## 제품 비교

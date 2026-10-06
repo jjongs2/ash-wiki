@@ -33,6 +33,8 @@ FreeRTOS 커널 책에 따르면 `PORTA |= 0x01` 같은 C 문장은 보통 값�
 
 µC/OS-III와 FreeRTOS에서는 태스크와 인터럽트 처리기가 함께 쓰는 임계 구역은 인터럽트를 꺼서 보호하고, 태스크끼리만 쓰는 임계 구역은 스케줄러를 잠가 보호할 수 있다.[@freertos-resource-management-2026][@micrium-ucos-iii-critical-sections-2026] FreeRTOS에서 스케줄러를 멈춘 동안 인터럽트가 요청한 [[context-switch|context switch]]는 보류되었다가 스케줄러를 다시 켤 때 일어난다. 커널이 중첩 깊이를 세므로 멈추기와 다시 켜기는 중첩해 부를 수 있고, 깊이가 0으로 돌아와야 스케줄러가 다시 켜진다.[@freertos-resource-management-2026]
 
+![[diagrams/interrupt-disable-vs-scheduler-lock.svg]]
+
 CMSIS-RTOS2는 `osKernelLock`으로 모든 태스크 전환을 잠그고 그 전의 잠금 상태를 돌려주게 하며, `osKernelRestoreLock`으로 그 상태를 되돌리게 한다. `osKernelLock`은 ISR(Interrupt Service Routine)에서 부를 수 없다.[@arm-cmsis-rtos2-kernel-2026]
 
 RTEMS의 단일 프로세서 구성에서는 스레드의 선점을 꺼서 스레드 사이의 상호 배제를 보장할 수 있지만, SMP 구성에서는 실행 중인 스레드가 여럿일 수 있어 그럴 수 없다. 그래서 RTEMS는 SMP 구성에서 이 기능을 막는다.[@rtems-smp-thread-preemption-2025]

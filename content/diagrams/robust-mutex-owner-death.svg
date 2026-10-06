@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 2 590 322" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="30" y="20" width="180" height="56" rx="2" />
+    <rect x="320" y="12" width="280" height="72" rx="2" />
+    <path d="M460 108 L540 140 L460 172 L380 140 Z" />
+    <rect x="30" y="118" width="230" height="44" rx="2" />
+    <rect x="320" y="200" width="280" height="44" rx="2" />
+    <rect x="320" y="270" width="280" height="44" rx="2" />
+  </g>
+
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="120" y="53">소유 스레드가 락을 쥠</text>
+    <text x="460" y="35">다음 pthread_mutex_lock</text>
+    <text x="460" y="55" font-size="12">EOWNERDEAD를 돌려주며 락을 줌</text>
+    <text x="460" y="73" font-size="12">보호하는 상태는 일관되지 않음</text>
+    <text x="460" y="145">상태를 복구했나?</text>
+    <text x="145" y="145">pthread_mutex_consistent를 부름</text>
+    <text x="460" y="227">pthread_mutex_consistent 없이 풂</text>
+    <text x="460" y="297">뮤텍스를 영구히 쓸 수 없음</text>
+  </g>
+
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="210" y1="48" x2="318" y2="48" />
+    <line x1="460" y1="84" x2="460" y2="106" />
+    <line x1="380" y1="140" x2="262" y2="140" />
+    <line x1="460" y1="172" x2="460" y2="198" />
+    <line x1="460" y1="244" x2="460" y2="268" />
+  </g>
+
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="264" y="40" text-anchor="middle">프로세스가 끝남</text>
+    <text x="321" y="132" text-anchor="middle">예</text>
+    <text x="468" y="190">아니오</text>
+  </g>
+</svg>

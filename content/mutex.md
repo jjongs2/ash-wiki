@@ -48,6 +48,8 @@ CMSIS-RTOS2는 뮤텍스 속성에 `osMutexRecursive`(같은 스레드가 여러
 
 POSIX.1-2024는 견고한 뮤텍스의 소유 스레드가 든 프로세스가 락을 쥔 채 끝나면, 다음 `pthread_mutex_lock`이 `EOWNERDEAD`를 돌려주며 호출한 스레드에게 락을 주도록 정한다. 이때 뮤텍스가 보호하는 상태는 일관되지 않은 것으로 표시된다. 이 표준은 애플리케이션이 상태를 복구한 뒤 `pthread_mutex_consistent`를 부르고, 복구하지 못하면 `pthread_mutex_consistent` 없이 뮤텍스를 풀기를 권한다. 그렇게 풀면 뮤텍스는 영구히 쓸 수 없게 된다.[@ieee-1003-1-pthread-mutex-lock-2024][@ieee-1003-1-pthread-mutex-consistent-2024]
 
+![[diagrams/robust-mutex-owner-death.svg]]
+
 POSIX 근거 설명에 따르면 견고한 뮤텍스는 프로세스 사이에 공유하는 데이터를 뮤텍스로 보호하는 애플리케이션을 위한 것이다. 프로세스가 뮤텍스를 쥔 채 시그널로 끝나면 정리할 기회가 없어, 그 뮤텍스를 기다리는 쪽이 끝없이 기다릴 수 있기 때문이다.[@ieee-1003-1-rationale-robust-mutexes-2024]
 
 ## 우선순위 프로토콜

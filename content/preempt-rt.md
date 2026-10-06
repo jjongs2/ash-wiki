@@ -19,6 +19,8 @@ PREEMPT_RT 커널의 `spinlock_t`는 선점을 끄지 않고, `spin_lock_irq`나
 
 PREEMPT_RT 커널은 인터럽트 처리기를 강제로 스레드로 돌려 두 단계로 나눈다. 1차 처리기는 인터럽트를 끈 IRQ 문맥에서 실행되며 짝이 되는 스레드 처리기를 깨우는 일만 한다. 스레드 처리기는 `request_irq`에 넘긴 처리 함수이고, 커널이 스케줄하는 프로세스 문맥에서 실행된다. 스레드를 깨운 때부터 처리가 끝날 때까지 인터럽트 컨트롤러에서 그 인터럽트 원천을 가린다. 스레드 처리기는 기본적으로 `SCHED_FIFO` 정책과 우선순위 50(`MAX_RT_PRIO / 2`)으로 실행된다.[@linux-preempt-rt-theory-2026]
 
+![[diagrams/preempt-rt-threaded-irq.svg]]
+
 PREEMPT_RT 커널에서 `IRQF_NO_THREAD`, `IRQF_PERCPU`, `IRQF_ONESHOT` 플래그로 요청한 인터럽트는 강제 스레드화에서 빠진다. hrtimer도 PREEMPT_RT 커널에서는 기본적으로 하드 인터럽트 문맥이 아니라 softirq 문맥에서, 대개는 가장 낮은 실시간 우선순위로 도는 `ktimersd` 스레드에서 실행된다. 하드 인터럽트 문맥에서 실행하려면 `HRTIMER_MODE_HARD`로 표시한다.[@linux-preempt-rt-differences-2026]
 
 ## 우선순위 상속
