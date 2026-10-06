@@ -25,5 +25,5 @@ C-TAG(Customer VLAN Tag), S-TAG(Service VLAN Tag), B-TAG(Backbone VLAN Tag)는 �
 - 2011년: 2005년판에 802.1ad-2005, 802.1ak-2007, 802.1Qav-2009, 802.1Qat-2010 등을 합쳤다.[@ieee-802-1q-2011] 802.1ak는 MRP(Multiple Registration Protocol)와 그 응용인 MVRP, MMRP(Multiple MAC Registration Protocol)를 정한 개정이고, 802.1ad는 provider bridge를 다룬 개정이다.[@ieee-802-1ak-project-2015]
 - 2014년: 2011년판에 802.1Qbe, 802.1Qbc, 802.1Qbb, 802.1Qaz, 802.1Qbf, 802.1Qbg, 802.1aq, 802.1Qbp와 정오표 Cor 2를 합쳤다.[@ieee-802-1q-2014][@ieee-802-1q-2014-project-2020] IEEE 802.1D-2004를 대체했고[@ieee-802-1q-2014], 802.1D가 정하던 기능의 상당 부분을 담았다.[@ieee-802-1q-2014-project-2020]
 - 2018년: 2014년판을 대체했고, 그 뒤의 개정 802.1Qcd, 802.1Qca, 802.1Qbv, 802.1Qbu, 802.1Qbz, 802.1Qci, 802.1Qch와 정오표 Cor 1을 합쳤다.[@ieee-802-1q-2018] [[tsn|TSN]] 기능 가운데 [[time-aware-shaper|scheduled traffic]]을 넣은 802.1Qbv-2015는 802.1Q-2014를 개정한 뒤 이 판에 합쳐졌다.[@ieee-802-1-tsn-tg-2026]
-- 2022년: 현행판. 2018년판을 대체했고[@ieee-802-1q-2022], 2018년판에 개정 802.1Qcc, 802.1Qcp, 802.1Qcy, 802.1Qcr, 802.1Qcx를 합친 판이다.[@ieee-802-1q-rev-2025]
+- 2022년: 현행판. 2018년판을 대체했고[@ieee-802-1q-2022], 2018년판에 개정 802.1Qcc, 802.1Qcp, 802.1Qcy, 802.1Qcr, 802.1Qcx를 합친 판이다.[@ieee-802-1q-rev-2025] 이 판 뒤로 개정 802.1Qcj-2023, 802.1Qcw-2023, 802.1Qcz-2023, 802.1Qdj-2024, 802.1Qdx-2024, 802.1Qdy-2025가 나왔다.[@ieee-802-1q-2022]
 - 2023년: 2022년판을 대체할 개정 프로젝트 P802.1Q가 승인되어 진행 중이다.[@ieee-p802-1q-2023]

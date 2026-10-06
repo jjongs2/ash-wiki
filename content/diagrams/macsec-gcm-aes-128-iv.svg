@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -5.5 520 149.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 전체 길이 -->
+  <path d="M20.5 40 V32 H499.5 V40" stroke="var(--ink, #727981)" stroke-width="1" />
+  <text x="260" y="24" text-anchor="middle" fill="var(--text, #727981)">GCM-AES-128의 IV 96비트</text>
+
+  <!-- IV -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20.75" y="44.75" width="319.25" height="42.5" rx="4" />
+    <rect x="340" y="44.75" width="159.25" height="42.5" rx="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="180" y="63" font-size="14">SCI</text>
+    <text x="180" y="79">상위 64비트</text>
+    <text x="420" y="63" font-size="14">PN</text>
+    <text x="420" y="79">하위 32비트</text>
+  </g>
+
+  <!-- SCI의 구성 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20.75" y="96.75" width="239.25" height="26.5" rx="2" />
+    <rect x="260" y="96.75" width="79.25" height="26.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="140" y="114">MAC 주소</text>
+    <text x="300" y="114">포트 식별자</text>
+  </g>
+</svg>
