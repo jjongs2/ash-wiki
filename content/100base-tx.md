@@ -29,9 +29,9 @@ MLT-3은 세 준위(+1, 0, −1)를 쓰는 선로 부호다.[@microchip-lan8720a
 
 ## 배선
 
-IEEE 802.3-2022는 100BASE-TX의 링크 세그먼트를 공칭 임피던스 100 Ω인 Category 5 평형 케이블 두 쌍으로 이루고, 100 m까지의 Category 5 링크 세그먼트에서 믿을 만하게 동작하도록 전송 파라미터를 정한다.[@ieee-802-3-2022]
+이 표준은 100BASE-TX의 링크 세그먼트를 공칭 임피던스 100 Ω인 Category 5 평형 케이블 두 쌍으로 이루고, 100 m까지의 Category 5 링크 세그먼트에서 믿을 만하게 동작하도록 전송 파라미터를 정한다.[@ieee-802-3-2022]
 
-IEEE 802.3-2022는 100BASE-TX가 꼬임쌍선 MDI(Medium Dependent Interface)의 접점 배치를 10BASE-T에서 그대로 가져오도록 정한다. 내부 크로스오버가 없는 PHY는 1·2번 접점으로 송신하고 3·6번 접점으로 수신하며, 내부 크로스오버가 있는 PHY는 그 반대다.[@ieee-802-3-2022]
+이 표준은 100BASE-TX가 꼬임쌍선 MDI(Medium Dependent Interface)의 접점 배치를 10BASE-T에서 그대로 가져오도록 정한다. 내부 크로스오버가 없는 PHY는 1·2번 접점으로 송신하고 3·6번 접점으로 수신하며, 내부 크로스오버가 있는 PHY는 그 반대다.[@ieee-802-3-2022]
 
 ![[diagrams/100base-tx-mdi-contacts.svg]]
 
@@ -45,6 +45,6 @@ MDI 포트와 MDI-X 포트는 송신 쌍과 수신 쌍의 핀이 서로 바뀌�
 
 ## 100BASE-T1과의 차이
 
-TI 백서에 따르면 100BASE-TX는 꼬임쌍선이 두 가닥 필요하고 CISPR 25 Class 5 방사 방출 한도를 맞추지 못해 차량 안에서는 널리 쓰이지 못했다. 차량에 이더넷이 널리 쓰인 것은 비차폐 꼬임쌍선 한 쌍으로 100 Mbit/s를 보내는 [[100base-t1|100BASE-T1]]이 나온 뒤다.[@ti-szzy009-2018]
+100BASE-TX는 꼬임쌍선이 두 가닥 필요하고 CISPR 25 Class 5 방사 방출 한도를 맞추지 못해 차량 안에서는 널리 쓰이지 못했다. 차량에 이더넷이 널리 쓰인 것은 비차폐 꼬임쌍선 한 쌍으로 100 Mbit/s를 보내는 [[100base-t1|100BASE-T1]]이 나온 뒤다.[@ti-szzy009-2018]
 
 ![[diagrams/ethernet-phy-pair-comparison.svg]]

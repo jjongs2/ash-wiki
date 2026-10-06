@@ -33,7 +33,7 @@ gPTP는 매체에 상관없는 부분과 매체마다 다른 부분으로 나누
 
 지연과 체류 시간의 측정이 같은 시간 축을 쓰도록, PTP Relay Instance는 발진기의 주파수를 실제로 맞추지 않고 측정값을 Grandmaster Clock과의 주파수 비로 보정한다. 각 PTP Instance는 포트마다 링크 건너편 PTP Instance와 자기 클럭의 주파수 비를 재고, Grandmaster Clock과 자기 클럭의 누적 주파수 비를 Follow_Up 메시지에 붙은 TLV(Type-Length-Value)에 쌓아 전한다. 이를 **논리적 syntonization**이라 한다.[@ieee-802-1as-2025]
 
-IEEE 802.1AS-2025는 이 표준과 매체마다 참조하는 표준의 요구를 만족하면, 사이에 PTP Instance가 여섯 개 이하인 두 PTP Instance, 곧 일곱 홉 이하로 떨어진 두 PTP Instance가 정상 상태에서 서로 1 µs(peak-to-peak) 안으로 동기화되도록 정한다.[@ieee-802-1as-2025]
+이 표준은 자신과 매체마다 참조하는 표준의 요구를 만족하면, 사이에 PTP Instance가 여섯 개 이하인 두 PTP Instance, 곧 일곱 홉 이하로 떨어진 두 PTP Instance가 정상 상태에서 서로 1 µs(peak-to-peak) 안으로 동기화되도록 정한다.[@ieee-802-1as-2025]
 
 핫 스탠바이는 정적으로 설정한 두 gPTP 도메인을 주 도메인과 보조 도메인으로 두고 두 도메인에서 BTCA를 끈 채, time-aware system이 두 PTP Instance를 함께 돌리다가 주 도메인을 쓸 수 없게 되면 보조 도메인으로 넘어가는 방식이다. 두 도메인의 동기화된 시각을 응용이 쓸 하나의 시각으로 바꾸는 기능도 여기에 든다.[@ieee-802-1as-2025] 핫 스탠바이는 개정 802.1ASdm-2024가 IEEE 802.1AS-2020에 처음 넣었다.[@ieee-802-1asdm-2024]
 

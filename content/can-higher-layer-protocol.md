@@ -23,7 +23,7 @@ CiA는 가장 중요한 표준화된 HLP로 다음을 든다.[@cia-standardized-
 | DeviceNet 프로파일               | CAN CC                                 | 공장 자동화           |
 | UAVCAN(Cyphal), DroneCAN         |                                        | 무인 항공기           |
 
-CiA에 따르면 승용차 산업의 응용 계층은 대개 독자 규격이다. 예외로는 [[iso-15765-2|ISO 15765-2]]로 표준화된 CAN 전송 계층, 진단 서비스인 [[uds|UDS]], CiA 447 CANopen 응용 프로파일 시리즈가 정한 부가 장치용 개방 네트워크가 있다.[@cia-standardized-hlp-2026]
+승용차 산업의 응용 계층은 대개 독자 규격이다. 예외로는 [[iso-15765-2|ISO 15765-2]]로 표준화된 CAN 전송 계층, 진단 서비스인 [[uds|UDS]], CiA 447 CANopen 응용 프로파일 시리즈가 정한 부가 장치용 개방 네트워크가 있다.[@cia-standardized-hlp-2026]
 
 CiA에 따르면 DeviceNet은 ODVA의 상표로, 공장 자동화에서 PLC(Programmable Logic Controller) 같은 컨트롤러와 산업용 I/O 장치, 전기 드라이브, HMI(Human Machine Interface)를 잇는 데 주로 쓰인다. CAN CC 데이터 링크 계층을 바탕으로 하고, IEC 62026-3으로 국제 표준이 되었다.[@cia-devicenet-2026]
 

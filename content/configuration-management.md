@@ -56,7 +56,7 @@ ISO/IEC/IEEE 24765 용어집은 **변경 요청**(change request)을 형상 항�
 
 ## ASPICE
 
-ASPICE 4.1은 지원 프로세스 그룹(SUP)에 형상 관리를 SUP.8(Configuration Management)로, 변경 요청 관리를 SUP.10(Change Request Management)으로 둔다. SUP.8의 목적은 관련 형상 항목과 베이스라인의 무결성을 확립·유지하고, 이를 영향받는 모든 당사자가 쓸 수 있게 하는 것이다. SUP.10의 목적은 변경 요청이 기록, 분석, 추적, 승인, 구현되게 하는 것이다. SUP.8의 BP(base practice)는 다음과 같다.[@vda-automotive-spice-pam-4-1-2026]
+이 모델은 지원 프로세스 그룹(SUP)에 형상 관리를 SUP.8(Configuration Management)로, 변경 요청 관리를 SUP.10(Change Request Management)으로 둔다. SUP.8의 목적은 관련 형상 항목과 베이스라인의 무결성을 확립·유지하고, 이를 영향받는 모든 당사자가 쓸 수 있게 하는 것이다. SUP.10의 목적은 변경 요청이 기록, 분석, 추적, 승인, 구현되게 하는 것이다. SUP.8의 BP(base practice)는 다음과 같다.[@vda-automotive-spice-pam-4-1-2026]
 
 | BP  | 하는 일                                            |
 | --- | -------------------------------------------------- |

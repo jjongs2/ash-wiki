@@ -41,7 +41,7 @@ Bosch CAN FD 1.0은 이 규칙을 세 군데 바꾼다. 동기화는 한 비트 
 
 재동기화로 보상할 수 있는 발진기 오차에는 한계가 있다. 허용 오차는 PHASE_SEG1, PHASE_SEG2, SJW와 비트 시간의 비율로 정해진다.[@bosch-can-fd-1-0-2012]
 
-Bosch CAN FD 1.0은 발진기 주파수 $f_\mathrm{osc}$가 공칭 주파수 $f_\mathrm{nom}$에 대해 $(1 - d_f)\, f_\mathrm{nom} \le f_\mathrm{osc} \le (1 + d_f)\, f_\mathrm{nom}$일 때, 허용 오차 $d_f$의 상한을 다섯 조건으로 정한다. CAN 동작은 공칭 비트 시간에 대한 조건 I·II를, CAN FD 동작은 데이터 비트 시간과 두 프리스케일러 값의 비에 대한 조건 III\~V까지 다섯 조건을 모두 지켜야 한다. 조건 I·II는 공칭 비트 시간 $t_\mathrm{bit,N}$, 그 SJW $\mathrm{SJW_N}$, PHASE_SEG1·PHASE_SEG2의 길이 $t_\mathrm{PS1,N}$·$t_\mathrm{PS2,N}$로 아래와 같다.[@bosch-can-fd-1-0-2012]
+이 규격은 발진기 주파수 $f_\mathrm{osc}$가 공칭 주파수 $f_\mathrm{nom}$에 대해 $(1 - d_f)\, f_\mathrm{nom} \le f_\mathrm{osc} \le (1 + d_f)\, f_\mathrm{nom}$일 때, 허용 오차 $d_f$의 상한을 다섯 조건으로 정한다. CAN 동작은 공칭 비트 시간에 대한 조건 I·II를, CAN FD 동작은 데이터 비트 시간과 두 프리스케일러 값의 비에 대한 조건 III\~V까지 다섯 조건을 모두 지켜야 한다. 조건 I·II는 공칭 비트 시간 $t_\mathrm{bit,N}$, 그 SJW $\mathrm{SJW_N}$, PHASE_SEG1·PHASE_SEG2의 길이 $t_\mathrm{PS1,N}$·$t_\mathrm{PS2,N}$로 아래와 같다.[@bosch-can-fd-1-0-2012]
 
 $$
 d_f < \frac{\mathrm{SJW_N}}{20\, t_\mathrm{bit,N}}
@@ -51,6 +51,6 @@ $$
 d_f < \frac{\min(t_\mathrm{PS1,N},\, t_\mathrm{PS2,N})}{2\,(13\, t_\mathrm{bit,N} - t_\mathrm{PS2,N})}
 $$
 
-Bosch CAN FD 1.0에 따르면 공칭 비트 시간에서 PROP_SEG를 1 tq, PHASE_SEG1, PHASE_SEG2, SJW를 모두 4 tq로 두면 CAN 동작에서 가장 큰 허용 오차 1.58%가 나온다. 이 설정은 PROP_SEG가 비트 시간의 10%뿐이라 짧은 비트 시간에는 맞지 않고, 버스 길이 40 m에서 125 kbit/s까지 쓸 수 있다.[@bosch-can-fd-1-0-2012]
+공칭 비트 시간에서 PROP_SEG를 1 tq, PHASE_SEG1, PHASE_SEG2, SJW를 모두 4 tq로 두면 CAN 동작에서 가장 큰 허용 오차 1.58%가 나온다. 이 설정은 PROP_SEG가 비트 시간의 10%뿐이라 짧은 비트 시간에는 맞지 않고, 버스 길이 40 m에서 125 kbit/s까지 쓸 수 있다.[@bosch-can-fd-1-0-2012]
 
 Bosch CAN 2.0 규격은 경험칙으로 125 kbit/s까지는 세라믹 공진자를 쓸 수 있고, CAN의 전 속도 범위에는 수정 발진기가 필요하다고 제시한다.[@bosch-can-2-0-1991]

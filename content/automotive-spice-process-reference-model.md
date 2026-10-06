@@ -22,7 +22,7 @@ ASPICE 4.1은 프로세스마다 다음 네 가지를 정의한다.[@vda-automot
 
 ## 프로세스 범주와 그룹
 
-ASPICE 4.1은 프로세스를 다루는 활동 분야에 따라 그룹으로 묶고, 그룹을 주 프로세스(primary processes), 조직 프로세스(organizational processes), 지원 프로세스(supporting processes)의 세 범주로 나눈다. 주 프로세스에는 ACQ(획득), SPL(공급), SYS(시스템 엔지니어링), VAL(확인), SWE(소프트웨어 엔지니어링), MLE(머신러닝 엔지니어링), HWE(하드웨어 엔지니어링)가, 조직 프로세스에는 MAN(관리), PIM(프로세스 개선), REU(재사용)가, 지원 프로세스에는 SUP(지원)가 든다.[@vda-automotive-spice-pam-4-1-2026]
+이 표준은 프로세스를 다루는 활동 분야에 따라 그룹으로 묶고, 그룹을 주 프로세스(primary processes), 조직 프로세스(organizational processes), 지원 프로세스(supporting processes)의 세 범주로 나눈다. 주 프로세스에는 ACQ(획득), SPL(공급), SYS(시스템 엔지니어링), VAL(확인), SWE(소프트웨어 엔지니어링), MLE(머신러닝 엔지니어링), HWE(하드웨어 엔지니어링)가, 조직 프로세스에는 MAN(관리), PIM(프로세스 개선), REU(재사용)가, 지원 프로세스에는 SUP(지원)가 든다.[@vda-automotive-spice-pam-4-1-2026]
 
 ![[diagrams/aspice-process-categories-groups.svg]]
 
@@ -52,7 +52,7 @@ ASPICE 4.1의 프로세스 참조 모델은 [[iso-iec-ieee-12207|ISO/IEC 12207]]
 
 **Plug-in 컨셉**은 맨 위에 시스템 엔지니어링 프로세스를 두고, 개발할 제품에 따라 해당 엔지니어링 분야의 도메인 프로세스(예: HWE, SWE)를 평가 범위에 더하는 방식이다. ASPICE 4.1은 시스템 엔지니어링 프로세스를 시스템 V로 배치하고, plug-in 그림에서 SWE와 HWE 프로세스도 V 모양으로 그린다. 관리, 지원, 획득 같은 나머지 프로세스는 도메인에 묶이지 않아 시스템 수준과 도메인 수준 어디에나 적용할 수 있다.[@vda-automotive-spice-pam-4-1-2026] 개발 프로세스와 검증 프로세스를 마주 놓는 V 배치는 [[v-model|V 모델]]에서 다룬다.
 
-ASPICE 4.1의 엔지니어링 프로세스 그룹은 SYS, SWE, MLE, HWE이고, 기계 엔지니어링 프로세스는 없다. 그 밖의 도메인 프로세스는 VDA가 만들지 않았고 ASPICE에도 들지 않는다. [[software-architecture|소프트웨어 아키텍처]]에서 머신러닝으로 개발할 소프트웨어 요소를 정하면, 그 요소에는 MLE 프로세스를, 나머지 component에는 SWE.3과 SWE.4를 적용한다.[@vda-automotive-spice-pam-4-1-2026]
+이 표준의 엔지니어링 프로세스 그룹은 SYS, SWE, MLE, HWE이고, 기계 엔지니어링 프로세스는 없다. 그 밖의 도메인 프로세스는 VDA가 만들지 않았고 ASPICE에도 들지 않는다. [[software-architecture|소프트웨어 아키텍처]]에서 머신러닝으로 개발할 소프트웨어 요소를 정하면, 그 요소에는 MLE 프로세스를, 나머지 component에는 SWE.3과 SWE.4를 적용한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ASPICE 3.1은 plug-in 컨셉의 도메인 예로 하드웨어(HWE), 기계(MEE), 소프트웨어(SWE)를 들고, HWE와 MEE 프로세스는 VDA QMC가 만들지 않은 예시로 그렸다. ASPICE 4.1은 예로 HWE와 SWE만 들고, 프로세스 참조 모델에 HWE.1\~HWE.4를 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
@@ -71,6 +71,6 @@ ASPICE 4.1은 아키텍처와 설계의 구성 요소를 가리키는 용어로 
 | Software component | 소프트웨어 아키텍처가 소프트웨어를 여러 계층에 걸쳐 가장 낮은 수준까지 나눈 단위. 상세 설계는 software component마다 그 unit의 동작, 구조, 인터페이스를 정한다.                     |
 | Software unit      | software component를 나눈 결과로, 더 나누지 않기로 정한 소프트웨어 단위                                                                                                             |
 
-ASPICE 4.1은 unit을 소프트웨어 도메인에만 쓰고, hardware part를 software unit의 하드웨어 짝으로 본다. 검증 쪽 프로세스에서는 software component와 unit이 소스 코드, 오브젝트 파일, 라이브러리, 실행 파일 같은 구현물로 나타난다고 정의한다.[@vda-automotive-spice-pam-4-1-2026]
+이 표준은 unit을 소프트웨어 도메인에만 쓰고, hardware part를 software unit의 하드웨어 짝으로 본다. 검증 쪽 프로세스에서는 software component와 unit이 소스 코드, 오브젝트 파일, 라이브러리, 실행 파일 같은 구현물로 나타난다고 정의한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ASPICE 3.1은 component를 소프트웨어 아키텍처의 가장 낮은 수준의 element이자 상세 설계를 정의하는 단위로 정의했고, V 모델 오른쪽에서 왼쪽의 element에 대응하는 것(오브젝트 파일, 라이브러리, 실행 파일 등)을 item이라 불렀다. 대응은 1:1일 수도 m:n일 수도 있었다. ASPICE 4.1은 software component를 여러 계층에 걸쳐 두고, item을 정의하지 않는다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]

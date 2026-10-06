@@ -39,7 +39,7 @@ Bosch CAN FD 1.0은 모든 구현이 8바이트보다 긴 데이터 필드를 �
 
 ## 호환성
 
-Bosch CAN FD 1.0은 CAN FD가 Bosch CAN 2.0과 물리 계층을 같이 쓰고 프레임 포맷이 다르다고 정하며, Bosch CAN 2.0 규격을 고치지 않은 채 그대로 유효하게 둔다.[@bosch-can-fd-1-0-2012]
+이 규격은 CAN FD가 Bosch CAN 2.0과 물리 계층을 같이 쓰고 프레임 포맷이 다르다고 정하며, Bosch CAN 2.0 규격을 고치지 않은 채 그대로 유효하게 둔다.[@bosch-can-fd-1-0-2012]
 
 ISO 11898-1:2024는 CAN FD를 지원하는(FD enabled) 구현이 CAN FD 프레임과 classic 프레임을 모두 주고받는다고 정의한다. Classic 포맷만 지원하고 CAN FD 포맷을 용인하지 않는 구현은, CAN FD 구현이나 CAN XL 구현과 classic 포맷만 쓸 때 통신할 수 있다. 이 표준은 CAN FD 프레임을 주고받지 못해도 방해하지 않는 구현을 **FD tolerant**로 정의하고, 구현 옵션 가운데 하나로 둔다.[@iso-11898-1-obp-2024] ISO 11898-1:2015는 CAN FD 포맷을 용인하지 않는 구현을 CAN FD 프레임을 방해하는 FD intolerant로 정의했고, 2024년판은 이 용어를 두지 않는다.[@iso-11898-1-obp-2015][@iso-11898-1-obp-2024] ISO 11898-1:2024는 CAN FD 포맷을 용인하지 않는 classic 구현이 [[can-fd-light|CAN FD light]] responder와 통신할 수 없어, 통신을 시도하면 [[can-error-frame|오류 프레임]]이 생긴다고 정한다.[@iso-11898-1-obp-2024]
 

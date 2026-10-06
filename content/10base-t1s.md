@@ -21,11 +21,11 @@ IEEE 802.3-2022는 모든 10BASE-T1S [[ethernet-phy|PHY]]가 링크 상대 하�
 
 ## 부호화
 
-IEEE 802.3-2022는 10BASE-T1S PHY를 PCS(Physical Coding Sublayer)와 PMA(Physical Medium Attachment)로 이루고, 두 [[ethernet-phy#부계층|부계층]]을 하나로 묶은 구조라 AUI(Attachment Unit Interface)를 두지 않는다. PCS는 데이터를 17비트 자기 동기 스크램블러로 스크램블한 뒤 4B/5B로 부호화하고, PMA는 두 준위의 DME(Differential Manchester Encoding)로 보낸다. DME는 클럭이 신호에 실리고 그 자체로 균형 잡힌 선로 부호여서, 직류 기준선이 거의 흔들리지 않고 잡음이 많은 환경에서도 클럭과 데이터를 복구할 수 있다.[@ieee-802-3-2022]
+이 표준은 10BASE-T1S PHY를 PCS(Physical Coding Sublayer)와 PMA(Physical Medium Attachment)로 이루고, 두 [[ethernet-phy#부계층|부계층]]을 하나로 묶은 구조라 AUI(Attachment Unit Interface)를 두지 않는다. PCS는 데이터를 17비트 자기 동기 스크램블러로 스크램블한 뒤 4B/5B로 부호화하고, PMA는 두 준위의 DME(Differential Manchester Encoding)로 보낸다. DME는 클럭이 신호에 실리고 그 자체로 균형 잡힌 선로 부호여서, 직류 기준선이 거의 흔들리지 않고 잡음이 많은 환경에서도 클럭과 데이터를 복구할 수 있다.[@ieee-802-3-2022]
 
 ## PLCA
 
-IEEE 802.3-2022는 mixing segment에서 동작하는 10BASE-T1S에 송신 기회를 만들어 주는 방법을 **PLCA**(Physical Layer Collision Avoidance)라 부르고, Clause 148의 RS(Reconciliation Sublayer)로 정한다. PLCA는 멀티드롭 모드의 반이중 10BASE-T1S PHY에서 쓰는 선택 기능이고, 관리 인터페이스로 켜고 끌 수 있으며, 끄면 RS의 대응은 Clause 22와 같다. 켜면 PLCA RS는 MAC(Medium Access Control)의 데이터를 물리 계층의 송신 기회에 맞춘다. PLCA를 켠 물리 계층은 부하가 큰 [[bus-access-method#경쟁 방식|CSMA/CD]](Carrier Sense Multiple Access with Collision Detection) 반이중 공유 매체 네트워크에서 대역을 더 쓰게 하고 접근 지연을 줄일 수 있다.[@ieee-802-3-2022]
+이 표준은 mixing segment에서 동작하는 10BASE-T1S에 송신 기회를 만들어 주는 방법을 **PLCA**(Physical Layer Collision Avoidance)라 부르고, Clause 148의 RS(Reconciliation Sublayer)로 정한다. PLCA는 멀티드롭 모드의 반이중 10BASE-T1S PHY에서 쓰는 선택 기능이고, 관리 인터페이스로 켜고 끌 수 있으며, 끄면 RS의 대응은 Clause 22와 같다. 켜면 PLCA RS는 MAC(Medium Access Control)의 데이터를 물리 계층의 송신 기회에 맞춘다. PLCA를 켠 물리 계층은 부하가 큰 [[bus-access-method#경쟁 방식|CSMA/CD]](Carrier Sense Multiple Access with Collision Detection) 반이중 공유 매체 네트워크에서 대역을 더 쓰게 하고 접근 지연을 줄일 수 있다.[@ieee-802-3-2022]
 
 mixing segment의 송신 기회는 로컬 충돌 도메인 안에서 겹치지 않는 노드 ID(identifier) 순서로 돌아가며 주어진다. 노드 ID는 관리 엔티티가 정하며, 정하는 방법은 이 표준의 범위 밖이다. ID가 0인 노드가 매체에 BEACON을 보내고, BEACON을 받으면 송신 기회의 새 주기가 시작된다. 노드는 자기 송신 기회에 패킷 하나를 보내고, 설정한 한도까지 패킷을 더 보내도록 할 수도 있다.[@ieee-802-3-2022]
 

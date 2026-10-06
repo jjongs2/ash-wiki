@@ -44,7 +44,7 @@ ASPICE 4.1은 소프트웨어 아키텍처 설계를 SWE.2(Software Architectura
 
 BP3은 기능, 타이밍, 자원 소비 같은 기술적 설계 측면과 프로젝트 추정의 관점에서 아키텍처를 분석하고 설계 결정의 근거를 기록하게 한다. 근거에는 proven-in-use, 소프트웨어 프레임워크나 제품군의 재사용, make-or-buy 결정 등이 들 수 있고, 분석에는 기존 컴포넌트가 이번 응용에 맞는지가 들 수 있다.[@vda-automotive-spice-pam-4-1-2026] BP4의 추적성과 일관성은 [[traceability|추적성]]에서 다룬다.
 
-ASPICE 4.1은 소프트웨어 요소(software element)를 소프트웨어 컴포넌트나 소프트웨어 유닛을 가리키는 말로 정의한다.[@vda-automotive-spice-pam-4-1-2026] 유닛과 그 설계는 [[software-unit-design|소프트웨어 유닛 설계]]에서 다룬다.
+이 모델은 소프트웨어 요소(software element)를 소프트웨어 컴포넌트나 소프트웨어 유닛을 가리키는 말로 정의한다.[@vda-automotive-spice-pam-4-1-2026] 유닛과 그 설계는 [[software-unit-design|소프트웨어 유닛 설계]]에서 다룬다.
 
 ![[diagrams/aspice-software-decomposition.svg]]
 

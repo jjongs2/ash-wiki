@@ -19,18 +19,18 @@ MISRA Compliance:2020은 MISRA 지침을 rule과 directive로 나누고, 대부�
 - **Rule**: 소스 코드에 대해 완전하고 객관적이며 모호하지 않은 요구를 두는 지침. 그 요구는 프로세스, 설계 문서, 기능 요구사항과 무관하다.
 - **Directive**: 소스 코드만으로는 정의되지 않는 지침. 프로세스, 문서, 기능 요구사항을 가리키거나 그것에 요구를 둔다.[@misra-compliance-2020]
 
-MISRA Compliance:2020은 지침마다 Mandatory, Required, Advisory 가운데 하나의 분류를 둔다.[@misra-compliance-2020]
+이 문서는 지침마다 Mandatory, Required, Advisory 가운데 하나의 분류를 둔다.[@misra-compliance-2020]
 
 - **Mandatory**: 어떤 경우에도 어길 수 없다.
 - **Required**: 명확한 제한, 요구, 예방 조치를 정한 deviation이 뒷받침할 때만 어길 수 있다.
 - **Advisory**: 합리적으로 가능한 만큼 따르라는 권고다. 위반은 찾아 두지만 deviation으로 뒷받침하지 않아도 된다.[@misra-compliance-2020]
 
-MISRA Compliance:2020은 rule에 두 가지 성질을 더 둔다.[@misra-compliance-2020]
+이 문서는 rule에 두 가지 성질을 더 둔다.[@misra-compliance-2020]
 
 - **결정 가능성**(decidability): decidable rule은 도구가 바르게 설정되고 결함이 없으면 언제나 준수 여부를 예나 아니요로 답할 수 있다. Undecidable rule은 분석 도구가 모든 경우에 답한다고 보장하지 못한다.
 - **분석 범위**: Single Translation Unit rule은 번역 단위를 하나씩 보면 되고, System rule은 시스템 전체의 소스 코드를 봐야 한다.[@misra-compliance-2020]
 
-MISRA Compliance:2020은 지침 위반을 정해진 절차로 승인받고 deviation record로 뒷받침하게 한다. 이 문서는 MISRA 지침을 지켰다고 주장하는 요건과 deviation을 다루며, 그 전 MISRA 지침 문서에 있던 준수, deviation, 프로세스에 대한 요구를 대체한다.[@misra-compliance-2020] MISRA C:2012 Amendment 2는 MISRA Compliance를 반드시 따르도록 했다.[@misra-c-2012-amd2-2020] 도구로 준수를 확인하는 일은 [[static-analysis|정적 분석]]에서 다룬다.
+이 문서는 지침 위반을 정해진 절차로 승인받고 deviation record로 뒷받침하게 한다. 이 문서는 MISRA 지침을 지켰다고 주장하는 요건과 deviation을 다루며, 그 전 MISRA 지침 문서에 있던 준수, deviation, 프로세스에 대한 요구를 대체한다.[@misra-compliance-2020] MISRA C:2012 Amendment 2는 MISRA Compliance를 반드시 따르도록 했다.[@misra-c-2012-amd2-2020] 도구로 준수를 확인하는 일은 [[static-analysis|정적 분석]]에서 다룬다.
 
 ## 개정 이력
 

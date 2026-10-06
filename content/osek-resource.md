@@ -15,7 +15,7 @@ OSEK/VDX OS 2.2.3 명세는 resource마다의 ceiling priority를 실행 중에 
 
 ![[diagrams/osek-ceiling-priority-levels.svg]]
 
-OSEK/VDX OS 2.2.3 명세는 OSEK OS를 단일 프로세서 운영체제로 정한다.[@osek-os-2-2-3-2005] AUTOSAR R25-11 OS 명세는 resource를 같은 코어에 묶인 태스크 사이에서만 쓰게 하고, 서로 다른 코어의 태스크 사이 상호 배제에는 [[spinlock|스핀락]]을 둔다.[@autosar-cp-sws-os-2025]
+이 명세는 OSEK OS를 단일 프로세서 운영체제로 정한다.[@osek-os-2-2-3-2005] AUTOSAR R25-11 OS 명세는 resource를 같은 코어에 묶인 태스크 사이에서만 쓰게 하고, 서로 다른 코어의 태스크 사이 상호 배제에는 [[spinlock|스핀락]]을 둔다.[@autosar-cp-sws-os-2025]
 
 ## 사용 규칙
 
@@ -28,14 +28,14 @@ OSEK/VDX OS 2.2.3 명세는 resource를 쓰는 규칙을 아래처럼 정한다.
 
 ## 인터럽트 수준으로 넓히기
 
-OSEK/VDX OS 2.2.3 명세는 resource 관리를 인터럽트 수준까지 넓히는 것을 선택 사항으로 두고, [[osek-isr#Category 2|category 2 ISR]]에서도 `GetResource`와 `ReleaseResource`를 부를 수 있게 한다. 이 확장에서 ISR은 모든 태스크보다 높은 가상 우선순위를 받으므로, ceiling priority는 그 resource를 쓰는 태스크와 ISR의 우선순위 가운데 가장 높은 것 이상이 된다.[@osek-os-2-2-3-2005]
+이 명세는 resource 관리를 인터럽트 수준까지 넓히는 것을 선택 사항으로 두고, [[osek-isr#Category 2|category 2 ISR]]에서도 `GetResource`와 `ReleaseResource`를 부를 수 있게 한다. 이 확장에서 ISR은 모든 태스크보다 높은 가상 우선순위를 받으므로, ceiling priority는 그 resource를 쓰는 태스크와 ISR의 우선순위 가운데 가장 높은 것 이상이 된다.[@osek-os-2-2-3-2005]
 
 ## `RES_SCHEDULER`
 
-OSEK/VDX OS 2.2.3 명세는 스케줄러를 모든 태스크가 쓸 수 있는 resource로 다루며, `RES_SCHEDULER`라는 resource를 미리 만들어 두게 한다. 태스크는 `RES_SCHEDULER`를 얻어 다른 태스크의 선점을 막을 수 있고, 인터럽트는 `RES_SCHEDULER`의 상태와 상관없이 받아 처리된다.[@osek-os-2-2-3-2005]
+이 명세는 스케줄러를 모든 태스크가 쓸 수 있는 resource로 다루며, `RES_SCHEDULER`라는 resource를 미리 만들어 두게 한다. 태스크는 `RES_SCHEDULER`를 얻어 다른 태스크의 선점을 막을 수 있고, 인터럽트는 `RES_SCHEDULER`의 상태와 상관없이 받아 처리된다.[@osek-os-2-2-3-2005]
 
 ## Internal resource
 
-OSEK/VDX OS 2.2.3 명세는 사용자에게 보이지 않아 `GetResource`와 `ReleaseResource`로 다룰 수 없는 resource를 **internal resource**로 정의하고, 그 밖의 동작(우선순위 상한 프로토콜 등)은 일반 resource와 같게 둔다. 또 internal resource를 태스크에만 쓰게 하고, 시스템 생성 때 태스크 하나에 많아야 하나를 배정하게 한다.[@osek-os-2-2-3-2005] OIL은 `RESOURCEPROPERTY` 값으로 `STANDARD`, `LINKED`, `INTERNAL`을 두고, `INTERNAL`을 애플리케이션이 접근할 수 없는 internal resource로 정한다.[@osek-oil-2-5-2004]
+이 명세는 사용자에게 보이지 않아 `GetResource`와 `ReleaseResource`로 다룰 수 없는 resource를 **internal resource**로 정의하고, 그 밖의 동작(우선순위 상한 프로토콜 등)은 일반 resource와 같게 둔다. 또 internal resource를 태스크에만 쓰게 하고, 시스템 생성 때 태스크 하나에 많아야 하나를 배정하게 한다.[@osek-os-2-2-3-2005] OIL은 `RESOURCEPROPERTY` 값으로 `STANDARD`, `LINKED`, `INTERNAL`을 두고, `INTERNAL`을 애플리케이션이 접근할 수 없는 internal resource로 정한다.[@osek-oil-2-5-2004]
 
 명세에 따라 운영체제는 태스크가 실행을 시작할 때 internal resource를 그 태스크에 쥐여 주고, 태스크가 [[osek-task#우선순위와 스케줄링|재스케줄링 지점]]에 이르면 거둬들인다. 태스크가 선점될 때는 풀리지 않는다. 그래서 같은 internal resource를 배정받은 태스크 묶음은 묶음 안에서 비선점 태스크처럼 동작한다. 재스케줄링은 재스케줄링 지점에서만 일어나고, 묶음의 가장 높은 우선순위보다 높은 태스크에는 선점된다. 이를 써서 태스크 묶음 안의 원치 않는 재스케줄링을 막을 수 있다.[@osek-os-2-2-3-2005]

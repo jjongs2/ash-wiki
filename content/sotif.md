@@ -11,20 +11,20 @@ verified: 2026-10-01
 
 ## 기능 부족
 
-ISO 21448:2022는 **기능 부족**(functional insufficiency)을 명세의 부족이나 성능의 부족으로 정의한다. 기능 부족은 차량 수준에서도, 시스템의 E/E(Electrical/Electronic) 요소에서도 생길 수 있다.[@iso-21448-obp-2022]
+이 표준은 **기능 부족**(functional insufficiency)을 명세의 부족이나 성능의 부족으로 정의한다. 기능 부족은 차량 수준에서도, 시스템의 E/E(Electrical/Electronic) 요소에서도 생길 수 있다.[@iso-21448-obp-2022]
 
 - **명세의 부족**(insufficiency of specification): 하나 이상의 triggering condition으로 활성화되면 해저드 동작에 기여하거나, 합리적으로 예견할 수 있는 간접 오용을 막거나 감지하거나 완화하지 못하는 결과에 기여하는 명세. 이런 명세는 불완전할 수 있다.
 - **성능의 부족**(performance insufficiency): triggering condition으로 활성화되면 같은 결과에 기여하는 기술적 능력의 한계. 제한된 연산 성능, 센서의 제한된 인식 범위, 제한된 구동 능력이 그 예다.[@iso-21448-obp-2022]
 
 ## Triggering condition
 
-ISO 21448:2022는 **triggering condition**을 시나리오의 특정 조건으로 정의한다. 이 조건이 뒤따르는 시스템 반응을 일으켜, 해저드 동작이나 간접 오용에 대처하지 못하는 결과로 이어지게 한다. 기능 부족을 활성화하는 것이 triggering condition이다. Triggering condition이 속하는 시나리오는 이어진 장면(scene) 사이의 시간 관계를 기술한 것이고, 장면에는 날씨나 조명 같은 환경 요소, 도로와 교통 표지 같은 기반 시설, 움직이거나 서 있는 객체와 행위자가 들 수 있다.[@iso-21448-obp-2022]
+이 표준은 **triggering condition**을 시나리오의 특정 조건으로 정의한다. 이 조건이 뒤따르는 시스템 반응을 일으켜, 해저드 동작이나 간접 오용에 대처하지 못하는 결과로 이어지게 한다. 기능 부족을 활성화하는 것이 triggering condition이다. Triggering condition이 속하는 시나리오는 이어진 장면(scene) 사이의 시간 관계를 기술한 것이고, 장면에는 날씨나 조명 같은 환경 요소, 도로와 교통 표지 같은 기반 시설, 움직이거나 서 있는 객체와 행위자가 들 수 있다.[@iso-21448-obp-2022]
 
 ![[diagrams/sotif-triggering-condition-chain.svg]]
 
 ## 합리적으로 예견할 수 있는 오용
 
-ISO 21448:2022는 **오용**(misuse)을 제조사나 서비스 제공자가 의도하지 않은 방식으로 쓰는 것으로 정의한다. 의도하지 않은 사람의 행동은 여기에 들고, 고의로 시스템을 바꾸거나 해를 끼치려고 쓰는 것은 들지 않는다.[@iso-21448-obp-2022] [[iso-26262|ISO 26262]]-1:2018은 합리적으로 예견할 수 있다는 것을 기술적으로 가능하고 일어나는 빈도가 믿을 만하거나 잴 수 있는 것으로 정의한다.[@iso-26262-1-obp-2018]
+이 표준은 **오용**(misuse)을 제조사나 서비스 제공자가 의도하지 않은 방식으로 쓰는 것으로 정의한다. 의도하지 않은 사람의 행동은 여기에 들고, 고의로 시스템을 바꾸거나 해를 끼치려고 쓰는 것은 들지 않는다.[@iso-21448-obp-2022] [[iso-26262|ISO 26262]]-1:2018은 합리적으로 예견할 수 있다는 것을 기술적으로 가능하고 일어나는 빈도가 믿을 만하거나 잴 수 있는 것으로 정의한다.[@iso-26262-1-obp-2018]
 
 ISO 21448:2022는 합리적으로 예견할 수 있는 오용을 범위에 넣고, 시스템의 의도된 사용을 고의로 명백히 어기는 행위는 범위에서 뺀다.[@iso-21448-obp-2022]
 
@@ -34,4 +34,4 @@ ISO 26262-1:2018은 [[functional-safety|기능 안전]]을 E/E 시스템의 [[ha
 
 ![[diagrams/functional-safety-sotif-hazard-sources.svg]]
 
-ISO 21448:2022는 기능 안전과 SOTIF를 안전의 서로 보완하는 측면으로 보며, E/E 시스템의 random hardware failure와 systematic failure는 ISO 26262 시리즈로 다룬다고 가정한다.[@iso-21448-obp-2022]
+이 표준은 기능 안전과 SOTIF를 안전의 서로 보완하는 측면으로 보며, E/E 시스템의 random hardware failure와 systematic failure는 ISO 26262 시리즈로 다룬다고 가정한다.[@iso-21448-obp-2022]

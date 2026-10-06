@@ -9,7 +9,7 @@ verified: 2026-10-03
 
 ## ISO/SAE 21434의 검증과 확인
 
-ISO/SAE 21434:2021의 11절(cybersecurity validation)은 아이템의 확인을 차량 수준에서 다룬다.[@iso-sae-21434-obp-2021] 요구사항을 구현하고 검증하는 10절은 [[cybersecurity-specification|cybersecurity specification]]에서 다룬다.
+이 표준의 11절(cybersecurity validation)은 아이템의 확인을 차량 수준에서 다룬다.[@iso-sae-21434-obp-2021] 요구사항을 구현하고 검증하는 10절은 [[cybersecurity-specification|cybersecurity specification]]에서 다룬다.
 
 ## Automotive SPICE for Cybersecurity의 SEC.3·SEC.4
 

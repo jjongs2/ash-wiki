@@ -41,6 +41,6 @@ ASPICE 4.1의 [[automotive-spice-process-reference-model|프로세스 참조 모
 
 ## ASPICE의 V 컨셉
 
-ASPICE 4.1의 프로세스 참조 모델은 시스템 엔지니어링 프로세스와 소프트웨어 엔지니어링 프로세스를 각각 V 모양으로 배치해, 왼쪽의 요구사항 분석과 설계 프로세스가 오른쪽의 검증 프로세스와 짝을 이뤄 마주 보게 한다. 마주 보는 짝마다 오른쪽의 검증 조치와 왼쪽 산출물 사이에 [[traceability#일관성|일관성]]과 [[traceability#양방향 추적성|양방향 추적성]]을 요구한다.[@vda-automotive-spice-pam-4-1-2026] 프로세스마다의 ID와 이름은 프로세스 참조 모델의 [[automotive-spice-process-reference-model#프로세스 범주와 그룹|프로세스 범주와 그룹]]에서 다룬다.
+프로세스 참조 모델은 시스템 엔지니어링 프로세스와 소프트웨어 엔지니어링 프로세스를 각각 V 모양으로 배치해, 왼쪽의 요구사항 분석과 설계 프로세스가 오른쪽의 검증 프로세스와 짝을 이뤄 마주 보게 한다. 마주 보는 짝마다 오른쪽의 검증 조치와 왼쪽 산출물 사이에 [[traceability#일관성|일관성]]과 [[traceability#양방향 추적성|양방향 추적성]]을 요구한다.[@vda-automotive-spice-pam-4-1-2026] 프로세스마다의 ID와 이름은 프로세스 참조 모델의 [[automotive-spice-process-reference-model#프로세스 범주와 그룹|프로세스 범주와 그룹]]에서 다룬다.
 
 ![[diagrams/automotive-spice-v-concept.svg]]

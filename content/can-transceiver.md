@@ -43,7 +43,7 @@ ISO 11898-2:2026은 SIC 모드와 FAST 모드를 갖춘 PMA를 Annex A에 따로
 
 ### SIC
 
-ISO 11898-2:2026은 **SIC**(Signal Improvement Capability)를 MDI(Medium Dependent Interface)의 링잉을 억제하는 능력으로 정의한다. 이 표준은 dominant나 [[dominant-and-recessive#트랜시버 모드와 버스 상태|level_0]]에서 recessive로 넘어갈 때 정해진 시간 동안 공칭보다 낮은 임피던스로 구동하는 중간 출력을 **active recessive**로, 그 뒤 공칭 임피던스로 구동하는 마지막 출력을 **passive recessive**로 정의한다.[@iso-11898-2-obp-2026]
+이 표준은 **SIC**(Signal Improvement Capability)를 MDI(Medium Dependent Interface)의 링잉을 억제하는 능력으로 정의한다. 이 표준은 dominant나 [[dominant-and-recessive#트랜시버 모드와 버스 상태|level_0]]에서 recessive로 넘어갈 때 정해진 시간 동안 공칭보다 낮은 임피던스로 구동하는 중간 출력을 **active recessive**로, 그 뒤 공칭 임피던스로 구동하는 마지막 출력을 **passive recessive**로 정의한다.[@iso-11898-2-obp-2026]
 
 TJA1462는 ISO 11898-2:2024 파라미터 세트 C의 SIC를 갖춰 망의 링잉을 크게 줄이고, 그만큼 더 큰 토폴로지에서도 CAN FD 통신이 안정되게 한다.[@nxp-tja1462-2025]
 
