@@ -13,7 +13,7 @@ verified: 2026-09-29
 
 PTP 네트워크의 시계들은 master–slave 계층을 이룬다.[@nxp-an12149-2025][@microchip-an6354-2026] 네트워크의 모든 시계가 따르는 기준 시계를 grandmaster라 한다.[@microchip-an6354-2026][@intel-eci-gptp-2024] 어느 시계가 grandmaster가 될지는 BMCA(Best Master Clock Algorithm)가 정한다.[@microchip-an6354-2026][@adi-ieee-1588-blackfin-2009]
 
-IEEE 1588g-2022는 구현이나 PTP 프로파일에서 master와 slave 대신 쓸 수 있는 대체 용어를 정한다.[@ieee-1588g-2022] Microchip 앱노트 AN6354는 master–slave 계층을 timeTransmitter–timeReceiver 계층이라 부르고[@microchip-an6354-2026], [[ieee-802-1as|IEEE 802.1AS]]-2025는 시각의 원천을 best timeTransmitter라 부른다.[@ieee-802-1as-2025]
+IEEE 1588g-2022는 구현이나 PTP 프로파일에서 master와 slave 대신 쓸 수 있는 대체 용어를 정한다.[@ieee-1588g-2022] Microchip 앱노트 AN6354는 master–slave 계층을 timeTransmitter–timeReceiver 계층이라 부르고[@microchip-an6354-2026], [[ieee-802-1as|IEEE 802.1AS]]-2025는 timing source를 best timeTransmitter라 부른다.[@ieee-802-1as-2025]
 
 시계들은 Announce 메시지로 우선순위, 클럭 등급 같은 자기 속성을 알린다. BMCA는 포트마다 돌며, 받은 Announce의 속성을 비교해 포트의 역할을 정한다.[@intel-eci-gptp-2024][@microchip-an1295-2026] BMCA는 되풀이해 돌므로, 노드가 더해지거나 빠져 네트워크 구성이 바뀌면 best master를 다시 고른다.[@nxp-an12149-2025][@intel-eci-gptp-2024]
 

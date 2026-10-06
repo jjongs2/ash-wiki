@@ -36,7 +36,7 @@
   <!-- 인터럽트 컨트롤러 -->
   <text x="150" y="181" text-anchor="end" fill="var(--text, #727981)">인터럽트 컨트롤러</text>
   <rect x="290.75" y="162.75" width="248.5" height="26.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="415" y="181" text-anchor="middle" fill="var(--on-fill, #f8fafd)">이 인터럽트 원천을 가림</text>
+  <text x="415" y="181" text-anchor="middle" fill="var(--on-fill, #f8fafd)">이 인터럽트 소스를 가림</text>
 
   <!-- 시간 -->
   <line x1="170" y1="210" x2="594" y2="210" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />

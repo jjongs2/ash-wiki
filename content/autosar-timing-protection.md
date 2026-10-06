@@ -31,7 +31,7 @@ execution budget을 넘으면 OS는 protection hook을 E_OS_PROTECTION_TIME으�
 
 ![[diagrams/autosar-time-frame-arrival.svg]]
 
-태스크에 두는 time frame은 활성화와 release를 `OsTaskTimeFrame`마다 한 번으로 제한한다. 큐에 쌓이는 활성화도 저마다 새 도착으로 치므로, 큐가 차는 속도도 이것으로 제한된다. category 2 ISR에 두는 time frame은 쉴 새 없이 인터럽트를 내는 원천에서 ECU를 지키는 데 쓸 수 있다. 네트워크의 다른 ECU가 보낸 프레임마다 인터럽트를 내는 [[can-controller|CAN 컨트롤러]]가 그런 예다.[@autosar-cp-sws-os-2025]
+태스크에 두는 time frame은 활성화와 release를 `OsTaskTimeFrame`마다 한 번으로 제한한다. 큐에 쌓이는 활성화도 저마다 새 도착으로 치므로, 큐가 차는 속도도 이것으로 제한된다. category 2 ISR에 두는 time frame은 쉴 새 없이 인터럽트를 내는 인터럽트 소스에서 ECU를 지키는 데 쓸 수 있다. 네트워크의 다른 ECU가 보낸 프레임마다 인터럽트를 내는 [[can-controller|CAN 컨트롤러]]가 그런 예다.[@autosar-cp-sws-os-2025]
 
 ## 위반 처리
 
