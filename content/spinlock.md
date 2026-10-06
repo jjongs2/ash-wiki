@@ -26,7 +26,7 @@ Arm 아키텍처는 ARMv6부터 배타적 적재(`LDREX`)와 배타적 저장(`S
 
 Zephyr의 기본 스핀락은 원자 변수 하나로 만들어져 경쟁하는 CPU 사이의 공정성을 보장하지 않고, 한 CPU가 거듭 이겨 다른 CPU를 굶길 수 있다. `CONFIG_TICKET_SPINLOCKS`를 켜면 티켓 방식으로 바뀌어, 경합하는 락을 요청한 CPU들에게 FIFO(First-In First-Out) 순서로 준다.[@zephyr-spinlocks-2026] RTEMS(Real-Time Executive for Multiprocessor Systems)는 예측 가능한 시스템을 위해 낮은 수준의 상호 배제에 FIFO 공정성을 요구하고, 그래서 SMP(Symmetric Multiprocessing) 락을 티켓 락 알고리즘으로 구현한다.[@rtems-smp-low-level-synchronization-2025]
 
-이미 쥔 스핀락을 다시 잡아서는 안 된다.[@ieee-1003-1-pthread-spin-lock-2024][@rtems-smp-interrupts-2025] [[ieee-1003-1|POSIX.1]]-2024는 호출한 스레드가 이미 쥔 락에 `pthread_spin_lock`을 부르면 결과를 정하지 않는다.[@ieee-1003-1-pthread-spin-lock-2024] RTEMS에서는 같은 락을 중첩해 잡으려 하면 인터럽트가 꺼진 채 무한 루프가 된다.[@rtems-smp-interrupts-2025] 자기 교착 상태 일반은 [[deadlock#생기는 과정|교착 상태]]에서 다룬다.
+[[ieee-1003-1|POSIX.1]]-2024는 호출한 스레드가 이미 쥔 락에 `pthread_spin_lock`을 부르면 결과를 정하지 않는다.[@ieee-1003-1-pthread-spin-lock-2024] RTEMS에서는 같은 락을 중첩해 잡으려 하면 인터럽트가 꺼진 채 무한 루프가 된다.[@rtems-smp-interrupts-2025] 자기 교착 상태 일반은 [[deadlock#생기는 과정|교착 상태]]에서 다룬다.
 
 ## 단일 프로세서에서
 

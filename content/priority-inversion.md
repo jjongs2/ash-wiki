@@ -11,11 +11,11 @@ verified: 2026-09-30
 
 ## 생기는 과정
 
-태스크 T1, T2, T3의 우선순위가 이 순서로 높다고 하자. 단일 프로세서에서 T3가 세마포어로 보호한 [[critical-section|임계 구역]]을 실행하는 동안 T1이 준비되면, T1이 T3를 선점한다. T1이 같은 세마포어를 요청하면 블록된다.[@sha-real-time-scheduling-ada-1989][@davari-unbounded-priority-inversions-1992]
+태스크 T1, T2, T3의 우선순위가 이 순서로 높다고 하자. 단일 프로세서에서 T3가 [[semaphore|세마포어]]로 보호한 [[critical-section|임계 구역]]을 실행하는 동안 T1이 준비되면, T1이 T3를 선점한다. T1이 같은 세마포어를 요청하면 블록된다.[@sha-real-time-scheduling-ada-1989][@davari-unbounded-priority-inversions-1992]
 
 우선순위 역전은 완전히 없앨 수 없다. 낮은 우선순위 태스크가 임계 구역에 있는 동안에는 그 공유 데이터가 필요한 높은 우선순위 태스크가 기다려야 한다.[@sha-real-time-scheduling-ada-1989][@davari-unbounded-priority-inversions-1992] FreeRTOS 책에 따르면 작은 임베디드 시스템에서는 설계 단계에서 자원에 어떻게 접근하는지 살펴 우선순위 역전을 흔히 피할 수 있다.[@freertos-resource-management-2026]
 
-Linux 커널의 계수 [[semaphore|세마포어]]에는 소유자 개념이 없어, [[preempt-rt|PREEMPT_RT]]도 세마포어에는 우선순위 상속을 줄 수 없다. 그래서 세마포어에서 블록되면 우선순위 역전이 생길 수 있다.[@linux-locktypes-2026]
+Linux 커널의 계수 세마포어에는 소유자 개념이 없어, [[preempt-rt|PREEMPT_RT]]도 세마포어에는 우선순위 상속을 줄 수 없다. 그래서 세마포어에서 블록되면 우선순위 역전이 생길 수 있다.[@linux-locktypes-2026]
 
 ## 제한 없는 우선순위 역전
 

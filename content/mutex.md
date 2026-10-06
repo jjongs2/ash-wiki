@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## 소유권
 
-Linux 커널과 CMSIS-RTOS2에서는 세마포어와 달리 뮤텍스에 소유자가 있다.[@linux-locktypes-2026][@arm-cmsis-rtos2-mutex-2026]
+Linux 커널과 CMSIS-RTOS2에서는 [[semaphore|세마포어]]와 달리 뮤텍스에 소유자가 있다.[@linux-locktypes-2026][@arm-cmsis-rtos2-mutex-2026]
 
 [[ieee-1003-1|POSIX.1]]-2024는 뮤텍스를 잠근 스레드를 그 뮤텍스의 소유자로 정의하고, 그 스레드가 풀 때까지 소유자로 남는다고 정한다.[@ieee-1003-1-definitions-2024]
 
@@ -62,7 +62,7 @@ FreeRTOS의 뮤텍스는 우선순위 상속을 하고, 이진 세마포어는 �
 
 ## ISR에서
 
-뮤텍스는 ISR(Interrupt Service Routine)에서 쓰지 않는다.[@arm-cmsis-rtos2-mutex-2026][@micrium-ucos-iii-mutual-exclusion-semaphores-2026] FreeRTOS 책에 따르면 우선순위 상속은 뮤텍스를 쓰는 태스크의 우선순위를 바꾸므로, 뮤텍스는 ISR에서 쓰면 안 된다.[@freertos-resource-management-2026] ISR에서 세마포어를 주는 일은 [[semaphore#계수 세마포어의 두 용도|세마포어]]에서 다룬다.
+뮤텍스는 ISR(Interrupt Service Routine)에서 쓰지 않는다.[@arm-cmsis-rtos2-mutex-2026][@micrium-ucos-iii-mutual-exclusion-semaphores-2026] FreeRTOS 책에 따르면 우선순위 상속은 뮤텍스를 쓰는 태스크의 우선순위를 바꾸므로, 뮤텍스는 ISR에서 쓰면 안 된다.[@freertos-resource-management-2026] ISR에서 세마포어를 주는 일은 [[semaphore#쓰임|세마포어]]에서 다룬다.
 
 ## 락 세분도
 

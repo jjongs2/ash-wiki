@@ -13,7 +13,7 @@ verified: 2026-10-07
 
 FreeRTOS의 [[semaphore|세마포어]]와 [[message-queue|큐]]는 사건 하나를 기다리게 하고 사건이 일어나면 우선순위가 가장 높은 대기자 하나만 깨우지만, event group은 여러 사건의 조합을 기다리게 하고 같은 사건을 기다리던 태스크를 모두 깨운다. 그래서 여러 태스크를 동기화하거나 사건을 여러 태스크에 알리는 데 쓴다.[@freertos-event-groups-2026]
 
-## 제품 비교
+## 제품마다 다른 것
 
 플래그 비트 수와, 조건이 맞을 때 깨우는 대기자는 제품마다 아래와 같다.
 
@@ -37,4 +37,4 @@ CMSIS-RTOS2에서는 스레드가 깨어나면 기다린 플래그가 `osFlagsNo
 
 FreeRTOS의 task notification은 큐, 세마포어, event group으로 같은 일을 할 때보다 사건이나 데이터를 훨씬 빠르게, RAM(Random-Access Memory)을 덜 쓰며 보낸다. 대신 받는 태스크가 하나뿐이고, 값 하나만 담으며, 태스크에서 인터럽트 처리기로는 보내지 못한다.[@freertos-task-notifications-2026] µC/OS-III의 태스크 세마포어도 별도 세마포어 객체를 쓰는 것보다 효율적이다.[@micrium-ucos-iii-task-semaphore-2026]
 
-[[osek-os|OSEK OS]]의 [[osek-event|이벤트]]도 독립된 객체가 아니라 extended 태스크에 딸리며, 그 태스크만 자기 이벤트를 기다릴 수 있다.[@osek-os-2-2-3-2005]
+OSEK OS의 이벤트 모델은 [[osek-event|OSEK 이벤트]]에서 다룬다.

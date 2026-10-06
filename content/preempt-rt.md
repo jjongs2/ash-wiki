@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-07
 ---
 
-**PREEMPT_RT**는 Linux 커널을 실시간 커널로 바꾸는 구성이다. `spinlock_t` 같은 락을 선점할 수 있고 우선순위 상속을 아는 rtmutex로 바꾸고, 인터럽트 처리기를 스레드로 돌리게 강제한다. 그 결과 진입 코드, 스케줄러, 저수준 인터럽트 처리 같은 몇 경로를 빼고 커널 전체를 선점할 수 있게 되어, 우선순위 높은 태스크가 실행 가능해진 뒤 실제로 CPU에서 실행되기까지의 지연이 줄어든다.[@linux-preempt-rt-theory-2026] 이 구성은 `CONFIG_PREEMPT_RT` 옵션으로 켜며, 켜지 않으면 커널은 완전히 선점할 수 있는 실시간 커널이 되지 않는다.[@linux-preempt-rt-configuration-2026]
+**PREEMPT_RT**는 Linux 커널을 실시간 커널로 바꾸는 구성이다. `spinlock_t` 같은 [[spinlock|스핀락]]을 선점할 수 있고 우선순위 상속을 아는 rtmutex로 바꾸고, 인터럽트 처리기를 스레드로 돌리게 강제한다. 그 결과 진입 코드, 스케줄러, 저수준 인터럽트 처리 같은 몇 경로를 빼고 커널 전체를 선점할 수 있게 되어, 우선순위 높은 태스크가 실행 가능해진 뒤 실제로 CPU에서 실행되기까지의 지연이 줄어든다.[@linux-preempt-rt-theory-2026] 이 구성은 `CONFIG_PREEMPT_RT` 옵션으로 켜며, 켜지 않으면 커널은 완전히 선점할 수 있는 실시간 커널이 되지 않는다.[@linux-preempt-rt-configuration-2026]
 
 ## 잠드는 스핀락
 
@@ -25,4 +25,4 @@ PREEMPT_RT 커널에서 `IRQF_NO_THREAD`, `IRQF_PERCPU`, `IRQF_ONESHOT` 플래�
 
 ## 우선순위 상속
 
-PREEMPT_RT 커널의 `spinlock_t`와 mutex는 우선순위 상속을 지원하는 rtmutex 위에 구현된다. 태스크가 이런 락에서 블록되면 블록된 태스크의 스케줄링 정책과 우선순위가 락 소유자에게 잠시 넘어간다. 예를 들어 `SCHED_FIFO` 태스크 A가 `SCHED_OTHER` 태스크 B가 쥔 락에서 블록되면, B는 A의 정책과 우선순위를 물려받아 실행되다가 락을 풀면 원래 스케줄링 파라미터로 돌아간다.[@linux-preempt-rt-theory-2026] rt-mutex의 상속 규칙은 [[priority-inheritance-protocol#구현|우선순위 상속 프로토콜]]에서 다룬다.
+PREEMPT_RT 커널의 `spinlock_t`와 [[mutex|mutex]]는 우선순위 상속을 지원하는 rtmutex 위에 구현된다. 태스크가 이런 락에서 블록되면 블록된 태스크의 스케줄링 정책과 우선순위가 락 소유자에게 잠시 넘어간다. 예를 들어 `SCHED_FIFO` 태스크 A가 `SCHED_OTHER` 태스크 B가 쥔 락에서 블록되면, B는 A의 정책과 우선순위를 물려받아 실행되다가 락을 풀면 원래 스케줄링 파라미터로 돌아간다.[@linux-preempt-rt-theory-2026] rt-mutex의 상속 규칙은 [[priority-inheritance-protocol#구현|우선순위 상속 프로토콜]]에서 다룬다.
