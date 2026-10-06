@@ -28,7 +28,9 @@ ISO 11898 시리즈는 칩 설계자를 위한 표준으로, CAN 프로토콜 �
 
 ![[diagrams/can-node-bus.svg]]
 
-고속 CAN의 버스 인터페이스는 CAN_H와 CAN_L 두 선이다. 버스 상태는 [[dominant-and-recessive|dominant]](논리 0)와 recessive(논리 1) 둘이고, 두 값을 동시에 내면 버스는 dominant가 된다.[@iso-11898-2-obp-2026] 전기적 동작은 [[can-physical-layer|CAN 물리 계층]]에서 다룬다.
+Bosch CAN 2.0 규격은 버스에 잇는 노드 수에 이론적 한계를 두지 않고, 실제 수는 지연 시간과 버스의 전기적 부하가 제한한다고 정한다.[@bosch-can-2-0-1991]
+
+고속 CAN의 버스 인터페이스는 CAN_H와 CAN_L 두 선이다. ISO 11898-2:2026은 PMA가 중재 모드일 때의 버스 상태를 [[dominant-and-recessive|dominant]](논리 0)와 recessive(논리 1)로 두고, 두 값을 동시에 내면 버스가 dominant가 된다고 정한다.[@iso-11898-2-obp-2026] 전기적 동작은 [[can-physical-layer|CAN 물리 계층]]에서 다룬다.
 
 ## 중재
 
@@ -42,8 +44,20 @@ ISO 11898 시리즈는 칩 설계자를 위한 표준으로, CAN 프로토콜 �
 
 [[can-frame|Classical CAN 프레임]]의 식별자는 기본 포맷에서 11비트, 확장 포맷에서 29비트이고, 데이터는 최대 8바이트다.[@iso-11898-1-obp-2024] [[can-fd-frame|CAN FD 프레임]]의 데이터 필드는 0~64바이트다.[@bosch-can-fd-1-0-2012]
 
+## 역사와 쓰임
+
+CiA에 따르면 1980년대 초 Bosch의 엔지니어들은 기존 직렬 버스가 승용차의 요구를 채우지 못한다고 보았고, Uwe Kiencke가 1983년에 새 직렬 버스 개발을 시작했다. 자문으로 참여한 Wolfhard Lawrenz 교수가 'Controller Area Network'라는 이름을 붙였고, 1986년 발표 때의 이름은 'Automotive Serial Controller Area Network'였다.[@cia-can-history-2026]
+
+CiA에 따르면 첫 CAN 컨트롤러 칩은 Intel이 1987년 중반에 내놓은 82526이고, 곧이어 Philips Semiconductors가 82C200을 내놓았다. 두 칩은 수용 필터링과 프레임 처리가 달라, Intel의 FullCAN은 Philips의 BasicCAN보다 연결된 MCU의 CPU 부하를 덜었지만 받을 수 있는 프레임 수가 제한되었다. 지금의 CAN 컨트롤러는 두 방식을 섞어 구현하므로 BasicCAN과 FullCAN이라는 말은 쓰이지 않게 되었다.[@cia-can-history-2026]
+
+CiA에 따르면 Mercedes-Benz는 1991년부터 고급 승용차에 CAN을 썼고, 처음에는 엔진 관리 ECU들을 CAN으로 이었다.[@cia-can-history-2026]
+
+CiA에 따르면 CAN은 철도 차량, 항공기, 선박, 우주 같은 운송 시스템, 산업 기계 제어, 홈·빌딩 자동화, 건설·농업 장비 같은 이동 기계, 의료 기기와 실험실 자동화 등에 쓰이고, 해마다 CAN 노드가 20억 개 넘게 팔린다.[@cia-can-dll-generations-2026]
+
 ## CAN FD·CAN XL과의 차이
 
-Classical CAN의 비트율은 최대 1 Mbit/s다.[@bosch-can-2-0-1991] [[can-fd|CAN FD]]는 데이터 구간의 비트율을 중재 구간보다 높게 둘 수 있어, 1 Mbit/s를 넘는 데이터율을 낸다.[@bosch-can-fd-1-0-2012] ISO 11898-1:2024는 여기에 데이터가 최대 2048바이트인 CAN XL 프레임 포맷을 더했다.[@iso-11898-1-obp-2024]
+Bosch CAN 2.0 규격은 CAN의 속도가 시스템마다 다를 수 있지만 한 시스템 안에서는 비트율이 하나로 고정된다고 정한다. 이 규격은 자동차 전자 장치에서 엔진 제어 장치, 센서, 미끄럼 방지 시스템 등을 1 Mbit/s까지의 비트율로 CAN에 잇는 예를 든다.[@bosch-can-2-0-1991] [[can-fd|CAN FD]]는 데이터 구간의 비트율을 중재 구간보다 높게 둘 수 있어, 1 Mbit/s를 넘는 데이터율을 낸다.[@bosch-can-fd-1-0-2012] ISO 11898-1:2024는 여기에 데이터가 최대 2048바이트인 [[can-xl|CAN XL]] 프레임 포맷을 더했다.[@iso-11898-1-obp-2024]
 
-ISO 11898-1:2024는 classical 프레임만 지원하는 구현을 둘로 나눈다. CAN FD 프레임을 용인하지 않는 구현과, 주고받지는 못해도 방해하지 않는 **FD tolerant** 구현이다. 용인하지 않는 구현도 classical 프레임만 쓰는 동안에는 CAN FD나 CAN XL 노드와 통신할 수 있다.[@iso-11898-1-obp-2024]
+ISO 11898-1:2024는 classic 프레임만 지원하는 구현을 CAN FD 프레임을 용인하는지에 따라 둘로 나눈다.[@iso-11898-1-obp-2024] 두 구현의 통신 범위는 [[can-fd#호환성|CAN FD]]에서 다룬다.
+
+CiA는 CAN 데이터 링크 계층을 CAN CC(classic), CAN FD, CAN XL 세 세대로 나눈다.[@cia-can-dll-generations-2026] ISO 11898-1:2024는 CAN 기능의 일부에 바탕을 둔 responder 노드의 구현 옵션으로 [[can-fd-light|CAN FD light]]를 둔다.[@iso-11898-1-obp-2024]

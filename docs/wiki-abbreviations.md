@@ -28,6 +28,7 @@
 - DoD: 조직
 - ECU: 널리 쓰이는 약어
 - EIA: 조직
+- EN: 표준·규격 이름
 - ENISA: 조직
 - EU: 조직
 - FAA: 조직
@@ -60,7 +61,9 @@
 - NIST: 조직
 - NMEA: 조직
 - NSA: 조직
+- NXP: 조직
 - OASIS: 조직
+- ODVA: 조직
 - OMA: 조직
 - OSEK/VDX: 표준·규격 이름
 - PCI SSC: 조직

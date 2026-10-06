@@ -11,7 +11,7 @@ verified: 2026-09-27
 
 DLC 값 0\~8은 데이터 필드의 바이트 수와 같다. Bosch CAN 2.0 규격은 DLC로 0\~8만 쓰게 한다. $\mathrm{DLC} > 8$인 프레임을 받았을 때의 동작은 CAN 2.0이 정하지 않았고, Bosch의 Reference CAN Model은 이를 DLC 8로 보고 8바이트를 받는다.[@bosch-can-2-0-1991] MCP2515는 DLC를 $\mathrm{DLC} > 8$로 설정해도 8바이트만 보낸다.[@microchip-mcp2515-2019]
 
-DLC가 알려 주는 것은 데이터 필드의 길이다. 데이터가 무엇을 뜻하는지는 [[can-identifier|식별자]]가 나타낸다.[@bosch-can-2-0-1991] [[j1939|J1939]]에서는 응용 계층 문서(SAE J1939-7X)가 데이터 파라미터와 메시지를 정의하고, J1939-71:2025가 파라미터 그룹 데이터 안에 파라미터를 배치하는 관례를 정한다.[@sae-j1939-71-2025] classical CAN을 쓰는 CANopen에서는 PDO(Process Data Object) 하나가 CAN 프레임 하나에 응용 데이터를 최대 8바이트 싣고, PDO 매핑이 어떤 응용 객체를 어떤 순서와 길이로 PDO에 넣을지 정한다.[@cia-pdo-protocol-2026]
+DLC가 알려 주는 것은 데이터 필드의 길이다. 데이터가 무엇을 뜻하는지는 [[can-identifier|식별자]]가 나타낸다.[@bosch-can-2-0-1991] [[j1939|J1939]]에서는 응용 계층 문서(SAE J1939-7X)가 데이터 파라미터와 메시지를 정의하고, J1939-71:2025가 파라미터 그룹 데이터 안에 파라미터를 배치하는 관례를 정한다.[@sae-j1939-71-2025] classical CAN을 쓰는 [[canopen|CANopen]]에서는 PDO(Process Data Object) 하나가 CAN 프레임 하나에 응용 데이터를 최대 8바이트 싣고, PDO 매핑이 어떤 응용 객체를 어떤 순서와 길이로 PDO에 넣을지 정한다.[@cia-pdo-protocol-2026]
 
 ## CAN FD
 

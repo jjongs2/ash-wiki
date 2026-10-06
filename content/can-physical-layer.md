@@ -55,7 +55,7 @@ Philips 앱노트는 PCA82C250을 고속 모드로 쓸 때 1 Mbit/s에서의 버
 
 ## 커넥터
 
-CiA 106 version 1.1.0은 CAN 인터페이스 커넥터의 핀 배치를 권하며, CAN_H와 CAN_L 핀, 접지 핀, 전원 핀을 다룬다. CiA가 처음 권한 핀 배치는 DE-9 커넥터용이었고, 이런 권고는 CANopen CC용 문서인 CiA 303-1에 실려 있다가 Classical CAN, CAN FD, CAN XL 인터페이스에 두루 쓰이도록 CiA 106으로 옮겨졌다.[@cia-106-2026]
+CiA 106 version 1.1.0은 CAN 인터페이스 커넥터의 핀 배치를 권하며, CAN_H와 CAN_L 핀, 접지 핀, 전원 핀을 다룬다. CiA가 처음 권한 핀 배치는 DE-9 커넥터용이었고, 이런 권고는 [[canopen|CANopen]] CC용 문서인 CiA 303-1에 실려 있다가 Classical CAN, CAN FD, [[can-xl|CAN XL]] 인터페이스에 두루 쓰이도록 CiA 106으로 옮겨졌다.[@cia-106-2026]
 
 ## 저속 내결함성 CAN
 
