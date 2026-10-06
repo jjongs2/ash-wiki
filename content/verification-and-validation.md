@@ -12,7 +12,7 @@ IEEE 1012-2024는 **검증과 확인**(verification and validation, V&V)을, 한
 ## 정의
 
 - **검증**(verification): ISO 9000:2026은 검증을 명시된 요구사항이 충족되었음을 객관적 증거로 확인하는 일로 정의한다.
-- **확인**(validation): ISO 9000:2026은 확인을 특정한 의도된 용도나 응용에 대한 요구사항이 충족되었음을 객관적 증거로 확인하는 일로 정의한다.[@iso-9000-obp-2026]
+- **확인**(validation): 이 표준은 확인을 특정한 의도된 용도나 응용에 대한 요구사항이 충족되었음을 객관적 증거로 확인하는 일로 정의한다.[@iso-9000-obp-2026]
 
 Boehm은 1979년 글에서 검증을 "Am I building the product right?", 확인을 "Am I building the right product?"라는 물음으로 나타냈다.[@boehm-guidelines-verifying-validating-1979]
 

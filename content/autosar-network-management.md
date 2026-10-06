@@ -34,7 +34,7 @@ Network Mode에서 NM 메시지를 받거나 NM 메시지 송신에 성공하면
 
 [[autosar|AUTOSAR]]의 버스별 NM은 분산 direct NM 전략을 따른다. 각 노드는 자신이 받거나 보낸 NM 메시지만을 바탕으로 스스로 동작한다.[@autosar-cp-sws-cannetworkmanagement-2025][@autosar-cp-sws-udpnetworkmanagement-2025] CanNm에서는 NM 메시지 송신 주기 `CanNmMsgCycleTime`, `CanNmTimeoutTime`, `CanNmWaitBusSleepTime`을 클러스터의 모든 노드가 같은 값으로 둔다.[@autosar-cp-sws-cannetworkmanagement-2025]
 
-[[osek-vdx|OSEK]] NM 명세의 direct NM은 노드를 [[bus-access-method|논리 링]]으로 잇는다. OSEK NM 명세의 indirect NM은 전용 NM 메시지를 쓰지 않고, 주기적으로 오가는 응용 메시지를 감시해 노드의 상태를 판단한다. 그래서 정상 동작 중 메시지를 주기적으로 보내는 노드만 감시할 수 있다.[@osek-nm-2-5-3-2004]
+[[osek-vdx|OSEK]] NM 명세의 direct NM은 노드를 [[bus-access-method|논리 링]]으로 잇는다. indirect NM은 전용 NM 메시지를 쓰지 않고, 주기적으로 오가는 응용 메시지를 감시해 노드의 상태를 판단한다. 그래서 정상 동작 중 메시지를 주기적으로 보내는 노드만 감시할 수 있다.[@osek-nm-2-5-3-2004]
 
 ## Partial networking
 

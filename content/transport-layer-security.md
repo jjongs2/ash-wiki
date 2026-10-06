@@ -42,7 +42,7 @@ TLS 1.3의 전체 핸드셰이크에서 공유 키는 ClientHello와 ServerHello
 
 ![[diagrams/tls-1-3-handshake.svg]]
 
-TLS 1.3의 기본 키 교환 방식은 비대칭 키 교환, PSK, PSK와 비대칭 키 교환을 함께 쓰는 방식 셋이다. RFC 9846의 비대칭 키 교환은 유한체나 타원 곡선 위의 [[diffie-hellman-key-exchange|Diffie-Hellman]]이고, KEM(Key Encapsulation Mechanism)은 다른 확장이 정한다. 키는 HKDF(HMAC-based Extract-and-Expand Key Derivation Function)의 Extract와 Expand로 유도한다. TLS 1.3은 정적 RSA(Rivest-Shamir-Adleman)와 정적 Diffie-Hellman cipher suite를 없애, 공개 키 기반의 키 교환은 모두 [[key-establishment#안전성 성질|forward secrecy]]를 준다.[@ietf-rfc-9846-2026]
+TLS 1.3의 기본 키 교환 방식은 비대칭 키 교환, PSK, PSK와 비대칭 키 교환을 함께 쓰는 방식 셋이다. 이 RFC의 비대칭 키 교환은 유한체나 타원 곡선 위의 [[diffie-hellman-key-exchange|Diffie-Hellman]]이고, KEM(Key Encapsulation Mechanism)은 다른 확장이 정한다. 키는 HKDF(HMAC-based Extract-and-Expand Key Derivation Function)의 Extract와 Expand로 유도한다. TLS 1.3은 정적 RSA(Rivest-Shamir-Adleman)와 정적 Diffie-Hellman cipher suite를 없애, 공개 키 기반의 키 교환은 모두 [[key-establishment#안전성 성질|forward secrecy]]를 준다.[@ietf-rfc-9846-2026]
 
 ## 인증
 
