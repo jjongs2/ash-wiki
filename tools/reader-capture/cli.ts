@@ -57,7 +57,10 @@ function siteUrl(): string {
 
 async function serve(dir: string): Promise<{ base: string; close: () => void }> {
   const server = http.createServer((req, res) =>
-    handler(req, res, { public: dir, cleanUrls: true, directoryListing: false }),
+    handler(req, res, { public: dir, cleanUrls: true, directoryListing: false }).catch((error) => {
+      res.statusCode = 500
+      res.end(String(error))
+    }),
   )
   await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve))
   const { port } = server.address() as AddressInfo
