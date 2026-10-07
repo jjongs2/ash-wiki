@@ -39,7 +39,7 @@ component type은 아홉 종류다. SwComponentType 아래에 AtomicSwComponentT
 | Parameter             | ParameterSwComponentType           | 캘리브레이션 데이터나 고정 데이터 같은 파라미터 값을 다른 SW-C에 내준다. internal behavior를 가질 수 없고, 포트로는 parameter interface 타입의 제공 포트만 가질 수 있다.[@autosar-cp-tr-vfb-2025][@autosar-cp-tps-softwarecomponenttemplate-2025]                                                                     |
 | Composition           | CompositionSwComponentType         | 기존 SW-C들을 담아 특정 기능을 캡슐화한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]                                                                                                                                                                                                                            |
 
-Service Proxy의 대표적인 쓰임은 차량 모드 전환 요청을 전달하는 것이다.[@autosar-cp-tps-softwarecomponenttemplate-2025] 모드 요청을 모든 ECU의 BswM(BSW Mode Manager)에 나눠 보낼 때 Service Proxy SW-C를 쓴다.[@autosar-cp-tr-vfb-2025]
+Service Proxy의 대표적인 쓰임은 차량 모드 전환 요청을 전달하는 것이다.[@autosar-cp-tps-softwarecomponenttemplate-2025] 모드 요청을 모든 ECU의 [[basic-software-mode-manager|BswM]]에 나눠 보낼 때 Service Proxy SW-C를 쓴다.[@autosar-cp-tr-vfb-2025]
 
 ## Composition
 

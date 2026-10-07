@@ -22,7 +22,7 @@ AUTOSAR R25-11 Adaptive Platform 설계 설명서는 [[over-the-air-update|OTA �
 
 ## Software Cluster와 설정 관리
 
-UCM은 Adaptive Platform의 소프트웨어를 Software Cluster 단위로 관리한다. Software Cluster는 한 번에 통째로 갱신할 수 있는 소프트웨어 단위가 될 수 있고, UCM은 Software Cluster마다 버전을 보고한다. UCM이 처리하는 Software Package는 정확히 한 Software Cluster를 가리키고, 그 Software Cluster를 더할지, 갱신할지, 지울지를 담는다.[@autosar-ap-exp-platformdesign-2025]
+UCM은 Adaptive Platform의 소프트웨어를 [[autosar-software-cluster#Adaptive Platform의 Software Cluster와의 차이|Software Cluster]] 단위로 관리한다. Software Cluster는 한 번에 통째로 갱신할 수 있는 소프트웨어 단위가 될 수 있고, UCM은 Software Cluster마다 버전을 보고한다. UCM이 처리하는 Software Package는 정확히 한 Software Cluster를 가리키고, 그 Software Cluster를 더할지, 갱신할지, 지울지를 담는다.[@autosar-ap-exp-platformdesign-2025]
 
 UCM은 패키지 관리 서비스 인터페이스 밖에 설정 관리를 위한 인터페이스를 따로 두지 않고, 갱신과 설정 관리를 이 인터페이스 하나로 묶는다. 그래서 설정 파라미터 하나를 바꾸더라도 Software Package를 만들어 처리해야 하고, Software Cluster의 버전이 새로 생긴다. 소프트웨어 버전을 대개 바꾸지 않는 calibration이나 variant coding 같은 쓰임새는 지원하지 않는다.[@autosar-ap-exp-platformdesign-2025]
 

@@ -47,4 +47,4 @@ AUTOSAR R25-11은 Software Cluster Connection의 Com proxy와 LdCom proxy를 공
 
 ## Adaptive Platform의 Software Cluster와의 차이
 
-AUTOSAR R25-11 용어집은 Adaptive Platform의 Software Cluster를 Adaptive Platform Machine에 배치하는 데 관련된 AUTOSAR 산출물을 묶는 것으로 따로 정의한다. 그 내용은 범주에 따라 달라, 실행 파일(Adaptive Platform Application), Functional Cluster, 매니페스트, 영속 저장소 데이터베이스, 트랜스포머나 암호 같은 플랫폼 라이브러리, 부트로더를 담을 수 있다. 이 Software Cluster는 UCM이 Software Package에 담아 Machine에 배치하며, Machine에서 도는 응용을 저마다 갱신할 수 있는 cluster로 나누는 데 쓴다. Classic Platform의 Software Cluster가 ECU에 정적으로 배치하는 빌드 단위인 것과 다르다.[@autosar-fo-tr-glossary-2025]
+AUTOSAR R25-11 용어집은 [[autosar-adaptive-platform|Adaptive Platform]]의 Software Cluster를 Adaptive Platform Machine에 배치하는 데 관련된 AUTOSAR 산출물을 묶는 것으로 따로 정의한다. 그 내용은 범주에 따라 달라, 실행 파일(Adaptive Platform Application), Functional Cluster, [[autosar-manifest|매니페스트]], 영속 저장소 데이터베이스, 트랜스포머나 암호 같은 플랫폼 라이브러리, 부트로더를 담을 수 있다. 이 Software Cluster는 [[autosar-update-and-configuration-management|UCM]]이 Software Package에 담아 Machine에 배치하며, Machine에서 도는 응용을 저마다 갱신할 수 있는 cluster로 나누는 데 쓴다. Classic Platform의 Software Cluster가 ECU에 정적으로 배치하는 빌드 단위인 것과 다르다.[@autosar-fo-tr-glossary-2025]

@@ -98,7 +98,7 @@ AUTOSAR R25-11 BSW 일반 명세(General Specification of Basic Software Modules
 
 ![[diagrams/bsw-module-implementation-prefix.svg]]
 
-Classic Platform의 BSW 모듈 SWS는 API 함수마다 표를 둔다. 표에는 Service name, Syntax, Service ID [hex], Sync/Async, Reentrancy, 매개변수(in, inout, out), Return value, Description, Available via(원형을 선언한 헤더)가 들어간다. **Service ID**는 BSW 모듈마다 `0x00`부터 매기는 서비스 번호이고, Default Error Tracer의 오류 보고 API에 매개변수로 넘긴다. Sync/Async 칸의 값은 Synchronous, Asynchronous, Depends on configuration 가운데 하나다.[@autosar-cp-sws-bswgeneral-2025]
+Classic Platform의 BSW 모듈 SWS는 API 함수마다 표를 둔다. 표에는 Service name, Syntax, Service ID [hex], Sync/Async, Reentrancy, 매개변수(in, inout, out), Return value, Description, Available via(원형을 선언한 헤더)가 들어간다. **Service ID**는 BSW 모듈마다 `0x00`부터 매기는 서비스 번호이고, [[autosar-error-handling#Det|Default Error Tracer]]의 오류 보고 API에 매개변수로 넘긴다. Sync/Async 칸의 값은 Synchronous, Asynchronous, Depends on configuration 가운데 하나다.[@autosar-cp-sws-bswgeneral-2025]
 
 **동기 함수**는 돌아올 때 기능이 끝났음이 보장되고, **비동기 함수**는 그런 보장이 없다. **재진입 가능한 함수**(reentrant function)는 실행 도중에 끼어들림을 당한 뒤, 앞선 호출이 끝나기 전에 다시 안전하게 호출될 수 있다.[@autosar-fo-tr-glossary-2025] 예를 들어 Port Driver SWS는 `Port_Init`의 Service ID를 `0x00`으로 두고, 동기이며 재진입할 수 없다고 정하며, `Port.h`로 제공한다.[@autosar-cp-sws-portdriver-2025]
 
