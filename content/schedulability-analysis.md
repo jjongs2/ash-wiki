@@ -33,7 +33,9 @@ $U$는 태스크 집합을 실행하는 데 쓰인 프로세서 시간의 비율
 
 [[multiprocessor-scheduling|다중 프로세서 스케줄링]] 알고리즘의 성능을 견주는 지표로 이용률 상한, 근사 비율, speedup factor 같은 것을 쓴다. **최악 이용률 상한**(worst-case utilisation bound) $U_A$는 마감 시한이 주기와 같은 태스크 집합 가운데 알고리즘 A로 겨우 스케줄 가능한 것의 최소 이용률이다. **speedup factor**는 프로세서 $m$개에서 feasible한 모든 태스크 집합을 A로 스케줄 가능하게 하려면 프로세서 $m$개의 속도를 모두 몇 배 높여야 하는지의 최솟값이다.[@davis-survey-hard-real-time-2011]
 
-단일 프로세서에서 서로 독립인 [[periodic-task-model|주기 태스크]]의 마감 시한이 다음 요청 시각이고 실행 시간이 일정하며 선점할 수 있으면, [[rate-monotonic-scheduling|RM]]에 대한 Liu와 Layland의 [[rate-monotonic-scheduling#이용률 상한|이용률 상한]]은 충분조건일 뿐이라, 상한을 넘는 태스크 집합도 스케줄 가능할 수 있다. 같은 가정에서 [[earliest-deadline-first|EDF]]로 모든 마감 시한을 지키는 것은 $U \le 1$일 때이고 그때뿐이다.[@liu-hard-real-time-1973] 마감 시한이 주기보다 짧은 태스크 집합의 EDF 검사는 [[earliest-deadline-first#마감 시한이 주기보다 짧을 때|처리기 수요 분석]]에서 다룬다.
+단일 프로세서에서 서로 독립인 [[periodic-task-model|주기 태스크]]의 마감 시한이 다음 요청 시각이고 실행 시간이 일정하며 선점할 수 있다고 하자. 어떤 고정 우선순위 배정이 태스크 집합에 feasible하고, 어느 태스크의 실행 시간을 늘려도 그 배정이 feasible하지 않게 되면, 그 태스크 집합은 그 배정에서 처리기를 **fully utilize**한다고 한다. 고정 우선순위 스케줄링 알고리즘의 이용률의 최소 상한은 처리기를 fully utilize하는 모든 태스크 집합의 이용률 가운데 최솟값이고, 이용률이 이 상한보다 낮은 태스크 집합에는 feasible한 고정 우선순위 배정이 늘 있다.[@liu-hard-real-time-1973]
+
+단일 프로세서에서 서로 독립인 주기 태스크의 마감 시한이 다음 요청 시각이고 실행 시간이 일정하며 선점할 수 있으면, [[rate-monotonic-scheduling|RM]]에 대한 Liu와 Layland의 [[rate-monotonic-scheduling#이용률 상한|이용률 상한]]은 충분조건일 뿐이라, 상한을 넘는 태스크 집합도 스케줄 가능할 수 있다. 같은 가정에서 [[earliest-deadline-first|EDF]]로 모든 마감 시한을 지키는 것은 $U \le 1$일 때이고 그때뿐이다.[@liu-hard-real-time-1973] 마감 시한이 주기보다 짧은 태스크 집합의 EDF 검사는 [[earliest-deadline-first#마감 시한이 주기보다 짧을 때|처리기 수요 분석]]에서 다룬다.
 
 ![[diagrams/utilization-bound-rm-edf.svg]]
 

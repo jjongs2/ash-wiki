@@ -9,7 +9,7 @@ verified: 2026-10-07
 
 ## POSIX의 메시지 큐
 
-POSIX.1-2024는 메시지 큐 함수를 Message Passing 옵션으로 둔다.[@ieee-1003-1-unistd-h-2024][@ieee-1003-1-mq-send-2024] POSIX.1-2024는 `mq_open`으로 큐를 만들 때 큐의 `mq_maxmsg`와 `mq_msgsize` 속성을 정하게 한다.[@ieee-1003-1-mq-open-2024]
+POSIX.1-2024는 메시지 큐 함수를 Message Passing 옵션으로 둔다.[@ieee-1003-1-unistd-h-2024][@ieee-1003-1-mq-send-2024] POSIX.1-2024는 `mq_open`으로 큐를 만들 때 큐의 `mq_maxmsg`와 `mq_msgsize` 속성을 정하게 한다.[@ieee-1003-1-mq-open-2024] POSIX.1-2024는 `<mqueue.h>`의 `mq_attr` 구조체에 큐에 담을 수 있는 메시지의 최대 개수인 `mq_maxmsg`와 메시지의 최대 크기인 `mq_msgsize`를 두도록 정한다.[@ieee-1003-1-mqueue-h-2024]
 
 POSIX.1-2024는 `mq_send`가 메시지를 `msg_prio`가 가리키는 자리에 넣도록 정한다. `msg_prio` 값이 큰 메시지는 값이 작은 메시지보다 앞에, 값이 같은 메시지 뒤에 들어간다. 메시지 길이가 `mq_msgsize`보다 크면 실패한다. 큐가 가득 찼을 때 `O_NONBLOCK`이 설정되어 있지 않으면 자리가 날 때까지 블록하고, 설정되어 있으면 오류를 돌려준다.[@ieee-1003-1-mq-send-2024] POSIX.1-2024는 `mq_receive`가 우선순위가 가장 높은 메시지 가운데 가장 오래된 것을 꺼내도록 정한다. 큐가 비었을 때도 `O_NONBLOCK`에 따라 블록하거나 오류를 돌려준다.[@ieee-1003-1-mq-receive-2024]
 
