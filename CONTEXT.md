@@ -128,6 +128,10 @@ _Avoid_: 재검증, 재시도
 주제나 구역 전체를 놓고 봐야 드러나는 문제를 찾는 일. 무엇을 찾는지는 [린트 스킬](.claude/skills/wiki-lint/SKILL.md)이 정한다.
 _Avoid_: 감사, 점검
 
+**Reader Testing**:
+게시된 페이지를 위키 규칙을 모르는 독자 에이전트에게 읽혀, 리뷰와 린트가 보지 않는 읽기 경험의 문제를 찾고 고치는 일. 어떻게 하는지는 [Reader Testing 스킬](.claude/skills/reader-testing/SKILL.md)이 정한다.
+_Avoid_: 독자 시험, 가독성 검사, 리더 테스트
+
 **회고**:
 스킬 실행 기록에서 스킬의 개선점을 찾아 티켓으로 넘기는 일. 무엇을 남기는지는 [회고 스킬](.claude/skills/wiki-retro/SKILL.md)이 정한다.
 _Avoid_: 포스트모템, 사후 검토

@@ -114,6 +114,17 @@ export function fieldsOf(page: Page): Record<string, unknown> {
     : {}
 }
 
+// 페이지가 주제 태그나 구역 태그에 드는가. 구역 태그는 그 하위 태그를 단 페이지도 담는다.
+// 태그를 주지 않으면 모든 페이지가 든다.
+export function inTopic(page: Page, topic: string | undefined): boolean {
+  const tags = fieldsOf(page)["tags"]
+  return (
+    topic === undefined ||
+    (Array.isArray(tags) &&
+      tags.some((tag) => tag === topic || String(tag).startsWith(`${topic}/`)))
+  )
+}
+
 // 프론트매터 YAML의 1행은 파일의 2행이다.
 function parseFrontmatter(file: string, yamlText: string): Page["frontmatter"] {
   const lineCounter = new LineCounter()
