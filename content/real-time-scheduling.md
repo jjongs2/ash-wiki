@@ -58,7 +58,7 @@ POSIX.1-2024는 구현이 `<unistd.h>`의 `_POSIX_PRIORITY_SCHEDULING`으로 Pro
 
 ## 같은 우선순위(타임 슬라이싱)
 
-µC/OS-III에서는 같은 우선순위의 태스크가 둘 이상이면 미리 정한 시간(time quanta) 동안 한 태스크를 실행한 뒤 다른 태스크를 고르며, 이를 **round-robin 스케줄링** 또는 **타임 슬라이싱**이라 부른다. 태스크는 자기 time quanta를 다 쓰지 않고 CPU를 내줄 수 있다. µC/OS-III에서는 round-robin 스케줄링을 실행 중에 켜고 끌 수 있고, time quanta를 태스크마다 정할 수 있다.[@micrium-ucos-iii-round-robin-scheduling-2026] µC/OS-III는 선점형 커널이라 늘 준비된 태스크 가운데 우선순위가 가장 높은 태스크를 실행하며, 같은 우선순위의 준비된 태스크들을 time quanta씩 돌아가며 실행하는 것은 그 우선순위가 가장 높을 때다.[@micrium-ucos-iii-features-2026]
+µC/OS-III에서는 같은 우선순위의 태스크가 둘 이상이면 미리 정한 시간(time quanta) 동안 한 태스크를 실행한 뒤 다른 태스크를 고르며, 이를 **round-robin 스케줄링** 또는 **타임 슬라이싱**이라 부른다. 태스크는 자기 time quanta를 다 쓰지 않고 CPU를 내줄 수 있다. round-robin 스케줄링은 실행 중에 켜고 끌 수 있고, time quanta를 태스크마다 정할 수 있다.[@micrium-ucos-iii-round-robin-scheduling-2026] 이 커널은 선점형이라 늘 준비된 태스크 가운데 우선순위가 가장 높은 태스크를 실행하며, 같은 우선순위의 준비된 태스크들을 time quanta씩 돌아가며 실행하는 것은 그 우선순위가 가장 높을 때다.[@micrium-ucos-iii-features-2026]
 
 FreeRTOS에서 타임 슬라이싱을 쓰면, 실행 중인 태스크와 우선순위가 같은 준비된 태스크가 있을 때 타임 슬라이스가 끝날 때마다 새 태스크를 고른다. 타임 슬라이스는 두 [[system-tick|틱 인터럽트]] 사이의 시간이다. 더 높은 우선순위 태스크가 준비되면 타임 슬라이스 도중에도 선점한다. 단일 코어 구성의 FreeRTOS 스케줄러는 같은 우선순위의 준비된 태스크를 늘 차례로 실행 상태에 들게 하지만, 같은 우선순위 태스크들에 시간을 똑같이 나눈다고 보장하지는 않는다. 타임 슬라이싱을 끄면 context switch가 줄어 스케줄러의 처리 부담이 줄지만, 같은 우선순위의 태스크가 받는 처리 시간이 크게 달라질 수 있다.[@freertos-task-management-2026]
 

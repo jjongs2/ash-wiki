@@ -36,7 +36,7 @@ $$
 $U < 1$이면 $h(t) > t$인 $t$는, 주기들의 최소공배수인 [[periodic-task-model#파라미터|hyperperiod]] $P$에 가장 긴 상대 마감 시한을 더한 $P + \max_i D_i$와 아래 값 가운데 작은 것보다 작은 범위에서만 찾으면 되고, $U = 1$이면 $P + \max_i D_i$보다 작은 범위에서만 찾으면 된다. 이 범위에서도 $h(t)$는 요청의 마감 시각에서만 계산하면 된다.[@baruah-sporadic-tasks-1990]
 
 $$
-\frac{U}{1 - U} \max_i (T_i - D_i)
+\frac{U}{1 - U} \max\nolimits_i (T_i - D_i)
 $$
 
 파라미터가 모두 정수이고 $U$가 1보다 작은 상수 이하이면, 이 검사는 $O(n \max_i (T_i - D_i))$ 시간, 곧 pseudo-polynomial 시간에 끝난다. 마감 시한이 주기보다 짧은 태스크가 있고 $U$가 1 이하이되 그런 상수로 묶이지 않으면, 최악의 경우 $O(n(P + \max_i D_i))$, 곧 지수 시간이 걸린다.[@baruah-sporadic-tasks-1990]
