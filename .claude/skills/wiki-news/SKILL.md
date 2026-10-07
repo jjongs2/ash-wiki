@@ -42,7 +42,7 @@ disable-model-invocation: true
 - **1차 발표**: 표준 단체, 벤더, 논문 저자가 직접 낸 것. 표준 단체는 위키의 표준 페이지가 적은 발행기관(`grep -h '^publisher:' content/*.md | sort -u`)과 그 밖의 업계 단체, 벤더는 칩, 툴체인, 소프트웨어 플랫폼, 완성차와 부품사, 논문은 학회 발표와 프리프린트다.
 - **제3자 기사**: 업계 매체의 기사, 해설, 시장 조사
 
-후보마다 원문을 직접 열어 원어 제목, 매체, 발행일, `og:image`(`<meta property="og:image" content="…">`, 없으면 비움)를 작업 파일에 적는다. `og:image`는 이때 한 번 적고, 빌드는 가져오지 않는다.
+후보마다 원문을 직접 열어 원어 제목, 매체, 발행일, `og:image`(`<meta property="og:image" content="…">`, 없으면 비움)를 작업 파일에 적는다.
 
 완료: 구역마다와 기타에서 찾은 후보마다 네 값이 적혀 있다.
 
@@ -69,7 +69,7 @@ disable-model-invocation: true
 `content/news/<주차>.md` 하나를 `docs/weekly-news.md`의 형식대로 쓴다.
 
 - 원어 제목은 원문의 제목 그대로다.
-- `구역`은 소식이 다루는 구역 태그를 모두 적고, 어느 구역에도 들지 않으면 `기타`다.
+- `구역`에는 소식이 다루는 구역을 모두 적는다.
 - 요약은 한국어로 짧고 간결하게, 원문 문장을 옮기지 않고 자기 말로 쓴다. 무엇이 나왔고 왜 눈여겨볼지를 적는다.
 - 요약에서 위키에 페이지가 있는 개념은 그 슬러그로 위키 링크를 걸 수 있다.
 
@@ -79,13 +79,13 @@ disable-model-invocation: true
 
 ## 7. 검사
 
-`CONTRIBUTING.md`의 PR 전 확인(`npm run check`)을 돌려 고친다. 테스트(`plugins/weekly-news/content.test.ts`)가 호를 형식 함수로 읽고, 구역의 태그 파일과 발행일이 그 주 안인지 본다.
+`CONTRIBUTING.md`의 PR 전 확인을 돌려 고친다. 주간 소식 호의 검사는 `docs/weekly-news.md`의 형식 절에 있다.
 
 완료: PR 전 확인이 통과한다.
 
 ## 8. PR
 
-- 브랜치는 `content/news-<주차>`, PR 제목은 `content: <YYYY>년 <N>주차 주간 소식`이다(호의 제목). 본문은 `CONTRIBUTING.md`의 세 부분이다. 이 조사를 부른 티켓이 있으면 `Closes #<티켓>`을 적는다.
+- 제목은 `content: <호의 제목>`(예: `content: 2026년 41주차 주간 소식`), 브랜치와 본문은 `CONTRIBUTING.md`를 따른다. 이 조사를 부른 티켓이 있으면 그 번호를 쓴다.
 - `## Changes`에는 구역마다 실은 항목 수와, 뺀 후보를 이유별로 적는다.
 - 리뷰는 `CONTRIBUTING.md`를 따른다. merge는 소유자가 한다.
 
