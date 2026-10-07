@@ -7,8 +7,10 @@
 - AC: 표준·규격 이름
 - ANSI: 조직
 - ASAM: 조직
+- AUMOVIO: 조직
 - Auto-ISAC: 조직
 - AUTOSAR: 표준·규격 이름
+- BMW: 조직
 - BS: 표준·규격 이름
 - BSI: 조직
 - CAN_H: 핀과 신호
@@ -25,6 +27,7 @@
 - CRS_DV: 핀과 신호
 - CT-AuT: 표준·규격 이름
 - CTFL: 표준·규격 이름
+- DENSO: 조직
 - DoD: 조직
 - ECU: 널리 쓰이는 약어
 - EIA: 조직
@@ -34,6 +37,7 @@
 - FAA: 조직
 - FIPS: 표준·규격 이름
 - FIRST: 조직
+- GENIVI: 조직
 - GND: 전원
 - GRVA: 조직
 - HIS: 조직
@@ -106,6 +110,8 @@
 - VCC: 전원
 - VDA: 조직
 - VDA QMC: 조직
+- VDI: 조직
+- VDO: 조직
 - WAKE: 핀과 신호
 - WG: ISO 위원회 번호
 - WP.29: 조직

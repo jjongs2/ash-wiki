@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**소프트웨어 컴포넌트 포트**는 [[autosar-software-component|SW-C]]가 바깥의 다른 컴포넌트와 상호 작용하는 자리로, 늘 컴포넌트 하나에 딸린다.[@autosar-fo-tr-glossary-2025][@autosar-cp-exp-vfb-2024] 포트의 타입은 port interface이며, 두 포트 사이에 무엇이 오가는지는 port interface가 정한다. 같은 port interface로 여러 포트의 타입을 정할 수 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+**소프트웨어 컴포넌트 포트**는 [[autosar-software-component|SW-C]]가 바깥의 다른 컴포넌트와 상호 작용하는 자리로, 늘 컴포넌트 하나에 딸린다.[@autosar-fo-tr-glossary-2025][@autosar-cp-tr-vfb-2025] 포트의 타입은 port interface이며, 두 포트 사이에 무엇이 오가는지는 port interface가 정한다. 같은 port interface로 여러 포트의 타입을 정할 수 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 SW-C는 BSW(Basic Software)가 제공하는 AUTOSAR 서비스와도 포트로 이어진다. AUTOSAR 서비스는 표준 port interface로 타입을 정한 포트를 두고, [[autosar-rte|RTE]]가 이 서비스 포트를 SW-C의 포트에 잇는다.[@autosar-cp-sws-rte-2025]
 
@@ -14,7 +14,7 @@ SW-C는 BSW(Basic Software)가 제공하는 AUTOSAR 서비스와도 포트로 �
 
 ## P-Port와 R-Port
 
-**P-Port**는 port interface에 정의된 요소를 제공하고, **R-Port**는 요구하며, **PR-Port**는 둘을 함께 한다. sender-receiver 통신에서는 데이터를 내보내는 쪽이 P-Port이고, connector로 이은 R-Port가 그 데이터를 받는다. client-server 통신에서는 operation을 제공하는 서버가 P-Port이고, 그 operation을 호출하는 클라이언트가 R-Port다.[@autosar-cp-exp-vfb-2024] operation의 인자는 operation에 넘기는 in, 돌려받는 out, 넘기고 돌려받는 inout으로 나뉘어서, R-Port 쪽 클라이언트도 operation을 호출하며 서버에 데이터를 넘긴다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+**P-Port**는 port interface에 정의된 요소를 제공하고, **R-Port**는 요구하며, **PR-Port**는 둘을 함께 한다. sender-receiver 통신에서는 데이터를 내보내는 쪽이 P-Port이고, connector로 이은 R-Port가 그 데이터를 받는다. client-server 통신에서는 operation을 제공하는 서버가 P-Port이고, 그 operation을 호출하는 클라이언트가 R-Port다.[@autosar-cp-tr-vfb-2025] operation의 인자는 operation에 넘기는 in, 돌려받는 out, 넘기고 돌려받는 inout으로 나뉘어서, R-Port 쪽 클라이언트도 operation을 호출하며 서버에 데이터를 넘긴다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ## Port interface
 
@@ -24,7 +24,7 @@ port interface는 여섯 종류다.[@autosar-cp-tps-softwarecomponenttemplate-20
 | ------------------------------------------------------ | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | [[autosar-sender-receiver-interface\|Sender-Receiver]] | SenderReceiverInterface | 보내고 받을 [[autosar-sender-receiver-interface#Data element\|data element]]를 정한다.[@autosar-cp-tps-softwarecomponenttemplate-2025] |
 | NV Data                                                | NvDataInterface         | NV Block SW-C와 다른 SW-C 사이에서 비휘발성 데이터를 주고받는다.[@autosar-cp-tps-softwarecomponenttemplate-2025]                       |
-| Parameter                                              | ParameterInterface      | 캘리브레이션 데이터나 고정 데이터, 상수 같은 파라미터를 SW-C가 읽을 수 있게 한다.[@autosar-cp-exp-vfb-2024]                            |
+| Parameter                                              | ParameterInterface      | 캘리브레이션 데이터나 고정 데이터, 상수 같은 파라미터를 SW-C가 읽을 수 있게 한다.[@autosar-cp-tr-vfb-2025]                             |
 | [[autosar-mode-switch-interface\|Mode Switch]]         | ModeSwitchInterface     | mode manager가 모드 전환을 알리는 데 쓴다.[@autosar-cp-tps-softwarecomponenttemplate-2025]                                             |
 | [[autosar-client-server-interface\|Client-Server]]     | ClientServerInterface   | 클라이언트가 서버에서 호출할 수 있는 operation을 정한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]                               |
 | Trigger                                                | TriggerInterface        | trigger source가 이어진 trigger sink의 runnable 실행을 시작하게 한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]                  |

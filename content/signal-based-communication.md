@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-[[autosar|AUTOSAR]]는 Classic Platform의 통신을 **시그널 기반 통신**(signal-based communication)이라 부르고, Adaptive Platform의 [[service-oriented-communication|서비스 지향 통신]]과 구분한다.[@autosar-cp-tps-systemtemplate-2025] [[autosar-com|AUTOSAR COM]]은 사용자에게 시그널 단위의 데이터 인터페이스를 준다. 송신할 시그널은 I-PDU(Interaction Layer Protocol Data Unit)에 채워 넣고, 받은 I-PDU에서는 시그널을 꺼내 사용자에게 준다.[@autosar-cp-sws-com-2025] [[lin|LIN]]에서도 서로 다른 노드의 애플리케이션은 시그널 기반 통신으로 정보를 주고받는다.[@iso-17987-2-obp-2025]
+[[autosar|AUTOSAR]]는 Classic Platform의 통신을 **시그널 기반 통신**(signal-based communication)이라 부르고, [[autosar-adaptive-platform|Adaptive Platform]]의 [[service-oriented-communication|서비스 지향 통신]]과 구분한다.[@autosar-cp-tps-systemtemplate-2025] [[autosar-com|AUTOSAR COM]]은 사용자에게 시그널 단위의 데이터 인터페이스를 준다. 송신할 시그널은 I-PDU(Interaction Layer Protocol Data Unit)에 채워 넣고, 받은 I-PDU에서는 시그널을 꺼내 사용자에게 준다.[@autosar-cp-sws-com-2025] [[lin|LIN]]에서도 서로 다른 노드의 애플리케이션은 시그널 기반 통신으로 정보를 주고받는다.[@iso-17987-2-obp-2025]
 
 Vector의 DBC 형식에서 시그널은 가장 작은 정보 단위이고, 메시지에 실려 버스로 전송된다.[@vector-an-ion-1-0521-2019]
 

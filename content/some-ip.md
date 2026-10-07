@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-28
 ---
 
-**SOME/IP**(Scalable service-Oriented MiddlewarE over IP)는 차량의 ECU 사이에서 IP 네트워크를 거쳐 [[service-oriented-communication|서비스 지향 통신]]을 하게 하는 프로토콜이다. 원격 절차 호출(RPC, Remote Procedure Call), 이벤트 알림, 그리고 그 밑에 깔리는 직렬화 형식을 정한다. 프로토콜 명세는 [[autosar|AUTOSAR]]가 펴낸다.[@autosar-fo-prs-someipprotocol-2025] BMW가 쓴 SOME/IP 명세 초안은 2011년 11월에 처음 공개되었고, BMW는 이 초안을 ISO와 AUTOSAR 등에 표준화를 위해 제공했다.[@bmw-someip-specification-draft-2012] [[autosar-classic-platform|AUTOSAR Classic Platform]]에는 데이터를 SOME/IP 형식으로 직렬화하는 SOME/IP Transformer가 있고[@autosar-cp-sws-someiptransformer-2025], Adaptive Platform의 통신 관리는 SOME/IP와 [[some-ip-sd|SOME/IP-SD]]를 구현하는 SOME/IP 네트워크 바인딩을 둔다.[@autosar-ap-sws-communicationmanagement-2025]
+**SOME/IP**(Scalable service-Oriented MiddlewarE over IP)는 차량의 ECU 사이에서 IP 네트워크를 거쳐 [[service-oriented-communication|서비스 지향 통신]]을 하게 하는 프로토콜이다. 원격 절차 호출(RPC, Remote Procedure Call), 이벤트 알림, 그리고 그 밑에 깔리는 직렬화 형식을 정한다. 프로토콜 명세는 [[autosar|AUTOSAR]]가 펴낸다.[@autosar-fo-prs-someipprotocol-2025] BMW가 쓴 SOME/IP 명세 초안은 2011년 11월에 처음 공개되었고, BMW는 이 초안을 ISO와 AUTOSAR 등에 표준화를 위해 제공했다.[@bmw-someip-specification-draft-2012] [[autosar-classic-platform|AUTOSAR Classic Platform]]에는 데이터를 SOME/IP 형식으로 직렬화하는 SOME/IP Transformer가 있고[@autosar-cp-sws-someiptransformer-2025], [[autosar-adaptive-platform|Adaptive Platform]]의 [[autosar-communication-management|Communication Management]]는 SOME/IP와 [[some-ip-sd|SOME/IP-SD]]를 구현하는 SOME/IP 네트워크 바인딩을 둔다.[@autosar-ap-sws-communicationmanagement-2025]
 
 ## 전송
 

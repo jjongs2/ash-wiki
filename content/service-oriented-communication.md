@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-[[autosar|AUTOSAR]] Adaptive Platform R25-11의 통신 관리(Communication Management) 규격은 **서비스 지향 통신**(service-oriented communication)을 서비스 제공자가 서비스를 내놓고(offer) 요청자가 그 서비스를 찾아(find) 호출하는(call) 통신으로 정의한다. 이 규격은 서비스 지향 통신을 Adaptive Platform 애플리케이션 사이의 주된 통신 방식으로 두고, 통신 관리가 프로세스 안, 프로세스 사이, 머신 사이의 모든 수준에서 이를 맡게 한다.[@autosar-ap-sws-communicationmanagement-2025] Adaptive Platform은 통신 방식을 서비스 지향 통신으로 한정한다.[@autosar-cp-tps-systemtemplate-2025]
+[[autosar-adaptive-platform|AUTOSAR Adaptive Platform]] R25-11의 [[autosar-communication-management|Communication Management]] 규격은 **서비스 지향 통신**(service-oriented communication)을 서비스 제공자가 서비스를 내놓고(offer) 요청자가 그 서비스를 찾아(find) 호출하는(call) 통신으로 정의한다. 이 규격은 서비스 지향 통신을 Adaptive Platform 애플리케이션 사이의 주된 통신 방식으로 두고, Communication Management가 프로세스 안, 프로세스 사이, 머신 사이의 모든 수준에서 이를 맡게 한다.[@autosar-ap-sws-communicationmanagement-2025] Adaptive Platform은 통신 방식을 서비스 지향 통신으로 한정한다.[@autosar-cp-tps-systemtemplate-2025]
 
 [[some-ip|SOME/IP]]는 네트워크로 서비스 지향 통신을 하는 프로토콜이다.[@autosar-fo-prs-someipprotocol-2025] The Open Group은 SOA(Service-Oriented Architecture)를 서비스 지향을 지원하는 아키텍처 스타일로 정의한다.[@opengroup-w074-2007]
 
@@ -29,8 +29,16 @@ MQTT 5.0 규격은 MQTT를 클라이언트·서버 구조의 발행·구독 메�
 
 SOME/IP-SD는 서비스 인스턴스의 위치를 찾고, 그 인스턴스를 쓸 수 있게 되었는지 알아내는 데 쓰인다. 서버는 Offer Service [[some-ip-sd#엔트리|엔트리]]로 서비스를 제공한다고 알리고, 클라이언트는 Find Service 엔트리로 필요한 서비스 인스턴스를 찾는다. 그래서 클라이언트 쪽에 서비스 인스턴스의 엔드포인트를 정적으로 설정하지 않아도 되고, 클라이언트를 실행 중에 서비스 인스턴스에 연결할 수 있다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
 
-AUTOSAR Adaptive Platform의 통신 관리는 머신 안과 머신 사이의 서비스 지향 통신을 애플리케이션에 투명하게 제공한다. 그래서 서비스가 같은 ECU에 있든 다른 ECU에 있든 애플리케이션 코드가 같다.[@autosar-ap-exp-platformdesign-2025]
+AUTOSAR Adaptive Platform의 Communication Management는 머신 안과 머신 사이의 서비스 지향 통신을 애플리케이션에 투명하게 제공한다. 그래서 서비스가 같은 ECU에 있든 다른 ECU에 있든 애플리케이션 코드가 같다.[@autosar-ap-exp-platformdesign-2025]
 
 ## 시그널 기반 통신과의 차이
 
 Adaptive Platform의 서비스 지향 통신은 통신 경로를 실행 중에 세울 수 있어, 참여자 수를 모르는 동적 통신을 만들 수 있다.[@autosar-ap-sws-communicationmanagement-2025] 시그널과 송수신 관계를 시스템 구성에서 통신 매트릭스로 정하는 방식은 [[signal-based-communication#통신 매트릭스|시그널 기반 통신]]에서 다룬다.
+
+AUTOSAR R25-11 System Template은 차량의 큰 부분이 여전히 시그널 기반 통신을 쓰므로, [[autosar-classic-platform|Classic Platform]]의 시그널 기반 통신과 Adaptive Platform의 서비스 지향 통신을 서로 옮기는 방법을 Classic Platform ECU에서 하도록 표준화한다. 이 기능을 **signal/service translation**이라 하고, 변환 방향은 어느 쪽으로도 정하지 않는다. 이 변환을 Classic Platform ECU에서 할지 Adaptive Platform Machine에서 할지는 차량 아키텍처 설계가 고른다. Classic Platform에서는 [[autosar-rte|RTE]] 위의 응용 [[autosar-software-component|소프트웨어 컴포넌트]]인 Translation Software Component가 이벤트와 필드 notifier를 변환하고, 메서드는 따로 다룬다. 시그널 쪽에서는 Classic Platform [[autosar-communication-stack|통신 스택]]의 기능을 모두 써서 [[can|CAN]], [[lin|LIN]], [[flexray|FlexRay]]에서 온 ISignalIPdu를 다룰 수 있고, 서비스 쪽에서는 정의한 SOME/IP 서비스가 Adaptive Platform과 호환되어야 한다.[@autosar-cp-tps-systemtemplate-2025]
+
+AUTOSAR R25-11 Layered Software Architecture 설명서는 Translation Software Component가 포트와 PortInterface로 페이로드를 기술하게 한다. 시그널에서 서비스로 옮길 때는 들어오는 시그널의 포트와 나가는 이벤트의 포트를, 서비스에서 시그널로 옮길 때는 들어오는 이벤트의 포트와 나가는 시그널의 포트를 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+
+![[diagrams/signal-service-translation.svg]]
+
+AUTOSAR R25-11 Manifest 명세는 Adaptive Platform 쪽의 변환을 위해 서비스 인스턴스의 서비스 인터페이스 요소를 ISignalTriggering에 대응시키는 Signal/Service Translation Mapping을 둔다. 같은 이더넷 소켓을 시그널 기반 통신과 서비스 지향 통신에 함께 쓸 수 있어, 서비스 인스턴스 하나가 직렬화 기술이 다른 이벤트(someip와 signalBased)를 함께 담을 수 있다. Method와 Field의 getter·setter는 이미 SOME/IP 직렬화를 쓰므로 변환이 필요 없고, 시그널 기반 [[autosar-communication-management#Language Binding과 Network Binding|Network Binding]]을 거쳐 `ara::com`으로 바로 접근한다.[@autosar-ap-tps-manifestspecification-2025]

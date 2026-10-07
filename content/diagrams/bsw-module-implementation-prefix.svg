@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="1 0 527 206" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 행 이름 -->
+  <g fill="var(--text, #727981)">
+    <text x="20" y="46.5">형식</text>
+    <text x="20" y="134.5">예</text>
+    <text x="20" y="176.5">예</text>
+  </g>
+
+  <!-- 형식: vendorApiInfix가 없으면 빠지는 부분은 점선 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="70" y="20" width="130" height="44" rx="2" />
+    <rect x="216" y="20" width="130" height="44" rx="2" stroke-dasharray="5 4" />
+    <rect x="362" y="20" width="146" height="44" rx="2" stroke-dasharray="5 4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="135" y="39">&lt;Ma&gt;</text>
+    <text x="281" y="39">&lt;vi&gt;</text>
+    <text x="435" y="39">&lt;ai&gt;</text>
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="135" y="55">모듈 약어</text>
+    <text x="281" y="55">vendorId</text>
+    <text x="435" y="55">vendorApiInfix</text>
+  </g>
+  <path d="M204 72 v6 H508 v-6" stroke="var(--ink, #727981)" stroke-width="1" />
+  <text x="356" y="96" text-anchor="middle" font-size="12" fill="var(--text, #727981)">vendorApiInfix가 없으면 뺀다</text>
+
+  <!-- 예: Eep_21_LDExt, FrIf -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="95" y="116" width="80" height="28" rx="2" />
+    <rect x="241" y="116" width="80" height="28" rx="2" />
+    <rect x="395" y="116" width="80" height="28" rx="2" />
+    <rect x="95" y="158" width="80" height="28" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="135" y="134.5">Eep</text>
+    <text x="281" y="134.5">21</text>
+    <text x="435" y="134.5">LDExt</text>
+    <text x="135" y="176.5">FrIf</text>
+  </g>
+
+  <!-- 부분을 잇는 밑줄: 상자 세로 중심 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="204" y1="42" x2="212" y2="42" />
+    <line x1="350" y1="42" x2="358" y2="42" />
+    <line x1="204" y1="130" x2="212" y2="130" />
+    <line x1="354" y1="130" x2="362" y2="130" />
+  </g>
+</svg>
