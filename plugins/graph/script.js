@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ash-wiki: 노드와 선은 model.ts의 graph가 계산한다. 태그 노드가 없고, 노드는 구역 색으로 칠한다.
+// 구역 색은 theme의 구역 색 토큰(--region-<구역>, --region-other)에서 읽는다. 노드는 canvas에 그려 CSS로
+// 칠할 수 없어서다. 방문한 페이지를 칠하던 업스트림의 방문 기록(localStorage graph-visited)은 쓰지 않는다.
+import { graph as graphModel } from "./model.ts"
 import {
   removeAllChildren,
   getBasePath,
@@ -61,18 +65,6 @@ import {
       return
     }
 
-    var localStorageKey = "graph-visited"
-
-    function getVisited() {
-      return new Set(JSON.parse(localStorage.getItem(localStorageKey) || "[]"))
-    }
-
-    function addToVisited(slug) {
-      var visited = getVisited()
-      visited.add(slug)
-      localStorage.setItem(localStorageKey, JSON.stringify(Array.from(visited)))
-    }
-
     // Resolves CSS color values containing calc()/var() that PixiJS cannot parse.
     // Uses a temp DOM element so the browser's CSS engine evaluates the expression.
     function resolveColor(value, fallback) {
@@ -90,7 +82,6 @@ import {
     async function renderGraph(graph, fullSlug, renderGeneration) {
       var slug = simplifySlug(fullSlug)
       if (slug === "") slug = "index"
-      var visited = getVisited()
       removeAllChildren(graph)
 
       if (renderGeneration !== undefined && renderGeneration !== currentRenderGeneration) {
@@ -108,8 +99,6 @@ import {
       var linkDistance = config.linkDistance || 30
       var fontSize = config.fontSize || 0.6
       var opacityScale = config.opacityScale || 1
-      var removeTags = config.removeTags || []
-      var showTags = config.showTags
       var focusOnHover = config.focusOnHover
       var enableRadial = config.enableRadial
 
@@ -128,104 +117,44 @@ import {
       var width = graph.offsetWidth
       var height = Math.max(graph.offsetHeight, 250)
 
-      var links = []
-      var allTags = []
-      var validLinks = new Set(data.keys())
-
+      var pages = []
       data.forEach(function (details, source) {
-        var outgoing = details.links || []
-        for (var i = 0; i < outgoing.length; i++) {
-          var dest = simplifySlug(outgoing[i])
-          if (validLinks.has(dest)) {
-            links.push({ source: source, target: dest })
-          }
-        }
-
-        if (showTags) {
-          var tags = details.tags || []
-          for (var i = 0; i < tags.length; i++) {
-            var tag = tags[i]
-            if (removeTags.indexOf(tag) === -1) {
-              var tagSlug = simplifySlug("tags/" + tag)
-              if (allTags.indexOf(tagSlug) === -1) {
-                allTags.push(tagSlug)
-              }
-              links.push({ source: source, target: tagSlug })
-            }
-          }
-        }
-      })
-
-      var neighbourhood = new Set()
-      if (depth >= 0) {
-        var queue = [slug]
-        var seen = new Set([slug])
-        for (var d = 0; d <= depth && queue.length > 0; d++) {
-          var nextQueue = []
-          for (var qi = 0; qi < queue.length; qi++) {
-            var cur = queue[qi]
-            neighbourhood.add(cur)
-            for (var li = 0; li < links.length; li++) {
-              var link = links[li]
-              if (link.source === cur && !seen.has(link.target)) {
-                seen.add(link.target)
-                nextQueue.push(link.target)
-              }
-              if (link.target === cur && !seen.has(link.source)) {
-                seen.add(link.source)
-                nextQueue.push(link.source)
-              }
-            }
-          }
-          queue = nextQueue
-        }
-      } else {
-        validLinks.forEach(function (id) {
-          neighbourhood.add(id)
+        pages.push({
+          slug: source,
+          title: details.title || source,
+          tags: details.tags || [],
+          links: (details.links || []).map(simplifySlug),
         })
-        for (var i = 0; i < allTags.length; i++) {
-          neighbourhood.add(allTags[i])
-        }
-      }
+      })
+      var model = graphModel(pages, { kind: "local", current: slug, depth: depth })
 
       var nodes = []
       var nodeMap = new Map()
-      neighbourhood.forEach(function (url) {
-        var isTag = url.startsWith("tags/")
-        var text = isTag ? "#" + url.substring(5) : data.get(url)?.title || url
-        var nodeTags = isTag ? [] : data.get(url)?.tags || []
-        var node = {
-          id: url,
-          text: text,
-          tags: nodeTags,
+      for (var i = 0; i < model.nodes.length; i++) {
+        var node = Object.assign({}, model.nodes[i], {
           x: Math.random() * width - width / 2,
           y: Math.random() * height - height / 2,
           vx: 0,
           vy: 0,
-        }
+        })
         nodes.push(node)
-        nodeMap.set(url, node)
-      })
+        nodeMap.set(node.id, node)
+      }
 
       var graphLinks = []
-      for (var i = 0; i < links.length; i++) {
-        var link = links[i]
-        if (neighbourhood.has(link.source) && neighbourhood.has(link.target)) {
-          var sourceNode = nodeMap.get(link.source)
-          var targetNode = nodeMap.get(link.target)
-          if (sourceNode && targetNode) {
-            graphLinks.push({ source: sourceNode, target: targetNode })
-          }
-        }
+      for (var i = 0; i < model.links.length; i++) {
+        var link = model.links[i]
+        graphLinks.push({
+          source: nodeMap.get(link.source),
+          target: nodeMap.get(link.target),
+          weight: link.weight,
+        })
       }
 
       var styles = getComputedStyle(document.documentElement)
-      var secondary = resolveColor(styles.getPropertyValue("--secondary").trim(), "#c792ea")
-      var tertiary = resolveColor(styles.getPropertyValue("--tertiary").trim(), "#82aaff")
       var gray = resolveColor(styles.getPropertyValue("--gray").trim(), "#6c6c6c")
       var lightgray = resolveColor(styles.getPropertyValue("--lightgray").trim(), "#d4d4d4")
       var dark = resolveColor(styles.getPropertyValue("--dark").trim(), "#1a1a1a")
-      var light = resolveColor(styles.getPropertyValue("--light").trim(), "#f5f5f5")
       var bodyFont = styles.getPropertyValue("--bodyFont").trim() || "inherit"
 
       var app = new PIXI.Application()
@@ -254,13 +183,7 @@ import {
           d3
             .forceCollide()
             .radius(function (d) {
-              var numLinks = 0
-              for (var i = 0; i < graphLinks.length; i++) {
-                if (graphLinks[i].source.id === d.id || graphLinks[i].target.id === d.id) {
-                  numLinks++
-                }
-              }
-              return 2 + Math.sqrt(numLinks)
+              return nodeRadius(d)
             })
             .iterations(3),
         )
@@ -286,24 +209,25 @@ import {
       var currentTransform = d3.zoomIdentity
 
       function nodeRadius(d) {
+        // 업스트림은 양방향 링크를 선 두 개로 셌다. 선 하나에 링크 수(weight)를 모았으므로 그 합으로 센다.
         var numLinks = 0
         for (var i = 0; i < graphLinks.length; i++) {
           if (graphLinks[i].source.id === d.id || graphLinks[i].target.id === d.id) {
-            numLinks++
+            numLinks += graphLinks[i].weight
           }
         }
         return 2 + Math.sqrt(numLinks)
       }
 
+      var regionColors = new Map()
       function nodeColor(d) {
-        var isCurrent = d.id === slug
-        if (isCurrent) {
-          return secondary
-        } else if (visited.has(d.id) || d.id.startsWith("tags/")) {
-          return tertiary
-        } else {
-          return gray
+        var key = d.region || "other"
+        if (!regionColors.has(key)) {
+          var value = d.region ? styles.getPropertyValue("--region-" + d.region).trim() : ""
+          if (!value) value = styles.getPropertyValue("--region-other").trim()
+          regionColors.set(key, resolveColor(value, gray))
         }
+        return regionColors.get(key)
       }
 
       function updateHoverInfo(newHoveredId) {
@@ -390,7 +314,6 @@ import {
       for (var i = 0; i < nodes.length; i++) {
         var node = nodes[i]
         var nodeId = node.id
-        var isTagNode = nodeId.startsWith("tags/")
         var radius = nodeRadius(node)
         var color = nodeColor(node)
 
@@ -410,9 +333,11 @@ import {
 
         var gfx = new PIXI.Graphics()
         gfx.circle(0, 0, radius)
-        gfx.fill({ color: isTagNode ? light : color })
-        if (isTagNode) {
-          gfx.stroke({ width: 2, color: tertiary })
+        gfx.fill({ color: color })
+        // 현재 페이지는 노드 바깥에 글자색 고리를 두른다.
+        if (nodeId === slug) {
+          gfx.circle(0, 0, radius + 2)
+          gfx.stroke({ width: 1.5, color: dark })
         }
 
         gfx.eventMode = "static"
@@ -707,7 +632,6 @@ import {
       cleanupLocal()
       var thisGeneration = ++currentRenderGeneration
       var slug = getSlugFromUrl()
-      addToVisited(slug)
 
       var localContainers = document.querySelectorAll(".graph-container")
       for (var i = 0; i < localContainers.length; i++) {
@@ -725,10 +649,7 @@ import {
       }
     }
 
-    function handleNav(e) {
-      var slug = e.detail ? e.detail.url : getSlugFromUrl()
-      addToVisited(simplifySlug(slug))
-
+    function handleNav() {
       renderLocal()
 
       globalContainers = Array.from(document.querySelectorAll(".global-graph-outer"))

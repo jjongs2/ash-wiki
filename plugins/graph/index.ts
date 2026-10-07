@@ -6,6 +6,9 @@
 // 컴파일한 결과이고, 클라이언트 스크립트(script.js)는 업스트림 graph.inline.ts다. 업스트림 빌드처럼 스크립트를
 // esbuild로 묶어 import를 풀어 싣는다.
 //
+// 노드와 선은 순수 함수(model.ts)가 계산하고, 스크립트가 그 함수를 묶어 부른다. 태그 노드를 그리지 않으므로
+// 업스트림의 태그 옵션(showTags, removeTags)은 뺐다.
+//
 // 빌드가 이 파일을 Node의 type stripping으로 불러오므로, 타입만 지우면 돌아가는 문법만 쓴다. enum, namespace,
 // parameter property를 쓰지 않고, 타입은 import type으로 가져온다.
 import fs from "node:fs"
@@ -43,8 +46,6 @@ export interface D3Config {
   linkDistance: number
   fontSize: number
   opacityScale: number
-  removeTags: string[]
-  showTags: boolean
   focusOnHover?: boolean
   enableRadial?: boolean
 }
@@ -65,8 +66,6 @@ const defaultOptions: GraphOptions = {
     linkDistance: 30,
     fontSize: 0.6,
     opacityScale: 1,
-    showTags: true,
-    removeTags: [],
     focusOnHover: false,
     enableRadial: false,
   },
@@ -80,8 +79,6 @@ const defaultOptions: GraphOptions = {
     linkDistance: 30,
     fontSize: 0.6,
     opacityScale: 1,
-    showTags: true,
-    removeTags: [],
     focusOnHover: true,
     enableRadial: true,
   },
