@@ -16,11 +16,11 @@ PR 몇 개를 만든 세션과 그 티켓을 발행한 보강 세션의 기록�
 
 ## 1. 입력
 
-**대상 PR**은 인자의 PR이다. 인자가 없으면 가장 최근 회고 티켓의 `## 분석한 PR` 목록 뒤에 머지된 `content:` PR이다. 그 절이 있는 티켓이 없으면 소유자에게 PR 목록을 묻는다.
+**대상 PR**은 인자의 PR이다. 인자가 없으면 가장 최근 회고가 분석한 PR 뒤에 머지된 `content:` PR이다. 가장 최근 회고는 회고를 부른 기록 가운데 이 세션을 뺀 맨 위다. 그 회고가 낸 티켓은 그 기록의 첫 `timestamp` 뒤에 만들어진 이슈 가운데 기록에 URL이 나오는 것이고, 분석한 PR 목록은 그 본문에서 읽는다. 기록이나 목록이 없으면 소유자에게 PR 목록을 묻는다.
 
 ```sh
-gh issue list --state all --search '"분석한 PR" in:body' --json number,createdAt,body \
-  --jq '[.[] | select(.body | test("(?m)^## 분석한 PR$"))] | max_by(.createdAt).number'
+grep -l -E '<command-name>/wiki-retro</command-name>|"skill":"wiki-retro"' ~/.claude/projects/*ash-wiki*/*.jsonl | xargs ls -t
+gh issue list --state all --search 'created:>=<그 기록의 첫 timestamp>' --json number,title,createdAt
 gh pr view <목록의 PR> --json mergedAt --jq .mergedAt   # 목록에서 가장 늦은 것을 <시각>으로
 gh pr list --state merged --search 'merged:><시각> "content:" in:title' --limit 100 --json number,title,mergedAt
 ```
@@ -105,6 +105,6 @@ python3 -B .claude/skills/wiki-retro/digest.py --out <scratchpad>/digest <세션
 - 핸드오프의 진술과 다르게 나온 측정
 - 앞 세션의 회고 질문 가운데 이번 기록이 답한 것
 
-소유자가 개선안을 고르면 `/mattpocock-skills:to-tickets`로 티켓을 만든다. 티켓 본문마다 `## 분석한 PR` 절에 대상 PR을 `- #<PR>` 한 줄씩 적는다. 다음 회고가 인자 없이 돌 때 이 절에서 출발한다. 노트를 연 기록이 있었으면, 내보낼 글(티켓 본문, 코멘트)을 `-notes.txt`가 가리키는 노트와 대조한다. 방법은 [인제스트](../wiki-ingest/SKILL.md) 격리 자기 점검의 글 대조와 식별 정보 점검이다. 걸린 곳을 고친 뒤 내보낸다.
+소유자가 개선안을 고르면 `/mattpocock-skills:to-tickets`로 티켓을 만든다. 티켓 본문마다 분석한 PR 목록을 적는다. 다음 회고가 인자 없이 돌 때 이 목록에서 출발한다. 노트를 연 기록이 있었으면, 내보낼 글(티켓 본문, 코멘트)을 `-notes.txt`가 가리키는 노트와 대조한다. 방법은 [인제스트](../wiki-ingest/SKILL.md) 격리 자기 점검의 글 대조와 식별 정보 점검이다. 걸린 곳을 고친 뒤 내보낸다.
 
-완료: 소유자가 고른 개선안이 `## 분석한 PR` 절을 단 티켓으로 나갔거나, 소유자가 멈추라고 했다.
+완료: 소유자가 고른 개선안이 분석한 PR 목록을 적은 티켓으로 나갔거나, 소유자가 멈추라고 했다.
