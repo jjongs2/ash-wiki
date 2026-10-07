@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # 린트
 
-주제나 구역 전체를 놓고 봐야 드러나는 문제를 찾는다. 페이지 하나 안에서 판정되는 것은 리뷰가, 표기로 판정되는 것은 콘텐츠 검사기가 맡는다. 용어는 `CONTEXT.md`를 따른다. 인자가 주제 태그면 주제, 구역 태그면 구역이 린트의 대상이고, 아래 `<대상>`은 그 이름이다. 이름은 `content/tags/<태그>.md`의 `title`이다(예: CAN, 네트워크).
+주제나 구역 전체를 놓고 봐야 드러나는 문제를 찾는다. 페이지 하나 안에서 판정되는 것은 리뷰가, 표기로 판정되는 것은 콘텐츠 검사기가, 읽기 경험의 문제는 Reader Testing이 맡는다. 용어는 `CONTEXT.md`를 따른다. 인자가 주제 태그면 주제, 구역 태그면 구역이 린트의 대상이고, 아래 `<대상>`은 그 이름이다. 이름은 `content/tags/<태그>.md`의 `title`이다(예: CAN, 네트워크).
 
 먼저 읽는다: `docs/wiki-conventions.md`, `docs/wiki-abbreviations.md`, `docs/wiki-terms.md`, `docs/wiki-verification.md`의 출처 상태 절. 린트는 게시된 페이지와 출처만 본다.
 

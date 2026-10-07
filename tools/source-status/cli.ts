@@ -8,7 +8,14 @@ import { repoRoot } from "../repo"
 import { Conventions } from "../check-content/conventions"
 import { report, verdict, type Status } from "../check-content/report"
 import { citations } from "../check-content/source-checks"
-import { fieldsOf, loadTree, type Page, type Tree, type Violation } from "../check-content/tree"
+import {
+  fieldsOf,
+  inTopic,
+  loadTree,
+  type Page,
+  type Tree,
+  type Violation,
+} from "../check-content/tree"
 
 // 출처 상태. 린트가 쓰고, 기준은 docs/wiki-verification.md의 source-status 표와 bot-blocked-hosts 표에 있다.
 // 사용: npm run source-status -- [<트리 루트>] [--topic <태그>] [--url <URL>]... [--today <YYYY-MM-DD>]
@@ -63,15 +70,6 @@ const staleDays = Number(criteria.get("verified"))
 const blockedHosts = verification.column("bot-blocked-hosts", "호스트")
 
 const tree = loadTree(root)
-// 주제 태그를 주지 않으면 모든 페이지를 본다.
-function inTopic(page: Page, topic: string | undefined): boolean {
-  const tags = fieldsOf(page)["tags"]
-  return (
-    topic === undefined ||
-    (Array.isArray(tags) &&
-      tags.some((tag) => tag === topic || String(tag).startsWith(`${topic}/`)))
-  )
-}
 const pages = tree.pages.filter((page) => page.kind === "page" && inTopic(page, values.topic))
 
 // 봇 차단 호스트의 봇 차단 응답(403, WAF 챌린지), 두 번 물어도 시간 초과인 URL, 한 호스트에 몰린 연결 거부는
