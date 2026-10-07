@@ -51,9 +51,12 @@ export interface Tree {
   bib: BibFile[]
 }
 
+// 주간 소식(content/news/)은 위키 콘텐츠 밖의 페이지라 검사하지 않는다(ADR 0015). 빌드에는 든다.
+const NEWS_DIR = "news/"
+
 export function loadTree(root: string): Tree {
   const contentDir = path.join(root, "content")
-  const files = walk(contentDir)
+  const files = walk(contentDir).filter((rel) => !rel.startsWith(NEWS_DIR))
   const pages = files.filter((rel) => rel.endsWith(".md")).map((rel) => loadPage(root, rel))
   const svgs = files
     .filter((rel) => rel.endsWith(".svg"))

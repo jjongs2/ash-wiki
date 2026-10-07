@@ -3,7 +3,25 @@ import assert from "node:assert"
 import { TableOfContents } from "@quartz-community/table-of-contents"
 import { render } from "preact-render-to-string"
 import type { BuildCtx } from "../../quartz/util/ctx"
-import BacklinksCollapse from "./index"
+import BacklinksCollapse, { isNewsPath } from "./index"
+
+// 주간 소식 판정 함수가 seam이다. 브라우저에서 Backlinks 링크의 경로를 넣고 주간 소식인지를 본다.
+describe("isNewsPath", () => {
+  test("위키 페이지와 주간 소식이 섞인 목록에서 주간 소식만 고른다", () => {
+    const paths = ["/can-fd", "/news/2026-w40", "/can-frame", "/news/2026-w41", "/tags/network"]
+    assert.deepStrictEqual(paths.filter(isNewsPath), ["/news/2026-w40", "/news/2026-w41"])
+  })
+
+  test("사이트가 하위 경로에 있어도 news 폴더를 알아본다", () => {
+    assert.deepStrictEqual(["/wiki/news/2026-w41", "/wiki/can-fd"].filter(isNewsPath), [
+      "/wiki/news/2026-w41",
+    ])
+  })
+
+  test("이름에 news가 든 위키 페이지는 주간 소식이 아니다", () => {
+    assert.strictEqual(isNewsPath("/news-feed"), false)
+  })
+})
 
 // 플러그인의 externalResources가 seam이다. 접기는 브라우저에서 스크립트가 Backlinks 제목을 버튼으로
 // 바꿔 붙이므로 동작은 빌드 결과를 브라우저로 열어 확인하고, 여기서는 실리는 스크립트와 CSS가 목차의
@@ -75,6 +93,10 @@ describe("backlinks-collapse 플러그인", () => {
     for (const rule of rules) {
       assert.ok(css.includes(rule.replaceAll("toc-header", "backlinks-header")), rule)
     }
+  })
+
+  test("판정 함수를 그대로 싣는다", () => {
+    assert.ok(source.includes(isNewsPath.toString()))
   })
 
   test("접힌 목록은 숨긴다", () => {

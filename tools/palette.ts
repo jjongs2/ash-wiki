@@ -76,12 +76,16 @@ function measure(): Measurement[] {
   const names = new Set(diagram.map((row) => row["이름"]))
   const categories = [...names].filter((name) => names.has(`${name}-tint`))
   const regions = Object.keys(colors.lightMode).filter((token) => token.startsWith("region-"))
-  // 도해 팔레트의 이름이면 그 모드의 값(hex나 theme 색 토큰), 아니면 theme 색 토큰이다.
+  // 도해 팔레트의 이름이면 그 모드의 값(hex나 theme 색 토큰), 아니면 theme 색 토큰이다. `<토큰> 12%`처럼
+  // 뒤에 퍼센트를 붙이면 그 색을 그 불투명도로 깐 것이다(CSS의 color-mix(in srgb, <색> 12%, transparent)).
   const resolve = (token: string, mode: Mode): Swatch => {
-    const value = diagram.find((row) => row["이름"] === token)?.[diagramColumn[mode]] ?? token
-    const color = value.startsWith("#") ? value : colors[mode][value]
-    if (!color) throw new Error(`${palettePath}: 색 토큰 "${value}"이 없다`)
-    return { name: token, color }
+    const [, name, percent] = token.match(/^(.+?)(?: (\d+)%)?$/)!
+    const value = diagram.find((row) => row["이름"] === name)?.[diagramColumn[mode]] ?? name
+    const hex = value.startsWith("#") ? value : colors[mode][value]
+    if (!hex) throw new Error(`${palettePath}: 색 토큰 "${value}"이 없다`)
+    if (!percent) return { name: token, color: hex }
+    const [r, g, b] = parseColor(hex)
+    return { name: token, color: `rgba(${r}, ${g}, ${b}, ${Number(percent) / 100})` }
   }
   const pairs = (fg: string, bg: string): [string, string][] => {
     for (const [slot, names] of [
