@@ -33,11 +33,15 @@ AUTOSAR 표준인 Foundation은 Adaptive Platform Foundation과 다른 것으로
 
 AA는 다른 AA에 서비스를 제공할 수도 있다. Adaptive Platform Foundation이든 Adaptive Platform Services든 functional cluster의 인터페이스는 AA가 보기에 차이가 없고, 정해진 C++ 인터페이스를 제공할 뿐이다. functional cluster와 AA는 대개 서로 다른 프로세스라 IPC(Inter-Process Communication)로 상호작용하며, 그 설계는 둘로 나뉜다. Library 기반 설계에서는 functional cluster가 제공해 AA에 링크하는 인터페이스 라이브러리가 IPC를 직접 부른다. Service 기반 설계에서는 AA에 링크한 프록시 라이브러리가 [[autosar-communication-management|Communication Management]]의 인터페이스를 부르고, Communication Management가 AA 프로세스와 서버 프로세스 사이의 IPC를 조율한다. 한 Adaptive Platform 인스턴스 안에서만 쓰는 functional cluster에는 단순하고 효율적인 Library 기반이, 다른 인스턴스에서 분산해 쓰는 functional cluster에는 Service 기반이 알맞다. Adaptive Platform Foundation의 functional cluster는 Library 기반이고, Adaptive Platform Services의 functional cluster는 Service 기반이다.[@autosar-ap-exp-platformdesign-2025]
 
+![[diagrams/adaptive-platform-library-service-design.svg]]
+
 ### Machine과 프로세스
 
 Adaptive Platform은 자신이 도는 하드웨어를 **Machine**이라 부른다. Machine은 실제 물리 머신일 수도 있고, 완전 가상화 머신, 반가상화 운영체제, 운영체제 수준 가상화 컨테이너 같은 가상 환경일 수도 있다. 어떤 가상화 기술을 쓰든 플랫폼을 일관되게 보려는 것이다. 하드웨어 하나에 Machine이 하나 이상 있을 수 있고, Machine마다 Adaptive Platform 인스턴스는 하나만 돈다.[@autosar-ap-exp-platformdesign-2025]
 
 운영체제는 다중 프로세스 POSIX 기능을 제공해야 하고, 운영체제가 보기에 Adaptive Platform과 AA는 프로세스의 집합이다. 각 AA는 자기 논리 메모리 공간과 네임스페이스를 가진 독립 프로세스로 구현되며, AA 하나가 프로세스 여러 개를 담아 여러 Adaptive Platform 인스턴스에 나뉘어 배치될 수도 있다. AA는 Executable 여러 개로 이뤄질 수 있고, Executable은 대개 파일 시스템의 실행 파일에 해당한다. 운영체제는 Executable에서 프로세스를 만들고, Executable 하나에서 프로세스 여러 개를 만들 수 있다. functional cluster도 대개 프로세스로 구현된다.[@autosar-ap-exp-platformdesign-2025]
+
+![[diagrams/adaptive-platform-machine-processes.svg]]
 
 응용의 생명주기는 [[autosar-execution-management|Execution Management]]가 관리한다. Execution Management 자신을 뺀 모든 functional cluster도 Execution Management가 보기에는 응용이어서, 같은 방식으로 띄운다.[@autosar-ap-exp-platformdesign-2025]
 
@@ -47,16 +51,16 @@ AA는 운영체제 API(Application Programming Interface)로 POSIX의 단일 프
 
 functional cluster마다 지원하는 프로토콜은 다음과 같다.[@autosar-ap-exp-platformdesign-2025]
 
-| functional cluster                 | 지원 프로토콜 |
-| ---------------------------------- | ------------- |
+| functional cluster                 | 지원 프로토콜                                                                                                    |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | Communication Management           | [[some-ip\|SOME/IP]]와 [[some-ip-sd\|SOME/IP-SD]], Signal2Service, DDS(Data Distribution Service), zero-copy IPC |
-| Diagnostic Management              | [[doip\|DoIP]], [[uds\|UDS]], SOVD(Service-Oriented Vehicle Diagnostics) |
-| Intrusion Detection System Manager | 침입 탐지 시스템 프로토콜 |
-| Sensor Interfaces                  | ISO 23150 |
-| Network Management                 | UdpNm([[udp\|UDP]] Network Management) |
-| Time Synchronization               | [[ieee-802-1as\|gPTP]](IEEE 802.1AS)와, 이를 확장하고 프로파일링한 AUTOSAR 시간 동기화 프로토콜 |
-| Raw Data Stream                    | [[ipv4\|IPv4]]와 [[ipv6\|IPv6]] 위의 [[tcp\|TCP]]와 UDP |
-| Log and Trace                      | AUTOSAR Log and Trace 프로토콜 |
+| Diagnostic Management              | [[doip\|DoIP]], [[uds\|UDS]], SOVD(Service-Oriented Vehicle Diagnostics)                                         |
+| Intrusion Detection System Manager | 침입 탐지 시스템 프로토콜                                                                                        |
+| Sensor Interfaces                  | ISO 23150                                                                                                        |
+| Network Management                 | UdpNm([[udp\|UDP]] Network Management)                                                                           |
+| Time Synchronization               | [[ieee-802-1as\|gPTP]](IEEE 802.1AS)와, 이를 확장하고 프로파일링한 AUTOSAR 시간 동기화 프로토콜                  |
+| Raw Data Stream                    | [[ipv4\|IPv4]]와 [[ipv6\|IPv6]] 위의 [[tcp\|TCP]]와 UDP                                                          |
+| Log and Trace                      | AUTOSAR Log and Trace 프로토콜                                                                                   |
 
 보안 기능으로 Communication Management는 SecOC, [[transport-layer-security|TLS]]와 DTLS(Datagram Transport Layer Security), IPsec(Internet Protocol Security), [[ieee-802-1ae|MACsec]]을 지원한다.[@autosar-ap-exp-platformdesign-2025]
 

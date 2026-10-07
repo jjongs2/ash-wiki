@@ -43,6 +43,8 @@ AUTOSAR R25-11 State Management 명세는 StateMachine이 StateMachine State들�
 
 SMControlApplication은 StateMachineService의 RequestTransition 메서드로 다른 StateMachine State를 요청한다. 모든 전이가 가능하지는 않으므로, TransitionRequestTable이 SMControlApplication의 입력값과 현재 상태로 다음 상태를 정한다. ErrorRecoveryTable은 실패한 프로세스, 실패한 Function Group 전이 요청, 실패한 NmNetworkHandle 전이 요청, 실패한 StateMachine 전이가 낸 ErrorCode를 복구용 다음 StateMachine State에 대응시킨다. 오류를 Platform Health Management, Execution Management, State Management 가운데 어디서 알렸든 반응은 같다. ErrorRecoveryTable마다 ErrorCode가 `ANY`인 항목을 정확히 하나 두어, 설정하지 않은 ErrorCode도 다루게 한다.[@autosar-ap-sws-statemanagement-2025]
 
+![[diagrams/state-management-statemachine.svg]]
+
 ## Suspend-to-RAM
 
 AUTOSAR R25-11 Adaptive Platform은 State Management에 Suspend-to-RAM 지원을 두어, 운영 맥락을 메모리에 보존한 채 시스템을 저전력 상태에 들게 한다.[@autosar-ap-tr-releaseoverview-2025]

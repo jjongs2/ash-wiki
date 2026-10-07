@@ -62,6 +62,8 @@ AUTOSAR R25-11 BSW 일반 명세는 쓰임새마다 다른 설정 가능성을 �
 
 AUTOSAR R25-11 Classic Platform 방법론은 variant handling을 Generic Structure Template이 정한다고 둔다. variant handling에서 변형 대상으로 지정한 AUTOSAR 메타모델의 자리를 **variation point**라 하며, variation point는 그 변형이 활성인 조건과 변형을 풀 때를 정하는 binding time으로 이뤄진다. 모델에 variation point가 많아도 실제로 쓰는 조합은 적어서, 그 조합 하나하나를 미리 정한 variant(predefined variant)로 둔다. binding time은 시점이 아니라 개발 단계를 뜻하며, 이른 것부터 BlueprintDerivationTime, SystemDesignTime, CodeGenerationTime, PreCompileTime, LinkTime, PostBuild가 있다. variation point마다 메타모델이 정한 latest binding time이 있어 그보다 늦게 풀 수 없고, 모델에서 variation point에 정하는 실제 binding time은 이보다 이를 수 있다.[@autosar-cp-tr-methodology-2025]
 
+![[diagrams/variant-binding-times.svg]]
+
 AUTOSAR R25-11 용어집은 시스템이 variant의 집합을 기술하는 성질을 **variability**로, 모든 속성이 정해지고 골라져 그 binding time에 대해 더는 variability가 없는 시스템의 구체적 실현을 **variant**로 정의한다. **코드 변형**(code variant coding)은 외부 요구에 따라 기능 대안을 골라 소프트웨어를 맞추는 것으로, 늘 pre-compile time이나 link time에 하며 C 언어에서는 `#if`나 `#ifdef`로 만들 수 있다. **데이터 변형**(data variant coding)은 외부 요구에 따라 특성 데이터를 설정해 소프트웨어를 맞추는 것으로, 설정 파라미터 세트가 여럿 필요하고 생산 라인 끝 프로그래밍이나 정비소 프로그래밍으로 variant를 고른다. **calibration**은 제어 기능을 맡은 소프트웨어 컴포넌트의 파라미터를 조정하는 것으로, RTE 위의 소프트웨어와 [[ecu-abstraction-layer|ECU 추상화]], Complex Driver만 calibration할 수 있고 늘 post-build time에 한다. variant coding과 달리 calibration은 소프트웨어 기능 자체를 바꾸지 않고, 특성 데이터를 하드웨어·소프트웨어 환경에 맞추기만 한다.[@autosar-fo-tr-glossary-2025]
 
 ## AUTOSAR XML

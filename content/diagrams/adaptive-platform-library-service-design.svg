@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 270" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 제목 -->
+  <g fill="var(--text, #727981)">
+    <text x="20" y="32">Library 기반</text>
+    <text x="420" y="32">Service 기반</text>
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="20" y="50">Adaptive Platform Foundation의 functional cluster</text>
+    <text x="420" y="50">Adaptive Platform Services의 functional cluster</text>
+  </g>
+
+  <!-- AA 프로세스 틀 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20.75" y="64.75" width="168.5" height="108.5" rx="2" />
+    <rect x="420.75" y="64.75" width="168.5" height="108.5" rx="2" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="32" y="84">AA 프로세스</text>
+    <text x="432" y="84">AA 프로세스</text>
+  </g>
+
+  <!-- 상자 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="35" y="94" width="140" height="30" rx="2" />
+    <rect x="35" y="132" width="140" height="30" rx="2" />
+    <rect x="250" y="125" width="120" height="44" rx="2" />
+    <rect x="435" y="94" width="140" height="30" rx="2" />
+    <rect x="435" y="132" width="140" height="30" rx="2" />
+    <rect x="650.75" y="64.75" width="118.5" height="108.5" rx="2" />
+    <rect x="420.75" y="214.75" width="348.5" height="34.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="105" y="114">AA</text>
+    <text x="505" y="114">AA</text>
+    <text x="710" y="124">서버 프로세스</text>
+    <text x="595" y="237">Communication Management</text>
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="105" y="151.5">인터페이스 라이브러리</text>
+    <text x="310" y="151.5">functional cluster</text>
+    <text x="505" y="151.5">프록시 라이브러리</text>
+  </g>
+
+  <!-- Library 기반: 라이브러리가 IPC를 직접 부른다 -->
+  <line x1="175" y1="147" x2="248" y2="147" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="212" y="139" text-anchor="middle" font-size="12" fill="var(--text, #727981)">IPC</text>
+
+  <!-- Service 기반: 프록시가 CM을 부르고, CM이 IPC를 조율한다 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="591" y1="114" x2="648" y2="114" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+    <line x1="505" y1="162" x2="505" y2="213" marker-end="url(#arrow)" />
+    <line x1="620" y1="214" x2="620" y2="115" stroke-dasharray="5 4" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="620" y="106" text-anchor="middle">IPC</text>
+    <text x="513" y="196">인터페이스 호출</text>
+    <text x="628" y="175">조율</text>
+  </g>
+</svg>

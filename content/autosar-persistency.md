@@ -18,6 +18,8 @@ AUTOSAR R25-11 Adaptive Platform 설계 설명서는 Persistency의 저장 위�
 
 AUTOSAR R25-11 Persistency 명세는 Key-Value Storage의 모든 작업을, 저장소를 열 때 만드는 임시 저장소에서 하게 한다. `SyncToStorage`를 불러야 그동안의 변경이 영구히 저장되고, 저장하지 않은 변경은 저장소를 닫거나 시스템을 재시작하면 버려진다. File Storage의 파일은 읽기 전용, 쓰기 전용, 읽기·쓰기 가운데 하나로 연다.[@autosar-ap-sws-persistency-2025]
 
+![[diagrams/persistency-key-value-sync.svg]]
+
 ## 접근 범위
 
 AUTOSAR R25-11 Adaptive Platform 설계 설명서는 영속 데이터를 언제나 한 응용의 한 프로세스에만 속하게 하고, 서로 다른 프로세스가 Persistency로 데이터를 나누는 메커니즘을 두지 않는다. [[autosar-communication-management|Communication Management]]가 주는 기능 밖에 둘째 통신 경로가 생기는 것을 막으려는 결정이다. 같은 프로세스 안의 여러 스레드는 한 Key-Value Storage나 File Storage에 함께 접근할 수 있다.[@autosar-ap-exp-platformdesign-2025]

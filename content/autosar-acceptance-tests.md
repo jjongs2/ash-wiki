@@ -17,6 +17,8 @@ status: 유효
 - **응용 수준**: 응용에 영향을 주는 [[autosar-rte|RTE]] 요구사항(산출물에서의 생성, API(Application Programming Interface)의 존재, 동작 등), BSW(Basic Software) 서비스, 라이브러리
 - **버스 수준**: 송신 동작, 버스 오프 처리, [[autosar-network-management|네트워크 관리]] 같은 버스 동작과, 전송 프로토콜, 네트워크 관리, 진단 통신 같은 버스 프로토콜[@autosar-tc-exp-acceptancetestsoverview-2016]
 
+![[diagrams/acceptance-test-levels.svg]]
+
 인수 시험을 쓰는 것은 선택이고, 표준 인수 시험을 펴낸다고 특정 사업 모델을 강제하지는 않는다. 주된 목적은 시험 노력과 비용을 줄이는 것이다. 사용자가 테스트 케이스 명세를 따로 만들고 유지하지 않아도 되고, 표준 시험 묶음을 넓힐 방법론을 주며, 믿을 수 있는 시험 결과를 주고받게 한다. 그래서 공급자와 고객이 같은 시험을 둘 다 돌리지 않아도 되고, 한 번 돌린 결과를 여러 고객에게 쓰며, 시험 묶음 구현 하나로 여러 스택 구현을 시험할 수 있다. 테스트 케이스는 함께 합의한 기능에만 정하고, 프로젝트마다의 설정에서 돌리도록 만들지 않는다.[@autosar-tc-exp-acceptancetestsoverview-2016]
 
 AUTOSAR는 글로 쓴 시험 명세를 표준화하며, 그 명세는 반형식적이다. 표준은 구현 하나를 보장하지 않으며, 구현자의 구현 설계가 필요하다. 도구의 시험은 범위 밖이지만, RTE 생성기처럼 ECU 코드 생성에 참여하는 도구는 간접적으로 시험된다. 표준 인수 시험은 다른 시험 활동을 대신하지 않고, 스택 검증을 위한 시험 묶음을 완전히 대신하지도 않는다.[@autosar-tc-exp-acceptancetestsoverview-2016]

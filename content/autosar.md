@@ -15,15 +15,15 @@ AUTOSAR는 소프트웨어 재사용을 목표로 든다. 계층화한 기본 �
 
 AUTOSAR는 파트너십 유형마다 다른 권리와 의무를 둔다. 파트너십 유형은 Premium Partner Plus, Premium Partner, Development Partner, Associate Partner, Associate Partner [Light], Attendee, Subscriber이고, 이와 따로 Core Partner가 있다.[@autosar-partners-2026] 그 가운데 일곱의 역할은 아래와 같다.
 
-| 유형                      | 역할                                                                                                                                                                                                                                                                                 |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Core Partner              | AUTOSAR 개발 파트너십을 조직하고 관리하고 통제한다.[@autosar-core-partner-2026]                                                                                                                                                                                                      |
-| Premium Partner Plus      | 시장을 이끄는 회사를 위한 유형으로, AUTOSAR의 기술 표준화를 이끈다.[@autosar-partners-2026] 상근 인력 한 명을 Project Leader Team 위원으로 두어, 기술 표준화를 넘어 표준 개발을 이끄는 데 참여한다.[@autosar-home-2026] |
-| Premium Partner           | AUTOSAR 표준을 설계하고 쓰며, 작업 그룹을 이끌거나 작업 그룹에 참여한다.[@autosar-home-2026]                                                                                                                                                                                         |
-| Development Partner       | 작은 회사와 스타트업을 위한 유형으로, AUTOSAR 표준을 설계하고 쓰며 작업 그룹에 참여한다.[@autosar-home-2026] AUTOSAR의 자주 묻는 질문 페이지에 따르면 규격의 기술 개발에 특정 기여를 하기에 특히 알맞다.[@autosar-faq-2026]                                                          |
-| Associate Partner         | AUTOSAR 표준을 쓴다.[@autosar-home-2026]                                                                                                                                                                                                                                             |
-| Associate Partner [Light] | 무료 유형으로, AUTOSAR Work 가운데 정해진 일부만 써서 버스 시스템과 호환되고 상호운용되는 제품을 내려는 회사를 위한 것이다.[@autosar-partners-2026]                                                                                                          |
-| Attendee                  | 대학과 비영리 단체를 위한 무료 유형으로, AUTOSAR 표준을 정의하는 일에 협력한다.[@autosar-home-2026]                                                                                                                                                                                  |
+| 유형                      | 역할                                                                                                                                                                                                                        |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Core Partner              | AUTOSAR 개발 파트너십을 조직하고 관리하고 통제한다.[@autosar-core-partner-2026]                                                                                                                                             |
+| Premium Partner Plus      | 시장을 이끄는 회사를 위한 유형으로, AUTOSAR의 기술 표준화를 이끈다.[@autosar-partners-2026] 상근 인력 한 명을 Project Leader Team 위원으로 두어, 기술 표준화를 넘어 표준 개발을 이끄는 데 참여한다.[@autosar-home-2026]     |
+| Premium Partner           | AUTOSAR 표준을 설계하고 쓰며, 작업 그룹을 이끌거나 작업 그룹에 참여한다.[@autosar-home-2026]                                                                                                                                |
+| Development Partner       | 작은 회사와 스타트업을 위한 유형으로, AUTOSAR 표준을 설계하고 쓰며 작업 그룹에 참여한다.[@autosar-home-2026] AUTOSAR의 자주 묻는 질문 페이지에 따르면 규격의 기술 개발에 특정 기여를 하기에 특히 알맞다.[@autosar-faq-2026] |
+| Associate Partner         | AUTOSAR 표준을 쓴다.[@autosar-home-2026]                                                                                                                                                                                    |
+| Associate Partner [Light] | 무료 유형으로, AUTOSAR Work 가운데 정해진 일부만 써서 버스 시스템과 호환되고 상호운용되는 제품을 내려는 회사를 위한 것이다.[@autosar-partners-2026]                                                                         |
+| Attendee                  | 대학과 비영리 단체를 위한 무료 유형으로, AUTOSAR 표준을 정의하는 일에 협력한다.[@autosar-home-2026]                                                                                                                         |
 
 Core Partner로는 2003년 11월 Ford, 2003년 12월 Peugeot Citroën Automobiles와 Toyota, 2004년 11월 General Motors가 합류했다. 2008년 2월 Siemens VDO가 Continental에 합쳐지면서, Siemens VDO는 따로 된 Core Partner가 아니게 되었다.[@autosar-history-2026] 2026년 1월에는 DENSO, Huawei, Vector Informatik이 Core Partner로 합류했다. AUTOSAR 누리집의 Core Partner 명단에는 AUMOVIO, BMW, DENSO, General Motors, Huawei, Mercedes-Benz, Bosch, Toyota, Vector Informatik, Volkswagen의 10곳이 있다.[@autosar-core-partner-2026]
 
@@ -42,6 +42,8 @@ AUTOSAR 소개 자료는 AUTOSAR의 공식 역할을 거버넌스(Executive Boar
 - **Project Leader Team**: AUTOSAR 표준 개발 전반에 책임을 지고, 예산 안에서 프로젝트 계획과 재무 계획을 세우며, 작업 그룹을 두고 AUTOSAR 개발의 기술 문제를 결정한다. 위원은 Core Partner와 Premium Partner Plus의 프로젝트 관리 수준 대표이고, 보통 6주마다 모인다.
 - **Legal Team**: 개발 협약 같은 파트너십의 법적 문제를 다룬다. 위원은 Core Partner의 대표이고, 필요할 때 모인다.
 - **Communication Team**: 대내외 소통과 보도 자료, 누리집, AUTOSAR 학회를 맡는다.[@autosar-organization-2026]
+
+![[diagrams/autosar-organization-layers.svg]]
 
 작업 그룹은 [[autosar-rte|RTE]]와 그 인터페이스, 기본 소프트웨어 모듈과 운영체제, 방법론과 데이터 교환 형식, 차량 도메인 사이의 [[autosar-application-interfaces|표준 인터페이스]], 인수 시험을 정하고, Adaptive Platform의 예시 구현을 통합한다. 작업 그룹 위원은 Core, Premium, Development Partner와 Attendee다. AUTOSAR User Group은 이미 펴낸 AUTOSAR 문서를 바탕으로 AUTOSAR 커뮤니티 전반에 관련된 주제를 다루고, Core, Premium, Development, Associate Partner와 Attendee가 참여한다. External User Group은 AUTOSAR 파트너로만 이뤄지지만 AUTOSAR가 운영하지 않고, AUTOSAR 표준의 활용에 집중한다.[@autosar-organization-2026]
 
@@ -90,6 +92,8 @@ AUTOSAR 규격 항목(specification item)의 ID는 표준 약어(생략 가능),
 
 AUTOSAR R25-11 BSW 일반 명세(General Specification of Basic Software Modules)는 BSW 모듈의 모듈 약어 `<Ma>`를 이 명세의 BSW 모듈 목록에 정한 것과 같게 쓰도록 정한다. 모듈 구현 접두어 `<Mip>`는 `<Ma>[_<vi>_<ai>]` 꼴로 만들고, `<vi>`는 그 모듈의 `vendorId`, `<ai>`는 `vendorApiInfix`이며, `vendorApiInfix`가 없으면 대괄호 부분을 뺀다. 구현 접두어를 모두 대문자로 쓴 것이 `<MIP>`다. 구현 접두어는 API 이름, 파라미터 이름, 심볼, 파일 이름 같은 식별자를 만드는 데 쓰고, 같은 종류 모듈의 인스턴스를 가려야 할 때 모듈 약어 대신 쓴다. 예를 들어 FlexRay Interface의 구현 접두어는 모듈 약어와 같은 FrIf이고, 벤더 ID 21과 `vendorApiInfix` LDExt를 둔 EEPROM(Electrically Erasable Programmable Read-Only Memory) Driver 구현의 접두어는 Eep_21_LDExt다. 이 명세의 BSW 모듈 목록은 모듈마다 uint16 값의 Module ID를 매기며, 예를 들어 Os는 001, CanIf는 060, Can은 080이다.[@autosar-cp-sws-bswgeneral-2025]
 
+![[diagrams/bsw-module-implementation-prefix.svg]]
+
 Classic Platform의 BSW 모듈 SWS는 API 함수마다 표를 둔다. 표에는 Service name, Syntax, Service ID [hex], Sync/Async, Reentrancy, 매개변수(in, inout, out), Return value, Description, Available via(원형을 선언한 헤더)가 들어간다. **Service ID**는 BSW 모듈마다 `0x00`부터 매기는 서비스 번호이고, Default Error Tracer의 오류 보고 API에 매개변수로 넘긴다. Sync/Async 칸의 값은 Synchronous, Asynchronous, Depends on configuration 가운데 하나다.[@autosar-cp-sws-bswgeneral-2025]
 
 **동기 함수**는 돌아올 때 기능이 끝났음이 보장되고, **비동기 함수**는 그런 보장이 없다. **재진입 가능한 함수**(reentrant function)는 실행 도중에 끼어들림을 당한 뒤, 앞선 호출이 끝나기 전에 다시 안전하게 호출될 수 있다.[@autosar-fo-tr-glossary-2025] 예를 들어 Port Driver SWS는 `Port_Init`의 Service ID를 `0x00`으로 두고, 동기이며 재진입할 수 없다고 정하며, `Port.h`로 제공한다.[@autosar-cp-sws-portdriver-2025]
@@ -102,6 +106,8 @@ AUTOSAR Foundation R25-11은 major release 하나의 생명주기를 차례로 �
 - **Evolution**: 첫 릴리스 뒤에 minor release와 revision이 나오는 단계다.
 - **Maintenance**: 새 내용을 더하지 않고, revision으로 기존 내용만 유지보수하는 단계다.
 - **Issue Notice**: revision도 내지 않고, 생명주기가 끝날 때까지 알려진 문제 목록만 갱신하는 단계다.[@autosar-fo-tr-releaseoverview-2025]
+
+![[diagrams/autosar-release-lifecycle.svg]]
 
 AUTOSAR는 Ryy-mm 꼴의 플랫폼 릴리스 번호와 따로 `R<major>.<minor>.<revision>` 꼴의 내부 릴리스 번호를 두고, 내부 번호로 릴리스의 종류를 가린다. major release는 valid와 draft 규격 부분을 하위 호환 없이 바꿀 수 있다. minor release는 valid 부분을 하위 호환되게만 바꿀 수 있고, draft 부분은 하위 호환 없이 바꿀 수 있다. revision은 확장 없이 하위 호환되는 버그 수정만 담는다.[@autosar-fo-tr-releaseoverview-2025]
 

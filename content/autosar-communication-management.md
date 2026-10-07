@@ -29,6 +29,8 @@ AUTOSAR R25-11 Communication Management 명세는 [[signal-based-communication|�
 
 AUTOSAR R25-11 Adaptive Platform 설계 설명서는 C++ Language Binding의 상위 인터페이스가 AUTOSAR 메타모델의 인터페이스 기술에 정의한 서비스를 객체 지향으로 대응시키게 한다. Communication Management 개발 도구의 생성기가 서비스마다 Field, Event, Method의 타입 안전한 표현을 담은 C++ 클래스를 만든다. 서비스 구현 쪽의 생성 클래스를 **Service Provider Skeleton**, 클라이언트 쪽의 생성 클래스를 **Service Requester Proxy**라 부른다.[@autosar-ap-exp-platformdesign-2025]
 
+![[diagrams/ara-com-language-network-binding.svg]]
+
 Proxy는 서비스 Method를 동기로 부르는 메커니즘과 비동기로 부르는 메커니즘을 준다. 동기 호출은 서버가 결과를 돌려줄 때까지 호출자를 막고, 비동기 호출은 부른 함수가 바로 돌아온다. 비동기 호출에서 호출자는 다른 일을 병행하다가, 서버의 반환값이 준비되면 Core Type `ara::core::Future`의 기능으로 결과를 받는다. 클라이언트는 Proxy 클래스를 바로 쓸 수 있지만, C++ 바인딩의 Skeleton은 추상 기반 클래스일 뿐이어서 서비스 구현이 생성된 기반 클래스를 상속해 기능을 구현해야 한다. 서버가 아직 없을 때 클라이언트 개발과 단위 테스트를 돕는 mock-up 클래스를 생성기가 만들게 설정할 수도 있다.[@autosar-ap-exp-platformdesign-2025]
 
 `ara::com` 인터페이스는 safety-related E2E 보호 통신용 Proxy와 Skeleton도 줄 수 있다. 이 인터페이스는 E2E 보호를 켜든 끄든 응용과의 호환이 보장되게 설계됐다.[@autosar-ap-exp-platformdesign-2025]
@@ -48,3 +50,5 @@ Proxy는 서비스 Method를 동기로 부르는 메커니즘과 비동기로 �
 ## Minimum Send Interval
 
 AUTOSAR R25-11 Communication Management 명세는 수신자가 넘치거나 과부하되지 않도록 Event마다 Minimum Send Interval을 설정할 수 있게 한다. Minimum Send Interval은 연이은 두 송신 사이에 지나야 하는 최소 시간으로, 네트워크에서 그 Event의 최대 송신 빈도를 제한한다. 응용이 Event의 송신을 요청하면 `ara::com`은 마지막으로 하위 송신 계층에 넘긴 때부터 지난 시간이 Minimum Send Interval보다 큰지 확인한다. 크면 Event를 송신 계층에 넘기고 그때부터 새 간격을 재며, 아니면 요청을 버리고 `kMinimumSendIntervalViolationError` 오류를 돌려준다. 설정값 `minimumSendInterval`이 0이면 감시하지 않고, 기본값은 0이다. 같은 감시는 Trigger, 클라이언트의 Method 호출, Field의 Get과 Set 호출, Field의 송신 요청에도 설정할 수 있다.[@autosar-ap-sws-communicationmanagement-2025]
+
+![[diagrams/minimum-send-interval-timeline.svg]]

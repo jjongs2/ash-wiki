@@ -20,6 +20,8 @@ Manifest와 관련된 모델 요소는 개발 프로젝트의 전혀 다른 단�
 - **Service Instance Manifest**: [[service-oriented-communication|서비스 지향 통신]]을 하부 전송 프로토콜의 요구에 맞춰 어떻게 설정하는지 기술한다. 그 서비스 지향 통신을 쓰는 실행 코드와 함께 묶인다.
 - **Machine Manifest**: 응용 없이 Adaptive Platform을 돌리는 Machine 자체의 설정에 관한 배치 내용을 기술한다. Adaptive Platform 인스턴스를 세우는 소프트웨어와 함께 묶인다.[@autosar-ap-exp-platformdesign-2025]
 
+![[diagrams/autosar-manifest-kinds.svg]]
+
 정의하고 쓰는 시점이 서로 달라서, 대개 세 Manifest의 내용은 서로 다른 물리 파일에 저장한다.[@autosar-ap-exp-platformdesign-2025]
 
 ## 담는 내용

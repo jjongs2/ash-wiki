@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 770 272" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <text x="20" y="32" fill="var(--text, #727981)">시그널에서 서비스로 옮길 때</text>
+
+  <!-- Classic Platform ECU -->
+  <rect x="170.75" y="50.75" width="358.5" height="200.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="184" y="72" font-size="12" fill="var(--text, #727981)">Classic Platform ECU</text>
+
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="230" y="84" width="240" height="40" rx="2" />
+    <rect x="190" y="162" width="320" height="26" rx="2" />
+    <rect x="190" y="208" width="320" height="26" rx="2" />
+    <rect x="620" y="198" width="130" height="46" rx="2" />
+  </g>
+  <!-- 포트 -->
+  <g fill="var(--ink, #727981)">
+    <rect x="265" y="119" width="10" height="10" />
+    <rect x="425" y="119" width="10" height="10" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="350" y="109" font-size="13">Translation Software Component</text>
+    <text x="350" y="180">RTE</text>
+    <text x="350" y="226">통신 스택</text>
+    <text x="685" y="217">Adaptive Platform</text>
+    <text x="685" y="234">Machine</text>
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="232" y="147">시그널 포트</text>
+    <text x="468" y="147">이벤트 포트</text>
+  </g>
+
+  <!-- 흐름: RTE 상자 안은 지나간다 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M20 221 H188" marker-end="url(#arrow)" />
+    <path d="M270 208 V188 M270 162 V131" marker-end="url(#arrow)" />
+    <path d="M430 129 V162 M430 188 V206" marker-end="url(#arrow)" />
+    <path d="M510 221 H618" marker-end="url(#arrow)" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="20" y="213">CAN · LIN · FlexRay</text>
+    <text x="20" y="239">ISignalIPdu</text>
+    <text x="565" y="213" text-anchor="middle">SOME/IP 서비스</text>
+  </g>
+</svg>

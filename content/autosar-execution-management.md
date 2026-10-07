@@ -15,6 +15,8 @@ AUTOSAR R25-11 운영체제 인터페이스 명세는 운영체제가 Execution 
 
 AUTOSAR R25-11 Execution Management 명세는 준비를 마친 Execution Management가 Machine State를 Off에서 Startup으로 바꾸고, 그동안 Startup Machine State에 속한 프로세스의 시작을 요청하게 한다. Off는 Execution Management가 시작되기 전의 기본 상태다. 전이 조건이 채워지면 Execution Management는 [[autosar-state-management|State Management]]에 Startup 전이를 확인해 주고, 이때부터 Function Group 상태 변경을 시작하는 책임을 State Management에 넘긴다. 다만 운영체제의 init 프로세스나 마이크로커널의 사용자 수준 드라이버처럼 Adaptive Platform 밖에서 시작하고 관리하는 프로세스가 Execution Management보다 먼저 있을 수 있다.[@autosar-ap-sws-executionmanagement-2025]
 
+![[diagrams/execution-management-startup.svg]]
+
 ## 책임
 
 AUTOSAR R25-11 Adaptive Platform 설계 설명서는 Execution Management의 책임을 셋으로 나눈다.[@autosar-ap-exp-platformdesign-2025]
@@ -38,6 +40,8 @@ AUTOSAR R25-11 Execution Management 명세는 Modelled Process를 Executable의 
 - **Terminated**: 프로세스가 끝나고 그 자원을 해제한 뒤[@autosar-ap-sws-executionmanagement-2025]
 
 자원 할당만 보면 Terminated는 Idle과 같지만, Terminated는 프로세스가 이미 실행되고 끝나 필요하면 다시 시작할 수 있음을 Execution Management에 알린다.[@autosar-ap-sws-executionmanagement-2025]
+
+![[diagrams/execution-management-process-states.svg]]
 
 ## Resource group
 

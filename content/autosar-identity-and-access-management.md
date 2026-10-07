@@ -23,6 +23,8 @@ AUTOSAR R25-11 Identity and Access Management 설명서는 PDP의 구현과 설�
 - Adaptive Platform Foundation과 Services 인터페이스의 접근 제어는 객체의 프로세스, 운영체제, Adaptive Platform Foundation의 프로세스 가운데 하나 이상에 있는 PEP가 집행해야 한다. 주체인 Adaptive Application의 맥락에서 도는 PEP로 그 주체 자신의 요청을 통제해서는 안 된다.
 - Adaptive Application은 공격받았을 수 있다고 보아, 자기 요청을 제한하는 정책 결정을 통제할 수 없어야 한다. 요청하는 응용을 제한하는 PEP는 그 응용이 통제하지 않는 별도 프로세스에서 돌고, IPC(Inter-Process Communication)나 네트워크 통신으로 그 응용과 떨어져 있어야 한다.[@autosar-ap-exp-identityandaccessmanagement-2025]
 
+![[diagrams/iam-pep-pdp.svg]]
+
 AUTOSAR는 Adaptive Application의 식별을 완전히 정하지 않는다. 한 방법은 응용 프로세스를 운영체제 사용자(POSIX 사용자 등)로 따로 돌리는 것이다. 이때 [[autosar-execution-management|Execution Management]]가 응용 프로세스를 서로 다른 운영체제 사용자로 시작하고, IPC 채널에서 상대의 자격 증명을 묻는 운영체제 기능(Unix 도메인 소켓의 `getpeereid()` 등)을 쓸 수 있다. PEP는 실행 중의 신원(Unix 사용자 식별자 등)을 모델의 Process로 옮기고, PDP는 그 Process와 연관된 Grant로 접근을 허용하거나 거부한다.[@autosar-ap-exp-identityandaccessmanagement-2025]
 
 IAM 모델링을 정한 functional cluster는 [[autosar-communication-management|Communication Management]], Firewall, Cryptography, [[autosar-diagnostic-management|Diagnostic Management]], Intrusion Detection System Manager, [[autosar-platform-health-management|Platform Health Management]]다. PEP의 구현은 각 functional cluster의 소프트웨어 명세가 정한다.[@autosar-ap-exp-identityandaccessmanagement-2025]

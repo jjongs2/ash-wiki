@@ -27,6 +27,8 @@ Platform Health Management는 하드웨어 watchdog과 인터페이스를 가진
 
 watchdog 반응이 필요한 failure는 State Management와 Execution Management의 감시 failure다. 이때는 State Management를 거친 복구가 불가능하기 때문이다. State Management나 Execution Management에 대응하는 Global Supervision Status가 `kSTOPPED`로 바뀌면, Platform Health Management는 WatchdogInterface에 보내던 alive 알림을 멈추고 watchdog 반응을 일으킨다. State Management가 복구를 처리할 수 없다는 오류 `kSMCanNotHandleRecovery`를 돌려줄 때도 같다.[@autosar-ap-sws-platformhealthmanagement-2025]
 
+![[diagrams/phm-supervision-recovery.svg]]
+
 ## Health Monitoring과의 관계
 
 AUTOSAR R25-11은 [[autosar-classic-platform|Classic Platform]]과 Adaptive Platform이 공유하는 기능을 Foundation 문서에 Health Monitoring이라는 이름으로 두고, Adaptive Platform에만 있는 명세를 Adaptive Platform 문서에 Platform Health Management라는 이름으로 둔다.[@autosar-ap-exp-platformdesign-2025]

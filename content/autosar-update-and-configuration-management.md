@@ -44,6 +44,8 @@ AUTOSAR R25-11 Adaptive Platform 설계 설명서는 갱신 사이클이 [[ab-up
 
 활성화할 때 UCM은 `ara::com`으로 State Management에 UpdateSession을 열고, 영향받는 Software Cluster의 [[autosar-state-management#Machine State와 Function Group State|Function Group]]마다 PrepareUpdate 메서드를 불러 Function Group별 준비를 하게 한다. 준비가 끝나면 UCM은 갱신의 종류에 따라 State Management에 Machine 리셋이나 Function Group 재시작을 요청하고, 대상 Function Group이 제대로 도는지 검증해 달라고 요청한다. 재시작이 성공하면 갱신은 활성화된 상태가 되고, UCM Client나 V-UCM이 Finish로 변경을 확정하거나 Rollback으로 이전 버전으로 되돌린다. Rollback이면 UCM은 영향받는 Function Group마다 PrepareRollback 메서드를 불러 이전 버전을 다시 활성화한다. 어느 쪽이든 UCM은 State Management의 갱신 세션을 끝내야 한다.[@autosar-ap-exp-platformdesign-2025]
 
+![[diagrams/ucm-update-activation-sequence.svg]]
+
 UCM이 State Management의 UpdateRequest 서비스 인터페이스로 요청한 갱신 세션은 상태 충돌이나 안전을 이유로 거부될 수 있다. UCM은 VerifyUpdate 메서드로 갱신, 설치, 제거를 검증하고, 검증에 실패하면 Function Group 상태를 되돌리도록 요청할 수 있다. Machine을 리셋하지 않으면 활성화 뒤 Manifest를 다시 읽어 플랫폼 설정을 일관되게 유지해야 한다.[@autosar-ap-exp-platformdesign-2025]
 
 ## 인증과 접근 제어
@@ -70,5 +72,7 @@ OEM마다 다른 갱신 측면은 설계상 Adaptive Application 쪽에 둔다. 
 - **OTA Client**: 백엔드와 V-UCM 사이의 통신 채널을 맺는다. 백엔드와 OTA Client 사이의 통신 프로토콜은 정하지 않는다.
 - **Vehicle driver**: 갱신 중 다운로드, 처리, 활성화에 운전자의 동의를 받거나, 안전을 위해 차량을 멈추고 엔진을 끄는 것처럼 차량을 특정 상태에 두게 한다.
 - **Vehicle State Manager**: 차량의 모든 ECU나 Machine의 상태를 모아, Vehicle Package에 든 V-UCM의 SafetyConditions 필드를 바탕으로 차량 상태를 계산한다. 계산한 차량 상태가 바뀌면 V-UCM의 PublishSafetyState 메서드를 부르고, 갱신의 안전 조건이 채워지지 않으면 V-UCM은 갱신을 미루거나 멈추거나 취소할 수 있다.[@autosar-ap-exp-platformdesign-2025]
+
+![[diagrams/vucm-campaign-participants.svg]]
 
 진단으로 플래시하는 ECU를 Flashing Adapter로 갱신하는 경로와, UCM이 정비소 갱신과 OTA 업데이트를 구별하지 않는다는 것은 [[ecu-reprogramming#정비소와 OTA|ECU 재프로그래밍]]에서 다룬다.

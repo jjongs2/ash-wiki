@@ -23,6 +23,8 @@ AUTOSAR R25-11 Diagnostics 명세는 모든 Diagnostic Server 인스턴스가 �
 - UDS 요청은 현재 세션과 보안 설정으로, SOVD 요청은 인가와 검증으로 허용 여부를 확인한다. 허용하지 않으면 UDS 부정 응답이나 SOVD 오류 코드를 담은 HTTP 오류 응답을 보낸다.
 - 허용한 요청은 설정과 요청 종류에 따라 Diagnostic Communication Management나 Diagnostic Event Management 기능 블록 안에서 처리하거나, Diagnostic Management 밖의 Adaptive Application에 넘긴다.[@autosar-ap-sws-diagnostics-2025]
 
+![[diagrams/diagnostic-management-request-routing.svg]]
+
 ## 진단 통신
 
 AUTOSAR R25-11 Adaptive Platform 설계 설명서는 진단 통신 하위 클러스터가 Classic Platform의 Dcm처럼 진단 서버를 구현하게 한다. 지원하는 UDS 서비스는 아직 제한되어 있다. Diagnostic Management는 ISO 14229-1에 따른 다중 클라이언트 처리를 지원해, 데이터 수집, 백엔드 접근, 정비와 생산을 위한 여러 진단 클라이언트(테스터)를 함께 다룬다. 특정 서비스는 인증서로 인증할 수 있다.[@autosar-ap-exp-platformdesign-2025]
