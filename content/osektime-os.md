@@ -38,6 +38,8 @@ TT 태스크의 상태는 셋뿐이다.[@osek-osektime-os-1-0-2001]
 
 디스패처는 디스패처 틱에 따라 suspended 태스크를 running으로 바꾸고(activate), 그때 돌던 태스크는 preempted가 된다(preempt). 마지막으로 선점된 태스크가 다시 running이 되고(resume), running 태스크는 실행을 마치면 스스로 suspended로 간다(terminate).[@osek-osektime-os-1-0-2001]
 
+![[diagrams/osektime-tt-task-states.svg]]
+
 활성화는 OSEKtime 디스패처 틱(TT 인터럽트)에 따라 OSEKtime 디스패처가 하며, 디스패처를 부르는 사건은 오프라인에서 만든 디스패처 테이블에 정해 둔다. 한 디스패처 라운드 안에서 같은 태스크를 여러 번 활성화할 수 있지만, 태스크가 자기 자신을 선점할 수는 없다.[@osek-osektime-os-1-0-2001]
 
 OSEKtime OS는 선점 스케줄링에 바탕을 두고 정적 스케줄링을 지원한다. 외부 스케줄링 도구가 오프셋, 최악 실행 시간, 마감 시한 같은 태스크의 타이밍 특성으로 디스패처 테이블을 만들고, 디스패처는 테이블에 저장된 엄격한 순서대로 태스크를 활성화한다. 디스패처 테이블을 한 번 다 실행하는 것을 **디스패처 라운드**라 한다. idle 태스크를 뺀 어떤 태스크도 한 디스패처 라운드의 끝과 다음 라운드의 시작에 걸쳐 돌 수 없다.[@osek-osektime-os-1-0-2001]
@@ -45,6 +47,8 @@ OSEKtime OS는 선점 스케줄링에 바탕을 두고 정적 스케줄링을 �
 디스패처 테이블은 주기적으로 되풀이 실행되어 태스크를 주기적으로 실행한다. 디스패처는 인터럽트로 시작되며, 그 인터럽트 소스는 로컬 논리 시간이다. 로컬 논리 시간은 전역 시간이 있으면 전역 시간에 동기화된다.[@osek-osektime-os-1-0-2001]
 
 TT 태스크에는 사용자가 정하는 정적 우선순위가 없다. 디스패처가 새 TT 태스크를 활성화할 때 다른 TT 태스크가 돌고 있으면 그 태스크는 늘 선점되어, 새 태스크가 끝날 때까지 preempted에 머문다. 이 스케줄링 방식을 **stack-based 스케줄링**이라 하며, 오프라인 스케줄링 도구는 모든 마감 시한을 지키고 스택 넘침이 일어나지 않도록 디스패처 테이블을 만들어야 한다. 도는 TT 태스크가 없으면 OSEK/VDX OS의 태스크가 실행된다.[@osek-osektime-os-1-0-2001]
+
+![[diagrams/osektime-stack-based-scheduling.svg]]
 
 TT 태스크는 마감 시한 전에 스스로 끝나야 한다.[@osek-osektime-os-1-0-2001]
 
@@ -83,11 +87,15 @@ ECU는 저마다 로컬 클록에 따라 늘어나는 로컬 시간으로 동작
 - 비동기 시작(hard 동기화): 전역 시간과의 동기화를 기다리지 않고 로컬 시간에 따라 TT 태스크를 실행한다. 디스패처 라운드가 끝날 때 다음 라운드의 시작을 늦춰 로컬 시간을 전역 시간에 맞춘다.
 - 비동기 시작(smooth 동기화): 마찬가지로 로컬 시간에 따라 실행하되, 다음 라운드 시작을 늦추는 양을 미리 정한 구성 값으로 제한해 여러 디스패처 라운드에 걸쳐 맞춘다. 늦추는 양이 그 한도를 넘지 않는 동안 동기된 것으로 본다.[@osek-osektime-os-1-0-2001]
 
+![[diagrams/osektime-startup-synchronization.svg]]
+
 동기를 잃어도 운영체제가 애플리케이션에 따로 알리지 않으며, 애플리케이션은 `ttGetOSSyncStatus`로 이를 알아낸다.[@osek-osektime-os-1-0-2001]
 
 ### OSEK OS와 함께 쓰기
 
 이 명세는 OSEK OS 서브시스템이 OSEKtime 시스템을 방해하지 않을 때 두 시스템을 결합할 수 있게 한다. OSEKtime 전체가 OSEK OS보다 우선하며, OSEK OS의 태스크와 ISR은 OSEKtime의 태스크와 ISR을 늦추면 안 된다. OSEK OS의 인터럽트 금지 기능은 OSEK OS 안에서만 작용해 OSEKtime이 쓰는 인터럽트에 영향을 주지 않아야 한다. 이런 시스템에서는 `ttIdleTask`를 쓰지 않고, OSEK OS 서브시스템이 OSEKtime의 idle 시간에 돈다. OSEKtime은 `ttGetOSEKOSState`로 OSEK OS 서브시스템의 상태를 알 수 있다.[@osek-osektime-os-1-0-2001]
+
+![[diagrams/osektime-osek-os-processing-levels.svg]]
 
 결합 시스템은 `ttStartOS`로 시작하며, 이 호출이 OSEK OS의 시작도 일으킨다. OSEKtime이 정해 둔 시작 시간 안에 먼저 시작해야 하고, OSEK OS의 시작이 실패하더라도 이 시간을 한없이 늦추면 안 된다. OSEK OS의 태스크와 ISR은 OSEKtime만 있는 시스템이라면 `ttIdleTask`가 돌기 시작했을 시점보다 먼저 활성화되지 않는다.[@osek-osektime-os-1-0-2001] [[osek-os|OSEK/VDX OS]] 2.2.3 명세는 이때 OSEKtime의 초기화가 늘 먼저 돌고, OSEKtime이 idle 루프에 들어가면 자기에게 넘어온 application mode로 `StartOS`를 자동으로 부르도록 정한다.[@osek-os-2-2-3-2005]
 

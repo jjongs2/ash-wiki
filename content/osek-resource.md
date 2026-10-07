@@ -44,6 +44,8 @@ OSEK/VDX OS 2.2.3 명세는 사용자에게 보이지 않아 `GetResource`와 `R
 
 OSEK/VDX OS 2.2.3 명세는 태스크가 실행을 시작할 때 운영체제가 internal resource를 그 태스크에 쥐여 주고, 태스크가 [[osek-task#우선순위와 스케줄링|재스케줄링 지점]]에 이르면 거둬들이도록 정한다. 태스크가 선점될 때는 풀리지 않는다. 그래서 같은 internal resource를 배정받은 태스크 묶음은 묶음 안에서 비선점 태스크처럼 동작한다. 재스케줄링은 재스케줄링 지점에서만 일어나고, 묶음의 가장 높은 우선순위보다 높은 태스크에는 선점된다. 이를 써서 태스크 묶음 안의 원치 않는 재스케줄링을 막을 수 있다. 선점할 수 없는 태스크는 `RES_SCHEDULER`와 같은 우선순위의 internal resource가 배정된 특수한 묶음이다.[@osek-os-2-2-3-2005]
 
+![[diagrams/osek-internal-resource-group.svg]]
+
 resource를 쥔 채 부를 수 없는 서비스의 제한은 internal resource에는 걸리지 않는다. 그 서비스들 안에서 internal resource를 다루기 때문이다. 다만 internal resource를 풀기 전에 표준 resource를 모두 풀어야 한다.[@osek-os-2-2-3-2005]
 
 ## Linked resource
