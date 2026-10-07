@@ -13,7 +13,7 @@ configuration:
     - templates
     - .obsidian
   # 색과 폰트 값의 정본은 이 theme다. 고른 근거와 대비 실측은 docs/palette.md에 있다.
-  # region-<구역>은 구역 색이고 region-other는 기타용 중립색이다. 구역은 태그 경로의 첫 마디다.
+  # region-<구역>과 region-other는 구역 색이다(docs/palette.md 구역 색 절).
   # Pretendard는 Google Fonts에 없어 fontOrigin을 local로 두고, 폰트 CSS는 Head가 건다(quartz/util/localFonts.ts).
   # OG 이미지 생성기가 쓰는 폰트는 prebuild가 캐시에 둔다(tools/og-fonts.ts).
   theme:

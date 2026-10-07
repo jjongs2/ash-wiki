@@ -1,5 +1,5 @@
-// ash-wiki: 대문(index)만 그리는 페이지 타입 로컬 플러그인이다. 대문 본문은 위키 링크로 쓴 구역 표 하나이고
-// (행은 구역, 칩은 주제), 이 플러그인이 빌드할 때 그 표에 구역 색과 주제별 페이지 수를 붙인다.
+// ash-wiki: 대문(index)만 그리는 페이지 타입 로컬 플러그인이다. 대문의 구역 표(docs/engine.md 대문 절)에 빌드할
+// 때 구역 색과 주제별 페이지 수를 붙인다.
 //
 // 계산 규칙은 순수 함수 frontPage 하나에 모은다. 지금은 페이지 목록을 받아 주제별 페이지 수를 돌려주고,
 // 이번 주 소식과 최근 변경은 다른 티켓이 같은 함수에 더한다(#364).
@@ -9,8 +9,7 @@
 // 그릴 때 allFiles를 받으므로 페이지 타입으로 대문만 가져온다. content-page(priority 0)보다 높은 priority로
 // 대문을 먼저 잡고, 레이아웃은 content-page와 같은 content를 써서 사이드바와 머리말은 다른 페이지와 같다.
 //
-// 구역 색은 theme의 region-<구역> 토큰이고 정본과 대비 실측은 docs/palette.md에 있다. 구역은 태그 경로의 첫
-// 마디이고, 토큰이 없는 구역은 기타용 중립색(region-other)으로 칠한다.
+// 구역 색을 고르는 규칙은 docs/palette.md의 구역 색 절에 있다.
 //
 // 빌드가 이 파일을 Node의 type stripping으로 불러오므로, 타입만 지우면 돌아가는 문법만 쓴다. enum, namespace,
 // parameter property를 쓰지 않고, 타입은 import type으로 가져온다.
@@ -47,8 +46,8 @@ export function frontPage(input: { pages: FrontPagePage[] }): {
     if (page.slug === "index" || page.slug.startsWith("tags/")) continue
     const topics = new Set<string>()
     for (const tag of page.tags) {
-      const [section, topic] = tag.split("/")
-      if (topic) topics.add(`${section}/${topic}`)
+      const [region, topic] = tag.split("/")
+      if (topic) topics.add(`${region}/${topic}`)
     }
     for (const topic of topics) topicCounts[topic] = (topicCounts[topic] ?? 0) + 1
   }
@@ -148,18 +147,18 @@ function decorateRegionTable(tree: Root, topicCounts: Record<string, number>) {
       for (const link of elements(row, "a")) {
         const tag = linkedTag(link)
         if (!tag) continue
-        const [section, topic] = tag.split("/")
+        const [region, topic] = tag.split("/")
         if (!topic) {
           isRegionTable = true
           addClass(link, "front-region-name")
-          row.properties.style = `--region: var(--region-${section}, var(--region-other))`
+          row.properties.style = `--region: var(--region-${region}, var(--region-other))`
         } else {
           addClass(link, "front-topic")
           const count: ElementContent = {
             type: "element",
             tagName: "span",
             properties: { className: ["front-count"] },
-            children: [{ type: "text", value: String(topicCounts[`${section}/${topic}`] ?? 0) }],
+            children: [{ type: "text", value: String(topicCounts[`${region}/${topic}`] ?? 0) }],
           }
           link.children.push(count)
         }
