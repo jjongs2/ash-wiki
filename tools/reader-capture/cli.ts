@@ -95,10 +95,18 @@ async function screenshots(
     colorScheme: "light",
   })
   const page = await context.newPage()
+  await page.addInitScript(() =>
+    document.addEventListener("nav", () => {
+      ;(window as { readerNav?: boolean }).readerNav = true
+    }),
+  )
   try {
     // load는 그래프가 부르는 바깥 리소스를 기다리다 멈추므로 본문이 나올 때까지만 기다린다.
     await page.goto(`${base}/${slug}`, { waitUntil: "commit" })
     await page.waitForSelector("article")
+    // 본문이 나온 직후에는 스크립트가 아직 돌지 않아, 390px에서 펼친 탐색기가 본문을 덮는다.
+    // 컴포넌트는 Quartz가 처음 보내는 nav 이벤트에서 자리를 잡으므로 그 이벤트를 기다린다.
+    await page.waitForFunction(() => (window as { readerNav?: boolean }).readerNav === true)
     await page.evaluate(async () => {
       await document.fonts.ready
       const objects = [...document.querySelectorAll("article object")] as HTMLObjectElement[]
@@ -142,10 +150,13 @@ async function main() {
   try {
     const pages = []
     const linked = new Set<string>()
+    const texts = new Map<string, string>()
     for (const slug of slugs) {
       const { text, links } = await pageText(base, slug)
       fs.writeFileSync(path.join(out, `${slug}.txt`), text)
-      for (const link of links) if (!slugs.includes(link)) linked.add(link)
+      texts.set(slug, text)
+      // 대상 페이지끼리 링크해도 linked/에 둔다. 독자는 linked/만 링크로 연다.
+      for (const link of links) linked.add(link)
       const shots: Record<string, { files: string[]; tokens: number }> = {}
       for (const view of widths) {
         const files = await screenshots(browser, base, slug, view)
@@ -165,7 +176,7 @@ async function main() {
     }
     const linkedPages = []
     for (const slug of linked) {
-      const { text } = await pageText(base, slug)
+      const text = texts.get(slug) ?? (await pageText(base, slug)).text
       fs.writeFileSync(path.join(out, "linked", `${slug}.txt`), text)
       linkedPages.push({ slug, text: `linked/${slug}.txt`, chars: text.length })
     }
