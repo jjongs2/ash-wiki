@@ -31,4 +31,4 @@ $$
 \sum_{k=1}^{i} \frac{C_k}{T_k} + \frac{B_i}{T_i} \le 1
 $$
 
-우선순위 상한이라는 개념은 우선순위 상한 프로토콜과 스택 자원 정책 같은 여러 잠금 프로토콜의 바탕이다.[@sha-real-time-scheduling-theory-2004] 다중 프로세서로 넓힌 변형은 [[multiprocessor-scheduling#자원 공유|다중 프로세서 스케줄링]]에서 다룬다.
+우선순위 상한이라는 개념은 우선순위 상한 프로토콜과 스택 자원 정책 같은 여러 잠금 프로토콜의 바탕이다.[@sha-real-time-scheduling-theory-2004] Ada 2022 Reference Manual은 우선순위 태스크 스케줄링과 보호 객체(protected object)의 상호작용을 보호 객체의 우선순위 상한(ceiling priority)이라는 개념에 바탕을 두어 정하고, 그 잠금 정책으로 `Ceiling_Locking`을 미리 정의한다.[@acaa-ada-rm-d-3-2023] 다중 프로세서로 넓힌 변형은 [[multiprocessor-scheduling#자원 공유|다중 프로세서 스케줄링]]에서 다룬다.
