@@ -16,10 +16,11 @@ PR 몇 개를 만든 세션과 그 티켓을 발행한 보강 세션의 기록�
 
 ## 1. 입력
 
-**대상 PR**은 인자의 PR이다. 인자가 없으면 가장 최근 회고가 분석한 PR 뒤에 머지된 `content:` PR이다. 가장 최근 회고는 회고를 부른 기록 가운데 이 세션을 뺀 맨 위다. 그 회고가 낸 티켓은 그 기록의 첫 `timestamp` 뒤에 만들어진 이슈 가운데 기록에 URL이 나오는 것이고, 분석한 PR 목록은 그 본문에서 읽는다. 기록이나 목록이 없으면 소유자에게 PR 목록을 묻는다.
+**대상 PR**은 인자의 PR이다. 인자가 없으면 가장 최근 회고가 분석한 PR 뒤에 머지된 `content:` PR이다. 가장 최근 회고는 회고 스킬을 부른 기록 가운데 이 세션을 뺀 맨 위다. 아래 명령은 스킬을 부른 줄만 잡고, 이 명령을 글자로 담은 다른 기록은 JSON에서 따옴표가 escape되어 걸리지 않는다. 그 회고가 낸 티켓은 그 기록의 첫 `timestamp` 뒤에 만들어진 이슈 가운데 기록에 URL이 나오는 것이고, 분석한 PR 목록은 그 본문에서 읽는다. 기록이나 목록이 없으면 소유자에게 PR 목록을 묻는다.
 
 ```sh
-grep -l -E '<command-name>/wiki-retro</command-name>|"skill":"wiki-retro"' ~/.claude/projects/*ash-wiki*/*.jsonl | xargs ls -t
+grep -l -E '"content":"<command-message>wiki-retro</command-message>|"name":"Skill","input":\{"skill":"wiki-retro"' \
+  ~/.claude/projects/*ash-wiki*/*.jsonl | xargs ls -t
 gh issue list --state all --search 'created:>=<그 기록의 첫 timestamp>' --json number,title,createdAt
 gh pr view <목록의 PR> --json mergedAt --jq .mergedAt   # 목록에서 가장 늦은 것을 <시각>으로
 gh pr list --state merged --search 'merged:><시각> "content:" in:title' --limit 100 --json number,title,mergedAt
@@ -36,14 +37,15 @@ gh pr list --state merged --search 'merged:><시각> "content:" in:title' --limi
   걸리지 않으면 `grep -l -F <session_…>`로 후보를 모으고, 이 세션의 기록을 뺀 뒤 세션 제목(`custom-title` 줄)으로 고른다.
 
 - **서브에이전트 기록**: 세션 기록 옆 `<uuid>/subagents/`
-- **세션 판**: 세션이 실제로 따른 스킬 판의 커밋. `git worktree add`로 만든 worktree에서 돌았으면 그 base(`grep -o -m1 'HEAD is now at [0-9a-f]*' <세션 기록>`의 첫 줄)이고, 아니면 세션을 시작할 때의 main(`git rev-list -1 --before=<기록의 첫 `timestamp`> origin/main`)이다. 분석 에이전트가 기록에 실린 스킬 본문과 견준다.
+- **세션 판**: 세션이 실제로 따른 스킬 판의 커밋. `git worktree add`로 만든 worktree에서 돌았으면 그 base(`grep -o -m1 'HEAD is now at [0-9a-f]*' <세션 기록>`의 첫 줄)이고, 아니면 세션을 시작할 때의 main(`git rev-list -1 --before=<기록의 첫 `timestamp`> origin/main`)이다. main에서 돈 세션은 로컬 main이 낡았을 수 있으니, 기록에서 스킬을 부른 줄(`Base directory for this skill:`)의 본문을 그 커밋의 SKILL.md와 견주어, 다르면 `git log origin/main -- <SKILL.md 경로>`에서 본문이 같은 커밋으로 고친다.
 - **티켓과 리뷰 요약**: PR 본문의 `Closes #<티켓>`, PR 코멘트의 리뷰 요약
 - **핸드오프**: `~/documents/ash-wiki-handoff-*`에서 티켓 번호로 찾는다. 머리 정보가 가리키는 앞 세션의 핸드오프(예: 티켓을 발행한 보강)도 읽는다. 앞 세션이 남긴 회고 질문에 이번 기록이 답하기 때문이다.
 
 대상 PR의 티켓을 발행한 **보강 세션**도 대상에 넣는다. 보강은 PR 없이 티켓만 내므로 위 세션 URL로는 걸리지 않는다. 시작 시각은 따지지 않는다. 지난 회고보다 먼저 돌았어도 이번 티켓을 발행했으면 넣는다. 티켓마다 보강을 부른 기록 가운데 그 티켓의 URL이 나오는 것을 찾아 이 세션의 기록을 빼고, 세션 판도 같은 방법으로 정한다.
 
 ```sh
-grep -l -E '<command-name>/wiki-enrich</command-name>|"skill":"wiki-enrich"' ~/.claude/projects/*ash-wiki*/*.jsonl \
+grep -l -E '"content":"<command-message>wiki-enrich</command-message>|"name":"Skill","input":\{"skill":"wiki-enrich"' \
+  ~/.claude/projects/*ash-wiki*/*.jsonl \
   | xargs grep -l -E 'jjongs2/ash-wiki/issues/<티켓>([^0-9]|$)'
 ```
 
