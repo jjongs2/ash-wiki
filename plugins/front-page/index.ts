@@ -24,6 +24,7 @@ import { formatDate, resolveRelative } from "@quartz-community/utils"
 import type { QuartzComponent, QuartzComponentProps } from "../../quartz/components/types"
 import type { QuartzPageTypePlugin } from "../../quartz/plugins/types"
 import type { FullSlug } from "../../quartz/util/path"
+import type { WeeklyNewsData } from "../weekly-news/index"
 
 export const manifest = {
   name: "front-page",
@@ -557,6 +558,8 @@ function newsColumn(
   const issueHref = resolveRelative("index" as FullSlug, issue.slug as FullSlug)
   const day = (value: string) =>
     el("time", { dateTime: value }, [text(formatDate(new Date(`${value}T00:00:00`), locale))])
+  // 칩은 weekly-news의 regionChips와 같은 마크업이다. 빌드는 로컬 플러그인을 type stripping으로 불러와 상대
+  // import에 .ts 확장자가 있어야 하는데 tsconfig가 그 꼴을 받지 않아, 플러그인끼리는 타입만 가져온다.
   const chip = (region: string | null, name: string) =>
     el(
       "span",
@@ -675,7 +678,7 @@ const FrontPageBody = () => {
     const news: FrontPageIssue[] = []
     const regionNames = new Map<string, string>()
     for (const file of props.allFiles) {
-      const data = file.weeklyNews as Omit<FrontPageIssue, "slug" | "title"> | undefined
+      const data = file.weeklyNews as WeeklyNewsData | undefined
       if (data) {
         news.push({
           slug: file.slug ?? "",
@@ -687,7 +690,8 @@ const FrontPageBody = () => {
         })
       }
       const tag = file.slug?.startsWith("tags/") ? file.slug.slice("tags/".length) : ""
-      if (tag && !tag.includes("/")) regionNames.set(tag, String(file.frontmatter?.title ?? tag))
+      if (tag && tag !== "index" && !tag.includes("/"))
+        regionNames.set(tag, String(file.frontmatter?.title ?? tag))
     }
     const commits = readCommits(props.ctx.argv.directory)
     const { topicCounts, latestNews, recentChanges } = frontPage({ pages, news, commits })
