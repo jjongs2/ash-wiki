@@ -34,7 +34,7 @@ export const manifest = {
 }
 
 // 소식 항목 하나. regions는 구역 태그(network)의 목록이고 기타는 빈 목록이다. id는 카드의 앵커로, 위키 링크의 절
-// 링크(`[[news/2026-W41#원어 제목]]`)가 가리키는 값과 같다. summary의 start와 end는 요약이 차지하는 원본의
+// 링크(`[[news/2026-w41#원어 제목]]`)가 가리키는 값과 같다. summary의 start와 end는 요약이 차지하는 원본의
 // 첫 줄과 끝 줄(1부터)이다.
 export interface NewsItem {
   id: string
@@ -52,11 +52,9 @@ export interface NewsError {
   message: string
 }
 
-// transformer가 주간 소식 파일의 vfile 데이터에 두는 값. start와 end는 그 주의 월요일과 일요일이다.
+// transformer가 주간 소식 파일의 vfile 데이터에 두는 값
 export interface WeeklyNewsData {
   week: string
-  start: string
-  end: string
   items: NewsItem[]
 }
 
@@ -68,7 +66,7 @@ const REQUIRED = [FIELDS.region, FIELDS.outlet, FIELDS.date]
 const NEWS_PREFIX = "news/"
 const INDEX_SLUG = "news/index"
 
-const WEEK = /^(\d{4})-W(\d{2})$/
+const WEEK = /^(\d{4})-w(\d{2})$/
 
 // ISO 8601에서 53주가 있는 해는 1월 1일이 목요일이거나, 윤년이면서 1월 1일이 수요일인 해다
 function weeksInYear(year: number): number {
@@ -87,7 +85,14 @@ function parseWeek(name: string): { year: number; week: number } | null {
 
 const isoDay = (date: Date) => date.toISOString().slice(0, 10)
 
-/** ISO 주차(2026-W41)의 월요일과 일요일(YYYY-MM-DD). 1주는 1월 4일이 든 주다. */
+/** 호의 제목. ISO 주차(2026-w41)에서 만든다(2026년 41주차 주간 소식). */
+export function issueTitle(name: string): string {
+  const parsed = parseWeek(name)
+  if (!parsed) throw new Error(`ISO 주차가 아니다: ${name}`)
+  return `${parsed.year}년 ${parsed.week}주차 주간 소식`
+}
+
+/** ISO 주차(2026-w41)의 월요일과 일요일(YYYY-MM-DD). 1주는 1월 4일이 든 주다. */
 export function weekDays(name: string): { start: string; end: string } {
   const parsed = parseWeek(name)
   if (!parsed) throw new Error(`ISO 주차가 아니다: ${name}`)
@@ -123,7 +128,7 @@ function maskFrontmatter(source: string): string {
 }
 
 /**
- * 주간 소식 파일 하나를 소식 항목 목록으로 읽는다. name은 확장자를 뗀 파일 이름(2026-W41)이고, source는
+ * 주간 소식 파일 하나를 소식 항목 목록으로 읽는다. name은 확장자를 뗀 파일 이름(2026-w41)이고, source는
  * 프론트매터를 포함한 원본이다. 형식은 docs/weekly-news.md에 있고, 어긴 곳은 errors에 원본의 줄과 함께 준다.
  * - 소식 항목은 `## [원어 제목](원문 URL)` 제목으로 시작해 다음 `##`까지다. 첫 항목 앞에는 아무것도 없다.
  * - 제목 바로 다음은 필드 목록(`- 구역: network`)이다. 구역, 매체, 발행일은 반드시 있고 이미지는 없어도 된다.
@@ -137,7 +142,7 @@ export function parseWeeklyNews(
 ): { items: NewsItem[]; errors: NewsError[] } {
   const errors: NewsError[] = []
   const error = (line: number, message: string) => errors.push({ line, message })
-  if (!parseWeek(name)) error(1, `파일 이름은 ISO 주차(예: 2026-W41)로 쓴다: ${name}`)
+  if (!parseWeek(name)) error(1, `파일 이름은 소문자 ISO 주차(예: 2026-w41)로 쓴다: ${name}`)
 
   const text = maskFrontmatter(source)
   const tree = unified().use(remarkParse).parse(text) as MdastRoot
@@ -439,7 +444,7 @@ const CSS = `.news-cards {
   border-radius: 3px;
   background-color: color-mix(in srgb, var(--region) 8%, transparent);
   color: var(--region);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.4;
   white-space: nowrap;
@@ -532,14 +537,15 @@ const WeeklyNewsBody = () => {
 }
 
 const WeeklyNews = () => ({
-  // transformer: 주간 소식 파일을 읽어 데이터를 둔다. 형식을 어기면 그 파일의 처리를 실패시켜 빌드를 멈춘다.
+  // transformer: 주간 소식 파일을 읽어 데이터를 두고, 제목을 파일 이름에서 만들어 프론트매터에 넣는다. 제목을
+  // 쓰는 탭 제목, 검색, 지난 호 목록이 모두 같은 꼴을 본다. frontmatter는 note-properties(order 5)가 읽으므로,
+  // 이 플러그인은 기본 order(50)로 그 뒤에 돈다. 형식을 어기면 그 파일의 처리를 실패시켜 빌드를 멈춘다.
   name: "WeeklyNews",
   markdownPlugins() {
     return [
       () => (_tree: MdastRoot, file: VFile) => {
         const slug = String(file.data.slug ?? "")
         if (!isIssue(slug)) return
-        // 슬러그는 소문자로 바뀌므로(news/2026-w41) 주차는 파일 이름에서 읽는다
         const week = String(file.data.relativePath ?? "")
           .slice(NEWS_PREFIX.length)
           .replace(/\.md$/, "")
@@ -548,7 +554,8 @@ const WeeklyNews = () => ({
           const lines = errors.map((e) => `${e.line}: ${e.message}`).join("; ")
           throw new Error(`주간 소식 형식 오류(docs/weekly-news.md): ${lines}`)
         }
-        file.data.weeklyNews = { week, ...weekDays(week), items } as WeeklyNewsData
+        file.data.weeklyNews = { week, items } as WeeklyNewsData
+        file.data.frontmatter = { ...file.data.frontmatter, title: issueTitle(week) } as never
       },
     ]
   },

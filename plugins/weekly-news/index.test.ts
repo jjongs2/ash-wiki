@@ -1,11 +1,11 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
 import fs from "node:fs"
-import { chronological, parseWeeklyNews, weekDays } from "./index"
+import { chronological, issueTitle, parseWeeklyNews, weekDays } from "./index"
 
 // 형식 함수 parseWeeklyNews가 주간 소식 형식의 정본이다. 예시 주간 소식과 형식을 어긴 짧은 원본을 넣고
 // 소식 항목 목록과 오류만 본다.
-const example = fs.readFileSync(new URL("./fixtures/2026-W41.md", import.meta.url), "utf8")
+const example = fs.readFileSync(new URL("./fixtures/2026-w41.md", import.meta.url), "utf8")
 
 // 항목 하나짜리 원본. fields로 필드 목록을, summary로 요약을 바꾼다.
 function source({
@@ -15,12 +15,12 @@ function source({
   return ["## [Title](https://example.com/a)", "", ...fields, "", summary, ""].join("\n")
 }
 
-const errorsOf = (text: string, name = "2026-W41") =>
+const errorsOf = (text: string, name = "2026-w41") =>
   parseWeeklyNews(name, text).errors.map((error) => `${error.line}: ${error.message}`)
 
 describe("parseWeeklyNews", () => {
   test("예시 주간 소식에서 소식 항목 목록을 읽는다", () => {
-    const { items, errors } = parseWeeklyNews("2026-W41", example)
+    const { items, errors } = parseWeeklyNews("2026-w41", example)
     assert.deepStrictEqual(errors, [])
     assert.deepStrictEqual(
       items.map(({ summary: _, ...rest }) => rest),
@@ -58,7 +58,7 @@ describe("parseWeeklyNews", () => {
 
   test("기타 구역은 regions가 비어 있다", () => {
     const { items } = parseWeeklyNews(
-      "2026-W41",
+      "2026-w41",
       source({ fields: ["- 구역: 기타", "- 매체: M", "- 발행일: 2026-10-06"] }),
     )
     assert.deepStrictEqual(items[0].regions, [])
@@ -66,7 +66,7 @@ describe("parseWeeklyNews", () => {
 
   test("구역은 쉼표로 여럿 쓰고, 같은 구역은 한 번만 센다", () => {
     const { items, errors } = parseWeeklyNews(
-      "2026-W41",
+      "2026-w41",
       source({
         fields: ["- 구역: security, network,security", "- 매체: M", "- 발행일: 2026-10-06"],
       }),
@@ -76,23 +76,23 @@ describe("parseWeeklyNews", () => {
   })
 
   test("이미지 필드가 없는 항목은 image가 null이다", () => {
-    const { items, errors } = parseWeeklyNews("2026-W41", source())
+    const { items, errors } = parseWeeklyNews("2026-w41", source())
     assert.deepStrictEqual(errors, [])
     assert.strictEqual(items[0].image, null)
   })
 
   test("요약은 위키 링크를 원문 그대로 담고, 문단이 여럿이면 모두 담는다", () => {
-    const [first] = parseWeeklyNews("2026-W41", example).items
+    const [first] = parseWeeklyNews("2026-w41", example).items
     assert.strictEqual(
       first.summary.markdown,
       "CiA가 CAN XL의 물리 계층 명세를 공개했다. [[can-xl|CAN XL]]과 [[can-fd]]를 함께 쓰는 망의 비트 타이밍을 다룬다.\n\n두 번째 문단은 같은 요약에 든다.",
     )
     // 요약이 차지하는 원본의 줄. 렌더링은 이 줄의 HTML을 카드에 옮긴다.
-    assert.deepStrictEqual([first.summary.start, first.summary.end], [12, 14])
+    assert.deepStrictEqual([first.summary.start, first.summary.end], [8, 10])
   })
 
   test("같은 제목의 항목은 앵커가 겹치지 않는다", () => {
-    const { items } = parseWeeklyNews("2026-W41", `${source()}\n${source()}`)
+    const { items } = parseWeeklyNews("2026-w41", `${source()}\n${source()}`)
     assert.deepStrictEqual(
       items.map((item) => item.id),
       ["title", "title-1"],
@@ -101,15 +101,19 @@ describe("parseWeeklyNews", () => {
 
   test("파일 이름은 ISO 주차여야 한다", () => {
     assert.deepStrictEqual(errorsOf(source(), "2026-41"), [
-      "1: 파일 이름은 ISO 주차(예: 2026-W41)로 쓴다: 2026-41",
+      "1: 파일 이름은 소문자 ISO 주차(예: 2026-w41)로 쓴다: 2026-41",
     ])
     // 2025년은 1월 1일이 수요일인 평년이라 52주까지다
-    assert.deepStrictEqual(errorsOf(source(), "2025-W53"), [
-      "1: 파일 이름은 ISO 주차(예: 2026-W41)로 쓴다: 2025-W53",
+    assert.deepStrictEqual(errorsOf(source(), "2025-w53"), [
+      "1: 파일 이름은 소문자 ISO 주차(예: 2026-w41)로 쓴다: 2025-w53",
     ])
-    assert.deepStrictEqual(errorsOf(source(), "2026-W53"), [])
-    assert.deepStrictEqual(errorsOf(source(), "2026-W54"), [
-      "1: 파일 이름은 ISO 주차(예: 2026-W41)로 쓴다: 2026-W54",
+    assert.deepStrictEqual(errorsOf(source(), "2026-w53"), [])
+    // 사이트 주소가 소문자라 파일 이름도 소문자로 맞춘다
+    assert.deepStrictEqual(errorsOf(source(), "2026-W41"), [
+      "1: 파일 이름은 소문자 ISO 주차(예: 2026-w41)로 쓴다: 2026-W41",
+    ])
+    assert.deepStrictEqual(errorsOf(source(), "2026-w54"), [
+      "1: 파일 이름은 소문자 ISO 주차(예: 2026-w41)로 쓴다: 2026-w54",
     ])
   })
 
@@ -161,7 +165,7 @@ describe("parseWeeklyNews", () => {
 describe("chronological", () => {
   test("발행일이 이른 항목부터 두고, 같은 날은 파일에 적은 순서를 지킨다", () => {
     const { items } = parseWeeklyNews(
-      "2026-W41",
+      "2026-w41",
       example + "\n" + source().replace("2026-10-06", "2026-10-08").replace("Title", "Late"),
     )
     assert.deepStrictEqual(
@@ -176,11 +180,18 @@ describe("chronological", () => {
   })
 })
 
+describe("issueTitle", () => {
+  test("호의 제목은 주차에서 만들고 주 앞의 0은 뺀다", () => {
+    assert.strictEqual(issueTitle("2026-w41"), "2026년 41주차 주간 소식")
+    assert.strictEqual(issueTitle("2027-w01"), "2027년 1주차 주간 소식")
+  })
+})
+
 describe("weekDays", () => {
   test("ISO 주차의 월요일과 일요일", () => {
-    assert.deepStrictEqual(weekDays("2026-W41"), { start: "2026-10-05", end: "2026-10-11" })
+    assert.deepStrictEqual(weekDays("2026-w41"), { start: "2026-10-05", end: "2026-10-11" })
     // 1월 1일이 목요일인 해(2026)의 1주는 그 전 월요일에 시작한다
-    assert.deepStrictEqual(weekDays("2026-W01"), { start: "2025-12-29", end: "2026-01-04" })
-    assert.deepStrictEqual(weekDays("2020-W53"), { start: "2020-12-28", end: "2021-01-03" })
+    assert.deepStrictEqual(weekDays("2026-w01"), { start: "2025-12-29", end: "2026-01-04" })
+    assert.deepStrictEqual(weekDays("2020-w53"), { start: "2020-12-28", end: "2021-01-03" })
   })
 })

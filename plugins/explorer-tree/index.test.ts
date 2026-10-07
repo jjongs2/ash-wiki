@@ -212,7 +212,7 @@ describe("explorerInputs", () => {
 
   test("주간 소식과 지난 호 목록은 페이지로 넣지 않는다", () => {
     const news = [
-      { slug: "news/2026-W41", title: "2026년 41주 소식", tags: [], links: ["can"] },
+      { slug: "news/2026-w41", title: "2026년 41주차 주간 소식", tags: [], links: ["can"] },
       { slug: "news/index", title: "주간 소식", tags: [], links: [] },
     ]
     assert.deepStrictEqual(explorerInputs([...entries, ...news]).pages, [
