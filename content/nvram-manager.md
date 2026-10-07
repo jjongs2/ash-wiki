@@ -28,7 +28,7 @@ NvM은 API(Application Programming Interface) configuration class 1, 2, 3을 둔
 ## 단일 블록 요청과 다중 블록 요청
 
 - **단일 블록 요청**: `NvM_ReadBlock`, `NvM_WriteBlock`, `NvM_RestoreBlockDefaults`, `NvM_EraseNvBlock`, `NvM_InvalidateNvBlock` 등은 NVRAM 블록 하나를 다루는 비동기 요청이다.
-- **다중 블록 요청**: `NvM_ReadAll`은 시동 때 영구 RAM 블록이 설정된 블록들에 데이터를 채우고, `NvM_WriteAll`은 종료 때 영구 RAM 블록의 내용을 NV(Non-Volatile) 블록에 쓴다. 둘 다 BswM(Basic Software Mode Manager)이 부른다.[@autosar-cp-sws-nvrammanager-2025]
+- **다중 블록 요청**: `NvM_ReadAll`은 시동 때 영구 RAM 블록이 설정된 블록들에 데이터를 채우고, `NvM_WriteAll`은 종료 때 영구 RAM 블록의 내용을 NV(Non-Volatile) 블록에 쓴다. 둘 다 [[basic-software-mode-manager|BswM]]이 부른다.[@autosar-cp-sws-nvrammanager-2025]
 
 ## 결과 조회
 
@@ -53,6 +53,10 @@ NvM과 응용이 RAM 블록의 데이터를 주고받는 방식은 두 가지다
 - **Explicit synchronization**: NvM이 RAM mirror를 두고, NvM이 부르는 콜백으로 응용의 RAM 블록과 mirror 사이에서 데이터를 복사한다. 응용은 NvM이 복사 콜백을 부르기 전까지 RAM 블록을 고칠 수 있고, 쓰기 요청이면 콜백으로 복사가 끝난 뒤 요청이 끝나기 전이라도 RAM 블록을 다시 읽고 쓸 수 있다.[@autosar-cp-sws-nvrammanager-2025]
 
 ![[diagrams/nvm-implicit-explicit-sync.svg]]
+
+## 블록 압축
+
+AUTOSAR R25-11의 NvM 명세는 블록 데이터를 NV 메모리에 쓰기 전에 압축하는 블록 압축을 둔다. 주행 사이클 기록처럼 큰 블록에서 작은 부분만 바뀌는 경우를 위한 것으로, 블록 전체를 NV 메모리에 쓰지 않아 쓰기 횟수를 줄이는 것이 목적이다. 블록을 하위 블록 여럿으로 나눠 바뀐 하위 블록만 쓰거나 바뀐 차이만 쓸 수 있고, 어떤 압축 알고리즘이든 쓸 수 있다. 압축의 종류(블록 나누기, 압축, 차이)는 벤더가 정한다. 대신 데이터를 쓰고 읽는 데 실행 시간이 늘 더 든다. `NvMBlockUseCompression`이 참이면 NvM은 NV 메모리에 저장하는 데이터를 압축하며, 이 요구사항은 draft다.[@autosar-cp-sws-nvrammanager-2025]
 
 ## Service port
 

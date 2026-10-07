@@ -80,6 +80,17 @@ OSEK OS는 [[osek-alarm|counter]]를 직접 다루는 표준 API를 두지 않�
 
 protection hook을 두지 않으면 OS는 보호 오류에서 `ShutdownOS`를 부른다.[@autosar-cp-sws-os-2025]
 
+## 하드웨어와 API의 전제
+
+AUTOSAR R25-11의 OS 명세는 OS가 인터럽트 제어 레지스터, 프로세서 상태 워드, 스택 포인터 같은 하드웨어 자원에 자유롭게 접근해 스스로 관리한다고 전제한다. 확장 기능은 하드웨어 요건을 더하며, 그 기능을 쓰지 않는 시스템에는 그 요건이 없다.[@autosar-cp-sws-os-2025]
+
+- [[autosar-os-application#Memory protection|memory protection]]에는 하드웨어 MPU(Memory Protection Unit)가 있어야 한다.
+- timing protection에는 실행 시간과 도착률을 감시할 타이머 하드웨어가 있어야 한다.
+- 보호에는 MCU의 privileged mode와 non-privileged mode가 있어야 한다. OS가 제어하는 레지스터에 쓰는 일로 OS 내부가 망가지지 않게 하려는 것으로, OS-Application이 이 모드로 memory protection 레지스터나 프로세서 상태 워드에 써서 보호를 우회할 수 없어야 한다. privileged mode는 보호받는 OS가 온전히 제어하며, OS 안에서 쓰고 non-trusted OS-Application과 trusted OS-Application 사이에서 제어를 넘기는 데 쓴다.
+- 로컬·전역 시간 동기화에는 전역 시간 소스가 있어야 한다.[@autosar-cp-sws-os-2025]
+
+OS는 대개 프로세서의 하드웨어 고장을 감지하지 못하며, 하드웨어가 고장 나면 OS가 올바로 동작한다고 보장할 수 없다. OS의 API는 C 함수 호출이나 매크로로 정의되며, 다른 언어를 쓰면 이 C 인터페이스에 맞춰야 한다. OS는 동적 메모리 관리 서비스를 주지 않는다.[@autosar-cp-sws-os-2025]
+
 ## OSEK OS와 달라진 점
 
 알람이 만료될 때 할 수 있는 동작에는 AUTOSAR OS에서 소프트웨어 counter를 올리는 것이 더해졌다.[@autosar-cp-sws-os-2025]

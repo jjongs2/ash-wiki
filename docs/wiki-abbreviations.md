@@ -62,6 +62,7 @@
 - MIL-HDBK: 표준·규격 이름
 - MIPI: 조직
 - MISRA: 조직
+- NAND: 널리 쓰이는 약어
 - NASA: 조직
 - NATO: 조직
 - NHTSA: 조직

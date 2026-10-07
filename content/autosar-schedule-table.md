@@ -29,6 +29,21 @@ schedule table은 설정으로 single-shot인지 repeating인지 정한다. **Si
 
 schedule table은 OS가 시작할 때 자동으로 시작하도록 설정할 수 있고, 이 autostart는 태스크와 알람의 autostart 다음에 한다. `StartScheduleTableRel`은 counter의 현재 값에서 지정한 offset만큼 틱이 지난 뒤, `StartScheduleTableAbs`는 counter가 지정한 절댓값에 이를 때 schedule table 처리를 시작한다. `StopScheduleTable`은 실행 중인 schedule table의 처리를 어느 시점에서든 즉시 멈춘다.[@autosar-cp-sws-os-2025]
 
+## 동기화
+
+AUTOSAR R25-11의 OS 명세는 initial expiry point를 처음 처리하는 때는 사용자가 정하지만, repeating schedule table이 되풀이될 때 initial expiry point를 처리하는 counter 값이 처음과 같다는 보장은 없다고 둔다. schedule table의 duration이 counter의 modulus와 같을 필요가 없기 때문이다. expiry point를 counter의 정해진 절댓값에서 처리하게 하는 것을 **동기화**라 하며, 엔진 제어에서 expiry point를 회전 각도에 맞추거나 계산을 전역(네트워크) 시간 기준에 맞추는 것이 그 쓰임이다. OS 자신은 전역 시간 소스를 주지 않는다.[@autosar-cp-sws-os-2025]
+
+OS가 지원하는 동기화는 두 가지다.[@autosar-cp-sws-os-2025]
+
+- **Implicit 동기화**: schedule table을 구동하는 counter가 곧 동기화할 counter다. [[flexray|FlexRay]]처럼 하드웨어가 네트워크 시간 동기화를 맡고 OS에는 시간을 타이머 인터페이스로 보이는 [[cyclic-executive#Time-triggered와 event-triggered|time-triggered]] 네트워크와 맞출 때 쓴다. OS가 따로 지원할 것은 없지만, schedule table의 duration은 그 counter의 `OsCounterMaxAllowedValue`에 1을 더한 값과 같아야 하고, schedule table은 상대 counter 값이 아니라 절대 counter 값에서만 시작할 수 있다.
+- **Explicit 동기화**: schedule table을 구동하는 OS counter(drive counter)와 동기화할 counter(synchronization counter)가 다르다. 주기적으로 방송되는 전역 시간과 맞출 때 쓰며, OS가 schedule table을 synchronization counter에 맞춰 두는 기능을 더 준다. drive counter의 modulus를 $M_\mathrm{drive}$, synchronization counter의 modulus를 $M_\mathrm{sync}$라 하면 schedule table의 duration $D$는 $D \le M_\mathrm{drive}$이고 $D = M_\mathrm{sync}$여야 하며, 두 counter의 틱 해상도가 같아야 한다.[@autosar-cp-sws-os-2025]
+
+Explicit 동기화에서는 사용자가 `SyncScheduleTable`로 synchronization counter의 값을 OS에 알려 준다. 그러면 OS는 schedule table과 synchronization counter 사이의 편차를 계산하고, 조정을 허용하도록 설정한 expiry point마다 다음 expiry point까지의 지연을 `OsScheduleTableMaxShorten`만큼까지 줄이거나 `OsScheduleTableMaxLengthen`만큼까지 늘려, 동기화될 때까지 맞춘다. 편차를 $\Delta$, 설정한 정밀도 문턱(`OsScheduleTblExplicitPrecision`)을 $P$라 하면, $\Delta \le P$일 때 schedule table의 상태는 running and synchronous이고 $\Delta > P$일 때 running이다. `StartScheduleTableSynchron`은 synchronization counter의 값을 받은 뒤에야 schedule table을 시작한다.[@autosar-cp-sws-os-2025]
+
+![[diagrams/schedule-table-explicit-sync.svg]]
+
+AUTOSAR R25-11 Release Overview는 StbM(Synchronized Time-Base Manager)이 schedule table을 동기화할 때 explicit 동기화만 다루는 것을 한계로 둔다. implicit 동기화는 그 메커니즘이 StbM을 거치지 않기 때문이다.[@autosar-cp-tr-releaseoverview-2025]
+
 ## OSEK 알람과의 차이
 
 OSEK counter와 자동 시작 알람 여럿으로도 정적인 태스크 활성화를 구현할 수 있다. 다만 실행 중에 알람을 고치려면 알람 사이의 상대적 동기화를 보장해야 하고, 보통은 counter 틱 인터럽트를 막은 채 고친다. schedule table은 정적으로 정한 expiry point를 한 묶음으로 담아 이 동기화 문제를 푼다.[@autosar-cp-sws-os-2025]

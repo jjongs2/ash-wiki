@@ -29,6 +29,16 @@ SL-LET(System-Level LET)은 LET을 분산 시스템으로 넓힌 것이다. 고�
 
 [[autosar-classic-platform|AUTOSAR Classic Platform]]의 Timing Extensions는 LET 구간을 `LET_INTERVAL` 범주의 [[autosar-event-chain|TimingDescriptionEventChain]]으로 기술하고, 로컬 ECU에서 [[runnable-entity|runnable]]이 실행되는 구간을 정하는 데 쓴다. 여러 ECU의 [[software-component-port|포트]] 사이 데이터 흐름은 `SL_LET_INTERVAL` 범주의 SL-LET 구간으로 기술한다. SL-LET 구간은 주기보다 길 수 있고, 동기 정확도가 유한한 분산 클럭을 다룬다.[@autosar-cp-tps-timingextensions-2025]
 
+이 명세는 runnable과 BSW(Basic Software) module entity를 함께 **executable entity**라 부르고, executable entity의 실행 순서를 ExecutionOrderConstraint로 정한다. ExecutionOrderConstraint는 [[virtual-functional-bus|VFB]], [[autosar-software-component|SW-C]], 시스템, BSW 모듈, ECU 수준의 timing view 어디서든 쓸 수 있고, executable entity를 직접 가리키거나 그것을 시작하는 [[rte-event|RTE 이벤트]]·[[basic-software-scheduler#BSW 이벤트|BSW 이벤트]]로 가리킨다. 종류는 ordinary, hierarchical, repetitive 셋이다. Ordinary는 executable entity 참조를 successor 관계로 이어 실행 순서를 정하고, hierarchical은 executable entity를 그룹으로 묶어 나무 꼴의 순서를 정한다.[@autosar-cp-tps-timingextensions-2025]
+
+ExecutionOrderConstraint만으로는 어떤 executable entity들이 모두 실행을 마쳐야만 다른 executable entity들이 실행을 시작한다는 것을 드러낼 수 없다. 이를 위해 SynchronizationPointConstraint가 RTE 이벤트·BSW 이벤트로 가리킨 executable entity들이나 executable entity 그룹들 사이에 동기화 지점을 정한다.[@autosar-cp-tps-timingextensions-2025]
+
+ExecutionOrderConstraint가 executable entity를 묶는 그룹(EOCExecutableEntityRefGroup)을 **executable entity cluster**라 한다. 그룹은 cluster에 드는 executable entity의 RTE 이벤트나 BSW 이벤트를 모두 가리키고, 다른 그룹을 가리켜 cluster의 위계를 이룰 수 있다. Cluster는 `letInterval` 속성으로 LET 구간을 나타내는 TimingDescriptionEventChain을 가리켜 그 구간에 매핑되며, 이 속성은 최상위 그룹에만 둘 수 있다.[@autosar-cp-tps-timingextensions-2025]
+
+한 LET 구간에 매핑된 executable entity끼리 데이터를 주고받는 방식은 둘이다. interLetOnly에서는 구간의 release와 terminate 때만 데이터를 주고받아, 구간 안의 실행 순서가 데이터 흐름에 영향을 주지 않지만 종단 간 지연이 주기의 배수만큼 길어진다. intraLetEOC에서는 같은 그룹의 executable entity가 그룹이 정한 순서로 실행되며 구간 안에서 implicit 의미로 데이터를 바로 주고받고, 구간의 경계나 서로 독립인 그룹 사이에서만 LET 방식으로 데이터를 넘긴다.[@autosar-cp-tps-timingextensions-2025]
+
+![[diagrams/let-inter-intra-data-exchange.svg]]
+
 ## BET와의 차이
 
 BET(Bounded Execution Time) 모델에서 [[deadline|마감 시한]]은 상한일 뿐이지만, LET에서 구간의 끝은 출력 시점의 상한이자 논리적 하한이다.[@kirsch-logical-execution-time-2012]

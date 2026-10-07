@@ -50,3 +50,33 @@ component type이 multiple instantiation을 지원하면, 여러 인스턴스에
 ## RTE 설정
 
 RTE 모듈의 ECU 설정에서 `RteSwComponentInstance` 컨테이너는 설정할 ECU에 놓인 SW-C prototype 하나를 나타내며, 그 prototype을 `RteSoftwareComponentInstanceRef`로 가리킨다. 그 아래의 `RteEventToTaskMapping` 컨테이너는 runnable을 [[osek-task|태스크]]에 매핑한다.[@autosar-cp-sws-rte-2025] 이 매핑은 [[rte-event#태스크 매핑|RTE 이벤트]]에서 다룬다.
+
+## 측정과 캘리브레이션
+
+측정과 캘리브레이션은 서로 구별되는 두 메커니즘이다. **측정**은 ECU 사이, 파티션 사이, 파티션 안, SW-C 안의 통신 데이터를 감시하는 것처럼 ECU 안에서 일어나는 일을 재는 것이다. **캘리브레이션**은 측정 데이터를 바탕으로 실행 중 소프트웨어 스위치, 제어 데이터, 보간 곡선이나 보간 필드 같은 파라미터를 바꿔 ECU의 동작을 고치는 것이고, 이 파라미터를 **캘리브레이션 파라미터**라 한다.[@autosar-cp-sws-rte-2025]
+
+캘리브레이션은 두 상황으로 나뉜다. **오프라인 캘리브레이션**은 ECU가 도는 동안 측정하고, ECU를 끈 뒤 캘리브레이션 파라미터를 바꿔 새 프로그램 파일을 만들어 다시 플래시에 쓰는 일을 되풀이한다. **온라인 캘리브레이션**은 측정과 캘리브레이션을 함께 하며, ECU를 다시 쓰지 않고 실행 중에 파라미터를 잠시 바꿔 가며 맞춘 뒤, 그 결과로 새 프로그램 파일을 만든다.[@autosar-cp-sws-rte-2025]
+
+RTE와 [[basic-software-scheduler|SchM]]은 캘리브레이션 파라미터를 할당하고 그 파라미터를 쓰는 소프트웨어가 접근하게 하는 일을 지원해야 하지만, 캘리브레이션 값을 주고받거나 ECU와 외부 캘리브레이션 도구 사이에서 나르는 일은 대개 맡지 않는다. 외부 캘리브레이션 도구와 데이터를 주고받는 일은 [[autosar-communication-stack#그 밖의 모듈|XCP]] 드라이버 같은 BSW가 다룬다.[@autosar-cp-sws-rte-2025]
+
+## Bypass
+
+Rapid prototyping은 ECU 개발 중에 새 제어 알고리즘을 평가하고 시험하는 데 쓰며, fullpass와 bypass로 나뉜다. Fullpass는 원래 ECU를 RPU(Rapid Prototyping Unit)로 통째로 바꾼다. Bypass는 원래 ECU와 소프트웨어를 제어 루프에 남겨 둔 채, 시험할 알고리즘만 RPU로 옮기거나(external bypass) 원래 ECU 안에서 실행한다(internal bypass). Bypass는 주로 원래 알고리즘의 입력이나 출력을 실행 중에 시험할 알고리즘이 계산한 값으로 바꾼다. RTE는 bypass를 직접 구현하지 않고, [[autosar-layered-architecture#층 사이 접근|Complex Driver]]나 [[autosar-layered-architecture#Integration Code와 callout|Integration Code]]가 구현하도록 돕는다.[@autosar-cp-sws-rte-2025]
+
+![[diagrams/rapid-prototyping-fullpass-bypass.svg]]
+
+RTE가 돕는 방법은 셋이다.[@autosar-cp-sws-rte-2025]
+
+- **Component wrapper**: bypass를 구현하는 Complex Driver로 원래 SW-C의 구현을 감싼다. RTE는 bypass할 SW-C의 인터페이스 이름에 `Byps_` 삽입어를 넣어 생성한다.
+- **Direct buffer access**: ECU 통신을 구현하는 RTE 버퍼를 실행 중에 바로 읽고 쓰게 한다. RTE는 이 버퍼를 기술하는 McSupportData를 생성한다.
+- **Extended buffer access**: bypass 사용자가 RTE를 다시 생성할 수 없는 경우를 위한 것이다. RTE API로 주고받는 모든 VariableDataPrototype을 rapid prototyping 도구가 고칠 수 있는 RP(Rapid Prototyping) global buffer를 거쳐 쓰고 읽게 한다.[@autosar-cp-sws-rte-2025]
+
+Extended buffer access에는 준비 수준이 셋 있다. Level 1은 빌드가 끝난 바이너리에서 버퍼 쓰기를 고쳐 bypass 값을 넣는 post-build hooking 도구를 위한 것이고, level 2와 3은 RTE를 생성할 때 bypass에 필요한 코드를 넣어 그 뒤 바이너리를 고치지 않는 non post-build hooking을 위한 것이다. Level 2는 RP global buffer에 더해 그 버퍼를 갱신할지 정하는 RP enabler flag를 두고, level 3은 여기에 ECU가 만든 원래 값과 rapid prototyping이 바꾼 값을 함께 기록한다.[@autosar-cp-sws-rte-2025]
+
+RP global buffer에는 [[can|CAN]]이나 이더넷 위의 XCP 같은 RP service component를 ECU에 더해 서비스로 접근할 수도 있다. 이 서비스는 빌드 전에 소스 코드로 통합하거나, 빌드가 끝난 ECU 이미지의 바이너리를 고쳐 통합한다. RTE 생성기는 RapidPrototypingScenario의 RptProfile과 RptContainer에 따라 runnable 실행 앞뒤에 RP service function 호출을 넣는다.[@autosar-cp-sws-rte-2025]
+
+## 통신 데이터의 주기 처리
+
+RTE는 ComData(시그널이나 시그널 그룹)를 주기적으로 받는 처리를 둔다. RTE는 ComData에 매핑된 VariableDataPrototype을 태스크에 매핑한 설정(`RteComDataMapping`)에 따라 주기 함수 `Rte_ComDataMainFunction`을 생성하고, 매핑된 태스크 안의 정한 자리에서 실행한다. 이 처리는 명시적 읽기로 접근하는 sender-receiver 통신에만 쓸 수 있고, client-server 통신, trigger 통신, 암묵적 읽기·쓰기에는 쓸 수 없다.[@autosar-cp-sws-rte-2025]
+
+AUTOSAR R25-11은 COM Handler 개념을 들였다. 이 개념은 응용이 통신 시그널이 ECU 사이의 것인지 ECU 안의 것인지에서 더 독립되게 해 코드 변경을 줄이고 재사용성과 유연성을 높이며, 이를 위해 통신 오류를 추상화하고, 데이터 무결성, 수신 deadline, 데이터 무효, 값 범위의 오류를 감시해 보고한다.[@autosar-cp-tr-releaseoverview-2025]
