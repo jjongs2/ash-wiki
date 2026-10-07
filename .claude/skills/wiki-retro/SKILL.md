@@ -16,10 +16,11 @@ PR 몇 개를 만든 세션과 그 티켓을 발행한 보강 세션의 기록�
 
 ## 1. 입력
 
-**대상 PR**은 인자의 PR이다. 인자가 없으면 가장 최근 회고 티켓의 `## 분석한 PR` 목록 뒤에 머지된 `content:` PR이다.
+**대상 PR**은 인자의 PR이다. 인자가 없으면 가장 최근 회고 티켓의 `## 분석한 PR` 목록 뒤에 머지된 `content:` PR이다. 그 절이 있는 티켓이 없으면 소유자에게 PR 목록을 묻는다.
 
 ```sh
-gh issue list --state all --search '"분석한 PR" in:body' --json number,createdAt --jq 'max_by(.createdAt).number'
+gh issue list --state all --search '"분석한 PR" in:body' --json number,createdAt,body \
+  --jq '[.[] | select(.body | test("(?m)^## 분석한 PR$"))] | max_by(.createdAt).number'
 gh pr view <목록의 PR> --json mergedAt --jq .mergedAt   # 목록에서 가장 늦은 것을 <시각>으로
 gh pr list --state merged --search 'merged:><시각> "content:" in:title' --limit 100 --json number,title,mergedAt
 ```
@@ -35,7 +36,7 @@ gh pr list --state merged --search 'merged:><시각> "content:" in:title' --limi
   걸리지 않으면 `grep -l -F <session_…>`로 후보를 모으고, 이 세션의 기록을 뺀 뒤 세션 제목(`custom-title` 줄)으로 고른다.
 
 - **서브에이전트 기록**: 세션 기록 옆 `<uuid>/subagents/`
-- **세션 판**: 세션이 실제로 따른 스킬 판. worktree에서 돌았으면 base 커밋이다(`grep -o -m1 'HEAD is now at [0-9a-f]*' <세션 기록>`의 첫 줄). 없으면 "기록"으로 두고, 분석 에이전트가 기록에 실린 스킬 본문을 읽는다.
+- **세션 판**: 세션이 실제로 따른 스킬 판의 커밋. `git worktree add`로 만든 worktree에서 돌았으면 그 base(`grep -o -m1 'HEAD is now at [0-9a-f]*' <세션 기록>`의 첫 줄)이고, 아니면 세션을 시작할 때의 main(`git rev-list -1 --before=<기록의 첫 `timestamp`> origin/main`)이다. 분석 에이전트가 기록에 실린 스킬 본문과 견준다.
 - **티켓과 리뷰 요약**: PR 본문의 `Closes #<티켓>`, PR 코멘트의 리뷰 요약
 - **핸드오프**: `~/documents/ash-wiki-handoff-*`에서 티켓 번호로 찾는다. 머리 정보가 가리키는 앞 세션의 핸드오프(예: 티켓을 발행한 보강)도 읽는다. 앞 세션이 남긴 회고 질문에 이번 기록이 답하기 때문이다.
 
@@ -43,7 +44,7 @@ gh pr list --state merged --search 'merged:><시각> "content:" in:title' --limi
 
 ```sh
 grep -l -E '<command-name>/wiki-enrich</command-name>|"skill":"wiki-enrich"' ~/.claude/projects/*ash-wiki*/*.jsonl \
-  | xargs grep -l -F 'jjongs2/ash-wiki/issues/<티켓>'
+  | xargs grep -l -E 'jjongs2/ash-wiki/issues/<티켓>([^0-9]|$)'
 ```
 
 완료: 대상 PR이 정해졌다. PR마다 세션 기록, 세션 판, 티켓, 리뷰 요약이 정해졌고, 대상 PR의 티켓을 발행한 보강 세션과 그 판을 모두 찾았다. 핸드오프는 있는 것을 모두 찾았다.
@@ -67,7 +68,7 @@ python3 -B .claude/skills/wiki-retro/digest.py --out <scratchpad>/digest <세션
 1. 인제스트·재조사 세션의 에이전트를 한 메시지에 모두 띄워 병렬로 돌린다.
 2. 그 반환이 모두 오면 보강 세션마다 에이전트를 띄우고, 그 보강이 발행한 티켓을 처리한 세션들의 보고서 경로를 준다.
 
-완료: 세션마다 반환이 있다.
+완료: 인제스트·재조사 세션마다 반환이 있고, 그 뒤에 띄운 보강 세션마다 반환이 있다.
 
 ## 4. 재확인
 
@@ -92,7 +93,7 @@ python3 -B .claude/skills/wiki-retro/digest.py --out <scratchpad>/digest <세션
 
 규칙이나 사용자 지침이 이미 정한 것을 한 번 어긴 것과, 분석 에이전트의 추론으로만 선 규칙 확장은 뺀다. 지금 판이 이미 고친 발견(`[지금 판: 고침 <커밋>]`)은 그 커밋을 사유로 뺀다. 그 발견 때문에 main에 들어간 틀린 산출물(페이지 문장, 링크, 티켓 본문 등)이 아직 남아 있으면 **main에 남은 산출물**로 따로 적는다.
 
-완료: 모든 발견에 남김이나 뺌과 이유가 있다.
+완료: 모든 발견에 남김이나 뺌과 이유가 있다. 지금 판이 고친 발견마다 main에 남은 산출물이 있는지 보았다.
 
 ## 6. 보이기
 
@@ -106,4 +107,4 @@ python3 -B .claude/skills/wiki-retro/digest.py --out <scratchpad>/digest <세션
 
 소유자가 개선안을 고르면 `/mattpocock-skills:to-tickets`로 티켓을 만든다. 티켓 본문마다 `## 분석한 PR` 절에 대상 PR을 `- #<PR>` 한 줄씩 적는다. 다음 회고가 인자 없이 돌 때 이 절에서 출발한다. 노트를 연 기록이 있었으면, 내보낼 글(티켓 본문, 코멘트)을 `-notes.txt`가 가리키는 노트와 대조한다. 방법은 [인제스트](../wiki-ingest/SKILL.md) 격리 자기 점검의 글 대조와 식별 정보 점검이다. 걸린 곳을 고친 뒤 내보낸다.
 
-완료: 소유자가 고른 개선안이 티켓으로 나갔거나, 소유자가 멈추라고 했다.
+완료: 소유자가 고른 개선안이 `## 분석한 PR` 절을 단 티켓으로 나갔거나, 소유자가 멈추라고 했다.
