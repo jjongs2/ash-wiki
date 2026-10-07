@@ -33,7 +33,7 @@ KeyM은 암호 키 하위 모듈과 인증서 하위 모듈로 나뉜다. 암호
 
 ## Adaptive Platform의 Cryptography
 
-AUTOSAR R25-11의 [[autosar-adaptive-platform|Adaptive Platform]] Cryptography 명세는 Cryptography functional cluster인 FC(Functional Cluster) Crypto가 응용과 다른 functional cluster에 암호 연산, 키 관리, 인증서 처리의 표준 인터페이스를 주도록 정한다. 이 인터페이스를 **CryptoAPI**라 하며, FC Crypto는 연산의 실제 구현, 설정, 응용과 구현 사이의 중개를 맡는다. FC Crypto는 암호 primitive를 Crypto Provider로, 인증서 관리를 X.509 Certificate Management Provider로 내놓는다. SecOC나 [[transport-layer-security|TLS]] 같은 보안 통신, 서비스 `0x29`를 쓰는 인증 진단, 안전한 소프트웨어 업데이트 같은 쓰임새도 지원한다.[@autosar-ap-sws-cryptography-2025] AUTOSAR R25-11 Adaptive Platform Diagnostics 명세는 서비스 `0x29`를 [[uds|UDS]]의 Authentication 서비스로 둔다.[@autosar-ap-sws-diagnostics-2025]
+AUTOSAR R25-11의 [[autosar-adaptive-platform|Adaptive Platform]] Cryptography 명세는 Cryptography functional cluster인 FC(Functional Cluster) Crypto가 응용과 다른 functional cluster에 암호 연산, 키 관리, 인증서 처리의 표준 인터페이스를 주도록 정한다. 이 인터페이스를 **CryptoAPI**라 하며, FC Crypto는 연산의 실제 구현, 설정, 응용과 구현 사이의 중개를 맡는다. FC Crypto는 암호 primitive를 Crypto Provider로, 인증서 관리를 X.509 Certificate Management Provider로 내놓는다. SecOC나 [[transport-layer-security|TLS]] 같은 보안 통신, 서비스 `0x29`를 쓰는 인증 진단, 안전한 소프트웨어 업데이트 같은 쓰임새도 지원한다.[@autosar-ap-sws-cryptography-2025] AUTOSAR R25-11 Adaptive Platform Diagnostics 명세는 서비스 `0x29`를 UDS의 [[uds#서비스|Authentication 서비스]]로 둔다.[@autosar-ap-sws-diagnostics-2025]
 
 AUTOSAR R25-11 Adaptive Platform Cryptography 명세는 **Crypto Provider**를 암호 primitive 구현 한 벌과 키 저장소에 접근하게 하는 래퍼로 정의한다. 한 Machine에 Crypto Provider를 여럿 둘 수 있지만 서로 호환되지 않아, 한 Crypto Provider의 대칭 키를 다른 Crypto Provider의 암호화에 쓸 수 없다. 키는 저마다 정확히 한 Crypto Provider가 관리하고, 응용은 배치 때 한 Crypto Provider에 정적으로 매핑된 KeySlot으로 저장된 키에 접근한다. X.509 Provider는 Machine 하나에 하나만 둔다.[@autosar-ap-sws-cryptography-2025]
 
