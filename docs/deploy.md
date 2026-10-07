@@ -21,6 +21,12 @@
 
 대시보드 값과 맞물리는 저장소 쪽 값은 `package.json`의 `build` 스크립트, `.node-version`, `quartz.config.yaml`의 `baseUrl`과 `analytics`입니다. Web Analytics 스크립트는 Cloudflare가 배포 때 넣으므로 `analytics`는 `null`로 둡니다.
 
+## 커밋 기록
+
+Cloudflare Pages는 저장소를 shallow clone으로 받습니다. 기록이 마지막 커밋 하나뿐이면 모든 페이지의 수정일이 그 커밋 날짜로 같게 찍히고, 대문의 최근 변경도 한 묶음만 남습니다. 그래서 `prebuild`의 첫 단계(`tools/unshallow.ts`)가 저장소가 shallow일 때만 `git fetch --unshallow`로 전체 기록을 받습니다. 약 1.3초와 1.3MB가 듭니다. 전체 기록이 있는 로컬 클론에서는 아무것도 하지 않습니다.
+
+기록을 받지 못하면 빌드가 멈춥니다. 그대로 배포하면 수정일이 모두 같아져도 알아채기 어렵기 때문입니다.
+
 ## 로컬 프리뷰
 
 ```sh
