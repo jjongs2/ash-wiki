@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="3 3.5 720 284" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+    <marker id="tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- LET 구간 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#tip)" marker-end="url(#tip)">
+    <line x1="202" y1="36" x2="438" y2="36" />
+    <line x1="442" y1="36" x2="678" y2="36" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="320" y="28">LET 구간</text>
+    <text x="560" y="28">LET 구간</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4">
+    <line x1="200" y1="30" x2="200" y2="236" />
+    <line x1="440" y1="30" x2="440" y2="236" />
+    <line x1="680" y1="30" x2="680" y2="236" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="200" y="256">release</text>
+    <text x="440" y="256">terminate</text>
+    <text x="440" y="272">release</text>
+    <text x="680" y="256">terminate</text>
+  </g>
+
+  <!-- 행 이름 -->
+  <g fill="var(--text, #727981)">
+    <text x="20" y="109">interLetOnly</text>
+    <text x="20" y="199">intraLetEOC</text>
+  </g>
+
+  <!-- executable entity -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="215" y="90" width="95" height="28" rx="2" />
+    <rect x="335" y="90" width="95" height="28" rx="2" />
+    <rect x="455" y="90" width="95" height="28" rx="2" />
+    <rect x="575" y="90" width="95" height="28" rx="2" />
+    <rect x="215" y="180" width="95" height="28" rx="2" />
+    <rect x="335" y="180" width="95" height="28" rx="2" />
+    <rect x="455" y="180" width="95" height="28" rx="2" />
+    <rect x="575" y="180" width="95" height="28" rx="2" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="262.5" y="108">보내는 쪽</text>
+    <text x="382.5" y="108">받는 쪽</text>
+    <text x="502.5" y="108">보내는 쪽</text>
+    <text x="622.5" y="108">받는 쪽</text>
+    <text x="262.5" y="198">보내는 쪽</text>
+    <text x="382.5" y="198">받는 쪽</text>
+    <text x="502.5" y="198">보내는 쪽</text>
+    <text x="622.5" y="198">받는 쪽</text>
+  </g>
+
+  <!-- 데이터 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M262.5 90 V68 H622.5 V88" />
+    <line x1="310" y1="194" x2="333" y2="194" />
+    <line x1="550" y1="194" x2="573" y2="194" />
+  </g>
+  <circle cx="440" cy="68" r="4" fill="var(--ink, #727981)" />
+</svg>
