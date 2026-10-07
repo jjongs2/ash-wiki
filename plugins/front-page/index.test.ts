@@ -196,11 +196,15 @@ describe("frontPage의 최근 변경", () => {
   })
 })
 
-describe("frontPage의 이번 주 소식", () => {
+describe("frontPage의 주간 소식", () => {
+  // 슬러그는 사이트가 소문자로 바꾼다(news/2026-w41). 주차는 파일 이름의 것을 쓴다.
   const issue = (week: string, ...titles: string[]): FrontPageIssue => ({
-    slug: `news/${week}`,
+    slug: `news/${week.toLowerCase()}`,
     title: week,
-    items: titles.map((title) => ({ id: title, title, region: null })),
+    week,
+    start: "2026-10-05",
+    end: "2026-10-11",
+    items: titles.map((title) => ({ id: title, title, regions: [], date: "2026-10-06" })),
   })
   const latest = (...news: FrontPageIssue[]) => frontPage({ pages: [], news }).latestNews
 
@@ -210,17 +214,30 @@ describe("frontPage의 이번 주 소식", () => {
       issue("2026-W41", "나", "다"),
       issue("2026-W10", "라"),
     )
-    assert.strictEqual(picked?.slug, "news/2026-W41")
+    assert.strictEqual(picked?.week, "2026-W41")
     assert.deepStrictEqual(
-      picked?.items.map((item) => item.title),
+      picked?.days.flatMap((day) => day.items.map((item) => item.title)),
       ["나", "다"],
     )
   })
 
   test("해가 바뀌면 새해의 1주가 지난해의 마지막 주보다 늦다", () => {
-    assert.strictEqual(
-      latest(issue("2026-W01", "가"), issue("2025-W52", "나"))?.slug,
-      "news/2026-W01",
+    assert.strictEqual(latest(issue("2026-W01", "가"), issue("2025-W52", "나"))?.week, "2026-W01")
+  })
+
+  test("소식 항목을 발행일마다 묶어 이른 날부터 주고, 같은 날은 파일 순서를 지킨다", () => {
+    const news = issue("2026-W41")
+    news.items = [
+      { id: "a", title: "가", regions: ["network"], date: "2026-10-08" },
+      { id: "b", title: "나", regions: [], date: "2026-10-05" },
+      { id: "c", title: "다", regions: ["platform", "network"], date: "2026-10-08" },
+    ]
+    assert.deepStrictEqual(
+      latest(news)?.days.map((day) => [day.day, day.items.map((item) => item.title)]),
+      [
+        ["2026-10-05", ["나"]],
+        ["2026-10-08", ["가", "다"]],
+      ],
     )
   })
 
