@@ -33,10 +33,10 @@ AUTOSAR R25-11의 KeyM 명세는 KeyM을 암호 키 하위 모듈과 인증서 �
 
 ## Adaptive Platform의 Cryptography
 
-AUTOSAR R25-11의 Adaptive Platform Cryptography 명세는 Cryptography 기능 클러스터인 FC(Functional Cluster) Crypto가 응용과 다른 기능 클러스터에 암호 연산, 키 관리, 인증서 처리의 표준 인터페이스를 주도록 정한다. 이 인터페이스를 **CryptoAPI**라 하며, FC Crypto는 연산의 실제 구현, 설정, 응용과 구현 사이의 중개를 맡는다. FC Crypto는 암호 primitive를 Crypto Provider로, 인증서 관리를 X.509 Certificate Management Provider로 내놓는다. SecOC나 [[transport-layer-security|TLS]] 같은 보안 통신, 서비스 `0x29`를 쓰는 인증 진단, 안전한 소프트웨어 업데이트 같은 쓰임새도 지원한다.[@autosar-ap-sws-cryptography-2025]
+AUTOSAR R25-11의 [[autosar-adaptive-platform|Adaptive Platform]] Cryptography 명세는 Cryptography functional cluster인 FC(Functional Cluster) Crypto가 응용과 다른 functional cluster에 암호 연산, 키 관리, 인증서 처리의 표준 인터페이스를 주도록 정한다. 이 인터페이스를 **CryptoAPI**라 하며, FC Crypto는 연산의 실제 구현, 설정, 응용과 구현 사이의 중개를 맡는다. FC Crypto는 암호 primitive를 Crypto Provider로, 인증서 관리를 X.509 Certificate Management Provider로 내놓는다. SecOC나 [[transport-layer-security|TLS]] 같은 보안 통신, 서비스 `0x29`를 쓰는 인증 진단, 안전한 소프트웨어 업데이트 같은 쓰임새도 지원한다.[@autosar-ap-sws-cryptography-2025]
 
 Crypto Provider는 암호 primitive 구현 한 벌과 키 저장소에 접근하게 하는 래퍼다. 한 Machine에 Crypto Provider를 여럿 둘 수 있지만 서로 호환되지 않아, 한 Crypto Provider의 대칭 키를 다른 Crypto Provider의 암호화에 쓸 수 없다. 키는 저마다 정확히 한 Crypto Provider가 관리하고, 응용은 배치 때 한 Crypto Provider에 정적으로 매핑된 KeySlot으로 저장된 키에 접근한다. X.509 Provider는 Machine 하나에 하나만 둔다.[@autosar-ap-sws-cryptography-2025]
 
-AUTOSAR R25-11의 Adaptive Platform 설계 설명서는 X.509 Certificate Management Provider(CMP)가 X.509 인증서의 구문 분석, 검증, 저장, 속성별 검색을 맡고, CRL(Certificate Revocation List)과 Delta CRL의 저장·관리·처리도 맡도록 둔다. Adaptive Platform의 암호 API는 보안상 민감한 연산과 결정을 HSM 같은 별도 구성 요소에 맡길 수 있게 설계됐다. 키를 특정 용도(예: 복호 전용)로 묶거나, IAM(Identity and Access Management)이 알려 주는 대로 개별 응용에만 쓰게 해 키와 키 사용을 더 보호할 수도 있다.[@autosar-ap-exp-platformdesign-2025]
+AUTOSAR R25-11의 Adaptive Platform 설계 설명서는 X.509 Certificate Management Provider(CMP)가 X.509 인증서의 구문 분석, 검증, 저장, 속성별 검색을 맡고, CRL(Certificate Revocation List)과 Delta CRL의 저장·관리·처리도 맡도록 둔다. Adaptive Platform의 암호 API는 보안상 민감한 연산과 결정을 HSM 같은 별도 구성 요소에 맡길 수 있게 설계됐다. 키를 특정 용도(예: 복호 전용)로 묶거나, [[autosar-identity-and-access-management|IAM]]이 알려 주는 대로 개별 응용에만 쓰게 해 키와 키 사용을 더 보호할 수도 있다.[@autosar-ap-exp-platformdesign-2025]
 
 AUTOSAR Adaptive Platform R25-11은 Crypto Rework 개념을 새로 들였다. 이 개념은 사용법을 단순하게 하고 알고리즘 식별자를 표준화했으며, HSM의 제약을 반영하고, X.509 인증서의 검증과 관리를 더 유연하게 했고, 동적 메모리 할당을 줄여 성능을 높였다.[@autosar-ap-tr-releaseoverview-2025]

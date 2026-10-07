@@ -7,17 +7,17 @@ aliases:
 verified: 2026-10-07
 ---
 
-**Intrusion Detection System Manager**(IdsM)는 [[autosar|AUTOSAR]]의 IDS(Intrusion Detection System)를 이루는 요소로, 보안 센서가 보고한 차량 안 보안 이벤트를 받아 설정한 규칙으로 걸러 qualified security event로 만들고, 이를 저장하거나 다른 곳으로 보낸다. [[autosar-classic-platform|Classic Platform]]의 IdsM은 BSW(Basic Software) 모듈이고[@autosar-cp-sws-intrusiondetectionsystemmanager-2025], Adaptive Platform의 IdsM은 기능 클러스터다.[@autosar-ap-sws-intrusiondetectionsystemmanager-2025] AUTOSAR R25-11의 BSW 일반 명세는 Classic Platform의 IdsM을 [[autosar-crypto-stack|Crypto Services]] 층에 둔다.[@autosar-cp-sws-bswgeneral-2025]
+**Intrusion Detection System Manager**(IdsM)는 [[autosar|AUTOSAR]]의 IDS(Intrusion Detection System)를 이루는 요소로, 보안 센서가 보고한 차량 안 보안 이벤트를 받아 설정한 규칙으로 걸러 qualified security event로 만들고, 이를 저장하거나 다른 곳으로 보낸다. [[autosar-classic-platform|Classic Platform]]의 IdsM은 BSW(Basic Software) 모듈이고[@autosar-cp-sws-intrusiondetectionsystemmanager-2025], [[autosar-adaptive-platform|Adaptive Platform]]의 IdsM은 functional cluster다.[@autosar-ap-sws-intrusiondetectionsystemmanager-2025] AUTOSAR R25-11의 BSW 일반 명세는 Classic Platform의 IdsM을 [[autosar-crypto-stack|Crypto Services]] 층에 둔다.[@autosar-cp-sws-bswgeneral-2025]
 
 ## 보안 이벤트의 수집
 
-AUTOSAR Classic Platform R25-11의 IdsM 명세는 IdsM이 차량 안 **보안 이벤트**(security event, SEv)를 받는 표준 인터페이스를 주도록 정한다. 보안 이벤트는 BSW 모듈과 [[autosar-software-component|SW-C]]에 구현된 보안 센서가 보고하며, 이벤트 종류나 의심스러운 데이터 같은 context data를 덧붙일 수 있다. Context data는 백엔드에서 하는 보안 포렌식에 쓸모 있을 수 있는 정보다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
+AUTOSAR Classic Platform R25-11의 IdsM 명세는 IdsM이 차량 안 보안 이벤트(security event, SEv)를 받는 표준 인터페이스를 주도록 정한다. 보안 이벤트는 BSW 모듈과 [[autosar-software-component|SW-C]]에 구현된 보안 센서가 보고하며, 이벤트 종류나 의심스러운 데이터 같은 context data를 덧붙일 수 있다. Context data는 백엔드에서 하는 보안 포렌식에 쓸모 있을 수 있는 정보다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
 
-보안 이벤트는 공격이 진행 중임을 가리키거나 차량의 보안 상태를 평가하는 데 알맞은 이벤트로, 공격이 없는 정상 동작 중에도 생길 수 있다. 보안 이벤트를 보고하는 **센서**는 BSW 모듈, 독자 CDD(Complex Driver), SW-C 응용일 수 있다. Context data의 내용과 인코딩은 센서가 바깥에서 정하며, IdsM은 이를 알지 못한다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
+**보안 이벤트**는 공격이 진행 중임을 가리키거나 차량의 보안 상태를 평가하는 데 알맞은 이벤트로, 공격이 없는 정상 동작 중에도 생길 수 있다. 보안 이벤트를 보고하는 **센서**는 BSW 모듈, 독자 CDD(Complex Driver), SW-C 응용일 수 있다. Context data의 내용과 인코딩은 센서가 바깥에서 정하며, IdsM은 이를 알지 못한다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
 
-AUTOSAR R25-11의 SecOC 명세는 [[secure-onboard-communication|SecOC]]가 수신 Freshness Value를 얻지 못하거나 Authenticator 검증이 복구할 수 없는 오류로 끝나면 IdsM에 보안 이벤트를 보고하게 한다.[@autosar-cp-sws-secureonboardcommunication-2025] AUTOSAR R25-11의 Classic Platform Firewall 명세도 [[autosar-firewall|AUTOSAR firewall]]이 IDS 센서로서 보안 이벤트를 IdsM에 보고하게 한다.[@autosar-cp-sws-firewall-2025]
+AUTOSAR R25-11의 SecOC 명세는 [[secure-onboard-communication|SecOC]]가 수신 Freshness Value를 얻지 못하거나 Authenticator 검증이 복구할 수 없는 오류로 끝나면 IdsM에 보안 이벤트를 보고하게 한다.[@autosar-cp-sws-secureonboardcommunication-2025] AUTOSAR Classic Platform R25-11의 Firewall 명세도 [[autosar-firewall|AUTOSAR firewall]]이 IDS 센서로서 보안 이벤트를 IdsM에 보고하게 한다.[@autosar-cp-sws-firewall-2025]
 
-AUTOSAR R25-11의 Adaptive Platform IdsM 명세는 Software Cluster와 기능 클러스터가 IdsM의 API(Application Programming Interface)로 새 보안 이벤트를 만들 수 있게 한다. Software Cluster가 만들 수 있는 이벤트 종류는 manifest에 설정해 그 Software Cluster의 PortPrototype에 잇고, 응용은 `ara::idsm::EventReporter`로 이벤트를 보고하면서 타임스탬프, 카운터, context data를 함께 줄 수 있다.[@autosar-ap-sws-intrusiondetectionsystemmanager-2025]
+AUTOSAR R25-11의 Adaptive Platform IdsM 명세는 Software Cluster와 functional cluster가 IdsM의 API(Application Programming Interface)로 새 보안 이벤트를 만들 수 있게 한다. Software Cluster가 만들 수 있는 이벤트 종류는 manifest에 설정해 그 Software Cluster의 PortPrototype에 잇고, 응용은 `ara::idsm::EventReporter`로 이벤트를 보고하면서 타임스탬프, 카운터, context data를 함께 줄 수 있다.[@autosar-ap-sws-intrusiondetectionsystemmanager-2025]
 
 ## Qualification
 
@@ -25,7 +25,7 @@ AUTOSAR Classic Platform R25-11의 IdsM 명세는 IdsM이 보고된 보안 이�
 
 ## 저장과 전달
 
-Qualified security event는 보안 개념에 따라 ECU 안의 Sem(Security Event Memory)에 저장하거나, 설정한 sink로 보내거나, 둘 다 한다. Classic Platform에서 sink는 Dem(Diagnostic Event Manager) 모듈과 IdsR(Intrusion Detection System Reporter)이고, IdsR은 qualified security event를 백엔드의 SOC(Security Operation Center)로 넘길 수 있다. Sem은 Dem의 기본 메모리와 따로 둔, Dem 모듈의 사용자 정의 메모리다. IdsM은 [[autosar-crypto-stack#Crypto Service Manager|Csm]]과 암호 스택으로 만든 Authenticator(디지털 서명이나 [[message-authentication-code|MAC]] 등)를 qualified security event에 붙여 무결성과 authenticity를 줄 수 있다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
+Qualified security event는 보안 개념에 따라 ECU 안의 Sem(Security Event Memory)에 저장하거나, 설정한 sink로 보내거나, 둘 다 한다. Classic Platform에서 sink는 Dem 모듈과 IdsR(Intrusion Detection System Reporter)이고, IdsR은 qualified security event를 백엔드의 SOC(Security Operation Center)로 넘길 수 있다. Sem은 Dem의 기본 메모리와 따로 둔, Dem 모듈의 사용자 정의 메모리다. IdsM은 [[autosar-crypto-stack#Crypto Service Manager|Csm]]과 암호 스택으로 만든 Authenticator(디지털 서명이나 [[message-authentication-code|MAC]] 등)를 qualified security event에 붙여 무결성과 authenticity를 줄 수 있다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
 
 ![[diagrams/idsm-security-event-flow.svg]]
 

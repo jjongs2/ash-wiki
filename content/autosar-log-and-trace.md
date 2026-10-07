@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-07
 ---
 
-**AUTOSAR Log and Trace**는 [[autosar|AUTOSAR]] 응용이 로그와 트레이스 정보를 통신 버스, 콘솔, 파일 시스템으로 내보내도록 인터페이스를 주는 기능이다.[@autosar-fo-tr-glossary-2025] AUTOSAR [[autosar-classic-platform|Classic Platform]] R25-11의 Dlt 명세는 로그·트레이스 정보를 통신 버스로 내보내는 일을 Dlt(Diagnostic Log and Trace) 모듈에 맡기고, Dlt 메시지 형식, 명령, 외부 로깅·트레이스 도구와 주고받는 프로토콜은 Foundation의 Log and Trace 프로토콜 명세에 맡긴다.[@autosar-cp-sws-diagnosticlogandtrace-2025] AUTOSAR Adaptive Platform R25-11의 Log and Trace 명세는 이 일을 Log and Trace 기능 클러스터에 맡기고, 로깅 정보를 표준 전달 형식으로 묶는 데 같은 프로토콜 명세의 LT(Log and Trace) 프로토콜을 쓸 수 있게 한다.[@autosar-ap-sws-logandtrace-2025]
+**AUTOSAR Log and Trace**는 [[autosar|AUTOSAR]] 응용이 로그와 트레이스 정보를 통신 버스, 콘솔, 파일 시스템으로 내보내도록 인터페이스를 주는 기능이다.[@autosar-fo-tr-glossary-2025] AUTOSAR [[autosar-classic-platform|Classic Platform]] R25-11의 Dlt 명세는 로그·트레이스 정보를 통신 버스로 내보내는 일을 Dlt(Diagnostic Log and Trace) 모듈에 맡기고, Dlt 메시지 형식, 명령, 외부 로깅·트레이스 도구와 주고받는 프로토콜은 Foundation의 Log and Trace 프로토콜 명세에 맡긴다.[@autosar-cp-sws-diagnosticlogandtrace-2025] AUTOSAR [[autosar-adaptive-platform|Adaptive Platform]] R25-11의 Log and Trace 명세는 이 일을 Log and Trace functional cluster에 맡기고, 로깅 정보를 표준 전달 형식으로 묶는 데 같은 프로토콜 명세의 LT(Log and Trace) 프로토콜을 쓸 수 있게 한다.[@autosar-ap-sws-logandtrace-2025]
 
 ## Classic Platform의 Dlt
 
@@ -17,11 +17,11 @@ AUTOSAR R25-11 Layered Software Architecture는 Dlt의 기능으로 SW-C의 오�
 
 ## Adaptive Platform의 Log and Trace
 
-AUTOSAR Adaptive Platform R25-11의 Log and Trace 명세는 Log and Trace가 Adaptive Application에 로깅 정보를 통신 버스, 콘솔, 파일 시스템, 시스템의 트레이스 기능으로 내보내는 인터페이스를 주도록 정한다. 로깅 정보마다 심각도 수준을 두고, 응용과 `ara::com` 같은 기능 클러스터는 심각도마다 마련된 메서드로 로그를 남긴다.[@autosar-ap-sws-logandtrace-2025]
+AUTOSAR Adaptive Platform R25-11의 Log and Trace 명세는 Log and Trace가 Adaptive Application에 로깅 정보를 통신 버스, 콘솔, 파일 시스템, 시스템의 트레이스 기능으로 내보내는 인터페이스를 주도록 정한다. 로깅 정보마다 심각도 수준을 두고, 응용과 `ara::com` 같은 functional cluster는 심각도마다 마련된 메서드로 로그를 남긴다.[@autosar-ap-sws-logandtrace-2025]
 
 AUTOSAR R25-11의 Adaptive Platform 설계 설명서는 Log and Trace를 개발 중뿐 아니라 생산 중과 생산 뒤에도 쓸 수 있게 두고, 로깅 정보를 설정에 따라 통신 버스, 파일, 시리얼 콘솔, 하드웨어나 소프트웨어 tracer 같은 여러 sink로 보내게 한다. 정한 심각도 이상의 정보만 남기도록 설정할 수 있다. 인터페이스는 `ara::log` 네임스페이스에 있다.[@autosar-ap-exp-platformdesign-2025]
 
-Log and Trace 기능 클러스터의 로그 메시지는 modeled 메시지와 non-modeled 메시지 둘로 나뉜다. **Non-modeled 메시지**는 모든 인자를 내부 버퍼에 담아 직렬화하고 메시지의 모든 부분을 네트워크로 보내는 전통적인 방식으로, LT 프로토콜에서는 verbose 메시지라 부른다. **Modeled 메시지**는 바뀌지 않는 정적 부분을 응용의 AUTOSAR 모델에 두고 네트워크로 보내지 않아 트래픽을 줄이며, LT 프로토콜에서는 non-verbose 메시지라 부른다. 로그 뷰어는 모델의 정적 부분과 받은 메시지의 동적 부분을 합쳐 전체 메시지를 보여 준다. Non-modeled 메시지는 미리 모델링할 필요가 없어 쓰기 쉽지만 CPU 시간과 네트워크 부하가 더 크다. 그래서 알고리즘과 제어 흐름을 빠르게 분석할 때는 non-modeled 메시지를 쓸 수 있지만, 타이밍에 관련된 용도와 양산 시스템에서는 modeled 메시지를 써야 한다.[@autosar-ap-exp-platformdesign-2025]
+Log and Trace functional cluster의 로그 메시지는 modeled 메시지와 non-modeled 메시지 둘로 나뉜다. **Non-modeled 메시지**는 모든 인자를 내부 버퍼에 담아 직렬화하고 메시지의 모든 부분을 네트워크로 보내는 전통적인 방식으로, LT 프로토콜에서는 verbose 메시지라 부른다. **Modeled 메시지**는 바뀌지 않는 정적 부분을 응용의 AUTOSAR 모델에 두고 네트워크로 보내지 않아 트래픽을 줄이며, LT 프로토콜에서는 non-verbose 메시지라 부른다. 로그 뷰어는 모델의 정적 부분과 받은 메시지의 동적 부분을 합쳐 전체 메시지를 보여 준다. Non-modeled 메시지는 미리 모델링할 필요가 없어 쓰기 쉽지만 CPU 시간과 네트워크 부하가 더 크다. 그래서 알고리즘과 제어 흐름을 빠르게 분석할 때는 non-modeled 메시지를 쓸 수 있지만, 타이밍에 관련된 용도와 양산 시스템에서는 modeled 메시지를 써야 한다.[@autosar-ap-exp-platformdesign-2025]
 
 ![[diagrams/log-modeled-non-modeled-messages.svg]]
 

@@ -44,7 +44,7 @@ PNC마다의 요청 상태는 NM 메시지 안의 PNC 비트 벡터에 담겨 �
 
 AUTOSAR Classic Platform R25-11의 ComM 명세는 partial networking의 토폴로지를 늘 계층으로 둔다. 맨 위에 top-level PNC coordinator가 놓이고, 그 아래 단계에 intermediate PNC coordinator와 PNC leaf node가 여럿 놓일 수 있다.[@autosar-cp-sws-commanager-2025] AUTOSAR R25-11의 Nm interface 명세는 **top-level PNC coordinator**를, PNC gateway 기능을 켠 ECU가 배정된 모든 채널에서 능동적으로 조정되는 PNC에 대해 맡는 역할로 정의한다. Intermediate PNC coordinator도 PNC gateway 기능을 켠 ECU로, 적어도 한 채널에서 수동적으로 조정하는 PNC에 대해 이 역할을 맡는다. PNC leaf node는 어느 coordinator도 아닌 ECU로, PNC gateway가 없는 ECU처럼 동작한다.[@autosar-cp-sws-networkmanagementinterface-2025]
 
-AUTOSAR R25-11의 ComM 명세는 PNC leaf node가 PNC 요청을 놓아도, 그 해제가 곧바로 top-level PNC coordinator까지 전해지지 않고 계층의 단계마다 PN(Partial Network) reset time만큼 늦춰지도록 정한다. 네트워크의 어느 ECU도 그 PNC를 요청하지 않아 top-level PNC coordinator의 PN reset 타이머가 만료되면, top-level PNC coordinator는 타이머를 한 번 더 다시 시작하고 PN shutdown message를 보낸다. Intermediate PNC coordinator는 이 메시지를 받는 즉시 그 PNC를 놓고 타이머를 다시 시작한 뒤, 그 PNC가 배정된 능동 조정 채널로 메시지를 넘긴다. 그래서 모든 단계의 PNC 상태 기계가 거의 같은 때에 PN reset 타이머를 다시 시작해, PNC가 계층 전체에서 거의 동시에 내려간다.[@autosar-cp-sws-commanager-2025] AUTOSAR R25-11의 Nm interface 명세는 **PN shutdown message**를 제어 비트 벡터의 PNSR(PN Shutdown Request) 비트와, 함께 내릴 PNC의 비트를 1로 둔 NM 메시지로 정의한다. PNC leaf node는 이 메시지를 보통의 NM 메시지처럼 처리한다.[@autosar-cp-sws-networkmanagementinterface-2025]
+AUTOSAR Classic Platform R25-11의 ComM 명세는 PNC leaf node가 PNC 요청을 놓아도, 그 해제가 곧바로 top-level PNC coordinator까지 전해지지 않고 계층의 단계마다 PN(Partial Network) reset time만큼 늦춰지도록 정한다. 네트워크의 어느 ECU도 그 PNC를 요청하지 않아 top-level PNC coordinator의 PN reset 타이머가 만료되면, top-level PNC coordinator는 타이머를 한 번 더 다시 시작하고 PN shutdown message를 보낸다. Intermediate PNC coordinator는 이 메시지를 받는 즉시 그 PNC를 놓고 타이머를 다시 시작한 뒤, 그 PNC가 배정된 능동 조정 채널로 메시지를 넘긴다. 그래서 모든 단계의 PNC 상태 기계가 거의 같은 때에 PN reset 타이머를 다시 시작해, PNC가 계층 전체에서 거의 동시에 내려간다.[@autosar-cp-sws-commanager-2025] AUTOSAR R25-11의 Nm interface 명세는 **PN shutdown message**를 제어 비트 벡터의 PNSR(PN Shutdown Request) 비트와, 함께 내릴 PNC의 비트를 1로 둔 NM 메시지로 정의한다. PNC leaf node는 이 메시지를 보통의 NM 메시지처럼 처리한다.[@autosar-cp-sws-networkmanagementinterface-2025]
 
 ![[diagrams/pnc-coordinator-hierarchy.svg]]
 
@@ -58,7 +58,7 @@ NM coordinator는 조정 클러스터에 묶인 여러 버스의 셧다운이 �
 
 ## Adaptive Platform의 NM
 
-AUTOSAR Adaptive Platform R25-11의 Network Management 명세는 Adaptive NM이 쓰는 통신 스택과 상관없이 동작하며, 물리 네트워크와 partial network의 정상 동작과 bus-sleep 모드 사이의 전환을 조율하도록 정한다. R25-11의 Adaptive NM은 UdpNm만 지원한다. 알고리즘은 분산 direct NM 전략을 따라, 각 노드가 주고받은 NM 패킷만을 바탕으로 스스로 동작한다.[@autosar-ap-sws-networkmanagement-2025]
+AUTOSAR [[autosar-adaptive-platform|Adaptive Platform]] R25-11의 Network Management 명세는 Adaptive NM이 쓰는 통신 스택과 상관없이 동작하며, 물리 네트워크와 partial network의 정상 동작과 bus-sleep 모드 사이의 전환을 조율하도록 정한다. R25-11의 Adaptive NM은 UdpNm만 지원한다. 알고리즘은 분산 direct NM 전략을 따라, 각 노드가 주고받은 NM 패킷만을 바탕으로 스스로 동작한다.[@autosar-ap-sws-networkmanagement-2025]
 
 Adaptive NM은 논리 네트워크 핸들(`NmNetworkHandle`)마다 네트워크 상태를 요청하고 조회하는 서비스를 준다. 논리 네트워크 핸들은 partial network나 [[virtual-lan|VLAN]]에 매핑되며, 핸들 하나로 거기에 배정된 partial network, VLAN, 물리 채널을 함께 제어한다. NM은 응용에게서 직접 네트워크 요청을 받지 않는다. State Management 기능 클러스터가 응용이 요청한 기능의 활성화에 따라 논리 네트워크를 요청하거나 놓고, NM은 모든 논리 네트워크 핸들의 요청 상태를 모아 물리 네트워크를 켜거나 끈다. 어느 핸들에서든 전체 통신(`kFullCom`)을 요청하면 그 핸들에 배정된 PNC, VLAN, 물리 채널을 내부에서 요청된 것으로 보고, 핸들의 상태는 배정된 PNC, VLAN, 물리 채널이 모두 `FULL_COM`일 때만 `kFullCom`이다.[@autosar-ap-sws-networkmanagement-2025]
 

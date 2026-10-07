@@ -39,11 +39,11 @@ AUTOSAR R25-11의 E2E 프로토콜 명세는 보호 메커니즘의 조합, 메�
 
 E2E 보호는 검사 결과를 수신자에게 넘길 뿐이고, 그 결과를 알맞게 처리하는 것은 수신자의 몫이다. 특정 프로파일을 쓰는 사용자는 그 프로파일이 쓰임새에 충분한 오류 검출 능력을 갖는지 보여야 한다. 이때 하드웨어 failure rate, 비트 오류율, 네트워크의 노드 수, 메시지 반복률, 게이트웨이 사용, 통신 채널의 소프트웨어 fault 같은 요인을 따진다. 검출한 fault에 대한 반응(되풀이된 메시지 버리기, 타임아웃 판정, 손상된 메시지에 안전 반응 시작 등)이 알맞은지도 사용자가 보여야 한다.[@autosar-fo-prs-e2eprotocol-2025]
 
-AUTOSAR R25-11의 Adaptive Platform 설계 설명서는 E2E 보호가 통신 결함을 검사해 결과를 줄 뿐 그 이상의 반응을 일으키지 않게 하고, 송신 확인과 전송 보안은 E2E 보호의 범위에 두지 않는다.[@autosar-ap-exp-platformdesign-2025]
+AUTOSAR R25-11의 [[autosar-adaptive-platform|Adaptive Platform]] 설계 설명서는 E2E 보호가 통신 결함을 검사해 결과를 줄 뿐 그 이상의 반응을 일으키지 않게 하고, 송신 확인과 전송 보안은 E2E 보호의 범위에 두지 않는다.[@autosar-ap-exp-platformdesign-2025]
 
 ## E2E Library와 E2E Transformer
 
-AUTOSAR R25-11의 E2E 프로토콜 명세는 E2E 보호를 Adaptive Platform의 `ara::com`이나 Classic Platform의 RTE 같은 통신 미들웨어에서 부를 수 있게 하고, 비휘발성 메모리 관리자, 로컬 IPC(Inter-Process Communication), ECU 안 버스 스택 같은 다른 소프트웨어에서 표준이 아닌 방식으로 부를 수도 있게 둔다.[@autosar-fo-prs-e2eprotocol-2025]
+AUTOSAR R25-11의 E2E 프로토콜 명세는 E2E 보호를 Adaptive Platform의 `ara::com`이나 [[autosar-classic-platform|Classic Platform]]의 RTE 같은 통신 미들웨어에서 부를 수 있게 하고, 비휘발성 메모리 관리자, 로컬 IPC(Inter-Process Communication), ECU 안 버스 스택 같은 다른 소프트웨어에서 표준이 아닌 방식으로 부를 수도 있게 둔다.[@autosar-fo-prs-e2eprotocol-2025]
 
 AUTOSAR Classic Platform R25-11의 E2E Library 명세는 보호 메커니즘의 알고리즘을 E2E Library에 두고, 라이브러리를 부르는 쪽이 올바른 파라미터를 넘길 책임을 지게 한다. E2E Library는 E2E Transformer나 COM E2E callout에서 불린다. 어느 쪽이든 보호는 데이터 요소에 하며, 버스로 나가는 것과 같은 비트 배치로 직렬화된 표현에 한다. E2E Transformer를 쓰면 그 위의 [[autosar-transformer|transformer]](COM Based Transformer나 [[some-ip|SOME/IP]] Transformer)가 직렬화하고, COM callout을 쓰면 RTE와 COM이 직렬화하므로 callout은 I-PDU(Interaction Layer Protocol Data Unit) 안의 직렬화된 시그널 그룹에 바로 작용한다. 데이터 요소와 그에 대응하는 시그널 그룹은 통째로 보호하거나 아예 보호하지 않으며, 일부만 보호할 수는 없다. I-PDU 하나에 데이터 요소가 여럿 실리면 그 가운데 일부만 따로 보호할 수 있다.[@autosar-cp-sws-e2elibrary-2025]
 

@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-07
 ---
 
-**AUTOSAR firewall**은 미리 정한 규칙에 따라 네트워크 트래픽을 걸러 악의적인 메시지에서 호스트를 지키는 [[autosar|AUTOSAR]]의 방화벽이다. [[autosar-classic-platform|Classic Platform]]에서는 BSW(Basic Software) 모듈 Firewall이 이 일을 하며, stateless packet inspection, stateful packet inspection, deep packet inspection을 지원한다.[@autosar-cp-sws-firewall-2025] Adaptive Platform에서는 Firewall 기능 클러스터인 FC(Functional Cluster) Firewall이 Adaptive Platform이 놓인 ECU의 호스트 기반 방화벽을 관리하며, manifest와 함께 배치된 규칙대로 아래의 firewall engine을 설정한다.[@autosar-ap-sws-firewall-2025]
+**AUTOSAR firewall**은 미리 정한 규칙에 따라 네트워크 트래픽을 걸러 악의적인 메시지에서 호스트를 지키는 [[autosar|AUTOSAR]]의 방화벽이다. [[autosar-classic-platform|Classic Platform]]에서는 BSW(Basic Software) 모듈 Firewall이 이 일을 하며, stateless packet inspection, stateful packet inspection, deep packet inspection을 지원한다.[@autosar-cp-sws-firewall-2025] [[autosar-adaptive-platform|Adaptive Platform]]에서는 Firewall functional cluster인 FC(Functional Cluster) Firewall이 Adaptive Platform이 놓인 ECU의 호스트 기반 방화벽을 관리하며, manifest와 함께 배치된 규칙대로 아래의 firewall engine을 설정한다.[@autosar-ap-sws-firewall-2025]
 
 ## 규칙 맞추기
 
@@ -29,11 +29,11 @@ AUTOSAR Classic Platform R25-11의 Firewall 명세는 방화벽을 allowlist 방
 
 ## 상태에 따른 규칙
 
-차량 안의 트래픽은 주행, 주차, 진단 세션 같은 차량 상태에 따라 크게 달라진다. 그래서 FirewallRule을 통합자가 프로젝트마다 미리 정한 **firewall state**에 묶을 수 있고, 한 번에 한 state에 묶인 규칙만 활성이다. Classic Platform에서는 BswM(Basic Software Mode Manager)이 `Fw_SetFirewallState`를 불러 활성 state를 바꾼다.[@autosar-cp-sws-firewall-2025] AUTOSAR Adaptive Platform R25-11의 Firewall 명세는 사용자 응용이 FC Firewall의 `ara::fw::FirewallStateSwitchInterface` API(Application Programming Interface)로 활성 state를 바꾸도록 둔다.[@autosar-ap-sws-firewall-2025]
+차량 안의 트래픽은 주행, 주차, 진단 세션 같은 차량 상태에 따라 크게 달라진다. 그래서 FirewallRule을 통합자가 프로젝트마다 미리 정한 **firewall state**에 묶을 수 있고, 한 번에 한 state에 묶인 규칙만 활성이다. Classic Platform에서는 BswM이 `Fw_SetFirewallState`를 불러 활성 state를 바꾼다.[@autosar-cp-sws-firewall-2025] AUTOSAR Adaptive Platform R25-11의 Firewall 명세는 사용자 응용이 FC Firewall의 `ara::fw::FirewallStateSwitchInterface` API(Application Programming Interface)로 활성 state를 바꾸도록 둔다.[@autosar-ap-sws-firewall-2025]
 
 ## 보안 이벤트
 
-AUTOSAR Classic Platform R25-11의 Firewall 명세는 방화벽을 IDS의 센서로 두어 [[intrusion-detection-system-manager|IdsM]]에 보안 이벤트를 보고하게 한다. IdsM은 같은 식별자의 보안 이벤트를 모으면서 그 가운데 하나의 context data만 남길 수 있어 정보가 빠질 수 있다. 그래서 Classic Platform의 Firewall은 검사하는 프로토콜마다 보안 이벤트를 따로 정해 이 손실을 줄인다.[@autosar-cp-sws-firewall-2025] Adaptive Platform R25-11의 Firewall 명세도 FC Firewall이 보안 이벤트를 IdsM에 올려 IDS를 돕게 한다.[@autosar-ap-sws-firewall-2025]
+AUTOSAR Classic Platform R25-11의 Firewall 명세는 방화벽을 IDS의 센서로 두어 [[intrusion-detection-system-manager|IdsM]]에 보안 이벤트를 보고하게 한다. IdsM은 같은 식별자의 보안 이벤트를 모으면서 그 가운데 하나의 context data만 남길 수 있어 정보가 빠질 수 있다. 그래서 Classic Platform의 Firewall은 검사하는 프로토콜마다 보안 이벤트를 따로 정해 이 손실을 줄인다.[@autosar-cp-sws-firewall-2025] AUTOSAR Adaptive Platform R25-11의 Firewall 명세도 FC Firewall이 보안 이벤트를 IdsM에 올려 IDS를 돕게 한다.[@autosar-ap-sws-firewall-2025]
 
 ## Classic Platform의 Firewall 모듈
 

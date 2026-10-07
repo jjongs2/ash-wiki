@@ -39,4 +39,4 @@ AUTOSAR R25-11 Layered Software Architecture는 COM Based Transformer의 목표�
 
 ## 그 밖의 transformer
 
-AUTOSAR R25-11의 BSW 일반 명세는 transformer 모듈로 COM Based Transformer(ComXf), E2E Transformer(E2EXf), SOME/IP Transformer(SomeIpXf), DDS(Data Distribution Service) Transformer(DdsXf)를 두고, 모두 Communication Services 층에 놓는다.[@autosar-cp-sws-bswgeneral-2025] SOME/IP Transformer가 따르는 형식은 SOME/IP의 [[some-ip#직렬화|직렬화]]에서 다룬다.
+AUTOSAR R25-11의 BSW 일반 명세는 transformer 모듈로 COM Based Transformer(ComXf), E2E Transformer(E2EXf), SOME/IP Transformer(SomeIpXf), [[autosar-communication-stack#Data Distribution Service|DDS]] Transformer(DdsXf)를 두고, 모두 Communication Services 층에 놓는다.[@autosar-cp-sws-bswgeneral-2025] SOME/IP Transformer가 따르는 형식은 SOME/IP의 [[some-ip#직렬화|직렬화]]에서 다룬다.
