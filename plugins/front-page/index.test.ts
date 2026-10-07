@@ -66,7 +66,7 @@ describe("frontPage의 최근 변경", () => {
   // 주간 소식, 태그 목록, 대문도 지금 있는 페이지라, 빠지는 까닭이 "사라진 페이지"가 아니게 한다
   const pages = [
     ...["can-frame", "can-fd", "uds", "doip"].map((slug) => page(slug, "network/can")),
-    ...["news/2026-W40", "news/index", "tags/network/can", "index"].map((slug) => page(slug)),
+    ...["news/2026-w40", "news/index", "tags/network/can", "index"].map((slug) => page(slug)),
   ]
   const days = (...commits: FrontPageCommit[]) => frontPage({ pages, commits }).recentChanges
   const recent = (...commits: FrontPageCommit[]) => days(...commits).flatMap((day) => day.changes)
@@ -120,7 +120,7 @@ describe("frontPage의 최근 변경", () => {
         "content: CAN 주제 정리 (#30)",
         "2026-10-02T10:00:00+09:00",
         "can-frame.md",
-        "news/2026-W40.md",
+        "news/2026-w40.md",
         "news/index.md",
         "tags/network/can.md",
         "index.md",
@@ -197,24 +197,20 @@ describe("frontPage의 최근 변경", () => {
 })
 
 describe("frontPage의 주간 소식", () => {
-  // 슬러그는 사이트가 소문자로 바꾼다(news/2026-w41). 주차는 파일 이름의 것을 쓴다.
   const issue = (week: string, ...titles: string[]): FrontPageIssue => ({
-    slug: `news/${week.toLowerCase()}`,
-    title: week,
+    slug: `news/${week}`,
     week,
-    start: "2026-10-05",
-    end: "2026-10-11",
     items: titles.map((title) => ({ id: title, title, regions: [], date: "2026-10-06" })),
   })
   const latest = (...news: FrontPageIssue[]) => frontPage({ pages: [], news }).latestNews
 
   test("주차가 가장 늦은 호를 고른다", () => {
     const picked = latest(
-      issue("2026-W09", "가"),
-      issue("2026-W41", "나", "다"),
-      issue("2026-W10", "라"),
+      issue("2026-w09", "가"),
+      issue("2026-w41", "나", "다"),
+      issue("2026-w10", "라"),
     )
-    assert.strictEqual(picked?.week, "2026-W41")
+    assert.strictEqual(picked?.week, "2026-w41")
     assert.deepStrictEqual(
       picked?.days.flatMap((day) => day.items.map((item) => item.title)),
       ["나", "다"],
@@ -222,11 +218,11 @@ describe("frontPage의 주간 소식", () => {
   })
 
   test("해가 바뀌면 새해의 1주가 지난해의 마지막 주보다 늦다", () => {
-    assert.strictEqual(latest(issue("2026-W01", "가"), issue("2025-W52", "나"))?.week, "2026-W01")
+    assert.strictEqual(latest(issue("2026-w01", "가"), issue("2025-w52", "나"))?.week, "2026-w01")
   })
 
   test("소식 항목을 발행일마다 묶어 이른 날부터 주고, 같은 날은 파일 순서를 지킨다", () => {
-    const news = issue("2026-W41")
+    const news = issue("2026-w41")
     news.items = [
       { id: "a", title: "가", regions: ["network"], date: "2026-10-08" },
       { id: "b", title: "나", regions: [], date: "2026-10-05" },

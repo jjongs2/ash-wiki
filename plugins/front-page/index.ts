@@ -55,15 +55,11 @@ export interface RecentChange {
   pages: string[]
 }
 
-// 주간 소식 한 호. week는 파일 이름의 ISO 주차(2026-W41)이고 slug는 소문자로 바뀐 슬러그(news/2026-w41)다.
-// start와 end는 그 주의 월요일과 일요일이다. items는 소식 항목의 앵커, 원어 제목, 구역(기타는 빈 목록),
-// 발행일(YYYY-MM-DD)이고 파일에 적은 순서다.
+// 주간 소식 한 호. week는 ISO 주차(2026-w41)이고 slug는 news/<주차>다. items는 소식 항목의 앵커, 원어 제목,
+// 구역(기타는 빈 목록), 발행일(YYYY-MM-DD)이고 파일에 적은 순서다.
 export interface FrontPageIssue {
   slug: string
-  title: string
   week: string
-  start: string
-  end: string
   items: FrontPageNewsItem[]
 }
 
@@ -110,7 +106,7 @@ function localDay(time: number): string {
  *   content 폴더 밖의 파일은 커밋 목록에 오지 않는다(readCommits).
  *   묶음은 날짜별로 모아 최근 날짜부터 준다. RECENT_CHANGES_LIMIT 묶음을 채운 날까지 주고, 그날은 끝까지 준다.
  *   날짜 하나의 묶음이 중간에서 잘려 그날 작업이 그것뿐인 것처럼 보이지 않게 한다.
- * - 최신 호: 주차가 가장 늦은 주간 소식이다. ISO 주차(2026-W41)는 연도 네 자리와 주 두 자리라 글자 순서가
+ * - 최신 호: 주차가 가장 늦은 주간 소식이다. ISO 주차(2026-w41)는 연도 네 자리와 주 두 자리라 글자 순서가
  *   주차 순서와 같다(형식은 docs/weekly-news.md). 소식 항목은 발행일마다 묶어 이른 날부터 주고, 같은 날은
  *   파일에 적은 순서를 지킨다. 주간 소식 페이지와 같은 순서다. 주간 소식이 없으면 null이다.
  */
@@ -292,8 +288,8 @@ const CSS = `.front-regions {
 //   굵게 쓴다.
 // - 주간 소식도 같은 타임라인이다. 발행일마다 마디를 두고, 그 아래 소식 항목의 제목과, 제목 아래 작은 구역
 //   칩을 둔다. 최근 변경의 제목과 보조 글자 줄과 같은 짜임이다. 칩의 꼴(.news-chip)은 주간 소식 플러그인
-//   (plugins/weekly-news)의 CSS가 정하고, 여기서는 크기만 줄인다. 칸 제목 줄의 오른쪽에 전체 보기와 지난 호를
-//   보조 글자색으로 두고, 제목 아래에 호의 기간을 보조 글자로 쓴다.
+//   (plugins/weekly-news)의 CSS가 정하고, 여기서는 크기만 줄인다. 칸 제목 줄의 오른쪽에 요약 보기(그 호)와
+//   지난 호를 보조 글자색으로 둔다.
 const COLUMNS_CSS = `.front-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -404,13 +400,6 @@ li.front-day li {
 .front-columns .front-news-head h2 {
   margin: 0;
 }
-.front-news-week {
-  display: block;
-  margin-top: 0.15rem;
-  color: var(--gray);
-  font-size: 0.8em;
-  font-weight: 600;
-}
 .front-news-links {
   display: flex;
   gap: 0.75rem;
@@ -438,7 +427,7 @@ li.front-day li {
   margin-top: 0.25rem;
 }
 .front-news-chips .news-chip {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
 }
 `
 
@@ -584,16 +573,9 @@ function newsColumn(
     ])
   return [
     el("div", { className: ["front-news-head"] }, [
-      el("div", {}, [
-        el("h2", { id: "주간-소식" }, [text("주간 소식")]),
-        el("span", { className: ["front-news-week"] }, [
-          day(issue.start),
-          text(" ~ "),
-          day(issue.end),
-        ]),
-      ]),
+      el("h2", { id: "주간-소식" }, [text("주간 소식")]),
       el("p", { className: ["front-news-links"] }, [
-        el("a", { href: issueHref, className: ["front-news-action"] }, [text("전체 보기")]),
+        el("a", { href: issueHref, className: ["front-news-action"] }, [text("요약 보기")]),
         el(
           "a",
           {
@@ -682,10 +664,7 @@ const FrontPageBody = () => {
       if (data) {
         news.push({
           slug: file.slug ?? "",
-          title: String(file.frontmatter?.title ?? ""),
           week: data.week,
-          start: data.start,
-          end: data.end,
           items: data.items.map(({ id, title, regions, date }) => ({ id, title, regions, date })),
         })
       }
