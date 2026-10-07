@@ -31,7 +31,7 @@ schedule table은 OS가 시작할 때 자동으로 시작하도록 설정할 수
 
 ## 동기화
 
-AUTOSAR R25-11의 OS 명세는 initial expiry point를 처음 처리하는 때는 사용자가 정하지만, repeating schedule table이 되풀이될 때 initial expiry point를 처리하는 counter 값이 처음과 같다는 보장은 없다고 둔다. schedule table의 duration이 counter의 modulus와 같을 필요가 없기 때문이다. expiry point를 counter의 정해진 절댓값에서 처리하게 하는 것을 **동기화**라 하며, 엔진 제어에서 expiry point를 회전 각도에 맞추거나 계산을 전역(네트워크) 시간 기준에 맞추는 것이 그 쓰임이다. OS 자신은 전역 시간 소스를 주지 않는다.[@autosar-cp-sws-os-2025]
+initial expiry point를 처음 처리하는 때는 사용자가 정하지만, repeating schedule table이 되풀이될 때 initial expiry point를 처리하는 counter 값이 처음과 같다는 보장은 없다. schedule table의 duration이 counter의 modulus와 같을 필요가 없기 때문이다. expiry point를 counter의 정해진 절댓값에서 처리하게 하는 것을 **동기화**라 하며, 엔진 제어에서 expiry point를 회전 각도에 맞추거나 계산을 전역(네트워크) 시간 기준에 맞추는 것이 그 쓰임이다. OS 자신은 전역 시간 소스를 주지 않는다.[@autosar-cp-sws-os-2025]
 
 OS가 지원하는 동기화는 두 가지다.[@autosar-cp-sws-os-2025]
 

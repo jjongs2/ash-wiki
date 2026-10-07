@@ -35,7 +35,7 @@ Services Layer는 기능에 따라 System Services, [[autosar-memory-stack|Memor
 | 갈래                             | 내용                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | System Services                  | 운영체제, [[ecu-state-manager\|EcuM]], [[autosar-error-handling#Det\|Det]], [[diagnostic-event-manager\|Dem]], [[diagnostic-event-manager#FiM\|FiM]], WdgM(Watchdog Manager)이 든다. [[basic-software-mode-manager\|BswM]], [[basic-software-scheduler\|SchM]], [[autosar-communication-stack#통신 모드 관리\|ComM]], StbM(Synchronized Time-Base Manager), Tm(Time Service), Arti(AUTOSAR Run-Time Interface), [[autosar-software-cluster#Software Cluster Connection\|SwCluC]]도 System Services에 든다.[@autosar-cp-sws-bswgeneral-2025] |
-| Memory Services                  | [[nvram-manager\|NVRAM Manager]]와 [[autosar-memory-stack#BndM\|BndM]]이 든다.[@autosar-cp-sws-bswgeneral-2025] 두 모듈 모두 쓰는 비휘발성 메모리를 추상화해 비휘발성 데이터를 다룬다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                                                                                                                                                                                                                                                                                    |
+| Memory Services                  | [[nvram-manager\|NVRAM Manager]]와 [[autosar-memory-stack#BndM\|BndM]]이 든다.[@autosar-cp-sws-bswgeneral-2025]                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Crypto Services                  | 암호 primitive, IDS(Intrusion Detection System) 서비스, 키 저장을 응용에 한결같은 방식으로 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                                                                                                                                                                                                                                                                                                                                                                          |
 | Communication Services           | 차량 네트워크 통신을 맡고, [[autosar-network-management\|네트워크 관리]] 서비스를 준다.[@autosar-cp-sws-bswgeneral-2025]                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | Off-board Communication Services | V2X(Vehicle-to-X) 통신, 차량 안 무선 네트워크, ECU의 차량 밖 통신에 표준화된 접근을 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                                                                                                                                                                                                                                                                                                                                                                                 |
@@ -48,12 +48,10 @@ Off-board Communication Services에는 V2X 모듈 다섯과 중국 V2X 모듈 �
 
 AUTOSAR R25-11 Layered Software Architecture는 BSW 모듈을 driver, interface, handler, manager 네 유형으로 나눈다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-- **Driver**: 내부나 외부 장치를 제어하고 그 장치에 접근하는 기능을 담는다. 마이크로컨트롤러 안의 장치(내부 EEPROM(Electrically Erasable Programmable Read-Only Memory), 내부 [[can|CAN]] 컨트롤러, 내부 ADC(Analog-to-Digital Converter))를 다루는 internal driver는 MCAL에 놓인다. 마이크로컨트롤러 밖 ECU 하드웨어의 장치(외부 EEPROM, 외부 watchdog, 외부 플래시)를 다루는 external driver는 ECU Abstraction Layer에 놓여, MCAL의 드라이버를 거쳐 장치에 접근한다. 다만 외부 플래시처럼 메모리에 매핑된 외부 장치의 드라이버는 마이크로컨트롤러에 의존하므로 MCAL에 놓이고, 마이크로컨트롤러에 직접 접근할 수 있다.
+- **Driver**: 내부나 외부 장치를 제어하고 그 장치에 접근하는 기능을 담는다. 마이크로컨트롤러 안의 장치를 다루는 [[microcontroller-abstraction-layer#Internal driver|internal driver]]는 MCAL에, 마이크로컨트롤러 밖 장치를 다루는 [[ecu-abstraction-layer#External driver|external driver]]는 대개 ECU Abstraction Layer에 놓인다.
 - **Interface**: 아래에 놓인 모듈을 추상화해, 같은 종류의 장치가 몇 개이든 하드웨어로 어떻게 구현되든 그 종류의 장치에 접근하는 일반 API를 준다. 데이터의 내용은 바꾸지 않으며, 대개 ECU Abstraction Layer에 놓인다.
 - **Handler**: 클라이언트 하나나 여럿이 드라이버 하나나 여럿에 동시에, 여러 번, 비동기로 접근하는 것을 제어하는 특수한 interface로, 버퍼링, 큐잉, 중재, 다중화를 한다. 데이터의 내용은 바꾸지 않으며, 그 기능이 드라이버나 interface에 합쳐진 경우가 많다. 예로 [[autosar-adc-driver|ADC Driver]]가 있다.
 - **Manager**: 여러 클라이언트에 특정 서비스를 주는 모듈로, handler 기능만으로는 여러 클라이언트를 추상화하기에 모자랄 때 쓴다. handler 기능에 더해 데이터의 내용을 평가하고 바꿀 수 있으며, 대개 Services Layer에 놓인다. 예로 내부·외부 메모리 장치에 대한 동시 접근을 관리하는 NVRAM Manager가 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
-
-![[diagrams/autosar-internal-external-driver-placement.svg]]
 
 ## 층 사이 접근
 
@@ -67,7 +65,7 @@ Complex Driver가 대개 접근할 수 있는 모듈은 아래와 같다. 그래
 
 - SPI 드라이버와 GPT 드라이버
 - I/O 드라이버. 재진입은 대개 group이나 channel이 다를 때만 되므로, 같은 group이나 channel에 함께 접근하지 않도록 설정에서 챙긴다.
-- 메모리 스택의 유일한 접근점인 NVRAM Manager, watchdog 스택의 유일한 접근점인 WdgM
+- 메모리 스택에 접근할 때 거치는 NVRAM Manager, watchdog 스택에 접근할 때 거치는 WdgM
 - 통신 스택의 버스·프로토콜 독립 접근점인 PDU Router, 버스별 접근점인 버스별 interface 모듈, NM(Network Management) 스택의 접근점인 NM Interface 모듈
 - 상태 관리의 접근점인 ComM(상위 층에서만)과 BswM
 - Det, Dem, Dlt
@@ -99,7 +97,7 @@ AUTOSAR R25-11 Release Overview는 BSW 할당 지원이 AUTOSAR 4.0.3과 하위 
 
 ### 안전 관련 ECU
 
-AUTOSAR R25-11 Layered Software Architecture는 안전 관련 ECU를 위한 방법 둘을 둔다. 하나는 BSW 모듈을 모두 요구되는 [[automotive-safety-integrity-level|ASIL]]로 개발하는 것이고, 다른 하나는 고른 모듈만 ASIL로 개발하고 ASIL 모듈과 비ASIL 모듈을 서로 다른 파티션에 나누는 것(BSW 분산)이다. 파티션은 [[autosar-os-application|OS-Application]]을 바탕으로 한다. 두 번째 방법의 예로, watchdog 스택(WdgM, WdgIf, Wdg)을 ASIL BSW 파티션에 따로 두고 나머지 BSW를 QM(Quality Management) BSW 파티션에 두면, ASIL SW-C와 비ASIL SW-C가 모두 RTE를 거쳐 WdgM에 접근할 수 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+AUTOSAR R25-11 Layered Software Architecture는 안전 관련 ECU를 위한 방법 둘을 둔다. 하나는 BSW 모듈을 모두 요구되는 [[automotive-safety-integrity-level|ASIL]]로 개발하는 것이고, 다른 하나는 고른 모듈만 ASIL로 개발하고 ASIL 모듈과 비ASIL 모듈을 서로 다른 파티션에 나누는 것(BSW 분산)이다. 파티션은 [[autosar-os-application|OS-Application]]을 바탕으로 한다. 두 번째 방법의 예로, watchdog 스택(WdgM, WdgIf(Watchdog Interface), Wdg(Watchdog Driver))을 ASIL BSW 파티션에 따로 두고 나머지 BSW를 QM(Quality Management) BSW 파티션에 두면, ASIL SW-C와 비ASIL SW-C가 모두 RTE를 거쳐 WdgM에 접근할 수 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ![[diagrams/bsw-asil-qm-partitions.svg]]
 

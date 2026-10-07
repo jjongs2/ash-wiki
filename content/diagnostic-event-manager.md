@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-07
 ---
 
-AUTOSAR R25-11의 Dem 명세는 **Diagnostic Event Manager**(Dem)를 진단 이벤트(오류)와 그에 딸린 데이터를 처리하고 저장하는 서비스 컴포넌트로 정의한다. Dem은 event memory에 저장된 DTC(Diagnostic Trouble Code)를 모두 읽어 주는 일처럼 고장 정보를 Dcm(Diagnostic Communication Manager)에 주고, 응용 계층과 다른 BSW(Basic Software) 모듈에 인터페이스를 준다. 이 명세는 완성차 업체와 부품 공급자가 함께 쓰는 "진단 고장 메모리"의 공통 접근을 목표로 하며, 내부 동작의 일부는 제조사마다 정한다.[@autosar-cp-sws-diagnosticeventmanager-2025] 진단 서비스의 처리는 [[uds|UDS]]에서 다룬다.
+AUTOSAR R25-11의 Dem 명세는 **Diagnostic Event Manager**(Dem)를 진단 이벤트(오류)와 그에 딸린 데이터를 처리하고 저장하는 서비스 컴포넌트로 정의한다. Dem은 event memory에 저장된 DTC(Diagnostic Trouble Code)를 모두 읽어 주는 일처럼 고장 정보를 Dcm(Diagnostic Communication Manager)에 주고, 응용 계층과 다른 BSW(Basic Software) 모듈에 인터페이스를 준다. 이 명세는 완성차 업체와 부품 공급자가 함께 쓰는 "진단 고장 메모리"의 공통 접근을 목표로 하며, 내부 동작의 일부는 제조사마다 정한다.[@autosar-cp-sws-diagnosticeventmanager-2025]
 
 ## 진단 이벤트
 
@@ -19,7 +19,7 @@ AUTOSAR R25-11의 BSW 일반 명세는 production error와 extended production e
 
 ## Debouncing
 
-AUTOSAR R25-11의 Dem 명세는 이벤트마다 debouncing 알고리즘을 설정할 수 있게 한다(`DemDebounceAlgorithmClass`). Dem 안에서 돌리는 알고리즘을 설정한 이벤트는 Dem이 debouncing을 하고, 그렇지 않은 이벤트는 SW-C나 BSW의 monitor가 debouncing을 마친 뒤 상태를 보고한다. 알고리즘에는 counter 기반, time 기반, monitor 안에서 하는 것이 있다. Counter 기반 알고리즘은 이벤트마다 내부 debounce counter를 두고, 그 값과 범위를 UDS의 fault detection counter(−128…+127)로 선형으로 옮긴다. Failed 상태를 나타내는 문턱값과 passed 상태를 나타내는 문턱값은 각각 이벤트마다 설정한다.[@autosar-cp-sws-diagnosticeventmanager-2025]
+AUTOSAR R25-11의 Dem 명세는 이벤트마다 debouncing 알고리즘을 설정할 수 있게 한다(`DemDebounceAlgorithmClass`). Dem 안에서 돌리는 알고리즘을 설정한 이벤트는 Dem이 debouncing을 하고, 그렇지 않은 이벤트는 SW-C나 BSW의 monitor가 debouncing을 마친 뒤 상태를 보고한다. 알고리즘에는 counter 기반, time 기반, monitor 안에서 하는 것이 있다. Counter 기반 알고리즘은 이벤트마다 내부 debounce counter를 두고, 그 값과 범위를 [[uds|UDS]]의 fault detection counter(−128…+127)로 선형으로 옮긴다. Failed 상태를 나타내는 문턱값과 passed 상태를 나타내는 문턱값은 각각 이벤트마다 설정한다.[@autosar-cp-sws-diagnosticeventmanager-2025]
 
 ## Event memory와 DTC
 

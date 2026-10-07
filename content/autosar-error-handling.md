@@ -36,7 +36,7 @@ API로 알릴 때 기본 반환형은 성공을 뜻하는 E_OK(값 0)와 실패�
 
 ## Det
 
-AUTOSAR R25-11의 Det 명세는 **Det**를 BSW에서 감지한 모든 development error와 runtime error를 보고받는 모듈로 정의한다. API 매개변수로 오류를 감지한 모듈, 함수, 오류의 종류를 추적할 수 있다. API 뒤의 기능은 이 명세의 범위 밖이어서, 디버거 중단점 걸기, 보고된 오류 세기, RAM(Random-Access Memory) 버퍼에 호출과 매개변수 기록하기, 통신 인터페이스로 외부 로거에 보내기 같은 전략을 개발자와 통합자가 고른다.[@autosar-cp-sws-defaulterrortracer-2025]
+AUTOSAR R25-11의 Det 명세는 **Det**(Default Error Tracer)를 BSW에서 감지한 모든 development error와 runtime error를 보고받는 모듈로 정의한다. API 매개변수로 오류를 감지한 모듈, 함수, 오류의 종류를 추적할 수 있다. API 뒤의 기능은 이 명세의 범위 밖이어서, 디버거 중단점 걸기, 보고된 오류 세기, RAM(Random-Access Memory) 버퍼에 호출과 매개변수 기록하기, 통신 인터페이스로 외부 로거에 보내기 같은 전략을 개발자와 통합자가 고른다.[@autosar-cp-sws-defaulterrortracer-2025]
 
 `Det_ReportError`는 인자 넷을 받는다.[@autosar-cp-sws-defaulterrortracer-2025]
 

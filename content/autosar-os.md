@@ -82,7 +82,7 @@ protection hook을 두지 않으면 OS는 보호 오류에서 `ShutdownOS`를 �
 
 ## 하드웨어와 API의 전제
 
-AUTOSAR R25-11의 OS 명세는 OS가 인터럽트 제어 레지스터, 프로세서 상태 워드, 스택 포인터 같은 하드웨어 자원에 자유롭게 접근해 스스로 관리한다고 전제한다. 확장 기능은 하드웨어 요건을 더하며, 그 기능을 쓰지 않는 시스템에는 그 요건이 없다.[@autosar-cp-sws-os-2025]
+OS는 인터럽트 제어 레지스터, 프로세서 상태 워드, 스택 포인터 같은 하드웨어 자원에 자유롭게 접근해 스스로 관리하는 것을 전제로 한다. 확장 기능은 하드웨어 요건을 더하며, 그 기능을 쓰지 않는 시스템에는 그 요건이 없다.[@autosar-cp-sws-os-2025]
 
 - [[autosar-os-application#Memory protection|memory protection]]에는 하드웨어 MPU(Memory Protection Unit)가 있어야 한다.
 - timing protection에는 실행 시간과 도착률을 감시할 타이머 하드웨어가 있어야 한다.

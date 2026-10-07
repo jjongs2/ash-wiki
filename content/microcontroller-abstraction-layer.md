@@ -30,7 +30,7 @@ MCAL은 비슷한 종류의 모듈을 묶은 여섯 모듈 그룹으로 이루�
 | Wireless Communication Drivers                         | 차량 안이나 차량 밖 통신에 쓰는 무선 네트워크 시스템의 드라이버. Wireless Ethernet Driver가 든다.                                                                                                                                  |
 | I/O Drivers                                            | 아날로그·디지털 입출력의 드라이버. [[autosar-port-driver\|Port]], [[autosar-dio-driver\|DIO]], [[autosar-adc-driver\|ADC]], [[autosar-pwm-driver\|PWM]], [[autosar-icu-driver\|ICU]], [[autosar-ocu-driver\|OCU]] 드라이버가 든다. |
 
-AUTOSAR R25-11 Layered Software Architecture는 Microcontroller Drivers에 Core Test를, Memory Drivers에 RAM Test와 Flash Test를, Communication Drivers에 I2C Driver를 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+Microcontroller Drivers에는 Core Test가, Memory Drivers에는 RAM Test와 Flash Test가, Communication Drivers에는 I2C Driver가 든다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 AUTOSAR R25-11의 Core Test 명세는 **Core Test**(CorTst)를 코어, 곧 CPU와 그에 가까이 붙은 MMU(Memory Management Unit)·MPU(Memory Protection Unit)·인터럽트 컨트롤러 같은 단위를 시험하는 모듈로 정의한다. Core Test를 구현하려면 코어 구조를 깊이 알아야 하므로, 실리콘 제조사가 AUTOSAR API로 구현해 라이브러리로 내놓는 것을 전제한다.[@autosar-cp-sws-coretest-2025]
 

@@ -73,10 +73,10 @@ RTE가 돕는 방법은 셋이다.[@autosar-cp-sws-rte-2025]
 
 Extended buffer access에는 준비 수준이 셋 있다. Level 1은 빌드가 끝난 바이너리에서 버퍼 쓰기를 고쳐 bypass 값을 넣는 post-build hooking 도구를 위한 것이고, level 2와 3은 RTE를 생성할 때 bypass에 필요한 코드를 넣어 그 뒤 바이너리를 고치지 않는 non post-build hooking을 위한 것이다. Level 2는 RP global buffer에 더해 그 버퍼를 갱신할지 정하는 RP enabler flag를 두고, level 3은 여기에 ECU가 만든 원래 값과 rapid prototyping이 바꾼 값을 함께 기록한다.[@autosar-cp-sws-rte-2025]
 
-RP global buffer에는 [[can|CAN]]이나 이더넷 위의 XCP 같은 RP service component를 ECU에 더해 서비스로 접근할 수도 있다. 이 서비스는 빌드 전에 소스 코드로 통합하거나, 빌드가 끝난 ECU 이미지의 바이너리를 고쳐 통합한다. RTE 생성기는 RapidPrototypingScenario의 RptProfile과 RptContainer에 따라 runnable 실행 앞뒤에 RP service function 호출을 넣는다.[@autosar-cp-sws-rte-2025]
+RP global buffer에는 [[can|CAN]]이나 [[ethernet|이더넷]] 위의 XCP 같은 RP service component를 ECU에 더해 서비스로 접근할 수도 있다. 이 서비스는 빌드 전에 소스 코드로 통합하거나, 빌드가 끝난 ECU 이미지의 바이너리를 고쳐 통합한다. RTE 생성기는 RapidPrototypingScenario의 RptProfile과 RptContainer에 따라 runnable 실행 앞뒤에 RP service function 호출을 넣는다.[@autosar-cp-sws-rte-2025]
 
 ## 통신 데이터의 주기 처리
 
 RTE는 ComData(시그널이나 시그널 그룹)를 주기적으로 받는 처리를 둔다. RTE는 ComData에 매핑된 VariableDataPrototype을 태스크에 매핑한 설정(`RteComDataMapping`)에 따라 주기 함수 `Rte_ComDataMainFunction`을 생성하고, 매핑된 태스크 안의 정한 자리에서 실행한다. 이 처리는 명시적 읽기로 접근하는 sender-receiver 통신에만 쓸 수 있고, client-server 통신, trigger 통신, 암묵적 읽기·쓰기에는 쓸 수 없다.[@autosar-cp-sws-rte-2025]
 
-AUTOSAR R25-11은 COM Handler 개념을 들였다. 이 개념은 응용이 통신 시그널이 ECU 사이의 것인지 ECU 안의 것인지에서 더 독립되게 해 코드 변경을 줄이고 재사용성과 유연성을 높이며, 이를 위해 통신 오류를 추상화하고, 데이터 무결성, 수신 deadline, 데이터 무효, 값 범위의 오류를 감시해 보고한다.[@autosar-cp-tr-releaseoverview-2025]
+AUTOSAR R25-11은 응용이 통신 시그널이 ECU 사이의 것인지 ECU 안의 것인지에서 더 독립되게 하는 COM Handler 개념을 둔다. 이 개념은 코드 변경을 줄이고 재사용성과 유연성을 높이며, 이를 위해 통신 오류를 추상화하고, 데이터 무결성, 수신 deadline, 데이터 무효, 값 범위의 오류를 감시해 보고한다.[@autosar-cp-tr-releaseoverview-2025]

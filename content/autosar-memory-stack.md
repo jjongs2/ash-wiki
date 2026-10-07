@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## 층
 
-- **Memory Services**: NvM과 BndM으로 이루어진다.[@autosar-cp-sws-bswgeneral-2025] AUTOSAR R25-11 Layered Software Architecture는 두 모듈 모두 쓰는 비휘발성 메모리를 추상화해 비휘발성 데이터를 다루도록 정한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+- **Memory Services**: AUTOSAR R25-11 Layered Software Architecture는 이 층의 NvM과 BndM이 모두 쓰는 비휘발성 메모리를 추상화해 비휘발성 데이터를 다루도록 정한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 - **Memory Hardware Abstraction**: MemIf, Fee, Ea, MemAcc로 이루어진다. 메모리 장치가 칩 안에 있는지 보드 위에 있는지와 ECU 하드웨어 배치를 감추고, 위 층에 메모리 장치와 상관없는 인터페이스를 준다.
 - **Memory Drivers**: Mem이 플래시, EEPROM(Electrically Erasable Programmable Read-Only Memory) 같은 메모리 장치를 읽고, 쓰고, 지우고, 비었는지 검사하는 기본 서비스를 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025][@autosar-cp-sws-memorydriver-2025]
 
@@ -53,8 +53,8 @@ BndM은 블록을 포인터로 바로 접근할 수 있는 메모리에 두고, 
 
 AUTOSAR R25-11 Layered Software Architecture는 BndM을 쓰는 예를 든다. 쓰기는 외부 진단 요청 [[uds#서비스|WriteDataByIdentifier]]로 시작된다. Dcm(Diagnostic Communication Manager)이 받은 직렬화 데이터를 transformer로 풀어 `BndM_WriteStart`, `BndM_WriteBlock_<shortname>`, `BndM_WriteFinalize`를 차례로 부른다. [[autosar-software-component|SW-C]]는 `BndM_GetBlockPtr`로 데이터를 읽고, BndM은 MemIf와 Fee를 거치지 않고 Mem으로 플래시에 접근한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-AUTOSAR R25-11 Layered Software Architecture는 메모리 서비스 모듈 셋을 아래처럼 견준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+메모리 서비스 모듈 셋을 견주면 아래와 같다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-- NvM은 오류 정보, 특수 설정, 상태, 진단 데이터 같은 모듈 데이터를 저장한다. 여러 BSW와 SW-C가 함께 읽고 쓰며, 대개 시동 때 읽고 종료 때 쓰지만 정상 동작 중에도 읽고 쓸 수 있다. 사용자마다 바이트에서 몇 KiB를 다룬다. 메모리에 직접 접근하거나 SPI(Serial Peripheral Interface)처럼 간접으로 접근하며, 같은 하드웨어 구역에 쓰는 동안 읽기가 안 될 수 있어 늘 데이터를 버퍼에 둔다. 하드웨어의 예는 내부 data flash(Fee를 거쳐)와 외부 EEPROM·data flash다.
-- BndM은 차량별 데이터를 저장한다. 쓰기는 정비소 같은 통제된 환경에서 진단으로만 아주 드물게 하고, 여러 SW-C가 포인터로 함께 바로 읽는다. 크기는 대개 여러 KiB다. 하드웨어의 예는 내부 data flash와 code flash다.
-- FOTA(Firmware Over the Air) 관리자는 차종별 데이터나 코드를 저장하며, 사용자는 대개 하나이고 크기는 MiB 단위다. 끊고 선점할 수 있는 갱신 절차로 새 데이터를 이를테면 여러 주행 사이클에 걸쳐 백그라운드에서 쓰고, 쓰는 동안 읽을 수 있어야 한다. 하드웨어의 예는 내부·외부 code flash다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+- NvM은 오류 정보, 특수 설정, 상태, 진단 데이터 같은 모듈 데이터를 저장한다. 여러 BSW와 SW-C가 함께 읽고 쓰며, 대개 시동 때 읽고 종료 때 쓰지만 정상 동작 중에도 읽고 쓸 수 있다. 사용자마다 바이트에서 몇 KiB를 다룬다. 메모리에 직접 접근하거나 SPI(Serial Peripheral Interface)처럼 간접으로 접근하며, 같은 하드웨어 구역에 쓰는 동안 읽기가 안 될 수 있어 늘 데이터를 버퍼에 둔다. 하드웨어의 예는 내부 데이터 플래시(Fee를 거쳐)와 외부 EEPROM·데이터 플래시다.
+- BndM은 차량별 데이터를 저장한다. 쓰기는 정비소 같은 통제된 환경에서 진단으로만 아주 드물게 하고, 여러 SW-C가 포인터로 함께 바로 읽는다. 크기는 대개 여러 KiB다. 하드웨어의 예는 내부 데이터 플래시와 코드 플래시다.
+- FOTA(Firmware Over the Air) 관리자는 차종별 데이터나 코드를 저장하며, 사용자는 대개 하나이고 크기는 MiB 단위다. 끊고 선점할 수 있는 갱신 절차로 새 데이터를 이를테면 여러 주행 사이클에 걸쳐 백그라운드에서 쓰고, 쓰는 동안 읽을 수 있어야 한다. 하드웨어의 예는 내부·외부 코드 플래시다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]

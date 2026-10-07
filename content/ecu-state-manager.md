@@ -19,7 +19,7 @@ EcuM은 STARTUP, UP, SHUTDOWN, SLEEP, OFF 단계를 거친다. Flexible ECU mana
 
 **Shutdown target**은 UP 단계를 떠난 상태 기계가 향하는, 코드를 실행하지 않는 상태로, Off, Sleep, Reset이 있다. BswM이 ECU 자원 대부분을 다루므로, shutdown target을 언제 무엇으로 정할지도 BswM이 직접이나 간접으로 정한다. Off에 닿으려면 ECU가 스스로 전원을 끌 수 있어야 하는데, 모든 하드웨어 설계가 이를 갖추지는 않는다. EcuM은 설정할 수 있는 sleep 모드 묶음을 둘 수 있고 설정할 수 있는 reset 모드 묶음은 반드시 두며, reset 모드에는 적어도 `Mcu_PerformReset`, `WdgM_PerformReset`, DIO(Digital Input/Output)·SPI(Serial Peripheral Interface)로 I/O 핀 토글하기가 든다.[@autosar-cp-sws-ecustatemanager-2025]
 
-AUTOSAR R25-11 Release Overview는 ECU를 늘 끌 수 있는 것은 아니라는 점을 EcuM 명세의 한계로 둔다. OFF에는 power hold 회로 같은 ECU 전용 하드웨어가 있어야 닿을 수 있고, 그 하드웨어가 없으면 이 명세는 reset을 대신 하기를 권하되 다른 기본 동작도 허용한다.[@autosar-cp-tr-releaseoverview-2025]
+AUTOSAR R25-11 Release Overview는 ECU를 늘 끌 수 있는 것은 아니라는 점을 EcuM 명세의 한계로 둔다. OFF에는 power hold 회로 같은 ECU 전용 하드웨어가 있어야 닿을 수 있고, 그 하드웨어가 없으면 EcuM 명세는 reset을 대신 하기를 권하되 다른 기본 동작도 허용한다.[@autosar-cp-tr-releaseoverview-2025]
 
 ## 멀티코어
 
