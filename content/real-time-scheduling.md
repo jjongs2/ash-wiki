@@ -45,7 +45,7 @@ Mok은 모든 프로세스의 앞으로의 요청 시각을 확실히 예측하�
 
 ## POSIX의 스케줄링 정책
 
-POSIX.1-2024는 [[ieee-1003-1#범위|Process Scheduling 옵션]]을 지원하는 구현에 스레드마다 스케줄링 정책과 우선순위를 두게 하고 아래 정책을 정하며, `SCHED_FIFO`, `SCHED_RR`, `SCHED_SPORADIC`에는 우선순위를 32개 이상 두도록 요구한다. `SCHED_SPORADIC`은 선택 옵션이다.[@ieee-1003-1-process-scheduling-2024] POSIX.1-2024는 구현이 `<unistd.h>`의 `_POSIX_PRIORITY_SCHEDULING`으로 Process Scheduling 옵션 지원을 나타내게 한다.[@ieee-1003-1-unistd-h-2024] POSIX.1-2024는 우선순위를 프로세스나 스레드에 딸린, 스케줄링 정책이 정한 범위 안의 음이 아닌 정수로 정의하고, 값이 클수록 우선순위가 높다고 정한다.[@ieee-1003-1-definitions-2024]
+POSIX.1-2024는 [[ieee-1003-1#범위|Process Scheduling 옵션]]을 지원하는 구현에 스레드마다 스케줄링 정책과 우선순위를 두게 하고 아래 정책을 정하며, `SCHED_FIFO`, `SCHED_RR`, `SCHED_SPORADIC`에는 우선순위를 32개 이상 두도록 요구한다. `SCHED_SPORADIC`은 선택 옵션이다.[@ieee-1003-1-process-scheduling-2024]
 
 | 정책             | 동작                                                                                                                                                                                   |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -53,6 +53,8 @@ POSIX.1-2024는 [[ieee-1003-1#범위|Process Scheduling 옵션]]을 지원하는
 | `SCHED_RR`       | `SCHED_FIFO`와 같되, 스레드가 `sched_rr_get_interval()`이 돌려주는 시간 이상 실행되면 그 목록의 맨 뒤로 간다.                                                                          |
 | `SCHED_SPORADIC` | 보충 주기와 실행 용량을 두는 [[aperiodic-server#Sporadic server\|sporadic server]] 정책으로, 용량이 남은 동안은 `sched_priority`로, 용량을 다 쓰면 `sched_ss_low_priority`로 실행한다. |
 | `SCHED_OTHER`    | 구현이 반드시 두는 정책으로, `SCHED_FIFO`나 `SCHED_RR`과 똑같이 동작해도 된다. 다른 정책의 스레드와 섞였을 때의 효과는 구현이 정한다.                                                  |
+
+POSIX.1-2024는 구현이 `<unistd.h>`의 `_POSIX_PRIORITY_SCHEDULING`으로 Process Scheduling 옵션 지원을 나타내게 한다.[@ieee-1003-1-unistd-h-2024] POSIX.1-2024는 우선순위를 프로세스나 스레드에 딸린, 스케줄링 정책이 정한 범위 안의 음이 아닌 정수로 정의하고, 값이 클수록 우선순위가 높다고 정한다.[@ieee-1003-1-definitions-2024]
 
 ## 같은 우선순위(타임 슬라이싱)
 

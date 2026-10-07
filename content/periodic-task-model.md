@@ -47,7 +47,7 @@ Liu와 Layland는 다섯 가정 가운데 요청이 주기적이라는 가정과
 
 Mok은 1983년 박사 학위논문에서 주기 프로세스와 함께 sporadic 프로세스를 모델링했다. 최소 간격은 sporadic 프로세스가 시스템 자원을 독점하지 못하게 하려고 둔다.[@mok-fundamental-design-1983]
 
-주기적이지 않은 태스크를 aperiodic 태스크라 부르고, aperiodic 태스크 가운데 시스템에 줄 수 있는 부하에 상한이 있는 것을 sporadic 태스크라 부르는 쓰임도 있다. 이 쓰임에서 sporadic 태스크는 길이 $T_i$인 어느 구간에서든 release되는 job들의 계산 시간의 합이 $C_i$ 이하다. 한 가지 중요한 경우로 $C_i$는 job 하나의 계산 시간 상한이고, $T_i$는 release 사이의 최소 간격이다. [[aperiodic-server|비주기 서버]]는 aperiodic 태스크를 엄격한 주기 태스크 모델 안에 받아들이게 했다.[@sha-real-time-scheduling-theory-2004]
+주기적이지 않은 태스크를 aperiodic 태스크라 부르고, aperiodic 태스크 가운데 시스템에 줄 수 있는 부하에 상한이 있는 것을 sporadic 태스크라 부르는 쓰임도 있다. 이 쓰임에서 sporadic 태스크는 길이 $T_i$인 어느 구간에서든 release되는 job들의 계산 시간의 합이 $C_i$ 이하다. 한 가지 중요한 경우로 $C_i$는 job 하나의 계산 시간 상한이고, $T_i$는 release 사이의 최소 간격이다. [[aperiodic-server|aperiodic server]]는 aperiodic 태스크를 엄격한 주기 태스크 모델 안에 받아들이게 했다.[@sha-real-time-scheduling-theory-2004]
 
 ## Release와 jitter
 

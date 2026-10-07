@@ -31,7 +31,7 @@
   <path d="M160 103 L165 113 L155 113 z" fill="var(--orange, #b0540d)" />
   <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
     <text x="80" y="128">release</text>
-    <text x="160" y="128">비주기 요청</text>
+    <text x="160" y="128">aperiodic 요청</text>
   </g>
 
   <!-- deferrable server -->

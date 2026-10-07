@@ -9,13 +9,13 @@ verified: 2026-10-07
 
 FreeRTOS의 소프트웨어 타이머는 커널이 구현하고 관리하며, 하드웨어 지원이 필요 없고 하드웨어 타이머나 하드웨어 카운터와 상관이 없다. FreeRTOS는 주기 타이머를 **auto-reload 타이머**라 부른다.[@freertos-software-timer-management-2026]
 
-µC/OS-III의 콜백에서는 타이머 태스크를 블록시키거나 지우는 호출을 해서는 안 된다.[@micrium-ucos-iii-timer-management-2026] FreeRTOS의 콜백은 짧게 두어야 하고 Blocked 상태에 들어가서는 안 된다. 콜백을 실행하는 태스크가 Blocked 상태에 들기 때문이다.[@freertos-software-timer-management-2026]
+µC/OS-III의 콜백에서는 타이머 [[task|태스크]]를 블록시키거나 지우는 호출을 해서는 안 된다.[@micrium-ucos-iii-timer-management-2026] FreeRTOS의 콜백은 짧게 두어야 하고 Blocked 상태에 들어가서는 안 된다. 콜백을 실행하는 태스크가 Blocked 상태에 들기 때문이다.[@freertos-software-timer-management-2026]
 
-## 콜백이 도는 문맥
+## 콜백이 도는 context
 
-FreeRTOS의 소프트웨어 타이머 콜백은 모두 RTOS daemon 태스크(timer service 태스크)의 문맥에서 실행된다. daemon 태스크는 스케줄러가 시작될 때 자동으로 만들어지는 보통 태스크이고, 우선순위와 스택 크기는 `configTIMER_TASK_PRIORITY`와 `configTIMER_TASK_STACK_DEPTH`로 정한다. 타이머 API(Application Programming Interface) 함수는 timer command queue로 daemon 태스크에 명령을 보내고, daemon 태스크는 다른 태스크처럼 스케줄되어 실행할 수 있는 태스크 가운데 우선순위가 가장 높을 때만 명령을 처리하거나 콜백을 실행한다.[@freertos-software-timer-management-2026]
+FreeRTOS의 소프트웨어 타이머 콜백은 모두 RTOS daemon 태스크(timer service 태스크)의 context에서 실행된다. daemon 태스크는 스케줄러가 시작될 때 자동으로 만들어지는 보통 태스크이고, 우선순위와 스택 크기는 `configTIMER_TASK_PRIORITY`와 `configTIMER_TASK_STACK_DEPTH`로 정한다. 타이머 API(Application Programming Interface) 함수는 timer command queue로 daemon 태스크에 명령을 보내고, daemon 태스크는 다른 태스크처럼 스케줄되어 실행할 수 있는 태스크 가운데 우선순위가 가장 높을 때만 명령을 처리하거나 콜백을 실행한다.[@freertos-software-timer-management-2026]
 
-µC/OS-III의 콜백은 µC/OS-III가 만드는 타이머 태스크 `OS_TmrTask()`의 문맥에서 불린다. 타이머 태스크의 우선순위는 `OS_CFG_TMR_TASK_PRIO`로 정하고, 대개 낮음에서 중간 사이에 둔다. 타이머 태스크는 [[system-tick|클록 틱]]과 같은 인터럽트 소스를 쓰지만, 틱 주파수를 소프트웨어로 나눠 대개 10 Hz처럼 더 느리게 갱신된다.[@micrium-ucos-iii-timer-task-2026] µC/OS-III에서 모든 타이머의 해상도는 `OS_CFG_TMR_TASK_RATE_HZ`가 정하고, 타이머는 거친 단위로 쓴다.[@micrium-ucos-iii-timer-management-2026]
+µC/OS-III의 콜백은 µC/OS-III가 만드는 타이머 태스크 `OS_TmrTask()`의 context에서 불린다. 타이머 태스크의 우선순위는 `OS_CFG_TMR_TASK_PRIO`로 정하고, 대개 낮음에서 중간 사이에 둔다. 타이머 태스크는 [[system-tick|클록 틱]]과 같은 인터럽트 소스를 쓰지만, 틱 주파수를 소프트웨어로 나눠 대개 10 Hz처럼 더 느리게 갱신된다.[@micrium-ucos-iii-timer-task-2026] µC/OS-III에서 모든 타이머의 해상도는 `OS_CFG_TMR_TASK_RATE_HZ`가 정하고, 타이머는 거친 단위로 쓴다.[@micrium-ucos-iii-timer-management-2026]
 
 Zephyr 타이머는 커널의 시스템 클록으로 시간을 재고, 만료 함수는 시스템 클록 인터럽트 처리기가 실행한다.[@zephyr-timers-2026]
 
@@ -31,11 +31,11 @@ POSIX 근거 문서에 따르면 시스템이 실시간 응용을 지원하려�
 
 ## 주기 실행
 
-`clock_nanosleep()`의 근거 설명에 따르면 상대 sleep 함수로는 정확한 주기 활성화를 얻지 못한다. 주기 $T$로 도는 프로세스가 지금 시각을 읽고 다음 활성화 시각까지의 간격을 계산해 `nanosleep()`을 부르면, 두 호출 사이에 선점될 때 계산한 간격이 틀려 원하는 때보다 늦게 깨어난다. 절대 시각의 `clock_nanosleep()`은 호출 하나로 원하는 시각까지 멈추므로 이 문제가 없다.[@ieee-1003-1-clock-nanosleep-2024]
+POSIX.1-2024는 `clock_nanosleep()`에 `TIMER_ABSTIME`을 주면 지정한 클록이 절대 시각에 이를 때까지 스레드를 멈추게 하고, 그 시각이 이미 지났으면 곧바로 돌아오게 한다. 플래그가 없으면 지정한 간격 동안 멈추며, 신호로 끊길 때를 빼면 상대 sleep의 정지 시간은 지정한 간격보다 짧지 않다.[@ieee-1003-1-clock-nanosleep-2024]
+
+상대 sleep 함수로는 정확한 주기 활성화를 얻지 못한다. 주기 $T$로 도는 프로세스가 지금 시각을 읽고 다음 활성화 시각까지의 간격을 계산해 `nanosleep()`을 부르면, 두 호출 사이에 선점될 때 계산한 간격이 틀려 원하는 때보다 늦게 깨어난다. 절대 시각의 `clock_nanosleep()`은 호출 하나로 원하는 시각까지 멈추므로 이 문제가 없다.[@ieee-1003-1-clock-nanosleep-2024]
 
 ![[diagrams/relative-vs-absolute-sleep.svg]]
-
-POSIX.1-2024는 `clock_nanosleep()`에 `TIMER_ABSTIME`을 주면 지정한 클록이 절대 시각에 이를 때까지 스레드를 멈추게 하고, 그 시각이 이미 지났으면 곧바로 돌아오게 한다. 플래그가 없으면 지정한 간격 동안 멈추며, 신호로 끊길 때를 빼면 상대 sleep의 정지 시간은 지정한 간격보다 짧지 않다.[@ieee-1003-1-clock-nanosleep-2024]
 
 CMSIS-RTOS2는 `osDelayUntil`이 커널 틱으로 지정한 절대 시각까지 기다리게 하고, 커널 틱 카운터가 넘쳐 되돌아가는 경우도 처리하게 한다. 최대 지연은 $2^{31}-1$틱이다.[@arm-cmsis-rtos2-wait-2026]
 

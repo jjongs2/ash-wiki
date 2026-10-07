@@ -29,7 +29,7 @@ partitioned 스케줄링과 global 스케줄링의 요소를 섞은 방식을 **
 
 ## 최적성과 복잡도
 
-태스크마다 첫 요청 시각, 최대 실행 시간, 상대 마감 시한, 주기를 두고 context switch 시간을 무시하는 [[periodic-task-model|주기 태스크]] 모델에서, [[earliest-deadline-first|EDF]]는 프로세서가 둘 이상이면 최적이 아니다. 같은 모델에서 태스크 집합을, 묶음마다 프로세서 하나에서 EDF로 스케줄할 수 있도록 가장 적은 수의 묶음으로 나누는 문제는 NP-hard다.[@leung-real-time-scheduling-analysis-2005]
+태스크마다 첫 요청 시각, 최대 실행 시간, [[deadline#절대와 상대|상대 마감 시한]], 주기를 두고 context switch 시간을 무시하는 [[periodic-task-model|주기 태스크]] 모델에서, [[earliest-deadline-first|EDF]]는 프로세서가 둘 이상이면 최적이 아니다. 같은 모델에서 태스크 집합을, 묶음마다 프로세서 하나에서 EDF로 스케줄할 수 있도록 가장 적은 수의 묶음으로 나누는 문제는 NP-hard다.[@leung-real-time-scheduling-analysis-2005]
 
 같은 모델에서 태스크 수만큼 우선순위 단계가 있어 태스크마다 서로 다른 우선순위를 줄 때, 상대 마감 시한이 짧을수록 높은 우선순위를 주는 DM(Deadline Monotonic)도 프로세서가 둘 이상이면 최적이 아니고, 묶음마다 프로세서 하나에서 DM으로 스케줄할 수 있도록 가장 적은 수의 묶음으로 나누는 문제는 NP-hard다.[@leung-real-time-scheduling-analysis-2005] 단일 프로세서의 DM은 [[fixed-priority-scheduling#우선순위 배정|고정 우선순위 스케줄링]]에서 다룬다.
 
@@ -53,16 +53,16 @@ partitioned 고정 우선순위 시스템에 쓰는 [[priority-ceiling-protocol|
 
 **MrsP**(Multiprocessor resource sharing Protocol)는 단일 프로세서의 우선순위 상한 프로토콜에 바탕을 둔 다중 프로세서 프로토콜로, 원 논문은 이 프로토콜을 sporadic 태스크 모델의 partitioned 고정 우선순위 시스템에 맞춰 정의했다.[@burns-mrsp-2013]
 
-원 논문의 정의에서 자원은 그 자원을 쓰는 태스크가 있는 프로세서마다 상한을 하나씩 갖고, 그 값은 그 프로세서에 할당된 태스크 가운데 그 자원을 쓰는 태스크의 가장 높은 우선순위다. 자원을 요청한 태스크의 우선순위는 곧바로 그 프로세서의 상한으로 오르고, 요청은 FIFO(First-In First-Out) 순서로 처리된다. 태스크는 자원을 기다리는 동안과 쓰는 동안 그 상한 우선순위로 계속 실행되어, 기다리는 동안은 바쁜 대기한다. 자원을 기다리는 태스크는 같은 자원을 기다리다 선점된 다른 태스크를 대신해 그 임계 구역을 원래의 FIFO 순서대로 실행할 수 있어야 한다.[@burns-mrsp-2013]
+원 논문의 정의에서 자원은 그 자원을 쓰는 태스크가 있는 프로세서마다 상한을 하나씩 갖고, 그 값은 그 프로세서에 할당된 태스크 가운데 그 자원을 쓰는 태스크의 가장 높은 우선순위다. 자원을 요청한 태스크의 우선순위는 곧바로 그 프로세서의 상한으로 오르고, 요청은 FIFO(First-In First-Out) 순서로 처리된다. 태스크는 자원을 기다리는 동안과 쓰는 동안 그 상한 우선순위로 계속 실행되어, 기다리는 동안은 바쁜 대기한다. 자원을 기다리는 태스크는 같은 자원을 기다리다 선점된 다른 태스크를 대신해 그 [[critical-section|임계 구역]]을 원래의 FIFO 순서대로 실행할 수 있어야 한다.[@burns-mrsp-2013]
 
 원 논문은 MrsP를 구현하는 방법 하나로, 자원을 쓰던 태스크가 같은 프로세서의 더 높은 우선순위 태스크에 선점되면 그 자원을 기다리며 바쁜 대기하는 태스크가 있는 프로세서로 옮겨 가 실행하게 하는 방식을 제시한다.[@burns-mrsp-2013]
 
-RTEMS 문서에 따르면 MrsP는 우선순위 상한 프로토콜을 clustered scheduling으로 일반화한 것이다. RTEMS의 MrsP 뮤텍스는 스케줄러 인스턴스마다 상한을 두고, 뮤텍스 소유자의 우선순위를 그 홈 스케줄러 인스턴스의 상한으로 곧바로 올린다. 뮤텍스를 기다리는 스레드는 블록되지 않고 바쁜 대기하며, 뮤텍스 소유자가 선점되면 소유자를 다른 스케줄러 인스턴스로 잠시 옮긴다.[@rtems-mrsp-2025]
+RTEMS 문서에 따르면 MrsP는 우선순위 상한 프로토콜을 clustered scheduling으로 일반화한 것이다. RTEMS의 MrsP [[mutex|뮤텍스]]는 스케줄러 인스턴스마다 상한을 두고, 뮤텍스 소유자의 우선순위를 그 홈 스케줄러 인스턴스의 상한으로 곧바로 올린다. 뮤텍스를 기다리는 스레드는 블록되지 않고 바쁜 대기하며, 뮤텍스 소유자가 선점되면 소유자를 다른 스케줄러 인스턴스로 잠시 옮긴다.[@rtems-mrsp-2025]
 
 ### OMIP
 
-**OMIP**(O(m) Independence-Preserving Protocol)는 clustered job 수준 고정 우선순위 스케줄링을 위한 suspension 기반 이진 세마포어 프로토콜로, 지연에 민감한 태스크를 관계없는 임계 구역 때문에 생기는 지연에서 떼어 놓는 성질인 independence preservation을 지킨다. independence preservation의 열쇠는 태스크가 늘 완전히 선점 가능하게 두는 것이다.[@brandenburg-fully-preemptive-semaphore-2013]
+**OMIP**(O(m) Independence-Preserving Protocol)는 clustered job 수준 고정 우선순위 스케줄링을 위한 suspension 기반 이진 [[semaphore|세마포어]] 프로토콜로, 지연에 민감한 태스크를 관계없는 임계 구역 때문에 생기는 지연에서 떼어 놓는 성질인 independence preservation을 지킨다. independence preservation의 열쇠는 태스크가 늘 완전히 선점 가능하게 두는 것이다.[@brandenburg-fully-preemptive-semaphore-2013]
 
-cluster 수가 하나보다 많은 clustered job 수준 고정 우선순위 스케줄링에서는, 세마포어 프로토콜이 우선순위 역전 블로킹을 묶고 independence preservation을 지키면서 cluster 사이의 이주까지 피할 수는 없다. 그래서 OMIP는 migratory priority inheritance에 바탕을 둔다. 락을 쥔 job이 준비되었는데도 선점되어 실행되지 못하는 동안, 그 락을 기다리는 job 가운데 자기 cluster에서 스케줄될 수 있는 job이 있으면 락을 쥔 job이 그 cluster로 옮겨 가 그 job의 우선순위를 물려받고, 락을 모두 놓으면 제 cluster로 돌아간다.[@brandenburg-fully-preemptive-semaphore-2013]
+cluster 수가 하나보다 많은 clustered job 수준 고정 우선순위 스케줄링에서는, 세마포어 프로토콜이 [[priority-inversion|우선순위 역전]] 블로킹을 묶고 independence preservation을 지키면서 cluster 사이의 이주까지 피할 수는 없다. 그래서 OMIP는 migratory priority inheritance에 바탕을 둔다. 락을 쥔 job이 준비되었는데도 선점되어 실행되지 못하는 동안, 그 락을 기다리는 job 가운데 자기 cluster에서 스케줄될 수 있는 job이 있으면 락을 쥔 job이 그 cluster로 옮겨 가 그 job의 우선순위를 물려받고, 락을 모두 놓으면 제 cluster로 돌아간다.[@brandenburg-fully-preemptive-semaphore-2013]
 
 RTEMS 문서에 따르면 OMIP는 [[priority-inheritance-protocol|우선순위 상속 프로토콜]]을 clustered scheduling으로 일반화한 것이고, RTEMS의 OMIP 뮤텍스에는 상한 같은 외부 설정 정보가 필요 없다.[@rtems-omip-2025] RTEMS에서 OMIP는 SMP 구성에서만 쓸 수 있고, 그때 우선순위 상속 프로토콜을 대신한다.[@rtems-locking-protocols-2025]

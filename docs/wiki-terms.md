@@ -14,6 +14,7 @@
 줄은 쓰는 표기의 가나다순으로 둡니다. 라틴 문자는 한글보다 앞에 두고 대소문자를 가리지 않으며, 기호와 공백은 글자보다 앞에 둡니다. 결정을 더하는 PR끼리 같은 줄을 고치지 않게 하려는 꼴입니다.
 
 - Annex: 부속서, 부록 (#301). 원문이 Annex일 때. 원문이 Appendix인 "부록"은 그대로
+- aperiodic: 비주기 (#350). 합성어 포함. 예: aperiodic 태스크, aperiodic server. CANopen PDO의 주기·비주기 송신처럼 통신의 송신 방식은 예외
 - API 풀이 Application Programming Interface: Application Program Interface (#165)
 - ASPICE: Automotive SPICE, A-SPICE (#231). 판을 붙이면 `ASPICE 4.1` 꼴. 정식 이름은 `automotive-spice` 머리말의 풀이에만, A-SPICE는 그 페이지의 alias로만. 문서 이름 "Automotive SPICE for Cybersecurity"와 슬러그는 예외
 - cascading failure: 연쇄 고장 (#291)
