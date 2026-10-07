@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 0 619.5 161" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 요청한 블록 -->
+  <rect x="250.75" y="20.75" width="98.5" height="26.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="300" y="38" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">요청한 블록</text>
+  <text x="362" y="38" font-size="12" fill="var(--text, #727981)">들어갈 이어진 빈 영역이 없음</text>
+
+  <!-- 힙 -->
+  <text x="20" y="101" font-size="12" fill="var(--text, #727981)">힙</text>
+  <g stroke-width="1.5">
+    <rect x="40.75" y="80.75" width="80" height="30.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" />
+    <rect x="120.75" y="80.75" width="50" height="30.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" />
+    <rect x="170.75" y="80.75" width="90" height="30.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" />
+    <rect x="260.75" y="80.75" width="40" height="30.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" />
+    <rect x="300.75" y="80.75" width="80" height="30.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" />
+    <rect x="380.75" y="80.75" width="60" height="30.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" />
+    <rect x="440.75" y="80.75" width="90" height="30.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" />
+    <rect x="530.75" y="80.75" width="45" height="30.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" />
+    <rect x="575.75" y="80.75" width="23.5" height="30.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" />
+  </g>
+  <g font-size="12" text-anchor="middle">
+    <g fill="var(--text, #727981)">
+      <text x="81" y="100">사용 중</text>
+      <text x="216" y="100">사용 중</text>
+      <text x="341" y="100">사용 중</text>
+      <text x="486" y="100">사용 중</text>
+    </g>
+    <g fill="var(--on-fill, #f8fafd)">
+      <text x="146" y="100">빈</text>
+      <text x="281" y="100">빈</text>
+      <text x="411" y="100">빈</text>
+      <text x="553" y="100">빈</text>
+    </g>
+  </g>
+  <text x="320" y="140" text-anchor="middle" font-size="12" fill="var(--text, #727981)">빈 메모리가 이어지지 않은 작은 조각으로 쪼개짐</text>
+</svg>

@@ -17,7 +17,7 @@ PREEMPT_RT 커널의 `spinlock_t`는 선점을 끄지 않고, `spin_lock_irq`나
 
 ## 스레드 IRQ
 
-PREEMPT_RT 커널은 인터럽트 처리기를 강제로 스레드로 돌려 두 단계로 나눈다. 1차 처리기는 인터럽트를 끈 IRQ 문맥에서 실행되며 짝이 되는 스레드 처리기를 깨우는 일만 한다. 스레드 처리기는 `request_irq`에 넘긴 처리 함수이고, 커널이 스케줄하는 프로세스 문맥에서 실행된다. 스레드를 깨운 때부터 처리가 끝날 때까지 인터럽트 컨트롤러에서 그 인터럽트 소스를 가린다. 스레드 처리기는 기본적으로 `SCHED_FIFO` 정책과 우선순위 50(`MAX_RT_PRIO / 2`)으로 실행된다.[@linux-preempt-rt-theory-2026]
+PREEMPT_RT 커널은 인터럽트 처리기를 강제로 스레드로 돌려 [[deferred-interrupt-handling|두 단계로 나눈다]]. 1차 처리기는 인터럽트를 끈 IRQ 문맥에서 실행되며 짝이 되는 스레드 처리기를 깨우는 일만 한다. 스레드 처리기는 `request_irq`에 넘긴 처리 함수이고, 커널이 스케줄하는 프로세스 문맥에서 실행된다. 스레드를 깨운 때부터 처리가 끝날 때까지 인터럽트 컨트롤러에서 그 인터럽트 소스를 가린다. 스레드 처리기는 기본적으로 `SCHED_FIFO` 정책과 우선순위 50(`MAX_RT_PRIO / 2`)으로 실행된다.[@linux-preempt-rt-theory-2026]
 
 ![[diagrams/preempt-rt-threaded-irq.svg]]
 
