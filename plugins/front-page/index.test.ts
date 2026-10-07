@@ -1,10 +1,19 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
-import type { FrontPagePage } from "./index"
-import { frontPage } from "./index"
+import type { FrontPageCommit, FrontPagePage } from "./index"
+import { frontPage, RECENT_CHANGES_LIMIT } from "./index"
 
-// 대문 함수가 seam이다. 페이지 목록을 넣고 나온 주제별 페이지 수만 본다.
+// 최근 변경은 빌드의 시간대로 날짜를 가른다. 배포 빌드와 같은 한국 시각으로 고정해, 테스트를 돌리는 머신의
+// 시간대와 관계없이 같은 결과를 본다(docs/deploy.md의 날짜의 시간대).
+process.env.TZ = "Asia/Seoul"
+
+// 대문 함수가 seam이다. 페이지와 커밋 목록을 넣고 나온 주제별 페이지 수와 최근 변경 묶음만 본다.
 const page = (slug: string, ...tags: string[]): FrontPagePage => ({ slug, title: slug, tags })
+const commit = (subject: string, date: string, ...files: string[]): FrontPageCommit => ({
+  subject,
+  date,
+  files,
+})
 
 describe("frontPage", () => {
   test("주제마다 그 주제 태그를 단 페이지를 센다", () => {
@@ -50,5 +59,139 @@ describe("frontPage", () => {
       pages: [page("secoc", "security/cybersecurity", "platform/autosar")],
     })
     assert.deepStrictEqual(topicCounts, { "security/cybersecurity": 1, "platform/autosar": 1 })
+  })
+})
+
+describe("frontPage의 최근 변경", () => {
+  // 주간 소식, 태그 목록, 대문도 지금 있는 페이지라, 빠지는 까닭이 "사라진 페이지"가 아니게 한다
+  const pages = [
+    ...["can-frame", "can-fd", "uds", "doip"].map((slug) => page(slug, "network/can")),
+    ...["news/2026-W40", "news/index", "tags/network/can", "index"].map((slug) => page(slug)),
+  ]
+  const days = (...commits: FrontPageCommit[]) => frontPage({ pages, commits }).recentChanges
+  const recent = (...commits: FrontPageCommit[]) => days(...commits).flatMap((day) => day.changes)
+
+  test("content: 커밋을 PR 번호로 묶어 제목, 날짜, 바뀐 페이지를 준다", () => {
+    const changes = recent(
+      commit("content: CAN FD 보강 (#12)", "2026-10-02T10:00:00+09:00", "can-fd.md"),
+      commit(
+        "content: CAN FD 보강 (#12)",
+        "2026-10-01T10:00:00+09:00",
+        "can-frame.md",
+        "can-fd.md",
+      ),
+    )
+    assert.deepStrictEqual(changes, [
+      {
+        title: "CAN FD 보강",
+        pr: 12,
+        date: "2026-10-02T10:00:00+09:00",
+        pages: ["can-fd", "can-frame"],
+      },
+    ])
+  })
+
+  test("PR 번호가 없는 커밋은 따로 묶는다", () => {
+    const changes = recent(
+      commit("content: UDS 정정", "2026-10-02T10:00:00+09:00", "uds.md"),
+      commit("content: UDS 정정", "2026-10-01T10:00:00+09:00", "uds.md"),
+    )
+    assert.deepStrictEqual(
+      changes.map((change) => change.pr),
+      [null, null],
+    )
+  })
+
+  test("content: 외 커밋은 페이지를 바꿔도 나오지 않는다", () => {
+    const changes = recent(
+      commit("docs: 약어 규약 일괄 적용 (#20)", "2026-10-03T10:00:00+09:00", "uds.md", "doip.md"),
+      commit("feat: 대문 구역 표 (#21)", "2026-10-03T11:00:00+09:00", "index.md"),
+      commit("content: DoIP 보강 (#22)", "2026-10-02T10:00:00+09:00", "doip.md"),
+    )
+    assert.deepStrictEqual(
+      changes.map((change) => change.title),
+      ["DoIP 보강"],
+    )
+  })
+
+  test("주간 소식, 태그 페이지, 대문, 사라진 페이지는 바뀐 페이지로 세지 않는다", () => {
+    const changes = recent(
+      commit(
+        "content: CAN 주제 정리 (#30)",
+        "2026-10-02T10:00:00+09:00",
+        "can-frame.md",
+        "news/2026-W40.md",
+        "news/index.md",
+        "tags/network/can.md",
+        "index.md",
+        "can-old.md",
+      ),
+    )
+    assert.deepStrictEqual(changes[0]?.pages, ["can-frame"])
+  })
+
+  test("세지 않는 파일만 바꾼 묶음은 나오지 않는다", () => {
+    const changes = recent(
+      commit("content: 태그 이름 정리 (#31)", "2026-10-02T10:00:00+09:00", "tags/network.md"),
+    )
+    assert.deepStrictEqual(changes, [])
+  })
+
+  test("묶음은 최근 날짜부터 늘어놓는다", () => {
+    // 나는 UTC로 적었지만 한국 시각으로 10월 3일 08시라 다(10월 3일 01시)보다 늦다
+    const changes = recent(
+      commit("content: 가 (#1)", "2026-10-01T10:00:00+09:00", "uds.md"),
+      commit("content: 다 (#3)", "2026-10-03T01:00:00+09:00", "uds.md"),
+      commit("content: 나 (#2)", "2026-10-02T23:00:00Z", "uds.md"),
+    )
+    assert.deepStrictEqual(
+      changes.map((change) => change.title),
+      ["나", "다", "가"],
+    )
+  })
+
+  test("같은 날의 묶음은 한 날짜에 모은다", () => {
+    const result = days(
+      commit("content: 가 (#1)", "2026-10-02T05:00:00Z", "uds.md"),
+      commit("content: 나 (#2)", "2026-10-02T03:00:00Z", "doip.md"),
+      commit("content: 다 (#3)", "2026-10-01T03:00:00Z", "can-fd.md"),
+    )
+    assert.deepStrictEqual(
+      result.map((day) => [day.day, day.changes.map((change) => change.title)]),
+      [
+        ["2026-10-02", ["가", "나"]],
+        ["2026-10-01", ["다"]],
+      ],
+    )
+  })
+
+  test(`날마다 하나면 최근 ${RECENT_CHANGES_LIMIT}묶음까지 준다`, () => {
+    const commits = Array.from({ length: RECENT_CHANGES_LIMIT + 2 }, (_, i) =>
+      commit(
+        `content: 작업 ${i} (#${i + 1})`,
+        `2026-09-${String(i + 1).padStart(2, "0")}T03:00:00Z`,
+        "uds.md",
+      ),
+    )
+    const changes = recent(...commits)
+    assert.strictEqual(changes.length, RECENT_CHANGES_LIMIT)
+    assert.strictEqual(changes[0]?.title, `작업 ${RECENT_CHANGES_LIMIT + 1}`)
+  })
+
+  test(`${RECENT_CHANGES_LIMIT}묶음을 채운 날은 끝까지 주고 그 앞날은 뺀다`, () => {
+    const at = (day: string, hour: number) =>
+      `2026-10-${day}T${String(hour).padStart(2, "0")}:00:00Z`
+    const commits = [
+      ...[1, 2, 3, 4].map((n) => commit(`content: 3일 ${n} (#${n})`, at("03", n), "uds.md")),
+      ...[5, 6, 7].map((n) => commit(`content: 2일 ${n} (#${n})`, at("02", n), "uds.md")),
+      commit("content: 1일 (#8)", at("01", 1), "uds.md"),
+    ]
+    assert.deepStrictEqual(
+      days(...commits).map((day) => [day.day, day.changes.length]),
+      [
+        ["2026-10-03", 4],
+        ["2026-10-02", 3],
+      ],
+    )
   })
 })

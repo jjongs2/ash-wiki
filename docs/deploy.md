@@ -21,6 +21,16 @@
 
 대시보드 값과 맞물리는 저장소 쪽 값은 `package.json`의 `build` 스크립트, `.node-version`, `quartz.config.yaml`의 `baseUrl`과 `analytics`입니다. Web Analytics 스크립트는 Cloudflare가 배포 때 넣으므로 `analytics`는 `null`로 둡니다.
 
+## 커밋 기록
+
+Cloudflare Pages는 저장소를 shallow clone으로 받습니다. 기록이 마지막 커밋 하나뿐이면 모든 페이지의 수정일이 그 커밋 날짜로 같게 찍히고, 대문의 최근 변경도 한 묶음만 남습니다. 그래서 `prebuild`의 첫 단계(`tools/unshallow.ts`)가 저장소가 shallow일 때만 `git fetch --unshallow`로 전체 기록을 받습니다. GitHub에서 받는 데 2초, 2.4MB쯤 듭니다(2026년 10월 실측). 전체 기록이 있는 로컬 클론에서는 아무것도 하지 않습니다.
+
+기록을 받지 못하면 빌드가 멈춥니다. 그대로 배포하면 수정일이 모두 같아져도 알아채기 어렵기 때문입니다.
+
+## 날짜의 시간대
+
+페이지 수정일과 대문 최근 변경의 날짜는 빌드할 때 빌드 프로세스의 시간대로 찍힙니다. Cloudflare Pages의 빌드 서버는 UTC라, 한국 시각 0\~9시의 커밋이 전날로 찍힙니다. 그래서 `build` 스크립트는 `TZ=Asia/Seoul`로 빌드합니다. 로컬 프리뷰(`npx quartz build --serve`)는 머신의 시간대를 따릅니다.
+
 ## 로컬 프리뷰
 
 ```sh
