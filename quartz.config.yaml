@@ -220,7 +220,8 @@ plugins:
     layout:
       position: left
       priority: 50
-  - source: "@quartz-community/graph"
+  # 그래프 플러그인 1.0.0을 fork한 로컬 플러그인이다(plugins/graph, docs/engine.md 그래프 절).
+  - source: ./plugins/graph
     enabled: true
     layout:
       position: right

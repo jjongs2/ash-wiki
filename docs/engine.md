@@ -86,6 +86,30 @@ JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"
 - npm 플러그인은 저마다 번역 사본을 품고 있어, 엔진의 번역 파일을 고쳐도 플러그인 문구는 바뀌지 않습니다. 플러그인 문구는 [npm 플러그인 패치](#npm-플러그인-패치)로 고칩니다.
 - 엔진의 번역(`quartz/i18n/locales/ko-KR.ts`)은 엔진 파일이라 패치 없이 직접 고치고, 이유를 주석에 적습니다([고친 파일](#고친-파일)).
 
+## 그래프
+
+그래프는 그래프 플러그인을 fork한 로컬 플러그인(`plugins/graph`)이 그립니다. 업스트림에는 노드 색을 묶는 기능도, 그래프에서만 페이지를 빼는 기능도 없습니다.
+
+| 항목       | 값                                                      |
+| ---------- | ------------------------------------------------------- |
+| 저장소     | https://github.com/quartz-community/graph               |
+| 버전       | 1.0.0 (태그 `v1.0.0`)                                   |
+| 기준선 SHA | `e647019c05ab2a3279c9cddd7bc2f18acb9858b8` (2026-09-15) |
+| 라이선스   | MIT (`plugins/graph/LICENSE`)                           |
+
+기준선의 파일은 다음처럼 옮겼습니다. 고친 이유는 각 파일의 주석에 있습니다.
+
+- `script.js`: `src/components/scripts/graph.inline.ts`를 저장소의 Prettier 꼴로 바꾼 것입니다. 업스트림 빌드처럼 esbuild로 묶어 싣습니다.
+- `style.css`: `src/components/styles/graph.scss`를 sass로 컴파일한 것입니다.
+- `index.ts`: `src/components/Graph.tsx`를 JSX 없이 preact의 `h`로 옮긴 것입니다.
+
+업스트림이 바뀌면 기준선과 새 판을 비교하고, 기준선과 fork를 비교해 고친 곳을 봅니다. 업스트림 저장소를 `graph/`에 받아 기준선을 checkout한 뒤 다음을 돌립니다.
+
+```sh
+npx prettier --stdin-filepath plugins/graph/script.js < graph/src/components/scripts/graph.inline.ts | diff - plugins/graph/script.js
+npx sass --no-source-map graph/src/components/styles/graph.scss | npx prettier --stdin-filepath plugins/graph/style.css | diff - plugins/graph/style.css
+```
+
 ## 인용
 
 `[@키]`를 citations 플러그인이 IEEE 스타일의 번호로 바꾸고, 페이지 하단에 참고문헌을 붙입니다([ADR 0003](adr/0003-engine-and-citation-stack.md)). 표기 규칙은 [위키 규약](wiki-conventions.md)에 있습니다.
