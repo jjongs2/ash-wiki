@@ -235,11 +235,12 @@ const CSS = `.front-regions {
 //   테두리의 속 빈 마디를 날짜 글자 줄의 가운데에 둔다. 세로선은 첫 마디에서 목록 끝까지 내려가, 더 오래된
 //   기록이 이어짐을 보인다. 마디와 세로선의 자리는 날짜 줄 높이(--day-line)와 들여쓰기(--rail)로 계산한다.
 // - 항목이 서로 갈리도록 항목 사이는 띄우고, 꺾인 제목의 줄 사이는 좁힌다. 날짜 사이는 항목 사이보다 더 띄운다.
-// - 묶음 한 줄은 GitHub의 PR 목록을 본뜬다. 앞에 pull request 아이콘, 제목 링크, 그 뒤에 PR 번호를 둔다.
-//   제목은 본문 글자색으로 굵게 쓰고, 마우스를 올리면 링크색에 밑줄이 생긴다(GitHub의 Link--primary).
-//   아이콘은 제목 첫 줄의 가운데에 선다.
+// - 묶음 하나는 GitHub의 PR 목록을 본뜬다. 첫 줄에 pull request 아이콘과 제목 링크, 그 아래 보조 글자 줄에
+//   PR 번호와 쪽수를 둔다. 제목은 본문 글자색의 보통 굵기로 쓰고, 마우스를 올리면 링크색에 밑줄이 생긴다
+//   (GitHub의 Link--primary).
+// - 아이콘은 제목 안의 인라인 요소라 첫 줄 글자에 맞춰 선다. 꺾인 줄은 내어쓰기(padding과 음수 text-indent)로
+//   아이콘 오른쪽에서 시작한다. vertical-align은 Pretendard 글자 상자의 가운데에 아이콘 가운데를 맞춘 값이다.
 // - 날짜, PR 번호, 쪽수는 보조 글자색이고, 대비 하한은 docs/palette.md의 "보조 글자"다. 날짜는 굵게 쓴다.
-//   쪽수는 줄 오른쪽에 두고, 제목이 꺾여도 PR 번호와 같은 마지막 줄의 기준선에 선다.
 const COLUMNS_CSS = `.front-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -307,45 +308,38 @@ li.front-day > time {
   font-weight: 600;
 }
 li.front-day li {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
   padding: 0.4rem 0;
   line-height: 1.35;
 }
+.front-change-title {
+  --icon-indent: calc(0.85em + 0.5rem);
+  display: block;
+  padding-left: var(--icon-indent);
+  text-indent: calc(-1 * var(--icon-indent));
+}
 .front-change-icon {
-  flex: none;
-  align-self: flex-start;
+  display: inline-block;
   width: 0.85em;
   height: 0.85em;
-  margin-top: 0.25em;
+  margin-right: 0.5rem;
+  vertical-align: -0.1em;
   fill: var(--gray);
-}
-.front-change-title {
-  flex: 1;
-  min-width: 0;
-  margin-right: 0.25rem;
 }
 .front-recent a.front-change-link {
   color: var(--dark);
+  font-weight: 400;
 }
 .front-recent a.front-change-link:hover {
   color: var(--secondary);
   text-decoration: underline;
 }
-.front-change-number,
-.front-change-count {
+.front-change-meta {
+  display: block;
+  margin-top: 0.1rem;
+  text-indent: 0;
   color: var(--gray);
-  font-size: 0.85em;
+  font-size: 0.8em;
   font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-.front-change-number {
-  margin-left: 0.35em;
-}
-.front-change-count {
-  flex: none;
-  align-self: last baseline;
 }
 `
 
@@ -455,18 +449,22 @@ const pullRequestIcon = (): Element =>
   ])
 
 // 본문 아래 2단. 왼쪽은 이번 주 소식의 자리이고 오른쪽이 최근 변경이다. 최근 변경은 날짜마다 타임라인의
-// 마디 하나를 두고, 그 아래 줄마다 PR 아이콘, 묶음 제목, PR 번호, 쪽수를 둔다. 제목은 PR로 링크하고 새 탭에서
-// 연다. PR 번호가 없는 묶음은 아이콘 자리를 비우고 제목을 글자로만 둔다.
+// 마디 하나를 두고, 그 아래 묶음마다 PR 아이콘과 제목, 그 아래 줄에 PR 번호와 쪽수를 둔다. 제목은 PR로
+// 링크하고 새 탭에서 연다. PR 번호가 없는 묶음은 아이콘 자리를 비우고 제목을 글자로만 두며, 쪽수만 적는다.
 function frontColumns(days: RecentDay[], locale: string): Element {
-  const row = (change: RecentChange) =>
-    el("li", {}, [
-      change.pr === null ? el("span", { className: ["front-change-icon"] }) : pullRequestIcon(),
+  const row = (change: RecentChange) => {
+    const count = `${change.pages.length}쪽`
+    const meta = el("span", { className: ["front-change-meta"] }, [
+      text(change.pr === null ? count : `#${change.pr} · ${count}`),
+    ])
+    return el("li", {}, [
       el(
         "span",
         { className: ["front-change-title"] },
         change.pr === null
-          ? [text(change.title)]
+          ? [el("span", { className: ["front-change-icon"] }), text(change.title), meta]
           : [
+              pullRequestIcon(),
               el(
                 "a",
                 {
@@ -477,11 +475,11 @@ function frontColumns(days: RecentDay[], locale: string): Element {
                 },
                 [text(change.title)],
               ),
-              el("span", { className: ["front-change-number"] }, [text(`#${change.pr}`)]),
+              meta,
             ],
       ),
-      el("span", { className: ["front-change-count"] }, [text(`${change.pages.length}쪽`)]),
     ])
+  }
   const timeline = days.map(({ changes }) =>
     el("li", { className: ["front-day"] }, [
       el("time", { dateTime: changes[0]?.date }, [
