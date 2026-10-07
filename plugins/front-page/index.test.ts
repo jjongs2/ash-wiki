@@ -64,7 +64,8 @@ describe("frontPage의 최근 변경", () => {
     ...["can-frame", "can-fd", "uds", "doip"].map((slug) => page(slug, "network/can")),
     ...["news/2026-W40", "news/index", "tags/network/can", "index"].map((slug) => page(slug)),
   ]
-  const recent = (...commits: FrontPageCommit[]) => frontPage({ pages, commits }).recentChanges
+  const days = (...commits: FrontPageCommit[]) => frontPage({ pages, commits }).recentChanges
+  const recent = (...commits: FrontPageCommit[]) => days(...commits).flatMap((day) => day.changes)
 
   test("content: 커밋을 PR 번호로 묶어 제목, 날짜, 바뀐 페이지를 준다", () => {
     const changes = recent(
@@ -145,16 +146,49 @@ describe("frontPage의 최근 변경", () => {
     )
   })
 
-  test(`최근 ${RECENT_CHANGES_LIMIT}묶음까지만 준다`, () => {
+  // 날짜는 빌드의 시간대로 보므로, 아래 시각은 UTC와 한국 시각 어느 쪽에서도 같은 날이 되게 고른다
+  test("같은 날의 묶음은 한 날짜에 모은다", () => {
+    const result = days(
+      commit("content: 가 (#1)", "2026-10-02T05:00:00Z", "uds.md"),
+      commit("content: 나 (#2)", "2026-10-02T03:00:00Z", "doip.md"),
+      commit("content: 다 (#3)", "2026-10-01T03:00:00Z", "can-fd.md"),
+    )
+    assert.deepStrictEqual(
+      result.map((day) => [day.day, day.changes.map((change) => change.title)]),
+      [
+        ["2026-10-02", ["가", "나"]],
+        ["2026-10-01", ["다"]],
+      ],
+    )
+  })
+
+  test(`날마다 하나면 최근 ${RECENT_CHANGES_LIMIT}묶음까지 준다`, () => {
     const commits = Array.from({ length: RECENT_CHANGES_LIMIT + 2 }, (_, i) =>
       commit(
         `content: 작업 ${i} (#${i + 1})`,
-        `2026-09-${String(i + 1).padStart(2, "0")}`,
+        `2026-09-${String(i + 1).padStart(2, "0")}T03:00:00Z`,
         "uds.md",
       ),
     )
     const changes = recent(...commits)
     assert.strictEqual(changes.length, RECENT_CHANGES_LIMIT)
     assert.strictEqual(changes[0]?.title, `작업 ${RECENT_CHANGES_LIMIT + 1}`)
+  })
+
+  test(`${RECENT_CHANGES_LIMIT}묶음을 채운 날은 끝까지 주고 그 앞날은 뺀다`, () => {
+    const at = (day: string, hour: number) =>
+      `2026-10-${day}T${String(hour).padStart(2, "0")}:00:00Z`
+    const commits = [
+      ...[1, 2, 3, 4].map((n) => commit(`content: 3일 ${n} (#${n})`, at("03", n), "uds.md")),
+      ...[5, 6, 7].map((n) => commit(`content: 2일 ${n} (#${n})`, at("02", n), "uds.md")),
+      commit("content: 1일 (#8)", at("01", 1), "uds.md"),
+    ]
+    assert.deepStrictEqual(
+      days(...commits).map((day) => [day.day, day.changes.length]),
+      [
+        ["2026-10-03", 4],
+        ["2026-10-02", 3],
+      ],
+    )
   })
 })

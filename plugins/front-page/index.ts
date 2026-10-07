@@ -1,11 +1,10 @@
-// ash-wiki: 대문(index)만 그리는 페이지 타입 로컬 플러그인이다. 대문의 구역 표(docs/engine.md 대문 절)에 빌드할
-// 때 구역 색과 주제별 페이지 수를 붙이고, 본문 아래 2단의 오른쪽에 최근 변경을 그린다. 왼쪽 칸은 이번 주
-// 소식의 자리로, 그 티켓(#367)이 채울 때까지 비워 둔다.
+// ash-wiki: 대문(index)만 그리는 페이지 타입 로컬 플러그인이다. 대문의 구역 표에 빌드할 때 구역 색과 주제별
+// 페이지 수를 붙이고, 본문 아래에 최근 변경을 그린다. 대문의 배치는 docs/engine.md의 대문 절에 있다.
 //
 // 계산 규칙은 순수 함수 frontPage 하나에 모은다. 페이지 목록과 커밋 목록을 받아 주제별 페이지 수와 최근 변경
 // 묶음을 돌려주고, 이번 주 소식은 다른 티켓이 같은 함수에 더한다(#364). 커밋 목록은 그릴 때 content 폴더의
-// git 기록에서 읽는다. 배포 빌드는 shallow clone이라 prebuild가 먼저 전체 기록을 받는다(docs/deploy.md).
-// 저장소 밖에서 빌드하면(콘텐츠 검사기의 픽스처) 최근 변경을 그리지 않는다.
+// git 기록에서 읽는다(전체 기록과 시간대는 docs/deploy.md). 저장소 밖에서 빌드하면(콘텐츠 검사기의 픽스처)
+// 최근 변경을 그리지 않는다.
 //
 // 대문은 content-page 플러그인의 본문(ContentBody)을 그대로 쓰고, 그리기 전에 본문 트리만 고친다. 페이지 수에는
 // 모든 페이지의 태그가 있어야 하는데, transformer는 파일마다 따로 돌아 다른 페이지를 모른다. 본문 컴포넌트는
@@ -53,11 +52,27 @@ export interface RecentChange {
   pages: string[]
 }
 
+// 같은 날 들어온 묶음. day는 빌드의 시간대로 본 날짜(YYYY-MM-DD)이고, changes는 최근 것부터다.
+export interface RecentDay {
+  day: string
+  changes: RecentChange[]
+}
+
 export const RECENT_CHANGES_LIMIT = 5
 
-// 대문, 태그 목록 페이지, 주간 소식(news/)은 위키 페이지가 아니라 세지 않는다
-const isWikiPage = (slug: string) =>
-  slug !== "index" && !slug.startsWith("tags/") && slug !== "news" && !slug.startsWith("news/")
+// 대문과 태그 목록 페이지는 주제 페이지로 세지 않는다
+const isTopicPage = (slug: string) => slug !== "index" && !slug.startsWith("tags/")
+
+// 최근 변경은 주간 소식(news/)도 바뀐 페이지로 세지 않는다
+const isChangedPage = (slug: string) =>
+  isTopicPage(slug) && slug !== "news" && !slug.startsWith("news/")
+
+// 빌드의 시간대(TZ)로 본 날짜. 페이지 수정일과 같은 시간대다.
+function localDay(time: number): string {
+  const date = new Date(time)
+  const pad = (n: number) => String(n).padStart(2, "0")
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+}
 
 /**
  * 대문에 그릴 값을 계산한다.
@@ -66,16 +81,18 @@ const isWikiPage = (slug: string) =>
  *   단 페이지는 어느 주제에도 세지 않는다. 태그 목록 페이지(tags/)와 대문은 세지 않는다.
  * - 최근 변경: `content:` 커밋을 제목 끝의 PR 번호(`(#N)`)로 묶는다. 번호가 없는 커밋은 따로 묶는다. 묶음의
  *   제목은 타입과 번호를 뗀 커밋 제목이고, 날짜는 묶음에서 가장 늦은 커밋의 시각이다. 바뀐 페이지는 지금
- *   있는 위키 페이지만 세고, 그런 페이지가 없는 묶음은 뺀다. 최근 날짜부터 RECENT_CHANGES_LIMIT 묶음까지 준다.
- *   bib/처럼 content 폴더 밖의 파일은 커밋 목록에 오지 않는다(readCommits).
+ *   있는 페이지 가운데 대문, 태그 목록, 주간 소식이 아닌 것만 세고, 그런 페이지가 없는 묶음은 뺀다. bib/처럼
+ *   content 폴더 밖의 파일은 커밋 목록에 오지 않는다(readCommits).
+ *   묶음은 날짜별로 모아 최근 날짜부터 준다. RECENT_CHANGES_LIMIT 묶음을 채운 날까지 주고, 그날은 끝까지 준다.
+ *   날짜 하나의 묶음이 중간에서 잘려 그날 작업이 그것뿐인 것처럼 보이지 않게 한다.
  */
 export function frontPage(input: { pages: FrontPagePage[]; commits?: FrontPageCommit[] }): {
   topicCounts: Record<string, number>
-  recentChanges: RecentChange[]
+  recentChanges: RecentDay[]
 } {
   const topicCounts: Record<string, number> = {}
   for (const page of input.pages) {
-    if (!isWikiPage(page.slug)) continue
+    if (!isTopicPage(page.slug)) continue
     const topics = new Set<string>()
     for (const tag of page.tags) {
       const [region, topic] = tag.split("/")
@@ -86,8 +103,8 @@ export function frontPage(input: { pages: FrontPagePage[]; commits?: FrontPageCo
   return { topicCounts, recentChanges: recentChanges(input.pages, input.commits ?? []) }
 }
 
-function recentChanges(pages: FrontPagePage[], commits: FrontPageCommit[]): RecentChange[] {
-  const wikiPages = new Set(pages.map((page) => page.slug).filter(isWikiPage))
+function recentChanges(pages: FrontPagePage[], commits: FrontPageCommit[]): RecentDay[] {
+  const changedPages = new Set(pages.map((page) => page.slug).filter(isChangedPage))
   const bundles = new Map<
     string,
     { title: string; pr: number | null; time: number; date: string; slugs: Set<string> }
@@ -95,6 +112,7 @@ function recentChanges(pages: FrontPagePage[], commits: FrontPageCommit[]): Rece
   commits.forEach((commit, i) => {
     const match = commit.subject.match(/^content: (.*?)(?: \(#(\d+)\))?$/)
     if (!match) return
+    // 번호가 없는 커밋은 커밋마다 다른 키를 주어 묶지 않는다
     const key = match[2] ? `#${match[2]}` : `commit ${i}`
     const time = Date.parse(commit.date)
     let bundle = bundles.get(key)
@@ -107,19 +125,31 @@ function recentChanges(pages: FrontPagePage[], commits: FrontPageCommit[]): Rece
     }
     for (const file of commit.files) {
       const slug = file.replace(/\.md$/, "")
-      if (file.endsWith(".md") && wikiPages.has(slug)) bundle.slugs.add(slug)
+      if (file.endsWith(".md") && changedPages.has(slug)) bundle.slugs.add(slug)
     }
   })
-  return [...bundles.values()]
+  const sorted = [...bundles.values()]
     .filter((bundle) => bundle.slugs.size > 0)
     .sort((a, b) => b.time - a.time)
-    .slice(0, RECENT_CHANGES_LIMIT)
-    .map((bundle) => ({
+  const days: RecentDay[] = []
+  let count = 0
+  for (const bundle of sorted) {
+    const day = localDay(bundle.time)
+    let last = days.at(-1)
+    if (last?.day !== day) {
+      if (count >= RECENT_CHANGES_LIMIT) break
+      last = { day, changes: [] }
+      days.push(last)
+    }
+    last.changes.push({
       title: bundle.title,
       pr: bundle.pr,
       date: bundle.date,
       pages: [...bundle.slugs].sort(),
-    }))
+    })
+    count++
+  }
+  return days
 }
 
 // 구역 표의 모양이다. 표 머리(구역, 주제)는 스크린 리더에만 남기고 화면에서는 숨긴다. 표 위에 제목을 두지
@@ -197,16 +227,18 @@ const CSS = `.front-regions {
 }
 `
 
-// 본문 아래 2단의 모양이다.
-// - 두 칸은 같은 폭이고, 모바일 폭(800px 이하, quartz/styles/variables.scss의 $mobile)에서는 1단으로 쌓는다.
-//   1단에서는 비어 있는 이번 주 소식 칸을 숨겨 그 자리의 틈을 없앤다.
+// 본문 아래 2단의 모양이다. 배치는 docs/engine.md의 대문 절에 있다.
+// - 모바일 폭(800px 이하, quartz/styles/variables.scss의 $mobile)에서 1단으로 쌓을 때, 비어 있는 칸을 숨겨
+//   그 자리의 틈을 없앤다.
 // - 칸 제목은 본문 h2보다 작게, Backlinks 제목(1rem)보다 조금 크게 둔다. 대문 본문에는 다른 제목이 없다.
 // - 최근 변경은 타임라인이다. 왼쪽 세로선은 구역 표의 행 선과 같은 1px --lightgray이고, 날짜마다 링크색
-//   테두리의 속 빈 마디를 날짜 글자 줄의 가운데에 둔다. 세로선은 첫 마디에서 시작해 목록 끝까지 내려가,
-//   더 오래된 기록이 이어짐을 보인다.
-// - 날짜는 보조 글자색으로 굵게, 쪽수는 보조 글자색으로 줄 오른쪽에 붙인다. 대비 하한은 docs/palette.md의
-//   "주제 칩의 페이지 수"와 같은 --gray다. 제목이 꺾여도 쪽수는 첫 줄의 기준선에 선다.
-// - 마디와 날짜의 자리는 날짜 줄 높이(--day-line)와 들여쓰기(--rail)에서 계산한다.
+//   테두리의 속 빈 마디를 날짜 글자 줄의 가운데에 둔다. 세로선은 첫 마디에서 목록 끝까지 내려가, 더 오래된
+//   기록이 이어짐을 보인다. 마디와 세로선의 자리는 날짜 줄 높이(--day-line)와 들여쓰기(--rail)로 계산한다.
+// - 항목이 서로 갈리도록 항목 사이는 띄우고, 꺾인 제목의 줄 사이는 좁힌다. 날짜 사이는 항목 사이보다 더 띄운다.
+// - 날짜와 쪽수는 보조 글자색이고, 대비 하한은 docs/palette.md의 "보조 글자"다. 날짜는 굵게, 쪽수는 줄
+//   오른쪽에 두고, 제목이 꺾여도 쪽수는 첫 줄의 기준선에 선다.
+// - 제목 뒤의 외부 링크 아이콘은 본문 외부 링크(crawl-links의 external-icon)와 같은 꼴이고, 스타일도
+//   quartz/styles/base.scss의 것을 그대로 받는다.
 const COLUMNS_CSS = `.front-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -237,7 +269,7 @@ const COLUMNS_CSS = `.front-columns {
   content: "";
   position: absolute;
   left: 0.3rem;
-  top: calc(0.3rem + var(--day-line) / 2);
+  top: calc(var(--day-line) / 2);
   bottom: 0.4rem;
   width: 1px;
   background-color: var(--lightgray);
@@ -252,7 +284,7 @@ const COLUMNS_CSS = `.front-columns {
 }
 li.front-day {
   position: relative;
-  padding: 0.3rem 0 0.5rem;
+  padding-bottom: 0.9rem;
 }
 li.front-day::before {
   content: "";
@@ -261,7 +293,7 @@ li.front-day::before {
   width: 7px;
   height: 7px;
   left: calc(0.3rem + 0.5px - var(--rail) - 3.5px);
-  top: calc(0.3rem + var(--day-line) / 2 - 3.5px);
+  top: calc(var(--day-line) / 2 - 3.5px);
   border: 1.5px solid var(--secondary);
   border-radius: 50%;
   background-color: var(--light);
@@ -277,7 +309,8 @@ li.front-day li {
   display: flex;
   align-items: baseline;
   gap: 0.75rem;
-  padding: 0.15rem 0;
+  padding: 0.4rem 0;
+  line-height: 1.35;
 }
 .front-change-title {
   flex: 1;
@@ -290,6 +323,13 @@ li.front-day li {
   font-variant-numeric: tabular-nums;
 }
 `
+
+const el = (
+  tagName: string,
+  properties: Element["properties"],
+  children: ElementContent[] = [],
+): Element => ({ type: "element", tagName, properties, children })
+const text = (value: string): ElementContent => ({ type: "text", value })
 
 function elements(node: Root | Element, tagName: string): Element[] {
   const found: Element[] = []
@@ -332,13 +372,8 @@ function decorateRegionTable(tree: Root, topicCounts: Record<string, number>) {
           row.properties.style = `--region: var(--region-${region}, var(--region-other))`
         } else {
           addClass(link, "front-topic")
-          const count: ElementContent = {
-            type: "element",
-            tagName: "span",
-            properties: { className: ["front-count"] },
-            children: [{ type: "text", value: String(topicCounts[`${region}/${topic}`] ?? 0) }],
-          }
-          link.children.push(count)
+          const count = String(topicCounts[`${region}/${topic}`] ?? 0)
+          link.children.push(el("span", { className: ["front-count"] }, [text(count)]))
         }
       }
     }
@@ -383,26 +418,30 @@ function readCommits(directory: string): FrontPageCommit[] {
     })
 }
 
-const el = (
-  tagName: string,
-  properties: Element["properties"],
-  children: ElementContent[] = [],
-): Element => ({ type: "element", tagName, properties, children })
-const text = (value: string): ElementContent => ({ type: "text", value })
-
 // 묶음 제목이 링크하는 PR의 주소. 저장소가 비공개인 동안 독자에게는 404다(#366의 소유자 결정).
 const PULL_URL = "https://github.com/jjongs2/ash-wiki/pull/"
 
-// 본문 아래 2단. 왼쪽은 이번 주 소식의 자리(#367), 오른쪽은 최근 변경이다. 최근 변경은 묶음을 보이는
-// 날짜로 다시 묶어 타임라인의 마디 하나에 날짜 하나를 둔다. squash 머지라 하루에 PR이 여럿 들어오는 일이
-// 잦아, 날짜를 묶음마다 되풀이하지 않는다. 날짜 아래 줄마다 묶음 제목과 쪽수를 두고, 제목은 PR로 링크한다.
-// 본문의 외부 링크처럼 external로 두어 새 탭에서 연다. PR 번호가 없는 묶음은 제목을 글자로만 둔다.
-function frontColumns(changes: RecentChange[], locale: string): Element {
-  const days = new Map<string, RecentChange[]>()
-  for (const change of changes) {
-    const day = formatDate(new Date(change.date), locale)
-    days.set(day, [...(days.get(day) ?? []), change])
-  }
+// 본문 외부 링크에 crawl-links가 붙이는 아이콘(external-icon)과 같은 마크업이다.
+const externalIcon = (): Element =>
+  el(
+    "svg",
+    {
+      ariaHidden: "true",
+      className: ["external-icon"],
+      style: "max-width:0.8em;max-height:0.8em",
+      viewBox: "0 0 512 512",
+    },
+    [
+      el("path", {
+        d: "M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z",
+      }),
+    ],
+  )
+
+// 본문 아래 2단. 왼쪽은 이번 주 소식의 자리이고 오른쪽이 최근 변경이다. 최근 변경은 날짜마다 타임라인의
+// 마디 하나를 두고, 그 아래 줄마다 묶음 제목과 쪽수를 둔다. 제목은 PR로 링크하고, 본문의 외부 링크처럼
+// 새 탭에서 열며 외부 링크 아이콘을 붙인다. PR 번호가 없는 묶음은 제목을 글자로만 둔다.
+function frontColumns(days: RecentDay[], locale: string): Element {
   const row = (change: RecentChange) =>
     el("li", {}, [
       change.pr === null
@@ -411,18 +450,20 @@ function frontColumns(changes: RecentChange[], locale: string): Element {
             "a",
             {
               href: `${PULL_URL}${change.pr}`,
-              className: ["external", "front-change-title"],
+              className: ["external", "external-link", "front-change-title"],
               target: "_blank",
               rel: ["noopener", "noreferrer"],
             },
-            [text(change.title)],
+            [text(change.title), externalIcon()],
           ),
       el("span", { className: ["front-change-count"] }, [text(`${change.pages.length}쪽`)]),
     ])
-  const timeline = [...days].map(([day, dayChanges]) =>
+  const timeline = days.map(({ changes }) =>
     el("li", { className: ["front-day"] }, [
-      el("time", { dateTime: dayChanges[0]?.date }, [text(day)]),
-      el("ul", {}, dayChanges.map(row)),
+      el("time", { dateTime: changes[0]?.date }, [
+        text(formatDate(new Date(changes[0]?.date ?? ""), locale)),
+      ]),
+      el("ul", {}, changes.map(row)),
     ]),
   )
   return el("div", { className: ["front-columns"] }, [
