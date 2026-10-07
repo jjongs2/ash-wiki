@@ -1,11 +1,8 @@
 // @ts-nocheck
-// ash-wiki: 노드와 선은 model.ts의 graph가 계산한다. 태그 노드가 없고, 노드는 구역 색으로 칠한다.
+// ash-wiki: 노드와 선은 model.ts의 graph가 계산한다. 설정의 depth가 음수인 global graph는 주제 단위로
+// 계산한다. 이 스크립트는 그 결과를 그리기만 한다.
 // 구역 색은 theme의 구역 색 토큰(--region-<구역>, --region-other)에서 읽는다. 노드는 canvas에 그려 CSS로
 // 칠할 수 없어서다. 방문한 페이지를 칠하던 업스트림의 방문 기록(localStorage graph-visited)은 쓰지 않는다.
-//
-// global graph(설정의 depth가 음수)는 주제 노드로 그린다. 주제 노드의 크기는 페이지 수, 선 굵기는 주제 사이
-// 링크 수다. 주제 노드를 누르면 그 주제의 페이지 노드로 펼치고, 이미 있던 노드는 자리를 지킨다. 펼친 상태는
-// global graph를 닫으면 버린다.
 import { graph as graphModel } from "./model.ts"
 import {
   removeAllChildren,
@@ -149,25 +146,21 @@ import {
           : { kind: "local", current: slug, depth: depth },
       )
 
+      // 펼친 뒤 다시 그릴 때 이미 있던 노드는 제자리에, 새 페이지 노드는 펼친 주제 자리 근처에 둔다.
+      function startPosition(id) {
+        var known = isGlobal ? globalState.positions.get(id) : undefined
+        if (known) return known
+        var origin = isGlobal ? globalState.origin : null
+        if (origin)
+          return { x: origin.x + Math.random() * 40 - 20, y: origin.y + Math.random() * 40 - 20 }
+        return { x: Math.random() * width - width / 2, y: Math.random() * height - height / 2 }
+      }
+
       var nodes = []
       var nodeMap = new Map()
       for (var i = 0; i < model.nodes.length; i++) {
-        var known = isGlobal ? globalState.positions.get(model.nodes[i].id) : undefined
-        var origin = isGlobal ? globalState.origin : null
-        var node = Object.assign({}, model.nodes[i], {
-          x: known
-            ? known.x
-            : origin
-              ? origin.x + Math.random() * 40 - 20
-              : Math.random() * width - width / 2,
-          y: known
-            ? known.y
-            : origin
-              ? origin.y + Math.random() * 40 - 20
-              : Math.random() * height - height / 2,
-          vx: 0,
-          vy: 0,
-        })
+        var start = startPosition(model.nodes[i].id)
+        var node = Object.assign({}, model.nodes[i], { x: start.x, y: start.y, vx: 0, vy: 0 })
         nodes.push(node)
         nodeMap.set(node.id, node)
       }
@@ -229,6 +222,7 @@ import {
             })
             .iterations(3),
         )
+      // 펼친 뒤에는 이미 자리 잡은 노드가 크게 흔들리지 않도록 시뮬레이션을 약하게 다시 시작한다.
       if (isGlobal && globalState.positions.size > 0) simulation.alpha(0.3)
 
       if (enableRadial) {
@@ -379,6 +373,7 @@ import {
         })
         label.anchor.set(0.5, isTopic ? 0.5 + radius / (fontSize * 15 * TOPIC_FONT) + 0.6 : 1.2)
         label.alpha = isTopic ? 1 : 0
+        // 주제 노드는 몇 개뿐이라 이름을 늘 보인다. 업스트림은 확대하거나 가리킬 때만 이름을 보인다.
         label.keepVisible = isTopic
         label.scale.set(1 / scale)
         labelsContainer.addChild(label)
@@ -443,7 +438,7 @@ import {
       }
 
       // 주제 노드는 펼치고, 페이지 노드는 그 페이지로 간다.
-      function open(node) {
+      function openNode(node) {
         if (node.kind !== "topic") {
           window.location.href = resolveBasePath(node.id)
           return
@@ -509,7 +504,7 @@ import {
           renderPixiFromD3()
 
           if (Date.now() - dragStartTime < 500) {
-            open(event.subject)
+            openNode(event.subject)
           }
         }
 
@@ -526,7 +521,7 @@ import {
         for (var i = 0; i < nodeRenderData.length; i++) {
           ;(function (nodeData) {
             nodeData.gfx.on("click", function () {
-              open(nodeData.simulationData)
+              openNode(nodeData.simulationData)
             })
           })(nodeRenderData[i])
         }
@@ -614,9 +609,12 @@ import {
         stopAnimation = true
         simulation.stop()
         try {
-          // 업스트림은 destroy(true)로 텍스처까지 지운다. 주제를 펼칠 때처럼 지운 직후 새 그래프를 그리면, 그
-          // 그래프와 local graph의 렌더가 PixiJS 안에서 null을 읽고 멈춘다. 텍스처만 남기면 멈추지 않는다.
+          // 업스트림은 destroy(true)로 라벨의 텍스처까지 지운다. 그 텍스처는 PixiJS가 전역 TexturePool로
+          // 돌려받아 다른 그래프에 다시 내주므로, 지우면 다음 그래프의 렌더가 null을 읽고 멈춘다. 업스트림은
+          // 라벨을 거의 그리지 않아 드러나지 않았지만, 주제 이름은 늘 그린다. 그래서 텍스처는 풀에 돌려주고,
+          // 쉬는 텍스처를 풀에서 비워 그래프를 열고 닫을 때마다 메모리가 쌓이지 않게 한다.
           app.destroy({ removeView: true }, { children: true, context: true, style: true })
+          PIXI.TexturePool.clear(true)
         } catch (_) {
           // PixiJS may throw if WebGL context was already lost.
         }

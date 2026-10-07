@@ -79,10 +79,10 @@ describe("global graph", () => {
     page("100base-t1", ["network/ethernet"], ["secoc"]),
     page("secoc", ["security/cybersecurity"], ["100base-t1"]),
     page("osi-model", ["network"], ["can-frame"]),
-    page("tags/network/can", []),
+    page("tags/network/can", ["network/can"], ["can-frame"]),
     page("tags/network/ethernet", []),
     page("tags/security/cybersecurity", []),
-    page("news/2026-W41", [], ["can-frame", "secoc"]),
+    page("news/2026-W41", ["network/can"], ["can-frame", "secoc"]),
   ]
   pages[5].title = "CAN"
   pages[6].title = "Ethernet"
