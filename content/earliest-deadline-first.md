@@ -13,7 +13,7 @@ verified: 2026-09-29
 
 요청의 마감 시한은 같은 태스크의 다음 요청 시각이다. 요청은 끝날 때까지 이 마감 시한으로 다른 요청과 비교되므로, 같은 두 태스크라도 요청마다 앞서는 쪽이 바뀔 수 있다. 실행 중인 요청보다 마감 시한이 이른 요청이 도착하면 그 요청이 실행 중인 요청을 곧바로 [[real-time-scheduling#선점|선점]]한다.[@liu-hard-real-time-1973]
 
-Linux 커널의 `SCHED_DEADLINE` 정책은 EDF에 [[aperiodic-server#Constant bandwidth server|constant bandwidth server]]를 더해 태스크를 스케줄한다.[@linux-sched-deadline-2026]
+Linux 커널의 `SCHED_DEADLINE` 정책은 EDF에 [[aperiodic-server#CBS|CBS]](Constant Bandwidth Server)를 더해 태스크를 스케줄한다.[@linux-sched-deadline-2026]
 
 RTEMS(Real-Time Executive for Multiprocessor Systems)의 EDF 스케줄러는 단일 코어 응용을 위한 스케줄러로, 마감 시한을 rate monotonic manager로만 선언하며 주기는 늘 마감 시한과 같다. 마감 시한을 선언하지 않았거나 취소한 태스크는 background 태스크가 되어, 마감 시한이 있는 어느 태스크보다도 덜 중요하게 다뤄진다.[@rtems-edf-scheduler-2025]
 
