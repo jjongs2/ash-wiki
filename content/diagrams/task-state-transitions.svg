@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="19.5 -0.5 501 241" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 상태 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="200" y="20" width="140" height="40" rx="2" />
+    <rect x="40" y="180" width="140" height="40" rx="2" />
+    <rect x="360" y="180" width="140" height="40" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="270" y="45">실행 중 (running)</text>
+    <text x="110" y="205">준비 (ready)</text>
+    <text x="430" y="205">블록 (blocked)</text>
+  </g>
+
+  <!-- 전이 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="115" y1="178" x2="205" y2="62" marker-end="url(#arrow)" />
+    <line x1="235" y1="62" x2="145" y2="178" marker-end="url(#arrow)" />
+    <line x1="305" y1="62" x2="395" y2="178" marker-end="url(#arrow)" />
+    <line x1="358" y1="200" x2="182" y2="200" marker-end="url(#arrow)" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="146" y="110" text-anchor="end">준비 태스크 가운데</text>
+    <text x="146" y="126" text-anchor="end">우선순위가 가장 높음</text>
+    <text x="202" y="124">선점</text>
+    <text x="362" y="122">지연·사건 대기·정지</text>
+    <text x="270" y="192" text-anchor="middle">지연 끝·사건 발생</text>
+  </g>
+</svg>

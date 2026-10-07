@@ -23,6 +23,8 @@ EDF와 함께 쓰면 태스크 $\tau_i$의 job마다 절대 마감 시한에 따
 
 스택 자원 정책에서 job은 일단 실행을 시작하면 끝날 때까지 블록되지 않고, 우선순위가 더 높은 태스크에 선점될 뿐이다. 이 정책은 [[deadlock|교착 상태]]를 막고, job이 블록되는 시간은 임계 구역 하나의 길이를 넘지 않는다. 태스크가 실행 도중에 블록되지 않으므로 대기 큐를 둘 필요가 없고, 스케줄 가능성 분석의 블로킹 시간 $B_i$는 태스크 $\tau_i$가 preemption level 검사 때문에 준비 큐에 머무는 시간이다. 또 태스크들이 실행 스택 하나를 함께 쓸 수 있어, 태스크가 상대 우선순위 단계보다 훨씬 많으면 메모리를 크게 아낄 수 있다.[@sha-real-time-scheduling-theory-2004]
 
+![[diagrams/stack-resource-policy-system-ceiling.svg]]
+
 EDF로 스케줄하고 주기 태스크와 sporadic 태스크만 있는 자원 공유 태스크 집합에서, 태스크를 preemption level이 높은 순으로 늘어놓아 $i < j$일 때만 $\pi_i \ge \pi_j$라 하자. 태스크 $\tau_k$의 실행 시간을 $C_k$, 주기를 $T_k$라 할 때, 모든 $i$($1 \le i \le n$)에 대해 아래 조건이 성립하면 태스크 집합은 스케줄 가능하다. 이 조건은 충분조건이다.[@sha-real-time-scheduling-theory-2004]
 
 $$

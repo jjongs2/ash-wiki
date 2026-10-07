@@ -11,6 +11,8 @@ verified: 2026-10-07
 
 µC/OS-III 문서에 따르면 임베디드 실시간 시스템에서 C 컴파일러의 `malloc()`과 `free()`를 쓰는 것은 위험할 수 있다. 빈 메모리 전체가 서로 이어지지 않은 작은 조각으로 쪼개지는 것을 **단편화**(fragmentation)라 하고, 단편화가 쌓이면 이어진 메모리 영역 하나를 얻지 못하게 될 수 있다. `malloc()` 요청을 채울 만큼 큰 빈 블록을 찾는 알고리즘 때문에 `malloc()`과 `free()`의 실행 시간은 대개 비결정적이다.[@micrium-ucos-iii-memory-management-2026]
 
+![[diagrams/heap-fragmentation.svg]]
+
 FreeRTOS 커널 책에 따르면 C 라이브러리의 `malloc()`과 `free()`는 작은 임베디드 시스템에 늘 있지는 않고, 구현이 비교적 클 수 있어 코드 공간을 차지하며, thread-safe한 경우가 드물다. 또 호출마다 실행 시간이 달라 결정적이지 않고, 단편화를 겪을 수 있어 FreeRTOS에 맞지 않을 수 있다.[@freertos-heap-memory-management-2026]
 
 ## 고정 크기 블록
@@ -20,6 +22,8 @@ Renesas 앱노트에 따르면 RTOS는 흔히 힙을 고정 크기 메모리 블
 µC/OS-III는 `malloc()`과 `free()` 대신, 이어진 메모리 영역으로 만든 파티션에서 고정 크기 메모리 블록을 얻게 한다. 한 파티션의 블록은 크기가 모두 같고, 블록의 할당과 해제는 상수 시간에 결정적으로 이루어진다. 파티션은 대개 배열로 정적으로 잡지만, 해제하지 않는다면 `malloc()`으로 잡아도 된다. 응용은 블록 크기와 개수가 다른 파티션을 여럿 둘 수 있고, 꺼낸 블록은 반드시 그 블록이 나온 파티션에 돌려준다. 이 방식은 블록이 바닥날 수는 있어도 단편화를 겪지 않는다.[@micrium-ucos-iii-memory-management-2026]
 
 CMSIS-RTOS2는 thread-safe한 고정 크기 메모리 블록인 메모리 풀을 정한다. 메모리 풀은 크기가 같은 빈 블록을 이은 연결 리스트로 볼 수 있어, `osMemoryPoolAlloc`은 리스트에서 블록 하나를 떼어 넘기고 `osMemoryPoolFree`는 블록을 리스트에 다시 잇는다. 메모리 풀은 동적으로 할당하는 힙보다 훨씬 빠르게 동작하고 단편화를 겪지 않으며, 할당과 해제 함수는 ISR(Interrupt Service Routine)에서도 부를 수 있다.[@arm-cmsis-rtos2-memory-pool-2026]
+
+![[diagrams/memory-pool-free-list.svg]]
 
 ## FreeRTOS의 힙 구현
 

@@ -43,6 +43,8 @@ RTEMS(Real-Time Executive for Multiprocessor Systems)에서 affinity는 SMP 시�
 
 RTEMS 문서는 시스템의 프로세서들을 비어 있지 않고 서로 겹치지 않는 부분집합으로 나누는 것을 **clustered scheduling**이라 부르고, 그 부분집합을 **cluster**라 부른다. 크기가 1인 cluster는 **partition**이라 부르고, cluster 크기가 프로세서 수와 같으면 global scheduling이라 부른다. RTEMS에서 cluster마다 스케줄러 인스턴스 하나가 맡으며, RTEMS는 시스템의 캐시 구조를 잘 쓰고 최악 지연을 억제하려고 clustered scheduling을 구현했다.[@rtems-smp-clustered-scheduling-2025]
 
+![[diagrams/rtems-clustered-scheduling.svg]]
+
 ## 자원 공유
 
 partitioned 고정 우선순위 시스템에 쓰는 [[priority-ceiling-protocol|우선순위 상한 프로토콜]]의 다중 프로세서 변형을 **MPCP**(Multiprocessor Priority Ceiling Protocol)라 부른다. [[stack-resource-policy|스택 자원 정책]]에 바탕을 두고 partitioned 시스템에서 고정 우선순위나 EDF와 함께 쓰는 프로토콜을 **MSRP**(Multiprocessor Stack Resource Policy)라 부르고, 짧은 자원과 긴 자원을 나눠 다루는 프로토콜을 **FMLP**(Flexible Multiprocessor Locking Protocol)라 부른다.[@davis-survey-hard-real-time-2011]

@@ -7,6 +7,8 @@ verified: 2026-10-07
 
 FreeRTOS 문서는 인터럽트가 요구하는 처리를 ISR(Interrupt Service Routine) 안에서 다 하지 않고, ISR이 블록을 풀어 준 [[task|태스크]]에서 하는 방식을 **deferred interrupt handling**이라 부른다. 보통의 ISR 처리는 인터럽트 원인을 기록하고 인터럽트를 지운 뒤 필요한 처리를 모두 ISR 안에서 하지만, deferred interrupt handling에서는 원인을 기록하고 인터럽트를 지우는 데까지만 ISR에서 하고 나머지는 블록이 풀린 태스크가 한다. 처리를 넘겨받는 태스크의 우선순위가 충분히 높으면 ISR은 곧바로 그 태스크로 돌아가, 처리가 ISR 안에서 다 한 것처럼 시간 틈 없이 이어진다.[@freertos-deferred-interrupt-handling-2026]
 
+![[diagrams/deferred-interrupt-handling-timeline.svg]]
+
 µC/OS-III 문서에 따르면 ISR은 인터럽트를 낸 장치를 처리하되 실제로는 일을 거의 하지 않고, 대개 처리의 대부분을 맡은 높은 우선순위 태스크에 신호나 메시지를 보낸다. ISR이 끝나면 µC/OS-III는 끊긴 태스크로 돌아가지 않고, ISR이 준비 상태로 만든 더 중요한 태스크로 [[context-switch|context switch]]한다.[@micrium-ucos-iii-real-time-kernels-2026]
 
 ## ISR을 짧게 두는 까닭

@@ -33,6 +33,8 @@ POSIX 근거 문서에 따르면 시스템이 실시간 응용을 지원하려�
 
 `clock_nanosleep()`의 근거 설명에 따르면 상대 sleep 함수로는 정확한 주기 활성화를 얻지 못한다. 주기 $T$로 도는 프로세스가 지금 시각을 읽고 다음 활성화 시각까지의 간격을 계산해 `nanosleep()`을 부르면, 두 호출 사이에 선점될 때 계산한 간격이 틀려 원하는 때보다 늦게 깨어난다. 절대 시각의 `clock_nanosleep()`은 호출 하나로 원하는 시각까지 멈추므로 이 문제가 없다.[@ieee-1003-1-clock-nanosleep-2024]
 
+![[diagrams/relative-vs-absolute-sleep.svg]]
+
 POSIX.1-2024는 `clock_nanosleep()`에 `TIMER_ABSTIME`을 주면 지정한 클록이 절대 시각에 이를 때까지 스레드를 멈추게 하고, 그 시각이 이미 지났으면 곧바로 돌아오게 한다. 플래그가 없으면 지정한 간격 동안 멈추며, 신호로 끊길 때를 빼면 상대 sleep의 정지 시간은 지정한 간격보다 짧지 않다.[@ieee-1003-1-clock-nanosleep-2024]
 
 CMSIS-RTOS2는 `osDelayUntil`이 커널 틱으로 지정한 절대 시각까지 기다리게 하고, 커널 틱 카운터가 넘쳐 되돌아가는 경우도 처리하게 한다. 최대 지연은 $2^{31}-1$틱이다.[@arm-cmsis-rtos2-wait-2026]

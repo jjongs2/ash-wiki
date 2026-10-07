@@ -33,6 +33,8 @@ deferrable server는 처리할 요청이 없으면 실행 시간을 보존하는
 
 Sprunt, Sha, Lehoczky는 1989년 기술 보고서에서 sporadic server의 보충을 우선순위 수준의 active와 idle로 정했다. 시스템이 지금 실행하는 우선순위가 어떤 우선순위 수준 이상이면 그 수준은 active이고, 그보다 낮으면 idle이다. 서버에 실행 시간이 남아 있으면 서버의 우선순위 수준이 active가 되는 시각에 그 시각과 서버 주기의 합을 보충 시각으로 정하고, 그 수준이 idle이 되거나 서버의 실행 시간이 바닥나면 그동안 쓴 만큼의 실행 시간을 그 보충 시각에 다시 채우도록 예약한다.[@sprunt-sporadic-aperiodic-1989]
 
+![[diagrams/aperiodic-server-capacity.svg]]
+
 이들은 같은 보고서에서 서로 독립이고 선점할 수 있으며 마감 시한이 주기 끝인 주기 태스크를 RM으로 스케줄할 때, 스케줄 가능한 태스크 집합의 한 태스크를 주기와 실행 시간이 같은 sporadic server로 바꿔도 태스크 집합이 스케줄 가능하다는 것을 Theorem 4로 제시했다. 곧 스케줄링에서 sporadic server를 같은 주기와 실행 시간의 주기 태스크로 볼 수 있다는 것이다.[@sprunt-sporadic-aperiodic-1989] Sprunt, Sha, Lehoczky가 1989년 Real-Time Systems 논문에 실은 원래 sporadic server 기술에는 결함이 있었다.[@sha-real-time-scheduling-theory-2004]
 
 ## Slack stealing

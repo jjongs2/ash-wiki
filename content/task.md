@@ -17,6 +17,8 @@ RTOS는 태스크마다 그 태스크의 정보를 담는 자료 구조인 TCB(T
 - **준비**(ready): 실행할 수 있지만 CPU를 받지 못한 상태다. 실행 중인 태스크가 끝나거나 블록되면, 준비 상태의 태스크 가운데 우선순위가 가장 높은 것이 실행 중이 된다.
 - **블록**(blocked): 지연 시간이 지나기를 기다리거나, 사건이 일어나기를 기다리거나, 정지되어 실행할 수 없는 상태다.[@micrium-ucos-iii-task-management-internals-2026][@arm-cmsis-rtos2-thread-management-2026]
 
+![[diagrams/task-state-transitions.svg]]
+
 µC/OS-III와 FreeRTOS에서 사건을 기다리는 태스크는 그동안 CPU 시간을 쓰지 않는다.[@micrium-ucos-iii-task-management-internals-2026][@freertos-task-management-2026]
 
 FreeRTOS, µC/OS-III, Zephyr, RTEMS(Real-Time Executive for Multiprocessor Systems)가 두는 태스크 상태와 CMSIS-RTOS2가 정하는 스레드 상태는 다음과 같다.

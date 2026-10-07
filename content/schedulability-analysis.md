@@ -49,6 +49,8 @@ $$
 
 이 가정에서 $W_i(t) \le t$를 확인할 $t$는 0과 $T_i$ 사이에 있는 태스크 주기의 배수뿐이다.[@sha-real-time-scheduling-theory-2004]
 
+![[diagrams/time-demand-function.svg]]
+
 고정 우선순위 선점 스케줄링에서 스케줄 가능 여부만 알면 될 때는, 태스크마다 먼저 충분조건 검사를 하고 이를 통과한 태스크의 정확한 계산을 건너뛰어 계산량을 크게 줄일 수 있다. 태스크마다 정확한 응답 시간이 필요하면 이 방법은 맞지 않는다.[@davis-efficient-exact-2008]
 
 고정 우선순위 선점 스케줄링에서 태스크들이 자원을 [[critical-section|상호 배제]]로 공유하면 블로킹이 생기므로, [[priority-inheritance-protocol|우선순위 상속]] 계열 프로토콜로 한정한 태스크마다의 최악 블로킹 시간 $B_i$를 검사에 넣어야 한다.[@audsley-flexible-scheduling-1993] $B_i$를 넣은 식은 [[response-time-analysis#반복식|응답 시간 분석]]에서 다룬다.
