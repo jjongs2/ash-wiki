@@ -23,7 +23,7 @@
 
 ## 커밋 기록
 
-Cloudflare Pages는 저장소를 shallow clone으로 받습니다. 기록이 마지막 커밋 하나뿐이면 모든 페이지의 수정일이 그 커밋 날짜로 같게 찍히고, 대문의 최근 변경도 한 묶음만 남습니다. 그래서 `prebuild`의 첫 단계(`tools/unshallow.ts`)가 저장소가 shallow일 때만 `git fetch --unshallow`로 전체 기록을 받습니다. 약 1.3초와 1.3MB가 듭니다. 전체 기록이 있는 로컬 클론에서는 아무것도 하지 않습니다.
+Cloudflare Pages는 저장소를 shallow clone으로 받습니다. 기록이 마지막 커밋 하나뿐이면 모든 페이지의 수정일이 그 커밋 날짜로 같게 찍히고, 대문의 최근 변경도 한 묶음만 남습니다. 그래서 `prebuild`의 첫 단계(`tools/unshallow.ts`)가 저장소가 shallow일 때만 `git fetch --unshallow`로 전체 기록을 받습니다. GitHub에서 받는 데 2초, 2.4MB쯤 듭니다(2026년 10월 실측). 전체 기록이 있는 로컬 클론에서는 아무것도 하지 않습니다.
 
 기록을 받지 못하면 빌드가 멈춥니다. 그대로 배포하면 수정일이 모두 같아져도 알아채기 어렵기 때문입니다.
 
