@@ -2,6 +2,10 @@
 // ash-wiki: 노드와 선은 model.ts의 graph가 계산한다. 태그 노드가 없고, 노드는 구역 색으로 칠한다.
 // 구역 색은 theme의 구역 색 토큰(--region-<구역>, --region-other)에서 읽는다. 노드는 canvas에 그려 CSS로
 // 칠할 수 없어서다. 방문한 페이지를 칠하던 업스트림의 방문 기록(localStorage graph-visited)은 쓰지 않는다.
+//
+// global graph(설정의 depth가 음수)는 주제 노드로 그린다. 주제 노드의 크기는 페이지 수, 선 굵기는 주제 사이
+// 링크 수다. 주제 노드를 누르면 그 주제의 페이지 노드로 펼치고, 이미 있던 노드는 자리를 지킨다. 펼친 상태는
+// global graph를 닫으면 버린다.
 import { graph as graphModel } from "./model.ts"
 import {
   removeAllChildren,
@@ -79,7 +83,18 @@ import {
       return resolved || fallback
     }
 
-    async function renderGraph(graph, fullSlug, renderGeneration) {
+    // 주제 노드의 반지름은 TOPIC_RADIUS + TOPIC_RADIUS_STEP * √(페이지 수)다. 주제 노드는 페이지 노드보다
+    // TOPIC_REPEL배 세게 밀어내고, 서로 TOPIC_GAP만큼 띄운다. 주제 노드에 닿는 선은 설정의 linkDistance를
+    // TOPIC_SPREAD배 한 길이에 두 노드의 반지름을 더한다. 이름은 페이지 노드 글자의 TOPIC_FONT배다.
+    var TOPIC_RADIUS = 6
+    var TOPIC_RADIUS_STEP = 3
+    var TOPIC_REPEL = 30
+    var TOPIC_GAP = 20
+    var TOPIC_SPREAD = 3
+    var TOPIC_FONT = 1.6
+    var LINK_MAX_WIDTH = 6
+
+    async function renderGraph(graph, fullSlug, renderGeneration, globalState) {
       var slug = simplifySlug(fullSlug)
       if (slug === "") slug = "index"
       removeAllChildren(graph)
@@ -126,14 +141,30 @@ import {
           links: (details.links || []).map(simplifySlug),
         })
       })
-      var model = graphModel(pages, { kind: "local", current: slug, depth: depth })
+      var isGlobal = depth < 0
+      var model = graphModel(
+        pages,
+        isGlobal
+          ? { kind: "global", expanded: Array.from(globalState.expanded) }
+          : { kind: "local", current: slug, depth: depth },
+      )
 
       var nodes = []
       var nodeMap = new Map()
       for (var i = 0; i < model.nodes.length; i++) {
+        var known = isGlobal ? globalState.positions.get(model.nodes[i].id) : undefined
+        var origin = isGlobal ? globalState.origin : null
         var node = Object.assign({}, model.nodes[i], {
-          x: Math.random() * width - width / 2,
-          y: Math.random() * height - height / 2,
+          x: known
+            ? known.x
+            : origin
+              ? origin.x + Math.random() * 40 - 20
+              : Math.random() * width - width / 2,
+          y: known
+            ? known.y
+            : origin
+              ? origin.y + Math.random() * 40 - 20
+              : Math.random() * height - height / 2,
           vx: 0,
           vy: 0,
         })
@@ -175,18 +206,30 @@ import {
 
       var simulation = d3
         .forceSimulation(nodes)
-        .force("charge", d3.forceManyBody().strength(-100 * repelForce))
+        .force(
+          "charge",
+          d3.forceManyBody().strength(function (d) {
+            return -100 * repelForce * (d.kind === "topic" ? TOPIC_REPEL : 1)
+          }),
+        )
         .force("center", d3.forceCenter().strength(centerForce))
-        .force("link", d3.forceLink(graphLinks).distance(linkDistance))
+        .force(
+          "link",
+          d3.forceLink(graphLinks).distance(function (l) {
+            if (l.source.kind !== "topic" && l.target.kind !== "topic") return linkDistance
+            return linkDistance * TOPIC_SPREAD + nodeRadius(l.source) + nodeRadius(l.target)
+          }),
+        )
         .force(
           "collide",
           d3
             .forceCollide()
             .radius(function (d) {
-              return nodeRadius(d)
+              return nodeRadius(d) + (d.kind === "topic" ? TOPIC_GAP : 0)
             })
             .iterations(3),
         )
+      if (isGlobal && globalState.positions.size > 0) simulation.alpha(0.3)
 
       if (enableRadial) {
         var radius = (Math.min(width, height) / 2) * 0.8
@@ -209,6 +252,7 @@ import {
       var currentTransform = d3.zoomIdentity
 
       function nodeRadius(d) {
+        if (d.kind === "topic") return TOPIC_RADIUS + TOPIC_RADIUS_STEP * Math.sqrt(d.pages)
         // 업스트림은 양방향 링크를 선 두 개로 셌다. 선 하나에 링크 수(weight)를 모았으므로 그 합으로 센다.
         var numLinks = 0
         for (var i = 0; i < graphLinks.length; i++) {
@@ -217,6 +261,12 @@ import {
           }
         }
         return 2 + Math.sqrt(numLinks)
+      }
+
+      // global graph의 선 굵기는 주제 사이 링크 수를 로그로 줄여 1px에서 LINK_MAX_WIDTH px 사이에 둔다.
+      function linkWidth(l) {
+        if (!isGlobal) return 1
+        return Math.min(1 + Math.log2(l.weight), LINK_MAX_WIDTH)
       }
 
       var regionColors = new Map()
@@ -317,17 +367,19 @@ import {
         var radius = nodeRadius(node)
         var color = nodeColor(node)
 
+        var isTopic = node.kind === "topic"
         var label = new PIXI.Text({
           text: node.text,
           style: {
-            fontSize: fontSize * 15,
+            fontSize: fontSize * 15 * (isTopic ? TOPIC_FONT : 1),
             fill: dark,
             fontFamily: bodyFont,
           },
           resolution: window.devicePixelRatio * 4,
         })
-        label.anchor.set(0.5, 1.2)
-        label.alpha = 0
+        label.anchor.set(0.5, isTopic ? 0.5 + radius / (fontSize * 15 * TOPIC_FONT) + 0.6 : 1.2)
+        label.alpha = isTopic ? 1 : 0
+        label.keepVisible = isTopic
         label.scale.set(1 / scale)
         labelsContainer.addChild(label)
 
@@ -390,6 +442,24 @@ import {
         })
       }
 
+      // 주제 노드는 펼치고, 페이지 노드는 그 페이지로 간다.
+      function open(node) {
+        if (node.kind !== "topic") {
+          window.location.href = resolveBasePath(node.id)
+          return
+        }
+        for (var i = 0; i < nodes.length; i++) {
+          globalState.positions.set(nodes[i].id, { x: nodes[i].x, y: nodes[i].y })
+        }
+        globalState.origin = { x: node.x, y: node.y }
+        globalState.transform = currentTransform
+        globalState.expanded.add(node.id)
+        // 이 그래프를 지우고 다시 그리므로, 지금 도는 이벤트 처리가 끝난 뒤에 한다.
+        setTimeout(function () {
+          showGlobalGraph(true)
+        }, 0)
+      }
+
       if (enableDrag) {
         var dragSubject = function (event) {
           var mouseX = (event.x - currentTransform.x) / currentTransform.k
@@ -439,8 +509,7 @@ import {
           renderPixiFromD3()
 
           if (Date.now() - dragStartTime < 500) {
-            var target = resolveBasePath(event.subject.id)
-            window.location.href = target
+            open(event.subject)
           }
         }
 
@@ -457,8 +526,7 @@ import {
         for (var i = 0; i < nodeRenderData.length; i++) {
           ;(function (nodeData) {
             nodeData.gfx.on("click", function () {
-              var target = resolveBasePath(nodeData.simulationData.id)
-              window.location.href = target
+              open(nodeData.simulationData)
             })
           })(nodeRenderData[i])
         }
@@ -482,7 +550,7 @@ import {
 
           for (var i = 0; i < labelsContainer.children.length; i++) {
             var label = labelsContainer.children[i]
-            if (activeLabels.indexOf(label) === -1) {
+            if (activeLabels.indexOf(label) === -1 && !label.keepVisible) {
               label.alpha = scaleOpacity
             }
           }
@@ -498,6 +566,9 @@ import {
           .on("zoom", zoomed)
 
         d3.select(app.canvas).call(zoom)
+        if (isGlobal && globalState.transform) {
+          d3.select(app.canvas).call(zoom.transform, globalState.transform)
+        }
       }
 
       var stopAnimation = false
@@ -527,7 +598,7 @@ import {
             l.gfx.clear()
             l.gfx.moveTo(sx + width / 2, sy + height / 2)
             l.gfx.lineTo(tx + width / 2, ty + height / 2)
-            l.gfx.stroke({ alpha: l.alpha, width: 1, color: l.color })
+            l.gfx.stroke({ alpha: l.alpha, width: linkWidth(linkData), color: l.color })
           }
         }
 
@@ -543,7 +614,9 @@ import {
         stopAnimation = true
         simulation.stop()
         try {
-          app.destroy(true)
+          // 업스트림은 destroy(true)로 텍스처까지 지운다. 주제를 펼칠 때처럼 지운 직후 새 그래프를 그리면, 그
+          // 그래프와 local graph의 렌더가 PixiJS 안에서 null을 읽고 멈춘다. 텍스처만 남기면 멈추지 않는다.
+          app.destroy({ removeView: true }, { children: true, context: true, style: true })
         } catch (_) {
           // PixiJS may throw if WebGL context was already lost.
         }
@@ -594,7 +667,12 @@ import {
       return false
     }
 
-    function showGlobalGraph() {
+    var globalState = null
+
+    function showGlobalGraph(keepState) {
+      if (!keepState || !globalState) {
+        globalState = { expanded: new Set(), positions: new Map(), origin: null, transform: null }
+      }
       cleanupGlobal()
       var currentSlug = getSlugFromUrl()
       for (var i = 0; i < globalContainers.length; i++) {
@@ -608,7 +686,7 @@ import {
         var graphContainer = container.querySelector(".global-graph-container")
         if (graphContainer) {
           ;(function (gc) {
-            renderGraph(gc, currentSlug, undefined)
+            renderGraph(gc, currentSlug, undefined, globalState)
               .then(function (cleanup) {
                 globalCleanups.push(cleanup)
               })
@@ -701,7 +779,7 @@ import {
       document.addEventListener("keydown", documentKeydownHandler)
 
       if (anyGlobalGraphActive()) {
-        showGlobalGraph()
+        showGlobalGraph(true)
       }
     }
 
@@ -722,7 +800,7 @@ import {
     function handleThemeChange() {
       renderLocal()
       if (anyGlobalGraphActive()) {
-        showGlobalGraph()
+        showGlobalGraph(true)
       }
     }
     document.addEventListener("themechange", handleThemeChange)

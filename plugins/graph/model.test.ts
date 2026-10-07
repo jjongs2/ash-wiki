@@ -71,3 +71,91 @@ describe("local graph", () => {
     ])
   })
 })
+
+describe("global graph", () => {
+  const pages = [
+    page("can-frame", ["network/can"], ["can-fd", "100base-t1", "osi-model", "tags/network/can"]),
+    page("can-fd", ["network/can"], ["can-frame", "100base-t1"]),
+    page("100base-t1", ["network/ethernet"], ["secoc"]),
+    page("secoc", ["security/cybersecurity"], ["100base-t1"]),
+    page("osi-model", ["network"], ["can-frame"]),
+    page("tags/network/can", []),
+    page("tags/network/ethernet", []),
+    page("tags/security/cybersecurity", []),
+    page("news/2026-W41", [], ["can-frame", "secoc"]),
+  ]
+  pages[5].title = "CAN"
+  pages[6].title = "Ethernet"
+  pages[7].title = "사이버보안"
+
+  test("주제 노드만 내고, 크기는 페이지 수, 선 굵기는 주제 사이 링크 수다", () => {
+    const { nodes, links } = graph(pages, { kind: "global", expanded: [] })
+    assert.deepStrictEqual(
+      nodes.sort((a, b) => a.id.localeCompare(b.id)),
+      [
+        { id: "tags/network/can", kind: "topic", text: "CAN", region: "network", pages: 2 },
+        {
+          id: "tags/network/ethernet",
+          kind: "topic",
+          text: "Ethernet",
+          region: "network",
+          pages: 1,
+        },
+        {
+          id: "tags/security/cybersecurity",
+          kind: "topic",
+          text: "사이버보안",
+          region: "security",
+          pages: 1,
+        },
+      ],
+    )
+    // CAN의 두 페이지가 100base-t1로 가는 링크 2개, 100base-t1과 secoc이 서로 가는 링크 2개.
+    // CAN 안의 링크, 주제가 없는 osi-model의 링크, 주간 소식의 링크는 세지 않는다.
+    const weights = Object.fromEntries(
+      links.map((link) => [[link.source, link.target].sort().join(" "), link.weight]),
+    )
+    assert.deepStrictEqual(weights, {
+      "tags/network/can tags/network/ethernet": 2,
+      "tags/network/ethernet tags/security/cybersecurity": 2,
+    })
+  })
+
+  test("펼친 주제는 그 주제의 페이지 노드로 바뀌고, 선은 페이지와 다른 주제 사이로 나뉜다", () => {
+    const { nodes, links } = graph(pages, { kind: "global", expanded: ["tags/network/can"] })
+    assert.deepStrictEqual(ids(nodes), [
+      "can-fd",
+      "can-frame",
+      "tags/network/ethernet",
+      "tags/security/cybersecurity",
+    ])
+    const canFrame = nodes.find((node) => node.id === "can-frame")
+    assert.deepStrictEqual(canFrame, {
+      id: "can-frame",
+      kind: "page",
+      text: "can-frame",
+      region: "network",
+      pages: 1,
+    })
+    const weights = Object.fromEntries(
+      links.map((link) => [[link.source, link.target].sort().join(" "), link.weight]),
+    )
+    assert.deepStrictEqual(weights, {
+      "can-fd can-frame": 2,
+      "can-frame tags/network/ethernet": 1,
+      "can-fd tags/network/ethernet": 1,
+      "tags/network/ethernet tags/security/cybersecurity": 2,
+    })
+  })
+
+  test("여러 주제에 걸친 페이지는 펼친 주제 하나에서만 페이지 노드가 된다", () => {
+    const { nodes } = graph(
+      [
+        page("secoc", ["security/cybersecurity", "platform/autosar"]),
+        page("com", ["platform/autosar"], ["secoc"]),
+      ],
+      { kind: "global", expanded: ["tags/security/cybersecurity", "tags/platform/autosar"] },
+    )
+    assert.deepStrictEqual(ids(nodes), ["com", "secoc"])
+  })
+})
