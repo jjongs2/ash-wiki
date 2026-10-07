@@ -21,7 +21,7 @@ AUTOSAR R25-11의 Adaptive Platform IdsM 명세는 Software Cluster와 functiona
 
 ## Qualification
 
-AUTOSAR Classic Platform R25-11의 IdsM 명세는 IdsM이 보고된 보안 이벤트를 설정한 규칙에 따라 qualify하도록 정한다. 이 규칙을 **filter chain**이라 하며, filter chain은 설정한 필터를 차례로 이은 것이다. 보고된 이벤트를 걸러 바꾼 결과가 **qualified security event**(QSEv)이고, IdsM은 이를 다시 저장이나 전달로 다룬다. 필터는 들어온 보안 이벤트를 버리거나 바꿀 수 있고, filter chain을 통과한 보안 이벤트가 qualified security event가 되어 설정한 sink로 간다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
+AUTOSAR Classic Platform R25-11의 IdsM 명세는 IdsM이 보고된 보안 이벤트를 설정한 규칙에 따라 qualify하도록 정한다. 이 규칙을 **filter chain**이라 하며, 필터를 차례로 이어 만든다. 보고된 이벤트를 걸러 바꾼 결과가 **qualified security event**(QSEv)이고, IdsM은 이를 다시 저장이나 전달로 다룬다. 필터는 들어온 보안 이벤트를 버리거나 바꿀 수 있고, filter chain을 통과한 보안 이벤트가 qualified security event가 되어 설정한 sink로 간다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
 
 ## 저장과 전달
 
