@@ -17,7 +17,7 @@ verified: 2026-09-30
 
 **Execution budget**은 태스크나 ISR에 허용되는 최대 실행 시간이다. 태스크는 SUSPENDED나 WAITING 상태로 들기 전까지 RUNNING 상태로 있던 순시간을 재고, 여러 번 활성화된 basic 태스크는 활성화마다 잰다. OS는 태스크가 SUSPENDED나 WAITING으로 넘어갈 때, ISR은 반환할 때 budget을 다시 채운다.[@autosar-cp-sws-os-2025]
 
-execution budget을 넘으면 OS는 protection hook을 E_OS_PROTECTION_TIME으로 부른다. 다만 deferrable server로 설정한 태스크는 hook을 부르는 대신 BUDGET_EXHAUSTED 상태로 옮겨, budget이 다시 채워질 때까지 스케줄하지 않는다.[@autosar-cp-sws-os-2025]
+execution budget을 넘으면 OS는 protection hook을 E_OS_PROTECTION_TIME으로 부른다. 다만 [[aperiodic-server#Deferrable server|deferrable server]]로 설정한 태스크는 hook을 부르는 대신 BUDGET_EXHAUSTED 상태로 옮겨, budget이 다시 채워질 때까지 스케줄하지 않는다.[@autosar-cp-sws-os-2025]
 
 ![[diagrams/autosar-execution-budget-consumption.svg]]
 

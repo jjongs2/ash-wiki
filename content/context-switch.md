@@ -5,15 +5,17 @@ tags:
 verified: 2026-09-29
 ---
 
-FreeRTOS 문서는 멈추는 태스크의 context를 저장하고 재개하는 태스크의 context를 복원하는 과정을 **context switch**라 부른다.[@freertos-context-switching-2023] 운영체제 커널은 태스크를 멈출 때 그 context를 저장하고, 다시 실행하기 전에 저장해 둔 context를 복원한다.[@freertos-context-switching-2023][@osek-os-2-2-3-2005] **context**는 태스크를 다시 실행하는 데 필요한 프로세서 상태로, 범용 레지스터, 프로그램 카운터, 스택 포인터, 상태 레지스터 같은 값이다.[@freertos-avr-context-2024][@intel-sdm-vol3a-2026]
+FreeRTOS 문서는 멈추는 [[task|태스크]]의 context를 저장하고 재개하는 태스크의 context를 복원하는 과정을 **context switch**라 부른다.[@freertos-context-switching-2023] 운영체제 커널은 태스크를 멈출 때 그 context를 저장하고, 다시 실행하기 전에 저장해 둔 context를 복원한다.[@freertos-context-switching-2023][@osek-os-2-2-3-2005] **context**는 태스크를 다시 실행하는 데 필요한 프로세서 상태로, 범용 레지스터, 프로그램 카운터, 스택 포인터, 상태 레지스터 같은 값이다.[@freertos-avr-context-2024][@intel-sdm-vol3a-2026]
 
 ## 저장과 복원
 
 스케줄러가 다른 태스크를 고르면 context switch가 일어난다.[@osek-os-2-2-3-2005][@freertos-tick-code-2023] context가 복원된 태스크는 멈췄던 자리에서 실행을 이어 간다.[@osek-os-2-2-3-2005][@freertos-avr-context-2024]
 
-FreeRTOS는 태스크마다 스택을 따로 두고, 프로세서 레지스터를 그 태스크의 스택에 push해 context를 저장한다. FreeRTOS의 AVR 포트는 레지스터를 번호 순으로 하나씩 태스크 스택에 push한다.[@freertos-saving-context-2024] 태스크를 재개할 때는 그 태스크의 스택 포인터를 되찾은 뒤, 스택에서 레지스터를 pop해 context를 복원한다.[@freertos-restoring-context-2024]
+FreeRTOS는 태스크마다 [[task#스택|스택]]을 따로 두고, 프로세서 레지스터를 그 태스크의 스택에 push해 context를 저장한다. FreeRTOS의 AVR 포트는 레지스터를 번호 순으로 하나씩 태스크 스택에 push한다.[@freertos-saving-context-2024] 태스크를 재개할 때는 그 태스크의 스택 포인터를 되찾은 뒤, 스택에서 레지스터를 pop해 context를 복원한다.[@freertos-restoring-context-2024]
 
 ![[diagrams/context-switch-save-restore.svg]]
+
+µC/OS-III는 다른 태스크를 실행하기로 하면 지금 태스크의 context, 대개 CPU 레지스터를 그 태스크의 스택에 저장하고 새 태스크의 context를 복원한다. 준비 상태 태스크의 스택 프레임은 늘 인터럽트가 막 일어나 프로세서 레지스터를 모두 쌓아 둔 것처럼 꾸며져 있다. 태스크는 만들어질 때 준비 상태에 들므로, 소프트웨어가 그 스택 프레임을 같은 모양으로 미리 채워 둔다. 스택 포인터는 스택이 아니라 태스크의 TCB(Task Control Block)에 저장한다. context switch 코드는 대개 µC/OS-III의 프로세서 포트에 들어 있다. 레지스터가 많은 CPU일수록 저장하고 복원할 레지스터가 많아 context switch 부담이 크다.[@micrium-ucos-iii-context-switching-2026] µC/OS-III TCB의 첫 필드 `.StkPtr`는 태스크 스택의 꼭대기를 가리키며, context switch 코드가 어셈블리에서 접근하는 TCB 필드를 이것 하나로 두도록 해 맨 앞에 놓았다.[@micrium-ucos-iii-task-management-internals-2026]
 
 FreeRTOS 문서에 따르면 협력형 스케줄러는 요청이 있을 때만 context switch를 하므로, [[rtos|RTOS]]가 더하는 처리 오버헤드를 크게 줄인다.[@freertos-solution4-2024]
 

@@ -19,6 +19,8 @@ Liu와 Layland의 모델에서 태스크 $\tau_i$의 **요청 주기** $T_i$는 
 
 Audsley의 1993년 분석에서는 태스크가 처음 시작하는 시각을 시스템 실행이 시작된 시각에서 떨어뜨릴 수 있고, 이 시작 시각을 **offset**이라 한다. 태스크 $\tau_i$의 offset이 $O_i$면 태스크는 $O_i$, $O_i + T_i$, $O_i + 2T_i$, …에 요청된다.[@audsley-flexible-scheduling-1993]
 
+모든 태스크가 함께 도착하는 시점이 있는 주기 태스크 집합을 **synchronous** 태스크 집합이라 부르고, 태스크의 도착 시각이 고정된 offset만큼 떨어져 있어 함께 도착하는 시점이 없는 주기 태스크 집합을 **asynchronous** 태스크 집합이라 부른다. 태스크 집합의 주기들의 최소공배수를 그 태스크 집합의 **hyperperiod**라 부른다. 태스크 $\tau_i$의 최악 실행 시간을 상대 마감 시한과 주기 가운데 작은 값으로 나눈 $C_i / \min(D_i, T_i)$를 그 태스크의 **밀도**(density)라 부른다.[@davis-survey-hard-real-time-2011]
+
 ## Liu와 Layland의 가정
 
 Liu와 Layland는 1973년 논문에서 아래 다섯 가지를 가정했고, 이 가정 아래에서 태스크는 요청 주기와 실행 시간 두 값으로 모두 정해진다.[@liu-hard-real-time-1973]
@@ -44,6 +46,8 @@ Liu와 Layland는 다섯 가정 가운데 요청이 주기적이라는 가정과
 ![[diagrams/periodic-sporadic-arrivals.svg]]
 
 Mok은 1983년 박사 학위논문에서 주기 프로세스와 함께 sporadic 프로세스를 모델링했다. 최소 간격은 sporadic 프로세스가 시스템 자원을 독점하지 못하게 하려고 둔다.[@mok-fundamental-design-1983]
+
+주기적이지 않은 태스크를 aperiodic 태스크라 부르고, aperiodic 태스크 가운데 시스템에 줄 수 있는 부하에 상한이 있는 것을 sporadic 태스크라 부르는 쓰임도 있다. 이 쓰임에서 sporadic 태스크는 길이 $T_i$인 어느 구간에서든 release되는 job들의 계산 시간의 합이 $C_i$ 이하다. 한 가지 중요한 경우로 $C_i$는 job 하나의 계산 시간 상한이고, $T_i$는 release 사이의 최소 간격이다. [[aperiodic-server|비주기 서버]]는 aperiodic 태스크를 엄격한 주기 태스크 모델 안에 받아들이게 했다.[@sha-real-time-scheduling-theory-2004]
 
 ## Release와 jitter
 

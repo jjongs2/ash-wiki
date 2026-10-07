@@ -27,6 +27,10 @@ RM은 우선순위를 실행 시간과 상관없이 태스크의 주기만으로
 
 ![[diagrams/utilization-bound-rm-edf.svg]]
 
+단일 프로세서에서 서로 독립인 주기 태스크가 모두 시각 0에 함께 시작하고 상대 마감 시한이 주기와 같으면, 태스크 $i$의 이용률을 $U_i$라 할 때 $\prod_{i=1}^{n} (U_i + 1) \le 2$를 만족하는 태스크 집합은 RM으로 스케줄 가능하다. Bini 외는 이 충분조건을 **hyperbolic bound**라 불렀다. 이 조건은 Liu와 Layland의 상한과 계산 복잡도가 같으면서 덜 비관적이라 Liu와 Layland의 상한이 받아들이지 않는 태스크 집합도 받아들인다.[@bini-hyperbolic-bound-2003]
+
+Liu와 Layland의 가정 아래 무작위로 고른 큰 태스크 집합에서, RM이 실제로 스케줄할 수 있는 이용률은 평균 약 88%다.[@sha-real-time-scheduling-theory-2004]
+
 ## EDF와의 차이
 
 현재 요청의 마감 시한이 가까울수록 높은 우선순위를 주는 [[earliest-deadline-first|EDF]]는 요청마다 우선순위가 바뀌는 동적 배정이라, RM이 최적인 고정 우선순위 배정의 부류 밖에 있다. 단일 프로세서에서 서로 독립인 주기 태스크의 마감 시한이 다음 요청 시각이고 실행 시간이 일정하며 선점할 수 있으면, EDF는 $U \le 1$인 태스크 집합을 모두 스케줄한다.[@liu-hard-real-time-1973]

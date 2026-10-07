@@ -25,7 +25,7 @@ FreeRTOS 커널 책에 따르면 `PORTA |= 0x01` 같은 C 문장은 보통 값�
 
 [[autosar-os|AUTOSAR R25-11 OS]] 명세는 인터럽트 금지가 그것을 호출한 코어에만 걸리게 정한다. 그래서 다른 코어에서는 스케줄링과 인터럽트 처리가 계속된다.[@autosar-cp-sws-os-2025] Zephyr와 RTEMS(Real-Time Executive for Multiprocessor Systems) 문서에 따르면 SMP(Symmetric Multiprocessing) 시스템에서 한 프로세서의 인터럽트를 가려도 다른 프로세서가 같은 데이터에 동시에 접근하는 것은 막지 못하므로, 인터럽트 금지만으로는 시스템 전체의 상호 배제가 되지 않는다.[@zephyr-smp-2026][@rtems-smp-interrupts-2025] [[preempt-rt|PREEMPT_RT]] 커널에서는 `spinlock_t`를 잡는 `spin_lock_irq` 같은 `_irq` 접미사 함수도 인터럽트를 끄지 않는다.[@linux-locktypes-2026]
 
-인터럽트를 끄는 임계 구역은 짧게 둔다.[@osek-os-2-2-3-2005][@freertos-taskenter-critical-2026] 인터럽트를 끄는 임계 구역이 길면 인터럽트 응답 시간이 나빠진다.[@freertos-taskenter-critical-2026][@micrium-ucos-ii-rtsc-2026]
+인터럽트를 끄는 임계 구역은 짧게 둔다.[@osek-os-2-2-3-2005][@freertos-taskenter-critical-2026] 인터럽트를 끄는 임계 구역이 길면 [[deferred-interrupt-handling#인터럽트 지연과 응답|인터럽트 응답 시간]]이 나빠진다.[@freertos-taskenter-critical-2026][@micrium-ucos-ii-rtsc-2026]
 
 ## 스케줄러 잠금
 
