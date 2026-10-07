@@ -37,13 +37,17 @@ AUTOSAR는 AUTOSAR Work를 활용하려는 회사에 AUTOSAR 파트너가 되기
 
 AUTOSAR 소개 자료는 AUTOSAR의 공식 역할을 거버넌스(Executive Board), 전략 관리(Steering Committee, Legal Team, Communication Team), 기술 조정(Project Leader Team 등), 표준화(작업 그룹 등)의 층으로 나눈다. 작업 그룹은 표준 사이에 걸친 작업 그룹, Classic Platform 작업 그룹, Adaptive Platform 작업 그룹으로 나뉜다.[@autosar-exp-introduction-part1-2026]
 
-- **Executive Board**: 파트너십 전체의 전략과 로드맵을 정하고, 의장(Chairperson), 부의장(Deputy Chairperson), Project Leader Team 대변인을 임명하거나 해임한다. 위원은 Core Partner의 경영진 대표이고, 보통 한 해에 한 번 모인다.
-- **Steering Committee**: AUTOSAR의 전략을 관리하고, 개발 협약과 파트너 연간 분담금의 변경을 권고하며, 파트너 가입과 홍보, 대외 공개 정보를 맡는다. 위원은 Core Partner의 기술 관리 수준 대표이고, 보통 6주마다 모인다.
-- **Project Leader Team**: AUTOSAR 표준 개발 전반에 책임을 지고, 예산 안에서 프로젝트 계획과 재무 계획을 세우며, 작업 그룹을 두고 AUTOSAR 개발의 기술 문제를 결정한다. 위원은 Core Partner와 Premium Partner Plus의 프로젝트 관리 수준 대표이고, 보통 6주마다 모인다.
-- **Legal Team**: 개발 협약 같은 파트너십의 법적 문제를 다룬다. 위원은 Core Partner의 대표이고, 필요할 때 모인다.
-- **Communication Team**: 대내외 소통과 보도 자료, 누리집, AUTOSAR 학회를 맡는다.[@autosar-organization-2026]
-
 ![[diagrams/autosar-organization-layers.svg]]
+
+AUTOSAR의 기구마다 맡는 일과 위원, 모임 주기는 아래와 같다.[@autosar-organization-2026]
+
+| 기구                | 맡는 일                                                                                                                                    | 위원                                                          | 모임               |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------- | ------------------ |
+| Executive Board     | 파트너십 전체의 전략과 로드맵을 정하고, 의장(Chairperson), 부의장(Deputy Chairperson), Project Leader Team 대변인을 임명하거나 해임한다    | Core Partner의 경영진 대표                                    | 보통 한 해에 한 번 |
+| Steering Committee  | AUTOSAR의 전략을 관리하고, 개발 협약과 파트너 연간 분담금의 변경을 권고하며, 파트너 가입과 홍보, 대외 공개 정보를 맡는다                   | Core Partner의 기술 관리 수준 대표                            | 보통 6주마다       |
+| Project Leader Team | AUTOSAR 표준 개발 전반에 책임을 지고, 예산 안에서 프로젝트 계획과 재무 계획을 세우며, 작업 그룹을 두고 AUTOSAR 개발의 기술 문제를 결정한다 | Core Partner와 Premium Partner Plus의 프로젝트 관리 수준 대표 | 보통 6주마다       |
+| Legal Team          | 개발 협약 같은 파트너십의 법적 문제를 다룬다                                                                                               | Core Partner의 대표                                           | 필요할 때          |
+| Communication Team  | 대내외 소통과 보도 자료, 누리집, AUTOSAR 학회를 맡는다                                                                                     | —                                                             | —                  |
 
 작업 그룹은 [[autosar-rte|RTE]]와 그 인터페이스, 기본 소프트웨어 모듈과 운영체제, 방법론과 데이터 교환 형식, 차량 도메인 사이의 [[autosar-application-interfaces|표준 인터페이스]], 인수 시험을 정하고, Adaptive Platform의 예시 구현을 통합한다. 작업 그룹 위원은 Core, Premium, Development Partner와 Attendee다. AUTOSAR User Group은 이미 펴낸 AUTOSAR 문서를 바탕으로 AUTOSAR 커뮤니티 전반에 관련된 주제를 다루고, Core, Premium, Development, Associate Partner와 Attendee가 참여한다. External User Group은 AUTOSAR 파트너로만 이뤄지지만 AUTOSAR가 운영하지 않고, AUTOSAR 표준의 활용에 집중한다.[@autosar-organization-2026]
 

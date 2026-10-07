@@ -51,16 +51,16 @@ AA는 운영체제 API(Application Programming Interface)로 POSIX의 단일 프
 
 functional cluster마다 지원하는 프로토콜은 다음과 같다.[@autosar-ap-exp-platformdesign-2025]
 
-| functional cluster                 | 지원 프로토콜                                                                                                    |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Communication Management           | [[some-ip\|SOME/IP]]와 [[some-ip-sd\|SOME/IP-SD]], Signal2Service, DDS(Data Distribution Service), zero-copy IPC |
-| Diagnostic Management              | [[doip\|DoIP]], [[uds\|UDS]], SOVD(Service-Oriented Vehicle Diagnostics)                                         |
-| Intrusion Detection System Manager | 침입 탐지 시스템 프로토콜                                                                                        |
-| Sensor Interfaces                  | ISO 23150                                                                                                        |
-| Network Management                 | UdpNm([[udp\|UDP]] Network Management)                                                                           |
-| Time Synchronization               | [[ieee-802-1as\|gPTP]](IEEE 802.1AS)와, 이를 확장하고 프로파일링한 AUTOSAR 시간 동기화 프로토콜                  |
-| Raw Data Stream                    | [[ipv4\|IPv4]]와 [[ipv6\|IPv6]] 위의 [[tcp\|TCP]]와 UDP                                                          |
-| Log and Trace                      | AUTOSAR Log and Trace 프로토콜                                                                                   |
+| functional cluster                                       | 지원 프로토콜                                                                                                    |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Communication Management                                 | [[some-ip\|SOME/IP]]와 [[some-ip-sd\|SOME/IP-SD]], Signal2Service, DDS(Data Distribution Service), zero-copy IPC |
+| [[autosar-diagnostic-management\|Diagnostic Management]] | [[doip\|DoIP]], [[uds\|UDS]], SOVD(Service-Oriented Vehicle Diagnostics)                                         |
+| Intrusion Detection System Manager                       | 침입 탐지 시스템 프로토콜                                                                                        |
+| Sensor Interfaces                                        | ISO 23150                                                                                                        |
+| Network Management                                       | UdpNm([[udp\|UDP]] Network Management)                                                                           |
+| Time Synchronization                                     | [[ieee-802-1as\|gPTP]](IEEE 802.1AS)와, 이를 확장하고 프로파일링한 AUTOSAR 시간 동기화 프로토콜                  |
+| Raw Data Stream                                          | [[ipv4\|IPv4]]와 [[ipv6\|IPv6]] 위의 [[tcp\|TCP]]와 UDP                                                          |
+| Log and Trace                                            | AUTOSAR Log and Trace 프로토콜                                                                                   |
 
 보안 기능으로 Communication Management는 SecOC, [[transport-layer-security|TLS]]와 DTLS(Datagram Transport Layer Security), IPsec(Internet Protocol Security), [[ieee-802-1ae|MACsec]]을 지원한다.[@autosar-ap-exp-platformdesign-2025]
 
@@ -80,7 +80,7 @@ AUTOSAR R25-11 Raw Data Stream 명세는 IP 기반 프로토콜을 쓰는 Raw Da
 
 AUTOSAR R25-11 Adaptive Platform Release Overview는 Safe Hardware Acceleration 개념의 생명주기 상태를 draft로 둔다. 또 Hardware Test Manager를 하드웨어 시험을 위한 표준 인터페이스를 주는 새 구성 요소로 두며, Hardware Test Manager는 하드웨어 시험 패턴의 등록과 실행, 시험 결과의 수집과 보고를 맡는다.[@autosar-ap-tr-releaseoverview-2025]
 
-AUTOSAR R25-11은 AUTOSAR 코드 기반의 최소 C++ 버전을 C++17로 둔다. MISRA C++:2023에 공식적으로 맞추고, QNX v8처럼 C++14 지원을 그만두는 운영체제 공급사가 있어 C++17로 올렸다.[@autosar-ap-tr-releaseoverview-2025]
+AUTOSAR 코드 기반의 최소 C++ 버전은 C++17이다. MISRA C++:2023에 공식적으로 맞추고, QNX v8처럼 C++14 지원을 그만두는 운영체제 공급사가 있어 C++17로 올렸다.[@autosar-ap-tr-releaseoverview-2025]
 
 ### 대상 ECU
 
@@ -94,6 +94,6 @@ AUTOSAR 소개 자료는 Adaptive Platform의 대상을 실시간 요구가 밀�
 - 2018년 3월, 2018년 10월, 2019년 3월: AUTOSAR가 18-03, 18-10, 19-03을 내놓았다.[@autosar-history-2026]
 - 2019년 11월: R19-11부터 Adaptive Platform을 Classic Platform, Foundation과 함께 한 AUTOSAR 릴리스로 해마다 낸다. 그 전에는 Classic Platform R4.4.0과 Adaptive Platform R19-03까지 플랫폼마다 따로 냈고, 플랫폼 릴리스마다 Foundation 릴리스가 함께 나왔다.
 - 2024년 11월: AUTOSAR가 R24-11을 안정화 릴리스로 정했다. 양산급 응용을 위한 안정되고 일관된 API와, 릴리스와 벤더 사이의 호환성을 목표로 했고, 남은 문제는 R25-11에서 풀었다.
-- 2025년 11월 27일: R25-11이 나왔다. [[autosar#릴리스 생명주기|Evolution 단계]]의 minor release다. Safe Hardware Acceleration과 Remote Persistency의 소프트웨어 명세, Hardware Test Manager의 요구사항 명세가 새로 들어왔고, Manifest Specification과 Identity and Access Management의 요구사항 명세가 빠졌다.[@autosar-ap-tr-releaseoverview-2025]
+- 2025년 11월 27일: R25-11이 나왔다. [[autosar#릴리스 생명주기|Evolution 단계]]의 minor release다. Safe Hardware Acceleration과 [[autosar-persistency#Remote Persistency|Remote Persistency]]의 소프트웨어 명세, Hardware Test Manager의 요구사항 명세가 새로 들어왔고, Manifest Specification과 [[autosar-identity-and-access-management|Identity and Access Management]]의 요구사항 명세가 빠졌다.[@autosar-ap-tr-releaseoverview-2025]
 
 AUTOSAR는 Adaptive Platform R20-11을 따르는 구현인 CAPI(Common Adaptive Platform Implementation) 1.0을 내놓았고, CAPI 1.0은 일부 R23-11 인터페이스와도 호환된다. CAPI 1.0은 핵심 functional cluster 15개를 모두 구현하고, 코드 생성기의 소스 코드와 데모를 담는다.[@autosar-capi-release-2026]

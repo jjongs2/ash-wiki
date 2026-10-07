@@ -49,6 +49,6 @@ Proxy는 서비스 Method를 동기로 부르는 메커니즘과 비동기로 �
 
 ## Minimum Send Interval
 
-AUTOSAR R25-11 Communication Management 명세는 수신자가 넘치거나 과부하되지 않도록 Event마다 Minimum Send Interval을 설정할 수 있게 한다. Minimum Send Interval은 연이은 두 송신 사이에 지나야 하는 최소 시간으로, 네트워크에서 그 Event의 최대 송신 빈도를 제한한다. 응용이 Event의 송신을 요청하면 `ara::com`은 마지막으로 하위 송신 계층에 넘긴 때부터 지난 시간이 Minimum Send Interval보다 큰지 확인한다. 크면 Event를 송신 계층에 넘기고 그때부터 새 간격을 재며, 아니면 요청을 버리고 `kMinimumSendIntervalViolationError` 오류를 돌려준다. 설정값 `minimumSendInterval`이 0이면 감시하지 않고, 기본값은 0이다. 같은 감시는 Trigger, 클라이언트의 Method 호출, Field의 Get과 Set 호출, Field의 송신 요청에도 설정할 수 있다.[@autosar-ap-sws-communicationmanagement-2025]
+AUTOSAR R25-11 Communication Management 명세는 수신자가 넘치거나 과부하되지 않도록 Event마다 Minimum Send Interval을 설정할 수 있게 한다. **Minimum Send Interval**은 연이은 두 송신 사이에 지나야 하는 최소 시간으로, 네트워크에서 그 Event의 최대 송신 빈도를 제한한다. 응용이 Event의 송신을 요청하면 `ara::com`은 마지막으로 하위 송신 계층에 넘긴 때부터 지난 시간이 Minimum Send Interval보다 큰지 확인한다. 크면 Event를 송신 계층에 넘기고 그때부터 새 간격을 재며, 아니면 요청을 버리고 `kMinimumSendIntervalViolationError` 오류를 돌려준다. 설정값 `minimumSendInterval`이 0이면 감시하지 않고, 기본값은 0이다. 같은 감시는 Trigger, 클라이언트의 Method 호출, Field의 Get과 Set 호출, Field의 송신 요청에도 설정할 수 있다.[@autosar-ap-sws-communicationmanagement-2025]
 
 ![[diagrams/minimum-send-interval-timeline.svg]]

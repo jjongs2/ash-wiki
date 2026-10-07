@@ -47,7 +47,7 @@ AUTOSAR R25-11 Execution Management 명세는 Modelled Process를 Executable의 
 
 AUTOSAR R25-11 Adaptive Platform 설계 설명서는 Execution Management가 응용의 프로세스를 하나 이상의 resource group에 배정하는 설정으로 [[freedom-from-interference|FFI]]를 지원하게 한다. resource group마다 CPU 시간이나 메모리의 한도를 두어 응용이 쓸 수 있는 자원을 제한할 수 있다. 한 Machine에서 여러 Adaptive Application이 돌 수 있으므로, 잘못 동작하는 응용의 프로세스가 정해진 것보다 많은 CPU 시간을 써서 다른 응용의 동작에 영향을 주지 않게 하려는 것이다.[@autosar-ap-exp-platformdesign-2025]
 
-AUTOSAR R25-11 Execution Management 명세는 Execution Management에 Machine을 올바르게 설정하는 일만 맡긴다. 그에 따른 제한은 대개 운영체제나 Persistency 서비스 같은 다른 응용이 강제한다.[@autosar-ap-sws-executionmanagement-2025]
+AUTOSAR R25-11 Execution Management 명세는 Execution Management에 Machine을 올바르게 설정하는 일만 맡긴다. 그에 따른 제한은 대개 운영체제나 [[autosar-persistency|Persistency]] 서비스 같은 다른 응용이 강제한다.[@autosar-ap-sws-executionmanagement-2025]
 
 ## Trusted Platform
 
