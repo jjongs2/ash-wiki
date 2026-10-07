@@ -58,8 +58,11 @@ export function frontPage(input: { pages: FrontPagePage[] }): {
 // 않으므로, 구역 이름 앞의 점과 칩 모양이 열의 뜻을 대신한다.
 // - 구역 이름은 구역 색(--region, 행마다 플러그인이 붙인다)으로 굵게 쓰고, 내부 링크의 배경을 지운다. 이름
 //   앞의 점도 같은 색이다. 대비 하한은 docs/palette.md의 "구역 이름"이다.
-// - 주제 칩은 내부 링크와 같은 배경과 글자색에 모서리만 둥글게 하고, 페이지 수를 보조 글자색으로 붙인다.
+// - 주제 칩은 같은 태그 목록으로 가는 본문 페이지 속성 칸의 태그(note-properties의 .tag-link)와 같은 꼴이다.
+//   모서리 3px, 같은 여백에, 마우스를 올리면 배경과 글자색이 뒤집힌다. 페이지 수는 보조 글자색으로 붙이고,
 //   대비 하한은 docs/palette.md의 "주제 칩의 페이지 수"다.
+// - 두 칸은 기준선으로 맞춘다. 구역 이름의 글자와 첫 줄 칩의 글자가 같은 기준선에 서고, 칩이 여러 줄로
+//   꺾여도 구역 이름은 첫 줄에 맞는다. 점은 vertical-align으로 한글 글자 높이의 가운데에 둔다.
 // - 구역 이름은 한 줄로 두고 구역 칸은 그 폭만 차지한다. 링크에는 다른 규칙이 white-space를 normal로 걸어,
 //   칸이 아니라 링크에 nowrap을 건다. 칩은 칸 안에서 줄을 바꿔, 폰 폭에서도 표가 가로로 넘치지 않는다.
 const CSS = `.front-regions {
@@ -74,7 +77,7 @@ const CSS = `.front-regions {
   white-space: nowrap;
 }
 .front-regions td {
-  vertical-align: top;
+  vertical-align: baseline;
   padding-block: 0.5rem;
 }
 .front-regions td:first-child {
@@ -100,16 +103,24 @@ const CSS = `.front-regions {
 }
 .front-regions a.front-topic {
   display: inline-block;
-  margin: 0.15rem 0.15rem 0.15rem 0;
-  padding: 0 0.6rem;
-  border-radius: 999px;
+  margin: 0.15rem 0.2rem 0.15rem 0;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  line-height: 1.4rem;
   white-space: nowrap;
 }
+.front-regions a.front-topic:hover {
+  background-color: var(--secondary);
+  color: var(--light);
+}
 .front-regions .front-count {
-  margin-left: 0.35em;
+  margin-left: 0.4em;
   color: var(--gray);
   font-size: 0.85em;
   font-variant-numeric: tabular-nums;
+}
+.front-regions a.front-topic:hover .front-count {
+  color: var(--light);
 }
 `
 
