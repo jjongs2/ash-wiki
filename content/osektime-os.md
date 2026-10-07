@@ -16,13 +16,13 @@ status: 유효
 
 ## 범위
 
-이 명세는 운영체제의 전략과 기능, 서비스 호출 인터페이스, 매개변수의 뜻과 선언, 가능한 오류 코드를 모든 구현이 따라야 할 일반적 기술로 정한다. 운영체제는 정적 스케줄링을 지원하고, 인터럽트 처리, 디스패칭, 시스템 시간과 클록 동기화, 로컬 메시지 처리, 오류 검출 같은 실시간 응용의 기본 서비스를 둔다. 운영체제는 시스템 생성 때 사용자의 구성대로 만들어지며, 실행 중에는 바꿀 수 없다. 이벤트, 알람, resource는 OSEK/VDX 태스크에만 쓰고 time-triggered 태스크에는 허용되지 않으므로, 이 명세에 들지 않는다.[@osek-osektime-os-1-0-2001]
+이 명세는 운영체제의 전략과 기능, 서비스 호출 인터페이스, 매개변수의 뜻과 선언, 가능한 오류 코드를 모든 구현이 따라야 할 일반적 기술로 정한다. 운영체제는 정적 스케줄링을 지원하고, 인터럽트 처리, 디스패칭, 시스템 시간과 클록 동기화, 로컬 메시지 처리, 오류 검출 같은 실시간 응용의 기본 서비스를 둔다. 운영체제는 시스템 생성 때 사용자의 구성대로 만들어지며, 실행 중에는 바꿀 수 없다. [[osek-event|이벤트]], [[osek-alarm|알람]], [[osek-resource|resource]]는 [[osek-task|OSEK/VDX 태스크]]에만 쓰고 time-triggered 태스크에는 허용되지 않으므로, 이 명세에 들지 않는다.[@osek-osektime-os-1-0-2001]
 
 ### 처리 레벨
 
 이 명세는 처리 레벨을 인터럽트 레벨과 TT(time-triggered) 태스크 레벨 둘로 정한다. CPU를 놓고 다투는 것은 운영체제가 관리하는 ISR(Interrupt Service Routine)과 태스크이며, TT 태스크가 ISR보다 앞설 수도 있다.[@osek-osektime-os-1-0-2001]
 
-커널에는 OSEKtime 서브시스템과 함께 OSEK/VDX OS 서브시스템 전체를 넣을 수 있다. 다만 신뢰성이 높아야 하는 응용에서는 OSEKtime 전체가 OSEK/VDX 서브시스템보다 높은 처리 레벨에 있어야만 OSEK/VDX 서브시스템을 쓸 수 있다. 이 명세는 이 모델에 충분한 인터럽트 레벨을 갖춘 마이크로컨트롤러와, 신뢰성이 높아야 하는 응용에서의 하드웨어나 소프트웨어 메모리 보호를 권한다. 이 요구가 채워져야만 OSEK/VDX 서브시스템의 태스크가 TT 태스크를 방해하지 않는다고 보장할 수 있다. OSEK/VDX 서브시스템 없이 구현할 때는 OSEKtime 서브시스템이 idle(배경) 태스크를 두어야 한다.[@osek-osektime-os-1-0-2001]
+커널에는 OSEKtime 서브시스템과 함께 [[osek-os|OSEK/VDX OS]] 서브시스템 전체를 넣을 수 있다. 다만 신뢰성이 높아야 하는 응용에서는 OSEKtime 전체가 OSEK/VDX 서브시스템보다 높은 처리 레벨에 있어야만 OSEK/VDX 서브시스템을 쓸 수 있다. 이 명세는 이 모델에 충분한 인터럽트 레벨을 갖춘 마이크로컨트롤러와, 신뢰성이 높아야 하는 응용에서의 하드웨어나 소프트웨어 메모리 보호를 권한다. 이 요구가 채워져야만 OSEK/VDX 서브시스템의 태스크가 TT 태스크를 방해하지 않는다고 보장할 수 있다. OSEK/VDX 서브시스템 없이 구현할 때는 OSEKtime 서브시스템이 idle(배경) 태스크를 두어야 한다.[@osek-osektime-os-1-0-2001]
 
 선점할 수 없는 OSEK/VDX 태스크도 둘 수 있지만, 그 태스크가 선점되지 않는 것은 다른 OSEK/VDX 태스크에 대해서뿐이다. 디스패처 테이블에 따라 TT 태스크를 활성화하는 OSEKtime 디스패처는 모든 TT 태스크의 타이밍을 결정적으로 지키려고 선점할 수 없는 OSEK/VDX 태스크도 선점한다. TT 태스크와 OSEK/VDX 태스크는 resource를 함께 쓰지 않고, 둘 사이의 통신은 로컬 메시지 처리로 한다.[@osek-osektime-os-1-0-2001]
 
@@ -56,8 +56,8 @@ TT 태스크는 마감 시한 전에 스스로 끝나야 한다.[@osek-osektime-
 
 마감 시한 위반은 태스크마다 실행 중에 검사해야 한다. 검사는 디스패처가 디스패처 테이블의 "Deadline Monitoring" 항목에서 한다. 검사 방식은 둘이며, 태스크마다 사용자가 고른다.[@osek-osektime-os-1-0-2001]
 
-- stringent: 마감 시한이 지나는 바로 그 시점에 항목을 둔다.
-- non-stringent: 마감 시한이 지난 뒤 적당한 시점에, 늦어도 그 디스패처 라운드가 끝나기 전에 항목을 둔다. 성능을 위해 새 태스크를 활성화하는 항목과 묶을 수 있다.[@osek-osektime-os-1-0-2001]
+- **stringent**: 마감 시한이 지나는 바로 그 시점에 항목을 둔다.
+- **non-stringent**: 마감 시한이 지난 뒤 적당한 시점에, 늦어도 그 디스패처 라운드가 끝나기 전에 항목을 둔다. 성능을 위해 새 태스크를 활성화하는 항목과 묶을 수 있다.[@osek-osektime-os-1-0-2001]
 
 위반을 찾으면 디스패처는 사용자가 짠 `ttErrorHook`을 오류 코드 TT_E_OS_DEADLINE으로 부른다. `ttErrorHook`이 끝나면 운영체제가 `ttShutdownOS`를 불러 종료하면서 `ttShutdownHook`을 부른다. `ttShutdownHook`이 돌아오면 운영체제는 처음 `ttStartOS`를 부른 곳의 다음 명령으로 넘어간다.[@osek-osektime-os-1-0-2001]
 
@@ -83,9 +83,9 @@ ECU는 저마다 로컬 클록에 따라 늘어나는 로컬 시간으로 동작
 
 시스템이 시작할 때와 동기를 잃은 뒤에는 세 가지로 시작할 수 있다.[@osek-osektime-os-1-0-2001]
 
-- 동기 시작: 전역 시간이 생기기 전에는 TT 태스크를 실행하지 않는다.
-- 비동기 시작(hard 동기화): 전역 시간과의 동기화를 기다리지 않고 로컬 시간에 따라 TT 태스크를 실행한다. 디스패처 라운드가 끝날 때 다음 라운드의 시작을 늦춰 로컬 시간을 전역 시간에 맞춘다.
-- 비동기 시작(smooth 동기화): 마찬가지로 로컬 시간에 따라 실행하되, 다음 라운드 시작을 늦추는 양을 미리 정한 구성 값으로 제한해 여러 디스패처 라운드에 걸쳐 맞춘다. 늦추는 양이 그 한도를 넘지 않는 동안 동기된 것으로 본다.[@osek-osektime-os-1-0-2001]
+- **동기 시작**: 전역 시간이 생기기 전에는 TT 태스크를 실행하지 않는다.
+- 비동기 시작(**hard 동기화**): 전역 시간과의 동기화를 기다리지 않고 로컬 시간에 따라 TT 태스크를 실행한다. 디스패처 라운드가 끝날 때 다음 라운드의 시작을 늦춰 로컬 시간을 전역 시간에 맞춘다.
+- 비동기 시작(**smooth 동기화**): 마찬가지로 로컬 시간에 따라 실행하되, 다음 라운드 시작을 늦추는 양을 미리 정한 구성 값으로 제한해 여러 디스패처 라운드에 걸쳐 맞춘다. 늦추는 양이 그 한도를 넘지 않는 동안 동기된 것으로 본다.[@osek-osektime-os-1-0-2001]
 
 ![[diagrams/osektime-startup-synchronization.svg]]
 
@@ -97,12 +97,12 @@ ECU는 저마다 로컬 클록에 따라 늘어나는 로컬 시간으로 동작
 
 ![[diagrams/osektime-osek-os-processing-levels.svg]]
 
-결합 시스템은 `ttStartOS`로 시작하며, 이 호출이 OSEK OS의 시작도 일으킨다. OSEKtime이 정해 둔 시작 시간 안에 먼저 시작해야 하고, OSEK OS의 시작이 실패하더라도 이 시간을 한없이 늦추면 안 된다. OSEK OS의 태스크와 ISR은 OSEKtime만 있는 시스템이라면 `ttIdleTask`가 돌기 시작했을 시점보다 먼저 활성화되지 않는다.[@osek-osektime-os-1-0-2001] [[osek-os|OSEK/VDX OS]] 2.2.3 명세는 이때 OSEKtime의 초기화가 늘 먼저 돌고, OSEKtime이 idle 루프에 들어가면 자기에게 넘어온 application mode로 `StartOS`를 자동으로 부르도록 정한다.[@osek-os-2-2-3-2005]
+결합 시스템은 `ttStartOS`로 시작하며, 이 호출이 OSEK OS의 시작도 일으킨다. OSEKtime이 정해 둔 시작 시간 안에 먼저 시작해야 하고, OSEK OS의 시작이 실패하더라도 이 시간을 한없이 늦추면 안 된다. OSEK OS의 태스크와 ISR은 OSEKtime만 있는 시스템이라면 `ttIdleTask`가 돌기 시작했을 시점보다 먼저 활성화되지 않는다.[@osek-osektime-os-1-0-2001] OSEK/VDX OS 2.2.3 명세는 이때 OSEKtime의 초기화가 늘 먼저 돌고, OSEKtime이 idle 루프에 들어가면 자기에게 넘어온 application mode로 `StartOS`를 자동으로 부르도록 정한다.[@osek-os-2-2-3-2005]
 
 OSEKtime OS 1.0 명세는 종료를 두 가지로 정한다.[@osek-osektime-os-1-0-2001]
 
-- 로컬 종료: OSEK OS 서브시스템에서 `ShutdownOS`를 불러 OSEK OS만 멈추고, OSEKtime 시스템에는 영향을 주지 않는다. 이때 불리는 `ShutdownHook`은 돌아와야 하며, OSEKtime은 `ttGetOSEKOSState`로 로컬 종료를 알 수 있다.
-- 전역 종료: OSEKtime 시스템이나 OSEK OS 서브시스템에서 `ttShutdownOS`를 불러 두 운영체제를 곧바로 멈춘다. `ttShutdownHook`을 부르고, OSEKtime의 종료 시간을 보장하려고 OSEK OS의 `ShutdownHook`은 부르지 않는다.[@osek-osektime-os-1-0-2001]
+- **로컬 종료**: OSEK OS 서브시스템에서 `ShutdownOS`를 불러 OSEK OS만 멈추고, OSEKtime 시스템에는 영향을 주지 않는다. 이때 불리는 `ShutdownHook`은 돌아와야 하며, OSEKtime은 `ttGetOSEKOSState`로 로컬 종료를 알 수 있다.
+- **전역 종료**: OSEKtime 시스템이나 OSEK OS 서브시스템에서 `ttShutdownOS`를 불러 두 운영체제를 곧바로 멈춘다. `ttShutdownHook`을 부르고, OSEKtime의 종료 시간을 보장하려고 OSEK OS의 `ShutdownHook`은 부르지 않는다.[@osek-osektime-os-1-0-2001]
 
 이 명세는 OSEK OS가 전역 종료를 일으키지 못하게 하는 구성 선택을 두기를 권한다.[@osek-osektime-os-1-0-2001] OSEK/VDX OS 2.2.3 명세는 이런 시스템에서 OSEKtime이 다루는 입출력 장치를 `ShutdownHook`에서 리셋하지 않게 한다.[@osek-os-2-2-3-2005]
 
@@ -115,5 +115,5 @@ OSEKtime OS 1.0 명세는 오류 처리를 OSEK/VDX와 같게 둔다. 이름이 
 ## 개정 이력
 
 - 2001년 7월 24일: 1.0. OSEKtime OS 명세의 이력 표에 실린 판은 이것뿐이다.[@osek-osektime-os-1-0-2001]
-- OSEK/VDX Binding 명세는 1.3(2001년)에서 binding에 OSEKtime을 더했고, Binding 1.4.2는 명세 묶음 SB3부터 SB6까지에 모두 OSEKtime OS 1.0을 넣는다.[@osek-binding-1-4-2-2004]
+- Binding 1.4.2 명세는 명세 묶음 SB3부터 SB6까지에 모두 OSEKtime OS 1.0을 넣는다.[@osek-binding-1-4-2-2004]
 - 2012년 1월 OSEK/VDX 포털의 명세 목록에 올라 있던 OSEKtime OS 파일도 1.0판(`ttos10.pdf`)이다.[@osek-vdx-portal-specs-2012]

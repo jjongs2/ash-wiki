@@ -24,7 +24,7 @@ OSEK OS의 객체와 그것을 적는 OIL 객체는 다음과 같다.[@osek-os-2
 
 OSEK/VDX OS 2.2.3 명세는 운영체제가 부르고 사용자가 구현하는 [[osek-hook-routine|hook 루틴]]도 둔다.[@osek-os-2-2-3-2005]
 
-이 명세를 따르는 구현은 프로세서 안의 메시지 처리를 갖추어야 한다. 최소 기능은 OSEK COM 명세의 conformance class CCCA이고, 그 밖에 받아들이는 등급은 CCCA의 상위 집합인 CCCB뿐이다.[@osek-os-2-2-3-2005]
+이 명세를 따르는 구현은 프로세서 안의 메시지 처리를 갖추어야 한다. 최소 기능은 OSEK COM(Communication) 명세의 conformance class CCCA이고, 그 밖에 받아들이는 등급은 CCCA의 상위 집합인 CCCB뿐이다.[@osek-os-2-2-3-2005]
 
 ## 처리 레벨
 
@@ -61,7 +61,7 @@ CPU가 리셋되면 하드웨어별 초기화 코드가 돈 뒤, application mod
 
 **Application mode**는 운영체제가 서로 다른 운영 모드로 시작할 수 있게 하는 것이며, 모드는 커널이 시작하기 전에 정한다. 모드마다 자동으로 시작할 태스크와 알람을 OIL 파일에서 정적으로 따로 정할 수 있다. 운영체제가 시작한 뒤에는 application mode를 바꿀 수 없다.[@osek-os-2-2-3-2005]
 
-application mode는 서로 완전히 배타적인 동작 모드에만 쓰도록 정해졌다. 리셋은 정상 동작 중에도 일어날 수 있어 모드를 정하는 코드는 빨라야 하므로, 명세는 핀 상태처럼 판정하기 쉬운 조건만으로 모드를 정하기를 권한다. 기본 application mode인 `OSDEFAULTAPPMODE`는 `StartOS`에 늘 유효한 인자다.[@osek-os-2-2-3-2005]
+application mode는 서로 완전히 배타적인 동작 모드를 위한 것이다. 리셋은 정상 동작 중에도 일어날 수 있어 모드를 정하는 코드는 빨라야 하므로, 명세는 핀 상태처럼 판정하기 쉬운 조건만으로 모드를 정하기를 권한다. 기본 application mode인 `OSDEFAULTAPPMODE`는 `StartOS`에 늘 유효한 인자다.[@osek-os-2-2-3-2005]
 
 **Autostart**는 운영체제가 시작하면서 현재 application mode에 선언된 태스크를 활성화하고 알람을 켜는 것이며, 태스크를 먼저 활성화한 뒤 알람을 켠다. 우선순위가 같은 autostart 태스크끼리의 활성화 순서는 정해지지 않는다.[@osek-os-2-2-3-2005]
 

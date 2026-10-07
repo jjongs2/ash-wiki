@@ -13,9 +13,9 @@ OSEK/VDX OS 2.2.3 명세는 resource마다의 ceiling priority를 실행 중에 
 
 그 결과 resource를 쥔 태스크가 실행되는 동안, 같은 resource를 쓸 수 있는 태스크는 우선순위가 그보다 높지 않아 running에 들어가지 못한다. resource 접근은 waiting 상태를 낳지 않으므로 이 태스크는 ready로 남고, resource가 풀리면 running에 들어갈 수 있다. 그 resource를 쓰지 않고 우선순위가 ceiling priority보다 높은 태스크와, 그 resource를 쓰지 않는 인터럽트는 그동안에도 실행된다.[@osek-os-2-2-3-2005]
 
-![[diagrams/osek-ceiling-priority-levels.svg]]
-
 ceiling priority 이하의 우선순위를 가진 태스크는 이 때문에 늦어질 수 있지만, 그 지연은 낮은 우선순위 태스크가 resource를 쥐는 최대 시간으로 묶인다. 선점할 수 있는 태스크가 resource를 풀면 그 자리가 재스케줄링 지점이다.[@osek-os-2-2-3-2005]
+
+![[diagrams/osek-ceiling-priority-levels.svg]]
 
 이 명세는 OSEK OS를 단일 프로세서 운영체제로 정한다.[@osek-os-2-2-3-2005] AUTOSAR R25-11 OS 명세는 resource를 같은 코어에 묶인 태스크 사이에서만 쓰게 하고, 서로 다른 코어의 태스크 사이 상호 배제에는 [[spinlock|스핀락]]을 둔다.[@autosar-cp-sws-os-2025]
 
@@ -50,4 +50,4 @@ resource를 쥔 채 부를 수 없는 서비스의 제한은 internal resource�
 
 ## Linked resource
 
-이 명세는 같은 resource의 중첩 접근을 금지하고, 드물게 중첩이 필요하면 첫 resource와 같은 동작을 하는 둘째 resource를 쓰기를 권한다. 이렇게 같은 동작을 하는 resource를 **linked resource**라 하며, OIL로 정의할 수 있다.[@osek-os-2-2-3-2005] OSEK/VDX OIL 2.5 명세는 `RESOURCE` 객체의 `RESOURCEPROPERTY`를 `LINKED`로 두면 하위 속성 `LINKEDRESOURCE`로 이어 줄 resource(속성이 `STANDARD`나 `LINKED`인 것)를 정하게 한다. linked resource의 사슬은 운영체제의 코드 생성기가 풀어야 한다.[@osek-oil-2-5-2004]
+이 명세는 드물게 같은 resource를 중첩해 써야 하면 첫 resource와 같은 동작을 하는 둘째 resource를 쓰기를 권한다. 이렇게 같은 동작을 하는 resource를 **linked resource**라 하며, OIL로 정의할 수 있다.[@osek-os-2-2-3-2005] OSEK/VDX OIL 2.5 명세는 `RESOURCE` 객체의 `RESOURCEPROPERTY`를 `LINKED`로 두면 하위 속성 `LINKEDRESOURCE`로 이어 줄 resource(속성이 `STANDARD`나 `LINKED`인 것)를 정하게 한다. linked resource의 사슬은 운영체제의 코드 생성기가 풀어야 한다.[@osek-oil-2-5-2004]

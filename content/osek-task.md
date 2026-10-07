@@ -55,8 +55,6 @@ OSEK/VDX OS 2.2.3 명세는 스케줄러가 ready와 running 태스크 가운데
 
 `Schedule`은 시스템 생성 때 internal resource가 배정된 태스크에서만 재스케줄링을 일으킨다. 그런 태스크가 `Schedule`을 부르면, 더 높은 우선순위 태스크가 ready일 때 internal resource를 풀고 호출한 태스크를 ready로 돌려, 우선순위가 호출한 태스크보다 높고 internal resource의 ceiling priority 이하인 태스크에 CPU를 넘긴다. `Schedule`에서 돌아올 때는 internal resource를 다시 쥔 상태다. internal resource가 없는 선점할 수 있는 태스크에는 `Schedule`이 영향을 주지 않는다. 선점할 수 없는 태스크는 가장 높은 태스크 우선순위의 internal resource가 배정된 태스크로 본다.[@osek-os-2-2-3-2005]
 
-![[diagrams/osek-internal-resource-group.svg]]
-
 태스크 종류(basic, extended)와 선점할 수 있는지는 서로 독립이다. 그래서 완전 선점 시스템에 basic 태스크가, 비선점 시스템에 extended 태스크가 있을 수 있다.[@osek-os-2-2-3-2005]
 
 ## 조회

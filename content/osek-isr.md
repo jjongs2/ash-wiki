@@ -31,7 +31,7 @@ ISR이 도는 동안 스케줄러는 태스크를 바꾸지 않는다. 인터럽
 
 ![[diagrams/osek-isr-category-2-rescheduling.svg]]
 
-인터럽트 우선순위의 최대 개수는 쓰는 컨트롤러와 구현에 달렸다. 인터럽트의 스케줄링은 하드웨어에 달려 있어 OSEK이 정하지 않으며, 인터럽트는 하드웨어가, 태스크는 스케줄러가 스케줄링한다. 운영체제 우선순위를 하드웨어 우선순위에 대응시키는 방법은 구현이 정한다.[@osek-os-2-2-3-2005]
+인터럽트 우선순위의 최대 개수는 쓰는 컨트롤러와 구현에 달렸다. 인터럽트의 스케줄링은 하드웨어에 달려 있어 이 명세가 정하지 않으며, 인터럽트는 하드웨어가, 태스크는 스케줄러가 스케줄링한다. 운영체제 우선순위를 하드웨어 우선순위에 대응시키는 방법은 구현이 정한다.[@osek-os-2-2-3-2005]
 
 ## 인터럽트 서비스
 
@@ -39,4 +39,4 @@ ISR이 도는 동안 스케줄러는 태스크를 바꾸지 않는다. 인터럽
 
 Suspend와 Resume을 중첩해 부르면, 첫 Suspend가 저장한 인식 상태를 마지막 Resume이 되돌린다. Suspend나 Disable로 연 [[critical-section|임계 구역]]은 짝이 맞는 Resume이나 Enable로 닫아야 하며, 그 안에서 인터럽트로부터 돌아갈 수 없다.[@osek-os-2-2-3-2005]
 
-`DisableAllInterrupts`와 `EnableAllInterrupts`로 연 임계 구역 안에서는 어떤 시스템 서비스도 부를 수 없다. Suspend와 Resume으로 연 임계 구역 안에서 부를 수 있는 서비스는 `SuspendAllInterrupts`·`ResumeAllInterrupts` 쌍과 `SuspendOSInterrupts`·`ResumeOSInterrupts` 쌍뿐이다. `DisableAllInterrupts`·`EnableAllInterrupts`와 `SuspendOSInterrupts`·`ResumeOSInterrupts`는 hook 루틴에서 부를 수 없다.[@osek-os-2-2-3-2005]
+`DisableAllInterrupts`와 `EnableAllInterrupts`로 연 임계 구역 안에서는 어떤 시스템 서비스도 부를 수 없다. Suspend와 Resume으로 연 임계 구역 안에서 부를 수 있는 서비스는 `SuspendAllInterrupts`·`ResumeAllInterrupts` 쌍과 `SuspendOSInterrupts`·`ResumeOSInterrupts` 쌍뿐이다. `DisableAllInterrupts`·`EnableAllInterrupts`와 `SuspendOSInterrupts`·`ResumeOSInterrupts`는 [[osek-hook-routine|hook 루틴]]에서 부를 수 없다.[@osek-os-2-2-3-2005]
