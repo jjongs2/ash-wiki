@@ -8,6 +8,9 @@ export interface ColorScheme {
   tertiary: string
   highlight: string
   textHighlight: string
+  // ash-wiki: 구역 색(region-<구역>)과 기타용 중립색(region-other)이다. 구역 표, 소식 칩, 그래프가 같이 쓰고,
+  // 고른 근거와 대비 실측은 docs/palette.md에 있다. joinStyles가 다른 색처럼 CSS 변수(--region-<구역>)로 싣는다.
+  [region: `region-${string}`]: string
 }
 
 interface Colors {
@@ -175,6 +178,14 @@ function hexToHsl(hex: string): { h: number; s: number; l: number } {
   return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) }
 }
 
+// ash-wiki: 구역 색을 CSS 변수 선언으로 늘어놓는다(ColorScheme의 region-<구역>).
+function regionVariables(scheme: ColorScheme) {
+  return Object.entries(scheme)
+    .filter(([token]) => token.startsWith("region-"))
+    .map(([token, color]) => `  --${token}: ${color};`)
+    .join("\n")
+}
+
 export function joinStyles(theme: Theme, ...stylesheet: string[]) {
   return `
 ${stylesheet.join("\n\n")}
@@ -189,6 +200,7 @@ ${stylesheet.join("\n\n")}
   --tertiary: ${theme.colors.lightMode.tertiary};
   --highlight: ${theme.colors.lightMode.highlight};
   --textHighlight: ${theme.colors.lightMode.textHighlight};
+${regionVariables(theme.colors.lightMode)}
 
   --titleFont: "${getFontSpecificationName(theme.typography.title || theme.typography.header)}", ${DEFAULT_SANS_SERIF};
   --headerFont: "${getFontSpecificationName(theme.typography.header)}", ${DEFAULT_SANS_SERIF};
@@ -206,6 +218,7 @@ ${stylesheet.join("\n\n")}
   --tertiary: ${theme.colors.darkMode.tertiary};
   --highlight: ${theme.colors.darkMode.highlight};
   --textHighlight: ${theme.colors.darkMode.textHighlight};
+${regionVariables(theme.colors.darkMode)}
 }
 
 :root {

@@ -79,6 +79,13 @@
                 "lightMode": {
                   "type": "object",
                   "additionalProperties": false,
+                  "$comment": "ash-wiki: 구역 색(region-<구역>)을 더 받는다. 쓰임은 quartz/util/theme.ts의 ColorScheme에 있다.",
+                  "patternProperties": {
+                    "^region-": {
+                      "type": "string",
+                      "description": "Region color"
+                    }
+                  },
                   "properties": {
                     "light": {
                       "type": "string",
@@ -121,6 +128,13 @@
                 "darkMode": {
                   "type": "object",
                   "additionalProperties": false,
+                  "$comment": "ash-wiki: 구역 색(region-<구역>)을 더 받는다. 쓰임은 quartz/util/theme.ts의 ColorScheme에 있다.",
+                  "patternProperties": {
+                    "^region-": {
+                      "type": "string",
+                      "description": "Region color"
+                    }
+                  },
                   "properties": {
                     "light": {
                       "type": "string",

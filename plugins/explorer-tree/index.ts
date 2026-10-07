@@ -1,7 +1,7 @@
 // ash-wiki: 탐색기를 폴더 대신 태그로 구역 › 주제 › 페이지 트리로 그리게 하는 로컬 플러그인이다.
 // 트리를 만드는 규칙은 순수 함수 buildExplorerTree 하나에 모으고, 입력은 탐색기가 받는 contentIndex에서
 // explorerInputs가 뽑는다. 구역과 주제의 이름은 태그 표시 이름 파일(content/tags/)의 제목, 구역 순서는
-// 대문(index.md)의 목록 순서다. 그래서 새 태그는 표시 이름 파일과 대문만 고치면 트리에 따라온다.
+// 대문(index.md)의 구역 링크 순서다. 그래서 새 태그는 표시 이름 파일과 대문만 고치면 트리에 따라온다.
 //
 // 탐색기(@quartz-community/explorer)는 브라우저에서 contentIndex로 폴더 트리를 짓고, 옵션의 filterFn,
 // mapFn, sortFn을 문자열로 받아 new Function으로 돌린다. 이 플러그인은 두 순수 함수를 싣는 스크립트로
