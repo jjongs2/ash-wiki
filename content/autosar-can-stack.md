@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## 모듈
 
-- **CAN Driver**: MCAL 드라이버로, 하드웨어에 접근하면서 상위 층에 하드웨어에서 독립적인 API(Application Programming Interface)를 준다. 이 API를 쓰는 상위 모듈은 CanIf뿐이다. 송신을 시작하는 서비스를 주고, [[can-controller|CAN 컨트롤러]]의 동작과 상태를 제어한다. 수신, 송신 확인, bus-off는 CanIf의 콜백으로 알리고, wakeup은 EcuM(ECU State Manager)에 알린다. CAN Driver 하나는 같은 CAN 하드웨어 유닛에 속한 여러 CAN 컨트롤러를 제어할 수 있다.[@autosar-cp-sws-candriver-2025]
+- **CAN Driver**: MCAL 드라이버로, 하드웨어에 접근하면서 상위 층에 하드웨어에서 독립적인 API(Application Programming Interface)를 준다. 이 API를 쓰는 상위 모듈은 CanIf뿐이다. 송신을 시작하는 서비스를 주고, [[can-controller|CAN 컨트롤러]]의 동작과 상태를 제어한다. 수신, 송신 확인, bus-off는 CanIf의 콜백으로 알리고, wakeup은 [[ecu-state-manager|EcuM]]에 알린다. CAN Driver 하나는 같은 CAN 하드웨어 유닛에 속한 여러 CAN 컨트롤러를 제어할 수 있다.[@autosar-cp-sws-candriver-2025]
 - **CanTrcv**: [[can-transceiver|CAN 트랜시버]]의 동작 모드를 normal, standby, sleep 가운데 하나로 바꾼다.[@autosar-cp-sws-cantransceiverdriver-2025]
 - **CanIf**: 아래의 CAN Driver·CanTrcv와 위 모듈 사이에서, CAN 하드웨어와 상관없는 일을 모두 맡는다. 위 모듈의 송신 요청을 CAN Driver로 넘기고, 수신과 송신 확인을 위 모듈에 알린다. 이 송수신 경로에서 CanIf 바로 위 모듈은 L-SDU(Link Layer Service Data Unit) Router(LSduR)다. CanSM의 상태 변경 요청을 CAN Driver와 CanTrcv로 넘겨 컨트롤러와 트랜시버의 모드를 바꾸는 경로도 된다. 종류가 다른 여러 CAN 컨트롤러와 트랜시버를 한 인터페이스로 다룬다. [[pdu-router|PduR]], CanTp, CanNm은 LSduR를 거쳐 CanIf와 이어진다.[@autosar-cp-sws-caninterface-2025][@autosar-cp-sws-lsdurouter-2025]
 - **CanSM**: 설정된 CAN 네트워크마다 상태 기계를 하나씩 두고 통신 상태를 제어한다. ComM(Communication Manager)의 요청에 따라 CanIf의 API로 컨트롤러와 트랜시버의 모드를 바꾸고, 현재 통신 모드를 ComM에 알린다.[@autosar-cp-sws-canstatemanager-2025]
@@ -30,7 +30,7 @@ CanIf는 CAN 식별자나 그 일부를 L-SDU의 메타데이터에 담는 dynam
 
 ## Bus-off 처리
 
-CAN 컨트롤러가 [[can-fault-confinement|bus-off]]가 되면, CAN Driver는 컨트롤러가 STOPPED 상태에 든 뒤 CanIf에 알린다.[@autosar-cp-sws-candriver-2025] CanIf는 이 알림을 CanSM에 넘긴다.[@autosar-cp-sws-caninterface-2025] CanSM은 bus-off 복구 상태 기계로 CanIf에 컨트롤러를 다시 시작하라고 요청한다. 이때 CanSM은 BswM(Basic Software Mode Manager)에 bus-off 상태를 늘 알리고, Dem(Diagnostic Event Manager) 이벤트 CANSM_E_BUS_OFF를 보고한다. Dem 이벤트 참조는 설정에서 빼 둘 수 있다.[@autosar-cp-sws-canstatemanager-2025] ComM과 BswM은 [[autosar-communication-stack#통신 모드 관리|AUTOSAR 통신 스택]]에서 다룬다.
+CAN 컨트롤러가 [[can-fault-confinement|bus-off]]가 되면, CAN Driver는 컨트롤러가 STOPPED 상태에 든 뒤 CanIf에 알린다.[@autosar-cp-sws-candriver-2025] CanIf는 이 알림을 CanSM에 넘긴다.[@autosar-cp-sws-caninterface-2025] CanSM은 bus-off 복구 상태 기계로 CanIf에 컨트롤러를 다시 시작하라고 요청한다. 이때 CanSM은 [[basic-software-mode-manager|BswM]]에 bus-off 상태를 늘 알리고, [[diagnostic-event-manager|Dem]] 이벤트 CANSM_E_BUS_OFF를 보고한다. Dem 이벤트 참조는 설정에서 빼 둘 수 있다.[@autosar-cp-sws-canstatemanager-2025] ComM과 BswM은 [[autosar-communication-stack#통신 모드 관리|AUTOSAR 통신 스택]]에서 다룬다.
 
 ![[diagrams/can-bus-off-notification-sequence.svg]]
 

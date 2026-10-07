@@ -11,7 +11,7 @@ verified: 2026-09-30
 
 ## 그룹
 
-ECU Abstraction Layer는 Onboard Device Abstraction, [[autosar-memory-stack|Memory Hardware Abstraction]], Crypto Hardware Abstraction, Wireless Communication Hardware Abstraction, [[autosar-communication-stack|Communication Hardware Abstraction]], [[io-hardware-abstraction|I/O Hardware Abstraction]] 그룹으로 나뉜다. Wireless Communication Hardware Abstraction을 뺀 다섯 그룹이 하는 일은 아래와 같다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+ECU Abstraction Layer는 Onboard Device Abstraction, [[autosar-memory-stack|Memory Hardware Abstraction]], [[autosar-crypto-stack#Crypto Interface와 Crypto Driver|Crypto Hardware Abstraction]], Wireless Communication Hardware Abstraction, [[autosar-communication-stack|Communication Hardware Abstraction]], [[io-hardware-abstraction|I/O Hardware Abstraction]] 그룹으로 나뉜다. Wireless Communication Hardware Abstraction을 뺀 다섯 그룹이 하는 일은 아래와 같다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 | 그룹                               | 하는 일                                                                                                                                         |
 | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |

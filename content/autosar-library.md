@@ -27,7 +27,7 @@ AUTOSAR R25-11 Layered Software Architecture는 이 라이브러리들이 하는
 | Ifl        | 부동소수점 데이터의 보간              |
 | Efx        | 64비트 계산, 필터링 같은 확장 함수    |
 | Bfx        | 비트 다루기                           |
-| E2E        | E2E 통신                              |
+| E2E        | [[autosar-e2e-protection\|E2E]] 통신  |
 | Crc        | [[cyclic-redundancy-check\|CRC]] 계산 |
 | Bmc        | 멀티코어에서 안전한 원자적 연산       |
 | Msf        | 메모리 표준 함수                      |

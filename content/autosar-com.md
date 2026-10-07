@@ -44,7 +44,7 @@ I-PDU마다 전송 모드를 두 벌(`ComTxModeTrue`, `ComTxModeFalse`) 정해 �
 
 I-PDU 그룹은 송신 I-PDU끼리나 수신 I-PDU끼리 묶은 것으로, `Com_IpduGroupStart`와 `Com_IpduGroupStop`으로 한꺼번에 시작하고 멈춘다. I-PDU는 속한 그룹 가운데 하나라도 시작되어 있으면 시작 상태다. 멈춘 I-PDU는 보내지 않고 수신 처리도 하지 않는다.[@autosar-cp-sws-com-2025]
 
-I-PDU 그룹의 상태는 BswM(Basic Software Mode Manager)이 관리한다. BswM은 `BswMPduGroupSwitch` 동작을 실행할 때 `Com_IpduGroupStart`와 `Com_IpduGroupStop`을 불러 그룹을 시작하고 멈춘다.[@autosar-cp-sws-com-2025][@autosar-cp-sws-bswmodemanager-2025]
+I-PDU 그룹의 상태는 [[basic-software-mode-manager|BswM]]이 관리한다. BswM은 `BswMPduGroupSwitch` 동작을 실행할 때 `Com_IpduGroupStart`와 `Com_IpduGroupStop`을 불러 그룹을 시작하고 멈춘다.[@autosar-cp-sws-com-2025][@autosar-cp-sws-bswmodemanager-2025]
 
 ## 시그널 게이트웨이
 
@@ -56,7 +56,7 @@ AUTOSAR COM은 시그널이나 시그널 그룹을 받으면 사용자에게 수
 
 AUTOSAR COM은 수신 데드라인 감시로, 시그널이나 I-PDU가 설정한 시간(`ComFirstTimeout`, `ComTimeout`) 안에 들어오지 않았는지 감시한다. 시간 안에 오지 않으면, `ComRxDataTimeoutAction`이 `REPLACE`일 때 시그널 값을 초깃값으로, `SUBSTITUTE`일 때 대체값(`ComTimeoutSubstitutionValue`)으로 바꾸고, 설정이 없거나 `NONE`이면 마지막 값을 둔다.[@autosar-cp-sws-com-2025]
 
-데드라인 감시의 결과는 Dem에도 알린다. `COM_E_TIMEOUT`이 설정돼 있으면, AUTOSAR COM은 시그널이나 시그널 그룹의 수신 데드라인 감시 타이머가 만료될 때 Dem에 `DEM_EVENT_STATUS_PREFAILED`를 알리고, 데드라인 감시 중인 시그널이나 시그널 그룹을 받을 때 `DEM_EVENT_STATUS_PREPASSED`를 알린다. 같은 설정에서 송신 데드라인 감시가 돌고 있는 I-PDU의 송신 확인을 성공으로 받을 때도 `DEM_EVENT_STATUS_PREPASSED`를 알린다.[@autosar-cp-sws-com-2025]
+데드라인 감시의 결과는 [[diagnostic-event-manager|Dem]]에도 알린다. `COM_E_TIMEOUT`이 설정돼 있으면, AUTOSAR COM은 시그널이나 시그널 그룹의 수신 데드라인 감시 타이머가 만료될 때 Dem에 `DEM_EVENT_STATUS_PREFAILED`를 알리고, 데드라인 감시 중인 시그널이나 시그널 그룹을 받을 때 `DEM_EVENT_STATUS_PREPASSED`를 알린다. 같은 설정에서 송신 데드라인 감시가 돌고 있는 I-PDU의 송신 확인을 성공으로 받을 때도 `DEM_EVENT_STATUS_PREPASSED`를 알린다.[@autosar-cp-sws-com-2025]
 
 ## System Template과의 연결
 

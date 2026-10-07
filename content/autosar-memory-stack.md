@@ -51,7 +51,7 @@ BndM은 블록을 포인터로 바로 접근할 수 있는 메모리에 두고, 
 
 ![[diagrams/bndm-ab-partition-write.svg]]
 
-AUTOSAR R25-11 Layered Software Architecture는 BndM을 쓰는 예를 든다. 쓰기는 외부 진단 요청 [[uds#서비스|WriteDataByIdentifier]]로 시작된다. Dcm(Diagnostic Communication Manager)이 받은 직렬화 데이터를 transformer로 풀어 `BndM_WriteStart`, `BndM_WriteBlock_<shortname>`, `BndM_WriteFinalize`를 차례로 부른다. [[autosar-software-component|SW-C]]는 `BndM_GetBlockPtr`로 데이터를 읽고, BndM은 MemIf와 Fee를 거치지 않고 Mem으로 플래시에 접근한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+AUTOSAR R25-11 Layered Software Architecture는 BndM을 쓰는 예를 든다. 쓰기는 외부 진단 요청 [[uds#서비스|WriteDataByIdentifier]]로 시작된다. Dcm(Diagnostic Communication Manager)이 받은 직렬화 데이터를 [[autosar-transformer|transformer]]로 풀어 `BndM_WriteStart`, `BndM_WriteBlock_<shortname>`, `BndM_WriteFinalize`를 차례로 부른다. [[autosar-software-component|SW-C]]는 `BndM_GetBlockPtr`로 데이터를 읽고, BndM은 MemIf와 Fee를 거치지 않고 Mem으로 플래시에 접근한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 메모리 서비스 모듈 셋을 견주면 아래와 같다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 

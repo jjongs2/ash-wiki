@@ -9,7 +9,7 @@ verified: 2026-10-07
 
 ## Classic Platform의 Dlt
 
-AUTOSAR Classic Platform R25-11의 Dlt 명세는 Dlt가 Det(Default Error Tracer), Dem, [[autosar-software-component|SW-C]]의 로그 정보와 [[autosar-rte|RTE]]의 트레이스 정보를 받아 통신 버스로 보내, 이 정보를 ECU 밖에서 볼 수 있게 하도록 정한다. Dlt는 [[pdu-router|PduR]] 위, RTE 아래에 놓인다. 필터 설정을 [[nvram-manager|NvM]]에 저장해 두면, ECU를 켤 때마다 로깅 도구가 설정을 다시 요청하지 않아도 원하는 수준으로 로그와 트레이스를 보낼 수 있다.[@autosar-cp-sws-diagnosticlogandtrace-2025]
+AUTOSAR Classic Platform R25-11의 Dlt 명세는 Dlt가 [[autosar-error-handling#Det|Det]], [[diagnostic-event-manager|Dem]], [[autosar-software-component|SW-C]]의 로그 정보와 [[autosar-rte|RTE]]의 트레이스 정보를 받아 통신 버스로 보내, 이 정보를 ECU 밖에서 볼 수 있게 하도록 정한다. Dlt는 [[pdu-router|PduR]] 위, RTE 아래에 놓인다. 필터 설정을 [[nvram-manager|NvM]]에 저장해 두면, ECU를 켤 때마다 로깅 도구가 설정을 다시 요청하지 않아도 원하는 수준으로 로그와 트레이스를 보낼 수 있다.[@autosar-cp-sws-diagnosticlogandtrace-2025]
 
 로그·트레이스 메시지를 만드는 쪽을 **Dlt User**라 하며, SW-C, RTE([[virtual-functional-bus|VFB]] 트레이스), Dem, Det가 여기에 든다. Log Message는 상태나 값의 변화 같은 디버그 정보를 담고, Trace Message는 VFB를 지난 정보를 담는다. 메시지의 출처는 Application ID와 Context ID의 쌍으로 가린다. Application ID는 메시지를 만든 응용이나 SW-C를 가리키고, Context ID는 한 응용이 만든 메시지를 묶는 사용자 정의 식별자다. 둘 다 8비트 문자 네 개로 이루어진다. Application ID 하나가 Context ID 여럿을 가질 수 있고, Context ID는 한 Application ID 안에서 고유해야 한다.[@autosar-cp-sws-diagnosticlogandtrace-2025]
 
