@@ -27,7 +27,7 @@ AUTOSAR R25-11 Identity and Access Management 설명서는 PDP의 구현과 설�
 
 AUTOSAR는 Adaptive Application의 식별을 완전히 정하지 않는다. 한 방법은 응용 프로세스를 운영체제 사용자(POSIX 사용자 등)로 따로 돌리는 것이다. 이때 [[autosar-execution-management|Execution Management]]가 응용 프로세스를 서로 다른 운영체제 사용자로 시작하고, IPC 채널에서 상대의 자격 증명을 묻는 운영체제 기능(Unix 도메인 소켓의 `getpeereid()` 등)을 쓸 수 있다. PEP는 실행 중의 신원(Unix 사용자 식별자 등)을 모델의 Process로 옮기고, PDP는 그 Process와 연관된 Grant로 접근을 허용하거나 거부한다.[@autosar-ap-exp-identityandaccessmanagement-2025]
 
-IAM 모델링을 정한 functional cluster는 [[autosar-communication-management|Communication Management]], Firewall, Cryptography, [[autosar-diagnostic-management|Diagnostic Management]], Intrusion Detection System Manager, [[autosar-platform-health-management|Platform Health Management]]다. PEP의 구현은 각 functional cluster의 소프트웨어 명세가 정한다.[@autosar-ap-exp-identityandaccessmanagement-2025]
+IAM 모델링을 정한 functional cluster는 [[autosar-communication-management|Communication Management]], [[autosar-firewall|Firewall]], [[autosar-crypto-stack#Adaptive Platform의 Cryptography|Cryptography]], [[autosar-diagnostic-management|Diagnostic Management]], [[intrusion-detection-system-manager|Intrusion Detection System Manager]], [[autosar-platform-health-management|Platform Health Management]]다. PEP의 구현은 각 functional cluster의 소프트웨어 명세가 정한다.[@autosar-ap-exp-identityandaccessmanagement-2025]
 
 ## 정책과 intent
 

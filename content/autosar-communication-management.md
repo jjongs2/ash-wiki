@@ -33,7 +33,7 @@ AUTOSAR R25-11 Adaptive Platform 설계 설명서는 C++ Language Binding의 상
 
 Proxy는 서비스 Method를 동기로 부르는 메커니즘과 비동기로 부르는 메커니즘을 준다. 동기 호출은 서버가 결과를 돌려줄 때까지 호출자를 막고, 비동기 호출은 부른 함수가 바로 돌아온다. 비동기 호출에서 호출자는 다른 일을 병행하다가, 서버의 반환값이 준비되면 Core Type `ara::core::Future`의 기능으로 결과를 받는다. 클라이언트는 Proxy 클래스를 바로 쓸 수 있지만, C++ 바인딩의 Skeleton은 추상 기반 클래스일 뿐이어서 서비스 구현이 생성된 기반 클래스를 상속해 기능을 구현해야 한다. 서버가 아직 없을 때 클라이언트 개발과 단위 테스트를 돕는 mock-up 클래스를 생성기가 만들게 설정할 수도 있다.[@autosar-ap-exp-platformdesign-2025]
 
-`ara::com` 인터페이스는 safety-related E2E 보호 통신용 Proxy와 Skeleton도 줄 수 있다. 이 인터페이스는 E2E 보호를 켜든 끄든 응용과의 호환이 보장되게 설계됐다.[@autosar-ap-exp-platformdesign-2025]
+`ara::com` 인터페이스는 safety-related [[autosar-e2e-protection|E2E 보호]] 통신용 Proxy와 Skeleton도 줄 수 있다. 이 인터페이스는 E2E 보호를 켜든 끄든 응용과의 호환이 보장되게 설계됐다.[@autosar-ap-exp-platformdesign-2025]
 
 ## 정적 구성과 동적 구성
 
