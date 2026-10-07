@@ -19,7 +19,7 @@ NXP는 여러 차량 네트워크를 한데 잇는 중앙 허브 게이트웨이
 
 ## PDU 게이트웨이
 
-[[autosar|AUTOSAR]]의 [[pdu-router|PDU Router]]는 I-PDU(Interaction Layer Protocol Data Unit)를 라우팅한다. 통신 인터페이스 모듈로 받은 I-PDU는 같은 통신 인터페이스 모듈이나 다른 통신 인터페이스 모듈로 곧바로 보내고, TP(Transport Protocol) 모듈로 받은 I-PDU도 같은 TP 모듈이나 다른 TP 모듈로 보낸다. 라우팅은 I-PDU를 고치지 않으며, 명세는 이 동작을 PDU(Protocol Data Unit) Gateway라 부른다. PDU Router는 받은 I-PDU 하나를 여러 목적지로 한꺼번에 보낼 수 있다(1:n). 1:1과 n:1도 지원하지만 n:m은 지원하지 않는다.[@autosar-cp-sws-pdurouter-2025]
+[[autosar|AUTOSAR]]의 [[pdu-router|PDU Router]]는 I-PDU(Interaction Layer Protocol Data Unit)를 라우팅한다. 통신 인터페이스 모듈로 받은 I-PDU는 같은 통신 인터페이스 모듈이나 다른 통신 인터페이스 모듈로 곧바로 보내고, TP(Transport Protocol) 모듈로 받은 I-PDU도 같은 TP 모듈이나 다른 TP 모듈로 보낸다. 라우팅은 I-PDU를 고치지 않으며, 명세는 이 동작을 PDU(Protocol Data Unit) Gateway라 부른다. PDU Router는 받은 I-PDU 하나를 여러 목적지로 한꺼번에 보낼 수 있다(1:n). 1:1과 n:1도 지원하지만 n:m은 지원하지 않는다. 통신 인터페이스 모듈 사이에서 주기나 rate가 다른 I-PDU를 라우팅하는 rate conversion은 PDU Router가 지원하지 않는다. 이때는 I-PDU를 AUTOSAR COM으로 보내 시그널 게이트웨이로 처리한다.[@autosar-cp-sws-pdurouter-2025]
 
 ## 시그널 게이트웨이
 
@@ -28,6 +28,10 @@ NXP는 여러 차량 네트워크를 한데 잇는 중앙 허브 게이트웨이
 ![[diagrams/pdu-signal-gateway.svg]]
 
 이 명세는 시그널 라우팅의 쓰임새로 세 가지를 든다. 여러 ECU의 시그널을 모아 한 ECU가 받는 I-PDU 수를 줄이는 일, 게이트웨이가 보내는 I-PDU 수를 줄이는 일, 이어진 버스들의 페이로드 길이 차이에 맞추는 일이다.[@autosar-cp-rs-gateway-2025]
+
+## AUTOSAR 게이트웨이의 라우팅 규칙
+
+이 명세는 게이트웨이가 라우팅 설정을 동적으로 바꾸지 않도록 한다. 모든 라우팅 경로는 정적으로 정하며, PDU, L-SDU(Link Layer Service Data Unit), 시그널의 내용에 따라 달라지지 않는다. 복잡도를 줄이고 게이트웨이를 결정적으로 만들기 위해서다. 같은 PDU, 같은 L-SDU, 같은 시그널의 서로 다른 인스턴스는 시간 순서를 지켜야 한다. 일부 인스턴스를 잃는 것은 이 규칙을 어기는 것이 아니며, 같은 버스의 서로 다른 PDU끼리나 다른 버스로 보내는 같은 PDU끼리의 순서는 지키지 않아도 된다. 이 명세는 이 규칙이 쓰이는 경우로, PDU와 시그널의 순서가 사용자 조작의 순서를 나타낼 수 있는 경우와 ECU가 실행할 명령의 순서를 나타내는 경우를 든다.[@autosar-cp-rs-gateway-2025]
 
 ## 진단 게이트웨이
 

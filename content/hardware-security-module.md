@@ -21,7 +21,7 @@ verified: 2026-10-03
 
 **SHE**(Secure Hardware Extension)는 HIS가 정한 온칩 보안 확장으로, 키 저장 영역과 AES [[symmetric-key-cryptography|블록 암호]]를 두고 모든 암호 연산을 AES-128로 처리한다.[@autosar-fo-tr-securehardwareextensions-2025]
 
-[[autosar|AUTOSAR]] R25-11의 [[autosar-layered-architecture|Layered Software Architecture]]는 SHE나 HSM 같은 온칩 암호 장치를 [[microcontroller-abstraction-layer|MCAL]]의 Crypto Driver가 다루게 한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+[[autosar|AUTOSAR]] R25-11의 [[autosar-layered-architecture|Layered Software Architecture]]는 SHE나 HSM 같은 온칩 암호 장치를 [[microcontroller-abstraction-layer|MCAL]]의 [[autosar-crypto-stack#Crypto Interface와 Crypto Driver|Crypto Driver]]가 다루게 한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## EVITA의 HSM 등급
 

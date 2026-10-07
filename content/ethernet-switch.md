@@ -47,6 +47,16 @@ OPEN Alliance TC11은 차량용 이더넷 네트워크에 맞는 이더넷 스�
 
 KSZ9477S는 레이어 2 관리형 스위치로, SPI(Serial Peripheral Interface)나 I2C(Inter-Integrated Circuit) 같은 호스트 인터페이스, 또는 인밴드 관리로 내부 레지스터에 접근해 설정한다.[@microchip-ksz9477s-2019] Microchip의 기가비트 이더넷 스위치(KSZ9896C, KSZ9477S 등)는 VLAN과 QoS(Quality of Service)를 마이크로컨트롤러, 인밴드 접근, 호스트 프로세서로 설정하고, 설정 스트랩으로는 기본 설정과 자동 협상만 정한다. Microchip AN2577에 따르면 비관리형 이더넷 스위치는 기능을 관리할 외부 마이크로컨트롤러나 프로세서 없이 스트랩 설정만으로 동작한다.[@microchip-an2577-2017]
 
+## AUTOSAR의 스위치 모델
+
+[[autosar|AUTOSAR]] Classic Platform R25-11의 Ethernet Switch Driver 명세는 스위치 포트에 역할을 줄 수 있게 한다. Host port는 스위치를 제어하는 ECU(host ECU)와 이어진 포트이고, up link port는 같은 ECU 안의 다른 스위치 포트와 이어져 cascaded switch를 나타내는 포트다. 역할을 주지 않은 포트는 보통 포트다. 스위치 하나는 host port를 꼭 하나 갖거나 up link port를 하나 이상 가지며, host port가 있는 스위치도 up link port를 여럿 가질 수 있다. Master switch는 host port 하나로 host ECU와 잇고, slave switch는 up link port 하나로 master switch와 잇는다. 내부 클록을 동기화할 수 있는 스위치끼리 up link port로 이어져 있을 때 그 클록 동기화를 켜면(`EthSwtClockSynchronizationSupport`가 `TRUE`), 이어진 두 up link port 사이의 지연은 잴 필요가 없다.[@autosar-cp-sws-ethernetswitchdriver-2025]
+
+![[diagrams/autosar-switch-port-roles.svg]]
+
+Ethernet Interface는 스위치 포트를 묶은 switch port group을 두고, 위층의 켜기 요청과 끄기 요청을 포트 묶음 단위로 받아 판단한다. 켜기 요청은 끄기 요청보다 늘 앞선다. [[autosar-network-management#Partial networking|Partial network]] 요청에 따라 포트 묶음을 켜고 끌 때는 BswM의 규칙이 포트 묶음을 제어한다. 포트 묶음의 링크 상태는 묶음에 든 모든 포트의 링크 상태를 모아 계산하며, 이를 **링크 상태 누적**이라 한다. 이때 포트의 링크 상태는 [[ieee-802-1ae|MACsec]]으로 보호하는 포트와 보호하지 않는 포트를 나누어 따진다. 묶음 안의 host port나 up link port의 링크 상태가 down이거나, 역할이 없는 포트의 링크 상태가 모두 down이면 묶음의 링크도 down으로 보고, 그렇지 않으면 active로 본다.[@autosar-cp-sws-ethernetinterface-2025]
+
+이더넷에서 이더넷으로 보내는 미러링은 [[autosar-communication-stack#Bus Mirroring|Bus Mirroring]] 모듈이 아니라 Ethernet Switch Driver의 port mirroring 기능이 맡는다.[@autosar-cp-sws-busmirroring-2025]
+
 ## 리피터, 브리지, 라우터와의 차이
 
 ISO/IEC 2382:2015는 LAN(Local Area Network)에서 신호를 증폭하거나 재생해 데이터 스테이션 사이의 전송 거리를 늘리거나 두 갈래를 잇는 장치를 리피터로 정의한다. 브리지는 같은 LLC(Logical Link Control) 프로토콜을 쓰되 MAC 프로토콜은 다를 수 있는 두 LAN을 잇는 기능 단위이고, [[osi-model|OSI]] 모델을 따르는 네트워크에서는 데이터 링크 계층에서 동작하므로 라우팅 기능이 없다. 라우터는 하나 이상의 컴퓨터 네트워크를 거치는 경로를 정하는 기능 단위이고, OSI 모델을 따르는 네트워크에서는 네트워크 계층에서 동작한다.[@iso-iec-2382-obp-2015] IEEE 802.1Q-2022는 브리지로 이어진 네트워크의 원리와 MAC 브리지, VLAN 브리지의 동작을 정한다.[@ieee-802-1q-2022]

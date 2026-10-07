@@ -44,7 +44,7 @@
     <text x="420" y="403">CanTrcv</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4">
-    <path d="M28 278 H532 V428 H308 V338 H28 Z" />
+    <path d="M198 188 H532 V428 H308 V338 H28 V278 H198 Z" />
     <rect x="28" y="368" width="224" height="60" rx="2" />
   </g>
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
