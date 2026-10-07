@@ -53,7 +53,7 @@ EthTSyn은 Time Synchronization over Ethernet 프로토콜 명세가 정한 프�
 
 ## 보안 시간 동기화
 
-AUTOSAR R25-11의 Time Synchronization over CAN 프로토콜 명세는 시간 동기화 메시지를 ICV(Integrity Check Value)로 보호해 무결성과 authenticity를 지키는 것을 선택 기능으로 둔다. 성능을 위해 ICV는 FUP 메시지에만 싣지만, ICV를 계산하는 데이터에는 SYNC와 FUP 메시지의 페이로드가 모두 든다.[@autosar-fo-prs-timesyncovercanprotocol-2025] AUTOSAR R25-11의 FrTSyn 명세도 SYNC 메시지를 ICV로 보호할 수 있게 한다.[@autosar-cp-sws-timesyncoverflexray-2025] AUTOSAR R25-11의 EthTSyn 명세도 이더넷 버스의 시간 동기화 메시지를 ICV로 보호할 수 있게 한다.[@autosar-cp-sws-timesyncoverethernet-2025]
+AUTOSAR R25-11의 Time Synchronization over CAN 프로토콜 명세는 시간 동기화 메시지를 ICV(Integrity Check Value)로 보호해 무결성과 authenticity를 지키는 것을 선택 기능으로 둔다. 성능을 위해 ICV는 FUP 메시지에만 싣지만, ICV를 계산하는 데이터에는 SYNC와 FUP 메시지의 페이로드가 모두 든다.[@autosar-fo-prs-timesyncovercanprotocol-2025] AUTOSAR R25-11의 FrTSyn 명세도 SYNC 메시지를 ICV로 보호할 수 있게 한다.[@autosar-cp-sws-timesyncoverflexray-2025] EthTSyn도 이더넷 버스의 시간 동기화 메시지를 ICV로 보호할 수 있다.[@autosar-cp-sws-timesyncoverethernet-2025]
 
 인증한 시간 동기화 메시지의 신선도는 [[secure-onboard-communication#Freshness Value|Freshness Value]]로 보장하고, Freshness Value를 주는 FVM(Freshness Value Manager)과 TSyn 모듈 사이의 인터페이스는 StbM이 맡는다. FVM은 SW-C나 CDD(Complex Driver)로 만든다.[@autosar-cp-sws-synchronizedtimebasemanager-2025]
 
