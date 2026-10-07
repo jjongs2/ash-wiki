@@ -25,11 +25,13 @@ describe("플래그 없는 node로 불러온다", () => {
     test(name, () => {
       const url = new URL(`${name}/index.ts`, pluginsDir).href
       // 로더는 transformer 인스턴스에 아래 메서드가 하나도 없으면 경고만 남기고 건너뛴다
-      // (quartz/plugins/loader/config-loader.ts의 validateCategory).
+      // (quartz/plugins/loader/config-loader.ts의 validateCategory). category는 배열일 수도 있다
+      // (transformer이자 페이지 타입인 weekly-news).
       const script =
         `const m = await import(${JSON.stringify(url)}); ` +
-        `const instance = m.manifest?.category === "transformer" ? m.default() : {}; ` +
-        `const loadable = m.manifest?.category !== "transformer" || ` +
+        `const transformer = [m.manifest?.category].flat().includes("transformer"); ` +
+        `const instance = transformer ? m.default() : {}; ` +
+        `const loadable = !transformer || ` +
         `["textTransform", "markdownPlugins", "htmlPlugins"].some((key) => key in instance); ` +
         `console.log(JSON.stringify({ name: m.manifest?.name, type: typeof m.default, loadable }))`
       const env = { ...process.env }
