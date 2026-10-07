@@ -3,6 +3,10 @@ import assert from "node:assert"
 import type { FrontPageCommit, FrontPagePage } from "./index"
 import { frontPage, RECENT_CHANGES_LIMIT } from "./index"
 
+// 최근 변경은 빌드의 시간대로 날짜를 가른다. 배포 빌드와 같은 한국 시각으로 고정해, 테스트를 돌리는 머신의
+// 시간대와 관계없이 같은 결과를 본다(docs/deploy.md의 날짜의 시간대).
+process.env.TZ = "Asia/Seoul"
+
 // 대문 함수가 seam이다. 페이지와 커밋 목록을 넣고 나온 주제별 페이지 수와 최근 변경 묶음만 본다.
 const page = (slug: string, ...tags: string[]): FrontPagePage => ({ slug, title: slug, tags })
 const commit = (subject: string, date: string, ...files: string[]): FrontPageCommit => ({
@@ -146,7 +150,6 @@ describe("frontPage의 최근 변경", () => {
     )
   })
 
-  // 날짜는 빌드의 시간대로 보므로, 아래 시각은 UTC와 한국 시각 어느 쪽에서도 같은 날이 되게 고른다
   test("같은 날의 묶음은 한 날짜에 모은다", () => {
     const result = days(
       commit("content: 가 (#1)", "2026-10-02T05:00:00Z", "uds.md"),

@@ -2,7 +2,7 @@
 // 페이지 수를 붙이고, 본문 아래에 최근 변경을 그린다. 대문의 배치는 docs/engine.md의 대문 절에 있다.
 //
 // 계산 규칙은 순수 함수 frontPage 하나에 모은다. 페이지 목록과 커밋 목록을 받아 주제별 페이지 수와 최근 변경
-// 묶음을 돌려주고, 이번 주 소식은 다른 티켓이 같은 함수에 더한다(#364). 커밋 목록은 그릴 때 content 폴더의
+// 묶음을 돌려주고, 이번 주 소식은 다른 티켓이 같은 함수에 더한다(#367). 커밋 목록은 그릴 때 content 폴더의
 // git 기록에서 읽는다(전체 기록과 시간대는 docs/deploy.md). 저장소 밖에서 빌드하면(콘텐츠 검사기의 픽스처)
 // 최근 변경을 그리지 않는다.
 //
@@ -236,11 +236,13 @@ const CSS = `.front-regions {
 //   기록이 이어짐을 보인다. 마디와 세로선의 자리는 날짜 줄 높이(--day-line)와 들여쓰기(--rail)로 계산한다.
 // - 항목이 서로 갈리도록 항목 사이는 띄우고, 꺾인 제목의 줄 사이는 좁힌다. 날짜 사이는 항목 사이보다 더 띄운다.
 // - 묶음 하나는 GitHub의 PR 목록을 본뜬다. 첫 줄에 pull request 아이콘과 제목 링크, 그 아래 보조 글자 줄에
-//   PR 번호와 쪽수를 둔다. 제목은 본문 글자색의 보통 굵기로 쓰고, 마우스를 올리면 링크색에 밑줄이 생긴다
-//   (GitHub의 Link--primary).
+//   PR 번호와 쪽수를 둔다. 제목은 제목 글자색(--dark)의 보통 굵기로 쓰고, 마우스를 올리면 링크색
+//   (--secondary)에 밑줄이 생긴다(GitHub의 Link--primary). 사이트 링크의 hover색(--tertiary)이 아니라
+//   링크색으로 바뀌어야 링크임이 드러난다.
 // - 아이콘은 제목 안의 인라인 요소라 첫 줄 글자에 맞춰 선다. 꺾인 줄은 내어쓰기(padding과 음수 text-indent)로
 //   아이콘 오른쪽에서 시작한다. vertical-align은 Pretendard 글자 상자의 가운데에 아이콘 가운데를 맞춘 값이다.
-// - 날짜, PR 번호, 쪽수는 보조 글자색이고, 대비 하한은 docs/palette.md의 "보조 글자"다. 날짜는 굵게 쓴다.
+// - 날짜, PR 번호, 쪽수와 아이콘은 보조 글자색이고, 대비 하한은 docs/palette.md의 "보조 글자"다. 날짜는
+//   굵게 쓴다.
 const COLUMNS_CSS = `.front-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -469,7 +471,7 @@ function frontColumns(days: RecentDay[], locale: string): Element {
                 "a",
                 {
                   href: `${PULL_URL}${change.pr}`,
-                  className: ["external", "front-change-link"],
+                  className: ["front-change-link"],
                   target: "_blank",
                   rel: ["noopener", "noreferrer"],
                 },
@@ -480,11 +482,10 @@ function frontColumns(days: RecentDay[], locale: string): Element {
       ),
     ])
   }
-  const timeline = days.map(({ changes }) =>
+  // 날짜 글은 day의 0시(빌드의 시간대)로 만들어, 묶을 때 쓴 날짜와 늘 같다
+  const timeline = days.map(({ day, changes }) =>
     el("li", { className: ["front-day"] }, [
-      el("time", { dateTime: changes[0]?.date }, [
-        text(formatDate(new Date(changes[0]?.date ?? ""), locale)),
-      ]),
+      el("time", { dateTime: day }, [text(formatDate(new Date(`${day}T00:00:00`), locale))]),
       el("ul", {}, changes.map(row)),
     ]),
   )
