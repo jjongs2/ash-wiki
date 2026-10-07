@@ -36,13 +36,13 @@ OSEK/VDX OS 2.2.3 명세는 resource 관리를 모든 conformance class에 필�
 
 ## `RES_SCHEDULER`
 
-이 명세는 스케줄러를 모든 태스크가 쓸 수 있는 resource로 다루며, `RES_SCHEDULER`라는 resource를 미리 만들어 두게 한다. 태스크는 `RES_SCHEDULER`를 얻어 다른 태스크의 선점을 막을 수 있고, 인터럽트는 `RES_SCHEDULER`의 상태와 상관없이 받아 처리된다.[@osek-os-2-2-3-2005] OSEK/VDX [[osek-implementation-language|OIL]] 2.5 명세는 `OS` 객체에 BOOLEAN 속성 `USERESSCHEDULER`를 두어 애플리케이션이 `RES_SCHEDULER`를 쓰는지 정하게 한다.[@osek-oil-2-5-2004]
+이 명세는 스케줄러를 모든 태스크가 쓸 수 있는 resource로 다루며, `RES_SCHEDULER`라는 resource를 미리 만들어 두게 한다. 태스크는 `RES_SCHEDULER`를 얻어 다른 태스크의 선점을 막을 수 있고, 인터럽트는 `RES_SCHEDULER`의 상태와 상관없이 받아 처리된다.[@osek-os-2-2-3-2005]
 
 ## Internal resource
 
-OSEK/VDX OS 2.2.3 명세는 사용자에게 보이지 않아 `GetResource`와 `ReleaseResource`로 다룰 수 없는 resource를 **internal resource**로 정의하고, 그 밖의 동작(우선순위 상한 프로토콜 등)은 일반 resource와 같게 둔다. 또 internal resource를 태스크에만 쓰게 하고, 시스템 생성 때 태스크 하나에 많아야 하나를 배정하게 한다.[@osek-os-2-2-3-2005] OIL은 `RESOURCEPROPERTY` 값으로 `STANDARD`, `LINKED`, `INTERNAL`을 두고, `INTERNAL`을 애플리케이션이 접근할 수 없는 internal resource로 정한다.[@osek-oil-2-5-2004]
+이 명세는 사용자에게 보이지 않아 `GetResource`와 `ReleaseResource`로 다룰 수 없는 resource를 **internal resource**로 정의하고, 그 밖의 동작(우선순위 상한 프로토콜 등)은 일반 resource와 같게 둔다. 또 internal resource를 태스크에만 쓰게 하고, 시스템 생성 때 태스크 하나에 많아야 하나를 배정하게 한다.[@osek-os-2-2-3-2005] OIL은 `RESOURCEPROPERTY` 값으로 `STANDARD`, `LINKED`, `INTERNAL`을 두고, `INTERNAL`을 애플리케이션이 접근할 수 없는 internal resource로 정한다.[@osek-oil-2-5-2004]
 
-OSEK/VDX OS 2.2.3 명세는 태스크가 실행을 시작할 때 운영체제가 internal resource를 그 태스크에 쥐여 주고, 태스크가 [[osek-task#우선순위와 스케줄링|재스케줄링 지점]]에 이르면 거둬들이도록 정한다. 태스크가 선점될 때는 풀리지 않는다. 그래서 같은 internal resource를 배정받은 태스크 묶음은 묶음 안에서 비선점 태스크처럼 동작한다. 재스케줄링은 재스케줄링 지점에서만 일어나고, 묶음의 가장 높은 우선순위보다 높은 태스크에는 선점된다. 이를 써서 태스크 묶음 안의 원치 않는 재스케줄링을 막을 수 있다. 선점할 수 없는 태스크는 `RES_SCHEDULER`와 같은 우선순위의 internal resource가 배정된 특수한 묶음이다.[@osek-os-2-2-3-2005]
+명세에 따라 운영체제는 태스크가 실행을 시작할 때 internal resource를 그 태스크에 쥐여 주고, 태스크가 [[osek-task#우선순위와 스케줄링|재스케줄링 지점]]에 이르면 거둬들인다. 태스크가 선점될 때는 풀리지 않는다. 그래서 같은 internal resource를 배정받은 태스크 그룹은 그룹 안에서 비선점 태스크처럼 동작한다. 재스케줄링은 재스케줄링 지점에서만 일어나고, 그룹의 가장 높은 우선순위보다 높은 태스크에는 선점된다. 이를 써서 태스크 그룹 안의 원치 않는 재스케줄링을 막을 수 있다. 선점할 수 없는 태스크는 `RES_SCHEDULER`와 같은 우선순위의 internal resource가 배정된 특수한 그룹이다.[@osek-os-2-2-3-2005]
 
 ![[diagrams/osek-internal-resource-group.svg]]
 
@@ -50,4 +50,8 @@ resource를 쥔 채 부를 수 없는 서비스의 제한은 internal resource�
 
 ## Linked resource
 
-이 명세는 드물게 같은 resource를 중첩해 써야 하면 첫 resource와 같은 동작을 하는 둘째 resource를 쓰기를 권한다. 이렇게 같은 동작을 하는 resource를 **linked resource**라 하며, OIL로 정의할 수 있다.[@osek-os-2-2-3-2005] OSEK/VDX OIL 2.5 명세는 `RESOURCE` 객체의 `RESOURCEPROPERTY`를 `LINKED`로 두면 하위 속성 `LINKEDRESOURCE`로 이어 줄 resource(속성이 `STANDARD`나 `LINKED`인 것)를 정하게 한다. linked resource의 사슬은 운영체제의 코드 생성기가 풀어야 한다.[@osek-oil-2-5-2004]
+이 명세는 드물게 같은 resource를 중첩해 써야 하면 첫 resource와 같은 동작을 하는 둘째 resource를 쓰기를 권한다. 이렇게 같은 동작을 하는 resource를 **linked resource**라 하며, OIL로 정의할 수 있다.[@osek-os-2-2-3-2005]
+
+## 설정
+
+OSEK/VDX OIL 2.5 명세는 `OS` 객체에 BOOLEAN 속성 `USERESSCHEDULER`를 두어 애플리케이션이 `RES_SCHEDULER`를 쓰는지 정하게 한다. `RESOURCE` 객체에서 `RESOURCEPROPERTY`를 `LINKED`로 두면, 하위 속성 `LINKEDRESOURCE`로 이어 줄 resource(속성이 `STANDARD`나 `LINKED`인 것)를 정한다. linked resource의 사슬은 운영체제의 코드 생성기가 풀어야 한다.[@osek-oil-2-5-2004]

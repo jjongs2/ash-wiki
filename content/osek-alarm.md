@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## Counter
 
-타이머 인터럽트나 축의 엔코더처럼 반복되는 사건은 구현이 제공하는 counter에 등록된다. **counter**는 틱 단위로 잰 counter 값과 counter별 상수로 나타낸다. OSEK/VDX OS 2.2.3 명세는 counter를 직접 다루는 표준 API(Application Programming Interface)를 두지 않는다. OSEK/VDX OS 2.0 명세는 1.0 명세에 있던, 애플리케이션이 counter에 접근하는 API를 하드웨어에 크게 기대는 기능이라는 이유로 없앴다. 타이머에서 나오는 counter는 적어도 하나 있으며, 그 타이머는 하드웨어일 수도 소프트웨어일 수도 있다.[@osek-os-2-2-3-2005]
+타이머 인터럽트나 축의 엔코더처럼 반복되는 사건은 구현이 제공하는 counter에 등록된다. **counter**는 틱 단위로 잰 counter 값과 counter별 상수로 나타낸다. counter를 직접 다루는 표준 API(Application Programming Interface)는 없다. OSEK/VDX OS 2.0 명세는 1.0 명세에 있던, 애플리케이션이 counter에 접근하는 API를 하드웨어에 크게 기대는 기능이라는 이유로 없앴다. 타이머에서 나오는 counter는 적어도 하나 있으며, 그 타이머는 하드웨어일 수도 소프트웨어일 수도 있다.[@osek-os-2-2-3-2005]
 
 counter마다 아래 상수를 둔다.[@osek-os-2-2-3-2005][@osek-oil-2-5-2004]
 
@@ -31,7 +31,7 @@ OSEKturbo OS/ARM7에서는 counter 값이 `MAXALLOWEDVALUE`에 이르면 0부터
 
 ![[diagrams/osek-alarm-counter-actions.svg]]
 
-OSEK/VDX OS 2.2.3 명세는 알람 callback 루틴을 애플리케이션이 제공하는 짧은 함수로 둔다. 그 안에서 부를 수 있는 시스템 서비스는 인터럽트를 막았다가 되살리는 `SuspendAllInterrupts`와 `ResumeAllInterrupts`뿐이다. 알람 callback 루틴은 category 2 인터럽트를 막은 채 돈다. 인자도 반환값도 없으며, `ALARMCALLBACK(name)` 꼴로 정의한다. 알람 callback 루틴이 도는 처리 레벨은 구현에 따라 스케줄러의 레벨이거나 [[osek-isr|ISR]]의 레벨이다.[@osek-os-2-2-3-2005]
+알람 callback 루틴은 애플리케이션이 제공하는 짧은 함수다. 그 안에서 부를 수 있는 시스템 서비스는 인터럽트를 막았다가 되살리는 `SuspendAllInterrupts`와 `ResumeAllInterrupts`뿐이다. 알람 callback 루틴은 category 2 인터럽트를 막은 채 돈다. 인자도 반환값도 없으며, `ALARMCALLBACK(name)` 꼴로 정의한다. 알람 callback 루틴이 도는 처리 레벨은 구현에 따라 스케줄러의 레벨이거나 [[osek-isr|ISR]]의 레벨이다.[@osek-os-2-2-3-2005]
 
 실행 중에 정하는 것은 알람이 만료될 counter 값과 주기 알람의 주기뿐이다.[@osek-os-2-2-3-2005]
 

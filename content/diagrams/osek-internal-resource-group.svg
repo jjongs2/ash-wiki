@@ -12,9 +12,9 @@
 
   <!-- 레인 이름 -->
   <g font-size="12" fill="var(--text, #727981)" text-anchor="end">
-    <text x="176" y="66">묶음보다 높은 태스크</text>
-    <text x="176" y="112">묶음 안의 높은 태스크</text>
-    <text x="176" y="158">묶음 안의 낮은 태스크</text>
+    <text x="176" y="66">그룹보다 높은 태스크</text>
+    <text x="176" y="112">그룹 안의 높은 태스크</text>
+    <text x="176" y="158">그룹 안의 낮은 태스크</text>
   </g>
 
   <!-- suspended -->

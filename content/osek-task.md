@@ -23,7 +23,7 @@ extended 태스크는 여기에 waiting이 더해진 네 상태를 가진다. wa
 
 basic 태스크는 waiting 상태가 없어 태스크의 시작과 끝에서만 동기화하며, 실행 context에 드는 RAM(Random-Access Memory)이 적다.[@osek-os-2-2-3-2005] 예를 들어 OSEKturbo OS/ARM7에서는 basic 태스크가 모두 한 스택을 함께 쓰고, extended 태스크는 저마다 정적으로 할당된 스택을 둔다.[@freescale-osekturbo-arm7-tr-2002]
 
-OSEK/VDX OS 2.2.3 명세는 extended 태스크가 끝나지 않은 채 waiting 상태로 들어가 CPU를 낮은 우선순위 태스크에 내줄 수 있게 한다. 대신 운영체제가 관리하기에 더 복잡하고 시스템 자원을 더 쓴다.[@osek-os-2-2-3-2005]
+extended 태스크는 끝나지 않은 채 waiting 상태로 들어가 CPU를 낮은 우선순위 태스크에 내줄 수 있다. 대신 운영체제가 관리하기에 더 복잡하고 시스템 자원을 더 쓴다.[@osek-os-2-2-3-2005]
 
 ## 활성화와 종료
 
@@ -39,7 +39,7 @@ BCC2와 ECC2에서는 basic 태스크가 활성화 요청을 여러 번 받아 �
 
 태스크의 우선순위는 정적으로 정해져, 실행 중에 사용자가 바꿀 수 없다. 가장 낮은 우선순위는 0이고, 값이 클수록 우선순위가 높다.[@osek-os-2-2-3-2005][@osek-oil-2-5-2004]
 
-OSEK/VDX OS 2.2.3 명세는 스케줄러가 ready와 running 태스크 가운데 우선순위가 가장 높은 것들을 고르고, 그 안에서 가장 오래된 것을 고르도록 정한다. 선점된 태스크는 그 우선순위에서 가장 오래된 것으로, waiting에서 풀린 태스크는 가장 새로운 것으로 친다. 같은 우선순위에 태스크를 여럿 두는 것은 BCC2와 ECC2에서만 된다.[@osek-os-2-2-3-2005]
+스케줄러는 ready와 running 태스크 가운데 우선순위가 가장 높은 것들을 고르고, 그 안에서 가장 오래된 것을 고른다. 선점된 태스크는 그 우선순위에서 가장 오래된 것으로, waiting에서 풀린 태스크는 가장 새로운 것으로 친다. 같은 우선순위에 태스크를 여럿 두는 것은 BCC2와 ECC2에서만 된다.[@osek-os-2-2-3-2005]
 
 선점할 수 있는지는 태스크의 속성이다. 선점할 수 있는 태스크는 더 높은 우선순위 태스크가 ready가 되는 즉시 ready로 돌아가며, context가 저장되어 선점된 자리에서 이어진다. [[real-time-scheduling#선점|선점할 수 없는 태스크]]는 `TerminateTask`, `ChainTask`, `Schedule`을 부르거나 `WaitEvent`로 waiting에 들어갈 때만 재스케줄링된다. 선점할 수 있는 태스크와 없는 태스크를 한 시스템에 섞을 수 있으며, 이때 스케줄링 방식은 running 태스크의 속성을 따른다.[@osek-os-2-2-3-2005]
 
@@ -65,7 +65,7 @@ OSEK/VDX OS 2.2.3 명세는 스케줄러가 ready와 running 태스크 가운데
 
 ## 설정
 
-OSEK/VDX [[osek-implementation-language|OIL]] 2.5 명세는 태스크를 `TASK` 객체로 선언하게 한다. 속성에는 아래 넷이 있고, 그 밖에 태스크가 쓰는 [[osek-resource|resource]], 이벤트, 메시지를 참조한다.[@osek-oil-2-5-2004]
+태스크는 [[osek-implementation-language|OIL]]의 `TASK` 객체로 선언한다. 속성에는 아래 넷이 있고, 그 밖에 태스크가 쓰는 [[osek-resource|resource]], 이벤트, 메시지를 참조한다.[@osek-oil-2-5-2004]
 
 | 속성         | 뜻                                                                       |
 | ------------ | ------------------------------------------------------------------------ |

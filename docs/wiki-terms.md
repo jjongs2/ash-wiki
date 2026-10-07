@@ -67,6 +67,7 @@
 - 위협 시나리오: threat scenario (#252)
 - 자산: asset (#252)
 - 타원 곡선 암호: ECC (#289). 타원 곡선 암호를 가리킬 때. ECDSA·ECDH 같은 알고리즘 이름은 그대로. 예: SP 800-56A의 ECC CDH는 "타원 곡선 CDH"
+- 태스크 그룹: 태스크 묶음 (#349). OSEK OS 명세의 group of tasks일 때
 - 테스트 기준: test basis (#291)
 - 테스트 케이스: 시험 사례, 시험 케이스 (#291)
 - 트랜시버 지연 보상: 송신 지연 보상 (#311). 약어와 함께 쓰면 `트랜시버 지연 보상(TDC, Transceiver Delay Compensation)`

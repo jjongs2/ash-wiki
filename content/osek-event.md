@@ -17,11 +17,9 @@ verified: 2026-09-30
 
 extended status에서는 extended 태스크가 아닌 태스크가 `WaitEvent`나 `ClearEvent`를 부르면 E_OS_ACCESS를 돌려주고, suspended 상태의 태스크에 `SetEvent`를 부르면 E_OS_STATE를 돌려준다. extended 태스크가 아닌 태스크에 `SetEvent`를 부르면 E_OS_ACCESS를, suspended 상태의 태스크에 `GetEvent`를 부르면 E_OS_STATE를 돌려준다.[@osek-os-2-2-3-2005] extended status는 [[osek-hook-routine#Standard status와 extended status|OSEK hook 루틴]]에서 다룬다.
 
-OSEK/VDX [[osek-implementation-language|OIL]] 2.5 명세는 `EVENT` 객체를 마스크로 나타내고, 이벤트 이름을 그 마스크의 다른 이름으로 둔다. 이름이 같은 이벤트는 같은 이벤트라 마스크도 같지만, 마스크가 같다고 같은 이벤트는 아니다. `MASK` 속성은 UINT64 정수이거나 `AUTO`이며, `AUTO`면 그 이벤트를 참조하는 태스크들 사이에서 겹치지 않는 비트 하나가 자동으로 배정된다.[@osek-oil-2-5-2004]
-
 ## 기다림과 깨어남
 
-OSEK/VDX OS 2.2.3 명세는 `WaitEvent`를 부른 태스크가 마스크에 지정한 이벤트 가운데 하나라도 설정될 때까지 waiting 상태로 머물게 한다. 기다리던 이벤트 가운데 하나가 설정되면 태스크는 waiting에서 ready로 옮긴다. `WaitEvent`로 재스케줄링이 일어나면, 태스크가 waiting에 있는 동안 그 태스크의 [[osek-resource#Internal resource|internal resource]]가 풀린다.[@osek-os-2-2-3-2005]
+`WaitEvent`를 부른 태스크는 마스크에 지정한 이벤트 가운데 하나라도 설정될 때까지 waiting 상태로 머문다. 기다리던 이벤트 가운데 하나가 설정되면 태스크는 waiting에서 ready로 옮긴다. `WaitEvent`로 재스케줄링이 일어나면, 태스크가 waiting에 있는 동안 그 태스크의 [[osek-resource#Internal resource|internal resource]]가 풀린다.[@osek-os-2-2-3-2005]
 
 비선점 스케줄링에서는 이벤트를 설정한 직후에 재스케줄링이 일어나지 않는다. 기다리던 태스크의 우선순위가 더 높아도, 이벤트를 설정한 태스크는 다음 재스케줄링 지점까지 계속 돈다.[@osek-os-2-2-3-2005]
 
@@ -34,3 +32,7 @@ extended 태스크가 suspended에서 ready로 활성화되면, 운영체제가 
 ## 알람과 이벤트
 
 [[osek-alarm|알람]]이 만료될 때 태스크를 활성화하는 대신 정해 둔 태스크의 이벤트를 설정하게 할 수 있다. 이렇게 설정된 이벤트는 보통의 이벤트 설정과 같은 성질을 가진다.[@osek-os-2-2-3-2005]
+
+## 설정
+
+OSEK/VDX [[osek-implementation-language|OIL]] 2.5 명세는 `EVENT` 객체를 마스크로 나타내고, 이벤트 이름을 그 마스크의 다른 이름으로 둔다. 이름이 같은 이벤트는 같은 이벤트라 마스크도 같지만, 마스크가 같다고 같은 이벤트는 아니다. `MASK` 속성은 UINT64 정수이거나 `AUTO`이며, `AUTO`면 그 이벤트를 참조하는 태스크들 사이에서 겹치지 않는 비트 하나가 자동으로 배정된다.[@osek-oil-2-5-2004]
