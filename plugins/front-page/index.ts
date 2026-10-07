@@ -201,9 +201,12 @@ const CSS = `.front-regions {
 // - 두 칸은 같은 폭이고, 모바일 폭(800px 이하, quartz/styles/variables.scss의 $mobile)에서는 1단으로 쌓는다.
 //   1단에서는 비어 있는 이번 주 소식 칸을 숨겨 그 자리의 틈을 없앤다.
 // - 칸 제목은 본문 h2보다 작게, Backlinks 제목(1rem)보다 조금 크게 둔다. 대문 본문에는 다른 제목이 없다.
-// - 묶음은 제목 한 줄과 그 아래 날짜·쪽수 한 줄이다. 칸이 좁아 한 줄에 두면 제목이 여러 줄로 꺾인다. 날짜와
-//   쪽수는 보조 글자색이고, 대비 하한은 docs/palette.md의 "주제 칩의 페이지 수"와 같은 --gray다. 묶음
-//   사이의 선은 구역 표의 행 선과 같다.
+// - 최근 변경은 타임라인이다. 왼쪽 세로선은 구역 표의 행 선과 같은 1px --lightgray이고, 날짜마다 링크색
+//   테두리의 속 빈 마디를 날짜 글자 줄의 가운데에 둔다. 세로선은 첫 마디에서 시작해 목록 끝까지 내려가,
+//   더 오래된 기록이 이어짐을 보인다.
+// - 날짜는 보조 글자색으로 굵게, 쪽수는 보조 글자색으로 줄 오른쪽에 붙인다. 대비 하한은 docs/palette.md의
+//   "주제 칩의 페이지 수"와 같은 --gray다. 제목이 꺾여도 쪽수는 첫 줄의 기준선에 선다.
+// - 마디와 날짜의 자리는 날짜 줄 높이(--day-line)와 들여쓰기(--rail)에서 계산한다.
 const COLUMNS_CSS = `.front-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -222,19 +225,66 @@ const COLUMNS_CSS = `.front-columns {
   font-size: 1.15rem;
   margin: 0 0 0.5rem;
 }
-.front-recent > ul {
+.front-timeline {
+  --rail: 1.1rem;
+  --day-line: 1.5rem;
+  position: relative;
   list-style: none;
+  margin: 0;
+  padding: 0 0 0 var(--rail);
+}
+.front-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.3rem;
+  top: calc(0.3rem + var(--day-line) / 2);
+  bottom: 0.4rem;
+  width: 1px;
+  background-color: var(--lightgray);
+}
+.front-timeline ul {
+  list-style: none;
+  margin: 0;
   padding: 0;
+}
+.front-timeline li {
   margin: 0;
 }
-.front-recent > ul > li {
+li.front-day {
+  position: relative;
+  padding: 0.3rem 0 0.5rem;
+}
+li.front-day::before {
+  content: "";
+  position: absolute;
+  box-sizing: border-box;
+  width: 7px;
+  height: 7px;
+  left: calc(0.3rem + 0.5px - var(--rail) - 3.5px);
+  top: calc(0.3rem + var(--day-line) / 2 - 3.5px);
+  border: 1.5px solid var(--secondary);
+  border-radius: 50%;
+  background-color: var(--light);
+}
+li.front-day > time {
+  display: block;
+  line-height: var(--day-line);
+  color: var(--gray);
+  font-size: 0.85em;
+  font-weight: 600;
+}
+li.front-day li {
   display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0.45rem 0;
-  border-bottom: 1px solid var(--lightgray);
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.15rem 0;
 }
-.front-change-meta {
+.front-change-title {
+  flex: 1;
+  min-width: 0;
+}
+.front-change-count {
+  flex: none;
   color: var(--gray);
   font-size: 0.85em;
   font-variant-numeric: tabular-nums;
@@ -343,11 +393,17 @@ const text = (value: string): ElementContent => ({ type: "text", value })
 // 묶음 제목이 링크하는 PR의 주소. 저장소가 비공개인 동안 독자에게는 404다(#366의 소유자 결정).
 const PULL_URL = "https://github.com/jjongs2/ash-wiki/pull/"
 
-// 본문 아래 2단. 왼쪽은 이번 주 소식의 자리(#367), 오른쪽은 최근 변경이다. 묶음은 제목과 그 아래 날짜·쪽수의
-// 두 줄이고, 제목은 PR로 링크한다. 본문의 외부 링크처럼 external로 두어 새 탭에서 연다. PR 번호가 없는
-// 묶음은 제목을 글자로만 둔다.
+// 본문 아래 2단. 왼쪽은 이번 주 소식의 자리(#367), 오른쪽은 최근 변경이다. 최근 변경은 묶음을 보이는
+// 날짜로 다시 묶어 타임라인의 마디 하나에 날짜 하나를 둔다. squash 머지라 하루에 PR이 여럿 들어오는 일이
+// 잦아, 날짜를 묶음마다 되풀이하지 않는다. 날짜 아래 줄마다 묶음 제목과 쪽수를 두고, 제목은 PR로 링크한다.
+// 본문의 외부 링크처럼 external로 두어 새 탭에서 연다. PR 번호가 없는 묶음은 제목을 글자로만 둔다.
 function frontColumns(changes: RecentChange[], locale: string): Element {
-  const items = changes.map((change) =>
+  const days = new Map<string, RecentChange[]>()
+  for (const change of changes) {
+    const day = formatDate(new Date(change.date), locale)
+    days.set(day, [...(days.get(day) ?? []), change])
+  }
+  const row = (change: RecentChange) =>
     el("li", {}, [
       change.pr === null
         ? el("span", { className: ["front-change-title"] }, [text(change.title)])
@@ -361,17 +417,19 @@ function frontColumns(changes: RecentChange[], locale: string): Element {
             },
             [text(change.title)],
           ),
-      el("span", { className: ["front-change-meta"] }, [
-        el("time", { dateTime: change.date }, [text(formatDate(new Date(change.date), locale))]),
-        text(` · ${change.pages.length}쪽`),
-      ]),
+      el("span", { className: ["front-change-count"] }, [text(`${change.pages.length}쪽`)]),
+    ])
+  const timeline = [...days].map(([day, dayChanges]) =>
+    el("li", { className: ["front-day"] }, [
+      el("time", { dateTime: dayChanges[0]?.date }, [text(day)]),
+      el("ul", {}, dayChanges.map(row)),
     ]),
   )
   return el("div", { className: ["front-columns"] }, [
     el("section", { className: ["front-news"] }),
     el("section", { className: ["front-recent"] }, [
       el("h2", { id: "최근-변경" }, [text("최근 변경")]),
-      el("ul", {}, items),
+      el("ul", { className: ["front-timeline"] }, timeline),
     ]),
   ])
 }
