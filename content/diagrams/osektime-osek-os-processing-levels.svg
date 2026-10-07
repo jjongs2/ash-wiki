@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 서브시스템: 왼쪽이 낮고 오른쪽이 높다 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20.75" y="20.75" width="298.5" height="138.5" rx="2" />
+    <rect x="340.75" y="20.75" width="278.5" height="138.5" rx="2" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="36" y="44">OSEK OS</text>
+    <text x="356" y="44">OSEKtime OS</text>
+  </g>
+
+  <!-- 처리 단위 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="40" y="60" width="120" height="56" rx="2" />
+    <rect x="180" y="60" width="120" height="56" rx="2" />
+    <rect x="360" y="60" width="240" height="24" rx="2" />
+    <rect x="360" y="92" width="240" height="24" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="100" y="93">태스크</text>
+    <text x="240" y="93">ISR</text>
+    <text x="480" y="77">TT 태스크</text>
+    <text x="480" y="109">ISR</text>
+  </g>
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="170" y="142">OSEKtime의 idle 시간에 돈다</text>
+    <text x="480" y="142">TT 태스크가 ISR보다 앞설 수도 있다</text>
+  </g>
+
+  <!-- 처리 레벨 축 -->
+  <line x1="20" y1="180" x2="618" y2="180" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="20" y="200">낮음</text>
+    <text x="320" y="200" text-anchor="middle">처리 레벨</text>
+    <text x="620" y="200" text-anchor="end">높음</text>
+  </g>
+</svg>

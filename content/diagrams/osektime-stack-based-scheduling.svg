@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="28 -7.5 643 302" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 디스패처 라운드 -->
+  <text x="380" y="22" text-anchor="middle" font-size="12" fill="var(--text, #727981)">디스패처 라운드</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1">
+    <line x1="200" y1="34" x2="560" y2="34" />
+    <line x1="200" y1="28" x2="200" y2="40" />
+    <line x1="560" y1="28" x2="560" y2="40" />
+  </g>
+
+  <!-- 레인 이름 -->
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="end">
+    <text x="176" y="66">디스패처 틱</text>
+    <text x="176" y="110">TT 태스크 A</text>
+    <text x="176" y="156">TT 태스크 B</text>
+    <text x="176" y="202">ttIdleTask 또는 OSEK OS</text>
+  </g>
+
+  <!-- 디스패처 틱: 태스크를 활성화한다 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="200" y1="50" x2="200" y2="72" marker-end="url(#arrow)" />
+    <line x1="260" y1="50" x2="260" y2="72" marker-end="url(#arrow)" />
+    <line x1="440" y1="50" x2="440" y2="72" marker-end="url(#arrow)" />
+    <line x1="560" y1="50" x2="560" y2="72" marker-end="url(#arrow)" />
+  </g>
+
+  <!-- suspended -->
+  <g stroke="var(--ink, #727981)" stroke-width="1">
+    <line x1="380" y1="106" x2="560" y2="106" />
+    <line x1="610" y1="106" x2="640" y2="106" />
+    <line x1="200" y1="152" x2="260" y2="152" />
+    <line x1="330" y1="152" x2="440" y2="152" />
+    <line x1="500" y1="152" x2="640" y2="152" />
+  </g>
+
+  <!-- preempted -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4">
+    <line x1="260" y1="106" x2="330" y2="106" />
+    <line x1="200" y1="198" x2="380" y2="198" />
+    <line x1="440" y1="198" x2="500" y2="198" />
+    <line x1="560" y1="198" x2="610" y2="198" />
+  </g>
+
+  <!-- running -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="200" y="94" width="60" height="24" />
+    <rect x="330" y="94" width="50" height="24" />
+    <rect x="560" y="94" width="50" height="24" />
+    <rect x="260" y="140" width="70" height="24" />
+    <rect x="440" y="140" width="60" height="24" />
+    <rect x="380" y="186" width="60" height="24" />
+    <rect x="500" y="186" width="60" height="24" />
+    <rect x="610" y="186" width="30" height="24" />
+  </g>
+
+  <!-- 시간 -->
+  <line x1="200" y1="226" x2="650" y2="226" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="650" y="242" text-anchor="end" font-size="12" fill="var(--text, #727981)">시간</text>
+
+  <!-- 범례 -->
+  <rect x="200" y="258" width="30" height="16" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="238" y="270" font-size="12" fill="var(--text, #727981)">running</text>
+  <line x1="320" y1="266" x2="350" y2="266" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="358" y="270" font-size="12" fill="var(--text, #727981)">preempted</text>
+  <line x1="450" y1="266" x2="480" y2="266" stroke="var(--ink, #727981)" stroke-width="1" />
+  <text x="488" y="270" font-size="12" fill="var(--text, #727981)">suspended</text>
+</svg>

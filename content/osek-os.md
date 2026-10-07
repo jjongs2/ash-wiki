@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**OSEK OS**는 [[osek-vdx|OSEK/VDX]]가 정한 차량용 [[rtos|실시간 운영체제]]다. 멀티태스킹 운영체제이며, 분산된 임베디드 제어 유닛에서 쓰는 단일 프로세서 운영체제다.[@osek-os-2-2-3-2005][@iso-17356-3-2005] 운영체제 객체는 모두 시스템 생성 단계에서 정적으로 정하며, 실행 중에 객체를 만들거나 없애는 서비스는 없다.[@osek-os-2-2-3-2005] 국제 표준으로는 [[iso-17356-3|ISO 17356-3]]이다.[@iso-17356-3-2005]
+**OSEK OS**는 [[osek-vdx|OSEK/VDX]]가 정한 차량용 [[rtos|실시간 운영체제]]다. 멀티태스킹 운영체제이며, 분산된 임베디드 제어 유닛에서 쓰는 단일 프로세서 운영체제다.[@osek-os-2-2-3-2005][@iso-17356-3-2005] 운영체제 객체는 모두 시스템 생성 단계에서 정적으로 정하며, 객체를 동적으로 만드는 시스템 서비스는 없다.[@osek-os-2-2-3-2005] 국제 표준으로는 [[iso-17356-3|ISO 17356-3]]이다.[@iso-17356-3-2005]
 
 ## OS 객체
 
@@ -23,6 +23,8 @@ OSEK OS의 객체와 그것을 적는 OIL 객체는 다음과 같다.[@osek-os-2
 | [[osek-alarm\|알람]]            | `ALARM`    | counter가 정해 둔 값에 이르면 만료되어 태스크를 활성화하거나, 이벤트를 설정하거나, callback 루틴을 부른다. |
 
 운영체제가 부르고 사용자가 구현하는 [[osek-hook-routine|hook 루틴]]도 있다.[@osek-os-2-2-3-2005]
+
+OSEK OS 구현은 프로세서 안의 메시지 처리를 갖추어야 한다. 최소 기능은 OSEK COM(Communication) 명세의 conformance class CCCA이고, 그 밖에 받아들이는 등급은 CCCA의 상위 집합인 CCCB뿐이다.[@osek-os-2-2-3-2005]
 
 ## 처리 레벨
 
@@ -59,9 +61,11 @@ CPU가 리셋되면 하드웨어별 초기화 코드가 돈 뒤, application mod
 
 **Application mode**는 운영체제가 서로 다른 운영 모드로 시작할 수 있게 하는 것이며, 모드는 커널이 시작하기 전에 정한다. 모드마다 자동으로 시작할 태스크와 알람을 OIL 파일에서 정적으로 따로 정할 수 있다. 운영체제가 시작한 뒤에는 application mode를 바꿀 수 없다.[@osek-os-2-2-3-2005]
 
-**Autostart**는 운영체제가 시작하면서 현재 application mode에 선언된 태스크를 활성화하고 알람을 켜는 것이며, 태스크를 먼저 활성화한 뒤 알람을 켠다.[@osek-os-2-2-3-2005]
+application mode는 서로 완전히 배타적인 동작 모드를 위한 것이다. 리셋은 정상 동작 중에도 일어날 수 있어 모드를 정하는 코드는 빨라야 하므로, 명세는 핀 상태처럼 판정하기 쉬운 조건만으로 모드를 정하기를 권한다. 기본 application mode인 `OSDEFAULTAPPMODE`는 `StartOS`에 늘 유효한 인자다.[@osek-os-2-2-3-2005]
 
-`ShutdownOS`는 운영체제를 멈춘다. 애플리케이션이 비상 정지 같은 때 부를 수 있고, 운영체제도 치명적 오류로 정의되지 않은 내부 상태에 이르면 스스로 부른다. 운영체제는 `ShutdownHook`을 부른 뒤 멈추며, `ShutdownHook`이 돌아온 뒤의 동작은 구현이 정한다.[@osek-os-2-2-3-2005]
+**Autostart**는 운영체제가 시작하면서 현재 application mode에 선언된 태스크를 활성화하고 알람을 켜는 것이며, 태스크를 먼저 활성화한 뒤 알람을 켠다. 우선순위가 같은 autostart 태스크끼리의 활성화 순서는 정해지지 않는다.[@osek-os-2-2-3-2005]
+
+`ShutdownOS`는 운영체제를 멈춘다. 애플리케이션이 비상 정지 같은 때 부를 수 있고, 운영체제도 치명적 오류로 정의되지 않은 내부 상태에 이르면 스스로 부른다. 운영체제는 `ShutdownHook`을 부른 뒤 멈추며, `ShutdownHook`이 돌아온 뒤의 동작은 구현이 정한다. 운영체제가 `ShutdownOS`를 부를 때는 인자로 E_OK를 넘기지 않는다.[@osek-os-2-2-3-2005]
 
 ## Context별 서비스 호출 제한
 
@@ -79,6 +83,12 @@ CPU가 리셋되면 하드웨어별 초기화 코드가 돈 뒤, application mod
 | 알람 callback 루틴                      | `SuspendAllInterrupts`, `ResumeAllInterrupts`                                                                                                                                                                                                                                |
 
 그래서 `TerminateTask`, `ChainTask`, `Schedule`, `WaitEvent`, `ClearEvent`는 태스크만 부를 수 있다. 이 다섯을 인터럽트 레벨에서 부르면 extended status에서 E_OS_CALLEVEL을 돌려준다. 표에 없는 조합의 동작은 정의되지 않는다.[@osek-os-2-2-3-2005]
+
+서비스가 오류를 돌려주면 출력 인자의 값은 정의되지 않는다. 운영체제 안에서 오류를 검사하는 순서는 정해지지 않으므로, 오류가 여럿 겹치면 어느 상태를 돌려줄지는 구현에 달렸다.[@osek-os-2-2-3-2005]
+
+## OSEKtime OS와의 관계
+
+OSEK OS는 time-triggered 운영체제인 [[osektime-os|OSEKtime OS]]와 한 시스템에서 함께 돌 수 있으며, 이때 OSEK OS는 OSEKtime OS의 idle 시간을 쓰고 그 인터럽트와 태스크는 OSEKtime OS의 것보다 우선순위가 낮다.[@osek-os-2-2-3-2005]
 
 ## AUTOSAR OS와의 관계
 
