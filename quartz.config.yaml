@@ -181,8 +181,8 @@ plugins:
   # 대문만 그리는 페이지 타입이다. 구역 표에 구역 색과 주제별 페이지 수를 붙인다(plugins/front-page).
   - source: ./plugins/front-page
     enabled: true
-  # 주간 소식(content/news/)을 읽어 구역별 카드와 지난 호 목록으로 그린다(plugins/weekly-news).
-  # transformer이자 페이지 타입이고, 대문은 이 플러그인이 둔 데이터로 이번 주 소식을 그린다.
+  # 주간 소식(content/news/)을 읽어 발행일 순 목록과 지난 호 목록으로 그린다(plugins/weekly-news).
+  # transformer이자 페이지 타입이고, 대문은 이 플러그인이 둔 데이터로 주간 소식 칸을 그린다.
   - source: ./plugins/weekly-news
     enabled: true
   # 위키는 폴더를 쓰지 않는다. 켜 두면 계층 태그의 표시 이름 파일(content/tags/<구역>/)이

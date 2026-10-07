@@ -1,7 +1,7 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
 import fs from "node:fs"
-import { parseWeeklyNews, weekDays } from "./index"
+import { chronological, parseWeeklyNews, weekDays } from "./index"
 
 // 형식 함수 parseWeeklyNews가 주간 소식 형식의 정본이다. 예시 주간 소식과 형식을 어긴 짧은 원본을 넣고
 // 소식 항목 목록과 오류만 본다.
@@ -27,7 +27,7 @@ describe("parseWeeklyNews", () => {
       [
         {
           id: "can-xl-physical-layer-specification-released",
-          region: "network",
+          regions: ["network"],
           title: "CAN XL Physical Layer Specification Released",
           url: "https://www.can-cia.org/news/can-xl-pmd",
           outlet: "CAN in Automation",
@@ -36,7 +36,7 @@ describe("parseWeeklyNews", () => {
         },
         {
           id: "software-defined-vehicle-survey-2026",
-          region: null,
+          regions: [],
           title: "Software-Defined Vehicle Survey 2026",
           url: "https://example.com/sdv-survey",
           outlet: "Example Research",
@@ -45,23 +45,34 @@ describe("parseWeeklyNews", () => {
         },
         {
           id: "autosar-r25-11-adaptive-platform-changes",
-          region: "platform",
+          regions: ["platform", "network"],
           title: "AUTOSAR R25-11 Adaptive Platform Changes",
           url: "https://www.autosar.org/news/r25-11",
           outlet: "AUTOSAR",
-          date: "2026-10-09",
+          date: "2026-10-05",
           image: "https://www.autosar.org/og.png",
         },
       ],
     )
   })
 
-  test("기타 구역은 region이 null이다", () => {
+  test("기타 구역은 regions가 비어 있다", () => {
     const { items } = parseWeeklyNews(
       "2026-W41",
       source({ fields: ["- 구역: 기타", "- 매체: M", "- 발행일: 2026-10-06"] }),
     )
-    assert.strictEqual(items[0].region, null)
+    assert.deepStrictEqual(items[0].regions, [])
+  })
+
+  test("구역은 쉼표로 여럿 쓰고, 같은 구역은 한 번만 센다", () => {
+    const { items, errors } = parseWeeklyNews(
+      "2026-W41",
+      source({
+        fields: ["- 구역: security, network,security", "- 매체: M", "- 발행일: 2026-10-06"],
+      }),
+    )
+    assert.deepStrictEqual(errors, [])
+    assert.deepStrictEqual(items[0].regions, ["security", "network"])
   })
 
   test("이미지 필드가 없는 항목은 image가 null이다", () => {
@@ -119,7 +130,11 @@ describe("parseWeeklyNews", () => {
       ],
       [
         source({ fields: ["- 구역: Network", "- 매체: M", "- 발행일: 2026-10-06"] }),
-        ["3: 구역은 구역 태그(예: network)나 기타로 쓴다: Network"],
+        ["3: 구역은 구역 태그(예: network)를 쉼표로 나눠 쓰거나 기타 하나로 쓴다: Network"],
+      ],
+      [
+        source({ fields: ["- 구역: network, 기타", "- 매체: M", "- 발행일: 2026-10-06"] }),
+        ["3: 구역은 구역 태그(예: network)를 쉼표로 나눠 쓰거나 기타 하나로 쓴다: network, 기타"],
       ],
       [
         source({ fields: ["- 구역: network", "- 매체: M", "- 발행일: 2026-10-32"] }),
@@ -140,6 +155,24 @@ describe("parseWeeklyNews", () => {
   test("프론트매터의 줄도 줄 번호에 센다", () => {
     const text = `---\ntitle: 소식\n---\n\n${source({ summary: "" })}`
     assert.deepStrictEqual(errorsOf(text), ["5: 요약이 없다"])
+  })
+})
+
+describe("chronological", () => {
+  test("발행일이 이른 항목부터 두고, 같은 날은 파일에 적은 순서를 지킨다", () => {
+    const { items } = parseWeeklyNews(
+      "2026-W41",
+      example + "\n" + source().replace("2026-10-06", "2026-10-08").replace("Title", "Late"),
+    )
+    assert.deepStrictEqual(
+      chronological(items).map((item) => [item.date, item.title.split(" ")[0]]),
+      [
+        ["2026-10-05", "AUTOSAR"],
+        ["2026-10-06", "CAN"],
+        ["2026-10-08", "Software-Defined"],
+        ["2026-10-08", "Late"],
+      ],
+    )
   })
 })
 

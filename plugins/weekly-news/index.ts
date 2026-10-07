@@ -5,9 +5,8 @@
 // 형식 오류를 돌려준다. 이 플러그인은 transformer이자 페이지 타입이다.
 // - transformer: 주간 소식 파일을 parseWeeklyNews로 읽어 vfile 데이터(weeklyNews)에 둔다. 형식 오류가 있으면
 //   빌드를 멈춘다. 대문(plugins/front-page)은 이 데이터에서 최신 호를 고른다.
-// - 페이지 타입: 주간 소식 페이지를 구역별로 묶은 카드로 그리고, news/ 색인(content/news/index.md)의 본문
-//   뒤에 지난 호 목록을 붙인다. 구역의 이름은 태그 표시 이름 파일의 제목, 순서는 대문의 구역 링크 순서다
-//   (탐색기와 같다, plugins/explorer-tree).
+// - 페이지 타입: 주간 소식 페이지를 발행일 순 목록으로 그리고, news/ 색인(content/news/index.md)의 본문 뒤에
+//   지난 호 목록을 붙인다. 구역 칩의 이름은 태그 표시 이름 파일(tags/<구역>)의 제목이다.
 //
 // 요약은 마크다운이라 위키 링크를 쓸 수 있다. 카드는 요약을 다시 그리지 않고, 파이프라인이 그린 본문 트리에서
 // 요약이 차지하는 원본 줄(parseWeeklyNews가 준다)의 요소를 옮겨 온다. 그래서 위키 링크는 다른 페이지와 같이
@@ -29,17 +28,17 @@ import type { QuartzPluginData } from "../../quartz/plugins/vfile"
 export const manifest = {
   name: "weekly-news",
   displayName: "Weekly news",
-  description: "주간 소식을 읽어 구역별 카드와 지난 호 목록으로 그린다",
+  description: "주간 소식을 읽어 발행일 순 목록과 지난 호 목록으로 그린다",
   version: "1.0.0",
   category: ["transformer", "pageType"],
 }
 
-// 소식 항목 하나. region은 구역 태그(network)이고 기타는 null이다. id는 카드의 앵커로, 위키 링크의 절
+// 소식 항목 하나. regions는 구역 태그(network)의 목록이고 기타는 빈 목록이다. id는 카드의 앵커로, 위키 링크의 절
 // 링크(`[[news/2026-W41#원어 제목]]`)가 가리키는 값과 같다. summary의 start와 end는 요약이 차지하는 원본의
 // 첫 줄과 끝 줄(1부터)이다.
 export interface NewsItem {
   id: string
-  region: string | null
+  regions: string[]
   title: string
   url: string
   outlet: string
@@ -53,9 +52,11 @@ export interface NewsError {
   message: string
 }
 
-// transformer가 주간 소식 파일의 vfile 데이터에 두는 값
+// transformer가 주간 소식 파일의 vfile 데이터에 두는 값. start와 end는 그 주의 월요일과 일요일이다.
 export interface WeeklyNewsData {
   week: string
+  start: string
+  end: string
   items: NewsItem[]
 }
 
@@ -126,6 +127,7 @@ function maskFrontmatter(source: string): string {
  * 프론트매터를 포함한 원본이다. 형식은 docs/weekly-news.md에 있고, 어긴 곳은 errors에 원본의 줄과 함께 준다.
  * - 소식 항목은 `## [원어 제목](원문 URL)` 제목으로 시작해 다음 `##`까지다. 첫 항목 앞에는 아무것도 없다.
  * - 제목 바로 다음은 필드 목록(`- 구역: network`)이다. 구역, 매체, 발행일은 반드시 있고 이미지는 없어도 된다.
+ *   구역은 구역 태그를 쉼표로 나눠 여럿 쓰거나 기타 하나로 쓴다.
  * - 필드 목록 뒤의 블록이 모두 한국어 요약이다. 요약 안에는 제목을 두지 않는다.
  * - 항목의 id는 제목 글자를 github-slugger로 바꾼 값이다. 사이트가 제목에 붙이는 id와 같은 규칙이다.
  */
@@ -191,8 +193,13 @@ export function parseWeeklyNews(
     }
 
     const region = fields.get(FIELDS.region)
-    if (region?.value && region.value !== OTHER && !/^[a-z0-9-]+$/.test(region.value)) {
-      error(region.line, `구역은 구역 태그(예: network)나 ${OTHER}로 쓴다: ${region.value}`)
+    const regions = [...new Set((region?.value ?? "").split(",").map((tag) => tag.trim()))]
+    const isOther = regions.length === 1 && regions[0] === OTHER
+    if (region?.value && !isOther && !regions.every((tag) => /^[a-z0-9-]+$/.test(tag))) {
+      error(
+        region.line,
+        `구역은 구역 태그(예: network)를 쉼표로 나눠 쓰거나 ${OTHER} 하나로 쓴다: ${region.value}`,
+      )
     }
     const date = fields.get(FIELDS.date)
     if (date?.value && !isDate(date.value)) {
@@ -212,7 +219,7 @@ export function parseWeeklyNews(
     const last = summary.at(-1)!
     items.push({
       id,
-      region: region!.value === OTHER ? null : region!.value,
+      regions: isOther ? [] : regions,
       title: plainText(link),
       url: link.url,
       outlet: fields.get(FIELDS.outlet)!.value,
@@ -226,6 +233,11 @@ export function parseWeeklyNews(
     })
   }
   return { items, errors }
+}
+
+/** 소식 항목을 발행일이 이른 것부터 늘어놓는다. 같은 날은 파일에 적은 순서를 지킨다. */
+export function chronological(items: NewsItem[]): NewsItem[] {
+  return [...items].sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0))
 }
 
 // ---------------------------------------------------------------------------------------------------
@@ -261,29 +273,18 @@ function nodesInLines(tree: HastRoot, start: number, end: number): ElementConten
   return found
 }
 
-// 구역의 표시 이름과 순서. 이름은 태그 표시 이름 파일(tags/<구역>)의 제목, 순서는 대문에서 구역 링크가 처음
-// 나온 순서다.
-function regionsOf(allFiles: QuartzPluginData[]): { names: Map<string, string>; order: string[] } {
+// 구역의 표시 이름. 태그 표시 이름 파일(tags/<구역>)의 제목이다.
+function regionNames(allFiles: QuartzPluginData[]): Map<string, string> {
   const names = new Map<string, string>()
-  const order: string[] = []
   for (const file of allFiles) {
     const slug = file.slug ?? ""
     const tag = slug.startsWith("tags/") ? slug.slice("tags/".length) : null
     if (tag && tag !== "index" && !tag.includes("/")) {
       names.set(tag, String(file.frontmatter?.title ?? tag))
     }
-    if (slug === "index") {
-      for (const link of (file.links ?? []) as string[]) {
-        const region = link.startsWith("tags/") ? link.slice("tags/".length) : ""
-        if (region && !region.includes("/") && !order.includes(region)) order.push(region)
-      }
-    }
   }
-  return { names, order }
+  return names
 }
-
-const regionStyle = (region: string | null) =>
-  `--region: var(--region-${region ?? "other"}, var(--region-other))`
 
 const externalLink = (href: string, className: string, children: ElementContent[]) =>
   el(
@@ -292,11 +293,33 @@ const externalLink = (href: string, className: string, children: ElementContent[
     children,
   )
 
-function card(item: NewsItem, regionName: string, summary: ElementContent[], locale: string) {
+// 구역 칩. 구역마다 칩 하나이고 기타는 기타 칩 하나다. 칩의 꼴은 아래 CSS의 .news-chip이고, 대문의 주간 소식
+// 칸(plugins/front-page)도 같은 클래스를 쓴다.
+export function regionChips(regions: string[], names: Map<string, string>): Element[] {
+  const chip = (region: string | null, name: string) =>
+    el(
+      "span",
+      {
+        className: ["news-chip"],
+        style: `--region: var(--region-${region ?? "other"}, var(--region-other))`,
+      },
+      [text(name)],
+    )
+  return regions.length === 0
+    ? [chip(null, OTHER)]
+    : regions.map((region) => chip(region, names.get(region) ?? region))
+}
+
+function card(
+  item: NewsItem,
+  names: Map<string, string>,
+  summary: ElementContent[],
+  locale: string,
+) {
   const date = formatDate(new Date(`${item.date}T00:00:00`), locale)
   const body = el("div", { className: ["news-card-body"] }, [
     el("p", { className: ["news-card-meta"] }, [
-      el("span", { className: ["news-chip"] }, [text(regionName)]),
+      ...regionChips(item.regions, names),
       el("span", { className: ["news-card-outlet"] }, [text(item.outlet)]),
       el("time", { dateTime: item.date }, [text(date)]),
     ]),
@@ -331,53 +354,25 @@ function card(item: NewsItem, regionName: string, summary: ElementContent[], loc
         ),
       ]
     : []
-  return el("article", { className: ["news-card"], id: item.id, style: regionStyle(item.region) }, [
-    body,
-    ...image,
-  ])
+  return el("article", { className: ["news-card"], id: item.id }, [body, ...image])
 }
 
-// 주간 소식 한 호의 본문. 구역마다 절 하나에 카드를 모은다. 구역은 대문의 순서이고, 대문에 없는 구역은 그
-// 뒤에 이름 오름차순, 기타는 맨 끝이다.
+// 주간 소식 한 호의 본문. 소식 항목을 발행일이 이른 것부터 한 목록으로 늘어놓는다(소유자 결정, #367).
 function issueTree(props: QuartzComponentProps, data: WeeklyNewsData): HastRoot {
-  const { names, order } = regionsOf(props.allFiles)
-  const unknown = data.items.filter((item) => item.region !== null && !names.has(item.region))
+  const names = regionNames(props.allFiles)
+  const unknown = [
+    ...new Set(data.items.flatMap((item) => item.regions).filter((region) => !names.has(region))),
+  ]
   if (unknown.length > 0) {
-    const regions = [...new Set(unknown.map((item) => item.region))].join(", ")
     throw new Error(
-      `${props.fileData.relativePath}: 태그 표시 이름 파일이 없는 구역이다: ${regions}`,
+      `${props.fileData.relativePath}: 태그 표시 이름 파일이 없는 구역이다: ${unknown.join(", ")}`,
     )
   }
-  const rank = (region: string | null) => {
-    if (region === null) return Infinity
-    const index = order.indexOf(region)
-    return index < 0 ? order.length : index
-  }
-  const regions = [...new Set(data.items.map((item) => item.region))].sort(
-    (a, b) =>
-      rank(a) - rank(b) || (names.get(a ?? "") ?? "").localeCompare(names.get(b ?? "") ?? "", "ko"),
-  )
   const tree = props.tree as HastRoot
-  const sections = regions.map((region) => {
-    const name = region === null ? OTHER : names.get(region)!
-    const cards = data.items
-      .filter((item) => item.region === region)
-      .map((item) =>
-        card(
-          item,
-          name,
-          nodesInLines(tree, item.summary.start, item.summary.end),
-          props.cfg.locale,
-        ),
-      )
-    return el("section", { className: ["news-region"], style: regionStyle(region) }, [
-      el("h2", { id: `region-${region ?? "other"}`, className: ["news-region-name"] }, [
-        text(name),
-      ]),
-      el("div", { className: ["news-cards"] }, cards),
-    ])
-  })
-  return { type: "root", children: [el("div", { className: ["news-issue"] }, sections)] }
+  const cards = chronological(data.items).map((item) =>
+    card(item, names, nodesInLines(tree, item.summary.start, item.summary.end), props.cfg.locale),
+  )
+  return { type: "root", children: [el("div", { className: ["news-cards"] }, cards)] }
 }
 
 // news/ 색인. 본문 뒤에 지난 호 목록을 붙인다. 주차 역순으로 호의 제목, 기간, 소식 수를 보인다.
@@ -397,7 +392,7 @@ function indexTree(props: QuartzComponentProps): HastRoot {
       ),
       el("span", { className: ["news-index-meta"] }, [
         el("time", { dateTime: start }, [text(day(start))]),
-        text(" – "),
+        text(" ~ "),
         el("time", { dateTime: end }, [text(day(end))]),
         text(` · 소식 ${items.length}건`),
       ]),
@@ -411,30 +406,23 @@ function indexTree(props: QuartzComponentProps): HastRoot {
   return { ...tree, children: [...tree.children, list] }
 }
 
-// 카드의 모양이다.
-// - 카드는 1px --lightgray 테두리와 5px 모서리다. 왼쪽에 글, 오른쪽에 이미지를 두고, 좁은 화면에서는 이미지를
-//   글 위로 올린다. 이미지는 잘라 채우고(object-fit: cover) 비율을 고정해 카드 높이가 원문마다 들쭉날쭉하지 않다.
-// - 구역 칩과 구역 절 제목은 구역 색(--region)이다. 대비 하한은 docs/palette.md의 "구역 이름"이다.
+// 소식 목록의 모양이다.
+// - 항목 사이는 대문 구역 표의 행 선과 같은 1px --lightgray 줄로 가르고, 목록 위아래에도 긋는다. 테두리 상자는
+//   두지 않는다.
+// - 왼쪽에 글, 오른쪽에 이미지를 두고, 좁은 화면에서는 이미지를 글 위로 올린다. 이미지는 잘라 채우고
+//   (object-fit: cover) 비율을 고정해 항목 높이가 원문마다 들쭉날쭉하지 않다. 모서리는 사이트의 5px다.
+// - 구역 칩은 본문 태그(note-properties의 .tag-link)와 같은 꼴이다. 모서리 3px, 같은 여백에, 바탕은 구역 색을
+//   옅게 깔고 글자는 구역 색으로 쓴다. 대비 하한은 docs/palette.md의 "구역 칩"이다.
 // - 매체와 날짜는 보조 글자색이다.
-const CSS = `.news-region + .news-region {
-  margin-top: 2rem;
-}
-.news-region-name {
-  color: var(--region);
-  font-size: 1.15rem;
-}
-.news-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+const CSS = `.news-cards {
+  border-top: 1px solid var(--lightgray);
 }
 .news-card {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 1rem;
-  padding: 1rem;
-  border: 1px solid var(--lightgray);
-  border-radius: 5px;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--lightgray);
 }
 .news-card-meta {
   display: flex;
@@ -446,8 +434,15 @@ const CSS = `.news-region + .news-region {
   font-size: 0.85em;
 }
 .news-chip {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  background-color: color-mix(in srgb, var(--region) 8%, transparent);
   color: var(--region);
+  font-size: 0.8rem;
   font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
 }
 .news-card-title {
   margin: 0.3rem 0 0.4rem;
@@ -553,7 +548,7 @@ const WeeklyNews = () => ({
           const lines = errors.map((e) => `${e.line}: ${e.message}`).join("; ")
           throw new Error(`주간 소식 형식 오류(docs/weekly-news.md): ${lines}`)
         }
-        file.data.weeklyNews = { week, items } as WeeklyNewsData
+        file.data.weeklyNews = { week, ...weekDays(week), items } as WeeklyNewsData
       },
     ]
   },
