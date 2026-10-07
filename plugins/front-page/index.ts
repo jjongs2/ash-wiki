@@ -288,8 +288,13 @@ const CSS = `.front-regions {
 //   굵게 쓴다.
 // - 주간 소식도 같은 타임라인이다. 발행일마다 마디를 두고, 그 아래 소식 항목의 제목과, 제목 아래 작은 구역
 //   칩을 둔다. 최근 변경의 제목과 보조 글자 줄과 같은 짜임이다. 칩의 꼴(.news-chip)은 주간 소식 플러그인
-//   (plugins/weekly-news)의 CSS가 정하고, 여기서는 크기만 줄인다. 칸 제목 줄의 오른쪽에 요약 보기(그 호)와
-//   지난 호를 보조 글자색으로 둔다.
+//   (plugins/weekly-news)의 CSS가 정하고, 여기서는 크기만 줄인다. 칸 제목 줄의 오른쪽에 "요약 보기(그 호) ·
+//   지난 호"를 보조 글자색으로 둔다.
+// - 칩은 바탕이 상자 맨 위에서 시작해, 같은 여백이면 최근 변경의 보조 글자 줄보다 제목에 붙어 보이고 행도
+//   길어진다. 그래서 대문의 칩은 글자와 줄 높이를 줄이고 위 여백을 넓혀, 행 높이를 보조 글자 줄과 비슷하게
+//   맞춘다(소유자가 시안에서 골랐다).
+// - 제목과 칩 묶음 사이의 여백은 `li >` 선택자로 건다. 업스트림의 `.page article li > *`가 같은 레이어
+//   (quartz-base)에서 margin-top을 0으로 두어, 클래스 하나짜리 선택자로는 구체성에서 진다.
 const COLUMNS_CSS = `.front-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -402,8 +407,9 @@ li.front-day li {
 }
 .front-news-links {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.4rem;
   margin: 0;
+  color: var(--gray);
   font-size: 0.85em;
   white-space: nowrap;
 }
@@ -420,14 +426,15 @@ li.front-day li {
   color: var(--dark);
   font-weight: 400;
 }
-.front-news-chips {
+.front-news li > .front-news-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem;
+  gap: 0.2rem;
   margin-top: 0.25rem;
 }
 .front-news-chips .news-chip {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
+  line-height: 1.2;
 }
 `
 
@@ -576,6 +583,7 @@ function newsColumn(
       el("h2", { id: "주간-소식" }, [text("주간 소식")]),
       el("p", { className: ["front-news-links"] }, [
         el("a", { href: issueHref, className: ["front-news-action"] }, [text("요약 보기")]),
+        el("span", { ariaHidden: "true" }, [text("·")]),
         el(
           "a",
           {

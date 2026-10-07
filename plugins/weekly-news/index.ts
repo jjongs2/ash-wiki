@@ -324,9 +324,12 @@ function card(
   const date = formatDate(new Date(`${item.date}T00:00:00`), locale)
   const body = el("div", { className: ["news-card-body"] }, [
     el("p", { className: ["news-card-meta"] }, [
-      ...regionChips(item.regions, names),
-      el("span", { className: ["news-card-outlet"] }, [text(item.outlet)]),
-      el("time", { dateTime: item.date }, [text(date)]),
+      el("span", { className: ["news-card-chips"] }, regionChips(item.regions, names)),
+      el("span", {}, [
+        text(item.outlet),
+        el("span", { className: ["news-card-sep"], ariaHidden: "true" }, [text("·")]),
+        el("time", { dateTime: item.date }, [text(date)]),
+      ]),
     ]),
     el("h3", { className: ["news-card-title"] }, [
       externalLink(item.url, "news-card-link", [text(item.title)]),
@@ -418,7 +421,8 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 //   (object-fit: cover) 비율을 고정해 항목 높이가 원문마다 들쭉날쭉하지 않다. 모서리는 사이트의 5px다.
 // - 구역 칩은 본문 태그(note-properties의 .tag-link)와 같은 꼴이다. 모서리 3px, 같은 여백에, 바탕은 구역 색을
 //   옅게 깔고 글자는 구역 색으로 쓴다. 대비 하한은 docs/palette.md의 "구역 칩"이다.
-// - 매체와 날짜는 보조 글자색이다.
+// - 첫 줄은 칩 묶음과 "매체 · 발행일"이다. 칩끼리는 좁게, 칩 묶음과 매체 사이는 넓게 띄운다. 매체와 날짜는
+//   보조 글자색이다.
 const CSS = `.news-cards {
   border-top: 1px solid var(--lightgray);
 }
@@ -437,6 +441,14 @@ const CSS = `.news-cards {
   margin: 0;
   color: var(--gray);
   font-size: 0.85em;
+}
+.news-card-sep {
+  margin: 0 0.35em;
+}
+.news-card-chips {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
 }
 .news-chip {
   display: inline-block;
