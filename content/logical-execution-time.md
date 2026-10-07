@@ -33,7 +33,7 @@ SL-LET(System-Level LET)은 LET을 분산 시스템으로 넓힌 것이다. 고�
 
 ExecutionOrderConstraint만으로는 어떤 executable entity들이 모두 실행을 마쳐야만 다른 executable entity들이 실행을 시작한다는 것을 드러낼 수 없다. 이를 위해 SynchronizationPointConstraint가 RTE 이벤트·BSW 이벤트로 가리킨 executable entity들이나 executable entity 그룹들 사이에 동기화 지점을 정한다.[@autosar-cp-tps-timingextensions-2025]
 
-ExecutionOrderConstraint가 executable entity를 묶는 그룹(EOCExecutableEntityRefGroup)을 **executable entity cluster**라 한다. 그룹은 cluster에 드는 executable entity의 RTE 이벤트나 BSW 이벤트를 모두 가리키고, 다른 그룹을 가리켜 cluster의 위계를 이룰 수 있다. Cluster는 `letInterval` 속성으로 LET 구간을 나타내는 TimingDescriptionEventChain을 가리켜 그 구간에 매핑되며, 이 속성은 최상위 그룹에만 둘 수 있다.[@autosar-cp-tps-timingextensions-2025]
+ExecutionOrderConstraint가 executable entity를 묶는 그룹(EOCExecutableEntityRefGroup)을 **executable entity cluster**라 한다. 그룹은 cluster에 드는 executable entity의 RTE 이벤트나 BSW 이벤트를 모두 가리키고, 다른 그룹을 가리켜 cluster의 위계를 이룰 수 있다. Cluster는 `letInterval` 속성으로 LET 구간을 나타내는 TimingDescriptionEventChain을 가리켜 그 구간에 매핑되며, 이 속성은 최상위 그룹에만 둘 수 있다. [[autosar-software-cluster|Software Cluster]]의 executable entity는 Host Software Cluster가 주는 시간 자원인 dispatcher나 LET 구간에 배정한다. Dispatcher에 배정할 때도 executable entity cluster를 쓰며, 그룹의 `triggeringEvent`가 dispatcher 역할을 하는 `TDEventComplex`를 가리킨다.[@autosar-cp-tps-timingextensions-2025]
 
 한 LET 구간에 매핑된 executable entity끼리 데이터를 주고받는 방식은 둘이다. interLetOnly에서는 구간의 release와 terminate 때만 데이터를 주고받아, 구간 안의 실행 순서가 데이터 흐름에 영향을 주지 않지만 종단 간 지연이 주기의 배수만큼 길어진다. intraLetEOC에서는 같은 그룹의 executable entity가 그룹이 정한 순서로 실행되며 구간 안에서 implicit 의미로 데이터를 바로 주고받고, 구간의 경계나 서로 독립인 그룹 사이에서만 LET 방식으로 데이터를 넘긴다.[@autosar-cp-tps-timingextensions-2025]
 

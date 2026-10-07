@@ -84,6 +84,6 @@ ISO 27145-3:2012는 서버가 ReadDataByIdentifier 요청 하나에서 지원해
 
 ## 전송
 
-CAN 위의 UDS(ISO 14229-3)는 ISO 15765-2(DoCAN)를 전송 계층과 네트워크 계층으로 쓴다.[@iso-14229-3-obp-2022] ISO 15765-2:2024는 ISO 14229-2의 서비스 프리미티브 인터페이스를 지원하고, 한 프레임에 담기지 않는 메시지를 여러 [[can-frame|CAN 프레임]]으로 [[segmentation-and-reassembly|나눠]] 보낸다.[@iso-15765-2-obp-2024] IP 위의 UDS(ISO 14229-5)는 DoIP([[iso-13400-2|ISO 13400-2]])를 전송 계층과 네트워크 계층으로 쓴다.[@iso-14229-5-obp-2022][@iso-13400-2-obp-2025]
+CAN 위의 UDS(ISO 14229-3)는 ISO 15765-2(DoCAN)를 전송 계층과 네트워크 계층으로 쓴다.[@iso-14229-3-obp-2022] ISO 15765-2:2024는 ISO 14229-2의 서비스 프리미티브 인터페이스를 지원하고, 한 프레임에 담기지 않는 메시지를 여러 [[can-frame|CAN 프레임]]으로 [[segmentation-and-reassembly|나눠]] 보낸다.[@iso-15765-2-obp-2024] IP 위의 UDS(ISO 14229-5)는 DoIP([[iso-13400-2|ISO 13400-2]])를 전송 계층과 네트워크 계층으로 쓴다.[@iso-14229-5-obp-2022][@iso-13400-2-obp-2025] ISO 14229-5:2022는 ISO 14229-1과 ISO 14229-2를 참조해, IP 위의 진단 통신에 쓸 진단 서비스의 구현 요구사항을 정한다.[@iso-14229-5-obp-2022]
 
 ![[diagrams/uds-can-ip-layers.svg]]
