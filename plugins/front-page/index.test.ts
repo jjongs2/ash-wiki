@@ -1,6 +1,6 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
-import type { FrontPageCommit, FrontPagePage } from "./index"
+import type { FrontPageCommit, FrontPageIssue, FrontPagePage } from "./index"
 import { frontPage, RECENT_CHANGES_LIMIT } from "./index"
 
 // 최근 변경은 빌드의 시간대로 날짜를 가른다. 배포 빌드와 같은 한국 시각으로 고정해, 테스트를 돌리는 머신의
@@ -193,5 +193,39 @@ describe("frontPage의 최근 변경", () => {
         ["2026-10-02", 3],
       ],
     )
+  })
+})
+
+describe("frontPage의 이번 주 소식", () => {
+  const issue = (week: string, ...titles: string[]): FrontPageIssue => ({
+    slug: `news/${week}`,
+    title: week,
+    items: titles.map((title) => ({ id: title, title, region: null })),
+  })
+  const latest = (...news: FrontPageIssue[]) => frontPage({ pages: [], news }).latestNews
+
+  test("주차가 가장 늦은 호를 고른다", () => {
+    const picked = latest(
+      issue("2026-W09", "가"),
+      issue("2026-W41", "나", "다"),
+      issue("2026-W10", "라"),
+    )
+    assert.strictEqual(picked?.slug, "news/2026-W41")
+    assert.deepStrictEqual(
+      picked?.items.map((item) => item.title),
+      ["나", "다"],
+    )
+  })
+
+  test("해가 바뀌면 새해의 1주가 지난해의 마지막 주보다 늦다", () => {
+    assert.strictEqual(
+      latest(issue("2026-W01", "가"), issue("2025-W52", "나"))?.slug,
+      "news/2026-W01",
+    )
+  })
+
+  test("주간 소식이 없으면 null이다", () => {
+    assert.strictEqual(latest(), null)
+    assert.strictEqual(frontPage({ pages: [] }).latestNews, null)
   })
 })

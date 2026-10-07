@@ -1,10 +1,11 @@
 // ash-wiki: 대문(index)만 그리는 페이지 타입 로컬 플러그인이다. 대문의 구역 표에 빌드할 때 구역 색과 주제별
-// 페이지 수를 붙이고, 본문 아래에 최근 변경을 그린다. 대문의 배치는 docs/engine.md의 대문 절에 있다.
+// 페이지 수를 붙이고, 본문 아래에 이번 주 소식과 최근 변경을 그린다. 대문의 배치는 docs/engine.md의 대문 절에
+// 있다.
 //
-// 계산 규칙은 순수 함수 frontPage 하나에 모은다. 페이지 목록과 커밋 목록을 받아 주제별 페이지 수와 최근 변경
-// 묶음을 돌려주고, 이번 주 소식은 다른 티켓이 같은 함수에 더한다(#367). 커밋 목록은 그릴 때 content 폴더의
-// git 기록에서 읽는다(전체 기록과 시간대는 docs/deploy.md). 저장소 밖에서 빌드하면(콘텐츠 검사기의 픽스처)
-// 최근 변경을 그리지 않는다.
+// 계산 규칙은 순수 함수 frontPage 하나에 모은다. 페이지 목록, 주간 소식 목록, 커밋 목록을 받아 주제별 페이지
+// 수, 최신 호, 최근 변경 묶음을 돌려준다. 주간 소식 목록은 weekly-news 플러그인이 주간 소식 파일마다 vfile
+// 데이터(weeklyNews)에 둔 소식 항목에서 만든다. 커밋 목록은 그릴 때 content 폴더의 git 기록에서 읽는다(전체
+// 기록과 시간대는 docs/deploy.md). 저장소 밖에서 빌드하면(콘텐츠 검사기의 픽스처) 최근 변경을 그리지 않는다.
 //
 // 대문은 content-page 플러그인의 본문(ContentBody)을 그대로 쓰고, 그리기 전에 본문 트리만 고친다. 페이지 수에는
 // 모든 페이지의 태그가 있어야 하는데, transformer는 파일마다 따로 돌아 다른 페이지를 모른다. 본문 컴포넌트는
@@ -19,9 +20,10 @@ import { execFileSync } from "node:child_process"
 import path from "node:path"
 import type { Element, ElementContent, Root } from "hast"
 import { ContentBody } from "@quartz-community/content-page"
-import { formatDate } from "@quartz-community/utils"
+import { formatDate, resolveRelative } from "@quartz-community/utils"
 import type { QuartzComponent, QuartzComponentProps } from "../../quartz/components/types"
 import type { QuartzPageTypePlugin } from "../../quartz/plugins/types"
+import type { FullSlug } from "../../quartz/util/path"
 
 export const manifest = {
   name: "front-page",
@@ -50,6 +52,13 @@ export interface RecentChange {
   pr: number | null
   date: string
   pages: string[]
+}
+
+// 주간 소식 한 호. slug는 news/<ISO 주차>이고, items는 소식 항목의 앵커, 원어 제목, 구역(기타는 null)이다.
+export interface FrontPageIssue {
+  slug: string
+  title: string
+  items: { id: string; title: string; region: string | null }[]
 }
 
 // 같은 날 들어온 묶음. day는 빌드의 시간대로 본 날짜(YYYY-MM-DD)이고, changes는 최근 것부터다.
@@ -85,9 +94,16 @@ function localDay(time: number): string {
  *   content 폴더 밖의 파일은 커밋 목록에 오지 않는다(readCommits).
  *   묶음은 날짜별로 모아 최근 날짜부터 준다. RECENT_CHANGES_LIMIT 묶음을 채운 날까지 주고, 그날은 끝까지 준다.
  *   날짜 하나의 묶음이 중간에서 잘려 그날 작업이 그것뿐인 것처럼 보이지 않게 한다.
+ * - 최신 호: 주차가 가장 늦은 주간 소식이다. 슬러그의 ISO 주차(2026-W41)는 연도 네 자리와 주 두 자리라
+ *   글자 순서가 주차 순서와 같다(형식은 docs/weekly-news.md). 주간 소식이 없으면 null이다.
  */
-export function frontPage(input: { pages: FrontPagePage[]; commits?: FrontPageCommit[] }): {
+export function frontPage(input: {
+  pages: FrontPagePage[]
+  news?: FrontPageIssue[]
+  commits?: FrontPageCommit[]
+}): {
   topicCounts: Record<string, number>
+  latestNews: FrontPageIssue | null
   recentChanges: RecentDay[]
 } {
   const topicCounts: Record<string, number> = {}
@@ -100,7 +116,15 @@ export function frontPage(input: { pages: FrontPagePage[]; commits?: FrontPageCo
     }
     for (const topic of topics) topicCounts[topic] = (topicCounts[topic] ?? 0) + 1
   }
-  return { topicCounts, recentChanges: recentChanges(input.pages, input.commits ?? []) }
+  const latestNews = (input.news ?? []).reduce<FrontPageIssue | null>(
+    (latest, issue) => (latest === null || issue.slug > latest.slug ? issue : latest),
+    null,
+  )
+  return {
+    topicCounts,
+    latestNews,
+    recentChanges: recentChanges(input.pages, input.commits ?? []),
+  }
 }
 
 function recentChanges(pages: FrontPagePage[], commits: FrontPageCommit[]): RecentDay[] {
@@ -343,6 +367,36 @@ li.front-day li {
   font-size: 0.8em;
   font-variant-numeric: tabular-nums;
 }
+.front-news-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.front-news-list li {
+  margin: 0;
+  padding: 0.4rem 0;
+  line-height: 1.35;
+}
+.front-news-chip {
+  display: block;
+  color: var(--region);
+  font-size: 0.8em;
+  font-weight: 600;
+}
+.front-news a.front-news-link {
+  color: var(--dark);
+  font-weight: 400;
+}
+.front-news a.front-news-link:hover {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+.front-news-more {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  font-size: 0.9em;
+}
 `
 
 const el = (
@@ -450,10 +504,48 @@ const pullRequestIcon = (): Element =>
     }),
   ])
 
-// 본문 아래 2단. 왼쪽은 이번 주 소식의 자리이고 오른쪽이 최근 변경이다. 최근 변경은 날짜마다 타임라인의
-// 마디 하나를 두고, 그 아래 묶음마다 PR 아이콘과 제목, 그 아래 줄에 PR 번호와 쪽수를 둔다. 제목은 PR로
-// 링크하고 새 탭에서 연다. PR 번호가 없는 묶음은 아이콘 자리를 비우고 제목을 글자로만 두며, 쪽수만 적는다.
-function frontColumns(days: RecentDay[], locale: string): Element {
+// 이번 주 소식. 최신 호의 소식 항목마다 구역 칩과 원어 제목을 두고, 제목은 그 호의 카드로 링크한다. 원문이
+// 아니라 카드로 가는 것은 대문에 요약이 없어서다. 칸 아래에 그 호의 전체 보기와 지난 호 목록(news/)으로 가는
+// 링크를 둔다. 칩의 이름은 구역의 표시 이름이고, 색은 구역 표와 같은 --region이다.
+function newsColumn(issue: FrontPageIssue, regionNames: Map<string, string>): ElementContent[] {
+  const issueHref = resolveRelative("index" as FullSlug, issue.slug as FullSlug)
+  const rows = issue.items.map((item) => {
+    const region = item.region
+    return el(
+      "li",
+      { style: `--region: var(--region-${region ?? "other"}, var(--region-other))` },
+      [
+        el("span", { className: ["front-news-chip"] }, [
+          text(region === null ? "기타" : (regionNames.get(region) ?? region)),
+        ]),
+        el("a", { href: `${issueHref}#${item.id}`, className: ["front-news-link"] }, [
+          text(item.title),
+        ]),
+      ],
+    )
+  })
+  return [
+    el("h2", { id: "이번-주-소식" }, [text("이번 주 소식")]),
+    el("ul", { className: ["front-news-list"] }, rows),
+    el("p", { className: ["front-news-more"] }, [
+      el("a", { href: issueHref, className: ["internal"] }, [text("전체 보기")]),
+      el(
+        "a",
+        {
+          href: resolveRelative("index" as FullSlug, "news/index" as FullSlug),
+          className: ["internal"],
+        },
+        [text("지난 호")],
+      ),
+    ]),
+  ]
+}
+
+// 본문 아래 2단. 왼쪽은 이번 주 소식이고 오른쪽이 최근 변경이다. 어느 한쪽이 없으면 그 칸은 비워 둔다.
+// 최근 변경은 날짜마다 타임라인의 마디 하나를 두고, 그 아래 묶음마다 PR 아이콘과 제목, 그 아래 줄에 PR 번호와
+// 쪽수를 둔다. 제목은 PR로 링크하고 새 탭에서 연다. PR 번호가 없는 묶음은 아이콘 자리를 비우고 제목을
+// 글자로만 두며, 쪽수만 적는다.
+function frontColumns(news: ElementContent[], days: RecentDay[], locale: string): Element {
   const row = (change: RecentChange) => {
     const count = `${change.pages.length}쪽`
     const meta = el("span", { className: ["front-change-meta"] }, [
@@ -489,12 +581,16 @@ function frontColumns(days: RecentDay[], locale: string): Element {
       el("ul", {}, changes.map(row)),
     ]),
   )
+  const recent =
+    days.length === 0
+      ? []
+      : [
+          el("h2", { id: "최근-변경" }, [text("최근 변경")]),
+          el("ul", { className: ["front-timeline"] }, timeline),
+        ]
   return el("div", { className: ["front-columns"] }, [
-    el("section", { className: ["front-news"] }),
-    el("section", { className: ["front-recent"] }, [
-      el("h2", { id: "최근-변경" }, [text("최근 변경")]),
-      el("ul", { className: ["front-timeline"] }, timeline),
-    ]),
+    el("section", { className: ["front-news"] }, news),
+    el("section", { className: ["front-recent"] }, recent),
   ])
 }
 
@@ -506,14 +602,29 @@ const FrontPageBody = () => {
       title: String(file.frontmatter?.title ?? ""),
       tags: (file.frontmatter?.tags ?? []) as string[],
     }))
+    const news: FrontPageIssue[] = []
+    const regionNames = new Map<string, string>()
+    for (const file of props.allFiles) {
+      const data = file.weeklyNews as { items: FrontPageIssue["items"] } | undefined
+      if (data) {
+        news.push({
+          slug: file.slug ?? "",
+          title: String(file.frontmatter?.title ?? ""),
+          items: data.items.map(({ id, title, region }) => ({ id, title, region })),
+        })
+      }
+      const tag = file.slug?.startsWith("tags/") ? file.slug.slice("tags/".length) : ""
+      if (tag && !tag.includes("/")) regionNames.set(tag, String(file.frontmatter?.title ?? tag))
+    }
     const commits = readCommits(props.ctx.argv.directory)
-    const { topicCounts, recentChanges } = frontPage({ pages, commits })
+    const { topicCounts, latestNews, recentChanges } = frontPage({ pages, news, commits })
     if (props.tree.type !== "root") return Body(props)
     const tree = props.tree as Root
     decorateRegionTable(tree, topicCounts)
-    if (recentChanges.length === 0) return Body(props)
+    if (latestNews === null && recentChanges.length === 0) return Body(props)
     // 트리를 새로 만들어 붙인다. 원래 트리에 붙이면 다시 그릴 때(--serve) 2단이 거듭 붙는다.
-    const columns = frontColumns(recentChanges, props.cfg.locale)
+    const newsContent = latestNews === null ? [] : newsColumn(latestNews, regionNames)
+    const columns = frontColumns(newsContent, recentChanges, props.cfg.locale)
     const withColumns: Root = { ...tree, children: [...tree.children, columns] }
     return Body({ ...props, tree: withColumns })
   }
