@@ -149,4 +149,14 @@ describe("svgLines", () => {
 </svg>`
     assert.deepStrictEqual(svgLines(svg), ["첫 두 번째", "태스크 대기", "나뉜 글자"])
   })
+
+  test("조상 <g>와 <text>의 translate를 더한 자리로 줄을 가른다", () => {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 120">
+<g><text x="10" y="20">왼쪽 위</text><text x="10" y="44">왼쪽 아래</text></g>
+<g transform="translate(300 0)"><text x="10" y="20">오른쪽 위</text>
+<g transform="translate(0, 24)"><text x="10" y="20">오른쪽 아래</text></g></g>
+<text x="10" y="0" transform="translate(0 80)">맨 아래</text>
+</svg>`
+    assert.deepStrictEqual(svgLines(svg), ["왼쪽 위 오른쪽 위", "왼쪽 아래 오른쪽 아래", "맨 아래"])
+  })
 })

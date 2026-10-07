@@ -51,7 +51,7 @@ function squash(text: string): string {
   return text.replace(/\s+/g, " ").trim()
 }
 
-const isElement = (tag: string) => (node: Element) => node.tagName === tag
+const isTag = (tag: string) => (node: Element) => node.tagName === tag
 
 // 링크 대상 슬러그. 태그 페이지와 같은 페이지 앵커는 링크된 페이지가 아니다.
 function linkedSlug(node: Element): string | undefined {
@@ -59,6 +59,9 @@ function linkedSlug(node: Element): string | undefined {
   if (slug === undefined || hasClass(node, "tag-link") || slug.startsWith("tags/")) return undefined
   return slug
 }
+
+// 화면에서 접혀 있는 절과 콜아웃의 표시. 독자 프롬프트가 이 표시를 설명한다.
+const collapsedMark = " (접힌 채로 보임)"
 
 class Writer {
   links: string[] = []
@@ -146,7 +149,7 @@ class Writer {
     )
     const body = node.children.filter((child) => child !== summary)
     const head = summary ? this.blocks(summary.children) : []
-    if (prop(node, "open") === undefined && head.length > 0) head[0] += " (접힌 채로 보임)"
+    if (prop(node, "open") === undefined && head.length > 0) head[0] += collapsedMark
     return [...head, ...this.blocks(body)]
   }
 
@@ -168,13 +171,13 @@ class Writer {
   }
 
   table(node: Element): string {
-    const rows = findAll(node, isElement("tr")).map((row) =>
+    const rows = findAll(node, isTag("tr")).map((row) =>
       row.children
         .filter((cell): cell is Element => cell.type === "element")
         .map((cell) => squash(this.inlines(cell.children)).replace(/\|/g, "\\|")),
     )
     const lines = rows.map((cells) => `| ${cells.join(" | ")} |`)
-    if (find(node, isElement("thead")) && rows.length > 0)
+    if (find(node, isTag("thead")) && rows.length > 0)
       lines.splice(1, 0, `| ${rows[0].map(() => "---").join(" | ")} |`)
     return lines.join("\n")
   }
@@ -185,7 +188,7 @@ class Writer {
     if (callout !== undefined) {
       const title = find(node, (element) => hasClass(element, "callout-title"))
       const content = find(node, (element) => hasClass(element, "callout-content"))
-      const collapsed = hasClass(node, "is-collapsed") ? " (접힌 채로 보임)" : ""
+      const collapsed = hasClass(node, "is-collapsed") ? collapsedMark : ""
       lines.push(`[!${callout}] ${squash(title ? this.inlines(title.children) : "")}${collapsed}`)
       if (content) lines.push(...this.blocks(content.children))
     } else lines.push(...this.blocks(node.children))
@@ -207,7 +210,7 @@ class Writer {
 function properties(root: Root): string[] {
   const table = find(root, (element) => hasClass(element, "note-properties-table"))
   if (!table) return []
-  return findAll(table, isElement("tr")).map((row) => {
+  return findAll(table, isTag("tr")).map((row) => {
     const cells = row.children.filter((cell): cell is Element => cell.type === "element")
     return cells.map((cell) => squash(plain(cell))).join(": ")
   })
@@ -220,9 +223,9 @@ export function readerText(
   diagrams: Map<string, string[]> = new Map(),
 ): { text: string; links: string[] } {
   const root = fromHtml(html)
-  const self = prop(find(root, isElement("body")) ?? ({ properties: {} } as Element), "dataSlug")
+  const self = prop(find(root, isTag("body")) ?? ({ properties: {} } as Element), "dataSlug")
   const title = find(root, (element) => hasClass(element, "article-title"))
-  const article = find(root, isElement("article"))
+  const article = find(root, isTag("article"))
   const writer = new Writer(diagrams)
   const parts = [
     `# ${title ? squash(plain(title)) : ""}`,
@@ -237,23 +240,51 @@ export function readerText(
 
 // 본문에 든 도해(<object>) 주소. 나온 순서대로 한 번씩이다.
 export function diagramSources(html: string): string[] {
-  const article = find(fromHtml(html), isElement("article"))
+  const article = find(fromHtml(html), isTag("article"))
   if (!article) return []
-  const sources = findAll(article, isElement("object")).map((node) => prop(node, "data") ?? "")
+  const sources = findAll(article, isTag("object")).map((node) => prop(node, "data") ?? "")
   return [...new Set(sources.filter((src) => src !== ""))]
+}
+
+// transform의 translate 몫. 도해는 translate만 쓴다(content/diagrams/).
+function translation(node: Element): { x: number; y: number } {
+  const match = /translate\(\s*([-\d.]+)(?:[\s,]+([-\d.]+))?\s*\)/.exec(
+    prop(node, "transform") ?? "",
+  )
+  return match ? { x: Number(match[1]), y: Number(match[2] ?? 0) } : { x: 0, y: 0 }
+}
+
+interface Placed {
+  x: number
+  y: number
+  text: string
+}
+
+// <text>마다 조상 <g>와 자기의 translate를 더한 자리를 모은다.
+function placedTexts(node: Node, offset: { x: number; y: number }, found: Placed[]): Placed[] {
+  if (node.type !== "element" && node.type !== "root") return found
+  const shift = node.type === "element" ? translation(node) : { x: 0, y: 0 }
+  const here = { x: offset.x + shift.x, y: offset.y + shift.y }
+  if (node.type === "element" && node.tagName === "text") {
+    const text = squash(plain(node))
+    if (text !== "")
+      found.push({
+        x: here.x + Number(prop(node, "x") ?? 0),
+        y: here.y + Number(prop(node, "y") ?? 0),
+        text,
+      })
+    return found
+  }
+  for (const child of node.children) placedTexts(child, here, found)
+  return found
 }
 
 // 도해 SVG의 글자를 줄로 모은다. y가 거의 같은 <text>를 한 줄로 보고, 줄 안은 x 순서다.
 export function svgLines(svg: string): string[] {
-  const texts = findAll(fromHtml(svg, { space: "svg" }), isElement("text"))
-    .map((node) => ({
-      x: Number(prop(node, "x") ?? 0),
-      y: Number(prop(node, "y") ?? 0),
-      text: squash(plain(node)),
-    }))
-    .filter((item) => item.text !== "")
-    .sort((a, b) => a.y - b.y || a.x - b.x)
-  const lines: { y: number; items: typeof texts }[] = []
+  const texts = placedTexts(fromHtml(svg, { space: "svg" }), { x: 0, y: 0 }, []).sort(
+    (a, b) => a.y - b.y || a.x - b.x,
+  )
+  const lines: { y: number; items: Placed[] }[] = []
   for (const item of texts) {
     const line = lines.at(-1)
     if (line && Math.abs(item.y - line.y) < 4) line.items.push(item)

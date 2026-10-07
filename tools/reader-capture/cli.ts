@@ -11,25 +11,22 @@ import { diagramSources, readerText, svgLines } from "./text"
 
 // Reader Testing의 캡처(.claude/skills/reader-testing). 페이지마다 데스크톱 폭과 390px 폭 스크린샷,
 // 독자 텍스트를 받고, 본문이 위키링크로 가리키는 페이지는 독자 텍스트만 받는다.
-// 사용: npm run reader-capture -- --out <폴더> (--topic <태그> | <슬러그>...) [--base-url <URL> | --site <빌드 폴더>]
-// --site는 로컬 빌드 폴더를 이 프로세스 안의 서버로 띄워 받는다. 따로 띄운 서버는 셸이 끝나면 죽기 때문이다.
+// 사용: npm run reader-capture -- --out <폴더> (--topic <태그> | <슬러그>...) [--site <빌드 폴더>]
+// --site가 없으면 배포 사이트에서 받는다. --site는 로컬 빌드 폴더를 이 프로세스 안의 서버로 띄워 받는다. 따로 띄운 서버는 셸이 끝나면 죽기 때문이다.
 const { values, positionals } = parseArgs({
   allowPositionals: true,
   options: {
     out: { type: "string" },
     topic: { type: "string" },
-    "base-url": { type: "string" },
     site: { type: "string" },
   },
 })
 if (values.out === undefined) throw new Error("--out <폴더>가 필요하다")
-if (values["base-url"] !== undefined && values.site !== undefined)
-  throw new Error("--base-url과 --site 가운데 하나만 준다")
 const out = path.resolve(values.out)
 
 // 폭마다 뷰포트와 스크린샷 조각의 크기. 긴 페이지를 한 장으로 찍으면 읽을 때 줄어 글자가 뭉개지므로
 // 조각으로 나눈다. 조각은 이미지 하나가 줄지 않고 읽히는 크기(긴 변 1568px, 약 115만 화소) 안에 둔다.
-const widths = [
+const views = [
   { name: "desktop", width: 1280, height: 900 },
   { name: "390", width: 390, height: 1560 },
 ] as const
@@ -88,8 +85,8 @@ async function screenshots(
   browser: Browser,
   base: string,
   slug: string,
-  view: (typeof widths)[number],
-): Promise<string[]> {
+  view: (typeof views)[number],
+): Promise<{ files: string[]; tokens: number }> {
   const context = await browser.newContext({
     viewport: { width: view.width, height: view.height },
     colorScheme: "light",
@@ -125,17 +122,16 @@ async function screenshots(
     })
     const height = await page.evaluate(() => document.documentElement.scrollHeight)
     const files: string[] = []
+    let tokens = 0
     // 뷰포트 단위로 찍으면 고정된 머리글이 조각마다 본문을 가리므로, 전체 페이지에서 잘라 찍는다.
     for (let y = 0, n = 1; y < height; y += view.height, n++) {
       const file = `${slug}-${view.name}-${n}.png`
-      await page.screenshot({
-        path: path.join(out, file),
-        fullPage: true,
-        clip: { x: 0, y, width: view.width, height: Math.min(view.height, height - y) },
-      })
+      const clip = { x: 0, y, width: view.width, height: Math.min(view.height, height - y) }
+      await page.screenshot({ path: path.join(out, file), fullPage: true, clip })
       files.push(file)
+      tokens += imageTokens(clip.width, clip.height)
     }
-    return files
+    return { files, tokens }
   } finally {
     await context.close()
   }
@@ -144,7 +140,7 @@ async function screenshots(
 async function main() {
   const slugs = targetSlugs()
   const local = values.site === undefined ? undefined : await serve(path.resolve(values.site))
-  const base = (local?.base ?? values["base-url"] ?? siteUrl()).replace(/\/$/, "")
+  const base = (local?.base ?? siteUrl()).replace(/\/$/, "")
   fs.mkdirSync(path.join(out, "linked"), { recursive: true })
   const browser = await chromium.launch()
   try {
@@ -158,14 +154,13 @@ async function main() {
       // 대상 페이지끼리 링크해도 linked/에 둔다. 독자는 linked/만 링크로 연다.
       for (const link of links) linked.add(link)
       const shots: Record<string, { files: string[]; tokens: number }> = {}
-      for (const view of widths) {
-        const files = await screenshots(browser, base, slug, view)
-        shots[view.name] = { files, tokens: files.length * imageTokens(view.width, view.height) }
+      for (const view of views) {
+        shots[view.name] = await screenshots(browser, base, slug, view)
       }
       pages.push({ slug, text: `${slug}.txt`, chars: text.length, links, screenshots: shots })
       console.log(
         `${slug}: 텍스트 ${text.length}자, ` +
-          widths
+          views
             .map(
               (view) =>
                 `${view.name} ${shots[view.name].files.length}장(~${shots[view.name].tokens} 토큰)`,
