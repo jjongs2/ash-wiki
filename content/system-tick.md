@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-07
 ---
 
-**시스템 틱**은 [[rtos|RTOS]]가 흔히 시간을 재는 데 쓰는 주기적인 타이머 인터럽트로, RTOS는 이것으로 [[task|태스크]]의 지연과 대기 타임아웃을 처리한다.[@silabs-intro-rtos-2019][@freertos-rtos-tick-2026] 태스크를 정한 시간 뒤에 실행하는 데 쓰는 시간 지연과 타임아웃은 흔히 주기 인터럽트로 잰다.[@renesas-res05b0008-2010][@micrium-ucos-iii-clock-tick-2026]
+[[rtos|RTOS]]는 흔히 주기적인 인터럽트로 시간을 재고, [[task|태스크]]를 정한 시간 뒤에 실행하는 데 쓰는 시간 지연과 타임아웃을 이것으로 잰다.[@renesas-res05b0008-2010][@micrium-ucos-iii-clock-tick-2026] µC/OS-III 문서는 이 주기적인 시간원을 **시스템 틱**(system tick) 또는 clock tick이라 부른다.[@micrium-ucos-iii-clock-tick-2026]
 
 ## 틱과 시간 서비스
 

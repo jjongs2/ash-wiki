@@ -7,7 +7,7 @@ verified: 2026-10-07
 
 **동적 메모리 할당**은 실행 중에 메모리를 얻고, 다 쓴 뒤 돌려주는 일이다.[@renesas-res05b0008-2010][@micrium-ucos-iii-memory-management-2026] Renesas 앱노트에 따르면 MCU의 물리 메모리에서 프로그램 코드, 프로그램 데이터, 시스템 스택이 차지하고 남은 부분을 **힙**이라 하고, [[rtos|RTOS]] 커널은 흔히 힙에서 태스크의 데이터 공간을 동적으로 할당한다.[@renesas-res05b0008-2010]
 
-## malloc과 free의 한계
+## `malloc()`과 `free()`의 한계
 
 µC/OS-III 문서에 따르면 임베디드 실시간 시스템에서 C 컴파일러의 `malloc()`과 `free()`를 쓰는 것은 위험할 수 있다. 빈 메모리 전체가 서로 이어지지 않은 작은 조각으로 쪼개지는 것을 **단편화**(fragmentation)라 하고, 단편화가 쌓이면 이어진 메모리 영역 하나를 얻지 못하게 될 수 있다. `malloc()` 요청을 채울 만큼 큰 빈 블록을 찾는 알고리즘 때문에 `malloc()`과 `free()`의 실행 시간은 대개 비결정적이다.[@micrium-ucos-iii-memory-management-2026]
 

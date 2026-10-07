@@ -45,4 +45,4 @@ Zephyr 타이머의 주기는 타이머가 마지막으로 만료되었어야 �
 
 RTEMS의 rate monotonic manager는 주기 태스크의 실행을 관리한다. `rtems_rate_monotonic_period`를 부를 때 주기가 진행 중이면 남은 주기 동안 부른 태스크를 블록했다가 주기가 끝나면 주기를 다시 시작하고, 주기가 이미 만료됐으면 타임아웃 오류 상태값을 받고 곧바로 돌아온다.[@rtems-rate-monotonic-operations-2025] RTEMS의 rate monotonic manager는 주기 객체마다 실행한 주기 수, 놓친 주기 수, 주기 루프 한 번에 쓴 CPU 시간과 흐른 시간의 최솟값·최댓값·합 같은 통계를 둔다.[@rtems-rate-monotonic-background-2025]
 
-[[osek-os|OSEK OS]]의 알람은 [[osek-alarm|OSEK 알람]]에서 다룬다.
+[[osek-os|OSEK/VDX OS]] 2.2.3 명세는 counter가 미리 정한 값에 이르면 만료되어 정해 둔 동작을 하는 [[osek-alarm|알람]]을 둔다.[@osek-os-2-2-3-2005]

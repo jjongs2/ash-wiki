@@ -51,7 +51,7 @@ partitioned 고정 우선순위 시스템에 쓰는 [[priority-ceiling-protocol|
 
 ### MrsP
 
-MrsP(Multiprocessor resource sharing Protocol)는 단일 프로세서의 우선순위 상한 프로토콜에 바탕을 둔 다중 프로세서 프로토콜로, 원 논문은 이 프로토콜을 sporadic 태스크 모델의 partitioned 고정 우선순위 시스템에 맞춰 정의했다.[@burns-mrsp-2013]
+**MrsP**(Multiprocessor resource sharing Protocol)는 단일 프로세서의 우선순위 상한 프로토콜에 바탕을 둔 다중 프로세서 프로토콜로, 원 논문은 이 프로토콜을 sporadic 태스크 모델의 partitioned 고정 우선순위 시스템에 맞춰 정의했다.[@burns-mrsp-2013]
 
 원 논문의 정의에서 자원은 그 자원을 쓰는 태스크가 있는 프로세서마다 상한을 하나씩 갖고, 그 값은 그 프로세서에 할당된 태스크 가운데 그 자원을 쓰는 태스크의 가장 높은 우선순위다. 자원을 요청한 태스크의 우선순위는 곧바로 그 프로세서의 상한으로 오르고, 요청은 FIFO(First-In First-Out) 순서로 처리된다. 태스크는 자원을 기다리는 동안과 쓰는 동안 그 상한 우선순위로 계속 실행되어, 기다리는 동안은 바쁜 대기한다. 자원을 기다리는 태스크는 같은 자원을 기다리다 선점된 다른 태스크를 대신해 그 임계 구역을 원래의 FIFO 순서대로 실행할 수 있어야 한다.[@burns-mrsp-2013]
 
@@ -61,7 +61,7 @@ RTEMS 문서에 따르면 MrsP는 우선순위 상한 프로토콜을 clustered 
 
 ### OMIP
 
-OMIP(O(m) Independence-Preserving Protocol)는 clustered job 수준 고정 우선순위 스케줄링을 위한 suspension 기반 이진 세마포어 프로토콜로, 지연에 민감한 태스크를 관계없는 임계 구역 때문에 생기는 지연에서 떼어 놓는 성질인 independence preservation을 지킨다. independence preservation의 열쇠는 태스크가 늘 완전히 선점 가능하게 두는 것이다.[@brandenburg-fully-preemptive-semaphore-2013]
+**OMIP**(O(m) Independence-Preserving Protocol)는 clustered job 수준 고정 우선순위 스케줄링을 위한 suspension 기반 이진 세마포어 프로토콜로, 지연에 민감한 태스크를 관계없는 임계 구역 때문에 생기는 지연에서 떼어 놓는 성질인 independence preservation을 지킨다. independence preservation의 열쇠는 태스크가 늘 완전히 선점 가능하게 두는 것이다.[@brandenburg-fully-preemptive-semaphore-2013]
 
 cluster 수가 하나보다 많은 clustered job 수준 고정 우선순위 스케줄링에서는, 세마포어 프로토콜이 우선순위 역전 블로킹을 묶고 independence preservation을 지키면서 cluster 사이의 이주까지 피할 수는 없다. 그래서 OMIP는 migratory priority inheritance에 바탕을 둔다. 락을 쥔 job이 준비되었는데도 선점되어 실행되지 못하는 동안, 그 락을 기다리는 job 가운데 자기 cluster에서 스케줄될 수 있는 job이 있으면 락을 쥔 job이 그 cluster로 옮겨 가 그 job의 우선순위를 물려받고, 락을 모두 놓으면 제 cluster로 돌아간다.[@brandenburg-fully-preemptive-semaphore-2013]
 

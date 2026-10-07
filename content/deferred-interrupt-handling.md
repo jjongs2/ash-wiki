@@ -13,11 +13,11 @@ FreeRTOS 문서는 인터럽트가 요구하는 처리를 ISR(Interrupt Service 
 
 ## ISR을 짧게 두는 까닭
 
-µC/OS-III, FreeRTOS, Zephyr, RTEMS(Real-Time Executive for Multiprocessor Systems) 문서는 모두 ISR을 짧게 두고, 인터럽트 처리의 나머지를 태스크에 맡기기를 권한다.[@micrium-ucos-iii-task-management-internals-2026][@freertos-interrupt-management-2026][@zephyr-interrupts-2026][@rtems-interrupt-background-2025]
+µC/OS-III 문서는 ISR을 되도록 짧게 두고, 인터럽트 처리의 나머지를 태스크에 맡기기를 권한다.[@micrium-ucos-iii-task-management-internals-2026]
 
 FreeRTOS 커널 책에 따르면 ISR을 짧게 두는 까닭은 여럿이다. 태스크는 우선순위가 아무리 높아도 하드웨어가 인터럽트를 처리하지 않을 때만 실행되고, ISR은 태스크의 시작 시각과 실행 시간을 흔든다. 아키텍처에 따라서는 ISR이 실행되는 동안 새 인터럽트를 받지 못할 수 있고, 인터럽트 중첩은 복잡도를 높이고 예측성을 떨어뜨리는데 ISR이 짧을수록 중첩될 가능성이 낮다. 처리를 태스크로 넘기면 그 처리의 우선순위를 다른 태스크와 견주어 정할 수 있고, FreeRTOS API(Application Programming Interface) 함수를 모두 쓸 수 있다.[@freertos-interrupt-management-2026]
 
-Zephyr 문서에 따르면 ISR은 시스템 동작을 예측할 수 있도록 빨리 끝나야 하고, 시간이 드는 처리는 스레드로 넘겨 커널이 다른 인터럽트에 응답할 수 있게 해야 한다.[@zephyr-interrupts-2026] RTEMS 문서에 따르면 ISR은 같거나 낮은 우선순위 인터럽트를 가리는 시간을 줄이도록 인터럽트를 처리하는 데 꼭 필요한 일만 하고, 나머지는 응용 태스크가 맡아야 한다.[@rtems-interrupt-background-2025]
+Zephyr 문서에 따르면 ISR은 시스템 동작을 예측할 수 있도록 빨리 끝나야 하고, 시간이 드는 처리는 스레드로 넘겨 커널이 다른 인터럽트에 응답할 수 있게 해야 한다.[@zephyr-interrupts-2026] RTEMS(Real-Time Executive for Multiprocessor Systems) 문서에 따르면 ISR은 같거나 낮은 우선순위 인터럽트를 가리는 시간을 줄이도록 인터럽트를 처리하는 데 꼭 필요한 일만 하고, 나머지는 응용 태스크가 맡아야 한다.[@rtems-interrupt-background-2025]
 
 FreeRTOS 문서에 따르면 태스크의 블록을 풀고 그 태스크로 전환하는 일 자체에도 시간이 들기 때문에, 처리를 태스크로 미루는 것은 대개 처리가 오래 걸리거나, ISR용 API가 아니라 [[rtos|RTOS]] API 전체를 써야 하거나, 실행 시간을 미리 알 수 없는 일을 할 때만 이득이다.[@freertos-deferred-interrupt-handling-2026]
 

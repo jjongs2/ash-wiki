@@ -15,7 +15,7 @@ Mok은 주기적이거나 sporadic인 시간 제약을 실시간으로 계속 �
 
 ![[diagrams/preemptive-nonpreemptive-scheduling.svg]]
 
-선점할 수 있는 시점에 따라 스케줄링 알고리즘을 셋으로 나눈다. pre-emptive 알고리즘에서는 더 높은 우선순위 태스크가 언제든 태스크를 선점할 수 있다. non-pre-emptive 알고리즘에서는 태스크가 실행을 시작하면 선점되지 않고 끝까지 실행된다. co-operative 알고리즘에서는 태스크가 실행 중 정해진 스케줄링 지점에서만 선점될 수 있어, 태스크의 실행이 사실상 선점할 수 없는 구간들로 이어진다.[@davis-survey-hard-real-time-2011]
+선점할 수 있는 시점에 따라 스케줄링 알고리즘을 셋으로 나눈다. pre-emptive 알고리즘에서는 더 높은 우선순위 태스크가 언제든 태스크를 선점할 수 있다. non-pre-emptive 알고리즘에서는 태스크가 실행을 시작하면 선점되지 않고 끝까지 실행된다. co-operative 알고리즘에서는 태스크가 실행 중 정해진 스케줄링 지점에서만 선점될 수 있어, 태스크의 실행이 사실상 선점할 수 없는 구간들로 이어진다.[@davis-survey-hard-real-time-2011] OSEK/VDX OS 2.2.3 명세는 비선점 스케줄링을 이 분류의 non-pre-emptive와 다른 뜻으로 정의한다.[@osek-os-2-2-3-2005][@davis-survey-hard-real-time-2011]
 
 **협력형 멀티태스킹**에서는 각 태스크가 스스로 CPU 시간을 다음 태스크에 넘긴다.[@microchip-an2751-2018][@renesas-res05b0008-2010] Renesas 앱노트와 Micrium 문서는 비선점 스케줄링을 협력형 멀티태스킹이라고도 부른다.[@renesas-res05b0008-2010][@micrium-ucos-ii-rtsc-2026]
 
@@ -68,7 +68,7 @@ RTEMS(Real-Time Executive for Multiprocessor Systems)에서는 타임 슬라이�
 
 POSIX.1-2024는 같은 우선순위의 프로세스가 처리기 자원을 더 고르게 나누도록 타임 슬라이스 같은 기능을 주려고 위 표의 `SCHED_RR`을 둔다. 같은 우선순위에 처리기만 쓰는 프로세스 $N$개가 있고 time quantum $Q$가 모두 같으면, 이 정책에는 현재 프로세스가 적어도 $Q$ 동안 처리기를 가지며 $N$번째 프로세스가 $(N-1) \times Q$ 안에 처리기를 얻는다는 가정이 따른다. 이 가정은 인터럽트 처리 같은 시스템 부담이 없을 때만 성립하고, 인터럽트 처리 부하가 있으면 $Q$를 어떻게 재느냐에 따라 둘 가운데 하나가 깨진다.[@ieee-1003-1-rationale-process-scheduling-2024]
 
-## Linux SCHED_OTHER와의 차이
+## Linux `SCHED_OTHER`와의 차이
 
 Linux 커널은 기본으로 `SCHED_OTHER` 스케줄링 정책을 쓴다. 이 정책에서는 태스크가 다른 실행 가능한 태스크에 견주어 공정한 몫의 CPU 시간을 썼다고 스케줄러가 판단할 때 그 태스크를 선점하며, 새 `SCHED_OTHER` 태스크가 실행 가능해져도 곧바로 선점한다고 보장하지 않는다. `SCHED_FIFO` 같은 실시간 정책의 태스크는 실행 가능해질 때 실행 중인 태스크보다 우선순위가 높으면 곧바로 실행되고, 대개 사건을 기다리며 블록해 스스로 CPU를 내줄 때까지 실행된다.[@linux-preempt-rt-theory-2026]
 
