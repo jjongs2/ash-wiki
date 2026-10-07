@@ -209,6 +209,16 @@ describe("explorerInputs", () => {
       { slug: "can", title: "CAN", tags: ["network/can"] },
     ])
   })
+
+  test("주간 소식과 지난 호 목록은 페이지로 넣지 않는다", () => {
+    const news = [
+      { slug: "news/2026-W41", title: "2026년 41주 소식", tags: [], links: ["can"] },
+      { slug: "news/index", title: "주간 소식", tags: [], links: [] },
+    ]
+    assert.deepStrictEqual(explorerInputs([...entries, ...news]).pages, [
+      { slug: "can", title: "CAN", tags: ["network/can"] },
+    ])
+  })
 })
 
 // 탐색기는 브라우저에서 contentIndex로 트라이를 짓고 mapFn으로 window.explorerTree를 부른다. 실리는

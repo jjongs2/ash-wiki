@@ -76,6 +76,19 @@ describe("check-content CLI", { concurrency: false }, () => {
     assert.strictEqual(report.exitCode, 0)
   })
 
+  test("news/ 아래의 주간 소식은 규약을 어겨도 위반이 나오지 않는다", () => {
+    // 통과 트리의 content/news/2026-W41.md는 태그, 머리말, 폴더, 위키링크 규약을 어긴다
+    for (const args of [[], ["--no-build"]]) {
+      const report = runChecker("pass", ...args)
+      const locations = [...report.locations.values()].flat()
+      assert.deepStrictEqual(
+        locations.filter((location) => location.startsWith("content/news/")),
+        [],
+      )
+      assert.strictEqual(report.exitCode, 0)
+    }
+  })
+
   test("위반 트리는 검사마다 의도한 위반 위치를 찍고 exit 1이다", () => {
     const report = runChecker("violation")
     assert.deepStrictEqual(report.statuses, [
