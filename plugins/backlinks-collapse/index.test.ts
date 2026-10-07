@@ -3,29 +3,23 @@ import assert from "node:assert"
 import { TableOfContents } from "@quartz-community/table-of-contents"
 import { render } from "preact-render-to-string"
 import type { BuildCtx } from "../../quartz/util/ctx"
-import BacklinksCollapse, { splitBacklinks } from "./index"
+import BacklinksCollapse, { isNewsPath } from "./index"
 
-// Backlinks 분리 함수가 seam이다. 브라우저에서 Backlinks 링크의 경로 목록을 넣고 두 목록을 본다.
-describe("splitBacklinks", () => {
-  test("위키 페이지와 주간 소식이 섞인 목록을 두 목록으로 나눈다", () => {
-    assert.deepStrictEqual(
-      splitBacklinks(["/can-fd", "/news/2026-W40", "/can-frame", "/news/2026-W41"]),
-      { pages: ["/can-fd", "/can-frame"], news: ["/news/2026-W41", "/news/2026-W40"] },
-    )
-  })
-
-  test("주간 소식은 최근 호부터 둔다", () => {
-    assert.deepStrictEqual(
-      splitBacklinks(["/news/2025-W52", "/news/2026-W01", "/news/2026-W09"]).news,
-      ["/news/2026-W09", "/news/2026-W01", "/news/2025-W52"],
-    )
+// 주간 소식 판정 함수가 seam이다. 브라우저에서 Backlinks 링크의 경로를 넣고 주간 소식인지를 본다.
+describe("isNewsPath", () => {
+  test("위키 페이지와 주간 소식이 섞인 목록에서 주간 소식만 고른다", () => {
+    const paths = ["/can-fd", "/news/2026-w40", "/can-frame", "/news/2026-w41", "/tags/network"]
+    assert.deepStrictEqual(paths.filter(isNewsPath), ["/news/2026-w40", "/news/2026-w41"])
   })
 
   test("사이트가 하위 경로에 있어도 news 폴더를 알아본다", () => {
-    assert.deepStrictEqual(splitBacklinks(["/wiki/news/2026-W41", "/wiki/can-fd"]), {
-      pages: ["/wiki/can-fd"],
-      news: ["/wiki/news/2026-W41"],
-    })
+    assert.deepStrictEqual(["/wiki/news/2026-w41", "/wiki/can-fd"].filter(isNewsPath), [
+      "/wiki/news/2026-w41",
+    ])
+  })
+
+  test("이름에 news가 든 위키 페이지는 주간 소식이 아니다", () => {
+    assert.strictEqual(isNewsPath("/news-feed"), false)
   })
 })
 
@@ -101,13 +95,8 @@ describe("backlinks-collapse 플러그인", () => {
     }
   })
 
-  test("주간 소식 묶음은 접힌 채로 둔다", () => {
-    assert.match(source, /NEWS_TITLE = "이 페이지가 나온 주간 소식"/)
-    assert.match(source, /wrap\(newsTitle, newsList, false\)/)
-  })
-
-  test("분리 함수를 그대로 싣는다", () => {
-    assert.ok(source.includes(splitBacklinks.toString()))
+  test("판정 함수를 그대로 싣는다", () => {
+    assert.ok(source.includes(isNewsPath.toString()))
   })
 
   test("접힌 목록은 숨긴다", () => {
