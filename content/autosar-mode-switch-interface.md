@@ -17,7 +17,7 @@ runnable이 도는 동안에는 mode declaration group prototype마다 모드 �
 
 모드를 내는 쪽인 **mode manager**는 [[software-component-port#P-Port와 R-Port|P-Port]]를 두고, 그 모드를 쓰는 쪽인 **mode user**는 R-Port를 둔다. mode switch 통신은 mode manager 하나에서 여러 mode user로 가는 1:n 연결을 지원하고, [[autosar-rte|RTE]]는 한 mode user에 mode manager 여럿을 잇는 n:1 연결을 거부한다. [[autosar-software-component|SW-C]]도 mode manager가 될 수 있다.[@autosar-cp-sws-rte-2025]
 
-BSW(Basic Software)에서는 BswM(BSW Mode Manager)이 mode manager의 예로, SW-C와 다른 BSW 모듈의 모드 요청을 설정된 규칙으로 중재하고 그 결과에 따라 모드를 전환한다.[@autosar-cp-sws-rte-2025][@autosar-cp-sws-bswmodemanager-2025]
+BSW(Basic Software)에서는 [[basic-software-mode-manager|BswM]]이 mode manager의 예로, SW-C와 다른 BSW 모듈의 모드 요청을 설정된 규칙으로 중재하고 그 결과에 따라 모드를 전환한다.[@autosar-cp-sws-rte-2025][@autosar-cp-sws-bswmodemanager-2025]
 
 mode manager는 `Rte_Switch_<p>_<o>(<mode>)`로 다음 모드를 넘겨 모드 전환을 시작한다.[@autosar-cp-sws-rte-2025] 모드를 전환하는 mode manager의 runnable은 자기가 전환하는 mode declaration group prototype을 **mode switch point**로 선언한다.[@autosar-cp-tps-softwarecomponenttemplate-2025] RTE는 mode switch point가 있으면 `Rte_Switch` API를 만들고, 그 API는 해당 mode switch point를 가진 runnable만 쓸 수 있다.[@autosar-cp-sws-rte-2025]
 

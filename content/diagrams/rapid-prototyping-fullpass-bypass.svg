@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -2.5 760 290" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 방식 -->
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="130" y="24">Fullpass</text>
+    <text x="380" y="24">External bypass</text>
+    <text x="630" y="24">Internal bypass</text>
+  </g>
+
+  <!-- 장치 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20" y="40" width="220" height="90" rx="2" />
+    <rect x="270" y="40" width="220" height="90" rx="2" />
+    <rect x="270" y="180" width="220" height="90" rx="2" />
+    <rect x="520" y="40" width="220" height="160" rx="2" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="130" y="60">RPU</text>
+    <text x="380" y="60">원래 ECU</text>
+    <text x="380" y="200">RPU</text>
+    <text x="630" y="60">원래 ECU</text>
+  </g>
+
+  <!-- 원래 알고리즘 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="290" y="74" width="180" height="36" rx="2" />
+    <rect x="540" y="74" width="180" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="380" y="97">원래 알고리즘</text>
+    <text x="630" y="97">원래 알고리즘</text>
+  </g>
+
+  <!-- 시험할 알고리즘 -->
+  <g stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)">
+    <rect x="40" y="74" width="180" height="36" rx="2" />
+    <rect x="290" y="214" width="180" height="36" rx="2" />
+    <rect x="540" y="150" width="180" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="130" y="97">시험할 알고리즘</text>
+    <text x="380" y="237">시험할 알고리즘</text>
+    <text x="630" y="173">시험할 알고리즘</text>
+  </g>
+
+  <!-- 값의 흐름 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="340" y1="130" x2="340" y2="178" />
+    <line x1="420" y1="180" x2="420" y2="132" />
+    <line x1="630" y1="150" x2="630" y2="112" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="428" y="160">계산한 값</text>
+    <text x="638" y="135">계산한 값</text>
+  </g>
+</svg>

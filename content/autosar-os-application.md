@@ -24,6 +24,18 @@ OS-Application은 trusted와 non-trusted 둘로 나뉜다.[@autosar-cp-sws-os-20
 - **Trusted OS-Application**: 실행 중 감시나 보호를 끈 채 실행될 수 있고, 메모리와 OS API(Application Programming Interface)에 제한 없이 접근할 수 있으며, 실행 때 타이밍 동작을 강제받지 않아도 된다. 프로세서가 지원하면 privileged mode에서 실행될 수 있다. 다른 OS-Application에 서비스를 제공할 수 있다.
 - **Non-trusted OS-Application**: 감시나 보호를 끈 채 실행될 수 없고, 메모리와 OS API에 제한된 접근만 하며, 타이밍 동작을 강제받는다. privileged mode에서 실행될 수 없다. 주변장치는 자기에게 배정된 것에만 쓸 수 있고, `ShutdownOS`를 불러도 무시된다.[@autosar-cp-sws-os-2025]
 
+AUTOSAR R25-11 Layered Software Architecture와 용어집은 OS-Application의 trusted 속성을 [[automotive-safety-integrity-level|ASIL]]과 관계없는 것으로 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025][@autosar-fo-tr-glossary-2025]
+
+AUTOSAR R25-11 Guide to BSW Distribution은 시스템에 ASIL BSW(Basic Software) 파티션이 있으면, MPU(Memory Protection Unit) 설정 같은 하드웨어 레지스터가 바뀌지 않도록 QM(Quality Management) BSW 파티션을 되도록 user mode로 돌리기를 강하게 권한다. 하드웨어가 supervisor mode만 지원하는 등 그럴 수 없으면 [[freedom-from-interference|freedom from interference]]를 보장할 추가 수단이 필요하다.[@autosar-cp-exp-bswdistributionguide-2025] BSW를 ASIL 파티션과 QM 파티션에 나누는 방법은 [[autosar-layered-architecture#안전 관련 ECU|AUTOSAR 계층 구조]]에서 다룬다.
+
+## AUTOSAR 소프트웨어의 배치
+
+AUTOSAR R25-11의 OS 명세는 BSW와 [[autosar-software-component|SW-C]]를 가리지 않고 모든 AUTOSAR 소프트웨어가 어느 한 OS-Application에 속해야 한다고 정하며, 모두가 같은 OS-Application에 속할 필요는 없다. BSW는 trusted code일 것으로 보지만, 그래도 OS-Application 하나 이상으로 정의해야 한다.[@autosar-cp-sws-os-2025]
+
+SW-C는 trusted OS-Application이 될 수 없다. trusted OS-Application은 I/O 공간에 접근하도록 허용될 수 있는데, SW-C에는 하드웨어 직접 접근을 허용하지 않기 때문이며, 설정 과정이 이를 보장해야 한다.[@autosar-cp-sws-os-2025]
+
+시스템 설정은 SW-C의 [[runnable-entity|runnable]]을 태스크 하나 이상에 매핑한다. 한 태스크에 든 runnable은 모두 같은 보호 경계를 공유하고 실행 중에 서로 보호받지 못하므로, runnable끼리 보호가 필요하면 서로 다른 태스크에 나눠 두고 그 태스크들을 보호해야 한다. 이 명세는 이를 위한 간단한 규칙으로, 한 태스크에는 같은 SW-C의 runnable만 넣기를 제시한다.[@autosar-cp-sws-os-2025]
+
 ## 접근 권한
 
 같은 OS-Application의 객체끼리는 서로 접근할 수 있고, 다른 OS-Application의 객체에 대한 접근은 설정으로 명시해 준 경우에만 허용된다. 객체마다 접근할 수 있는 OS-Application을 참조로 설정하며, 태스크에서는 `OsTaskAccessingApplication`이 그 참조다.[@autosar-cp-sws-os-2025]

@@ -24,7 +24,7 @@ ICU Driver는 channel마다 측정 모드를 하나 정하며, 모드는 넷이�
 
 ICU Driver의 모드는 ICU_MODE_NORMAL과 ICU_MODE_SLEEP 둘이고, `Icu_SetMode`로 바꾼다. ICU_MODE_SLEEP에서는 설정에서 wakeup capable로 두고 `Icu_EnableWakeup`으로 wakeup을 켠 channel만 동작하며, 나머지 channel은 멈춘다. `Icu_EnableWakeup`과 `Icu_DisableWakeup`으로 바꾼 설정은 ICU_MODE_SLEEP에 들어갈 때 효력이 난다.[@autosar-cp-sws-icudriver-2025]
 
-ICU Driver는 wakeup 인터럽트를 EcuM(ECU State Manager)에 알린다. 그 edge가 유효한 wakeup인지는 ICU Driver가 아니라 상위 계층이 가린다.[@autosar-cp-sws-icudriver-2025]
+ICU Driver는 wakeup 인터럽트를 [[ecu-state-manager|EcuM]]에 알린다. 그 edge가 유효한 wakeup인지는 ICU Driver가 아니라 상위 계층이 가린다.[@autosar-cp-sws-icudriver-2025]
 
 ## Notification
 

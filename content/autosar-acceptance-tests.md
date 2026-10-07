@@ -8,7 +8,7 @@ edition: 2016
 status: 유효
 ---
 
-**AUTOSAR Acceptance Tests for Classic Platform**은 [[autosar|AUTOSAR]]가 펴내는, [[autosar-classic-platform|Classic Platform]]의 ICC1 스택에 대한 [[system-testing|시스템 테스트]]를 명세 수준에서 정한 표준이다.[@autosar-tc-exp-acceptancetestsoverview-2016]
+**AUTOSAR Acceptance Tests for Classic Platform**은 [[autosar|AUTOSAR]]가 펴내는, [[autosar-classic-platform|Classic Platform]]의 [[implementation-conformance-class#등급|ICC1]] 스택에 대한 [[system-testing|시스템 테스트]]를 명세 수준에서 정한 표준이다.[@autosar-tc-exp-acceptancetestsoverview-2016]
 
 ## 범위
 

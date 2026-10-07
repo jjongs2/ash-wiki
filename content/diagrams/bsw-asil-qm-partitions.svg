@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 1.5 540 360" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 파티션 -->
+  <rect x="20" y="150" width="200" height="170" rx="2" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="260" y="150" width="260" height="170" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="120" y="342">ASIL BSW 파티션</text>
+    <text x="390" y="342">QM BSW 파티션</text>
+  </g>
+
+  <!-- 비ASIL 쪽 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="300" y="20" width="160" height="36" rx="2" />
+    <rect x="20" y="86" width="500" height="32" rx="2" />
+    <rect x="280" y="170" width="220" height="130" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="380" y="43">비ASIL SW-C</text>
+    <text x="270" y="107">RTE</text>
+    <text x="390" y="240">나머지 BSW</text>
+  </g>
+
+  <!-- ASIL 쪽 -->
+  <g stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)">
+    <rect x="40" y="20" width="160" height="36" rx="2" />
+    <rect x="40" y="170" width="160" height="34" rx="2" />
+    <rect x="40" y="218" width="160" height="34" rx="2" />
+    <rect x="40" y="266" width="160" height="34" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="120" y="43">ASIL SW-C</text>
+    <text x="120" y="192">WdgM</text>
+    <text x="120" y="240">WdgIf</text>
+    <text x="120" y="288">Wdg</text>
+  </g>
+
+  <!-- WdgM 접근 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M80 56 V168" />
+    <path d="M380 56 V136 H160 V168" />
+  </g>
+</svg>

@@ -22,7 +22,7 @@ NvM은 management type으로 `NVM_BLOCK_NATIVE`, `NVM_BLOCK_REDUNDANT`, `NVM_BLO
 - **Redundant**: NV 블록 둘과 ROM 블록 0개나 1개를 둔다. 같은 내용을 두 NV 블록에 써서 데이터가 깨지는 데 버틴다.
 - **Dataset**: 같은 크기의 NV 블록 1개 이상 256개 미만과 ROM 블록 0개 이상을 두며, 둘을 합친 수는 1개에서 255개다.[@autosar-cp-sws-nvrammanager-2025]
 
-Redundant 블록을 읽을 때 첫째 NV 블록을 읽지 못하면 둘째 NV 블록을 읽는다. 둘 가운데 하나라도 RAM으로 옮기면 요청은 NVM_REQ_OK로 끝나고, 두 NV 블록이 모두 무효면 블록 전체를 무효로 한다. NV 블록 하나가 무효로 판정되면 NvM은 성한 쪽의 데이터로 그 NV 블록을 되살리려 하고, 되살리지 못하면 Dem(Diagnostic Event Manager)에 NVM_E_LOSS_OF_REDUNDANCY를 알린다.[@autosar-cp-sws-nvrammanager-2025]
+Redundant 블록을 읽을 때 첫째 NV 블록을 읽지 못하면 둘째 NV 블록을 읽는다. 둘 가운데 하나라도 RAM으로 옮기면 요청은 NVM_REQ_OK로 끝나고, 두 NV 블록이 모두 무효면 블록 전체를 무효로 한다. NV 블록 하나가 무효로 판정되면 NvM은 성한 쪽의 데이터로 그 NV 블록을 되살리려 하고, 되살리지 못하면 [[diagnostic-event-manager|Dem]]에 NVM_E_LOSS_OF_REDUNDANCY를 알린다.[@autosar-cp-sws-nvrammanager-2025]
 
 Dataset 블록은 administrative block의 인덱스로 한 번에 원소 하나를 골라 읽고 쓴다. ROM 블록이 있으면 인덱스 범위가 ROM 블록까지 넓어져, 0부터 NV 블록 수에서 1을 뺀 값까지가 NV 블록이고 그 뒤가 ROM 블록이다. ROM 블록은 읽기만 할 수 있다.[@autosar-cp-sws-nvrammanager-2025]
 

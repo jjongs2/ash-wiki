@@ -54,7 +54,7 @@ ComM(Communication Manager)은 사용자의 버스 통신 요청을 모아 조�
 
 통신 모드는 통신 없음(NO), 송신을 끄고 수신만 하는 silent, 송수신 모두(FULL) 셋이다. 사용자가 요청할 수 있는 것은 NO와 FULL뿐이고, silent는 네트워크 동기화에만 쓴다.[@autosar-cp-sws-commanager-2025]
 
-BswM은 [[autosar-software-component|SW-C]]와 BSW 모듈의 모드 요청을 규칙으로 평가해 [[autosar-com#I-PDU 그룹|I-PDU 그룹]]을 켜고 끄는 것 같은 동작을 실행한다.[@autosar-cp-sws-bswmodemanager-2025]
+[[basic-software-mode-manager|BswM]]은 [[autosar-software-component|SW-C]]와 BSW 모듈의 모드 요청을 규칙으로 평가해 [[autosar-com#I-PDU 그룹|I-PDU 그룹]]을 켜고 끄는 것 같은 동작을 실행한다.[@autosar-cp-sws-bswmodemanager-2025]
 
 ## I-PDU 다중화
 
@@ -84,7 +84,7 @@ Bus Mirroring 모듈은 대체로 목적지 버스보다 프레임이 크거나 
 
 ## 그 밖의 모듈
 
-Communication Services에는 [[autosar-log-and-trace|Dlt]], XCP(Universal Measurement and Calibration Protocol), [[autosar-transformer|transformer]](SOME/IP, COM 기반, [[autosar-e2e-protection|E2E]]), IPDU Multiplexer, [[secure-onboard-communication|Secure Onboard Communication]], J1939Tp(J1939 Transport Layer)도 든다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] AUTOSAR Classic Platform R25-11은 LdCom(Large Data COM)의 기능을 AUTOSAR COM의 Large Data Path로 합쳤다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025][@autosar-cp-sws-com-2025] [[uds|UDS]] 진단 서비스는 Dcm이 맡는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025] Dem(Diagnostic Event Manager)은 통신 서비스가 아니라 [[autosar-layered-architecture#BSW의 층|System Services]]에 든다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+Communication Services에는 [[autosar-log-and-trace|Dlt]], XCP(Universal Measurement and Calibration Protocol), [[autosar-transformer|transformer]](SOME/IP, COM 기반, [[autosar-e2e-protection|E2E]]), IPDU Multiplexer, [[secure-onboard-communication|Secure Onboard Communication]], J1939Tp(J1939 Transport Layer)도 든다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] AUTOSAR Classic Platform R25-11은 LdCom(Large Data COM)의 기능을 AUTOSAR COM의 Large Data Path로 합쳤다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025][@autosar-cp-sws-com-2025] [[uds|UDS]] 진단 서비스는 Dcm이 맡는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025] [[diagnostic-event-manager|Dem]]은 통신 서비스가 아니라 [[autosar-layered-architecture#BSW의 층|System Services]]에 든다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 AUTOSAR Classic Platform R25-11은 양산 차량의 여러 ECU에서 데이터를 모으도록 설계한 VDP(Vehicle Data Protocol)를 들였다. VDP는 샘플링과 송신을 체계적으로 떼어 놓고, 여러 샘플링·송신 전략을 지원한다. VdpCmR(VDP Communication Module Remote) 명세도 이 릴리스에 새로 나왔다.[@autosar-cp-tr-releaseoverview-2025] VdpCmR은 VDP의 원격 ECU 쪽을 구현한다. 데이터 클래스 어댑터가 `VdpCmR_AddSample`로 샘플을 넘기면 VdpCmR은 이를 데이터 메시지 버퍼에 담고, [[autosar-time-synchronization#StbM|StbM]]에서 현재 타임스탬프를 받아 붙인다.[@autosar-cp-sws-vdpcmremote-2025]
 

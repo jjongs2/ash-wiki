@@ -35,7 +35,7 @@ Diagnostic Management는 의사 병렬 처리를 위해 Diagnostic Conversation�
 
 ## 이벤트 메모리
 
-이벤트 메모리 하위 클러스터는 Classic Platform의 Dem처럼 DTC(Diagnostic Trouble Code)를 관리한다. 활성 DTC는 차량에서 확실히 검출한 문제를 나타낸다. Diagnostic Management는 DTC와, 그 DTC에 설정한 SnapshotRecord(DTC가 생긴 때의 환경 데이터)나 ExtendedDataRecord(재발 횟수 같은 통계 데이터)를 저장한다.[@autosar-ap-exp-platformdesign-2025]
+이벤트 메모리 하위 클러스터는 Classic Platform의 [[diagnostic-event-manager|Dem]]처럼 DTC(Diagnostic Trouble Code)를 관리한다. 활성 DTC는 차량에서 확실히 검출한 문제를 나타낸다. Diagnostic Management는 DTC와, 그 DTC에 설정한 SnapshotRecord(DTC가 생긴 때의 환경 데이터)나 ExtendedDataRecord(재발 횟수 같은 통계 데이터)를 저장한다.[@autosar-ap-exp-platformdesign-2025]
 
 검출 논리를 **Diagnostic Monitor**라 하고, Diagnostic Monitor는 최근 시험 결과를 Diagnostic Management의 DiagnosticEvent에 보고한다. UDS의 DTC 상태는 DiagnosticEvent 하나 이상에서 끌어낸다. DTC는 PrimaryMemory나 설정한 UserMemory에 둘 수 있다. 카운터 기반과 시간 기반 디바운싱을 지원하고, DTC 상태 바이트가 바뀌는 것 같은 내부 전이를 관심 있는 쪽에 알린다. 설정한 수의 운전 사이클 동안 활성이 아닌 DTC는 메모리에서 사라질 수 있다. enable condition으로는 특별한 조건에서 DTC의 갱신을 제어한다. 예를 들어 저전압 상태에서 네트워크 관련 DTC를 모두 막을 수 있다.[@autosar-ap-exp-platformdesign-2025]
 

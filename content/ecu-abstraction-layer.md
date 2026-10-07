@@ -11,7 +11,7 @@ verified: 2026-09-30
 
 ## 그룹
 
-ECU Abstraction Layer는 Onboard Device Abstraction, [[autosar-memory-stack|Memory Hardware Abstraction]], Crypto Hardware Abstraction, Wireless Communication Hardware Abstraction, [[autosar-communication-stack|Communication Hardware Abstraction]], [[io-hardware-abstraction|I/O Hardware Abstraction]] 그룹으로 나뉜다. Wireless Communication Hardware Abstraction을 뺀 다섯 그룹이 하는 일은 아래와 같다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+ECU Abstraction Layer는 Onboard Device Abstraction, [[autosar-memory-stack|Memory Hardware Abstraction]], [[autosar-crypto-stack#Crypto Interface와 Crypto Driver|Crypto Hardware Abstraction]], Wireless Communication Hardware Abstraction, [[autosar-communication-stack|Communication Hardware Abstraction]], [[io-hardware-abstraction|I/O Hardware Abstraction]] 그룹으로 나뉜다. Wireless Communication Hardware Abstraction을 뺀 다섯 그룹이 하는 일은 아래와 같다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 | 그룹                               | 하는 일                                                                                                                                         |
 | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -23,7 +23,7 @@ ECU Abstraction Layer는 Onboard Device Abstraction, [[autosar-memory-stack|Memo
 
 마이크로컨트롤러 안에 있는 암호 장치의 예로 SHE(Secure Hardware Extension)와 [[hardware-security-module|HSM]]이 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-중국 V2X(Vehicle-to-X) 표준을 따르는 통신 스택의 예에서는, SPI(Serial Peripheral Interface)로 이은 외부 cellular V2X 컨트롤러의 드라이버가 Wireless Communication Hardware Abstraction에 놓이고, 마이크로컨트롤러에 든 cellular V2X 컨트롤러의 드라이버는 MCAL의 Wireless Communication Drivers에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+중국 V2X(Vehicle-to-X) 표준을 따르는 통신 스택의 예에서는, SPI(Serial Peripheral Interface)로 이은 외부 cellular V2X 컨트롤러의 드라이버가 Wireless Communication Hardware Abstraction에 놓이고, 마이크로컨트롤러에 든 cellular V2X 컨트롤러의 드라이버는 MCAL의 Wireless Communication Drivers에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] AUTOSAR R25-11은 중국 V2X 명세를 포함한 V2X 명세들과 Cellular V2X Driver 명세를 obsolete로 돌렸다.[@autosar-cp-tr-releaseoverview-2025]
 
 ## External driver
 
