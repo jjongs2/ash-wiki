@@ -235,10 +235,11 @@ const CSS = `.front-regions {
 //   테두리의 속 빈 마디를 날짜 글자 줄의 가운데에 둔다. 세로선은 첫 마디에서 목록 끝까지 내려가, 더 오래된
 //   기록이 이어짐을 보인다. 마디와 세로선의 자리는 날짜 줄 높이(--day-line)와 들여쓰기(--rail)로 계산한다.
 // - 항목이 서로 갈리도록 항목 사이는 띄우고, 꺾인 제목의 줄 사이는 좁힌다. 날짜 사이는 항목 사이보다 더 띄운다.
-// - 날짜와 쪽수는 보조 글자색이고, 대비 하한은 docs/palette.md의 "보조 글자"다. 날짜는 굵게, 쪽수는 줄
-//   오른쪽에 두고, 제목이 꺾여도 쪽수는 첫 줄의 기준선에 선다.
-// - 제목 뒤의 외부 링크 아이콘은 본문 외부 링크(crawl-links의 external-icon)와 같은 꼴이고, 스타일도
-//   quartz/styles/base.scss의 것을 그대로 받는다.
+// - 묶음 한 줄은 GitHub의 PR 목록을 본뜬다. 앞에 pull request 아이콘, 제목 링크, 그 뒤에 PR 번호를 둔다.
+//   제목은 본문 글자색으로 굵게 쓰고, 마우스를 올리면 링크색에 밑줄이 생긴다(GitHub의 Link--primary).
+//   아이콘은 제목 첫 줄의 가운데에 선다.
+// - 날짜, PR 번호, 쪽수는 보조 글자색이고, 대비 하한은 docs/palette.md의 "보조 글자"다. 날짜는 굵게 쓴다.
+//   쪽수는 줄 오른쪽에 두고, 제목이 꺾여도 PR 번호와 같은 마지막 줄의 기준선에 선다.
 const COLUMNS_CSS = `.front-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -308,19 +309,43 @@ li.front-day > time {
 li.front-day li {
   display: flex;
   align-items: baseline;
-  gap: 0.75rem;
+  gap: 0.5rem;
   padding: 0.4rem 0;
   line-height: 1.35;
+}
+.front-change-icon {
+  flex: none;
+  align-self: flex-start;
+  width: 0.85em;
+  height: 0.85em;
+  margin-top: 0.25em;
+  fill: var(--gray);
 }
 .front-change-title {
   flex: 1;
   min-width: 0;
+  margin-right: 0.25rem;
 }
+.front-recent a.front-change-link {
+  color: var(--dark);
+}
+.front-recent a.front-change-link:hover {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+.front-change-number,
 .front-change-count {
-  flex: none;
   color: var(--gray);
   font-size: 0.85em;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.front-change-number {
+  margin-left: 0.35em;
+}
+.front-change-count {
+  flex: none;
+  align-self: last baseline;
 }
 `
 
@@ -421,41 +446,40 @@ function readCommits(directory: string): FrontPageCommit[] {
 // 묶음 제목이 링크하는 PR의 주소. 저장소가 비공개인 동안 독자에게는 404다(#366의 소유자 결정).
 const PULL_URL = "https://github.com/jjongs2/ash-wiki/pull/"
 
-// 본문 외부 링크에 crawl-links가 붙이는 아이콘(external-icon)과 같은 마크업이다.
-const externalIcon = (): Element =>
-  el(
-    "svg",
-    {
-      ariaHidden: "true",
-      className: ["external-icon"],
-      style: "max-width:0.8em;max-height:0.8em",
-      viewBox: "0 0 512 512",
-    },
-    [
-      el("path", {
-        d: "M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z",
-      }),
-    ],
-  )
+// GitHub의 pull request 아이콘. Primer Octicons 19.40.0(MIT)의 git-pull-request-16 경로를 그대로 옮겼다.
+const pullRequestIcon = (): Element =>
+  el("svg", { ariaHidden: "true", className: ["front-change-icon"], viewBox: "0 0 16 16" }, [
+    el("path", {
+      d: "M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z",
+    }),
+  ])
 
 // 본문 아래 2단. 왼쪽은 이번 주 소식의 자리이고 오른쪽이 최근 변경이다. 최근 변경은 날짜마다 타임라인의
-// 마디 하나를 두고, 그 아래 줄마다 묶음 제목과 쪽수를 둔다. 제목은 PR로 링크하고, 본문의 외부 링크처럼
-// 새 탭에서 열며 외부 링크 아이콘을 붙인다. PR 번호가 없는 묶음은 제목을 글자로만 둔다.
+// 마디 하나를 두고, 그 아래 줄마다 PR 아이콘, 묶음 제목, PR 번호, 쪽수를 둔다. 제목은 PR로 링크하고 새 탭에서
+// 연다. PR 번호가 없는 묶음은 아이콘 자리를 비우고 제목을 글자로만 둔다.
 function frontColumns(days: RecentDay[], locale: string): Element {
   const row = (change: RecentChange) =>
     el("li", {}, [
-      change.pr === null
-        ? el("span", { className: ["front-change-title"] }, [text(change.title)])
-        : el(
-            "a",
-            {
-              href: `${PULL_URL}${change.pr}`,
-              className: ["external", "external-link", "front-change-title"],
-              target: "_blank",
-              rel: ["noopener", "noreferrer"],
-            },
-            [text(change.title), externalIcon()],
-          ),
+      change.pr === null ? el("span", { className: ["front-change-icon"] }) : pullRequestIcon(),
+      el(
+        "span",
+        { className: ["front-change-title"] },
+        change.pr === null
+          ? [text(change.title)]
+          : [
+              el(
+                "a",
+                {
+                  href: `${PULL_URL}${change.pr}`,
+                  className: ["external", "front-change-link"],
+                  target: "_blank",
+                  rel: ["noopener", "noreferrer"],
+                },
+                [text(change.title)],
+              ),
+              el("span", { className: ["front-change-number"] }, [text(`#${change.pr}`)]),
+            ],
+      ),
       el("span", { className: ["front-change-count"] }, [text(`${change.pages.length}쪽`)]),
     ])
   const timeline = days.map(({ changes }) =>
