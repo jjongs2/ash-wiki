@@ -63,6 +63,8 @@ export function frontPage(input: { pages: FrontPagePage[] }): {
 //   대비 하한은 docs/palette.md의 "주제 칩의 페이지 수"다.
 // - 두 칸은 기준선으로 맞춘다. 구역 이름의 글자와 첫 줄 칩의 글자가 같은 기준선에 서고, 칩이 여러 줄로
 //   꺾여도 구역 이름은 첫 줄에 맞는다. 점은 vertical-align으로 한글 글자 높이의 가운데에 둔다.
+// - 마지막 행에도 아래 선을 긋는다. 업스트림은 마지막 행의 선을 지우는데, 대문에서는 표 바로 아래가 페이지
+//   꼬리의 구분선(hr, 위 여백 2rem)이라, 선이 없으면 마지막 행이 그 구분선까지 늘어나 보인다.
 // - 구역 이름은 한 줄로 두고 구역 칸은 그 폭만 차지한다. 링크에는 다른 규칙이 white-space를 normal로 걸어,
 //   칸이 아니라 링크에 nowrap을 건다. 칩은 칸 안에서 줄을 바꿔, 폰 폭에서도 표가 가로로 넘치지 않는다.
 const CSS = `.front-regions {
@@ -75,6 +77,9 @@ const CSS = `.front-regions {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+.front-regions tbody tr:last-child {
+  border-bottom: 1px solid var(--lightgray);
 }
 .front-regions td {
   vertical-align: baseline;
