@@ -13,6 +13,7 @@ configuration:
     - templates
     - .obsidian
   # 색과 폰트 값의 정본은 이 theme다. 고른 근거와 대비 실측은 docs/palette.md에 있다.
+  # region-<구역>과 region-other는 구역 색이다(docs/palette.md 구역 색 절).
   # Pretendard는 Google Fonts에 없어 fontOrigin을 local로 두고, 폰트 CSS는 Head가 건다(quartz/util/localFonts.ts).
   # OG 이미지 생성기가 쓰는 폰트는 prebuild가 캐시에 둔다(tools/og-fonts.ts).
   theme:
@@ -33,6 +34,11 @@ configuration:
         tertiary: "#1b428f"
         highlight: rgba(43, 88, 177, 0.08)
         textHighlight: rgba(250, 204, 21, 0.35)
+        region-network: "#007766"
+        region-platform: "#9f4a8f"
+        region-security: "#bc3f0d"
+        region-process: "#935e00"
+        region-other: "#626a73"
       darkMode:
         light: "#0f1318"
         lightgray: "#25292f"
@@ -43,6 +49,11 @@ configuration:
         tertiary: "#abcbff"
         highlight: rgba(138, 177, 249, 0.1)
         textHighlight: rgba(202, 160, 0, 0.28)
+        region-network: "#30ab94"
+        region-platform: "#c384bd"
+        region-security: "#ef754f"
+        region-process: "#c39031"
+        region-other: "#9299a1"
 plugins:
   - source: "@quartz-community/created-modified-date"
     enabled: true
@@ -166,6 +177,9 @@ plugins:
   - source: "@quartz-community/canvas-page"
     enabled: false
   - source: "@quartz-community/content-page"
+    enabled: true
+  # 대문만 그리는 페이지 타입이다. 구역 표에 구역 색과 주제별 페이지 수를 붙인다(plugins/front-page).
+  - source: ./plugins/front-page
     enabled: true
   # 위키는 폴더를 쓰지 않는다. 켜 두면 계층 태그의 표시 이름 파일(content/tags/<구역>/)이
   # 폴더로 잡혀 /tags/<구역>/ 폴더 목록이 생기고, 프리뷰에서 /tags/<구역> 태그 목록을 가린다.

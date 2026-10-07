@@ -53,14 +53,16 @@ interface Swatch {
 interface Measurement {
   pair: string
   floor: number
-  // 모드마다 가장 낮은 대비와 그 쌍. `<색>` 줄은 범주 색 다섯 가운데 가장 낮은 값을 준다.
+  // 모드마다 가장 낮은 대비와 그 쌍. `<색>`과 `<구역>` 줄은 푼 색 가운데 가장 낮은 값을 준다.
   worst: Record<Mode, { ratio: number; swatches: string }>
 }
 
 // 도해 팔레트 표에서 모드마다 값을 읽는 열
 const diagramColumn: Record<Mode, string> = { lightMode: "라이트", darkMode: "다크" }
-// 대비 하한 표에서 범주 색 다섯으로 푸는 자리. 한 줄의 두 칸에 모두 있으면 같은 색끼리 짝짓는다.
+// 대비 하한 표에서 여러 색으로 푸는 자리. 한 줄의 두 칸에 모두 있으면 같은 색끼리 짝짓는다.
+// `<색>`은 도해의 범주 색 다섯, `<구역>`은 theme의 구역 색(region-<구역>과 region-other)이다.
 const category = "<색>"
+const region = "<구역>"
 
 function measure(): Measurement[] {
   const theme = parse(fs.readFileSync(configPath, "utf8")).configuration.theme
@@ -73,6 +75,7 @@ function measure(): Measurement[] {
   // 범주 색은 `<색>-tint` 짝이 있는 이름이다.
   const names = new Set(diagram.map((row) => row["이름"]))
   const categories = [...names].filter((name) => names.has(`${name}-tint`))
+  const regions = Object.keys(colors.lightMode).filter((token) => token.startsWith("region-"))
   // 도해 팔레트의 이름이면 그 모드의 값(hex나 theme 색 토큰), 아니면 theme 색 토큰이다.
   const resolve = (token: string, mode: Mode): Swatch => {
     const value = diagram.find((row) => row["이름"] === token)?.[diagramColumn[mode]] ?? token
@@ -80,10 +83,16 @@ function measure(): Measurement[] {
     if (!color) throw new Error(`${palettePath}: 색 토큰 "${value}"이 없다`)
     return { name: token, color }
   }
-  const pairs = (fg: string, bg: string): [string, string][] =>
-    fg.includes(category) || bg.includes(category)
-      ? categories.map((c) => [fg.replace(category, c), bg.replace(category, c)])
-      : [[fg, bg]]
+  const pairs = (fg: string, bg: string): [string, string][] => {
+    for (const [slot, names] of [
+      [category, categories],
+      [region, regions],
+    ] as const) {
+      if (fg.includes(slot) || bg.includes(slot))
+        return names.map((name) => [fg.replace(slot, name), bg.replace(slot, name)])
+    }
+    return [[fg, bg]]
+  }
   return floors.map((row) => {
     const floor = Number(row["하한"])
     if (!(floor > 0))
