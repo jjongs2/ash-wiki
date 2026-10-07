@@ -35,11 +35,11 @@ SecOC는 I-PDU가 지나는 경로마다 모듈 안에 버퍼를 두고, `SecOC_
 
 ## 암호 서비스와 키
 
-SecOC는 [[autosar-crypto-stack#Crypto Service Manager|Csm]]이 주는 암호 서비스를 쓰고, 키와 카운터 관리를 위해 RTE와 주고받는다.[@autosar-cp-sws-secureonboardcommunication-2025] AUTOSAR R25-11 Layered Software Architecture는 SecOC와 다른 서비스의 연동에서 이 키·카운터 관리를 RTE 위의 Key & Counter Management [[autosar-software-component|SW-C]]에 맡긴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+SecOC는 [[autosar-crypto-stack#Crypto Service Manager|Csm]]이 주는 암호 서비스를 쓰고, 키와 카운터 관리를 위해 RTE와 주고받는다.[@autosar-cp-sws-secureonboardcommunication-2025] SecOC와 다른 서비스의 연동에서 이 키·카운터 관리는 RTE 위의 Key & Counter Management [[autosar-software-component|SW-C]]가 맡는다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## 검증 결과의 보고
 
-AUTOSAR Classic Platform R25-11의 SecOC 명세는 보안 이벤트 보고가 켜져 있으면 SecOC가 보안 이벤트를 [[intrusion-detection-system-manager|IdsM]]에 보고하도록 정한다. 수신 Freshness Value를 얻지 못하거나 Authenticator 검증이 복구할 수 없는 오류로 끝나면 보안 이벤트를 보낸다. `SECOC_E_VERIFICATIONERROR`가 정의돼 있으면 SecOC는 Secured I-PDU 검증이 실패할 때 Dem에 `DEM_EVENT_STATUS_PREFAILED`를, 통과할 때 `DEM_EVENT_STATUS_PREPASSED`를 알린다.[@autosar-cp-sws-secureonboardcommunication-2025]
+보안 이벤트 보고가 켜져 있으면 SecOC는 보안 이벤트를 [[intrusion-detection-system-manager|IdsM]]에 보고한다. 수신 Freshness Value를 얻지 못하거나 Authenticator 검증이 복구할 수 없는 오류로 끝나면 보안 이벤트를 보낸다. `SECOC_E_VERIFICATIONERROR`가 정의돼 있으면 SecOC는 Secured I-PDU 검증이 실패할 때 Dem에 `DEM_EVENT_STATUS_PREFAILED`를, 통과할 때 `DEM_EVENT_STATUS_PREPASSED`를 알린다.[@autosar-cp-sws-secureonboardcommunication-2025]
 
 ## Classic Platform과 Adaptive Platform 사이
 

@@ -53,9 +53,9 @@ KSZ9477S는 레이어 2 관리형 스위치로, SPI(Serial Peripheral Interface)
 
 ![[diagrams/autosar-switch-port-roles.svg]]
 
-AUTOSAR R25-11의 Ethernet Interface 명세는 스위치 포트를 묶은 switch port group을 두고, 위층의 켜기 요청과 끄기 요청을 포트 묶음 단위로 받아 판단하게 한다. 켜기 요청은 끄기 요청보다 늘 앞선다. [[autosar-network-management#Partial networking|Partial network]] 요청에 따라 포트 묶음을 켜고 끌 때는 BswM의 규칙이 포트 묶음을 제어한다. 포트 묶음의 링크 상태는 묶음에 든 모든 포트의 링크 상태를 모아 계산하며, 이를 **링크 상태 누적**이라 한다. 이때 포트의 링크 상태는 [[ieee-802-1ae|MACsec]]으로 보호하는 포트와 보호하지 않는 포트를 나누어 따진다. 묶음 안의 host port나 up link port의 링크 상태가 down이거나, 역할이 없는 포트의 링크 상태가 모두 down이면 묶음의 링크도 down으로 보고, 그렇지 않으면 active로 본다.[@autosar-cp-sws-ethernetinterface-2025]
+Ethernet Interface는 스위치 포트를 묶은 switch port group을 두고, 위층의 켜기 요청과 끄기 요청을 포트 묶음 단위로 받아 판단한다. 켜기 요청은 끄기 요청보다 늘 앞선다. [[autosar-network-management#Partial networking|Partial network]] 요청에 따라 포트 묶음을 켜고 끌 때는 BswM의 규칙이 포트 묶음을 제어한다. 포트 묶음의 링크 상태는 묶음에 든 모든 포트의 링크 상태를 모아 계산하며, 이를 **링크 상태 누적**이라 한다. 이때 포트의 링크 상태는 [[ieee-802-1ae|MACsec]]으로 보호하는 포트와 보호하지 않는 포트를 나누어 따진다. 묶음 안의 host port나 up link port의 링크 상태가 down이거나, 역할이 없는 포트의 링크 상태가 모두 down이면 묶음의 링크도 down으로 보고, 그렇지 않으면 active로 본다.[@autosar-cp-sws-ethernetinterface-2025]
 
-AUTOSAR R25-11의 Bus Mirroring 명세는 이더넷에서 이더넷으로 보내는 미러링을 [[autosar-communication-stack#Bus Mirroring|Bus Mirroring]] 모듈이 아니라 Ethernet Switch Driver의 port mirroring 기능에 맡긴다.[@autosar-cp-sws-busmirroring-2025]
+이더넷에서 이더넷으로 보내는 미러링은 [[autosar-communication-stack#Bus Mirroring|Bus Mirroring]] 모듈이 아니라 Ethernet Switch Driver의 port mirroring 기능이 맡는다.[@autosar-cp-sws-busmirroring-2025]
 
 ## 리피터, 브리지, 라우터와의 차이
 

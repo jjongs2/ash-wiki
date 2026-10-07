@@ -17,15 +17,15 @@ Transformer는 기능에 따라 Serializer, Safety, Security, Custom 네 클래�
 
 버퍼 처리 방식은 in-place와 out-of-place 둘이다. In-place는 입력 버퍼를 출력 버퍼로도 쓰고, out-of-place는 입력 버퍼와 출력 버퍼를 따로 쓰며 입력 버퍼를 바꾸지 않는다. 어느 방식을 쓸지는 System Template의 설정으로 정한다. Transformer가 쓰는 버퍼는 RTE가 최악의 경우에 필요한 출력 크기를 계산해 잡는다. 송신 쪽 첫 transformer는 SW-C 문맥에 있는 원래 데이터를 고칠 수 없고, 수신 쪽 마지막 transformer는 결과를 SW-C의 버퍼에 바로 써야 하므로, 둘은 out-of-place를 쓴다.[@autosar-cp-asws-transformergeneral-2025]
 
-AUTOSAR R25-11 Layered Software Architecture가 드는 예에서는 in-place 버퍼를 쓰지 않는 체인에서 RTE가 [[some-ip|SOME/IP]] Transformer를 먼저, [[autosar-e2e-protection#E2E Library와 E2E Transformer|E2E Transformer]]를 그다음으로 부른다. 두 transformer는 저마다 RTE가 준 다른 버퍼에 출력을 쓰고, RTE는 최종 바이트 배열을 [[autosar-com|AUTOSAR COM]]에 넘긴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+예를 들어 in-place 버퍼를 쓰지 않는 체인에서 RTE는 [[some-ip|SOME/IP]] Transformer를 먼저, [[autosar-e2e-protection#E2E Library와 E2E Transformer|E2E Transformer]]를 그다음으로 부른다. 두 transformer는 저마다 RTE가 준 다른 버퍼에 출력을 쓰고, RTE는 최종 바이트 배열을 [[autosar-com|AUTOSAR COM]]에 넘긴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ![[diagrams/transformer-chain-send-receive.svg]]
 
-AUTOSAR R25-11의 transformer 일반 명세는 transformer가 오류를 반환 코드로 RTE에 돌려주게 하고, RTE는 이를 보고 체인을 이어 실행할지 멈출지 정한다. Soft error면 RTE가 체인을 이어 실행하고, hard error면 다음 transformer에 넘길 의미 있는 데이터가 없으므로 체인을 멈춘다. 반환값 `0x00`은 성공, `0x01`부터 `0x7F`까지는 soft error, `0x80`부터 `0xFF`까지는 hard error다. 유효한 출력을 만들 수 없는 transformer는 hard error를 돌려주고 출력 버퍼를 그대로 둔다.[@autosar-cp-asws-transformergeneral-2025]
+Transformer는 오류를 반환 코드로 RTE에 돌려주고, RTE는 이를 보고 체인을 이어 실행할지 멈출지 정한다. Soft error면 RTE가 체인을 이어 실행하고, hard error면 다음 transformer에 넘길 의미 있는 데이터가 없으므로 체인을 멈춘다. 반환값 `0x00`은 성공, `0x01`부터 `0x7F`까지는 soft error, `0x80`부터 `0xFF`까지는 hard error다. 유효한 출력을 만들 수 없는 transformer는 hard error를 돌려주고 출력 버퍼를 그대로 둔다.[@autosar-cp-asws-transformergeneral-2025]
 
 ## 변환 대상과 제약
 
-이 명세는 변환 대상을 [[autosar-sender-receiver-interface|sender-receiver 인터페이스]] 포트의 데이터 요소, [[autosar-client-server-interface|client-server 인터페이스]] 포트의 operation, 큐를 쓰지 않는 trigger 인터페이스 포트의 외부 trigger 이벤트로 한정한다. 변환은 RTE 안에서 일어나는데 PDU(Protocol Data Unit)는 COM 모듈 안에서 만들어지므로, PDU를 통째로 변환할 수는 없다. 변환한 데이터 요소 여럿을 COM에서 큰 PDU 하나에 모을 수는 있지만, 그 PDU의 데이터 요소는 저마다 따로 변환되고 변환이 헤더를 붙이면 저마다 헤더를 단다. 그래서 하위 요소가 서로 다른 포트나 SW-C의 데이터 요소로 채워지는 데이터 구조는 변환할 수 없다.[@autosar-cp-asws-transformergeneral-2025]
+변환 대상은 [[autosar-sender-receiver-interface|sender-receiver 인터페이스]] 포트의 데이터 요소, [[autosar-client-server-interface|client-server 인터페이스]] 포트의 operation, 큐를 쓰지 않는 trigger 인터페이스 포트의 외부 trigger 이벤트로 한정된다. 변환은 RTE 안에서 일어나는데 PDU(Protocol Data Unit)는 COM 모듈 안에서 만들어지므로, PDU를 통째로 변환할 수는 없다. 변환한 데이터 요소 여럿을 COM에서 큰 PDU 하나에 모을 수는 있지만, 그 PDU의 데이터 요소는 저마다 따로 변환되고 변환이 헤더를 붙이면 저마다 헤더를 단다. 그래서 하위 요소가 서로 다른 포트나 SW-C의 데이터 요소로 채워지는 데이터 구조는 변환할 수 없다.[@autosar-cp-asws-transformergeneral-2025]
 
 Transformer chain의 길이는 이 개념이 고른 해법 때문에 제한되지는 않지만, 메모리를 아끼는 설정과 구현을 위해 최대 255개로 정한다. 지금의 쓰임새에서 체인은 길어야 3개다.[@autosar-cp-asws-transformergeneral-2025]
 
@@ -33,10 +33,10 @@ Transformer chain의 길이는 이 개념이 고른 해법 때문에 제한되�
 
 ## COM Based Transformer
 
-AUTOSAR R25-11의 COM Based Transformer 명세는 **COM Based Transformer**를, 대상 버스가 데이터를 빽빽하게 채운 고정 통신 매트릭스를 쓸 때 transformer chain을 쓸 수 있게 하는 transformer로 둔다. 이 transformer는 구조를 가진 데이터를 선형으로 직렬화하므로 체인의 맨 앞에만 둘 수 있어, 송신 쪽에서는 첫째, 수신 쪽에서는 마지막에 놓인다. 송신 쪽 COM Based Transformer는 SW-C의 데이터를 통신 매트릭스 기술에 따라 uint8 배열로 직렬화하고, RTE는 다른 transformer가 덧붙인 것까지 담긴 이 배열을 `Com_SendSignalGroupArray` 한 번으로 COM에 넘긴다. COM은 배열을 I-PDU(Interaction Layer Protocol Data Unit)의 시그널 그룹 자리에 놓고, 설정에 따라 배열을 살펴 전송 모드를 고른다. 수신 쪽 RTE는 체인을 역순으로 실행하고, COM Based Transformer가 선형 데이터를 원래 구조로 되돌려 SW-C에 넘긴다.[@autosar-cp-sws-combasedtransformer-2025]
+**COM Based Transformer**는 대상 버스가 데이터를 빽빽하게 채운 고정 통신 매트릭스를 쓸 때 transformer chain을 쓸 수 있게 하는 transformer다. 이 transformer는 구조를 가진 데이터를 선형으로 직렬화하므로 체인의 맨 앞에만 둘 수 있어, 송신 쪽에서는 첫째, 수신 쪽에서는 마지막에 놓인다. 송신 쪽 COM Based Transformer는 SW-C의 데이터를 통신 매트릭스 기술에 따라 uint8 배열로 직렬화하고, RTE는 다른 transformer가 덧붙인 것까지 담긴 이 배열을 `Com_SendSignalGroupArray` 한 번으로 COM에 넘긴다. COM은 배열을 I-PDU(Interaction Layer Protocol Data Unit)의 시그널 그룹 자리에 놓고, 설정에 따라 배열을 살펴 전송 모드를 고른다. 수신 쪽 RTE는 체인을 역순으로 실행하고, COM Based Transformer가 선형 데이터를 원래 구조로 되돌려 SW-C에 넘긴다.[@autosar-cp-sws-combasedtransformer-2025]
 
-AUTOSAR R25-11 Layered Software Architecture는 COM Based Transformer의 목표를, 고정 통신 매트릭스로 시그널을 PDU에 최적으로 배치해(예: 불리언 데이터를 1비트로) CAN이나 [[lin|LIN]]처럼 페이로드가 작은 네트워크에서도 transformer chain을 쓰게 하는 것으로 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+COM Based Transformer의 목표는 고정 통신 매트릭스로 시그널을 PDU에 최적으로 배치해(예: 불리언 데이터를 1비트로) CAN이나 [[lin|LIN]]처럼 페이로드가 작은 네트워크에서도 transformer chain을 쓰게 하는 것이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## 그 밖의 transformer
 
-AUTOSAR R25-11의 BSW 일반 명세는 transformer 모듈로 COM Based Transformer(ComXf), E2E Transformer(E2EXf), SOME/IP Transformer(SomeIpXf), [[autosar-communication-stack#Data Distribution Service|DDS]] Transformer(DdsXf)를 두고, 모두 Communication Services 층에 놓는다.[@autosar-cp-sws-bswgeneral-2025] SOME/IP Transformer가 따르는 형식은 SOME/IP의 [[some-ip#직렬화|직렬화]]에서 다룬다.
+BSW 모듈 목록에 transformer로 오른 모듈은 COM Based Transformer(ComXf), E2E Transformer(E2EXf), SOME/IP Transformer(SomeIpXf), [[autosar-communication-stack#Data Distribution Service|DDS]] Transformer(DdsXf)이고, 모두 Communication Services 층에 든다.[@autosar-cp-sws-bswgeneral-2025] SOME/IP Transformer가 따르는 형식은 SOME/IP의 [[some-ip#직렬화|직렬화]]에서 다룬다.

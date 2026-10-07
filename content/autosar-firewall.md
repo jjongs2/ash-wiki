@@ -39,7 +39,7 @@ AUTOSAR Classic Platform R25-11의 Firewall 명세는 방화벽을 IDS의 센서
 
 AUTOSAR Classic Platform R25-11의 Firewall 명세는 Firewall이 [[pdu-router#상위 모듈과 하위 모듈|L-SDU(Link Layer Service Data Unit) Router]](LSduR)에서 네트워크 패킷을 받아 검사한 뒤, 허용한 패킷은 LSduR로 돌려주고 막은 패킷은 버리도록 둔다. Firewall은 전용 CPU를 둔 스마트 [[ethernet-switch|스위치]]에 AUTOSAR 스택을 올려, 호스트 수준이 아니라 네트워크 수준에서 메시지를 거르는 배치도 지원한다. 이때 스위치 코어의 하드웨어 가속 패킷 필터링을 쓰는 인터페이스도 둔다.[@autosar-cp-sws-firewall-2025]
 
-AUTOSAR R25-11의 BSW 일반 명세는 Firewall(Fw)을 Communication Services 층에 둔다.[@autosar-cp-sws-bswgeneral-2025]
+Firewall(Fw)은 Communication Services 층에 든다.[@autosar-cp-sws-bswgeneral-2025]
 
 AUTOSAR Classic Platform R25-11은 Firewall 모듈이 들어오는(ingress) 트래픽만 거르도록 제한한다.[@autosar-cp-sws-firewall-2025][@autosar-cp-tr-releaseoverview-2025]
 

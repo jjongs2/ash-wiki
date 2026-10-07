@@ -23,11 +23,11 @@ verified: 2026-10-07
 
 이 가운데 일부는 RTE, COM, 통신 스택에도 구현돼 있다. 그러나 이 모듈들에 안전 요구가 할당되는 것을 줄이거나 피하려고, E2E 보호는 그 구현을 쓰지 않고 CRC 계산 루틴만 빌려 모든 메커니즘을 스스로 갖춘다.[@autosar-fo-prs-e2eprotocol-2025]
 
-AUTOSAR R25-11 용어집은 sequence counter를 메시지가 빠지거나 되풀이됐는지 확인하는 데 쓰는 카운터로, alive counter를 새 값이 계속 오는지, 곧 송신자가 아직 살아 있는지 확인하는 카운터로 둔다.[@autosar-fo-tr-glossary-2025]
+Sequence counter는 메시지가 빠지거나 되풀이됐는지 확인하는 데 쓰는 카운터이고, alive counter는 새 값이 계속 오는지, 곧 송신자가 아직 살아 있는지 확인하는 카운터다.[@autosar-fo-tr-glossary-2025]
 
 ## E2E 프로파일
 
-AUTOSAR R25-11의 E2E 프로토콜 명세는 보호 메커니즘의 조합, 메시지 형식, 설정 파라미터 묶음을 정한 것을 **E2E 프로파일**(E2E Profile)이라 부른다. 프로파일마다 쓰는 메커니즘은 정해져 있고, 프로토콜 헤더의 배치와 수신 측의 상태 평가는 설정 옵션으로 바꾼다. 일부 프로파일에는 표준 E2E variant가 있다. Variant는 한 프로파일에 쓸 설정 옵션의 묶음으로, 예를 들어 Profile 1은 CRC와 카운터의 위치를 설정할 수 있고 variant 1A는 CRC가 0비트에서, 카운터가 8비트에서 시작하게 한다.[@autosar-fo-prs-e2eprotocol-2025]
+보호 메커니즘의 조합, 메시지 형식, 설정 파라미터 묶음을 정한 것을 **E2E 프로파일**(E2E Profile)이라 한다. 프로파일마다 쓰는 메커니즘은 정해져 있고, 프로토콜 헤더의 배치와 수신 측의 상태 평가는 설정 옵션으로 바꾼다. 일부 프로파일에는 표준 E2E variant가 있다. Variant는 한 프로파일에 쓸 설정 옵션의 묶음으로, 예를 들어 Profile 1은 CRC와 카운터의 위치를 설정할 수 있고 variant 1A는 CRC가 0비트에서, 카운터가 8비트에서 시작하게 한다.[@autosar-fo-prs-e2eprotocol-2025]
 
 프로파일은 ECU 안의 통신과 ECU 사이의 통신 모두에 쓸 수 있고, CAN, [[can-fd|CAN FD]], [[flexray|FlexRay]], [[lin|LIN]], [[ethernet|이더넷]] 같은 통신 인프라를 두고 정해졌다. 어느 프로파일을 쓸지는 시스템에 따라 사용자가 고른다.[@autosar-fo-prs-e2eprotocol-2025]
 
@@ -47,7 +47,7 @@ AUTOSAR R25-11의 E2E 프로토콜 명세는 E2E 보호를 Adaptive Platform의 
 
 AUTOSAR Classic Platform R25-11의 E2E Library 명세는 보호 메커니즘의 알고리즘을 E2E Library에 두고, 라이브러리를 부르는 쪽이 올바른 파라미터를 넘길 책임을 지게 한다. E2E Library는 E2E Transformer나 COM E2E callout에서 불린다. 어느 쪽이든 보호는 데이터 요소에 하며, 버스로 나가는 것과 같은 비트 배치로 직렬화된 표현에 한다. E2E Transformer를 쓰면 그 위의 [[autosar-transformer|transformer]](COM Based Transformer나 [[some-ip|SOME/IP]] Transformer)가 직렬화하고, COM callout을 쓰면 RTE와 COM이 직렬화하므로 callout은 I-PDU(Interaction Layer Protocol Data Unit) 안의 직렬화된 시그널 그룹에 바로 작용한다. 데이터 요소와 그에 대응하는 시그널 그룹은 통째로 보호하거나 아예 보호하지 않으며, 일부만 보호할 수는 없다. I-PDU 하나에 데이터 요소가 여럿 실리면 그 가운데 일부만 따로 보호할 수 있다.[@autosar-cp-sws-e2elibrary-2025]
 
-AUTOSAR Classic Platform R25-11의 E2E Transformer 명세는 **E2E Transformer**를 E2E 보호의 설정과 처리를 감싸 표준 transformer 인터페이스로 내놓는 BSW(Basic Software) 모듈로 정의한다. 그래서 부르는 쪽은 E2E의 내부를 몰라도 된다. E2E Transformer는 transformer 분류의 Safety에 들고, 통신 스택을 black channel로 보고 그 위로 I-signal이 바르게 오가게 한다. [[autosar-software-component|SW-C]]가 RTE의 API(Application Programming Interface)인 read, write, send, receive를 부르면 E2E Transformer가 불린다. 받는 SW-C가 E2E Transformer의 반환 코드를 평가하지 않으면 손상된 데이터를 쓸 수 있다.[@autosar-cp-sws-e2etransformer-2025]
+**E2E Transformer**는 E2E 보호의 설정과 처리를 감싸 표준 transformer 인터페이스로 내놓는 BSW(Basic Software) 모듈이다. 그래서 부르는 쪽은 E2E의 내부를 몰라도 된다. E2E Transformer는 transformer 분류의 Safety에 들고, 통신 스택을 black channel로 보고 그 위로 I-signal이 바르게 오가게 한다. [[autosar-software-component|SW-C]]가 RTE의 API(Application Programming Interface)인 read, write, send, receive를 부르면 E2E Transformer가 불린다. 받는 SW-C가 E2E Transformer의 반환 코드를 평가하지 않으면 손상된 데이터를 쓸 수 있다.[@autosar-cp-sws-e2etransformer-2025]
 
 ## Adaptive Platform의 E2E
 

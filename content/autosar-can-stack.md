@@ -36,9 +36,9 @@ CAN 컨트롤러가 [[can-fault-confinement|bus-off]]가 되면, CAN Driver는 �
 
 ## 지원하는 CAN 프로토콜
 
-AUTOSAR R25-11 Layered Software Architecture는 CAN 스택이 CAN 2.0에 더해, 하드웨어가 지원하면 [[can-xl|CAN XL]] 통신도 다루도록 둔다. CAN XL을 지원하는 CAN 스택은 CAN 버스와 CAN XL 버스를 모두 다룰 수 있다. CAN XL 통신을 위해 확장이 필요한 모듈은 CanIf, CanTrcv, CAN Driver뿐이다. CAN XL 경로에서 이 스택은 IP(Internet Protocol) 통신에 참여하도록 [[ieee-802-3|IEEE 802.3]] 이더넷 프레임을 직접 터널링할 수 있으며, 이 경로에서는 Ethernet Interface가 CAN XL Driver 위에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+CAN 스택은 CAN 2.0에 더해, 하드웨어가 지원하면 [[can-xl|CAN XL]] 통신도 다룬다. CAN XL을 지원하는 CAN 스택은 CAN 버스와 CAN XL 버스를 모두 다룰 수 있다. CAN XL 통신을 위해 확장이 필요한 모듈은 CanIf, CanTrcv, CAN Driver뿐이다. CAN XL 경로에서 이 스택은 IP(Internet Protocol) 통신에 참여하도록 [[ieee-802-3|IEEE 802.3]] 이더넷 프레임을 직접 터널링할 수 있으며, 이 경로에서는 Ethernet Interface가 CAN XL Driver 위에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-AUTOSAR R25-11의 CAN XL Driver 명세는 CAN XL Driver를 CAN Driver 모듈의 확장으로 두고, 위층으로 CanIf와 Ethernet Interface 두 모듈을 둔다. CAN XL Driver는 하드웨어에서 독립적인 방식으로 송신을 시작하는 서비스를 주고, 사건은 CanIf와 Ethernet Interface의 콜백으로 알린다. 이 스택이 직접 지원하는 CAN XL SDU type은 내용 기반 CAN XL 프레임(`01h`), 터널링한 CAN 2.0·CAN FD 프레임(`03h`), 매핑해 터널링한 IEEE 802.3 이더넷 프레임(`05h`) 셋이다. 노드 주소 지정(`02h`)이나 매핑하지 않은 이더넷 프레임 터널링(`04h`) 같은 다른 type은 CDD(Complex Driver)로만 쓸 수 있다. 상태 관리는 버스마다 따로 해, CAN은 CanSM이, CAN XL로 터널링하는 이더넷은 Ethernet State Manager가 맡는다.[@autosar-cp-sws-canxldriver-2025] AUTOSAR R25-11의 CAN XL Transceiver Driver 명세도 CAN XL Transceiver Driver를 CAN Transceiver Driver의 확장으로 둔다.[@autosar-cp-sws-canxltransceiverdriver-2025]
+CAN XL Driver는 CAN Driver 모듈의 확장이고, 위층으로 CanIf와 Ethernet Interface 두 모듈을 둔다. CAN XL Driver는 하드웨어에서 독립적인 방식으로 송신을 시작하는 서비스를 주고, 사건은 CanIf와 Ethernet Interface의 콜백으로 알린다. 이 스택이 직접 지원하는 CAN XL SDU type은 내용 기반 CAN XL 프레임(`01h`), 터널링한 CAN 2.0·CAN FD 프레임(`03h`), 매핑해 터널링한 IEEE 802.3 이더넷 프레임(`05h`) 셋이다. 노드 주소 지정(`02h`)이나 매핑하지 않은 이더넷 프레임 터널링(`04h`) 같은 다른 type은 CDD(Complex Driver)로만 쓸 수 있다. 상태 관리는 버스마다 따로 해, CAN은 CanSM이, CAN XL로 터널링하는 이더넷은 Ethernet State Manager가 맡는다.[@autosar-cp-sws-canxldriver-2025] CAN XL Transceiver Driver도 CAN Transceiver Driver의 확장이다.[@autosar-cp-sws-canxltransceiverdriver-2025]
 
 ![[diagrams/can-xl-driver-upper-modules.svg]]
 
