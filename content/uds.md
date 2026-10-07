@@ -23,7 +23,7 @@ ISO 14229는 현재 1부부터 8부까지 있다.[@iso-14229-1-obp-2026] 그 가
 | ISO 14229-6 | K-Line 위의 UDS(UDSonK-Line)[@iso-14229-6-obp-2013]           |
 | ISO 14229-7 | [[lin\|LIN]] 위의 UDS(UDSonLIN)[@iso-14229-7-obp-2022]        |
 
-ISO 14229-2:2021은 ISO 14229-1과, DoCAN(Diagnostic communication over Controller Area Network)이나 [[doip|DoIP]] 같은 전송 프로토콜 사이의 독립성을 준다.[@iso-14229-2-obp-2021]
+ISO 14229-2:2021은 ISO 14229-1과, DoCAN(Diagnostic communication over Controller Area Network)이나 [[doip|DoIP]] 같은 전송 프로토콜 사이의 독립성을 준다.[@iso-14229-2-obp-2021] ISO 14229-5:2022는 ISO 14229-1과 ISO 14229-2를 참조해, IP 위의 진단 통신에 쓸 진단 서비스의 구현 요구사항을 정한다.[@iso-14229-5-obp-2022]
 
 WWH-OBD(World-Wide Harmonized On-Board Diagnostics)를 정하는 ISO 27145 시리즈는 ISO 14229-1의 UDS를 WWH-OBD 시스템에 적용하려고 만들어졌다.[@iso-27145-3-obp-2012][@iso-27145-1-obp-2012]
 
