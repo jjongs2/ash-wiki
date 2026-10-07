@@ -11,7 +11,7 @@ OSEK은 1993년 5월 독일 자동차 업계의 공동 프로젝트로 시작됐
 
 ## 명세
 
-OSEK/VDX 명세는 운영체제(OSEK OS, OSEKtime OS), 통신인 COM(Communication)과 FTCom(Fault-Tolerant Communication), 네트워크 관리인 NM(Network Management), 시스템 기술 언어인 [[osek-implementation-language|OIL]], 디버깅·감시 도구용 인터페이스인 ORTI(OSEK/VDX Run Time Interface)를 다룬다. Binding 명세는 인터페이스가 서로 맞는 것을 보장하는 명세 판의 묶음을 표로 정하고, 공통 요구사항과 OSEK 공통 용어집을 담는다.[@osek-binding-1-4-2-2004]
+OSEK/VDX 명세는 운영체제(OSEK OS, [[osektime-os|OSEKtime OS]]), 통신인 COM(Communication)과 FTCom(Fault-Tolerant Communication), 네트워크 관리인 NM(Network Management), 시스템 기술 언어인 [[osek-implementation-language|OIL]], 디버깅·감시 도구용 인터페이스인 ORTI(OSEK/VDX Run Time Interface)를 다룬다. Binding 명세는 인터페이스가 서로 맞는 것을 보장하는 명세 판의 묶음을 표로 정하고, 공통 요구사항과 OSEK 공통 용어집을 담는다.[@osek-binding-1-4-2-2004]
 
 이 가운데 Binding, OS, COM, NM, OIL 명세는 ISO 17356의 2부부터 6부까지가 됐다.[@osek-vdx-iso-standardisation-2002]
 
@@ -21,7 +21,23 @@ OSEK/VDX 명세는 운영체제(OSEK OS, OSEKtime OS), 통신인 COM(Communicati
 | OS      | 단일 프로세서용 실시간 멀티태스킹 운영체제의 개념과 API(Application Programming Interface) | [[iso-17356-3\|ISO 17356-3]][@osek-os-2-2-3-2005][@iso-17356-3-2005] |
 | COM     | ECU 안과 ECU 사이의 메시지 전달 인터페이스                                                 | ISO 17356-4[@osek-binding-1-4-2-2004][@iso-17356-4-2005]             |
 | NM      | 네트워크의 구성 파악과 노드 감시                                                           | ISO 17356-5[@osek-binding-1-4-2-2004][@iso-17356-5-2006]             |
-| OIL     | CPU 하나에 올라가는 애플리케이션의 구성을 기술하는 언어                                    | ISO 17356-6[@osek-oil-2-5-2004][@iso-17356-6-2006]                   |
+| OIL     | CPU 하나에 올라가는 애플리케이션의 구성을 기술하는 언어                                    | [[iso-17356-6\|ISO 17356-6]][@osek-oil-2-5-2004][@iso-17356-6-2006]  |
+
+Binding 1.4.2 명세는 ORTI를 디버거와 감시 도구가 타깃 메모리의 OSEK 객체에 접근하게 하는 인터페이스로 두며, ORTI는 커널 객체를 기술하는 언어인 KOIL(Kernel Object Interface Language)과 OSEK 고유의 객체·속성 기술로 이루어진다.[@osek-binding-1-4-2-2004]
+
+서로 인터페이스가 맞물린다고 보장하는 명세 판의 묶음은 SB0부터 SB6까지다. 가장 새로운 SB6은 OS 2.2·2.2.1·2.2.2, COM 3.0·3.0.1, NM 2.5.1·2.5.2·2.5.3, OIL 2.5, OSEKtime OS·FTCom 1.0으로 이루어진다. 인증 계획의 묶음은 CB0부터 CB6까지 두어 적합성 방법론과 OS, COM(내부 통신), NM 시험 계획의 판을 묶으며, CB6은 모두 4.5판이다.[@osek-binding-1-4-2-2004]
+
+StatusType 반환 코드는 값이 명세끼리 겹치지 않도록 OSEK/VDX의 부분마다 값의 범위가 배정돼 있다. 각 부분의 범위는 값 32개이며, 앞쪽 16개까지는 표준 반환값으로, 뒤쪽 16개는 구현 고유의 추가 오류를 알리는 데 쓸 수 있다.[@osek-binding-1-4-2-2004]
+
+| 값       | 쓰는 곳                    |
+| -------- | -------------------------- |
+| 0        | E_OK                       |
+| 1\~31    | OSEK OS의 오류 코드        |
+| 32\~63   | OSEK COM의 오류 코드       |
+| 64\~95   | OSEK NM의 오류 코드        |
+| 96\~127  | OSEKtime OS의 오류 코드    |
+| 128\~159 | OSEKtime FTCom의 오류 코드 |
+| 160\~255 | 예약                       |
 
 OSEK OS의 시스템 객체는 사용자가 모두 정적으로 정해 OIL로 기술한다.[@osek-os-2-2-3-2005]
 
