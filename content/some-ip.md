@@ -70,4 +70,4 @@ REQUEST, REQUEST_NO_RETURN, NOTIFICATION 메시지의 Return Code는 `0x00`이�
 
 구조체는 멤버를 깊이 우선 순회 순서로 차례대로 직렬화한다. 가변 길이 문자열과 가변 길이 배열은 앞에 길이 필드를 둔다. 열거형은 부호 없는 정수로 보내고, 비트 필드는 uint8\~uint64로 보내며, 유니언(variant)도 쓸 수 있다.[@autosar-fo-prs-someipprotocol-2025]
 
-Classic Platform에서는 SOME/IP Transformer가 데이터를 SOME/IP 형식으로 직렬화하고, 프로토콜의 나머지 일부는 SoAd(Socket Adaptor)와 Service Discovery 모듈이 맡는다.[@autosar-cp-sws-someiptransformer-2025] SoAd는 PDU(Protocol Data Unit)를 쓰는 통신 서비스 모듈과 소켓 기반 [[internet-protocol-suite|TCP/IP]] 스택을 잇고, SOME/IP 메시지는 SoAd를 거쳐 TCP/IP로 오간다.[@autosar-cp-sws-socketadaptor-2025]
+Classic Platform에서는 [[autosar-transformer|SOME/IP Transformer]]가 데이터를 SOME/IP 형식으로 직렬화하고, 프로토콜의 나머지 일부는 SoAd(Socket Adaptor)와 Service Discovery 모듈이 맡는다.[@autosar-cp-sws-someiptransformer-2025] SoAd는 PDU(Protocol Data Unit)를 쓰는 통신 서비스 모듈과 소켓 기반 [[internet-protocol-suite|TCP/IP]] 스택을 잇고, SOME/IP 메시지는 SoAd를 거쳐 TCP/IP로 오간다.[@autosar-cp-sws-socketadaptor-2025]

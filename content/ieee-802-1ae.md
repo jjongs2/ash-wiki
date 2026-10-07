@@ -50,3 +50,11 @@ OPEN Alliance의 TC17은 IEEE 802.1AE의 MACsec과 IEEE 802.1X의 MKA를 차량�
 - 2017년: 개정 802.1AEcg-2017이 provider 네트워크의 서비스 선택을 유지하면서 투명한 보안 연결을 주는 EDE(Ethernet Data Encryption device)를 정했다. 우선순위가 다른 프레임의 순서가 바뀔 수 있는 경우(프레임 선점 등)에 엄격한 재전송 보호를 위해 송신 SC를 여럿 쓰는 방식도 정했다.
 - 2018년: 2판. 첫판과 그 개정들을 합쳐 대체했다. 이 판 뒤로 정오표 802.1AE-2018/Cor 1-2020과 MAC 프라이버시 보호를 정한 개정 802.1AEdk-2023이 나왔다.[@ieee-802-1ae-2018][@ieee-802-1ae-project-2026]
 - 2025년: 2018년판과 그 정오표, 개정을 합치는 유지보수 개정 프로젝트 P802.1AE-2018-Rev의 PAR(Project Authorization Request)이 2025년 9월에 승인되어 진행 중이다.[@ieee-p802-1ae-rev-2025]
+
+## AUTOSAR의 MACsec 지원
+
+[[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 MKA 명세는 MKA 모듈이 MACsec 피어를 찾고 링크를 보호할 보안 키를 협상하도록 정한다. MKA 모듈은 MKPDU(MACsec Key Agreement Protocol Data Unit)를 만들고 처리하며, 같은 CA에 속한 상대를 확인하고 인증한다. 세운 SC와 SA에 맞는 파라미터와 암호 데이터를 소프트웨어나 하드웨어로 된 SecY에 설정해 주고, SC와 SA 정보를 최신으로 유지하며, 통신을 끊지 않고 SAK를 바꿀 수 있게 키를 새로 한다. MKA 모듈은 키를 유도하고 쓰려고 [[autosar-crypto-stack#Crypto Service Manager|Csm]]과 이어지며, CAK에서 키를 유도하는 KDF(Key Derivation Function)와, MKPDU의 ICV를 만들고 검증하는 128비트 AES-[[message-authentication-code#블록 암호 기반: CMAC|CMAC]]을 암호 BSW(Basic Software)에서 받는다. MKPDU는 PDU(Protocol Data Unit)로 오가며, [[pdu-router#상위 모듈과 하위 모듈|L-SDU(Link Layer Service Data Unit) Router]](LSduR)를 거쳐 EthIf(Ethernet Interface)와 주고받는다. 이 명세는 EAP 기반 인증을 다루지 않고, 미리 나눠 둔 CAK로 하는 인증만 다룬다.[@autosar-cp-sws-macseckeyagreement-2025]
+
+AUTOSAR Classic Platform R25-11은 MACsec 지원을 고치는 개념을 들여, MKA 모듈의 송수신을 LSduR로 하게 하고 이더넷 스위치 포트와 이더넷 컨트롤러에서도 MACsec을 지원하게 했다.[@autosar-cp-tr-releaseoverview-2025]
+
+AUTOSAR R25-11의 Adaptive Platform 설계 설명서는 Communication Management 기능 클러스터의 보안 수단에 [[secure-onboard-communication|SecOC]], [[transport-layer-security|TLS]]와 DTLS(Datagram Transport Layer Security), IPsec(Internet Protocol Security)과 함께 MACsec을 넣는다.[@autosar-ap-exp-platformdesign-2025]

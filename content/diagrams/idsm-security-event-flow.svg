@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="30 12.5 760 264" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 센서 -->
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="95" y="30">센서</text>
+    <text x="200" y="30">보안 이벤트</text>
+    <text x="590" y="30">QSEv</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="40" y="40" width="110" height="36" rx="2" />
+    <rect x="40" y="96" width="110" height="36" rx="2" />
+    <rect x="40" y="152" width="110" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="95" y="63">BSW 모듈</text>
+    <text x="95" y="119">CDD</text>
+    <text x="95" y="175">SW-C</text>
+  </g>
+
+  <!-- IdsM -->
+  <rect x="250" y="40" width="270" height="148" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="385" y="66" text-anchor="middle" fill="var(--text, #727981)">IdsM (Classic Platform)</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="270" y="96" width="60" height="36" rx="2" />
+    <rect x="355" y="96" width="60" height="36" rx="2" />
+    <rect x="440" y="96" width="60" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="300" y="119">필터</text>
+    <text x="385" y="119">필터</text>
+    <text x="470" y="119">필터</text>
+  </g>
+  <text x="385" y="164" text-anchor="middle" font-size="12" fill="var(--text, #727981)">filter chain</text>
+
+  <!-- 저장과 sink -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="620" y="32" width="160" height="52" rx="2" />
+    <rect x="620" y="96" width="160" height="36" rx="2" />
+    <rect x="620" y="152" width="160" height="36" rx="2" />
+    <rect x="620" y="232" width="160" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="700" y="54">Sem</text>
+    <text x="700" y="119">Dem</text>
+    <text x="700" y="175">IdsR</text>
+    <text x="700" y="255">SOC (백엔드)</text>
+  </g>
+  <text x="700" y="73" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Dem의 사용자 정의 메모리</text>
+
+  <!-- 흐름 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M152 58 H200 V114" />
+    <path d="M152 170 H200 V114" />
+    <line x1="152" y1="114" x2="268" y2="114" marker-end="url(#arrow)" />
+    <line x1="332" y1="114" x2="353" y2="114" marker-end="url(#arrow)" />
+    <line x1="417" y1="114" x2="438" y2="114" marker-end="url(#arrow)" />
+    <path d="M502 114 H560" />
+    <path d="M560 58 V170" />
+    <line x1="560" y1="58" x2="618" y2="58" marker-end="url(#arrow)" />
+    <line x1="560" y1="114" x2="618" y2="114" marker-end="url(#arrow)" />
+    <line x1="560" y1="170" x2="618" y2="170" marker-end="url(#arrow)" />
+    <line x1="700" y1="190" x2="700" y2="230" marker-end="url(#arrow)" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="589" y="50">저장</text>
+    <text x="589" y="106">전달</text>
+    <text x="589" y="162">전달</text>
+  </g>
+</svg>

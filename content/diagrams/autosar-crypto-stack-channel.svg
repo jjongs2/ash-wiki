@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="120 10 520 368" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--blue, #336fb8)" />
+    </marker>
+  </defs>
+
+  <!-- Csm을 쓰는 모듈 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="160" y="20" width="120" height="36" rx="2" />
+    <rect x="300" y="20" width="120" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="220" y="43">SecOC</text>
+    <text x="360" y="43">MKA</text>
+  </g>
+
+  <!-- Crypto Services -->
+  <rect x="140" y="100" width="330" height="50" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="340" y="108" width="110" height="34" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="510" y="100" width="120" height="50" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="230" y="121">Csm</text>
+    <text x="395" y="130">job 큐</text>
+    <text x="570" y="121">KeyM</text>
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="230" y="139">Crypto Services 층</text>
+    <text x="570" y="139">Crypto Services 층</text>
+  </g>
+
+  <!-- CryIf -->
+  <rect x="140" y="194" width="490" height="50" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="250" y="215" text-anchor="middle" fill="var(--text, #727981)">CryIf</text>
+  <text x="250" y="233" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Crypto Hardware Abstraction 층</text>
+
+  <!-- Crypto Driver와 소프트웨어 기반 CDD -->
+  <rect x="130" y="290" width="356" height="58" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="308" y="366" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Crypto Driver (Crypto Drivers 층)</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="142" y="302" width="160" height="36" rx="2" />
+    <rect x="314" y="302" width="160" height="36" rx="2" />
+    <rect x="510" y="302" width="120" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="222" y="325">Crypto Driver Object</text>
+    <text x="394" y="325">Crypto Driver Object</text>
+  </g>
+  <text x="570" y="325" text-anchor="middle" font-size="12" fill="var(--text, #727981)">소프트웨어 기반 CDD</text>
+
+  <!-- 연결 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="220" y1="58" x2="220" y2="98" marker-end="url(#arrow)" />
+    <line x1="360" y1="58" x2="360" y2="98" marker-end="url(#arrow)" />
+    <line x1="508" y1="125" x2="472" y2="125" marker-end="url(#arrow)" />
+    <line x1="222" y1="246" x2="222" y2="300" marker-end="url(#arrow)" />
+    <line x1="570" y1="246" x2="570" y2="300" marker-end="url(#arrow)" />
+  </g>
+  <text x="490" y="117" text-anchor="middle" font-size="12" fill="var(--text, #727981)">키</text>
+
+  <!-- 채널 -->
+  <g stroke="var(--blue, #336fb8)" stroke-width="1.5">
+    <line x1="394" y1="144" x2="394" y2="192" marker-end="url(#arrow-blue)" />
+    <line x1="394" y1="246" x2="394" y2="300" marker-end="url(#arrow-blue)" />
+  </g>
+  <text x="402" y="174" font-size="12" fill="var(--text, #727981)">채널</text>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="130 10 600 248" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 송신자와 수신자 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="140" y="20" width="250" height="36" rx="2" />
+    <rect x="470" y="20" width="250" height="36" rx="2" />
+    <rect x="140" y="100" width="250" height="52" rx="2" />
+    <rect x="470" y="100" width="250" height="52" rx="2" />
+    <rect x="140" y="196" width="580" height="52" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="265" y="43">송신자</text>
+    <text x="595" y="43">수신자: 검사 결과를 처리</text>
+    <text x="265" y="122">송신 측: protect</text>
+    <text x="595" y="122">수신 측: check</text>
+    <text x="430" y="218">통신 경로</text>
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="265" y="142">CRC·카운터 같은 제어 필드를 덧붙임</text>
+    <text x="595" y="142">제어 필드를 계산해 받은 값·기대값과 견줌</text>
+    <text x="430" y="238">RTE · COM · 네트워크 스택 · 트랜시버 · 통신선</text>
+  </g>
+
+  <!-- 흐름 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="265" y1="58" x2="265" y2="98" marker-end="url(#arrow)" />
+    <line x1="265" y1="154" x2="265" y2="194" marker-end="url(#arrow)" />
+    <line x1="595" y1="194" x2="595" y2="154" marker-end="url(#arrow)" />
+    <line x1="595" y1="98" x2="595" y2="58" marker-end="url(#arrow)" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="257" y="82" text-anchor="end">데이터</text>
+    <text x="257" y="178" text-anchor="end">데이터 + E2E 헤더</text>
+    <text x="603" y="178">데이터 + E2E 헤더</text>
+    <text x="603" y="82">데이터와 검사 결과</text>
+  </g>
+</svg>
