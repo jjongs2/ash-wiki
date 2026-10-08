@@ -18,28 +18,29 @@ disable-model-invocation: true
 
 **보관 폴더**는 `~/documents/ash-wiki-retro/`다. 세션마다 요약본과 분석 보고서를 `<uuid>/`에 두고, 회고가 분석한 세션을 `analyzed.tsv`(세션 uuid, 회고 세션 uuid, 날짜)에 적는다. 회고 세션 자리의 `-`는 목록을 처음 만들 때 분석 없이 넣은 옛 세션이다. Claude Code가 오래된 세션 기록을 지워도 무엇을 분석했고 무엇이 나왔는지 남기기 위해서다.
 
-**대상 세션**은 위키 스킬을 부른 기록 가운데 `analyzed.tsv`에 없고 끝난 것이다. 이 세션은 뺀다. 인자로 세션 uuid를 주면 그 세션만 대상이다. 아래 명령은 스킬을 부른 줄만 잡고, 이 명령을 글자로 담은 다른 기록은 JSON에서 따옴표가 escape되어 걸리지 않는다.
+**대상 세션**은 위키 스킬을 부르고 끝난 세션 가운데 `analyzed.tsv`에 없는 것이다. 이 세션은 뺀다. 인자로 세션 uuid를 주면 그 세션만 대상이다.
+
+- **끝남**: 기록에 핸드오프를 쓴 호출이 있다. 핸드오프는 소유자가 세션을 마무리할 때 부르고, 머지를 확인한 뒤 쓴다.
+- **보강·주제 계획 세션**은 그 세션이 낸 `verify:` 이슈도 닫혀야 한다. 티켓이 인제스트와 재조사에서 어떻게 쓰였는지가 나와야 분석할 수 있기 때문이다. 그 이슈는 세션 동안 만들어진 `verify: <주제>` 이슈 가운데, 주제가 세션 인자(`<command-args>`)의 태그 파일(`content/tags/` 아래 `<인자>.md`)의 `title`과 대소문자 없이 같은 것이다.
+- **핸드오프가 없는 세션**은 대상에 넣지 않고, 목록을 대화에 보여 넣을지 소유자에게 묻는다. 핸드오프를 잊은 세션이 아무도 모르게 빠지지 않게 하기 위해서다.
+
+아래 명령은 스킬을 부른 줄과 핸드오프를 쓴 줄만 잡는다. 이 명령을 글자로 담거나 핸드오프를 읽기만 한 기록은 걸리지 않는다(JSON에서 따옴표가 escape된다).
 
 ```sh
 grep -l -E '"content":"<command-message>(wiki-[a-z]+|reader-testing)</command-message>|"name":"Skill","input":\{"skill":"(wiki-[a-z]+|reader-testing)"' \
-  ~/.claude/projects/*ash-wiki*/*.jsonl
+  ~/.claude/projects/*ash-wiki*/*.jsonl > <scratchpad>/skill.txt
+xargs grep -l -E '"name":"(Write|Edit)","input":\{"file_path":"[^"]*/documents/ash-wiki-handoff-[^"]*\.md"' < <scratchpad>/skill.txt
 cut -f1 ~/documents/ash-wiki-retro/analyzed.tsv
 ```
-
-끝났는지는 세션 종류마다 본다. 끝나지 않은 세션은 다음 회고가 잡는다.
-
-- **PR을 낸 세션**: 그 PR이 머지되거나 닫혔다. 세션의 PR은 기록이 스스로 남긴 세션 URL(`"remote_session_change","url":"<세션 URL>"`)의 `session_…`을 본문에 담은 PR이다(`gh pr list --state all --search '<session_…> in:body'`). 세션 URL이 없으면 기록에서 `gh pr create`가 돌려준 PR URL로 찾는다.
-- **보강·주제 계획 세션**: 그 세션이 낸 `verify:` 이슈가 닫혔다. 티켓이 인제스트와 재조사에서 어떻게 쓰였는지가 나와야 분석할 수 있기 때문이다. 그 이슈는 세션 동안 만들어진 `verify: <주제>` 이슈 가운데 주제가 세션의 인자(`<command-args>`)나 주제 계획 티켓과 맞는 것이다.
-- **그 밖의 세션**: 기록의 마지막 `timestamp`가 오늘이 아니다.
 
 대상 세션마다 아래를 찾는다.
 
 - **서브에이전트 기록**: 세션 기록 옆 `<uuid>/subagents/`
-- **세션 판**: 세션이 실제로 따른 스킬 판의 커밋. `git worktree add`로 만든 worktree에서 돌았으면 그 base(`grep -o -m1 'HEAD is now at [0-9a-f]*' <세션 기록>`의 첫 줄)이고, 아니면 세션을 시작할 때의 main(`git rev-list -1 --before=<기록의 첫 `timestamp`> origin/main`)이다. main에서 돈 세션은 로컬 main이 낡았을 수 있으니, 기록에서 스킬을 부른 줄(`Base directory for this skill:`)의 본문을 그 커밋의 SKILL.md와 견주어, 다르면 `git log origin/main -- <SKILL.md 경로>`에서 본문이 같은 커밋으로 고친다.
-- **티켓과 리뷰 요약**: PR을 낸 세션은 PR 본문의 `Closes #<티켓>`과 PR 코멘트의 리뷰 요약. 보강·주제 계획 세션은 낸 티켓과 `verify:` 이슈
-- **핸드오프**: `~/documents/ash-wiki-handoff-*`에서 티켓 번호로 찾는다. 머리 정보가 가리키는 앞 세션의 핸드오프(예: 티켓을 발행한 보강)도 읽는다. 앞 세션이 남긴 회고 질문에 이번 기록이 답하기 때문이다.
+- **세션 판**: 세션이 실제로 따른 스킬 판의 커밋. `git worktree add`로 만든 worktree에서 돌았으면 그 base(`grep -o -m1 'HEAD is now at [0-9a-f]*' <세션 기록>`의 첫 줄)이고, 그 줄이 없으면(`-q`로 만들었거나 main에서 돎) 세션을 시작할 때의 main(`git rev-list -1 --before=<기록의 첫 `timestamp`> origin/main`)이다. 로컬 main이 낡았을 수 있으니, 기록에서 스킬을 부른 줄(`Base directory for this skill:`)의 본문을 그 커밋의 SKILL.md와 견주어, 다르면 `git log origin/main -- <SKILL.md 경로>`에서 본문이 같은 커밋으로 고친다. 견줄 때 SKILL.md의 frontmatter와 기록 본문 끝의 `ARGUMENTS:` 줄은 뺀다.
+- **티켓과 리뷰 요약**: 세션의 PR은 기록에서 `gh pr create`가 돌려준 PR URL이고, 없으면 기록의 세션 URL(`"remote_session_change","url":"<세션 URL>"`)의 `session_…`을 본문에 담은 PR이다(`gh pr list --state all --search '<session_…> in:body'`). PR마다 본문의 `Closes #<티켓>`과 코멘트의 리뷰 요약을 읽는다. 보강·주제 계획 세션은 낸 티켓과 `verify:` 이슈다.
+- **핸드오프**: 세션이 쓴 핸드오프(위 명령이 잡은 파일). 머리 정보가 가리키는 앞 세션의 핸드오프(예: 티켓을 발행한 보강)도 읽는다. 앞 세션이 남긴 회고 질문에 이번 기록이 답하기 때문이다.
 
-완료: 대상 세션이 정해졌다. 세션마다 세션 판이 정해졌고, 티켓과 리뷰 요약, 핸드오프는 있는 것을 모두 찾았다.
+완료: 대상 세션이 정해졌고, 핸드오프가 없는 세션은 소유자의 답대로 넣거나 뺐다. 세션마다 세션 판이 정해졌고, 티켓과 리뷰 요약, 핸드오프는 있는 것을 모두 찾았다.
 
 ## 2. 요약본
 
@@ -57,10 +58,10 @@ python3 -B .claude/skills/wiki-retro/digest.py <세션 기록>...
 
 세션마다 분석 에이전트 하나를 Agent 도구(`general-purpose`)로 띄운다. 프롬프트는 [analyst.md](analyst.md)를 채워 쓰고, `<세션 판>`은 1단계의 것, `<요약본 폴더>`는 보관 폴더의 `<uuid>/`, `<작업 폴더>`는 scratchpad 아래 에이전트마다 다른 하위 폴더로 채운다. 노트를 연 기록의 에이전트에는 프롬프트의 노트 줄을 넣는다. 반환은 보관 폴더의 `<uuid>/report.md`에 저장한다.
 
-1. 보강 밖 세션의 에이전트를 한 메시지에 모두 띄워 병렬로 돌린다.
-2. 그 반환이 모두 오면 보강 세션마다 에이전트를 띄우고, 그 보강이 낸 티켓을 처리한 세션들의 `report.md` 경로를 준다. 지난 회고가 분석한 세션의 것도 보관 폴더에 있다.
+1. 보강·주제 계획 밖 세션의 에이전트를 한 메시지에 모두 띄워 병렬로 돌린다.
+2. 그 반환이 모두 오면 보강·주제 계획 세션마다 에이전트를 띄우고, 그 세션이 낸 티켓을 처리한 세션들의 `report.md` 경로를 준다. 지난 회고가 분석한 세션의 것도 보관 폴더에 있다.
 
-완료: 대상 세션마다 `report.md`가 있고, 보강 세션은 그 티켓을 처리한 세션들의 보고서를 받은 뒤에 분석했다.
+완료: 대상 세션마다 `report.md`가 있고, 보강·주제 계획 세션은 그 티켓을 처리한 세션들의 보고서를 받은 뒤에 분석했다.
 
 ## 4. 재확인
 

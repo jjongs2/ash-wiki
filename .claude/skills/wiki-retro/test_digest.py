@@ -5,6 +5,7 @@ python3 -B -m unittest discover -s .claude/skills/wiki-retro
 
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -36,12 +37,13 @@ class DigestArchiveTest(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def run_digest(self, *args):
+    def run_digest(self, *args, script=SCRIPT, check=True):
         env = dict(os.environ, ASH_WIKI_NOTES=self.notes)
-        return subprocess.run(
-            [sys.executable, "-B", SCRIPT, "--archive", self.archive, *args],
-            env=env, capture_output=True, text=True, check=True,
-        ).stdout
+        result = subprocess.run(
+            [sys.executable, "-B", script, "--archive", self.archive, *args],
+            env=env, capture_output=True, text=True, check=check,
+        )
+        return result if not check else result.stdout
 
     def session_files(self):
         return sorted(os.listdir(os.path.join(self.archive, UUID)))
@@ -72,14 +74,50 @@ class DigestArchiveTest(unittest.TestCase):
         with open(os.path.join(self.archive, UUID, f"{UUID[:8]}-main.md")) as f:
             self.assertIn("later", f.read())
 
+    def test_redo_keeps_report(self):
+        self.run_digest(self.transcript)
+        report = os.path.join(self.archive, UUID, "report.md")
+        with open(report, "w") as f:
+            f.write("findings\n")
+        with open(self.transcript, "a") as f:
+            f.write(entry("user", "later") + "\n")
+        self.run_digest(self.transcript)
+        self.assertTrue(os.path.exists(report))
+
+    def test_changed_script_redoes_digest(self):
+        script = os.path.join(self.tmp.name, "digest.py")
+        shutil.copy(SCRIPT, script)
+        self.run_digest(self.transcript, script=script)
+        main = os.path.join(self.archive, UUID, f"{UUID[:8]}-main.md")
+        with open(main, "a") as f:
+            f.write("marker\n")
+        with open(script, "a") as f:
+            f.write("\n# changed\n")
+        self.run_digest(self.transcript, script=script)
+        with open(main) as f:
+            self.assertNotIn("marker", f.read())
+
+    def test_rejects_transcript_not_named_by_uuid(self):
+        other = os.path.join(self.tmp.name, "notes.jsonl")
+        shutil.copy(self.transcript, other)
+        result = self.run_digest(other, check=False)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(os.path.exists(os.path.join(self.archive, "notes")))
+
     def test_mark_appends_each_uuid_once(self):
-        self.run_digest("--mark", "retro-uuid", UUID, "other-uuid")
+        other = "66666666-7777-8888-9999-000000000000"
+        self.run_digest("--mark", "retro-uuid", UUID, other)
         self.run_digest("--mark", "retro-uuid-2", UUID)
         with open(os.path.join(self.archive, "analyzed.tsv")) as f:
             rows = [line.rstrip("\n").split("\t") for line in f]
-        self.assertEqual([r[0] for r in rows], [UUID, "other-uuid"])
+        self.assertEqual([r[0] for r in rows], [UUID, other])
         self.assertEqual(rows[0][1], "retro-uuid")
         self.assertRegex(rows[0][2], r"^\d{4}-\d{2}-\d{2}$")
+
+    def test_mark_rejects_a_path(self):
+        result = self.run_digest("--mark", "retro-uuid", self.transcript, check=False)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(os.path.exists(os.path.join(self.archive, "analyzed.tsv")))
 
 
 if __name__ == "__main__":

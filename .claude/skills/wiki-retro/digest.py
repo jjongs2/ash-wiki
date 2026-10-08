@@ -6,8 +6,8 @@ python3 digest.py [--archive <폴더>] --mark <회고 세션 uuid> <세션 uuid>
 보관 폴더(기본 ~/documents/ash-wiki-retro)의 <uuid>/에, 기록마다 <이름>-main.md를,
 기록 옆 <uuid>/subagents/의 서브에이전트 기록마다 <이름>-<agent id>.md를 쓴다.
 <이름>은 세션 제목과 uuid 앞 8자다. Claude Code가 오래된 기록을 지워도 요약본이
-남게 하려고 저장소 밖에 둔다. 기록이 지난번 요약 뒤로 바뀌지 않았으면 다시 만들지
-않고 "있음"을 찍는다.
+남게 하려고 저장소 밖에 둔다. 기록과 이 스크립트가 지난번 요약 뒤로 바뀌지 않았으면
+다시 만들지 않고 "있음"을 찍는다. 다시 만들 때는 요약본만 지우고 report.md는 둔다.
 
 --mark는 보관 폴더의 analyzed.tsv에 세션 uuid, 회고 세션 uuid, 날짜를 한 줄씩
 더한다. 이미 있는 uuid는 더하지 않는다. 회고는 이 목록에 없는 세션을 분석한다.
@@ -26,10 +26,10 @@ python3 digest.py [--archive <폴더>] --mark <회고 세션 uuid> <세션 uuid>
 
 import argparse
 import glob
+import hashlib
 import json
 import os
 import re
-import shutil
 import sys
 from datetime import date
 
@@ -37,6 +37,7 @@ NOTES = os.environ.get("ASH_WIKI_NOTES", "").rstrip("/")
 ARCHIVE = os.path.expanduser("~/documents/ash-wiki-retro")
 NOTE_REFS = ("$ASH_WIKI_NOTES", "${ASH_WIKI_NOTES")
 PERSISTED = re.compile(r"tool-results/[\w.-]+")
+UUID = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
 
 
 def note_forms():
@@ -159,7 +160,15 @@ def write(out_dir, name, path, label=""):
 
 
 def source_stamp(path, subs):
-    return " ".join(str(os.path.getsize(p)) for p in [path, *subs])
+    with open(__file__, "rb") as script:
+        version = hashlib.sha256(script.read()).hexdigest()[:12]
+    return " ".join([version, *(str(os.path.getsize(p)) for p in [path, *subs])])
+
+
+def check_uuids(uuids):
+    bad = [u for u in uuids if not UUID.match(u)]
+    if bad:
+        sys.exit(f"세션 uuid가 아니다: {', '.join(bad)}")
 
 
 def digest_session(archive, path):
@@ -173,8 +182,9 @@ def digest_session(archive, path):
             if f.read() == stamp:
                 print(f"{uuid}\t있음")
                 return
-    shutil.rmtree(out_dir, ignore_errors=True)
-    os.makedirs(out_dir)
+    os.makedirs(out_dir, exist_ok=True)
+    for old in glob.glob(f"{out_dir}/*-main.md") + glob.glob(f"{out_dir}/*-agent-*.md") + glob.glob(f"{out_dir}/*-notes.txt"):
+        os.remove(old)
     print(out_dir)
     name = session_name(path)
     write(out_dir, f"{name}-main", path)
@@ -211,10 +221,12 @@ def main():
     args = parser.parse_args()
     os.makedirs(args.archive, exist_ok=True)
     if args.mark:
+        check_uuids(args.items)
         mark(args.archive, args.mark, args.items)
         return
     if not NOTES:
         sys.exit("ASH_WIKI_NOTES가 비어 있다. 노트를 연 기록을 가리지 못하니 설정한 뒤 다시 돌린다.")
+    check_uuids([os.path.basename(stem(path)) for path in args.items])
     for path in args.items:
         digest_session(args.archive, path)
 
