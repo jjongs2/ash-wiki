@@ -18,3 +18,5 @@ verified: 2026-01-01
 **사이버보안 속성**(cybersecurity property)을 지킨다. 여러 assets를 다룬다. Flash 메모리에 쓴다.[@bosch-can-2-0-1991]
 
 "Context Switch와 문맥 전환" 문서를 인용한다.[@bosch-can-2-0-1991]
+
+context(문맥)를 저장한다. 테스트 케이스는 중요하다(시험 케이스와 같다).[@bosch-can-2-0-1991]

@@ -245,6 +245,8 @@ describe("check-diff CLI", { concurrency: false }, () => {
       ),
       "풀이 줄은 쉼표로 가르지 않는다",
     )
+    assert.ok(has(lines, "content/terms.md:22:", '"문맥" →'), "한글 괄호는 원어 병기가 아니다")
+    assert.ok(has(lines, "content/terms.md:22:", '"시험 케이스" →'))
   })
 
   test("용어: 원어 병기, 낱말 경계 밖, 조건 있는 결정, alias, 큰따옴표 안은 건너뛴다", () => {

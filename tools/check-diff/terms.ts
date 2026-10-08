@@ -88,12 +88,15 @@ function unusedTerms(
     }))
 }
 
-// 쓰는 표기 바로 뒤 괄호 안의 원어 병기. 쓰는 표기가 든 합성어 뒤도 본다. 예:
+// 쓰는 표기 바로 뒤 괄호 안의 원어 병기. 한글이 든 괄호는 원어 병기가 아니다. 쓰는 표기가 든 합성어 뒤도
+// 본다. 예:
 // `사이버보안 속성(cybersecurity property)`, `프로세스 자산 라이브러리(process asset library)`
 const glossWindow = 20
 function glossed(text: string, start: number, used: string): boolean {
   const open = text.lastIndexOf("(", start)
   if (open < 0 || text.slice(open, start).includes(")")) return false
+  const close = text.indexOf(")", start)
+  if (/[가-힣]/.test(text.slice(open, close < 0 ? undefined : close))) return false
   const before = text.slice(0, open).replace(/[\s*]+$/, "")
   return before.slice(-(glossWindow + used.length)).includes(used)
 }
