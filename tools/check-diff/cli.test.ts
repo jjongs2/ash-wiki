@@ -278,6 +278,17 @@ describe("check-diff CLI", { concurrency: false }, () => {
     assert.ok(has(lines, "content/first-link.md:20:", "[[watch-dog]]"))
   })
 
+  test("첫 등장 링크: 제목이 다른 페이지 이름인 영문 낱말로 시작하면 그 낱말을 뗀 이름도 찾는다", () => {
+    const lines = report.items.get("first-link") ?? []
+    assert.ok(has(lines, "content/first-link.md:24:", "[[xbus-error-frame]]", '"오류 프레임"'))
+  })
+
+  test("첫 등장 링크: 판이 뒤따르는 표준 기구 이름은 발행기관이라 넘긴다", () => {
+    const lines = report.items.get("first-link") ?? []
+    assert.ok(!has(lines, "content/first-link.md:26:"))
+    assert.ok(has(lines, "content/first-link.md:28:", "[[autosar]]"))
+  })
+
   test("첫 등장 링크: 처음 나오는 자리가 바뀌지 않은 줄이면 찍지 않는다", () => {
     assert.ok(!has(report.items.get("first-link"), "content/linker-a.md:"))
   })
