@@ -5,19 +5,25 @@ import { fieldsOf, type Page, type Tree, type Violation } from "../check-content
 import { repoRoot } from "../repo"
 import type { ChangedFile } from "./diff"
 import {
+  blank,
   blocks,
   citedSentences,
+  escapeRegExp,
   excerpt,
   lineAt,
   lineStarts,
   listNames,
+  maskRefs,
+  pageNames,
   sentences,
   similarity,
   standardBodies,
   touches,
 } from "./text"
+import { firstLinkItem } from "./first-link"
 import { ownerPage } from "./owner"
 import { attributed, claimBlocks, opensRun } from "./runs"
+import { termItem } from "./terms"
 
 // 반영 뒤 점검의 항목들. 항목마다 규칙은 docs/wiki-verification.md의 반영 뒤 점검 절이 가리키는 절에
 // 있고, 여기 있는 것은 후보를 뽑는 패턴뿐이다. 판정은 사람이 한다.
@@ -27,7 +33,12 @@ export interface Context {
   ticketBody?: string
 }
 
-export type Item = (context: Context) => Violation[]
+// 후보 하나. folded인 후보는 줄을 찍지 않고 머리 줄의 접은 수로만 센다.
+export interface Candidate extends Violation {
+  folded?: boolean
+}
+
+export type Item = (context: Context) => Candidate[]
 
 // 표준 이름 바로 뒤나 "<표준>의 <말 한둘>" 뒤의 "…에서(는)", "…에 따르면"과, 표준이 주어인 문장의 사실을
 // 전하기만 하는 보고 동사를 잡는다. 이름은 번호와 판까지 이어 본다(Bosch CAN FD 1.0,
@@ -354,29 +365,27 @@ function decode(text: string): string {
   )
 }
 
-// 약어: 더한 줄의 대문자 약어 가운데, 페이지에서 처음 나온 자리에 풀이가 없고 풀이하지 않는 약어 목록에 없는
-// 것. 글자와 숫자가 섞인 낱말(부품 번호, 판 번호)과 로마 숫자는 거른다.
+// 약어: 더한 줄의 약어 가운데, 페이지에서 처음 나온 자리에 풀이가 없고 풀이하지 않는 약어 목록에 없는 것.
+// 약어는 대문자로만 된 낱말과, 대소문자가 섞이거나 숫자가 든 낱말 가운데 위키 어딘가에서 `낱말(풀이)`로
+// 풀린 적이 있는 것(ChrgM, PAM3)이다. 대소문자 섞인 낱말을 모두 보면 FlexRay, MHz 같은 이름까지 걸린다.
+// 그 밖의 글자와 숫자가 섞인 낱말(부품 번호, 판 번호)과 로마 숫자는 거른다. 밑줄이 든 이름은 약어가 아니라
+// 백틱 없는 코드 이름 후보로 따로 찍는다(위키 규약의 코드 표기 절). 페이지 이름(M_CAN, PREEMPT_RT)은 빼낸다.
 const abbreviationsPath = path.join(repoRoot, "docs", "wiki-abbreviations.md")
-const abbreviationPart = /^[A-Z][A-Z_]*[A-Z]s?$/
+const abbreviationPart = /^[A-Z]{2,}s?$/
+const codeName = /^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)+$/
 const romanNumeral = /^[IVX]+$/
+const lettersAndDigits = (part: string) => /[A-Za-z]/.test(part) && /[0-9]/.test(part)
 const token = /(?<![A-Za-z0-9_])[A-Za-z0-9_]+(?:[/.-][A-Za-z0-9_]+)*/g
 
 function exemptAbbreviations(): string[] {
   return [...fs.readFileSync(abbreviationsPath, "utf8").matchAll(/^- (.+?): \S/gm)].map((m) => m[1])
 }
 
-const blank = (text: string) => text.replace(/[^\n]/g, " ")
-
 // 약어를 찾을 글. 줄 번호와 오프셋을 원문과 맞추려고 지울 곳은 공백으로 바꾼다. 위키링크는 표시 글자만
 // 남기고 그 자리를 따로 준다.
 function abbreviationText(page: Page, exempt: string[]) {
   const links: [number, number][] = []
-  let text = page.masked
-    .replace(/!\[\[[^\]\n]*\]\]/g, blank)
-    .replace(/\$\$[\s\S]*?\$\$|\$[^$\n]+\$/g, blank)
-    .replace(/\[@[^\]\n]*\]/g, blank)
-    .replace(/https?:\/\/\S+/g, blank)
-    .replace(/<[^>\n]+>/g, blank)
+  let text = maskRefs(page.masked)
   text = text.replace(/\[\[([^\]\n|]*\\?\|)?([^\]\n]*)\]\]/g, (_link, target, display, offset) => {
     const shown = target ? display : display.replace(/^[^#]*/, blank)
     const start = offset + 2 + (target?.length ?? 0)
@@ -392,15 +401,38 @@ function abbreviationText(page: Page, exempt: string[]) {
   return { text, links }
 }
 
-const abbreviationItem: Item = ({ changed }) => {
+// 위키에서 `낱말(풀이)`로 풀린 적이 있는, 대소문자가 섞이거나 숫자가 든 낱말. 풀이는 라틴 문자나 링크로
+// 시작하고 한글 없이 두 글자 이상이다. `DevSecOps(2025)`나 `SnapshotRecord(DTC가 생긴 때의 데이터)`는
+// 풀이가 아니다.
+function explainedWords(tree: Tree): Set<string> {
+  const words = new Set<string>()
+  for (const page of tree.pages) {
+    for (const match of page.masked.matchAll(
+      /(?<![A-Za-z0-9_/.-])([A-Za-z0-9]+)\**\((?=\[\[|[A-Za-z])([^()\n가-힣]{2,})\)/g,
+    )) {
+      const word = match[1]
+      // 첫 글자 뒤에도 대문자가 있는 낱말(ChrgM, bxCAN)이나 대문자와 숫자가 함께 든 낱말(PAM3).
+      // 대문자로만 된 낱말(CAN)은 원래 약어로 본다.
+      const mixedCase = /[A-Z]/.test(word.slice(1)) && /[a-z]/.test(word)
+      const numbered = /[A-Z]/.test(word) && /[0-9]/.test(word)
+      if (mixedCase || numbered) words.add(word)
+    }
+  }
+  return words
+}
+
+const abbreviationItem: Item = ({ tree, changed }) => {
   const exempt = exemptAbbreviations()
   const exemptSet = new Set(exempt)
+  const explainedSet = explainedWords(tree)
+  const pageNameSet = new Set(tree.pages.flatMap(pageNames))
   return changed.flatMap(({ page, change }) => {
     const { text, links } = abbreviationText(page, exempt)
     const starts = lineStarts(text)
     const first = new Map<string, { offset: number; token: string; explained: boolean }>()
     const firstInName = new Map<string, { offset: number; token: string; explained: boolean }>()
     const inAdded = new Set<string>()
+    const code = new Map<string, number>()
     // 강조한 이름과, 약어 바로 뒤 괄호 안의 풀이.
     const names = [
       ...[...text.matchAll(/\*\*[^*\n]+\*\*/g)].map((m) => [m.index, m.index + m[0].length]),
@@ -415,11 +447,19 @@ const abbreviationItem: Item = ({ changed }) => {
       const word = match[0]
       if (exemptSet.has(word)) continue
       const parts = word.split(/[/.-]/)
-      if (parts.some((part) => /[A-Za-z]/.test(part) && /[0-9]/.test(part))) continue
       const offset = match.index
       const line = lineAt(starts, offset)
-      for (const part of parts) {
-        if (!abbreviationPart.test(part) || romanNumeral.test(part) || exemptSet.has(part)) continue
+      for (const part of parts.filter(
+        (p) => codeName.test(p) && !exemptSet.has(p) && !pageNameSet.has(p),
+      )) {
+        if (change.added.has(line) && !code.has(part) && !inside(links, offset))
+          code.set(part, line)
+      }
+      const words = parts.filter((p) => !codeName.test(p))
+      if (words.some((p) => lettersAndDigits(p) && !explainedSet.has(p))) continue
+      for (const part of words) {
+        const abbreviation = abbreviationPart.test(part) || explainedSet.has(part)
+        if (!abbreviation || romanNumeral.test(part) || exemptSet.has(part)) continue
         if (change.added.has(line)) inAdded.add(part)
         if (first.has(part)) continue
         // 풀이는 `ABBR(풀이)`나 `풀이(ABBR)`, `풀이(ABBR, 원어)` 꼴이다. 괄호 안에 약어가 있어도 뒤에 다른
@@ -439,7 +479,7 @@ const abbreviationItem: Item = ({ changed }) => {
         first.set(part, { offset, token: word, explained })
       }
     }
-    return [...inAdded].flatMap((part) => {
+    const unexplained = [...inAdded].flatMap((part) => {
       const at = first.get(part) ?? firstInName.get(part)!
       if (at.explained) return []
       const shown = at.token === part ? part : `${part} (${at.token})`
@@ -447,6 +487,14 @@ const abbreviationItem: Item = ({ changed }) => {
         { file: page.file, line: lineAt(starts, at.offset), message: `풀이가 없다: ${shown}` },
       ]
     })
+    return [
+      ...unexplained,
+      ...[...code].map(([name, line]) => ({
+        file: page.file,
+        line,
+        message: `백틱 없는 코드 이름: ${name}`,
+      })),
+    ]
   })
 }
 
@@ -490,10 +538,6 @@ function isNew(page: Page, change: ChangedFile): boolean {
   return true
 }
 
-function escapeRegExp(text: string): string {
-  return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
-}
-
 export const items: [string, Item][] = [
   ["standard-sentence", standardSentenceItem],
   ["duplicate", duplicateItem],
@@ -504,5 +548,7 @@ export const items: [string, Item][] = [
   ["source-run", sourceRunItem],
   ["owner-page", ownerPage],
   ["abbreviation", abbreviationItem],
+  ["term", termItem],
+  ["first-link", firstLinkItem],
   ["diagram-place", diagramPlaceItem],
 ]

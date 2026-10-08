@@ -24,6 +24,7 @@ interface Report {
   exitCode: number | null
   headers: string[]
   items: Map<string, string[]>
+  last: string
 }
 
 const timeoutMs = 30_000
@@ -48,7 +49,8 @@ function run(repo: string, ...args: string[]): Report {
       items.set(current, [])
     } else if (line.startsWith("  ")) items.get(current)!.push(line.trim())
   }
-  return { exitCode: result.status, headers, items }
+  const last = result.stdout.trimEnd().split("\n").at(-1) ?? ""
+  return { exitCode: result.status, headers, items, last }
 }
 
 const has = (lines: string[] | undefined, ...parts: string[]) =>
@@ -88,9 +90,15 @@ describe("check-diff CLI", { concurrency: false }, () => {
         "source-run",
         "owner-page",
         "abbreviation",
+        "term",
+        "first-link",
         "diagram-place",
       ],
     )
+  })
+
+  test("마지막 줄에 돈 항목 수와 전체 항목 수, SKIP 수를 찍는다", () => {
+    assert.strictEqual(report.last, "돈 항목 12/전체 12, SKIP 0")
   })
 
   test("표준 문장: 에서는과 밝힌다 꼴을 잡고, 추적하지 않는 새 페이지도 본다", () => {
@@ -163,12 +171,24 @@ describe("check-diff CLI", { concurrency: false }, () => {
     const lines = report.items.get("owner-page")
     assert.ok(has(lines, "content/linker-a.md:12:", "#오류 계수기", "앵커 있음", "1문장"))
     assert.ok(has(lines, "content/linker-a.md:16:", "앵커 없음", "3문장"))
-    assert.ok(has(lines, "content/linker-b.md:", "링크가 없다"))
-    assert.ok(has(lines, "content/missing-page.md:", "페이지가 없다"))
-    assert.ok(has(lines, "content/linker-b.md:", "planned-page", "아직 없다"))
+    assert.ok(
+      has(lines, "content/linker-b.md:", "주인 페이지 링크가 없다"),
+      "고치지 않았어도 찍는다",
+    )
     assert.ok(has(lines, "content/linker-a.md:", "두 주인", "링크가 없는 주인 페이지: other-page"))
     assert.ok(!has(lines, "content/other-page.md"), "단서 속 슬러그는 링크만 하는 곳이 아니다")
     assert.ok(!has(lines, "계획 없는 것"), "이름만인 줄은 건너뛴다")
+  })
+
+  test("주인 페이지: 아직 없는 페이지의 줄과 고치지 않은 페이지의 앵커·문장 수 줄은 접는다", () => {
+    const lines = report.items.get("owner-page")
+    assert.ok(!has(lines, "페이지가 없다"), "missing-page")
+    assert.ok(!has(lines, "아직 없다"), "planned-page")
+    assert.ok(!has(lines, "content/linker-c.md:"), "고치지 않은 페이지의 앵커")
+    assert.ok(
+      report.headers.some((h) => /^owner-page: 후보 \d+, 접음 3$/.test(h)),
+      report.headers.join("\n"),
+    )
   })
 
   test("약어: 풀이 없는 약어와 접두가 붙은 약어를 보이고, 풀이·링크·목록·부품 번호는 거른다", () => {
@@ -195,6 +215,90 @@ describe("check-diff CLI", { concurrency: false }, () => {
     }
   })
 
+  test("약어: 대소문자 섞인 낱말과 숫자가 든 낱말은 위키 어딘가에서 풀린 것만 본다", () => {
+    const lines = report.items.get("abbreviation") ?? []
+    assert.ok(has(lines, "content/definitions.md:32:", "풀이가 없다: ChrgM"))
+    assert.ok(has(lines, "content/definitions.md:32:", "풀이가 없다: PAM3"))
+    for (const word of ["DevSecOps", "SnapshotRecord", "FlexRay", "MHz", "TJA1042"]) {
+      assert.ok(!has(lines, `풀이가 없다: ${word}`), word)
+    }
+  })
+
+  test("약어: 밑줄이 든 이름은 백틱 없는 코드 이름으로 따로 찍는다", () => {
+    const lines = report.items.get("abbreviation") ?? []
+    assert.ok(has(lines, "content/definitions.md:32:", "백틱 없는 코드 이름: BIG_ENDIAN"))
+    assert.ok(!has(lines, "풀이가 없다: BIG_ENDIAN"))
+    assert.ok(!has(lines, "CAN_H"), "풀이하지 않는 약어 목록의 이름")
+  })
+
+  test("용어: 조건 없는 결정의 쓰지 않는 표기를 더한 줄에서 찾는다", () => {
+    const lines = report.items.get("term") ?? []
+    assert.ok(has(lines, "content/terms.md:12:", '"문맥" → "context" (#142)'))
+    assert.ok(has(lines, "content/terms.md:14:", '"문맥 전환" → "context switch"'))
+    assert.ok(!has(lines, "content/terms.md:14:", '"문맥" →'), "더 긴 표기에 든 일치")
+    assert.ok(has(lines, "content/terms.md:16:", '"시험 케이스" → "테스트 케이스"'))
+    assert.ok(
+      has(
+        lines,
+        "content/terms.md:16:",
+        '"Object-Oriented Programming, Systems, Languages & Applications"',
+      ),
+      "풀이 줄은 쉼표로 가르지 않는다",
+    )
+    assert.ok(has(lines, "content/terms.md:22:", '"문맥" →'), "한글 괄호는 원어 병기가 아니다")
+    assert.ok(has(lines, "content/terms.md:22:", '"시험 케이스" →'))
+  })
+
+  test("용어: 원어 병기, 낱말 경계 밖, 조건 있는 결정, alias, 큰따옴표 안은 건너뛴다", () => {
+    const lines = report.items.get("term") ?? []
+    assert.ok(!has(lines, "content/terms.md:18:"), "cybersecurity property, assets, Flash")
+    assert.ok(!has(lines, "content/terms.md:20:"), "인용한 문서 제목")
+    assert.ok(!has(lines, "content/terms.md:4:"), "alias")
+  })
+
+  test("첫 등장 링크: 다른 페이지 이름이 처음 나오는 더한 줄에 링크가 없으면 찍는다", () => {
+    const lines = report.items.get("first-link") ?? []
+    assert.ok(has(lines, "content/first-link.md:12:", "[[heartbeat]]"))
+    assert.ok(has(lines, "content/first-link.md:22:", "[[bus-off]]", "링크는 22줄"))
+  })
+
+  test("첫 등장 링크: 더 긴 다른 페이지 이름의 일부는 그 이름으로 센다", () => {
+    const lines = report.items.get("first-link") ?? []
+    assert.ok(has(lines, "content/first-link.md:10:", "[[heartbeat-frame]]"))
+    assert.ok(!has(lines, "content/first-link.md:10:", "[[heartbeat]]"))
+  })
+
+  test("첫 등장 링크: 안내 문장의 절 링크와 X의 Y 절 링크는 X 링크를 겸한다", () => {
+    const lines = report.items.get("first-link") ?? []
+    assert.ok(!has(lines, "[[sync-window]]"), "안내 문장의 절 링크")
+    assert.ok(!has(lines, "[[guard-band]]"), "X의 Y")
+  })
+
+  test("첫 등장 링크: 하위 개념의 절 링크는 찍지 않고 페이지 링크로도 세지 않는다", () => {
+    const lines = report.items.get("first-link") ?? []
+    assert.ok(!has(lines, "content/first-link.md:18:"), "절 링크의 링크 글자")
+    assert.ok(has(lines, "content/first-link.md:20:", "[[watch-dog]]"))
+  })
+
+  test("첫 등장 링크: 제목이 다른 페이지 이름인 영문 낱말로 시작하면 그 낱말을 뗀 이름도 찾는다", () => {
+    const lines = report.items.get("first-link") ?? []
+    assert.ok(has(lines, "content/first-link.md:24:", "[[xbus-error-frame]]", '"오류 프레임"'))
+  })
+
+  test("첫 등장 링크: 영문 낱말 뒤 괄호라도 한글 설명이면 풀이가 아니라 찾는다", () => {
+    assert.ok(has(report.items.get("first-link"), "content/first-link.md:30:", "[[bit-stuffing]]"))
+  })
+
+  test("첫 등장 링크: 판이 뒤따르는 표준 기구 이름은 발행기관이라 넘긴다", () => {
+    const lines = report.items.get("first-link") ?? []
+    assert.ok(!has(lines, "content/first-link.md:26:"))
+    assert.ok(has(lines, "content/first-link.md:28:", "[[autosar]]"))
+  })
+
+  test("첫 등장 링크: 처음 나오는 자리가 바뀌지 않은 줄이면 찍지 않는다", () => {
+    assert.ok(!has(report.items.get("first-link"), "content/linker-a.md:"))
+  })
+
   test("도해 위치: 기존 도해 앞에 새로 들어온 문단만 잡는다", () => {
     const lines = report.items.get("diagram-place") ?? []
     assert.deepStrictEqual(
@@ -209,6 +313,7 @@ describe("check-diff CLI", { concurrency: false }, () => {
       only.headers.map((h) => h.replace(/ 후보 \d+/, "")),
       ["SKIP owner-page (--ticket 없음)", "abbreviation:"],
     )
+    assert.strictEqual(only.last, "돈 항목 1/전체 12, SKIP 1")
     assert.strictEqual(only.exitCode, 0)
   })
 })

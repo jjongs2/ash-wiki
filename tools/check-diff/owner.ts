@@ -1,5 +1,5 @@
-import type { Page, Violation } from "../check-content/tree"
-import type { Context } from "./items"
+import type { Page } from "../check-content/tree"
+import type { Candidate, Context } from "./items"
 import { blocks, sentences } from "./text"
 
 export interface OwnerRow {
@@ -50,32 +50,42 @@ const cells = (line: string) =>
 const slugs = (text: string) => [...text.matchAll(/`([a-z0-9-]+)`/g)].map((m) => m[1])
 
 // 줄마다 링크만 하는 곳의 페이지에서 주인 페이지로 가는 링크, 그 링크의 절 앵커, 링크가 든 문단의 문장 수를
-// 보인다. 규칙은 위키 규약의 중복 절과 위키링크 절이다.
-export function ownerPage({ tree, ticketBody }: Context): Violation[] {
+// 보인다. 규칙은 위키 규약의 중복 절과 위키링크 절이다. 고칠 것이 없는 줄(주인 페이지나 링크만 하는 곳의
+// 페이지가 아직 없는 줄)과 이 브랜치가 고치지 않은 페이지의 앵커·문장 수 줄은 접어 수로만 센다. 이런 줄이
+// 후보의 절반 가까이 되어 진짜 후보를 가렸다. "주인 페이지 링크가 없다"는 고치지 않은 페이지여도 접지 않는다.
+export function ownerPage({ tree, changed, ticketBody }: Context): Candidate[] {
   if (ticketBody === undefined) return []
   const pages = new Map(tree.pages.map((page) => [page.name, page]))
-  const found: Violation[] = []
+  const touched = new Set(changed.map(({ page }) => page.name))
+  const found: Candidate[] = []
   for (const row of ownerRows(ticketBody)) {
     if (row.owners.length === 0) continue
     for (const slug of row.linkers) {
       const page = pages.get(slug)
       const file = page?.file ?? `content/${slug}.md`
-      const at = (message: string, line?: number) =>
-        found.push({ file, line, message: `${row.concept} → ${row.owners.join(", ")}: ${message}` })
+      const push = (folded: boolean) => (message: string, line?: number) =>
+        found.push({
+          file,
+          line,
+          message: `${row.concept} → ${row.owners.join(", ")}: ${message}`,
+          folded,
+        })
+      const at = push(false)
+      const fold = push(true)
       if (!page) {
-        at("페이지가 없다")
+        fold("페이지가 없다")
         continue
       }
       const links = ownerLinks(page, row.owners)
       if (links.length === 0 && !row.owners.some((owner) => pages.has(owner)))
-        at("주인 페이지가 아직 없다(링크는 린트가 채운다)")
+        fold("주인 페이지가 아직 없다(링크는 린트가 채운다)")
       else if (links.length === 0) at("주인 페이지 링크가 없다")
       const linked = new Set(links.map((link) => link.target))
       const unlinked = row.owners.filter((owner) => pages.has(owner) && !linked.has(owner))
       if (links.length > 0 && unlinked.length > 0)
         at(`링크가 없는 주인 페이지: ${unlinked.join(", ")}`)
       for (const link of links) {
-        at(
+        ;(touched.has(page.name) ? at : fold)(
           `${link.raw} 절 앵커 ${link.anchor ? "있음" : "없음"}, 문단 ${link.sentences}문장`,
           link.line,
         )
