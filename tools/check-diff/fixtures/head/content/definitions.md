@@ -28,3 +28,5 @@ verified: 2026-01-01
 CRC 시퀀스는 BCH 부호에서 나왔다. ISO/DIS 16845-2가 개발 중이다. 고속(HS) 트랜시버 TJA1042와 [[can|CAN]] 버스를 쓰는 ECU다. IEEE SA가 펴냈다.[@bosch-can-2-0-1991]
 
 데이터 오류(RAM 워드의 패리티 오류)를 찾는다. ICU 모듈이 신호를 잰다. [[autosar-icu-driver|ICU Driver]]가 펄스를 센다. **DIO Driver**는 핀을 다루고, DIO(Digital Input/Output)는 디지털 입출력이다. **PWM Driver**(PWM 신호 드라이버)는 PWM(Pulse Width Modulation) 신호를 낸다.[@bosch-can-2-0-1991]
+
+ChrgM이 충전을 다루고 PAM3 신호를 쓴다. DevSecOps와 FlexRay, MHz는 약어 후보가 아니다. 설정값이 BIG_ENDIAN이면 CAN_H를 본다.[@bosch-can-2-0-1991]

@@ -60,14 +60,20 @@ else if (values.ticket) {
 }
 
 console.log(`기준 ${base.slice(0, 8)}, 고친 페이지 ${changed.length}개`)
+let ran = 0
+let skipped = 0
 for (const [id, item] of items) {
   if (values.only && !values.only.includes(id)) continue
   if (id === "owner-page" && ticketBody === undefined) {
     console.log(`SKIP ${id} (--ticket 없음)`)
+    skipped++
     continue
   }
-  const found = item({ tree, changed, ticketBody })
-  console.log(`${id}: 후보 ${found.length}`)
+  const all = item({ tree, changed, ticketBody })
+  const found = all.filter((candidate) => !candidate.folded)
+  const folded = all.length - found.length
+  console.log(`${id}: 후보 ${found.length}${folded > 0 ? `, 접음 ${folded}` : ""}`)
+  ran++
   const sorted = [...found].sort(
     (a, b) => a.file.localeCompare(b.file) || (a.line ?? 0) - (b.line ?? 0),
   )
@@ -75,3 +81,5 @@ for (const [id, item] of items) {
     console.log(`  ${file}${line ? `:${line}` : ""}: ${message}`)
   }
 }
+// 마지막 줄. 이 줄이 없으면 점검이 도중에 멈춘 것이다.
+console.log(`돈 항목 ${ran}/전체 ${ids.length}, SKIP ${skipped}`)
