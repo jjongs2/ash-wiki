@@ -63,30 +63,31 @@ export function ownerPage({ tree, changed, ticketBody }: Context): Candidate[] {
     for (const slug of row.linkers) {
       const page = pages.get(slug)
       const file = page?.file ?? `content/${slug}.md`
-      const at = (message: string, line?: number, folded = false) =>
+      const push = (folded: boolean) => (message: string, line?: number) =>
         found.push({
           file,
           line,
           message: `${row.concept} → ${row.owners.join(", ")}: ${message}`,
           folded,
         })
+      const at = push(false)
+      const fold = push(true)
       if (!page) {
-        at("페이지가 없다", undefined, true)
+        fold("페이지가 없다")
         continue
       }
       const links = ownerLinks(page, row.owners)
       if (links.length === 0 && !row.owners.some((owner) => pages.has(owner)))
-        at("주인 페이지가 아직 없다(링크는 린트가 채운다)", undefined, true)
+        fold("주인 페이지가 아직 없다(링크는 린트가 채운다)")
       else if (links.length === 0) at("주인 페이지 링크가 없다")
       const linked = new Set(links.map((link) => link.target))
       const unlinked = row.owners.filter((owner) => pages.has(owner) && !linked.has(owner))
       if (links.length > 0 && unlinked.length > 0)
         at(`링크가 없는 주인 페이지: ${unlinked.join(", ")}`)
       for (const link of links) {
-        at(
+        ;(touched.has(page.name) ? at : fold)(
           `${link.raw} 절 앵커 ${link.anchor ? "있음" : "없음"}, 문단 ${link.sentences}문장`,
           link.line,
-          !touched.has(page.name),
         )
       }
     }

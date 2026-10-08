@@ -5,6 +5,7 @@ import { fieldsOf, type Page, type Tree, type Violation } from "../check-content
 import { repoRoot } from "../repo"
 import type { ChangedFile } from "./diff"
 import {
+  blank,
   blocks,
   citedSentences,
   escapeRegExp,
@@ -12,12 +13,14 @@ import {
   lineAt,
   lineStarts,
   listNames,
+  maskRefs,
+  pageNames,
   sentences,
   similarity,
   standardBodies,
   touches,
 } from "./text"
-import { firstLinkItem, pageNames } from "./first-link"
+import { firstLinkItem } from "./first-link"
 import { ownerPage } from "./owner"
 import { attributed, claimBlocks, opensRun } from "./runs"
 import { termItem } from "./terms"
@@ -371,25 +374,18 @@ const abbreviationsPath = path.join(repoRoot, "docs", "wiki-abbreviations.md")
 const abbreviationPart = /^[A-Z]{2,}s?$/
 const codeName = /^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)+$/
 const romanNumeral = /^[IVX]+$/
-const hasDigit = (part: string) => /[A-Za-z]/.test(part) && /[0-9]/.test(part)
+const lettersAndDigits = (part: string) => /[A-Za-z]/.test(part) && /[0-9]/.test(part)
 const token = /(?<![A-Za-z0-9_])[A-Za-z0-9_]+(?:[/.-][A-Za-z0-9_]+)*/g
 
 function exemptAbbreviations(): string[] {
   return [...fs.readFileSync(abbreviationsPath, "utf8").matchAll(/^- (.+?): \S/gm)].map((m) => m[1])
 }
 
-const blank = (text: string) => text.replace(/[^\n]/g, " ")
-
 // 약어를 찾을 글. 줄 번호와 오프셋을 원문과 맞추려고 지울 곳은 공백으로 바꾼다. 위키링크는 표시 글자만
 // 남기고 그 자리를 따로 준다.
 function abbreviationText(page: Page, exempt: string[]) {
   const links: [number, number][] = []
-  let text = page.masked
-    .replace(/!\[\[[^\]\n]*\]\]/g, blank)
-    .replace(/\$\$[\s\S]*?\$\$|\$[^$\n]+\$/g, blank)
-    .replace(/\[@[^\]\n]*\]/g, blank)
-    .replace(/https?:\/\/\S+/g, blank)
-    .replace(/<[^>\n]+>/g, blank)
+  let text = maskRefs(page.masked)
   text = text.replace(/\[\[([^\]\n|]*\\?\|)?([^\]\n]*)\]\]/g, (_link, target, display, offset) => {
     const shown = target ? display : display.replace(/^[^#]*/, blank)
     const start = offset + 2 + (target?.length ?? 0)
@@ -406,20 +402,20 @@ function abbreviationText(page: Page, exempt: string[]) {
 }
 
 // 위키에서 `낱말(풀이)`로 풀린 적이 있는, 대소문자가 섞이거나 숫자가 든 낱말. 풀이는 라틴 문자나 링크로
-// 시작한다. `DevSecOps(2025)`나 `ComData(시그널이나 시그널 그룹)`는 풀이가 아니다.
+// 시작하고 한글 없이 두 글자 이상이다. `DevSecOps(2025)`나 `SnapshotRecord(DTC가 생긴 때의 데이터)`는
+// 풀이가 아니다.
 function explainedWords(tree: Tree): Set<string> {
   const words = new Set<string>()
   for (const page of tree.pages) {
     for (const match of page.masked.matchAll(
-      /(?<![A-Za-z0-9_/.-])([A-Za-z0-9]+)\**\(\s*(?:\[\[|[A-Za-z])/g,
+      /(?<![A-Za-z0-9_/.-])([A-Za-z0-9]+)\**\((?=\[\[|[A-Za-z])([^()\n가-힣]{2,})\)/g,
     )) {
       const word = match[1]
-      if (
-        /[A-Z]/.test(word.slice(1))
-          ? /[a-z0-9]/.test(word)
-          : /[A-Z]/.test(word) && /[0-9]/.test(word)
-      )
-        words.add(word)
+      // 첫 글자 뒤에도 대문자가 있는 낱말(ChrgM, bxCAN)이나 대문자와 숫자가 함께 든 낱말(PAM3).
+      // 대문자로만 된 낱말(CAN)은 원래 약어로 본다.
+      const mixedCase = /[A-Z]/.test(word.slice(1)) && /[a-z]/.test(word)
+      const numbered = /[A-Z]/.test(word) && /[0-9]/.test(word)
+      if (mixedCase || numbered) words.add(word)
     }
   }
   return words
@@ -428,8 +424,8 @@ function explainedWords(tree: Tree): Set<string> {
 const abbreviationItem: Item = ({ tree, changed }) => {
   const exempt = exemptAbbreviations()
   const exemptSet = new Set(exempt)
-  const explainedWord = explainedWords(tree)
-  const pageName = new Set(tree.pages.flatMap(pageNames))
+  const explainedSet = explainedWords(tree)
+  const pageNameSet = new Set(tree.pages.flatMap(pageNames))
   return changed.flatMap(({ page, change }) => {
     const { text, links } = abbreviationText(page, exempt)
     const starts = lineStarts(text)
@@ -454,15 +450,15 @@ const abbreviationItem: Item = ({ tree, changed }) => {
       const offset = match.index
       const line = lineAt(starts, offset)
       for (const part of parts.filter(
-        (p) => codeName.test(p) && !exemptSet.has(p) && !pageName.has(p),
+        (p) => codeName.test(p) && !exemptSet.has(p) && !pageNameSet.has(p),
       )) {
         if (change.added.has(line) && !code.has(part) && !inside(links, offset))
           code.set(part, line)
       }
       const words = parts.filter((p) => !codeName.test(p))
-      if (words.some((p) => hasDigit(p) && !explainedWord.has(p))) continue
+      if (words.some((p) => lettersAndDigits(p) && !explainedSet.has(p))) continue
       for (const part of words) {
-        const abbreviation = abbreviationPart.test(part) || explainedWord.has(part)
+        const abbreviation = abbreviationPart.test(part) || explainedSet.has(part)
         if (!abbreviation || romanNumeral.test(part) || exemptSet.has(part)) continue
         if (change.added.has(line)) inAdded.add(part)
         if (first.has(part)) continue

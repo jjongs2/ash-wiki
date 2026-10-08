@@ -1,4 +1,4 @@
-import type { Page } from "../check-content/tree"
+import { fieldsOf, type Page } from "../check-content/tree"
 import { tableLines } from "../check-content/source-checks"
 
 // 문장에서 표준 원문을 가리키는 표준 기구와 발행기관의 이름.
@@ -134,4 +134,42 @@ export function citedSentences(text: string): { text: string; keys: string[] }[]
 
 export function escapeRegExp(text: string): string {
   return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+}
+
+export const blank = (text: string) => text.replace(/[^\n]/g, " ")
+export const latinEdge = /[A-Za-z0-9]/
+
+// 이름과 표기를 찾을 때 보지 않는 곳: 도해, 식, 인용, URL, HTML. 줄 번호와 오프셋을 원문과 맞추려고
+// 공백으로 바꾼다.
+export function maskRefs(text: string): string {
+  return text
+    .replace(/!\[\[[^\]\n]*\]\]/g, blank)
+    .replace(/\$\$[\s\S]*?\$\$|\$[^$\n]+\$/g, blank)
+    .replace(/\[@[^\]\n]*\]/g, blank)
+    .replace(/https?:\/\/\S+/g, blank)
+    .replace(/<[^>\n]+>/g, blank)
+}
+
+// 영문 낱말 바로 뒤의 한글 없는 괄호. 약어나 이름의 풀이다. 예: `GMII(Gigabit Media Independent Interface)`
+export const latinGloss = /(?<=[A-Za-z0-9]\**)\([^()\n가-힣]*\)/g
+
+// 겹친 일치 가운데 더 긴 일치에 든 것을 뺀다.
+export function dropCovered<T extends { start: number; end: number }>(list: T[]): T[] {
+  return list.filter((hit) =>
+    list.every(
+      (other) =>
+        other === hit ||
+        !(other.start <= hit.start && hit.end <= other.end) ||
+        other.end - other.start <= hit.end - hit.start,
+    ),
+  )
+}
+
+// 페이지의 title과 aliases.
+export function pageNames(page: Page): string[] {
+  const fields = fieldsOf(page)
+  const aliases = Array.isArray(fields.aliases) ? fields.aliases : []
+  return [fields.title, ...aliases].filter(
+    (name): name is string => typeof name === "string" && name.length >= 2,
+  )
 }

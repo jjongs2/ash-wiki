@@ -3,7 +3,7 @@ import path from "node:path"
 import { fieldsOf, type Page } from "../check-content/tree"
 import { repoRoot } from "../repo"
 import type { Candidate, Context } from "./items"
-import { escapeRegExp, excerpt } from "./text"
+import { blank, dropCovered, escapeRegExp, excerpt, latinEdge, maskRefs } from "./text"
 
 // 용어: 용어 표기 결정 목록에서 조건이 없는 결정 줄의 쓰지 않는 표기. 조건이 붙은 결정은 문맥으로만 가려져
 // 패턴으로 찾으면 오탐이 많다.
@@ -28,16 +28,9 @@ export function termDecisions(text: string): TermDecision[] {
   )
 }
 
-const latinEdge = /[A-Za-z0-9]/
-const blank = (text: string) => text.replace(/[^\n]/g, " ")
-
-// 표기를 찾을 글. 오프셋을 원문과 맞추려고 지울 곳은 공백으로 바꾼다. 위키링크는 표시 글자만 남긴다.
+// 표기를 찾을 글. 위키링크는 표시 글자만 남긴다.
 function termText(text: string): string {
-  return text
-    .replace(/!\[\[[^\]\n]*\]\]/g, blank)
-    .replace(/\[@[^\]\n]*\]/g, blank)
-    .replace(/https?:\/\/\S+/g, blank)
-    .replace(/<[^>\n]+>/g, blank)
+  return maskRefs(text)
     .replace(/\[\[(?:[^\]\n|]*\\?\|)?/g, blank)
     .replace(/\]\]/g, blank)
 }
@@ -85,16 +78,8 @@ function unusedTerms(
   }
   // "문맥 전환" 안의 "문맥"처럼 더 긴 표기에 든 일치는 그 표기 하나로 센다. 한 줄의 같은 표기는 한 번 찍는다.
   const seen = new Set<string>()
-  return hits
+  return dropCovered(hits)
     .sort((a, b) => a.start - b.start)
-    .filter((hit) =>
-      hits.every(
-        (other) =>
-          other === hit ||
-          !(other.start <= hit.start && hit.end <= other.end) ||
-          other.end - other.start <= hit.end - hit.start,
-      ),
-    )
     .filter(({ decision }) => !seen.has(decision.unused) && !!seen.add(decision.unused))
     .map(({ start, end, decision }) => ({
       file: page.file,

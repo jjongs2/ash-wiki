@@ -26,3 +26,5 @@ verified: 2026-01-01
 AUTOSAR R25-11 명세는 이 동작을 정한다.[@bosch-can-2-0-1991]
 
 AUTOSAR가 정한 동작이다.[@bosch-can-2-0-1991]
+
+XBUS(비트 스터핑을 쓰는 버스)는 빠르다.[@bosch-can-2-0-1991]

@@ -219,7 +219,7 @@ describe("check-diff CLI", { concurrency: false }, () => {
     const lines = report.items.get("abbreviation") ?? []
     assert.ok(has(lines, "content/definitions.md:32:", "풀이가 없다: ChrgM"))
     assert.ok(has(lines, "content/definitions.md:32:", "풀이가 없다: PAM3"))
-    for (const word of ["DevSecOps", "FlexRay", "MHz", "TJA1042"]) {
+    for (const word of ["DevSecOps", "SnapshotRecord", "FlexRay", "MHz", "TJA1042"]) {
       assert.ok(!has(lines, `풀이가 없다: ${word}`), word)
     }
   })
@@ -281,6 +281,10 @@ describe("check-diff CLI", { concurrency: false }, () => {
   test("첫 등장 링크: 제목이 다른 페이지 이름인 영문 낱말로 시작하면 그 낱말을 뗀 이름도 찾는다", () => {
     const lines = report.items.get("first-link") ?? []
     assert.ok(has(lines, "content/first-link.md:24:", "[[xbus-error-frame]]", '"오류 프레임"'))
+  })
+
+  test("첫 등장 링크: 영문 낱말 뒤 괄호라도 한글 설명이면 풀이가 아니라 찾는다", () => {
+    assert.ok(has(report.items.get("first-link"), "content/first-link.md:30:", "[[bit-stuffing]]"))
   })
 
   test("첫 등장 링크: 판이 뒤따르는 표준 기구 이름은 발행기관이라 넘긴다", () => {

@@ -1,18 +1,24 @@
-import { fieldsOf, type Page, type Tree } from "../check-content/tree"
+import type { Page, Tree } from "../check-content/tree"
 import type { Candidate, Context } from "./items"
-import { excerpt, lineAt, lineStarts, standardBodies } from "./text"
+import {
+  blank,
+  dropCovered,
+  excerpt,
+  latinEdge,
+  latinGloss,
+  lineAt,
+  lineStarts,
+  maskRefs,
+  pageNames,
+  standardBodies,
+} from "./text"
 
 // 첫 등장 링크: 다른 페이지의 제목이나 alias가 페이지에 처음 나오는 자리가 더한 줄인데 그 자리에 링크가
-// 없는 곳. 규칙은 위키 규약의 위키링크 절이다. 제목이 다른 페이지 이름인 영문 낱말로 시작하면 그 낱말을
-// 뗀 이름도 찾는다. 본문은 "CAN 오류 프레임"을 "오류 프레임"으로, "AUTOSAR Diagnostic Management"를
-// "Diagnostic Management"로 부르기 때문이다. 뗀 이름이 낱말 하나면 너무 흔해("OS", "트랜시버") 찾지 않는다.
-// 아래 경우는 찍지 않는다.
-// - 더 긴 다른 페이지 이름의 일부인 일치. 예: "CAN 오버로드 프레임"의 CAN
-// - 판이나 릴리스가 뒤따르는 표준 기구 이름. 개념이 아니라 문서의 발행기관이다. 예: "AUTOSAR R25-11의 BswM 명세"
-// - 링크 글자 안의 일치. 하위 개념에 거는 절 링크(`[[can-fd#FD 프레임|CAN FD 프레임]]`)도 여기 든다.
-//   이 절 링크는 그 페이지로 가는 링크로 세지 않는다.
-// - 주제 개념을 링크 글자로 쓴 절 링크(안내 문장의 `[[X#절|X]]`)가 있는 페이지 X. 이 링크가 X 링크를 겸한다.
-// - `X의 [[X#Y|Y]]` 꼴의 X. Y의 절 링크가 X 링크를 겸한다.
+// 없는 곳. 규칙과 예외는 위키 규약의 위키링크 절이고, 여기 있는 것은 이름을 찾는 패턴이다.
+// - 제목이 다른 페이지 이름인 영문 낱말로 시작하면 그 낱말을 뗀 이름도 찾는다. 본문은 "CAN 오류 프레임"을
+//   "오류 프레임"으로 부른다. 뗀 이름이 낱말 하나면 너무 흔해("OS", "트랜시버") 찾지 않는다.
+// - 더 긴 다른 페이지 이름의 일부인 일치는 그 이름으로 센다. 예: "CAN 오버로드 프레임"의 CAN
+// - 판이 뒤따르는 표준 기구 이름은 개념이 아니라 문서의 발행기관이다. 예: "AUTOSAR R25-11의 BswM 명세"
 
 interface Link {
   start: number
@@ -29,20 +35,12 @@ interface Hit {
   pages: Page[]
 }
 
-const blank = (text: string) => text.replace(/[^\n]/g, " ")
 const wordChar = /[\p{L}\p{N}]/u
-const latinEdge = /[A-Za-z0-9]/
 const publisher = new RegExp(`^(?:${standardBodies})$`)
 
-// 이름을 찾을 글. 제목, 인용, URL, 도해, HTML, 식은 지운다. 오프셋을 원문과 맞추려고 공백으로 바꾼다.
+// 이름을 찾을 글. 절 제목도 지운다.
 function nameText(page: Page): string {
-  return page.masked
-    .replace(/^#{1,6} .*$/gm, blank)
-    .replace(/!\[\[[^\]\n]*\]\]/g, blank)
-    .replace(/\$\$[\s\S]*?\$\$|\$[^$\n]+\$/g, blank)
-    .replace(/\[@[^\]\n]*\]/g, blank)
-    .replace(/https?:\/\/\S+/g, blank)
-    .replace(/<[^>\n]+>/g, blank)
+  return maskRefs(page.masked).replace(/^#{1,6} .*$/gm, blank)
 }
 
 function links(text: string): Link[] {
@@ -59,37 +57,33 @@ function links(text: string): Link[] {
   })
 }
 
-export function pageNames(page: Page): string[] {
-  const fields = fieldsOf(page)
-  const aliases = Array.isArray(fields.aliases) ? fields.aliases : []
-  return [fields.title, ...aliases].filter(
-    (name): name is string => typeof name === "string" && name.length >= 2,
-  )
-}
-
 // 이름마다 그 이름을 가진 페이지.
 export function nameIndex(tree: Tree): Map<string, Page[]> {
   const index = new Map<string, Page[]>()
   const add = (name: string, page: Page) => index.set(name, [...(index.get(name) ?? []), page])
   const pages = tree.pages.filter((page) => page.kind === "page")
   for (const page of pages) for (const name of new Set(pageNames(page))) add(name, page)
+  // 뗀 이름이 두 페이지에서 나오면 어느 페이지인지 몰라 쓰지 않는다.
+  const shortened = new Map<string, Page[]>()
   for (const page of pages) {
     for (const name of pageNames(page)) {
       const [head, ...rest] = name.split(" ")
       const short = rest.join(" ")
       if (rest.length < 2 || !/^[A-Za-z]/.test(head) || index.has(short)) continue
-      if (index.get(head)?.some((other) => other !== page)) add(short, page)
+      if (index.get(head)?.some((other) => other !== page))
+        shortened.set(short, [...new Set([...(shortened.get(short) ?? []), page])])
     }
   }
+  for (const [short, owners] of shortened) if (owners.length === 1) add(short, owners[0])
   return index
 }
 
-// 링크 글자, 강조, 약어 풀이 밖에서 이름이 나오는 자리. 더 긴 이름에 든 자리는 뺀다. 강조는 이 페이지가
-// 정의하는 이름이고, 약어 풀이(`GMII(Gigabit Media Independent Interface)`)는 다른 개념의 이름이다.
+// 링크 글자, 강조, 풀이 괄호 밖에서 이름이 나오는 자리. 더 긴 이름에 든 자리는 뺀다. 강조는 이 페이지가
+// 정의하는 이름이고, 풀이 괄호 안은 다른 개념의 이름이다.
 function hits(text: string, index: Map<string, Page[]>): Hit[] {
   const spans = [
     ...links(text),
-    ...[...text.matchAll(/\*\*[^*\n]+\*\*|(?<=[A-Za-z0-9]\**)\([^()\n]*\)/g)].map((m) => ({
+    ...[...text.matchAll(/\*\*[^*\n]+\*\*/g), ...text.matchAll(latinGloss)].map((m) => ({
       start: m.index,
       end: m.index + m[0].length,
     })),
@@ -105,14 +99,7 @@ function hits(text: string, index: Map<string, Page[]>): Hit[] {
       found.push({ start: at, end, name, pages })
     }
   }
-  return found.filter((hit) =>
-    found.every(
-      (other) =>
-        other === hit ||
-        !(other.start <= hit.start && hit.end <= other.end) ||
-        other.end - other.start <= hit.end - hit.start,
-    ),
-  )
+  return dropCovered(found)
 }
 
 export function firstLinkCandidates(
@@ -136,6 +123,8 @@ export function firstLinkCandidates(
   for (const [other, hit] of firstHit) {
     const names = pageNames(other)
     const toOther = list.filter((link) => link.target === other.name)
+    // 위키링크 절의 예외: 주제 개념을 링크 글자로 쓴 절 링크와 `X의 [[X#Y|Y]]`는 X 링크를 겸하고,
+    // 하위 개념의 절 링크는 X 링크로 세지 않는다.
     if (toOther.some((link) => link.anchor && names.includes(link.display))) continue
     const pageLink = toOther.find((link) => !link.anchor)
     if (pageLink && pageLink.start < hit.start) continue
