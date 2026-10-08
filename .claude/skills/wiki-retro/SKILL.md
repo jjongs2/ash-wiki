@@ -16,7 +16,7 @@ disable-model-invocation: true
 
 ## 1. 입력
 
-**보관 폴더**는 `~/documents/ash-wiki-retro/`다. 세션마다 요약본과 분석 보고서를 `<uuid>/`에 두고, 회고가 분석한 세션을 `analyzed.tsv`(세션 uuid, 회고 세션 uuid, 날짜)에 적는다. Claude Code가 오래된 세션 기록을 지워도 무엇을 분석했고 무엇이 나왔는지 남기기 위해서다.
+**보관 폴더**는 `~/documents/ash-wiki-retro/`다. 세션마다 요약본과 분석 보고서를 `<uuid>/`에 두고, 회고가 분석한 세션을 `analyzed.tsv`(세션 uuid, 회고 세션 uuid, 날짜)에 적는다. 회고 세션 자리의 `-`는 목록을 처음 만들 때 분석 없이 넣은 옛 세션이다. Claude Code가 오래된 세션 기록을 지워도 무엇을 분석했고 무엇이 나왔는지 남기기 위해서다.
 
 **대상 세션**은 위키 스킬을 부른 기록 가운데 `analyzed.tsv`에 없고 끝난 것이다. 이 세션은 뺀다. 인자로 세션 uuid를 주면 그 세션만 대상이다. 아래 명령은 스킬을 부른 줄만 잡고, 이 명령을 글자로 담은 다른 기록은 JSON에서 따옴표가 escape되어 걸리지 않는다.
 
