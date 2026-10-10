@@ -22,6 +22,7 @@ import {
 } from "./text"
 import { firstLinkItem } from "./first-link"
 import { ownerPage } from "./owner"
+import { editions } from "./editions"
 import { attributed, claimBlocks, opensRun } from "./runs"
 import { termItem } from "./terms"
 
@@ -294,10 +295,12 @@ const shortenedItem: Item = ({ tree, changed }) => {
 
 // 출처 구간: 더하거나 지우거나 고친 자리의 주장 블록과 그 뒤에 처음 오는 주장 블록 가운데, 구간을 여는데
 // 출처 표시가 없는 것. 뒤 블록은 바뀌지 않았어도 찍는다. 끼워 넣은 블록이나 지운 구간 첫 블록 때문에 몇 절
-// 떨어진 블록이 구간을 열 수 있기 때문이다. 같은 출처인지는 인용 키로만 가린다.
-const sourceRunItem: Item = ({ changed }) =>
-  changed.flatMap(({ page, change }) => {
-    const list = claimBlocks(page)
+// 떨어진 블록이 구간을 열 수 있기 때문이다. 같은 출처인지는 판으로 가리고, 판은 엔트리 제목에서 읽는다
+// (editions.ts).
+const sourceRunItem: Item = ({ tree, changed }) => {
+  const sources = editions(tree)
+  return changed.flatMap(({ page, change }) => {
+    const list = claimBlocks(page, sources)
     const picked = new Set<number>()
     for (const hunk of change.hunks) {
       const lines = hunk.added.map((a) => a.line)
@@ -316,14 +319,15 @@ const sourceRunItem: Item = ({ changed }) =>
       .map((index) => {
         const claim = list[index]
         const previous = list[index - 1]
-        const before = previous ? `${previous.end}줄 ${previous.last}` : "없음"
+        const before = previous ? `${previous.end}줄 ${previous.lastKeys}` : "없음"
         return {
           file: page.file,
           line: claim.start,
-          message: `구간을 여는데 출처 표시가 없다(앞: ${before}, 이: ${claim.first}): ${excerpt(claim.opening)}`,
+          message: `구간을 여는데 출처 표시가 없다(앞: ${before}, 이: ${claim.firstKeys}): ${excerpt(claim.opening)}`,
         }
       })
   })
+}
 
 // 이어진 낱말 하나에서 셋까지의 묶음.
 function phrases(text: string): Set<string> {
