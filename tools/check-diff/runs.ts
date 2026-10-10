@@ -8,8 +8,8 @@ import { blocks, escapeRegExp, standardBodies } from "./text"
 export interface ClaimBlock {
   start: number // 첫 줄
   end: number // 끝 줄
-  first: string // 첫 인용 자리의 출처. 같은 판의 키는 한 출처이고, 출처가 여럿이면 정렬해 잇는다
-  last: string // 마지막 인용 자리의 출처
+  firstEditions: string // 첫 인용 자리의 판. 같은 판의 키는 한 출처이고, 출처가 여럿이면 정렬해 잇는다
+  lastEditions: string // 마지막 인용 자리의 판
   firstKeys: string // 첫 인용 자리의 키. 여럿이면 정렬해 공백으로 잇는다
   lastKeys: string // 마지막 인용 자리의 키
   names: string[] // 첫 인용 자리의 출처를 드러내는 문서 모음 이름
@@ -46,8 +46,8 @@ export function claimBlocks(page: Page, editions: Map<string, Edition>): ClaimBl
     found.push({
       start: lead?.start ?? block.start,
       end: block.end,
-      first: spotEditions(spots[0][0], editions),
-      last: spotEditions(spots.at(-1)![0], editions),
+      firstEditions: spotEditions(spots[0][0], editions),
+      lastEditions: spotEditions(spots.at(-1)![0], editions),
       firstKeys: spotKeys(spots[0][0]),
       lastKeys: spotKeys(spots.at(-1)![0]),
       names: keysOf(spots[0][0]).flatMap((key) => editions.get(key)?.names ?? []),
@@ -79,4 +79,4 @@ export function attributed(claim: ClaimBlock): boolean {
 // 앞 주장 블록과 출처가 달라 구간을 여는 블록인지. 첫 블록도 구간을 연다. 같은 판의 다른 키가 이으면
 // 같은 출처다.
 export const opensRun = (list: ClaimBlock[], index: number) =>
-  index === 0 || list[index - 1].last !== list[index].first
+  index === 0 || list[index - 1].lastEditions !== list[index].firstEditions

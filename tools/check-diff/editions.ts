@@ -6,7 +6,7 @@ import type { Tree } from "../check-content/tree"
 // - 표준 번호와 판 연도(ISO 11898-1:2024, IEEE Std 1003.1-2024). 부 번호가 번호에 들므로 부마다 다른
 //   판이고, 제목 끝의 (OBP preview)·(preview)는 번호 뒤에 와서 원문과 같은 판이 된다. 엔트리의
 //   발행기관 필드에 그 기구가 있을 때만 읽는다. 다른 발행기관의 해설 자료도 제목에 표준 번호를 담기 때문이다.
-// - AUTOSAR 플랫폼 릴리스(AUTOSAR CP R25-11). CP, AP, FO가 각각 한 판이다.
+// - AUTOSAR 플랫폼 릴리스(AUTOSAR CP R25-11, AUTOSAR CP R4.3.1). CP, AP, FO가 각각 한 판이다.
 // - 제목 끝 괄호의 문서 모음 이름(µC/OS-III Documentation, RTEMS Classic API Guide 6.2). 괄호에는
 //   약어(SHS)나 제품 이름(ESP32)도 오므로, 문서 모음을 뜻하는 낱말로 끝나는 괄호만 읽는다.
 export interface Edition {
@@ -18,7 +18,7 @@ export interface Edition {
 // 판 연도 뒤의 추록(/Amd 1:1995)은 따로 펴낸 판이다.
 const standardNumber =
   /(?<![A-Za-z])((?:ISO|IEC|IEEE|SAE)(?:\/(?:ISO|IEC|IEEE|SAE))*)(?: Std)? ([A-Z]{0,3}[0-9][0-9A-Za-z.]*?(?:-[0-9A-Za-z]+)*?)[:-]((?:19|20)[0-9]{2})(?![0-9])((?:\/(?:Amd|AMD|Cor|COR) ?[0-9]+(?:[:-](?:19|20)[0-9]{2})?)*)/
-const autosarRelease = /\bAUTOSAR ((?:CP|AP|FO|TC) )?(R[0-9]{2}-[0-9]{2}|Release [0-9.]+[0-9])/
+const autosarRelease = /\bAUTOSAR ((?:CP|AP|FO|TC) )?(R[0-9]+(?:[.-][0-9]+)+|Release [0-9.]+[0-9])/
 const collection =
   /\(([^()]*\b(?:Documentation|documentation|Guide|Manual|Handbook|Wiki)\b[^()]*)\)$/
 
