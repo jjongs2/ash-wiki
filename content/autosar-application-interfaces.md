@@ -29,6 +29,6 @@ Application Interfaces의 모델 요소는 모두 STANDARD, BLUEPRINT, EXAMPLE �
 
 AUTOSAR R25-11 용어집은 blueprint를 복사하고 다듬어 다른 모델을 끌어낼 수 있는 모델로 정의하고, 이 과정은 메타모델과 타입의 관계와 달리 인스턴스화가 아니다. AUTOSAR blueprint는 AUTOSAR 요소의 blueprint로, 어느 AUTOSAR 요소 종류의 blueprint에 어떤 속성을 반드시 정해야 하는지와 blueprint에서 AUTOSAR 객체를 끌어내는 방법을 AUTOSAR가 정한다.[@autosar-fo-tr-glossary-2025]
 
-AUTOSAR R25-11 Standardization Template은 AUTOSAR 메타모델이 blueprint, 곧 더 모델링할 바탕으로 미리 정의한 모델 요소를 지원하도록 정한다. 예를 들어 저작 도구는 미리 정의한 PortInterface를 도구 상자처럼 내놓아, 프로젝트에 복사해 쓰게 할 수 있다. blueprint는 객체를 끌어내는 입력이 되고, 끌어낸 객체를 검증하는 데도 쓰인다. Application Interfaces에서 [[virtual-functional-bus|VFB]] 인터페이스, 곧 PortInterface를 끌어내는 것이 그 예다.[@autosar-fo-tps-standardizationtemplate-2025]
+AUTOSAR 메타모델은 blueprint, 곧 더 모델링할 바탕으로 미리 정의한 모델 요소를 지원한다. 예를 들어 저작 도구는 미리 정의한 PortInterface를 도구 상자처럼 내놓아, 프로젝트에 복사해 쓰게 할 수 있다. blueprint는 객체를 끌어내는 입력이 되고, 끌어낸 객체를 검증하는 데도 쓰인다. Application Interfaces에서 [[virtual-functional-bus|VFB]] 인터페이스, 곧 PortInterface를 끌어내는 것이 그 예다.[@autosar-fo-tps-standardizationtemplate-2025]
 
 ![[diagrams/application-interfaces-element-categories.svg]]

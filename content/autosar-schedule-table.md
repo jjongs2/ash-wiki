@@ -42,7 +42,7 @@ Explicit 동기화에서는 사용자가 `SyncScheduleTable`로 synchronization 
 
 ![[diagrams/schedule-table-explicit-sync.svg]]
 
-AUTOSAR R25-11 Release Overview는 [[autosar-time-synchronization#StbM|StbM]]이 schedule table을 동기화할 때 explicit 동기화만 다루는 것을 한계로 둔다. implicit 동기화는 그 메커니즘이 StbM을 거치지 않기 때문이다.[@autosar-cp-tr-releaseoverview-2025]
+[[autosar-time-synchronization#StbM|StbM]]이 schedule table을 동기화할 때 explicit 동기화만 다루는 것은 알려진 한계다. implicit 동기화는 그 메커니즘이 StbM을 거치지 않기 때문이다.[@autosar-cp-tr-releaseoverview-2025]
 
 ## OSEK 알람과의 차이
 

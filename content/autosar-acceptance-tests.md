@@ -23,9 +23,9 @@ status: 유효
 
 AUTOSAR는 글로 쓴 시험 명세를 표준화하며, 그 명세는 반형식적이다. 표준은 구현 하나를 보장하지 않으며, 구현자의 구현 설계가 필요하다. 도구의 시험은 범위 밖이지만, RTE 생성기처럼 ECU 코드 생성에 참여하는 도구는 간접적으로 시험된다. 표준 인수 시험은 다른 시험 활동을 대신하지 않고, 스택 검증을 위한 시험 묶음을 완전히 대신하지도 않는다.[@autosar-tc-exp-acceptancetestsoverview-2016]
 
-AUTOSAR Acceptance Tests for Classic Platform R1.2.0은 시험 명세의 적용 대상을 Classic Platform R4.2.2의 소프트웨어 명세로 정한다. 테스트 케이스가 R4.2.1, R4.1.1, R4.0.3, R3.2.2에도 적용되는지는 각 테스트 케이스 명세의 AUTOSAR Releases 필드에, 그 릴리스에 맞춰 고칠 점은 Needed Adaptation to other Releases 필드에 둔다.[@autosar-tc-tr-acceptancetestsreleaseoverview-2016]
+시험 명세의 적용 대상은 Classic Platform R4.2.2의 소프트웨어 명세다. 테스트 케이스가 R4.2.1, R4.1.1, R4.0.3, R3.2.2에도 적용되는지는 각 테스트 케이스 명세의 AUTOSAR Releases 필드에, 그 릴리스에 맞춰 고칠 점은 Needed Adaptation to other Releases 필드에 둔다.[@autosar-tc-tr-acceptancetestsreleaseoverview-2016]
 
-AUTOSAR Acceptance Tests for Classic Platform R1.2.0은 아래 산출물을 둔다.[@autosar-tc-exp-acceptancetestsoverview-2016]
+산출물은 아래와 같다.[@autosar-tc-exp-acceptancetestsoverview-2016]
 
 - **ATS**(Acceptance Test Specification): [[can|CAN]], [[flexray|FlexRay]], [[lin|LIN]] 위의 통신, 통신 관리, 버스를 거친 통신, 진단 서비스, ECU 모드 관리, 메모리 스택, RTE, [[ipv4|IPv4]], [[udp|UDP]], [[tcp|TCP]], 전역 시간 동기화, [[can-fd|CAN FD]] 위의 통신의 인수 시험 명세
 - Specification of Testability Protocol and Service Primitives

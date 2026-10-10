@@ -41,10 +41,10 @@ AUTOSAR Classic Platform R25-11의 Firewall 명세는 Firewall이 [[pdu-router#�
 
 Firewall(Fw)은 Communication Services 층에 든다.[@autosar-cp-sws-bswgeneral-2025]
 
-AUTOSAR Classic Platform R25-11은 Firewall 모듈이 들어오는(ingress) 트래픽만 거르도록 제한한다.[@autosar-cp-sws-firewall-2025][@autosar-cp-tr-releaseoverview-2025]
+Firewall 모듈은 들어오는(ingress) 트래픽만 거른다.[@autosar-cp-sws-firewall-2025][@autosar-cp-tr-releaseoverview-2025]
 
 ## Adaptive Platform의 FC Firewall
 
 AUTOSAR Adaptive Platform R25-11의 Firewall 명세는 FC Firewall을 아래의 firewall engine을 감싸는 관리 클러스터로 둔다. FirewallRule은 Machine Manifest로 Machine에 배치되고, FC Firewall은 이 규칙으로 engine을 설정한다. 트래픽을 실제로 거르는 것은 engine이다. Engine은 운영체제가 주는 TCP/IP 스택 안에서 검사하거나, 하드웨어의 검사 기능을 쓰거나, 계층마다 나눠 검사하면서 응용에 가까운 높은 층에서 deep packet inspection을 하는 등 여러 방식으로 만들 수 있다. FC Firewall은 특정 방식을 강제하지 않는다.[@autosar-ap-sws-firewall-2025]
 
-FirewallRule을 관리하는 길은 [[over-the-air-update|OTA 업데이트]]로 바꾸는 것과 실행 중에 켜고 끄는 것 둘이지만, 뒤의 것은 이 릴리스에서 지원하지 않는다.[@autosar-ap-sws-firewall-2025] AUTOSAR Adaptive Platform R25-11은 Firewall의 실행 중 규칙 켜고 끄기와 OEM(Original Equipment Manufacturer)이 정한 보안 이벤트를 지원하지 않는 기능으로 둔다.[@autosar-ap-tr-releaseoverview-2025]
+FirewallRule을 관리하는 길은 [[over-the-air-update|OTA 업데이트]]로 바꾸는 것과 실행 중에 켜고 끄는 것 둘이지만, 뒤의 것은 이 릴리스에서 지원하지 않는다.[@autosar-ap-sws-firewall-2025] Firewall의 실행 중 규칙 켜고 끄기와 OEM(Original Equipment Manufacturer)이 정한 보안 이벤트는 지원하지 않는 기능이다.[@autosar-ap-tr-releaseoverview-2025]

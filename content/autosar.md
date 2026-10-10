@@ -61,7 +61,7 @@ AUTOSAR는 Classic Platform과 Adaptive Platform의 공통 부분을 Foundation�
 
 AUTOSAR Foundation R25-11은 AUTOSAR 플랫폼 사이의 상호운용을 목적으로 한다. Foundation은 Adaptive Platform과 Classic Platform에 공통인 일반 산출물을 담아, 두 플랫폼 사이와, AUTOSAR가 아닌 플랫폼과 AUTOSAR 플랫폼 사이의 호환을 보장한다. Classic Platform과 Adaptive Platform의 각 릴리스는 정해진 판의 Foundation에 기댄다. R25-11 Foundation의 명세 가운데 PRS(Protocol Specification)는 13개이고, SOME/IP, 네트워크 관리, 시간 동기화, 침입 탐지 시스템 등의 프로토콜을 정한다.[@autosar-fo-tr-releaseoverview-2025]
 
-AUTOSAR R25-11 용어집은 Foundation의 역할을 둘로 정의한다. 하나는 두 플랫폼의 직접 범위 밖에 있거나 두 플랫폼과 무관한 산출물을 모으는 것으로, 프로토콜 명세와 Abstract Platform이 그 예다. 다른 하나는 두 플랫폼에 함께 적용되는 산출물의 저장소가 되는 것이다. **Abstract Platform**은 Classic Platform, Adaptive Platform, 오프보드 가운데 어디에 배치하든 상관없이 기능 수준 통신을 정의하려고 AUTOSAR가 정한 소프트웨어 플랫폼이다. 방법론과 모델링에서만 있는 것이고, 실제로 배치하는 플랫폼이 아니다. Classic Platform과 Adaptive Platform에서 기능 수준 통신은 [[virtual-functional-bus|VFB]] 수준 통신을 뜻한다.[@autosar-fo-tr-glossary-2025]
+Foundation의 역할은 둘이다. 하나는 두 플랫폼의 직접 범위 밖에 있거나 두 플랫폼과 무관한 산출물을 모으는 것으로, 프로토콜 명세와 Abstract Platform이 그 예다. 다른 하나는 두 플랫폼에 함께 적용되는 산출물의 저장소가 되는 것이다. **Abstract Platform**은 Classic Platform, Adaptive Platform, 오프보드 가운데 어디에 배치하든 상관없이 기능 수준 통신을 정의하려고 AUTOSAR가 정한 소프트웨어 플랫폼이다. 방법론과 모델링에서만 있는 것이고, 실제로 배치하는 플랫폼이 아니다. Classic Platform과 Adaptive Platform에서 기능 수준 통신은 [[virtual-functional-bus|VFB]] 수준 통신을 뜻한다.[@autosar-fo-tr-glossary-2025]
 
 AUTOSAR는 자동차용 소프트웨어 기술을 표준화하므로 관련 표준을 모두 따르려 하고, ISO, ASAM, GENIVI 같은 다른 표준화 기구와 정기적으로 접촉한다. 쓸 만한 기존 해법이 있으면 적절할 때 통합하거나 참조하거나 채택하고, 겹치는 곳이 있으면 호환성과 책임 분담을 챙긴다. AUTOSAR의 자주 묻는 질문 페이지에 따르면 JasPar 회원 다수가 AUTOSAR 파트너이고 그 반대도 그렇다. JasPar는 AUTOSAR와 FlexRay 표준의 활용에 집중해 AUTOSAR 규격을 검토하고 검증하고 구현하며, JasPar 안에는 AUTOSAR와 이어 주는 작업 그룹이 있다. AUTOSAR 파트너가 아닌 JasPar 회원은 공개된 AUTOSAR 규격에만 접근할 수 있다.[@autosar-faq-2026]
 

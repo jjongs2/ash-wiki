@@ -13,7 +13,7 @@ FreeRTOS 문서는 인터럽트가 요구하는 처리를 ISR(Interrupt Service 
 
 ## ISR을 짧게 두는 까닭
 
-µC/OS-III 문서는 ISR을 되도록 짧게 두고, 인터럽트 처리의 나머지를 태스크에 맡기기를 권한다.[@micrium-ucos-iii-task-management-internals-2026]
+이 문서는 ISR을 되도록 짧게 두고, 인터럽트 처리의 나머지를 태스크에 맡기기를 권한다.[@micrium-ucos-iii-task-management-internals-2026]
 
 FreeRTOS 커널 책에 따르면 ISR을 짧게 두는 까닭은 여럿이다. 태스크는 우선순위가 아무리 높아도 하드웨어가 인터럽트를 처리하지 않을 때만 실행되고, ISR은 태스크의 시작 시각과 실행 시간을 흔든다. 아키텍처에 따라서는 ISR이 실행되는 동안 새 인터럽트를 받지 못할 수 있고, 인터럽트 중첩은 복잡도를 높이고 예측성을 떨어뜨리는데 ISR이 짧을수록 중첩될 가능성이 낮다. 처리를 태스크로 넘기면 그 처리의 우선순위를 다른 태스크와 견주어 정할 수 있고, FreeRTOS API(Application Programming Interface) 함수를 모두 쓸 수 있다.[@freertos-interrupt-management-2026]
 
@@ -49,7 +49,7 @@ RTEMS에서 NMI(Non-Maskable Interrupt)는 끌 수 없으므로, 이 수준에�
 
 µC/OS-III 문서는 인터럽트를 끈 시간의 최댓값을 **interrupt disable time**이라 부르며, 이는 실시간 커널의 가장 중요한 사양 가운데 하나다. 인터럽트를 오래 끌수록 인터럽트 지연이 커진다. 인터럽트를 받은 때부터 그 인터럽트를 처리하는 사용자 코드가 시작될 때까지를 **인터럽트 응답**(interrupt response), 프로세서가 끊긴 코드나 ISR이 준비 상태로 만든 더 높은 우선순위 태스크로 돌아가는 데 드는 시간을 **인터럽트 복귀**(interrupt recovery), 인터럽트가 일어난 때부터 태스크 수준 코드가 다시 실행될 때까지를 **태스크 지연**(task latency)이라 정의한다.[@micrium-ucos-iii-interrupt-management-2026]
 
-µC/OS-III 문서에 따르면 이 시간들은 관련 코드의 실행 시간을 더해 구한다. 인터럽트 지연 $t_\mathrm{lat}$은 인터럽트를 끈 시간의 최댓값 $t_\mathrm{dis}$와 같다. 인터럽트 응답 $t_\mathrm{resp}$는 여기에 인터럽트 처리기로 vectoring하는 시간 $t_\mathrm{vec}$과 ISR prologue 시간 $t_\mathrm{pro}$를 더한 것이다. 인터럽트 복귀 $t_\mathrm{rec}$은 장치 처리 $t_\mathrm{dev}$, 태스크에 신호나 메시지를 보내는 시간 $t_\mathrm{post}$, `OSIntExit()`와 `OSIntCtxSw()`의 실행 시간 $t_\mathrm{exit}$, $t_\mathrm{sw}$의 합이다. 태스크 지연 $t_\mathrm{task}$는 인터럽트 응답과 인터럽트 복귀에 스케줄러를 잠근 시간 $t_\mathrm{lock}$을 더한 것이다.[@micrium-ucos-iii-posting-from-an-isr-2026]
+이 시간들은 관련 코드의 실행 시간을 더해 구한다. 인터럽트 지연 $t_\mathrm{lat}$은 인터럽트를 끈 시간의 최댓값 $t_\mathrm{dis}$와 같다. 인터럽트 응답 $t_\mathrm{resp}$는 여기에 인터럽트 처리기로 vectoring하는 시간 $t_\mathrm{vec}$과 ISR prologue 시간 $t_\mathrm{pro}$를 더한 것이다. 인터럽트 복귀 $t_\mathrm{rec}$은 장치 처리 $t_\mathrm{dev}$, 태스크에 신호나 메시지를 보내는 시간 $t_\mathrm{post}$, `OSIntExit()`와 `OSIntCtxSw()`의 실행 시간 $t_\mathrm{exit}$, $t_\mathrm{sw}$의 합이다. 태스크 지연 $t_\mathrm{task}$는 인터럽트 응답과 인터럽트 복귀에 스케줄러를 잠근 시간 $t_\mathrm{lock}$을 더한 것이다.[@micrium-ucos-iii-posting-from-an-isr-2026]
 
 $$
 \begin{aligned}

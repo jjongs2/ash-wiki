@@ -25,7 +25,7 @@ $U$는 태스크 집합을 실행하는 데 쓰인 프로세서 시간의 비율
 
 **CPU load**는 측정 구간에서 CPU가 idle 상태에 있지 않은 시간의 비율이고, 흔히 퍼센트로 나타낸다.[@autosar-fo-tr-timinganalysis-2025][@ti-spruex3v-2020] 이용률은 태스크의 주기와 실행 시간으로 계산하고[@liu-hard-real-time-1973], CPU load는 시스템이 실행되는 동안 idle 상태에 머문 시간을 재어 구한다.[@autosar-fo-tr-timinganalysis-2025][@ti-spruex3v-2020]
 
-µC/OS-III의 [[task#Idle 태스크|idle 태스크]]는 돌 때마다 카운터 `OSStatTaskCtr`를 늘린다.[@micrium-ucos-iii-idle-task-2026] µC/OS-III의 선택 기능인 statistic 태스크는 CPU 사용률을 구한다. 응용이 처음 만든 태스크가 `OSStatTaskCPUUsageInit()`을 불러 µC/OS-III 태스크만 돌 때 `OSStatTaskCtr`가 정해진 시간 동안 셀 수 있는 최댓값을 먼저 구해 두고, 그 뒤 같은 시간 동안 센 값이 이 최댓값보다 얼마나 작은지로 CPU 사용률을 정한다.[@micrium-ucos-iii-statistic-task-2026] FreeRTOS에서는 idle 태스크가 우선순위가 더 높은 응용 태스크에 할 일이 없을 때만 돌므로, idle hook 함수로 idle 태스크에 간 처리 시간을 재면 남는 처리 용량을 알 수 있다.[@freertos-task-management-2026]
+µC/OS-III의 [[task#Idle 태스크|idle 태스크]]는 돌 때마다 카운터 `OSStatTaskCtr`를 늘린다.[@micrium-ucos-iii-idle-task-2026] 이 커널의 선택 기능인 statistic 태스크는 CPU 사용률을 구한다. 응용이 처음 만든 태스크가 `OSStatTaskCPUUsageInit()`을 불러 µC/OS-III 태스크만 돌 때 `OSStatTaskCtr`가 정해진 시간 동안 셀 수 있는 최댓값을 먼저 구해 두고, 그 뒤 같은 시간 동안 센 값이 이 최댓값보다 얼마나 작은지로 CPU 사용률을 정한다.[@micrium-ucos-iii-statistic-task-2026] FreeRTOS에서는 idle 태스크가 우선순위가 더 높은 응용 태스크에 할 일이 없을 때만 돌므로, idle hook 함수로 idle 태스크에 간 처리 시간을 재면 남는 처리 용량을 알 수 있다.[@freertos-task-management-2026]
 
 ## 충분조건 검사와 필요충분조건 검사
 

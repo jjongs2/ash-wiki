@@ -22,7 +22,7 @@ BSW 모듈은 설정된 production error와 extended production error를 Dem의 
 
 ## 보고 경로
 
-AUTOSAR R25-11 Layered Software Architecture는 오류를 알리는 길을 다섯으로 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+오류를 알리는 길은 다섯이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 | 길                                                | 쓰임                                     |
 | ------------------------------------------------- | ---------------------------------------- |
@@ -36,7 +36,7 @@ API로 알릴 때 기본 반환형은 성공을 뜻하는 E_OK(값 0)와 실패�
 
 ## Det
 
-AUTOSAR R25-11의 Det 명세는 **Det**(Default Error Tracer)를 BSW에서 감지한 모든 development error와 runtime error를 보고받는 모듈로 정의한다. API 매개변수로 오류를 감지한 모듈, 함수, 오류의 종류를 추적할 수 있다. API 뒤의 기능은 이 명세의 범위 밖이어서, 디버거 중단점 걸기, 보고된 오류 세기, RAM(Random-Access Memory) 버퍼에 호출과 매개변수 기록하기, 통신 인터페이스로 외부 로거에 보내기 같은 전략을 개발자와 통합자가 고른다.[@autosar-cp-sws-defaulterrortracer-2025]
+**Det**(Default Error Tracer)는 BSW에서 감지한 모든 development error와 runtime error를 보고받는 모듈이다. API 매개변수로 오류를 감지한 모듈, 함수, 오류의 종류를 추적할 수 있다. API 뒤의 기능은 Det 명세의 범위 밖이어서, 디버거 중단점 걸기, 보고된 오류 세기, RAM(Random-Access Memory) 버퍼에 호출과 매개변수 기록하기, 통신 인터페이스로 외부 로거에 보내기 같은 전략을 개발자와 통합자가 고른다.[@autosar-cp-sws-defaulterrortracer-2025]
 
 `Det_ReportError`는 인자 넷을 받는다.[@autosar-cp-sws-defaulterrortracer-2025]
 
@@ -49,4 +49,4 @@ AUTOSAR R25-11의 Det 명세는 **Det**(Default Error Tracer)를 BSW에서 감�
 
 `Det_ReportRuntimeError`도 같은 꼴의 인자를 받되 ErrorId는 감지한 runtime error의 ID이고, 설정된 callout이 있으면 그것을 부르며, 늘 E_OK를 돌려준다. 두 보고 함수는 재진입할 수 있고, 설정된 error hook을 모두 곧바로 부른다. `Det_ReportError`는 실행을 멈춘다.[@autosar-cp-sws-defaulterrortracer-2025]
 
-AUTOSAR R25-11의 BSW 일반 명세는 runtime error가 일어나면 대응하는 오류 처리기를 돌리도록 하고, 통합자가 이 처리기를 Det 안의 callout으로 구현할 수 있게 한다. 이 처리기는 오류 이벤트를 메모리에 저장하거나, Dem을 부르거나, 짧고 합당한 동작만 한다. 이 callout의 함수 이름은 Det의 설정 파라미터 `DetReportRuntimeErrorCallout`으로 정한다.[@autosar-cp-sws-bswgeneral-2025]
+Runtime error가 일어나면 대응하는 오류 처리기가 돌고, 통합자는 이 처리기를 Det 안의 callout으로 구현할 수 있다. 이 처리기는 오류 이벤트를 메모리에 저장하거나, Dem을 부르거나, 짧고 합당한 동작만 한다. 이 callout의 함수 이름은 Det의 설정 파라미터 `DetReportRuntimeErrorCallout`으로 정한다.[@autosar-cp-sws-bswgeneral-2025]

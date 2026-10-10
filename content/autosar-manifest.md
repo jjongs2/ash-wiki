@@ -39,21 +39,21 @@ Execution Manifest는 응용을 Adaptive Platform에 실제로 배치하는 데 
 
 Machine State와 Function Group State는 [[autosar-state-management|State Management]]에서, resource group은 [[autosar-execution-management#Resource group|Execution Management]]에서 다룬다.
 
-AUTOSAR R25-11 Manifest 명세는 Execution Manifest의 최상위 요소를 Process로 둔다. Adaptive Platform에서 배치의 단위가 실행 중에 POSIX 프로세스가 되는 바이너리이기 때문이다. 응용 코드는 구체적인 서비스 인스턴스 대신 PortPrototype을 그 정보의 상징으로 쓰고, 서비스 인스턴스를 구체적으로 정하는 일은 Service Instance Manifest에 맡긴다.[@autosar-ap-tps-manifestspecification-2025]
+Execution Manifest의 최상위 요소는 Process다. Adaptive Platform에서 배치의 단위가 실행 중에 POSIX 프로세스가 되는 바이너리이기 때문이다. 응용 코드는 구체적인 서비스 인스턴스 대신 PortPrototype을 그 정보의 상징으로 쓰고, 서비스 인스턴스를 구체적으로 정하는 일은 Service Instance Manifest에 맡긴다.[@autosar-ap-tps-manifestspecification-2025]
 
 ### Service Instance Manifest
 
-AUTOSAR R25-11 Adaptive Platform 설계 설명서는 네트워크에서 서비스 지향 통신을 구현하는 데 필요한, [[some-ip|SOME/IP]] 같은 통신 기술에 고유한 설정을 Service Instance Manifest에 둔다. 통신 인프라는 서비스의 제공자와 요청자 쪽에서 똑같이 동작해야 하므로, 서비스 구현이 양쪽에서 호환되어야 한다. Service Instance Manifest가 다루는 것은 아래와 같다.[@autosar-ap-exp-platformdesign-2025]
+네트워크에서 서비스 지향 통신을 구현하는 데 필요한, [[some-ip|SOME/IP]] 같은 통신 기술에 고유한 설정은 Service Instance Manifest에 둔다. 통신 인프라는 서비스의 제공자와 요청자 쪽에서 똑같이 동작해야 하므로, 서비스 구현이 양쪽에서 호환되어야 한다. Service Instance Manifest가 다루는 것은 아래와 같다.[@autosar-ap-exp-platformdesign-2025]
 
 - **서비스 인터페이스 배치**: 서비스를 특정 통신 기술에서 어떻게 나타낼지 정한다.
 - **서비스 인스턴스 배치**: 제공하거나 요구하는 서비스 인스턴스마다 통신 기술에 필요한 자격 정보를 정한다.
 - E2E 보호, 보안 보호, Log and Trace의 설정[@autosar-ap-exp-platformdesign-2025]
 
-AUTOSAR R25-11 Manifest 명세는 ApApplicationEndpoint로 EthernetCommunicationConnector의 [[udp|UDP]]나 [[tcp|TCP]] 포트를 정하고, 이것이 같은 커넥터가 unicastNetworkEndpoint 역할로 가리키는 NetworkEndpoint와 함께 네트워크 통신 경로의 로컬 종단, 곧 소켓을 이루게 한다.[@autosar-ap-tps-manifestspecification-2025]
+ApApplicationEndpoint는 EthernetCommunicationConnector의 [[udp|UDP]]나 [[tcp|TCP]] 포트를 정하고, 같은 커넥터가 unicastNetworkEndpoint 역할로 가리키는 NetworkEndpoint와 함께 네트워크 통신 경로의 로컬 종단, 곧 소켓을 이룬다.[@autosar-ap-tps-manifestspecification-2025]
 
 ### Machine Manifest
 
-AUTOSAR R25-11 Adaptive Platform 설계 설명서는 Machine Manifest로 특정 하드웨어에서 도는 Adaptive Platform 인스턴스를 설정하게 한다. Machine Manifest가 다루는 것은 아래와 같다.[@autosar-ap-exp-platformdesign-2025]
+Machine Manifest로는 특정 하드웨어에서 도는 Adaptive Platform 인스턴스를 설정한다. Machine Manifest가 다루는 것은 아래와 같다.[@autosar-ap-exp-platformdesign-2025]
 
 - 네트워크 연결 설정과 네트워크 기술의 기본 자격 정보. 예: [[ethernet|이더넷]]의 고정 IP(Internet Protocol) 주소나 DHCP(Dynamic Host Configuration Protocol) 설정
 - 서비스 발견 기술의 설정. 예: SOME/IP가 쓸 IP 포트와 IP 멀티캐스트 주소

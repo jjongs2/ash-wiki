@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## 층
 
-- **Memory Services**: AUTOSAR R25-11 Layered Software Architecture는 이 층의 NvM과 BndM이 모두 쓰는 비휘발성 메모리를 추상화해 비휘발성 데이터를 다루도록 정한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+- **Memory Services**: 이 층의 NvM과 BndM은 둘 다 자기가 쓰는 비휘발성 메모리를 추상화해 비휘발성 데이터를 다룬다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 - **Memory Hardware Abstraction**: MemIf, Fee, Ea, MemAcc로 이루어진다. 메모리 장치가 칩 안에 있는지 보드 위에 있는지와 ECU 하드웨어 배치를 감추고, 위 층에 메모리 장치와 상관없는 인터페이스를 준다.
 - **Memory Drivers**: Mem이 플래시, EEPROM(Electrically Erasable Programmable Read-Only Memory) 같은 메모리 장치를 읽고, 쓰고, 지우고, 비었는지 검사하는 기본 서비스를 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025][@autosar-cp-sws-memorydriver-2025]
 
@@ -51,7 +51,7 @@ BndM은 블록을 포인터로 바로 접근할 수 있는 메모리에 두고, 
 
 ![[diagrams/bndm-ab-partition-write.svg]]
 
-AUTOSAR R25-11 Layered Software Architecture는 BndM을 쓰는 예를 든다. 쓰기는 외부 진단 요청 [[uds#서비스|WriteDataByIdentifier]]로 시작된다. Dcm(Diagnostic Communication Manager)이 받은 직렬화 데이터를 [[autosar-transformer|transformer]]로 풀어 `BndM_WriteStart`, `BndM_WriteBlock_<shortname>`, `BndM_WriteFinalize`를 차례로 부른다. [[autosar-software-component|SW-C]]는 `BndM_GetBlockPtr`로 데이터를 읽고, BndM은 MemIf와 Fee를 거치지 않고 Mem으로 플래시에 접근한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+BndM을 쓰는 예에서 쓰기는 외부 진단 요청 [[uds#서비스|WriteDataByIdentifier]]로 시작된다. Dcm(Diagnostic Communication Manager)이 받은 직렬화 데이터를 [[autosar-transformer|transformer]]로 풀어 `BndM_WriteStart`, `BndM_WriteBlock_<shortname>`, `BndM_WriteFinalize`를 차례로 부른다. [[autosar-software-component|SW-C]]는 `BndM_GetBlockPtr`로 데이터를 읽고, BndM은 MemIf와 Fee를 거치지 않고 Mem으로 플래시에 접근한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 메모리 서비스 모듈 셋을 견주면 아래와 같다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 

@@ -11,7 +11,7 @@ AUTOSAR R25-11 [[autosar-layered-architecture|Layered Software Architecture]]는
 
 ## Host와 Application Software Cluster
 
-AUTOSAR R25-11의 Software Cluster Connection 명세는 Software Cluster를 역할에 따라 아래처럼 나눈다.[@autosar-cp-sws-softwareclusterconnection-2025]
+Software Cluster는 역할에 따라 아래처럼 나뉜다.[@autosar-cp-sws-softwareclusterconnection-2025]
 
 - **Host Software Cluster**: BSW의 대부분, 특히 [[autosar-os|OS]]와 [[microcontroller-abstraction-layer|MCAL]] 같은 마이크로컨트롤러 의존 하위 층 BSW 모듈을 담는 Software Cluster로, 하나뿐이다.
 - **Application Software Cluster**: 주로 [[autosar-software-component|SW-C]]를 담고, 서비스 모듈이나 트랜스포머 같은 고른 BSW 모듈만 함께 담는 Software Cluster다.
@@ -23,11 +23,11 @@ Substitution Software Cluster는 개발 중에 한 Software Cluster의 출력을
 
 **Software Cluster Connection**(SwCluC)은 같은 machine에 배치된 Binary Object를 잇고, Application Software Cluster에 없는 BSW 모듈 가운데 통합한 소프트웨어가 그 인터페이스를 요구하는 것을 Proxy Module로 대신하고, [[autosar-rte|RTE]]와 함께 RTE Implementation Plug-In으로 Software Cluster 사이의 [[virtual-functional-bus|VFB]] 통신을 구현하는 BSW 모듈로 정의한다.[@autosar-cp-sws-softwareclusterconnection-2025]
 
-AUTOSAR R25-11 Layered Software Architecture는 SwCluC를 세 부분으로 나눈다. Cross Software Cluster Communication(SwCluC_Xcc)은 Software Cluster 사이의 통신 방식과 RTE 쪽 인터페이스를 구현한다. Proxy Module은 Software Cluster 안에 없는 BSW 모듈과 그 API(Application Programming Interface)를 추상화한다. Binary Manifest는 Software Cluster를 잇는 데 필요한 인터페이스의 바이너리 메타 정보를 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+SwCluC는 세 부분으로 나뉜다. Cross Software Cluster Communication(SwCluC_Xcc)은 Software Cluster 사이의 통신 방식과 RTE 쪽 인터페이스를 구현한다. Proxy Module은 Software Cluster 안에 없는 BSW 모듈과 그 API(Application Programming Interface)를 추상화한다. Binary Manifest는 Software Cluster를 잇는 데 필요한 인터페이스의 바이너리 메타 정보를 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ### Binary Manifest
 
-AUTOSAR R25-11의 Software Cluster Connection 명세는 **Binary Manifest**를 Software Cluster의 Binary Object가 밖에 내놓는 잘 정의된 인터페이스로 정의한다. Software Cluster 안의 자원에 접근하고 Software Cluster끼리 제공 자원과 요구 자원을 잇는 데 필요한 정보를 담으며, 여기서 자원은 sender-receiver 인터페이스나 NV(Non-Volatile) 블록처럼 소프트웨어가 동작하는 데 필요한 것이면 무엇이든 된다. Binary Manifest는 데이터·함수 주소처럼 빌드에 따라 달라지는 정보를 담으므로 Software Cluster를 빌드할 때 만들어지고, 대상 machine이 쉽게 해석할 수 있는 꼴이다. 연결에는 자원마다 명시적으로 준 고유 식별자를 쓰며, 호환되는 인터페이스끼리만 이어지도록 인터페이스 속성의 해시로 된 보호 값을 둔다. SwCluC의 Binary Manifest는 헤더 파일 `SwCluC_BManif.h`를 준다.[@autosar-cp-sws-softwareclusterconnection-2025]
+**Binary Manifest**는 Software Cluster의 Binary Object가 밖에 내놓는 잘 정의된 인터페이스다. Software Cluster 안의 자원에 접근하고 Software Cluster끼리 제공 자원과 요구 자원을 잇는 데 필요한 정보를 담으며, 여기서 자원은 sender-receiver 인터페이스나 NV(Non-Volatile) 블록처럼 소프트웨어가 동작하는 데 필요한 것이면 무엇이든 된다. Binary Manifest는 데이터·함수 주소처럼 빌드에 따라 달라지는 정보를 담으므로 Software Cluster를 빌드할 때 만들어지고, 대상 machine이 쉽게 해석할 수 있는 꼴이다. 연결에는 자원마다 명시적으로 준 고유 식별자를 쓰며, 호환되는 인터페이스끼리만 이어지도록 인터페이스 속성의 해시로 된 보호 값을 둔다. SwCluC의 Binary Manifest는 헤더 파일 `SwCluC_BManif.h`를 준다.[@autosar-cp-sws-softwareclusterconnection-2025]
 
 ### 연결
 
@@ -35,11 +35,11 @@ Software Cluster를 잇는 방식은 둘이다. On-board 방식에서는 따로 
 
 Software Cluster Connector는 요구 자원과 제공 자원의 machine Id, global resource Id, resource type Id, 보호 값, handle 수가 모두 맞고, Notifier Handle이 있으면 제공 자원에 요구 자원 몫의 Notifier Handle Set이 있을 때 둘을 잇는다. global resource Id 0은 유효한 Id가 없다는 뜻이어서 잇지 않는다. 짝을 찾지 못한 자원에는 Binary Manifest에 미리 둔 기본 handle을 넣고 연결되지 않은 것으로 표시한다.[@autosar-cp-sws-softwareclusterconnection-2025]
 
-AUTOSAR R25-11 Layered Software Architecture는 이 연결 과정에서 요구하는 쪽을 찾지 못한 인터페이스는 열린 채로 두고, 제공하는 쪽을 찾지 못한 인터페이스는 열린 채로 두되 기본값을 준다고 둔다. 그래서 인터페이스가 바뀌어도 Software Cluster를 갱신할 수 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+이 연결 과정에서 요구하는 쪽을 찾지 못한 인터페이스는 열린 채로 남고, 제공하는 쪽을 찾지 못한 인터페이스는 열린 채로 남되 기본값을 받는다. 그래서 인터페이스가 바뀌어도 Software Cluster를 갱신할 수 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ### Proxy Module
 
-AUTOSAR R25-11의 Software Cluster Connection 명세는 **Proxy Module**을 Application Software Cluster에서 BSW 모듈을 대신하는 모듈로 정의하고, High Proxy Module과 Low Proxy Module로 나눈다. Application Software Cluster에 놓이는 High Proxy Module은 위 층이나 같은 층의 모듈에 인터페이스를 주고, Binary Manifest를 거쳐 Host Software Cluster에 놓이는 Low Proxy Module로 이어진다. Proxy Module에는 OS, [[nvram-manager|NvM]], [[autosar-com|Com]], Dcm(Diagnostic Communication Manager), [[diagnostic-event-manager|Dem]], [[diagnostic-event-manager#FiM|FiM]]의 것이 있다. Low Proxy Module은 저마다 대신하는 BSW 모듈에 기댄다.[@autosar-cp-sws-softwareclusterconnection-2025]
+**Proxy Module**은 Application Software Cluster에서 BSW 모듈을 대신하는 모듈로, High Proxy Module과 Low Proxy Module로 나뉜다. Application Software Cluster에 놓이는 High Proxy Module은 위 층이나 같은 층의 모듈에 인터페이스를 주고, Binary Manifest를 거쳐 Host Software Cluster에 놓이는 Low Proxy Module로 이어진다. Proxy Module에는 OS, [[nvram-manager|NvM]], [[autosar-com|Com]], Dcm(Diagnostic Communication Manager), [[diagnostic-event-manager|Dem]], [[diagnostic-event-manager#FiM|FiM]]의 것이 있다. Low Proxy Module은 저마다 대신하는 BSW 모듈에 기댄다.[@autosar-cp-sws-softwareclusterconnection-2025]
 
 ![[diagrams/software-cluster-proxy-binary-manifest.svg]]
 

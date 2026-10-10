@@ -15,7 +15,7 @@ FreeRTOS는 태스크마다 [[task#스택|스택]]을 따로 두고, 프로세�
 
 ![[diagrams/context-switch-save-restore.svg]]
 
-µC/OS-III는 다른 태스크를 실행하기로 하면 지금 태스크의 context, 대개 CPU 레지스터를 그 태스크의 스택에 저장하고 새 태스크의 context를 복원한다. 준비 상태 태스크의 스택 프레임은 늘 인터럽트가 막 일어나 프로세서 레지스터를 모두 쌓아 둔 것처럼 꾸며져 있다. 태스크는 만들어질 때 준비 상태에 들므로, 소프트웨어가 그 스택 프레임을 같은 모양으로 미리 채워 둔다. 스택 포인터는 스택이 아니라 태스크의 TCB(Task Control Block)에 저장한다. context switch 코드는 대개 µC/OS-III의 프로세서 포트에 들어 있다. 레지스터가 많은 CPU일수록 저장하고 복원할 레지스터가 많아 context switch 부담이 크다.[@micrium-ucos-iii-context-switching-2026] µC/OS-III TCB의 첫 필드 `.StkPtr`는 태스크 스택의 꼭대기를 가리키며, context switch 코드가 어셈블리에서 접근하는 TCB 필드를 이것 하나로 두도록 해 맨 앞에 놓았다.[@micrium-ucos-iii-task-management-internals-2026]
+µC/OS-III는 다른 태스크를 실행하기로 하면 지금 태스크의 context, 대개 CPU 레지스터를 그 태스크의 스택에 저장하고 새 태스크의 context를 복원한다. 준비 상태 태스크의 스택 프레임은 늘 인터럽트가 막 일어나 프로세서 레지스터를 모두 쌓아 둔 것처럼 꾸며져 있다. 태스크는 만들어질 때 준비 상태에 들므로, 소프트웨어가 그 스택 프레임을 같은 모양으로 미리 채워 둔다. 스택 포인터는 스택이 아니라 태스크의 TCB(Task Control Block)에 저장한다. context switch 코드는 대개 µC/OS-III의 프로세서 포트에 들어 있다. 레지스터가 많은 CPU일수록 저장하고 복원할 레지스터가 많아 context switch 부담이 크다.[@micrium-ucos-iii-context-switching-2026] TCB의 첫 필드 `.StkPtr`는 태스크 스택의 꼭대기를 가리키며, context switch 코드가 어셈블리에서 접근하는 TCB 필드를 이것 하나로 두도록 해 맨 앞에 놓았다.[@micrium-ucos-iii-task-management-internals-2026]
 
 FreeRTOS 문서에 따르면 협력형 스케줄러는 요청이 있을 때만 context switch를 하므로, [[rtos|RTOS]]가 더하는 처리 오버헤드를 크게 줄인다.[@freertos-solution4-2024]
 

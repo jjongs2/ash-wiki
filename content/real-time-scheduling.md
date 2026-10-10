@@ -54,7 +54,7 @@ POSIX.1-2024는 [[ieee-1003-1#범위|Process Scheduling 옵션]]을 지원하는
 | `SCHED_SPORADIC` | 보충 주기와 실행 용량을 두는 [[aperiodic-server#Sporadic server\|sporadic server]] 정책으로, 용량이 남은 동안은 `sched_priority`로, 용량을 다 쓰면 `sched_ss_low_priority`로 실행한다. |
 | `SCHED_OTHER`    | 구현이 반드시 두는 정책으로, `SCHED_FIFO`나 `SCHED_RR`과 똑같이 동작해도 된다. 다른 정책의 스레드와 섞였을 때의 효과는 구현이 정한다.                                                  |
 
-POSIX.1-2024는 구현이 `<unistd.h>`의 `_POSIX_PRIORITY_SCHEDULING`으로 Process Scheduling 옵션 지원을 나타내게 한다.[@ieee-1003-1-unistd-h-2024] POSIX.1-2024는 우선순위를 프로세스나 스레드에 딸린, 스케줄링 정책이 정한 범위 안의 음이 아닌 정수로 정의하고, 값이 클수록 우선순위가 높다고 정한다.[@ieee-1003-1-definitions-2024]
+구현은 `<unistd.h>`의 `_POSIX_PRIORITY_SCHEDULING`으로 Process Scheduling 옵션 지원을 나타낸다.[@ieee-1003-1-unistd-h-2024] 이 표준은 우선순위를 프로세스나 스레드에 딸린, 스케줄링 정책이 정한 범위 안의 음이 아닌 정수로 정의하고, 값이 클수록 우선순위가 높다고 정한다.[@ieee-1003-1-definitions-2024]
 
 ## 같은 우선순위(타임 슬라이싱)
 

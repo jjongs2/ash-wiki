@@ -23,11 +23,11 @@ Language Binding은 서비스의 Method, Event, Field를 대상 프로그래밍 
 
 Network Binding은 설정한 서비스의 실제 데이터를 어떻게 직렬화해 특정 네트워크에 묶을지 정한다. 생성한 서비스별 레시피를 해석하거나 직렬화 코드를 직접 생성하는 방식으로 구현할 수 있다. Communication Management가 지원하는 Network Binding은 SOME/IP, DDS(Data Distribution Service), IPC(Inter-Process Communication, 그 밖의 사용자 정의 바인딩 포함), 시그널 기반 Network Binding인 Signal PDU(Protocol Data Unit), 시그널 기반 정적 Network Binding이다. 로컬 Service Registry도 Network Binding의 일부다. Language Binding과 Network Binding 사이의 인터페이스는 Communication Management 안의 비공개 인터페이스로 보아, 이를 정하는 규범 명세는 범위 밖이다.[@autosar-ap-exp-platformdesign-2025]
 
-AUTOSAR R25-11 Communication Management 명세는 [[signal-based-communication|시그널 기반 통신]]을 쓰는 [[autosar-classic-platform|Classic Platform]]의 소프트웨어 컴포넌트와 정보를 주고받을 때 시그널 기반 통신과 서비스 지향 통신을 변환하게 한다. 시그널 기반 정보를 Adaptive Platform의 [[autosar-adaptive-platform#Machine과 프로세스|Machine]]에 내놓는 방법으로는 SOME/IP를 쓰는 것, 정적인 것, [[ieee-1722|IEEE 1722]]를 쓰는 것의 세 가지 시그널 기반 Network Binding을 둔다.[@autosar-ap-sws-communicationmanagement-2025] 이 변환은 [[service-oriented-communication#시그널 기반 통신과의 차이|서비스 지향 통신]]에서 다룬다.
+Communication Management는 [[signal-based-communication|시그널 기반 통신]]을 쓰는 [[autosar-classic-platform|Classic Platform]]의 소프트웨어 컴포넌트와 정보를 주고받을 때 시그널 기반 통신과 서비스 지향 통신을 변환한다. 시그널 기반 정보를 Adaptive Platform의 [[autosar-adaptive-platform#Machine과 프로세스|Machine]]에 내놓는 방법으로는 SOME/IP를 쓰는 것, 정적인 것, [[ieee-1722|IEEE 1722]]를 쓰는 것의 세 가지 시그널 기반 Network Binding을 둔다.[@autosar-ap-sws-communicationmanagement-2025] 이 변환은 [[service-oriented-communication#시그널 기반 통신과의 차이|서비스 지향 통신]]에서 다룬다.
 
 ## Proxy와 Skeleton
 
-AUTOSAR R25-11 Adaptive Platform 설계 설명서는 C++ Language Binding의 상위 인터페이스가 AUTOSAR 메타모델의 인터페이스 기술에 정의한 서비스를 객체 지향으로 대응시키게 한다. Communication Management 개발 도구의 생성기가 서비스마다 Field, Event, Method의 타입 안전한 표현을 담은 C++ 클래스를 만든다. 서비스 구현 쪽의 생성 클래스를 **Service Provider Skeleton**, 클라이언트 쪽의 생성 클래스를 **Service Requester Proxy**라 부른다.[@autosar-ap-exp-platformdesign-2025]
+C++ Language Binding의 상위 인터페이스는 AUTOSAR 메타모델의 인터페이스 기술에 정의한 서비스를 객체 지향으로 대응시킨다. Communication Management 개발 도구의 생성기가 서비스마다 Field, Event, Method의 타입 안전한 표현을 담은 C++ 클래스를 만든다. 서비스 구현 쪽의 생성 클래스를 **Service Provider Skeleton**, 클라이언트 쪽의 생성 클래스를 **Service Requester Proxy**라 부른다.[@autosar-ap-exp-platformdesign-2025]
 
 ![[diagrams/ara-com-language-network-binding.svg]]
 
@@ -49,6 +49,6 @@ Proxy는 서비스 Method를 동기로 부르는 메커니즘과 비동기로 �
 
 ## Minimum Send Interval
 
-AUTOSAR R25-11 Communication Management 명세는 수신자가 넘치거나 과부하되지 않도록 Event마다 Minimum Send Interval을 설정할 수 있게 한다. **Minimum Send Interval**은 연이은 두 송신 사이에 지나야 하는 최소 시간으로, 네트워크에서 그 Event의 최대 송신 빈도를 제한한다. 응용이 Event의 송신을 요청하면 `ara::com`은 마지막으로 하위 송신 계층에 넘긴 때부터 지난 시간이 Minimum Send Interval보다 큰지 확인한다. 크면 Event를 송신 계층에 넘기고 그때부터 새 간격을 재며, 아니면 요청을 버리고 `kMinimumSendIntervalViolationError` 오류를 돌려준다. 설정값 `minimumSendInterval`이 0이면 감시하지 않고, 기본값은 0이다. 같은 감시는 Trigger, 클라이언트의 Method 호출, Field의 Get과 Set 호출, Field의 송신 요청에도 설정할 수 있다.[@autosar-ap-sws-communicationmanagement-2025]
+Communication Management에서는 수신자가 넘치거나 과부하되지 않도록 Event마다 Minimum Send Interval을 설정할 수 있다. **Minimum Send Interval**은 연이은 두 송신 사이에 지나야 하는 최소 시간으로, 네트워크에서 그 Event의 최대 송신 빈도를 제한한다. 응용이 Event의 송신을 요청하면 `ara::com`은 마지막으로 하위 송신 계층에 넘긴 때부터 지난 시간이 Minimum Send Interval보다 큰지 확인한다. 크면 Event를 송신 계층에 넘기고 그때부터 새 간격을 재며, 아니면 요청을 버리고 `kMinimumSendIntervalViolationError` 오류를 돌려준다. 설정값 `minimumSendInterval`이 0이면 감시하지 않고, 기본값은 0이다. 같은 감시는 Trigger, 클라이언트의 Method 호출, Field의 Get과 Set 호출, Field의 송신 요청에도 설정할 수 있다.[@autosar-ap-sws-communicationmanagement-2025]
 
 ![[diagrams/minimum-send-interval-timeline.svg]]
