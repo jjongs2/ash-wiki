@@ -8,7 +8,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**Cyclic queuing and forwarding**(CQF)는 브리지와 엔드 스테이션이 프레임을 큐에 넣고 큐를 비우는 절차를 주기적으로 맞춰 프레임 전송을 동기화하는 방식이다. IEEE 802.1Qch 프로젝트는 이 방식으로 혼잡 손실 없이 결정적인 지연을 얻는 것을 범위로 삼았다.[@ieee-802-1qch-project-2017] IEEE 802.1Qch-2017이 [[ieee-802-1q|IEEE 802.1Q]]-2014의 개정(Amendment 29)으로 CQF를 넣었고, 이 개정은 IEEE 802.1Q-2018에 합쳐졌다.[@ieee-802-1-tsn-tg-2026][@ieee-802-1qch-2017] IEEE 802.1 작업 그룹의 [[tsn|TSN]] 요약은 CQF를 지연 상한을 위한 도구로 분류한다.[@ieee-802-1-tsn-summary-2026] IEEE 802.1Q-2022의 부속서 T(참고)는 CQF가 초기 논의에서 불린 이름으로 Peristaltic Shaper를 제시한다.[@ieee-802-1q-2022]
+**Cyclic queuing and forwarding**(CQF)는 브리지와 엔드 스테이션이 프레임을 큐에 넣고 큐를 비우는 절차를 주기적으로 맞춰 프레임 전송을 동기화하는 방식이다. IEEE 802.1Qch 프로젝트는 이 방식으로 혼잡 손실 없이 결정적인 지연을 얻는 것을 범위로 삼았다.[@ieee-802-1qch-project-2017] IEEE 802.1Qch-2017이 [[ieee-802-1q|IEEE 802.1Q]]-2014의 개정(Amendment 29)으로 CQF를 넣었고, 이 개정은 IEEE 802.1Q-2018에 합쳐졌다.[@ieee-802-1-tsn-tg-2026][@ieee-802-1qch-2017] IEEE 802.1 작업 그룹의 [[tsn|TSN]] 요약은 CQF를 지연 상한을 위한 도구로 분류한다.[@ieee-802-1-tsn-summary-2026] IEEE 802.1Q-2022의 Annex T(참고)는 CQF가 초기 논의에서 불린 이름으로 Peristaltic Shaper를 제시한다.[@ieee-802-1q-2022]
 
 ## 구성과 지연
 
