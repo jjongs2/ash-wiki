@@ -78,7 +78,7 @@ AUTOSAR는 Adaptive Platform을 [[functional-safety|기능 안전]] 프로젝트
 
 IP 기반 프로토콜을 쓰는 Raw Data Stream은 TCP나 UDP를 쓰는 TCP/IP 소켓을, IEEE 1722 프로토콜을 쓰는 Raw Data Stream은 데이터 링크 소켓을 전송 계층으로 쓴다.[@autosar-ap-sws-rawdatastream-2025]
 
-Safe Hardware Acceleration 개념의 생명주기 상태는 draft다. Hardware Test Manager는 하드웨어 시험을 위한 표준 인터페이스를 주는 새 구성 요소로, 하드웨어 시험 패턴의 등록과 실행, 시험 결과의 수집과 보고를 맡는다.[@autosar-ap-tr-releaseoverview-2025]
+Safe Hardware Acceleration 개념의 생명주기 상태는 draft다. Hardware Test Manager는 하드웨어 시험을 위한 표준 인터페이스를 주는, R25-11에 새로 든 구성 요소로, 하드웨어 시험 패턴의 등록과 실행, 시험 결과의 수집과 보고를 맡는다.[@autosar-ap-tr-releaseoverview-2025]
 
 AUTOSAR Adaptive Platform R25-11은 AUTOSAR 코드 기반의 최소 C++ 버전을 C++17로 올렸다. MISRA C++:2023에 공식적으로 맞추려는 것과, QNX v8처럼 C++14 지원을 그만두는 운영체제 공급사가 있다는 것이 그 까닭이다.[@autosar-ap-tr-releaseoverview-2025]
 

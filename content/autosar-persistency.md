@@ -50,6 +50,6 @@ Persistency는 응용 설계자가 정의한 영속 데이터, 통합자가 바�
 
 Remote Persistency는 제공하는 서비스 인터페이스마다 내부 Key-Value Storage를 하나 쓴다. 데이터 항목마다 서비스 인터페이스의 Field 하나로 나타내고, 그 데이터는 해당 Key-Value Storage의 키와 값의 짝에 저장한다. 서비스 인터페이스의 Field와 Method에 대한 접근은 IAM으로 통제한다.[@autosar-ap-sws-remotepersistency-2025]
 
-Remote Persistency는 차량이나 ECU 안의 여러 응용을 위한 설정·코딩 데이터의 전역 저장소로 들어왔다. 중앙 인스턴스가 `ara::com` 서비스로 제공하므로, 같은 ECU나 차량의 어느 응용이든 로컬 Persistency와 비슷하게 쓸 수 있다. 이 판의 Remote Persistency는 파일 접근을 지원하지 않아, 하부 Persistency의 File Storage를 쓸 수 없다. 서비스 인터페이스는 아직 예비 상태로, 다른 functional cluster의 서비스 인터페이스처럼 blueprint로 나와 있지 않다.[@autosar-ap-tr-releaseoverview-2025]
+AUTOSAR R25-11 Adaptive Platform은 Remote Persistency를 차량이나 ECU 안의 여러 응용을 위한 설정·코딩 데이터의 전역 저장소로 들였다. 중앙 인스턴스가 `ara::com` 서비스로 제공하므로, 같은 ECU나 차량의 어느 응용이든 로컬 Persistency와 비슷하게 쓸 수 있다. 이 판의 Remote Persistency는 파일 접근을 지원하지 않아, 하부 Persistency의 File Storage를 쓸 수 없다. 서비스 인터페이스는 아직 예비 상태로, 다른 functional cluster의 서비스 인터페이스처럼 blueprint로 나와 있지 않다.[@autosar-ap-tr-releaseoverview-2025]
 
 AUTOSAR Remote Persistency 명세는 R25-11에서 처음 나왔다.[@autosar-ap-sws-remotepersistency-2025] Adaptive Platform의 개정 이력은 [[autosar-adaptive-platform#개정 이력|AUTOSAR Adaptive Platform]]에서 다룬다.

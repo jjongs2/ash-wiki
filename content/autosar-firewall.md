@@ -41,7 +41,7 @@ AUTOSAR Classic Platform R25-11의 Firewall 명세는 Firewall이 [[pdu-router#�
 
 Firewall(Fw)은 Communication Services 층에 든다.[@autosar-cp-sws-bswgeneral-2025]
 
-Firewall 모듈은 들어오는(ingress) 트래픽만 거른다.[@autosar-cp-sws-firewall-2025][@autosar-cp-tr-releaseoverview-2025]
+Firewall 모듈은 들어오는(ingress) 트래픽만 거르도록 제한되어 있다.[@autosar-cp-sws-firewall-2025][@autosar-cp-tr-releaseoverview-2025]
 
 ## Adaptive Platform의 FC Firewall
 
