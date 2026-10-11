@@ -55,9 +55,9 @@ flowchart LR
 | `wiki-ingest`    | 묶음 하나의 초안, 검증, 도해, 격리 자기 점검과 PR          |
 | `wiki-verify`    | `verify:` 이슈의 미검증 주장 재조사(한 번만)               |
 | `wiki-lint`      | 주제나 구역 전체의 모순, 중복, 용어 불일치, 낡은 출처 점검 |
-| `wiki-retro`     | 세션 기록에서 스킬 개선점을 뽑은 티켓                      |
-| `reader-testing` | 규칙을 모르는 독자 에이전트로 잘못 읽히는 문장 찾기        |
-| `wiki-news`      | 한 주의 업계 소식을 엮은 주간 소식                         |
+| `wiki-retro`     | 세션 기록으로부터 스킬 개선점 도출                         |
+| `reader-testing` | 규칙을 모르는 독자 시점에서 오독되는 문장 찾기             |
+| `wiki-news`      | 주간 업계 소식 정리                                        |
 
 판정 기준은 [검증 절차](docs/wiki-verification.md)와 [출처 위계](docs/source-hierarchy.md)에, 결정 배경은 [ADR](docs/adr/)에 있습니다.
 
@@ -88,7 +88,7 @@ npx quartz build --serve
 npm run check
 ```
 
-CI와 같은 검사(prettier, 타입 검사, 콘텐츠 검사기, 테스트)입니다. PR 전에 통과시킵니다.
+CI와 같은 검사(prettier, 타입 검사, 콘텐츠 검사기, 테스트)입니다. PR을 올리기 전에 통과시킵니다.
 
 ## 저장소 구조
 
