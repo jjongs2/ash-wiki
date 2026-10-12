@@ -20,6 +20,8 @@ ISO/IEC/IEEE 24765 용어집은 형상 관리를 이루는 네 활동을 다음�
 
 같은 용어집은 감사를 둘로 정의한다. 기능 형상 감사(functional configuration audit)는 형상 항목이 기능·할당 형상 식별에 정한 성능·기능 특성을 갖췄는지 확인하고, 물리 형상 감사(physical configuration audit)는 만들어진 형상 항목이 그것을 정의한 기술 문서에 맞는지 확인한다.[@ieee-cs-sevocab-2026]
 
+![[diagrams/functional-physical-configuration-audit.svg]]
+
 ISO 10007:2017은 형상 관리 프로세스를 형상 관리 계획, 형상 식별, 변경 통제, 형상 상태 기록, 형상 감사로 두고, 형상 상태 기록을 형상 정보, 제안된 변경의 상태, 승인된 변경의 구현 상태를 공식적으로 기록하고 보고하는 일로 정의한다.[@iso-10007-obp-2017]
 
 MIL-HDBK-61B Change 1은 형상 관리 프로세스를 형상 관리·계획, 형상 식별, 형상 통제·변경 관리, 형상 상태 기록, 형상 검증·감사의 다섯 기능으로 나눈다.[@dod-mil-hdbk-61b-2025]

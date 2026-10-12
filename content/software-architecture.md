@@ -27,6 +27,8 @@ ISO/IEC/IEEE 42010:2022는 **아키텍처 뷰**(architecture view)를 AD의 일�
 
 SWEBOK V4.0a에 따르면 AD는 서로 다른 이해관계자의 여러 관심사를 다루려고 흔히 아키텍처 뷰를 여럿 쓰고, 뷰를 만드는 흔한 방식은 둘이다. **synthetic 방식**은 아키텍트가 대상 시스템의 뷰들을 만들어 correspondence 규칙으로 AD 안에서 통합하는 방식이고, **projective 방식**은 하나로 통합된 모델에서 정해진 절차로 뷰를 하나씩 뽑아내는 방식이다. 뷰를 여럿 두면 뷰끼리 어긋날 수 있는데, 이를 **multiple views 문제**라 부른다. projective 방식은 일관된 모델 하나에서 뷰를 끌어내므로 어긋남이 적지만, 그 모델이 임의의 관심사를 담지 못할 수 있어 표현력을 잃는다. synthetic 방식에서는 링크 같은 추적 수단으로 뷰의 요소를 서로 참조해 일관성을 맞춘다.[@ieee-swebok-v4-0a-2026]
 
+![[diagrams/synthetic-projective-views.svg]]
+
 아키텍처 프레임워크는 특정 분야의 권장 실무를 체계화한 것으로, 서로 맞물린 뷰포인트나 ADL의 집합으로 구현되며, 자동차 산업의 [[autosar|AUTOSAR]]가 그 예다. UML(Unified Modeling Language)은 소프트웨어 설계 활동에서 널리 쓰이기 때문에 ADL로 자주 쓰여 왔다.[@ieee-swebok-v4-0a-2026]
 
 ## 아키텍처 스타일과 패턴

@@ -22,3 +22,5 @@ status: 유효
 - 2007년: ISO/IEC 42010:2007. 소프트웨어 집약 시스템의 아키텍처 기술에 대한 권고 관행.[@iso-iec-42010-2007]
 - 2011년: ISO/IEC/IEEE 42010:2011. IEEE 1471-2000을 대체했고[@ieee-42010-2011], ISO/IEC 42010:2007을 개정했다.[@iso-iec-42010-2007]
 - 2022년: ISO/IEC/IEEE 42010:2022. 현행판으로, 2011년판을 기술 개정해 대체했다.[@iso-iec-ieee-42010-obp-2022][@iso-iec-ieee-42010-2022]
+
+![[diagrams/iso-iec-ieee-42010-editions.svg]]

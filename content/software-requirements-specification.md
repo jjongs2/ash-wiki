@@ -40,6 +40,8 @@ ATDD는 테스트 케이스가 구현보다 먼저 온다는 [[test-driven-devel
 
 문서로 남긴 소프트웨어 요구사항은 생명주기의 다른 인도물과 같은 [[configuration-management|형상 관리]] 관행을 따라야 하고, 할 수 있으면 요구사항 하나하나도 형상 관리와 [[traceability|추적성]]의 대상으로 삼는다. 요구사항을 명시적으로 문서화하는 프로젝트는 두 방식 가운데 하나를 쓴다. 증분 명세(incremental specification)는 명세의 각 판에 앞 판과의 차이(추가, 수정, 삭제)만 담아 문서의 양이 적고, 전체 명세(comprehensive specification)는 각 판에 바뀐 것만이 아니라 모든 요구사항을 담아 독자가 문서 하나로 요구사항 전체를 이해할 수 있다. 중간 릴리스(x.1, x.2)는 증분으로, 주 릴리스(1.0, 2.0)는 전체로 명세해 두 방식을 섞는 조직도 있다.[@ieee-swebok-v4-0a-2026]
 
+![[diagrams/incremental-comprehensive-specification.svg]]
+
 ## 명확성
 
 ISO/IEC/IEEE 24765 용어집은 명확하다(unambiguous)를 필요하면 정의의 도움을 받아 한 가지로만 해석되게 서술된 것으로 정의한다.[@ieee-cs-sevocab-2026] 산출물 사이의 일관성은 [[traceability#일관성|추적성]]에서 다룬다.

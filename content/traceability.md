@@ -13,6 +13,8 @@ ISO/IEC/IEEE 24765 용어집은 **양방향 추적성**(bidirectional traceabili
 
 SWEBOK V4.0a에 따르면 소프트웨어 요구사항은 backward 방향으로는 시스템 요구사항이나 표준 문서 같은 원천 문서로 거슬러 추적하고, forward 방향으로는 설계 요소, 요구사항 기반 [[test-case|테스트 케이스]], 구현한 기능을 설명하는 사용자 매뉴얼의 절로 추적할 수 있다. 이 지침서는 backward 추적성의 예로 테스트 스크립트를 그에 딸린 요구사항과 설계에 잇는 링크를 든다.[@ieee-swebok-v4-0a-2026]
 
+![[diagrams/requirements-backward-forward-traceability.svg]]
+
 [[automotive-spice|ASPICE]] 4.1은 산출물 사이에 다음과 같은 연결을 요구한다. 이 요구는 엔지니어링 프로세스마다 "Ensure consistency and establish bidirectional traceability" BP(base practice)로, 변경 요청 관리(SUP.10)에는 "Establish bidirectional traceability" BP로 들어 있다.[@vda-automotive-spice-pam-4-1-2026]
 
 | 산출물                                         | 상대                                      | 요구                  |
