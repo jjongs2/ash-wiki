@@ -16,6 +16,8 @@ status: 유효
 
 이 문서는 [[iso-26262|ISO 26262]] 시리즈와 [[iso-21448|ISO 21448]]의 기존 접근을 tailoring하거나 넓혀 AI 안전을 관리하는 틀을 정한다. AI 시스템의 오동작에 따른 [[functional-safety|기능 안전]] 리스크는 ISO 26262 시리즈의 관련 조항을 tailoring하거나 넓혀 다루고, AI 시스템의 기능 부족에 따른 리스크는 ISO 21448의 개념과 지침을 넓혀 다룬다. [[hazard-analysis-and-risk-assessment#용어|해저드]] 분석과 리스크 분석은 범위 밖이며, ISO 26262 시리즈와 ISO 21448이 다루는 차량 수준 시스템 안전 공학 활동에 속한다.[@iso-pas-8800-obp-2024]
 
+![[diagrams/iso-pas-8800-iso-26262-iso-21448.svg]]
+
 이 문서가 ISO 26262, ISO 21448 등 관련 문서에 더하는 내용은 다음과 같다.[@iso-pas-8800-obp-2024]
 
 - AI 요소에 필요한 ISO 26262와 ISO 21448의 tailoring이나 확장

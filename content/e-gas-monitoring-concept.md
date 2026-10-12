@@ -20,6 +20,8 @@ E-Gas 감시 개념 6.0판은 엔진 제어기의 감시를 세 층으로 나눈
 - **Level 2**(기능 감시 층): 따로 계산한 허용 엔진 토크와 실제 엔진 토크를 견주어(가속도로 감시하는 시스템은 허용 차량 가속도와 실제 차량 가속도를 견주어) Level 1 기능 소프트웨어의 잘못된 처리를 검출하고, fault면 시스템 반응을 일으킨다.
 - **Level 3**(제어기 감시 층): 기능 제어기와 따로 된 하드웨어인 감시 모듈이 질의-응답으로 기능 제어기가 프로그램을 올바로 실행하는지 시험하고, fault면 기능 제어기와 따로 시스템 반응을 일으킨다.[@egas-monitoring-concept-2015]
 
+![[diagrams/e-gas-three-level-monitoring.svg]]
+
 이 개념은 참조 문서로 [[iso-26262|ISO 26262]] 1판(2011-11-15)을 들고, 시스템 정의, 해저드 분석과 리스크 분석, functional safety concept, technical safety concept의 순서로 절을 둔다.[@egas-monitoring-concept-2015]
 
 해저드 분석과 리스크 분석의 결과로 이 개념은 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]] 넷을 정한다. 의도하지 않은 가속의 방지(SZ-01)는 [[automotive-safety-integrity-level|ASIL]] B다. 가속이 없는 것의 방지(SZ-02), 의도하지 않은 감속의 방지(SZ-03), 감속이 없는 것의 방지(SZ-04)는 통제 가능한 상태를 나타내므로 이 개념에서 다루지 않는다.[@egas-monitoring-concept-2015]

@@ -23,6 +23,8 @@ ISO 26262-1:2018은 하드웨어 [[fault-error-failure|fault]]와 그것이 낳�
 - **Dual-point failure**: 독립된 하드웨어 fault 둘이 겹쳐 safety goal 위반에 바로 이르는 failure. 정의의 주석은 dual-point failure를 차수 2의 multiple-point failure로 제시하고, ISO 26262 시리즈가 다루는 dual-point failure에 한 fault는 안전 관련 요소에, 다른 fault는 안전 상태를 이루거나 유지하려는 해당 안전 메커니즘에 영향을 주는 경우가 든다고 제시한다.
 - **Safe fault**: 일어나도 safety goal 위반 확률을 크게 높이지 않는 fault. 정의의 주석은 안전 관련 요소와 안전과 무관한 요소가 모두 safe fault를 가질 수 있고, single-point fault, residual fault, dual-point fault는 safe fault가 아니며, safety concept에서 관련 있다고 보이지 않는 한 차수가 2보다 높은 multiple-point fault는 safe fault로 볼 수 있다고 제시한다.[@iso-26262-1-obp-2018]
 
+![[diagrams/residual-fault-coverage-example.svg]]
+
 이 표준은 fault가 검출되거나 인지되는지에 따라서도 이름을 둔다. **Detected fault**는 정해진 시간 안에 안전 메커니즘이 그 존재를 검출한 fault이고, **perceived fault**는 차량 수준에서 벗어난 거동을 거쳐 간접으로 인지될 수 있는 fault다.[@iso-26262-1-obp-2018] Detected fault의 정해진 시간이 어느 시간 구간인지는 [[fault-tolerant-time-interval|FTTI]]에서 다룬다.
 
 ## 진단 커버리지와 failure rate

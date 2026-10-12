@@ -34,6 +34,8 @@ STPA에서 **loss**는 이해관계자에게 가치 있는 것을 잃는 것이�
 
 **계층적 제어 구조**(hierarchical control structure)는 피드백 제어 루프로 이뤄진 시스템 모델이다. 효과적인 제어 구조는 전체 시스템의 거동에 제약을 강제한다. 제어 루프에서 제어기는 목표를 이루려고 결정을 내리고, 제어 동작을 내어 피제어 프로세스를 제어하며 그 거동에 제약을 강제한다.[@leveson-stpa-handbook-2018]
 
+![[diagrams/stpa-control-loop.svg]]
+
 **UCA**(Unsafe Control Action)는 특정 context와 최악의 환경에서 hazard로 이어질 제어 동작이다. 제어 동작이 안전하지 않게 되는 방식은 네 가지다.[@leveson-stpa-handbook-2018]
 
 - 제어 동작을 내지 않아 hazard로 이어진다.

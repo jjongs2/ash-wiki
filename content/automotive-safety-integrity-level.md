@@ -23,6 +23,8 @@ ASIL은 [[hazard-analysis-and-risk-assessment|HARA]]에서 [[hazard-analysis-and
 
 이 표준은 **ASIL decomposition**을 같은 safety goal에 기여하는 중복된 [[safety-requirement|안전 요구사항]]을 충분히 독립된 요소들에 나누어 할당하는 것으로 정의한다. 그 요소들에 할당한 중복 요구사항의 ASIL을 낮추는 것이 목적이다.[@iso-26262-1-obp-2018]
 
+![[diagrams/asil-decomposition.svg]]
+
 정의의 주석은 ASIL decomposition을 설계 중 ASIL tailoring 방법, 곧 ISO 26262-9가 정의하는 ASIL tailoring에 관한 요구사항 분해(requirements decomposition with respect to ASIL tailoring)의 바탕으로 제시한다. 또 ASIL decomposition은 [[functional-safety#Systematic failure와 random hardware failure|random hardware failure]] 요구사항에는 적용하지 않으며, 분해로 ASIL을 낮춰도 [[functional-safety-management#Confirmation measure|confirmation measure]]는 safety goal의 수준에 남는다고 제시한다.[@iso-26262-1-obp-2018] 요소 사이의 독립성은 기능 안전 관리의 [[functional-safety-management#독립성|독립성]] 절에서 다룬다.
 
 ISO 26262-9:2018은 ASIL tailoring에 관한 요구사항 분해와, [[freedom-from-interference|요소의 공존 기준]](criteria for coexistence of elements)에 대한 요구사항을 정한다.[@iso-26262-9-obp-2018]

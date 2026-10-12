@@ -50,6 +50,8 @@ IEC 61508:2010은 **functional safety assessment**를, 표준의 관련 조항 �
 
 이 표준은 E/E/PE 안전 관련 시스템의 모든 부분과 생명주기의 모든 단계에 functional safety assessment를 요구하고, 그 요구사항을 IEC 61508-1의 8절에 둔다. 평가자에게 요구하는 독립성은 [[safety-integrity-level|SIL]] 1의 같은 조직 안 독립된 사람부터 SIL 4의 독립된 조직까지 오르고, SIL 2와 SIL 3에서는 시스템 복잡도, 설계의 새로움, 개발자의 이전 경험 같은 요인에 따라 달라진다. 평가자는 맡은 활동에 필요한 역량을 갖춰야 한다.[@iec-functional-safety-faq-2023]
 
+![[diagrams/iec-61508-assessor-independence.svg]]
+
 이 표준은 제3자 인증을 요구하지 않는다. 독립된 사람이나 부서에 대한 요구를 외부 조직으로 채우더라도 그 조직이 인증 기관일 필요는 없고, 위험 평가와 안전 관련 시스템 적용에 숙련되고 주 개발 책임자와 관리·자원으로 분리된 내부 조직은 독립된 조직에 대한 요구를 채울 수 있다.[@iec-functional-safety-faq-2023]
 
 ## Verification review와의 차이

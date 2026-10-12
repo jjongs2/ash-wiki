@@ -47,6 +47,8 @@ TPS3430-Q1은 watchdog 입력이 window 밖이면 watchdog 출력으로 fault를
 
 AUTOSAR R25-11의 Watchdog Driver 명세는 Slow-Mode의 예로 트리거 시점에 제약이 없는 toggle mode를, Fast-Mode의 예로 timeout 주기 안의 최소·최대 경계 사이에서 트리거해야 하는 window mode를 든다. Watchdog Driver는 Watchdog Manager 같은 상위 개체가 준 트리거 조건이 유효한 동안 watchdog 하드웨어를 트리거하고, 트리거 계수기가 0에 이르면 트리거하지 않아 watchdog이 만료된다.[@autosar-cp-sws-watchdogdriver-2025]
 
+![[diagrams/watchdog-window-toggle-mode.svg]]
+
 Watchdog Manager는 감시하는 논리 단위를 **Supervised Entity**라 하고, Supervised Entity 안의 중요한 자리를 **체크포인트**(checkpoint)라 한다. Supervised Entity의 코드에는 체크포인트에 이르렀음을 Watchdog Manager에 알리는 함수 호출이 들어 있다.[@autosar-cp-exp-functionalsafetymeasures-2025]
 
 체크포인트의 거칠기는 Watchdog Manager가 정하지 않는다. 체크포인트가 적고 거칠면 Watchdog Manager의 검출 능력이 제한되고, 촘촘하면 Watchdog Manager의 설정이 복잡하고 커진다. 라이브러리는 Basic Software를 부를 수 없어 Watchdog Manager가 감시하지 못하지만, 모듈 코드에서 라이브러리 호출 앞뒤에 체크포인트를 두면 deadline supervision으로 감시할 수 있다. Logical supervision을 deadline supervision과 함께 쓰면 높은 [[hardware-architectural-metrics#진단 커버리지와 failure rate|진단 커버리지]]를 얻는다.[@autosar-cp-exp-functionalsafetymeasures-2025] Supervised Entity 하나에 alive supervision 체크포인트를 여럿 두는 기능은 일관되게 명세되지 않아, Supervised Entity마다 alive supervision 체크포인트를 하나만 지원하기를 권한다.[@autosar-cp-sws-watchdogmanager-2025]
