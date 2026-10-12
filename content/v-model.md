@@ -31,7 +31,7 @@ ISTQB 용어집은 테스트와 [[software-quality#품질 보증|품질 보증]]
 
 Barry Boehm은 1979년 글에서 소프트웨어 생명주기 전체에 걸친 검증과 확인 활동의 맥락을 보이는 "V-chart"를 내놓고, 그 출처로 System Development Corporation의 J. B. Munson과 1977년에 나눈 개인 교신을 들었다.[@boehm-guidelines-verifying-validating-1979]
 
-V-Modell XT는 V자 모양의 개발 절차를 내용의 바탕으로 삼았고 이름도 거기서 땄다. 이 절차는 Boehm이 1970년대 말에 처음 기술했다고 본다.[@weit-v-modell-xt-2-4-2024] V-Modell XT에 앞서 독일 연방정부의 V-Modell이 1992년에 나왔고 V-Modell 97이 그 뒤를 이었다.[@bmds-v-modell-xt-2026]
+V-Modell XT는 V자 모양의 개발 절차를 내용의 바탕으로 삼았고 이름도 거기서 땄다. 이 절차는 Boehm이 1970년대 말에 처음 기술했다고 본다.[@weit-v-modell-xt-2-4-2024] [[v-modell-xt#개정 이력|V-Modell XT]]에 앞서 독일 연방정부의 V-Modell이 1992년에 나왔고 V-Modell 97이 그 뒤를 이었다.[@bmds-v-modell-xt-2026]
 
 Forsberg와 Mooz는 1991년 논문에서 시스템 공학이 프로젝트에서 맡는 역할을 밝히려고 프로젝트 주기의 기술적 측면을 V 모양 그림으로 나타냈다.[@forsberg-relationship-system-engineering-1991]
 

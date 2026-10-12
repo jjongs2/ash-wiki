@@ -7,6 +7,8 @@ verified: 2026-10-12
 
 The Kanban Guide 2025.5는 **Kanban**을, 프로세스를 거쳐 가는 가치의 흐름을 최적화하는 전략으로 정의한다. 이 가이드는 Kanban과 같은 이론에 바탕을 둔 기존의 가치 지향 접근법이 많으므로, Kanban으로 그 인도 기법을 보강할 수 있고 그래야 한다고 둔다.[@kanbanguides-kanban-guide-2025] Kanban University의 Kanban Method 가이드는 Kanban을 방법론이나 프로세스 프레임워크가 아닌 관리 방법으로 둔다. Kanban은 이미 쓰고 있는 프로세스나 일하는 방식을 대신하지 않고, 그 위에 더해 쓴다.[@kanban-university-kanban-guide-2026]
 
+ISO/IEC/IEEE 24765 용어집은 Kanban board를, 병목과 지나친 약속을 찾도록 진행 중인 작업을 보여 주어 팀이 워크플로를 최적화하게 하는 시각화 도구로 정의한다. 소프트웨어 개발에서는 개발자가 태스크 백로그에서 태스크를 끌어오는(pull) 작업을 시각적으로 나타낸 것으로도 정의한다.[@ieee-cs-sevocab-2026]
+
 ## 실천
 
 The Kanban Guide 2025.5는 Kanban을 함께 맞물려 돌아가는 세 실천, 곧 워크플로의 정의와 시각화, 워크플로 안 항목의 능동적 관리, 워크플로의 개선으로 구성한다. 이 실천을 구현한 것을 **Kanban 시스템**이라 하고, Kanban 시스템으로 가치를 인도하는 데 참여하는 사람을 **Kanban 시스템 구성원**이라 한다.[@kanbanguides-kanban-guide-2025]
@@ -23,8 +25,6 @@ The Kanban Guide 2025.5는 Kanban을 함께 맞물려 돌아가는 세 실천, �
 - **SLE**(service level expectation): 작업 항목 하나가 시작부터 끝까지 가는 데 얼마나 걸릴지의 예측. 경과 시간과 그 시간에 붙는 확률 두 부분으로 이루어지며(예: 작업 항목의 85%가 8일 안에 끝난다), 과거의 cycle time에 바탕을 둔다.[@kanbanguides-kanban-guide-2025]
 
 가이드는 Definition of Workflow를 시각화한 것을 **Kanban 보드**라 하고, Definition of Workflow의 최소 요소만이라도 Kanban 보드에 드러내는 것을 흐름을 최적으로 운영하고 계속 개선하는 데 꼭 필요한 일로 둔다. 시각화가 어떤 모양이어야 하는지는 정하지 않는다.[@kanbanguides-kanban-guide-2025]
-
-ISO/IEC/IEEE 24765 용어집은 Kanban board를, 병목과 지나친 약속을 찾도록 WIP를 보여 주어 팀이 워크플로를 최적화하게 하는 시각화 도구로 정의한다. 소프트웨어 개발에서는 개발자가 태스크 백로그에서 태스크를 끌어오는(pull) 작업을 시각적으로 나타낸 것으로도 정의한다.[@ieee-cs-sevocab-2026]
 
 ### 항목의 능동적 관리
 

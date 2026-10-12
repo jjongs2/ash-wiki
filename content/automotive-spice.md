@@ -34,7 +34,7 @@ Audi, BMW, DaimlerChrysler, Porsche, Volkswagen은 HIS를 꾸려 공동 표준�
 
 이 이니셔티브 안에서 Procurement Forum과 SPICE User Group의 공동 Automotive SIG(Special Interest Group)가 완성차 업체들의 합의로, 프로세스 평가 표준 ISO/IEC 15504에 맞춘 프로세스 참조 모델과 프로세스 평가 모델을 만들었다. 이것이 ASPICE다.[@automotive-sig-aspice-pam-2-5-2010] Automotive SIG의 완성차 업체들은 평가 결과를 협력업체의 개선점을 찾고 협력업체를 고르는 기준으로 썼다.[@automotive-sig-release-statement-2008] VDA QMC에 따르면 주요 완성차 업체와 협력업체가 ASPICE로 차량 소프트웨어 기반 시스템의 개발 프로세스를 평가한다. 2026년 10월 12일에 확인한 VDA QMC 웹사이트는 ASPICE 평가자 7,619명과 51개국이라는 수치를 내건다.[@vda-automotive-spice-2026]
 
-ISO/IEC 330xx 계열은 ISO/IEC 15504 시리즈의 여러 부를 대체하고 넓히도록 만들어졌다.[@iso-iec-33020-obp-2019] ASPICE 2.5는 ISO/IEC 15504-2에 맞춘 평가에 쓰는 모델이었고, 3.0은 ISO/IEC 330xx 계열에 맞춰 고치면서 측정 프레임워크를 ISO/IEC 33020에 맞췄다. ASPICE 4.1은 ISO/IEC 33004:2015의 요구사항에 맞춰 만들어졌다.[@vda-automotive-spice-pam-4-1-2026][@automotive-sig-aspice-pam-2-5-2010][@vda-automotive-spice-pam-3-1-2017]
+[[process-assessment#ISO/IEC 330xx 계열|ISO/IEC 330xx 계열]]은 ISO/IEC 15504 시리즈의 여러 부를 대체하고 넓히도록 만들어졌다.[@iso-iec-33020-obp-2019] ASPICE 2.5는 ISO/IEC 15504-2에 맞춘 평가에 쓰는 모델이었고, 3.0은 ISO/IEC 330xx 계열에 맞춰 고치면서 측정 프레임워크를 ISO/IEC 33020에 맞췄다. ASPICE 4.1은 ISO/IEC 33004:2015의 요구사항에 맞춰 만들어졌다.[@vda-automotive-spice-pam-4-1-2026][@automotive-sig-aspice-pam-2-5-2010][@vda-automotive-spice-pam-3-1-2017]
 
 - 2005년: Automotive SIG가 프로세스 참조 모델 4.2와 프로세스 평가 모델 2.2를 정식으로 펴냈다.[@vda-automotive-spice-pam-4-1-2026][@automotive-sig-aspice-prm-4-5-2010]
 - 2010년: Automotive SIG가 프로세스 참조 모델 4.5와 프로세스 평가 모델 2.5를 함께 펴냈다. 프로세스 참조 모델은 별도 문서였다.[@automotive-sig-aspice-pam-2-5-2010][@automotive-sig-aspice-prm-4-5-2010]

@@ -18,9 +18,7 @@ V-Modell XT 2.4는 정보 시스템의 계획과 개발을 겨냥하며, 시스�
 
 이 모델은 제품 중심(produktzentriert) 절차 모델이다. 프로젝트 결과인 제품을 가운데 두고, 제품의 구조와 내용, 제품끼리 어떻게 쌓이고 서로 의존하는지를 정한다. 제품을 만드는 데 맡는 책임과 참여는 역할(Rolle)로 정한다.[@weit-v-modell-xt-2-4-2024]
 
-[[scrum|Scrum]] 같은 [[agile-software-development|애자일]] 방식은 프로젝트 맥락에 따라 이 모델과 잘 결합해 모델을 구체화할 수 있다고 보면서도, 계약 형태처럼 쉽게 통합되지 않는 측면도 있다고 본다. 연방 행정에서는 이 모델이 규정의 성격을 띠어, 스스로 적용하고 수주자와의 계약 바탕으로도 삼기를 강하게 권한다.[@weit-v-modell-xt-2-4-2024]
-
-독일 연방 디지털·국가현대화부에 따르면 모든 연방 기관에 V-Modell XT의 적용이 정해져 있고, 기관은 V-Modell XT 2.4와 함께 조직에 맞춘 변형인 V-Modell XT Bund도 쓸 수 있다.[@bmds-v-modell-xt-2026]
+[[scrum|Scrum]] 같은 [[agile-software-development|애자일]] 방식은 프로젝트 맥락에 따라 이 모델과 잘 결합해 모델을 구체화할 수 있다고 두면서도, 계약 형태처럼 쉽게 통합되지 않는 측면도 있다고 본다. 연방 행정에서는 이 모델이 규정의 성격을 띠어, 스스로 적용하고 수주자와의 계약 바탕으로도 삼기를 강하게 권한다.[@weit-v-modell-xt-2-4-2024]
 
 ### 결정 지점
 
@@ -52,7 +50,7 @@ V를 한 번이 아니라 반복마다 여러 번 거쳐 기능을 점진적으�
 
 ## 개정 이력
 
-독일 연방 디지털·국가현대화부에 따르면 V-Modell XT에 앞서 독일 연방정부의 V-Modell이 1992년 처음 발표되어 국방 기술 분야에서 쓰였고, 그 후속판 V-Modell 97은 연방 행정의 소프트웨어 개발에 쓰도록 지정되었다.[@bmds-v-modell-xt-2026]
+독일 연방 디지털·국가현대화부에 따르면 V-Modell XT에 앞서 독일 연방정부의 V-Modell이 1992년 처음 발표되어 국방 기술 분야에서 쓰였고, 그 후속판 V-Modell 97은 연방 행정의 소프트웨어 개발에 쓰도록 지정되었다. 지금은 모든 연방 기관에 V-Modell XT의 적용이 정해져 있고, 기관은 V-Modell XT 2.4와 함께 조직에 맞춘 변형인 V-Modell XT Bund도 쓸 수 있다.[@bmds-v-modell-xt-2026]
 
 - 2005년 2월: V-Modell XT가 쓰이기 시작했다.[@bmds-v-modell-xt-2026]
 - 2024년: V-Modell XT 2.4. 릴리스 목록에는 연방 변형 2.4-Bund와 함께 2024년 5월 24일 날짜로 올라 있다.[@weit-v-modell-xt-releases-2026] V-Modell XT 2.4는 2.3에 견주어 접근성(Barrierefreiheit)을 다루는 용어, 제품, 프로젝트 특성을 더하거나 고쳤고, Java 기반 Projektassistent 대신 새로 만든 웹 기반 Projektassistent로 제공되었다.[@weit-v-modell-xt-2-4-2024]

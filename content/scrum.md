@@ -7,11 +7,9 @@ verified: 2026-10-03
 
 ISO/IEC/IEEE 24765 용어집은 **Scrum**을, [[agile-software-development|애자일 개발]]에서 팀이 요구사항 백로그에서 개발할 항목을 합의하고 몇 주 정도의 짧은 기간 안에 만들어 내는 반복형 프로젝트 관리 프레임워크로 정의한다. 이 용어집은 **backlog refinement**를, 애자일 방법에서 백로그의 항목에 우선순위를 매기고, 스토리를 더 잘게 나누어 자세히 고쳐 쓰고, 노력을 추정해 다음 반복에서 할 항목을 고를 준비를 하는 일로 정의한다.[@ieee-cs-sevocab-2026] ISO/IEC/IEEE 24765:2017은 sprint를, 소프트웨어 기능 묶음을 개발해 이해관계자에게 시연할 수 있는 동작하는 제품을 내는 짧은 기간으로 정의한다.[@iso-iec-ieee-24765-obp-2017] SWEBOK V4.0a에 따르면 Scrum은 널리 쓰이게 된 애자일 방법 가운데 하나로, 다른 애자일 방법보다 프로젝트 관리에 잘 맞는다.[@ieee-swebok-v4-0a-2026]
 
-Kanban University의 Kanban Method 가이드에 따르면 [[kanban|Kanban]]은 이미 쓰고 있는 프로세스나 일하는 방식을 대신하지 않고, 그 위에 더해 쓴다.[@kanban-university-kanban-guide-2026]
-
 The Scrum Guide 2020은 Scrum을, 복잡한 문제에 맞춰 해결책을 바꿔 가며 가치를 내도록 사람과 팀, 조직을 돕는 가벼운 프레임워크로 정의한다. Ken Schwaber와 Jeff Sutherland는 1990년대 초에 Scrum을 만들어 1995년 OOPSLA(Object-Oriented Programming, Systems, Languages, and Applications) 학회에서 처음 함께 발표했고, 2010년에 Scrum의 정의를 담은 The Scrum Guide를 처음 썼다.[@scrumguides-scrum-guide-2020]
 
-이 가이드는 Scrum을 네 단계로 요약한다. Product Owner가 복잡한 문제를 푸는 일을 Product Backlog에 순서대로 늘어놓고, Scrum Team이 Sprint 동안 그 가운데 고른 일을 가치 있는 Increment로 만들며, Scrum Team과 이해관계자가 결과를 점검해 다음 Sprint를 조정하고, 이를 되풀이한다. 가이드는 Scrum 프레임워크를 일부러 완전하지 않게 두어, Scrum 이론을 구현하는 데 필요한 부분만 정의한다. 프레임워크 안에서는 여러 프로세스, 기법, 방법을 쓸 수 있고, Scrum의 규칙은 자세한 지시를 주는 대신 사람들의 관계와 상호작용을 이끈다. Scrum의 일부만 구현하면 그 결과는 Scrum이 아니며, Scrum은 온전할 때만 존재하고 다른 기법, 방법론, 실천을 담는 그릇으로 잘 작동한다.[@scrumguides-scrum-guide-2020]
+이 가이드는 Scrum이 돌아가는 방식을 네 단계로 둔다. Product Owner가 복잡한 문제를 푸는 일을 Product Backlog에 순서대로 늘어놓고, Scrum Team이 Sprint 동안 그 가운데 고른 일을 가치 있는 Increment로 만들며, Scrum Team과 이해관계자가 결과를 점검해 다음 Sprint를 조정하고, 이를 되풀이한다. 가이드는 Scrum 프레임워크를 일부러 완전하지 않게 두어, Scrum 이론을 구현하는 데 필요한 부분만 정의한다. 프레임워크 안에서는 여러 프로세스, 기법, 방법을 쓸 수 있고, Scrum의 규칙은 자세한 지시를 주는 대신 사람들의 관계와 상호작용을 이끈다. Scrum의 일부만 구현하면 그 결과는 Scrum이 아니며, Scrum은 온전할 때만 존재하고 다른 기법, 방법론, 실천을 담는 그릇으로 잘 작동한다.[@scrumguides-scrum-guide-2020]
 
 ## 이론
 
