@@ -14,7 +14,7 @@ status: 유효
 
 이 표준은 대상의 아키텍처와 그 아키텍처를 표현하는 AD를 구분하고, 아키텍처 자체는 다루지 않는다. 이 표준은 AD에 담긴 아키텍처 개념과 그 관계를 쓰는 데 대한 요구사항을 정하되, 대상이나 그 환경에 대한 요구사항은 정하지 않는다. AD의 개발과 사용을 돕도록 아키텍처 기술 프레임워크(architecture description framework, ADF), 아키텍처 기술 언어(architecture description language, ADL), [[software-architecture#뷰와 뷰포인트|아키텍처 뷰포인트]], model kind에 대한 요구사항을 정하고, AD, ADF, ADL, 아키텍처 뷰포인트, model kind의 적합성을 정한다. AD를 만들고 쓰고 관리하는 프로세스, 아키텍처링 방법, 모델, 표기, 기법, 도구는 정하지 않고, AD를 기록하는 형식이나 매체도 정하지 않는다.[@iso-iec-ieee-42010-obp-2022]
 
-이 판은 AD가 다루는 대상을 부르는 말로 entity of interest를 들여, 시스템이 아닌 대상에도 적용할 수 있게 했다. ADF와 view component라는 용어를 새로 정의했고, 모델 기반 아키텍처링을 권하려고 model kind를 새 적합성 대상으로 넣었다.[@iso-iec-ieee-42010-obp-2022]
+ISO/IEC/IEEE 42010:2022는 AD가 다루는 대상을 부르는 말로 entity of interest를 들여, 시스템이 아닌 대상에도 적용할 수 있게 했다. ADF와 view component라는 용어를 새로 정의했고, 모델 기반 아키텍처링을 권하려고 model kind를 새 적합성 대상으로 넣었다.[@iso-iec-ieee-42010-obp-2022]
 
 ## 개정 이력
 
