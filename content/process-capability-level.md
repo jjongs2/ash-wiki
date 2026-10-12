@@ -7,11 +7,23 @@ aliases:
 verified: 2026-10-02
 ---
 
-**프로세스 능력 수준**(process capability level)은 프로세스를 프로세스 능력의 순서 척도 위에서 나타낸 것이다. 프로세스 능력은 프로세스가 현재나 예상되는 비즈니스 목표를 맞추는 능력이다. ISO/IEC 33020:2019는 프로세스 능력 평가를 받치는 측정 프레임워크를 정의하고, 이 프레임워크는 프로세스 속성 등급을 내고 거기서 프로세스 능력 수준을 끌어낸다.[@iso-iec-33020-obp-2019]
+**프로세스 능력 수준**(process capability level)은 프로세스를 프로세스 능력의 순서 척도 위에서 나타낸 것이다. 프로세스 능력은 프로세스가 현재나 예상되는 비즈니스 목표를 맞추는 능력이다. ISO/IEC 33020:2019는 [[process-assessment|프로세스 능력 평가]]를 받치는 측정 프레임워크를 정의하고, 이 프레임워크는 프로세스 속성 등급을 내고 거기서 프로세스 능력 수준을 끌어낸다.[@iso-iec-33020-obp-2019]
+
+## ISO/IEC 33020의 측정 프레임워크
+
+이 표준의 측정 프레임워크는 ISO/IEC 33003의 요구를 따르고, ISO/IEC 33004에 맞는 [[process-assessment#프로세스 모델|프로세스 평가 모델]]을 짓는 틀이 된다. 그렇게 지은 모델은 ISO/IEC 33002의 요구에 따라 프로세스 능력을 평가하는 데 쓴다.[@iso-iec-33020-obp-2019]
+
+![[diagrams/iso-iec-330xx-assessment-model-relations.svg]]
+
+이 프레임워크는 자기 평가를 돕고, [[process-improvement|프로세스 개선]]과 프로세스 품질 판정의 바탕이 되며, 모든 적용 도메인과 모든 규모의 조직에 적용된다. 프레임워크가 내는 것은 프로세스 속성 평정의 집합인 [[process-assessment#평가의 요소|process profile]]과, 거기서 끌어낸 프로세스 능력 수준이다. 이 표준은 프로세스 능력의 평가 지표와 능력 수준의 뜻에 대한 지침을 참고 Annex로 함께 싣는다.[@iso-iec-33020-obp-2019]
+
+이 표준의 주된 독자는 프로세스 능력을 다루는 프로세스 평가 모델의 개발자다. 선임 평가자와 평가 의뢰자처럼, 이 측정 프레임워크의 요구가 지켜졌는지 확인해야 하는 이해관계자도 독자로 둔다.[@iso-iec-33020-obp-2019]
+
+ISO/IEC 33020:2019는 첫판 ISO/IEC 33020:2015를 기술적으로 고쳐 대체했다. 5.2의 능력 수준과 프로세스 속성 정의를 ISO 9001:2015와 더 일관되게 고쳤고, Annex B(Indicators of process capability)와 Annex C(Guidance on the process assessment framework)를 더했으며, 첫판의 Annex B를 Annex D(Example of a process performance model)로 옮겼다.[@iso-iec-33020-obp-2019]
 
 ## 수준과 프로세스 속성
 
-[[automotive-spice|ASPICE]] 4.1은 ISO/IEC 33020:2019를 고쳐 맞춘 자체 측정 프레임워크를 둔다. 이 프레임워크는 CL(capability level) 0부터 CL 5까지 여섯 능력 수준을 두고, 수준은 프로세스 하나마다 그 프로세스의 프로세스 속성 등급으로 정한다. 수준마다의 뜻은 다음과 같다.[@vda-automotive-spice-pam-4-1-2026]
+[[automotive-spice|ASPICE]] 4.1은 ISO/IEC 33020:2019를 고쳐 맞춘 자체 측정 프레임워크를 둔다. 고친 곳은 프로세스 속성의 제목, GP(generic practice), 프로세스 속성 달성 항목에 지표를 배정한 방식이다. 이 프레임워크는 CL(capability level) 0부터 CL 5까지 여섯 능력 수준을 두고, 수준은 프로세스 하나마다 그 프로세스의 프로세스 속성 등급으로 정한다. 수준마다의 뜻은 다음과 같다.[@vda-automotive-spice-pam-4-1-2026]
 
 | 수준 | 이름                | 뜻                                                                                                                       |
 | ---- | ------------------- | ------------------------------------------------------------------------------------------------------------------------ |
@@ -22,19 +34,19 @@ verified: 2026-10-02
 | CL 4 | Predictable process | 정한 한계 안에서 예측할 수 있게 수행한다. 정량 관리 요구를 정하고 측정 데이터를 모아 분석해 변동의 원인을 찾고 시정한다. |
 | CL 5 | Innovating process  | 조직의 변화에 대응하도록 프로세스를 지속적으로 개선한다.                                                                 |
 
-이 표준은 CL 1부터 CL 5까지 수준마다 **프로세스 속성**(process attribute, PA)을 배정한다. CL 0에는 프로세스 속성이 없다.[@vda-automotive-spice-pam-4-1-2026]
+이 표준은 CL 1부터 CL 5까지 수준마다 **프로세스 속성**(process attribute, PA)을 배정하고, 프로세스 속성마다 무엇을 재는지 범위를 정한다. CL 0에는 프로세스 속성이 없다.[@vda-automotive-spice-pam-4-1-2026]
 
-| 프로세스 속성 | 이름                              | 수준 |
-| ------------- | --------------------------------- | ---- |
-| PA 1.1        | Process performance               | CL 1 |
-| PA 2.1        | Performance management            | CL 2 |
-| PA 2.2        | Work product management           | CL 2 |
-| PA 3.1        | Process definition                | CL 3 |
-| PA 3.2        | Process deployment                | CL 3 |
-| PA 4.1        | Quantitative analysis             | CL 4 |
-| PA 4.2        | Quantitative control              | CL 4 |
-| PA 5.1        | Process innovation                | CL 5 |
-| PA 5.2        | Process innovation implementation | CL 5 |
+| 프로세스 속성 | 이름                              | 수준 | 범위                                                                               |
+| ------------- | --------------------------------- | ---- | ---------------------------------------------------------------------------------- |
+| PA 1.1        | Process performance               | CL 1 | 프로세스 목적을 이룬 정도                                                          |
+| PA 2.1        | Performance management            | CL 2 | 프로세스 수행을 관리하는 정도                                                      |
+| PA 2.2        | Work product management           | CL 2 | 프로세스가 만든 작업 산출물을 적절히 관리하는 정도                                 |
+| PA 3.1        | Process definition                | CL 3 | 정의된 프로세스의 배치를 받치도록 표준 프로세스를 유지하는 정도                    |
+| PA 3.2        | Process deployment                | CL 3 | 표준 프로세스를 정의된 프로세스로 배치해 프로세스 성과를 이루는 정도               |
+| PA 4.1        | Quantitative analysis             | CL 4 | 정보 요구를 정하고, 프로세스 요소 사이의 관계를 찾고, 데이터를 모으는 정도         |
+| PA 4.2        | Quantitative control              | CL 4 | 예측할 수 있는 프로세스 수행을 객관적 데이터로 관리하는 정도                       |
+| PA 5.1        | Process innovation                | CL 5 | 프로세스의 정의와 배치에 대한 혁신적 접근을 조사해 프로세스의 변경을 찾아내는 정도 |
+| PA 5.2        | Process innovation implementation | CL 5 | 프로세스의 정의, 관리, 수행에 대한 변경이 관련 프로세스 혁신 목표를 이루는 정도    |
 
 PA 2.1은 프로세스 수행을 계획하고, 감시하고, 계획에 맞게 조정하기를 요구한다.[@vda-automotive-spice-pam-4-1-2026]
 
@@ -67,3 +79,14 @@ PA 2.1은 프로세스 수행을 계획하고, 감시하고, 계획에 맞게 �
 정의된 프로세스는 산출물, 측정치, 프로세스 개선 정보를 조직의 프로세스 자산에 보탠다.[@iso-iec-33001-obp-2015]
 
 ISO/IEC/IEEE 24765:2017은 **프로세스 자산 라이브러리**(process asset library)를, 조직에서 프로세스를 정의하고 구현하고 관리하는 사람에게 쓸모 있는 정보의 모음으로 정의하고, 정책, 정의된 프로세스, 체크리스트, 교훈 문서, 템플릿, 표준, 절차, 계획, 교육 자료 같은 프로세스 관련 문서를 그 예로 든다. 이 표준은 조직이 쓰는 프로세스의 정의, 유지, 개선을 돕는 전문가 팀을 **process group**으로 정의한다.[@iso-iec-ieee-24765-obp-2017]
+
+## 프로세스 능력과 조직 성숙도
+
+ISO/IEC 33020:2019는 프로세스 능력 수준을 프로세스 하나를 특성화하는 것으로 정의한다.[@iso-iec-33020-obp-2019] 이와 달리 ISO/IEC 33001:2015는 성숙도 수준을 평가한 조직 단위를 특성화하는 것으로 정의한다. 이 표준은 조직의 성숙도에 관한 용어와 프로세스 품질 수준을 다음처럼 정의한다.[@iso-iec-33001-obp-2015]
+
+- **조직 프로세스 성숙도**(organizational process maturity): 조직 단위가 정한 범위 안에서, 현재나 예상되는 사업 요구를 이루는 데 기여하는 프로세스를 일관되게 구현하는 정도. 정한 범위는 그 성숙도 모델의 범위다.
+- **성숙도 모델**(maturity model): 하나 이상의 프로세스 평가 모델에서 끌어내, 조직 프로세스 성숙도 척도의 수준마다 딸린 프로세스 집합을 정하는 모델.
+- **성숙도 수준**(maturity level): 쓰는 성숙도 모델의 범위에서, 평가한 조직 단위의 성숙도를 나타내는 조직 프로세스 성숙도 순서 척도 위의 점.
+- **프로세스 품질 수준**(process quality level): 평가한 프로세스의 프로세스 속성 평정에서 끌어낸, 프로세스 품질 특성 달성 척도 위의 점.[@iso-iec-33001-obp-2015]
+
+프랙티스 영역마다의 능력 수준과 조직의 성숙도 수준은 [[cmmi#성숙도 수준과 능력 수준|CMMI]]에서 다룬다.
