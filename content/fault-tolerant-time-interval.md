@@ -21,6 +21,12 @@ verified: 2026-10-02
 | Emergency operation                                | fault에 반응한 뒤 안전 상태로 옮길 때까지 안전을 주는 아이템의 운용 모드        |
 | EOTTI(Emergency Operation Tolerance Time Interval) | 불합리한 리스크 없이 emergency operation을 유지할 수 있도록 정해 둔 시간 간격   |
 
+이 표준은 **EOTI**(Emergency Operation Time Interval)를 emergency operation을 유지하는 시간 간격으로 정의한다. EOTTI 정의의 주석은 EOTTI를 EOTI의 최댓값으로 제시하고, EOTI 정의의 주석은 emergency operation과 그에 딸린 EOTTI를 [[safety-mechanism#안전 상태와 성능 저하|warning and degradation strategy]]에 기술한다고 제시한다.[@iso-26262-1-obp-2018]
+
+이 표준은 **maximum time to repair time interval**을 안전 상태를 유지할 수 있도록 정해 둔 시간 간격으로 정의한다. 정의의 주석은 이 구간이 남은 차량 수명이 끝날 때까지 안전 상태를 유지할 수 없을 때 의미 있는 특성이고, 해당하면 warning and degradation strategy에 기술하며, 안전 상태에서 돌아오는 조건도 그 전략에 기술한다고 제시한다.[@iso-26262-1-obp-2018]
+
+이 표준은 **multiple-point fault detection time interval**을 [[hardware-architectural-metrics#Fault와 failure의 종류|multiple-point fault]]가 multiple-point failure에 기여하기 전에 그것을 검출하는 시간 간격으로 정의한다. [[hardware-architectural-metrics#Fault와 failure의 종류|Detected fault]] 정의의 주석은 fault를 검출해야 하는 정해진 시간으로 FDTI나 multiple-point fault detection time interval을 제시한다.[@iso-26262-1-obp-2018]
+
 ## 구간 사이의 관계
 
 이 표준은 FDTI와 FRTI의 합이 관련 FTTI보다 짧으면 안전 메커니즘이 그 fault를 제때 다룬 것으로 둔다. 곧 $\mathrm{FHTI} = \mathrm{FDTI} + \mathrm{FRTI} < \mathrm{FTTI}$다.[@iso-26262-1-obp-2018]
