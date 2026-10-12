@@ -18,7 +18,7 @@ SWEBOK V4.0a에 따르면 소프트웨어 요구사항은 backward 방향으로�
 | 산출물                                         | 상대                                      | 요구                  |
 | ---------------------------------------------- | ----------------------------------------- | --------------------- |
 | 시스템 요구사항                                | 이해관계자 요구사항                       | 일관성, 양방향 추적성 |
-| 시스템 아키텍처 요소                           | 시스템 요구사항                           | 일관성, 양방향 추적성 |
+| [[system-architecture\|시스템 아키텍처]] 요소  | 시스템 요구사항                           | 일관성, 양방향 추적성 |
 | 소프트웨어 요구사항                            | 시스템 요구사항, 시스템 아키텍처          | 일관성, 양방향 추적성 |
 | [[software-architecture\|소프트웨어 아키텍처]] | 소프트웨어 요구사항                       | 일관성, 양방향 추적성 |
 | [[software-unit-design\|소프트웨어 상세 설계]] | 소프트웨어 아키텍처                       | 일관성, 양방향 추적성 |
@@ -34,9 +34,15 @@ SWEBOK V4.0a에 따르면 소프트웨어 요구사항은 backward 방향으로�
 
 이 모델은 법규나 형식 승인 요구사항에서 도출된 확인 수단에는 단방향 추적성으로 충분하다고 정한다.[@vda-automotive-spice-pam-4-1-2026] 변경 요청은 [[configuration-management|형상 관리]]에서 다룬다.
 
+SYS.2(System Requirements Analysis), SWE.1(Software Requirements Analysis), SWE.2(Software Architectural Design)의 추적성 BP 주석은 아래 산출물이 추적하지 않는 상위의 비기능 요구사항이 있을 수 있다고 하고, 그 예로 프로세스 요구사항을 들며(SWE.1은 인시던트 처리처럼 뒤 소프트웨어 제품 생명주기 단계에 걸린 요구사항도 든다), 그런 요구사항도 검증 대상이라고 제시한다. SWE.1의 주석은 중복 추적을 의도하지 않는다고 하고, SWE.3(Software Detailed Design and Unit Construction)의 주석은 세 추적 경로를 조합해 중복을 피하라고 제시한다. SWE.3의 주석은 상세 설계의 소프트웨어 유닛을 소프트웨어 요구사항에 바로 추적하는 예로 통신 매트릭스와, [[autosar|AUTOSAR]] 설정에 든 진단 식별자 목록을 든다.[@vda-automotive-spice-pam-4-1-2026]
+
 ## Vertical 추적성과 horizontal 추적성
 
 추적성은 링크로 잇는 산출물이 같은 추상화 수준에 있는지에 따라 나누기도 한다. 같은 수준의 산출물을 잇는 것(예: 요구사항끼리)을 **horizontal 추적성**(horizontal traceability), 다른 수준의 산출물을 잇는 것(예: 요구사항에서 설계로)을 **vertical 추적성**(vertical traceability)이라 부른다.[@tian-traceability-maintenance-2021]
+
+## Pre-RS 추적성과 post-RS 추적성
+
+Gotel과 Finkelstein은 1994년 논문에서 요구사항 추적성을, 요구사항이 요구사항 명세에 들어가기 전의 일을 다루는 **pre-RS 추적성**(pre-requirements specification traceability)과, 명세에 들어간 뒤에 생기는 일을 다루는 **post-RS 추적성**(post-requirements specification traceability)으로 나누었다. 이들은 100명이 넘는 실무자를 조사해, 낮은 요구사항 추적성 탓으로 돌려지던 문제 대부분이 pre-RS 추적성이 없거나 모자란 데서 온다고 보고했다.[@gotel-requirements-traceability-1994]
 
 ## 일관성
 
@@ -54,7 +60,7 @@ SWEBOK V4.0a에 따르면 소프트웨어 품질 계획의 품질 활동과 작�
 
 ASPICE 3.1은 추적성이 돕는 일로 [[test-coverage|커버리지]], [[configuration-management#변경 통제|영향 분석]], 요구사항 구현 상태의 추적을 들었다. ASPICE 4.1은 추적성 BP의 주석에서 양방향 추적성이 일관성을 뒷받침하고, 변경 요청의 영향 분석과 커버리지 입증을 쉽게 한다고 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
-SWEBOK V4.0a에 따르면 추적성으로 요구사항마다 그것을 만족시킬 설계 요소가 있는지, 설계 요소마다 그것을 있게 한 요구사항이 있는지 따질 수 있다.[@ieee-swebok-v4-0a-2026] ISTQB CTFL 강의계획서에 따르면 테스트 케이스와 요구사항 사이의 추적성으로 요구사항이 테스트 케이스로 다뤄졌는지 확인할 수 있다.[@istqb-ctfl-syllabus-2024]
+SWEBOK V4.0a에 따르면 추적성으로 요구사항마다 그것을 만족시킬 설계 요소가 있는지, 설계 요소마다 그것을 있게 한 요구사항이 있는지 따질 수 있다. 제안된 요구사항 변경의 영향을 분석할 때는 바뀌는 시스템 요구사항에서 링크된 소프트웨어 요구사항으로, 그 가운데 영향받는 것에서 설계 요소로, 다시 코드와 테스트 케이스로 링크를 따라가며, 이는 변경을 반영하는 데 드는 작업량의 footprint를 정하는 데 도움이 된다.[@ieee-swebok-v4-0a-2026] ISTQB CTFL 강의계획서에 따르면 테스트 케이스와 요구사항 사이의 추적성으로 요구사항이 테스트 케이스로 다뤄졌는지 확인할 수 있다.[@istqb-ctfl-syllabus-2024]
 
 ## 추적표
 
