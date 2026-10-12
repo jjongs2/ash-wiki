@@ -45,9 +45,9 @@ hard 마감 시한의 주기 태스크에서 남는 처리 시간을 되도록 �
 
 ## POSIX `SCHED_SPORADIC`
 
-POSIX.1-2024는 Process Sporadic Server나 Thread Sporadic Server 옵션을 지원하는 구현에 `SCHED_SPORADIC` 정책을 두게 한다. 이 정책은 보충 주기 `sched_ss_repl_period`와 사용 가능한 실행 용량을 바탕으로 하고, 실행 용량의 처음 값은 `sched_ss_init_budget`이다. 스레드는 실행 용량이 남아 있고 대기 중인 보충 연산의 수가 `sched_ss_max_repl`보다 적으면 `sched_priority`로, 그렇지 않으면 `sched_ss_low_priority`로 실행된다. 보충 연산을 예약할 때마다 보충할 양은 스레드가 `sched_priority` 목록의 맨 뒤에 들어간 시각(activation time)부터 쓴 실행 시간이고, 보충은 그 시각에 `sched_ss_repl_period`를 더한 때에 일어난다.[@ieee-1003-1-process-scheduling-2024] POSIX.1-2024는 sporadic server를 일정한 우선순위 수준에서 aperiodic 사건을 처리할 실행 용량을 예약하는 스케줄링 정책으로 정의한다.[@ieee-1003-1-definitions-2024]
+POSIX.1-2024는 Process Sporadic Server나 Thread Sporadic Server 옵션을 지원하는 구현에 `SCHED_SPORADIC` 정책을 두게 한다. 이 정책은 보충 주기 `sched_ss_repl_period`와 사용 가능한 실행 용량을 바탕으로 하고, 실행 용량의 처음 값은 `sched_ss_init_budget`이다. 스레드는 실행 용량이 남아 있고 대기 중인 보충 연산의 수가 `sched_ss_max_repl`보다 적으면 `sched_priority`로, 그렇지 않으면 `sched_ss_low_priority`로 실행된다. 보충 연산을 예약할 때마다 보충할 양은 스레드가 `sched_priority` 목록의 맨 뒤에 들어간 시각(activation time)부터 쓴 실행 시간이고, 보충은 그 시각에 `sched_ss_repl_period`를 더한 때에 일어난다.[@ieee-1003-1-process-scheduling-2024] 이 표준은 sporadic server를 일정한 우선순위 수준에서 aperiodic 사건을 처리할 실행 용량을 예약하는 스케줄링 정책으로 정의한다.[@ieee-1003-1-definitions-2024]
 
-POSIX 근거 문서에 따르면 sporadic server는 aperiodic 사건을 높은 우선순위로 처리할 실행 용량을 한정된 양만큼 예약하고, 그 안에서 처리하지 못한 aperiodic 사건은 낮은 우선순위의 background로 실행한다. 그래서 aperiodic 요청이 짧은 시간에 몰려도 주기 태스크를 처리할 실행 용량을 보장할 수 있다. sporadic server는 polling의 예측 가능성과, aperiodic 사건을 도착하는 대로 높은 고정 우선순위로 처리하는 방식의 짧은 응답 시간을 합친다. 대기 중인 보충 연산의 수는 그것을 저장할 시스템 자원과, 보충 연산이 [[priority-inversion|우선순위 역전]]의 원인이 될 수 있다는 점 때문에 제한한다. 그 상한 `{SS_REPL_MAX}`는 4로 정해진 `{_POSIX_SS_REPL_MAX}` 이상이어야 한다.[@ieee-1003-1-rationale-sporadic-server-2024]
+근거 문서에 따르면 sporadic server는 aperiodic 사건을 높은 우선순위로 처리할 실행 용량을 한정된 양만큼 예약하고, 그 안에서 처리하지 못한 aperiodic 사건은 낮은 우선순위의 background로 실행한다. 그래서 aperiodic 요청이 짧은 시간에 몰려도 주기 태스크를 처리할 실행 용량을 보장할 수 있다. sporadic server는 polling의 예측 가능성과, aperiodic 사건을 도착하는 대로 높은 고정 우선순위로 처리하는 방식의 짧은 응답 시간을 합친다. 대기 중인 보충 연산의 수는 그것을 저장할 시스템 자원과, 보충 연산이 [[priority-inversion|우선순위 역전]]의 원인이 될 수 있다는 점 때문에 제한한다. 그 상한 `{SS_REPL_MAX}`는 4로 정해진 `{_POSIX_SS_REPL_MAX}` 이상이어야 한다.[@ieee-1003-1-rationale-sporadic-server-2024]
 
 ## EDF에서
 

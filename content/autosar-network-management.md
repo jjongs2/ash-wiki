@@ -58,7 +58,7 @@ NM coordinator는 조정 클러스터에 묶인 여러 버스의 셧다운이 �
 
 ## Adaptive Platform의 NM
 
-AUTOSAR [[autosar-adaptive-platform|Adaptive Platform]] R25-11의 Network Management 명세는 Adaptive NM이 쓰는 통신 스택과 상관없이 동작하며, 물리 네트워크와 partial network의 정상 동작과 bus-sleep 모드 사이의 전환을 조율하도록 정한다. R25-11의 Adaptive NM은 UdpNm만 지원한다. 알고리즘은 분산 direct NM 전략을 따라, 각 노드가 주고받은 NM 패킷만을 바탕으로 스스로 동작한다.[@autosar-ap-sws-networkmanagement-2025]
+AUTOSAR [[autosar-adaptive-platform|Adaptive Platform]] R25-11의 Network Management 명세는 Adaptive NM이 쓰는 통신 스택과 상관없이 동작하며, 물리 네트워크와 partial network의 정상 동작과 bus-sleep 모드 사이의 전환을 조율하도록 정한다. Adaptive NM은 UdpNm만 지원한다. 알고리즘은 분산 direct NM 전략을 따라, 각 노드가 주고받은 NM 패킷만을 바탕으로 스스로 동작한다.[@autosar-ap-sws-networkmanagement-2025]
 
 Adaptive NM은 논리 네트워크 핸들(`NmNetworkHandle`)마다 네트워크 상태를 요청하고 조회하는 서비스를 준다. 논리 네트워크 핸들은 partial network나 [[virtual-lan|VLAN]]에 매핑되며, 핸들 하나로 거기에 배정된 partial network, VLAN, 물리 채널을 함께 제어한다. NM은 응용에게서 직접 네트워크 요청을 받지 않는다. State Management 기능 클러스터가 응용이 요청한 기능의 활성화에 따라 논리 네트워크를 요청하거나 놓고, NM은 모든 논리 네트워크 핸들의 요청 상태를 모아 물리 네트워크를 켜거나 끈다. 어느 핸들에서든 전체 통신(`kFullCom`)을 요청하면 그 핸들에 배정된 PNC, VLAN, 물리 채널을 내부에서 요청된 것으로 보고, 핸들의 상태는 배정된 PNC, VLAN, 물리 채널이 모두 `FULL_COM`일 때만 `kFullCom`이다.[@autosar-ap-sws-networkmanagement-2025]
 

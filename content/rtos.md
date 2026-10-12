@@ -39,7 +39,7 @@ RTOS는 태스크 사이의 동기화와 통신에 [[semaphore|세마포어]], [
 
 [[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 [[autosar-os|운영체제 명세]]는 ISO 17356-3을 바탕으로 두고 이를 확장하거나 제한한다.[@autosar-cp-sws-os-2025]
 
-[[autosar-adaptive-platform|AUTOSAR Adaptive Platform]]은 주로 고성능 연산과 통신 기능을 제공하는 플랫폼이고, 그 설계 설명서는 이 플랫폼의 운영체제가 다중 프로세스 POSIX 운영체제 기능을 제공하도록 한다.[@autosar-ap-exp-platformdesign-2025] 운영체제 인터페이스 명세는 [[ieee-1003-13|IEEE 1003.13]]-2003의 PSE51 인터페이스로 운영체제 기능을 제공하도록 요구한다.[@autosar-ap-sws-operatingsysteminterface-2025]
+[[autosar-adaptive-platform|AUTOSAR Adaptive Platform]]은 주로 고성능 연산과 통신 기능을 제공하는 플랫폼이고, 그 설계 설명서는 이 플랫폼의 운영체제가 다중 프로세스 POSIX 운영체제 기능을 제공하도록 한다.[@autosar-ap-exp-platformdesign-2025] 운영체제 인터페이스는 [[ieee-1003-13|IEEE 1003.13]]-2003의 PSE51 인터페이스로 운영체제 기능을 제공한다.[@autosar-ap-sws-operatingsysteminterface-2025]
 
 ## 비실시간 시스템과의 차이
 

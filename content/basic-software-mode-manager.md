@@ -32,7 +32,7 @@ Action list에 쓸 수 있는 action은 미리 정해져 있다(`BswMAvailableAc
 
 정해진 action 밖에도 BswM은 BSW의 어느 함수든 부를 수 있고, 사용자 정의 함수도 부를 수 있다.[@autosar-cp-sws-bswmodemanager-2025]
 
-AUTOSAR R25-11 Guide to Mode Management는 시동 설정의 예로, BswM이 NVRAM(Non-Volatile Random-Access Memory) 접근에 필요한 드라이버를 초기화하는 action list에서 `NvM_ReadAll`을 부르고 ReadAll job이 끝나면 나머지 BSW를 초기화하는 규칙을 보인다. 종료 설정의 예에서는 action list가 `NvM_WriteAll`을 부른다.[@autosar-cp-exp-modemanagementguide-2025]
+시동 설정의 한 예는, BswM이 NVRAM(Non-Volatile Random-Access Memory) 접근에 필요한 드라이버를 초기화하는 action list에서 `NvM_ReadAll`을 부르고 ReadAll job이 끝나면 나머지 BSW를 초기화하는 규칙이다. 종료 설정의 예에서는 action list가 `NvM_WriteAll`을 부른다.[@autosar-cp-exp-modemanagementguide-2025]
 
 ## Mode request와 mode switch
 
@@ -42,12 +42,12 @@ Mode request는 mode declaration group이 아니라 표준 [[autosar-sender-rece
 
 ## 모드의 수준
 
-AUTOSAR R25-11 Layered Software Architecture는 모드를 차량 모드, 응용 모드, ECU의 로컬 BSW 모드로 나누고, 이 수준들이 서로 영향을 준다고 둔다. 차량 모드에 따라 응용이 켜지거나 꺼져 응용 모드가 달라지고, 거꾸로 응용의 동작 상태가 차량 모드를 바꿀 수 있다. 응용의 통신 필요가 통신 네트워크의 BSW 모드를 바꾸기도 하고, 통신 네트워크를 쓸 수 없으면 그에 기대는 응용이 limp-home 모드로 바뀌기도 한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+모드는 차량 모드, 응용 모드, ECU의 로컬 BSW 모드로 나뉘고, 이 수준들은 서로 영향을 준다. 차량 모드에 따라 응용이 켜지거나 꺼져 응용 모드가 달라지고, 거꾸로 응용의 동작 상태가 차량 모드를 바꿀 수 있다. 응용의 통신 필요가 통신 네트워크의 BSW 모드를 바꾸기도 하고, 통신 네트워크를 쓸 수 없으면 그에 기대는 응용이 limp-home 모드로 바뀌기도 한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## 파티션과 OS-Application
 
-AUTOSAR R25-11의 BswM 명세는 BswM을 파티션마다 그 파티션 전용 설정(`BswMConfig`)으로 두고, 그 안의 action list를 파티션 안에서 실행하도록 정한다. BswM 인스턴스는 저마다 자기 설정에서 service component 기술을 따로 만들고, 통합자가 그것을 해당 파티션에 배치한다.[@autosar-cp-sws-bswmodemanager-2025]
+BswM은 파티션마다 그 파티션 전용 설정(`BswMConfig`)으로 따로 있고, 그 안의 action list를 파티션 안에서 실행한다. BswM 인스턴스는 저마다 자기 설정에서 service component 기술을 따로 만들고, 통합자가 그것을 해당 파티션에 배치한다.[@autosar-cp-sws-bswmodemanager-2025]
 
-AUTOSAR R25-11 Layered Software Architecture는 BswM을 BSW에 두므로 BswM이 모든 [[autosar-os-application|OS-Application]]에 하나씩 있고, mode user와 제어받는 BSW 모듈에 로컬이라고 둔다. 서로 다른 OS-Application의 BswM끼리는 sender-receiver 통신(`SchM_Send`, `SchM_Receive`)으로 mode request를 넘길 수 있다. 차량 모드의 요청처럼 중앙의 mode requester SW-C 하나가 낸 요청을 여러 ECU의 BswM이 받는 것은, SW-C가 로컬 BSW하고만 통신한다는 규칙의 예외다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+BswM은 BSW에 놓이므로 모든 [[autosar-os-application|OS-Application]]에 하나씩 있고, mode user와 제어받는 BSW 모듈에 로컬이다. 서로 다른 OS-Application의 BswM끼리는 sender-receiver 통신(`SchM_Send`, `SchM_Receive`)으로 mode request를 넘길 수 있다. 차량 모드의 요청처럼 중앙의 mode requester SW-C 하나가 낸 요청을 여러 ECU의 BswM이 받는 것은, SW-C가 로컬 BSW하고만 통신한다는 규칙의 예외다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 BSW 모듈을 파티션에 나눠 두는 일은 [[autosar-layered-architecture#BSW 분산|AUTOSAR 계층 구조]]에서 다룬다.

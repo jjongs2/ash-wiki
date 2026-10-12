@@ -27,7 +27,7 @@ RTEMS 문서에 따르면 간격으로 잰 실제 지연은 요청한 간격보�
 
 ## 틱 주파수와 전력
 
-µC/OS-III의 주기 틱 모드는 틱 주파수가 높을수록 부담이 커지고, 실행할 태스크가 없어도 틱 인터럽트를 자주 처리해야 해서 저전력 응용에 맞지 않을 때가 많다.[@micrium-ucos-iii-clock-tick-2026] µC/OS-III의 주기 틱 모드에서는 일정한 주파수의 틱 인터럽트가 할 일이 없어도 시스템을 저전력 모드에서 끌어내므로, 소비 전력이 틱 주파수에 따라 달라진다.[@micrium-ucos-iii-periodic-tick-mode-2026]
+µC/OS-III의 주기 틱 모드는 틱 주파수가 높을수록 부담이 커지고, 실행할 태스크가 없어도 틱 인터럽트를 자주 처리해야 해서 저전력 응용에 맞지 않을 때가 많다.[@micrium-ucos-iii-clock-tick-2026] 주기 틱 모드에서는 일정한 주파수의 틱 인터럽트가 할 일이 없어도 시스템을 저전력 모드에서 끌어내므로, 소비 전력이 틱 주파수에 따라 달라진다.[@micrium-ucos-iii-periodic-tick-mode-2026]
 
 FreeRTOS에서 idle hook으로 MCU를 저전력 상태에 두면, 틱 인터럽트를 처리하려고 주기적으로 저전력 상태를 나왔다가 다시 들어가야 해서 절전 효과가 제한된다. 틱 주파수가 너무 높으면 틱마다 저전력 상태를 드나드는 에너지와 시간이 가장 가벼운 절전 모드를 빼고는 절전 이득보다 커진다.[@freertos-low-power-support-2026]
 
@@ -53,4 +53,4 @@ FreeRTOS의 tickless idle 모드에서는 인터럽트가 오거나 커널이 �
 
 µC/OS-III는 V3.05.00에서 dynamic tick 모드를 처음 넣었고, V3.07.00에서 고쳤다. 이 모드에서는 round-robin 스케줄링을 쓸 수 없다.[@micrium-ucos-iii-dynamic-tick-mode-2026]
 
-µC/OS-III의 tickless mode에서는 태스크 지연과 커널 객체를 기다릴 때의 타임아웃을 쓸 수 없고, [[software-timer|타이머]] 기능을 켜면 빌드 오류가 나며, round-robin 스케줄링이 제대로 동작하지 않는다. 커널 객체를 기다리고 태스크를 정지하거나 재개하는 우선순위 기반 스케줄링은 그대로 쓸 수 있다.[@micrium-ucos-iii-tickless-mode-2026]
+tickless mode에서는 태스크 지연과 커널 객체를 기다릴 때의 타임아웃을 쓸 수 없고, [[software-timer|타이머]] 기능을 켜면 빌드 오류가 나며, round-robin 스케줄링이 제대로 동작하지 않는다. 커널 객체를 기다리고 태스크를 정지하거나 재개하는 우선순위 기반 스케줄링은 그대로 쓸 수 있다.[@micrium-ucos-iii-tickless-mode-2026]

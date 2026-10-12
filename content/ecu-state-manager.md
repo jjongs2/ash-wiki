@@ -19,10 +19,10 @@ EcuM은 STARTUP, UP, SHUTDOWN, SLEEP, OFF 단계를 거친다. Flexible ECU mana
 
 **Shutdown target**은 UP 단계를 떠난 상태 기계가 향하는, 코드를 실행하지 않는 상태로, Off, Sleep, Reset이 있다. BswM이 ECU 자원 대부분을 다루므로, shutdown target을 언제 무엇으로 정할지도 BswM이 직접이나 간접으로 정한다. Off에 닿으려면 ECU가 스스로 전원을 끌 수 있어야 하는데, 모든 하드웨어 설계가 이를 갖추지는 않는다. EcuM은 설정할 수 있는 sleep 모드 묶음을 둘 수 있고 설정할 수 있는 reset 모드 묶음은 반드시 두며, reset 모드에는 적어도 `Mcu_PerformReset`, `WdgM_PerformReset`, DIO(Digital Input/Output)·SPI(Serial Peripheral Interface)로 I/O 핀 토글하기가 든다.[@autosar-cp-sws-ecustatemanager-2025]
 
-AUTOSAR R25-11 Release Overview는 ECU를 늘 끌 수 있는 것은 아니라는 점을 EcuM 명세의 한계로 둔다. OFF에는 power hold 회로 같은 ECU 전용 하드웨어가 있어야 닿을 수 있고, 그 하드웨어가 없으면 EcuM 명세는 reset을 대신 하기를 권하되 다른 기본 동작도 허용한다.[@autosar-cp-tr-releaseoverview-2025]
+EcuM 명세에는 ECU를 늘 끌 수 있는 것은 아니라는 한계가 있다. OFF에는 power hold 회로 같은 ECU 전용 하드웨어가 있어야 닿을 수 있고, 그 하드웨어가 없으면 EcuM 명세는 reset을 대신 하기를 권하되 다른 기본 동작도 허용한다.[@autosar-cp-tr-releaseoverview-2025]
 
 ## 멀티코어
 
-AUTOSAR R25-11의 EcuM 명세는 멀티코어 ECU에서 EcuM을 코어마다 하나씩 두도록 정한다. 부트로더가 master core를 정하고 그 코어에서 `EcuM_Init`으로 master EcuM을 띄운다. master EcuM은 몇몇 드라이버를 시작하고 [[autosar-methodology#ECU 설정|post-build]] 설정을 정한 뒤, 나머지 코어와 그 코어의 satellite EcuM을 모두 띄운다. 이 명세는 나머지 코어를 **slave core**라 부른다. 각 EcuM은 자기 코어의 OS와 BswM을 시작하고, BswM은 파티션마다 하나씩 있다. EcuM은 모든 코어에서 SchM과 OS를 시작하고, master core와 slave core의 BswM을 모두 초기화한다. 안전 메커니즘을 쓰면 EcuM은 full trust level로 돌아야 한다.[@autosar-cp-sws-ecustatemanager-2025]
+멀티코어 ECU에서는 EcuM을 코어마다 하나씩 둔다. 부트로더가 master core를 정하고 그 코어에서 `EcuM_Init`으로 master EcuM을 띄운다. master EcuM은 몇몇 드라이버를 시작하고 [[autosar-methodology#ECU 설정|post-build]] 설정을 정한 뒤, 나머지 코어와 그 코어의 satellite EcuM을 모두 띄운다. 나머지 코어는 **slave core**라 부른다. 각 EcuM은 자기 코어의 OS와 BswM을 시작하고, BswM은 파티션마다 하나씩 있다. EcuM은 모든 코어에서 SchM과 OS를 시작하고, master core와 slave core의 BswM을 모두 초기화한다. 안전 메커니즘을 쓰면 EcuM은 full trust level로 돌아야 한다.[@autosar-cp-sws-ecustatemanager-2025]
 
 BSW 모듈을 파티션과 코어에 나눠 두는 일은 [[autosar-layered-architecture#BSW 분산|AUTOSAR 계층 구조]]에서 다룬다.

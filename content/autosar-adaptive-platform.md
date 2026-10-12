@@ -18,11 +18,11 @@ AUTOSAR Adaptive Platform R25-11은 깊이 임베디드된 ECU의 요구를 다�
 
 ## 범위
 
-AUTOSAR Adaptive Platform R25-11은 Classic Platform과 달리 모듈 대신 functional cluster를 명세한다. AUTOSAR는 Classic Platform의 개발 이력을 바탕으로, 특정 소프트웨어 아키텍처를 정하지 않고 구현자가 표준 기능을 효율적으로 구현할 방법을 찾을 수 있게 이렇게 정했다.[@autosar-ap-tr-releaseoverview-2025]
+Adaptive Platform은 Classic Platform과 달리 모듈 대신 functional cluster를 명세한다. AUTOSAR는 Classic Platform의 개발 이력을 바탕으로, 특정 소프트웨어 아키텍처를 정하지 않고 구현자가 표준 기능을 효율적으로 구현할 방법을 찾을 수 있게 이렇게 정했다.[@autosar-ap-tr-releaseoverview-2025]
 
 ### Functional cluster
 
-AUTOSAR Adaptive Platform R25-11은 응용인 Adaptive Application(AA)을 ARA(AUTOSAR Runtime for Adaptive Applications) 위에서 돌게 한다. ARA는 functional cluster가 제공하는 응용 인터페이스로 이뤄지고, functional cluster는 아래 네 묶음 가운데 하나에 속한다.[@autosar-ap-exp-platformdesign-2025]
+Adaptive Platform은 응용인 Adaptive Application(AA)을 ARA(AUTOSAR Runtime for Adaptive Applications) 위에서 돌게 한다. ARA는 functional cluster가 제공하는 응용 인터페이스로 이뤄지고, functional cluster는 아래 네 묶음 가운데 하나에 속한다.[@autosar-ap-exp-platformdesign-2025]
 
 - **Adaptive Platform Foundation**: Adaptive Platform의 기본 기능을 제공한다.
 - **Adaptive Platform Services**: Adaptive Platform의 플랫폼 표준 서비스를 제공한다.
@@ -76,9 +76,9 @@ AUTOSAR는 Adaptive Platform을 [[functional-safety|기능 안전]] 프로젝트
 - **Sensor Interfaces**: ISO 23150을 따르는 공통 인터페이스로, 비플랫폼 서비스가 센서 정보를 `ara::com` 미들웨어로 클라이언트 응용에 내준다.
 - **Safe Hardware Acceleration**: 응용과 다른 functional cluster가 하드웨어 가속기로 작업하는 API를 제공한다.[@autosar-ap-exp-platformdesign-2025]
 
-AUTOSAR R25-11 Raw Data Stream 명세는 IP 기반 프로토콜을 쓰는 Raw Data Stream에는 TCP나 UDP를 쓰는 TCP/IP 소켓을, IEEE 1722 프로토콜을 쓰는 Raw Data Stream에는 데이터 링크 소켓을 전송 계층으로 쓰게 한다.[@autosar-ap-sws-rawdatastream-2025]
+IP 기반 프로토콜을 쓰는 Raw Data Stream은 TCP나 UDP를 쓰는 TCP/IP 소켓을, IEEE 1722 프로토콜을 쓰는 Raw Data Stream은 데이터 링크 소켓을 전송 계층으로 쓴다.[@autosar-ap-sws-rawdatastream-2025]
 
-AUTOSAR R25-11 Adaptive Platform Release Overview는 Safe Hardware Acceleration 개념의 생명주기 상태를 draft로 둔다. 또 Hardware Test Manager를 하드웨어 시험을 위한 표준 인터페이스를 주는 새 구성 요소로 두며, Hardware Test Manager는 하드웨어 시험 패턴의 등록과 실행, 시험 결과의 수집과 보고를 맡는다.[@autosar-ap-tr-releaseoverview-2025]
+Safe Hardware Acceleration 개념의 생명주기 상태는 draft다. Hardware Test Manager는 하드웨어 시험을 위한 표준 인터페이스를 주는, R25-11에 새로 든 구성 요소로, 하드웨어 시험 패턴의 등록과 실행, 시험 결과의 수집과 보고를 맡는다.[@autosar-ap-tr-releaseoverview-2025]
 
 AUTOSAR Adaptive Platform R25-11은 AUTOSAR 코드 기반의 최소 C++ 버전을 C++17로 올렸다. MISRA C++:2023에 공식적으로 맞추려는 것과, QNX v8처럼 C++14 지원을 그만두는 운영체제 공급사가 있다는 것이 그 까닭이다.[@autosar-ap-tr-releaseoverview-2025]
 

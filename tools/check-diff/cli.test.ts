@@ -167,6 +167,23 @@ describe("check-diff CLI", { concurrency: false }, () => {
     )
   })
 
+  test("출처 구간: 같은 판의 다른 엔트리가 이으면 구간 안이고, 판이나 부가 바뀌면 새 구간이다", () => {
+    const lines = report.items.get("source-run") ?? []
+    assert.deepStrictEqual(
+      lines
+        .filter((line) => line.startsWith("content/run-edition.md"))
+        .map((l) => l.replace(/: 구간.*/, "")),
+      [
+        "content/run-edition.md:16", // CP 뒤의 AP
+        "content/run-edition.md:18", // AP 뒤의 CP
+        "content/run-edition.md:24", // 11898-1 뒤의 11898-2
+        "content/run-edition.md:26", // 11898-2 OBP 뒤의 11898-1 OBP
+        "content/run-edition.md:28", // 표준 번호를 제목에 담은 다른 발행기관의 자료
+      ],
+      "POSIX.1-2024 두 엔트리(10), CP R25-11 두 명세(14), 원문 뒤 OBP(22), µC/OS-III 문서 모음(30·32)은 구간 안이거나 이름을 밝혔다",
+    )
+  })
+
   test("주인 페이지: 행마다 링크, 절 앵커, 문단의 문장 수를 보인다", () => {
     const lines = report.items.get("owner-page")
     assert.ok(has(lines, "content/linker-a.md:12:", "#오류 계수기", "앵커 있음", "1문장"))

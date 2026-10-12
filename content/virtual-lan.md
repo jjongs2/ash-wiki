@@ -15,7 +15,7 @@ IEEE 802.1Q-2022는 VLAN 태그를 정한다. C-VLAN(Customer VLAN) 태그는 Et
 
 VLAN 태그는 두 필드가 차례로 이어진 것이다. 앞의 **TPID**(Tag Protocol Identifier)는 태그의 종류를 가리키는 EtherType을 담은 2옥텟(16비트) 필드이고, 뒤의 **TCI**(Tag Control Information)는 2옥텟 필드로 VLAN 태그에서는 PCP, DEI, VID를 담는다. 이 표준의 Annex G가 보이는 [[ieee-802-3|IEEE 802.3]] 프레임의 예에서, TPID와 TCI를 합친 4옥텟은 출발지 주소 바로 뒤에 온다.[@ieee-802-1q-2022]
 
-VLAN을 가리키는 VID는 1부터 4094까지이고, 0과 4095(`0xFFF`)는 VLAN 번호로 쓰지 않는다. 그래서 쓸 수 있는 VID는 4094개다.[@ieee-802-1q-types-yang-2022] IEEE 802.1Q-2022는 VID 0을 **null VID**로 두며, 태그가 우선순위 정보만 싣고 프레임에 VID가 없다는 뜻이다.[@ieee-802-1q-2022]
+VLAN을 가리키는 VID는 1부터 4094까지이고, 0과 4095(`0xFFF`)는 VLAN 번호로 쓰지 않는다. 그래서 쓸 수 있는 VID는 4094개다.[@ieee-802-1q-types-yang-2022] 이 표준은 VID 0을 **null VID**로 두며, 태그가 우선순위 정보만 싣고 프레임에 VID가 없다는 뜻이다.[@ieee-802-1q-2022]
 
 IEEE 802.1Q-2005는 태그의 TCI에서 PCP와 VID 사이의 1비트를 CFI(Canonical Format Indicator)로 두었고[@ieee-802-1q-2005], IEEE 802.1Q-2022는 태그에 DEI를 둔다.[@ieee-802-1q-bridge-yang-2022] 이 표준은 DEI를 TCI 첫 옥텟의 비트 5인 1비트로 두는데, 이 비트는 이전 판들이 C-VLAN 태그에서 CFI로 쓰던 비트다. DEI는 포트의 Use_DEI 파라미터가 참이면 drop_eligible 파라미터를 싣는다. Use_DEI의 기본값은 거짓이고, 거짓이면 DEI를 0으로 보내고 받을 때는 무시한다. 큐에서 drop_eligible이 참인 프레임을 지울 확률은 거짓인 프레임보다 낮으면 안 되고, 큐 관리 알고리즘은 drop_eligible이 참인 프레임을 먼저 버리는 것이 권장된다.[@ieee-802-1q-2022]
 

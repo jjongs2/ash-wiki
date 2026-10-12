@@ -42,7 +42,7 @@ LIN의 전송 프로토콜 LinTp(LIN Transport Protocol)는 LIN Interface 안에
 
 ## 이더넷
 
-TcpIp 모듈은 [[tcp|TCP]], UDP, [[ipv4|IPv4]], [[ipv6|IPv6]], [[arp|ARP]], [[icmp|ICMP]], DHCP(Dynamic Host Configuration Protocol)를 구현하고, 이더넷 위에서 소켓 기반 통신을 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] AUTOSAR Classic Platform R25-11의 TcpIp 명세는 소켓 소유자마다 위층 모듈의 종류를 SoAd(Socket Adaptor)와 CDD(Complex Driver) 가운데 하나로 설정하게 하고, CDD가 위층인 소켓에는 설정한 API(Application Programming Interface) 이름으로 위층을 부르도록 정한다. 이 명세는 CDD 인터페이스로 위층 모듈을 더 둘 수 있게 하지만, 소켓 하나를 여러 위층 모듈에 나눠 주는 것은 지원하려 하지 않는다.[@autosar-cp-sws-tcpip-2025] R25-11의 SoAd 명세도 SoAd를 TcpIp 모듈의 위층 모듈 가운데 하나로 둔다.[@autosar-cp-sws-socketadaptor-2025]
+TcpIp 모듈은 [[tcp|TCP]], UDP, [[ipv4|IPv4]], [[ipv6|IPv6]], [[arp|ARP]], [[icmp|ICMP]], DHCP(Dynamic Host Configuration Protocol)를 구현하고, 이더넷 위에서 소켓 기반 통신을 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] TcpIp 모듈의 위층 모듈은 소켓 소유자마다 SoAd(Socket Adaptor)와 CDD(Complex Driver) 가운데 하나로 설정되고, CDD가 위층인 소켓에서는 TcpIp 모듈이 설정한 API(Application Programming Interface) 이름으로 위층을 부른다. CDD 인터페이스로 위층 모듈을 더 둘 수는 있지만, 소켓 하나를 여러 위층 모듈에 나눠 주는 것은 지원 대상이 아니다.[@autosar-cp-sws-tcpip-2025] SoAd는 TcpIp 모듈의 위층 모듈 가운데 하나다.[@autosar-cp-sws-socketadaptor-2025]
 
 SoAd는 PDU를 쓰는 통신 서비스 모듈과 소켓 기반의 [[internet-protocol-suite|TCP/IP]] 스택을 잇고, I-PDU ID와 소켓 연결을 서로 대응시킨다. SoAd는 PDU 하나에 소켓 연결 하나를 대응시키거나, 선택 기능인 PDU 헤더를 붙여 여러 PDU를 한 소켓 연결로 보낸다. PDU 헤더는 PDU 식별자(4바이트)와 길이(4바이트)를 [[byte-order|빅 엔디언]]으로 담는다.[@autosar-cp-sws-socketadaptor-2025]
 

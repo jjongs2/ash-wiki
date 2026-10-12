@@ -30,11 +30,11 @@ AUTOSAR R25-11 Guide to BSW Distribution은 시스템에 ASIL BSW(Basic Software
 
 ## AUTOSAR 소프트웨어의 배치
 
-AUTOSAR R25-11의 OS 명세는 BSW와 [[autosar-software-component|SW-C]]를 가리지 않고 모든 AUTOSAR 소프트웨어가 어느 한 OS-Application에 속해야 한다고 정하며, 모두가 같은 OS-Application에 속할 필요는 없다. BSW는 trusted code일 것으로 보지만, 그래도 OS-Application 하나 이상으로 정의해야 한다.[@autosar-cp-sws-os-2025]
+BSW와 [[autosar-software-component|SW-C]]를 가리지 않고 모든 AUTOSAR 소프트웨어는 어느 한 OS-Application에 속해야 하며, 모두가 같은 OS-Application에 속할 필요는 없다. BSW는 trusted code일 것으로 보지만, 그래도 OS-Application 하나 이상으로 정의해야 한다.[@autosar-cp-sws-os-2025]
 
 SW-C는 trusted OS-Application이 될 수 없다. trusted OS-Application은 I/O 공간에 접근하도록 허용될 수 있는데, SW-C에는 하드웨어 직접 접근을 허용하지 않기 때문이며, 설정 과정이 이를 보장해야 한다.[@autosar-cp-sws-os-2025]
 
-시스템 설정은 SW-C의 [[runnable-entity|runnable]]을 태스크 하나 이상에 매핑한다. 한 태스크에 든 runnable은 모두 같은 보호 경계를 공유하고 실행 중에 서로 보호받지 못하므로, runnable끼리 보호가 필요하면 서로 다른 태스크에 나눠 두고 그 태스크들을 보호해야 한다. 이 명세는 이를 위한 간단한 규칙으로, 한 태스크에는 같은 SW-C의 runnable만 넣기를 제시한다.[@autosar-cp-sws-os-2025]
+시스템 설정은 SW-C의 [[runnable-entity|runnable]]을 태스크 하나 이상에 매핑한다. 한 태스크에 든 runnable은 모두 같은 보호 경계를 공유하고 실행 중에 서로 보호받지 못하므로, runnable끼리 보호가 필요하면 서로 다른 태스크에 나눠 두고 그 태스크들을 보호해야 한다. 이를 위한 간단한 규칙은 한 태스크에 같은 SW-C의 runnable만 넣는 것이다.[@autosar-cp-sws-os-2025]
 
 ## 접근 권한
 

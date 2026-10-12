@@ -37,7 +37,7 @@ Adaptive Platform의 서비스 지향 통신은 통신 경로를 실행 중에 �
 
 AUTOSAR R25-11 System Template은 차량의 큰 부분이 여전히 시그널 기반 통신을 쓰므로, [[autosar-classic-platform|Classic Platform]]의 시그널 기반 통신과 Adaptive Platform의 서비스 지향 통신을 서로 옮기는 방법을 Classic Platform ECU에서 하도록 표준화한다. 이 기능을 **signal/service translation**이라 하고, 변환 방향은 어느 쪽으로도 정하지 않는다. 이 변환을 Classic Platform ECU에서 할지 Adaptive Platform Machine에서 할지는 차량 아키텍처 설계가 고른다. Classic Platform에서는 [[autosar-rte|RTE]] 위의 응용 [[autosar-software-component|소프트웨어 컴포넌트]]인 Translation Software Component가 이벤트와 필드 notifier를 변환하고, 메서드는 따로 다룬다. 시그널 쪽에서는 Classic Platform [[autosar-communication-stack|통신 스택]]의 기능을 모두 써서 [[can|CAN]], [[lin|LIN]], [[flexray|FlexRay]]에서 온 ISignalIPdu를 다룰 수 있고, 서비스 쪽에서는 정의한 SOME/IP 서비스가 Adaptive Platform과 호환되어야 한다.[@autosar-cp-tps-systemtemplate-2025]
 
-AUTOSAR R25-11 Layered Software Architecture 설명서는 Translation Software Component가 포트와 PortInterface로 페이로드를 기술하게 한다. 시그널에서 서비스로 옮길 때는 들어오는 시그널의 포트와 나가는 이벤트의 포트를, 서비스에서 시그널로 옮길 때는 들어오는 이벤트의 포트와 나가는 시그널의 포트를 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+Translation Software Component는 포트와 PortInterface로 페이로드를 기술한다. 시그널에서 서비스로 옮길 때는 들어오는 시그널의 포트와 나가는 이벤트의 포트를, 서비스에서 시그널로 옮길 때는 들어오는 이벤트의 포트와 나가는 시그널의 포트를 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ![[diagrams/signal-service-translation.svg]]
 

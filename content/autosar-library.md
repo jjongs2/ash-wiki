@@ -9,15 +9,15 @@ AUTOSAR R25-11 Layered Software Architecture는 **AUTOSAR 라이브러리**를 �
 
 ## 요구사항
 
-AUTOSAR R25-11의 라이브러리 요구사항 명세는 라이브러리가 모든 BSW 모듈과 응용 SW-C보다 먼저 동작할 수 있어야 한다고 정한다. ECU 초기화의 맨 첫 단계에서 [[autosar-os|OS]]나 [[ecu-state-manager|EcuM]]도 라이브러리 함수를 부를 수 있기 때문이다. SW-C는 [[software-component-port|포트]]와 RTE를 거치지 않고 라이브러리 헤더 파일을 포함해 라이브러리 함수를 직접 부른다. 라이브러리 호출은 클라이언트-서버 operation이 아니라 기본 연산이어서 일관성 검사, 큐잉, ECU 밖 통신이 필요 없고, 자주 쓰이므로 효율적으로 불려야 한다.[@autosar-cp-rs-libraries-2025]
+라이브러리는 모든 BSW 모듈과 응용 SW-C보다 먼저 동작할 수 있어야 한다. ECU 초기화의 맨 첫 단계에서 [[autosar-os|OS]]나 [[ecu-state-manager|EcuM]]도 라이브러리 함수를 부를 수 있기 때문이다. SW-C는 [[software-component-port|포트]]와 RTE를 거치지 않고 라이브러리 헤더 파일을 포함해 라이브러리 함수를 직접 부른다. 라이브러리 호출은 클라이언트-서버 operation이 아니라 기본 연산이어서 일관성 검사, 큐잉, ECU 밖 통신이 필요 없고, 자주 쓰이므로 효율적으로 불려야 한다.[@autosar-cp-rs-libraries-2025]
 
 라이브러리 함수는 모두 재진입할 수 있어, 동시에 겹치거나 섞여 들어오는 요청을 여럿 처리할 수 있어야 한다. 그러려면 재진입할 수 없는 함수를 부르지 않고, 전역 변수와 static 변수에 쓰지 않으며, 다룰 데이터는 호출자가 만들어 매개변수로 넘긴다. 라이브러리 함수는 부른 코어에서 실행된다. 라이브러리마다 공개 인터페이스를 담은 헤더 파일 하나(`<library short name>.h`)를 두고, 함수 이름과 타입 이름은 라이브러리 짧은 이름과 밑줄로 시작한다.[@autosar-cp-rs-libraries-2025]
 
 ## 목록
 
-AUTOSAR R25-11의 BSW 일반 명세는 라이브러리 열 개를 둔다.[@autosar-cp-sws-bswgeneral-2025]
+라이브러리는 열 개가 있다.[@autosar-cp-sws-bswgeneral-2025]
 
-AUTOSAR R25-11 Layered Software Architecture는 이 라이브러리들이 하는 일을 아래처럼 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+이 라이브러리들이 하는 일은 아래와 같다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 | 라이브러리 | 하는 일                               |
 | ---------- | ------------------------------------- |
@@ -34,6 +34,6 @@ AUTOSAR R25-11 Layered Software Architecture는 이 라이브러리들이 하는
 
 ## BSW 모듈과의 차이
 
-AUTOSAR R25-11의 BSW 일반 명세는 라이브러리와 BSW 모듈을 둘 다 SWS(Software Specification)로 명세하되, 초기화, 사용자, 호출, 오류 처리를 다르게 정한다. 라이브러리에는 `Init()`도 `DeInit()`도 없어 함수를 곧바로 쓸 수 있지만, BSW 모듈은 초기화가 필요하고 초기화하지 않은 모듈의 함수를 부르면 E_UNINIT 오류가 날 수 있다. SW-C는 라이브러리 함수를 직접 부를 수 있지만, BSW 모듈의 기능에는 포트로만 접근한다. 라이브러리는 BSW 모듈을 부를 수 없으므로 [[autosar-error-handling#Det|Det]]나 [[diagnostic-event-manager|Dem]]에 오류를 보고할 수 없고 OS도 부를 수 없다. 오류 처리도 거의 없어, 호출자가 책임 있게 부른다고 본다. 라이브러리는 상태가 없어, 상태가 필요하면 사용자가 handle 같은 것으로 넘긴다. 라이브러리의 긴 제목에는 Library라는 말이 들어, BSW 모듈과 쉽게 가릴 수 있다.[@autosar-cp-sws-bswgeneral-2025]
+라이브러리와 BSW 모듈은 둘 다 SWS(Software Specification)로 명세하되, 초기화, 사용자, 호출, 오류 처리가 다르다. 라이브러리에는 `Init()`도 `DeInit()`도 없어 함수를 곧바로 쓸 수 있지만, BSW 모듈은 초기화가 필요하고 초기화하지 않은 모듈의 함수를 부르면 E_UNINIT 오류가 날 수 있다. SW-C는 라이브러리 함수를 직접 부를 수 있지만, BSW 모듈의 기능에는 포트로만 접근한다. 라이브러리는 BSW 모듈을 부를 수 없으므로 [[autosar-error-handling#Det|Det]]나 [[diagnostic-event-manager|Dem]]에 오류를 보고할 수 없고 OS도 부를 수 없다. 오류 처리도 거의 없어, 호출자가 책임 있게 부른다고 본다. 라이브러리는 상태가 없어, 상태가 필요하면 사용자가 handle 같은 것으로 넘긴다. 라이브러리의 긴 제목에는 Library라는 말이 들어, BSW 모듈과 쉽게 가릴 수 있다.[@autosar-cp-sws-bswgeneral-2025]
 
 대부분의 AUTOSAR 라이브러리는 설정이 없다. 라이브러리는 전역 범위를 가져 모든 SW-C와 BSW 모듈이 직접 쓰고, 설정 포인터를 받을 `Init()` 함수도 없기 때문이다. 설정이 필요하면 pre-compile 설정만 쓸 수 있다. 라이브러리 코드는 서로 다른 메모리 파티션의 호출자가 함께 쓸 수 있게 구현해야 하고, C 시작 과정이 끝나는 대로 쓸 수 있어야 한다. 라이브러리는 사용자의 잘못과 범위 밖 값을 다루지 않으며, 그런 입력의 동작은 정해지지 않는다.[@autosar-cp-sws-bswgeneral-2025]
