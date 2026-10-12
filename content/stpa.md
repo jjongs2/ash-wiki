@@ -11,7 +11,7 @@ verified: 2026-10-12
 
 ## 이론적 바탕
 
-STPA의 이론적 바탕은 시스템 이론에 기반한 사고 인과 모델인 **STAMP**(System-Theoretic Accident Model and Processes)다. STAMP는 인과를 직접 이어진 failure 사건이나 부품 failure의 사슬 너머로 넓혀, 더 복잡한 프로세스와 구성 요소 사이의 안전하지 않은 상호작용까지 넣는다. STAMP에서 안전은 failure 예방 문제가 아니라 동적 제어 문제이고, 강조점은 failure 예방에서 시스템 거동에 제약을 강제하는 것으로 옮겨 간다. STAMP는 분석 방법이 아니라 사고가 어떻게 일어나는지에 대한 모델, 곧 가정의 묶음이다. [[safety-analysis#FTA|FTA]](Fault Tree Analysis) 같은 기존 [[safety-analysis|안전 분석]] 기법이 바탕으로 하는 failure 사건 사슬 모델의 대안이며, failure 사건 사슬 모델은 STAMP의 부분집합이다.[@leveson-stpa-handbook-2018]
+STPA의 이론적 바탕은 시스템 이론에 기반한 사고 인과 모델인 **STAMP**(System-Theoretic Accident Model and Processes)다. STAMP는 인과를 직접 이어진 failure 사건이나 부품 failure의 사슬 너머로 넓혀, 더 복잡한 프로세스와 구성 요소 사이의 안전하지 않은 상호작용까지 넣는다. STAMP에서 안전은 failure 예방 문제가 아니라 동적 제어 문제이고, 강조점은 failure 예방에서 시스템 거동에 제약을 강제하는 것으로 옮겨 간다. STAMP는 분석 방법이 아니라 사고가 어떻게 일어나는지에 대한 모델, 곧 가정의 묶음이다. [[safety-analysis#FTA|FTA]] 같은 기존 [[safety-analysis|안전 분석]] 기법이 바탕으로 하는 failure 사건 사슬 모델의 대안이며, failure 사건 사슬 모델은 STAMP의 부분집합이다.[@leveson-stpa-handbook-2018]
 
 ## 기본 STPA의 네 단계
 

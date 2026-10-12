@@ -13,19 +13,19 @@ ISO 26262-5:2018은 하드웨어 수준 제품 개발의 요구사항을 정하�
 
 ISO 26262-1:2018은 하드웨어 [[fault-error-failure|fault]]와 그것이 낳는 failure의 종류를 다음처럼 정의한다.[@iso-26262-1-obp-2018]
 
-- **Single-point fault**: 요소 안에서 safety goal 위반에 바로 이르고, 그 요소의 어떤 fault도 [[safety-mechanism|안전 메커니즘]]이 덮지 않는 하드웨어 fault. 정의의 주석은 하드웨어 요소에 안전 메커니즘이 하나라도 정의되어 있으면(예: 마이크로컨트롤러의 watchdog) 그 요소의 fault는 single-point fault가 아니라고 제시한다.
+- **Single-point fault**: 요소 안에서 safety goal 위반에 바로 이르고, 그 요소의 어떤 fault도 [[safety-mechanism|안전 메커니즘]]이 덮지 않는 하드웨어 fault. 정의의 주석은 하드웨어 요소에 안전 메커니즘이 하나라도 정의되어 있으면(예: 마이크로컨트롤러의 [[safety-mechanism#Watchdog|watchdog]]) 그 요소의 fault는 single-point fault가 아니라고 제시한다.
 - **Single-point failure**: single-point fault에서 비롯한 failure
 - **Residual fault**: 하드웨어 요소에서 일어난 random hardware fault 가운데, 안전 메커니즘이 제어하지 않으면서 그 자체로 safety goal 위반에 이르는 부분. 정의의 주석은 하드웨어 요소의 fault 가운데 일부만 안전 메커니즘이 덮는다는 전제를 제시한다. 정의의 예는 안전과 관련 있고 safe fault가 아닌 fault 집합에 커버리지 60%인 부분 집합이 있으면, 나머지 40%가 residual fault라는 것을 든다.
 - **Multiple-point fault**: 다른 독립 fault와 겹쳐, 검출되지도 인지되지도 않으면 multiple-point failure에 이를 수 있는 개별 fault. 정의의 주석은 multiple-point fault를 fault tree의 cut set 분석 등으로 multiple-point failure를 찾은 뒤에야 알아볼 수 있다고 제시한다.
 - **Multiple-point failure**: 독립된 하드웨어 fault 여럿이 겹쳐 safety goal 위반에 바로 이르는 failure
-- **Latent fault**: [[fault-tolerant-time-interval|multiple-point fault detection time interval]] 안에 안전 메커니즘이 검출하지 못하고 운전자도 인지하지 못한 multiple-point fault
+- **Latent fault**: [[fault-tolerant-time-interval#시간 구간과 운용 모드|multiple-point fault detection time interval]] 안에 안전 메커니즘이 검출하지 못하고 운전자도 인지하지 못한 multiple-point fault
 - **Dual-point fault**: 다른 독립 fault와 겹쳐 dual-point failure에 이르는 개별 fault. 정의의 주석은 dual-point fault도 cut set 분석 등으로 dual-point failure를 찾은 뒤에야 알아볼 수 있다고 제시한다.
 - **Dual-point failure**: 독립된 하드웨어 fault 둘이 겹쳐 safety goal 위반에 바로 이르는 failure. 정의의 주석은 dual-point failure를 차수 2의 multiple-point failure로 제시하고, ISO 26262 시리즈가 다루는 dual-point failure에 한 fault는 안전 관련 요소에, 다른 fault는 안전 상태를 이루거나 유지하려는 해당 안전 메커니즘에 영향을 주는 경우가 든다고 제시한다.
 - **Safe fault**: 일어나도 safety goal 위반 확률을 크게 높이지 않는 fault. 정의의 주석은 안전 관련 요소와 안전과 무관한 요소가 모두 safe fault를 가질 수 있고, single-point fault, residual fault, dual-point fault는 safe fault가 아니며, safety concept에서 관련 있다고 보이지 않는 한 차수가 2보다 높은 multiple-point fault는 safe fault로 볼 수 있다고 제시한다.[@iso-26262-1-obp-2018]
 
 ![[diagrams/residual-fault-coverage-example.svg]]
 
-이 표준은 fault가 검출되거나 인지되는지에 따라서도 이름을 둔다. **Detected fault**는 정해진 시간 안에 안전 메커니즘이 그 존재를 검출한 fault이고, **perceived fault**는 차량 수준에서 벗어난 거동을 거쳐 간접으로 인지될 수 있는 fault다.[@iso-26262-1-obp-2018] Detected fault의 정해진 시간이 어느 시간 구간인지는 [[fault-tolerant-time-interval|FTTI]]에서 다룬다.
+이 표준은 fault가 검출되거나 인지되는지에 따라서도 이름을 둔다. **Detected fault**는 정해진 시간 안에 안전 메커니즘이 그 존재를 검출한 fault이고, **perceived fault**는 차량 수준에서 벗어난 거동을 거쳐 간접으로 인지될 수 있는 fault다.[@iso-26262-1-obp-2018] Detected fault의 정해진 시간이 어느 시간 구간인지는 [[fault-tolerant-time-interval#시간 구간과 운용 모드|FTTI]]에서 다룬다.
 
 ## 진단 커버리지와 failure rate
 

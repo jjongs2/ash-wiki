@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-02
 ---
 
-**안전 분석**(safety analysis)은 [[iso-26262|ISO 26262]]-9:2018이 dependent failure 분석과 함께 요구사항을 정하는 분석이다. 이 표준은 7절에서 dependent failure 분석을, 8절에서 안전 분석을 다룬다. 이 표준은 [[automotive-safety-integrity-level#ASIL decomposition|ASIL tailoring을 위한 요구사항 분해]]와 요소의 공존 기준에 대한 요구사항도 정한다.[@iso-26262-9-obp-2018] 분석 기법인 FMEA(Failure Modes and Effects Analysis), FTA(Fault Tree Analysis), HAZOP(Hazard and Operability study)은 IEC 60812:2018[@iec-60812-2018], IEC 61025:2006[@iec-61025-preview-2006], IEC 61882:2016이 각각 적용 지침을 둔다.[@iec-61882-preview-2016] [[stpa|STPA]]는 어느 것도 고장 나지 않은 시스템 구성 요소 사이의 안전하지 않은 상호작용도 사고를 일으킬 수 있다고 보는 해저드 분석 기법이다.[@leveson-stpa-handbook-2018]
+**안전 분석**(safety analysis)은 [[iso-26262|ISO 26262]]-9:2018이 dependent failure 분석과 함께 요구사항을 정하는 분석이다. 이 표준은 7절에서 dependent failure 분석을, 8절에서 안전 분석을 다룬다. 이 표준은 [[automotive-safety-integrity-level#ASIL decomposition|ASIL tailoring을 위한 요구사항 분해]]와 [[freedom-from-interference|요소의 공존 기준]]에 대한 요구사항도 정한다.[@iso-26262-9-obp-2018] 분석 기법인 FMEA(Failure Modes and Effects Analysis), FTA(Fault Tree Analysis), HAZOP(Hazard and Operability study)은 IEC 60812:2018[@iec-60812-2018], IEC 61025:2006[@iec-61025-preview-2006], IEC 61882:2016이 각각 적용 지침을 둔다.[@iec-61882-preview-2016] [[stpa|STPA]]는 어느 것도 고장 나지 않은 시스템 구성 요소 사이의 안전하지 않은 상호작용도 사고를 일으킬 수 있다고 보는 해저드 분석 기법이다.[@leveson-stpa-handbook-2018]
 
 ## FMEA
 
@@ -62,4 +62,4 @@ Dependent failure 정의의 주석은 dependent failure가 동시에, 또는 동
 
 **Coupling factor**는 요소들의 failure를 서로 의존하게 만드는 요소들의 공통 특성이나 관계다. **DFI**(Dependent Failure Initiator)는 coupling factor를 거쳐 여러 요소를 고장 나게 하는 하나의 근본 원인이고, 그 요소들의 failure는 동시에 또는 차례로 일어날 수 있다. DFI 정의의 예는 같은 RAM(Random-Access Memory)을 쓰는 두 소프트웨어 유닛(coupling factor)에서 한 유닛이 다른 유닛이 쓰는 데이터를 뜻하지 않게 망가뜨리는 것(근본 원인)과, 같은 3.3 V 전원을 쓰는 두 마이크로컨트롤러에 과전압이 걸려 둘 다 망가지는 것을 든다.[@iso-26262-1-obp-2018]
 
-요소 사이에 cascading failure가 없는 것은 [[freedom-from-interference|FFI]]에서 다룬다. 독립성(independence)은 [[functional-safety-management#독립성|기능 안전 관리]]에서 다룬다.
+독립성(independence)은 [[functional-safety-management#독립성|기능 안전 관리]]에서 다룬다.

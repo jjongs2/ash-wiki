@@ -44,7 +44,7 @@
 - resource: 리소스 (#165). OSEK 객체일 때. 일반적인 뜻이면 "자원"
 - root of trust: 신뢰의 뿌리 (#288)
 - RSA 풀이 Rivest-Shamir-Adleman: Rivest–Shamir–Adleman (#288)
-- safety case: - (#396). `cybersecurity-assessment`의 cybersecurity case와 맞춤
+- safety case: - (#396)
 - TDC 풀이 Transceiver Delay Compensation: Transmitter Delay Compensation (#311)
 - Timing Analysis and Design 보고서: AUTOSAR 타이밍 분석 보고서 (#257). 본문에서 AUTOSAR 문서를 부르는 이름
 - Timing Extensions 명세: 타이밍 확장 명세 (#257). 본문에서 AUTOSAR 문서를 부르는 이름. "명세" 없이 쓴 "Timing Extensions"도 그대로

@@ -43,7 +43,7 @@ ISO 21448:2022는 합리적으로 예견할 수 있는 오용을 범위에 넣�
 
 이 표준은 사용자가 기능과 그 거동, HMI를 포함한 한계를 제대로 이해하는 것이 안전에 꼭 필요하다고 보고, 레벨 2 자동 운전 시스템을 쓰면서 운전자가 주의를 기울이지 않는 것과 모드 혼동을 예로 든다. 모드 혼동은 기능이 꺼져 있는데 운전자가 켜져 있다고 여기는 것처럼 해저드로 바로 이어질 수 있다. 인프라가 주는 정보(V2X(Vehicle-to-X) 통신, 지도 등)도 SOTIF에 영향을 줄 수 있으면 기능 부족 평가에 든다.[@iso-21448-obp-2022]
 
-AI(artificial intelligence) 시스템의 기능 부족에서 오는 리스크는 [[iso-pas-8800|ISO/PAS 8800:2024]]가 ISO 21448의 개념과 지침을 넓혀 다룬다.[@iso-pas-8800-obp-2024]
+AI(artificial intelligence) 시스템의 기능 부족에서 오는 리스크는 [[iso-pas-8800|ISO/PAS 8800]]:2024가 ISO 21448의 개념과 지침을 넓혀 다룬다.[@iso-pas-8800-obp-2024] SAE J3187-2:2023은 [[stpa|STPA]]를 SOTIF 평가에 적용하는 권고 실무를 둔다.[@sae-j3187-2-2023]
 
 ## SOTIF 조치의 단계
 
@@ -52,8 +52,6 @@ ISO 21448:2022는 SOTIF를 위해 해저드를 없애거나 리스크를 줄이�
 - 명세와 설계 단계: 찾아낸 시스템의 부족이나 해저드 시나리오에 따라 차량 기능이나 센서 성능 요구사항을 고친다.
 - [[verification-and-validation|검증과 확인]] 단계: 기술 검토, 관련 시나리오를 넓게 덮는 [[test-case|테스트 케이스]], potential triggering condition의 주입, 고른 시나리오의 software·hardware·model in the loop 테스트, 장기 차량 시험, 시험장 차량 시험, 시뮬레이션 시험
 - 운용 단계: SOTIF incident의 현장 모니터링[@iso-21448-obp-2022]
-
-SAE J3187-2:2023은 [[stpa|STPA]]를 SOTIF 평가에 적용하는 권고 실무를 둔다.[@sae-j3187-2-2023]
 
 ## Acceptance criterion과 validation target
 
@@ -65,7 +63,7 @@ ISO 26262-1:2018은 [[functional-safety|기능 안전]]을 E/E 시스템의 [[ha
 
 ![[diagrams/functional-safety-sotif-hazard-sources.svg]]
 
-이 표준은 기능 안전과 SOTIF를 안전의 서로 보완하는 측면으로 보며, E/E 시스템의 random hardware failure와 systematic failure는 ISO 26262 시리즈로 다룬다고 가정한다.[@iso-21448-obp-2022]
+이 표준은 기능 안전과 SOTIF를 안전의 서로 보완하는 측면으로 보며, E/E 시스템의 [[functional-safety#Systematic failure와 random hardware failure|random hardware failure와 systematic failure]]는 ISO 26262 시리즈로 다룬다고 가정한다.[@iso-21448-obp-2022]
 
 이 표준은 ISO 26262 시리즈가 의도된 기능이 안전하다고 가정하고, 의도된 기능에서 벗어나 해저드를 일으킬 수 있는 E/E 시스템의 fault를 다룬다고 본다. 또 ISO 26262 시리즈가 다루는 fault가 없어도 해저드 동작을 낳을 수 있는 원인으로, 기능이 환경을 바르게 인식하지 못하는 것, 센서 입력의 변화나 융합에 쓴 휴리스틱이나 다양한 환경 조건에 대한 기능·시스템·알고리즘의 강건성 부족, 의사 결정 알고리즘이나 사람의 기대와의 어긋남에서 오는 예상치 못한 거동을 예로 든다. 이런 요인은 머신러닝을 쓰는 기능, 시스템, 알고리즘에 특히 관련된다.[@iso-21448-obp-2022]
 

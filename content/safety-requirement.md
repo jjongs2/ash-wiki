@@ -7,7 +7,7 @@ verified: 2026-10-02
 
 **안전 요구사항**(safety requirement)은 [[iso-26262|ISO 26262]]에서 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]]에서 시작해 단계마다 구체화되는 요구사항이다. ISO 26262-1:2018은 safety goal을 최상위 안전 요구사항으로 정의하고, functional safety requirement가 안전 상태를 이루거나 유지하려고 E/E(Electrical/Electronic) 시스템이나 다른 기술의 시스템이 구현하는 안전 요구사항일 수 있다고 둔다.[@iso-26262-1-obp-2018] ISO 26262-8:2018은 6절에서 안전 요구사항의 명세와 관리를 다룬다.[@iso-26262-8-obp-2018] 안전 상태는 [[safety-mechanism#안전 상태와 성능 저하|안전 메커니즘]]에서 다룬다.
 
-[[iso-pas-8800|ISO/PAS 8800:2024]]는 안전 요구사항을 안전에 관련된 요구사항으로 넓게 정의하고, [[sotif|SOTIF]] 요구사항과 functional safety requirement를 함께 예로 든다.[@iso-pas-8800-obp-2024]
+[[iso-pas-8800|ISO/PAS 8800]]:2024는 안전 요구사항을 안전에 관련된 요구사항으로 넓게 정의하고, [[sotif|SOTIF]] 요구사항과 functional safety requirement를 함께 예로 든다.[@iso-pas-8800-obp-2024]
 
 ## 요구사항의 전개
 
