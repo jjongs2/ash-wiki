@@ -396,7 +396,7 @@ describe("resolveRelative", () => {
 // ash-wiki: 팝오버에 넣는 문서의 도해 <object> data 보정(normalizeObjectData)을 본다. 테스트에 DOM이 없어
 // object[data]만 돌려주는 가짜 요소를 쓴다.
 describe("normalizeObjectData", () => {
-  const page = (...values: string[]) => {
+  const fakePage = (...values: string[]) => {
     const objects = values.map((value) => {
       const attrs: Record<string, string> = { data: value }
       return {
@@ -411,19 +411,19 @@ describe("normalizeObjectData", () => {
   }
 
   test("rebases relative data onto the linked page", () => {
-    const { el, data } = page("diagrams/a.svg", "./diagrams/b.svg", "../diagrams/c.svg")
+    const { el, data } = fakePage("diagrams/a.svg", "./diagrams/b.svg", "../diagrams/c.svg")
     path.normalizeObjectData(el, new URL("https://example.com/ptp"))
     assert.deepStrictEqual(data(), ["/diagrams/a.svg", "/diagrams/b.svg", "/diagrams/c.svg"])
   })
 
   test("resolves against the linked page's folder", () => {
-    const { el, data } = page("diagrams/a.svg")
+    const { el, data } = fakePage("diagrams/a.svg")
     path.normalizeObjectData(el, new URL("https://example.com/news/2026-w41"))
     assert.deepStrictEqual(data(), ["/news/diagrams/a.svg"])
   })
 
-  test("leaves absolute data alone", () => {
-    const { el, data } = page("/diagrams/a.svg", "https://other.example/b.svg")
+  test("keeps root-relative paths and absolute URLs", () => {
+    const { el, data } = fakePage("/diagrams/a.svg", "https://other.example/b.svg")
     path.normalizeObjectData(el, new URL("https://example.com/tags/network"))
     assert.deepStrictEqual(data(), ["/diagrams/a.svg", "https://other.example/b.svg"])
   })
