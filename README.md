@@ -130,4 +130,4 @@ CONTEXT.md        운영 용어집
 | IEEE CSL 스타일                                        | `csl/ieee.csl`          | CC BY-SA 3.0(파일 안 `<rights>`) |
 | giscus 테마 CSS                                        | `quartz/static/giscus/` | MIT(GitHub, 파일 머리 주석)      |
 
-주간 소식의 원문 이미지(원문 사이트에 링크한 것), 상표와 로고, 원어 제목은 각 권리자의 것이며 이 라이선스에 들지 않습니다.
+상표와 로고, 주간 소식이 링크한 원문 이미지와 제목은 각 권리자의 것입니다.
