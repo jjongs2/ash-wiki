@@ -49,6 +49,8 @@ ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에�
 - **IN 점**: 동치 분할에 속하면서 ON 점이 아닌 점이다.
 - **OUT 점**: 동치 분할 밖에 있으면서 OFF 점이 아닌 점이다.[@istqb-ctal-ta-syllabus-2025]
 
+![[diagrams/domain-testing-on-off-in-out.svg]]
+
 ## 동치 분할과의 관계
 
 CTFL 강의계획서에 따르면 동치 분할은 분할마다 값 하나를 테스트하면 된다고 보지만, 경계값 분석은 분할의 경계값을 테스트한다.[@istqb-ctfl-syllabus-2024]

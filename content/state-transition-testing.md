@@ -36,4 +36,6 @@ CTAL-TA 강의계획서는 CTFL 강의계획서의 커버리지 기준에 더해
 - **N-switch 커버리지**: 연이은 유효한 전이 $N+1$개의 열을 N-switch라 부르고, 이를 커버리지 항목으로 삼는다. 0-switch 커버리지는 valid transitions 커버리지와 같다. 1-switch는 한 상태로 들어오는 전이와 나가는 전이의 쌍이다. N-switch의 끝에 이어지는 유효한 전이를 붙이면 $(N+1)$-switch가 된다. 실무에서는 0-switch와 1-switch 커버리지를 자주 쓴다. N-switch의 수는 $N$에 따라 지수로 늘 수 있어서, 2-switch 이상의 커버리지 100%는 예상하지 못한 이벤트 순서로 failure가 날 리스크가 높을 때만 권한다.
 - **round-trip 커버리지**: 상태 기반 모델에서 루프를 이루는 경로를 대상으로 한다. round trip은 시작 상태와 끝 상태가 같고, 루프 안의 다른 상태가 두 번 나오지 않는 루프다. 커버리지 항목은 round trip이다.[@istqb-ctal-ta-syllabus-2025]
 
+![[diagrams/state-transition-n-switch-round-trip.svg]]
+
 이 강의계획서에 따르면 상태 전이 테스트는 모델 기반 테스트 도구로 자동화하기에 알맞다. 대부분의 블랙박스 기법처럼, 모델링하는 동안 명세의 결함을 찾아 결함 예방에도 이바지한다.[@istqb-ctal-ta-syllabus-2025]

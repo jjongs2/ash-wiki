@@ -74,6 +74,8 @@ $$
 E = \frac{a + 4m + b}{6}, \qquad \mathrm{SD} = \frac{b - a}{6}
 $$
 
+![[diagrams/three-point-estimation-example.svg]]
+
 테스트 케이스와 테스트 절차를 명세해 [[test-case#테스트 스위트|테스트 스위트]]로 묶고 나면, 실행 순서를 정한 테스트 실행 일정으로 늘어놓을 수 있다. 이 강의계획서가 가장 흔히 쓰인다고 드는 테스트 케이스 우선순위 전략은 셋이다.[@istqb-ctfl-syllabus-2024]
 
 - **리스크 기반 우선순위**: 리스크 분석의 결과로 실행 순서를 정한다.

@@ -44,6 +44,8 @@ ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 �
 
 규칙은 무관(don't care) 연산자 `–`로 합친다. 이 강의계획서는 규칙을 합칠 때 실행할 수 없는 규칙을 고려에서 빼기를 권하고, 실행할 수 없는 규칙은 흔히 합치기 전에 표에서 지운다. 체계적으로 최소화하는 한 방법은 동작이 같고 조건 하나만 다르며 그 조건이 가질 수 있는 값을 모두 덮는 규칙들을 찾아 하나로 합치고, 규칙마다 달랐던 그 조건의 값을 `–`로 바꾸는 것이다. 그 결과는 열을 최소화하는 순서에 따라 달라질 수 있고 늘 최적은 아니어서, 더 최소화할 수 있는지 따로 확인해야 한다.[@istqb-ctal-ta-syllabus-2025]
 
+![[diagrams/decision-table-rule-merge.svg]]
+
 이 강의계획서에 따르면 결정 테이블은 경우에 따라 다른 이해관계자와 함께 아래 기준으로 [[software-review|리뷰]]한다.[@istqb-ctal-ta-syllabus-2025]
 
 | 기준        | 내용                                                                     |
