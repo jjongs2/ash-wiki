@@ -258,7 +258,7 @@ export function parseWeeklyNews(
   return { items, errors }
 }
 
-// 호 페이지의 정렬. 최근순(newest)이 기본이고 대문과 같은 방향이다.
+// 호 페이지의 정렬 방향
 export type SortOrder = "newest" | "oldest"
 
 /** 소식 항목을 발행일 순으로 늘어놓는다. 같은 날은 어느 쪽이든 파일에 적은 순서를 지킨다. */
@@ -527,11 +527,11 @@ function issueTree(props: QuartzComponentProps, data: WeeklyNewsData): HastRoot 
     )
   }
   const tree = props.tree as HastRoot
-  const index = new Map(data.items.map((item, i) => [item, i]))
+  const fileOrder = new Map(data.items.map((item, i) => [item, i]))
   const cards = byDate(data.items, "newest").map((item) =>
     card(
       item,
-      index.get(item)!,
+      fileOrder.get(item)!,
       names,
       nodesInLines(tree, item.summary.start, item.summary.end),
       props.cfg.locale,
@@ -589,14 +589,15 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 //   보조 글자색이다.
 // - 정렬·거르기 줄은 목록 위에 둔다. 거르기 칩은 카드의 칩과 같은 꼴의 버튼이고, 주요 칩 뒤만 넓게 띄운다.
 //   아무것도 고르지 않으면 모든 칩이 카드의 칩과 같고, 하나라도 고르면 고른 칩은 제 색으로 채우고 나머지는 보조
-//   글자색과 1px --lightgray 테두리로 물린다. 고르지 않은 칩에 올리면 테두리와 글자를 구역 색으로 바꾼다. 바탕을
-//   진하게 하면 라이트 테마에서 글자 대비가 하한에 못 미친다(16%에서 4.12:1).
+//   글자색과 1px --lightgray 테두리로 물린다. 고르지 않은 칩에 올리면 바탕은 두고 테두리와 글자를 구역 색으로
+//   바꾼다. 바탕을 진하게 하지 않는 까닭은 docs/palette.md의 구역 칩 바탕 메모에 있다.
 // - 칩 줄 아래의 상태 줄은 왼쪽에 소식 수, 오른쪽에 정렬을 둔다. 늘 보여서 거를 때 목록이 움직이지 않는다. 칩
 //   줄보다 목록 윗선에 가깝게 두어(글자 상자 기준 14px와 6px) 목록의 머리줄로 읽힌다(소유자 결정, #404). 글자는
 //   대문 소식 칸 제목 줄의 링크("N개 모두 보기 · 지난 호")와 같은 꼴이고, 고른 정렬은 제목색으로 굵게 쓴다.
 // - 거른 결과가 없을 때의 안내 줄은 아랫선을 두지 않는다. 바로 아래 페이지 끝의 hr과 두 겹이 된다.
-// - 글자 대비는 docs/palette.md의 구역 이름, 구역 칩, 링크, 강조색 위 글자, 보조 글자 쌍에 든다. hover의 테두리는
-//   글자가 아니다.
+// - 글자 대비는 docs/palette.md의 쌍에 든다. 구역 칩은 구역 칩, 고르지 않고 거를 때의 칩은 구역 이름, 고른 칩은
+//   구역 이름과 강조색 위 글자(전경과 배경을 바꿔도 대비는 같다), 주요 칩은 내부 링크, 상태 줄은 보조 글자, 링크,
+//   제목이다. hover의 테두리는 글자가 아니다.
 const CSS = `.news-tools {
   display: flex;
   flex-direction: column;
