@@ -28,6 +28,8 @@ ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 �
 - **운용 프로파일 기반 테스트**: 테스트 대상의 사용 패턴을 바탕으로 실행할 회귀 테스트 케이스를 고른다.
 - 영향 분석: 어느 테스트가 바뀐 형상 항목과 상호작용하는지 알면 수동 실행할 회귀 테스트를 고르는 데도 쓴다.[@istqb-ctal-ta-syllabus-2025]
 
+![[diagrams/regression-test-impact-analysis.svg]]
+
 ## 테스트 자동화와 지속적 통합
 
 ISTQB CTFL 강의계획서에 따르면 회귀 테스트 스위트는 여러 번 돌리고 회귀 테스트 케이스의 수는 대개 반복이나 릴리스마다 늘어나므로, 회귀 테스트는 [[test-automation|자동화]]에 알맞은 대상이고 그 자동화는 프로젝트 초기에 시작해야 한다.[@istqb-ctfl-syllabus-2024]

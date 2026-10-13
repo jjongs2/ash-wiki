@@ -15,14 +15,14 @@ Kent Beck은 Smalltalk 테스트 프레임워크를 만들었고, 1994년 10월 
 
 JUnit, GoogleTest, Python unittest 같은 프레임워크는 다음 구성 요소를 둔다.
 
-| 구성 요소       | 하는 일                                                                                                                                                    |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| test case       | 특정 입력에 대한 응답 하나를 검사하는 개별 테스트 단위[@psf-python-unittest-2026][@google-googletest-primer-2026]                                          |
-| test suite      | 함께 실행할 테스트를 묶는 단위[@psf-python-unittest-2026][@google-googletest-primer-2026]                                                                  |
+| 구성 요소       | 하는 일                                                                                                                                                                                           |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| test case       | 특정 입력에 대한 응답 하나를 검사하는 개별 테스트 단위[@psf-python-unittest-2026][@google-googletest-primer-2026]                                                                                 |
+| test suite      | 함께 실행할 테스트를 묶는 단위[@psf-python-unittest-2026][@google-googletest-primer-2026]                                                                                                         |
 | fixture         | 테스트를 실행하려고 준비해 두는 환경으로, 여러 테스트가 같은 구성을 함께 쓴다. 테스트마다 새로 만들어 테스트끼리 상태를 나누지 않는다.[@psf-python-unittest-2026][@google-googletest-primer-2026] |
-| setup, teardown | 테스트마다 앞에서 fixture를 준비하고 뒤에서 정리하는 루틴[@psf-python-unittest-2026][@google-googletest-primer-2026] |
-| assertion       | 결과가 기대와 맞는지 검사하는 문. 실패하면 테스트가 실패한다.[@google-googletest-primer-2026][@junit-6-user-guide-2026] |
-| test runner     | 테스트 실행을 맡고 결과를 사용자에게 보여 주는 구성 요소[@psf-python-unittest-2026][@junit-4-test-runners-2020]                                            |
+| setup, teardown | 테스트마다 앞에서 fixture를 준비하고 뒤에서 정리하는 루틴[@psf-python-unittest-2026][@google-googletest-primer-2026]                                                                              |
+| assertion       | 결과가 기대와 맞는지 검사하는 문. 실패하면 테스트가 실패한다.[@google-googletest-primer-2026][@junit-6-user-guide-2026]                                                                           |
+| test runner     | 테스트 실행을 맡고 결과를 사용자에게 보여 주는 구성 요소[@psf-python-unittest-2026][@junit-4-test-runners-2020]                                                                                   |
 
 ![[diagrams/xunit-test-runner-setup-teardown.svg]]
 

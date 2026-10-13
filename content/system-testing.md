@@ -28,14 +28,14 @@ ISTQB CT-AuT 강의계획서는 CTFL의 시스템 테스트를 [[iso-26262|ISO 2
 
 이 강의계획서가 대응시키는 테스트 레벨 전체는 다음과 같다. 괄호 안은 ISO 26262:2018의 부와 절이다.[@istqb-ct-aut-syllabus-2025]
 
-| ISTQB 테스트 레벨 | ISO 26262:2018 | ASPICE |
-| --- | --- | --- |
-| [[acceptance-testing\|인수 테스트]] | safety validation(4-8) | VAL.1 |
-| system of systems testing | system and item integration and testing(4-7) | SYS.5 |
-| [[integration-testing#컴포넌트 통합과 시스템 통합\|시스템 통합 테스트]] | system and item integration and testing(4-7) | SYS.4 |
-| 시스템 테스트 | testing of the embedded software(6-11) | SWE.6 |
-| 컴포넌트 통합 테스트 | software integration and verification(6-10) | SWE.5 |
-| [[unit-testing#컴포넌트 테스트\|컴포넌트 테스트]] | software unit verification(6-9) | SWE.4 |
+| ISTQB 테스트 레벨                                                       | ISO 26262:2018                               | ASPICE |
+| ----------------------------------------------------------------------- | -------------------------------------------- | ------ |
+| [[acceptance-testing\|인수 테스트]]                                     | safety validation(4-8)                       | VAL.1  |
+| system of systems testing                                               | system and item integration and testing(4-7) | SYS.5  |
+| [[integration-testing#컴포넌트 통합과 시스템 통합\|시스템 통합 테스트]] | system and item integration and testing(4-7) | SYS.4  |
+| 시스템 테스트                                                           | testing of the embedded software(6-11)       | SWE.6  |
+| 컴포넌트 통합 테스트                                                    | software integration and verification(6-10)  | SWE.5  |
+| [[unit-testing#컴포넌트 테스트\|컴포넌트 테스트]]                       | software unit verification(6-9)              | SWE.4  |
 
 이 강의계획서의 표에서 4-7은 system of systems testing과 시스템 통합 테스트에 함께 걸쳐 있다. 인수 테스트에 대응하는 safety validation과 VAL.1은 ISTQB 인수 테스트의 일부만 덮는다. 컴포넌트 통합 테스트에 대응하는 SWE.5와 6-10은 CTFL의 컴포넌트 테스트를 component의 뜻으로도 덮고, 컴포넌트 테스트에 대응하는 SWE.4와 6-9는 CTFL의 컴포넌트 테스트를 unit의 뜻으로 덮는다.[@istqb-ct-aut-syllabus-2025]
 
