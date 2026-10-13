@@ -27,7 +27,7 @@ SWEBOK V4.0a에 따르면 요구사항 명세는 요구사항을 기억하고 �
 
 - **비구조 자연어 명세**: "시스템은 …해야 한다(The system shall …)" 같은 자연어 진술을 모은 것이다. 업무의 구조나 행위의 한 측면을 정하거나 제약하는 비즈니스 규칙이 그 예다. 사용자 매뉴얼을 요구사항 명세로 내는 프로젝트도 있지만 그 효과에는 한계가 있다.
 - **구조 자연어 명세**: 요구사항을 표현하는 방식에 제약을 걸어 더 정밀하고 간결하게 만든다. 가장 단순한 예는 시작 사건, 행위자, 행위, 조건이나 한정을 차례로 쓰는 actor-action 꼴이다. [[use-case|use case]] 명세 템플릿, "As a <role> I want <capability> so that <benefit>" 꼴의 [[agile-software-development#사용자 스토리|사용자 스토리]], decision table도 예다.
-- **인수 기준 기반 명세**: acceptance test driven development(ATDD)와 behavior driven development(BDD)의 두 변형이 있다.
+- **인수 기준 기반 명세**: [[acceptance-test-driven-development|acceptance test driven development]](ATDD)와 [[acceptance-test-driven-development#행위 주도 개발|behavior driven development]](BDD)의 두 변형이 있다.
 - **모델 기반 명세**: 모델링 언어로 기능 요구사항을 컴퓨팅 기술과 무관하게 정밀하고 간결하게 명세한다. 지킬 정책을 명세하는 구조 모델(논리 클래스 모델, 개체-관계 다이어그램 등)과 수행할 프로세스를 명세하는 행위 모델(use case 모델링, 상호작용 다이어그램, 상태 모델링 등)로 나뉜다.[@ieee-swebok-v4-0a-2026]
 
 자연어 요구사항을 정해진 문장 틀로 가볍게 제약하는 방법은 [[ears|EARS]]에서 다룬다.

@@ -32,7 +32,7 @@ ISTQB CTFL 강의계획서는 흔히 쓰는 블랙박스 기법으로 다음 넷
 - [[decision-table-testing|결정 테이블 테스트]]
 - [[state-transition-testing|상태 전이 테스트]][@istqb-ctfl-syllabus-2024]
 
-매개변수 값의 조합을 실행하는 [[pairwise-testing#조합 테스트|조합 테스트]] 기법도 명세 기반 기법이고, [[pairwise-testing|페어와이즈 테스트]]가 그 예다.[@iso-iec-ieee-29119-4-obp-2021] ISTQB 용어집은 [[scenario-based-testing#유스케이스 테스트|use case 테스트]]도 블랙박스 기법으로 둔다.[@istqb-glossary-use-case-testing-2026]
+매개변수 값의 조합을 실행하는 [[pairwise-testing#조합 테스트|조합 테스트]] 기법도 명세 기반 기법이고, [[pairwise-testing|페어와이즈 테스트]]가 그 예다.[@iso-iec-ieee-29119-4-obp-2021] ISTQB 용어집은 [[scenario-based-testing#Use case 테스트|use case 테스트]]도 블랙박스 기법으로 둔다.[@istqb-glossary-use-case-testing-2026]
 
 ISO/IEC/IEEE 29119-4:2021은 **원인-결과 그래프**(cause-effect graph)를 원인(불 조건으로 기술한 입력)과 결과(불 식으로 기술한 출력) 사이의 결정 규칙을 그래프로 나타낸 것으로, **원인-결과 그래프 기법**(cause-effect graphing)을 원인-결과 그래프의 결정 규칙을 실행하는 데 바탕을 둔 명세 기반 테스트 케이스 설계 기법으로 정의한다. 이 표준은 **syntax testing**을 테스트 대상 입력의 형식 정의를 이루는 요소를 실행하는 데 바탕을 둔 명세 기반 기법으로 정의하고, 입력의 구문을 정의하는 데 흔히 쓰는 형식으로 Backus-Naur Form을 예로 든다. Backus-Naur Form은 언어의 구문을 텍스트로 정의하는 형식 메타언어다. 이 표준이 정의하는 명세 기반 기법에는 [[pairwise-testing#조합 테스트|분류 트리 기법]](classification tree method)도 있다.[@iso-iec-ieee-29119-4-obp-2021]
 
@@ -52,7 +52,7 @@ CTAL-TA 강의계획서는 블랙박스 기법을 테스트 조건이 모델링�
 - 되풀이되는 결함 유형에 대한 지식: 그런 결함을 찾는 데 초점을 둔 기법을 고르게 할 수 있다. 예: [[checklist-based-testing|체크리스트 기반 테스트]]. 앞선 반복이나 프로젝트와 비슷한 결함을 찾으려면 거기서 성공한 기법을 다시 쓰는 것이 합리적일 수 있다.
 - 테스터의 지식과 경험: 익숙하지 않은 기법은 중요한 테스트 과제에 쓰기를 권하지 않는다. 도메인 지식도 기법 선택에 영향을 주어, 도메인 지식이 거의 없으면 탐색적 테스트 같은 기법은 효과가 없을 수 있다.
 - [[software-development-life-cycle|소프트웨어 개발 생명주기]]: 순차 개발 모델은 더 형식적인 기법을 쓰기에 알맞다. 반복 개발 모델은 경험 기반 기법 같은 가벼운 기법을 쓰거나 테스트 설계를 자동화할 수 있을 때 더 알맞을 수 있다.
-- 고객과 계약 요구사항: 계약이 특정한 테스트 레벨이나 테스트 유형 같은 특정 테스트를 명시적으로 요구하면 기법 선택에 영향을 준다. 예를 들어 고객이 시나리오 집합을 담은 [[acceptance-test-driven-development#인수 기준|인수 기준]]을 주면 시나리오 기반 기법을 쓰는 것이 알맞다.
+- 고객과 계약 요구사항: 계약이 특정한 [[software-testing#테스트 레벨|테스트 레벨]]이나 테스트 유형 같은 특정 테스트를 명시적으로 요구하면 기법 선택에 영향을 준다. 예를 들어 고객이 시나리오 집합을 담은 [[acceptance-test-driven-development#인수 기준|인수 기준]]을 주면 시나리오 기반 기법을 쓰는 것이 알맞다.
 - 규제 요구사항: 프로젝트가 따르는 표준이 특정 기법을 쓰도록 요구할 수 있다.
 - 프로젝트 제약: 시간과 예산 같은 제약은 시간이 많이 들거나 비싼 자원이 필요한 기법을 쓰는 데 영향을 준다.[@istqb-ctal-ta-syllabus-2025]
 
