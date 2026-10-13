@@ -443,10 +443,11 @@ function card(
   )
 }
 
-// 정렬·거르기 줄. 왼쪽은 주요 칩과 구역 칩(누르면 거르는 버튼), 오른쪽은 거른 수와 정렬이다(소유자 결정, #404).
-// 칩은 카드의 칩과 같은 꼴(.news-chip)이다. 거르기가 무엇을 남기는지는 docs/weekly-news.md의 사이트에 보이는
-// 범위에 있다. 주요 소식이 없는 호는 주요 칩을 두지 않는다.
-function toolbar(filters: IssueFilters, names: Map<string, string>): Element {
+// 정렬·거르기 줄. 첫 줄은 주요 칩과 구역 칩(누르면 거르는 버튼)이고, 그 아래 상태 줄은 왼쪽에 소식 수, 오른쪽에
+// 정렬을 둔다(소유자 결정, #404). 소식 수는 거르지 않을 때 "소식 N개", 거를 때 "소식 N개 중 M개"이고 스크립트가
+// 바꾼다. 칩은 카드의 칩과 같은 꼴(.news-chip)이다. 거르기가 무엇을 남기는지는 docs/weekly-news.md의 사이트에
+// 보이는 범위에 있다. 주요 소식이 없는 호는 주요 칩을 두지 않는다.
+function toolbar(filters: IssueFilters, names: Map<string, string>, total: number): Element {
   const chip = (label: string, count: number, color: string, data: Element["properties"]) =>
     el(
       "button",
@@ -484,9 +485,13 @@ function toolbar(filters: IssueFilters, names: Map<string, string>): Element {
       ...featured,
       ...regions,
     ]),
-    el("div", { className: ["news-sort"] }, [
-      el("span", { className: ["news-tools-count"], ariaLive: "polite" }),
-      el("span", { className: ["news-sort-options"], role: "group", ariaLabel: "정렬" }, [
+    el("div", { className: ["news-status"] }, [
+      el(
+        "span",
+        { className: ["news-tools-count"], ariaLive: "polite", dataTotal: String(total) },
+        [text(`소식 ${total}개`)],
+      ),
+      el("span", { className: ["news-sort"], role: "group", ariaLabel: "정렬" }, [
         sort("newest", "최근순"),
         el("span", { ariaHidden: "true" }, [text("·")]),
         sort("oldest", "오래된순"),
@@ -535,7 +540,7 @@ function issueTree(props: QuartzComponentProps, data: WeeklyNewsData): HastRoot 
   return {
     type: "root",
     children: [
-      toolbar(issueFilters(data.items, regionOrder(props.allFiles)), names),
+      toolbar(issueFilters(data.items, regionOrder(props.allFiles)), names, data.items.length),
       el("div", { className: ["news-cards"] }, cards),
       el("p", { className: ["news-empty"], hidden: true }, [text("조건에 맞는 소식이 없습니다")]),
     ],
@@ -585,16 +590,16 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 // - 정렬·거르기 줄은 목록 위에 둔다. 거르기 칩은 카드의 칩과 같은 꼴의 버튼이고, 주요 칩 뒤만 넓게 띄운다.
 //   아무것도 고르지 않으면 모든 칩이 카드의 칩과 같고, 하나라도 고르면 고른 칩은 제 색으로 채우고 나머지는 보조
 //   글자색과 1px --lightgray 테두리로 물린다. 고르지 않은 칩에 올리면 테두리와 글자를 구역 색으로 바꾼다. 바탕을
-//   진하게 하면 라이트 테마에서 글자 대비가 하한에 못 미친다(16%에서 4.12:1). 정렬은 대문 소식 칸 제목 줄의 링크("N개 모두 보기 · 지난 호")와
-//   같은 꼴로, 고른 쪽은 제목색으로 굵게 쓴다. 거른 수와 정렬은 좁은 화면에서도 오른쪽에 붙는다. 글자 대비는
-//   docs/palette.md의 구역 이름, 구역 칩, 링크, 강조색 위 글자, 보조 글자 쌍에 든다. hover의 테두리는 글자가
-//   아니다.
+//   진하게 하면 라이트 테마에서 글자 대비가 하한에 못 미친다(16%에서 4.12:1).
+// - 칩 줄 아래의 상태 줄은 왼쪽에 소식 수, 오른쪽에 정렬을 둔다. 늘 보여서 거를 때 목록이 움직이지 않는다. 글자는
+//   대문 소식 칸 제목 줄의 링크("N개 모두 보기 · 지난 호")와 같은 꼴이고, 고른 정렬은 제목색으로 굵게 쓴다.
+// - 거른 결과가 없을 때의 안내 줄은 아랫선을 두지 않는다. 바로 아래 페이지 끝의 hr과 두 겹이 된다.
+// - 글자 대비는 docs/palette.md의 구역 이름, 구역 칩, 링크, 강조색 위 글자, 보조 글자 쌍에 든다. hover의 테두리는
+//   글자가 아니다.
 const CSS = `.news-tools {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 0.5rem 1rem;
+  flex-direction: column;
+  gap: 0.6rem;
   margin-bottom: 0.9rem;
 }
 .news-filters {
@@ -633,25 +638,24 @@ const CSS = `.news-tools {
   font-weight: 400;
   font-variant-numeric: tabular-nums;
 }
-.news-sort {
+.news-status {
   display: flex;
-  gap: 0.4rem;
-  margin-left: auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.4rem 1rem;
   color: var(--gray);
   font-size: 0.85em;
   line-height: 1;
   white-space: nowrap;
 }
-.news-sort-options {
+.news-sort {
   display: flex;
   gap: 0.4rem;
+  margin-left: auto;
 }
 .news-tools-count {
-  margin-right: 0.6rem;
   font-variant-numeric: tabular-nums;
-}
-.news-tools-count:empty {
-  display: none;
 }
 .news-sort-option {
   padding: 0;
@@ -678,7 +682,6 @@ const CSS = `.news-tools {
 .news-empty {
   margin: 0;
   padding: 1rem 0;
-  border-bottom: 1px solid var(--lightgray);
   color: var(--gray);
 }
 .news-cards {
@@ -818,7 +821,8 @@ const SCRIPT = `(() => {
       }
       const filtering = state.regions.size > 0 || state.featured
       filters.classList.toggle("has-selection", filtering)
-      count.textContent = filtering ? shown + "/" + cards.length + "개" : ""
+      const total = "소식 " + count.dataset.total + "개"
+      count.textContent = filtering ? total + " 중 " + shown + "개" : total
       empty.hidden = shown > 0
       for (const button of tools.querySelectorAll(".news-filter")) {
         const pressed =
