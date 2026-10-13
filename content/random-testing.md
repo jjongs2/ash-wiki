@@ -13,7 +13,7 @@ SWEBOK V4.0a에 따르면 무작위 테스트는 테스트 케이스를 순전�
 
 ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 따르면 무작위 테스트는 정한 확률 분포에 따라 테스트 항목의 입력 영역에서 테스트 데이터를 무작위로 고른다. [[verification-and-validation|확인]](validation)이 목적이면 [[test-type#신뢰성 테스트와 운용 프로파일|운용 프로파일]]에 바탕을 둔 분포를 권하고, 검증(verification)이 목적이면 치우침을 피하도록 분포가 사용과 무관해야 한다.[@istqb-ctal-ta-syllabus-2025]
 
-무작위 테스트는 유도형(guided)과 비유도형(unguided)으로 나뉜다. 비유도형에서는 확률 분포가 과정 내내 그대로다. 적응형 무작위 테스트(adaptive random testing) 같은 유도형은 앞서 고른 값에 따라 분포를 고쳐 가며, 결함이 입력 영역의 특정 구역에 몰리는 일이 많다는 점을 고려해 입력 영역을 효과적으로 덮으려 한다.[@istqb-ctal-ta-syllabus-2025]
+무작위 테스트는 유도형과 비유도형으로 나뉜다. **비유도형**(unguided)은 확률 분포가 과정 내내 그대로인 무작위 테스트다. **유도형**(guided)은 앞서 고른 값에 따라 분포를 고쳐 가는 무작위 테스트로, 결함이 입력 영역의 특정 구역에 몰리는 일이 많다는 점을 고려해 입력 영역을 효과적으로 덮으려 한다. 적응형 무작위 테스트(adaptive random testing)가 유도형의 예다.[@istqb-ctal-ta-syllabus-2025]
 
 ## 종료 기준과 오라클
 

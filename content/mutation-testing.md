@@ -13,7 +13,7 @@ ISO/IEC/IEEE 24765 용어집은 **변이 테스트**(mutation testing)를, 둘 �
 
 SWEBOK V4.0a에 따르면 변이 테스트는 처음에 테스트 스위트를 평가하는 기법으로 고안되었다. 여기서 **변이체**(mutant)는 테스트 대상(gold라고도 부른다)을 작은 구문 변경 하나만큼 조금 고친 판이다. 테스트 케이스마다 원래 판과 만든 변이체를 모두 실행한다.[@ieee-swebok-v4-0a-2026]
 
-테스트 케이스가 원래 프로그램과 변이체의 차이를 드러내면 그 변이체를 죽였다(killed)고 한다.[@ieee-swebok-v4-0a-2026][@jia-mutation-testing-2011] 테스트를 모두 실행한 뒤에도 죽지 않은 변이체는 살아남았다(survived)고 한다. 늘 원래 프로그램과 같은 출력을 내서 결코 죽일 수 없는 변이체를 **동등 변이체**(equivalent mutant)라 부른다.[@jia-mutation-testing-2011]
+테스트 케이스가 원래 프로그램과 변이체의 차이를 드러내면 그 변이체를 **죽였다**(killed)고 한다.[@ieee-swebok-v4-0a-2026][@jia-mutation-testing-2011] 테스트를 모두 실행한 뒤에도 죽지 않은 변이체는 **살아남았다**(survived)고 한다. 늘 원래 프로그램과 같은 출력을 내서 결코 죽일 수 없는 변이체를 **동등 변이체**(equivalent mutant)라 부른다.[@jia-mutation-testing-2011]
 
 ![[diagrams/mutation-testing-kill.svg]]
 
