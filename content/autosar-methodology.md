@@ -47,7 +47,7 @@ ECU 설정의 입력은 ECU Extract와 BSW Module Delivered Bundle이다.[@autos
 **설정 클래스**는 파라미터를 어느 단계에서 설정하느냐에 따라 pre-compile time, link time, post-build time으로 나뉜다.[@autosar-cp-tr-methodology-2025]
 
 - **Pre-compile time**: 소스 코드를 컴파일하기 전에 값을 정한다. 컴파일한 뒤에는 바꿀 수 없어, 값을 바꾸려면 다시 컴파일해야 한다.
-- **Link time**: BSW 모듈의 목적 코드가 설정 일부를 다른 목적 파일에서 받거나 링커 옵션으로 받는다. 모듈을 목적 코드로 통합자에게 넘길 때 주로 쓴다.
+- **Link time**: BSW 모듈의 오브젝트 코드가 설정 일부를 다른 오브젝트 파일에서 받거나 링커 옵션으로 받는다. 모듈을 오브젝트 코드로 통합자에게 넘길 때 주로 쓴다.
 - **Post-build time**: BSW 모듈이나 ECU 소프트웨어를 빌드한 뒤에 설정한다. 별도 파일을 ECU 메모리에 내려받아, 다시 컴파일하거나 빌드하지 않고 설정을 바꾼다.[@autosar-cp-tr-methodology-2025]
 
 ![[diagrams/autosar-configuration-classes.svg]]
