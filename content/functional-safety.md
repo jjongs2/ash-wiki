@@ -65,4 +65,4 @@ ISO 26262-1:2018은 **systematic failure**를 어떤 원인과 결정론적으�
 
 이 표준은 fault도 같은 축으로 나눈다. **Systematic fault**는 그 failure가 결정론적으로 드러나 프로세스나 설계 조치로만 막을 수 있는 fault이고, **random hardware fault**는 확률 분포를 갖는 하드웨어 fault다.[@iso-26262-1-obp-2018]
 
-이 표준의 Introduction은 기술 복잡도, 소프트웨어 비중, 메카트로닉스 구현이 늘면서 systematic failure와 random hardware failure의 리스크가 커진다고 보고, 둘을 모두 기능 안전의 범위로 둔다.[@iso-26262-1-obp-2018]
+이 표준의 Introduction은 기술 복잡도, 소프트웨어 비중, 메카트로닉스 구현이 늘면서 systematic failure와 random hardware failure의 리스크가 커진다고 보고, 둘이 모두 기능 안전의 범위에 든다고 제시한다.[@iso-26262-1-obp-2018]
