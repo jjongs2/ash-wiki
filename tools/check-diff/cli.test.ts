@@ -172,7 +172,7 @@ describe("check-diff CLI", { concurrency: false }, () => {
     assert.deepStrictEqual(
       lines
         .filter((line) => line.startsWith("content/run-edition.md"))
-        .map((l) => l.replace(/: 구간.*/, "")),
+        .map((l) => l.replace(/(:\d+): .*/, "$1")),
       [
         "content/run-edition.md:16", // CP 뒤의 AP
         "content/run-edition.md:18", // AP 뒤의 CP
@@ -182,6 +182,43 @@ describe("check-diff CLI", { concurrency: false }, () => {
       ],
       "POSIX.1-2024 두 엔트리(10), CP R25-11 두 명세(14), 원문 뒤 OBP(22), µC/OS-III 문서 모음(30·32)은 구간 안이거나 이름을 밝혔다",
     )
+    assert.ok(has(lines, "content/run-edition.md:18:", "끼었다", "끼운 블록: 16줄"), "CP 사이의 AP")
+    assert.ok(
+      has(lines, "content/run-edition.md:26:", "끼었다", "끼운 블록: 24줄"),
+      "1부 사이의 2부",
+    )
+  })
+
+  test("출처 구간: 엔트리 제목의 이름(The Sample Guide)으로 연 블록은 출처 표시가 있다", () => {
+    const lines = report.items.get("source-run") ?? []
+    for (const line of [8, 12, 24, 32, 34, 36])
+      assert.ok(!has(lines, `content/run-repeat.md:${line}:`, "출처 표시가 없다"), `${line}`)
+  })
+
+  test("출처 구간: 같은 판의 구간 사이에 다른 출처의 블록이 끼면 출처 표시가 있어도 끼움으로 찍는다", () => {
+    const lines = report.items.get("source-run") ?? []
+    assert.ok(
+      has(lines, "content/run-repeat.md:14:", "다른 출처의 블록이 끼었다", "끼운 블록: 12줄"),
+    )
+    assert.ok(!has(lines, "content/run-repeat.md:24:"), "끼운 블록이 따로 된 절이다")
+    assert.ok(!has(lines, "content/run-repeat.md:32:"), "사이가 세 블록이면 끼움이 아니다")
+    assert.ok(!has(lines, "content/run-repeat.md:36:"), "사이의 블록이 이 판을 함께 인용한다")
+  })
+
+  test("출처 구간: 구간 안에서 앞 문장이 밝힌 출처 이름을 주어나 '…에 따르면'으로 다시 쓴 문장을 찍는다", () => {
+    const lines = report.items.get("source-run") ?? []
+    assert.ok(
+      has(lines, "content/run-repeat.md:10:", '다시 쓴다(앞: 8줄 "The Sample")', "보드에 열을"),
+    )
+    assert.ok(has(lines, "content/run-repeat.md:16:", "다시 쓴다", "에 따르면 개선은"))
+    assert.ok(!has(lines, "Sample 보드는"), "낱말 하나인 이름은 개념 이름과 겹친다")
+    assert.ok(!has(lines, "2020년 판에서"), "이력 문장의 판 주어")
+  })
+
+  test("출처 구간: 되풀이는 그 문장이나 이름이 먼저 나온 문장이 더한 줄일 때만 찍는다", () => {
+    const lines = report.items.get("source-run") ?? []
+    assert.ok(has(lines, "content/run-repeat-old.md:10:", '다시 쓴다(앞: 8줄 "The Sample")'))
+    assert.ok(!has(lines, "content/run-repeat-old.md:16:"), "바뀌지 않은 구간")
   })
 
   test("주인 페이지: 행마다 링크, 절 앵커, 문단의 문장 수를 보인다", () => {
@@ -195,6 +232,19 @@ describe("check-diff CLI", { concurrency: false }, () => {
     assert.ok(has(lines, "content/linker-a.md:", "두 주인", "링크가 없는 주인 페이지: other-page"))
     assert.ok(!has(lines, "content/other-page.md"), "단서 속 슬러그는 링크만 하는 곳이 아니다")
     assert.ok(!has(lines, "계획 없는 것"), "이름만인 줄은 건너뛴다")
+  })
+
+  test("주인 페이지: 절 앵커가 없으면 행의 개념 이름과 맞는 주인 페이지의 절 제목을 함께 보인다", () => {
+    const lines = report.items.get("owner-page")
+    assert.ok(
+      has(
+        lines,
+        "content/linker-a.md:20:",
+        "앵커 없음(맞는 절: #시간 구간과 운용 모드, #분산 개발)",
+      ),
+      "와로 나눈 이름과 정의 강조로 옮긴 이름",
+    )
+    assert.ok(has(lines, "content/linker-a.md:16:", "앵커 없음, 문단"), "맞는 절이 없다")
   })
 
   test("주인 페이지: 아직 없는 페이지의 줄과 고치지 않은 페이지의 앵커·문장 수 줄은 접는다", () => {
@@ -266,9 +316,26 @@ describe("check-diff CLI", { concurrency: false }, () => {
     assert.ok(has(lines, "content/terms.md:22:", '"시험 케이스" →'))
   })
 
-  test("용어: 원어 병기, 낱말 경계 밖, 조건 있는 결정, alias, 큰따옴표 안은 건너뛴다", () => {
+  test("용어: 조건 있는 결정은 결정의 조건과 함께 조건 확인으로 찍는다", () => {
     const lines = report.items.get("term") ?? []
-    assert.ok(!has(lines, "content/terms.md:18:"), "cybersecurity property, assets, Flash")
+    assert.ok(
+      has(
+        lines,
+        "content/terms.md:18:",
+        '조건 확인 "Flash" → "플래시" (#257, 조건: 일반 낱말일 때.',
+      ),
+    )
+    assert.ok(
+      has(lines, "content/terms.md:24:", '조건 확인 "장애" → "failure" (#291, 조건: 합성어 포함.'),
+    )
+  })
+
+  test("용어: 원어 병기, 낱말 경계 밖, alias, 큰따옴표 안은 건너뛴다", () => {
+    const lines = report.items.get("term") ?? []
+    assert.ok(
+      !has(lines, "content/terms.md:18:", "쓰지 않는 표기"),
+      "cybersecurity property, assets",
+    )
     assert.ok(!has(lines, "content/terms.md:20:"), "인용한 문서 제목")
     assert.ok(!has(lines, "content/terms.md:4:"), "alias")
   })

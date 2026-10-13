@@ -12,6 +12,7 @@ import type { Tree } from "../check-content/tree"
 export interface Edition {
   id: string
   names: string[] // 출처 표시로 칠 이름. 표준 기구와 키의 마디로 드러나지 않는 문서 모음의 이름만 둔다
+  title: string // 엔트리 제목. 제목의 이름("The Kanban Guide", "V-Modell XT")도 출처 표시로 친다(runs.ts)
 }
 
 // 판 연도 앞의 ":"와 "-"는 같은 판을 다르게 적은 것(ISO/IEC/IEEE 29148:2011, 29148-2011)이라 가리지 않는다.
@@ -32,13 +33,13 @@ export function editionOf(entry: BibEntry): Edition {
   const publisher = publisherOf(entry)
   const number = title.match(standardNumber)
   if (number && number[1].split("/").some((body) => publisher.includes(body)))
-    return { id: `${number[1]} ${number[2]}:${number[3]}${number[4]}`, names: [] }
+    return { id: `${number[1]} ${number[2]}:${number[3]}${number[4]}`, names: [], title }
   const release = title.match(autosarRelease)
   if (release && publisher.includes("AUTOSAR"))
-    return { id: `AUTOSAR ${release[1] ?? ""}${release[2]}`, names: [] }
+    return { id: `AUTOSAR ${release[1] ?? ""}${release[2]}`, names: [], title }
   const name = title.match(collection)?.[1]
-  if (name) return { id: name, names: [name.split(" ").find((word) => word !== "The")!] }
-  return { id: entry.key, names: [] }
+  if (name) return { id: name, names: [name.split(" ").find((word) => word !== "The")!], title }
+  return { id: entry.key, names: [], title }
 }
 
 // 키마다 판. 엔트리가 없는 키는 그 키가 한 판이다.

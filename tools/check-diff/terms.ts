@@ -5,25 +5,26 @@ import { repoRoot } from "../repo"
 import type { Candidate, Context } from "./items"
 import { blank, dropCovered, escapeRegExp, excerpt, latinEdge, maskRefs } from "./text"
 
-// 용어: 용어 표기 결정 목록에서 조건이 없는 결정 줄의 쓰지 않는 표기. 조건이 붙은 결정은 문맥으로만 가려져
-// 패턴으로 찾으면 오탐이 많다.
+// 용어: 용어 표기 결정 목록의 쓰지 않는 표기. 조건이 붙은 결정은 문맥으로만 가려져 패턴으로는 어긴 곳인지
+// 알 수 없으므로, 결정의 조건과 함께 "조건 확인" 후보로 따로 찍는다.
 const termsPath = path.join(repoRoot, "docs", "wiki-terms.md")
 
 export interface TermDecision {
   used: string
   unused: string
   ref: string
+  condition?: string // 결정 줄 끝의 조건이나 예외
 }
 
-// `- <쓰는 표기>: <쓰지 않는 표기> (#<번호>)` 꼴의 줄만 읽는다. 풀이 줄(`<약어> 풀이 <풀이>`)의 쓰지 않는
-// 표기는 풀이 하나라 쉼표로 가르지 않는다.
+// `- <쓰는 표기>: <쓰지 않는 표기> (#<번호>)` 꼴의 줄과, 그 뒤에 `. <조건이나 예외>`가 붙은 줄을 읽는다. 풀이
+// 줄(`<약어> 풀이 <풀이>`)의 쓰지 않는 표기는 풀이 하나라 쉼표로 가르지 않는다.
 export function termDecisions(text: string): TermDecision[] {
-  return [...text.matchAll(/^- (.+?): (.+) \((#\d+(?:, #\d+)*)\)$/gm)].flatMap(
-    ([, used, unused, ref]) => {
+  return [...text.matchAll(/^- (.+?): (.+?) \((#\d+(?:, #\d+)*)\)(?:\. (.+))?$/gm)].flatMap(
+    ([, used, unused, ref, condition]) => {
       if (unused === "-" || unused === "통일하지 않음") return []
       const explanation = used.match(/^\S+ 풀이 (.+)$/)
       const list = explanation ? [unused] : unused.split(", ")
-      return list.map((u) => ({ used: explanation?.[1] ?? used, unused: u, ref }))
+      return list.map((u) => ({ used: explanation?.[1] ?? used, unused: u, ref, condition }))
     },
   )
 }
@@ -84,7 +85,9 @@ function unusedTerms(
     .map(({ start, end, decision }) => ({
       file: page.file,
       line,
-      message: `쓰지 않는 표기 "${text.slice(start, end)}" → "${decision.used}" (${decision.ref}): ${excerpt(text)}`,
+      message: decision.condition
+        ? `조건 확인 "${text.slice(start, end)}" → "${decision.used}" (${decision.ref}, 조건: ${decision.condition}): ${excerpt(text)}`
+        : `쓰지 않는 표기 "${text.slice(start, end)}" → "${decision.used}" (${decision.ref}): ${excerpt(text)}`,
     }))
 }
 
