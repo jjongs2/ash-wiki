@@ -197,10 +197,18 @@ describe("frontPage의 최근 변경", () => {
 })
 
 describe("frontPage의 주간 소식", () => {
+  const item = (title: string, date: string, featured = true, regions: string[] = []) => ({
+    id: title,
+    title,
+    url: `https://example.com/${title}`,
+    regions,
+    date,
+    featured,
+  })
   const issue = (week: string, ...titles: string[]): FrontPageIssue => ({
     slug: `news/${week}`,
     week,
-    items: titles.map((title) => ({ id: title, title, regions: [], date: "2026-10-06" })),
+    items: titles.map((title) => item(title, "2026-10-06")),
   })
   const latest = (...news: FrontPageIssue[]) => frontPage({ pages: [], news }).latestNews
 
@@ -221,20 +229,45 @@ describe("frontPage의 주간 소식", () => {
     assert.strictEqual(latest(issue("2026-w01", "가"), issue("2025-w52", "나"))?.week, "2026-w01")
   })
 
-  test("소식 항목을 발행일마다 묶어 이른 날부터 주고, 같은 날은 파일 순서를 지킨다", () => {
+  test("주요 소식을 발행일마다 묶어 최근 날부터 주고, 같은 날은 파일 순서를 지킨다", () => {
     const news = issue("2026-w41")
     news.items = [
-      { id: "a", title: "가", regions: ["network"], date: "2026-10-08" },
-      { id: "b", title: "나", regions: [], date: "2026-10-05" },
-      { id: "c", title: "다", regions: ["platform", "network"], date: "2026-10-08" },
+      item("가", "2026-10-08", true, ["network"]),
+      item("나", "2026-10-05"),
+      item("다", "2026-10-08", true, ["platform", "network"]),
+      item("라", "2026-10-06"),
     ]
     assert.deepStrictEqual(
       latest(news)?.days.map((day) => [day.day, day.items.map((item) => item.title)]),
       [
-        ["2026-10-05", ["나"]],
         ["2026-10-08", ["가", "다"]],
+        ["2026-10-06", ["라"]],
+        ["2026-10-05", ["나"]],
       ],
     )
+  })
+
+  test("주요 소식이 아닌 소식 항목은 빼고, 그 호의 소식 항목 수는 모두 센다", () => {
+    const news = issue("2026-w41")
+    news.items = [
+      item("가", "2026-10-08", false),
+      item("나", "2026-10-05"),
+      item("다", "2026-10-06", false),
+    ]
+    const picked = latest(news)
+    assert.deepStrictEqual(
+      picked?.days.flatMap((day) => day.items.map((item) => item.title)),
+      ["나"],
+    )
+    assert.strictEqual(picked?.items.length, 3)
+  })
+
+  test("주요 소식이 없는 호도 최신 호로 고르고, 날짜 묶음은 빈다", () => {
+    const news = issue("2026-w41")
+    news.items = [item("가", "2026-10-08", false)]
+    const picked = latest(issue("2026-w40", "나"), news)
+    assert.strictEqual(picked?.week, "2026-w41")
+    assert.deepStrictEqual(picked?.days, [])
   })
 
   test("주간 소식이 없으면 null이다", () => {
