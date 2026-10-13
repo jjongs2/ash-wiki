@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -5.5 405 276" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 범위 -->
+  <text x="20" y="24" fill="var(--text, #727981)">ISTQB CTAL-TA 강의계획서</text>
+
+  <!-- 머리 -->
+  <g fill="var(--text, #727981)">
+    <text x="90" y="56" text-anchor="end">매개변수</text>
+    <text x="130" y="56" text-anchor="middle">A</text>
+    <text x="190" y="56" text-anchor="middle">B</text>
+    <text x="250" y="56" text-anchor="middle">C</text>
+  </g>
+
+  <!-- 기준 매개변수-값 쌍 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="100" y="66" width="60" height="28" />
+    <rect x="160" y="66" width="60" height="28" />
+    <rect x="220" y="66" width="60" height="28" />
+    <rect x="160" y="104" width="60" height="28" />
+    <rect x="220" y="104" width="60" height="28" />
+    <rect x="160" y="132" width="60" height="28" />
+    <rect x="220" y="132" width="60" height="28" />
+    <rect x="100" y="160" width="60" height="28" />
+    <rect x="220" y="160" width="60" height="28" />
+    <rect x="100" y="188" width="60" height="28" />
+    <rect x="160" y="188" width="60" height="28" />
+    <rect x="20" y="236" width="14" height="14" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="130" y="84.5">A1</text>
+    <text x="190" y="84.5">B1</text>
+    <text x="250" y="84.5">C1</text>
+    <text x="190" y="122.5">B1</text>
+    <text x="250" y="122.5">C1</text>
+    <text x="190" y="150.5">B1</text>
+    <text x="250" y="150.5">C1</text>
+    <text x="130" y="178.5">A1</text>
+    <text x="250" y="178.5">C1</text>
+    <text x="130" y="206.5">A1</text>
+    <text x="190" y="206.5">B1</text>
+  </g>
+
+  <!-- 기준이 아닌 값 -->
+  <g stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)">
+    <rect x="100" y="104" width="60" height="28" />
+    <rect x="100" y="132" width="60" height="28" />
+    <rect x="160" y="160" width="60" height="28" />
+    <rect x="220" y="188" width="60" height="28" />
+    <rect x="186" y="236" width="14" height="14" />
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="130" y="122.5">A2</text>
+    <text x="130" y="150.5">A3</text>
+    <text x="190" y="178.5">B2</text>
+    <text x="250" y="206.5">C2</text>
+  </g>
+
+  <!-- 커버리지 항목 -->
+  <path d="M286 106 H290 V158 H286" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g fill="var(--text, #727981)">
+    <text x="296" y="84.5">기준 커버리지 항목</text>
+    <text x="296" y="136.5">A를 바꿈</text>
+    <text x="296" y="178.5">B를 바꿈</text>
+    <text x="296" y="206.5">C를 바꿈</text>
+  </g>
+
+  <!-- 범례 -->
+  <g fill="var(--text, #727981)">
+    <text x="42" y="247.5">기준 매개변수-값 쌍</text>
+    <text x="208" y="247.5">기준이 아닌 값</text>
+  </g>
+</svg>

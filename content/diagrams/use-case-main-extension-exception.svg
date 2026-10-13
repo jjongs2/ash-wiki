@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="39.5 -5.5 631 222" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--blue, #336fb8)" />
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--red, #bb464d)" />
+    </marker>
+  </defs>
+
+  <!-- 범위 -->
+  <text x="60" y="24" fill="var(--text, #727981)">ISTQB CTAL-TA 강의계획서</text>
+
+  <!-- 주 시나리오 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M140 60 H188" />
+    <path d="M270 60 H318" />
+    <path d="M400 60 H538" />
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="60" y="44" width="80" height="32" rx="2" />
+    <rect x="190" y="44" width="80" height="32" rx="2" />
+    <rect x="320" y="44" width="80" height="32" rx="2" />
+    <rect x="540" y="44" width="110" height="32" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="100" y="64.5">동작</text>
+    <text x="230" y="64.5">동작</text>
+    <text x="360" y="64.5">동작</text>
+    <text x="595" y="64.5">목표를 이룸</text>
+    <text x="469" y="50">주 시나리오</text>
+  </g>
+
+  <!-- 확장 -->
+  <g stroke="var(--blue, #336fb8)" stroke-width="1.5" marker-end="url(#arrow-blue)">
+    <path d="M100 76 V120 H188" />
+    <path d="M270 120 H345 V78" />
+  </g>
+  <rect x="190" y="104" width="80" height="32" rx="2" stroke="var(--blue, #336fb8)" stroke-width="1.5" fill="var(--blue-tint, #336fb8)" />
+  <text x="230" y="124.5" text-anchor="middle" fill="var(--on-fill, #f8fafd)">동작</text>
+  <text x="307" y="114" text-anchor="middle" fill="var(--text, #727981)">확장</text>
+
+  <!-- 예외 -->
+  <g stroke="var(--red, #bb464d)" stroke-width="1.5" marker-end="url(#arrow-red)">
+    <path d="M380 76 V180 H408" />
+    <path d="M490 180 H538" />
+  </g>
+  <g stroke="var(--red, #bb464d)" stroke-width="1.5" fill="var(--red-tint, #bb464d)">
+    <rect x="410" y="164" width="80" height="32" rx="2" />
+    <rect x="540" y="164" width="110" height="32" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="450" y="184.5">동작</text>
+    <text x="595" y="184.5">목표를 이루지 못함</text>
+  </g>
+  <text x="388" y="144" fill="var(--text, #727981)">예외</text>
+</svg>

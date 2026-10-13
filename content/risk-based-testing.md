@@ -23,6 +23,8 @@ verified: 2026-10-03
 
 CTFL 강의계획서에 따르면 리스크 평가는 정량적 방법이나 정성적 방법, 또는 둘을 섞어 할 수 있다. 정량적 방법에서는 리스크 수준을 발생 가능성과 영향의 곱으로 계산하고, 정성적 방법에서는 리스크 매트릭스로 정할 수 있다.[@istqb-ctfl-syllabus-2024] ISTQB CTAL-TM(Certified Tester Advanced Level Test Management) 강의계획서에 따르면 발생 가능성과 영향은 대개 "매우 높음"에서 "매우 낮음"까지 같은 순서 척도로만 정할 수 있고, 이 두 값을 리스크 매트릭스로 묶어 리스크 수준을 낸다.[@istqb-ctal-tm-syllabus-2024]
 
+ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 따르면 리스크 평가에서는 영향받는 기능의 사용 빈도와 중요도, 영향받는 업무 목표의 중요도, 재정·환경·평판의 피해, 테스트 기준의 품질, 법이나 안전의 요구 같은 요인을 추정해 리스크 수준을 정한다. 제품 리스크는 영향받는 품질 특성에 따라 분류하기도 하는데, 예를 들어 ISO/IEC 25010:2023의 [[software-quality-model|제품 품질 모델]]을 쓴다. 리스크 수준이 테스트 대상 전체에 고르게 퍼져 있지 않을 때가 많으므로, 그럴 때는 테스트 대상을 컴포넌트, 인터페이스, 기능 같은 테스트 항목으로 쪼개 리스크를 항목마다 따로 평가한다.[@istqb-ctal-ta-syllabus-2025]
+
 ## 리스크 관리 활동
 
 CTFL 강의계획서에 따르면 리스크 관리의 주된 활동은 **리스크 분석**(risk analysis)과 **리스크 통제**(risk control)이고, 각각 다시 둘로 나뉜다.[@istqb-ctfl-syllabus-2024]
@@ -36,17 +38,30 @@ CTFL 강의계획서에 따르면 리스크 관리의 주된 활동은 **리스�
 
 ![[diagrams/risk-analysis-control-activities.svg]]
 
+예상한 [[software-testing#테스트 원칙|결함 군집]]과, 테스트나 운용 중에 관찰한 실제 결함 군집은 리스크 기반 테스트의 중요한 입력이다.[@istqb-ctfl-syllabus-2024]
+
+테스트로 제품 리스크를 완화하는 조치는 다음과 같다.[@istqb-ctfl-syllabus-2024]
+
+- 리스크 유형에 맞는 경험과 기술을 갖춘 테스터를 고름
+- 알맞은 수준의 [[software-testing#테스트의 독립성|테스트의 독립성]]을 적용함
+- [[software-review|리뷰]]와 [[static-analysis|정적 분석]]을 수행함
+- 알맞은 테스트 기법과 [[test-coverage|커버리지]] 수준을 적용함
+- 영향받는 품질 특성을 다루는 알맞은 테스트 유형을 적용함
+- [[regression-testing|회귀 테스트]]를 포함한 동적 테스트를 수행함[@istqb-ctfl-syllabus-2024]
+
 ## 리스크 수준에 따른 테스트
 
 제품 리스크 분석의 결과는 테스트의 철저함과 범위에 영향을 주며, 다음을 정하는 데 쓴다.[@istqb-ctfl-syllabus-2024]
 
 - 테스트 범위
 - 수행할 [[software-testing#테스트 레벨|테스트 레벨]]과 테스트 유형
-- 쓸 테스트 기법과 이룰 [[test-coverage|커버리지]]
+- 쓸 테스트 기법과 이룰 커버리지
 - 작업마다 드는 테스트 노력의 추정
 - 테스트 우선순위
 - 테스트 말고 리스크를 줄일 다른 활동[@istqb-ctfl-syllabus-2024]
 
-같은 강의계획서에 따르면 리스크에 따라 우선순위를 매길 때는 가장 중요한 리스크를 덮는 [[test-case|테스트 케이스]]를 먼저 실행한다.[@istqb-ctfl-syllabus-2024] CTAL-TM 강의계획서는 테스트에 들이는 시간과 노력을 리스크 수준에 비례하게 하기를 권한다. 리스크 수준이 높은 것은 일찍 시작하고 더 엄격한 테스트 기법을 쓰며, 낮은 것은 늦게 시작해도 되고 덜 엄격한 기법을 쓴다.[@istqb-ctal-tm-syllabus-2024] ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 따르면 리스크 수준이 높을수록 커버리지 기반 종료 기준도 더 엄격한 커버리지를 요구할 수 있다.[@istqb-ctal-ta-syllabus-2025] 테스트 계획서에 리스크를 담는 자리는 [[test-process#테스트 계획서|테스트 프로세스]]에서 다룬다.
+같은 강의계획서에 따르면 리스크에 따라 우선순위를 매길 때는 가장 중요한 리스크를 덮는 [[test-case|테스트 케이스]]를 먼저 실행한다.[@istqb-ctfl-syllabus-2024] CTAL-TM 강의계획서는 테스트에 들이는 시간과 노력을 리스크 수준에 비례하게 하기를 권한다. 리스크 수준이 높은 것은 일찍 시작하고 더 엄격한 테스트 기법을 쓰며, 낮은 것은 늦게 시작해도 되고 덜 엄격한 기법을 쓴다.[@istqb-ctal-tm-syllabus-2024] CTAL-TA 강의계획서에 따르면 리스크 수준이 높을수록 커버리지 기반 종료 기준도 더 엄격한 커버리지를 요구할 수 있다.[@istqb-ctal-ta-syllabus-2025] 테스트 계획서에 리스크를 담는 자리는 [[test-process#테스트 계획서|테스트 프로세스]]에서 다룬다.
 
 ![[diagrams/risk-level-test-rigor.svg]]
+
+ISTQB CT-AuT 강의계획서는 리스크 기반 테스트를 제품 리스크를 식별하고 그 리스크 수준을 고려해 테스트 기법과 테스트 접근법을 고르는 일로 보고, 경계 위반이 일어날 리스크가 있고 그 영향이 리스크가 될 때에만 [[boundary-value-analysis|경계값]]을 테스트할 의미가 있다는 예를 든다.[@istqb-ct-aut-syllabus-2025] 테스트 기법을 고르는 다른 기준은 [[black-box-testing#기법 고르기|블랙박스 테스트]]에서 다룬다.
