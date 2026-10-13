@@ -19,7 +19,7 @@ verified: 2026-09-30
 
 ## MemIf
 
-MemIf, Fee, Ea는 NvM에 16비트 블록 번호와 16비트 블록 오프셋으로 된 32비트 가상 선형 주소 공간을 준다.[@autosar-cp-sws-nvrammanager-2025] MemIf는 장치 번호(`DeviceIndex`)로 Fee나 Ea를 골라 NvM의 요청을 넘긴다. 메모리 추상화 모듈이 하나만 구성되면 MemIf는 `DeviceIndex`를 무시하고, MemIf API(Application Programming Interface)를 그 모듈의 API로 옮기는 매크로 묶음으로 구현된다. Fee와 Ea의 쓰기 서비스는 설정한 논리 블록 전체에만 작동한다.[@autosar-cp-sws-memoryabstractioninterface-2025]
+MemIf, Fee, Ea는 NvM에 16비트 블록 번호와 16비트 블록 오프셋으로 된 32비트 가상 선형 주소 공간을 준다.[@autosar-cp-sws-nvrammanager-2025] MemIf는 장치 번호(`DeviceIndex`)로 Fee나 Ea를 골라 NvM의 요청을 넘긴다. 메모리 추상화 모듈이 하나만 구성되면 MemIf는 `DeviceIndex`를 무시하고, MemIf API를 그 모듈의 API로 옮기는 매크로 묶음으로 구현된다. Fee와 Ea의 쓰기 서비스는 설정한 논리 블록 전체에만 작동한다.[@autosar-cp-sws-memoryabstractioninterface-2025]
 
 ## Fee와 Ea
 

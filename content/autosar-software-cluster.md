@@ -23,7 +23,7 @@ Substitution Software Cluster는 개발 중에 한 Software Cluster의 출력을
 
 **Software Cluster Connection**(SwCluC)은 같은 machine에 배치된 Binary Object를 잇고, Application Software Cluster에 없는 BSW 모듈 가운데 통합한 소프트웨어가 그 인터페이스를 요구하는 것을 Proxy Module로 대신하고, [[autosar-rte|RTE]]와 함께 RTE Implementation Plug-In으로 Software Cluster 사이의 [[virtual-functional-bus|VFB]] 통신을 구현하는 BSW 모듈로 정의한다.[@autosar-cp-sws-softwareclusterconnection-2025]
 
-SwCluC는 세 부분으로 나뉜다. Cross Software Cluster Communication(SwCluC_Xcc)은 Software Cluster 사이의 통신 방식과 RTE 쪽 인터페이스를 구현한다. Proxy Module은 Software Cluster 안에 없는 BSW 모듈과 그 API(Application Programming Interface)를 추상화한다. Binary Manifest는 Software Cluster를 잇는 데 필요한 인터페이스의 바이너리 메타 정보를 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+SwCluC는 세 부분으로 나뉜다. Cross Software Cluster Communication(SwCluC_Xcc)은 Software Cluster 사이의 통신 방식과 RTE 쪽 인터페이스를 구현한다. Proxy Module은 Software Cluster 안에 없는 BSW 모듈과 그 API를 추상화한다. Binary Manifest는 Software Cluster를 잇는 데 필요한 인터페이스의 바이너리 메타 정보를 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ### Binary Manifest
 

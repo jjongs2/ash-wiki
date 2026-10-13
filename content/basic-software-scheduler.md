@@ -23,7 +23,7 @@ SchM은 RTE와 함께 생성된다. 그래서 같은 OS 태스크가 BSW main fu
 
 SchM은 BSW 모듈의 schedulable entity와 BswInterruptEntity를 연결된 BswEvent에 따라 실행한다. BswEvent에는 BswTimingEvent, BswBackgroundEvent, BswOperationInvokedEvent, BswExternalTriggerOccurredEvent, BswInternalTriggerOccurredEvent, BswModeSwitchEvent, BswModeSwitchedAckEvent, BswModeManagerErrorEvent, BswDataReceivedEvent, BswAsynchronousServerCallReturnsEvent가 있다.[@autosar-cp-sws-rte-2025]
 
-[[rte-event|RTE 이벤트]]처럼 BswEvent는 종류마다 schedulable entity를 시작할 수 있다. 시작되는 schedulable entity 안에서 SchM의 API(Application Programming Interface)를 따로 부를 필요는 없고, BSW 모듈 기술의 설정에 따라 SchM이 직접 시작한다. RTE 이벤트와 달리 BswEvent는 wait point를 지원하지 않는다.[@autosar-cp-sws-rte-2025]
+[[rte-event|RTE 이벤트]]처럼 BswEvent는 종류마다 schedulable entity를 시작할 수 있다. 시작되는 schedulable entity 안에서 SchM의 API를 따로 부를 필요는 없고, BSW 모듈 기술의 설정에 따라 SchM이 직접 시작한다. RTE 이벤트와 달리 BswEvent는 wait point를 지원하지 않는다.[@autosar-cp-sws-rte-2025]
 
 RTE 생성기는 schedulable entity를 시작할 수 있는 BswEvent가 OS 태스크나 category 2 [[osek-isr|ISR]]에 매핑되지 않았고 직접 함수 호출이나 trusted function call로도 실행할 수 없으면 그 설정을 거부한다. RTE는 한 태스크나 category 2 ISR 안에서 runnable과 schedulable entity의 실행 순서를 마음대로 설정할 수 있게 지원한다.[@autosar-cp-sws-rte-2025]
 

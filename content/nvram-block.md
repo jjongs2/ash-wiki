@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**NVRAM 블록**(Non-Volatile Random-Access Memory block)은 [[nvram-manager|NvM]]이 비휘발성 데이터 한 덩이를 관리하고 저장하는 데 필요한 구조 전체다. NVRAM 블록에는 NV(Non-Volatile) 블록, RAM(Random-Access Memory) 블록, administrative block이 반드시 있고, ROM(Read-Only Memory) 블록은 없어도 된다. 구성은 설정 때 NVRAM block descriptor가 정한다. 응용은 NvM API(Application Programming Interface)에 블록 ID를 넘겨 다룰 NVRAM 블록 하나를 고른다.[@autosar-cp-sws-nvrammanager-2025]
+**NVRAM 블록**(Non-Volatile Random-Access Memory block)은 [[nvram-manager|NvM]]이 비휘발성 데이터 한 덩이를 관리하고 저장하는 데 필요한 구조 전체다. NVRAM 블록에는 NV(Non-Volatile) 블록, RAM(Random-Access Memory) 블록, administrative block이 반드시 있고, ROM(Read-Only Memory) 블록은 없어도 된다. 구성은 설정 때 NVRAM block descriptor가 정한다. 응용은 NvM API에 블록 ID를 넘겨 다룰 NVRAM 블록 하나를 고른다.[@autosar-cp-sws-nvrammanager-2025]
 
 ## 기본 저장 객체
 

@@ -26,7 +26,7 @@ IOC는 [[autosar-sender-receiver-interface|sender-receiver]] 통신만 제공하
 
 ## 인터페이스
 
-IOC는 범용 API(Application Programming Interface)를 두지 않고, 통신마다 전용 인터페이스를 생성한다. 각 통신은 설정에서 sender, receiver, 데이터 타입, notification, queuing으로 따로 정해지고, 서비스 API는 통신마다의 고유 Id로 구별된다. queued 통신에는 `IocSend_<IocId>`와 `IocReceive_<IocId>`가, unqueued 통신에는 `IocWrite_<IocId>`와 `IocRead_<IocId>`가 생성된다. N:1 통신에서는 송신자마다 자기 API를 쓰며, 송신 API 이름에 `_<SenderId>`가 붙는다.[@autosar-cp-sws-os-2025]
+IOC는 범용 API를 두지 않고, 통신마다 전용 인터페이스를 생성한다. 각 통신은 설정에서 sender, receiver, 데이터 타입, notification, queuing으로 따로 정해지고, 서비스 API는 통신마다의 고유 Id로 구별된다. queued 통신에는 `IocSend_<IocId>`와 `IocReceive_<IocId>`가, unqueued 통신에는 `IocWrite_<IocId>`와 `IocRead_<IocId>`가 생성된다. N:1 통신에서는 송신자마다 자기 API를 쓰며, 송신 API 이름에 `_<SenderId>`가 붙는다.[@autosar-cp-sws-os-2025]
 
 ![[diagrams/ioc-queued-unqueued.svg]]
 

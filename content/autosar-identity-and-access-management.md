@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-07
 ---
 
-AUTOSAR R25-11 Identity and Access Management 설명서는 **Identity and Access Management**(IAM)를 [[autosar-adaptive-platform|AUTOSAR Adaptive Platform]]의 구성 요소가 인증과 접근을 관리하도록 표준화한 모델로 정의한다. IAM은 functional cluster도 API(Application Programming Interface)도 아니어서, 접근 제어가 필요한 functional cluster와 API가 그 기능을 구현한다.[@autosar-ap-exp-identityandaccessmanagement-2025]
+AUTOSAR R25-11 Identity and Access Management 설명서는 **Identity and Access Management**(IAM)를 [[autosar-adaptive-platform|AUTOSAR Adaptive Platform]]의 구성 요소가 인증과 접근을 관리하도록 표준화한 모델로 정의한다. IAM은 functional cluster도 API도 아니어서, 접근 제어가 필요한 functional cluster와 API가 그 기능을 구현한다.[@autosar-ap-exp-identityandaccessmanagement-2025]
 
 IAM은 인가받은 신원만 알맞은 자원에 접근하게 한다. 신원은 Adaptive Application이나 그 호스트이고, 자원은 functional cluster의 API가 내놓는 기능이다. IAM의 목적은 잘못 동작하거나 공격받은 Adaptive Application이 응용 설계자와 통합자가 의도하지 않은 서비스나 자원에 접근하지 못하게 하는 것이다. 예를 들어 인터넷에 연결된 인포테인먼트 응용이 공격받더라도, 차량을 제동하는 서비스에는 접근하지 못하게 해야 한다.[@autosar-ap-exp-identityandaccessmanagement-2025]
 

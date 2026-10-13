@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**ECU Abstraction Layer**는 [[autosar-layered-architecture|AUTOSAR 계층 구조]]에서 BSW(Basic Software)를 이루는 층 가운데 하나로, [[microcontroller-abstraction-layer|MCAL]] 위, Services Layer 아래에 놓인다. 이 층은 MCAL의 드라이버와 맞닿고 외부 장치의 드라이버를 담으며, 위 계층에 주변장치와 장치에 접근하는 API(Application Programming Interface)를 준다. 이 API는 주변장치가 마이크로컨트롤러 안에 있는지 밖에 있는지, 마이크로컨트롤러에 어떻게 연결됐는지(포트 핀, 인터페이스 종류)와 상관없이 쓸 수 있어, 위 계층을 ECU 하드웨어 배치에서 독립시킨다. 이 층의 구현은 마이크로컨트롤러에 독립적이고 ECU 하드웨어에 의존한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+**ECU Abstraction Layer**는 [[autosar-layered-architecture|AUTOSAR 계층 구조]]에서 BSW(Basic Software)를 이루는 층 가운데 하나로, [[microcontroller-abstraction-layer|MCAL]] 위, Services Layer 아래에 놓인다. 이 층은 MCAL의 드라이버와 맞닿고 외부 장치의 드라이버를 담으며, 위 계층에 주변장치와 장치에 접근하는 API를 준다. 이 API는 주변장치가 마이크로컨트롤러 안에 있는지 밖에 있는지, 마이크로컨트롤러에 어떻게 연결됐는지(포트 핀, 인터페이스 종류)와 상관없이 쓸 수 있어, 위 계층을 ECU 하드웨어 배치에서 독립시킨다. 이 층의 구현은 마이크로컨트롤러에 독립적이고 ECU 하드웨어에 의존한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ![[diagrams/autosar-layered-software-architecture.svg]]
 

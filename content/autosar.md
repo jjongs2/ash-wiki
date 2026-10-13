@@ -69,7 +69,7 @@ AUTOSAR는 자동차용 소프트웨어 기술을 표준화하므로 관련 표�
 
 ## 규격 문서
 
-AUTOSAR 문서는 PDF로 펴내고, 문서마다 문서 종류 약어와 표준 약어를 메타데이터로 둔다. 발행 PDF 파일 이름에는 표준 약어, 문서 종류 약어, 문서 이름이 들어간다.[@autosar-fo-tps-standardizationtemplate-2025] 예를 들어 `AUTOSAR_CP_SWS_PortDriver`는 Classic Platform의 [[autosar-port-driver|Port Driver]] 소프트웨어 명세(Specification of Port Driver)이고, 기능 명세, API(Application Programming Interface) 명세, 설정 명세를 담는다.[@autosar-cp-sws-portdriver-2025]
+AUTOSAR 문서는 PDF로 펴내고, 문서마다 문서 종류 약어와 표준 약어를 메타데이터로 둔다. 발행 PDF 파일 이름에는 표준 약어, 문서 종류 약어, 문서 이름이 들어간다.[@autosar-fo-tps-standardizationtemplate-2025] 예를 들어 `AUTOSAR_CP_SWS_PortDriver`는 Classic Platform의 [[autosar-port-driver|Port Driver]] 소프트웨어 명세(Specification of Port Driver)이고, 기능 명세, API 명세, 설정 명세를 담는다.[@autosar-cp-sws-portdriver-2025]
 
 ![[diagrams/autosar-document-file-name.svg]]
 

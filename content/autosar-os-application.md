@@ -21,7 +21,7 @@ OS-Application마다 자기 [[osek-hook-routine|hook]]으로 `StartupHook_<App>`
 
 OS-Application은 trusted와 non-trusted 둘로 나뉜다.[@autosar-cp-sws-os-2025]
 
-- **Trusted OS-Application**: 실행 중 감시나 보호를 끈 채 실행될 수 있고, 메모리와 OS API(Application Programming Interface)에 제한 없이 접근할 수 있으며, 실행 때 타이밍 동작을 강제받지 않아도 된다. 프로세서가 지원하면 privileged mode에서 실행될 수 있다. 다른 OS-Application에 서비스를 제공할 수 있다.
+- **Trusted OS-Application**: 실행 중 감시나 보호를 끈 채 실행될 수 있고, 메모리와 OS API에 제한 없이 접근할 수 있으며, 실행 때 타이밍 동작을 강제받지 않아도 된다. 프로세서가 지원하면 privileged mode에서 실행될 수 있다. 다른 OS-Application에 서비스를 제공할 수 있다.
 - **Non-trusted OS-Application**: 감시나 보호를 끈 채 실행될 수 없고, 메모리와 OS API에 제한된 접근만 하며, 타이밍 동작을 강제받는다. privileged mode에서 실행될 수 없다. 주변장치는 자기에게 배정된 것에만 쓸 수 있고, `ShutdownOS`를 불러도 무시된다.[@autosar-cp-sws-os-2025]
 
 AUTOSAR R25-11 Layered Software Architecture와 용어집은 OS-Application의 trusted 속성을 [[automotive-safety-integrity-level|ASIL]]과 관계없는 것으로 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025][@autosar-fo-tr-glossary-2025]

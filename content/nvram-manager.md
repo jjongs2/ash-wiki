@@ -19,7 +19,7 @@ NvM은 비동기 단일 블록 요청을 큐에 넣고, `NvM_MainFunction`에서
 
 ## API configuration class
 
-NvM은 API(Application Programming Interface) configuration class 1, 2, 3을 둔다. Class 1은 하드웨어 자원이 매우 적은 시스템을 위해 꼭 필요한 최소 API만 주고, class 2는 중간 집합을, class 3은 명세된 API를 모두 준다.[@autosar-cp-sws-nvrammanager-2025]
+NvM은 API configuration class 1, 2, 3을 둔다. Class 1은 하드웨어 자원이 매우 적은 시스템을 위해 꼭 필요한 최소 API만 주고, class 2는 중간 집합을, class 3은 명세된 API를 모두 준다.[@autosar-cp-sws-nvrammanager-2025]
 
 - **Class 1**: `NvM_Init`, `NvM_GetErrorStatus`, `NvM_SetRamBlockStatus`(`NvMSetRamBlockStatusApi`로 켰을 때만), `NvM_ReadAll`, `NvM_WriteAll`, `NvM_CancelWriteAll`을 준다. 블록 하나를 다루는 비동기 API는 하나도 주지 않는다. 그래서 큐가 필요 없고, immediate 데이터와 dataset 블록을 쓸 수 없다.
 - **Class 2**: class 1에 `NvM_SetDataIndex`, `NvM_GetDataIndex`, `NvM_ReadBlock`, `NvM_WriteBlock`, `NvM_RestoreBlockDefaults`, `NvM_CancelJobs`, `NvM_ReadPRAMBlock`, `NvM_WritePRAMBlock`, `NvM_RestorePRAMBlockDefaults`, `NvM_ValidateAll`을 더한다.

@@ -45,7 +45,7 @@ Adaptive Platform은 자신이 도는 하드웨어를 **Machine**이라 부른�
 
 응용의 생명주기는 [[autosar-execution-management|Execution Management]]가 관리한다. Execution Management 자신을 뺀 모든 functional cluster도 Execution Management가 보기에는 응용이어서, 같은 방식으로 띄운다.[@autosar-ap-exp-platformdesign-2025]
 
-AA는 운영체제 API(Application Programming Interface)로 POSIX의 단일 프로세스 프로필인 PSE51 인터페이스만 쓰도록 정의상 제한된다. AA의 이식성을 주고 응용 사이의 [[freedom-from-interference|FFI]]를 이루려고 PSE51을 골랐다. C++ 표준 라이브러리도 ARA의 일부로 쓸 수 있다. 반면 functional cluster인 프로세스는 쓸 수 있는 운영체제 서비스를 모두 써도 된다.[@autosar-ap-exp-platformdesign-2025] 운영체제 인터페이스 명세가 요구하는 PSE51 인터페이스는 [[rtos#차량용 RTOS|RTOS]]에서 다룬다.
+AA는 운영체제 API로 POSIX의 단일 프로세스 프로필인 PSE51 인터페이스만 쓰도록 정의상 제한된다. AA의 이식성을 주고 응용 사이의 [[freedom-from-interference|FFI]]를 이루려고 PSE51을 골랐다. C++ 표준 라이브러리도 ARA의 일부로 쓸 수 있다. 반면 functional cluster인 프로세스는 쓸 수 있는 운영체제 서비스를 모두 써도 된다.[@autosar-ap-exp-platformdesign-2025] 운영체제 인터페이스 명세가 요구하는 PSE51 인터페이스는 [[rtos#차량용 RTOS|RTOS]]에서 다룬다.
 
 ### 지원 프로토콜
 

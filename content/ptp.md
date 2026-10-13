@@ -25,7 +25,7 @@ IEEE 1588g-2022는 구현이나 PTP 프로파일에서 master와 slave 대신 �
 
 ![[diagrams/ptp-clock-types.svg]]
 
-Microchip ZLS30390 API(Application Programming Interface)는 ordinary clock으로 동작할 때 포트 상태로 MASTER, PASSIVE, SLAVE를 둔다.[@microchip-an4025-2022]
+Microchip ZLS30390 API는 ordinary clock으로 동작할 때 포트 상태로 MASTER, PASSIVE, SLAVE를 둔다.[@microchip-an4025-2022]
 
 Micrel 백서에 따르면 boundary clock을 여러 단 이으면 단마다 제어 루프 오차가 더해져 동기화 지터가 커진다. transparent clock은 단마다 동기화를 새로 하지 않고 체류 시간만 보정해 넘기므로, boundary clock을 이을 때보다 오차가 덜 쌓인다.[@micrel-get-in-sync-2012]
 
