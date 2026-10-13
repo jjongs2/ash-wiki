@@ -162,8 +162,8 @@ def write(out_dir, name, path, label=""):
 def source_stamp(path, subs):
     with open(__file__, "rb") as script:
         version = hashlib.sha256(script.read()).hexdigest()[:12]
-    sizes = " ".join([version, *(str(os.path.getsize(p)) for p in [path, *subs])])
-    return f"{sizes}\n{NOTES}"
+    notes = hashlib.sha256(NOTES.encode()).hexdigest()[:12]
+    return " ".join([version, notes, *(str(os.path.getsize(p)) for p in [path, *subs])])
 
 
 def check_uuids(uuids):

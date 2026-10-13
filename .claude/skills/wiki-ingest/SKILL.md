@@ -15,7 +15,7 @@ description: 인제스트. `ingest:` 묶음 티켓 하나를 초안, 검증자 �
 
 **형제 PR**은 같은 `verify:` 이슈를 막는 다른 묶음 티켓의 열린 PR이다. 묶음 티켓은 `gh api repos/<owner>/<repo>/issues/<verify 이슈>/dependencies/blocked_by --jq '.[].number'`로 찾고, 티켓마다 열린 PR은 `gh pr list --state open --json number,closingIssuesReferences --jq '.[] | select(any(.closingIssuesReferences[]; .number == <티켓>)) | .number'`로 찾는다. **머지된 형제 PR**은 같은 명령을 `--state merged`로 돌려 찾은 PR 가운데, `git fetch origin` 뒤 `git log --format=%s <기준 커밋>..origin/main`(`<기준 커밋>`은 [브리프](#브리프)의 것)의 제목 끝 `(#<PR>)`에 있는 것이다. 이 세션이 시작한 뒤 머지된 형제 묶음이다.
 
-**준비**: worktree에서 일하면 시작할 때 `npm ci`를 한다. 작업 파일은 모두 worktree 루트의 `.work/`(`.gitignore`에 있다)에 둔다. 브리프, 사본, 반영 뒤 점검의 로그와 메모, 에이전트마다의 `<작업 폴더>`와 `<사본 폴더>`다. 재시작에 지워지지 않고, 에이전트가 브라우저로 받은 본문도 저장할 수 있는 자리다. 에이전트에게 주는 폴더는 띄우기 전에 메인 세션이 `mkdir -p`로 만든다. `npm run check`는 출력을 파일로 받아(`npm run check > .work/check.log 2>&1; echo "exit $?"; tail -n 20 .work/check.log`) 종료 코드와 마지막 요약 줄로 결과를 본다. 출력이 길어 화면에서 요약 줄이 잘리기 때문이다.
+**준비**: worktree에서 일하면 시작할 때 `npm ci`를 한다. 작업 파일은 모두 작업 트리 루트(worktree면 그 루트)의 `.work/`(`.gitignore`에 있다)에 둔다. 브리프, 사본, 반영 뒤 점검의 로그와 메모, 에이전트별 `<작업 폴더>`와 `<사본 폴더>`다. 재시작에 지워지지 않고, 에이전트가 브라우저로 받은 본문도 저장할 수 있는 자리다. 에이전트에게 주는 폴더는 띄우기 전에 메인 세션이 `mkdir -p`로 만든다. `npm run check`는 출력을 파일로 받아(`npm run check > .work/check.log 2>&1; echo "exit $?"; tail -n 20 .work/check.log`) 종료 코드와 마지막 요약 줄로 결과를 본다. 출력이 길어 화면에서 요약 줄이 잘리기 때문이다.
 
 ## 1. 초안
 

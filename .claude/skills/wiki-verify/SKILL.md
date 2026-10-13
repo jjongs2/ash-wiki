@@ -122,14 +122,14 @@ PR이 머지되기 전에 위계가 넓어지면 main으로 rebase하고, 남은
 - 항목 대응: 체크한 항목마다 diff나 메모에 적은 기존 페이지에 그 주장이 있고, diff의 문장마다 체크한 항목이 있다.
 - 새 bib 엔트리: 반영 뒤 `npm run source-status -- --url <URL> --url <URL> …`로 새 엔트리의 `url`을 모두 묻고 `url` 줄만 본다. `SKIP url-blocked`면 브라우저로 연다. 열린 PR과 키가 겹치는지는 위키 규약의 열린 PR과 겹치는 파일 절대로 7단계 1에서 본다.
 - 위키 검증 문서의 반영 뒤 점검.
-- 형제 묶음 링크: 위키 검증 재조사 절의 4대로 한다. 이슈를 막던 묶음 티켓과 그 머지된 PR은 [인제스트](../wiki-ingest/SKILL.md) 머리의 형제 PR 문단의 명령을 `--state merged`로 돌려 찾고, 기준은 `mergedAt`이 가장 이른 PR의 머지 커밋의 부모다. `npm run check:diff -- --base <머지 커밋>^ --only first-link`를 한 번, 묶음 티켓마다 `npm run check:diff -- --base <머지 커밋>^ --ticket <묶음 티켓> --only owner-page`를 돌려 `.work/`에 받는다. 대상이 형제 묶음 페이지인 후보마다 건 링크나 걸지 않은 근거(규칙 절) 한 줄을 `.work/check-diff-memo.md`에 남긴다. 링크를 걸어 문장이 바뀌면(링크 자리를 옮기거나 안내 문장을 지움) 3단계의 이음매 읽기를 한다.
+- 형제 묶음 링크: 위키 검증 재조사 절의 3과 4. 묶음 티켓은 `gh api repos/<owner>/<repo>/issues/<verify 이슈>/dependencies/blocked_by --jq '.[].number'`로, 그 머지 커밋은 `gh pr list --state merged --json mergedAt,mergeCommit,closingIssuesReferences --jq '.[] | select(any(.closingIssuesReferences[]; .number == <티켓>)) | [.mergedAt, .mergeCommit.oid] | @tsv'`로 찾는다. 돌릴 명령은 `npm run check:diff -- --base <머지 커밋>^ --only first-link`와 묶음 티켓마다의 `npm run check:diff -- --base <머지 커밋>^ --ticket <묶음 티켓> --only owner-page`이고, 출력은 `.work/`에 받는다. 대상이 형제 묶음 페이지인 후보마다 건 링크나 걸지 않은 근거(규칙 절) 한 줄을 `.work/check-diff-memo.md`에 남긴다. 링크를 걸어 문장이 바뀌면(링크 자리를 옮기거나 안내 문장을 지움) 3단계의 이음매 읽기를 한다.
 - `CONTRIBUTING.md`의 PR 전 확인을 돌려 고친다.
 
 완료: 위 점검이 모두 끝났고, 형제 묶음 후보마다 메모가 있고, PR 전 확인이 통과한다.
 
 ## 7. PR과 마무리
 
-게시한 검증 완료 항목도 6단계에서 건 형제 묶음 링크도 없으면 PR 없이 이슈를 닫는다(위키 검증 재조사 절의 5). 게시할 항목이 없어도 링크를 걸었으면 PR을 올린다. `보류`는 검증 완료로 세지 않는다.
+게시한 검증 완료 항목도 6단계에서 건 형제 묶음 링크도 없으면 PR 없이 이슈를 닫는다(위키 검증 재조사 절의 5). `보류`는 검증 완료로 세지 않는다.
 
 1. bib 엔트리를 더했으면 push 직전에 위키 규약의 열린 PR과 겹치는 파일 절대로 열린 PR과 키가 겹치는지 본다.
 2. PR을 올린다. 제목은 `content: <주제> 미검증 주장 재조사`, 본문은 `CONTRIBUTING.md`의 세 부분이고 `Closes #<verify 이슈>`를 적는다.
