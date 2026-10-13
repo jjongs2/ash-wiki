@@ -60,8 +60,6 @@ SWEBOK V4.0a에 따르면 신뢰성 테스트는 결함을 찾아 고치며 테�
 
 ISTQB 용어집은 **신뢰성 성장 모델**(reliability growth model)을 결함을 없앤 결과로 컴포넌트나 시스템의 신뢰성이 시간에 따라 높아지는 것을 보이는 모델로 정의한다.[@istqb-glossary-reliability-growth-model-2026] SWEBOK V4.0a에 따르면 신뢰성 테스트에서 신뢰성은 대개 신뢰성 성장 모델로 평가한다. 발표된 신뢰성 성장 모델이 많으며, 크게 failure-count 모델과 time-between-failure 모델로 나뉜다.[@ieee-swebok-v4-0a-2026] 결함을 고칠 때 일정한 확률로 새 결함이 들어갈 수 있다고 가정해, 수정이 불완전한 경우를 받아들이는 신뢰성 성장 모델도 있다.[@ohba-imperfect-debugging-1989]
 
-IEC 61164:2004는 신뢰성 개선 프로그램에서 나온 failure 데이터로 신뢰성 성장을 평가하는 모델과 수치 방법을 둔다. 앞선 테스트 결과로 추정한 모델 매개변수는 조건이 비슷하면 이후 신뢰성 성장 프로그램의 경과를 예측하는 데 쓸 수 있다.[@iec-61164-preview-2004]
-
 ## 테스트 사분면
 
 ISTQB 용어집은 **테스트 사분면**(testing quadrants)을 테스트 유형과 테스트 레벨을 네 사분면으로 나누는 분류 모델로 정의한다. 사분면은 테스트 목표의 두 차원, 곧 제품 팀을 지원하는지 제품을 비평하는지와, 기술 쪽인지 비즈니스 쪽인지에 따라 정해진다.[@istqb-glossary-testing-quadrants-2026]
@@ -70,6 +68,6 @@ CTFL 강의계획서에 따르면 테스트 사분면은 Brian Marick이 정의�
 
 테스트는 비즈니스 쪽(business facing)이거나 기술 쪽(technology facing)이고, 팀을 지원하거나(support the team, 곧 개발을 이끔) 제품을 비평한다(critique the product, 곧 동작을 기대에 비추어 잰다). 두 관점을 엮으면 네 사분면이 정해진다.[@istqb-ctfl-syllabus-2024]
 
-Q1(기술 쪽, 팀 지원)에는 컴포넌트 테스트와 [[integration-testing#컴포넌트 통합과 시스템 통합|컴포넌트 통합 테스트]]가 들고, 이 테스트는 자동화해 [[continuous-integration|지속적 통합]] 과정에 넣어야 한다. Q2(비즈니스 쪽, 팀 지원)에는 기능 테스트, 예제, 사용자 스토리 테스트, 사용자 경험 프로토타입, API(Application Programming Interface) 테스트, 시뮬레이션이 들고, 인수 기준을 확인하며 수동이나 자동으로 한다. Q3(비즈니스 쪽, 제품 비평)에는 탐색적 테스트, 사용성 테스트, [[acceptance-testing#인수 테스트의 형태|사용자 인수 테스트]]가 들고, 사용자 중심이며 흔히 수동으로 한다. Q4(기술 쪽, 제품 비평)에는 스모크 테스트, 그리고 사용성 테스트를 뺀 비기능 테스트가 들고, 흔히 자동화한다.[@istqb-ctfl-syllabus-2024]
+Q1(기술 쪽, 팀 지원)에는 컴포넌트 테스트와 [[integration-testing#컴포넌트 통합과 시스템 통합|컴포넌트 통합 테스트]]가 들고, 이 테스트는 자동화해 [[continuous-integration|지속적 통합]] 과정에 넣어야 한다. Q2(비즈니스 쪽, 팀 지원)에는 기능 테스트, 예제, 사용자 스토리 테스트, 사용자 경험 프로토타입, API 테스트, 시뮬레이션이 들고, 인수 기준을 확인하며 수동이나 자동으로 한다. Q3(비즈니스 쪽, 제품 비평)에는 탐색적 테스트, 사용성 테스트, [[acceptance-testing#인수 테스트의 형태|사용자 인수 테스트]]가 들고, 사용자 중심이며 흔히 수동으로 한다. Q4(기술 쪽, 제품 비평)에는 스모크 테스트, 그리고 사용성 테스트를 뺀 비기능 테스트가 들고, 흔히 자동화한다.[@istqb-ctfl-syllabus-2024]
 
 ![[diagrams/testing-quadrants.svg]]
