@@ -55,12 +55,12 @@ ApApplicationEndpoint는 EthernetCommunicationConnector의 [[udp|UDP]]나 [[tcp|
 
 Machine Manifest로는 특정 하드웨어에서 도는 Adaptive Platform 인스턴스를 설정한다. Machine Manifest가 다루는 것은 아래와 같다.[@autosar-ap-exp-platformdesign-2025]
 
-- 네트워크 연결 설정과 네트워크 기술의 기본 자격 정보. 예: [[ethernet|이더넷]]의 고정 IP(Internet Protocol) 주소나 DHCP(Dynamic Host Configuration Protocol) 설정
+- 네트워크 연결 설정과 네트워크 기술의 기본 자격 정보. 예: [[ethernet|이더넷]]의 고정 IP 주소나 DHCP(Dynamic Host Configuration Protocol) 설정
 - 서비스 발견 기술의 설정. 예: SOME/IP가 쓸 IP 포트와 IP 멀티캐스트 주소
 - 쓰는 Machine State와 Function Group의 정의
 - functional cluster 구현의 설정. 예: 운영체제가 특정 권한을 가진 운영체제 사용자 목록을 제공하는 것
 - 암호 플랫폼 모듈, Platform Health Management, 시간 동기화의 설정
-- 쓸 수 있는 하드웨어 자원의 기록. 예: RAM(Random-Access Memory) 용량, 프로세서 코어 수[@autosar-ap-exp-platformdesign-2025]
+- 쓸 수 있는 하드웨어 자원의 기록. 예: RAM 용량, 프로세서 코어 수[@autosar-ap-exp-platformdesign-2025]
 
 ## Processed Manifest
 

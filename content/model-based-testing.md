@@ -13,7 +13,7 @@ ISTQB CT-MBT(Certified Tester Model-Based Testing) 강의계획서에 따르면 
 
 ## 쓰임
 
-MBT는 기능 요구사항과 기대 동작의 복잡함을 추상화할 수 있어서 [[system-testing|시스템]], 시스템 통합, [[acceptance-testing|인수 테스트]] 같은 높은 테스트 레벨에서 주로 쓰이고, [[unit-testing#컴포넌트 테스트|컴포넌트 테스트]]와 [[integration-testing#컴포넌트 통합과 시스템 통합|컴포넌트 통합 테스트]]에서는 덜 쓰인다. 테스트 유형으로는 주로 기능 테스트에 쓰이고, 보강하거나 따로 만든 MBT 모델로 보안, 부하, 신뢰성 같은 비기능 테스트도 할 수 있다.[@istqb-ct-mbt-syllabus-2024]
+MBT는 기능 요구사항과 기대 동작의 복잡함을 추상화할 수 있어서 [[system-testing|시스템]], 시스템 통합, [[acceptance-testing|인수 테스트]] 같은 높은 테스트 레벨에서 주로 쓰이고, [[unit-testing#컴포넌트 테스트|컴포넌트 테스트]]와 [[integration-testing#컴포넌트 통합과 시스템 통합|컴포넌트 통합 테스트]]에서는 덜 쓰인다. [[test-type|테스트 유형]]으로는 주로 기능 테스트에 쓰이고, 보강하거나 따로 만든 MBT 모델로 보안, 부하, 신뢰성 같은 비기능 테스트도 할 수 있다.[@istqb-ct-mbt-syllabus-2024]
 
 ## 테스트 설계 기법과의 관계
 

@@ -21,7 +21,7 @@ BSW(Basic Software)에서는 [[basic-software-mode-manager|BswM]]이 mode manage
 
 mode manager는 `Rte_Switch_<p>_<o>(<mode>)`로 다음 모드를 넘겨 모드 전환을 시작한다.[@autosar-cp-sws-rte-2025] 모드를 전환하는 mode manager의 runnable은 자기가 전환하는 mode declaration group prototype을 **mode switch point**로 선언한다.[@autosar-cp-tps-softwarecomponenttemplate-2025] RTE는 mode switch point가 있으면 `Rte_Switch` API를 만들고, 그 API는 해당 mode switch point를 가진 runnable만 쓸 수 있다.[@autosar-cp-sws-rte-2025]
 
-RTE는 mode switch notification을 담는 FIFO(First-In First-Out) 큐를 mode machine instance마다 둔다. 큐 길이는 ECU 설정 파라미터 `RteModeSenderQueueLength`로 정하고, 이 값이 없으면 mode manager 쪽 com spec의 queueLength로 정한다. 전환 중에 온 요청은 큐에 쌓이고, 큐가 차 있으면 버려지며 `Rte_Switch`는 RTE_E_LIMIT을 돌려준다.[@autosar-cp-sws-rte-2025]
+RTE는 mode switch notification을 담는 FIFO 큐를 mode machine instance마다 둔다. 큐 길이는 ECU 설정 파라미터 `RteModeSenderQueueLength`로 정하고, 이 값이 없으면 mode manager 쪽 com spec의 queueLength로 정한다. 전환 중에 온 요청은 큐에 쌓이고, 큐가 차 있으면 버려지며 `Rte_Switch`는 RTE_E_LIMIT을 돌려준다.[@autosar-cp-sws-rte-2025]
 
 mode user와 mode manager는 `Rte_Mode_<p>_<o>`로 현재 활성인 모드를 읽는다.[@autosar-cp-sws-rte-2025] 현재 모드를 읽어야 하는 runnable은 **mode access point**를 정의한다.[@autosar-cp-tps-softwarecomponenttemplate-2025] RTE는 mode access point가 있으면 `Rte_Mode` API를 만들고, 그 API는 해당 mode access point를 가진 runnable만 쓸 수 있다.[@autosar-cp-sws-rte-2025]
 

@@ -41,7 +41,7 @@ status: 유효
 - 1995년: ISO/IEC 12207:1995. 첫판.[@iso-iec-12207-1995]
 - 2008년: ISO/IEC 12207:2008. 2판으로, 1995년판과 그 개정 두 건(Amd 1:2002, Amd 2:2004)을 대체했다.[@iso-iec-12207-2008] ISO/IEC와 IEEE가 함께 개발했고, IEEE에서는 IEEE Std 12207-2008로 나왔다.[@ieee-12207-2008]
 - 2017년: ISO/IEC/IEEE 12207:2017. ISO/IEC/IEEE 12207로는 첫판이고, ISO/IEC 12207:2008을 대체했다.[@iso-iec-ieee-12207-obp-2017]
-- 2026년: ISO/IEC/IEEE 12207:2026. 2판으로, 2017년판을 대체했다. 사업·임무 분석, 시스템 아키텍처 정의, 구현, 통합, 운용, 유지보수 같은 기술 프로세스를 지금의 관행에 맞게 다듬고, 리스크 관리와 [[configuration-management|형상 관리]] 같은 기술 관리 프로세스를 개선했다. 핵심 개념을 다루는 5절에서 반복, 재귀, 시스템의 시스템, 품질 특성의 설명을 고치고, 구상과 시스템 정의에 관한 내용을 새로 넣고, 애자일 방법과 프로세스 적용, 시스템 개념의 내용을 넓혔다. MBSSE(model-based systems and software engineering)를 다루는 Annex D도 고쳤다.[@iso-iec-ieee-12207-obp-2026]
+- 2026년: ISO/IEC/IEEE 12207:2026. 2판으로, 2017년판을 대체했다. 사업·임무 분석, [[system-architecture|시스템 아키텍처]] 정의, 구현, 통합, 운용, 유지보수 같은 기술 프로세스를 지금의 관행에 맞게 다듬고, 리스크 관리와 [[configuration-management|형상 관리]] 같은 기술 관리 프로세스를 개선했다. 핵심 개념을 다루는 5절에서 반복, 재귀, 시스템의 시스템, 품질 특성의 설명을 고치고, 구상과 시스템 정의에 관한 내용을 새로 넣고, 애자일 방법과 프로세스 적용, 시스템 개념의 내용을 넓혔다. MBSSE(model-based systems and software engineering)를 다루는 Annex D도 고쳤다.[@iso-iec-ieee-12207-obp-2026]
 
 ## ASPICE, ISO/IEC TS 33061과의 관계
 

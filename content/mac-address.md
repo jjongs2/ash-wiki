@@ -29,4 +29,4 @@ MAC 주소의 앞 3옥텟(24비트)은 **OUI**(Organizationally Unique Identifie
 
 ## 장치의 주소
 
-Microchip 24AA02E48은 공장에서 전역 고유한 EUI-48 노드 주소를 기록하고 영구히 쓰기 금지해 둔 I2C(Inter-Integrated Circuit) EEPROM(Electrically Erasable Programmable Read-Only Memory)이다.[@microchip-24aa02e48-2016] ENC28J60과 STM32F107xx의 이더넷 MAC은 자기 MAC 주소를 레지스터에 두고, 소프트웨어가 그 값을 써 넣는다.[@st-rm0008-2021][@microchip-enc28j60-2012]
+Microchip 24AA02E48은 공장에서 전역 고유한 EUI-48 노드 주소를 기록하고 영구히 쓰기 금지해 둔 I2C(Inter-Integrated Circuit) EEPROM이다.[@microchip-24aa02e48-2016] ENC28J60과 STM32F107xx의 이더넷 MAC은 자기 MAC 주소를 레지스터에 두고, 소프트웨어가 그 값을 써 넣는다.[@st-rm0008-2021][@microchip-enc28j60-2012]

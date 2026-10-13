@@ -29,7 +29,7 @@ RTOS 기반 소프트웨어는 일을 여러 태스크로 나누고, 태스크�
 
 RTOS는 흔히 주기적인 타이머 인터럽트인 [[system-tick|시스템 틱]]으로 시간을 잰다.[@silabs-intro-rtos-2019][@freertos-rtos-tick-2026]
 
-RTOS를 쓰면 틱을 돌리고 태스크를 전환하는 데 CPU 시간이 더 든다.[@freertos-faq-what-is-this-all-about-2026][@silabs-intro-rtos-2019] Silicon Labs 자료에 따르면 RTOS의 서비스 부담은 대개 CPU 사이클의 2\~10%이고, RTOS 코드는 플래시를 대개 6\~20 KB 더 쓰며, 태스크마다 스택과 TCB(Task Control Block)로 RAM(Random-Access Memory)을 더 쓴다.[@silabs-intro-rtos-2019] µC/OS-III 문서는 RTOS 전체가 아니라 커널만 놓고, 잘 설계된 애플리케이션에서 커널이 CPU 시간의 2\~4%를 쓴다는 값을 제시한다.[@micrium-ucos-iii-real-time-kernels-2026]
+RTOS를 쓰면 틱을 돌리고 태스크를 전환하는 데 CPU 시간이 더 든다.[@freertos-faq-what-is-this-all-about-2026][@silabs-intro-rtos-2019] Silicon Labs 자료에 따르면 RTOS의 서비스 부담은 대개 CPU 사이클의 2\~10%이고, RTOS 코드는 플래시를 대개 6\~20 KB 더 쓰며, 태스크마다 스택과 TCB(Task Control Block)로 RAM을 더 쓴다.[@silabs-intro-rtos-2019] µC/OS-III 문서는 RTOS 전체가 아니라 커널만 놓고, 잘 설계된 애플리케이션에서 커널이 CPU 시간의 2\~4%를 쓴다는 값을 제시한다.[@micrium-ucos-iii-real-time-kernels-2026]
 
 RTOS는 태스크 사이의 동기화와 통신에 [[semaphore|세마포어]], [[mutex|뮤텍스]], [[message-queue|메시지 큐]], [[event-flags|이벤트 플래그]] 같은 객체를 제공한다.[@silabs-intro-rtos-2019][@arm-cmsis-rtos2-using-2026] 인터럽트 처리기는 태스크를 깨워 [[deferred-interrupt-handling|처리를 그 태스크에 넘길]] 수 있다.[@silabs-intro-rtos-2019][@freertos-deferred-interrupt-handling-2026]
 

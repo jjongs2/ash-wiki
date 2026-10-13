@@ -29,7 +29,7 @@ SWEBOK V4.0a에 따르면 AD는 서로 다른 이해관계자의 여러 관심�
 
 ![[diagrams/synthetic-projective-views.svg]]
 
-아키텍처 프레임워크는 특정 분야의 권장 실무를 체계화한 것으로, 서로 맞물린 뷰포인트나 ADL의 집합으로 구현되며, 자동차 산업의 [[autosar|AUTOSAR]]가 그 예다. UML(Unified Modeling Language)은 소프트웨어 설계 활동에서 널리 쓰이기 때문에 ADL로 자주 쓰여 왔다.[@ieee-swebok-v4-0a-2026]
+아키텍처 프레임워크는 특정 분야의 권장 실무를 체계화한 것으로, 서로 맞물린 뷰포인트나 ADL의 집합으로 구현되며, 자동차 산업의 [[autosar|AUTOSAR]]가 그 예다. UML은 소프트웨어 설계 활동에서 널리 쓰이기 때문에 ADL로 자주 쓰여 왔다.[@ieee-swebok-v4-0a-2026]
 
 ## 아키텍처 스타일과 패턴
 

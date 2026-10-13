@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-13
 ---
 
-ISTQB 용어집은 **유지보수 테스트**(maintenance testing)를 운영 중인 시스템이나 그 환경에 가한 변경의 영향을 평가하는 테스트 유형으로 정의한다.[@istqb-glossary-maintenance-testing-2026] ISTQB CTFL 강의계획서에 따르면 운영 중인 시스템의 변경을 테스트할 때는 변경을 제대로 구현했는지 평가하는 일과, 바꾸지 않은 부분(대개 시스템의 대부분)에 [[regression-testing|회귀]]가 생겼는지 확인하는 일을 함께 한다.[@istqb-ctfl-syllabus-2024]
+ISTQB 용어집은 **유지보수 테스트**(maintenance testing)를 운영 중인 시스템이나 그 환경에 가한 변경의 영향을 평가하는 [[test-type|테스트 유형]]으로 정의한다.[@istqb-glossary-maintenance-testing-2026] ISTQB CTFL 강의계획서에 따르면 운영 중인 시스템의 변경을 테스트할 때는 변경을 제대로 구현했는지 평가하는 일과, 바꾸지 않은 부분(대개 시스템의 대부분)에 [[regression-testing|회귀]]가 생겼는지 확인하는 일을 함께 한다.[@istqb-ctfl-syllabus-2024]
 
 ## 범위와 계기
 

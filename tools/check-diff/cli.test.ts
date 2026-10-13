@@ -264,7 +264,7 @@ describe("check-diff CLI", { concurrency: false }, () => {
     assert.ok(has(lines, "content/definitions.md:", "DIS (ISO/DIS)"))
     assert.ok(has(lines, "content/definitions.md:", "CRC"))
     assert.ok(
-      has(lines, "content/definitions.md:", "풀이가 없다: RAM"),
+      has(lines, "content/definitions.md:", "풀이가 없다: NVM"),
       "괄호 안이어도 풀이가 아니다",
     )
     assert.ok(

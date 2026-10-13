@@ -27,7 +27,7 @@ ECU Abstraction Layer는 Onboard Device Abstraction, [[autosar-memory-stack|Memo
 
 ## External driver
 
-마이크로컨트롤러 바깥, ECU 보드에 달린 장치를 **external device**라 한다. 외부 EEPROM(Electrically Erasable Programmable Read-Only Memory), 외부 watchdog, 외부 플래시가 그 예다. external device의 드라이버인 **external driver**는 ECU Abstraction Layer에 놓이고, MCAL의 드라이버를 거쳐 장치에 접근한다. 예를 들어 SPI로 연결된 외부 EEPROM의 드라이버는 SPI 버스를 다루는 MCAL 쪽 handler나 드라이버를 통해 EEPROM에 닿는다. 다만 메모리 맵 방식 외부 장치(외부 플래시 등)의 드라이버는 마이크로컨트롤러에 직접 접근할 수 있고 마이크로컨트롤러에 의존하므로 MCAL에 놓인다. 이렇게 나눈 덕분에 transceiver와 watchdog처럼 SBC(System Basis Chip) 안에 들어간 부품도 AUTOSAR로 다룰 수 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+마이크로컨트롤러 바깥, ECU 보드에 달린 장치를 **external device**라 한다. 외부 EEPROM, 외부 watchdog, 외부 플래시가 그 예다. external device의 드라이버인 **external driver**는 ECU Abstraction Layer에 놓이고, MCAL의 드라이버를 거쳐 장치에 접근한다. 예를 들어 SPI로 연결된 외부 EEPROM의 드라이버는 SPI 버스를 다루는 MCAL 쪽 handler나 드라이버를 통해 EEPROM에 닿는다. 다만 메모리 맵 방식 외부 장치(외부 플래시 등)의 드라이버는 마이크로컨트롤러에 직접 접근할 수 있고 마이크로컨트롤러에 의존하므로 MCAL에 놓인다. 이렇게 나눈 덕분에 transceiver와 watchdog처럼 SBC(System Basis Chip) 안에 들어간 부품도 AUTOSAR로 다룰 수 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ![[diagrams/autosar-internal-external-driver-placement.svg]]
 

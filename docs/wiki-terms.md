@@ -15,7 +15,6 @@
 
 - Annex: 부속서, 부록 (#301). 원문이 Annex일 때. 원문이 Appendix인 "부록"은 그대로
 - aperiodic: 비주기 (#350). 합성어 포함. 예: aperiodic 태스크, aperiodic server. CANopen PDO의 주기·비주기 송신처럼 통신의 송신 방식은 예외
-- API 풀이 Application Programming Interface: Application Program Interface (#165)
 - ASPICE: Automotive SPICE, A-SPICE (#231). 판을 붙이면 `ASPICE 4.1` 꼴. 정식 이름은 `automotive-spice` 머리말의 풀이에만, A-SPICE는 그 페이지의 alias로만. 문서 이름 "Automotive SPICE for Cybersecurity"와 슬러그는 예외
 - cascading failure: 연쇄 고장 (#291)
 - channel: 채널 (#257). MCAL I/O 드라이버(ADC·DIO·ICU·OCU·PWM)의 channel일 때. 그 밖의 채널은 "채널". 예: ComM·NM의 채널, FlexRay 채널
@@ -41,7 +40,6 @@
 - OOPSLA 풀이 Object-Oriented Programming, Systems, Languages, and Applications: Object-Oriented Programming, Systems, Languages & Applications (#291)
 - OSEK OS: OSEK/VDX OS (#257). OS를 가리킬 때. 명세를 가리키는 "OSEK/VDX OS"는 그대로. 예: "OSEK/VDX OS 2.2.3 명세"
 - prototyping: 프로토타이핑 (#291). prototype도 같다. AUTOSAR의 prototype은 이 결정에 들지 않음
-- RAM 풀이 Random-Access Memory: Random Access Memory (#165)
 - recessive: 리세시브 (#165). 조사는 원어의 발음대로. 예: "recessive이고"
 - resource: 리소스 (#165). OSEK 객체일 때. 일반적인 뜻이면 "자원"
 - root of trust: 신뢰의 뿌리 (#288)

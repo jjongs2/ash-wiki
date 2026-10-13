@@ -35,7 +35,7 @@ Zephyr는 뮤텍스를 풀거나 높은 우선순위 대기자가 타임아웃�
 
 RTEMS(Real-Time Executive for Multiprocessor Systems)는 5.1부터 잠금 프로토콜에 따른 우선순위 변경을 곧바로, 재귀적으로 전파한다. 그래서 우선순위 상속이 전이적이다.[@rtems-locking-protocols-2025][@rtems-priority-inheritance-protocol-2025] µC/OS-III는 뮤텍스를 놓을 때 올라갔던 태스크의 우선순위를 원래 값으로 되돌리고, 자기 방식을 **full priority inheritance**라 부른다.[@micrium-ucos-iii-mutual-exclusion-semaphores-2026]
 
-Linux 커널의 rtmutex는 뮤텍스를 풀면 올렸던 우선순위를 곧바로 되돌린다. 대기자는 우선순위 순으로, 우선순위가 같으면 FIFO(First-In First-Out) 순으로 줄 선다.[@linux-rt-mutex-2026] [[preempt-rt|PREEMPT_RT]] 커널의 rtmutex는 블록된 태스크의 우선순위뿐 아니라 스케줄링 정책도 락 소유자에게 물려준다.[@linux-preempt-rt-theory-2026]
+Linux 커널의 rtmutex는 뮤텍스를 풀면 올렸던 우선순위를 곧바로 되돌린다. 대기자는 우선순위 순으로, 우선순위가 같으면 FIFO 순으로 줄 선다.[@linux-rt-mutex-2026] [[preempt-rt|PREEMPT_RT]] 커널의 rtmutex는 블록된 태스크의 우선순위뿐 아니라 스케줄링 정책도 락 소유자에게 물려준다.[@linux-preempt-rt-theory-2026]
 
 ## 우선순위 상한 프로토콜과의 차이
 

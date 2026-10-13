@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**TCP**(Transmission Control Protocol)는 IP(Internet Protocol) 위에서 동작하는 연결형 전송 계층 프로토콜로, 두 프로세스 사이에 신뢰성 있고 순서를 지키는 양방향 바이트 스트림을 준다. RFC 9293이 정한다.[@ietf-rfc-9293-2022] IP 헤더의 Protocol 값 6이 TCP를 가리킨다.[@iana-protocol-numbers-2026]
+**TCP**(Transmission Control Protocol)는 IP 위에서 동작하는 연결형 전송 계층 프로토콜로, 두 프로세스 사이에 신뢰성 있고 순서를 지키는 양방향 바이트 스트림을 준다. RFC 9293이 정한다.[@ietf-rfc-9293-2022] IP 헤더의 Protocol 값 6이 TCP를 가리킨다.[@iana-protocol-numbers-2026]
 
 TCP는 잃거나 깨진 데이터를 다시 보내고, 순서가 바뀐 데이터를 바로잡고, 중복을 걸러 내어 보낸 순서대로 전달한다. 받는 쪽이 감당할 수 있는 만큼만 보내도록 흐름을 제어하고, 네트워크 혼잡에 맞춰 보내는 양을 조절한다.[@ietf-rfc-9293-2022]
 
@@ -61,7 +61,7 @@ RFC 3366은 TCP를 전송 계층의 슬라이딩 윈도 프로토콜로 본다([
 
 TCP는 주고받은 세그먼트의 경계와 응용이 읽고 쓰는 버퍼의 경계가 서로 대응한다고 보장하지 않는다. 그래서 응용이 여러 번에 나눠 쓴 데이터를 받는 쪽이 한 번에 읽을 수도 있고, 한 번에 쓴 데이터를 여러 번에 나눠 읽을 수도 있다.[@ietf-rfc-9293-2022]
 
-메시지 경계가 필요한 응용은 스스로 레코드 표시를 넣어 메시지를 가른다.[@ietf-rfc-9260-2022] RFC 3117은 메시지를 가르는 흔한 방법 세 가지로, SMTP(Simple Mail Transfer Protocol)처럼 메시지 끝에 표시를 두는 octet-stuffing, HTTP(Hypertext Transfer Protocol)처럼 헤더에 길이를 적는 octet-counting, FTP(File Transfer Protocol)처럼 메시지마다 새 TCP 연결을 여는 connection-blasting을 든다.[@ietf-rfc-3117-2001]
+메시지 경계가 필요한 응용은 스스로 레코드 표시를 넣어 메시지를 가른다.[@ietf-rfc-9260-2022] RFC 3117은 메시지를 가르는 흔한 방법 세 가지로, SMTP(Simple Mail Transfer Protocol)처럼 메시지 끝에 표시를 두는 octet-stuffing, HTTP처럼 헤더에 길이를 적는 octet-counting, FTP(File Transfer Protocol)처럼 메시지마다 새 TCP 연결을 여는 connection-blasting을 든다.[@ietf-rfc-3117-2001]
 
 ## UDP와의 차이
 

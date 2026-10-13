@@ -24,7 +24,7 @@ IEEE 802.1Q-2022는 ATS 스케줄러가 정수 스케줄러 식별자와 스케�
 
 ## 스케줄러 그룹
 
-이 표준은 ATS 스케줄러를 스케줄러 그룹으로 묶는다. 그룹은 수신 포트마다, 그리고 그 포트에 이어진 장치에서 프레임을 보낸 [[traffic-class|트래픽 클래스]](upstream traffic class)마다 하나씩 있다. 한 그룹의 스케줄러들은 MaxResidenceTime 파라미터와 group eligibility time 상태 변수를 함께 쓴다. 이렇게 묶으면 한 그룹에 속한 프레임들의 eligibility time이 줄어들지 않고 이어지므로, 한 그룹의 프레임을 FIFO(First-In First-Out)로 큐에 넣을 수 있다.[@ieee-802-1q-2022]
+이 표준은 ATS 스케줄러를 스케줄러 그룹으로 묶는다. 그룹은 수신 포트마다, 그리고 그 포트에 이어진 장치에서 프레임을 보낸 [[traffic-class|트래픽 클래스]](upstream traffic class)마다 하나씩 있다. 한 그룹의 스케줄러들은 MaxResidenceTime 파라미터와 group eligibility time 상태 변수를 함께 쓴다. 이렇게 묶으면 한 그룹에 속한 프레임들의 eligibility time이 줄어들지 않고 이어지므로, 한 그룹의 프레임을 FIFO로 큐에 넣을 수 있다.[@ieee-802-1q-2022]
 
 ## 전송 선택
 

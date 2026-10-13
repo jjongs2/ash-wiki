@@ -68,9 +68,9 @@ AUTOSAR R25-11 용어집은 시스템이 variant의 집합을 기술하는 성�
 
 ## AUTOSAR XML
 
-XML(Extensible Markup Language)로 AUTOSAR 모델을 나타낸 것을 **AUTOSAR XML 기술**이라 한다. 각 파일은 AUTOSAR XML Schema에 맞아야 하고, 이 스키마는 AUTOSAR 메타모델에서 도출되며 AUTOSAR의 데이터 교환 형식을 정한다.[@autosar-fo-tr-glossary-2025] 방법론에서 SW-C 기술, System Description, ECU Extract, 표준과 벤더별 모듈 정의는 종류가 AUTOSAR XML인 산출물이다.[@autosar-cp-tr-methodology-2025] ECU Configuration Values는 ARXML 파일로 저장되고, Parameter Definition도 XML 파일이다. AUTOSAR는 AUTOSAR 호환 도구가 시스템 개발 중에 정보를 정의하고 공유하는 기술로 XML을 골랐다.[@autosar-cp-tps-ecuconfiguration-2025]
+XML로 AUTOSAR 모델을 나타낸 것을 **AUTOSAR XML 기술**이라 한다. 각 파일은 AUTOSAR XML Schema에 맞아야 하고, 이 스키마는 AUTOSAR 메타모델에서 도출되며 AUTOSAR의 데이터 교환 형식을 정한다.[@autosar-fo-tr-glossary-2025] 방법론에서 SW-C 기술, System Description, ECU Extract, 표준과 벤더별 모듈 정의는 종류가 AUTOSAR XML인 산출물이다.[@autosar-cp-tr-methodology-2025] ECU Configuration Values는 ARXML 파일로 저장되고, Parameter Definition도 XML 파일이다. AUTOSAR는 AUTOSAR 호환 도구가 시스템 개발 중에 정보를 정의하고 공유하는 기술로 XML을 골랐다.[@autosar-cp-tps-ecuconfiguration-2025]
 
-AUTOSAR R25-11 용어집은 **AUTOSAR 메타모델**을 AUTOSAR 시스템과 관련 산출물을 기술하는 언어를 정하는 UML(Unified Modeling Language) 2.0 모델로 정의한다. **AUTOSAR 도구**는 방법론이 정한 작업을 하나 이상 지원하는 소프트웨어 도구이고, 지원하는 작업에 따라 authoring 도구, converter 도구, processor 도구나 그 조합으로 동작한다. authoring 도구는 AUTOSAR XML 기술을 만들고 고치며(예: System Description 편집기), converter 도구는 다른 AUTOSAR XML 파일의 정보를 바꿔 AUTOSAR XML 파일을 만들고(예: ECU flattener), processor 도구는 AUTOSAR XML 파일의 정보로 AUTOSAR가 아닌 파일을 만든다(예: RTE 생성기).[@autosar-fo-tr-glossary-2025]
+AUTOSAR R25-11 용어집은 **AUTOSAR 메타모델**을 AUTOSAR 시스템과 관련 산출물을 기술하는 언어를 정하는 UML 2.0 모델로 정의한다. **AUTOSAR 도구**는 방법론이 정한 작업을 하나 이상 지원하는 소프트웨어 도구이고, 지원하는 작업에 따라 authoring 도구, converter 도구, processor 도구나 그 조합으로 동작한다. authoring 도구는 AUTOSAR XML 기술을 만들고 고치며(예: System Description 편집기), converter 도구는 다른 AUTOSAR XML 파일의 정보를 바꿔 AUTOSAR XML 파일을 만들고(예: ECU flattener), processor 도구는 AUTOSAR XML 파일의 정보로 AUTOSAR가 아닌 파일을 만든다(예: RTE 생성기).[@autosar-fo-tr-glossary-2025]
 
 **Artop**은 AUTOSAR 규격을 따르는 시스템과 ECU를 설계하고 설정하는 개발 도구에 공통인 기반 기능을 구현한 인프라 플랫폼이다. Eclipse Platform과 EMF(Eclipse Modeling Framework) 위에 지어졌고, AUTOSAR 메타모델 릴리스의 구현, AUTOSAR XML 스키마를 따르는 직렬화, 규칙 기반 검증 같은 구성 요소를 담는다. 최종 사용자 기능은 Artop의 범위 밖이어서 도구 벤더가 독자 플러그인으로 더한다. Artop 4.19는 AUTOSAR R25-11을 지원하며, 그 SDK(Software Development Kit)는 AUTOSAR 아티팩트 서버에서 AUTOSAR 파트너만 내려받을 수 있다.[@autosar-artop-2026]
 

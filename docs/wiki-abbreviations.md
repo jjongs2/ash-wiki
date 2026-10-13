@@ -32,11 +32,13 @@
 - DENSO: 조직
 - DoD: 조직
 - ECU: 널리 쓰이는 약어
+- EEPROM: 널리 쓰이는 약어
 - EIA: 조직
 - EN: 표준·규격 이름
 - ENISA: 조직
 - EU: 조직
 - FAA: 조직
+- FIFO: 널리 쓰이는 약어
 - FIPS: 표준·규격 이름
 - FIRST: 조직
 - GENIVI: 조직
@@ -45,6 +47,8 @@
 - GRVA: 조직
 - GUI: 널리 쓰이는 약어
 - HIS: 조직
+- HTTP: 널리 쓰이는 약어
+- HTTPS: 널리 쓰이는 약어
 - I/O: 널리 쓰이는 약어
 - IANA: 조직
 - IBM: 조직
@@ -56,11 +60,14 @@
 - IETF: 조직
 - INH: 핀과 신호
 - intacs: 조직
+- IoT: 널리 쓰이는 약어
+- IP: 널리 쓰이는 약어. Internet Protocol일 때
 - ISACA: 조직
 - ISO: 조직
 - ISTQB: 조직
 - ITU-T: 조직
 - JTC: ISO 위원회 번호
+- LAN: 널리 쓰이는 약어
 - MCD: 표준·규격 이름
 - MCU: 널리 쓰이는 약어
 - MEF: 표준·규격 이름
@@ -77,14 +84,18 @@
 - NXP: 조직
 - OASIS: 조직
 - ODVA: 조직
+- OEM: 널리 쓰이는 약어
 - OMA: 조직
 - OSEK/VDX: 표준·규격 이름
 - PCI SSC: 조직
 - PDF: 널리 쓰이는 약어
 - POSIX: 표준·규격 이름
 - PSE51: 표준·규격 이름
+- QoS: 널리 쓰이는 약어
+- RAM: 널리 쓰이는 약어
 - RFC: 표준·규격 이름
 - RJ: 표준·규격 이름
+- ROM: 널리 쓰이는 약어
 - RS: 표준·규격 이름
 - RX_CLK: 핀과 신호
 - RX_DV: 핀과 신호
@@ -98,6 +109,7 @@
 - SEI: 조직
 - SP: 표준·규격 이름
 - SPICE: 표준·규격 이름
+- SRAM: 널리 쓰이는 약어
 - SWEBOK: 표준·규격 이름
 - TC: ISO 위원회 번호
 - TCG: 조직
@@ -111,9 +123,11 @@
 - TX_ER: 핀과 신호
 - TXD: 핀과 신호
 - UI: 널리 쓰이는 약어. user interface일 때
+- UML: 널리 쓰이는 약어
 - UN: 조직
 - UNECE: 조직
 - UNIX: 널리 쓰이는 약어
+- URI: 널리 쓰이는 약어
 - USB: 널리 쓰이는 약어
 - VCC: 전원
 - VDA: 조직
@@ -123,4 +137,5 @@
 - WAKE: 핀과 신호
 - WG: ISO 위원회 번호
 - WP.29: 조직
+- XML: 널리 쓰이는 약어
 - XOR: 널리 쓰이는 약어

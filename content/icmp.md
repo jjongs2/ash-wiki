@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**ICMP**(Internet Control Message Protocol)는 IP(Internet Protocol) 데이터그램을 처리하다 생긴 오류를 알리는 프로토콜이다.[@ietf-rfc-792-1981] 진단에 쓰는 메시지도 주고받는다.[@ietf-rfc-1812-1995] [[ipv4|IPv4]]용 ICMP는 RFC 792가 정한다.[@ietf-rfc-792-1981][@ietf-rfc-4443-2006] ICMP는 IP의 일부로 모든 IP 모듈이 구현해야 한다.[@ietf-rfc-792-1981] ICMP 메시지는 IP 데이터그램에 실리고, IP 헤더의 Protocol 값 1로 표시된다.[@ietf-rfc-792-1981][@iana-protocol-numbers-2026]
+**ICMP**(Internet Control Message Protocol)는 IP 데이터그램을 처리하다 생긴 오류를 알리는 프로토콜이다.[@ietf-rfc-792-1981] 진단에 쓰는 메시지도 주고받는다.[@ietf-rfc-1812-1995] [[ipv4|IPv4]]용 ICMP는 RFC 792가 정한다.[@ietf-rfc-792-1981][@ietf-rfc-4443-2006] ICMP는 IP의 일부로 모든 IP 모듈이 구현해야 한다.[@ietf-rfc-792-1981] ICMP 메시지는 IP 데이터그램에 실리고, IP 헤더의 Protocol 값 1로 표시된다.[@ietf-rfc-792-1981][@iana-protocol-numbers-2026]
 
 ICMP는 IP를 신뢰성 있게 만들지 않는다. 데이터그램이 사라져도 ICMP 메시지가 반드시 나오지는 않는다.[@ietf-rfc-792-1981]
 

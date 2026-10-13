@@ -47,7 +47,7 @@ IEEE 802.3-2022는 길이 해석과 타입 해석이 서로 배타적이라고 �
 
 ## IP 캡슐화
 
-RFC 894는 이더넷 위의 IP(Internet Protocol) 데이터그램을 타입 방식으로 싣도록 정한다. 타입 필드 값은 `0x0800`이고, 데이터 필드에는 IP 헤더와 그 뒤의 데이터가 바로 들어간다. 데이터 필드가 최소 46옥텟에 못 미치면 0인 옥텟으로 채우며, 이 패드는 IP 패킷에 들지 않는다.[@ietf-rfc-894-1984]
+RFC 894는 이더넷 위의 IP 데이터그램을 타입 방식으로 싣도록 정한다. 타입 필드 값은 `0x0800`이고, 데이터 필드에는 IP 헤더와 그 뒤의 데이터가 바로 들어간다. 데이터 필드가 최소 46옥텟에 못 미치면 0인 옥텟으로 채우며, 이 패드는 IP 패킷에 들지 않는다.[@ietf-rfc-894-1984]
 
 RFC 1042는 IEEE 802 네트워크 위의 IP 데이터그램과 ARP 메시지를 IEEE 802.2 LLC(Logical Link Control) Type 1의 UI(Unnumbered Information) 형식에 SNAP(Sub-Network Access Protocol) 확장을 붙여 싣도록 정한다. DSAP(Destination Service Access Point)와 SSAP(Source Service Access Point)는 SNAP에 배정된 전역 값 170, 제어 필드는 3이고, SNAP의 24비트 조직 코드는 0이며, 나머지 16비트에 EtherType이 들어간다. LLC와 SNAP 헤더가 8옥텟을 차지하므로, 10BASE5의 최대 프레임 1518옥텟에서 MAC 헤더와 트레일러 18옥텟을 빼면 IP 데이터그램에 남는 것은 1492옥텟이다.[@ietf-rfc-1042-1988]
 

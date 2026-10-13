@@ -9,7 +9,7 @@ AUTOSAR R25-11 Adaptive Platform 설계 설명서는 **Diagnostic Management**�
 
 지원하는 전송 계층은 [[doip|DoIP]]다. 차량 안이나 원격 진단에는 다른 전송 프로토콜을 쓰는 일이 많아, 사용자 전송 계층으로 플랫폼을 넓히는 API를 둔다. 고성능 컴퓨터에서는 [[uds|UDS]]와 DoIP에 더해 SOVD(Service-Oriented Vehicle Diagnostics)도 지원한다.[@autosar-ap-exp-platformdesign-2025]
 
-Diagnostic Management는 ISO 14229-1에 따른 UDS 서버 인스턴스와 ASAM의 SOVD를 구현하는 진단 서버 구현이다. UDS의 전송 계층으로는 ISO 13400-2:2019(ISO 13400-2:2019/Amd 1:2023 포함)에 따른 DoIP나 사용자 구현 전송 프로토콜을 쓸 수 있고, SOVD에는 HTTP(Hypertext Transfer Protocol)나 HTTPS(Hypertext Transfer Protocol Secure) 위의 REST(Representational State Transfer) 서비스를 쓴다. DEXT는 Diagnostic Management의 설정 입력이다.[@autosar-ap-sws-diagnostics-2025]
+Diagnostic Management는 ISO 14229-1에 따른 UDS 서버 인스턴스와 ASAM의 SOVD를 구현하는 진단 서버 구현이다. UDS의 전송 계층으로는 ISO 13400-2:2019(ISO 13400-2:2019/Amd 1:2023 포함)에 따른 DoIP나 사용자 구현 전송 프로토콜을 쓸 수 있고, SOVD에는 HTTP나 HTTPS 위의 REST(Representational State Transfer) 서비스를 쓴다. DEXT는 Diagnostic Management의 설정 입력이다.[@autosar-ap-sws-diagnostics-2025]
 
 ## 진단 주소와 Diagnostic Server
 
@@ -18,7 +18,7 @@ Diagnostic Management는 설치된 Software Cluster마다 진단 주소(Diagnost
 모든 Diagnostic Server 인스턴스는 전송 계층 인스턴스 하나(예: [[internet-protocol-suite|TCP/IP]] 포트 13400의 DoIP)를 함께 쓴다. Diagnostic Communication Management의 응답 처리는 대체로 Classic Platform의 Dcm(Diagnostic Communication Manager) 모듈과 같은 일을 한다.[@autosar-ap-sws-diagnostics-2025]
 
 - 네트워크 계층에서 DoIP나 사용자 전송 프로토콜의 UDS 요청과 SOVD의 HTTP·REST 요청을 받는다.
-- 요청에서 정보를 뽑아, UDS 요청은 대상 주소와 주소 종류(물리·기능)에 따라, SOVD 요청은 URI(Uniform Resource Identifier)의 대상 개체와 경로에 따라 Diagnostic Server 인스턴스로 보낸다.
+- 요청에서 정보를 뽑아, UDS 요청은 대상 주소와 주소 종류(물리·기능)에 따라, SOVD 요청은 URI의 대상 개체와 경로에 따라 Diagnostic Server 인스턴스로 보낸다.
 - 여러 요청과 클라이언트를 다룬다. UDS 요청은 기존 UDS 세션에 연결하고, SOVD 요청은 요청한 자원의 모드와 잠금으로 접근을 보호한다.
 - UDS 요청은 현재 세션과 보안 설정으로, SOVD 요청은 인가와 검증으로 허용 여부를 확인한다. 허용하지 않으면 UDS 부정 응답이나 SOVD 오류 코드를 담은 HTTP 오류 응답을 보낸다.
 - 허용한 요청은 설정과 요청 종류에 따라 Diagnostic Communication Management나 Diagnostic Event Management 기능 블록 안에서 처리하거나, Diagnostic Management 밖의 Adaptive Application에 넘긴다.[@autosar-ap-sws-diagnostics-2025]

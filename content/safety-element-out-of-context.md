@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-12
 ---
 
-[[iso-26262|ISO 26262]]-1:2018은 **SEooC**(Safety Element out of Context)를 특정 [[safety-lifecycle#ISO 26262의 안전 생명주기|아이템]]의 맥락에서 개발하지 않은 안전 관련 요소로 정의한다. 정의의 주석은 SEooC가 될 수 있는 것으로 시스템, 시스템의 조합, 소프트웨어 컴포넌트, 소프트웨어 유닛, 하드웨어 컴포넌트, 하드웨어 부품을 제시한다. 정의의 예는 가정한 [[safety-requirement|안전 요구사항]]을 두고 여러 OEM(Original Equipment Manufacturer)의 시스템에 통합할 일반 와이퍼 시스템을 든다.[@iso-26262-1-obp-2018]
+[[iso-26262|ISO 26262]]-1:2018은 **SEooC**(Safety Element out of Context)를 특정 [[safety-lifecycle#ISO 26262의 안전 생명주기|아이템]]의 맥락에서 개발하지 않은 안전 관련 요소로 정의한다. 정의의 주석은 SEooC가 될 수 있는 것으로 시스템, 시스템의 조합, 소프트웨어 컴포넌트, 소프트웨어 유닛, 하드웨어 컴포넌트, 하드웨어 부품을 제시한다. 정의의 예는 가정한 [[safety-requirement|안전 요구사항]]을 두고 여러 OEM의 시스템에 통합할 일반 와이퍼 시스템을 든다.[@iso-26262-1-obp-2018]
 
 ## 요소와 안전 관련 요소
 

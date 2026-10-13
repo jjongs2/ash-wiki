@@ -27,7 +27,7 @@ FreeRTOS는 API 함수 일부를 태스크용과 ISR용 두 가지로 두고, IS
 
 FreeRTOS에서 처리를 넘기는 방법은 둘이다. 인터럽트마다 응용이 만든 태스크에 넘기면 넘기는 태스크마다 우선순위를 따로 정할 수 있지만 태스크가 더 필요하다. `xTimerPendFunctionCallFromISR()`로 처리 함수를 RTOS daemon 태스크에 넘기면 인터럽트마다 태스크를 만들 필요가 없다. 대신 넘긴 함수는 모두 daemon 태스크의 우선순위로 실행되고, 함수가 timer command queue를 거쳐 전달되므로 인터럽트 우선순위가 아니라 큐에 들어온 순서대로 처리된다.[@freertos-interrupt-management-2026] 큐에 쓰고 읽는 만큼 지연도 늘어난다.[@freertos-deferred-interrupt-handling-2026]
 
-Zephyr의 ISR은 FIFO(First-In First-Out), LIFO(Last-In First-Out), [[semaphore|세마포어]] 같은 커널 객체로 도우미 스레드에 신호하거나, 시스템 workqueue 스레드에 work item을 실행하게 해 처리를 넘긴다. 처리를 넘기면 대개 ISR이 끝날 때 그 스레드로 context switch가 한 번 일어나지만, 넘겨받은 스레드의 우선순위에 따라서는 실행 중인 cooperative 스레드나 더 높은 우선순위 스레드가 먼저 실행될 수 있다.[@zephyr-interrupts-2026]
+Zephyr의 ISR은 FIFO, LIFO(Last-In First-Out), [[semaphore|세마포어]] 같은 커널 객체로 도우미 스레드에 신호하거나, 시스템 workqueue 스레드에 work item을 실행하게 해 처리를 넘긴다. 처리를 넘기면 대개 ISR이 끝날 때 그 스레드로 context switch가 한 번 일어나지만, 넘겨받은 스레드의 우선순위에 따라서는 실행 중인 cooperative 스레드나 더 높은 우선순위 스레드가 먼저 실행될 수 있다.[@zephyr-interrupts-2026]
 
 µC/OS-III의 ISR은 `OSFlagPost()`, `OSQPost()`, `OSSemPost()`, `OSTaskQPost()`, `OSTaskSemPost()` 같은 post 호출만 할 수 있고, [[mutex|뮤텍스]]는 태스크 수준에서만 쓰는 서비스로 보아 `OSMutexPost()`는 부를 수 없다.[@micrium-ucos-iii-task-management-internals-2026] µC/OS-III는 V3.05.00에서 deferred interrupt processing을 새 설계에 권하지 않는 기능으로 돌렸고, V3.06.00에서 없앴다.[@micrium-ucos-iii-release-notes-2026]
 

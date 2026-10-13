@@ -33,7 +33,7 @@ ENC28J60은 `ERXFCON.CRCEN`이 설정되어 있으면 CRC가 틀린 패킷을 �
 
 ## 쓰는 곳
 
-CRC는 [[ethernet|이더넷]] 같은 LAN(Local Area Network)에서 쓰인다.[@microchip-an730-2000][@ti-spra530-1999] Microchip 앱노트에 따르면 CRC는 데이터 메모리·프로그램 메모리에 든 데이터가 올바른지 확인하는 데도 흔히 쓰이고[@microchip-an2632-2019], CAN과 이더넷을 비롯한 널리 쓰이는 통신 프로토콜 대부분이 CRC로 오류를 검출한다.[@microchip-an1148-2008]
+CRC는 [[ethernet|이더넷]] 같은 LAN에서 쓰인다.[@microchip-an730-2000][@ti-spra530-1999] Microchip 앱노트에 따르면 CRC는 데이터 메모리·프로그램 메모리에 든 데이터가 올바른지 확인하는 데도 흔히 쓰이고[@microchip-an2632-2019], CAN과 이더넷을 비롯한 널리 쓰이는 통신 프로토콜 대부분이 CRC로 오류를 검출한다.[@microchip-an1148-2008]
 
 CRC는 이웃한 비트들에 몰린 오류인 버스트 오류를 찾아내는 데 쓴다.[@microchip-an730-2000][@ti-spra530-1999] 오류 버스트의 길이는 첫 오류 비트부터 마지막 오류 비트까지의 비트 수다.[@iec-60050-721-08-10-1991] ITU-T X.141에 따르면 X.25 등의 패킷 전송 절차가 쓰는 16비트 FCS(Frame Check Sequence)는 길이가 16비트를 넘지 않는 오류 버스트를 모두 찾아낸다.[@itu-t-x-141-1988]
 

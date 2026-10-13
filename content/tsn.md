@@ -18,7 +18,7 @@ IEEE 802.1 작업 그룹의 TSN 요약은 TSN 도구를 네 갈래로 나눈다.
 - 고가용성과 초신뢰성: [[ieee-802-1cb|IEEE 802.1CB]], IEEE 802.1Qca, IEEE 802.1Qci
 - 전용 자원과 API: [[srp|SRP]](IEEE 802.1Qat), [[tsn-configuration|IEEE 802.1Qcc]][@ieee-802-1-tsn-summary-2026]
 
-시간 동기화는 시간 기반 스케줄링 같은 여러 TSN QoS(Quality of Service) 기능의 바탕이다.[@ieee-tsn-industrial-flyer-2026][@microchip-an1185-2025]
+시간 동기화는 시간 기반 스케줄링 같은 여러 TSN QoS 기능의 바탕이다.[@ieee-tsn-industrial-flyer-2026][@microchip-an1185-2025]
 
 [[ieee-802-1q|IEEE 802.1Q]]의 scheduled traffic은 포트의 [[time-aware-shaper#게이트 제어 목록|게이트 제어 목록]]에 따라 큐마다 둔 전송 게이트를 알려진 시간 척도에 맞춰 여닫으며, 그 타이밍은 [[ptp|PTP]] 시각을 쓸 수 있다고 전제한다.[@ieee-802-1q-2022]
 
@@ -50,7 +50,7 @@ IEEE 802.1 작업 그룹의 TSN 요약은 TSN 프로파일을 "TSN 도구의 선
 
 ![[diagrams/tsn-tools-profiles.svg]]
 
-IEEE 802.1BA-2021은 시간에 민감한 오디오·비디오 스트림을 나를 수 있는 네트워크를 만들기 위해, 브리지·스테이션·LAN(Local Area Network)의 기능, 옵션, 설정, 기본값, 프로토콜, 절차를 고르는 프로파일을 정한다.[@ieee-802-1ba-2021] IEEE 802.1CM-2018은 같은 방식으로 fronthaul 스트림을 나르는 네트워크를 위한 프로파일을 정하며, 셀룰러 네트워크의 무선 장비와 원격 제어기를 패킷 네트워크로 잇는 IEEE의 첫 표준이다.[@ieee-802-1cm-2018] IEEE/SAE 802.1DP-2025는 항공우주 탑재 브리지 IEEE 802.3 이더넷 네트워크를 위한 TSN 프로파일을 정하며, 2025년에 발행되었다.[@ieee-802-1dp-2025] IEC/IEEE 60802-2026은 산업 자동화 네트워크를 위해 브리지·엔드 스테이션·LAN의 기능과 설정을 고르는 TSN 프로파일을 정한다.[@iec-ieee-60802-2026] 이 표준은 TSN 기능, 공통 관리 방식, 보안, 기본값을 골라 변형을 제한하고, 이로써 여러 벤더의 장치로 네트워크를 꾸릴 수 있게 한다.[@ieee-tsn-industrial-flyer-2026]
+IEEE 802.1BA-2021은 시간에 민감한 오디오·비디오 스트림을 나를 수 있는 네트워크를 만들기 위해, 브리지·스테이션·LAN의 기능, 옵션, 설정, 기본값, 프로토콜, 절차를 고르는 프로파일을 정한다.[@ieee-802-1ba-2021] IEEE 802.1CM-2018은 같은 방식으로 fronthaul 스트림을 나르는 네트워크를 위한 프로파일을 정하며, 셀룰러 네트워크의 무선 장비와 원격 제어기를 패킷 네트워크로 잇는 IEEE의 첫 표준이다.[@ieee-802-1cm-2018] IEEE/SAE 802.1DP-2025는 항공우주 탑재 브리지 IEEE 802.3 이더넷 네트워크를 위한 TSN 프로파일을 정하며, 2025년에 발행되었다.[@ieee-802-1dp-2025] IEC/IEEE 60802-2026은 산업 자동화 네트워크를 위해 브리지·엔드 스테이션·LAN의 기능과 설정을 고르는 TSN 프로파일을 정한다.[@iec-ieee-60802-2026] 이 표준은 TSN 기능, 공통 관리 방식, 보안, 기본값을 골라 변형을 제한하고, 이로써 여러 벤더의 장치로 네트워크를 꾸릴 수 있게 한다.[@ieee-tsn-industrial-flyer-2026]
 
 ## AVB와의 관계
 

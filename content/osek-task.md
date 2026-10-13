@@ -21,7 +21,7 @@ extended 태스크는 여기에 waiting이 더해진 네 상태를 가진다. wa
 
 ![[diagrams/osek-task-state-model.svg]]
 
-basic 태스크는 waiting 상태가 없어 태스크의 시작과 끝에서만 동기화하며, 실행 context에 드는 RAM(Random-Access Memory)이 적다.[@osek-os-2-2-3-2005] 예를 들어 OSEKturbo OS/ARM7에서는 basic 태스크가 모두 한 스택을 함께 쓰고, extended 태스크는 저마다 정적으로 할당된 스택을 둔다.[@freescale-osekturbo-arm7-tr-2002]
+basic 태스크는 waiting 상태가 없어 태스크의 시작과 끝에서만 동기화하며, 실행 context에 드는 RAM이 적다.[@osek-os-2-2-3-2005] 예를 들어 OSEKturbo OS/ARM7에서는 basic 태스크가 모두 한 스택을 함께 쓰고, extended 태스크는 저마다 정적으로 할당된 스택을 둔다.[@freescale-osekturbo-arm7-tr-2002]
 
 extended 태스크는 끝나지 않은 채 waiting 상태로 들어가 CPU를 낮은 우선순위 태스크에 내줄 수 있다. 대신 운영체제가 관리하기에 더 복잡하고 시스템 자원을 더 쓴다.[@osek-os-2-2-3-2005]
 

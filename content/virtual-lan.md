@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**VLAN**(Virtual LAN)은 개별 LAN(Local Area Network)들을 잇는 브리지가 브리지로 이어진 네트워크와 함께 제공하는 가상 LAN으로, [[ieee-802-1q|IEEE 802.1Q-2022]]가 이 브리지를 정한다.[@ieee-802-1q-rev-2025] 프레임이 속한 VLAN은 VLAN 태그에 실린 식별자로 나타내고, 브리지는 VLAN마다 프레임을 내보낼 포트를 따로 둔다.[@ieee-802-1q-types-yang-2022][@ieee-802-1q-bridge-yang-2022] VLAN은 스테이션의 논리적 그룹을 관리하기 쉽게 하며, 같은 VLAN의 스테이션은 한 LAN에 있는 것처럼 통신하고 VLAN 사이의 트래픽은 제한된다. VLAN 브리지와 스테이션을 관리해 스테이션을 VLAN에 더하거나 빼거나 VLAN 사이로 옮긴다.[@ieee-802-1q-2022]
+**VLAN**(Virtual LAN)은 개별 LAN들을 잇는 브리지가 브리지로 이어진 네트워크와 함께 제공하는 가상 LAN으로, [[ieee-802-1q|IEEE 802.1Q-2022]]가 이 브리지를 정한다.[@ieee-802-1q-rev-2025] 프레임이 속한 VLAN은 VLAN 태그에 실린 식별자로 나타내고, 브리지는 VLAN마다 프레임을 내보낼 포트를 따로 둔다.[@ieee-802-1q-types-yang-2022][@ieee-802-1q-bridge-yang-2022] VLAN은 스테이션의 논리적 그룹을 관리하기 쉽게 하며, 같은 VLAN의 스테이션은 한 LAN에 있는 것처럼 통신하고 VLAN 사이의 트래픽은 제한된다. VLAN 브리지와 스테이션을 관리해 스테이션을 VLAN에 더하거나 빼거나 VLAN 사이로 옮긴다.[@ieee-802-1q-2022]
 
 ## VLAN 태그
 

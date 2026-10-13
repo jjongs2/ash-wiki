@@ -30,7 +30,7 @@ OIL 2.5의 객체는 다음과 같다.[@osek-oil-2-5-2004]
 | `ALARM`          | [[osek-alarm#Counter\|counter]] 값에 따라 만료되어 태스크를 활성화하거나 이벤트를 설정하거나 callback 루틴을 부르는 [[osek-alarm\|알람]] |
 | `COM`            | 통신 하위 시스템                                                                                                                         |
 | `MESSAGE`        | OSEK COM(Communication)이 정의한 메시지의 공급자 쪽 속성                                                                                 |
-| `NETWORKMESSAGE` | 같은 메시지의 OEM(Original Equipment Manufacturer) 쪽 속성                                                                               |
+| `NETWORKMESSAGE` | 같은 메시지의 OEM 쪽 속성                                                                                                                |
 | `IPDU`           | OSEK COM이 정의한, 외부 통신에 쓰는 메시지를 나르는 단위                                                                                 |
 | `NM`             | 네트워크 관리 하위 시스템                                                                                                                |
 

@@ -18,7 +18,7 @@ Uptane Standard 2.1.0은 구현 세부를 구현자에게 맡기고, 표준을 �
 
 이 표준은 저장소 둘을 정한다.[@uptane-standard-2-1-0-2023]
 
-- **Image repository**: OEM(Original Equipment Manufacturer)이나 공급사가 올린 설치용 이미지와 그 [[digital-signature|서명]]된 메타데이터를 차량에 내준다. 주로 사람이 관리하고 드물게 갱신된다.
+- **Image repository**: OEM이나 공급사가 올린 설치용 이미지와 그 [[digital-signature|서명]]된 메타데이터를 차량에 내준다. 주로 사람이 관리하고 드물게 갱신된다.
 - **Director repository**: 차량 버전 매니페스트와 비공개 인벤토리 데이터베이스를 보고 어느 ECU에 어느 이미지를 설치할지 정하고, 그 지시를 담은 메타데이터를 그때그때 서명해 만든다. 대개 자동화된 온라인 프로세스가 다룬다.[@uptane-standard-2-1-0-2023]
 
 Uptane Deployment Best Practices 2.1.0은 image repository의 root, targets와 위임 역할의 키를 오프라인에 두어, 저장소가 뚫려도 full verification을 하는 ECU에 곧바로 영향이 가지 않게 하기를 권한다. Director repository에는 timestamp, snapshot, targets 메타데이터를 온라인 키로 서명해 자동으로 곧바로 새 메타데이터를 만들고, root 메타데이터만 오프라인 키로 서명하기를 권한다.[@uptane-deployment-best-practices-2-1-0-2023]

@@ -94,7 +94,7 @@ AUTOSAR 규격 항목(specification item)의 ID는 표준 약어(생략 가능),
 
 ![[diagrams/autosar-specification-item-id.svg]]
 
-AUTOSAR R25-11 BSW 일반 명세(General Specification of Basic Software Modules)는 BSW 모듈의 모듈 약어 `<Ma>`를 이 명세의 BSW 모듈 목록에 정한 것과 같게 쓰도록 정한다. 모듈 구현 접두어 `<Mip>`는 `<Ma>[_<vi>_<ai>]` 꼴로 만들고, `<vi>`는 그 모듈의 `vendorId`, `<ai>`는 `vendorApiInfix`이며, `vendorApiInfix`가 없으면 대괄호 부분을 뺀다. 구현 접두어를 모두 대문자로 쓴 것이 `<MIP>`다. 구현 접두어는 API 이름, 파라미터 이름, 심볼, 파일 이름 같은 식별자를 만드는 데 쓰고, 같은 종류 모듈의 인스턴스를 가려야 할 때 모듈 약어 대신 쓴다. 예를 들어 FlexRay Interface의 구현 접두어는 모듈 약어와 같은 FrIf이고, 벤더 ID 21과 `vendorApiInfix` LDExt를 둔 EEPROM(Electrically Erasable Programmable Read-Only Memory) Driver 구현의 접두어는 Eep_21_LDExt다. 이 명세의 BSW 모듈 목록은 모듈마다 uint16 값의 Module ID를 매기며, 예를 들어 Os는 001, CanIf는 060, Can은 080이다.[@autosar-cp-sws-bswgeneral-2025]
+AUTOSAR R25-11 BSW 일반 명세(General Specification of Basic Software Modules)는 BSW 모듈의 모듈 약어 `<Ma>`를 이 명세의 BSW 모듈 목록에 정한 것과 같게 쓰도록 정한다. 모듈 구현 접두어 `<Mip>`는 `<Ma>[_<vi>_<ai>]` 꼴로 만들고, `<vi>`는 그 모듈의 `vendorId`, `<ai>`는 `vendorApiInfix`이며, `vendorApiInfix`가 없으면 대괄호 부분을 뺀다. 구현 접두어를 모두 대문자로 쓴 것이 `<MIP>`다. 구현 접두어는 API 이름, 파라미터 이름, 심볼, 파일 이름 같은 식별자를 만드는 데 쓰고, 같은 종류 모듈의 인스턴스를 가려야 할 때 모듈 약어 대신 쓴다. 예를 들어 FlexRay Interface의 구현 접두어는 모듈 약어와 같은 FrIf이고, 벤더 ID 21과 `vendorApiInfix` LDExt를 둔 EEPROM Driver 구현의 접두어는 Eep_21_LDExt다. 이 명세의 BSW 모듈 목록은 모듈마다 uint16 값의 Module ID를 매기며, 예를 들어 Os는 001, CanIf는 060, Can은 080이다.[@autosar-cp-sws-bswgeneral-2025]
 
 ![[diagrams/bsw-module-implementation-prefix.svg]]
 

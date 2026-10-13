@@ -31,7 +31,7 @@ AUTOSAR는 글로 쓴 시험 명세를 표준화하며, 그 명세는 반형식�
 - Specification of Testability Protocol and Service Primitives
 - Feature Specification of the Acceptance Tests는 인수 시험이 무엇을 시험할지 정한다.
 - Requirements on Acceptance Tests는 인수 시험이 시험할 요구사항을 응용, 버스, 설정의 호환 수준으로 묶어 나열하고, 테스트 케이스의 추적 요소로 쓰인다.
-- 이 개요 문서, 테스트 케이스별로 AUTOSAR 소프트웨어 릴리스에 대한 적용성을 적은 문서, 테스트 케이스의 XML(Extensible Markup Language) 내보내기[@autosar-tc-exp-acceptancetestsoverview-2016]
+- 이 개요 문서, 테스트 케이스별로 AUTOSAR 소프트웨어 릴리스에 대한 적용성을 적은 문서, 테스트 케이스의 XML 내보내기[@autosar-tc-exp-acceptancetestsoverview-2016]
 
 ## 개정 이력
 
