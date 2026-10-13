@@ -1,5 +1,5 @@
 import { computePosition, flip, inline, shift } from "@floating-ui/dom"
-import { normalizeRelativeURLs } from "../../util/path"
+import { normalizeObjectData, normalizeRelativeURLs } from "../../util/path"
 import { fetchCanonical } from "./util"
 
 const p = new DOMParser()
@@ -96,6 +96,8 @@ async function mouseEnterHandler(
       const contents = await response.text()
       const html = p.parseFromString(contents, "text/html")
       normalizeRelativeURLs(html, targetUrl)
+      // ash-wiki: 도해 <object>의 data도 링크한 페이지 기준으로 바꾼다(util/path.ts의 normalizeObjectData).
+      normalizeObjectData(html, targetUrl)
       // prepend all IDs inside popovers to prevent duplicates
       html.querySelectorAll("[id]").forEach((el) => {
         const targetID = `popover-internal-${el.id}`

@@ -1,3 +1,6 @@
+// ash-wiki: normalizeObjectData가 쓴다.
+import { isAbsoluteURL } from "@quartz-community/utils"
+
 // Re-export shared path utilities from @quartz-community/utils
 export {
   isFilePath,
@@ -48,5 +51,15 @@ export function normalizeRelativeURLs(el: Element | Document, destination: strin
   })
   el.querySelectorAll('[src=""], [src^="./"], [src^="../"]').forEach((item) => {
     _rebaseHtmlElement(item, "src", destination)
+  })
+}
+
+// ash-wiki: 도해 <object>의 data는 "diagrams/x.svg"처럼 ./ 없이 나가 normalizeRelativeURLs가 고치지 않는다.
+// 팝오버는 가져온 문서를 지금 페이지에 붙이므로, 하위 경로 페이지(tags/, news/)에서는 data가 지금 폴더 기준으로
+// 풀려 404가 난다(#402). 팝오버가 이 함수로 링크한 페이지 기준의 경로로 바꾼다. SPA 이동에서는 도해가 제대로
+// 읽혀 normalizeRelativeURLs에 넣지 않았다.
+export function normalizeObjectData(el: Element | Document, destination: string | URL) {
+  el.querySelectorAll("object[data]").forEach((item) => {
+    if (!isAbsoluteURL(item.getAttribute("data")!)) _rebaseHtmlElement(item, "data", destination)
   })
 }
