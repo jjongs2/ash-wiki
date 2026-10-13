@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 30 676 200" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 상자 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="95" width="100" height="36" rx="2" />
+    <rect x="160" y="40" width="130" height="36" rx="2" />
+    <!-- 변이체 여럿 -->
+    <rect x="172" y="138" width="130" height="36" rx="2" />
+    <rect x="166" y="144" width="130" height="36" rx="2" />
+    <rect x="160" y="150" width="130" height="36" rx="2" />
+    <rect x="340" y="95" width="100" height="36" rx="2" />
+  </g>
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="70" y="118">테스트 케이스</text>
+    <text x="225" y="63">원래 프로그램</text>
+    <text x="225" y="173">변이체</text>
+    <text x="390" y="118">출력 비교</text>
+  </g>
+
+  <!-- 변이 연산자로 변이체를 만듦 -->
+  <line x1="225" y1="76" x2="225" y2="136" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="235" y="111" font-size="12" fill="var(--text, #727981)">변이 연산자</text>
+
+  <!-- 같은 테스트 케이스를 둘 다에 실행 -->
+  <line x1="120" y1="113" x2="140" y2="113" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M140 113 V58 H158" />
+    <path d="M140 113 V168 H158" />
+  </g>
+
+  <!-- 출력을 비교 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M290 58 H320 V113" />
+    <path d="M302 156 H320 V113" />
+  </g>
+  <line x1="320" y1="113" x2="338" y2="113" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <!-- 판정 -->
+  <line x1="440" y1="113" x2="460" y2="113" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M460 113 V68 H488" />
+    <path d="M460 113 V158 H488" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="496" y="73">죽였다(killed)</text>
+    <text x="496" y="163">살아남았다(survived)</text>
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="496" y="91">차이를 드러냄</text>
+    <text x="496" y="181">테스트를 모두 실행한 뒤에도 죽지 않음</text>
+    <text x="496" y="203">늘 같은 출력이라 죽일 수 없는 것은</text>
+    <text x="496" y="219">동등 변이체(equivalent mutant)</text>
+  </g>
+</svg>

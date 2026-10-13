@@ -32,7 +32,7 @@ NHTSA의 2022년 Cybersecurity Best Practices for the Safety of Modern Vehicles�
 
 ## 취약점 스캐닝과 퍼즈 테스트
 
-NIST SP 800-115에 따르면 취약점 스캐닝(vulnerability scanning)은 호스트의 운영체제와 소프트웨어를 알아낸 뒤, 스캐너의 데이터베이스에 담긴 알려진 취약점과 맞춰 본다.[@nist-sp-800-115-2008] NIST 용어집에 따르면 퍼즈 테스트(fuzz testing)는 대상에 잘못된 데이터를 넣어 대상이 어떻게 반응하는지 드러낸다.[@nist-csrc-glossary-fuzz-testing-2026]
+NIST SP 800-115에 따르면 취약점 스캐닝(vulnerability scanning)은 호스트의 운영체제와 소프트웨어를 알아낸 뒤, 스캐너의 데이터베이스에 담긴 알려진 취약점과 맞춰 본다.[@nist-sp-800-115-2008] NIST 용어집에 따르면 [[fuzz-testing|퍼즈 테스트]](fuzz testing)는 대상에 잘못된 데이터를 넣어 대상이 어떻게 반응하는지 드러낸다.[@nist-csrc-glossary-fuzz-testing-2026]
 
 ## 명세 준수 테스트와의 차이
 
