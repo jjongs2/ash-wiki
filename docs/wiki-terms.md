@@ -32,6 +32,7 @@
 - failure: 실패, 고장, 장애 (#291). 합성어 포함. 예: dependent failure, failure mode, target failure measure. 동사("고장 나다", "실패하다"), 테스트의 pass/fail, 일반 낱말 "실패"는 그대로. ISTQB의 error·defect와 같은 문장, 곧 "실수"나 "결함"과 같은 문장에서는 "장애", 페이지에서 처음 쓸 때 "장애(failure)"
 - false positive: 거짓 양성 (#291). ISTQB 용어 이름은 false-positive result
 - GMII 풀이: 통일하지 않음 (#196). 페이지마다 그대로. `mii`는 Gigabit MII, `1000base-t1`은 Gigabit Media Independent Interface
+- hardware architectural metrics: 하드웨어 아키텍처 메트릭 (#396). 하위 용어(single-point fault, latent fault 등)도 원어로
 - Kanban: 칸반 (#393)
 - MAC 풀이 Medium Access Control: Media Access Control (#165). 출처마다의 풀이를 비교하는 문장은 예외
 - notification: 통지 (#257). AUTOSAR 모듈이 부르는 notification 콜백일 때. 동사로 쓴 자리("통지받는다")와 그 밖의 통지는 "통지"
@@ -43,6 +44,7 @@
 - resource: 리소스 (#165). OSEK 객체일 때. 일반적인 뜻이면 "자원"
 - root of trust: 신뢰의 뿌리 (#288)
 - RSA 풀이 Rivest-Shamir-Adleman: Rivest–Shamir–Adleman (#288)
+- safety case: - (#396)
 - TDC 풀이 Transceiver Delay Compensation: Transmitter Delay Compensation (#311)
 - Timing Analysis and Design 보고서: AUTOSAR 타이밍 분석 보고서 (#257). 본문에서 AUTOSAR 문서를 부르는 이름
 - Timing Extensions 명세: 타이밍 확장 명세 (#257). 본문에서 AUTOSAR 문서를 부르는 이름. "명세" 없이 쓴 "Timing Extensions"도 그대로

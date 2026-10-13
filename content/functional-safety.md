@@ -15,19 +15,28 @@ IEC 60050은 **기능 안전**(functional safety)을 전체 안전 가운데, �
 
 ISO/IEC Guide 51:2014는 **안전**(safety)을 허용할 수 없는 리스크가 없는 상태로 정의한다.[@iso-iec-guide-51-obp-2014] IEC 61508-4:2010도 안전을 허용할 수 없는 리스크가 없는 상태로 정의하되, 리스크의 대상을 사람의 신체 상해나 건강 피해로 둔다. 재산이나 환경 피해를 거쳐 간접으로 생기는 상해와 피해도 여기에 든다.[@iec-functional-safety-faq-2023] ISO 26262-1:2018은 안전을 불합리한 리스크가 없는 상태로 정의한다.[@iso-26262-1-obp-2018]
 
+이 표준은 **불합리한 리스크**(unreasonable risk)를 그 시점에 통용되는 사회의 도덕 관념에 비추어 주어진 맥락에서 받아들일 수 없다고 판단되는 리스크로 정의한다. 또 잔여 리스크를 [[safety-mechanism|안전 조치]](safety measure)를 적용한 뒤에도 남는 리스크로 정의한다.[@iso-26262-1-obp-2018]
+
 NASA-STD-8739.8B는 **safety-critical**을, 잘못 수행되거나 잘못 만들어지거나 고쳐지지 않은 채 남으면 심각한 부상, 큰 피해, 임무 실패를 일으키거나 그리로 이어질 수 있는 조건, 사건, 운용, 프로세스, 장비, 시스템을 가리키는 말로 정의한다.[@nasa-std-8739-8b-2022]
 
 ISO/IEC Guide 51:2014는 리스크에 관한 용어를 다음처럼 정의한다.[@iso-iec-guide-51-obp-2014]
 
-- **리스크**(risk): 해(harm)가 일어날 확률과 그 해의 심각도의 조합
+- **리스크**(risk): 해(harm)가 일어날 확률과 그 해의 심각도의 조합. 주석은 해가 일어날 확률에 해저드 상황에 노출되는 것, 해저드 사건이 일어나는 것, 해를 피하거나 줄일 가능성이 든다고 제시한다.
 - **허용 리스크**(tolerable risk): 그 시점 사회의 가치에 따라 주어진 맥락에서 받아들여지는 리스크 수준
-- **잔여 리스크**(residual risk): 리스크 감소 조치를 한 뒤에도 남는 리스크[@iso-iec-guide-51-obp-2014]
+- **잔여 리스크**(residual risk): 리스크 감소 조치를 한 뒤에도 남는 리스크
+- **리스크 분석**(risk analysis): 쓸 수 있는 정보를 체계적으로 써서 해저드를 찾고 리스크를 추정하는 것
+- **risk evaluation**: 리스크 분석을 바탕으로 허용 리스크를 넘었는지 정하는 절차
+- **리스크 평가**(risk assessment): 리스크 분석과 risk evaluation을 아우르는 전체 프로세스
+- **리스크 감소 조치**(risk reduction measure): 해저드를 없애거나 리스크를 줄이는 행동이나 수단. Inherently safe design, 보호 장치, 개인 보호구, 사용·설치 정보, 작업 조직, 교육, 장비 사용, 감독이 그 예다.
+- **inherently safe design**: 제품이나 시스템의 설계나 운용 특성을 바꿔 해저드를 없애거나 리스크를 줄이는 조치[@iso-iec-guide-51-obp-2014]
 
 CENELEC Guide 32:2026은 저전압 기기의 리스크를 줄이는 길로, 해저드를 없애는 것과 리스크를 정하는 두 요소인 해의 심각도와 해가 일어날 확률을 따로 또는 함께 낮추는 것을 둔다.[@cenelec-guide-32-2026]
 
-ISO/IEC Guide 51:2014는 안전하다는 것을 모든 해저드가 아니라 해를 일으킬 수 있다고 알려진 해저드로부터 보호된 상태로 보며, 제품과 시스템에는 어느 정도의 리스크가 늘 따른다고 둔다. 이 지침이 내놓는 접근의 목표는 사람, 재산, 환경에 대해 허용 리스크를 이루는 것이다.[@iso-iec-guide-51-obp-2014] IEC에 따르면 리스크를 0으로 만들 수는 없고, 기능 안전은 내장된 [[safety-mechanism|안전 메커니즘]]을 작동시켜 리스크를 허용 수준까지 낮춘다.[@iec-functional-safety-2025]
+ISO/IEC Guide 51:2014는 안전하다는 것을 모든 해저드가 아니라 해를 일으킬 수 있다고 알려진 해저드로부터 보호된 상태로 보며, 제품과 시스템에는 어느 정도의 리스크가 늘 따른다고 둔다. 이 지침이 내놓는 접근의 목표는 사람, 재산, 환경에 대해 허용 리스크를 이루는 것이다.[@iso-iec-guide-51-obp-2014] IEC에 따르면 리스크를 0으로 만들 수는 없고, 기능 안전은 내장된 안전 메커니즘을 작동시켜 리스크를 허용 수준까지 낮춘다.[@iec-functional-safety-2025]
 
 ![[diagrams/functional-safety-risk-reduction.svg]]
+
+IEC에 따르면 기능 안전은 해저드를 다루는 여러 방법 가운데 하나일 뿐이고, 설계로 이루는 inherent safety처럼 해저드를 없애거나 줄이는 다른 수단이 가장 중요하다. IEC 61508-1:2010은 해저드를 없애는 것을 고려하도록 요구하고, 해저드를 원천에서 없애는 것을 무엇보다 중요하게 본다.[@iec-functional-safety-faq-2023]
 
 해저드(hazard), 해저드 사건(hazardous event) 같은 용어는 [[hazard-analysis-and-risk-assessment#용어|HARA]]에서 다룬다.
 
@@ -39,6 +48,8 @@ IEC는 그 예로 모터 권선의 온도 센서로 과열 전에 모터 전원�
 
 ## 안전 기능과 안전 무결성
 
+IEC에 따르면 기능 안전은 지정된 안전 기능이 모두 수행되고, 안전 기능마다 요구되는 성능 수준이 충족될 때 이뤄진다. IEC 61508:2010은 **안전 관련 시스템**(safety-related system)을 하나 이상의 안전 기능을 수행하는 데 필요한 하드웨어, 소프트웨어, 사람 요소 전부로 두고, 그 안전 기능이 실패하면 사람이나 환경의 안전에 대한 리스크가 크게 늘어나는 시스템으로 본다.[@iec-functional-safety-faq-2023]
+
 IEC 61508은 안전 기능의 명세를 둘로 나눈다.[@iec-functional-safety-faq-2023]
 
 - **안전 기능 요구사항**(safety function requirements): 안전 기능이 무엇을 하는지
@@ -47,3 +58,11 @@ IEC 61508은 안전 기능의 명세를 둘로 나눈다.[@iec-functional-safety
 IEC 61508은 **안전 무결성**(safety integrity)을 안전 관련 시스템이 명시된 모든 조건에서, 명시된 기간 안에 지정된 안전 기능을 수행할 확률로 정의한다.[@iec-acos-61508-overview-2022]
 
 IEC 61508은 필요한 안전 기능을 해저드와 리스크 분석에서 끌어낸다.[@iec-functional-safety-faq-2023] IEC 61508-1:2010은 안전 무결성 요구사항을 리스크 기반 접근으로 정한다.[@iec-61508-1-preview-2010] 안전 무결성은 네 단계의 [[safety-integrity-level|SIL]]로 나타내며, 단계마다 안전 기능이 실패할 가능성의 목표 구간 하나가 대응한다.[@iec-functional-safety-faq-2023]
+
+## Systematic failure와 random hardware failure
+
+ISO 26262-1:2018은 **systematic failure**를 어떤 원인과 결정론적으로 이어져 있어, 설계나 제조 프로세스, 운용 절차, 문서 같은 관련 요인을 바꿔야만 없앨 수 있는 [[fault-error-failure|failure]]로 정의한다. **Random hardware failure**는 하드웨어 요소의 수명 동안 예측할 수 없게 일어날 수 있고 확률 분포를 따르는 failure다.[@iso-26262-1-obp-2018]
+
+이 표준은 fault도 같은 축으로 나눈다. **Systematic fault**는 그 failure가 결정론적으로 드러나 프로세스나 설계 조치로만 막을 수 있는 fault이고, **random hardware fault**는 확률 분포를 갖는 하드웨어 fault다.[@iso-26262-1-obp-2018]
+
+이 표준의 Introduction은 기술 복잡도, 소프트웨어 비중, 메카트로닉스 구현이 늘면서 systematic failure와 random hardware failure의 리스크가 커진다고 보고, 둘이 모두 기능 안전의 범위에 든다고 제시한다.[@iso-26262-1-obp-2018]

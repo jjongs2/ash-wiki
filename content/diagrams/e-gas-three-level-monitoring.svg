@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 5 640 335" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <text x="20" y="24" fill="var(--text, #727981)">E-Gas 감시 개념 6.0판</text>
+
+  <!-- 층 이름 -->
+  <g fill="var(--text, #727981)">
+    <text x="20" y="98">Level 1</text>
+    <text x="20" y="174">Level 2</text>
+    <text x="20" y="230">Level 3</text>
+  </g>
+
+  <!-- 기능 제어기 -->
+  <rect x="100.75" y="40.75" width="278.5" height="223.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="240" y="60" font-size="13" text-anchor="middle" fill="var(--text, #727981)">기능 제어기</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="115.75" y="70.75" width="248.5" height="46.5" rx="2" />
+    <rect x="115.75" y="146.75" width="248.5" height="46.5" rx="2" />
+    <rect x="115.75" y="202.75" width="248.5" height="46.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="240" y="89" font-size="13">기능 층</text>
+    <text x="240" y="107">엔진 제어 기능, 부품 감시, 입출력 진단</text>
+    <text x="240" y="165" font-size="13">기능 감시 층</text>
+    <text x="240" y="183">허용 엔진 토크와 실제 엔진 토크 비교</text>
+    <text x="240" y="221" font-size="13">Level 3 소프트웨어</text>
+    <text x="240" y="239">응답 계산</text>
+  </g>
+  <line x1="180" y1="146" x2="180" y2="119" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="190" y="136" fill="var(--text, #727981)">잘못된 처리 검출</text>
+
+  <!-- 감시 모듈 -->
+  <rect x="520.75" y="202.75" width="118.5" height="46.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="580" y="221" font-size="13">감시 모듈</text>
+    <text x="580" y="239">따로 된 하드웨어</text>
+  </g>
+
+  <!-- 질의-응답 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="520" y1="214" x2="366" y2="214" />
+    <line x1="365" y1="238" x2="519" y2="238" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="450" y="206">질의 · 주기 ≤ 80 ms</text>
+    <text x="450" y="254">응답 · 정한 시간 안</text>
+  </g>
+
+  <!-- 액추에이터 출력단 -->
+  <rect x="360.75" y="300.75" width="158.5" height="28.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="440" y="319" text-anchor="middle" fill="var(--text, #727981)">액추에이터 출력단</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M240 265 V315 H359" />
+    <path d="M580 250 V315 H521" />
+  </g>
+  <text x="440" y="290" text-anchor="middle" fill="var(--text, #727981)">오류 계수기가 한계에 이르면 끔</text>
+</svg>

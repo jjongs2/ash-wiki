@@ -66,7 +66,7 @@ functional cluster마다 지원하는 프로토콜은 다음과 같다.[@autosar
 
 ### 기능 안전
 
-AUTOSAR는 Adaptive Platform을 [[functional-safety|기능 안전]] 프로젝트에 통합하는 것을 돕도록 안전 개요 설명 문서와 안전 요구사항 문서를 펴낸다. Adaptive Platform을 쓴다고 [[iso-26262|ISO 26262]]를 준수하는 것은 아니고, Adaptive Platform의 안전 수단과 메커니즘을 쓰고도 안전하지 않은 시스템을 만들 수 있다. Adaptive Platform의 아키텍처는 잘해야 SEooC(Safety Element out of Context)로만 볼 수 있다.[@autosar-ap-exp-platformdesign-2025]
+AUTOSAR는 Adaptive Platform을 [[functional-safety|기능 안전]] 프로젝트에 통합하는 것을 돕도록 안전 개요 설명 문서와 안전 요구사항 문서를 펴낸다. Adaptive Platform을 쓴다고 [[iso-26262|ISO 26262]]를 준수하는 것은 아니고, Adaptive Platform의 안전 수단과 메커니즘을 쓰고도 안전하지 않은 시스템을 만들 수 있다. Adaptive Platform의 아키텍처는 잘해야 [[safety-element-out-of-context|SEooC]]로만 볼 수 있다.[@autosar-ap-exp-platformdesign-2025]
 
 ### 그 밖의 functional cluster
 

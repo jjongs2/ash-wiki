@@ -11,9 +11,9 @@ verified: 2026-10-03
 
 ISO 26262-1:2018은 결함 주입의 예로 다음을 든다.[@iso-26262-1-obp-2018]
 
-- 잠재 결함을 검출하는 전략의 하나로, 운용 중에 결함을 넣어 [[safety-mechanism|안전 메커니즘]]이 제대로 동작하는지 검증하는 것
+- [[hardware-architectural-metrics#Fault와 failure의 종류|잠재 결함]]을 검출하는 전략의 하나로, 운용 중에 결함을 넣어 [[safety-mechanism|안전 메커니즘]]이 제대로 동작하는지 검증하는 것
 - [[integration-testing|통합 테스트]]에서 하드웨어 디버그 포트나 전용 소프트웨어 명령으로 결함을 넣어 하드웨어와 소프트웨어 사이의 인터페이스(HSI, hardware-software interface)를 테스트하는 것
-- 하드웨어 부품 수준에서 stuck-at 결함이나 일시 결함을 흉내 내 안전 메커니즘의 진단 커버리지를 검증하는 것[@iso-26262-1-obp-2018]
+- 하드웨어 부품 수준에서 stuck-at 결함이나 일시 결함을 흉내 내 안전 메커니즘의 [[hardware-architectural-metrics#진단 커버리지와 failure rate|진단 커버리지]]를 검증하는 것[@iso-26262-1-obp-2018]
 
 ISTQB CT-AuT 강의계획서에 따르면 오류 처리 같은 프로그래밍 기법은 시스템이 내부와 외부의 결함에 견고하고 안전하게 반응하게 하려고 쓰고, 결함 주입 테스트는 결함 같은 불리한 조건에 컴포넌트나 시스템이 어떻게 반응하는지 평가한다.[@istqb-ct-aut-syllabus-2025]
 

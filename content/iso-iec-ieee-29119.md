@@ -22,7 +22,7 @@ ISO/IEC/IEEE 29119 시리즈는 어느 조직에서든, 어느 생명주기에�
 | 29119-4:2021 | Test techniques        | 테스트 설계 기법과 그 커버리지 측정[@iso-iec-ieee-29119-4-obp-2021]                                                                                                                                  |
 | 29119-5:2024 | Keyword-driven testing | 키워드 기반 테스트[@iso-iec-ieee-29119-5-2024]                                                                                                                                                       |
 
-이 밖에 ISO와 IEC가 펴낸 기술 보고서 ISO/IEC TR 29119-6:2021은 [[agile-software-development|애자일]] 생명주기에서 29119를 쓰는 지침을[@iso-iec-tr-29119-6-2021], ISO/IEC TR 29119-11:2020은 AI(artificial intelligence) 기반 시스템을 테스트하는 지침을 담는다.[@iso-iec-tr-29119-11-2020]
+이 밖에 ISO와 IEC가 펴낸 기술 보고서 ISO/IEC TR 29119-6:2021은 [[agile-software-development|애자일]] 생명주기에서 29119를 쓰는 지침을[@iso-iec-tr-29119-6-2021], ISO/IEC TR 29119-11:2020은 AI 기반 시스템을 테스트하는 지침을 담는다.[@iso-iec-tr-29119-11-2020]
 
 29119-2의 프로세스 모델은 [[test-process|테스트 프로세스]]에서, 테스트 케이스와 그 구성은 [[test-case|테스트 케이스]]에서 다룬다.
 
