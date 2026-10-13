@@ -39,4 +39,4 @@ ISTQB CT-AuT 강의계획서에 따르면 실행 가능한 모델과, 손으로 
 
 ## 모델 기반 개발과의 차이
 
-SWEBOK V4.0a에 따르면 모델 기반 개발(model-based development)은 모델로 시스템을 분석하는 개발 방법으로, 모델이 꼭 개발의 주된 산출물은 아니다. 모델에서 테스트 케이스를 만드는 일은 이와 따로 [[software-testing|소프트웨어 테스트]] 영역에서 다룬다.[@ieee-swebok-v4-0a-2026]
+SWEBOK V4.0a에 따르면 모델 기반 개발(model-based development)은 모델로 시스템을 분석하는 개발 방법으로, 모델이 꼭 개발의 주된 산출물은 아니다. 이 지식 체계는 모델에서 테스트 케이스를 만드는 일을 [[software-testing|소프트웨어 테스트]] 영역에서 따로 다룬다.[@ieee-swebok-v4-0a-2026]
