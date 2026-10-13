@@ -34,8 +34,8 @@ export const manifest = {
 }
 
 // 소식 항목 하나. regions는 구역 태그(network)의 목록이고 기타는 빈 목록이다. id는 카드의 앵커로, 위키 링크의 절
-// 링크(`[[news/2026-w41#원어 제목]]`)가 가리키는 값과 같다. summary의 start와 end는 요약이 차지하는 원본의
-// 첫 줄과 끝 줄(1부터)이다.
+// 링크(`[[news/2026-w41#원어 제목]]`)가 가리키는 값과 같다. featured는 주요 소식인지다. summary의 start와
+// end는 요약이 차지하는 원본의 첫 줄과 끝 줄(1부터)이다.
 export interface NewsItem {
   id: string
   regions: string[]
@@ -44,6 +44,7 @@ export interface NewsItem {
   outlet: string
   date: string
   image: string | null
+  featured: boolean
   summary: { markdown: string; start: number; end: number }
 }
 
@@ -59,7 +60,14 @@ export interface WeeklyNewsData {
 }
 
 const OTHER = "기타"
-const FIELDS = { region: "구역", outlet: "매체", date: "발행일", image: "이미지" } as const
+const FIELDS = {
+  region: "구역",
+  outlet: "매체",
+  date: "발행일",
+  image: "이미지",
+  featured: "주요",
+} as const
+const FEATURED_VALUE = "예"
 const REQUIRED = [FIELDS.region, FIELDS.outlet, FIELDS.date]
 
 // 주간 소식의 슬러그 접두. news/index는 지난 호 목록이다.
@@ -132,7 +140,8 @@ function maskFrontmatter(source: string): string {
  * 프론트매터를 포함한 원본이다. 형식은 docs/weekly-news.md에 있고, 어긴 곳은 errors에 원본의 줄과 함께 준다.
  * - 소식 항목은 `## [원어 제목](원문 URL)` 제목으로 시작해 다음 `##`까지다. 첫 항목 앞에는 아무것도 없다.
  * - 제목 바로 다음은 필드 목록(`- 구역: network`)이다. 구역, 매체, 발행일은 반드시 있고 이미지는 없어도 된다.
- *   구역은 구역 태그를 쉼표로 나눠 여럿 쓰거나 기타 하나로 쓴다.
+ *   구역은 구역 태그를 쉼표로 나눠 여럿 쓰거나 기타 하나로 쓴다. 주요는 예 하나로만 쓰고, 없으면 주요 소식이
+ *   아니다.
  * - 필드 목록 뒤의 블록이 모두 한국어 요약이다. 요약 안에는 제목을 두지 않는다.
  * - 항목의 id는 제목 글자를 github-slugger로 바꾼 값이다. 사이트가 제목에 붙이는 id와 같은 규칙이다.
  */
@@ -214,6 +223,13 @@ export function parseWeeklyNews(
     if (image?.value && !isUrl(image.value)) {
       error(image.line, `이미지는 http(s) URL로 쓴다: ${image.value}`)
     }
+    const featured = fields.get(FIELDS.featured)
+    if (featured && featured.value !== FEATURED_VALUE) {
+      error(
+        featured.line,
+        `${FIELDS.featured}는 ${FEATURED_VALUE}로만 쓰고, 주요 소식이 아니면 필드를 뺀다: ${featured.value}`,
+      )
+    }
 
     const subheading = summary.find((node) => node.type === "heading")
     if (subheading) error(lineOf(subheading), "소식 항목 안에는 제목을 두지 않는다")
@@ -230,6 +246,7 @@ export function parseWeeklyNews(
       outlet: fields.get(FIELDS.outlet)!.value,
       date: date!.value,
       image: image?.value || null,
+      featured: featured !== undefined,
       summary: {
         markdown: slice(first, last),
         start: lineOf(first),

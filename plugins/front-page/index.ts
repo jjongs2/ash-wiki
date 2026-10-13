@@ -3,9 +3,10 @@
 // 있다.
 //
 // 계산 규칙은 순수 함수 frontPage 하나에 모은다. 페이지 목록, 주간 소식 목록, 커밋 목록을 받아 주제별 페이지
-// 수, 최신 호, 최근 변경 묶음을 돌려준다. 주간 소식 목록은 weekly-news 플러그인이 주간 소식 파일마다 vfile
-// 데이터(weeklyNews)에 둔 소식 항목에서 만든다. 커밋 목록은 그릴 때 content 폴더의 git 기록에서 읽는다(전체
-// 기록과 시간대는 docs/deploy.md). 저장소 밖에서 빌드하면(콘텐츠 검사기의 픽스처) 최근 변경을 그리지 않는다.
+// 수, 최신 호와 그 주요 소식, 최근 변경 묶음을 돌려준다. 주간 소식 목록은 weekly-news 플러그인이 주간 소식
+// 파일마다 vfile 데이터(weeklyNews)에 둔 소식 항목에서 만든다. 커밋 목록은 그릴 때 content 폴더의 git 기록에서
+// 읽는다(전체 기록과 시간대는 docs/deploy.md). 저장소 밖에서 빌드하면(콘텐츠 검사기의 픽스처) 최근 변경을
+// 그리지 않는다.
 //
 // 대문은 content-page 플러그인의 본문(ContentBody)을 그대로 쓰고, 그리기 전에 본문 트리만 고친다. 페이지 수에는
 // 모든 페이지의 태그가 있어야 하는데, transformer는 파일마다 따로 돌아 다른 페이지를 모른다. 본문 컴포넌트는
@@ -56,7 +57,7 @@ export interface RecentChange {
 }
 
 // 주간 소식 한 호. week는 ISO 주차(2026-w41)이고 slug는 news/<주차>다. items는 소식 항목의 앵커, 원어 제목,
-// 구역(기타는 빈 목록), 발행일(YYYY-MM-DD)이고 파일에 적은 순서다.
+// 원문 URL, 구역(기타는 빈 목록), 발행일(YYYY-MM-DD), 주요 소식인지이고 파일에 적은 순서다.
 export interface FrontPageIssue {
   slug: string
   week: string
@@ -66,11 +67,13 @@ export interface FrontPageIssue {
 export interface FrontPageNewsItem {
   id: string
   title: string
+  url: string
   regions: string[]
   date: string
+  featured: boolean
 }
 
-// 최신 호. days는 소식 항목을 발행일마다 묶은 것으로, 이른 날부터다.
+// 최신 호. days는 주요 소식을 발행일마다 묶은 것으로, 최근 날부터다. items는 그 호의 소식 항목 모두다.
 export type LatestNews = FrontPageIssue & { days: { day: string; items: FrontPageNewsItem[] }[] }
 
 // 같은 날 들어온 묶음. day는 빌드의 시간대로 본 날짜(YYYY-MM-DD)이고, changes는 최근 것부터다.
@@ -107,8 +110,9 @@ function localDay(time: number): string {
  *   묶음은 날짜별로 모아 최근 날짜부터 준다. RECENT_CHANGES_LIMIT 묶음을 채운 날까지 주고, 그날은 끝까지 준다.
  *   날짜 하나의 묶음이 중간에서 잘려 그날 작업이 그것뿐인 것처럼 보이지 않게 한다.
  * - 최신 호: 주차가 가장 늦은 주간 소식이다. ISO 주차(2026-w41)는 연도 네 자리와 주 두 자리라 글자 순서가
- *   주차 순서와 같다(형식은 docs/weekly-news.md). 소식 항목은 발행일마다 묶어 이른 날부터 주고, 같은 날은
- *   파일에 적은 순서를 지킨다. 주간 소식 페이지와 같은 순서다. 주간 소식이 없으면 null이다.
+ *   주차 순서와 같다(형식은 docs/weekly-news.md). 주요 소식만 발행일마다 묶어 최근 날부터 주고(최근 변경과
+ *   같은 방향), 같은 날은 파일에 적은 순서를 지킨다. 주요 소식이 없는 호도 최신 호이고, 그때 묶음은 빈다.
+ *   주간 소식이 없으면 null이다.
  */
 export function frontPage(input: {
   pages: FrontPagePage[]
@@ -142,8 +146,13 @@ export function frontPage(input: {
 
 function newsDays(items: FrontPageNewsItem[]): LatestNews["days"] {
   const days = new Map<string, FrontPageNewsItem[]>()
-  for (const item of items) days.set(item.date, [...(days.get(item.date) ?? []), item])
-  return [...days.keys()].sort().map((day) => ({ day, items: days.get(day)! }))
+  for (const item of items.filter((item) => item.featured)) {
+    days.set(item.date, [...(days.get(item.date) ?? []), item])
+  }
+  return [...days.keys()]
+    .sort()
+    .reverse()
+    .map((day) => ({ day, items: days.get(day)! }))
 }
 
 function recentChanges(pages: FrontPagePage[], commits: FrontPageCommit[]): RecentDay[] {
@@ -286,10 +295,14 @@ const CSS = `.front-regions {
 //   아이콘 오른쪽에서 시작한다. vertical-align은 Pretendard 글자 상자의 가운데에 아이콘 가운데를 맞춘 값이다.
 // - 날짜, PR 번호, 쪽수와 아이콘은 보조 글자색이고, 대비 하한은 docs/palette.md의 "보조 글자"다. 날짜는
 //   굵게 쓴다.
-// - 주간 소식도 같은 타임라인이다. 발행일마다 마디를 두고, 그 아래 소식 항목의 제목과, 제목 아래 작은 구역
+// - 주간 소식도 같은 타임라인이다. 발행일마다 마디를 두고, 그 아래 주요 소식의 제목과, 제목 아래 작은 구역
 //   칩을 둔다. 최근 변경의 제목과 보조 글자 줄과 같은 짜임이다. 칩의 꼴(.news-chip)은 주간 소식 플러그인
-//   (plugins/weekly-news)의 CSS가 정하고, 여기서는 크기만 줄인다. 칸 제목 줄의 오른쪽에 "요약 보기(그 호) ·
-//   지난 호"를 보조 글자색으로 둔다.
+//   (plugins/weekly-news)의 CSS가 정하고, 여기서는 크기만 줄인다. 칸 제목 줄의 오른쪽에 "N개 모두 보기(그 호)
+//   · 지난 호"를 보조 글자색으로 둔다. 주요 소식이 없는 주는 타임라인 대신 보조 글자 한 줄을 둔다.
+// - 칸 제목 줄은 최근 변경의 칸 제목과 높이가 같아야 두 칸의 첫 날짜 줄이 맞는다. 링크 문단에 사이트 공통
+//   문단 줄 높이(1.6rem)가 걸리면 기준선 맞춤으로 제목 줄이 4.59px 높아지므로, 링크의 줄 높이를 글자 크기로
+//   줄인다. 칸이 좁아 링크가 제목 옆에 들지 않으면(창 폭 850px쯤 아래) 링크를 제목 아래 줄로 내리고, 링크 글자는
+//   꺾지 않는다. 사이트 링크 규칙이 white-space를 normal로 걸어 링크에도 nowrap을 건다.
 // - 칩은 바탕이 상자 맨 위에서 시작해, 같은 여백이면 최근 변경의 보조 글자 줄보다 제목에 붙어 보이고 행도
 //   길어진다. 그래서 대문의 칩은 글자와 줄 높이를 줄이고 위 여백을 넓혀, 행 높이를 보조 글자 줄과 비슷하게
 //   맞춘다(소유자가 시안에서 골랐다).
@@ -397,9 +410,10 @@ li.front-day li {
 }
 .front-news-head {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: baseline;
-  gap: 1rem;
+  gap: 0.25rem 1rem;
   margin-bottom: 0.5rem;
 }
 .front-columns .front-news-head h2 {
@@ -411,11 +425,13 @@ li.front-day li {
   margin: 0;
   color: var(--gray);
   font-size: 0.85em;
+  line-height: 1;
   white-space: nowrap;
 }
 .front-news a.front-news-action {
   color: var(--gray);
   font-weight: 400;
+  white-space: nowrap;
 }
 .front-news a.front-news-action:hover,
 .front-news a.front-news-link:hover {
@@ -425,6 +441,11 @@ li.front-day li {
 .front-news a.front-news-link {
   color: var(--dark);
   font-weight: 400;
+}
+.front-news-empty {
+  margin: 0;
+  color: var(--gray);
+  font-size: 0.85em;
 }
 .front-news li > .front-news-chips {
   display: flex;
@@ -543,9 +564,9 @@ const pullRequestIcon = (): Element =>
     }),
   ])
 
-// 주간 소식. 최신 호의 소식 항목을 발행일마다 타임라인의 마디 아래에 두고, 제목은 그 호의 카드로 링크한다.
-// 원문이 아니라 카드로 가는 것은 대문에 요약이 없어서다. 칩의 이름은 구역의 표시 이름이고, 기타는 기타 칩
-// 하나다.
+// 주간 소식. 최신 호의 주요 소식을 발행일마다 타임라인의 마디 아래에 두고, 제목은 원문으로 링크해 새 탭에서
+// 연다. 요약과 나머지 소식 항목은 제목 줄의 "N개 모두 보기"로 그 호에서 본다. 칩의 이름은 구역의 표시
+// 이름이고, 기타는 기타 칩 하나다.
 function newsColumn(
   issue: LatestNews,
   regionNames: Map<string, string>,
@@ -567,9 +588,16 @@ function newsColumn(
     )
   const row = (item: FrontPageNewsItem) =>
     el("li", {}, [
-      el("a", { href: `${issueHref}#${item.id}`, className: ["front-news-link"] }, [
-        text(item.title),
-      ]),
+      el(
+        "a",
+        {
+          href: item.url,
+          className: ["front-news-link"],
+          target: "_blank",
+          rel: ["noopener", "noreferrer"],
+        },
+        [text(item.title)],
+      ),
       el(
         "span",
         { className: ["front-news-chips"] },
@@ -582,7 +610,9 @@ function newsColumn(
     el("div", { className: ["front-news-head"] }, [
       el("h2", { id: "주간-소식" }, [text("주간 소식")]),
       el("p", { className: ["front-news-links"] }, [
-        el("a", { href: issueHref, className: ["front-news-action"] }, [text("요약 보기")]),
+        el("a", { href: issueHref, className: ["front-news-action"] }, [
+          text(`${issue.items.length}개 모두 보기`),
+        ]),
         el("span", { ariaHidden: "true" }, [text("·")]),
         el(
           "a",
@@ -594,13 +624,15 @@ function newsColumn(
         ),
       ]),
     ]),
-    el(
-      "ul",
-      { className: ["front-timeline"] },
-      issue.days.map(({ day: value, items }) =>
-        el("li", { className: ["front-day"] }, [day(value), el("ul", {}, items.map(row))]),
-      ),
-    ),
+    issue.days.length === 0
+      ? el("p", { className: ["front-news-empty"] }, [text("이번 주는 주요 소식이 없습니다")])
+      : el(
+          "ul",
+          { className: ["front-timeline"] },
+          issue.days.map(({ day: value, items }) =>
+            el("li", { className: ["front-day"] }, [day(value), el("ul", {}, items.map(row))]),
+          ),
+        ),
   ]
 }
 
@@ -673,7 +705,14 @@ const FrontPageBody = () => {
         news.push({
           slug: file.slug ?? "",
           week: data.week,
-          items: data.items.map(({ id, title, regions, date }) => ({ id, title, regions, date })),
+          items: data.items.map(({ id, title, url, regions, date, featured }) => ({
+            id,
+            title,
+            url,
+            regions,
+            date,
+            featured,
+          })),
         })
       }
       const tag = file.slug?.startsWith("tags/") ? file.slug.slice("tags/".length) : ""
