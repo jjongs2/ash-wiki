@@ -37,3 +37,9 @@ ISTQB CT-AuT 강의계획서에 따르면 오류 처리 같은 프로그래밍 �
 ## 주입 대상과 방식
 
 CT-AuT 강의계획서에 따르면 결함 주입 테스트에서 테스터는 외부 컴포넌트(예: 센서의 그럴듯하지 않은 값을 검출하는지), 인터페이스(예: 단락이나 메시지 손실), 애플리케이션 내부에 결함을 골라 넣을 수 있다. 결함을 넣는 방식은 시스템과 테스트 환경에 따라 다르다. 고전적 결함 주입은 물리적 시험 대상을 조작하고, 외부와 인터페이스의 결함은 [[x-in-the-loop#HiL|HiL]] 환경에서 FIU(fault insertion unit)로 실행 중에 흉내 내며, 소프트웨어 결함은 [[x-in-the-loop#SiL|SiL]] 환경이나 개발 환경에서 디버거나 XCP(Universal Measurement and Calibration Protocol) 같은 도구로 흉내 내는 일이 많다.[@istqb-ct-aut-syllabus-2025]
+
+## Fault seeding
+
+**Fault seeding**은 결함을 검출해 없애는 비율을 지켜보고 남은 결함 수를 추정하려고, 컴포넌트나 시스템에 결함을 일부러 넣는 과정이다.[@ieee-sevocab-error-seeding-2026][@istqb-glossary-fault-seeding-2026] ISO/IEC/IEEE 24765 용어집은 이 과정을 error seeding으로 정의하고, bug seeding과 fault seeding을 동의어로 둔다.[@ieee-sevocab-error-seeding-2026]
+
+SWEBOK V4.0a는 테스트 전에 인공 결함을 테스트 대상에 넣고, 테스트 스위트를 실행해 드러난 인공 결함의 종류와 수로 이론상 테스트의 효과를 평가하고 남은 실제 결함 수를 추정하는 방법을 fault injection이라 부른다.[@ieee-swebok-v4-0a-2026] 변이체로 테스트 스위트를 평가하는 방법은 [[mutation-testing|변이 테스트]]에서 다룬다.
