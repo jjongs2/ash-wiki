@@ -33,6 +33,7 @@ describe("parseWeeklyNews", () => {
           outlet: "CAN in Automation",
           date: "2026-10-06",
           image: "https://www.can-cia.org/images/can-xl-og.png",
+          featured: false,
         },
         {
           id: "software-defined-vehicle-survey-2026",
@@ -42,6 +43,7 @@ describe("parseWeeklyNews", () => {
           outlet: "Example Research",
           date: "2026-10-08",
           image: null,
+          featured: false,
         },
         {
           id: "autosar-r25-11-adaptive-platform-changes",
@@ -51,6 +53,7 @@ describe("parseWeeklyNews", () => {
           outlet: "AUTOSAR",
           date: "2026-10-05",
           image: "https://www.autosar.org/og.png",
+          featured: true,
         },
       ],
     )
@@ -79,6 +82,16 @@ describe("parseWeeklyNews", () => {
     const { items, errors } = parseWeeklyNews("2026-w41", source())
     assert.deepStrictEqual(errors, [])
     assert.strictEqual(items[0].image, null)
+  })
+
+  test("주요 필드가 예인 항목만 주요 소식이다", () => {
+    const { items, errors } = parseWeeklyNews(
+      "2026-w41",
+      source({ fields: ["- 구역: network", "- 매체: M", "- 발행일: 2026-10-06", "- 주요: 예"] }),
+    )
+    assert.deepStrictEqual(errors, [])
+    assert.strictEqual(items[0].featured, true)
+    assert.strictEqual(parseWeeklyNews("2026-w41", source()).items[0].featured, false)
   })
 
   test("요약은 위키 링크를 원문 그대로 담고, 문단이 여럿이면 모두 담는다", () => {
@@ -149,6 +162,16 @@ describe("parseWeeklyNews", () => {
           fields: ["- 구역: network", "- 매체: M", "- 발행일: 2026-10-06", "- 이미지: og.png"],
         }),
         ["6: 이미지는 http(s) URL로 쓴다: og.png"],
+      ],
+      [
+        source({
+          fields: ["- 구역: network", "- 매체: M", "- 발행일: 2026-10-06", "- 주요: 아니오"],
+        }),
+        ["6: 주요는 예로만 쓰고, 주요 소식이 아니면 필드를 뺀다: 아니오"],
+      ],
+      [
+        source({ fields: ["- 구역: network", "- 매체: M", "- 발행일: 2026-10-06", "- 주요:"] }),
+        ["6: 주요는 예로만 쓰고, 주요 소식이 아니면 필드를 뺀다: "],
       ],
       [source({ summary: "" }), ["1: 요약이 없다"]],
       [source({ summary: "### 소제목" }), ["7: 소식 항목 안에는 제목을 두지 않는다"]],
