@@ -46,7 +46,7 @@ CTFL 강의계획서에 따르면 리스크 관리의 주된 활동은 **리스�
 - 알맞은 수준의 [[software-testing#테스트의 독립성|테스트의 독립성]]을 적용함
 - [[software-review|리뷰]]와 [[static-analysis|정적 분석]]을 수행함
 - 알맞은 테스트 기법과 [[test-coverage|커버리지]] 수준을 적용함
-- 영향받는 품질 특성을 다루는 알맞은 테스트 유형을 적용함
+- 영향받는 품질 특성을 다루는 알맞은 [[test-type|테스트 유형]]을 적용함
 - [[regression-testing|회귀 테스트]]를 포함한 동적 테스트를 수행함[@istqb-ctfl-syllabus-2024]
 
 ## 리스크 수준에 따른 테스트

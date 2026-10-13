@@ -33,7 +33,7 @@ ISO 26262-4:2018은 시스템 수준 제품 개발의 요구사항을 다음 주
 - 시스템 수준 제품 개발을 시작할 때의 일반 사항
 - [[safety-requirement#요구사항의 전개|technical safety requirement]]의 명세
 - Technical safety concept
-- 시스템 아키텍처 설계
+- [[system-architecture|시스템 아키텍처]] 설계
 - 아이템 통합과 테스트
 - Safety validation[@iso-26262-4-obp-2018]
 
