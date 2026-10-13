@@ -5,8 +5,9 @@
 // 형식 오류를 돌려준다. 이 플러그인은 transformer이자 페이지 타입이다.
 // - transformer: 주간 소식 파일을 parseWeeklyNews로 읽어 vfile 데이터(weeklyNews)에 둔다. 형식 오류가 있으면
 //   빌드를 멈춘다. 대문(plugins/front-page)은 이 데이터에서 최신 호를 고른다.
-// - 페이지 타입: 주간 소식 페이지를 발행일 순 목록으로 그리고, news/ 색인(content/news/index.md)의 본문 뒤에
-//   지난 호 목록을 붙인다. 구역 칩의 이름은 태그 표시 이름 파일(tags/<구역>)의 제목이다.
+// - 페이지 타입: 주간 소식 페이지를 발행일 최근순 목록과 그 위의 정렬·거르기 줄로 그리고, news/ 색인
+//   (content/news/index.md)의 본문 뒤에 지난 호 목록을 붙인다. 구역 칩의 이름은 태그 표시 이름 파일
+//   (tags/<구역>)의 제목이다. 정렬과 거르기는 브라우저의 스크립트가 카드의 data 속성을 읽어 한다.
 //
 // 요약은 마크다운이라 위키 링크를 쓸 수 있다. 카드는 요약을 다시 그리지 않고, 파이프라인이 그린 본문 트리에서
 // 요약이 차지하는 원본 줄(parseWeeklyNews가 준다)의 요소를 옮겨 온다. 그래서 위키 링크는 다른 페이지와 같이
@@ -257,9 +258,45 @@ export function parseWeeklyNews(
   return { items, errors }
 }
 
-/** 소식 항목을 발행일이 이른 것부터 늘어놓는다. 같은 날은 파일에 적은 순서를 지킨다. */
-export function chronological(items: NewsItem[]): NewsItem[] {
-  return [...items].sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0))
+// 호 페이지의 정렬. 최근순(newest)이 기본이고 대문과 같은 방향이다.
+export type SortOrder = "newest" | "oldest"
+
+/** 소식 항목을 발행일 순으로 늘어놓는다. 같은 날은 어느 쪽이든 파일에 적은 순서를 지킨다. */
+export function byDate(items: NewsItem[], order: SortOrder): NewsItem[] {
+  const sign = order === "newest" ? -1 : 1
+  return [...items].sort((a, b) => (a.date === b.date ? 0 : a.date < b.date ? -sign : sign))
+}
+
+// 호 페이지의 거르기 줄에 놓을 칩. region이 null이면 기타다.
+export interface IssueFilters {
+  featured: number
+  regions: { region: string | null; count: number }[]
+}
+
+/**
+ * 호 하나의 거르기 칩. 주요 소식 수와, 항목이 있는 구역마다 항목 수를 준다. 구역은 regionOrder(대문 구역 표의
+ * 순서) 대로 두고, 거기 없는 구역은 그 뒤에 이름순으로, 기타는 맨 뒤에 둔다. 구역을 여럿 단 항목은 구역마다
+ * 센다.
+ */
+export function issueFilters(items: NewsItem[], regionOrder: string[]): IssueFilters {
+  const counts = new Map<string | null, number>()
+  for (const item of items) {
+    for (const region of item.regions.length > 0 ? item.regions : [null]) {
+      counts.set(region, (counts.get(region) ?? 0) + 1)
+    }
+  }
+  const rank = (region: string | null) => {
+    if (region === null) return Infinity
+    const index = regionOrder.indexOf(region)
+    return index < 0 ? regionOrder.length : index
+  }
+  const regions = [...counts.keys()].sort(
+    (a, b) => rank(a) - rank(b) || (a ?? "").localeCompare(b ?? ""),
+  )
+  return {
+    featured: items.filter((item) => item.featured).length,
+    regions: regions.map((region) => ({ region, count: counts.get(region)! })),
+  }
 }
 
 // ---------------------------------------------------------------------------------------------------
@@ -315,25 +352,32 @@ const externalLink = (href: string, className: string, children: ElementContent[
     children,
   )
 
+// 칩의 색. 구역 색이고, 토큰이 없는 구역과 기타는 중립색이다.
+const regionColor = (region: string | null) =>
+  `var(--region-${region ?? "other"}, var(--region-other))`
+
 // 구역 칩. 구역마다 칩 하나이고 기타는 기타 칩 하나다. 칩의 꼴은 아래 CSS의 .news-chip이고, 대문의 주간 소식
 // 칸(plugins/front-page)도 같은 클래스를 쓴다.
 export function regionChips(regions: string[], names: Map<string, string>): Element[] {
   const chip = (region: string | null, name: string) =>
-    el(
-      "span",
-      {
-        className: ["news-chip"],
-        style: `--region: var(--region-${region ?? "other"}, var(--region-other))`,
-      },
-      [text(name)],
-    )
+    el("span", { className: ["news-chip"], style: `--region: ${regionColor(region)}` }, [
+      text(name),
+    ])
   return regions.length === 0
     ? [chip(null, OTHER)]
     : regions.map((region) => chip(region, names.get(region) ?? region))
 }
 
+// 주요 칩. 구역 칩과 같은 꼴에 색만 링크 색이다(소유자 결정, #404). 칩 묶음의 맨 앞에 둔다.
+const FEATURED_LABEL = "주요"
+const featuredChip = () =>
+  el("span", { className: ["news-chip"], style: "--region: var(--secondary)" }, [
+    text(FEATURED_LABEL),
+  ])
+
 function card(
   item: NewsItem,
+  index: number,
   names: Map<string, string>,
   summary: ElementContent[],
   locale: string,
@@ -341,7 +385,10 @@ function card(
   const date = formatDate(new Date(`${item.date}T00:00:00`), locale)
   const body = el("div", { className: ["news-card-body"] }, [
     el("p", { className: ["news-card-meta"] }, [
-      el("span", { className: ["news-card-chips"] }, regionChips(item.regions, names)),
+      el("span", { className: ["news-card-chips"] }, [
+        ...(item.featured ? [featuredChip()] : []),
+        ...regionChips(item.regions, names),
+      ]),
       el("span", {}, [
         text(item.outlet),
         el("span", { className: ["news-card-sep"], ariaHidden: "true" }, [text("·")]),
@@ -379,10 +426,88 @@ function card(
         ),
       ]
     : []
-  return el("article", { className: ["news-card"], id: item.id }, [body, ...image])
+  // 정렬·거르기 스크립트가 읽는 값이다. data-index는 파일에 적은 순서이고, data-regions는 구역 태그를 띄어 쓰거나
+  // 기타다.
+  return el(
+    "article",
+    {
+      className: ["news-card"],
+      id: item.id,
+      dataDate: item.date,
+      dataIndex: String(index),
+      dataRegions: item.regions.length > 0 ? item.regions.join(" ") : OTHER,
+      dataFeatured: item.featured ? "" : undefined,
+    },
+    [body, ...image],
+  )
 }
 
-// 주간 소식 한 호의 본문. 소식 항목을 발행일이 이른 것부터 한 목록으로 늘어놓는다(소유자 결정, #367).
+// 정렬·거르기 줄. 왼쪽은 주요 칩과 구역 칩(누르면 거르는 버튼), 오른쪽은 거른 수와 정렬이다(소유자 결정, #404).
+// 칩은 카드의 칩과 같은 꼴(.news-chip)이다. 구역 칩은 여럿 고를 수 있고 고른 구역 가운데 하나라도 단 항목을
+// 보이며, 주요 칩은 그 결과에서 주요 소식만 남긴다. 아무것도 고르지 않으면 모두 보인다. 주요 소식이 없는 호는
+// 주요 칩을 두지 않는다.
+function toolbar(filters: IssueFilters, names: Map<string, string>): Element {
+  const chip = (label: string, count: number, color: string, data: Element["properties"]) =>
+    el(
+      "button",
+      {
+        type: "button",
+        className: ["news-chip", "news-filter"],
+        style: `--region: ${color}`,
+        ariaPressed: "false",
+        ...data,
+      },
+      [text(label), el("span", { className: ["news-filter-count"] }, [text(String(count))])],
+    )
+  const featured =
+    filters.featured > 0
+      ? [chip(FEATURED_LABEL, filters.featured, "var(--secondary)", { dataFeatured: "" })]
+      : []
+  const regions = filters.regions.map(({ region, count }) =>
+    chip(region === null ? OTHER : (names.get(region) ?? region), count, regionColor(region), {
+      dataRegion: region ?? OTHER,
+    }),
+  )
+  const sort = (order: SortOrder, label: string) =>
+    el(
+      "button",
+      {
+        type: "button",
+        className: ["news-sort-option"],
+        dataOrder: order,
+        ariaPressed: order === "newest" ? "true" : "false",
+      },
+      [text(label)],
+    )
+  return el("div", { className: ["news-tools"] }, [
+    el("div", { className: ["news-filters"], role: "group", ariaLabel: "거르기" }, [
+      ...featured,
+      ...regions,
+    ]),
+    el("div", { className: ["news-sort"], role: "group", ariaLabel: "정렬" }, [
+      el("span", { className: ["news-tools-count"], ariaLive: "polite" }),
+      sort("newest", "최근순"),
+      el("span", { ariaHidden: "true" }, [text("·")]),
+      sort("oldest", "오래된순"),
+    ]),
+  ])
+}
+
+// 대문 구역 표의 구역 순서. 대문의 링크 가운데 구역(tags/<구역>)을 나온 순서대로 모은다. 탐색기
+// (plugins/explorer-tree)와 같은 순서다.
+function regionOrder(allFiles: QuartzPluginData[]): string[] {
+  const front = allFiles.find((file) => file.slug === "index")
+  const links = (front?.links ?? []) as string[]
+  const order: string[] = []
+  for (const link of links) {
+    const region = link.startsWith("tags/") ? link.slice("tags/".length) : null
+    if (region && !region.includes("/") && !order.includes(region)) order.push(region)
+  }
+  return order
+}
+
+// 주간 소식 한 호의 본문. 정렬·거르기 줄 아래에 소식 항목을 발행일 최근순으로 한 목록으로 늘어놓는다(한
+// 목록은 소유자 결정, #367. 최근순 기본은 #404). 거른 결과가 없을 때의 안내 줄은 스크립트가 보인다.
 function issueTree(props: QuartzComponentProps, data: WeeklyNewsData): HastRoot {
   const names = regionNames(props.allFiles)
   const unknown = [
@@ -394,10 +519,24 @@ function issueTree(props: QuartzComponentProps, data: WeeklyNewsData): HastRoot 
     )
   }
   const tree = props.tree as HastRoot
-  const cards = chronological(data.items).map((item) =>
-    card(item, names, nodesInLines(tree, item.summary.start, item.summary.end), props.cfg.locale),
+  const index = new Map(data.items.map((item, i) => [item, i]))
+  const cards = byDate(data.items, "newest").map((item) =>
+    card(
+      item,
+      index.get(item)!,
+      names,
+      nodesInLines(tree, item.summary.start, item.summary.end),
+      props.cfg.locale,
+    ),
   )
-  return { type: "root", children: [el("div", { className: ["news-cards"] }, cards)] }
+  return {
+    type: "root",
+    children: [
+      toolbar(issueFilters(data.items, regionOrder(props.allFiles)), names),
+      el("div", { className: ["news-cards"] }, cards),
+      el("p", { className: ["news-empty"], hidden: true }, [text("조건에 맞는 소식이 없습니다")]),
+    ],
+  }
 }
 
 // news/ 색인. 본문 뒤에 지난 호 목록을 붙인다. 주차 역순으로 호의 제목, 기간, 소식 수를 보인다.
@@ -440,7 +579,101 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 //   옅게 깔고 글자는 구역 색으로 쓴다. 대비 하한은 docs/palette.md의 "구역 칩"이다.
 // - 첫 줄은 칩 묶음과 "매체 · 발행일"이다. 칩끼리는 좁게, 칩 묶음과 매체 사이는 넓게 띄운다. 매체와 날짜는
 //   보조 글자색이다.
-const CSS = `.news-cards {
+// - 정렬·거르기 줄은 목록 위에 둔다. 거르기 칩은 카드의 칩과 같은 꼴의 버튼이고, 주요 칩 뒤만 넓게 띄운다.
+//   아무것도 고르지 않으면 모든 칩이 카드의 칩과 같고, 하나라도 고르면 고른 칩은 제 색으로 채우고 나머지는 보조
+//   글자색과 1px --lightgray 테두리로 물린다. 정렬은 대문 소식 칸 제목 줄의 링크("N개 모두 보기 · 지난 호")와
+//   같은 꼴로, 고른 쪽은 제목색으로 굵게 쓴다. 거른 수와 정렬은 좁은 화면에서도 오른쪽에 붙는다. 대비는
+//   docs/palette.md의 구역 이름, 구역 칩, 링크, 강조색 위 글자, 보조 글자 쌍에 든다.
+const CSS = `.news-tools {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.9rem;
+}
+.news-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.2rem;
+}
+.news-filter {
+  border: 0;
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+.news-filter[data-featured] {
+  margin-right: 0.6rem;
+}
+.news-filter:hover {
+  background-color: color-mix(in srgb, var(--region) 16%, transparent);
+}
+.news-filters.has-selection .news-filter {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1px var(--lightgray);
+  color: var(--gray);
+}
+.news-filters.has-selection .news-filter:hover {
+  color: var(--region);
+}
+.news-filters .news-filter[aria-pressed="true"] {
+  background-color: var(--region);
+  box-shadow: none;
+  color: var(--light);
+}
+.news-filter-count {
+  margin-left: 0.3em;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+.news-sort {
+  display: flex;
+  gap: 0.4rem;
+  margin-left: auto;
+  color: var(--gray);
+  font-size: 0.85em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.news-tools-count {
+  margin-right: 0.6rem;
+  font-variant-numeric: tabular-nums;
+}
+.news-tools-count:empty {
+  display: none;
+}
+.news-sort-option {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--gray);
+  font: inherit;
+  cursor: pointer;
+}
+.news-sort-option:hover {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+.news-sort-option[aria-pressed="true"] {
+  color: var(--dark);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: default;
+}
+.news-card[hidden],
+.news-empty[hidden] {
+  display: none;
+}
+.news-empty {
+  margin: 0;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--lightgray);
+  color: var(--gray);
+}
+.news-cards {
   border-top: 1px solid var(--lightgray);
 }
 .news-card {
@@ -534,10 +767,81 @@ const CSS = `.news-cards {
 `
 
 // 원문 이미지를 불러오지 못한 카드는 이미지 칸을 숨긴다. 스크립트가 돌기 전에 이미 실패한 이미지도 있어
-// 불러오기가 끝난 이미지의 크기도 본다. SPA 이동은 본문을 새로 그리므로 nav 이벤트마다 다시 건다.
+// 불러오기가 끝난 이미지의 크기도 본다.
+//
+// 정렬·거르기 줄의 버튼을 누르면 카드를 다시 늘어놓고 거른다. 순서는 byDate와 같이 발행일(data-date) 순이고 같은
+// 날은 파일에 적은 순서(data-index)다. 거르기는 toolbar의 주석대로다. 고른 상태는 페이지 안에서만 가지고, 다른
+// 호로 가면 처음(최근순, 거르지 않음)으로 돌아간다.
+//
+// SPA 이동은 본문을 새로 그리므로 nav 이벤트마다 다시 건다. 첫 불러오기에서는 setup과 nav가 모두 돌 수 있어,
+// 이미 건 줄은 data-ready로 건너뛴다. SPA는 본문을 갈아 끼우지 않고 같은 자리의 요소를 고쳐 쓰므로(micromorph),
+// 떠날 때 처리기와 data-ready를 거둔다. 거두지 않으면 같은 호로 돌아왔을 때 옛 처리기가 남아 한 번 누름이 두 번
+// 처리된다.
 const SCRIPT = `(() => {
   function hide() {
     this.closest(".news-card-image")?.setAttribute("hidden", "")
+  }
+
+  function setupTools(tools) {
+    if (tools.dataset.ready !== undefined) return
+    tools.dataset.ready = ""
+    const list = tools.parentElement.querySelector(".news-cards")
+    const empty = tools.parentElement.querySelector(".news-empty")
+    const filters = tools.querySelector(".news-filters")
+    const count = tools.querySelector(".news-tools-count")
+    const cards = [...list.querySelectorAll(".news-card")]
+    const state = { order: "newest", regions: new Set(), featured: false }
+
+    function render() {
+      const sign = state.order === "newest" ? -1 : 1
+      const sorted = [...cards].sort((a, b) =>
+        a.dataset.date === b.dataset.date
+          ? a.dataset.index - b.dataset.index
+          : a.dataset.date < b.dataset.date ? -sign : sign,
+      )
+      let shown = 0
+      for (const card of sorted) {
+        const regions = card.dataset.regions.split(" ")
+        const visible =
+          (state.regions.size === 0 || regions.some((region) => state.regions.has(region))) &&
+          (!state.featured || card.dataset.featured !== undefined)
+        card.hidden = !visible
+        if (visible) shown++
+        list.append(card)
+      }
+      const filtering = state.regions.size > 0 || state.featured
+      filters.classList.toggle("has-selection", filtering)
+      count.textContent = filtering ? shown + "/" + cards.length + "개" : ""
+      empty.hidden = shown > 0
+      for (const button of tools.querySelectorAll(".news-filter")) {
+        const pressed =
+          button.dataset.featured !== undefined
+            ? state.featured
+            : state.regions.has(button.dataset.region)
+        button.setAttribute("aria-pressed", String(pressed))
+      }
+      for (const button of tools.querySelectorAll(".news-sort-option")) {
+        button.setAttribute("aria-pressed", String(button.dataset.order === state.order))
+      }
+    }
+
+    const controller = new AbortController()
+    window.addCleanup?.(() => {
+      controller.abort()
+      delete tools.dataset.ready
+    })
+    function toggle(event) {
+      const button = event.target.closest("button")
+      if (!button) return
+      if (button.dataset.order) state.order = button.dataset.order
+      else if (button.dataset.featured !== undefined) state.featured = !state.featured
+      else if (button.dataset.region) {
+        const region = button.dataset.region
+        if (!state.regions.delete(region)) state.regions.add(region)
+      }
+      render()
+    }
+    tools.addEventListener("click", toggle, { signal: controller.signal })
   }
 
   function setup() {
@@ -545,6 +849,7 @@ const SCRIPT = `(() => {
       if (image.complete && image.naturalWidth === 0) hide.call(image)
       else image.addEventListener("error", hide, { once: true })
     }
+    for (const tools of document.querySelectorAll(".news-tools")) setupTools(tools)
   }
 
   setup()
