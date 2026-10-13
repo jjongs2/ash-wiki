@@ -78,4 +78,4 @@ JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"
 | 저장소   | https://github.com/citation-style-language/styles       |
 | 파일     | `ieee.csl`                                              |
 | 커밋     | `1ccf4696be22ea0b55f83cc9163bde3061fddb0a` (2026-01-07) |
-| 라이선스 | CC BY-SA 3.0(파일 안 `<rights>`)                        |
+| 라이선스 | [README 라이선스 절](../README.md#라이선스)             |

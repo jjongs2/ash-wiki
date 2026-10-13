@@ -7,7 +7,7 @@
 [![Quartz v5](https://img.shields.io/badge/engine-Quartz%20v5-284b63)](docs/engine.md)
 [![Cloudflare Pages](https://img.shields.io/badge/deploy-Cloudflare%20Pages-f38020)](https://ash-wiki.pages.dev)
 
-[사이트](https://ash-wiki.pages.dev) · [작동 방식](#작동-방식) · [로컬 개발](#로컬-개발) · [문서](#문서)
+[사이트](https://ash-wiki.pages.dev) · [작동 방식](#작동-방식) · [로컬 개발](#로컬-개발) · [문서](#문서) · [라이선스](#라이선스)
 
 </div>
 
@@ -119,3 +119,19 @@ CONTEXT.md        운영 용어집
 | [주간 소식](docs/weekly-news.md)                 | 주간 소식 형식                      |
 | [ADR](docs/adr/)                                 | 되돌리기 어려운 결정의 기록         |
 | [CONTRIBUTING.md](CONTRIBUTING.md)               | 브랜치, PR, 리뷰, 이슈 규칙         |
+
+## 라이선스
+
+이 절이 라이선스 범위의 정본입니다. 결정 배경은 [ADR 0017](docs/adr/0017-content-license.md)에 있습니다.
+
+| 범위                                                   | 경로                                                                             | 라이선스                         |
+| ------------------------------------------------------ | -------------------------------------------------------------------------------- | -------------------------------- |
+| 코드: 엔진, 로컬 플러그인, 도구, 설정, 스킬, 운영 문서 | `quartz/`, `plugins/`, `tools/`, `.claude/skills/`, `docs/` 등 아래 행 밖의 파일 | [MIT](LICENSE-MIT)               |
+| 위키 콘텐츠: 페이지, 도해, 주간 소식, 태그 페이지      | `content/`                                                                       | [CC BY 4.0](LICENSE-CC-BY-4.0)   |
+| 참고문헌 데이터(엔트리마다 하나인 `.bib` 파일)         | `bib/`                                                                           | [CC0 1.0](LICENSE-CC0-1.0)       |
+| IEEE CSL 스타일                                        | `csl/ieee.csl`                                                                   | CC BY-SA 3.0(파일 안 `<rights>`) |
+| giscus 테마 CSS                                        | `quartz/static/giscus/`                                                          | MIT(GitHub, 파일 머리 주석)      |
+
+위키 콘텐츠를 옮겨 쓸 때는 출처를 "Æ wiki, <페이지 URL>, CC BY 4.0" 꼴로 표시합니다.
+
+주간 소식의 원문 이미지(원문 사이트에 링크한 것), 상표와 로고, 원어 제목은 각 권리자의 것이며 이 라이선스에 들지 않습니다.
