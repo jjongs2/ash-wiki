@@ -19,13 +19,17 @@ ISTQB CTFL 강의계획서에 따르면 **상태 다이어그램**(state diagram
 
 ## 커버리지
 
-상태 전이 테스트에는 [[test-coverage|커버리지]] 기준이 많고, 이 강의계획서는 그 가운데 셋을 다룬다. 세 기준 모두 커버리지를 백분율로 나타내고, all states와 valid transitions 커버리지는 실행한 커버리지 항목의 수를 전체 커버리지 항목의 수로 나눈다.[@istqb-ctfl-syllabus-2024]
+상태 전이 테스트에는 [[test-coverage|커버리지]] 기준이 많고, 이 강의계획서는 그 가운데 셋을 다룬다. 세 기준 모두 커버리지를 백분율로 나타낸다. all states와 valid transitions 커버리지는 전체 커버리지 항목의 수가 $N$이고 그 가운데 실행한 항목의 수가 $N_\mathrm{exec}$이면 다음과 같다.[@istqb-ctfl-syllabus-2024]
+
+$$
+C = \frac{N_\mathrm{exec}}{N} \times 100\,\%
+$$
 
 - **all states 커버리지**: 커버리지 항목은 상태다. 100%를 이루려면 모든 상태를 실행해야 한다.
 - **valid transitions 커버리지**: 0-switch 커버리지라고도 부른다. 커버리지 항목은 유효한 전이 하나하나다. 100%를 이루려면 유효한 전이를 모두 실행해야 한다.
-- **all transitions 커버리지**: 커버리지 항목은 상태 표에 있는 모든 전이다. 100%를 이루려면 유효한 전이를 모두 실행하고 무효 전이를 모두 실행하려 시도해야 한다. 커버리지는 실행했거나 실행을 시도한 유효·무효 전이의 수를 전체 유효·무효 전이의 수로 나눈다.[@istqb-ctfl-syllabus-2024]
+- **all transitions 커버리지**: 커버리지 항목은 상태 표에 있는 모든 전이다. 100%를 이루려면 유효한 전이를 모두 실행하고 무효 전이를 모두 실행하려 시도해야 한다. 커버리지는 위 식에서 $N_\mathrm{exec}$를 실행했거나 실행을 시도한 유효·무효 전이의 수로, $N$을 전체 유효·무효 전이의 수로 둔 값이다.[@istqb-ctfl-syllabus-2024]
 
-테스트 케이스 하나에서 무효 전이를 하나만 테스트하면, 한 결함이 다른 결함의 검출을 막는 결함 가림(defect masking)을 피하는 데 도움이 된다.[@istqb-ctfl-syllabus-2024]
+테스트 케이스 하나에서 무효 전이를 하나만 테스트하면, 한 결함이 다른 결함의 검출을 막는 **결함 가림**(defect masking)을 피하는 데 도움이 된다.[@istqb-ctfl-syllabus-2024]
 
 all states 커버리지는 대개 모든 전이를 실행하지 않고도 이룰 수 있어서 valid transitions 커버리지보다 약하다. valid transitions 커버리지는 가장 널리 쓰이는 기준이고, 이를 100% 이루면 all states 커버리지도 100%가 된다. all transitions 커버리지를 100% 이루면 나머지 두 기준도 100%가 된다. 이 강의계획서는 mission-critical과 [[functional-safety#안전과 리스크|safety-critical]] 소프트웨어에는 all transitions 커버리지를 최소한의 요구로 삼기를 권한다.[@istqb-ctfl-syllabus-2024]
 
