@@ -25,4 +25,10 @@ ISTQB CT-AcT(Certified Tester Acceptance Testing) 강의계획서에 따르면 �
 
 [[automotive-spice|ASPICE]] 4.1의 VAL.1 Validation은 최종 사용자가 직접 다룰 수 있는 최종 제품이 운용 목표 환경에서 의도한 사용 기대를 만족한다는 증거를 내는 것을 목적으로 한다. 이 모델은 확인 수단을 고르는 기준의 예로 인도할 제품의 용도(테스트 벤치, 테스트 트랙, 공도 확인, 최종 사용자의 현장 사용), 형식 승인, 요구사항 확인, 이해관계자 요구사항이 바뀌어 생기는 회귀 확인의 필요를 든다.[@vda-automotive-spice-pam-4-1-2026] ASPICE 3.1에는 확인 프로세스 그룹이 없었고, VAL.1은 ASPICE 4.0에서 들어왔다.[@vda-automotive-spice-pam-3-1-2017][@vda-automotive-spice-pam-4-0-2023]
 
-[[functional-safety|기능 안전]]의 안전 확인(safety validation)은 [[safety-lifecycle|안전 생명주기]]에서 다룬다.
+## ISO 26262의 safety validation
+
+[[functional-safety|기능 안전]] 표준 [[iso-26262|ISO 26262]]-1:2018은 **안전 확인**(safety validation)을 검사와 테스트에 바탕을 두어 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]]이 알맞고 충분한 무결성으로 이루어졌음을 보증하는 것으로 정의하고, 정의에 단 Note에서 안전 확인에 알맞은 방법을 ISO 26262-4가 준다는 것을 제시한다.[@iso-26262-1-obp-2018]
+
+ISO 26262-4:2018은 시스템 수준 제품 개발의 요구사항 범위에 안전 확인을 넣고, 그 요구사항을 8절에 둔다. 시리즈 개요 그림에서도 안전 확인은 4부 8절(4-8)이다.[@iso-26262-4-obp-2018]
+
+ISTQB CT-AuT 강의계획서는 ISTQB 인수 테스트에, 그 일부만 덮는 ISO 26262-4의 8절과 ASPICE의 VAL.1을 대응시킨다. 대응 전체는 [[system-testing#테스트 레벨의 대응|시스템 테스트]]에서 다룬다.[@istqb-ct-aut-syllabus-2025]
