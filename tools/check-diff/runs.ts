@@ -89,8 +89,9 @@ export const attributed = (claim: ClaimBlock, editions: Map<string, Edition>) =>
   namesSource(claim.opening, claim.firstKeys.split(" "), editions)
 
 // 엔트리 제목에서 출처 표시로 칠 이름: 이어진 라틴 낱말 둘 가운데, 둘 다 글자가 들고 관사·전치사가 아니며
-// 하나는 대문자로 시작하는 것. 대소문자까지 같아야 친다. 예: "The Kanban Guide (May 2025)"의 "Kanban
+// 둘 다 대문자로 시작하는 것. 대소문자까지 같아야 친다. 예: "The Kanban Guide (May 2025)"의 "Kanban
 // Guide", "V-Modell XT: Das …"의 "V-Modell XT". 낱말 하나는 치지 않는다. 개념 이름(Kanban)과 겹친다.
+// 소문자 낱말이 낀 짝(Functional safety, Road vehicles)은 표준 제목의 일반 낱말이라 치지 않는다.
 const titleStopwords = new Set(
   ["the", "a", "an", "of", "and", "or", "for", "to", "in", "on", "with", "by", "from"].flatMap(
     (word) => [word, word[0].toUpperCase() + word.slice(1)],
@@ -103,7 +104,7 @@ export function titleNames(title: string): string[] {
   for (let i = 0; i + 1 < words.length; i++) {
     const pair = [words[i], words[i + 1]]
     if (pair.some((word) => !/[A-Za-z]/.test(word) || titleStopwords.has(word))) continue
-    if (pair.some((word) => /^[A-Z]/.test(word))) found.push(pair.join(" "))
+    if (pair.every((word) => /^[A-Z]/.test(word))) found.push(pair.join(" "))
   }
   return found
 }
@@ -186,8 +187,8 @@ function leadingName(text: string): string | undefined {
   const words = text.split(" ").slice(0, 5)
   for (let i = 0; i < Math.min(words.length, 4); i++) {
     if (/,|\.(?![0-9A-Za-z])/.test(words[i])) return undefined
-    const according = words[i].endsWith("에") && words[i + 1] === "따르면"
-    const stem = according
+    const said = words[i].endsWith("에") && words[i + 1] === "따르면"
+    const stem = said
       ? words[i].slice(0, -1)
       : words[i].match(/^(.+?)(?:은|는|이|가|의|에서는?)$/)?.[1]
     if (!stem) continue
