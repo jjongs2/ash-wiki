@@ -37,4 +37,4 @@ FreeRTOS에서 `xSemaphoreTake` 한 번에 사건 하나만 처리하는 태스�
 
 RTEMS의 이진 세마포어는 얻은 태스크가 놓아야 하고, 그 태스크는 같은 이진 세마포어를 중첩해 여러 번 얻을 수 있다. 바깥쪽 얻기와 짝이 맞는 놓기가 끝나야 다른 태스크가 얻을 수 있다. 중첩을 허용하지 않는 simple binary semaphore는 태스크 동기화에 쓴다.[@rtems-semaphore-background-2025] 뮤텍스와 이진 세마포어의 소유권 차이는 [[mutex#소유권|뮤텍스]]에서 다룬다.
 
-세마포어를 기다리는 쪽 가운데 누가 먼저 얻는지도 제품마다 정해 둔다. Zephyr에서는 세마포어가 주어지면 우선순위가 가장 높은 스레드 가운데 가장 오래 기다린 스레드가 얻는다.[@zephyr-semaphores-2026] RTEMS에서는 세마포어를 만들 때 FIFO(First-In First-Out) 순서와 우선순위 순서 가운데 고르고, 기본은 FIFO다.[@rtems-semaphore-background-2025] µC/OS-III는 기다리는 태스크를 우선순위 순으로 목록에 넣고, 세마포어가 주어지면 우선순위가 가장 높은 대기자를 깨운다.[@micrium-ucos-iii-semaphores-2026]
+세마포어를 기다리는 쪽 가운데 누가 먼저 얻는지도 제품마다 정해 둔다. Zephyr에서는 세마포어가 주어지면 우선순위가 가장 높은 스레드 가운데 가장 오래 기다린 스레드가 얻는다.[@zephyr-semaphores-2026] RTEMS에서는 세마포어를 만들 때 FIFO 순서와 우선순위 순서 가운데 고르고, 기본은 FIFO다.[@rtems-semaphore-background-2025] µC/OS-III는 기다리는 태스크를 우선순위 순으로 목록에 넣고, 세마포어가 주어지면 우선순위가 가장 높은 대기자를 깨운다.[@micrium-ucos-iii-semaphores-2026]

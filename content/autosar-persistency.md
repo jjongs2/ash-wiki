@@ -40,7 +40,7 @@ Persistency는 중복 정보로 저장한 데이터의 손상을 검출해 무�
 
 - 새 응용을 설치하거나 기존 응용을 갱신하면, Update and Configuration Management가 [[autosar-execution-management|Execution Management]]를 거쳐 응용에 설치나 갱신을 검증하게 하고, 응용은 Persistency가 [[autosar-manifest|Manifest]]의 Persistency 설정에 따라 영속 데이터를 배치하거나 갱신하게 한다.
 - 응용을 재시작하지 않고 설정을 갱신하면, Persistency가 설정 갱신을 확인하고, 갱신된 저장소를 닫았다가 다시 열어 영속 데이터를 갱신하게 한다.
-- 응용을 제거하면, Update and Configuration Management가 Persistency 설정의 URI(Uniform Resource Identifier)로 남은 영속 데이터를 지운다.[@autosar-ap-exp-platformdesign-2025]
+- 응용을 제거하면, Update and Configuration Management가 Persistency 설정의 URI로 남은 영속 데이터를 지운다.[@autosar-ap-exp-platformdesign-2025]
 
 Persistency는 응용 설계자가 정의한 영속 데이터, 통합자가 바꾸거나 정의한 영속 데이터를 배치할 수 있어야 한다. 새 버전의 응용을 설치하거나 설정을 갱신하면, Key-Value Storage나 File Storage마다 설정한 갱신 전략에 따라 영속 데이터를 덮어쓰거나 그대로 둔다. Persistency 설정은 응용 설계와 배치 단계에서 하고, 배치 단계 설정이 응용 설계의 설정을 덮어쓴다. 배치 단계 설정이 없으면 응용 설계의 설정으로 배치한다.[@autosar-ap-exp-platformdesign-2025]
 

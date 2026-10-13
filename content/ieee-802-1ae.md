@@ -10,7 +10,7 @@ edition: 2018
 status: 개정 중
 ---
 
-**IEEE 802.1AE**는 IEEE 802 LAN(Local Area Network)의 MAC(Medium Access Control) 서비스를 쓰는 상위 프로토콜 실체에 드러나지 않게, 네트워크의 전부나 일부를 보호하는 방법을 정하는 IEEE 표준이다. 정식 제목은 "IEEE Standard for Local and metropolitan area networks—Media Access Control (MAC) Security"이다. 이 표준이 정하는 보안을 **MACsec**(MAC Security)이라 한다.[@ieee-802-1ae-2018]
+**IEEE 802.1AE**는 IEEE 802 LAN의 MAC(Medium Access Control) 서비스를 쓰는 상위 프로토콜 실체에 드러나지 않게, 네트워크의 전부나 일부를 보호하는 방법을 정하는 IEEE 표준이다. 정식 제목은 "IEEE Standard for Local and metropolitan area networks—Media Access Control (MAC) Security"이다. 이 표준이 정하는 보안을 **MACsec**(MAC Security)이라 한다.[@ieee-802-1ae-2018]
 
 ## 범위
 

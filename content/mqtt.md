@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**MQTT**(Message Queuing Telemetry Transport)는 클라이언트와 서버 사이에서 발행·구독(publish/subscribe) 방식으로 메시지를 나르는 프로토콜이다. OASIS가 표준으로 펴낸다. MQTT는 가볍고 단순하며 구현하기 쉽게 설계돼, 코드 크기가 작아야 하거나 네트워크 대역폭이 귀한 M2M(Machine to Machine)과 IoT(Internet of Things) 같은 제약 환경에 알맞다.[@oasis-mqtt-5-0-2019]
+**MQTT**(Message Queuing Telemetry Transport)는 클라이언트와 서버 사이에서 발행·구독(publish/subscribe) 방식으로 메시지를 나르는 프로토콜이다. OASIS가 표준으로 펴낸다. MQTT는 가볍고 단순하며 구현하기 쉽게 설계돼, 코드 크기가 작아야 하거나 네트워크 대역폭이 귀한 M2M(Machine to Machine)과 IoT 같은 제약 환경에 알맞다.[@oasis-mqtt-5-0-2019]
 
 ## 클라이언트와 서버
 
@@ -15,7 +15,7 @@ verified: 2026-10-03
 
 ## 토픽
 
-MQTT 5.0은 메시지가 토픽 이름(topic name)을 달고 발행되고, 서버가 그 토픽 이름을 구독과 맞춰 보게 정한다. 토픽 이름은 `/`로 나뉜 층(topic level)을 이룬다. 구독은 토픽 필터(topic filter)와 최대 QoS(Quality of Service)로 이루어지며, 서버는 구독에 맞는 메시지를 그 클라이언트에게 보낸다.[@oasis-mqtt-5-0-2019]
+MQTT 5.0은 메시지가 토픽 이름(topic name)을 달고 발행되고, 서버가 그 토픽 이름을 구독과 맞춰 보게 정한다. 토픽 이름은 `/`로 나뉜 층(topic level)을 이룬다. 구독은 토픽 필터(topic filter)와 최대 QoS로 이루어지며, 서버는 구독에 맞는 메시지를 그 클라이언트에게 보낸다.[@oasis-mqtt-5-0-2019]
 
 ![[diagrams/mqtt-publish-subscribe.svg]]
 

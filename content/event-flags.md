@@ -35,6 +35,6 @@ CMSIS-RTOS2에서는 스레드가 깨어나면 기다린 플래그가 `osFlagsNo
 - **µC/OS-III 태스크 세마포어**: 태스크마다 세마포어가 하나씩 들어 있고, 태스크가 만들어질 때 초기값 0으로 생긴다.[@micrium-ucos-iii-task-semaphore-2026]
 - **RTEMS 이벤트**: RTEMS(Real-Time Executive for Multiprocessor Systems)에서는 태스크마다 이벤트 플래그 32개가 딸린다. 이벤트는 큐에 쌓이지 않아, 태스크가 받기 전에 같은 이벤트를 두 번 이상 보내도 두 번째부터는 효과가 없다.[@rtems-event-background-2025] 받은 이벤트는 태스크의 이벤트 집합에서 지워지고, 요청하지 않은 이벤트는 그대로 남는다.[@rtems-event-receive-2025]
 
-FreeRTOS의 task notification은 큐, 세마포어, event group으로 같은 일을 할 때보다 사건이나 데이터를 훨씬 빠르게, RAM(Random-Access Memory)을 덜 쓰며 보낸다. 대신 받는 태스크가 하나뿐이고, 값 하나만 담으며, 태스크에서 인터럽트 처리기로는 보내지 못한다.[@freertos-task-notifications-2026] µC/OS-III의 태스크 세마포어도 별도 세마포어 객체를 쓰는 것보다 효율적이다.[@micrium-ucos-iii-task-semaphore-2026]
+FreeRTOS의 task notification은 큐, 세마포어, event group으로 같은 일을 할 때보다 사건이나 데이터를 훨씬 빠르게, RAM을 덜 쓰며 보낸다. 대신 받는 태스크가 하나뿐이고, 값 하나만 담으며, 태스크에서 인터럽트 처리기로는 보내지 못한다.[@freertos-task-notifications-2026] µC/OS-III의 태스크 세마포어도 별도 세마포어 객체를 쓰는 것보다 효율적이다.[@micrium-ucos-iii-task-semaphore-2026]
 
 OSEK OS의 이벤트 모델은 [[osek-event|OSEK 이벤트]]에서 다룬다.

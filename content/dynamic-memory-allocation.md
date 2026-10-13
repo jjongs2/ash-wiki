@@ -27,7 +27,7 @@ CMSIS-RTOS2는 thread-safe한 고정 크기 메모리 블록인 메모리 풀을
 
 ## FreeRTOS의 힙 구현
 
-FreeRTOS에서 태스크, 큐, [[semaphore|세마포어]] 같은 커널 객체의 RAM(Random-Access Memory)은 컴파일할 때 정적으로 잡거나 실행 중에 동적으로 할당할 수 있다. 동적 할당은 설계와 계획의 수고를 줄이고 API를 단순하게 하며 RAM 사용량을 줄인다. 정적 할당은 더 결정적이고, 할당 실패를 처리할 필요와 힙 단편화의 위험을 없앤다.[@freertos-heap-memory-management-2026]
+FreeRTOS에서 태스크, 큐, [[semaphore|세마포어]] 같은 커널 객체의 RAM은 컴파일할 때 정적으로 잡거나 실행 중에 동적으로 할당할 수 있다. 동적 할당은 설계와 계획의 수고를 줄이고 API를 단순하게 하며 RAM 사용량을 줄인다. 정적 할당은 더 결정적이고, 할당 실패를 처리할 필요와 힙 단편화의 위험을 없앤다.[@freertos-heap-memory-management-2026]
 
 FreeRTOS는 메모리 할당을 핵심 코드가 아니라 포팅 계층에 둔다. 시스템마다 동적 할당과 타이밍 요구가 달라 한 알고리즘이 일부 응용에만 맞기 때문이다. 커널은 RAM이 필요하면 `malloc()` 대신 `pvPortMalloc()`을, RAM을 풀 때는 `free()` 대신 `vPortFree()`를 부른다.[@freertos-heap-memory-management-2026]
 

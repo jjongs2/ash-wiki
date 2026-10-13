@@ -19,7 +19,7 @@ NIST SP 800-193은 펌웨어 손상을 탐지하는 기법의 하나로, 탐지�
 
 NIST SP 800-193은 모든 root of trust와 신뢰 사슬을 바꿀 수 없게 두거나, 무결성을 지키는 메커니즘으로 보호하게 한다. 또 업데이트, 탐지, 복구를 맡는 root of trust를 논리 구성 요소로 나누되, 이들이 서로 다른 구성 요소일 필요는 없다고 둔다.[@nist-sp-800-193-2018]
 
-TF-A(Trusted Firmware-A)의 Trusted Board Boot에서는 root of trust [[public-key-cryptography|공개 키]](ROTPK)나 그 해시와, ROM(Read-Only Memory)에 있어 바꿀 수 없다고 가정한 첫 부트로더 BL1이 신뢰의 기점이 된다.[@trustedfirmware-tf-a-trusted-board-boot-2026]
+TF-A(Trusted Firmware-A)의 Trusted Board Boot에서는 root of trust [[public-key-cryptography|공개 키]](ROTPK)나 그 해시와, ROM에 있어 바꿀 수 없다고 가정한 첫 부트로더 BL1이 신뢰의 기점이 된다.[@trustedfirmware-tf-a-trusted-board-boot-2026]
 
 Arm Platform Security Boot Guide 1.1은 리셋 직후 실행되는 첫 부트 코드를 온칩 boot ROM이나 그에 준하는 쓰기 잠금 영역, 보안 프로세서에 둔 바꿀 수 없는 부트로더로 두고, 이를 하드웨어 root of trust로 본다. 이 가이드는 ROTPK를 바꿀 수 없게 두게 하고, 잠근 온칩 플래시 섹터, secure element, 온칩 OTP(One-Time Programmable) 메모리에 둘 수 있게 한다. ROTPK를 신뢰할 수 없는 저장소에 두면, 바꿀 수 없게 둔 그 해시로 무결성을 확인해도 된다. 이 가이드는 OTP 메모리의 예로 eFuse를 든다.[@arm-den0072-2020]
 

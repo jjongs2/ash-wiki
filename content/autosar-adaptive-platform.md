@@ -71,7 +71,7 @@ AUTOSAR는 Adaptive Platform을 [[functional-safety|기능 안전]] 프로젝트
 ### 그 밖의 functional cluster
 
 - **Core Types**: 여러 functional cluster가 공개 인터페이스에 함께 쓰는 클래스와 기능을 정한다. [[automotive-safety-integrity-level|ASIL]] 인증 C++ 컴파일러가 대개 예외를 지원하지 않아, Adaptive Platform은 C++ 예외 없이 오류를 다루는 개념을 두고 그 중심 타입으로 `ara::core::ErrorCode`와 `ara::core::Result`를 정한다.
-- **Raw Data Stream**: 센서나 오디오·비디오 스트리밍처럼 외부 ECU와 원시 바이너리 데이터 스트림을 주고받는 독립 통신 API를 제공한다. 네트워크 계층의 IP(Internet Protocol) 기반 프로토콜과 데이터 링크 계층의 [[ieee-1722|IEEE 1722]] 프로토콜을 지원하고, 주고받는 데이터를 [[autosar-e2e-protection|E2E 보호]]하지 않으므로 그 보호는 응용 계층이 맡는다.
+- **Raw Data Stream**: 센서나 오디오·비디오 스트리밍처럼 외부 ECU와 원시 바이너리 데이터 스트림을 주고받는 독립 통신 API를 제공한다. 네트워크 계층의 IP 기반 프로토콜과 데이터 링크 계층의 [[ieee-1722|IEEE 1722]] 프로토콜을 지원하고, 주고받는 데이터를 [[autosar-e2e-protection|E2E 보호]]하지 않으므로 그 보호는 응용 계층이 맡는다.
 - **Automotive API Gateway**: Vehicle Services 묶음의 functional cluster로, 차량 밖과 안의 클라이언트에 VISS(Vehicle Information Service Specification)를 따르는 인터페이스를 준다. 그 인터페이스의 VSS(Vehicle Signal Specification) 데이터를 차량 안의 `ara::com` 서비스 인터페이스 데이터에 대응시킨다.
 - **Sensor Interfaces**: ISO 23150을 따르는 공통 인터페이스로, 비플랫폼 서비스가 센서 정보를 `ara::com` 미들웨어로 클라이언트 응용에 내준다.
 - **Safe Hardware Acceleration**: 응용과 다른 functional cluster가 하드웨어 가속기로 작업하는 API를 제공한다.[@autosar-ap-exp-platformdesign-2025]

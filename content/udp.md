@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**UDP**(User Datagram Protocol)는 IP(Internet Protocol) 위에서 응용 프로그램이 최소한의 프로토콜 절차로 메시지를 보내게 하는 프로토콜이다. RFC 768이 정하며, 전달과 중복 없음을 보장하지 않는다.[@ietf-rfc-768-1980] 전송 계층 프로토콜이다.[@ietf-rfc-1122-1989] UDP는 IP 헤더의 Protocol 값 17로 표시된다.[@ietf-rfc-768-1980][@iana-protocol-numbers-2026]
+**UDP**(User Datagram Protocol)는 IP 위에서 응용 프로그램이 최소한의 프로토콜 절차로 메시지를 보내게 하는 프로토콜이다. RFC 768이 정하며, 전달과 중복 없음을 보장하지 않는다.[@ietf-rfc-768-1980] 전송 계층 프로토콜이다.[@ietf-rfc-1122-1989] UDP는 IP 헤더의 Protocol 값 17로 표시된다.[@ietf-rfc-768-1980][@iana-protocol-numbers-2026]
 
 ## 헤더
 

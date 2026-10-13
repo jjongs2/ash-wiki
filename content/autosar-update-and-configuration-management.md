@@ -30,7 +30,7 @@ UCM은 패키지 관리 서비스 인터페이스 밖에 설정 관리를 위한
 
 Software Package는 UCM이 입력으로 받는 설치 단위다. 응용의 실행 파일, 운영체제나 펌웨어 갱신, 갱신한 설정과 calibration 데이터 같은 실제로 더하거나 바꿀 데이터에 더해, 패키지 이름, 버전, 의존성 같은 메타데이터를 주는 Software Package Manifest를 담는다. Software Package의 형식은 정하지 않으며, UCM 벤더의 도구가 패키지를 만든다. 통합자는 실행 파일, [[autosar-manifest|Manifest]], 영속 데이터 등을 모은 뒤 대상 UCM과 호환되는 패키저로 Software Package를 만든다.[@autosar-ap-exp-platformdesign-2025]
 
-OEM(Original Equipment Manufacturer) 백엔드가 여러 공급자의 패키지를 이해할 수 있도록 벤더에 매이지 않는 Backend Package 형식도 제안한다. Software Package의 형식은 벤더마다 다르지만, Backend Package에 든 Software Package Manifest는 ARXML(AUTOSAR Extensible Markup Language) 파일 형식이어야 한다. Vehicle Package는 대개 OEM 백엔드가 만든다. 백엔드에 저장된 Backend Package에서 뽑은 Software Package Manifest들과, 갱신 캠페인의 조율 정보를 비롯해 차량 안에서 패키지를 나누는 데 필요한 항목을 담은 Vehicle Package Manifest를 담는다. 정비소에서도 쓸 수 있도록 Vehicle Package Manifest도 ARXML 형식이어야 한다.[@autosar-ap-exp-platformdesign-2025]
+OEM 백엔드가 여러 공급자의 패키지를 이해할 수 있도록 벤더에 매이지 않는 Backend Package 형식도 제안한다. Software Package의 형식은 벤더마다 다르지만, Backend Package에 든 Software Package Manifest는 ARXML(AUTOSAR Extensible Markup Language) 파일 형식이어야 한다. Vehicle Package는 대개 OEM 백엔드가 만든다. 백엔드에 저장된 Backend Package에서 뽑은 Software Package Manifest들과, 갱신 캠페인의 조율 정보를 비롯해 차량 안에서 패키지를 나누는 데 필요한 항목을 담은 Vehicle Package Manifest를 담는다. 정비소에서도 쓸 수 있도록 Vehicle Package Manifest도 ARXML 형식이어야 한다.[@autosar-ap-exp-platformdesign-2025]
 
 ## 갱신 단계
 

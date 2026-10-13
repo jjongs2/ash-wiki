@@ -85,7 +85,7 @@ XS_CAN의 프로토콜 컨트롤러는 클록 160 MHz에서 CAN XL 데이터 구
 
 ## 제품 예
 
-Bosch X_CAN은 CAN XL을 지원하는 CAN 통신 컨트롤러 IP(Intellectual Property)로, SoC(System on Chip)에 넣을 수 있다. ISO 11898-1:2015와 CiA 610-1을 따르고, classical CAN은 8바이트·1 Mbit/s까지, CAN FD는 64바이트·8 Mbit/s까지, CAN XL은 2048바이트·20 Mbit/s까지 지원한다. 슬롯을 32개까지 둘 수 있는 우선순위 큐 1개와, 메시지를 1024개까지 담는 송신 FIFO(First-In First-Out) 큐와 수신 FIFO 큐를 8개씩 두고, 송신 필터 요소는 16개, 수신 필터 요소는 255개까지 둔다.[@bosch-x-can-2024]
+Bosch X_CAN은 CAN XL을 지원하는 CAN 통신 컨트롤러 IP(Intellectual Property)로, SoC(System on Chip)에 넣을 수 있다. ISO 11898-1:2015와 CiA 610-1을 따르고, classical CAN은 8바이트·1 Mbit/s까지, CAN FD는 64바이트·8 Mbit/s까지, CAN XL은 2048바이트·20 Mbit/s까지 지원한다. 슬롯을 32개까지 둘 수 있는 우선순위 큐 1개와, 메시지를 1024개까지 담는 송신 FIFO 큐와 수신 FIFO 큐를 8개씩 두고, 송신 필터 요소는 16개, 수신 필터 요소는 255개까지 둔다.[@bosch-x-can-2024]
 
 Bosch XS_CAN은 ISO 11898-1:2024에 따라 classical CAN, CAN FD, CAN XL로 통신하는 CAN 컨트롤러 IP이고, 버스에 이으려면 트랜시버가 따로 필요하다. 송신 FIFO 큐 1개, 수신 FIFO 큐 2개, 슬롯을 32개까지 둘 수 있는 송신 우선순위 큐 1개를 두고, 수신 필터 요소는 127개까지 둔다.[@bosch-xs-can-2026]
 

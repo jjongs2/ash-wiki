@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-06
 ---
 
-**스패닝 트리 프로토콜**(spanning tree protocol)은 [[ethernet-switch|브리지]]들이 함께 루프 없이 모든 LAN(Local Area Network)을 잇는 활성 토폴로지, 곧 스패닝 트리를 계산하게 하는 프로토콜이다. [[ieee-802-1q|IEEE 802.1Q]]-2022는 이 계산을 맡는 알고리즘과 프로토콜로 RSTP(Rapid Spanning Tree Protocol), MSTP(Multiple Spanning Tree Protocol), SPB(Shortest Path Bridging) 등을 두며, 이들은 망 구성 요소가 고장 나면 관리자의 개입 없이 다른 물리적 연결을 써서 연결을 빠르게 되살린다.[@ieee-802-1q-2022]
+**스패닝 트리 프로토콜**(spanning tree protocol)은 [[ethernet-switch|브리지]]들이 함께 루프 없이 모든 LAN을 잇는 활성 토폴로지, 곧 스패닝 트리를 계산하게 하는 프로토콜이다. [[ieee-802-1q|IEEE 802.1Q]]-2022는 이 계산을 맡는 알고리즘과 프로토콜로 RSTP(Rapid Spanning Tree Protocol), MSTP(Multiple Spanning Tree Protocol), SPB(Shortest Path Bridging) 등을 두며, 이들은 망 구성 요소가 고장 나면 관리자의 개입 없이 다른 물리적 연결을 써서 연결을 빠르게 되살린다.[@ieee-802-1q-2022]
 
 ## 활성 토폴로지
 

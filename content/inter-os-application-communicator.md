@@ -19,7 +19,7 @@ verified: 2026-09-30
 
 IOC는 [[autosar-sender-receiver-interface|sender-receiver]] 통신만 제공하며, [[autosar-client-server-interface|client-server]] 호출은 RTE가 sender-receiver 통신으로 바꾼다. 통신 형태는 다음과 같다.[@autosar-cp-sws-os-2025]
 
-- queued 통신과 unqueued 통신을 모두 제공한다. queued는 FIFO(First-In First-Out) 순서의 event semantics이고, unqueued는 last-is-best인 data semantics다. queued 통신을 구성하면 queue 길이를 정해야 한다.
+- queued 통신과 unqueued 통신을 모두 제공한다. queued는 FIFO 순서의 event semantics이고, unqueued는 last-is-best인 data semantics다. queued 통신을 구성하면 queue 길이를 정해야 한다.
 - 보내는 쪽과 받는 쪽의 수로는 1:1, N:1, N:M을 지원하되, N:M은 unqueued 통신에서만 된다.
 - data item은 기본 데이터 타입이면 값, 복합 데이터 구조면 참조다. 복합 구조는 한 메모리 블록으로 구현해야 하고, IOC는 내부 구조를 몰라도 시작 주소와 길이만으로 옮긴다.
 - 원자적 통신 동작 하나는 data item 하나를 옮긴다. 한 동작에 data item 여럿을 옮기는 것은 1:1 통신에만 허용된다.[@autosar-cp-sws-os-2025]

@@ -8,7 +8,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**인터넷 프로토콜 스위트**(Internet protocol suite)는 호스트가 인터넷으로 통신하려면 구현해야 하는, 계층을 이룬 프로토콜의 모음이다.[@ietf-rfc-1122-1989] RFC 1180에 따르면 TCP/IP라는 말은 흔히 [[tcp|TCP]]와 IP(Internet Protocol) 두 프로토콜에 관련된 모든 것을 가리키며, [[udp|UDP]], [[arp|ARP]], [[icmp|ICMP]] 같은 다른 프로토콜도 포함할 수 있다.[@ietf-rfc-1180-1991] RFC 1122는 이 모음을 링크, 인터넷, 전송, 응용의 네 계층으로 나눈다.[@ietf-rfc-1122-1989]
+**인터넷 프로토콜 스위트**(Internet protocol suite)는 호스트가 인터넷으로 통신하려면 구현해야 하는, 계층을 이룬 프로토콜의 모음이다.[@ietf-rfc-1122-1989] RFC 1180에 따르면 TCP/IP라는 말은 흔히 [[tcp|TCP]]와 IP 두 프로토콜에 관련된 모든 것을 가리키며, [[udp|UDP]], [[arp|ARP]], [[icmp|ICMP]] 같은 다른 프로토콜도 포함할 수 있다.[@ietf-rfc-1180-1991] RFC 1122는 이 모음을 링크, 인터넷, 전송, 응용의 네 계층으로 나눈다.[@ietf-rfc-1122-1989]
 
 ## 네 계층
 

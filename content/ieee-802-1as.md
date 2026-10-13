@@ -10,7 +10,7 @@ edition: 2025
 status: 개정 중
 ---
 
-**IEEE 802.1AS**는 시간에 민감한 응용을 위해 LAN(Local Area Network)에서 시각을 전달하는 프로토콜, 절차, 관리 객체를 정하는 IEEE 표준이다. 정식 제목은 "IEEE Standard for Local and Metropolitan Area Networks — Timing and Synchronization for Time-Sensitive Applications"이다.[@ieee-802-1as-2025] 이 표준의 시각 동기화 프로토콜을 gPTP(generalized Precision Time Protocol)라 한다.[@ieee-802-1ased-2026]
+**IEEE 802.1AS**는 시간에 민감한 응용을 위해 LAN에서 시각을 전달하는 프로토콜, 절차, 관리 객체를 정하는 IEEE 표준이다. 정식 제목은 "IEEE Standard for Local and Metropolitan Area Networks — Timing and Synchronization for Time-Sensitive Applications"이다.[@ieee-802-1as-2025] 이 표준의 시각 동기화 프로토콜을 gPTP(generalized Precision Time Protocol)라 한다.[@ieee-802-1ased-2026]
 
 ## 범위
 

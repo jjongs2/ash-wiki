@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-12
 ---
 
-UML(Unified Modeling Language) 2.5.1은 **use case**를 시스템의 요구사항, 곧 시스템이 무엇을 해야 하는지를 담는 수단으로 정한다. 이 명세가 use case에 대해 정하는 핵심 개념은 액터(actor), use case, subject다. subject는 use case가 적용되는, 고려 대상인 시스템이고, 액터는 subject와 상호작용할 수 있는 사용자와 다른 시스템을 나타낸다. use case는 행위의 명세이고, use case의 인스턴스는 그 use case를 따르는 창발적 행위가 한 번 일어난 것을 가리킨다.[@omg-uml-2-5-1-2017]
+UML 2.5.1은 **use case**를 시스템의 요구사항, 곧 시스템이 무엇을 해야 하는지를 담는 수단으로 정한다. 이 명세가 use case에 대해 정하는 핵심 개념은 액터(actor), use case, subject다. subject는 use case가 적용되는, 고려 대상인 시스템이고, 액터는 subject와 상호작용할 수 있는 사용자와 다른 시스템을 나타낸다. use case는 행위의 명세이고, use case의 인스턴스는 그 use case를 따르는 창발적 행위가 한 번 일어난 것을 가리킨다.[@omg-uml-2-5-1-2017]
 
 ![[diagrams/use-case-subject-actors.svg]]
 

@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**IPv6**(Internet Protocol version 6)는 [[ipv4|IPv4]]를 잇는 IP(Internet Protocol)의 6판이다. RFC 8200이 정하며, 주소가 128비트다.[@ietf-rfc-8200-2017]
+**IPv6**(Internet Protocol version 6)는 [[ipv4|IPv4]]를 잇는 IP의 6판이다. RFC 8200이 정하며, 주소가 128비트다.[@ietf-rfc-8200-2017]
 
 ## 기본 헤더
 

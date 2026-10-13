@@ -41,7 +41,7 @@ P802.3ch 태스크 포스는 비차폐 꼬임쌍선, 차폐 꼬임쌍선, 차폐
 
 ## 상위 프로토콜
 
-[[doip|DoIP]]를 정하는 [[iso-13400-2|ISO 13400-2]]:2025는 IP(Internet Protocol), [[tcp|TCP]], [[udp|UDP]]를 써서 진단 테스터와 차량 안 서버 사이의 진단 통신 요구사항을 정한다.[@iso-13400-2-obp-2025] [[some-ip|SOME/IP]]는 [[service-oriented-communication|서비스 지향 통신]]을 제공하며, 메시지를 IP 기반 차량 내 네트워크의 UDP나 TCP 페이로드로 나른다.[@autosar-fo-prs-someipprotocol-2025]
+[[doip|DoIP]]를 정하는 [[iso-13400-2|ISO 13400-2]]:2025는 IP, [[tcp|TCP]], [[udp|UDP]]를 써서 진단 테스터와 차량 안 서버 사이의 진단 통신 요구사항을 정한다.[@iso-13400-2-obp-2025] [[some-ip|SOME/IP]]는 [[service-oriented-communication|서비스 지향 통신]]을 제공하며, 메시지를 IP 기반 차량 내 네트워크의 UDP나 TCP 페이로드로 나른다.[@autosar-fo-prs-someipprotocol-2025]
 
 ![[diagrams/automotive-ethernet-protocol-stack.svg]]
 
