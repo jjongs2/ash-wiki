@@ -9,7 +9,7 @@ verified: 2026-10-02
 
 ## 왼쪽과 오른쪽의 대응
 
-V-Modell XT 2.4는 V자 절차의 내려가는 가지에서 시스템을 명세하며 분해하고, 올라가는 가지에서 구현하며 통합하며, 수평 단계마다 [[verification-and-validation|검증과 확인]]을 둔다. 시험 명세는 내려가는 가지에서 같은 수평 단계의 요구사항, 명세, 아키텍처로부터 만들고, 시험 기록은 올라가는 가지에서 남긴다.[@weit-v-modell-xt-2-4-2024]
+[[v-modell-xt|V-Modell XT]] 2.4는 V자 절차의 내려가는 가지에서 시스템을 명세하며 분해하고, 올라가는 가지에서 구현하며 통합하며, 수평 단계마다 [[verification-and-validation|검증과 확인]]을 둔다. 시험 명세는 내려가는 가지에서 같은 수평 단계의 요구사항, 명세, 아키텍처로부터 만들고, 시험 기록은 올라가는 가지에서 남긴다.[@weit-v-modell-xt-2-4-2024]
 
 V의 가장 아래 단계에서는 유닛을 구현한다.[@weit-v-modell-xt-2-4-2024][@vda-automotive-spice-pam-4-1-2026]
 
@@ -29,13 +29,17 @@ ISTQB 용어집은 테스트와 [[software-quality#품질 보증|품질 보증]]
 
 ## 기원
 
-V-Modell XT는 V자 모양의 개발 절차를 내용의 바탕으로 삼았고 이름도 거기서 땄다.[@weit-v-modell-xt-2-4-2024] 독일 연방정부의 V-Modell은 1992년 처음 발표되어 국방 기술 분야에서 쓰였다. 후속판 V-Modell 97은 연방 행정의 소프트웨어 개발에 쓰도록 지정되었고, 2005년 2월부터는 V-Modell XT가 쓰인다.[@bmds-v-modell-xt-2026]
+Barry Boehm은 1979년 글에서 소프트웨어 생명주기 전체에 걸친 검증과 확인 활동의 맥락을 보이는 "V-chart"를 내놓고, 그 출처로 System Development Corporation의 J. B. Munson과 1977년에 나눈 개인 교신을 들었다.[@boehm-guidelines-verifying-validating-1979]
+
+V-Modell XT는 V자 모양의 개발 절차를 내용의 바탕으로 삼았고 이름도 거기서 땄다. 이 절차는 Boehm이 1970년대 말에 처음 기술했다고 본다.[@weit-v-modell-xt-2-4-2024] [[v-modell-xt#개정 이력|V-Modell XT]]에 앞서 독일 연방정부의 V-Modell이 1992년에 나왔고 V-Modell 97이 그 뒤를 이었다.[@bmds-v-modell-xt-2026]
 
 Forsberg와 Mooz는 1991년 논문에서 시스템 공학이 프로젝트에서 맡는 역할을 밝히려고 프로젝트 주기의 기술적 측면을 V 모양 그림으로 나타냈다.[@forsberg-relationship-system-engineering-1991]
 
+SWEBOK V4.0a는 [[waterfall-model|폭포수 모델]]에서 나온 여러 변형과 확장의 예로 V 모델을 든다.[@ieee-swebok-v4-0a-2026]
+
 ## 반복 적용
 
-V-Modell XT 2.4는 V를 한 번이 아니라 반복마다 여러 번 거치게 하여 기능을 점진적으로 늘리고, 점진 개발 전략과 prototype 개발 전략마다 V를 거치는 순서를 달리 둔다. 이 모델의 점진 개발 전략에서는 시스템을 증분이라는 단계로 나누어 설계, 구현, 인도하고, 증분마다 따로 인수한다. 반복의 계획은 적어도 증분 하나의 인도와 인수까지를 다룬다.[@weit-v-modell-xt-2-4-2024]
+V-Modell XT 2.4는 V를 반복마다 여러 번 거쳐 기능을 점진적으로 늘린다.[@weit-v-modell-xt-2-4-2024] 점진 개발 전략과 prototype 개발 전략은 [[v-modell-xt#개발 전략|V-Modell XT]]에서 다룬다.
 
 ASPICE 4.1의 [[automotive-spice-process-reference-model|프로세스 참조 모델]]과 [[automotive-spice-process-assessment-model|프로세스 평가 모델]]은 생명주기 모델이 아니어서 프로세스나 BP(base practice)를 수행할 순서를 정하지도 막지도 않고, 프로젝트 생명주기는 MAN.3.BP2에 따라 프로젝트가 정하게 둔다.[@vda-automotive-spice-pam-4-1-2026]
 

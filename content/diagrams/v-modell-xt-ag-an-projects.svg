@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 30 650 196" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 두 프로젝트 -->
+  <g fill="var(--text, #727981)">
+    <text x="20" y="62">발주자(AG) 프로젝트</text>
+    <text x="20" y="122">AG/AN 인터페이스</text>
+    <text x="20" y="182">수주자(AN) 프로젝트</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="170" y="40" width="480" height="36" rx="2" />
+    <rect x="290" y="160" width="360" height="36" rx="2" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="182" y="62">요구를 정함</text>
+    <text x="302" y="182">개발(V의 밑단)</text>
+  </g>
+
+  <!-- 인터페이스로 주고받는 제품 -->
+  <rect x="170" y="88" width="480" height="60" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="330" y1="78" x2="330" y2="158" marker-start="url(#arrow-ink)" marker-end="url(#arrow-ink)" />
+    <line x1="590" y1="158" x2="590" y2="78" marker-end="url(#arrow-ink)" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="340" y="122">계약</text>
+    <text x="600" y="122">납품</text>
+  </g>
+
+  <text x="20" y="216" fill="var(--text, #727981)">V-Modell XT 2.4</text>
+  <text x="290" y="216" fill="var(--text, #727981)">발주자 프로젝트마다 수주자가 시작해 나란히 진행</text>
+</svg>

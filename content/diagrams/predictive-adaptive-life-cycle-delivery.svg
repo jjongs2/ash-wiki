@@ -10,7 +10,7 @@
   <!-- 열 이름 -->
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="190" y="24" font-size="14">예측형</text>
-    <text x="190" y="40">예: 폭포수 모델</text>
+    <text x="190" y="40">폭포수 모델을 적용한 프로젝트</text>
     <text x="410" y="24" font-size="14">적응형</text>
     <text x="410" y="40">애자일 방법</text>
   </g>
@@ -21,7 +21,7 @@
     <line x1="288" y1="60" x2="312" y2="60" />
   </g>
 
-  <!-- 예측형: 초기에 정하고 끝에 한 번 인도 -->
+  <!-- 예측형(폭포수 모델을 적용한 프로젝트): 초기에 정하고 끝에 한 번 인도 -->
   <text x="284" y="64" text-anchor="end" fill="var(--text, #727981)">범위·일정·비용을 초기에 정함</text>
   <g stroke="var(--ink, #727981)" stroke-width="1">
     <line x1="100" y1="60" x2="100" y2="360" />
@@ -46,6 +46,6 @@
     <text x="316" y="214">반복</text>
     <text x="316" y="274">반복</text>
     <text x="316" y="334">반복</text>
-    <text x="316" y="384">작은 단위로 점진적으로 인도</text>
+    <text x="316" y="384">점진적 인도</text>
   </g>
 </svg>

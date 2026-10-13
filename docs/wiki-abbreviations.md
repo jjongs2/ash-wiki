@@ -51,6 +51,7 @@
 - IEN: 표준·규격 이름
 - IETF: 조직
 - INH: 핀과 신호
+- intacs: 조직
 - ISACA: 조직
 - ISO: 조직
 - ISTQB: 조직

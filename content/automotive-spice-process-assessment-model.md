@@ -5,7 +5,11 @@ tags:
 verified: 2026-10-02
 ---
 
-**ASPICE 프로세스 평가 모델**(process assessment model, PAM)은 [[automotive-spice|ASPICE]]의 [[automotive-spice-process-reference-model|프로세스 참조 모델]]에서 고른 프로세스에 지표를 더해, 평가자가 프로세스 성과와 프로세스 속성 달성이 있는지 판단할 객관적 증거를 모으게 하는 모델이다. ASPICE 4.1의 프로세스 평가 모델이 담는 프로세스는 프로세스 참조 모델의 것과 같고, 프로세스마다 참조 모델의 프로세스 ID(identifier), 이름, 목적, 성과를 함께 싣는다.[@vda-automotive-spice-pam-4-1-2026]
+**ASPICE 프로세스 평가 모델**(process assessment model, PAM)은 [[automotive-spice|ASPICE]]의 [[automotive-spice-process-reference-model|프로세스 참조 모델]]에서 고른 프로세스에 지표를 더해, 평가자가 프로세스 성과와 프로세스 속성 달성이 있는지 판단할 [[process-assessment#평가의 요소|객관적 증거]]를 모으게 하는 모델이다. ASPICE 4.1의 프로세스 평가 모델이 담는 프로세스는 프로세스 참조 모델의 것과 같고, 프로세스마다 참조 모델의 프로세스 ID(identifier), 이름, 목적, 성과를 함께 싣는다.[@vda-automotive-spice-pam-4-1-2026]
+
+## 프로세스 차원과 능력 차원
+
+프로세스 평가 모델로 프로세스 능력을 판정하는 개념은 두 차원의 틀에 바탕을 둔다. 첫째 차원인 [[process-assessment#프로세스 모델|프로세스 차원]]은 프로세스 참조 모델이 정의한 프로세스로 이뤄지고, 둘째 차원인 능력 차원은 능력 수준과 그것을 다시 나눈 프로세스 속성으로 이뤄진다. 프로세스 속성은 프로세스 능력을 잴 수 있는 특성이다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 지표의 두 종류
 
@@ -18,6 +22,8 @@ verified: 2026-10-02
 
 지표는 프로세스 성과와 속성 달성이 있는지 가리고 객관적 증거를 모으는 데 쓰는 안내이며, 꼭 따라야 할 점검표가 아니다.[@vda-automotive-spice-pam-4-1-2026] 능력 수준과 프로세스 속성, 그 등급은 [[process-capability-level|프로세스 능력 수준]]에서 다룬다.
 
+평가 지표의 꼴로 보면 이 모델은 프랙티스와 정보 항목만 쓰고, 자원과 인프라는 지표로 쓰지 않는다. 프랙티스는 활동 쪽 지표이고, 정보 항목은 결과 쪽 지표다.[@vda-automotive-spice-pam-4-1-2026]
+
 ## 프로세스 수행 지표
 
 이 모델의 프로세스 수행 지표는 BP(base practice)와 출력 정보 항목이다.[@vda-automotive-spice-pam-4-1-2026]
@@ -29,19 +35,29 @@ verified: 2026-10-02
 
 ASPICE 3.1은 결과 쪽 수행 지표로 작업 산출물(WP, work product)과 그 특성(WPC, work product characteristics)을 두었다. ASPICE 4.1은 그 자리에 정보 항목과 정보 항목 특성(IIC, information item characteristics)을 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
+ASPICE 4.1의 Annex B는 정보 항목마다 IIC를 표로 싣는다. 평가자는 조직 단위가 낸 표본을 평가할 때 IIC를 쓸 수 있지만, IIC는 점검표로 쓰라고 둔 것이 아니다. 일부 특성은 평가받는 조직의 다른 작업 산출물에 들어 있을 수 있다. IIC를 그에 대응하는 작업 산출물이 갖춰야 할 구조로 해석해서도 안 된다. 작업 산출물의 구조는 프로젝트와 조직이 정한다.[@vda-automotive-spice-pam-4-1-2026]
+
+## 객관적 증거와 작업 산출물
+
+이 모델에서 평가는 프로세스 성과와 프로세스 속성 달성이 있는지 판단하려고 객관적 증거를 얻는다. 증거는 모두 평가 대상 프로세스의 출력에 관련된 작업 산출물을 살펴보거나, 프로세스를 수행하고 관리하는 사람의 진술을 들어서 얻는다.[@vda-automotive-spice-pam-4-1-2026]
+
+증거로 삼는 작업 산출물은 평가 대상 프로세스의 출력이 아니어도 된다. 조직의 다른 프로세스에서 나온 것이라도 평가 대상 프로세스를 수행하는 데 쓰였으면, 평가자가 객관적 증거로 볼 수 있다. 작업 산출물은 사양서, 보고서, 기록, 아키텍처 설계, 소프트웨어 코드처럼 문서의 면을 지닌 것이 많지만, 소프트웨어 바이너리, 원시 데이터, 물리적 전자 하드웨어처럼 문서의 면이 없는 것도 있다.[@vda-automotive-spice-pam-4-1-2026]
+
 ## 프로세스 능력 지표
 
-ASPICE 4.1의 프로세스 능력 지표는 GP와 정보 항목이다. **GP**(generic practice)는 프로세스 속성을 이루려고 하는 활동으로, 하나 이상의 프로세스 속성 달성 항목에 연결되며 모든 프로세스에 쓴다. 능력 수준 1의 프로세스 속성 PA(process attribute) 1.1에는 수행 지표를 가리키는 편집상의 GP 1.1.1 하나만 두고, 능력 수준 2 이상의 프로세스 속성마다 GP와 정보 항목을 둔다.[@vda-automotive-spice-pam-4-1-2026]
+프로세스 능력 지표는 GP와 정보 항목이다. **GP**(generic practice)는 프로세스 속성을 이루려고 하는 활동으로, 하나 이상의 프로세스 속성 달성 항목에 연결되며 모든 프로세스에 쓴다. 능력 수준 1의 프로세스 속성 PA(process attribute) 1.1에는 수행 지표를 가리키는 편집상의 GP 1.1.1 하나만 두고, 능력 수준 2 이상의 프로세스 속성마다 GP와 정보 항목을 둔다.[@vda-automotive-spice-pam-4-1-2026]
 
 ASPICE 3.1은 프로세스 능력 지표로 GP와 GR(generic resource)을 두고, 이를 능력 수준 2\~5에 썼다. GR은 인프라 쪽 지표로 하나 이상의 프로세스 속성 달성 항목에 연결되었다. 예: PA 2.2의 [[configuration-management|형상 관리]] 시스템. ASPICE 4.1은 GR을 두지 않고 GP와 정보 항목만 쓰며, GP를 능력 수준 1\~5에 쓴다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ## 지표와 성과의 관계
 
-ASPICE 4.1이 ISO/IEC 33020:2019에서 가져온 평정 방법 R1에서는 프로세스 성과의 특성 판정을 모아 프로세스 수행 속성(PA 1.1)을 평정한다.[@vda-automotive-spice-pam-4-1-2026]
+ASPICE 4.1이 ISO/IEC 33020:2019에서 가져온 [[process-assessment#평정 방법|평정 방법]] R1에서는 프로세스 성과의 특성 판정을 모아 프로세스 수행 속성(PA 1.1)을 평정한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 전략과 계획
 
 이 모델은 PA 2.1의 GP 2.1.1에서 프로세스 수행 목표와 프로세스 수행 전략을 정하게 하고, GP 2.1.2에서 그 목표, 기준, 전략에 따라 수행을 계획하게 한다. 프로세스 수행 전략(정보 항목 19-01)은 수행 목표를 이루는 방안이다.[@vda-automotive-spice-pam-4-1-2026]
+
+GP 2.1.1의 주석은 프로세스 수행 목표가 프로젝트 목표와 같지 않고, 능력 수준 1의 프로세스 성과를 되풀이한 것도 아니라는 점을 제시한다. 그 예로 SUP.10에서 들어오는 변경 요청을 모두 정한 날수 안에 분석한다는 목표를 든다. 다른 주석은 프로세스 수행 전략을 프로세스마다 따로 문서화하지 않아도 되고, 여러 프로세스에 걸치는 요소는 공통 프로젝트 핸드북이나 공동 테스트 전략처럼 한 문서에 함께 담아도 된다는 점을 제시한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ASPICE 3.1은 SYS.4, SYS.5, SWE.4, SWE.5, SWE.6, SUP.1, SUP.8, SUP.9, SUP.10의 BP1을 전략 수립으로 두고, 그 전략을 프로세스별 계획에 대응시켰다. ASPICE 4.1은 이 BP를 두지 않고 GP 2.1.1에서 프로세스 수행 전략을 정하게 한다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 

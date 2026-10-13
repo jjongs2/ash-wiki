@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 20 638 335.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 프로세스: 입력을 출력으로 바꾼다 -->
+  <rect x="120" y="30" width="420" height="290" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="132" y="50" font-size="13" fill="var(--text, #727981)">프로세스</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow-ink)">
+    <line x1="30" y1="108" x2="118" y2="108" />
+    <line x1="540" y1="108" x2="618" y2="108" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="30" y="98">입력</text>
+    <text x="626" y="112">출력</text>
+  </g>
+
+  <!-- 활동과 태스크 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="140" y="64" width="180" height="88" rx="2" />
+    <rect x="340" y="64" width="180" height="88" rx="2" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="152" y="84">활동</text>
+    <text x="352" y="84">활동</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="152" y="96" width="72" height="40" rx="2" />
+    <rect x="236" y="96" width="72" height="40" rx="2" />
+    <rect x="352" y="96" width="72" height="40" rx="2" />
+    <rect x="436" y="96" width="72" height="40" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="188" y="120">태스크</text>
+    <text x="272" y="120">태스크</text>
+    <text x="388" y="120">태스크</text>
+    <text x="472" y="120">태스크</text>
+  </g>
+
+  <!-- 태스크는 결과에 기여한다 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow-ink)">
+    <line x1="188" y1="136" x2="218" y2="198" />
+    <line x1="272" y1="136" x2="242" y2="198" />
+    <line x1="388" y1="136" x2="418" y2="198" />
+    <line x1="472" y1="136" x2="442" y2="198" />
+  </g>
+  <text x="330" y="182" text-anchor="middle" fill="var(--text, #727981)">기여</text>
+
+  <!-- 결과와 목적 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="170" y="200" width="120" height="32" rx="2" />
+    <rect x="370" y="200" width="120" height="32" rx="2" />
+    <rect x="230" y="270" width="200" height="32" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="230" y="220">프로세스 결과</text>
+    <text x="430" y="220">프로세스 결과</text>
+    <text x="330" y="290">프로세스 목적</text>
+  </g>
+  <path d="M230 232 V251 H430 V232 M330 251 V270" stroke="var(--ink, #727981)" stroke-width="1.5" />
+
+  <text x="120" y="344" fill="var(--text, #727981)">ISO/IEC/IEEE 12207:2026</text>
+
+  <!-- 정의 -->
+  <g fill="var(--text, #727981)">
+    <text x="556" y="212">목적을 이뤘을 때</text>
+    <text x="556" y="228">관찰할 수 있는 결과</text>
+    <text x="556" y="282">상위 목표와</text>
+    <text x="556" y="298">기대하는 결과</text>
+  </g>
+</svg>
