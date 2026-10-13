@@ -370,8 +370,9 @@ export function regionChips(regions: string[], names: Map<string, string>): Elem
 
 // 주요 칩. 구역 칩과 같은 꼴에 색만 링크 색이다(소유자 결정, #404). 칩 묶음의 맨 앞에 둔다.
 const FEATURED_LABEL = "주요"
+const FEATURED_COLOR = "var(--secondary)"
 const featuredChip = () =>
-  el("span", { className: ["news-chip"], style: "--region: var(--secondary)" }, [
+  el("span", { className: ["news-chip"], style: `--region: ${FEATURED_COLOR}` }, [
     text(FEATURED_LABEL),
   ])
 
@@ -443,9 +444,8 @@ function card(
 }
 
 // 정렬·거르기 줄. 왼쪽은 주요 칩과 구역 칩(누르면 거르는 버튼), 오른쪽은 거른 수와 정렬이다(소유자 결정, #404).
-// 칩은 카드의 칩과 같은 꼴(.news-chip)이다. 구역 칩은 여럿 고를 수 있고 고른 구역 가운데 하나라도 단 항목을
-// 보이며, 주요 칩은 그 결과에서 주요 소식만 남긴다. 아무것도 고르지 않으면 모두 보인다. 주요 소식이 없는 호는
-// 주요 칩을 두지 않는다.
+// 칩은 카드의 칩과 같은 꼴(.news-chip)이다. 거르기가 무엇을 남기는지는 docs/weekly-news.md의 사이트에 보이는
+// 범위에 있다. 주요 소식이 없는 호는 주요 칩을 두지 않는다.
 function toolbar(filters: IssueFilters, names: Map<string, string>): Element {
   const chip = (label: string, count: number, color: string, data: Element["properties"]) =>
     el(
@@ -461,7 +461,7 @@ function toolbar(filters: IssueFilters, names: Map<string, string>): Element {
     )
   const featured =
     filters.featured > 0
-      ? [chip(FEATURED_LABEL, filters.featured, "var(--secondary)", { dataFeatured: "" })]
+      ? [chip(FEATURED_LABEL, filters.featured, FEATURED_COLOR, { dataFeatured: "" })]
       : []
   const regions = filters.regions.map(({ region, count }) =>
     chip(region === null ? OTHER : (names.get(region) ?? region), count, regionColor(region), {
@@ -484,17 +484,20 @@ function toolbar(filters: IssueFilters, names: Map<string, string>): Element {
       ...featured,
       ...regions,
     ]),
-    el("div", { className: ["news-sort"], role: "group", ariaLabel: "정렬" }, [
+    el("div", { className: ["news-sort"] }, [
       el("span", { className: ["news-tools-count"], ariaLive: "polite" }),
-      sort("newest", "최근순"),
-      el("span", { ariaHidden: "true" }, [text("·")]),
-      sort("oldest", "오래된순"),
+      el("span", { className: ["news-sort-options"], role: "group", ariaLabel: "정렬" }, [
+        sort("newest", "최근순"),
+        el("span", { ariaHidden: "true" }, [text("·")]),
+        sort("oldest", "오래된순"),
+      ]),
     ]),
   ])
 }
 
 // 대문 구역 표의 구역 순서. 대문의 링크 가운데 구역(tags/<구역>)을 나온 순서대로 모은다. 탐색기
-// (plugins/explorer-tree)와 같은 순서다.
+// (plugins/explorer-tree)의 explorerInputs와 같은 규칙이다. 플러그인끼리는 타입만 가져올 수 있어(plugins/front-page의
+// 칩 주석) 함수를 나눠 쓰지 못한다.
 function regionOrder(allFiles: QuartzPluginData[]): string[] {
   const front = allFiles.find((file) => file.slug === "index")
   const links = (front?.links ?? []) as string[]
@@ -581,9 +584,11 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 //   보조 글자색이다.
 // - 정렬·거르기 줄은 목록 위에 둔다. 거르기 칩은 카드의 칩과 같은 꼴의 버튼이고, 주요 칩 뒤만 넓게 띄운다.
 //   아무것도 고르지 않으면 모든 칩이 카드의 칩과 같고, 하나라도 고르면 고른 칩은 제 색으로 채우고 나머지는 보조
-//   글자색과 1px --lightgray 테두리로 물린다. 정렬은 대문 소식 칸 제목 줄의 링크("N개 모두 보기 · 지난 호")와
-//   같은 꼴로, 고른 쪽은 제목색으로 굵게 쓴다. 거른 수와 정렬은 좁은 화면에서도 오른쪽에 붙는다. 대비는
-//   docs/palette.md의 구역 이름, 구역 칩, 링크, 강조색 위 글자, 보조 글자 쌍에 든다.
+//   글자색과 1px --lightgray 테두리로 물린다. 고르지 않은 칩에 올리면 테두리와 글자를 구역 색으로 바꾼다. 바탕을
+//   진하게 하면 라이트 테마에서 글자 대비가 하한에 못 미친다(16%에서 4.12:1). 정렬은 대문 소식 칸 제목 줄의 링크("N개 모두 보기 · 지난 호")와
+//   같은 꼴로, 고른 쪽은 제목색으로 굵게 쓴다. 거른 수와 정렬은 좁은 화면에서도 오른쪽에 붙는다. 글자 대비는
+//   docs/palette.md의 구역 이름, 구역 칩, 링크, 강조색 위 글자, 보조 글자 쌍에 든다. hover의 테두리는 글자가
+//   아니다.
 const CSS = `.news-tools {
   display: flex;
   flex-wrap: wrap;
@@ -603,20 +608,19 @@ const CSS = `.news-tools {
   cursor: pointer;
   transition:
     background-color 0.2s ease,
+    box-shadow 0.2s ease,
     color 0.2s ease;
 }
 .news-filter[data-featured] {
   margin-right: 0.6rem;
-}
-.news-filter:hover {
-  background-color: color-mix(in srgb, var(--region) 16%, transparent);
 }
 .news-filters.has-selection .news-filter {
   background-color: transparent;
   box-shadow: inset 0 0 0 1px var(--lightgray);
   color: var(--gray);
 }
-.news-filters.has-selection .news-filter:hover {
+.news-filters .news-filter:not([aria-pressed="true"]):hover {
+  box-shadow: inset 0 0 0 1px var(--region);
   color: var(--region);
 }
 .news-filters .news-filter[aria-pressed="true"] {
@@ -637,6 +641,10 @@ const CSS = `.news-tools {
   font-size: 0.85em;
   line-height: 1;
   white-space: nowrap;
+}
+.news-sort-options {
+  display: flex;
+  gap: 0.4rem;
 }
 .news-tools-count {
   margin-right: 0.6rem;
@@ -770,8 +778,7 @@ const CSS = `.news-tools {
 // 불러오기가 끝난 이미지의 크기도 본다.
 //
 // 정렬·거르기 줄의 버튼을 누르면 카드를 다시 늘어놓고 거른다. 순서는 byDate와 같이 발행일(data-date) 순이고 같은
-// 날은 파일에 적은 순서(data-index)다. 거르기는 toolbar의 주석대로다. 고른 상태는 페이지 안에서만 가지고, 다른
-// 호로 가면 처음(최근순, 거르지 않음)으로 돌아간다.
+// 날은 파일에 적은 순서(data-index)다. 거르기와 고른 상태를 얼마나 가지는지는 docs/weekly-news.md에 있다.
 //
 // SPA 이동은 본문을 새로 그리므로 nav 이벤트마다 다시 건다. 첫 불러오기에서는 setup과 nav가 모두 돌 수 있어,
 // 이미 건 줄은 data-ready로 건너뛴다. SPA는 본문을 갈아 끼우지 않고 같은 자리의 요소를 고쳐 쓰므로(micromorph),
@@ -830,7 +837,7 @@ const SCRIPT = `(() => {
       controller.abort()
       delete tools.dataset.ready
     })
-    function toggle(event) {
+    function select(event) {
       const button = event.target.closest("button")
       if (!button) return
       if (button.dataset.order) state.order = button.dataset.order
@@ -841,7 +848,7 @@ const SCRIPT = `(() => {
       }
       render()
     }
-    tools.addEventListener("click", toggle, { signal: controller.signal })
+    tools.addEventListener("click", select, { signal: controller.signal })
   }
 
   function setup() {
