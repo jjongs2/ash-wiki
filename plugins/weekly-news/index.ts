@@ -67,7 +67,7 @@ const FIELDS = {
   image: "이미지",
   featured: "주요",
 } as const
-const FEATURED = "예"
+const FEATURED_VALUE = "예"
 const REQUIRED = [FIELDS.region, FIELDS.outlet, FIELDS.date]
 
 // 주간 소식의 슬러그 접두. news/index는 지난 호 목록이다.
@@ -224,10 +224,10 @@ export function parseWeeklyNews(
       error(image.line, `이미지는 http(s) URL로 쓴다: ${image.value}`)
     }
     const featured = fields.get(FIELDS.featured)
-    if (featured && featured.value !== FEATURED) {
+    if (featured && featured.value !== FEATURED_VALUE) {
       error(
         featured.line,
-        `${FIELDS.featured}는 ${FEATURED}로만 쓰고, 주요 소식이 아니면 필드를 뺀다: ${featured.value}`,
+        `${FIELDS.featured}는 ${FEATURED_VALUE}로만 쓰고, 주요 소식이 아니면 필드를 뺀다: ${featured.value}`,
       )
     }
 
