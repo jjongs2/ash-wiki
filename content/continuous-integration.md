@@ -17,7 +17,7 @@ Kent Beck은 1999년 『Extreme Programming Explained: Embrace Change』에서 �
 
 Fowler는 지속적 통합을, 팀원 각자가 적어도 하루에 한 번 변경을 공동 코드베이스에 합치고 통합마다 테스트를 포함한 자동 빌드로 확인해 통합 오류를 되도록 빨리 찾는 관행으로 정의한다. 2024년판 글에서 그가 드는 실천 항목은 다음과 같다.[@fowler-continuous-integration-2024]
 
-- 모든 것을 버전 관리되는 주 줄기에 둔다.
+- 모든 것을 [[version-control|버전 관리]]되는 주 줄기에 둔다.
 - 빌드를 자동화한다.
 - 빌드가 스스로 테스트하게 한다.
 - 모든 개발자가 날마다 주 줄기에 push한다.

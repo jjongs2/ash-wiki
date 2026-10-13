@@ -47,6 +47,7 @@
 - Timing Analysis and Design 보고서: AUTOSAR 타이밍 분석 보고서 (#257). 본문에서 AUTOSAR 문서를 부르는 이름
 - Timing Extensions 명세: 타이밍 확장 명세 (#257). 본문에서 AUTOSAR 문서를 부르는 이름. "명세" 없이 쓴 "Timing Extensions"도 그대로
 - USART 풀이 Universal Synchronous/Asynchronous Receiver/Transmitter: Universal Synchronous and Asynchronous Receiver Transmitter (#196)
+- use case: 유스케이스 (#394). 합성어 포함. 예: use case 테스트
 - V2X 풀이 Vehicle-to-X: Vehicle-to-Everything (#257)
 - validation: 통일하지 않음 (#288). "확인"과 원어 cybersecurity validation을 맥락에 따라. 페이지 `cybersecurity-verification-and-validation`의 title과 정의는 "확인"
 - wakeup: 웨이크업 (#257). AUTOSAR가 다루는 wakeup일 때. 예: EcuM에 알리는 wakeup. 트랜시버와 버스의 웨이크업은 "웨이크업"
@@ -58,6 +59,7 @@
 - 리프 노드: 잎 노드 (#250)
 - 비대칭 키: 비대칭키 (#288)
 - 비밀 키: 비밀키 (#288)
+- 사용자 스토리: user story (#394). 합성어 포함. 예: 사용자 스토리 매핑
 - 사이버보안 속성: cybersecurity property (#252)
 - 생명주기: 수명주기 (#288)
 - 서명 키: 서명키 (#288)
@@ -74,6 +76,8 @@
 - 테스트 기준: test basis (#291)
 - 테스트 케이스: 시험 사례, 시험 케이스 (#291)
 - 트랜시버 지연 보상: 송신 지연 보상 (#311). 약어와 함께 쓰면 `트랜시버 지연 보상(TDC, Transceiver Delay Compensation)`
+- 특별특성: special characteristics (#394). 처음 쓸 때 "특별특성(special characteristics)". ASPICE 정보 항목 이름 17-57(Special characteristics)은 그대로
 - 프레임 간 공간: 인터프레임 공간 (#68). 원어는 병기하지 않음
 - 플래시: Flash (#257). 일반 낱말일 때. 모듈과 구성 요소의 이름(Fls(Flash Driver), Flash EEPROM Emulation, Flashing Adapter)은 예외
 - 하위 호환: 역호환 (#257)
+- 획득자: 구매자 (#394). acquirer일 때. ISO/IEC/IEEE 29148이 acquirer의 다른 이름으로 드는 "구매자"는 그대로

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 5 700 113" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <text x="680" y="34" font-size="12" text-anchor="end" fill="var(--text, #727981)">ISO/IEC/IEEE 24765 용어집</text>
+
+  <!-- 견주는 대상 -->
+  <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20" y="52" width="170" height="46" rx="2" />
+    <rect x="320" y="52" width="110" height="46" rx="2" />
+    <rect x="560" y="52" width="120" height="46" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="105" y="72">기능·할당 형상 식별</text>
+    <text x="105" y="89" font-size="12">성능·기능 특성</text>
+    <text x="375" y="72">형상 항목</text>
+    <text x="375" y="89" font-size="12">만들어진 것</text>
+    <text x="620" y="80">기술 문서</text>
+  </g>
+
+  <!-- 감사 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="192" y1="75" x2="318" y2="75" />
+    <line x1="432" y1="75" x2="558" y2="75" />
+  </g>
+  <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
+    <text x="255" y="67">기능 형상 감사</text>
+    <text x="495" y="67">물리 형상 감사</text>
+  </g>
+</svg>

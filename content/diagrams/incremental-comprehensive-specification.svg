@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610.5 180.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 전체 명세 -->
+  <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20" y="20" width="120" height="86" rx="2" />
+    <rect x="470" y="20" width="120" height="86" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="80" y="59">전체 명세</text>
+    <text x="80" y="76" font-size="12">모든 요구사항</text>
+    <text x="530" y="59">전체 명세</text>
+    <text x="530" y="76" font-size="12">모든 요구사항</text>
+  </g>
+
+  <!-- 증분 명세 -->
+  <g fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5">
+    <rect x="170" y="60" width="120" height="46" rx="2" />
+    <rect x="320" y="60" width="120" height="46" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="230" y="79">증분 명세</text>
+    <text x="230" y="96" font-size="12">앞 판과의 차이</text>
+    <text x="380" y="79">증분 명세</text>
+    <text x="380" y="96" font-size="12">앞 판과의 차이</text>
+  </g>
+
+  <!-- 릴리스 -->
+  <line x1="20" y1="118" x2="590" y2="118" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="80" y="140">1.0</text>
+    <text x="230" y="140">x.1</text>
+    <text x="380" y="140">x.2</text>
+    <text x="530" y="140">2.0</text>
+  </g>
+  <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
+    <text x="80" y="160">주 릴리스</text>
+    <text x="305" y="160">중간 릴리스</text>
+    <text x="530" y="160">주 릴리스</text>
+  </g>
+</svg>
