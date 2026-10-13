@@ -40,6 +40,7 @@
 - FIRST: 조직
 - GENIVI: 조직
 - GND: 전원
+- GNU: 조직
 - GRVA: 조직
 - HIS: 조직
 - I/O: 널리 쓰이는 약어

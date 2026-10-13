@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="9.5 4.5 601 320" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <text x="20" y="24" font-size="12" fill="var(--text, #727981)">ISO/IEC/IEEE 29119-5:2024</text>
+
+  <!-- 층 틀: 중간 층만 둘 수 있는 요소라 점선 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20" y="36" width="580" height="60" rx="2" />
+    <rect x="20" y="188" width="580" height="60" rx="2" />
+  </g>
+  <rect x="20" y="112" width="580" height="60" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="32" y="70">도메인 층</text>
+    <text x="32" y="138">중간 층</text>
+    <text x="32" y="154">둘 수 있음</text>
+    <text x="32" y="214">테스트</text>
+    <text x="32" y="230">인터페이스 층</text>
+  </g>
+
+  <!-- 키워드 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="325" y="50" width="120" height="32" rx="2" />
+    <rect x="190" y="202" width="90" height="32" rx="2" />
+    <rect x="290" y="202" width="90" height="32" rx="2" />
+    <rect x="390" y="202" width="90" height="32" rx="2" />
+    <rect x="490" y="202" width="90" height="32" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="385" y="71">상위 키워드</text>
+    <text x="235" y="223">단순 키워드</text>
+    <text x="335" y="223">단순 키워드</text>
+    <text x="435" y="223">단순 키워드</text>
+    <text x="535" y="223">단순 키워드</text>
+  </g>
+
+  <!-- decomposer가 상위 키워드를 하위 키워드의 순서로 풀어낸다 -->
+  <line x1="385" y1="82" x2="385" y2="186" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="395" y="138">decomposer가 하위 키워드의</text>
+    <text x="395" y="154">순서로 풀어냄</text>
+  </g>
+
+  <!-- 테스트 항목 -->
+  <rect x="315" y="282" width="140" height="32" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="385" y="303" text-anchor="middle" fill="var(--text, #727981)">테스트 항목</text>
+  <line x1="385" y1="250" x2="385" y2="280" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  <text x="395" y="270" font-size="12" fill="var(--text, #727981)">바로 상호작용</text>
+</svg>

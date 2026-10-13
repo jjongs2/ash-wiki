@@ -9,11 +9,12 @@ ISTQB 용어집은 **코딩 표준**(coding standard)을 코드가 갖춰야 할
 
 ## C 언어에서 피하려는 동작
 
-ISO/IEC 9899:2024는 C 프로그램의 동작 가운데 표준이 결과를 하나로 정하지 않는 것을 세 가지로 정의한다.[@iso-iec-9899-n3220-2024]
+ISO/IEC 9899:2024는 C 프로그램의 동작 가운데 표준이 결과를 하나로 정하지 않는 것을 네 가지로 정의한다.[@iso-iec-9899-obp-2024]
 
 - **미정의 동작**(undefined behavior): 이식성이 없거나 잘못된 프로그램 구성, 또는 잘못된 데이터를 쓸 때 표준이 아무 요구도 두지 않는 동작
 - **미지정 동작**(unspecified behavior): 표준이 둘 이상의 가능성을 두고, 어느 것을 고를지는 더 정하지 않는 동작. 함수 인자를 평가하는 순서가 그 예다.
-- **구현 정의 동작**(implementation-defined behavior): 구현마다 무엇을 골랐는지 문서로 밝히는 미지정 동작[@iso-iec-9899-n3220-2024]
+- **구현 정의 동작**(implementation-defined behavior): 구현마다 무엇을 골랐는지 문서로 밝히는 미지정 동작
+- **로캘 특정 동작**(locale-specific behavior): 국적, 문화, 언어의 지역 관례에 따라 달라지고, 구현마다 문서로 밝히는 동작[@iso-iec-9899-obp-2024]
 
 ![[diagrams/c-undefined-unspecified-behavior.svg]]
 
@@ -33,7 +34,7 @@ MISRA는 MISRA C:2012 Addendum 3에서 Amendment 1을 포함한 MISRA C:2012가 
 
 MISRA Compliance:2020은 MISRA 지침 대부분의 위반은 분석 도구나 컴파일러로 찾는 것이 가장 쉽고 믿을 만하며 비용이 적다고 보고, 도구로 완전히 검사할 수 없는 지침에는 수작업 [[software-review|리뷰]]가 필요할 수 있다고 둔다.[@misra-compliance-2020] SEI CERT C 코딩 표준은 규칙의 요건 하나로, 자동 분석(정적이나 동적), 형식 기법, 수작업 검사로 준수 여부를 판정할 수 있을 것을 든다.[@sei-cert-c-rules-versus-recommendations-2026] 이 표준은 규칙을 손으로 검사할 수도 있지만 프로그램이 크고 복잡해지면 곧 감당할 수 없으므로, 정적 분석 도구를 쓰기를 권한다.[@sei-cert-c-tool-selection-and-validation-2026] 도구로 하는 검사는 [[static-analysis|정적 분석]]에서 다룬다.
 
-ISTQB CTFL 강의계획서에 따르면 코딩 표준의 이름 짓기 관례를 지키지 않은 것 같은 표준 위반은 [[software-testing#정적 테스트와 동적 테스트|정적 테스트]]로 찾기가 더 쉽고 비용이 적으며, 코딩 표준 검사는 [[regression-testing#테스트 자동화와 지속적 통합|테스트 자동화]]로 얻는 이점에 든다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL 강의계획서에 따르면 코딩 표준의 이름 짓기 관례를 지키지 않은 것 같은 표준 위반은 [[software-testing#정적 테스트와 동적 테스트|정적 테스트]]로 찾기가 더 쉽고 비용이 적으며, 코딩 표준 검사는 [[test-automation|테스트 자동화]]로 얻는 이점에 든다.[@istqb-ctfl-syllabus-2024]
 
 MISRA Compliance:2020은 코드 배치와 들여쓰기, 중괄호 위치, 이름 짓기 관례, 주석처럼 코드의 정확성에 직접 영향을 주지 않는 겉모양은 조직의 사내 스타일 가이드로 다루기를 권하고, 그 시행은 문서의 범위 밖에 둔다.[@misra-compliance-2020]
 

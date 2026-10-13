@@ -42,4 +42,4 @@ CTAL-TA 강의계획서는 CTFL 강의계획서의 커버리지 기준에 더해
 
 ![[diagrams/state-transition-n-switch-round-trip.svg]]
 
-이 강의계획서에 따르면 상태 전이 테스트는 모델 기반 테스트 도구로 자동화하기에 알맞다. 대부분의 블랙박스 기법처럼, 모델링하는 동안 명세의 결함을 찾아 결함 예방에도 이바지한다.[@istqb-ctal-ta-syllabus-2025]
+이 강의계획서에 따르면 상태 전이 테스트는 [[model-based-testing|모델 기반 테스트]] 도구로 자동화하기에 알맞다. 대부분의 블랙박스 기법처럼, 모델링하는 동안 명세의 결함을 찾아 결함 예방에도 이바지한다.[@istqb-ctal-ta-syllabus-2025]

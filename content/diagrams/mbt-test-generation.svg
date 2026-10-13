@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="9.5 4.5 641 142" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <text x="20" y="24" font-size="12" fill="var(--text, #727981)">CTAL-TA 강의계획서</text>
+
+  <!-- 입력, 도구, 산출물 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="40" width="150" height="36" rx="2" />
+    <rect x="20" y="100" width="150" height="36" rx="2" />
+    <rect x="250" y="70" width="110" height="36" rx="2" />
+    <rect x="440" y="40" width="200" height="36" rx="2" />
+    <rect x="440" y="100" width="200" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="95" y="63">MBT 모델</text>
+    <text x="95" y="123">테스트 선택 기준</text>
+    <text x="305" y="93">MBT 도구</text>
+    <text x="540" y="63">테스트 케이스</text>
+    <text x="540" y="123">그 밖의 테스트 설계 산출물</text>
+  </g>
+
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M170 58 H210 V82 H248" />
+    <path d="M170 118 H210 V94 H248" />
+    <path d="M360 82 H400 V58 H438" />
+    <path d="M360 94 H400 V118 H438" />
+  </g>
+</svg>
