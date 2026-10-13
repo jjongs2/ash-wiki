@@ -11,7 +11,7 @@ Classic Platform의 비휘발성 데이터 관리는 [[nvram-manager|NVRAM Manag
 
 ## 저장소
 
-Persistency의 저장 위치는 Key-Value Storage와 File Storage 두 갈래로 나뉘고, 응용이나 functional cluster는 여러 저장소를 섞어 쓸 수 있다. Persistency API(Application Programming Interface)는 어느 저장 위치인지를 InstanceSpecifier 매개변수로 받는다.[@autosar-ap-exp-platformdesign-2025]
+Persistency의 저장 위치는 Key-Value Storage와 File Storage 두 갈래로 나뉘고, 응용이나 functional cluster는 여러 저장소를 섞어 쓸 수 있다. Persistency API는 어느 저장 위치인지를 InstanceSpecifier 매개변수로 받는다.[@autosar-ap-exp-platformdesign-2025]
 
 - **Key-Value Storage**: 저장 위치 하나에 키와 값의 짝을 여럿 저장하고 꺼낸다. 키는 Key-Value Storage마다 유일해야 하고, 설계나 배치의 설정에서 정하거나 실행 중에 `SetValue()`로 만든다. 갱신 때 값을 다른 타입으로 옮길 수 있도록, 지금 쓰는 데이터 타입을 같은 키가 이전 버전에서 쓰던 타입들에 대응시키는 데이터 타입 매핑을 둔다.
 - **File Storage**: 저장 위치 하나에 고유한 이름의 파일을 하나 이상 만든다. 키와 값의 짝으로 다루기 알맞지 않은 데이터를 위한 것으로, 하위 디렉터리 없이 파일만 만들 수 있는 파일 시스템 디렉터리에 견줄 수 있다.[@autosar-ap-exp-platformdesign-2025]

@@ -14,7 +14,7 @@
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="70" y="43">소스 코드</text>
-    <text x="240" y="43">목적 코드</text>
+    <text x="240" y="43">오브젝트 코드</text>
     <text x="410" y="43">실행 파일</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
@@ -44,7 +44,7 @@
   </g>
   <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
     <text x="155" y="120">#define 설정</text>
-    <text x="325" y="112">다른 목적 파일</text>
+    <text x="325" y="112">다른 오브젝트 파일</text>
     <text x="325" y="127">링커 옵션</text>
     <text x="465" y="120">설정 파일</text>
   </g>

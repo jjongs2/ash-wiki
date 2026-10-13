@@ -29,7 +29,7 @@ AUTOSAR R25-11의 SecOC 프로토콜 명세도 신선도 정보를 주는 소프
 
 ## 통신 스택 안의 배치
 
-AUTOSAR Classic Platform R25-11의 SecOC 명세는 SecOC 모듈을 [[pdu-router|PduR]]와 같은 수준에 통합하도록 둔다. PduR는 보안 관련 I-PDU를 SecOC로 보내고, SecOC는 보안 정보를 더하거나 처리한 결과를 I-PDU로 PduR에 돌려주며, PduR가 그 I-PDU를 다시 라우팅한다. SecOC는 PduR가 지원하는 통신 방식, 특히 멀티캐스트, 전송 프로토콜, PduR 게이트웨이를 모두 지원한다. 송신과 수신 양쪽의 SecOC 모듈은 PduR의 상위 계층 API(Application Programming Interface)와 하위 계층 API를 함께 갖춘다.[@autosar-cp-sws-secureonboardcommunication-2025]
+AUTOSAR Classic Platform R25-11의 SecOC 명세는 SecOC 모듈을 [[pdu-router|PduR]]와 같은 수준에 통합하도록 둔다. PduR는 보안 관련 I-PDU를 SecOC로 보내고, SecOC는 보안 정보를 더하거나 처리한 결과를 I-PDU로 PduR에 돌려주며, PduR가 그 I-PDU를 다시 라우팅한다. SecOC는 PduR가 지원하는 통신 방식, 특히 멀티캐스트, 전송 프로토콜, PduR 게이트웨이를 모두 지원한다. 송신과 수신 양쪽의 SecOC 모듈은 PduR의 상위 계층 API와 하위 계층 API를 함께 갖춘다.[@autosar-cp-sws-secureonboardcommunication-2025]
 
 SecOC는 I-PDU가 지나는 경로마다 모듈 안에 버퍼를 두고, `SecOC_Init`이 이 버퍼를 초기화한다. 다른 모듈은 SecOC에 기대지 않게 구현하므로, 필요 없으면 SecOC 없이 시스템을 만들 수 있다. SecOC는 받은 I-PDU를 검증한 뒤 다른 하위 모듈로 라우팅하면서 바로 다시 인증하는 게이트웨이도 지원하지만, [[pdu-router#라우팅 테이블|on-the-fly 게이트웨이]]는 지원하지 않는다.[@autosar-cp-sws-secureonboardcommunication-2025]
 

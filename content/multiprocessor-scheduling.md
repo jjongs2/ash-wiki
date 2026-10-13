@@ -37,7 +37,7 @@ partitioned 스케줄링과 global 스케줄링의 요소를 섞은 방식을 **
 
 CMSIS-RTOS2는 스레드 속성 `osThreadAttr_t`에, SMP(Symmetric Multiprocessing) 시스템에서 스레드를 CPU에 묶는 processor affinity mask `affinity_mask`를 둔다. `osThreadSetAffinityMask`는 스레드의 affinity mask를 바꾸고, 마스크는 스레드가 실행될 프로세서를 나타내며 0이면 어느 프로세서에서나 실행된다.[@arm-cmsis-rtos2-thread-management-2026]
 
-Zephyr는 `CONFIG_SCHED_CPU_MASK`로 켜는 API(Application Programming Interface)로 스레드마다 실행될 수 있는 CPU의 집합을 두게 한다. 새 스레드는 기본으로 어느 CPU에서나 실행되고, 이 API는 실행 가능한 스레드에는 쓸 수 없으며 블록되거나 중단된 스레드에만 쓴다.[@zephyr-smp-2026]
+Zephyr는 `CONFIG_SCHED_CPU_MASK`로 켜는 API로 스레드마다 실행될 수 있는 CPU의 집합을 두게 한다. 새 스레드는 기본으로 어느 CPU에서나 실행되고, 이 API는 실행 가능한 스레드에는 쓸 수 없으며 블록되거나 중단된 스레드에만 쓴다.[@zephyr-smp-2026]
 
 RTEMS(Real-Time Executive for Multiprocessor Systems)에서 affinity는 SMP 시스템에서 태스크가 실행될 수 있는 프로세서의 부분집합을 정하고, 태스크는 기본으로 어느 프로세서에서나 실행될 수 있다. RTEMS의 SMP 스케줄러 가운데 일부만 affinity를 지원하고, 지원하지 않는 스케줄러는 affinity 설정을 대개 무시한다.[@rtems-smp-task-affinity-2025]
 

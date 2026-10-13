@@ -15,7 +15,7 @@ FreeRTOS 커널은 틱 카운트 변수로 시간을 잰다. 틱 인터럽트가
 
 µC/OS-III의 주기 틱 모드에서 틱 ISR은 `OSTimeTick()`을 부른다. `OSTimeTick()`은 tick hook을 부르고, [[real-time-scheduling#같은 우선순위(타임 슬라이싱)|round-robin 스케줄링]]으로 지금 태스크의 타임 슬라이스가 끝났는지 본 뒤, 지연이나 타임아웃이 이 틱에 끝나는 태스크를 준비 상태로 만든다.[@micrium-ucos-iii-periodic-tick-mode-2026]
 
-RTEMS(Real-Time Executive for Multiprocessor Systems)는 시간의 기본 단위를 clock tick으로 두고, 틱 간격(`CONFIGURE_MICROSECONDS_PER_TICK`)이 모든 간격·달력 시간 연산의 기본 해상도를 정한다. 틱으로 시간을 재므로 태스크 지연, 타임아웃, 타임 슬라이싱, 타이머 서비스 루틴의 지연 실행, rate monotonic 스케줄링을 지원한다.[@rtems-key-concepts-time-2025] FreeRTOS API(Application Programming Interface)는 시간을 틱 주기의 배수로 지정하고, 쓸 수 있는 해상도는 틱 주파수(`configTICK_RATE_HZ`)에 달렸다.[@freertos-task-management-2026] µC/OS-III의 주기 틱 모드에서 틱은 초당 10\~1000번 일어나야 하고, 실제 주파수는 응용이 원하는 틱 해상도에 달렸다.[@micrium-ucos-iii-clock-tick-2026]
+RTEMS(Real-Time Executive for Multiprocessor Systems)는 시간의 기본 단위를 clock tick으로 두고, 틱 간격(`CONFIGURE_MICROSECONDS_PER_TICK`)이 모든 간격·달력 시간 연산의 기본 해상도를 정한다. 틱으로 시간을 재므로 태스크 지연, 타임아웃, 타임 슬라이싱, 타이머 서비스 루틴의 지연 실행, rate monotonic 스케줄링을 지원한다.[@rtems-key-concepts-time-2025] FreeRTOS API는 시간을 틱 주기의 배수로 지정하고, 쓸 수 있는 해상도는 틱 주파수(`configTICK_RATE_HZ`)에 달렸다.[@freertos-task-management-2026] µC/OS-III의 주기 틱 모드에서 틱은 초당 10\~1000번 일어나야 하고, 실제 주파수는 응용이 원하는 틱 해상도에 달렸다.[@micrium-ucos-iii-clock-tick-2026]
 
 ## 지연의 오차
 

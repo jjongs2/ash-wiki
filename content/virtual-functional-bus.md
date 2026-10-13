@@ -29,7 +29,7 @@ AUTOSAR 서비스는 ECU 인프라인 BSW(Basic Software)의 표준화된 기능
 
 ![[diagrams/vfb-view-ecu-mapping.svg]]
 
-SW-C는 상대 SW-C가 같은 ECU에 있든 다른 ECU에 있든 자기 포트로만 통신한다. RTE는 통신 상대가 같은 파티션, 같은 ECU의 다른 파티션, 다른 ECU 가운데 어디에 있든 통신 메커니즘의 의미를 바꾸지 않는다. SW-C가 포트에 접근할 때 쓰는 API(Application Programming Interface)는 SW-C 자신의 기술(포트, 인터페이스, [[autosar-software-component#Internal behavior|internal behavior]])만으로 생성된다. 통신 연결은 RTE가 구현하므로 SW-C는 연결이 1:1, n:1, 1:n 가운데 무엇인지 모르고, 그래서 SW-C를 고치지 않고 다른 구성에 다시 배치할 수 있다.[@autosar-cp-sws-rte-2025]
+SW-C는 상대 SW-C가 같은 ECU에 있든 다른 ECU에 있든 자기 포트로만 통신한다. RTE는 통신 상대가 같은 파티션, 같은 ECU의 다른 파티션, 다른 ECU 가운데 어디에 있든 통신 메커니즘의 의미를 바꾸지 않는다. SW-C가 포트에 접근할 때 쓰는 API는 SW-C 자신의 기술(포트, 인터페이스, [[autosar-software-component#Internal behavior|internal behavior]])만으로 생성된다. 통신 연결은 RTE가 구현하므로 SW-C는 연결이 1:1, n:1, 1:n 가운데 무엇인지 모르고, 그래서 SW-C를 고치지 않고 다른 구성에 다시 배치할 수 있다.[@autosar-cp-sws-rte-2025]
 
 ## ECU 배치
 

@@ -38,7 +38,7 @@ Embedded Coder의 software-in-the-loop 시뮬레이션은 모델에서 생성한
 
 ### PiL
 
-Embedded Coder의 processor-in-the-loop 시뮬레이션은 개발용 컴퓨터에서 코드를 교차 컴파일하고, 목적 코드를 대상 프로세서나 그에 맞먹는 명령어 집합 시뮬레이터에 내려받아 실행한다. 모델에서 코드로 만들지 않은 부분은 Simulink에 남아 테스트 벡터를 주고, 알고리즘이 놓인 환경을 나타낼 수 있다.[@mathworks-ecoder-sil-pil-2026]
+Embedded Coder의 processor-in-the-loop 시뮬레이션은 개발용 컴퓨터에서 코드를 교차 컴파일하고, 오브젝트 코드를 대상 프로세서나 그에 맞먹는 명령어 집합 시뮬레이터에 내려받아 실행한다. 모델에서 코드로 만들지 않은 부분은 Simulink에 남아 테스트 벡터를 주고, 알고리즘이 놓인 환경을 나타낼 수 있다.[@mathworks-ecoder-sil-pil-2026]
 
 ### HiL
 

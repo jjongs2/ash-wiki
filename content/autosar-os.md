@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**AUTOSAR OS**는 [[autosar-classic-platform|AUTOSAR Classic Platform]]의 운영체제다. [[osek-os|OSEK OS]]를 바탕으로 삼아 그것을 확장하고 일부를 제한하는 것으로 정의되며, OSEK OS의 API(Application Programming Interface)와 하위 호환되는 API를 제공한다. OSEK OS 기능에 더해 counter API, [[autosar-schedule-table|schedule table]], stack monitoring, [[autosar-os-application#Memory protection|memory protection]], [[autosar-timing-protection|timing protection]], service protection 등을 둔다.[@autosar-cp-sws-os-2025]
+**AUTOSAR OS**는 [[autosar-classic-platform|AUTOSAR Classic Platform]]의 운영체제다. [[osek-os|OSEK OS]]를 바탕으로 삼아 그것을 확장하고 일부를 제한하는 것으로 정의되며, OSEK OS의 API와 하위 호환되는 API를 제공한다. OSEK OS 기능에 더해 counter API, [[autosar-schedule-table|schedule table]], stack monitoring, [[autosar-os-application#Memory protection|memory protection]], [[autosar-timing-protection|timing protection]], service protection 등을 둔다.[@autosar-cp-sws-os-2025]
 
 ## Scalability class
 

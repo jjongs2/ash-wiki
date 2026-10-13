@@ -29,7 +29,7 @@ Execution Management의 책임은 셋으로 나뉜다.[@autosar-ap-exp-platformd
 
 ## 프로세스
 
-Modelled Process는 Executable의 인스턴스이고, Adaptive Platform에서 실행 중에 운영체제 프로세스로 실현된다. Execution Management는 응용의 경계와 상관없이 모든 Executable과 그로부터 나온 Modelled Process를 똑같이 다룬다. 이 릴리스는 프로세스가 운영체제 인터페이스 API(Application Programming Interface)로 스레드 생성과 스케줄링을 스스로 맡는다고 대체로 가정하며, 이때 Execution Management는 프로세스를 시작하고 끝내기만 하고, 프로세스가 도는 동안에는 State Management 메커니즘을 제공하는 것으로만 프로세스와 상호작용한다.[@autosar-ap-sws-executionmanagement-2025]
+Modelled Process는 Executable의 인스턴스이고, Adaptive Platform에서 실행 중에 운영체제 프로세스로 실현된다. Execution Management는 응용의 경계와 상관없이 모든 Executable과 그로부터 나온 Modelled Process를 똑같이 다룬다. 이 릴리스는 프로세스가 운영체제 인터페이스 API로 스레드 생성과 스케줄링을 스스로 맡는다고 대체로 가정하며, 이때 Execution Management는 프로세스를 시작하고 끝내기만 하고, 프로세스가 도는 동안에는 State Management 메커니즘을 제공하는 것으로만 프로세스와 상호작용한다.[@autosar-ap-sws-executionmanagement-2025]
 
 프로세스가 보는 자기 생명주기는 Execution State이고, Execution Management가 보는 프로세스의 생명주기는 Process State다. Execution Management는 프로세스가 알려 오는 Execution State 변화로 Process State를 만들고 유지하며, Process State로 실행 의존성을 풀고 타임아웃을 관리한다. Process State에는 아래 다섯이 있고, 구현은 이와 충돌하거나 이를 대신하지 않는 Process State를 더 정의할 수 있다.[@autosar-ap-sws-executionmanagement-2025]
 

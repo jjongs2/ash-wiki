@@ -29,7 +29,7 @@ AUTOSAR Classic Platform R25-11의 Firewall 명세는 방화벽을 allowlist 방
 
 ## 상태에 따른 규칙
 
-차량 안의 트래픽은 주행, 주차, 진단 세션 같은 차량 상태에 따라 크게 달라진다. 그래서 FirewallRule을 통합자가 프로젝트마다 미리 정한 **firewall state**에 묶을 수 있고, 한 번에 한 state에 묶인 규칙만 활성이다. Classic Platform에서는 [[basic-software-mode-manager|BswM]]이 `Fw_SetFirewallState`를 불러 활성 state를 바꾼다.[@autosar-cp-sws-firewall-2025] AUTOSAR Adaptive Platform R25-11의 Firewall 명세는 사용자 응용이 FC Firewall의 `ara::fw::FirewallStateSwitchInterface` API(Application Programming Interface)로 활성 state를 바꾸도록 둔다.[@autosar-ap-sws-firewall-2025]
+차량 안의 트래픽은 주행, 주차, 진단 세션 같은 차량 상태에 따라 크게 달라진다. 그래서 FirewallRule을 통합자가 프로젝트마다 미리 정한 **firewall state**에 묶을 수 있고, 한 번에 한 state에 묶인 규칙만 활성이다. Classic Platform에서는 [[basic-software-mode-manager|BswM]]이 `Fw_SetFirewallState`를 불러 활성 state를 바꾼다.[@autosar-cp-sws-firewall-2025] AUTOSAR Adaptive Platform R25-11의 Firewall 명세는 사용자 응용이 FC Firewall의 `ara::fw::FirewallStateSwitchInterface` API로 활성 state를 바꾸도록 둔다.[@autosar-ap-sws-firewall-2025]
 
 ## 보안 이벤트
 

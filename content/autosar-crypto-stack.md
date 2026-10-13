@@ -9,7 +9,7 @@ verified: 2026-10-07
 
 ## Crypto Service Manager
 
-Csm은 암호 서비스와 키 관리 두 서비스를 준다. Csm은 모든 소프트웨어 모듈이 기본 암호 기능에 한결같은 방식으로 접근하게 하는 추상화 층으로, 위 소프트웨어 층에 표준 인터페이스를 준다. 서비스는 동기나 비동기로 주고, 쓰는 모듈마다 따로 설정하고 초기화한다. 동기와 비동기 가운데 어느 쪽으로 처리할지도 이 설정에서 고른다. 암호 서비스는 `Csm_<Service>` 꼴의 API(Application Programming Interface)로 부른다.[@autosar-cp-sws-cryptoservicemanager-2025]
+Csm은 암호 서비스와 키 관리 두 서비스를 준다. Csm은 모든 소프트웨어 모듈이 기본 암호 기능에 한결같은 방식으로 접근하게 하는 추상화 층으로, 위 소프트웨어 층에 표준 인터페이스를 준다. 서비스는 동기나 비동기로 주고, 쓰는 모듈마다 따로 설정하고 초기화한다. 동기와 비동기 가운데 어느 쪽으로 처리할지도 이 설정에서 고른다. 암호 서비스는 `Csm_<Service>` 꼴의 API로 부른다.[@autosar-cp-sws-cryptoservicemanager-2025]
 
 Csm이 처리하는 단위를 **job**이라 하며, job은 설정한 암호 primitive의 인스턴스다. Job은 키, 암호 primitive, 채널을 가리킨다. **채널**은 Csm의 큐에서 CryIf를 거쳐 특정 Crypto Driver Object에 이르는 경로다. Csm은 서로 다른 job을 나란히 처리할 수 있지만, 한 job은 한 번에 하나만 처리한다. Job을 큐에 넣어야 하는데 큐가 차 있으면 요청을 CRYPTO_E_BUSY로 거절한다.[@autosar-cp-sws-cryptoservicemanager-2025]
 

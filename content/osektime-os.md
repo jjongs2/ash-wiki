@@ -10,7 +10,7 @@ edition: 2001
 status: 유효
 ---
 
-**OSEKtime OS**는 [[osek-vdx|OSEK/VDX]]가 정한 [[cyclic-executive#Time-triggered와 event-triggered|time-triggered]] 실시간 운영체제다. 분산된 임베디드 제어 유닛에서 쓰는 단일 프로세서 운영체제이며, 차량 ECU에서 신뢰성이 아주 높아야 하는 실시간 소프트웨어의 표준 실행 환경을 목표로 한다. OSEKtime OS 1.0 명세는 이 운영체제의 개념과 API(Application Programming Interface)를 정하며, 특정 구현을 다룬 제품 설명이 아니다.[@osek-osektime-os-1-0-2001]
+**OSEKtime OS**는 [[osek-vdx|OSEK/VDX]]가 정한 [[cyclic-executive#Time-triggered와 event-triggered|time-triggered]] 실시간 운영체제다. 분산된 임베디드 제어 유닛에서 쓰는 단일 프로세서 운영체제이며, 차량 ECU에서 신뢰성이 아주 높아야 하는 실시간 소프트웨어의 표준 실행 환경을 목표로 한다. OSEKtime OS 1.0 명세는 이 운영체제의 개념과 API를 정하며, 특정 구현을 다룬 제품 설명이 아니다.[@osek-osektime-os-1-0-2001]
 
 이 명세는 운영체제가 갖출 성질로 예측성(정해 둔 첨두 부하와 고장 조건에서도 결정적이고 미리 알려진 동작), 인증의 바탕이 될 명확한 모듈 구조, 신뢰성(고장 검출과 결함 허용), 부작용 없는 모듈 단위 개발과 통합(결합성), OSEK/VDX와의 호환을 요구한다. OSEKtime에는 결함 허용 통신 계층도 있으며, 이 계층은 FTCom(Fault-Tolerant Communication) 명세가 다룬다.[@osek-osektime-os-1-0-2001]
 

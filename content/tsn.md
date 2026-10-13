@@ -16,7 +16,7 @@ IEEE 802.1 작업 그룹의 TSN 요약은 TSN 도구를 네 갈래로 나눈다.
 - 시간 동기화: [[ieee-802-1as|IEEE 802.1AS]]
 - 지연 상한: [[credit-based-shaper|credit-based shaper]](IEEE 802.1Qav), [[frame-preemption|프레임 선점]](IEEE 802.1Qbu, IEEE 802.3br), [[time-aware-shaper|scheduled traffic]](IEEE 802.1Qbv), [[cyclic-queuing-and-forwarding|cyclic queuing and forwarding]](IEEE 802.1Qch), asynchronous traffic shaping(IEEE 802.1Qcr)
 - 고가용성과 초신뢰성: [[ieee-802-1cb|IEEE 802.1CB]], IEEE 802.1Qca, IEEE 802.1Qci
-- 전용 자원과 API(Application Programming Interface): [[srp|SRP]](IEEE 802.1Qat), [[tsn-configuration|IEEE 802.1Qcc]][@ieee-802-1-tsn-summary-2026]
+- 전용 자원과 API: [[srp|SRP]](IEEE 802.1Qat), [[tsn-configuration|IEEE 802.1Qcc]][@ieee-802-1-tsn-summary-2026]
 
 시간 동기화는 시간 기반 스케줄링 같은 여러 TSN QoS(Quality of Service) 기능의 바탕이다.[@ieee-tsn-industrial-flyer-2026][@microchip-an1185-2025]
 

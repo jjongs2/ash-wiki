@@ -13,7 +13,7 @@ FreeRTOS의 소프트웨어 타이머는 커널이 구현하고 관리하며, �
 
 ## 콜백이 도는 context
 
-FreeRTOS의 소프트웨어 타이머 콜백은 모두 RTOS daemon 태스크(timer service 태스크)의 context에서 실행된다. daemon 태스크는 스케줄러가 시작될 때 자동으로 만들어지는 보통 태스크이고, 우선순위와 스택 크기는 `configTIMER_TASK_PRIORITY`와 `configTIMER_TASK_STACK_DEPTH`로 정한다. 타이머 API(Application Programming Interface) 함수는 timer command queue로 daemon 태스크에 명령을 보내고, daemon 태스크는 다른 태스크처럼 스케줄되어 실행할 수 있는 태스크 가운데 우선순위가 가장 높을 때만 명령을 처리하거나 콜백을 실행한다.[@freertos-software-timer-management-2026]
+FreeRTOS의 소프트웨어 타이머 콜백은 모두 RTOS daemon 태스크(timer service 태스크)의 context에서 실행된다. daemon 태스크는 스케줄러가 시작될 때 자동으로 만들어지는 보통 태스크이고, 우선순위와 스택 크기는 `configTIMER_TASK_PRIORITY`와 `configTIMER_TASK_STACK_DEPTH`로 정한다. 타이머 API 함수는 timer command queue로 daemon 태스크에 명령을 보내고, daemon 태스크는 다른 태스크처럼 스케줄되어 실행할 수 있는 태스크 가운데 우선순위가 가장 높을 때만 명령을 처리하거나 콜백을 실행한다.[@freertos-software-timer-management-2026]
 
 µC/OS-III의 콜백은 µC/OS-III가 만드는 타이머 태스크 `OS_TmrTask()`의 context에서 불린다. 타이머 태스크의 우선순위는 `OS_CFG_TMR_TASK_PRIO`로 정하고, 대개 낮음에서 중간 사이에 둔다. 타이머 태스크는 [[system-tick|클록 틱]]과 같은 인터럽트 소스를 쓰지만, 틱 주파수를 소프트웨어로 나눠 대개 10 Hz처럼 더 느리게 갱신된다.[@micrium-ucos-iii-timer-task-2026] 모든 타이머의 해상도는 `OS_CFG_TMR_TASK_RATE_HZ`가 정하고, 타이머는 거친 단위로 쓴다.[@micrium-ucos-iii-timer-management-2026]
 

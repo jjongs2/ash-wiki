@@ -35,7 +35,7 @@ RTOS는 태스크 사이의 동기화와 통신에 [[semaphore|세마포어]], [
 
 ## 차량용 RTOS
 
-[[iso-17356-3|ISO 17356-3]]:2005는 차량용 멀티태스킹 실시간 운영체제인 [[osek-os|OSEK OS]]의 개념을 기술하고, 그 API(Application Programming Interface)를 정한다.[@iso-17356-3-2005] OSEK/VDX OS 2.2.3 명세에 따르면 이 명세를 따르는 구현은 여럿이고, 인증 절차로 각 구현이 명세에 맞는지 확인한다.[@osek-os-2-2-3-2005]
+[[iso-17356-3|ISO 17356-3]]:2005는 차량용 멀티태스킹 실시간 운영체제인 [[osek-os|OSEK OS]]의 개념을 기술하고, 그 API를 정한다.[@iso-17356-3-2005] OSEK/VDX OS 2.2.3 명세에 따르면 이 명세를 따르는 구현은 여럿이고, 인증 절차로 각 구현이 명세에 맞는지 확인한다.[@osek-os-2-2-3-2005]
 
 [[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 [[autosar-os|운영체제 명세]]는 ISO 17356-3을 바탕으로 두고 이를 확장하거나 제한한다.[@autosar-cp-sws-os-2025]
 

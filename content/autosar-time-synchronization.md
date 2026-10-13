@@ -61,6 +61,6 @@ Time Master는 설정에 따라 [[autosar-crypto-stack#Crypto Service Manager|Cs
 
 ## Adaptive Platform의 Time Synchronization
 
-AUTOSAR [[autosar-adaptive-platform|Adaptive Platform]] R25-11의 Time Synchronization 명세는 응용이 다른 ECU와 동기화된 시간 정보를 얻는 API(Application Programming Interface)를 두고, 이 기능을 TBR(Time Base Resource)로 주도록 정한다. TBR의 종류는 Synchronized Master Time Base와 Synchronized Slave Time Base 둘이고, StbM이 주는 time base의 종류와 같은 설계를 따른다. TBR은 StbM처럼 실제 time base provider를 감추는 중개자 역할을 한다. TS(Time Synchronization) 모듈은 네트워크로 보내는 시간 동기화 메시지를 보호하는 기능도 지원한다. 프로토콜의 형식, 메시지 순서, 의미는 AUTOSAR 시간 동기화 프로토콜 명세를 따른다.[@autosar-ap-sws-timesynchronization-2025]
+AUTOSAR [[autosar-adaptive-platform|Adaptive Platform]] R25-11의 Time Synchronization 명세는 응용이 다른 ECU와 동기화된 시간 정보를 얻는 API를 두고, 이 기능을 TBR(Time Base Resource)로 주도록 정한다. TBR의 종류는 Synchronized Master Time Base와 Synchronized Slave Time Base 둘이고, StbM이 주는 time base의 종류와 같은 설계를 따른다. TBR은 StbM처럼 실제 time base provider를 감추는 중개자 역할을 한다. TS(Time Synchronization) 모듈은 네트워크로 보내는 시간 동기화 메시지를 보호하는 기능도 지원한다. 프로토콜의 형식, 메시지 순서, 의미는 AUTOSAR 시간 동기화 프로토콜 명세를 따른다.[@autosar-ap-sws-timesynchronization-2025]
 
 Time Synchronization 모듈은 TBR을 다른 노드의 time base에 맞추는 네트워크 시간 프로토콜을 스스로 갖지 않고, TBR 구현이 이더넷 시간 동기화 모듈 같은 곳에서 시간 정보를 받아 TBR을 맞출 수 있다. 이 API는 Classic Platform의 StbM을 감싸되 C++의 `std::chrono`와 비슷한 꼴로 설계됐다.[@autosar-ap-exp-platformdesign-2025]

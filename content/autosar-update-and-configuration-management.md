@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-07
 ---
 
-AUTOSAR R25-11 Update and Configuration Management 명세는 **Update and Configuration Management**(UCM)를 [[autosar-adaptive-platform|AUTOSAR Adaptive Platform]]의 소프트웨어를 안전하고 보안을 지키며 설치, 갱신, 제거하는 일을 맡는 [[autosar-adaptive-platform#Functional cluster|Adaptive Platform Services]]의 functional cluster로 정의한다. UCM은 응용뿐 아니라 모든 functional cluster와 하부 POSIX 운영체제, 그 커널을 포함한 Adaptive Platform 자체의 갱신도 맡는다. 기능은 직접 부르는 API(Application Programming Interface)가 아니라 `ara::com` 서비스 인터페이스로 내놓아, UCM을 쓰는 쪽이 같은 ECU에 있지 않아도 된다.[@autosar-ap-sws-updateandconfigurationmanagement-2025]
+AUTOSAR R25-11 Update and Configuration Management 명세는 **Update and Configuration Management**(UCM)를 [[autosar-adaptive-platform|AUTOSAR Adaptive Platform]]의 소프트웨어를 안전하고 보안을 지키며 설치, 갱신, 제거하는 일을 맡는 [[autosar-adaptive-platform#Functional cluster|Adaptive Platform Services]]의 functional cluster로 정의한다. UCM은 응용뿐 아니라 모든 functional cluster와 하부 POSIX 운영체제, 그 커널을 포함한 Adaptive Platform 자체의 갱신도 맡는다. 기능은 직접 부르는 API가 아니라 `ara::com` 서비스 인터페이스로 내놓아, UCM을 쓰는 쪽이 같은 ECU에 있지 않아도 된다.[@autosar-ap-sws-updateandconfigurationmanagement-2025]
 
 UCM이 맡는 일은 아래와 같다.[@autosar-ap-sws-updateandconfigurationmanagement-2025]
 
