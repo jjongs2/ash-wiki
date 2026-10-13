@@ -40,6 +40,27 @@ export function ownerRows(body: string): OwnerRow[] {
   return rows
 }
 
+// 행의 개념 이름과 맞는 주인 페이지의 절 제목. 개념 칸은 "FTTI와 시간 구간(EOTI, MPFDTI 포함)"처럼 이름을
+// 늘어놓으므로 쉼표, 괄호, 가운뎃점, "와·과"로 나눈 이름마다, 그 이름이 든 절 제목을 찾는다. 주인 페이지가 정의
+// 강조로 옮긴 이름도 본다. `**분산 개발**(distributed development)`이 있으면 개념 이름 distributed
+// development는 "분산 개발" 절과 맞는다. 대소문자는 가리지 않는다.
+export function conceptSections(concept: string, owner: Page): string[] {
+  const names = concept
+    .split(/[,()·]|(?<=[가-힣A-Za-z0-9])(?:와|과) /)
+    .map((name) => name.trim().toLowerCase())
+    .filter((name) => name.length >= 2)
+  for (const [, term, gloss] of owner.masked.matchAll(/\*\*([^*\n]+)\*\*\(([^()\n]+)\)/g)) {
+    if (gloss.split(/,\s*/).some((part) => names.includes(part.trim().toLowerCase())))
+      names.push(term.toLowerCase())
+  }
+  const lines = owner.source.split("\n")
+  return owner.mdast.children.flatMap((node) => {
+    if (node.type !== "heading" || node.depth < 2) return []
+    const heading = lines[node.position!.start.line - 1].replace(/^#+\s*/, "").trim()
+    return names.some((name) => heading.toLowerCase().includes(name)) ? [heading] : []
+  })
+}
+
 const cells = (line: string) =>
   line
     .trim()
@@ -50,7 +71,7 @@ const cells = (line: string) =>
 const slugs = (text: string) => [...text.matchAll(/`([a-z0-9-]+)`/g)].map((m) => m[1])
 
 // 줄마다 링크만 하는 곳의 페이지에서 주인 페이지로 가는 링크, 그 링크의 절 앵커, 링크가 든 문단의 문장 수를
-// 보인다. 규칙은 위키 규약의 중복 절과 위키링크 절이다. 고칠 것이 없는 줄(주인 페이지나 링크만 하는 곳의
+// 보인다. 절 앵커가 없으면 행의 개념 이름과 맞는 주인 페이지의 절 제목을 함께 보인다. 규칙은 위키 규약의 중복 절과 위키링크 절이다. 고칠 것이 없는 줄(주인 페이지나 링크만 하는 곳의
 // 페이지가 아직 없는 줄)과 이 브랜치가 고치지 않은 페이지의 앵커·문장 수 줄은 접어 수로만 센다. 이런 줄이
 // 후보의 절반 가까이 되어 진짜 후보를 가렸다. "주인 페이지 링크가 없다"는 고치지 않은 페이지여도 접지 않는다.
 export function ownerPage({ tree, changed, ticketBody }: Context): Candidate[] {
@@ -85,8 +106,13 @@ export function ownerPage({ tree, changed, ticketBody }: Context): Candidate[] {
       if (links.length > 0 && unlinked.length > 0)
         at(`링크가 없는 주인 페이지: ${unlinked.join(", ")}`)
       for (const link of links) {
+        const owner = pages.get(link.target)
+        const matched = link.anchor || !owner ? [] : conceptSections(row.concept, owner)
+        const anchor = link.anchor
+          ? "있음"
+          : `없음${matched.length > 0 ? `(맞는 절: ${matched.map((h) => `#${h}`).join(", ")})` : ""}`
         ;(touched.has(page.name) ? at : fold)(
-          `${link.raw} 절 앵커 ${link.anchor ? "있음" : "없음"}, 문단 ${link.sentences}문장`,
+          `${link.raw} 절 앵커 ${anchor}, 문단 ${link.sentences}문장`,
           link.line,
         )
       }
