@@ -37,8 +37,8 @@ class DigestArchiveTest(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def run_digest(self, *args, script=SCRIPT, check=True):
-        env = dict(os.environ, ASH_WIKI_NOTES=self.notes)
+    def run_digest(self, *args, script=SCRIPT, check=True, notes=None):
+        env = dict(os.environ, ASH_WIKI_NOTES=notes or self.notes)
         result = subprocess.run(
             [sys.executable, "-B", script, "--archive", self.archive, *args],
             env=env, capture_output=True, text=True, check=check,
@@ -94,6 +94,15 @@ class DigestArchiveTest(unittest.TestCase):
         with open(script, "a") as f:
             f.write("\n# changed\n")
         self.run_digest(self.transcript, script=script)
+        with open(main) as f:
+            self.assertNotIn("marker", f.read())
+
+    def test_changed_notes_path_redoes_digest(self):
+        self.run_digest(self.transcript, notes=os.path.join(self.tmp.name, "other-notes"))
+        main = os.path.join(self.archive, UUID, f"{UUID[:8]}-main.md")
+        with open(main, "a") as f:
+            f.write("marker\n")
+        self.run_digest(self.transcript)
         with open(main) as f:
             self.assertNotIn("marker", f.read())
 

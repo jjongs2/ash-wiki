@@ -6,8 +6,8 @@ python3 digest.py [--archive <폴더>] --mark <회고 세션 uuid> <세션 uuid>
 보관 폴더(기본 ~/documents/ash-wiki-retro)의 <uuid>/에, 기록마다 <이름>-main.md를,
 기록 옆 <uuid>/subagents/의 서브에이전트 기록마다 <이름>-<agent id>.md를 쓴다.
 <이름>은 세션 제목과 uuid 앞 8자다. Claude Code가 오래된 기록을 지워도 요약본이
-남게 하려고 저장소 밖에 둔다. 기록과 이 스크립트가 지난번 요약 뒤로 바뀌지 않았으면
-다시 만들지 않고 "있음"을 찍는다. 다시 만들 때는 요약본만 지우고 report.md는 둔다.
+남게 하려고 저장소 밖에 둔다. 기록, 이 스크립트, ASH_WIKI_NOTES의 값이 지난번 요약
+뒤로 바뀌지 않았으면 다시 만들지 않고 "있음"을 찍는다. 다시 만들 때는 요약본만 지우고 report.md는 둔다.
 
 --mark는 보관 폴더의 analyzed.tsv에 세션 uuid, 회고 세션 uuid, 날짜를 한 줄씩
 더한다. 이미 있는 uuid는 더하지 않는다. 회고는 이 목록에 없는 세션을 분석한다.
@@ -162,7 +162,8 @@ def write(out_dir, name, path, label=""):
 def source_stamp(path, subs):
     with open(__file__, "rb") as script:
         version = hashlib.sha256(script.read()).hexdigest()[:12]
-    return " ".join([version, *(str(os.path.getsize(p)) for p in [path, *subs])])
+    sizes = " ".join([version, *(str(os.path.getsize(p)) for p in [path, *subs])])
+    return f"{sizes}\n{NOTES}"
 
 
 def check_uuids(uuids):
