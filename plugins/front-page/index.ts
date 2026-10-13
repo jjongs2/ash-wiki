@@ -625,7 +625,7 @@ function newsColumn(
       ]),
     ]),
     issue.days.length === 0
-      ? el("p", { className: ["front-news-empty"] }, [text("이번 주는 주요 소식이 없습니다")])
+      ? el("p", { className: ["front-news-empty"] }, [text("이번 주는 주요 소식이 없습니다.")])
       : el(
           "ul",
           { className: ["front-timeline"] },

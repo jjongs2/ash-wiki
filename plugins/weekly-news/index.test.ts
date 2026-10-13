@@ -1,7 +1,7 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
 import fs from "node:fs"
-import { chronological, issueTitle, parseWeeklyNews, weekDays } from "./index"
+import { byDate, issueFilters, issueTitle, parseWeeklyNews, weekDays } from "./index"
 
 // 형식 함수 parseWeeklyNews가 주간 소식 형식의 정본이다. 예시 주간 소식과 형식을 어긴 짧은 원본을 넣고
 // 소식 항목 목록과 오류만 본다.
@@ -185,21 +185,61 @@ describe("parseWeeklyNews", () => {
   })
 })
 
-describe("chronological", () => {
-  test("발행일이 이른 항목부터 두고, 같은 날은 파일에 적은 순서를 지킨다", () => {
-    const { items } = parseWeeklyNews(
-      "2026-w41",
-      example + "\n" + source().replace("2026-10-06", "2026-10-08").replace("Title", "Late"),
-    )
-    assert.deepStrictEqual(
-      chronological(items).map((item) => [item.date, item.title.split(" ")[0]]),
-      [
-        ["2026-10-05", "AUTOSAR"],
-        ["2026-10-06", "CAN"],
-        ["2026-10-08", "Software-Defined"],
-        ["2026-10-08", "Late"],
+describe("byDate", () => {
+  // 예시 주간 소식에 10월 8일 항목(Late)을 하나 더해, 같은 날 항목 둘을 만든다
+  const { items } = parseWeeklyNews(
+    "2026-w41",
+    example + "\n" + source().replace("2026-10-06", "2026-10-08").replace("Title", "Late"),
+  )
+  const order = (sorted: typeof items) =>
+    sorted.map((item) => [item.date, item.title.split(" ")[0]])
+
+  test("최근순은 발행일이 늦은 항목부터 두고, 같은 날은 파일에 적은 순서를 지킨다", () => {
+    assert.deepStrictEqual(order(byDate(items, "newest")), [
+      ["2026-10-08", "Software-Defined"],
+      ["2026-10-08", "Late"],
+      ["2026-10-06", "CAN"],
+      ["2026-10-05", "AUTOSAR"],
+    ])
+  })
+
+  test("오래된순은 발행일이 이른 항목부터 두고, 같은 날은 파일에 적은 순서를 지킨다", () => {
+    assert.deepStrictEqual(order(byDate(items, "oldest")), [
+      ["2026-10-05", "AUTOSAR"],
+      ["2026-10-06", "CAN"],
+      ["2026-10-08", "Software-Defined"],
+      ["2026-10-08", "Late"],
+    ])
+  })
+})
+
+describe("issueFilters", () => {
+  const { items } = parseWeeklyNews("2026-w41", example)
+
+  test("주요 소식 수와, 구역마다 항목 수를 구역 순서대로 주고 기타는 맨 뒤에 둔다", () => {
+    assert.deepStrictEqual(issueFilters(items, ["network", "platform", "security"]), {
+      featured: 1,
+      regions: [
+        { region: "network", count: 2 },
+        { region: "platform", count: 1 },
+        { region: null, count: 1 },
       ],
+    })
+  })
+
+  test("구역 순서에 없는 구역은 순서에 있는 구역 뒤에 이름순으로 둔다", () => {
+    assert.deepStrictEqual(
+      issueFilters(items, ["platform"]).regions.map((entry) => entry.region),
+      ["platform", "network", null],
     )
+  })
+
+  test("주요 소식과 기타가 없는 호는 0과 빈 자리로 준다", () => {
+    const { items: plain } = parseWeeklyNews("2026-w41", source())
+    assert.deepStrictEqual(issueFilters(plain, ["network"]), {
+      featured: 0,
+      regions: [{ region: "network", count: 1 }],
+    })
   })
 })
 
