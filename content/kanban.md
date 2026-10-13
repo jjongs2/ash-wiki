@@ -28,7 +28,7 @@ The Kanban Guide 2025.5는 Kanban을 함께 맞물려 돌아가는 세 실천, �
 
 ### 항목의 능동적 관리
 
-The Kanban Guide 2025.5는 워크플로 안의 항목을 능동적으로 관리해야 한다고 정한다. 관리에는 WIP 통제, SLE를 기준 삼아 작업 항목이 쓸데없이 오래 머물지 않게 하는 일, 막힌 작업을 푸는 일이 든다. 구성원은 시작부터 끝까지 워크플로 안의 작업 항목 수를 명시적으로 통제해야 하고, 그 통제를 Kanban 보드에 어떻게 나타낼지는 구성원이 정한다.[@kanbanguides-kanban-guide-2025]
+가이드는 워크플로 안의 항목을 능동적으로 관리해야 한다고 정한다. 관리에는 WIP 통제, SLE를 기준 삼아 작업 항목이 쓸데없이 오래 머물지 않게 하는 일, 막힌 작업을 푸는 일이 든다. 구성원은 시작부터 끝까지 워크플로 안의 작업 항목 수를 명시적으로 통제해야 하고, 그 통제를 Kanban 보드에 어떻게 나타낼지는 구성원이 정한다.[@kanbanguides-kanban-guide-2025]
 
 The Kanban Guide 2025.5와 Kanban University의 Kanban Method 가이드는 모두 WIP 제한이 pull 시스템을 만든다고 보고, 용량이 있다는 신호가 있을 때만 새 작업 항목을 끌어와 시작하도록 둔다.[@kanbanguides-kanban-guide-2025][@kanban-university-kanban-guide-2026]
 

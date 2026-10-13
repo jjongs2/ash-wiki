@@ -32,7 +32,7 @@ ISO/IEC TR 33014:2013은 지속적 개선 활동의 하나로 프로세스 개�
 
 ## 틀 기반 방법
 
-SWEBOK V4.0a에 따르면 실행한 프로세스는 무엇이든 개선할 수 있다는 생각은 Shewhart와 Deming의 [[pdca-cycle|PDCA]] 패러다임에 이미 있었고, [[software-engineering|소프트웨어 공학]] 프로세스에도 여러 접근이 나왔다. 평가 방법 가운데 일부는 [[process-assessment#프로세스 모델|프로세스 참조 모델]]과 평가 모델을 쓰는 틀에 기댄다. 예로 CMM(Capability Maturity Model), [[cmmi|CMMI]], SPICE라고도 부르는 [[process-assessment#ISO/IEC 330xx 계열|ISO/IEC 330xx 계열]]을 든다. ISO/IEC 33000 틀의 평가는 지속적 개선을 꾀한다는 생각을 바탕에 둔다.[@ieee-swebok-v4-0a-2026]
+SWEBOK V4.0a에 따르면 실행한 프로세스는 무엇이든 개선할 수 있다는 생각은 Shewhart와 Deming의 [[pdca-cycle|PDCA]] 패러다임에 이미 있었고, [[software-engineering|소프트웨어 공학]] 프로세스에도 여러 접근이 나왔다. 평가 방법 가운데 일부는 [[process-assessment#프로세스 모델|프로세스 참조 모델]]과 평가 모델을 쓰는 틀에 기댄다. 예로 CMM(Capability Maturity Model), [[cmmi|CMMI]], SPICE라고도 부르는 [[process-assessment#ISO/IEC 330xx 계열|ISO/IEC 330xx 계열]]을 든다. 이 계열의 평가는 지속적 개선을 꾀한다는 생각을 바탕에 둔다.[@ieee-swebok-v4-0a-2026]
 
 ## 회고
 

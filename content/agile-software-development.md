@@ -51,7 +51,7 @@ SWEBOK V4.0a에 따르면 애자일은 고객에게 늘 가치를 인도하는 �
 
 ## 대표 방법
 
-SWEBOK V4.0a에 따르면 널리 쓰이게 된 애자일 방법에는 XP(Extreme Programming)와 Scrum 등이 있다. 이 지침에 따르면 [[devops|DevOps]]는 애자일 개발의 잦은 반복이 주는 피드백에, 운영 환경에서 오는 피드백을 더한다.[@ieee-swebok-v4-0a-2026]
+널리 쓰이게 된 애자일 방법에는 XP(Extreme Programming)와 Scrum 등이 있다. [[devops|DevOps]]는 애자일 개발의 잦은 반복이 주는 피드백에, 운영 환경에서 오는 피드백을 더한다.[@ieee-swebok-v4-0a-2026]
 
 더 널리 쓰이는 방법에는 Scrum 말고도 다음이 있다.[@ieee-swebok-v4-0a-2026]
 

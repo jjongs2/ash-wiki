@@ -22,7 +22,7 @@ ASPICE 4.1은 프로세스 참조 모델과 프로세스 평가 모델을 한 �
 
 VDA QMC는 ASPICE에 [[cybersecurity|사이버보안]] 내용을 더하는 확장으로 [[automotive-spice-for-cybersecurity|Automotive SPICE for Cybersecurity]]를 따로 펴낸다. 협력업체 평가용 프로세스 평가 모델인 ASPICE Potential Analysis도 펴낸다. 출판물 목록에는 그 판이 1.0(2024년 8월)으로 나온다.[@vda-automotive-spice-publications-2026] 문서 표지에는 1판(2024년 6월)으로 나온다.[@vda-automotive-spice-potential-analysis-2024]
 
-ASPICE Potential Analysis 1.0은 ASPICE 4.0과 Automotive SPICE for Cybersecurity 1.0의 내용을 바탕으로 그 일부만 담은 독립 모델이고, 두 모델의 확장이 아니다. ASPICE 4.0 평가보다 내용을 줄여 능력 수준 1에 초점을 맞추고, 살펴볼 표본 수가 적어 시간이 덜 드는데, 협력업체 선정 단계나 문제가 생긴 프로젝트에서는 그 시간이 모자라기 쉽다. 고객이 계약을 맡기기 전의 전제 조건으로 쓰거나, 공급자 자기 평가(SuSE, Supplier Self-Evaluation)가 없을 때 그 자리를 대신하도록 만든 것이다.[@vda-automotive-spice-potential-analysis-2024] VDA QMC는 SuSE를 협력업체 개발 프로세스의 능력을 짧은 꼴로 문서화하는 도구로 펴낸다.[@vda-automotive-spice-publications-2026]
+이 모델은 ASPICE 4.0과 Automotive SPICE for Cybersecurity 1.0의 내용을 바탕으로 그 일부만 담아 따로 쓰는 모델이고, 두 모델의 확장이 아니다. ASPICE 4.0 평가보다 내용을 줄여 능력 수준 1에 초점을 맞추고, 살펴볼 표본 수가 적어 시간이 덜 드는데, 협력업체 선정 단계나 문제가 생긴 프로젝트에서는 그 시간이 모자라기 쉽다. 고객이 계약을 맡기기 전의 전제 조건으로 쓰거나, 공급자 자기 평가(SuSE, Supplier Self-Evaluation)가 없을 때 그 자리를 대신하도록 만든 것이다.[@vda-automotive-spice-potential-analysis-2024] VDA QMC는 SuSE를 협력업체 개발 프로세스의 능력을 짧은 꼴로 문서화하는 도구로 펴낸다.[@vda-automotive-spice-publications-2026]
 
 ASPICE Potential Analysis 1.0은 평정을 Class 3 평가로만 하도록 정한다. 프로세스 수행 속성 하나를 Fragmentary(빨강), Valid(노랑), Satisfactory(초록)의 세 등급으로 매기고, 능력 수준 1에는 Valid 이상이 필요하다.[@vda-automotive-spice-potential-analysis-2024]
 
@@ -32,7 +32,7 @@ VDA QMC의 워킹 그룹 13은 ASPICE를 바탕으로 [[process-assessment|프�
 
 Audi, BMW, DaimlerChrysler, Porsche, Volkswagen은 HIS를 꾸려 공동 표준을 만들었다. HIS의 평가 작업 그룹은 협력업체의 [[software-process|소프트웨어 프로세스]] 능력을 판정하는 공통 방식을 세우려고 만들어졌다. HIS 회원사를 포함한 유럽 완성차 업체들은 Procurement Forum, SPICE User Group과 함께 ASPICE 이니셔티브를 시작했다.[@his-wg-assessment-2006]
 
-이 이니셔티브 안에서 Procurement Forum과 SPICE User Group의 공동 Automotive SIG(Special Interest Group)가 완성차 업체들의 합의로, 프로세스 평가 표준 ISO/IEC 15504에 맞춘 프로세스 참조 모델과 프로세스 평가 모델을 만들었다. 이것이 ASPICE다.[@automotive-sig-aspice-pam-2-5-2010] Automotive SIG의 완성차 업체들은 평가 결과를 협력업체의 개선점을 찾고 협력업체를 고르는 기준으로 썼다.[@automotive-sig-release-statement-2008] VDA QMC에 따르면 주요 완성차 업체와 협력업체가 ASPICE로 차량 소프트웨어 기반 시스템의 개발 프로세스를 평가한다. 2026년 10월 12일에 확인한 VDA QMC 웹사이트는 ASPICE 평가자 7,619명과 51개국이라는 수치를 내건다.[@vda-automotive-spice-2026]
+이 이니셔티브 안에서 Procurement Forum과 SPICE User Group의 공동 Automotive SIG(Special Interest Group)가 완성차 업체들의 합의로, 프로세스 평가 표준 ISO/IEC 15504에 맞춘 프로세스 참조 모델과 프로세스 평가 모델을 만들었다. 이것이 ASPICE다.[@automotive-sig-aspice-pam-2-5-2010] Automotive SIG의 완성차 업체들은 평가 결과를 협력업체의 개선점을 찾고 협력업체를 고르는 기준으로 썼다.[@automotive-sig-release-statement-2008] VDA QMC에 따르면 주요 완성차 업체와 협력업체가 ASPICE로 차량 소프트웨어 기반 시스템의 개발 프로세스를 평가한다. 2026년 10월 12일에 확인한 수치로는 ASPICE 평가자가 7,619명이고 51개국에 있다.[@vda-automotive-spice-2026]
 
 [[process-assessment#ISO/IEC 330xx 계열|ISO/IEC 330xx 계열]]은 ISO/IEC 15504 시리즈의 여러 부를 대체하고 넓히도록 만들어졌다.[@iso-iec-33020-obp-2019] ASPICE 2.5는 ISO/IEC 15504-2에 맞춘 평가에 쓰는 모델이었고, 3.0은 ISO/IEC 330xx 계열에 맞춰 고치면서 측정 프레임워크를 ISO/IEC 33020에 맞췄다. ASPICE 4.1은 ISO/IEC 33004:2015의 요구사항에 맞춰 만들어졌다.[@vda-automotive-spice-pam-4-1-2026][@automotive-sig-aspice-pam-2-5-2010][@vda-automotive-spice-pam-3-1-2017]
 

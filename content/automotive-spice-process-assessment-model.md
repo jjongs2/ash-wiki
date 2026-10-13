@@ -45,7 +45,7 @@ ASPICE 4.1의 Annex B는 정보 항목마다 IIC를 표로 싣는다. 평가자�
 
 ## 프로세스 능력 지표
 
-ASPICE 4.1의 프로세스 능력 지표는 GP와 정보 항목이다. **GP**(generic practice)는 프로세스 속성을 이루려고 하는 활동으로, 하나 이상의 프로세스 속성 달성 항목에 연결되며 모든 프로세스에 쓴다. 능력 수준 1의 프로세스 속성 PA(process attribute) 1.1에는 수행 지표를 가리키는 편집상의 GP 1.1.1 하나만 두고, 능력 수준 2 이상의 프로세스 속성마다 GP와 정보 항목을 둔다.[@vda-automotive-spice-pam-4-1-2026]
+프로세스 능력 지표는 GP와 정보 항목이다. **GP**(generic practice)는 프로세스 속성을 이루려고 하는 활동으로, 하나 이상의 프로세스 속성 달성 항목에 연결되며 모든 프로세스에 쓴다. 능력 수준 1의 프로세스 속성 PA(process attribute) 1.1에는 수행 지표를 가리키는 편집상의 GP 1.1.1 하나만 두고, 능력 수준 2 이상의 프로세스 속성마다 GP와 정보 항목을 둔다.[@vda-automotive-spice-pam-4-1-2026]
 
 ASPICE 3.1은 프로세스 능력 지표로 GP와 GR(generic resource)을 두고, 이를 능력 수준 2\~5에 썼다. GR은 인프라 쪽 지표로 하나 이상의 프로세스 속성 달성 항목에 연결되었다. 예: PA 2.2의 [[configuration-management|형상 관리]] 시스템. ASPICE 4.1은 GR을 두지 않고 GP와 정보 항목만 쓰며, GP를 능력 수준 1\~5에 쓴다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
