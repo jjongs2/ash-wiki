@@ -276,9 +276,10 @@ plugins:
   - source: "@quartz-community/footer"
     enabled: true
     options:
-      # 기본값은 업스트림의 GitHub와 Discord 링크다. 이 저장소로 바꿨다.
+      # 기본값은 업스트림의 GitHub와 Discord 링크다. 이 저장소로 바꾸고, 콘텐츠 라이선스 링크를 더했다(README 라이선스 절).
       links:
         GitHub: https://github.com/jjongs2/ash-wiki
+        콘텐츠 CC BY 4.0: https://creativecommons.org/licenses/by/4.0/deed.ko
     layout:
       position: footer
       priority: 50
