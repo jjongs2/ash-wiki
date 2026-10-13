@@ -11,7 +11,7 @@ ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 �
 
 ## 상태 다이어그램과 상태 표
 
-ISTQB CTFL 강의계획서에 따르면 **상태 다이어그램**(state diagram)은 시스템이 가질 수 있는 상태와 유효한 상태 전이를 보여 시스템의 동작을 모델링한다. 전이는 이벤트로 시작되고, 이벤트에는 가드 조건(guard condition)이 더 붙을 수 있다. 전이는 순간에 일어난다고 가정하며, 그 결과로 소프트웨어가 동작(action)을 하기도 한다. 전이에는 흔히 `event [guard condition] / action` 꼴의 이름표를 달고, 가드 조건과 동작이 없거나 테스터에게 상관없으면 뺀다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL 강의계획서에 따르면 **상태 다이어그램**(state diagram)은 시스템이 가질 수 있는 상태와 유효한 상태 전이를 보여 시스템의 동작을 모델링한다. 전이는 이벤트로 시작되고, 이벤트에는 가드 조건(guard condition)이 더 붙을 수 있다. 전이는 순간에 일어난다고 가정하며, 그 결과로 소프트웨어가 동작(action)을 하기도 한다. 전이에는 흔히 event [guard condition] / action 꼴의 이름표를 달고, 가드 조건과 동작이 없거나 테스터에게 상관없으면 뺀다.[@istqb-ctfl-syllabus-2024]
 
 **상태 표**(state table)는 상태 다이어그램과 동등한 모델이다. 행은 상태를, 열은 이벤트(가드 조건이 있으면 함께)를 나타내고, 칸은 전이로서 목표 상태와, 정해져 있으면 그 결과인 동작을 담는다. 상태 다이어그램과 달리 상태 표는 무효 전이를 빈칸으로 드러낸다.[@istqb-ctfl-syllabus-2024]
 
