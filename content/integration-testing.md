@@ -45,4 +45,4 @@ SYS.4 System Integration and Integration Verification은 시스템 요소를 통
 
 ISO 26262-4:2018은 7절에서 시스템과 아이템의 통합과 테스트(System and item integration and testing)를 다루고, 표 3에 통합 테스트의 테스트 케이스를 끌어내는 방법을 둔다. 표 4–8은 하드웨어-소프트웨어 수준, 표 9–12는 시스템 수준, 표 13–16은 차량 수준을 다룬다. 예를 들어 표 9는 시스템 수준에서, 표 13은 차량 수준에서 요구사항이 올바르게 구현됐는지를 다룬다.[@iso-26262-4-obp-2018]
 
-ISTQB CT-AuT 강의계획서는 CTFL의 컴포넌트 통합 테스트를 ISO 26262-6의 10절과 ASPICE의 SWE.5에, 시스템 통합 테스트를 ISO 26262-4의 7절과 SYS.4에 대응시킨다. 대응 전체는 [[system-testing#테스트 레벨의 대응|시스템 테스트]]에서 다룬다.[@istqb-ct-aut-syllabus-2025]
+ISTQB CT-AuT 강의계획서는 CTFL의 컴포넌트 통합 테스트를 ISO 26262-6의 10절과 ASPICE의 SWE.5에, 시스템 통합 테스트를 ISO 26262-4의 7절과 SYS.4에 대응시킨다.[@istqb-ct-aut-syllabus-2025] 대응 전체는 [[system-testing#테스트 레벨의 대응|시스템 테스트]]에서 다룬다.

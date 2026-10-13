@@ -25,4 +25,4 @@ CTFL 강의계획서에 따르면 컴포넌트 테스트는 컴포넌트를 따�
 
 [[iso-26262|ISO 26262]]-6:2018은 9절에서 소프트웨어 유닛 검증을 다룬다. 이 표준은 표 7에 소프트웨어 유닛 검증 방법(Methods for software unit verification)을, 표 8에 소프트웨어 유닛 수준 테스트의 [[test-case|테스트 케이스]]를 끌어내는 방법(Methods for deriving test cases for software unit testing)을 둔다.[@iso-26262-6-obp-2018]
 
-ISTQB CT-AuT 강의계획서는 unit의 뜻으로 본 CTFL의 컴포넌트 테스트를 ISO 26262-6의 9절과 ASPICE의 SWE.4에 대응시킨다. 대응 전체는 [[system-testing#테스트 레벨의 대응|시스템 테스트]]에서 다룬다.[@istqb-ct-aut-syllabus-2025]
+ISTQB CT-AuT 강의계획서는 unit의 뜻으로 본 CTFL의 컴포넌트 테스트를 ISO 26262-6의 9절과 ASPICE의 SWE.4에 대응시킨다.[@istqb-ct-aut-syllabus-2025] 대응 전체는 [[system-testing#테스트 레벨의 대응|시스템 테스트]]에서 다룬다.

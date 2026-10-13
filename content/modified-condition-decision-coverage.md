@@ -43,7 +43,7 @@ and 연산자에서는 한쪽 피연산자를 거짓으로 두면 다른 쪽이 
 
 ## 도구
 
-GCC(GNU Compiler Collection)는 `-fcondition-coverage` 옵션으로 프로그램의 조건을 계측한다. 실행 중에 조건문의 어느 항이 결정에 기여했는지 기록해, 불 함수의 모든 항이 시험되었고 결정의 결과에 독립적으로 영향을 주는지 확인할 수 있게 하고, 그 결과는 gcov의 `--conditions` 옵션으로 읽는다.[@gcc-instrumentation-options-2026] gcov는 결정에 독립적으로 영향을 준 조건 결과를 덮은 것으로 세며, 이 방식은 [[modified-condition-decision-coverage#Unique-cause와 masking|masking MC/DC]]다.[@gcc-invoking-gcov-2026]
+GCC(GNU Compiler Collection)는 `-fcondition-coverage` 옵션으로 프로그램의 조건을 계측한다. 실행 중에 조건문의 어느 항이 결정에 기여했는지 기록해, 불 함수의 모든 항이 시험되었고 결정의 결과에 독립적으로 영향을 주는지 확인할 수 있게 하고, 그 결과는 gcov의 `--conditions` 옵션으로 읽는다.[@gcc-instrumentation-options-2026] gcov는 결정에 독립적으로 영향을 준 조건 결과를 덮은 것으로 세며, 이 방식은 masking MC/DC다.[@gcc-invoking-gcov-2026]
 
 Clang은 `-fprofile-instr-generate`, `-fcoverage-mapping`에 더해 `-fcoverage-mcdc`를 주면 MC/DC를 계측하고, llvm-cov는 `-show-mcdc-summary`를 줄 때 MC/DC 통계를 보인다. llvm-cov는 조건의 결과를 바꿀 때 결정의 결과도 바뀌고 다른 조건의 결과는 그대로이거나 단락 평가로 평가되지 않아 가려지는 것을, 실행된 테스트 벡터로 보인다. 조건 하나뿐인 불 식은 분기 커버리지로 바로 알 수 있어 MC/DC 분석에서 뺀다.[@llvm-source-based-code-coverage-2026]
 

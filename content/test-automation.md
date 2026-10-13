@@ -47,8 +47,8 @@ ISTQB 용어집은 **TAF**(test automation framework)를 테스트 자동화를 
 - **linear scripting**: 테스트 자동화 엔지니어가 만든 전용 테스트 라이브러리 없이 스크립트를 짜서 실행한다. capture/playback으로 기록한 스크립트를 고쳐 쓸 수 있다.
 - **structured scripting**: 다시 쓸 수 있는 요소, 테스트 단계, 사용자 흐름을 담은 테스트 라이브러리를 들여온다. 유지보수와 확장이 쉽고 비즈니스 로직을 스크립트에서 뗄 수 있지만, 프로그래밍 지식과 TAF를 만드는 초기 투자가 든다.
 - [[keyword-driven-testing#데이터 기반 테스트|데이터 기반 테스트]]: structured scripting 위에서, 스크립트에 파일이나 데이터베이스의 테스트 데이터를 주어 같은 스크립트를 여러 데이터로 되풀이해 돌린다.
-- [[keyword-driven-testing|키워드 기반 테스트]]: 키워드에서 끌어낸 테스트 단계와 키워드가 다루는 테스트 데이터를 목록이나 표로 적어 테스트 케이스를 만든다. 흔히 데이터 기반 테스트 위에 세운다.
-- [[test-driven-development|TDD]]와 BDD: 둘은 개발 방법론이지만, 제대로 따르면 자동화한 테스트 케이스가 만들어진다. BDD는 given, when, then 꼴의 자연어로 인수 기준을 적어 feature 파일에 두고, BDD 도구가 이를 테스트 케이스로 실행한다.[@istqb-ctal-tae-syllabus-2024]
+- [[keyword-driven-testing|키워드 기반 테스트]]: 키워드에서 끌어낸 테스트 단계와 키워드가 다루는 테스트 데이터를 목록이나 표로 적어 테스트 케이스를 만든다.
+- [[test-driven-development|TDD]]와 행위 주도 개발: 둘은 개발 방법론이지만, 제대로 따르면 자동화한 테스트 케이스가 만들어진다.[@istqb-ctal-tae-syllabus-2024]
 
 ## 테스트 환경
 

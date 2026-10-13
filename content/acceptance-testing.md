@@ -31,4 +31,4 @@ ISTQB CT-AcT(Certified Tester Acceptance Testing) 강의계획서에 따르면 �
 
 ISO 26262-4:2018은 시스템 수준 제품 개발의 요구사항 범위에 안전 확인을 넣고, 그 요구사항을 8절에 둔다. 시리즈 개요 그림에서도 안전 확인은 4부 8절(4-8)이다.[@iso-26262-4-obp-2018]
 
-ISTQB CT-AuT 강의계획서는 ISTQB 인수 테스트에, 그 일부만 덮는 ISO 26262-4의 8절과 ASPICE의 VAL.1을 대응시킨다. 대응 전체는 [[system-testing#테스트 레벨의 대응|시스템 테스트]]에서 다룬다.[@istqb-ct-aut-syllabus-2025]
+ISTQB CT-AuT 강의계획서는 ISTQB 인수 테스트에, 그 일부만 덮는 ISO 26262-4의 8절과 ASPICE의 VAL.1을 대응시킨다.[@istqb-ct-aut-syllabus-2025] 대응 전체는 [[system-testing#테스트 레벨의 대응|시스템 테스트]]에서 다룬다.
