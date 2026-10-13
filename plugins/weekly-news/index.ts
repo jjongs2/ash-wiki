@@ -542,7 +542,7 @@ function issueTree(props: QuartzComponentProps, data: WeeklyNewsData): HastRoot 
     children: [
       toolbar(issueFilters(data.items, regionOrder(props.allFiles)), names, data.items.length),
       el("div", { className: ["news-cards"] }, cards),
-      el("p", { className: ["news-empty"], hidden: true }, [text("조건에 맞는 소식이 없습니다")]),
+      el("p", { className: ["news-empty"], hidden: true }, [text("조건에 맞는 소식이 없습니다.")]),
     ],
   }
 }
@@ -591,7 +591,8 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 //   아무것도 고르지 않으면 모든 칩이 카드의 칩과 같고, 하나라도 고르면 고른 칩은 제 색으로 채우고 나머지는 보조
 //   글자색과 1px --lightgray 테두리로 물린다. 고르지 않은 칩에 올리면 테두리와 글자를 구역 색으로 바꾼다. 바탕을
 //   진하게 하면 라이트 테마에서 글자 대비가 하한에 못 미친다(16%에서 4.12:1).
-// - 칩 줄 아래의 상태 줄은 왼쪽에 소식 수, 오른쪽에 정렬을 둔다. 늘 보여서 거를 때 목록이 움직이지 않는다. 글자는
+// - 칩 줄 아래의 상태 줄은 왼쪽에 소식 수, 오른쪽에 정렬을 둔다. 늘 보여서 거를 때 목록이 움직이지 않는다. 칩
+//   줄보다 목록 윗선에 가깝게 두어(글자 상자 기준 14px와 6px) 목록의 머리줄로 읽힌다(소유자 결정, #404). 글자는
 //   대문 소식 칸 제목 줄의 링크("N개 모두 보기 · 지난 호")와 같은 꼴이고, 고른 정렬은 제목색으로 굵게 쓴다.
 // - 거른 결과가 없을 때의 안내 줄은 아랫선을 두지 않는다. 바로 아래 페이지 끝의 hr과 두 겹이 된다.
 // - 글자 대비는 docs/palette.md의 구역 이름, 구역 칩, 링크, 강조색 위 글자, 보조 글자 쌍에 든다. hover의 테두리는
@@ -599,8 +600,8 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 const CSS = `.news-tools {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  margin-bottom: 0.9rem;
+  gap: 1rem;
+  margin-bottom: 0.4rem;
 }
 .news-filters {
   display: flex;
