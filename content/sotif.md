@@ -37,13 +37,13 @@ ISO 21448:2022는 합리적으로 예견할 수 있는 오용을 범위에 넣�
 이 표준은 Introduction의 표 1에서 해저드 사건의 원인을 시스템과 외부 요인으로 나누고, 원인마다 그것을 다루는 표준을 제시한다. 그 가운데 몇 가지는 다음과 같다.[@iso-21448-obp-2022]
 
 - 시스템의 E/E fault: ISO 26262 시리즈
-- 시스템의 기능 부족, 잘못되거나 부적절한 HMI(Human Machine Interface) 설계(사용자의 혼동, 과부하, 부주의 등), artificial intelligence 기반 알고리즘의 기능 부족: ISO 21448
+- 시스템의 기능 부족, 잘못되거나 부적절한 HMI(Human Machine Interface) 설계(사용자의 혼동, 과부하, 부주의 등), AI 기반 알고리즘의 기능 부족: ISO 21448
 - 라이다 빔에 의한 눈 손상처럼 시스템 기술이 일으키는 해저드: 개별 표준(IEC 60825 등)
 - 외부 요인인 차량 보안 취약점을 노린 공격: [[iso-sae-21434|ISO/SAE 21434]][@iso-21448-obp-2022]
 
 이 표준은 사용자가 기능과 그 거동, HMI를 포함한 한계를 제대로 이해하는 것이 안전에 꼭 필요하다고 보고, 레벨 2 자동 운전 시스템을 쓰면서 운전자가 주의를 기울이지 않는 것과 모드 혼동을 예로 든다. 모드 혼동은 기능이 꺼져 있는데 운전자가 켜져 있다고 여기는 것처럼 해저드로 바로 이어질 수 있다. 인프라가 주는 정보(V2X(Vehicle-to-X) 통신, 지도 등)도 SOTIF에 영향을 줄 수 있으면 기능 부족 평가에 든다.[@iso-21448-obp-2022]
 
-AI(artificial intelligence) 시스템의 기능 부족에서 오는 리스크는 [[iso-pas-8800|ISO/PAS 8800]]:2024가 ISO 21448의 개념과 지침을 넓혀 다룬다.[@iso-pas-8800-obp-2024] SAE J3187-2:2023은 [[stpa|STPA]]를 SOTIF 평가에 적용하는 권고 실무를 둔다.[@sae-j3187-2-2023]
+AI 시스템의 기능 부족에서 오는 리스크는 [[iso-pas-8800|ISO/PAS 8800]]:2024가 ISO 21448의 개념과 지침을 넓혀 다룬다.[@iso-pas-8800-obp-2024] SAE J3187-2:2023은 [[stpa|STPA]]를 SOTIF 평가에 적용하는 권고 실무를 둔다.[@sae-j3187-2-2023]
 
 ## SOTIF 조치의 단계
 
@@ -55,7 +55,7 @@ ISO 21448:2022는 SOTIF를 위해 해저드를 없애거나 리스크를 줄이�
 
 ## Acceptance criterion과 validation target
 
-ISO 21448:2022는 **acceptance criterion**을 불합리한 수준의 리스크가 없음을 나타내는 기준으로 정의한다. 이 기준은 정성적일 수도 정량적일 수도 있고, 어떤 거동을 해저드 동작으로 볼지 정하는 물리 파라미터, 시간당 최대 incident 수, ALARP(as low as reasonably practicable)가 그 예다. **Validation target**은 acceptance criterion을 만족한다고 논증하는 값이다. SOTIF에서 확인(validation)은 찾아낸 해저드의 acceptance criterion이 충분한 신뢰도로 달성될 것이라는, 검사와 시험에 근거한 보증이다. Acceptance criterion 하나를 완전히 만족하려면 validation target이 둘 이상 필요할 수 있다.[@iso-21448-obp-2022]
+이 표준은 **acceptance criterion**을 불합리한 수준의 리스크가 없음을 나타내는 기준으로 정의한다. 이 기준은 정성적일 수도 정량적일 수도 있고, 어떤 거동을 해저드 동작으로 볼지 정하는 물리 파라미터, 시간당 최대 incident 수, ALARP(as low as reasonably practicable)가 그 예다. **Validation target**은 acceptance criterion을 만족한다고 논증하는 값이다. SOTIF에서 확인(validation)은 찾아낸 해저드의 acceptance criterion이 충분한 신뢰도로 달성될 것이라는, 검사와 시험에 근거한 보증이다. Acceptance criterion 하나를 완전히 만족하려면 validation target이 둘 이상 필요할 수 있다.[@iso-21448-obp-2022]
 
 ## ISO 26262와의 차이
 

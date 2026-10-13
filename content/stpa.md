@@ -51,7 +51,7 @@ STAMP는 어떤 창발적 성질에도 적용되므로, STPA는 [[cybersecurity|
 
 ## 자동차 예
 
-STPA Handbook의 부록 B는 자동차 적응형 순항 제어 시스템과 auto-hold 시스템의 제어 구조를, 부록 C는 auto-hold 시스템의 UCA 표를 예로 든다.[@leveson-stpa-handbook-2018]
+부록 B는 자동차 적응형 순항 제어 시스템과 auto-hold 시스템의 제어 구조를, 부록 C는 auto-hold 시스템의 UCA 표를 예로 든다.[@leveson-stpa-handbook-2018]
 
 ## SAE의 STPA 표준
 

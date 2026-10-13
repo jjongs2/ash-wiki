@@ -8,7 +8,7 @@ edition: 2024
 status: 유효
 ---
 
-**ISO/PAS 8800**은 AI(artificial intelligence) 기술을 쓰는 E/E(Electrical/Electronic) 시스템을 하나 이상 포함하고 양산 도로 차량에 설치되는 안전 관련 시스템의 안전을 다루는 ISO의 PAS(Publicly Available Specification)다. 모페드는 대상에서 빠진다. 정식 제목은 "Road vehicles — Safety and artificial intelligence"이고, ISO/TC 22/SC 32가 맡는다.[@iso-pas-8800-2024]
+**ISO/PAS 8800**은 AI 기술을 쓰는 E/E(Electrical/Electronic) 시스템을 하나 이상 포함하고 양산 도로 차량에 설치되는 안전 관련 시스템의 안전을 다루는 ISO의 PAS(Publicly Available Specification)다. 모페드는 대상에서 빠진다. 정식 제목은 "Road vehicles — Safety and artificial intelligence"이고, ISO/TC 22/SC 32가 맡는다.[@iso-pas-8800-2024]
 
 ## 범위
 

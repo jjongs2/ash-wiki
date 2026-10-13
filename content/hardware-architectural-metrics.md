@@ -29,7 +29,7 @@ ISO 26262-1:2018은 하드웨어 [[fault-error-failure|fault]]와 그것이 낳�
 
 ## 진단 커버리지와 failure rate
 
-ISO 26262-1:2018은 **진단 커버리지**(diagnostic coverage)를 하드웨어 요소의 failure rate, 또는 하드웨어 요소의 한 failure mode의 failure rate 가운데 구현된 안전 메커니즘이 검출하거나 제어하는 비율로 정의한다. 정의의 주석은 진단 커버리지를 residual fault나 latent multiple-point fault에 대해 평가할 수 있고, 아키텍처의 여러 수준에 구현된 안전 메커니즘을 고려할 수 있으며, 따로 밝히지 않으면 안전 관련 하드웨어 요소의 safe fault 비율은 진단 커버리지를 정할 때 고려하지 않는다고 제시한다. **FMC**(Failure Mode Coverage)는 하드웨어 요소의 한 failure mode의 failure rate 가운데 구현된 안전 메커니즘이 검출하거나 제어하는 비율이다.[@iso-26262-1-obp-2018]
+이 표준은 **진단 커버리지**(diagnostic coverage)를 하드웨어 요소의 failure rate, 또는 하드웨어 요소의 한 failure mode의 failure rate 가운데 구현된 안전 메커니즘이 검출하거나 제어하는 비율로 정의한다. 정의의 주석은 진단 커버리지를 residual fault나 latent multiple-point fault에 대해 평가할 수 있고, 아키텍처의 여러 수준에 구현된 안전 메커니즘을 고려할 수 있으며, 따로 밝히지 않으면 안전 관련 하드웨어 요소의 safe fault 비율은 진단 커버리지를 정할 때 고려하지 않는다고 제시한다. **FMC**(Failure Mode Coverage)는 하드웨어 요소의 한 failure mode의 failure rate 가운데 구현된 안전 메커니즘이 검출하거나 제어하는 비율이다.[@iso-26262-1-obp-2018]
 
 이 표준은 **failure rate**를 하드웨어 요소의 failure 확률 밀도를 생존 확률로 나눈 것으로 정의하고, 정의의 주석은 failure rate를 상수로 가정하며 흔히 $\lambda$로 나타낸다고 제시한다. **BFR**(Base Failure Rate)은 주어진 응용 use case에서 하드웨어 요소의 failure rate로, [[safety-analysis|안전 분석]]의 입력으로 쓴다.[@iso-26262-1-obp-2018]
 
