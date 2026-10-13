@@ -9,7 +9,7 @@ verified: 2026-10-13
 
 **모델 기반 테스트**(model-based testing, MBT)는 모델에 바탕을 두거나 모델을 쓰는 테스트다.[@istqb-glossary-model-based-testing-2026][@ieee-swebok-v4-0a-2026] SWEBOK V4.0a에 따르면 이 모델은 동작 명세, 테스트 대상의 구조, 가용한 지식과 경험을 나타낸다.[@ieee-swebok-v4-0a-2026]
 
-ISTQB CT-MBT(Certified Tester Model-Based Testing) 강의계획서에 따르면 MBT는 [[equivalence-partitioning|동치 분할]], [[boundary-value-analysis|경계값 분석]], 결정 테이블 테스트, 상태 전이 테스트 같은 고전 테스트 기법을 넓히고 지원한다. MBT 모델은 테스트 설계 명세 구실을 하며, [[test-case|테스트 케이스]]를 모델에서 바로 자동으로 만들어 낼 만큼 형식적이고 자세한 정보를 담는다. 도구가 지원하면 이 자동 생성으로 [[test-coverage|테스트 커버리지]]를 넓히고 테스트 주기를 줄일 수 있다.[@istqb-ct-mbt-syllabus-2024]
+ISTQB CT-MBT(Certified Tester Model-Based Testing) 강의계획서에 따르면 MBT는 [[equivalence-partitioning|동치 분할]], [[boundary-value-analysis|경계값 분석]], [[decision-table-testing|결정 테이블 테스트]], [[state-transition-testing|상태 전이 테스트]] 같은 고전 테스트 기법을 넓히고 지원한다. MBT 모델은 테스트 설계 명세 구실을 하며, [[test-case|테스트 케이스]]를 모델에서 바로 자동으로 만들어 낼 만큼 형식적이고 자세한 정보를 담는다. 도구가 지원하면 이 자동 생성으로 [[test-coverage|테스트 커버리지]]를 넓히고 테스트 주기를 줄일 수 있다.[@istqb-ct-mbt-syllabus-2024]
 
 ## 쓰임
 
@@ -17,7 +17,7 @@ MBT는 기능 요구사항과 기대 동작의 복잡함을 추상화할 수 있
 
 ## 테스트 설계 기법과의 관계
 
-[[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022는 탐색적 테스트나 MBT 같은 테스트 실천(test practice)을 "테스트 기법"이라 부르기도 하지만, 이들은 스스로 테스트 케이스를 만드는 방법을 주지 않고 테스트 설계 기법을 써서 그 일을 하므로 29119 시리즈의 정의로는 테스트 설계 기법이 아니라는 것을 정의에 단 Note에서 제시한다.[@iso-iec-ieee-29119-1-obp-2022] 29119-4:2021은 테스트 케이스를 설계하는 기법만 다루므로, MBT 같은 테스트 실천은 정의하지 않는다.[@iso-iec-ieee-29119-4-obp-2021]
+[[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022는 [[exploratory-testing|탐색적 테스트]]나 MBT 같은 테스트 실천(test practice)을 "테스트 기법"이라 부르기도 하지만, 이들은 스스로 테스트 케이스를 만드는 방법을 주지 않고 테스트 설계 기법을 써서 그 일을 하므로 29119 시리즈의 정의로는 테스트 설계 기법이 아니라는 것을 정의에 단 Note에서 제시한다.[@iso-iec-ieee-29119-1-obp-2022] 29119-4:2021은 테스트 케이스를 설계하는 기법만 다루므로, MBT 같은 테스트 실천은 정의하지 않는다.[@iso-iec-ieee-29119-4-obp-2021]
 
 ## 명세와 모델의 결함 찾기
 
