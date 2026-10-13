@@ -11,7 +11,7 @@ ISTQB 용어집은 메타모픽 테스트를 메타모픽 관계를 테스트 �
 
 ## 원본 테스트 케이스와 후속 테스트 케이스
 
-ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 따르면 메타모픽 테스트는 기존의 원본 테스트 케이스(source test case)를 메타모픽 관계에 따라 바꿔 후속 테스트 케이스(follow-up test case)를 하나 이상 만든다. 한 메타모픽 관계의 원본 테스트 케이스와 후속 테스트 케이스는 테스트 절차 하나로 묶어 결과를 함께 판정하며, 관계를 만족하면 pass, 아니면 fail이다. fail이면 이어지는 디버깅에서 어느 테스트 케이스가 실패했는지 가려야 한다.[@istqb-ctal-ta-syllabus-2025]
+ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 따르면 메타모픽 테스트는 기존의 원본 테스트 케이스(source test case)를 메타모픽 관계에 따라 바꿔 후속 테스트 케이스(follow-up test case)를 하나 이상 만든다. 한 메타모픽 관계의 원본 테스트 케이스와 후속 테스트 케이스는 테스트 절차 하나로 묶어 결과를 함께 판정하며, 관계를 만족하면 pass, 아니면 fail이다. fail이면 이어지는 [[software-testing#테스트와 디버깅|디버깅]]에서 어느 테스트 케이스가 실패했는지 가려야 한다.[@istqb-ctal-ta-syllabus-2025]
 
 ![[diagrams/metamorphic-source-follow-up.svg]]
 
