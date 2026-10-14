@@ -46,3 +46,11 @@ ISTQB 용어집은 커버리지를 정의한다.[@istqb-ctfl-syllabus-2024]
 ISTQB 용어집은 테스트 케이스를 조건의 묶음으로 정의한다.[@istqb-glossary-test-case-2026]
 
 이 용어집은 테스트 스위트를 테스트 케이스의 묶음으로 정의한다.[@istqb-glossary-test-suite-2026]
+
+## 짧은 이름
+
+ISTQB CTFL v4.0.1 강의계획서는 테스트 레벨을 다섯으로 나눈다.[@istqb-ctfl-syllabus-2024]
+
+ISTQB CTAL-TA v4.0 강의계획서는 기법을 넷으로 나눈다.[@istqb-ctal-ta-syllabus-2025]
+
+CTFL 강의계획서는 원칙을 일곱으로 둔다.[@istqb-ctfl-syllabus-2024]

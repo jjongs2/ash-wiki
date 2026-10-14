@@ -23,7 +23,7 @@ import {
 import { firstLinkItem } from "./first-link"
 import { ownerPage } from "./owner"
 import { editions } from "./editions"
-import { allConsensus, consensusWithoutEdition } from "./consensus"
+import { allConsensus, consensusWithoutEdition, editionNamedBefore } from "./consensus"
 import {
   attributed,
   claimBlocks,
@@ -71,13 +71,26 @@ const standardSentenceItem: Item = ({ changed }) =>
         line,
         message: excerpt(match[0]),
       })),
-      ...[...text.matchAll(consensusWithoutEdition)].map((match) => ({
-        file: page.file,
-        line,
-        message: `판 없는 합의 문서: ${excerpt(match[0])}`,
-      })),
+      ...[...text.matchAll(consensusWithoutEdition)]
+        .filter(
+          (match) =>
+            !editionNamedBefore(sectionBefore(page, line) + text.slice(0, match.index), match[0]),
+        )
+        .map((match) => ({
+          file: page.file,
+          line,
+          message: `판 없는 합의 문서: ${excerpt(match[0])}`,
+        })),
     ]),
   )
+
+// 줄이 든 절(`##`, `###`)에서 그 줄 앞까지의 글.
+function sectionBefore(page: Page, line: number): string {
+  const lines = page.masked.split("\n")
+  let start = line - 1
+  while (start > 0 && !/^#{2,3} /.test(lines[start - 1])) start--
+  return lines.slice(start, line - 1).join("\n") + "\n"
+}
 
 // 같은 인용으로 같은 주장을 한 다른 페이지: 더한 문장과 인용 키를 함께 쓰는 다른 페이지의 문장 가운데 글이
 // 비슷한 것. 더한 줄의 정의 강조를 다른 페이지도 강조한 곳, 새 페이지의 title과 alias를 링크 없이 쓰는 다른
