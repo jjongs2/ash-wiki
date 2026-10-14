@@ -54,3 +54,13 @@ ISTQB CTFL v4.0.1 강의계획서는 테스트 레벨을 다섯으로 나눈다.
 ISTQB CTAL-TA v4.0 강의계획서는 기법을 넷으로 나눈다.[@istqb-ctal-ta-syllabus-2025]
 
 CTFL 강의계획서는 원칙을 일곱으로 둔다.[@istqb-ctfl-syllabus-2024]
+
+## 짧은 이름 되풀이
+
+ISTQB CTFL v4.0.1 강의계획서는 원칙을 둔다. CTFL 강의계획서에 따르면 원칙은 쓸모 있다.[@istqb-ctfl-syllabus-2024]
+
+ISTQB CTAL-TA v4.0 강의계획서는 기법을 다룬다.[@istqb-ctal-ta-syllabus-2025]
+
+## 조사
+
+CTFL 강의계획서도 기법을 다룬다.[@istqb-ctfl-syllabus-2024]

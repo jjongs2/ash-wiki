@@ -1,5 +1,11 @@
 import type { Page } from "../check-content/tree"
-import { allConsensus, opensWithPointer, pointerPhrases } from "./consensus"
+import {
+  allConsensus,
+  consensusWithoutEdition,
+  editionNamedBefore,
+  opensWithPointer,
+  pointerPhrases,
+} from "./consensus"
 import type { Edition } from "./editions"
 import { blocks, escapeRegExp, lineAt, lineStarts, sentences, standardBodies } from "./text"
 
@@ -284,6 +290,15 @@ export function repeatedNames(page: Page, editions: Map<string, Edition>): Repea
     const key = name ? nameKey(name) : undefined
     const keyAt = key && isSource(key, sentence.keys, editions) ? nameIn(key) : undefined
     const pointer = allConsensus(sentence.keys) && opensWithPointer.test(text)
+    // 같은 절에 같은 단체의 출판물이 둘이면 판을 붙인 이름 뒤에 짧은 이름("CTFL 강의계획서")을 쓴다.
+    const short = consensusWithoutEdition.exec(text)
+    consensusWithoutEdition.lastIndex = 0
+    if (
+      allConsensus(sentence.keys) &&
+      short?.index === 0 &&
+      editionNamedBefore(earlier.map((other) => other.text).join("\n"), short[0])
+    )
+      return
     const named = keyAt
       ? earlier.find((other) => keyAt.test(other.text))
       : according.test(text) && !pointer

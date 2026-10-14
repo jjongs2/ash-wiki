@@ -36,4 +36,4 @@ export function editionNamedBefore(before: string, name: string): boolean {
 // 판(V4.0a)이 뒤따르지 않는 SWEBOK이다. 판 없이 고쳐지는 온라인 용어집(ISTQB 용어집)은 이름만 쓰므로 찍지 않는다.
 // 기술 보고서(ISO/IEC TR)는 판 연도를 붙인 표준 번호로 적으므로 표준 이름과 함께 standardSentence가 본다.
 export const consensusWithoutEdition =
-  /(?<![A-Za-z0-9-])(?:(?:ISTQB )?(?:CTFL|CTAL-[A-Z]+|CT-[A-Za-z]+)(?:\([^()\n]*\))?|ISTQB) 강의계획서(?:은|는|이|가|에 따르면) |(?<![A-Za-z0-9-])SWEBOK(?: Guide)?(?:은|는|이|가|에 따르면) /g
+  /(?<![A-Za-z0-9-])(?:(?:ISTQB )?(?:CTFL|CTAL-[A-Z]+|CT-[A-Za-z]+)(?:\([^()\n]*\))?|ISTQB) 강의계획서(?:은|는|이|가|도|에 따르면) |(?<![A-Za-z0-9-])SWEBOK(?: Guide)?(?:은|는|이|가|도|에 따르면) /g

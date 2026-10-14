@@ -234,6 +234,12 @@ describe("check-diff CLI", { concurrency: false }, () => {
     const lines = report.items.get("standard-sentence") ?? []
     assert.ok(!has(lines, "content/consensus.md:56:"), "앞에 ISTQB CTFL v4.0.1 강의계획서")
     assert.ok(has(lines, "content/consensus.md:32:"), "앞 절의 판 이름은 세지 않는다")
+    assert.ok(has(lines, "content/consensus.md:66:", "강의계획서도"), "조사 '도'")
+  })
+
+  test("출처 구간: 같은 절에서 판을 붙여 연 합의 문서의 짧은 이름은 되풀이로 찍지 않는다", () => {
+    const lines = report.items.get("source-run") ?? []
+    assert.ok(!has(lines, "content/consensus.md:60:", "다시 쓴다"))
   })
 
   test("출처 구간: 합의 문서 키만 인용한 블록은 절 첫 블록이어도 출처 표시 없음으로 찍지 않는다", () => {
