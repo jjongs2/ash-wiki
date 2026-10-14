@@ -8,7 +8,7 @@ import { styleText } from "util"
 import { parseMarkdown } from "./processors/parse"
 import { filterContent } from "./processors/filter"
 import { emitContent } from "./processors/emit"
-import cfg from "../quartz"
+import quartzCfg from "../quartz"
 import { FilePath, joinSegments, slugifyFilePath } from "./util/path"
 import { detectSlugCollisions, formatCollisionWarning } from "./util/slugCollisions"
 import chokidar from "chokidar"
@@ -22,6 +22,7 @@ import { getStaticResourcesFromPlugins } from "./plugins"
 import { randomIdNonSecure } from "./util/random"
 import { ChangeEvent } from "./plugins/types"
 import { minimatch } from "minimatch"
+import { withOgImagesSetting } from "./util/ogImages"
 
 function reportSlugCollisions(content: ProcessedContent[]): void {
   const collisions = detectSlugCollisions(content)
@@ -50,6 +51,8 @@ type BuildData = {
 }
 
 async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
+  // ash-wiki: --serve는 OG 이미지를 기본으로 그리지 않는다(util/ogImages.ts).
+  const cfg = withOgImagesSetting(quartzCfg, argv)
   const ctx: BuildCtx = {
     buildId: randomIdNonSecure(),
     argv,
@@ -144,7 +147,7 @@ async function startWatching(
       const pathStr = toPosixPath(fp.toString())
       if (pathStr.startsWith(".git/")) return true
       if (gitIgnoredMatcher(pathStr)) return true
-      for (const pattern of cfg.configuration.ignorePatterns) {
+      for (const pattern of ctx.cfg.configuration.ignorePatterns) {
         if (minimatch(pathStr, pattern)) {
           return true
         }

@@ -41,6 +41,8 @@ npx quartz build --serve
 
 `prebuild`는 `npm run build`가 빌드 전에 돌리는 준비 단계이고, 빌드는 `--serve`가 합니다.
 
+`--serve`는 OG 이미지(`*-og-image.webp`)를 그리지 않습니다. 그리면 처음 빌드와 코드를 고친 뒤의 다시 빌드가 두 배 넘게 걸리기 때문입니다(2026년 10월 실측). 볼 때는 `OG_IMAGES=1`을 주어 띄웁니다. 콘텐츠 검사기의 빌드도 `OG_IMAGES=0`으로 그리지 않고, 배포 빌드(`npm run build`)는 그립니다.
+
 `http://localhost:8080`에서 대문이 열립니다.
 
 ### 바뀐 곳 표시

@@ -14,6 +14,7 @@ export interface BuildResult {
 }
 
 // 트리를 임시 폴더로 빌드한다. 합본 bib는 이 트리의 bib/로 바꿔 빌드하고, 끝나면 원래대로 되돌린다.
+// 산출물 검사는 OG 이미지를 보지 않으므로 그리지 않는다(OG_IMAGES, docs/deploy.md).
 export function build(tree: Tree): BuildResult {
   const outDir = fs.mkdtempSync(path.join(os.tmpdir(), "ash-wiki-check-"))
   const previousBib = fs.existsSync(mergedBibPath) ? fs.readFileSync(mergedBibPath) : null
@@ -29,7 +30,7 @@ export function build(tree: Tree): BuildResult {
         "-o",
         outDir,
       ],
-      { cwd: repoRoot, encoding: "utf8", env: { ...process.env, NO_COLOR: "1" } },
+      { cwd: repoRoot, encoding: "utf8", env: { ...process.env, NO_COLOR: "1", OG_IMAGES: "0" } },
     )
     if (result.status === 0) return { violations: [], outDir }
     fs.rmSync(outDir, { recursive: true, force: true })
