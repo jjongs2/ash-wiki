@@ -9,7 +9,7 @@ verified: 2026-10-13
 
 **모델 기반 테스트**(model-based testing, MBT)는 모델에 바탕을 두거나 모델을 쓰는 테스트다.[@istqb-glossary-model-based-testing-2026][@ieee-swebok-v4-0a-2026] SWEBOK V4.0a에 따르면 이 모델은 동작 명세, 테스트 대상의 구조, 가용한 지식과 경험을 나타낸다.[@ieee-swebok-v4-0a-2026]
 
-MBT는 [[equivalence-partitioning|동치 분할]], [[boundary-value-analysis|경계값 분석]], [[decision-table-testing|결정 테이블 테스트]], [[state-transition-testing|상태 전이 테스트]] 같은 고전 테스트 기법을 넓히고 지원한다. MBT 모델은 테스트 설계 명세 구실을 하며, [[test-case|테스트 케이스]]를 모델에서 바로 자동으로 만들어 낼 만큼 형식적이고 자세한 정보를 담는다. ISTQB CT-MBT(Certified Tester Model-Based Testing) v1.1 강의계획서에 따르면, 도구가 지원할 때 이 자동 생성으로 [[test-coverage|테스트 커버리지]]를 넓히고 테스트 주기를 줄일 수 있다.[@istqb-ct-mbt-syllabus-2024]
+MBT는 [[equivalence-partitioning|동치 분할]], [[boundary-value-analysis|경계값 분석]], [[decision-table-testing|결정 테이블 테스트]], [[state-transition-testing|상태 전이 테스트]] 같은 고전 테스트 기법을 넓히고 지원한다. MBT 모델은 테스트 설계 명세 구실을 하며, [[test-case|테스트 케이스]]를 모델에서 바로 자동으로 만들어 낼 만큼 형식적이고 자세한 정보를 담는다. ISTQB CT-MBT v1.1 강의계획서에 따르면, 도구가 지원할 때 이 자동 생성으로 [[test-coverage|테스트 커버리지]]를 넓히고 테스트 주기를 줄일 수 있다.[@istqb-ct-mbt-syllabus-2024]
 
 ## 쓰임
 
@@ -21,7 +21,7 @@ MBT는 기능 요구사항과 기대 동작의 복잡함을 추상화할 수 있
 
 ## 명세와 모델의 결함 찾기
 
-MBT에서는 MBT 도구가 MBT 모델과 테스트 분석가가 정한 테스트 선택 기준으로 테스트 케이스와 그 밖의 테스트 설계 산출물을 만든다. ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) v4.0 강의계획서에 따르면 MBT는 MBT 모델에 따른 기대 동작을 폭넓게 덮고 체계적으로 탐색하므로 명세의 이상을 찾는 데 효과적이고, 특히 그래픽 MBT 모델은 이해관계자와의 의사소통을 돕는다.[@istqb-ctal-ta-syllabus-2025]
+MBT에서는 MBT 도구가 MBT 모델과 테스트 분석가가 정한 테스트 선택 기준으로 테스트 케이스와 그 밖의 테스트 설계 산출물을 만든다. ISTQB CTAL-TA v4.0 강의계획서에 따르면 MBT는 MBT 모델에 따른 기대 동작을 폭넓게 덮고 체계적으로 탐색하므로 명세의 이상을 찾는 데 효과적이고, 특히 그래픽 MBT 모델은 이해관계자와의 의사소통을 돕는다.[@istqb-ctal-ta-syllabus-2025]
 
 ![[diagrams/mbt-test-generation.svg]]
 

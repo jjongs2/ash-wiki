@@ -9,7 +9,7 @@ ISTQB 용어집은 **테스트 하네스**(test harness)를 테스트 스위트�
 
 테스트 환경 항목의 예로는 스텁, 드라이버, 시뮬레이터, 서비스 가상화가 있다.[@istqb-ctfl-syllabus-2024]
 
-[[test-automation#아키텍처와 프레임워크|테스트 자동화 프레임워크]]는 흔히 테스트 하네스를 담는다. ISTQB CTAL-TAE(Certified Tester Advanced Level Test Automation Engineering) v2.0 강의계획서는 이 테스트 하네스를 test runner라고도 부른다.[@istqb-ctal-tae-syllabus-2024] xUnit 프레임워크의 구성 요소인 test runner는 [[xunit#공통 구성|xUnit]]에서 다룬다.
+[[test-automation#아키텍처와 프레임워크|테스트 자동화 프레임워크]]는 흔히 테스트 하네스를 담는다. ISTQB CTAL-TAE v2.0 강의계획서는 이 테스트 하네스를 test runner라고도 부른다.[@istqb-ctal-tae-syllabus-2024] xUnit 프레임워크의 구성 요소인 test runner는 [[xunit#공통 구성|xUnit]]에서 다룬다.
 
 ## 드라이버와 스텁
 

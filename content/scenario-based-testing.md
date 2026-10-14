@@ -9,7 +9,7 @@ verified: 2026-10-13
 
 [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-4:2021은 **시나리오 테스트**(scenario testing)를 테스트 대상과 다른 시스템 사이의 상호작용의 열을 실행하는 데 바탕을 둔 [[black-box-testing|명세 기반]] [[test-case|테스트 케이스]] 설계 기법으로 정의한다. 이 정의에서는 사용자도 다른 시스템으로 본다.[@iso-iec-ieee-29119-4-obp-2021]
 
-현실적인 시나리오에서 테스트 대상의 동작을 평가하는 기법을 **시나리오 기반 테스트**(scenario-based testing)라 부른다. ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) v4.0 강의계획서는 시나리오 기반 테스트를 테스트 대상의 동적 동작에 대한 명세에서 테스트 케이스를 끌어내는 behavior-based 블랙박스 기법으로 분류한다.[@istqb-ctal-ta-syllabus-2025]
+현실적인 시나리오에서 테스트 대상의 동작을 평가하는 기법을 **시나리오 기반 테스트**(scenario-based testing)라 부른다. ISTQB CTAL-TA v4.0 강의계획서는 시나리오 기반 테스트를 테스트 대상의 동적 동작에 대한 명세에서 테스트 케이스를 끌어내는 behavior-based 블랙박스 기법으로 분류한다.[@istqb-ctal-ta-syllabus-2025]
 
 ## 시나리오 모델
 

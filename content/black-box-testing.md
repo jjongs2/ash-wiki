@@ -36,7 +36,7 @@ verified: 2026-10-03
 
 ISO/IEC/IEEE 29119-4:2021은 **원인-결과 그래프**(cause-effect graph)를 원인(불 조건으로 기술한 입력)과 결과(불 식으로 기술한 출력) 사이의 결정 규칙을 그래프로 나타낸 것으로, **원인-결과 그래프 기법**(cause-effect graphing)을 원인-결과 그래프의 결정 규칙을 실행하는 데 바탕을 둔 명세 기반 테스트 케이스 설계 기법으로 정의한다. 이 표준은 **syntax testing**을 테스트 대상 입력의 형식 정의를 이루는 요소를 실행하는 데 바탕을 둔 명세 기반 기법으로 정의하고, 입력의 구문을 정의하는 데 흔히 쓰는 형식으로 Backus-Naur Form을 예로 든다. **Backus-Naur Form**은 언어의 구문을 텍스트로 정의하는 형식 메타언어다. 이 표준이 정의하는 명세 기반 기법에는 [[pairwise-testing#조합 테스트|분류 트리 기법]](classification tree method)도 있다.[@iso-iec-ieee-29119-4-obp-2021]
 
-ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) v4.0 강의계획서는 블랙박스 기법을 테스트 조건이 모델링하는 것에 따라 세 갈래로 나누고, 갈래마다 다음 기법을 든다.[@istqb-ctal-ta-syllabus-2025]
+ISTQB CTAL-TA v4.0 강의계획서는 블랙박스 기법을 테스트 조건이 모델링하는 것에 따라 세 갈래로 나누고, 갈래마다 다음 기법을 든다.[@istqb-ctal-ta-syllabus-2025]
 
 - **data-based**: 데이터의 요소를 모델링한다. 동치 분할, 경계값 분석, [[boundary-value-analysis#도메인 테스트|도메인 테스트]], 조합 테스트, [[random-testing|무작위 테스트]]
 - **behavior-based**: 동적 동작의 요소를 모델링한다. CRUD(create, read, update, delete) 테스트, 상태 전이 테스트, [[scenario-based-testing|시나리오 기반 테스트]]
