@@ -293,7 +293,7 @@ describe("monthWeeks", () => {
     }
   })
 
-  test("달이 아니면 멈춘다", () => {
+  test("달 꼴이 아니면 오류를 낸다", () => {
     assert.throws(() => monthWeeks("2026-13"), /달이 아니다/)
     assert.throws(() => monthWeeks("2026-w06"), /달이 아니다/)
     assert.throws(() => monthWeeks("2026-2"), /달이 아니다/)

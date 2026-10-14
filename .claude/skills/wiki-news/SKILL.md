@@ -21,7 +21,8 @@ disable-model-invocation: true
 - 주차마다 그 주의 월요일과 일요일은 `weekDays`로 구한다(`npm ci && npm run install-plugins` 뒤).
 
   ```sh
-  node --import tsx --input-type=module -e 'import { monthWeeks, weekDays } from "./plugins/weekly-news/index.ts"; console.log(weekDays("<주차>"), monthWeeks("<달>"))'
+  node --import tsx --input-type=module -e 'import { weekDays } from "./plugins/weekly-news/index.ts"; console.log(weekDays("<주차>"))'
+  node --import tsx --input-type=module -e 'import { monthWeeks } from "./plugins/weekly-news/index.ts"; console.log(monthWeeks("<달>"))'
   ```
 
 - `git fetch origin`으로 최신 main에서 시작한다. `content/news/<주차>.md`가 main에 있거나, 그 파일을 더하는 열린 PR이 있으면 그 주차는 조사하지 않는다. 한 주를 조사할 때는 번호를 알리고 멈추고, 소급 조사는 그 주차를 빼고 뺀 주차와 번호를 작업 파일에 적는다. 남은 주차가 없으면 멈춘다.
@@ -32,9 +33,9 @@ disable-model-invocation: true
 
 `content/news/`의 지난 호를 모두 읽고, 실린 사건마다 호, 원어 제목, 원문 URL을 작업 파일에 적는다. [5. 중복](#5-중복)에서 이 목록과 견준다.
 
-이어서 주차가 최근 3개월 안인 main의 호에서, 소식 항목의 `매체` 필드를 매체마다 센다. [매체 목록의 빼는 기준](outlets.md#빼는-기준)에서 쓴다.
+이어서 [매체 목록의 빼는 기준](outlets.md#빼는-기준)이 세는 기간의 main 호에서, 소식 항목의 `매체` 필드를 매체마다 센다.
 
-완료: 지난 호의 모든 소식 항목이 목록에 있고, 최근 3개월 호의 매체별 항목 수가 있다.
+완료: 지난 호의 모든 소식 항목이 목록에 있고, 그 기간 호의 매체별 항목 수가 있다.
 
 ## 3. 찾기
 
@@ -61,7 +62,7 @@ Google News 질의나 자유 검색에서 찾았고, 매체가 매체 목록에 
 
 피드는 깊이를 검사한다. 피드의 가장 오래된 글이 그 주 월요일(소급 조사는 첫 주의 월요일)보다 새것이면, 비고에 거슬러 보는 법(`?paged=N` 등)이 있는 피드는 월요일 전의 글이 나올 때까지 거슬러 본다. 거슬러 볼 수 없는 피드는 작업 파일에 "얕아서 놓쳤을 수 있음"으로, 가장 오래된 글의 날짜와 함께 적는다.
 
-매체를 살피다 [빼는 기준](outlets.md#빼는-기준)의 첫째나 둘째 조건(찾는 법이 열리지 않고 대신할 검색 질의가 없음, 유료나 광고성 글만 남음)에 드는 것을 보면 작업 파일에 적는다.
+매체를 살피다 [빼는 기준](outlets.md#빼는-기준)의 첫째나 둘째 조건에 드는 것을 보면 작업 파일에 적는다.
 
 후보마다 원문을 직접 열어 원어 제목, 매체, 발행일, `og:image`(`<meta property="og:image" content="…">`, 없으면 비움)를 작업 파일에 적는다.
 
@@ -100,7 +101,7 @@ Google News 질의나 자유 검색에서 찾았고, 매체가 매체 목록에 
 3. **업계 구조의 변화**: 완성차, Tier 1, 차량용 반도체 기업이 관련된 인수합병, 완성차가 외부 플랫폼(차량 OS, 미들웨어, E/E 아키텍처)을 채택하거나 철회한 것. 공급 계약과 수주, 자사 아키텍처의 세대 교체는 들지 않는다.
 
 - 차량이나 차량 임베디드에 직접 닿는 사건만 든다. 예를 들어 Mobileye의 로봇사 인수는 3번의 기업이 관련됐어도 들지 않고, NHTSA의 자율주행시스템 국제 기술 규정 초안 의견 수렴은 든다.
-- 리콜의 문턱: 대상 대수가 10만 대 이상이거나, 결함 유형이 새로운 리콜이다. 대수는 리콜 하나(NHTSA면 캠페인 번호 하나)의 대상 대수다. 결함 유형은 NHTSA 부품 분류(Component의 `:` 앞, 예: `BACK OVER PREVENTION`)이고, 새롭다는 것은 그 분류의 소프트웨어 리콜이 접수일 전 12개월에 없었다는 뜻이다. NHTSA 리콜 평면 파일(`https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip`, 필드는 `https://static.nhtsa.gov/odi/ffdd/rcl/RCL.txt`)로 확인한다. NHTSA 밖의 리콜도 같은 문턱을 쓰고, 결함 유형은 가장 가까운 NHTSA 부품 분류로 본다.
+- 리콜의 문턱: 대상 대수가 10만 대 이상이거나, 결함 유형이 새로운 리콜이다. 대수는 리콜 하나(NHTSA면 캠페인 번호 하나)의 대상 대수다. 결함 유형은 NHTSA 부품 분류(Component의 `:` 앞, 예: `BACK OVER PREVENTION`)이고, 새롭다는 것은 그 분류의 소프트웨어 리콜이 접수일 전 12개월에 없었다는 뜻이다. 소프트웨어 리콜은 결함 요약(`DESC_DEFECT`)에 낱말 `software`가 있거나 부품 분류(`COMPNAME`)에 `SOFTWARE`가 든 차량 리콜(`RCLTYPECD`가 `V`)이고, 접수일은 `RCDATE`다. NHTSA 리콜 평면 파일(`https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip`, 필드는 `https://static.nhtsa.gov/odi/ffdd/rcl/RCL.txt`)로 확인한다. NHTSA 밖의 리콜도 같은 문턱을 쓰고, 결함 유형은 가장 가까운 NHTSA 부품 분류로 본다.
 - 그 전에 일어난 사건을 분석하거나 해설한 원문은 들지 않는다.
 - 같은 사건이면 그 주의 새 진전을 알리는 항목 하나를 고르고, 둘 다 새 진전이면 1차 발표를 우선한다.
 - 제품 출시, 제휴 발표, 행사, 시장 조사, 해설, 의견, 논문은 위 1~3에 해당하지 않으면 들지 않는다.
@@ -124,7 +125,7 @@ Google News 질의나 자유 검색에서 찾았고, 매체가 매체 목록에 
 
 주간 소식 파일과 목록 추가 후보의 줄 말고는 고치지 않는다. 대문(`content/index.md`)과 지난 호 목록(`content/news/index.md`)도 고치지 않는다.
 
-완료: 실림으로 고른 소식마다 소식 항목이 있고, 주요 소식에만 `주요` 필드가 있으며, 목록 추가 후보마다 매체 목록에 줄이 있다.
+완료: 실림으로 고른 소식마다 소식 항목이 있고, 주요 소식에만 `주요` 필드가 있으며, 목록 추가 후보마다 매체 목록에 줄이 있다. 소급 조사면 파일을 만들지 않은 주차가 적혀 있다.
 
 ## 8. 검사
 
