@@ -113,6 +113,30 @@ export function weekDays(name: string): { start: string; end: string } {
   return { start: isoDay(monday), end: isoDay(sunday) }
 }
 
+function parseMonth(name: string): { year: number; monthIndex: number } | null {
+  const match = name.match(/^(\d{4})-(\d{2})$/)
+  if (!match) return null
+  const monthIndex = Number(match[2]) - 1
+  return monthIndex >= 0 && monthIndex <= 11 ? { year: Number(match[1]), monthIndex } : null
+}
+
+/** 달(2026-02)의 ISO 주차 목록. 목요일이 그 달에 드는 주차다(달의 경계에 걸친 주도 하나의 달에만 든다). */
+export function monthWeeks(month: string): string[] {
+  const parsed = parseMonth(month)
+  if (!parsed) throw new Error(`달이 아니다: ${month}`)
+  const { year, monthIndex } = parsed
+  const thursday = new Date(Date.UTC(year, monthIndex, 1))
+  thursday.setUTCDate(1 + ((4 - thursday.getUTCDay() + 7) % 7))
+  const weeks: string[] = []
+  while (thursday.getUTCMonth() === monthIndex) {
+    // 목요일이 든 해가 그 주의 ISO 연도이고, 1주의 목요일은 1월 1~7일이다
+    const week = Math.floor((thursday.getTime() - Date.UTC(year, 0, 1)) / 86400000 / 7) + 1
+    weeks.push(`${year}-w${String(week).padStart(2, "0")}`)
+    thursday.setUTCDate(thursday.getUTCDate() + 7)
+  }
+  return weeks
+}
+
 function isDate(value: string): boolean {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false
   const date = new Date(`${value}T00:00:00Z`)
