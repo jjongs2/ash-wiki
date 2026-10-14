@@ -161,11 +161,14 @@ plugins:
     enabled: false
   - source: "@quartz-community/alias-redirects"
     enabled: true
+  # 사이트 피드(index.xml)는 news/ 아래를 빼고 주간 소식 피드와 함께 로컬 emitter가 낸다(plugins/feeds).
   - source: "@quartz-community/content-index"
     enabled: true
     options:
       enableSiteMap: true
-      enableRSS: true
+      enableRSS: false
+  - source: ./plugins/feeds
+    enabled: true
   - source: "@quartz-community/favicon"
     enabled: true
   - source: "@quartz-community/og-image"
@@ -183,8 +186,10 @@ plugins:
     enabled: true
   # 주간 소식(content/news/)을 읽어 발행일 순 목록과 지난 호 목록으로 그린다(plugins/weekly-news).
   # transformer이자 페이지 타입이고, 대문은 이 플러그인이 둔 데이터로 주간 소식 칸을 그린다.
+  # 호의 설명을 description 플러그인이 만든 값 위에 덮어쓰므로 그보다 뒤(order 70 뒤)에 돌아야 한다.
   - source: ./plugins/weekly-news
     enabled: true
+    order: 75
   # 위키는 폴더를 쓰지 않는다. 켜 두면 계층 태그의 표시 이름 파일(content/tags/<구역>/)이
   # 폴더로 잡혀 /tags/<구역>/ 폴더 목록이 생기고, 프리뷰에서 /tags/<구역> 태그 목록을 가린다.
   - source: "@quartz-community/folder-page"
@@ -363,7 +368,11 @@ layout:
         - reader-mode
       positions:
         right: []
-    # 주간 소식과 지난 호 목록(plugins/weekly-news). 그래프, 목차, Backlinks를 두지 않는다.
+    # 주간 소식과 지난 호 목록(plugins/weekly-news). 그래프, 목차, Backlinks를 두지 않는다. content-meta의
+    # 날짜는 git 수정일이라 호의 기간과 어긋나 빼고, 그 자리에 플러그인이 기간과 이웃 호 줄을 둔다. npm 플러그인은
+    # source 전체가 이름이다(config-loader의 extractPluginName).
     news:
+      exclude:
+        - "@quartz-community/content-meta"
       positions:
         right: []

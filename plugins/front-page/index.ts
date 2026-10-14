@@ -297,7 +297,7 @@ const CSS = `.front-regions {
 //   굵게 쓴다.
 // - 주간 소식도 같은 타임라인이다. 발행일마다 마디를 두고, 그 아래 주요 소식의 제목과, 제목 아래 작은 구역
 //   칩을 둔다. 최근 변경의 제목과 보조 글자 줄과 같은 짜임이다. 칩의 꼴(.news-chip)은 주간 소식 플러그인
-//   (plugins/weekly-news)의 CSS가 정하고, 여기서는 크기만 줄인다. 칸 제목 줄의 오른쪽에 "N개 모두 보기(그 호)
+//   (plugins/weekly-news)의 CSS가 정하고, 여기서는 크기만 줄인다. 칸 제목 줄의 오른쪽에 "N건 모두 보기(그 호)
 //   · 지난 호"를 보조 글자색으로 둔다. 주요 소식이 없는 주는 타임라인 대신 보조 글자 한 줄을 둔다.
 // - 칸 제목 줄은 최근 변경의 칸 제목과 높이가 같아야 두 칸의 첫 날짜 줄이 맞는다. 링크 문단에 사이트 공통
 //   문단 줄 높이(1.6rem)가 걸리면 기준선 맞춤으로 제목 줄이 4.59px 높아지므로, 링크의 줄 높이를 글자 크기로
@@ -565,7 +565,7 @@ const pullRequestIcon = (): Element =>
   ])
 
 // 주간 소식. 최신 호의 주요 소식을 발행일마다 타임라인의 마디 아래에 두고, 제목은 원문으로 링크해 새 탭에서
-// 연다. 요약과 나머지 소식 항목은 제목 줄의 "N개 모두 보기"로 그 호에서 본다. 칩의 이름은 구역의 표시
+// 연다. 요약과 나머지 소식 항목은 제목 줄의 "N건 모두 보기"로 그 호에서 본다. 칩의 이름은 구역의 표시
 // 이름이고, 기타는 기타 칩 하나다.
 function newsColumn(
   issue: LatestNews,
@@ -611,7 +611,7 @@ function newsColumn(
       el("h2", { id: "주간-소식" }, [text("주간 소식")]),
       el("p", { className: ["front-news-links"] }, [
         el("a", { href: issueHref, className: ["front-news-action"] }, [
-          text(`${issue.items.length}개 모두 보기`),
+          text(`${issue.items.length}건 모두 보기`),
         ]),
         el("span", { ariaHidden: "true" }, [text("·")]),
         el(
