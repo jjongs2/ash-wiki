@@ -3,15 +3,16 @@
 //
 // 형식의 정본은 순수 함수 parseWeeklyNews 하나다. 주간 소식 파일 하나(이름과 원본)를 받아 소식 항목 목록과
 // 형식 오류를 돌려준다. 이 플러그인은 transformer이자 페이지 타입이다.
-// - transformer: 주간 소식 파일을 parseWeeklyNews로 읽어 vfile 데이터(weeklyNews)에 둔다. 형식 오류가 있으면
-//   빌드를 멈춘다. 대문(plugins/front-page)은 이 데이터에서 최신 호를 고른다.
-// - 페이지 타입: 주간 소식 페이지를 발행일 최근순 목록과 그 위의 정렬·거르기 줄로 그리고, news/ 색인
-//   (content/news/index.md)의 본문 뒤에 지난 호 목록을 붙인다. 구역 칩의 이름은 태그 표시 이름 파일
-//   (tags/<구역>)의 제목이다. 정렬과 거르기는 브라우저의 스크립트가 카드의 data 속성을 읽어 한다.
+// - transformer: 호 파일을 parseWeeklyNews로 읽어 vfile 데이터(weeklyNews)에 둔다. 형식 오류가 있으면 빌드를
+//   멈춘다. 대문(plugins/front-page)은 이 데이터에서 최신 호를 고르고, 피드(plugins/feeds)는 호의 기간을 읽는다.
+//   html 단계에서는 호와 지난 호 목록의 설명(메타 설명과 피드)과 호의 검색 본문을 정한다.
+// - 페이지 타입: 호 페이지를 제목 아래 줄(기간과 이웃 호), 정렬·거르기 줄, 발행일 최근순 목록, 이전·다음 링크로
+//   그리고, 지난 호 목록(content/news/index.md, 본문 없음)에 피드 링크와 달별 목록을 그린다. 구역 칩의 이름은
+//   태그 표시 이름 파일(tags/<구역>)의 제목이다. 정렬, 거르기, 키 이동은 브라우저의 스크립트가 한다.
 //
 // 요약은 마크다운이라 위키 링크를 쓸 수 있다. 카드는 요약을 다시 그리지 않고, 파이프라인이 그린 본문 트리에서
 // 요약이 차지하는 원본 줄(parseWeeklyNews가 준다)의 요소를 옮겨 온다. 그래서 위키 링크는 다른 페이지와 같이
-// 풀리고, Backlinks와 검색도 본문을 그대로 본다.
+// 풀리고, Backlinks도 본문을 그대로 본다. 검색 본문은 같은 줄에서 원어 제목과 요약만 모은다.
 //
 // 빌드가 이 파일을 Node의 type stripping으로 불러오므로, 타입만 지우면 돌아가는 문법만 쓴다. enum, namespace,
 // parameter property를 쓰지 않고, 타입은 import type으로 가져온다.
@@ -158,15 +159,15 @@ export function indexMonths(weeks: string[]): { month: string; weeks: string[] }
   return months
 }
 
+// 호의 이웃 호. 없는 쪽은 null이다.
+export type Neighbors = { prev: string | null; next: string | null }
+
 /**
  * 호의 이웃 호. weeks는 빌드에 있는 호의 주차이고, 그 가운데 주차순으로 바로 앞(prev, 오래된 호)과 뒤(next)를
  * 준다. 파일이 없는 주는 건너뛰고 해를 넘어서도 잇는다. 없는 쪽은 null이다. ISO 주차(2026-w41)는 글자 순서가
  * 주차 순서와 같다.
  */
-export function issueNeighbors(
-  weeks: string[],
-  week: string,
-): { prev: string | null; next: string | null } {
+export function issueNeighbors(weeks: string[], week: string): Neighbors {
   const sorted = [...new Set(weeks)].sort()
   const index = sorted.indexOf(week)
   return {
@@ -631,7 +632,16 @@ function regionOrder(allFiles: QuartzPluginData[]): string[] {
 
 // 호 사이를 잇는 링크. 거르기와 정렬 상태를 쿼리로 이어받도록 스크립트가 href에 쿼리를 붙이고, ←/→ 키는
 // rel이 prev·next인 아래 링크를 누른다. 이웃 호가 없는 쪽은 링크를 두지 않는다.
-type Neighbors = { prev: string | null; next: string | null }
+
+// 빌드에 있는 호. 주차마다 파일과 데이터다. 이웃 호, 이전·다음 링크의 소식 수, 지난 호 목록이 쓴다.
+function buildIssues(allFiles: QuartzPluginData[]) {
+  return new Map(
+    allFiles.flatMap((file) => {
+      const issue = isIssue(file.slug ?? "") ? newsOf(file) : undefined
+      return issue ? [[issue.week, { file, issue }] as const] : []
+    }),
+  )
+}
 
 const issueHref = (props: QuartzComponentProps, week: string) =>
   resolveRelative(props.fileData.slug!, `${NEWS_PREFIX}${week}` as never)
@@ -647,8 +657,8 @@ const periodTimes = (week: string, locale: string, year?: number): ElementConten
 
 // 제목 아래 줄. 왼쪽에 호의 기간, 오른쪽에 "← 40주차 · 42주차 →"를 둔다(소유자 결정, #419). 기간은 지난 호
 // 목록의 줄과 같은 꼴로, 호의 해와 같은 해의 날짜는 연도를 뺀다(제목에 연도가 있다). 화살표는 ←/→ 키와 같은
-// 방향이다. 이웃 호가 다른 해면 연도를
-// 붙인다. 이웃 링크는 오른쪽 끝에 맞추므로, 이웃 호가 없는 쪽은 빈 자리도 두지 않는다.
+// 방향이다. 이웃 호가 다른 해면 연도를 붙인다. 이웃 링크는 오른쪽 끝에 맞추므로, 이웃 호가 없는 쪽은 빈
+// 자리도 두지 않는다.
 function issueHead(props: QuartzComponentProps, week: string, neighbors: Neighbors): Element {
   const side = (target: string, rel: "prev" | "next") =>
     el("a", { href: issueHref(props, target), className: ["news-nav-link"], dataNewsNav: rel }, [
@@ -730,13 +740,9 @@ function issueTree(props: QuartzComponentProps, data: WeeklyNewsData): HastRoot 
       props.cfg.locale,
     ),
   )
-  const counts = new Map(
-    props.allFiles.flatMap((file) => {
-      const issue = isIssue(file.slug ?? "") ? newsOf(file) : undefined
-      return issue ? [[issue.week, issue.items.length] as const] : []
-    }),
-  )
-  const neighbors = issueNeighbors([...counts.keys()], data.week)
+  const issues = buildIssues(props.allFiles)
+  const counts = new Map([...issues].map(([week, { issue }]) => [week, issue.items.length]))
+  const neighbors = issueNeighbors([...issues.keys()], data.week)
   const filters = issueFilters(data.items, regionOrder(props.allFiles), [...names.keys()])
   return {
     type: "root",
@@ -776,12 +782,7 @@ const rssIcon = (): Element =>
 // 수를 보인다. 소제목의 해와 같은 해의 날짜는 연도를 뺀다. 달은 본문의 절(plugins/collapsible-sections)처럼 펼친
 // <details>로 감싸 소제목을 눌러 접고 편다. 접은 상태는 저장하지 않는다.
 function indexTree(props: QuartzComponentProps): HastRoot {
-  const issues = new Map(
-    props.allFiles.flatMap((file) => {
-      const issue = isIssue(file.slug ?? "") ? newsOf(file) : undefined
-      return issue ? [[issue.week, { file, issue }] as const] : []
-    }),
-  )
+  const issues = buildIssues(props.allFiles)
   const months = indexMonths([...issues.keys()]).flatMap(({ month, weeks }) => {
     const year = Number(month.slice(0, 4))
     const heading = `${year}년 ${Number(month.slice(5))}월`
@@ -794,6 +795,7 @@ function indexTree(props: QuartzComponentProps): HastRoot {
             href: resolveRelative(props.fileData.slug!, file.slug!),
             className: ["internal", "news-index-week"],
           },
+          // 달 소제목에 연도가 있어 주차만 쓴다(같은 해를 기준으로 주면 연도를 뺀다)
           [text(weekLabel(week, week))],
         ),
         el("span", { className: ["news-index-meta"] }, [
@@ -813,6 +815,7 @@ function indexTree(props: QuartzComponentProps): HastRoot {
     ]
   })
   const feed = el("p", { className: ["news-feed"] }, [
+    // 주간 소식 피드의 경로는 plugins/feeds의 NEWS_FEED다
     el("a", { href: `${pathToRoot(props.fileData.slug!)}/news/index.xml`, dataRouterIgnore: "" }, [
       rssIcon(),
       text("RSS"),
@@ -853,7 +856,8 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 //   고정해 기간이 한 열로 서고, 피드 줄과 첫 달 사이는 달과 달 사이와 같게 둔다.
 // - 글자 대비는 docs/palette.md의 쌍에 든다. 구역 칩은 구역 칩, 고르지 않고 거를 때의 칩은 구역 이름, 고른 칩은
 //   구역 이름과 강조색 위 글자(전경과 배경을 바꿔도 대비는 같다), 주요 칩은 내부 링크, 상태 줄은 보조 글자, 링크,
-//   제목이다. hover의 테두리는 글자가 아니다.
+//   제목이다. 제목 아래 줄, 이전·다음 링크, 지난 호 목록, 피드 링크도 보조 글자, 링크, 제목 쌍만 쓴다. hover의
+//   테두리와 타임라인의 선·마디는 글자가 아니다.
 const CSS = `.news-tools {
   display: flex;
   flex-direction: column;
@@ -1219,14 +1223,10 @@ const CSS = `.news-tools {
 // 불러오기가 끝난 이미지의 크기도 본다.
 //
 // 정렬·거르기 줄의 버튼을 누르면 카드를 다시 늘어놓고 거른다. 순서는 byDate와 같이 발행일(data-date) 순이고 같은
-// 날은 파일에 적은 순서(data-index)다. 거르기와 정렬 상태는 주소의 쿼리(?region=network,security&featured=1&
-// sort=oldest, 기본값은 뺀다)에 담는다. 상태를 바꿀 때마다 replaceState로 주소를 고쳐 뒤로 가기 기록을 쌓지
-// 않고, 이웃 호 링크(data-news-nav)의 쿼리도 같이 고쳐 다음 호가 상태를 이어받는다. 페이지를 그릴 때는 주소의
-// 쿼리에서 상태를 읽으므로, 쿼리가 있는 주소로 열거나 뒤로 가기로 돌아와도 그 상태다. 사이트에 없는 구역은
-// 쿼리에서 버리고, 이 호에 항목이 없는 구역이나 주요를 고른 상태면 그 칩을 0으로 보인다.
-//
-// ←/→ 키는 이전·다음 호 링크를 누른다. 입력란에 포커스가 있거나, 수정 키를 누르고 있거나, 검색이 열려 있으면
-// 무시한다.
+// 날은 파일에 적은 순서(data-index)다. 고른 상태를 주소의 쿼리에 담고 이웃 호가 이어받는 규칙, ←/→ 키가
+// 동작하지 않는 때는 docs/weekly-news.md의 사이트에 보이는 범위에 있다. 상태는 페이지를 그릴 때마다 주소의
+// 쿼리에서 읽고, 바꿀 때마다 replaceState로 주소와 이웃 호 링크(data-news-nav)의 쿼리를 고친다. 사이트에 없는
+// 구역은 쿼리에서 버린다. 키는 rel이 prev·next인 아래 링크를 누른다.
 //
 // SPA 이동은 본문을 새로 그리므로 nav 이벤트마다 다시 건다. 첫 불러오기에서는 setup과 nav가 모두 돌 수 있어,
 // 이미 건 줄은 data-ready로 건너뛴다. SPA는 본문을 갈아 끼우지 않고 같은 자리의 요소를 고쳐 쓰므로(micromorph),
@@ -1373,8 +1373,8 @@ const WeeklyNewsBody = () => {
 
 const WeeklyNews = () => ({
   // transformer: 주간 소식 파일을 읽어 데이터를 두고, 제목을 파일 이름에서 만들어 프론트매터에 넣는다. 제목을
-  // 쓰는 탭 제목, 검색, 지난 호 목록이 모두 같은 꼴을 본다. frontmatter는 note-properties(order 5)가 읽으므로,
-  // 이 플러그인은 그 뒤에 돈다(설정의 order 75). 형식을 어기면 그 파일의 처리를 실패시켜 빌드를 멈춘다.
+  // 쓰는 탭 제목, 검색, 지난 호 목록이 모두 같은 꼴을 본다. 이 플러그인이 도는 순서는 quartz.config.yaml의
+  // order에 있다. 형식을 어기면 그 파일의 처리를 실패시켜 빌드를 멈춘다.
   name: "WeeklyNews",
   markdownPlugins() {
     return [
@@ -1394,11 +1394,10 @@ const WeeklyNews = () => ({
       },
     ]
   },
-  // 호와 지난 호 목록의 설명(메타 설명과 피드)과 호의 검색 본문을 정한다. description 플러그인(order 70)이 본문 전체에서 만든 값을
-  // 덮어써야 하므로, 이 플러그인은 설정에서 그 뒤의 order로 돈다(quartz.config.yaml). 검색 본문은 소식 항목마다
-  // 원어 제목과 요약이고, 필드 줄(구역, 매체, 발행일, 이미지, 주요)은 뺀다. 설명을 프론트매터가 아닌 vfile
-  // 데이터에 두어 호 페이지에 속성 칸(note-properties)이 생기지 않는다. 두 값은 description 플러그인처럼
-  // 이스케이프한다.
+  // 호와 지난 호 목록의 설명(메타 설명과 피드)과 호의 검색 본문을 정한다. description 플러그인이 본문
+  // 전체에서 만든 값을 덮어쓴다(순서는 quartz.config.yaml). 검색 본문은 소식 항목마다 원어 제목과 요약이다.
+  // 설명을 프론트매터가 아닌 vfile 데이터에 두어 호 페이지에 속성 칸(note-properties)이 생기지 않는다. 두 값은
+  // description 플러그인처럼 이스케이프한다.
   htmlPlugins(ctx: { cfg: { configuration: { locale: string } } }) {
     const locale = ctx.cfg.configuration.locale
     return [

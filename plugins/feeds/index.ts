@@ -26,6 +26,8 @@ export const manifest = {
 const SITE_LIMIT = 10
 const NEWS_LIMIT = 20
 const NEWS_PREFIX = "news/"
+// 지난 호 목록의 슬러그와, 주간 소식 피드 파일의 경로(.xml을 뺀 것). 지난 호 목록의 RSS 링크
+// (plugins/weekly-news의 indexTree)도 이 경로를 쓴다.
 const NEWS_INDEX = "news/index"
 const NEWS_FEED = "news/index"
 // 주간 소식 피드의 이름. 지난 호 목록의 제목과 같다
