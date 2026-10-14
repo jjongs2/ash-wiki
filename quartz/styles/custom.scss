@@ -245,3 +245,14 @@ article #refs.csl-bib-body {
     }
   }
 }
+
+// ash-wiki: footer 링크 사이에 가운뎃점을 둔다. 점은 뒤 항목의 ::before라 링크 밑줄과 클릭 범위에 들지 않는다.
+// 업스트림의 항목 간격 1rem을 점 양쪽에 반씩 나눈다.
+footer ul {
+  gap: 0.5rem;
+
+  & > li + li::before {
+    content: "·";
+    margin-right: 0.5rem;
+  }
+}

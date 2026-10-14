@@ -1,7 +1,8 @@
 /* ash-wiki: 접는 절의 모양이다(plugins/collapsible-sections). 기본 삼각형 대신 목차와 같은 꺾쇠를 제목
-   글자 앞에 두고, 제목 아래에 참고문헌 위와 같은 구분선을 본문 폭 전체로 긋는다. 두 수준은 꺾쇠로 구별한다.
-   `##`은 두 겹 꺾쇠, `###`은 한 겹 꺾쇠다. 같은 선 굵기와 끝 모양이라 목차의 꺾쇠와 한 계열로 보이고, 접힌
-   상태(», ›)에서도 수준이 갈린다.
+   글자 앞에 두고, 제목 아래에 참고문헌 위와 같은 구분선을 본문 폭 전체로 긋는다. 꺾쇠는 `##`과 `###`이 같은
+   한 겹 꺾쇠로, 목차의 꺾쇠와 선 굵기와 끝 모양이 같아 한 계열로 보인다. 두 수준은 본문에서 제목 크기로만
+   갈리고, 정확한 구분은 목차의 들여쓰기가 보여 준다. `###`은 드물고, 그 절반은 표준 페이지의 `## 범위` 아래
+   본문 절이라 두 겹 꺾쇠로 수준을 가르기보다 꺾쇠를 하나로 맞추는 쪽을 골랐다.
 
    본문 왼쪽 여백은 좁아(1440px에서 사이드바까지 5px) 꺾쇠를 거기 걸치지 않고 제목만 그 폭만큼 들여 쓴다.
    `##`과 `###`은 같은 폭을 들여 제목 글자가 한 선에 서고, 꺾쇠는 제목 글자 크기에 맞추되 글자와의 틈은 같게
@@ -86,13 +87,8 @@ details.collapsible-section > summary > :is(h2, h3)::before {
     background-color 0.2s ease;
 }
 
-details.collapsible-section > summary > h3::before {
+details.collapsible-section > summary > :is(h2, h3)::before {
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")
-    center / contain no-repeat;
-}
-
-details.collapsible-section > summary > h2::before {
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='7 7 12 12 17 7'/%3E%3Cpolyline points='7 13 12 18 17 13'/%3E%3C/svg%3E")
     center / contain no-repeat;
 }
 
