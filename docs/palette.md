@@ -156,4 +156,4 @@
 
 1. `quartz.config.yaml`의 `theme`나 위키 규약의 도해 팔레트 표를 고칩니다.
 2. `npm run palette`로 하한을 확인하고, 이 문서의 실측 표를 출력으로 바꿉니다.
-3. `npm run build` 뒤 로컬 프리뷰에서 두 테마를 보고, `public/`의 OG 이미지(`*-og-image.webp`)에 두부가 없는지 봅니다. `--serve`는 OG 이미지를 그리지 않으므로 `OG_IMAGES=1`을 줍니다([배포](deploy.md#로컬-프리뷰)). 폰트를 바꿨다면 한글, `Æ`, `Ω`가 폰트에 있는지도 봅니다.
+3. `npm run build` 뒤 로컬 프리뷰에서 두 테마를 보고, `public/`의 OG 이미지(`*-og-image.webp`)에 두부가 없는지 봅니다. `--serve`로 볼 때는 `OG_IMAGES=1`을 줍니다([배포](deploy.md#로컬-프리뷰)). 폰트를 바꿨다면 한글, `Æ`, `Ω`가 폰트에 있는지도 봅니다.
