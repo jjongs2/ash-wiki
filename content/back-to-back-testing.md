@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**Back-to-back 테스트**(back-to-back testing)는 pseudo-oracle을 쓰는 테스트 접근법이다.[@istqb-glossary-back-to-back-testing-2026] **pseudo-oracle**은 테스트 대상과 독립적으로 만든 변형으로, 같은 테스트 입력에서 낸 결과를 원래 테스트 대상의 결과와 견주는 데 쓴다.[@istqb-glossary-pseudo-oracle-2026]
+**Back-to-back 테스트**는 pseudo-oracle을 쓰는 테스트 접근법이다.[@istqb-glossary-back-to-back-testing-2026] **pseudo-oracle**은 테스트 대상과 독립적으로 만든 변형으로, 같은 테스트 입력에서 낸 결과를 원래 테스트 대상의 결과와 견주는 데 쓴다.[@istqb-glossary-pseudo-oracle-2026]
 
 Back-to-back 테스트에서는 모든 변형에 같은 [[test-case|테스트 케이스]]를 실행해 결과를 견주고, 같으면 통과로 보며, 다르면 그 차이의 원인을 분석한다. 이 테스트는 테스트 대상끼리나 그 환경 사이에 생긴 의도하지 않은 차이를 아주 작은 것까지 드러내려는 것이다.[@istqb-ct-aut-syllabus-2025]
 

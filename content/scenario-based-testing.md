@@ -19,7 +19,7 @@ verified: 2026-10-13
 
 ## Use case 테스트
 
-**use case 테스트**(use case testing)는 use case의 동작을 실행하도록 테스트 케이스를 설계하는 블랙박스 기법이다.[@istqb-glossary-use-case-testing-2026]
+**use case 테스트**는 use case의 동작을 실행하도록 테스트 케이스를 설계하는 블랙박스 기법이다.[@istqb-glossary-use-case-testing-2026]
 
 use case는 사용자와 시스템 사이, 또는 시스템끼리의 상호작용을 나타내는 동작을 글이나 그림으로 기술한 것이다. use case 모델은 시나리오를 세 갈래로 가른다.[@istqb-ctal-ta-syllabus-2025]
 

@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-02
 ---
 
-**V 모델**(V-model)은 개발 단계와 그에 대응하는 테스트 단계를 하나씩 짝지은 개발 생명주기 모델이다.[@istqb-glossary-v-model-2026][@weit-v-modell-xt-2-4-2024] ISTQB 용어집은 V 모델을 순차 개발 생명주기 모델로 분류한다.[@istqb-glossary-v-model-2026]
+**V 모델**은 개발 단계와 그에 대응하는 테스트 단계를 하나씩 짝지은 개발 생명주기 모델이다.[@istqb-glossary-v-model-2026][@weit-v-modell-xt-2-4-2024] ISTQB 용어집은 V 모델을 순차 개발 생명주기 모델로 분류한다.[@istqb-glossary-v-model-2026]
 
 ## 왼쪽과 오른쪽의 대응
 
