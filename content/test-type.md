@@ -64,7 +64,7 @@ ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) v4.0 강의계획서
 
 ISTQB 용어집은 **테스트 사분면**(testing quadrants)을 테스트 유형과 테스트 레벨을 네 사분면으로 나누는 분류 모델로 정의하고, 사분면을 테스트 목표의 두 차원, 곧 제품 팀을 지원하는지 제품을 비평하는지와, 기술 쪽인지 비즈니스 쪽인지에 따라 가른다.[@istqb-glossary-testing-quadrants-2026]
 
-ISTQB CTFL v4.0.1 강의계획서는 Brian Marick이 정의한 테스트 사분면을 [[agile-software-development|애자일 소프트웨어 개발]]에서 테스트 레벨을 알맞은 테스트 유형, 활동, 테스트 기법, 작업 산출물과 묶는 모델로 둔다. 이 모델은 테스트 관리에서 알맞은 테스트 유형과 테스트 레벨이 개발 생명주기에 모두 들었는지 보이게 하고, 어떤 테스트 유형이 특정 테스트 레벨에 더 관련 있다는 것을 이해하는 데 쓴다. 개발자, 테스터, 비즈니스 대표를 비롯한 모든 이해관계자에게 테스트 유형을 구분해 설명하는 방법도 준다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL v4.0.1 강의계획서는 테스트 사분면을 [[agile-software-development|애자일 소프트웨어 개발]]에서 테스트 레벨을 알맞은 테스트 유형, 활동, 테스트 기법, 작업 산출물과 묶는 모델로 둔다. CTFL 강의계획서에 따르면 테스트 사분면은 Brian Marick이 정의했다. 이 모델은 테스트 관리에서 알맞은 테스트 유형과 테스트 레벨이 개발 생명주기에 모두 들었는지 보이게 하고, 어떤 테스트 유형이 특정 테스트 레벨에 더 관련 있다는 것을 이해하는 데 쓴다. 개발자, 테스터, 비즈니스 대표를 비롯한 모든 이해관계자에게 테스트 유형을 구분해 설명하는 방법도 준다.[@istqb-ctfl-syllabus-2024]
 
 CTFL 강의계획서는 테스트를 비즈니스 쪽(business facing)과 기술 쪽(technology facing)으로, 팀을 지원하는 것(support the team, 곧 개발을 이끔)과 제품을 비평하는 것(critique the product, 곧 동작을 기대에 비추어 잼)으로 나누고, 두 관점을 엮어 네 사분면을 정한다.[@istqb-ctfl-syllabus-2024]
 
