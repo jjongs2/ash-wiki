@@ -7,7 +7,7 @@ verified: 2026-10-13
 
 [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022와 29119-5:2024는 **키워드 기반 테스트**(keyword-driven testing)를 키워드로 구성한 [[test-case|테스트 케이스]]를 쓰는 테스트로 정의한다. 두 부는 **키워드**(keyword)를 하나 이상의 테스트 케이스를 실행하는 동안 수행할 특정한 동작 묶음을 가리키는 하나 이상의 낱말로 정의하고, 정의에 단 Note에서 그 동작의 예로 테스트 중의 사용자 인터페이스 조작, 검증, 테스트 시나리오를 꾸리는 동작을 든다.[@iso-iec-ieee-29119-1-obp-2022][@iso-iec-ieee-29119-5-obp-2024] 29119-5:2024의 Note는 키워드가 흔히 파라미터를 두어 여러 데이터로 쓰인다는 것을 제시한다.[@iso-iec-ieee-29119-5-obp-2024]
 
-같은 정의의 Note는 키워드 이름에 동사를 적어도 하나 쓴다는 것도 제시하고, ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서도 키워드가 동사를 담아야 한다고 정한다.[@iso-iec-ieee-29119-5-obp-2024][@istqb-ctal-ta-syllabus-2025]
+같은 정의의 Note는 키워드 이름에 동사를 적어도 하나 쓴다는 것도 제시하고, ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) v4.0 강의계획서도 키워드가 동사를 담아야 한다고 정한다.[@iso-iec-ieee-29119-5-obp-2024][@istqb-ctal-ta-syllabus-2025]
 
 ## 수동 테스트와 자동화
 

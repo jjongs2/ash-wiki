@@ -27,7 +27,7 @@ ISO/IEC/IEEE 29119-1:2022는 탐색적 테스트를 경험 기반 테스트(expe
 
 **테스트 차터**(test charter)는 테스트 세션의 미션을 주는 것으로, 세션의 범위와 목표, 그리고 제한, 일정, 리스크 같은 정보를 담는다. 테스트 차터는 세션에 짜임새를 주어, 테스트 분석가가 정해진 영역이나 기능에 집중하면서도 필요하면 시스템을 자유롭게 탐색하게 한다. 세션마다 실행할 테스트 스위트는 정하지 않는다.[@istqb-ctal-ta-syllabus-2025]
 
-ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) v4.0 강의계획서는 테스트 차터를 설계할 때 다음 요인을 따져야 한다고 본다.[@istqb-ctal-ta-syllabus-2025]
+테스트 차터를 설계할 때는 다음 요인을 따진다.[@istqb-ctal-ta-syllabus-2025]
 
 - 고객과 요구사항 요인: 고객에게서 끌어낸 요구사항, 시스템의 비즈니스 [[use-case|use case]], 품질 요구사항, 사용자가 시간에 따라 시스템과 상호작용하는 과정을 그린 사용자 여정 지도(user journey map)
 - 제품 요인: 기능 흐름, 제품의 주요 목표, 제품 기능, [[software-design|소프트웨어 설계]], 인터페이스

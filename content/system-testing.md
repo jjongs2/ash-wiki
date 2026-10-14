@@ -26,7 +26,7 @@ ASPICE 3.1은 SWE.6을 Software Qualification Test, SYS.5를 System Qualificatio
 
 ISTQB CT-AuT v2.1.1 강의계획서는 CTFL 강의계획서가 system을 소프트웨어만 가리키는 말로 쓰므로, CTFL의 시스템 테스트를 [[iso-26262|ISO 26262]]:2018의 임베디드 소프트웨어 테스트(6부 11절)와 ASPICE 4.0의 SWE.6에 대응시키고, SYS.5는 여러 이종 분산 시스템을 시험하는 system of systems testing에 대응시킨다.[@istqb-ct-aut-syllabus-2025]
 
-ISTQB CT-AuT v2.1.1 강의계획서는 테스트 레벨 전체를 다음과 같이 대응시킨다. 괄호 안은 ISO 26262:2018의 부와 절이다.[@istqb-ct-aut-syllabus-2025]
+CT-AuT 강의계획서는 테스트 레벨 전체를 다음과 같이 대응시킨다. 괄호 안은 ISO 26262:2018의 부와 절이다.[@istqb-ct-aut-syllabus-2025]
 
 | ISTQB 테스트 레벨                                                       | ISO 26262:2018                               | ASPICE |
 | ----------------------------------------------------------------------- | -------------------------------------------- | ------ |
@@ -37,7 +37,7 @@ ISTQB CT-AuT v2.1.1 강의계획서는 테스트 레벨 전체를 다음과 같�
 | 컴포넌트 통합 테스트                                                    | software integration and verification(6-10)  | SWE.5  |
 | [[unit-testing#컴포넌트 테스트\|컴포넌트 테스트]]                       | software unit verification(6-9)              | SWE.4  |
 
-ISTQB CT-AuT v2.1.1 강의계획서는 4-7을 system of systems testing과 시스템 통합 테스트에 함께 대응시키고, 인수 테스트에 대응하는 safety validation과 VAL.1은 ISTQB 인수 테스트의 일부만, 컴포넌트 통합 테스트에 대응하는 SWE.5와 6-10은 CTFL의 컴포넌트 테스트를 component의 뜻으로도, 컴포넌트 테스트에 대응하는 SWE.4와 6-9는 CTFL의 컴포넌트 테스트를 unit의 뜻으로 덮는다고 본다.[@istqb-ct-aut-syllabus-2025]
+CT-AuT 강의계획서는 4-7을 system of systems testing과 시스템 통합 테스트에 함께 대응시키고, 인수 테스트에 대응하는 safety validation과 VAL.1은 ISTQB 인수 테스트의 일부만, 컴포넌트 통합 테스트에 대응하는 SWE.5와 6-10은 CTFL의 컴포넌트 테스트를 component의 뜻으로도, 컴포넌트 테스트에 대응하는 SWE.4와 6-9는 CTFL의 컴포넌트 테스트를 unit의 뜻으로 덮는다고 본다.[@istqb-ct-aut-syllabus-2025]
 
 ## ISO 26262-6
 

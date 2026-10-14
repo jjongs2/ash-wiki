@@ -25,7 +25,7 @@ ISTQB 용어집은 V 모델이 개발 단계마다 짝짓는 [[software-testing#
 
 V 모델에서는 테스트 설계를 코딩이 끝난 뒤가 아니라 대응하는 개발 단계에서 시작한다.[@weit-v-modell-xt-2-4-2024][@istqb-ctfl-syllabus-2024] ISTQB CTFL v4.0.1 강의계획서는 이를 개발 생명주기 모델과 상관없이 지킬 좋은 관행으로 권한다. 순차 모델에서는 초기 단계에 테스터가 요구 검토, 테스트 분석, 설계에 참여한다.[@istqb-ctfl-syllabus-2024]
 
-테스트와 [[software-quality#품질 보증|품질 보증]] 활동을 [[software-development-life-cycle|SDLC]]에서 가능한 한 일찍 수행하는 테스트 접근법을 **shift left**라 부른다.[@istqb-glossary-shift-left-2026] ISTQB CTFL v4.0.1 강의계획서에 따르면 일찍 테스트하면 시간과 비용이 주는데, 일찍 없앤 결함은 뒤 산출물에 결함을 낳지 않고 뒤에 생기는 장애(failure)가 줄어 품질 비용이 주기 때문이다.[@istqb-ctfl-syllabus-2024]
+테스트와 [[software-quality#품질 보증|품질 보증]] 활동을 [[software-development-life-cycle|SDLC]]에서 가능한 한 일찍 수행하는 테스트 접근법을 **shift left**라 부른다.[@istqb-glossary-shift-left-2026] CTFL 강의계획서에 따르면 일찍 테스트하면 시간과 비용이 주는데, 일찍 없앤 결함은 뒤 산출물에 결함을 낳지 않고 뒤에 생기는 장애(failure)가 줄어 품질 비용이 주기 때문이다.[@istqb-ctfl-syllabus-2024]
 
 ## 기원
 

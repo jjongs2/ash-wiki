@@ -9,7 +9,7 @@ verified: 2026-10-03
 
 ## 테스트의 목적
 
-테스트가 흔히 노리는 목적은 아래 아홉 가지다.[@istqb-ctfl-syllabus-2024]
+테스트가 흔히 노리는 목적으로는 다음이 있다.[@istqb-ctfl-syllabus-2024]
 
 - 요구사항, 사용자 스토리, 설계, 코드 같은 작업 산출물 평가
 - [[fault-error-failure|장애]](failure)를 일으키고 결함 찾기
@@ -63,9 +63,9 @@ ISTQB CTFL v4.0.1 강의계획서에 따르면 다음 결함은 정적 테스트
 
 테스트 기법은 블랙박스(명세 기반), 화이트박스(구조 기반), 경험 기반의 세 갈래로 나뉜다.[@istqb-ctfl-syllabus-2024][@iso-iec-ieee-29119-4-obp-2021] SWEBOK V4.0a는 명세, 구조, 경험 말고도 찾아낼 결함, 예상되는 사용, 모델, 애플리케이션의 성격, 도출된 지식을 기법을 나누는 기준으로 든다.[@ieee-swebok-v4-0a-2026] 갈래마다 다음에 바탕을 둔다.[@istqb-ctfl-syllabus-2024]
 
-- [[black-box-testing|블랙박스 기법]]: 내부 구조를 보지 않고 테스트 대상의 명세된 동작을 분석한다. ISTQB CTFL v4.0.1 강의계획서는 [[equivalence-partitioning|동치 분할]], [[boundary-value-analysis|경계값 분석]], [[decision-table-testing|결정 테이블 테스트]], [[state-transition-testing|상태 전이 테스트]]를 다룬다.
-- [[white-box-testing|화이트박스 기법]]: 테스트 대상의 내부 구조와 처리를 분석한다. 이 강의계획서는 구문 테스트와 분기 테스트를 다룬다.
-- 경험 기반 기법: 테스터의 지식과 경험으로 [[test-case|테스트 케이스]]를 설계하고 구현한다. 이 강의계획서는 [[error-guessing|오류 추정]], [[exploratory-testing|탐색적 테스트]], [[checklist-based-testing|체크리스트 기반 테스트]]를 다룬다.[@istqb-ctfl-syllabus-2024]
+- [[black-box-testing|블랙박스 기법]]: 내부 구조를 보지 않고 테스트 대상의 명세된 동작을 분석한다. 흔히 쓰는 블랙박스 기법으로는 [[equivalence-partitioning|동치 분할]], [[boundary-value-analysis|경계값 분석]], [[decision-table-testing|결정 테이블 테스트]], [[state-transition-testing|상태 전이 테스트]]가 있다.
+- [[white-box-testing|화이트박스 기법]]: 테스트 대상의 내부 구조와 처리를 분석한다. 흔히 쓰는 화이트박스 기법으로는 구문 테스트와 분기 테스트가 있다.
+- 경험 기반 기법: 테스터의 지식과 경험으로 [[test-case|테스트 케이스]]를 설계하고 구현한다. 흔히 쓰는 경험 기반 기법으로는 [[error-guessing|오류 추정]], [[exploratory-testing|탐색적 테스트]], [[checklist-based-testing|체크리스트 기반 테스트]]가 있다.[@istqb-ctfl-syllabus-2024]
 
 ![[diagrams/ctfl-test-technique-categories.svg]]
 

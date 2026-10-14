@@ -19,7 +19,7 @@ verified: 2026-10-13
 
 ## 커버리지
 
-상태 전이 테스트에는 [[test-coverage|커버리지]] 기준이 많다. ISTQB CTFL v4.0.1 강의계획서는 그 가운데 셋을 다룬다. 세 기준 모두 커버리지를 백분율로 나타낸다. all states와 valid transitions 커버리지는 전체 커버리지 항목의 수가 $N$이고 그 가운데 실행한 항목의 수가 $N_\mathrm{exec}$이면 다음과 같다.[@istqb-ctfl-syllabus-2024]
+상태 전이 테스트에는 [[test-coverage|커버리지]] 기준이 많다. 그 가운데 몇 가지는 아래와 같다. 아래 기준은 모두 커버리지를 백분율로 나타낸다. all states와 valid transitions 커버리지는 전체 커버리지 항목의 수가 $N$이고 그 가운데 실행한 항목의 수가 $N_\mathrm{exec}$이면 다음과 같다.[@istqb-ctfl-syllabus-2024]
 
 $$
 C = \frac{N_\mathrm{exec}}{N} \times 100\,\%
@@ -31,15 +31,15 @@ $$
 
 테스트 케이스 하나에서 무효 전이를 하나만 테스트하면, 한 결함이 다른 결함의 검출을 막는 **결함 가림**(defect masking)을 피하는 데 도움이 된다.[@istqb-ctfl-syllabus-2024]
 
-all states 커버리지는 대개 모든 전이를 실행하지 않고도 이룰 수 있어서 valid transitions 커버리지보다 약하다. valid transitions 커버리지는 가장 널리 쓰이는 기준이고, 이를 100% 이루면 all states 커버리지도 100%가 된다. all transitions 커버리지를 100% 이루면 나머지 두 기준도 100%가 된다. 이 강의계획서는 mission-critical과 [[functional-safety#안전과 리스크|safety-critical]] 소프트웨어에는 all transitions 커버리지를 최소한의 요구로 삼기를 권한다.[@istqb-ctfl-syllabus-2024]
+all states 커버리지는 대개 모든 전이를 실행하지 않고도 이룰 수 있어서 valid transitions 커버리지보다 약하다. valid transitions 커버리지는 가장 널리 쓰이는 기준이고, 이를 100% 이루면 all states 커버리지도 100%가 된다. all transitions 커버리지를 100% 이루면 나머지 두 기준도 100%가 된다. ISTQB CTFL v4.0.1 강의계획서는 mission-critical과 [[functional-safety#안전과 리스크|safety-critical]] 소프트웨어에는 all transitions 커버리지를 최소한의 요구로 삼기를 권한다.[@istqb-ctfl-syllabus-2024]
 
 ## N-switch와 round-trip 커버리지
 
-ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) v4.0 강의계획서는 CTFL 강의계획서의 커버리지 기준에 더해 두 기준을 다룬다. ISTQB CTAL-TA v4.0 강의계획서에 따르면 두 기준은 결함 검출 효과가 높다는 것이 실증되었다.[@istqb-ctal-ta-syllabus-2025]
+상태 전이 테스트의 커버리지 기준에는 앞 절의 기준 말고도 다음 기준이 있다. ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) v4.0 강의계획서에 따르면 N-switch 커버리지와 round-trip 커버리지는 결함 검출 효과가 높다는 것이 실증되었다.[@istqb-ctal-ta-syllabus-2025]
 
-- **N-switch 커버리지**: 연이은 유효한 전이 $N+1$개의 열을 N-switch라 부르고, 이를 커버리지 항목으로 삼는다. 0-switch 커버리지는 valid transitions 커버리지와 같다. 1-switch는 한 상태로 들어오는 전이와 나가는 전이의 쌍이다. N-switch의 끝에 이어지는 유효한 전이를 붙이면 $(N+1)$-switch가 된다. 실무에서는 0-switch와 1-switch 커버리지를 자주 쓴다. N-switch의 수는 $N$에 따라 지수로 늘 수 있어서, 2-switch 이상의 커버리지 100%는 예상하지 못한 이벤트 순서로 failure가 날 리스크가 높을 때만 권한다.
+- **N-switch 커버리지**: 연이은 유효한 전이 $N+1$개의 열을 N-switch라 부르고, 이를 커버리지 항목으로 삼는다. 0-switch 커버리지는 valid transitions 커버리지와 같다. 1-switch는 한 상태로 들어오는 전이와 나가는 전이의 쌍이다. N-switch의 끝에 이어지는 유효한 전이를 붙이면 $(N+1)$-switch가 된다. 실무에서는 0-switch와 1-switch 커버리지를 자주 쓴다. 이 강의계획서는 N-switch의 수가 $N$에 따라 지수로 늘 수 있으므로, 2-switch 이상의 커버리지 100%는 예상하지 못한 이벤트 순서로 failure가 날 리스크가 높을 때만 권한다.
 - **round-trip 커버리지**: 상태 기반 모델에서 루프를 이루는 경로를 대상으로 한다. round trip은 시작 상태와 끝 상태가 같고, 루프 안의 다른 상태가 두 번 나오지 않는 루프다. 커버리지 항목은 round trip이다.[@istqb-ctal-ta-syllabus-2025]
 
 ![[diagrams/state-transition-n-switch-round-trip.svg]]
 
-ISTQB CTAL-TA v4.0 강의계획서에 따르면 상태 전이 테스트는 [[model-based-testing|모델 기반 테스트]] 도구로 자동화하기에 알맞고, 대부분의 블랙박스 기법처럼 모델링하는 동안 명세의 결함을 찾아 결함 예방에도 이바지한다.[@istqb-ctal-ta-syllabus-2025]
+이 강의계획서에 따르면 상태 전이 테스트는 [[model-based-testing|모델 기반 테스트]] 도구로 자동화하기에 알맞고, 대부분의 블랙박스 기법처럼 모델링하는 동안 명세의 결함을 찾아 결함 예방에도 이바지한다.[@istqb-ctal-ta-syllabus-2025]
