@@ -11,11 +11,11 @@ verified: 2026-10-03
 
 ## 컴포넌트 테스트
 
-**컴포넌트 테스트**(component testing)는 개별 하드웨어나 소프트웨어 컴포넌트를 시험하는 데 초점을 둔다.[@ieee-cs-sevocab-2026][@istqb-glossary-component-testing-2026] ISTQB CTFL 강의계획서는 컴포넌트 테스트를 단위 테스트라고도 부른다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 두 용어를 정의가 다른 별개의 항목으로 두고, 컴포넌트 테스트의 동의어로는 module testing만 둔다.[@istqb-glossary-unit-testing-2026][@istqb-glossary-component-testing-2026]
+**컴포넌트 테스트**(component testing)는 개별 하드웨어나 소프트웨어 컴포넌트를 시험하는 데 초점을 둔다.[@ieee-cs-sevocab-2026][@istqb-glossary-component-testing-2026] ISTQB CTFL v4.0.1 강의계획서는 컴포넌트 테스트를 단위 테스트라고도 부른다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 두 용어를 정의가 다른 별개의 항목으로 두고, 컴포넌트 테스트의 동의어로는 module testing만 둔다.[@istqb-glossary-unit-testing-2026][@istqb-glossary-component-testing-2026]
 
 ## 대상과 수행 주체
 
-CTFL 강의계획서에 따르면 컴포넌트 테스트는 컴포넌트를 따로 떼어 시험하며, 보통 개발자가 자기 개발 환경에서 수행한다.[@istqb-ctfl-syllabus-2024] 따로 떼어 실행하는 데 쓰는 드라이버와 스텁은 [[test-harness#드라이버와 스텁|테스트 하네스]]에서 다룬다.
+컴포넌트 테스트는 컴포넌트를 따로 떼어 시험하며, 보통 개발자가 자기 개발 환경에서 수행한다.[@istqb-ctfl-syllabus-2024] 따로 떼어 실행하는 데 쓰는 드라이버와 스텁은 [[test-harness#드라이버와 스텁|테스트 하네스]]에서 다룬다.
 
 ## ASPICE SWE.4
 
@@ -25,4 +25,4 @@ CTFL 강의계획서에 따르면 컴포넌트 테스트는 컴포넌트를 따�
 
 [[iso-26262|ISO 26262]]-6:2018은 9절에서 소프트웨어 유닛 검증을 다룬다. 이 표준은 표 7에 소프트웨어 유닛 검증 방법(Methods for software unit verification)을, 표 8에 소프트웨어 유닛 수준 테스트의 [[test-case|테스트 케이스]]를 끌어내는 방법(Methods for deriving test cases for software unit testing)을 둔다.[@iso-26262-6-obp-2018]
 
-ISTQB CT-AuT 강의계획서는 unit의 뜻으로 본 CTFL의 컴포넌트 테스트를 ISO 26262-6의 9절과 ASPICE의 SWE.4에 대응시킨다.[@istqb-ct-aut-syllabus-2025] 대응 전체는 [[system-testing#테스트 레벨의 대응|시스템 테스트]]에서 다룬다.
+ISTQB CT-AuT v2.1.1 강의계획서는 unit의 뜻으로 본 CTFL의 컴포넌트 테스트를 ISO 26262-6의 9절과 ASPICE의 SWE.4에 대응시킨다.[@istqb-ct-aut-syllabus-2025] 대응 전체는 [[system-testing#테스트 레벨의 대응|시스템 테스트]]에서 다룬다.

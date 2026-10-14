@@ -5,6 +5,8 @@ status: accepted
 # 출처 위계에 자기 역사와 서베이의 명명·분류를 넣는다
 
 > 현행 규칙은 [출처 위계](../source-hierarchy.md)에 있고, 이 본문은 결정 당시의 위계다.
+>
+> 교재와 서베이를 이론 주장의 1층에서 뺀 결정은 [ADR 0018](0018-consensus-documents.md)이 합의 문서에 한해 바꿨다.
 
 주장은 공개 출처로만 검증한다. 주장의 종류마다 권위의 원천이 달라서, 1층 출처도 종류마다 따로 정한다. ADR 0006 아래에서는 세 곳이 막혔다. 발행기관의 원 개발사에 오픈소스 프로젝트(RTEMS Project, Zephyr Project 등)가 드는지 적혀 있지 않았다. 대학과 연구소는 발행기관이 아니고 자기 역사의 1층은 원 논문뿐이어서, 연구소가 자기 일을 말한 자료(Mars Pathfinder에 대한 JPL 자료)나 원 저자의 글에만 있는 이력은 `1층 없음`으로 남았다. 이론 주장의 1층에서 서베이를 빼서, 처음 붙인 원 논문을 짚기 어려운 이름(implicit·constrained·arbitrary deadline, aperiodic 태스크 등)은 1층이 될 길이 없었다. 이 ADR은 [ADR 0006](0006-source-hierarchy-with-theory-claims.md)을 대체하고 위계 전체를 다시 적는다.
 

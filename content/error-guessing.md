@@ -5,9 +5,9 @@ tags:
 verified: 2026-10-03
 ---
 
-**오류 추정**(error guessing)은 ISTQB CTFL 강의계획서가 [[exploratory-testing|탐색적 테스트]], [[checklist-based-testing|체크리스트 기반 테스트]]와 함께 [[software-testing#테스트 기법의 분류|경험 기반 테스트 기법]]으로 분류하는 기법이다. 이 강의계획서에 따르면 오류 추정은 테스터의 지식으로 실수, 결함, 장애(failure)가 일어날 것을 예상하는 기법이다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 오류 추정을 테스터가 과거의 failure나 failure mode에 대해 아는 것을 바탕으로 [[test-case#테스트 조건|테스트 조건]]을 정하는 기법으로 정의한다.[@istqb-glossary-error-guessing-2026]
+**오류 추정**(error guessing)은 ISTQB CTFL v4.0.1 강의계획서가 [[exploratory-testing|탐색적 테스트]], [[checklist-based-testing|체크리스트 기반 테스트]]와 함께 [[software-testing#테스트 기법의 분류|경험 기반 테스트 기법]]으로 분류하는 기법이다. 오류 추정은 테스터의 지식으로 실수, 결함, 장애(failure)가 일어날 것을 예상하는 기법이다.[@istqb-ctfl-syllabus-2024] 오류 추정에서는 테스터가 과거의 failure나 failure mode에 대해 아는 것을 바탕으로 [[test-case#테스트 조건|테스트 조건]]을 정한다.[@istqb-glossary-error-guessing-2026]
 
-CTFL 강의계획서는 테스트 기법을 [[black-box-testing|블랙박스]], [[white-box-testing|화이트박스]], 경험 기반의 세 갈래로 나눈다.[@istqb-ctfl-syllabus-2024]
+테스트 기법은 [[black-box-testing|블랙박스]], [[white-box-testing|화이트박스]], 경험 기반의 세 갈래로 나뉜다.[@istqb-ctfl-syllabus-2024]
 
 ## 근거가 되는 지식
 
@@ -34,4 +34,4 @@ CTFL 강의계획서는 테스트 기법을 [[black-box-testing|블랙박스]], 
 
 ## 다른 기법을 보완하는 자리
 
-경험 기반 기법은 블랙박스 기법과 화이트박스 기법이 놓칠 수 있는 결함을 찾을 수 있어서 그 기법들을 보완한다. 경험 기반 기법의 효과는 테스터의 기량에 크게 달려 있다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL v4.0.1 강의계획서에 따르면 경험 기반 기법은 블랙박스 기법과 화이트박스 기법이 놓칠 수 있는 결함을 찾을 수 있어서 그 기법들을 보완한다. 이 강의계획서에 따르면 경험 기반 기법의 효과는 테스터의 기량에 크게 달려 있다.[@istqb-ctfl-syllabus-2024]

@@ -36,4 +36,4 @@ Beck은 자기가 TDD를 재발견했다고 말한다. 그는 1994년에 [[xunit
 
 ## 다른 테스트와의 관계
 
-SWEBOK V4.0a에 따르면 TDD는 [[unit-testing|단위 테스트]]를 정의하고 유지해야 하는 관행이고, [[regression-testing|회귀 테스트]]는 TDD의 기본 활동이다.[@ieee-swebok-v4-0a-2026] ISTQB CTFL 강의계획서에 따르면 TDD 같은 테스트 주도 접근에서 만든 테스트는 자동 테스트로 남아, 이후의 수정과 리팩터링에서 코드 품질을 지키는 데 쓰일 수 있다.[@istqb-ctfl-syllabus-2024]
+TDD는 [[unit-testing|단위 테스트]]를 정의하고 유지해야 하는 관행이고, [[regression-testing|회귀 테스트]]는 TDD의 기본 활동이다.[@ieee-swebok-v4-0a-2026] TDD 같은 테스트 주도 접근에서 만든 테스트는 자동 테스트로 남아, 이후의 수정과 리팩터링에서 코드 품질을 지키는 데 쓰일 수 있다.[@istqb-ctfl-syllabus-2024]

@@ -13,7 +13,7 @@
 - `.claude/skills/wiki-ingest/SKILL.md`: 머리의 형제 PR 문단, 1단계의 `### 두 경로 공통` 절, `### 브리프` 절의 현행판 표와 사본 항목
 - `docs/wiki-conventions.md`: 표, 도해, 열린 PR과 겹치는 파일, 빌드 절을 뺀 전부
 - `docs/wiki-terms.md`, `docs/wiki-abbreviations.md`
-- `docs/wiki-verification.md`: 판정 절의 약어 풀이 문단, 좁혀 쓰기(규범 주장의 꼴, 출처 구간), 이론 주장, 표준의 판, 정정, 봇 차단 호스트, 호스트별 여는 법, 반영 뒤 점검의 `standard-sentence`, `source-run`, `abbreviation`, `repeated-citation`, `term`, `first-link` 항목
+- `docs/wiki-verification.md`: 판정 절의 약어 풀이 문단, 좁혀 쓰기(규범 주장의 꼴, 출처 구간, 합의 문서), 이론 주장, 표준의 판, 정정, 봇 차단 호스트, 호스트별 여는 법, 반영 뒤 점검의 `standard-sentence`, `source-run`, `abbreviation`, `repeated-citation`, `term`, `first-link` 항목
 - `docs/source-hierarchy.md`: 발행기관, 원 논문과 원 저자의 글, 1층 출처 절
 
 할 일:
@@ -31,7 +31,7 @@
 - 주장마다 끝에 `[@<키>] (<위치>)`로 인용 키와 위치(절, 쪽, 표)를 단다. 위치는 메인 세션이 판정을 반영할 때 뺀다.
 - 한 자리에 인용 키를 여럿 달면 위키 규약의 인용 절이 정한 순서로 단다.
 - 한 문장에 인용 키 둘을 다는 것은 두 위치가 같은 조건으로 말할 때뿐이다. 조건이 다르면 문장을 나눈다.
-- 규범 주장은 위키 검증 문서 좁혀 쓰기 절의 규범 주장 꼴로 쓴다. 표준의 참고 Annex와 NOTE의 꼴도 그 절에 있다.
+- 규범 주장은 위키 검증 문서 좁혀 쓰기 절의 규범 주장 꼴로 쓴다. 표준의 참고 Annex와 NOTE의 꼴도 그 절에 있다. 합의 문서로 검증할 문장은 그 절의 합의 문서 꼴로 쓴다.
 - 제품 값은 출처 표 행의 조건(동작 모드, 전원 범위 등)을 함께 적는다. 조건의 표기는 위키 규약의 수식 절을 따른다.
 - `bib/`에 없는 키는 위키 규약의 인용 절대로 엔트리를 더한다.
 - `종류`가 주장 추가나 정정이면 그 줄의 주장만 초안으로 쓴다. 기존 페이지의 다른 주장은 그대로 두고 검증에 넘기지 않는다.

@@ -27,7 +27,12 @@
 - CMSIS-RTOS2: 표준·규격 이름
 - CPU: 널리 쓰이는 약어
 - CRS_DV: 핀과 신호
+- CT-AcT: 표준·규격 이름
 - CT-AuT: 표준·규격 이름
+- CT-MBT: 표준·규격 이름
+- CTAL-TA: 표준·규격 이름
+- CTAL-TAE: 표준·규격 이름
+- CTAL-TM: 표준·규격 이름
 - CTFL: 표준·규격 이름
 - DENSO: 조직
 - DoD: 조직

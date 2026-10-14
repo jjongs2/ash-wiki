@@ -15,7 +15,7 @@ ISO 26262-1:2018은 결함 주입의 예로 다음을 든다.[@iso-26262-1-obp-2
 - [[integration-testing|통합 테스트]]에서 하드웨어 디버그 포트나 전용 소프트웨어 명령으로 결함을 넣어 하드웨어와 소프트웨어 사이의 인터페이스(HSI, hardware-software interface)를 테스트하는 것
 - 하드웨어 부품 수준에서 stuck-at 결함이나 일시 결함을 흉내 내 안전 메커니즘의 [[hardware-architectural-metrics#진단 커버리지와 failure rate|진단 커버리지]]를 검증하는 것[@iso-26262-1-obp-2018]
 
-ISTQB CT-AuT 강의계획서에 따르면 오류 처리 같은 프로그래밍 기법은 시스템이 내부와 외부의 결함에 견고하고 안전하게 반응하게 하려고 쓰고, 결함 주입 테스트는 결함 같은 불리한 조건에 컴포넌트나 시스템이 어떻게 반응하는지 평가한다.[@istqb-ct-aut-syllabus-2025]
+오류 처리 같은 프로그래밍 기법은 시스템이 내부와 외부의 결함에 견고하고 안전하게 반응하게 하려고 쓰고, 결함 주입 테스트는 결함 같은 불리한 조건에 컴포넌트나 시스템이 어떻게 반응하는지 평가한다.[@istqb-ct-aut-syllabus-2025]
 
 ## 하드웨어 결함 주입과 소프트웨어 결함 주입
 
@@ -36,7 +36,7 @@ ISTQB CT-AuT 강의계획서에 따르면 오류 처리 같은 프로그래밍 �
 
 ## 주입 대상과 방식
 
-CT-AuT 강의계획서에 따르면 결함 주입 테스트에서 테스터는 외부 컴포넌트(예: 센서의 그럴듯하지 않은 값을 검출하는지), 인터페이스(예: 단락이나 메시지 손실), 애플리케이션 내부에 결함을 골라 넣을 수 있다. 결함을 넣는 방식은 시스템과 테스트 환경에 따라 다르다. 고전적 결함 주입은 물리적 시험 대상을 조작하고, 외부와 인터페이스의 결함은 [[x-in-the-loop#HiL|HiL]] 환경에서 FIU(fault insertion unit)로 실행 중에 흉내 내며, 소프트웨어 결함은 [[x-in-the-loop#SiL|SiL]] 환경이나 개발 환경에서 디버거나 XCP(Universal Measurement and Calibration Protocol) 같은 도구로 흉내 내는 일이 많다.[@istqb-ct-aut-syllabus-2025]
+결함 주입 테스트에서 테스터는 외부 컴포넌트(예: 센서의 그럴듯하지 않은 값을 검출하는지), 인터페이스(예: 단락이나 메시지 손실), 애플리케이션 내부에 결함을 골라 넣을 수 있다. 결함을 넣는 방식은 시스템과 테스트 환경에 따라 다르다. 고전적 결함 주입은 물리적 시험 대상을 조작하고, 외부와 인터페이스의 결함은 [[x-in-the-loop#HiL|HiL]] 환경에서 FIU(fault insertion unit)로 실행 중에 흉내 내며, 소프트웨어 결함은 [[x-in-the-loop#SiL|SiL]] 환경이나 개발 환경에서 디버거나 XCP(Universal Measurement and Calibration Protocol) 같은 도구로 흉내 내는 일이 많다.[@istqb-ct-aut-syllabus-2025]
 
 ## Fault seeding
 

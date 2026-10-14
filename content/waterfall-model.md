@@ -7,7 +7,7 @@ verified: 2026-10-02
 
 **폭포수 모델**(waterfall model)은 개념, 요구, 설계, 구현, 테스트, 설치·점검 단계를 이 순서로 수행하는 소프트웨어 개발 모델이다. 단계끼리 겹칠 수는 있지만 반복은 거의 없다.[@iso-iec-ieee-24765-obp-2017]
 
-반면 ISTQB 용어집은 [[software-development-life-cycle#모델|순차 개발 모델]]을 완전한 시스템을 서로 겹치지 않는 여러 단계로 차례로 개발하는 모델로 정의한다.[@istqb-glossary-sequential-development-model-2026] ISTQB CTFL 강의계획서는 폭포수 모델을 순차 개발 모델의 예로 든다.[@istqb-ctfl-syllabus-2024]
+반면 ISTQB 용어집은 [[software-development-life-cycle#모델|순차 개발 모델]]을 완전한 시스템을 서로 겹치지 않는 여러 단계로 차례로 개발하는 모델로 정의한다.[@istqb-glossary-sequential-development-model-2026] ISTQB CTFL v4.0.1 강의계획서는 폭포수 모델을 순차 개발 모델의 예로 든다.[@istqb-ctfl-syllabus-2024]
 
 ## 원 논문의 단계
 
@@ -29,4 +29,4 @@ Royce는 순차 단계를 버리지 않고 기본으로 두었다. 그 위에 �
 
 ## 문서 주도 순차 모델
 
-SWEBOK V4.0a에 따르면 폭포수 모델은 [[software-engineering|소프트웨어 공학]] 초기에 널리 쓰인 모델로, 요구, 예비 설계, 상세 설계, 코딩, 테스트 같은 단계를 두고, 앞 단계가 끝나야 다음 단계를 시작할 수 있는 매우 엄격한 프로세스를 따른다. 폭포수 모델은 문서 주도(document-driven) 모델이고 [[software-development-life-cycle#예측형에서 적응형까지|예측형 생명주기]]의 분명한 예다. 이른바 소프트웨어 위기에 대응하려는 초기 시도였으며, 소프트웨어 개발에 체계화를 들여와 공학적 접근이라 부를 만한 것을 가능하게 했다는 점에서 쓸모가 있었다.[@ieee-swebok-v4-0a-2026]
+SWEBOK V4.0a는 [[software-engineering|소프트웨어 공학]] 초기에 널리 쓰인 폭포수 모델을, 요구, 예비 설계, 상세 설계, 코딩, 테스트 같은 단계를 두고 앞 단계가 끝나야 다음 단계를 시작할 수 있는 매우 엄격한 프로세스로 본다. 폭포수 모델은 문서 주도(document-driven) 모델이고 [[software-development-life-cycle#예측형에서 적응형까지|예측형 생명주기]]의 분명한 예다. 폭포수 모델은 이른바 소프트웨어 위기에 대응하려는 초기 시도였다. 이 지식 체계에 따르면 폭포수 모델은 소프트웨어 개발에 체계화를 들여와 공학적 접근이라 부를 만한 것을 가능하게 했다는 점에서 쓸모가 있었다.[@ieee-swebok-v4-0a-2026]

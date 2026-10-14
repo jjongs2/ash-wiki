@@ -5,15 +5,15 @@ tags:
 verified: 2026-10-03
 ---
 
-ISTQB 용어집은 **통합 테스트**(integration testing)를 컴포넌트나 시스템 사이의 상호작용에 초점을 둔 [[software-testing#테스트 레벨|테스트 레벨]]로 정의한다.[@istqb-glossary-integration-testing-2026] ISTQB CTFL 강의계획서는 통합 테스트를 컴포넌트 통합 테스트와 시스템 통합 테스트의 두 테스트 레벨로 나눈다.[@istqb-ctfl-syllabus-2024]
+ISTQB 용어집은 **통합 테스트**(integration testing)를 컴포넌트나 시스템 사이의 상호작용에 초점을 둔 [[software-testing#테스트 레벨|테스트 레벨]]로 정의한다.[@istqb-glossary-integration-testing-2026] ISTQB CTFL v4.0.1 강의계획서는 통합 테스트를 컴포넌트 통합 테스트와 시스템 통합 테스트의 두 테스트 레벨로 나눈다.[@istqb-ctfl-syllabus-2024]
 
 ## 컴포넌트 통합과 시스템 통합
 
-**컴포넌트 통합 테스트**(component integration testing)는 컴포넌트 사이의 인터페이스와 상호작용을 시험하는 데 초점을 두며, 통합 전략에 크게 좌우된다. **시스템 통합 테스트**(system integration testing)는 시험 대상 시스템과 다른 시스템, 외부 서비스 사이의 인터페이스를 시험하는 데 초점을 둔다.[@istqb-ctfl-syllabus-2024] 테스트 기준은 [[v-model#테스트 기준|V 모델]]에서 다룬다.
+ISTQB CTFL v4.0.1 강의계획서는 **컴포넌트 통합 테스트**(component integration testing)를 컴포넌트 사이의 인터페이스와 상호작용을 시험하는 데 초점을 둔 테스트 레벨로, **시스템 통합 테스트**(system integration testing)를 시험 대상 시스템과 다른 시스템, 외부 서비스 사이의 인터페이스를 시험하는 데 초점을 둔 테스트 레벨로 정의한다. 컴포넌트 통합 테스트는 통합 전략에 크게 좌우된다.[@istqb-ctfl-syllabus-2024] 테스트 기준은 [[v-model#테스트 기준|V 모델]]에서 다룬다.
 
 ## 통합 전략
 
-대표적인 통합 전략으로 하향식, 상향식, 빅뱅이 있다.[@istqb-ctfl-syllabus-2024][@ieee-swebok-v4-0a-2026] SWEBOK V4.0a는 여기에 혼합(샌드위치) 통합을 더해 대표적인 통합 테스트 전략으로 든다.[@ieee-swebok-v4-0a-2026]
+대표적인 통합 전략으로 하향식, 상향식, 빅뱅이 있다.[@istqb-ctfl-syllabus-2024][@ieee-swebok-v4-0a-2026] 혼합(샌드위치) 통합도 대표적인 통합 테스트 전략이다.[@ieee-swebok-v4-0a-2026]
 
 ISO/IEC/IEEE 24765 용어집은 각 전략의 이름을 다음과 같이 정의한다.[@ieee-cs-sevocab-2026]
 
@@ -23,11 +23,11 @@ ISO/IEC/IEEE 24765 용어집은 각 전략의 이름을 다음과 같이 정의�
 
 ![[diagrams/integration-test-strategies.svg]]
 
-SWEBOK V4.0a에 따르면 빅뱅 통합은 릴리스할 모든 부분이 완성될 때까지 통합을 미루며, 점진적 통합은 이보다 오류의 위치를 찾기 쉬운 것으로 여겨진다.[@ieee-swebok-v4-0a-2026] 점진적 통합에 쓰는 스텁과 드라이버는 [[test-harness|테스트 하네스]]에서 다룬다.
+빅뱅 통합은 릴리스할 모든 부분이 완성될 때까지 통합을 미룬다. SWEBOK V4.0a에 따르면 점진적 통합은 이보다 오류의 위치를 찾기 쉬운 것으로 여겨진다.[@ieee-swebok-v4-0a-2026] 점진적 통합에 쓰는 스텁과 드라이버는 [[test-harness|테스트 하네스]]에서 다룬다.
 
 ## 인터페이스 테스트
 
-ISO/IEC/IEEE 24765 용어집은 **인터페이스 테스트**(interface testing)를 시스템이나 컴포넌트가 서로 데이터와 제어를 올바르게 넘기는지 평가하는 테스트로 정의한다.[@ieee-cs-sevocab-2026] ISTQB 용어집은 인터페이스 테스트를 같은 것을 확인하는 통합 테스트의 한 종류로 정의한다.[@istqb-glossary-interface-testing-2026]
+ISO/IEC/IEEE 24765 용어집은 **인터페이스 테스트**(interface testing)를 시스템이나 컴포넌트가 서로 데이터와 제어를 올바르게 넘기는지 평가하는 테스트로 정의한다.[@ieee-cs-sevocab-2026] 인터페이스 테스트는 통합 테스트의 한 종류다.[@istqb-glossary-interface-testing-2026]
 
 ## ASPICE SWE.5와 SYS.4
 
@@ -45,4 +45,4 @@ SYS.4 System Integration and Integration Verification은 시스템 요소를 통
 
 ISO 26262-4:2018은 7절에서 시스템과 아이템의 통합과 테스트(System and item integration and testing)를 다루고, 표 3에 통합 테스트의 테스트 케이스를 끌어내는 방법을 둔다. 표 4–8은 하드웨어-소프트웨어 수준, 표 9–12는 시스템 수준, 표 13–16은 차량 수준을 다룬다. 예를 들어 표 9는 시스템 수준에서, 표 13은 차량 수준에서 요구사항이 올바르게 구현됐는지를 다룬다.[@iso-26262-4-obp-2018]
 
-ISTQB CT-AuT 강의계획서는 CTFL의 컴포넌트 통합 테스트를 ISO 26262-6의 10절과 ASPICE의 SWE.5에, 시스템 통합 테스트를 ISO 26262-4의 7절과 SYS.4에 대응시킨다.[@istqb-ct-aut-syllabus-2025] 대응 전체는 [[system-testing#테스트 레벨의 대응|시스템 테스트]]에서 다룬다.
+ISTQB CT-AuT v2.1.1 강의계획서는 CTFL의 컴포넌트 통합 테스트를 ISO 26262-6의 10절과 ASPICE의 SWE.5에, 시스템 통합 테스트를 ISO 26262-4의 7절과 SYS.4에 대응시킨다.[@istqb-ct-aut-syllabus-2025] 대응 전체는 [[system-testing#테스트 레벨의 대응|시스템 테스트]]에서 다룬다.
