@@ -64,3 +64,11 @@ ISTQB CTAL-TA v4.0 강의계획서는 기법을 다룬다.[@istqb-ctal-ta-syllab
 ## 조사
 
 CTFL 강의계획서도 기법을 다룬다.[@istqb-ctfl-syllabus-2024]
+
+## 출판물 하나
+
+ISTQB CTFL v4.0.1 강의계획서는 원칙을 둔다. CTFL 강의계획서에 따르면 원칙은 쓸모 있다.[@istqb-ctfl-syllabus-2024]
+
+## 지식 체계 하나
+
+SWEBOK V4.0a는 지식 영역을 둔다. SWEBOK에 따르면 지식 영역은 쓸모 있다.[@ieee-swebok-v4-0a-2026]

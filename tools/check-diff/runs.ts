@@ -2,7 +2,8 @@ import type { Page } from "../check-content/tree"
 import {
   allConsensus,
   consensusWithoutEdition,
-  editionNamedBefore,
+  sectionText,
+  shortNameAllowed,
   opensWithPointer,
   pointerPhrases,
 } from "./consensus"
@@ -296,7 +297,11 @@ export function repeatedNames(page: Page, editions: Map<string, Edition>): Repea
     if (
       allConsensus(sentence.keys) &&
       short?.index === 0 &&
-      editionNamedBefore(earlier.map((other) => other.text).join("\n"), short[0])
+      shortNameAllowed(
+        earlier.map((other) => other.text).join("\n"),
+        sectionText(page.masked, sentence.line),
+        short[0],
+      )
     )
       return
     const named = keyAt

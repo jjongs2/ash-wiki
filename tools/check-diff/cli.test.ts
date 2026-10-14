@@ -242,6 +242,15 @@ describe("check-diff CLI", { concurrency: false }, () => {
     assert.ok(!has(lines, "content/consensus.md:60:", "다시 쓴다"))
   })
 
+  test("짧은 이름은 같은 절에 같은 단체의 다른 출판물이 있을 때만 넘긴다", () => {
+    const sentence = report.items.get("standard-sentence") ?? []
+    const run = report.items.get("source-run") ?? []
+    assert.ok(has(sentence, "content/consensus.md:70:", "CTFL 강의계획서에 따르면"), "출판물 하나")
+    assert.ok(has(run, "content/consensus.md:70:", "다시 쓴다"), "출판물 하나")
+    assert.ok(has(sentence, "content/consensus.md:74:", "SWEBOK에 따르면"), "지식 체계 하나")
+    assert.ok(has(run, "content/consensus.md:74:", "다시 쓴다"), "지식 체계 하나")
+  })
+
   test("출처 구간: 합의 문서 키만 인용한 블록은 절 첫 블록이어도 출처 표시 없음으로 찍지 않는다", () => {
     const lines = report.items.get("source-run") ?? []
     assert.ok(!has(lines, "content/consensus.md:", "출처 표시가 없다"))

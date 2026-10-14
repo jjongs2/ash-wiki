@@ -23,7 +23,7 @@ import {
 import { firstLinkItem } from "./first-link"
 import { ownerPage } from "./owner"
 import { editions } from "./editions"
-import { allConsensus, consensusWithoutEdition, editionNamedBefore } from "./consensus"
+import { allConsensus, consensusWithoutEdition, sectionText, shortNameAllowed } from "./consensus"
 import {
   attributed,
   claimBlocks,
@@ -74,7 +74,11 @@ const standardSentenceItem: Item = ({ changed }) =>
       ...[...text.matchAll(consensusWithoutEdition)]
         .filter(
           (match) =>
-            !editionNamedBefore(sectionBefore(page, line) + text.slice(0, match.index), match[0]),
+            !shortNameAllowed(
+              sectionBefore(page, line) + text.slice(0, match.index),
+              sectionText(page.masked, line),
+              match[0],
+            ),
         )
         .map((match) => ({
           file: page.file,
