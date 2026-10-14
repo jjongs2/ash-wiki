@@ -625,7 +625,7 @@ function regionOrder(allFiles: QuartzPluginData[]): string[] {
 }
 
 // 호 사이를 잇는 링크. 거르기와 정렬 상태를 쿼리로 이어받도록 스크립트가 href에 쿼리를 붙이고, ←/→ 키는
-// rel이 prev·next인 아래 링크를 누른다. 이웃 호가 없는 쪽은 자리만 비운다.
+// rel이 prev·next인 아래 링크를 누른다. 이웃 호가 없는 쪽은 링크를 두지 않는다.
 type Neighbors = { prev: string | null; next: string | null }
 
 const issueHref = (props: QuartzComponentProps, week: string) =>
@@ -641,32 +641,27 @@ const periodTimes = (week: string, locale: string, year?: number): ElementConten
 }
 
 // 제목 아래 줄. 왼쪽에 호의 기간, 오른쪽에 "‹ 40주차 · 지난 호 · 42주차 ›"를 둔다. 이웃 호가 다른 해면 연도를
-// 붙인다.
+// 붙인다. 이웃 링크는 오른쪽 끝에 맞추므로, 이웃 호가 없는 쪽은 빈 자리도 두지 않는다.
 function issueHead(props: QuartzComponentProps, week: string, neighbors: Neighbors): Element {
-  const side = (target: string | null, rel: "prev" | "next") =>
-    target
-      ? el(
-          "a",
-          { href: issueHref(props, target), className: ["news-nav-link"], dataNewsNav: rel },
-          [text(rel === "prev" ? `‹ ${weekLabel(target, week)}` : `${weekLabel(target, week)} ›`)],
-        )
-      : el("span", { className: ["news-nav-link"], ariaHidden: "true" })
+  const side = (target: string, rel: "prev" | "next") =>
+    el("a", { href: issueHref(props, target), className: ["news-nav-link"], dataNewsNav: rel }, [
+      text(rel === "prev" ? `‹ ${weekLabel(target, week)}` : `${weekLabel(target, week)} ›`),
+    ])
   const sep = () => el("span", { className: ["news-nav-sep"], ariaHidden: "true" }, [text("·")])
+  const index = el(
+    "a",
+    {
+      href: resolveRelative(props.fileData.slug!, INDEX_SLUG as never),
+      className: ["news-nav-link"],
+    },
+    [text("지난 호")],
+  )
   return el("div", { className: ["news-head"] }, [
     el("p", { className: ["news-period"] }, periodTimes(week, props.cfg.locale)),
     el("nav", { className: ["news-nav"], ariaLabel: "호 이동" }, [
-      side(neighbors.prev, "prev"),
-      ...(neighbors.prev ? [sep()] : []),
-      el(
-        "a",
-        {
-          href: resolveRelative(props.fileData.slug!, INDEX_SLUG as never),
-          className: ["news-nav-link"],
-        },
-        [text("지난 호")],
-      ),
-      ...(neighbors.next ? [sep()] : []),
-      side(neighbors.next, "next"),
+      ...(neighbors.prev ? [side(neighbors.prev, "prev"), sep()] : []),
+      index,
+      ...(neighbors.next ? [sep(), side(neighbors.next, "next")] : []),
     ]),
   ])
 }
