@@ -1,5 +1,5 @@
 import type { Page } from "../check-content/tree"
-import { allConsensus, consensusPointer, consensusPointers } from "./consensus"
+import { allConsensus, opensWithPointer, pointerPhrases } from "./consensus"
 import type { Edition } from "./editions"
 import { blocks, escapeRegExp, lineAt, lineStarts, sentences, standardBodies } from "./text"
 
@@ -247,42 +247,43 @@ export interface RepeatedName {
   earlier: { line: number; name: string } // 같은 구간에서 그 이름이 먼저 나온 문장
 }
 
-// 줄이 든 절의 번호. 절은 `##`, `###` 제목으로 나뉜다.
-function sectionOf(page: Page): (line: number) => number {
-  const starts = blocks(page)
+// 문장마다 같은 구간의 앞 문장들. 구간은 판이 바뀌면 끊고, 합의 문서의 구간은 절(`##`, `###`)이 바뀌어도
+// 끊는다(위키 검증의 합의 문서). 같은 합의 문서만 인용한 일반 명제는 판이 같아 구간을 끊지 않는다.
+function sentencesInRuns(
+  page: Page,
+  editions: Map<string, Edition>,
+): { sentence: ClaimSentence; earlier: ClaimSentence[] }[] {
+  const list = claimSentences(page, editions)
+  const headings = blocks(page)
     .filter((block) => block.kind === "heading" && /^#{2,3} /.test(block.text))
     .map((block) => block.start)
-  return (line) => starts.filter((start) => start < line).length
+  const section = (line: number) => headings.filter((start) => start < line).length
+  let start = 0
+  return list.map((sentence, index) => {
+    const previous = list[index - 1]
+    if (
+      !previous ||
+      previous.editions !== sentence.editions ||
+      (allConsensus(sentence.keys) && section(previous.line) !== section(sentence.line))
+    )
+      start = index
+    return { sentence, earlier: list.slice(start, index) }
+  })
 }
-
-// 앞 문장의 구간이 이 문장으로 이어지는지. 판이 바뀌면 끊고, 합의 문서의 구간은 절이 바뀌어도 끊는다(위키
-// 검증의 합의 문서). 같은 합의 문서만 인용한 일반 명제는 판이 같아 구간을 끊지 않는다.
-const continuesRun = (
-  previous: ClaimSentence,
-  sentence: ClaimSentence,
-  section: (line: number) => number,
-) =>
-  previous.editions === sentence.editions &&
-  !(allConsensus(sentence.keys) && section(previous.line) !== section(sentence.line))
 
 // 출처 구간 안에서 앞서 밝힌 출처 이름을 주어나 소유격, "…에 따르면"으로 다시 쓴 문장. 구간은 문장의 판이
 // 바뀌는 자리와, 합의 문서의 구간이면 절이 바뀌는 자리에서 끊는다. 문장 앞의 이름이 출처 표시이고 그 이름이
 // 같은 구간의 앞 문장에 이미 나왔거나, 출처 표시가 있는 앞 문장 뒤에서 "…에 따르면"으로 시작하는 문장을
 // 찍는다. 합의 문서 구간 안의 "이 강의계획서에 따르면"은 가리키는 말이라 되풀이가 아니다.
 export function repeatedNames(page: Page, editions: Map<string, Edition>): RepeatedName[] {
-  const list = claimSentences(page, editions)
-  const section = sectionOf(page)
   const found: RepeatedName[] = []
-  let start = 0
-  list.forEach((sentence, index) => {
-    if (index === 0 || !continuesRun(list[index - 1], sentence, section)) start = index
-    const earlier = list.slice(start, index)
+  sentencesInRuns(page, editions).forEach(({ sentence, earlier }) => {
     const text = strip(sentence.text)
     const name = text.startsWith("**") ? undefined : leadingName(text)
     if (history(text)) return
     const key = name ? nameKey(name) : undefined
     const keyAt = key && isSource(key, sentence.keys, editions) ? nameIn(key) : undefined
-    const pointer = allConsensus(sentence.keys) && consensusPointer.test(text)
+    const pointer = allConsensus(sentence.keys) && opensWithPointer.test(text)
     const named = keyAt
       ? earlier.find((other) => keyAt.test(other.text))
       : according.test(text) && !pointer
@@ -304,17 +305,13 @@ export function pointerOpenings(
   page: Page,
   editions: Map<string, Edition>,
 ): { line: number; text: string }[] {
-  const list = claimSentences(page, editions)
-  const section = sectionOf(page)
   const found: { line: number; text: string }[] = []
-  let start = 0
-  list.forEach((sentence, index) => {
-    if (index === 0 || !continuesRun(list[index - 1], sentence, section)) start = index
+  sentencesInRuns(page, editions).forEach(({ sentence, earlier }) => {
     const text = strip(sentence.text)
-    if (!allConsensus(sentence.keys) || !consensusPointer.test(text)) return
-    const named = list
-      .slice(start, index)
-      .some((other) => namesSource(other.text.replace(consensusPointers, ""), other.keys, editions))
+    if (!allConsensus(sentence.keys) || !opensWithPointer.test(text)) return
+    const named = earlier.some((other) =>
+      namesSource(other.text.replace(pointerPhrases, ""), other.keys, editions),
+    )
     if (!named) found.push({ line: sentence.line, text })
   })
   return found
