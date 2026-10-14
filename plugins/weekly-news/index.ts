@@ -851,7 +851,7 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 // - 이전·다음 링크와 지난 호 목록은 대문 최근 변경의 짜임(제목색 제목과 그 아래나 옆의 작은 보조 글자 줄)을
 //   따른다(소유자 결정, #419). 보조 글자 줄(기간 · 건수)의 가운뎃점은 카드 첫 줄과 같은 간격이다. 이전·다음
 //   링크는 1px --lightgray 테두리의 5px 상자이고, 갈 곳이 먼저 보이도록 주차를 굵게 쓴다. 올리면 테두리와
-//   주차가 링크색이 된다. 지난 호 목록의 주차는 목록 항목이라 대문처럼 보통 굵기다. 지난 호 목록은 대문 타임라인의
+//   주차가 링크색이 된다. 지난 호 목록의 주차도 짧은 이름표라 굵게 써서 왼쪽 열이 목차처럼 훑어진다. 지난 호 목록은 대문 타임라인의
 //   선과 마디를 그대로 쓰고, 달 소제목은 날짜 마디의 글자 꼴에 본문 절과 같은 꺾쇠를 붙인다. 주차 칸 폭을
 //   고정해 기간이 한 열로 서고, 피드 줄과 첫 달 사이는 달과 달 사이와 같게 둔다.
 // - 글자 대비는 docs/palette.md의 쌍에 든다. 구역 칩은 구역 칩, 고르지 않고 거를 때의 칩은 구역 이름, 고른 칩은
@@ -1206,7 +1206,7 @@ const CSS = `.news-tools {
   padding: 0;
   background-color: transparent;
   color: var(--dark);
-  font-weight: 400;
+  font-weight: 600;
 }
 .news-archive a.news-index-week:hover {
   color: var(--secondary);
@@ -1230,9 +1230,12 @@ const CSS = `.news-tools {
 //
 // SPA 이동은 본문을 새로 그리므로 nav 이벤트마다 다시 건다. 첫 불러오기에서는 setup과 nav가 모두 돌 수 있어,
 // 이미 건 줄은 data-ready로 건너뛴다. SPA는 본문을 갈아 끼우지 않고 같은 자리의 요소를 고쳐 쓰므로(micromorph),
-// 떠날 때 처리기와 data-ready를 거둔다. 거두지 않으면 같은 호로 돌아왔을 때 옛 처리기가 남아 한 번 누름이 두 번
-// 처리된다.
+// 떠날 때(prenav) 처리기와 data-ready를 거둔다. 거두지 않으면 다음 호에서 옛 처리기가 옛 호의 카드로 목록을 다시
+// 그린다. 거두는 일을 window.addCleanup에 맡기지 않는 까닭은, 페이지를 처음 불러올 때 이 스크립트가 SPA 라우터
+// 스크립트보다 먼저 돌아 그 함수가 아직 없기 때문이다. 처리기는 한 벌만 두고, 새로 걸 때도 앞의 것을 거둔다.
 const SCRIPT = `(() => {
+  let controller = null
+
   function hide() {
     this.closest(".news-card-image")?.setAttribute("hidden", "")
   }
@@ -1311,11 +1314,8 @@ const SCRIPT = `(() => {
       for (const link of document.querySelectorAll("a[data-news-nav]")) link.search = search
     }
 
-    const controller = new AbortController()
-    window.addCleanup?.(() => {
-      controller.abort()
-      delete tools.dataset.ready
-    })
+    controller?.abort()
+    controller = new AbortController()
     function select(event) {
       const button = event.target.closest("button")
       if (!button) return
@@ -1353,8 +1353,15 @@ const SCRIPT = `(() => {
     for (const tools of document.querySelectorAll(".news-tools")) setupTools(tools)
   }
 
+  function teardown() {
+    controller?.abort()
+    controller = null
+    for (const tools of document.querySelectorAll(".news-tools")) delete tools.dataset.ready
+  }
+
   setup()
   document.addEventListener("nav", setup)
+  document.addEventListener("prenav", teardown)
 })()
 `
 
