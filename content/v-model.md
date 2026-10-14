@@ -15,17 +15,17 @@ V의 가장 아래 단계에서는 유닛을 구현한다.[@weit-v-modell-xt-2-4
 
 ## 테스트 기준
 
-ISTQB 용어집은 **테스트 기준**(test basis)을 테스트 분석과 테스트 설계의 바탕이 되는 지식의 총체로 정의한다.[@istqb-glossary-test-basis-2026] V 모델에서는 오른쪽 단계의 검증을 같은 수평 단계에 있는 왼쪽 단계의 산출물, 곧 요구사항, 아키텍처, 설계를 바탕으로 명세한다.[@weit-v-modell-xt-2-4-2024][@vda-automotive-spice-pam-4-1-2026] [[automotive-spice|ASPICE]] 4.1은 시스템 통합과 소프트웨어 통합의 검증 조치를 각각 시스템 아키텍처와 [[software-architecture|소프트웨어 아키텍처]]의 정적·동적 측면에 맞춰 정하게 한다.[@vda-automotive-spice-pam-4-1-2026]
+**테스트 기준**(test basis)은 테스트 분석과 테스트 설계의 바탕이 되는 지식의 총체다.[@istqb-glossary-test-basis-2026] V 모델에서는 오른쪽 단계의 검증을 같은 수평 단계에 있는 왼쪽 단계의 산출물, 곧 요구사항, 아키텍처, 설계를 바탕으로 명세한다.[@weit-v-modell-xt-2-4-2024][@vda-automotive-spice-pam-4-1-2026] [[automotive-spice|ASPICE]] 4.1은 시스템 통합과 소프트웨어 통합의 검증 조치를 각각 시스템 아키텍처와 [[software-architecture|소프트웨어 아키텍처]]의 정적·동적 측면에 맞춰 정하게 한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 테스트 프로세스
 
-ISTQB 용어집에 따르면 V 모델이 개발 단계마다 짝짓는 [[software-testing#테스트 레벨|테스트 레벨]]은 각각 [[test-process|테스트 프로세스]]의 한 인스턴스다.[@istqb-glossary-v-model-2026][@istqb-glossary-test-level-2026]
+ISTQB 용어집은 V 모델이 개발 단계마다 짝짓는 [[software-testing#테스트 레벨|테스트 레벨]]을 각각 [[test-process|테스트 프로세스]]의 한 인스턴스로 정의한다.[@istqb-glossary-v-model-2026][@istqb-glossary-test-level-2026]
 
 ## 테스트 설계를 앞당김
 
-V 모델에서는 테스트 설계를 코딩이 끝난 뒤가 아니라 대응하는 개발 단계에서 시작한다.[@weit-v-modell-xt-2-4-2024][@istqb-ctfl-syllabus-2024] ISTQB CTFL 강의계획서는 이를 개발 생명주기 모델과 상관없이 지킬 좋은 관행으로 권한다. 이 강의계획서에 따르면 순차 모델에서는 초기 단계에 테스터가 요구 검토, 테스트 분석, 설계에 참여한다.[@istqb-ctfl-syllabus-2024]
+V 모델에서는 테스트 설계를 코딩이 끝난 뒤가 아니라 대응하는 개발 단계에서 시작한다.[@weit-v-modell-xt-2-4-2024][@istqb-ctfl-syllabus-2024] ISTQB CTFL v4.0.1 강의계획서는 이를 개발 생명주기 모델과 상관없이 지킬 좋은 관행으로 권한다. 순차 모델에서는 초기 단계에 테스터가 요구 검토, 테스트 분석, 설계에 참여한다.[@istqb-ctfl-syllabus-2024]
 
-ISTQB 용어집은 테스트와 [[software-quality#품질 보증|품질 보증]] 활동을 [[software-development-life-cycle|SDLC]]에서 가능한 한 일찍 수행하는 테스트 접근법을 shift left라 부른다.[@istqb-glossary-shift-left-2026] CTFL 강의계획서에 따르면 일찍 테스트하면 시간과 비용이 준다. 일찍 없앤 결함은 뒤 산출물에 결함을 낳지 않고, 뒤에 생기는 장애(failure)가 줄어 품질 비용이 준다.[@istqb-ctfl-syllabus-2024]
+테스트와 [[software-quality#품질 보증|품질 보증]] 활동을 [[software-development-life-cycle|SDLC]]에서 가능한 한 일찍 수행하는 테스트 접근법을 **shift left**라 부른다.[@istqb-glossary-shift-left-2026] ISTQB CTFL v4.0.1 강의계획서에 따르면 일찍 테스트하면 시간과 비용이 주는데, 일찍 없앤 결함은 뒤 산출물에 결함을 낳지 않고 뒤에 생기는 장애(failure)가 줄어 품질 비용이 주기 때문이다.[@istqb-ctfl-syllabus-2024]
 
 ## 기원
 
@@ -35,7 +35,7 @@ V-Modell XT는 V자 모양의 개발 절차를 내용의 바탕으로 삼았고 
 
 Forsberg와 Mooz는 1991년 논문에서 시스템 공학이 프로젝트에서 맡는 역할을 밝히려고 프로젝트 주기의 기술적 측면을 V 모양 그림으로 나타냈다.[@forsberg-relationship-system-engineering-1991]
 
-SWEBOK V4.0a는 [[waterfall-model|폭포수 모델]]에서 나온 여러 변형과 확장의 예로 V 모델을 든다.[@ieee-swebok-v4-0a-2026]
+V 모델은 [[waterfall-model|폭포수 모델]]에서 나온 여러 변형과 확장의 한 예다.[@ieee-swebok-v4-0a-2026]
 
 ## 반복 적용
 

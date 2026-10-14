@@ -11,7 +11,7 @@ verified: 2026-10-13
 
 ## 수동 테스트와 자동화
 
-키워드 기반 테스트는 테스트 자동화에 흔히 쓰이지만, 자동화하지 않는 수동 테스트에도 쓸 수 있다.[@iso-iec-ieee-29119-5-obp-2024][@istqb-ctal-tae-syllabus-2024] ISTQB 용어집은 키워드 기반 테스트를 테스트 스크립트에 키워드를 담고, 그 키워드를 구현하는 스크립트를 지원 파일에 두는 테스트 자동화 접근으로 정의하고, 동의어로 action word-driven testing을 둔다.[@istqb-glossary-keyword-driven-testing-2026] CTAL-TA 강의계획서에 따르면 키워드 기반 테스트를 수동 테스트에 쓰면 뒤에 자동 테스트로 옮겨 가기 쉬워진다.[@istqb-ctal-ta-syllabus-2025]
+키워드 기반 테스트는 테스트 자동화에 흔히 쓰이지만, 자동화하지 않는 수동 테스트에도 쓸 수 있다.[@iso-iec-ieee-29119-5-obp-2024][@istqb-ctal-tae-syllabus-2024] ISTQB 용어집은 키워드 기반 테스트를 테스트 스크립트에 키워드를 담고, 그 키워드를 구현하는 스크립트를 지원 파일에 두는 테스트 자동화 접근으로 정의하고, 동의어로 action word-driven testing을 둔다.[@istqb-glossary-keyword-driven-testing-2026] ISTQB CTAL-TA v4.0 강의계획서에 따르면 키워드 기반 테스트를 수동 테스트에 쓰면 뒤에 자동 테스트로 옮겨 가기 쉬워진다.[@istqb-ctal-ta-syllabus-2025]
 
 29119-5:2024의 5절(참고)은 자동화할 때는 키워드마다 그것을 실행하는 코드(keyword execution code)를 소프트웨어로 구현하고, 수동으로 할 때는 키워드가 가리키는 동작을 사람이 수행하므로 실행 코드가 없다는 것을 제시한다. 이 코드는 고른 도구나 테스트 실행 엔진과 테스트 인터페이스에 따라 달라진다.[@iso-iec-ieee-29119-5-obp-2024]
 
@@ -54,10 +54,10 @@ verified: 2026-10-13
 
 ## CTAL-TA 강의계획서의 층과 갈래
 
-CTAL-TA 강의계획서에 따르면 키워드는 적어도 도메인 층과 테스트 인터페이스 층의 두 층에 놓이고, 중간 층을 더 두면 키워드의 유지보수를 도울 수 있다. 이 강의계획서는 키워드를 action과 verification 두 갈래로 나눈다. action 키워드는 테스트 대상, 테스트 환경, 다른 컴포넌트나 시스템과 상호작용하고, verification 키워드는 실제 결과가 기대 결과와 맞는지 평가하는 assertion을 나타낸다.[@istqb-ctal-ta-syllabus-2025]
+ISTQB CTAL-TA v4.0 강의계획서에 따르면 키워드는 적어도 도메인 층과 테스트 인터페이스 층의 두 층에 놓이고, 중간 층을 더 두면 키워드의 유지보수를 도울 수 있다. 이 강의계획서는 키워드를 테스트 대상, 테스트 환경, 다른 컴포넌트나 시스템과 상호작용하는 action 키워드와, 실제 결과가 기대 결과와 맞는지 평가하는 assertion을 나타내는 verification 키워드의 두 갈래로 나눈다.[@istqb-ctal-ta-syllabus-2025]
 
 ## 데이터 기반 테스트
 
-**데이터 기반 테스트**(data-driven testing)는 테스트 데이터를 동작의 순서와 떼어 두고, 같은 동작 순서를 여러 데이터 묶음으로 되풀이해 실행하는 방법이다.[@iso-iec-ieee-29119-5-obp-2024][@istqb-glossary-data-driven-testing-2026] ISTQB 용어집은 이를 테스트 자동화 접근으로 정의한다.[@istqb-glossary-data-driven-testing-2026]
+**데이터 기반 테스트**(data-driven testing)는 테스트 데이터를 동작의 순서와 떼어 두고, 같은 동작 순서를 여러 데이터 묶음으로 되풀이해 실행하는 방법이다.[@iso-iec-ieee-29119-5-obp-2024][@istqb-glossary-data-driven-testing-2026] 데이터 기반 테스트는 테스트 자동화 접근의 하나다.[@istqb-glossary-data-driven-testing-2026]
 
-29119-5:2024의 5절(참고)은 데이터 기반 테스트가 키워드 기반 테스트와 별개이지만 함께 쓰이는 일이 많다는 것과, 데이터를 표, 스프레드시트, 데이터베이스에 둘 수 있다는 것을 제시한다.[@iso-iec-ieee-29119-5-obp-2024] ISTQB CTAL-TAE(Certified Tester Advanced Level Test Automation Engineering) 강의계획서에 따르면 데이터 기반 테스트에서는 테스트 분석가가 테스트 데이터 파일을 채워 자동화한 테스트를 명세할 수 있고, 키워드 기반 테스트는 흔히 데이터 기반 테스트 위에 세운다.[@istqb-ctal-tae-syllabus-2024] 테스트 자동화의 다른 접근은 [[test-automation#자동화 접근|테스트 자동화]]에서 다룬다.
+29119-5:2024의 5절(참고)은 데이터 기반 테스트가 키워드 기반 테스트와 별개이지만 함께 쓰이는 일이 많다는 것과, 데이터를 표, 스프레드시트, 데이터베이스에 둘 수 있다는 것을 제시한다.[@iso-iec-ieee-29119-5-obp-2024] 데이터 기반 테스트에서는 테스트 분석가가 테스트 데이터 파일을 채워 자동화한 테스트를 명세할 수 있고, 키워드 기반 테스트는 흔히 데이터 기반 테스트 위에 세운다.[@istqb-ctal-tae-syllabus-2024] 테스트 자동화의 다른 접근은 [[test-automation#자동화 접근|테스트 자동화]]에서 다룬다.

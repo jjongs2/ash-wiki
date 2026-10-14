@@ -13,11 +13,11 @@ IEEE 2675-2021은 시스템과 애플리케이션을 신뢰할 수 있고 안전
 
 ## 목적
 
-SWEBOK V4.0a에 따르면 전통적인 [[software-process|소프트웨어 프로세스]]에서는 개발 팀이 배포할 준비가 된 애플리케이션을 운영 팀에 넘기고, 운영 팀이 대개 손으로 배포해 시간과 품질 양쪽에서 비효율적이었다.[@ieee-swebok-v4-0a-2026] DoD는 보고서 The State of DevSecOps(2025)에서, DoD의 소프트웨어 개발자는 소프트웨어를 만들고 인도해 임무 요구를 맞추는 속도를 가장 먼저 따지고 IT(information technology) 운영은 모든 이해관계자가 쓰는 인프라의 안정성, 접근성, 가용성을 주된 목표로 둔다고 진단했다.[@dod-state-of-devsecops-2025] DevOps는 개발과 운영 사이의 조직 벽(사일로)을 없애고 두 쪽의 협업을 늘리려 하며, 배포 단계를 자동화해 개발과 배포에 드는 시간을 줄이려 한다.[@ieee-swebok-v4-0a-2026][@nist-sp-800-204c-2022] DevOps라는 이름의 Dev는 개발(development)을, Ops는 운영(operations)을 가리킨다.[@nist-sp-800-204c-2022][@dod-devsecops-fundamentals-2-5-2024]
+전통적인 [[software-process|소프트웨어 프로세스]]에서는 개발 팀이 배포할 준비가 된 애플리케이션을 운영 팀에 넘기고, 운영 팀이 대개 손으로 배포했다. SWEBOK V4.0a에 따르면 이 방식은 시간과 품질 양쪽에서 비효율적이었다.[@ieee-swebok-v4-0a-2026] DoD는 보고서 The State of DevSecOps(2025)에서, DoD의 소프트웨어 개발자는 소프트웨어를 만들고 인도해 임무 요구를 맞추는 속도를 가장 먼저 따지고 IT(information technology) 운영은 모든 이해관계자가 쓰는 인프라의 안정성, 접근성, 가용성을 주된 목표로 둔다고 진단했다.[@dod-state-of-devsecops-2025] DevOps는 개발과 운영 사이의 조직 벽(사일로)을 없애고 두 쪽의 협업을 늘리려 하며, 배포 단계를 자동화해 개발과 배포에 드는 시간을 줄이려 한다.[@ieee-swebok-v4-0a-2026][@nist-sp-800-204c-2022] DevOps라는 이름의 Dev는 개발(development)을, Ops는 운영(operations)을 가리킨다.[@nist-sp-800-204c-2022][@dod-devsecops-fundamentals-2-5-2024]
 
 Flickr의 John Allspaw와 Paul Hammond는 Velocity 2009에서 하루 10번의 배포를 제목으로 내건 발표로, Flickr에서 개발과 운영이 도구와 문화로 협력하는 방식을 소개했다.[@flickr-10-deploys-per-day-2009]
 
-SWEBOK V4.0a에 따르면 [[agile-software-development|애자일 개발]]은 잦은 반복으로 구현에 이른 피드백을 주고, DevOps는 운영에서 오는 피드백으로 개발자가 자기 코드가 운영 환경에서 어떻게 동작하는지 더 빨리 알게 한다. DevOps는 여러 변경을 묶어 정해진 간격으로 내는 릴리스 대신, 작은 변경 단위를 필요할 때 서로 독립적으로 내보내려 한다.[@ieee-swebok-v4-0a-2026]
+[[agile-software-development|애자일 개발]]은 잦은 반복으로 구현에 이른 피드백을 주고, DevOps는 운영에서 오는 피드백으로 개발자가 자기 코드가 운영 환경에서 어떻게 동작하는지 더 빨리 알게 한다. DevOps는 여러 변경을 묶어 정해진 간격으로 내는 릴리스 대신, 작은 변경 단위를 필요할 때 서로 독립적으로 내보내려 한다.[@ieee-swebok-v4-0a-2026]
 
 ![[diagrams/devops-feedback-loops.svg]]
 

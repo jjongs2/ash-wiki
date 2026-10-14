@@ -32,7 +32,7 @@ Brooks는 10년 안에 생산성, 신뢰성, 단순성 가운데 어느 하나�
 
 ## SWEBOK
 
-SWEBOK 지침은 IEEE Computer Society가 펴내며, 분야에서 일반적으로 받아들여진 지식을 지식 영역(knowledge area)으로 나눠 정리한다.[@ieee-swebok-2026] V3.0(2014)은 15개 지식 영역을 두었다.[@ieee-swebok-v3-2014] V4.0(2024)은 Software Architecture, Software Engineering Operations, Software Security를 더해 아래 18개 지식 영역으로 늘렸다.[@ieee-swebok-2026]
+IEEE Computer Society는 분야에서 일반적으로 받아들여진 지식을 지식 영역(knowledge area)으로 나눠 정리한 SWEBOK 지침을 펴낸다.[@ieee-swebok-2026] V3.0(2014)은 15개 지식 영역을 두었다.[@ieee-swebok-v3-2014] V4.0(2024)은 Software Architecture, Software Engineering Operations, Software Security를 더해 아래 18개 지식 영역으로 늘렸다.[@ieee-swebok-2026]
 
 | 지식 영역                                  | V4.0에서 새로 듦 |
 | ------------------------------------------ | ---------------- |

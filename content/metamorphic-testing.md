@@ -7,11 +7,11 @@ verified: 2026-10-13
 
 **메타모픽 테스트**(metamorphic testing)는 기존 [[test-case|테스트 케이스]]와 메타모픽 관계를 바탕으로 새 테스트 케이스를 만드는 테스트 케이스 설계 기법이다. **메타모픽 관계**(metamorphic relation)는 테스트 항목의 요구 동작에 따라, 테스트 케이스의 입력을 바꾸면 기대 결과가 어떻게 바뀌는지를 기술한 것이다.[@iso-iec-ieee-29119-4-obp-2021][@istqb-ctal-ta-syllabus-2025] [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-4:2021은 메타모픽 테스트를 [[black-box-testing|명세 기반]] 테스트 케이스 설계 기법으로 정의한다.[@iso-iec-ieee-29119-4-obp-2021]
 
-ISTQB 용어집은 메타모픽 테스트를 메타모픽 관계를 테스트 조건으로 삼는 테스트 기법으로 정의한다.[@istqb-glossary-metamorphic-testing-2026]
+메타모픽 테스트에서는 메타모픽 관계가 테스트 조건이 된다.[@istqb-glossary-metamorphic-testing-2026]
 
 ## 원본 테스트 케이스와 후속 테스트 케이스
 
-ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 따르면 메타모픽 테스트는 기존 테스트 케이스를 메타모픽 관계에 따라 바꿔 새 테스트 케이스를 하나 이상 만든다. 이때 바꾸기 전의 테스트 케이스를 **원본 테스트 케이스**(source test case), 바꿔 만든 테스트 케이스를 **후속 테스트 케이스**(follow-up test case)라 부른다. 한 메타모픽 관계의 원본 테스트 케이스와 후속 테스트 케이스는 테스트 절차 하나로 묶어 결과를 함께 판정하며, 관계를 만족하면 pass, 아니면 fail이다. fail이면 이어지는 [[software-testing#테스트와 디버깅|디버깅]]에서 어느 테스트 케이스가 실패했는지 가려야 한다.[@istqb-ctal-ta-syllabus-2025]
+메타모픽 테스트는 기존 테스트 케이스를 메타모픽 관계에 따라 바꿔 새 테스트 케이스를 하나 이상 만든다. 이때 바꾸기 전의 테스트 케이스를 **원본 테스트 케이스**(source test case), 바꿔 만든 테스트 케이스를 **후속 테스트 케이스**(follow-up test case)라 부른다. 한 메타모픽 관계의 원본 테스트 케이스와 후속 테스트 케이스는 테스트 절차 하나로 묶어 결과를 함께 판정하며, 관계를 만족하면 pass, 아니면 fail이다. fail이면 이어지는 [[software-testing#테스트와 디버깅|디버깅]]에서 어느 테스트 케이스가 실패했는지 가려야 한다.[@istqb-ctal-ta-syllabus-2025]
 
 ![[diagrams/metamorphic-source-follow-up.svg]]
 
@@ -19,7 +19,7 @@ ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 �
 
 ## 오라클 문제와 커버리지
 
-메타모픽 테스트는 [[test-case#판정과 테스트 오라클|테스트 오라클 문제]]가 있을 때도 쓸 수 있다. 이때는 원본 테스트 케이스와 후속 테스트 케이스의 기대 결과가 없어 결과를 하나하나 판정할 수 없다. 지금은 쓸 만한 종료 기준을 주는 인정된 커버리지 척도가 없다. 메타모픽 관계마다 한 번씩 덮는 것으로는 기대 결과를 일부만 검증하므로 모자라다.[@istqb-ctal-ta-syllabus-2025]
+메타모픽 테스트는 [[test-case#판정과 테스트 오라클|테스트 오라클 문제]]가 있을 때도 쓸 수 있다. 이때는 원본 테스트 케이스와 후속 테스트 케이스의 기대 결과가 없어 결과를 하나하나 판정할 수 없다. 지금은 쓸 만한 종료 기준을 주는 인정된 커버리지 척도가 없다. ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) v4.0 강의계획서에 따르면 메타모픽 관계마다 한 번씩 덮는 것으로는 기대 결과를 일부만 검증하므로 모자라다.[@istqb-ctal-ta-syllabus-2025]
 
 ## 무작위 테스트와의 결합
 

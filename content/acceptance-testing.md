@@ -5,11 +5,11 @@ tags:
 verified: 2026-10-03
 ---
 
-**인수 테스트**(acceptance testing)는 시스템을 받아들일지 정하는 데 초점을 둔 [[software-testing#테스트 레벨|테스트 레벨]]이다.[@iso-iec-ieee-24765-obp-2017][@istqb-glossary-acceptance-testing-2026] ISTQB CTFL 강의계획서에 따르면 인수 테스트는 [[verification-and-validation|확인]](validation)을 하고 배포 준비가 되었음을, 곧 시스템이 사용자의 업무상 필요를 채운다는 것을 보이는 데 초점을 두며, 의도한 사용자가 수행하는 것이 가장 좋다.[@istqb-ctfl-syllabus-2024]
+**인수 테스트**(acceptance testing)는 시스템을 받아들일지 정하는 데 초점을 둔 [[software-testing#테스트 레벨|테스트 레벨]]이다.[@iso-iec-ieee-24765-obp-2017][@istqb-glossary-acceptance-testing-2026] 인수 테스트는 [[verification-and-validation|확인]](validation)을 하고 배포 준비가 되었음을, 곧 시스템이 사용자의 업무상 필요를 채운다는 것을 보이는 데 초점을 둔다. ISTQB CTFL v4.0.1 강의계획서는 인수 테스트를 되도록 의도한 사용자가 수행하기를 권한다.[@istqb-ctfl-syllabus-2024]
 
 ## 인수 테스트의 형태
 
-이 강의계획서는 인수 테스트의 주된 형태로 사용자 인수 테스트, 운용 인수 테스트, 계약 인수 테스트, 규제 인수 테스트, 알파 테스트, 베타 테스트를 든다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 이 가운데 다섯을 다음과 같이 정의한다.
+인수 테스트의 주된 형태는 사용자 인수 테스트, 운용 인수 테스트, 계약 인수 테스트, 규제 인수 테스트, 알파 테스트, 베타 테스트다.[@istqb-ctfl-syllabus-2024] 이 가운데 다섯은 다음과 같이 정의된다.
 
 | 형태                                             | 정의                                                                                                                                        |
 | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -19,7 +19,7 @@ verified: 2026-10-03
 | 알파 테스트(alpha testing)                       | 개발 조직 밖의 역할이 개발자의 테스트 환경에서 수행하는 인수 테스트[@istqb-glossary-alpha-testing-2026]                                     |
 | 베타 테스트(beta testing)                        | 개발 조직 밖의 역할이 개발자의 테스트 환경 밖의 현장에서 수행하는 인수 테스트[@istqb-glossary-beta-testing-2026]                            |
 
-ISTQB CT-AcT(Certified Tester Acceptance Testing) 강의계획서에 따르면 운용 인수 테스트는 대개 시스템을 운용할 팀이 수행한다.[@istqb-ct-act-syllabus-2019]
+운용 인수 테스트는 대개 시스템을 운용할 팀이 수행한다.[@istqb-ct-act-syllabus-2019]
 
 ## ASPICE VAL.1
 
@@ -31,4 +31,4 @@ ISTQB CT-AcT(Certified Tester Acceptance Testing) 강의계획서에 따르면 �
 
 ISO 26262-4:2018은 시스템 수준 제품 개발의 요구사항 범위에 안전 확인을 넣고, 그 요구사항을 8절에 둔다. 시리즈 개요 그림에서도 안전 확인은 4부 8절(4-8)이다.[@iso-26262-4-obp-2018]
 
-ISTQB CT-AuT 강의계획서는 ISTQB 인수 테스트에, 그 일부만 덮는 ISO 26262-4의 8절과 ASPICE의 VAL.1을 대응시킨다.[@istqb-ct-aut-syllabus-2025] 대응 전체는 [[system-testing#테스트 레벨의 대응|시스템 테스트]]에서 다룬다.
+ISTQB CT-AuT v2.1.1 강의계획서는 ISTQB 인수 테스트에, 그 일부만 덮는 ISO 26262-4의 8절과 ASPICE의 VAL.1을 대응시킨다.[@istqb-ct-aut-syllabus-2025] 대응 전체는 [[system-testing#테스트 레벨의 대응|시스템 테스트]]에서 다룬다.

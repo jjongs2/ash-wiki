@@ -7,7 +7,7 @@ verified: 2026-10-02
 
 **나선형 모델**(spiral model)은 [[software-process|소프트웨어 프로세스]]를 명세 주도나 prototype 주도가 아니라 위험 주도(risk-driven)로 이끄는 프로세스 모델이다. 개발은 나선을 따라 도는 바퀴의 반복이고, 바퀴마다 남은 위험의 상대적 크기로 다음 단계를 정한다. Barry Boehm은 1986년 논문에서 나선형 모델을 소프트웨어 개발과 개선의 새 틀로 제시했다.[@boehm-spiral-model-1986]
 
-ISO/IEC/IEEE 24765:2017은 나선형 모델을 요구 분석, 예비·상세 설계, 코딩, 통합, 테스트 같은 구성 활동을 소프트웨어가 완성될 때까지 반복해 수행하는 소프트웨어 개발 프로세스 모델로 정의한다.[@iso-iec-ieee-24765-obp-2017] SWEBOK V4.0a는 나선형 모델을 [[software-development-life-cycle#예측형에서 적응형까지|진화형]]이자 위험 주도인 모델로 분류한다.[@ieee-swebok-v4-0a-2026] ISTQB CTFL 강의계획서는 나선형 모델을 [[software-development-life-cycle#모델|반복 개발 모델]]의 예로 든다.[@istqb-ctfl-syllabus-2024]
+ISO/IEC/IEEE 24765:2017은 나선형 모델을 요구 분석, 예비·상세 설계, 코딩, 통합, 테스트 같은 구성 활동을 소프트웨어가 완성될 때까지 반복해 수행하는 소프트웨어 개발 프로세스 모델로 정의한다.[@iso-iec-ieee-24765-obp-2017] 나선형 모델은 [[software-development-life-cycle#예측형에서 적응형까지|진화형]]이자 위험 주도인 모델이고[@ieee-swebok-v4-0a-2026], [[software-development-life-cycle#모델|반복 개발 모델]]의 한 예다.[@istqb-ctfl-syllabus-2024]
 
 ## 네 사분면
 

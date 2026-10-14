@@ -5,21 +5,21 @@ tags:
 verified: 2026-10-03
 ---
 
-**회귀 테스트**(regression testing)는 소프트웨어나 그 운영 환경을 바꾼 뒤, 바꾸지 않은 부분에 결함이 새로 생기거나 드러났는지 찾는 테스트다.[@ieee-cs-sevocab-2026][@istqb-glossary-regression-testing-2026] ISTQB 용어집은 회귀 테스트를 변경 관련 테스트(change-related testing)의 한 종류로 둔다.[@istqb-glossary-regression-testing-2026] SWEBOK V4.0a에 따르면 실무의 회귀 테스트는 테스트 대상이 스위트에서 전에 통과한 테스트를 여전히 통과하는지 보인다.[@ieee-swebok-v4-0a-2026]
+**회귀 테스트**(regression testing)는 소프트웨어나 그 운영 환경을 바꾼 뒤, 바꾸지 않은 부분에 결함이 새로 생기거나 드러났는지 찾는 테스트다.[@ieee-cs-sevocab-2026][@istqb-glossary-regression-testing-2026] ISTQB 용어집은 회귀 테스트를 변경 관련 테스트(change-related testing)의 한 종류로 둔다.[@istqb-glossary-regression-testing-2026] 실무의 회귀 테스트는 테스트 대상이 스위트에서 전에 통과한 테스트를 여전히 통과하는지 보인다.[@ieee-swebok-v4-0a-2026]
 
 ## 회귀 테스트의 계기
 
-ISTQB CTFL 강의계획서에 따르면 변경은 기능을 더해 개선하거나 결함을 없애 고치려고 하고, 그 뒤의 테스트에는 확인 테스트와 회귀 테스트가 든다. 회귀 테스트는 확인 테스트를 마친 수정까지 포함해, 변경이 나쁜 결과를 낳지 않았는지 확인한다. 회귀 테스트는 테스트 대상만이 아니라 환경과도 관련될 수 있고, 운영 환경의 업그레이드나 다른 플랫폼으로의 이전은 [[maintenance-testing|유지보수 테스트]]의 계기다.[@istqb-ctfl-syllabus-2024]
+변경은 기능을 더해 개선하거나 결함을 없애 고치려고 한다. ISTQB CTFL v4.0.1 강의계획서는 변경 뒤의 테스트에 확인 테스트와 회귀 테스트도 넣어야 한다고 본다. 회귀 테스트는 확인 테스트를 마친 수정까지 포함해, 변경이 나쁜 결과를 낳지 않았는지 확인한다. 회귀 테스트는 테스트 대상만이 아니라 환경과도 관련될 수 있고, 운영 환경의 업그레이드나 다른 플랫폼으로의 이전은 [[maintenance-testing|유지보수 테스트]]의 계기다.[@istqb-ctfl-syllabus-2024]
 
 ## 테스트 선택
 
-이 강의계획서는 먼저 [[configuration-management#변경 통제|영향 분석]]으로 소프트웨어의 어느 부분이 영향을 받을 수 있는지 보고, 회귀 테스트의 범위를 정하기를 권한다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL v4.0.1 강의계획서는 먼저 [[configuration-management#변경 통제|영향 분석]]으로 소프트웨어의 어느 부분이 영향을 받을 수 있는지 보고, 회귀 테스트의 범위를 정하기를 권한다.[@istqb-ctfl-syllabus-2024]
 
-SWEBOK V4.0a에 따르면 실행할 테스트가 많아 회귀 테스트는 시간이 많이 들 수 있어서, 변경마다 얻는 보증과 드는 자원 사이에서 절충해야 할 때가 있다. 회귀 테스트에서는 기존 스위트에서 [[test-case|테스트 케이스]]를 고르거나 줄이고, 우선순위가 높은 테스트가 먼저 실행되도록 순서를 정하기도 한다.[@ieee-swebok-v4-0a-2026]
+실행할 테스트가 많아 회귀 테스트는 시간이 많이 들 수 있어서, 변경마다 얻는 보증과 드는 자원 사이에서 절충해야 할 때가 있다. 회귀 테스트에서는 기존 스위트에서 [[test-case|테스트 케이스]]를 고르거나 줄이고, 우선순위가 높은 테스트가 먼저 실행되도록 순서를 정하기도 한다.[@ieee-swebok-v4-0a-2026]
 
-ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 따르면 시간, 예산, 테스트 환경, 테스트 데이터 같은 제약 때문에 회귀 테스트를 모두 실행하지 못할 수 있어서, 기준을 두어 알맞은 회귀 테스트를 골라야 한다. 이런 제약은 주로 수동으로 실행하는 테스트에 걸리지만 자동 테스트에도 걸린다. 테스트 주기가 짧고 오래 걸리는 자동 테스트가 많을 때가 그 예다. 회귀 테스트의 범위는 테스트 주기마다 다시 검토한다.[@istqb-ctal-ta-syllabus-2025]
+시간, 예산, 테스트 환경, 테스트 데이터 같은 제약 때문에 회귀 테스트를 모두 실행하지 못할 수 있다. 이런 제약은 주로 수동으로 실행하는 테스트에 걸리지만 자동 테스트에도 걸린다. 테스트 주기가 짧고 오래 걸리는 자동 테스트가 많을 때가 그 예다. ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) v4.0 강의계획서는 그래서 기준을 두어 알맞은 회귀 테스트를 골라야 하고, 회귀 테스트의 범위를 테스트 주기마다 다시 검토해야 한다고 본다.[@istqb-ctal-ta-syllabus-2025]
 
-이 강의계획서에 따르면 자동 테스트를 고르는 가장 믿을 만한 기법은 영향 분석이고, 도구가 이를 지원한다. 이 도구는 자동화한 [[configuration-management|형상 관리]] 시스템에 바탕을 두어, 테스트 케이스마다 실행 중에 활성화되는 형상 항목을 기록해 두었다가 변경이 생기면 바뀐 형상 항목과 상호작용하는 회귀 테스트를 고른다. 수동 실행에서는 뚜렷이 나은 선택 기법이 있다는 결정적 근거가 아직 없어 상황에 따라 고르며, 흔히 쓰는 기법은 다음과 같다.[@istqb-ctal-ta-syllabus-2025]
+ISTQB CTAL-TA v4.0 강의계획서에 따르면 자동 테스트를 고르는 가장 믿을 만한 기법은 영향 분석이고, 도구가 이를 지원한다. 이 도구는 자동화한 [[configuration-management|형상 관리]] 시스템에 바탕을 두어, 테스트 케이스마다 실행 중에 활성화되는 형상 항목을 기록해 두었다가 변경이 생기면 바뀐 형상 항목과 상호작용하는 회귀 테스트를 고른다. ISTQB CTAL-TA v4.0 강의계획서에 따르면 수동 실행에서는 뚜렷이 나은 선택 기법이 있다는 결정적 근거가 아직 없어 상황에 따라 고른다. 흔히 쓰는 기법은 다음과 같다.[@istqb-ctal-ta-syllabus-2025]
 
 - **리스크 기반 선택**: 회귀 테스트 스위트를 리스크 등록부에 추적해 두고, 변경으로 리스크 등록부가 바뀌면 [[risk-based-testing|리스크]]가 가장 높은 쪽을 덮도록 스위트를 고친다.
 - **이력 기반 테스트**: 지난 실행에서 결함을 드러냈거나 비슷한 변경에 민감했던 테스트를 다시 실행한다.
@@ -32,9 +32,9 @@ ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서에 �
 
 ## 테스트 자동화와 지속적 통합
 
-ISTQB CTFL 강의계획서에 따르면 회귀 테스트 스위트는 여러 번 돌리고 회귀 테스트 케이스의 수는 대개 반복이나 릴리스마다 늘어나므로, 회귀 테스트는 [[test-automation|자동화]]에 알맞은 대상이고 그 자동화는 프로젝트 초기에 시작해야 한다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL v4.0.1 강의계획서에 따르면 회귀 테스트 스위트는 여러 번 돌리고 회귀 테스트 케이스의 수는 대개 반복이나 릴리스마다 늘어나므로, 회귀 테스트는 [[test-automation|자동화]]에 알맞은 대상이다. ISTQB CTFL v4.0.1 강의계획서는 그 자동화를 프로젝트 초기에 시작해야 한다고 본다.[@istqb-ctfl-syllabus-2024]
 
-[[continuous-integration|지속적 통합]]에서는 자동화한 회귀 테스트도 함께 돌린다.[@ieee-swebok-v4-0a-2026][@istqb-ctfl-syllabus-2024] ISTQB CTAL-TAE(Certified Tester Advanced Level Test Automation Engineering) 강의계획서에 따르면 실행에 오래 걸리는 회귀 테스트 스위트는 파이프라인에서 매일 밤처럼 주기적으로 돌릴 수 있다.[@istqb-ctal-tae-syllabus-2024]
+[[continuous-integration|지속적 통합]]에서는 자동화한 회귀 테스트도 함께 돌린다.[@ieee-swebok-v4-0a-2026][@istqb-ctfl-syllabus-2024] 실행에 오래 걸리는 회귀 테스트 스위트는 파이프라인에서 매일 밤처럼 주기적으로 돌릴 수 있다.[@istqb-ctal-tae-syllabus-2024]
 
 ## ASPICE
 

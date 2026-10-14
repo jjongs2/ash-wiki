@@ -7,7 +7,7 @@ verified: 2026-10-03
 
 **정적 분석**(static analysis)은 구성 요소나 시스템을 그 형태, 구조, 내용, 문서를 근거로 평가하는 일이다.[@istqb-glossary-static-analysis-2026][@ieee-cs-sevocab-2026] ISTQB 용어집은 정적 분석을, 구성 요소나 시스템을 실행하지 않고 이런 것을 근거로 평가하는 자동화된 프로세스로 정의한다.[@istqb-glossary-static-analysis-2026] ISO/IEC/IEEE 24765 용어집은 정적 분석을 같은 근거로 하는 평가 프로세스로 정의하고, 실행 중의 동작을 근거로 한 평가를 동적 분석(dynamic analysis)으로 정의한다.[@ieee-cs-sevocab-2026]
 
-ISTQB CTFL 강의계획서에 따르면 정적 분석에는 흔히 도구를 쓴다.[@istqb-ctfl-syllabus-2024] 사람이 하는 정적 기법인 리뷰는 [[software-review|소프트웨어 리뷰]]에서, 정적 기법과 동적 기법의 구분은 [[verification-and-validation#정적 기법과 동적 기법|검증과 확인]]에서 다룬다.
+정적 분석에는 흔히 도구를 쓴다.[@istqb-ctfl-syllabus-2024] 사람이 하는 정적 기법인 리뷰는 [[software-review|소프트웨어 리뷰]]에서, 정적 기법과 동적 기법의 구분은 [[verification-and-validation#정적 기법과 동적 기법|검증과 확인]]에서 다룬다.
 
 ## 찾는 것
 
@@ -53,4 +53,4 @@ Sangal, Jordan, Sinha, Jackson은 2005년 논문에서 DSM으로 소프트웨어
 
 ## 개발 흐름 안의 자리
 
-ISTQB CTFL 강의계획서에 따르면 정적 분석은 흔히 [[continuous-integration|CI]] 체계에 넣어 돌린다. 이 강의계획서는 테스트를 일찍 하면 결함이 뒤 산출물로 번지지 않아 시간과 비용을 아낀다고 보고, 동적 테스트 전에 또는 자동화된 프로세스 안에서 소스 코드의 정적 분석을 마치는 것을 [[v-model#테스트 설계를 앞당김|shift left]] 관행으로 든다.[@istqb-ctfl-syllabus-2024]
+정적 분석은 흔히 [[continuous-integration|CI]] 체계에 넣어 돌린다. ISTQB CTFL v4.0.1 강의계획서에 따르면 테스트를 일찍 하면 결함이 뒤 산출물로 번지지 않아 시간과 비용을 아낀다. 이 강의계획서는 동적 테스트 전에 또는 자동화된 프로세스 안에서 소스 코드의 정적 분석을 마치는 것을 [[v-model#테스트 설계를 앞당김|shift left]] 관행으로 든다.[@istqb-ctfl-syllabus-2024]

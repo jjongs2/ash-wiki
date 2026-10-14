@@ -9,19 +9,19 @@ verified: 2026-10-13
 
 [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-4:2021은 **시나리오 테스트**(scenario testing)를 테스트 대상과 다른 시스템 사이의 상호작용의 열을 실행하는 데 바탕을 둔 [[black-box-testing|명세 기반]] [[test-case|테스트 케이스]] 설계 기법으로 정의한다. 이 정의에서는 사용자도 다른 시스템으로 본다.[@iso-iec-ieee-29119-4-obp-2021]
 
-ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) 강의계획서는 현실적인 시나리오에서 테스트 대상의 동작을 평가하는 기법을 **시나리오 기반 테스트**(scenario-based testing)라 부르고, 테스트 대상의 동적 동작에 대한 명세에서 테스트 케이스를 끌어내는 behavior-based 블랙박스 기법으로 분류한다.[@istqb-ctal-ta-syllabus-2025]
+현실적인 시나리오에서 테스트 대상의 동작을 평가하는 기법을 **시나리오 기반 테스트**(scenario-based testing)라 부른다. ISTQB CTAL-TA(Certified Tester Advanced Level Test Analyst) v4.0 강의계획서는 시나리오 기반 테스트를 테스트 대상의 동적 동작에 대한 명세에서 테스트 케이스를 끌어내는 behavior-based 블랙박스 기법으로 분류한다.[@istqb-ctal-ta-syllabus-2025]
 
 ## 시나리오 모델
 
-시나리오 기반 테스트에서는 테스트 대상을 지나는 작업 흐름을 이루는 동작의 열로 시나리오 모델을 만든다. 사용자 조사, 사용자 스토리, 페르소나, 사용자 여정 지도 같은 기법이 가치 있는 시나리오를 찾는 데 도움이 될 수 있다. 이 강의계획서는 시나리오 모델로 활동 다이어그램과 [[use-case|use case]] 둘을 다룬다. 순서도, BPMN(Business Process Model and Notation) 다이어그램, 시퀀스 다이어그램, 협력 다이어그램도 시나리오 모델로 쓰인다.[@istqb-ctal-ta-syllabus-2025]
+시나리오 기반 테스트에서는 테스트 대상을 지나는 작업 흐름을 이루는 동작의 열로 시나리오 모델을 만든다. 사용자 조사, 사용자 스토리, 페르소나, 사용자 여정 지도 같은 기법이 가치 있는 시나리오를 찾는 데 도움이 될 수 있다. ISTQB CTAL-TA v4.0 강의계획서는 시나리오 모델로 활동 다이어그램과 [[use-case|use case]] 둘을 다룬다. 순서도, BPMN(Business Process Model and Notation) 다이어그램, 시퀀스 다이어그램, 협력 다이어그램도 시나리오 모델로 쓰인다.[@istqb-ctal-ta-syllabus-2025]
 
 **활동 다이어그램**(activity diagram)은 시스템 안의 작업 흐름을 그림으로 나타낸 것이다. 업무 프로세스를 모델링하는 데 특히 쓸모가 있지만 제어 흐름도 모델링할 수 있다. 활동 다이어그램은 순서도의 표기를 넓혀 동시성을 모델링할 수 있게 한다. 주요 요소는 시작·끝 노드, 동작, 전이, 결정 노드, 병합 노드, 분기(fork) 노드, 결합(join) 노드, 스윔 레인이다.[@istqb-ctal-ta-syllabus-2025]
 
 ## Use case 테스트
 
-ISTQB 용어집은 **use case 테스트**(use case testing)를 use case의 동작을 실행하도록 테스트 케이스를 설계하는 블랙박스 기법으로 정의한다.[@istqb-glossary-use-case-testing-2026]
+**use case 테스트**(use case testing)는 use case의 동작을 실행하도록 테스트 케이스를 설계하는 블랙박스 기법이다.[@istqb-glossary-use-case-testing-2026]
 
-CTAL-TA 강의계획서에 따르면 use case는 사용자와 시스템 사이, 또는 시스템끼리의 상호작용을 나타내는 동작을 글이나 그림으로 기술한 것이다. use case 모델은 시나리오를 세 갈래로 가른다.[@istqb-ctal-ta-syllabus-2025]
+use case는 사용자와 시스템 사이, 또는 시스템끼리의 상호작용을 나타내는 동작을 글이나 그림으로 기술한 것이다. use case 모델은 시나리오를 세 갈래로 가른다.[@istqb-ctal-ta-syllabus-2025]
 
 - **주 시나리오**(main scenario): 사용자가 보기에 특정 목표를 이루는, 전형적이고 예상된 동작의 열이다. 흔히 "happy path"라 부른다. use case 하나에 주 시나리오는 하나뿐이다.
 - **확장**(extension): 주 시나리오가 아닌 동작의 열로, 끝내는 주 시나리오의 목표를 이룬다. 대체 시나리오(alternative scenario)라고도 한다.
