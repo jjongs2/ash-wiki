@@ -1,7 +1,7 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
 import fs from "node:fs"
-import { byDate, issueFilters, issueTitle, parseWeeklyNews, weekDays } from "./index"
+import { byDate, issueFilters, issueTitle, monthWeeks, parseWeeklyNews, weekDays } from "./index"
 
 // 형식 함수 parseWeeklyNews가 주간 소식 형식의 정본이다. 예시 주간 소식과 형식을 어긴 짧은 원본을 넣고
 // 소식 항목 목록과 오류만 본다.
@@ -256,5 +256,46 @@ describe("weekDays", () => {
     // 1월 1일이 목요일인 해(2026)의 1주는 그 전 월요일에 시작한다
     assert.deepStrictEqual(weekDays("2026-w01"), { start: "2025-12-29", end: "2026-01-04" })
     assert.deepStrictEqual(weekDays("2020-w53"), { start: "2020-12-28", end: "2021-01-03" })
+  })
+})
+
+describe("monthWeeks", () => {
+  test("목요일이 그 달에 드는 ISO 주차", () => {
+    assert.deepStrictEqual(monthWeeks("2026-02"), ["2026-w06", "2026-w07", "2026-w08", "2026-w09"])
+  })
+
+  test("달의 경계에 걸친 주는 목요일이 든 달에 속한다", () => {
+    // 2026-w01은 2025-12-29에 시작하지만 목요일이 1월 1일이다
+    assert.deepStrictEqual(monthWeeks("2026-01"), [
+      "2026-w01",
+      "2026-w02",
+      "2026-w03",
+      "2026-w04",
+      "2026-w05",
+    ])
+    // 2021-w01의 목요일은 1월 7일이고, 2021-01-01이 든 주는 2020-w53이다
+    assert.deepStrictEqual(monthWeeks("2020-12"), [
+      "2020-w49",
+      "2020-w50",
+      "2020-w51",
+      "2020-w52",
+      "2020-w53",
+    ])
+    assert.deepStrictEqual(monthWeeks("2021-01"), ["2021-w01", "2021-w02", "2021-w03", "2021-w04"])
+  })
+
+  test("달의 주차는 weekDays가 받는 주차다", () => {
+    for (const week of monthWeeks("2026-03")) {
+      const { start } = weekDays(week)
+      const thursday = new Date(`${start}T00:00:00Z`)
+      thursday.setUTCDate(thursday.getUTCDate() + 3)
+      assert.strictEqual(thursday.toISOString().slice(0, 7), "2026-03")
+    }
+  })
+
+  test("달이 아니면 멈춘다", () => {
+    assert.throws(() => monthWeeks("2026-13"), /달이 아니다/)
+    assert.throws(() => monthWeeks("2026-w06"), /달이 아니다/)
+    assert.throws(() => monthWeeks("2026-2"), /달이 아니다/)
   })
 })
