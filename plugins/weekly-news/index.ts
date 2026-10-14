@@ -640,12 +640,13 @@ const periodTimes = (week: string, locale: string, year?: number): ElementConten
   ]
 }
 
-// 제목 아래 줄. 왼쪽에 호의 기간, 오른쪽에 "‹ 40주차 · 지난 호 · 42주차 ›"를 둔다. 이웃 호가 다른 해면 연도를
+// 제목 아래 줄. 왼쪽에 호의 기간, 오른쪽에 "← 40주차 · 지난 호 · 42주차 →"를 둔다. 화살표는 ←/→ 키와 같은
+// 방향이다. 이웃 호가 다른 해면 연도를
 // 붙인다. 이웃 링크는 오른쪽 끝에 맞추므로, 이웃 호가 없는 쪽은 빈 자리도 두지 않는다.
 function issueHead(props: QuartzComponentProps, week: string, neighbors: Neighbors): Element {
   const side = (target: string, rel: "prev" | "next") =>
     el("a", { href: issueHref(props, target), className: ["news-nav-link"], dataNewsNav: rel }, [
-      text(rel === "prev" ? `‹ ${weekLabel(target, week)}` : `${weekLabel(target, week)} ›`),
+      text(rel === "prev" ? `← ${weekLabel(target, week)}` : `${weekLabel(target, week)} →`),
     ])
   const sep = () => el("span", { className: ["news-nav-sep"], ariaHidden: "true" }, [text("·")])
   const index = el(
@@ -666,8 +667,13 @@ function issueHead(props: QuartzComponentProps, week: string, neighbors: Neighbo
   ])
 }
 
-// 마지막 카드 뒤의 이전·다음 링크. 작은 글씨 "이전 호"·"다음 호" 아래에 연도를 붙인 주차를 둔다.
-function issuePager(props: QuartzComponentProps, neighbors: Neighbors): Element {
+// 마지막 카드 뒤의 이전·다음 링크. 작은 글씨 "← 이전 호"·"다음 호 →" 아래에 연도를 붙인 주차를 두고, 그 아래
+// 보조 글자 줄에 그 호의 기간과 소식 수를 둔다(지난 호 목록의 줄과 같은 글). counts는 주차마다 소식 수다.
+function issuePager(
+  props: QuartzComponentProps,
+  neighbors: Neighbors,
+  counts: Map<string, number>,
+): Element {
   const side = (target: string | null, rel: "prev" | "next") =>
     target
       ? el(
@@ -680,9 +686,14 @@ function issuePager(props: QuartzComponentProps, neighbors: Neighbors): Element 
           },
           [
             el("span", { className: ["news-pager-label"] }, [
-              text(rel === "prev" ? "이전 호" : "다음 호"),
+              text(rel === "prev" ? "← 이전 호" : "다음 호 →"),
             ]),
             el("span", { className: ["news-pager-week"] }, [text(weekLabel(target))]),
+            el("span", { className: ["news-pager-meta"] }, [
+              ...periodTimes(target, props.cfg.locale, Number(target.slice(0, 4))),
+              el("span", { className: ["news-card-sep"], ariaHidden: "true" }, [text("·")]),
+              text(`소식 ${counts.get(target) ?? 0}건`),
+            ]),
           ],
         )
       : el("span", { className: ["news-pager-link", `news-pager-${rel}`], ariaHidden: "true" })
@@ -716,11 +727,13 @@ function issueTree(props: QuartzComponentProps, data: WeeklyNewsData): HastRoot 
       props.cfg.locale,
     ),
   )
-  const weeks = props.allFiles.flatMap((file) => {
-    const issue = isIssue(file.slug ?? "") ? newsOf(file) : undefined
-    return issue ? [issue.week] : []
-  })
-  const neighbors = issueNeighbors(weeks, data.week)
+  const counts = new Map(
+    props.allFiles.flatMap((file) => {
+      const issue = isIssue(file.slug ?? "") ? newsOf(file) : undefined
+      return issue ? [[issue.week, issue.items.length] as const] : []
+    }),
+  )
+  const neighbors = issueNeighbors([...counts.keys()], data.week)
   const filters = issueFilters(data.items, regionOrder(props.allFiles), [...names.keys()])
   return {
     type: "root",
@@ -729,13 +742,35 @@ function issueTree(props: QuartzComponentProps, data: WeeklyNewsData): HastRoot 
       toolbar(filters, names, data.items.length),
       el("div", { className: ["news-cards"] }, cards),
       el("p", { className: ["news-empty"], hidden: true }, [text("조건에 맞는 소식이 없습니다.")]),
-      issuePager(props, neighbors),
+      issuePager(props, neighbors, counts),
     ],
   }
 }
 
-// news/ 색인. 머리말 뒤에 주간 소식 피드 링크와 지난 호 목록을 붙인다. 목록은 달마다 소제목(2026년 10월)을 두고
-// 그 아래에 주차 역순으로 주차, 기간, 소식 수를 보인다. 소제목의 해와 같은 해의 날짜는 연도를 뺀다.
+// RSS 아이콘. Tabler Icons의 rss(MIT)다.
+const rssIcon = (): Element =>
+  el(
+    "svg",
+    {
+      className: ["news-feed-icon"],
+      viewBox: "0 0 24 24",
+      ariaHidden: "true",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+    },
+    [
+      el("path", { d: "M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" }),
+      el("path", { d: "M4 4a16 16 0 0 1 16 16" }),
+      el("path", { d: "M4 11a9 9 0 0 1 9 9" }),
+    ],
+  )
+
+// news/ 색인. 머리말 뒤에 주간 소식 피드 링크와 지난 호 목록을 붙인다. 목록은 대문의 타임라인과 같은 꼴로, 달마다
+// 마디와 소제목(2026년 10월)을 두고 그 아래에 주차 역순으로 주차, 기간, 소식 수를 보인다. 소제목의 해와 같은 해의
+// 날짜는 연도를 뺀다.
 function indexTree(props: QuartzComponentProps): HastRoot {
   const issues = new Map(
     props.allFiles.flatMap((file) => {
@@ -751,7 +786,10 @@ function indexTree(props: QuartzComponentProps): HastRoot {
       return el("li", {}, [
         el(
           "a",
-          { href: resolveRelative(props.fileData.slug!, file.slug!), className: ["internal"] },
+          {
+            href: resolveRelative(props.fileData.slug!, file.slug!),
+            className: ["internal", "news-index-week"],
+          },
           [text(weekLabel(week, week))],
         ),
         el("span", { className: ["news-index-meta"] }, [
@@ -762,16 +800,22 @@ function indexTree(props: QuartzComponentProps): HastRoot {
       ])
     })
     return [
-      el("h2", { id: month, className: ["news-index-month"] }, [text(heading)]),
-      el("ul", { className: ["news-index"] }, rows),
+      el("section", { className: ["news-month"] }, [
+        el("h2", { id: month, className: ["news-index-month"] }, [text(heading)]),
+        el("ul", { className: ["news-index"] }, rows),
+      ]),
     ]
   })
   const feed = el("p", { className: ["news-feed"] }, [
     el("a", { href: `${pathToRoot(props.fileData.slug!)}/news/index.xml`, dataRouterIgnore: "" }, [
+      rssIcon(),
       text("RSS"),
     ]),
   ])
-  const list = months.length > 0 ? months : [el("p", {}, [text("아직 주간 소식이 없다.")])]
+  const list =
+    months.length > 0
+      ? [el("div", { className: ["news-archive"] }, months)]
+      : [el("p", {}, [text("아직 주간 소식이 없다.")])]
   const tree = props.tree as HastRoot
   return { ...tree, children: [...tree.children, feed, ...list] }
 }
@@ -989,11 +1033,12 @@ const CSS = `.news-tools {
   white-space: nowrap;
 }
 .news-nav a.news-nav-link,
-.news-pager a.news-pager-link {
+.news-feed a {
   color: var(--gray);
   font-weight: 400;
 }
-.news-nav a.news-nav-link:hover {
+.news-nav a.news-nav-link:hover,
+.news-feed a:hover {
   color: var(--secondary);
   text-decoration: underline;
 }
@@ -1001,12 +1046,15 @@ const CSS = `.news-tools {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  margin-top: 1.5rem;
+  padding-top: 1rem;
 }
-.news-pager-link {
+.news-pager a.news-pager-link {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.15rem;
+  color: var(--gray);
+  font-weight: 400;
+  line-height: 1.35;
 }
 .news-pager-next {
   align-items: flex-end;
@@ -1019,6 +1067,10 @@ const CSS = `.news-tools {
   color: var(--dark);
   font-weight: 600;
 }
+.news-pager-meta {
+  font-size: 0.8em;
+  font-variant-numeric: tabular-nums;
+}
 .news-pager a.news-pager-link:hover .news-pager-week {
   color: var(--secondary);
   text-decoration: underline;
@@ -1026,16 +1078,76 @@ const CSS = `.news-tools {
 .news-feed {
   font-size: 0.85em;
 }
-.news-index-month {
-  margin: 2rem 0 0.5rem;
-  font-size: 1.1rem;
+.news-feed-icon {
+  width: 0.95em;
+  height: 0.95em;
+  margin-right: 0.3em;
+  vertical-align: -0.12em;
 }
-.news-index {
-  margin-top: 0;
-  padding-left: 1.2rem;
+.news-archive {
+  --rail: 1.1rem;
+  --day-line: 1.5rem;
+  position: relative;
+  margin-top: 1.5rem;
+  padding-left: var(--rail);
+}
+.news-archive::before {
+  content: "";
+  position: absolute;
+  left: 0.3rem;
+  top: calc(var(--day-line) / 2);
+  bottom: 0.4rem;
+  width: 1px;
+  background-color: var(--lightgray);
+}
+.news-month {
+  position: relative;
+  padding-bottom: 0.9rem;
+}
+.news-month::before {
+  content: "";
+  position: absolute;
+  box-sizing: border-box;
+  width: 7px;
+  height: 7px;
+  left: calc(0.3rem + 0.5px - var(--rail) - 3.5px);
+  top: calc(var(--day-line) / 2 - 3.5px);
+  border: 1.5px solid var(--secondary);
+  border-radius: 50%;
+  background-color: var(--light);
+}
+.news-archive h2.news-index-month {
+  margin: 0;
+  color: var(--gray);
+  font-size: 0.85em;
+  font-weight: 600;
+  line-height: var(--day-line);
+}
+.news-archive ul.news-index {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.news-archive .news-index > li {
+  display: grid;
+  grid-template-columns: 4.5em minmax(0, 1fr);
+  align-items: baseline;
+  margin: 0;
+  padding: 0.3rem 0;
+  line-height: 1.35;
+}
+.news-archive a.news-index-week {
+  justify-self: start;
+  padding: 0;
+  background-color: transparent;
+  color: var(--dark);
+  font-weight: 400;
+}
+.news-archive a.news-index-week:hover {
+  color: var(--secondary);
+  text-decoration: underline;
 }
 .news-index-meta {
-  margin-left: 0.6rem;
   color: var(--gray);
   font-size: 0.85em;
   font-variant-numeric: tabular-nums;
