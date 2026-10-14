@@ -101,7 +101,7 @@ Google News 질의나 자유 검색에서 찾았고, 매체가 매체 목록에 
 3. **업계 구조의 변화**: 완성차, Tier 1, 차량용 반도체 기업이 관련된 인수합병, 완성차가 외부 플랫폼(차량 OS, 미들웨어, E/E 아키텍처)을 채택하거나 철회한 것. 공급 계약과 수주, 자사 아키텍처의 세대 교체는 들지 않는다.
 
 - 차량이나 차량 임베디드에 직접 닿는 사건만 든다. 예를 들어 Mobileye의 로봇사 인수는 3번의 기업이 관련됐어도 들지 않고, NHTSA의 자율주행시스템 국제 기술 규정 초안 의견 수렴은 든다.
-- 리콜의 문턱: 대상 대수가 10만 대 이상이거나, 결함 유형이 새로운 리콜이다. 대수는 리콜 하나(NHTSA면 캠페인 번호 하나)의 대상 대수다. 결함 유형은 NHTSA 부품 분류(Component의 `:` 앞, 예: `BACK OVER PREVENTION`)이고, 새롭다는 것은 그 분류의 소프트웨어 리콜이 접수일 전 12개월에 없었다는 뜻이다. 소프트웨어 리콜은 결함 요약(`DESC_DEFECT`)에 낱말 `software`가 있거나 부품 분류(`COMPNAME`)에 `SOFTWARE`가 든 차량 리콜(`RCLTYPECD`가 `V`)이고, 접수일은 `RCDATE`다. NHTSA 리콜 평면 파일(`https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip`, 필드는 `https://static.nhtsa.gov/odi/ffdd/rcl/RCL.txt`)로 확인한다. NHTSA 밖의 리콜도 같은 문턱을 쓰고, 결함 유형은 가장 가까운 NHTSA 부품 분류로 본다.
+- 리콜의 문턱: 대상 대수가 10만 대 이상이거나, 결함 유형이 새로운 리콜이다. 대수는 리콜 하나(NHTSA면 캠페인 번호 하나)의 대상 대수다. 결함 유형은 NHTSA 부품 분류(Component의 `:` 앞, 예: `BACK OVER PREVENTION`)이고, 새롭다는 것은 그 분류의 소프트웨어 리콜이 접수일 전 12개월에 없었다는 뜻이다. 리콜 하나에 분류가 여럿이면 하나라도 새로울 때 새롭다고 보고, 앞선 리콜도 분류를 모두 센다. 소프트웨어 리콜은 결함 요약(`DESC_DEFECT`)에 낱말 `software`가 있거나 부품 분류(`COMPNAME`)에 `SOFTWARE`가 든 차량 리콜(`RCLTYPECD`가 `V`)이고, 접수일은 `RCDATE`다. NHTSA 리콜 평면 파일(`https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip`, 필드는 `https://static.nhtsa.gov/odi/ffdd/rcl/RCL.txt`)로 확인한다. NHTSA 밖의 리콜도 같은 문턱을 쓰고, 결함 유형은 가장 가까운 NHTSA 부품 분류로 본다.
 - 그 전에 일어난 사건을 분석하거나 해설한 원문은 들지 않는다.
 - 같은 사건이면 그 주의 새 진전을 알리는 항목 하나를 고르고, 둘 다 새 진전이면 1차 발표를 우선한다.
 - 제품 출시, 제휴 발표, 행사, 시장 조사, 해설, 의견, 논문은 위 1~3에 해당하지 않으면 들지 않는다.
