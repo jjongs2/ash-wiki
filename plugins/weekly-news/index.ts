@@ -408,6 +408,11 @@ const el = (
 ): Element => ({ type: "element", tagName, properties, children })
 const text = (value: string): ElementContent => ({ type: "text", value })
 
+// 지난 호 목록의 설명. 메타 설명과 주간 소식 피드의 채널 설명이 쓴다. 지난 호 목록에는 본문이 없어 description
+// 플러그인이 만들 글이 없다.
+const INDEX_DESCRIPTION =
+  "자동차 임베디드 업계의 소식을 주마다 모아 짧게 요약한다. 위키 페이지와 달리 요약을 원문과 대조해 검증하지 않으므로, 자세한 내용은 소식마다 붙은 원문 링크에서 확인한다."
+
 const isNews = (slug: string) => slug.startsWith(NEWS_PREFIX)
 const isIssue = (slug: string) => isNews(slug) && slug !== INDEX_SLUG
 const newsOf = (file: QuartzPluginData) => file.weeklyNews as WeeklyNewsData | undefined
@@ -554,7 +559,7 @@ function card(
 }
 
 // 정렬·거르기 줄. 첫 줄은 주요 칩과 구역 칩(누르면 거르는 버튼)이고, 그 아래 상태 줄은 왼쪽에 소식 수, 오른쪽에
-// 정렬을 둔다(소유자 결정, #404). 소식 수는 거르지 않을 때 "소식 N건", 거를 때 "소식 N건 중 M건"이고 스크립트가
+// 정렬을 둔다(소유자 결정, #404). 소식 수는 거르지 않을 때 "N건", 거를 때 "N건 중 M건"이고 스크립트가
 // 바꾼다. 칩은 카드의 칩과 같은 꼴(.news-chip)이다. 거르기가 무엇을 남기는지는 docs/weekly-news.md의 사이트에
 // 보이는 범위에 있다. 항목이 없는 칩(주요 소식이 없는 호의 주요 칩 포함)도 숨겨 두고, 쿼리로 이어받은 상태가
 // 그 칩을 고르면 스크립트가 0으로 보인다.
@@ -599,7 +604,7 @@ function toolbar(filters: IssueFilters, names: Map<string, string>, total: numbe
       el(
         "span",
         { className: ["news-tools-count"], ariaLive: "polite", dataTotal: String(total) },
-        [text(`소식 ${total}건`)],
+        [text(`${total}건`)],
       ),
       el("span", { className: ["news-sort"], role: "group", ariaLabel: "정렬" }, [
         sort("newest", "최근순"),
@@ -640,7 +645,8 @@ const periodTimes = (week: string, locale: string, year?: number): ElementConten
   ]
 }
 
-// 제목 아래 줄. 왼쪽에 호의 기간, 오른쪽에 "← 40주차 · 지난 호 · 42주차 →"를 둔다. 화살표는 ←/→ 키와 같은
+// 제목 아래 줄. 왼쪽에 호의 기간, 오른쪽에 "← 40주차 · 42주차 →"를 둔다(소유자 결정, #419). 기간은 지난 호
+// 목록의 줄과 같은 꼴로, 호의 해와 같은 해의 날짜는 연도를 뺀다(제목에 연도가 있다). 화살표는 ←/→ 키와 같은
 // 방향이다. 이웃 호가 다른 해면 연도를
 // 붙인다. 이웃 링크는 오른쪽 끝에 맞추므로, 이웃 호가 없는 쪽은 빈 자리도 두지 않는다.
 function issueHead(props: QuartzComponentProps, week: string, neighbors: Neighbors): Element {
@@ -649,21 +655,18 @@ function issueHead(props: QuartzComponentProps, week: string, neighbors: Neighbo
       text(rel === "prev" ? `← ${weekLabel(target, week)}` : `${weekLabel(target, week)} →`),
     ])
   const sep = () => el("span", { className: ["news-nav-sep"], ariaHidden: "true" }, [text("·")])
-  const index = el(
-    "a",
-    {
-      href: resolveRelative(props.fileData.slug!, INDEX_SLUG as never),
-      className: ["news-nav-link"],
-    },
-    [text("지난 호")],
-  )
+  const links = [
+    ...(neighbors.prev ? [side(neighbors.prev, "prev")] : []),
+    ...(neighbors.next ? [side(neighbors.next, "next")] : []),
+  ]
+  const year = Number(week.slice(0, 4))
   return el("div", { className: ["news-head"] }, [
-    el("p", { className: ["news-period"] }, periodTimes(week, props.cfg.locale)),
-    el("nav", { className: ["news-nav"], ariaLabel: "호 이동" }, [
-      ...(neighbors.prev ? [side(neighbors.prev, "prev"), sep()] : []),
-      index,
-      ...(neighbors.next ? [sep(), side(neighbors.next, "next")] : []),
-    ]),
+    el("p", { className: ["news-period"] }, periodTimes(week, props.cfg.locale, year)),
+    el(
+      "nav",
+      { className: ["news-nav"], ariaLabel: "이웃 호" },
+      links.flatMap((link, i) => (i === 0 ? [link] : [sep(), link])),
+    ),
   ])
 }
 
@@ -692,7 +695,7 @@ function issuePager(
             el("span", { className: ["news-pager-meta"] }, [
               ...periodTimes(target, props.cfg.locale, Number(target.slice(0, 4))),
               el("span", { className: ["news-card-sep"], ariaHidden: "true" }, [text("·")]),
-              text(`소식 ${counts.get(target) ?? 0}건`),
+              text(`${counts.get(target) ?? 0}건`),
             ]),
           ],
         )
@@ -768,9 +771,10 @@ const rssIcon = (): Element =>
     ],
   )
 
-// news/ 색인. 머리말 뒤에 주간 소식 피드 링크와 지난 호 목록을 붙인다. 목록은 대문의 타임라인과 같은 꼴로, 달마다
-// 마디와 소제목(2026년 10월)을 두고 그 아래에 주차 역순으로 주차, 기간, 소식 수를 보인다. 소제목의 해와 같은 해의
-// 날짜는 연도를 뺀다.
+// news/ 색인. 제목 아래에 주간 소식 피드 링크와 지난 호 목록을 둔다(본문은 비워 둔다, 소유자 결정 #419). 목록은
+// 대문의 타임라인과 같은 꼴로, 달마다 마디와 소제목(2026년 10월)을 두고 그 아래에 주차 역순으로 주차, 기간, 소식
+// 수를 보인다. 소제목의 해와 같은 해의 날짜는 연도를 뺀다. 달은 본문의 절(plugins/collapsible-sections)처럼 펼친
+// <details>로 감싸 소제목을 눌러 접고 편다. 접은 상태는 저장하지 않는다.
 function indexTree(props: QuartzComponentProps): HastRoot {
   const issues = new Map(
     props.allFiles.flatMap((file) => {
@@ -795,13 +799,15 @@ function indexTree(props: QuartzComponentProps): HastRoot {
         el("span", { className: ["news-index-meta"] }, [
           ...periodTimes(week, props.cfg.locale, year),
           el("span", { className: ["news-card-sep"], ariaHidden: "true" }, [text("·")]),
-          text(`소식 ${issue.items.length}건`),
+          text(`${issue.items.length}건`),
         ]),
       ])
     })
     return [
-      el("section", { className: ["news-month"] }, [
-        el("h2", { id: month, className: ["news-index-month"] }, [text(heading)]),
+      el("details", { className: ["news-month"], open: true }, [
+        el("summary", {}, [
+          el("h2", { id: month, className: ["news-index-month"] }, [text(heading)]),
+        ]),
         el("ul", { className: ["news-index"] }, rows),
       ]),
     ]
@@ -1046,15 +1052,22 @@ const CSS = `.news-tools {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  padding-top: 1rem;
+  padding-top: 1.5rem;
 }
 .news-pager a.news-pager-link {
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 5px;
   color: var(--gray);
   font-weight: 400;
   line-height: 1.35;
+  transition: border-color 0.2s ease;
+}
+.news-pager a.news-pager-link:hover {
+  border-color: var(--secondary);
 }
 .news-pager-next {
   align-items: flex-end;
@@ -1073,7 +1086,6 @@ const CSS = `.news-tools {
 }
 .news-pager a.news-pager-link:hover .news-pager-week {
   color: var(--secondary);
-  text-decoration: underline;
 }
 .news-feed {
   font-size: 0.85em;
@@ -1101,10 +1113,23 @@ const CSS = `.news-tools {
   background-color: var(--lightgray);
 }
 .news-month {
-  position: relative;
   padding-bottom: 0.9rem;
 }
-.news-month::before {
+.news-month > summary {
+  position: relative;
+  display: block;
+  list-style: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.news-month > summary::-webkit-details-marker {
+  display: none;
+}
+.news-month > summary:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}
+.news-month > summary::before {
   content: "";
   position: absolute;
   box-sizing: border-box;
@@ -1117,11 +1142,37 @@ const CSS = `.news-tools {
   background-color: var(--light);
 }
 .news-archive h2.news-index-month {
+  display: inline-block;
   margin: 0;
   color: var(--gray);
   font-size: 0.85em;
   font-weight: 600;
   line-height: var(--day-line);
+}
+.news-archive h2.news-index-month::after {
+  content: "";
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: 0.3rem;
+  vertical-align: -0.12em;
+  background-color: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  transition:
+    transform 0.3s ease,
+    background-color 0.2s ease;
+}
+.news-month > summary:hover h2.news-index-month {
+  color: var(--secondary);
+}
+.news-month:not([open]) h2.news-index-month::after {
+  transform: rotateZ(-90deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .news-archive h2.news-index-month::after {
+    transition: none;
+  }
 }
 .news-archive ul.news-index {
   margin: 0;
@@ -1149,7 +1200,7 @@ const CSS = `.news-tools {
 }
 .news-index-meta {
   color: var(--gray);
-  font-size: 0.85em;
+  font-size: 0.8em;
   font-variant-numeric: tabular-nums;
 }
 `
@@ -1229,7 +1280,7 @@ const SCRIPT = `(() => {
       }
       const filtering = state.regions.size > 0 || state.featured
       filters.classList.toggle("has-selection", filtering)
-      const total = "소식 " + count.dataset.total + "건"
+      const total = count.dataset.total + "건"
       count.textContent = filtering ? total + " 중 " + shown + "건" : total
       empty.hidden = shown > 0
       for (const button of tools.querySelectorAll(".news-filter")) {
@@ -1333,7 +1384,7 @@ const WeeklyNews = () => ({
       },
     ]
   },
-  // 호의 설명(메타 설명과 피드)과 검색 본문을 정한다. description 플러그인(order 70)이 본문 전체에서 만든 값을
+  // 호와 지난 호 목록의 설명(메타 설명과 피드)과 호의 검색 본문을 정한다. description 플러그인(order 70)이 본문 전체에서 만든 값을
   // 덮어써야 하므로, 이 플러그인은 설정에서 그 뒤의 order로 돈다(quartz.config.yaml). 검색 본문은 소식 항목마다
   // 원어 제목과 요약이고, 필드 줄(구역, 매체, 발행일, 이미지, 주요)은 뺀다. 설명을 프론트매터가 아닌 vfile
   // 데이터에 두어 호 페이지에 속성 칸(note-properties)이 생기지 않는다. 두 값은 description 플러그인처럼
@@ -1342,6 +1393,10 @@ const WeeklyNews = () => ({
     const locale = ctx.cfg.configuration.locale
     return [
       () => (tree: HastRoot, file: VFile) => {
+        if (file.data.slug === INDEX_SLUG) {
+          file.data.description = escapeHTML(INDEX_DESCRIPTION)
+          return
+        }
         const data = file.data.weeklyNews as WeeklyNewsData | undefined
         if (!data) return
         file.data.description = escapeHTML(issueDescription(data.week, data.items, locale))
