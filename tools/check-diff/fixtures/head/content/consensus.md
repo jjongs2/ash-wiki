@@ -40,3 +40,9 @@ SWEBOK V4.0a에 따르면 리뷰는 비용을 줄인다.[@ieee-swebok-v4-0a-2026
 ISTQB CTAL-TA v4.0 강의계획서는 기법을 더 나눈다.[@istqb-ctal-ta-syllabus-2025]
 
 ISTQB 용어집은 커버리지를 정의한다.[@istqb-ctfl-syllabus-2024]
+
+## 용어집
+
+ISTQB 용어집은 테스트 케이스를 조건의 묶음으로 정의한다.[@istqb-glossary-test-case-2026]
+
+이 용어집은 테스트 스위트를 테스트 케이스의 묶음으로 정의한다.[@istqb-glossary-test-suite-2026]

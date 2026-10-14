@@ -255,6 +255,11 @@ describe("check-diff CLI", { concurrency: false }, () => {
     )
   })
 
+  test("출처 구간: 판 없는 온라인 용어집(ISTQB Glossary — 용어)은 용어마다 엔트리를 두어도 한 출처다", () => {
+    const lines = report.items.get("source-run") ?? []
+    assert.ok(!has(lines, "content/consensus.md:48:"), "앞 문장이 같은 용어집의 이름을 밝혔다")
+  })
+
   test("주인 페이지: 행마다 링크, 절 앵커, 문단의 문장 수를 보인다", () => {
     const lines = report.items.get("owner-page")
     assert.ok(has(lines, "content/linker-a.md:12:", "#오류 계수기", "앵커 있음", "1문장"))
