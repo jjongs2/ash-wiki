@@ -694,7 +694,8 @@ function issuePager(
             el("span", { className: ["news-pager-week"] }, [text(weekLabel(target))]),
             el("span", { className: ["news-pager-meta"] }, [
               ...periodTimes(target, props.cfg.locale, Number(target.slice(0, 4))),
-              text(` · ${counts.get(target) ?? 0}건`),
+              el("span", { className: ["news-card-sep"], ariaHidden: "true" }, [text("·")]),
+              text(`${counts.get(target) ?? 0}건`),
             ]),
           ],
         )
@@ -797,7 +798,8 @@ function indexTree(props: QuartzComponentProps): HastRoot {
         ),
         el("span", { className: ["news-index-meta"] }, [
           ...periodTimes(week, props.cfg.locale, year),
-          text(` · ${issue.items.length}건`),
+          el("span", { className: ["news-card-sep"], ariaHidden: "true" }, [text("·")]),
+          text(`${issue.items.length}건`),
         ]),
       ])
     })
@@ -843,9 +845,10 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 // - 거른 결과가 없을 때의 안내 줄은 아랫선을 두지 않는다. 바로 아래 페이지 끝의 hr과 두 겹이 된다.
 // - 제목 아래 줄은 content-meta 자리의 기간과 오른쪽 끝의 이웃 호 링크이고, 둘은 기준선으로 맞춘다. 이웃 호
 //   링크는 상태 줄의 정렬과 같은 보조 글자 꼴이다.
-// - 이전·다음 링크와 지난 호 목록은 대문 최근 변경의 짜임을 따른다(소유자 결정, #419). 제목(주차)은 제목색의
-//   보통 굵기이고, 보조 글자 줄(기간 · 건수)은 대문처럼 가운뎃점 앞뒤를 한 칸씩 띄운다. 이전·다음 링크는 1px
-//   --lightgray 테두리의 5px 상자이고, 올리면 테두리와 주차가 링크색이 된다. 지난 호 목록은 대문 타임라인의
+// - 이전·다음 링크와 지난 호 목록은 대문 최근 변경의 짜임(제목색 제목과 그 아래나 옆의 작은 보조 글자 줄)을
+//   따른다(소유자 결정, #419). 보조 글자 줄(기간 · 건수)의 가운뎃점은 카드 첫 줄과 같은 간격이다. 이전·다음
+//   링크는 1px --lightgray 테두리의 5px 상자이고, 갈 곳이 먼저 보이도록 주차를 굵게 쓴다. 올리면 테두리와
+//   주차가 링크색이 된다. 지난 호 목록의 주차는 목록 항목이라 대문처럼 보통 굵기다. 지난 호 목록은 대문 타임라인의
 //   선과 마디를 그대로 쓰고, 달 소제목은 날짜 마디의 글자 꼴에 본문 절과 같은 꺾쇠를 붙인다. 주차 칸 폭을
 //   고정해 기간이 한 열로 서고, 피드 줄과 첫 달 사이는 달과 달 사이와 같게 둔다.
 // - 글자 대비는 docs/palette.md의 쌍에 든다. 구역 칩은 구역 칩, 고르지 않고 거를 때의 칩은 구역 이름, 고른 칩은
@@ -1084,7 +1087,7 @@ const CSS = `.news-tools {
 .news-pager-week {
   color: var(--dark);
   font-size: 0.95em;
-  font-weight: 400;
+  font-weight: 600;
 }
 .news-pager-meta {
   font-size: 0.75em;
