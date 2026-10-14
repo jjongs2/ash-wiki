@@ -694,8 +694,7 @@ function issuePager(
             el("span", { className: ["news-pager-week"] }, [text(weekLabel(target))]),
             el("span", { className: ["news-pager-meta"] }, [
               ...periodTimes(target, props.cfg.locale, Number(target.slice(0, 4))),
-              el("span", { className: ["news-card-sep"], ariaHidden: "true" }, [text("·")]),
-              text(`${counts.get(target) ?? 0}건`),
+              text(` · ${counts.get(target) ?? 0}건`),
             ]),
           ],
         )
@@ -798,8 +797,7 @@ function indexTree(props: QuartzComponentProps): HastRoot {
         ),
         el("span", { className: ["news-index-meta"] }, [
           ...periodTimes(week, props.cfg.locale, year),
-          el("span", { className: ["news-card-sep"], ariaHidden: "true" }, [text("·")]),
-          text(`${issue.items.length}건`),
+          text(` · ${issue.items.length}건`),
         ]),
       ])
     })
@@ -843,6 +841,13 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 //   줄보다 목록 윗선에 가깝게 두어(글자 상자 기준 14px와 6px) 목록의 머리줄로 읽힌다(소유자 결정, #404). 글자는
 //   대문 소식 칸 제목 줄의 링크("N건 모두 보기 · 지난 호")와 같은 꼴이고, 고른 정렬은 제목색으로 굵게 쓴다.
 // - 거른 결과가 없을 때의 안내 줄은 아랫선을 두지 않는다. 바로 아래 페이지 끝의 hr과 두 겹이 된다.
+// - 제목 아래 줄은 content-meta 자리의 기간과 오른쪽 끝의 이웃 호 링크이고, 둘은 기준선으로 맞춘다. 이웃 호
+//   링크는 상태 줄의 정렬과 같은 보조 글자 꼴이다.
+// - 이전·다음 링크와 지난 호 목록은 대문 최근 변경의 짜임을 따른다(소유자 결정, #419). 제목(주차)은 제목색의
+//   보통 굵기이고, 보조 글자 줄(기간 · 건수)은 대문처럼 가운뎃점 앞뒤를 한 칸씩 띄운다. 이전·다음 링크는 1px
+//   --lightgray 테두리의 5px 상자이고, 올리면 테두리와 주차가 링크색이 된다. 지난 호 목록은 대문 타임라인의
+//   선과 마디를 그대로 쓰고, 달 소제목은 날짜 마디의 글자 꼴에 본문 절과 같은 꺾쇠를 붙인다. 주차 칸 폭을
+//   고정해 기간이 한 열로 서고, 피드 줄과 첫 달 사이는 달과 달 사이와 같게 둔다.
 // - 글자 대비는 docs/palette.md의 쌍에 든다. 구역 칩은 구역 칩, 고르지 않고 거를 때의 칩은 구역 이름, 고른 칩은
 //   구역 이름과 강조색 위 글자(전경과 배경을 바꿔도 대비는 같다), 주요 칩은 내부 링크, 상태 줄은 보조 글자, 링크,
 //   제목이다. hover의 테두리는 글자가 아니다.
@@ -1057,7 +1062,7 @@ const CSS = `.news-tools {
 .news-pager a.news-pager-link {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.1rem;
   padding: 0.6rem 0.9rem;
   border: 1px solid var(--lightgray);
   border-radius: 5px;
@@ -1074,14 +1079,15 @@ const CSS = `.news-tools {
   text-align: right;
 }
 .news-pager-label {
-  font-size: 0.8em;
+  font-size: 0.75em;
 }
 .news-pager-week {
   color: var(--dark);
-  font-weight: 600;
+  font-size: 0.95em;
+  font-weight: 400;
 }
 .news-pager-meta {
-  font-size: 0.8em;
+  font-size: 0.75em;
   font-variant-numeric: tabular-nums;
 }
 .news-pager a.news-pager-link:hover .news-pager-week {
@@ -1100,7 +1106,7 @@ const CSS = `.news-tools {
   --rail: 1.1rem;
   --day-line: 1.5rem;
   position: relative;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   padding-left: var(--rail);
 }
 .news-archive::before {
@@ -1181,14 +1187,15 @@ const CSS = `.news-tools {
 }
 .news-archive .news-index > li {
   display: grid;
-  grid-template-columns: 4.5em minmax(0, 1fr);
+  grid-template-columns: 4em minmax(0, 1fr);
   align-items: baseline;
   margin: 0;
-  padding: 0.3rem 0;
+  padding: 0.25rem 0;
   line-height: 1.35;
 }
 .news-archive a.news-index-week {
   justify-self: start;
+  font-size: 0.95em;
   padding: 0;
   background-color: transparent;
   color: var(--dark);
@@ -1200,7 +1207,7 @@ const CSS = `.news-tools {
 }
 .news-index-meta {
   color: var(--gray);
-  font-size: 0.8em;
+  font-size: 0.75em;
   font-variant-numeric: tabular-nums;
 }
 `
