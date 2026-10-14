@@ -1,7 +1,20 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
 import fs from "node:fs"
-import { byDate, issueFilters, issueTitle, monthWeeks, parseWeeklyNews, weekDays } from "./index"
+import {
+  byDate,
+  dayLabel,
+  indexMonths,
+  issueDescription,
+  issueFilters,
+  issueMonth,
+  issueNeighbors,
+  issueTitle,
+  monthWeeks,
+  parseWeeklyNews,
+  weekDays,
+  weekLabel,
+} from "./index"
 
 // 형식 함수 parseWeeklyNews가 주간 소식 형식의 정본이다. 예시 주간 소식과 형식을 어긴 짧은 원본을 넣고
 // 소식 항목 목록과 오류만 본다.
@@ -217,7 +230,7 @@ describe("issueFilters", () => {
   const { items } = parseWeeklyNews("2026-w41", example)
 
   test("주요 소식 수와, 구역마다 항목 수를 구역 순서대로 주고 기타는 맨 뒤에 둔다", () => {
-    assert.deepStrictEqual(issueFilters(items, ["network", "platform", "security"]), {
+    assert.deepStrictEqual(issueFilters(items, ["network", "platform", "security"], []), {
       featured: 1,
       regions: [
         { region: "network", count: 2 },
@@ -229,17 +242,137 @@ describe("issueFilters", () => {
 
   test("구역 순서에 없는 구역은 순서에 있는 구역 뒤에 이름순으로 둔다", () => {
     assert.deepStrictEqual(
-      issueFilters(items, ["platform"]).regions.map((entry) => entry.region),
+      issueFilters(items, ["platform"], []).regions.map((entry) => entry.region),
       ["platform", "network", null],
     )
   })
 
-  test("주요 소식과 기타가 없는 호는 0과 빈 자리로 준다", () => {
+  // 다른 호에서 고른 구역을 쿼리로 이어받으면, 이 호에 항목이 없어도 그 칩을 0으로 남겨 둔다
+  test("항목이 없는 구역과 기타도 0으로 준다", () => {
     const { items: plain } = parseWeeklyNews("2026-w41", source())
-    assert.deepStrictEqual(issueFilters(plain, ["network"]), {
+    assert.deepStrictEqual(issueFilters(plain, ["network", "security"], ["security", "process"]), {
       featured: 0,
-      regions: [{ region: "network", count: 1 }],
+      regions: [
+        { region: "network", count: 1 },
+        { region: "security", count: 0 },
+        { region: "process", count: 0 },
+        { region: null, count: 0 },
+      ],
     })
+  })
+})
+
+describe("issueNeighbors", () => {
+  test("주차순으로 바로 앞뒤 호를 주고, 이전은 오래된 호다", () => {
+    const weeks = ["2026-w41", "2026-w39", "2026-w40"]
+    assert.deepStrictEqual(issueNeighbors(weeks, "2026-w40"), {
+      prev: "2026-w39",
+      next: "2026-w41",
+    })
+  })
+
+  test("파일이 없는 주는 건너뛰고 해를 넘어 잇는다", () => {
+    const weeks = ["2025-w50", "2025-w52", "2026-w01", "2026-w05"]
+    assert.deepStrictEqual(issueNeighbors(weeks, "2026-w01"), {
+      prev: "2025-w52",
+      next: "2026-w05",
+    })
+    assert.deepStrictEqual(issueNeighbors(weeks, "2025-w52"), {
+      prev: "2025-w50",
+      next: "2026-w01",
+    })
+  })
+
+  test("맨 처음 호와 최신 호에서 없는 쪽은 null이다", () => {
+    const weeks = ["2026-w40", "2026-w41"]
+    assert.deepStrictEqual(issueNeighbors(weeks, "2026-w40"), { prev: null, next: "2026-w41" })
+    assert.deepStrictEqual(issueNeighbors(weeks, "2026-w41"), { prev: "2026-w40", next: null })
+    assert.deepStrictEqual(issueNeighbors(["2026-w41"], "2026-w41"), { prev: null, next: null })
+  })
+})
+
+describe("weekLabel", () => {
+  test("연도를 붙여 주차를 쓴다", () => {
+    assert.strictEqual(weekLabel("2026-w40"), "2026년 40주차")
+    assert.strictEqual(weekLabel("2027-w01"), "2027년 1주차")
+  })
+
+  test("기준 호와 같은 해면 연도를 뺀다", () => {
+    assert.strictEqual(weekLabel("2026-w40", "2026-w41"), "40주차")
+    assert.strictEqual(weekLabel("2025-w52", "2026-w01"), "2025년 52주차")
+  })
+})
+
+describe("dayLabel", () => {
+  test("사이트의 날짜 꼴로 쓰고, 기준 해와 같은 해면 연도를 뺀다", () => {
+    assert.strictEqual(dayLabel("2026-10-05", "en-US"), "Oct 05, 2026")
+    assert.strictEqual(dayLabel("2026-10-05", "en-US", 2026), "Oct 05")
+    assert.strictEqual(dayLabel("2025-12-29", "en-US", 2026), "Dec 29, 2025")
+  })
+})
+
+describe("issueMonth", () => {
+  test("목요일이 든 달에 둔다", () => {
+    assert.strictEqual(issueMonth("2026-w41"), "2026-10")
+    // 2026-w01은 2025-12-29에 시작하지만 목요일이 1월 1일이다
+    assert.strictEqual(issueMonth("2026-w01"), "2026-01")
+    // 2026-w53은 2027-01-03에 끝나지만 목요일이 12월 31일이다
+    assert.strictEqual(issueMonth("2026-w53"), "2026-12")
+    // 2026-w05는 2월 1일에 끝나지만 목요일이 1월 29일이다
+    assert.strictEqual(issueMonth("2026-w05"), "2026-01")
+  })
+
+  test("monthWeeks가 그 달에 두는 주차와 맞는다", () => {
+    for (let year = 2020; year <= 2027; year++) {
+      for (let month = 1; month <= 12; month++) {
+        const name = `${year}-${String(month).padStart(2, "0")}`
+        for (const week of monthWeeks(name)) assert.strictEqual(issueMonth(week), name, week)
+      }
+    }
+  })
+})
+
+describe("indexMonths", () => {
+  test("호를 달마다 묶어 최근 달과 최근 호부터 준다", () => {
+    assert.deepStrictEqual(indexMonths(["2026-w01", "2026-w41", "2026-w05", "2026-w40"]), [
+      { month: "2026-10", weeks: ["2026-w41", "2026-w40"] },
+      { month: "2026-01", weeks: ["2026-w05", "2026-w01"] },
+    ])
+  })
+})
+
+describe("issueDescription", () => {
+  const { items } = parseWeeklyNews("2026-w41", example)
+
+  test("기간, 소식 수, 주요 소식의 원어 제목", () => {
+    assert.strictEqual(
+      issueDescription("2026-w41", items, "en-US"),
+      "Oct 05, 2026 ~ Oct 11, 2026, 자동차 임베디드 업계 소식 3건. 주요: AUTOSAR R25-11 Adaptive Platform Changes",
+    )
+  })
+
+  test("주요 소식이 여럿이면 최근순으로 쉼표로 잇는다", () => {
+    const { items: two } = parseWeeklyNews(
+      "2026-w41",
+      [
+        source({ fields: ["- 구역: network", "- 매체: M", "- 발행일: 2026-10-05", "- 주요: 예"] }),
+        source({
+          fields: ["- 구역: network", "- 매체: M", "- 발행일: 2026-10-07", "- 주요: 예"],
+        }).replace("Title", "Later"),
+      ].join("\n"),
+    )
+    assert.strictEqual(
+      issueDescription("2026-w41", two, "en-US"),
+      "Oct 05, 2026 ~ Oct 11, 2026, 자동차 임베디드 업계 소식 2건. 주요: Later, Title",
+    )
+  })
+
+  test("주요 소식이 없으면 기간과 건수까지다", () => {
+    const { items: plain } = parseWeeklyNews("2026-w01", source())
+    assert.strictEqual(
+      issueDescription("2026-w01", plain, "en-US"),
+      "Dec 29, 2025 ~ Jan 04, 2026, 자동차 임베디드 업계 소식 1건.",
+    )
   })
 })
 

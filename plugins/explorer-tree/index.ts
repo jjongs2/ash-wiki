@@ -125,7 +125,8 @@ export function buildExplorerTree(
  * contentIndex의 항목에서 buildExplorerTree의 입력을 뽑는다.
  * - 구역 순서: 대문의 링크 가운데 구역(tags/<구역>)을 나온 순서대로
  * - 태그 표시 이름: 표시 이름 파일(tags/<태그>)의 제목. 태그 목록 색인(tags/index)은 뺀다
- * - 페이지: 대문과 tags/ 아래, 주간 소식(news/ 아래)을 뺀 항목. 주간 소식은 검색에만 나온다(ADR 0015)
+ * - 페이지: 대문과 tags/ 아래, 주간 소식(news/ 아래)을 뺀 항목. 주간 소식은 탐색기에 나오지 않는다(ADR 0015,
+ *   docs/weekly-news.md)
  */
 export function explorerInputs(entries: ContentEntry[]): {
   pages: ExplorerPage[]
