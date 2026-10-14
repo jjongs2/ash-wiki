@@ -23,7 +23,15 @@ import {
 import { firstLinkItem } from "./first-link"
 import { ownerPage } from "./owner"
 import { editions } from "./editions"
-import { attributed, claimBlocks, interleaved, opensRun, repeatedNames } from "./runs"
+import { allConsensus, consensusWithoutEdition } from "./consensus"
+import {
+  attributed,
+  claimBlocks,
+  interleaved,
+  opensRun,
+  pointerOpenings,
+  repeatedNames,
+} from "./runs"
 import { termItem } from "./terms"
 
 // 반영 뒤 점검의 항목들. 항목마다 규칙은 docs/wiki-verification.md의 반영 뒤 점검 절이 가리키는 절에
@@ -57,13 +65,18 @@ const standardSentence = new RegExp(
 
 const standardSentenceItem: Item = ({ changed }) =>
   changed.flatMap(({ page, change }) =>
-    addedLines(page, change).flatMap(({ line, text }) => {
-      return [...text.matchAll(standardSentence)].map((match) => ({
+    addedLines(page, change).flatMap(({ line, text }) => [
+      ...[...text.matchAll(standardSentence)].map((match) => ({
         file: page.file,
         line,
         message: excerpt(match[0]),
-      }))
-    }),
+      })),
+      ...[...text.matchAll(consensusWithoutEdition)].map((match) => ({
+        file: page.file,
+        line,
+        message: `판 없는 합의 문서: ${excerpt(match[0])}`,
+      })),
+    ]),
   )
 
 // 같은 인용으로 같은 주장을 한 다른 페이지: 더한 문장과 인용 키를 함께 쓰는 다른 페이지의 문장 가운데 글이
@@ -297,7 +310,8 @@ const shortenedItem: Item = ({ tree, changed }) => {
 // 출처 표시가 없는 것. 뒤 블록은 바뀌지 않았어도 찍는다. 끼워 넣은 블록이나 지운 구간 첫 블록 때문에 몇 절
 // 떨어진 블록이 구간을 열 수 있기 때문이다. 같은 출처인지는 판으로 가리고, 판은 엔트리 제목에서 읽는다
 // (editions.ts). 같은 판의 구간 사이에 다른 출처의 블록이 끼어 구간을 다시 여는 블록은 출처 표시가 있어도
-// 끼움으로 따로 찍는다. 더한 줄에서는 구간 안에서 출처 이름을 다시 쓴 문장도 찍는다.
+// 끼움으로 따로 찍는다. 더한 줄에서는 구간 안에서 출처 이름을 다시 쓴 문장과, 합의 문서 구간을 가리키는 말로
+// 여는 문장도 찍는다.
 const sourceRunItem: Item = ({ tree, changed }) => {
   const sources = editions(tree)
   return changed.flatMap(({ page, change }) => {
@@ -330,7 +344,9 @@ const sourceRunItem: Item = ({ tree, changed }) => {
             `같은 출처 구간 사이에 다른 출처의 블록이 끼었다(앞 구간: ${between.before.end}줄, 끼운 블록: ${inserted}, 이: ${claim.firstKeys})`,
           )
         }
-        if (attributed(claim, sources)) return []
+        // 합의 문서는 다툼 없는 설명을 출처 이름 없이 일반 명제로 쓰므로, 합의 문서 키만으로 여는 블록은 출처
+        // 표시가 없어도 된다. 그 구간을 가리키는 말로 여는 문장은 아래 pointerOpenings가 찍는다.
+        if (attributed(claim, sources) || allConsensus(claim.firstKeys.split(" "))) return []
         const previous = list[index - 1]
         const before = previous ? `${previous.end}줄 ${previous.lastKeys}` : "없음"
         return at(`구간을 여는데 출처 표시가 없다(앞: ${before}, 이: ${claim.firstKeys})`)
@@ -342,7 +358,14 @@ const sourceRunItem: Item = ({ tree, changed }) => {
         line,
         message: `구간 안에서 출처 이름을 다시 쓴다(앞: ${earlier.line}줄 "${earlier.name}"): ${excerpt(text)}`,
       }))
-    return [...opening, ...repeated]
+    const pointers = pointerOpenings(page, sources)
+      .filter(({ line }) => change.added.has(line))
+      .map(({ line, text }) => ({
+        file: page.file,
+        line,
+        message: `합의 문서 구간을 가리키는 말로 연다: ${excerpt(text)}`,
+      }))
+    return [...opening, ...repeated, ...pointers]
   })
 }
 

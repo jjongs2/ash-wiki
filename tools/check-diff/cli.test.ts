@@ -221,6 +221,40 @@ describe("check-diff CLI", { concurrency: false }, () => {
     assert.ok(!has(lines, "content/run-repeat-old.md:16:"), "바뀌지 않은 구간")
   })
 
+  test("표준 문장: 판 없는 합의 문서 주어와 '…에 따르면'을 찍고, 판을 붙인 것은 찍지 않는다", () => {
+    const lines = report.items.get("standard-sentence") ?? []
+    assert.ok(has(lines, "content/consensus.md:32:", "CTFL 강의계획서에 따르면"))
+    assert.ok(has(lines, "content/consensus.md:34:", "SWEBOK에 따르면"))
+    assert.ok(has(lines, "content/consensus.md:36:", "강의계획서는"), "풀이 괄호가 붙은 이름")
+    for (const line of [14, 18, 24, 28, 38, 40, 42])
+      assert.ok(!has(lines, `content/consensus.md:${line}:`), `${line}`)
+  })
+
+  test("출처 구간: 합의 문서 키만 인용한 블록은 절 첫 블록이어도 출처 표시 없음으로 찍지 않는다", () => {
+    const lines = report.items.get("source-run") ?? []
+    assert.ok(!has(lines, "content/consensus.md:", "출처 표시가 없다"))
+  })
+
+  test("출처 구간: 합의 문서 구간은 절에서 끊어, 새 절에서 판을 붙인 이름을 다시 적은 문장은 되풀이가 아니다", () => {
+    const lines = report.items.get("source-run") ?? []
+    assert.ok(has(lines, "content/consensus.md:14:", "다시 쓴다", "경계를 둘로"), "같은 절")
+    assert.ok(!has(lines, "content/consensus.md:24:", "다시 쓴다"))
+    assert.ok(
+      !has(lines, "content/consensus.md:14:", "다시 쓴다", "효과가 높다"),
+      "구간 안의 가리키는 말",
+    )
+  })
+
+  test("출처 구간: 새 절이나 다른 출처 뒤에서 합의 문서 구간을 가리키는 말로 여는 문장을 찍는다", () => {
+    const lines = report.items.get("source-run") ?? []
+    assert.ok(has(lines, "content/consensus.md:18:", "가리키는 말로 연다"), "새 절")
+    assert.ok(has(lines, "content/consensus.md:28:", "가리키는 말로 연다"), "다른 출처 뒤")
+    assert.ok(
+      !has(lines, "content/consensus.md:14:", "가리키는 말로 연다"),
+      "앞 문장이 이름을 밝혔다",
+    )
+  })
+
   test("주인 페이지: 행마다 링크, 절 앵커, 문단의 문장 수를 보인다", () => {
     const lines = report.items.get("owner-page")
     assert.ok(has(lines, "content/linker-a.md:12:", "#오류 계수기", "앵커 있음", "1문장"))
