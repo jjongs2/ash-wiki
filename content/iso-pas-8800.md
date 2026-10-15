@@ -1,7 +1,7 @@
 ---
 title: ISO/PAS 8800
 tags:
-  - process/sw-process
+  - sw-engineering/functional-safety
 verified: 2026-10-12
 publisher: ISO
 edition: 2024

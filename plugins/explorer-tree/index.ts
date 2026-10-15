@@ -55,7 +55,7 @@ export interface ContentEntry {
  * - 주제와 페이지는 이름 오름차순이고, 구역에 바로 속한 페이지는 그 구역의 주제들 뒤에 둔다.
  *   정렬은 한국어 순서(가나다 뒤에 로마자)로 고정해, 브라우저의 언어에 따라 바뀌지 않게 한다.
  * - 태그가 없는 페이지는 구역들 뒤에 둔다.
- * - 페이지는 첫 태그 하나로 자리를 정한다. 여러 주제에 걸치는 페이지의 처리는 아직 정하지 않았다.
+ * - 페이지는 주 태그(첫 태그) 하나로 자리를 정하고, 둘째 태그부터는 트리에 쓰지 않는다(docs/wiki-conventions.md).
  */
 export function buildExplorerTree(
   pages: ExplorerPage[],

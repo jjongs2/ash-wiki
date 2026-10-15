@@ -1,7 +1,7 @@
 ---
 title: UDS
 tags:
-  - network
+  - network/diagnostics
 aliases:
   - Unified Diagnostic Services
 verified: 2026-09-28

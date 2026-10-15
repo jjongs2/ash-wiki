@@ -1,7 +1,7 @@
 ---
 title: 유지보수 테스트
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 verified: 2026-10-13
 ---
 

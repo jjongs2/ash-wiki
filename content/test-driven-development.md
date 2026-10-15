@@ -1,7 +1,7 @@
 ---
 title: 테스트 주도 개발
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 aliases:
   - TDD
 verified: 2026-10-03

@@ -1,7 +1,7 @@
 ---
 title: 프로세스 평가
 tags:
-  - process/sw-process
+  - sw-engineering/sw-process
 verified: 2026-10-12
 ---
 

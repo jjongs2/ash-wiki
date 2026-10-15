@@ -1,7 +1,7 @@
 ---
 title: E-Gas 감시 개념
 tags:
-  - process/sw-process
+  - sw-engineering/functional-safety
 aliases:
   - Standardized E-Gas Monitoring Concept
 verified: 2026-10-04

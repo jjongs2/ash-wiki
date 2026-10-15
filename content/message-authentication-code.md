@@ -1,7 +1,7 @@
 ---
 title: 메시지 인증 코드
 tags:
-  - security
+  - security/cryptography
 verified: 2026-10-03
 ---
 

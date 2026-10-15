@@ -1,7 +1,7 @@
 ---
 title: 결함 허용
 tags:
-  - process
+  - sw-engineering/functional-safety
 verified: 2026-10-02
 ---
 

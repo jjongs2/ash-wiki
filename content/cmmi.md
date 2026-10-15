@@ -1,7 +1,7 @@
 ---
 title: CMMI
 tags:
-  - process/sw-process
+  - sw-engineering/sw-process
 aliases:
   - Capability Maturity Model Integration
 verified: 2026-10-02

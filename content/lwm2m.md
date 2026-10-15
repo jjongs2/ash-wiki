@@ -1,7 +1,7 @@
 ---
 title: LwM2M
 tags:
-  - network
+  - network/tcp-ip
 aliases:
   - Lightweight Machine to Machine
 verified: 2026-10-03

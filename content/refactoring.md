@@ -1,7 +1,7 @@
 ---
 title: 리팩터링
 tags:
-  - process
+  - sw-engineering
 verified: 2026-10-03
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: IPv4
 tags:
-  - network
+  - network/tcp-ip
 aliases:
   - Internet Protocol version 4
 verified: 2026-09-29

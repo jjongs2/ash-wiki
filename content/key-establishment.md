@@ -1,7 +1,7 @@
 ---
 title: 키 설정
 tags:
-  - security
+  - security/cryptography
 aliases:
   - Key exchange
 verified: 2026-10-03

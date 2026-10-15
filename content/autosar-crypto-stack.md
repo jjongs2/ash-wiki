@@ -2,6 +2,7 @@
 title: AUTOSAR 암호 스택
 tags:
   - platform/autosar
+  - security/cryptography
 verified: 2026-10-07
 ---
 

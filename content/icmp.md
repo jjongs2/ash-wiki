@@ -1,7 +1,7 @@
 ---
 title: ICMP
 tags:
-  - network
+  - network/tcp-ip
 aliases:
   - Internet Control Message Protocol
 verified: 2026-09-29

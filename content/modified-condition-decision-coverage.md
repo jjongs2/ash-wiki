@@ -3,7 +3,7 @@ title: 변형 조건/결정 커버리지
 aliases:
   - MC/DC
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 verified: 2026-10-03
 ---
 

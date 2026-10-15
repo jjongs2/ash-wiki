@@ -37,7 +37,7 @@ configuration:
         region-network: "#007766"
         region-platform: "#9f4a8f"
         region-security: "#bc3f0d"
-        region-process: "#935e00"
+        region-sw-engineering: "#935e00"
         region-other: "#626a73"
       darkMode:
         light: "#0f1318"
@@ -52,7 +52,7 @@ configuration:
         region-network: "#30ab94"
         region-platform: "#c384bd"
         region-security: "#ef754f"
-        region-process: "#c39031"
+        region-sw-engineering: "#c39031"
         region-other: "#9299a1"
 plugins:
   - source: "@quartz-community/created-modified-date"

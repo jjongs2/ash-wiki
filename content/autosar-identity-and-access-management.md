@@ -2,6 +2,7 @@
 title: AUTOSAR Identity and Access Management
 tags:
   - platform/autosar
+  - security/cybersecurity
 aliases:
   - IAM
 verified: 2026-10-07

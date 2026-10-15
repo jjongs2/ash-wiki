@@ -2,6 +2,7 @@
 title: AUTOSAR Diagnostic Management
 tags:
   - platform/autosar
+  - network/diagnostics
 verified: 2026-10-07
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Fault, error, failure
 tags:
-  - process
+  - sw-engineering/functional-safety
 verified: 2026-10-02
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: 포트 번호
 tags:
-  - network
+  - network/tcp-ip
 verified: 2026-09-29
 ---
 

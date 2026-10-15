@@ -1,7 +1,7 @@
 ---
 title: 지속적 통합
 tags:
-  - process
+  - sw-engineering
 aliases:
   - CI
 verified: 2026-10-03

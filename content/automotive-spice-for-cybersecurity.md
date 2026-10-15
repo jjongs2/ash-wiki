@@ -2,6 +2,7 @@
 title: Automotive SPICE for Cybersecurity
 tags:
   - security/cybersecurity
+  - sw-engineering/sw-process
 aliases:
   - ASPICE for Cybersecurity
 verified: 2026-10-03

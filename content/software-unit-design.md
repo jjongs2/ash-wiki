@@ -1,7 +1,7 @@
 ---
 title: 소프트웨어 유닛 설계
 tags:
-  - process/sw-process
+  - sw-engineering/sw-process
 aliases:
   - 소프트웨어 상세 설계
 verified: 2026-10-02

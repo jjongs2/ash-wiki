@@ -1,7 +1,7 @@
 ---
 title: 인수 테스트 주도 개발
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 aliases:
   - ATDD
   - BDD

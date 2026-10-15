@@ -1,7 +1,7 @@
 ---
 title: Safety element out of context
 tags:
-  - process/sw-process
+  - sw-engineering/functional-safety
 aliases:
   - SEooC
 verified: 2026-10-12

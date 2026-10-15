@@ -2,6 +2,7 @@
 title: AUTOSAR CAN 스택
 tags:
   - platform/autosar
+  - network/can
 verified: 2026-09-30
 ---
 

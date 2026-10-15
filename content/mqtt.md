@@ -1,7 +1,7 @@
 ---
 title: MQTT
 tags:
-  - network
+  - network/tcp-ip
 aliases:
   - Message Queuing Telemetry Transport
 verified: 2026-10-03

@@ -2,6 +2,7 @@
 title: CAN 응답 시간 분석
 tags:
   - network/can
+  - platform/rtos
 verified: 2026-10-05
 ---
 

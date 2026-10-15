@@ -1,7 +1,7 @@
 ---
 title: 오류 추정
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 verified: 2026-10-03
 ---
 

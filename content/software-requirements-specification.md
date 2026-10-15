@@ -1,7 +1,7 @@
 ---
 title: 소프트웨어 요구사항 명세
 tags:
-  - process/sw-process
+  - sw-engineering/sw-process
 aliases:
   - SRS
 verified: 2026-10-02

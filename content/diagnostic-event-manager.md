@@ -2,6 +2,7 @@
 title: Diagnostic Event Manager
 tags:
   - platform/autosar
+  - network/diagnostics
 aliases:
   - Dem
 verified: 2026-10-07

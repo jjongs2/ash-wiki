@@ -2,6 +2,7 @@
 title: AUTOSAR schedule table
 tags:
   - platform/autosar
+  - platform/rtos
 verified: 2026-09-30
 ---
 

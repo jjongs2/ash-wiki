@@ -1,7 +1,7 @@
 ---
 title: X-in-the-loop
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 aliases:
   - XiL
   - HIL

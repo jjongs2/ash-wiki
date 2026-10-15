@@ -1,7 +1,7 @@
 ---
 title: 기능 안전 관리
 tags:
-  - process/sw-process
+  - sw-engineering/functional-safety
 verified: 2026-10-12
 ---
 

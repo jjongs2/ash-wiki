@@ -1,7 +1,7 @@
 ---
 title: 소프트웨어 개발 생명주기
 tags:
-  - process/sw-process
+  - sw-engineering/sw-process
 aliases:
   - SDLC
 verified: 2026-10-02

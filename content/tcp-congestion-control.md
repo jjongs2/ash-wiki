@@ -1,7 +1,7 @@
 ---
 title: TCP 혼잡 제어
 tags:
-  - network
+  - network/tcp-ip
 verified: 2026-09-29
 ---
 

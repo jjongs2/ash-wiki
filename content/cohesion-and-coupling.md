@@ -1,7 +1,8 @@
 ---
 title: 응집도와 결합도
 tags:
-  - process
+  - sw-engineering
+  - sw-engineering/sw-process
 verified: 2026-10-02
 ---
 

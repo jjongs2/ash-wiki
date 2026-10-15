@@ -1,7 +1,7 @@
 ---
 title: Scrum
 tags:
-  - process/sw-process
+  - sw-engineering/sw-process
 verified: 2026-10-03
 ---
 

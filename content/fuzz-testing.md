@@ -3,7 +3,7 @@ title: 퍼즈 테스트
 aliases:
   - 퍼징
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 verified: 2026-10-13
 ---
 

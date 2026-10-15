@@ -1,7 +1,7 @@
 ---
 title: 애자일 소프트웨어 개발
 tags:
-  - process/sw-process
+  - sw-engineering/sw-process
 aliases:
   - Agile
 verified: 2026-10-03

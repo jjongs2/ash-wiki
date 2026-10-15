@@ -2,6 +2,7 @@
 title: AUTOSAR Update and Configuration Management
 tags:
   - platform/autosar
+  - security/ota
 aliases:
   - UCM
 verified: 2026-10-07

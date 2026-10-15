@@ -1,7 +1,7 @@
 ---
 title: 프로세스 능력 수준
 tags:
-  - process/sw-process
+  - sw-engineering/sw-process
 aliases:
   - capability level
 verified: 2026-10-02

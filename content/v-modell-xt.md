@@ -1,7 +1,7 @@
 ---
 title: V-Modell XT
 tags:
-  - process/sw-process
+  - sw-engineering/sw-process
 verified: 2026-10-12
 publisher: Weit e.V.
 edition: 2024

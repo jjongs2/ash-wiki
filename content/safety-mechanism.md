@@ -1,7 +1,7 @@
 ---
 title: 안전 메커니즘
 tags:
-  - process/sw-process
+  - sw-engineering/functional-safety
 verified: 2026-10-02
 ---
 

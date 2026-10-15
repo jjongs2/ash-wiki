@@ -1,7 +1,7 @@
 ---
 title: 암호학적 해시 함수
 tags:
-  - security
+  - security/cryptography
 aliases:
   - 해시 함수
 verified: 2026-10-03

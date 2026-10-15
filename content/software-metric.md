@@ -1,7 +1,7 @@
 ---
 title: 소프트웨어 메트릭
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 aliases:
   - 코드 메트릭
 verified: 2026-10-03

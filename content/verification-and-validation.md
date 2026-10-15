@@ -1,7 +1,8 @@
 ---
 title: 검증과 확인
 tags:
-  - process
+  - sw-engineering
+  - sw-engineering/sw-testing
 aliases:
   - V&V
 verified: 2026-10-02

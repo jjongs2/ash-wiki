@@ -1,7 +1,7 @@
 ---
 title: Freedom from interference
 tags:
-  - process/sw-process
+  - sw-engineering/functional-safety
 aliases:
   - FFI
 verified: 2026-10-02

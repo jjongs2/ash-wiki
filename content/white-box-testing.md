@@ -3,7 +3,7 @@ title: 화이트박스 테스트
 aliases:
   - 구조 기반 테스트
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 verified: 2026-10-03
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: PTP
 tags:
-  - network
+  - network/ethernet
 aliases:
   - Precision Time Protocol
 verified: 2026-09-29

@@ -1,7 +1,7 @@
 ---
 title: 순환 복잡도
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 verified: 2026-10-03
 ---
 

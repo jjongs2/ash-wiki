@@ -1,7 +1,7 @@
 ---
 title: 요구 공학
 tags:
-  - process/sw-process
+  - sw-engineering/sw-process
 aliases:
   - 요구사항 공학
 verified: 2026-10-02

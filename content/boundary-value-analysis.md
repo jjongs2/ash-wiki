@@ -1,7 +1,7 @@
 ---
 title: 경계값 분석
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 verified: 2026-10-03
 ---
 

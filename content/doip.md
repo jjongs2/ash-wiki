@@ -1,6 +1,7 @@
 ---
 title: DoIP
 tags:
+  - network/diagnostics
   - network/ethernet
 aliases:
   - Diagnostic communication over Internet Protocol

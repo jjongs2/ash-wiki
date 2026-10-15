@@ -1,7 +1,7 @@
 ---
 title: 단위 테스트
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 aliases:
   - 컴포넌트 테스트
 verified: 2026-10-03

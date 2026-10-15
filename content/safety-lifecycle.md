@@ -1,7 +1,7 @@
 ---
 title: 안전 생명주기
 tags:
-  - process/sw-process
+  - sw-engineering/functional-safety
 verified: 2026-10-01
 ---
 

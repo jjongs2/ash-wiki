@@ -1,7 +1,7 @@
 ---
 title: 소프트웨어 품질
 tags:
-  - process
+  - sw-engineering
 verified: 2026-10-02
 ---
 
