@@ -5,13 +5,13 @@ tags:
 verified: 2026-10-03
 ---
 
-[[iso-sae-21434|ISO/SAE 21434]]:2021은 **검증**(verification)을 명시된 요구사항이 충족되었음을 객관적 증거로 확인하는 것으로, **확인**(validation)을 [[cybersecurity-lifecycle#아이템과 운용 환경|아이템]]의 [[cybersecurity-goal|cybersecurity goal]]이 적절하고 이루어졌음을 객관적 증거로 확인하는 것으로 정의한다. 두 정의에서 검증은 요구사항을, 확인은 goal을 기준으로 삼는다. 두 정의는 [[iso-iec-ieee-15288|ISO/IEC/IEEE 15288]]:2015의 4.1.53(확인)과 4.1.54(검증)를 고친 것이다. 확인의 정의에서는 특정한 의도된 사용이나 응용의 요구사항이 충족되었다는 부분을 아이템의 cybersecurity goal이 적절하고 이루어졌다는 부분으로 바꿨다.[@iso-sae-21434-obp-2021] (셋째·넷째 문장: 3.1.36·3.1.37 SOURCE) 일반적인 V&V는 [[verification-and-validation|검증과 확인]]에서 다룬다.
+[[iso-sae-21434|ISO/SAE 21434]]:2021은 **검증**(verification)을 명시된 요구사항이 충족되었음을 객관적 증거로 확인하는 것으로, **확인**(validation)을 [[cybersecurity-lifecycle#아이템과 운용 환경|아이템]]의 [[cybersecurity-goal|cybersecurity goal]]이 적절하고 이루어졌음을 객관적 증거로 확인하는 것으로 정의한다. 두 정의에서 검증은 요구사항을, 확인은 goal을 기준으로 삼는다. 두 정의는 [[iso-iec-ieee-15288|ISO/IEC/IEEE 15288]]:2015의 4.1.53(확인)과 4.1.54(검증)를 고친 것이다. 확인의 정의에서는 특정한 의도된 사용이나 응용의 요구사항이 충족되었다는 부분을 아이템의 cybersecurity goal이 적절하고 이루어졌다는 부분으로 바꿨다.[@iso-sae-21434-obp-2021] 일반적인 V&V는 [[verification-and-validation|검증과 확인]]에서 다룬다.
 
 ## ISO/SAE 21434의 검증과 확인
 
 이 표준의 11절(cybersecurity validation)은 아이템의 확인을 차량 수준에서 다룬다.[@iso-sae-21434-obp-2021] 요구사항을 구현하고 검증하는 10절은 [[cybersecurity-specification|cybersecurity specification]]에서 다룬다.
 
-ISO/SAE TR 8477(Road vehicles — Cybersecurity verification and validation)은 발간 단계(60.00)에 있고, 발행 시기는 2026년 10월로 잡혀 있다.[@iso-sae-tr-8477-2026] (머리의 제목, General information의 Publication date·Stage)
+ISO/SAE TR 8477(Road vehicles — Cybersecurity verification and validation)은 발간 단계(60.00)에 있고, 발행 시기는 2026년 10월로 잡혀 있다.[@iso-sae-tr-8477-2026]
 
 ## Automotive SPICE for Cybersecurity의 SEC.3·SEC.4
 

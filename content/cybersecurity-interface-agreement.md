@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-[[iso-sae-21434|ISO/SAE 21434]]:2021은 책임이 고객과 공급자에게 나뉜 [[cybersecurity-lifecycle#아이템과 운용 환경|아이템]]이나 컴포넌트의 사이버보안 활동을 **분산 사이버보안 활동**(distributed cybersecurity activities)으로 정의하고, 분산 사이버보안 활동에 관한 고객과 공급자 사이의 합의를 **cybersecurity interface agreement**로 정의한다. 이 표준의 7절(distributed cybersecurity activities)은 고객과 공급자 사이에 사이버보안 활동의 책임을 나누는 요구사항을 둔다. 7절은 공급자 역량(supplier capability), 견적 요청(request for quotation), 책임 정렬(alignment of responsibilities)을 하위 절로 둔다. Annex C는 cybersecurity interface agreement 템플릿의 예를 제시한다.[@iso-sae-21434-obp-2021] (목차 Annex C "Example of cybersecurity interface agreement template", C.2 "Example template")
+[[iso-sae-21434|ISO/SAE 21434]]:2021은 책임이 고객과 공급자에게 나뉜 [[cybersecurity-lifecycle#아이템과 운용 환경|아이템]]이나 컴포넌트의 [[cybersecurity|사이버보안]] 활동을 **분산 사이버보안 활동**(distributed cybersecurity activities)으로 정의하고, 분산 사이버보안 활동에 관한 고객과 공급자 사이의 합의를 **cybersecurity interface agreement**로 정의한다. 이 표준의 7절(distributed cybersecurity activities)은 고객과 공급자 사이에 사이버보안 활동의 책임을 나누는 요구사항을 둔다. 7절은 공급자 역량(supplier capability), 견적 요청(request for quotation), 책임 정렬(alignment of responsibilities)을 하위 절로 둔다. Annex C는 cybersecurity interface agreement 템플릿의 예를 제시한다.[@iso-sae-21434-obp-2021]
 
 ## 합의에 담는 것
 

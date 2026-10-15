@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**Attack feasibility**는 attack path가 가진 속성으로, 그 attack path에 해당하는 행위들을 성공시키기가 얼마나 쉬운지를 말한다. [[iso-sae-21434|ISO/SAE 21434]]:2021은 이를 3절에서 이렇게 정의하고, attack feasibility rating을 15절에 모은 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA 방법]] 가운데 하나로 둔다.[@iso-sae-21434-obp-2021] 이 표준은 attack feasibility rating과 그 설명을 표 1에 둔다.[@iso-sae-21434-obp-2021] (표 목록 표 1) Attack feasibility로 리스크를 정하는 분석은 [[threat-analysis-and-risk-assessment|TARA]]에서 다룬다.
+**Attack feasibility**는 attack path가 가진 속성으로, 그 attack path에 해당하는 행위들을 성공시키기가 얼마나 쉬운지를 말한다. [[iso-sae-21434|ISO/SAE 21434]]:2021은 이를 3절에서 이렇게 정의하고, attack feasibility rating을 15절에 모은 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA 방법]] 가운데 하나로 둔다. 이 표준은 attack feasibility rating과 그 설명을 표 1에 둔다.[@iso-sae-21434-obp-2021] Attack feasibility로 리스크를 정하는 분석은 [[threat-analysis-and-risk-assessment|TARA]]에서 다룬다.
 
 ## Attack potential
 
@@ -27,13 +27,13 @@ CEM v3.1 Revision 5의 표는 TOE가 견디는 attack potential을 열로 따로
 
 ![[diagrams/cem-attack-potential-ranges.svg]]
 
-Henniger 외는 2009년 논문에서 [[hardware-security-module#EVITA의 HSM 등급|EVITA]]의 공격 성공 확률을, 경과 시간, 전문성, 시스템 지식, 기회의 창, 장비 다섯 요소의 값을 더한 attack potential로 매겼다.[@henniger-security-requirements-2009] (VI.C, 표 II, 표 III) Islam 외의 [[threat-analysis-and-risk-assessment#EVITA와 HEAVENS의 방법|HEAVENS]] 리스크 평가 틀은 경과 시간을 뺀 네 요소로 threat level을 매겼다.[@islam-risk-assessment-framework-2016] (6.1)
+Henniger 외는 2009년 논문에서 [[hardware-security-module#EVITA의 HSM 등급|EVITA]]의 공격 성공 확률을, 경과 시간, 전문성, 시스템 지식, 기회의 창, 장비 다섯 요소의 값을 더한 attack potential로 매겼다.[@henniger-security-requirements-2009] Islam 외는 2016년 논문에서 [[threat-analysis-and-risk-assessment#EVITA와 HEAVENS의 방법|HEAVENS]] 프로젝트의 결과를 바탕으로 한 리스크 평가 틀을 내놓으며, threat level은 경과 시간을 뺀 네 요소로 매겼다.[@islam-risk-assessment-framework-2016]
 
 ## ISO/SAE 21434의 rating 예
 
 ISO/SAE 21434:2021은 attack vector 기반 방법과 attack potential 기반 방법으로 attack feasibility를 매긴 예를 Annex H의 표로 든다. Annex G에는 attack vector 기반 방법의 표와 [[common-vulnerability-scoring-system|CVSS]] exploitability를 대응시키는 예의 표가 있다. 또 Elapsed time, Specialist expertise, Knowledge of the item or component, Window of opportunity, Equipment를 제목으로 한 표 다섯과, attack potential을 합산하는 예와 대응시키는 예의 표가 있다.[@iso-sae-21434-obp-2021]
 
-Annex G는 attack feasibility rating의 지침으로 attack potential 기반(G.2), CVSS 기반(G.3), attack vector 기반(G.4) 세 접근을 제시한다.[@iso-sae-21434-obp-2021] (목차 Annex G, G.2\~G.4)
+Annex G는 attack feasibility rating의 지침으로 attack potential 기반(G.2), CVSS 기반(G.3), attack vector 기반(G.4) 세 접근을 제시한다.[@iso-sae-21434-obp-2021]
 
 ## ISO/IEC 18045와의 관계
 

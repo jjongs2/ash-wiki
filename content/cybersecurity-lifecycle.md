@@ -27,7 +27,7 @@ Tailoring과 out-of-context 컴포넌트처럼 프로젝트의 활동을 정하�
 
 - **아이템**(item): 차량 수준의 기능을 구현하는 컴포넌트나 컴포넌트의 집합. 시스템도 차량 수준의 기능을 구현하면 아이템이 될 수 있고, 그렇지 않으면 컴포넌트다.
 - **컴포넌트**(component): 논리적·기술적으로 떼어 낼 수 있는 부분
-- **운용 환경**(operational environment): 운용 중의 상호작용을 고려한 맥락. 아이템이나 컴포넌트의 운용에는 차량 기능, 생산, 서비스와 수리가 들 수 있다.[@iso-sae-21434-obp-2021] (아이템 항목의 둘째 문장: 3.1.25 Note 1)
+- **운용 환경**(operational environment): 운용 중의 상호작용을 고려한 맥락. 아이템이나 컴포넌트의 운용에는 차량 기능, 생산, 서비스와 수리가 들 수 있다.[@iso-sae-21434-obp-2021]
 
 ## Cybersecurity incident와 대응
 
@@ -35,6 +35,6 @@ Tailoring과 out-of-context 컴포넌트처럼 프로젝트의 활동을 정하�
 
 NHTSA 지침은 제조사가 제품 사이버보안의 incident 대응 프로세스를 두기를 권한다. 이 프로세스에는 문서로 남긴 대응 계획, 조직 안의 역할과 책임, 조직 밖과의 연락 경로, 이 정보를 최신으로 유지하는 절차가 들고, 대응 프로세스의 효과를 재는 지표도 둔다.[@nhtsa-cybersecurity-best-practices-2022]
 
-이 지침은 incident를 US-CERT(United States Computer Emergency Readiness Team)의 연방 incident 통지 지침에 따라 CISA/US-CERT에 보고하고, 조직된 사이버 incident 대응 훈련을 정기적으로 하거나 그에 참여하기를 권한다.[@nhtsa-cybersecurity-best-practices-2022] (4.5 G.33·G.34, 10쪽)
+이 지침은 incident를 US-CERT(United States Computer Emergency Readiness Team)의 연방 incident 통지 지침에 따라 CISA/US-CERT에 보고하고, 조직된 사이버 incident 대응 훈련을 정기적으로 열고 그에 참여하기를 권한다.[@nhtsa-cybersecurity-best-practices-2022]
 
-ENISA의 2019년 보고서 Good practices for security of smart cars는 OEM과 제3자 공급자가 incident 처리 프로세스를 두고, 이를 적어도 해마다, 그리고 큰 변경이 있으면 되도록 빨리 시험하고 고치기를 권한다. 또 제품에 관한 보안 incident를 맡는 PSIRT(Product Security Incident Response Team)와 인프라에 관한 보안 incident를 맡는 CSIRT(Computer Security Incident Response Team)를 두는 것을 검토하기를 권한다.[@enisa-smart-cars-2019] (4.3.4 OP-11·OP-12, 30쪽)
+ENISA의 2019년 보고서 Good practices for security of smart cars는 OEM과 제3자 공급자가 incident 처리 프로세스를 두고, 이를 적어도 해마다, 그리고 큰 변경이 있으면 되도록 빨리 시험하고 고치기를 권한다. 또 제품에 관한 보안 incident를 맡는 PSIRT(Product Security Incident Response Team)와 인프라에 관한 보안 incident를 맡는 CSIRT(Computer Security Incident Response Team)를 두는 것을 검토하기를 권한다.[@enisa-smart-cars-2019]
