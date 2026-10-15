@@ -18,7 +18,7 @@ ISO/IEC/IEEE 24765:2017은 테스트 케이스를, 특정 프로그램 경로를
 
 ## 테스트 조건
 
-**테스트 조건**(test condition)은 컴포넌트나 시스템에서 테스트로 확인할 수 있는 측면이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-test-condition-2026] ISTQB CTFL v4.0.1 강의계획서는 테스트 조건을 테스트 분석에서 정하고, 테스트 설계에서 테스트 케이스로 다듬는 것으로 본다.[@istqb-ctfl-syllabus-2024] 두 활동은 [[test-process|테스트 프로세스]]에서 다룬다. ISO/IEC/IEEE 29119 시리즈는 테스트 설계에 테스트 조건 대신 테스트 모델이라는 개념을 쓴다.[@iso-iec-ieee-29119-1-obp-2022]
+**테스트 조건**(test condition)은 컴포넌트나 시스템에서 테스트로 확인할 수 있는 측면이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-test-condition-2026] ISTQB CTFL v4.0.1 강의계획서는 테스트 조건을 테스트 분석에서 정하고, 테스트 설계에서 테스트 케이스로 다듬는 것으로 본다.[@istqb-ctfl-syllabus-2024] 두 활동은 [[test-process#테스트 활동|테스트 프로세스]]에서 다룬다. ISO/IEC/IEEE 29119 시리즈는 테스트 설계에 테스트 조건 대신 테스트 모델이라는 개념을 쓴다.[@iso-iec-ieee-29119-1-obp-2022]
 
 ## 상위 수준과 하위 수준 테스트 케이스
 

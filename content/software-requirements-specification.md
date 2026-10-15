@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-02
 ---
 
-ISO/IEC/IEEE 29148:2018은 **소프트웨어 요구사항 명세**(software requirements specification, SRS)를 소프트웨어의 필수 요구사항(기능, 성능, 설계 제약, 속성)과 외부 인터페이스를 모아 구조화한 것으로 정의한다.[@iso-iec-ieee-29148-obp-2018] 표준 자체는 [[iso-iec-ieee-29148|ISO/IEC/IEEE 29148]]에서 다룬다.
+[[iso-iec-ieee-29148|ISO/IEC/IEEE 29148]]:2018은 **소프트웨어 요구사항 명세**(software requirements specification, SRS)를 소프트웨어의 필수 요구사항(기능, 성능, 설계 제약, 속성)과 외부 인터페이스를 모아 구조화한 것으로 정의한다.[@iso-iec-ieee-29148-obp-2018]
 
 ## 쓰임
 

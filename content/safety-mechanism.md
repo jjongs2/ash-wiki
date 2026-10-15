@@ -19,7 +19,7 @@ verified: 2026-10-02
 
 IEC 60050은 **fail-safe**를 failure가 나도 안전을 지킬 수 있는 시스템의 성질로 정의하고[@iec-60050-192-10-06-2015], **fail-soft**를 fault가 났거나 failure가 임박했을 때 영향받은 기능을 우선순위에 따라 차츰 끝낼 수 있는 시스템의 성질로 정의한다.[@iec-60050-192-10-07-2015]
 
-안전 메커니즘이 대응을 마쳐야 하는 시간은 [[fault-tolerant-time-interval|FTTI]]에서 다룬다.
+안전 메커니즘이 대응을 마쳐야 하는 시간은 [[fault-tolerant-time-interval#구간 사이의 관계|FTTI]]에서 다룬다.
 
 ## 오류 검출 기법
 
@@ -35,7 +35,7 @@ TI Hercules MCU는 하드웨어 안전 메커니즘으로 [[fault-tolerance#다�
 
 ![[diagrams/watchdog-supervision-kinds.svg]]
 
-AUTOSAR Classic Platform R25-11은 Watchdog Manager에서 deadline supervision을 중첩해 쓰는 것(시작 1, 시작 2, 끝 2, 끝 1의 순서)을 지원하지 않고, Supervised Entity가 여러 파티션(EcucPartition)에 걸치는 것도 지원하지 않는다.[@autosar-cp-tr-releaseoverview-2025]
+[[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11은 Watchdog Manager에서 deadline supervision을 중첩해 쓰는 것(시작 1, 시작 2, 끝 2, 끝 1의 순서)을 지원하지 않고, Supervised Entity가 여러 파티션(EcucPartition)에 걸치는 것도 지원하지 않는다.[@autosar-cp-tr-releaseoverview-2025]
 
 AUTOSAR R25-11은 통신 경로의 fault를 실행 중에 검출하는 [[autosar-e2e-protection|E2E 통신 보호]]를 둔다.[@autosar-fo-prs-e2eprotocol-2025] 수신 시그널이 정한 시간 안에 오지 않는 것은 [[autosar-com|AUTOSAR COM]]의 수신 데드라인 감시가 검출한다.[@autosar-cp-sws-com-2025]
 
