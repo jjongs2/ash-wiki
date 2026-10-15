@@ -11,6 +11,8 @@ verified: 2026-10-03
 
 ## 차량용 MCU의 HSM
 
+ENISA의 2019년 보고서 Good practices for security of smart cars는 암호 알고리즘을 안전하게 실행하고 키를 안전하게 저장하는 데 전용의 tamper-resistant HSM을 쓰는 것을 검토하기를 권한다.[@enisa-smart-cars-2019]
+
 차량용 MCU 가운데에는 HSM을 칩 안에 넣고, 그 HSM에 주 CPU와 따로 자기 프로세서, 메모리, 암호 가속기를 두는 제품이 있다.[@infineon-aurix-tc3xx-hsm-training-2020][@renesas-rh850-rcar-secure-boot-part-2-2021]
 
 - Infineon AURIX TC3xx의 HSM은 32비트 Arm Cortex-M3 코어를 두고, [[symmetric-key-cryptography#AES|AES]]-128 암호, 256비트 타원 곡선 [[public-key-cryptography|공개 키]] 연산, SHA(Secure Hash Algorithm)-224/256 [[cryptographic-hash-function|해시]]를 하드웨어로 가속하며 TRNG(True Random Number Generator)를 갖는다. 브리지가 방화벽 노릇을 해 HSM 안의 자원을 다른 버스 마스터의 접근에서 지킨다. 키 저장에 쓰는 데이터 플래시를 비롯한 HSM 몫의 플래시는 설정으로 HSM만 쓰게 해 주 코어의 접근을 막을 수 있다.[@infineon-aurix-tc3xx-hsm-training-2020]

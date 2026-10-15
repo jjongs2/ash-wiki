@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="9.5 6.5 491 232" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+  <text x="20" y="26" font-size="12" fill="var(--text, #727981)">Checkoway 외(2011)의 외부 공격 경로</text>
+
+  <!-- 경로 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="40" width="250" height="52" rx="2" />
+    <rect x="20" y="108" width="250" height="52" rx="2" />
+    <rect x="20" y="176" width="250" height="52" rx="2" />
+    <rect x="360" y="112" width="130" height="44" rx="2" />
+  </g>
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="145" y="62">indirect physical access</text>
+    <text x="145" y="130">short-range wireless access</text>
+    <text x="145" y="198">long-range wireless access</text>
+    <text x="425" y="139">차량</text>
+  </g>
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="145" y="81">정비사의 진단 도구, 미디어 플레이어</text>
+    <text x="145" y="149">Bluetooth</text>
+    <text x="145" y="217">셀룰러 무선</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="270" y1="66" x2="358" y2="124" />
+    <line x1="270" y1="134" x2="358" y2="134" />
+    <line x1="270" y1="202" x2="358" y2="144" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="425" y="176">직접 물리적 접근 없이</text>
+    <text x="425" y="192">원격 장악</text>
+  </g>
+</svg>

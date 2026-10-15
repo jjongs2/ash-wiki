@@ -27,9 +27,11 @@ CEM v3.1 Revision 5의 표는 TOE가 견디는 attack potential을 열로 따로
 
 ![[diagrams/cem-attack-potential-ranges.svg]]
 
+[[hardware-security-module#EVITA의 HSM 등급|EVITA]]의 리스크 평가 절차는 경과 시간, 전문성, 시스템 지식, 기회의 창, 장비 다섯 요소의 값을 더한 attack potential로 공격 성공 확률을 매기고, [[threat-analysis-and-risk-assessment#EVITA와 HEAVENS의 방법|HEAVENS]] 프로젝트를 바탕으로 한 Islam 외의 리스크 평가 틀은 경과 시간을 뺀 네 요소로 threat level을 매긴다.[@henniger-security-requirements-2009][@islam-risk-assessment-framework-2016]
+
 ## ISO/SAE 21434의 rating 예
 
-ISO/SAE 21434:2021은 attack vector 기반 방법과 attack potential 기반 방법으로 attack feasibility를 매긴 예를 Annex H의 표로 든다. Annex G에는 attack vector 기반 방법의 표와 [[common-vulnerability-scoring-system|CVSS]] exploitability를 대응시키는 예의 표가 있다. 또 Elapsed time, Specialist expertise, Knowledge of the item or component, Window of opportunity, Equipment를 제목으로 한 표 다섯과, attack potential을 합산하는 예와 대응시키는 예의 표가 있다.[@iso-sae-21434-obp-2021]
+ISO/SAE 21434:2021은 attack vector 기반 방법과 attack potential 기반 방법으로 attack feasibility를 매긴 예를 Annex H의 표로 든다. Annex G는 attack feasibility rating의 지침으로 attack potential 기반(G.2), [[common-vulnerability-scoring-system|CVSS]] 기반(G.3), attack vector 기반(G.4) 세 접근을 제시한다. Annex G에는 attack vector 기반 방법의 표와 CVSS exploitability를 대응시키는 예의 표가 있다. 또 Elapsed time, Specialist expertise, Knowledge of the item or component, Window of opportunity, Equipment를 제목으로 한 표 다섯과, attack potential을 합산하는 예와 대응시키는 예의 표가 있다.[@iso-sae-21434-obp-2021]
 
 ## ISO/IEC 18045와의 관계
 

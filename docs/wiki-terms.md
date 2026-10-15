@@ -24,6 +24,7 @@
 - context: 문맥 (#142)
 - context switch: 문맥 전환 (#142)
 - counter: 카운터 (#257). OSEK·AUTOSAR OS 객체일 때. 다른 counter는 이 결정에 들지 않음
+- Cyber Resilience Act: EU 사이버 회복력법 (#438)
 - cybersecurity goal: 사이버보안 목표 (#288)
 - data-based, behavior-based, rule-based: 데이터 기반 (#385). CTAL-TA 강의계획서의 블랙박스 기법 세 갈래일 때. "데이터 기반 테스트"는 data-driven testing
 - Diffie-Hellman: Diffie–Hellman (#288)
@@ -57,6 +58,7 @@
 - 개인 키: 개인키 (#288)
 - 결함 허용: - (#223)
 - 공개 키: 공개키 (#288)
+- 기법: technique (#431). Automotive Threat Matrix의 technique일 때
 - 단위 테스트: 유닛 테스트 (#291)
 - 대칭 키: 대칭키 (#288)
 - 리프 노드: 잎 노드 (#250)
@@ -83,6 +85,10 @@
 - 위협 시나리오: threat scenario (#252)
 - 인수 기준: 인수 조건 (#385)
 - 자산: asset (#252)
+- 전술: tactic (#431). Automotive Threat Matrix의 tactic일 때
+- 차량 사이버보안: 汽车信息安全 (#431). GB 44495의 汽车信息安全일 때
+- 취약점 공개: vulnerability disclosure (#431)
+- 취약점 처리: vulnerability handling (#431)
 - 타원 곡선 암호: ECC (#289). 타원 곡선 암호를 가리킬 때. ECDSA·ECDH 같은 알고리즘 이름은 그대로. 예: SP 800-56A의 ECC CDH는 "타원 곡선 CDH"
 - 태스크 그룹: 태스크 묶음 (#349). OSEK OS 명세의 group of tasks일 때
 - 테스트 기준: test basis (#291)

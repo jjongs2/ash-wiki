@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10.5 9.5 674 266" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 전술: 첫 행, 기법: 전술 아래 열 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="90" y="20" width="38" height="152" rx="2" />
+    <rect x="90" y="180" width="38" height="26" rx="2" />
+    <rect x="90" y="210" width="38" height="26" rx="2" />
+    <rect x="132" y="20" width="38" height="152" rx="2" />
+    <rect x="132" y="180" width="38" height="26" rx="2" />
+    <rect x="132" y="210" width="38" height="26" rx="2" />
+    <rect x="174" y="20" width="38" height="152" rx="2" />
+    <rect x="174" y="180" width="38" height="26" rx="2" />
+    <rect x="174" y="210" width="38" height="26" rx="2" />
+    <rect x="216" y="20" width="38" height="152" rx="2" />
+    <rect x="216" y="180" width="38" height="26" rx="2" />
+    <rect x="216" y="210" width="38" height="26" rx="2" />
+    <rect x="258" y="20" width="38" height="152" rx="2" />
+    <rect x="258" y="180" width="38" height="26" rx="2" />
+    <rect x="258" y="210" width="38" height="26" rx="2" />
+    <rect x="300" y="20" width="38" height="152" rx="2" />
+    <rect x="300" y="180" width="38" height="26" rx="2" />
+    <rect x="300" y="210" width="38" height="26" rx="2" />
+    <rect x="342" y="20" width="38" height="152" rx="2" />
+    <rect x="342" y="180" width="38" height="26" rx="2" />
+    <rect x="342" y="210" width="38" height="26" rx="2" />
+    <rect x="384" y="20" width="38" height="152" rx="2" />
+    <rect x="384" y="180" width="38" height="26" rx="2" />
+    <rect x="384" y="210" width="38" height="26" rx="2" />
+    <rect x="426" y="20" width="38" height="152" rx="2" />
+    <rect x="426" y="180" width="38" height="26" rx="2" />
+    <rect x="426" y="210" width="38" height="26" rx="2" />
+    <rect x="468" y="20" width="38" height="152" rx="2" />
+    <rect x="468" y="180" width="38" height="26" rx="2" />
+    <rect x="468" y="210" width="38" height="26" rx="2" />
+    <rect x="510" y="20" width="38" height="152" rx="2" />
+    <rect x="510" y="180" width="38" height="26" rx="2" />
+    <rect x="510" y="210" width="38" height="26" rx="2" />
+    <rect x="552" y="20" width="38" height="152" rx="2" />
+    <rect x="552" y="180" width="38" height="26" rx="2" />
+    <rect x="552" y="210" width="38" height="26" rx="2" />
+    <rect x="594" y="20" width="38" height="152" rx="2" />
+    <rect x="594" y="180" width="38" height="26" rx="2" />
+    <rect x="594" y="210" width="38" height="26" rx="2" />
+    <rect x="636" y="20" width="38" height="152" rx="2" />
+    <rect x="636" y="180" width="38" height="26" rx="2" />
+    <rect x="636" y="210" width="38" height="26" rx="2" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text transform="translate(106 162) rotate(-90)">Reconnaissance</text>
+    <text transform="translate(121 162) rotate(-90)" font-size="11">ATM-TA0000</text>
+    <text transform="translate(148 162) rotate(-90)">Manipulate Environment</text>
+    <text transform="translate(163 162) rotate(-90)" font-size="11">ATM-TA0001</text>
+    <text transform="translate(190 162) rotate(-90)">Initial Access</text>
+    <text transform="translate(205 162) rotate(-90)" font-size="11">ATM-TA0002</text>
+    <text transform="translate(232 162) rotate(-90)">Execution</text>
+    <text transform="translate(247 162) rotate(-90)" font-size="11">ATM-TA0003</text>
+    <text transform="translate(274 162) rotate(-90)">Persistence</text>
+    <text transform="translate(289 162) rotate(-90)" font-size="11">ATM-TA0004</text>
+    <text transform="translate(316 162) rotate(-90)">Privilege Escalation</text>
+    <text transform="translate(331 162) rotate(-90)" font-size="11">ATM-TA0005</text>
+    <text transform="translate(358 162) rotate(-90)">Defense Evasion</text>
+    <text transform="translate(373 162) rotate(-90)" font-size="11">ATM-TA0006</text>
+    <text transform="translate(400 162) rotate(-90)">Credential Access</text>
+    <text transform="translate(415 162) rotate(-90)" font-size="11">ATM-TA0007</text>
+    <text transform="translate(442 162) rotate(-90)">Discovery</text>
+    <text transform="translate(457 162) rotate(-90)" font-size="11">ATM-TA0008</text>
+    <text transform="translate(484 162) rotate(-90)">Lateral Movement</text>
+    <text transform="translate(499 162) rotate(-90)" font-size="11">ATM-TA0009</text>
+    <text transform="translate(526 162) rotate(-90)">Collection</text>
+    <text transform="translate(541 162) rotate(-90)" font-size="11">ATM-TA0010</text>
+    <text transform="translate(568 162) rotate(-90)">Command and Control</text>
+    <text transform="translate(583 162) rotate(-90)" font-size="11">ATM-TA0011</text>
+    <text transform="translate(610 162) rotate(-90)">Exfiltration</text>
+    <text transform="translate(625 162) rotate(-90)" font-size="11">ATM-TA0012</text>
+    <text transform="translate(652 162) rotate(-90)">Affect Vehicle Function</text>
+    <text transform="translate(667 162) rotate(-90)" font-size="11">ATM-TA0013</text>
+  </g>
+  <g fill="var(--ink, #727981)">
+    <circle cx="109" cy="248" r="1.5" />
+    <circle cx="109" cy="256" r="1.5" />
+    <circle cx="109" cy="264" r="1.5" />
+    <circle cx="151" cy="248" r="1.5" />
+    <circle cx="151" cy="256" r="1.5" />
+    <circle cx="151" cy="264" r="1.5" />
+    <circle cx="193" cy="248" r="1.5" />
+    <circle cx="193" cy="256" r="1.5" />
+    <circle cx="193" cy="264" r="1.5" />
+    <circle cx="235" cy="248" r="1.5" />
+    <circle cx="235" cy="256" r="1.5" />
+    <circle cx="235" cy="264" r="1.5" />
+    <circle cx="277" cy="248" r="1.5" />
+    <circle cx="277" cy="256" r="1.5" />
+    <circle cx="277" cy="264" r="1.5" />
+    <circle cx="319" cy="248" r="1.5" />
+    <circle cx="319" cy="256" r="1.5" />
+    <circle cx="319" cy="264" r="1.5" />
+    <circle cx="361" cy="248" r="1.5" />
+    <circle cx="361" cy="256" r="1.5" />
+    <circle cx="361" cy="264" r="1.5" />
+    <circle cx="403" cy="248" r="1.5" />
+    <circle cx="403" cy="256" r="1.5" />
+    <circle cx="403" cy="264" r="1.5" />
+    <circle cx="445" cy="248" r="1.5" />
+    <circle cx="445" cy="256" r="1.5" />
+    <circle cx="445" cy="264" r="1.5" />
+    <circle cx="487" cy="248" r="1.5" />
+    <circle cx="487" cy="256" r="1.5" />
+    <circle cx="487" cy="264" r="1.5" />
+    <circle cx="529" cy="248" r="1.5" />
+    <circle cx="529" cy="256" r="1.5" />
+    <circle cx="529" cy="264" r="1.5" />
+    <circle cx="571" cy="248" r="1.5" />
+    <circle cx="571" cy="256" r="1.5" />
+    <circle cx="571" cy="264" r="1.5" />
+    <circle cx="613" cy="248" r="1.5" />
+    <circle cx="613" cy="256" r="1.5" />
+    <circle cx="613" cy="264" r="1.5" />
+    <circle cx="655" cy="248" r="1.5" />
+    <circle cx="655" cy="256" r="1.5" />
+    <circle cx="655" cy="264" r="1.5" />
+  </g>
+
+  <g font-size="14" fill="var(--text, #727981)" text-anchor="end">
+    <text x="78" y="101">전술</text>
+    <text x="78" y="213">기법</text>
+  </g>
+  <text x="78" y="34" text-anchor="end" fill="var(--text, #727981)">ATM v4.02</text>
+</svg>

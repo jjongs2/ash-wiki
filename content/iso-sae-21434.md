@@ -14,7 +14,9 @@ status: 개정 중
 
 ## 범위
 
-ISO/SAE 21434:2021은 도로 차량의 E/E(Electrical/Electronic) 시스템과 그 컴포넌트, 인터페이스에 대해, 개념, 제품 개발, 생산, 운용, 정비, 폐기에 걸친 사이버보안 리스크 관리의 엔지니어링 요구사항을 정한다. 양산 도로 차량의 E/E 시스템과 그 컴포넌트, 인터페이스 가운데 이 표준이 나온 뒤에 개발이나 변경을 시작한 것에 적용하고, 특정 사이버보안 기술이나 해결책은 정하지 않는다.[@iso-sae-21434-obp-2021]
+ISO/SAE 21434:2021은 도로 차량의 E/E(Electrical/Electronic) 시스템과 그 컴포넌트, 인터페이스에 대해, 개념, 제품 개발, 생산, 운용, 정비, 폐기에 걸친 사이버보안 리스크 관리의 엔지니어링 요구사항을 정한다. 양산 도로 차량의 E/E 시스템과 그 컴포넌트, 인터페이스 가운데 이 표준이 나온 뒤에 개발이나 변경을 시작한 것에 적용하고, 특정 사이버보안 기술이나 해결책은 정하지 않는다. 이 표준이 정하는 틀은 사이버보안 프로세스의 요구사항과, 사이버보안 리스크를 전하고 관리하는 공통 언어를 담는다.[@iso-sae-21434-obp-2021]
+
+이 표준은 공급망 전체가 함께 이해할 바탕으로 사이버보안 엔지니어링의 용어, 목표, 요구사항, 지침을 준다. 사이버보안을 알맞게 고려하게 해, 도로 차량 E/E 시스템의 엔지니어링이 최신 기술과 진화하는 공격 방법을 따라가게 하려는 것이다.[@iso-sae-21434-obp-2021]
 
 이 표준의 4절부터 15절까지가 다루는 것은 다음과 같다. 4절은 정보 제공용이다.[@iso-sae-21434-obp-2021]
 
@@ -37,12 +39,25 @@ ISO/SAE 21434:2021은 도로 차량의 E/E(Electrical/Electronic) 시스템과 �
 
 ![[diagrams/iso-sae-21434-provision-identifier.svg]]
 
+**작업 산출물**은 하나 이상의 요구사항을 채우는 사이버보안 활동의 결과다. 이 표준은 앞 단계의 작업 산출물로 이루어진 필수 입력을 **prerequisites**라 하고, 사이버보안 활동을 맡은 사람이 아닌 다른 곳에서 얻을 수 있어 고려할 만한 정보를 **further supporting information**이라 한다.[@iso-sae-21434-obp-2021]
+
+이 표준은 Annex A부터 H까지 여덟 Annex를 둔다.[@iso-sae-21434-obp-2021]
+
+- Annex A: 사이버보안 활동과 작업 산출물의 요약
+- Annex B: 사이버보안 문화의 예
+- Annex C: [[cybersecurity-interface-agreement|cybersecurity interface agreement]] 템플릿의 예
+- Annex D: 사이버보안 관련성(cybersecurity relevance)을 판단하는 방법과 기준의 예
+- Annex E: CAL(cybersecurity assurance level)
+- Annex F: impact rating 지침
+- Annex G: [[attack-feasibility-rating|attack feasibility rating]] 지침
+- Annex H: 헤드램프 시스템에 TARA 방법을 적용한 예[@iso-sae-21434-obp-2021]
+
 조직 수준의 사이버보안 관리가 [[un-r155|UN R155]]의 [[cybersecurity-management-system|CSMS]]와 어떻게 이어지는지는 [[cybersecurity-management-system#ISO/SAE 21434와의 관계|CSMS와 ISO/SAE 21434의 관계]]에서 다룬다. 15절의 TARA 방법과 Annex의 impact rating 기준 예는 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA]]에서 다룬다.
 
 ## 개정 이력
 
 - 2021년: 1판. 8월에 나왔다.[@iso-sae-21434-2021] [[sae-j3061|SAE J3061]]:2016을 대체했고, 내용과 구조를 새로 짰다.[@iso-sae-21434-obp-2021]
-- 2026년 10월: ISO가 1판을 개정 대상으로 정했다. 1판이 현행판이고, 이를 대체할 2판이 새 프로젝트로 등록되어 개발 중이다.[@iso-sae-21434-2021][@iso-sae-awi-21434-2026]
+- ISO/SAE 21434:2021은 개정 대상이고, 2판이 ISO/SAE AWI(Approved Work Item) 21434로 개발 중이며, 새 프로젝트로 등록된 단계(20.00)에 있다.[@iso-sae-21434-2021][@iso-sae-awi-21434-2026]
 
 ## ISO 26262와의 관계
 
