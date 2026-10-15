@@ -27,7 +27,7 @@
   <g font-size="12" fill="var(--text, #727981)">
     <text x="249" y="36">최대 20 kbit/s</text>
     <text x="368" y="76">40 kbit/s 초과, 125 kbit/s 이하</text>
-    <text x="504" y="116">최대 1 Mbit/s</text>
+    <text x="504" y="116">1 Mbit/s까지</text>
     <text x="654" y="156">최대 10 Mbit/s</text>
   </g>
 

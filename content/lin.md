@@ -11,7 +11,7 @@ verified: 2026-09-29
 
 LIN 컨소시엄이 LIN 명세를 처음 개발했고, LIN은 2016년부터 ISO 17987 시리즈로 국제 표준이 되었다.[@cia-lin-standards-2026][@ti-slla383a-2022] LIN은 [[can|CAN]] 같은 상위 네트워크 아래에서 CAN의 대역폭이 필요 없는 장치를 잇는 하위 네트워크로 쓰인다.[@ti-slla383a-2022][@freescale-brinvehiclenet-2006] Freescale 브로셔에 따르면 LIN은 차량의 모터, 스위치, 센서, 램프를 싸게 잇는 네트워크다.[@freescale-brinvehiclenet-2006]
 
-SAE J2602-1:2021은 LIN 구현에 관한 SAE의 권장 관행(recommended practice)이며, ISO 17987:2016에 바탕을 두고 고장 허용 동작이나 네트워크 토폴로지처럼 ISO 17987:2016에 없는 요구를 더한다.[@sae-j2602-1-2021] SAE J2602-1:2012는 ISO 17987이 아니라 LIN 2.0에 바탕을 두었고, LIN 2.0의 요구 가운데 모호하거나 서로 어긋나거나 선택 사항인 것을 정했다.[@sae-j2602-1-2021][@sae-j2602-1-2012]
+SAE J2602-1:2021은 LIN 구현에 관한 SAE의 권장 관행(recommended practice)이며, ISO 17987:2016에 바탕을 두고 [[fault-tolerance|결함 허용]] 동작이나 네트워크 토폴로지처럼 ISO 17987:2016에 없는 요구를 더한다.[@sae-j2602-1-2021] SAE J2602-1:2012는 ISO 17987이 아니라 LIN 2.0에 바탕을 두었고, LIN 2.0의 요구 가운데 모호하거나 서로 어긋나거나 선택 사항인 것을 정했다.[@sae-j2602-1-2021][@sae-j2602-1-2012]
 
 ## Commander와 responder
 
