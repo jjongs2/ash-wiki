@@ -5,9 +5,9 @@ tags:
 verified: 2026-10-03
 ---
 
-[[iso-sae-21434|ISO/SAE 21434]]:2021은 **cybersecurity goal**을 하나 이상의 [[threat-analysis-and-risk-assessment#용어|위협 시나리오]]에 연관된 concept 수준의 사이버보안 요구사항으로 정의한다. 같은 표준은 **cybersecurity claim**을 리스크에 관한 진술로 정의하고, claim에 리스크를 보유하거나 공유하는 근거가 들 수 있다고 둔다. Goal을 정하는 활동(9.4절)은 이 표준의 concept 단계에 든다. 리스크 처리 결정은 이 표준이 15절에 모은 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA 방법]]의 하나(15.9절)다.[@iso-sae-21434-obp-2021] 단계의 구성은 [[cybersecurity-lifecycle|사이버보안 생명주기]]에서 다룬다.
+[[iso-sae-21434|ISO/SAE 21434]]:2021은 **cybersecurity goal**을 하나 이상의 [[threat-analysis-and-risk-assessment#용어|위협 시나리오]]에 연관된 concept 수준의 사이버보안 요구사항으로 정의한다. 같은 표준은 **cybersecurity claim**을 리스크에 관한 진술로 정의하고, claim에 리스크를 보유하거나 공유하는 근거가 들 수 있다고 둔다. Goal을 정하는 활동(9.4절)은 이 표준의 concept 단계에 든다. 리스크 처리 결정은 이 표준이 15절에 모은 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA 방법]]의 하나(15.9절)다.[@iso-sae-21434-obp-2021] 단계의 구성은 [[cybersecurity-lifecycle#ISO/SAE 21434의 단계|사이버보안 생명주기]]에서 다룬다.
 
-Goal에서 끌어낸 요구사항은 [[cybersecurity-concept|cybersecurity concept]]에서 다룬다. Goal이 적절하고 이루어졌는지는 [[cybersecurity-verification-and-validation|validation]]이 확인한다.[@iso-sae-21434-obp-2021]
+Goal에서 끌어낸 요구사항은 [[cybersecurity-concept#Cybersecurity requirement|cybersecurity concept]]에서 다룬다. Goal이 적절하고 이루어졌는지는 [[cybersecurity-verification-and-validation|validation]]이 확인한다.[@iso-sae-21434-obp-2021]
 
 ## Automotive SPICE for Cybersecurity의 SEC.1
 

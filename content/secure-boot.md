@@ -7,7 +7,7 @@ verified: 2026-10-03
 
 **Secure boot**는 부팅할 때 다음에 실행할 코드([[bootloader|부트로더]], 운영체제 로더 등)의 [[digital-signature|서명]]을 확인해, 검증을 통과한 코드만 실행하게 하는 기능이다.[@uefi-spec-2-11-secure-boot-2024][@espressif-esp32-secure-boot-v2-2026]
 
-NIST SP 800-193은 펌웨어 손상을 탐지하는 기법의 하나로, 탐지를 맡는 root of trust나 신뢰 사슬이 그 밖의 코드를 실행하기 전에 승인된 디지털 서명 알고리즘이나 [[cryptographic-hash-function|암호 해시]]로 펌웨어 코드의 [[cybersecurity-property|무결성]]을 확인하는 방법을 둔다.[@nist-sp-800-193-2018]
+NIST SP 800-193은 펌웨어 손상을 탐지하는 기법의 하나로, 탐지를 맡는 root of trust나 신뢰 사슬이 그 밖의 코드를 실행하기 전에 승인된 디지털 서명 알고리즘이나 [[cryptographic-hash-function|암호 해시]]로 펌웨어 코드의 [[cybersecurity-property#기밀성, 무결성, 가용성|무결성]]을 확인하는 방법을 둔다.[@nist-sp-800-193-2018]
 
 ## 신뢰 사슬
 

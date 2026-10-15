@@ -32,7 +32,7 @@ ENISA의 2019년 보고서 Good practices for security of smart cars는 [[over-t
 - ESP-IDF(Espressif IoT Development Framework)의 anti-rollback은 앱 이미지의 `secure_version`을 eFuse에 둔 보안 버전과 비교한다.[@espressif-esp-idf-ota-2026]
 - Android Verified Boot는 VBMeta 구조체마다 rollback index를 두고, 그 값이 변조를 드러내는 저장소에 둔 값보다 작으면 이미지를 거부한다.[@google-avb-readme-2026]
 - MCUboot는 `MCUBOOT_HW_ROLLBACK_PROT`를 켜면, [[digital-signature|서명]]된 이미지의 보호 영역에 둔 security counter를 기기의 비휘발성이며 신뢰할 수 있는 구성 요소에 둔 현재 값과 비교해 그보다 작은 이미지를 거부한다. 이미지 버전 번호를 비교하는 소프트웨어 기반 다운그레이드 방지(`MCUBOOT_DOWNGRADE_PREVENTION`)는 overwrite 방식의 이미지 업데이트(`MCUBOOT_OVERWRITE_ONLY`)를 쓸 때만 쓸 수 있다.[@mcuboot-design-2026]
-- AUTOSAR R25-11 [[autosar-update-and-configuration-management|Update and Configuration Management]] 명세는 들어온 [[autosar-software-cluster#Adaptive Platform의 Software Cluster와의 차이|Software Cluster]]의 버전이 지금 있는 것보다 새롭지 않으면 ApplicationError kOldVersion을 내고 그 Software Package를 지우도록 정한다. 그래서 고장 난 Software Cluster를 예전 것으로 되돌리려면, 잘 동작하던 예전 Software Cluster를 더 높은 버전 번호로 다시 패키징해야 한다.[@autosar-ap-sws-updateandconfigurationmanagement-2025]
+- [[autosar|AUTOSAR]] R25-11 [[autosar-update-and-configuration-management|Update and Configuration Management]] 명세는 들어온 [[autosar-software-cluster#Adaptive Platform의 Software Cluster와의 차이|Software Cluster]]의 버전이 지금 있는 것보다 새롭지 않으면 ApplicationError kOldVersion을 내고 그 Software Package를 지우도록 정한다. 그래서 고장 난 Software Cluster를 예전 것으로 되돌리려면, 잘 동작하던 예전 Software Cluster를 더 높은 버전 번호로 다시 패키징해야 한다.[@autosar-ap-sws-updateandconfigurationmanagement-2025]
 
 ## 업데이트 메타데이터 쪽의 방어
 

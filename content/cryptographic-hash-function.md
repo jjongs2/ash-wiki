@@ -9,7 +9,7 @@ verified: 2026-10-03
 
 **암호학적 해시 함수**(cryptographic hash function)는 길이가 정해지지 않은 비트 열을 받아 길이가 고정된 비트 열을 내는 해시 함수 가운데, 역상 저항, 제2역상 저항, 충돌 저항을 갖도록 설계된 것이다.[@nist-sp-800-107-r1-2012] 출력은 **해시 값**(hash value) 또는 **메시지 다이제스트**(message digest)라 부른다.[@nist-fips-202-2015] 해시 함수는 키를 쓰지 않는다.[@nist-sp-800-175b-r1-2020][@ietf-rfc-4949-2007]
 
-FIPS 180-4가 정한 해시 알고리즘은 메시지가 조금이라도 바뀌면 매우 높은 확률로 다른 메시지 다이제스트를 낸다. 해시 값은 메시지의 [[cybersecurity-property|무결성]] 확인과 [[digital-signature|디지털 서명]], [[message-authentication-code|메시지 인증 코드]](MAC)의 생성과 검증에 쓰인다.[@nist-fips-180-4-2015]
+FIPS 180-4가 정한 해시 알고리즘은 메시지가 조금이라도 바뀌면 매우 높은 확률로 다른 메시지 다이제스트를 낸다. 해시 값은 메시지의 [[cybersecurity-property#기밀성, 무결성, 가용성|무결성]] 확인과 [[digital-signature|디지털 서명]], [[message-authentication-code|메시지 인증 코드]](MAC)의 생성과 검증에 쓰인다.[@nist-fips-180-4-2015]
 
 ## 보안 성질
 
