@@ -17,7 +17,7 @@ Liu와 Layland는 1973년 논문에서, 각 [[task|태스크]]가 요청 뒤 정
 
 Liu와 Layland의 논문은 스케줄링 알고리즘을 특정 시점에 실행할 태스크를 정하는 규칙의 집합으로 정의했다.[@liu-hard-real-time-1973] 이 논문의 가정과 태스크 모델은 [[periodic-task-model|주기 태스크 모델]], 실행 시간의 상한은 [[worst-case-execution-time|WCET]], 스케줄링 방식은 [[real-time-scheduling|실시간 스케줄링]]에서 다룬다.
 
-[[autosar|AUTOSAR]]의 Timing Analysis and Design 보고서에 따르면 실행 시간의 최악, 최선, 평균 가운데 실시간 시스템의 타이밍 속성을 검증하는 데 가장 흔히 쓰는 것은 최악인 WCET이고, 타이밍 분석은 대개 응답 시간의 상한인 [[response-time-analysis|최악 응답 시간]]을 구해 타이밍 요구를 채우는지 가린다.[@autosar-fo-tr-timinganalysis-2025]
+[[autosar|AUTOSAR]]의 Timing Analysis and Design 보고서에 따르면 실행 시간의 최악, 최선, 평균 가운데 실시간 시스템의 타이밍 속성을 검증하는 데 가장 흔히 쓰는 것은 최악인 WCET이고, [[schedulability-analysis|타이밍 분석]]은 대개 응답 시간의 상한인 [[response-time-analysis|최악 응답 시간]]을 구해 타이밍 요구를 채우는지 가린다.[@autosar-fo-tr-timinganalysis-2025]
 
 [[rtos|RTOS]]는 실행 준비가 된 태스크 가운데 어느 것을 실행할지 정해 CPU를 배정하는 스케줄러를 둔다.[@atmel-at04056-2014][@renesas-res05b0008-2010]
 
