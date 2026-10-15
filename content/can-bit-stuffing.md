@@ -21,7 +21,7 @@ verified: 2026-09-27
 
 스터핑 구간에서 같은 값의 비트가 6번째로 이어지면, 그 비트 시점에 **스터프 오류**가 검출된다.[@bosch-can-2-0-1991] 자세한 것은 [[can-error-detection#다섯 가지 오류|CAN 오류 검출]]에서 다룬다.
 
-[[can-fault-confinement|error active]] 노드가 내는 [[can-error-frame#오류 플래그|active 오류 플래그]]는 스터핑 규칙을 어겨 다른 노드도 모두 오류를 찾게 한다.[@bosch-can-2-0-1991]
+[[can-fault-confinement|error active]] 노드가 내는 [[can-error-frame#오류 플래그|active 오류 플래그]]는 SOF부터 CRC 구분자까지에서 스터핑 규칙을 어겨 다른 노드도 모두 오류를 찾게 한다.[@bosch-can-2-0-1991]
 
 ## 목적
 

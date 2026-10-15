@@ -47,4 +47,4 @@ $I$는 0에서 1 사이이며, 0이면 가장 안정적이고 1이면 가장 불
 
 ## HIS 소스 코드 메트릭
 
-HIS는 Audi, BMW Group, DaimlerChrysler, Porsche, Volkswagen 같은 독일 완성차 업체가 함께 꾸린 [[automotive-spice#개정 이력|이니셔티브]]다.[@his-wg-assessment-2006] HIS는 소프트웨어를 평가하는 기본 메트릭 세트를 문서 HIS-SC-Metriken으로 정했고, 2008년 판은 1.3.1이다.[@his-softwaretest-2008]
+[[automotive-spice#개정 이력|HIS]]는 Audi, BMW Group, DaimlerChrysler, Porsche, Volkswagen 같은 독일 완성차 업체가 함께 꾸린 이니셔티브다.[@his-wg-assessment-2006] HIS는 소프트웨어를 평가하는 기본 메트릭 세트를 문서 HIS-SC-Metriken으로 정했고, 2008년 판은 1.3.1이다.[@his-softwaretest-2008]
