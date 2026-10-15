@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 -1.5 719 195.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <text x="20" y="28" font-size="12" fill="var(--text, #727981)">개발자 채널의 190.1에서 190.4로 가는 업데이트</text>
+
+  <!-- 막대: 10,385,920바이트 = 440 단위 -->
+  <g text-anchor="end" fill="var(--text, #727981)">
+    <text x="150" y="68.5">전체 업데이트</text>
+    <text x="150" y="112.5">bsdiff 업데이트</text>
+    <text x="150" y="156.5">Courgette 업데이트</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="160" y="52" width="440" height="24" />
+    <rect x="160" y="96" width="29.85" height="24" />
+    <rect x="160" y="140" width="3.34" height="24" />
+  </g>
+  <line x1="160" y1="42" x2="160" y2="174" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="608" y="68">10,385,920바이트</text>
+    <text x="197.85" y="112">704,512바이트</text>
+    <text x="171.34" y="156">78,848바이트</text>
+  </g>
+</svg>
