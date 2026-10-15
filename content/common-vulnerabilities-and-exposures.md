@@ -7,7 +7,7 @@ tags:
 verified: 2026-10-15
 ---
 
-**CVE**(Common Vulnerabilities and Exposures) 프로그램은 공개된 [[vulnerability-management|취약점]]을 식별하고 목록으로 만드는, 국제적이고 공동체가 이끄는 활동이다.[@cve-glossary-2026] 사명은 공개된 [[cybersecurity|사이버보안]] 취약점을 식별하고 정의하고 목록으로 만드는 것이고, 목록의 취약점마다 CVE Record를 하나 둔다. 세계 여러 조직이 CVE 프로그램의 파트너로서 취약점을 찾아 번호를 매기고 CVE Record를 게시하며, 정보 기술과 사이버보안 실무자는 CVE Record로 같은 취약점을 말하고 있는지 확인하고 대응을 조율한다.[@cve-overview-2026]
+**CVE**(Common Vulnerabilities and Exposures) 프로그램은 공개된 [[vulnerability-management|취약점]]을 식별하고 목록으로 만드는, 국제적이고 공동체가 이끄는 활동이다.[@cve-glossary-2026] 목록의 취약점마다 CVE Record를 하나 둔다. 세계 여러 조직이 CVE 프로그램의 파트너로서 취약점을 찾아 번호를 매기고 CVE Record를 게시하며, 정보 기술과 [[cybersecurity|사이버보안]] 실무자는 CVE Record로 같은 취약점을 말하고 있는지 확인하고 대응을 조율한다.[@cve-overview-2026]
 
 ## CVE Record
 
@@ -40,7 +40,7 @@ CVE 프로그램은 CVE Record의 생명주기를 여섯 단계로 둔다.[@cve-
 
 ## 구조
 
-CVE Board는 CVE 프로그램의 운영을 감독하고 전략적 방향을 정한다. Secretariat는 CVE Board에 행정·실무 지원을 하고 프로그램의 인프라를 유지하며, 2026년 10월 기준 MITRE가 맡는다. CVE Working Group은 특정 작업 영역을 맡고, CVE Board가 만들어 CVE Board에 보고한다.[@cve-structure-2026]
+CVE Board는 CVE 프로그램의 운영을 감독하고 전략적 방향을 정한다. Secretariat는 CVE Board에 행정·실무 지원을 하고 프로그램의 인프라를 유지하며, 2026년 10월 기준 MITRE가 맡는다.[@cve-structure-2026]
 
 CVE ID를 매기고 CVE Record를 게시하는 일은 CVE Board가 정한 계층 구조 안에서 이뤄진다. **TL-Root**(Top-Level Root)는 CVE Board에 바로 보고하고, 하나 이상의 Root와 CNA를 둘 수 있는 자기 계층을 관리한다. 계층 안에서 Root는 관리 기능을, CNA는 ID를 매기고 Record를 게시하는 운영 기능을 맡는다. 2026년 10월 기준 TL-Root는 CISA와 MITRE 둘이다.[@cve-structure-2026]
 
@@ -56,6 +56,4 @@ CVE의 공동 창안자인 MITRE의 David E. Mann과 Steven M. Christey는 1999�
 
 **CWE**(Common Weakness Enumeration)는 공동체가 만드는, 흔한 소프트웨어·하드웨어 약점(weakness)의 목록이다.[@cwe-about-2026] 약점과 취약점의 정의는 [[vulnerability-management#취약점과 약점의 정의|취약점 관리]]에서 다룬다.
 
-CWE와 CVE는 사명이 따로이면서 서로 보완하는 자매 프로그램이다. 한 종류의 약점이 여러 제품에서 여러 취약점의 근본 원인이 될 수 있어서, CWE 항목 하나가 여러 CVE Record의 근본 원인인 경우가 많다.[@cwe-faq-2026]
-
-첫 CWE 목록과 그 분류 체계는 2006년에 나왔다.[@cwe-history-2026]
+CWE와 CVE는 사명이 따로이면서 서로 보완하는 자매 프로그램이다. 한 종류의 약점이 여러 제품에서 여러 취약점의 근본 원인이 될 수 있어서, CWE 항목 하나가 여러 CVE Record의 근본 원인인 경우가 많다.[@cwe-faq-2026] 첫 CWE 목록과 그 분류 체계는 2006년에 나왔다.[@cwe-history-2026]

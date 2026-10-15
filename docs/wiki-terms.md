@@ -24,6 +24,7 @@
 - context: 문맥 (#142)
 - context switch: 문맥 전환 (#142)
 - counter: 카운터 (#257). OSEK·AUTOSAR OS 객체일 때. 다른 counter는 이 결정에 들지 않음
+- Cyber Resilience Act: EU 사이버 회복력법 (#438)
 - cybersecurity goal: 사이버보안 목표 (#288)
 - data-based, behavior-based, rule-based: 데이터 기반 (#385). CTAL-TA 강의계획서의 블랙박스 기법 세 갈래일 때. "데이터 기반 테스트"는 data-driven testing
 - Diffie-Hellman: Diffie–Hellman (#288)

@@ -9,7 +9,7 @@ verified: 2026-10-03
 
 ## 용어
 
-[[un-r155|UN R155]]는 risk를 주어진 위협이 차량의 [[vulnerability-management|취약점]]을 악용해 조직이나 개인에게 해를 끼칠 가능성으로, **threat**를 시스템이나 조직, 개인에게 해를 끼칠 수 있는 원치 않는 incident의 잠재적 원인으로 정의한다. **Risk assessment**는 리스크를 찾아 인식하고 기술하는 risk identification, 리스크의 성질을 이해하고 수준을 정하는 risk analysis, 그 결과를 리스크 기준과 견주어 리스크나 그 크기를 받아들일 수 있는지 정하는 risk evaluation을 아우르는 전체 과정이다. Risk management는 리스크에 관해 조직을 지휘하고 통제하는 조정된 활동이다.[@unece-r155-2021]
+[[un-r155|UN R155]]는 risk를 주어진 위협이 차량의 [[vulnerability-management|취약점]]을 악용해 조직이나 개인에게 해를 끼칠 가능성으로, **threat**를 시스템이나 조직, 개인에게 해를 끼칠 수 있는 원치 않는 incident의 잠재적 원인으로 정의한다. **Risk assessment**는 리스크를 찾아 인식하고 기술하는 risk identification, 리스크의 성질을 이해하고 수준을 정하는 risk analysis, 그 결과를 리스크 기준과 견주어 리스크나 그 크기를 받아들일 수 있는지 정하는 risk evaluation을 아우르는 전체 과정이다.[@unece-r155-2021]
 
 ISO/SAE 21434:2021은 TARA에 쓰는 용어를 다음처럼 정의한다.[@iso-sae-21434-obp-2021]
 
@@ -75,9 +75,9 @@ HEAVENS(HEAling Vulnerabilities to ENhance Software Security and Safety) 프로�
 
 Lautenbach 외는 2021년 HEAVENS 모델을 ISO/SAE 21434의 리스크 평가 요구에 맞추는 갱신 12가지와 약점을 보완하는 갱신 5가지, 모두 17가지를 담은 HEAVENS 2.0을 제안했다.[@lautenbach-heavens-2-2021]
 
-## 규제와 지침
+## 규제, 지침, 도구
 
-UN R155의 [[un-r155#범위|Annex 5]]는 위협 분석이 가능한 공격 영향도 고려하도록 요구한다.[@unece-r155-2021]
+UN R155의 [[un-r155#Annex 5|Annex 5]]는 위협 분석이 가능한 공격 영향도 고려하도록 요구한다.[@unece-r155-2021]
 
 NHTSA의 2022년 지침(Cybersecurity Best Practices for the Safety of Modern Vehicles)은 리스크를 평가할 때 차량 탑승자와 다른 도로 사용자의 안전을 가장 먼저 고려하기를 권한다(G.5). 또 센서 취약점과, GPS 스푸핑, 도로 표지 변조, 라이다·레이더 재밍과 스푸핑, 카메라 블라인딩, 머신러닝의 false positive 유발 같은 센서 신호 조작의 리스크를 고려하기를 권한다(G.6).[@nhtsa-cybersecurity-best-practices-2022]
 

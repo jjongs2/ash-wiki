@@ -28,6 +28,6 @@ Microsoft Threat Modeling Tool은 Microsoft SDL(Security Development Lifecycle)�
 
 Microsoft patterns & practices의 2003년 위협 모델링 지침에 따르면 Microsoft는 위협의 위험 등급을 매기는 데 DREAD(Damage potential, Reproducibility, Exploitability, Affected users, Discoverability) 모델을 쓴다.[@microsoft-pnp-threat-modeling-2003]
 
-Tony UcedaVélez와 Marco M. Morana는 STRIDE와는 별개인 위협 모델링 방법론 PASTA(Process for Attack Simulation and Threat Analysis)를 함께 만들었다.[@versprite-pasta-methodologies-2026]
-
 Islam 외는 2016년 논문에서 [[threat-analysis-and-risk-assessment#EVITA와 HEAVENS의 방법|HEAVENS]] 프로젝트의 결과를 바탕으로 차량용 리스크 평가 틀을 내놓으며, 보안 비전문가가 쓰기 쉽다는 까닭으로 위협 식별에 STRIDE를 쓰자고 했다.[@islam-risk-assessment-framework-2016]
+
+Tony UcedaVélez와 Marco M. Morana는 STRIDE와는 별개인 위협 모델링 방법론 PASTA(Process for Attack Simulation and Threat Analysis)를 함께 만들었다.[@versprite-pasta-methodologies-2026]

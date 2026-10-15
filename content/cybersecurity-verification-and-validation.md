@@ -11,8 +11,6 @@ verified: 2026-10-03
 
 이 표준의 11절(cybersecurity validation)은 아이템의 확인을 차량 수준에서 다룬다.[@iso-sae-21434-obp-2021] 요구사항을 구현하고 검증하는 10절은 [[cybersecurity-specification|cybersecurity specification]]에서 다룬다.
 
-ISO/SAE TR 8477(Road vehicles — Cybersecurity verification and validation)은 2026년 10월 기준 발간 단계(60.00)에 있고, 발행 시기는 같은 달로 잡혀 있다.[@iso-sae-tr-8477-2026]
-
 ## Automotive SPICE for Cybersecurity의 SEC.3·SEC.4
 
 [[automotive-spice-for-cybersecurity|Automotive SPICE for Cybersecurity]] 2.0은 검증을 SEC.3(Risk Treatment Verification), 확인을 SEC.4(Risk Treatment Validation) 프로세스로 둔다. SEC.3의 목적은 설계의 구현과 컴포넌트의 [[integration-testing|통합]]이 사이버보안 요구사항, 정련한 architectural design, 상세 설계를 따르는지 확인하는 것이고, SEC.4의 목적은 통합된 시스템이 관련 cybersecurity goal을 이루는지 확인하는 것이다. 두 프로세스의 성과는 다음과 같다.[@vda-automotive-spice-cybersecurity-2025]
