@@ -11,7 +11,7 @@ verified: 2026-10-03
 
 이 표준의 11절(cybersecurity validation)은 아이템의 확인을 차량 수준에서 다룬다.[@iso-sae-21434-obp-2021] 요구사항을 구현하고 검증하는 10절은 [[cybersecurity-specification|cybersecurity specification]]에서 다룬다.
 
-ISO/SAE TR 8477(Road vehicles — Cybersecurity verification and validation)은 발간 단계(60.00)에 있고, 발행 시기는 2026년 10월로 잡혀 있다.[@iso-sae-tr-8477-2026]
+ISO/SAE TR 8477(Road vehicles — Cybersecurity verification and validation)은 2026년 10월 기준 발간 단계(60.00)에 있고, 발행 시기는 같은 달로 잡혀 있다.[@iso-sae-tr-8477-2026]
 
 ## Automotive SPICE for Cybersecurity의 SEC.3·SEC.4
 

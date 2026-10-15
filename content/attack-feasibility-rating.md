@@ -27,7 +27,7 @@ CEM v3.1 Revision 5의 표는 TOE가 견디는 attack potential을 열로 따로
 
 ![[diagrams/cem-attack-potential-ranges.svg]]
 
-Henniger 외는 2009년 논문에서 [[hardware-security-module#EVITA의 HSM 등급|EVITA]]의 공격 성공 확률을, 경과 시간, 전문성, 시스템 지식, 기회의 창, 장비 다섯 요소의 값을 더한 attack potential로 매겼다.[@henniger-security-requirements-2009] Islam 외는 2016년 논문에서 [[threat-analysis-and-risk-assessment#EVITA와 HEAVENS의 방법|HEAVENS]] 프로젝트의 결과를 바탕으로 한 리스크 평가 틀을 내놓으며, threat level은 경과 시간을 뺀 네 요소로 매겼다.[@islam-risk-assessment-framework-2016]
+[[hardware-security-module#EVITA의 HSM 등급|EVITA]]의 리스크 평가 절차는 경과 시간, 전문성, 시스템 지식, 기회의 창, 장비 다섯 요소의 값을 더한 attack potential로 공격 성공 확률을 매기고, [[threat-analysis-and-risk-assessment#EVITA와 HEAVENS의 방법|HEAVENS]] 프로젝트를 바탕으로 한 Islam 외의 리스크 평가 틀은 경과 시간을 뺀 네 요소로 threat level을 매긴다.[@henniger-security-requirements-2009][@islam-risk-assessment-framework-2016]
 
 ## ISO/SAE 21434의 rating 예
 
