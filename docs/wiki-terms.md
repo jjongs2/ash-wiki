@@ -22,7 +22,7 @@
 - classic: classical (#311). ISO 11898-1:2024를 주어로 한 문장에서 이 판의 이름(약어 CC)을 쓸 때. 위키의 개념 이름 "Classical CAN"은 그대로
 - common cause failure: 공통 원인 고장 (#291)
 - Communication Management: 통신 관리 (#359). AUTOSAR Adaptive Platform의 functional cluster일 때
-- content addressing: 통일하지 않음 (#PRNUM). 인용한 출처의 이름대로. CiA의 content addressing은 "내용 주소 지정", Bosch의 content based addressing은 "내용 기반 주소 지정". node addressing도 같다
+- content addressing: 통일하지 않음 (#441). 인용한 출처의 이름대로. CiA의 content addressing은 "내용 주소 지정", Bosch의 content based addressing은 "내용 기반 주소 지정". node addressing도 같다
 - context: 문맥 (#142)
 - context switch: 문맥 전환 (#142)
 - counter: 카운터 (#257). OSEK·AUTOSAR OS 객체일 때. 다른 counter는 이 결정에 들지 않음
@@ -43,7 +43,7 @@
 - OOPSLA 풀이 Object-Oriented Programming, Systems, Languages, and Applications: Object-Oriented Programming, Systems, Languages & Applications (#291)
 - OSEK OS: OSEK/VDX OS (#257). OS를 가리킬 때. 명세를 가리키는 "OSEK/VDX OS"는 그대로. 예: "OSEK/VDX OS 2.2.3 명세"
 - prototyping: 프로토타이핑 (#291). prototype도 같다. AUTOSAR의 prototype은 이 결정에 들지 않음
-- PWM 풀이: 통일하지 않음 (#PRNUM). 인용한 출처의 풀이대로. AUTOSAR 명세를 인용하면 Pulse Width Modulation, ISO 11898-1을 인용하면 Pulse-Width Modulation
+- PWM 풀이: 통일하지 않음 (#441). 인용한 출처의 풀이대로. AUTOSAR 명세를 인용하면 Pulse Width Modulation, ISO 11898-1을 인용하면 Pulse-Width Modulation
 - recessive: 리세시브 (#165). 조사는 원어의 발음대로. 예: "recessive이고"
 - resource: 리소스 (#165). OSEK 객체일 때. 일반적인 뜻이면 "자원"
 - root of trust: 신뢰의 뿌리 (#288)
@@ -60,14 +60,14 @@
 - Virtual A/B: - (#432)
 - wakeup: 웨이크업 (#257). AUTOSAR가 다루는 wakeup일 때. 예: EcuM에 알리는 wakeup. 트랜시버와 버스의 웨이크업은 "웨이크업"
 - 개인 키: 개인키 (#288)
-- 결정 테이블: 결정표 (#PRNUM)
+- 결정 테이블: 결정표 (#441)
 - 결함 허용: - (#223)
 - 공개 키: 공개키 (#288)
 - 기법: technique (#431). Automotive Threat Matrix의 technique일 때
 - 단계적 배포: phased rollout (#432)
 - 단위 테스트: 유닛 테스트 (#291)
 - 대칭 키: 대칭키 (#288)
-- 리스크: 위험 (#PRNUM). risk를 옮길 때. 합성어 포함. 예: 리스크 평가, 리스크 주도, 리스크 등급. hazard("위험원", "해저드")와 일반 낱말("위험하다", "충돌 위험", "단편화 위험")은 그대로
+- 리스크: 위험 (#441). risk를 옮길 때. 합성어 포함. 예: 리스크 평가, 리스크 주도, 리스크 등급. hazard("위험원", "해저드")와 일반 낱말("위험하다", "충돌 위험", "단편화 위험")은 그대로
 - 리프 노드: 잎 노드 (#250)
 - 메타모픽 테스트: 변성 테스트 (#385). metamorphic testing일 때. metamorphic relation은 "메타모픽 관계"
 - 무작위 테스트: 랜덤 테스트 (#385)
@@ -86,7 +86,7 @@
 - 실수: 오류 (#291). ISTQB의 error(사람의 실수)일 때. 기법 이름 "오류 추정"과 일반적인 error는 "오류"
 - 안전 메커니즘: 안전 기제 (#223)
 - 암호 primitive: 암호 프리미티브 (#169)
-- 에지: 엣지 (#PRNUM). 네트워크 가장자리일 때. 예: DoIP 에지 노드, 에지 브리지
+- 에지: 엣지 (#441). 네트워크 가장자리일 때. 예: DoIP 에지 노드, 에지 브리지
 - 엔드 스테이션: 종단국 (#196)
 - 오브젝트 코드: 목적 코드 (#401)
 - 오브젝트 파일: 목적 파일 (#401)
@@ -94,10 +94,10 @@
 - 위협 시나리오: threat scenario (#252)
 - 인수 기준: 인수 조건 (#385)
 - 자산: asset (#252)
-- 저속 내결함성 CAN: 저속 결함 허용 CAN (#PRNUM). ISO 11898-3의 low-speed, fault-tolerant 매체와 그 트랜시버일 때. 개념 fault tolerance는 "결함 허용"(#223)
+- 저속 내결함성 CAN: 저속 결함 허용 CAN (#441). ISO 11898-3의 low-speed, fault-tolerant 매체와 그 트랜시버일 때. 개념 fault tolerance는 "결함 허용"(#223)
 - 전술: tactic (#431). Automotive Threat Matrix의 tactic일 때
 - 차량 사이버보안: 汽车信息安全 (#431). GB 44495의 汽车信息安全일 때
-- 추적표: 추적 매트릭스, 추적성 매트릭스 (#PRNUM). traceability matrix일 때. 합성어 포함. 예: 요구사항 추적표
+- 추적표: 추적 매트릭스, 추적성 매트릭스 (#441). traceability matrix일 때. 합성어 포함. 예: 요구사항 추적표
 - 취약점 공개: vulnerability disclosure (#431)
 - 취약점 처리: vulnerability handling (#431)
 - 타원 곡선 암호: ECC (#289). 타원 곡선 암호를 가리킬 때. ECDSA·ECDH 같은 알고리즘 이름은 그대로. 예: SP 800-56A의 ECC CDH는 "타원 곡선 CDH"
@@ -111,5 +111,5 @@
 - 플래시: Flash (#257). 일반 낱말일 때. 모듈과 구성 요소의 이름(Fls(Flash Driver), Flash EEPROM Emulation, Flashing Adapter)은 예외
 - 하위 호환: 역호환 (#257)
 - 행위 주도 개발: 행동 주도 개발 (#385)
-- 형식 오류: 폼 오류 (#PRNUM). CAN의 form error일 때
+- 형식 오류: 폼 오류 (#441). CAN의 form error일 때
 - 획득자: 구매자 (#394). acquirer일 때. ISO/IEC/IEEE 29148이 acquirer의 다른 이름으로 드는 "구매자"는 그대로
