@@ -37,7 +37,7 @@ CCSDS 232.1-B-2는 우주 링크의 COP-1(Communications Operation Procedure-1)�
 
 ## CAN의 재전송
 
-[[can|CAN]] 컨트롤러는 기본 설정에서 중재에서 졌거나 오류로 깨진 프레임을 자동으로 다시 보내고, 이 동작을 설정으로 끌 수 있다.[@bosch-m-can-2023][@microchip-mcp2515-2019] 오류를 알리고 다시 보내는 과정은 [[can-error-frame|CAN 오류 프레임]]에서 다룬다.
+[[can|CAN]] 컨트롤러는 기본 설정에서 중재에서 졌거나 오류로 깨진 프레임을 [[can-controller#자동 재전송|자동으로 다시 보내고]], 이 동작을 설정으로 끌 수 있다.[@bosch-m-can-2023][@microchip-mcp2515-2019] 오류를 알리고 다시 보내는 과정은 [[can-error-frame|CAN 오류 프레임]]에서 다룬다.
 
 ## 오류 정정 부호와의 차이
 

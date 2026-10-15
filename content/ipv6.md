@@ -48,6 +48,6 @@ IPv6에서는 라우터가 패킷을 나누지 않고 발신 노드만 나눈다
 
 IPv4 주소가 32비트인 데 비해 IPv6 주소는 128비트다. RFC 8200은 IPv4에서 바뀐 점으로 주소 공간 확장, 헤더 형식 단순화, 확장 헤더와 옵션의 개선, 흐름 레이블, 인증과 기밀성 기능을 든다.[@ietf-rfc-8200-2017]
 
-IPv4 헤더와 달리 IPv6 헤더에는 헤더 [[checksum|체크섬]] 필드가 없다. 또 IPv4와 달리, IPv6 노드가 보내는 [[udp|UDP]] 패킷은 기본적으로 UDP 체크섬을 생략할 수 없다. 예외로 UDP를 터널 캡슐화에 쓰는 프로토콜은 특정 포트에 체크섬 0 모드를 켤 수 있다.[@ietf-rfc-8200-2017]
+IPv4 헤더와 달리 IPv6 헤더에는 헤더 [[checksum|체크섬]] 필드가 없다. 또 IPv4와 달리 IPv6에서는 [[udp#체크섬|UDP 체크섬]]을 기본적으로 생략할 수 없다.[@ietf-rfc-8200-2017]
 
 IPv6에서는 Neighbor Discovery가 같은 링크 노드의 링크 계층 주소를 알아낸다. Neighbor Discovery는 IPv4의 [[arp|ARP]], [[icmp|ICMP]] Router Discovery, ICMP Redirect를 합친 것에 대응한다.[@ietf-rfc-4861-2007] IPv6에서 오류 보고는 ICMPv6가 맡는다.[@ietf-rfc-4443-2006]
