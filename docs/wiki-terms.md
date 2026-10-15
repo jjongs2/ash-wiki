@@ -22,7 +22,7 @@
 - classic: classical (#311). ISO 11898-1:2024를 주어로 한 문장에서 이 판의 이름(약어 CC)을 쓸 때. 위키의 개념 이름 "Classical CAN"은 그대로
 - common cause failure: 공통 원인 고장 (#291)
 - Communication Management: 통신 관리 (#359). AUTOSAR Adaptive Platform의 functional cluster일 때
-- content addressing: 통일하지 않음 (#441). 인용한 출처의 이름대로. CiA의 content addressing은 "내용 주소 지정", Bosch의 content based addressing은 "내용 기반 주소 지정". node addressing도 같다
+- content addressing: 통일하지 않음 (#441). 인용한 출처의 이름대로. CiA의 content addressing은 "내용 주소 지정", Bosch의 content based addressing은 "내용 기반 주소 지정". node addressing도 CiA는 "노드 주소 지정", Bosch는 "노드 기반 주소 지정"
 - context: 문맥 (#142)
 - context switch: 문맥 전환 (#142)
 - counter: 카운터 (#257). OSEK·AUTOSAR OS 객체일 때. 다른 counter는 이 결정에 들지 않음
@@ -86,7 +86,7 @@
 - 실수: 오류 (#291). ISTQB의 error(사람의 실수)일 때. 기법 이름 "오류 추정"과 일반적인 error는 "오류"
 - 안전 메커니즘: 안전 기제 (#223)
 - 암호 primitive: 암호 프리미티브 (#169)
-- 에지: 엣지 (#441). 네트워크 가장자리일 때. 예: DoIP 에지 노드, 에지 브리지
+- 에지: 엣지 (#441). 예: DoIP 에지 노드, 에지 브리지
 - 엔드 스테이션: 종단국 (#196)
 - 오브젝트 코드: 목적 코드 (#401)
 - 오브젝트 파일: 목적 파일 (#401)

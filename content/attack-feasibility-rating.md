@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**Attack feasibility**는 attack path가 가진 속성으로, 그 attack path에 해당하는 행위들을 성공시키기가 얼마나 쉬운지를 말한다. [[iso-sae-21434|ISO/SAE 21434]]:2021은 이를 3절에서 이렇게 정의하고, attack feasibility rating을 15절에 모은 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA 방법]] 가운데 하나로 둔다.[@iso-sae-21434-obp-2021] Attack feasibility로 리스크를 정하는 분석은 [[threat-analysis-and-risk-assessment|TARA]]에서 다룬다.
+**Attack feasibility**는 attack path가 가진 속성으로, 그 attack path에 해당하는 행위들을 성공시키기가 얼마나 쉬운지를 말한다. [[iso-sae-21434|ISO/SAE 21434]]:2021은 이를 3절에서 이렇게 정의하고, attack feasibility rating을 15절에 모은 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA 방법]] 가운데 하나로 둔다.[@iso-sae-21434-obp-2021]
 
 ## Attack potential
 

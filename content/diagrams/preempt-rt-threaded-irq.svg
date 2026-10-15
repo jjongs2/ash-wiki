@@ -18,8 +18,8 @@
     <text x="540" y="18">처리 끝</text>
   </g>
 
-  <!-- IRQ 문맥 -->
-  <text x="150" y="61" text-anchor="end" fill="var(--text, #727981)">IRQ 문맥</text>
+  <!-- IRQ context -->
+  <text x="150" y="61" text-anchor="end" fill="var(--text, #727981)">IRQ context</text>
   <rect x="170" y="34" width="120" height="44" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="230" y="53" text-anchor="middle" fill="var(--text, #727981)">1차 처리기</text>
   <text x="230" y="70" text-anchor="middle" font-size="12" fill="var(--text, #727981)">인터럽트를 끈 채</text>
@@ -27,8 +27,8 @@
   <!-- 깨움 -->
   <path d="M290 56 H305 V120 H318" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 
-  <!-- 프로세스 문맥 -->
-  <text x="150" y="125" text-anchor="end" fill="var(--text, #727981)">프로세스 문맥</text>
+  <!-- 프로세스 context -->
+  <text x="150" y="125" text-anchor="end" fill="var(--text, #727981)">프로세스 context</text>
   <rect x="320" y="98" width="220" height="44" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="430" y="117" text-anchor="middle" fill="var(--text, #727981)">스레드 처리기</text>
   <text x="430" y="134" text-anchor="middle" font-size="12" fill="var(--text, #727981)">SCHED_FIFO, 우선순위 50</text>

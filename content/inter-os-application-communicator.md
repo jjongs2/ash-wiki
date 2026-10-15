@@ -11,7 +11,7 @@ verified: 2026-09-30
 
 ## 통신 범위
 
-같은 OS-Application 안의 통신은 [[autosar-rte|RTE]]가, ECU 사이의 통신은 [[autosar-com|COM]]이 맡고, IOC는 같은 ECU나 [[autosar-software-cluster|Software Cluster]] 안에서 OS-Application 경계를 넘는 통신을 맡는다. IOC 서비스는 RTE가 부르며, RTE 밖의 클라이언트가 IOC를 직접 부르는 것은 지원하지 않는다. [[autosar-software-component|SW-C]]는 RTE를 거쳐서만 IOC에 접근하고, CDD(Complex Driver)에서 IOC를 쓰는 것은 권하지 않는다.[@autosar-cp-sws-os-2025]
+같은 OS-Application 안의 통신은 [[autosar-rte|RTE]]가, ECU 사이의 통신은 [[autosar-com|COM]]이 맡고, IOC는 같은 ECU나 [[autosar-software-cluster|Software Cluster]] 안에서 OS-Application 경계를 넘는 통신을 맡는다. IOC 서비스는 RTE가 부르며, RTE 밖의 클라이언트가 IOC를 직접 부르는 것은 지원하지 않는다. [[autosar-software-component|SW-C]]는 RTE를 거쳐서만 IOC에 접근하고, CDD(Complex Device Driver)에서 IOC를 쓰는 것은 권하지 않는다.[@autosar-cp-sws-os-2025]
 
 ![[diagrams/ioc-communication-scope.svg]]
 
