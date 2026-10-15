@@ -13,6 +13,7 @@
 
 줄은 쓰는 표기의 가나다순으로 둡니다. 라틴 문자는 한글보다 앞에 두고 대소문자를 가리지 않으며, 기호와 공백은 글자보다 앞에 둡니다. 결정을 더하는 PR끼리 같은 줄을 고치지 않게 하려는 꼴입니다.
 
+- adaptive update: - (#432)
 - Annex: 부속서, 부록 (#301). 원문이 Annex일 때. 원문이 Appendix인 "부록"은 그대로
 - aperiodic: 비주기 (#350). 합성어 포함. 예: aperiodic 태스크, aperiodic server. CANopen PDO의 주기·비주기 송신처럼 통신의 송신 방식은 예외
 - ASPICE: Automotive SPICE, A-SPICE (#231). 판을 붙이면 `ASPICE 4.1` 꼴. 정식 이름은 `automotive-spice` 머리말의 풀이에만, A-SPICE는 그 페이지의 alias로만. 문서 이름 "Automotive SPICE for Cybersecurity"와 슬러그는 예외
@@ -54,11 +55,13 @@
 - use case: 유스케이스 (#394). 합성어 포함. 예: use case 테스트
 - V2X 풀이 Vehicle-to-X: Vehicle-to-Everything (#257)
 - validation: 통일하지 않음 (#288). "확인"과 원어 cybersecurity validation을 맥락에 따라. 페이지 `cybersecurity-verification-and-validation`의 title과 정의는 "확인"
+- Virtual A/B: - (#432)
 - wakeup: 웨이크업 (#257). AUTOSAR가 다루는 wakeup일 때. 예: EcuM에 알리는 wakeup. 트랜시버와 버스의 웨이크업은 "웨이크업"
 - 개인 키: 개인키 (#288)
 - 결함 허용: - (#223)
 - 공개 키: 공개키 (#288)
 - 기법: technique (#431). Automotive Threat Matrix의 technique일 때
+- 단계적 배포: phased rollout (#432)
 - 단위 테스트: 유닛 테스트 (#291)
 - 대칭 키: 대칭키 (#288)
 - 리프 노드: 잎 노드 (#250)
@@ -70,6 +73,7 @@
 - 비밀 키: 비밀키 (#288)
 - 사용자 스토리: user story (#394). 합성어 포함. 예: 사용자 스토리 매핑
 - 사이버보안 속성: cybersecurity property (#252)
+- 사전 등록(备案): 备案 (#432). 원문의 간체를 쓴다
 - 생명주기: 수명주기 (#288)
 - 서명 키: 서명키 (#288)
 - 소스: 원천 (#346). 신호나 사건을 내는 하드웨어·기능일 때. 예: 인터럽트 소스, 클록 소스, 트리거 소스. 802.1AS의 timing source는 원어로. 기원을 뜻하는 일반 낱말 "원천"(원천 문서, 원천 모델)과 검증 자료인 "출처"는 그대로
@@ -95,6 +99,7 @@
 - 테스트 케이스: 시험 사례, 시험 케이스 (#291)
 - 트랜시버 지연 보상: 송신 지연 보상 (#311). 약어와 함께 쓰면 `트랜시버 지연 보상(TDC, Transceiver Delay Compensation)`
 - 특별특성: special characteristics (#394). 처음 쓸 때 "특별특성(special characteristics)". ASPICE 정보 항목 이름 17-57(Special characteristics)은 그대로
+- 특정개조 등: 特定改造等 (#432). 처음 쓸 때 원어를 병기
 - 프레임 간 공간: 인터프레임 공간 (#68). 원어는 병기하지 않음
 - 플래시: Flash (#257). 일반 낱말일 때. 모듈과 구성 요소의 이름(Fls(Flash Driver), Flash EEPROM Emulation, Flashing Adapter)은 예외
 - 하위 호환: 역호환 (#257)
