@@ -36,7 +36,7 @@
     <line x1="492" y1="158" x2="558" y2="158" />
   </g>
 
-  <!-- 엣지 브리지와 CNC -->
+  <!-- 에지 브리지와 CNC -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow-ink)" marker-end="url(#arrow-ink)">
     <line x1="205" y1="58" x2="215" y2="138" />
     <line x1="475" y1="58" x2="455" y2="138" />

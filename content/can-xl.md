@@ -29,7 +29,7 @@ verified: 2026-10-06
 
 Bosch의 CAN XL 개요에 따르면 CAN XL에는 오류 신호를 켠 모드와 끈 모드가 있고, 모드는 실행 중에 소프트웨어로 설정하며, 한 네트워크의 노드는 모두 같은 모드를 써야 한다. 오류 신호를 켜면 CAN FD처럼 오류를 [[can-error-frame#오류 플래그|오류 플래그]]로 알리고, 버스에 classical CAN, CAN FD, CAN XL 프레임이 함께 다닐 수 있다. 오류 신호를 끄면 오류를 알리지 않는다. 수신 노드는 오류가 나면 진행 중인 송신이 끝나기를 기다려 다시 통합하고, 송신 노드는 송신 오류를 검사하지 않고 프레임을 끝까지 보낸다. 이 모드는 CAN FD와 호환되지 않아 버스에는 CAN XL 프레임만 다닌다.[@bosch-can-xl-overview-2023]
 
-Bosch X_CAN은 오류 신호를 끄는 설정 비트 `EFDI`를 켜면 오류 계수기를 올리지 않고 CAN XL 프레임만 보내며, dominant인 FDF(FD Format) 비트나 XLF(XL Format) 비트를 받으면 [[can-error-detection#다섯 가지 오류|폼 오류]]로 다룬다.[@bosch-x-can-2024]
+Bosch X_CAN은 오류 신호를 끄는 설정 비트 `EFDI`를 켜면 오류 계수기를 올리지 않고 CAN XL 프레임만 보내며, dominant인 FDF(FD Format) 비트나 XLF(XL Format) 비트를 받으면 [[can-error-detection#다섯 가지 오류|형식 오류]]로 다룬다.[@bosch-x-can-2024]
 
 ## 프레임 구성
 

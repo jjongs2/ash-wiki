@@ -5,16 +5,16 @@ tags:
 verified: 2026-10-02
 ---
 
-**나선형 모델**(spiral model)은 [[software-process|소프트웨어 프로세스]]를 명세 주도나 prototype 주도가 아니라 위험 주도(risk-driven)로 이끄는 프로세스 모델이다. 개발은 나선을 따라 도는 바퀴의 반복이고, 바퀴마다 남은 위험의 상대적 크기로 다음 단계를 정한다. Barry Boehm은 1986년 논문에서 나선형 모델을 소프트웨어 개발과 개선의 새 틀로 제시했다.[@boehm-spiral-model-1986]
+**나선형 모델**(spiral model)은 [[software-process|소프트웨어 프로세스]]를 명세 주도나 prototype 주도가 아니라 리스크 주도(risk-driven)로 이끄는 프로세스 모델이다. 개발은 나선을 따라 도는 바퀴의 반복이고, 바퀴마다 남은 리스크의 상대적 크기로 다음 단계를 정한다. Barry Boehm은 1986년 논문에서 나선형 모델을 소프트웨어 개발과 개선의 새 틀로 제시했다.[@boehm-spiral-model-1986]
 
-ISO/IEC/IEEE 24765:2017은 나선형 모델을 요구 분석, 예비·상세 설계, 코딩, 통합, 테스트 같은 구성 활동을 소프트웨어가 완성될 때까지 반복해 수행하는 소프트웨어 개발 프로세스 모델로 정의한다.[@iso-iec-ieee-24765-obp-2017] 나선형 모델은 [[software-development-life-cycle#예측형에서 적응형까지|진화형]]이자 위험 주도인 모델이고[@ieee-swebok-v4-0a-2026], [[software-development-life-cycle#모델|반복 개발 모델]]의 한 예다.[@istqb-ctfl-syllabus-2024]
+ISO/IEC/IEEE 24765:2017은 나선형 모델을 요구 분석, 예비·상세 설계, 코딩, 통합, 테스트 같은 구성 활동을 소프트웨어가 완성될 때까지 반복해 수행하는 소프트웨어 개발 프로세스 모델로 정의한다.[@iso-iec-ieee-24765-obp-2017] 나선형 모델은 [[software-development-life-cycle#예측형에서 적응형까지|진화형]]이자 리스크 주도인 모델이고[@ieee-swebok-v4-0a-2026], [[software-development-life-cycle#모델|반복 개발 모델]]의 한 예다.[@istqb-ctfl-syllabus-2024]
 
 ## 네 사분면
 
 나선의 한 바퀴는 같은 순서의 단계를 거치고, 나선 그림은 이 단계를 네 사분면으로 나눈다.[@boehm-spiral-model-1986]
 
 1. 이번 바퀴에서 다룰 부분의 목표, 대안, 제약을 정한다. 목표는 성능, 기능, 변경 수용성 같은 것이고, 대안은 설계안, 재사용, 구매 같은 것이며, 제약은 비용, 일정, 인터페이스 같은 것이다.
-2. 대안을 목표와 제약에 비추어 평가하고, 위험의 원천을 찾아 [[software-development-life-cycle#Prototyping|prototyping]], 시뮬레이션, 사용자 설문, 분석 모델링 등으로 해소한다.
+2. 대안을 목표와 제약에 비추어 평가하고, 리스크의 원천을 찾아 [[software-development-life-cycle#Prototyping|prototyping]], 시뮬레이션, 사용자 설문, 분석 모델링 등으로 해소한다.
 3. 다음 수준의 제품을 개발하고 검증한다.
 4. 다음 단계를 계획한다.[@boehm-spiral-model-1986]
 
@@ -22,13 +22,13 @@ ISO/IEC/IEEE 24765:2017은 나선형 모델을 요구 분석, 예비·상세 설
 
 ![[diagrams/spiral-model-quadrants.svg]]
 
-## 위험 주도
+## 리스크 주도
 
-나선형 모델에서는 위험을 따져 계획, [[configuration-management|형상 관리]], [[software-quality#품질 보증|품질 보증]], 정형 검증, 시험 같은 활동에 들일 시간과 노력을 정한다. 명세도 위험이 낮은 요소는 자세한 기술을 미루므로 고르게 자세하지 않다.[@boehm-spiral-model-1986]
+나선형 모델에서는 리스크를 따져 계획, [[configuration-management|형상 관리]], [[software-quality#품질 보증|품질 보증]], 정형 검증, 시험 같은 활동에 들일 시간과 노력을 정한다. 명세도 리스크가 낮은 요소는 자세한 기술을 미루므로 고르게 자세하지 않다.[@boehm-spiral-model-1986]
 
-성능이나 사용자 인터페이스 위험이 프로그램 개발이나 내부 인터페이스 통제 위험보다 크게 우세하면, 다음 단계는 더 자세한 prototype을 만드는 진화형 개발 단계가 될 수 있다. 앞선 prototyping이 그 위험을 모두 해소했고 프로그램 개발이나 인터페이스 통제 위험이 우세하면, 다음 단계는 기본 폭포수 접근을 따르되 증분 개발에 맞게 고친다.[@boehm-spiral-model-1986]
+성능이나 사용자 인터페이스 리스크가 프로그램 개발이나 내부 인터페이스 통제 리스크보다 크게 우세하면, 다음 단계는 더 자세한 prototype을 만드는 진화형 개발 단계가 될 수 있다. 앞선 prototyping이 그 리스크를 모두 해소했고 프로그램 개발이나 인터페이스 통제 리스크가 우세하면, 다음 단계는 기본 폭포수 접근을 따르되 증분 개발에 맞게 고친다.[@boehm-spiral-model-1986]
 
-그래서 나선형 모델은 앞선 모델 대부분을 특수한 경우로 담는다. 사용자 인터페이스와 성능 위험은 낮고 예산과 일정 통제 위험이 높으면 [[waterfall-model|폭포수 모델]]과 같아진다. 예산, 일정, 대규모 통합, information sclerosis 위험은 낮고 사용자 인터페이스와 의사결정 지원 요구의 위험이 높으면 진화형 개발 모델과 같아진다.[@boehm-spiral-model-1986]
+그래서 나선형 모델은 앞선 모델 대부분을 특수한 경우로 담는다. 사용자 인터페이스와 성능 리스크는 낮고 예산과 일정 통제 리스크가 높으면 [[waterfall-model|폭포수 모델]]과 같아진다. 예산, 일정, 대규모 통합, information sclerosis 리스크는 낮고 사용자 인터페이스와 의사결정 지원 요구의 리스크가 높으면 진화형 개발 모델과 같아진다.[@boehm-spiral-model-1986]
 
 ## 반복마다 커지는 나선
 
@@ -38,14 +38,14 @@ ISO/IEC/IEEE 24765:2017은 나선형 모델을 요구 분석, 예비·상세 설
 
 Boehm은 1986년 ACM SIGSOFT Software Engineering Notes 11권 4호에 나선형 모델 논문을 실었고[@boehm-spiral-model-1986], 1988년 IEEE Computer 21권 5호에 같은 제목의 논문을 실었다.[@boehm-spiral-model-1988]
 
-Boehm은 2000년 SEI 특별 보고서 "Spiral Development: Experience, Principles, and Refinements"에서 나선형 개발 모델을 위험 주도 프로세스 모델 생성기로 정의했다. 이 모델은 여러 이해관계자가 함께하는 소프트웨어 집약 시스템의 동시 공학을 이끌며, 위험을 줄이면서 시스템의 정의와 구현을 점차 키우는 순환 접근과, 이해관계자의 약속을 확보하는 anchor point 마일스톤을 두 특징으로 한다. 위험 패턴에 따라 증분, 폭포수, evolutionary prototyping 같은 서로 다른 프로세스가 나온다.[@boehm-spiral-development-2000]
+Boehm은 2000년 SEI 특별 보고서 "Spiral Development: Experience, Principles, and Refinements"에서 나선형 개발 모델을 리스크 주도 프로세스 모델 생성기로 정의했다. 이 모델은 여러 이해관계자가 함께하는 소프트웨어 집약 시스템의 동시 공학을 이끌며, 리스크를 줄이면서 시스템의 정의와 구현을 점차 키우는 순환 접근과, 이해관계자의 약속을 확보하는 anchor point 마일스톤을 두 특징으로 한다. 리스크 패턴에 따라 증분, 폭포수, evolutionary prototyping 같은 서로 다른 프로세스가 나온다.[@boehm-spiral-development-2000]
 
 같은 보고서에서 Boehm은 나선형 모델을 제대로 따르는 프로세스의 바퀴가 늘 갖추는 여섯 불변 특성(invariant)을 들고, 이를 갖추지 못한 채 나선형처럼 보이는 프로세스를 hazardous spiral look-alike라 불렀다.[@boehm-spiral-development-2000]
 
 1. 핵심 산출물(운영 개념, 요구사항, 계획, 설계, 코드)을 차례로가 아니라 동시에 정한다.
-2. 바퀴마다 목표, 제약, 대안, 위험, 검토, 진행 약속을 다룬다.
-3. 활동마다 들일 노력을 위험을 따져 정한다.
-4. 산출물마다 자세한 정도를 위험을 따져 정한다.
+2. 바퀴마다 목표, 제약, 대안, 리스크, 검토, 진행 약속을 다룬다.
+3. 활동마다 들일 노력을 리스크를 따져 정한다.
+4. 산출물마다 자세한 정도를 리스크를 따져 정한다.
 5. 세 anchor point 마일스톤 LCO(Life Cycle Objectives), LCA(Life Cycle Architecture), IOC(Initial Operational Capability)로 이해관계자의 약속을 관리한다.
 6. 소프트웨어와 초기 개발보다 시스템과 생명주기 전체의 활동과 산출물에 무게를 둔다.[@boehm-spiral-development-2000]
 

@@ -26,7 +26,7 @@ Microsoft의 2006년 MSDN 기사에 따르면 STRIDE는 시스템을 구성 요�
 
 Microsoft Threat Modeling Tool은 Microsoft SDL(Security Development Lifecycle)의 핵심 요소이고, SDL의 위협 모델링은 설계를 분석하는 기법이다. 이 도구는 요소마다 STRIDE를 적용해(STRIDE per Element) 위협과 완화책을 안내한다.[@microsoft-tmt-overview-2022] 데이터 흐름도를 그리고 분석 화면을 열면, STRIDE를 쓰는 기본 템플릿으로 만든 위협 목록이 나온다.[@microsoft-tmt-getting-started-2022]
 
-Microsoft patterns & practices의 2003년 위협 모델링 지침에 따르면 Microsoft는 위협의 위험 등급을 매기는 데 DREAD(Damage potential, Reproducibility, Exploitability, Affected users, Discoverability) 모델을 쓴다.[@microsoft-pnp-threat-modeling-2003]
+Microsoft patterns & practices의 2003년 위협 모델링 지침에 따르면 Microsoft는 위협의 리스크 등급을 매기는 데 DREAD(Damage potential, Reproducibility, Exploitability, Affected users, Discoverability) 모델을 쓴다.[@microsoft-pnp-threat-modeling-2003]
 
 Islam 외는 2016년 논문에서 [[threat-analysis-and-risk-assessment#EVITA와 HEAVENS의 방법|HEAVENS]] 프로젝트의 결과를 바탕으로 차량용 리스크 평가 틀을 내놓으며, 보안 비전문가가 쓰기 쉽다는 까닭으로 위협 식별에 STRIDE를 쓰자고 했다.[@islam-risk-assessment-framework-2016]
 
