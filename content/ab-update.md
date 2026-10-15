@@ -15,6 +15,8 @@ verified: 2026-10-03
 - ESP-IDF(Espressif IoT Development Framework)는 [[over-the-air-update|OTA]] 데이터 파티션(`otadata`)에 다음에 부팅할 OTA 앱 파티션을 기록한다. `otadata`는 플래시 섹터 둘로 이루어지며, 두 섹터를 따로 지워 같은 데이터를 쓰고 둘이 다르면 카운터로 더 최근에 쓴 섹터를 고른다. 기록하는 도중 전원이 끊겨 생기는 문제를 막기 위해서다.[@espressif-esp-idf-ota-2026]
 - MCUboot는 두 슬롯(primary, secondary) 각각의 끝에 둔 이미지 트레일러를 읽어 이미지를 맞바꿀지 정한다.[@mcuboot-design-2026]
 
+새 이미지를 쓰기 전에는 대상 슬롯을 부팅할 수 없는 슬롯으로 표시해 두고, 다 쓴 뒤에 다시 활성 슬롯으로 돌린다.[@google-android-ota-ab-2026][@rauc-basics-2026]
+
 ## 확인 대기와 확정
 
 새 이미지로 처음 부팅하면 곧바로 확정하지 않고 확인 대기 상태로 둔다. 새 이미지가 스스로 점검해 이상이 없으면 자신을 유효로 표시하고, 점검에 실패하거나 표시하기 전에 재부팅되면 부트로더가 이전 이미지로 돌아간다. 이를 **롤백**이라 한다.[@espressif-esp-idf-ota-2026][@mcuboot-design-2026]
@@ -25,7 +27,7 @@ verified: 2026-10-03
 - Android는 새 슬롯으로 부팅한 뒤 `update_verifier`의 검증이 끝나야 그 슬롯을 부팅 성공으로 표시하고, 표시 전에 부팅이 여러 번 실패하면 이전 슬롯으로 돌아간다.[@google-android-ota-ab-2026]
 - MCUboot는 새 이미지를 시험(test) swap으로 맞바꾼 뒤, 이미지가 자신을 확정하지 않은 채 재부팅되면 이전 이미지로 되돌린다.[@mcuboot-design-2026]
 
-새 이미지를 쓰기 전에는 대상 슬롯을 부팅할 수 없는 슬롯으로 표시해 두고, 다 쓴 뒤에 다시 활성 슬롯으로 돌린다.[@google-android-ota-ab-2026][@rauc-basics-2026] 부트로더는 확정되지 않은 슬롯으로 부팅을 시도한 횟수를 세어, 정한 횟수를 다 쓰면 다른 슬롯으로 부팅한다.[@google-android-ota-ab-2026][@rauc-integration-2026] RAUC 문서는 아무것도 부팅하지 않거나 부팅한 시스템이 갑자기 멈추는 경우처럼 잘못된 부팅을 스스로 알아채지 못할 때가 많다고 보아, 부팅하는 동안 하드웨어 [[safety-mechanism#Watchdog|watchdog]]을 쓰고 부트로더가 watchdog 리셋을 부팅 실패로 보게 하기를 권한다.[@rauc-basics-2026]
+부트로더는 확정되지 않은 슬롯으로 부팅을 시도한 횟수를 세어, 정한 횟수를 다 쓰면 다른 슬롯으로 부팅한다.[@google-android-ota-ab-2026][@rauc-integration-2026] RAUC 문서는 아무것도 부팅하지 않거나 부팅한 시스템이 갑자기 멈추는 경우처럼 잘못된 부팅을 스스로 알아채지 못할 때가 많다고 보아, 부팅하는 동안 하드웨어 [[safety-mechanism#Watchdog|watchdog]]을 쓰고 부트로더가 watchdog 리셋을 부팅 실패로 보게 하기를 권한다.[@rauc-basics-2026]
 
 ## 장점과 비용
 

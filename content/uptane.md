@@ -18,12 +18,6 @@ Uptane Standard 2.1.0은 구현 세부를 구현자에게 맡기고, 표준을 �
 
 Uptane Deployment Best Practices 2.1.0은 한 Uptane 구현의 프로토콜, 운영, 사용, 형식을 담은 문서를 **POUF**(Protocol, Operations, Usage, and Formats)라 부른다.[@uptane-deployment-best-practices-2-1-0-2023] Uptane Standard 2.1.0은 형식을 맞추려는 구현자가 구현 선택과 데이터 바인딩 형식을 적은 POUF를 쓸 수 있게 하고, 같은 POUF를 채택한 구현끼리 상호운용할 수 있게 한다.[@uptane-standard-2-1-0-2023]
 
-### 메타데이터
-
-이 표준은 메타데이터 전체의 형식이나 인코딩을 정하지 않고, 필요한 구조를 담을 수 있는 인코딩이면 무엇이든 쓸 수 있게 한다. 네 역할(Root, Targets, Snapshot, Timestamp)의 메타데이터는 서명할 페이로드와 그 서명을 담는 공통 구조를 따르고, 페이로드에는 역할의 종류, 만료 일시, 메타데이터를 고칠 때마다 올리기를 권하는 정수 버전 번호, 역할별 메타데이터가 든다.[@uptane-standard-2-1-0-2023]
-
-Targets 메타데이터에는 이미지마다 release counter와 hardware identifier를 두기를 권한다. release counter는 이미지의 새 버전을 낼 때마다 올리는 값이고, hardware identifier는 그 이미지와 호환되는 ECU 모델을 나타낸다. 두 값은 director repository가 침해돼도 rollback 공격과 호환되지 않는 이미지의 설치를 막는 데 쓸 수 있다. Director repository의 Targets 메타데이터는 이미지마다 그 이미지를 설치할 ECU의 식별자(일련번호 등)를 담아야 한다. Primary ECU는 이미지나 이미지 경로마다 어느 저장소를 믿을지 알려 주는 repository mapping metadata를 갖춰야 하고, 이 메타데이터로 저장소를 둘보다 많이 두는 구현도 표준을 따를 수 있다.[@uptane-standard-2-1-0-2023] Release counter로 rollback을 막는 방법은 [[rollback-protection#업데이트 메타데이터 쪽의 방어|롤백 방지의 업데이트 메타데이터 쪽 방어]]에서 다룬다.
-
 ### 두 저장소
 
 이 표준은 저장소 둘을 정한다.[@uptane-standard-2-1-0-2023]
@@ -37,9 +31,15 @@ Director repository는 인벤토리 데이터베이스에 차량마다 VIN(Vehic
 
 Uptane Deployment Best Practices 2.1.0은 image repository의 root, targets와 위임 역할의 키를 오프라인에 두어, 저장소가 뚫려도 full verification을 하는 ECU에 곧바로 영향이 가지 않게 하기를 권한다. Director repository에는 timestamp, snapshot, targets 메타데이터를 온라인 키로 서명해 자동으로 곧바로 새 메타데이터를 만들고, root 메타데이터만 오프라인 키로 서명하기를 권한다.[@uptane-deployment-best-practices-2-1-0-2023]
 
+### 메타데이터
+
+Uptane Standard 2.1.0은 메타데이터 전체의 형식이나 인코딩을 정하지 않고, 필요한 구조를 담을 수 있는 인코딩이면 무엇이든 쓸 수 있게 한다. 네 역할(Root, Targets, Snapshot, Timestamp)의 메타데이터는 서명할 페이로드와 그 서명을 담는 공통 구조를 따르고, 페이로드에는 역할의 종류, 만료 일시, 메타데이터를 고칠 때마다 올리기를 권하는 정수 버전 번호, 역할별 메타데이터가 든다.[@uptane-standard-2-1-0-2023]
+
+Targets 메타데이터에는 이미지마다 release counter와 hardware identifier를 두기를 권한다. release counter는 이미지의 새 버전을 낼 때마다 올리는 값이고, hardware identifier는 그 이미지와 호환되는 ECU 모델을 나타낸다. 두 값은 director repository가 침해돼도 rollback 공격과 호환되지 않는 이미지의 설치를 막는 데 쓸 수 있다. Director repository의 Targets 메타데이터는 이미지마다 그 이미지를 설치할 ECU의 식별자(일련번호 등)를 담아야 한다. Primary ECU는 이미지나 이미지 경로마다 어느 저장소를 믿을지 알려 주는 repository mapping metadata를 갖춰야 하고, 이 메타데이터로 저장소를 둘보다 많이 두는 구현도 표준을 따를 수 있다.[@uptane-standard-2-1-0-2023] Release counter로 rollback을 막는 방법은 [[rollback-protection#업데이트 메타데이터 쪽의 방어|롤백 방지의 업데이트 메타데이터 쪽 방어]]에서 다룬다.
+
 ### Primary ECU와 secondary ECU
 
-Uptane Standard 2.1.0은 두 ECU의 일을 아래처럼 나눈다.[@uptane-standard-2-1-0-2023]
+이 표준은 두 ECU의 일을 아래처럼 나눈다.[@uptane-standard-2-1-0-2023]
 
 - **Primary ECU**는 자신과 secondary ECU의 몫으로 최신 메타데이터와 이미지를 받아 검증하고, secondary ECU에 시간, 메타데이터, 이미지를 보낸다.
 - **Secondary ECU**는 primary ECU에게서 받은 메타데이터와 이미지를 설치하기 전에 스스로 검증한다.[@uptane-standard-2-1-0-2023]
@@ -82,7 +82,7 @@ ECU version report에는 감지한 보안 공격의 표시, 보고서를 만들 
 
 이 표준은 ECU가 안전한 시간 소스를 갖추게 하고, 안전함을 보일 수 있는 외부 시간 소스라면 무엇이든 쓸 수 있게 한다. Primary ECU는 안전한 소스에서 현재 시간을 받아야 하고, 각 ECU에 그 시간을 보내기를 권한다.[@uptane-standard-2-1-0-2023]
 
-Uptane Deployment Best Practices 2.1.0에 따르면 ECU의 시간이 너무 앞서 있으면 지금 유효한 메타데이터를 만료된 것으로 보아 업데이트하지 못하고, 너무 뒤처져 있으면 공격자가 낡은 메타데이터로 freeze 공격이나 replay 공격을 할 수 있다. 이 문서는 ECU가 정확한 시간을 얻는 데 RFC 5905의 NTP(Network Time Protocol) 버전 4와 RFC 8915의 NTS(Network Time Security)를 쓰기를 권하고, GPS(Global Positioning System)는 보호되지 않은 민간 신호를 속이는 공격이 흔하므로 안전한 시간 소스로 쓰지 않기를 권한다. Uptane 2.0.0판은 Uptane Time Server에 대한 언급을 모두 없앴다.[@uptane-deployment-best-practices-2-1-0-2023]
+Uptane Deployment Best Practices 2.1.0에 따르면 ECU의 시간이 너무 앞서 있으면 지금 유효한 메타데이터를 만료된 것으로 보아 업데이트하지 못하고, 너무 뒤처져 있으면 공격자가 낡은 메타데이터로 freeze 공격이나 replay 공격을 할 수 있다. 이 문서는 ECU가 정확한 시간을 얻는 데 RFC 5905의 NTP(Network Time Protocol) 버전 4와 RFC 8915의 NTS(Network Time Security)를 쓰기를 권하고, GPS(Global Positioning System)는 보호되지 않은 민간 신호를 속이는 공격이 흔하므로 안전한 시간 소스로 쓰지 않기를 권한다.[@uptane-deployment-best-practices-2-1-0-2023]
 
 ### 운영
 
@@ -98,7 +98,7 @@ Kuppusamy 외는 자동차 고유의 취약점과 한계를 다루려고 TUF에 
 
 Uptane Alliance는 2018년 IEEE-ISTO 아래 비영리 단체로 세워졌다. Uptane은 Standard 1.0.0을 낸 뒤 Linux Foundation의 Joint Development Foundation 프로젝트가 됐다.[@uptane-about-2026] Uptane Standard 1.0.0은 2019년 IEEE-ISTO 6100.1.0.0이라는 이름으로 Uptane Alliance가 펴냈고, 2.1.0은 Joint Development Foundation Projects, LLC, Uptane Series의 이름으로 나왔다.[@uptane-standard-2-1-0-2023][@uptane-standard-1-0-0-2019] 판은 2019년 1.0.0, 2021년 1.1.0과 1.2.0, 2022년 2.0.0, 2023년 2.1.0 순으로 나왔다.[@uptane-history-2026]
 
-2021년에는 커뮤니티 구성원이 Uptane 명세의 추가나 변경을 제안하는 공식 절차인 PURE(Proposed Uptane Revision and Enhancement)가 마련됐다.[@uptane-history-2026] Uptane Standard 2.1.0은 "Uptane-compliant"라는 말을 "Uptane-conformant"로 바꿨다.[@uptane-deployment-best-practices-2-1-0-2023] 이 판은 표준을 따르는 구현으로 인정받으려면 문서의 규칙을 모두 따라야 한다고 정한다.[@uptane-standard-2-1-0-2023]
+2021년에는 커뮤니티 구성원이 Uptane 명세의 추가나 변경을 제안하는 공식 절차인 PURE(Proposed Uptane Revision and Enhancement)가 마련됐다.[@uptane-history-2026] Uptane 2.0.0판은 Uptane Time Server에 대한 언급을 모두 없앴다. Uptane Standard 2.1.0은 "Uptane-compliant"라는 말을 "Uptane-conformant"로 바꿨다.[@uptane-deployment-best-practices-2-1-0-2023] 이 판은 표준을 따르는 구현으로 인정받으려면 문서의 규칙을 모두 따라야 한다고 정한다.[@uptane-standard-2-1-0-2023]
 
 ## 채택
 
