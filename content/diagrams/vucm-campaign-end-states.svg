@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -1.5 726 306.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <text x="20" y="28" font-size="12" fill="var(--text, #727981)">AUTOSAR R25-11 V-UCM의 CampaignState</text>
+
+  <!-- 상태 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="60" width="140" height="36" rx="2" />
+    <rect x="280" y="60" width="160" height="36" rx="2" />
+    <rect x="580" y="60" width="120" height="36" rx="2" />
+    <rect x="280" y="210" width="160" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="90" y="82.5">kActivating</text>
+    <text x="360" y="82.5">kVehicleChecking</text>
+    <text x="640" y="82.5">kIdle</text>
+    <text x="360" y="232.5">kCancelling</text>
+  </g>
+
+  <!-- 전이 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="160" y1="78" x2="278" y2="78" />
+    <line x1="440" y1="78" x2="578" y2="78" />
+    <line x1="360" y1="96" x2="360" y2="208" />
+    <path d="M90 96 V228 H278" />
+    <line x1="584" y1="228" x2="442" y2="228" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <g text-anchor="middle">
+      <text x="220" y="52">모든 UCM이</text>
+      <text x="220" y="68">활성화 성공</text>
+      <text x="510" y="52">점검 결과 참</text>
+      <text x="510" y="68">Finish로 확정</text>
+      <text x="640" y="118">저장해 둔</text>
+      <text x="640" y="134">Software Package를 지움</text>
+      <text x="360" y="268">활성화되었거나 검증 중인</text>
+      <text x="360" y="284">Software Cluster를 Rollback</text>
+    </g>
+    <text x="368" y="156">점검 결과 거짓</text>
+    <text x="98" y="156">UCM 하나라도</text>
+    <text x="98" y="172">활성화 실패</text>
+    <g text-anchor="end">
+      <text x="700" y="216">닿지 못하는 UCM</text>
+      <text x="700" y="232">재시도 한도 초과</text>
+      <text x="700" y="248">캠페인 시간 초과</text>
+    </g>
+  </g>
+</svg>

@@ -29,6 +29,8 @@ NXP 백서에 따르면 OTA 업데이트에서 차량과 제조사 서버 사이
 
 새 업데이트가 있는지 확인하는 일은 클라이언트가 서버에 묻는 pull 방식이나, 서버가 클라이언트에 먼저 알리는 push 방식으로 시작할 수 있다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025][@ietf-rfc-9019-2021] RFC 9019는 서버가 업데이트가 있음을 알리고 기기가 펌웨어 이미지를 서버에서 가져오게 하는, 둘을 섞은 방식도 예로 든다.[@ietf-rfc-9019-2021]
 
+![[diagrams/update-check-pull-push.svg]]
+
 기능을 중앙 컴퓨터에 모은 [[ee-architecture|E/E 아키텍처]]는 OTA 업데이트로 차량 기능을 바꾸거나 더하기 쉽게 한다.[@bosch-ee-architecture-2026][@ti-slyy236-2025]
 
 Volkswagen ID. 모델은 소프트웨어 업데이트를 이동통신으로 중앙 고성능 컴퓨터 ICAS(In Car Application Server)에 받는다. ICAS는 예전 세대 차량에서 여러 제어기에 흩어져 있던 기능을 맡는다. 이렇게 바뀐 전자 아키텍처는 OTA 업데이트로 제어기를 35개까지 업데이트할 수 있게 한다.[@volkswagen-id-ota-press-2021]
@@ -56,6 +58,8 @@ Ford 차량은 자동 업데이트가 켜져 있으면 대부분의 소프트웨
 ## 배포
 
 업데이트 서버는 대상 기기들을 여러 그룹이나 단계로 나눠 차례로 업데이트를 내보내는 단계적 배포를 할 수 있다.[@eclipse-hawkbit-rollout-management-2026][@mender-deployment-2026] Eclipse hawkBit은 앞 그룹에서 설치에 성공한 대상의 비율이 정한 값에 이르면 기본 설정으로 다음 그룹을 시작하고, 설치 실패가 정한 수나 비율을 넘으면 배포 전체를 긴급 중단한다.[@eclipse-hawkbit-rollout-management-2026]
+
+![[diagrams/hawkbit-phased-rollout.svg]]
 
 Tesla는 소프트웨어 업데이트를 차례로 내보내므로, 모든 차량이 같은 업데이트를 같은 때 받지는 않는다.[@tesla-software-updates-2026]
 

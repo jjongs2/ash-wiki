@@ -46,3 +46,5 @@ RAUC는 부트로더를 이중으로 두어 되돌아가는 구성을 쓸 수 �
 - `boot-emmc`: eMMC의 boot 파티션 둘 가운데 하나를 eMMC의 설정 레지스터(`ext_csd`)로 원자적으로 켠다.
 - `boot-mbr-switch`, `boot-gpt-switch`: 칩의 고정 ROM 코드가 MBR(Master Boot Record) 파티션 테이블의 첫 파티션에서 부팅하는 경우, 미리 정한 디스크 영역의 쉬는 반쪽에 새 부트로더를 쓴 뒤 첫 파티션 항목이 그 반쪽을 가리키게 MBR 전체(512바이트)를 한 번에 다시 쓴다. `boot-gpt-switch`는 GPT(GUID Partition Table)의 첫 파티션 항목을 같은 방식으로 두 반쪽 사이에서 바꾼다.[@rauc-advanced-topics-2026][@uefi-spec-2-11-gpt-2024]
 - `boot-raw-fallback`: ROM 코드가 고정된 위치 여럿을 정해진 순서로 찾아 부트로더를 고르는 경우, 그 가운데 두 위치에 부트로더를 두고 쓰지 않던 위치부터 고친 뒤 다른 위치를 고친다. 위치마다 헤더를 먼저 지운 뒤 부트로더 이미지를 쓰고 헤더를 마지막에 써서, 두 위치 가운데 한 곳에는 늘 유효한 이미지가 있고 반쯤 쓴 이미지로는 부팅을 시도하지 않게 한다.[@rauc-advanced-topics-2026]
+
+![[diagrams/rauc-boot-mbr-switch.svg]]

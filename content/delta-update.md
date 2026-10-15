@@ -50,6 +50,8 @@ Android는 A/B 업데이트 패키지를 만들 때 deflate 스트림을 위한 
 
 RAUC는 이 방식을, 특정 이전 판에서 새 판으로 가는 데 필요한 데이터를 담는 delta update와 구별해 **adaptive update**라 부른다. adaptive update는 특정 이전 판 위에만 설치되지 않고, 이전 판이나 중단된 설치 시도에서 기기에 남은 데이터를 골라 쓴다. block-hash-index 방식은 4 KiB 블록마다 SHA-256 해시를 두어, 색인의 크기는 원래 이미지의 0.8%다.[@rauc-advanced-topics-2026]
 
+![[diagrams/block-hash-index-download.svg]]
+
 SWUpdate는 알려진 기준에서 하는 업데이트를 delta update라 부르고, 이를 zchunk 형식으로 구현한다. zchunk 파일의 헤더는 모든 청크의 메타데이터와 해시를 담아, 헤더를 보면 받아야 할 청크와 다시 쓸 수 있는 청크를 알 수 있다. SWUpdate는 이 헤더를 서명된 업데이트 패키지에 넣으므로, 패키지 밖의 주소에서 받는 청크도 이미 검증한 헤더의 해시로 확인할 수 있다.[@swupdate-delta-update-2026]
 
 ## 알고리즘 예: bsdiff
@@ -69,6 +71,8 @@ Chromium 소스의 Zucchini 설명 문서에 따르면 바이너리 안의 참�
 Google은 2009년 7월 Chrome 업데이트를 작게 하려고 새 압축 알고리즘 Courgette를 쓰기 시작했다.[@google-chromium-courgette-2009]
 
 Courgette는 간이 디스어셈블러로 컴파일된 코드 안의 내부 포인터를 찾고, 포인터가 가리키는 주소를 배열에 모아 포인터를 그 배열의 색인으로 바꾼다. 이 배열이 기호 표 구실을 하므로, 새 판 기호 표의 주소 순서를 옛 판과의 차분이 작아지게 옮긴 뒤, 이렇게 바꾼 두 판을 bsdiff로 차분한다. 개발자 채널의 190.1에서 190.4로 가는 업데이트에서 전체 업데이트는 10,385,920바이트, bsdiff 업데이트는 704,512바이트, Courgette 업데이트는 78,848바이트였다.[@google-chromium-courgette-design-2026]
+
+![[diagrams/courgette-update-sizes.svg]]
 
 ## 구현 예
 

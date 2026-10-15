@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 200" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 방식 이름 -->
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="140" y="30">pull</text>
+    <text x="410" y="30">push</text>
+    <text x="680" y="30">섞은 방식(RFC 9019)</text>
+  </g>
+
+  <!-- 참여자 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="44" width="84" height="32" rx="2" />
+    <rect x="176" y="44" width="84" height="32" rx="2" />
+    <rect x="290" y="44" width="84" height="32" rx="2" />
+    <rect x="446" y="44" width="84" height="32" rx="2" />
+    <rect x="560" y="44" width="84" height="32" rx="2" />
+    <rect x="716" y="44" width="84" height="32" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="62" y="64.5">클라이언트</text>
+    <text x="218" y="64.5">서버</text>
+    <text x="332" y="64.5">클라이언트</text>
+    <text x="488" y="64.5">서버</text>
+    <text x="602" y="64.5">기기</text>
+    <text x="758" y="64.5">서버</text>
+  </g>
+
+  <!-- 생명선 -->
+  <path d="M62 76 V180 M218 76 V180 M332 76 V180 M488 76 V180 M602 76 V180 M758 76 V180" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+
+  <!-- 메시지 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="62" y1="130" x2="216" y2="130" />
+    <line x1="488" y1="130" x2="334" y2="130" />
+    <line x1="758" y1="114" x2="604" y2="114" />
+    <line x1="602" y1="160" x2="756" y2="160" />
+  </g>
+  <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
+    <text x="140" y="104">새 업데이트가 있는지</text>
+    <text x="140" y="120">먼저 물음</text>
+    <text x="410" y="104">업데이트가 있음을</text>
+    <text x="410" y="120">먼저 알림</text>
+    <text x="680" y="104">업데이트가 있음을 알림</text>
+    <text x="680" y="150">펌웨어 이미지를 가져옴</text>
+  </g>
+</svg>

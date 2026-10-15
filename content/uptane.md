@@ -33,6 +33,8 @@ Targets 메타데이터에는 이미지마다 release counter와 hardware identi
 
 Director repository는 인벤토리 데이터베이스에 차량마다 VIN(Vehicle Identification Number) 같은 고유 식별자를, ECU마다 고유 식별자(일련번호 등), 연결된 차량의 식별자, ECU 키와 그 식별자, primary ECU인지 secondary ECU인지를 기록한다. 이 표준은 director repository가 차량에 이미지 설치를 지시하는 절차를 여섯 단계로 정한다. 차량을 식별하고, 인벤토리 데이터베이스에서 그 차량의 ECU 정보를 찾고, 차량 버전 매니페스트가 데이터베이스와 맞는지 검사하고, 설치된 이미지 정보로 설치할 이미지 묶음을 정하고, 필요하면 이미지를 암호화하고, 그 묶음을 나타내는 Targets, Snapshot, Timestamp 메타데이터를 만들어 primary ECU에 보낸다. 설치할 이미지를 정할 때는 이미지 사이의 의존성과 충돌을 고려해야 한다.[@uptane-standard-2-1-0-2023]
 
+![[diagrams/uptane-director-install-steps.svg]]
+
 Uptane Deployment Best Practices 2.1.0은 image repository의 root, targets와 위임 역할의 키를 오프라인에 두어, 저장소가 뚫려도 full verification을 하는 ECU에 곧바로 영향이 가지 않게 하기를 권한다. Director repository에는 timestamp, snapshot, targets 메타데이터를 온라인 키로 서명해 자동으로 곧바로 새 메타데이터를 만들고, root 메타데이터만 오프라인 키로 서명하기를 권한다.[@uptane-deployment-best-practices-2-1-0-2023]
 
 ### Primary ECU와 secondary ECU

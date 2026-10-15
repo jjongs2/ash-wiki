@@ -55,6 +55,8 @@ RFC 9019는 부트로더가 새 펌웨어를 무효로 판단했을 때 회복�
 
 **Virtual A/B**는 부팅에 꼭 필요한 파티션만 물리 슬롯을 둘 두고, 나머지 파티션(dynamic partition)에는 새 데이터를 압축 스냅샷으로 써서 슬롯이 둘 있는 것처럼 동작하게 하는 Android의 업데이트 방식이다. 모든 파티션을 두 벌씩 두던 legacy A/B보다 저장 공간이 덜 든다.[@google-android-ota-2026] 새 데이터는 스냅샷에 쓰고, 새 슬롯으로 부팅에 성공한 것을 확인한 뒤 기준 파티션(base partition)에 병합한다. 병합하는 도중 재부팅되면 재부팅 뒤 병합을 이어 간다. Android 11 이상으로 출시하는 기기에서 Virtual A/B는 GMS(Google Mobile Services) 요구사항이다.[@google-android-ota-ab-2026][@google-android-ota-virtual-ab-2026]
 
+![[diagrams/android-virtual-ab-snapshot.svg]]
+
 ## In-place 업데이트와의 차이
 
 NXP 앱노트는 이미지를 하나만 두고 그 자리를 새 이미지로 바꾸는 방식을 **in-place 방식**이라 부른다. 이 앱노트에 따르면 in-place 방식에서는 MCU가 동작하는 동안 업데이트할 수 없고, 업데이트가 제대로 끝나지 않으면 옛 이미지를 되찾기 어렵다.[@nxp-an12323-2018]

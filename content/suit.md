@@ -22,7 +22,11 @@ verified: 2026-10-15
 - **Firmware server**: 펌웨어 이미지와 매니페스트를 저장하고 기기에 배포한다.
 - [[bootloader|부트로더]]: 마이크로컨트롤러가 리셋된 뒤 실행되어, 어떤 코드를 실행할지 정하는 소프트웨어다.[@ietf-rfc-9019-2021]
 
+![[diagrams/suit-functional-elements.svg]]
+
 새 펌웨어가 있다는 정보는 클라이언트가 먼저 확인하는 [[over-the-air-update#시스템 구성|pull]], 서버가 알리는 push, 둘을 섞은 방식으로 전해진다.[@ietf-rfc-9019-2021]
+
+![[diagrams/update-check-pull-push.svg]]
 
 ## 업데이트 전달
 

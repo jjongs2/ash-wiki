@@ -58,6 +58,8 @@ TUF 명세 1.0.37은 모든 메타데이터에 만료 시각을 두고, 클라�
 
 이 명세는 root 역할의 개인 키를 오프라인에 두기를 권하고, timestamp와 mirrors 역할의 키를 뺀 모든 키를 안전하게 오프라인에 두기를 권한다. root 키가 바뀌었을 때 오래된 root 키를 가진 클라이언트는 중간의 root 메타데이터를 버전 순서대로 모두 내려받아, 각 버전이 바로 앞 버전이 정한 키의 임계값만큼, 또 자기가 정한 키의 임계값만큼 서명되었는지 확인하며 최신 root 키에 이른다. 저장소가 메타데이터와 대상을 쉬지 않고 새로 만들면 클라이언트가 쓰는 중인 메타데이터를 읽어 서비스 거부를 겪는 것과 같아지므로, 저장소는 consistent snapshot을 쓸 수 있다. 클라이언트가 consistent snapshot 하나를 읽는 동안에도 저장소는 그 클라이언트를 방해하지 않고 다른 consistent snapshot을 기록할 수 있다.[@tuf-specification-1-0-37-2026]
 
+![[diagrams/tuf-root-rotation-chain.svg]]
+
 ### TAP과 POUF
 
 **TAP**(TUF Augmentation Proposal)은 TUF 커뮤니티에 정보를 주거나 TUF의 새 기능, 프로세스, 환경을 기술하는 설계 문서다.[@tuf-taps-2026] TUF 명세 1.0.37은 1.x.y판이 TAP 6, 9, 10, 11을 따르고, 이 판을 따르는 구현도 이 TAP들을 따라야 한다고 정한다. 또 구현자가 자기 구현의 와이어 형식과 설계 결정을 POUF(Protocol, Operations, Usage, and Format) 문서로 적기를 권한다. POUF는 서로 다른 채택자가 상호운용되는 TUF 구현을 만들게 한다.[@tuf-specification-1-0-37-2026]
