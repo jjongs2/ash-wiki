@@ -27,7 +27,7 @@ SL-LET(System-Level LET)은 LET을 분산 시스템으로 넓힌 것이다. 고�
 
 ## AUTOSAR
 
-[[autosar-classic-platform|AUTOSAR Classic Platform]]의 Timing Extensions는 LET 구간을 `LET_INTERVAL` 범주의 [[autosar-event-chain|TimingDescriptionEventChain]]으로 기술하고, 로컬 ECU에서 [[runnable-entity|runnable]]이 실행되는 구간을 정하는 데 쓴다. 여러 ECU의 [[software-component-port|포트]] 사이 데이터 흐름은 `SL_LET_INTERVAL` 범주의 SL-LET 구간으로 기술한다. SL-LET 구간은 주기보다 길 수 있고, 동기 정확도가 유한한 분산 클럭을 다룬다.[@autosar-cp-tps-timingextensions-2025]
+AUTOSAR R25-11의 [[autosar-classic-platform|Classic Platform]] Timing Extensions 명세는 LET 구간을 `LET_INTERVAL` 범주의 [[autosar-event-chain|TimingDescriptionEventChain]]으로 기술하도록 정하고, 로컬 ECU에서 [[runnable-entity|runnable]]이 실행되는 구간을 정하는 데 쓴다. 여러 ECU의 [[software-component-port|포트]] 사이 데이터 흐름은 `SL_LET_INTERVAL` 범주의 SL-LET 구간으로 기술한다. SL-LET 구간은 주기보다 길 수 있고, 동기 정확도가 유한한 분산 클럭을 다룬다.[@autosar-cp-tps-timingextensions-2025]
 
 이 명세는 runnable과 BSW(Basic Software) module entity를 함께 **executable entity**라 부르고, executable entity의 실행 순서를 ExecutionOrderConstraint로 정한다. ExecutionOrderConstraint는 [[virtual-functional-bus|VFB]], [[autosar-software-component|SW-C]], 시스템, BSW 모듈, ECU 수준의 timing view 어디서든 쓸 수 있고, executable entity를 직접 가리키거나 그것을 시작하는 [[rte-event|RTE 이벤트]]·[[basic-software-scheduler#BSW 이벤트|BSW 이벤트]]로 가리킨다. 종류는 ordinary, hierarchical, repetitive 셋이다. Ordinary는 executable entity 참조를 successor 관계로 이어 실행 순서를 정하고, hierarchical은 executable entity를 그룹으로 묶어 나무 꼴의 순서를 정한다.[@autosar-cp-tps-timingextensions-2025]
 

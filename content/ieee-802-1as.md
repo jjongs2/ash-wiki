@@ -53,6 +53,7 @@ gPTP는 IEEE 1588-2019의 PTP와 다음이 다르다.[@ieee-802-1as-2025]
 - 통신: gPTP는 PTP Instance 사이의 모든 통신이 IEEE 802 MAC PDU(Protocol Data Unit)와 주소로만 이루어진다고 가정한다. IEEE 1588-2019는 2계층과 3·4계층의 여러 통신 방식을 지원한다.
 - 도메인 구성: gPTP는 gPTP 도메인 안의 모든 시스템이 time-aware system이기를 요구하며, time-aware가 아닌 시스템을 거쳐서는 시각을 전하지 않는다. PTP Relay Instance가 아닌 장치는 gPTP 정보를 중계할 수 없다. IEEE 1588-2019는 IEEE 1588을 모르는 중계 장치도 도메인 안에 둘 수 있게 한다.
 - 지연 측정: 전이중 이더넷 링크에서 gPTP는 피어 지연 방식을 요구하고, IEEE 1588-2019는 종단 간(end-to-end) 지연 측정도 허용한다.
+- 타임스탬프 처리: 전이중 이더넷 링크에서 gPTP는 Follow_Up과 Pdelay_Resp_Follow_Up 메시지로 타임스탬프를 전하는 [[ptp#One-step과 two-step|two-step 처리]]를 요구하고, Sync를 보내면서 타임스탬프를 넣는 one-step 처리는 선택으로 둔다. 피어 지연 메시지의 one-step 처리는 정하지 않는다. IEEE 1588-2019는 프로파일에 따라 Sync와 피어 지연 메시지 모두에 one-step이나 two-step 처리를 요구할 수 있게 한다.
 - syntonization: gPTP 도메인의 모든 PTP Instance는 논리적으로 syntonize되어 같은 주파수로 시간 간격을 재며, gPTP에서 이는 필수다. IEEE 1588-2019는 syntonization을 선택으로 둔다.[@ieee-802-1as-2025]
 
 ## AUTOSAR 시간 동기화와의 차이

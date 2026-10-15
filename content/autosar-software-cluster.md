@@ -43,7 +43,7 @@ Software Cluster Connector는 요구 자원과 제공 자원의 machine Id, glob
 
 ![[diagrams/software-cluster-proxy-binary-manifest.svg]]
 
-AUTOSAR R25-11은 Software Cluster Connection의 Com proxy와 LdCom proxy를 공통 Com Proxy 하나로 합쳤다.[@autosar-cp-tr-releaseoverview-2025]
+AUTOSAR R25-11은 Software Cluster Connection의 Com proxy와 LdCom(Large Data COM) proxy를 공통 Com Proxy 하나로 합쳤다.[@autosar-cp-tr-releaseoverview-2025]
 
 ## Adaptive Platform의 Software Cluster와의 차이
 

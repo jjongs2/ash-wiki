@@ -27,7 +27,7 @@ FlexRay는 동기 전송에서 프레임 지연과 지터를 보장한다. 정�
 
 ## 채널
 
-FlexRay 통신 컨트롤러 하나는 두 채널(채널 A, 채널 B)로 데이터 프레임을 서로 독립적으로 보낼 수 있다.[@iso-17458-1-obp-2013] 클러스터는 단일 채널이나 이중 채널로 구성해 고장 허용 수준을 달리할 수 있다.[@iso-17458-2-obp-2013] Freescale 브로셔에 따르면 FlexRay의 이중 채널 구조는 시스템 전체에 중복성을 주어, brake-by-wire 같은 안전 시스템의 신뢰성 요구를 맞춘다.[@freescale-brinvehiclenet-2006]
+FlexRay 통신 컨트롤러 하나는 두 채널(채널 A, 채널 B)로 데이터 프레임을 서로 독립적으로 보낼 수 있다.[@iso-17458-1-obp-2013] 클러스터는 단일 채널이나 이중 채널로 구성해 [[fault-tolerance|결함 허용]] 수준을 달리할 수 있다.[@iso-17458-2-obp-2013] Freescale 브로셔에 따르면 FlexRay의 이중 채널 구조는 시스템 전체에 중복성을 주어, brake-by-wire 같은 안전 시스템의 신뢰성 요구를 맞춘다.[@freescale-brinvehiclenet-2006]
 
 FlexRay 버스는 두 선 사이에 [[differential-signaling|차동 전압]]을 걸어 신호를 보낸다. 버스 드라이버의 두 핀 BP(Bus Plus)와 BM(Bus Minus) 사이의 차동 전압 $u_\mathrm{BP} - u_\mathrm{BM}$이 버스 상태(idle, Data_0, Data_1)를 나타낸다.[@iso-17458-4-obp-2013]
 

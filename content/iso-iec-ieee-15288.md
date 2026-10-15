@@ -27,7 +27,7 @@ status: 유효
 
 ## 개정 이력
 
-- 2002년: ISO/IEC 15288:2002.
+- 2002년: ISO/IEC 15288:2002.[@iso-iec-15288-2002]
 - 2008년: ISO/IEC 15288:2008. 2판이고, 앞 판은 ISO/IEC 15288:2002다.[@iso-iec-15288-2008]
 - 2015년: ISO/IEC/IEEE 15288:2015. ISO/IEC/IEEE 15288로는 첫판이고, ISO/IEC 15288:2008을 이었다.[@iso-iec-ieee-15288-2015]
 - 2023년: ISO/IEC/IEEE 15288:2023. 2판으로, 2015년판을 대체했다. MBSE(model-based systems engineering)를 다루는 Annex를 새로 넣었다.[@iso-iec-ieee-15288-obp-2023]

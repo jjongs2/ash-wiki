@@ -27,7 +27,7 @@ CAN 식별자는 받을 노드를 가리키지 않고 데이터의 뜻을 나타
 
 LIN의 비트율은 최대 20 kbit/s이며, LIN은 차량의 저비용·저속 제어 응용을 위한 것이다.[@iso-17987-4-obp-2025]
 
-Classical CAN의 비트율은 최대 1 Mbit/s다.[@bosch-can-2-0-1991] 저속 내결함성 CAN은 비트율 $R_\mathrm{b}$가 $40\,\mathrm{kbit/s} < R_\mathrm{b} \le 125\,\mathrm{kbit/s}$인 범위에서 쓴다.[@iso-11898-3-obp-2006]
+Bosch CAN 2.0 규격은 자동차 전자 장치를 1 Mbit/s까지의 비트율로 CAN에 잇는 예를 든다.[@bosch-can-2-0-1991] 저속 내결함성 CAN은 비트율 $R_\mathrm{b}$가 $40\,\mathrm{kbit/s} < R_\mathrm{b} \le 125\,\mathrm{kbit/s}$인 범위에서 쓴다.[@iso-11898-3-obp-2006]
 
 FlexRay의 비트율은 최대 10 Mbit/s이며, FlexRay는 차량의 고속 제어 응용을 위한 것이다.[@iso-17458-4-obp-2013]
 
