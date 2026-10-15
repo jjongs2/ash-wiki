@@ -69,9 +69,9 @@ V-UCM은 Adaptive Platform의 표준 UCM Client다. V-UCM은 차량 안 여러 U
 
 OEM마다 다른 갱신 측면은 설계상 Adaptive Application 쪽에 둔다. V-UCM은 아래 응용과 상호작용한다고 가정한다.[@autosar-ap-exp-platformdesign-2025]
 
-- **OTA Client**: 백엔드와 V-UCM 사이의 통신 채널을 맺는다. 백엔드와 OTA Client 사이의 통신 프로토콜은 정하지 않는다.[@autosar-ap-exp-platformdesign-2025] OTA Client는 차량 식별 번호를 백엔드에 보내는 식으로 차량을 식별해, 백엔드가 차량에 맞는 정보와 패키지를 주는지 확인하는 것이 권고된다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (7.7.1, 24쪽)
+- **OTA Client**: 백엔드와 V-UCM 사이의 통신 채널을 맺는다. 백엔드와 OTA Client 사이의 통신 프로토콜은 정하지 않는다.[@autosar-ap-exp-platformdesign-2025] OTA Client는 차량 식별 번호를 백엔드에 보내는 식으로 차량을 식별해, 백엔드가 차량에 맞는 정보와 패키지를 주는지 확인하는 것이 권고된다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
 - **Vehicle driver**: 갱신 중 데이터 전송 비용이 드는 다운로드와 처리, 활성화에 운전자의 동의를 받거나, 안전을 위해 차량을 멈추고 엔진을 끄는 것처럼 차량을 특정 상태에 두게 한다.
-- **Vehicle State Manager**: 차량의 모든 ECU나 Machine의 상태를 모아, Vehicle Package에 든 V-UCM의 SafetyConditions 필드를 바탕으로 차량 상태를 계산한다. 계산한 차량 상태가 바뀌면 V-UCM의 PublishSafetyState 메서드를 부르고, 갱신의 안전 조건이 채워지지 않으면 V-UCM은 갱신을 미루거나 멈추거나 취소할 수 있다.[@autosar-ap-exp-platformdesign-2025] (Vehicle driver 항목의 데이터 전송 비용: 13.5.1.2, 74쪽)
+- **Vehicle State Manager**: 차량의 모든 ECU나 Machine의 상태를 모아, Vehicle Package에 든 V-UCM의 SafetyConditions 필드를 바탕으로 차량 상태를 계산한다. 계산한 차량 상태가 바뀌면 V-UCM의 PublishSafetyState 메서드를 부르고, 갱신의 안전 조건이 채워지지 않으면 V-UCM은 갱신을 미루거나 멈추거나 취소할 수 있다.[@autosar-ap-exp-platformdesign-2025]
 
 ![[diagrams/vucm-campaign-participants.svg]]
 
@@ -79,22 +79,36 @@ OEM마다 다른 갱신 측면은 설계상 Adaptive Application 쪽에 둔다. 
 
 ## 캠페인 진행
 
-V-UCM이 캠페인을 이어 가고 끝내는 방식을 상태, 취소, 이력으로 나눠 다룬다. (편집)
+V-UCM이 캠페인을 이어 가고 끝내는 방식을 상태, 취소, 이력으로 나눠 다룬다.
 
 ### 상태
 
-V-UCM은 한 번에 캠페인을 하나만 조율한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (SWS_VUCM_01201, 38쪽) V-UCM은 캠페인 상태를 TransferState 필드로도 내놓는데, 이 필드는 CampaignState의 kIdle, kSyncing, kRollingBackFailed, kCancelling을 같은 이름의 값으로, kVehiclePackageTransferring과 kSoftwarePackage_Transferring을 kTransferring으로, kProcessing, kActivating, kVehicleChecking을 kUpdating으로 보인다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (SWS_VUCM_01265, 39쪽) OTA Client는 TransferState 필드를 구독해 캠페인 상태를 아는 것이 권고된다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (7.7.1, 25쪽) V-UCM은 의도했든 아니든 재부팅된 뒤에 진행 중인 캠페인을 이어 갈 수 있도록 자기 상태를 영속 저장한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (SWS_VUCM_01205, 17쪽)
+V-UCM은 한 번에 캠페인을 하나만 조율한다. V-UCM은 캠페인 상태를 TransferState 필드로도 내놓는데, CampaignState의 값은 TransferState에서 아래처럼 보인다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
 
-캠페인에 든 모든 UCM이 활성화에 성공하면 V-UCM은 kVehicleChecking 상태로 간다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (SWS_VUCM_01240, 43쪽) 이 상태로 바뀌면 Vehicle State Manager가 먼저 활성화 뒤의 차량 상태를 점검한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (SWS_VUCM_CONSTR_00015, 29쪽) 점검 결과가 참으로 오면 V-UCM은 캠페인의 모든 UCM에 Finish로 소프트웨어를 확정하고, 거짓으로 오면 kCancelling 상태로 가서 활성화되었거나 검증 중인 Software Cluster를 Rollback으로 되돌린다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (SWS_VUCM_01214, 40쪽; SWS_VUCM_01241, 43쪽; SWS_VUCM_01215, 40쪽)
+| CampaignState                 | TransferState      |
+| ----------------------------- | ------------------ |
+| kIdle                         | kIdle              |
+| kSyncing                      | kSyncing           |
+| kVehiclePackageTransferring   | kTransferring      |
+| kSoftwarePackage_Transferring | kTransferring      |
+| kProcessing                   | kUpdating          |
+| kActivating                   | kUpdating          |
+| kVehicleChecking              | kUpdating          |
+| kCancelling                   | kCancelling        |
+| kRollingBackFailed            | kRollingBackFailed |
 
-V-UCM은 Software Cluster 사이의 의존성을 검사할 때 버전의 MajorVersion과 MinorVersion만 견준다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (SWS_VUCM_01311, 48쪽) 캠페인이 성공해 kVehicleChecking에서 kIdle로 가면, V-UCM은 그 캠페인에 쓰려고 저장해 둔 Software Package를 지운다. 더는 필요 없고, 남겨 두면 UCM의 [[rollback-protection#구현 예|롤백 방지]]에도 어긋나기 때문이다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (SWS_VUCM_01282, 43쪽)
+OTA Client는 TransferState 필드를 구독해 캠페인 상태를 아는 것이 권고된다. V-UCM은 의도했든 아니든 재부팅된 뒤에 진행 중인 캠페인을 이어 갈 수 있도록 자기 상태를 영속 저장한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
+
+캠페인에 든 모든 UCM이 활성화에 성공하면 V-UCM은 kVehicleChecking 상태로 간다. 이 상태로 바뀌면 Vehicle State Manager가 먼저 활성화 뒤의 차량 상태를 점검한다. 점검 결과가 참으로 오면 V-UCM은 캠페인의 모든 UCM에 Finish로 소프트웨어를 확정하고, 거짓으로 오면 kCancelling 상태로 가서 활성화되었거나 검증 중인 Software Cluster를 Rollback으로 되돌린다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
+
+V-UCM은 Software Cluster 사이의 의존성을 검사할 때 버전의 MajorVersion과 MinorVersion만 견준다. 캠페인이 성공해 kVehicleChecking에서 kIdle로 가면, V-UCM은 그 캠페인에 쓰려고 저장해 둔 Software Package를 지운다. 더는 필요 없고, 남겨 두면 UCM의 [[rollback-protection#구현 예|롤백 방지]]에도 어긋나기 때문이다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
 
 ### 취소
 
-캠페인에 든 UCM 가운데 하나라도 활성화에 실패하거나, 캠페인 중에 V-UCM이 닿지 못하는 UCM이 생기면 V-UCM은 kCancelling 상태로 가 캠페인을 취소한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (SWS_VUCM_01239, 42쪽; SWS_VUCM_01246, 44쪽) TransferData가 kBlockInconsistent를, ProcessSwPackage가 kServiceBusy를, Activate가 kUpdateSessionRejected를 돌려주거나, 전송 메서드를 부를 때 UCM에 닿지 못하면 V-UCM은 `UcmRetryStrategy` 설정대로 다시 시도할 수 있고, 같은 일이 `retryIntervalTime` 안에 `maximumNumberOfRetries`를 넘게 되풀이되면 캠페인을 취소한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (SWS_VUCM_01020, SWS_VUCM_00297, SWS_VUCM_00298, 23쪽; SWS_VUCM_01034, 24쪽) 캠페인 시간이 `maximumDurationOfCampaign`을 넘어도 취소한다. 이 시간은 Machine이 켜져 있던 시간만 세고 운전자 승인을 기다린 시간은 빼며, Machine을 껐다 켜도 이어 셀 수 있게 영속 저장한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (SWS_VUCM_01280, 45쪽)
+캠페인에 든 UCM 가운데 하나라도 활성화에 실패하거나, 캠페인 중에 V-UCM이 닿지 못하는 UCM이 생기면 V-UCM은 kCancelling 상태로 가 캠페인을 취소한다. TransferData가 kBlockInconsistent를, ProcessSwPackage가 kServiceBusy를, Activate가 kUpdateSessionRejected를 돌려주거나, 전송 메서드를 부를 때 UCM에 닿지 못하면 V-UCM은 `UcmRetryStrategy` 설정대로 다시 시도할 수 있고, 같은 일이 `retryIntervalTime` 안에 `maximumNumberOfRetries`를 넘게 되풀이되면 캠페인을 취소한다. 캠페인 시간이 `maximumDurationOfCampaign`을 넘어도 취소한다. 이 시간은 Machine이 켜져 있던 시간만 세고 운전자 승인을 기다린 시간은 빼며, Machine을 껐다 켜도 이어 셀 수 있게 영속 저장한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
 
-CancelCampaign 메서드는 정비소에서 막힌 업데이트를 푸는 데 쓸 수 있다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (7.9, 44쪽) disableCampaign을 참으로 주고 CancelCampaign을 부르면, V-UCM은 전원을 껐다 켜거나 재부팅해도 kIdle이나 kSyncing에 머물러 새 캠페인을 시작하지 않는다. 이 상태는 disableCampaign을 거짓으로 주고 CancelCampaign을 다시 부르거나 AllowCampaign을 부를 때까지 이어진다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (SWS_VUCM_01270, SWS_VUCM_01271, 44쪽) 진단 테스터가 V-UCM에 끼어들어 캠페인이 거듭 실패하는 일을 막으려는 것이다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (7.5, 20쪽)
+CancelCampaign 메서드는 정비소에서 막힌 업데이트를 푸는 데 쓸 수 있다. disableCampaign을 참으로 주고 CancelCampaign을 부르면, V-UCM은 전원을 껐다 켜거나 재부팅해도 kIdle이나 kSyncing에 머물러 새 캠페인을 시작하지 않는다. 이 상태는 disableCampaign을 거짓으로 주고 CancelCampaign을 다시 부르거나 AllowCampaign을 부를 때까지 이어진다. 진단 테스터가 V-UCM에 끼어들어 캠페인이 거듭 실패하는 일을 막으려는 것이다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
 
 ### 이력
 
-V-UCM은 TransferVehiclePackage 메서드가 불린 시각과 캠페인이 끝나 kIdle 상태에 든 시각, 캠페인 결과를 저장하고, GetCampaignHistory 메서드로 이력을 내준다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] (SWS_VUCM_01248, SWS_VUCM_01247, 45쪽) 이 이력은 백엔드가 차량 무리의 캠페인 통계를 모으거나, 정비소에서 진단 테스터로 문제를 찾는 데 쓸 수 있다.[@autosar-ap-exp-platformdesign-2025] (13.6, 75쪽)
+V-UCM은 TransferVehiclePackage 메서드가 불린 시각과 캠페인이 끝나 kIdle 상태에 든 시각, 캠페인 결과를 저장하고, GetCampaignHistory 메서드로 이력을 내준다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] 이 이력은 백엔드가 차량 무리의 캠페인 통계를 모으거나, 정비소에서 진단 테스터로 문제를 찾는 데 쓸 수 있다.[@autosar-ap-exp-platformdesign-2025]
