@@ -68,9 +68,15 @@ ISO/IEC/IEEE 24765 용어집은 ISO/IEC TR 7052:2023의 정의를 따라 XP를, 
 
 ## 사용자 스토리
 
-**사용자 스토리**(user story)는 사용자가 시스템의 일부로 이루려는 것을 짧게 적은 것이다.[@iso-iec-tr-7052-obp-2023] ISO/IEC 33202:2024는 사용자 스토리를 원하는 기능을 간단히 적은 것으로 정의한다.[@iso-iec-33202-obp-2024] 사용자 스토리는 구조화된 자연어 요구 명세의 한 꼴이고, behavior driven development에서는 기능 단위를 사용자 스토리로 적은 뒤 그로부터 시나리오를 찾아 명세한다.[@ieee-swebok-v4-0a-2026]
+**사용자 스토리**(user story)는 사용자가 시스템의 일부로 이루려는 것을 짧게 적은 것이다.[@iso-iec-tr-7052-obp-2023] ISO/IEC 33202:2024는 사용자 스토리를 원하는 기능을 간단히 적은 것으로 정의한다.[@iso-iec-33202-obp-2024] 사용자 스토리는 구조화된 자연어 요구 명세의 한 꼴이고, [[acceptance-test-driven-development#행위 주도 개발|behavior driven development]]에서도 기능 단위를 적는 데 쓴다.[@ieee-swebok-v4-0a-2026]
 
-사용자 스토리는 흔히 "As <역할> … so that <목적>"의 뼈대로 쓴다.[@ieee-swebok-v4-0a-2026][@iso-iec-tr-7052-obp-2023]
+사용자 스토리는 흔히 "As <역할> … so that <목적>"의 뼈대로 쓴다.[@ieee-swebok-v4-0a-2026][@iso-iec-tr-7052-obp-2023] 곧 "[역할]로서 나는 [이루려는 목표]를 원한다. 그래서 [그 역할이 얻는 비즈니스 가치]를 할 수 있다"로 쓰고, 그 뒤에 [[acceptance-test-driven-development#인수 기준|인수 기준]]이 붙는다. 사용자 스토리에는 3C(Card, Conversation, Confirmation)라 부르는 세 가지 핵심 측면이 있다.[@istqb-ctfl-syllabus-2024]
+
+- **Card**: 사용자 스토리를 적는 매체. 예: 인덱스 카드, 전자 보드의 항목
+- **Conversation**: 소프트웨어를 어떻게 쓸지에 대한 설명. 문서로 남기거나 말로 한다.
+- **Confirmation**: 인수 기준[@istqb-ctfl-syllabus-2024]
+
+좋은 사용자 스토리가 갖출 요건을 **INVEST**(Independent, Negotiable, Valuable, Estimable, Small, Testable)라 부른다.[@istqb-ctfl-syllabus-2024]
 
 ## 테스트에 주는 영향
 

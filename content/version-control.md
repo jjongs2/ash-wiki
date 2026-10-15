@@ -34,7 +34,7 @@ SWEBOK V4.0a는 브랜치·병합 전략이 많은 소프트웨어 형상 관리
 
 ## 병렬 수정 통제
 
-[[automotive-spice|ASPICE]] 4.1은 [[configuration-management#ASPICE|SUP.8]]의 BP(base practice) 가운데 BP3으로, 식별한 형상 항목을 통제하는 형상 관리 메커니즘을 세우고 여기에 형상 항목의 병렬 수정을 통제하는 메커니즘을 포함하게 한다. BP3의 주석은 형상 항목 종류마다 따로 둘 수 있는 메커니즘의 예로 브랜치·병합 관리와 체크아웃 통제를 든다.[@vda-automotive-spice-pam-4-1-2026]
+[[automotive-spice|ASPICE]] 4.1은 [[configuration-management#ASPICE|SUP.8]]의 BP(base practice) 가운데 BP3으로, 형상 관리 메커니즘에 형상 항목의 병렬 수정을 통제하는 메커니즘을 포함하게 한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## Git
 

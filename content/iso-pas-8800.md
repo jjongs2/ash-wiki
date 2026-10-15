@@ -31,7 +31,7 @@ status: 유효
 - 부족에 초점을 둔 AI 시스템의 [[safety-analysis|안전 분석]] 접근
 - 운용 중 AI 안전을 계속 지키는 활동[@iso-pas-8800-obp-2024]
 
-이 문서는 안전 요구사항을 안전에 관련된 요구사항으로 넓게 정의하고, [[sotif|SOTIF]] 요구사항과 functional safety requirement, technical safety requirement를 예로 든다. 주석은 기능 안전에서 오는 안전 요구사항과 SOTIF에서 오는 안전 요구사항이 모두 여기에 든다고 제시한다.[@iso-pas-8800-obp-2024]
+이 문서는 안전 요구사항을 안전에 관련된 요구사항으로 넓게 정의해, 기능 안전에서 오는 것과 [[sotif|SOTIF]]에서 오는 것을 모두 아우른다.[@iso-pas-8800-obp-2024]
 
 ## 개정 이력
 

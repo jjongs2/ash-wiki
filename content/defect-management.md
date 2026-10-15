@@ -29,7 +29,7 @@ ISO/IEC/IEEE 24765:2017은 이슈 추적 시스템의 이슈 기록이 식별자
 
 [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-2:2021은 **사건**(incident)을 프로젝트, 제품, 서비스, 시스템의 생명주기 어느 때든 일어나는 이상하거나 예상하지 못한 사건이나 조건으로 정의하고, **사건 보고서**(incident report)를 사건의 발생, 성질, 상태를 적은 문서로 정의하고, 이를 이상 보고서, 버그 보고서, 결함 보고서, 문제 보고서 같은 이름으로도 부른다고 둔다. 같은 표준의 프로세스 모델에서는 테스트 사건 보고 프로세스가 사건 보고를 맡는다.[@iso-iec-ieee-29119-2-obp-2021] 이 모델은 [[test-process#ISO/IEC/IEEE 29119-2의 프로세스 모델|테스트 프로세스]]에서 다룬다.
 
-보고된 이상은 실제 결함일 수도 있고, false-positive result나 변경 요청 같은 다른 것일 수도 있으며, 어느 쪽인지는 결함 보고서를 처리하면서 가린다.[@istqb-ctfl-syllabus-2024] 테스트 대상에 실제로 없는 결함이 보고된 테스트 결과를 **false-positive result**라 부른다.[@istqb-glossary-false-positive-result-2026] 테스트 실행에서 나온 이상은 테스트 대상의 결함 말고도 갖춰지지 않은 사전 조건, 잘못된 테스트 데이터, 테스트 스크립트나 테스트 환경의 결함, 명세를 잘못 이해한 것 때문에 생길 수 있다.[@istqb-ctal-ta-syllabus-2025]
+보고된 이상은 실제 결함일 수도 있고, [[static-analysis#False positive와 false negative|false-positive result]]나 변경 요청 같은 다른 것일 수도 있으며, 어느 쪽인지는 결함 보고서를 처리하면서 가린다.[@istqb-ctfl-syllabus-2024] 테스트 대상에 실제로 없는 결함이 보고된 테스트 결과를 false-positive result라 부른다.[@istqb-glossary-false-positive-result-2026] 테스트 실행에서 나온 이상은 테스트 대상의 결함 말고도 갖춰지지 않은 사전 조건, 잘못된 테스트 데이터, 테스트 스크립트나 테스트 환경의 결함, 명세를 잘못 이해한 것 때문에 생길 수 있다.[@istqb-ctal-ta-syllabus-2025]
 
 ## 결함의 처리 흐름
 

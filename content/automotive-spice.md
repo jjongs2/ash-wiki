@@ -30,7 +30,7 @@ VDA QMC의 워킹 그룹 13은 ASPICE를 바탕으로 [[process-assessment|프�
 
 ## 개정 이력
 
-Audi, BMW, DaimlerChrysler, Porsche, Volkswagen은 HIS를 꾸려 공동 표준을 만들었다. HIS의 평가 작업 그룹은 협력업체의 [[software-process|소프트웨어 프로세스]] 능력을 판정하는 공통 방식을 세우려고 만들어졌다. HIS 회원사를 포함한 유럽 완성차 업체들은 Procurement Forum, SPICE User Group과 함께 ASPICE 이니셔티브를 시작했다.[@his-wg-assessment-2006]
+Audi, BMW Group, DaimlerChrysler, Porsche, Volkswagen은 HIS를 꾸려 공동 표준을 만들었다. HIS의 평가 작업 그룹은 협력업체의 [[software-process|소프트웨어 프로세스]] 능력을 판정하는 공통 방식을 세우려고 만들어졌다. HIS 회원사를 포함한 유럽 완성차 업체들은 Procurement Forum, SPICE User Group과 함께 ASPICE 이니셔티브를 시작했다.[@his-wg-assessment-2006]
 
 이 이니셔티브 안에서 Procurement Forum과 SPICE User Group의 공동 Automotive SIG(Special Interest Group)가 완성차 업체들의 합의로, 프로세스 평가 표준 ISO/IEC 15504에 맞춘 프로세스 참조 모델과 프로세스 평가 모델을 만들었다. 이것이 ASPICE다.[@automotive-sig-aspice-pam-2-5-2010] Automotive SIG의 완성차 업체들은 평가 결과를 협력업체의 개선점을 찾고 협력업체를 고르는 기준으로 썼다.[@automotive-sig-release-statement-2008] VDA QMC에 따르면 주요 완성차 업체와 협력업체가 ASPICE로 차량 소프트웨어 기반 시스템의 개발 프로세스를 평가한다. 2026년 10월 12일에 확인한 수치로는 ASPICE 평가자가 7,619명이고 51개국에 있다.[@vda-automotive-spice-2026]
 
