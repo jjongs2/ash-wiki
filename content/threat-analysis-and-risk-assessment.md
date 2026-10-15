@@ -71,6 +71,8 @@ Henniger 외는 2009년 논문에서 EVITA의 리스크 평가 절차를 내놓�
 
 HEAVENS(HEAling Vulnerabilities to ENhance Software Security and Safety) 프로젝트는 2013년 4월부터 2016년 3월까지 진행되었고, Volvo Technology AB가 조정을 맡았다.[@olsson-heavens-final-report-2016] Islam 외는 2016년 논문에서 HEAVENS 프로젝트의 결과를 바탕으로, [[functional-safety|기능 안전]] 프로세스와 맞추고 보안 비전문가도 쓸 수 있게 한 차량 임베디드 시스템용 리스크 평가 틀을 내놓았다. 위협 식별에는 보안 비전문가가 쓰기 쉽다는 까닭으로 [[stride|STRIDE]]를 쓰자고 했다. 이 틀은 위협이 실현될 가능성을 추정한 threat level과 피해의 크기를 추정한 impact level을 합쳐 security level을 정한다. Threat level은 전문성, 대상에 대한 지식, 기회의 창, 장비 네 요소로 매기고, Common Criteria의 attack potential 계산과 달리 경과 시간은 다른 요소에서 끌어낼 수 있다는 까닭으로 따로 두지 않는다. Impact level은 안전, 재정, 운용, 프라이버시와 법규 네 요소로 매긴다. Security level은 QM(Quality Management), Low, Medium, High, Critical 다섯이고, QM인 자산·위협 쌍에는 보안 요구사항을 세우지 않는다.[@islam-risk-assessment-framework-2016]
 
+![[diagrams/evita-heavens-risk-factors.svg]]
+
 Lautenbach 외는 2021년 HEAVENS 모델을 ISO/SAE 21434의 리스크 평가 요구에 맞추는 갱신 12가지와 약점을 보완하는 갱신 5가지, 모두 17가지를 담은 HEAVENS 2.0을 제안했다.[@lautenbach-heavens-2-2021]
 
 ## 규제와 지침

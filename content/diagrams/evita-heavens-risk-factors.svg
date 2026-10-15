@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="29.5 6.5 531 468" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- EVITA: Henniger 외(2009) -->
+  <text x="40" y="26" font-size="12" fill="var(--text, #727981)">EVITA의 리스크 평가 절차 (Henniger 외, 2009)</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="40" y="40" width="270" height="78" rx="2" />
+    <rect x="40" y="128" width="270" height="60" rx="2" />
+    <rect x="380" y="127" width="170" height="44" rx="2" />
+  </g>
+  <rect x="40" y="198" width="270" height="60" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="175" y="61">공격 성공 확률</text>
+    <text x="175" y="149">심각도</text>
+    <text x="175" y="219">통제 가능성</text>
+    <text x="465" y="154">리스크</text>
+  </g>
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="175" y="79">attack potential: 경과 시간, 전문성,</text>
+    <text x="175" y="94">시스템 지식, 기회의 창, 장비의 합</text>
+    <text x="175" y="109">Basic~Beyond High → 확률 5~1</text>
+    <text x="175" y="167">안전, 프라이버시, 재정, 운용</text>
+    <text x="175" y="182">각 0~4 등급의 벡터</text>
+    <text x="175" y="237">1~4 등급</text>
+    <text x="175" y="252">안전에 관한 위협만</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="310" y1="79" x2="378" y2="139" />
+    <line x1="310" y1="158" x2="378" y2="149" />
+    <line x1="310" y1="228" x2="378" y2="159" />
+  </g>
+
+  <!-- 경계 -->
+  <line x1="40" y1="276" x2="550" y2="276" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+
+  <!-- HEAVENS: Islam 외(2016) -->
+  <text x="40" y="302" font-size="12" fill="var(--text, #727981)">HEAVENS 결과를 바탕으로 한 틀 (Islam 외, 2016)</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="40" y="316" width="270" height="78" rx="2" />
+    <rect x="40" y="404" width="270" height="60" rx="2" />
+    <rect x="380" y="359" width="170" height="62" rx="2" />
+  </g>
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="175" y="337">threat level</text>
+    <text x="175" y="425">impact level</text>
+    <text x="465" y="381">security level</text>
+  </g>
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="175" y="355">전문성, 대상에 대한 지식,</text>
+    <text x="175" y="370">기회의 창, 장비</text>
+    <text x="175" y="385">경과 시간은 따로 두지 않음</text>
+    <text x="175" y="443">안전, 재정, 운용,</text>
+    <text x="175" y="458">프라이버시와 법규</text>
+    <text x="465" y="399">QM, Low, Medium,</text>
+    <text x="465" y="414">High, Critical</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="310" y1="355" x2="378" y2="383" />
+    <line x1="310" y1="434" x2="378" y2="397" />
+  </g>
+</svg>

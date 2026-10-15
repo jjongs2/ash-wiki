@@ -44,6 +44,8 @@ CVE Board는 CVE 프로그램의 운영을 감독하고 전략적 방향을 정�
 
 CVE ID를 매기고 CVE Record를 게시하는 일은 CVE Board가 정한 계층 구조 안에서 이뤄진다. **TL-Root**(Top-Level Root)는 CVE Board에 바로 보고하고, 하나 이상의 Root와 CNA를 둘 수 있는 자기 계층을 관리한다. 계층 안에서 Root는 관리 기능을, CNA는 ID를 매기고 Record를 게시하는 운영 기능을 맡는다. 2026년 10월 기준 TL-Root는 CISA와 MITRE 둘이다.[@cve-structure-2026]
 
+![[diagrams/cve-program-hierarchy.svg]]
+
 ## 역사
 
 CVE의 공동 창안자인 MITRE의 David E. Mann과 Steven M. Christey는 1999년 1월 미국 Purdue 대학에서 열린 2nd Workshop on Research with Security Vulnerability Databases에서 백서 Towards a Common Enumeration of Vulnerabilities로 CVE List의 처음 개념을 내놓았다. 이 개념에서 작업 그룹이 꾸려지고 첫 CVE Record 321개가 만들어졌으며, CVE List는 1999년 9월 공개됐다. CVE 프로그램은 2016년부터 CNA로 참여하는 조직을 적극 늘려 왔고, 모든 CVE Record는 CNA가 올린다.[@cve-history-2026]

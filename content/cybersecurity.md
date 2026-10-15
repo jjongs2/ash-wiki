@@ -23,6 +23,8 @@ Koscher 외(2010)는 같은 제조사·차종의 2009년형 차량 두 대로 �
 
 Checkoway 외(2011)는 차량 내부 네트워크에 물리적으로 접근해야 한다는 앞선 연구(자기들의 연구 포함)의 위협 모델이 비현실적이라는 비판을 받아 왔다고 보고, 차량의 외부 공격면을 체계적으로 분석했다. 이들은 외부 공격 경로를 indirect physical access, short-range wireless access, long-range wireless access의 세 갈래로 나누고, 정비사의 진단 도구, 미디어 플레이어, Bluetooth, 셀룰러 무선을 통해 직접 물리적으로 접근하지 않고도 차량을 원격으로 장악할 수 있음을 보였다. 연구진은 결과를 관련 업계와 정부 이해관계자에게 알렸다.[@checkoway-automotive-attack-surfaces-2011]
 
+![[diagrams/checkoway-external-attack-vectors.svg]]
+
 Charlie Miller와 Chris Valasek는 2015년 8월 논문에서, 개조하지 않은 2014년형 Jeep Cherokee를 원격으로 공격한 과정을 보였다. 두 사람은 셀룰러망으로 헤드 유닛 Uconnect의 서비스에 접근해 코드를 실행한 뒤, [[can|CAN]] 버스에 이어진 헤드 유닛의 Renesas V850 칩에 고친 펌웨어를 올려 이 칩으로 CAN 메시지를 보냈다. 이 원격 공격으로 조향과 제동 같은 일부 물리 시스템에 영향을 줄 수 있었다.[@miller-remote-exploitation-2015]
 
 ![[diagrams/jeep-cherokee-remote-attack-path.svg]]

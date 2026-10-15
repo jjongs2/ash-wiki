@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="30 10.5 672.5 272.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 1년 = 120 단위, 2024년 1월 1일 = x 150 -->
+  <g fill="var(--text, #727981)" text-anchor="end">
+    <text x="136" y="64.5">GB 44495-2024</text>
+    <text x="136" y="138.5">제1호 수정단</text>
+    <text x="136" y="212">적용 시작</text>
+    <text x="136" y="228" font-size="12">수정단 반영</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1">
+    <line x1="150" y1="60" x2="690" y2="60" />
+    <line x1="150" y1="134" x2="690" y2="134" />
+    <line x1="150" y1="216" x2="690" y2="216" />
+  </g>
+
+  <!-- 날짜 -->
+  <g fill="var(--ink, #727981)">
+    <circle cx="227" cy="60" r="4" />
+    <circle cx="390" cy="60" r="4" />
+    <circle cx="398.9" cy="134" r="4" />
+    <circle cx="449.5" cy="216" r="4" />
+    <circle cx="630" cy="216" r="4" />
+  </g>
+  <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
+    <text x="227" y="30">발행</text>
+    <text x="227" y="46">2024년 8월 23일</text>
+    <text x="390" y="30">시행</text>
+    <text x="390" y="46">2026년 1월 1일</text>
+    <text x="398.9" y="104">비준·시행</text>
+    <text x="398.9" y="120">2026년 1월 28일</text>
+    <text x="449.5" y="186">새로 형식 승인을 신청하는 차종</text>
+    <text x="449.5" y="202">시행일부터 7번째 달</text>
+    <text x="630" y="186">이미 형식 승인을 받은 차종</text>
+    <text x="630" y="202">시행일부터 25번째 달</text>
+  </g>
+
+  <!-- 연도 축 -->
+  <line x1="150" y1="252" x2="690" y2="252" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <path d="M150 252 v5 M270 252 v5 M390 252 v5 M510 252 v5 M630 252 v5" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
+    <text x="150" y="273">2024</text>
+    <text x="270" y="273">2025</text>
+    <text x="390" y="273">2026</text>
+    <text x="510" y="273">2027</text>
+    <text x="630" y="273">2028</text>
+  </g>
+</svg>

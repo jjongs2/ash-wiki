@@ -18,6 +18,8 @@ ATM v4.02는 차량을 노리는 공격자의 전술과 기법을 모은 온라�
 
 전술은 ATM-TA0000부터 ATM-TA0013까지 14개로, 차례로 Reconnaissance, Manipulate Environment, Initial Access, Execution, Persistence, Privilege Escalation, Defense Evasion, Credential Access, Discovery, Lateral Movement, Collection, Command and Control, Exfiltration, Affect Vehicle Function이다. 마지막 Affect Vehicle Function은 공격자가 추진 제어, 에어백 전개, 오디오, 디스플레이 같은 차량 기능과 시스템에 영향을 주려는 전술이다.[@auto-isac-atm-2025]
 
+![[diagrams/automotive-threat-matrix-layout.svg]]
+
 OASIS 표준 STIX(Structured Threat Information Expression) 2.1은 사이버 위협 정보를 주고받는 데 쓰는 언어이자 직렬화 형식을 정한다.[@oasis-stix-2-1-2021] ATM의 최신 버전은 MITRE ATT&CK처럼 STIX 2와 호환되는 파일로 내려받을 수 있고, 이전 버전도 받을 수 있다.[@auto-isac-atm-2025]
 
 누구나 도구 곳곳의 contribute 기능으로 전술, 기법, 예의 수정, 추가, 삭제를 제안할 수 있다. 제안은 업계 전문가의 검토를 거친 뒤 투표로 ATM에 넣을지 정한다.[@auto-isac-atm-2025]
