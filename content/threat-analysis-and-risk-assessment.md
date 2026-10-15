@@ -59,13 +59,13 @@ Base practice는 일곱이고, 성과와 일대일로 대응하지 않는다. �
 | BP6 | Monitor risks                                |
 | BP7 | Take corrective action                       |
 
-BP3의 노트는 리스크를 분석하는 방법의 예로 attack path analysis를 포함한 TARA, 시뮬레이션, ATA(Attack Tree Analysis), FTA(Fault Tree Analysis) 등을 든다. BP4는 리스크마다 retain, reduce, avoid, transfer(share) 가운데 하나를 처리 옵션으로 고르게 한다.[@vda-automotive-spice-cybersecurity-2025] Attack tree와 FTA는 각각 [[attack-tree|attack tree]]와 [[safety-analysis#FTA|안전 분석]]에서 다룬다.
+BP3의 노트는 리스크를 분석하는 방법의 예로 attack path analysis를 포함한 TARA, 시뮬레이션, ATA(Attack Tree Analysis), FTA(Fault Tree Analysis) 등을 든다. BP4는 리스크마다 retain, reduce, avoid, transfer(share) 가운데 하나를 처리 옵션으로 고르게 한다.[@vda-automotive-spice-cybersecurity-2025] FTA는 [[safety-analysis#FTA|안전 분석]]에서 다룬다.
 
 Automotive SPICE for Cybersecurity 1.0은 MAN.7에 성과 여덟과 BP 여덟을 두어 성과마다 BP 하나를 대응시켰고, 처리 옵션을 accept, reduce, avoid, share(transfer)로 두었으며, accept나 share로 고른 리스크가 대개 cybersecurity claim을 정한다는 노트를 두었다.[@vda-automotive-spice-cybersecurity-2021] 2.0은 성과를 다섯, BP를 일곱으로 고치고, 옵션을 retain, reduce, avoid, transfer(share)로 둔다.[@vda-automotive-spice-cybersecurity-2025]
 
 ## EVITA와 HEAVENS의 방법
 
-[[hardware-security-module#EVITA의 HSM 등급|EVITA]] 프로젝트는 차량 온보드 네트워크의 보안 리스크 분석과 안전 리스크 분석을 하나로 묶은 접근을 만들었다. 프로젝트는 보안 조치가 필요할 [[use-case|use case]]를 먼저 고르고, 이를 바탕으로 e-safety 애플리케이션이 악용될 가능성을 그린 dark-side scenario를 세워 attack tree로 구조화했다.[@evita-d0-2012]
+[[hardware-security-module#EVITA의 HSM 등급|EVITA]] 프로젝트는 차량 온보드 네트워크의 보안 리스크 분석과 안전 리스크 분석을 하나로 묶은 접근을 만들었다. 프로젝트는 보안 조치가 필요할 [[use-case|use case]]를 먼저 고르고, 이를 바탕으로 e-safety 애플리케이션이 악용될 가능성을 그린 dark-side scenario를 세워 [[attack-tree|attack tree]]로 구조화했다.[@evita-d0-2012]
 
 Henniger 외는 2009년 논문에서 EVITA의 리스크 평가 절차를 내놓았다. 이 절차는 공격의 리스크를 심각도와 공격 성공 확률의 함수로 보고, 안전에 관한 위협에는 통제 가능성을 더한다. 심각도는 차량 안전 공학의 심각도 분류를 바탕으로, 안전, 프라이버시(제조사와 공급자의 지적 재산 포함), 재정, 운용 네 측면마다 0\~4 등급을 매겨 네 성분의 벡터로 나타낸다. 성공 확률은 ISO/IEC 15408과 ISO/IEC 18045의 [[attack-feasibility-rating#Attack potential|attack potential]]을 바탕으로, 경과 시간, 전문성, 시스템 지식, 기회의 창, 장비 다섯 요소의 값을 더한 합계를 Basic부터 Beyond High까지 다섯 수준으로 나누고, 이를 확률 5\~1에 대응시킨다. 확률은 attack tree의 리프 노드에서 매기고, 위 노드로 올릴 때 OR 관계면 자식 가운데 가장 높은 확률을, AND 관계면 가장 낮은 확률을 취한다. 통제 가능성은 보통의 반응으로 사고를 대개 피할 수 있는 1부터 사람의 반응으로 상황에 영향을 줄 수 없는 4까지 네 등급으로 매긴다.[@henniger-security-requirements-2009]
 
