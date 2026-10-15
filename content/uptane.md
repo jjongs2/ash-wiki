@@ -16,7 +16,7 @@ Uptane Standard 2.1.0은 구현 세부를 구현자에게 맡기고, 표준을 �
 
 이 표준은 차량이 셀룰러, Wi-Fi, 유선 같은 수단으로 필요한 백엔드 서비스에 연결할 수 있고, ECU가 [[public-key-cryptography|공개 키 암호]] 연산과 이미지·메타데이터 파일의 해시 계산을 할 수 있다고 전제한다. 대상은 승용차, 소형·대형 트럭, 오토바이를 포함한 지상 차량이다. 차량 밖에서 ECU를 손대는 것 같은 물리 공격, 신뢰된 패키지에 심긴 악성 코드, 빌드 시스템이나 패키징 과정 같은 공급망의 침해, ECU의 OBD(On-Board Diagnostics)나 [[uds|UDS]] 프로그래밍에 얽힌 문제, 버전 번호가 같은 악성 패키지로 원래 패키지를 바꿔치는 패키지 저장소의 악성 미러는 범위 밖에 둔다.[@uptane-standard-2-1-0-2023] (3.2.1, 3.2, 3.4)
 
-Uptane Deployment Best Practices 2.1.0은 한 Uptane 구현의 프로토콜, 운영, 사용, 형식을 담은 문서를 POUF(Protocol, Operations, Usage, and Format)라 부른다.[@uptane-deployment-best-practices-2-1-0-2023] (11.2) Uptane Standard 2.1.0은 형식을 맞추려는 구현자가 구현 선택과 데이터 바인딩 형식을 적은 POUF를 쓸 수 있게 하고, 같은 POUF를 채택한 구현끼리 상호운용할 수 있게 한다.[@uptane-standard-2-1-0-2023] (1)
+Uptane Deployment Best Practices 2.1.0은 한 Uptane 구현의 프로토콜, 운영, 사용, 형식을 담은 문서를 POUF(Protocol, Operations, Usage, and Formats)라 부른다.[@uptane-deployment-best-practices-2-1-0-2023] (11.2) Uptane Standard 2.1.0은 형식을 맞추려는 구현자가 구현 선택과 데이터 바인딩 형식을 적은 POUF를 쓸 수 있게 하고, 같은 POUF를 채택한 구현끼리 상호운용할 수 있게 한다.[@uptane-standard-2-1-0-2023] (1)
 
 ### 메타데이터
 
@@ -84,7 +84,7 @@ Uptane Deployment Best Practices 2.1.0에 따르면 ECU의 시간이 너무 앞�
 
 ### 운영
 
-Uptane Deployment Best Practices 2.1.0에 따르면, 정비소가 ECU를 바꾸면 같은 모델이어도 ECU 키가 달라 차량 버전 매니페스트가 바뀌고, director repository는 이를 공격으로 볼 수 있다. 이 문서는 인가된 정비사가 바뀐 구성을 OEM에 알려 인벤토리 데이터베이스에 기록하는 대역 외 프로세스를 두기를 권하되, 이를 위한 프로토콜은 정하지 않는다.[@uptane-deployment-best-practices-2-1-0-2023] (6.2) 구현자는 저장소와 primary ECU 사이의 연결을 [[transport-layer-security|TLS]]로 암호화할 수 있고, primary ECU와 secondary ECU 사이에서 Uptane 메타데이터와 이미지를 UDS로 나를 수 있다. Uptane은 이 구간들의 네트워크 트래픽 인증을 요구하지 않는다.[@uptane-deployment-best-practices-2-1-0-2023] (7.3) 묶음에 든 이미지를 모두 설치하거나 하나도 설치하지 않는 원자적 설치는 Uptane의 범위 밖이다. 이 문서는 그 방법으로 실패를 차량 버전 매니페스트로 보고하고 다시 시도하지 않는 것, 정한 횟수까지 다시 시도하는 것, 모든 ECU가 이전 이미지로 되돌릴 수 있으면 [[gateway|게이트웨이]] ECU가 조정하는 two-phase commit을 든다.[@uptane-deployment-best-practices-2-1-0-2023] (7.6)
+정비소가 ECU를 바꾸면 같은 모델이어도 ECU 키가 달라 차량 버전 매니페스트가 바뀌고, director repository는 이를 공격으로 볼 수 있다. 이 문서는 인가된 정비사가 바뀐 구성을 OEM에 알려 인벤토리 데이터베이스에 기록하는 대역 외 프로세스를 두기를 권하되, 이를 위한 프로토콜은 정하지 않는다.[@uptane-deployment-best-practices-2-1-0-2023] (6.2) 구현자는 저장소와 primary ECU 사이의 연결을 [[transport-layer-security|TLS]]로 암호화할 수 있고, primary ECU와 secondary ECU 사이에서 Uptane 메타데이터와 이미지를 UDS로 나를 수 있다. Uptane은 이 구간들의 네트워크 트래픽 인증을 요구하지 않는다.[@uptane-deployment-best-practices-2-1-0-2023] (7.3) 묶음에 든 이미지를 모두 설치하거나 하나도 설치하지 않는 원자적 설치는 Uptane의 범위 밖이다. 이 문서는 그 방법으로 실패를 차량 버전 매니페스트로 보고하고 다시 시도하지 않는 것, 정한 횟수까지 다시 시도하는 것, 모든 ECU가 이전 이미지로 되돌릴 수 있으면 [[gateway|게이트웨이]] ECU가 조정하는 two-phase commit을 든다.[@uptane-deployment-best-practices-2-1-0-2023] (7.6)
 
 ## 개정 이력
 

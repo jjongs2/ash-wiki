@@ -36,7 +36,7 @@ ENISA의 2019년 보고서 Good practices for security of smart cars는 [[over-t
 
 ## 업데이트 메타데이터 쪽의 방어
 
-[[the-update-framework|TUF]] 명세 1.0.37은 클라이언트가 새로 받은 메타데이터의 버전이 이미 믿는 메타데이터의 버전보다 낮으면 받지 않아 rollback 공격을 막는다.[@tuf-specification-1-0-37-2026] (5.3.5, 5.4.3, 5.5.5) (기존: TUF 명세 1.0.36은 클라이언트가 새로 받은 메타데이터의 버전이 이미 믿는 메타데이터의 버전보다 낮으면 받지 않아 rollback 공격을 막는다 [@tuf-specification-1-0-36-2026] (5.3.5, 5.4.3, 5.5.5))
+[[the-update-framework|TUF]] 명세 1.0.37은 rollback 공격을 막는 점검으로, 클라이언트가 새로 받은 메타데이터의 버전이 이미 믿는 메타데이터의 버전보다 낮으면 그 메타데이터를 버리도록 정한다.[@tuf-specification-1-0-37-2026] (5.3.5, 5.4.3, 5.5.5) (기존: TUF 명세 1.0.36은 클라이언트가 새로 받은 메타데이터의 버전이 이미 믿는 메타데이터의 버전보다 낮으면 받지 않아 rollback 공격을 막는다 [@tuf-specification-1-0-36-2026] (5.3.5, 5.4.3, 5.5.5))
 
 [[uptane|Uptane]] Deployment Best Practices 2.1.0에 따르면 Uptane은 기본적으로 업데이트를 되돌리지 못하게 하고, 이를 두 장치로 강제한다. 하나는 이전 메타데이터보다 버전 번호가 낮은 새 메타데이터를 거부해 공격자가 옛 메타데이터를 다시 보내지 못하게 한다. 다른 하나는 이전 Targets 메타데이터의 release counter보다 release counter가 낮은 새 이미지를 거부해, director repository를 침해한 공격자도 옛 이미지를 고르지 못하게 한다. 이 문서는 release counter를 올리지 않고 두는 방법은 director repository를 침해한 공격자가 낡은 이미지로 rollback 공격을 할 수 있게 하므로 쓰지 말고, ECU가 release counter가 낮은 이미지를 설치하지 않는 것이 중요할 때마다 그 이미지의 release counter를 올리는 방법을 더 안전하므로 택하기를 권한다.[@uptane-deployment-best-practices-2-1-0-2023] (6.1)
 

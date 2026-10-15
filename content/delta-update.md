@@ -13,8 +13,8 @@ verified: 2026-10-03
 
 - 업데이트를 만드는 쪽은 이전 이미지와 새 이미지를 비교해 패치를 만든다.[@google-android-ota-tools-2026][@silabs-ug489-2025]
 - 기기는 가진 이전 이미지를 읽어 패치를 적용하고, 그 결과를 새 이미지로 쓴다.[@silabs-ug489-2025][@google-android-ota-ab-2026]
-- Android 5.0 이상의 블록 기반 업데이트는 파일마다 비교하지 않고 파티션 전체를 파일 하나로 보아 바이너리 패치 하나를 만들어, 업데이트한 파티션이 의도한 비트와 똑같아지게 한다. 파일 기반 업데이트는 파일을 쓰는 순서나 블록 위치가 일정하지 않아, dm-verity를 켠 기기에서는 업데이트 뒤 부팅하지 못한다.[@google-android-ota-block-2026] (머리말 첫 목록, #File vs. Block OTAs 첫 문단)
-- Android에서 업데이트가 실패하면 다시 시도할지와 언제 할지는 업데이트 클라이언트가 정하고, diff 패키지가 실패하면 전체 패키지로 다시 시도할 수 있다.[@google-android-ota-ab-2026] (#overview의 클라이언트 목록)
+- Android 5.0 이상의 블록 기반 업데이트는 파일마다 비교하지 않고 파티션 전체를 파일 하나로 보아 바이너리 패치 하나를 만들어, 업데이트한 파티션이 의도한 비트와 똑같아지게 한다. 파일 기반 업데이트는 파일을 쓰는 순서나 블록 위치가 일정하다는 보장이 없어, dm-verity를 켠 기기에서는 업데이트 뒤 부팅하지 못한다.[@google-android-ota-block-2026] (머리말 첫 목록, #File vs. Block OTAs 첫 문단)
+- [[ab-update|A/B 업데이트]]가 실패하면 다시 시도할지와 언제 할지는 업데이트 클라이언트가 오류 코드를 보고 정하고, 예를 들어 diff 패키지가 실패하면 전체 패키지로 다시 시도할 수 있다.[@google-android-ota-ab-2026] (#overview의 클라이언트 목록)
 
 ## 원본 일치와 해시 확인
 
@@ -24,13 +24,13 @@ verified: 2026-10-03
 
 - Android의 incremental 패키지는 고칠 파일의 이전 상태를 모두 확인한 뒤에 손을 대므로, 다른 빌드에 설치하면 실패하고 기기는 이전 상태로 남는다.[@google-android-ota-tools-2026]
 - Android non-A/B 업데이트 스크립트의 `apply_patch`는 원본 파일의 SHA-1(Secure Hash Algorithm 1) [[cryptographic-hash-function|해시]]가 패치에 짝지어 둔 값과 같을 때만 패치를 적용한다. 결과 파일은 기대한 해시와 크기를 갖거나, 손대지 않은 채로 남는다.[@google-android-ota-inside-packages-2026]
-- Android [[ab-update|A/B 업데이트]]는 연산을 모두 적용한 뒤 파티션 전체를 다시 읽어 기대한 해시와 대조한다.[@google-android-ota-ab-2026]
+- Android A/B 업데이트는 연산을 모두 적용한 뒤 파티션 전체를 다시 읽어 기대한 해시와 대조한다.[@google-android-ota-ab-2026]
 
 패치의 원본이 될 파티션은 시스템이 고치지 않아야 한다.[@google-android-ota-ab-implement-2026] (#configuration)[@mender-server-side-delta-2026] (Read-only rootfs 절)
 
 Arm Platform Security Boot Guide 1.1은 차분 업데이트에서 이미지 매니페스트에 패치를 적용한 뒤 나올 최종 이미지의 해시를 담게 한다.[@arm-den0072-2020]
 
-RFC 9124는 차분 업데이트처럼 기기에 특정 페이로드가 있어야 적용되는 업데이트를 위해, 그 선행 이미지의 다이제스트를 조건으로 다는 요소(precursor image digest condition)를 매니페스트 정보 모델의 선택 요소로 둔다.[@ietf-rfc-9124-2022] (3.5)
+RFC 9124에 따르면 매니페스트 정보 모델은 차분 업데이트처럼 기기에 특정 페이로드가 있어야 적용되는 업데이트를 위해, 그 선행 이미지의 다이제스트를 조건으로 다는 요소(precursor image digest condition)를 선택 요소로 둔다.[@ietf-rfc-9124-2022] (3.5)
 
 AUTOSAR R25-11 [[autosar-update-and-configuration-management|Update and Configuration Management]] 명세는 delta [[autosar-update-and-configuration-management#패키지|Software Package]]에 그 패키지를 적용할 [[autosar-software-cluster#Adaptive Platform의 Software Cluster와의 차이|Software Cluster]]의 버전(deltaPackageApplicableVersion)을 담게 하고, 그 버전이 설치된 Software Cluster의 버전과 다르면 패키지 처리를 kDeltaIncompatible 오류로 거부하게 한다.[@autosar-ap-sws-updateandconfigurationmanagement-2025] ([SWS_UCM_00231](49쪽), 7.4.1의 deltaPackageApplicableVersion 문장(53쪽), SoftwarePackage 클래스 표(149쪽))
 
@@ -48,7 +48,7 @@ Android는 A/B 업데이트 패키지를 만들 때 deflate 스트림을 위한 
 
 패키지에 이미지의 블록이나 청크마다 해시를 담은 색인을 넣어 두면, 기기는 이미 가진 데이터에서 해시가 같은 블록을 찾아 쓰고 나머지만 HTTP Range 요청으로 받을 수 있다.[@rauc-advanced-topics-2026] (#http-streaming, #adaptive-updates, #block-based-adaptive-update-block-hash-index)[@swupdate-delta-update-2026] (#zchunk-compression-format, #integration-in-swupdate-the-delta-handler)
 
-RAUC는 이 방식을, 특정 이전 판에서 새 판으로 가는 데 필요한 데이터를 담는 delta update와 구별해 **adaptive update**라 부른다. adaptive update는 특정 이전 판 위에만 설치되지 않고, 이전 판이나 중단된 설치 시도에서 기기에 남은 데이터를 골라 쓴다. RAUC의 block-hash-index 방식은 4 KiB 블록마다 SHA-256 해시를 두어, 색인의 크기는 원래 이미지의 0.8%다.[@rauc-advanced-topics-2026] (#adaptive-updates, #block-based-adaptive-update-block-hash-index)
+RAUC는 이 방식을, 특정 이전 판에서 새 판으로 가는 데 필요한 데이터를 담는 delta update와 구별해 **adaptive update**라 부른다. adaptive update는 특정 이전 판 위에만 설치되지 않고, 이전 판이나 중단된 설치 시도에서 기기에 남은 데이터를 골라 쓴다. block-hash-index 방식은 4 KiB 블록마다 SHA-256 해시를 두어, 색인의 크기는 원래 이미지의 0.8%다.[@rauc-advanced-topics-2026] (#adaptive-updates, #block-based-adaptive-update-block-hash-index)
 
 SWUpdate는 알려진 기준에서 하는 업데이트를 delta update라 부르고, 이를 zchunk 형식으로 구현한다. zchunk 파일의 헤더는 모든 청크의 메타데이터와 해시를 담아, 헤더를 보면 받아야 할 청크와 다시 쓸 수 있는 청크를 알 수 있다. SWUpdate는 이 헤더를 서명된 업데이트 패키지에 넣으므로, 패키지 밖의 주소에서 받는 청크도 이미 검증한 헤더의 해시로 확인할 수 있다.[@swupdate-delta-update-2026] (#overview, #zchunk-compression-format, #design-delta-update-in-swupdate)
 

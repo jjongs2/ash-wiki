@@ -31,7 +31,7 @@ NXP 백서에 따르면 OTA 업데이트에서 차량과 제조사 서버 사이
 
 기능을 중앙 컴퓨터에 모은 [[ee-architecture|E/E 아키텍처]]는 OTA 업데이트로 차량 기능을 바꾸거나 더하기 쉽게 한다.[@bosch-ee-architecture-2026][@ti-slyy236-2025]
 
-Volkswagen ID. 모델은 소프트웨어 업데이트를 이동통신으로 중앙 고성능 컴퓨터 ICAS(In Car Application Server)에 받는다. ICAS는 예전 세대 차량에서 여러 제어기에 흩어져 있던 기능을 맡고, OTA 업데이트로 제어기를 35개까지 업데이트할 수 있게 한다.[@volkswagen-id-ota-press-2021] (Extensive improvements thanks to Over-the-Air Updates)
+Volkswagen ID. 모델은 소프트웨어 업데이트를 이동통신으로 중앙 고성능 컴퓨터 ICAS(In Car Application Server)에 받는다. ICAS는 예전 세대 차량에서 여러 제어기에 흩어져 있던 기능을 맡는다. 이렇게 바뀐 전자 아키텍처는 OTA 업데이트로 제어기를 35개까지 업데이트할 수 있게 한다.[@volkswagen-id-ota-press-2021] (Extensive improvements thanks to Over-the-Air Updates)
 
 ## 단계
 
@@ -55,7 +55,7 @@ Ford 차량은 자동 업데이트가 켜져 있으면 대부분의 소프트웨
 
 ## 배포
 
-업데이트 서버는 대상 기기들을 여러 그룹이나 단계로 나눠 차례로 업데이트를 내보내는 **단계적 배포**를 할 수 있다.[@eclipse-hawkbit-rollout-management-2026] (Rollout management 기능 목록)[@mender-deployment-2026] (Phased rollouts and dynamic groups; 배포 알고리즘의 phase 확인) Eclipse hawkBit은 앞 그룹에서 설치에 성공한 대상의 비율이 정한 값에 이르면 다음 그룹을 시작하고, 설치 실패가 정한 수나 비율을 넘으면 배포 전체를 긴급 중단한다.[@eclipse-hawkbit-rollout-management-2026] (Cascading Deployment Group Execution)
+업데이트 서버는 대상 기기들을 여러 그룹이나 단계로 나눠 차례로 업데이트를 내보내는 **단계적 배포**를 할 수 있다.[@eclipse-hawkbit-rollout-management-2026] (Rollout management 기능 목록)[@mender-deployment-2026] (Phased rollouts and dynamic groups; 배포 알고리즘의 phase 확인) Eclipse hawkBit은 앞 그룹에서 설치에 성공한 대상의 비율이 정한 값에 이르면 기본 설정으로 다음 그룹을 시작하고, 설치 실패가 정한 수나 비율을 넘으면 배포 전체를 긴급 중단한다.[@eclipse-hawkbit-rollout-management-2026] (Cascading Deployment Group Execution)
 
 Tesla는 소프트웨어 업데이트를 차례로 내보내므로, 모든 차량이 같은 업데이트를 같은 때 받지는 않는다.[@tesla-software-updates-2026] (When do software updates become available?)
 
@@ -97,7 +97,7 @@ ENISA의 2019년 보고서 Good practices for security of smart cars는 OTA 펌�
 
 일본 국토교통성은 2019년 도로운송차량법 개정(令和元年法律第14号)에 따라 자동차의 특정개조 등(特定改造等) 허가 제도를 만들어 2020년 11월 23일 시행했다.[@mlit-specific-modification-permit-press-2020] (1. 背景, 3. スケジュール)
 
-도로운송차량법은 자동운행장치 등에 들어간 프로그램 등을 전기통신회선 등으로 바꿔 자동차를 개조하는 행위 가운데 프로그램 등이 적절하지 않으면 보안기준에 맞지 않게 될 우려가 있는 것과, 그런 개조를 시킬 목적으로 자동차 사용자 등에게 그 프로그램 등을 제공하는 행위를 특정개조 등으로 정하고, 이를 하려는 자가 미리 국토교통대신의 허가를 받게 한다.[@jp-road-transport-vehicle-act-2026] (제99조의3 제1항 제1·2호) 허가 기준은 신청자가 특정개조 등을 적확히 할 능력과 체제를 갖췄는지와, 개조된 자동차가 보안기준에 맞는지다.[@jp-road-transport-vehicle-act-2026] (제99조의3 제3항) 허가받은 자는 그 능력과 체제를 유지하고, 프로그램 등의 적절한 관리 등 국토교통성령이 정한 사항을 지켜야 한다.[@jp-road-transport-vehicle-act-2026] (제99조의3 제4·5항) 두 허가 기준의 심사는 자동차기술종합기구가 한다.[@jp-road-transport-vehicle-act-2026] (제99조의3 제8항)
+도로운송차량법은 자동운행장치 등에 들어간 프로그램 등을 전기통신회선 등으로 바꿔 자동차를 개조하는 행위 가운데 프로그램 등이 적절하지 않으면 보안기준에 맞지 않게 될 우려가 있는 것과, 그런 개조를 시킬 목적으로 자동차 사용자 등에게 그 프로그램 등을 제공하는 행위를 특정개조 등으로 정하고, 이를 하려는 자가 미리 국토교통대신의 허가를 받게 한다.[@jp-road-transport-vehicle-act-2026] (제99조의3 제1항 제1·2호) 허가 기준은 신청자가 특정개조 등을 적확히 할 능력과 체제를 갖췄는지와, 개조된 자동차가 보안기준에 맞는지다.[@jp-road-transport-vehicle-act-2026] (제99조의3 제3항) 허가받은 자는 그 능력과 체제를 유지하고, 프로그램 등의 적절한 관리 등 국토교통성령이 정한 사항을 지켜야 한다.[@jp-road-transport-vehicle-act-2026] (제99조의3 제4·5항) 신청자가 특정개조 등을 적확히 할 능력을 갖췄는지와 개조된 자동차가 보안기준에 맞는지의 심사는 자동차기술종합기구가 한다.[@jp-road-transport-vehicle-act-2026] (제99조의3 제8항)
 
 ### 중국
 
