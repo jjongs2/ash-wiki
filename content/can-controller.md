@@ -20,7 +20,7 @@ ISO 11898-1:2024는 **idle condition**을 샘플링한 recessive 비트가 11개
 | integrating | 프로토콜 동작을 시작한 뒤나 bus-off에서 복구하는 동안 idle condition을 기다리는 상태로, Bosch CAN FD 1.0에서는 그 뒤 idle로 넘어간다. ISO 11898-1:2024는 프로토콜 예외 이벤트 뒤에도 이 상태를 둔다.[@iso-11898-1-obp-2024][@bosch-can-fd-1-0-2012] |
 | idle        | Bosch CAN FD 1.0은 SOF(Start of Frame)를 받을 준비가 되어 있고, 그 뒤 receiver나 transmitter로 넘어가는 상태로 정한다.[@bosch-can-fd-1-0-2012]                                                                                                      |
 | receiver    | 버스가 idle이 아닌 동안 송신도 integrating도 하지 않는 노드를 **수신 노드**라 한다.[@iso-11898-1-obp-2024]                                                                                                                                          |
-| transmitter | 데이터 프레임이나 리모트 프레임을 보내는 노드를 **송신 노드**라 한다. 노드는 버스가 다시 idle이 되거나 [[can-arbitration\|중재]]에서 질 때까지 송신 노드로 남는다.[@iso-11898-1-obp-2024][@bosch-can-2-0-1991]                                      |
+| transmitter | [[can-frame\|데이터 프레임]]이나 [[remote-frame\|리모트 프레임]]을 보내는 노드를 **송신 노드**라 한다. 노드는 버스가 다시 idle이 되거나 [[can-arbitration\|중재]]에서 질 때까지 송신 노드로 남는다.[@iso-11898-1-obp-2024][@bosch-can-2-0-1991]     |
 
 ![[diagrams/can-node-states.svg]]
 
@@ -60,8 +60,8 @@ MCP2515는 오류 검사를 마친 메시지의 식별자를 [[acceptance-filter
 
 Bosch CAN FD 1.0은 노드가 선택해 둘 수 있는 동작 모드 두 가지를 정한다.[@bosch-can-fd-1-0-2012]
 
-- **Bus Monitoring 모드**: 유효한 데이터 프레임과 리모트 프레임을 받지만, 버스에는 recessive 비트만 내고 송신을 시작하지 못한다. ACK 슬롯, 오버로드 플래그, active 오류 플래그처럼 dominant를 내야 할 비트는 안에서 돌려, 버스가 recessive로 남아도 컨트롤러는 그 dominant를 본다.
-- **Restricted Operation 모드**: 데이터 프레임과 리모트 프레임을 주고받고 유효한 프레임에 ACK를 보내지만, active 오류 프레임이나 오버로드 프레임은 내지 않는다. 오류 조건이나 오버로드 조건이 생기면 dominant를 내지 않고 버스 idle을 기다려 다시 동기를 맞추며, 오류 계수기는 올리지 않는다.[@bosch-can-fd-1-0-2012]
+- **Bus Monitoring 모드**: 유효한 데이터 프레임과 리모트 프레임을 받지만, 버스에는 recessive 비트만 내고 송신을 시작하지 못한다. ACK 슬롯, [[can-overload-frame#오버로드 플래그|오버로드 플래그]], active 오류 플래그처럼 dominant를 내야 할 비트는 안에서 돌려, 버스가 recessive로 남아도 컨트롤러는 그 dominant를 본다.
+- **Restricted Operation 모드**: 데이터 프레임과 리모트 프레임을 주고받고 유효한 프레임에 ACK를 보내지만, active [[can-error-frame|오류 프레임]]이나 [[can-overload-frame|오버로드 프레임]]은 내지 않는다. 오류 조건이나 오버로드 조건이 생기면 dominant를 내지 않고 버스 idle을 기다려 다시 동기를 맞추며, 오류 계수기는 올리지 않는다.[@bosch-can-fd-1-0-2012]
 
 ## 슬립과 웨이크업
 

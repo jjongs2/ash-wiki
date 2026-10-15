@@ -47,7 +47,7 @@ verified: 2026-10-06
 - [[frame-preemption|프레임 선점]]
 - scheduled traffic
 - [[ieee-802-1cb|FRER]](IEEE 802.1CB)
-- 스트림별 필터링과 policing
+- [[per-stream-filtering-and-policing|스트림별 필터링과 policing]]
 - [[cyclic-queuing-and-forwarding|cyclic queuing and forwarding]][@ieee-802-1q-2022]
 
 ## 관련 표준

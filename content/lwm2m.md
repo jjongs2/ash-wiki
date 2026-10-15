@@ -10,7 +10,7 @@ edition: 2024
 status: 유효
 ---
 
-**LwM2M**(Lightweight Machine to Machine)은 OMA SpecWorks가 펴내는 장치 관리 프로토콜이다. LwM2M 1.2.2 Core 명세는 LwM2M 장치의 장치 관리와 서비스 활성화(service enablement)를 다루며, LwM2M Client는 흔히 IoT 장치와 게이트웨이에 구현된다. 이 명세는 가벼운 프로토콜과 효율적인 데이터 모델을 쓰도록 LwM2M을 설계하고, 메시지 계층은 CoAP(Constrained Application Protocol)를 바탕으로 한 RESTful 설계를 따른다.[@oma-lwm2m-core-1-2-2-2024] oneM2M TS-0005 v5.0.0은 oneM2M 서비스 계층과 OMA의 관리 기술(OMA DM(Device Management) 1.3, OMA DM 2.0, LwM2M) 사이의 프로토콜 변환과 리소스 매핑을 정한다.[@onem2m-ts-0005-2026]
+**LwM2M**(Lightweight Machine to Machine)은 OMA SpecWorks가 펴내는 장치 관리 프로토콜이다. LwM2M 1.2.2 Core 명세는 LwM2M 장치의 장치 관리와 서비스 활성화(service enablement)를 다루며, LwM2M Client는 흔히 IoT 장치와 [[gateway|게이트웨이]]에 구현된다. 이 명세는 가벼운 프로토콜과 효율적인 데이터 모델을 쓰도록 LwM2M을 설계하고, 메시지 계층은 CoAP(Constrained Application Protocol)를 바탕으로 한 RESTful 설계를 따른다.[@oma-lwm2m-core-1-2-2-2024] oneM2M TS-0005 v5.0.0은 oneM2M 서비스 계층과 OMA의 관리 기술(OMA DM(Device Management) 1.3, OMA DM 2.0, LwM2M) 사이의 프로토콜 변환과 리소스 매핑을 정한다.[@onem2m-ts-0005-2026]
 
 ## 범위
 

@@ -36,7 +36,7 @@ MDC(Management Data Clock)와 MDIO(Management Data Input/Output)는 PHY의 레�
 
 IEEE 802.3-2022는 [[10base-t1s|10BASE-T1S]]와 10BASE-T1L에 Clause 22의 MII를 선택 사항으로 두고, Clause 149의 [[multigbase-t1|MultiGBASE-T1]]인 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1에는 Clause 46의 XGMII(10 Gigabit Media Independent Interface)를 선택 사항으로 둔다.[@ieee-802-3-2022]
 
-차량용 PHY 가운데에는 SGMII(Serial Gigabit Media Independent Interface)를 지원하는 것도 있다.[@nxp-tja1103-2026][@ti-dp83tg720s-q1-2026] TJA1103B의 SGMII는 SerDes(Serializer/Deserializer) 인터페이스로, 쓰는 신호가 적고 차동 신호로 EMC(Electromagnetic Compatibility) 성능을 높인다. 전송 속도는 1.25 GBd로 고정이고, 100 Mbit/s로 동작할 때는 옥텟마다 10번 되풀이해 프레임을 늘린다.[@nxp-tja1103-2026]
+차량용 PHY 가운데에는 SGMII(Serial Gigabit Media Independent Interface)를 지원하는 것도 있다.[@nxp-tja1103-2026][@ti-dp83tg720s-q1-2026] TJA1103B의 SGMII는 SerDes(Serializer/Deserializer) 인터페이스로, 쓰는 신호가 적고 [[differential-signaling|차동 신호]]로 EMC(Electromagnetic Compatibility) 성능을 높인다. 전송 속도는 1.25 GBd로 고정이고, 100 Mbit/s로 동작할 때는 옥텟마다 10번 되풀이해 프레임을 늘린다.[@nxp-tja1103-2026]
 
 OPEN Alliance TC6는 MAC과 PHY를 잇는 인터페이스(xMII)를 차량 네트워크에 더 맞게 다듬는 위원회로, 차량용 xMII 표준에 대한 권고와 xMII 보강을 내고 OPEN Alliance SGMII 명세를 만드는 것을 목표로 한다. 2.5 Gbit/s SGMII 명세를 만드는 중이고, 5 Gbit/s와 10 Gbit/s SGMII 명세를 계획하고 있다.[@open-alliance-tc6-2026]
 

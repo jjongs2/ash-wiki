@@ -41,7 +41,7 @@ P802.3bw 태스크 포스는 인라인 커넥터를 4개까지 둔 한 쌍 균�
 
 ## MDI
 
-IEEE 802.3-2022는 100BASE-T1 PMA가 MDI에 AC 결합으로 이어지도록 정한다. 100 Ω 종단에서 잰 MDI의 송신 차동 신호의 피크-피크 전압 $V_\mathrm{pp}$는 SEND_I와 SEND_N을 비롯한 모든 송신 모드에서 $V_\mathrm{pp} < 2.2\,\mathrm{V}$여야 한다. MDI의 반사 손실은 PHY가 송신하는 동안 1 MHz부터 66 MHz까지 정해진 식의 값 이상이어야 하고, MDI에서 잰 모드 변환 손실(LCL, Longitudinal Conversion Loss)은 1 MHz부터 200 MHz까지 정해진 한도 이상이어야 한다. MDI의 선 쌍은 어떤 동작 조건에서도 같은 쌍의 다른 선이나 접지와의 단락, 전류를 150 mA로 제한한 50 V dc까지의 양전압이 무기한 걸려도 손상되지 않아야 하고, 단락이 풀리면 정상 동작으로 돌아와야 한다.[@ieee-802-3-2022]
+IEEE 802.3-2022는 100BASE-T1 PMA가 MDI에 AC 결합으로 이어지도록 정한다. 100 Ω 종단에서 잰 MDI의 송신 [[differential-signaling|차동 신호]]의 피크-피크 전압 $V_\mathrm{pp}$는 SEND_I와 SEND_N을 비롯한 모든 송신 모드에서 $V_\mathrm{pp} < 2.2\,\mathrm{V}$여야 한다. MDI의 반사 손실은 PHY가 송신하는 동안 1 MHz부터 66 MHz까지 정해진 식의 값 이상이어야 하고, MDI에서 잰 모드 변환 손실(LCL, Longitudinal Conversion Loss)은 1 MHz부터 200 MHz까지 정해진 한도 이상이어야 한다. MDI의 선 쌍은 어떤 동작 조건에서도 같은 쌍의 다른 선이나 접지와의 단락, 전류를 150 mA로 제한한 50 V dc까지의 양전압이 무기한 걸려도 손상되지 않아야 하고, 단락이 풀리면 정상 동작으로 돌아와야 한다.[@ieee-802-3-2022]
 
 100BASE-T1 PHY는 보통 커패시터로 선에 결합하고, 공통 모드 초크(CMC, Common-Mode Choke)로 공통 모드 잡음을 거르며, ESD(Electrostatic Discharge) 보호 소자를 둔다.[@nxp-tja1100-2017][@ti-szzy009-2018] TJA1100의 MDI는 저역 통과 필터, ESD 보호, CMC, 용량성 결합, 선택 사항인 공통 모드 종단, 커넥터로 이뤄진다.[@nxp-tja1100-2017] TI 백서에 따르면 100BASE-TX가 보통 트랜스포머로 직류 절연을 하는 것과 달리, 100BASE-T1은 커패시터 둘로 직류 절연을 하고 회로 크기를 줄인다.[@ti-szzy009-2018]
 

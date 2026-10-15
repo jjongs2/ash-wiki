@@ -16,7 +16,7 @@ IEEE 802.3 작업 그룹이 정한 P802.3az의 목표는 링크 사용률이 낮
 
 ## 지원하는 PHY
 
-IEEE 802.3-2022는 EEE를 선택으로 지원할 수 있는 PHY와 인터페이스를 표 78-1에 나열하고, PHY마다 EEE의 규범 요구사항을 그 PHY의 Clause에 둔다. 목록에는 10BASE-Te, 10BASE-T1L, 100BASE-TX, [[1000base-t1|1000BASE-T1]], 1000BASE-T, 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1이 들고, [[100base-t1|100BASE-T1]]과 10BASE-T1S는 들지 않는다. 10BASE-Te는 EEE가 정하는 10 Mbit/s MAU(Medium Attachment Unit)로, 송신 진폭 요구를 낮추고 Class D(Category 5) 이상의 케이블 100 m에서 10BASE-T MAU와 완전히 상호 운용된다.[@ieee-802-3-2022]
+IEEE 802.3-2022는 EEE를 선택으로 지원할 수 있는 PHY와 인터페이스를 표 78-1에 나열하고, PHY마다 EEE의 규범 요구사항을 그 PHY의 Clause에 둔다. 목록에는 10BASE-Te, 10BASE-T1L, 100BASE-TX, [[1000base-t1|1000BASE-T1]], 1000BASE-T, [[multigbase-t1|2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1]]이 들고, [[100base-t1|100BASE-T1]]과 [[10base-t1s|10BASE-T1S]]는 들지 않는다. 10BASE-Te는 EEE가 정하는 10 Mbit/s MAU(Medium Attachment Unit)로, 송신 진폭 요구를 낮추고 Class D(Category 5) 이상의 케이블 100 m에서 10BASE-T MAU와 완전히 상호 운용된다.[@ieee-802-3-2022]
 
 ## 1000BASE-T1의 LPI
 
