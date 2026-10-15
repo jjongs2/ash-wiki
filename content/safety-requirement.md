@@ -11,7 +11,7 @@ verified: 2026-10-02
 
 ## 요구사항의 전개
 
-ISO 26262-1:2018에서 요구사항은 safety goal에서 functional safety requirement, technical safety requirement로 내려간다. 같은 표준은 두 요구사항과 두 concept을 다음처럼 정의한다.[@iso-26262-1-obp-2018]
+ISO 26262-1:2018에서 요구사항은 safety goal에서 아래 두 요구사항으로 차례로 내려간다. 같은 표준은 그 두 요구사항과 두 concept을 다음처럼 정의한다.[@iso-26262-1-obp-2018]
 
 - **Functional safety requirement**(FSR): 구현과 상관없는 안전 동작이나 안전 조치를 안전 관련 속성과 함께 명세한 것
 - **Technical safety requirement**(TSR): 관련 FSR을 구현하려고 끌어낸 요구사항. 끌어낸 요구사항에는 완화 요구사항이 든다.
