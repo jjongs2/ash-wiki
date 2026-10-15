@@ -23,7 +23,7 @@ SOME/IP에서 서비스는 메서드, 이벤트, 필드를 0개 이상 묶은 �
 
 SOME/IP의 이벤트 알림은 발행·구독(publish/subscribe) 방식이며, 발행과 구독의 메커니즘은 SOME/IP가 아니라 [[some-ip-sd|SOME/IP-SD]]가 구현한다.[@autosar-fo-prs-someipprotocol-2025] SOME/IP-SD에서 클라이언트가 이벤트 그룹을 구독하면, 서버는 그 뒤로 구독한 클라이언트에게 이벤트를 보낸다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
 
-MQTT 5.0 규격은 MQTT를 클라이언트·서버 구조의 발행·구독 메시지 전송 프로토콜로 정하고, M2M(Machine to Machine)과 IoT 환경에 알맞다고 한다.[@oasis-mqtt-5-0-2019]
+[[mqtt|MQTT]] 5.0 규격은 MQTT를 클라이언트·서버 구조의 발행·구독 메시지 전송 프로토콜로 정하고, M2M(Machine to Machine)과 IoT 환경에 알맞다고 한다.[@oasis-mqtt-5-0-2019]
 
 ## 서비스 발견
 

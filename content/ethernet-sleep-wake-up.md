@@ -15,13 +15,13 @@ TC10은 이더넷 슬립·웨이크업 개념이 갖출 기능으로 아래를 �
 - 네트워크의 고른 부분을 재우도록 제어된 링크 종료를 지원한다.
 - 네트워크 전체 웨이크업에서 링크 트레이닝 시작까지의 시간에 요구를 둔다.
 - 웨이크·슬립 응용을 위한 전기 I/O 인터페이스를 정한다.
-- 표준 MAC(Medium Access Control) 인터페이스와 AUTOSAR [[autosar-network-management|네트워크 관리]]를 따른다.
+- 표준 MAC(Medium Access Control) 인터페이스와 [[autosar|AUTOSAR]] [[autosar-network-management|네트워크 관리]]를 따른다.
 - 간섭 잡음이 있어도 뜻하지 않게 깨지 않는다.
 - [[10base-t1s|10BASE-T1S]], [[100base-t1|100BASE-T1]], [[1000base-t1|1000BASE-T1]], [[multigbase-t1|MultiGBASE-T1]]에 적용하고, 할 수 있으면 앞으로 나올 꼬임쌍선 [[ethernet-phy|PHY]]에도 적용한다.[@open-alliance-tc10-2026]
 
 ## PHY 동작
 
-TJA1100은 Sleep 모드로 넘어가는 중간 상태로 Sleep Request 모드를 둔다. Sleep Request에 들면 타이머가 돌기 시작하고, 타이머가 끝나면 Sleep 모드로 넘어가며 INH 출력을 끈다. Sleep Request 동안 MDI(Medium Dependent Interface)나 [[mii|MII]]에서 이더넷 프레임을 받으면 Normal 모드로 돌아간다. Sleep 모드에 있는 링크는 다시 맺기 전에 깨워야 한다. 링크를 원하는 노드는 링크에 idle 심볼을 보내 웨이크업을 요청하고, 링크 상대는 그 활동을 감지해 깨어난다. TJA1100의 웨이크업 요청은 적어도 5 ms 이어진다.[@nxp-tja1100-2017]
+TJA1100은 Sleep 모드로 넘어가는 중간 상태로 Sleep Request 모드를 둔다. Sleep Request에 들면 타이머가 돌기 시작하고, 타이머가 끝나면 Sleep 모드로 넘어가며 INH 출력을 끈다. Sleep Request 동안 MDI(Medium Dependent Interface)나 [[mii|MII]]에서 [[ethernet-frame|이더넷 프레임]]을 받으면 Normal 모드로 돌아간다. Sleep 모드에 있는 링크는 다시 맺기 전에 깨워야 한다. 링크를 원하는 노드는 링크에 idle 심볼을 보내 웨이크업을 요청하고, 링크 상대는 그 활동을 감지해 깨어난다. TJA1100의 웨이크업 요청은 적어도 5 ms 이어진다.[@nxp-tja1100-2017]
 
 TJA1100은 웨이크업 원인을 셋으로 나눈다. Standby와 Sleep 모드에서 MDI의 이더넷 활동은 원격 웨이크업을 일으킨다. `LED_ENABLE`이 0이면 Standby, Sleep Request, Sleep 모드에서 WAKE 핀의 하강 에지가 로컬 웨이크업을 일으킨다. Sleep Request 모드에서 MDI나 MII의 이더넷 프레임은 데이터 감지 웨이크업을 일으킨다.[@nxp-tja1100-2017]
 
@@ -35,4 +35,4 @@ AUTOSAR R25-11의 EthTrcv(Ethernet Transceiver Driver) 명세는 OPEN Alliance T
 
 ## EEE LPI와의 차이
 
-TC10의 슬립은 제어된 링크 종료로 네트워크의 고른 부분을 재운다.[@open-alliance-tc10-2026] 이와 달리 [[ieee-802-3|IEEE 802.3]]-2022는 1000BASE-T1의 EEE LPI(Low Power Idle) 모드를 링크를 유지한 채 사용률이 낮은 동안 송신을 쉬고 주기적으로 refresh를 보내는 모드로 정하고, LPI에 들고 날 때 MAC 프레임을 잃거나 망가뜨리지 않도록 요구한다.[@ieee-802-3-2022]
+TC10의 슬립은 제어된 링크 종료로 네트워크의 고른 부분을 재운다.[@open-alliance-tc10-2026] 이와 달리 [[ieee-802-3|IEEE 802.3]]-2022는 1000BASE-T1의 [[energy-efficient-ethernet|EEE]] LPI(Low Power Idle) 모드를 링크를 유지한 채 사용률이 낮은 동안 송신을 쉬고 주기적으로 refresh를 보내는 모드로 정하고, LPI에 들고 날 때 MAC 프레임을 잃거나 망가뜨리지 않도록 요구한다.[@ieee-802-3-2022]

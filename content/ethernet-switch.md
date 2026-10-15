@@ -39,7 +39,7 @@ KSZ9477S의 포트는 전이중과 반이중을 모두 지원한다.[@microchip-
 
 브리지를 지나는 프레임의 전송 지연에는 출력 포트에서 전송 차례가 올 때까지 기다리는 큐 지연이 들어간다. 이 표준의 Annex L은 여러 입력 포트에서 거의 같은 때 들어와 한 출력 포트의 큐에 쌓인 같은 클래스의 프레임 때문에 생기는 지연을 **fan-in 지연**이라 부른다.[@ieee-802-1q-2022]
 
-NXP SJA1110은 [[tsn|TSN]] 표준을 여럿 지원하는 차량용 이더넷 스위치 제품군이다.[@nxp-sja1110autesfs-2022]
+NXP SJA1110은 [[tsn|TSN]] 표준을 여럿 지원하는 [[automotive-ethernet|차량용 이더넷]] 스위치 제품군이다.[@nxp-sja1110autesfs-2022]
 
 OPEN Alliance TC11은 차량용 이더넷 네트워크에 맞는 이더넷 스위치 반도체의 하드웨어 요구사항과 적합성 시험을 정한다. 그 범위는 MAC 주소와 VLAN 처리에 기반한 스위칭, 큐잉·하드웨어 타임스탬프·policing·셰이핑에 기반한 서비스 품질 기능([[avb|AVB]]·TSN 기능 포함), 성능, 설정과 진단, 필터링과 미러링이다. TC11은 2016년 9월에 Ethernet Switch Requirements V1.0을, 2018년 11월에 Ethernet Switch Test Specification V1.0을 승인했다.[@open-alliance-tc11-2026]
 
@@ -53,7 +53,7 @@ KSZ9477S는 레이어 2 관리형 스위치로, SPI(Serial Peripheral Interface)
 
 ![[diagrams/autosar-switch-port-roles.svg]]
 
-Ethernet Interface는 스위치 포트를 묶은 switch port group을 두고, 위층의 켜기 요청과 끄기 요청을 포트 묶음 단위로 받아 판단한다. 켜기 요청은 끄기 요청보다 늘 앞선다. [[autosar-network-management#Partial networking|Partial network]] 요청에 따라 포트 묶음을 켜고 끌 때는 BswM의 규칙이 포트 묶음을 제어한다. 포트 묶음의 링크 상태는 묶음에 든 모든 포트의 링크 상태를 모아 계산하며, 이를 **링크 상태 누적**이라 한다. 이때 포트의 링크 상태는 [[ieee-802-1ae|MACsec]]으로 보호하는 포트와 보호하지 않는 포트를 나누어 따진다. 묶음 안의 host port나 up link port의 링크 상태가 down이거나, 역할이 없는 포트의 링크 상태가 모두 down이면 묶음의 링크도 down으로 보고, 그렇지 않으면 active로 본다.[@autosar-cp-sws-ethernetinterface-2025]
+Ethernet Interface는 스위치 포트를 묶은 switch port group을 두고, 위층의 켜기 요청과 끄기 요청을 포트 묶음 단위로 받아 판단한다. 켜기 요청은 끄기 요청보다 늘 앞선다. [[autosar-network-management#Partial networking|Partial network]] 요청에 따라 포트 묶음을 켜고 끌 때는 [[basic-software-mode-manager|BswM]]의 규칙이 포트 묶음을 제어한다. 포트 묶음의 링크 상태는 묶음에 든 모든 포트의 링크 상태를 모아 계산하며, 이를 **링크 상태 누적**이라 한다. 이때 포트의 링크 상태는 [[ieee-802-1ae|MACsec]]으로 보호하는 포트와 보호하지 않는 포트를 나누어 따진다. 묶음 안의 host port나 up link port의 링크 상태가 down이거나, 역할이 없는 포트의 링크 상태가 모두 down이면 묶음의 링크도 down으로 보고, 그렇지 않으면 active로 본다.[@autosar-cp-sws-ethernetinterface-2025]
 
 이더넷에서 이더넷으로 보내는 미러링은 [[autosar-communication-stack#Bus Mirroring|Bus Mirroring]] 모듈이 아니라 Ethernet Switch Driver의 port mirroring 기능이 맡는다.[@autosar-cp-sws-busmirroring-2025]
 
@@ -61,4 +61,4 @@ Ethernet Interface는 스위치 포트를 묶은 switch port group을 두고, �
 
 ISO/IEC 2382:2015는 LAN에서 신호를 증폭하거나 재생해 데이터 스테이션 사이의 전송 거리를 늘리거나 두 갈래를 잇는 장치를 리피터로 정의한다. 브리지는 같은 LLC(Logical Link Control) 프로토콜을 쓰되 MAC 프로토콜은 다를 수 있는 두 LAN을 잇는 기능 단위이고, [[osi-model|OSI]] 모델을 따르는 네트워크에서는 데이터 링크 계층에서 동작하므로 라우팅 기능이 없다. 라우터는 하나 이상의 컴퓨터 네트워크를 거치는 경로를 정하는 기능 단위이고, OSI 모델을 따르는 네트워크에서는 네트워크 계층에서 동작한다.[@iso-iec-2382-obp-2015] IEEE 802.1Q-2022는 브리지로 이어진 네트워크의 원리와 MAC 브리지, VLAN 브리지의 동작을 정한다.[@ieee-802-1q-2022]
 
-[[ieee-802-3|IEEE 802.3]]-2022는 브리지를 IEEE 802.1Q를 따르는 레이어 2 연결 장치로 정의하고, 스위치라고도 부른다. 이 표준은 리피터를 한 세그먼트에서 받은 데이터를 타이밍과 진폭을 되살려 연결된 다른 모든 세그먼트로 다시 보내는 장치로 두고, 10BASE-T 같은 스타 토폴로지에서는 허브로 쓴다. 리피터로 나뉜 MAC 부계층들은 한 충돌 도메인에 들고, 브리지로 나뉜 MAC 부계층들은 서로 다른 충돌 도메인에 든다. 충돌은 반이중에서만 생긴다. 전이중은 LAN에 스테이션이 정확히 둘일 때 쓸 수 있고, 이때는 공유 매체를 다툴 일이 없어 CSMA/CD(Carrier Sense Multiple Access with Collision Detection)가 필요 없다. 이 표준은 전이중 동작의 가장 흔한 구성으로, 가운데 둔 브리지의 각 포트에 장치 하나씩을 전용 LAN으로 잇는 것을 상정한다.[@ieee-802-3-2022]
+[[ieee-802-3|IEEE 802.3]]-2022는 브리지를 IEEE 802.1Q를 따르는 레이어 2 연결 장치로 정의하고, 스위치라고도 부른다. 이 표준은 리피터를 한 세그먼트에서 받은 데이터를 타이밍과 진폭을 되살려 연결된 다른 모든 세그먼트로 다시 보내는 장치로 두고, 10BASE-T 같은 스타 토폴로지에서는 허브로 쓴다. 리피터로 나뉜 MAC 부계층들은 한 충돌 도메인에 들고, 브리지로 나뉜 MAC 부계층들은 서로 다른 충돌 도메인에 든다. 충돌은 반이중에서만 생긴다. 전이중은 LAN에 스테이션이 정확히 둘일 때 쓸 수 있고, 이때는 공유 매체를 다툴 일이 없어 [[bus-access-method#경쟁 방식|CSMA/CD]](Carrier Sense Multiple Access with Collision Detection)가 필요 없다. 이 표준은 전이중 동작의 가장 흔한 구성으로, 가운데 둔 브리지의 각 포트에 장치 하나씩을 전용 LAN으로 잇는 것을 상정한다.[@ieee-802-3-2022]

@@ -50,7 +50,7 @@ UCM이 State Management의 UpdateRequest 서비스 인터페이스로 요청한 
 
 ## 인증과 접근 제어
 
-UCM과 V-UCM은 패키지 전체를 덮는 인증 태그로 각자의 패키지를 인증해야 한다. Adaptive Platform은 패키지를 검증할 체크섬 알고리즘, 암호 서명이나 벤더·OEM 고유의 메커니즘을 제공해야 하고, 검증하지 못하면 UCM이나 V-UCM이 오류를 돌려준다. 인증 알고리즘이 맞도록, 패키지는 대개 대상 UCM이나 V-UCM을 만든 벤더의 도구로 만든다. 인증 알고리즘이 해시를 쓰므로 인증하면서 일관성도 확인하고, 이 확인은 UCM이나 V-UCM이 패키지를 처리하기 전에 해야 한다.[@autosar-ap-exp-platformdesign-2025]
+UCM과 V-UCM은 패키지 전체를 덮는 인증 태그로 각자의 패키지를 인증해야 한다. Adaptive Platform은 패키지를 검증할 [[checksum|체크섬]] 알고리즘, 암호 서명이나 벤더·OEM 고유의 메커니즘을 제공해야 하고, 검증하지 못하면 UCM이나 V-UCM이 오류를 돌려준다. 인증 알고리즘이 맞도록, 패키지는 대개 대상 UCM이나 V-UCM을 만든 벤더의 도구로 만든다. 인증 알고리즘이 해시를 쓰므로 인증하면서 일관성도 확인하고, 이 확인은 UCM이나 V-UCM이 패키지를 처리하기 전에 해야 한다.[@autosar-ap-exp-platformdesign-2025]
 
 UCM과 V-UCM의 갱신 프로토콜에는 클라이언트를 인증하는 단계가 없다. `ara::com`으로 서비스를 요청하는 클라이언트가 정당한지는 [[autosar-identity-and-access-management|IAM]]이 보장한다.[@autosar-ap-exp-platformdesign-2025]
 

@@ -15,7 +15,7 @@ NIST SP 800-204C에 따르면 DevSecOps라는 말은 보안 팀의 역할과, �
 
 ## 보안의 shift left
 
-보안 활동을 SDLC의 앞쪽으로 당기는 것도 shift left라 한다.[@dod-devsecops-fundamentals-2-5-2024][@nist-sp-800-218-2022] NIST SP 800-218에 따르면 SDLC에서 보안을 일찍 다룰수록 같은 수준의 보안에 드는 노력과 비용이 줄고, 초기 보안 결함을 개발 후반이나 운영 중에 고쳐야 하는 기술 부채도 줄어든다.[@nist-sp-800-218-2022] 테스트를 앞당기는 shift left 자체는 [[v-model|V 모델]]에서, 결함을 늦게 찾을수록 커지는 비용은 [[defect-management#늦게 찾을수록 커지는 비용|결함 관리]]에서 다룬다.
+보안 활동을 SDLC의 앞쪽으로 당기는 것도 shift left라 한다.[@dod-devsecops-fundamentals-2-5-2024][@nist-sp-800-218-2022] NIST SP 800-218에 따르면 SDLC에서 보안을 일찍 다룰수록 같은 수준의 보안에 드는 노력과 비용이 줄고, 초기 보안 결함을 개발 후반이나 운영 중에 고쳐야 하는 기술 부채도 줄어든다.[@nist-sp-800-218-2022] 테스트를 앞당기는 shift left 자체는 [[v-model#테스트 설계를 앞당김|V 모델]]에서, 결함을 늦게 찾을수록 커지는 비용은 [[defect-management#늦게 찾을수록 커지는 비용|결함 관리]]에서 다룬다.
 
 SSDF(Secure Software Development Framework) 1.1을 담은 NIST SP 800-218은 어느 SDLC 모델에도 넣을 수 있는 상위 수준의 보안 소프트웨어 개발 실천의 묶음을 권고한다.[@nist-sp-800-218-2022]
 

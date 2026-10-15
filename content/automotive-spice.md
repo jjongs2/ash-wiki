@@ -10,15 +10,15 @@ edition: 2026
 status: 유효
 ---
 
-**ASPICE**(Automotive SPICE)는 차량용 임베디드 시스템을 개발하는 조직의 프로세스 능력을 평가하는 데 쓰는 프로세스 참조 모델이자 프로세스 평가 모델이다. 그 지표는 [[process-improvement|프로세스 개선]]에도 쓸 수 있다. 이름의 SPICE는 Systems/Software Process Improvement and Capability dEtermination을 줄인 것이다. 독일 자동차산업협회 VDA의 품질경영센터 VDA QMC가 펴낸다.[@vda-automotive-spice-pam-4-1-2026]
+**ASPICE**(Automotive SPICE)는 차량용 임베디드 시스템을 개발하는 조직의 프로세스 능력을 평가하는 데 쓰는 프로세스 참조 모델이자 [[automotive-spice-process-assessment-model|프로세스 평가 모델]]이다. 그 지표는 [[process-improvement|프로세스 개선]]에도 쓸 수 있다. 이름의 SPICE는 Systems/Software Process Improvement and Capability dEtermination을 줄인 것이다. 독일 자동차산업협회 VDA의 품질경영센터 VDA QMC가 펴낸다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 범위
 
-ASPICE 4.1은 프로세스 참조 모델과 프로세스 평가 모델을 한 문서에 담는다. 프로세스 참조 모델은 프로세스마다 목적과 성과(outcome)를 정의하고, 프로세스 평가 모델은 프로세스 성과와 프로세스 속성 달성이 있는지를 평가자가 판단할 지표를 둔다. 이 문서는 ISO/IEC 33020:2019를 고쳐 맞춘 자체 측정 프레임워크를 두고, 이 프레임워크로 프로세스마다 능력 수준을 따로 매긴다. 이 문서의 프로세스 평가 모델은 ISO/IEC 33002:2015의 요구를 채우는 평가에 쓸 수 있고, 측정 프레임워크는 ISO/IEC 33003:2015에 맞는다.[@vda-automotive-spice-pam-4-1-2026]
+ASPICE 4.1은 프로세스 참조 모델과 프로세스 평가 모델을 한 문서에 담는다. 프로세스 참조 모델은 프로세스마다 목적과 성과(outcome)를 정의하고, 프로세스 평가 모델은 프로세스 성과와 프로세스 속성 달성이 있는지를 평가자가 판단할 지표를 둔다. 이 문서는 ISO/IEC 33020:2019를 고쳐 맞춘 자체 측정 프레임워크를 두고, 이 프레임워크로 프로세스마다 [[process-capability-level|능력 수준]]을 따로 매긴다. 이 문서의 프로세스 평가 모델은 ISO/IEC 33002:2015의 요구를 채우는 평가에 쓸 수 있고, 측정 프레임워크는 ISO/IEC 33003:2015에 맞는다.[@vda-automotive-spice-pam-4-1-2026]
 
 프로세스 참조 모델과 프로세스 평가 모델은 프로세스가 무엇을 이뤄야 하는지를 다루고, 그것을 이룰 [[software-process#프로세스 모델과 조직의 프로세스|방법, 도구, 템플릿]]은 정하지 않는다. 문서는 VDA QMC 웹사이트에서 내려받아서만 얻을 수 있고, 받은 사람이 다시 배포할 수 없다.[@vda-automotive-spice-pam-4-1-2026]
 
-프로세스 목록과 평가 범위를 짜는 plug-in 컨셉은 [[automotive-spice-process-reference-model#Plug-in 컨셉|ASPICE 프로세스 참조 모델]]에서, 지표의 구조는 [[automotive-spice-process-assessment-model|ASPICE 프로세스 평가 모델]]에서, 능력 수준과 등급은 [[process-capability-level|프로세스 능력 수준]]에서 다룬다.
+프로세스 목록과 평가 범위를 짜는 plug-in 컨셉은 [[automotive-spice-process-reference-model#Plug-in 컨셉|ASPICE 프로세스 참조 모델]]에서 다룬다.
 
 VDA QMC는 ASPICE에 [[cybersecurity|사이버보안]] 내용을 더하는 확장으로 [[automotive-spice-for-cybersecurity|Automotive SPICE for Cybersecurity]]를 따로 펴낸다. 협력업체 평가용 프로세스 평가 모델인 ASPICE Potential Analysis도 펴낸다. 출판물 목록에는 그 판이 1.0(2024년 8월)으로 나온다.[@vda-automotive-spice-publications-2026] 문서 표지에는 1판(2024년 6월)으로 나온다.[@vda-automotive-spice-potential-analysis-2024]
 

@@ -27,7 +27,7 @@ verified: 2026-10-06
 
 이 표준은 중앙 네트워크/분산 사용자 모델에서도 엔드 스테이션이 UNI로 요구를 직접 전하되, 설정 정보는 CNC(Centralized Network Configuration)로 가도록 정한다. **CNC**는 TSN 응용(사용자)을 대신해 네트워크 자원을 설정하는 중앙 구성 요소다.[@ieee-802-1q-2022]
 
-이 모델은 [[time-aware-shaper|scheduled traffic]]의 포트별 게이트 제어 목록 계산처럼 오래 걸리는 계산을 한곳에 모으거나, 네트워크의 모든 스트림을 알아야 더 나은 경로를 고를 수 있는 경우를 위한 것이다. CNC는 네트워크의 물리 토폴로지와 각 브리지의 능력을 모두 알며, 엔드 스테이션이나 브리지 안에 둘 수 있다. CNC는 엔드 스테이션이 붙은 엣지 브리지가 talker·listener 정보를 네트워크 안쪽으로 퍼뜨리지 않고 CNC와 직접 주고받도록 설정하며, 원격 네트워크 관리 프로토콜로 모든 브리지의 TSN 기능을 설정한다. 이런 프로토콜의 예로 SNMP(Simple Network Management Protocol), NETCONF(Network Configuration Protocol), RESTCONF가 있다.[@ieee-802-1q-2022]
+이 모델은 [[time-aware-shaper|scheduled traffic]]의 포트별 게이트 제어 목록 계산처럼 오래 걸리는 계산을 한곳에 모으거나, 네트워크의 모든 스트림을 알아야 더 나은 경로를 고를 수 있는 경우를 위한 것이다. CNC는 네트워크의 물리 토폴로지와 각 브리지의 능력을 모두 알며, 엔드 스테이션이나 브리지 안에 둘 수 있다. CNC는 엔드 스테이션이 붙은 에지 브리지가 talker·listener 정보를 네트워크 안쪽으로 퍼뜨리지 않고 CNC와 직접 주고받도록 설정하며, 원격 네트워크 관리 프로토콜로 모든 브리지의 TSN 기능을 설정한다. 이런 프로토콜의 예로 SNMP(Simple Network Management Protocol), NETCONF(Network Configuration Protocol), RESTCONF가 있다.[@ieee-802-1q-2022]
 
 ![[diagrams/tsn-config-centralized-network.svg]]
 
@@ -47,7 +47,7 @@ verified: 2026-10-06
 - [[frame-preemption|프레임 선점]]
 - scheduled traffic
 - [[ieee-802-1cb|FRER]](IEEE 802.1CB)
-- 스트림별 필터링과 policing
+- [[per-stream-filtering-and-policing|스트림별 필터링과 policing]]
 - [[cyclic-queuing-and-forwarding|cyclic queuing and forwarding]][@ieee-802-1q-2022]
 
 ## 관련 표준

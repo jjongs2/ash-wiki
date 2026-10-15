@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-27
 ---
 
-**CAN FD**(CAN with Flexible Data-Rate)는 [[can|CAN]] 프로토콜을 확장한 것으로, 중재가 끝난 뒤 한 프레임 안에서 더 빠른 비트율로 바꿀 수 있고 데이터 필드를 64바이트까지 늘렸다. Bosch가 2012년에 규격 1.0을 공개했다.[@bosch-can-fd-1-0-2012] ISO 11898-1:2015는 CAN FD 프레임 포맷을 새로 넣었다.[@iso-11898-1-obp-2015] 2024년판은 [[can-frame|classic 프레임]] 포맷, CAN FD 프레임 포맷, [[can-xl|CAN XL]] 프레임 포맷을 규정한다.[@iso-11898-1-obp-2024]
+**CAN FD**(CAN with Flexible Data-Rate)는 [[can|CAN]] 프로토콜을 확장한 것으로, 중재가 끝난 뒤 한 프레임 안에서 더 빠른 비트율로 바꿀 수 있고 데이터 필드를 64바이트까지 늘렸다. Bosch가 2012년에 규격 1.0을 공개했다.[@bosch-can-fd-1-0-2012] ISO 11898-1:2015는 [[can-fd-frame|CAN FD 프레임]] 포맷을 새로 넣었다.[@iso-11898-1-obp-2015] 2024년판은 [[can-frame|classic 프레임]] 포맷, CAN FD 프레임 포맷, [[can-xl|CAN XL]] 프레임 포맷을 규정한다.[@iso-11898-1-obp-2024]
 
 ## 개발 경위
 
@@ -31,11 +31,11 @@ CAN FD의 높은 비트율을 쓰려면 [[can-transceiver|트랜시버]]가 loop
 
 ## 데이터 필드
 
-CAN FD 포맷 프레임의 데이터 필드는 0\~64바이트이고, [[data-length-code|DLC]] 9\~15가 8바이트보다 긴 12, 16, 20, 24, 32, 48, 64바이트를 가리킨다.[@bosch-can-fd-1-0-2012] 프레임의 비트 구성은 [[can-fd-frame|CAN FD 프레임]]에서 다룬다.
+CAN FD 포맷 프레임의 데이터 필드는 0\~64바이트이고, [[data-length-code|DLC]] 9\~15가 8바이트보다 긴 12, 16, 20, 24, 32, 48, 64바이트를 가리킨다.[@bosch-can-fd-1-0-2012]
 
 ![[diagrams/can-fd-dlc-data-length.svg]]
 
-Bosch CAN FD 1.0은 모든 구현이 8바이트보다 긴 데이터 필드를 지원하도록 요구하지 않는다. 다만 긴 데이터를 다 다루지 못하는 구현도 받은 긴 프레임을 오류로 보지 않고, 오류 없는 긴 프레임에는 ACK를 보내고 수용 필터링에도 참여해야 한다. 다루지 못하는 데이터 바이트는 버린다.[@bosch-can-fd-1-0-2012]
+Bosch CAN FD 1.0은 모든 구현이 8바이트보다 긴 데이터 필드를 지원하도록 요구하지 않는다. 다만 긴 데이터를 다 다루지 못하는 구현도 받은 긴 프레임을 오류로 보지 않고, 오류 없는 긴 프레임에는 ACK를 보내고 [[acceptance-filter|수용 필터링]]에도 참여해야 한다. 다루지 못하는 데이터 바이트는 버린다.[@bosch-can-fd-1-0-2012]
 
 ## 호환성
 

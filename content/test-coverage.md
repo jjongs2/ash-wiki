@@ -34,7 +34,7 @@ ISO/IEC/IEEE 24765 용어집은 **조건**(condition)을 불 연산자를 담지
 | 구문 커버리지(statement coverage)               | 실행 가능한 구문이 모두 적어도 한 번 실행되었다.[@istqb-ctfl-syllabus-2024]                                                                 |
 | 결정 커버리지(decision coverage)                | 각 결정이 가능한 모든 결과를 적어도 한 번씩 가졌다.[@istqb-glossary-decision-coverage-2026]                                                 |
 | 조건 커버리지(condition coverage)               | 각 결정 안의 각 조건이 가능한 모든 값을 적어도 한 번씩 가졌다.[@istqb-glossary-condition-coverage-2026]                                     |
-| MC/DC                                           | 결정 커버리지와 조건 커버리지에 더해, 각 조건이 결정의 결과에 독립적으로 영향을 준다는 것을 보였다.[@hayhurst-practical-tutorial-mcdc-2001] |
+| [[modified-condition-decision-coverage\|MC/DC]] | 결정 커버리지와 조건 커버리지에 더해, 각 조건이 결정의 결과에 독립적으로 영향을 준다는 것을 보였다.[@hayhurst-practical-tutorial-mcdc-2001] |
 | 다중 조건 커버리지(multiple condition coverage) | 각 결정 안 조건 값의 모든 조합이 실행되었다.[@istqb-glossary-multiple-condition-coverage-2026]                                              |
 
 구문 커버리지 100%를 이뤄도, 분모가 0일 때만 실패하는 나눗셈처럼 데이터에 따라 드러나는 결함은 찾지 못할 수 있고, 결정 논리의 분기를 모두 실행하지 않았을 수도 있다. 분기 커버리지 100%를 이뤄도 특정 경로를 실행해야 드러나는 결함은 찾지 못할 수 있다.[@istqb-ctfl-syllabus-2024]
@@ -63,7 +63,7 @@ llvm-cov의 커버리지 요약에서 branch coverage는 참 분기와 거짓 �
 
 Simulink Coverage의 코드 커버리지에서 조건은 관계 연산자, 등가 연산자, 논리 부정 연산자를 담되 논리 연산자 `&&`, `||`를 담지 않는 C/C++ 불 식이고, `if`, `while`, `do-while` 같은 분기 구문 안의 조건은 조건 커버리지가 아니라 결정 커버리지로 보고된다. 결정은 조건과 하나 이상의 `&&`나 `||`로 이루어진 불 식이며, 분기 구문 안의 조건도 결정이다.[@mathworks-slcoverage-code-coverage-2026]
 
-같은 제품의 모델 커버리지에서는 [[modified-condition-decision-coverage|MCDC]]가 결정 커버리지나 조건 커버리지를 다 이루지 않을 수 있어서, 결정 커버리지 100% 없이 MCDC 100%를 이룰 수 있다.[@mathworks-slcoverage-model-coverage-2026]
+같은 제품의 모델 커버리지에서는 MCDC가 결정 커버리지나 조건 커버리지를 다 이루지 않을 수 있어서, 결정 커버리지 100% 없이 MCDC 100%를 이룰 수 있다.[@mathworks-slcoverage-model-coverage-2026]
 
 ## ISO 26262-6
 

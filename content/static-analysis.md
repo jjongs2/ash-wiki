@@ -49,7 +49,7 @@ Sangal, Jordan, Sinha, Jackson은 2005년 논문에서 DSM으로 소프트웨어
 - 계층 위반: 아래 계층이 위 계층을 쓰지 못한다(cannot-use)는 design rule을 두면, 그 규칙이 걸린 칸에 있는 의존이 계층 위반으로 드러난다.
 - 순환 의존: DSM을 partitioning(행과 열을 다시 정렬하고 모듈을 묶음)하면 계층이 드러나고 순환 의존이 부각된다. 서로 의존하는 모듈은 하삼각 행렬로 정렬할 수 없고, 하나로 묶어야 순환이 없어진다.[@sangal-dependency-models-2005]
 
-계층과 uses 관계는 [[software-architecture|소프트웨어 아키텍처]]에서, AUTOSAR 계층 사이의 호출 방향은 [[autosar-layered-architecture|AUTOSAR 계층 구조]]에서, 모듈 사이의 결합 정도는 [[cohesion-and-coupling|응집도와 결합도]]에서 다룬다.
+계층과 uses 관계는 [[software-architecture#구조 관계|소프트웨어 아키텍처]]에서, AUTOSAR 계층 사이의 호출 방향은 [[autosar-layered-architecture|AUTOSAR 계층 구조]]에서, 모듈 사이의 결합 정도는 [[cohesion-and-coupling#결합도|응집도와 결합도]]에서 다룬다.
 
 ## 개발 흐름 안의 자리
 

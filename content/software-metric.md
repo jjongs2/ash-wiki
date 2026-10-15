@@ -9,7 +9,7 @@ verified: 2026-10-03
 
 [[software-engineering|소프트웨어 공학]]에서 **메트릭**(metric)은 측정 척도와 측정 방법을 함께 정한 것이다.[@istqb-glossary-metric-2026][@ieee-cs-sevocab-2026] ISO/IEC/IEEE 24765 용어집은 품질 메트릭(quality metric)을, 어떤 항목이 주어진 품질 속성을 갖는 정도를 정량적으로 나타낸 척도로 정의한다. 소프트웨어 데이터를 받아 그 정도로 해석할 수 있는 수치 하나를 내는 함수로도 정의한다.[@ieee-cs-sevocab-2026]
 
-이 용어집은 제품 자체를 재는 척도를 내부 척도(internal measure)로 정의하고, 코드 줄 수와 복잡도 척도를 그 예로 든다.[@ieee-cs-sevocab-2026] 내부 품질과 외부 품질은 [[software-quality-model|소프트웨어 품질 모델]]에서 다룬다.
+이 용어집은 제품 자체를 재는 척도를 내부 척도(internal measure)로 정의하고, 코드 줄 수와 복잡도 척도를 그 예로 든다.[@ieee-cs-sevocab-2026] 내부 품질과 외부 품질은 [[software-quality-model#내부 품질, 외부 품질, 사용 품질|소프트웨어 품질 모델]]에서 다룬다.
 
 ## 규모
 
@@ -39,7 +39,7 @@ $I$는 0에서 1 사이이며, 0이면 가장 안정적이고 1이면 가장 불
 
 ![[diagrams/martin-instability-ca-ce.svg]]
 
-결합도 자체의 정의는 [[cohesion-and-coupling|응집도와 결합도]]에서 다룬다.
+결합도 자체의 정의는 [[cohesion-and-coupling#결합도|응집도와 결합도]]에서 다룬다.
 
 ## 결함 밀도
 

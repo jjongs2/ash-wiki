@@ -11,7 +11,7 @@ verified: 2026-09-27
 
 ## 적용 구간
 
-[[can-frame|데이터 프레임]]과 [[remote-frame|리모트 프레임]]에서는 SOF(Start of Frame), 중재 필드, 제어 필드, 데이터 필드, [[can-crc|CRC]] 시퀀스가 스터핑 대상이다. CRC 구분자, [[can-acknowledgement#ACK 필드|ACK 필드]], EOF(End of Frame)는 모양이 고정된 필드라 스터핑하지 않는다. [[can-error-frame|오류 프레임]]과 오버로드 프레임도 모양이 고정되어 있어 스터핑하지 않는다.[@bosch-can-2-0-1991]
+[[can-frame|데이터 프레임]]과 [[remote-frame|리모트 프레임]]에서는 SOF(Start of Frame), 중재 필드, 제어 필드, 데이터 필드, [[can-crc|CRC]] 시퀀스가 스터핑 대상이다. CRC 구분자, [[can-acknowledgement#ACK 필드|ACK 필드]], EOF(End of Frame)는 모양이 고정된 필드라 스터핑하지 않는다. [[can-error-frame|오류 프레임]]과 [[can-overload-frame|오버로드 프레임]]도 모양이 고정되어 있어 스터핑하지 않는다.[@bosch-can-2-0-1991]
 
 ![[diagrams/can-bit-stuffing-range.svg]]
 

@@ -68,6 +68,6 @@ ISTQB CTFL v4.0.1 강의계획서는 테스트 사분면을 [[agile-software-dev
 
 CTFL 강의계획서는 테스트를 비즈니스 쪽(business facing)과 기술 쪽(technology facing)으로, 팀을 지원하는 것(support the team, 곧 개발을 이끔)과 제품을 비평하는 것(critique the product, 곧 동작을 기대에 비추어 잼)으로 나누고, 두 관점을 엮어 네 사분면을 정한다.[@istqb-ctfl-syllabus-2024]
 
-CTFL 강의계획서는 Q1(기술 쪽, 팀 지원)에 컴포넌트 테스트와 [[integration-testing#컴포넌트 통합과 시스템 통합|컴포넌트 통합 테스트]]를, Q2(비즈니스 쪽, 팀 지원)에 기능 테스트, 예제, 사용자 스토리 테스트, 사용자 경험 프로토타입, API 테스트, 시뮬레이션을, Q3(비즈니스 쪽, 제품 비평)에 [[exploratory-testing|탐색적 테스트]], 사용성 테스트, [[acceptance-testing#인수 테스트의 형태|사용자 인수 테스트]]를, Q4(기술 쪽, 제품 비평)에 스모크 테스트와, 사용성 테스트를 뺀 비기능 테스트를 넣고, Q1의 테스트는 자동화해 [[continuous-integration|지속적 통합]] 과정에 넣기를 권한다. Q2의 테스트는 인수 기준을 확인하며 수동이나 자동으로 하고, Q3의 테스트는 사용자 중심이며 흔히 수동으로 하고, Q4의 테스트는 흔히 자동화한다.[@istqb-ctfl-syllabus-2024]
+CTFL 강의계획서는 Q1(기술 쪽, 팀 지원)에 컴포넌트 테스트와 [[integration-testing#컴포넌트 통합과 시스템 통합|컴포넌트 통합 테스트]]를, Q2(비즈니스 쪽, 팀 지원)에 기능 테스트, 예제, 사용자 스토리 테스트, 사용자 경험 prototype, API 테스트, 시뮬레이션을, Q3(비즈니스 쪽, 제품 비평)에 [[exploratory-testing|탐색적 테스트]], 사용성 테스트, [[acceptance-testing#인수 테스트의 형태|사용자 인수 테스트]]를, Q4(기술 쪽, 제품 비평)에 스모크 테스트와, 사용성 테스트를 뺀 비기능 테스트를 넣고, Q1의 테스트는 자동화해 [[continuous-integration|지속적 통합]] 과정에 넣기를 권한다. Q2의 테스트는 인수 기준을 확인하며 수동이나 자동으로 하고, Q3의 테스트는 사용자 중심이며 흔히 수동으로 하고, Q4의 테스트는 흔히 자동화한다.[@istqb-ctfl-syllabus-2024]
 
 ![[diagrams/testing-quadrants.svg]]

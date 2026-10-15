@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-[[iso-sae-21434|ISO/SAE 21434]]:2021은 **cybersecurity specification**을 [[cybersecurity|사이버보안]] 요구사항과 이에 맞춘 architectural design으로 정의한다. 이 표준은 **architectural design**을 컴포넌트와 그 경계, 인터페이스, 상호작용을 식별할 수 있게 하는 표현으로 정의한다. 이 표준의 10절(product development)은 cybersecurity specification을 정하고 사이버보안 요구사항을 구현하고 검증하는 활동을 담는다.[@iso-sae-21434-obp-2021] 일반적인 아키텍처 설계는 [[software-architecture|소프트웨어 아키텍처]]에서 다룬다.
+[[iso-sae-21434|ISO/SAE 21434]]:2021은 **cybersecurity specification**을 [[cybersecurity|사이버보안]] 요구사항과 이에 맞춘 architectural design으로 정의한다. 이 표준은 **architectural design**을 컴포넌트와 그 경계, 인터페이스, 상호작용을 식별할 수 있게 하는 표현으로 정의한다. 이 표준의 10절(product development)은 cybersecurity specification을 정하고 사이버보안 요구사항을 구현하고 검증하는 활동을 담는다.[@iso-sae-21434-obp-2021]
 
 ![[diagrams/cybersecurity-concept-specification-contents.svg]]
 
@@ -31,7 +31,7 @@ C 언어에서는 SEI CERT C 코딩 표준이 보안 코딩 규칙을 담고[@se
 
 - BP1의 정련은 사이버보안 요구사항을 근거로 시스템, 소프트웨어, 하드웨어 아키텍처의 요소를 더하거나, 맞추거나, 다시 만드는 것이다.
 - BP4는 인터페이스와 상세 설계를 포함한 시스템, 소프트웨어, 하드웨어 아키텍처를 약점의 관점에서 분석해 [[vulnerability-management|취약점]]을 찾고, 설계 결정을 문서로 남긴다.
-- BP6이 잇는 짝은 소프트웨어 아키텍처와 [[software-unit-design|소프트웨어 상세 설계]], 하드웨어 아키텍처의 컴포넌트와 하드웨어 상세 설계다.
+- BP6이 잇는 짝은 [[software-architecture|소프트웨어 아키텍처]]와 [[software-unit-design|소프트웨어 상세 설계]], 하드웨어 아키텍처의 컴포넌트와 하드웨어 상세 설계다.
 - BP7은 합의한 구현 결과를 영향받는 모든 당사자에게 전하며, 전하는 내용에는 아키텍처에서 찾은 취약점이 들 수 있다.[@vda-automotive-spice-cybersecurity-2025]
 
 Control 자체는 [[cybersecurity-concept#Cybersecurity control|cybersecurity concept]]에서, 추적성과 일관성은 [[traceability|추적성]]에서 다룬다.

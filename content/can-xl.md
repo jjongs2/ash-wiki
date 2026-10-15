@@ -29,7 +29,7 @@ verified: 2026-10-06
 
 Bosch의 CAN XL 개요에 따르면 CAN XL에는 오류 신호를 켠 모드와 끈 모드가 있고, 모드는 실행 중에 소프트웨어로 설정하며, 한 네트워크의 노드는 모두 같은 모드를 써야 한다. 오류 신호를 켜면 CAN FD처럼 오류를 [[can-error-frame#오류 플래그|오류 플래그]]로 알리고, 버스에 classical CAN, CAN FD, CAN XL 프레임이 함께 다닐 수 있다. 오류 신호를 끄면 오류를 알리지 않는다. 수신 노드는 오류가 나면 진행 중인 송신이 끝나기를 기다려 다시 통합하고, 송신 노드는 송신 오류를 검사하지 않고 프레임을 끝까지 보낸다. 이 모드는 CAN FD와 호환되지 않아 버스에는 CAN XL 프레임만 다닌다.[@bosch-can-xl-overview-2023]
 
-Bosch X_CAN은 오류 신호를 끄는 설정 비트 `EFDI`를 켜면 오류 계수기를 올리지 않고 CAN XL 프레임만 보내며, dominant인 FDF(FD Format) 비트나 XLF(XL Format) 비트를 받으면 [[can-error-detection#다섯 가지 오류|폼 오류]]로 다룬다.[@bosch-x-can-2024]
+Bosch X_CAN은 오류 신호를 끄는 설정 비트 `EFDI`를 켜면 오류 계수기를 올리지 않고 CAN XL 프레임만 보내며, dominant인 FDF(FD Format) 비트나 XLF(XL Format) 비트를 받으면 [[can-error-detection#다섯 가지 오류|형식 오류]]로 다룬다.[@bosch-x-can-2024]
 
 ## 프레임 구성
 
@@ -56,7 +56,7 @@ Bosch의 CAN XL 개요에 따르면 CAN XL 데이터 프레임의 필드는 아�
 
 ![[diagrams/can-xl-frame-fields.svg]]
 
-PCRC와 FCRC의 [[can-crc|CRC]]는 모두 해밍 거리 6을 준다. 중재 필드에서는 동적 [[can-bit-stuffing|스터프 비트]]를 넣고, XL 데이터 구간에서는 데이터 10비트마다 스터프 비트 하나를 넣는 고정 스터핑을 쓰며, 그 뒤로는 스터프 비트를 넣지 않는다.[@bosch-can-xl-overview-2023]
+PCRC와 FCRC의 [[can-crc|CRC]]는 모두 [[hamming-distance|해밍 거리]] 6을 준다. 중재 필드에서는 동적 [[can-bit-stuffing|스터프 비트]]를 넣고, XL 데이터 구간에서는 데이터 10비트마다 스터프 비트 하나를 넣는 고정 스터핑을 쓰며, 그 뒤로는 스터프 비트를 넣지 않는다.[@bosch-can-xl-overview-2023]
 
 CAN XL은 버스 접근 우선순위를 정하는 짧은 11비트 우선순위 ID와 메시지를 식별하는 32비트 ID를 나눈다. 우선순위 ID가 짧아 페이로드가 짧아도 순 비트율이 높고, 메시지 ID는 XL 데이터 구간의 AF에 실린다. AF의 해석은 SDT에 따르고, [[message-addressing|내용 기반 주소 지정]](메시지 ID)과 노드 기반 주소 지정(출발지·목적지 주소)을 모두 지원한다.[@bosch-can-xl-overview-2023]
 
@@ -106,5 +106,5 @@ CiA 611 시리즈는 상위 계층의 PDU(Protocol Data Unit)를 CAN XL LLC 부�
 | CiA 612-1 version 0.0.9  | WD(Work Draft)               | 네트워크 설계, 클록 허용 오차, 비트 타이밍 설정, 트랜시버 동작 모드, MAC 프레임 필드의 쓰임, 우선순위 ID[@cia-612-2026]                                                                         |
 | CiA 612-2                |                              | PWM 기반 AUI(Attachment Unit Interface)와 물리 신호 요건[@cia-612-2026]                                                                                                                         |
 | CiA 613-1 version 0.0.5  | WD                           | 부가 기능을 SEC 비트로 알리는 방법[@cia-613-2026]                                                                                                                                               |
-| CiA 613-2 version 1.0.0  | DSP                          | MACsec의 보안 기능을 다시 써서 CAN XL 데이터 링크 계층에서 데이터의 무결성, 신선도, 출처 인증, 기밀성을 지키는 CANsec 데이터 평면[@cia-613-2026]                                                |
+| CiA 613-2 version 1.0.0  | DSP                          | [[ieee-802-1ae\|MACsec]]의 보안 기능을 다시 써서 CAN XL 데이터 링크 계층에서 데이터의 무결성, 신선도, 출처 인증, 기밀성을 지키는 CANsec 데이터 평면[@cia-613-2026]                              |
 | CiA 613-3 version 0.0.11 | WD                           | 긴 CAN XL 프레임을 조각으로 나눠 보내, 송신이 끊겨도 끊긴 조각부터 다시 보내게 하는 LLC 프레임 분할[@cia-613-2026]                                                                              |

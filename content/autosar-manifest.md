@@ -37,7 +37,7 @@ Execution Manifest는 응용을 Adaptive Platform에 실제로 배치하는 데 
 - **시작 설정**: 응용 인스턴스를 어떻게 시작할지를 정하고, 시작 옵션과 접근 역할을 담는다. 시작 설정마다 Machine State나 Function Group State에 따를 수 있다.
 - **자원 관리**: 특히 resource group 배정을 다룬다.[@autosar-ap-exp-platformdesign-2025]
 
-Machine State와 Function Group State는 [[autosar-state-management|State Management]]에서, resource group은 [[autosar-execution-management#Resource group|Execution Management]]에서 다룬다.
+Machine State와 Function Group State는 [[autosar-state-management#Machine State와 Function Group State|State Management]]에서, resource group은 [[autosar-execution-management#Resource group|Execution Management]]에서 다룬다.
 
 Execution Manifest의 최상위 요소는 Process다. Adaptive Platform에서 배치의 단위가 실행 중에 POSIX 프로세스가 되는 바이너리이기 때문이다. 응용 코드는 구체적인 서비스 인스턴스 대신 PortPrototype을 그 정보의 상징으로 쓰고, 서비스 인스턴스를 구체적으로 정하는 일은 Service Instance Manifest에 맡긴다.[@autosar-ap-tps-manifestspecification-2025]
 
@@ -47,7 +47,7 @@ Execution Manifest의 최상위 요소는 Process다. Adaptive Platform에서 �
 
 - **서비스 인터페이스 배치**: 서비스를 특정 통신 기술에서 어떻게 나타낼지 정한다.
 - **서비스 인스턴스 배치**: 제공하거나 요구하는 서비스 인스턴스마다 통신 기술에 필요한 자격 정보를 정한다.
-- E2E 보호, 보안 보호, Log and Trace의 설정[@autosar-ap-exp-platformdesign-2025]
+- [[autosar-e2e-protection|E2E 보호]], 보안 보호, [[autosar-log-and-trace|Log and Trace]]의 설정[@autosar-ap-exp-platformdesign-2025]
 
 ApApplicationEndpoint는 EthernetCommunicationConnector의 [[udp|UDP]]나 [[tcp|TCP]] 포트를 정하고, 같은 커넥터가 unicastNetworkEndpoint 역할로 가리키는 NetworkEndpoint와 함께 네트워크 통신 경로의 로컬 종단, 곧 소켓을 이룬다.[@autosar-ap-tps-manifestspecification-2025]
 
@@ -59,7 +59,7 @@ Machine Manifest로는 특정 하드웨어에서 도는 Adaptive Platform 인스
 - 서비스 발견 기술의 설정. 예: SOME/IP가 쓸 IP 포트와 IP 멀티캐스트 주소
 - 쓰는 Machine State와 Function Group의 정의
 - functional cluster 구현의 설정. 예: 운영체제가 특정 권한을 가진 운영체제 사용자 목록을 제공하는 것
-- 암호 플랫폼 모듈, Platform Health Management, 시간 동기화의 설정
+- 암호 플랫폼 모듈, Platform Health Management, [[autosar-time-synchronization|시간 동기화]]의 설정
 - 쓸 수 있는 하드웨어 자원의 기록. 예: RAM 용량, 프로세서 코어 수[@autosar-ap-exp-platformdesign-2025]
 
 ## Processed Manifest

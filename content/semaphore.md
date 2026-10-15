@@ -13,7 +13,7 @@ Dijkstra가 EWD123(Cooperating Sequential Processes)에서 정의한 세마포�
 
 값이 0인 세마포어에 P를 시작한 프로세스는 다른 프로세스가 같은 세마포어에 V를 해서 값을 1로 만들 때까지 P를 끝내지 못한다. 그때 여러 프로세스가 P를 시작해 두었으면 그 가운데 하나만 P를 끝내고, 어느 것인지는 정해지지 않는다.[@dijkstra-cooperating-sequential-processes-1965]
 
-값이 0과 1만 되는 세마포어를 **이진 세마포어**(binary semaphore), 더 큰 값도 되는 세마포어를 **일반 세마포어**(general semaphore)라 부른다.[@dijkstra-cooperating-sequential-processes-1965] RTEMS(Real-Time Executive for Multiprocessor Systems)는 이진 세마포어와 함께 음이 아닌 어떤 정수 값도 되는 세마포어를 두고, 이를 **계수 세마포어**(counting semaphore)라 부른다.[@rtems-semaphore-background-2025] 임계 구역을 가진 N개 프로세스의 상호 배제는 초기값이 1인 이진 세마포어 하나로 풀린다. 각 프로세스는 [[critical-section|임계 구역]]에 들어가기 전에 P를, 나온 뒤에 V를 한다. 생산자와 소비자가 용량 제한이 없는 버퍼로 이어질 때는 버퍼에 쌓인 몫의 수를 일반 세마포어로 센다. 초기값은 0이고, 생산자는 몫을 넣은 뒤 V를, 소비자는 몫을 꺼내기 전에 P를 한다.[@dijkstra-cooperating-sequential-processes-1965]
+값이 0과 1만 되는 세마포어를 **이진 세마포어**(binary semaphore), 더 큰 값도 되는 세마포어를 **일반 세마포어**(general semaphore)라 부른다.[@dijkstra-cooperating-sequential-processes-1965] RTEMS(Real-Time Executive for Multiprocessor Systems)는 이진 세마포어와 함께 음이 아닌 어떤 정수 값도 되는 세마포어를 두고, 이를 **계수 세마포어**(counting semaphore)라 부른다.[@rtems-semaphore-background-2025] [[critical-section|임계 구역]]을 가진 N개 프로세스의 상호 배제는 초기값이 1인 이진 세마포어 하나로 풀린다. 각 프로세스는 임계 구역에 들어가기 전에 P를, 나온 뒤에 V를 한다. 생산자와 소비자가 용량 제한이 없는 버퍼로 이어질 때는 버퍼에 쌓인 몫의 수를 일반 세마포어로 센다. 초기값은 0이고, 생산자는 몫을 넣은 뒤 V를, 소비자는 몫을 꺼내기 전에 P를 한다.[@dijkstra-cooperating-sequential-processes-1965]
 
 ## POSIX의 세마포어
 
@@ -25,7 +25,7 @@ POSIX.1-2024는 XSI(X/Open System Interfaces) 옵션에 딸리지 않은 세마�
 
 ## 쓰임
 
-µC/OS-III는 세마포어로 사건이 일어난 횟수를 세고, 이때 초기값은 대개 0이다.[@micrium-ucos-iii-semaphores-2026] CMSIS-RTOS2는 같은 자원 여러 개 가운데 쓸 수 있는 개수를 세마포어로 세고, 초기값을 자원의 수로 둔다.[@arm-cmsis-rtos2-semaphores-2026] FreeRTOS 책은 계수 세마포어의 흔한 용도로 이 둘을 든다. 사건을 세는 세마포어는 초기값을 0으로, 자원을 세는 세마포어는 초기값을 자원의 수로 해서 만든다. 사건을 세는 세마포어는 사건 처리기가 사건마다 주고 태스크가 사건을 처리할 때마다 가져가므로, 값은 일어난 사건과 처리한 사건의 차이다.[@freertos-interrupt-management-2026]
+µC/OS-III는 세마포어로 사건이 일어난 횟수를 세고, 이때 초기값은 대개 0이다.[@micrium-ucos-iii-semaphores-2026] CMSIS-RTOS2는 같은 자원 여러 개 가운데 쓸 수 있는 개수를 세마포어로 세고, 초기값을 자원의 수로 둔다.[@arm-cmsis-rtos2-semaphores-2026] FreeRTOS 책은 계수 세마포어의 흔한 용도로 이 둘을 든다. 사건을 세는 세마포어는 초기값을 0으로, 자원을 세는 세마포어는 초기값을 자원의 수로 해서 만든다. 사건을 세는 세마포어는 사건 처리기가 사건마다 주고 [[task|태스크]]가 사건을 처리할 때마다 가져가므로, 값은 일어난 사건과 처리한 사건의 차이다.[@freertos-interrupt-management-2026]
 
 인터럽트 처리기는 세마포어를 줄 수는 있지만 기다릴 수는 없다.[@micrium-ucos-iii-semaphores-2026][@arm-cmsis-rtos2-semaphores-2026]
 

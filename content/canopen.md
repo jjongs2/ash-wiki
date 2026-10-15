@@ -25,7 +25,7 @@ object dictionary는 장치의 동작을 정하는 모든 통신 파라미터와
 
 CiA 301 version 4.2.0은 CANopen CC의 프로토콜로 SDO(Service Data Object), PDO(Process Data Object), NMT(Network Management), 특수 기능 프로토콜, 오류 제어 프로토콜을 정한다.[@cia-canopen-2026]
 
-**SDO**는 장치의 object dictionary의 모든 항목에 접근하게 하는 확인형 서비스로, CAN 식별자가 다른 데이터 프레임 두 개로 이뤄진다. object dictionary를 가진 장치가 SDO 서버, 그 사전에 접근하는 장치가 SDO 클라이언트가 된다. SDO 전송에는 4바이트 이하의 데이터를 시작 단계에서 바로 보내는 expedited 전송, 세그먼트마다 응용 데이터를 7바이트까지 실어 양에 제한 없이 보내는 normal(segmented) 전송, 세그먼트를 127개까지 묶은 블록 단위로만 확인받는 block 전송이 있다. 첫 SDO 서버 채널은 규격이 미리 정해 두고, 모든 CANopen CC 장치가 지원해야 한다.[@cia-sdo-protocol-2026]
+**SDO**는 장치의 object dictionary의 모든 항목에 접근하게 하는 확인형 서비스로, CAN 식별자가 다른 [[can-frame|데이터 프레임]] 두 개로 이뤄진다. object dictionary를 가진 장치가 SDO 서버, 그 사전에 접근하는 장치가 SDO 클라이언트가 된다. SDO 전송에는 4바이트 이하의 데이터를 시작 단계에서 바로 보내는 expedited 전송, 세그먼트마다 응용 데이터를 7바이트까지 실어 양에 제한 없이 보내는 normal(segmented) 전송, 세그먼트를 127개까지 묶은 블록 단위로만 확인받는 block 전송이 있다. 첫 SDO 서버 채널은 규격이 미리 정해 두고, 모든 CANopen CC 장치가 지원해야 한다.[@cia-sdo-protocol-2026]
 
 **PDO**는 우선순위가 높은 제어·상태 정보를 브로드캐스트하는 데 쓴다. CANopen CC의 PDO는 CAN 프레임 하나로 응용 데이터만 8바이트까지 나른다. PDO는 장치 내부 이벤트나 타이머, 리모트 요청, SYNC(Synchronization) 메시지 수신에 맞춘 주기·비주기 동기 송신으로 보낸다. PDO에 어떤 응용 객체를 어떤 순서와 길이로 싣는지는 PDO 매핑이 정하고, 매핑은 정적, 가변(NMT pre-operational 상태에서 바꿈), 동적(operational 상태에서도 바꿈) 세 가지다.[@cia-pdo-protocol-2026]
 
@@ -67,4 +67,4 @@ CiA는 CANopen에서 master/slave라는 말 대신 NMT manager와 NMT server라�
 
 CiA에 따르면 CANopen FD는 CAN FD의 높은 처리량을 쓰면서 CANopen CC의 주요 특성을 지키려고 만들어졌다.[@cia-canopen-fd-2026]
 
-CiA 1301 version 1.1.0은 CANopen FD의 응용 계층과 통신 프로파일을 정한다.[@cia-technical-documents-2026] 이 규격은 CANopen FD가 모든 통신 프로토콜에 CAN FD 프레임 포맷을 쓰고, 비트율 전환 여부를 가리지 않으며, CANopen CC와 달리 리모트 프레임을 지원하지 않게 정한다. 비트 타이밍도 이 규격이 정하며, 데이터 구간 비트율을 10 Mbit/s까지 지원한다. 장치 내부 구조는 CANopen CC와 같고, 통신 객체로 SDO가 아니라 USDO(Universal Service Data Object)를 둔다.[@cia-canopen-fd-2026] USDO로는 어떤 CANopen FD 장치든 읽고 쓸 수 있고, 유니캐스트나 브로드캐스트로 어떤 크기의 데이터든 보낼 수 있다.[@cia-standardized-hlp-2026]
+CiA 1301 version 1.1.0은 CANopen FD의 응용 계층과 통신 프로파일을 정한다.[@cia-technical-documents-2026] 이 규격은 CANopen FD가 모든 통신 프로토콜에 [[can-fd-frame|CAN FD 프레임]] 포맷을 쓰고, 비트율 전환 여부를 가리지 않으며, CANopen CC와 달리 리모트 프레임을 지원하지 않게 정한다. 비트 타이밍도 이 규격이 정하며, 데이터 구간 비트율을 10 Mbit/s까지 지원한다. 장치 내부 구조는 CANopen CC와 같고, 통신 객체로 SDO가 아니라 USDO(Universal Service Data Object)를 둔다.[@cia-canopen-fd-2026] USDO로는 어떤 CANopen FD 장치든 읽고 쓸 수 있고, 유니캐스트나 브로드캐스트로 어떤 크기의 데이터든 보낼 수 있다.[@cia-standardized-hlp-2026]

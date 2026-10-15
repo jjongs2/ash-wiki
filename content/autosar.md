@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 AUTOSAR의 시작은 2002년 8월 BMW, Bosch, Continental, DaimlerChrysler, Volkswagen이 공통 과제와 목표를 처음 논의한 것이고, 곧 Siemens VDO가 이들 회사에 합류했다.[@autosar-history-2026] AUTOSAR는 2003년 7월에 BMW, Bosch, Continental(지금의 AUMOVIO), DaimlerChrysler(지금의 Mercedes-Benz), Siemens VDO, Volkswagen이 결성했다.[@autosar-core-partner-2026] 같은 달 Core Partner들이 첫 AUTOSAR Development Agreement에 서명했고, 2003년 9월 Baden-Baden의 VDI 학회에서 AUTOSAR를 처음 공식 발표하며 그 목표를 소개했다.[@autosar-history-2026] 2016년 무렵 AUTOSAR 누리집은 "Cooperate on standards, compete on implementation"을 내걸고, AUTOSAR를 하나의 공통 표준을 만드는 파트너십으로 소개했다.[@autosar-home-2016]
 
-AUTOSAR는 소프트웨어 재사용을 목표로 든다. 계층화한 기본 소프트웨어 아키텍처로 ECU의 하드웨어 독립을 이루고, [[ee-architecture|E/E]] 시스템 안에서 기능 소프트웨어 컴포넌트를 옮길 수 있게 하고, 차량 제품군 전체에 걸쳐 확장할 수 있게 하는 것을 내세운다.[@autosar-about-2026]
+AUTOSAR는 소프트웨어 재사용을 목표로 든다. 계층화한 기본 소프트웨어 아키텍처로 ECU의 하드웨어 독립을 이루고, [[ee-architecture|E/E]] 시스템 안에서 기능 [[autosar-software-component|소프트웨어 컴포넌트]]를 옮길 수 있게 하고, 차량 제품군 전체에 걸쳐 확장할 수 있게 하는 것을 내세운다.[@autosar-about-2026]
 
 ## 파트너
 
@@ -35,7 +35,7 @@ AUTOSAR는 AUTOSAR Work를 활용하려는 회사에 AUTOSAR 파트너가 되기
 
 ## 조직
 
-AUTOSAR 소개 자료는 AUTOSAR의 공식 역할을 거버넌스(Executive Board), 전략 관리(Steering Committee, Legal Team, Communication Team), 기술 조정(Project Leader Team 등), 표준화(작업 그룹 등)의 층으로 나눈다. 작업 그룹은 표준 사이에 걸친 작업 그룹, Classic Platform 작업 그룹, Adaptive Platform 작업 그룹으로 나뉜다.[@autosar-exp-introduction-part1-2026]
+AUTOSAR 소개 자료는 AUTOSAR의 공식 역할을 거버넌스(Executive Board), 전략 관리(Steering Committee, Legal Team, Communication Team), 기술 조정(Project Leader Team 등), 표준화(작업 그룹 등)의 층으로 나눈다. 작업 그룹은 표준 사이에 걸친 작업 그룹, [[autosar-classic-platform|Classic Platform]] 작업 그룹, [[autosar-adaptive-platform|Adaptive Platform]] 작업 그룹으로 나뉜다.[@autosar-exp-introduction-part1-2026]
 
 ![[diagrams/autosar-organization-layers.svg]]
 
@@ -55,15 +55,15 @@ AUTOSAR 의장은 내부 업무를 맡고 부의장이 돕는다. 두 사람은 
 
 ## 표준
 
-AUTOSAR 표준에는 Classic Platform, Adaptive Platform, Foundation이 있다.[@autosar-standards-2026] AUTOSAR R25-11 용어집은 [[autosar-classic-platform|Classic Platform]]을 깊이 임베디드된 시스템과, 예측 가능성·안전·응답성 요구가 높은 응용 소프트웨어를 위해 AUTOSAR가 정의한 소프트웨어 플랫폼으로 정의한다.[@autosar-fo-tr-glossary-2025] [[autosar-adaptive-platform|AUTOSAR Adaptive Platform]] R25-11은 고도 자동 주행과 자율 주행 같은 쓰임새에서 safety-related 시스템을 만드는 고성능 연산 ECU를 위한 AUTOSAR의 해법이다.[@autosar-ap-tr-releaseoverview-2025]
+AUTOSAR 표준에는 Classic Platform, Adaptive Platform, Foundation이 있다.[@autosar-standards-2026] AUTOSAR R25-11 용어집은 Classic Platform을 깊이 임베디드된 시스템과, 예측 가능성·안전·응답성 요구가 높은 응용 소프트웨어를 위해 AUTOSAR가 정의한 소프트웨어 플랫폼으로 정의한다.[@autosar-fo-tr-glossary-2025] AUTOSAR Adaptive Platform R25-11은 고도 자동 주행과 자율 주행 같은 쓰임새에서 safety-related 시스템을 만드는 고성능 연산 ECU를 위한 AUTOSAR의 해법이다.[@autosar-ap-tr-releaseoverview-2025]
 
 AUTOSAR는 Classic Platform과 Adaptive Platform의 공통 부분을 Foundation이라는 표준으로 따로 펴내며, 버스 프로토콜과 [[autosar-methodology|방법론]]의 공통 측면이 그 예다.[@autosar-standards-2026] [[some-ip|SOME/IP]] 프로토콜 명세와 AUTOSAR 용어집은 Foundation에 속한다.[@autosar-fo-tr-glossary-2025][@autosar-fo-prs-someipprotocol-2025]
 
-AUTOSAR Foundation R25-11은 AUTOSAR 플랫폼 사이의 상호운용을 목적으로 한다. Foundation은 Adaptive Platform과 Classic Platform에 공통인 일반 산출물을 담아, 두 플랫폼 사이와, AUTOSAR가 아닌 플랫폼과 AUTOSAR 플랫폼 사이의 호환을 보장한다. Classic Platform과 Adaptive Platform의 각 릴리스는 정해진 판의 Foundation에 기댄다. R25-11 Foundation의 명세 가운데 PRS(Protocol Specification)는 13개이고, SOME/IP, 네트워크 관리, 시간 동기화, 침입 탐지 시스템 등의 프로토콜을 정한다.[@autosar-fo-tr-releaseoverview-2025]
+AUTOSAR Foundation R25-11은 AUTOSAR 플랫폼 사이의 상호운용을 목적으로 한다. Foundation은 Adaptive Platform과 Classic Platform에 공통인 일반 산출물을 담아, 두 플랫폼 사이와, AUTOSAR가 아닌 플랫폼과 AUTOSAR 플랫폼 사이의 호환을 보장한다. Classic Platform과 Adaptive Platform의 각 릴리스는 정해진 판의 Foundation에 기댄다. R25-11 Foundation의 명세 가운데 PRS(Protocol Specification)는 13개이고, SOME/IP, [[autosar-network-management|네트워크 관리]], [[autosar-time-synchronization|시간 동기화]], 침입 탐지 시스템 등의 프로토콜을 정한다.[@autosar-fo-tr-releaseoverview-2025]
 
 Foundation의 역할은 둘이다. 하나는 두 플랫폼의 직접 범위 밖에 있거나 두 플랫폼과 무관한 산출물을 모으는 것으로, 프로토콜 명세와 Abstract Platform이 그 예다. 다른 하나는 두 플랫폼에 함께 적용되는 산출물의 저장소가 되는 것이다. **Abstract Platform**은 Classic Platform, Adaptive Platform, 오프보드 가운데 어디에 배치하든 상관없이 기능 수준 통신을 정의하려고 AUTOSAR가 정한 소프트웨어 플랫폼이다. 방법론과 모델링에서만 있는 것이고, 실제로 배치하는 플랫폼이 아니다. Classic Platform과 Adaptive Platform에서 기능 수준 통신은 [[virtual-functional-bus|VFB]] 수준 통신을 뜻한다.[@autosar-fo-tr-glossary-2025]
 
-AUTOSAR는 자동차용 소프트웨어 기술을 표준화하므로 관련 표준을 모두 따르려 하고, ISO, ASAM, GENIVI 같은 다른 표준화 기구와 정기적으로 접촉한다. 쓸 만한 기존 해법이 있으면 적절할 때 통합하거나 참조하거나 채택하고, 겹치는 곳이 있으면 호환성과 책임 분담을 챙긴다. AUTOSAR의 자주 묻는 질문 페이지에 따르면 JasPar 회원 다수가 AUTOSAR 파트너이고 그 반대도 그렇다. JasPar는 AUTOSAR와 FlexRay 표준의 활용에 집중해 AUTOSAR 규격을 검토하고 검증하고 구현하며, JasPar 안에는 AUTOSAR와 이어 주는 작업 그룹이 있다. AUTOSAR 파트너가 아닌 JasPar 회원은 공개된 AUTOSAR 규격에만 접근할 수 있다.[@autosar-faq-2026]
+AUTOSAR는 자동차용 소프트웨어 기술을 표준화하므로 관련 표준을 모두 따르려 하고, ISO, ASAM, GENIVI 같은 다른 표준화 기구와 정기적으로 접촉한다. 쓸 만한 기존 해법이 있으면 적절할 때 통합하거나 참조하거나 채택하고, 겹치는 곳이 있으면 호환성과 책임 분담을 챙긴다. AUTOSAR의 자주 묻는 질문 페이지에 따르면 JasPar 회원 다수가 AUTOSAR 파트너이고 그 반대도 그렇다. JasPar는 AUTOSAR와 [[flexray|FlexRay]] 표준의 활용에 집중해 AUTOSAR 규격을 검토하고 검증하고 구현하며, JasPar 안에는 AUTOSAR와 이어 주는 작업 그룹이 있다. AUTOSAR 파트너가 아닌 JasPar 회원은 공개된 AUTOSAR 규격에만 접근할 수 있다.[@autosar-faq-2026]
 
 두 플랫폼의 차이는 [[autosar-classic-platform#Adaptive Platform과의 차이|AUTOSAR Classic Platform]]에서 다룬다.
 
@@ -86,11 +86,11 @@ Standardization Template은 문서 종류를 열 가지로 정한다. 그 가운
 
 예를 들어 Layered Software Architecture 설명서는 요구사항을 담지 않은 정보 제공용 문서다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-SRS(Software Requirements Specification)는 이 문서 종류에 없다.[@autosar-fo-tps-standardizationtemplate-2025] Port Driver SWS는 입력 요구사항 문서를 SRS 문서라 부르지만, 그 문서의 파일 이름은 `AUTOSAR_CP_RS_PortDriver`처럼 RS이고, 요구사항 ID에는 SRS_BSW_00358처럼 SRS 접두어가 붙는다.[@autosar-cp-sws-portdriver-2025]
+[[software-requirements-specification|SRS]]는 이 문서 종류에 없다.[@autosar-fo-tps-standardizationtemplate-2025] Port Driver SWS는 입력 요구사항 문서를 SRS 문서라 부르지만, 그 문서의 파일 이름은 `AUTOSAR_CP_RS_PortDriver`처럼 RS이고, 요구사항 ID에는 SRS_BSW_00358처럼 SRS 접두어가 붙는다.[@autosar-cp-sws-portdriver-2025]
 
 ## 규격 항목 ID와 API 명세
 
-AUTOSAR 규격 항목(specification item)의 ID는 표준 약어(생략 가능), 문서 종류 약어, 문서 이름 약어, 특수화(생략 가능), 번호를 밑줄로 이은 꼴이고, 번호는 00000부터 99999까지의 고유 번호다. ID는 [SWS_Port_00140]처럼 대괄호 안에 쓴다.[@autosar-fo-tps-standardizationtemplate-2025] BSW(Basic Software) 모듈의 규격 항목은 BSW 요구사항으로 추적되고, BSW 모듈 구현은 해당 규격 항목까지의 추적성을 보장해야 한다.[@autosar-cp-sws-bswgeneral-2025] AUTOSAR R25-11의 Adaptive Platform System Tests 기술 보고서는 Adaptive Platform Demonstrator가 functional cluster의 요구사항을 채우는지 확인하는 [[test-case|테스트 케이스]]를 담는다. 테스트 케이스마다 [STS_CM_00007] 같은 ID가 붙고, 그 테스트 케이스가 확인하는 RS 요구사항과 SWS 규격 항목의 ID가 함께 적힌다.[@autosar-ap-tr-systemtests-2025]
+AUTOSAR 규격 항목(specification item)의 ID는 표준 약어(생략 가능), 문서 종류 약어, 문서 이름 약어, 특수화(생략 가능), 번호를 밑줄로 이은 꼴이고, 번호는 00000부터 99999까지의 고유 번호다. ID는 [SWS_Port_00140]처럼 대괄호 안에 쓴다.[@autosar-fo-tps-standardizationtemplate-2025] BSW(Basic Software) 모듈의 규격 항목은 BSW 요구사항으로 추적되고, BSW 모듈 구현은 해당 규격 항목까지의 [[traceability|추적성]]을 보장해야 한다.[@autosar-cp-sws-bswgeneral-2025] AUTOSAR R25-11의 Adaptive Platform System Tests 기술 보고서는 Adaptive Platform Demonstrator가 functional cluster의 요구사항을 채우는지 확인하는 [[test-case|테스트 케이스]]를 담는다. 테스트 케이스마다 [STS_CM_00007] 같은 ID가 붙고, 그 테스트 케이스가 확인하는 RS 요구사항과 SWS 규격 항목의 ID가 함께 적힌다.[@autosar-ap-tr-systemtests-2025]
 
 ![[diagrams/autosar-specification-item-id.svg]]
 

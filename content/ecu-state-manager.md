@@ -23,6 +23,6 @@ EcuM 명세에는 ECU를 늘 끌 수 있는 것은 아니라는 한계가 있다
 
 ## 멀티코어
 
-멀티코어 ECU에서는 EcuM을 코어마다 하나씩 둔다. 부트로더가 master core를 정하고 그 코어에서 `EcuM_Init`으로 master EcuM을 띄운다. master EcuM은 몇몇 드라이버를 시작하고 [[autosar-methodology#ECU 설정|post-build]] 설정을 정한 뒤, 나머지 코어와 그 코어의 satellite EcuM을 모두 띄운다. 나머지 코어는 **slave core**라 부른다. 각 EcuM은 자기 코어의 OS와 BswM을 시작하고, BswM은 파티션마다 하나씩 있다. EcuM은 모든 코어에서 SchM과 OS를 시작하고, master core와 slave core의 BswM을 모두 초기화한다. 안전 메커니즘을 쓰면 EcuM은 full trust level로 돌아야 한다.[@autosar-cp-sws-ecustatemanager-2025]
+멀티코어 ECU에서는 EcuM을 코어마다 하나씩 둔다. [[bootloader|부트로더]]가 master core를 정하고 그 코어에서 `EcuM_Init`으로 master EcuM을 띄운다. master EcuM은 몇몇 드라이버를 시작하고 [[autosar-methodology#ECU 설정|post-build]] 설정을 정한 뒤, 나머지 코어와 그 코어의 satellite EcuM을 모두 띄운다. 나머지 코어는 **slave core**라 부른다. 각 EcuM은 자기 코어의 OS와 BswM을 시작하고, BswM은 파티션마다 하나씩 있다. EcuM은 모든 코어에서 SchM과 OS를 시작하고, master core와 slave core의 BswM을 모두 초기화한다. [[safety-mechanism|안전 메커니즘]]을 쓰면 EcuM은 full trust level로 돌아야 한다.[@autosar-cp-sws-ecustatemanager-2025]
 
 BSW 모듈을 파티션과 코어에 나눠 두는 일은 [[autosar-layered-architecture#BSW 분산|AUTOSAR 계층 구조]]에서 다룬다.

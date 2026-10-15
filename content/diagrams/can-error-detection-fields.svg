@@ -27,7 +27,7 @@
   <rect x="110.75" y="100.75" width="362.5" height="20.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="96" y="150" text-anchor="end" fill="var(--text, #727981)">CRC 오류</text>
   <rect x="394.75" y="134.75" width="78.5" height="20.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
-  <text x="96" y="184" text-anchor="end" fill="var(--text, #727981)">폼 오류</text>
+  <text x="96" y="184" text-anchor="end" fill="var(--text, #727981)">형식 오류</text>
   <rect x="476.75" y="168.75" width="78.5" height="20.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <rect x="630.75" y="168.75" width="130.5" height="20.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="96" y="218" text-anchor="end" fill="var(--text, #727981)">ACK 오류</text>

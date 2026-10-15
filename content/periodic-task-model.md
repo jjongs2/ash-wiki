@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**주기 태스크 모델**(periodic task model)은 [[real-time-system|실시간 시스템]]이 하는 일을, 요청이 일정한 간격으로 되풀이되는 태스크의 집합으로 나타내는 모델이다. Liu와 Layland는 1973년 논문에서 이 모델로 [[fixed-priority-scheduling|고정 우선순위 스케줄링]]과, 마감 시한에 따라 우선순위를 동적으로 주는 [[earliest-deadline-first|deadline driven 스케줄링]]을 분석했다.[@liu-hard-real-time-1973] 태스크는 끝없이 되풀이해 요청될 수 있다.[@mok-fundamental-design-1983]
+**주기 태스크 모델**(periodic task model)은 [[real-time-system|실시간 시스템]]이 하는 일을, 요청이 일정한 간격으로 되풀이되는 [[task|태스크]]의 집합으로 나타내는 모델이다. Liu와 Layland는 1973년 논문에서 이 모델로 [[fixed-priority-scheduling|고정 우선순위 스케줄링]]과, [[deadline|마감 시한]]에 따라 우선순위를 동적으로 주는 [[earliest-deadline-first|deadline driven 스케줄링]]을 분석했다.[@liu-hard-real-time-1973] 태스크는 끝없이 되풀이해 요청될 수 있다.[@mok-fundamental-design-1983]
 
 ## 파라미터
 
@@ -13,7 +13,7 @@ verified: 2026-09-29
 
 Liu와 Layland의 모델에서 태스크 $\tau_i$의 **요청 주기** $T_i$는 이웃한 두 요청 사이의 일정한 간격이고, **실행 시간** $C_i$는 프로세서가 태스크를 중단 없이 실행하는 데 드는 시간이다. 실행 시간은 태스크의 최대 처리 시간으로 해석할 수 있고, 그러면 다음 요청을 준비하는 비용과 선점 비용도 넣을 수 있다.[@liu-hard-real-time-1973] Tindell의 1992년 [[response-time-analysis|응답 시간 분석]]은 $C_i$를 [[worst-case-execution-time|WCET]]로 두고, [[context-switch|context switch]] 비용을 여기에 넣는다.[@tindell-extendible-approach-1992]
 
-**상대 마감 시한** $D_i$는 태스크가 요청된 시각부터, 그 요청이 끝나야 하는 시각까지의 길이다.[@mok-fundamental-design-1983][@tindell-extendible-approach-1992] 마감 시한은 [[deadline|마감 시한]]에서 다룬다.
+**상대 마감 시한** $D_i$는 태스크가 요청된 시각부터, 그 요청이 끝나야 하는 시각까지의 길이다.[@mok-fundamental-design-1983][@tindell-extendible-approach-1992]
 
 ![[diagrams/task-timing-parameters.svg]]
 

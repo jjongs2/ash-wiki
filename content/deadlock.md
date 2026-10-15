@@ -11,7 +11,7 @@ verified: 2026-09-30
 
 ## 생기는 과정
 
-태스크 A가 락 L1을, 태스크 B가 락 L2를 잡은 뒤 A가 L2를, B가 L1을 요청하면 두 태스크는 서로를 기다리며 멈춘다.[@linux-locking-guide-2026][@microsoft-driver-verifier-deadlock-2020] 이처럼 여러 락을 중첩해 잡되 태스크마다 다른 순서로 잡으면 교착 상태가 생길 수 있다.[@microsoft-driver-verifier-deadlock-2020][@linux-lockdep-2026]
+[[task|태스크]] A가 락 L1을, 태스크 B가 락 L2를 잡은 뒤 A가 L2를, B가 L1을 요청하면 두 태스크는 서로를 기다리며 멈춘다.[@linux-locking-guide-2026][@microsoft-driver-verifier-deadlock-2020] 이처럼 여러 락을 중첩해 잡되 태스크마다 다른 순서로 잡으면 교착 상태가 생길 수 있다.[@microsoft-driver-verifier-deadlock-2020][@linux-lockdep-2026]
 
 ![[diagrams/deadlock-lock-order-cycle.svg]]
 

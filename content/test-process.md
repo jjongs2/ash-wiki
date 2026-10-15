@@ -108,6 +108,6 @@ $$
 ## 실행과 완료의 산출물
 
 - **테스트 로그**(test log): 테스트 실행에 관한 세부 사항을 시간순으로 적은 기록이다.[@istqb-glossary-test-log-2026]
-- **사건 보고서**(incident report): 정의와 결함 보고서와의 관계, 처리는 [[defect-management|결함 관리]]에서 다룬다.
+- **사건 보고서**(incident report): 정의와 결함 보고서와의 관계, 처리는 [[defect-management#결함 보고서와 사건 보고서|결함 관리]]에서 다룬다.
 - **테스트 진행 보고서**(test progress report): 기준선에 견준 테스트 활동의 진행, 리스크, 결정할 대안을 담는 정기 테스트 보고서이고, test status report라고도 부른다.[@istqb-glossary-test-progress-report-2026] 테스트 진행 보고서는 테스트 모니터링과 제어 중에 대개 정기적으로 낸다.[@istqb-ctfl-syllabus-2024]
 - **테스트 완료 보고서**(test completion report): ISO/IEC/IEEE 29119-3:2021은 테스트 완료 보고서를 수행한 테스트를 요약한 보고서로 정의하고, test summary report를 같은 말로 둔다.[@iso-iec-ieee-29119-3-obp-2021] 테스트 완료 보고서는 완료 마일스톤에서 내며, 테스트 항목을 종료 기준에 견주어 평가한다.[@istqb-glossary-test-completion-report-2026] 테스트 완료 보고서는 테스트 완료 중에 쓰고, 테스트 계획서의 목표와 종료 기준에 견준 평가, 완화하지 못한 리스크와 고치지 않은 결함, 교훈을 담는다. ISTQB CTFL v4.0.1 강의계획서는 프로젝트나 반복이 끝날 때, 릴리스 마일스톤 등에서 여는 [[scrum#이벤트|회고]]의 결과를 기록하기를 권한다. 그 결과는 대개 테스트 완료 보고서에 담긴다.[@istqb-ctfl-syllabus-2024]

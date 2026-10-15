@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-07
 ---
 
-**Transformer**는 [[autosar-classic-platform|AUTOSAR Classic Platform]]의 BSW(Basic Software) 모듈로, [[autosar-rte|RTE]]가 넘긴 데이터를 변환해 돌려준다. 구조를 가진 데이터를 선형의 바이트 배열로 직렬화하거나, 이미 선형인 데이터를 고치거나 늘린다(예: 체크섬 덧붙이기). Transformer는 RTE에 통신 서비스를 주는 [[autosar-communication-stack|Communication Services]]에 들고, RTE가 그 서비스를 필요로 할 때 실행한다. 내부 상태를 가질 수 있어 라이브러리로 치지 않지만, 상태 없이 동작할 수도 있다. AUTOSAR R25-11의 transformer 일반 명세는 transformer가 그 기능에 상태가 필요할 때만 상태를 갖도록 정한다.[@autosar-cp-asws-transformergeneral-2025]
+**Transformer**는 [[autosar-classic-platform|AUTOSAR Classic Platform]]의 BSW(Basic Software) 모듈로, [[autosar-rte|RTE]]가 넘긴 데이터를 변환해 돌려준다. 구조를 가진 데이터를 선형의 바이트 배열로 직렬화하거나, 이미 선형인 데이터를 고치거나 늘린다(예: [[checksum|체크섬]] 덧붙이기). Transformer는 RTE에 통신 서비스를 주는 [[autosar-communication-stack|Communication Services]]에 들고, RTE가 그 서비스를 필요로 할 때 실행한다. 내부 상태를 가질 수 있어 라이브러리로 치지 않지만, 상태 없이 동작할 수도 있다. AUTOSAR R25-11의 transformer 일반 명세는 transformer가 그 기능에 상태가 필요할 때만 상태를 갖도록 정한다.[@autosar-cp-asws-transformergeneral-2025]
 
 ## Transformer chain
 
@@ -15,7 +15,7 @@ System Template에 적은 순서는 송신 쪽의 순서이고, 수신 쪽은 �
 
 Transformer는 기능에 따라 Serializer, Safety, Security, Custom 네 클래스로 나뉘고, 체인 하나에는 클래스마다 transformer를 하나까지만 둔다. Serializer는 데이터를 바이트 배열로 직렬화한다. Safety transformer는 의도하지 않은 변경에 맞서 통신을 보호하고, Security transformer는 의도한 변경에 맞서 통신의 authenticity, 무결성, 신선도를 지킨다. Custom transformer는 AUTOSAR가 정하지 않은 transformer로, CDD(Complex Driver)로 구현할 수 있다.[@autosar-cp-asws-transformergeneral-2025]
 
-버퍼 처리 방식은 in-place와 out-of-place 둘이다. In-place는 입력 버퍼를 출력 버퍼로도 쓰고, out-of-place는 입력 버퍼와 출력 버퍼를 따로 쓰며 입력 버퍼를 바꾸지 않는다. 어느 방식을 쓸지는 System Template의 설정으로 정한다. Transformer가 쓰는 버퍼는 RTE가 최악의 경우에 필요한 출력 크기를 계산해 잡는다. 송신 쪽 첫 transformer는 SW-C 문맥에 있는 원래 데이터를 고칠 수 없고, 수신 쪽 마지막 transformer는 결과를 SW-C의 버퍼에 바로 써야 하므로, 둘은 out-of-place를 쓴다.[@autosar-cp-asws-transformergeneral-2025]
+버퍼 처리 방식은 in-place와 out-of-place 둘이다. In-place는 입력 버퍼를 출력 버퍼로도 쓰고, out-of-place는 입력 버퍼와 출력 버퍼를 따로 쓰며 입력 버퍼를 바꾸지 않는다. 어느 방식을 쓸지는 System Template의 설정으로 정한다. Transformer가 쓰는 버퍼는 RTE가 최악의 경우에 필요한 출력 크기를 계산해 잡는다. 송신 쪽 첫 transformer는 SW-C context에 있는 원래 데이터를 고칠 수 없고, 수신 쪽 마지막 transformer는 결과를 SW-C의 버퍼에 바로 써야 하므로, 둘은 out-of-place를 쓴다.[@autosar-cp-asws-transformergeneral-2025]
 
 예를 들어 in-place 버퍼를 쓰지 않는 체인에서 RTE는 [[some-ip|SOME/IP]] Transformer를 먼저, [[autosar-e2e-protection#E2E Library와 E2E Transformer|E2E Transformer]]를 그다음으로 부른다. 두 transformer는 저마다 RTE가 준 다른 버퍼에 출력을 쓰고, RTE는 최종 바이트 배열을 [[autosar-com|AUTOSAR COM]]에 넘긴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 

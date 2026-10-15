@@ -16,7 +16,7 @@ verified: 2026-10-02
 
 SEI는 시스템이나 제품의 품질이 그것을 개발하고 유지하는 데 쓰는 프로세스의 품질에 크게 좌우된다는 프로세스 관리의 전제를 받아들여, 이 전제를 담은 CMM(Capability Maturity Model)들을 정의했다.[@cmmi-product-team-cmmi-development-2010]
 
-ISO/IEC 25010:2023은 제품 품질을 아홉 특성으로 나눈다.[@iso-iec-25010-obp-2023] 특성과 부특성은 [[software-quality-model|소프트웨어 품질 모델]]에서 다룬다.
+ISO/IEC 25010:2023은 제품 품질을 아홉 특성으로 나눈다.[@iso-iec-25010-obp-2023] 특성과 부특성은 [[software-quality-model#ISO/IEC 25010의 제품 품질 모델|소프트웨어 품질 모델]]에서 다룬다.
 
 ISO 9001:2026은 품질경영시스템 전체와 그 프로세스에 [[pdca-cycle|PDCA 사이클]]을 적용할 수 있다고 둔다.[@iso-9001-obp-2026]
 
@@ -28,7 +28,7 @@ ISO 9000:2026은 **품질 보증**(quality assurance)을, 품질 요구사항이
 
 ## 평가, 감사, 검증
 
-- [[process-assessment|프로세스 평가]](process assessment): ISO/IEC 33001:2015는 조직 단위의 프로세스를 프로세스 평가 모델에 견주어 규율 있게 평가하는 일로 정의한다.[@iso-iec-33001-obp-2015]
+- [[process-assessment|프로세스 평가]](process assessment): ISO/IEC 33001:2015는 조직 단위의 프로세스를 [[process-assessment#프로세스 모델|프로세스 평가 모델]]에 견주어 규율 있게 평가하는 일로 정의한다.[@iso-iec-33001-obp-2015]
 - **감사**(audit): ISO 9000:2026은 감사 기준이 충족되는 정도를 판정하려고 증거를 얻어 객관적으로 평가하는 체계적이고 독립적인 프로세스로 정의한다.[@iso-9000-obp-2026]
 
 ISO/IEC 25000:2014는 소프트웨어 제품의 정적 속성은 [[software-review|리뷰]], [[software-inspection|인스펙션]], 시뮬레이션, 자동화 도구로 검증할 수 있고, 동작의 속성은 테스트와 운용 중에 실행해 [[verification-and-validation|검증·확인]]할 수 있다고 둔다.[@iso-iec-25000-obp-2014]

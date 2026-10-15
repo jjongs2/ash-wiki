@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**AUTOSAR 방법론**은 [[autosar-classic-platform|AUTOSAR Classic Platform]]으로 시스템을 개발하는 주요 단계, 곧 [[virtual-functional-bus|VFB]] 정의부터 ECU 실행 파일 생성까지를 다루며, 역할이 수행해 산출물(work product)을 만드는 작업(activity)을 정한다. 완전한 프로세스 기술이 아니고 작업의 정확한 순서도 정하지 않으며, 작업이 어떤 산출물에 의존하는지만 정하는 산출물 흐름이다.[@autosar-cp-tr-methodology-2025] Adaptive Platform의 방법론은 [[autosar-manifest#Adaptive Platform 방법론|AUTOSAR Manifest]]에서 다룬다.
+**AUTOSAR 방법론**은 [[autosar-classic-platform|AUTOSAR Classic Platform]]으로 시스템을 개발하는 주요 단계, 곧 [[virtual-functional-bus|VFB]] 정의부터 ECU 실행 파일 생성까지를 다루며, 역할이 수행해 산출물(work product)을 만드는 작업(activity)을 정한다. 완전한 프로세스 기술이 아니고 작업의 정확한 순서도 정하지 않으며, 작업이 어떤 산출물에 의존하는지만 정하는 산출물 흐름이다.[@autosar-cp-tr-methodology-2025] [[autosar-adaptive-platform|Adaptive Platform]]의 방법론은 [[autosar-manifest#Adaptive Platform 방법론|AUTOSAR Manifest]]에서 다룬다.
 
 ## 작업 흐름
 

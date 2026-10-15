@@ -31,7 +31,7 @@ Microchip CoreEDAC 사용자 가이드에 따르면 고치는 오류가 많을�
 
 TI TMS570LS0914는 플래시와 RAM에 ECC를 두어, 단일 비트 오류를 고치고 다중 비트 오류는 알리기만 한다.[@ti-tms570ls0914-2016] NXP S32K1xx는 플래시와 SRAM에 ECC를 두어 단일 비트 오류를 고치고, 고칠 수 없는 오류는 알린다. S32K11x의 SRAM_L에는 ECC가 없다.[@nxp-an12522-2019]
 
-TI Hercules MCU는 SRAM과 플래시의 ECC를 실행 중의 하드웨어 [[safety-mechanism|안전 메커니즘]]으로 쓴다.[@ti-spry178-2011] NXP 앱노트 AN13566에 따르면 ECC 메모리는 ISO 26262 같은 기능 안전 준수가 필요한 시스템에 알맞다.[@nxp-an13566-2022]
+TI Hercules MCU는 SRAM과 플래시의 ECC를 실행 중의 하드웨어 [[safety-mechanism|안전 메커니즘]]으로 쓴다.[@ti-spry178-2011] NXP 앱노트 AN13566에 따르면 ECC 메모리는 [[iso-26262|ISO 26262]] 같은 [[functional-safety|기능 안전]] 준수가 필요한 시스템에 알맞다.[@nxp-an13566-2022]
 
 ## ARQ와의 차이
 

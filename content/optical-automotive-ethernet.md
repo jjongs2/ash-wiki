@@ -24,7 +24,7 @@ P802.3bv PAR(Project Authorization Request)는 POF가 설치가 쉽고, 차량�
 
 IEEE 802.3cz-2023은 BASE-U PCS와 PMA에 다중 모드 유리 광섬유용 PMD를 붙여 차량 환경에서 동작하는 [[ethernet-phy|PHY]] 묶음을 **BASE-AU**라 부르고, 2.5GBASE-AU, 5GBASE-AU, 10GBASE-AU, 25GBASE-AU, 50GBASE-AU를 이에 넣는다. BASE-AU PMD는 50/125 µm 다중 모드 광섬유(OM3)에서 0.2 m부터 40 m까지를 동작 범위로 둔다.[@ieee-802-3cz-2023]
 
-P802.3cz 수정 PAR(2022)는 차량 산업이 ADAS(Advanced Driver Assistance Systems)를 위해 이더넷으로 옮겨 가면서 1 Gbit/s를 넘는 속도가 필요해졌다고 밝혔다. IEEE 802.3 작업 그룹은 graded-index 유리 광섬유와 플라스틱 광섬유의 기술 수준이 다르고 유리 광섬유만 다루면 더 빨리 끝낼 수 있다고 보아, PAR의 제목, 범위, 필요성을 유리 광섬유만 다루도록 고쳤다.[@ieee-802-3cz-par-2022] 플라스틱 광섬유 위의 멀티기가비트 차량용 이더넷은 P802.3dh 태스크 포스가 맡았고, 그 작업은 2024년 2월 16일 P802.3dh PAR가 철회되면서 끝났다.[@ieee-802-3dh-tf-2024]
+P802.3cz 수정 PAR(2022)는 차량 산업이 ADAS(Advanced Driver Assistance Systems)를 위해 이더넷으로 옮겨 가면서 1 Gbit/s를 넘는 속도가 필요해졌다고 밝혔다. IEEE 802.3 작업 그룹은 graded-index 유리 광섬유와 플라스틱 광섬유의 기술 수준이 다르고 유리 광섬유만 다루면 더 빨리 끝낼 수 있다고 보아, PAR의 제목, 범위, 필요성을 유리 광섬유만 다루도록 고쳤다.[@ieee-802-3cz-par-2022] 플라스틱 광섬유 위의 멀티기가비트 [[automotive-ethernet|차량용 이더넷]]은 P802.3dh 태스크 포스가 맡았고, 그 작업은 2024년 2월 16일 P802.3dh PAR가 철회되면서 끝났다.[@ieee-802-3dh-tf-2024]
 
 ## OPEN Alliance 명세
 

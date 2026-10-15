@@ -87,7 +87,7 @@ BSW 모듈은 파티션과 코어 여럿에 나눠 둘 수 있으며, 모든 파
 
 ### 멀티코어
 
-모듈은 파티션마다 완전히 똑같이 둘 수도 있고(I/O 스택의 [[autosar-dio-driver|DIO Driver]]), 코어에 따라 분기해 다르게 동작하게 할 수도 있다. [[autosar-com|COM]] 서비스와 [[autosar-pwm-driver|PWM Driver]]는 satellite로 들어온 호출을 master가 처리하는 master/satellite 통신을 쓴다. master와 satellite 사이의 통신은 표준화되지 않았으며, BSW scheduler의 함수나 공유 메모리로 구현할 수 있다. IOC는 같은 ECU 안에서 OS-Application 경계를 넘어 통신하는 클라이언트에 통신 서비스를 주며, OS의 일부다. ComM처럼 여러 코어에서 실행될 수 있는 BSW 모듈은 서비스를 실행할 코어가 실행 중에 정해진다. 코어마다 저마다 ECU 상태 관리가 돈다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+모듈은 파티션마다 완전히 똑같이 둘 수도 있고(I/O 스택의 [[autosar-dio-driver|DIO Driver]]), 코어에 따라 분기해 다르게 동작하게 할 수도 있다. [[autosar-com|COM]] 서비스와 [[autosar-pwm-driver|PWM Driver]]는 satellite로 들어온 호출을 master가 처리하는 master/satellite 통신을 쓴다. master와 satellite 사이의 통신은 표준화되지 않았으며, BSW scheduler의 함수나 공유 메모리로 구현할 수 있다. IOC는 같은 ECU 안에서 [[autosar-os-application|OS-Application]] 경계를 넘어 통신하는 클라이언트에 통신 서비스를 주며, OS의 일부다. ComM처럼 여러 코어에서 실행될 수 있는 BSW 모듈은 서비스를 실행할 코어가 실행 중에 정해진다. 코어마다 저마다 ECU 상태 관리가 돈다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 여러 BSW 파티션에서 접근해야 하는 모듈은 master/satellite 패턴으로 구현할 수 있다. master와 satellite가 일을 나누는 방식은 구현마다 다르다. 한끝에서는 satellite가 같은 파티션의 다른 모듈에 인터페이스만 주고 요청을 모두 master로 넘기며, 다른 끝에서는 satellite가 기능을 모두 로컬로 주고 필요할 때만 내부 상태를 master와 맞춘다. master는 satellite의 요청을 조정하고, 들어오는 요청을 거르거나 감시할 수 있다. master와 satellite는 늘 같은 벤더의 구현이고, 다른 모듈에는 기존 모듈과 같은 인터페이스를 준다. 둘 사이의 통신은 표준화되지 않았고 모듈 내부의 일로 보아 다른 모듈에 드러나지 않는다. 파티션으로 나눈 시스템에서 system service의 표준 해법은 master/satellite 구현이다.[@autosar-cp-exp-bswdistributionguide-2025]
 
@@ -97,7 +97,7 @@ BSW 할당 지원은 AUTOSAR 4.0.3과 하위 호환되는 변경으로 묶여 �
 
 ### 안전 관련 ECU
 
-안전 관련 ECU를 위한 방법은 둘이다. 하나는 BSW 모듈을 모두 요구되는 [[automotive-safety-integrity-level|ASIL]]로 개발하는 것이고, 다른 하나는 고른 모듈만 ASIL로 개발하고 ASIL 모듈과 비ASIL 모듈을 서로 다른 파티션에 나누는 것(BSW 분산)이다. 파티션은 [[autosar-os-application|OS-Application]]을 바탕으로 한다. 두 번째 방법의 예로, watchdog 스택(WdgM, WdgIf(Watchdog Interface), Wdg(Watchdog Driver))을 ASIL BSW 파티션에 따로 두고 나머지 BSW를 QM(Quality Management) BSW 파티션에 두면, ASIL SW-C와 비ASIL SW-C가 모두 RTE를 거쳐 WdgM에 접근할 수 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+안전 관련 ECU를 위한 방법은 둘이다. 하나는 BSW 모듈을 모두 요구되는 [[automotive-safety-integrity-level|ASIL]]로 개발하는 것이고, 다른 하나는 고른 모듈만 ASIL로 개발하고 ASIL 모듈과 비ASIL 모듈을 서로 다른 파티션에 나누는 것(BSW 분산)이다. 파티션은 OS-Application을 바탕으로 한다. 두 번째 방법의 예로, watchdog 스택(WdgM, WdgIf(Watchdog Interface), Wdg(Watchdog Driver))을 ASIL BSW 파티션에 따로 두고 나머지 BSW를 QM(Quality Management) BSW 파티션에 두면, ASIL SW-C와 비ASIL SW-C가 모두 RTE를 거쳐 WdgM에 접근할 수 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ![[diagrams/bsw-asil-qm-partitions.svg]]
 

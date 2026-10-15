@@ -7,9 +7,9 @@ verified: 2026-09-27
 
 **CAN 트랜시버**는 [[can-controller|CAN 컨트롤러]]가 쓰는 디지털 신호와 CAN_H·CAN_L 버스의 [[differential-signaling|차동 신호]] 사이를 변환한다.[@ti-tcan1042-q1-2021] 컨트롤러 쪽으로는 송신 데이터 입력 TXD와 수신 데이터 출력 RXD 핀을, 버스 쪽으로는 CAN_H와 CAN_L 핀을 둔다.[@nxp-tja1042-2023]
 
-ISO 11898-1:2024는 트랜시버를 CAN 노드를 버스에 잇고 [[can-physical-layer|PMA]] 부계층을 구현하는 회로로 정의하고, bus comparator와 bus driver로 이뤄진다고 정한다. bus driver는 디지털 신호를 버스로 보낼 아날로그 신호로 바꾸고, bus comparator는 버스의 아날로그 신호를 디지털 신호로 되돌린다.[@iso-11898-1-obp-2024]
+[[iso-11898-1|ISO 11898-1]]:2024는 트랜시버를 [[can|CAN]] 노드를 버스에 잇고 [[can-physical-layer|PMA]] 부계층을 구현하는 회로로 정의하고, bus comparator와 bus driver로 이뤄진다고 정한다. bus driver는 디지털 신호를 버스로 보낼 아날로그 신호로 바꾸고, bus comparator는 버스의 아날로그 신호를 디지털 신호로 되돌린다.[@iso-11898-1-obp-2024]
 
-ISO 11898-2:2026은 TXD를 PCS(Physical Coding Sublayer)가 구동해 PMA가 버스 상태에 미치는 작용을 정하는 AUI(Attachment Unit Interface) 포트로, RXD를 버스의 실제 상태를 이진 값으로 PCS에 넘기는 AUI 포트로 정의한다.[@iso-11898-2-obp-2026]
+[[iso-11898-2|ISO 11898-2]]:2026은 TXD를 PCS(Physical Coding Sublayer)가 구동해 PMA가 버스 상태에 미치는 작용을 정하는 AUI(Attachment Unit Interface) 포트로, RXD를 버스의 실제 상태를 이진 값으로 PCS에 넘기는 AUI 포트로 정의한다.[@iso-11898-2-obp-2026]
 
 ![[diagrams/can-node-bus.svg]]
 
@@ -81,7 +81,7 @@ TJA1463은 Listen-only 모드에서 수신기만 켜고 송신기는 끈다.[@nx
 
 선택적 웨이크업을 켠 트랜시버는 웨이크업 패턴만으로는 깨어나지 않고, [[can-identifier|식별자]]가 미리 설정한 값과 맞는 웨이크업 프레임을 받으면 깨어난다.[@nxp-tja1145-2018][@ti-tcan1145-q1-2022] TJA1465는 웨이크업 프레임을 식별자만으로 거르거나, 식별자에 [[data-length-code|DLC]]와 데이터 마스크를 더해 거른다.[@nxp-tja1465-2024]
 
-선택적 웨이크업 기능을 갖춘 고속 트랜시버는 이 기능을 위해 CAN 데이터 링크 계층의 일부를 구현한다. [[iso-16845-2|ISO 16845-2:2018]]은 동적 시험에 이렇게 부분 구현된 Classical CAN과 CAN FD 프로토콜의 시험 케이스를 둔다.[@iso-16845-2-obp-2018]
+선택적 웨이크업 기능을 갖춘 고속 트랜시버는 이 기능을 위해 CAN 데이터 링크 계층의 일부를 구현한다. [[iso-16845-2|ISO 16845-2:2018]]은 동적 시험에 이렇게 부분 구현된 Classical CAN과 CAN FD 프로토콜의 [[test-case|테스트 케이스]]를 둔다.[@iso-16845-2-obp-2018]
 
 ## 저속 내결함성 트랜시버와의 차이
 

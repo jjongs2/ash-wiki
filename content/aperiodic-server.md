@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-07
 ---
 
-**aperiodic server**는 주기적이지 않은 태스크를 실행 용량이 정해진 서버 태스크가 처리하게 하여, aperiodic 태스크를 엄격한 [[periodic-task-model|주기 태스크 모델]] 안에서 다루게 하는 방식이다.[@sha-real-time-scheduling-theory-2004] [[ieee-1003-1|POSIX]] 근거 문서에 따르면 sporadic server는 aperiodic 프로세스나 스레드를 주기적인 것처럼 다루게 해 [[real-time-system|실시간 시스템]]의 스케줄 가능성 분석을 단순하게 한다.[@ieee-1003-1-rationale-sporadic-server-2024]
+**aperiodic server**는 주기적이지 않은 [[task|태스크]]를 실행 용량이 정해진 서버 태스크가 처리하게 하여, aperiodic 태스크를 엄격한 [[periodic-task-model|주기 태스크 모델]] 안에서 다루게 하는 방식이다.[@sha-real-time-scheduling-theory-2004] [[ieee-1003-1|POSIX]] 근거 문서에 따르면 sporadic server는 aperiodic 프로세스나 스레드를 주기적인 것처럼 다루게 해 [[real-time-system|실시간 시스템]]의 스케줄 가능성 분석을 단순하게 한다.[@ieee-1003-1-rationale-sporadic-server-2024]
 
 ## Background 처리와 polling
 
@@ -23,7 +23,7 @@ priority exchange, deferrable server, sporadic server는 polling server와 비�
 
 **deferrable server**는 aperiodic 처리용 실행 시간을 서버 주기 동안 유지하여, 그 주기의 실행 시간이 남아 있는 한 언제든 서버의 높은 우선순위로 aperiodic 요청을 처리한다. 서버의 실행 시간은 서버 주기가 시작될 때마다 가득 보충된다.[@sprunt-sporadic-aperiodic-1989]
 
-deferrable server는 처리할 요청이 없으면 실행 시간을 보존하는데, 이는 주기 태스크가 실행을 미루는 것과 같다. 그래서 deferrable server는 우선순위가 가장 높은 준비된 주기 태스크는 곧바로 실행되어야 한다는 Liu와 Layland의 가정을 어기며, 이 때문에 원래 스케줄 가능한 태스크 집합에서도 더 낮은 우선순위 태스크가 마감 시한을 놓칠 수 있다. deferrable server는 priority exchange보다 구현이 훨씬 간단하지만, 주기 태스크 수가 한없이 많아질 때, 같은 서버 크기에서 [[rate-monotonic-scheduling|RM]]이 주기 태스크를 늘 스케줄할 수 있는 이용률 상한이 priority exchange보다 낮다.[@sprunt-sporadic-aperiodic-1989]
+deferrable server는 처리할 요청이 없으면 실행 시간을 보존하는데, 이는 주기 태스크가 실행을 미루는 것과 같다. 그래서 deferrable server는 우선순위가 가장 높은 준비된 주기 태스크는 곧바로 실행되어야 한다는 Liu와 Layland의 가정을 어기며, 이 때문에 원래 스케줄 가능한 태스크 집합에서도 더 낮은 우선순위 태스크가 [[deadline|마감 시한]]을 놓칠 수 있다. deferrable server는 priority exchange보다 구현이 훨씬 간단하지만, 주기 태스크 수가 한없이 많아질 때, 같은 서버 크기에서 [[rate-monotonic-scheduling|RM]]이 주기 태스크를 늘 스케줄할 수 있는 이용률 상한이 priority exchange보다 낮다.[@sprunt-sporadic-aperiodic-1989]
 
 ### Priority exchange
 

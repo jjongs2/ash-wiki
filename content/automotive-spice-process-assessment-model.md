@@ -9,7 +9,7 @@ verified: 2026-10-02
 
 ## 프로세스 차원과 능력 차원
 
-프로세스 평가 모델로 프로세스 능력을 판정하는 개념은 두 차원의 틀에 바탕을 둔다. 첫째 차원인 [[process-assessment#프로세스 모델|프로세스 차원]]은 프로세스 참조 모델이 정의한 프로세스로 이뤄지고, 둘째 차원인 능력 차원은 능력 수준과 그것을 다시 나눈 프로세스 속성으로 이뤄진다. 프로세스 속성은 프로세스 능력을 잴 수 있는 특성이다.[@vda-automotive-spice-pam-4-1-2026]
+프로세스 평가 모델로 프로세스 능력을 판정하는 개념은 두 차원의 틀에 바탕을 둔다. 첫째 차원인 [[process-assessment#프로세스 모델|프로세스 차원]]은 프로세스 참조 모델이 정의한 프로세스로 이뤄지고, 둘째 차원인 능력 차원은 [[process-capability-level|능력 수준]]과 그것을 다시 나눈 프로세스 속성으로 이뤄진다. 프로세스 속성은 프로세스 능력을 잴 수 있는 특성이다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 지표의 두 종류
 
@@ -20,7 +20,7 @@ verified: 2026-10-02
 
 ![[diagrams/aspice-assessment-indicators.svg]]
 
-지표는 프로세스 성과와 속성 달성이 있는지 가리고 객관적 증거를 모으는 데 쓰는 안내이며, 꼭 따라야 할 점검표가 아니다.[@vda-automotive-spice-pam-4-1-2026] 능력 수준과 프로세스 속성, 그 등급은 [[process-capability-level|프로세스 능력 수준]]에서 다룬다.
+지표는 프로세스 성과와 속성 달성이 있는지 가리고 객관적 증거를 모으는 데 쓰는 안내이며, 꼭 따라야 할 점검표가 아니다.[@vda-automotive-spice-pam-4-1-2026]
 
 평가 지표의 꼴로 보면 이 모델은 프랙티스와 정보 항목만 쓰고, 자원과 인프라는 지표로 쓰지 않는다. 프랙티스는 활동 쪽 지표이고, 정보 항목은 결과 쪽 지표다.[@vda-automotive-spice-pam-4-1-2026]
 
@@ -73,7 +73,7 @@ ASPICE 3.1은 Annex D(Key concepts)에서 [[v-model|V 모델]] 왼쪽의 정보 
 
 ### 추적성과 일관성
 
-ASPICE 4.1은 SYS.2\~SYS.5, SWE.1\~SWE.6, HWE.1\~HWE.4, MLE.1\~MLE.4에 [[traceability#일관성|일관성]]을 보장하고 [[traceability#양방향 추적성|양방향 추적성]]을 세우는 BP를 하나씩 둔다.[@vda-automotive-spice-pam-4-1-2026] 두 개념은 [[traceability|추적성]]에서 다룬다.
+ASPICE 4.1은 SYS.2\~SYS.5, SWE.1\~SWE.6, HWE.1\~HWE.4, MLE.1\~MLE.4에 [[traceability#일관성|일관성]]을 보장하고 [[traceability#양방향 추적성|양방향 추적성]]을 세우는 BP를 하나씩 둔다.[@vda-automotive-spice-pam-4-1-2026]
 
 ### Evaluate, verification criteria, ensuring compliance
 

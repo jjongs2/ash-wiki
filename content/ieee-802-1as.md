@@ -57,7 +57,7 @@ gPTP는 IEEE 1588-2019의 PTP와 다음이 다르다.[@ieee-802-1as-2025]
 
 ## AUTOSAR 시간 동기화와의 차이
 
-[[autosar|AUTOSAR]] R25-11의 Time Synchronization over Ethernet 프로토콜 명세는 IEEE 802.1AS에서 파생한 시간 동기화 프로토콜을 정한다. 이 명세는 IEEE 1588과 IEEE 802.1AS가 차량의 요구를 고려해 만들어지지 않았다고 보고, ECU의 역할이 미리 정해져 있고 네트워크가 운행 중에 바뀌지 않는 정적 구성이라는 점을 들어 IEEE 802.1AS의 메커니즘에 확장과 제약을 둔다. 링크 지연의 주기적 측정도 생략할 수 있게 한다.[@autosar-fo-prs-timesyncoverethernetprotocol-2025]
+[[autosar|AUTOSAR]] R25-11의 Time Synchronization over Ethernet 프로토콜 명세는 IEEE 802.1AS에서 파생한 [[autosar-time-synchronization|시간 동기화]] 프로토콜을 정한다. 이 명세는 IEEE 1588과 IEEE 802.1AS가 차량의 요구를 고려해 만들어지지 않았다고 보고, ECU의 역할이 미리 정해져 있고 네트워크가 운행 중에 바뀌지 않는 정적 구성이라는 점을 들어 IEEE 802.1AS의 메커니즘에 확장과 제약을 둔다. 링크 지연의 주기적 측정도 생략할 수 있게 한다.[@autosar-fo-prs-timesyncoverethernetprotocol-2025]
 
 이 명세가 참조하는 IEEE 802.1AS-2011과 다르게 정하는 점은 아래와 같다.[@autosar-fo-prs-timesyncoverethernetprotocol-2025]
 

@@ -11,7 +11,7 @@ verified: 2026-10-07
 
 EDF에서 [[deadline#절대와 상대|상대 마감 시한]]이 긴 job은 상대 마감 시한이 짧은 job을 늦출 수는 있어도 선점할 수는 없다. 그래서 job은 자기보다 상대 마감 시한이 긴 job을 블록할 수 없고, EDF에서 블로킹을 따질 때는 상대 마감 시한이 긴 job이 짧은 job을 블록하는 경우만 보면 된다. 스택 자원 정책은 이 관찰을 바탕으로 EDF에서 우선순위와 따로, 상대 마감 시한에 반비례하게 정하는 값을 두며 이를 **preemption level**이라 한다.[@sha-real-time-scheduling-theory-2004]
 
-EDF와 함께 쓰면 태스크 $\tau_i$의 job마다 절대 마감 시한에 따른 우선순위와, 상대 마감 시한에 반비례하는 정적 preemption level $\pi_i$를 준다.[@sha-real-time-scheduling-theory-2004]
+EDF와 함께 쓰면 [[task|태스크]] $\tau_i$의 job마다 절대 마감 시한에 따른 우선순위와, 상대 마감 시한에 반비례하는 정적 preemption level $\pi_i$를 준다.[@sha-real-time-scheduling-theory-2004]
 
 ## 상한과 시작 규칙
 

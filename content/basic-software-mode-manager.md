@@ -13,7 +13,7 @@ AUTOSAR R25-11의 BswM 명세는 **Basic Software Mode Manager**(BswM)를 모드
 
 규칙은 mode request condition 여럿을 AND, OR, XOR, NOT, NAND 같은 연산자로 엮은 논리식이다. BswM은 입력인 모드 요청이나 모드 표시가 바뀔 때, 또는 BswM main function이 돌 때 규칙을 평가하고, 그 결과(참이나 거짓)로 대응하는 action list를 실행할지 정한다. 모드 요청은 주로 응용 SW-C에서, 때로 Dcm(Diagnostic Communication Manager) 같은 BSW 모듈에서 온다. 모드 표시는 늘 BSW 모듈이 내며, 버스별 State Manager와 [[ecu-state-manager|EcuM]]이 그 예다. 앞선 규칙 평가의 결과를 다른 규칙의 입력으로 쓸 수는 없다.[@autosar-cp-sws-bswmodemanager-2025]
 
-규칙 평가는 요청이 온 자리에서 곧바로 하거나(immediate), BswM main function까지 미뤄 주기적으로 할 수 있다(deferred). 어느 쪽인지는 요청 포트마다 설정으로 고르고, 한 규칙에 두 가지 요청을 섞어 쓸 수 있다. Immediate 요청은 호출한 쪽의 문맥에서 실행되므로, action list의 실행이 시스템 성능과 일관성을 해치지 않게 하는 것은 시스템 통합자의 몫이다.[@autosar-cp-sws-bswmodemanager-2025]
+규칙 평가는 요청이 온 자리에서 곧바로 하거나(immediate), BswM main function까지 미뤄 주기적으로 할 수 있다(deferred). 어느 쪽인지는 요청 포트마다 설정으로 고르고, 한 규칙에 두 가지 요청을 섞어 쓸 수 있다. Immediate 요청은 호출한 쪽의 context에서 실행되므로, action list의 실행이 시스템 성능과 일관성을 해치지 않게 하는 것은 시스템 통합자의 몫이다.[@autosar-cp-sws-bswmodemanager-2025]
 
 ## Action list
 

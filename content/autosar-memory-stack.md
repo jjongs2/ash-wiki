@@ -47,7 +47,7 @@ NvM은 NVRAM 블록마다 설정한 장치 ID로 메모리 추상화 모듈을 �
 
 AUTOSAR R25-11의 Bulk NvData Manager 명세는 **BndM**을 자주 읽히지만 드물게 고쳐지는 큰 비휘발성 데이터를 위한 모듈로 정의한다. 예로 생산 때 차량마다 계산해 저장하는 variant coding 데이터가 있다. BndM은 NvM과 달리 데이터를 플래시에서 직접 읽는 API를 주어 RAM mirror를 두지 않는 대신, 쓰기가 더 복잡하다. 이 명세가 지원하는 쓰기는 고성능 마이크로컨트롤러에 있는 A/B 섹터 전환을 쓰는 PFlash 쓰기뿐이다.[@autosar-cp-sws-bulknvdatamanager-2025]
 
-BndM은 블록을 포인터로 바로 접근할 수 있는 메모리에 두고, `BndM_GetBlockPtr`는 지금 활성인 파티션에 있는 블록의 기준 포인터를 준다. 플래시를 어떻게 관리할지는 벤더가 정하지만, 기본 생각은 데이터 블록의 A/B 전환이다. 데이터 전체를 파티션 A에 두고, `BndM_WriteStart`가 비어 있는 파티션 B를 준비한다. `BndM_WriteBlock`은 고친 블록을 파티션 B에 쓰고, `BndM_WriteFinalize`는 고치지 않은 블록을 파티션 B로 복사해 일관되게 만든 뒤 활성 파티션을 B로 바꾼다. 준비와 블록 쓰기가 끝나면 BndM은 `BndM_MainFunction`의 문맥에서 사용자의 완료 callback을 부르고, 마무리가 끝나면 마무리 완료 callback을 부른다.[@autosar-cp-sws-bulknvdatamanager-2025]
+BndM은 블록을 포인터로 바로 접근할 수 있는 메모리에 두고, `BndM_GetBlockPtr`는 지금 활성인 파티션에 있는 블록의 기준 포인터를 준다. 플래시를 어떻게 관리할지는 벤더가 정하지만, 기본 생각은 데이터 블록의 A/B 전환이다. 데이터 전체를 파티션 A에 두고, `BndM_WriteStart`가 비어 있는 파티션 B를 준비한다. `BndM_WriteBlock`은 고친 블록을 파티션 B에 쓰고, `BndM_WriteFinalize`는 고치지 않은 블록을 파티션 B로 복사해 일관되게 만든 뒤 활성 파티션을 B로 바꾼다. 준비와 블록 쓰기가 끝나면 BndM은 `BndM_MainFunction`의 context에서 사용자의 완료 callback을 부르고, 마무리가 끝나면 마무리 완료 callback을 부른다.[@autosar-cp-sws-bulknvdatamanager-2025]
 
 ![[diagrams/bndm-ab-partition-write.svg]]
 

@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**응답 시간 분석**(response time analysis)은 태스크가 서로 독립이고 [[real-time-scheduling#선점|선점]]할 수 있는 [[fixed-priority-scheduling|고정 우선순위 스케줄링]]에서, 태스크마다 최악 응답 시간을 구해 그 태스크의 [[deadline|마감 시한]]과 비교하는 스케줄 가능성 검사다.[@joseph-response-times-1986][@audsley-flexible-scheduling-1993] 요청의 **응답 시간**(response time)은 요청이 도착한 때부터 그 요청의 처리를 마칠 때까지의 시간이다.[@joseph-response-times-1986][@liu-hard-real-time-1973] **최악 응답 시간**(worst-case response time)은 한 태스크의 요청이 가질 수 있는 가장 긴 응답 시간이다.[@joseph-response-times-1986]
+**응답 시간 분석**(response time analysis)은 [[task|태스크]]가 서로 독립이고 [[real-time-scheduling#선점|선점]]할 수 있는 [[fixed-priority-scheduling|고정 우선순위 스케줄링]]에서, 태스크마다 최악 응답 시간을 구해 그 태스크의 [[deadline|마감 시한]]과 비교하는 스케줄 가능성 검사다.[@joseph-response-times-1986][@audsley-flexible-scheduling-1993] 요청의 **응답 시간**(response time)은 요청이 도착한 때부터 그 요청의 처리를 마칠 때까지의 시간이다.[@joseph-response-times-1986][@liu-hard-real-time-1973] **최악 응답 시간**(worst-case response time)은 한 태스크의 요청이 가질 수 있는 가장 긴 응답 시간이다.[@joseph-response-times-1986]
 
 태스크 $i$의 주기를 $T_i$, 마감 시한을 $D_i$, 최악 응답 시간을 $R_i$라 하자. 모든 태스크가 $D_i \le T_i$이고 같은 시각에 도착할 수 있는 태스크 집합에서, 모든 태스크가 $R_i \le D_i$를 만족하면 태스크 집합은 스케줄 가능하다.[@audsley-flexible-scheduling-1993]
 
@@ -37,4 +37,4 @@ $$
 
 태스크가 최소 도착 간격이 $T_i$인 [[periodic-task-model#주기 태스크와 sporadic 태스크|sporadic 태스크]]이고 같은 태스크의 요청은 도착 순서대로 실행된다고 두면, 마감 시한이 주기보다 길 때는 $R_i$가 $T_i$를 넘을 수 있다. 그러면 같은 태스크의 요청 여럿이 한 priority level-$i$ busy period 안에서 함께 활성일 수 있고, 그 가운데 어느 요청이든 최악 응답 시간을 낼 수 있다. 그래서 첫 요청만 보아서는 최악 응답 시간을 얻지 못하고, busy period 안의 요청을 모두 따져 그 최댓값을 취해야 한다.[@burns-arbitrary-deadlines-2017]
 
-태스크가 서로 독립이고 선점할 수 있으면 응답 시간 분석은 필요충분조건 검사다.[@joseph-response-times-1986][@audsley-flexible-scheduling-1993] 이 검사는 우선순위를 어떻게 정했든 적용된다.[@audsley-flexible-scheduling-1993] 그래서 RM의 [[rate-monotonic-scheduling#이용률 상한|이용률 상한]] 같은 충분조건 검사가 판정하지 못하는 태스크 집합도 판정한다.[@joseph-response-times-1986][@liu-hard-real-time-1973] 검사의 종류는 [[schedulability-analysis|스케줄링 분석]]에서 다룬다.
+태스크가 서로 독립이고 선점할 수 있으면 응답 시간 분석은 필요충분조건 검사다.[@joseph-response-times-1986][@audsley-flexible-scheduling-1993] 이 검사는 우선순위를 어떻게 정했든 적용된다.[@audsley-flexible-scheduling-1993] 그래서 RM의 [[rate-monotonic-scheduling#이용률 상한|이용률 상한]] 같은 충분조건 검사가 판정하지 못하는 태스크 집합도 판정한다.[@joseph-response-times-1986][@liu-hard-real-time-1973] 검사의 종류는 [[schedulability-analysis#충분조건 검사와 필요충분조건 검사|스케줄링 분석]]에서 다룬다.

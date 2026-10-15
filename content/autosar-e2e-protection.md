@@ -21,7 +21,7 @@ verified: 2026-10-07
 - 메서드를 보호할 때 요청과 응답을 가르는 메시지 유형, 정상 응답과 오류 응답을 가르는 메시지 결과
 - 수신 측의 통신 타임아웃과 송신 측의 확인 응답 타임아웃 검출[@autosar-fo-prs-e2eprotocol-2025]
 
-이 가운데 일부는 RTE, COM, 통신 스택에도 구현돼 있다. 그러나 이 모듈들에 안전 요구가 할당되는 것을 줄이거나 피하려고, E2E 보호는 그 구현을 쓰지 않고 CRC 계산 루틴만 빌려 모든 메커니즘을 스스로 갖춘다.[@autosar-fo-prs-e2eprotocol-2025]
+이 가운데 일부는 RTE, COM, [[autosar-communication-stack|통신 스택]]에도 구현돼 있다. 그러나 이 모듈들에 안전 요구가 할당되는 것을 줄이거나 피하려고, E2E 보호는 그 구현을 쓰지 않고 CRC 계산 루틴만 빌려 모든 메커니즘을 스스로 갖춘다.[@autosar-fo-prs-e2eprotocol-2025]
 
 Sequence counter는 메시지가 빠지거나 되풀이됐는지 확인하는 데 쓰는 카운터이고, alive counter는 새 값이 계속 오는지, 곧 송신자가 아직 살아 있는지 확인하는 카운터다.[@autosar-fo-tr-glossary-2025]
 
@@ -51,4 +51,4 @@ AUTOSAR Classic Platform R25-11의 E2E Library 명세는 보호 메커니즘의 
 
 ## Adaptive Platform의 E2E
 
-AUTOSAR R25-11의 Adaptive Platform 설계 설명서는 E2E 보호로 정보가 전송 중에 바뀌었는지, 메시지가 전송 중에 빠지거나 되풀이됐는지를 검사하고, E2E 상태 기계로 통신 채널의 신뢰성을 검사할 수 있게 둔다. 이 릴리스에서 E2E는 Event, Method, Field를 지원하되 저마다 Communication Management 명세가 정한 제한이 있다. Callout 모드의 Event, 비주기 Event, 제약 없는 Method는 지원하지 않는다.[@autosar-ap-exp-platformdesign-2025]
+AUTOSAR R25-11의 Adaptive Platform 설계 설명서는 E2E 보호로 정보가 전송 중에 바뀌었는지, 메시지가 전송 중에 빠지거나 되풀이됐는지를 검사하고, E2E 상태 기계로 통신 채널의 신뢰성을 검사할 수 있게 둔다. 이 릴리스에서 E2E는 Event, Method, Field를 지원하되 저마다 [[autosar-communication-management|Communication Management]] 명세가 정한 제한이 있다. Callout 모드의 Event, 비주기 Event, 제약 없는 Method는 지원하지 않는다.[@autosar-ap-exp-platformdesign-2025]

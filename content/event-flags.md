@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-07
 ---
 
-**이벤트 플래그**(event flag)는 사건이 일어났는지를 비트 하나로 나타내는 동기화 수단이다. 플래그 비트 여러 개가 한 객체에 묶이고, 태스크는 그 가운데 고른 비트들 중 하나라도 설정되기를(OR) 기다리거나 모두 설정되기를(AND) 기다린다. 플래그는 태스크뿐 아니라 인터럽트 처리기도 설정할 수 있다.[@micrium-ucos-iii-event-flags-2026][@arm-cmsis-rtos2-event-flags-2026] FreeRTOS는 이벤트 플래그의 묶음을 **event group**이라 부른다.[@freertos-event-groups-2026]
+**이벤트 플래그**(event flag)는 사건이 일어났는지를 비트 하나로 나타내는 동기화 수단이다. 플래그 비트 여러 개가 한 객체에 묶이고, [[task|태스크]]는 그 가운데 고른 비트들 중 하나라도 설정되기를(OR) 기다리거나 모두 설정되기를(AND) 기다린다. 플래그는 태스크뿐 아니라 인터럽트 처리기도 설정할 수 있다.[@micrium-ucos-iii-event-flags-2026][@arm-cmsis-rtos2-event-flags-2026] FreeRTOS는 이벤트 플래그의 묶음을 **event group**이라 부른다.[@freertos-event-groups-2026]
 
 ![[diagrams/event-flags-or-and-wait.svg]]
 
@@ -37,4 +37,4 @@ CMSIS-RTOS2에서는 스레드가 깨어나면 기다린 플래그가 `osFlagsNo
 
 FreeRTOS의 task notification은 큐, 세마포어, event group으로 같은 일을 할 때보다 사건이나 데이터를 훨씬 빠르게, RAM을 덜 쓰며 보낸다. 대신 받는 태스크가 하나뿐이고, 값 하나만 담으며, 태스크에서 인터럽트 처리기로는 보내지 못한다.[@freertos-task-notifications-2026] µC/OS-III의 태스크 세마포어도 별도 세마포어 객체를 쓰는 것보다 효율적이다.[@micrium-ucos-iii-task-semaphore-2026]
 
-OSEK OS의 이벤트 모델은 [[osek-event|OSEK 이벤트]]에서 다룬다.
+[[osek-os|OSEK OS]]의 이벤트 모델은 [[osek-event|OSEK 이벤트]]에서 다룬다.

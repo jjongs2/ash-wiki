@@ -33,11 +33,11 @@ ECU는 파워트레인, 섀시, 바디, 인포테인먼트 같은 기능 도메�
 
 TI 자료에 따르면 존 모듈은 스마트 센서·액추에이터와 [[can-fd|CAN FD]]나 [[lin|LIN]] 같은 저속 버스로 잇고[@ti-spry345-2024], 대역폭이 작은 바디 모듈에는 [[can|CAN]], LIN과 10 Mbit/s 이더넷([[10base-t1s|10BASE-T1S]])을 쓴다.[@ti-ssztd02-2025] Bosch Zone ECU는 이더넷 인터페이스를 최대 8개, CAN 인터페이스를 20개, LIN 인터페이스를 25개 둔다.[@bosch-zone-ecu-2026]
 
-TI 백서에 따르면 여러 기능을 한 존 모듈에 모으면, 그 MCU는 ASIL(Automotive Safety Integrity Level)이 서로 다른 기능을 가상화로 함께 돌리는 혼합 임계도(mixed-criticality)를 지원해야 한다.[@ti-spry345-2024] ISO 26262-1:2018은 ASIL을 안전 요구와 안전 조치를 정하는 네 등급 가운데 하나로 정의하며, D가 가장 엄격하고 A가 가장 느슨하다. 또 둘 이상의 요소 사이에 안전 요구를 어기게 할 수 있는 cascading failure가 없는 것을 [[freedom-from-interference|freedom from interference]]라 정의한다.[@iso-26262-1-obp-2018] ISO 26262-9:2018은 요소의 공존 기준에 대한 요구사항을 정한다.[@iso-26262-9-obp-2018]
+TI 백서에 따르면 여러 기능을 한 존 모듈에 모으면, 그 MCU는 [[automotive-safety-integrity-level|ASIL]]이 서로 다른 기능을 가상화로 함께 돌리는 혼합 임계도(mixed-criticality)를 지원해야 한다.[@ti-spry345-2024] [[iso-26262|ISO 26262]]-1:2018은 ASIL을 안전 요구와 안전 조치를 정하는 네 등급 가운데 하나로 정의하며, D가 가장 엄격하고 A가 가장 느슨하다. 또 둘 이상의 요소 사이에 안전 요구를 어기게 할 수 있는 cascading failure가 없는 것을 [[freedom-from-interference|freedom from interference]]라 정의한다.[@iso-26262-1-obp-2018] ISO 26262-9:2018은 요소의 공존 기준에 대한 요구사항을 정한다.[@iso-26262-9-obp-2018]
 
 ## 중앙 컴퓨터
 
-Bosch에 따르면 SDV(Software-Defined Vehicle)는 소프트웨어를 하드웨어에서 떼어 내, 차량의 동작과 기능이 대부분 소프트웨어로 정해지는 차량이며, OTA(Over-The-Air) 업데이트로 기능을 더하거나 고친다.[@bosch-software-defined-mobility-2026]
+Bosch에 따르면 [[software-defined-vehicle|SDV]]는 소프트웨어를 하드웨어에서 떼어 내, 차량의 동작과 기능이 대부분 소프트웨어로 정해지는 차량이며, [[over-the-air-update|OTA]] 업데이트로 기능을 더하거나 고친다.[@bosch-software-defined-mobility-2026]
 
 기능을 중앙 컴퓨터에 모으면 OTA 소프트웨어 업데이트로 차량 기능을 바꾸거나 더하기 쉬워진다.[@bosch-ee-architecture-2026][@ti-slyy236-2025]
 

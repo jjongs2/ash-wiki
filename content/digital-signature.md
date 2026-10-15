@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**디지털 서명**(digital signature)은 데이터에 암호 변환을 적용한 결과로, 바르게 구현하면 데이터의 출처 인증, 데이터 무결성, 서명자의 [[cybersecurity-property|부인 방지]]를 확인하는 수단이 된다. 서명자마다 개인 키와 [[public-key-cryptography|공개 키]]의 쌍을 갖고, 서명을 만들 때는 개인 키를, 검증할 때는 그에 대응하는 공개 키를 쓴다.[@nist-fips-186-5-2023]
+**디지털 서명**(digital signature)은 데이터에 암호 변환을 적용한 결과로, 바르게 구현하면 데이터의 출처 인증, 데이터 무결성, 서명자의 [[cybersecurity-property#Authenticity, 부인 방지, 인가|부인 방지]]를 확인하는 수단이 된다. 서명자마다 개인 키와 [[public-key-cryptography|공개 키]]의 쌍을 갖고, 서명을 만들 때는 개인 키를, 검증할 때는 그에 대응하는 공개 키를 쓴다.[@nist-fips-186-5-2023]
 
 ## 서명 생성과 검증
 
