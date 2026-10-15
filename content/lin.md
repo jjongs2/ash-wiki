@@ -23,7 +23,7 @@ LIN 프레임은 헤더와 응답으로 이뤄진다. 헤더는 늘 commander가
 
 ![[diagrams/lin-header-response.svg]]
 
-break 필드는 LIN 프레임의 시작을 알린다.[@iso-17987-3-obp-2025] break 필드는 dominant 부분(break)과 recessive 부분(break delimiter)으로 이뤄지고[@iso-17987-1-obp-2025], break는 적어도 13비트 길이의 dominant 구간이다.[@ti-slla383a-2022][@atmel-avr308-2002] sync 바이트 필드는 값이 `0x55`로 정해진 바이트 필드다. PID는 6비트 프레임 ID와 2비트 패리티로 이뤄진 8비트 값이다. 응답의 데이터는 1\~8바이트다.[@iso-17987-3-obp-2025] 프레임 끝에는 체크섬 1바이트가 붙는다.[@iso-17987-1-obp-2025]
+break 필드는 LIN 프레임의 시작을 알린다.[@iso-17987-3-obp-2025] break 필드는 dominant 부분(break)과 recessive 부분(break delimiter)으로 이뤄지고[@iso-17987-1-obp-2025], break는 적어도 13비트 길이의 dominant 구간이다.[@ti-slla383a-2022][@atmel-avr308-2002] sync 바이트 필드는 값이 `0x55`로 정해진 바이트 필드다. PID는 6비트 프레임 ID와 2비트 패리티로 이뤄진 8비트 값이다. 응답의 데이터는 1\~8바이트다.[@iso-17987-3-obp-2025] 프레임 끝에는 [[checksum|체크섬]] 1바이트가 붙는다.[@iso-17987-1-obp-2025]
 
 TMS320F2803x의 LIN 모듈은 PID의 [[parity-bit|패리티 비트]] 두 개를 프레임 ID 비트의 XOR로 계산한다. 패리티 비트 $P_0$은 ID 비트 0, 1, 2, 4의 XOR이고, $P_1$은 ID 비트 1, 3, 4, 5의 XOR을 반전한 값이다.[@ti-sprui10a-2022]
 
@@ -43,7 +43,7 @@ responder는 sync 바이트 필드 패턴의 하강 에지로 commander의 비�
 
 LIN 체크섬은 바이트를 더할 때마다 올림수를 최하위 비트에 다시 더한 8비트 합을 반전한 값이다.[@atmel-avr308-2002][@ti-sprui10a-2022] **classic 체크섬**은 데이터 바이트만 계산에 넣는다.[@iso-17987-3-obp-2025] **enhanced 체크섬**은 데이터 바이트와 PID를 함께 계산에 넣는다.[@ti-sprui10a-2022][@microchip-an1099-2007] 진단 프레임은 classic 체크섬을 쓴다.[@iso-17987-3-obp-2025]
 
-TMS320F2803x의 LIN 모듈은 받은 데이터 바이트(enhanced 체크섬이면 ID 바이트 포함)와 체크섬 바이트를 올림수와 함께 더한 합이 `0xFF`가 아니면 체크섬 오류로 표시한다.[@ti-sprui10a-2022] 체크섬 일반은 [[checksum|체크섬]]에서 다룬다.
+TMS320F2803x의 LIN 모듈은 받은 데이터 바이트(enhanced 체크섬이면 ID 바이트 포함)와 체크섬 바이트를 올림수와 함께 더한 합이 `0xFF`가 아니면 체크섬 오류로 표시한다.[@ti-sprui10a-2022]
 
 ## 프레임 종류
 

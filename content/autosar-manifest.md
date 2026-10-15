@@ -37,7 +37,7 @@ Execution Manifest는 응용을 Adaptive Platform에 실제로 배치하는 데 
 - **시작 설정**: 응용 인스턴스를 어떻게 시작할지를 정하고, 시작 옵션과 접근 역할을 담는다. 시작 설정마다 Machine State나 Function Group State에 따를 수 있다.
 - **자원 관리**: 특히 resource group 배정을 다룬다.[@autosar-ap-exp-platformdesign-2025]
 
-Machine State와 Function Group State는 [[autosar-state-management|State Management]]에서, resource group은 [[autosar-execution-management#Resource group|Execution Management]]에서 다룬다.
+Machine State와 Function Group State는 [[autosar-state-management#Machine State와 Function Group State|State Management]]에서, resource group은 [[autosar-execution-management#Resource group|Execution Management]]에서 다룬다.
 
 Execution Manifest의 최상위 요소는 Process다. Adaptive Platform에서 배치의 단위가 실행 중에 POSIX 프로세스가 되는 바이너리이기 때문이다. 응용 코드는 구체적인 서비스 인스턴스 대신 PortPrototype을 그 정보의 상징으로 쓰고, 서비스 인스턴스를 구체적으로 정하는 일은 Service Instance Manifest에 맡긴다.[@autosar-ap-tps-manifestspecification-2025]
 

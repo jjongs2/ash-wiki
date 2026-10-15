@@ -17,7 +17,7 @@ verified: 2026-10-03
 
 ## 업데이트에서 맡는 일
 
-- 이미지가 여럿이면 실행할 이미지를 골라 그 시작 주소로 분기한다.[@nxp-an13843-2023][@espressif-esp-idf-startup-2026] 어느 이미지를 고르는지는 [[ab-update|A/B 업데이트]]에서 다룬다.
+- 이미지가 여럿이면 실행할 이미지를 골라 그 시작 주소로 분기한다.[@nxp-an13843-2023][@espressif-esp-idf-startup-2026] 어느 이미지를 고르는지는 [[ab-update#부팅할 슬롯의 선택|A/B 업데이트]]에서 다룬다.
 - 새 이미지를 실행하기 전에 검증한다.[@infineon-an73854-2023][@espressif-esp-idf-startup-2026] [[digital-signature|서명]] 검증은 [[secure-boot|secure boot]]에서 다룬다.
 - 새 이미지를 플래시에 쓴다.[@infineon-an73854-2023][@silabs-bootloader-fundamentals-2026]
 

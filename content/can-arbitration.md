@@ -13,7 +13,7 @@ verified: 2026-09-27
 
 ## 비트 비교
 
-중재 동안 송신 노드는 자기가 보낸 비트 레벨을 버스에서 읽은 레벨과 비교한다. dominant와 recessive를 동시에 보내면 버스는 dominant가 되므로, recessive를 보냈는데 dominant를 읽은 노드는 중재에서 진 것이다. 진 노드는 비트를 하나도 더 보내지 않고 물러나 [[can-controller#노드 상태|수신 노드]]가 된다.[@bosch-can-2-0-1991] 버스 레벨은 [[dominant-and-recessive|dominant와 recessive]]에서 다룬다.
+중재 동안 송신 노드는 자기가 보낸 비트 레벨을 버스에서 읽은 레벨과 비교한다. [[dominant-and-recessive|dominant와 recessive]]를 동시에 보내면 버스는 dominant가 되므로, recessive를 보냈는데 dominant를 읽은 노드는 중재에서 진 것이다. 진 노드는 비트를 하나도 더 보내지 않고 물러나 [[can-controller#노드 상태|수신 노드]]가 된다.[@bosch-can-2-0-1991]
 
 ![[diagrams/can-arbitration.svg]]
 

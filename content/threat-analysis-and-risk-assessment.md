@@ -20,10 +20,10 @@ ISO/SAE 21434:2021은 TARA에 쓰는 용어를 다음처럼 정의한다.[@iso-s
 - **Attacker**: attack path를 실행하는 사람, 집단, 조직
 - **Impact**: damage scenario가 낳는 피해나 물리적 해의 크기를 추정한 값
 - **Road user**: 도로를 쓰는 사람. 운전자와 승객, 보행자, 자전거 타는 사람, 차량 소유자가 그 예다.
-- **Risk**: 불확실성이 도로 차량의 사이버보안에 주는 영향으로, attack feasibility와 impact로 나타낸다. Cybersecurity risk라고도 부른다.
+- **Risk**: 불확실성이 도로 차량의 사이버보안에 주는 영향으로, [[attack-feasibility-rating|attack feasibility]]와 impact로 나타낸다. Cybersecurity risk라고도 부른다.
 - **Risk management**: risk에 관해 조직을 지휘하고 통제하는 조정된 활동. ISO 31000:2018의 3.2 정의를 그대로 가져왔다.[@iso-sae-21434-obp-2021]
 
-사이버보안 속성은 보호할 가치가 있을 수 있는 속성으로, [[cybersecurity-property#기밀성, 무결성, 가용성|기밀성, 무결성, 가용성]]이 그 예다.[@iso-sae-21434-obp-2021] Attack path가 얼마나 쉽게 실행되는지는 [[attack-feasibility-rating|attack feasibility]]에서 다룬다.
+사이버보안 속성은 보호할 가치가 있을 수 있는 속성으로, [[cybersecurity-property#기밀성, 무결성, 가용성|기밀성, 무결성, 가용성]]이 그 예다.[@iso-sae-21434-obp-2021]
 
 ![[diagrams/tara-risk-elements.svg]]
 

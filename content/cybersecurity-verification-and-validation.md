@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-[[iso-sae-21434|ISO/SAE 21434]]:2021은 **검증**(verification)을 명시된 요구사항이 충족되었음을 객관적 증거로 확인하는 것으로, **확인**(validation)을 [[cybersecurity-lifecycle#아이템과 운용 환경|아이템]]의 [[cybersecurity-goal|cybersecurity goal]]이 적절하고 이루어졌음을 객관적 증거로 확인하는 것으로 정의한다. 두 정의에서 검증은 요구사항을, 확인은 goal을 기준으로 삼는다. 두 정의는 [[iso-iec-ieee-15288|ISO/IEC/IEEE 15288]]:2015의 4.1.53(확인)과 4.1.54(검증)를 고친 것이다. 확인의 정의에서는 특정한 의도된 사용이나 응용의 요구사항이 충족되었다는 부분을 아이템의 cybersecurity goal이 적절하고 이루어졌다는 부분으로 바꿨다.[@iso-sae-21434-obp-2021] 일반적인 V&V는 [[verification-and-validation|검증과 확인]]에서 다룬다.
+[[iso-sae-21434|ISO/SAE 21434]]:2021은 **검증**(verification)을 명시된 요구사항이 충족되었음을 객관적 증거로 확인하는 것으로, **확인**(validation)을 [[cybersecurity-lifecycle#아이템과 운용 환경|아이템]]의 [[cybersecurity-goal|cybersecurity goal]]이 적절하고 이루어졌음을 객관적 증거로 확인하는 것으로 정의한다. 두 정의에서 검증은 요구사항을, 확인은 goal을 기준으로 삼는다. 두 정의는 [[iso-iec-ieee-15288|ISO/IEC/IEEE 15288]]:2015의 4.1.53(확인)과 4.1.54(검증)를 고친 것이다. 확인의 정의에서는 특정한 의도된 사용이나 응용의 요구사항이 충족되었다는 부분을 아이템의 cybersecurity goal이 적절하고 이루어졌다는 부분으로 바꿨다.[@iso-sae-21434-obp-2021]
 
 ## ISO/SAE 21434의 검증과 확인
 
@@ -45,7 +45,7 @@ SEC.4의 확인 수단은 보통 아직 찾지 못한 [[vulnerability-management
 
 ### 추적성
 
-SEC.3.BP4는 검증 수단과 사이버보안 요구사항, 검증 수단과 정련한 architectural design·상세 설계·소프트웨어 유닛 사이에 일관성과 양방향 추적성을 세우고, 검증 결과와 검증 수단 사이에 양방향 추적성을 세운다. SEC.4.BP4는 확인 수단과 cybersecurity goal 사이에 일관성과 양방향 추적성을, 확인 결과와 확인 수단 사이에 양방향 추적성을 세운다. 양방향 추적성은 일관성을 뒷받침하고, 영향 분석을 쉽게 하며, 검증과 확인의 [[test-coverage|커버리지]]를 보이는 데 쓰인다.[@vda-automotive-spice-cybersecurity-2025]
+SEC.3.BP4는 검증 수단과 사이버보안 요구사항, 검증 수단과 정련한 architectural design·상세 설계·소프트웨어 유닛 사이에 일관성과 양방향 추적성을 세우고, 검증 결과와 검증 수단 사이에 양방향 추적성을 세운다. SEC.4.BP4는 확인 수단과 cybersecurity goal 사이에 일관성과 양방향 추적성을, 확인 결과와 확인 수단 사이에 양방향 추적성을 세운다. 양방향 추적성은 일관성을 뒷받침하고, 영향 분석을 쉽게 하며, [[verification-and-validation|검증과 확인]]의 [[test-coverage|커버리지]]를 보이는 데 쓰인다.[@vda-automotive-spice-cybersecurity-2025]
 
 ![[diagrams/aspice-cybersecurity-traceability.svg]]
 

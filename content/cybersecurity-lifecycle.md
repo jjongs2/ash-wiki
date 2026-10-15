@@ -19,7 +19,7 @@ ISO/SAE 21434:2021은 product development 단계의 활동을 [[v-model|V 모델
 
 8절의 지속 활동과 15절의 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA]] 방법은 이 단계들 밖에 둔다.[@iso-sae-21434-obp-2021] 지속 활동은 [[vulnerability-management|취약점 관리]]에서 다룬다.
 
-Tailoring과 out-of-context 컴포넌트처럼 프로젝트의 활동을 정하는 데 쓰는 개념은 [[cybersecurity-assessment#Tailoring과 out-of-context|cybersecurity assessment]]에서 다룬다. [[iso-26262|ISO 26262]]의 아이템과 안전 생명주기는 [[safety-lifecycle|안전 생명주기]]에서 다룬다.
+Tailoring과 out-of-context 컴포넌트처럼 프로젝트의 활동을 정하는 데 쓰는 개념은 [[cybersecurity-assessment#Tailoring과 out-of-context|cybersecurity assessment]]에서 다룬다. [[iso-26262|ISO 26262]]의 아이템과 안전 생명주기는 [[safety-lifecycle#ISO 26262의 안전 생명주기|안전 생명주기]]에서 다룬다.
 
 ## 아이템과 운용 환경
 
