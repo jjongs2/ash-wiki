@@ -2,6 +2,7 @@
 title: Intrusion Detection System Manager
 tags:
   - platform/autosar
+  - security/cybersecurity
 aliases:
   - IdsM
 verified: 2026-10-07

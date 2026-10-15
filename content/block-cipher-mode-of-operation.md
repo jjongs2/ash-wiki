@@ -1,7 +1,7 @@
 ---
 title: 블록 암호 운용 모드
 tags:
-  - security
+  - security/cryptography
 aliases:
   - Mode of operation
 verified: 2026-10-03

@@ -2,6 +2,7 @@
 title: AUTOSAR Platform Health Management
 tags:
   - platform/autosar
+  - sw-engineering/functional-safety
 aliases:
   - PHM
 verified: 2026-10-07

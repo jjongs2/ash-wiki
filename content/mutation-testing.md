@@ -3,7 +3,7 @@ title: 변이 테스트
 aliases:
   - 뮤테이션 테스트
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 verified: 2026-10-13
 ---
 

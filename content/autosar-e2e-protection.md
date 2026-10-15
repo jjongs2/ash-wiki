@@ -2,6 +2,7 @@
 title: AUTOSAR E2E 보호
 tags:
   - platform/autosar
+  - sw-engineering/functional-safety
 verified: 2026-10-07
 ---
 

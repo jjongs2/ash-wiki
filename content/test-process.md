@@ -1,7 +1,7 @@
 ---
 title: 테스트 프로세스
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 verified: 2026-10-03
 ---
 

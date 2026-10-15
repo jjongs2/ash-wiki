@@ -1,7 +1,7 @@
 ---
 title: EARS
 tags:
-  - process/sw-process
+  - sw-engineering/sw-process
 aliases:
   - Easy Approach to Requirements Syntax
 verified: 2026-10-02

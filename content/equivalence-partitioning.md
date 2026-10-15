@@ -1,7 +1,7 @@
 ---
 title: 동치 분할
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 verified: 2026-10-03
 ---
 

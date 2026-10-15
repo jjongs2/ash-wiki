@@ -2,6 +2,7 @@
 title: Secure Onboard Communication
 tags:
   - platform/autosar
+  - security/cybersecurity
 aliases:
   - SecOC
 verified: 2026-10-07

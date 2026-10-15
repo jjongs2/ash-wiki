@@ -1,7 +1,7 @@
 ---
 title: 소프트웨어 품질 모델
 tags:
-  - process
+  - sw-engineering
 aliases:
   - 품질 모델
 verified: 2026-10-02

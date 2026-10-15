@@ -1,7 +1,7 @@
 ---
 title: 추적성
 tags:
-  - process/sw-process
+  - sw-engineering/sw-process
 verified: 2026-10-02
 ---
 

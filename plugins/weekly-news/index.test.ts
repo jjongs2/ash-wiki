@@ -250,15 +250,18 @@ describe("issueFilters", () => {
   // 다른 호에서 고른 구역을 쿼리로 이어받으면, 이 호에 항목이 없어도 그 칩을 0으로 남겨 둔다
   test("항목이 없는 구역과 기타도 0으로 준다", () => {
     const { items: plain } = parseWeeklyNews("2026-w41", source())
-    assert.deepStrictEqual(issueFilters(plain, ["network", "security"], ["security", "process"]), {
-      featured: 0,
-      regions: [
-        { region: "network", count: 1 },
-        { region: "security", count: 0 },
-        { region: "process", count: 0 },
-        { region: null, count: 0 },
-      ],
-    })
+    assert.deepStrictEqual(
+      issueFilters(plain, ["network", "security"], ["security", "sw-engineering"]),
+      {
+        featured: 0,
+        regions: [
+          { region: "network", count: 1 },
+          { region: "security", count: 0 },
+          { region: "sw-engineering", count: 0 },
+          { region: null, count: 0 },
+        ],
+      },
+    )
   })
 })
 

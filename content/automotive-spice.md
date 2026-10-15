@@ -1,7 +1,7 @@
 ---
 title: ASPICE
 tags:
-  - process/sw-process
+  - sw-engineering/sw-process
 aliases:
   - A-SPICE
 verified: 2026-10-02

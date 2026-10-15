@@ -3,7 +3,7 @@ title: 시나리오 기반 테스트
 aliases:
   - 시나리오 테스트
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 verified: 2026-10-13
 ---
 

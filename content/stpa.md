@@ -1,7 +1,7 @@
 ---
 title: STPA
 tags:
-  - process/sw-process
+  - sw-engineering/functional-safety
 aliases:
   - System-Theoretic Process Analysis
 verified: 2026-10-12

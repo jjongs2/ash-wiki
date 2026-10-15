@@ -2,6 +2,7 @@
 title: SOME/IP
 tags:
   - network/ethernet
+  - network/tcp-ip
 aliases:
   - Scalable service-Oriented MiddlewarE over IP
 verified: 2026-09-28

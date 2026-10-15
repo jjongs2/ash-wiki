@@ -1,7 +1,7 @@
 ---
 title: 인터넷 프로토콜 스위트
 tags:
-  - network
+  - network/tcp-ip
 aliases:
   - TCP/IP
   - 인터넷 프로토콜 모음

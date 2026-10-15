@@ -1,7 +1,7 @@
 ---
 title: Development interface agreement
 tags:
-  - process/sw-process
+  - sw-engineering/functional-safety
 aliases:
   - DIA
 verified: 2026-10-12

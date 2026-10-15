@@ -1,7 +1,7 @@
 ---
 title: HSM
 tags:
-  - security
+  - security/cryptography
 aliases:
   - 하드웨어 보안 모듈
 verified: 2026-10-03

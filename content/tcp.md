@@ -1,7 +1,7 @@
 ---
 title: TCP
 tags:
-  - network
+  - network/tcp-ip
 aliases:
   - Transmission Control Protocol
 verified: 2026-09-29

@@ -1,7 +1,7 @@
 ---
 title: Diffie-Hellman 키 교환
 tags:
-  - security
+  - security/cryptography
 aliases:
   - Diffie-Hellman
 verified: 2026-10-03

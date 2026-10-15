@@ -1,7 +1,8 @@
 ---
 title: TLS
 tags:
-  - security
+  - security/cryptography
+  - network/tcp-ip
 verified: 2026-10-03
 ---
 

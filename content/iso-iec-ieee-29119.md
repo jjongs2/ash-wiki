@@ -1,7 +1,7 @@
 ---
 title: ISO/IEC/IEEE 29119
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 verified: 2026-10-03
 publisher: ISO/IEC/IEEE
 edition: 2022

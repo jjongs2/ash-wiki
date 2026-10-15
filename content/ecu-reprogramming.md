@@ -2,6 +2,7 @@
 title: ECU 재프로그래밍
 tags:
   - security/ota
+  - network/diagnostics
 verified: 2026-10-03
 ---
 

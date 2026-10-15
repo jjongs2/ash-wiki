@@ -1,7 +1,7 @@
 ---
 title: UDP
 tags:
-  - network
+  - network/tcp-ip
 aliases:
   - User Datagram Protocol
 verified: 2026-09-29

@@ -1,7 +1,7 @@
 ---
 title: ARP
 tags:
-  - network
+  - network/tcp-ip
 aliases:
   - Address Resolution Protocol
 verified: 2026-09-29

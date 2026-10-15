@@ -1,7 +1,7 @@
 ---
 title: 결함 주입
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 verified: 2026-10-03
 ---
 

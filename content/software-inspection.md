@@ -1,7 +1,7 @@
 ---
 title: 소프트웨어 인스펙션
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 aliases:
   - 인스펙션
   - Fagan inspection

@@ -1,7 +1,7 @@
 ---
 title: 공개 키 암호
 tags:
-  - security
+  - security/cryptography
 aliases:
   - 비대칭키 암호
 verified: 2026-10-03

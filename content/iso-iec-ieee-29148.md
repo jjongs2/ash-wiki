@@ -1,7 +1,7 @@
 ---
 title: ISO/IEC/IEEE 29148
 tags:
-  - process/sw-process
+  - sw-engineering/sw-process
 verified: 2026-10-02
 publisher: ISO/IEC/IEEE
 edition: 2018

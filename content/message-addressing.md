@@ -1,7 +1,7 @@
 ---
 title: 메시지 주소 지정
 tags:
-  - network
+  - network/can
 verified: 2026-09-27
 ---
 

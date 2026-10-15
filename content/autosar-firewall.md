@@ -2,6 +2,7 @@
 title: AUTOSAR firewall
 tags:
   - platform/autosar
+  - security/cybersecurity
 verified: 2026-10-07
 ---
 

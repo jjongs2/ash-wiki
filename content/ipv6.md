@@ -1,7 +1,7 @@
 ---
 title: IPv6
 tags:
-  - network
+  - network/tcp-ip
 aliases:
   - Internet Protocol version 6
 verified: 2026-09-29

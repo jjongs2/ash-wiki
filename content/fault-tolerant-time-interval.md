@@ -1,7 +1,7 @@
 ---
 title: Fault tolerant time interval
 tags:
-  - process/sw-process
+  - sw-engineering/functional-safety
 aliases:
   - FTTI
 verified: 2026-10-02

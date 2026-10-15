@@ -17,10 +17,10 @@ const tagNames: Record<string, string> = {
   "platform/autosar": "AUTOSAR",
 }
 
-const page = (slug: string, title: string, tag?: string): ExplorerPage => ({
+const page = (slug: string, title: string, ...tags: string[]): ExplorerPage => ({
   slug,
   title,
-  tags: tag ? [tag] : [],
+  tags,
 })
 
 // 트리를 "이름" 또는 ["이름", 자식들] 꼴로 줄여, 모양과 순서만 견준다
@@ -145,10 +145,38 @@ describe("buildExplorerTree", () => {
   })
 
   test("대문에 없는 구역은 대문의 구역들 뒤에 표시 이름 오름차순으로 온다", () => {
-    const tree = buildExplorerTree([], { network: "네트워크", process: "개발 프로세스" }, [])
+    const tree = buildExplorerTree(
+      [],
+      { "sw-engineering": "소프트웨어 공학", network: "네트워크" },
+      [],
+    )
     assert.deepStrictEqual(outline(tree), [
-      ["개발 프로세스", []],
       ["네트워크", []],
+      ["소프트웨어 공학", []],
+    ])
+  })
+
+  test("여러 태그를 단 페이지는 주 태그의 자리에만 둔다", () => {
+    const tree = buildExplorerTree(
+      [page("autosar-can-stack", "AUTOSAR CAN 스택", "platform/autosar", "network/can")],
+      tagNames,
+      ["network", "platform"],
+    )
+    assert.deepStrictEqual(outline(tree), [
+      [
+        "네트워크",
+        [
+          ["CAN", []],
+          ["Ethernet", []],
+        ],
+      ],
+      [
+        "소프트웨어 플랫폼",
+        [
+          ["AUTOSAR", ["AUTOSAR CAN 스택"]],
+          ["RTOS", []],
+        ],
+      ],
     ])
   })
 

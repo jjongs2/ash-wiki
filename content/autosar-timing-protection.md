@@ -2,6 +2,7 @@
 title: AUTOSAR timing protection
 tags:
   - platform/autosar
+  - sw-engineering/functional-safety
 verified: 2026-09-30
 ---
 

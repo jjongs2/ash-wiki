@@ -1,7 +1,7 @@
 ---
 title: 개체 인증
 tags:
-  - security
+  - security/cryptography
 verified: 2026-10-03
 ---
 

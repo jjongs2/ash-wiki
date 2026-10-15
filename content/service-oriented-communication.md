@@ -2,6 +2,7 @@
 title: 서비스 지향 통신
 tags:
   - network
+  - platform/autosar
 verified: 2026-09-29
 ---
 

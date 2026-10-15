@@ -1,7 +1,7 @@
 ---
 title: 소프트웨어 유지보수
 tags:
-  - process/sw-process
+  - sw-engineering/sw-process
 verified: 2026-10-12
 ---
 

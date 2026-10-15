@@ -1,7 +1,7 @@
 ---
 title: SIL
 tags:
-  - process/sw-process
+  - sw-engineering/functional-safety
 verified: 2026-10-01
 ---
 

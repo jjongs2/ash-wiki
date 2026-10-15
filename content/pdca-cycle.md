@@ -1,7 +1,7 @@
 ---
 title: PDCA 사이클
 tags:
-  - process
+  - sw-engineering
 aliases:
   - PDCA
 verified: 2026-10-02

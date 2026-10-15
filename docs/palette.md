@@ -35,13 +35,13 @@
 
 구역마다 색 토큰 하나(`region-<구역>`)를 두고, 구역에 들지 않는 것(주간 소식의 기타 묶음 등)에는 중립색 `region-other`를 씁니다. 값의 정본은 `quartz.config.yaml`의 `theme.colors`이고, 사이트에는 CSS 변수(`--region-<구역>`)로 실립니다. 구역은 태그 경로의 첫 마디이고, 토큰이 없는 구역은 `region-other`로 칠합니다.
 
-| 토큰              | 구역              |
-| ----------------- | ----------------- |
-| `region-network`  | 네트워크          |
-| `region-platform` | 소프트웨어 플랫폼 |
-| `region-security` | 보안·업데이트     |
-| `region-process`  | 개발 프로세스     |
-| `region-other`    | 기타              |
+| 토큰                    | 구역              |
+| ----------------------- | ----------------- |
+| `region-network`        | 네트워크          |
+| `region-platform`       | 소프트웨어 플랫폼 |
+| `region-security`       | 보안·업데이트     |
+| `region-sw-engineering` | 소프트웨어 공학   |
+| `region-other`          | 기타              |
 
 - 대문의 구역 표(`plugins/front-page`)와 주간 소식의 구역 칩·거르기 칩(`plugins/weekly-news`, 구역 칩은 대문의 주간 소식 칸에도 보임)이 씁니다. 그래프의 노드도 이 토큰을 쓰기로 해(#364), 같은 구역은 어디서나 같은 색입니다.
 - 색상은 도해의 범주 색(청록, 자주, 다홍, 호박)에서 가져오고, 밝기만 옮겨 글자로 읽히게 했습니다. 링크 색인 코발트는 쓰지 않아 구역 이름이 링크 색과 섞이지 않습니다. `region-other`는 보조 글자(`gray`)와 같은 값입니다.

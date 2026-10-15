@@ -1,7 +1,7 @@
 ---
 title: 모델 기반 테스트
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 aliases:
   - MBT
 verified: 2026-10-13

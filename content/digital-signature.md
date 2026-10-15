@@ -1,7 +1,7 @@
 ---
 title: 디지털 서명
 tags:
-  - security
+  - security/cryptography
 aliases:
   - 전자 서명
 verified: 2026-10-03

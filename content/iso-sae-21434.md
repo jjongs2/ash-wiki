@@ -2,6 +2,7 @@
 title: ISO/SAE 21434
 tags:
   - security/cybersecurity
+  - sw-engineering/sw-process
 aliases:
   - ISO 21434
 verified: 2026-10-03

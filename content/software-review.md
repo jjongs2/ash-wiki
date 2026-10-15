@@ -1,7 +1,7 @@
 ---
 title: 소프트웨어 리뷰
 tags:
-  - process/sw-testing
+  - sw-engineering/sw-testing
 aliases:
   - 리뷰
 verified: 2026-10-03
