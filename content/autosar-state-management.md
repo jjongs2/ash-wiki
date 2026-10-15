@@ -15,10 +15,10 @@ State Management는 현재 내부 상태를 정하고, Function Group과 Machine
 
 - [[autosar-platform-health-management|Platform Health Management]]가 오류 복구를 일으킬 감시 오류를 알린다.
 - [[autosar-update-and-configuration-management|Update and Configuration Management]]가 소프트웨어나 설정을 갱신하고 그 갱신을 검증할 수 있는 상태로 시스템을 바꾸려 한다.
-- Network Management는 능동적으로 요청하지 않는다. State Management가 Network Management가 주는 NetworkHandle에 등록해 그 변화에 반응한다.
+- [[autosar-network-management|Network Management]]는 능동적으로 요청하지 않는다. State Management가 Network Management가 주는 NetworkHandle에 등록해 그 변화에 반응한다.
 - Suspend-to-RAM 처리에서 State Management는 Function Group State 전이로, Suspend-to-RAM을 지원하지 않는 응용을 저전력 모드에 들기 전에 끝내고 깨어나는 단계에서 다시 시작하게 조율한다.[@autosar-ap-sws-statemanagement-2025]
 
-어떤 효과를 낼지 최종 결정은 프로젝트 요구사항에 따른 State Management의 내부 논리나, StateMachine 방식을 쓸 때는 그 설정이 내린다. State Management 기능은 중요하므로 다른 Adaptive Application의 접근을 [[autosar-identity-and-access-management|IAM]] 등으로 보호해야 하고, State Management는 Platform Health Management가 감시한다. AUTOSAR는 Classic Platform의 BswM 같은 기능을 Adaptive Platform에는 명세하지 않기로 했다. State Management 기능이 프로젝트마다 크게 다르기 때문이다.[@autosar-ap-sws-statemanagement-2025]
+어떤 효과를 낼지 최종 결정은 프로젝트 요구사항에 따른 State Management의 내부 논리나, StateMachine 방식을 쓸 때는 그 설정이 내린다. State Management 기능은 중요하므로 다른 Adaptive Application의 접근을 [[autosar-identity-and-access-management|IAM]] 등으로 보호해야 하고, State Management는 Platform Health Management가 감시한다. AUTOSAR는 [[autosar-classic-platform|Classic Platform]]의 [[basic-software-mode-manager|BswM]] 같은 기능을 Adaptive Platform에는 명세하지 않기로 했다. State Management 기능이 프로젝트마다 크게 다르기 때문이다.[@autosar-ap-sws-statemanagement-2025]
 
 State Management가 요청할 수 있는 일은 아래와 같다.[@autosar-ap-exp-platformdesign-2025]
 
@@ -26,7 +26,7 @@ State Management가 요청할 수 있는 일은 아래와 같다.[@autosar-ap-ex
 - (부분) 네트워크를 활성화하거나 비활성화하기
 - Machine을 종료하거나 재시작하기
 - Platform Health Management나 Execution Management가 알린 (감시) 오류에서 복구하기
-- Update and Configuration Management의 요청에 따라, 설치·갱신·제거할 Software Cluster를 준비하고 검증하기
+- Update and Configuration Management의 요청에 따라, 설치·갱신·제거할 [[autosar-software-cluster#Adaptive Platform의 Software Cluster와의 차이|Software Cluster]]를 준비하고 검증하기
 - 슬립 모드에 들기 전과 시스템이 재개된 뒤 Suspend-to-RAM을 아는 응용을 조율하기[@autosar-ap-exp-platformdesign-2025]
 
 ## Machine State와 Function Group State

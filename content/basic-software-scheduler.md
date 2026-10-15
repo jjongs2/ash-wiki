@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-07
 ---
 
-AUTOSAR R25-11의 [[autosar-rte|RTE]] 명세는 **Basic Software Scheduler**(SchM)를 BSW(Basic Software) 모듈을 통합하는 개념과 서비스를 주는 것으로 정의하고, RTE와 함께 명세한다. SchM은 BSW 모듈의 구현을 [[autosar-os|AUTOSAR OS]]의 문맥에 넣고, BSW 모듈의 main processing function을 촉발하고, BSW 모듈에 데이터 일관성 메커니즘을 적용하고, BSW 모듈 사이에 모드를 전한다.[@autosar-cp-sws-rte-2025]
+AUTOSAR R25-11의 [[autosar-rte|RTE]] 명세는 **Basic Software Scheduler**(SchM)를 BSW(Basic Software) 모듈을 통합하는 개념과 서비스를 주는 것으로 정의하고, RTE와 함께 명세한다. SchM은 BSW 모듈의 구현을 [[autosar-os|AUTOSAR OS]]의 context에 넣고, BSW 모듈의 main processing function을 촉발하고, BSW 모듈에 데이터 일관성 메커니즘을 적용하고, BSW 모듈 사이에 모드를 전한다.[@autosar-cp-sws-rte-2025]
 
 SchM이 스케줄링하는 것은 BSW 모듈의 schedulable entity로, main processing function이라고도 부른다. 같은 [[osek-task|태스크]]가 [[autosar-software-component|SW-C]]와 BSW 모듈의 스케줄링에 함께 쓰일 수 있어서, RTE의 스케줄링 부분은 SchM과 깊이 얽혀 둘을 분명히 나눌 수 없다. RTE와 SchM은 그 ECU에 맞게 ECU마다 생성되며, 구현은 생성하지 않고 설정해도 된다. AUTOSAR 4.0.1은 RTE와 Basic Software Scheduler를 한 명세로 합쳤다.[@autosar-cp-sws-rte-2025]
 
@@ -39,6 +39,6 @@ SW-C와 BSW 모듈의 mode declaration group prototype 둘을 맞춰 두면(sync
 
 ## Exclusive area
 
-BSW 모듈은 `SchM_Enter`와 `SchM_Exit`로 [[runnable-entity#Exclusive area|exclusive area]]의 시작과 끝을 정한다. SchM은 서로 다른 exclusive area를 들어간 순서의 반대로 나오는 한 두 호출의 중첩을 허용해야 하며, 같은 exclusive area의 중첩은 지원하지 않아도 된다. 두 API는 OS가 초기화된 뒤라면 SchM이 초기화되기 전에도, 태스크와 category 1·2 ISR의 문맥에서도 부를 수 있어야 한다.[@autosar-cp-sws-rte-2025]
+BSW 모듈은 `SchM_Enter`와 `SchM_Exit`로 [[runnable-entity#Exclusive area|exclusive area]]의 시작과 끝을 정한다. SchM은 서로 다른 exclusive area를 들어간 순서의 반대로 나오는 한 두 호출의 중첩을 허용해야 하며, 같은 exclusive area의 중첩은 지원하지 않아도 된다. 두 API는 OS가 초기화된 뒤라면 SchM이 초기화되기 전에도, 태스크와 category 1·2 ISR의 context에서도 부를 수 있어야 한다.[@autosar-cp-sws-rte-2025]
 
 SchM 구현의 예는 둘이다. 두 태스크의 BSW 함수가 같은 자원에 접근하면 SchM 구현이 `SchM_Enter_<mod>_<name>`과 `SchM_Exit_<mod>_<name>`을 모든 인터럽트를 막고 푸는 매크로로 구현한다. 실행 순서로 데이터 일관성을 보장하면 두 매크로는 아무것도 하지 않는다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]

@@ -13,7 +13,7 @@ Adaptive Platform의 Sensor Interfaces는 [[autosar-adaptive-platform#그 밖의
 
 ## 산출물
 
-Application Interfaces를 정의하는 데이터는 Application Interface Tool(AI-Tool)로 관리한다. AI-Tool은 AUTOSAR 방법론 메타모델에 따른 데이터를 입력으로 받아, 표준화한 응용 인터페이스의 상세 정보를 모두 담은 .arxml 파일 묶음을 낸다. 이 파일은 소프트웨어 개발사의 저작 도구 등에 입력으로 쓸 수 있다. 최종 정의는 AUTOSAR_CP_MOD_AISpecification과 AUTOSAR_CP_MOD_AISpecificationExamples로 펴낸다.[@autosar-cp-exp-aiuserguide-2025]
+Application Interfaces를 정의하는 데이터는 Application Interface Tool(AI-Tool)로 관리한다. AI-Tool은 [[autosar-methodology|AUTOSAR 방법론]] 메타모델에 따른 데이터를 입력으로 받아, 표준화한 응용 인터페이스의 상세 정보를 모두 담은 .arxml 파일 묶음을 낸다. 이 파일은 소프트웨어 개발사의 저작 도구 등에 입력으로 쓸 수 있다. 최종 정의는 AUTOSAR_CP_MOD_AISpecification과 AUTOSAR_CP_MOD_AISpecificationExamples로 펴낸다.[@autosar-cp-exp-aiuserguide-2025]
 
 AISpecification 패키지는 응용 데이터 타입, 계산 방법(CompuMethod), 데이터 제약, 키워드 집합, [[software-component-port|포트]] 인터페이스, 포트 프로토타입 blueprint, 소프트웨어 컴포넌트 타입 예시 등의 정의를 모은다. 물리 차원과 단위의 정의는 PhysicalUnits 패키지에 따로 둔다.[@autosar-cp-exp-aiuserguide-2025]
 

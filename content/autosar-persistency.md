@@ -7,7 +7,7 @@ verified: 2026-10-07
 
 AUTOSAR R25-11 Persistency 명세는 **Persistency**를 Adaptive Application과 다른 functional cluster가 [[autosar-adaptive-platform#Machine과 프로세스|Machine]]의 비휘발성 메모리에 정보를 저장하게 하는 [[autosar-adaptive-platform|AUTOSAR Adaptive Platform]]의 functional cluster로 정의한다. 저장한 데이터는 부팅과 점화 사이클이 지나도 남는다. Persistency는 대개 Adaptive Application의 프로세스 안에서 그 프로세스의 권한으로 도는 라이브러리로 구현된다.[@autosar-ap-sws-persistency-2025]
 
-Classic Platform의 비휘발성 데이터 관리는 [[nvram-manager|NVRAM Manager]]에서 다룬다.
+[[autosar-classic-platform|Classic Platform]]의 비휘발성 데이터 관리는 [[nvram-manager|NVRAM Manager]]에서 다룬다.
 
 ## 저장소
 
@@ -30,7 +30,7 @@ Persistency는 중복 정보로 저장한 데이터의 손상을 검출해 무�
 
 응용 설계자는 중복을 요청하거나 쓸 수단을 미리 고르고, 통합자는 Target Configuration에서 실제 수단을 정한다. CRC나 해시 값을 설정하면 Persistency는 저장소나 그 요소를 저장할 때 값을 계산하고 다시 읽을 때 그 값으로 검사한다. M out of N을 설정하면 사본 N개를 저장하고, 다시 읽을 때 적어도 M개가 같은지 검사한다. 저장한 데이터가 손상되었으면 중복으로 복원을 시도하고, 복원하지 못하면 `kValidationFailed`를 알린다.[@autosar-ap-sws-persistency-2025]
 
-암호화와 MAC 가운데 어느 보호를 어떤 알고리즘으로 할지도 Target Configuration에서 정하고, Persistency 사용자는 이를 알지 못한다. 암호화하면 저장소를 저장할 때 암호화하고 열 때 복호화하므로 영구히 저장되는 것은 암호화된 데이터뿐이다. MAC을 쓰면 저장할 때 MAC을 만들고 열 때 검증해, 허가받지 않은 변경을 검출한다. 암호 연산에는 Cryptography의 서비스를 쓴다.[@autosar-ap-sws-persistency-2025]
+암호화와 MAC 가운데 어느 보호를 어떤 알고리즘으로 할지도 Target Configuration에서 정하고, Persistency 사용자는 이를 알지 못한다. 암호화하면 저장소를 저장할 때 암호화하고 열 때 복호화하므로 영구히 저장되는 것은 암호화된 데이터뿐이다. MAC을 쓰면 저장할 때 MAC을 만들고 열 때 검증해, 허가받지 않은 변경을 검출한다. 암호 연산에는 [[autosar-crypto-stack#Adaptive Platform의 Cryptography|Cryptography]]의 서비스를 쓴다.[@autosar-ap-sws-persistency-2025]
 
 쿼터로는 저장소마다 하한과 상한을 설정한다. Persistency는 저장소가 실제로 차지한 공간이 상한 `MaximumAllowedSize`를 넘지 않게 하고, 하한은 그 저장소를 쓰는 Executable이 든 Software Package를 설치할 때 검사되는 것으로 본다.[@autosar-ap-sws-persistency-2025]
 

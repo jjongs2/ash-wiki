@@ -22,7 +22,7 @@ AUTOSAR OS는 기능을 SC1부터 SC4까지 네 scalability class로 묶고, OS�
 | timing protection                                                   | —   | 예  | —   | 예  |
 | 전역 시간·동기화 지원                                               | —   | 예  | —   | 예  |
 | memory protection                                                   | —   | —   | 예  | 예  |
-| OS-Application                                                      | —   | —   | 예  | 예  |
+| [[autosar-os-application\|OS-Application]]                          | —   | —   | 예  | 예  |
 | service protection                                                  | —   | —   | 예  | 예  |
 | `CallTrustedFunction`                                               | —   | —   | 예  | 예  |
 

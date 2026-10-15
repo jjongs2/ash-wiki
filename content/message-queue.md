@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-07
 ---
 
-[[ieee-1003-1|POSIX.1]]-2024는 **메시지 큐**(message queue)를 메시지를 넣고 꺼낼 수 있는 객체로 정의하고, 메시지를 넣은 순서나 우선순위 순으로 꺼낼 수 있다고 정한다.[@ieee-1003-1-definitions-2024] 태스크는 메시지가 없는 큐에서 메시지를 기다리며 블록할 수 있고, 기다릴 시간의 상한(타임아웃)을 정할 수 있다. 인터럽트 처리기는 큐에 메시지를 넣을 수 있지만 기다리지는 못한다.[@micrium-ucos-iii-message-queues-2026][@arm-cmsis-rtos2-message-queue-2026]
+[[ieee-1003-1|POSIX.1]]-2024는 **메시지 큐**(message queue)를 메시지를 넣고 꺼낼 수 있는 객체로 정의하고, 메시지를 넣은 순서나 우선순위 순으로 꺼낼 수 있다고 정한다.[@ieee-1003-1-definitions-2024] [[task|태스크]]는 메시지가 없는 큐에서 메시지를 기다리며 블록할 수 있고, 기다릴 시간의 상한(타임아웃)을 정할 수 있다. 인터럽트 처리기는 큐에 메시지를 넣을 수 있지만 기다리지는 못한다.[@micrium-ucos-iii-message-queues-2026][@arm-cmsis-rtos2-message-queue-2026]
 
 ## POSIX의 메시지 큐
 

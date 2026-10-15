@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**마감 시한**(deadline)은 태스크나 job이 실행을 마쳐야 하는 시각이다. 마감 시한까지 끝내지 못하는 것을 마감 시한을 놓쳤다(deadline miss)고 한다.[@renesas-res05b0008-2010][@linux-sched-deadline-2026] 마감 시한이 정하는 시간 요구는 [[real-time-system|실시간 시스템]]에서 다룬다.
+**마감 시한**(deadline)은 [[task|태스크]]나 job이 실행을 마쳐야 하는 시각이다. 마감 시한까지 끝내지 못하는 것을 마감 시한을 놓쳤다(deadline miss)고 한다.[@renesas-res05b0008-2010][@linux-sched-deadline-2026] 마감 시한이 정하는 시간 요구는 [[real-time-system|실시간 시스템]]에서 다룬다.
 
 ## 절대와 상대
 

@@ -36,7 +36,7 @@ State Manager, NM, 전송 프로토콜은 버스마다 따로 두는 모듈이�
 | FlexRay | FlexRay State Manager  | FlexRay NM      | FrTp(FlexRay ISO Transport Layer)나 FrArTp(FlexRay AUTOSAR Transport Layer) | FlexRay Interface, FlexRay Driver[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                                         |
 | 이더넷  | Ethernet State Manager | [[udp\|UDP]] NM | —                                                                           | Socket Adaptor, TcpIp, Ethernet Interface, Ethernet Driver[@autosar-cp-exp-layeredsoftwarearchitecture-2025]                                |
 
-CAN 스택은 [[can-fd|CAN FD]]도 다루되, 하드웨어가 이를 지원할 때에 한한다. FlexRay 스택은 전송 프로토콜로 FrTp와 FrArTp 가운데 하나를 쓴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] CAN 스택의 구성은 [[autosar-can-stack|AUTOSAR CAN 스택]]에서 다룬다.
+[[autosar-can-stack|CAN 스택]]은 [[can-fd|CAN FD]]도 다루되, 하드웨어가 이를 지원할 때에 한한다. FlexRay 스택은 전송 프로토콜로 FrTp와 FrArTp 가운데 하나를 쓴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 LIN의 전송 프로토콜 LinTp(LIN Transport Protocol)는 LIN Interface 안에 있다. LIN Interface는 위층이 요청하면 마스터 노드의 스케줄 테이블을 바꾼다.[@autosar-cp-sws-lininterface-2025]
 
@@ -72,15 +72,15 @@ Dds는 OMG(Object Management Group)의 미들웨어 프로토콜·API 표준인 
 
 Dds는 실행 중에 원격 participant와 endpoint, 그 사이의 서비스 인스턴스 관계를 찾는 발견 메커니즘으로 SPDP(Simple Participant Discovery Protocol), SEDP(Simple Endpoint Discovery Protocol), Service Discovery 프로토콜을 지원한다. SPDP는 멀티캐스트로, SEDP는 유니캐스트로 주고받는다. 모두 동적으로 찾는 구성, participant만 정적으로 두는 구성, 모두 정적으로 설정하는 구성을 둘 수 있다.[@autosar-cp-sws-datadistributionservice-2025]
 
-AUTOSAR Classic Platform R25-11은 DDS에 SOA(Service-Oriented Architecture) 지원을 들였다. 그전까지 [[some-ip|SOME/IP]]로 다루던 Event, Method, Field의 관리를 DDS로 넓히고, client-server 인터페이스를 온전히 지원하며, 새 BSW 모듈인 DDS Transformer를 두었다. OMG의 SPDP·SEDP 발견 프로토콜과 Adaptive Platform이 정한 Service Discovery 프로토콜도 함께 들였다. DDS Transformer 명세는 이 릴리스에 새로 나왔다.[@autosar-cp-tr-releaseoverview-2025]
+AUTOSAR Classic Platform R25-11은 DDS에 SOA(Service-Oriented Architecture) 지원을 들였다. 그전까지 [[some-ip|SOME/IP]]로 다루던 Event, Method, Field의 관리를 DDS로 넓히고, client-server 인터페이스를 온전히 지원하며, 새 BSW 모듈인 DDS Transformer를 두었다. OMG의 SPDP·SEDP 발견 프로토콜과 [[autosar-adaptive-platform|Adaptive Platform]]이 정한 Service Discovery 프로토콜도 함께 들였다. DDS Transformer 명세는 이 릴리스에 새로 나왔다.[@autosar-cp-tr-releaseoverview-2025]
 
 ## Bus Mirroring
 
-Bus Mirroring 모듈은 내부 버스의 트래픽과 상태를 외부 버스로 복제해, 외부 버스에 이은 테스터가 디버깅을 위해 내부 버스를 볼 수 있게 한다. 테스터는 게이트웨이 같은 중간 ECU에 진단 명령을 보내 무엇을 복제할지 설정하므로, 보안 검사를 거치지 않고는 미러링을 켤 수 없다. 모듈은 여러 소스 버스에서 프레임을 모아 목적지 버스로 보내며, 메시지 루프와 침입을 막으려고 한 방향으로만 보낸다. 그래서 생성 도구는 어떤 채널도 소스 버스이면서 목적지 버스가 되지 않게 한다.[@autosar-cp-sws-busmirroring-2025]
+Bus Mirroring 모듈은 내부 버스의 트래픽과 상태를 외부 버스로 복제해, 외부 버스에 이은 테스터가 디버깅을 위해 내부 버스를 볼 수 있게 한다. 테스터는 [[gateway|게이트웨이]] 같은 중간 ECU에 진단 명령을 보내 무엇을 복제할지 설정하므로, 보안 검사를 거치지 않고는 미러링을 켤 수 없다. 모듈은 여러 소스 버스에서 프레임을 모아 목적지 버스로 보내며, 메시지 루프와 침입을 막으려고 한 방향으로만 보낸다. 그래서 생성 도구는 어떤 채널도 소스 버스이면서 목적지 버스가 되지 않게 한다.[@autosar-cp-sws-busmirroring-2025]
 
 Bus Mirroring 모듈은 처음에는 꺼져 있고, 소스 버스를 하나 켜야 그 버스의 프레임과 상태를 모으기 시작한다. 목적지 버스를 바꾸면 모든 소스 버스와 필터를 끄고, 아직 보내지 않은 프레임을 버린다. 버스마다 맞는 정보를 따로 고르게 해, 다른 버스로 바꾸었을 때 그 버스에 부하가 몰리지 않게 하려는 것이다.[@autosar-cp-sws-busmirroring-2025]
 
-Bus Mirroring 모듈은 대체로 목적지 버스보다 프레임이 크거나 부가 정보가 많은 소스 버스를 지원하지 않으며, 복제한 프레임을 쪼개지 않는다. 버스 인터페이스 모듈이 실제로 주고받은 트래픽만 복제하므로, CAN에서는 보낸 프레임과 하드웨어 필터를 지난 데이터 프레임만 복제하고 리모트 프레임과 오류 프레임은 복제하지 않는다. 이더넷에서 이더넷으로 보내는 미러링도 지원하지 않는데, 이 쓰임새는 Ethernet Switch Driver의 port mirroring이 맡는다.[@autosar-cp-sws-busmirroring-2025]
+Bus Mirroring 모듈은 대체로 목적지 버스보다 프레임이 크거나 부가 정보가 많은 소스 버스를 지원하지 않으며, 복제한 프레임을 쪼개지 않는다. 버스 인터페이스 모듈이 실제로 주고받은 트래픽만 복제하므로, CAN에서는 보낸 프레임과 하드웨어 필터를 지난 데이터 프레임만 복제하고 [[remote-frame|리모트 프레임]]과 [[can-error-frame|오류 프레임]]은 복제하지 않는다. 이더넷에서 이더넷으로 보내는 미러링도 지원하지 않는데, 이 쓰임새는 Ethernet Switch Driver의 port mirroring이 맡는다.[@autosar-cp-sws-busmirroring-2025]
 
 ## 그 밖의 모듈
 
@@ -90,9 +90,9 @@ AUTOSAR Classic Platform R25-11은 양산 차량의 여러 ECU에서 데이터�
 
 XCP 모듈은 ASAM이 정한 XCP를 구현한다. XCP는 마스터(도구)와 슬레이브(장치) 사이의 프로토콜로, 동기 데이터 수집(측정), 동기 데이터 자극, 온라인 메모리 캘리브레이션, 캘리브레이션 데이터 페이지 전환, 개발용 플래시 프로그래밍을 준다. XCP 모듈은 CAN, FlexRay, 이더넷 버스를 지원한다.[@autosar-cp-sws-xcp-2025]
 
-충전 모듈 ISO15118Chrg는 서비스 층에 놓이고, PDU 구조를 정하는 V2GTP(Vehicle to Grid Transport Protocol)와 XML 데이터를 압축하는 EXI(Efficient XML Interchange)를 구현한다. 이 모듈은 데이터 인증과 암호화, 인증서 관리와 검증을 위해 암호 스택과 주고받는다. AUTOSAR Classic Platform R25-11은 이 모듈의 이름을 ChrgM(Charging Manager)에서 ISO15118Chrg로 바꾸었다.[@autosar-cp-sws-iso15118charging-2025] 같은 릴리스의 Layered Software Architecture 설명서는 옛 이름 ChrgM을 그대로 쓴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+충전 모듈 ISO15118Chrg는 서비스 층에 놓이고, PDU 구조를 정하는 V2GTP(Vehicle to Grid Transport Protocol)와 XML 데이터를 압축하는 EXI(Efficient XML Interchange)를 구현한다. 이 모듈은 데이터 인증과 암호화, 인증서 관리와 검증을 위해 [[autosar-crypto-stack|암호 스택]]과 주고받는다. AUTOSAR Classic Platform R25-11은 이 모듈의 이름을 ChrgM(Charging Manager)에서 ISO15118Chrg로 바꾸었다.[@autosar-cp-sws-iso15118charging-2025] 같은 릴리스의 Layered Software Architecture 설명서는 옛 이름 ChrgM을 그대로 쓴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-IEEE1722Tp(IEEE1722 Transport Layer)는 브리지로 이은 LAN에서 시간에 민감한 응용이 [[ieee-1722|IEEE 1722]] 전송 프로토콜을 쓰게 하는 Classic Platform 모듈이다. 응용은 AVTP(Audio/Video Transport Protocol) 스트림으로 데이터를 주고받는다. 이 모듈은 IEEE 1722가 정한 AVTP subtype 가운데 일부를 지원해, 오디오·비디오 스트리밍, media clock 배포, CAN과 LIN 프레임 같은 버스 프레임의 캡슐화를 다룬다.[@autosar-cp-sws-ieee1722transportlayer-2025]
+IEEE1722Tp(IEEE1722 Transport Layer)는 브리지로 이은 LAN에서 시간에 민감한 응용이 [[ieee-1722|IEEE 1722]] 전송 프로토콜을 쓰게 하는 Classic Platform 모듈이다. 응용은 AVTP 스트림으로 데이터를 주고받는다. 이 모듈은 IEEE 1722가 정한 AVTP subtype 가운데 일부를 지원해, 오디오·비디오 스트리밍, media clock 배포, CAN과 LIN 프레임 같은 버스 프레임의 캡슐화를 다룬다.[@autosar-cp-sws-ieee1722transportlayer-2025]
 
 AUTOSAR Classic Platform R25-11은 V2X(Vehicle-to-X) 관련 명세(V2XBasicTransport, V2XFacilities, V2XGeoNetworking, V2XManagement, V2XDataManager, 중국 V2X 명세들)와 Cellular V2X Driver 명세를 obsolete로 돌렸다.[@autosar-cp-tr-releaseoverview-2025]
 

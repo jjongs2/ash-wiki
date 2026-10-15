@@ -22,7 +22,7 @@ PduR는 I-PDU를 주고받는 모듈을 쓰는 API에 따라 두 부류로 나�
 
 **LSduR**는 정적으로 정한 ID에 따라 L-SDU(Link Layer Service Data Unit)를 라우팅하는 모듈이다. PduR와 버스별 네트워크 관리·전송 프로토콜 모듈은 LSduR를 거쳐 그 아래의 버스 인터페이스 모듈과 이어진다.[@autosar-cp-sws-lsdurouter-2025] [[autosar-can-stack|CanIf]]와 FrIf(FlexRay Interface)는 수신과 송신 확인을 LSduR의 콜백으로 알린다.[@autosar-cp-sws-caninterface-2025][@autosar-cp-sws-flexrayinterface-2025] LinIf(LIN Interface)도 프레임을 LSduR나 복합 드라이버 같은 위 모듈과 주고받는다. 다만 LinIf 안의 LinTp 부분은 LSduR를 거치지 않고 PduR를 위 모듈로 둔다.[@autosar-cp-sws-lininterface-2025]
 
-AUTOSAR R25-11의 BSW(Basic Software) 일반 명세는 LSduR를 Communication Hardware Abstraction 층에 둔다.[@autosar-cp-sws-bswgeneral-2025] LSduR에는 시그널을 꺼내거나 변환하는 메커니즘과 체크섬 같은 무결성 검사 메커니즘이 없다. LSduR는 L-SDU를 고치지 않고, 페이로드에 따라 경로를 고르지 않으며, 통신 인터페이스 모듈 사이에서 rate를 바꾸는 라우팅도 지원하지 않는다.[@autosar-cp-sws-lsdurouter-2025]
+AUTOSAR R25-11의 BSW(Basic Software) 일반 명세는 LSduR를 Communication Hardware Abstraction 층에 둔다.[@autosar-cp-sws-bswgeneral-2025] LSduR에는 시그널을 꺼내거나 변환하는 메커니즘과 [[checksum|체크섬]] 같은 무결성 검사 메커니즘이 없다. LSduR는 L-SDU를 고치지 않고, 페이로드에 따라 경로를 고르지 않으며, 통신 인터페이스 모듈 사이에서 rate를 바꾸는 라우팅도 지원하지 않는다.[@autosar-cp-sws-lsdurouter-2025]
 
 LSduR는 IEEE1722Tp(IEEE1722 Transport Layer) 같은 위 모듈이 보낸 L-SDU를 여러 목적지로 보낼 수 있다(1:n). 위 모듈은 목적지가 몇인지 모르므로, LSduR는 목적지 가운데 하나라도 송신 요청에 E_OK를 돌려주면 위 모듈에 E_OK를 돌려주고, 마지막 목적지의 송신 확인을 받은 뒤에야 위 모듈에 송신 확인을 준다.[@autosar-cp-sws-lsdurouter-2025]
 

@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-07
 ---
 
-**다중 프로세서 스케줄링**(multiprocessor scheduling)은 응용을 이루는 태스크 집합을 프로세서 여럿에서 실행하면서 그 시간 제약을 늘 지키게 하는 [[real-time-scheduling|실시간 스케줄링]]이다. 다중 프로세서 스케줄링은 태스크를 어느 프로세서에서 실행할지 정하는 할당 문제와, 각 job을 다른 태스크의 job과 견주어 언제 어떤 순서로 실행할지 정하는 우선순위 문제를 푸는 일로 볼 수 있다.[@davis-survey-hard-real-time-2011]
+**다중 프로세서 스케줄링**(multiprocessor scheduling)은 응용을 이루는 [[task|태스크]] 집합을 프로세서 여럿에서 실행하면서 그 시간 제약을 늘 지키게 하는 [[real-time-scheduling|실시간 스케줄링]]이다. 다중 프로세서 스케줄링은 태스크를 어느 프로세서에서 실행할지 정하는 할당 문제와, 각 job을 다른 태스크의 job과 견주어 언제 어떤 순서로 실행할지 정하는 우선순위 문제를 푸는 일로 볼 수 있다.[@davis-survey-hard-real-time-2011]
 
 ## 프로세서의 분류
 
@@ -29,7 +29,7 @@ partitioned 스케줄링과 global 스케줄링의 요소를 섞은 방식을 **
 
 ## 최적성과 복잡도
 
-태스크마다 첫 요청 시각, 최대 실행 시간, [[deadline#절대와 상대|상대 마감 시한]], 주기를 두고 context switch 시간을 무시하는 [[periodic-task-model|주기 태스크]] 모델에서, [[earliest-deadline-first|EDF]]는 프로세서가 둘 이상이면 최적이 아니다. 같은 모델에서 태스크 집합을, 묶음마다 프로세서 하나에서 EDF로 스케줄할 수 있도록 가장 적은 수의 묶음으로 나누는 문제는 NP-hard다.[@leung-real-time-scheduling-analysis-2005]
+태스크마다 첫 요청 시각, 최대 실행 시간, [[deadline#절대와 상대|상대 마감 시한]], 주기를 두고 [[context-switch|context switch]] 시간을 무시하는 [[periodic-task-model|주기 태스크]] 모델에서, [[earliest-deadline-first|EDF]]는 프로세서가 둘 이상이면 최적이 아니다. 같은 모델에서 태스크 집합을, 묶음마다 프로세서 하나에서 EDF로 스케줄할 수 있도록 가장 적은 수의 묶음으로 나누는 문제는 NP-hard다.[@leung-real-time-scheduling-analysis-2005]
 
 같은 모델에서 태스크 수만큼 우선순위 단계가 있어 태스크마다 서로 다른 우선순위를 줄 때, 상대 마감 시한이 짧을수록 높은 우선순위를 주는 DM(Deadline Monotonic)도 프로세서가 둘 이상이면 최적이 아니고, 묶음마다 프로세서 하나에서 DM으로 스케줄할 수 있도록 가장 적은 수의 묶음으로 나누는 문제는 NP-hard다.[@leung-real-time-scheduling-analysis-2005] 단일 프로세서의 DM은 [[fixed-priority-scheduling#우선순위 배정|고정 우선순위 스케줄링]]에서 다룬다.
 

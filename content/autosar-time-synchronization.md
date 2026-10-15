@@ -13,9 +13,9 @@ StbM은 분산 시스템의 다른 노드와 동기화된 time base를 사용자
 
 StbM 자신은 다른 노드의 time base에 맞추는 네트워크 시간 프로토콜을 갖지 않는다. 시간 프로토콜은 Time Base Provider 역할을 하는 버스별 TSyn 모듈이 맡고, StbM은 이 모듈들이 준 정보로 자기 time base를 맞춘다. 시간 정보를 쓰는 BSW 모듈과 [[autosar-software-component|SW-C]]는 StbM에서 시간을 받으므로, StbM은 실제 time base provider를 감추는 중개자(broker) 역할을 한다.[@autosar-cp-sws-synchronizedtimebasemanager-2025]
 
-Time Base Provider가 값을 갱신하는 사이에도 time base를 읽을 수 있게 하는 일은 대개 하드웨어 기준 클록으로 하고, 흔히 그 overflow를 세는 소프트웨어 카운터를 함께 쓴다. 이 둘이 Virtual Local Time을 이룬다. 이 시간에 time base마다의 rate 편차와 오프셋을 반영해 그 time base의 로컬 시간(Local Instance of the Global Time)을 진행시킨다. 하드웨어 기준 클록으로는 [[autosar-os|AUTOSAR OS]]의 counter, GPT(General Purpose Timer) counter, 송수신 타임스탬프에 쓰는 이더넷의 free-running counter를 쓸 수 있다.[@autosar-cp-sws-synchronizedtimebasemanager-2025]
+Time Base Provider가 값을 갱신하는 사이에도 time base를 읽을 수 있게 하는 일은 대개 하드웨어 기준 클록으로 하고, 흔히 그 overflow를 세는 소프트웨어 카운터를 함께 쓴다. 이 둘이 Virtual Local Time을 이룬다. 이 시간에 time base마다의 rate 편차와 오프셋을 반영해 그 time base의 로컬 시간(Local Instance of the Global Time)을 진행시킨다. 하드웨어 기준 클록으로는 [[autosar-os|AUTOSAR OS]]의 counter, GPT(General Purpose Timer) counter, 송수신 타임스탬프에 쓰는 [[ethernet|이더넷]]의 free-running counter를 쓸 수 있다.[@autosar-cp-sws-synchronizedtimebasemanager-2025]
 
-StbM은 time base마다 0에서 127 사이의 Time Base 식별자를 둔다. 버스별 TSyn 모듈은 이와 따로 Time Domain 식별자를 정해 시간 동기화 메시지에 실어 보내며, 그 범위는 [[can|CAN]]과 [[flexray|FlexRay]]에서 0에서 15, [[ethernet|이더넷]]에서 0에서 127이다.[@autosar-cp-sws-synchronizedtimebasemanager-2025]
+StbM은 time base마다 0에서 127 사이의 Time Base 식별자를 둔다. 버스별 TSyn 모듈은 이와 따로 Time Domain 식별자를 정해 시간 동기화 메시지에 실어 보내며, 그 범위는 [[can|CAN]]과 [[flexray|FlexRay]]에서 0에서 15, 이더넷에서 0에서 127이다.[@autosar-cp-sws-synchronizedtimebasemanager-2025]
 
 StbM은 time base마다 설정에 따라 아래 세 역할 가운데 하나를 맡는다.[@autosar-cp-sws-synchronizedtimebasemanager-2025]
 

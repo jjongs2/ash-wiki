@@ -25,7 +25,7 @@ AUTOSAR [[autosar-classic-platform|Classic Platform]] R25-11의 SecOC 명세는 
 
 **Freshness Value**는 Secured I-PDU의 신선도를 보장하는 단조 카운터의 값으로, 메시지마다 세는 Freshness Counter나 시간 값인 Freshness Timestamp로 구현한다. Secured I-PDU마다 Freshness Value를 하나 이상 설정한다. 송신 측과 수신 측 SecOC는 Secured I-PDU마다 외부의 Freshness Manager에서 Freshness Value를 받는다. SecOC는 설정에 따라 Freshness Manager를 C 함수(`SecOC_GetTxFreshness` 등)로 부르거나, [[autosar-rte|RTE]]를 거쳐 FreshnessManagement 서비스의 operation으로 부른다. Freshness 관리는 AUTOSAR가 표준화하지 않았다.[@autosar-cp-sws-secureonboardcommunication-2025]
 
-AUTOSAR R25-11의 SecOC 프로토콜 명세도 신선도 정보를 주는 소프트웨어 컴포넌트가 따로 있다고 전제한다.[@autosar-fo-prs-secocprotocol-2025]
+AUTOSAR R25-11의 SecOC 프로토콜 명세도 신선도 정보를 주는 [[autosar-software-component|소프트웨어 컴포넌트]]가 따로 있다고 전제한다.[@autosar-fo-prs-secocprotocol-2025]
 
 ## 통신 스택 안의 배치
 
@@ -35,7 +35,7 @@ SecOC는 I-PDU가 지나는 경로마다 모듈 안에 버퍼를 두고, `SecOC_
 
 ## 암호 서비스와 키
 
-SecOC는 [[autosar-crypto-stack#Crypto Service Manager|Csm]]이 주는 암호 서비스를 쓰고, 키와 카운터 관리를 위해 RTE와 주고받는다.[@autosar-cp-sws-secureonboardcommunication-2025] SecOC와 다른 서비스의 연동에서 이 키·카운터 관리는 RTE 위의 Key & Counter Management [[autosar-software-component|SW-C]]가 맡는다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+SecOC는 [[autosar-crypto-stack#Crypto Service Manager|Csm]]이 주는 암호 서비스를 쓰고, 키와 카운터 관리를 위해 RTE와 주고받는다.[@autosar-cp-sws-secureonboardcommunication-2025] SecOC와 다른 서비스의 연동에서 이 키·카운터 관리는 RTE 위의 Key & Counter Management SW-C가 맡는다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## 검증 결과의 보고
 

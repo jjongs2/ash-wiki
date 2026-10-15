@@ -17,7 +17,7 @@ IdsM은 차량 안 보안 이벤트(security event, SEv)를 받는 표준 인터
 
 [[secure-onboard-communication|SecOC]]는 수신 Freshness Value를 얻지 못하거나 Authenticator 검증이 복구할 수 없는 오류로 끝나면 IdsM에 보안 이벤트를 보고한다.[@autosar-cp-sws-secureonboardcommunication-2025] [[autosar-firewall|AUTOSAR firewall]]도 IDS 센서로서 보안 이벤트를 IdsM에 보고한다.[@autosar-cp-sws-firewall-2025]
 
-AUTOSAR R25-11의 Adaptive Platform IdsM 명세는 Software Cluster와 functional cluster가 IdsM의 API로 새 보안 이벤트를 만들 수 있게 한다. Software Cluster가 만들 수 있는 이벤트 종류는 manifest에 설정해 그 Software Cluster의 PortPrototype에 잇고, 응용은 `ara::idsm::EventReporter`로 이벤트를 보고하면서 타임스탬프, 카운터, context data를 함께 줄 수 있다.[@autosar-ap-sws-intrusiondetectionsystemmanager-2025]
+AUTOSAR R25-11의 Adaptive Platform IdsM 명세는 [[autosar-software-cluster#Adaptive Platform의 Software Cluster와의 차이|Software Cluster]]와 functional cluster가 IdsM의 API로 새 보안 이벤트를 만들 수 있게 한다. Software Cluster가 만들 수 있는 이벤트 종류는 manifest에 설정해 그 Software Cluster의 PortPrototype에 잇고, 응용은 `ara::idsm::EventReporter`로 이벤트를 보고하면서 타임스탬프, 카운터, context data를 함께 줄 수 있다.[@autosar-ap-sws-intrusiondetectionsystemmanager-2025]
 
 ## Qualification
 
@@ -25,7 +25,7 @@ AUTOSAR Classic Platform R25-11의 IdsM 명세는 IdsM이 보고된 보안 이�
 
 ## 저장과 전달
 
-Qualified security event는 보안 개념에 따라 ECU 안의 Sem(Security Event Memory)에 저장하거나, 설정한 sink로 보내거나, 둘 다 한다. Classic Platform에서 sink는 [[diagnostic-event-manager|Dem]] 모듈과 IdsR(Intrusion Detection System Reporter)이고, IdsR은 qualified security event를 백엔드의 SOC(Security Operation Center)로 넘길 수 있다. Sem은 Dem의 기본 메모리와 따로 둔, Dem 모듈의 사용자 정의 메모리다. IdsM은 [[autosar-crypto-stack#Crypto Service Manager|Csm]]과 암호 스택으로 만든 Authenticator(디지털 서명이나 [[message-authentication-code|MAC]] 등)를 qualified security event에 붙여 무결성과 authenticity를 줄 수 있다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
+Qualified security event는 보안 개념에 따라 ECU 안의 Sem(Security Event Memory)에 저장하거나, 설정한 sink로 보내거나, 둘 다 한다. Classic Platform에서 sink는 [[diagnostic-event-manager|Dem]] 모듈과 IdsR(Intrusion Detection System Reporter)이고, IdsR은 qualified security event를 백엔드의 SOC(Security Operation Center)로 넘길 수 있다. Sem은 Dem의 기본 메모리와 따로 둔, Dem 모듈의 사용자 정의 메모리다. IdsM은 [[autosar-crypto-stack#Crypto Service Manager|Csm]]과 암호 스택으로 만든 Authenticator([[digital-signature|디지털 서명]]이나 [[message-authentication-code|MAC]] 등)를 qualified security event에 붙여 무결성과 authenticity를 줄 수 있다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
 
 ![[diagrams/idsm-security-event-flow.svg]]
 

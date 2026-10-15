@@ -39,4 +39,4 @@ Crypto Provider는 암호 primitive 구현 한 벌과 키 저장소에 접근하
 
 X.509 Certificate Management Provider(CMP)는 X.509 인증서의 구문 분석, 검증, 저장, 속성별 검색을 맡고, CRL(Certificate Revocation List)과 Delta CRL의 저장·관리·처리도 맡는다. Adaptive Platform의 암호 API는 보안상 민감한 연산과 결정을 HSM 같은 별도 구성 요소에 맡길 수 있게 설계됐다. 키를 특정 용도(예: 복호 전용)로 묶거나, [[autosar-identity-and-access-management|IAM]]이 알려 주는 대로 개별 응용에만 쓰게 해 키와 키 사용을 더 보호할 수도 있다.[@autosar-ap-exp-platformdesign-2025]
 
-AUTOSAR Adaptive Platform R25-11은 Crypto Rework 개념을 새로 들였다. 이 개념은 사용법을 단순하게 하고 알고리즘 식별자를 표준화했으며, HSM의 제약을 반영하고, X.509 인증서의 검증과 관리를 더 유연하게 했고, 동적 메모리 할당을 줄여 성능을 높였다.[@autosar-ap-tr-releaseoverview-2025]
+AUTOSAR Adaptive Platform R25-11은 Crypto Rework 개념을 새로 들였다. 이 개념은 사용법을 단순하게 하고 알고리즘 식별자를 표준화했으며, HSM의 제약을 반영하고, X.509 인증서의 검증과 관리를 더 유연하게 했고, [[dynamic-memory-allocation|동적 메모리 할당]]을 줄여 성능을 높였다.[@autosar-ap-tr-releaseoverview-2025]

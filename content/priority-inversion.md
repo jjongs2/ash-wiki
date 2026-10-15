@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**우선순위 역전**(priority inversion)은 높은 우선순위 태스크의 실행이 더 낮은 우선순위 태스크 때문에 늦어지는 상황이다. 우선순위 기반 [[real-time-scheduling#선점|선점형 스케줄링]]에서 우선순위가 다른 태스크들이 공유 자원을 두고 다툴 때 생길 수 있다.[@sha-real-time-scheduling-ada-1989][@davari-unbounded-priority-inversions-1992]
+**우선순위 역전**(priority inversion)은 높은 우선순위 [[task|태스크]]의 실행이 더 낮은 우선순위 태스크 때문에 늦어지는 상황이다. 우선순위 기반 [[real-time-scheduling#선점|선점형 스케줄링]]에서 우선순위가 다른 태스크들이 공유 자원을 두고 다툴 때 생길 수 있다.[@sha-real-time-scheduling-ada-1989][@davari-unbounded-priority-inversions-1992]
 
 [[ieee-1003-1|POSIX.1]]-2024는 우선순위 역전을, 스스로 멈추지 않은(사건이나 시간 지연을 기다리지 않는) 스레드가 실행되지 못하는 동안 더 낮은 우선순위 스레드가 실행되는 상태로 정의한다. 높은 우선순위 스레드가 이렇게 블록되는 것은 흔히 공유 자원을 두고 다투기 때문이다.[@ieee-1003-1-definitions-2024]
 

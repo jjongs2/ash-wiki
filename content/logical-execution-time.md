@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**LET**(Logical Execution Time)은 프로그램의 실제 실행 시간을 추상화해, 입력을 읽고 나서 출력을 쓰기까지의 시간을 실행에 걸리는 시간과 상관없이 정하는 실시간 프로그래밍 추상화다.[@kirsch-logical-execution-time-2012] 태스크는 구간이 시작할 때 입력을 읽고, 구간 안에 실행을 마치면 언제 마치든 출력은 구간이 끝날 때 쓴다.[@kirsch-logical-execution-time-2012][@henzinger-giotto-2003] LET은 Henzinger, Horowitz, Kirsch가 2000년에 발표한 시간 구동 프로그래밍 언어 Giotto에서 처음 도입되었다.[@kirsch-logical-execution-time-2012][@henzinger-giotto-2000]
+**LET**(Logical Execution Time)은 프로그램의 실제 실행 시간을 추상화해, 입력을 읽고 나서 출력을 쓰기까지의 시간을 실행에 걸리는 시간과 상관없이 정하는 실시간 프로그래밍 추상화다.[@kirsch-logical-execution-time-2012] [[task|태스크]]는 구간이 시작할 때 입력을 읽고, 구간 안에 실행을 마치면 언제 마치든 출력은 구간이 끝날 때 쓴다.[@kirsch-logical-execution-time-2012][@henzinger-giotto-2003] LET은 Henzinger, Horowitz, Kirsch가 2000년에 발표한 시간 구동 프로그래밍 언어 Giotto에서 처음 도입되었다.[@kirsch-logical-execution-time-2012][@henzinger-giotto-2000]
 
 ## 논리적 구간과 실제 실행
 

@@ -14,11 +14,11 @@ status: 유효
 
 AUTOSAR Adaptive Platform R25-11은 깊이 임베디드된 ECU의 요구를 다루는 [[autosar-classic-platform|Classic Platform]]으로는 채울 수 없는 요구, 곧 고도 자동 주행처럼 연산 자원을 많이 쓰고 차량 수명 동안 갱신해야 하는 소프트웨어의 요구를 위한 AUTOSAR의 둘째 소프트웨어 플랫폼이다. 주로 고성능 연산과 통신 메커니즘을 제공하고, [[over-the-air-update|무선 소프트웨어 업데이트]] 같은 유연한 소프트웨어 구성을 지원한다. 전기 신호 접근이나 차량 전용 버스 시스템처럼 Classic Platform을 위해 정한 기능은 Adaptive Platform에 통합할 수 있지만 표준화의 초점은 아니다.[@autosar-ap-exp-platformdesign-2025]
 
-응용은 C++로 작성할 수 있고, Adaptive Platform은 [[service-oriented-communication|서비스 지향]] 아키텍처를 따른다. 개발 중에는 응용을 점진적으로 배치하며 자원과 통신을 동적으로 관리하고, 양산용으로는 시스템 통합자가 동적 동작을 신중하게 제한할 수 있다. 이를 **planned dynamics**라 한다. 응용의 동적 동작은 [[autosar-manifest#종류|Execution Manifest]]에 적은 제약 안으로 제한된다. 서비스 발견 과정을 미리 정해 두는 것, 동적 메모리 할당을 시작 단계로 한정하는 것, 프로세스를 CPU 코어에 고정 배정하는 것, 인증된 코드만 실행하는 것이 그 예다.[@autosar-ap-exp-platformdesign-2025]
+응용은 C++로 작성할 수 있고, Adaptive Platform은 [[service-oriented-communication|서비스 지향]] 아키텍처를 따른다. 개발 중에는 응용을 점진적으로 배치하며 자원과 통신을 동적으로 관리하고, 양산용으로는 시스템 통합자가 동적 동작을 신중하게 제한할 수 있다. 이를 **planned dynamics**라 한다. 응용의 동적 동작은 [[autosar-manifest#종류|Execution Manifest]]에 적은 제약 안으로 제한된다. 서비스 발견 과정을 미리 정해 두는 것, [[dynamic-memory-allocation|동적 메모리 할당]]을 시작 단계로 한정하는 것, 프로세스를 CPU 코어에 고정 배정하는 것, 인증된 코드만 실행하는 것이 그 예다.[@autosar-ap-exp-platformdesign-2025]
 
 ## 범위
 
-Adaptive Platform은 Classic Platform과 달리 모듈 대신 functional cluster를 명세한다. AUTOSAR는 Classic Platform의 개발 이력을 바탕으로, 특정 소프트웨어 아키텍처를 정하지 않고 구현자가 표준 기능을 효율적으로 구현할 방법을 찾을 수 있게 이렇게 정했다.[@autosar-ap-tr-releaseoverview-2025]
+Adaptive Platform은 Classic Platform과 달리 모듈 대신 functional cluster를 명세한다. AUTOSAR는 Classic Platform의 개발 이력을 바탕으로, 특정 [[software-architecture|소프트웨어 아키텍처]]를 정하지 않고 구현자가 표준 기능을 효율적으로 구현할 방법을 찾을 수 있게 이렇게 정했다.[@autosar-ap-tr-releaseoverview-2025]
 
 ### Functional cluster
 
@@ -57,7 +57,7 @@ functional cluster마다 지원하는 프로토콜은 다음과 같다.[@autosar
 | [[autosar-diagnostic-management\|Diagnostic Management]]                   | [[doip\|DoIP]], [[uds\|UDS]], SOVD(Service-Oriented Vehicle Diagnostics)                                         |
 | [[intrusion-detection-system-manager\|Intrusion Detection System Manager]] | 침입 탐지 시스템 프로토콜                                                                                        |
 | Sensor Interfaces                                                          | ISO 23150                                                                                                        |
-| Network Management                                                         | UdpNm([[udp\|UDP]] Network Management)                                                                           |
+| [[autosar-network-management\|Network Management]]                         | UdpNm([[udp\|UDP]] Network Management)                                                                           |
 | [[autosar-time-synchronization\|Time Synchronization]]                     | [[ieee-802-1as\|gPTP]](IEEE 802.1AS)와, 이를 확장하고 프로파일링한 AUTOSAR 시간 동기화 프로토콜                  |
 | Raw Data Stream                                                            | [[ipv4\|IPv4]]와 [[ipv6\|IPv6]] 위의 [[tcp\|TCP]]와 UDP                                                          |
 | [[autosar-log-and-trace\|Log and Trace]]                                   | AUTOSAR Log and Trace 프로토콜                                                                                   |
@@ -66,7 +66,7 @@ functional cluster마다 지원하는 프로토콜은 다음과 같다.[@autosar
 
 ### 기능 안전
 
-AUTOSAR는 Adaptive Platform을 [[functional-safety|기능 안전]] 프로젝트에 통합하는 것을 돕도록 안전 개요 설명 문서와 안전 요구사항 문서를 펴낸다. Adaptive Platform을 쓴다고 [[iso-26262|ISO 26262]]를 준수하는 것은 아니고, Adaptive Platform의 안전 수단과 메커니즘을 쓰고도 안전하지 않은 시스템을 만들 수 있다. Adaptive Platform의 아키텍처는 잘해야 [[safety-element-out-of-context|SEooC]]로만 볼 수 있다.[@autosar-ap-exp-platformdesign-2025]
+AUTOSAR는 Adaptive Platform을 [[functional-safety|기능 안전]] 프로젝트에 통합하는 것을 돕도록 안전 개요 설명 문서와 [[safety-requirement|안전 요구사항]] 문서를 펴낸다. Adaptive Platform을 쓴다고 [[iso-26262|ISO 26262]]를 준수하는 것은 아니고, Adaptive Platform의 안전 수단과 메커니즘을 쓰고도 안전하지 않은 시스템을 만들 수 있다. Adaptive Platform의 아키텍처는 잘해야 [[safety-element-out-of-context|SEooC]]로만 볼 수 있다.[@autosar-ap-exp-platformdesign-2025]
 
 ### 그 밖의 functional cluster
 
@@ -76,7 +76,7 @@ AUTOSAR는 Adaptive Platform을 [[functional-safety|기능 안전]] 프로젝트
 - **Sensor Interfaces**: ISO 23150을 따르는 공통 인터페이스로, 비플랫폼 서비스가 센서 정보를 `ara::com` 미들웨어로 클라이언트 응용에 내준다.
 - **Safe Hardware Acceleration**: 응용과 다른 functional cluster가 하드웨어 가속기로 작업하는 API를 제공한다.[@autosar-ap-exp-platformdesign-2025]
 
-IP 기반 프로토콜을 쓰는 Raw Data Stream은 TCP나 UDP를 쓰는 TCP/IP 소켓을, IEEE 1722 프로토콜을 쓰는 Raw Data Stream은 데이터 링크 소켓을 전송 계층으로 쓴다.[@autosar-ap-sws-rawdatastream-2025]
+IP 기반 프로토콜을 쓰는 Raw Data Stream은 TCP나 UDP를 쓰는 [[internet-protocol-suite|TCP/IP]] 소켓을, IEEE 1722 프로토콜을 쓰는 Raw Data Stream은 데이터 링크 소켓을 전송 계층으로 쓴다.[@autosar-ap-sws-rawdatastream-2025]
 
 Safe Hardware Acceleration 개념의 생명주기 상태는 draft다. Hardware Test Manager는 하드웨어 시험을 위한 표준 인터페이스를 주는, R25-11에 새로 든 구성 요소로, 하드웨어 시험 패턴의 등록과 실행, 시험 결과의 수집과 보고를 맡는다.[@autosar-ap-tr-releaseoverview-2025]
 
