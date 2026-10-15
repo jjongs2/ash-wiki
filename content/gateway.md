@@ -42,3 +42,9 @@ NXP는 여러 차량 네트워크를 한데 잇는 중앙 허브 게이트웨이
 ## 네트워크 관리
 
 [[autosar-network-management|AUTOSAR Nm]]은 게이트웨이 ECU가 이어진 여러 버스를 함께 잠재우는 NM(Network Management) Coordinator 기능을 선택 기능으로 둔다.[@autosar-cp-sws-networkmanagementinterface-2025]
+
+## 네트워크 분리
+
+NHTSA의 2022년 지침(Cybersecurity Best Practices for the Safety of Modern Vehicles)은 무선으로 연결된 ECU와, 제동, 조향, 추진, 전원 관리처럼 안전에 중요한 기능을 제어하는 저수준 차량 제어 시스템 사이의 연결을 네트워크 분할과 격리 기법으로 제한하기를 권한다. 네트워크 사이의 인터페이스는, 서로 다른 네트워크 세그먼트 사이의 메시지 흐름을 엄격한 화이트리스트 기반으로 거르는 것 같은 강한 경계 통제를 갖춘 게이트웨이로 보호하기를 권한다.[@nhtsa-cybersecurity-best-practices-2022] (8.7.2 T.15·T.16, 15쪽)
+
+중국의 [[gb-44495|GB 44495]]-2024는 차량이 내부 네트워크를 영역으로 나눠 영역 경계를 보호하고, 영역을 넘는 요청에는 기본 거부 원칙과 최소 권한 원칙에 따라 접근을 통제하도록 요구한다.[@gb-44495-2024] (7.2.9, 원문 5쪽)

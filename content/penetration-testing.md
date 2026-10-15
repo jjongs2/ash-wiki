@@ -30,9 +30,15 @@ ISO/SAE 21434:2021의 11절은 [[cybersecurity-lifecycle#아이템과 운용 환
 
 NHTSA의 2022년 Cybersecurity Best Practices for the Safety of Modern Vehicles는 제조사가 개발 과정에서 침투 테스트를 포함한 제품 사이버보안 테스트를 하기를 권한다. 또 테스트 단계에 자격을 갖추고 취약점을 찾을 동기가 있으며 개발팀에 속하지 않았던 시험자를 쓰기를 권한다.[@nhtsa-cybersecurity-best-practices-2022]
 
+ENISA의 2019년 보고서 Good practices for security of smart cars는 개발 단계에서, 그리고 그 뒤에는 새 위협이나 취약점이 나왔을 때나 큰 업데이트 뒤처럼 사건을 계기로 정기적으로 침투 테스트 같은 보안 평가를 하기를 권한다(PS-14).[@enisa-smart-cars-2019] (4.2.4 PS-14, 29쪽)
+
+[[un-r155|UN R155]] 해석 문서는 R155 5.3.1 (a)가 승인 당국과 기술 기관에 요구하는 사이버보안 역량을 갖춘 인력에, 침투 테스트, [[fuzz-testing|퍼즈 테스트]], 부채널 테스트 같은 차량 사이버보안 실험실 시험의 방법을 적용하는 데 역량과 경험이 있는 인력이 든다고 본다.[@unece-r155-interpretation-2023] (C절 (b), 3쪽)
+
+Auto-ISAC의 2025년 백서는 [[automotive-threat-matrix|ATM]]의 전술과 기법을 침투 테스트 같은 [[exploratory-testing|탐색적 테스트]]를 계획하는 출발점으로 든다.[@auto-isac-atm-white-paper-2025] (3쪽 "Cybersecurity testing")
+
 ## 취약점 스캐닝과 퍼즈 테스트
 
-NIST SP 800-115에 따르면 취약점 스캐닝(vulnerability scanning)은 호스트의 운영체제와 소프트웨어를 알아낸 뒤, 스캐너의 데이터베이스에 담긴 알려진 취약점과 맞춰 본다.[@nist-sp-800-115-2008] NIST 용어집에 따르면 [[fuzz-testing|퍼즈 테스트]](fuzz testing)는 대상에 잘못된 데이터를 넣어 대상이 어떻게 반응하는지 드러낸다.[@nist-csrc-glossary-fuzz-testing-2026]
+NIST SP 800-115에 따르면 취약점 스캐닝(vulnerability scanning)은 호스트의 운영체제와 소프트웨어를 알아낸 뒤, 스캐너의 데이터베이스에 담긴 알려진 취약점과 맞춰 본다.[@nist-sp-800-115-2008] NIST 용어집에 따르면 퍼즈 테스트(fuzz testing)는 대상에 잘못된 데이터를 넣어 대상이 어떻게 반응하는지 드러낸다.[@nist-csrc-glossary-fuzz-testing-2026] (편집)
 
 ## 명세 준수 테스트와의 차이
 

@@ -57,6 +57,7 @@
 - 개인 키: 개인키 (#288)
 - 결함 허용: - (#223)
 - 공개 키: 공개키 (#288)
+- 기법: technique (#431). Automotive Threat Matrix의 technique일 때
 - 단위 테스트: 유닛 테스트 (#291)
 - 대칭 키: 대칭키 (#288)
 - 리프 노드: 잎 노드 (#250)
@@ -83,6 +84,10 @@
 - 위협 시나리오: threat scenario (#252)
 - 인수 기준: 인수 조건 (#385)
 - 자산: asset (#252)
+- 전술: tactic (#431). Automotive Threat Matrix의 tactic일 때
+- 차량 사이버보안: 汽车信息安全 (#431). GB 44495의 汽车信息安全일 때
+- 취약점 공개: vulnerability disclosure (#431)
+- 취약점 처리: vulnerability handling (#431)
 - 타원 곡선 암호: ECC (#289). 타원 곡선 암호를 가리킬 때. ECDSA·ECDH 같은 알고리즘 이름은 그대로. 예: SP 800-56A의 ECC CDH는 "타원 곡선 CDH"
 - 태스크 그룹: 태스크 묶음 (#349). OSEK OS 명세의 group of tasks일 때
 - 테스트 기준: test basis (#291)

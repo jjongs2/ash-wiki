@@ -128,6 +128,7 @@
 | `istqb-`       | ISTQB 강의계획서와 용어집       |
 | `ieee-swebok-` | SWEBOK                          |
 | `iso-iec-tr-`  | ISO/IEC 기술 보고서(ISO/IEC TR) |
+| `iso-sae-tr-`  | ISO/SAE 기술 보고서(ISO/SAE TR) |
 
 ### 이론 주장
 

@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-[[iso-sae-21434|ISO/SAE 21434]]:2021은 **cybersecurity specification**을 사이버보안 요구사항과 이에 맞춘 architectural design으로 정의한다. 이 표준의 10절(product development)은 cybersecurity specification을 정하고 사이버보안 요구사항을 구현하고 검증하는 활동을 담는다.[@iso-sae-21434-obp-2021] Architectural design 자체는 [[software-architecture|소프트웨어 아키텍처]]에서 다룬다.
+[[iso-sae-21434|ISO/SAE 21434]]:2021은 **cybersecurity specification**을 사이버보안 요구사항과 이에 맞춘 architectural design으로 정의한다. 이 표준은 **architectural design**을 컴포넌트와 그 경계, 인터페이스, 상호작용을 식별할 수 있게 하는 표현으로 정의한다. 이 표준의 10절(product development)은 cybersecurity specification을 정하고 사이버보안 요구사항을 구현하고 검증하는 활동을 담는다.[@iso-sae-21434-obp-2021] (둘째 문장: 3.1.1) 일반적인 아키텍처 설계는 [[software-architecture|소프트웨어 아키텍처]]에서 다룬다. (편집)
 
 ![[diagrams/cybersecurity-concept-specification-contents.svg]]
 

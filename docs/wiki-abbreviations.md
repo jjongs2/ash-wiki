@@ -35,6 +35,7 @@
 - CTAL-TM: 표준·규격 이름
 - CTFL: 표준·규격 이름
 - DENSO: 조직
+- DETA: 널리 쓰이는 약어
 - DoD: 조직
 - ECU: 널리 쓰이는 약어
 - EEPROM: 널리 쓰이는 약어
@@ -46,9 +47,11 @@
 - FIFO: 널리 쓰이는 약어
 - FIPS: 표준·규격 이름
 - FIRST: 조직
+- GB: 표준·규격 이름
 - GENIVI: 조직
 - GND: 전원
 - GNU: 조직
+- GPS: 널리 쓰이는 약어
 - GRVA: 조직
 - GUI: 널리 쓰이는 약어
 - HIS: 조직
@@ -71,6 +74,7 @@
 - ISO: 조직
 - ISTQB: 조직
 - ITU-T: 조직
+- JTAG: 표준·규격 이름
 - JTC: ISO 위원회 번호
 - LAN: 널리 쓰이는 약어
 - MCD: 표준·규격 이름
@@ -79,6 +83,8 @@
 - MIL-HDBK: 표준·규격 이름
 - MIPI: 조직
 - MISRA: 조직
+- MITRE: 조직
+- MITRE ATT&CK: 표준·규격 이름
 - NAND: 널리 쓰이는 약어
 - NASA: 조직
 - NATO: 조직
@@ -106,7 +112,9 @@
 - RX_DV: 핀과 신호
 - RX_ER: 핀과 신호
 - RXD: 핀과 신호
+- SAC: 조직
 - SAE: 조직
+- SAMR: 조직
 - SC: ISO 위원회 번호
 - SCK: 핀과 신호
 - SCL: 핀과 신호

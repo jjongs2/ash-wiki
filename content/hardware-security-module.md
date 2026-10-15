@@ -9,6 +9,8 @@ verified: 2026-10-03
 
 **HSM**(Hardware Security Module)은 암호 키를 지키고 관리하며 암호 처리를 해 주는 물리적 컴퓨팅 장치다.[@nist-sp-800-57-pt2-r1-2019]
 
+ENISA의 2019년 보고서 Good practices for security of smart cars는 암호 알고리즘을 안전하게 실행하고 키를 안전하게 저장하는 데 전용의 tamper-resistant HSM을 쓰는 것을 검토하기를 권한다.[@enisa-smart-cars-2019] (4.4.5 TM-32, 32쪽)
+
 ## 차량용 MCU의 HSM
 
 차량용 MCU 가운데에는 HSM을 칩 안에 넣고, 그 HSM에 주 CPU와 따로 자기 프로세서, 메모리, 암호 가속기를 두는 제품이 있다.[@infineon-aurix-tc3xx-hsm-training-2020][@renesas-rh850-rcar-secure-boot-part-2-2021]
