@@ -294,9 +294,12 @@ ul.section-ul {
   }
 }
 
-// ash-wiki: 동작 줄이기 설정에서는 사이트의 전환과 애니메이션을 곧바로 끝내고, 부드러운 스크롤도 끈다. 0이
-// 아니라 0.01ms로 두어, 전환이나 애니메이션이 끝나기를 기다리는 스크립트가 끝 이벤트를 그대로 받게 한다.
+// ash-wiki: 동작 줄이기 설정에서는 사이트의 전환을 끄고 애니메이션을 곧바로 끝내며, 부드러운 스크롤도 끈다.
 // 컴포넌트마다 규칙을 두지 않고 여기 한 곳에서 끈다.
+// - 전환은 시간을 줄이지 않고 끈다. transition-property의 기본값이 all이라 모든 요소에 시간을 주면 전환이
+//   없던 요소까지 모든 속성이 전환되어, 테마를 바꿀 때 요소마다 전환이 생겨 색이 한 박자 늦게 바뀐다.
+// - 애니메이션은 이름이 있는 요소에만 돌므로 0이 아니라 0.01ms로 두어, 끝나기를 기다리는 스크립트가 끝
+//   이벤트를 그대로 받게 한다.
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto !important;
@@ -305,8 +308,7 @@ ul.section-ul {
   *,
   *::before,
   *::after {
-    transition-duration: 0.01ms !important;
-    transition-delay: 0s !important;
+    transition: none !important;
     animation-duration: 0.01ms !important;
     animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
