@@ -11,6 +11,20 @@ diff --git a/node_modules/@quartz-community/tag-page/dist/index.js b/node_module
    }) });
  }
  var PageList = ({
+@@ -2549,9 +2550,10 @@ var ko_KR_default = {
+     tagContent: {
+       tag: "\uD0DC\uADF8",
+       tagIndex: "\uD0DC\uADF8 \uBAA9\uB85D",
+-      itemsUnderTag: ({ count }) => `${count}\uAC74\uC758 \uD56D\uBAA9`,
+-      showingFirst: ({ count }) => `\uCC98\uC74C ${count}\uAC1C\uC758 \uD0DC\uADF8`,
+-      totalTags: ({ count }) => `\uCD1D ${count}\uAC1C\uC758 \uD0DC\uADF8\uB97C \uCC3E\uC558\uC2B5\uB2C8\uB2E4.`
++      // ash-wiki: 업스트림 번역은 직역이고, showingFirst는 페이지를 태그라 잘못 부른다.
++      itemsUnderTag: ({ count }) => `페이지 ${count}개`,
++      showingFirst: ({ count }) => `(처음 ${count}개만 표시)`,
++      totalTags: ({ count }) => `태그 ${count}개`
+     }
+   },
+   components: {}
 diff --git a/node_modules/@quartz-community/tag-page/dist/components/index.js b/node_modules/@quartz-community/tag-page/dist/components/index.js
 --- a/node_modules/@quartz-community/tag-page/dist/components/index.js
 +++ b/node_modules/@quartz-community/tag-page/dist/components/index.js
@@ -24,3 +38,17 @@ diff --git a/node_modules/@quartz-community/tag-page/dist/components/index.js b/
    }) });
  }
  var PageList = ({
+@@ -2565,9 +2566,10 @@ var ko_KR_default = {
+     tagContent: {
+       tag: "\uD0DC\uADF8",
+       tagIndex: "\uD0DC\uADF8 \uBAA9\uB85D",
+-      itemsUnderTag: ({ count }) => `${count}\uAC74\uC758 \uD56D\uBAA9`,
+-      showingFirst: ({ count }) => `\uCC98\uC74C ${count}\uAC1C\uC758 \uD0DC\uADF8`,
+-      totalTags: ({ count }) => `\uCD1D ${count}\uAC1C\uC758 \uD0DC\uADF8\uB97C \uCC3E\uC558\uC2B5\uB2C8\uB2E4.`
++      // ash-wiki: 업스트림 번역은 직역이고, showingFirst는 페이지를 태그라 잘못 부른다.
++      itemsUnderTag: ({ count }) => `페이지 ${count}개`,
++      showingFirst: ({ count }) => `(처음 ${count}개만 표시)`,
++      totalTags: ({ count }) => `태그 ${count}개`
+     }
+   },
+   components: {}

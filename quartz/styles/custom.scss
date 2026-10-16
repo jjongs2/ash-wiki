@@ -328,3 +328,9 @@ footer ul {
     margin-right: 0.5rem;
   }
 }
+
+// ash-wiki: 태그 목록의 날짜 칸은 날짜 글자 폭에 맞춘다. 업스트림의 fit-content(8em)는 영어 날짜(Oct 15, 2026)에
+// 맞춘 폭이라, 한국어 날짜(2026년 10월 15일)가 두 줄로 꺾인다.
+.section-li > .section {
+  grid-template-columns: max-content 3fr 1fr;
+}
