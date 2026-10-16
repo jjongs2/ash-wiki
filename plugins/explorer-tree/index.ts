@@ -239,6 +239,9 @@ const CSS = `.explorer .explorer-content :is(.folder-button, ul li > a):focus-vi
 const SCRIPT = `(() => {
   const explorerInputs = ${explorerInputs.toString()}
   const buildExplorerTree = ${buildExplorerTree.toString()}
+  // 탐색기가 이동 전에 목록의 스크롤 위치를 저장하는 키와, 그 자리에 이 스크립트가 임시 위치를 넣어 두었는지
+  const SCROLL_KEY = "explorerScrollTop"
+  let placeholder = false
 
   window.explorerTree = (root) => {
     if (root.slugSegments.length > 0) return
@@ -273,14 +276,25 @@ const SCRIPT = `(() => {
     // 폴더를 연 뒤 탐색기와 같은 규칙(이동 전에 저장한 위치, 없으면 지금 페이지)으로 다시 맞춘다.
     // 저장한 위치가 없는 첫 로드에서 탐색기는 지금 페이지 항목에 scrollIntoView를 부르는데, 기본값
     // block: "start"라 목록만이 아니라 창까지 내려 제목이 화면 밖으로 밀린다. 그래서 탐색기가 그리기 전에
-    // 위치 0을 저장해 두어 탐색기는 목록의 scrollTop만 0으로 맞추게 하고, 아래에서 그 값을 지운 뒤 지금
-    // 페이지를 목록 안에서만 보이게 한다.
-    const saved = sessionStorage.getItem("explorerScrollTop")
-    if (!saved) sessionStorage.setItem("explorerScrollTop", "0")
-    for (const list of document.querySelectorAll(".explorer-ul")) {
+    // 임시 위치 0을 저장해 두어 탐색기는 목록의 scrollTop만 0으로 맞추게 하고, 아래에서 그 값을 지운 뒤
+    // 지금 페이지를 목록 안에서만 보이게 한다. 탐색기는 nav와 render에서 따로 그려 두 렌더가 겹칠 수 있으므로,
+    // 뒤 렌더는 앞 렌더가 남긴 임시 위치를 저장한 위치로 읽지 않는다. 이 처리는 탐색기가 mapFn을 저장한 위치를
+    // 읽기 전에 부르고, 저장한 값 "0"을 있는 값으로 본다는 데 기댄다. 탐색기를 올릴 때 이 둘을 확인한다.
+    const lists = document.querySelectorAll(".explorer-ul")
+    if (lists.length === 0) return
+    const stored = sessionStorage.getItem(SCROLL_KEY)
+    const saved = placeholder && stored === "0" ? null : stored
+    if (!saved) {
+      sessionStorage.setItem(SCROLL_KEY, "0")
+      placeholder = true
+    }
+    for (const list of lists) {
       const observer = new MutationObserver(() => {
         observer.disconnect()
-        if (!saved) sessionStorage.removeItem("explorerScrollTop")
+        if (!saved && placeholder) {
+          sessionStorage.removeItem(SCROLL_KEY)
+          placeholder = false
+        }
         const active = list.querySelector("a.active")
         if (!active) return
         // 폴더와 그 접기 표시(폴더가 열리면 돌아간다)
