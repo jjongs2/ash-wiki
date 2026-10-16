@@ -333,6 +333,9 @@ plugins:
         publisher: 발행기관
         edition: 판
         status: 상태
+      # 사이트의 날짜 꼴로 찍을 속성 키다. 프론트매터 값은 YYYY-MM-DD 그대로 둔다. 이 옵션도 같은 패치가 더했다.
+      dateKeys:
+        - verified
       hidePropertiesView: false
       delimiters: ---
       language: yaml

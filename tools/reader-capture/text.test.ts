@@ -12,7 +12,7 @@ function page(article: string, extra = ""): string {
 <details class="note-properties metadata-container" open><summary>속성</summary>
 <table class="note-properties-table"><tbody>
 <tr><td class="note-properties-key">태그</td><td class="note-properties-value"><span class="note-properties-tags"><a href="./tags/platform/rtos" class="internal internal-link tag-link">platform/rtos</a></span></td></tr>
-<tr><td class="note-properties-key">검증일</td><td class="note-properties-value"><span class="note-properties-text">2026-10-07</span></td></tr>
+<tr><td class="note-properties-key">검증일</td><td class="note-properties-value"><span class="note-properties-text"><time datetime="2026-10-07">2026년 10월 7일</time></span></td></tr>
 </tbody></table></details>
 <p class="content-meta"><time>2026년 10월 7일</time></p></div></div>
 <article class="popover-hint"><div class="markdown-preview-view markdown-rendered">${article}</div></article>
@@ -38,7 +38,7 @@ describe("readerText", () => {
         "# 세마포어",
         "",
         "태그: platform/rtos",
-        "검증일: 2026-10-07",
+        "검증일: 2026년 10월 7일",
         "",
         "**세마포어**(semaphore)는 동기화 객체다.[1] `sem_wait`는 줄인다.",
         "",
