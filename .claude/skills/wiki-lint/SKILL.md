@@ -12,11 +12,10 @@ disable-model-invocation: true
 
 ## 1. 모으기
 
-- 읽기 전에 `git fetch origin`으로 로컬 HEAD가 `origin/main`과 같은지 본다(`git log --oneline HEAD..origin/main`이 비었는가). 다르면 최신 main에서 읽는다. 다른 세션이 체크아웃을 쓰면 pull하지 않고 `origin/main`에서 worktree를 만들어 읽는다.
+- 읽기 전에 `git fetch origin`으로 로컬 HEAD가 `origin/main`과 같은지 본다(`git log --oneline HEAD..origin/main`이 비었는가). 다르면 최신 main에서 읽는다.
 - 대상이 속한 구역의 페이지를 모두 읽는다. 구역 태그 `network`면 `network`와 그 하위 태그를 단 페이지다. 주제 태그가 빠진 페이지도 보기 위해서다.
 - 위키 전체의 슬러그, `title`, `aliases`를 훑는다. 다른 구역에 같은 개념이 있는지 보기 위해서다.
 - `npm run source-status -- --topic <태그>`를 돌린다.
-- `FAIL url-timeout`이면 결과를 믿을 수 없다. 원인(네트워크 등)을 찾아 다시 돌린다.
 - `SKIP url-timeout`과 `SKIP url-refused`로 남은 URL은 그것만 `npm run source-status -- --topic <태그> --timeout 60000 --url <URL> --url <URL> …`로 하나씩 다시 묻는다. 다시 물어 `url` FAIL이 된 것은 출처 상태로 세고, 그래도 남은 것은 [6. 확인 불가](#6-확인-불가)로 넘긴다.
 
 완료: 최신 main에서 읽을 페이지를 모두 읽었고, `url-timeout`이 FAIL이 아닌 `source-status` 출력이 있고, `url-timeout`과 `url-refused`로 남은 URL을 다시 물었다.
@@ -55,8 +54,7 @@ disable-model-invocation: true
 
 수정이 있으면 PR 하나로 올린다. 제목은 `content: <대상> 린트 수정`, 브랜치와 본문은 `CONTRIBUTING.md`를 따른다. 이 린트를 부른 티켓이 있으면 그 번호를 쓴다.
 
-- 표기를 바꾸면 도해 SVG의 글자도 같이 고친다.
-- 고친 뒤 위키 검증 문서의 반영 뒤 점검과 `CONTRIBUTING.md`의 PR 전 확인을 돌린다.
+고친 뒤 위키 검증 문서의 반영 뒤 점검과 `CONTRIBUTING.md`의 PR 전 확인을 돌린다.
 
 완료: PR 전 확인이 통과하고, PR이 올라갔고, `CONTRIBUTING.md`의 리뷰를 마쳤다.
 

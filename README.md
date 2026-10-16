@@ -112,6 +112,7 @@ GLOSSARY.md       운영 용어집
 | [용어 표기 결정](docs/wiki-terms.md)             | 표기가 갈린 콘텐츠 용어의 결정      |
 | [풀이하지 않는 약어](docs/wiki-abbreviations.md) | 풀이 없이 쓰는 약어 목록            |
 | [검증 절차](docs/wiki-verification.md)           | 주장 판정과 재조사                  |
+| [출처 여는 법](docs/source-access.md)            | 호스트별 여는 법과 접속 확인        |
 | [출처 위계](docs/source-hierarchy.md)            | 주장 종류별 1층 출처                |
 | [엔진](docs/engine.md)                           | Quartz 기준선과 설정                |
 | [배포](docs/deploy.md)                           | Cloudflare Pages 설정과 로컬 프리뷰 |
