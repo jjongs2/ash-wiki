@@ -1,0 +1,15 @@
+diff --git a/node_modules/@quartz-community/citations/dist/index.js b/node_modules/@quartz-community/citations/dist/index.js
+--- a/node_modules/@quartz-community/citations/dist/index.js
++++ b/node_modules/@quartz-community/citations/dist/index.js
+@@ -124150,10 +124150,7 @@ var Citations = (userOpts) => {
+     name: "Citations",
+     htmlPlugins(ctx) {
+       const plugins2 = [];
+-      let lang = "en-US";
+-      if (ctx.cfg.configuration.locale !== "en-US") {
+-        lang = `https://raw.githubusercontent.com/citation-style-language/locales/refs/heads/master/locales-${ctx.cfg.configuration.locale}.xml`;
+-      }
++      const lang = "en-US";
+       plugins2.push([
+         rehypeCitation,
+         {

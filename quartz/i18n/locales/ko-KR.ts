@@ -65,10 +65,11 @@ export default {
       recentNotes: "최근 게시글",
       lastFewNotes: ({ count }) => `최근 ${count} 건`,
     },
+    // ash-wiki: 업스트림 번역은 404 제목이 영어다. 링크는 브레드크럼의 첫 마디처럼 대문이라 부른다(docs/engine.md의 locale 절).
     error: {
-      title: "Not Found",
+      title: "페이지를 찾을 수 없습니다",
       notFound: "페이지가 존재하지 않거나 비공개 설정이 되어 있습니다.",
-      home: "홈페이지로 돌아가기",
+      home: "대문으로 돌아가기",
     },
     folderContent: {
       folder: "폴더",

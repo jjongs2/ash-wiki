@@ -6,7 +6,8 @@ configuration:
   enablePopovers: true
   # 기본값은 업스트림 문서 사이트의 plausible 설정이다. 이 위키는 분석 계정이 없다.
   analytics: null
-  locale: en-US
+  # UI 문구와 날짜는 ko-KR이고, 참고문헌의 CSL은 패치로 en-US에 묶었다(docs/engine.md의 locale 절).
+  locale: ko-KR
   baseUrl: ash-wiki.pages.dev
   ignorePatterns:
     - private
@@ -237,8 +238,11 @@ plugins:
     layout:
       position: beforeBody
       priority: 10
+  # 읽는 시간은 보이지 않는다. 위키는 절을 골라 읽고, 한글 음절을 단어 하나로 세는 추정은 길게 잡힌다(#460).
   - source: "@quartz-community/content-meta"
     enabled: true
+    options:
+      showReadingTime: false
     layout:
       position: beforeBody
       priority: 20
@@ -264,8 +268,11 @@ plugins:
       position: left
       priority: 35
       group: toolbar
+  # 첫 마디는 대문이다. 기본값(Home)은 locale을 따르지 않는다.
   - source: "@quartz-community/breadcrumbs"
     enabled: true
+    options:
+      rootName: 대문
     layout:
       position: beforeBody
       priority: 5
@@ -317,6 +324,15 @@ plugins:
         - edition
         - status
       excludedProperties: []
+      # 속성 키의 표시 이름이다. 플러그인은 키를 그대로 찍어 패치로 이 옵션을 더했다(docs/engine.md의 locale 절).
+      labels:
+        description: 설명
+        tags: 태그
+        aliases: 별칭
+        verified: 검증일
+        publisher: 발행기관
+        edition: 판
+        status: 상태
       hidePropertiesView: false
       delimiters: ---
       language: yaml
@@ -352,10 +368,12 @@ layout:
       direction: row
       gap: 0.5rem
   byPageType:
+    # 404 페이지 타입은 최소 프레임을 써서 사이드바가 없다. 기본 프레임으로 왼쪽 사이드바(제목, 검색, 탐색기)를
+    # 두어 다른 페이지로 갈 수 있게 하고, 본문 위와 오른쪽은 비운다.
     "404":
+      template: default
       positions:
         beforeBody: []
-        left: []
         right: []
     content: {}
     folder:

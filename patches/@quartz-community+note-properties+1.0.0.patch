@@ -1,0 +1,44 @@
+diff --git a/node_modules/@quartz-community/note-properties/dist/index.js b/node_modules/@quartz-community/note-properties/dist/index.js
+--- a/node_modules/@quartz-community/note-properties/dist/index.js
++++ b/node_modules/@quartz-community/note-properties/dist/index.js
+@@ -11149,7 +11149,8 @@ var en_US_default = {
+ 
+ // src/i18n/index.ts
+ var locales = {
+-  "en-US": en_US_default
++  "en-US": en_US_default,
++  "ko-KR": { components: { noteProperties: { title: "속성" } } }
+ };
+ function i18n(locale) {
+   return locales[locale] || en_US_default;
+@@ -11310,7 +11311,7 @@ var NoteProperties_default = ((opts) => {
+             /* @__PURE__ */ u2("span", { class: "note-properties-count", children: entries.length })
+           ] }),
+           /* @__PURE__ */ u2("table", { class: "note-properties-table", children: /* @__PURE__ */ u2("tbody", { children: entries.map(([key, value2]) => /* @__PURE__ */ u2("tr", { class: "note-properties-row metadata-property", children: [
+-            /* @__PURE__ */ u2("td", { class: "note-properties-key metadata-property-key", children: key }),
++            /* @__PURE__ */ u2("td", { class: "note-properties-key metadata-property-key", children: opts?.labels?.[key] ?? key }),
+             /* @__PURE__ */ u2("td", { class: "note-properties-value metadata-property-value", children: key === "tags" && Array.isArray(value2) ? renderTagList(value2, ctx) : renderValue(value2, ctx) })
+           ] }, key)) }) })
+         ]
+diff --git a/node_modules/@quartz-community/note-properties/dist/components/index.js b/node_modules/@quartz-community/note-properties/dist/components/index.js
+--- a/node_modules/@quartz-community/note-properties/dist/components/index.js
++++ b/node_modules/@quartz-community/note-properties/dist/components/index.js
+@@ -151,7 +151,8 @@ var en_US_default = {
+ 
+ // src/i18n/index.ts
+ var locales = {
+-  "en-US": en_US_default
++  "en-US": en_US_default,
++  "ko-KR": { components: { noteProperties: { title: "속성" } } }
+ };
+ function i18n(locale) {
+   return locales[locale] || en_US_default;
+@@ -312,7 +313,7 @@ var NoteProperties_default = ((opts) => {
+             /* @__PURE__ */ u2("span", { class: "note-properties-count", children: entries.length })
+           ] }),
+           /* @__PURE__ */ u2("table", { class: "note-properties-table", children: /* @__PURE__ */ u2("tbody", { children: entries.map(([key, value]) => /* @__PURE__ */ u2("tr", { class: "note-properties-row metadata-property", children: [
+-            /* @__PURE__ */ u2("td", { class: "note-properties-key metadata-property-key", children: key }),
++            /* @__PURE__ */ u2("td", { class: "note-properties-key metadata-property-key", children: opts?.labels?.[key] ?? key }),
+             /* @__PURE__ */ u2("td", { class: "note-properties-value metadata-property-value", children: key === "tags" && Array.isArray(value) ? renderTagList(value, ctx) : renderValue(value, ctx) })
+           ] }, key)) }) })
+         ]

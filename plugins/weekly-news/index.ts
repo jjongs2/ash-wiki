@@ -188,7 +188,7 @@ export function weekLabel(week: string, from?: string): string {
 export function dayLabel(day: string, locale: string, year?: number): string {
   const date = new Date(`${day}T00:00:00`)
   if (Number(day.slice(0, 4)) !== year) return formatDate(date, locale)
-  return date.toLocaleDateString(locale, { month: "short", day: "2-digit" })
+  return date.toLocaleDateString(locale, { month: "short", day: "numeric" })
 }
 
 const periodLabel = (week: string, locale: string) => {

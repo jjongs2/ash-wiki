@@ -1,0 +1,24 @@
+diff --git a/node_modules/@quartz-community/tag-page/dist/index.js b/node_modules/@quartz-community/tag-page/dist/index.js
+--- a/node_modules/@quartz-community/tag-page/dist/index.js
++++ b/node_modules/@quartz-community/tag-page/dist/index.js
+@@ -394,7 +394,7 @@ function DateDisplay({ date, locale }) {
+   return /* @__PURE__ */ u2("time", { dateTime: date.toISOString(), children: date.toLocaleDateString(locale, {
+     year: "numeric",
+     month: "short",
+-    day: "2-digit"
++    day: "numeric"
+   }) });
+ }
+ var PageList = ({
+diff --git a/node_modules/@quartz-community/tag-page/dist/components/index.js b/node_modules/@quartz-community/tag-page/dist/components/index.js
+--- a/node_modules/@quartz-community/tag-page/dist/components/index.js
++++ b/node_modules/@quartz-community/tag-page/dist/components/index.js
+@@ -410,7 +410,7 @@ function DateDisplay({ date, locale }) {
+   return /* @__PURE__ */ u2("time", { dateTime: date.toISOString(), children: date.toLocaleDateString(locale, {
+     year: "numeric",
+     month: "short",
+-    day: "2-digit"
++    day: "numeric"
+   }) });
+ }
+ var PageList = ({
