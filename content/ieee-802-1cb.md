@@ -28,5 +28,5 @@ IEEE 802.1CB-2017은 동적 네트워크 제어 프로토콜이 장비 고장에
 
 - 2017년: 첫판이 나왔다.
 - 2021년: 개정 802.1CBcv-2021과 802.1CBdb-2021이 나왔다.[@ieee-802-1cb-2017] 802.1CBcv-2021은 정보 모델, YANG(Yet Another Next Generation) 데이터 모델, MIB(Management Information Base) 모듈을 더했고[@ieee-802-1-tsn-tg-2026], 802.1CBdb-2021은 스트림 식별 함수를 확장했다.[@ieee-802-1cbdb-2021]
-- 2025년: 2017년판과 그 개정, 정오표를 합치는 개정 프로젝트 P802.1CB-2017-Rev의 PAR(Project Authorization Request)이 2025년 2월에 승인되어 진행 중이다.[@ieee-p802-1cb-rev-2025] 같은 때 승인된 제안 개정 P802.1CBec는 시퀀스 복구 함수를 다듬고 그 파라미터의 권장값을 참고 Annex로 더한다.[@ieee-802-1cb-2017][@ieee-p802-1cbec-2025]
+- 2025년: 2017년판과 그 개정, 정오표를 합치는 개정 프로젝트 P802.1CB-2017-Rev의 PAR(Project Authorization Request)이 2025년 2월에 승인되었고, 2026년 10월 16일에 확인한 상태로는 진행 중이다.[@ieee-p802-1cb-rev-2025] 같은 때 승인된 제안 개정 P802.1CBec는 시퀀스 복구 함수를 다듬고 그 파라미터의 권장값을 참고 Annex로 더한다.[@ieee-802-1cb-2017][@ieee-p802-1cbec-2025]
 - 2026년: 정오표 802.1CB-2017/Cor 1-2026이 나왔다.[@ieee-802-1cb-2017]

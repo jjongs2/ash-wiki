@@ -20,6 +20,6 @@ ISO/IEC/IEEE 29148:2018은 요구사항을 낳는 공학 활동에서 구현할 
 
 - 2011년: 첫판.[@iso-iec-ieee-29148-2011] IEEE 830-1998, IEEE 1233-1998, IEEE 1362-1998을 대체했다.[@ieee-29148-2011] 세 표준은 차례로 소프트웨어 요구사항 명세 권고 관행, 시스템 요구사항 명세 개발 지침, ConOps(concept of operations) 문서 지침이다.[@ieee-830-1998][@ieee-1233-1998][@ieee-1362-1998]
 - 2018년: 둘째 판이자 현행판. 2011년 판을 기술 개정해 대체했다.[@iso-iec-ieee-29148-obp-2018][@iso-iec-ieee-29148-2018] ISO/IEC/IEEE 15288과 12207의 개정에 맞춰 고친 판이다.[@iso-iec-ieee-29148-obp-2018]
-- 다음 판인 3판이 ISO/IEC/IEEE DIS(Draft International Standard) 29148로 개발 중이고, DIS 투표가 시작된 단계(40.20)에 있다.[@iso-iec-ieee-dis-29148-2026] ISO는 2018년 판이 몇 달 안에 이 판으로 대체될 것으로 예상한다.[@iso-iec-ieee-29148-2018]
+- 2026년 10월 16일에 확인한 상태로는 다음 판인 3판이 ISO/IEC/IEEE DIS(Draft International Standard) 29148로 개발 중이고, DIS 투표가 시작된 단계(40.20)에 있다.[@iso-iec-ieee-dis-29148-2026]
 
 ![[diagrams/iso-iec-ieee-29148-editions.svg]]
