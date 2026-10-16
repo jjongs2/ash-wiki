@@ -49,7 +49,7 @@ OPEN Alliance의 TC17은 IEEE 802.1AE의 MACsec과 IEEE 802.1X의 MKA를 차량�
 - 2013년: 개정 802.1AEbw-2013이 확장 패킷 번호 cipher suite를 더해, SAK 하나로 $2^{32}$개보다 많은 프레임을 보호할 수 있게 했다.
 - 2017년: 개정 802.1AEcg-2017이 provider 네트워크의 서비스 선택을 유지하면서 투명한 보안 연결을 주는 EDE(Ethernet Data Encryption device)를 정했다. 우선순위가 다른 프레임의 순서가 바뀔 수 있는 경우(프레임 선점 등)에 엄격한 재전송 보호를 위해 송신 SC를 여럿 쓰는 방식도 정했다.
 - 2018년: 2판. 첫판과 그 개정들을 합쳐 대체했다. 이 판 뒤로 정오표 802.1AE-2018/Cor 1-2020과 MAC 프라이버시 보호를 정한 개정 802.1AEdk-2023이 나왔다.[@ieee-802-1ae-2018][@ieee-802-1ae-project-2026]
-- 2025년: 2018년판과 그 정오표, 개정을 합치는 유지보수 개정 프로젝트 P802.1AE-2018-Rev의 PAR(Project Authorization Request)이 2025년 9월에 승인되었고, 2026년 10월 16일에 확인한 상태로는 진행 중이다.[@ieee-p802-1ae-rev-2025]
+- 2025년: 2018년판과 그 정오표, 개정을 합치는 유지보수 개정 프로젝트 P802.1AE-2018-Rev의 PAR(Project Authorization Request)이 2025년 9월에 승인되었고, 2026년 10월 현재 진행 중이다.[@ieee-p802-1ae-rev-2025]
 
 ## AUTOSAR의 MACsec 지원
 

@@ -11,7 +11,7 @@ verified: 2026-09-29
 
 [[tsn|TSN]] 태스크 그룹에 따르면 AVB의 처음 작업은 IEEE 802.3의 Residential Ethernet Study Group에서 이루어졌다.[@ieee-802-1-tsn-tg-2026] 이 연구 그룹의 작업은 IEEE 802.1 작업 그룹의 Residential Bridges 태스크 그룹으로 옮겨 갔다.[@ieee-802-3-re-study-2006] 그에 앞서 2004년 7월 IEEE 802.3 총회의 관심 조사(Call for Interest)는 시간에 민감한 소비자 오디오·비디오 장치에 이더넷을 쓰는 연구 그룹을 만들지 물었다.[@ieee-802-3-re-cfi-2004]
 
-Avnu Alliance는 네트워크·IT 인프라, 반도체, 장치 제조사가 모인 단체로, ProAV·자동차·산업 분야의 TSN 부품과 네트워크 장치에 상호운용성 인증 프로그램을 운영한다.[@avnu-certification-2025] 2011년 당시 Avnu Alliance는 IEEE 802.1 AVB와 이에 관련된 [[ieee-1722|IEEE 1722]], IEEE 1733 표준의 채택을 촉진하는 업계 포럼으로, AVB 장치의 상호운용성을 보장할 적합성 시험 절차를 만들고 AVB 기술의 이점을 알리는 것을 목표로 했다.[@avnu-about-us-2011] IEEE 1733-2011은 RTP(Real-time Transport Protocol) 계열 프로토콜과 IEEE 802.1 AVB를 써서 시간에 민감한 오디오·비디오 엔드 스테이션이 서로 운용되게 하는 3계층 전송 프로토콜 표준이며, 2026년 10월 16일에 확인한 상태로는 2022년 3월부터 IEEE의 Inactive-Reserved로 남아 있다.[@ieee-1733-2011]
+Avnu Alliance는 네트워크·IT 인프라, 반도체, 장치 제조사가 모인 단체로, ProAV·자동차·산업 분야의 TSN 부품과 네트워크 장치에 상호운용성 인증 프로그램을 운영한다.[@avnu-certification-2025] 2011년 당시 Avnu Alliance는 IEEE 802.1 AVB와 이에 관련된 [[ieee-1722|IEEE 1722]], IEEE 1733 표준의 채택을 촉진하는 업계 포럼으로, AVB 장치의 상호운용성을 보장할 적합성 시험 절차를 만들고 AVB 기술의 이점을 알리는 것을 목표로 했다.[@avnu-about-us-2011] IEEE 1733-2011은 RTP(Real-time Transport Protocol) 계열 프로토콜과 IEEE 802.1 AVB를 써서 시간에 민감한 오디오·비디오 엔드 스테이션이 서로 운용되게 하는 3계층 전송 프로토콜 표준이며, IEEE가 2022년 3월 Inactive-Reserved로 돌린 뒤 2026년 10월 현재도 그 상태다.[@ieee-1733-2011]
 
 ## 구성 표준
 

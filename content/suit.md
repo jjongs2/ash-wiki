@@ -50,4 +50,4 @@ verified: 2026-10-15
 
 RFC 9124는 IoT 기기의 펌웨어 업데이트를 지키는 데 매니페스트에 있어야 할 정보 요소를 기술한다. 정보 요소를 인코딩과 직렬화에서 떼어 보이려고 정보 모델로 쓰였고, 요소마다 그 요소가 막는 위협과 바탕이 된 사용자 스토리를 든다. 매니페스트 구조의 버전 식별자와 단조 증가 시퀀스 번호는 매니페스트 형식이 반드시 지원해야 하는 요소다. 버전 식별자는 기기가 쓰이는 매니페스트 데이터 모델의 판을 알게 하고, 시퀀스 번호는 악의적인 행위자가 권한자의 정책을 거슬러 펌웨어 업데이트를 되돌리지 못하게 하는 [[rollback-protection|롤백 방지]] 요소다.[@ietf-rfc-9124-2022]
 
-SUIT 매니페스트의 CBOR(Concise Binary Object Representation) 기반 직렬화 형식은 Internet-Draft draft-ietf-suit-manifest가 다룬다. 2026년 10월 16일에 IETF Datatracker에서 확인한 판은 RFC가 아닌 -37이고, 목표 RFC 상태는 Proposed Standard이며, 문서는 RFC Editor의 발행 대기열(RFC Ed Queue)에 있다.[@ietf-draft-suit-manifest-2026]
+SUIT 매니페스트의 CBOR(Concise Binary Object Representation) 기반 직렬화 형식은 Internet-Draft draft-ietf-suit-manifest가 다룬다. 2026년 10월 현재 IETF Datatracker에 오른 판은 RFC가 아닌 -37이고, 목표 RFC 상태는 Proposed Standard이며, 문서는 RFC Editor의 발행 대기열(RFC Ed Queue)에 있다.[@ietf-draft-suit-manifest-2026]
