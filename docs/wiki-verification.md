@@ -287,9 +287,9 @@ npm run check:diff -- [--base <ref>] [--ticket <묶음 티켓>] [--only <항목>
 
 Node `fetch`의 기본 User-Agent(`node`)만 막는 호스트가 있어, 도구는 모든 요청에 User-Agent `Mozilla/5.0 (compatible; source-status/1.0)`을 보냅니다.
 
-브라우저로는 열리는데 자동 요청이 실패하는 출처는 원인마다 따로 셉니다. `SKIP` 줄은 `확인 불가`로 찍히고, 그것만으로는 exit 1이 아닙니다.
+자동 요청이 실패해도 출처가 죽었다고 볼 수 없는 경우는 원인마다 따로 셉니다. `SKIP` 줄은 `확인 불가`로 찍히고, 그것만으로는 exit 1이 아닙니다.
 
-- 봇 차단: 아래 봇 차단 호스트 표의 봇 차단 응답은 `SKIP url-blocked`입니다. 봇 차단 응답은 403과 WAF 챌린지(상태 202와 `x-amzn-waf-action: challenge` 헤더)입니다. 챌린지는 2xx여도 살아 있는 출처로 세지 않으므로, 목록 밖 호스트의 챌린지는 403처럼 `url` FAIL입니다.
+- 봇 차단: 아래 봇 차단 호스트 표의 봇 차단 응답은 `SKIP url-blocked`입니다. 봇 차단 응답은 403, WAF 챌린지(상태 202와 `x-amzn-waf-action: challenge` 헤더), 429입니다. 목록 밖 호스트의 봇 차단 응답은 `url` FAIL입니다. 챌린지는 2xx여도 살아 있는 출처로 세지 않고, 429는 다시 묻지 않습니다.
 - 시간 초과: 두 번 물어도 제한 시간 안에 답이 없으면 `SKIP url-timeout`입니다. 응답이 느린 호스트(`saemobilus.sae.org` 등)가 여기에 남습니다.
 - 몰린 연결 거부: 한 호스트에서 URL 둘 이상이 연결을 거부당하면 `SKIP url-refused`입니다. 호스트가 요청 빈도로 이 도구를 막은 것일 수 있어서입니다. 한 호스트에 하나뿐인 연결 거부는 `url` FAIL입니다.
 
@@ -297,7 +297,7 @@ DNS 실패, 404 같은 그 밖의 실패는 `url` FAIL입니다. 다만 시간 �
 
 ### 봇 차단 호스트
 
-아래 호스트는 자동 요청에 봇 차단 응답(403이나 WAF 챌린지)을 돌려주지만 브라우저로는 열립니다. 도구의 User-Agent로도 본문을 받는 GET은 풀리지 않습니다. HEAD는 통과하는 호스트(`electropedia.org`)도 있지만, 에이전트가 본문을 열려면 브라우저가 필요해 표에 둡니다. 목록은 하위 도메인까지 덮습니다. 이 호스트를 여는 법은 [출처 여는 법](source-access.md#호스트별-여는-법)에 있습니다.
+아래 호스트는 자동 요청에 봇 차단 응답(403, WAF 챌린지, 429)을 돌려줍니다. 도구의 User-Agent로도 본문을 받는 GET은 풀리지 않습니다. HEAD는 통과하는 호스트(`electropedia.org`)도 GET이 막히므로 표에 둡니다. 목록은 하위 도메인까지 덮습니다. 이 호스트를 여는 법은 [출처 여는 법](source-access.md#호스트별-여는-법)에 있습니다.
 
 <!-- table: bot-blocked-hosts -->
 
@@ -309,3 +309,4 @@ DNS 실패, 404 같은 그 밖의 실패는 `url` FAIL입니다. 다만 시간 �
 | `ieeexplore.ieee.org`       | IEEE Xplore 표준 문서 |
 | `unece.org`                 | UN 규정과 WP.29 문서  |
 | `trustedcomputinggroup.org` | TCG 명세와 용어집     |
+| `eur-lex.europa.eu`         | EU 법령               |
