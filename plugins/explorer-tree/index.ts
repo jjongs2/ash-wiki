@@ -168,7 +168,7 @@ export function explorerInputs(entries: ContentEntry[]): {
 //   업스트림의 12px보다 작은 10px로 줄이고, 제목색으로 흐리게 두며, hover에도 바꾸지 않는다.
 // - 하위 목록의 안내선은 상위 폴더 이름의 첫 글자 자리에 선다. 그 자리는 줄 규칙의 안쪽 여백(0.4rem)이라, 그
 //   여백을 바꾸면 안내선의 margin-left도 함께 바꾼다.
-// - 전환은 탐색기에 있던 폴더 펼침과 꺾쇠 회전만 두고, 동작 줄이기 설정에서는 그것도 끈다.
+// - 전환은 탐색기에 있던 폴더 펼침과 꺾쇠 회전만 둔다. 동작 줄이기 설정에서는 사용자 스타일시트가 끈다.
 // - 페이지가 없는 구역과 주제는 이름을 보조 글자색으로 쓰고 투명도로 더 흐린다. 라이트 테마에서는 보조
 //   글자색과 본문색이 모두 어두워 색만으로는 잘 갈리지 않고, 다크 테마에도 같은 모양을 쓴다. 보조 글자의 대비
 //   하한에 못 미치는 예외라 docs/palette.md의 대비 하한 절에 적어 두었다. 꺾쇠는 폴더임을 알리도록 더 흐리게
@@ -231,11 +231,6 @@ const CSS = `.explorer .explorer-content :is(.folder-button, ul li > a):focus-vi
   opacity: 0.3;
   pointer-events: none;
 }
-@media (prefers-reduced-motion: reduce) {
-  .explorer .explorer-content :is(.folder-icon, .folder-outer) {
-    transition: none;
-  }
-}
 `
 
 // 탐색기의 mapFn이 부르는 전역. 탐색기는 map을 뿌리부터 모든 노드에 부르므로, 뿌리에서만 자식을 갈아
@@ -276,9 +271,16 @@ const SCRIPT = `(() => {
     // 않으면 이동할 때마다 폴더가 접혔다 펴진다. 탐색기가 여는 폴더처럼 펼친 상태를 저장하지는 않는다.
     // 탐색기는 그린 직후 목록의 스크롤을 맞추는데, 그때는 폴더가 접혀 목록이 짧아 스크롤이 잘린다. 그래서
     // 폴더를 연 뒤 탐색기와 같은 규칙(이동 전에 저장한 위치, 없으면 지금 페이지)으로 다시 맞춘다.
+    // 저장한 위치가 없는 첫 로드에서 탐색기는 지금 페이지 항목에 scrollIntoView를 부르는데, 기본값
+    // block: "start"라 목록만이 아니라 창까지 내려 제목이 화면 밖으로 밀린다. 그래서 탐색기가 그리기 전에
+    // 위치 0을 저장해 두어 탐색기는 목록의 scrollTop만 0으로 맞추게 하고, 아래에서 그 값을 지운 뒤 지금
+    // 페이지를 목록 안에서만 보이게 한다.
+    const saved = sessionStorage.getItem("explorerScrollTop")
+    if (!saved) sessionStorage.setItem("explorerScrollTop", "0")
     for (const list of document.querySelectorAll(".explorer-ul")) {
       const observer = new MutationObserver(() => {
         observer.disconnect()
+        if (!saved) sessionStorage.removeItem("explorerScrollTop")
         const active = list.querySelector("a.active")
         if (!active) return
         // 폴더와 그 접기 표시(폴더가 열리면 돌아간다)
@@ -293,7 +295,6 @@ const SCRIPT = `(() => {
         list.offsetHeight // 연 상태를 전환 없이 반영한다
         for (const element of animated) element.style.transition = ""
 
-        const saved = sessionStorage.getItem("explorerScrollTop")
         if (saved) {
           list.scrollTop = Number(saved)
         } else {

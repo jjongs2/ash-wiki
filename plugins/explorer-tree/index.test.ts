@@ -274,15 +274,24 @@ describe("브라우저 스크립트", () => {
     filePath: `content/${entry.slug}.md`,
   }))
 
-  function mapped() {
+  function mapped(storage = new Map<string, string>()) {
     const window: { explorerTree?: (node: FileTrieNode<Entry>) => void } = {}
     // 트리를 그린 뒤 지금 페이지가 든 폴더를 여는 일은 DOM을 다루므로 브라우저에서 확인한다. 여기서는
     // 탐색기 목록이 없는 document를 주어 그 일을 건너뛴다.
     const document = { querySelectorAll: () => [] }
+    const sessionStorage = {
+      getItem: (key: string) => storage.get(key) ?? null,
+      setItem: (key: string, value: string) => storage.set(key, value),
+    }
     // tsx는 함수의 toString()에 __name 호출을 끼워 넣는다. 빌드는 이 파일을 플래그 없는 node로 불러
     // 그런 호출이 없으므로, 테스트에서만 그 이름을 채운다. new Function은 이 모듈의 이름을 보지 못하므로,
     // 스크립트에 실린 함수가 함수 밖의 이름을 쓰면 여기서 드러난다.
-    new Function("window", "document", "__name", source)(window, document, (fn: unknown) => fn)
+    new Function("window", "document", "sessionStorage", "__name", source)(
+      window,
+      document,
+      sessionStorage,
+      (fn: unknown) => fn,
+    )
     const trie = FileTrieNode.fromEntries(entries.map((entry) => [entry.slug as FullSlug, entry]))
     trie.map(window.explorerTree!)
     return trie
@@ -315,5 +324,18 @@ describe("브라우저 스크립트", () => {
         [["CAN", "tags/network/can", ["CAN 프레임 (can-frame)"]], "OSI 참조 모델 (osi-model)"],
       ],
     ])
+  })
+
+  // 탐색기가 그린 뒤 그 값을 지우고 지금 페이지를 목록 안에서만 보이게 하는 일은 브라우저에서 확인한다.
+  test("저장한 탐색기 위치가 없으면 그리기 전에 0을 저장해, 탐색기가 지금 페이지로 창까지 스크롤하지 않게 한다", () => {
+    const storage = new Map<string, string>()
+    mapped(storage)
+    assert.strictEqual(storage.get("explorerScrollTop"), "0")
+  })
+
+  test("저장한 탐색기 위치가 있으면 그대로 둔다", () => {
+    const storage = new Map([["explorerScrollTop", "120"]])
+    mapped(storage)
+    assert.strictEqual(storage.get("explorerScrollTop"), "120")
   })
 })
