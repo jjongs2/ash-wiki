@@ -1,0 +1,16 @@
+diff --git a/node_modules/@quartz-community/syntax-highlighting/dist/index.js b/node_modules/@quartz-community/syntax-highlighting/dist/index.js
+--- a/node_modules/@quartz-community/syntax-highlighting/dist/index.js
++++ b/node_modules/@quartz-community/syntax-highlighting/dist/index.js
+@@ -28909,8 +28909,11 @@ var SyntaxHighlighting = (userOpts) => {
+       const js = [];
+       const css = [];
+       if (clipboard) {
++        // ash-wiki: 복사 버튼의 스크린 리더 라벨이 영어로 박혀 있다. 바꿀 문구가 없으면 빌드를 멈춘다.
++        const copyLabel = 'e.ariaLabel="Copy source"';
++        if (!clipboard_inline_default.includes(copyLabel)) throw new Error("ash-wiki syntax-highlighting 패치: 복사 버튼 라벨이 없다");
+         js.push({
+-          script: clipboard_inline_default,
++          script: clipboard_inline_default.replace(copyLabel, 'e.ariaLabel="코드 복사"'),
+           loadTime: "afterDOMReady",
+           contentType: "inline"
+         });

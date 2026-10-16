@@ -1,11 +1,12 @@
 diff --git a/node_modules/@quartz-community/content-meta/dist/index.js b/node_modules/@quartz-community/content-meta/dist/index.js
 --- a/node_modules/@quartz-community/content-meta/dist/index.js
 +++ b/node_modules/@quartz-community/content-meta/dist/index.js
-@@ -484,7 +484,7 @@ function formatDate(d2, locale = "en-US") {
+@@ -484,7 +484,8 @@ function formatDate(d2, locale = "en-US") {
    return d2.toLocaleDateString(locale, {
      year: "numeric",
      month: "short",
 -    day: "2-digit"
++    // ash-wiki: 날을 0으로 채우지 않는다(docs/engine.md의 locale 절).
 +    day: "numeric"
    });
  }
@@ -13,11 +14,12 @@ diff --git a/node_modules/@quartz-community/content-meta/dist/index.js b/node_mo
 diff --git a/node_modules/@quartz-community/content-meta/dist/components/index.js b/node_modules/@quartz-community/content-meta/dist/components/index.js
 --- a/node_modules/@quartz-community/content-meta/dist/components/index.js
 +++ b/node_modules/@quartz-community/content-meta/dist/components/index.js
-@@ -484,7 +484,7 @@ function formatDate(d2, locale = "en-US") {
+@@ -484,7 +484,8 @@ function formatDate(d2, locale = "en-US") {
    return d2.toLocaleDateString(locale, {
      year: "numeric",
      month: "short",
 -    day: "2-digit"
++    // ash-wiki: 날을 0으로 채우지 않는다(docs/engine.md의 locale 절).
 +    day: "numeric"
    });
  }

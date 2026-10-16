@@ -324,7 +324,7 @@ plugins:
         - edition
         - status
       excludedProperties: []
-      # 속성 키의 표시 이름이다. 플러그인은 키를 그대로 찍어 패치로 이 옵션을 더했다(docs/engine.md의 locale 절).
+      # 속성 키의 표시 이름이다. 플러그인은 키를 그대로 찍어, 이 옵션은 patches/의 note-properties 패치가 더했다.
       labels:
         description: 설명
         tags: 태그
