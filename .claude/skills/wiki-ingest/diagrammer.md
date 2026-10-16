@@ -10,7 +10,7 @@
 저장소 `<저장소 루트>`에서 먼저 읽는다.
 
 - `docs/wiki-conventions.md`의 도해 절: 담을 사실, 넣는 자리, 파일, 팔레트, 두 테마 규칙
-- `docs/wiki-verification.md`의 봇 차단 호스트 표: 자동 요청이 막히는 호스트. 여는 법은 아래 호스트별 여는 법 절
+- `docs/wiki-verification.md`의 봇 차단 호스트 표: 자동 요청이 막히는 호스트
 - `docs/source-access.md`: 머리의 공통 줄과 호스트별 여는 법 절
 
 할 일:

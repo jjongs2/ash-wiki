@@ -4,7 +4,7 @@ status: accepted
 
 # 무료 미리보기와 스크린숏 사본을 인정하고, 봇 차단 호스트의 429를 봇 차단으로 센다
 
-> 현행 규칙은 [출처 위계](../source-hierarchy.md#접근-장벽), [출처 여는 법](../source-access.md#호스트별-여는-법), [위키 검증의 출처 상태](../wiki-verification.md#출처-상태)에 있다.
+> 현행 규칙은 [출처 위계](../source-hierarchy.md#접근-장벽), [출처 여는 법](../source-access.md#호스트별-여는-법), [위키 검증의 출처 상태](../wiki-verification.md#출처-상태)에 있다. 스크린숏 사본은 인제스트 스킬(`.claude/skills/wiki-ingest/SKILL.md`)의 브리프 사본 항목에 있다.
 
 접근 장벽의 인정 목록은 미리보기로 약관 동의 뒤 열리는 OBP만 적었다. 위키는 이미 IEC webstore 미리보기와 중국 국가표준 미리보기(openstd)를 인용하는데, 둘 다 발행기관이 비용 없이 여는 범위다. openstd의 쪽은 텍스트 층 없는 이미지라, 본문을 텍스트로 저장하고 grep하는 인제스트의 사본으로는 담을 수 없었다.
 
