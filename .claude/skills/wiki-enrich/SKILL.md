@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # 보강
 
-주제 하나를 소스 노트 없이 공개 출처로 넓히고 고친다. 발행한 티켓은 인제스트가 노트 대신 티켓의 출처 후보로 처리한다. 용어는 `CONTEXT.md`를 따른다. 주제 이름은 `content/tags/<주제 태그>.md`의 `title`이다(예: CAN). 파일이 없으면 새 주제이니 표시 이름을 소유자에게 묻는다.
+주제 하나를 소스 노트 없이 공개 출처로 넓히고 고친다. 발행한 티켓은 인제스트가 노트 대신 티켓의 출처 후보로 처리한다. 용어는 `GLOSSARY.md`를 따른다. 주제 이름은 `content/tags/<주제 태그>.md`의 `title`이다(예: CAN). 파일이 없으면 새 주제이니 표시 이름을 소유자에게 묻는다.
 
 먼저 읽는다: `docs/source-hierarchy.md`(1층 출처), `docs/wiki-conventions.md`(슬러그, 페이지 타입, 태그), `docs/wiki-terms.md`(용어 표기 결정), `docs/wiki-verification.md`(판정, 표준의 판, 정정, `verify:` 이슈, 호스트별 여는 법, 접속 확인).
 

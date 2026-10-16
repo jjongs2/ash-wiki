@@ -100,14 +100,14 @@ tools/            콘텐츠 검사기, 참고문헌 합본, 출처 상태 수집
 plugins/          직접 만든 Quartz 플러그인
 quartz/           Quartz v5 엔진(고친 이유는 각 파일의 주석)
 .claude/skills/   위키 스킬
-CONTEXT.md        운영 용어집
+GLOSSARY.md       운영 용어집
 ```
 
 ## 문서
 
 | 문서                                             | 내용                                |
 | ------------------------------------------------ | ----------------------------------- |
-| [CONTEXT.md](CONTEXT.md)                         | 운영 용어집                         |
+| [GLOSSARY.md](GLOSSARY.md)                       | 운영 용어집                         |
 | [위키 규약](docs/wiki-conventions.md)            | 페이지 표기 규칙과 콘텐츠 검사기    |
 | [용어 표기 결정](docs/wiki-terms.md)             | 표기가 갈린 콘텐츠 용어의 결정      |
 | [풀이하지 않는 약어](docs/wiki-abbreviations.md) | 풀이 없이 쓰는 약어 목록            |

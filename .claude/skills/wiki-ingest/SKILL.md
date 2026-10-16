@@ -5,7 +5,7 @@ description: 인제스트. `ingest:` 묶음 티켓 하나를 초안, 검증자 �
 
 # 인제스트
 
-묶음 티켓 하나가 PR 하나가 된다. 용어는 `CONTEXT.md`를 따른다.
+묶음 티켓 하나가 PR 하나가 된다. 용어는 `GLOSSARY.md`를 따른다.
 
 먼저 티켓을 읽는다(`docs/agents/issue-tracker.md`의 이슈 읽기). 규칙 문서는 한꺼번에 읽지 않는다. 단계와 절마다 "읽는다:"가 적은 문서와 절을 그 자리에서 읽는다. 브랜치와 커밋은 `CONTRIBUTING.md`의 브랜치, PR 제목 절을 따르고, 타입은 `content`다.
 

@@ -20,4 +20,4 @@
 
 ### 도메인 문서
 
-Single-context 구조로, 저장소 루트의 `CONTEXT.md` 하나와 `docs/adr/`를 사용합니다. 자세한 내용은 `docs/agents/domain.md`를 참고하세요.
+Single-context 구조로, 저장소 루트의 `GLOSSARY.md` 하나와 `docs/adr/`를 사용합니다. 자세한 내용은 `docs/agents/domain.md`를 참고하세요.
