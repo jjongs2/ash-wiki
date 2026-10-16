@@ -11,7 +11,7 @@ description: 인제스트. `ingest:` 묶음 티켓 하나를 초안, 검증자 �
 
 티켓의 페이지 표에 `출처 후보` 열이 있으면 **출처 경로**, 없으면 **노트 경로**다. 출처 경로 티켓은 보강이 발행한 것으로, `ASH_WIKI_NOTES`를 열지 않고 표의 출처로 쓴다. 두 경로가 다른 단계는 따로 적는다.
 
-출처를 열기 전에 위키 검증 문서의 접속 확인을 한다. 읽는다: 위키 검증 문서의 접속 확인 절과 그 절이 견주는 봇 차단 호스트, 호스트별 여는 법 표. 대상은 출처 후보의 호스트와 Wayback이다. 출처 경로는 1단계를 시작할 때, 노트 경로는 1단계에서 출처 후보를 적은 뒤 2단계 전에 한다. 접속 확인에서 멈추면 소유자의 답을 기다린다.
+출처를 열기 전에 출처 여는 법 문서의 접속 확인을 한다. 읽는다: `docs/source-access.md`의 접속 확인 절과 호스트별 여는 법 표, 위키 검증 문서의 봇 차단 호스트 표. 대상은 출처 후보의 호스트와 Wayback이다. 출처 경로는 1단계를 시작할 때, 노트 경로는 1단계에서 출처 후보를 적은 뒤 2단계 전에 한다. 접속 확인에서 멈추면 소유자의 답을 기다린다.
 
 **형제 PR**은 같은 `verify:` 이슈를 막는 다른 묶음 티켓의 열린 PR이다. 묶음 티켓은 `gh api repos/<owner>/<repo>/issues/<verify 이슈>/dependencies/blocked_by --jq '.[].number'`로 찾고, 티켓마다 열린 PR은 `gh pr list --state open --json number,closingIssuesReferences --jq '.[] | select(any(.closingIssuesReferences[]; .number == <티켓>)) | .number'`로 찾는다. **머지된 형제 PR**은 같은 명령을 `--state merged`로 돌려 찾은 PR 가운데, `git fetch origin` 뒤 `git log --format=%s <기준 커밋>..origin/main`(`<기준 커밋>`은 [브리프](#브리프)의 것)의 제목 끝 `(#<PR>)`에 있는 것이다. 이 세션이 시작한 뒤 머지된 형제 묶음이다.
 

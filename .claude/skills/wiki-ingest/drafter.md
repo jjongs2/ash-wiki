@@ -13,7 +13,8 @@
 - `.claude/skills/wiki-ingest/SKILL.md`: 머리의 형제 PR 문단, 1단계의 `### 두 경로 공통` 절, `### 브리프` 절의 현행판 표와 사본 항목
 - `docs/wiki-conventions.md`: 표, 도해, 열린 PR과 겹치는 파일, 빌드 절을 뺀 전부
 - `docs/wiki-terms.md`, `docs/wiki-abbreviations.md`
-- `docs/wiki-verification.md`: 판정 절의 약어 풀이 문단, 좁혀 쓰기(규범 주장의 꼴, 출처 구간, 합의 문서), 이론 주장, 표준의 판, 정정, 봇 차단 호스트, 호스트별 여는 법, 반영 뒤 점검의 `standard-sentence`, `source-run`, `abbreviation`, `repeated-citation`, `term`, `first-link` 항목
+- `docs/wiki-verification.md`: 판정 절의 약어 풀이 문단, 좁혀 쓰기(규범 주장의 꼴, 출처 구간, 합의 문서), 이론 주장, 표준의 판, 정정, 봇 차단 호스트, 반영 뒤 점검의 `standard-sentence`, `source-run`, `abbreviation`, `repeated-citation`, `term`, `first-link` 항목
+- `docs/source-access.md`: 머리의 공통 줄과 호스트별 여는 법 절
 - `docs/source-hierarchy.md`: 발행기관, 원 논문과 원 저자의 글, 1층 출처 절
 
 할 일:
@@ -42,12 +43,10 @@
 - SKILL.md 브리프 절의 현행판 표 항목대로 티켓의 구성을 현행판대로 고쳤으면, PR 본문 대신 반환의 `현행판대로 고친 구성`에 적는다.
 - 띄운 프롬프트의 `## 태그`에 있는 태그마다 그 표시 이름 파일과 대문 구역 표의 칩(새 구역이면 행)을 더한다. 내용은 티켓의 `## Tags`를 따른다.
 
-출처 여는 법:
+출처 여는 법(`docs/source-access.md`에 더해):
 
-- 받은 파일은 `<사본 폴더>`에 두고, 브라우저는 자기 탭을 새로 열어 쓴다.
-- 받은 출처는 SKILL.md 브리프 절의 사본 항목대로 저장해 `<사본 폴더>/brief-part.md`의 `## 사본 목록`에 적는다. 브리프의 `## 사본 목록`에 이미 있는 출처는 사본만 읽고 다시 받지 않는다. 인용할 주소는 원래 URL이다.
-- PDF와 정적 페이지는 `curl`로 받아서 읽는다.
-- 호스트마다 다른 여는 법(Wayback, `curl -k`, 인용할 주소, 브라우저를 쓰는 호스트)은 위키 검증 문서의 호스트별 여는 법 절을 따른다.
+- 받은 파일은 `<사본 폴더>`에 둔다.
+- 받은 출처는 SKILL.md 브리프 절의 사본 항목대로 저장해 `<사본 폴더>/brief-part.md`의 `## 사본 목록`에 적는다.
 - 출처가 열리지 않으면 매달리지 않는다. 그 출처로 쓸 줄은 쓰지 않고 반환의 `열지 못한 출처`에 적은 뒤 다음 줄로 넘어간다.
 
 반환은 아래 JSON 하나다.

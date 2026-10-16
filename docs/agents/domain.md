@@ -7,19 +7,6 @@ Engineering skill들이 코드베이스를 살펴볼 때 이 저장소의 도메
 - 저장소 루트의 **`GLOSSARY.md`**
 - **`docs/adr/`**: 작업할 영역과 관련된 ADR을 읽습니다. 현행 규칙과의 관계는 [ADR과 운영 문서](#adr과-운영-문서)를 따릅니다.
 
-이 파일들이 없으면 **별도로 알리지 않고 그대로 진행합니다**. 파일이 없다고 지적하거나 미리 만들자고 제안하지 않습니다. 용어나 결정이 실제로 정리되는 시점에 `/domain-modeling` skill(`/grill-with-docs`, `/improve-codebase-architecture`를 통해 호출됨)이 필요한 만큼 만들어 줍니다.
-
-## 파일 구조
-
-Single-context 구조입니다.
-
-```
-/
-├── GLOSSARY.md
-└── docs/
-    └── adr/
-```
-
 ## ADR과 운영 문서
 
 - ADR은 결정과 그 까닭의 기록입니다. 현행 규칙의 정본은 운영 문서이고, ADR이 운영 문서를 가리키면 그 문서를 따릅니다.
