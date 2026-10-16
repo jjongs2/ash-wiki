@@ -239,13 +239,14 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
   }
 }
 
-// ash-wiki: 모바일에서 탐색기 서랍을 화면 왼쪽 끝에 붙인다. 서랍은 사이드바를 기준으로 left: 0에 놓이는데,
-// 사이드바는 본문 칸의 좌우 여백(base.scss의 #quartz-body padding 1rem)만큼 들어가 있다. 그래서 열린 서랍은
-// 오른쪽으로 1rem 밀리고, 화면 폭만큼 왼쪽으로 옮긴 닫힌 서랍은 1rem이 화면 안에 남아 지금 페이지의 배경이
-// 비친다. 서랍 안의 열린 폴더는 업스트림이 visibility: visible로 두어 닫힌 서랍의 hidden을 이긴다.
+// ash-wiki: 모바일에서 닫힌 탐색기 서랍을 화면 밖으로 다 밀어 낸다. 서랍은 사이드바를 기준으로 left: 0에
+// 놓이고, 사이드바는 본문 칸의 좌우 여백(base.scss의 #quartz-body padding 1rem)만큼 들어가 있다. 업스트림은
+// 닫힌 서랍을 화면 폭만큼만 옮겨 1rem이 화면 안에 남고, 지금 페이지의 배경이 비친다. 서랍 안의 열린 폴더는
+// 업스트림이 visibility: visible로 두어 닫힌 서랍의 hidden을 이긴다. 열린 서랍의 1rem 들임은 그대로 둔다.
+// 서랍에는 좌우 여백이 없어, 그 들임이 항목을 메뉴 버튼과 같은 줄에 세운다.
 @media all and ($mobile) {
-  .explorer .explorer-content {
-    left: -1rem;
+  .explorer.collapsed > .explorer-content {
+    transform: translateX(calc(-100vw - 1rem));
   }
 }
 
