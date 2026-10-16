@@ -43,6 +43,8 @@
 - `## Verification`: 어떻게 확인했는지(실행한 명령과 결과)
 - `Closes #N`: 이 PR이 닫는 이슈. 없으면 뺍니다
 
+Changes·Verification의 수는 원 산출물(에이전트 반환, `git diff`, 검사 출력)에서 명령으로 센 값을 씁니다. 손으로 옮겨 적은 표나 메모의 수를 더하지 않습니다.
+
 ## 리뷰
 
 1. PR을 올린 뒤 `/code-review`(mattpocock-skills)로 두 축을 리뷰합니다.

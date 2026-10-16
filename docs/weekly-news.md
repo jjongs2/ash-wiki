@@ -1,6 +1,6 @@
 # 주간 소식
 
-주간 소식은 위키 콘텐츠 밖의 연재입니다. 요약을 검증하지 않고 위키 규약도 따르지 않습니다([ADR 0015](adr/0015-weekly-news-outside-wiki-content.md)). 이 문서는 호 파일의 형식과 사이트에 보이는 범위를 적습니다. 형식의 정본은 형식 함수(`plugins/weekly-news`의 `parseWeeklyNews`)이고, 이 문서와 어긋나면 함수를 따릅니다.
+주간 소식은 위키 콘텐츠 밖의 연재입니다. 요약의 주장을 다른 출처로 검증하지 않고 위키 규약도 따르지 않습니다([ADR 0015](adr/0015-weekly-news-outside-wiki-content.md)). 이 문서는 호 파일의 형식과 사이트에 보이는 범위를 적습니다. 형식의 정본은 형식 함수(`plugins/weekly-news`의 `parseWeeklyNews`)이고, 이 문서와 어긋나면 함수를 따릅니다.
 
 ## 경로
 
