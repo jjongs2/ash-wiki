@@ -114,6 +114,18 @@ class MergeBriefTest(unittest.TestCase):
         self.assertIn("| RFC 9019 | 판 없음 |", table)
         self.assertIn("- UN R156", out)
 
+    def test_copy_tables_from_each_part_stay_whole(self):
+        table = "사본 폴더: `.work/draft-{0}`\n\n| 원래 URL | 사본 |\n| --- | --- |\n| https://example.org/{0} | `{0}.txt` |\n"
+        for part, name in zip(self.parts, "AB"):
+            with open(part) as f:
+                text = f.read()
+            with open(part, "w") as f:
+                f.write(text.split("## 사본 목록")[0] + "## 사본 목록\n\n" + table.format(name))
+        merged, _ = self.run_script()
+        copies = merged.split("\n## 사본 목록\n")[1]
+        self.assertIn(table.format("A").strip(), copies)
+        self.assertIn(table.format("B").strip(), copies)
+
     def test_running_again_changes_nothing(self):
         first, first_out = self.run_script()
         second, second_out = self.run_script()

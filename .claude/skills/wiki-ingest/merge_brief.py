@@ -6,9 +6,10 @@ python3 -B merge_brief.py <브리프> <brief-part.md>...
 보지 않는다. 지시 블록이 글 가운데 `## 현행판 표`를 적어도 자르지 않는다. 두 절 밖의
 글은 그대로 두고, 브리프는 그 자리에서 고쳐 쓴다.
 
-현행판 표의 머리(구분 줄까지)는 브리프나 첫 조각의 것 하나만 두고, 줄과 사본 목록의
-항목은 글자가 같은 것을 한 번만 둔다. 첫 칸(이름)이 같은데 글자가 다른 줄은 모두 두고,
-그 이름과 줄을 낸 조각을 출력한다.
+현행판 표의 머리(구분 줄까지)는 브리프나 첫 조각의 것 하나만 두고, 줄은 글자가 같은
+것을 한 번만 둔다. 첫 칸(이름)이 같은데 글자가 다른 줄은 모두 두고, 그 이름과 줄을 낸
+조각을 출력한다. 사본 목록은 조각마다 꼴(목록, 표)이 달라 조각의 본문을 덩어리째 붙이고,
+줄이 모두 이미 있는 덩어리만 건너뛴다.
 """
 
 import os
@@ -55,6 +56,11 @@ def bodies(text, title):
     return [entries(lines) for t, lines in split_sections(text)[1] if t == title]
 
 
+def blocks(text, title):
+    """글에서 그 제목의 절 본문. 빈 줄은 두고 앞뒤 빈 줄만 뺀다."""
+    return ["\n".join(lines).strip("\n") for t, lines in split_sections(text)[1] if t == title]
+
+
 def merge(brief_text, parts):
     """parts는 (이름, 글) 목록이다. 합친 브리프와, 이름이 같은 표준의 {이름: [(출처, 줄)]}을 낸다."""
     head, sections = split_sections(brief_text)
@@ -62,7 +68,7 @@ def merge(brief_text, parts):
         if not any(t == title for t, _ in sections):
             sections.append([title, []])
     header, rows = split_table(sum(bodies(brief_text, EDITIONS), []))
-    copies = sum(bodies(brief_text, COPIES), [])
+    copies = [block for block in blocks(brief_text, COPIES) if block]
     # 브리프의 줄도 조각에 있으면 조각 이름을 붙인다. 다시 돌려도 어느 에이전트의 줄인지 보이게 한다.
     origin = dict.fromkeys(rows, "브리프")
     for name, text in parts:
@@ -74,9 +80,11 @@ def merge(brief_text, parts):
                     rows.append(row)
                 if origin.get(row, "브리프") == "브리프":
                     origin[row] = name
-        for body in bodies(text, COPIES):
-            copies += [line for line in body if line not in copies]
-    merged = {EDITIONS: header + rows, COPIES: copies}
+        for block in blocks(text, COPIES):
+            present = set("\n".join(copies).splitlines())
+            if not set(entries(block.splitlines())) <= present:
+                copies.append(block)
+    merged = {EDITIONS: header + rows, COPIES: "\n\n".join(copies).splitlines()}
     out = head[:]
     for title, lines in sections:
         out.append(title)
