@@ -412,7 +412,7 @@ const text = (value: string): ElementContent => ({ type: "text", value })
 // 지난 호 목록의 설명. 메타 설명과 주간 소식 피드의 채널 설명이 쓴다. 지난 호 목록에는 본문이 없어 description
 // 플러그인이 만들 글이 없다.
 const INDEX_DESCRIPTION =
-  "자동차 임베디드 업계의 소식을 주마다 모아 짧게 요약한다. 위키 페이지와 달리 요약을 원문과 대조해 검증하지 않으므로, 자세한 내용은 소식마다 붙은 원문 링크에서 확인한다."
+  "자동차 임베디드 업계의 소식을 주마다 모아 짧게 요약한다. 위키 페이지와 달리 요약의 주장을 다른 출처로 검증하지 않으므로, 자세한 내용은 소식마다 붙은 원문 링크에서 확인한다."
 
 const isNews = (slug: string) => slug.startsWith(NEWS_PREFIX)
 const isIssue = (slug: string) => isNews(slug) && slug !== INDEX_SLUG
