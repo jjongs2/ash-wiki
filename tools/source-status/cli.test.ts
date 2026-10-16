@@ -61,6 +61,8 @@ before(async () => {
     else if (req.url === "/blocked") res.statusCode = 403
     // AWS WAF 챌린지: 메서드와 헤더에 상관없이 본문 없는 202를 돌려준다
     else if (req.url === "/challenge") res.writeHead(202, { "x-amzn-waf-action": "challenge" })
+    // 요청 빈도 제한: 메서드와 헤더에 상관없이 429를 돌려준다
+    else if (req.url === "/rate-limited") res.statusCode = 429
     // 챌린지 헤더가 없는 202
     else if (req.url === "/accepted") res.statusCode = 202
     // 답하지 않는 서버
@@ -331,7 +333,7 @@ describe("source-status CLI", () => {
     assert.strictEqual(report.exitCode, 0)
   })
 
-  test("목록 밖 호스트의 403과 목록 호스트의 403 아닌 실패는 url FAIL이다", async () => {
+  test("목록 밖 호스트의 403과 목록 호스트의 봇 차단 응답 아닌 실패는 url FAIL이다", async () => {
     const root = makeTree({
       "content/fresh.md": page(
         ["network/can"],
@@ -359,6 +361,31 @@ describe("source-status CLI", () => {
     assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-blocked", "OK verified"])
     assert.deepStrictEqual(report.locations.get("url-blocked"), ["bib/ieee-802-3-2022.bib:3"])
     assert.strictEqual(report.exitCode, 0)
+  })
+
+  test("봇 차단 호스트의 429는 url-blocked에 따로 찍고, 그것만으로는 exit 0이다", async () => {
+    const root = makeTree({
+      "content/fresh.md": page(["network/can"], "2026-09-01", "문장이다.[@tcg-glossary-2017]"),
+      "bib/tcg-glossary-2017.bib": bib(
+        "tcg-glossary-2017",
+        "https://trustedcomputinggroup.org/rate-limited",
+      ),
+    })
+    const report = await runStatus(root)
+    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-blocked", "OK verified"])
+    assert.deepStrictEqual(report.locations.get("url-blocked"), ["bib/tcg-glossary-2017.bib:3"])
+    assert.strictEqual(report.exitCode, 0)
+  })
+
+  test("목록 밖 호스트의 429는 url FAIL이다", async () => {
+    const root = makeTree({
+      "content/fresh.md": page(["network/can"], "2026-09-01", "문장이다.[@org-rate-limited-2024]"),
+      "bib/org-rate-limited-2024.bib": bib("org-rate-limited-2024", `${base}/rate-limited`),
+    })
+    const report = await runStatus(root)
+    assert.deepStrictEqual(report.statuses, ["FAIL url", "OK verified"])
+    assert.deepStrictEqual(report.locations.get("url"), ["bib/org-rate-limited-2024.bib:3"])
+    assert.strictEqual(report.exitCode, 1)
   })
 
   test("목록 밖 호스트의 WAF 챌린지는 url FAIL이다", async () => {

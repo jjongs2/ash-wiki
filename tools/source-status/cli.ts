@@ -72,7 +72,7 @@ const blockedHosts = verification.column("bot-blocked-hosts", "호스트")
 const tree = loadTree(root)
 const pages = tree.pages.filter((page) => page.kind === "page" && inTopic(page, values.topic))
 
-// 봇 차단 호스트의 봇 차단 응답(403, WAF 챌린지), 두 번 물어도 시간 초과인 URL, 한 호스트에 몰린 연결 거부는
+// 봇 차단 호스트의 봇 차단 응답(403, WAF 챌린지, 429), 두 번 물어도 시간 초과인 URL, 한 호스트에 몰린 연결 거부는
 // 출처 사망이 아니라 확인 불가로 따로 모은다. only를 주면 그 URL만 묻는다.
 async function checkUrls(
   tree: Tree,
@@ -167,7 +167,7 @@ function isBlockedHost(url: string, blockedHosts: string[]): boolean {
   return blockedHosts.some((blocked) => host === blocked || host.endsWith(`.${blocked}`))
 }
 
-// 살아 있지 않으면 이유와 봇 차단 응답(403, WAF 챌린지)이었는지를 준다. 시간 초과와 연결 거부는 출처 사망과 가를 수 있게 따로 준다.
+// 살아 있지 않으면 이유와 봇 차단 응답(403, WAF 챌린지, 429)이었는지를 준다. 시간 초과와 연결 거부는 출처 사망과 가를 수 있게 따로 준다.
 type Outcome =
   | { kind: "alive" }
   | { kind: "dead"; reason: string; botBlocked: boolean }
@@ -178,6 +178,9 @@ type Outcome =
 function isWafChallenge(response: Response): boolean {
   return response.status === 202 && response.headers.get("x-amzn-waf-action") === "challenge"
 }
+
+// 봇 차단 응답의 상태 코드. WAF 챌린지는 isWafChallenge가 따로 가린다.
+const botBlockStatuses = new Set([403, 429])
 
 // 도구가 보내는 모든 HTTP 요청. Node fetch의 기본 User-Agent(node)만 막는 호스트가 있어, 도구를 밝히는 User-Agent를 붙인다.
 // 값은 docs/wiki-verification.md의 출처 상태 절에 적는다. 값을 바꾸면 인용한 URL 전체를 옛 값과 새 값으로 돌려 판정을 견준다.
@@ -224,7 +227,7 @@ async function ask(url: string, followAia = true): Promise<Outcome> {
       return { kind: "dead", reason: "HTTP 202 WAF 챌린지", botBlocked: true }
     return get.ok
       ? { kind: "alive" }
-      : { kind: "dead", reason: `HTTP ${get.status}`, botBlocked: get.status === 403 }
+      : { kind: "dead", reason: `HTTP ${get.status}`, botBlocked: botBlockStatuses.has(get.status) }
   } catch (error) {
     const name = (error as Error).name
     const code = errorCode(error)
