@@ -72,4 +72,4 @@ SRP는 IEEE 802.1Q-2022의 [[tsn-configuration|TSN 설정]] 모델 가운데 완
 
 IEEE 802.1CS-2020은 점대점 링크의 한쪽 끝에서 다른 쪽 끝으로 등록 데이터베이스와 그 변경을 복제하는 LRP(Link-local Registration Protocol)를 정하며, LRP는 1 Mbyte 정도의 데이터베이스에 맞춰져 있다.[@ieee-802-1cs-2020] IEEE 802.1 작업 그룹에 따르면 IEEE 802.1Q의 MRP는 1500바이트까지의 데이터베이스에 맞춰져 있어 더 큰 데이터베이스에서는 크게 느려지며, LRP는 이 한계를 넘으려고 만들어졌다.[@ieee-802-1cs-project-2021]
 
-IEEE 802.1 작업 그룹의 P802.1DD 프로젝트는 브리지 LAN에서 데이터 스트림을 동적으로 만들고 유지하기 위한 자원 할당 프로토콜, 곧 RAP(Resource Allocation Protocol)를 정하는 프로젝트이고, 2026년 10월 현재 진행 중이다. RAP는 데이터 경로나 별도 제어 경로로 제어 신호를 주고받아 중앙 제어를 지원하고, IEEE 802.1Q의 SRP와 하위 호환되게 한다.[@ieee-p802-1dd-2026]
+IEEE 802.1 작업 그룹의 P802.1DD 프로젝트는 브리지 LAN에서 데이터 스트림을 동적으로 만들고 유지하기 위한 자원 할당 프로토콜, 곧 RAP(Resource Allocation Protocol)를 정하는 프로젝트이고, 2026년 10월 기준 진행 중이다. RAP는 데이터 경로나 별도 제어 경로로 제어 신호를 주고받아 중앙 제어를 지원하고, IEEE 802.1Q의 SRP와 하위 호환되게 한다.[@ieee-p802-1dd-2026]
