@@ -129,5 +129,187 @@ class DigestArchiveTest(unittest.TestCase):
         self.assertFalse(os.path.exists(os.path.join(self.archive, "analyzed.tsv")))
 
 
+def queued(text, mode="prompt", kind="peer"):
+    return json.dumps({
+        "type": "attachment", "uuid": f"q-{abs(hash(text))}", "timestamp": "2026-10-08T01:05:00Z",
+        "attachment": {"type": "queued_command", "prompt": text, "commandMode": mode, "origin": {"kind": kind}},
+    })
+
+
+class QueueTest(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.archive = os.path.join(self.tmp.name, "archive")
+        self.notes = os.path.join(self.tmp.name, "notes")
+        self.transcript = os.path.join(self.tmp.name, f"{UUID}.jsonl")
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def digest(self, *lines):
+        with open(self.transcript, "w") as f:
+            f.write("\n".join(lines) + "\n")
+        out = subprocess.run(
+            [sys.executable, "-B", SCRIPT, "--archive", self.archive, self.transcript],
+            env=dict(os.environ, ASH_WIKI_NOTES=self.notes), capture_output=True, text=True, check=True,
+        ).stdout
+        with open(os.path.join(self.archive, UUID, f"{UUID[:8]}-main.md")) as f:
+            return f.read(), out
+
+    def test_queued_prompt_is_written_in_full_and_marked(self):
+        report = "<agent-message>\n  # 보고서\n" + "가" * 2000
+        main, _ = self.digest(entry("user", "start"), queued(report))
+        self.assertIn("### USER 2026-10-08T01:05 (대기열, peer)\n" + report, main)
+
+    def test_task_notification_is_not_written(self):
+        main, _ = self.digest(queued("<task-notification>done</task-notification>", mode="task-notification"))
+        self.assertNotIn("task-notification", main)
+
+    def test_message_also_sent_as_user_line_is_written_once(self):
+        main, _ = self.digest(queued("push하지 마", kind="human"), entry("user", "push하지 마"))
+        self.assertEqual(main.count("push하지 마"), 1)
+
+    def test_queued_message_naming_notes_is_hidden_and_counted(self):
+        main, out = self.digest(queued(f"읽은 노트: {self.notes}/iso-26262.md 본문"))
+        self.assertNotIn("iso-26262", main)
+        self.assertIn("(노트, 지움)", main)
+        self.assertIn("지움 1", out)
+
+
+SKILL = ".claude/skills/wiki-news/SKILL.md"
+
+
+def skill_call(body, base_dir="/home/u/ash-wiki/.claude/skills/wiki-news"):
+    text = f"Base directory for this skill: {base_dir}\n\n{body}\n\n\nARGUMENTS: 2026-03"
+    return json.dumps({"type": "user", "timestamp": "2026-10-08T01:00:00Z", "message": {"content": [{"type": "text", "text": text}]}})
+
+
+class VersionTest(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.repo = os.path.join(self.tmp.name, "repo")
+        os.makedirs(os.path.join(self.repo, os.path.dirname(SKILL)))
+        self.git("init", "-q")
+        self.v1 = self.commit("# 소식\n\n첫 판\n", "2026-01-01T00:00:00Z")
+        self.v2 = self.commit("# 소식\n\n둘째 판\n", "2026-02-01T00:00:00Z")
+        self.git("update-ref", "refs/remotes/origin/main", self.v2)
+        self.transcript = os.path.join(self.tmp.name, f"{UUID}.jsonl")
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def git(self, *args, date=None):
+        env = dict(os.environ, GIT_AUTHOR_NAME="t", GIT_AUTHOR_EMAIL="t@t", GIT_COMMITTER_NAME="t", GIT_COMMITTER_EMAIL="t@t")
+        if date:
+            env.update(GIT_AUTHOR_DATE=date, GIT_COMMITTER_DATE=date)
+        return subprocess.run(["git", *args], cwd=self.repo, env=env, capture_output=True, text=True, check=True).stdout.strip()
+
+    def commit(self, body, date):
+        with open(os.path.join(self.repo, SKILL), "w") as f:
+            f.write(f"---\nname: wiki-news\n---\n\n{body}")
+        self.git("add", ".")
+        self.git("commit", "-q", "-m", body, date=date)
+        return self.git("rev-parse", "HEAD")
+
+    def version(self, *lines, first_ts="2026-03-01T00:00:00Z"):
+        start = json.dumps({"type": "custom-title", "timestamp": first_ts})
+        with open(self.transcript, "w") as f:
+            f.write("\n".join([start, *lines]) + "\n")
+        env = {k: v for k, v in os.environ.items() if k != "ASH_WIKI_NOTES"}
+        result = subprocess.run(
+            [sys.executable, "-B", SCRIPT, "--version", self.transcript],
+            cwd=self.repo, env=env, capture_output=True, text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        return result.stdout.strip().split("\t")
+
+    def test_worktree_base_is_the_version(self):
+        base = json.dumps({"type": "user", "message": {"content": [
+            {"type": "tool_result", "content": f"Preparing worktree\nHEAD is now at {self.v1[:8]} 첫 판"}]}})
+        row = self.version(base, skill_call("# 소식\n\n첫 판"))
+        self.assertEqual(row[:3], [UUID[:8], "wiki-news", self.v1[:12]])
+        self.assertIn("worktree base", row[3])
+
+    def test_without_base_origin_main_at_start_is_the_version(self):
+        row = self.version(skill_call("# 소식\n\n첫 판"), first_ts="2026-01-15T00:00:00Z")
+        self.assertEqual(row[:3], [UUID[:8], "wiki-news", self.v1[:12]])
+        self.assertIn("시작 시각의 origin/main", row[3])
+
+    def test_body_differing_from_version_is_fixed_to_commit_with_same_body(self):
+        row = self.version(skill_call("# 소식\n\n첫 판", base_dir="/home/u/ash-wiki/.claude/worktrees/x/.claude/skills/wiki-news"))
+        self.assertEqual(row[2], self.v1[:12])
+        self.assertIn("고침", row[3])
+
+    def test_body_matching_no_commit_is_reported(self):
+        row = self.version(skill_call("# 소식\n\n고치던 판"))
+        self.assertEqual(row[2], self.v2[:12])
+        self.assertIn("같은 커밋 없음", row[3])
+
+    def test_session_without_skill_body_is_reported(self):
+        row = self.version(entry("user", "/wiki-news 루틴을 돌려 줘"))
+        self.assertEqual(row[1:3], ["-", self.v2[:12]])
+        self.assertIn("스킬 본문 없음", row[3])
+
+
+def assistant(*content, msg_id="m1"):
+    return json.dumps({"type": "assistant", "timestamp": "2026-10-08T01:00:00Z", "message": {"id": msg_id, "content": list(content)}})
+
+
+def handback(text):
+    return {"type": "tool_use", "id": "t1", "name": "SubagentHandback", "input": {"message": text}}
+
+
+class ReportTest(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.archive = os.path.join(self.tmp.name, "archive")
+        self.agent = os.path.join(self.tmp.name, "agent-a1.jsonl")
+        self.report = os.path.join(self.archive, UUID, "report.md")
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def save(self, *lines, uuid=UUID):
+        with open(self.agent, "w") as f:
+            f.write("\n".join(lines) + "\n")
+        env = {k: v for k, v in os.environ.items() if k != "ASH_WIKI_NOTES"}
+        return subprocess.run(
+            [sys.executable, "-B", SCRIPT, "--archive", self.archive, "--report", self.agent, uuid, "PR #1, 티켓 #2"],
+            env=env, capture_output=True, text=True,
+        )
+
+    def read_report(self):
+        with open(self.report) as f:
+            return f.read()
+
+    def test_writes_last_handback_under_first_line(self):
+        result = self.save(
+            assistant(handback("old report"), msg_id="m1"),
+            assistant({"type": "text", "text": "thinking aloud"}, msg_id="m2"),
+            assistant(handback("final report"), msg_id="m3"),
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.read_report(), "PR #1, 티켓 #2\n\nfinal report\n")
+
+    def test_without_handback_writes_last_assistant_text(self):
+        result = self.save(
+            assistant({"type": "text", "text": "draft"}, msg_id="m1"),
+            assistant({"type": "text", "text": "## 보고서"}, msg_id="m2"),
+            assistant({"type": "text", "text": "본문"}, msg_id="m2"),
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.read_report(), "PR #1, 티켓 #2\n\n## 보고서\n\n본문\n")
+
+    def test_without_any_reply_fails_and_writes_nothing(self):
+        result = self.save(entry("user", "go"), assistant({"type": "tool_use", "id": "t", "name": "Read", "input": {}}))
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(os.path.exists(self.report))
+
+    def test_rejects_a_non_uuid(self):
+        result = self.save(assistant(handback("final report")), uuid="report")
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(os.path.exists(os.path.join(self.archive, "report")))
+
+
 if __name__ == "__main__":
     unittest.main()
