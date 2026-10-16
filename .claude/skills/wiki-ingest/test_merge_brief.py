@@ -103,6 +103,17 @@ class MergeBriefTest(unittest.TestCase):
         self.assertNotIn("ISO 24089", out)
         self.assertNotIn("RFC 9019", out)
 
+    def test_table_keeps_one_header_when_parts_write_it_differently(self):
+        with open(self.parts[1], "w") as f:
+            f.write(PART_B.replace("| 이름 | 현행판 | 확인한 주소 |\n| --- | --- | --- |", "| 표준 | 현행판 | 주소 |\n|---|---|---|"))
+        merged, out = self.run_script()
+        table = merged.split("\n## 현행판 표\n")[1].split("\n## ")[0]
+        self.assertTrue(table.strip().startswith("| 이름 | 현행판 | 확인한 주소 |\n| --- | --- | --- |\n"))
+        self.assertNotIn("| 표준 |", table)
+        self.assertNotIn("|---|", table)
+        self.assertIn("| RFC 9019 | 판 없음 |", table)
+        self.assertIn("- UN R156", out)
+
     def test_running_again_changes_nothing(self):
         first, first_out = self.run_script()
         second, second_out = self.run_script()

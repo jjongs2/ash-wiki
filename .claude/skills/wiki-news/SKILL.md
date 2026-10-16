@@ -8,11 +8,11 @@ disable-model-invocation: true
 
 업계 소식을 찾아 주차마다 주간 소식의 호 하나로 엮어 PR로 올린다. 용어는 `GLOSSARY.md`를 따른다.
 
-주간 소식은 위키 콘텐츠 밖의 페이지다([ADR 0015](../../../docs/adr/0015-weekly-news-outside-wiki-content.md)). 그래서 소식 조사는 위키 규약(`docs/wiki-conventions.md`)과 출처 위계(`docs/source-hierarchy.md`)를 적용하지 않는다. 요약을 무엇으로 검증하지 않는지는 `docs/weekly-news.md` 머리말에 있고, 원문이 1층 출처인지 가리지 않는다. 원문을 고르는 기준은 [4. 고르기](#4-고르기)뿐이다.
+주간 소식은 위키 콘텐츠 밖의 페이지다([ADR 0015](../../../docs/adr/0015-weekly-news-outside-wiki-content.md)). 그래서 소식 조사는 위키 규약(`docs/wiki-conventions.md`)과 출처 위계(`docs/source-hierarchy.md`)를 적용하지 않고, 원문이 1층 출처인지 가리지 않는다. 요약을 무엇으로 검증하지 않는지는 `docs/weekly-news.md` 머리말에 있다. 원문을 고르는 기준은 [4. 고르기](#4-고르기)뿐이다.
 
 먼저 읽는다: `docs/weekly-news.md`(경로, 형식, 필드, 이전 호 항목으로 가는 링크).
 
-작업 파일(후보 목록)은 작업 트리 루트의 `.work/news-<주차나 달>/`(예: `.work/news-2026-03/`)에 쓴다. `.work/`는 [인제스트](../wiki-ingest/SKILL.md)의 준비 문단이 정한 작업 폴더로 재시작에 지워지지 않는다.
+작업 파일(후보 목록)은 [인제스트](../wiki-ingest/SKILL.md) 준비 문단의 작업 폴더 `.work/` 아래 `news-<주차나 달>/`(예: `.work/news-2026-03/`)에 쓴다.
 
 ## 1. 주차
 
