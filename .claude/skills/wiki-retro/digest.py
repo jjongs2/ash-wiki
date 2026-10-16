@@ -11,7 +11,7 @@ python3 digest.py --version <기록.jsonl>...
 요약 뒤로 바뀌지 않았으면 다시 만들지 않고 "있음"을 찍는다. 다시 만들 때는 요약본만
 지우고 report.md는 둔다. 작업 중 대기열로 온 메시지(서브에이전트 반환, 세션 간 메시지,
 소유자 글)는 사용자 글처럼 전문으로 쓰고 "(대기열, <출처>)"를 단다. 완료 알림은 쓰지
-않고, user 줄로도 온 메시지는 한 번만 쓴다.
+않고, 바로 다음 user 줄로 다시 온 메시지는 한 번만 쓴다.
 
 --mark는 보관 폴더의 analyzed.tsv에 세션 uuid, 회고 세션 uuid, 날짜를 한 줄씩
 더한다. 이미 있는 uuid는 더하지 않는다. 회고는 이 목록에 없는 세션을 분석한다.
@@ -29,7 +29,7 @@ python3 digest.py --version <기록.jsonl>...
 변수의 참조($ASH_WIKI_NOTES, ${ASH_WIKI_NOTES)가 있거나, 결과에 노트 디렉터리가
 나오는 호출이다. 지운 결과가 너무 커서 tool-results/ 파일로 저장됐으면, 그 파일을
 다시 읽은 호출도 지운다. 변수 이름만 적은 호출("ASH_WIKI_NOTES는 열지 않는다")은
-노트를 연 것으로 보지 않는다. 노트 디렉터리가 나오는 대기열 메시지도 지운다.
+노트를 연 것으로 보지 않는다. 노트 디렉터리가 나오는 사용자 글과 대기열 메시지도 지운다.
 파일마다 지운 수를 출력한다. 0이 아니면 노트를 열었을 수 있는 기록이다.
 """
 
@@ -118,6 +118,20 @@ def queued_prompt(entry):
     )
 
 
+def names_notes(text):
+    return any(f in text for f in note_forms())
+
+
+def next_user_texts(entries):
+    following, text = [], None
+    for entry in reversed(entries):
+        following.append(text)
+        if entry.get("type") == "user":
+            texts = [b.get("text", "").strip() for b in blocks(entry.get("message")) if b.get("type") == "text"]
+            text = texts[0] if texts else text
+    return following[::-1]
+
+
 def opens_notes(raw, persisted):
     return any(f in raw for f in note_forms()) or any(r in raw for r in (*NOTE_REFS, *persisted))
 
@@ -127,27 +141,30 @@ def digest(path, out_path):
     persisted = set()
     note_inputs = []
     entries = read_entries(path)
-    user_texts = {
-        block.get("text", "").strip()
-        for entry in entries if entry.get("type") == "user"
-        for block in blocks(entry.get("message")) if block.get("type") == "text"
-    }
+    following = next_user_texts(entries)
+
+    def hide(key, text):
+        hidden.add(key)
+        persisted.update(PERSISTED.findall(text))
+
     with open(out_path, "w") as out:
-        for entry in entries:
+        for entry, after in zip(entries, following):
             ts = (entry.get("timestamp") or "")[:16]
             kind = entry.get("type")
             if kind == "user":
                 for block in blocks(entry.get("message")):
                     if block.get("type") == "text":
                         text = block.get("text", "")
-                        if text.startswith("Base directory for this skill"):
+                        if names_notes(text):
+                            hide(id(block), text)
+                            text = "(노트, 지움)"
+                        elif text.startswith("Base directory for this skill"):
                             text = clip(text, 200)
                         out.write(f"\n### USER {ts}\n{text}\n")
                     elif block.get("type") == "tool_result":
                         text = result_text(block.get("content"))
-                        if block.get("tool_use_id") in hidden or any(f in text for f in note_forms()):
-                            hidden.add(block.get("tool_use_id"))
-                            persisted.update(PERSISTED.findall(text))
+                        if block.get("tool_use_id") in hidden or names_notes(text):
+                            hide(block.get("tool_use_id"), text)
                             out.write("  [res] (노트, 지움)\n")
                         elif block.get("is_error"):
                             out.write(f"  [ERR] {clip(text, 600)}\n")
@@ -166,12 +183,11 @@ def digest(path, out_path):
                             out.write(f"- {name}: (노트, 지움)\n")
                         else:
                             out.write(f"- {name}: {tool_input(name, inp)}\n")
-            elif kind == "attachment" and queued_prompt(entry) and entry["attachment"]["prompt"].strip() not in user_texts:
+            elif kind == "attachment" and queued_prompt(entry) and entry["attachment"]["prompt"].strip() != after:
                 text = entry["attachment"]["prompt"]
                 origin = (entry["attachment"].get("origin") or {}).get("kind", "")
-                if any(f in text for f in note_forms()):
-                    hidden.add(entry.get("uuid") or id(entry))
-                    persisted.update(PERSISTED.findall(text))
+                if names_notes(text):
+                    hide(id(entry), text)
                     text = "(노트, 지움)"
                 out.write(f"\n### USER {ts} (대기열, {origin})\n{text}\n")
             elif kind == "system" and entry.get("content"):
@@ -294,9 +310,12 @@ def session_version(path):
         commit = git("rev-list", "-1", f"--before={start}", "origin/main")
         how = "시작 시각의 origin/main"
     uuid = os.path.basename(path)[:8]
+    if not commit:
+        print(f"{uuid}\t-\t-\t판을 정하지 못함(첫 timestamp가 origin/main보다 이르다)")
+        return
     skills = called_skills(entries)
     if not skills:
-        print(f"{uuid}\t-\t{commit[:12] or '-'}\t{how}. 스킬 본문 없음(루틴 세션 등)")
+        print(f"{uuid}\t-\t{commit[:12]}\t{how}. 스킬 본문 없음(루틴 세션 등)")
     for skill_dir, body in skills.items():
         skill = f"{skill_dir}/SKILL.md"
         name = os.path.basename(skill_dir)
@@ -308,7 +327,7 @@ def session_version(path):
         if fixed:
             print(f"{uuid}\t{name}\t{fixed[:12]}\t{how}({commit[:12]})와 본문이 달라, 본문이 같은 커밋으로 고침")
         else:
-            print(f"{uuid}\t{name}\t{commit[:12] or '-'}\t{how}. 본문이 같은 커밋 없음")
+            print(f"{uuid}\t{name}\t{commit[:12]}\t{how}. 본문이 같은 커밋 없음")
 
 
 def final_report(path):
@@ -348,11 +367,17 @@ def main():
     parser.add_argument("items", nargs="*")
     args = parser.parse_args()
     if args.version:
+        if not args.items:
+            parser.error("기록이 필요하다")
+        if not git("rev-parse", "--verify", "-q", "origin/main"):
+            sys.exit("origin/main이 없다. 저장소 루트에서 돌린다.")
         for path in args.items:
             session_version(path)
         return
     os.makedirs(args.archive, exist_ok=True)
     if args.report:
+        if args.items:
+            parser.error("--report는 에이전트 기록, uuid, 첫 줄 셋만 받는다. 첫 줄은 따옴표로 묶는다")
         save_report(args.archive, *args.report)
         return
     if not args.items:

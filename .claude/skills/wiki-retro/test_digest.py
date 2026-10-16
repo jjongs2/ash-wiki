@@ -15,6 +15,10 @@ SCRIPT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "digest.py")
 UUID = "11111111-2222-3333-4444-555555555555"
 
 
+def env_without_notes():
+    return {k: v for k, v in os.environ.items() if k != "ASH_WIKI_NOTES"}
+
+
 def entry(kind, text):
     return json.dumps({"type": kind, "timestamp": "2026-10-08T01:00:00Z", "message": {"content": text}})
 
@@ -169,6 +173,15 @@ class QueueTest(unittest.TestCase):
         main, _ = self.digest(queued("push하지 마", kind="human"), entry("user", "push하지 마"))
         self.assertEqual(main.count("push하지 마"), 1)
 
+    def test_same_text_sent_at_another_time_is_kept(self):
+        main, _ = self.digest(entry("user", "계속"), entry("user", "다음"), queued("계속", kind="human"))
+        self.assertEqual(main.count("계속"), 2)
+
+    def test_duplicated_message_naming_notes_stays_hidden(self):
+        text = f"읽은 노트: {self.notes}/iso-26262.md"
+        main, _ = self.digest(queued(text), entry("user", text))
+        self.assertNotIn("iso-26262", main)
+
     def test_queued_message_naming_notes_is_hidden_and_counted(self):
         main, out = self.digest(queued(f"읽은 노트: {self.notes}/iso-26262.md 본문"))
         self.assertNotIn("iso-26262", main)
@@ -215,10 +228,9 @@ class VersionTest(unittest.TestCase):
         start = json.dumps({"type": "custom-title", "timestamp": first_ts})
         with open(self.transcript, "w") as f:
             f.write("\n".join([start, *lines]) + "\n")
-        env = {k: v for k, v in os.environ.items() if k != "ASH_WIKI_NOTES"}
         result = subprocess.run(
             [sys.executable, "-B", SCRIPT, "--version", self.transcript],
-            cwd=self.repo, env=env, capture_output=True, text=True,
+            cwd=self.repo, env=env_without_notes(), capture_output=True, text=True,
         )
         self.assertEqual(result.returncode, 0, result.stderr)
         return result.stdout.strip().split("\t")
@@ -250,6 +262,15 @@ class VersionTest(unittest.TestCase):
         self.assertEqual(row[1:3], ["-", self.v2[:12]])
         self.assertIn("스킬 본문 없음", row[3])
 
+    def test_outside_a_repository_fails(self):
+        with open(self.transcript, "w") as f:
+            f.write(skill_call("# 소식\n\n첫 판") + "\n")
+        result = subprocess.run(
+            [sys.executable, "-B", SCRIPT, "--version", self.transcript],
+            cwd=self.tmp.name, env=env_without_notes(), capture_output=True, text=True,
+        )
+        self.assertNotEqual(result.returncode, 0)
+
 
 def assistant(*content, msg_id="m1"):
     return json.dumps({"type": "assistant", "timestamp": "2026-10-08T01:00:00Z", "message": {"id": msg_id, "content": list(content)}})
@@ -272,10 +293,9 @@ class ReportTest(unittest.TestCase):
     def save(self, *lines, uuid=UUID):
         with open(self.agent, "w") as f:
             f.write("\n".join(lines) + "\n")
-        env = {k: v for k, v in os.environ.items() if k != "ASH_WIKI_NOTES"}
         return subprocess.run(
             [sys.executable, "-B", SCRIPT, "--archive", self.archive, "--report", self.agent, uuid, "PR #1, 티켓 #2"],
-            env=env, capture_output=True, text=True,
+            env=env_without_notes(), capture_output=True, text=True,
         )
 
     def read_report(self):
