@@ -173,6 +173,14 @@ class QueueTest(unittest.TestCase):
         main, _ = self.digest(queued("push하지 마", kind="human"), entry("user", "push하지 마"))
         self.assertEqual(main.count("push하지 마"), 1)
 
+    def test_messages_redelivered_in_order_are_written_once(self):
+        main, _ = self.digest(queued("메시지A"), queued("메시지B"), entry("user", "메시지A"), entry("user", "메시지B"))
+        self.assertEqual((main.count("메시지A"), main.count("메시지B")), (1, 1))
+
+    def test_each_user_message_naming_notes_is_counted(self):
+        _, out = self.digest(*(entry("user", f"{self.notes}/note-{n}.md") for n in range(3)))
+        self.assertIn("지움 3", out)
+
     def test_same_text_sent_at_another_time_is_kept(self):
         main, _ = self.digest(entry("user", "계속"), entry("user", "다음"), queued("계속", kind="human"))
         self.assertEqual(main.count("계속"), 2)
@@ -235,12 +243,23 @@ class VersionTest(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         return result.stdout.strip().split("\t")
 
+    def bash(self, command, output, call_id):
+        call = assistant({"type": "tool_use", "id": call_id, "name": "Bash", "input": {"command": command}})
+        result = json.dumps({"type": "user", "message": {"content": [
+            {"type": "tool_result", "tool_use_id": call_id, "content": output}]}})
+        return call, result
+
     def test_worktree_base_is_the_version(self):
-        base = json.dumps({"type": "user", "message": {"content": [
-            {"type": "tool_result", "content": f"Preparing worktree\nHEAD is now at {self.v1[:8]} 첫 판"}]}})
-        row = self.version(base, skill_call("# 소식\n\n첫 판"))
+        base = self.bash("git worktree add -b x .claude/worktrees/x origin/main", f"Preparing worktree\nHEAD is now at {self.v1[:8]} 첫 판", "w1")
+        row = self.version(*base, skill_call("# 소식\n\n첫 판"))
         self.assertEqual(row[:3], [UUID[:8], "wiki-news", self.v1[:12]])
         self.assertIn("worktree base", row[3])
+
+    def test_base_quoted_outside_worktree_add_is_ignored(self):
+        quoted = self.bash("grep -o 'HEAD is now at' other.jsonl", f"HEAD is now at {self.v1[:8]} 첫 판", "g1")
+        row = self.version(*quoted, skill_call("# 소식\n\n둘째 판"))
+        self.assertEqual(row[2], self.v2[:12])
+        self.assertIn("시작 시각의 origin/main", row[3])
 
     def test_without_base_origin_main_at_start_is_the_version(self):
         row = self.version(skill_call("# 소식\n\n첫 판"), first_ts="2026-01-15T00:00:00Z")

@@ -11,7 +11,7 @@ python3 digest.py --version <기록.jsonl>...
 요약 뒤로 바뀌지 않았으면 다시 만들지 않고 "있음"을 찍는다. 다시 만들 때는 요약본만
 지우고 report.md는 둔다. 작업 중 대기열로 온 메시지(서브에이전트 반환, 세션 간 메시지,
 소유자 글)는 사용자 글처럼 전문으로 쓰고 "(대기열, <출처>)"를 단다. 완료 알림은 쓰지
-않고, 바로 다음 user 줄로 다시 온 메시지는 한 번만 쓴다.
+않고, 뒤이어 user 줄로 차례대로 다시 온 메시지는 한 번만 쓴다.
 
 --mark는 보관 폴더의 analyzed.tsv에 세션 uuid, 회고 세션 uuid, 날짜를 한 줄씩
 더한다. 이미 있는 uuid는 더하지 않는다. 회고는 이 목록에 없는 세션을 분석한다.
@@ -20,7 +20,7 @@ python3 digest.py --version <기록.jsonl>...
 글)를 첫 줄 아래에 붙여 <uuid>/report.md에 쓴다. 반환이 없거나 uuid가 아니면 쓰지
 않고 실패한다.
 
---version은 기록마다 세션 판을 찍는다. 판은 worktree base(기록의 첫 "HEAD is now at"),
+--version은 기록마다 세션 판을 찍는다. 판은 worktree base(git worktree add 결과의 "HEAD is now at"),
 없으면 기록의 첫 timestamp 때의 origin/main이다. 기록의 스킬 본문이 그 판의 SKILL.md와
 다르면 origin/main 역사에서 본문이 같은 커밋으로 고친다. 저장소 루트에서 돌린다.
 
@@ -122,14 +122,20 @@ def names_notes(text):
     return any(f in text for f in note_forms())
 
 
-def next_user_texts(entries):
-    following, text = [], None
-    for entry in reversed(entries):
-        following.append(text)
-        if entry.get("type") == "user":
+def redelivered(entries):
+    pending, found = [], set()
+    for i, entry in enumerate(entries):
+        if entry.get("type") == "attachment" and queued_prompt(entry):
+            pending.append((i, entry["attachment"]["prompt"].strip()))
+        elif entry.get("type") == "user":
             texts = [b.get("text", "").strip() for b in blocks(entry.get("message")) if b.get("type") == "text"]
-            text = texts[0] if texts else text
-    return following[::-1]
+            if not texts:
+                continue
+            match = next((k for k, (_, text) in enumerate(pending) if text == texts[0]), None)
+            if match is not None:
+                found.add(pending[match][0])
+            pending = pending[match + 1 :] if match is not None else []
+    return found
 
 
 def opens_notes(raw, persisted):
@@ -141,22 +147,22 @@ def digest(path, out_path):
     persisted = set()
     note_inputs = []
     entries = read_entries(path)
-    following = next_user_texts(entries)
+    duplicates = redelivered(entries)
 
     def hide(key, text):
         hidden.add(key)
         persisted.update(PERSISTED.findall(text))
 
     with open(out_path, "w") as out:
-        for entry, after in zip(entries, following):
+        for i, entry in enumerate(entries):
             ts = (entry.get("timestamp") or "")[:16]
             kind = entry.get("type")
             if kind == "user":
-                for block in blocks(entry.get("message")):
+                for j, block in enumerate(blocks(entry.get("message"))):
                     if block.get("type") == "text":
                         text = block.get("text", "")
                         if names_notes(text):
-                            hide(id(block), text)
+                            hide(("user", i, j), text)
                             text = "(노트, 지움)"
                         elif text.startswith("Base directory for this skill"):
                             text = clip(text, 200)
@@ -183,11 +189,11 @@ def digest(path, out_path):
                             out.write(f"- {name}: (노트, 지움)\n")
                         else:
                             out.write(f"- {name}: {tool_input(name, inp)}\n")
-            elif kind == "attachment" and queued_prompt(entry) and entry["attachment"]["prompt"].strip() != after:
+            elif kind == "attachment" and queued_prompt(entry) and i not in duplicates:
                 text = entry["attachment"]["prompt"]
                 origin = (entry["attachment"].get("origin") or {}).get("kind", "")
                 if names_notes(text):
-                    hide(id(entry), text)
+                    hide(("queued", i), text)
                     text = "(노트, 지움)"
                 out.write(f"\n### USER {ts} (대기열, {origin})\n{text}\n")
             elif kind == "system" and entry.get("content"):
@@ -299,11 +305,23 @@ def called_skills(entries):
     return skills
 
 
+def worktree_base(entries):
+    adds = set()
+    for entry in entries:
+        for block in blocks(entry.get("message")):
+            if block.get("type") == "tool_use" and "git worktree add" in str((block.get("input") or {}).get("command", "")):
+                adds.add(block.get("id"))
+            elif block.get("type") == "tool_result" and block.get("tool_use_id") in adds:
+                match = WORKTREE_BASE.search(result_text(block.get("content")))
+                if match:
+                    return match.group(1)
+    return None
+
+
 def session_version(path):
     entries = read_entries(path)
-    with open(path) as transcript:
-        base = WORKTREE_BASE.search(transcript.read())
-    commit = base and git("rev-parse", "--verify", "-q", base.group(1) + "^{commit}")
+    base = worktree_base(entries)
+    commit = base and git("rev-parse", "--verify", "-q", base + "^{commit}")
     how = "worktree base"
     if not commit:
         start = next((e["timestamp"] for e in entries if e.get("timestamp")), "")
