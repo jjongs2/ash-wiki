@@ -100,7 +100,8 @@ npm run check:content
 - 행마다 출처가 다른 표는 모든 행의 마지막 셀 끝에 인용을 답니다. 행은 따로 읽히므로, 같은 출처가 이어지는 행도 묶지 않습니다. `리뷰`
 - 표를 쪼개거나 행을 표 밖으로 옮기면 인용을 다시 답니다. `리뷰`
 - 인용 키는 `<발행기관>-<식별자>-<연도>` 꼴의 영문 소문자 kebab-case이고, 연도는 네 자리입니다. 예: `iso-11898-1-2024`. 발행기관의 자료가 아닌 원 논문, 원 저자의 글, 서베이, 연구소·대학의 자료는 `<첫 저자 성>-<제목 핵심어>-<연도>`로 씁니다. 예: `liu-hard-real-time-1973`, `sha-priority-inheritance-1990` `검사 citation`
-- RFC Editor가 번호로 펴내는 계열(RFC, IEN)과 Internet-Draft의 엔트리는 `author`에 메타데이터의 저자를 적습니다. RFC는 RFC Editor의 `rfc<번호>.json`, Internet-Draft는 Datatracker의 저자입니다. 이름은 `성, 이니셜` 꼴로 쓰고 여럿이면 `and`로 잇습니다. 저자가 모두 편집자(`Ed.`)면 `author` 대신 `editor`에 두고, 저자와 편집자가 섞이면 모두 `author`에 두고 `Ed.`를 뺍니다. `author`에 `Ed.`를 붙이면 참고문헌에 `Ed. Braden R.,`처럼 깨져 찍히기 때문입니다. 저자를 적어도 인용 키는 `ietf-…`로 둡니다. 예: `ietf-ien-137-1980`(`author = {Cohen, D.}`) `리뷰`
+- RFC Editor가 번호로 펴내는 계열(RFC, IEN)과 Internet-Draft의 엔트리는 `author`에 실제 저자를 적습니다. RFC는 RFC Editor의 `rfc<번호>.json`, IEN은 문서 머리, Internet-Draft는 Datatracker의 저자입니다. 이름은 RFC의 참고문헌 꼴([RFC 7322](https://www.rfc-editor.org/rfc/rfc7322) §4.8.6.2)대로 `성, 이니셜`로 쓰고, 여럿이면 `and`로 잇습니다. 저자를 적어도 인용 키는 `ietf-…`로 둡니다. 예: `ietf-ien-137-1980`(`author = {Cohen, D.}`) `리뷰`
+- 위 엔트리의 저자가 모두 편집자(`Ed.`)면 `author` 대신 `editor`에 둡니다. 저자와 편집자가 섞이면 모두 `author`에 두고 `Ed.`를 뺍니다. `author`에 `Ed.`를 붙이면 참고문헌에 `Ed. Braden R.,`처럼 깨져 찍힙니다. `리뷰`
 - 참고문헌은 엔트리 하나를 파일 하나(`bib/<키>.bib`)로 둡니다. 파일 이름과 엔트리 키가 같아야 합니다. `검사 citation`
 - 인용한 키는 모두 `bib/`에 엔트리가 있어야 합니다. `검사 citation`
 - 엔트리에는 아래 `bib-fields` 표의 필드가 모두 있어야 합니다. `검사 citation`
