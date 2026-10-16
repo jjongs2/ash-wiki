@@ -251,14 +251,16 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
 
 // ash-wiki: 사이트 화면의 상자 모서리는 5px이고 태그와 칩만 3px이다(원형 점, 도해 SVG의 rx는 따로다). 업스트림이
 // 다른 값을 둔 요소를 여기에 맞춘다. 검색 버튼과 그래프의 전체 보기 버튼은 4px, 검색 창과 결과 상자는 7px, 검색
-// 결과의 태그는 8px이다.
+// 결과의 태그는 8px이다. 태그 링크는 본문 링크의 5px를 받아, 페이지 속성 칸(3px) 밖의 태그 목록 페이지와 검색
+// 미리보기에서 5px로 나온다.
 .search > .search-button,
 .graph .global-graph-icon,
 .search > .search-container > .search-space > *:not(.ghost-text):not(.tag-suggestions) {
   border-radius: 5px;
 }
 
-.search .result-card > ul > li > p {
+.search .result-card > ul > li > p,
+a.internal.tag-link {
   border-radius: 3px;
 }
 
