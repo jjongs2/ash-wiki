@@ -280,10 +280,7 @@ const unmatchedParenItem: Item = ({ changed }) =>
       const closed = masked.split(")").length - 1
       if (closed <= opened) return []
       const last = masked.lastIndexOf(")")
-      const tail = masked
-        .slice(Math.max(0, last - 40), last + 1)
-        .replace(/\s+/g, " ")
-        .trim()
+      const tail = excerpt(masked.slice(Math.max(0, last - 40), last + 1))
       return [
         {
           file: page.file,
