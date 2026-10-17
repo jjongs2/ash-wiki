@@ -67,7 +67,7 @@ JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"
 
 ## locale
 
-사이트 locale(`quartz.config.yaml`의 `locale`)은 `ko-KR`이고, 참고문헌의 CSL만 `en-US`입니다([ADR 0020](adr/0020-ui-locale-and-csl-locale.md)).
+사이트 locale(`quartz.config.yaml`의 `locale`)은 `ko-KR`이고, 참고문헌의 CSL만 `en-US`입니다([ADR 0021](adr/0021-ui-locale-and-csl-locale.md)).
 
 - UI 문구, 화면의 날짜, 문서의 `lang`이 사이트 locale을 따릅니다.
 - 읽는 시간은 본문 위에도 OG 이미지에도 보이지 않습니다. 까닭은 `quartz.config.yaml`의 content-meta 주석에 있습니다.

@@ -328,14 +328,3 @@ footer ul {
     margin-right: 0.5rem;
   }
 }
-
-// ash-wiki: 태그 목록의 날짜 칸은 고정 폭이다. 행마다 그리드가 따로라, 업스트림의 fit-content(8em)에서는 날짜 칸이
-// 그 행의 날짜 폭에 맞춰지고 숫자마다 폭이 달라(고정폭 숫자에서도 3이 1px 좁다) 행마다 제목이 시작하는 자리가
-// 어긋난다. 폭은 ISO 날짜(2026-10-15)와 오른쪽 여백(1em)이 들어가는 값이다.
-.section-li > .section {
-  grid-template-columns: 7.5em 3fr 1fr;
-
-  & > .meta {
-    white-space: nowrap;
-  }
-}
