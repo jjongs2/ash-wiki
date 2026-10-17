@@ -19,7 +19,7 @@ CiA는 master/slave라는 말을 피해, CAN FD light에서는 commander와 resp
 
 ## CiA 604 시리즈
 
-CiA 604 시리즈는 CAN FD light의 사용 지침과 응용 노트를 계속 담는다. CiA 604-3 version 0.0.11은 시스템 설계 권고와 추가 노드 요건을 두는 WD(Work Draft) 단계 문서다. CiA 604-4 version 1.0.0은 DSP(Draft Specification Proposal) 단계 문서로, ISO 11898-1을 넓히는 responder 노드의 추가 기능과, commander 노드와 responder 노드가 CAN FD light를 8 Mbit/s까지 쓰게 하는 고비트율 모드를 정한다.[@cia-604-2026][@cia-can-community-news-13-2024]
+CiA 604 시리즈는 CAN FD light의 사용 지침과 응용 노트를 계속 담는다. 2026년 10월 기준 단계는 CiA 604-3 version 0.0.11이 WD(Work Draft), CiA 604-4 version 1.0.0이 DSP(Draft Specification Proposal)다. CiA 604-3은 시스템 설계 권고와 추가 노드 요건을 둔다. CiA 604-4는 ISO 11898-1을 넓히는 responder 노드의 추가 기능과, commander 노드와 responder 노드가 CAN FD light를 8 Mbit/s까지 쓰게 하는 고비트율 모드를 정한다.[@cia-604-2026][@cia-can-community-news-13-2024]
 
 ## 고비트율 commander
 

@@ -29,7 +29,7 @@ IEEE SA에 따르면 차량 배선의 무게와 공간이 큰 과제여서 차�
 
 10BASE-T1S는 여러 노드가 한 쌍을 나눠 쓰는 멀티드롭 모드도 선택 사항으로 둔다.[@ieee-802-3-2022]
 
-P802.3cy PAR(Project Authorization Request)는 차량 내 네트워크가 도메인 기반 구조에서 이더넷 링크로 이은 [[ee-architecture#존 아키텍처|존 아키텍처]]로 옮겨 가며 완전 자율 주행을 지원하려면 차량 환경에서 10 Gbit/s를 넘는 속도가 필요해졌지만, IEEE 802.3은 아직 그 속도를 지원하지 않는다고 밝혔다.[@ieee-802-3cy-par-2020] P802.3dm은 IEEE 802.3-2022에 대해 진행 중인 개정안이다.[@ieee-802-3-2022] P802.3dm PAR는 이 프로젝트가 차량 끝 노드의 카메라 링크에 맞춰, 한 방향으로 10 Gbit/s까지 내고 반대 방향은 더 낮은 속도로 동작하는 비대칭 전기 물리 계층을 정한다고 밝힌다. 이 PAR는 이 범위의 물리 계층 부분이 MIPI A-PHY를 채택한 IEEE 2977-2021과 일부 겹치고, ASA(Automotive SerDes Alliance)의 MLE(Motion Link Ethernet) 명세도 일부 겹칠 수 있다고 밝힌다.[@ieee-802-3dm-par-2024]
+P802.3cy PAR(Project Authorization Request)는 차량 내 네트워크가 도메인 기반 구조에서 이더넷 링크로 이은 [[ee-architecture#존 아키텍처|존 아키텍처]]로 옮겨 가며 완전 자율 주행을 지원하려면 차량 환경에서 10 Gbit/s를 넘는 속도가 필요해졌지만, IEEE 802.3은 아직 그 속도를 지원하지 않는다고 밝혔다.[@ieee-802-3cy-par-2020] 2026년 10월 기준 P802.3dm이 IEEE 802.3-2022에 대해 진행 중인 개정안이다.[@ieee-802-3-2022] P802.3dm PAR는 이 프로젝트가 차량 끝 노드의 카메라 링크에 맞춰, 한 방향으로 10 Gbit/s까지 내고 반대 방향은 더 낮은 속도로 동작하는 비대칭 전기 물리 계층을 정한다고 밝힌다. 이 PAR는 이 범위의 물리 계층 부분이 MIPI A-PHY를 채택한 IEEE 2977-2021과 일부 겹치고, ASA(Automotive SerDes Alliance)의 MLE(Motion Link Ethernet) 명세도 일부 겹칠 수 있다고 밝힌다.[@ieee-802-3dm-par-2024]
 
 ## 케이블
 
