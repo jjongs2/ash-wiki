@@ -850,7 +850,8 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 //   글자색과 1px --lightgray 테두리로 물린다. 고르지 않은 칩에 올리면 바탕은 두고 테두리와 글자를 구역 색으로
 //   바꾼다. 바탕을 진하게 하지 않는 까닭은 docs/palette.md의 구역 칩 바탕 메모에 있다.
 // - 칩 줄 아래의 상태 줄은 왼쪽에 소식 수, 오른쪽에 정렬을 둔다. 늘 보여서 거를 때 목록이 움직이지 않는다. 칩
-//   줄보다 목록 윗선에 가깝게 두어(글자 상자 기준 14px와 6px) 목록의 머리줄로 읽힌다(소유자 결정, #404). 글자는
+//   줄보다 목록 윗선에 가깝게 두어(글자 상자 기준 14px와 6px) 목록의 머리줄로 읽힌다(소유자 결정, #404). 상태
+//   줄(sm, 줄 높이 1)의 글자 상자는 위아래로 1px씩 넘치므로, 칸 사이와 아래 여백은 그만큼 더한 15px와 7px다. 글자는
 //   대문 소식 칸 제목 줄의 링크("N건 모두 보기 · 지난 호")와 같은 꼴이고, 고른 정렬은 제목색으로 굵게 쓴다.
 // - 거른 결과가 없을 때의 안내 줄은 아랫선을 두지 않는다. 바로 아래 페이지 끝의 hr과 두 겹이 된다.
 // - 제목 아래 줄은 content-meta 자리의 기간과 오른쪽 끝의 이웃 호 링크이고, 둘은 기준선으로 맞춘다. 이웃 호
@@ -869,8 +870,8 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 const CSS = `.news-tools {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 0.4rem;
+  gap: 0.9375rem;
+  margin-bottom: 0.4375rem;
 }
 .news-filters {
   display: flex;
@@ -915,7 +916,7 @@ const CSS = `.news-tools {
   align-items: baseline;
   gap: 0.4rem 1rem;
   color: var(--gray);
-  font-size: 0.85em;
+  font-size: var(--font-size-sm);
   line-height: 1;
   white-space: nowrap;
 }
@@ -971,7 +972,7 @@ const CSS = `.news-tools {
   gap: 0.25rem 0.6rem;
   margin: 0;
   color: var(--gray);
-  font-size: 0.85em;
+  font-size: var(--font-size-sm);
 }
 .news-card-sep {
   margin: 0 0.35em;
@@ -987,14 +988,14 @@ const CSS = `.news-tools {
   border-radius: 3px;
   background-color: color-mix(in srgb, var(--region) 8%, transparent);
   color: var(--region);
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   font-weight: 600;
   line-height: 1.4;
   white-space: nowrap;
 }
 .news-card-title {
   margin: 0.3rem 0 0.4rem;
-  font-size: 1.05rem;
+  font-size: var(--font-size-lg);
   line-height: 1.35;
 }
 .news-card-title a.news-card-link {
@@ -1055,7 +1056,7 @@ const CSS = `.news-tools {
   align-items: baseline;
   gap: 0.4rem;
   color: var(--gray);
-  font-size: 0.85em;
+  font-size: var(--font-size-sm);
   white-space: nowrap;
 }
 .news-nav a.news-nav-link,
@@ -1094,22 +1095,22 @@ const CSS = `.news-tools {
   text-align: right;
 }
 .news-pager-label {
-  font-size: 0.75em;
+  font-size: var(--font-size-xs);
 }
 .news-pager-week {
   color: var(--dark);
-  font-size: 0.95em;
+  font-size: var(--font-size-base);
   font-weight: 600;
 }
 .news-pager-meta {
-  font-size: 0.75em;
+  font-size: var(--font-size-xs);
   font-variant-numeric: tabular-nums;
 }
 .news-pager a.news-pager-link:hover .news-pager-week {
   color: var(--secondary);
 }
 .news-feed {
-  font-size: 0.85em;
+  font-size: var(--font-size-sm);
 }
 .news-feed-icon {
   width: 0.95em;
@@ -1166,7 +1167,7 @@ const CSS = `.news-tools {
   display: inline-block;
   margin: 0;
   color: var(--gray);
-  font-size: 0.85em;
+  font-size: var(--font-size-sm);
   font-weight: 600;
   line-height: var(--day-line);
 }
@@ -1205,7 +1206,7 @@ const CSS = `.news-tools {
 }
 .news-archive a.news-index-week {
   justify-self: start;
-  font-size: 0.95em;
+  font-size: var(--font-size-base);
   padding: 0;
   background-color: transparent;
   color: var(--dark);
@@ -1217,7 +1218,7 @@ const CSS = `.news-tools {
 }
 .news-index-meta {
   color: var(--gray);
-  font-size: 0.75em;
+  font-size: var(--font-size-xs);
   font-variant-numeric: tabular-nums;
 }
 `

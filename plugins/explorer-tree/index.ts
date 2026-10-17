@@ -160,8 +160,9 @@ export function explorerInputs(entries: ContentEntry[]): {
 // (plugins/collapsible-sections)와 맞춘다.
 // 줄마다의 모서리, 안쪽 여백, hover 배경과 페이지 항목의 글자는 목차, Backlinks와 같이 쓰는 줄 규칙이라
 // 사용자 스타일시트(quartz/styles/custom.scss)에 있다. 여기에는 트리에만 있는 규칙을 둔다.
-// - 층은 굵기와 크기로 가른다. 구역은 제목색 0.95rem 600, 주제는 본문색 0.9rem 600이다. 파랑은 지금
-//   페이지에만 쓴다. 줄 간격은 줄 규칙의 항목 링크와 같은 1.3이다.
+// - 층은 굵기와 크기로 가른다. 구역은 제목색 base 600, 주제는 본문색 sm 600이다(글자 크기 단계는
+//   quartz/styles/custom.scss의 토큰). 파랑은 지금 페이지에만 쓴다. 줄 간격은 줄 규칙의 항목 링크와 같은
+//   1.3이다.
 // - 폴더는 이름 버튼의 누름 영역(::after)을 줄 전체로 늘려, 꺾쇠를 포함해 줄 어디를 눌러도 접고 편다. 지금
 //   페이지에는 본문의 내부 링크와 같은 highlight 배경을 깔고 파랑으로 써서 hover의 무채색 배경과 구분한다.
 // - 꺾쇠는 이름 바로 뒤에 두어 이름이 층마다 같은 자리에서 시작하게 한다. 이름보다 눈에 띄지 않도록
@@ -194,13 +195,13 @@ const CSS = `.explorer .explorer-content :is(.folder-button, ul li > a):focus-vi
 }
 .explorer .explorer-content .folder-container .folder-title {
   color: var(--darkgray);
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   font-weight: 600;
   line-height: 1.3;
 }
 .explorer .explorer-content .explorer-ul > li > .folder-container .folder-title {
   color: var(--dark);
-  font-size: 0.95rem;
+  font-size: var(--font-size-base);
 }
 .explorer .explorer-content ul li > a.active {
   background-color: var(--highlight);

@@ -271,7 +271,7 @@ const CSS = `.front-regions {
 .front-regions .front-count {
   margin-left: 0.4em;
   color: var(--gray);
-  font-size: 0.85em;
+  font-size: var(--font-size-sm);
   font-variant-numeric: tabular-nums;
 }
 .front-regions a.front-topic:hover .front-count {
@@ -282,7 +282,8 @@ const CSS = `.front-regions {
 // 본문 아래 2단의 모양이다. 배치는 docs/engine.md의 대문 절에 있다.
 // - 모바일 폭(800px 이하, quartz/styles/variables.scss의 $mobile)에서 1단으로 쌓을 때, 비어 있는 칸을 숨겨
 //   그 자리의 틈을 없앤다.
-// - 칸 제목은 본문 h2보다 작게, Backlinks 제목(1rem)보다 조금 크게 둔다. 대문 본문에는 다른 제목이 없다.
+// - 글자 크기는 글자 크기 단계(quartz/styles/custom.scss의 토큰)를 쓴다. 칸 제목은 본문 h2(xl)보다 작고 Backlinks
+//   제목(base)보다 큰 lg다. 대문 본문에는 다른 제목이 없다.
 // - 최근 변경은 타임라인이다. 왼쪽 세로선은 구역 표의 행 선과 같은 1px --lightgray이고, 날짜마다 링크색
 //   테두리의 속 빈 마디를 날짜 글자 줄의 가운데에 둔다. 세로선은 첫 마디에서 목록 끝까지 내려가, 더 오래된
 //   기록이 이어짐을 보인다. 마디와 세로선의 자리는 날짜 줄 높이(--day-line)와 들여쓰기(--rail)로 계산한다.
@@ -297,15 +298,15 @@ const CSS = `.front-regions {
 //   굵게 쓴다.
 // - 주간 소식도 같은 타임라인이다. 발행일마다 마디를 두고, 그 아래 주요 소식의 제목과, 제목 아래 작은 구역
 //   칩을 둔다. 최근 변경의 제목과 보조 글자 줄과 같은 짜임이다. 칩의 꼴(.news-chip)은 주간 소식 플러그인
-//   (plugins/weekly-news)의 CSS가 정하고, 여기서는 크기만 줄인다. 칸 제목 줄의 오른쪽에 "N건 모두 보기(그 호)
+//   (plugins/weekly-news)의 CSS가 정하고, 여기서는 줄 높이만 줄인다. 칸 제목 줄의 오른쪽에 "N건 모두 보기(그 호)
 //   · 지난 호"를 보조 글자색으로 둔다. 주요 소식이 없는 주는 타임라인 대신 보조 글자 한 줄을 둔다.
 // - 칸 제목 줄은 최근 변경의 칸 제목과 높이가 같아야 두 칸의 첫 날짜 줄이 맞는다. 링크 문단에 사이트 공통
 //   문단 줄 높이(1.6rem)가 걸리면 기준선 맞춤으로 제목 줄이 4.59px 높아지므로, 링크의 줄 높이를 글자 크기로
 //   줄인다. 칸이 좁아 링크가 제목 옆에 들지 않으면(창 폭 850px쯤 아래) 링크를 제목 아래 줄로 내리고, 링크 글자는
 //   꺾지 않는다. 사이트 링크 규칙이 white-space를 normal로 걸어 링크에도 nowrap을 건다.
 // - 칩은 바탕이 상자 맨 위에서 시작해, 같은 여백이면 최근 변경의 보조 글자 줄보다 제목에 붙어 보이고 행도
-//   길어진다. 그래서 대문의 칩은 글자와 줄 높이를 줄이고 위 여백을 넓혀, 행 높이를 보조 글자 줄과 비슷하게
-//   맞춘다(소유자가 시안에서 골랐다).
+//   길어진다. 그래서 대문의 칩은 줄 높이를 줄이고 위 여백을 넓혀, 행 높이를 보조 글자 줄과 비슷하게 맞춘다.
+//   칩 글자는 보조 글자 줄과 같은 xs라 줄 높이 1에서도 바탕 안에 든다(소유자가 시안에서 골랐다).
 // - 제목과 칩 묶음 사이의 여백은 `li >` 선택자로 건다. 업스트림의 `.page article li > *`가 같은 레이어
 //   (quartz-base)에서 margin-top을 0으로 두어, 클래스 하나짜리 선택자로는 구체성에서 진다.
 const COLUMNS_CSS = `.front-columns {
@@ -323,7 +324,7 @@ const COLUMNS_CSS = `.front-columns {
   }
 }
 .front-columns h2 {
-  font-size: 1.15rem;
+  font-size: var(--font-size-lg);
   margin: 0 0 0.5rem;
 }
 .front-timeline {
@@ -371,7 +372,7 @@ li.front-day > time {
   display: block;
   line-height: var(--day-line);
   color: var(--gray);
-  font-size: 0.85em;
+  font-size: var(--font-size-sm);
   font-weight: 600;
 }
 li.front-day li {
@@ -405,7 +406,7 @@ li.front-day li {
   margin-top: 0.1rem;
   text-indent: 0;
   color: var(--gray);
-  font-size: 0.8em;
+  font-size: var(--font-size-xs);
   font-variant-numeric: tabular-nums;
 }
 .front-news-head {
@@ -424,7 +425,7 @@ li.front-day li {
   gap: 0.4rem;
   margin: 0;
   color: var(--gray);
-  font-size: 0.85em;
+  font-size: var(--font-size-sm);
   line-height: 1;
   white-space: nowrap;
 }
@@ -445,17 +446,16 @@ li.front-day li {
 .front-news-empty {
   margin: 0;
   color: var(--gray);
-  font-size: 0.85em;
+  font-size: var(--font-size-sm);
 }
 .front-news li > .front-news-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 0.2rem;
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
 }
 .front-news-chips .news-chip {
-  font-size: 0.65rem;
-  line-height: 1.2;
+  line-height: 1;
 }
 `
 

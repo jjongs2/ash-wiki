@@ -163,8 +163,9 @@ a {
   max-width: calc(#{map.get($breakpoints, desktop)} + 300px);
   margin: 0 auto;
   & article {
+    // ash-wiki: 글자 크기는 글자 크기 단계(custom.scss의 토큰)를 쓴다. 본문의 h1은 제목(.article-title)과 같은 2xl이다.
     & > h1 {
-      font-size: 2rem;
+      font-size: var(--font-size-2xl);
     }
 
     & li:has(> input[type="checkbox"]) {
@@ -438,20 +439,22 @@ h6 {
 }
 
 // typography improvements
+// ash-wiki: 제목과 코드의 글자 크기는 글자 크기 단계(custom.scss의 토큰)를 쓴다. 인라인 코드는 둘레 글자에 대한
+// 비율로 두어 제목 안에서도 함께 커지고, 본문 문단에서는 sm과 같은 크기가 된다.
 h1 {
-  font-size: 1.75rem;
+  font-size: var(--font-size-2xl);
   margin-top: 2.25rem;
   margin-bottom: 1rem;
 }
 
 h2 {
-  font-size: 1.4rem;
+  font-size: var(--font-size-xl);
   margin-top: 1.9rem;
   margin-bottom: 1rem;
 }
 
 h3 {
-  font-size: 1.12rem;
+  font-size: var(--font-size-lg);
   margin-top: 1.62rem;
   margin-bottom: 1rem;
 }
@@ -459,7 +462,7 @@ h3 {
 h4,
 h5,
 h6 {
-  font-size: 1rem;
+  font-size: var(--font-size-base);
   margin-top: 1.5rem;
   margin-bottom: 1rem;
 }
@@ -472,7 +475,7 @@ figure[data-rehype-pretty-code-figure] {
 
   & > [data-rehype-pretty-code-title] {
     font-family: var(--codeFont);
-    font-size: 0.9rem;
+    font-size: var(--font-size-sm);
     padding: 0.1rem 0.5rem;
     border: 1px solid var(--lightgray);
     width: fit-content;
@@ -501,7 +504,7 @@ pre {
   & > code {
     background: none;
     padding: 0;
-    font-size: 0.85rem;
+    font-size: var(--font-size-sm);
     counter-reset: line;
     counter-increment: line 0;
     display: grid;
@@ -545,7 +548,7 @@ pre {
 }
 
 code {
-  font-size: 0.9em;
+  font-size: 0.875em;
   color: var(--dark);
   font-family: var(--codeFont);
   font-variant-ligatures: none;

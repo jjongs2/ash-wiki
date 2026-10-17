@@ -2,6 +2,19 @@
 
 // put your custom CSS here!
 
+// ash-wiki: 글자 크기 단계다. 사이트의 글자 크기는 모두 이 토큰을 쓴다. 엔진과 로컬 플러그인은 제 CSS에서
+// 토큰을 읽고, npm 플러그인의 크기는 아래 "npm 플러그인의 글자 크기"에서 덮어쓴다. 로컬 플러그인의 CSS는 TS 안의
+// 문자열이라 SCSS 변수를 읽지 못해 CSS 사용자 정의 속성으로 둔다. 고른 근거와 단계마다 쓰는 곳은 docs/palette.md의
+// 글자 크기 절에 있다.
+:root {
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.12rem;
+  --font-size-xl: 1.4rem;
+  --font-size-2xl: 1.75rem;
+}
+
 // ash-wiki: 한글은 어절 단위로 줄바꿈한다. 브라우저는 기본으로 한글 글자 사이 어디서나 끊으므로
 // ("밖/에서"), 사이트 전체에 keep-all을 걸어 공백에서만 끊게 한다. 그러면 공백이 없는 긴 URL, 코드,
 // 식별자, 어절이 한 덩어리로 남아 한 줄 폭을 넘기므로 넘칠 때만 아무 자리에서나 끊는다.
@@ -75,7 +88,7 @@ article object[type="image/svg+xml"] {
 // 가져온 그대로 두고, citations 플러그인이 내는 마크업을 CSS로만 다듬는다.
 // 인용 마커(citation--로 시작하는 id의 span)는 번호 링크를 감싼 대괄호까지 통째로 위첨자로 올린다.
 // 대괄호가 남아 있어 [1][2]처럼 이어진 인용도 나뉘어 보인다. line-height를 0으로 두어 마커가 있는
-// 줄만 줄 간격이 벌어지지 않게 한다.
+// 줄만 줄 간격이 벌어지지 않게 한다. 크기는 둘레 글자에 대한 비율이라 글자 크기 단계를 쓰지 않는다.
 // 팝오버는 불러온 페이지의 id 앞에 popover-internal-을 붙이므로, 인용 마커와 참고문헌의 선택자는 그 id도 받는다.
 article span:is([id^="citation--"], [id^="popover-internal-citation--"]) {
   font-size: 0.65em;
@@ -95,7 +108,7 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
   margin-top: 2.5rem;
   padding-top: 1rem;
   border-top: 1px solid var(--lightgray);
-  font-size: 0.85rem;
+  font-size: var(--font-size-sm);
   line-height: 1.5;
 
   &::before {
@@ -103,7 +116,7 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
     grid-column: 1 / -1;
     margin-bottom: 0.25rem;
     font-family: var(--headerFont);
-    font-size: 1.12rem;
+    font-size: var(--font-size-lg);
     font-weight: $boldWeight;
     color: var(--dark);
   }
@@ -125,7 +138,7 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
 
 // ash-wiki: 사이드바 항목의 줄 규칙이다. 탐색기의 폴더 줄과 페이지 항목, 목차와 Backlinks의 항목이 같이 쓴다.
 // 줄마다 5px 모서리와 안쪽 여백을 두고, hover에는 무채색(lightgray를 반쯤 비친) 배경만 깔고 글자색은 바꾸지
-// 않는다. 항목 링크는 줄 전체를 채우고, 글자는 본문색 0.9rem 400이다. 목차의 글자와 Backlinks의 글자와 hover는
+// 않는다. 항목 링크는 줄 전체를 채우고, 글자는 본문색 sm 400이다. 목차의 글자와 Backlinks의 글자와 hover는
 // 아래에서 따로 정한다.
 // 두 줄로 넘치는 항목이 한 항목으로 보이도록 줄 간격은 글자 크기의 1.3배로 좁히고, 위아래 여백을 0.25rem으로
 // 늘린다. 한 줄 항목의 높이는 전과 거의 같고, 항목 사이가 항목 안의 줄 사이보다 넓어진다. 폴더 이름의 줄
@@ -151,7 +164,7 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
     display: block;
     color: var(--darkgray);
     opacity: 1;
-    font-size: 0.9rem;
+    font-size: var(--font-size-sm);
     font-weight: 400;
     line-height: 1.3;
   }
@@ -160,8 +173,8 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
 // 오른쪽 사이드바의 목록(목차, Backlinks)에는 왼쪽에 레일을 긋고, 항목은 레일에서 떨어뜨린다. 레일은 목록을 한
 // 덩어리로 묶고, 항목마다 그어 목차의 깊이 들여쓰기와 상관없이 한 줄로 이어진다. 두 목록은 레일 굵기가 달라도
 // 글자가 같은 자리에서 시작한다. 목록 끝의 li.overflow-end는 항목이 아니라 뺀다.
-// - 목차: 본문을 읽는 동안 곁눈으로 보는 목록이라 제목색 1rem 500으로 크고 진하게 쓰고, 레일은 2px이다.
-// - Backlinks: 목차보다 가볍게 0.85rem으로 쓰고, 본문의 링크처럼 파랑으로 써서 hover에 글자색만 바꾼다. 레일은
+// - 목차: 본문을 읽는 동안 곁눈으로 보는 목록이라 제목색 base 500으로 크고 진하게 쓰고, 레일은 2px이다.
+// - Backlinks: 목차보다 가볍게 sm으로 쓰고, 본문의 링크처럼 파랑으로 써서 hover에 글자색만 바꾼다. 레일은
 //   탐색기 하위 목록의 안내선처럼 1px이다.
 .toc ul.toc-content.overflow > li:not(.overflow-end),
 .backlinks > ul.overflow > li:not(.overflow-end) {
@@ -182,7 +195,7 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
 
 .toc ul.toc-content.overflow > li:not(.overflow-end) > a {
   color: var(--dark);
-  font-size: 1rem;
+  font-size: var(--font-size-base);
   font-weight: 500;
 }
 
@@ -193,7 +206,7 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
 
   & > a {
     color: var(--secondary);
-    font-size: 0.85rem;
+    font-size: var(--font-size-sm);
 
     &:hover {
       background-color: transparent;
@@ -327,4 +340,70 @@ footer ul {
     content: "·";
     margin-right: 0.5rem;
   }
+}
+
+// ash-wiki: npm 플러그인의 글자 크기다. 플러그인이 정한 크기를 글자 크기 단계로 옮긴다(맨 위의 토큰). 플러그인
+// CSS는 @layer quartz-base 안에 실려, layer 밖인 이 파일이 구체성과 상관없이 이긴다.
+// - 속성 표(note-properties): 칸 전체와 키는 sm, 개수와 태그 칩은 xs다. 숫자 값은 고정폭이라 업스트림이
+//   둘레보다 줄였지만, 글자 값과 한 열에 서므로 같은 sm으로 둔다.
+// - 검색(search): 입력은 결과 제목(h3)과 같은 lg, 결과의 본문 조각과 태그, 태그 제안 목록은 sm이다.
+// - 사이트 이름(page-title)은 2xl, 사이드바 칸 제목(탐색기, 그래프, 목차, Backlinks)은 base다. Backlinks 접기
+//   버튼(plugins/backlinks-collapse)은 목차 제목 버튼의 규칙을 그대로 옮겨 두므로 여기서 함께 덮는다. 탐색기 폴더
+//   이름의 크기는 탐색기 플러그인(plugins/explorer-tree)이 정한다.
+.note-properties {
+  font-size: var(--font-size-sm);
+
+  .note-properties-key,
+  .note-properties-number {
+    font-size: var(--font-size-sm);
+  }
+
+  .note-properties-count,
+  .note-properties-tags .tag-link {
+    font-size: var(--font-size-xs);
+  }
+}
+
+.search > .search-container > .search-space {
+  & > input,
+  & > .ghost-text {
+    font-size: var(--font-size-lg);
+  }
+
+  & > .tag-suggestions > .tag-suggestion-item,
+  & > .search-layout > .results-container .result-card > p,
+  & > .search-layout > .results-container .result-card > ul > li > p {
+    font-size: var(--font-size-sm);
+  }
+}
+
+.page-title {
+  font-size: var(--font-size-2xl);
+}
+
+.graph > h3,
+button.toc-header h3,
+.backlinks > h3,
+button.backlinks-header h3,
+button.mobile-explorer h2,
+button.desktop-explorer h2 {
+  font-size: var(--font-size-base);
+}
+
+// ash-wiki: 미리보기(링크 팝오버, 검색 미리보기)에서는 속성 표와 날짜 줄을 숨긴다. 미리보기 칸은 높이가 정해져
+// 있고 엔진이 본문 위의 요소를 모두 싣는데, 속성이 많은 표준 페이지에서는 속성 표가 칸을 채워 머리말이 칸 밖으로
+// 밀린다. 미리보기는 페이지가 무엇인지 머리말로 보이는 자리이고, 속성과 날짜는 페이지를 열면 본다.
+.popover,
+.search .preview-container {
+  .note-properties,
+  .content-meta {
+    display: none;
+  }
+}
+
+// 검색 미리보기는 칸을 offsetParent로 둔다. 검색 플러그인은 가장 긴 하이라이트의 offsetTop을 칸에 닿을 때까지 더해
+// 그 50px 위로 칸을 스크롤하는데, 칸이 offsetParent가 아니면 칸 자신의 자리(입력 상자 아래)까지 더해 늘 160px쯤
+// 더 내려간다. 그러면 제목에 맞은 검색어에서도 제목과 머리말 첫 줄이 칸 위로 밀린다.
+.search > .search-container > .search-space > .search-layout > .preview-container {
+  position: relative;
 }
