@@ -112,8 +112,13 @@ export const frontmatter: SourceCheck = (tree, conventions) => {
         continue
       }
       if (row["형식"] === "태그 목록") {
+        // 태그 칩은 다른 구역의 주제 앞에 구역 이름을 붙이므로, 계층 태그는 상위 태그까지 표시 이름이 있어야 한다.
         ;(fields[field] as string[]).forEach((tag, index) => {
-          if (!tree.tags.has(tag)) at(`표시 이름 파일이 없는 태그: ${tag}`, field, index)
+          const segments = tag.split("/")
+          for (let depth = segments.length; depth > 0; depth--) {
+            const prefix = segments.slice(0, depth).join("/")
+            if (!tree.tags.has(prefix)) at(`표시 이름 파일이 없는 태그: ${prefix}`, field, index)
+          }
         })
       }
     }
