@@ -43,7 +43,7 @@ ISTQB 용어집의 슬러그는 용어와 다를 수 있습니다. 예: checklis
 
 UN 규정의 문서 기호는 Add 번호가 규정 번호와 다릅니다. 예: R155는 `E/ECE/TRANS/505/Rev.3/Add.154`, R156은 `Add.155`. `https://docs.un.org/en/<문서 기호>`는 본문 없는 문서 뷰어입니다. `documents.un.org`에는 원본과 개정(Amend)만 있으므로, UNECE가 올린 통합본은 Wayback으로 엽니다.
 
-Wayback 스냅샷 가운데에는 403 페이지를 저장한 것도 있으니, 원래 문서가 담긴 가장 최근 스냅샷을 고릅니다. CDX(`https://web.archive.org/cdx/search/cdx?url=<원래 URL>&filter=statuscode:200`)가 200을 저장한 스냅샷의 시각과 MIME 형식을 줍니다. 고른 시각에 `id_`를 붙여 `https://web.archive.org/web/<시각>id_/<원래 URL>`로 받으면 Wayback이 덧씌우지 않은 원래 파일이 옵니다. CDX는 가끔 504를 주니 그때는 다시 요청합니다. 옛 주소가 새 판으로 넘어가는 호스트에서는 스냅샷도 새 판으로 넘어가 그 판을 놓칠 수 있습니다. 예: `unece.org`의 R155 `2021-03/R155e.pdf`는 `2023-02/R155e (2).pdf`로 넘어갑니다. 엔트리의 `url`에는 스냅샷 주소를, `note`에는 원래 URL을 적습니다. 예: `bib/nxp-tja1100-2017.bib`
+Wayback 스냅샷 가운데에는 403 페이지를 저장한 것도 있으니, 원래 문서가 담긴 가장 최근 스냅샷을 고릅니다. CDX(`https://web.archive.org/cdx/search/cdx?url=<원래 URL>&filter=statuscode:200`)는 200을 저장한 스냅샷의 시각과 MIME type을 오래된 것부터 줍니다. 고른 시각에 `id_`를 붙여 `https://web.archive.org/web/<시각>id_/<원래 URL>`로 받으면 툴바와 링크 재작성이 없는 원래 파일이 옵니다. `id_`는 받을 때만 붙이고 인용 주소에는 넣지 않습니다. CDX는 가끔 504를 주니 그때는 다시 요청합니다. 옛 주소가 새 판으로 넘어가는 호스트에서는 스냅샷도 새 판으로 넘어가 그 판을 놓칠 수 있습니다. 예: `unece.org`의 R155 `2021-03/R155e.pdf`는 `2023-02/R155e (2).pdf`로 넘어갑니다. 엔트리의 `url`에는 스냅샷 주소를, `note`에는 원래 URL을 적습니다. 예: `bib/nxp-tja1100-2017.bib`
 
 ## 접속 확인
 
