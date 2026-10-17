@@ -23,7 +23,7 @@
 2. 출처 후보의 표준·명세마다 현행판을 확인해 `<사본 폴더>/brief-part.md`의 `## 현행판 표`에 적는다. 브리프의 `## 현행판 표`에 이미 있는 줄은 다시 확인하지 않는다.
 3. 줄마다 `요지`를 위키 규약의 출처 문장 절대로 자기 말로 쓴다. 공통 절과 아래 초안 규칙을 지키고, 티켓에 `## 표기 결정`이 있으면 따른다. 브리프에 `## 표기 표`가 있으면 그 표기를 쓴다. 표에 없는 용어, alias, 약어 풀이, 출처 이름을 새로 정하면 반환의 `새로 정한 표기`에 적는다. 약어 풀이는 표기 표에 있어도 주장이다(위키 검증 문서의 판정 절).
 4. 다른 에이전트가 맡은 페이지는 이 묶음의 페이지다. 그 페이지의 주제 개념은 설명하지 않고 위키 규약의 중복 절대로 링크한다.
-5. 다 쓴 초안에 `npm run check:diff -- --only standard-sentence --only source-run --only abbreviation --only repeated-citation --only term --only first-link`를 한 번 돌려 고친다. 명령은 아직 커밋하지 않은 초안과 추적하지 않는 새 페이지도 보므로, 함께 도는 다른 에이전트의 페이지 후보도 찍힌다. 맡은 페이지의 후보만 본다.
+5. 다 쓴 초안에 `npm run check:diff -- --only standard-sentence --only source-run --only abbreviation --only repeated-citation --only term --only first-link`를 한 번 돌려 고친다. 명령은 아직 커밋하지 않은 초안과 추적하지 않는 새 페이지도 보므로, 함께 도는 다른 에이전트의 페이지 후보도 찍힌다. 맡은 페이지의 후보만 본다. `source-run`의 "구간을 여는데 출처 표시가 없다" 후보 가운데, 초안이 고쳐 쓰지 않은 문장이 `git merge-base origin/main HEAD`의 페이지에서도 출처 표시 없이 구간을 열었으면 고치지 않는다(좁혀 쓰기 절).
 
 커밋하지 않는다. 메인 세션이 반환을 확인한 뒤 검증에 넘긴다.
 
