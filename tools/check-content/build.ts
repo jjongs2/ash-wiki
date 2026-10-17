@@ -56,6 +56,8 @@ function buildErrors(tree: Tree, log: string): Violation[] {
   return [{ file: "build", message: lastLines.join(" / ") }]
 }
 
+// 번호로 렌더되지 않은 인용 표시다. 본문 HTML에서는 태그를 넘지 않는다.
+const CITATION_MARKER = /\[@[^\]<]*\]/g
 // 페이지 설명을 담는 메타(quartz/components/Head.tsx)의 content다.
 const META_DESCRIPTION =
   /<meta (?:name|property)="(?:description|og:description|twitter:description|og:image:alt)" content="([^"]*)"/g
@@ -84,7 +86,7 @@ export function checkOutput(tree: Tree, outDir: string): Violation[] {
       const index = sourceLines.findIndex((line) => line.includes(text))
       return index >= 0 ? index + 1 : undefined
     }
-    for (const marker of new Set([...html.matchAll(/\[@[^\]<]*\]/g)].map((m) => m[0]))) {
+    for (const marker of new Set([...html.matchAll(CITATION_MARKER)].map((m) => m[0]))) {
       violations.push({
         file: page.file,
         line: lineOf(marker),
@@ -93,7 +95,7 @@ export function checkOutput(tree: Tree, outDir: string): Violation[] {
     }
     // 메타 설명 네 개는 같은 설명이고, 인용 표시가 없어야 한다(plugins/citation-free-description).
     const metas = [...pageHtml.matchAll(META_DESCRIPTION)].map((m) => decodeEntities(m[1]))
-    for (const marker of new Set(metas.flatMap((meta) => meta.match(/\[@[^\]]*\]/g) ?? []))) {
+    for (const marker of new Set(metas.flatMap((meta) => meta.match(CITATION_MARKER) ?? []))) {
       violations.push({
         file: page.file,
         line: lineOf(marker),

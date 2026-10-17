@@ -189,13 +189,13 @@ plugins:
     enabled: true
   # 주간 소식(content/news/)을 읽어 발행일 순 목록과 지난 호 목록으로 그린다(plugins/weekly-news).
   # transformer이자 페이지 타입이고, 대문은 이 플러그인이 둔 데이터로 주간 소식 칸을 그린다.
-  # 호의 설명과 검색 본문을 정하고, 설명 플러그인(citation-free-description)은 그 값을 두고 인용 표시만 빼므로
-  # 그보다 먼저 돌아야 한다.
+  # 호의 설명과 검색 본문을 정하고, citation-free-description은 그 값을 두고 인용 표시만 빼므로 그보다 먼저
+  # 돌아야 한다.
   - source: ./plugins/weekly-news
     enabled: true
     order: 75
   # 인용 표시를 뺀 본문 글로 페이지 설명과 검색 본문을 만든다(plugins/citation-free-description, #426). 메타 설명,
-  # OG 이미지, 피드, 검색 색인이 쓰는 값이다. 인용이 렌더되기 전(citations의 order 85 앞)에 돌아야 한다.
+  # OG 이미지, 피드, 검색 색인이 쓰는 값이다. 인용이 렌더되기 전, citations보다 먼저 돌아야 한다.
   - source: ./plugins/citation-free-description
     enabled: true
     order: 76

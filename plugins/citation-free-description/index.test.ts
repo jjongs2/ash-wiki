@@ -8,11 +8,12 @@ import CitationFreeDescription from "./index"
 
 // 플러그인의 htmlPlugins가 seam이다. citations 플러그인이 돌기 전의 본문(인용이 [@키] 원문인 꼴)을 넣어
 // 설명(description)과 검색 본문(text)을 본다.
+const processor = () => unified().use(CitationFreeDescription().htmlPlugins!({} as BuildCtx))
+
 async function describePage(html: string, data: Record<string, unknown> = {}) {
-  const processor = unified().use(CitationFreeDescription().htmlPlugins!({} as BuildCtx))
   const file = new VFile()
   Object.assign(file.data, data)
-  await processor.run(fromHtml(html, { fragment: true }), file)
+  await processor().run(fromHtml(html, { fragment: true }), file)
   return file.data as { description?: string; text?: string }
 }
 
@@ -63,8 +64,7 @@ describe("citation-free-description 플러그인", () => {
   test("본문 트리는 바꾸지 않는다", async () => {
     const tree = fromHtml("<p>첫 문장이다.[@a-spec-2024] 둘째다.</p>", { fragment: true })
     const before = structuredClone(tree)
-    const processor = unified().use(CitationFreeDescription().htmlPlugins!({} as BuildCtx))
-    await processor.run(tree, new VFile())
+    await processor().run(tree, new VFile())
     assert.deepStrictEqual(tree, before)
   })
 })
