@@ -308,9 +308,9 @@ describe("weekLabel", () => {
 
 describe("dayLabel", () => {
   test("사이트의 날짜 꼴로 쓰고, 기준 해와 같은 해면 연도를 뺀다", () => {
-    assert.strictEqual(dayLabel("2026-10-05", "en-US"), "Oct 05, 2026")
-    assert.strictEqual(dayLabel("2026-10-05", "en-US", 2026), "Oct 05")
-    assert.strictEqual(dayLabel("2025-12-29", "en-US", 2026), "Dec 29, 2025")
+    assert.strictEqual(dayLabel("2026-10-05", "ko-KR"), "2026년 10월 5일")
+    assert.strictEqual(dayLabel("2026-10-05", "ko-KR", 2026), "10월 5일")
+    assert.strictEqual(dayLabel("2025-12-29", "ko-KR", 2026), "2025년 12월 29일")
   })
 })
 
@@ -349,8 +349,8 @@ describe("issueDescription", () => {
 
   test("기간, 소식 수, 주요 소식의 원어 제목", () => {
     assert.strictEqual(
-      issueDescription("2026-w41", items, "en-US"),
-      "Oct 05, 2026 ~ Oct 11, 2026, 자동차 임베디드 업계 소식 3건. 주요: AUTOSAR R25-11 Adaptive Platform Changes",
+      issueDescription("2026-w41", items, "ko-KR"),
+      "2026년 10월 5일 ~ 2026년 10월 11일, 자동차 임베디드 업계 소식 3건. 주요: AUTOSAR R25-11 Adaptive Platform Changes",
     )
   })
 
@@ -365,16 +365,16 @@ describe("issueDescription", () => {
       ].join("\n"),
     )
     assert.strictEqual(
-      issueDescription("2026-w41", two, "en-US"),
-      "Oct 05, 2026 ~ Oct 11, 2026, 자동차 임베디드 업계 소식 2건. 주요: Later, Title",
+      issueDescription("2026-w41", two, "ko-KR"),
+      "2026년 10월 5일 ~ 2026년 10월 11일, 자동차 임베디드 업계 소식 2건. 주요: Later, Title",
     )
   })
 
   test("주요 소식이 없으면 기간과 건수까지다", () => {
     const { items: plain } = parseWeeklyNews("2026-w01", source())
     assert.strictEqual(
-      issueDescription("2026-w01", plain, "en-US"),
-      "Dec 29, 2025 ~ Jan 04, 2026, 자동차 임베디드 업계 소식 1건.",
+      issueDescription("2026-w01", plain, "ko-KR"),
+      "2025년 12월 29일 ~ 2026년 1월 4일, 자동차 임베디드 업계 소식 1건.",
     )
   })
 })

@@ -1,0 +1,26 @@
+diff --git a/node_modules/@quartz-community/breadcrumbs/dist/index.js b/node_modules/@quartz-community/breadcrumbs/dist/index.js
+--- a/node_modules/@quartz-community/breadcrumbs/dist/index.js
++++ b/node_modules/@quartz-community/breadcrumbs/dist/index.js
+@@ -264,7 +264,8 @@ var Breadcrumbs_default = ((opts) => {
+     if (!options.showCurrentPage) {
+       crumbs.pop();
+     }
+-    return /* @__PURE__ */ u2("nav", { class: classNames(displayClass, "breadcrumb-container"), "aria-label": "breadcrumbs", children: crumbs.map((crumb, index) => /* @__PURE__ */ u2("div", { class: "breadcrumb-element", children: [
++    // ash-wiki: 스크린 리더 라벨이 영어로 박혀 있다.
++    return /* @__PURE__ */ u2("nav", { class: classNames(displayClass, "breadcrumb-container"), "aria-label": "탐색 경로", children: crumbs.map((crumb, index) => /* @__PURE__ */ u2("div", { class: "breadcrumb-element", children: [
+       /* @__PURE__ */ u2("a", { href: crumb.path, children: crumb.displayName }),
+       index !== crumbs.length - 1 && /* @__PURE__ */ u2("p", { children: ` ${options.spacerSymbol} ` })
+     ] })) });
+diff --git a/node_modules/@quartz-community/breadcrumbs/dist/components/index.js b/node_modules/@quartz-community/breadcrumbs/dist/components/index.js
+--- a/node_modules/@quartz-community/breadcrumbs/dist/components/index.js
++++ b/node_modules/@quartz-community/breadcrumbs/dist/components/index.js
+@@ -264,7 +264,8 @@ var Breadcrumbs_default = ((opts) => {
+     if (!options.showCurrentPage) {
+       crumbs.pop();
+     }
+-    return /* @__PURE__ */ u2("nav", { class: classNames(displayClass, "breadcrumb-container"), "aria-label": "breadcrumbs", children: crumbs.map((crumb, index) => /* @__PURE__ */ u2("div", { class: "breadcrumb-element", children: [
++    // ash-wiki: 스크린 리더 라벨이 영어로 박혀 있다.
++    return /* @__PURE__ */ u2("nav", { class: classNames(displayClass, "breadcrumb-container"), "aria-label": "탐색 경로", children: crumbs.map((crumb, index) => /* @__PURE__ */ u2("div", { class: "breadcrumb-element", children: [
+       /* @__PURE__ */ u2("a", { href: crumb.path, children: crumb.displayName }),
+       index !== crumbs.length - 1 && /* @__PURE__ */ u2("p", { children: ` ${options.spacerSymbol} ` })
+     ] })) });

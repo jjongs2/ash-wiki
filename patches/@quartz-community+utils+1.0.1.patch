@@ -1,0 +1,33 @@
+diff --git a/node_modules/@quartz-community/utils/dist/date.js b/node_modules/@quartz-community/utils/dist/date.js
+--- a/node_modules/@quartz-community/utils/dist/date.js
++++ b/node_modules/@quartz-community/utils/dist/date.js
+@@ -1,10 +1,7 @@
+ // src/date.ts
+ function formatDate(d, locale = "en-US") {
+-  return d.toLocaleDateString(locale, {
+-    year: "numeric",
+-    month: "short",
+-    day: "2-digit"
+-  });
++  // ash-wiki: 날짜 하나는 ISO 8601(YYYY-MM-DD)로 찍는다(docs/engine.md의 locale 절).
++  return [d.getFullYear(), String(d.getMonth() + 1).padStart(2, "0"), String(d.getDate()).padStart(2, "0")].join("-");
+ }
+ 
+ export { formatDate };
+diff --git a/node_modules/@quartz-community/utils/dist/index.js b/node_modules/@quartz-community/utils/dist/index.js
+--- a/node_modules/@quartz-community/utils/dist/index.js
++++ b/node_modules/@quartz-community/utils/dist/index.js
+@@ -330,11 +330,8 @@ function htmlToJsx(tree, components) {
+ 
+ // src/date.ts
+ function formatDate(d, locale = "en-US") {
+-  return d.toLocaleDateString(locale, {
+-    year: "numeric",
+-    month: "short",
+-    day: "2-digit"
+-  });
++  // ash-wiki: 날짜 하나는 ISO 8601(YYYY-MM-DD)로 찍는다(docs/engine.md의 locale 절).
++  return [d.getFullYear(), String(d.getMonth() + 1).padStart(2, "0"), String(d.getDate()).padStart(2, "0")].join("-");
+ }
+ 
+ // src/emoji.ts

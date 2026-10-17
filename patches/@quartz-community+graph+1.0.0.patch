@@ -1,0 +1,50 @@
+diff --git a/node_modules/@quartz-community/graph/dist/index.js b/node_modules/@quartz-community/graph/dist/index.js
+--- a/node_modules/@quartz-community/graph/dist/index.js
++++ b/node_modules/@quartz-community/graph/dist/index.js
+@@ -378,7 +378,8 @@ var Graph_default = ((userOpts) => {
+       /* @__PURE__ */ u2("h3", { children: i18n(cfg.locale ?? "en-US").components.graph.title }),
+       /* @__PURE__ */ u2("div", { class: "graph-outer", children: [
+         /* @__PURE__ */ u2("div", { class: "graph-container", "data-cfg": JSON.stringify(localGraph) }),
+-        /* @__PURE__ */ u2("button", { class: "global-graph-icon", "aria-label": "Global Graph", children: /* @__PURE__ */ u2(
++        // ash-wiki: 스크린 리더 라벨이 영어로 박혀 있다.
++        /* @__PURE__ */ u2("button", { class: "global-graph-icon", "aria-label": "전체 그래프", children: /* @__PURE__ */ u2(
+           "svg",
+           {
+             version: "1.1",
+@@ -402,7 +403,10 @@ var Graph_default = ((userOpts) => {
+     ] });
+   };
+   Graph.css = graph_default;
+-  Graph.afterDOMLoaded = graph_inline_default;
++  // ash-wiki: 클라이언트 스크립트에 영어 안내가 박혀 있다. 바꿀 문구가 없으면 빌드를 멈춘다.
++  const graphLoadError = 'textContent="Graph could not load. Check your network connection."';
++  if (!graph_inline_default.includes(graphLoadError)) throw new Error("ash-wiki graph 패치: 클라이언트 스크립트에 그래프 오류 안내가 없다");
++  Graph.afterDOMLoaded = graph_inline_default.replace(graphLoadError, 'textContent="그래프를 불러오지 못했습니다. 네트워크 연결을 확인해 주세요."');
+   return Graph;
+ });
+ 
+diff --git a/node_modules/@quartz-community/graph/dist/components/index.js b/node_modules/@quartz-community/graph/dist/components/index.js
+--- a/node_modules/@quartz-community/graph/dist/components/index.js
++++ b/node_modules/@quartz-community/graph/dist/components/index.js
+@@ -378,7 +378,8 @@ var Graph_default = ((userOpts) => {
+       /* @__PURE__ */ u2("h3", { children: i18n(cfg.locale ?? "en-US").components.graph.title }),
+       /* @__PURE__ */ u2("div", { class: "graph-outer", children: [
+         /* @__PURE__ */ u2("div", { class: "graph-container", "data-cfg": JSON.stringify(localGraph) }),
+-        /* @__PURE__ */ u2("button", { class: "global-graph-icon", "aria-label": "Global Graph", children: /* @__PURE__ */ u2(
++        // ash-wiki: 스크린 리더 라벨이 영어로 박혀 있다.
++        /* @__PURE__ */ u2("button", { class: "global-graph-icon", "aria-label": "전체 그래프", children: /* @__PURE__ */ u2(
+           "svg",
+           {
+             version: "1.1",
+@@ -402,7 +403,10 @@ var Graph_default = ((userOpts) => {
+     ] });
+   };
+   Graph.css = graph_default;
+-  Graph.afterDOMLoaded = graph_inline_default;
++  // ash-wiki: 클라이언트 스크립트에 영어 안내가 박혀 있다. 바꿀 문구가 없으면 빌드를 멈춘다.
++  const graphLoadError = 'textContent="Graph could not load. Check your network connection."';
++  if (!graph_inline_default.includes(graphLoadError)) throw new Error("ash-wiki graph 패치: 클라이언트 스크립트에 그래프 오류 안내가 없다");
++  Graph.afterDOMLoaded = graph_inline_default.replace(graphLoadError, 'textContent="그래프를 불러오지 못했습니다. 네트워크 연결을 확인해 주세요."');
+   return Graph;
+ });
+ 

@@ -1,0 +1,36 @@
+diff --git a/node_modules/@quartz-community/og-image/dist/index.js b/node_modules/@quartz-community/og-image/dist/index.js
+--- a/node_modules/@quartz-community/og-image/dist/index.js
++++ b/node_modules/@quartz-community/og-image/dist/index.js
+@@ -23885,11 +23885,8 @@ function isAbsoluteURL(url) {
+   return /^https?:\/\//.test(url);
+ }
+ function formatDate(d3, locale = "en-US") {
+-  return d3.toLocaleDateString(locale, {
+-    year: "numeric",
+-    month: "short",
+-    day: "2-digit"
+-  });
++  // ash-wiki: 날짜 하나는 ISO 8601(YYYY-MM-DD)로 찍는다(docs/engine.md의 locale 절).
++  return [d3.getFullYear(), String(d3.getMonth() + 1).padStart(2, "0"), String(d3.getDate()).padStart(2, "0")].join("-");
+ }
+ async function getSatoriFonts(headerFont, bodyFont) {
+   const headerWeights = typeof headerFont === "string" ? defaultHeaderWeight : headerFont.weights ?? defaultHeaderWeight;
+@@ -24272,7 +24269,7 @@ var defaultImage = ({
+                       ),
+                       date
+                     ] }),
+-                    /* @__PURE__ */ u3("div", { style: { display: "flex", alignItems: "center" }, children: [
++                    readingTimeText && /* @__PURE__ */ u3("div", { style: { display: "flex", alignItems: "center" }, children: [
+                       /* @__PURE__ */ u3(
+                         "svg",
+                         {
+@@ -24339,7 +24336,8 @@ var defaultOptions = {
+   excludeRoot: false,
+   defaultTitle: "Untitled",
+   defaultDescription: "No description provided",
+-  readingTimeText: (minutes) => `${minutes} min read`
++  // ash-wiki: 위키는 읽는 시간을 보이지 않는다(quartz.config.yaml의 content-meta 주석). 빈 문자열이면 그 칸을 그리지 않는다.
++  readingTimeText: () => ""
+ };
+ async function generateSocialImage({ cfg, description, fonts, title, fileData }, userOpts) {
+   const { width, height } = userOpts;

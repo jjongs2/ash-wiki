@@ -1,0 +1,17 @@
+diff --git a/node_modules/@quartz-community/citations/dist/index.js b/node_modules/@quartz-community/citations/dist/index.js
+--- a/node_modules/@quartz-community/citations/dist/index.js
++++ b/node_modules/@quartz-community/citations/dist/index.js
+@@ -124150,10 +124150,9 @@ var Citations = (userOpts) => {
+     name: "Citations",
+     htmlPlugins(ctx) {
+       const plugins2 = [];
+-      let lang = "en-US";
+-      if (ctx.cfg.configuration.locale !== "en-US") {
+-        lang = `https://raw.githubusercontent.com/citation-style-language/locales/refs/heads/master/locales-${ctx.cfg.configuration.locale}.xml`;
+-      }
++      // ash-wiki: 사이트 locale은 ko-KR이지만 CSL은 en-US로 묶는다. 다른 locale은 CSL locale 파일을
++      // 페이지마다 원격에서 받는다(ADR 0021).
++      const lang = "en-US";
+       plugins2.push([
+         rehypeCitation,
+         {

@@ -7,18 +7,18 @@ function page(article: string, extra = ""): string {
   return `<html><body data-slug="semaphore"><div id="quartz-root">
 <div class="left sidebar"><h2 class="page-title"><a href=".">Æ wiki</a></h2></div>
 <div class="center"><div class="page-header"><div class="popover-hint">
-<nav class="breadcrumb-container"><div class="breadcrumb-element"><a href="./">Home</a></div></nav>
+<nav class="breadcrumb-container"><div class="breadcrumb-element"><a href="./">대문</a></div></nav>
 <h1 class="article-title">세마포어</h1>
-<details class="note-properties metadata-container" open><summary>Properties</summary>
+<details class="note-properties metadata-container" open><summary>속성</summary>
 <table class="note-properties-table"><tbody>
-<tr><td class="note-properties-key">tags</td><td class="note-properties-value"><span class="note-properties-tags"><a href="./tags/platform/rtos" class="internal internal-link tag-link">platform/rtos</a></span></td></tr>
-<tr><td class="note-properties-key">verified</td><td class="note-properties-value"><span class="note-properties-text">2026-10-07</span></td></tr>
+<tr><td class="note-properties-key">태그</td><td class="note-properties-value"><span class="note-properties-tags"><a href="./tags/platform/rtos" class="internal internal-link tag-link">platform/rtos</a></span></td></tr>
+<tr><td class="note-properties-key">검증일</td><td class="note-properties-value"><span class="note-properties-text">2026-10-07</span></td></tr>
 </tbody></table></details>
-<p class="content-meta"><time>Oct 07, 2026</time><span>9 min read</span></p></div></div>
+<p class="content-meta"><time>2026-10-07</time></p></div></div>
 <article class="popover-hint"><div class="markdown-preview-view markdown-rendered">${article}</div></article>
 ${extra}
 <div class="page-footer"></div></div>
-<div class="right sidebar"><div class="backlinks"><h3>Backlinks</h3><ul><li><a href="./mutex" class="internal" data-slug="mutex">뮤텍스</a></li></ul></div></div>
+<div class="right sidebar"><div class="backlinks"><h3>백링크</h3><ul><li><a href="./mutex" class="internal" data-slug="mutex">뮤텍스</a></li></ul></div></div>
 </div></body></html>`
 }
 
@@ -37,8 +37,8 @@ describe("readerText", () => {
       [
         "# 세마포어",
         "",
-        "tags: platform/rtos",
-        "verified: 2026-10-07",
+        "태그: platform/rtos",
+        "검증일: 2026-10-07",
         "",
         "**세마포어**(semaphore)는 동기화 객체다.[1] `sem_wait`는 줄인다.",
         "",

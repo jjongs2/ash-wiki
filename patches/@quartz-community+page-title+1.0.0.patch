@@ -1,0 +1,26 @@
+diff --git a/node_modules/@quartz-community/page-title/dist/index.js b/node_modules/@quartz-community/page-title/dist/index.js
+--- a/node_modules/@quartz-community/page-title/dist/index.js
++++ b/node_modules/@quartz-community/page-title/dist/index.js
+@@ -51,7 +51,8 @@ function u2(e2, t2, n2, o2, i2, u3) {
+ var PageTitle = ({ fileData, cfg, displayClass }) => {
+   const locale = cfg?.locale ?? "en-US";
+   const title = cfg?.pageTitle ?? i18n(locale).propertyDefaults.title;
+-  const baseDir = pathToRoot(fileData.slug);
++  // ash-wiki: 404는 아무 경로에서나 열려 상대 경로가 엇나간다. 엔진의 404 본문 링크처럼 사이트 루트의 절대 경로로 둔다.
++  const baseDir = fileData.slug === "404" ? new URL(`https://${cfg?.baseUrl ?? "example.com"}`).pathname : pathToRoot(fileData.slug);
+   return /* @__PURE__ */ u2("h2", { class: classNames(displayClass, "page-title"), children: /* @__PURE__ */ u2("a", { href: baseDir, children: title }) });
+ };
+ PageTitle.css = `
+diff --git a/node_modules/@quartz-community/page-title/dist/components/index.js b/node_modules/@quartz-community/page-title/dist/components/index.js
+--- a/node_modules/@quartz-community/page-title/dist/components/index.js
++++ b/node_modules/@quartz-community/page-title/dist/components/index.js
+@@ -51,7 +51,8 @@ function u2(e2, t2, n2, o2, i2, u3) {
+ var PageTitle = ({ fileData, cfg, displayClass }) => {
+   const locale = cfg?.locale ?? "en-US";
+   const title = cfg?.pageTitle ?? i18n(locale).propertyDefaults.title;
+-  const baseDir = pathToRoot(fileData.slug);
++  // ash-wiki: 404는 아무 경로에서나 열려 상대 경로가 엇나간다. 엔진의 404 본문 링크처럼 사이트 루트의 절대 경로로 둔다.
++  const baseDir = fileData.slug === "404" ? new URL(`https://${cfg?.baseUrl ?? "example.com"}`).pathname : pathToRoot(fileData.slug);
+   return /* @__PURE__ */ u2("h2", { class: classNames(displayClass, "page-title"), children: /* @__PURE__ */ u2("a", { href: baseDir, children: title }) });
+ };
+ PageTitle.css = `
