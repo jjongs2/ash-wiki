@@ -1,4 +1,4 @@
-import { slugifyFilePath } from "@quartz-community/utils"
+import { getAllSegmentPrefixes, slugifyFilePath } from "@quartz-community/utils"
 import GithubSlugger, { slug as anchorSlug } from "github-slugger"
 import type { Heading } from "mdast"
 import type { Position } from "unist"
@@ -112,8 +112,11 @@ export const frontmatter: SourceCheck = (tree, conventions) => {
         continue
       }
       if (row["형식"] === "태그 목록") {
+        // 태그 칩은 다른 구역의 주제 앞에 구역 이름을 붙이므로, 계층 태그는 상위 태그까지 표시 이름이 있어야 한다.
         ;(fields[field] as string[]).forEach((tag, index) => {
-          if (!tree.tags.has(tag)) at(`표시 이름 파일이 없는 태그: ${tag}`, field, index)
+          for (const prefix of getAllSegmentPrefixes(tag)) {
+            if (!tree.tags.has(prefix)) at(`표시 이름 파일이 없는 태그: ${prefix}`, field, index)
+          }
         })
       }
     }

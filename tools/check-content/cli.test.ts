@@ -109,9 +109,11 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-frontmatter.md:1",
         "content/bad-frontmatter.md:5",
         "content/bad-frontmatter.md:7",
+        "content/bad-frontmatter.md:9",
         "content/bad-meta-citation.md:7",
         "content/bad-standard.md:8",
         "content/bad-standard.md:10",
+        "content/tags/network/no-title.md:3",
       ],
       namespace: [
         "content/Bad_Name.md:1",

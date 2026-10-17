@@ -1,7 +1,7 @@
 diff --git a/node_modules/@quartz-community/tag-page/dist/index.js b/node_modules/@quartz-community/tag-page/dist/index.js
 --- a/node_modules/@quartz-community/tag-page/dist/index.js
 +++ b/node_modules/@quartz-community/tag-page/dist/index.js
-@@ -391,11 +391,8 @@ function byDateAndAlphabeticalFolderFirst(_cfg) {
+@@ -391,18 +391,27 @@ function byDateAndAlphabeticalFolderFirst(_cfg) {
    };
  }
  function DateDisplay({ date, locale }) {
@@ -12,10 +12,49 @@ diff --git a/node_modules/@quartz-community/tag-page/dist/index.js b/node_module
 -  }) });
 +  // ash-wiki: 날짜 하나는 ISO 8601(YYYY-MM-DD)로 찍는다(docs/engine.md의 locale 절).
 +  return /* @__PURE__ */ u2("time", { dateTime: date.toISOString(), children: [date.getFullYear(), String(date.getMonth() + 1).padStart(2, "0"), String(date.getDate()).padStart(2, "0")].join("-") });
++}
++// ash-wiki: 태그 칩과 태그 전체 목록의 제목은 slug 대신 표시 이름 파일(content/tags/)의 title로 찍는다. 칩은
++// 대문의 주제 칩처럼 주제 이름만 쓰고, 전체 목록의 제목만 구역 이름을 앞에 붙인다(docs/engine.md의 태그 목록 절).
++function tagTitlesOf(allFiles) {
++  return new Map(allFiles.filter((file) => file.slug?.startsWith("tags/")).map((file) => [file.slug.slice("tags/".length), file.frontmatter?.title]));
++}
++function tagDisplayName(tag, titles, withRegion) {
++  const region = tag.split("/")[0];
++  const name = titles?.get(tag) ?? tag;
++  return withRegion && region !== tag ? `${titles?.get(region) ?? region} › ${name}` : name;
  }
  var PageList = ({
    cfg,
-@@ -2549,9 +2546,10 @@ var ko_KR_default = {
+   fileData,
+   allFiles,
+   limit,
+-  sort
++  sort,
++  tagTitles,
++  currentTag
+ }) => {
+   const sorter = sort ?? byDateAndAlphabeticalFolderFirst();
+   let list = [...allFiles].sort(sorter);
+@@ -429,7 +438,8 @@ var PageList = ({
+           children: title
+         }
+       ) }) }),
+-      /* @__PURE__ */ u2("ul", { class: "tags", children: tags.map((tag) => /* @__PURE__ */ u2("li", { children: /* @__PURE__ */ u2(
++      // ash-wiki: 지금 목록의 태그는 그 목록으로 가는 링크라 링크 없는 칩으로 둔다(docs/engine.md의 태그 목록 절).
++      /* @__PURE__ */ u2("ul", { class: "tags", children: tags.map((tag) => /* @__PURE__ */ u2("li", { children: tag === currentTag ? /* @__PURE__ */ u2("span", { class: "tag-link tag-current", children: tagDisplayName(tag, tagTitles) }) : /* @__PURE__ */ u2(
+         "a",
+         {
+           class: "internal tag-link",
+@@ -437,7 +447,7 @@ var PageList = ({
+             fileSlug ?? "",
+             `tags/${tag}`
+           ),
+-          children: tag
++          children: tagDisplayName(tag, tagTitles)
+         }
+       ) })) })
+     ] }) });
+@@ -2549,9 +2559,10 @@ var ko_KR_default = {
      tagContent: {
        tag: "\uD0DC\uADF8",
        tagIndex: "\uD0DC\uADF8 \uBAA9\uB85D",
@@ -29,10 +68,49 @@ diff --git a/node_modules/@quartz-community/tag-page/dist/index.js b/node_module
      }
    },
    components: {}
+@@ -2809,6 +2820,7 @@ var TagContent_default = ((opts) => {
+       throw new Error(`Component "TagContent" tried to render a non-tag page: ${slug2}`);
+     }
+     const tag = simplifySlug(slug2.slice("tags/".length));
++    const tagTitles = tagTitlesOf(allFiles);
+     const allPagesWithTag = (t2) => allFiles.filter(isListed).filter(
+       (file) => (file.frontmatter?.tags ?? []).flatMap(getAllSegmentPrefixes).includes(t2)
+     );
+@@ -2838,7 +2850,9 @@ var TagContent_default = ((opts) => {
+           const pageListContent = PageList({
+             ...listProps,
+             limit: options.numPages,
+-            sort: options?.sort
++            sort: options?.sort,
++            tagTitles,
++            currentTag: t2
+           });
+           const contentPage = allFiles.find(
+             (file) => file.slug === `tags/${t2}`
+@@ -2848,7 +2862,7 @@ var TagContent_default = ((opts) => {
+           const tagListingPage = `/tags/${t2}`;
+           const href = resolveRelative(slug2, tagListingPage);
+           return /* @__PURE__ */ u2("div", { children: [
+-            /* @__PURE__ */ u2("h2", { children: /* @__PURE__ */ u2("a", { class: "internal tag-link", href, children: t2 }) }),
++            /* @__PURE__ */ u2("h2", { children: /* @__PURE__ */ u2("a", { class: "internal tag-link", href, children: tagDisplayName(t2, tagTitles, true) }) }),
+             tagDesc && /* @__PURE__ */ u2("p", { children: tagDesc }),
+             /* @__PURE__ */ u2("div", { class: "page-listing", children: [
+               /* @__PURE__ */ u2("p", { children: [
+@@ -2873,7 +2887,9 @@ var TagContent_default = ((opts) => {
+       };
+       const pageListContent = PageList({
+         ...listProps,
+-        sort: options?.sort
++        sort: options?.sort,
++        tagTitles,
++        currentTag: tag
+       });
+       return /* @__PURE__ */ u2("div", { class: "popover-hint", children: [
+         /* @__PURE__ */ u2("article", { class: classes, children: /* @__PURE__ */ u2("div", { class: "markdown-preview-view markdown-rendered", children: content }) }),
 diff --git a/node_modules/@quartz-community/tag-page/dist/components/index.js b/node_modules/@quartz-community/tag-page/dist/components/index.js
 --- a/node_modules/@quartz-community/tag-page/dist/components/index.js
 +++ b/node_modules/@quartz-community/tag-page/dist/components/index.js
-@@ -407,11 +407,8 @@ function byDateAndAlphabeticalFolderFirst(_cfg) {
+@@ -407,18 +407,27 @@ function byDateAndAlphabeticalFolderFirst(_cfg) {
    };
  }
  function DateDisplay({ date, locale }) {
@@ -43,10 +121,49 @@ diff --git a/node_modules/@quartz-community/tag-page/dist/components/index.js b/
 -  }) });
 +  // ash-wiki: 날짜 하나는 ISO 8601(YYYY-MM-DD)로 찍는다(docs/engine.md의 locale 절).
 +  return /* @__PURE__ */ u2("time", { dateTime: date.toISOString(), children: [date.getFullYear(), String(date.getMonth() + 1).padStart(2, "0"), String(date.getDate()).padStart(2, "0")].join("-") });
++}
++// ash-wiki: 태그 칩과 태그 전체 목록의 제목은 slug 대신 표시 이름 파일(content/tags/)의 title로 찍는다. 칩은
++// 대문의 주제 칩처럼 주제 이름만 쓰고, 전체 목록의 제목만 구역 이름을 앞에 붙인다(docs/engine.md의 태그 목록 절).
++function tagTitlesOf(allFiles) {
++  return new Map(allFiles.filter((file) => file.slug?.startsWith("tags/")).map((file) => [file.slug.slice("tags/".length), file.frontmatter?.title]));
++}
++function tagDisplayName(tag, titles, withRegion) {
++  const region = tag.split("/")[0];
++  const name = titles?.get(tag) ?? tag;
++  return withRegion && region !== tag ? `${titles?.get(region) ?? region} › ${name}` : name;
  }
  var PageList = ({
    cfg,
-@@ -2565,9 +2562,10 @@ var ko_KR_default = {
+   fileData,
+   allFiles,
+   limit,
+-  sort
++  sort,
++  tagTitles,
++  currentTag
+ }) => {
+   const sorter = sort ?? byDateAndAlphabeticalFolderFirst();
+   let list = [...allFiles].sort(sorter);
+@@ -445,7 +454,8 @@ var PageList = ({
+           children: title
+         }
+       ) }) }),
+-      /* @__PURE__ */ u2("ul", { class: "tags", children: tags.map((tag) => /* @__PURE__ */ u2("li", { children: /* @__PURE__ */ u2(
++      // ash-wiki: 지금 목록의 태그는 그 목록으로 가는 링크라 링크 없는 칩으로 둔다(docs/engine.md의 태그 목록 절).
++      /* @__PURE__ */ u2("ul", { class: "tags", children: tags.map((tag) => /* @__PURE__ */ u2("li", { children: tag === currentTag ? /* @__PURE__ */ u2("span", { class: "tag-link tag-current", children: tagDisplayName(tag, tagTitles) }) : /* @__PURE__ */ u2(
+         "a",
+         {
+           class: "internal tag-link",
+@@ -453,7 +463,7 @@ var PageList = ({
+             fileSlug ?? "",
+             `tags/${tag}`
+           ),
+-          children: tag
++          children: tagDisplayName(tag, tagTitles)
+         }
+       ) })) })
+     ] }) });
+@@ -2565,9 +2575,10 @@ var ko_KR_default = {
      tagContent: {
        tag: "\uD0DC\uADF8",
        tagIndex: "\uD0DC\uADF8 \uBAA9\uB85D",
@@ -60,3 +177,42 @@ diff --git a/node_modules/@quartz-community/tag-page/dist/components/index.js b/
      }
    },
    components: {}
+@@ -2825,6 +2836,7 @@ var TagContent_default = ((opts) => {
+       throw new Error(`Component "TagContent" tried to render a non-tag page: ${slug2}`);
+     }
+     const tag = simplifySlug(slug2.slice("tags/".length));
++    const tagTitles = tagTitlesOf(allFiles);
+     const allPagesWithTag = (t2) => allFiles.filter(isListed).filter(
+       (file) => (file.frontmatter?.tags ?? []).flatMap(getAllSegmentPrefixes).includes(t2)
+     );
+@@ -2854,7 +2866,9 @@ var TagContent_default = ((opts) => {
+           const pageListContent = PageList({
+             ...listProps,
+             limit: options.numPages,
+-            sort: options?.sort
++            sort: options?.sort,
++            tagTitles,
++            currentTag: t2
+           });
+           const contentPage = allFiles.find(
+             (file) => file.slug === `tags/${t2}`
+@@ -2864,7 +2878,7 @@ var TagContent_default = ((opts) => {
+           const tagListingPage = `/tags/${t2}`;
+           const href = resolveRelative(slug2, tagListingPage);
+           return /* @__PURE__ */ u2("div", { children: [
+-            /* @__PURE__ */ u2("h2", { children: /* @__PURE__ */ u2("a", { class: "internal tag-link", href, children: t2 }) }),
++            /* @__PURE__ */ u2("h2", { children: /* @__PURE__ */ u2("a", { class: "internal tag-link", href, children: tagDisplayName(t2, tagTitles, true) }) }),
+             tagDesc && /* @__PURE__ */ u2("p", { children: tagDesc }),
+             /* @__PURE__ */ u2("div", { class: "page-listing", children: [
+               /* @__PURE__ */ u2("p", { children: [
+@@ -2889,7 +2903,9 @@ var TagContent_default = ((opts) => {
+       };
+       const pageListContent = PageList({
+         ...listProps,
+-        sort: options?.sort
++        sort: options?.sort,
++        tagTitles,
++        currentTag: tag
+       });
+       return /* @__PURE__ */ u2("div", { class: "popover-hint", children: [
+         /* @__PURE__ */ u2("article", { class: classes, children: /* @__PURE__ */ u2("div", { class: "markdown-preview-view markdown-rendered", children: content }) }),
