@@ -66,9 +66,8 @@
     }
   }
 
-  // ash-wiki: 미리보기의 제목은 글자 크기 단계(custom.scss의 토큰)의 xl이다. 본문 제목(2xl)보다 한 단계 작다.
   h1 {
-    font-size: var(--font-size-xl);
+    font-size: 1.5rem;
   }
 
   visibility: hidden;
