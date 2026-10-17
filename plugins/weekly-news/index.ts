@@ -1404,8 +1404,9 @@ const WeeklyNews = () => ({
       },
     ]
   },
-  // 호와 지난 호 목록의 설명(메타 설명과 피드)과 호의 검색 본문을 정한다. description 플러그인이 본문
-  // 전체에서 만든 값을 덮어쓴다(순서는 quartz.config.yaml). 검색 본문은 소식 항목마다 원어 제목과 요약이다.
+  // 호와 지난 호 목록의 설명(메타 설명과 피드)과 호의 검색 본문을 정한다. 설명 플러그인
+  // (plugins/citation-free-description)은 뒤에 돌며 이 값을 두고 인용 표시만 뺀다(순서는 quartz.config.yaml).
+  // 검색 본문은 소식 항목마다 원어 제목과 요약이다.
   // 설명을 프론트매터가 아닌 vfile 데이터에 두어 호 페이지에 속성 칸(note-properties)이 생기지 않는다. 두 값은
   // description 플러그인처럼 이스케이프한다.
   htmlPlugins(ctx: { cfg: { configuration: { locale: string } } }) {
