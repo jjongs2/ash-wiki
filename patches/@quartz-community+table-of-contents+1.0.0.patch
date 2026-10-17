@@ -1,0 +1,38 @@
+diff --git a/node_modules/@quartz-community/table-of-contents/dist/index.js b/node_modules/@quartz-community/table-of-contents/dist/index.js
+--- a/node_modules/@quartz-community/table-of-contents/dist/index.js
++++ b/node_modules/@quartz-community/table-of-contents/dist/index.js
+@@ -448,8 +448,14 @@ var TableOfContents_default = ((opts) => {
+     ] });
+   };
+   TableOfContents.css = toc_default;
++  // ash-wiki: 업스트림은 목차의 in-view를 IntersectionObserver가 알린 제목에만 고친다. 즉시 스크롤(동작 줄이기,
++  // End와 Home 키)로 화면을 한 번에 건너뛴 제목은 화면 한쪽 밖에서 반대쪽 밖으로 넘어가 교차 상태가 그대로라,
++  // 알림이 오지 않아 읽은 절 표시가 어긋난다. 알림이 올 때마다 모든 항목을 제목 위치로 다시 정한다. 바꿀
++  // 스크립트가 없으면 빌드를 멈춘다.
++  const tocObserverCallback = 't=>{for(let e of t){let n=e.target.id,o=document.querySelectorAll(`a[data-for="${n}"]`),s=e.rootBounds?.height;s&&o.length>0&&(e.boundingClientRect.y<s?o.forEach(c=>c.classList.add("in-view")):o.forEach(c=>c.classList.remove("in-view")))}}';
++  if (!toc_inline_default.includes(tocObserverCallback)) throw new Error("ash-wiki table-of-contents 패치: 클라이언트 스크립트에 목차 관찰 처리기가 없다");
+   TableOfContents.afterDOMLoaded = concatenateResources(
+-    toc_inline_default,
++    toc_inline_default.replace(tocObserverCallback, 't=>{let s=t[0]?.rootBounds?.height;if(s)for(let o of document.querySelectorAll("a[data-for]")){let h=document.getElementById(o.dataset.for);h&&o.classList.toggle("in-view",h.getBoundingClientRect().y<s)}}'),
+     overflowListAfterDOMLoaded
+   );
+   const LegacyTableOfContents = (props) => {
+diff --git a/node_modules/@quartz-community/table-of-contents/dist/components/index.js b/node_modules/@quartz-community/table-of-contents/dist/components/index.js
+--- a/node_modules/@quartz-community/table-of-contents/dist/components/index.js
++++ b/node_modules/@quartz-community/table-of-contents/dist/components/index.js
+@@ -448,8 +448,14 @@ var TableOfContents_default = ((opts) => {
+     ] });
+   };
+   TableOfContents.css = toc_default;
++  // ash-wiki: 업스트림은 목차의 in-view를 IntersectionObserver가 알린 제목에만 고친다. 즉시 스크롤(동작 줄이기,
++  // End와 Home 키)로 화면을 한 번에 건너뛴 제목은 화면 한쪽 밖에서 반대쪽 밖으로 넘어가 교차 상태가 그대로라,
++  // 알림이 오지 않아 읽은 절 표시가 어긋난다. 알림이 올 때마다 모든 항목을 제목 위치로 다시 정한다. 바꿀
++  // 스크립트가 없으면 빌드를 멈춘다.
++  const tocObserverCallback = 't=>{for(let e of t){let n=e.target.id,o=document.querySelectorAll(`a[data-for="${n}"]`),s=e.rootBounds?.height;s&&o.length>0&&(e.boundingClientRect.y<s?o.forEach(c=>c.classList.add("in-view")):o.forEach(c=>c.classList.remove("in-view")))}}';
++  if (!toc_inline_default.includes(tocObserverCallback)) throw new Error("ash-wiki table-of-contents 패치: 클라이언트 스크립트에 목차 관찰 처리기가 없다");
+   TableOfContents.afterDOMLoaded = concatenateResources(
+-    toc_inline_default,
++    toc_inline_default.replace(tocObserverCallback, 't=>{let s=t[0]?.rootBounds?.height;if(s)for(let o of document.querySelectorAll("a[data-for]")){let h=document.getElementById(o.dataset.for);h&&o.classList.toggle("in-view",h.getBoundingClientRect().y<s)}}'),
+     overflowListAfterDOMLoaded
+   );
+   const LegacyTableOfContents = (props) => {
