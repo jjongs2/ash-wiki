@@ -86,6 +86,7 @@ describe("check-diff CLI", { concurrency: false }, () => {
         "uncited-block",
         "emphasis",
         "repeated-citation",
+        "unmatched-paren",
         "shortened",
         "source-run",
         "owner-page",
@@ -98,7 +99,7 @@ describe("check-diff CLI", { concurrency: false }, () => {
   })
 
   test("마지막 줄에 돈 항목 수와 전체 항목 수, SKIP 수를 찍는다", () => {
-    assert.strictEqual(report.last, "돈 항목 12/전체 12, SKIP 0")
+    assert.strictEqual(report.last, "돈 항목 13/전체 13, SKIP 0")
   })
 
   test("표준 문장: 에서는과 밝힌다 꼴을 잡고, 추적하지 않는 새 페이지도 본다", () => {
@@ -128,6 +129,15 @@ describe("check-diff CLI", { concurrency: false }, () => {
       lines.map((line) => line.replace(/: 같은.*/, "")),
       ["content/definitions.md:21"],
     )
+  })
+
+  test("짝 없는 괄호: 인용 위치를 뺀 뒤 문장 끝과 목록 항목에 남은 꼬리를 찍고, 수식과 코드는 세지 않는다", () => {
+    const lines = report.items.get("unmatched-paren") ?? []
+    assert.deepStrictEqual(
+      lines.map((line) => line.replace(/: 닫는.*/, "")),
+      ["content/location-tail.md:8", "content/location-tail.md:10"],
+    )
+    assert.ok(has(lines, "location-tail.md:8", ", e), f))"))
   })
 
   test("인용 없는 블록: 목록을 여는 문장은 넘기고 새 페이지의 문단도 잡는다", () => {
@@ -457,7 +467,7 @@ describe("check-diff CLI", { concurrency: false }, () => {
       only.headers.map((h) => h.replace(/ 후보 \d+/, "")),
       ["SKIP owner-page (--ticket 없음)", "abbreviation:"],
     )
-    assert.strictEqual(only.last, "돈 항목 1/전체 12, SKIP 1")
+    assert.strictEqual(only.last, "돈 항목 1/전체 13, SKIP 1")
     assert.strictEqual(only.exitCode, 0)
   })
 })

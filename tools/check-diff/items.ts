@@ -268,6 +268,29 @@ const repeatedCitationItem: Item = ({ changed }) =>
     })
   })
 
+// 짝 없는 닫는 괄호: 더한 줄에서 코드, 수식, 인용, URL을 뺀 뒤 `)`가 `(`보다 많은 줄. 초안의 인용 위치를 괄호 짝을
+// 세어 빼면, 위치 안의 목록 번호(`(1.2 c), e), f))`)가 첫 `c)`에서 짝을 닫아 `, e), f))` 같은 꼬리가 남는다
+// (#391에서 8곳). 같은 인용을 합쳐 앞 마커가 지워지면 꼬리가 문장 끝에 붙고, 목록 항목과 표 칸은 `다.`로
+// 끝나지 않아 마커나 문장 끝으로는 찾지 못한다. 반열린 구간(`$[0, t)$`)은 수식이라 세지 않는다.
+const unmatchedParenItem: Item = ({ changed }) =>
+  changed.flatMap(({ page, change }) =>
+    addedLines(page, change).flatMap(({ line, text }) => {
+      const masked = maskRefs(text)
+      const opened = masked.split("(").length - 1
+      const closed = masked.split(")").length - 1
+      if (closed <= opened) return []
+      const last = masked.lastIndexOf(")")
+      const tail = excerpt(masked.slice(Math.max(0, last - 40), last + 1))
+      return [
+        {
+          file: page.file,
+          line,
+          message: `닫는 괄호가 여는 괄호보다 ${closed - opened}개 많다: …${tail}`,
+        },
+      ]
+    }),
+  )
+
 // 줄이거나 표기를 바꾼 곳: 고친 줄에서 지시어·접속어로 여는 문장, 지운 뒤 이어지는 문장, 고친 줄에서
 // 빠진 표준 이름, 고친 줄에서 빠졌는데 도해에 남은 글자.
 const pointer =
@@ -605,6 +628,7 @@ export const items: [string, Item][] = [
   ["uncited-block", uncitedBlockItem],
   ["emphasis", emphasisItem],
   ["repeated-citation", repeatedCitationItem],
+  ["unmatched-paren", unmatchedParenItem],
   ["shortened", shortenedItem],
   ["source-run", sourceRunItem],
   ["owner-page", ownerPage],
