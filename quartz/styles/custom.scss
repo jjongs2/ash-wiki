@@ -3,8 +3,10 @@
 // put your custom CSS here!
 
 // ash-wiki: 글자 크기 단계다. 사이트의 글자 크기는 모두 이 토큰을 쓴다. 엔진과 로컬 플러그인은 제 CSS에서
-// 토큰을 읽고, npm 플러그인의 크기는 아래 "npm 플러그인의 글자 크기"에서 덮어쓴다. 로컬 플러그인의 CSS는 TS 안의
-// 문자열이라 SCSS 변수를 읽지 못해 CSS 사용자 정의 속성으로 둔다. 고른 근거와 단계마다 쓰는 곳은 docs/palette.md의
+// 토큰을 읽고, npm 플러그인의 크기는 아래 "npm 플러그인의 글자 크기"에서 덮어쓴다. npm 플러그인의 규칙을 그대로
+// 옮겨 둔 로컬 플러그인(plugins/backlinks-collapse)도 거기서 덮는다. 로컬 프리뷰 전용인 변경 표시
+// (plugins/wiki-diff)는 배포 화면에 없어 단계 밖에 둔다. 로컬 플러그인의 CSS는 TS 안의 문자열이라 SCSS 변수를
+// 읽지 못해 CSS 사용자 정의 속성으로 둔다. 고른 근거와 단계마다 쓰는 곳은 docs/palette.md의
 // 글자 크기 절에 있다.
 :root {
   --font-size-xs: 0.75rem;
@@ -345,7 +347,8 @@ footer ul {
 // ash-wiki: npm 플러그인의 글자 크기다. 플러그인이 정한 크기를 글자 크기 단계로 옮긴다(맨 위의 토큰). 플러그인
 // CSS는 @layer quartz-base 안에 실려, layer 밖인 이 파일이 구체성과 상관없이 이긴다.
 // - 속성 표(note-properties): 칸 전체와 키는 sm, 개수와 태그 칩은 xs다. 숫자 값은 고정폭이라 업스트림이
-//   둘레보다 줄였지만, 글자 값과 한 열에 서므로 같은 sm으로 둔다.
+//   둘레보다 줄였지만, 글자 값과 한 열에 서므로 같은 sm으로 둔다. 객체 값의 코드는 바탕을 깐 칩 꼴이라 태그
+//   칩과 같은 xs다.
 // - 검색(search): 입력은 결과 제목(h3)과 같은 lg, 결과의 본문 조각과 태그, 태그 제안 목록은 sm이다.
 // - 사이트 이름(page-title)은 2xl, 사이드바 칸 제목(탐색기, 그래프, 목차, Backlinks)은 base다. Backlinks 접기
 //   버튼(plugins/backlinks-collapse)은 목차 제목 버튼의 규칙을 그대로 옮겨 두므로 여기서 함께 덮는다. 탐색기 폴더
@@ -359,7 +362,8 @@ footer ul {
   }
 
   .note-properties-count,
-  .note-properties-tags .tag-link {
+  .note-properties-tags .tag-link,
+  .note-properties-object code {
     font-size: var(--font-size-xs);
   }
 }
