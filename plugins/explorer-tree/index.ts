@@ -1,14 +1,14 @@
 // ash-wiki: 탐색기를 폴더 대신 태그로 구역 › 주제 › 페이지 트리로 그리게 하는 로컬 플러그인이다.
 // 트리를 만드는 규칙은 순수 함수 buildExplorerTree 하나에 모으고, 입력은 탐색기가 받는 contentIndex에서
-// explorerInputs가 뽑는다. 구역과 주제의 이름은 태그 표시 이름 파일(content/tags/)의 제목, 구역 순서는
-// 대문(index.md)의 구역 링크 순서다. 그래서 새 태그는 표시 이름 파일과 대문만 고치면 트리에 따라온다.
+// explorerInputs가 뽑는다. 구역과 주제의 이름은 태그 표시 이름 파일(content/tags/)의 제목, 구역과 주제의
+// 순서는 대문(index.md)의 링크 순서다. 그래서 새 태그는 표시 이름 파일과 대문만 고치면 트리에 따라온다.
 //
 // 탐색기(@quartz-community/explorer)는 브라우저에서 contentIndex로 폴더 트리를 짓고, 옵션의 filterFn,
 // mapFn, sortFn을 문자열로 받아 new Function으로 돌린다. 이 플러그인은 두 순수 함수를 싣는 스크립트로
 // 전역 window.explorerTree를 두고, quartz.config.yaml의 탐색기 옵션이 그것을 부른다.
 // - filterFn: 모두 남긴다. 기본값은 tags 폴더를 빼는데, 표시 이름을 그 폴더의 항목에서 읽어야 한다.
 // - mapFn: 뿌리에서 window.explorerTree가 뿌리의 자식을 구역 › 주제 › 페이지로 갈아 끼운다.
-// - sortFn: 순서를 그대로 둔다. 기본값은 이름순으로 다시 늘어놓아 대문의 구역 순서를 흩뜨린다.
+// - sortFn: 순서를 그대로 둔다. 기본값은 이름순으로 다시 늘어놓아 대문의 구역과 주제 순서를 흩뜨린다.
 // 탐색기를 로컬 컴포넌트로 새로 짓거나 엔진을 고치지 않고 옵션으로 이으면, 탐색기의 접기와 그 상태 저장,
 // 모바일 메뉴, SPA 이동 처리를 그대로 쓴다.
 //
@@ -49,18 +49,18 @@ export interface ContentEntry {
 }
 
 /**
- * 페이지 목록, 태그 표시 이름, 대문의 구역 순서로 구역 › 주제 › 페이지 트리를 짓는다.
+ * 페이지 목록, 태그 표시 이름, 대문의 태그 순서로 구역 › 주제 › 페이지 트리를 짓는다.
  * - 페이지가 없는 구역과 주제도 대문처럼 둔다.
- * - 구역은 대문의 순서를 따르고, 대문에 없는 구역은 그 뒤에 이름 오름차순으로 둔다.
- * - 주제와 페이지는 이름 오름차순이고, 구역에 바로 속한 페이지는 그 구역의 주제들 뒤에 둔다.
+ * - 구역과 그 구역의 주제는 대문의 순서를 따르고, 대문에 없는 것은 그 뒤에 이름 오름차순으로 둔다.
+ * - 페이지는 이름 오름차순이고, 구역에 바로 속한 페이지는 그 구역의 주제들 뒤에 둔다.
  *   정렬은 한국어 순서(가나다 뒤에 로마자)로 고정해, 브라우저의 언어에 따라 바뀌지 않게 한다.
  * - 태그가 없는 페이지는 구역들 뒤에 둔다.
- * - 페이지는 주 태그(첫 태그) 하나로 자리를 정하고, 둘째 태그부터는 트리에 쓰지 않는다(docs/wiki-conventions.md).
+ * - 페이지는 주 태그(첫 태그) 하나로 자리를 정하고, 보조 태그는 트리에 쓰지 않는다(docs/wiki-conventions.md).
  */
 export function buildExplorerTree(
   pages: ExplorerPage[],
   tagNames: Record<string, string>,
-  sectionOrder: string[],
+  tagOrder: string[],
 ): ExplorerItem[] {
   type Section = {
     folder: ExplorerFolder
@@ -106,14 +106,14 @@ export function buildExplorerTree(
   }
 
   const rank = (tag: string) => {
-    const index = sectionOrder.indexOf(tag)
-    return index < 0 ? sectionOrder.length : index
+    const index = tagOrder.indexOf(tag)
+    return index < 0 ? tagOrder.length : index
   }
-  const ordered = [...sections.values()].sort(
-    (a, b) => rank(a.folder.tag) - rank(b.folder.tag) || byName(a.folder, b.folder),
-  )
+  const byOrder = (a: ExplorerFolder, b: ExplorerFolder) =>
+    rank(a.tag) - rank(b.tag) || byName(a, b)
+  const ordered = [...sections.values()].sort((a, b) => byOrder(a.folder, b.folder))
   const tree: ExplorerItem[] = ordered.map((entry) => {
-    const topicFolders = [...entry.topics.values()].sort(byName)
+    const topicFolders = [...entry.topics.values()].sort(byOrder)
     for (const topicFolder of topicFolders) topicFolder.children.sort(byName)
     entry.folder.children = [...topicFolders, ...entry.pages.sort(byName)]
     return entry.folder
@@ -123,7 +123,7 @@ export function buildExplorerTree(
 
 /**
  * contentIndex의 항목에서 buildExplorerTree의 입력을 뽑는다.
- * - 구역 순서: 대문의 링크 가운데 구역(tags/<구역>)을 나온 순서대로
+ * - 태그 순서: 대문의 링크 가운데 구역(tags/<구역>)과 주제(tags/<구역>/<주제>)를 처음 나온 순서대로
  * - 태그 표시 이름: 표시 이름 파일(tags/<태그>)의 제목. 태그 목록 색인(tags/index)은 뺀다
  * - 페이지: 대문과 tags/ 아래, 주간 소식(news/ 아래)을 뺀 항목. 주간 소식은 탐색기에 나오지 않는다(ADR 0015,
  *   docs/weekly-news.md)
@@ -131,20 +131,18 @@ export function buildExplorerTree(
 export function explorerInputs(entries: ContentEntry[]): {
   pages: ExplorerPage[]
   tagNames: Record<string, string>
-  sectionOrder: string[]
+  tagOrder: string[]
 } {
   const pages: ExplorerPage[] = []
   const tagNames: Record<string, string> = {}
-  const sectionOrder: string[] = []
+  const tagOrder: string[] = []
   const tagOf = (slug: string) => (slug.startsWith("tags/") ? slug.slice("tags/".length) : null)
   for (const entry of entries) {
     const tag = tagOf(entry.slug)
     if (entry.slug === "index") {
       for (const link of entry.links) {
-        const section = tagOf(link)
-        if (section && !section.includes("/") && !sectionOrder.includes(section)) {
-          sectionOrder.push(section)
-        }
+        const linked = tagOf(link)
+        if (linked && !tagOrder.includes(linked)) tagOrder.push(linked)
       }
     } else if (tag !== null) {
       if (tag !== "index") tagNames[tag] = entry.title
@@ -152,7 +150,7 @@ export function explorerInputs(entries: ContentEntry[]): {
       pages.push({ slug: entry.slug, title: entry.title, tags: entry.tags })
     }
   }
-  return { pages, tagNames, sectionOrder }
+  return { pages, tagNames, tagOrder }
 }
 
 // 탐색기의 모양이다. 탐색기는 폴더와 링크를 모두 굵기 600으로, 폴더 이름은 파랑으로 그리고 페이지 링크를
@@ -252,7 +250,7 @@ const SCRIPT = `(() => {
     }
     collect(root)
     const dataBySlug = new Map(entries.map((entry) => [entry.slug, entry]))
-    const { pages, tagNames, sectionOrder } = explorerInputs(entries)
+    const { pages, tagNames, tagOrder } = explorerInputs(entries)
     const Node = root.constructor
     const toNode = (item) => {
       if (item.kind === "page") return new Node([item.slug], dataBySlug.get(item.slug))
@@ -267,7 +265,7 @@ const SCRIPT = `(() => {
       node.children = item.children.map(toNode)
       return node
     }
-    root.children = buildExplorerTree(pages, tagNames, sectionOrder).map(toNode)
+    root.children = buildExplorerTree(pages, tagNames, tagOrder).map(toNode)
     // 탐색기는 지금 페이지의 슬러그가 폴더의 슬러그로 시작할 때만 폴더를 열어, tags/<태그> 폴더는 지금
     // 페이지가 들어 있어도 접힌 채 그린다. 그래서 탐색기가 트리를 그리면 지금 페이지의 링크(.active)를 품은
     // 폴더를 연다. MutationObserver는 그린 직후 화면에 나오기 전에 돌고, 여는 동안 전환을 꺼 둔다. 그러지

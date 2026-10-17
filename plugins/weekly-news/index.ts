@@ -624,7 +624,7 @@ function toolbar(filters: IssueFilters, names: Map<string, string>, total: numbe
 }
 
 // 대문 구역 표의 구역 순서. 대문의 링크 가운데 구역(tags/<구역>)을 나온 순서대로 모은다. 탐색기
-// (plugins/explorer-tree)의 explorerInputs와 같은 규칙이다. 플러그인끼리는 타입만 가져올 수 있어(plugins/front-page의
+// (plugins/explorer-tree)의 explorerInputs가 구역 순서를 읽는 규칙과 같다. 플러그인끼리는 타입만 가져올 수 있어(plugins/front-page의
 // 칩 주석) 함수를 나눠 쓰지 못한다.
 function regionOrder(allFiles: QuartzPluginData[]): string[] {
   const front = allFiles.find((file) => file.slug === "index")
