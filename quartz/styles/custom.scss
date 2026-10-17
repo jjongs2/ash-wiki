@@ -328,3 +328,21 @@ footer ul {
     margin-right: 0.5rem;
   }
 }
+
+// ash-wiki: 미리보기(링크 팝오버, 검색 미리보기)에서는 속성 표와 날짜 줄을 숨긴다. 미리보기 칸은 높이가 정해져
+// 있고 엔진이 본문 위의 요소를 모두 싣는데, 속성이 많은 표준 페이지에서는 속성 표가 칸을 채워 머리말이 칸 밖으로
+// 밀린다. 미리보기는 페이지가 무엇인지 머리말로 보이는 자리이고, 속성과 날짜는 페이지를 열면 본다.
+.popover,
+.search .preview-container {
+  .note-properties,
+  .content-meta {
+    display: none;
+  }
+}
+
+// 검색 미리보기는 칸을 offsetParent로 둔다. 검색 플러그인은 가장 긴 하이라이트의 offsetTop을 칸에 닿을 때까지 더해
+// 그 50px 위로 칸을 스크롤하는데, 칸이 offsetParent가 아니면 칸 자신의 자리(입력 상자 아래)까지 더해 늘 160px쯤
+// 더 내려간다. 그러면 제목에 맞은 검색어에서도 제목과 머리말 첫 줄이 칸 위로 밀린다.
+.search > .search-container > .search-space > .search-layout > .preview-container {
+  position: relative;
+}
