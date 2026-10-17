@@ -280,13 +280,16 @@ ul.section-ul {
     grid-template-columns: subgrid;
   }
 
+  // 칩은 가로로 잇는다. ul은 display를 바꾸지 않고 li만 inline-block으로 둔다. ul에 flex를 걸면 layer 밖
+  // 규칙이라, 좁은 폭(600px 이하)에서 태그 칸을 숨기는 업스트림 규칙을 이겨 제목 칸이 짓눌린다.
   .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem 0.3rem;
-    align-content: start;
     padding: 0;
     list-style: none;
+  }
+
+  .tags > li {
+    display: inline-block;
+    margin: 0 0.3rem 0 0;
   }
 
   // 칩은 같은 태그 목록으로 가는 본문 페이지 속성 칸의 태그(note-properties의 .tag-link)와 같은 꼴이다. 지금
