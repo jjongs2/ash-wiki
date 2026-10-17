@@ -6,7 +6,7 @@ import type { FullSlug } from "../../quartz/util/path"
 import type { ContentEntry, ExplorerItem, ExplorerPage } from "./index"
 import ExplorerTree, { buildExplorerTree, explorerInputs } from "./index"
 
-// 트리를 만드는 순수 함수가 seam이다. 입력(페이지 목록, 태그 표시 이름, 대문의 구역 순서)을 넣고 나온
+// 트리를 만드는 순수 함수가 seam이다. 입력(페이지 목록, 태그 표시 이름, 대문의 태그 순서)을 넣고 나온
 // 트리만 본다.
 const tagNames: Record<string, string> = {
   network: "네트워크",
@@ -63,8 +63,35 @@ describe("buildExplorerTree", () => {
     ])
   })
 
+  test("주제는 대문의 순서를 따르고, 대문에 없는 주제는 그 뒤에 표시 이름 오름차순으로 온다", () => {
+    const tree = buildExplorerTree(
+      [],
+      {
+        network: "네트워크",
+        "network/can": "CAN",
+        "network/ethernet": "Ethernet",
+        "network/diagnostics": "진단",
+        "network/lin": "LIN",
+        "network/flexray": "FlexRay",
+      },
+      ["network", "network/ethernet", "network/can"],
+    )
+    assert.deepStrictEqual(outline(tree), [
+      [
+        "네트워크",
+        [
+          ["Ethernet", []],
+          ["CAN", []],
+          ["진단", []],
+          ["FlexRay", []],
+          ["LIN", []],
+        ],
+      ],
+    ])
+  })
+
   // 정렬은 한국어 순서(가나다 뒤에 로마자)로 고정해, 브라우저의 언어에 따라 순서가 바뀌지 않게 한다
-  test("주제와 페이지는 제목 오름차순이다", () => {
+  test("페이지는 제목 오름차순이다", () => {
     const tree = buildExplorerTree(
       [
         page("remote-frame", "리모트 프레임", "network/can"),
@@ -220,8 +247,13 @@ describe("explorerInputs", () => {
     { slug: "can", title: "CAN", tags: ["network/can"], links: ["can-frame"] },
   ]
 
-  test("대문의 링크에서 구역만 순서대로 뽑는다", () => {
-    assert.deepStrictEqual(explorerInputs(entries).sectionOrder, ["network", "platform"])
+  test("대문의 링크에서 구역과 주제를 순서대로 뽑는다", () => {
+    assert.deepStrictEqual(explorerInputs(entries).tagOrder, [
+      "network",
+      "network/can",
+      "platform",
+      "platform/rtos",
+    ])
   })
 
   test("표시 이름 파일의 제목을 태그의 표시 이름으로 쓴다", () => {
