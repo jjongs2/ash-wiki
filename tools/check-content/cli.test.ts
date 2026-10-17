@@ -109,6 +109,7 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-frontmatter.md:1",
         "content/bad-frontmatter.md:5",
         "content/bad-frontmatter.md:7",
+        "content/bad-meta-citation.md:7",
         "content/bad-standard.md:8",
         "content/bad-standard.md:10",
       ],
@@ -215,6 +216,7 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-math.md:12",
         "content/bad-math.md:16",
         "content/bad-math.md:20",
+        "content/bad-meta-citation.md:7",
         "content/bad-tilde.md:12",
         "content/bad-tilde.md:16",
       ],
@@ -367,6 +369,14 @@ describe("check-content CLI", { concurrency: false }, () => {
     assert.match(math[0], /bad-math\.md:12: .*\\frac\{1\}\{/)
     assert.match(math[1], /bad-math\.md:16: .*\\mathmr/)
     assert.match(math[2], /bad-math\.md:20: KaTeX 문법 오류: a > \\frac\{b\}\{$/)
+  })
+
+  test("메타 설명에 남은 인용은 본문 인용과 따로 알린다", () => {
+    const report = runChecker("violation")
+    const meta = report.messages.get("output")!.filter((m) => m.includes("bad-meta-citation.md"))
+    assert.deepStrictEqual(meta, [
+      "content/bad-meta-citation.md:7: 메타 설명에 남은 인용: [@example-spec-2024]",
+    ])
   })
 
   test("본문에 렌더된 취소선은 안의 글과 \\~ 이스케이프 안내를 알려 준다", () => {

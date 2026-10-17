@@ -111,8 +111,10 @@ plugins:
       markdownLinkResolution: shortest
       openLinksInNewTab: true
     order: 60
+  # 페이지 설명과 검색 본문은 plugins/citation-free-description이 만든다. 이 플러그인은 citations보다 먼저 돌아
+  # [@키] 원문으로 두 값을 만들고, citations 뒤로 옮기면 설명에 [1] 같은 번호가, 검색 본문에 참고문헌 목록이 든다.
   - source: "@quartz-community/description"
-    enabled: true
+    enabled: false
     order: 70
   - source: "@quartz-community/latex"
     enabled: true
@@ -187,10 +189,16 @@ plugins:
     enabled: true
   # 주간 소식(content/news/)을 읽어 발행일 순 목록과 지난 호 목록으로 그린다(plugins/weekly-news).
   # transformer이자 페이지 타입이고, 대문은 이 플러그인이 둔 데이터로 주간 소식 칸을 그린다.
-  # 호의 설명을 description 플러그인이 만든 값 위에 덮어쓰므로 그보다 뒤(order 70 뒤)에 돌아야 한다.
+  # 호의 설명과 검색 본문을 정하고, citation-free-description은 그 값을 두고 인용 표시만 빼므로 그보다 먼저
+  # 돌아야 한다.
   - source: ./plugins/weekly-news
     enabled: true
     order: 75
+  # 인용 표시를 뺀 본문 글로 페이지 설명과 검색 본문을 만든다(plugins/citation-free-description, #426). 메타 설명,
+  # OG 이미지, 피드, 검색 색인이 쓰는 값이다. 인용이 렌더되기 전, citations보다 먼저 돌아야 한다.
+  - source: ./plugins/citation-free-description
+    enabled: true
+    order: 76
   # 위키는 폴더를 쓰지 않는다. 켜 두면 계층 태그의 표시 이름 파일(content/tags/<구역>/)이
   # 폴더로 잡혀 /tags/<구역>/ 폴더 목록이 생기고, 프리뷰에서 /tags/<구역> 태그 목록을 가린다.
   - source: "@quartz-community/folder-page"

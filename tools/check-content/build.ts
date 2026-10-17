@@ -56,7 +56,14 @@ function buildErrors(tree: Tree, log: string): Violation[] {
   return [{ file: "build", message: lastLines.join(" / ") }]
 }
 
-// 산출물 검사: 수식과 인용이 렌더됐는지, 취소선이 없는지, 태그 목록에 페이지가 나오는지 본다.
+// 번호로 렌더되지 않은 인용 표시다. 본문 HTML에서는 태그를 넘지 않는다.
+const CITATION_MARKER = /\[@[^\]<]*\]/g
+// 페이지 설명을 담는 메타(quartz/components/Head.tsx)의 content다.
+const META_DESCRIPTION =
+  /<meta (?:name|property)="(?:description|og:description|twitter:description|og:image:alt)" content="([^"]*)"/g
+
+// 산출물 검사: 수식과 인용이 렌더됐는지, 메타 설명에 인용 표시가 없는지, 취소선이 없는지, 태그 목록에 페이지가
+// 나오는지 본다.
 export function checkOutput(tree: Tree, outDir: string): Violation[] {
   const violations: Violation[] = []
   const keys = bibKeys(tree)
@@ -68,7 +75,7 @@ export function checkOutput(tree: Tree, outDir: string): Violation[] {
       violations.push({ file: page.file, message: `산출물이 없다: ${slug}.html` })
       continue
     }
-    // 본문만 본다. <meta> 설명에는 description 플러그인이 [@키] 원문을 그대로 넣는다.
+    // 아래 검사는 본문만 본다. 메타 설명은 따로 본다.
     const pageHtml = fs.readFileSync(htmlPath, "utf8")
     const html = (pageHtml.match(/<article[\s>][\s\S]*<\/article>/)?.[0] ?? pageHtml)
       .replace(/<pre[\s>][\s\S]*?<\/pre>/g, "")
@@ -79,11 +86,20 @@ export function checkOutput(tree: Tree, outDir: string): Violation[] {
       const index = sourceLines.findIndex((line) => line.includes(text))
       return index >= 0 ? index + 1 : undefined
     }
-    for (const marker of new Set([...html.matchAll(/\[@[^\]<]*\]/g)].map((m) => m[0]))) {
+    for (const marker of new Set([...html.matchAll(CITATION_MARKER)].map((m) => m[0]))) {
       violations.push({
         file: page.file,
         line: lineOf(marker),
         message: `번호로 렌더되지 않은 인용: ${marker}`,
+      })
+    }
+    // 메타 설명 네 개는 같은 설명이고, 인용 표시가 없어야 한다(plugins/citation-free-description).
+    const metas = [...pageHtml.matchAll(META_DESCRIPTION)].map((m) => decodeEntities(m[1]))
+    for (const marker of new Set(metas.flatMap((meta) => meta.match(CITATION_MARKER) ?? []))) {
+      violations.push({
+        file: page.file,
+        line: lineOf(marker),
+        message: `메타 설명에 남은 인용: ${marker}`,
       })
     }
     // 디스플레이 식은 여러 줄이라, 식의 첫 줄로 원문 줄을 찾는다.
