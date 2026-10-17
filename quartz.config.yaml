@@ -239,6 +239,7 @@ plugins:
       position: beforeBody
       priority: 10
   # 읽는 시간은 보이지 않는다. 위키는 절을 골라 읽고, 한글 음절을 단어 하나로 세는 추정은 길게 잡힌다(#460).
+  # 대문에서는 수정일도 두지 않는다. 대문 파일을 고친 날이라 독자에게 뜻이 없고, 사이트의 움직임은 최근 변경이 보인다.
   - source: "@quartz-community/content-meta"
     enabled: true
     options:
@@ -246,6 +247,7 @@ plugins:
     layout:
       position: beforeBody
       priority: 20
+      condition: not-index
   - source: "@quartz-community/tag-list"
     enabled: false
     layout:
@@ -333,9 +335,6 @@ plugins:
         publisher: 발행기관
         edition: 판
         status: 상태
-      # 사이트의 날짜 꼴로 찍을 속성 키다. 프론트매터 값은 YYYY-MM-DD 그대로 둔다. 이 옵션도 같은 패치가 더했다.
-      dateKeys:
-        - verified
       hidePropertiesView: false
       delimiters: ---
       language: yaml

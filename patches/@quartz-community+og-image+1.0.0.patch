@@ -1,17 +1,21 @@
 diff --git a/node_modules/@quartz-community/og-image/dist/index.js b/node_modules/@quartz-community/og-image/dist/index.js
 --- a/node_modules/@quartz-community/og-image/dist/index.js
 +++ b/node_modules/@quartz-community/og-image/dist/index.js
-@@ -23888,7 +23888,8 @@ function formatDate(d3, locale = "en-US") {
-   return d3.toLocaleDateString(locale, {
-     year: "numeric",
-     month: "short",
+@@ -23885,11 +23885,8 @@ function isAbsoluteURL(url) {
+   return /^https?:\/\//.test(url);
+ }
+ function formatDate(d3, locale = "en-US") {
+-  return d3.toLocaleDateString(locale, {
+-    year: "numeric",
+-    month: "short",
 -    day: "2-digit"
-+    // ash-wiki: 날을 0으로 채우지 않는다(docs/engine.md의 locale 절).
-+    day: "numeric"
-   });
+-  });
++  // ash-wiki: 날짜 하나는 ISO 8601(YYYY-MM-DD)로 찍는다(docs/engine.md의 locale 절).
++  return [d3.getFullYear(), String(d3.getMonth() + 1).padStart(2, "0"), String(d3.getDate()).padStart(2, "0")].join("-");
  }
  async function getSatoriFonts(headerFont, bodyFont) {
-@@ -24272,7 +24273,7 @@ var defaultImage = ({
+   const headerWeights = typeof headerFont === "string" ? defaultHeaderWeight : headerFont.weights ?? defaultHeaderWeight;
+@@ -24272,7 +24269,7 @@ var defaultImage = ({
                        ),
                        date
                      ] }),
@@ -20,7 +24,7 @@ diff --git a/node_modules/@quartz-community/og-image/dist/index.js b/node_module
                        /* @__PURE__ */ u3(
                          "svg",
                          {
-@@ -24339,7 +24340,8 @@ var defaultOptions = {
+@@ -24339,7 +24336,8 @@ var defaultOptions = {
    excludeRoot: false,
    defaultTitle: "Untitled",
    defaultDescription: "No description provided",

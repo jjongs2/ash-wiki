@@ -1,17 +1,21 @@
 diff --git a/node_modules/@quartz-community/tag-page/dist/index.js b/node_modules/@quartz-community/tag-page/dist/index.js
 --- a/node_modules/@quartz-community/tag-page/dist/index.js
 +++ b/node_modules/@quartz-community/tag-page/dist/index.js
-@@ -394,7 +394,8 @@ function DateDisplay({ date, locale }) {
-   return /* @__PURE__ */ u2("time", { dateTime: date.toISOString(), children: date.toLocaleDateString(locale, {
-     year: "numeric",
-     month: "short",
+@@ -391,11 +391,8 @@ function byDateAndAlphabeticalFolderFirst(_cfg) {
+   };
+ }
+ function DateDisplay({ date, locale }) {
+-  return /* @__PURE__ */ u2("time", { dateTime: date.toISOString(), children: date.toLocaleDateString(locale, {
+-    year: "numeric",
+-    month: "short",
 -    day: "2-digit"
-+    // ash-wiki: 날을 0으로 채우지 않는다(docs/engine.md의 locale 절).
-+    day: "numeric"
-   }) });
+-  }) });
++  // ash-wiki: 날짜 하나는 ISO 8601(YYYY-MM-DD)로 찍는다(docs/engine.md의 locale 절).
++  return /* @__PURE__ */ u2("time", { dateTime: date.toISOString(), children: [date.getFullYear(), String(date.getMonth() + 1).padStart(2, "0"), String(date.getDate()).padStart(2, "0")].join("-") });
  }
  var PageList = ({
-@@ -2549,9 +2550,10 @@ var ko_KR_default = {
+   cfg,
+@@ -2549,9 +2546,10 @@ var ko_KR_default = {
      tagContent: {
        tag: "\uD0DC\uADF8",
        tagIndex: "\uD0DC\uADF8 \uBAA9\uB85D",
@@ -28,17 +32,21 @@ diff --git a/node_modules/@quartz-community/tag-page/dist/index.js b/node_module
 diff --git a/node_modules/@quartz-community/tag-page/dist/components/index.js b/node_modules/@quartz-community/tag-page/dist/components/index.js
 --- a/node_modules/@quartz-community/tag-page/dist/components/index.js
 +++ b/node_modules/@quartz-community/tag-page/dist/components/index.js
-@@ -410,7 +410,8 @@ function DateDisplay({ date, locale }) {
-   return /* @__PURE__ */ u2("time", { dateTime: date.toISOString(), children: date.toLocaleDateString(locale, {
-     year: "numeric",
-     month: "short",
+@@ -407,11 +407,8 @@ function byDateAndAlphabeticalFolderFirst(_cfg) {
+   };
+ }
+ function DateDisplay({ date, locale }) {
+-  return /* @__PURE__ */ u2("time", { dateTime: date.toISOString(), children: date.toLocaleDateString(locale, {
+-    year: "numeric",
+-    month: "short",
 -    day: "2-digit"
-+    // ash-wiki: 날을 0으로 채우지 않는다(docs/engine.md의 locale 절).
-+    day: "numeric"
-   }) });
+-  }) });
++  // ash-wiki: 날짜 하나는 ISO 8601(YYYY-MM-DD)로 찍는다(docs/engine.md의 locale 절).
++  return /* @__PURE__ */ u2("time", { dateTime: date.toISOString(), children: [date.getFullYear(), String(date.getMonth() + 1).padStart(2, "0"), String(date.getDate()).padStart(2, "0")].join("-") });
  }
  var PageList = ({
-@@ -2565,9 +2566,10 @@ var ko_KR_default = {
+   cfg,
+@@ -2565,9 +2562,10 @@ var ko_KR_default = {
      tagContent: {
        tag: "\uD0DC\uADF8",
        tagIndex: "\uD0DC\uADF8 \uBAA9\uB85D",

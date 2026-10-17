@@ -184,11 +184,18 @@ export function weekLabel(week: string, from?: string): string {
   return sameYear ? `${parsed.week}주차` : `${parsed.year}년 ${parsed.week}주차`
 }
 
-/** 날짜(YYYY-MM-DD)를 사이트의 날짜 꼴로 쓴다. year(기준 해)와 같은 해면 연도를 뺀다. */
+/**
+ * 기간 끝의 날짜(YYYY-MM-DD)를 `10월 5일` 꼴로 쓴다. year(기준 해)와 다른 해면 연도를 붙인다. 날짜 하나는
+ * ISO 8601로 찍지만 기간은 이 꼴이다(docs/engine.md의 locale 절).
+ */
 export function dayLabel(day: string, locale: string, year?: number): string {
   const date = new Date(`${day}T00:00:00`)
-  if (Number(day.slice(0, 4)) !== year) return formatDate(date, locale)
-  return date.toLocaleDateString(locale, { month: "short", day: "numeric" })
+  const sameYear = Number(day.slice(0, 4)) === year
+  return date.toLocaleDateString(locale, {
+    ...(sameYear ? {} : { year: "numeric" }),
+    month: "short",
+    day: "numeric",
+  })
 }
 
 const periodLabel = (week: string, locale: string) => {
