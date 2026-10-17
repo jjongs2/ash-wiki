@@ -100,9 +100,3 @@ details.collapsible-section > summary:hover > :is(h2, h3)::before {
 details.collapsible-section:not([open]) > summary > :is(h2, h3)::before {
   transform: rotateZ(-90deg);
 }
-
-@media (prefers-reduced-motion: reduce) {
-  details.collapsible-section > summary > :is(h2, h3)::before {
-    transition: none;
-  }
-}

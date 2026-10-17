@@ -1017,9 +1017,6 @@ body:has(#wiki-diff-nav) { padding-bottom: 7rem; }
   .wiki-diff-nav-count, .wiki-diff-nav-page { min-width: 0; }
   .wiki-diff-nav-page { margin-left: auto; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .wiki-diff-switch, .wiki-diff-switch::after { transition: none; }
-}
 `
 
 // ---------------------------------------------------------------------------------------------------

@@ -1183,11 +1183,6 @@ const CSS = `.news-tools {
 .news-month:not([open]) h2.news-index-month::after {
   transform: rotateZ(-90deg);
 }
-@media (prefers-reduced-motion: reduce) {
-  .news-archive h2.news-index-month::after {
-    transition: none;
-  }
-}
 .news-archive ul.news-index {
   margin: 0;
   padding: 0.3rem 0 0;

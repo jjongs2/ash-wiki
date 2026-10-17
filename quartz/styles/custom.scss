@@ -76,7 +76,8 @@ article object[type="image/svg+xml"] {
 // 인용 마커(citation--로 시작하는 id의 span)는 번호 링크를 감싼 대괄호까지 통째로 위첨자로 올린다.
 // 대괄호가 남아 있어 [1][2]처럼 이어진 인용도 나뉘어 보인다. line-height를 0으로 두어 마커가 있는
 // 줄만 줄 간격이 벌어지지 않게 한다.
-article span[id^="citation--"] {
+// 팝오버는 불러온 페이지의 id 앞에 popover-internal-을 붙이므로, 인용 마커와 참고문헌의 선택자는 그 id도 받는다.
+article span:is([id^="citation--"], [id^="popover-internal-citation--"]) {
   font-size: 0.65em;
   line-height: 0;
   vertical-align: super;
@@ -86,7 +87,7 @@ article span[id^="citation--"] {
 // ::before 라벨로 달고, 크기와 굵기는 h3에 맞춘다. 항목은 번호 열과 항목 열로 나누고, 번호 열 폭은
 // subgrid로 모든 항목이 같이 쓴다([9]와 [10]의 항목 열이 같은 자리에서 시작한다). 항목의 긴 URL은
 // 공백이 없어 줄바꿈되지 않고 본문 폭을 넘기므로 아무 자리에서나 끊는다.
-article #refs.csl-bib-body {
+article :is(#refs, #popover-internal-refs).csl-bib-body {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
   column-gap: 0.5rem;
@@ -220,7 +221,6 @@ article #refs.csl-bib-body {
 //   만큼 길어져 목록 어디까지 왔는지 보인다. 탐색기가 지금 페이지를 파랑으로 표시하는 것과 같다.
 // - 글자: 아직 읽지 않은 절은 보조 글자색으로 쓴다. 업스트림은 투명도로 갈라, 흐린 절의 대비가 라이트 테마에서
 //   2.18:1이다. 보조 글자색의 대비는 docs/palette.md에 있다.
-// 색 전환은 동작 줄이기 설정에서 끈다.
 .toc ul.toc-content.overflow > li:not(.overflow-end) {
   &::before {
     transition: background-color 0.3s ease;
@@ -237,12 +237,84 @@ article #refs.csl-bib-body {
       color: var(--gray);
     }
   }
+}
 
-  @media (prefers-reduced-motion: reduce) {
-    &::before,
-    & > a {
-      transition: none;
-    }
+// ash-wiki: 모바일에서 닫힌 탐색기 서랍을 화면 밖으로 다 밀어 낸다. 서랍은 사이드바를 기준으로 left: 0에
+// 놓이고, 사이드바는 본문 칸의 좌우 여백(base.scss의 #quartz-body padding 1rem)만큼 들어가 있다. 업스트림은
+// 닫힌 서랍을 화면 폭만큼만 옮겨 1rem이 화면 안에 남고, 지금 페이지의 배경이 비친다. 서랍 안의 열린 폴더는
+// 업스트림이 visibility: visible로 두어 닫힌 서랍의 hidden을 이긴다. 열린 서랍의 1rem 들임은 그대로 둔다.
+// 서랍에는 좌우 여백이 없어, 그 들임이 항목을 메뉴 버튼과 같은 줄에 세운다.
+@media all and ($mobile) {
+  .explorer.collapsed > .explorer-content {
+    transform: translateX(calc(-100vw - 1rem));
+  }
+}
+
+// ash-wiki: 사이트 화면의 상자 모서리는 5px이고 태그와 칩만 3px이다(원형 점, 도해 SVG의 rx는 따로다). 업스트림이
+// 다른 값을 둔 요소를 여기에 맞춘다. 검색 버튼과 그래프의 전체 보기 버튼은 4px, 검색 창과 결과 상자는 7px, 검색
+// 결과의 태그는 8px이다. 태그 링크는 본문 링크의 5px를 받아, 페이지 속성 칸(3px) 밖의 태그 목록 페이지와 검색
+// 미리보기에서 5px로 나온다.
+.search > .search-button,
+.graph .global-graph-icon,
+.search > .search-container > .search-space > *:not(.ghost-text):not(.tag-suggestions) {
+  border-radius: 5px;
+}
+
+.search .result-card > ul > li > p,
+a.internal.tag-link {
+  border-radius: 3px;
+}
+
+// ash-wiki: 태그 목록 페이지는 항목마다 날짜, 제목, 태그 칸을 둔다. 업스트림은 태그 칸을 1fr로 두어 칸이 좁고,
+// 칩이 맨 위의 줄바꿈 규칙(anywhere)에 걸려 단어 가운데서 끊긴다. 칩은 한 덩어리로 두고, 태그 칸은 가장 긴
+// 칩보다 좁아지지 않게 한다. 업스트림은 항목마다 grid를 따로 두어 그대로면 긴 칩이 있는 항목만 칸이 넓어지므로,
+// 목록 전체를 grid로 두고 항목을 subgrid로 묶어 칸의 자리를 목록 안에서 맞춘다.
+ul.section-ul {
+  display: grid;
+  grid-template-columns: fit-content(8em) 3fr minmax(max-content, 1fr);
+
+  & > li.section-li,
+  & > li.section-li > .section {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+  }
+
+  .tags .tag-link {
+    white-space: nowrap;
+  }
+}
+
+// ash-wiki: 다크 모드 버튼과 읽기 모드 버튼은 20×32px라 누르는 영역이 WCAG 2.2의 최소 크기(24×24px)에
+// 못 미친다. 겉모양과 자리는 두고, 누르는 영역만 투명한 ::after로 좌우 2px씩 넓힌다. 두 버튼 사이는 8px라
+// 넓혀도 겹치지 않는다.
+.darkmode,
+.readermode {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0 -2px;
+  }
+}
+
+// ash-wiki: 동작 줄이기 설정에서는 사이트의 전환을 끄고 애니메이션을 곧바로 끝내며, 부드러운 스크롤도 끈다.
+// 컴포넌트마다 규칙을 두지 않고 여기 한 곳에서 끈다.
+// - 전환은 시간을 줄이지 않고 끈다. transition-property의 기본값이 all이라 모든 요소에 시간을 주면 전환이
+//   없던 요소까지 모든 속성이 전환되어, 테마를 바꿀 때 요소마다 전환이 생겨 색이 한 박자 늦게 바뀐다.
+// - 애니메이션은 이름이 있는 요소에만 돌므로 0이 아니라 0.01ms로 두어, 끝나기를 기다리는 스크립트가 끝
+//   이벤트를 그대로 받게 한다.
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
   }
 }
 

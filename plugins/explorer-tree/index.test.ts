@@ -316,4 +316,86 @@ describe("브라우저 스크립트", () => {
       ],
     ])
   })
+
+  // 탐색기 목록의 스크롤. 목록 하나와 MutationObserver를 흉내 내고, 탐색기가 한 번 그리는 일(render)을
+  // mapFn 부르기, 저장한 위치 읽기, 그린 뒤의 observer 돌리기로 나눠 부른다. 목록 높이는 100, 지금 페이지
+  // 항목은 300~320이라 가운데로 맞추면 scrollTop이 260이다. 폴더를 여는 일은 브라우저에서 확인한다.
+  function scrollPage(stored?: string) {
+    const storage = new Map<string, string>(
+      stored === undefined ? [] : [["explorerScrollTop", stored]],
+    )
+    const sessionStorage = {
+      getItem: (key: string) => storage.get(key) ?? null,
+      setItem: (key: string, value: string) => storage.set(key, value),
+      removeItem: (key: string) => storage.delete(key),
+    }
+    const callbacks: (() => void)[] = []
+    class MutationObserver {
+      constructor(private callback: () => void) {}
+      observe() {
+        callbacks.push(this.callback)
+      }
+      disconnect() {}
+    }
+    const active = {
+      closest: () => null,
+      getBoundingClientRect: () => ({
+        top: 300 - list.scrollTop,
+        bottom: 320 - list.scrollTop,
+        height: 20,
+      }),
+    }
+    const list = {
+      scrollTop: 0,
+      offsetHeight: 100,
+      querySelector: () => active,
+      getBoundingClientRect: () => ({ top: 0, bottom: 100, height: 100 }),
+    }
+    const window: { explorerTree?: (root: unknown) => void } = {}
+    const document = { querySelectorAll: () => [list] }
+    new Function("window", "document", "sessionStorage", "MutationObserver", "__name", source)(
+      window,
+      document,
+      sessionStorage,
+      MutationObserver,
+      (fn: unknown) => fn,
+    )
+    // 탐색기는 mapFn을 부른 뒤 저장한 위치가 있으면 목록의 scrollTop을 그 값으로 두고, 없으면 지금 페이지
+    // 항목에 scrollIntoView를 부른다.
+    let scrolledIntoView = false
+    const render = () => {
+      window.explorerTree!({ slugSegments: [], children: [] })
+      const saved = storage.get("explorerScrollTop")
+      if (saved) list.scrollTop = Number(saved)
+      else scrolledIntoView = true
+    }
+    const settle = () => callbacks.splice(0).forEach((callback) => callback())
+    return { storage, list, render, settle, scrolledIntoView: () => scrolledIntoView }
+  }
+
+  test("저장한 위치가 없는 첫 로드에서는 탐색기가 scrollIntoView를 부르지 않고, 지금 페이지를 목록 안에서 가운데로 맞춘다", () => {
+    const page = scrollPage()
+    page.render()
+    page.settle()
+    assert.strictEqual(page.scrolledIntoView(), false)
+    assert.strictEqual(page.list.scrollTop, 260)
+    assert.strictEqual(page.storage.has("explorerScrollTop"), false)
+  })
+
+  test("두 렌더가 겹쳐도 뒤 렌더가 앞 렌더의 임시 위치를 저장한 위치로 읽지 않는다", () => {
+    const page = scrollPage()
+    page.render()
+    page.render()
+    page.settle()
+    assert.strictEqual(page.list.scrollTop, 260)
+    assert.strictEqual(page.storage.has("explorerScrollTop"), false)
+  })
+
+  test("저장한 위치가 있으면 그 위치로 맞추고 값을 그대로 둔다", () => {
+    const page = scrollPage("120")
+    page.render()
+    page.settle()
+    assert.strictEqual(page.list.scrollTop, 120)
+    assert.strictEqual(page.storage.get("explorerScrollTop"), "120")
+  })
 })
