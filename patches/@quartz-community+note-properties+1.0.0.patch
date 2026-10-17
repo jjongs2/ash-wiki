@@ -12,7 +12,27 @@ diff --git a/node_modules/@quartz-community/note-properties/dist/index.js b/node
  };
  function i18n(locale) {
    return locales[locale] || en_US_default;
-@@ -11309,8 +11311,9 @@ var NoteProperties_default = ((opts) => {
+@@ -11276,7 +11278,7 @@ function renderTagList(tags, ctx) {
+     const href = resolveRelative2(ctx.slug, `tags/${tag}`);
+     return /* @__PURE__ */ u2(S, { children: [
+       idx > 0 && /* @__PURE__ */ u2("span", { class: "note-properties-separator", children: ", " }),
+-      /* @__PURE__ */ u2("a", { href, class: "internal internal-link tag-link", children: tag })
++      /* @__PURE__ */ u2("a", { href, class: "internal internal-link tag-link", children: ctx.tagTitles.get(tag) ?? tag })
+     ] });
+   });
+   return /* @__PURE__ */ u2("span", { class: "note-properties-tags", children: items });
+@@ -11295,7 +11297,9 @@ var NoteProperties_default = ((opts) => {
+     const i18nData = i18n(locale);
+     const ctx = {
+       slug: props.fileData?.slug ?? "",
+-      resolvedLinks: noteProps.resolvedLinks ?? {}
++      resolvedLinks: noteProps.resolvedLinks ?? {},
++      // ash-wiki: 태그 칩은 slug 대신 표시 이름 파일(content/tags/)의 title로 찍는다(docs/engine.md의 태그 목록 절).
++      tagTitles: new Map((props.allFiles ?? []).filter((file) => file.slug?.startsWith("tags/")).map((file) => [file.slug.slice("tags/".length), file.frontmatter?.title]))
+     };
+     const isCollapsed = noteProps.collapseProperties ?? collapsed;
+     return /* @__PURE__ */ u2(
+@@ -11309,8 +11313,9 @@ var NoteProperties_default = ((opts) => {
              /* @__PURE__ */ u2("span", { class: "note-properties-title", children: i18nData.components.noteProperties.title }),
              /* @__PURE__ */ u2("span", { class: "note-properties-count", children: entries.length })
            ] }),
@@ -37,7 +57,27 @@ diff --git a/node_modules/@quartz-community/note-properties/dist/components/inde
  };
  function i18n(locale) {
    return locales[locale] || en_US_default;
-@@ -311,8 +313,9 @@ var NoteProperties_default = ((opts) => {
+@@ -278,7 +280,7 @@ function renderTagList(tags, ctx) {
+     const href = resolveRelative(ctx.slug, `tags/${tag}`);
+     return /* @__PURE__ */ u2(S, { children: [
+       idx > 0 && /* @__PURE__ */ u2("span", { class: "note-properties-separator", children: ", " }),
+-      /* @__PURE__ */ u2("a", { href, class: "internal internal-link tag-link", children: tag })
++      /* @__PURE__ */ u2("a", { href, class: "internal internal-link tag-link", children: ctx.tagTitles.get(tag) ?? tag })
+     ] });
+   });
+   return /* @__PURE__ */ u2("span", { class: "note-properties-tags", children: items });
+@@ -297,7 +299,9 @@ var NoteProperties_default = ((opts) => {
+     const i18nData = i18n(locale);
+     const ctx = {
+       slug: props.fileData?.slug ?? "",
+-      resolvedLinks: noteProps.resolvedLinks ?? {}
++      resolvedLinks: noteProps.resolvedLinks ?? {},
++      // ash-wiki: 태그 칩은 slug 대신 표시 이름 파일(content/tags/)의 title로 찍는다(docs/engine.md의 태그 목록 절).
++      tagTitles: new Map((props.allFiles ?? []).filter((file) => file.slug?.startsWith("tags/")).map((file) => [file.slug.slice("tags/".length), file.frontmatter?.title]))
+     };
+     const isCollapsed = noteProps.collapseProperties ?? collapsed;
+     return /* @__PURE__ */ u2(
+@@ -311,8 +315,9 @@ var NoteProperties_default = ((opts) => {
              /* @__PURE__ */ u2("span", { class: "note-properties-title", children: i18nData.components.noteProperties.title }),
              /* @__PURE__ */ u2("span", { class: "note-properties-count", children: entries.length })
            ] }),
