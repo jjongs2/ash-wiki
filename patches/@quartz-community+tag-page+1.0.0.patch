@@ -13,15 +13,15 @@ diff --git a/node_modules/@quartz-community/tag-page/dist/index.js b/node_module
 +  // ash-wiki: 날짜 하나는 ISO 8601(YYYY-MM-DD)로 찍는다(docs/engine.md의 locale 절).
 +  return /* @__PURE__ */ u2("time", { dateTime: date.toISOString(), children: [date.getFullYear(), String(date.getMonth() + 1).padStart(2, "0"), String(date.getDate()).padStart(2, "0")].join("-") });
 +}
-+// ash-wiki: 태그 칩과 태그 전체 목록의 제목은 slug 대신 표시 이름 파일(content/tags/)의 title로 찍는다. 지금
-+// 목록과 구역이 다른 주제는 구역 이름을 앞에 붙인다(docs/engine.md의 태그 목록 절).
++// ash-wiki: 태그 칩과 태그 전체 목록의 제목은 slug 대신 표시 이름 파일(content/tags/)의 title로 찍는다. 칩은
++// 대문의 주제 칩처럼 주제 이름만 쓰고, 전체 목록의 제목만 구역 이름을 앞에 붙인다(docs/engine.md의 태그 목록 절).
 +function tagTitlesOf(allFiles) {
 +  return new Map(allFiles.filter((file) => file.slug?.startsWith("tags/")).map((file) => [file.slug.slice("tags/".length), file.frontmatter?.title]));
 +}
-+function tagDisplayName(tag, titles, currentTag) {
++function tagDisplayName(tag, titles, withRegion) {
 +  const region = tag.split("/")[0];
 +  const name = titles?.get(tag) ?? tag;
-+  return region === tag || region === currentTag?.split("/")[0] ? name : `${titles?.get(region) ?? region} › ${name}`;
++  return withRegion && region !== tag ? `${titles?.get(region) ?? region} › ${name}` : name;
  }
  var PageList = ({
    cfg,
@@ -41,7 +41,7 @@ diff --git a/node_modules/@quartz-community/tag-page/dist/index.js b/node_module
        ) }) }),
 -      /* @__PURE__ */ u2("ul", { class: "tags", children: tags.map((tag) => /* @__PURE__ */ u2("li", { children: /* @__PURE__ */ u2(
 +      // ash-wiki: 지금 목록의 태그는 그 목록으로 가는 링크라 링크 없는 칩으로 둔다(docs/engine.md의 태그 목록 절).
-+      /* @__PURE__ */ u2("ul", { class: "tags", children: tags.map((tag) => /* @__PURE__ */ u2("li", { children: tag === currentTag ? /* @__PURE__ */ u2("span", { class: "tag-link tag-current", children: tagDisplayName(tag, tagTitles, currentTag) }) : /* @__PURE__ */ u2(
++      /* @__PURE__ */ u2("ul", { class: "tags", children: tags.map((tag) => /* @__PURE__ */ u2("li", { children: tag === currentTag ? /* @__PURE__ */ u2("span", { class: "tag-link tag-current", children: tagDisplayName(tag, tagTitles) }) : /* @__PURE__ */ u2(
          "a",
          {
            class: "internal tag-link",
@@ -50,7 +50,7 @@ diff --git a/node_modules/@quartz-community/tag-page/dist/index.js b/node_module
              `tags/${tag}`
            ),
 -          children: tag
-+          children: tagDisplayName(tag, tagTitles, currentTag)
++          children: tagDisplayName(tag, tagTitles)
          }
        ) })) })
      ] }) });
@@ -92,7 +92,7 @@ diff --git a/node_modules/@quartz-community/tag-page/dist/index.js b/node_module
            const href = resolveRelative(slug2, tagListingPage);
            return /* @__PURE__ */ u2("div", { children: [
 -            /* @__PURE__ */ u2("h2", { children: /* @__PURE__ */ u2("a", { class: "internal tag-link", href, children: t2 }) }),
-+            /* @__PURE__ */ u2("h2", { children: /* @__PURE__ */ u2("a", { class: "internal tag-link", href, children: tagDisplayName(t2, tagTitles) }) }),
++            /* @__PURE__ */ u2("h2", { children: /* @__PURE__ */ u2("a", { class: "internal tag-link", href, children: tagDisplayName(t2, tagTitles, true) }) }),
              tagDesc && /* @__PURE__ */ u2("p", { children: tagDesc }),
              /* @__PURE__ */ u2("div", { class: "page-listing", children: [
                /* @__PURE__ */ u2("p", { children: [
@@ -122,15 +122,15 @@ diff --git a/node_modules/@quartz-community/tag-page/dist/components/index.js b/
 +  // ash-wiki: 날짜 하나는 ISO 8601(YYYY-MM-DD)로 찍는다(docs/engine.md의 locale 절).
 +  return /* @__PURE__ */ u2("time", { dateTime: date.toISOString(), children: [date.getFullYear(), String(date.getMonth() + 1).padStart(2, "0"), String(date.getDate()).padStart(2, "0")].join("-") });
 +}
-+// ash-wiki: 태그 칩과 태그 전체 목록의 제목은 slug 대신 표시 이름 파일(content/tags/)의 title로 찍는다. 지금
-+// 목록과 구역이 다른 주제는 구역 이름을 앞에 붙인다(docs/engine.md의 태그 목록 절).
++// ash-wiki: 태그 칩과 태그 전체 목록의 제목은 slug 대신 표시 이름 파일(content/tags/)의 title로 찍는다. 칩은
++// 대문의 주제 칩처럼 주제 이름만 쓰고, 전체 목록의 제목만 구역 이름을 앞에 붙인다(docs/engine.md의 태그 목록 절).
 +function tagTitlesOf(allFiles) {
 +  return new Map(allFiles.filter((file) => file.slug?.startsWith("tags/")).map((file) => [file.slug.slice("tags/".length), file.frontmatter?.title]));
 +}
-+function tagDisplayName(tag, titles, currentTag) {
++function tagDisplayName(tag, titles, withRegion) {
 +  const region = tag.split("/")[0];
 +  const name = titles?.get(tag) ?? tag;
-+  return region === tag || region === currentTag?.split("/")[0] ? name : `${titles?.get(region) ?? region} › ${name}`;
++  return withRegion && region !== tag ? `${titles?.get(region) ?? region} › ${name}` : name;
  }
  var PageList = ({
    cfg,
@@ -150,7 +150,7 @@ diff --git a/node_modules/@quartz-community/tag-page/dist/components/index.js b/
        ) }) }),
 -      /* @__PURE__ */ u2("ul", { class: "tags", children: tags.map((tag) => /* @__PURE__ */ u2("li", { children: /* @__PURE__ */ u2(
 +      // ash-wiki: 지금 목록의 태그는 그 목록으로 가는 링크라 링크 없는 칩으로 둔다(docs/engine.md의 태그 목록 절).
-+      /* @__PURE__ */ u2("ul", { class: "tags", children: tags.map((tag) => /* @__PURE__ */ u2("li", { children: tag === currentTag ? /* @__PURE__ */ u2("span", { class: "tag-link tag-current", children: tagDisplayName(tag, tagTitles, currentTag) }) : /* @__PURE__ */ u2(
++      /* @__PURE__ */ u2("ul", { class: "tags", children: tags.map((tag) => /* @__PURE__ */ u2("li", { children: tag === currentTag ? /* @__PURE__ */ u2("span", { class: "tag-link tag-current", children: tagDisplayName(tag, tagTitles) }) : /* @__PURE__ */ u2(
          "a",
          {
            class: "internal tag-link",
@@ -159,7 +159,7 @@ diff --git a/node_modules/@quartz-community/tag-page/dist/components/index.js b/
              `tags/${tag}`
            ),
 -          children: tag
-+          children: tagDisplayName(tag, tagTitles, currentTag)
++          children: tagDisplayName(tag, tagTitles)
          }
        ) })) })
      ] }) });
@@ -201,7 +201,7 @@ diff --git a/node_modules/@quartz-community/tag-page/dist/components/index.js b/
            const href = resolveRelative(slug2, tagListingPage);
            return /* @__PURE__ */ u2("div", { children: [
 -            /* @__PURE__ */ u2("h2", { children: /* @__PURE__ */ u2("a", { class: "internal tag-link", href, children: t2 }) }),
-+            /* @__PURE__ */ u2("h2", { children: /* @__PURE__ */ u2("a", { class: "internal tag-link", href, children: tagDisplayName(t2, tagTitles) }) }),
++            /* @__PURE__ */ u2("h2", { children: /* @__PURE__ */ u2("a", { class: "internal tag-link", href, children: tagDisplayName(t2, tagTitles, true) }) }),
              tagDesc && /* @__PURE__ */ u2("p", { children: tagDesc }),
              /* @__PURE__ */ u2("div", { class: "page-listing", children: [
                /* @__PURE__ */ u2("p", { children: [

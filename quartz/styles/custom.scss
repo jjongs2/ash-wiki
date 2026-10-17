@@ -266,12 +266,22 @@ a.internal.tag-link {
 }
 
 // ash-wiki: 태그 목록 페이지는 항목마다 날짜, 제목, 태그 칸을 둔다. 업스트림은 태그 칸을 1fr로 두어 칸이 좁고,
-// 칩이 맨 위의 줄바꿈 규칙(anywhere)에 걸려 단어 가운데서 끊긴다. 칩은 한 덩어리로 두고, 태그 칸은 가장 긴
-// 칩보다 좁아지지 않게 한다. 업스트림은 항목마다 grid를 따로 두어 그대로면 긴 칩이 있는 항목만 칸이 넓어지므로,
-// 목록 전체를 grid로 두고 항목을 subgrid로 묶어 칸의 자리를 목록 안에서 맞춘다.
+// 칩이 맨 위의 줄바꿈 규칙(anywhere)에 걸려 단어 가운데서 끊긴다. 칩은 한 덩어리로 두고, 태그 칸은 지금 칩이 가장
+// 긴 행(약 233px)이 한 줄에 드는 15rem으로 고정해 어느 목록에서나 칩이 같은 자리에서 시작하게 한다. 더 긴 행은
+// 칩 사이에서 줄을 바꾼다. 업스트림은 항목마다 grid를 따로 두어 칸의 자리가 항목마다 달라지므로, 목록 전체를
+// grid로 두고 항목을 subgrid로 묶는다. 날짜는 고정폭 숫자로 써서 목록마다 날짜 칸의 폭이 같게 한다.
 ul.section-ul {
   display: grid;
-  grid-template-columns: fit-content(8em) 3fr minmax(max-content, 1fr);
+  grid-template-columns: fit-content(8em) 1fr 15rem;
+
+  // 업스트림은 600px 이하에서 태그 칸을 숨긴다(tag-page의 목록 CSS). 숨겨도 고정 폭 칸은 자리를 차지하므로 함께 접는다.
+  @media all and (max-width: 600px) {
+    grid-template-columns: fit-content(8em) 1fr 0;
+  }
+
+  .meta {
+    font-variant-numeric: tabular-nums;
+  }
 
   & > li.section-li,
   & > li.section-li > .section {
@@ -282,14 +292,16 @@ ul.section-ul {
 
   // 칩은 가로로 잇는다. ul은 display를 바꾸지 않고 li만 inline-block으로 둔다. ul에 flex를 걸면 layer 밖
   // 규칙이라, 좁은 폭(600px 이하)에서 태그 칸을 숨기는 업스트림 규칙을 이겨 제목 칸이 짓눌린다.
+  // 줄이 바뀐 칩 사이를 띄우는 아래 여백은 ul의 음수 여백으로 상쇄해 행 높이를 그대로 둔다.
   .tags {
+    margin-bottom: -0.25rem;
     padding: 0;
     list-style: none;
   }
 
   .tags > li {
     display: inline-block;
-    margin: 0 0.3rem 0 0;
+    margin: 0 0.3rem 0.25rem 0;
   }
 
   // 칩은 같은 태그 목록으로 가는 본문 페이지 속성 칸의 태그(note-properties의 .tag-link)와 같은 꼴이다. 지금
