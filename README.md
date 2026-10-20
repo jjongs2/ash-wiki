@@ -2,7 +2,7 @@
 
 # Æ wiki
 
-**자동차 임베디드 지식을 공개 출처로 검증해 한국어로 게시하는 위키**
+**자동차 임베디드 지식을 공개 출처로 검증해 게시하는 위키**
 
 [![Quartz v5](https://img.shields.io/badge/engine-Quartz%20v5-284b63)](docs/engine.md)
 [![Cloudflare Pages](https://img.shields.io/badge/deploy-Cloudflare%20Pages-f38020)](https://ash-wiki.pages.dev)
@@ -25,28 +25,20 @@ LLM이 쓰고 관리하되, 모든 주장을 공개 출처로 검증해 인용�
 | 구역              | 주제                                              |
 | ----------------- | ------------------------------------------------- |
 | 네트워크          | CAN, Ethernet, TCP/IP, 진단                       |
-| 소프트웨어 플랫폼 | AUTOSAR, RTOS                                     |
-| 보안·업데이트     | OTA, 사이버보안, 암호                             |
+| 소프트웨어 플랫폼 | RTOS, AUTOSAR                                     |
+| 보안·업데이트     | 암호, 사이버보안, OTA                             |
 | 소프트웨어 공학   | 소프트웨어 프로세스, 소프트웨어 테스트, 기능 안전 |
 
-2026년 10월 기준 350여 쪽, 도해 430여 개, 참고문헌 1,500여 개입니다. 검증을 거치지 않는 [주간 소식](docs/weekly-news.md)은 위키 콘텐츠와 따로 둡니다.
+2026년 10월 기준 390여 쪽, 도해 490여 개, 참고문헌 1,700여 개입니다. 검증을 거치지 않는 [주간 소식](docs/weekly-news.md)은 위키 콘텐츠와 따로 둡니다. 둘 다 RSS 피드([사이트](https://ash-wiki.pages.dev/index.xml), [주간 소식](https://ash-wiki.pages.dev/news/index.xml))로 구독할 수 있습니다.
 
 ## 작동 방식
 
 모든 변경은 PR로 들어오고, 머지는 사람이 합니다. 콘텐츠는 Claude Code 스킬(`.claude/skills/`)로 만듭니다.
 
-```mermaid
-flowchart LR
-  plan["주제 계획<br/>wiki-plan"] --> approve(["소유자 승인"])
-  enrich["보강<br/>wiki-enrich"] --> approve
-  approve -->|ingest: 티켓| ingest["인제스트<br/>wiki-ingest"]
-  ingest -->|PR| merge(["리뷰 · 머지"])
-  ingest -->|미검증 주장| verify["재조사<br/>wiki-verify"]
-  verify -->|PR| merge
-  merge --> site["ash-wiki.pages.dev"]
-  site --> lint["린트<br/>wiki-lint"]
-  lint -->|수정 PR| merge
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/pipeline-dark.svg">
+  <img src="docs/images/pipeline-light.svg" alt="계획과 보강을 사람이 승인하면 인제스트 PR이 생기고, 사람이 머지하면 배포된다. 미검증 주장은 재조사, 배포된 위키는 린트를 거친다.">
+</picture>
 
 | 스킬             | 하는 일                                                    |
 | ---------------- | ---------------------------------------------------------- |
@@ -95,9 +87,10 @@ CI와 같은 검사(prettier, 타입 검사, 콘텐츠 검사기, 테스트)입�
 ```
 content/          위키 페이지, 도해(diagrams/), 주간 소식(news/)
 bib/              참고문헌(항목마다 파일 하나, 빌드 전에 합침)
-docs/             운영 문서와 ADR
+docs/             운영 문서, ADR, README 도해(images/)
 tools/            콘텐츠 검사기, 참고문헌 합본, 출처 상태 수집 등
 plugins/          직접 만든 Quartz 플러그인
+patches/          npm 플러그인 패치(설치 때 patch-package로 적용)
 quartz/           Quartz v5 엔진(고친 이유는 각 파일의 주석)
 .claude/skills/   위키 스킬
 GLOSSARY.md       운영 용어집
@@ -114,7 +107,7 @@ GLOSSARY.md       운영 용어집
 | [검증 절차](docs/wiki-verification.md)           | 주장 판정과 재조사                  |
 | [출처 여는 법](docs/source-access.md)            | 호스트별 여는 법과 접속 확인        |
 | [출처 위계](docs/source-hierarchy.md)            | 주장 종류별 1층 출처                |
-| [엔진](docs/engine.md)                           | Quartz 기준선과 설정                |
+| [엔진](docs/engine.md)                           | Quartz 기준선, 설정, 플러그인 패치  |
 | [배포](docs/deploy.md)                           | Cloudflare Pages 설정과 로컬 프리뷰 |
 | [팔레트](docs/palette.md)                        | 색, 폰트, 도해 팔레트와 대비 실측   |
 | [주간 소식](docs/weekly-news.md)                 | 주간 소식 형식                      |
