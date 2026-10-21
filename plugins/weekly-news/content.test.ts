@@ -4,8 +4,8 @@ import fs from "node:fs"
 import { parseWeeklyNews, weekDays } from "./index"
 
 // 저장소의 주간 소식(content/news/<ISO 주차>.md)을 호마다 읽는다. 형식을 어긴 호는 빌드가 멈추지만 콘텐츠
-// 검사기는 news/를 보지 않으므로(ADR 0015), PR 전 확인에서 미리 잡는다. 발행일은 소식 조사의 원문 범위대로
-// 그 주(월~일) 안이어야 한다(.claude/skills/wiki-news).
+// 검사기는 news/를 보지 않으므로(ADR 0015), PR 전 확인에서 미리 잡는다. 발행일은 소식 조사의 기간 기준대로
+// 그 주(월~일) 안이어야 한다(.claude/skills/wiki-news의 4. 고르기).
 const content = new URL("../../content/", import.meta.url)
 const issues = fs
   .readdirSync(new URL("news/", content))
