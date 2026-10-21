@@ -1,7 +1,7 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
 import { parseWeeklyNews } from "../../../plugins/weekly-news/index"
-import { addedOutlets, checkIssues, checkPrBody, outletNames, type Issue } from "./check"
+import { addedOutlets, checkIssues, checkPrBody, outletNames, tableRows, type Issue } from "./check"
 
 // npx tsx --test .claude/skills/wiki-news/check.test.ts
 
@@ -216,6 +216,34 @@ describe("PR 본문", () => {
     const { listed, rejected } = outletNames(outletsMd(["Vector", "KBA"], ["Bosch"]))
     assert.deepStrictEqual([...listed], ["Vector", "KBA"])
     assert.deepStrictEqual([...rejected], ["Bosch"])
+  })
+
+  test("prettier-ignore를 단 압축한 표도 읽는다", () => {
+    const md = [
+      "## 매체 목록",
+      "",
+      "<!-- prettier-ignore -->",
+      "| 매체 | 구역 | 찾는 법 |",
+      "|---|---|---|",
+      "| Vector | network | 피드 `https://vector.com/feed` |",
+      "| KBA | 기타 | 검색 질의 `https://kba.de/csv` |",
+      "",
+      "## 받지 않은 후보",
+      "",
+      "<!-- prettier-ignore -->",
+      "| 매체 | 확인일 | 사유 |",
+      "|---|---|---|",
+      "| Bosch | 2026-10-14 | 꾸준함 미달 |",
+      "",
+    ].join("\n")
+    const { listed, rejected } = outletNames(md)
+    assert.deepStrictEqual([...listed], ["Vector", "KBA"])
+    assert.deepStrictEqual([...rejected], ["Bosch"])
+    assert.deepStrictEqual(tableRows(md, "## 매체 목록")[1], [
+      "KBA",
+      "기타",
+      "검색 질의 `https://kba.de/csv`",
+    ])
   })
 
   test("이번 실행이 두 표에 더한 매체마다 이름과 건수가 본문에 있어야 한다", () => {
