@@ -67,7 +67,7 @@
 | dSPACE | sw-engineering | 뉴스룸 `https://www.dspace.com/en/pub/home/company/press-newsroom/press-releases.cfm` | 제목으로 고름 | 꾸준함: 3개월 약 7건(보안 시험을 넣은 SIL·HIL, AI 에이전트 연결, 레이더 시험기 등). 무료. 목록에 날짜가 없어 본문 첫 줄("Paderborn, October 1, 2026 –")로 확인한다. 한 쪽 약 20건(약 2년). 루틴 환경에서 curl이 429를 받으면 브라우저로 연다 |
 | Kvaser | network | 피드 `https://kvaser.com/feed/` | 없음 | 꾸준함: 3개월 약 8건(CAN·LIN 분석 도구, 차량 Ethernet 변환기 등). 무료. 10항목(약 3개월), `?paged=2` |
 | Automotive Grade Linux | platform | 피드 `https://www.automotivelinux.org/feed/` | 없음 | 꾸준함: 3개월 약 6건(참조 플랫폼, SDV 인터뷰, 행사 보고). 무료. 10항목(약 10개월), `?paged=2` |
-| Sonatus | platform | 피드 `https://www.sonatus.com/feed/` | 없음 | 꾸준함: 3개월 13건(SDV·차량 AI 블로그). 무료. 10항목(약 2.5개월), `?paged=2`. 보도자료는 이 피드에 없고 사이트 `/company/press-releases/`에 날짜와 함께 있다(curl로 열림) |
+| Sonatus | platform | 피드 `https://www.sonatus.com/feed/` | 없음 | 꾸준함: 3개월 13건(SDV·차량 AI 블로그). 무료. 10항목(약 2.5개월), `?paged=2`. 보도자료는 Business Wire로만 나가 이 피드에 없다 |
 | VicOne | security | 뉴스룸 `https://vicone.com/blog/` | 제목으로 고름 | 꾸준함: 3개월 약 9건(헤드유닛 취약점, 차량 악성코드, 자동차 위협 보고서 등). 절반쯤은 로봇 보안. 무료. 피드 없음. 한 쪽 13건(약 2.5개월), `/blog/page/2/`. 보도자료는 `/company/press-releases/`에 따로 있다(3개월 자동차 2건) |
 | Automotive Testing Technology International | sw-engineering | 피드 `https://www.automotivetestingtechnologyinternational.com/feed` | 제목으로 고름 | 꾸준함: 3개월 약 80건 가운데 SIL·HIL·소프트웨어 검증 약 15건. 벤더 보도자료를 다시 쓴 기사가 많다. 무료. 10항목(약 1주), `?paged=N`. 루틴 환경에서 curl은 403이라 Node fetch로 받는다 |
 | EE Times | 기타 | 검색 질의 `https://news.google.com/rss/search?q=site:eetimes.com+after:<월요일>+before:<다음 월요일>&hl=en-US&gl=US&ceid=US:en` | 제목으로 고름 | 한 주 약 27건 가운데 자동차는 일부. 자동차 피드(`/designline/automotive-designline/feed/`, 3개월 약 28건)는 루틴 환경에서 curl, Node fetch, 브라우저 모두 막혀(503, 빈 페이지) 검색 질의로 찾는다. 무료. |
@@ -105,7 +105,7 @@
 | 현대자동차그룹 뉴스룸 | 전체 | 뉴스룸 `https://www.hyundaimotorgroup.com/en/news/newsMain` | 제목으로 고름 | 꾸준함: 최근 3개월 자동차 임베디드 글 3건 어림(어림값, 미달). 무료. 한국어판 `/ko/news/newsMain`(영문판은 국문판의 일부만 올라온다. 더 보기가 POST라 curl은 첫 6건만 보인다). 2026-w05에서 2건 실음. |
 | SK hynix 뉴스룸 | 기타 | 뉴스룸 `https://news.skhynix.co.kr/` | 제목으로 고름 | 꾸준함: 최근 3개월 자동차 글 0건 어림(미달). 무료. `/page/2/`가 첫 쪽을 돌려줘 WordPress REST로 거슬러 본다(같은 글이 여러 번 올라온다). 2026-w04에서 1건 실음. |
 | Volkswagen Group | 기타, platform | 뉴스룸 `https://www.volkswagen-group.com/en/press-releases` | 제목으로 고름 | 꾸준함: 최근 3개월 자동차 임베디드 글 0건 어림(미달). 무료. 2026-w02, w05에서 2건 실음. |
-| VDA | 기타, platform | 뉴스룸 `https://www.vda.de/en/press/press-releases` | 제목으로 고름 | 꾸준함: 확인 못 함. 무료. curl은 목록이 빈 틀이라 브라우저 필요. 2026-w02에서 1건 실음. |
+| VDA | 기타, platform | 뉴스룸 `https://www.vda.de/en/press/press-releases` | 제목으로 고름 | 꾸준함: 확인 못 함. 무료. 2026-w02에서 1건 실음. |
 | Ford From the Road | 기타, platform | 뉴스룸 `https://www.fromtheroad.ford.com/us/en/articles` | 제목으로 고름 | 꾸준함: 확인 못 함. 무료. `media.ford.com`은 403. 페이지 메타 발행일이 본문 날짜와 달라 본문 날짜를 쓴다. 2026-w02에서 1건 실음. |
 | Federal Register | 기타, sw-engineering | 검색 질의 `https://www.federalregister.gov/api/v1/documents.json?conditions[agencies][]=national-highway-traffic-safety-administration&conditions[publication_date][gte]=<월요일>&conditions[publication_date][lte]=<일요일>&per_page=100` | 제목으로 고름 | 드물게 냄. 꾸준함: NHTSA 문서가 2026-07-13\~10-11에 62건이고 대부분 면제·청원 공고, 규칙과 규칙안은 11건. 무료. 루틴 환경에서 `federalregister.gov` 페이지가 막혀 govinfo 사본으로 읽었고, API가 루틴 환경에서 열리는지는 확인 못 함. 2026-w04에서 1건 실음. |
 | Коммерсантъ | security | 검색 질의 `https://news.google.com/rss/search?q=site:kommersant.ru+Delta+after:<월요일>+before:<다음 월요일>&hl=ru&gl=RU&ceid=RU:ru` | 제목으로 고름 | 꾸준함: 확인 못 함. 무료. 러시아어. 2026-10 조사에서 질의의 `Delta`가 항공사 Delta 기사와 무관한 기사만 돌려줘 자동차 보안 결과가 없었다. 2026-w05에서 1건 실음. |
