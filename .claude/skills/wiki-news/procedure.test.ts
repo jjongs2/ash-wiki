@@ -111,6 +111,15 @@ describe("절차 검사", () => {
     assert.deepStrictEqual(report.failures, [])
   })
 
+  test('opened가 불리언 true가 아니면(문자열 "false" 등) 연 것으로 보지 않는다', () => {
+    const report = checkProcedure({
+      sources: [{ name: "Vector", perWeek: false }],
+      weeks: ["2026-w41"],
+      records: [{ source: "Vector", opened: "false" as unknown as boolean, reason: "" }],
+    })
+    assert.deepStrictEqual(report.failures, ["Vector: 열지 않았고 이유가 없다"])
+  })
+
   test("얕은 피드, 비고와 다른 접속 결과, 목록에 없는 이름을 알린다", () => {
     const report = checkProcedure({
       sources: [{ name: "Vector", perWeek: false }],

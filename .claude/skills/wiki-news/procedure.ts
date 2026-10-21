@@ -77,7 +77,8 @@ export function checkProcedure(input: {
     for (const week of slots) {
       const label = week ? `${source.name} ${week}` : source.name
       const covering = own.filter((r) => !week || r.week === week || (!r.week && !source.perWeek))
-      if (covering.some((r) => r.opened)) continue
+      // JSON에 "false"처럼 문자열로 적은 값은 참으로 읽히므로 불리언 true만 연 것으로 본다.
+      if (covering.some((r) => r.opened === true)) continue
       const reasons = covering.map((r) => r.reason?.trim()).filter(Boolean)
       if (reasons.length) report.unopened.push(`${label}: ${reasons.join("; ")}`)
       else if (covering.length) report.failures.push(`${label}: 열지 않았고 이유가 없다`)
