@@ -277,9 +277,23 @@ export function addedOutlets(before: string, after: string): string[] {
 }
 
 /**
- * 줄에서 그 매체의 몫. 이름 뒤부터 다음에 더한 매체 이름 앞까지다. 이름을 늘어놓은 줄 머리의 합계(`17곳: A, B`)는
- * 어느 매체의 몫에도 들지 않는다.
+ * 줄에서 그 매체의 몫. 이름 뒤부터 다음에 더한 매체 이름 앞까지이고, 이름이 괄호 안 목록에 있으면 그 괄호가
+ * 닫히는 곳까지다. 이름을 늘어놓은 줄 머리의 합계(`17곳: A, B`)와 목록을 닫은 뒤의 숫자는 어느 매체의 몫에도
+ * 들지 않는다.
  */
+/** 이름(at)을 감싼 괄호가 start 뒤에서 닫히는 자리. 감싼 괄호가 없으면 -1이다. */
+function closingParen(line: string, at: number, start: number): number {
+  const before = line.slice(0, at)
+  const open = (before.match(/\(/g)?.length ?? 0) - (before.match(/\)/g)?.length ?? 0)
+  if (open <= 0) return -1
+  let depth = 0
+  for (let i = start; i < line.length; i++) {
+    if (line[i] === "(") depth++
+    else if (line[i] === ")" && depth-- === 0) return i
+  }
+  return -1
+}
+
 function shareOf(line: string, name: string, added: string[]): string[] {
   const shares: string[] = []
   for (let at = line.indexOf(name); at >= 0; at = line.indexOf(name, at + 1)) {
@@ -287,15 +301,19 @@ function shareOf(line: string, name: string, added: string[]): string[] {
     const ends = added
       .filter((other) => other !== name)
       .map((other) => line.indexOf(other, start))
+      .concat(closingParen(line, at, start))
       .filter((end) => end >= 0)
     shares.push(line.slice(start, Math.min(line.length, ...ends)))
   }
   return shares
 }
 
-/** 건수로 볼 숫자가 있는가. 코드, 주소, 날짜 안의 숫자는 건수가 아니다. */
+/**
+ * 건수로 볼 숫자가 있는가. 코드, 주소, 날짜 안의 숫자와 글자에 붙은 숫자(`V2X`, `1차`, `3개월`)는 건수가 아니고,
+ * `9건`은 건수다.
+ */
 function hasCount(text: string): boolean {
-  return /\d/.test(
+  return /(?<![\p{L}\p{N}])\d+(?=\s*건|[^\p{L}\p{N}]|$)/u.test(
     text
       .replace(/`[^`]*`/g, " ")
       .replace(/https?:\/\/\S+/g, " ")
