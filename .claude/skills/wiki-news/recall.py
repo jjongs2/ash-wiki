@@ -12,8 +12,8 @@ python3 -B recall.py <평면 파일> --category <부품 분류> --date <YYYY-MM-
   분류를 하나만 보여 주므로 이 셈에 쓰지 않는다.
 - 소프트웨어 리콜은 `RCLTYPECD`가 `V`(차량)이고, 결함 요약 `DESC_DEFECT`에 낱말 software가 있거나
   `COMPNAME`에 `SOFTWARE`가 든 행이 하나라도 있는 캠페인이다.
-- 분류마다 접수일 전 12개월(그 전해 같은 날부터 접수일 전날까지)의 다른 소프트웨어 리콜을 센다. 0건인
-  분류가 하나라도 있으면 새 결함 유형이다.
+- 접수일 전 12개월은 그 전해 같은 날부터 접수일 전날까지다.
+- 6단계의 소프트웨어 리콜은 차량 리콜만 센다. 4단계가 싣는 장비 리콜은 이 정의 밖으로 나온다.
 
 --category와 --date는 NHTSA 밖의 리콜에 쓴다. 가장 가까운 NHTSA 부품 분류와 그 리콜의 날짜를 주면, 그 날 전
 12개월의 소프트웨어 리콜을 센다.
@@ -109,7 +109,7 @@ def counted(name, found):
 
 def report(all_campaigns, number):
     c = all_campaigns[number]
-    kind = "소프트웨어 리콜" if c.software else "소프트웨어 리콜 아님"
+    kind = "소프트웨어 리콜(6단계 정의)" if c.software else "6단계 소프트웨어 리콜 정의 밖"
     lines = [f"{short(number)}: 접수일 {iso(c.date)}, 대수 {c.units:,}, {kind}"]
     lines.append(f"  접수일 전 12개월({iso(year_before(c.date))}부터) 같은 분류의 소프트웨어 리콜")
     new = []

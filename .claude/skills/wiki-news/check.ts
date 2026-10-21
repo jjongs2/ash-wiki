@@ -1,7 +1,6 @@
 // 소식 조사의 기계 검사(SKILL.md의 8. 검사와 9. PR). 주간 소식 호를 형식 함수(plugins/weekly-news의
 // parseWeeklyNews)로 읽어 실패와 알림(위키 링크 후보, 분포 줄)을 내고, 실패가 있으면 exit 1이다. 규칙은 SKILL.md
-// 7단계, docs/weekly-news.md, outlets.md의 열 절에 있다. PR 전 확인(npm run check)에는 넣지 않는다. 규칙이
-// 생기기 전의 지난 호가 소급해 실패하기 때문이다.
+// 7단계, docs/weekly-news.md, outlets.md의 열 절에 있고, PR 전 확인에 넣지 않는 까닭은 SKILL.md 8단계에 있다.
 // 사용: npx tsx .claude/skills/wiki-news/check.ts <주차나 달>...
 //       npx tsx .claude/skills/wiki-news/check.ts --pr <본문 파일> [--base <ref>]
 import fs from "node:fs"
@@ -10,7 +9,13 @@ import { spawnSync } from "node:child_process"
 import { fileURLToPath } from "node:url"
 import { parseArgs } from "node:util"
 import { parse as parseYaml } from "yaml"
-import { monthWeeks, parseWeeklyNews, type NewsItem } from "../../../plugins/weekly-news/index"
+import {
+  monthWeeks,
+  parseWeeklyNews,
+  weekDays,
+  type NewsItem,
+} from "../../../plugins/weekly-news/index"
+import { repoRoot as root } from "../../../tools/repo"
 
 export interface Issue {
   week: string
@@ -54,7 +59,7 @@ export function bareTildes(markdown: string): number {
   return markdown.replace(/\]\([^)]*\)/g, "]()").match(/(?<!\\)~/g)?.length ?? 0
 }
 
-// 매체 목록 열 절(outlets.md)의 규칙: 리콜이 아닌 NHTSA 문서는 목록에 줄이 없어도 `NHTSA`로 쓴다.
+// 리콜이 아닌 NHTSA 문서의 이름(outlets.md의 열 절).
 const NHTSA = "NHTSA"
 const NHTSA_RECALL = /^Recall \d{2}[VE]\d{3}|nhtsaId=/
 
@@ -153,23 +158,27 @@ function shape(items: NewsItem[]): Shape {
   }
 }
 
-const PREVIOUS = 4
+const PREVIOUS_WEEKS = 4
+const DAY = 24 * 60 * 60 * 1000
 const round = (n: number) => String(Math.round(n * 10) / 10)
 const percent = (n: number) => `${Math.round(n)}%`
 
-/** 분포 줄. 괄호 안은 그 호 앞의 4호(파일이 있는 호)의 값마다의 중앙값이다. */
+/** 분포 줄. 괄호 안은 그 주 앞 4주에 있는 호(파일이 없는 주는 빠짐)의 값마다의 중앙값이다. */
 function distribution(issues: Issue[], week: string): string {
-  const sorted = [...issues].sort((a, b) => a.week.localeCompare(b.week))
-  const index = sorted.findIndex((i) => i.week === week)
-  const current = shape(sorted[index]?.items ?? [])
-  const previous = sorted
-    .slice(Math.max(0, index - PREVIOUS), Math.max(0, index))
+  const start = weekDays(week).start
+  const from = new Date(Date.parse(start) - PREVIOUS_WEEKS * 7 * DAY).toISOString().slice(0, 10)
+  const current = shape(issues.find((i) => i.week === week)?.items ?? [])
+  const previous = issues
+    .filter((i) => {
+      const day = weekDays(i.week).start
+      return day >= from && day < start
+    })
     .map((i) => shape(i.items))
   const was = (key: keyof Shape, format = round) =>
     previous.length ? format(median(previous.map((p) => p[key]))) : "-"
   const chars = (n: number) => `${round(n)}자`
   return (
-    `${week}: 항목 ${current.items}(직전 ${PREVIOUS}호 중앙값 ${was("items")}), ` +
+    `${week}: 항목 ${current.items}(직전 ${PREVIOUS_WEEKS}주 중앙값 ${was("items")}), ` +
     `주요 ${current.featured}(${was("featured")}), ` +
     `요약 길이 중앙값 ${chars(current.length)}(${was("length", chars)}), ` +
     `기타 ${percent(current.other)}(${was("other", percent)})`
@@ -186,12 +195,12 @@ export function checkIssues(input: {
   outlets: Outlets
   pages: Page[]
 }): IssueReport[] {
+  const imageKey = (item: NewsItem) => `${item.outlet}\n${item.image}`
   const byImage = new Map<string, { week: string; item: NewsItem }[]>()
   for (const { week, items } of input.issues) {
     for (const item of items) {
-      if (!item.image) continue
-      const key = `${item.outlet}\n${item.image}`
-      byImage.set(key, [...(byImage.get(key) ?? []), { week, item }])
+      if (item.image)
+        byImage.set(imageKey(item), [...(byImage.get(imageKey(item)) ?? []), { week, item }])
     }
   }
   const names = input.pages
@@ -212,7 +221,7 @@ export function checkIssues(input: {
       const outlet = outletFailure(input.outlets, item)
       if (outlet) failures.push(`${label(week, item)}: ${outlet}`)
       const other = item.image
-        ? byImage.get(`${item.outlet}\n${item.image}`)?.find((o) => o.item !== item)
+        ? byImage.get(imageKey(item))?.find((o) => o.item !== item)
         : undefined
       if (other)
         failures.push(
@@ -267,12 +276,23 @@ export function addedOutlets(before: string, after: string): string[] {
   )
 }
 
-/** 더한 매체마다, PR 본문에 그 이름과 숫자(최근 3개월 건수)가 함께 든 줄이 있는가. */
+/** 줄에서 건수가 아닌 숫자(매체 이름, 코드, 주소, 날짜 안)를 지운다. */
+function withoutOtherNumbers(line: string, name: string): string {
+  return line
+    .split(name)
+    .join(" ")
+    .replace(/`[^`]*`/g, " ")
+    .replace(/https?:\/\/\S+/g, " ")
+    .replace(/\d{4}-\d{2}(-\d{2})?/g, " ")
+}
+
+/** 더한 매체마다, PR 본문에 그 이름과 건수(숫자)가 함께 든 줄이 있는가. */
 export function checkPrBody(body: string, added: string[]): string[] {
   const lines = body.split("\n")
   return added
     .filter(
-      (name) => !lines.some((line) => line.includes(name) && /\d/.test(line.split(name).join(""))),
+      (name) =>
+        !lines.some((line) => line.includes(name) && /\d/.test(withoutOtherNumbers(line, name))),
     )
     .map(
       (name) =>
@@ -280,7 +300,6 @@ export function checkPrBody(body: string, added: string[]): string[] {
     )
 }
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..")
 const OUTLETS = ".claude/skills/wiki-news/outlets.md"
 
 function readIssues(): Issue[] {

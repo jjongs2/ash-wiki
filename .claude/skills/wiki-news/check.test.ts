@@ -176,7 +176,7 @@ describe("분포 줄", () => {
   const sized = (lengths: number[], extra: Entry = {}) =>
     lengths.map((n) => ({ ...extra, summary: "가".repeat(n) }))
 
-  test("항목 수, 주요 수, 요약 길이 중앙값, 기타 비중을 직전 4호의 중앙값과 나란히 준다", () => {
+  test("항목 수, 주요 수, 요약 길이 중앙값, 기타 비중을 직전 4주에 있는 호의 중앙값과 나란히 준다", () => {
     const issues = [
       issue("2026-w35", sized([5])),
       issue("2026-w36", sized([10, 10])),
@@ -192,7 +192,7 @@ describe("분포 줄", () => {
     const [report] = checkIssues({ issues, weeks: ["2026-w41"], outlets, pages: [] })
     assert.strictEqual(
       report.distribution,
-      "2026-w41: 항목 4(직전 4호 중앙값 3.5), 주요 1(0), 요약 길이 중앙값 25자(25자), 기타 25%(10%)",
+      "2026-w41: 항목 4(직전 4주 중앙값 4), 주요 1(0), 요약 길이 중앙값 25자(30자), 기타 25%(20%)",
     )
   })
 })
@@ -228,7 +228,7 @@ describe("PR 본문", () => {
       "## Changes",
       "- 목록 추가 후보",
       "  - CARIAD: 3개월 9건, 뉴스룸 확인, 매체 목록",
-      "  - 36Kr: 검색 질의, 매체 목록",
+      "  - 36Kr: 검색 질의 `https://news.google.com/rss/search?q=36kr+after:2026-09-01`, 2026-10-14 확인, 매체 목록",
       "  - Valeo, 받지 않은 후보",
     ].join("\n")
     assert.deepStrictEqual(checkPrBody(body, added), [
