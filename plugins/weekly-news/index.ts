@@ -946,6 +946,7 @@ const CSS = `.news-tools {
   cursor: default;
 }
 .news-card[hidden],
+.news-filter[hidden],
 .news-empty[hidden] {
   display: none;
 }
