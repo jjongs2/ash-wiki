@@ -13,7 +13,8 @@ const outletsMd = [
   "| 매체 | 구역 | 찾는 법 | 거르기 | 비고 |",
   "|---|---|---|---|---|",
   "| Vector | network | 피드 `https://vector.com/feed` | 제목으로 고름 | 무료 |",
-  "| KISA | security | 검색 질의 `https://news.google.com/rss/search?q=KISA` | 제목으로 고름 | 드물게 냄 |",
+  "| KISA | security | 검색 질의 `https://news.google.com/rss/search?q=KISA+after:<월요일>+before:<다음 월요일>` | 제목으로 고름 | 드물게 냄 |",
+  "| KBA | 기타 | 검색 질의 `https://kba-online.de/export?format=csv`(리콜 전체 CSV) | 제목으로 고름 | 무료 |",
   "",
   "## 검색 질의",
   "",
@@ -33,10 +34,11 @@ const outletsMd = [
 const opened = (source: string, week = ""): Access => ({ source, week, opened: true })
 
 describe("살필 곳", () => {
-  test("매체 목록의 매체와 검색 질의를 읽고, 찾는 법이 검색 질의인 곳은 주차마다 본다", () => {
+  test("매체 목록의 매체와 검색 질의를 읽고, 날짜를 채우는 검색 질의는 주차마다 본다", () => {
     assert.deepStrictEqual(sources(outletsMd), [
       { name: "Vector", perWeek: false },
       { name: "KISA", perWeek: true },
+      { name: "KBA", perWeek: false },
       { name: "arXiv", perWeek: true },
       { name: "Google News network", perWeek: true },
     ])
@@ -50,7 +52,7 @@ describe("절차 검사", () => {
     const report = checkProcedure({
       sources: all,
       weeks: ["2026-w41"],
-      records: ["Vector", "KISA", "arXiv", "Google News network"].map((s) => opened(s)),
+      records: ["Vector", "KISA", "KBA", "arXiv", "Google News network"].map((s) => opened(s)),
     })
     assert.deepStrictEqual(report.failures, [])
   })
@@ -59,7 +61,7 @@ describe("절차 검사", () => {
     const report = checkProcedure({
       sources: all,
       weeks: ["2026-w41"],
-      records: [opened("Vector"), opened("arXiv"), opened("Google News network")],
+      records: [opened("Vector"), opened("KBA"), opened("arXiv"), opened("Google News network")],
     })
     assert.deepStrictEqual(report.failures, ["KISA: 기록이 없다"])
   })
@@ -71,6 +73,7 @@ describe("절차 검사", () => {
       records: [
         { source: "Vector", opened: false, reason: "" },
         { source: "KISA", opened: false, reason: "Google News 503이 1시간 이어짐" },
+        opened("KBA"),
         opened("arXiv"),
         opened("Google News network"),
       ],
@@ -85,6 +88,7 @@ describe("절차 검사", () => {
       weeks: ["2026-w36", "2026-w37"],
       records: [
         opened("Vector"),
+        opened("KBA"),
         opened("KISA", "2026-w36"),
         opened("KISA", "2026-w37"),
         opened("arXiv"),

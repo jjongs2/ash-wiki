@@ -70,6 +70,8 @@ describe("같은 사건 묶음", () => {
       }),
       candidate("B02", { event: { org: "Infineon", subject: "TLE9744QK" } }),
       candidate("C04", { event: { org: "Infineon Technologies", subject: "TLE9744-QK" } }),
+      candidate("B03", { event: { org: "Vector", subject: "CANoe 19" } }),
+      candidate("C05", { event: { org: "Vector Informatik", subject: "CANoe 19 release" } }),
       candidate("D01", { title: "Eclipse S-CORE v1.0 released" }),
       candidate("E01", { title: "Eclipse S-CORE v1.0 Released!" }),
       candidate("E02", { title: "Unrelated" }),
@@ -81,6 +83,7 @@ describe("같은 사건 묶음", () => {
       { ids: ["B01", "C03"], reasons: ["B01이 본 주소: C03"] },
       { ids: ["F01", "F02"], reasons: ["같은 리콜 번호 26V213: F01, F02"] },
       { ids: ["B02", "C04"], reasons: ["같은 사건 키 TLE9744QK: B02, C04"] },
+      { ids: ["B03", "C05"], reasons: ["같은 사건 키 CANoe 19: B03, C05"] },
       { ids: ["D01", "E01"], reasons: ["비슷한 제목: D01, E01"] },
     ])
   })

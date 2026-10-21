@@ -7,17 +7,12 @@
 //       npx tsx .claude/skills/wiki-news/merge.ts table <작업 폴더> <주차나 달>...
 import fs from "node:fs"
 import path from "node:path"
-import { spawnSync } from "node:child_process"
 import { fileURLToPath } from "node:url"
 import { parseArgs } from "node:util"
-import {
-  monthWeeks,
-  parseWeeklyNews,
-  weekDays,
-  type NewsItem,
-} from "../../../plugins/weekly-news/index"
+import { parseWeeklyNews, weekDays, type NewsItem } from "../../../plugins/weekly-news/index"
 import { repoRoot as root } from "../../../tools/repo"
 import { LISTED, OUTLETS, tableRows, visibleText } from "./check"
+import { git, readJsonl, weeksOf, writeJsonl } from "./work"
 
 /** 조사 에이전트의 후보 한 줄(research-brief.md의 출력). id는 병합이 붙인다. */
 export interface Candidate {
@@ -34,7 +29,6 @@ export interface Candidate {
   dup_of?: string
   digest?: string
   image?: string
-  [field: string]: unknown
 }
 
 /** 지난 호의 소식 항목(past.tsv 한 줄). */
@@ -55,12 +49,7 @@ export interface Review {
   reason: string
 }
 
-export interface Published {
-  url: string
-  title: string
-  outlet: string
-  date: string
-}
+export type Published = Pick<NewsItem, "url" | "title" | "outlet" | "date">
 
 export function normalizeUrl(url: string): string {
   try {
@@ -125,7 +114,9 @@ function sameKey(a: Candidate, b: Candidate): string | undefined {
   if (!a.event || !b.event) return undefined
   const [sa, sb] = [squash(a.event.subject), squash(b.event.subject)]
   const [oa, ob] = [squash(a.event.org), squash(b.event.org)]
-  if (sa.length < MIN_SUBJECT || sa !== sb || !oa || !ob) return undefined
+  const short = sa.length <= sb.length ? sa : sb
+  if (short.length < MIN_SUBJECT || !(sa.includes(sb) || sb.includes(sa)) || !oa || !ob)
+    return undefined
   return oa.includes(ob) || ob.includes(oa) ? a.event.subject : undefined
 }
 
@@ -227,7 +218,7 @@ export function verdictTable(
   const byUrl = new Map(published.map((p) => [normalizeUrl(p.url), p]))
   const used = new Set<string>()
   const missing: string[] = []
-  const rows: { date: string; id: string; cells: string[] }[] = []
+  const rows: { date: string; id: string; verdict: string; cells: string[] }[] = []
   for (const c of candidates) {
     const review = reviews.find((r) => normalizeUrl(r.from || r.url) === normalizeUrl(c.url))
     const url = normalizeUrl(review?.url || c.url)
@@ -246,6 +237,7 @@ export function verdictTable(
     rows.push({
       date: c.date,
       id: c.id ?? "-",
+      verdict,
       cells: [c.date, c.outlet, c.title, verdict, reason],
     })
   }
@@ -254,11 +246,12 @@ export function verdictTable(
       rows.push({
         date: p.date,
         id: "-",
+        verdict: "실림",
         cells: [p.date, p.outlet, p.title, "실림", "후보 밖에서 더함"],
       })
   }
   rows.sort((a, b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id))
-  const kept = rows.filter((r) => r.cells[3] === "실림").length
+  const kept = rows.filter((r) => r.verdict === "실림").length
   const markdown = [
     `<details><summary>후보 판정표 ${rows.length}건(실림 ${kept}, 뺌 ${rows.length - kept})</summary>`,
     "",
@@ -281,16 +274,6 @@ export function exclusionCandidates(outletsMd: string, counts: Map<string, numbe
     .map(([name]) => name)
 }
 
-function git(args: string[]): string {
-  const result = spawnSync("git", args, {
-    cwd: root,
-    encoding: "utf8",
-    maxBuffer: 256 * 1024 * 1024,
-  })
-  if (result.status !== 0) throw new Error(`git ${args.join(" ")}: ${result.stderr.trim()}`)
-  return result.stdout
-}
-
 const ISSUE = /^content\/news\/(\d{4}-w\d{2})\.md$/
 
 /** ref들의 호. 같은 주차가 여러 ref에 있으면 앞 ref의 것을 쓴다. */
@@ -309,23 +292,6 @@ function issuesAt(refs: string[]): Map<string, { ref: string; items: NewsItem[] 
 }
 
 const tsv = (text: string) => text.replace(/[\t\n\r]+/g, " ").trim()
-
-function readJsonl<T>(file: string): T[] {
-  return fs
-    .readFileSync(file, "utf8")
-    .split("\n")
-    .filter((line) => line.trim())
-    .map((line, i) => {
-      try {
-        return JSON.parse(line) as T
-      } catch {
-        throw new Error(`${file}:${i + 1}: JSON이 아니다`)
-      }
-    })
-}
-
-const writeJsonl = (file: string, rows: unknown[]) =>
-  fs.writeFileSync(file, rows.map((r) => JSON.stringify(r)).join("\n") + "\n")
 
 function kstToday(): string {
   return new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10)
@@ -359,9 +325,11 @@ function past(folder: string, refs: string[], today: string): number {
     for (const it of items) counts.set(it.outlet, (counts.get(it.outlet) ?? 0) + 1)
   }
   const outletsMd = fs.readFileSync(path.join(root, OUTLETS), "utf8")
-  const out = exclusionCandidates(outletsMd, counts)
+  const excluded = exclusionCandidates(outletsMd, counts)
   console.log(`\n빼는 기준의 셋째 조건: main의 ${from}부터 ${monday} 전까지 호 ${weeks}개`)
-  console.log(`목록 제외 후보 ${out.length}곳${out.length ? `: ${out.join(", ")}` : ""}`)
+  console.log(
+    `목록 제외 후보 ${excluded.length}곳${excluded.length ? `: ${excluded.join(", ")}` : ""}`,
+  )
   return 0
 }
 
@@ -466,13 +434,7 @@ function table(folder: string, weeks: string[]): number {
     : []
   const published = weeks.flatMap((week) => {
     const file = path.join(root, "content", "news", `${week}.md`)
-    if (!fs.existsSync(file)) return []
-    return parseWeeklyNews(week, fs.readFileSync(file, "utf8")).items.map((it) => ({
-      url: it.url,
-      title: it.title,
-      outlet: it.outlet,
-      date: it.date,
-    }))
+    return fs.existsSync(file) ? parseWeeklyNews(week, fs.readFileSync(file, "utf8")).items : []
   })
   const { markdown, missing } = verdictTable(candidates, reviews, published)
   console.log(markdown)
@@ -496,19 +458,12 @@ function main(): number {
     },
   })
   const [command, folder, ...rest] = positionals
-  if (!folder) {
-    console.error("사용: merge.ts past|merge|drop|table <작업 폴더> …(머리 주석)")
-    return 2
-  }
-  const dir = path.resolve(folder)
-  if (command === "past") return past(dir, values.ref!, values.today!)
-  if (command === "merge") return merge(dir, values.force!)
-  if (command === "drop" && values.reason && rest.length) return drop(dir, rest, values.reason)
-  if (command === "table" && rest.length)
-    return table(
-      dir,
-      rest.flatMap((a) => (/^\d{4}-\d{2}$/.test(a) ? monthWeeks(a) : [a])),
-    )
+  const dir = folder && path.resolve(folder)
+  if (dir && command === "past") return past(dir, values.ref!, values.today!)
+  if (dir && command === "merge") return merge(dir, values.force!)
+  if (dir && command === "drop" && values.reason && rest.length)
+    return drop(dir, rest, values.reason)
+  if (dir && command === "table" && rest.length) return table(dir, weeksOf(rest))
   console.error("사용: merge.ts past|merge|drop|table <작업 폴더> …(머리 주석)")
   return 2
 }

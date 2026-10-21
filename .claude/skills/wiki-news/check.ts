@@ -5,17 +5,12 @@
 //       npx tsx .claude/skills/wiki-news/check.ts --pr <본문 파일> [--base <ref>]
 import fs from "node:fs"
 import path from "node:path"
-import { spawnSync } from "node:child_process"
 import { fileURLToPath } from "node:url"
 import { parseArgs } from "node:util"
 import { parse as parseYaml } from "yaml"
-import {
-  monthWeeks,
-  parseWeeklyNews,
-  weekDays,
-  type NewsItem,
-} from "../../../plugins/weekly-news/index"
+import { parseWeeklyNews, weekDays, type NewsItem } from "../../../plugins/weekly-news/index"
 import { repoRoot as root } from "../../../tools/repo"
+import { git, weeksOf } from "./work"
 
 export interface Issue {
   week: string
@@ -377,16 +372,6 @@ function readPages(): Page[] {
     })
 }
 
-function git(args: string[]): string {
-  const result = spawnSync("git", args, {
-    cwd: root,
-    encoding: "utf8",
-    maxBuffer: 64 * 1024 * 1024,
-  })
-  if (result.status !== 0) throw new Error(`git ${args.join(" ")}: ${result.stderr.trim()}`)
-  return result.stdout
-}
-
 function main(): number {
   const { values, positionals } = parseArgs({
     allowPositionals: true,
@@ -408,7 +393,7 @@ function main(): number {
     return 2
   }
   const issues = readIssues()
-  const asked = positionals.flatMap((arg) => (/^\d{4}-\d{2}$/.test(arg) ? monthWeeks(arg) : [arg]))
+  const asked = weeksOf(positionals)
   const weeks = asked.filter((week) => issues.some((i) => i.week === week))
   for (const week of asked.filter((week) => !weeks.includes(week))) console.log(`호 없음: ${week}`)
   const reports = checkIssues({ issues, weeks, outlets: outletNames(after), pages: readPages() })

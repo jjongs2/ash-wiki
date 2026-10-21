@@ -5,9 +5,9 @@
 import fs from "node:fs"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
-import { monthWeeks } from "../../../plugins/weekly-news/index"
 import { repoRoot as root } from "../../../tools/repo"
 import { LISTED, OUTLETS, tableRows } from "./check"
+import { readJsonl, weeksOf } from "./work"
 
 /** 접속 기록 한 줄. week가 비면 조사 기간 전체를 한 번에 살핀 기록이다. */
 export interface Access {
@@ -19,7 +19,10 @@ export interface Access {
   differs?: string
 }
 
-/** 살필 곳. 찾는 법이 검색 질의인 곳은 결과 수에 상한이 있어 주차마다 따로 살핀다(3. 찾기). */
+/**
+ * 살필 곳. 그 주의 날짜(`<월요일>`)를 채우는 검색 질의는 결과 수에 상한이 있어 주차마다 따로 살핀다(3. 찾기).
+ * 날짜를 채우지 않는 검색 질의(파일 하나를 받아 거르는 KBA CSV, ISO 오픈 데이터)는 기간 전체를 한 번에 본다.
+ */
 export interface Source {
   name: string
   perWeek: boolean
@@ -37,12 +40,13 @@ const QUERIES = "## 검색 질의"
 // 검색 질의 절의 질의 줄(`- **이름** (구역): …`). 같은 절의 설명 줄(`- **arXiv**: …`)에는 구역이 없다.
 const QUERY_LINE = /^- \*\*(.+?)\*\* \([^)]*\): /
 const FREE_SEARCH = "자유 검색"
+const WEEK_DATE = "<월요일>"
 
 /** 매체 목록의 매체와 검색 질의 절의 질의. */
 export function sources(markdown: string): Source[] {
   const listed = tableRows(markdown, LISTED).map(([name, , how]) => ({
     name,
-    perWeek: how.startsWith("검색 질의"),
+    perWeek: how.startsWith("검색 질의") && how.includes(WEEK_DATE),
   }))
   let inside = false
   const queries: Source[] = []
@@ -105,19 +109,7 @@ export function readAccess(folder: string): Access[] {
     .readdirSync(dir)
     .filter((file) => file.endsWith("-access.jsonl"))
     .sort()
-    .flatMap((file) =>
-      fs
-        .readFileSync(path.join(dir, file), "utf8")
-        .split("\n")
-        .filter((line) => line.trim())
-        .map((line, i) => {
-          try {
-            return JSON.parse(line) as Access
-          } catch {
-            throw new Error(`${file}:${i + 1}: JSON이 아니다`)
-          }
-        }),
-    )
+    .flatMap((file) => readJsonl<Access>(path.join(dir, file)))
 }
 
 function main(): number {
@@ -126,7 +118,7 @@ function main(): number {
     console.error("사용: procedure.ts <작업 폴더> <주차나 달>...")
     return 2
   }
-  const weeks = args.flatMap((arg) => (/^\d{4}-\d{2}$/.test(arg) ? monthWeeks(arg) : [arg]))
+  const weeks = weeksOf(args)
   const report = checkProcedure({
     sources: sources(fs.readFileSync(path.join(root, OUTLETS), "utf8")),
     weeks,

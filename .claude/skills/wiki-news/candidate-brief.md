@@ -40,6 +40,5 @@
 
 ## 주의
 
-- 같은 호스트에는 요청 사이를 1초 이상 띄운다. User-Agent와 여는 순서는 [outlets.md의 접속 절](outlets.md#접속)을 따른다.
-- 브라우저는 curl과 Node `fetch`로 안 열리는 곳에만 쓰고, 자기 탭을 열어 쓰고 끝나면 닫는다.
+- 요청 간격, User-Agent, 여는 순서, 브라우저 쓰는 법은 [outlets.md의 접속 절](outlets.md#접속)을 따른다.
 - 셸 명령이 복잡하다고 거부되면 파이썬 스크립트를 작업 폴더의 `candidates-tmp/`에 써서 `python3 -I <경로>`로 돌린다.
