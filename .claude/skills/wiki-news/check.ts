@@ -1,21 +1,16 @@
-// 소식 조사의 기계 검사(SKILL.md의 8. 검사와 9. PR). 주간 소식 호를 형식 함수(plugins/weekly-news의
+// 소식 조사의 기계 검사(SKILL.md의 7. 쓰기와 9. PR). 주간 소식 호를 형식 함수(plugins/weekly-news의
 // parseWeeklyNews)로 읽어 실패와 알림(위키 링크 후보, 분포 줄)을 내고, 실패가 있으면 exit 1이다. 규칙은 SKILL.md
-// 7단계, docs/weekly-news.md, outlets.md의 열 절에 있고, PR 전 확인에 넣지 않는 까닭은 SKILL.md 8단계에 있다.
+// 7단계, docs/weekly-news.md, outlets.md의 열 절에 있고, PR 전 확인에 넣지 않는 까닭도 7단계에 있다.
 // 사용: npx tsx .claude/skills/wiki-news/check.ts <주차나 달>...
 //       npx tsx .claude/skills/wiki-news/check.ts --pr <본문 파일> [--base <ref>]
 import fs from "node:fs"
 import path from "node:path"
-import { spawnSync } from "node:child_process"
 import { fileURLToPath } from "node:url"
 import { parseArgs } from "node:util"
 import { parse as parseYaml } from "yaml"
-import {
-  monthWeeks,
-  parseWeeklyNews,
-  weekDays,
-  type NewsItem,
-} from "../../../plugins/weekly-news/index"
+import { parseWeeklyNews, weekDays, type NewsItem } from "../../../plugins/weekly-news/index"
 import { repoRoot as root } from "../../../tools/repo"
+import { git, weeksOf } from "./work"
 
 export interface Issue {
   week: string
@@ -242,29 +237,41 @@ export function checkIssues(input: {
   })
 }
 
-const LISTED = "## 매체 목록"
+export const LISTED = "## 매체 목록"
 const REJECTED = "## 받지 않은 후보"
 
-/** 매체 목록 파일(outlets.md)의 매체 목록 표와 받지 않은 후보 표에서 첫 칸(매체 이름)을 읽는다. */
-export function outletNames(markdown: string): Outlets {
-  const outlets: Outlets = { listed: new Set(), rejected: new Set() }
-  let section: Set<string> | undefined
+/** 매체 목록 파일(outlets.md)에서 제목이 heading인 절의 표 본문 줄을 칸마다 읽는다. 정렬 공백은 없어도 된다. */
+export function tableRows(markdown: string, heading: string): string[][] {
+  const rows: string[][] = []
+  let inside = false
   let body = false
   for (const line of markdown.split("\n")) {
     if (line.startsWith("## ")) {
-      const heading = line.trim()
-      section =
-        heading === LISTED ? outlets.listed : heading === REJECTED ? outlets.rejected : undefined
+      inside = line.trim() === heading
       body = false
     } else if (!line.startsWith("|")) {
       body = false
     } else if (/^\|[\s:|-]+\|$/.test(line.trim())) {
       body = true
-    } else if (section && body) {
-      section.add(line.split("|")[1].trim())
+    } else if (inside && body) {
+      rows.push(
+        line
+          .trim()
+          .slice(1, -1)
+          .split("|")
+          .map((cell) => cell.trim()),
+      )
     }
   }
-  return outlets
+  return rows
+}
+
+/** 매체 목록 표와 받지 않은 후보 표의 첫 칸(매체 이름). */
+export function outletNames(markdown: string): Outlets {
+  return {
+    listed: new Set(tableRows(markdown, LISTED).map((row) => row[0])),
+    rejected: new Set(tableRows(markdown, REJECTED).map((row) => row[0])),
+  }
 }
 
 /** 두 표에 새로 든 매체 이름. before는 기준 커밋의, after는 작업 트리의 매체 목록 파일이다. */
@@ -332,7 +339,7 @@ export function checkPrBody(body: string, added: string[]): string[] {
     )
 }
 
-const OUTLETS = ".claude/skills/wiki-news/outlets.md"
+export const OUTLETS = ".claude/skills/wiki-news/outlets.md"
 
 function readIssues(): Issue[] {
   const dir = path.join(root, "content", "news")
@@ -365,16 +372,6 @@ function readPages(): Page[] {
     })
 }
 
-function git(args: string[]): string {
-  const result = spawnSync("git", args, {
-    cwd: root,
-    encoding: "utf8",
-    maxBuffer: 64 * 1024 * 1024,
-  })
-  if (result.status !== 0) throw new Error(`git ${args.join(" ")}: ${result.stderr.trim()}`)
-  return result.stdout
-}
-
 function main(): number {
   const { values, positionals } = parseArgs({
     allowPositionals: true,
@@ -396,7 +393,7 @@ function main(): number {
     return 2
   }
   const issues = readIssues()
-  const asked = positionals.flatMap((arg) => (/^\d{4}-\d{2}$/.test(arg) ? monthWeeks(arg) : [arg]))
+  const asked = weeksOf(positionals)
   const weeks = asked.filter((week) => issues.some((i) => i.week === week))
   for (const week of asked.filter((week) => !weeks.includes(week))) console.log(`호 없음: ${week}`)
   const reports = checkIssues({ issues, weeks, outlets: outletNames(after), pages: readPages() })
@@ -405,7 +402,7 @@ function main(): number {
   const candidates = reports.flatMap((r) => r.candidates)
   console.log(`실패 ${failures.length}건`)
   for (const line of failures) console.log(`- ${line}`)
-  console.log(`\n위키 링크 후보 ${candidates.length}건(통과 조건 아님, 확정은 쓰는 이가 한다)`)
+  console.log(`\n위키 링크 후보 ${candidates.length}건(통과 조건 아님, 확정은 검토가 한다)`)
   for (const line of candidates) console.log(`- ${line}`)
   console.log("\n분포")
   for (const r of reports) console.log(`- ${r.distribution}`)
