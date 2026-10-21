@@ -250,16 +250,17 @@ describe("PR 본문", () => {
   })
 
   test("글자에 붙은 숫자와 이름을 감싼 괄호 밖의 숫자는 건수가 아니다", () => {
-    const added = ["코렌스", "Foo", "Bar", "Cerence", "CISA ICS 권고"]
+    const added = ["코렌스", "Foo", "Bar", "Cerence", "CISA ICS 권고", "Baz"]
     const body = [
       "- 제3자 기사를 실은 것이 6건이다(전자신문의 코렌스, 중국 V2X 표준안). 취재·해설이 9건이다.",
       "- 매체 목록에 더한 줄: CISA ICS 권고(규제 기관). 드물게 냄(최근 3개월 1건).",
       "- Foo(1차 발표가 열리지 않음), Bar(V2X 표준 단체, 3개월 확인)",
       "- 가장 가까운 곳은 Cerence(약 4건, 재무·IR 글 섞임)다.",
+      "- Baz는 로컬에서 2026-07-14\\~10-13로 질의를 돌렸다.",
     ].join("\n")
     assert.deepStrictEqual(
       checkPrBody(body, added).map((f) => f.split("의 최근")[0]),
-      ["PR 본문: 코렌스", "PR 본문: Foo", "PR 본문: Bar"],
+      ["PR 본문: 코렌스", "PR 본문: Foo", "PR 본문: Bar", "PR 본문: Baz"],
     )
   })
 })

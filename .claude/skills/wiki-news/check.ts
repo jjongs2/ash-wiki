@@ -309,15 +309,15 @@ function shareOf(line: string, name: string, added: string[]): string[] {
 }
 
 /**
- * 건수로 볼 숫자가 있는가. 코드, 주소, 날짜 안의 숫자와 글자에 붙은 숫자(`V2X`, `1차`, `3개월`)는 건수가 아니고,
- * `9건`은 건수다.
+ * 건수로 볼 숫자가 있는가. 코드, 주소, 날짜(`2026-07-14\~10-13` 같은 범위 포함) 안의 숫자와 글자에 붙은
+ * 숫자(`V2X`, `1차`, `3개월`)는 건수가 아니고, `9건`은 건수다.
  */
 function hasCount(text: string): boolean {
   return /(?<![\p{L}\p{N}])\d+(?=\s*건|[^\p{L}\p{N}]|$)/u.test(
     text
       .replace(/`[^`]*`/g, " ")
       .replace(/https?:\/\/\S+/g, " ")
-      .replace(/\d{4}-\d{2}(-\d{2})?/g, " "),
+      .replace(/\d{4}-\d{2}(-\d{2})?(\s*\\?[~–]\s*(\d{4}-)?\d{2}(-\d{2})?)?/g, " "),
   )
 }
 
