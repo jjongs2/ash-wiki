@@ -276,24 +276,38 @@ export function addedOutlets(before: string, after: string): string[] {
   )
 }
 
-/** 줄에서 건수가 아닌 숫자(매체 이름, 코드, 주소, 날짜 안)를 지운다. */
-function withoutOtherNumbers(line: string, name: string): string {
-  return line
-    .split(name)
-    .join(" ")
-    .replace(/`[^`]*`/g, " ")
-    .replace(/https?:\/\/\S+/g, " ")
-    .replace(/\d{4}-\d{2}(-\d{2})?/g, " ")
+/**
+ * 줄에서 그 매체의 몫. 이름 뒤부터 다음에 더한 매체 이름 앞까지다. 이름을 늘어놓은 줄 머리의 합계(`17곳: A, B`)는
+ * 어느 매체의 몫에도 들지 않는다.
+ */
+function shareOf(line: string, name: string, added: string[]): string[] {
+  const shares: string[] = []
+  for (let at = line.indexOf(name); at >= 0; at = line.indexOf(name, at + 1)) {
+    const start = at + name.length
+    const ends = added
+      .filter((other) => other !== name)
+      .map((other) => line.indexOf(other, start))
+      .filter((end) => end >= 0)
+    shares.push(line.slice(start, Math.min(line.length, ...ends)))
+  }
+  return shares
 }
 
-/** 더한 매체마다, PR 본문에 그 이름과 건수(숫자)가 함께 든 줄이 있는가. */
+/** 건수로 볼 숫자가 있는가. 코드, 주소, 날짜 안의 숫자는 건수가 아니다. */
+function hasCount(text: string): boolean {
+  return /\d/.test(
+    text
+      .replace(/`[^`]*`/g, " ")
+      .replace(/https?:\/\/\S+/g, " ")
+      .replace(/\d{4}-\d{2}(-\d{2})?/g, " "),
+  )
+}
+
+/** 더한 매체마다, PR 본문의 어느 줄에 그 이름과 그 뒤의 건수(숫자)가 있는가. */
 export function checkPrBody(body: string, added: string[]): string[] {
   const lines = body.split("\n")
   return added
-    .filter(
-      (name) =>
-        !lines.some((line) => line.includes(name) && /\d/.test(withoutOtherNumbers(line, name))),
-    )
+    .filter((name) => !lines.some((line) => shareOf(line, name, added).some(hasCount)))
     .map(
       (name) =>
         `PR 본문: ${name}의 최근 3개월 건수가 없다(매체 목록이나 받지 않은 후보 표에 더한 줄)`,

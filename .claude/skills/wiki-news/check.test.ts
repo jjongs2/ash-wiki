@@ -236,4 +236,16 @@ describe("PR 본문", () => {
       "PR 본문: Valeo의 최근 3개월 건수가 없다(매체 목록이나 받지 않은 후보 표에 더한 줄)",
     ])
   })
+
+  test("건수는 매체 이름 뒤에서 찾고, 이름을 늘어놓은 줄의 합계는 건수로 보지 않는다", () => {
+    const added = ["Texas Instruments", "LG Electronics", "aiMotive"]
+    const body = [
+      "- 받지 않은 후보 표에 더한 2곳: Texas Instruments, LG Electronics",
+      "| aiMotive | 5 / 2 | 뉴스룸 |",
+    ].join("\n")
+    assert.deepStrictEqual(checkPrBody(body, added), [
+      "PR 본문: Texas Instruments의 최근 3개월 건수가 없다(매체 목록이나 받지 않은 후보 표에 더한 줄)",
+      "PR 본문: LG Electronics의 최근 3개월 건수가 없다(매체 목록이나 받지 않은 후보 표에 더한 줄)",
+    ])
+  })
 })
