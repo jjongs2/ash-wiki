@@ -33,6 +33,7 @@ import {
   repeatedNames,
 } from "./runs"
 import { termItem } from "./terms"
+import { inlineMathItem } from "./math"
 
 // 반영 뒤 점검의 항목들. 항목마다 규칙은 docs/wiki-verification.md의 반영 뒤 점검 절이 가리키는 절에
 // 있고, 여기 있는 것은 후보를 뽑는 패턴뿐이다. 판정은 사람이 한다.
@@ -636,4 +637,5 @@ export const items: [string, Item][] = [
   ["term", termItem],
   ["first-link", firstLinkItem],
   ["diagram-place", diagramPlaceItem],
+  ["inline-math", inlineMathItem],
 ]

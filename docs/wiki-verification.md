@@ -286,6 +286,7 @@ npm run check:diff -- [--base <ref>] [--ticket <묶음 티켓>] [--only <항목>
 | `term`              | 더한 줄의 쓰지 않는 표기("쓰지 않는 표기")와, 조건이 붙은 결정이라 문맥으로 가려야 하는 쓰지 않는 표기("조건 확인")                                                                                                                                                    | [위키 규약의 용어](wiki-conventions.md#용어), [용어 표기 결정](wiki-terms.md)                                                         |
 | `first-link`        | 다른 페이지의 제목이나 alias가 고친 페이지에 처음 나오는 자리가 더한 줄인데 링크가 없는 곳                                                                                                                                                                             | [위키 규약의 위키링크](wiki-conventions.md#위키링크), [약어](wiki-conventions.md#약어)                                                |
 | `diagram-place`     | 브랜치 전부터 있던 도해 바로 앞의 문단이 새로 들어온 곳("기존 도해 앞의 문단이 새로 들어왔다")                                                                                                                                                                         | [위키 규약의 도해](wiki-conventions.md#도해)                                                                                          |
+| `inline-math`       | 더한 줄의 인라인 식 가운데 한 변의 맨 위 수준 항이 셋 이상이거나 `\frac`이 든 것("디스플레이로 쓸 인라인 식"). 괄호와 첨자 안의 항은 세지 않습니다                                                                                                                     | [위키 규약의 수식](wiki-conventions.md#수식)                                                                                          |
 
 ## 출처 상태
 
