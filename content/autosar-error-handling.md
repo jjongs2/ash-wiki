@@ -11,7 +11,7 @@ verified: 2026-10-07
 
 - **Development error**: 주로 소프트웨어 개발 중에 생기는 버그로, 초기화하지 않은 소프트웨어를 쓰려는 것이 전형적인 예다. `Det_ReportError`로 Det(Default Error Tracer)에 보고하며, assertion처럼 동작해 ECU 전체를 멈추거나 리셋해 정상 실행 흐름을 끊는다.
 - **Runtime error**: ECU가 도는 동안 소프트웨어나 하드웨어 문제로 생기는 오류로, [[autosar-memory-stack|메모리 스택]]의 큐 넘침, 잘못된 때의 API 호출, 입자 방사로 [[can|CAN]] 컨트롤러의 제어 레지스터 비트가 뒤집히는 일이 예다. 원인이 사라지면 나을 수도 있다. `Det_ReportRuntimeError`로 Det에 보고하지만 assertion을 일으키지 않아 실행이 이어지고, 대신 대응하는 오류 처리기가 돈다.
-- **Production error**: 노화, 열화, 하드웨어의 완전한 고장, 나쁜 생산 품질, 잘못된 조립 같은 하드웨어 문제로 생기는 오류다. 배출가스를 늘려 법규상 감지해야 하거나, 다른 OBD(On-Board Diagnostics) 관련 진단 monitor의 능력을 제한하거나, limp-home 대응을 요구하거나, 정비소가 고장 부품을 찾게 해야 하는 경우가 여기에 든다. [[diagnostic-event-manager|Dem]]에 보고하며, monitor가 fail이면 대개 primary event memory에 항목이 생기고 pass면 그 항목이 취소될 수 있다.
+- **Production error**: 노화, 열화, 하드웨어의 완전한 고장, 나쁜 생산 품질, 잘못된 조립 같은 하드웨어 문제로 생기는 오류다. 배출가스를 늘려 법규상 감지해야 하거나, 다른 [[on-board-diagnostics|OBD]] 관련 진단 monitor의 능력을 제한하거나, limp-home 대응을 요구하거나, 정비소가 고장 부품을 찾게 해야 하는 경우가 여기에 든다. [[diagnostic-event-manager|Dem]]에 보고하며, monitor가 fail이면 대개 primary event memory에 항목이 생기고 pass면 그 항목이 취소될 수 있다.
 - **Extended production error**: production error처럼 하드웨어 문제나 환경의 이상을 나타내지만, production error의 기준에 들지 않거나 이미 정의된 production error와 근본 원인이 같은 오류다. production error의 실제 원인을 더 알아내는 데 쓴다. Dem에 보고하되, fail 상태가 곧바로 primary event memory의 항목이 되어서는 안 된다.[@autosar-cp-sws-bswgeneral-2025]
 
 Development error의 감지와 보고는 설정 스위치 `<Ma>DevErrorDetect`를 켰을 때만 하고, 이 스위치의 기본값은 꺼짐이다. 스위치를 켜면 API 매개변수 검사도 켜진다. Runtime error는 development error와 달리 설정으로 끌 수 없다. Production error와 extended production error의 감지도 모듈의 SWS가 활성 조건을 따로 정하지 않는 한 끌 수 없다.[@autosar-cp-sws-bswgeneral-2025]

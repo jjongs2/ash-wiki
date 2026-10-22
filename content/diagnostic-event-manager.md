@@ -8,7 +8,7 @@ aliases:
 verified: 2026-10-07
 ---
 
-AUTOSAR R25-11의 Dem 명세는 **Diagnostic Event Manager**(Dem)를 진단 이벤트(오류)와 그에 딸린 데이터를 처리하고 저장하는 서비스 컴포넌트로 정의한다. Dem은 event memory에 저장된 DTC(Diagnostic Trouble Code)를 모두 읽어 주는 일처럼 고장 정보를 Dcm(Diagnostic Communication Manager)에 주고, 응용 계층과 다른 BSW(Basic Software) 모듈에 인터페이스를 준다. 이 명세는 완성차 업체와 부품 공급자가 함께 쓰는 "진단 고장 메모리"의 공통 접근을 목표로 하며, 내부 동작의 일부는 제조사마다 정한다.[@autosar-cp-sws-diagnosticeventmanager-2025]
+AUTOSAR R25-11의 Dem 명세는 **Diagnostic Event Manager**(Dem)를 진단 이벤트(오류)와 그에 딸린 데이터를 처리하고 저장하는 서비스 컴포넌트로 정의한다. Dem은 event memory에 저장된 [[uds#데이터 식별자와 고장 코드|DTC]]를 모두 읽어 주는 일처럼 고장 정보를 Dcm(Diagnostic Communication Manager)에 주고, 응용 계층과 다른 BSW(Basic Software) 모듈에 인터페이스를 준다. 이 명세는 완성차 업체와 부품 공급자가 함께 쓰는 "진단 고장 메모리"의 공통 접근을 목표로 하며, 내부 동작의 일부는 제조사마다 정한다.[@autosar-cp-sws-diagnosticeventmanager-2025]
 
 ## 진단 이벤트
 
@@ -30,7 +30,7 @@ DTC는 진단 테스터에 보이는 고유 식별자로, Dem의 진단 이벤�
 
 ## Freeze frame
 
-Event related data는 이벤트가 생길 때 함께 저장하는 센서 값, 시각, 주행 거리 같은 추가 데이터로, [[iso-14229-1|ISO 14229-1]]에 따라 snapshot data(freeze frame)와 extended data로 나뉜다. 어느 데이터를 몇 벌 저장할지는 OEM과 고장에 따라 크게 달라 설정으로 정하고, 데이터는 SW-C나 다른 BSW 모듈이 준다. Dem은 이벤트마다 freeze frame을 저장하고, freeze frame 레코드 하나에 설정된 DID(Data Identifier)를 하나 이상 담는다. 배출과 무관한 freeze frame은 이벤트마다 설정하고 레코드 번호도 그 이벤트 안에서만 유일하다. 배출 관련 freeze frame은 OBD(On-Board Diagnostics) 법규가 freeze frame class 하나만 요구하므로 ECU 전체에 하나로 설정한다.[@autosar-cp-sws-diagnosticeventmanager-2025]
+Event related data는 이벤트가 생길 때 함께 저장하는 센서 값, 시각, 주행 거리 같은 추가 데이터로, [[iso-14229-1|ISO 14229-1]]에 따라 snapshot data(freeze frame)와 extended data로 나뉜다. 어느 데이터를 몇 벌 저장할지는 OEM과 고장에 따라 크게 달라 설정으로 정하고, 데이터는 SW-C나 다른 BSW 모듈이 준다. Dem은 이벤트마다 freeze frame을 저장하고, freeze frame 레코드 하나에 설정된 DID(Data Identifier)를 하나 이상 담는다. 배출과 무관한 freeze frame은 이벤트마다 설정하고 레코드 번호도 그 이벤트 안에서만 유일하다. 배출 관련 freeze frame은 [[on-board-diagnostics|OBD]] 법규가 freeze frame class 하나만 요구하므로 ECU 전체에 하나로 설정한다.[@autosar-cp-sws-diagnosticeventmanager-2025]
 
 ## FiM
 

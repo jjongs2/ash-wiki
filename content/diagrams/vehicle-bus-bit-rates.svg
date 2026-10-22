@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="57 16 683 192.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="60 16 671 192.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
-  <!-- 가로축은 로그 스케일: x = 190 + 150 × (log10(비트율 bit/s) − 4) -->
+  <!-- 가로축은 로그 스케일: x = 200 + 125 × (log10(비트율 bit/s) − 3) -->
 
   <!-- 행 이름 -->
   <g text-anchor="end" fill="var(--text, #727981)">
@@ -15,23 +15,25 @@
     <text x="178" y="157">FlexRay</text>
   </g>
 
-  <!-- 상한만 있는 버스는 점, 두 끝이 있는 저속 내결함성 CAN은 구간(열린 원은 그 값을 빼는 끝) -->
-  <circle cx="235.2" cy="32" r="6" fill="var(--ink, #727981)" />
-  <line x1="285.3" y1="72" x2="348.5" y2="72" stroke="var(--ink, #727981)" stroke-width="3" />
-  <circle cx="280.3" cy="72" r="5" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <circle cx="354.5" cy="72" r="6" fill="var(--ink, #727981)" />
-  <circle cx="490" cy="112" r="6" fill="var(--ink, #727981)" />
-  <circle cx="640" cy="152" r="6" fill="var(--ink, #727981)" />
+  <!-- 상한만 있는 버스는 점, 두 끝이 있는 버스는 구간(열린 원은 그 값을 빼는 끝) -->
+  <circle cx="200" cy="32" r="6" fill="var(--ink, #727981)" />
+  <line x1="206" y1="32" x2="356.6" y2="32" stroke="var(--ink, #727981)" stroke-width="3" />
+  <circle cx="362.6" cy="32" r="6" fill="var(--ink, #727981)" />
+  <line x1="405.3" y1="72" x2="456.1" y2="72" stroke="var(--ink, #727981)" stroke-width="3" />
+  <circle cx="400.3" cy="72" r="5" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <circle cx="462.1" cy="72" r="6" fill="var(--ink, #727981)" />
+  <circle cx="575" cy="112" r="6" fill="var(--ink, #727981)" />
+  <circle cx="700" cy="152" r="6" fill="var(--ink, #727981)" />
 
   <!-- 값 -->
   <g font-size="12" fill="var(--text, #727981)">
-    <text x="249" y="36">최대 20 kbit/s</text>
-    <text x="368" y="76">40 kbit/s 초과, 125 kbit/s 이하</text>
-    <text x="504" y="116">1 Mbit/s까지</text>
-    <text x="654" y="156">최대 10 Mbit/s</text>
+    <text x="376.6" y="36">1 kbit/s 이상, 20 kbit/s 이하</text>
+    <text x="476.1" y="76">40 kbit/s 초과, 125 kbit/s 이하</text>
+    <text x="589" y="116">1 Mbit/s까지</text>
+    <text x="686" y="156" text-anchor="end">최대 10 Mbit/s</text>
   </g>
 
   <!-- 축 -->
-  <line x1="190" y1="174" x2="700" y2="174" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="700" y="196" text-anchor="end" font-size="12" fill="var(--text, #727981)">비트율 (로그 스케일)</text>
+  <line x1="190" y1="174" x2="720" y2="174" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="720" y="196" text-anchor="end" font-size="12" fill="var(--text, #727981)">비트율 (로그 스케일)</text>
 </svg>

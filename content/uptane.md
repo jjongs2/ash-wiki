@@ -14,7 +14,7 @@ status: 유효
 
 Uptane Standard 2.1.0은 구현 세부를 구현자에게 맡기고, 표준을 따르는 구현이 갖출 구성 요소와 그 요구사항을 정한다. 서버 쪽의 두 저장소와 차량 안의 primary ECU, secondary ECU가 그 중심이고, 공격자의 목표와 공격은 위협 모델로 따로 정리한다.[@uptane-standard-2-1-0-2023]
 
-이 표준은 차량이 셀룰러, Wi-Fi, 유선 같은 수단으로 필요한 백엔드 서비스에 연결할 수 있고, ECU가 [[public-key-cryptography|공개 키 암호]] 연산과 이미지·메타데이터 파일의 해시 계산을 할 수 있다고 전제한다. 대상은 승용차, 소형·대형 트럭, 오토바이를 포함한 지상 차량이다. 차량 밖에서 ECU를 손대는 것 같은 물리 공격, 신뢰된 패키지에 심긴 악성 코드, 빌드 시스템이나 패키징 과정 같은 공급망의 침해, ECU의 OBD(On-Board Diagnostics)나 [[uds|UDS]] 프로그래밍에 얽힌 문제, 버전 번호가 같은 악성 패키지로 원래 패키지를 바꿔치는 패키지 저장소의 악성 미러는 범위 밖에 둔다.[@uptane-standard-2-1-0-2023]
+이 표준은 차량이 셀룰러, Wi-Fi, 유선 같은 수단으로 필요한 백엔드 서비스에 연결할 수 있고, ECU가 [[public-key-cryptography|공개 키 암호]] 연산과 이미지·메타데이터 파일의 해시 계산을 할 수 있다고 전제한다. 대상은 승용차, 소형·대형 트럭, 오토바이를 포함한 지상 차량이다. 차량 밖에서 ECU를 손대는 것 같은 물리 공격, 신뢰된 패키지에 심긴 악성 코드, 빌드 시스템이나 패키징 과정 같은 공급망의 침해, ECU의 [[on-board-diagnostics|OBD]]나 [[uds|UDS]] 프로그래밍에 얽힌 문제, 버전 번호가 같은 악성 패키지로 원래 패키지를 바꿔치는 패키지 저장소의 악성 미러는 범위 밖에 둔다.[@uptane-standard-2-1-0-2023]
 
 Uptane Deployment Best Practices 2.1.0은 한 Uptane 구현의 프로토콜, 운영, 사용, 형식을 담은 문서를 [[the-update-framework#TAP과 POUF|POUF]]라 부른다.[@uptane-deployment-best-practices-2-1-0-2023] Uptane Standard 2.1.0은 형식을 맞추려는 구현자가 구현 선택과 데이터 바인딩 형식을 적은 POUF를 쓸 수 있게 하고, 같은 POUF를 채택한 구현끼리 상호운용할 수 있게 한다.[@uptane-standard-2-1-0-2023]
 

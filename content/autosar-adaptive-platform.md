@@ -54,7 +54,7 @@ functional cluster마다 지원하는 프로토콜은 다음과 같다.[@autosar
 | functional cluster                                                         | 지원 프로토콜                                                                                                    |
 | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | Communication Management                                                   | [[some-ip\|SOME/IP]]와 [[some-ip-sd\|SOME/IP-SD]], Signal2Service, DDS(Data Distribution Service), zero-copy IPC |
-| [[autosar-diagnostic-management\|Diagnostic Management]]                   | [[doip\|DoIP]], [[uds\|UDS]], SOVD(Service-Oriented Vehicle Diagnostics)                                         |
+| [[autosar-diagnostic-management\|Diagnostic Management]]                   | [[doip\|DoIP]], [[uds\|UDS]], [[service-oriented-vehicle-diagnostics\|SOVD]]                                     |
 | [[intrusion-detection-system-manager\|Intrusion Detection System Manager]] | 침입 탐지 시스템 프로토콜                                                                                        |
 | Sensor Interfaces                                                          | ISO 23150                                                                                                        |
 | [[autosar-network-management\|Network Management]]                         | UdpNm([[udp\|UDP]] Network Management)                                                                           |

@@ -28,7 +28,7 @@ verified: 2026-10-03
 
 ## Vector Flash Bootloader의 다운로드 시퀀스
 
-Vector의 Flash Bootloader 기술 문서가 정한 UDS 다운로드 시퀀스에서, 테스터는 DiagnosticSessionControl로 programming session에 들어가고 SecurityAccess를 거친다. 그 뒤 논리 블록마다 RoutineControl로 메모리를 지우고, RequestDownload, TransferData, RequestTransferExit로 데이터를 보낸 다음 RoutineControl로 검사한다. 모든 블록을 마치면 RoutineControl로 프로그래밍 의존성을 확인하고, ECUReset으로 하드 리셋한다.[@vector-fbl-oem-download-sequence-2024]
+Vector의 Flash Bootloader 기술 문서가 정한 UDS 다운로드 시퀀스에서, 테스터는 DiagnosticSessionControl로 programming session에 들어가고 [[uds#보안 접근과 인증|SecurityAccess]]를 거친다. 그 뒤 논리 블록마다 RoutineControl로 메모리를 지우고, RequestDownload, TransferData, RequestTransferExit로 데이터를 보낸 다음 RoutineControl로 검사한다. 모든 블록을 마치면 RoutineControl로 프로그래밍 의존성을 확인하고, ECUReset으로 하드 리셋한다.[@vector-fbl-oem-download-sequence-2024]
 
 이 시퀀스에서 세 단계는 다음처럼 동작한다.[@vector-fbl-oem-download-sequence-2024]
 
