@@ -243,20 +243,14 @@ class VersionTest(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         return result.stdout.strip().split("\t")
 
-    def bash(self, command, output, call_id):
-        call = assistant({"type": "tool_use", "id": call_id, "name": "Bash", "input": {"command": command}})
-        result = json.dumps({"type": "user", "message": {"content": [
-            {"type": "tool_result", "tool_use_id": call_id, "content": output}]}})
-        return call, result
-
     def test_worktree_base_is_the_version(self):
-        base = self.bash("git worktree add -b x .claude/worktrees/x origin/main", f"Preparing worktree\nHEAD is now at {self.v1[:8]} 첫 판", "w1")
+        base = bash("git worktree add -b x .claude/worktrees/x origin/main", f"Preparing worktree\nHEAD is now at {self.v1[:8]} 첫 판", "w1")
         row = self.version(*base, skill_call("# 소식\n\n첫 판"))
         self.assertEqual(row[:3], [UUID[:8], "wiki-news", self.v1[:12]])
         self.assertIn("worktree base", row[3])
 
     def test_base_quoted_outside_worktree_add_is_ignored(self):
-        quoted = self.bash("grep -o 'HEAD is now at' other.jsonl", f"HEAD is now at {self.v1[:8]} 첫 판", "g1")
+        quoted = bash("grep -o 'HEAD is now at' other.jsonl", f"HEAD is now at {self.v1[:8]} 첫 판", "g1")
         row = self.version(*quoted, skill_call("# 소식\n\n둘째 판"))
         self.assertEqual(row[2], self.v2[:12])
         self.assertIn("시작 시각의 origin/main", row[3])
@@ -293,6 +287,13 @@ class VersionTest(unittest.TestCase):
 
 def assistant(*content, msg_id="m1"):
     return json.dumps({"type": "assistant", "timestamp": "2026-10-08T01:00:00Z", "message": {"id": msg_id, "content": list(content)}})
+
+
+def bash(command, output, call_id):
+    call = assistant({"type": "tool_use", "id": call_id, "name": "Bash", "input": {"command": command}})
+    result = json.dumps({"type": "user", "message": {"content": [
+        {"type": "tool_result", "tool_use_id": call_id, "content": output}]}})
+    return call, result
 
 
 def handback(text):
@@ -348,6 +349,91 @@ class ReportTest(unittest.TestCase):
         result = self.save(assistant(handback("final report")), uuid="report")
         self.assertNotEqual(result.returncode, 0)
         self.assertFalse(os.path.exists(os.path.join(self.archive, "report")))
+
+    def test_same_first_line_in_reply_is_dropped_and_printed(self):
+        result = self.save(assistant(handback("\nPR #1, 티켓 #2\n\n## 보고서")))
+        self.assertEqual(self.read_report(), "PR #1, 티켓 #2\n\n## 보고서\n")
+        self.assertIn("PR #1, 티켓 #2", result.stdout)
+
+    def test_differently_worded_first_line_with_first_number_is_dropped(self):
+        result = self.save(assistant(handback("PR #1 코멘트·티켓 #2 항목\n\n## 보고서")))
+        self.assertEqual(self.read_report(), "PR #1, 티켓 #2\n\n## 보고서\n")
+        self.assertIn("PR #1 코멘트·티켓 #2 항목", result.stdout)
+
+    def test_reply_starting_with_heading_is_kept(self):
+        result = self.save(assistant(handback("## PR #1 보고서\n\n본문")))
+        self.assertEqual(self.read_report(), "PR #1, 티켓 #2\n\n## PR #1 보고서\n\n본문\n")
+        self.assertNotIn("뗀", result.stdout)
+
+    def test_reply_starting_with_prose_is_kept(self):
+        result = self.save(assistant(handback("세션은 PR #10을 냈다.\n\n본문")))
+        self.assertEqual(self.read_report(), "PR #1, 티켓 #2\n\n세션은 PR #10을 냈다.\n\n본문\n")
+        self.assertNotIn("뗀", result.stdout)
+
+
+OTHER = "66666666-7777-8888-9999-000000000000"
+RETRO = "99999999-8888-7777-6666-555555555555"
+
+
+def trigger(content):
+    body = {"job_config": {"ccr": {"events": [{"data": {"message": {"content": content, "role": "user"}}}]}}}
+    return assistant({"type": "tool_use", "id": "r1", "name": "RemoteTrigger", "input": {"action": "update", "body": body}})
+
+
+class CandidatesTest(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.archive = os.path.join(self.tmp.name, "archive")
+        self.paths = []
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def transcript(self, uuid, *lines):
+        path = os.path.join(self.tmp.name, f"{uuid}.jsonl")
+        with open(path, "w") as f:
+            f.write("\n".join(lines) + "\n")
+        self.paths.append(path)
+
+    def candidates(self):
+        result = subprocess.run(
+            [sys.executable, "-B", SCRIPT, "--archive", self.archive, "--candidates", RETRO, *self.paths],
+            env=env_without_notes(), capture_output=True, text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        return {row[0]: row for row in (line.split("\t") for line in result.stdout.splitlines()[1:])}
+
+    def test_session_handing_a_skill_to_a_routine_is_a_candidate(self):
+        self.transcript(UUID, trigger("/wiki-news 2026-w01\n\n인자는 하나다."))
+        self.transcript(OTHER, entry("user", "wiki-news를 고쳐 줘"))
+        rows = self.candidates()
+        self.assertEqual(list(rows), [UUID])
+        self.assertEqual(rows[UUID][1], "wiki-news(루틴)")
+
+    def test_analyzed_session_and_this_session_are_left_out(self):
+        command = entry("user", "<command-message>wiki-verify</command-message>\n<command-args>#3</command-args>")
+        self.transcript(UUID, command)
+        self.transcript(OTHER, command)
+        self.transcript(RETRO, command)
+        os.makedirs(self.archive)
+        with open(os.path.join(self.archive, "analyzed.tsv"), "w") as f:
+            f.write(f"{OTHER}\t-\t2026-10-08\n")
+        self.assertEqual(list(self.candidates()), [UUID])
+
+    def test_row_shows_handoff_and_urls_the_session_made(self):
+        handoff = "/home/u/documents/ash-wiki-handoff/2026-10-08-verify.md"
+        self.transcript(
+            UUID,
+            json.dumps({"type": "custom-title", "customTitle": "CAN 재조사"}),
+            assistant({"type": "tool_use", "id": "s1", "name": "Skill", "input": {"skill": "wiki-verify"}}),
+            *bash("gh pr create --title x", "https://github.com/o/r/pull/7\n", "b1"),
+            *bash("gh pr view 5", "https://github.com/o/r/pull/5\n", "b2"),
+            assistant({"type": "tool_use", "id": "w1", "name": "Write", "input": {"file_path": handoff, "content": "x"}}),
+        )
+        self.transcript(OTHER, assistant({"type": "tool_use", "id": "s1", "name": "Skill", "input": {"skill": "wiki-verify"}}))
+        rows = self.candidates()
+        self.assertEqual(rows[UUID][1:], ["wiki-verify", "2026-10-08", "CAN 재조사", "https://github.com/o/r/pull/7", handoff])
+        self.assertEqual(rows[OTHER][4:], ["-", "-"])
 
 
 if __name__ == "__main__":

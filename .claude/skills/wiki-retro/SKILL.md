@@ -12,29 +12,19 @@ disable-model-invocation: true
 
 먼저 읽는다: 분석할 세션이 실행한 스킬, `docs/adr/0001-isolation-boundary.md`, `CONTRIBUTING.md`.
 
-작업 파일은 저장소 밖, 세션의 scratchpad 디렉터리에 쓴다.
+티켓 초안과 거르기 판정은 보관 폴더의 `_drafts-<YYMMDD>/`에, 스크립트는 세션의 scratchpad 디렉터리에 쓴다. 보관 폴더는 재시작에도 남고, 다른 세션의 작업과 섞이지 않는다.
 
 ## 1. 입력
 
 **보관 폴더**는 `~/documents/ash-wiki-retro/`다. 세션마다 요약본과 분석 보고서를 `<uuid>/`에 두고, 회고가 분석한 세션을 `analyzed.tsv`(세션 uuid, 회고 세션 uuid, 날짜)에 적는다. 회고 세션 자리의 `-`는 분석 없이 적은 세션이다(1단계의 뺌, 2026-10-08 목록을 시작할 때의 옛 세션). Claude Code가 오래된 세션 기록을 지워도 무엇을 분석했고 무엇이 나왔는지 남기기 위해서다.
 
-**후보 세션**은 위키 스킬을 부른 세션 가운데 `analyzed.tsv`에 없는 것이다. 이 세션은 뺀다. 첫 명령은 스킬을 부른 세션과 `RemoteTrigger`로 스킬을 루틴에 넘긴 세션을 잡는다.
+**후보 세션**은 위키 스킬을 부르거나 `RemoteTrigger`로 루틴에 넘긴 세션 가운데 `analyzed.tsv`에 없는 것이다. 이 세션은 뺀다. 아래 명령이 후보를 세션마다 한 줄로 찍는다. 이 세션의 uuid는 scratchpad 경로에 있다.
 
 ```sh
-grep -l -E '"content":"<command-message>(wiki-[a-z]+|reader-testing)</command-message>|"name":"Skill","input":\{"skill":"(wiki-[a-z]+|reader-testing)"|"name":"RemoteTrigger","input":\{.*"content":"/(wiki-[a-z]+|reader-testing)' \
-  ~/.claude/projects/*ash-wiki*/*.jsonl > <scratchpad>/skill.txt
-cut -f1 ~/documents/ash-wiki-retro/analyzed.tsv
-xargs grep -l -E '"name":"(Write|Edit)","input":\{"file_path":"[^"]*/documents/ash-wiki-handoff/[^"]*\.md"' < <scratchpad>/skill.txt
+python3 -B .claude/skills/wiki-retro/digest.py --candidates <이 세션 uuid>
 ```
 
-후보를 표로 대화에 보이고, 세션마다 지금 분석, 나중에, 뺌 가운데 무엇으로 할지 소유자에게 묻는다. 세션이 끝났는지, 넘긴 일의 결과가 나왔는지는 소유자가 가장 잘 알기 때문이다.
-
-| 열                 | 채우는 법                                                                                                                                                                    |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 스킬, 시작일, 제목 | 스킬을 부른 줄, 기록의 첫 `timestamp`, `custom-title` 줄                                                                                                                     |
-| PR과 상태          | 아래 티켓과 리뷰 요약 항목의 PR                                                                                                                                              |
-| 넘긴 일과 상태     | 기록에서 `gh issue create`, `gh issue comment`, `gh pr comment`가 돌려준 URL(`verify:` 코멘트, `lint:` 이슈, `범위 밖` 이슈, 모음 이슈 코멘트, 발행한 티켓)과 그 이슈의 상태 |
-| 핸드오프           | 위 셋째 명령에 걸리는가                                                                                                                                                      |
+후보를 표로 대화에 보이고, 세션마다 지금 분석, 나중에, 뺌 가운데 무엇으로 할지 소유자에게 묻는다. 세션이 끝났는지, 넘긴 일의 결과가 나왔는지는 소유자가 가장 잘 알기 때문이다. 표의 열은 명령이 찍는 스킬, 시작일, 제목, URL, 핸드오프에 `gh`로 본 PR과 이슈의 상태를 더한다. URL 가운데 세션의 PR과 그 코멘트가 아닌 것(`verify:` 코멘트, `lint:` 이슈, `범위 밖` 이슈, 모음 이슈 코멘트, 발행한 티켓)이 **넘긴 일**이다.
 
 - **지금 분석**이 대상 세션이다.
 - **나중에**는 목록에 적지 않아 다음 회고에 다시 나온다.
@@ -44,8 +34,8 @@ xargs grep -l -E '"name":"(Write|Edit)","input":\{"file_path":"[^"]*/documents/a
 
 - **서브에이전트 기록**: 세션 기록 옆 `<uuid>/subagents/`
 - **세션 판**: 세션이 실제로 따른 스킬 판의 커밋. `python3 -B .claude/skills/wiki-retro/digest.py --version <세션 기록>...`의 출력을 쓴다.
-- **티켓과 리뷰 요약**: 세션의 PR은 기록에서 `gh pr create`가 돌려준 PR URL이고, 없으면 기록의 세션 URL(`"remote_session_change","url":"<세션 URL>"`)의 `session_…`을 본문에 담은 PR이다(`gh pr list --state all --search '<session_…> in:body'`). PR마다 본문의 `Closes #<티켓>`과 코멘트의 리뷰 요약을 읽는다. PR이 없는 세션(보강, 주제 계획 등)의 받은 티켓은 발행한 티켓의 `## Parent`다.
-- **핸드오프**: 세션이 쓴 핸드오프(위 셋째 명령이 잡은 기록의 파일). 머리 정보가 가리키는 앞 세션의 핸드오프(예: 받은 티켓을 발행한 세션)도 읽는다.
+- **티켓과 리뷰 요약**: 세션의 PR은 후보 표 URL 열의 PR이고, 없으면 기록의 세션 URL(`"remote_session_change","url":"<세션 URL>"`)의 `session_…`을 본문에 담은 PR이다(`gh pr list --state all --search '<session_…> in:body'`). PR마다 본문의 `Closes #<티켓>`과 코멘트의 리뷰 요약을 읽는다. PR이 없는 세션(보강, 주제 계획 등)의 받은 티켓은 발행한 티켓의 `## Parent`다.
+- **핸드오프**: 세션이 쓴 핸드오프(후보 표의 핸드오프 열). 머리 정보가 가리키는 앞 세션의 핸드오프(예: 받은 티켓을 발행한 세션)도 읽는다.
 
 **루틴 세션**은 `RemoteTrigger`로 스킬을 클라우드 루틴에서 돌린 세션이다. 스킬 본체의 기록은 로컬에 `get_run_log`로 가져온 일부뿐이라, 분석은 로컬의 조율과 그 일부까지다. 세션 판은 루틴이 돈 시각(`list_runs`나 run log)의 `origin/main`이고(`git rev-list -1 --before=<그 시각> origin/main`), PR은 run log의 PR URL이다.
 
@@ -96,9 +86,9 @@ python3 -B .claude/skills/wiki-retro/digest.py --report <에이전트 기록> <u
 
 ## 5. 검토
 
-남긴 개선안을 대상 파일로 묶고, 파일마다 새 맥락의 검토 에이전트 하나를 Agent 도구(`general-purpose`)로 띄워 병렬로 돌린다. 프롬프트는 [reviewer.md](reviewer.md)를 채워 쓴다. 입력은 그 파일의 남긴 개선안, 그 파일을 대상으로 한 뺀 발견과 이유, 분석 보고서의 "지킬 것"이다. 노트를 연 기록이 있으면 프롬프트의 노트 줄을 넣는다.
+남긴 개선안을 대상 파일로 묶고, 파일마다 새 맥락의 검토 에이전트 하나를 Agent 도구(`general-purpose`)로 띄워 병렬로 돌린다. 프롬프트는 [reviewer.md](reviewer.md)를 채워 쓴다. 노트를 연 기록이 있으면 프롬프트의 노트 줄을 넣는다.
 
-반환대로 개선안을 고치거나 빼고, 다시 재지 못한 근거는 `[추론]`으로 둔다.
+반환대로 개선안을 고치거나 뺀다.
 
 완료: 개선안마다 검토의 판정이 있고, 근거가 다시 잰 측정이거나 `[추론]` 표시가 있다. 대상 파일마다 덜 것 목록이 있다.
 
@@ -113,9 +103,16 @@ python3 -B .claude/skills/wiki-retro/digest.py --report <에이전트 기록> <u
 - 핸드오프의 진술과 다르게 나온 측정
 - 앞 세션의 회고 질문 가운데 이번 기록이 답한 것
 
-소유자가 개선안과 덜 것을 고르면 `/mattpocock-skills:to-tickets`로 티켓을 만든다. 노트를 연 기록이 있었으면, 내보낼 글(티켓 본문, 코멘트)을 `-notes.txt`가 가리키는 노트와 대조한다. 방법은 [인제스트](../wiki-ingest/SKILL.md) 격리 자기 점검의 글 대조와 식별 정보 점검이다. 걸린 곳을 고친 뒤 내보낸다.
+소유자가 개선안과 덜 것을 고르면, 소유자에게 `/mattpocock-skills:to-tickets`를 쳐 달라고 해 티켓을 만든다. 그 스킬은 모델이 부를 수 없다. 노트를 연 기록이 있었으면, 내보낼 글(티켓 본문, 코멘트)을 `-notes.txt`가 가리키는 노트와 대조한다. 방법은 [인제스트](../wiki-ingest/SKILL.md) 격리 자기 점검의 글 대조와 식별 정보 점검이다. 걸린 곳을 고친다.
 
-티켓이 나갔거나 소유자가 멈추라고 하면, 분석한 세션을 `analyzed.tsv`에 적는다. 이 세션의 uuid는 scratchpad 경로에 있다.
+내보내기 직전에는 노트를 열었는지와 상관없이, 내보낼 글을 GitHub의 GFM으로 렌더해 본다. 아래 명령이 아무것도 찍지 않아야 한다. `<del>`은 짝지은 `~`가 지운 줄로 렌더된 것이고, 코드 밖의 `#N`이 링크가 되지 않은 것은 대개 바로 뒤에 조사가 붙은 것이다. 걸린 곳을 고친 뒤 내보낸다.
+
+```sh
+gh api markdown -f mode=gfm -f context=jjongs2/ash-wiki -F text=@<글 파일> \
+  | perl -0pe 's/<(pre|code|a)\b.*?<\/\1>//gs; s/&#\d+;//g' | grep -e '<del>' -e '#[0-9]'
+```
+
+티켓이 나갔거나 소유자가 멈추라고 하면, 분석한 세션을 `analyzed.tsv`에 적는다.
 
 ```sh
 python3 -B .claude/skills/wiki-retro/digest.py --mark <이 세션 uuid> <대상 세션 uuid>...

@@ -3,6 +3,7 @@
 python3 digest.py [--archive <폴더>] <기록.jsonl>...
 python3 digest.py [--archive <폴더>] --mark <회고 세션 uuid> <세션 uuid>...
 python3 digest.py [--archive <폴더>] --report <에이전트 기록> <세션 uuid> '<첫 줄>'
+python3 digest.py [--archive <폴더>] --candidates <이 세션 uuid> [<기록.jsonl>...]
 python3 digest.py --version <기록.jsonl>...
 
 보관 폴더(기본 ~/documents/ash-wiki-retro)의 <uuid>/에, 기록마다 <이름>-main.md를,
@@ -18,7 +19,16 @@ python3 digest.py --version <기록.jsonl>...
 
 --report는 에이전트 기록의 마지막 SubagentHandback 메시지(없으면 마지막 어시스턴트
 글)를 첫 줄 아래에 붙여 <uuid>/report.md에 쓴다. 반환이 없거나 uuid가 아니면 쓰지
-않고 실패한다.
+않고 실패한다. 반환의 첫 비지 않은 줄이 제목(#)이 아니고, 첫 줄과 같거나 첫 줄의 첫
+#N을 담으면 그 줄을 떼고 저장하고, 뗀 줄을 찍는다. 반환이 첫 줄을 제 문구로 다시 쓰면
+첫 줄이 두 번 들어가기 때문이다.
+
+--candidates는 위키 스킬을 부르거나 RemoteTrigger로 루틴에 넘긴 세션 가운데
+analyzed.tsv에 없고 이 세션도 아닌 것을 찾아, 세션마다 uuid, 스킬, 시작일(첫
+timestamp), 제목, URL, 핸드오프를 한 줄씩 찍는다. URL은 기록에서 gh pr/issue
+create·comment가 돌려준 PR·이슈·코멘트이고, 핸드오프는 세션이 쓰거나 고친
+ash-wiki-handoff/의 파일이다. 루틴에 넘긴 스킬에는 "(루틴)"을 단다. 기록을 주지
+않으면 ~/.claude/projects/*ash-wiki*/의 기록을 본다.
 
 --version은 기록마다 세션 판을 찍는다. 판은 worktree base(git worktree add 결과의 "HEAD is now at"),
 없으면 기록의 첫 timestamp 때의 origin/main이다. 기록의 스킬 본문이 그 판의 SKILL.md와
@@ -45,11 +55,21 @@ from datetime import date
 
 NOTES = os.environ.get("ASH_WIKI_NOTES", "").rstrip("/")
 ARCHIVE = os.path.expanduser("~/documents/ash-wiki-retro")
+SESSIONS = os.path.expanduser("~/.claude/projects/*ash-wiki*/*.jsonl")
 NOTE_REFS = ("$ASH_WIKI_NOTES", "${ASH_WIKI_NOTES")
 PERSISTED = re.compile(r"tool-results/[\w.-]+")
 UUID = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
+HEADING = re.compile(r"#{1,6}\s")
+ISSUE_NUMBER = re.compile(r"#\d+")
 WORKTREE_BASE = re.compile(r"HEAD is now at ([0-9a-f]{7,40})")
-SKILL_DIR = re.compile(r"Base directory for this skill: \S*?(\.claude/skills/(?:wiki-[a-z]+|reader-testing))\n")
+WIKI_SKILL = r"wiki-[a-z]+|reader-testing"
+SKILL_DIR = re.compile(rf"Base directory for this skill: \S*?(\.claude/skills/(?:{WIKI_SKILL}))\n")
+COMMAND_SKILL = re.compile(rf"<command-message>({WIKI_SKILL})</command-message>")
+ROUTINE_SKILL = re.compile(rf'"content": "/({WIKI_SKILL})\b')
+GH_WRITE = re.compile(r"\bgh (?:pr|issue) (?:create|comment)\b")
+GITHUB_URL = re.compile(r"https://github\.com/[\w.-]+/[\w.-]+/(?:pull|issues)/\d+(?:#issuecomment-\d+)?")
+HANDOFF = re.compile(r"/documents/ash-wiki-handoff/.*\.md$")
+CANDIDATE_MARKS = ("<command-message>", '"Skill"', '"RemoteTrigger"', "custom-title", "gh ", "github.com/", "ash-wiki-handoff")
 
 
 def note_forms():
@@ -264,14 +284,18 @@ def digest_session(archive, path):
         f.write(stamp)
 
 
-def mark(archive, retro, uuids):
+def analyzed(archive):
     ledger = os.path.join(archive, "analyzed.tsv")
-    seen = set()
-    if os.path.exists(ledger):
-        with open(ledger) as f:
-            seen = {line.split("\t", 1)[0] for line in f if line.strip()}
+    if not os.path.exists(ledger):
+        return set()
+    with open(ledger) as f:
+        return {line.split("\t", 1)[0] for line in f if line.strip()}
+
+
+def mark(archive, retro, uuids):
+    seen = analyzed(archive)
     today = date.today().isoformat()
-    with open(ledger, "a") as f:
+    with open(os.path.join(archive, "analyzed.tsv"), "a") as f:
         for uuid in uuids:
             if uuid not in seen:
                 seen.add(uuid)
@@ -364,11 +388,24 @@ def final_report(path):
     return handback or "\n\n".join(texts)
 
 
+def drop_first_line(report, first):
+    head, _, rest = report.strip().partition("\n")
+    number = ISSUE_NUMBER.search(first)
+    if HEADING.match(head):
+        return report, None
+    if head.strip() == first.strip() or number and re.search(re.escape(number.group()) + r"(?!\d)", head):
+        return rest, head
+    return report, None
+
+
 def save_report(archive, path, uuid, first):
     check_uuids([uuid])
     report = final_report(path)
     if not report.strip():
         sys.exit(f"반환이 없다: {path}")
+    report, dropped = drop_first_line(report, first)
+    if dropped:
+        print(f"뗀 첫 줄: {dropped}")
     out_dir = os.path.join(archive, uuid)
     os.makedirs(out_dir, exist_ok=True)
     with open(os.path.join(out_dir, "report.md"), "w") as f:
@@ -376,10 +413,66 @@ def save_report(archive, path, uuid, first):
     print(f"{out_dir}/report.md")
 
 
+def invoked_wiki_skills(block):
+    if block.get("type") == "text":
+        match = COMMAND_SKILL.match(block.get("text", ""))
+        return [match.group(1)] if match else []
+    if block.get("type") != "tool_use":
+        return []
+    name, inp = block.get("name"), block.get("input") or {}
+    if name == "Skill" and re.fullmatch(WIKI_SKILL, str(inp.get("skill", ""))):
+        return [inp["skill"]]
+    if name == "RemoteTrigger":
+        return [f"{s}(루틴)" for s in ROUTINE_SKILL.findall(json.dumps(inp, ensure_ascii=False))]
+    return []
+
+
+def candidate_row(path):
+    skills, urls, handoffs = [], [], []
+    start, title, writes = "", "", set()
+    with open(path) as transcript:
+        for line in transcript:
+            if start and not any(m in line for m in CANDIDATE_MARKS):
+                continue
+            try:
+                entry = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            start = start or (entry.get("timestamp") or "")[:10]
+            if entry.get("type") == "custom-title":
+                title = entry.get("customTitle") or title
+            for block in blocks(entry.get("message")):
+                skills += invoked_wiki_skills(block)
+                inp = block.get("input") or {}
+                if block.get("type") == "tool_use" and block.get("name") == "Bash" and GH_WRITE.search(str(inp.get("command", ""))):
+                    writes.add(block.get("id"))
+                elif block.get("type") == "tool_use" and block.get("name") in ("Write", "Edit") and HANDOFF.search(str(inp.get("file_path", ""))):
+                    handoffs.append(inp["file_path"])
+                elif block.get("type") == "tool_result" and block.get("tool_use_id") in writes:
+                    urls += GITHUB_URL.findall(result_text(block.get("content")))
+    if not skills:
+        return None
+    uuid = os.path.basename(stem(path))
+    return [uuid, joined(skills, ","), start or "-", title or "-", joined(urls), joined(handoffs)]
+
+
+def joined(items, sep=" "):
+    return sep.join(dict.fromkeys(items)) or "-"
+
+
+def candidates(archive, retro, paths):
+    done = analyzed(archive) | {retro}
+    rows =[candidate_row(p) for p in paths if os.path.basename(stem(p)) not in done]
+    print("uuid\t스킬\t시작일\t제목\tURL\t핸드오프")
+    for row in sorted((r for r in rows if r), key=lambda r: r[2]):
+        print("\t".join(row))
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--archive", default=ARCHIVE)
     parser.add_argument("--mark", metavar="RETRO")
+    parser.add_argument("--candidates", metavar="RETRO")
     parser.add_argument("--report", nargs=3, metavar=("AGENT", "UUID", "FIRST"))
     parser.add_argument("--version", action="store_true")
     parser.add_argument("items", nargs="*")
@@ -391,6 +484,10 @@ def main():
             sys.exit("origin/main이 없다. 저장소 루트에서 돌린다.")
         for path in args.items:
             session_version(path)
+        return
+    if args.candidates:
+        check_uuids([args.candidates])
+        candidates(args.archive, args.candidates, args.items or sorted(glob.glob(SESSIONS)))
         return
     os.makedirs(args.archive, exist_ok=True)
     if args.report:
