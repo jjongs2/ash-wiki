@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**TCP 혼잡 제어**(TCP congestion control)는 [[tcp|TCP]] 송신 측이 네트워크의 혼잡에 맞춰 네트워크로 내보내는 데이터의 양을 조절하는 방법이다.[@ietf-rfc-5681-2009][@ietf-rfc-2914-2000] RFC 5681은 slow start, congestion avoidance, fast retransmit, fast recovery 네 알고리즘을 정한다.[@ietf-rfc-5681-2009]
+**TCP 혼잡 제어**(TCP congestion control)는 [[tcp|TCP]] 송신 측이 네트워크의 혼잡에 맞춰 네트워크로 내보내는 데이터의 양을 조절하는 방법이다.[@ietf-rfc-5681-2009][@ietf-rfc-2914-2000] slow start, congestion avoidance, fast retransmit, fast recovery 네 알고리즘은 RFC 5681이 정한다.[@ietf-rfc-5681-2009]
 
 혼잡 제어가 없으면 송신 측이 아직 전달 중이거나 이미 도착한 패킷까지 불필요하게 다시 보내느라, 부하가 늘수록 네트워크가 해내는 쓸모 있는 일이 오히려 줄어드는 **혼잡 붕괴**(congestion collapse)가 일어날 수 있다. 이때 처리량은 평소의 작은 일부로 떨어진다.[@ietf-rfc-2914-2000][@ietf-rfc-9293-2022]
 
@@ -47,7 +47,7 @@ fast retransmit 뒤에는 **fast recovery**로 들어간다. ssthresh를 재전�
 
 RFC 5681의 알고리즘은 패킷 손실을 혼잡의 신호로 본다.[@ietf-rfc-5681-2009]
 
-RFC 9438은 cwnd를 3차 함수로 늘리는 CUBIC을 정한다.[@ietf-rfc-9438-2023]
+cwnd를 3차 함수로 늘리는 CUBIC은 RFC 9438이 정한다.[@ietf-rfc-9438-2023]
 
 ## UDP와의 차이
 

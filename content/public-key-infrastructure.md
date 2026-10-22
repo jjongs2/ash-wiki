@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-22
 ---
 
-FIPS 186-5는 **PKI**(Public Key Infrastructure)를 [[public-key-cryptography|공개 키]] 인증서를 발급하고 유지하고 폐지하려고 세운 틀로 정의한다.[@nist-fips-186-5-2023] RFC 5280은 인터넷에서 쓸 X.509 v3 인증서와 X.509 v2 CRL(Certificate Revocation List)의 프로파일을 정한다.[@ietf-rfc-5280-2008]
+FIPS 186-5는 **PKI**(Public Key Infrastructure)를 [[public-key-cryptography|공개 키]] 인증서를 발급하고 유지하고 폐지하려고 세운 틀로 정의한다.[@nist-fips-186-5-2023] 인터넷에서 쓸 X.509 v3 인증서와 X.509 v2 CRL(Certificate Revocation List)의 프로파일은 RFC 5280이 정한다.[@ietf-rfc-5280-2008]
 
 ## 공개 키 인증서
 
