@@ -47,11 +47,11 @@ IEEE 802.3-2022는 길이 해석과 타입 해석이 서로 배타적이라고 �
 
 ## IP 캡슐화
 
-RFC 894는 이더넷 위의 IP 데이터그램을 타입 방식으로 싣도록 정한다. 타입 필드 값은 `0x0800`이고, 데이터 필드에는 IP 헤더와 그 뒤의 데이터가 바로 들어간다. 데이터 필드가 최소 46옥텟에 못 미치면 0인 옥텟으로 채우며, 이 패드는 IP 패킷에 들지 않는다.[@ietf-rfc-894-1984]
+RFC 894 캡슐화는 이더넷 위의 IP 데이터그램을 타입 방식으로 싣는다. 타입 필드 값은 `0x0800`이고, 데이터 필드에는 IP 헤더와 그 뒤의 데이터가 바로 들어간다. 데이터 필드가 최소 46옥텟에 못 미치면 0인 옥텟으로 채우며, 이 패드는 IP 패킷에 들지 않는다.[@ietf-rfc-894-1984]
 
-RFC 1042는 IEEE 802 네트워크 위의 IP 데이터그램과 ARP 메시지를 IEEE 802.2 LLC(Logical Link Control) Type 1의 UI(Unnumbered Information) 형식에 SNAP(Sub-Network Access Protocol) 확장을 붙여 싣도록 정한다. DSAP(Destination Service Access Point)와 SSAP(Source Service Access Point)는 SNAP에 배정된 전역 값 170, 제어 필드는 3이고, SNAP의 24비트 조직 코드는 0이며, 나머지 16비트에 EtherType이 들어간다. LLC와 SNAP 헤더가 8옥텟을 차지하므로, 10BASE5의 최대 프레임 1518옥텟에서 MAC 헤더와 트레일러 18옥텟을 빼면 IP 데이터그램에 남는 것은 1492옥텟이다.[@ietf-rfc-1042-1988]
+RFC 1042 캡슐화는 IEEE 802 네트워크 위의 IP 데이터그램과 ARP 메시지를 IEEE 802.2 LLC(Logical Link Control) Type 1의 UI(Unnumbered Information) 형식에 SNAP(Sub-Network Access Protocol) 확장을 붙여 싣는다. DSAP(Destination Service Access Point)와 SSAP(Source Service Access Point)는 SNAP에 배정된 전역 값 170, 제어 필드는 3이고, SNAP의 24비트 조직 코드는 0이며, 나머지 16비트에 EtherType이 들어간다. LLC와 SNAP 헤더가 8옥텟을 차지하므로, 10BASE5의 최대 프레임 1518옥텟에서 MAC 헤더와 트레일러 18옥텟을 빼면 IP 데이터그램에 남는 것은 1492옥텟이다.[@ietf-rfc-1042-1988]
 
-RFC 1122는 10 Mbit/s 이더넷 케이블에 연결된 인터넷 호스트가 RFC 894 캡슐화로 패킷을 보내고 받을 수 있어야 하고(MUST), RFC 894 패킷 사이에 섞여 오는 RFC 1042 패킷을 받을 수 있어야 하며(SHOULD), RFC 1042 캡슐화로 보낼 수도 있다(MAY)고 정한다. 두 캡슐화로 모두 보낼 수 있는 호스트는 어느 쪽으로 보낼지 고르는 설정 스위치를 두고, 그 기본값을 RFC 894로 해야 한다. 이 RFC는 이더넷의 [[mtu|MTU]]를 1500, IEEE 802.3의 MTU를 1492로 둔다.[@ietf-rfc-1122-1989]
+10 Mbit/s 이더넷 케이블에 연결된 인터넷 호스트는 RFC 894 캡슐화로 패킷을 보내고 받을 수 있어야 하고(MUST), RFC 894 패킷 사이에 섞여 오는 RFC 1042 패킷을 받을 수 있어야 하며(SHOULD), RFC 1042 캡슐화로 보낼 수도 있다(MAY). 두 캡슐화로 모두 보낼 수 있는 호스트는 어느 쪽으로 보낼지 고르는 설정 스위치를 두고, 그 기본값을 RFC 894로 해야 한다. 이더넷의 [[mtu|MTU]]는 1500, IEEE 802.3의 MTU는 1492다.[@ietf-rfc-1122-1989]
 
 ![[diagrams/ethernet-ip-encapsulation-rfc-894-1042.svg]]
 

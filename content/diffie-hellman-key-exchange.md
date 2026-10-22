@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**Diffie-Hellman 키 교환**은 미리 비밀을 나누지 않은 두 당사자가 공개된 채널로 값을 주고받아 공통의 키를 얻는 방법이다. 도청자는 들은 값만으로 그 키를 계산하기 어렵다.[@diffie-new-directions-1976] RFC 2631은 Diffie-Hellman을 두 당사자가 공유 비밀에 합의하는 [[key-establishment|키 합의]] 알고리즘으로 정한다.[@ietf-rfc-2631-1999] Diffie와 Hellman은 1976년 논문에서 이 방법을 제안했다.[@diffie-new-directions-1976]
+**Diffie-Hellman 키 교환**은 미리 비밀을 나누지 않은 두 당사자가 공개된 채널로 값을 주고받아 공통의 키를 얻는 방법이다. 도청자는 들은 값만으로 그 키를 계산하기 어렵다.[@diffie-new-directions-1976] Diffie-Hellman은 두 당사자가 공유 비밀에 합의하는 [[key-establishment|키 합의]] 알고리즘이다.[@ietf-rfc-2631-1999] Diffie와 Hellman은 1976년 논문에서 이 방법을 제안했다.[@diffie-new-directions-1976]
 
 ## 절차
 

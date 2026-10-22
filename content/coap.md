@@ -28,7 +28,7 @@ CoAP 메시지는 4바이트 고정 길이 이진 헤더로 시작하고, 그 �
 
 ## 보안과 포트
 
-이 RFC는 CoAP를 보호하는 수단으로 [[transport-layer-security#DTLS|DTLS]] 바인딩을 정한다. 자원 발견(resource discovery)에 쓰는 자원을 내는 서버는 CoAP의 기본 [[port-number|포트]] 5683을 지원해야 한다. DTLS로 보호한 CoAP의 기본 포트 5684는 서버가 지원해도 된다.[@ietf-rfc-7252-2014]
+CoAP는 보호 수단으로 [[transport-layer-security#DTLS|DTLS]] 바인딩을 둔다. 자원 발견(resource discovery)에 쓰는 자원을 내는 서버는 CoAP의 기본 [[port-number|포트]] 5683을 지원해야 한다. DTLS로 보호한 CoAP의 기본 포트 5684는 서버가 지원해도 된다.[@ietf-rfc-7252-2014]
 
 ## 확장
 

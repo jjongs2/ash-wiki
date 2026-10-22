@@ -13,7 +13,7 @@ ST RM0008은 MAC을 media access control로, Microchip ENC28J60 데이터시트�
 
 ## 표기
 
-IEEE 등록 기관의 16진 표기는 EUI-48의 여섯 옥텟을 두 자리 16진수로 적고 하이픈으로 잇는다. 예: `AC-DE-48-23-45-67`. 하이픈 없이 16진수로 적기도 한다.[@ieee-ra-eui-2017] IETF RFC 9911의 YANG(Yet Another Next Generation) 데이터 타입 mac-address는 48비트 MAC 주소를 두 자리 16진수 여섯 개를 콜론으로 이은 꼴로 나타내고, 정식 표현에는 소문자를 쓴다.[@ietf-rfc-9911-2025]
+IEEE 등록 기관의 16진 표기는 EUI-48의 여섯 옥텟을 두 자리 16진수로 적고 하이픈으로 잇는다. 예: `AC-DE-48-23-45-67`. 하이픈 없이 16진수로 적기도 한다.[@ieee-ra-eui-2017] YANG(Yet Another Next Generation) 데이터 타입 mac-address는 48비트 MAC 주소를 두 자리 16진수 여섯 개를 콜론으로 이은 꼴로 나타내고, 정식 표현에는 소문자를 쓴다.[@ietf-rfc-9911-2025]
 
 ## OUI
 
