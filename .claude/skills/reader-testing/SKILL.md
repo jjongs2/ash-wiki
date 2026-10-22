@@ -126,7 +126,7 @@ npm run reader-capture -- --out <scratchpad>/capture <인자>
 
 소유자가 확인에서 고치라고 한 것을 고친 뒤 5단계의 점검을 다시 돌린다.
 
-1. A나 B를 고쳤으면 PR을 올린다. bib 엔트리나 도해를 더했으면 push 직전에 위키 규약의 열린 PR과 겹치는 파일 절대로 본다. 제목은 `content: <대상> Reader Testing 수정`, 본문은 `CONTRIBUTING.md`의 세 부분이다. Verification에는 캡처한 곳, 갈래별 건수, B의 재판정 결과, 반영 뒤 점검과 PR 전 확인을 적는다. 리뷰는 `CONTRIBUTING.md`를 따른다.
+1. A나 B를 고쳤으면 `CONTRIBUTING.md`의 리뷰 절대로 리뷰를 돌려 반영하고 PR을 올린다. bib 엔트리나 도해를 더했으면 PR을 올리기 전에 위키 규약의 열린 PR과 겹치는 파일 절대로 본다. 제목은 `content: <대상> Reader Testing 수정`, 본문은 `CONTRIBUTING.md`의 세 부분이다. Verification에는 캡처한 곳, 갈래별 건수, B의 재판정 결과, 반영 뒤 점검과 PR 전 확인을 적는다. PR을 연 뒤 리뷰 요약 코멘트를 단다.
 2. C가 있으면 열린 `docs: 규약 검토 모음` 이슈에 [모음 이슈 템플릿](../../../.github/ISSUE_TEMPLATE/convention-review.md)의 꼴로 한 코멘트에 한 항목씩 남긴다. **문제**에는 걸린 페이지와 독자가 읽은 뜻, 1의 PR이 있으면 그 번호를 적는다. 열린 모음 이슈가 없으면 템플릿의 제목, 라벨, 본문으로 연다.
 
 완료: 고친 것이 있으면 PR과 리뷰 요약 코멘트가 있고, C가 모두 모음 이슈의 코멘트로 있다.
