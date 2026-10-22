@@ -31,6 +31,14 @@ $$2^k \le \frac{2^n}{n + 1}$$
 
 Microchip CoreEDAC 사용자 가이드에 따르면 고치는 오류가 많을수록 중복 비트가 더 필요하고, 부호기와 복호기가 복잡해져 지연이 늘어난다.[@microchip-coreedac-2025]
 
+## 메모리의 ECC
+
+메모리에 저장된 비트는 알파 입자나 중성자 같은 방사선 때문에 뒤집힐 수 있다.[@nxp-an12522-2019][@ti-spraco4a-2021]
+
+TI TMS570LS0914는 플래시와 RAM에 ECC를 두어, 단일 비트 오류를 고치고 다중 비트 오류는 알리기만 한다.[@ti-tms570ls0914-2016] NXP S32K1xx는 플래시와 SRAM에 ECC를 두어 단일 비트 오류를 고치고, 고칠 수 없는 오류는 알린다. S32K11x의 SRAM_L에는 ECC가 없다.[@nxp-an12522-2019]
+
+TI Hercules MCU는 SRAM과 플래시의 ECC를 실행 중의 하드웨어 [[safety-mechanism|안전 메커니즘]]으로 쓴다.[@ti-spry178-2011] NXP 앱노트 AN13566에 따르면 ECC 메모리는 [[iso-26262|ISO 26262]] 같은 [[functional-safety|기능 안전]] 준수가 필요한 시스템에 알맞다.[@nxp-an13566-2022]
+
 ## Reed-Solomon 부호
 
 CCSDS 131.0-B-6은 버스트 오류를 고치는 Reed-Solomon 부호를 정한다. 이 부호의 심볼은 8비트이고, 원소가 $2^8$개인 갈루아 체(Galois Field) $\mathrm{GF}(2^8)$의 원소 하나를 나타낸다. 부호어 하나는 심볼 $n = 255$개로 되고, 그 가운데 $2E$개가 패리티 심볼, $k = n - 2E$개가 정보 심볼이다. $E$는 부호어 하나에서 고칠 수 있는 심볼 오류의 수이고, 16이나 8로 둔다. 이 표준은 주석에서 $E = 16$이면 (255,223) 부호, $E = 8$이면 (255,239) 부호가 된다고 제시한다.[@ccsds-131-0-b-6-2026] [[ieee-802-3|IEEE 802.3]]-2022는 [[1000base-t1|1000BASE-T1]]도 전송 데이터를 Reed-Solomon 부호로 부호화하도록 정한다.[@ieee-802-3-2022]
@@ -51,14 +59,6 @@ CCSDS 131.0-B-6은 길쌈 부호와 연접의 용어를 이 문서 안에서 쓰
 이 표준의 기본 길쌈 부호는 부호율 1/2, 구속장 7이다. Reed-Solomon 부호만으로 부호 이득이 모자라면 Reed-Solomon 부호를 외부 부호, 길쌈 부호를 내부 부호로 연접할 수 있다.[@ccsds-131-0-b-6-2026]
 
 ![[diagrams/concatenated-code-outer-inner.svg]]
-
-## 메모리의 ECC
-
-메모리에 저장된 비트는 알파 입자나 중성자 같은 방사선 때문에 뒤집힐 수 있다.[@nxp-an12522-2019][@ti-spraco4a-2021]
-
-TI TMS570LS0914는 플래시와 RAM에 ECC를 두어, 단일 비트 오류를 고치고 다중 비트 오류는 알리기만 한다.[@ti-tms570ls0914-2016] NXP S32K1xx는 플래시와 SRAM에 ECC를 두어 단일 비트 오류를 고치고, 고칠 수 없는 오류는 알린다. S32K11x의 SRAM_L에는 ECC가 없다.[@nxp-an12522-2019]
-
-TI Hercules MCU는 SRAM과 플래시의 ECC를 실행 중의 하드웨어 [[safety-mechanism|안전 메커니즘]]으로 쓴다.[@ti-spry178-2011] NXP 앱노트 AN13566에 따르면 ECC 메모리는 [[iso-26262|ISO 26262]] 같은 [[functional-safety|기능 안전]] 준수가 필요한 시스템에 알맞다.[@nxp-an13566-2022]
 
 ## ARQ와의 차이
 

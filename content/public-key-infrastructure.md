@@ -22,3 +22,7 @@ FIPS 186-5는 **PKI**(Public Key Infrastructure)를 [[public-key-cryptography|�
 ## 폐지
 
 인증서는 유효 기간 내내 쓰일 것으로 보고 발급하지만, 이름이 바뀌거나 주체와 CA의 관계가 바뀌거나, 대응하는 개인 키가 노출되었거나 노출이 의심되면 유효 기간이 끝나기 전에 무효가 될 수 있다. 이때 CA는 인증서를 폐지해야 한다. 폐지를 알리는 방법 하나로, CA는 **CRL**이라 부르는 서명된 목록을 주기적으로 내고, CRL은 폐지된 인증서를 인증서 일련번호로 가리킨다.[@ietf-rfc-5280-2008]
+
+## 쓰는 곳
+
+[[transport-layer-security#인증|TLS 1.3]], [[autosar-crypto-stack#Key Manager|AUTOSAR 암호 스택]], [[secure-boot#구현 예|Secure boot]]가 인증서를 쓰는 방식은 각 페이지에서 다룬다.

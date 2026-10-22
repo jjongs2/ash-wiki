@@ -31,14 +31,14 @@ Krawczyk, Bellare, Canetti는 1997년 RFC 2104로 HMAC을 기술했다. HMAC은 
 
 NIST SP 800-175B Rev. 1은 HMAC을 FIPS 180-4나 FIPS 202에 정한 승인된 해시 함수와 함께 쓰도록 승인한다.[@nist-sp-800-175b-r1-2020]
 
-## 해시만 쓸 때와의 차이
-
-해시 함수는 데이터 무결성을 어느 정도만 보증하고, MAC 알고리즘은 무결성과 출처 인증을 함께 줄 수 있다. 해시 함수를 비밀 키 없이 쓰면 공격자가 데이터를 바꾸고 해시 값을 새로 계산했을 수 있어서, 데이터가 바뀌지 않았다는 보증이 없다. 키를 모르는 공격자는 데이터를 바꾼 뒤 그 데이터에 맞아 검증을 통과할 MAC을 계산해 내지 못한다.[@nist-sp-800-175b-r1-2020]
-
-NIST SP 800-63-4에 따르면 MAC은 authenticity와 무결성은 보호하지만 부인 방지는 주지 않는다.[@nist-sp-800-63-4-2025] 디지털 서명과의 비교는 [[digital-signature#MAC과의 차이|디지털 서명]]에서 다룬다.
-
 ## GMAC과 KMAC
 
-NIST SP 800-38D는 [[block-cipher-mode-of-operation#인증 암호 모드|GCM]]의 입력을 암호화하지 않을 데이터로 한정해 입력 데이터를 인증하기만 하는 특수형인 **GMAC**(Galois Message Authentication Code)을 정한다.[@nist-sp-800-38d-2007][@ietf-rfc-4543-2006]
+NIST SP 800-38D는 [[block-cipher-mode-of-operation#인증 암호 모드|GCM]]의 입력을 암호화하지 않을 데이터로 한정한 특수형인 **GMAC**(Galois Message Authentication Code)을 정한다.[@ietf-rfc-4543-2006] GMAC은 입력 데이터를 인증하기만 하는 모드다.[@nist-sp-800-38d-2007]
 
 NIST SP 800-185는 [[cryptographic-hash-function#SHA 계열|Keccak]]에 기반한 가변 길이 MAC 알고리즘인 **KMAC**(Keccak Message Authentication Code)을 정하며, KMAC은 PRF(Pseudorandom Function)로도 쓸 수 있다.[@nist-sp-800-185-2016]
+
+## 해시만 쓸 때와의 차이
+
+NIST SP 800-175B Rev. 1에 따르면 해시 함수는 데이터 무결성을 어느 정도만 보증하고, MAC 알고리즘은 무결성과 출처 인증을 함께 줄 수 있다. 해시 함수를 비밀 키 없이 쓰면 공격자가 데이터를 바꾸고 해시 값을 새로 계산했을 수 있어서, 데이터가 바뀌지 않았다는 보증이 없다. 키를 모르는 공격자는 데이터를 바꾼 뒤 그 데이터에 맞아 검증을 통과할 MAC을 계산해 내지 못한다.[@nist-sp-800-175b-r1-2020]
+
+NIST SP 800-63-4에 따르면 MAC은 authenticity와 무결성은 보호하지만 부인 방지는 주지 않는다.[@nist-sp-800-63-4-2025] 디지털 서명과의 비교는 [[digital-signature#MAC과의 차이|디지털 서명]]에서 다룬다.

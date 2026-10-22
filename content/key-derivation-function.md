@@ -11,7 +11,7 @@ verified: 2026-10-22
 
 ## 의사 난수 함수 기반 KDF
 
-NIST SP 800-108r1-upd1은 PRF(Pseudorandom Function)로 [[message-authentication-code#해시 기반: HMAC|HMAC]], [[message-authentication-code#블록 암호 기반: CMAC|CMAC]], [[message-authentication-code#GMAC과 KMAC|KMAC]]을 쓰는 KDF를 정하고, PRF를 여러 번 부르는 반복 방식으로 counter 모드, feedback 모드, double-pipeline 모드를 둔다.[@nist-sp-800-108-r1-upd1-2024]
+NIST SP 800-108r1-upd1은 이미 있는 암호 키에서 키를 더 유도하는 KDF를 정한다. 이 KDF는 PRF(Pseudorandom Function)로 [[message-authentication-code#해시 기반: HMAC|HMAC]], [[message-authentication-code#블록 암호 기반: CMAC|CMAC]], [[message-authentication-code#GMAC과 KMAC|KMAC]]을 쓰고, PRF를 여러 번 부르는 반복 방식으로 counter 모드, feedback 모드, double-pipeline 모드를 둔다.[@nist-sp-800-108-r1-upd1-2024]
 
 ## 추출과 확장
 
@@ -20,3 +20,7 @@ NIST SP 800-56C Rev. 2는 [[key-establishment|키 설정]]에서 얻은 공유 �
 ![[diagrams/kdf-one-step-two-step.svg]]
 
 RFC 5869에 따르면 **HKDF**(HMAC-based Extract-and-Expand Key Derivation Function)는 extract-then-expand 꼴을 따르는 HMAC 기반 KDF다. 첫 단계는 입력 키 재료에서 고정 길이의 의사 난수 키를 추출하고, 둘째 단계는 그 키를 여러 의사 난수 키로 확장한다.[@ietf-rfc-5869-2010]
+
+## 쓰는 곳
+
+[[transport-layer-security#TLS 1.3 핸드셰이크|TLS 1.3]]과 [[autosar-crypto-stack#Crypto Service Manager|AUTOSAR 암호 스택]]이 키를 유도하는 방식은 각 페이지에서 다룬다.
