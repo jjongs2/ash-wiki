@@ -47,10 +47,10 @@ Changes·Verification의 수는 원 산출물(에이전트 반환, `git diff`, �
 
 ## 리뷰
 
-1. PR을 올리기 전에 `/code-review`(mattpocock-skills)로 두 축을 리뷰하고 반영합니다. 반영이 첫 push에 들어가, push와 CI, PR 본문 쓰기가 한 번에 끝납니다.
+1. PR을 올리기 전에 `/mattpocock-skills:code-review`로 두 축을 리뷰하고 반영합니다. 반영이 첫 push에 들어가, push와 CI, PR 본문 쓰기가 한 번에 끝납니다.
    - Standards: 저장소 문서의 규칙을 지키는가
    - Spec: 이슈가 요구한 것과 맞는가
-2. `/code-review`에는 기준 커밋 `origin/main`과 스펙을 넘깁니다. 스펙은 PR이 닫을 이슈, 없으면 그 흐름의 스킬 문서입니다. 둘 다 없으면 스펙이 없다고 넘겨 Spec 축을 건너뜁니다. 넘기지 않으면 `/code-review`가 묻고, 사람이 없는 흐름은 거기서 멈춥니다.
+2. `/mattpocock-skills:code-review`에는 기준 커밋 `origin/main`과 스펙을 넘깁니다. 스펙은 PR이 닫을 이슈, 없으면 그 흐름의 스킬 문서입니다. 둘 다 없으면 스펙이 없다고 넘겨 Spec 축을 건너뜁니다. 넘기지 않으면 스킬이 묻고, 사람이 없는 흐름은 거기서 멈춥니다.
 3. 반영한 뒤 PR 전 확인을 다시 통과시킵니다. 주장을 새로 쓰거나 고친 콘텐츠 PR은 [위키 검증의 독자 검토](docs/wiki-verification.md#독자-검토)가 정한 차례와 반영 뒤 단계를 따릅니다.
 4. PR을 연 뒤 결과를 코멘트 하나로 남깁니다. PR 전에 반영한 지적도 판단마다 한 줄로 적습니다. 꼴은 [리뷰 요약 예시](.github/REVIEW_SUMMARY_EXAMPLE.md)를 따릅니다.
 5. 머지는 사람이 합니다.
