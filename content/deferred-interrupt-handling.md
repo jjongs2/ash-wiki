@@ -41,7 +41,7 @@ RTEMS의 인터럽트 관리자는 ISR이 끝날 때 태스크 스케줄링과 �
 
 FreeRTOS에서 `configMAX_SYSCALL_INTERRUPT_PRIORITY`는 ISR용 FreeRTOS API 함수를 부를 수 있는 가장 높은 인터럽트 우선순위를 정한다. 이보다 높은 우선순위의 인터럽트는 [[critical-section|임계 구역]]의 영향을 받지 않아 스케줄러가 실행을 막지 못하지만, 그 ISR에서는 FreeRTOS API 함수를 하나도 쓸 수 없다. 모터 제어처럼 타이밍이 아주 엄격한 기능은 스케줄러가 인터럽트 응답 시간을 흔들지 않도록 이 우선순위보다 높게 둔다.[@freertos-interrupt-management-2026]
 
-Zephyr의 zero-latency 인터럽트는 IRQ(Interrupt Request) 잠금으로 막을 수 없는 우선순위에서 실행되고, direct ISR로 선언해야 한다. zero-latency 인터럽트는 커널 코드와 함께 동작하지 않고 하드웨어 사건을 직접 다루도록 만든 것이라, 그 안에서 커널 API를 부르는 것은 정의되지 않은 동작으로 다뤄야 한다. 이 기능은 아키텍처마다 지원되며, 지금은 Arm Cortex-M에서 구현되어 있다.[@zephyr-interrupts-2026]
+Zephyr의 zero-latency 인터럽트는 IRQ(Interrupt Request) 잠금으로 막을 수 없는 우선순위에서 실행되고, direct ISR로 선언해야 한다. zero-latency 인터럽트는 커널 코드와 함께 동작하지 않고 하드웨어 사건을 직접 다루도록 만든 것이라, 그 안에서 커널 API를 부르는 것은 정의되지 않은 동작으로 다뤄야 한다. 이 기능은 아키텍처마다 지원되며, 2026년 10월 기준 Arm Cortex-M에서 구현되어 있다.[@zephyr-interrupts-2026]
 
 RTEMS에서 NMI(Non-Maskable Interrupt)는 끌 수 없으므로, 이 수준에서 실행되는 ISR은 RTEMS 시스템 호출을 해서는 안 된다. RTEMS가 자기 임계 구역을 보호하지 못해 결과를 예측할 수 없기 때문이다.[@rtems-interrupt-background-2025]
 

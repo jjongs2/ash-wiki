@@ -74,7 +74,7 @@ Kanban University의 Kanban Method 가이드는 모든 Kanban 구현에 공통�
 
 Kanban은 Lean에 바탕을 둔다.[@kanbanguides-kanban-guide-2025][@kanban-university-kanban-guide-2026]
 
-The Kanban Guide 2025.5에 따르면 오늘날의 Kanban은 Toyota Production System과 그 앞선 것들, Taiichi Ohno와 W. Edwards Deming 같은 사람들의 작업으로 거슬러 올라간다. 지식 노동을 위한 실천 묶음은 주로 2006년 Corbis의 한 팀에서 나왔다.[@kanbanguides-kanban-guide-2025]
+The Kanban Guide 2025.5에 따르면 Kanban은 Toyota Production System과 그 앞선 것들, Taiichi Ohno와 W. Edwards Deming 같은 사람들의 작업으로 거슬러 올라간다. 지식 노동을 위한 실천 묶음은 주로 2006년 Corbis의 한 팀에서 나왔다.[@kanbanguides-kanban-guide-2025]
 
 ## 가이드의 판
 

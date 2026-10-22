@@ -11,7 +11,7 @@ verified: 2026-09-29
 
 ## 기능별 ECU
 
-기능마다 ECU를 따로 두는 E/E 아키텍처를 **분산 아키텍처**(distributed architecture)라 부른다.[@guo-virtualisation-technologies-2025] NXP 백서에 따르면 오늘날 차량 네트워크의 ECU는 대개 엔진 제어, 윈도 리프터, 전동 조향처럼 응용 하나만 맡고, 센서 처리와 알고리즘도 그 ECU 안에서 돈다.[@nxp-fvnecua4wp-2017]
+기능마다 ECU를 따로 두는 E/E 아키텍처를 **분산 아키텍처**(distributed architecture)라 부른다.[@guo-virtualisation-technologies-2025] NXP 백서에 따르면 백서가 나온 2017년 무렵 차량 네트워크의 ECU는 대개 엔진 제어, 윈도 리프터, 전동 조향처럼 응용 하나만 맡았고, 센서 처리와 알고리즘도 그 ECU 안에서 돌았다.[@nxp-fvnecua4wp-2017]
 
 ECU 수가 늘수록 전원 분배, 네트워크, 배선이 복잡해진다.[@ti-spry345-2024][@renesas-ipd-power-distribution-2025]
 
