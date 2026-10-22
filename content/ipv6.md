@@ -9,7 +9,7 @@ verified: 2026-09-29
 
 **IPv6**(Internet Protocol version 6)는 [[ipv4|IPv4]]를 잇는 IP의 6판이다. RFC 8200이 정하며, 주소가 128비트다.[@ietf-rfc-8200-2017]
 
-IPv6 명세는 1995년 12월에 Proposed Standard인 RFC 1883으로 나왔다.[@rfc-editor-info-rfc1883-2026] RFC 2460은 1998년 12월에 Draft Standard로 나왔고[@rfc-editor-info-rfc2460-2026], RFC 1883을 대체했다.[@ietf-rfc-2460-1998] RFC 8200은 2017년 7월에 RFC 2460을 대체했고[@ietf-rfc-8200-2017], Internet Standard(STD 86)가 되었다.[@rfc-editor-info-rfc8200-2026]
+RFC 1883은 1995년 12월에 Proposed Standard인 IPv6 명세로 나왔다.[@rfc-editor-info-rfc1883-2026] RFC 2460은 1998년 12월에 Draft Standard로 나왔고[@rfc-editor-info-rfc2460-2026], RFC 1883을 대체했다.[@ietf-rfc-2460-1998] RFC 8200은 2017년 7월에 RFC 2460을 대체했고[@ietf-rfc-8200-2017], Internet Standard(STD 86)가 되었다.[@rfc-editor-info-rfc8200-2026]
 
 ## 기본 헤더
 

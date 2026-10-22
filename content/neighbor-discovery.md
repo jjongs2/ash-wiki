@@ -20,7 +20,7 @@ Neighbor Discovery는 같은 링크에 붙은 노드 사이의 상호작용에�
 - **Address resolution**: 노드가 링크 위 목적지의 IP 주소만으로 그 링크 계층 주소를 알아낸다.
 - **Next-hop determination**: 목적지 IP 주소를, 그 목적지로 가는 트래픽을 보낼 이웃의 IP 주소로 대응시킨다. 다음 홉은 라우터이거나 목적지 자신이다.
 - **Neighbor Unreachability Detection**: 노드가 이웃에 더는 닿을 수 없음을 알아낸다.
-- **Duplicate Address Detection**: 노드가 쓰려는 주소를 다른 노드가 이미 쓰고 있는지 알아낸다. 자세한 절차는 [[ipv6#주소 자동 설정|중복 주소 검출]]에서 다룬다.
+- **중복 주소 검출**(Duplicate Address Detection): 노드가 쓰려는 주소를 다른 노드가 이미 쓰고 있는지 알아낸다. 자세한 절차는 [[ipv6#주소 자동 설정|IPv6의 주소 자동 설정]]에서 다룬다.
 - **Redirect**: 라우터가 호스트에 특정 목적지로 가는 더 나은 첫 홉 노드를 알린다.[@ietf-rfc-4861-2007]
 
 ## 메시지
@@ -31,7 +31,7 @@ Neighbor Discovery는 [[icmp|ICMP]] 메시지 다섯 종류를 정의한다.[@ie
 | ---------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Router Solicitation    | 133       | 인터페이스가 켜질 때 호스트가 라우터에 다음 예정 시각까지 기다리지 말고 바로 Router Advertisement를 보내 달라고 요청한다.                                                 |
 | Router Advertisement   | 134       | 라우터가 주기적으로, 또는 Router Solicitation에 답해 자기 존재와 링크·인터넷 파라미터를 알린다. 링크 위 판별이나 주소 설정에 쓰는 접두사와 권장 hop limit 값 등을 담는다. |
-| Neighbor Solicitation  | 135       | 노드가 이웃의 링크 계층 주소를 알아내거나, 캐시한 링크 계층 주소로 이웃에 아직 닿는지 확인하려고 보낸다. Duplicate Address Detection에도 쓴다.                            |
+| Neighbor Solicitation  | 135       | 노드가 이웃의 링크 계층 주소를 알아내거나, 캐시한 링크 계층 주소로 이웃에 아직 닿는지 확인하려고 보낸다. 중복 주소 검출에도 쓴다.                                         |
 | Neighbor Advertisement | 136       | Neighbor Solicitation에 대한 응답이다. 노드는 링크 계층 주소가 바뀐 것을 알리려고 요청 없이 보내기도 한다.                                                                |
 | Redirect               | 137       | 라우터가 호스트에 어떤 목적지로 가는 더 나은 첫 홉을 알린다.                                                                                                              |
 
