@@ -17,7 +17,7 @@ SENT 신호에서 정보는 연속한 두 하강 에지의 간격에 담긴다. 
 
 ## 메시지
 
-SENT 메시지는 56틱 길이의 동기·보정 펄스로 시작하고[@nxp-an4856-2014][@microchip-ds70005145-2014], 상태·통신 니블 1개가 뒤따른다.[@microchip-ds70005145-2014][@allegro-an296244-2022] 그 뒤에 데이터 니블 1\~6개와, 4비트 [[cyclic-redundancy-check|CRC]]를 담은 CRC 니블 1개가 온다.[@nxp-an4856-2014][@microchip-ds70005145-2014] 끝에는 휴지 펄스를 선택 사항으로 둘 수 있다.[@microchip-ds70005145-2014][@allegro-an296244-2022]
+SENT 메시지는 56틱 길이의 동기·보정 펄스로 시작하고[@nxp-an4856-2014][@microchip-ds70005145-2014], 상태·통신 니블 1개가 뒤따른다.[@microchip-ds70005145-2014][@allegro-an296244-2022] 그 뒤에 데이터 니블 1\~6개와, 4비트 [[cyclic-redundancy-check|CRC]]를 담은 CRC 니블 1개가 온다.[@nxp-an4856-2014][@microchip-ds70005145-2014] 끝에는 휴지 펄스를 선택 사항으로 둘 수 있다. 휴지 펄스는 메시지 길이를 채워 메시지가 일정한 간격으로 나가게 하며, 길이는 12틱 이상이다.[@microchip-ds70005145-2014][@allegro-an296244-2022]
 
 ![[diagrams/sent-message-pulses.svg]]
 
@@ -28,6 +28,16 @@ SENT 메시지는 56틱 길이의 동기·보정 펄스로 시작하고[@nxp-an4
 ## 직렬 메시지
 
 상태·통신 니블의 비트 두 개를 여러 메시지에 걸쳐 모아 더 긴 직렬 메시지를 보낸다.[@nxp-an4856-2014][@microchip-ds70005145-2014] Melexis 데이터시트는 이 경로를 slow channel이라 부른다.[@melexis-mlx90825-2025] 상태·통신 니블과 직렬 메시지로는 센서 진단 정보를 보낼 수 있다.[@allegro-an296244-2022][@melexis-mlx90825-2025] MLX90825는 직렬 메시지로 센서 종류, 제조사 코드, SENT 개정판 같은 정보도 보낸다.[@melexis-mlx90825-2025]
+
+직렬 메시지에는 short serial message와 enhanced serial message 두 꼴이 있다.[@nxp-an4856-2014][@microchip-ds70005145-2014] NXP 앱노트에 따르면 short serial message는 상태·통신 니블의 비트 2로 연속한 SENT 메시지 16개에 걸쳐 4비트 메시지 식별자, 8비트 데이터, 4비트 CRC를 보내고, 첫 메시지에서 비트 3을 1로 두어 시작을 알린다. enhanced serial message는 비트 2와 3으로 연속한 SENT 메시지 18개에 걸쳐 보내며, 8비트 메시지 식별자와 12비트 데이터를 싣거나 4비트 메시지 식별자와 16비트 데이터를 싣는다.[@nxp-an4856-2014]
+
+![[diagrams/sent-short-serial-message.svg]]
+
+## SPC
+
+SENT는 원래 단방향이지만, SPC(Short PWM Code)를 쓰면 양방향 통신을 할 수 있다.[@nxp-an4856-2014][@microchip-ds70005145-2014] NXP 앱노트에 따르면 SPC의 통신은 반이중 동기 방식으로, 수신 측 MCU가 선을 정해진 시간 동안 low로 끌어 master trigger 펄스를 내고, 센서는 그 펄스의 폭이 정해진 범위 안일 때만 SENT 전송을 시작한다. 예를 들어 TLE4998C는 병렬로 이은 센서 최대 넷 가운데 어느 센서가 보낼지를 master trigger 펄스의 폭으로 고르는 모드도 둔다.[@nxp-an4856-2014]
+
+dsPIC33/PIC24 제품군의 SENT 모듈은 동기 모드에서 사용자 소프트웨어로 SPC를 구현할 수 있게 한다.[@microchip-ds70005145-2014]
 
 ## 구현
 

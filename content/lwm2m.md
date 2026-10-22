@@ -94,4 +94,4 @@ OMA가 승인한 LwM2M의 판은 아래와 같다.
 OMA DM은 1.3과 2.0이 모두 승인된 판으로 남아 있다.[@oma-dm-ad-1-3-2016][@oma-dm-ad-2-0-2016]
 
 - OMA DM 1.3 명세는 DM Notification을 뺀 DM 메시지를 XML로 정하고(WBXML(WAP Binary XML) 이진 인코딩도 가능), 메시지의 루트 요소를 SyncML로 둔다.[@oma-dm-protocol-1-3-2016][@oma-dm-reppro-1-3-2016] 클라이언트와 서버 사이의 프로토콜은 특정 전송에 묶이지 않고, HTTP와 HTTPS를 비롯한 표준 바인딩을 둔다.[@oma-dm-ad-1-3-2016] 장치의 관리 대상(Management Object)은 Management Tree라는 계층 트리로 나타내고, 트리의 노드는 URI로 가리킨다.[@oma-dm-protocol-1-3-2016]
-- OMA DM 2.0은 RESTful 설계를 따르는 HTTP 기반의 새 클라이언트·서버 프로토콜을 넣었고, DM 1.3까지의 Management Object는 그대로 쓴다.[@oma-dm-ad-2-0-2016] OMA DM 2.0 명세는 DM 세션 패키지의 JSON(JavaScript Object Notation) 형식을 정하고, 서버와 클라이언트가 모두 이를 지원하게 한다.[@oma-dm-protocol-2-0-2016]
+- OMA DM 2.0은 RESTful 설계를 따르는 HTTP 기반의 새 클라이언트·서버 프로토콜을 넣었고, DM 1.3까지의 Management Object는 그대로 쓴다.[@oma-dm-ad-2-0-2016] OMA DM 2.0 명세는 DM 세션 패키지의 JSON 형식을 정하고, 서버와 클라이언트가 모두 이를 지원하게 한다.[@oma-dm-protocol-2-0-2016]

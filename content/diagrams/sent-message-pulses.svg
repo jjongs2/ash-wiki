@@ -36,10 +36,12 @@
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="62" y1="136" x2="226" y2="136" marker-start="url(#arrow)" marker-end="url(#arrow)" />
     <line x1="230" y1="136" x2="298" y2="136" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+    <line x1="485" y1="136" x2="571" y2="136" marker-start="url(#arrow)" marker-end="url(#arrow)" />
   </g>
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="144" y="156">56틱</text>
     <text x="264" y="156">12 + v틱</text>
+    <text x="528" y="156">12틱 이상</text>
   </g>
   <text x="36" y="184" font-size="12" fill="var(--text, #727981)">니블 값 v는 하강 에지 사이의 간격 12 + v틱으로 싣는다. 12틱이 0, 27틱이 15다.</text>
 </svg>

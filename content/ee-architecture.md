@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-차량의 **E/E 아키텍처**(electrical/electronic architecture)는 기능 도메인으로 ECU를 묶는 도메인 아키텍처에서, 차량 안의 위치로 ECU를 묶는 존 아키텍처와 소수의 중앙 차량 컴퓨터를 쓰는 구조로 옮겨 가고 있다.[@bosch-ee-architecture-2026][@ti-spry345-2024] Renesas 백서에 따르면 ECU가 늘면서 ECU를 기능 도메인이나 차량 안의 위치로 묶어 연결을 계층화하는 방식으로 복잡도를 줄인다.[@renesas-ipd-power-distribution-2025]
+차량의 **E/E 아키텍처**(electrical/electronic architecture)는 기능 도메인으로 [[electronic-control-unit|ECU]]를 묶는 도메인 아키텍처에서, 차량 안의 위치로 ECU를 묶는 존 아키텍처와 소수의 중앙 차량 컴퓨터를 쓰는 구조로 옮겨 가고 있다.[@bosch-ee-architecture-2026][@ti-spry345-2024] Renesas 백서에 따르면 ECU가 늘면서 ECU를 기능 도메인이나 차량 안의 위치로 묶어 연결을 계층화하는 방식으로 복잡도를 줄인다.[@renesas-ipd-power-distribution-2025]
 
 ## 기능별 ECU
 
@@ -23,7 +23,9 @@ ECU는 파워트레인, 섀시, 바디, 인포테인먼트 같은 기능 도메�
 
 ## 존 아키텍처
 
-**존 아키텍처**(zonal architecture)는 ECU를 기능 도메인이 아니라 차량 안의 물리적 위치로 묶는다.[@renesas-ipd-power-distribution-2025][@ti-sszt211-2023] 차량을 여러 구역으로 나누고, 구역마다 둔 존 제어기가 그 구역의 센서, 액추에이터, ECU를 중앙 컴퓨터에 잇는다.[@ti-ssztd02-2025][@infineon-zcu-2026] 존 제어기는 ZCU(Zone Control Unit)라고도 부른다.[@guo-virtualisation-technologies-2025] 존 제어기는 그 구역의 전원 분배도 맡을 수 있다.[@renesas-ipd-power-distribution-2025][@infineon-zcu-2026]
+**존 아키텍처**(zonal architecture)는 ECU를 기능 도메인이 아니라 차량 안의 물리적 위치로 묶는다.[@renesas-ipd-power-distribution-2025][@ti-sszt211-2023] 차량을 여러 구역으로 나누고, 구역마다 둔 존 제어기가 그 구역의 센서, 액추에이터, ECU를 중앙 컴퓨터에 잇는다.[@ti-ssztd02-2025][@infineon-zcu-2026] 존 제어기는 ZCU(Zone Control Unit)라고도 부른다.[@guo-virtualisation-technologies-2025] Infineon에 따르면 ZCU는 바디 제어 모듈이 하던 그 구역의 부하 구동을 모은다.[@infineon-zcu-2026] 존 제어기는 게이트웨이 기능을 맡고[@ti-spry345-2024][@infineon-zcu-2026], 그 구역의 전원 분배도 맡을 수 있다.[@renesas-ipd-power-distribution-2025][@infineon-zcu-2026]
+
+TI 백서에 따르면 존 아키텍처에서 전원 분배는 중앙 집중에서 벗어나 존 모듈에 둔 스마트 퓨즈로 분산될 것이고, 시스템 설계자는 녹는 퓨즈를 반도체 퓨즈로 바꾸는 방안도 함께 따진다. 그 방안의 하나는 반도체 하이사이드 스위치를 쓰는 것이다.[@ti-spry345-2024] Renesas 백서도 도메인·존 아키텍처의 제어 장치에서는 기계식 릴레이와 퓨즈를 반도체 스위치로 바꾸기를 권한다. 모듈이 놓인 자리 때문에 사용자가 닳은 릴레이나 퓨즈를 갈기 어렵기 때문이다.[@renesas-ipd-power-distribution-2025]
 
 존 아키텍처는 배선의 길이와 무게를 줄인다.[@bosch-ee-architecture-2026][@nxp-s32g2zoneconfs-2021] Renesas 백서에 따르면 가까이 있는 ECU를 그 구역의 존 제어기가 맡으므로 배선이 오가지 않아도 되어 배선량이 준다.[@renesas-ipd-power-distribution-2025]
 
@@ -41,4 +43,10 @@ Bosch에 따르면 [[software-defined-vehicle|SDV]]는 소프트웨어를 하드
 
 기능을 중앙 컴퓨터에 모으면 OTA 소프트웨어 업데이트로 차량 기능을 바꾸거나 더하기 쉬워진다.[@bosch-ee-architecture-2026][@ti-slyy236-2025]
 
-Bosch의 차량 컴퓨터용 플랫폼 소프트웨어는 운영체제와, 응용 도메인을 서로 떼어 놓는 하이퍼바이저를 포함한다.[@bosch-vehicle-computer-2026] NXP S32N55는 중앙 차량 제어기용 프로세서로, 온칩 하드웨어 격리와 가상화를 두고 Type-1 하이퍼바이저를 지원한다.[@nxp-s32n55fs-2024]
+Bosch의 차량 컴퓨터용 플랫폼 소프트웨어는 운영체제와, 응용 도메인을 서로 떼어 놓는 하이퍼바이저를 포함한다.[@bosch-vehicle-computer-2026] NXP S32N55는 중앙 차량 제어기용 프로세서로, 온칩 하드웨어 격리와 가상화를 두고 Type-1 하이퍼바이저를 지원한다.[@nxp-s32n55fs-2024] ISO 17978-1:2026의 HPC 정의에 붙은 Note는 ISO 17978 시리즈에서 쓰는 HPC가 대개 가상화한 게스트 시스템 여럿을 돌린다고 제시한다.[@iso-17978-1-obp-2026]
+
+## 이행
+
+기존 차량 플랫폼에서는 E/E 아키텍처를 한 번에 바꾸지 않고 단계적으로 옮겨 간다.[@bosch-ee-architecture-2026][@ti-slyy236-2025] Bosch에 따르면 이때는 여러 도메인을 아우르는 차량 컴퓨터를 기존 도메인 아키텍처에 넣는다. 새 플랫폼에서는 차량 컴퓨터와 존 ECU로 된 존 아키텍처를 체계적으로 구현하는 편이 이점이 가장 크다.[@bosch-ee-architecture-2026]
+
+TI 백서에 따르면 차량 기능을 다스리는 소프트웨어를 어디에 둘지는 OEM마다 다르며, 소프트웨어 제어를 모으는 방식으로는 중앙 컴퓨터에 모두 두는 것, 중앙 컴퓨터와 존 제어기가 나눠 맡는 것, 소수의 도메인 제어기와 존 제어기로 나누는 것 셋이 있다.[@ti-slyy236-2025]

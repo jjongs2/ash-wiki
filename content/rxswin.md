@@ -13,7 +13,7 @@ RXSWIN의 X는 UN 규정의 번호다. WP.29의 차량 구조 통합 결의 R.E.
 
 R156 해석 문서는 RXSWIN 하나가 규정 하나에 일대일로 대응함을 보이는 자료를 증빙의 예로 든다.[@unece-r156-interpretation-2021] UN R156 01 시리즈는 제조사가 형식 승인 관련 소프트웨어를 업데이트하는 규정마다 전용 RXSWIN을 정하는 프로세스를 [[software-update-management-system|SUMS]]에 요구한다.[@unece-wp29-2025-142-2025]
 
-UN R156 원판과 01 시리즈는 RXSWIN을 OBD(On-Board Diagnostics) 포트 같은 표준 인터페이스로 읽을 수 있게 하고 허가 없는 변경에서 보호하기를 요구한다.[@unece-r156-2021] 이 요구는 [[un-r156#차량 형식 요구|UN R156의 차량 형식 요구]]에서 다룬다.
+UN R156 원판과 01 시리즈는 RXSWIN을 [[on-board-diagnostics|OBD]] 포트 같은 표준 인터페이스로 읽을 수 있게 하고 허가 없는 변경에서 보호하기를 요구한다.[@unece-r156-2021] 이 요구는 [[un-r156#차량 형식 요구|UN R156의 차량 형식 요구]]에서 다룬다.
 
 ## 업데이트와 형식 승인
 
