@@ -39,14 +39,18 @@
 - GMII 풀이: 통일하지 않음 (#196). 페이지마다 그대로. `mii`는 Gigabit MII, `1000base-t1`은 Gigabit Media Independent Interface
 - hardware architectural metrics: 하드웨어 아키텍처 메트릭 (#396). 하위 용어(single-point fault, latent fault 등)도 원어로
 - Kanban: 칸반 (#393)
+- KDF 풀이 Key Derivation Function: Key-Derivation Function (#498)
+- KEM 풀이 Key-Encapsulation Mechanism: Key Encapsulation Mechanism (#498)
 - LdCom 풀이 Large Data COM: - (#440). 근거는 SWS BSWGeneral R24-11 부록 A
 - MAC 풀이 Medium Access Control: Media Access Control (#165). 출처마다의 풀이를 비교하는 문장은 예외
 - notification: 통지 (#257). AUTOSAR 모듈이 부르는 notification 콜백일 때. 동사로 쓴 자리("통지받는다")와 그 밖의 통지는 "통지"
 - OOPSLA 풀이 Object-Oriented Programming, Systems, Languages, and Applications: Object-Oriented Programming, Systems, Languages & Applications (#291)
 - OSEK OS: OSEK/VDX OS (#257). OS를 가리킬 때. 명세를 가리키는 "OSEK/VDX OS"는 그대로. 예: "OSEK/VDX OS 2.2.3 명세"
+- PKI: 공개 키 기반 구조 (#498). 제목과 본문은 약어, 한국어 이름은 `public-key-infrastructure`의 alias로만
 - prototyping: 프로토타이핑 (#291). prototype도 같다. AUTOSAR의 prototype은 이 결정에 들지 않음
 - PWM 풀이: 통일하지 않음 (#441). 인용한 출처의 풀이대로. AUTOSAR 명세를 인용하면 Pulse Width Modulation, ISO 11898-1을 인용하면 Pulse-Width Modulation
 - recessive: 리세시브 (#165). 조사는 원어의 발음대로. 예: "recessive이고"
+- Reed-Solomon: Reed–Solomon (#498)
 - resource: 리소스 (#165). OSEK 객체일 때. 일반적인 뜻이면 "자원"
 - root of trust: 신뢰의 뿌리 (#288)
 - RSA 풀이 Rivest-Shamir-Adleman: Rivest–Shamir–Adleman (#288)
@@ -66,6 +70,8 @@
 - 결함 허용: - (#223)
 - 공개 키: 공개키 (#288)
 - 기법: technique (#431). Automotive Threat Matrix의 technique일 때
+- 길쌈 부호: convolutional 부호, 컨볼루션 부호 (#498). 페이지에서 처음 쓸 때 원어를 병기
+- 난수 생성기: random bit generator (#498). RBG는 `random-bit-generator`의 alias로만. DRBG·NRBG 같은 약어의 풀이는 그대로
 - 단계적 배포: phased rollout (#432)
 - 단위 테스트: 유닛 테스트 (#291)
 - 대칭 키: 대칭키 (#288)
