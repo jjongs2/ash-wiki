@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 686 164" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 변경에서 운영 환경에 내보낼 수 있는 상태까지 -->
+  <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20" y="60" width="60" height="44" rx="2" />
+    <rect x="116" y="60" width="124" height="44" rx="2" />
+    <rect x="276" y="60" width="140" height="44" rx="2" />
+    <rect x="586" y="60" width="80" height="44" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="50" y="86">변경</text>
+    <text x="178" y="78">자동 테스트와</text>
+    <text x="178" y="94">품질 검사 통과</text>
+    <text x="346" y="78">운영 환경에</text>
+    <text x="346" y="94">내보낼 수 있는 상태</text>
+    <text x="626" y="86">운영 환경</text>
+  </g>
+
+  <!-- 마지막 배포: 사람이 하는가, 자동인가 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="80" y1="82" x2="114" y2="82" />
+    <line x1="240" y1="82" x2="274" y2="82" />
+    <line x1="416" y1="70" x2="584" y2="70" />
+    <line x1="416" y1="94" x2="584" y2="94" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="500" y="40">지속적 전달</text>
+    <text x="500" y="60">사람이 배포</text>
+    <text x="500" y="114">자동 배포</text>
+    <text x="500" y="134">지속적 배포</text>
+  </g>
+</svg>

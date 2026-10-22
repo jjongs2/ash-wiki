@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-ISO/IEC/IEEE 24765 용어집은 **리팩터링**(refactoring)을 소프트웨어 코드의 동작을 바꾸지 않고 구조를 고치는 일로 정의하고, 그 목적으로 [[software-quality-model|품질 특성]] 개선, 이후의 확장과 적응을 쉽게 하는 것, 아키텍처 스타일을 따르는 것을 든다.[@ieee-cs-sevocab-2026] 리팩터링은 프로그램의 동작을 바꾸지 않고 재구성하는 리엔지니어링 기법으로, 소프트웨어의 내부 구조와 유지보수성을 높이려는 것이다.[@ieee-swebok-v4-0a-2026]
+ISO/IEC/IEEE 24765 용어집은 PMI의 Software Extension to the PMBOK Guide Fifth Edition의 정의를 따라 **refactor**(리팩터링하다)를 소프트웨어 코드의 동작을 바꾸지 않고 구조를 고치는 일로 정의하고, 그 목적으로 [[software-quality-model|품질 특성]] 개선, 이후의 확장과 적응을 쉽게 하는 것, 아키텍처 스타일을 따르는 것을 든다.[@ieee-cs-sevocab-2026] 리팩터링은 프로그램의 동작을 바꾸지 않고 재구성하는 리엔지니어링 기법으로, 소프트웨어의 내부 구조와 유지보수성을 높이려는 것이다. 리팩터링 기법은 유지보수 중에 코드를 바꾸기 앞뒤로 코드베이스의 [[software-maintenance#비용과 기술 부채|기술 부채]]를 줄이는 데 쓸 수 있다. [[agile-software-development|애자일 개발]]에서는 [[continuous-integration|지속적 통합]]의 점진적 성격 때문에, 품질과 신뢰성을 높이려고 코드를 지속적으로 리팩터링해야 하는 일이 흔하다.[@ieee-swebok-v4-0a-2026]
 
 Martin Fowler는 『Refactoring』에서 명사 리팩터링을, 겉보기 동작을 바꾸지 않고 소프트웨어의 내부 구조를 바꿔 이해하기 쉽고 고치기 싸게 만드는 변경으로 정의했다. 동사 리팩터링은 그런 리팩터링을 잇달아 적용해 겉보기 동작을 바꾸지 않고 소프트웨어를 재구성하는 일로 정의했다.[@fowler-refactoring-2026]
 
@@ -39,3 +39,7 @@ Fowler는 『Refactoring』 2판에 리팩터링 70개 남짓을 동기, 안전�
 ## 테스트와의 관계
 
 Fowler는 테스트가 모두 통과하는 상태에서만 리팩터링하고, 테스트가 하나라도 실패하면 실수가 있다는 뜻으로 본다.[@fowler-workflows-of-refactoring-2014] 그는 『Refactoring』에서 기능 코드와 함께 포괄적인 자동 테스트를 써서 명령 하나로 실행하는 관행을 self-testing code라 불렀다. self-testing code가 있으면 실수했을 때 테스트가 곧 알려 주므로, 코드를 정리하는 작은 수정을 안심하고 할 수 있다고 한다.[@fowler-self-testing-code-2014] 리팩터링 도구가 없는 언어에서는 작은 단계로 나눠 자주 테스트해 실수를 잡는다고 한다.[@fowler-refactoring-2026]
+
+## 리팩터링의 흐름
+
+Fowler는 리팩터링을 프로젝트 계획에 따로 오르는 작업이 아니라 일상 프로그래밍의 일부로 본다.[@fowler-refactoring-2026] 그는 리팩터링이 개발 작업에 섞여 들어가는 흐름(workflow)을 [[test-driven-development|TDD]] refactoring, litter-pickup refactoring, comprehension refactoring, preparatory refactoring, planned refactoring, long-term refactoring 여섯으로 나눈다. 리팩터링 대부분이 계획한 작업에서만 일어나면 그는 이를 bad smell로 보고, 다른 흐름을 작업에 들이기를 권한다.[@fowler-workflows-of-refactoring-2014]
