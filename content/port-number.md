@@ -23,7 +23,7 @@ IANA는 포트 번호를 세 범위로 나눈다.[@ietf-rfc-6335-2011][@iana-ser
 
 ![[diagrams/port-number-ranges.svg]]
 
-IANA는 시스템 포트와 사용자 포트를 서비스에 배정하고, Service Name and Transport Protocol Port Number Registry에 기록한다.[@ietf-rfc-6335-2011]
+IANA는 시스템 포트와 사용자 포트를 서비스에 배정하고, Service Name and Transport Protocol Port Number Registry에 기록한다. RFC 6335는 **서비스 이름**(service name)을 이 레지스트리의 고유 키로 정한다.[@ietf-rfc-6335-2011]
 
 ## 서버와 클라이언트
 

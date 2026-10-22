@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-27
 ---
 
-**OSI 참조 모델**(Open Systems Interconnection Reference Model)은 시스템 상호 연결을 위한 표준 개발을 조율하는 공통 기반이 되는 모델이다.[@iso-iec-7498-1-1994] ISO/IEC 7498-1:1994가 이 모델을 정하고, ITU-T X.200(07/94)이 같은 본문을 담는다. 모델은 일곱 계층으로 이루어진다.[@itu-t-x-200-1994]
+**OSI 참조 모델**(Open Systems Interconnection Reference Model)은 시스템 상호 연결을 위한 표준 개발을 조율하는 공통 기반이 되는 모델이다.[@iso-iec-7498-1-1994] ISO/IEC 7498-1:1994가 이 모델을 정하고, ITU-T X.200(07/94)이 같은 본문을 담는다. 모델은 일곱 계층으로 이루어진다. 이 참조 모델은 OSI의 서비스와 프로토콜을 정하지 않으며, 시스템의 구현 명세도 아니고 구현의 적합성을 평가하는 기준도 아니다.[@itu-t-x-200-1994]
 
 ## 일곱 계층
 
@@ -25,6 +25,10 @@ verified: 2026-09-27
 
 ![[diagrams/osi-layers-vehicle-diagnostics.svg]]
 
+[[ieee-802-3|IEEE 802.3]]-2022는 [[ethernet|이더넷]]을 데이터 링크 계층의 MAC(Medium Access Control) 부계층과 물리 계층으로 나누어 정하고, 이 두 계층이 OSI 참조 모델의 가장 아래 계층들에 가깝게 대응하도록 둔다. LLC(Logical Link Control) 부계층이나 다른 MAC 클라이언트는 MAC 부계층과 함께 OSI 데이터 링크 계층의 기능을 맡는다.[@ieee-802-3-2022]
+
+![[diagrams/ieee-802-3-osi-layers.svg]]
+
 ## 서비스와 프로토콜
 
 가장 높은 계층을 뺀 $(N)$ 계층은 $(N+1)$ 계층에 서비스를 제공한다. 이 서비스는 $(N)$ 계층 안의 기능과, 필요하면 $(N-1)$ 계층의 서비스로 만든다. 같은 계층의 개체 사이의 협력은 그 계층의 프로토콜이 정한다.[@itu-t-x-200-1994]
@@ -32,6 +36,16 @@ verified: 2026-09-27
 **PDU**(Protocol Data Unit)는 $(N)$ 프로토콜이 정하는 데이터 단위로, $(N)$ 프로토콜 제어 정보와 경우에 따라 $(N)$ 사용자 데이터로 이루어진다. [[segmentation-and-reassembly|분할]]이나 묶기가 없으면 $(N)$ PDU는 $(N-1)$ SDU(Service Data Unit) 하나에 대응될 수 있고, 이때 $(N-1)$ PDU는 $(N-1)$ 프로토콜 제어 정보와 그 SDU로 이루어진다.[@itu-t-x-200-1994]
 
 ![[diagrams/osi-pdu-sdu-mapping.svg]]
+
+## 연결형과 비연결형
+
+$(N)$ 계층은 $(N+1)$ 계층에 연결형 서비스(connection-mode service), 비연결형 서비스(connectionless-mode service), 또는 둘 다를 줄 수 있다. 연결형 서비스를 쓰는 대등 $(N)$ 개체들은 연결 설정, 데이터 전송, 연결 해제의 세 단계를 거친다.[@itu-t-x-200-1994]
+
+**비연결형 전송**(connectionless-mode transmission)은 연결을 세우지 않고 데이터 단위 하나를 출발 서비스 접근점(service access point)에서 하나 이상의 목적 서비스 접근점으로 보내는 것이다. 비연결형 서비스를 주는 계층은 데이터 단위마다 따로 경로를 정할 수도 있다. **기본 비연결형 서비스**는 서비스 품질 척도의 최솟값을 지킬 필요가 없고(특히 $(N)$ SDU의 순서를 지킬 필요가 없다), 대등 흐름 제어도 할 필요가 없는 비연결형 서비스다.[@itu-t-x-200-1994]
+
+## 판
+
+ISO/IEC 7498-1:1994는 1984년에 나온 첫판 ISO 7498:1984를 대체했다.[@iso-iec-7498-1-1994] ITU-T X.200(07/94)은 X.200(11/88)을 대체했다.[@itu-t-x-200-record-1994] 이 개정의 주된 뜻은 ISO/IEC와 함께 만든, 비연결형 전송 개념을 담은 공동 본문을 들이는 것이었다.[@itu-t-x-200-1994]
 
 ## 인터넷 프로토콜 스위트와의 차이
 

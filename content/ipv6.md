@@ -34,7 +34,7 @@ IPv6에서 선택적인 인터넷 계층 정보는 기본 헤더와 위 계층 �
 
 ## 단편화
 
-IPv6에서는 라우터가 패킷을 나누지 않고 발신 노드만 나눈다. 모든 링크는 1280바이트 이상의 MTU(Maximum Transmission Unit)를 지원해야 한다.[@ietf-rfc-8200-2017]
+IPv6에서는 라우터가 패킷을 나누지 않고 발신 노드만 나눈다. 모든 링크는 1280바이트 이상의 [[mtu|MTU]]를 지원해야 한다.[@ietf-rfc-8200-2017]
 
 ## 주소
 
@@ -42,7 +42,35 @@ IPv6에서는 라우터가 패킷을 나누지 않고 발신 노드만 나눈다
 
 ![[diagrams/ipv6-address-zero-compression.svg]]
 
-주소의 종류는 유니캐스트, 애니캐스트, 멀티캐스트다. 브로드캐스트 주소는 없고, 멀티캐스트가 그 역할을 맡는다.[@ietf-rfc-4291-2006]
+주소의 종류는 유니캐스트, 애니캐스트, 멀티캐스트다. 브로드캐스트 주소는 없고, 멀티캐스트가 그 역할을 맡는다. 애니캐스트 주소는 유니캐스트 주소 공간에서 가져오며, 문법으로는 유니캐스트 주소와 구별되지 않는다.[@ietf-rfc-4291-2006]
+
+주소 접두사는 `주소/접두사 길이`로 쓴다. 접두사 길이는 주소의 왼쪽부터 접두사를 이루는 연속된 비트의 수를 10진수로 나타낸다.[@ietf-rfc-4291-2006]
+
+주소가 어느 종류인지는 아래처럼 주소의 상위 비트로 가린다.[@ietf-rfc-4291-2006]
+
+| 주소 종류                 | 접두사          |
+| ------------------------- | --------------- |
+| 지정되지 않은 주소        | `::/128`        |
+| 루프백 주소               | `::1/128`       |
+| 멀티캐스트 주소           | `ff00::/8`      |
+| 링크 로컬 유니캐스트 주소 | `fe80::/10`     |
+| 전역 유니캐스트 주소      | 그 밖의 모든 값 |
+
+링크 로컬 주소는 한 링크 안에서만 쓰는 주소다. 라우터는 출발지나 목적지가 링크 로컬 주소인 패킷을 다른 링크로 넘기지 않아야 한다.[@ietf-rfc-4291-2006]
+
+이진수 `000`으로 시작하는 주소를 뺀 모든 유니캐스트 주소에서 인터페이스 식별자는 64비트여야 한다.[@ietf-rfc-4291-2006]
+
+## 주소 자동 설정
+
+RFC 4862는 IPv6 호스트가 인터페이스의 주소를 스스로 설정하는 절차를 정한다. 이 절차에는 링크 로컬 주소를 만드는 일, 상태 없는 주소 자동 설정(stateless address autoconfiguration)으로 전역 주소를 만드는 일, 중복 주소 검출(Duplicate Address Detection)로 주소가 링크에서 유일한지 확인하는 일이 든다.[@ietf-rfc-4862-2007]
+
+노드는 잘 알려진 링크 로컬 접두사에 인터페이스 식별자를 붙여 링크 로컬 주소를 만든다. 이 주소를 인터페이스에 붙여 쓰기 전에, 노드는 그 주소를 대상으로 한 [[neighbor-discovery#메시지|Neighbor Solicitation]]을 보내 링크의 다른 노드가 이미 쓰고 있는지 확인해야 한다. 상태 없는 주소 자동 설정은 라우터가 보내는 Router Advertisement에 든 Prefix Information 옵션의 정보로 전역 주소를 만든다.[@ietf-rfc-4862-2007]
+
+IPv6 주소를 설정하는 다른 방법은 [[dhcp#DHCPv6|DHCPv6]]에서 다룬다.
+
+## 명세 이력
+
+RFC 1883은 1995년 12월에 Proposed Standard인 IPv6 명세로 나왔다.[@rfc-editor-info-rfc1883-2026] RFC 2460은 1998년 12월에 Draft Standard로 나왔고[@rfc-editor-info-rfc2460-2026], RFC 1883을 대체했다.[@ietf-rfc-2460-1998] RFC 8200은 2017년 7월에 RFC 2460을 대체했고[@ietf-rfc-8200-2017], Internet Standard(STD 86)가 되었다.[@rfc-editor-info-rfc8200-2026]
 
 ## IPv4와의 차이
 
@@ -50,4 +78,4 @@ IPv4 주소가 32비트인 데 비해 IPv6 주소는 128비트다. RFC 8200은 I
 
 IPv4 헤더와 달리 IPv6 헤더에는 헤더 [[checksum|체크섬]] 필드가 없다. 또 IPv4와 달리 IPv6에서는 [[udp#체크섬|UDP 체크섬]]을 기본적으로 생략할 수 없다.[@ietf-rfc-8200-2017]
 
-IPv6에서는 Neighbor Discovery가 같은 링크 노드의 링크 계층 주소를 알아낸다. Neighbor Discovery는 IPv4의 [[arp|ARP]], [[icmp|ICMP]] Router Discovery, ICMP Redirect를 합친 것에 대응한다.[@ietf-rfc-4861-2007] IPv6에서 오류 보고는 ICMPv6가 맡는다.[@ietf-rfc-4443-2006]
+IPv6에서는 IPv4의 [[arp|ARP]], [[icmp|ICMP]] Router Discovery, ICMP Redirect를 합친 것에 대응하는 [[neighbor-discovery|Neighbor Discovery]]가 같은 링크 노드의 링크 계층 주소를 알아낸다.[@ietf-rfc-4861-2007] IPv6에서 오류 보고는 ICMPv6가 맡는다.[@ietf-rfc-4443-2006]
