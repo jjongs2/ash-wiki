@@ -9,6 +9,12 @@ verified: 2026-09-29
 
 ![[diagrams/hamming-distance-bit-comparison.svg]]
 
+## 기하 모델
+
+Hamming은 1950년 논문에서 부호를 이루는 0과 1의 열을 $n$차원 단위 정육면체의 꼭짓점으로 보는 기하 모델을 세우고 이 거리를 정의했다. 두 점 $x$, $y$의 거리 $D(x, y)$는 $x$에서 $y$로 가는 데 지나야 하는 모서리의 최소 개수와 같다. 또 $D(x, y) = 0$은 $x = y$일 때뿐이고, $D(x, y) = D(y, x)$이며, 삼각 부등식을 만족해 거리 함수(metric)의 세 조건을 갖춘다.[@hamming-error-detecting-1950]
+
+![[diagrams/hamming-cube-distance.svg]]
+
 ## 최소 해밍 거리와 검출·정정 능력
 
 TI 앱노트 SPRA530에 따르면 부호의 **최소 해밍 거리** $d_\mathrm{min}$은 서로 다른 두 부호어 사이의 해밍 거리 가운데 가장 작은 값이다. 블록 부호는 오류를 $d_\mathrm{min} - 1$개까지 찾아내고, 오류 개수 $t$가 $2t + 1 \le d_\mathrm{min}$을 만족하면 고친다. 예를 들어 부호어가 `00000`과 `11111`뿐인 부호는 $d_\mathrm{min} = 5$라 오류 비트 4개까지 찾아내고 2개까지 고친다.[@ti-spra530-1999]

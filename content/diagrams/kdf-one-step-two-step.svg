@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20.5 8 763.5 150" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 줄 이름 -->
+  <g text-anchor="end" fill="var(--text, #727981)">
+    <text x="72" y="43">한 단계</text>
+    <text x="72" y="109">두 단계</text>
+  </g>
+
+  <!-- 값 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="84.75" y="20.75" width="88.5" height="34.5" rx="2" />
+    <rect x="692.75" y="20.75" width="78.5" height="34.5" rx="2" />
+    <rect x="84.75" y="86.75" width="88.5" height="34.5" rx="2" />
+    <rect x="418.75" y="86.75" width="88.5" height="34.5" rx="2" />
+    <rect x="692.75" y="86.75" width="78.5" height="34.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="129" y="43">공유 비밀</text>
+    <text x="732" y="43">키 재료</text>
+    <text x="129" y="109">공유 비밀</text>
+    <text x="463" y="109">키 유도 키</text>
+    <text x="732" y="109">키 재료</text>
+  </g>
+
+  <!-- 함수와 절차 -->
+  <g stroke="var(--blue, #336fb8)" stroke-width="1.5" fill="var(--blue-tint, #336fb8)">
+    <rect x="206.75" y="20.75" width="452.5" height="34.5" rx="2" />
+    <rect x="206.75" y="86.75" width="178.5" height="34.5" rx="2" />
+    <rect x="540.75" y="86.75" width="118.5" height="34.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="433" y="43">one-step 키 유도 함수</text>
+    <text x="296" y="109">randomness extraction</text>
+    <text x="600" y="109">key expansion</text>
+  </g>
+
+  <!-- 흐름 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="175" y1="38" x2="204" y2="38" />
+    <line x1="661" y1="38" x2="690" y2="38" />
+    <line x1="175" y1="104" x2="204" y2="104" />
+    <line x1="387" y1="104" x2="416" y2="104" />
+    <line x1="509" y1="104" x2="538" y2="104" />
+    <line x1="661" y1="104" x2="690" y2="104" />
+  </g>
+  <text x="84" y="146" font-size="12" fill="var(--text, #727981)">NIST SP 800-56C Rev. 2</text>
+</svg>

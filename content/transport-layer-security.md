@@ -38,12 +38,12 @@ TLS 1.3의 전체 핸드셰이크에서 공유 키는 ClientHello와 ServerHello
 
 1. 클라이언트는 ClientHello에 지원하는 판, cipher suite 목록, 그리고 key_share 확장에 담은 비대칭 키 교환 값이나 pre_shared_key 확장에 담은 PSK(Pre-Shared Key) 라벨, 또는 둘 다를 넣어 보낸다.
 2. 서버는 ServerHello로 협상한 연결 매개변수를 알리고, 비대칭 키 교환을 쓰면 자기의 임시 키 교환 값을 key_share 확장에 담아 보낸다.
-3. 서버는 이어서 EncryptedExtensions, 클라이언트 인증을 원하면 CertificateRequest, [[public-key-cryptography#공개 키를 믿게 하는 수단|인증서]]로 인증하면 Certificate와 CertificateVerify, 그리고 Finished를 보낸다. CertificateVerify는 Certificate의 [[public-key-cryptography|공개 키]]에 대응하는 개인 키로 핸드셰이크 전체에 단 [[digital-signature|서명]]으로, 보낸 쪽이 그 개인 키를 가졌음을 보인다.
+3. 서버는 이어서 EncryptedExtensions, 클라이언트 인증을 원하면 CertificateRequest, [[public-key-infrastructure#공개 키 인증서|인증서]]로 인증하면 Certificate와 CertificateVerify, 그리고 Finished를 보낸다. CertificateVerify는 Certificate의 [[public-key-cryptography|공개 키]]에 대응하는 개인 키로 핸드셰이크 전체에 단 [[digital-signature|서명]]으로, 보낸 쪽이 그 개인 키를 가졌음을 보인다.
 4. 클라이언트는 서버의 CertificateVerify 서명과 Finished를 확인하고, 요청받았으면 자기 Certificate와 CertificateVerify를 보낸 뒤 Finished를 보낸다.[@ietf-rfc-9846-2026]
 
 ![[diagrams/tls-1-3-handshake.svg]]
 
-TLS 1.3의 기본 키 교환 방식은 비대칭 키 교환, PSK, PSK와 비대칭 키 교환을 함께 쓰는 방식 셋이다. 이 RFC의 비대칭 키 교환은 유한체나 타원 곡선 위의 [[diffie-hellman-key-exchange|Diffie-Hellman]]이고, KEM(Key Encapsulation Mechanism)은 다른 확장이 정한다. 키는 HKDF(HMAC-based Extract-and-Expand Key Derivation Function)의 Extract와 Expand로 유도한다. TLS 1.3은 정적 RSA(Rivest-Shamir-Adleman)와 정적 Diffie-Hellman cipher suite를 없애, 공개 키 기반의 키 교환은 모두 [[key-establishment#안전성 성질|forward secrecy]]를 준다.[@ietf-rfc-9846-2026]
+TLS 1.3의 기본 키 교환 방식은 비대칭 키 교환, PSK, PSK와 비대칭 키 교환을 함께 쓰는 방식 셋이다. 이 RFC의 비대칭 키 교환은 유한체나 [[elliptic-curve-cryptography|타원 곡선]] 위의 [[diffie-hellman-key-exchange|Diffie-Hellman]]이고, KEM(Key-Encapsulation Mechanism)은 다른 확장이 정한다. 키는 [[key-derivation-function#추출과 확장|HKDF]]의 Extract와 Expand로 유도한다. TLS 1.3은 정적 RSA(Rivest-Shamir-Adleman)와 정적 Diffie-Hellman cipher suite를 없애, 공개 키 기반의 키 교환은 모두 [[key-establishment#안전성 성질|forward secrecy]]를 준다.[@ietf-rfc-9846-2026]
 
 ## 인증
 
@@ -52,6 +52,8 @@ TLS 1.3은 서버를 늘 인증하고, 클라이언트는 서버가 CertificateR
 ## Cipher suite
 
 TLS 1.3의 cipher suite는 레코드 보호에 쓰는 [[block-cipher-mode-of-operation#인증 암호 모드|AEAD]] 알고리즘과, HKDF와 Transcript-Hash에 쓰는 [[cryptographic-hash-function|해시]] 알고리즘의 짝을 정한다. 예: TLS_AES_128_GCM_SHA256. 키 교환 그룹과 서명 알고리즘은 cipher suite와 따로 supported_groups, key_share, signature_algorithms 확장으로 협상한다.[@ietf-rfc-9846-2026]
+
+응용 프로파일 표준이 따로 정하지 않으면, 이 RFC는 TLS를 따르는 응용이 TLS_AES_128_GCM_SHA256 cipher suite를 구현해야 하고 TLS_AES_256_GCM_SHA384와 TLS_CHACHA20_POLY1305_SHA256 cipher suite는 구현하는 것이 좋다고 정한다. 키 교환은 secp256r1([[elliptic-curve-cryptography#권고 곡선|NIST P-256]])을 지원해야 하고, X25519는 지원하는 것이 좋다.[@ietf-rfc-9846-2026]
 
 RFC 5246은 cipher suite 하나가 키 교환 알고리즘, 대량 암호 알고리즘(비밀 키 길이 포함), [[message-authentication-code|MAC]] 알고리즘, PRF(Pseudorandom Function)를 정하게 했다. RFC 9846은 인증·키 교환 방식을 레코드 보호 알고리즘과 떼어 cipher suite의 뜻을 바꿨다.[@ietf-rfc-9846-2026][@ietf-rfc-5246-2008]
 

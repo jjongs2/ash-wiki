@@ -19,6 +19,7 @@
 - BSI: 조직
 - CAN_H: 핀과 신호
 - CAN_L: 핀과 신호
+- CCITT: 조직
 - CCRA: 조직
 - CCSDS: 조직
 - CENELEC: 조직
@@ -39,6 +40,7 @@
 - DENSO: 조직
 - DETA: 널리 쓰이는 약어
 - DoD: 조직
+- ECMA: 조직
 - ECU: 널리 쓰이는 약어
 - EEPROM: 널리 쓰이는 약어
 - EIA: 조직

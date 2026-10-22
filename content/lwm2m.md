@@ -24,7 +24,7 @@ LwM2M 1.2.2 Transport 명세는 LwM2M 메시지를 나르는 바인딩으로 [[u
 
 CoAP는 RFC 7252가 정하는, 제약 노드와 제약 네트워크를 위한 웹 전송 프로토콜이다.[@ietf-rfc-7252-2014]
 
-LwM2M 1.2.2 Transport 명세는 UDP 위의 CoAP를 DTLS 1.2로, TCP 위의 CoAP를 TLS로 보호하게 정하고, TLS 1.3과 DTLS 1.3은 선택으로 쓸 수 있게 한다. 자격 증명은 인증서, Raw Public Key, 사전 공유 비밀(PSK, Pre-Shared Key) 세 종류를 지원하며, Bootstrap-Server는 셋을 모두 지원해야 한다.[@oma-lwm2m-transport-1-2-2-2024]
+LwM2M 1.2.2 Transport 명세는 UDP 위의 CoAP를 DTLS 1.2로, TCP 위의 CoAP를 TLS로 보호하게 정하고, TLS 1.3과 DTLS 1.3은 선택으로 쓸 수 있게 한다. 자격 증명은 [[public-key-infrastructure#공개 키 인증서|인증서]], Raw Public Key, 사전 공유 비밀(PSK, Pre-Shared Key) 세 종류를 지원하며, Bootstrap-Server는 셋을 모두 지원해야 한다.[@oma-lwm2m-transport-1-2-2-2024]
 
 이 명세는 CoAP 바인딩과 HTTP 바인딩 모두에서 Server가 Queue Mode를 지원하도록 요구하고, Client에는 지원을 권한다. Client가 오프라인인 동안 Server는 내려보낼 요청을 바로 보내지 않고, Client가 온라인이 될 때까지 기다린다. Client는 등록 갱신 메시지를 보내 깨어났음을 Server에 알린다.[@oma-lwm2m-transport-1-2-2-2024]
 

@@ -26,7 +26,7 @@ Arm Platform Security Boot Guide 1.1은 리셋 직후 실행되는 첫 부트 �
 ## 구현 예
 
 - UEFI(Unified Extensible Firmware Interface) 2.11 명세는 부트 매니저가 UEFI 이미지(운영체제 로더, 옵션 ROM, 드라이버 등)를 시작하기 전에 그 서명이 허가 서명 데이터베이스(db)에 있고 금지 서명 데이터베이스(dbx)에 없는지 확인하게 하며, 그렇지 않은 이미지는 시작하지 않게 한다. User mode에서 db와 dbx는 KEK(Key Exchange Key)나 PK(Platform Key)의 개인 키로 서명한 데이터로만, KEK는 PK의 개인 키로 서명한 데이터로만 고칠 수 있게 한다.[@uefi-spec-2-11-secure-boot-2024]
-- TF-A의 Trusted Board Boot에서는 BL1이 ROTPK 해시로 BL2 인증서를 검증하고 BL2 이미지의 해시를 확인한 뒤 제어를 넘기며, 나머지 이미지(BL31, BL32, BL33 등)는 BL2가 인증서 사슬로 확인한다.[@trustedfirmware-tf-a-trusted-board-boot-2026]
+- TF-A의 Trusted Board Boot에서는 BL1이 ROTPK 해시로 BL2 [[public-key-infrastructure#공개 키 인증서|인증서]]를 검증하고 BL2 이미지의 해시를 확인한 뒤 제어를 넘기며, 나머지 이미지(BL31, BL32, BL33 등)는 BL2가 인증서 사슬로 확인한다.[@trustedfirmware-tf-a-trusted-board-boot-2026]
 - ESP32의 Secure Boot v2는 부트로더와 앱의 서명을 확인하고, 서명 공개 키의 해시를 eFuse에 기록한다.[@espressif-esp32-secure-boot-v2-2026]
 
 ![[diagrams/uefi-secure-boot-key-databases.svg]]

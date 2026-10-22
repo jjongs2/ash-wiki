@@ -34,7 +34,7 @@ IEEE 802.1AE-2018은 [[symmetric-key-cryptography#AES|AES]]-128 블록 암호를
 
 ![[diagrams/macsec-gcm-aes-128-iv.svg]]
 
-IEEE 802.1X-2020은 포트 기반 네트워크 접근 제어를 정하는 표준으로, 서로 통신할 시스템이 EAP(Extensible Authentication Protocol)와 그 LAN 캡슐화인 EAPOL로 상호 인증하게 하고, MACsec으로 통신을 보호하는 데 쓰는 MKA(MACsec Key Agreement) 프로토콜을 정한다.[@ieee-802-1x-project-2026][@ieee-802-1x-2020] MKA는 서로 인증된 MACsec 피어를 찾고 그 가운데 하나를 Key Server로 뽑으며, Key Server가 MACsec이 프레임 보호에 쓰는 대칭 SAK를 나눠 준다.[@ieee-802-1ae-project-2026] [[ieee-802-1q|IEEE 802.1Q]]-2022의 Annex R(참고)은 CA 구성원이 공유하는 비밀 키인 CAK(Connectivity Association Key)를 가져야 CA에 참여할 수 있고, MKA가 이 키로 CA 구성원을 서로 확인하고 SAK를 나눈다는 설명을 제시한다.[@ieee-802-1q-2022]
+IEEE 802.1X-2020은 포트 기반 네트워크 접근 제어를 정하는 표준으로, 서로 통신할 시스템이 EAP(Extensible Authentication Protocol)와 그 LAN 캡슐화인 EAPOL로 [[entity-authentication|상호 인증]]하게 하고, MACsec으로 통신을 보호하는 데 쓰는 MKA(MACsec Key Agreement) 프로토콜을 정한다.[@ieee-802-1x-project-2026][@ieee-802-1x-2020] MKA는 서로 인증된 MACsec 피어를 찾고 그 가운데 하나를 Key Server로 뽑으며, Key Server가 MACsec이 프레임 보호에 쓰는 대칭 SAK를 나눠 준다.[@ieee-802-1ae-project-2026] [[ieee-802-1q|IEEE 802.1Q]]-2022의 Annex R(참고)은 CA 구성원이 공유하는 비밀 키인 CAK(Connectivity Association Key)를 가져야 CA에 참여할 수 있고, MKA가 이 키로 CA 구성원을 서로 확인하고 SAK를 나눈다는 설명을 제시한다.[@ieee-802-1q-2022]
 
 Annex R은 [[frame-preemption|프레임 선점]]과 MACsec을 함께 쓸 때의 물음에 답을 제시한다. 이 Annex는 선점으로 프레임이 조각나도 ICV가 프레임 전체를 보호하므로 조각을 빼거나 바꿔치기할 수 없고, 그 값은 프레임 전체를 보호한 뒤 보낼 때와 같다는 답을 제시한다. 또 MKA Key Server가 새 SAK로 바꾸라고 알린 뒤 3초 동안은 이전 수신 SA와 새 수신 SA를 함께 받을 수 있으므로, 새 SAK로 보호한 express 프레임을 받은 뒤에도 이전 SAK로 보호한 선점 프레임을 마지막 조각까지 받아 검증할 수 있다는 답도 제시한다.[@ieee-802-1q-2022]
 
@@ -53,7 +53,7 @@ OPEN Alliance의 TC17은 IEEE 802.1AE의 MACsec과 IEEE 802.1X의 MKA를 차량�
 
 ## AUTOSAR의 MACsec 지원
 
-[[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 MKA 명세는 MKA 모듈이 MACsec 피어를 찾고 링크를 보호할 보안 키를 협상하도록 정한다. MKA 모듈은 MKPDU(MACsec Key Agreement Protocol Data Unit)를 만들고 처리하며, 같은 CA에 속한 상대를 확인하고 인증한다. 세운 SC와 SA에 맞는 파라미터와 암호 데이터를 소프트웨어나 하드웨어로 된 SecY에 설정해 주고, SC와 SA 정보를 최신으로 유지하며, 통신을 끊지 않고 SAK를 바꿀 수 있게 키를 새로 한다. MKA 모듈은 키를 유도하고 쓰려고 [[autosar-crypto-stack#Crypto Service Manager|Csm]]과 이어지며, CAK에서 키를 유도하는 KDF(Key Derivation Function)와, MKPDU의 ICV를 만들고 검증하는 128비트 AES-[[message-authentication-code#블록 암호 기반: CMAC|CMAC]]을 암호 BSW(Basic Software)에서 받는다. MKPDU는 PDU(Protocol Data Unit)로 오가며, [[pdu-router#상위 모듈과 하위 모듈|L-SDU(Link Layer Service Data Unit) Router]](LSduR)를 거쳐 EthIf(Ethernet Interface)와 주고받는다. 이 명세는 EAP 기반 인증을 다루지 않고, 미리 나눠 둔 CAK로 하는 인증만 다룬다.[@autosar-cp-sws-macseckeyagreement-2025]
+[[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 MKA 명세는 MKA 모듈이 MACsec 피어를 찾고 링크를 보호할 보안 키를 협상하도록 정한다. MKA 모듈은 MKPDU(MACsec Key Agreement Protocol Data Unit)를 만들고 처리하며, 같은 CA에 속한 상대를 확인하고 인증한다. 세운 SC와 SA에 맞는 파라미터와 암호 데이터를 소프트웨어나 하드웨어로 된 SecY에 설정해 주고, SC와 SA 정보를 최신으로 유지하며, 통신을 끊지 않고 SAK를 바꿀 수 있게 키를 새로 한다. MKA 모듈은 키를 유도하고 쓰려고 [[autosar-crypto-stack#Crypto Service Manager|Csm]]과 이어지며, CAK에서 키를 유도하는 [[key-derivation-function|KDF]]와, MKPDU의 ICV를 만들고 검증하는 128비트 AES-[[message-authentication-code#블록 암호 기반: CMAC|CMAC]]을 암호 BSW(Basic Software)에서 받는다. MKPDU는 PDU(Protocol Data Unit)로 오가며, [[pdu-router#상위 모듈과 하위 모듈|L-SDU(Link Layer Service Data Unit) Router]](LSduR)를 거쳐 EthIf(Ethernet Interface)와 주고받는다. 이 명세는 EAP 기반 인증을 다루지 않고, 미리 나눠 둔 CAK로 하는 인증만 다룬다.[@autosar-cp-sws-macseckeyagreement-2025]
 
 AUTOSAR Classic Platform R25-11은 MACsec 지원을 고치는 개념을 들여, MKA 모듈의 송수신을 LSduR로 하게 하고 [[ethernet-switch|이더넷 스위치]] 포트와 이더넷 컨트롤러에서도 MACsec을 지원하게 했다.[@autosar-cp-tr-releaseoverview-2025]
 

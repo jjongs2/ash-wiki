@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50.5 14.5 445.5 195.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 단위 정육면체의 모서리 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M80 170 V70 H180" />
+    <path d="M140 130 H240 V30 H140 Z" />
+    <line x1="80" y1="170" x2="140" y2="130" />
+    <line x1="180" y1="170" x2="240" y2="130" />
+    <line x1="180" y1="70" x2="240" y2="30" />
+    <line x1="80" y1="70" x2="140" y2="30" />
+  </g>
+
+  <!-- x에서 y로 가는 최소 개수의 모서리 -->
+  <path d="M80 170 H180 V70" stroke="var(--blue, #336fb8)" stroke-width="3" />
+
+  <!-- 꼭짓점 -->
+  <g fill="var(--ink, #727981)">
+    <circle cx="80" cy="70" r="3.5" />
+    <circle cx="180" cy="170" r="3.5" />
+    <circle cx="140" cy="130" r="3.5" />
+    <circle cx="240" cy="130" r="3.5" />
+    <circle cx="240" cy="30" r="3.5" />
+    <circle cx="140" cy="30" r="3.5" />
+  </g>
+  <g fill="var(--blue, #336fb8)">
+    <circle cx="80" cy="170" r="5" />
+    <circle cx="180" cy="70" r="5" />
+  </g>
+  <g font-style="italic" fill="var(--text, #727981)">
+    <text x="62" y="186">x</text>
+    <text x="160" y="60">y</text>
+  </g>
+
+  <!-- 설명 -->
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="280" y="76">꼭짓점 하나: 부호를 이루는 0과 1의 열 하나</text>
+    <text x="280" y="104"><tspan font-style="italic">D</tspan>(<tspan font-style="italic">x</tspan>, <tspan font-style="italic">y</tspan>): 두 점의 좌표가 서로 다른 자리의 수</text>
+    <text x="280" y="122">= <tspan font-style="italic">x</tspan>에서 <tspan font-style="italic">y</tspan>로 가는 데 지나야 하는</text>
+    <text x="292" y="140">모서리의 최소 개수</text>
+    <text x="280" y="168">굵은 선: 그 최소 개수의 모서리로 가는 길</text>
+    <text x="280" y="196">Hamming의 1950년 논문</text>
+  </g>
+</svg>

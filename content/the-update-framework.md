@@ -14,7 +14,7 @@ status: 유효
 
 ## 범위
 
-TUF 명세 1.0.37은 메타데이터가 담을 필드와 클라이언트의 업데이트 절차를 정하고, 메타데이터의 데이터 형식은 구현에 맡긴다. 이 명세는 범용 업데이트 시스템을 만들지 않고, 패키지 형식을 정하거나 응용 프로그램 파일을 실제로 업데이트하는 일도 하지 않는다. 또 [[transport-layer-security|TLS]]를 지원하지 않는 환경에서도 안전하게 쓸 수 있고, root of trust가 외부 PKI(Public Key Infrastructure)에 기대지 않는 것을 목표로 둔다.[@tuf-specification-1-0-37-2026]
+TUF 명세 1.0.37은 메타데이터가 담을 필드와 클라이언트의 업데이트 절차를 정하고, 메타데이터의 데이터 형식은 구현에 맡긴다. 이 명세는 범용 업데이트 시스템을 만들지 않고, 패키지 형식을 정하거나 응용 프로그램 파일을 실제로 업데이트하는 일도 하지 않는다. 또 [[transport-layer-security|TLS]]를 지원하지 않는 환경에서도 안전하게 쓸 수 있고, root of trust가 외부 [[public-key-infrastructure|PKI]]에 기대지 않는 것을 목표로 둔다.[@tuf-specification-1-0-37-2026]
 
 ### 역할과 위임
 
