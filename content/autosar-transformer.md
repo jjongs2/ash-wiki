@@ -27,7 +27,7 @@ Transformer는 오류를 반환 코드로 RTE에 돌려주고, RTE는 이를 보
 
 변환 대상은 [[autosar-sender-receiver-interface|sender-receiver 인터페이스]] 포트의 데이터 요소, [[autosar-client-server-interface|client-server 인터페이스]] 포트의 operation, 큐를 쓰지 않는 trigger 인터페이스 포트의 외부 trigger 이벤트로 한정된다. 변환은 RTE 안에서 일어나는데 PDU(Protocol Data Unit)는 COM 모듈 안에서 만들어지므로, PDU를 통째로 변환할 수는 없다. 변환한 데이터 요소 여럿을 COM에서 큰 PDU 하나에 모을 수는 있지만, 그 PDU의 데이터 요소는 저마다 따로 변환되고 변환이 헤더를 붙이면 저마다 헤더를 단다. 그래서 하위 요소가 서로 다른 포트나 SW-C의 데이터 요소로 채워지는 데이터 구조는 변환할 수 없다.[@autosar-cp-asws-transformergeneral-2025]
 
-Transformer chain의 길이는 이 개념이 고른 해법 때문에 제한되지는 않지만, 메모리를 아끼는 설정과 구현을 위해 최대 255개로 정한다. 지금의 쓰임새에서 체인은 길어야 3개다.[@autosar-cp-asws-transformergeneral-2025]
+Transformer chain의 길이는 이 개념이 고른 해법 때문에 제한되지는 않지만, 메모리를 아끼는 설정과 구현을 위해 최대 255개로 정한다. AUTOSAR R25-11이 나온 2025년의 쓰임새에서는 체인이 길어야 3개였다.[@autosar-cp-asws-transformergeneral-2025]
 
 큰 복합 데이터 요소를 직렬화하는 변환은 [[ethernet|이더넷]]처럼 PDU가 큰 버스에서 가장 효율적이다. [[can|CAN]]처럼 PDU가 작은 버스에서는 직렬화한 바이트 배열을 여러 PDU에 걸쳐 실어야 하므로, 가능은 하지만 비효율적이다.[@autosar-cp-asws-transformergeneral-2025]
 

@@ -48,7 +48,7 @@ Bosch CAN 2.0 규격은 버스에 잇는 노드 수에 이론적 한계를 두�
 
 CiA에 따르면 1980년대 초 Bosch의 엔지니어들은 기존 직렬 버스가 승용차의 요구를 채우지 못한다고 보았고, Uwe Kiencke가 1983년에 새 직렬 버스 개발을 시작했다. 자문으로 참여한 Wolfhard Lawrenz 교수가 'Controller Area Network'라는 이름을 붙였고, 1986년 발표 때의 이름은 'Automotive Serial Controller Area Network'였다.[@cia-can-history-2026]
 
-첫 CAN 컨트롤러 칩은 Intel이 1987년 중반에 내놓은 82526이고, 곧이어 Philips Semiconductors가 82C200을 내놓았다. 두 칩은 수용 필터링과 프레임 처리가 달라, Intel의 FullCAN은 Philips의 BasicCAN보다 연결된 MCU의 CPU 부하를 덜었지만 받을 수 있는 프레임 수가 제한되었다. 지금의 CAN 컨트롤러는 두 방식을 섞어 구현하므로 BasicCAN과 FullCAN이라는 말은 쓰이지 않게 되었다.[@cia-can-history-2026]
+첫 CAN 컨트롤러 칩은 Intel이 1987년 중반에 내놓은 82526이고, 곧이어 Philips Semiconductors가 82C200을 내놓았다. 두 칩은 수용 필터링과 프레임 처리가 달라, Intel의 FullCAN은 Philips의 BasicCAN보다 연결된 MCU의 CPU 부하를 덜었지만 받을 수 있는 프레임 수가 제한되었다. 2026년 9월 기준 CAN 컨트롤러는 두 방식을 섞어 구현하고, 그래서 BasicCAN과 FullCAN이라는 말은 쓰이지 않게 되었다.[@cia-can-history-2026]
 
 Mercedes-Benz는 1991년부터 고급 승용차에 CAN을 썼고, 처음에는 엔진 관리 ECU들을 CAN으로 이었다.[@cia-can-history-2026]
 

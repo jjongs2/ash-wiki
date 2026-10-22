@@ -28,7 +28,7 @@ Diagnostic Management는 설치된 [[autosar-software-cluster#Adaptive Platform�
 
 ## 진단 통신
 
-진단 통신 하위 클러스터는 Classic Platform의 Dcm처럼 진단 서버를 구현한다. 지원하는 UDS 서비스는 아직 제한되어 있다. Diagnostic Management는 ISO 14229-1에 따른 다중 클라이언트 처리를 지원해, 데이터 수집, 백엔드 접근, 정비와 생산을 위한 여러 진단 클라이언트(테스터)를 함께 다룬다. 특정 서비스는 인증서로 인증할 수 있다.[@autosar-ap-exp-platformdesign-2025]
+진단 통신 하위 클러스터는 Classic Platform의 Dcm처럼 진단 서버를 구현한다. 이 릴리스에서는 지원하는 UDS 서비스가 제한되어 있다. Diagnostic Management는 ISO 14229-1에 따른 다중 클라이언트 처리를 지원해, 데이터 수집, 백엔드 접근, 정비와 생산을 위한 여러 진단 클라이언트(테스터)를 함께 다룬다. 특정 서비스는 인증서로 인증할 수 있다.[@autosar-ap-exp-platformdesign-2025]
 
 Diagnostic Management는 진단 서버로서 받은 루틴 제어나 DID(Data Identifier) 서비스 같은 진단 요청을, 해당 Adaptive Application의 매핑된 제공 포트로 보낸다. 이를 위해 Adaptive Application은 DiagnosticPortInterface를 제공해야 한다. DiagnosticPortInterface에는 요청·응답 메시지의 파라미터를 모두 API 시그니처에 담고 직렬화를 Diagnostic Management가 맡는 typed 인터페이스와, 바이트 벡터만 주고받고 직렬화를 응용이 맡는 generic 인터페이스가 있다.[@autosar-ap-exp-platformdesign-2025]
 

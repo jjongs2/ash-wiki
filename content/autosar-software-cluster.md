@@ -7,7 +7,7 @@ verified: 2026-10-07
 
 AUTOSAR R25-11 용어집은 [[autosar-classic-platform|Classic Platform]]의 **Software Cluster**를 ECU에 소프트웨어 일부를 정적으로 배치하는 데 관련된 AUTOSAR 산출물을 묶는 단위로 정의한다. Software Cluster는 저마다 따로 빌드하는 단위이고, 그 빌드의 결과물이 Binary Object다. cluster라는 말은 [[implementation-conformance-class#등급|ICC2]]에서도 쓰지만, 그때는 BSW(Basic Software) 모듈의 묶음을 가리킨다.[@autosar-fo-tr-glossary-2025]
 
-AUTOSAR R25-11 [[autosar-layered-architecture|Layered Software Architecture]]는 Software Cluster로 한 덩어리인 Classic Platform 구조를 작은 단위로 나누고, 각 Software Cluster를 따로 빌드하고 따로 갱신할 수 있게 한다. Software Cluster 사이의 연결은 Binary Object와 그 Binary Manifest에 담긴 정보로 만든다. 이 방식은 주소 가상화가 없는 것처럼 지금 마이크로컨트롤러 구조의 한계를 고려한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+AUTOSAR R25-11 [[autosar-layered-architecture|Layered Software Architecture]]는 Software Cluster로 한 덩어리인 Classic Platform 구조를 작은 단위로 나누고, 각 Software Cluster를 따로 빌드하고 따로 갱신할 수 있게 한다. Software Cluster 사이의 연결은 Binary Object와 그 Binary Manifest에 담긴 정보로 만든다. 이 방식은 주소 가상화가 없는 것처럼 2025년 무렵 마이크로컨트롤러 구조의 한계를 고려한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## Host와 Application Software Cluster
 

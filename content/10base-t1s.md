@@ -37,7 +37,7 @@ ID 0인 노드가 고장 나도 네트워크는 PLCA가 없는 CSMA/CD 네트워
 
 IEEE 802.3da-2026은 IEEE 802.3-2022에 대한 개정으로, 10BASE-T1S 물리 계층의 10 Mbit/s 공유 매체(멀티드롭) 모드를 보강하는 멀티드롭 전용 물리 계층을 새로 정한다. 여기에는 RS, 관리 파라미터, 시간 동기 프로토콜을 위한 이더넷 지원, mixing segment에 이어진 여러 PD(Powered Device)에 대한 선택 전력 공급이 든다.[@ieee-802-3da-2026] P802.3da 태스크 포스는 적어도 노드 16개를 적어도 50 m에 잇는 mixing segment, 선택 사항인 PLCA 노드 ID 할당 방법, Clause 147을 따르는 mixing segment에서 Clause 147 PHY와의 하위 호환, 선택 사항인 TSSI(Time Synchronization Service Interface) 지원을 목표로 두었다.[@ieee-802-3da-objectives-2023]
 
-2026년 7월 17일 IEEE 802 LMSC(LAN/MAN Standards Committee)는 IEEE 802.3 작업 그룹 아래에, PLCA의 멀티드롭 지연, 지터, 확장성 보강을 다룰 PAR와 CSD(Criteria for Standards Development)를 만드는 연구 그룹을 세웠다.[@ieee-802-3-plca-enhancements-sg-2026] 이 연구 그룹이 낸 P802.3dx 초안 PAR는 지금 PLCA의 최대 지연이 일부 제어 응용에 모자라, 일부 멀티드롭 공유 네트워크에서 최대 지연을 줄이고 결정성을 높일 필요가 있다고 밝힌다.[@ieee-802-3dx-par-2026]
+2026년 7월 17일 IEEE 802 LMSC(LAN/MAN Standards Committee)는 IEEE 802.3 작업 그룹 아래에, PLCA의 멀티드롭 지연, 지터, 확장성 보강을 다룰 PAR와 CSD(Criteria for Standards Development)를 만드는 연구 그룹을 세웠다.[@ieee-802-3-plca-enhancements-sg-2026] 이 연구 그룹이 낸 P802.3dx 초안 PAR는 PLCA의 최대 지연이 일부 제어 응용에 모자라, 일부 멀티드롭 공유 네트워크에서 최대 지연을 줄이고 결정성을 높일 필요가 있다고 밝힌다.[@ieee-802-3dx-par-2026]
 
 ## OPEN Alliance 명세
 
