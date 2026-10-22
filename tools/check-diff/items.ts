@@ -23,7 +23,8 @@ import {
 import { firstLinkItem } from "./first-link"
 import { ownerPage } from "./owner"
 import { editions } from "./editions"
-import { allConsensus, consensusWithoutEdition, sectionText, shortNameAllowed } from "./consensus"
+import { consensusWithoutEdition, isConsensus, sectionText, shortNameAllowed } from "./consensus"
+import { isStandardsTrackRfc } from "./rfc"
 import {
   attributed,
   claimBlocks,
@@ -385,9 +386,15 @@ const sourceRunItem: Item = ({ tree, changed }) => {
             `같은 출처 구간 사이에 다른 출처의 블록이 끼었다(앞 구간: ${between.before.end}줄, 끼운 블록: ${inserted}, 이: ${claim.firstKeys})`,
           )
         }
-        // 합의 문서는 다툼 없는 설명을 출처 이름 없이 일반 명제로 쓰므로, 합의 문서 키만으로 여는 블록은 출처
-        // 표시가 없어도 된다. 그 구간을 가리키는 말로 여는 문장은 아래 pointerOpenings가 찍는다.
-        if (attributed(claim, sources) || allConsensus(claim.firstKeys.split(" "))) return []
+        // 합의 문서는 다툼 없는 설명을, Standards Track RFC는 규범 주장을 출처 이름 없이 위키 목소리로 쓰므로,
+        // 그 키만으로 여는 블록은 출처 표시가 없어도 된다. 합의 문서 구간을 가리키는 말로 여는 문장은 아래
+        // pointerOpenings가 찍는다.
+        const keys = claim.firstKeys.split(" ")
+        if (
+          attributed(claim, sources) ||
+          keys.every((key) => isConsensus(key) || isStandardsTrackRfc(key))
+        )
+          return []
         const previous = list[index - 1]
         const before = previous ? `${previous.end}줄 ${previous.lastKeys}` : "없음"
         return at(`구간을 여는데 출처 표시가 없다(앞: ${before}, 이: ${claim.firstKeys})`)

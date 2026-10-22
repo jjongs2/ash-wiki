@@ -52,4 +52,4 @@ IEEE 802.1Q-2022는 게이트 제어 목록의 게이트 동작으로 SetGateSta
 
 Microchip AN1185에 따르면 [[credit-based-shaper|credit-based shaper]]는 우선순위에 따라 큐가 쓰는 대역폭을 조절하고, TAS는 큐마다 전송을 전역 시간 척도에 맞춰 스케줄한다.[@microchip-an1185-2025]
 
-802.1Qbv 프로젝트 페이지에 따르면 이 개정은 engineered LAN에서 지연과 전달 변동을 보장하려 했다. credit-based shaper는 engineered가 아닌 네트워크에서도 잘 동작하며, 이 개정으로 두 종류의 네트워크를 하나로 합칠 수 있다.[@ieee-802-1qbv-project-2016]
+IEEE 802.1 작업 그룹은 802.1Qbv 개정으로 engineered LAN에서 지연과 전달 변동을 보장하려 했다. 802.1Qbv 프로젝트 페이지에 따르면 credit-based shaper는 engineered가 아닌 네트워크에서도 잘 동작하며, 이 개정으로 두 종류의 네트워크를 하나로 합칠 수 있다.[@ieee-802-1qbv-project-2016]

@@ -25,6 +25,7 @@
 - [0014](0014-source-run-attribution.md) 출처 표시를 같은 출처가 이어지는 구간마다 한 번 둔다
 - [0016](0016-source-run-by-edition.md) 출처 구간의 같은 출처를 판으로 가리고, 다른 출처의 문장을 구간에 끼우지 않는다
 - [0020](0020-dated-status-statements.md) 곧 낡는 상태 문장에 달 단위 날짜를 붙인다
+- [0022](0022-standards-track-rfc-wiki-voice.md) 판 없는 Standards Track RFC의 규범 주장은 위키 목소리로 쓴다 (0014, 0018을 고침)
 
 ## 콘텐츠 구조
 

@@ -62,7 +62,7 @@ IPv6에서는 라우터가 패킷을 나누지 않고 발신 노드만 나눈다
 
 ## 주소 자동 설정
 
-RFC 4862는 IPv6 호스트가 인터페이스의 주소를 스스로 설정하는 절차를 정한다. 이 절차에는 링크 로컬 주소를 만드는 일, 상태 없는 주소 자동 설정(stateless address autoconfiguration)으로 전역 주소를 만드는 일, 중복 주소 검출(Duplicate Address Detection)로 주소가 링크에서 유일한지 확인하는 일이 든다.[@ietf-rfc-4862-2007]
+IPv6 호스트가 인터페이스의 주소를 스스로 설정하는 절차에는 링크 로컬 주소를 만드는 일, 상태 없는 주소 자동 설정(stateless address autoconfiguration)으로 전역 주소를 만드는 일, 중복 주소 검출(Duplicate Address Detection)로 주소가 링크에서 유일한지 확인하는 일이 든다.[@ietf-rfc-4862-2007]
 
 노드는 잘 알려진 링크 로컬 접두사에 인터페이스 식별자를 붙여 링크 로컬 주소를 만든다. 이 주소를 인터페이스에 붙여 쓰기 전에, 노드는 그 주소를 대상으로 한 [[neighbor-discovery#메시지|Neighbor Solicitation]]을 보내 링크의 다른 노드가 이미 쓰고 있는지 확인해야 한다. 상태 없는 주소 자동 설정은 라우터가 보내는 Router Advertisement에 든 Prefix Information 옵션의 정보로 전역 주소를 만든다.[@ietf-rfc-4862-2007]
 
@@ -74,7 +74,7 @@ RFC 1883은 1995년 12월에 Proposed Standard인 IPv6 명세로 나왔다.[@rfc
 
 ## IPv4와의 차이
 
-IPv4 주소가 32비트인 데 비해 IPv6 주소는 128비트다. RFC 8200은 IPv4에서 바뀐 점으로 주소 공간 확장, 헤더 형식 단순화, 확장 헤더와 옵션의 개선, 흐름 레이블, 인증과 기밀성 기능을 든다.[@ietf-rfc-8200-2017]
+IPv4 주소가 32비트인 데 비해 IPv6 주소는 128비트다. IPv6가 IPv4에서 바꾼 점으로는 주소 공간 확장, 헤더 형식 단순화, 확장 헤더와 옵션의 개선, 흐름 레이블, 인증과 기밀성 기능이 있다.[@ietf-rfc-8200-2017]
 
 IPv4 헤더와 달리 IPv6 헤더에는 헤더 [[checksum|체크섬]] 필드가 없다. 또 IPv4와 달리 IPv6에서는 [[udp#체크섬|UDP 체크섬]]을 기본적으로 생략할 수 없다.[@ietf-rfc-8200-2017]
 

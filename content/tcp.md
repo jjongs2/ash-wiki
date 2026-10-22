@@ -64,9 +64,9 @@ RFC 3366은 TCP를 전송 계층의 슬라이딩 윈도 프로토콜로 본다([
 
 ## 재전송 타임아웃
 
-RFC 9293은 RTO(retransmission timeout)를 Karn 알고리즘을 포함한 RFC 6298의 알고리즘으로 계산하도록 정한다.[@ietf-rfc-9293-2022]
+TCP는 RTO(retransmission timeout)를 Karn 알고리즘을 포함한 RFC 6298의 알고리즘으로 계산한다.[@ietf-rfc-9293-2022]
 
-RFC 6298은 RTO 계산에 송신 측의 상태 변수 SRTT(smoothed round-trip time)와 RTTVAR(round-trip time variation)를 두고, 클록 단위를 $G$초로 둔다. 송신 측은 RTT(round-trip time)를 처음 재기 전에는 RTO를 1초로 두도록 권고되고, 첫 측정값 $R$을 얻으면 $\mathrm{SRTT} = R$, $\mathrm{RTTVAR} = R/2$로 두고 $\mathrm{RTO} = \mathrm{SRTT} + \max(G,\ 4\,\mathrm{RTTVAR})$로 두어야 한다. RTO를 계산할 때마다 1초보다 작으면 1초로 올리도록 권고된다.[@ietf-rfc-6298-2011]
+이 알고리즘은 RTO 계산에 송신 측의 상태 변수 SRTT(smoothed round-trip time)와 RTTVAR(round-trip time variation)를 두고, 클록 단위를 $G$초로 둔다. 송신 측은 RTT(round-trip time)를 처음 재기 전에는 RTO를 1초로 두도록 권고되고, 첫 측정값 $R$을 얻으면 $\mathrm{SRTT} = R$, $\mathrm{RTTVAR} = R/2$로 두고 $\mathrm{RTO} = \mathrm{SRTT} + \max(G,\ 4\,\mathrm{RTTVAR})$로 두어야 한다. RTO를 계산할 때마다 1초보다 작으면 1초로 올리도록 권고된다.[@ietf-rfc-6298-2011]
 
 재전송 타이머가 만료되면 보내는 쪽은 아직 확인 응답을 받지 못한 가장 이른 세그먼트를 다시 보낸다. 이때 RTO를 두 배로 늘려야 한다. 재전송한 세그먼트로는 RTT를 재지 않아야 한다(Karn 알고리즘). 확인 응답이 어느 전송에 대한 것인지 가릴 수 있는 TCP Timestamps 옵션을 쓸 때만 예외다.[@ietf-rfc-6298-2011]
 

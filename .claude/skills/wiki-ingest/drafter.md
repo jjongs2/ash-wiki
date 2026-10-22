@@ -13,7 +13,7 @@
 - `.claude/skills/wiki-ingest/SKILL.md`: 머리의 형제 PR 문단, 1단계의 `### 두 경로 공통` 절, `### 브리프` 절의 현행판 표와 사본 항목
 - `docs/wiki-conventions.md`: 표, 도해, 열린 PR과 겹치는 파일, 빌드 절을 뺀 전부
 - `docs/wiki-terms.md`, `docs/wiki-abbreviations.md`
-- `docs/wiki-verification.md`: 판정 절의 약어 풀이 문단, 좁혀 쓰기(규범 주장의 꼴, 출처 구간, 합의 문서), 이론 주장, 표준의 판, 정정, 봇 차단 호스트, 반영 뒤 점검의 `standard-sentence`, `source-run`, `abbreviation`, `repeated-citation`, `term`, `first-link` 항목
+- `docs/wiki-verification.md`: 판정 절의 약어 풀이 문단, 좁혀 쓰기(규범 주장의 꼴, 출처 구간, 합의 문서, Standards Track RFC), 이론 주장, 표준의 판, 정정, 봇 차단 호스트, 반영 뒤 점검의 `standard-sentence`, `source-run`, `abbreviation`, `repeated-citation`, `term`, `first-link` 항목
 - `docs/source-access.md`: 머리의 공통 줄과 호스트별 여는 법 절
 - `docs/source-hierarchy.md`: 발행기관, 원 논문과 원 저자의 글, 1층 출처 절
 
