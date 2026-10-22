@@ -54,7 +54,7 @@ disable-model-invocation: true
 
 수정이 있으면 PR 하나로 올린다. 제목은 `content: <대상> 린트 수정`, 브랜치와 본문은 `CONTRIBUTING.md`를 따른다. 이 린트를 부른 티켓이 있으면 그 번호를 쓴다.
 
-PR을 올리기 전에 위키 검증 문서의 반영 뒤 점검과 `CONTRIBUTING.md`의 PR 전 확인을 돌리고, 같은 문서의 리뷰 절대로 리뷰를 돌려 반영한다.
+PR을 올리기 전에 `CONTRIBUTING.md`의 리뷰 절대로 리뷰를 돌려 반영하고, 위키 검증 문서의 반영 뒤 점검과 `CONTRIBUTING.md`의 PR 전 확인을 돌린다.
 
 완료: PR 전 확인이 통과하고, PR과 리뷰 요약 코멘트가 있다.
 
