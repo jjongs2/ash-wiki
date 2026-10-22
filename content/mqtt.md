@@ -33,6 +33,12 @@ MQTT 5.0은 메시지가 토픽 이름(topic name)을 달고 발행되고, 서�
 
 QoS는 보내는 쪽과 받는 쪽 한 쌍마다 따로 적용되므로, 서버가 구독자에게 보낼 때의 QoS는 발행될 때의 QoS와 다를 수 있다.[@oasis-mqtt-5-0-2019]
 
+## 세션
+
+QoS 1과 QoS 2 흐름을 구현하려고 클라이언트와 서버는 Client Identifier에 상태를 묶어 두며, 이를 **세션 상태**(Session State)라 한다. 서버는 구독도 세션 상태에 넣는다. 세션은 이어지는 네트워크 연결 여럿에 걸쳐 계속될 수 있고, 마지막 네트워크 연결이 끝난 뒤 Session Expiry Interval만큼 더 남는다.[@oasis-mqtt-5-0-2019]
+
+CONNECT의 Clean Start가 1이면 클라이언트와 서버는 기존 세션을 버리고 새 세션을 시작해야 한다. Clean Start가 0일 때, 그 Client Identifier에 묶인 세션이 있으면 서버는 그 세션의 상태로 클라이언트와의 통신을 이어 가야 하고, 없으면 새 세션을 만들어야 한다. 이미 연결된 클라이언트와 같은 Client Identifier의 CONNECT가 검증을 통과하면, 서버는 기존 클라이언트에 Reason Code `0x8E`(Session taken over)를 담은 DISCONNECT를 보내고 그 클라이언트의 네트워크 연결을 닫아야 한다.[@oasis-mqtt-5-0-2019]
+
 ## Retained message와 will message
 
 이 표준은 서버가 따로 다루는 메시지 두 가지를 정한다.[@oasis-mqtt-5-0-2019]
@@ -46,9 +52,23 @@ Will message는 LWT(Last Will and Testament) 메시지라고도 부른다.[@aws-
 
 MQTT 5.0은 클라이언트와 서버 사이에, 순서를 지키고 잃지 않는 양방향 바이트 스트림을 주는 전송을 요구한다. MQTT는 [[tcp|TCP]]/IP 위에서 동작하고, 순서를 지키고 잃지 않는 양방향 연결을 주는 다른 프로토콜 위에서도 동작한다. 이 표준은 WebSocket 위에서 MQTT를 나르는 규칙도 정한다.[@oasis-mqtt-5-0-2019] Eclipse Paho의 JavaScript 클라이언트는 브라우저에서 동작하는 MQTT 클라이언트 라이브러리로, WebSocket으로 MQTT 브로커에 연결한다.[@eclipse-paho-javascript-2026]
 
-IANA는 서비스 이름 mqtt에 포트 1883을, secure-mqtt에 포트 8883을 할당했다.[@iana-service-names-port-numbers-registry-2026] 포트 8883은 [[transport-layer-security|TLS]] 위의 MQTT, 포트 1883은 TLS 없는 MQTT를 위한 것이며, MQTT 5.0은 TLS를 제공하는 서버가 TCP 포트 8883을 쓰기를 강하게 권한다.[@oasis-mqtt-5-0-2019]
+IANA는 [[port-number#번호 범위|서비스 이름]] mqtt에 포트 1883을, secure-mqtt에 포트 8883을 할당했다.[@iana-service-names-port-numbers-registry-2026] 포트 8883은 [[transport-layer-security|TLS]] 위의 MQTT, 포트 1883은 TLS 없는 MQTT를 위한 것이며, MQTT 5.0은 TLS를 제공하는 서버가 TCP 포트 8883을 쓰기를 강하게 권한다.[@oasis-mqtt-5-0-2019]
+
+## 제어 패킷
+
+제어 패킷은 Fixed Header, Variable Header, Payload의 최대 세 부분이 이 순서로 놓여 이루어진다. Fixed Header는 모든 제어 패킷에 있고, Variable Header와 Payload는 일부 제어 패킷에만 있다. Fixed Header 첫 바이트의 위 4비트(비트 7\~4)는 제어 패킷의 종류를 나타내며, 종류는 CONNECT(1)부터 AUTH(15)까지 15가지다. 아래 4비트(비트 3\~0)는 종류마다 정해진 플래그다. 둘째 바이트부터 오는 Remaining Length는 현재 제어 패킷에 남은 바이트 수를 가변 길이 정수(Variable Byte Integer)로 나타낸다. 이 정수는 최대 4바이트이고, 나타낼 수 있는 가장 큰 값은 268,435,455다.[@oasis-mqtt-5-0-2019]
+
+## Keep Alive
+
+CONNECT의 Keep Alive는 클라이언트가 제어 패킷 하나를 다 보낸 때부터 다음 제어 패킷을 보내기 시작할 때까지 허용되는 최대 간격으로, 단위는 초다. Keep Alive가 0이 아니고 보낼 다른 제어 패킷이 없으면 클라이언트는 PINGREQ를 보내야 한다. 서버는 Keep Alive가 0이 아닌데 Keep Alive의 1.5배 동안 클라이언트에게서 제어 패킷을 받지 못하면, 네트워크가 실패한 것처럼 그 클라이언트와의 네트워크 연결을 닫아야 한다. Keep Alive 값 0은 이 메커니즘을 끈다.[@oasis-mqtt-5-0-2019]
+
+## 보안과 인증
+
+이 표준의 5장(참고)은 MQTT가 네트워크, 프라이버시, 인증, 인가 기술을 구현자가 고르게 두는 메시지 전송 프로토콜 명세라고 제시한다. 이 표준은 CONNECT의 User Name과 Password로 네트워크 연결을 기본 인증하게 하며, 토큰을 Password에 넣는 것처럼 이 필드에 다른 형태의 인증 정보도 실을 수 있다. 이 기본 인증을 challenge/response 방식으로 넓힌 enhanced authentication도 두며, 여기서는 CONNECT 뒤 CONNACK 전에 클라이언트와 서버가 AUTH 패킷을 주고받을 수 있다.[@oasis-mqtt-5-0-2019]
 
 ## 판
+
+MQTT는 Andy Stanford-Clark와 Arlen Nipper가 처음 만들었다.[@oasis-mqtt-5-0-2019]
 
 - MQTT 3.1.1: 2014년 10월 29일에 OASIS 표준이 됐고[@oasis-mqtt-3-1-1-2014], 2016년에 ISO/IEC 20922:2016으로도 발행됐다.[@iso-iec-20922-2016]
 - MQTT 5.0: 2019년 3월 7일에 OASIS 표준이 됐고, MQTT 3.1.1을 대체한다. 사용자 속성, 모든 응답 패킷의 reason code, 공유 구독, 메시지 만료 같은 기능을 새로 넣었다.[@oasis-mqtt-5-0-2019]

@@ -10,7 +10,7 @@ edition: 2024
 status: 유효
 ---
 
-**LwM2M**(Lightweight Machine to Machine)은 OMA SpecWorks가 펴내는 장치 관리 프로토콜이다. LwM2M 1.2.2 Core 명세는 LwM2M 장치의 장치 관리와 서비스 활성화(service enablement)를 다루며, LwM2M Client는 흔히 IoT 장치와 [[gateway|게이트웨이]]에 구현된다. 이 명세는 가벼운 프로토콜과 효율적인 데이터 모델을 쓰도록 LwM2M을 설계하고, 메시지 계층은 CoAP(Constrained Application Protocol)를 바탕으로 한 RESTful 설계를 따른다.[@oma-lwm2m-core-1-2-2-2024] oneM2M TS-0005 v5.0.0은 oneM2M 서비스 계층과 OMA의 관리 기술(OMA DM(Device Management) 1.3, OMA DM 2.0, LwM2M) 사이의 프로토콜 변환과 리소스 매핑을 정한다.[@onem2m-ts-0005-2026]
+**LwM2M**(Lightweight Machine to Machine)은 OMA SpecWorks가 펴내는 장치 관리 프로토콜이다. LwM2M 1.2.2 Core 명세는 LwM2M 장치의 장치 관리와 서비스 활성화(service enablement)를 다루며, LwM2M Client는 흔히 IoT 장치와 [[gateway|게이트웨이]]에 구현된다. 이 명세는 가벼운 프로토콜과 효율적인 데이터 모델을 쓰도록 LwM2M을 설계하고, 메시지 계층은 [[coap|CoAP]]를 바탕으로 한 RESTful 설계를 따른다.[@oma-lwm2m-core-1-2-2-2024] oneM2M TS-0005 v5.0.0은 oneM2M 서비스 계층과 OMA의 관리 기술(OMA DM(Device Management) 1.3, OMA DM 2.0, LwM2M) 사이의 프로토콜 변환과 리소스 매핑을 정한다.[@onem2m-ts-0005-2026]
 
 ## 범위
 
@@ -18,13 +18,15 @@ LwM2M 1.2.2는 명세를 둘로 나눈다. Core 명세는 인터페이스 여럿
 
 ### 전송
 
-LwM2M 1.2.2 Transport 명세는 LwM2M 메시지를 나르는 바인딩으로 [[udp|UDP]], [[transport-layer-security#DTLS|DTLS]](Datagram Transport Layer Security), SMS(Short Message Service), [[tcp|TCP]], [[transport-layer-security|TLS]], Non-IP 전송(셀룰러 IoT, LoRaWAN) 위의 CoAP와, TLS 위의 [[mqtt|MQTT]], TLS 위의 HTTP를 정한다.[@oma-lwm2m-transport-1-2-2-2024] LwM2M 1.0은 UDP와 SMS 위의 CoAP를 지원했고, LwM2M 1.1이 TCP·TLS 위의 CoAP와 Non-IP 위의 CoAP를 더했다.[@oma-lwm2m-transport-1-1-2018] LwM2M 1.2는 MQTT와 HTTP 위의 전송을 새로 넣었다.[@oma-lwm2m-core-1-2-2-2024]
+LwM2M 1.2.2 Transport 명세는 LwM2M 메시지를 나르는 바인딩으로 [[udp|UDP]], [[transport-layer-security#DTLS|DTLS]](Datagram Transport Layer Security), SMS(Short Message Service), [[tcp|TCP]], [[transport-layer-security|TLS]], Non-IP 전송(셀룰러 IoT, LoRaWAN) 위의 CoAP와, TLS 위의 [[mqtt|MQTT]], TLS 위의 HTTP를 정한다.[@oma-lwm2m-transport-1-2-2-2024] LwM2M 1.0은 UDP와 SMS 위의 CoAP를 지원했고, LwM2M 1.1이 TCP·TLS 위의 CoAP와 Non-IP 위의 CoAP를 더했다.[@oma-lwm2m-transport-1-1-2018] LwM2M 1.1의 TCP·TLS 지원은 방화벽과 NAT(Network Address Translation)를 더 쉽게 지나도록 더한 것이다.[@oma-lwm2m-core-1-2-2-2024][@oma-lwm2m-transport-1-2-2-2024] LwM2M 1.2는 MQTT와 HTTP 위의 전송을 새로 넣었다.[@oma-lwm2m-core-1-2-2-2024]
 
 ![[diagrams/lwm2m-transport-bindings.svg]]
 
-**CoAP**는 RFC 7252가 정하는 특수 목적의 웹 전송 프로토콜로, ROM과 RAM이 작은 제약 노드와 저전력·손실이 많은 제약 네트워크를 위한 것이다. HTTP처럼 요청·응답 모델과 GET, POST, PUT, DELETE 메서드를 쓴다. UDP에 바인딩되고, 고정 헤더가 4바이트로 헤더 부담이 작다.[@ietf-rfc-7252-2014]
+CoAP는 RFC 7252가 정하는, 제약 노드와 제약 네트워크를 위한 웹 전송 프로토콜이다.[@ietf-rfc-7252-2014]
 
 LwM2M 1.2.2 Transport 명세는 UDP 위의 CoAP를 DTLS 1.2로, TCP 위의 CoAP를 TLS로 보호하게 정하고, TLS 1.3과 DTLS 1.3은 선택으로 쓸 수 있게 한다. 자격 증명은 인증서, Raw Public Key, 사전 공유 비밀(PSK, Pre-Shared Key) 세 종류를 지원하며, Bootstrap-Server는 셋을 모두 지원해야 한다.[@oma-lwm2m-transport-1-2-2-2024]
+
+이 명세는 CoAP 바인딩과 HTTP 바인딩 모두에서 Server가 Queue Mode를 지원하도록 요구하고, Client에는 지원을 권한다. Client가 오프라인인 동안 Server는 내려보낼 요청을 바로 보내지 않고, Client가 온라인이 될 때까지 기다린다. Client는 등록 갱신 메시지를 보내 깨어났음을 Server에 알린다.[@oma-lwm2m-transport-1-2-2-2024]
 
 ### 구성 요소와 객체 모델
 
@@ -40,7 +42,11 @@ LwM2M 1.2.2 Core 명세는 LwM2M을 세 구성 요소로 이루고, 그 사이�
 
 LwM2M 1.2.2 Core 명세는 Client와 Server 사이의 동작을 네 인터페이스로 나눈다.[@oma-lwm2m-core-1-2-2-2024]
 
-- Bootstrap: Bootstrap-Server가 Client에 Server 계정과 키 같은, Server 등록에 필요한 정보를 넣는다.
+- Bootstrap: Bootstrap-Server가 Client에 Server 계정과 키 같은, Server 등록에 필요한 정보를 넣는다. Bootstrap 모드는 넷이다.
+  - **Factory Bootstrap**: 장치를 배치하기 전에 Client에 bootstrap 정보를 넣어 둔다.
+  - **Bootstrap from Smartcard**: 장치가 스마트카드를 지원하면, Client는 스마트카드에 든 bootstrap 데이터를 읽어 처리해야 한다.
+  - **Client Initiated Bootstrap**: Client가 Bootstrap-Server에서 bootstrap 정보를 받아 오는 모드로, Client에 Bootstrap-Server 계정이 미리 들어 있어야 한다.
+  - **Server Initiated Bootstrap**: 권한 있는 Server가 Client를 Client Initiated Bootstrap 모드로 들어가게 해 bootstrap을 시작한다.
 - Client Registration: Client가 Register, Update, De-register로 Server에 등록하고, 등록을 갱신하거나 해지한다. 등록할 때 지원하는 객체와 가진 객체 인스턴스를 알린다.
 - Device Management and Service Enablement: Server가 Client의 리소스를 읽고(Read), 쓰고(Write), 실행한다(Execute). 이 밖에 Create, Delete, Discover, Write-Attributes, Read-Composite, Write-Composite도 있다.
 - Information Reporting: Server가 Observe로 관찰을 걸면, Client는 관찰 대상의 값이 바뀌고 관찰 속성의 조건을 채울 때 Notify로 알린다.[@oma-lwm2m-core-1-2-2-2024]
@@ -66,12 +72,17 @@ Update Result 리소스는 내려받기나 업데이트의 결과(성공, 플래
 
 ## 개정 이력
 
+LwM2M 1.1은 OSCORE(Object Security for Constrained RESTful Environments) 기반의 응용 계층 보안과, CBOR(Concise Binary Object Representation)로 직렬화한 SenML(Sensor Measurement Lists) 지원 등을 더했다. LwM2M 1.2는 게이트웨이 기능, CBOR 기반의 인코딩 포맷인 LwM2M CBOR, 새 알림 속성(edge, confirmable notification, maximum historical queue), TLS 1.3과 DTLS 1.3 지원 등을 더했다. LwM2M 1.2는 필수 기능에서 1.0·1.1과 하위 호환된다.[@oma-lwm2m-core-1-2-2-2024] LwM2M 1.1.1은 단일 리소스의 Read와 Write에 CBOR 포맷을 쓸 수 있게 했다.[@oma-lwm2m-ereld-1-2-2-2024]
+
 OMA가 승인한 LwM2M의 판은 아래와 같다.
 
 | 판    | 승인일                                  |
 | ----- | --------------------------------------- |
 | 1.0   | 2017-02-08[@oma-lwm2m-ereld-1-0-2017]   |
+| 1.0.1 | 2017-07-04[@oma-lwm2m-ereld-1-0-2-2018] |
+| 1.0.2 | 2018-02-09[@oma-lwm2m-ereld-1-0-2-2018] |
 | 1.1   | 2018-07-10[@oma-lwm2m-ereld-1-2-2-2024] |
+| 1.1.1 | 2019-06-17[@oma-lwm2m-ereld-1-2-2-2024] |
 | 1.2   | 2020-11-10[@oma-lwm2m-ereld-1-2-2-2024] |
 | 1.2.1 | 2022-12-09[@oma-lwm2m-ereld-1-2-2-2024] |
 | 1.2.2 | 2024-06-13[@oma-lwm2m-ereld-1-2-2-2024] |

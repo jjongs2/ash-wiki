@@ -38,7 +38,7 @@ $$
 t_\mathrm{gb} = \frac{8 \cdot \mathrm{max\text{-}sdu}}{\mathrm{portTransmitRate}}
 $$
 
-TI CPSW의 EST(Enhancements for Scheduled Traffic) 하드웨어는 게이트가 닫히기 직전 큐에 들어온 프레임도 보내, 그 프레임이 다음 창으로 넘어갈 수 있다. TI는 이를 막으려면 창 사이에 모든 게이트를 닫은 항목을 guard band로 넣고, 그 길이를 MTU(Maximum Transmission Unit) 프레임의 전송 시간에 292 wire clock(1 Gbit/s에서 2336 ns)을 더한 값으로 잡기를 권한다.[@ti-processor-sdk-linux-am62x-est-2026]
+TI CPSW의 EST(Enhancements for Scheduled Traffic) 하드웨어는 게이트가 닫히기 직전 큐에 들어온 프레임도 보내, 그 프레임이 다음 창으로 넘어갈 수 있다. TI는 이를 막으려면 창 사이에 모든 게이트를 닫은 항목을 guard band로 넣고, 그 길이를 [[mtu|MTU]] 프레임의 전송 시간에 292 wire clock(1 Gbit/s에서 2336 ns)을 더한 값으로 잡기를 권한다.[@ti-processor-sdk-linux-am62x-est-2026]
 
 [[frame-preemption|프레임 선점]]을 함께 쓰면 guard band를 줄일 수 있다.[@adi-adin3310-adin6310-2025][@ti-processor-sdk-linux-am64x-iet-2026] Microchip의 TSN 앱노트에 따르면 이때 guard band는 끼어들 수 있는 가장 긴 프레임의 크기에서 가장 긴 [[frame-preemption#조각|조각]]의 크기로 줄어든다.[@microchip-pd-ies008x-tsn-2025]
 

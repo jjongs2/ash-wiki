@@ -57,4 +57,4 @@ ICMP 오류 메시지에 대해서는 ICMP 오류 메시지를 보내지 않는�
 
 [[ipv6|IPv6]]용은 ICMPv6이며 RFC 4443이 정한다. ICMPv6는 바로 앞 헤더의 Next Header 값 58로 표시된다.[@ietf-rfc-4443-2006][@iana-protocol-numbers-2026]
 
-ICMPv6는 오류 보고와 진단 말고도 Neighbor Discovery 메시지를 싣는다([[arp#Neighbor Discovery와의 차이|ARP]] 참고).[@ietf-rfc-4443-2006][@ietf-rfc-4861-2007]
+ICMPv6는 오류 보고와 진단 말고도 [[neighbor-discovery|Neighbor Discovery]] 메시지를 싣는다.[@ietf-rfc-4443-2006][@ietf-rfc-4861-2007]

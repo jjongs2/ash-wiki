@@ -31,6 +31,8 @@ Intel 64와 IA-32(Intel Architecture, 32-bit) 프로세서는 리틀 엔디언�
 
 Arm A-profile 아키텍처의 AArch64는 명시적 데이터 접근의 엔디언을 시스템 레지스터 필드 `SCTLR_ELx.EE`와 `SCTLR_EL1.E0E`로 정한다. 구현은 예외 수준마다 빅 엔디언과 리틀 엔디언을 섞어 쓰게 하거나 한쪽만 지원할 수 있다. A64 명령어는 늘 리틀 엔디언이다.[@arm-ddi-0487-2026]
 
+RISC-V 명령어 집합 매뉴얼 1권 20260120판은 기본 ISA(instruction-set architecture)의 메모리 시스템을 리틀 엔디언이나 빅 엔디언으로 두고, 바이 엔디언(bi-endian) 동작은 특권 아키텍처가 정하도록 둔다. 명령어는 메모리 시스템의 엔디언과 상관없이 16비트 리틀 엔디언 단위(parcel)의 열로 메모리에 저장된다.[@riscv-isa-manual-vol1-2026]
+
 ## 차량 통신
 
 [[some-ip|SOME/IP]] 명세는 헤더 필드를 모두 네트워크 바이트 순서로 인코딩하도록 정한다. 페이로드 파라미터의 바이트 순서는 설정 파라미터 `BYTE_ORDER`가 정하며, 값은 `mostSignificantByteFirst`, `mostSignificantByteLast`, `opaque`이고 기본값은 `mostSignificantByteFirst`(빅 엔디언)다. 길이 필드, TLV(Tag-Length-Value) 태그, 유니언의 타입 필드 같은 일부 페이로드 필드는 `BYTE_ORDER`와 상관없이 네트워크 바이트 순서다.[@autosar-fo-prs-someipprotocol-2025]
