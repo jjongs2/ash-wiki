@@ -1,8 +1,8 @@
 import type { Candidate, Context } from "./items"
 import { excerpt } from "./text"
 
-// 인라인 식: 더한 줄의 인라인 식 가운데 한 변의 맨 위 수준 항이 셋 이상이거나 `\frac`이 든 것. 규약은
-// 이런 식을 디스플레이로 쓰게 한다. 괄호와 첨자 안의 항은 세지 않는다. 예: `64(1 + a) - 4`는 항이 둘이다.
+// 인라인 식: 더한 줄의 인라인 식 가운데 한 변의 맨 위 수준 항이 셋 이상이거나 `\frac`이 든 것. 괄호와
+// 첨자 안의 항은 세지 않는다. 예: `64(1 + a) - 4`는 항이 둘이다.
 // `$$`는 인라인 구분자 둘로 읽지 않는다.
 const inlineMath = /(?<![\\$])\$(?!\$)((?:\\.|[^$\\\n])+?)\$(?!\$)/g
 
@@ -20,12 +20,18 @@ const relations = new Set([
   "sim",
   "ll",
   "gg",
+  "leqslant",
+  "geqslant",
+  "in",
+  "propto",
+  "to",
 ])
 const signs = new Set(["pm", "mp"])
 const opens = new Set(["(", "[", "{"])
 const closes = new Set([")", "]", "}"])
 
 // 관계 기호로 나눈 변마다 맨 위 수준의 덧셈·뺄셈으로 나뉘는 항의 수. 변 머리의 부호는 항을 가르지 않는다.
+// 쉼표로 늘어놓은 식은 따로 센다.
 export function termCounts(math: string): number[] {
   const counts: number[] = []
   let terms = 0
@@ -52,8 +58,7 @@ export function termCounts(math: string): number[] {
     else if (char === "_" || char === "^") {
       // 중괄호 없는 첨자는 다음 글자 하나다.
       if (math[i + 1] !== "{" && math[i + 1] !== "\\") i++
-    } else if (char === "=" || char === "<" || char === ">" || relations.has(token.slice(1)))
-      endSide()
+    } else if ("=<>,".includes(char) || relations.has(token.slice(1))) endSide()
     else if (char === "+" || char === "-" || signs.has(token.slice(1))) {
       if (operand) terms++
       operand = false
@@ -70,10 +75,10 @@ export const inlineMathItem = ({ changed }: Context): Candidate[] =>
       .sort((a, b) => a - b)
       .flatMap((line) =>
         [...(lines[line - 1] ?? "").matchAll(inlineMath)].flatMap((match) => {
-          const most = Math.max(...termCounts(match[1]))
+          const maxTerms = Math.max(...termCounts(match[1]))
           const reasons = [
-            ...(most >= 3 ? [`한 변의 항 ${most}개`] : []),
-            ...(/\\[dt]?frac/.test(match[1]) ? ["\\frac"] : []),
+            ...(maxTerms >= 3 ? [`한 변의 항 ${maxTerms}개`] : []),
+            ...(/\\[cdt]?frac/.test(match[1]) ? ["\\frac"] : []),
           ]
           if (reasons.length === 0) return []
           return [
