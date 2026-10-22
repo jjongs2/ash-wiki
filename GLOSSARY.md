@@ -175,7 +175,7 @@ _Avoid_: 재검증, 재시도
 _Avoid_: 감사, 점검
 
 **Reader Testing**:
-게시된 페이지 전체를 위키 규칙을 모르는 독자 에이전트에게 읽혀, 리뷰와 린트가 보지 않는 읽기 경험의 문제를 찾고 고치는 일. PR을 올리기 전의 새 부분은 독자 검토가 본다. 어떻게 하는지는 [Reader Testing 스킬](.claude/skills/reader-testing/SKILL.md)이 정한다.
+게시된 페이지 전체를 위키 규칙을 모르는 독자 에이전트에게 읽혀, 리뷰와 린트가 보지 않는 읽기 경험의 문제를 찾고 고치는 일. 어떻게 하는지는 [Reader Testing 스킬](.claude/skills/reader-testing/SKILL.md)이 정한다.
 _Avoid_: 독자 시험, 가독성 검사, 리더 테스트
 
 **독자 검토**:
