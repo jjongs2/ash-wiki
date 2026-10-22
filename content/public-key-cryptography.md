@@ -15,7 +15,7 @@ Diffie와 Hellman은 1976년 IEEE Transactions on Information Theory에 낸 논�
 
 Rivest, Shamir, Adleman은 1977년 4월 MIT(Massachusetts Institute of Technology) 기술 보고서 MIT/LCS/TM-82로 공개 키 암호 방식을 먼저 내고[@rivest-digital-signatures-1977], 1978년 Communications of the ACM에 논문 "A Method for Obtaining Digital Signatures and Public-Key Cryptosystems"로 발표했다. 이 방식의 안전성은 일부, 공개된 법 $n$을 소인수분해하기 어렵다는 데 기댄다. $n$은 큰 두 비밀 소수 $p$와 $q$의 곱이다.[@rivest-digital-signatures-1978] NIST SP 800-175B Rev. 1에 따르면 RSA(Rivest-Shamir-Adleman)는 Rivest, Shamir, Adleman이 만든 것으로 알려진 공개 키 알고리즘이다.[@nist-sp-800-175b-r1-2020]
 
-Miller는 CRYPTO '85에서 발표하고 1986년 논문집에 실린 논문 "Use of Elliptic Curves in Cryptography"에서 타원 곡선을 암호에 쓰는 방법을 다루고, 타원 곡선판 Diffie-Hellman 키 교환을 제안했다.[@miller-elliptic-curves-1986] Koblitz는 1987년 Mathematics of Computation에 낸 논문 "Elliptic Curve Cryptosystems"에서 유한체 위 타원 곡선에 기반한 공개 키 암호 시스템을 제안했다. [[elliptic-curve-cryptography|타원 곡선 암호]]는 큰 유한체 위 타원 곡선의 점이 이루는 군을 공개 키 암호에 쓴다.[@koblitz-elliptic-curve-1987]
+Miller는 CRYPTO '85에서 발표하고 1986년 논문집에 실린 논문 "Use of Elliptic Curves in Cryptography"에서 타원 곡선을 암호에 쓰는 방법을 다루고, 타원 곡선판 Diffie-Hellman 키 교환을 제안했다.[@miller-elliptic-curves-1986] Koblitz는 1987년 Mathematics of Computation에 낸 논문 "Elliptic Curve Cryptosystems"에서 유한체 위 [[elliptic-curve-cryptography|타원 곡선]]에 기반한 공개 키 암호 시스템을 제안했다.[@koblitz-elliptic-curve-1987]
 
 ## 쓰임
 

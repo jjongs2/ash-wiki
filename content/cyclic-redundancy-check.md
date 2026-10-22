@@ -41,7 +41,7 @@ CRC는 이웃한 비트들에 몰린 오류인 버스트 오류를 찾아내는 
 
 ![[diagrams/error-burst-definition.svg]]
 
-CRC를 직렬 전송에 쓸 때는 데이터 비트를 선로로 보내는 순서대로 처리해야 한다. 그러지 않으면 소프트웨어 알고리즘이 데이터를 나눠 처리하며 생기는 경계에 걸친, 길이가 FCS 길이인 버스트 오류가 CRC 계산에서는 FCS 길이보다 멀리 떨어진 비트에 걸친 오류가 되어 검출되지 않을 수 있다. 이 비트 순서 문제는 버스트 오류 검출 성질만 해치고, 무작위 독립 비트 오류에 대한 보호에는 영향이 없다.[@ray-high-hamming-distance-2006]
+CRC를 직렬 전송에 쓸 때 데이터 비트를 선로로 보내는 순서대로 처리하지 않으면, 소프트웨어 알고리즘이 데이터를 나눠 처리하며 생기는 경계에 걸친, 길이가 FCS 길이인 버스트 오류가 CRC 계산에서는 FCS 길이보다 멀리 떨어진 비트에 걸친 오류가 되어 검출되지 않을 수 있다. 이 비트 순서 문제는 버스트 오류 검출 성질만 해치고, 무작위 독립 비트 오류에 대한 보호에는 영향이 없다.[@ray-high-hamming-distance-2006]
 
 Bosch CAN 2.0 규격은 CAN의 CRC 시퀀스를 15비트로 둔다.[@bosch-can-2-0-1991] 자세한 것은 [[can-crc|CAN CRC]]에서 다룬다.
 
@@ -71,7 +71,7 @@ AUTOSAR R25-11의 CRC 라이브러리 규격은 CRC 알고리즘을 결과의 �
 | `Crc_CalculateCRC32P4`  | —           | `0xF4ACFB13`         | `0xFFFFFFFF`         | 있음           | `0xFFFFFFFF`         |
 | `Crc_CalculateCRC64`    | ECMA        | `0x42F0E1EBA9EA3693` | `0xFFFFFFFFFFFFFFFF` | 있음           | `0xFFFFFFFFFFFFFFFF` |
 
-이 릴리스는 [[j1939|SAE J1939-76]] 기반 32비트 CRC 루틴 `Crc_CalculateCRC32P76`(다항식 `0x6938392D`, 초기값 `0xFFFFFFFF`, 입력·결과 반사 없음, XOR 값 `0x00000000`)도 두지만, 그 요구사항은 아직 초안(draft) 상태다.[@autosar-cp-sws-crclibrary-2025]
+이 릴리스는 [[j1939|SAE J1939-76]] 기반 32비트 CRC 루틴 `Crc_CalculateCRC32P76`(다항식 `0x6938392D`, 초기값 `0xFFFFFFFF`, 입력·결과 반사 없음, XOR 값 `0x00000000`)도 두지만, 그 요구사항은 초안(draft) 상태다.[@autosar-cp-sws-crclibrary-2025]
 
 초기값, XOR 값, 비트 반사 같은 계산 방식의 변형은 계산 성능을 높이려고 나온 것으로, 오류를 검출하거나 고치는 능력을 높이지 않는다. 부호의 해밍 거리는 생성 다항식만으로 정해지고, 이런 변형은 구현하는 연산 장치에 맞춘 최적화일 뿐이다.[@autosar-cp-sws-crclibrary-2025]
 

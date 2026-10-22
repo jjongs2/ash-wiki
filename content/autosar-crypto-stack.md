@@ -18,7 +18,7 @@ Csm이 처리하는 단위를 **job**이라 하며, job은 설정한 암호 prim
 
 암호 연산은 START, UPDATE, FINISH 세 operation mode로 나눠 부를 수 있고, 한 번 부를 때 여러 mode를 함께 줄 수도 있다. START, UPDATE, FINISH로 나눠 데이터를 흘려 넣는 동안에는 그 Crypto Driver Object가 FINISH까지 입력을 기다리므로, 그 사이 다른 job을 처리하지 못한다.[@autosar-cp-sws-cryptoservicemanager-2025]
 
-[[ieee-802-1ae|MACsec]] 키 합의를 맡는 MKA(MACsec Key Agreement) 모듈은 [[key-derivation-function|키를 유도하고]] MKA 메시지의 무결성 검사 값을 만들고 검증하는 데 Csm의 암호 서비스를 쓴다.[@autosar-cp-sws-macseckeyagreement-2025] [[secure-onboard-communication|SecOC]]도 Csm의 암호 서비스를 쓴다.[@autosar-cp-sws-secureonboardcommunication-2025]
+[[ieee-802-1ae|MACsec]] 키 합의를 맡는 MKA(MACsec Key Agreement) 모듈은 [[key-derivation-function|키를 유도]]하고 MKA 메시지의 무결성 검사 값을 만들고 검증하는 데 Csm의 암호 서비스를 쓴다.[@autosar-cp-sws-macseckeyagreement-2025] [[secure-onboard-communication|SecOC]]도 Csm의 암호 서비스를 쓴다.[@autosar-cp-sws-secureonboardcommunication-2025]
 
 ## Crypto Interface와 Crypto Driver
 

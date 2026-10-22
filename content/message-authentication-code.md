@@ -21,7 +21,7 @@ NIST SP 800-38B는 대칭 키 [[symmetric-key-cryptography#블록 암호와 스�
 
 ## GMAC과 KMAC
 
-NIST SP 800-38D는 [[block-cipher-mode-of-operation#인증 암호 모드|GCM]]의 입력을 암호화하지 않을 데이터로 한정한 특수형인 **GMAC**(Galois Message Authentication Code)을 정하고, GMAC은 입력 데이터를 인증하기만 하는 모드다.[@nist-sp-800-38d-2007][@ietf-rfc-4543-2006]
+NIST SP 800-38D는 [[block-cipher-mode-of-operation#인증 암호 모드|GCM]]의 입력을 암호화하지 않을 데이터로 한정해 입력 데이터를 인증하기만 하는 특수형인 **GMAC**(Galois Message Authentication Code)을 정한다.[@nist-sp-800-38d-2007][@ietf-rfc-4543-2006]
 
 NIST SP 800-185는 [[cryptographic-hash-function#SHA 계열|Keccak]]에 기반한 가변 길이 MAC 알고리즘인 **KMAC**(Keccak Message Authentication Code)을 정하며, KMAC은 PRF(Pseudorandom Function)로도 쓸 수 있다.[@nist-sp-800-185-2016]
 

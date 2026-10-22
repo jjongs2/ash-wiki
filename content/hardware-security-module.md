@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**HSM**(Hardware Security Module)은 암호 키를 지키고 [[key-management|관리하며]] 암호 처리를 해 주는 물리적 컴퓨팅 장치다.[@nist-sp-800-57-pt2-r1-2019]
+**HSM**(Hardware Security Module)은 암호 키를 지키고 [[key-management|관리]]하며 암호 처리를 해 주는 물리적 컴퓨팅 장치다.[@nist-sp-800-57-pt2-r1-2019]
 
 ## 차량용 MCU의 HSM
 
