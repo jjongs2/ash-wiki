@@ -39,6 +39,8 @@ Neighbor Discovery는 [[icmp|ICMP]] 메시지 다섯 종류를 정의한다.[@ie
 
 노드는 대상 주소의 solicited-node 멀티캐스트 주소로 Neighbor Solicitation을 보내 대상에게 링크 계층 주소를 돌려 달라고 묻고, 대상은 유니캐스트 Neighbor Advertisement로 자기 링크 계층 주소를 돌려준다. 묻는 쪽도 Neighbor Solicitation에 자기 링크 계층 주소를 담으므로, 요청과 응답 한 쌍으로 양쪽이 서로의 링크 계층 주소를 알게 된다.[@ietf-rfc-4861-2007]
 
+![[diagrams/nd-address-resolution.svg]]
+
 ## 도달 가능성 추적
 
 이웃으로 가거나 이웃을 거치는 통신은 하드웨어가 고장 나거나 인터페이스 카드를 hot-swap하는 등 여러 이유로 언제든 실패할 수 있다. 목적지가 고장 나면 복구할 수 없지만 경로가 고장 난 것이면 복구할 수도 있으므로, 노드는 패킷을 보내고 있는 이웃마다 도달 가능 상태를 능동적으로 추적한다.[@ietf-rfc-4861-2007]

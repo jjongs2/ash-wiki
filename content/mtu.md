@@ -23,4 +23,6 @@ RFC 1191은 IPv4의 Path MTU Discovery를 정한다. 출발 호스트는 처음�
 
 RFC 8201은 IPv6의 Path MTU Discovery를 정한다. 출발 노드는 처음에 경로 MTU를 첫 홉의 MTU로 가정한다. 경로의 노드는 너무 커서 넘길 수 없는 패킷을 버리고 [[icmp#ICMPv6와의 차이|ICMPv6]] Packet Too Big 메시지를 돌려주며, 출발 노드는 이 메시지가 알린 MTU에 따라 가정한 경로 MTU를 줄인다. IPv6 노드는 Path MTU Discovery를 구현해야 하고(should), 부트 ROM 같은 최소 구현은 이를 생략할 수 있다(may). 생략한 노드는 IPv6 최소 링크 MTU를 최대 패킷 크기로 써야 한다(must).[@ietf-rfc-8201-2017]
 
+![[diagrams/ipv6-path-mtu-discovery.svg]]
+
 RFC 8900에 따르면 Path MTU Discovery는 네트워크가 ICMP Packet Too Big 메시지를 출발 노드에 전달할 수 있어야 동작하므로, 이 메시지가 출발 노드에 닿지 못하면 동작하지 않는다.[@ietf-rfc-8900-2020]

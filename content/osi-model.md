@@ -23,9 +23,13 @@ ISO/IEC 7498-1:1994는 1984년에 나온 첫판 ISO 7498:1984를 대체했다.[@
 - **표현 계층**: 응용 개체가 주고받는 정보의 표현을 맡는다. 공통 표현을 제공해 응용 개체가 구문에 매이지 않게 한다.
 - **응용 계층**: 응용 프로세스가 OSI 환경에 접근하는 유일한 수단이다.[@itu-t-x-200-1994]
 
-[[iso-11898-1|ISO 11898-1]]:2024는 [[can|CAN]]의 데이터 링크 계층과 PCS(Physical Coding Sublayer)를 정한다.[@iso-11898-1-obp-2024] [[iso-15765-2|ISO 15765-2]]:2024는 CAN을 쓰는 차량 네트워크의 전송 계층과 네트워크 계층 프로토콜, 그 서비스를 정하고[@iso-15765-2-obp-2024], [[iso-14229-1|ISO 14229-1]]:2026은 [[uds|UDS]]의 응용 계층을 정한다.[@iso-14229-1-obp-2026] [[ieee-802-3|IEEE 802.3]]-2022는 [[ethernet|이더넷]]을 데이터 링크 계층의 MAC(Medium Access Control) 부계층과 물리 계층으로 나누어 정하고, 이 두 계층이 OSI 참조 모델의 가장 아래 계층들에 가깝게 대응하도록 둔다. LLC(Logical Link Control) 부계층이나 다른 MAC 클라이언트는 MAC 부계층과 함께 OSI 데이터 링크 계층의 기능을 맡는다.[@ieee-802-3-2022]
+[[iso-11898-1|ISO 11898-1]]:2024는 [[can|CAN]]의 데이터 링크 계층과 PCS(Physical Coding Sublayer)를 정한다.[@iso-11898-1-obp-2024] [[iso-15765-2|ISO 15765-2]]:2024는 CAN을 쓰는 차량 네트워크의 전송 계층과 네트워크 계층 프로토콜, 그 서비스를 정하고[@iso-15765-2-obp-2024], [[iso-14229-1|ISO 14229-1]]:2026은 [[uds|UDS]]의 응용 계층을 정한다.[@iso-14229-1-obp-2026]
 
 ![[diagrams/osi-layers-vehicle-diagnostics.svg]]
+
+[[ieee-802-3|IEEE 802.3]]-2022는 [[ethernet|이더넷]]을 데이터 링크 계층의 MAC(Medium Access Control) 부계층과 물리 계층으로 나누어 정하고, 이 두 계층이 OSI 참조 모델의 가장 아래 계층들에 가깝게 대응하도록 둔다. LLC(Logical Link Control) 부계층이나 다른 MAC 클라이언트는 MAC 부계층과 함께 OSI 데이터 링크 계층의 기능을 맡는다.[@ieee-802-3-2022]
+
+![[diagrams/ieee-802-3-osi-layers.svg]]
 
 ## 서비스와 프로토콜
 

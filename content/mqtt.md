@@ -58,6 +58,8 @@ IANA는 [[port-number#번호 범위|서비스 이름]] mqtt에 포트 1883을, s
 
 제어 패킷은 Fixed Header, Variable Header, Payload의 최대 세 부분이 이 순서로 놓여 이루어진다. Fixed Header는 모든 제어 패킷에 있고, Variable Header와 Payload는 일부 제어 패킷에만 있다. Fixed Header 첫 바이트의 위 4비트(비트 7\~4)는 제어 패킷의 종류를 나타내며, 종류는 CONNECT(1)부터 AUTH(15)까지 15가지다. 아래 4비트(비트 3\~0)는 종류마다 정해진 플래그다. 둘째 바이트부터 오는 Remaining Length는 현재 제어 패킷에 남은 바이트 수를 가변 길이 정수(Variable Byte Integer)로 나타낸다. 이 정수는 최대 4바이트이고, 나타낼 수 있는 가장 큰 값은 268,435,455다.[@oasis-mqtt-5-0-2019]
 
+![[diagrams/mqtt-control-packet-format.svg]]
+
 ## Keep Alive
 
 CONNECT의 Keep Alive는 클라이언트가 제어 패킷 하나를 다 보낸 때부터 다음 제어 패킷을 보내기 시작할 때까지 허용되는 최대 간격으로, 단위는 초다. Keep Alive가 0이 아니고 보낼 다른 제어 패킷이 없으면 클라이언트는 PINGREQ를 보내야 한다. 서버는 Keep Alive가 0이 아닌데 Keep Alive의 1.5배 동안 클라이언트에게서 제어 패킷을 받지 못하면, 네트워크가 실패한 것처럼 그 클라이언트와의 네트워크 연결을 닫아야 한다. Keep Alive 값 0은 이 메커니즘을 끈다.[@oasis-mqtt-5-0-2019]

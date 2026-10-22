@@ -11,6 +11,8 @@ verified: 2026-09-27
 
 [[osi-model|OSI 참조 모델]]은 분할을 네트워크 계층의 기능과 연결형 전송 계층의 기능으로 둔다. [[osi-model#연결형과 비연결형|비연결형]] 전송 계층은 분할과 재조립을 제공하지 않는다. 분할과 반대로 묶기가 필요할 수도 있다. **묶기**(blocking)는 $(N)$ SDU 여럿을 $(N)$ PDU 하나에 담는 기능이고, **묶음 풀기**(deblocking)는 $(N)$ PDU 하나에 담긴 $(N)$ SDU들을 가려내는 그 반대 기능이다. **연접**(concatenation)은 $(N)$ PDU 여럿을 $(N-1)$ SDU 하나에 담는 기능이고, **분리**(separation)는 $(N-1)$ SDU 하나에 담긴 $(N)$ PDU들을 가려내는 그 반대 기능이다. 분할과 연접은 비연결형 전송에서도 쓰일 수 있지만, 묶기와 묶음 풀기는 비연결형 전송에서 허용되지 않는다.[@itu-t-x-200-1994]
 
+![[diagrams/blocking-and-concatenation.svg]]
+
 ## CAN의 전송 프로토콜
 
 Classical [[can|CAN]] [[can-frame|데이터 프레임]]의 데이터 필드는 0에서 8바이트다.[@bosch-can-2-0-1991]

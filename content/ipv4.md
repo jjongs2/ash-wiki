@@ -50,6 +50,8 @@ IPv4 헤더는 옵션이 없으면 20바이트이고, 옵션을 포함해 최대
 
 RFC 791은 Type of Service를 원하는 서비스 품질을 가리키는 필드로 정했다.[@ietf-rfc-791-1981] RFC 2474는 이 옥텟을 대체하는 DS(Differentiated Services) 필드를 정의했다.[@ietf-rfc-2474-1998] RFC 3168은 Type of Service 옥텟의 정의를 6비트 DS 필드가 대체한 것으로 두고, 이 옥텟의 비트 6과 7을 2비트 ECN(Explicit Congestion Notification) 필드로 정한다. ECN 필드는 [[ipv6|IPv6]]의 Traffic Class 옥텟에서도 같게 정의된다.[@ietf-rfc-3168-2001] RFC 3260은 RFC 2474가 8비트 옥텟 전체를 DS 필드로 부른 것이 불일치와 모호함을 낳았다고 보고, 앞으로의 문서에서는 DS 필드를 옛 Type of Service 옥텟의 상위 6비트로 정의하기를 권했다. 이 6비트 필드에 담는 값이 DSCP(Differentiated Services Codepoint)다.[@ietf-rfc-3260-2002]
 
+![[diagrams/ipv4-tos-octet-ds-ecn.svg]]
+
 RFC 791은 헤더 필드를 가장 높은 자리 바이트부터 보내는 [[byte-order#네트워크 바이트 순서|네트워크 바이트 순서]]로 보내도록 정한다.[@ietf-rfc-791-1981]
 
 Protocol 필드 값은 IANA가 관리한다. [[icmp|ICMP]]는 1, TCP는 6, [[udp|UDP]]는 17이다.[@iana-protocol-numbers-2026]

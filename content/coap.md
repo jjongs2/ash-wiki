@@ -22,6 +22,8 @@ CoAP의 메시지는 CON(Confirmable), NON(Non-confirmable), ACK(Acknowledgement
 - **ACK**: CON 메시지를 받은 수신자가 그 메시지와 같은 Message ID로 보내는 확인 응답이다.
 - **RST**: 수신자가 CON 메시지를 알맞은 오류 응답조차 줄 수 없을 만큼 처리하지 못하면, ACK 대신 RST로 답한다. NON 메시지를 처리하지 못할 때도 RST로 답할 수 있다.[@ietf-rfc-7252-2014]
 
+![[diagrams/coap-con-non-exchange.svg]]
+
 CoAP 메시지는 4바이트 고정 길이 이진 헤더로 시작하고, 그 뒤에 간결한 이진 옵션과 페이로드가 올 수 있다. 요청과 응답은 이 메시지 형식을 함께 쓴다.[@ietf-rfc-7252-2014]
 
 ## 보안과 포트
