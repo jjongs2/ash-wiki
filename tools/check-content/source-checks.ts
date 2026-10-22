@@ -619,6 +619,21 @@ export const emphasis: SourceCheck = (tree) => {
   return violations
 }
 
+// 한 줄에 열고 닫은 `$$…$$`는 오류 없이 인라인 식으로 렌더되므로, 산출물 검사로는 잡히지 않는다.
+export const math: SourceCheck = (tree) => {
+  const violations: Violation[] = []
+  for (const page of tree.pages) {
+    for (const { line } of matchLines(page, /\$\$[^\n]*?\$\$/g)) {
+      violations.push({
+        file: page.file,
+        line,
+        message: "디스플레이 식은 $$를 식 앞뒤 줄에 따로 둔다",
+      })
+    }
+  }
+  return violations
+}
+
 // 도해 SVG는 색을 규약 문서의 도해 팔레트 토큰으로 쓴다(`var(--<이름>, <대체값>)`). 사이트가 현재 테마의
 // 값을 도해 문서에 넣고(plugins/diagram-theme), 스크립트가 돌지 않는 곳에서는 대체값으로 그려진다.
 const colorProperty = "fill|stroke|stop-color|flood-color|lighting-color|color"
@@ -1124,5 +1139,6 @@ export const sourceChecks: [string, SourceCheck][] = [
   ["citation", citation],
   ["callout", callout],
   ["emphasis", emphasis],
+  ["math", math],
   ["svg", svg],
 ]
