@@ -5,9 +5,9 @@ tags:
 verified: 2026-10-03
 ---
 
-ISO/IEC/IEEE 24765 용어집은 PMI의 Software Extension to the PMBOK Guide Fifth Edition의 정의를 따라 **refactor**(리팩터링하다)를 소프트웨어 코드의 동작을 바꾸지 않고 구조를 고치는 일로 정의하고, 그 목적으로 [[software-quality-model|품질 특성]] 개선, 이후의 확장과 적응을 쉽게 하는 것, 아키텍처 스타일을 따르는 것을 든다.[@ieee-cs-sevocab-2026] 리팩터링은 프로그램의 동작을 바꾸지 않고 재구성하는 리엔지니어링 기법으로, 소프트웨어의 내부 구조와 유지보수성을 높이려는 것이다. 리팩터링 기법은 유지보수 중에 코드를 바꾸기 앞뒤로 코드베이스의 [[software-maintenance#비용과 기술 부채|기술 부채]]를 줄이는 데 쓸 수 있다. [[agile-software-development|애자일 개발]]에서는 [[continuous-integration|지속적 통합]]의 점진적 성격 때문에, 품질과 신뢰성을 높이려고 코드를 지속적으로 리팩터링해야 하는 일이 흔하다.[@ieee-swebok-v4-0a-2026]
-
 Martin Fowler는 『Refactoring』에서 명사 **리팩터링**을, 겉보기 동작을 바꾸지 않고 소프트웨어의 내부 구조를 바꿔 이해하기 쉽고 고치기 싸게 만드는 변경으로 정의했다. 동사 리팩터링은 그런 리팩터링을 잇달아 적용해 겉보기 동작을 바꾸지 않고 소프트웨어를 재구성하는 일로 정의했다.[@fowler-refactoring-2026]
+
+ISO/IEC/IEEE 24765 용어집은 refactor(리팩터링하다)를 소프트웨어 코드의 동작을 바꾸지 않고 구조를 고치는 일로 정의하고, 그 목적으로 [[software-quality-model|품질 특성]] 개선, 이후의 확장과 적응을 쉽게 하는 것, 아키텍처 스타일을 따르는 것을 든다. 이 정의는 PMI의 Software Extension to the PMBOK Guide Fifth Edition에서 왔다.[@ieee-cs-sevocab-2026] 리팩터링은 프로그램의 동작을 바꾸지 않고 재구성하는 리엔지니어링 기법으로, 소프트웨어의 내부 구조와 유지보수성을 높이려는 것이다.[@ieee-swebok-v4-0a-2026]
 
 ## 기원
 
@@ -42,4 +42,17 @@ Fowler는 테스트가 모두 통과하는 상태에서만 리팩터링하고, �
 
 ## 리팩터링의 흐름
 
-Fowler는 리팩터링을 프로젝트 계획에 따로 오르는 작업이 아니라 일상 프로그래밍의 일부로 본다.[@fowler-refactoring-2026] 그는 리팩터링이 개발 작업에 섞여 들어가는 흐름(workflow)을 [[test-driven-development|TDD]] refactoring, litter-pickup refactoring, comprehension refactoring, preparatory refactoring, planned refactoring, long-term refactoring 여섯으로 나눈다. 리팩터링 대부분이 계획한 작업에서만 일어나면 그는 이를 bad smell로 보고, 다른 흐름을 작업에 들이기를 권한다.[@fowler-workflows-of-refactoring-2014]
+리팩터링 기법은 유지보수 중에 코드를 바꾸기 앞뒤로 코드베이스의 [[software-maintenance#비용과 기술 부채|기술 부채]]를 줄이는 데 쓸 수 있다. [[agile-software-development|애자일 개발]]에서는 [[continuous-integration|지속적 통합]]으로 변경을 조금씩 쌓아 가므로, 품질과 신뢰성을 높이려고 코드를 계속 리팩터링해야 하는 일이 흔하다.[@ieee-swebok-v4-0a-2026]
+
+Fowler는 리팩터링을 프로젝트 계획에 따로 오르는 작업이 아니라 일상 프로그래밍의 일부로 본다.[@fowler-refactoring-2026] 그는 리팩터링이 개발 작업에 섞여 들어가는 흐름(workflow)을 아래 여섯으로 나눈다.[@fowler-workflows-of-refactoring-2014]
+
+| 흐름                                         | 언제, 무엇을 하는가                                                                                                      |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| [[test-driven-development\|TDD]] refactoring | 테스트가 통과하게 기능을 더한 뒤, 모두 통과한 테스트를 바탕으로 작은 단계로 설계를 다듬는다.                             |
+| litter-pickup refactoring                    | 작업하다 지저분한 코드를 만나면 정리해, 처음 봤을 때보다 나은 상태로 남긴다.                                             |
+| comprehension refactoring                    | 코드가 하는 일을 알아내느라 머릿속에 쌓은 이해를 코드로 옮겨, 누구도 그 이해를 처음부터 다시 쌓을 필요가 없게 한다.      |
+| preparatory refactoring                      | 새 기능을 넣기 전에 기존 코드를 그 기능에 맞는 모양으로 먼저 고쳐, 기능 추가를 쉽게 한다.                                |
+| planned refactoring                          | 따로 시간을 들여야 할 큰 문제 영역을 "refactoring story" 같은 방식으로 작업 계획에 넣어 고친다.                          |
+| long-term refactoring                        | 몇 달에 걸친 큰 재구조화를 위해 팀이 대략의 목표 상태와 계획을 정하고, 평소 작업에서 그쪽으로 가는 리팩터링을 해 나간다. |
+
+리팩터링 대부분이 계획한 작업에서만 일어나면 그는 이를 bad smell로 보고, 다른 흐름을 작업에 들이기를 권한다.[@fowler-workflows-of-refactoring-2014]

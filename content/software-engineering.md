@@ -32,9 +32,20 @@ Brooks는 10년 안에 생산성, 신뢰성, 단순성 가운데 어느 하나�
 
 ## 전문 분야로 자리 잡기
 
-SWEBOK V4.0a에 실린 2004년판 머리말에 따르면 IEEE Computer Society는 1972년 Transactions on Software Engineering을 처음 펴냈고, 1976년 소프트웨어 공학 표준을 만드는 위원회를 두었다. 이 머리말에 따르면 IEEE Computer Society 이사회(Board of Governors)는 Fletcher Buckley가 1993년 5월 낸 동의를, ACM Council은 같은 해 8월 관련 동의를 승인해 두 동의로 공동 위원회가 꾸려졌고, 운영 위원회(steering committee)는 지식 체계와 권장 실무, 윤리와 전문 표준, 교육과정 세 분야에 작업반을 두었다. SWEBOK 2004년판은 그 가운데 첫째인 지식 체계와 권장 실무를 담았다.[@ieee-swebok-v4-0a-2026]
+IEEE Computer Society는 1972년 Transactions on Software Engineering을 처음 펴냈고, 1976년 소프트웨어 공학 표준을 만드는 위원회를 두었다. IEEE Computer Society 이사회와 ACM Council이 각각 승인한 1993년의 두 동의로 두 단체의 공동 위원회가 꾸려졌다. 운영 위원회(steering committee)는 지식 체계와 권장 실무, 윤리와 전문 표준, 교육과정 세 분야에 작업반을 두었고, SWEBOK 2004년판은 그 가운데 첫째인 지식 체계와 권장 실무를 담았다.[@ieee-swebok-v4-0a-2026]
 
-ACM과 IEEE Computer Society의 공동 작업반(Joint Task Force)이 권고하고 두 단체가 함께 승인한 Software Engineering Code of Ethics and Professional Practice 5.2는 소프트웨어 엔지니어가 지킬 여덟 원칙으로 Public, Client and Employer, Product, Judgment, Management, Profession, Colleagues, Self를 둔다.[@acm-software-engineering-code-2026]
+ACM과 IEEE Computer Society의 공동 작업반(Joint Task Force)이 권고하고 두 단체가 함께 승인한 Software Engineering Code of Ethics and Professional Practice 5.2는 소프트웨어 엔지니어가 지킬 여덟 원칙을 둔다.[@acm-software-engineering-code-2026]
+
+| 원칙                | 지킬 것                                                                                                |
+| ------------------- | ------------------------------------------------------------------------------------------------------ |
+| Public              | 공익에 맞게 행동한다.                                                                                  |
+| Client and Employer | 공익에 맞는 범위에서 고객과 고용주에게 가장 이로운 방식으로 행동한다.                                  |
+| Product             | 자기 제품과 그 수정이 할 수 있는 가장 높은 전문 기준을 충족하게 한다.                                  |
+| Judgment            | 전문가로서 판단할 때 진실성과 독립성을 지킨다.                                                         |
+| Management          | 소프트웨어 공학의 관리자와 리더는 소프트웨어 개발과 유지보수의 관리에서 윤리적 접근을 따르고 장려한다. |
+| Profession          | 공익에 맞게 전문직의 진실성과 평판을 높인다.                                                           |
+| Colleagues          | 동료에게 공정하고 협력적으로 대한다.                                                                   |
+| Self                | 자기 전문 실무에 대해 평생 배우고, 전문 실무에서 윤리적 접근을 장려한다.                               |
 
 ## SWEBOK
 
@@ -61,6 +72,4 @@ IEEE Computer Society는 분야에서 일반적으로 받아들여진 지식을 
 | Mathematical Foundations                   |                  |
 | Engineering Foundations                    |                  |
 
-SWEBOK V4.0a에 따르면 IEEE Computer Society는 SWEBOK 2004년판과 V3.0을 고치지 않고 ISO/IEC에 냈고, 두 판은 각각 기술 보고서 ISO/IEC TR 19759:2005와 ISO/IEC TR 19759:2015로 받아들여졌다.[@ieee-swebok-v4-0a-2026] ISO/IEC TR 19759:2015는 이 기술 보고서의 2판으로, 1판인 ISO/IEC TR 19759:2005를 이었다.[@iso-iec-tr-19759-2015]
-
-![[diagrams/swebok-iso-iec-tr-19759.svg]]
+SWEBOK 2004년판과 V3.0은 고치지 않은 채 ISO/IEC에 제출되어, 각각 기술 보고서 ISO/IEC TR 19759:2005와 ISO/IEC TR 19759:2015로 받아들여졌다.[@ieee-swebok-v4-0a-2026]

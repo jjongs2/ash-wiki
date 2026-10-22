@@ -17,6 +17,8 @@ NIST SP 800-204C에 따르면 DevSecOps라는 말은 보안 팀의 역할과, �
 
 보안 활동을 SDLC의 앞쪽으로 당기는 것도 shift left라 한다.[@dod-devsecops-fundamentals-2-5-2024][@nist-sp-800-218-2022] NIST SP 800-218에 따르면 SDLC에서 보안을 일찍 다룰수록 같은 수준의 보안에 드는 노력과 비용이 줄고, 초기 보안 결함을 개발 후반이나 운영 중에 고쳐야 하는 [[software-maintenance#비용과 기술 부채|기술 부채]]도 줄어든다.[@nist-sp-800-218-2022] 테스트를 앞당기는 shift left 자체는 [[v-model#테스트 설계를 앞당김|V 모델]]에서, 결함을 늦게 찾을수록 커지는 비용은 [[defect-management#늦게 찾을수록 커지는 비용|결함 관리]]에서 다룬다.
 
+## SSDF
+
 SSDF(Secure Software Development Framework) 1.1을 담은 NIST SP 800-218은 어느 SDLC 모델에도 넣을 수 있는 상위 수준의 보안 소프트웨어 개발 실천의 묶음을 권고한다. 이 문서는 실천을 네 묶음으로 나누고, 묶음마다 조직이 할 일을 다음처럼 권고한다.[@nist-sp-800-218-2022]
 
 | 묶음                              | 조직이 할 일                                                                          |
@@ -26,9 +28,7 @@ SSDF(Secure Software Development Framework) 1.1을 담은 NIST SP 800-218은 어
 | PW(Produce Well-Secured Software) | 릴리스에 보안 취약점이 최소인, 보안이 잘 된 소프트웨어를 만든다.                      |
 | RV(Respond to Vulnerabilities)    | 릴리스에 남은 취약점을 찾아 알맞게 대응하고, 비슷한 취약점이 다시 생기지 않게 막는다. |
 
-실천의 정의는 저마다 Practice(실천의 이름과 식별자, 설명), Tasks, Notional Implementation Examples, References를 둔다.[@nist-sp-800-218-2022]
-
-2026년 10월 기준 SSDF 1.2를 담은 NIST SP 800-218 Rev. 1은 2025년 12월 17일에 나온 초안(Initial Public Draft)이고[@nist-sp-800-218r1-ipd-2025], 최종판은 여전히 SSDF 1.1을 담은 SP 800-218(2022년 2월)이다.[@nist-sp-800-218-csrc-2022]
+2026년 10월 기준 SSDF 1.2를 담은 NIST SP 800-218 Rev. 1은 2025년 12월 17일에 나온 초안(Initial Public Draft)이고[@nist-sp-800-218r1-ipd-2025], 최종판은 여전히 SP 800-218(2022년 2월)이다.[@nist-sp-800-218-csrc-2022]
 
 ## 단계마다의 보안 활동
 
