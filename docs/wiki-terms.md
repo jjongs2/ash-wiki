@@ -102,6 +102,7 @@
 - 추적표: 추적 매트릭스, 추적성 매트릭스 (#441). traceability matrix일 때. 합성어 포함. 예: 요구사항 추적표
 - 취약점 공개: vulnerability disclosure (#431)
 - 취약점 처리: vulnerability handling (#431)
+- 카나리 릴리스: canary release, 카나리 배포 (#499)
 - 타원 곡선 암호: ECC (#289). 타원 곡선 암호를 가리킬 때. ECDSA·ECDH 같은 알고리즘 이름은 그대로. 예: SP 800-56A의 ECC CDH는 "타원 곡선 CDH"
 - 태스크 그룹: 태스크 묶음 (#349). OSEK OS 명세의 group of tasks일 때
 - 테스트 기준: test basis (#291)

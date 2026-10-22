@@ -29,6 +29,10 @@ Fowler는 지속적 통합을, 팀원 각자가 적어도 하루에 한 번 변�
 - 누구나 진행 상황을 볼 수 있게 한다.
 - 배포를 자동화한다.[@fowler-continuous-integration-2024]
 
+Fowler는 브랜치에서 일하는 개발자가 주 줄기의 변경을 정기적으로 당겨 와 빌드하고 테스트해 자기 작업이 깨지지 않는지 확인하는 것을 **semi-integration**이라 부르고, 지속적 통합이 아니라고 본다. 그가 말하는 지속적 통합은 주 줄기로 완전히 통합하는 것이어서, 몇 시간 넘게 주 줄기에 push되지 않고 브랜치에 머무는 코드가 없어야 한다. 그는 기능 브랜치(feature branch)에서 CI 서비스로 자동 빌드를 돌리는 것도 쓸모는 있지만 semi-integration일 뿐 지속적 통합이 아니라고 하고, 트렁크 기반 개발(trunk-based development)은 대체로 지속적 통합의 동의어로 본다.[@fowler-continuous-integration-2024]
+
+![[diagrams/semi-integration-vs-continuous-integration.svg]]
+
 ## 파이프라인에 넣는 검사
 
 지속적 통합에서는 서버에서 도는 도구가 소스 저장소를 지켜보다가, 변경이 커밋될 때마다 단계로 이은 파이프라인을 시작해 코드를 컴파일하고 링크한다. 여기에 [[static-analysis|정적 분석]]으로 [[coding-standard|코딩 표준]]을 확인하는 단계와, [[unit-testing|단위 테스트]]를 돌리고 코드 [[test-coverage|커버리지]]를 재는 단계를 함께 두는 일이 많다.[@ieee-swebok-v4-0a-2026] 지속적 통합에서는 자동화한 [[regression-testing|회귀 테스트]]도 함께 돌린다.[@ieee-swebok-v4-0a-2026][@istqb-ctfl-syllabus-2024]
@@ -37,10 +41,14 @@ Fowler는 지속적 통합을, 팀원 각자가 적어도 하루에 한 번 변�
 
 Jenkins는 지속적 통합을 지원하는 자동화 엔진이다.[@jenkins-pipeline-2026]
 
-## 지속적 전달과 지속적 배포
+## 지속적 전달·배포·테스트
 
 - **지속적 전달**(continuous delivery): ISTQB 용어집은 코드 변경을 자동으로 빌드하고 테스트해 운영 환경 출시를 준비하는 자동화된 개발 절차로 정의한다.[@istqb-glossary-continuous-delivery-2026] ISO/IEC/IEEE 24765 용어집은 자동화 도구로 새 시스템을 스테이징이나 여러 테스트 환경에 자주 내보낼 수 있게 하는 실천으로 정의한다.[@ieee-cs-sevocab-2026] 자동 테스트와 품질 검사를 통과한 애플리케이션을 늘 운영 환경에 내보낼 수 있는 상태로 두는 실천을 지속적 전달이라 부르며, 지속적 전달은 운영 환경으로의 마지막 배포를 사람이 하는 단계로 남긴다는 점에서 지속적 배포와 갈린다.[@shahin-continuous-integration-delivery-deployment-2017]
 - **지속적 배포**(continuous deployment): 정해진 테스트와 검증을 통과한 변경을 자동으로 운영 환경에 배포하는 절차다.[@ieee-cs-sevocab-2026][@istqb-glossary-continuous-deployment-2026]
+
+![[diagrams/continuous-delivery-vs-deployment.svg]]
+
+**지속적 테스트**(continuous testing)는 [[software-development-life-cycle|소프트웨어 개발 생명주기]]의 모든 단계에서 소프트웨어를 테스트하는 실천이다. 일찍 자주 테스트해 지속적 전달 과정의 단계마다 [[software-quality|소프트웨어 품질]]을 평가하는 것이 목표다.[@ieee-swebok-v4-0a-2026]
 
 ## 빅뱅 통합과의 대비
 

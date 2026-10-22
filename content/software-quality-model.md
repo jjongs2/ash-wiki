@@ -25,6 +25,8 @@ verified: 2026-10-02
 | Flexibility            | Adaptability, Scalability, Installability, Replaceability                                                                                              |
 | Safety                 | Operational constraint, Risk identification, Fail safe, Hazard warning, Safe integration                                                               |
 
+품질 특성 가운데에는 서로 상충하는 영향을 주는 것이 있다. 예를 들어 데이터를 암호화해 보안 특성을 높이려 하면 성능 특성이 나빠질 수 있다.[@ieee-swebok-v4-0a-2026]
+
 ## 내부 품질, 외부 품질, 사용 품질
 
 ISO/IEC 25000:2014는 품질을 재는 척도를 둘로 나누어 정의한다.[@iso-iec-25000-obp-2014]

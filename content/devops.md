@@ -17,7 +17,7 @@ IEEE 2675-2021은 시스템과 애플리케이션을 신뢰할 수 있고 안전
 
 Flickr의 John Allspaw와 Paul Hammond는 Velocity 2009에서 하루 10번의 배포를 제목으로 내건 발표로, Flickr에서 개발과 운영이 도구와 문화로 협력하는 방식을 소개했다.[@flickr-10-deploys-per-day-2009]
 
-[[agile-software-development|애자일 개발]]은 잦은 반복으로 구현에 이른 피드백을 주고, DevOps는 운영에서 오는 피드백으로 개발자가 자기 코드가 운영 환경에서 어떻게 동작하는지 더 빨리 알게 한다. DevOps는 여러 변경을 묶어 정해진 간격으로 내는 릴리스 대신, 작은 변경 단위를 필요할 때 서로 독립적으로 내보내려 한다.[@ieee-swebok-v4-0a-2026]
+[[agile-software-development|애자일 개발]]은 잦은 반복으로 구현에 이른 피드백을 주고, DevOps는 운영에서 오는 피드백으로 개발자가 자기 코드가 운영 환경에서 어떻게 동작하는지 더 빨리 알게 한다. DevOps는 여러 변경을 묶어 정해진 간격으로 내는 [[configuration-management#빌드와 릴리스|릴리스]] 대신, 작은 변경 단위를 필요할 때 서로 독립적으로 내보내려 한다.[@ieee-swebok-v4-0a-2026]
 
 ![[diagrams/devops-feedback-loops.svg]]
 
@@ -28,8 +28,20 @@ IEEE 2675-2021은 DevOps 원칙으로 임무 우선(mission first), 고객 중�
 DevOps의 실천에는 다음이 있다.[@ieee-swebok-v4-0a-2026][@nist-sp-800-204c-2022]
 
 - 빌드, 테스트, 배포, 인프라 구성의 자동화
-- [[continuous-integration|지속적 통합]]과 지속적 전달·배포
+- [[continuous-integration|지속적 통합]]과 [[continuous-integration#지속적 전달·배포·테스트|지속적 전달·배포]]
 - 운영 중인 시스템의 모니터링과 로깅
 - 운영에서 얻은 정보를 다음 개발에 되먹이는 피드백[@ieee-swebok-v4-0a-2026][@nist-sp-800-204c-2022]
 
 보안을 이 흐름의 처음부터 모든 단계에 넣기를 강조하는 이름이 [[devsecops|DevSecOps]]다.[@ieee-swebok-v4-0a-2026][@nist-sp-800-204c-2022]
+
+## 배포와 릴리스
+
+SWEBOK V4.0a는 『The DevOps Handbook』의 정의를 옮겨, **배포**를 정한 버전의 소프트웨어를 어떤 환경에 설치하는 일로, 릴리스를 기능이나 기능 묶음을 고객 전부나 일부가 쓸 수 있게 하는 일로 정의해 둘을 구별한다. 이 구별에서는 애플리케이션을 운영 환경에 배포한 뒤 사용자에게 내놓을지가 비즈니스 결정이 된다.[@ieee-swebok-v4-0a-2026]
+
+![[diagrams/deployment-vs-release.svg]]
+
+릴리스의 리스크를 줄이는 전략에는 새 버전을 먼저 스테이징 환경에 배포해 릴리스를 돕는 환경 기반 전략과, feature toggle 같은 토글로 코드의 특정 부분(예: 기능)을 설정값에 따라 켜고 끄는 애플리케이션 기반 전략이 있다.[@ieee-swebok-v4-0a-2026]
+
+**카나리 릴리스**(canary release)는 서비스의 변경을 기한을 두고 부분적으로 배포해 그 변경을 평가하는 기법으로, 운영 엔지니어는 그 평가를 보고 전면 배포로 나아갈지 정한다.[@ieee-swebok-v4-0a-2026]
+
+새 버전의 소프트웨어를 운영 환경에 배포하기 전에 롤백을 계획하고 연습해 두어, 새 버전이 운영 환경에서 결함이나 제품의 질 저하를 일으키면 쉽고 빠르게 되돌릴 수 있게 한다. DevOps 프로세스는 이 롤백을 자동화해 빠르게 한다.[@ieee-swebok-v4-0a-2026]
