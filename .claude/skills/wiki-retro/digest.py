@@ -62,10 +62,10 @@ UUID = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12
 HEADING = re.compile(r"#{1,6}\s")
 ISSUE_NUMBER = re.compile(r"#\d+")
 WORKTREE_BASE = re.compile(r"HEAD is now at ([0-9a-f]{7,40})")
-SKILL_DIR = re.compile(r"Base directory for this skill: \S*?(\.claude/skills/(?:wiki-[a-z]+|reader-testing))\n")
-WIKI_SKILL = r"(wiki-[a-z]+|reader-testing)"
-COMMAND_SKILL = re.compile(rf"<command-message>{WIKI_SKILL}</command-message>")
-ROUTINE_SKILL = re.compile(rf'"content": "/{WIKI_SKILL}\b')
+WIKI_SKILL = r"wiki-[a-z]+|reader-testing"
+SKILL_DIR = re.compile(rf"Base directory for this skill: \S*?(\.claude/skills/(?:{WIKI_SKILL}))\n")
+COMMAND_SKILL = re.compile(rf"<command-message>({WIKI_SKILL})</command-message>")
+ROUTINE_SKILL = re.compile(rf'"content": "/({WIKI_SKILL})\b')
 GH_WRITE = re.compile(r"\bgh (?:pr|issue) (?:create|comment)\b")
 GITHUB_URL = re.compile(r"https://github\.com/[\w.-]+/[\w.-]+/(?:pull|issues)/\d+(?:#issuecomment-\d+)?")
 HANDOFF = re.compile(r"/documents/ash-wiki-handoff/.*\.md$")
@@ -284,14 +284,18 @@ def digest_session(archive, path):
         f.write(stamp)
 
 
-def mark(archive, retro, uuids):
+def analyzed(archive):
     ledger = os.path.join(archive, "analyzed.tsv")
-    seen = set()
-    if os.path.exists(ledger):
-        with open(ledger) as f:
-            seen = {line.split("\t", 1)[0] for line in f if line.strip()}
+    if not os.path.exists(ledger):
+        return set()
+    with open(ledger) as f:
+        return {line.split("\t", 1)[0] for line in f if line.strip()}
+
+
+def mark(archive, retro, uuids):
+    seen = analyzed(archive)
     today = date.today().isoformat()
-    with open(ledger, "a") as f:
+    with open(os.path.join(archive, "analyzed.tsv"), "a") as f:
         for uuid in uuids:
             if uuid not in seen:
                 seen.add(uuid)
@@ -409,7 +413,7 @@ def save_report(archive, path, uuid, first):
     print(f"{out_dir}/report.md")
 
 
-def called_wiki_skills(block):
+def invoked_wiki_skills(block):
     if block.get("type") == "text":
         match = COMMAND_SKILL.match(block.get("text", ""))
         return [match.group(1)] if match else []
@@ -438,29 +442,27 @@ def candidate_row(path):
             if entry.get("type") == "custom-title":
                 title = entry.get("customTitle") or title
             for block in blocks(entry.get("message")):
-                skills += [s for s in called_wiki_skills(block) if s not in skills]
+                skills += invoked_wiki_skills(block)
                 inp = block.get("input") or {}
-                if block.get("type") != "tool_use":
-                    pass
-                elif block.get("name") == "Bash" and GH_WRITE.search(str(inp.get("command", ""))):
+                if block.get("type") == "tool_use" and block.get("name") == "Bash" and GH_WRITE.search(str(inp.get("command", ""))):
                     writes.add(block.get("id"))
-                elif block.get("name") in ("Write", "Edit") and HANDOFF.search(str(inp.get("file_path", ""))):
-                    handoffs += [inp["file_path"]] if inp["file_path"] not in handoffs else []
-                if block.get("type") == "tool_result" and block.get("tool_use_id") in writes:
-                    urls += [u for u in GITHUB_URL.findall(result_text(block.get("content"))) if u not in urls]
+                elif block.get("type") == "tool_use" and block.get("name") in ("Write", "Edit") and HANDOFF.search(str(inp.get("file_path", ""))):
+                    handoffs.append(inp["file_path"])
+                elif block.get("type") == "tool_result" and block.get("tool_use_id") in writes:
+                    urls += GITHUB_URL.findall(result_text(block.get("content")))
     if not skills:
         return None
     uuid = os.path.basename(stem(path))
-    return [uuid, ",".join(skills), start or "-", title or "-", " ".join(urls) or "-", " ".join(handoffs) or "-"]
+    return [uuid, joined(skills, ","), start or "-", title or "-", joined(urls), joined(handoffs)]
+
+
+def joined(items, sep=" "):
+    return sep.join(dict.fromkeys(items)) or "-"
 
 
 def candidates(archive, retro, paths):
-    ledger = os.path.join(archive, "analyzed.tsv")
-    done = {retro}
-    if os.path.exists(ledger):
-        with open(ledger) as f:
-            done |= {line.split("\t", 1)[0] for line in f if line.strip()}
-    rows = [candidate_row(p) for p in paths if os.path.basename(stem(p)) not in done]
+    done = analyzed(archive) | {retro}
+    rows =[candidate_row(p) for p in paths if os.path.basename(stem(p)) not in done]
     print("uuid\t스킬\t시작일\t제목\tURL\t핸드오프")
     for row in sorted((r for r in rows if r), key=lambda r: r[2]):
         print("\t".join(row))

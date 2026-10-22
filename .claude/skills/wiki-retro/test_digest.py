@@ -408,7 +408,7 @@ class CandidatesTest(unittest.TestCase):
         self.transcript(OTHER, entry("user", "wiki-news를 고쳐 줘"))
         rows = self.candidates()
         self.assertEqual(list(rows), [UUID])
-        self.assertIn("wiki-news", rows[UUID][1])
+        self.assertEqual(rows[UUID][1], "wiki-news(루틴)")
 
     def test_analyzed_session_and_this_session_are_left_out(self):
         command = entry("user", "<command-message>wiki-verify</command-message>\n<command-args>#3</command-args>")

@@ -24,7 +24,7 @@ disable-model-invocation: true
 python3 -B .claude/skills/wiki-retro/digest.py --candidates <이 세션 uuid>
 ```
 
-후보를 표로 대화에 보이고, 세션마다 지금 분석, 나중에, 뺌 가운데 무엇으로 할지 소유자에게 묻는다. 세션이 끝났는지, 넘긴 일의 결과가 나왔는지는 소유자가 가장 잘 알기 때문이다. 표의 열은 명령이 찍는 스킬, 시작일, 제목, URL, 핸드오프에 `gh`로 본 PR과 이슈의 상태를 더한다. URL 가운데 세션의 PR이 아닌 것(`verify:` 코멘트, `lint:` 이슈, `범위 밖` 이슈, 모음 이슈 코멘트, 발행한 티켓)이 **넘긴 일**이다.
+후보를 표로 대화에 보이고, 세션마다 지금 분석, 나중에, 뺌 가운데 무엇으로 할지 소유자에게 묻는다. 세션이 끝났는지, 넘긴 일의 결과가 나왔는지는 소유자가 가장 잘 알기 때문이다. 표의 열은 명령이 찍는 스킬, 시작일, 제목, URL, 핸드오프에 `gh`로 본 PR과 이슈의 상태를 더한다. URL 가운데 세션의 PR과 그 코멘트가 아닌 것(`verify:` 코멘트, `lint:` 이슈, `범위 밖` 이슈, 모음 이슈 코멘트, 발행한 티켓)이 **넘긴 일**이다.
 
 - **지금 분석**이 대상 세션이다.
 - **나중에**는 목록에 적지 않아 다음 회고에 다시 나온다.
@@ -109,7 +109,7 @@ python3 -B .claude/skills/wiki-retro/digest.py --report <에이전트 기록> <u
 
 ```sh
 gh api markdown -f mode=gfm -f context=jjongs2/ash-wiki -F text=@<글 파일> \
-  | perl -0pe 's/<(code|a)\b.*?<\/\1>//gs; s/&#\d+;//g' | grep -e '<del>' -e '#[0-9]'
+  | perl -0pe 's/<(pre|code|a)\b.*?<\/\1>//gs; s/&#\d+;//g' | grep -e '<del>' -e '#[0-9]'
 ```
 
 티켓이 나갔거나 소유자가 멈추라고 하면, 분석한 세션을 `analyzed.tsv`에 적는다.
