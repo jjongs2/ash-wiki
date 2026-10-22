@@ -43,9 +43,13 @@ break 필드는 LIN 프레임의 시작을 알린다.[@iso-17987-3-obp-2025] bre
 
 TMS320F2803x의 LIN 모듈은 PID의 [[parity-bit|패리티 비트]] 두 개를 프레임 ID 비트의 XOR로 계산한다. 패리티 비트 $P_0$은 ID 비트 0, 1, 2, 4의 XOR이고, $P_1$은 ID 비트 1, 3, 4, 5의 XOR을 반전한 값이다.[@ti-sprui10a-2022]
 
-$$P_0 = \mathrm{ID}_0 \oplus \mathrm{ID}_1 \oplus \mathrm{ID}_2 \oplus \mathrm{ID}_4$$
+$$
+P_0 = \mathrm{ID}_0 \oplus \mathrm{ID}_1 \oplus \mathrm{ID}_2 \oplus \mathrm{ID}_4
+$$
 
-$$P_1 = \overline{\mathrm{ID}_1 \oplus \mathrm{ID}_3 \oplus \mathrm{ID}_4 \oplus \mathrm{ID}_5}$$
+$$
+P_1 = \overline{\mathrm{ID}_1 \oplus \mathrm{ID}_3 \oplus \mathrm{ID}_4 \oplus \mathrm{ID}_5}
+$$
 
 바이트 필드는 dominant start 비트, 최하위 비트부터 보내는 8비트 페이로드, recessive stop 비트로 된 10비트 단위다.[@iso-17987-1-obp-2025]
 
