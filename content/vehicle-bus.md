@@ -35,8 +35,8 @@ FlexRay의 비트율은 최대 10 Mbit/s이며, FlexRay는 차량의 고속 제�
 
 ![[diagrams/vehicle-bus-bit-rates.svg]]
 
-SAE J2057/1:2022는 차량 네트워크를 Class A, Class B, Class C로 나눈다.[@sae-j2057-1-2022] SAE 기술 논문 931808은 차량 내 네트워크가 저속·중속·고속의 데이터율 요구를 맡는 하위 네트워크로 이루어질 수 있다고 하고, 이 셋을 각각 SAE Class A, B, C라 부른다.[@sae-931808-1993] Freescale의 차량 네트워킹 브로셔에 따르면 한 차량에서 CAN, FlexRay, LIN을 함께 쓰기도 한다.[@freescale-brinvehiclenet-2006] LIN은 CAN의 대역폭이 필요 없는 장치를 잇는 저비용 하위 네트워크다.[@freescale-brinvehiclenet-2006][@ti-slla383a-2022]
+SAE J2057/1:2022는 차량 네트워크를 Class A, Class B, Class C로 나눈다.[@sae-j2057-1-2022] SAE 기술 논문 931808은 차량 내 네트워크가 저속·중속·고속의 데이터율 요구를 맡는 하위 네트워크로 이루어질 수 있다고 하고, 이 셋을 각각 SAE Class A, B, C라 부른다.[@sae-931808-1993]
 
 ## 버스 사이 연결
 
-SAE 기술 논문 931808에 따르면 데이터율 요구가 다른 하위 네트워크는 브리지나 게이트웨이로 이어진다.[@sae-931808-1993] LIN의 commander는 백본 네트워크에도 연결된다.[@iso-17987-1-obp-2025]
+데이터율 요구가 다른 하위 네트워크는 브리지나 게이트웨이로 이어진다.[@sae-931808-1993] Freescale의 차량 네트워킹 브로셔에 따르면 한 차량에서 CAN, FlexRay, LIN을 함께 쓰기도 한다.[@freescale-brinvehiclenet-2006] LIN은 CAN의 대역폭이 필요 없는 장치를 잇는 저비용 하위 네트워크다.[@freescale-brinvehiclenet-2006][@ti-slla383a-2022] LIN의 commander는 백본 네트워크에도 연결된다.[@iso-17987-1-obp-2025]
