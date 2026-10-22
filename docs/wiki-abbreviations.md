@@ -14,6 +14,7 @@
 - AUMOVIO: 조직
 - Auto-ISAC: 조직
 - AUTOSAR: 표준·규격 이름
+- BCH: 널리 쓰이는 약어
 - BMW: 조직
 - BS: 표준·규격 이름
 - BSI: 조직

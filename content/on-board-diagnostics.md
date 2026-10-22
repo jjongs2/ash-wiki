@@ -23,6 +23,10 @@ ISO 27145 시리즈는 OBD 관련 정보에 접근하는 단일 통신 표준이
 
 WWH-OBD에서 **MI**(malfunction indicator)는 고장(malfunction)이 나면 운전자에게 그것을 분명히 알리는 표시나 계기다. 고장은 배출가스나 OBD 시스템의 감시 능력에 미치는 영향에 따라 WWH-OBD GTR의 요구대로 class A, B1, B2, C로 나뉘고, [[uds#데이터 식별자와 고장 코드|DTC]]가 그 class를 속성으로 가진다. 두 운행 사이클 연속으로 검출되어 아직 남아 있는 DTC(confirmed and active DTC)는 class A, B1, B2이면 MI를 켜고, class C면 MI를 켜지 않는다.[@iso-27145-1-obp-2012]
 
+## 수리·정비 정보 접근
+
+규정 (EU) 2018/858은 제조사가 독립 사업자(independent operator)에게 수리·정비 정보를 제한 없이, 표준화된 방식으로, 차별 없이 제공하도록 요구한다. 독립 사업자는 공인 딜러·수리업자가 아니면서 차량 수리·정비에 관여하는 사업자다. 수리·정비 정보에는 제조사별 코드를 포함한 DTC가 든다. OBD 호환 교체 부품과 진단 도구·시험 장비를 만들거나 정비하는 데 쓰도록, 제조사는 관련된 OBD 정보와 수리·정비 정보를 부품·진단 도구·시험 장비 제조사와 수리업자에게도 차별 없이 제공해야 한다.[@eu-2018-858-2026] 이 의무는 원래 규정 (EC) No 715/2007의 Art. 6에 있었고, 2018/858이 그 조항을 지우고 이어받았다.[@eu-715-2007-2007][@eu-2018-858-2026]
+
 ## AUTOSAR의 OBD 지원
 
 [[autosar|AUTOSAR]] R25-11의 Dcm(Diagnostic Communication Manager) 명세는 SAE J1979와 ISO 15031-5가 정한 OBD 서비스 `$01`\~`$0A`를 지원하는 수단을 Dcm에 둔다. 이 서비스로 AUTOSAR의 OBD 기능은 캘리포니아의 OBD II, 유럽과 일본의 OBD를 비롯한 세계의 경량 차량 OBD 법규를 모두 맞출 수 있다. Dcm은 OBD 프로토콜을 가장 높은 우선순위로 둔다. OBD 서비스는 법규상 인증 상태와 상관없이 늘 쓸 수 있어야 하므로, Dcm은 OBD 서비스를 인증 검사에서 뺀다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]

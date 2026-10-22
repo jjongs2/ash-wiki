@@ -330,7 +330,7 @@ describe("check-diff CLI", { concurrency: false }, () => {
 
   test("약어: 풀이 없는 약어와 접두가 붙은 약어를 보이고, 풀이·링크·목록·부품 번호는 거른다", () => {
     const lines = report.items.get("abbreviation") ?? []
-    assert.ok(has(lines, "content/definitions.md:", "BCH"))
+    assert.ok(has(lines, "content/definitions.md:", "LDPC"))
     assert.ok(has(lines, "content/definitions.md:", "DIS (ISO/DIS)"))
     assert.ok(has(lines, "content/definitions.md:", "CRC"))
     assert.ok(
