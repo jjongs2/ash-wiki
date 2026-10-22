@@ -71,4 +71,4 @@ hard 태스크마다 최악 실행 시간과 최소 도착 간격 $T_i$를 두�
 
 Linux 커널의 `SCHED_DEADLINE` 정책은 runtime, period, deadline 세 파라미터로 태스크를 스케줄한다. 태스크가 깨어날 때마다 스케줄러는 CBS 알고리즘으로 스케줄링 마감 시한을 계산하고, 이 마감 시한에 EDF를 적용해 가장 이른 태스크를 고른다. 남은 runtime이 0 이하가 되면 태스크는 throttled 상태가 되어 스케줄링 마감 시한까지 스케줄되지 않고, 그 시각에 스케줄링 마감 시한에는 period가, 남은 runtime에는 runtime이 더해진다.[@linux-sched-deadline-2026]
 
-RTEMS(Real-Time Executive for Multiprocessor Systems)의 CBS 스케줄러는 단일 코어 응용을 위한 스케줄러로, EDF에 예산을 더해 태스크마다 시간 격리를 보장하려 한다. 서버는 주기(마감 시한)와 예산을 갖고 지금 구현은 서버 하나에 태스크 하나만 붙인다. 태스크가 등록한 예산을 넘거나, 남은 예산과 남은 마감 시한의 비가 선언한 대역폭보다 클 때 블록에서 풀리면, 그 태스크의 우선순위는 그 주기가 끝날 때까지 background로 내려간다.[@rtems-cbs-scheduler-2025]
+RTEMS(Real-Time Executive for Multiprocessor Systems)의 CBS 스케줄러는 단일 코어 응용을 위한 스케줄러로, EDF에 예산을 더해 태스크마다 시간 격리를 보장하려 한다. 서버는 주기(마감 시한)와 예산을 갖고, RTEMS 6.2의 구현은 서버 하나에 태스크 하나만 붙인다. 태스크가 등록한 예산을 넘거나, 남은 예산과 남은 마감 시한의 비가 선언한 대역폭보다 클 때 블록에서 풀리면, 그 태스크의 우선순위는 그 주기가 끝날 때까지 background로 내려간다.[@rtems-cbs-scheduler-2025]
