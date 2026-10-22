@@ -94,12 +94,13 @@ describe("check-diff CLI", { concurrency: false }, () => {
         "term",
         "first-link",
         "diagram-place",
+        "inline-math",
       ],
     )
   })
 
   test("마지막 줄에 돈 항목 수와 전체 항목 수, SKIP 수를 찍는다", () => {
-    assert.strictEqual(report.last, "돈 항목 13/전체 13, SKIP 0")
+    assert.strictEqual(report.last, "돈 항목 14/전체 14, SKIP 0")
   })
 
   test("표준 문장: 에서는과 밝힌다 꼴을 잡고, 추적하지 않는 새 페이지도 본다", () => {
@@ -138,6 +139,16 @@ describe("check-diff CLI", { concurrency: false }, () => {
       ["content/location-tail.md:8", "content/location-tail.md:10"],
     )
     assert.ok(has(lines, "location-tail.md:8", ", e), f))"))
+  })
+
+  test("인라인 식: 맨 위 수준 항이 셋 이상이거나 \\frac이 든 식만 찍고, 괄호·첨자 안의 항과 $$는 보지 않는다", () => {
+    const lines = report.items.get("inline-math") ?? []
+    assert.deepStrictEqual(
+      lines.map((line) => line.replace(/: .*/, "")),
+      ["content/inline-math.md:8", "content/inline-math.md:12"],
+    )
+    assert.ok(has(lines, "inline-math.md:8", "2^r \\ge k + r + 1"))
+    assert.ok(has(lines, "inline-math.md:12", "\\frac{a}{b}"))
   })
 
   test("인용 없는 블록: 목록을 여는 문장은 넘기고 새 페이지의 문단도 잡는다", () => {
@@ -467,7 +478,7 @@ describe("check-diff CLI", { concurrency: false }, () => {
       only.headers.map((h) => h.replace(/ 후보 \d+/, "")),
       ["SKIP owner-page (--ticket 없음)", "abbreviation:"],
     )
-    assert.strictEqual(only.last, "돈 항목 1/전체 13, SKIP 1")
+    assert.strictEqual(only.last, "돈 항목 1/전체 14, SKIP 1")
     assert.strictEqual(only.exitCode, 0)
   })
 })
