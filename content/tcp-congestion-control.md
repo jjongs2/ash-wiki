@@ -9,7 +9,7 @@ verified: 2026-09-29
 
 혼잡 제어가 없으면 송신 측이 아직 전달 중이거나 이미 도착한 패킷까지 불필요하게 다시 보내느라, 부하가 늘수록 네트워크가 해내는 쓸모 있는 일이 오히려 줄어드는 **혼잡 붕괴**(congestion collapse)가 일어날 수 있다. 이때 처리량은 평소의 작은 일부로 떨어진다.[@ietf-rfc-2914-2000][@ietf-rfc-9293-2022]
 
-RFC 9293은 TCP 끝점이 혼잡 붕괴를 일으키지 않도록 기본 혼잡 제어 알고리즘인 slow start, congestion avoidance, RTO(retransmission timeout)의 [[tcp#재전송 타임아웃|지수 백오프]]를 구현해야 한다고 정하고, 다른 알고리즘은 RFC 2914, RFC 5033, RFC 8961이 기술한 IETF Standards Track의 TCP 명세에 맞으면 구현해도 된다고 둔다. RFC 1122는 Van Jacobson의 혼잡 제어 알고리즘인 slow start와 congestion avoidance의 구현을 요구했고, RFC 2581은 이 둘을 fast retransmit, fast recovery와 함께 Standards Track 문서로 기술했다.[@ietf-rfc-9293-2022] RFC 5681은 RFC 2581을 대체했다.[@ietf-rfc-5681-2009]
+RFC 9293은 TCP 끝점이 혼잡 붕괴를 일으키지 않도록 기본 혼잡 제어 알고리즘인 slow start, congestion avoidance, RTO(retransmission timeout)의 [[tcp#재전송 타임아웃|지수 백오프]]를 구현해야 한다고 정한다. RFC 1122는 Van Jacobson의 혼잡 제어 알고리즘인 slow start와 congestion avoidance의 구현을 요구했고, RFC 2581은 이 둘을 fast retransmit, fast recovery와 함께 Standards Track 문서로 기술했다.[@ietf-rfc-9293-2022] RFC 5681은 RFC 2581을 대체했다.[@ietf-rfc-5681-2009]
 
 ## 혼잡 윈도
 

@@ -11,7 +11,7 @@ verified: 2026-09-29
 
 TCP는 잃거나 깨진 데이터를 다시 보내고, 순서가 바뀐 데이터를 바로잡고, 중복을 걸러 내어 보낸 순서대로 전달한다. 받는 쪽이 감당할 수 있는 만큼만 보내도록 흐름을 제어하고, 네트워크 혼잡에 맞춰 보내는 양을 조절한다.[@ietf-rfc-9293-2022]
 
-RFC 793은 1981년에 TCP를 문서로 정했다. RFC 9293은 2022년에, 그 뒤 여러 문서에 흩어져 기록된 고침을 RFC 793의 프로토콜 명세와 한데 모아, RFC 793과 그 일부를 고친 RFC 879, 2873, 6093, 6429, 6528, 6691을 대체했다. 이때 RFC 793의 헤더 제어 비트도 RFC 3168에 따라 고쳐 실었다.[@ietf-rfc-9293-2022]
+RFC 793은 1981년에 TCP를 문서로 정했다. RFC 9293은 2022년에, 그 뒤 여러 문서에 흩어져 기록된 고침을 RFC 793의 프로토콜 명세와 한데 모아, RFC 793과 그 일부를 고친 문서들을 대체했다. 이때 RFC 793의 헤더 제어 비트도 RFC 3168에 따라 고쳐 실었다.[@ietf-rfc-9293-2022]
 
 ## 헤더
 
@@ -70,15 +70,15 @@ RFC 6298은 RTO 계산에 송신 측의 상태 변수 SRTT(smoothed round-trip t
 
 재전송 타이머가 만료되면 보내는 쪽은 아직 확인 응답을 받지 못한 가장 이른 세그먼트를 다시 보낸다. 이때 RTO를 두 배로 늘려야 한다. 재전송한 세그먼트로는 RTT를 재지 않아야 한다(Karn 알고리즘). 확인 응답이 어느 전송에 대한 것인지 가릴 수 있는 TCP Timestamps 옵션을 쓸 때만 예외다.[@ietf-rfc-6298-2011]
 
+## 혼잡 알림 피드백
+
+RFC 9768은 RFC 3168의 ECN(Explicit Congestion Notification) 피드백 방식을 고친 AccECN(More Accurate ECN)을 정하고, 예전에 NS(Nonce Sum)라 부르던 비트 7의 이름을 AE로 바꿔 AccECN에 쓴다. 두 끝은 핸드셰이크에서 AE, CWR, ECE 세 플래그로 AccECN 지원을 협상하고, 그 뒤에는 이 세 비트를 CE(Congestion Experienced) 표시를 받은 패킷 수를 되돌려 주는 3비트 카운터 하나로 쓴다.[@ietf-rfc-9768-2026]
+
 ## 바이트 스트림
 
 TCP는 주고받은 세그먼트의 경계와 응용이 읽고 쓰는 버퍼의 경계가 서로 대응한다고 보장하지 않는다. 그래서 응용이 여러 번에 나눠 쓴 데이터를 받는 쪽이 한 번에 읽을 수도 있고, 한 번에 쓴 데이터를 여러 번에 나눠 읽을 수도 있다.[@ietf-rfc-9293-2022]
 
 메시지 경계가 필요한 응용은 스스로 레코드 표시를 넣어 메시지를 가른다.[@ietf-rfc-9260-2022] RFC 3117은 메시지를 가르는 흔한 방법 세 가지로, SMTP(Simple Mail Transfer Protocol)처럼 메시지 끝에 표시를 두는 octet-stuffing, HTTP처럼 헤더에 길이를 적는 octet-counting, FTP(File Transfer Protocol)처럼 메시지마다 새 TCP 연결을 여는 connection-blasting을 든다.[@ietf-rfc-3117-2001]
-
-## 혼잡 알림 피드백
-
-RFC 9768은 RFC 3168의 ECN(Explicit Congestion Notification) 피드백 방식을 고친 AccECN(More Accurate ECN)을 정하고, 예전에 NS(Nonce Sum)라 부르던 비트 7의 이름을 AE로 바꿔 AccECN에 쓴다. 두 끝은 핸드셰이크에서 AE, CWR, ECE 세 플래그로 AccECN 지원을 협상하고, 그 뒤에는 이 세 비트를 CE(Congestion Experienced) 표시를 받은 패킷 수를 되돌려 주는 3비트 카운터 하나로 쓴다.[@ietf-rfc-9768-2026]
 
 ## UDP와의 차이
 
