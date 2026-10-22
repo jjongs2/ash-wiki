@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="28 8 424 214" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- 부호어 -->
+  <path d="M41 52 V46 H439 V52" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="240" y="36" text-anchor="middle" font-size="12" fill="var(--text, #727981)">부호어: 심볼 <tspan font-style="italic">n</tspan> = 255개</text>
+
+  <rect x="40.75" y="58.75" width="298.5" height="32.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="190" y="80" text-anchor="middle" fill="var(--text, #727981)">정보 심볼</text>
+  <rect x="340.75" y="58.75" width="98.5" height="32.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="390" y="80" text-anchor="middle" fill="var(--on-fill, #f8fafd)">패리티 심볼</text>
+
+  <!-- 심볼 수 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M41 98 V104 H339 V98" />
+    <path d="M341 98 V104 H439 V98" />
+  </g>
+  <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
+    <text x="190" y="120"><tspan font-style="italic">k</tspan> = <tspan font-style="italic">n</tspan> − 2<tspan font-style="italic">E</tspan>개</text>
+    <text x="390" y="120">2<tspan font-style="italic">E</tspan>개</text>
+  </g>
+
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="40" y="148">심볼 하나: 8비트, GF(2<tspan baseline-shift="super" font-size="9">8</tspan>)의 원소 하나</text>
+    <text x="40" y="166"><tspan font-style="italic">E</tspan>: 부호어 하나에서 고칠 수 있는 심볼 오류의 수</text>
+    <text x="40" y="184"><tspan font-style="italic">E</tspan> = 16이면 (255,223) 부호, <tspan font-style="italic">E</tspan> = 8이면 (255,239) 부호</text>
+    <text x="40" y="202">CCSDS 131.0-B-6</text>
+  </g>
+</svg>

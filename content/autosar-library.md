@@ -19,18 +19,18 @@ AUTOSAR R25-11 Layered Software Architecture는 **AUTOSAR 라이브러리**를 �
 
 이 라이브러리들이 하는 일은 아래와 같다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-| 라이브러리 | 하는 일                               |
-| ---------- | ------------------------------------- |
-| Mfx        | 고정소수점 수학 함수                  |
-| Mfl        | 부동소수점 수학 함수                  |
-| Ifx        | 고정소수점 데이터의 보간              |
-| Ifl        | 부동소수점 데이터의 보간              |
-| Efx        | 64비트 계산, 필터링 같은 확장 함수    |
-| Bfx        | 비트 다루기                           |
-| E2E        | [[autosar-e2e-protection\|E2E]] 통신  |
-| Crc        | [[cyclic-redundancy-check\|CRC]] 계산 |
-| Bmc        | 멀티코어에서 안전한 원자적 연산       |
-| Msf        | 메모리 표준 함수                      |
+| 라이브러리 | 하는 일                                             |
+| ---------- | --------------------------------------------------- |
+| Mfx        | 고정소수점 수학 함수                                |
+| Mfl        | 부동소수점 수학 함수                                |
+| Ifx        | 고정소수점 데이터의 보간                            |
+| Ifl        | 부동소수점 데이터의 보간                            |
+| Efx        | 64비트 계산, 필터링 같은 확장 함수                  |
+| Bfx        | 비트 다루기                                         |
+| E2E        | [[autosar-e2e-protection\|E2E]] 통신                |
+| Crc        | [[cyclic-redundancy-check#계산 매개변수\|CRC 계산]] |
+| Bmc        | 멀티코어에서 안전한 원자적 연산                     |
+| Msf        | 메모리 표준 함수                                    |
 
 ## BSW 모듈과의 차이
 

@@ -20,7 +20,7 @@ IEEE 802.3-2022는 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1이 평형 도체 한 쌍 �
 
 ## 부호화
 
-이 표준은 MultiGBASE-T1의 PCS가 [[mii|MII]] 계열의 XGMII(10 Gigabit Media Independent Interface)로 MAC(Medium Access Control) 쪽과 이어지도록 정한다. PCS는 XGMII의 TX_D, TX_EN, TX_ER를 64B/65B로 부호화하고, 64B/65B 블록 50개마다 RS-FEC(Reed–Solomon Forward Error Correction) 패리티 340비트를 더해 비트 오류율 BER(Bit Error Ratio)을 $\mathrm{BER} \le 10^{-12}$로 유지한다. 33비트 스크램블러로 EMC 성능을 높이고, 네 준위의 PAM4(Pulse Amplitude Modulation 4)로 보낸다. 심볼률은 2.5GBASE-T1이 1406.25 MBd, 5GBASE-T1이 2812.5 MBd, 10GBASE-T1이 5625 MBd다.[@ieee-802-3-2022]
+이 표준은 MultiGBASE-T1의 PCS가 [[mii|MII]] 계열의 XGMII(10 Gigabit Media Independent Interface)로 MAC(Medium Access Control) 쪽과 이어지도록 정한다. PCS는 XGMII의 TX_D, TX_EN, TX_ER를 64B/65B로 부호화하고, 64B/65B 블록 50개마다 [[error-correction-code#Reed-Solomon 부호|RS-FEC]](Reed-Solomon Forward Error Correction) 패리티 340비트를 더해 비트 오류율 BER(Bit Error Ratio)을 $\mathrm{BER} \le 10^{-12}$로 유지한다. 33비트 스크램블러로 EMC 성능을 높이고, 네 준위의 PAM4(Pulse Amplitude Modulation 4)로 보낸다. 심볼률은 2.5GBASE-T1이 1406.25 MBd, 5GBASE-T1이 2812.5 MBd, 10GBASE-T1이 5625 MBd다.[@ieee-802-3-2022]
 
 ## 링크 세그먼트
 

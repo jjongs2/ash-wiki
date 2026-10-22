@@ -22,7 +22,7 @@ verified: 2026-10-07
 - 메서드를 보호할 때 요청과 응답을 가르는 메시지 유형, 정상 응답과 오류 응답을 가르는 메시지 결과
 - 수신 측의 통신 타임아웃과 송신 측의 확인 응답 타임아웃 검출[@autosar-fo-prs-e2eprotocol-2025]
 
-이 가운데 일부는 RTE, COM, [[autosar-communication-stack|통신 스택]]에도 구현돼 있다. 그러나 이 모듈들에 안전 요구가 할당되는 것을 줄이거나 피하려고, E2E 보호는 그 구현을 쓰지 않고 CRC 계산 루틴만 빌려 모든 메커니즘을 스스로 갖춘다.[@autosar-fo-prs-e2eprotocol-2025]
+이 가운데 일부는 RTE, COM, [[autosar-communication-stack|통신 스택]]에도 구현돼 있다. 그러나 이 모듈들에 안전 요구가 할당되는 것을 줄이거나 피하려고, E2E 보호는 그 구현을 쓰지 않고 [[cyclic-redundancy-check#계산 매개변수|CRC 계산 루틴]]만 빌려 모든 메커니즘을 스스로 갖춘다.[@autosar-fo-prs-e2eprotocol-2025]
 
 Sequence counter는 메시지가 빠지거나 되풀이됐는지 확인하는 데 쓰는 카운터이고, alive counter는 새 값이 계속 오는지, 곧 송신자가 아직 살아 있는지 확인하는 카운터다.[@autosar-fo-tr-glossary-2025]
 

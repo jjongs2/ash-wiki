@@ -19,11 +19,21 @@ MAC은 대개 비밀 키를 나눠 가진 두 쪽 사이에서 쓴다. 송신자
 
 NIST SP 800-38B는 대칭 키 [[symmetric-key-cryptography#블록 암호와 스트림 암호|블록 암호]]에 기반한 MAC 알고리즘인 **CMAC**(Cipher-based Message Authentication Code)을 정하고, 바탕 블록 암호로 [[symmetric-key-cryptography#AES|AES]] 같은 승인된 블록 암호를 쓰게 한다. CMAC의 검증은 받은 메시지에 MAC 생성을 다시 적용해 얻은 값이 받은 MAC과 같은지 보는 것이다.[@nist-sp-800-38b-2016]
 
+## GMAC과 KMAC
+
+NIST SP 800-38D는 [[block-cipher-mode-of-operation#인증 암호 모드|GCM]]의 입력을 암호화하지 않을 데이터로 한정한 특수형인 **GMAC**(Galois Message Authentication Code)을 정하고, GMAC은 입력 데이터를 인증하기만 하는 모드다.[@nist-sp-800-38d-2007][@ietf-rfc-4543-2006]
+
+NIST SP 800-185는 [[cryptographic-hash-function#SHA 계열|Keccak]]에 기반한 가변 길이 MAC 알고리즘인 **KMAC**(Keccak Message Authentication Code)을 정하며, KMAC은 PRF(Pseudorandom Function)로도 쓸 수 있다.[@nist-sp-800-185-2016]
+
 ## 해시 기반: HMAC
 
 FIPS 198-1은 [[cryptographic-hash-function|암호학적 해시 함수]]와 비밀 키로 MAC을 만드는 **HMAC**(keyed-Hash Message Authentication Code)을 정하고, HMAC에 승인된 해시 함수를 쓰게 한다. HMAC은 키에서 만든 두 값으로 해시를 두 번 적용한다. 메시지 $\mathit{text}$의 HMAC은 $H\big((K_0 \oplus \mathrm{opad}) \,\|\, H((K_0 \oplus \mathrm{ipad}) \,\|\, \mathit{text})\big)$이다. 여기서 $H$는 해시 함수, $K_0$은 비밀 키 $K$를 해시 함수의 입력 블록 길이에 맞춘 키, ipad와 opad는 각각 바이트 `0x36`과 `0x5c`를 블록 길이만큼 되풀이한 값, $\|$는 이어 붙이기, $\oplus$는 XOR이다. 수신자는 같은 키와 HMAC 함수로 MAC을 다시 계산해 받은 MAC과 견준다.[@nist-fips-198-1-2008]
 
 ![[diagrams/hmac-nested-hash.svg]]
+
+이 표준은 응용이 HMAC의 출력을 잘라 쓸 수 있게 하고, 자를 때는 HMAC 함수 출력의 왼쪽에서 MAC 길이 $\lambda$만큼의 비트를 MAC으로 쓰도록 정한다.[@nist-fips-198-1-2008]
+
+Krawczyk, Bellare, Canetti는 1997년 RFC 2104로 HMAC을 기술했다. HMAC은 반복형 암호학적 해시 함수라면 어느 것과도 공유 비밀 키를 함께 써서 만들 수 있고, 그 암호 강도는 바탕 해시 함수의 성질에 달려 있다.[@ietf-rfc-2104-1997]
 
 NIST SP 800-175B Rev. 1은 HMAC을 FIPS 180-4나 FIPS 202에 정한 승인된 해시 함수와 함께 쓰도록 승인한다.[@nist-sp-800-175b-r1-2020]
 

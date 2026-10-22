@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="36 8.5 378.5 188.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+
+  <!-- i번째 비트 자리 -->
+  <text x="187" y="27" text-anchor="middle" font-size="12" fill="var(--text, #727981)"><tspan font-style="italic">i</tspan>번째 비트</text>
+
+  <!-- 줄 이름 -->
+  <g text-anchor="end" fill="var(--text, #727981)">
+    <text x="84" y="58">블록</text>
+    <text x="84" y="88">블록</text>
+    <text x="84" y="118">블록</text>
+    <text x="84" y="176">체크섬</text>
+  </g>
+
+  <!-- 블록: 체크섬 크기로 나눈 데이터 워드 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="96" y="40" width="26" height="26" />
+    <rect x="122" y="40" width="26" height="26" />
+    <rect x="148" y="40" width="26" height="26" />
+    <rect x="200" y="40" width="26" height="26" />
+    <rect x="226" y="40" width="26" height="26" />
+    <rect x="252" y="40" width="26" height="26" />
+    <rect x="278" y="40" width="26" height="26" />
+    <rect x="96" y="70" width="26" height="26" />
+    <rect x="122" y="70" width="26" height="26" />
+    <rect x="148" y="70" width="26" height="26" />
+    <rect x="200" y="70" width="26" height="26" />
+    <rect x="226" y="70" width="26" height="26" />
+    <rect x="252" y="70" width="26" height="26" />
+    <rect x="278" y="70" width="26" height="26" />
+    <rect x="96" y="100" width="26" height="26" />
+    <rect x="122" y="100" width="26" height="26" />
+    <rect x="148" y="100" width="26" height="26" />
+    <rect x="200" y="100" width="26" height="26" />
+    <rect x="226" y="100" width="26" height="26" />
+    <rect x="252" y="100" width="26" height="26" />
+    <rect x="278" y="100" width="26" height="26" />
+  </g>
+
+  <!-- 체크섬 -->
+  <g stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)">
+    <rect x="96" y="158" width="26" height="26" />
+    <rect x="122" y="158" width="26" height="26" />
+    <rect x="148" y="158" width="26" height="26" />
+    <rect x="200" y="158" width="26" height="26" />
+    <rect x="226" y="158" width="26" height="26" />
+    <rect x="252" y="158" width="26" height="26" />
+    <rect x="278" y="158" width="26" height="26" />
+    <rect x="174" y="158" width="26" height="26" />
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="174" y="40" width="26" height="26" />
+    <rect x="174" y="70" width="26" height="26" />
+    <rect x="174" y="100" width="26" height="26" />
+  </g>
+
+  <!-- i번째 비트 열 -->
+  <rect x="169.25" y="35.25" width="35.5" height="153.5" rx="2" stroke="var(--violet, #825da9)" stroke-width="1.5" />
+
+  <!-- 모든 블록을 XOR -->
+  <line x1="96" y1="142" x2="304" y2="142" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="312" y="146" font-size="12" fill="var(--text, #727981)">모든 블록을 XOR</text>
+
+  <!-- 열의 패리티 -->
+  <text x="312" y="168" font-size="12" fill="var(--text, #727981)">모든 블록의</text>
+  <text x="312" y="184" font-size="12" fill="var(--text, #727981)"><tspan font-style="italic">i</tspan>번째 비트의 패리티</text>
+</svg>
