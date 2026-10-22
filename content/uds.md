@@ -96,7 +96,7 @@ Dcm은 AccessTimingParameter(`0x83`)와 SecuredDataTransmission(`0x84`) 요청�
 
 ![[diagrams/uds-security-access-nrc.svg]]
 
-Dcm은 Authentication(`0x29`)을 PKI 인증서 교환으로만 구현하고, challenge-response 인증은 AUTOSAR의 범위 밖에 둔다. Dcm은 진단 연결(`DcmDslConnection`)마다 인증 상태를 둔다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+Dcm은 Authentication(`0x29`)을 [[public-key-infrastructure|PKI]] 인증서 교환으로만 구현하고, challenge-response 인증은 AUTOSAR의 범위 밖에 둔다. Dcm은 진단 연결(`DcmDslConnection`)마다 인증 상태를 둔다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 ## 진단 세션
 
