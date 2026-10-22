@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="9.5 29.5 581 177.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="29.5 29.5 381 177.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -7,28 +7,21 @@
   </defs>
 
   <!-- SOVD API -->
-  <rect x="20" y="40" width="120" height="120" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="80" y="98" text-anchor="middle" fill="var(--text, #727981)">SOVD API</text>
-  <text x="80" y="116" text-anchor="middle" font-size="12" fill="var(--text, #727981)">ISO 17978-3:2026</text>
+  <rect x="40" y="40" width="130" height="120" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="105" y="98" text-anchor="middle" fill="var(--text, #727981)">SOVD API</text>
+  <text x="105" y="116" text-anchor="middle" font-size="12" fill="var(--text, #727981)">ISO 17978-3:2026</text>
 
   <!-- 접근 대상 -->
-  <rect x="460" y="40" width="120" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="520" y="67" text-anchor="middle" fill="var(--text, #727981)">HPC</text>
-  <rect x="460" y="116" width="120" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="520" y="143" text-anchor="middle" fill="var(--text, #727981)">기존 ECU</text>
-
-  <!-- classic diagnostic adapter -->
-  <rect x="190" y="116" width="150" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="265" y="134" text-anchor="middle" font-size="12" fill="var(--text, #727981)">classic diagnostic</text>
-  <text x="265" y="150" text-anchor="middle" font-size="12" fill="var(--text, #727981)">adapter</text>
+  <rect x="280" y="40" width="120" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="340" y="67" text-anchor="middle" fill="var(--text, #727981)">기존 ECU</text>
+  <rect x="280" y="116" width="120" height="44" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="340" y="143" text-anchor="middle" fill="var(--text, #727981)">HPC</text>
 
   <!-- 잇는 화살표 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
-    <line x1="140" y1="62" x2="458" y2="62" />
-    <line x1="140" y1="138" x2="188" y2="138" />
-    <line x1="340" y1="138" x2="458" y2="138" />
+    <line x1="170" y1="62" x2="278" y2="62" />
+    <line x1="170" y1="138" x2="278" y2="138" />
   </g>
-  <text x="400" y="129" text-anchor="middle" font-size="12" fill="var(--text, #727981)">다른 진단 프로토콜</text>
 
-  <text x="300" y="196" text-anchor="middle" font-size="12" fill="var(--text, #727981)">SOVD API로 HPC와 기존 ECU에 같은 방식으로 접근한다.</text>
+  <text x="220" y="196" text-anchor="middle" font-size="12" fill="var(--text, #727981)">이 API로 기존 ECU와 HPC에 같은 방식으로 접근한다.</text>
 </svg>

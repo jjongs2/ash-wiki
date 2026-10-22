@@ -5,7 +5,9 @@ tags:
 verified: 2026-10-22
 ---
 
-ISO 17978-3:2026은 [[ee-architecture#존 아키텍처|HPC]]와 기존 [[electronic-control-unit|ECU]]의 진단, 진단 능력 조회, extended vehicle 안의 **SOVD**(Service-Oriented Vehicle Diagnostics) 메서드 발견을 표준화하는 API를 정한다. 이 SOVD API로 기존 ECU와 HPC에 같은 방식으로 접근한다.[@iso-17978-3-obp-2026]
+ISO 17978-3:2026은 **SOVD**(Service-Oriented Vehicle Diagnostics) API를 [[ee-architecture#존 아키텍처|HPC]]와 기존 [[electronic-control-unit|ECU]]의 진단, 진단 능력 조회, extended vehicle 안의 SOVD 메서드 발견을 표준화하는 API로 정의한다. 이 API로 기존 ECU와 HPC에 같은 방식으로 접근한다.[@iso-17978-3-obp-2026]
+
+![[diagrams/sovd-api-access.svg]]
 
 ## API
 
@@ -16,8 +18,6 @@ ISO 17978-3:2026은 [[ee-architecture#존 아키텍처|HPC]]와 기존 [[electro
 ## 규칙과 기본 원칙
 
 ISO 17978-1:2026은 ISO 17978 시리즈를 개관하고, ISO 20077 시리즈의 extended vehicle(ExVe) 방법론을 따르는 SOVD의 규칙과 기본 원칙을 정한다. 이 표준은 SOVD와 다른 진단 프로토콜 사이를 옮기는 소프트웨어를 **classic diagnostic adapter**로 정의한다.[@iso-17978-1-obp-2026]
-
-![[diagrams/sovd-api-access.svg]]
 
 ## ASAM SOVD
 

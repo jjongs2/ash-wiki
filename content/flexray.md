@@ -21,7 +21,7 @@ ISO 17458 시리즈는 아래 다섯 부로 이뤄진다.[@iso-17458-1-obp-2013]
 | ISO 17458-4 | 전기 물리 계층               |
 | ISO 17458-5 | 전기 물리 계층 적합성 시험   |
 
-[[osi-model|OSI 참조 모델]]의 1·2계층은 FlexRay 통신 시스템과 제조사 확장 진단(vehicle manufacturer enhanced diagnostics)이 함께 쓰는 ISO 17458-2\~5가 맡고, 3\~7계층은 두 쪽이 다르다. FlexRay 통신 시스템에서는 3\~7계층이 모두 제조사별이다. 제조사 확장 진단에서는 3·4계층에 ISO 10681-2를, 5계층에 ISO 14229-2를, 7계층에 [[iso-14229-1|ISO 14229-1]]과 ISO 14229-4를 쓰고, 6계층은 제조사별이다. 여기서 ISO 14229의 부들은 [[uds|UDS]]를 다룬다.[@iso-17458-1-obp-2013]
+[[osi-model|OSI 참조 모델]]의 1·2계층은 FlexRay 통신 시스템과 제조사 확장 진단(vehicle manufacturer enhanced diagnostics)이 함께 쓰는 ISO 17458-2\~5가 맡고, 3\~7계층은 두 쪽이 다르다. FlexRay 통신 시스템에서는 3\~7계층이 모두 제조사별이다. 제조사 확장 진단에서는 3·4계층에 ISO 10681-2를, 5계층에 ISO 14229-2를, 7계층에 [[iso-14229-1|ISO 14229-1]]과 ISO 14229-4를 쓰고, 6계층은 제조사별이다. ISO 14229의 이 부들은 [[uds|UDS]]를 다룬다.[@iso-17458-1-obp-2013]
 
 ![[diagrams/flexray-osi-layers.svg]]
 
@@ -47,7 +47,11 @@ ISO 17458-1:2013은 심볼 윈도를 웨이크업 같은 일을 돕는 FlexRay �
 
 FlexRay 통신 컨트롤러 하나는 두 채널(채널 A, 채널 B)로 데이터 프레임을 서로 독립적으로 보낼 수 있다.[@iso-17458-1-obp-2013] 클러스터는 단일 채널이나 이중 채널로 구성해 [[fault-tolerance|결함 허용]] 수준을 달리할 수 있다.[@iso-17458-2-obp-2013] Freescale 브로셔에 따르면 FlexRay의 이중 채널 구조는 시스템 전체에 중복성을 주어, brake-by-wire 같은 안전 시스템의 신뢰성 요구를 맞춘다.[@freescale-brinvehiclenet-2006]
 
-FlexRay 버스는 두 선 사이에 [[differential-signaling|차동 전압]]을 걸어 신호를 보낸다. 버스 드라이버의 두 핀 BP(Bus Plus)와 BM(Bus Minus) 사이의 차동 전압 $u_\mathrm{BP} - u_\mathrm{BM}$이 버스 상태(idle, Data_0, Data_1)를 나타낸다. 예를 들어 버스 상태가 idle이면 차동 전압은 약 0 V이고, 통신 중(activity)이면 약 ±600 mV\~±1000 mV다. 버스의 공통 모드 전압은 $(u_\mathrm{BP} + u_\mathrm{BM})/2$다.[@iso-17458-4-obp-2013]
+FlexRay 버스는 두 선 사이에 [[differential-signaling|차동 전압]]을 걸어 신호를 보낸다. 버스 드라이버의 두 핀 BP(Bus Plus)와 BM(Bus Minus) 사이의 차동 전압 $u_\mathrm{BP} - u_\mathrm{BM}$이 버스 상태(idle, Data_0, Data_1)를 나타낸다. 예를 들어 버스 상태가 idle이면 차동 전압은 약 0 V이고, 통신 중(activity)이면 약 ±600 mV\~±1000 mV다. 버스의 공통 모드 전압으로는 두 핀 전압의 평균을 예로 든다.[@iso-17458-4-obp-2013]
+
+$$
+\frac{u_\mathrm{BP} + u_\mathrm{BM}}{2}
+$$
 
 ## 시간
 
@@ -55,13 +59,13 @@ FlexRay는 모든 노드에 공통 시간 기준을 제공하고, 정적 세그�
 
 **microtick**은 노드의 발진기 클록에서 나온 노드별 시간 단위다. **macrotick**은 FlexRay 네트워크 전체가 함께 쓰는 시간 단위이고, 정수 개의 microtick으로 이뤄진다.[@nxp-an12233-2021][@ti-spnu499c-2018] 노드들은 sync 프레임의 도착 시각을 재어 클록을 맞춘다.[@iso-17458-2-obp-2013][@ti-spnu499c-2018]
 
-ISO 17458-2:2013은 단일·다중 마스터 클록 동기화, 여러 네트워크에 걸친 시간 동기화, 오류 검출과 알림을 FlexRay 프로토콜의 기본 특성으로 둔다. 다중 마스터 클록 동기화는 셋 이상의 sync 노드의 클록에 기반한 동기화라고 각주에서 제시한다.[@iso-17458-2-obp-2013]
+ISO 17458-2:2013은 단일·다중 마스터 클록 동기화, 여러 네트워크에 걸친 시간 동기화, 오류 검출과 알림을 FlexRay 프로토콜의 기본 특성으로 둔다. 각주는 다중 마스터 클록 동기화를 셋 이상의 sync 노드의 클록에 기반한 동기화로 제시한다.[@iso-17458-2-obp-2013]
 
 ## 기동
 
 클러스터를 기동하려면 coldstart 노드가 적어도 둘 있어야 한다. 기동은 coldstart 노드가 CAS(Collision Avoidance Symbol)를 보내며 시작하고, startup 프레임은 sync 프레임이기도 하다.[@nxp-an12233-2021][@ti-spnu499c-2018]
 
-TI의 TMS570LS31x/21x 기술 참조 매뉴얼에 따르면 TT-D(Time-Triggered Distributed) 모드에서는 결함 없는 coldstart 노드가 둘 있어야 클러스터를 기동할 수 있고, coldstart 노드는 모두 sync 노드다.[@ti-spnu499c-2018] NXP 앱노트에 따르면 startup 프레임은 coldstart 노드만 보낸다.[@nxp-an12233-2021] ISO 17458-2:2013은 클러스터의 coldstart 노드를 꼭 셋으로 두면 여러 결함 상황에서 기동 중에 clique가 생기지 않는다고 제시한다.[@iso-17458-2-obp-2013]
+TI의 TMS570LS31x/21x 기술 참조 매뉴얼에 따르면 TT-D(Time-Triggered Distributed) 모드에서는 그 둘이 결함 없는 coldstart 노드여야 하고, coldstart 노드는 모두 sync 노드다.[@ti-spnu499c-2018] NXP 앱노트에 따르면 startup 프레임은 coldstart 노드만 보낸다.[@nxp-an12233-2021] ISO 17458-2:2013은 클러스터의 coldstart 노드를 꼭 셋으로 두면 여러 결함 상황에서 기동 중에 clique가 생기지 않는다고 제시한다.[@iso-17458-2-obp-2013]
 
 ## 프레임
 

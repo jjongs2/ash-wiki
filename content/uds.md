@@ -90,7 +90,7 @@ AUTOSAR R25-11 Dcm 명세는 이 밖에 아래 서비스의 처리를 정한다.
 | TesterPresent                   | `0x3E` |
 | ControlDTCSetting               | `0x85` |
 
-Dcm은 AccessTimingParameter(`0x83`)와 SecuredDataTransmission(`0x84`) 요청에는 NRC ServiceNotSupported로 답하고, LinkControl(`0x87`)의 지원은 사용자 선택(user optional)으로 둔다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+Dcm은 AccessTimingParameter(`0x83`)와 SecuredDataTransmission(`0x84`) 요청에는 NRC `0x11`로 답하고, LinkControl(`0x87`)의 지원은 사용자 선택(user optional)으로 둔다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 ## 보안 접근과 인증
 

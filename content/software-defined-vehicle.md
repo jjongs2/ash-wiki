@@ -21,7 +21,7 @@ SDV에서는 소프트웨어 개발이 차량의 생명주기 내내 이어진�
 
 TI 백서에 따르면 자동차 제조사는 SDV가 보낸 데이터로 특정 차종에 공통된 문제를 찾아, 큰 문제가 되기 전에 고칠 수 있다.[@ti-slyy236-2025]
 
-SDV에서는 소프트웨어로 켤 수 있는 기능을 구독 모델로 제공할 수 있다.[@ti-slyy236-2025][@bosch-software-defined-vehicle-2026] Bosch에 따르면 소프트웨어 업데이트로 새 기능을 서비스로 제공하는 계약·가격 모델이 가능해지고, 새 기능은 구독하거나 따로 살 수 있다.[@bosch-software-defined-vehicle-2026]
+SDV에서는 소프트웨어로 켤 수 있는 기능을 구독 모델로 제공할 수 있다.[@ti-slyy236-2025][@bosch-software-defined-vehicle-2026] Bosch에 따르면 소프트웨어 업데이트로 새 기능을 서비스로 제공하는 계약·가격 모델이 가능해지고, 새 기능은 구독 말고 따로 살 수도 있다.[@bosch-software-defined-vehicle-2026]
 
 ## E/E 아키텍처와 OTA
 
