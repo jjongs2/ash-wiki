@@ -24,8 +24,6 @@ verified: 2026-09-28
 | ISO 14229-7 | [[lin\|LIN]] 위의 UDS(UDSonLIN)[@iso-14229-7-obp-2022]                                |
 | ISO 14229-8 | CXPI(Clock eXtension Peripheral Interface) 위의 UDS(UDSonCXPI)[@iso-14229-8-obp-2020] |
 
-ISO 14229-1:2026은 소개에서 ISO 14229 시리즈를 [[osi-model|OSI 참조 모델]]에 맞춰, 7계층(응용 계층)에 이 표준과 ISO 14229-3(UDSonCAN) 같은 UDS 표준을, 6계층(표현 계층)에 제조사별 정의와 SAE J1979-DA, ISO 22901 같은 문서를, 5계층(세션 계층)에 ISO 14229-2의 세션 계층 서비스를 둔다고 제시한다.[@iso-14229-1-obp-2026]
-
 ISO 14229-2:2021은 ISO 14229-1과, DoCAN(Diagnostic communication over Controller Area Network)이나 [[doip|DoIP]] 같은 전송 프로토콜 사이의 독립성을 준다.[@iso-14229-2-obp-2021] ISO 14229-5:2022는 ISO 14229-1과 ISO 14229-2를 참조해, IP 위의 진단 통신에 쓸 진단 서비스의 구현 요구사항을 정한다.[@iso-14229-5-obp-2022] ISO 14229-8:2020은 CXPI 네트워크에 UDS를 구현하는 법을 정하고, 클라이언트와 CXPI slave 노드 사이의 진단 데이터 전송은 CXPI master 노드를 거친다.[@iso-14229-8-obp-2020]
 
 [[on-board-diagnostics#WWH-OBD|WWH-OBD]]를 정하는 ISO 27145 시리즈는 ISO 14229-1의 UDS를 WWH-OBD 시스템에 적용하려고 만들어졌다.[@iso-27145-3-obp-2012][@iso-27145-1-obp-2012]
@@ -51,7 +49,7 @@ Dcm은 응용이 지원하고 `Dcm_NegativeResponseCodeType`에 정의된 NRC(Ne
 | `0x7E` | subFunctionNotSupportedInActiveSession |
 | `0x7F` | serviceNotSupportedInActiveSession     |
 
-기능 주소 지정(functional addressing)으로 받은 요청의 처리 결과가 부정이면, Dcm은 NRC `0x11`, `0x12`, `0x31`, `0x7E`, `0x7F`의 부정 응답을 보내지 않는다. 요청받은 진단 작업을 할 수는 있지만 마치고 응답을 준비하는 데 시간이 더 걸리면, Dcm은 응답 시간에 이를 때 NRC `0x78`(Response pending) 부정 응답을 보낸다. 응답 시간은 P2ServerMax 쪽이 $\mathrm{DcmDspSessionP2ServerMax} - \mathrm{DcmTimStrP2ServerAdjust}$, P2*ServerMax 쪽이 $\mathrm{DcmDspSessionP2StarServerMax} - \mathrm{DcmTimStrP2StarServerAdjust}$이다. 한 요청에 보내는 NRC `0x78` 부정 응답 수의 상한은 `DcmDslDiagRespMaxNumRespPend`로 설정할 수 있고, 설정하지 않으면 무한이다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+기능 주소 지정(functional addressing)으로 받은 요청의 처리 결과가 부정이면, Dcm은 NRC `0x11`, `0x12`, `0x31`, `0x7E`, `0x7F`의 부정 응답을 보내지 않는다. 요청받은 진단 작업을 할 수는 있지만 마치고 응답을 준비하는 데 시간이 더 걸리면, Dcm은 응답 시간에 이를 때 NRC `0x78`(Response pending) 부정 응답을 보낸다. 한 요청에 보내는 NRC `0x78` 부정 응답 수의 상한은 `DcmDslDiagRespMaxNumRespPend`로 설정할 수 있고, 설정하지 않으면 무한이다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 ## 서비스
 
@@ -110,13 +108,15 @@ AUTOSAR Dcm은 초기화할 때 세션을 기본 세션으로 두고, 기본이 
 
 ## 데이터 식별자와 고장 코드
 
-AUTOSAR Dcm은 데이터 식별자(DID, Data Identifier)를 2바이트로 구성하고, ReadDataByIdentifier 요청 하나에 DID 여럿을 담은 요청을 처리한다. WriteDataByIdentifier 요청에서는 2바이트 DID와 기록할 dataRecord를 받는다. 진단 고장 코드(DTC, Diagnostic Trouble Code)는 상위·중간·하위 3바이트로 다룬다. ReadDTCInformation으로 서버에 저장된 DTC 정보를 보고하고, ClearDiagnosticInformation으로 고장 메모리를 지운다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+ISO 14229-1:2026은 **DTC**(Diagnostic Trouble Code)를 [[on-board-diagnostics|OBD]] 시스템이 찾아낸 고장 상태의 고유한 숫자 식별자로 정의하고, **permanent DTC**를 DTC 삭제 요청 뒤에도 다른 조건(대개 법규가 정한 조건)을 채울 때까지 비휘발성 메모리에 남는 DTC로 정의한다.[@iso-14229-1-obp-2026]
 
-ISO 14229-1:2026은 **DTC**를 [[on-board-diagnostics|OBD]] 시스템이 찾아낸 고장 상태의 고유한 숫자 식별자로 정의하고, **permanent DTC**를 DTC 삭제 요청 뒤에도 다른 조건(대개 법규가 정한 조건)을 채울 때까지 비휘발성 메모리에 남는 DTC로 정의한다.[@iso-14229-1-obp-2026]
+AUTOSAR R25-11의 Dcm 명세는 Dcm이 데이터 식별자(DID, Data Identifier)를 2바이트로 구성하고, ReadDataByIdentifier 요청 하나에 DID 여럿을 담은 요청을 처리하도록 정한다. WriteDataByIdentifier 요청에서는 2바이트 DID와 기록할 dataRecord를 받는다. DTC는 상위·중간·하위 3바이트로 다룬다. ReadDTCInformation으로 서버에 저장된 DTC 정보를 보고하고, ClearDiagnosticInformation으로 고장 메모리를 지운다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 ISO 27145-3:2012는 서버가 ReadDataByIdentifier 요청 하나에서 지원해야 하는 DID의 최소 개수를 정한다.[@iso-27145-3-obp-2012]
 
 ## 전송
+
+ISO 14229-1:2026은 UDS 기반 차량 진단 통신의 표준들을 [[osi-model|OSI 참조 모델]]의 계층에 대응시킨 틀을 제시한다. 이 틀에서 7계층(응용 계층)에는 이 표준과 ISO 14229-3(UDSonCAN) 같은 UDS 표준이, 6계층(표현 계층)에는 제조사별 정의와 SAE J1979-DA, ISO 22901 같은 문서가, 5계층(세션 계층)에는 ISO 14229-2의 세션 계층 서비스가 든다.[@iso-14229-1-obp-2026]
 
 CAN 위의 UDS(ISO 14229-3)는 [[iso-15765-2|ISO 15765-2]](DoCAN)를 전송 계층과 네트워크 계층으로 쓴다.[@iso-14229-3-obp-2022] ISO 15765-2:2024는 ISO 14229-2의 서비스 프리미티브 인터페이스를 지원하고, 한 프레임에 담기지 않는 메시지를 여러 [[can-frame|CAN 프레임]]으로 [[segmentation-and-reassembly|나눠]] 보낸다.[@iso-15765-2-obp-2024] IP 위의 UDS(ISO 14229-5)는 DoIP([[iso-13400-2|ISO 13400-2]])를 전송 계층과 네트워크 계층으로 쓴다.[@iso-14229-5-obp-2022][@iso-13400-2-obp-2025]
 

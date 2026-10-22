@@ -33,15 +33,15 @@ SENT 메시지는 56틱 길이의 동기·보정 펄스로 시작하고[@nxp-an4
 
 ![[diagrams/sent-short-serial-message.svg]]
 
+## SPC
+
+SENT는 원래 단방향이지만, SPC(Short PWM Code)를 쓰면 양방향 통신을 할 수 있다.[@nxp-an4856-2014][@microchip-ds70005145-2014] NXP 앱노트에 따르면 SPC의 통신은 반이중 동기 방식으로, 수신 측 MCU가 선을 정해진 시간 동안 low로 끌어 master trigger 펄스를 내고, 센서는 그 펄스의 폭이 정해진 범위 안일 때만 SENT 전송을 시작한다. 예를 들어 TLE4998C는 병렬로 이은 센서 최대 넷 가운데 어느 센서가 보낼지를 master trigger 펄스의 폭으로 고르는 모드도 둔다.[@nxp-an4856-2014]
+
+dsPIC33/PIC24 제품군의 SENT 모듈은 동기 모드에서 사용자 소프트웨어로 SPC를 구현할 수 있게 한다.[@microchip-ds70005145-2014]
+
 ## 구현
 
 마이크로컨트롤러의 타이머 입력 캡처로 하강 에지 간격을 재서 SENT를 받을 수 있다.[@ti-sprab22-2010][@renesas-r01an5553-2020] NXP 앱노트가 권하는 SENT 수신 회로는 트랜시버 없이, 풀업 저항과 560 Ω·2.2 nF 저역 통과 필터를 거쳐 MCU 입력 핀에 잇는다.[@nxp-an4856-2014] 전용 SENT 수신 모듈을 둔 마이크로컨트롤러도 있다.[@nxp-an4856-2014][@microchip-ds70005145-2014]
-
-## SPC
-
-dsPIC33/PIC24 제품군의 SENT 모듈은 동기 모드에서 사용자 소프트웨어로 SPC(Short PWM Code)를 구현할 수 있게 한다.[@microchip-ds70005145-2014]
-
-NXP 앱노트에 따르면 SPC는 SENT에 반이중 동기 통신을 더한다. 수신 측 MCU가 선을 정해진 시간 동안 low로 끌어 master trigger 펄스를 내고, 센서는 그 펄스의 폭이 정해진 범위 안일 때만 SENT 전송을 시작한다. 예를 들어 TLE4998C는 병렬로 이은 센서 최대 넷 가운데 어느 센서가 보낼지를 master trigger 펄스의 폭으로 고르는 모드도 둔다.[@nxp-an4856-2014]
 
 ## 아날로그 출력과의 차이
 

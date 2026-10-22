@@ -21,7 +21,7 @@ SDV에서는 소프트웨어 개발이 차량의 생명주기 내내 이어진�
 
 TI 백서에 따르면 자동차 제조사는 SDV가 보낸 데이터로 특정 차종에 공통된 문제를 찾아, 큰 문제가 되기 전에 고칠 수 있다.[@ti-slyy236-2025]
 
-SDV에서는 소프트웨어로 켤 수 있는 기능을 구독 모델로 제공할 수 있다.[@ti-slyy236-2025][@bosch-software-defined-vehicle-2026] Bosch에 따르면 소프트웨어 업데이트로 새 기능을 서비스로 제공하는 계약·가격 모델이 가능해지고, 새 기능은 구독 말고 따로 살 수도 있다.[@bosch-software-defined-vehicle-2026]
+SDV에서는 소프트웨어로 켤 수 있는 기능을 구독 모델로 제공할 수 있다.[@ti-slyy236-2025][@bosch-software-defined-vehicle-2026] Bosch에 따르면 이런 기능은 따로 사게 할 수도 있다.[@bosch-software-defined-vehicle-2026]
 
 ## E/E 아키텍처와 OTA
 
@@ -29,4 +29,4 @@ SDV는 소프트웨어를 소수의 고성능 중앙 컴퓨터로 모으는 중�
 
 ## 오픈소스 플랫폼
 
-Eclipse SDV는 Eclipse Foundation이 호스트하는 오픈소스 생태계로, 참여 조직들이 차량 아키텍처용 소프트웨어 building block을 함께 개발한다. 그 프로젝트인 Eclipse S-CORE(Eclipse Safe Open Vehicle Core)는 임베디드 고성능 [[electronic-control-unit|ECU]]를 겨냥해 SDV용 오픈소스 코어 스택을 개발하는 것을 목표로 한다.[@eclipse-sdv-2026]
+Eclipse SDV는 Eclipse Foundation이 호스트하는 오픈소스 생태계로, 참여 조직들이 차량 아키텍처용 소프트웨어 building block을 함께 개발한다. 그 프로젝트 가운데 하나인 Eclipse S-CORE(Eclipse Safe Open Vehicle Core)는 임베디드 고성능 [[electronic-control-unit|ECU]]를 겨냥해 SDV용 오픈소스 코어 스택을 개발하는 것을 목표로 한다.[@eclipse-sdv-2026]
