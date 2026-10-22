@@ -28,7 +28,7 @@ SSDF(Secure Software Development Framework) 1.1을 담은 NIST SP 800-218은 어
 
 실천의 정의는 저마다 Practice(실천의 이름과 식별자, 설명), Tasks, Notional Implementation Examples, References를 둔다.[@nist-sp-800-218-2022]
 
-2026년 10월 기준 SSDF 1.2를 담은 NIST SP 800-218 Rev. 1은 2025년 12월 17일에 나온 초안(Initial Public Draft)이다.[@nist-sp-800-218r1-ipd-2025] 최종판은 여전히 SSDF 1.1을 담은 SP 800-218(2022년 2월)이다.[@nist-sp-800-218-csrc-2022]
+2026년 10월 기준 SSDF 1.2를 담은 NIST SP 800-218 Rev. 1은 2025년 12월 17일에 나온 초안(Initial Public Draft)이고[@nist-sp-800-218r1-ipd-2025], 최종판은 여전히 SSDF 1.1을 담은 SP 800-218(2022년 2월)이다.[@nist-sp-800-218-csrc-2022]
 
 ## 단계마다의 보안 활동
 
