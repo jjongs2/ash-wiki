@@ -277,6 +277,12 @@ describe("check-diff CLI", { concurrency: false }, () => {
     assert.ok(!has(lines, "content/consensus.md:", "출처 표시가 없다"))
   })
 
+  test("출처 구간: Standards Track RFC 키만 인용한 블록은 출처 표시 없음으로 찍지 않고, 그 밖의 RFC 키는 찍는다", () => {
+    const lines = report.items.get("source-run") ?? []
+    assert.ok(!has(lines, "content/run-rfc.md:10:"), "Internet Standard인 RFC 1350")
+    assert.ok(has(lines, "content/run-rfc.md:12:", "출처 표시가 없다"), "BCP인 RFC 3366")
+  })
+
   test("출처 구간: 합의 문서 구간은 절에서 끊어, 새 절에서 판을 붙인 이름을 다시 적은 문장은 되풀이가 아니다", () => {
     const lines = report.items.get("source-run") ?? []
     assert.ok(has(lines, "content/consensus.md:14:", "다시 쓴다", "경계를 둘로"), "같은 절")
