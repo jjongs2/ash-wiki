@@ -1,13 +1,12 @@
 // ash-wiki: 그래프 플러그인(@quartz-community/graph 1.0.0)을 fork한 로컬 플러그인이다. 출처, 기준선, 기준선과
 // 비교하는 법은 docs/engine.md의 그래프 절에 있다.
 //
-// 빌드가 이 파일을 type stripping으로 불러와 JSX를 쓸 수 없으므로, 컴포넌트는 preact의 h로 업스트림
-// Graph.tsx와 같은 마크업을 만든다. 클라이언트 스크립트(script.js)는 업스트림 빌드처럼 esbuild로 묶어 import를
+// 컴포넌트는 JSX 대신 preact의 h로 업스트림 Graph.tsx와 같은 마크업을 만든다. 클라이언트 스크립트(script.js)는 업스트림 빌드처럼 esbuild로 묶어 import를
 // 풀어 싣는다. 스크립트가 불러오는 순수 함수(model.ts)도 함께 묶인다. 태그 노드를 그리지 않으므로 업스트림의
 // 태그 옵션(showTags, removeTags)은 뺐다.
 //
 // 빌드가 이 파일을 Node의 type stripping으로 불러오므로, 타입만 지우면 돌아가는 문법만 쓴다. enum, namespace,
-// parameter property를 쓰지 않고, 타입은 import type으로 가져온다.
+// parameter property와 JSX를 쓰지 않고, 타입은 import type으로 가져온다.
 import fs from "node:fs"
 import { fileURLToPath } from "node:url"
 import { buildSync } from "esbuild"

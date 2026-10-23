@@ -5,6 +5,8 @@ status: accepted
 # UI locale은 ko-KR, 참고문헌의 CSL locale은 en-US로 가른다
 
 > 현행 규칙은 [엔진 문서의 locale 절](../engine.md#locale)에 있다.
+>
+> 고려한 대안의 "로더가 로컬 플러그인의 컴포넌트를 읽지 못한다"는 전제는 틀렸다. 로더는 `package.json`의 exports를 먼저 읽고, 그래프 fork(#369)가 그렇게 컴포넌트를 싣는다. 결정은 그대로다.
 
 [ADR 0003](0003-engine-and-citation-stack.md)은 사이트 locale을 `en-US`로 두었다. citations 플러그인은 따로 locale 옵션이 없이 사이트 locale을 쓰고, `en-US`가 아니면 CSL locale 파일을 페이지마다 raw.githubusercontent.com에서 받기 때문이다. 그 대가로 본문은 한국어인데 UI 문구와 날짜가 영어라, 한 화면에 두 언어가 섞였다.
 

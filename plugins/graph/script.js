@@ -272,10 +272,14 @@ import {
         return 2 + Math.sqrt(numLinks)
       }
 
-      // global graph의 선 굵기는 주제 사이 링크 수를 로그로 줄여 1px에서 LINK_MAX_WIDTH px 사이에 둔다.
+      // global graph의 선 굵기는 주제 사이 링크 수를 로그로 줄여, 링크 하나를 1px, 가장 많은 쌍을
+      // LINK_MAX_WIDTH px로 둔다. 상한을 고정하면 링크가 많은 쌍들이 같은 굵기로 묶인다.
+      var maxWeight = 1
+      for (var i = 0; i < graphLinks.length; i++)
+        maxWeight = Math.max(maxWeight, graphLinks[i].weight)
       function linkWidth(l) {
-        if (!isGlobal) return 1
-        return Math.min(1 + Math.log2(l.weight), LINK_MAX_WIDTH)
+        if (!isGlobal || maxWeight === 1) return 1
+        return 1 + ((LINK_MAX_WIDTH - 1) * Math.log(l.weight)) / Math.log(maxWeight)
       }
 
       var regionColors = new Map()
@@ -377,12 +381,13 @@ import {
         var color = nodeColor(node)
 
         var isTopic = node.kind === "topic"
+        var labelSize = fontSize * 15 * (isTopic ? TOPIC_FONT : 1)
         var label = new PIXI.Text({
           text: node.text,
-          style: labelStyle(fontSize * 15 * (isTopic ? TOPIC_FONT : 1), dark, bodyFont),
+          style: labelStyle(labelSize, dark, bodyFont),
           resolution: window.devicePixelRatio * 4,
         })
-        label.anchor.set(0.5, isTopic ? 0.5 + radius / (fontSize * 15 * TOPIC_FONT) + 0.6 : 1.2)
+        label.anchor.set(0.5, isTopic ? 0.5 + radius / labelSize + 0.6 : 1.2)
         label.alpha = isTopic ? 1 : 0
         // 주제 노드는 몇 개뿐이라 이름을 늘 보인다. 업스트림은 확대하거나 가리킬 때만 이름을 보인다.
         label.keepVisible = isTopic
@@ -788,6 +793,7 @@ import {
       }
       document.addEventListener("keydown", documentKeydownHandler)
 
+      // 페이지를 옮기거나 테마를 바꿔 다시 그릴 때는 펼친 주제를 이어 쓴다. 아이콘으로 새로 열 때만 버린다.
       if (anyGlobalGraphActive()) {
         showGlobalGraph(true)
       }
