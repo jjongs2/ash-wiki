@@ -391,7 +391,7 @@ describe("check-diff CLI", { concurrency: false }, () => {
     for (const name of ["CISA", "WP.29", "CCSDS", "ITU-T", "EIA"]) {
       assert.ok(has(lines, "content/organizations.md:", `소개가 없다: ${name}`), name)
     }
-    for (const name of ["MITRE", "Auto-ISAC", "VDA QMC", "VDA", "HIS", "CISPR", "CCITT"]) {
+    for (const name of ["MITRE", "Auto-ISAC", "VDA QMC", "VDA", "HIS", "CISPR", "CCITT", "TIA"]) {
       assert.ok(!has(lines, `소개가 없다: ${name}`), `소개했거나 세지 않는 자리: ${name}`)
     }
     for (const name of ["ISO", "NIST"]) {
