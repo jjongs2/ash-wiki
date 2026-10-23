@@ -23,6 +23,14 @@ export interface ChangedFile {
   untracked: boolean
 }
 
+// 브랜치가 새로 더한 파일인지. 추적하지 않는 파일이거나, 지금 파일의 줄이 모두 더한 줄이면 새 파일이다.
+export function isNew(source: string, change: ChangedFile): boolean {
+  if (change.untracked) return true
+  const count = source.split("\n").length
+  for (let line = 1; line < count; line++) if (!change.added.has(line)) return false
+  return true
+}
+
 function git(root: string, args: string[]): string {
   const result = spawnSync("git", args, {
     cwd: root,
