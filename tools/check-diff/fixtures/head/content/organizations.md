@@ -13,4 +13,4 @@ CISA는 지침을 냈다. MITRE ATT&CK는 공격 기법을 모은다. MITRE(미�
 
 WP.29는 규정을 채택한다. [[other-page#정보 공유|Auto-ISAC]]이 정보를 나눈다. VDA QMC(독일 자동차 산업 협회의 품질 관리 센터)가 펴냈다. HIS(독일 자동차 제조사들의 단체)가 메트릭을 정했다.[@bosch-can-2-0-1991]
 
-CRC는 CCITT-FALSE 다항식을 쓴다. CISPR 25(CISPR: IEC의 무선 장해 특별 위원회)는 방출 한계를 정한다. CCSDS 131.0-B는 부호를 정한다. ITU-T X.141(11/88)은 오류 복구를 정한다.[@bosch-can-2-0-1991]
+CRC는 CCITT-FALSE 다항식을 쓴다. CISPR 25(CISPR: IEC의 무선 장해 특별 위원회)는 방출 한계를 정한다. CCSDS 131.0-B는 부호를 정한다. ITU-T X.141(11/88)은 오류 복구를 정한다. EIA-649는 형상 관리 표준이다.[@bosch-can-2-0-1991]
