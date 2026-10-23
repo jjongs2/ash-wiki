@@ -14,7 +14,7 @@ status: 유효
 
 ## 범위
 
-ATM v4.02는 차량을 노리는 공격자의 전술과 기법을 모은 온라인 도구이자 데이터 세트로, 자동차 업계에 공통 위협 분류 체계를 준다. 전술은 공격자가 어떤 행동을 하는 까닭, 곧 전술적 의도를 나타내고, 기법은 공격자가 그 전술 목표를 어떻게 이루는지를 나타낸다. 매트릭스는 첫 행에 전술을 두고, 기법은 저마다의 전술 아래 열에 둔다.[@auto-isac-atm-2025]
+ATM v4.02는 차량을 노리는 공격자의 전술과 기법을 모은 온라인 도구이자 데이터 세트로, 자동차 업계에 공통 위협 분류 체계를 준다. 전술은 공격자가 어떤 행동을 하는 까닭, 곧 전술적 의도를 나타내고, 기법은 공격자가 그 전술 목표를 어떻게 이루는지를 나타낸다. 매트릭스는 첫 행에 전술을 가로로 두고, 기법은 저마다 속한 전술의 열에 그 전술 아래로 둔다.[@auto-isac-atm-2025]
 
 전술은 ATM-TA0000부터 ATM-TA0013까지 14개로, 차례로 Reconnaissance, Manipulate Environment, Initial Access, Execution, Persistence, Privilege Escalation, Defense Evasion, Credential Access, Discovery, Lateral Movement, Collection, Command and Control, Exfiltration, Affect Vehicle Function이다. 마지막 Affect Vehicle Function은 공격자가 추진 제어, 에어백 전개, 오디오, 디스플레이 같은 차량 기능과 시스템에 영향을 주려는 전술이다.[@auto-isac-atm-2025]
 
@@ -26,8 +26,8 @@ OASIS 표준 STIX(Structured Threat Information Expression) 2.1은 사이버 위
 
 ## 개정 이력
 
-- 2024년: v1.00. 1월 23일 처음 나왔다.[@auto-isac-atm-2025]
-- 2024년: 3월 27일 Auto-ISAC이 ATM을 발표했다. Auto-ISAC은 ATM을 MITRE ATT&CK 프레임워크를 본떠, 차량에 특화한 공격 전술과 기법의 표준 분류 체계로 내놓았다.[@auto-isac-atm-launch-2024]
+- 2024년: v1.00. 1월 23일에 나온 첫 릴리스다.[@auto-isac-atm-2025]
+- 2024년: 3월 27일 Auto-ISAC이 보도자료를 내어, MITRE ATT&CK 프레임워크를 본떠 차량에 특화한 공격 전술과 기법의 표준 분류 체계로 ATM을 소개했다.[@auto-isac-atm-launch-2024]
 - 2024년: v3.00. 8월 30일에 나왔고, 승인된 기여를 반영한 첫 큰 내용 변경이었다.
 - 2025년: v4.02이자 현행 릴리스. 12월 4일에 나왔다.[@auto-isac-atm-2025]
 

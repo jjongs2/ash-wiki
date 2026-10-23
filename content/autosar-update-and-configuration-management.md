@@ -25,7 +25,7 @@ UCM이 맡는 일은 아래와 같다.[@autosar-ap-sws-updateandconfigurationman
 
 UCM은 Adaptive Platform의 소프트웨어를 [[autosar-software-cluster#Adaptive Platform의 Software Cluster와의 차이|Software Cluster]] 단위로 관리한다. Software Cluster는 한 번에 통째로 갱신할 수 있는 소프트웨어 단위가 될 수 있고, UCM은 Software Cluster마다 버전을 보고한다. UCM이 처리하는 Software Package는 정확히 한 Software Cluster를 가리키고, 그 Software Cluster를 더할지, 갱신할지, 지울지를 담는다.[@autosar-ap-exp-platformdesign-2025]
 
-UCM은 패키지 관리 서비스 인터페이스 밖에 설정 관리를 위한 인터페이스를 따로 두지 않고, 갱신과 설정 관리를 이 인터페이스 하나로 묶는다. 그래서 설정 파라미터 하나를 바꾸더라도 Software Package를 만들어 처리해야 하고, Software Cluster의 버전이 새로 생긴다. 소프트웨어 버전을 대개 바꾸지 않는 calibration이나 variant coding 같은 쓰임새는 지원하지 않는다.[@autosar-ap-exp-platformdesign-2025]
+UCM은 설정 관리를 위한 인터페이스를 패키지 관리 서비스 인터페이스와 따로 두지 않고, 갱신과 설정 관리를 이 인터페이스 하나로 묶는다. 그래서 설정 파라미터 하나를 바꾸더라도 Software Package를 만들어 처리해야 하고, Software Cluster의 버전이 새로 생긴다. 소프트웨어 버전을 대개 바꾸지 않는 calibration이나 variant coding 같은 쓰임새는 지원하지 않는다.[@autosar-ap-exp-platformdesign-2025]
 
 ## 패키지
 
@@ -106,11 +106,11 @@ V-UCM은 Software Cluster 사이의 의존성을 검사할 때 버전의 MajorVe
 
 ### 취소
 
-캠페인에 든 UCM 가운데 하나라도 활성화에 실패하거나, 캠페인 중에 V-UCM이 닿지 못하는 UCM이 생기면 V-UCM은 kCancelling 상태로 가 캠페인을 취소한다. TransferData가 kBlockInconsistent를, ProcessSwPackage가 kServiceBusy를, Activate가 kUpdateSessionRejected를 돌려주거나, 전송 메서드를 부를 때 UCM에 닿지 못하면 V-UCM은 `UcmRetryStrategy` 설정대로 다시 시도할 수 있고, 같은 일이 `retryIntervalTime` 안에 `maximumNumberOfRetries`를 넘게 되풀이되면 캠페인을 취소한다. 캠페인 시간이 `maximumDurationOfCampaign`을 넘어도 취소한다. 이 시간은 Machine이 켜져 있던 시간만 세고 운전자 승인을 기다린 시간은 빼며, Machine을 껐다 켜도 이어 셀 수 있게 영속 저장한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
+캠페인에 든 UCM 가운데 하나라도 활성화에 실패하거나, 캠페인 중에 V-UCM이 닿지 못하는 UCM이 생기면 V-UCM은 kCancelling 상태로 가 캠페인을 취소한다. 다만 TransferData가 kBlockInconsistent를, ProcessSwPackage가 kServiceBusy를, Activate가 kUpdateSessionRejected를 돌려주거나, 전송 메서드를 부를 때 UCM에 닿지 못하면 V-UCM은 `UcmRetryStrategy` 설정대로 다시 시도할 수 있고, 같은 일이 설정한 시간(`retryIntervalTime`) 안에 설정한 최대 재시도 횟수(`maximumNumberOfRetries`)를 넘게 되풀이되면 캠페인을 취소한다. 캠페인 시간이 `maximumDurationOfCampaign`을 넘어도 취소한다. 이 시간은 Machine이 켜져 있던 시간만 세고 운전자 승인을 기다린 시간은 빼며, Machine을 껐다 켜도 이어 셀 수 있게 영속 저장한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
 
 ![[diagrams/vucm-campaign-end-states.svg]]
 
-CancelCampaign 메서드는 정비소에서 막힌 업데이트를 푸는 데 쓸 수 있다. disableCampaign을 참으로 주고 CancelCampaign을 부르면, V-UCM은 전원을 껐다 켜거나 재부팅해도 kIdle이나 kSyncing에 머물러 새 캠페인을 시작하지 않는다. 이 상태는 disableCampaign을 거짓으로 주고 CancelCampaign을 다시 부르거나 AllowCampaign을 부를 때까지 이어진다. 진단 테스터가 V-UCM에 끼어들어 캠페인이 거듭 실패하는 일을 막으려는 것이다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
+CancelCampaign 메서드는 정비소에서 막힌 업데이트를 푸는 데 쓸 수 있다. disableCampaign을 참으로 주고 CancelCampaign을 부르면, V-UCM은 전원을 껐다 켜거나 재부팅해도 kIdle이나 kSyncing에 머물러 새 캠페인을 시작하지 않는다. 이 상태는 disableCampaign을 거짓으로 주고 CancelCampaign을 다시 부르거나 AllowCampaign을 부를 때까지 이어진다. 진단 테스터가 V-UCM에 끼어들면 캠페인이 거듭 실패하기 쉬워, 그런 때 새 캠페인을 잠시 막아 두려는 것이다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
 
 ### 이력
 

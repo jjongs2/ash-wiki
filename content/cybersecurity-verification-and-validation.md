@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-[[iso-sae-21434|ISO/SAE 21434]]:2021은 **검증**(verification)을 명시된 요구사항이 충족되었음을 객관적 증거로 확인하는 것으로, **확인**(validation)을 [[cybersecurity-lifecycle#아이템과 운용 환경|아이템]]의 [[cybersecurity-goal|cybersecurity goal]]이 적절하고 이루어졌음을 객관적 증거로 확인하는 것으로 정의한다. 두 정의에서 검증은 요구사항을, 확인은 goal을 기준으로 삼는다. 두 정의는 [[iso-iec-ieee-15288|ISO/IEC/IEEE 15288]]:2015의 4.1.53(확인)과 4.1.54(검증)를 고친 것이다. 확인의 정의에서는 특정한 의도된 사용이나 응용의 요구사항이 충족되었다는 부분을 아이템의 cybersecurity goal이 적절하고 이루어졌다는 부분으로 바꿨다.[@iso-sae-21434-obp-2021]
+[[iso-sae-21434|ISO/SAE 21434]]:2021은 **검증**(verification)을 명시된 요구사항이 충족되었음을 객관적 증거로 확인하는 것으로, **확인**(validation)을 [[cybersecurity-lifecycle#아이템과 운용 환경|아이템]]의 [[cybersecurity-goal|cybersecurity goal]]이 적절하고 달성되었음을 객관적 증거로 확인하는 것으로 정의한다. 두 정의에서 검증은 요구사항을, 확인은 goal을 기준으로 삼는다. 두 정의는 [[iso-iec-ieee-15288|ISO/IEC/IEEE 15288]]:2015의 4.1.53(확인)과 4.1.54(검증)를 고친 것이다. 두 정의 모두 원래 정의의 note 1을 뺐고, 확인의 정의에서는 특정한 의도된 사용이나 응용의 요구사항이 충족되었다는 부분을 아이템의 cybersecurity goal이 적절하고 달성되었다는 부분으로 바꿨다.[@iso-sae-21434-obp-2021]
 
 ## ISO/SAE 21434의 검증과 확인
 
@@ -33,13 +33,15 @@ verified: 2026-10-03
 | BP4 | 일관성 확보와 양방향 추적성 수립 |
 | BP5 | 결과의 요약과 전달               |
 
+SEC.4.BP5가 요약해 전하는 결과에는 확인 활동에서 얻은 정보와, 새로 드러난 [[vulnerability-management|취약점]]에 관한 중요한 발견이 들 수 있다.[@vda-automotive-spice-cybersecurity-2025]
+
 ### 수단과 기법
 
-SEC.3의 검증 수단에는 명세되지 않은 기능의 확인, 제어 흐름과 데이터 흐름의 동적 검증, 보안 [[coding-standard|코딩 표준]]에 초점을 둔 [[static-analysis|정적 분석]]이 들 수 있다. 검증 방법과 기법으로는 비인가 명령, 잘못된 해시 키를 가진 신호, 메시지 폭주처럼 공격을 모사하는 네트워크 테스트와 brute force 공격 모사가 들 수 있고, 감사와 [[software-review|리뷰]] 같은 기법도 들 수 있다.[@vda-automotive-spice-cybersecurity-2025]
+SEC.3의 검증 수단에는 명세되지 않은 기능의 확인, 제어 흐름과 데이터 흐름의 동적 검증, 보안 [[coding-standard|코딩 표준]]에 초점을 둔 [[static-analysis|정적 분석]]이 들 수 있다. 검증 방법과 기법으로는 공격을 모사하는 네트워크 테스트(비인가 명령, 잘못된 해시 키를 가진 신호, 메시지 폭주 등)와 brute force 공격 모사가 들 수 있고, 감사와 [[software-review|리뷰]] 같은 기법도 들 수 있다.[@vda-automotive-spice-cybersecurity-2025]
 
 SEC.3.BP2는 [[regression-testing|회귀]] 검증 기준을 포함한 선택 기준으로 검증 수단을 고르고 그 선택을 문서로 남기게 하며, 고른 수단은 릴리스 범위를 충분히 덮어야 한다. 선택 기준의 예로는 요구사항 우선순위, 지속적 개발, 회귀 검증의 필요, 테스트 벤치나 테스트 트랙, 공공 도로 같은 릴리스의 용도가 있다.[@vda-automotive-spice-cybersecurity-2025]
 
-SEC.4의 확인 수단은 보통 아직 찾지 못한 [[vulnerability-management|취약점]]을 찾는 사이버보안 방법을 쓰며, [[penetration-testing|침투 테스트]]가 그 예다.[@vda-automotive-spice-cybersecurity-2025]
+SEC.4의 확인 수단은 보통 아직 찾지 못한 취약점을 찾는 사이버보안 방법을 쓰며, [[penetration-testing|침투 테스트]]가 그 예다.[@vda-automotive-spice-cybersecurity-2025]
 
 두 프로세스 모두 [[test-case|테스트 케이스]]를 [[equivalence-partitioning|동치 분할]], [[boundary-value-analysis|경계값 분석]], 지식이나 경험에 기반한 [[error-guessing|오류 추정]]으로 끌어낼 수 있고, SEC.4는 여기에 negative test를 더한다. 기대 결과와 다른 검증·확인 결과는 두 프로세스 모두 SUP.9(Problem Resolution Management)로 처리한다.[@vda-automotive-spice-cybersecurity-2025] SUP.9 자체는 [[defect-management#ASPICE의 SUP.9|결함 관리]]에서 다룬다.
 
@@ -49,4 +51,4 @@ SEC.3.BP4는 검증 수단과 사이버보안 요구사항, 검증 수단과 정
 
 ![[diagrams/aspice-cybersecurity-traceability.svg]]
 
-SEC.4.BP5가 요약해 전하는 결과에는 확인 활동에서 얻은 정보와, 새로 드러난 취약점에 관한 중요한 발견이 들 수 있다.[@vda-automotive-spice-cybersecurity-2025] 추적성 자체는 [[traceability|추적성]]에서 다룬다.
+추적성 자체는 [[traceability|추적성]]에서, 도해 맨 위의 SEC.1은 [[cybersecurity-goal#Automotive SPICE for Cybersecurity의 SEC.1|cybersecurity goal]]에서 다룬다.

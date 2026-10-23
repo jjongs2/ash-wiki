@@ -15,9 +15,9 @@ ENISA의 2019년 보고서 Good practices for security of smart cars는 암호 �
 
 차량용 MCU 가운데에는 HSM을 칩 안에 넣고, 그 HSM에 주 CPU와 따로 자기 프로세서, 메모리, 암호 가속기를 두는 제품이 있다.[@infineon-aurix-tc3xx-hsm-training-2020][@renesas-rh850-rcar-secure-boot-part-2-2021]
 
-- Infineon AURIX TC3xx의 HSM은 32비트 Arm Cortex-M3 코어를 두고, [[symmetric-key-cryptography#AES|AES]]-128 암호, 256비트 타원 곡선 [[public-key-cryptography|공개 키]] 연산, SHA(Secure Hash Algorithm)-224/256 [[cryptographic-hash-function|해시]]를 하드웨어로 가속하며 [[random-bit-generator#NRBG와 DRBG|TRNG]](True Random Number Generator)를 갖는다. 브리지가 방화벽 노릇을 해 HSM 안의 자원을 다른 버스 마스터의 접근에서 지킨다. 키 저장에 쓰는 데이터 플래시를 비롯한 HSM 몫의 플래시는 설정으로 HSM만 쓰게 해 주 코어의 접근을 막을 수 있다.[@infineon-aurix-tc3xx-hsm-training-2020]
-- NXP S32K3는 HSE(Hardware Security Engine)라는 하드웨어 보안 서브시스템을 두고, AES-128/192/256, RSA(Rivest-Shamir-Adleman)와 [[elliptic-curve-cryptography|타원 곡선 암호]], [[secure-boot|secure boot]], 키 저장을 지원한다.[@nxp-s32kbra4-2026]
+- NXP S32K3는 HSE(Hardware Security Engine)라는 하드웨어 보안 서브시스템을 두고, [[symmetric-key-cryptography#AES|AES]]-128/192/256, RSA(Rivest-Shamir-Adleman)와 [[elliptic-curve-cryptography|타원 곡선 암호]], [[secure-boot|secure boot]], 키 저장을 지원한다.[@nxp-s32kbra4-2026]
 - Renesas RH850 계열에는 ICU-S(Intelligent Cryptographic Unit Slave)와 ICU-M(Intelligent Cryptographic Unit Master) 두 가지 보안 IP가 있다. ICU-M 안에서는 별도 프로세서가 암호 가속기와 보안 플래시를 혼자 다루고, 주 CPU는 이들에 직접 닿지 못한다.[@renesas-rh850-rcar-secure-boot-part-2-2021]
+- Infineon AURIX TC3xx의 HSM은 32비트 Arm Cortex-M3 코어를 두고, AES-128 암호, 256비트 타원 곡선 [[public-key-cryptography|공개 키]] 연산, SHA(Secure Hash Algorithm)-224/256 [[cryptographic-hash-function|해시]]를 하드웨어로 가속하며 [[random-bit-generator#NRBG와 DRBG|TRNG]](True Random Number Generator)를 갖는다. 브리지가 방화벽 노릇을 해 HSM 안의 자원을 다른 버스 마스터의 접근에서 지킨다. 키 저장에 쓰는 데이터 플래시를 비롯한 HSM 몫의 플래시는 설정으로 HSM만 쓰게 해 주 코어의 접근을 막을 수 있다.[@infineon-aurix-tc3xx-hsm-training-2020]
 
 ![[diagrams/hsm-aurix-tc3xx-structure.svg]]
 
@@ -35,7 +35,7 @@ EVITA(E-safety Vehicle Intrusion proTected Applications)는 유럽 공동체 제
 
 ## TPM과의 차이
 
-**TPM**(Trusted Platform Module)은 컴퓨팅 플랫폼을 신뢰할 수 있게 하는 장치로, TCG가 펴내는 TPM 2.0 Library 명세가 정한다. 명세는 여러 부로 나뉘며, Part 2가 구조를, Part 3이 명령을 정한다.[@tcg-tpm-2-0-library-part-1-2026] TPM 2.0 Library 명세는 2015년에 ISO/IEC 11889:2015로도 발행됐다.[@tcg-tpm-library-specification-2026]
+**TPM**(Trusted Platform Module)은 컴퓨팅 플랫폼을 신뢰할 수 있게 하는 장치로, TCG가 펴내는 TPM 2.0 Library 명세가 정한다. 명세는 여러 부로 나뉘며, Part 2가 TPM 인터페이스의 상수, 데이터 타입, 구조체를, Part 3이 명령을 정한다.[@tcg-tpm-2-0-library-part-1-2026] TPM 2.0 Library 명세는 2015년에 ISO/IEC 11889:2015로도 발행됐다.[@tcg-tpm-library-specification-2026]
 
 TPM 2.0 Library 명세(Version 185)는 부팅 과정의 측정값을 누적하는 PCR(Platform Configuration Register)과, PCR 값에 서명 키로 서명하는 증명 명령 TPM2_Quote를 둔다.[@tcg-tpm-2-0-library-part-1-2026]
 

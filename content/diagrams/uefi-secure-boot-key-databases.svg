@@ -1,8 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 0 520 467" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 0 520 491" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--blue, #336fb8)" />
     </marker>
   </defs>
 
@@ -34,27 +37,27 @@
   </g>
 
   <!-- 고칠 수 있는 관계 -->
-  <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <line x1="280" y1="58" x2="280" y2="98" marker-end="url(#arrow)" />
-    <path d="M280 138 V160 H150 V188" marker-end="url(#arrow)" />
-    <path d="M280 160 H410 V188" marker-end="url(#arrow)" />
-    <path d="M198 38 H40 V214 H58" marker-end="url(#arrow)" />
-    <path d="M362 38 H520 V214 H502" marker-end="url(#arrow)" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="280" y1="58" x2="280" y2="98" />
+    <path d="M280 138 V160 H150 V188" />
+    <path d="M280 160 H410 V188" />
+    <path d="M198 38 H40 V214 H58" />
+    <path d="M362 38 H520 V214 H502" />
+    <line x1="128" y1="442" x2="158" y2="442" />
   </g>
 
   <!-- 이미지 확인 -->
-  <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <path d="M150 240 V308 H198" marker-end="url(#arrow)" />
-    <path d="M410 240 V308 H362" marker-end="url(#arrow)" />
-    <line x1="280" y1="328" x2="280" y2="368" marker-end="url(#arrow)" />
+  <g stroke="var(--blue, #336fb8)" stroke-width="1.5" marker-end="url(#arrow-blue)">
+    <path d="M150 240 V308 H198" />
+    <path d="M410 240 V308 H362" />
+    <line x1="280" y1="328" x2="280" y2="368" />
   </g>
 
   <g font-size="12" fill="var(--text, #727981)">
-    <text x="288" y="74">User mode에서 개인 키로</text>
-    <text x="288" y="90">서명한 데이터로만 고침</text>
+    <text x="166" y="446">User mode에서 개인 키로 서명한 데이터로만 고침</text>
     <text x="142" y="278" text-anchor="end">서명이 있어야 함</text>
     <text x="418" y="278">서명이 없어야 함</text>
     <text x="288" y="352">시작</text>
-    <text x="280" y="446" text-anchor="middle">UEFI 2.11 명세</text>
+    <text x="280" y="470" text-anchor="middle">UEFI 2.11 명세</text>
   </g>
 </svg>

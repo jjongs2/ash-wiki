@@ -6,11 +6,11 @@ tags:
 verified: 2026-10-03
 ---
 
-[[iso-13400-2|ISO 13400-2]]:2025는 소개에서, 차량 진단 통신의 쓰임이 배출가스 관련 진단에서 시작해 캘리브레이션, 전자 부품의 소프트웨어 업데이트 같은 제조사별 쓰임으로 넓어졌다고 밝힌다.[@iso-13400-2-obp-2025] [[iso-14229-1|ISO 14229-1:2026]]은 부트 소프트웨어를 서버 메모리의 특별한 영역에서 실행되며 주로 ECU를 부팅하고 서버를 프로그래밍하는 소프트웨어로 정의하고, 그 가운데 ECU를 재프로그래밍할 수 있게 하는 부분을 **재프로그래밍 소프트웨어**라 한다. 부트 소프트웨어가 있는 영역은 보통의 프로그래밍 과정에서 지워지지 않으므로, 서버 애플리케이션이 없거나 유효하지 않을 때도 부트 소프트웨어가 실행되어 서버를 다시 프로그래밍할 수 있다.[@iso-14229-1-obp-2026]
+[[iso-13400-2|ISO 13400-2]]:2025는 소개에서, 차량 진단 통신의 쓰임이 배출가스 관련 진단에서 시작해 캘리브레이션, 전자 부품의 소프트웨어 업데이트 같은 제조사별 쓰임으로 넓어졌다고 밝힌다.[@iso-13400-2-obp-2025] [[iso-14229-1|ISO 14229-1:2026]]은 부트 소프트웨어를 서버 메모리의 특별한 영역에서 실행되며 주로 ECU를 부팅하고 서버를 프로그래밍하는 소프트웨어로 정의하고, 부트 소프트웨어 가운데 ECU를 재프로그래밍할 수 있게 하는 부분을 **재프로그래밍 소프트웨어**라 한다. 부트 소프트웨어가 있는 영역은 보통의 프로그래밍 과정에서 지워지지 않으므로, 서버 애플리케이션이 없거나 유효하지 않을 때도 부트 소프트웨어가 실행되어 서버를 다시 프로그래밍할 수 있다.[@iso-14229-1-obp-2026]
 
 ## AUTOSAR Dcm의 부트로더 전환
 
-[[autosar|AUTOSAR]] R25-11의 Dcm(Diagnostic Communication Manager) 명세는 [[uds|UDS]]의 DiagnosticSessionControl로 요청된 세션이 [[bootloader|부트로더]] 전환을 허용하도록 설정돼 있으면(`DcmDspSessionForBoot`), Dcm이 [[basic-software-mode-manager|BswM]]에 모드 전환으로 알려 OEM 부트로더나 시스템 공급자 부트로더로 넘어갈 준비를 하게 정한다. 전환할지는 세션의 이름이 아니라 세션마다의 설정이 정한다. programming session을 시작하는 요청을 받으면 Dcm은 `Dcm_SetProgConditions`로 재프로그래밍을 요청하는 ReprogrammingRequest 플래그를 세운다. 이 명세는 Dcm을 부트로더 안에서 쓰도록 의도하지 않는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+[[autosar|AUTOSAR]] R25-11의 Dcm(Diagnostic Communication Manager) 명세는 [[uds|UDS]]의 DiagnosticSessionControl로 요청된 세션이 [[bootloader|부트로더]] 전환을 허용하도록 설정돼 있으면(`DcmDspSessionForBoot`), Dcm이 [[basic-software-mode-manager|BswM]]에 모드 전환으로 알려 OEM 부트로더나 시스템 공급자 부트로더로 넘어갈 준비를 하게 정한다. Dcm은 하위 기능 `0x02`로 programming session을 시작하는 DiagnosticSessionControl 요청을 받으면 `Dcm_SetProgConditions`로 재프로그래밍을 요청하는 ReprogrammingRequest 플래그를 세운다. 이 명세는 Dcm을 부트로더 안에서 쓰도록 의도하지 않는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 부트로더가 애플리케이션 재프로그래밍을 마치면 ApplUpdated 플래그를 갱신한다. ECU가 리셋된 뒤 새로 프로그래밍된 애플리케이션이 처음 시작되면, Dcm은 `Dcm_GetProgConditions`로 이 플래그를 읽어 BswM에 애플리케이션이 갱신됐음을 알린다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
@@ -30,7 +30,7 @@ verified: 2026-10-03
 
 Vector의 Flash Bootloader 기술 문서가 정한 UDS 다운로드 시퀀스에서, 테스터는 DiagnosticSessionControl로 programming session에 들어가고 [[uds#보안 접근과 인증|SecurityAccess]]를 거친다. 그 뒤 논리 블록마다 RoutineControl로 메모리를 지우고, RequestDownload, TransferData, RequestTransferExit로 데이터를 보낸 다음 RoutineControl로 검사한다. 모든 블록을 마치면 RoutineControl로 프로그래밍 의존성을 확인하고, ECUReset으로 하드 리셋한다.[@vector-fbl-oem-download-sequence-2024]
 
-이 시퀀스에서 세 단계는 다음처럼 동작한다.[@vector-fbl-oem-download-sequence-2024]
+이 시퀀스의 단계 가운데 다음 셋은 이렇게 동작한다.[@vector-fbl-oem-download-sequence-2024]
 
 - SecurityAccess: 이 부트로더에서 ECU에 데이터를 쓰는 서비스처럼 일부 서비스의 접근을 제한한다. 테스터는 seed를 요청한 뒤, 자기가 계산한 key를 보낸다.
 - 메모리 지우기: RoutineControl로 루틴 식별자 `0xFF00`(Erase Memory)을 시작하며, 지울 메모리 주소와 길이를 함께 보낸다.

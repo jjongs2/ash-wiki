@@ -31,15 +31,15 @@
   <!-- 부팅 성공 표시 전에 갱신할 때 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="40" y="212" width="150" height="48" rx="2" />
-    <rect x="215" y="302" width="200" height="48" rx="2" />
   </g>
+  <rect x="215" y="302" width="200" height="48" rx="2" stroke="var(--red, #bb464d)" stroke-width="1.5" fill="var(--red-tint, #bb464d)" />
   <rect x="240" y="212" width="150" height="48" rx="2" stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="115" y="241">새 슬롯으로 부팅</text>
-    <text x="315" y="322">이전 슬롯으로 돌아가도</text>
-    <text x="315" y="340">이전 버전이 부팅되지 않음</text>
   </g>
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="315" y="322">이전 슬롯으로 돌아가도</text>
+    <text x="315" y="340">이전 버전이 부팅되지 않음</text>
     <text x="315" y="232">롤백 방지</text>
     <text x="315" y="250">메타데이터 갱신</text>
   </g>

@@ -31,6 +31,6 @@ J. D. Weiss는 1991년 National Computer Security Conference 논문에서 위협
 
 ## FTA와의 차이
 
-IEC 61025:2006은 [[safety-analysis#FTA|FTA]](Fault Tree Analysis)를 정해 둔 top event를 일으키는 조건과 요인을 찾아, 입력 사건의 조합을 게이트로 나타내는 [[safety-analysis|안전 분석]] 기법으로 둔다.[@iec-61025-preview-2006] Attack tree도 AND·OR로 하위 노드를 묶지만, 루트는 공격자가 노리는 목표이고, 노드는 그 목표를 이루는 하위 목표이며, 리프 노드에서 루트까지의 경로 하나가 공격 하나다.[@schneier-attack-trees-1999]
+IEC 61025:2006은 [[safety-analysis#FTA|FTA]](Fault Tree Analysis)를 정해 둔 top event를 일으키는 조건과 요인을 찾아, 입력 사건의 조합을 게이트로 나타내는 [[safety-analysis|안전 분석]] 기법으로 둔다.[@iec-61025-preview-2006] Attack tree도 AND·OR로 하위 노드를 묶지만, 루트는 공격자가 노리는 목표이고, 노드는 그 목표를 이루는 하위 목표이며, 리프 노드에서 목표까지 이어지는 노드의 계층 하나가 공격 하나다.[@schneier-attack-trees-1999]
 
 보안 용어집 RFC 4949에 따르면 attack tree는 fault tree의 특수한 경우다. Fault tree는 부품 failure와 사람의 행위가 어떻게 조합되어 원치 않는 시스템 사건을 일으키는지 나타내고, 루트 사건이 보안 침해이고 하위 사건의 일부가 그 침해를 노린 의도적 행위이면 그 fault tree가 attack tree다.[@ietf-rfc-4949-2007]

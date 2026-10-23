@@ -60,6 +60,20 @@
   <text x="136" y="124" text-anchor="end" font-size="12" fill="var(--text, #727981)">한 번의 왕복</text>
   <text x="584" y="309" fill="var(--text, #727981)">암호화</text>
 
+  <!-- 단계 번호 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1">
+    <path d="M192 64 H186 V106 H192" />
+    <path d="M192 114 H186 V156 H192" />
+    <path d="M192 168 H186 V328 H192" />
+    <path d="M192 348 H186 V440 H192" />
+  </g>
+  <g font-size="12" text-anchor="end" fill="var(--text, #727981)">
+    <text x="180" y="89">1</text>
+    <text x="180" y="139">2</text>
+    <text x="180" y="252">3</text>
+    <text x="180" y="398">4</text>
+  </g>
+
   <!-- 범례 -->
   <line x1="200" y1="472" x2="240" y2="472" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
   <text x="248" y="476" font-size="12" fill="var(--text, #727981)">조건에 따라 보냄</text>

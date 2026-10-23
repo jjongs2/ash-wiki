@@ -40,7 +40,7 @@ ISO/SAE 21434:2021은 도로 차량의 E/E(Electrical/Electronic) 시스템과 �
 
 ![[diagrams/iso-sae-21434-provision-identifier.svg]]
 
-**작업 산출물**은 하나 이상의 요구사항을 채우는 사이버보안 활동의 결과다. 이 표준은 앞 단계의 작업 산출물로 이루어진 필수 입력을 **prerequisites**라 하고, 사이버보안 활동을 맡은 사람이 아닌 다른 곳에서 얻을 수 있어 고려할 만한 정보를 **further supporting information**이라 한다.[@iso-sae-21434-obp-2021]
+**작업 산출물**은 하나 이상의 요구사항을 채우는 사이버보안 활동의 결과다. 이 표준은 앞 단계의 작업 산출물로 이루어진 필수 입력을 **prerequisites**라 하고, 사이버보안 활동을 맡은 사람 말고 다른 출처에서 얻을 수 있어 고려할 만한 정보를 **further supporting information**이라 한다.[@iso-sae-21434-obp-2021]
 
 이 표준은 Annex A부터 H까지 여덟 Annex를 둔다.[@iso-sae-21434-obp-2021]
 
@@ -53,7 +53,7 @@ ISO/SAE 21434:2021은 도로 차량의 E/E(Electrical/Electronic) 시스템과 �
 - Annex G: [[attack-feasibility-rating|attack feasibility rating]] 지침
 - Annex H: 헤드램프 시스템에 TARA 방법을 적용한 예[@iso-sae-21434-obp-2021]
 
-조직 수준의 사이버보안 관리가 [[un-r155|UN R155]]의 [[cybersecurity-management-system|CSMS]]와 어떻게 이어지는지는 [[cybersecurity-management-system#ISO/SAE 21434와의 관계|CSMS와 ISO/SAE 21434의 관계]]에서 다룬다. 15절의 TARA 방법과 Annex의 impact rating 기준 예는 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA]]에서 다룬다.
+조직 수준의 사이버보안 관리가 [[un-r155|UN R155]]의 [[cybersecurity-management-system|CSMS]]와 어떻게 이어지는지는 [[cybersecurity-management-system#ISO/SAE 21434와의 관계|CSMS와 ISO/SAE 21434의 관계]]에서 다룬다. 15절의 TARA 방법과 Annex F의 impact rating 기준 예는 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA]]에서 다룬다.
 
 ## 개정 이력
 

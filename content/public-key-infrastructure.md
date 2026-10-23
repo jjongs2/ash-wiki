@@ -15,7 +15,7 @@ FIPS 186-5는 **PKI**(Public Key Infrastructure)를 [[public-key-cryptography|�
 
 ## 인증 경로
 
-공개 키 사용자는 믿을 수 있는 CA 공개 키를 몇 개만 갖고 시작한다. 그래서 필요한 공개 키를 얻으려면 인증서 여러 장을 이은 사슬이 필요할 수 있다. 이 사슬을 **인증 경로**(certification path)라 하며, 한 CA가 서명한 공개 키 소유자(최종 개체)의 인증서와, 다른 CA가 서명한 CA 인증서 0장 이상으로 이루어진다.[@ietf-rfc-5280-2008]
+공개 키를 쓰는 쪽은 믿을 수 있는 CA 공개 키를 몇 개만 갖고 시작한다. 그래서 필요한 공개 키를 얻으려면 인증서 여러 장을 이은 사슬이 필요할 수 있다. 이 사슬을 **인증 경로**(certification path)라 하며, 한 CA가 서명한 공개 키 소유자(최종 개체)의 인증서와, 다른 CA가 서명한 CA 인증서 0장 이상으로 이루어진다.[@ietf-rfc-5280-2008]
 
 ![[diagrams/pki-certification-path.svg]]
 

@@ -50,7 +50,7 @@
     <line x1="590" y1="158" x2="427" y2="158" />
   </g>
   <g font-size="12" fill="var(--text, #727981)">
-    <text x="95" y="112">속성</text>
+    <text x="95" y="112">attack path의 속성</text>
     <text x="645" y="112" text-anchor="end">크기 추정</text>
   </g>
 </svg>

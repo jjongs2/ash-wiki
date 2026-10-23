@@ -35,7 +35,7 @@
   <g font-size="12" fill="var(--text, #727981)">
     <text x="148" y="110">이미지와 메타데이터</text>
     <text x="432" y="110" text-anchor="end">지시를 담은 메타데이터</text>
-    <text x="290" y="262" text-anchor="middle">시간, 메타데이터, 이미지</text>
+    <text x="290" y="262" text-anchor="middle">메타데이터, 이미지</text>
     <text x="290" y="356" text-anchor="middle">Uptane Standard 2.1.0</text>
   </g>
 </svg>

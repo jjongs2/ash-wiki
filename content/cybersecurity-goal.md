@@ -22,9 +22,9 @@ Goal에서 끌어낸 요구사항은 [[cybersecurity-concept#Cybersecurity requi
 
 SEC.1의 BP(base practice)는 셋으로, goal과 요구사항의 명세(BP1), 일관성 확보와 양방향 추적성 수립(BP2), 합의한 요구사항의 전달(BP3)이다.[@vda-automotive-spice-cybersecurity-2025]
 
-- BP1은 리스크 감소를 이루도록 리스크 처리 결정에 따라 위협 시나리오에 대한 goal을 정하고, goal에 대해 기능·비기능 사이버보안 요구사항을 정해 둔 요구사항 특성에 따라 쓰게 한다. 요구사항에는 생산, 운용, 정비, 폐기 같은 post-development 단계에 대한 것도 든다.
-- BP2가 잇는 짝은 둘로, 사이버보안 요구사항과 cybersecurity goal, cybersecurity goal과 위협 시나리오다.[@vda-automotive-spice-cybersecurity-2025]
+- BP1은 리스크 감소를 이루도록 리스크 처리 결정에 따라 위협 시나리오에 대한 goal을 정하고, goal에 대해 기능·비기능 사이버보안 요구사항을, 정해 둔 [[requirements-engineering#활동|요구사항 특성]]에 따라 쓰게 한다. 요구사항에는 생산, 운용, 정비, 폐기 같은 post-development 단계에 대한 것도 든다.
+- BP2가 잇는 짝은 사이버보안 요구사항과 cybersecurity goal의 짝, cybersecurity goal과 위협 시나리오의 짝 둘이다.[@vda-automotive-spice-cybersecurity-2025]
 
 ![[diagrams/aspice-cybersecurity-traceability.svg]]
 
-같은 문서의 정보 항목 17-51(Cybersecurity goals)은 goal에 담을 수 있는 정보로 핵심 지표와 성공 기준 등을 든다.[@vda-automotive-spice-cybersecurity-2025] 양방향 추적성과 일관성 자체는 [[traceability|추적성]]에서 다룬다.
+같은 문서의 [[automotive-spice-process-assessment-model#프로세스 수행 지표|정보 항목]] 17-51(Cybersecurity goals)은 goal에 담을 수 있는 정보로 핵심 지표와 성공 기준 등을 든다.[@vda-automotive-spice-cybersecurity-2025] 양방향 추적성과 일관성 자체는 [[traceability|추적성]]에서, 도해의 SEC.3·SEC.4 BP4는 사이버보안 검증과 확인의 [[cybersecurity-verification-and-validation#Automotive SPICE for Cybersecurity의 SEC.3·SEC.4|SEC.3·SEC.4]]에서 다룬다.

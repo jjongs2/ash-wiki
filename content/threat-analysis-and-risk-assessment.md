@@ -39,7 +39,7 @@ Annex H는 헤드램프 시스템에 TARA 방법을 적용한 예를 든다. 운
 
 ## Automotive SPICE for Cybersecurity의 MAN.7
 
-Automotive SPICE for Cybersecurity 2.0의 MAN.7 Cybersecurity Risk Management는 관련 이해관계자에게 미칠 피해의 리스크를 정기적으로 찾고, 분석하고, 우선순위를 매기고, 감시하는 것을 목적으로 둔다. 성과는 다섯이다.[@vda-automotive-spice-cybersecurity-2025]
+Automotive SPICE for Cybersecurity 2.0의 MAN.7 Cybersecurity Risk Management는 관련 이해관계자에게 미칠 피해의 리스크를 정기적으로 찾고, 분석하고, 우선순위를 매기고, 감시하는 것을 목적으로 둔다. [[automotive-spice-process-reference-model#프로세스의 정의 요소|성과]]는 다섯이다.[@vda-automotive-spice-cybersecurity-2025]
 
 1. [[cybersecurity-lifecycle#아이템과 운용 환경|아이템]]을 그 기능과 경계까지 정의한다.
 2. 관련 자산, 위협, damage scenario를 찾고 정기적으로 갱신한다.
@@ -47,7 +47,7 @@ Automotive SPICE for Cybersecurity 2.0의 MAN.7 Cybersecurity Risk Management는
 4. 리스크의 상태와 처리 활동의 진척을 파악한다.
 5. 우선순위, 가능성, 결과나 정해 둔 리스크 문턱에 따라 적절한 처리를 한다.[@vda-automotive-spice-cybersecurity-2025]
 
-Base practice는 일곱이고, 성과와 일대일로 대응하지 않는다. 예를 들어 BP1은 성과 1과 2에 대응한다.[@vda-automotive-spice-cybersecurity-2025]
+[[automotive-spice-process-assessment-model#프로세스 수행 지표|Base practice]]는 일곱이고, 성과와 일대일로 대응하지 않는다. 예를 들어 BP1은 성과 1과 2에 대응한다.[@vda-automotive-spice-cybersecurity-2025]
 
 | BP  | 이름                                         |
 | --- | -------------------------------------------- |
@@ -67,7 +67,7 @@ Automotive SPICE for Cybersecurity 1.0은 MAN.7에 성과 여덟과 BP 여덟을
 
 [[hardware-security-module#EVITA의 HSM 등급|EVITA]] 프로젝트는 차량 온보드 네트워크의 보안 리스크 분석과 안전 리스크 분석을 하나로 묶은 접근을 만들었다. 프로젝트는 보안 조치가 필요할 [[use-case|use case]]를 먼저 고르고, 이를 바탕으로 e-safety 애플리케이션이 악용될 가능성을 그린 dark-side scenario를 세워 [[attack-tree|attack tree]]로 구조화했다.[@evita-d0-2012]
 
-Henniger 외는 2009년 논문에서 EVITA의 리스크 평가 절차를 내놓았다. 이 절차는 공격의 리스크를 심각도와 공격 성공 확률의 함수로 보고, 안전에 관한 위협에는 통제 가능성을 더한다. 심각도는 차량 안전 공학의 심각도 분류를 바탕으로, 안전, 프라이버시(제조사와 공급자의 지적 재산 포함), 재정, 운용 네 측면마다 0\~4 등급을 매겨 네 성분의 벡터로 나타낸다. 성공 확률은 ISO/IEC 15408과 ISO/IEC 18045의 [[attack-feasibility-rating#Attack potential|attack potential]]을 바탕으로, 경과 시간, 전문성, 시스템 지식, 기회의 창, 장비 다섯 요소의 값을 더한 합계를 Basic부터 Beyond High까지 다섯 수준으로 나누고, 이를 확률 5\~1에 대응시킨다. 확률은 attack tree의 리프 노드에서 매기고, 위 노드로 올릴 때 OR 관계면 자식 가운데 가장 높은 확률을, AND 관계면 가장 낮은 확률을 취한다. 통제 가능성은 보통의 반응으로 사고를 대개 피할 수 있는 1부터 사람의 반응으로 상황에 영향을 줄 수 없는 4까지 네 등급으로 매긴다.[@henniger-security-requirements-2009]
+Henniger 외는 2009년 논문에서 EVITA의 리스크 평가 절차를 내놓았다. 이 절차는 공격의 리스크를 심각도와 공격 성공 확률의 함수로 보고, 안전에 관한 위협에는 통제 가능성을 더한다. 심각도는 차량 안전 공학의 심각도 분류를 바탕으로, 안전, 프라이버시(제조사와 공급자의 지적 재산 포함), 재정, 운용 네 측면마다 0\~4 등급을 매겨 네 성분의 벡터로 나타낸다. 성공 확률은 ISO/IEC 15408과 ISO/IEC 18045의 [[attack-feasibility-rating#Attack potential|attack potential]]을 바탕으로, 경과 시간, 전문성, 시스템 지식, 기회의 창, 장비 다섯 요소의 값을 더한 합계를 Basic부터 Beyond High까지 다섯 수준으로 나누고, 이를 차례로 확률 5\~1에 대응시켜 Basic이 5, Beyond High가 1이 된다. 확률은 attack tree의 리프 노드에서 매기고, 위 노드로 올릴 때 OR 관계면 자식 가운데 가장 높은 확률을, AND 관계면 가장 낮은 확률을 취한다. 통제 가능성은 보통의 반응으로 사고를 대개 피할 수 있는 1부터 사람의 반응으로 상황에 영향을 줄 수 없는 4까지 네 등급으로 매긴다.[@henniger-security-requirements-2009]
 
 HEAVENS(HEAling Vulnerabilities to ENhance Software Security and Safety) 프로젝트는 2013년 4월부터 2016년 3월까지 진행되었고, Volvo Technology AB가 조정을 맡았다.[@olsson-heavens-final-report-2016] Islam 외는 2016년 논문에서 HEAVENS 프로젝트의 결과를 바탕으로, [[functional-safety|기능 안전]] 프로세스와 맞추고 보안 비전문가도 쓸 수 있게 한 차량 임베디드 시스템용 리스크 평가 틀을 내놓았다. 위협 식별에는 보안 비전문가가 쓰기 쉽다는 까닭으로 [[stride|STRIDE]]를 쓰자고 했다. 이 틀은 위협이 실현될 가능성을 추정한 threat level과 피해의 크기를 추정한 impact level을 합쳐 security level을 정한다. Threat level은 전문성, 대상에 대한 지식, 기회의 창, 장비 네 요소로 매기고, Common Criteria의 attack potential 계산과 달리 경과 시간은 다른 요소에서 끌어낼 수 있다는 까닭으로 따로 두지 않는다. Impact level은 안전, 재정, 운용, 프라이버시와 법규 네 요소로 매긴다. Security level은 QM(Quality Management), Low, Medium, High, Critical 다섯이고, QM인 자산·위협 쌍에는 보안 요구사항을 세우지 않는다.[@islam-risk-assessment-framework-2016]
 

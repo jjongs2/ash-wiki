@@ -15,20 +15,20 @@ status: 유효
 
 ## 범위
 
-Automotive SPICE for Cybersecurity 2.0은 ASPICE 4.0을 보완해, ASPICE의 평가 범위에 사이버보안 프로세스를 더하려고 아래 여섯 프로세스를 정의한다. ACQ.2와 SEC(사이버보안 엔지니어링) 그룹은 주 프로세스 범주에, MAN.7은 조직 프로세스 범주에 든다.[@vda-automotive-spice-cybersecurity-2025]
+Automotive SPICE for Cybersecurity 2.0은 ASPICE 4.0을 보완해, ASPICE의 평가 범위에 사이버보안 프로세스를 더하려고 아래 여섯 프로세스를 정의한다. [[cybersecurity-interface-agreement#Automotive SPICE for Cybersecurity의 ACQ.2|ACQ.2]]와 SEC(사이버보안 엔지니어링) 그룹은 주 프로세스 범주에, [[threat-analysis-and-risk-assessment#Automotive SPICE for Cybersecurity의 MAN.7|MAN.7]]은 조직 프로세스 범주에 든다.[@vda-automotive-spice-cybersecurity-2025]
 
-| 프로세스 | 이름                                   | 범주          |
-| -------- | -------------------------------------- | ------------- |
-| ACQ.2    | Supplier Request and Selection         | 주 프로세스   |
-| MAN.7    | Cybersecurity Risk Management          | 조직 프로세스 |
-| SEC.1    | Cybersecurity Requirements Elicitation | 주 프로세스   |
-| SEC.2    | Cybersecurity Implementation           | 주 프로세스   |
-| SEC.3    | Risk Treatment Verification            | 주 프로세스   |
-| SEC.4    | Risk Treatment Validation              | 주 프로세스   |
+| 프로세스                                                                                              | 이름                                   | 범주          |
+| ----------------------------------------------------------------------------------------------------- | -------------------------------------- | ------------- |
+| ACQ.2                                                                                                 | Supplier Request and Selection         | 주 프로세스   |
+| MAN.7                                                                                                 | Cybersecurity Risk Management          | 조직 프로세스 |
+| [[cybersecurity-goal#Automotive SPICE for Cybersecurity의 SEC.1\|SEC.1]]                              | Cybersecurity Requirements Elicitation | 주 프로세스   |
+| [[cybersecurity-specification#Automotive SPICE for Cybersecurity의 SEC.2\|SEC.2]]                     | Cybersecurity Implementation           | 주 프로세스   |
+| [[cybersecurity-verification-and-validation#Automotive SPICE for Cybersecurity의 SEC.3·SEC.4\|SEC.3]] | Risk Treatment Verification            | 주 프로세스   |
+| [[cybersecurity-verification-and-validation#Automotive SPICE for Cybersecurity의 SEC.3·SEC.4\|SEC.4]] | Risk Treatment Validation              | 주 프로세스   |
 
 ACQ.2는 ASPICE 4.1의 프로세스 참조 모델에는 없고, Automotive SPICE for Cybersecurity 2.0이 정의한다.[@vda-automotive-spice-cybersecurity-2025][@vda-automotive-spice-pam-4-1-2026]
 
-Automotive SPICE for Cybersecurity 2.0으로 평가하려면 권장 [[automotive-spice-process-reference-model#VDA scope|VDA scope]]에 대한 ASPICE 평가 결과가 먼저 있어야 한다. 그것이 없으면 VDA scope의 프로세스를 이 문서의 프로세스 평가 모델과 ASPICE의 프로세스 평가 모델로 함께 평가해야 한다. 평가 범위는 평가 의뢰자가 정한다. 기존 평가 결과를 쓰면 SUP(지원) 그룹은 다시 평가하지 않아도 되고, 공급자가 [[cybersecurity-goal|cybersecurity goal]]의 확인(validation)에 관여하지 않으면 SEC.4를 범위에서 뺄 수 있다.[@vda-automotive-spice-cybersecurity-2025]
+Automotive SPICE for Cybersecurity 2.0으로 평가하려면 권장 [[automotive-spice-process-reference-model#VDA scope|VDA scope]]에 대한 ASPICE 평가 결과가 먼저 있어야 한다. 이 평가 모델은 권장 VDA scope에 드는 프로세스를 나열하지 않는다. 그 평가 결과가 없으면 VDA scope의 프로세스를 이 문서의 프로세스 평가 모델과 ASPICE의 프로세스 평가 모델로 함께 평가해야 한다. 평가 범위는 평가 의뢰자가 정한다. 기존 평가 결과를 쓰면 SUP(지원) 그룹은 다시 평가하지 않아도 되고, 공급자가 [[cybersecurity-goal|cybersecurity goal]]의 확인(validation)에 관여하지 않으면 SEC.4를 범위에서 뺄 수 있다.[@vda-automotive-spice-cybersecurity-2025]
 
 이 모델은 [[iso-sae-21434|ISO/SAE 21434]] 가운데 개발 프로젝트 안에서 하지 않는 측면을 범위에서 빼고, 이 측면을 ISO/PAS(Publicly Available Specification) 5112와 [[cybersecurity-management-system#감사|CSMS 감사]]의 몫으로 둔다. 이 문서로 한 평가는 사이버보안 활동을 하는 프로젝트의 빈틈과 프로세스 약점을 찾아 조직의 사이버보안 프로세스를 개선하는 입력으로 주고, 조직은 그 개선으로 CSMS를 조정하고 다듬을 수 있다.[@vda-automotive-spice-cybersecurity-2025]
 
