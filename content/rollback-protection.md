@@ -11,7 +11,7 @@ verified: 2026-10-03
 
 ## 차량 보안 지침의 권고
 
-NHTSA의 2022년 모범 사례에 따르면 공격자는 소프트웨어 업데이트 메커니즘으로 더 오래되고 취약한 소프트웨어를 대상 기기에 올릴 수 있고, 이 문서는 이 공격을 firmware version rollback 공격 또는 downgrade 공격이라 부른다. NHTSA는 제조사가 firmware version rollback 공격을 줄이는 조치를 쓰기를 권한다.[@nhtsa-cybersecurity-best-practices-2022]
+NHTSA의 2022년 모범 사례에 따르면 공격자는 소프트웨어 업데이트 메커니즘으로 더 오래되고 취약한 소프트웨어를 대상 기기에 올릴 수 있고, 이 지침은 이 공격을 firmware version rollback 공격 또는 downgrade 공격이라 부른다. NHTSA는 제조사가 firmware version rollback 공격을 줄이는 조치를 쓰기를 권한다.[@nhtsa-cybersecurity-best-practices-2022]
 
 ENISA의 2019년 보고서 Good practices for security of smart cars는 [[over-the-air-update|OTA]] 펌웨어 업데이트를 안전하게 해, 펌웨어가 조작되거나 드러나거나 취약한 버전으로 되돌려지는 것을 막기를 권한다.[@enisa-smart-cars-2019]
 
@@ -23,7 +23,7 @@ ENISA의 2019년 보고서 Good practices for security of smart cars는 [[over-t
 
 ## 카운터를 올리는 순서
 
-이전 이미지로 롤백할 수 있는 구성에서는, 저장된 보안 버전을 새 이미지가 정상 동작으로 확인되어 유효로 표시된 뒤에 올린다.[@espressif-esp-idf-ota-2026][@google-avb-readme-2026] Android 문서에 따르면, 슬롯이 부팅 성공으로 표시되기 전에 롤백 방지 메타데이터를 갱신하면 업데이트가 실패해 이전 슬롯으로 돌아가도 이전 버전이 부팅되지 않는다.[@google-android-boot-flow-2026]
+이전 이미지로 롤백할 수 있는 구성에서는, 저장된 보안 버전을 새 이미지가 정상 동작으로 확인되어 유효로 표시된 뒤에 올린다.[@espressif-esp-idf-ota-2026][@google-avb-readme-2026] Android 문서에 따르면, 슬롯이 부팅 성공으로 표시되기 전에 롤백 방지 메타데이터를 갱신하면, 업데이트가 실패해 이전 슬롯으로 돌아가더라도 이전 버전은 부팅되지 않는다.[@google-android-boot-flow-2026]
 
 ![[diagrams/rollback-protection-counter-update-order.svg]]
 
@@ -38,6 +38,8 @@ ENISA의 2019년 보고서 Good practices for security of smart cars는 [[over-t
 
 [[the-update-framework|TUF]] 명세 1.0.37은 rollback 공격을 막는 점검으로, 클라이언트가 새로 받은 메타데이터의 버전이 이미 믿는 메타데이터의 버전보다 낮으면 그 메타데이터를 버리도록 정한다.[@tuf-specification-1-0-37-2026]
 
-[[uptane|Uptane]] Deployment Best Practices 2.1.0에 따르면 Uptane은 기본적으로 업데이트를 되돌리지 못하게 하고, 이를 두 장치로 강제한다. 하나는 이전 메타데이터보다 버전 번호가 낮은 새 메타데이터를 거부해 공격자가 옛 메타데이터를 다시 보내지 못하게 한다. 다른 하나는 이전 Targets 메타데이터의 release counter보다 release counter가 낮은 새 이미지를 거부해, director repository를 침해한 공격자도 옛 이미지를 고르지 못하게 한다. 이 문서는 release counter를 올리지 않고 두는 방법은 director repository를 침해한 공격자가 낡은 이미지로 rollback 공격을 할 수 있게 하므로 쓰지 말고, ECU가 release counter가 낮은 이미지를 설치하지 않는 것이 중요할 때마다 그 이미지의 release counter를 올리는 방법을 더 안전하므로 택하기를 권한다.[@uptane-deployment-best-practices-2-1-0-2023]
+[[uptane|Uptane]] Deployment Best Practices 2.1.0에 따르면 Uptane은 기본적으로 업데이트를 되돌리지 못하게 하고, 이를 두 장치로 강제한다. 하나는 이전 메타데이터보다 버전 번호가 낮은 새 메타데이터를 거부해 공격자가 옛 메타데이터를 다시 보내지 못하게 한다. 다른 하나는 이전 Targets 메타데이터의 release counter보다 release counter가 낮은 새 이미지를 거부해, director repository를 침해한 공격자도 옛 이미지를 고르지 못하게 한다.[@uptane-deployment-best-practices-2-1-0-2023]
 
-RFC 9124에 따르면 IoT 기기의 펌웨어 업데이트 매니페스트에는 단조 증가 시퀀스 번호를 두고, 이 번호는 펌웨어 버전이 아니라 매니페스트의 순번이다. 그래서 옛 펌웨어 버전에 더 큰 시퀀스 번호를 단 새 매니페스트를 만들면 펌웨어를 되돌릴 수 있다. 또 안전한 시계가 있고 매니페스트에 만료 시각이 있으면, 기기는 현재 시각이 만료 시각보다 늦은 매니페스트를 거부해야 한다.[@ietf-rfc-9124-2022]
+이 지침은 release counter를 올리지 않고 두는 방법은 director repository를 침해한 공격자가 낡은 이미지로 rollback 공격을 할 수 있게 하므로 쓰지 말고, ECU가 release counter가 낮은 이미지를 설치하지 않는 것이 중요할 때마다 그 이미지의 release counter를 올리는 방법을 더 안전하므로 택하기를 권한다.[@uptane-deployment-best-practices-2-1-0-2023]
+
+RFC 9124에 따르면 IoT 기기의 펌웨어 업데이트 [[suit|매니페스트]]에는 단조 증가 시퀀스 번호를 두고, 이 번호는 펌웨어 버전이 아니라 매니페스트의 순번이다. 그래서 옛 펌웨어 버전에 더 큰 시퀀스 번호를 단 새 매니페스트를 만들면 펌웨어를 되돌릴 수 있다. 또 안전한 시계가 있고 매니페스트에 만료 시각이 있으면, 기기는 현재 시각이 만료 시각보다 늦은 매니페스트를 거부해야 한다.[@ietf-rfc-9124-2022]

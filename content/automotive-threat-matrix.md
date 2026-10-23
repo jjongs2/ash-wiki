@@ -14,7 +14,7 @@ status: 유효
 
 ## 범위
 
-ATM v4.02는 차량을 노리는 공격자의 전술과 기법을 모은 온라인 도구이자 데이터 세트로, 자동차 업계에 공통 위협 분류 체계를 준다. 전술은 공격자가 어떤 행동을 하는 까닭, 곧 전술적 의도를 나타내고, 기법은 공격자가 그 전술 목표를 어떻게 이루는지를 나타낸다. 매트릭스는 첫 행에 전술을 두고, 기법은 저마다의 전술 아래 열에 둔다.[@auto-isac-atm-2025]
+ATM v4.02는 차량을 노리는 공격자의 전술과 기법을 모은 온라인 도구이자 데이터 세트로, 자동차 업계에 공통 위협 분류 체계를 준다. 전술은 공격자가 어떤 행동을 하는 까닭, 곧 전술적 의도를 나타내고, 기법은 공격자가 그 전술 목표를 어떻게 이루는지를 나타낸다. 매트릭스는 첫 행에 전술을 가로로 두고, 기법은 저마다 속한 전술의 열에 그 전술 아래로 둔다.[@auto-isac-atm-2025]
 
 전술은 ATM-TA0000부터 ATM-TA0013까지 14개로, 차례로 Reconnaissance, Manipulate Environment, Initial Access, Execution, Persistence, Privilege Escalation, Defense Evasion, Credential Access, Discovery, Lateral Movement, Collection, Command and Control, Exfiltration, Affect Vehicle Function이다. 마지막 Affect Vehicle Function은 공격자가 추진 제어, 에어백 전개, 오디오, 디스플레이 같은 차량 기능과 시스템에 영향을 주려는 전술이다.[@auto-isac-atm-2025]
 

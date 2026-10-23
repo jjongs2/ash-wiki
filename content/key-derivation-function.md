@@ -11,7 +11,7 @@ verified: 2026-10-22
 
 ## 의사 난수 함수 기반 KDF
 
-NIST SP 800-108r1-upd1은 이미 있는 암호 키에서 키를 더 유도하는 KDF를 정한다. 이 KDF는 PRF(Pseudorandom Function)로 [[message-authentication-code#해시 기반: HMAC|HMAC]], [[message-authentication-code#블록 암호 기반: CMAC|CMAC]], [[message-authentication-code#GMAC과 KMAC|KMAC]]을 쓰고, PRF를 여러 번 부르는 반복 방식으로 counter 모드, feedback 모드, double-pipeline 모드를 둔다.[@nist-sp-800-108-r1-upd1-2024]
+NIST SP 800-108r1-upd1은 이미 있는 암호 키에서 키를 더 유도하는 KDF를 정한다. 이 KDF는 PRF(Pseudorandom Function)로 [[message-authentication-code#해시 기반: HMAC|HMAC]], [[message-authentication-code#블록 암호 기반: CMAC|CMAC]], [[message-authentication-code#GMAC과 KMAC|KMAC]]을 쓰고, PRF를 여러 번 호출하는 반복 방식으로 counter 모드, feedback 모드, double-pipeline 모드를 둔다.[@nist-sp-800-108-r1-upd1-2024]
 
 ## 추출과 확장
 

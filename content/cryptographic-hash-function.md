@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**암호학적 해시 함수**(cryptographic hash function)는 길이가 정해지지 않은 비트 열을 받아 길이가 고정된 비트 열을 내는 해시 함수 가운데, 역상 저항, 제2역상 저항, 충돌 저항을 갖도록 설계된 것이다.[@nist-sp-800-107-r1-2012] 출력은 **해시 값**(hash value) 또는 **메시지 다이제스트**(message digest)라 부른다.[@nist-fips-202-2015] 해시 함수는 키를 쓰지 않는다.[@nist-sp-800-175b-r1-2020][@ietf-rfc-4949-2007]
+**암호학적 해시 함수**(cryptographic hash function)는 역상 저항, 제2역상 저항, 충돌 저항을 갖도록 설계된 해시 함수다. 해시 함수는 길이가 정해지지 않은 비트 열을 받아 길이가 고정된 비트 열을 낸다.[@nist-sp-800-107-r1-2012] 출력은 **해시 값**(hash value) 또는 **메시지 다이제스트**(message digest)라 부른다.[@nist-fips-202-2015] 해시 함수는 키를 쓰지 않는다.[@nist-sp-800-175b-r1-2020][@ietf-rfc-4949-2007]
 
 FIPS 180-4가 정한 해시 알고리즘은 메시지가 조금이라도 바뀌면 매우 높은 확률로 다른 메시지 다이제스트를 낸다. 해시 값은 메시지의 [[cybersecurity-property#기밀성, 무결성, 가용성|무결성]] 확인과 [[digital-signature|디지털 서명]], [[message-authentication-code|메시지 인증 코드]](MAC)의 생성과 검증에 쓰인다.[@nist-fips-180-4-2015]
 
@@ -25,7 +25,7 @@ FIPS 180-4가 정한 해시 알고리즘은 메시지가 조금이라도 바뀌�
 
 NIST는 1993년 FIPS 180으로 SHS(Secure Hash Standard)를 펴내고, 그 안에 SHA(Secure Hash Algorithm)를 정했다.[@nist-fips-180-1993] RFC 6194는 이 첫 알고리즘을 SHA-0이라 부른다.[@ietf-rfc-6194-2011]
 
-- FIPS 180-1(1995)은 SHA의 계산에 순환 왼쪽 시프트를 더해 고친 SHA-1을 정했다.[@nist-fips-180-1-1995]
+- FIPS 180-1(1995)은 FIPS 180의 SHA 계산에 순환 왼쪽 시프트를 더해 고친 SHA-1을 정했다.[@nist-fips-180-1-1995]
 - FIPS 180-2(2002)는 SHA-256, SHA-384, SHA-512를 더했고[@nist-fips-180-2-2002], 2004년의 Change Notice 1이 SHA-224를 더했다.[@nist-fips-180-2-change-notice-1-2004]
 - FIPS 180-4는 SHA-512/224와 SHA-512/256을 더했다.[@nist-fips-180-4-2015]
 

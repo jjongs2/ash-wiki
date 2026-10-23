@@ -16,7 +16,7 @@ AUTOSAR Adaptive Platform R25-11의 Firewall 명세도 FC Firewall이 같은 방
 
 ![[diagrams/firewall-rule-first-match.svg]]
 
-AUTOSAR Classic Platform R25-11의 Firewall 명세는 방화벽을 allowlist 방식과 blocklist 방식으로 나눈다. Allowlist 방화벽은 통과시킬 트래픽을 모두 패턴으로 정하고 맞지 않는 패킷을 막으며, blocklist 방화벽은 반대로 정한 패킷만 막고 나머지를 통과시킨다. Classic Platform의 Firewall은 막는 규칙과 허용하는 규칙을 섞어 둘 수도 있다. 기본 동작이 이미 있는데도 패턴을 명시하는 것은, 그래야 그 패킷에 IDS(Intrusion Detection System) 보안 이벤트를 따로 대응시킬 수 있기 때문이다.[@autosar-cp-sws-firewall-2025]
+AUTOSAR Classic Platform R25-11의 Firewall 명세는 방화벽을 allowlist 방식과 blocklist 방식으로 나눈다. Allowlist 방화벽은 통과시킬 트래픽을 모두 패턴으로 정하고 맞지 않는 패킷을 막으며, blocklist 방화벽은 반대로 정한 패킷만 막고 나머지를 통과시킨다. Classic Platform의 Firewall은 막는 규칙과 허용하는 규칙을 섞어 둘 수도 있다. 기본 동작으로 처리될 패킷도 패턴으로 적어 두는 것은, 그래야 그 패킷에 IDS(Intrusion Detection System) 보안 이벤트를 따로 대응시킬 수 있기 때문이다.[@autosar-cp-sws-firewall-2025]
 
 ## 검사 수준
 
@@ -34,18 +34,16 @@ AUTOSAR Classic Platform R25-11의 Firewall 명세는 방화벽을 allowlist 방
 
 ## 보안 이벤트
 
-AUTOSAR Classic Platform R25-11의 Firewall 명세는 방화벽을 IDS의 센서로 두어 [[intrusion-detection-system-manager|IdsM]]에 보안 이벤트를 보고하게 한다. IdsM은 같은 식별자의 보안 이벤트를 모으면서 그 가운데 하나의 context data만 남길 수 있어 정보가 빠질 수 있다. 그래서 Classic Platform의 Firewall은 검사하는 프로토콜마다 보안 이벤트를 따로 정해 이 손실을 줄인다.[@autosar-cp-sws-firewall-2025] AUTOSAR Adaptive Platform R25-11의 Firewall 명세도 FC Firewall이 보안 이벤트를 IdsM에 올려 IDS를 돕게 한다.[@autosar-ap-sws-firewall-2025]
+AUTOSAR Classic Platform R25-11의 Firewall 명세는 방화벽을 IDS의 센서로 두어 [[intrusion-detection-system-manager|IdsM]]에 보안 이벤트를 보고하게 한다. IdsM은 같은 식별자의 보안 이벤트를 모으면서 그 가운데 하나의 [[intrusion-detection-system-manager#보안 이벤트의 수집|context data]]만 남길 수 있어 정보가 빠질 수 있다. 그래서 Classic Platform의 Firewall은 검사하는 프로토콜마다 보안 이벤트를 따로 정해 이 손실을 줄인다.[@autosar-cp-sws-firewall-2025] AUTOSAR Adaptive Platform R25-11의 Firewall 명세도 FC Firewall이 보안 이벤트를 IdsM에 올려 IDS를 돕게 한다.[@autosar-ap-sws-firewall-2025]
 
 ## Classic Platform의 Firewall 모듈
 
 AUTOSAR Classic Platform R25-11의 Firewall 명세는 Firewall이 [[pdu-router#상위 모듈과 하위 모듈|L-SDU(Link Layer Service Data Unit) Router]](LSduR)에서 네트워크 패킷을 받아 검사한 뒤, 허용한 패킷은 LSduR로 돌려주고 막은 패킷은 버리도록 둔다. Firewall은 전용 CPU를 둔 스마트 [[ethernet-switch|스위치]]에 AUTOSAR 스택을 올려, 호스트 수준이 아니라 네트워크 수준에서 메시지를 거르는 배치도 지원한다. 이때 스위치 코어의 하드웨어 가속 패킷 필터링을 쓰는 인터페이스도 둔다.[@autosar-cp-sws-firewall-2025]
 
-Firewall(Fw)은 Communication Services 층에 든다.[@autosar-cp-sws-bswgeneral-2025]
-
-Firewall 모듈은 들어오는(ingress) 트래픽만 거르도록 제한되어 있다.[@autosar-cp-sws-firewall-2025][@autosar-cp-tr-releaseoverview-2025]
+Firewall(Fw)은 Communication Services 층에 든다.[@autosar-cp-sws-bswgeneral-2025] Firewall 모듈은 들어오는(ingress) 트래픽만 거르도록 제한되어 있다.[@autosar-cp-sws-firewall-2025][@autosar-cp-tr-releaseoverview-2025]
 
 ## Adaptive Platform의 FC Firewall
 
-AUTOSAR Adaptive Platform R25-11의 Firewall 명세는 FC Firewall을 아래의 firewall engine을 감싸는 관리 클러스터로 둔다. FirewallRule은 Machine Manifest로 Machine에 배치되고, FC Firewall은 이 규칙으로 engine을 설정한다. 트래픽을 실제로 거르는 것은 engine이다. Engine은 운영체제가 주는 [[internet-protocol-suite|TCP/IP]] 스택 안에서 검사하거나, 하드웨어의 검사 기능을 쓰거나, 계층마다 나눠 검사하면서 응용에 가까운 높은 층에서 deep packet inspection을 하는 등 여러 방식으로 만들 수 있다. FC Firewall은 특정 방식을 강제하지 않는다.[@autosar-ap-sws-firewall-2025]
+AUTOSAR Adaptive Platform R25-11의 Firewall 명세는 FC Firewall을 아래의 firewall engine을 감싸는 관리 클러스터로 둔다. FirewallRule은 Machine Manifest로 [[autosar-adaptive-platform#Machine과 프로세스|Machine]]에 배치되고, FC Firewall은 이 규칙으로 engine을 설정한다. 트래픽을 실제로 거르는 것은 engine이다. Engine은 운영체제가 주는 [[internet-protocol-suite|TCP/IP]] 스택 안에서 검사하거나, 하드웨어의 검사 기능을 쓰거나, 계층마다 나눠 검사하면서 응용에 가까운 높은 층에서 deep packet inspection을 하는 등 여러 방식으로 만들 수 있다. FC Firewall은 특정 방식을 강제하지 않는다.[@autosar-ap-sws-firewall-2025]
 
 FirewallRule을 관리하는 길은 [[over-the-air-update|OTA 업데이트]]로 바꾸는 것과 실행 중에 켜고 끄는 것 둘이지만, 뒤의 것은 이 릴리스에서 지원하지 않는다.[@autosar-ap-sws-firewall-2025] Firewall의 실행 중 규칙 켜고 끄기와 OEM이 정한 보안 이벤트는 지원하지 않는 기능이다.[@autosar-ap-tr-releaseoverview-2025]

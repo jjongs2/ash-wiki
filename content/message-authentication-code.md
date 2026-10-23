@@ -41,4 +41,4 @@ NIST SP 800-185는 [[cryptographic-hash-function#SHA 계열|Keccak]]에 기반�
 
 NIST SP 800-175B Rev. 1에 따르면 해시 함수는 데이터 무결성을 어느 정도만 보증하고, MAC 알고리즘은 무결성과 출처 인증을 함께 줄 수 있다. 해시 함수를 비밀 키 없이 쓰면 공격자가 데이터를 바꾸고 해시 값을 새로 계산했을 수 있어서, 데이터가 바뀌지 않았다는 보증이 없다. 키를 모르는 공격자는 데이터를 바꾼 뒤 그 데이터에 맞아 검증을 통과할 MAC을 계산해 내지 못한다.[@nist-sp-800-175b-r1-2020]
 
-NIST SP 800-63-4에 따르면 MAC은 authenticity와 무결성은 보호하지만 부인 방지는 주지 않는다.[@nist-sp-800-63-4-2025] 디지털 서명과의 비교는 [[digital-signature#MAC과의 차이|디지털 서명]]에서 다룬다.
+NIST SP 800-63-4에 따르면 MAC은 [[cybersecurity-property#Authenticity, 부인 방지, 인가|authenticity]]와 무결성은 보호하지만 부인 방지는 주지 않는다.[@nist-sp-800-63-4-2025] 디지털 서명과의 비교는 [[digital-signature#MAC과의 차이|디지털 서명]]에서 다룬다.

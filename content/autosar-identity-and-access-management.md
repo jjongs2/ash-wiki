@@ -36,7 +36,7 @@ AUTOSAR R25-11 용어집은 **Access Control Policy**를 호출 대상(서비스
 
 AUTOSAR R25-11 Identity and Access Management 설명서는 **intent**를 Adaptive Application이 의도한 접근을 나타내는 그 응용의 속성으로 정의한다. Adaptive Application은 어느 자원에 필요한 intent를 모두 승인받아 가지고 있을 때 그 자원에 접근할 수 있다. 자원에는 서비스 인터페이스와 그 Method, Event, Field, 암호 키 슬롯 등이 있다. intent는 설계 단계에서 Application Manifest에 모델링하고, 통합자가 배치 단계에서 GrantDesign을 Grant로 옮겨 승인한다. Grant는 PDP 구현을 위한 접근 제어 목록으로 처리될 수 있다.[@autosar-ap-exp-identityandaccessmanagement-2025]
 
-접근 권한을 배치하는 방법에는 주체마다 접근할 수 있는 객체 목록(intent)을 두는 것과, 객체마다 접근할 수 있는 주체 목록을 두는 것이 있다. Adaptive Platform은 Adaptive Application과 함께 intent를 배치한다. 한 주체의 접근 대상은 대개 시간이 지나도 바뀌지 않지만, 한 객체의 접근 목록은 응용이 더 배치될 때마다 바뀌기 쉬워서다. 통합자는 요청된 intent마다 Grant를 명시적으로 만들어 승인해야 하고, 승인하지 않으면 유효한 모델을 만들 수 없다.[@autosar-ap-exp-identityandaccessmanagement-2025]
+접근 권한을 배치하는 방법에는 주체마다 접근할 수 있는 객체 목록(intent)을 두는 것과, 객체마다 접근할 수 있는 주체 목록을 두는 것이 있다. 한 주체의 접근 대상은 대개 시간이 지나도 바뀌지 않지만, 한 객체의 접근 목록은 응용이 더 배치될 때마다 바뀌기 쉽다. 그래서 Adaptive Platform은 Adaptive Application과 함께 intent를 배치한다. 통합자는 요청된 intent마다 Grant를 명시적으로 만들어 승인해야 하고, 승인하지 않으면 유효한 모델을 만들 수 없다.[@autosar-ap-exp-identityandaccessmanagement-2025]
 
 ## 명세 이력
 

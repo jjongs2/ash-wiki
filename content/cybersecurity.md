@@ -52,9 +52,9 @@ Edward Markey 미국 상원의원실은 2015년 2월 보고서 "Tracking & Hacki
 | [[vulnerability-management#취약점 보고와 정보 공유\|Auto-ISAC]]            | 정보 공유 조직     | 자동차 제조사들이 2015년 8월 세운 정보 공유·분석 센터다.[@auto-isac-about-us-2026]                                                                                                                                                                                                                                                                                                    |
 | Best Practice Guides                                                       | 지침               | Auto-ISAC이 2016년 7월 처음 내고 2024년 검토에서 7개를 5개로 합친 차량 사이버보안 지침이다. Auto-ISAC은 이 지침을 의무가 아니고(Not Required), 앞을 내다보며 자발적으로 이행하고(Aspirational), 주기적으로 고쳐 가는(Living) 문서로 둔다.[@auto-isac-best-practice-guides-2026]                                                                                                       |
 
-규정 (EU) 2024/2847인 Cyber Resilience Act는 의도한 용도나 합리적으로 예견되는 사용에 기기나 네트워크와의 직간접 데이터 연결이 드는 제품을 범위로 하고, 규정 (EU) 2019/2144가 적용되는 제품에는 적용하지 않는다. 전문 27은 그 까닭으로, 2019/2144가 UN R155에 따른 인증된 CSMS 운영과 소프트웨어 업데이트 등 사이버보안 요구사항을 이미 둔다는 점을 든다. 제68조는 이륜·삼륜차와 사륜차(quadricycle)의 승인 규정인 규정 (EU) No 168/2013의 Annex II 표에 사이버 공격으로부터의 차량 보호 항목을 더한다. 이 규정은 2027년 12월 11일부터 적용되고, 제조사의 보고 의무를 정한 제14조는 2026년 9월 11일부터 적용된다.[@eu-2024-2847-2024]
+규정 (EU) 2024/2847인 Cyber Resilience Act는 의도한 용도나 합리적으로 예견되는 사용에 기기나 네트워크와의 직간접 데이터 연결이 드는 제품을 범위로 하고, 규정 (EU) 2019/2144가 적용되는 제품에는 적용하지 않는다. 전문 27은 그 까닭으로, 2019/2144가 UN R155에 따른 인증된 CSMS 운영과 소프트웨어 업데이트 등 사이버보안 요구사항을 이미 둔다는 점을 든다. 제68조는 이륜·삼륜차와 사륜차(quadricycle)의 승인 규정인 규정 (EU) No 168/2013의 Annex II 표에 사이버 공격으로부터의 차량 보호 항목을 더한다. Cyber Resilience Act는 2027년 12월 11일부터 적용되고, 제조사의 보고 의무를 정한 제14조는 2026년 9월 11일부터 적용된다.[@eu-2024-2847-2024]
 
-## 차량 사이버보안이 노리는 것
+## 방어 접근
 
 NHTSA의 2022년 지침은 소프트웨어를 포함한 모든 자동차와 자동차 장비의 사이버보안 문제를 다루므로, 차량 전자 시스템과 소프트웨어를 설계하고 제조하는 모든 개인과 조직에 적용된다. 이 지침은 일부 차량 시스템이 뚫릴 수 있다고 가정하는 계층적 접근이 공격의 성공 확률을 낮추고 차량 시스템 무단 접근의 결과를 줄인다고 본다. 부록은 이런 **계층적 보호**(layered protections)를 다른 차량 컴퓨팅 자원이 이미 장악되었다고 가정하는 내부 사이버보안 보호로 정의한다.[@nhtsa-cybersecurity-best-practices-2022]
 
@@ -62,7 +62,7 @@ NHTSA의 2022년 지침은 소프트웨어를 포함한 모든 자동차와 자�
 
 NIST는 2024년 2월 CSF(Cybersecurity Framework) 2.0을 내며 Govern 기능을 새로 더했다.[@nist-csf-2-0-news-2024] CSF 2.0은 Govern, Identify, Protect, Detect, Respond, Recover의 여섯 기능으로 사이버보안 성과를 가장 높은 수준에서 묶는다.[@nist-cswp-29-2024]
 
-[[autosar|AUTOSAR]] R25-11의 Explanation of Security Overview에 따르면, 개발 과정에서 설계 규칙과 지침을 지키고 [[static-analysis|정적 코드 분석]]이나 [[fuzz-testing|퍼징]] 같은 품질 보증을 거쳐도 취약점은 통계적으로 거의 모든 프로젝트에 있다. 하드닝(hardening)은 시스템 보안을 보장하지 않고, 공격이 성공하는 데 드는 노력을 높일 뿐이다. [[autosar-adaptive-platform|Adaptive Platform]]은 취약점 악용을 완화하는 사전 보호와 신뢰할 수 없는 프로세스를 격리하는 사후 조치의 두 하드닝 전략을 PRE(Protected Runtime Environment)로 묶는다. 이 문서는 첫 대책으로 보안 코딩으로 실수를 처음부터 피하는 것을 든다. 둘째 방어선으로는 취약점이 있다고 가정하고 작성된 코드와 상관없는 대책으로 그 악용을 완화하는 것을, 격리로는 공격자가 소프트웨어 컴포넌트 하나를 장악한 뒤 다른 컴포넌트에 미치는 영향을 제한하는 것을 든다.[@autosar-fo-exp-securityoverview-2025]
+[[autosar|AUTOSAR]] R25-11의 Explanation of Security Overview에 따르면, 개발 과정에서 설계 규칙과 지침을 지키고 [[static-analysis|정적 코드 분석]]이나 [[fuzz-testing|퍼징]] 같은 품질 보증을 거쳐도 취약점은 통계적으로 거의 모든 프로젝트에 있다. 하드닝(hardening)은 시스템 보안을 보장하지 않고, 공격이 성공하는 데 드는 노력을 높일 뿐이다. [[autosar-adaptive-platform|Adaptive Platform]]은 취약점 악용을 완화하는 사전 보호와 신뢰할 수 없는 프로세스를 격리하는 사후 조치의 두 하드닝 전략을 PRE(Protected Runtime Environment)로 묶는다. 이 문서는 첫 대책으로 보안 코딩으로 실수를 처음부터 피하는 것을 든다. 둘째 방어선으로는 취약점이 있다고 가정하고 작성된 코드와 상관없는 대책으로 그 악용을 완화하는 것을 든다. 격리로는 공격자가 소프트웨어 컴포넌트 하나를 장악한 뒤 다른 컴포넌트에 미치는 영향을 제한하는 것을 든다.[@autosar-fo-exp-securityoverview-2025]
 
 ## NHTSA의 기술 권고
 

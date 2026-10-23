@@ -12,7 +12,7 @@ verified: 2026-10-07
 
 Csm은 암호 서비스와 [[key-management|키 관리]] 두 서비스를 준다. Csm은 모든 소프트웨어 모듈이 기본 암호 기능에 한결같은 방식으로 접근하게 하는 추상화 층으로, 위 소프트웨어 층에 표준 인터페이스를 준다. 서비스는 동기나 비동기로 주고, 쓰는 모듈마다 따로 설정하고 초기화한다. 동기와 비동기 가운데 어느 쪽으로 처리할지도 이 설정에서 고른다. 암호 서비스는 `Csm_<Service>` 꼴의 API로 부른다.[@autosar-cp-sws-cryptoservicemanager-2025]
 
-Csm이 처리하는 단위를 **job**이라 하며, job은 설정한 암호 primitive의 인스턴스다. Job은 키, 암호 primitive, 채널을 가리킨다. **채널**은 Csm의 큐에서 CryIf를 거쳐 특정 Crypto Driver Object에 이르는 경로다. Csm은 서로 다른 job을 나란히 처리할 수 있지만, 한 job은 한 번에 하나만 처리한다. Job을 큐에 넣어야 하는데 큐가 차 있으면 요청을 CRYPTO_E_BUSY로 거절한다.[@autosar-cp-sws-cryptoservicemanager-2025]
+Csm이 처리하는 단위를 **job**이라 하며, job은 설정한 암호 primitive의 인스턴스다. Job은 키, 암호 primitive, 채널을 가리킨다. **채널**은 Csm의 큐에서 CryIf를 거쳐 특정 Crypto Driver Object에 이르는 경로다. Csm은 서로 다른 job을 나란히 처리할 수 있지만, 같은 job을 동시에 두 번 처리하지는 않는다. Job을 큐에 넣어야 하는데 큐가 차 있으면 요청을 CRYPTO_E_BUSY로 거절한다.[@autosar-cp-sws-cryptoservicemanager-2025]
 
 동기 인터페이스를 쓰면 함수가 아래 암호 스택 모듈의 도움으로 결과를 바로 계산한다. 비동기 인터페이스를 쓰면 함수는 필요한 정보만 아래로 넘기고, 처리가 끝나면 job 설정의 콜백으로 사용자에게 알린다. 비동기 인터페이스를 설정하면 Csm은 주기적으로 불리는 `Csm_MainFunction`에서 상태 기계로 job 처리를 다룬다.[@autosar-cp-sws-cryptoservicemanager-2025]
 
@@ -30,11 +30,11 @@ Csm이 처리하는 단위를 **job**이라 하며, job은 설정한 암호 prim
 
 ## Key Manager
 
-KeyM은 암호 키 하위 모듈과 인증서 하위 모듈로 나뉜다. 암호 키 하위 모듈은 미리 정한 키 자료를 들이거나 갱신하는 API와 설정 항목을 준다. 이 하위 모듈은 키 클라이언트로서 키 서버가 준 데이터를 해석해 키 자료를 만들고, 그 키를 Csm에 넘긴다. 그래서 OEM은 양산이나 정비 단계에 응용과 따로 [[electronic-control-unit|ECU]]에 키 자료를 넣을 수 있다. 인증서 하위 모듈은 인증서 슬롯을 정하고 [[public-key-infrastructure|PKI]]처럼 계층으로 엮게 한다. 루트 인증서나 중간 인증서를 영구 저장해 두고 주어진 인증서를 인증서 체인으로 검증할 수 있고, 인증서의 요소에 접근하거나 내용을 검증할 수도 있다. KeyM 명세는 차량 키·인증서 관리 API의 골격을 주며, 모든 기능을 다 정하지는 않았다.[@autosar-cp-sws-keymanager-2025]
+KeyM은 암호 키 하위 모듈과 인증서 하위 모듈로 나뉜다. 암호 키 하위 모듈은 미리 정한 키 자료를 들이거나 갱신하는 API와 설정 항목을 준다. 이 하위 모듈은 키 클라이언트로서 키 서버가 준 데이터를 해석해 키 자료를 만들고, 그 키를 Csm에 넘긴다. 그래서 OEM은 양산이나 정비 단계에 응용과 따로 [[electronic-control-unit|ECU]]에 키 자료를 넣을 수 있다. 인증서 하위 모듈은 인증서 슬롯을 정하고 [[public-key-infrastructure|PKI]]처럼 계층으로 엮게 한다. 루트 인증서나 중간 인증서를 영구 저장해 두고 주어진 인증서를 인증서 체인으로 검증할 수 있고, 인증서의 요소에 접근하거나 내용을 검증할 수도 있다. KeyM 명세는 차량의 암호 키·인증서 관리 API의 골격을 주며, 모든 기능을 다 정하지는 않았다.[@autosar-cp-sws-keymanager-2025]
 
 ## Adaptive Platform의 Cryptography
 
-AUTOSAR R25-11의 [[autosar-adaptive-platform|Adaptive Platform]] Cryptography 명세는 Cryptography functional cluster인 FC(Functional Cluster) Crypto가 응용과 다른 functional cluster에 암호 연산, 키 관리, 인증서 처리의 표준 인터페이스를 주도록 정한다. 이 인터페이스를 **CryptoAPI**라 하며, FC Crypto는 연산의 실제 구현, 설정, 응용과 구현 사이의 중개를 맡는다. FC Crypto는 암호 primitive를 Crypto Provider로, 인증서 관리를 X.509 Certificate Management Provider로 내놓는다. SecOC나 [[transport-layer-security|TLS]] 같은 보안 통신, 서비스 `0x29`를 쓰는 인증 진단, 안전한 소프트웨어 업데이트 같은 쓰임새도 지원한다.[@autosar-ap-sws-cryptography-2025] [[autosar-diagnostic-management|Diagnostic Management]]는 설정에 따라 이 서비스 `0x29`를 UDS의 [[uds#서비스|Authentication 서비스]]로 제공한다.[@autosar-ap-sws-diagnostics-2025]
+AUTOSAR R25-11의 [[autosar-adaptive-platform|Adaptive Platform]] Cryptography 명세는 Cryptography functional cluster인 FC(Functional Cluster) Crypto가 응용과 다른 functional cluster에 암호 연산, 키 관리, 인증서 처리의 표준 인터페이스를 주도록 정한다. 이 인터페이스를 **CryptoAPI**라 하며, FC Crypto는 연산의 실제 구현, 설정, 응용과 구현 사이의 중개를 맡는다. FC Crypto는 암호 primitive를 Crypto Provider로, 인증서 관리를 X.509 Certificate Management Provider로 내놓는다. SecOC나 [[transport-layer-security|TLS]] 같은 보안 통신, 서비스 `0x29`를 쓰는 인증 진단, 안전한 소프트웨어 업데이트 같은 쓰임새도 지원한다.[@autosar-ap-sws-cryptography-2025] [[autosar-diagnostic-management|Diagnostic Management]]는 설정에 따라 UDS의 [[uds#서비스|Authentication 서비스]](`0x29`)를 제공한다.[@autosar-ap-sws-diagnostics-2025]
 
 Crypto Provider는 암호 primitive 구현 한 벌과 키 저장소에 접근하게 하는 래퍼다. 한 Machine에 Crypto Provider를 여럿 둘 수 있지만 서로 호환되지 않아, 한 Crypto Provider의 대칭 키를 다른 Crypto Provider의 암호화에 쓸 수 없다. 키는 저마다 정확히 한 Crypto Provider가 관리하고, 응용은 배치 때 한 Crypto Provider에 정적으로 매핑된 KeySlot으로 저장된 키에 접근한다. X.509 Provider는 Machine 하나에 하나만 둔다.[@autosar-ap-sws-cryptography-2025]
 

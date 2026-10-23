@@ -11,18 +11,18 @@ verified: 2026-10-03
 
 아래 표의 설명은 Microsoft Threat Modeling Tool 문서를 따르고, 막는 속성은 위협마다 [[cybersecurity-property|보안 속성]]을 하나씩 짝지은 Microsoft의 2006년 MSDN Magazine 기사를 따른다.[@microsoft-tmt-threats-2022][@microsoft-msdn-stride-2006]
 
-| 위협                   | 설명                                                                          | 막는 속성       |
-| ---------------------- | ----------------------------------------------------------------------------- | --------------- |
-| Spoofing               | 다른 사용자의 사용자 이름이나 비밀번호 같은 인증 정보를 불법으로 얻어 쓴다.   | Authentication  |
-| Tampering              | 데이터베이스에 저장된 데이터나 열린 네트워크로 오가는 데이터를 악의로 바꾼다. | Integrity       |
-| Repudiation            | 한 행위를 부인하고, 상대는 이를 반증할 수단이 없다.                           | Non-repudiation |
-| Information disclosure | 접근 권한이 없는 사람에게 정보가 드러난다.                                    | Confidentiality |
-| Denial of service      | 웹 서버를 잠시 쓸 수 없게 만드는 것처럼 정당한 사용자에게 서비스를 거부한다.  | Availability    |
-| Elevation of privilege | 권한이 없는 사용자가 권한 있는 접근을 얻는다.                                 | Authorization   |
+| 위협                   | 설명                                                                          | 막는 속성                                 |
+| ---------------------- | ----------------------------------------------------------------------------- | ----------------------------------------- |
+| Spoofing               | 다른 사용자의 사용자 이름이나 비밀번호 같은 인증 정보를 불법으로 얻어 쓴다.   | [[entity-authentication\|Authentication]] |
+| Tampering              | 데이터베이스에 저장된 데이터나 열린 네트워크로 오가는 데이터를 악의로 바꾼다. | Integrity                                 |
+| Repudiation            | 한 행위를 부인하고, 상대는 이를 반증할 수단이 없다.                           | Non-repudiation                           |
+| Information disclosure | 접근 권한이 없는 사람에게 정보가 드러난다.                                    | Confidentiality                           |
+| Denial of service      | 웹 서버를 잠시 쓸 수 없게 만드는 것처럼 정당한 사용자에게 서비스를 거부한다.  | Availability                              |
+| Elevation of privilege | 권한이 없는 사용자가 권한 있는 접근을 얻는다.                                 | Authorization                             |
 
 ## 위협 모델링에서의 쓰임
 
-Microsoft의 2006년 MSDN 기사에 따르면 STRIDE는 시스템을 구성 요소로 나누고, 요소마다 여섯 위협에 취약한지 분석해 완화하고, 남은 위협을 받아들일 수 있을 때까지 이를 되풀이하는 데 쓴다. 기사는 데이터 흐름도의 요소 종류마다 해당하는 위협을 표로 둔다.[@microsoft-msdn-stride-2006]
+Microsoft의 2006년 MSDN 기사에 따르면 STRIDE는 시스템을 구성 요소로 나누고, 요소마다 여섯 위협에 취약한지 분석해 완화하고, 남은 위협을 받아들일 수 있을 때까지 이 과정을 되풀이하는 데 쓴다. 기사는 데이터 흐름도의 요소 종류마다 해당하는 위협을 표로 둔다.[@microsoft-msdn-stride-2006]
 
 Microsoft Threat Modeling Tool은 Microsoft SDL(Security Development Lifecycle)의 핵심 요소이고, SDL의 위협 모델링은 설계를 분석하는 기법이다. 이 도구는 요소마다 STRIDE를 적용해(STRIDE per Element) 위협과 완화책을 안내한다.[@microsoft-tmt-overview-2022] 데이터 흐름도를 그리고 분석 화면을 열면, STRIDE를 쓰는 기본 템플릿으로 만든 위협 목록이 나온다.[@microsoft-tmt-getting-started-2022]
 

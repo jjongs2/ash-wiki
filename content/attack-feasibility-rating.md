@@ -5,11 +5,11 @@ tags:
 verified: 2026-10-03
 ---
 
-**Attack feasibility**는 attack path가 가진 속성으로, 그 attack path에 해당하는 행위들을 성공시키기가 얼마나 쉬운지를 말한다. [[iso-sae-21434|ISO/SAE 21434]]:2021은 이를 3절에서 이렇게 정의하고, attack feasibility rating을 15절에 모은 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA 방법]] 가운데 하나로 둔다.[@iso-sae-21434-obp-2021]
+**Attack feasibility**는 [[threat-analysis-and-risk-assessment#용어|attack path]]가 가진 속성으로, 그 attack path에 해당하는 행위들을 성공시키기가 얼마나 쉬운지를 말한다. [[iso-sae-21434|ISO/SAE 21434]]:2021은 이를 3절에서 이렇게 정의하고, attack feasibility rating을 15절에 모은 [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|TARA 방법]] 가운데 하나로 둔다.[@iso-sae-21434-obp-2021]
 
 ## Attack potential
 
-CC:2022(Common Criteria for Information Technology Security Evaluation)는 **attack potential**을 평가 대상인 TOE(Target of Evaluation)의 [[vulnerability-management|취약점]]을 악용하는 데 드는 노력의 척도로 정의하고, 그 노력을 공격자의 전문성, 자원, 동기와 window of opportunity 같은 취약점의 성질로 나타낸다.[@ccra-cc-part-1-2022]
+CC:2022(Common Criteria for Information Technology Security Evaluation)는 **attack potential**을 평가 대상인 TOE(Target of Evaluation)의 [[vulnerability-management|취약점]]을 악용하는 데 드는 노력의 척도로 정의하고, 그 노력을 공격자의 전문성, 자원, 동기, 그리고 window of opportunity 같은 취약점의 성질로 나타낸다.[@ccra-cc-part-1-2022]
 
 CEM:2022(Common Methodology for Information Technology Security Evaluation)는 attack potential을 정할 때 다섯 요소에 값을 매겨 합한다. 요소와 값은 다음과 같다.[@ccra-cem-2022]
 
@@ -31,7 +31,9 @@ CEM v3.1 Revision 5의 표는 TOE가 견디는 attack potential을 열로 따로
 
 ## ISO/SAE 21434의 rating 예
 
-ISO/SAE 21434:2021은 attack vector 기반 방법과 attack potential 기반 방법으로 attack feasibility를 매긴 예를 Annex H의 표로 든다. Annex G는 attack feasibility rating의 지침으로 attack potential 기반(G.2), [[common-vulnerability-scoring-system|CVSS]] 기반(G.3), attack vector 기반(G.4) 세 접근을 제시한다. Annex G에는 attack vector 기반 방법의 표와 CVSS exploitability를 대응시키는 예의 표가 있다. 또 Elapsed time, Specialist expertise, Knowledge of the item or component, Window of opportunity, Equipment를 제목으로 한 표 다섯과, attack potential을 합산하는 예와 대응시키는 예의 표가 있다.[@iso-sae-21434-obp-2021]
+ISO/SAE 21434:2021은 attack vector 기반 방법과 attack potential 기반 방법으로 attack feasibility를 매긴 예를 Annex H의 표로 든다.[@iso-sae-21434-obp-2021]
+
+Annex G는 attack feasibility rating의 지침으로 attack potential 기반(G.2), [[common-vulnerability-scoring-system|CVSS]] 기반(G.3), attack vector 기반(G.4) 세 접근을 제시한다. Annex G에는 attack vector 기반 방법의 표와 CVSS exploitability를 대응시키는 예의 표가 있다. 또 Elapsed time, Specialist expertise, Knowledge of the item or component, Window of opportunity, Equipment를 제목으로 한 표 다섯과, attack potential을 합산하는 예와 대응시키는 예의 표가 있다.[@iso-sae-21434-obp-2021]
 
 ## ISO/IEC 18045와의 관계
 

@@ -57,7 +57,7 @@ ECU에는 만들 때나 차량에 설치할 때 충분히 최근의 Uptane 메�
 - **Full verification**: 두 저장소의 root, timestamp, snapshot, targets 메타데이터를 차례로 검증한 뒤, 두 저장소의 targets 메타데이터가 같은 이미지에 대해 일치하는지 대조한다.
 - **Partial verification**: 적어도 시간을 확인하고 director repository의 targets 메타데이터를 검증한다. ECU는 검사를 더할 수 있다.[@uptane-standard-2-1-0-2023]
 
-Uptane Deployment Best Practices 2.1.0은 partial verification을 느리거나 메모리가 적은 마이크로컨트롤러의 ECU를 위한 선택지로 둔다. 이 문서에 따르면 partial verification을 하는 ECU는 image repository의 메타데이터를 보지 않아, director repository의 targets 키를 가진 공격자가 악성 소프트웨어를 설치하게 할 수 있으므로 full verification보다 덜 안전하다. Partial verification을 하는 secondary ECU도 적어도 director repository의 Targets 메타데이터는 저장해야 하고, 그만한 저장 공간도 없는 ECU는 Uptane secondary ECU로 볼 수 없다.[@uptane-deployment-best-practices-2-1-0-2023]
+Uptane Deployment Best Practices 2.1.0은 partial verification을 느리거나 메모리가 적은 마이크로컨트롤러의 ECU를 위한 선택지로 둔다. 이 지침에 따르면 partial verification을 하는 ECU는 image repository의 메타데이터를 보지 않아, director repository의 targets 키를 가진 공격자가 악성 소프트웨어를 설치하게 할 수 있으므로 full verification보다 덜 안전하다. Partial verification을 하는 secondary ECU도 적어도 director repository의 Targets 메타데이터는 저장해야 하고, 그만한 저장 공간도 없는 ECU는 Uptane secondary ECU로 볼 수 없다.[@uptane-deployment-best-practices-2-1-0-2023]
 
 ### 차량 버전 매니페스트
 
@@ -82,11 +82,11 @@ ECU version report에는 감지한 보안 공격의 표시, 보고서를 만들 
 
 이 표준은 ECU가 안전한 시간 소스를 갖추게 하고, 안전함을 보일 수 있는 외부 시간 소스라면 무엇이든 쓸 수 있게 한다. Primary ECU는 안전한 소스에서 현재 시간을 받아야 하고, 각 ECU에 그 시간을 보내기를 권한다.[@uptane-standard-2-1-0-2023]
 
-Uptane Deployment Best Practices 2.1.0에 따르면 ECU의 시간이 너무 앞서 있으면 지금 유효한 메타데이터를 만료된 것으로 보아 업데이트하지 못하고, 너무 뒤처져 있으면 공격자가 낡은 메타데이터로 freeze 공격이나 replay 공격을 할 수 있다. 이 문서는 ECU가 정확한 시간을 얻는 데 RFC 5905의 NTP(Network Time Protocol) 버전 4와 RFC 8915의 NTS(Network Time Security)를 쓰기를 권하고, GPS(Global Positioning System)는 보호되지 않은 민간 신호를 속이는 공격이 흔하므로 안전한 시간 소스로 쓰지 않기를 권한다.[@uptane-deployment-best-practices-2-1-0-2023]
+Uptane Deployment Best Practices 2.1.0에 따르면 ECU의 시간이 너무 앞서 있으면 지금 유효한 메타데이터를 만료된 것으로 보아 업데이트하지 못하고, 너무 뒤처져 있으면 공격자가 낡은 메타데이터로 freeze 공격이나 replay 공격을 할 수 있다. 이 지침은 ECU가 정확한 시간을 얻는 데 RFC 5905의 NTP(Network Time Protocol) 버전 4와 RFC 8915의 NTS(Network Time Security)를 쓰기를 권하고, GPS(Global Positioning System)는 보호되지 않은 민간 신호를 속이는 공격이 흔하므로 안전한 시간 소스로 쓰지 않기를 권한다.[@uptane-deployment-best-practices-2-1-0-2023]
 
 ### 운영
 
-정비소가 ECU를 바꾸면 같은 모델이어도 ECU 키가 달라 차량 버전 매니페스트가 바뀌고, director repository는 이를 공격으로 볼 수 있다. 이 문서는 인가된 정비사가 바뀐 구성을 OEM에 알려 인벤토리 데이터베이스에 기록하는 대역 외 프로세스를 두기를 권하되, 이를 위한 프로토콜은 정하지 않는다. 구현자는 저장소와 primary ECU 사이의 연결을 [[transport-layer-security|TLS]]로 암호화할 수 있고, primary ECU와 secondary ECU 사이에서 Uptane 메타데이터와 이미지를 UDS로 나를 수 있다. Uptane은 이 구간들의 네트워크 트래픽 인증을 요구하지 않는다. 묶음에 든 이미지를 모두 설치하거나 하나도 설치하지 않는 원자적 설치는 Uptane의 범위 밖이다. 이 문서는 그 방법으로 실패를 차량 버전 매니페스트로 보고하고 다시 시도하지 않는 것, 정한 횟수까지 다시 시도하는 것, 모든 ECU가 이전 이미지로 되돌릴 수 있으면 [[gateway|게이트웨이]] ECU가 조정하는 two-phase commit을 든다.[@uptane-deployment-best-practices-2-1-0-2023]
+정비소가 ECU를 바꾸면 같은 모델이어도 ECU 키가 달라 차량 버전 매니페스트가 바뀌고, director repository는 이를 공격으로 볼 수 있다. 이 지침은 인가된 정비사가 바뀐 구성을 OEM에 알려 인벤토리 데이터베이스에 기록하는 대역 외 프로세스를 두기를 권하되, 이를 위한 프로토콜은 정하지 않는다. 구현자는 저장소와 primary ECU 사이의 연결을 [[transport-layer-security|TLS]]로 암호화할 수 있고, primary ECU와 secondary ECU 사이에서 Uptane 메타데이터와 이미지를 UDS로 나를 수 있다. Uptane은 이 구간들의 네트워크 트래픽 인증을 요구하지 않는다. 묶음에 든 이미지를 모두 설치하거나 하나도 설치하지 않는 원자적 설치는 Uptane의 범위 밖이다. 이 지침은 원자적 설치의 방법으로 실패를 차량 버전 매니페스트로 보고하고 다시 시도하지 않는 것, 정한 횟수까지 다시 시도하는 것, 모든 ECU가 이전 이미지로 되돌릴 수 있으면 [[gateway|게이트웨이]] ECU가 조정하는 two-phase commit을 든다.[@uptane-deployment-best-practices-2-1-0-2023]
 
 ## 개정 이력
 
@@ -98,7 +98,7 @@ Kuppusamy 외는 자동차 고유의 취약점과 한계를 다루려고 TUF에 
 
 Uptane Alliance는 2018년 IEEE-ISTO 아래 비영리 단체로 세워졌다. Uptane은 Standard 1.0.0을 낸 뒤 Linux Foundation의 Joint Development Foundation 프로젝트가 됐다.[@uptane-about-2026] Uptane Standard 1.0.0은 2019년 IEEE-ISTO 6100.1.0.0이라는 이름으로 Uptane Alliance가 펴냈고, 2.1.0은 Joint Development Foundation Projects, LLC, Uptane Series의 이름으로 나왔다.[@uptane-standard-2-1-0-2023][@uptane-standard-1-0-0-2019] 판은 2019년 1.0.0, 2021년 1.1.0과 1.2.0, 2022년 2.0.0, 2023년 2.1.0 순으로 나왔다.[@uptane-history-2026]
 
-2021년에는 커뮤니티 구성원이 Uptane 명세의 추가나 변경을 제안하는 공식 절차인 PURE(Proposed Uptane Revision and Enhancement)가 마련됐다.[@uptane-history-2026] Uptane 2.0.0판은 Uptane Time Server에 대한 언급을 모두 없앴다. Uptane Standard 2.1.0은 "Uptane-compliant"라는 말을 "Uptane-conformant"로 바꿨다.[@uptane-deployment-best-practices-2-1-0-2023] 이 판은 표준을 따르는 구현으로 인정받으려면 문서의 규칙을 모두 따라야 한다고 정한다.[@uptane-standard-2-1-0-2023]
+2021년에는 커뮤니티 구성원이 Uptane 명세의 추가나 변경을 제안하는 공식 절차인 PURE(Proposed Uptane Revision and Enhancement)가 마련됐다.[@uptane-history-2026] Uptane 2.0.0판은 Uptane Time Server에 대한 언급을 모두 없앴다. Uptane Standard 2.1.0은 "Uptane-compliant"라는 말을 "Uptane-conformant"로 바꿨다.[@uptane-deployment-best-practices-2-1-0-2023] 이 판은 표준을 따르는 구현으로 인정받으려면 이 판의 규칙을 모두 따라야 한다고 정한다.[@uptane-standard-2-1-0-2023]
 
 ## 채택
 
