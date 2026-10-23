@@ -25,7 +25,7 @@ FIPS 198-1은 [[cryptographic-hash-function|암호학적 해시 함수]]와 비�
 
 ![[diagrams/hmac-nested-hash.svg]]
 
-이 표준은 응용이 HMAC의 출력을 잘라 쓸 수 있게 하고, 자를 때는 HMAC 함수 출력의 왼쪽에서 MAC 길이 $\lambda$만큼의 비트를 MAC으로 쓰도록 정한다.[@nist-fips-198-1-2008]
+FIPS 198-1은 응용이 HMAC의 출력을 잘라 쓸 수 있게 하고, 자를 때는 HMAC 함수 출력의 왼쪽에서 MAC 길이 $\lambda$만큼의 비트를 MAC으로 쓰도록 정한다.[@nist-fips-198-1-2008]
 
 Krawczyk, Bellare, Canetti는 1997년 RFC 2104로 HMAC을 기술했다. HMAC은 반복형 암호학적 해시 함수라면 어느 것과도 공유 비밀 키를 함께 써서 만들 수 있고, 그 암호 강도는 바탕 해시 함수의 성질에 달려 있다.[@ietf-rfc-2104-1997]
 
