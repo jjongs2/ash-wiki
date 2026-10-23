@@ -11,7 +11,7 @@ ISO/IEC 11770-1:2010은 키 관리를 정해진 보안 정책의 맥락 안에�
 
 ## 생명주기와 키 상태
 
-NIST SP 800-57 Part 1 Rev. 5는 키 관리가 암호 키와 그에 관련된 키 정보를 키의 생명주기 내내 다룬다고 보고, 키의 생성, 저장, [[key-establishment|설정]], 입력과 출력, 사용, 파기를 든다. 키가 생성된 뒤 파기될 때까지 거치는 상태를 **키 상태**(key state)라 하며, pre-activation, active, suspended, deactivated, compromised, destroyed가 있다.[@nist-sp-800-57-pt1-r5-2020]
+NIST SP 800-57 Part 1 Rev. 5는 키 관리가 암호 키와 그에 관련된 키 정보를 키의 생명주기 내내 다룬다고 보고, 키의 생성, 저장, [[key-establishment|설정]], 입력과 출력, 사용, 파기를 든다. 이 간행물은 키가 생성된 뒤 파기될 때까지 거치는 상태를 **키 상태**(key state)라 하고, pre-activation, active, suspended, deactivated, compromised, destroyed를 든다.[@nist-sp-800-57-pt1-r5-2020]
 
 ## 용도와 cryptoperiod
 
