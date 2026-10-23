@@ -255,6 +255,7 @@ npm run check:content
 - 배경은 칠하지 않습니다. 사이트 배경이 그대로 비쳐야 두 테마에서 읽힙니다. `리뷰`
 - 테두리, 폭, 가운데 정렬은 사이트가 맡습니다(`quartz/styles/custom.scss`). SVG에는 그림을 두르는 틀을 그리지 않습니다. `리뷰`
 - 사이트는 `viewBox` 1단위를 `0.85rem / 12`로 그립니다. 그래서 `font-size="12"` 글자는 본문의 0.85배로, 도해 폭과 상관없이 크기가 같습니다. 틀 안쪽보다 넓은 도해만 틀에 맞춰 줄어듭니다(`quartz/styles/custom.scss`). `리뷰`
+- `viewBox` 폭은 틀 안쪽 폭 안으로 그립니다. 넓으면 틀에 맞춰 줄어 글자가 그만큼 작아집니다. 틀 안쪽 폭은 화면 폭에 따라 바뀌므로 화면 폭 1280px에서 잰 값을 문턱으로 씁니다. 문턱과 잰 방법은 `tools/check-diff/diagram-width.ts`에 있습니다. 기존 도해를 폭은 그대로 두고 고치면(이름표 하나 등) 폭을 줄이지 않아도 됩니다. `리뷰`
 - 루트 `<svg>`에 `viewBox`를 둡니다. `viewBox`는 그림의 상하좌우 여백이 같게 잡습니다. 사이트는 `viewBox`를 틀 가운데에 놓으므로, 그림이 `viewBox` 안에서 쏠리면 틀 안에서도 쏠려 보입니다. 검사는 여백의 차가 허용치를 넘으면 옮긴 `viewBox`를 알려 줍니다. 허용치와 그 근거는 `tools/check-content/diagram-margin.ts`에 있습니다. `검사 svg`
 - 그림은 `viewBox` 안에 둡니다. `viewBox` 밖은 사이트에서 그려지지 않습니다. 검사는 `viewBox` 밖에 칠한 것이 있으면 넘친 변과 양을 알려 주고, 이때는 여백 치우침을 알리지 않습니다. 밖을 얼마나 넓혀 보는지는 `tools/check-content/diagram-margin.ts`에 있습니다. `검사 svg`
 - 글자는 Pretendard로 그립니다. 루트 `<svg>`에 `font-family="Pretendard, sans-serif"`와 `text-rendering="geometricPrecision"`을 두고, `<style>`에서 사이트와 같은 Pretendard CSS를 `@import`로 불러옵니다(넣을 줄은 검사가 알려 줍니다). SVG는 `<object>`로 들어가 별도 문서로 그려지므로 사이트의 웹 폰트를 물려받지 못합니다. 브라우저가 검사와 같은 폰트로, 글자 폭을 픽셀에 맞춰 반올림하지 않고 그려야 검사가 잰 여백이 독자가 보는 여백과 맞습니다. `검사 svg`
