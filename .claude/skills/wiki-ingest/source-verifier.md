@@ -9,7 +9,7 @@
 
 저장소 `<저장소 루트>`에서 먼저 읽는다.
 
-- `docs/wiki-verification.md`: 판정 세 갈래와 약어 풀이, 인용 위치 문단, 좁혀 쓰기(합의 문서와 Standards Track RFC 절 포함), 이론 주장의 꼴, 표준의 판, 정정, 미검증 사유, 봇 차단 호스트
+- `docs/wiki-verification.md`: 판정 세 갈래와 약어 풀이·소개, 인용 위치 문단, 좁혀 쓰기(합의 문서와 Standards Track RFC 절 포함), 이론 주장의 꼴, 표준의 판, 정정, 미검증 사유, 봇 차단 호스트
 - `docs/source-access.md`: 머리의 공통 줄과 호스트별 여는 법 절
 - `docs/source-hierarchy.md`: 주장 종류, 발행기관, 원 논문과 원 저자의 글, 1층 출처 절
 

@@ -98,21 +98,21 @@ GLOSSARY.md       운영 용어집
 
 ## 문서
 
-| 문서                                             | 내용                                        |
-| ------------------------------------------------ | ------------------------------------------- |
-| [GLOSSARY.md](GLOSSARY.md)                       | 운영 용어집                                 |
-| [위키 규약](docs/wiki-conventions.md)            | 페이지 표기 규칙과 콘텐츠 검사기            |
-| [용어 표기 결정](docs/wiki-terms.md)             | 표기가 갈린 콘텐츠 용어의 결정              |
-| [풀이하지 않는 약어](docs/wiki-abbreviations.md) | 자기 페이지 밖에서 풀이 없이 쓰는 약어 목록 |
-| [검증 절차](docs/wiki-verification.md)           | 주장 판정과 재조사                          |
-| [출처 여는 법](docs/source-access.md)            | 호스트별 여는 법과 접속 확인                |
-| [출처 위계](docs/source-hierarchy.md)            | 주장 종류별 1층 출처                        |
-| [엔진](docs/engine.md)                           | Quartz 기준선, 설정, 플러그인 패치          |
-| [배포](docs/deploy.md)                           | Cloudflare Pages 설정과 로컬 프리뷰         |
-| [팔레트](docs/palette.md)                        | 색, 폰트, 도해 팔레트와 대비 실측           |
-| [주간 소식](docs/weekly-news.md)                 | 주간 소식 형식                              |
-| [ADR](docs/adr/)                                 | 되돌리기 어려운 결정의 기록                 |
-| [CONTRIBUTING.md](CONTRIBUTING.md)               | 브랜치, PR, 리뷰, 이슈 규칙                 |
+| 문서                                             | 내용                                                                                       |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| [GLOSSARY.md](GLOSSARY.md)                       | 운영 용어집                                                                                |
+| [위키 규약](docs/wiki-conventions.md)            | 페이지 표기 규칙과 콘텐츠 검사기                                                           |
+| [용어 표기 결정](docs/wiki-terms.md)             | 표기가 갈린 콘텐츠 용어의 결정                                                             |
+| [풀이하지 않는 약어](docs/wiki-abbreviations.md) | 자기 페이지 밖에서 풀이 없이 쓰는 약어와, 그 가운데 처음 나올 때 소개하는 조직 약어의 목록 |
+| [검증 절차](docs/wiki-verification.md)           | 주장 판정과 재조사                                                                         |
+| [출처 여는 법](docs/source-access.md)            | 호스트별 여는 법과 접속 확인                                                               |
+| [출처 위계](docs/source-hierarchy.md)            | 주장 종류별 1층 출처                                                                       |
+| [엔진](docs/engine.md)                           | Quartz 기준선, 설정, 플러그인 패치                                                         |
+| [배포](docs/deploy.md)                           | Cloudflare Pages 설정과 로컬 프리뷰                                                        |
+| [팔레트](docs/palette.md)                        | 색, 폰트, 도해 팔레트와 대비 실측                                                          |
+| [주간 소식](docs/weekly-news.md)                 | 주간 소식 형식                                                                             |
+| [ADR](docs/adr/)                                 | 되돌리기 어려운 결정의 기록                                                                |
+| [CONTRIBUTING.md](CONTRIBUTING.md)               | 브랜치, PR, 리뷰, 이슈 규칙                                                                |
 
 ## 라이선스
 

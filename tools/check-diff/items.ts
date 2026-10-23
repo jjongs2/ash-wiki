@@ -475,6 +475,60 @@ function exemptAbbreviations(): string[] {
   return [...fs.readFileSync(abbreviationsPath, "utf8").matchAll(/^- (.+?): \S/gm)].map((m) => m[1])
 }
 
+function introducedOrganizations(): string[] {
+  return [...fs.readFileSync(abbreviationsPath, "utf8").matchAll(/^- (.+?): 소개하는 조직$/gm)].map(
+    (m) => m[1],
+  )
+}
+
+// 소개하는 조직 약어: 더한 줄에 나온 조직 약어 가운데, 페이지에서 처음 나온 자리에 괄호 소개도 링크도 없는 것.
+// 대문자 조각이 아니라 목록의 이름 문자열 그대로 찾는다(WP.29, Auto-ISAC). 절 제목은 세지 않는다. 이름 안
+// (CISPR 25, MITRE ATT&CK, CISA/US-CERT)은 혼자 쓰인 자리가 없을 때만 보고, 이름 뒤의 `(<약어>: …)`를 소개로
+// 센다. 판 표시 같은 다른 괄호(`ITU-T X.141(11/88)`)는 소개가 아니다.
+// 하이픈이나 점으로 다른 낱말과 붙은 자리(CCITT-FALSE, US-CERT)는 다른 이름이라 세지 않는다. 괄호 안의 글이
+// 소개인지와 괄호가 약어 바로 뒤에 있는지는 리뷰가 본다.
+function unintroduced(
+  page: Page,
+  change: ChangedFile,
+  organizations: string[],
+  text: string,
+  links: [number, number][],
+): Candidate[] {
+  const starts = lineStarts(text)
+  const inside = (offset: number) => links.some(([s, e]) => offset >= s && offset < e)
+  return organizations.flatMap((name) => {
+    // 이 이름을 품은 더 긴 이름(VDA 안의 VDA QMC)은 지운다.
+    let own = text
+    for (const longer of organizations.filter((n) => n !== name && n.includes(name))) {
+      own = own.replace(new RegExp(escapeRegExp(longer), "g"), blank)
+    }
+    const pattern = new RegExp(
+      `(?<![A-Za-z0-9_.&-])${escapeRegExp(name)}(?![A-Za-z0-9_]|[.&-][A-Za-z0-9])`,
+      "g",
+    )
+    // 이름 뒤 소개(`CISPR 25(CISPR: …)`) 안의 약어도 세지 않는다.
+    const found = [...own.matchAll(pattern)].filter(
+      (m) =>
+        !/^#{1,6} /.test(own.slice(starts[lineAt(starts, m.index) - 1])) &&
+        !(own[m.index - 1] === "(" && own[m.index + name.length] === ":"),
+    )
+    if (!found.some((m) => change.added.has(lineAt(starts, m.index)))) return []
+    const inName = (offset: number) =>
+      /[A-Za-z0-9&][ /]$|\/$/.test(own.slice(Math.max(0, offset - 2), offset)) ||
+      /^[ /][A-Za-z0-9]|^\//.test(own.slice(offset + name.length, offset + name.length + 2))
+    const alone = found.find((m) => !inName(m.index))
+    const at = alone ?? found[0]
+    const after = own.slice(at.index + name.length)
+    const introduced =
+      inside(at.index) ||
+      (alone
+        ? /^\**\(/.test(after)
+        : new RegExp(`^[^가-힣()\\n]*\\(${escapeRegExp(name)}: `).test(after))
+    if (introduced) return []
+    return [{ file: page.file, line: lineAt(starts, at.index), message: `소개가 없다: ${name}` }]
+  })
+}
+
 // 약어를 찾을 글. 줄 번호와 오프셋을 원문과 맞추려고 지울 곳은 공백으로 바꾼다. 위키링크는 표시 글자만
 // 남기고 그 자리를 따로 준다.
 function abbreviationText(page: Page, exempt: string[]) {
@@ -520,8 +574,10 @@ const abbreviationItem: Item = ({ tree, changed }) => {
   const exemptSet = new Set(exempt)
   const explainedSet = explainedWords(tree)
   const pageNameSet = new Set(tree.pages.flatMap(pageNames))
+  const organizations = introducedOrganizations()
   return changed.flatMap(({ page, change }) => {
     const { text, links } = abbreviationText(page, exempt)
+    const plain = abbreviationText(page, [])
     const starts = lineStarts(text)
     const first = new Map<string, { offset: number; token: string; explained: boolean }>()
     const firstInName = new Map<string, { offset: number; token: string; explained: boolean }>()
@@ -583,6 +639,7 @@ const abbreviationItem: Item = ({ tree, changed }) => {
     })
     return [
       ...unexplained,
+      ...unintroduced(page, change, organizations, plain.text, plain.links),
       ...[...code].map(([name, line]) => ({
         file: page.file,
         line,
