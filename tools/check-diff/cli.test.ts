@@ -94,13 +94,14 @@ describe("check-diff CLI", { concurrency: false }, () => {
         "term",
         "first-link",
         "diagram-place",
+        "diagram-width",
         "inline-math",
       ],
     )
   })
 
   test("마지막 줄에 돈 항목 수와 전체 항목 수, SKIP 수를 찍는다", () => {
-    assert.strictEqual(report.last, "돈 항목 14/전체 14, SKIP 0")
+    assert.strictEqual(report.last, "돈 항목 15/전체 15, SKIP 0")
   })
 
   test("표준 문장: 에서는과 밝힌다 꼴을 잡고, 추적하지 않는 새 페이지도 본다", () => {
@@ -478,13 +479,31 @@ describe("check-diff CLI", { concurrency: false }, () => {
     )
   })
 
+  test("도해 폭: 브랜치가 더하거나 고친 도해 가운데 문턱보다 넓은 것만 찍고, 기존 도해는 폭이 바뀌었는지 보인다", () => {
+    const lines = report.items.get("diagram-width") ?? []
+    assert.deepStrictEqual(
+      lines.map((line) => line.replace(/: .*/, "")),
+      [
+        "content/diagrams/wide-new.svg:1",
+        "content/diagrams/wide-relabeled.svg:1",
+        "content/diagrams/wide-resized.svg:1",
+        "content/diagrams/wide-untracked.svg:1",
+      ],
+      "고치지 않은 넓은 도해와 좁은 도해는 찍지 않는다",
+    )
+    assert.ok(has(lines, "wide-new.svg:1", "viewBox 폭 800", "새 도해"))
+    assert.ok(has(lines, "wide-relabeled.svg:1", "viewBox 폭 800", "기존 도해, 폭 그대로"))
+    assert.ok(has(lines, "wide-resized.svg:1", "viewBox 폭 800", "기존 도해, 폭 900에서 바뀜"))
+    assert.ok(has(lines, "wide-untracked.svg:1", "새 도해"))
+  })
+
   test("--ticket이 없으면 주인 페이지를 SKIP하고, --only는 그 항목만 찍는다", () => {
     const only = run(repo, "--only", "abbreviation", "--only", "owner-page")
     assert.deepStrictEqual(
       only.headers.map((h) => h.replace(/ 후보 \d+/, "")),
       ["SKIP owner-page (--ticket 없음)", "abbreviation:"],
     )
-    assert.strictEqual(only.last, "돈 항목 1/전체 14, SKIP 1")
+    assert.strictEqual(only.last, "돈 항목 1/전체 15, SKIP 1")
     assert.strictEqual(only.exitCode, 0)
   })
 })

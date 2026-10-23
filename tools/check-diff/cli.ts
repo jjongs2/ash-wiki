@@ -38,9 +38,15 @@ const root = repoTop(process.cwd())
 const base = mergeBase(root, values.base)
 const tree = loadTree(root)
 const pages = new Map(tree.pages.map((page) => [page.file, page]))
-const changed = changedFiles(root, base).flatMap((change) => {
+const svgs = new Map(tree.svgs.map((svg) => [svg.file, svg]))
+const changes = changedFiles(root, base)
+const changed = changes.flatMap((change) => {
   const page = pages.get(change.file)
   return page && page.kind === "page" ? [{ page, change }] : []
+})
+const diagrams = changes.flatMap((change) => {
+  const svg = svgs.get(change.file)
+  return svg && change.file.startsWith("content/diagrams/") ? [{ svg, change }] : []
 })
 
 let ticketBody: string | undefined
@@ -59,7 +65,9 @@ else if (values.ticket) {
   ticketBody = result.stdout
 }
 
-console.log(`기준 ${base.slice(0, 8)}, 고친 페이지 ${changed.length}개`)
+console.log(
+  `기준 ${base.slice(0, 8)}, 고친 페이지 ${changed.length}개, 고친 도해 ${diagrams.length}개`,
+)
 let ran = 0
 let skipped = 0
 for (const [id, item] of items) {
@@ -69,7 +77,7 @@ for (const [id, item] of items) {
     skipped++
     continue
   }
-  const all = item({ tree, changed, ticketBody })
+  const all = item({ tree, changed, diagrams, ticketBody })
   const found = all.filter((candidate) => !candidate.folded)
   const folded = all.length - found.length
   console.log(`${id}: 후보 ${found.length}${folded > 0 ? `, 접음 ${folded}` : ""}`)

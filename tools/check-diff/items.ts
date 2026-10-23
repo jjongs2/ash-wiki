@@ -1,9 +1,10 @@
 import fs from "node:fs"
 import path from "node:path"
 import { citationRuns, citations } from "../check-content/source-checks"
-import { fieldsOf, type Page, type Tree, type Violation } from "../check-content/tree"
+import { fieldsOf, type Page, type SvgFile, type Tree, type Violation } from "../check-content/tree"
 import { repoRoot } from "../repo"
-import type { ChangedFile } from "./diff"
+import { isNew, type ChangedFile } from "./diff"
+import { diagramWidthItem } from "./diagram-width"
 import {
   blank,
   blocks,
@@ -41,6 +42,7 @@ import { inlineMathItem } from "./math"
 export interface Context {
   tree: Tree
   changed: { page: Page; change: ChangedFile }[]
+  diagrams: { svg: SvgFile; change: ChangedFile }[]
   ticketBody?: string
 }
 
@@ -144,7 +146,7 @@ const duplicateItem: Item = ({ tree, changed }) => {
         if (names.length > 0) at(line, `${term}를 강조한 다른 페이지: ${listNames(names)}`)
       }
     }
-    if (isNew(page, change)) {
+    if (isNew(page.source, change)) {
       const fields = fieldsOf(page)
       const link = new RegExp(`\\[\\[${escapeRegExp(page.name)}(?:[#|\\\\\\]])`)
       for (const name of [fields.title, ...(Array.isArray(fields.aliases) ? fields.aliases : [])]) {
@@ -623,13 +625,6 @@ function addedLines(page: Page, change: ChangedFile) {
     .filter(({ text }) => text.trim() !== "")
 }
 
-function isNew(page: Page, change: ChangedFile): boolean {
-  if (change.untracked) return true
-  const count = page.source.split("\n").length
-  for (let line = 1; line < count; line++) if (!change.added.has(line)) return false
-  return true
-}
-
 export const items: [string, Item][] = [
   ["standard-sentence", standardSentenceItem],
   ["duplicate", duplicateItem],
@@ -644,5 +639,6 @@ export const items: [string, Item][] = [
   ["term", termItem],
   ["first-link", firstLinkItem],
   ["diagram-place", diagramPlaceItem],
+  ["diagram-width", diagramWidthItem],
   ["inline-math", inlineMathItem],
 ]

@@ -842,7 +842,7 @@ function shapeViolations(text: string): { offset: number; message: string }[] {
   return found
 }
 
-function viewBoxOf(rootTag: string): ViewBox | null {
+export function viewBoxOf(rootTag: string): ViewBox | null {
   const viewBox = rootTag
     .match(/\sviewBox\s*=\s*(["'])(.*?)\1/i)?.[2]
     .trim()
