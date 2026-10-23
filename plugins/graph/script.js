@@ -91,6 +91,21 @@ import {
     var TOPIC_FONT = 1.6
     var LINK_MAX_WIDTH = 6
 
+    // 라벨의 TextStyle은 글자 크기·색·글꼴마다 하나만 만들어 그래프를 다시 그려도 쓴다. PixiJS는 글자 너비를
+    // 전역 캐시(CanvasTextMetrics._measurementCache, 1000개 LRU)에 TextStyle의 uid로 넣어서, 그릴 때마다 새
+    // 스타일을 만들면 지운 그래프의 스타일이 캐시가 찰 때까지 남는다.
+    var labelStyles = new Map()
+    function labelStyle(fontSize, fill, fontFamily) {
+      var key = fontSize + "|" + fill + "|" + fontFamily
+      if (!labelStyles.has(key)) {
+        labelStyles.set(
+          key,
+          new PIXI.TextStyle({ fontSize: fontSize, fill: fill, fontFamily: fontFamily }),
+        )
+      }
+      return labelStyles.get(key)
+    }
+
     async function renderGraph(graph, fullSlug, renderGeneration, globalState) {
       var slug = simplifySlug(fullSlug)
       if (slug === "") slug = "index"
@@ -364,11 +379,7 @@ import {
         var isTopic = node.kind === "topic"
         var label = new PIXI.Text({
           text: node.text,
-          style: {
-            fontSize: fontSize * 15 * (isTopic ? TOPIC_FONT : 1),
-            fill: dark,
-            fontFamily: bodyFont,
-          },
+          style: labelStyle(fontSize * 15 * (isTopic ? TOPIC_FONT : 1), dark, bodyFont),
           resolution: window.devicePixelRatio * 4,
         })
         label.anchor.set(0.5, isTopic ? 0.5 + radius / (fontSize * 15 * TOPIC_FONT) + 0.6 : 1.2)
@@ -612,8 +623,9 @@ import {
           // 업스트림은 destroy(true)로 라벨의 텍스처까지 지운다. 그 텍스처는 PixiJS가 전역 TexturePool로
           // 돌려받아 다른 그래프에 다시 내주므로, 지우면 다음 그래프의 렌더가 null을 읽고 멈춘다. 업스트림은
           // 라벨을 거의 그리지 않아 드러나지 않았지만, 주제 이름은 늘 그린다. 그래서 텍스처는 풀에 돌려주고,
-          // 쉬는 텍스처를 풀에서 비워 그래프를 열고 닫을 때마다 메모리가 쌓이지 않게 한다.
-          app.destroy({ removeView: true }, { children: true, context: true, style: true })
+          // 쉬는 텍스처를 풀에서 비워 그래프를 열고 닫을 때마다 메모리가 쌓이지 않게 한다. 라벨 스타일은
+          // 다음 그래프가 다시 쓰므로(labelStyle) 지우지 않는다.
+          app.destroy({ removeView: true }, { children: true, context: true, style: false })
           PIXI.TexturePool.clear(true)
         } catch (_) {
           // PixiJS may throw if WebGL context was already lost.
