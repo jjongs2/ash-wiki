@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**Diffie-Hellman 키 교환**은 미리 비밀을 나누지 않은 두 당사자가 공개된 채널로 값을 주고받아 공통의 키를 얻는 방법이다. 도청자는 들은 값만으로 그 키를 계산하기 어렵다.[@diffie-new-directions-1976] Diffie-Hellman은 두 당사자가 공유 비밀에 합의하는 [[key-establishment|키 합의]] 알고리즘이다.[@ietf-rfc-2631-1999] Diffie와 Hellman은 1976년 논문에서 이 방법을 제안했다.[@diffie-new-directions-1976]
+**Diffie-Hellman 키 교환**은 미리 비밀을 나누지 않은 두 당사자가 공개된 채널로 값을 주고받아 공통의 키를 얻는 방법이다. 도청자는 들은 값만으로 그 키를 계산하기 어렵다.[@diffie-new-directions-1976] Diffie-Hellman은 두 당사자가 공유 비밀에 합의하는 [[key-establishment#키 합의와 키 전송|키 합의]] 알고리즘이다.[@ietf-rfc-2631-1999] Diffie와 Hellman은 1976년 논문에서 이 방법을 제안했다.[@diffie-new-directions-1976]
 
 ## 절차
 
@@ -44,7 +44,7 @@ SP 800-56A Rev. 3은 임시 키 쌍만 쓰는 C(2e, 0s) 방식이 그것만으�
 
 ## STS 프로토콜
 
-**STS**(Station-to-Station) 프로토콜은 Diffie-Hellman 키 설정 뒤에 인증 서명을 주고받는 프로토콜이다. Diffie, van Oorschot, Wiener는 1992년 논문에서 STS를 자세히 다뤘다. 이른 판은 1987년에 발표했고, 1989년에 이 논문이 다루는 꼴이 됐다. [[public-key-infrastructure#공개 키 인증서|인증서]]를 쓰는 STS의 절차는 아래와 같다.[@diffie-authenticated-key-exchanges-1992]
+**STS**(Station-to-Station) 프로토콜은 Diffie-Hellman [[key-establishment|키 설정]] 뒤에 인증 서명을 주고받는 프로토콜이다. Diffie, van Oorschot, Wiener는 1992년 논문에서 STS를 자세히 다뤘다. 이른 판은 1987년에 발표했고, 1989년에 이 논문이 다루는 꼴이 됐다. [[public-key-infrastructure#공개 키 인증서|인증서]]를 쓰는 STS의 절차는 아래와 같다.[@diffie-authenticated-key-exchanges-1992]
 
 1. A는 임의의 $x$를 골라 $g^x$를, 자기가 쓰는 Diffie-Hellman 매개변수 $g$, $p$와 함께 B에게 보낸다.
 2. B는 임의의 $y$로 $g^y$를 만들고 공유 키 $K = (g^x)^y$를 계산한다. B는 $g^y$와 자기 인증서, 그리고 $(g^y, g^x)$에 대한 자기 서명을 $K$로 암호화한 것을 보낸다.

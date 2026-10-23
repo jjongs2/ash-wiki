@@ -17,7 +17,7 @@ verified: 2026-10-03
 
 ## DES
 
-**DES**(Data Encryption Standard)는 NBS(National Bureau of Standards)가 1977년 FIPS 46으로 발표한 블록 암호다.[@nist-fips-46-1977] NBS는 1974년 IBM이 제출한 알고리즘을 DES의 바탕으로 골랐다.[@nist-cyber-history-cryptography-2022] FIPS 46-3(1999)은 DES를 64비트 블록을 64비트 키로 암호화하는 블록 암호로 정하고, 그 키 가운데 56비트만 알고리즘이 쓰며 나머지 8비트는 오류 검출용 [[parity-bit|패리티]]로 두게 했다. NIST는 2005년 FIPS 46-3을 철회했다.[@nist-fips-46-3-1999]
+**DES**(Data Encryption Standard)는 NBS(National Bureau of Standards)가 1977년 FIPS 46으로 발표한 블록 암호다.[@nist-fips-46-1977] NBS는 1974년 IBM이 제출한 알고리즘을 DES의 바탕으로 골랐다.[@nist-cyber-history-cryptography-2022] FIPS 46-3(1999)은 DES를 64비트 블록을 64비트 키로 암호화하는 블록 암호로 정하고, 그 키 가운데 56비트만 알고리즘이 쓰며 나머지 8비트는 오류 검출용 [[parity-bit|패리티]]로 두게 한다. NIST는 2005년 FIPS 46-3을 철회했다.[@nist-fips-46-3-1999]
 
 NIST SP 800-67 Rev. 2는 **TDEA**(Triple Data Encryption Algorithm)를 DES의 연산을 암호화, 복호화, 암호화 순서로 세 번 거치고 64비트 블록에 DES 키 세 개의 묶음을 쓰는 블록 암호로 정한다. 세 키가 모두 다른 것을 **three-key TDEA**라 하고, 첫째와 셋째 키가 같은 two-key TDEA는 legacy use로만 허용하며, 세 키가 모두 같은 묶음은 금지한다.[@nist-sp-800-67-r2-2017] NIST는 TDEA를 Triple DES라고도 부른다. NIST SP 800-131A Rev. 2는 three-key TDEA 암호화를 2023년 12월 31일까지 deprecated로 두고, 그 뒤에는 다른 NIST 지침이 따로 허용하지 않으면 금지한다. 이미 암호화된 데이터의 복호화는 legacy use로 허용하고, two-key TDEA 암호화는 이미 금지한다.[@nist-sp-800-131a-r2-2019] NIST는 2024년 1월 1일 SP 800-67 Rev. 2를 철회했고, 이로써 TDEA는 승인된 블록 암호가 아니게 되어 이미 보호된 데이터를 복호화하는 등의 용도로만 쓸 수 있다.[@nist-sp-800-67-r2-2017]
 

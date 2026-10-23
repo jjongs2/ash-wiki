@@ -46,7 +46,7 @@ Targets 메타데이터에는 이미지마다 release counter와 hardware identi
 
 ![[diagrams/uptane-repositories-primary-secondary.svg]]
 
-ECU에는 만들 때나 차량에 설치할 때 충분히 최근의 Uptane 메타데이터, 현재 시간이나 충분히 최근 시간의 안전한 증명, ECU마다 고유한 ECU 키를 넣어 둔다. ECU 키는 ECU version report에 서명하고 이미지를 복호화하는 데 쓴다.[@uptane-standard-2-1-0-2023]
+ECU에는 만들 때나 차량에 설치할 때 충분히 최근의 Uptane 메타데이터, 현재 시간이나 충분히 최근 시간의 안전한 증명, ECU 키를 넣어 둔다. ECU 키는 ECU version report에 서명하고 이미지를 복호화하는 데 쓰는 키를 한데 부르는 이름으로, 실제로는 쓰임새가 다른 여러 키일 수 있다. 이 키는 대칭 키도 비대칭 키도 될 수 있고, 비대칭 키를 쓰면 암호화와 서명에 쓰는 키를 따로 두기를 권한다. ECU를 식별하는 키는 replay 공격을 막으려고 ECU마다 고유해야 하지만, 이미지를 복호화하는 비밀 키는 고유하지 않아도 된다.[@uptane-standard-2-1-0-2023]
 
 이 표준은 새 이미지를 담아 둘 저장 공간이 모자란 secondary ECU에는, 그 secondary ECU가 메타데이터를 검증하고 요청할 때까지 primary ECU가 기다렸다가 이미지를 스트리밍하기를 권한다. 이런 ECU는 새 이미지를 받기 전에 이전에 동작하던 이미지를 primary ECU 같은 다른 곳에 백업해 두기를 권한다.[@uptane-standard-2-1-0-2023]
 
