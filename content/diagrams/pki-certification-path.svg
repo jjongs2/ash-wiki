@@ -67,7 +67,9 @@
     <path d="M361 102 H404 V172 H450" />
   </g>
   <g font-size="12" fill="var(--text, #727981)">
-    <text x="190" y="142">서명</text>
-    <text x="410" y="142">서명</text>
+    <text x="190" y="134">CA가</text>
+    <text x="190" y="150">서명</text>
+    <text x="410" y="134">CA가</text>
+    <text x="410" y="150">서명</text>
   </g>
 </svg>

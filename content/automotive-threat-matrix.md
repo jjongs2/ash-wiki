@@ -26,8 +26,8 @@ OASIS 표준 STIX(Structured Threat Information Expression) 2.1은 사이버 위
 
 ## 개정 이력
 
-- 2024년: v1.00. 1월 23일 처음 나왔다.[@auto-isac-atm-2025]
-- 2024년: 3월 27일 Auto-ISAC이 ATM을 발표했다. Auto-ISAC은 ATM을 MITRE ATT&CK 프레임워크를 본떠, 차량에 특화한 공격 전술과 기법의 표준 분류 체계로 내놓았다.[@auto-isac-atm-launch-2024]
+- 2024년: v1.00. 1월 23일에 나온 첫 릴리스다.[@auto-isac-atm-2025]
+- 2024년: 3월 27일 Auto-ISAC이 보도자료를 내어 ATM을 소개했다. ATM은 MITRE ATT&CK 프레임워크를 본떠, 차량에 특화한 공격 전술과 기법의 표준 분류 체계로 나왔다.[@auto-isac-atm-launch-2024]
 - 2024년: v3.00. 8월 30일에 나왔고, 승인된 기여를 반영한 첫 큰 내용 변경이었다.
 - 2025년: v4.02이자 현행 릴리스. 12월 4일에 나왔다.[@auto-isac-atm-2025]
 

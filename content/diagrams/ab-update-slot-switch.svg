@@ -46,7 +46,6 @@
   <g font-size="12" fill="var(--text, #727981)">
     <text x="438" y="98">재부팅</text>
     <text x="438" y="197">점검 통과</text>
-    <text x="234" y="160" text-anchor="middle">점검 실패나</text>
-    <text x="234" y="176" text-anchor="middle">표시 전 재부팅</text>
+    <text x="234" y="160" text-anchor="middle">점검 실패</text>
   </g>
 </svg>

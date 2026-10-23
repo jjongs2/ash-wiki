@@ -46,13 +46,13 @@ Android는 A/B 업데이트 패키지를 만들 때 deflate 스트림을 위한 
 
 ## 블록 해시 색인으로 받는 양 줄이기
 
-패키지에 이미지의 블록이나 청크마다 해시를 담은 색인을 넣어 두면, 기기는 이미 가진 데이터에서 해시가 같은 블록을 찾아 쓰고 나머지만 HTTP Range 요청으로 받을 수 있다.[@rauc-advanced-topics-2026][@swupdate-delta-update-2026]
+패키지에 이미지의 블록이나 청크마다 해시를 담은 색인을 넣어 두면, 기기는 이미 가진 데이터에서 해시가 같은 블록을 찾아 쓰고 나머지만 HTTP Range 요청으로 받을 수 있다. 머리말의 차분 업데이트와 달리 이 방식은 패치를 보내지 않으며, 새 이미지 전체는 패키지나 서버에 그대로 두고 기기가 받는 양만 줄인다.[@rauc-advanced-topics-2026][@swupdate-delta-update-2026]
 
 RAUC는 이 방식을, 특정 이전 판에서 새 판으로 가는 데 필요한 데이터를 담는 delta update와 구별해 **adaptive update**라 부른다. adaptive update는 특정 이전 판 위에만 설치되지 않고, 이전 판이나 중단된 설치 시도에서 기기에 남은 데이터를 골라 쓴다. block-hash-index 방식은 4 KiB 블록마다 SHA-256 해시를 두어, 색인의 크기는 원래 이미지의 0.8%다.[@rauc-advanced-topics-2026]
 
 ![[diagrams/block-hash-index-download.svg]]
 
-SWUpdate는 알려진 기준에서 하는 업데이트를 delta update라 부르고, 이를 zchunk 형식으로 구현한다. zchunk 파일의 헤더는 모든 청크의 메타데이터와 해시를 담아, 헤더를 보면 받아야 할 청크와 다시 쓸 수 있는 청크를 알 수 있다. SWUpdate는 이 헤더를 서명된 업데이트 패키지에 넣으므로, 패키지 밖의 주소에서 받는 청크도 이미 검증한 헤더의 해시로 확인할 수 있다.[@swupdate-delta-update-2026]
+SWUpdate는 기기에서 돌고 있는 소프트웨어처럼 이미 아는 판에서 출발해 그 차이만 받는 업데이트를 delta update라 부르고, 이를 zchunk 형식으로 구현한다. zchunk 파일의 헤더는 모든 청크의 메타데이터와 해시를 담아, 헤더를 보면 받아야 할 청크와 다시 쓸 수 있는 청크를 알 수 있다. SWUpdate는 이 헤더를 서명된 업데이트 패키지에 넣으므로, 패키지 밖의 주소에서 받는 청크도 이미 검증한 헤더의 해시로 확인할 수 있다.[@swupdate-delta-update-2026]
 
 ## 알고리즘 예: bsdiff
 

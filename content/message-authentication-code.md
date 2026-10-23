@@ -35,7 +35,7 @@ NIST SP 800-175B Rev. 1은 HMAC을 FIPS 180-4나 FIPS 202에 정한 승인된 �
 
 NIST SP 800-38D는 [[block-cipher-mode-of-operation#인증 암호 모드|GCM]]의 입력을 암호화하지 않을 데이터로 한정한 특수형인 **GMAC**(Galois Message Authentication Code)을 정한다.[@ietf-rfc-4543-2006] GMAC은 입력 데이터를 인증하기만 하는 모드다.[@nist-sp-800-38d-2007]
 
-NIST SP 800-185는 [[cryptographic-hash-function#SHA 계열|Keccak]]에 기반한 가변 길이 MAC 알고리즘인 **KMAC**(Keccak Message Authentication Code)을 정하며, KMAC은 PRF(Pseudorandom Function)로도 쓸 수 있다.[@nist-sp-800-185-2016]
+NIST SP 800-185는 [[cryptographic-hash-function#SHA 계열|Keccak]]에 기반한 MAC 알고리즘인 **KMAC**(Keccak Message Authentication Code)을 정한다. KMAC은 출력 길이를 호출할 때 매개변수로 받아 출력 길이가 가변이며, PRF(Pseudorandom Function)로도 쓸 수 있다.[@nist-sp-800-185-2016]
 
 ## 해시만 쓸 때와의 차이
 

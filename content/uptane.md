@@ -41,7 +41,7 @@ Targets 메타데이터에는 이미지마다 release counter와 hardware identi
 
 이 표준은 두 ECU의 일을 아래처럼 나눈다.[@uptane-standard-2-1-0-2023]
 
-- **Primary ECU**는 자신과 secondary ECU의 몫으로 최신 메타데이터와 이미지를 받아 검증하고, secondary ECU에 시간, 메타데이터, 이미지를 보낸다.
+- **Primary ECU**는 자신과 secondary ECU의 몫으로 최신 메타데이터와 이미지를 받아 검증하고, secondary ECU에 메타데이터와 이미지를 보낸다.
 - **Secondary ECU**는 primary ECU에게서 받은 메타데이터와 이미지를 설치하기 전에 스스로 검증한다.[@uptane-standard-2-1-0-2023]
 
 ![[diagrams/uptane-repositories-primary-secondary.svg]]
@@ -86,7 +86,7 @@ Uptane Deployment Best Practices 2.1.0에 따르면 ECU의 시간이 너무 앞�
 
 ### 운영
 
-정비소가 ECU를 바꾸면 같은 모델이어도 ECU 키가 달라 차량 버전 매니페스트가 바뀌고, director repository는 이를 공격으로 볼 수 있다. 이 지침은 인가된 정비사가 바뀐 구성을 OEM에 알려 인벤토리 데이터베이스에 기록하는 대역 외 프로세스를 두기를 권하되, 이를 위한 프로토콜은 정하지 않는다. 구현자는 저장소와 primary ECU 사이의 연결을 [[transport-layer-security|TLS]]로 암호화할 수 있고, primary ECU와 secondary ECU 사이에서 Uptane 메타데이터와 이미지를 UDS로 나를 수 있다. Uptane은 이 구간들의 네트워크 트래픽 인증을 요구하지 않는다. 묶음에 든 이미지를 모두 설치하거나 하나도 설치하지 않는 원자적 설치는 Uptane의 범위 밖이다. 이 지침은 원자적 설치의 방법으로 실패를 차량 버전 매니페스트로 보고하고 다시 시도하지 않는 것, 정한 횟수까지 다시 시도하는 것, 모든 ECU가 이전 이미지로 되돌릴 수 있으면 [[gateway|게이트웨이]] ECU가 조정하는 two-phase commit을 든다.[@uptane-deployment-best-practices-2-1-0-2023]
+정비소가 ECU를 바꾸면 같은 모델이어도 ECU 키가 달라 차량 버전 매니페스트가 바뀌고, director repository는 이를 공격으로 볼 수 있다. 이 지침은 인가된 정비사가 바뀐 구성을 OEM에 알려 인벤토리 데이터베이스에 기록하는 대역 외 프로세스를 두기를 권하되, 이를 위한 프로토콜은 정하지 않는다. 구현자는 저장소와 primary ECU 사이의 연결을 [[transport-layer-security|TLS]]로 암호화할 수 있고, primary ECU와 secondary ECU 사이에서 Uptane 메타데이터와 이미지를 UDS로 나를 수 있다. Uptane은 이 구간들의 네트워크 트래픽 인증을 요구하지 않는다. 묶음에 든 이미지를 모두 설치하거나 하나도 설치하지 않는 원자적 설치는 Uptane의 범위 밖이다. 이 지침은 원자적 설치가 필요한 OEM을 위해 묶음 설치의 실패를 다루는 방법으로, 실패를 차량 버전 매니페스트로 보고하고 다시 시도하지 않는 것, 정한 횟수까지 다시 시도하는 것, 모든 ECU가 이전 이미지로 되돌릴 수 있으면 [[gateway|게이트웨이]] ECU가 조정하는 two-phase commit을 든다. 이 가운데 two-phase commit은 게이트웨이 ECU가 올바르게 동작하고 침해되지 않았으며 영구히 고장 나지 않는 한 원자적 설치를 이룬다.[@uptane-deployment-best-practices-2-1-0-2023]
 
 ## 개정 이력
 

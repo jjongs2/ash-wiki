@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-22
 ---
 
-**키 유도 함수**(KDF, Key Derivation Function)는 입력으로 받은 키 재료에서 암호 키를 유도하는 함수다.[@nist-sp-800-108-r1-upd1-2024][@ietf-rfc-5869-2010]
+**키 유도 함수**(KDF, Key Derivation Function)는 비밀 키나 초기 키 재료를 입력으로 받아 암호 키로 쓸 키 재료를 유도하는 함수다.[@nist-sp-800-108-r1-upd1-2024][@ietf-rfc-5869-2010]
 
 ## 의사 난수 함수 기반 KDF
 

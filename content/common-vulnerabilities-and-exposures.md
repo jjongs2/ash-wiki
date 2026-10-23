@@ -27,8 +27,8 @@ CVE 프로그램은 CVE Record의 생명주기를 여섯 단계로 둔다.[@cve-
 
 1. 발견(Discover): 개인이나 조직이 새 취약점을 찾는다.
 2. 보고(Report): 발견자가 CVE 프로그램의 파트너에게 취약점을 알린다.
-3. 요청(Request): 파트너가 CVE ID를 매긴다.
-4. 예약(Reserve): ID가 예약된다. 이것이 CVE Record의 첫 상태다. 이 상태에서 이해관계자는 이 ID로 취약점의 초기 조정과 관리를 하고, CNA는 아직 취약점을 공개할 준비가 되지 않았다.
+3. 요청(Request): 보고자가 CVE ID를 요청하면 파트너가 CVE ID를 매긴다.
+4. 예약(Reserve): 매긴 ID가 보고된 취약점에 예약된다. 이것이 CVE Record의 첫 상태다. 이 상태에서 이해관계자는 이 ID로 취약점의 초기 조정과 관리를 하고, CNA는 아직 취약점을 공개할 준비가 되지 않았다.
 5. 제출(Submit): 파트너가 영향받는 제품, 영향받거나 고쳐진 제품 버전, 취약점의 유형이나 근본 원인이나 영향, 하나 이상의 공개 참고 자료 같은 세부를 낸다.
 6. 게시(Publish): 최소 필수 데이터 요소가 갖춰지면 책임 CNA가 CVE Record를 CVE List에 게시하고, 누구나 이를 보고 내려받을 수 있다.[@cve-process-2026]
 
@@ -42,7 +42,7 @@ CVE 프로그램은 CVE Record의 생명주기를 여섯 단계로 둔다.[@cve-
 
 CVE Board는 CVE 프로그램의 운영을 감독하고 전략적 방향을 정한다. Secretariat는 CVE Board에 행정·실무 지원을 하고 프로그램의 인프라를 유지하며, 2026년 10월 기준 MITRE가 맡는다.[@cve-structure-2026]
 
-CVE ID를 매기고 CVE Record를 게시하는 일은 CVE Board가 정한 계층 구조 안에서 이뤄진다. **TL-Root**(Top-Level Root)는 CVE Board에 바로 보고하고, 하나 이상의 Root와 CNA를 둘 수 있는 자기 계층을 관리한다. 계층 안에서 Root는 관리 기능을, CNA는 ID를 매기고 Record를 게시하는 운영 기능을 맡는다. 2026년 10월 기준 TL-Root는 CISA와 MITRE 둘이다.[@cve-structure-2026]
+CVE ID를 매기고 CVE Record를 게시하는 일은 CVE Board가 정한 계층 구조 안에서 이뤄진다. **TL-Root**(Top-Level Root)는 CVE Board에 바로 보고하고, 하나 이상의 Root와 CNA를 둘 수 있는 자기 계층을 관리한다. 계층 안에서 Root는 자기 아래 CNA를 관리하는 관리 기능을, CNA는 ID를 매기고 Record를 게시하는 운영 기능을 맡는다. 2026년 10월 기준 TL-Root는 CISA와 MITRE 둘이다.[@cve-structure-2026]
 
 ![[diagrams/cve-program-hierarchy.svg]]
 

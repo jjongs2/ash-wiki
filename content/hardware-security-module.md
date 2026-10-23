@@ -35,7 +35,7 @@ EVITA(E-safety Vehicle Intrusion proTected Applications)는 유럽 공동체 제
 
 ## TPM과의 차이
 
-**TPM**(Trusted Platform Module)은 컴퓨팅 플랫폼을 신뢰할 수 있게 하는 장치로, TCG가 펴내는 TPM 2.0 Library 명세가 정한다. 명세는 여러 부로 나뉘며, Part 2가 구조를, Part 3이 명령을 정한다.[@tcg-tpm-2-0-library-part-1-2026] TPM 2.0 Library 명세는 2015년에 ISO/IEC 11889:2015로도 발행됐다.[@tcg-tpm-library-specification-2026]
+**TPM**(Trusted Platform Module)은 컴퓨팅 플랫폼을 신뢰할 수 있게 하는 장치로, TCG가 펴내는 TPM 2.0 Library 명세가 정한다. 명세는 여러 부로 나뉘며, Part 2가 TPM 인터페이스의 상수, 데이터 타입, 구조체를, Part 3이 명령을 정한다.[@tcg-tpm-2-0-library-part-1-2026] TPM 2.0 Library 명세는 2015년에 ISO/IEC 11889:2015로도 발행됐다.[@tcg-tpm-library-specification-2026]
 
 TPM 2.0 Library 명세(Version 185)는 부팅 과정의 측정값을 누적하는 PCR(Platform Configuration Register)과, PCR 값에 서명 키로 서명하는 증명 명령 TPM2_Quote를 둔다.[@tcg-tpm-2-0-library-part-1-2026]
 
