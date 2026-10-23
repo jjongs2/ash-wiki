@@ -148,14 +148,38 @@ describe("global graph", () => {
     })
   })
 
-  test("여러 주제에 걸친 페이지는 펼친 주제 하나에서만 페이지 노드가 된다", () => {
-    const { nodes } = graph(
-      [
-        page("secoc", ["security/cybersecurity", "platform/autosar"]),
-        page("com", ["platform/autosar"], ["secoc"]),
-      ],
-      { kind: "global", expanded: ["tags/security/cybersecurity", "tags/platform/autosar"] },
+  test("페이지는 주 태그의 주제 노드에만 들고, 보조 태그는 쓰지 않는다", () => {
+    const pages = [
+      page("secoc", ["security/cybersecurity", "platform/autosar"], ["com"]),
+      page("com", ["platform/autosar"], ["secoc"]),
+    ]
+    const collapsed = graph(pages, { kind: "global", expanded: [] })
+    assert.deepStrictEqual(collapsed.nodes.map((node) => [node.id, node.pages]).sort(), [
+      ["tags/platform/autosar", 1],
+      ["tags/security/cybersecurity", 1],
+    ])
+    assert.deepStrictEqual(
+      collapsed.links.map((link) => link.weight),
+      [2],
     )
-    assert.deepStrictEqual(ids(nodes), ["com", "secoc"])
+    // AUTOSAR를 펼쳐도 secoc은 사이버보안 노드에 남는다.
+    const expanded = graph(pages, { kind: "global", expanded: ["tags/platform/autosar"] })
+    assert.deepStrictEqual(ids(expanded.nodes), ["com", "tags/security/cybersecurity"])
+  })
+
+  test("주 태그가 구역뿐인 페이지는 보조 태그가 있어도 global graph에 나오지 않는다", () => {
+    const pages = [
+      page("gateway", ["network", "network/can"], ["can-frame"]),
+      page("can-frame", ["network/can"], ["gateway"]),
+    ]
+    const collapsed = graph(pages, { kind: "global", expanded: [] })
+    assert.deepStrictEqual(
+      collapsed.nodes.map((node) => [node.id, node.pages]),
+      [["tags/network/can", 1]],
+    )
+    assert.deepStrictEqual(collapsed.links, [])
+    const expanded = graph(pages, { kind: "global", expanded: ["tags/network/can"] })
+    assert.deepStrictEqual(ids(expanded.nodes), ["can-frame"])
+    assert.deepStrictEqual(expanded.links, [])
   })
 })

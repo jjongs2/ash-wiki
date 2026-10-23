@@ -39,15 +39,13 @@ const isWikiPage = (slug: string) => !slug.startsWith("tags/") && !slug.startsWi
 // 페이지의 구역은 첫 태그 경로의 첫 마디다(docs/palette.md 구역 색 절).
 const regionOf = (page: GraphPage) => page.tags[0]?.split("/")[0] ?? null
 
-// 페이지가 속한 주제 노드의 id. 주제 태그(<구역>/<주제>)나 그 하위 태그마다 하나이고, 구역 태그만 단 페이지는
-// 어느 주제에도 속하지 않는다. 대문의 주제별 페이지 수(plugins/front-page)와 같은 규칙이다.
-function topicsOf(page: GraphPage): string[] {
-  const topics = new Set<string>()
-  for (const tag of page.tags) {
-    const [region, topic] = tag.split("/")
-    if (topic) topics.add(`tags/${region}/${topic}`)
-  }
-  return [...topics]
+// global graph에서 페이지가 드는 주제 노드의 id. 주 태그(첫 태그)의 주제 하나이고, 보조 태그는 쓰지 않는다.
+// 주 태그가 구역뿐이면 null이라 global graph에 나오지 않는다. 페이지를 한 번씩만 세야 펼쳤을 때 한 페이지가
+// 두 노드에 겹치지 않고, 탐색기의 위치나 구역 색과 기준이 같다(#369). 보조 태그까지 세는 대문의 주제별 페이지
+// 수(plugins/front-page)와는 그래서 다르다.
+function topicOf(page: GraphPage): string | null {
+  const [region, topic] = (page.tags[0] ?? "").split("/")
+  return topic ? `tags/${region}/${topic}` : null
 }
 
 const pageNode = (page: GraphPage): GraphNode => ({
@@ -58,8 +56,8 @@ const pageNode = (page: GraphPage): GraphNode => ({
   pages: 1,
 })
 
-// 페이지 사이의 링크를 대표 노드 사이의 선으로 모은다. 한 페이지는 여러 노드가 대표할 수 있다(여러 주제에 걸친
-// 페이지). 같은 노드 안의 링크와 대표 노드가 없는 페이지의 링크는 버린다.
+// 페이지 사이의 링크를 대표 노드 사이의 선으로 모은다. 같은 노드 안의 링크와 대표 노드가 없는 페이지의 링크는
+// 버린다.
 function collectLinks(
   pages: Map<string, GraphPage>,
   representatives: (slug: string) => string[],
@@ -108,34 +106,36 @@ function localGraph(pages: Map<string, GraphPage>, current: string, depth: numbe
   }
 }
 
-// 펼친 주제에 속한 페이지는 자기 페이지 노드가 대표하고, 나머지 페이지는 자기 주제 노드들이 대표한다. 펼친
-// 주제는 노드로 남지 않는다. 주제 노드의 크기(pages)는 펼침과 무관하게 그 주제의 페이지 수다.
+// 펼친 주제에 든 페이지는 자기 페이지 노드가 대표하고, 나머지 페이지는 자기 주제 노드가 대표한다. 펼친 주제는
+// 노드로 남지 않는다. 주제 노드의 크기(pages)는 펼침과 무관하게 그 주제에 든 페이지 수다.
 function globalGraph(
   pages: Map<string, GraphPage>,
   titles: Map<string, string>,
   expanded: Set<string>,
 ) {
-  const isExpanded = (page: GraphPage) => topicsOf(page).some((id) => expanded.has(id))
+  const isExpanded = (page: GraphPage) => expanded.has(topicOf(page) ?? "")
   const representatives = (slug: string) => {
     const page = pages.get(slug)!
-    return isExpanded(page) ? [slug] : topicsOf(page)
+    const topic = topicOf(page)
+    if (topic === null) return []
+    return isExpanded(page) ? [slug] : [topic]
   }
   const topics = new Map<string, GraphNode>()
   const pageNodes: GraphNode[] = []
   for (const page of pages.values()) {
+    const id = topicOf(page)
+    if (id === null) continue
     if (isExpanded(page)) pageNodes.push(pageNode(page))
-    for (const id of topicsOf(page)) {
-      const topic = topics.get(id)
-      if (topic) topic.pages++
-      else
-        topics.set(id, {
-          id,
-          kind: "topic",
-          text: titles.get(id) ?? id.slice("tags/".length),
-          region: id.split("/")[1],
-          pages: 1,
-        })
-    }
+    const topic = topics.get(id)
+    if (topic) topic.pages++
+    else
+      topics.set(id, {
+        id,
+        kind: "topic",
+        text: titles.get(id) ?? id.slice("tags/".length),
+        region: id.split("/")[1],
+        pages: 1,
+      })
   }
   const topicNodes = [...topics.values()].filter((topic) => !expanded.has(topic.id))
   return { nodes: [...topicNodes, ...pageNodes], links: collectLinks(pages, representatives) }
@@ -144,7 +144,8 @@ function globalGraph(
 /**
  * 그래프에 그릴 노드와 선을 계산한다.
  * - local: 현재 페이지에서 링크를 depth번 따라간 페이지 노드와, 그 사이의 선. 태그 노드는 없다.
- * - global: 주제 노드와, 주제 사이의 선. 주제 노드의 크기는 페이지 수, 선의 무게는 두 주제의 페이지 사이 링크 수다.
+ * - global: 주제 노드와, 주제 사이의 선. 페이지는 주 태그의 주제 노드에 든다. 주제 노드의 크기는 페이지 수,
+ *   선의 무게는 두 주제의 페이지 사이 링크 수다.
  * 태그 목록 페이지와 주간 소식은 어느 그래프에도 오르지 않는다.
  */
 export function graph(
