@@ -1,4 +1,4 @@
-import { viewBoxOf } from "../check-content/source-checks"
+import { svgRootTag, viewBoxOf } from "../check-content/source-checks"
 import { isNew } from "./diff"
 import type { Candidate, Context } from "./items"
 import { lineAt, lineStarts } from "./text"
@@ -13,17 +13,16 @@ import { lineAt, lineStarts } from "./text"
 // 스크롤바가 본문 폭을 줄이지 않는다). 폭 531인 도해는 줄지 않았고 540인 도해는 줄었다.
 export const frameWidth = 532.9
 
-const svgRoot = /<(?:[\w-]+:)?svg[\s>][^>]*>/i
-
 function rootWidth(source: string): { width: number; offset: number } | null {
   const text = source.replace(/<!--[\s\S]*?-->/g, (comment) => comment.replace(/[^\n]/g, " "))
-  const root = text.match(svgRoot)
+  const root = text.match(svgRootTag)
   const viewBox = root && viewBoxOf(root[0])
   return viewBox ? { width: viewBox[2], offset: root.index! } : null
 }
 
 // 도해 폭: 브랜치가 더하거나 고친 도해 가운데 viewBox 폭이 문턱보다 넓은 것. 고친 기존 도해는 폭을
-// 바꿨는지 함께 보인다. 폭을 바꾸지 않은 고침은 폭을 줄이지 않아도 된다(위키 규약의 도해 절).
+// 바꿨는지 함께 보인다. 옛 폭은 지운 줄의 루트 태그에서 읽으므로, 루트 태그가 한 줄에 있다고 본다
+// (main의 도해는 모두 그렇다).
 export const diagramWidthItem = ({ diagrams }: Context): Candidate[] =>
   diagrams.flatMap(({ svg, change }) => {
     const root = rootWidth(svg.source)

@@ -842,6 +842,9 @@ function shapeViolations(text: string): { offset: number; message: string }[] {
   return found
 }
 
+// 루트 <svg>의 여는 태그.
+export const svgRootTag = /<(?:[\w-]+:)?svg[\s>][^>]*>/i
+
 export function viewBoxOf(rootTag: string): ViewBox | null {
   const viewBox = rootTag
     .match(/\sviewBox\s*=\s*(["'])(.*?)\1/i)?.[2]
@@ -1096,7 +1099,7 @@ export const svg: SourceCheck = async (tree, conventions) => {
     }
     // fill을 적지 않은 도형과 글자는 검정으로 그려져 다크 테마에서 보이지 않는다. 루트가 fill을
     // 정하면 모든 요소가 루트까지 거슬러 올라가 팔레트 색이나 none을 물려받는다.
-    const root = text.match(/<(?:[\w-]+:)?svg[\s>][^>]*>/i)
+    const root = text.match(svgRootTag)
     if (root) {
       const atRoot = (message: string) =>
         violations.push({ file, line: lineAt(root.index!), message })
