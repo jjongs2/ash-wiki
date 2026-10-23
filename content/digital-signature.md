@@ -11,7 +11,7 @@ verified: 2026-10-03
 
 ## 서명 생성과 검증
 
-RSA(Rivest-Shamir-Adleman), ECDSA(Elliptic Curve Digital Signature Algorithm), HashEdDSA는 서명을 만들기 전에 승인된 [[cryptographic-hash-function|해시 함수]]로 서명할 데이터의 메시지 다이제스트를 구하고, 그 다이제스트로 서명을 만든다. 검증자는 받은 데이터에서 같은 해시 함수로 다이제스트를 다시 구하고, 그 다이제스트와 서명자의 공개 키로 서명을 검증한다. EdDSA(Edwards-curve Digital Signature Algorithm)는 메시지를 해시하지 않고 그대로 서명 생성에 넣는다. 디지털 서명으로는 서명한 뒤 데이터가 바뀌었는지 알아낼 수 있다.[@nist-fips-186-5-2023] NIST SP 800-175B Rev. 1에 따르면 데이터가 전송이나 저장 중에 바뀌면, 검증 때 다시 구한 해시 값이 서명할 때의 해시 값과 달라진다.[@nist-sp-800-175b-r1-2020]
+RSA(Rivest-Shamir-Adleman), ECDSA(Elliptic Curve Digital Signature Algorithm), HashEdDSA는 서명을 만들기 전에 승인된 [[cryptographic-hash-function|해시 함수]]로 서명할 데이터의 메시지 다이제스트를 구하고, 그 다이제스트로 서명을 만든다. 검증자는 받은 데이터에서 같은 해시 함수로 다이제스트를 다시 구하고, 그 다이제스트와 서명자의 공개 키로 서명을 검증한다. EdDSA(Edwards-Curve Digital Signature Algorithm)는 메시지를 해시하지 않고 그대로 서명 생성에 넣는다. 디지털 서명으로는 서명한 뒤 데이터가 바뀌었는지 알아낼 수 있다.[@nist-fips-186-5-2023] NIST SP 800-175B Rev. 1에 따르면 데이터가 전송이나 저장 중에 바뀌면, 검증 때 다시 구한 해시 값이 서명할 때의 해시 값과 달라진다.[@nist-sp-800-175b-r1-2020]
 
 ![[diagrams/digital-signature-generation-verification.svg]]
 

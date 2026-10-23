@@ -47,7 +47,7 @@ TLS 1.3의 기본 키 교환 방식은 비대칭 키 교환, PSK, PSK와 비대�
 
 ## 인증
 
-TLS 1.3은 서버를 늘 인증하고, 클라이언트는 서버가 CertificateRequest를 보냈을 때만 인증서로 인증한다. 인증은 RSA, ECDSA(Elliptic Curve Digital Signature Algorithm), EdDSA(Edwards-curve Digital Signature Algorithm) 같은 비대칭 서명이나 대칭 PSK로 한다.[@ietf-rfc-9846-2026]
+TLS 1.3은 서버를 늘 인증하고, 클라이언트는 서버가 CertificateRequest를 보냈을 때만 인증서로 인증한다. 인증은 RSA, ECDSA(Elliptic Curve Digital Signature Algorithm), EdDSA(Edwards-Curve Digital Signature Algorithm) 같은 비대칭 서명이나 대칭 PSK로 한다.[@ietf-rfc-9846-2026]
 
 ## Cipher suite
 
