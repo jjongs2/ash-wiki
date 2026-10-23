@@ -35,7 +35,7 @@ JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"
 
 ## npm 플러그인 패치
 
-고칠 것이 npm 플러그인 코드 안에 있을 때(컴포넌트에 박힌 문구나 값, 클라이언트 스크립트의 결함)는 `patches/`의 패치를, 플러그인이 낸 결과에 단계를 더할 때(거르기, 바꾸기, 덧붙이기)는 로컬 플러그인(`plugins/`)을 씁니다. 로컬 플러그인이 컴포넌트를 감쌀 수 없는 까닭은 [ADR 0021](adr/0021-ui-locale-and-csl-locale.md)에 있습니다. `npm ci`의 `postinstall`이 patch-package로 패치를 입힙니다. 고친 플러그인은 `ls patches/`로 보고, 고친 이유는 패치가 더한 `// ash-wiki:` 주석에 있습니다.
+고칠 것이 npm 플러그인 코드 안에 있을 때(컴포넌트에 박힌 문구나 값, 클라이언트 스크립트의 결함)는 `patches/`의 패치를, 플러그인이 낸 결과에 단계를 더할 때(거르기, 바꾸기, 덧붙이기)는 로컬 플러그인(`plugins/`)을 씁니다. 로컬 플러그인으로 컴포넌트를 감싸지 않는 까닭은 [ADR 0021](adr/0021-ui-locale-and-csl-locale.md)에 있습니다. 플러그인의 동작을 패치로 감당하지 못할 만큼 바꿀 때는 로컬 플러그인으로 fork합니다([그래프](#그래프)). `npm ci`의 `postinstall`이 patch-package로 패치를 입힙니다. 고친 플러그인은 `ls patches/`로 보고, 고친 이유는 패치가 더한 `// ash-wiki:` 주석에 있습니다.
 
 - 패치는 `node_modules`의 파일을 고친 뒤 `npx patch-package <패키지>`로 만듭니다.
 - 플러그인을 올려 패치가 맞지 않으면 `npm ci`가 실패합니다. 새 버전에서 같은 자리를 다시 고쳐 패치를 만듭니다. 업스트림이 같은 자리를 고쳤으면 그 패치를 지웁니다.
@@ -85,6 +85,32 @@ JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"
 - UI 이름은 [위키 규약의 용어](wiki-conventions.md#용어) 순서로 고릅니다. 검색, 탐색기, 그래프 뷰, 목차, 백링크 같은 이름은 기술 용어가 아니라 화면의 안내 말이라, 한국어 화면에서 원어가 자연스럽지 않아 한국어로 씁니다. 원어로 두는 것은 고유 이름(Æ wiki, Quartz, GitHub)과 푸터의 출처 표시 줄(`Created with Quartz`)입니다. 출처 표시 줄은 한국어 사이트에서도 원어로 두는 일이 흔하고, 한국어 문구(`제작:`)를 앞에 붙이면 Quartz가 사이트를 만든 주체로 읽힙니다.
 - npm 플러그인은 저마다 번역 사본을 품고 있어, 엔진의 번역 파일을 고쳐도 플러그인 문구는 바뀌지 않습니다. 플러그인 문구는 [npm 플러그인 패치](#npm-플러그인-패치)로 고칩니다.
 - 엔진의 번역(`quartz/i18n/locales/ko-KR.ts`)은 엔진 파일이라 패치 없이 직접 고치고, 이유를 주석에 적습니다([고친 파일](#고친-파일)).
+
+## 그래프
+
+그래프는 그래프 플러그인을 fork한 로컬 플러그인(`plugins/graph`)이 그립니다. 업스트림에는 노드 색을 묶는 기능도, 그래프에서만 페이지를 빼는 기능도 없습니다.
+
+local graph는 태그 노드 없이 링크로 이은 페이지를 그리고, 칸을 넘으면 다 보이게 줄입니다. global graph는 주제 노드를 구역끼리 모아 구역 영역과 구역 이름 위에 그립니다. 노드는 구역 색으로 칠합니다([팔레트](palette.md#구역-색)). 주간 소식(`news/`)은 그래프에 오르지 않습니다. 노드와 선을 고르는 규칙은 `plugins/graph/model.ts`에, 노드 크기와 펼치기 같은 그리기는 `plugins/graph/script.js`에 있습니다.
+
+| 항목       | 값                                                      |
+| ---------- | ------------------------------------------------------- |
+| 저장소     | https://github.com/quartz-community/graph               |
+| 버전       | 1.0.0 (태그 `v1.0.0`)                                   |
+| 기준선 SHA | `e647019c05ab2a3279c9cddd7bc2f18acb9858b8` (2026-09-15) |
+| 라이선스   | MIT (`plugins/graph/LICENSE`)                           |
+
+기준선의 파일은 다음처럼 옮겼습니다. 고친 이유는 각 파일의 주석에 있습니다.
+
+- `script.js`: `src/components/scripts/graph.inline.ts`를 저장소의 Prettier 꼴로 바꾼 것입니다. 업스트림 빌드처럼 esbuild로 묶어 싣습니다.
+- `style.css`: `src/components/styles/graph.scss`를 sass로 컴파일한 것입니다.
+- `index.ts`: `src/components/Graph.tsx`를 JSX 없이 preact의 `h`로 옮긴 것입니다.
+
+업스트림이 바뀌면 기준선과 새 판을 비교하고, 기준선과 fork를 비교해 고친 곳을 봅니다. 업스트림 저장소를 `graph/`에 받아 기준선을 checkout한 뒤 다음을 돌립니다.
+
+```sh
+npx prettier --stdin-filepath plugins/graph/script.js < graph/src/components/scripts/graph.inline.ts | diff - plugins/graph/script.js
+npx sass --no-source-map graph/src/components/styles/graph.scss | npx prettier --stdin-filepath plugins/graph/style.css | diff - plugins/graph/style.css
+```
 
 ## 인용
 
