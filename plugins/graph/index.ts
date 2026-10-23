@@ -76,7 +76,8 @@ const defaultOptions: GraphOptions = {
     fontSize: 0.6,
     opacityScale: 1,
     focusOnHover: true,
-    enableRadial: true,
+    // 업스트림은 노드를 링 모양으로 민다. 구역끼리 모으는 힘(script.js)과 부딪혀 끈다.
+    enableRadial: false,
   },
 }
 

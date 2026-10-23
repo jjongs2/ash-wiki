@@ -83,13 +83,27 @@ import {
     // 주제 노드의 반지름은 TOPIC_RADIUS + TOPIC_RADIUS_STEP * √(페이지 수)다. 주제 노드는 페이지 노드보다
     // TOPIC_REPEL배 세게 밀어내고, 서로 TOPIC_GAP만큼 띄운다. 주제 노드에 닿는 선은 설정의 linkDistance를
     // TOPIC_SPREAD배 한 길이에 두 노드의 반지름을 더한다. 이름은 페이지 노드 글자의 TOPIC_FONT배다.
-    var TOPIC_RADIUS = 6
-    var TOPIC_RADIUS_STEP = 3
+    var TOPIC_RADIUS = 5
+    var TOPIC_RADIUS_STEP = 2.4
     var TOPIC_REPEL = 30
     var TOPIC_GAP = 20
     var TOPIC_SPREAD = 3
-    var TOPIC_FONT = 1.6
-    var LINK_MAX_WIDTH = 6
+    var TOPIC_FONT = 1.45
+    // 선은 업스트림보다 옅고(LINK_ALPHA) 얇게 그린다. global graph의 선 굵기는 LINK_MIN_WIDTH에서
+    // LINK_MAX_WIDTH px 사이다.
+    var LINK_ALPHA = 0.6
+    var LINK_MIN_WIDTH = 0.8
+    var LINK_MAX_WIDTH = 3.2
+    // global graph는 같은 구역의 노드를 구역 자리로 끌어 모으고(REGION_PULL, 페이지 노드는 REGION_PULL_PAGE),
+    // 그 뒤에 구역 색 영역(불투명도 REGION_FILL)과 구역 이름(페이지 노드 글자의 REGION_FONT배)을 깐다.
+    // 구역 자리는 칸 가운데에서 짧은 변의 REGION_SPREAD배 떨어진 원 위에 고르게 둔다.
+    var REGION_PULL = 0.25
+    var REGION_PULL_PAGE = 0.08
+    var REGION_SPREAD = 0.33
+    var REGION_FILL = 0.09
+    var REGION_FONT = 1.7
+    // local graph를 칸에 맞추기 전에 노드가 자리 잡기를 기다리는 시간(ms)
+    var FIT_DELAY = 1500
 
     // 라벨의 TextStyle은 글자 크기·색·글꼴마다 하나만 만들어 그래프를 다시 그려도 쓴다. PixiJS는 글자 너비를
     // 전역 캐시(CanvasTextMetrics._measurementCache, 1000개 LRU)에 TextStyle의 uid로 넣어서, 그릴 때마다 새
@@ -194,6 +208,7 @@ import {
       var gray = resolveColor(styles.getPropertyValue("--gray").trim(), "#6c6c6c")
       var lightgray = resolveColor(styles.getPropertyValue("--lightgray").trim(), "#d4d4d4")
       var dark = resolveColor(styles.getPropertyValue("--dark").trim(), "#1a1a1a")
+      var darkgray = resolveColor(styles.getPropertyValue("--darkgray").trim(), "#2f363f")
       var bodyFont = styles.getPropertyValue("--bodyFont").trim() || "inherit"
 
       var app = new PIXI.Application()
@@ -245,9 +260,53 @@ import {
         simulation.force("radial", d3.forceRadial(radius).strength(0.2))
       }
 
+      // global graph의 구역 자리. 구역은 이름순으로 원 위에 고르게 둔다.
+      var regions = isGlobal
+        ? Array.from(
+            new Set(
+              nodes
+                .map(function (n) {
+                  return n.region
+                })
+                .filter(Boolean),
+            ),
+          ).sort()
+        : []
+      var regionAnchors = new Map()
+      for (var i = 0; i < regions.length; i++) {
+        var angle = -Math.PI / 2 + (2 * Math.PI * i) / regions.length
+        var spread = Math.min(width, height) * REGION_SPREAD
+        regionAnchors.set(regions[i], { x: Math.cos(angle) * spread, y: Math.sin(angle) * spread })
+      }
+      if (regions.length > 1) {
+        var regionPull = function (d) {
+          if (!regionAnchors.has(d.region)) return 0
+          return d.kind === "topic" ? REGION_PULL : REGION_PULL_PAGE
+        }
+        simulation
+          .force(
+            "regionX",
+            d3
+              .forceX(function (d) {
+                return regionAnchors.has(d.region) ? regionAnchors.get(d.region).x : 0
+              })
+              .strength(regionPull),
+          )
+          .force(
+            "regionY",
+            d3
+              .forceY(function (d) {
+                return regionAnchors.has(d.region) ? regionAnchors.get(d.region).y : 0
+              })
+              .strength(regionPull),
+          )
+      }
+
+      var regionContainer = new PIXI.Container()
       var linkContainer = new PIXI.Container()
       var nodesContainer = new PIXI.Container()
       var labelsContainer = new PIXI.Container()
+      stage.addChild(regionContainer)
       stage.addChild(linkContainer)
       stage.addChild(nodesContainer)
       stage.addChild(labelsContainer)
@@ -269,17 +328,18 @@ import {
             numLinks += graphLinks[i].weight
           }
         }
-        return 2 + Math.sqrt(numLinks)
+        return 1.5 + 0.8 * Math.sqrt(numLinks)
       }
 
-      // global graph의 선 굵기는 주제 사이 링크 수를 로그로 줄여, 링크 하나를 1px, 가장 많은 쌍을
-      // LINK_MAX_WIDTH px로 둔다. 상한을 고정하면 링크가 많은 쌍들이 같은 굵기로 묶인다.
+      // global graph의 선 굵기는 주제 사이 링크 수를 로그로 줄여, 링크 하나를 LINK_MIN_WIDTH, 가장 많은
+      // 쌍을 LINK_MAX_WIDTH로 둔다. 상한을 고정하면 링크가 많은 쌍들이 같은 굵기로 묶인다.
       var maxWeight = 1
       for (var i = 0; i < graphLinks.length; i++)
         maxWeight = Math.max(maxWeight, graphLinks[i].weight)
       function linkWidth(l) {
-        if (!isGlobal || maxWeight === 1) return 1
-        return 1 + ((LINK_MAX_WIDTH - 1) * Math.log(l.weight)) / Math.log(maxWeight)
+        if (!isGlobal || maxWeight === 1) return LINK_MIN_WIDTH
+        var share = Math.log(l.weight) / Math.log(maxWeight)
+        return LINK_MIN_WIDTH + (LINK_MAX_WIDTH - LINK_MIN_WIDTH) * share
       }
 
       var regionColors = new Map()
@@ -333,9 +393,9 @@ import {
       function renderLinks() {
         for (var i = 0; i < linkRenderData.length; i++) {
           var linkData = linkRenderData[i]
-          var alpha = 1
+          var alpha = LINK_ALPHA
           if (hoveredNodeId !== null) {
-            alpha = linkData.active ? 1 : 0.2
+            alpha = linkData.active ? 1 : 0.12
           }
           linkData.alpha = alpha
           linkData.color = linkData.active ? gray : lightgray
@@ -374,6 +434,22 @@ import {
         renderLabels()
       }
 
+      // 구역마다 영역 하나와 이름 하나. 구역 이름은 태그 목록 페이지(tags/<구역>)의 제목이다.
+      var regionAreas = []
+      for (var i = 0; i < regions.length; i++) {
+        var area = new PIXI.Graphics()
+        var regionColor = nodeColor({ region: regions[i] })
+        var regionName = new PIXI.Text({
+          text: (data.get("tags/" + regions[i]) || {}).title || regions[i],
+          style: labelStyle(fontSize * 15 * REGION_FONT, regionColor, bodyFont),
+          resolution: window.devicePixelRatio * 4,
+        })
+        regionName.scale.set(1 / scale)
+        regionContainer.addChild(area)
+        regionContainer.addChild(regionName)
+        regionAreas.push({ region: regions[i], color: regionColor, area: area, name: regionName })
+      }
+
       for (var i = 0; i < nodes.length; i++) {
         var node = nodes[i]
         var nodeId = node.id
@@ -384,7 +460,7 @@ import {
         var labelSize = fontSize * 15 * (isTopic ? TOPIC_FONT : 1)
         var label = new PIXI.Text({
           text: node.text,
-          style: labelStyle(labelSize, dark, bodyFont),
+          style: labelStyle(labelSize, isTopic ? darkgray : dark, bodyFont),
           resolution: window.devicePixelRatio * 4,
         })
         label.anchor.set(0.5, isTopic ? 0.5 + radius / labelSize + 0.6 : 1.2)
@@ -580,6 +656,31 @@ import {
         if (isGlobal && globalState.transform) {
           d3.select(app.canvas).call(zoom.transform, globalState.transform)
         }
+        // local graph가 칸을 넘으면 노드가 자리 잡은 뒤 다 보이게 줄인다. 링크가 많은 페이지(허브)에서
+        // 업스트림은 가장자리 노드를 잘라 보인다.
+        if (!isGlobal) {
+          setTimeout(function () {
+            if (stopAnimation || nodes.length === 0) return
+            var minX = Infinity
+            var minY = Infinity
+            var maxX = -Infinity
+            var maxY = -Infinity
+            for (var i = 0; i < nodes.length; i++) {
+              var r = nodeRadius(nodes[i])
+              minX = Math.min(minX, nodes[i].x - r)
+              maxX = Math.max(maxX, nodes[i].x + r)
+              minY = Math.min(minY, nodes[i].y - r)
+              maxY = Math.max(maxY, nodes[i].y + r)
+            }
+            var pad = 10
+            var k = Math.min(1, width / (maxX - minX + 2 * pad), height / (maxY - minY + 2 * pad))
+            if (k >= 1) return
+            var cx = (minX + maxX) / 2 + width / 2
+            var cy = (minY + maxY) / 2 + height / 2
+            var fit = d3.zoomIdentity.translate(width / 2 - k * cx, height / 2 - k * cy).scale(k)
+            d3.select(app.canvas).transition().duration(400).call(zoom.transform, fit)
+          }, FIT_DELAY)
+        }
       }
 
       var stopAnimation = false
@@ -596,6 +697,42 @@ import {
               n.label.position.set(x + width / 2, y + height / 2)
             }
           }
+        }
+
+        // 구역 영역은 그 구역 노드들의 무게중심에서 가장 먼 노드까지 덮는 원이다.
+        for (var a = 0; a < regionAreas.length; a++) {
+          var ra = regionAreas[a]
+          var count = 0
+          var ax = 0
+          var ay = 0
+          for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].region !== ra.region) continue
+            count++
+            ax += nodes[i].x
+            ay += nodes[i].y
+          }
+          ra.area.clear()
+          ra.name.visible = count > 0
+          if (count === 0) continue
+          ax /= count
+          ay /= count
+          var ar = 0
+          for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].region !== ra.region) continue
+            var dx = nodes[i].x - ax
+            var dy = nodes[i].y - ay
+            ar = Math.max(ar, Math.sqrt(dx * dx + dy * dy) + nodeRadius(nodes[i]))
+          }
+          ar += 18
+          ra.area.circle(ax + width / 2, ay + height / 2, ar)
+          ra.area.fill({ color: ra.color, alpha: REGION_FILL })
+          // 구역 이름은 그래프 가운데에서 이 구역 쪽 바깥, 영역 가장자리에 둔다. 위에만 두면 이웃 구역의
+          // 주제 이름과 겹친다.
+          var len = Math.sqrt(ax * ax + ay * ay) || 1
+          var ux = ax / len
+          var uy = ay / len
+          ra.name.anchor.set(0.5 - 0.5 * ux, 0.5 - 0.5 * uy)
+          ra.name.position.set(ax + width / 2 + ux * (ar + 4), ay + height / 2 + uy * (ar + 4))
         }
 
         for (var i = 0; i < linkRenderData.length; i++) {
