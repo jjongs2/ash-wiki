@@ -9,14 +9,15 @@ export const meta = {
 
 const { capture, slugs } = args
 
-// 건수의 키는 반환 꼴의 칸 이름이다. 칸은 reader.md에만 두므로 schema에 정하지 않는다
+// counts의 키는 반환 꼴의 칸 이름이다. 칸은 reader.md에만 두므로 schema에 정하지 않는다.
+// schema의 속성 이름은 API가 영문, 숫자, `_.-`만 받는다
 const RESULT = {
   type: "object",
   properties: {
     page: { type: "string" },
-    건수: { type: "object", additionalProperties: { type: "integer" } },
+    counts: { type: "object", additionalProperties: { type: "integer" } },
   },
-  required: ["page", "건수"],
+  required: ["page", "counts"],
 }
 
 phase("읽기")
