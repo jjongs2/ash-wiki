@@ -17,7 +17,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
   },
-  // ash-wiki: tools/(콘텐츠 검사기, bib 합치기), plugins/(로컬 플러그인), 스킬 폴더의 스크립트도 타입 검사한다
+  // ash-wiki: tools/(콘텐츠 검사기, bib 합치기), plugins/(로컬 플러그인), 스킬 폴더의 .ts 스크립트도 타입 검사한다(.js는 Workflow 도구의 스크립트다)
   "include": [
     "quartz/**/*.ts",
     "quartz/**/*.tsx",

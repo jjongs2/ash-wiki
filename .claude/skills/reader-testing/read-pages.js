@@ -1,7 +1,6 @@
 // Reader Testing 3단계의 독자(SKILL.md). Workflow 도구가 scriptPath로 부른다.
-// args: { capture: "<캡처 폴더>", slugs: ["<슬러그>", …] }
-// 지시와 반환 꼴은 캡처 폴더의 지시.md(reader.md)에 있다. 독자는 반환을 returns/<슬러그>.json에 쓰고
-// 여기에는 건수만 돌려주므로, 끝난 뒤 메인 문맥에 들어오는 것은 페이지마다 한 줄이다.
+// 지시와 반환 꼴은 캡처 폴더의 지시.md(reader.md)에 있다. 반환을 파일로 받는 것은, 워크플로가
+// 돌려주는 값이 끝날 때 한꺼번에 메인 문맥에 들어오기 때문이다.
 export const meta = {
   name: "reader-testing-read",
   description: "Reader Testing 3단계: 고른 페이지마다 독자 하나를 띄운다",
