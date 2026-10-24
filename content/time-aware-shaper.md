@@ -44,7 +44,7 @@ TI CPSW의 EST(Enhancements for Scheduled Traffic) 하드웨어는 게이트가 
 
 ![[diagrams/guard-band-with-preemption.svg]]
 
-IEEE 802.1Q-2022는 게이트 제어 목록의 게이트 동작으로 SetGateStates, Set-And-Hold-MAC, Set-And-Release-MAC 셋을 둔다. SetGateStates는 큐마다 게이트를 열림이나 닫힘으로 정하고, TimeInterval이 지나면 다음 동작으로 넘어간다. Set-And-Hold-MAC은 여기에 더해, 그 동작이 시작하는 때까지 포트의 MAC이 preemptable 프레임 전송을 멈추게 한다. Set-And-Release-MAC은 그 동작이 시작하는 때부터 MAC이 preemptable 프레임 전송을 다시 할 수 있게 하며, 그때 express 프레임을 보내고 있으면 그 전송이 끝난 뒤에 다시 한다. 프레임 선점을 지원하지 않거나 켜지 않은 포트에서 두 동작은 SetGateStates와 같다.[@ieee-802-1q-2022]
+IEEE 802.1Q-2022는 게이트 제어 목록의 게이트 동작으로 SetGateStates, Set-And-Hold-MAC, Set-And-Release-MAC 셋을 둔다. SetGateStates는 큐마다 게이트를 열림이나 닫힘으로 정하고, TimeInterval이 지나면 다음 동작으로 넘어간다. Set-And-Hold-MAC은 여기에 더해, 그 동작이 시작하는 때까지 포트의 MAC이 [[frame-preemption#Express와 preemptable|preemptable]] 프레임 전송을 멈추게 한다. Set-And-Release-MAC은 그 동작이 시작하는 때부터 MAC이 preemptable 프레임 전송을 다시 할 수 있게 하며, 그때 express 프레임을 보내고 있으면 그 전송이 끝난 뒤에 다시 한다. 프레임 선점을 지원하지 않거나 켜지 않은 포트에서 두 동작은 SetGateStates와 같다.[@ieee-802-1q-2022]
 
 이 표준의 Annex S(참고)는 scheduled traffic과 프레임 선점을 따로 또는 함께 써서, 시간이 중요한 트래픽을 타이밍 요구가 덜 엄격한 트래픽의 간섭에서 보호하는 네 가지 조합을 제시한다. 이 Annex가 제시하는 조합 가운데 preemptable 트래픽의 게이트를 늘 열어 두고 hold와 release를 쓰지 않는 조합에서는, preemptable 프레임 전송이 express 게이트가 열린 뒤에도 123옥텟 시간까지 이어질 수 있어 express 트래픽의 지연이 늘어난다. hold와 release를 함께 쓰는 조합에서는 express 창이 열리기 124옥텟 시간 전에 hold를 요청해, preemptable 프레임 전송이 창이 열리기 전에 끝나게 한다. 이렇게 하면 비교적 작은 명시적 guard band로 express 창을 preemptable 트래픽의 간섭에서 완전히 보호하고, preemptable 트래픽이 쓸 수 있는 대역폭은 덜 줄어든다.[@ieee-802-1q-2022]
 

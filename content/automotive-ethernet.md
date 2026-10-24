@@ -7,7 +7,7 @@ verified: 2026-09-29
 
 **차량용 이더넷**(Automotive Ethernet)은 차량 안에서 쓰는 [[ethernet|이더넷]]이다. ISO 21111-1:2020은 차량 내 이더넷(in-vehicle Ethernet)을 차량 안 구현에 맞춘 이더넷 네트워크 시스템으로 정의한다.[@iso-21111-1-obp-2020] "automotive Ethernet"이라는 이름은 [[ieee-802-3|IEEE 802.3]] 작업 그룹과 OPEN Alliance가 쓴다.[@ieee-802-3ch-objectives-2017][@open-alliance-about-2026]
 
-ISO 21111 시리즈는 차량 내 이더넷의 요구사항과 시험 계획을 담는다. 이더넷 요구사항은 대체로 ISO/IEC/IEEE 8802-3에 있고, ISO 21111은 [[ethernet-sleep-wake-up|웨이크업]]과 입출력 기능처럼 차량 응용에 필요한 보충 명세를 더한다.[@iso-21111-1-obp-2020]
+ISO 21111 시리즈는 차량 내 이더넷의 요구사항과 시험 계획을 담는다. 이더넷 요구사항은 대체로 [[ieee-802-3#개정 이력|ISO/IEC/IEEE 8802-3]]에 있고, ISO 21111은 [[ethernet-sleep-wake-up|웨이크업]]과 입출력 기능처럼 차량 응용에 필요한 보충 명세를 더한다.[@iso-21111-1-obp-2020]
 
 OPEN Alliance는 2011년에 설립되었다.[@open-alliance-about-2026][@ti-sszt730-2018] 설립 무렵 OPEN Alliance의 핵심 목표는 100 Mbit/s BroadR-Reach 물리 계층 명세를 개방된 업계 표준이자 사실상 표준으로 세우는 것이었다.[@open-alliance-about-2014]
 
@@ -27,7 +27,7 @@ IEEE SA에 따르면 차량 배선의 무게와 공간이 큰 과제여서 차�
 | 25GBASE-T1                                                              | 25 Gbit/s                 | 평형 도체 한 쌍[@ieee-802-3cy-2023]                           |
 | [[optical-automotive-ethernet#BASE-AU\|2.5GBASE-AU부터 50GBASE-AU까지]] | 2.5, 5, 10, 25, 50 Gbit/s | 다중 모드 유리 광섬유[@ieee-802-3cz-2023]                     |
 
-10BASE-T1S는 여러 노드가 한 쌍을 나눠 쓰는 멀티드롭 모드도 선택 사항으로 둔다.[@ieee-802-3-2022]
+10BASE-T1S는 여러 노드가 한 쌍을 나눠 쓰는 [[10base-t1s#동작 모드|멀티드롭 모드]]도 선택 사항으로 둔다.[@ieee-802-3-2022]
 
 P802.3cy PAR(Project Authorization Request)는 차량 내 네트워크가 도메인 기반 구조에서 이더넷 링크로 이은 [[ee-architecture#존 아키텍처|존 아키텍처]]로 옮겨 가며 완전 자율 주행을 지원하려면 차량 환경에서 10 Gbit/s를 넘는 속도가 필요해졌지만, IEEE 802.3은 아직 그 속도를 지원하지 않는다고 밝혔다.[@ieee-802-3cy-par-2020] 2026년 10월 기준 P802.3dm이 IEEE 802.3-2022에 대해 진행 중인 개정안이다.[@ieee-802-3-2022] P802.3dm PAR는 이 프로젝트가 차량 끝 노드의 카메라 링크에 맞춰, 한 방향으로 10 Gbit/s까지 내고 반대 방향은 더 낮은 속도로 동작하는 비대칭 전기 물리 계층을 정한다고 밝힌다. 이 PAR는 이 범위의 물리 계층 부분이 MIPI A-PHY(MIPI: 모바일 기기의 인터페이스 명세를 만드는 국제 단체)를 채택한 IEEE 2977-2021과 일부 겹치고, ASA(Automotive SerDes Alliance)의 MLE(Motion Link Ethernet) 명세도 일부 겹칠 수 있다고 밝힌다.[@ieee-802-3dm-par-2024][@mipi-about-us-2026]
 

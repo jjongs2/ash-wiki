@@ -24,14 +24,14 @@ IEEE 802.1Q-2022는 ATS 스케줄러가 정수 스케줄러 식별자와 스케�
 
 ## 스케줄러 그룹
 
-이 표준은 ATS 스케줄러를 스케줄러 그룹으로 묶는다. 그룹은 수신 포트마다, 그리고 그 포트에 이어진 장치에서 프레임을 보낸 [[traffic-class|트래픽 클래스]](upstream traffic class)마다 하나씩 있다. 한 그룹의 스케줄러들은 MaxResidenceTime 파라미터와 group eligibility time 상태 변수를 함께 쓴다. 이렇게 묶으면 한 그룹에 속한 프레임들의 eligibility time이 줄어들지 않고 이어지므로, 한 그룹의 프레임을 FIFO로 큐에 넣을 수 있다.[@ieee-802-1q-2022]
+이 표준은 ATS 스케줄러를 스케줄러 그룹으로 묶는다. 그룹은 수신 포트마다, 그리고 그 포트에 이어진 장치에서 프레임을 보낸 [[traffic-class|트래픽 클래스]](upstream traffic class)마다 하나씩 있다. 한 그룹의 스케줄러들은 MaxResidenceTime 파라미터와 group eligibility time 상태 변수를 함께 쓴다. 이렇게 묶으면 한 그룹에 속한 프레임의 eligibility time은 앞 프레임의 eligibility time보다 이르지 않으므로, 한 그룹의 프레임을 FIFO로 큐에 넣을 수 있다.[@ieee-802-1q-2022]
 
 ## 전송 선택
 
 이 표준은 ATS 전송 선택 알고리즘을 쓰는 큐에서, 붙은 eligibility time이 현재 시각과 같거나 그보다 이른 프레임을 전송할 수 있는 프레임으로 정한다. 현재 시각은 구현마다 정하는 로컬 시스템 시계인 전송 선택 시계가 정한다. 프레임은 eligibility time이 이른 순서로 전송에 뽑힌다. 이 표준은 ATS 전송 선택 알고리즘을 strict priority에 더해 지원할 수 있는 [[traffic-class#전송 선택|전송 선택 알고리즘]]의 하나로 두고, 그 식별자를 3으로 둔다.[@ieee-802-1q-2022]
 
-이 표준은 ATS를 지원하는 브리지 구성 요소가 ATS용 스트림별 분류와 미터링, 스트림 게이트를 쓰는 큐잉, ATS 전송 선택 알고리즘, ATS 스케줄러 상태 기계, ATS 관리 객체를 지원하도록 요구한다. ATS와 [[per-stream-filtering-and-policing|PSFP]]는 스트림별 분류와 미터링의 요소를 함께 쓴다. ATS를 구현하는 브리지 구성 요소는 스트림 필터, 최대 SDU(Service Data Unit) 크기 필터, IPV(Internal Priority Value) 지정을 지원하는 스트림 게이트, ATS 스케줄러, ATS 스케줄러 그룹을 지원해야 하고, PSFP 없이 ATS만 지원하면 스트림 게이트는 IPV 지정에만 쓰고 닫히지 않는다. ATS 스케줄러의 동작은 flow meter와 비슷한 policing 기능을 주어, flow meter를 따로 두지 않아도 될 수 있다.[@ieee-802-1q-2022]
+이 표준은 ATS를 지원하는 브리지 구성 요소가 ATS용 스트림별 분류와 미터링, [[per-stream-filtering-and-policing#스트림 게이트|스트림 게이트]]를 쓰는 큐잉, ATS 전송 선택 알고리즘, ATS 스케줄러 상태 기계, ATS 관리 객체를 지원하도록 요구한다. ATS와 [[per-stream-filtering-and-policing|PSFP]]는 스트림별 분류와 미터링의 요소를 함께 쓴다. ATS를 구현하는 브리지 구성 요소는 [[per-stream-filtering-and-policing#스트림 필터|스트림 필터]], 최대 SDU(Service Data Unit) 크기 필터, IPV(Internal Priority Value) 지정을 지원하는 스트림 게이트, ATS 스케줄러, ATS 스케줄러 그룹을 지원해야 하고, PSFP 없이 ATS만 지원하면 스트림 게이트는 IPV 지정에만 쓰고 닫히지 않는다. ATS 스케줄러의 동작은 [[per-stream-filtering-and-policing#Flow meter|flow meter]]와 비슷한 policing 기능을 주어, flow meter를 따로 두지 않아도 될 수 있다.[@ieee-802-1q-2022]
 
 ## 지연 분석
 
-이 표준의 Annex V(참고)는 구성이 고정된 정적 네트워크에서 최악 지연을 분석하는 틀을 제시한다. 이 틀은 talker에서 listener까지의 경로를 홉으로 나누고, 홉마다의 지연 상한을 더해 스트림의 종단 간 지연 상한을 얻는다. 이 틀은 ATS 전송 선택 알고리즘을 번호가 가장 큰 트래픽 클래스들에 두고, 그 트래픽 클래스들의 전송 게이트가 늘 열려 있으며, 포트가 일정한 데이터율로 보낸다고 가정한다.[@ieee-802-1q-2022]
+이 표준의 Annex V(참고)는 구성이 고정된 정적 네트워크에서 최악 지연을 분석하는 틀을 제시한다. 이 틀은 [[avb#Talker와 listener|talker]]에서 listener까지의 경로를 홉으로 나누고, 홉마다의 지연 상한을 더해 스트림의 종단 간 지연 상한을 얻는다. 이 틀은 ATS 전송 선택 알고리즘을 번호가 가장 큰 트래픽 클래스들에 두고, 그 트래픽 클래스들의 [[time-aware-shaper#게이트|전송 게이트]]가 늘 열려 있으며, 포트가 일정한 데이터율로 보낸다고 가정한다.[@ieee-802-1q-2022]

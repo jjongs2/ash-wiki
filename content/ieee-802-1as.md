@@ -14,20 +14,20 @@ status: 유효
 
 ## 범위
 
-동기화된 시각의 전달, timing source(best timeTransmitter) 선택, 위상이나 주파수가 끊기는 시각 장애가 일어났는지와 그 크기의 표시를 다룬다.[@ieee-802-1as-2025] [[ieee-802-1q|IEEE 802.1Q]]의 맥락에서 해당하는 곳에는 [[ieee-1588|IEEE 1588]] 규격을 쓰도록 정한다.[@ieee-802-1as-2020-rev-2026]
+동기화된 시각의 전달, timing source(best timeTransmitter) 선택, 위상이나 주파수가 끊기는 시각 장애가 일어났는지와 그 크기를 표시하는 일을 다룬다.[@ieee-802-1as-2025] [[ieee-802-1q|IEEE 802.1Q]]의 맥락에서 해당하는 곳에는 [[ieee-1588|IEEE 1588]] 규격을 쓰도록 정한다.[@ieee-802-1as-2020-rev-2026]
 
 gPTP는 IEEE 1588-2019가 정하는 [[ptp|PTP]]에 바탕을 두며, 특정한 구성에서는 IEEE 1588-2019의 [[ptp#프로파일|프로파일]]이다. 전이중 점대점 링크로 시각을 전달하는 규정이 PTP 프로파일 하나를 이룬다.[@ieee-802-1as-2025]
 
 동기화에 참여하는 장치를 **time-aware system**이라 한다. 브리지, 라우터, 엔드 스테이션 등 어떤 네트워크 장치든 time-aware system이 될 수 있다. **PTP Instance**는 한 gPTP 도메인에서 gPTP를 실행하는 실체이고, time-aware system은 PTP Instance를 하나 이상 담는다. time-aware system은 gPTP 도메인을 여럿 지원할 수 있고, 도메인마다 PTP Instance를 따로 둔다. PTP Instance는 두 가지다.[@ieee-802-1as-2025]
 
-- **PTP End Instance**: PTP 포트가 하나인 PTP Instance. Grandmaster PTP Instance가 아니면 시각 정보를 받는 쪽이다.
+- **PTP End Instance**: PTP 포트가 하나인 PTP Instance. [[ptp#시계의 계층|Grandmaster]] PTP Instance가 아니면 시각 정보를 받는 쪽이다.
 - **PTP Relay Instance**: Grandmaster PTP Instance가 아니면 Grandmaster PTP Instance에서 온 시각 정보를 받아, LAN과 자기 안에서 걸린 지연을 보정한 뒤 다시 내보낸다.[@ieee-802-1as-2025]
 
 gPTP 도메인의 모든 PTP Instance가 같은 Grandmaster PTP Instance를 따르도록 고르는 방법은 **BTCA**(best timeTransmitter clock algorithm)다.[@ieee-802-1as-2025] IEEE 802.1AS-2020은 이 알고리즘을 BMCA(best master clock algorithm)라 불렀다.[@ieee-802-1as-2025][@ieee-802-1as-2020]
 
 gPTP는 매체에 상관없는 부분과 매체마다 다른 부분으로 나누어 정한다. 다루는 매체는 전이중 점대점 링크의 [[ieee-802-3|IEEE 802.3]] 이더넷, IEEE 802.3 EPON(Ethernet Passive Optical Network), IEEE 802.11 무선, 일반 CSN(Coordinated Shared Network)이다.[@ieee-802-1as-2025]
 
-전이중 점대점 링크에서는 링크 양 끝의 포트가 저마다 [[ptp#피어 지연|피어 지연]](peer-to-peer delay) 방식으로 링크의 전파 지연을 잰다. 시각 정보는 Sync와 Follow_Up 메시지로 전한다. PTP Relay Instance는 상류 링크의 전파 지연과 자기 체류 시간(residence time)을 더해 correctionField에 보태고, 이를 하류로 보내는 시각 정보에 싣는다. 이 링크에서 gPTP 메시지를 싣는 프레임은 [[virtual-lan#VLAN 태그|VLAN 태그]]를 달지 않아야 하고, 우선순위만 태그된 프레임이어서도 안 된다.[@ieee-802-1as-2025]
+전이중 점대점 링크에서는 링크 양 끝의 포트가 저마다 [[ptp#피어 지연|피어 지연]](peer-to-peer delay) 방식으로 링크의 전파 지연을 잰다. 시각 정보는 Sync와 [[ptp#One-step과 two-step|Follow_Up]] 메시지로 전한다. PTP Relay Instance는 상류 링크의 전파 지연과 자기 체류 시간(residence time)을 더해 correctionField에 보태고, 이를 하류로 보내는 시각 정보에 싣는다. 이 링크에서 gPTP 메시지를 싣는 프레임은 [[virtual-lan#VLAN 태그|VLAN 태그]]를 달지 않아야 하고, 우선순위만 태그된 프레임이어서도 안 된다.[@ieee-802-1as-2025]
 
 ![[diagrams/gptp-relay-correction-field.svg]]
 
@@ -53,7 +53,7 @@ gPTP는 IEEE 1588-2019의 PTP와 다음이 다르다.[@ieee-802-1as-2025]
 - 통신: gPTP는 PTP Instance 사이의 모든 통신이 IEEE 802 MAC PDU(Protocol Data Unit)와 주소로만 이루어진다고 가정한다. IEEE 1588-2019는 2계층과 3·4계층의 여러 통신 방식을 지원한다.
 - 도메인 구성: gPTP는 gPTP 도메인 안의 모든 시스템이 time-aware system이기를 요구하며, time-aware가 아닌 시스템을 거쳐서는 시각을 전하지 않는다. PTP Relay Instance가 아닌 장치는 gPTP 정보를 중계할 수 없다. IEEE 1588-2019는 IEEE 1588을 모르는 중계 장치도 도메인 안에 둘 수 있게 한다.
 - 지연 측정: 전이중 이더넷 링크에서 gPTP는 피어 지연 방식을 요구하고, IEEE 1588-2019는 종단 간(end-to-end) 지연 측정도 허용한다.
-- 타임스탬프 처리: 전이중 이더넷 링크에서 gPTP는 Follow_Up과 Pdelay_Resp_Follow_Up 메시지로 타임스탬프를 전하는 [[ptp#One-step과 two-step|two-step 처리]]를 요구하고, Sync를 보내면서 타임스탬프를 넣는 one-step 처리는 선택으로 둔다. 피어 지연 메시지의 one-step 처리는 정하지 않는다. IEEE 1588-2019는 프로파일에 따라 Sync와 피어 지연 메시지 모두에 one-step이나 two-step 처리를 요구할 수 있게 한다.
+- 타임스탬프 처리: 전이중 이더넷 링크에서 gPTP는 Follow_Up과 Pdelay_Resp_Follow_Up 메시지로 타임스탬프를 전하는 two-step 처리를 요구하고, Sync를 보내면서 타임스탬프를 넣는 one-step 처리는 선택으로 둔다. 피어 지연 메시지의 one-step 처리는 정하지 않는다. IEEE 1588-2019는 프로파일에 따라 Sync와 피어 지연 메시지 모두에 one-step이나 two-step 처리를 요구할 수 있게 한다.
 - syntonization: gPTP 도메인의 모든 PTP Instance는 논리적으로 syntonize되어 같은 주파수로 시간 간격을 재며, gPTP에서 이는 필수다. IEEE 1588-2019는 syntonization을 선택으로 둔다.[@ieee-802-1as-2025]
 
 ## AUTOSAR 시간 동기화와의 차이
@@ -63,6 +63,6 @@ gPTP는 IEEE 1588-2019의 PTP와 다음이 다르다.[@ieee-802-1as-2025]
 이 명세가 참조하는 IEEE 802.1AS-2011과 다르게 정하는 점은 아래와 같다.[@autosar-fo-prs-timesyncoverethernetprotocol-2025]
 
 - BMCA: IEEE 802.1AS-2011이 정한 BMCA를 지원하지 않는다.
-- 메시지: Announce와 Signaling 메시지를 지원하지 않는다.
+- 메시지: [[ptp#시계의 계층|Announce]]와 Signaling 메시지를 지원하지 않는다.
 - Sync 송신 시작: Pdelay_Req를 받는 것을 Sync 메시지 송신을 시작할 전제 조건으로 삼지 않는다.
 - VLAN: 스위치 하드웨어가 예약 멀티캐스트 주소(`01:80:C2:00:00:00`에서 `0F`까지)의 전달을 지원하면 [[virtual-lan|VLAN]] 위의 시간 동기화를 허용한다.[@autosar-fo-prs-timesyncoverethernetprotocol-2025]

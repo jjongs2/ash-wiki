@@ -22,7 +22,7 @@ IEEE 802.1CB-2017은 동적 네트워크 제어 프로토콜이 장비 고장에
 
 ![[diagrams/frer-replication-elimination.svg]]
 
-[[ieee-802-1q|IEEE 802.1Q]]-2022는 수신 프레임을 stream filter에 대응시키는 데 IEEE 802.1CB의 스트림 식별 함수가 주는 stream_handle과 프레임의 우선순위를 쓸 수 있게 정한다.[@ieee-802-1q-2022]
+[[ieee-802-1q|IEEE 802.1Q]]-2022는 수신 프레임을 [[per-stream-filtering-and-policing#스트림 필터|stream filter]]에 대응시키는 데 IEEE 802.1CB의 스트림 식별 함수가 주는 stream_handle과 프레임의 우선순위를 쓸 수 있게 정한다.[@ieee-802-1q-2022]
 
 ## 개정 이력
 

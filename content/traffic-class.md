@@ -24,14 +24,14 @@ verified: 2026-09-29
 | 2                   | ETS(Enhanced Transmission Selection)[@ieee-802-1q-2022]                                                                                                                     |
 | 3                   | [[asynchronous-traffic-shaping\|ATS]] 전송 선택 알고리즘[@ieee-802-1q-2022]                                                                                                 |
 | 4~254               | 앞으로의 표준화를 위해 남겨 둔 값[@ieee-802-1q-2022]                                                                                                                        |
-| 255                 | DCBX(Data Center Bridging Exchange)와 함께 쓰는 벤더 고유 알고리즘. 아래 4옥텟 벤더 고유 값과 따로 둔다.[@ieee-802-1q-2022]                                                 |
-| 256 이상의 4옥텟 값 | 벤더 고유 알고리즘. 상위 3옥텟에는 OUI(Organizationally Unique Identifier)나 CID(Company ID)가, 하위 1옥텟에는 그 소유자가 정한 값이 들어간다.[@ieee-802-1q-fqtss-mib-2022] |
+| 255                 | DCBX(Data Center Bridging Exchange)와 함께 쓰는 벤더 고유 알고리즘. 아래 행의 4옥텟 벤더 고유 값과 따로 둔다.[@ieee-802-1q-2022]                                                 |
+| 256 이상의 4옥텟 값 | 벤더 고유 알고리즘. 상위 3옥텟에는 [[mac-address#OUI\|OUI]](Organizationally Unique Identifier)나 CID(Company ID)가, 하위 1옥텟에는 그 소유자가 정한 값이 들어간다.[@ieee-802-1q-fqtss-mib-2022] |
 
 **strict priority**는 우선순위가 높은 큐부터 전송하는 스케줄링으로, 낮은 우선순위 큐는 그보다 높은 우선순위 큐에 보낼 패킷이 없을 때만 전송한다.[@microchip-ksz9477s-2019][@intel-i210-2019] IEEE 802.1Q-2022는 모든 브리지가 strict priority를 기본 전송 선택 알고리즘으로 지원하도록 요구한다. 이 표준은 포트가 어느 알고리즘을 쓰든 한 트래픽 클래스의 큐에서 프레임을 고르되, 그 큐의 알고리즘이 보낼 프레임이 있다고 판단하고 번호가 더 높은 모든 트래픽 클래스의 큐에 보낼 프레임이 없을 때만 고르도록 정한다. strict priority 큐는 프레임이 하나라도 있으면 보낼 프레임이 있다고 본다. 같은 포트로 받은 프레임 가운데 VID(VLAN Identifier), 우선순위, 주소 조합이 같은 프레임은 받은 순서를 지켜야 하고, strict priority와 credit-based shaper는 큐에서 프레임을 고를 때 이 순서를 지킨다.[@ieee-802-1q-2022]
 
 Credit-based shaper는 큐가 내보내는 속도를 그 큐에 예약한 대역폭까지로 제한한다.[@microchip-ksz9477s-2019][@st-rm0436-2025] IEEE 802.1Q-2022는 이 알고리즘이 뜻대로 동작하려면 credit-based shaper를 쓰는 트래픽 클래스가 strict priority를 쓰는 어느 트래픽 클래스보다도 번호가 커야 한다고 정한다.[@ieee-802-1q-2022]
 
-IEEE 802.1Q의 [[time-aware-shaper|scheduled traffic]]은 포트의 트래픽 클래스마다 열림과 닫힘 두 상태를 가진 게이트를 두고[@ieee-802-1qcw-sched-yang-2023], 게이트가 닫힌 큐의 프레임은 전송에 뽑히지 않는다.[@ieee-802-1q-2022]
+IEEE 802.1Q의 [[time-aware-shaper|scheduled traffic]]은 포트의 트래픽 클래스마다 열림과 닫힘 두 상태를 가진 [[time-aware-shaper#게이트|게이트]]를 두고[@ieee-802-1qcw-sched-yang-2023], 게이트가 닫힌 큐의 프레임은 전송에 뽑히지 않는다.[@ieee-802-1q-2022]
 
 ![[diagrams/egress-queue-transmission-selection.svg]]
 

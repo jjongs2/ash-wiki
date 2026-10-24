@@ -40,7 +40,7 @@ IEEE 802.1BA-2021은 talker에서 listener까지의 최악 지연 목표를 SR �
 
 IEEE 802.1Q-2022는 수신 포트마다 SRP 도메인 경계 포트용 우선순위 재생성 표를 두어, 포트가 어떤 SR 클래스의 도메인 경계에 있으면 이 표의 값을 재생성한 우선순위로 쓴다. 기본값은 클래스 A의 우선순위 3과 클래스 B의 우선순위 2를 모두 0으로 바꾸므로, 도메인 밖에서 SR 클래스의 우선순위를 달고 들어온 트래픽은 경계의 브리지에서 더 낮은 우선순위로 전달된다. 예약한 트래픽과 예약하지 않은 트래픽이 같은 우선순위를 나눠 쓰면 예약한 트래픽의 최악 지연을 예측할 수 없게 된다.[@ieee-802-1q-2022]
 
-IEEE 802.1BA-2021은 포트가 gPTP를 지원하지 않거나, gPTP가 그 포트의 도메인 0에서 asCapable을 거짓으로 정했거나, 포트에 붙은 LAN이 AVB를 지원하지 못하면 그 포트를 그 포트가 지원하는 모든 SR 클래스의 SRP 도메인 경계 포트로 둔다. 이 포트로 넘어갈 Talker Advertise는 실패 코드 8("Egress port is not AVB-capable")을 단 Talker Failed로 바뀌므로, 스트림 예약은 talker와 listener가 같은 SRP 도메인에 있을 때만 이루어진다. 이 표준은 반이중이거나 100 Mbit/s보다 느린 IEEE 802.3을 AVB를 지원하지 못하는 LAN 기술로 꼽는다.[@ieee-802-1ba-2021]
+IEEE 802.1BA-2021은 포트가 gPTP를 지원하지 않거나, gPTP가 그 포트의 도메인 0에서 asCapable을 거짓으로 정했거나, 포트에 붙은 LAN이 AVB를 지원하지 못하면 그 포트를 그 포트가 지원하는 모든 SR 클래스의 SRP 도메인 경계 포트로 둔다. 이 포트로 넘어갈 [[srp#선언|Talker Advertise]]는 실패 코드 8("Egress port is not AVB-capable")을 단 Talker Failed로 바뀌므로, 스트림 예약은 talker와 listener가 같은 SRP 도메인에 있을 때만 이루어진다. 이 표준은 반이중이거나 100 Mbit/s보다 느린 IEEE 802.3을 AVB를 지원하지 못하는 LAN 기술로 꼽는다.[@ieee-802-1ba-2021]
 
 ![[diagrams/avb-domain-boundary-port.svg]]
 
@@ -50,12 +50,15 @@ IEEE 802.1AS-2025는 전이중 점대점 링크에 붙은 포트에서 잰 평�
 
 IEEE 802.1BA-2021은 AVB를 지원한다고 내세우는 장치의 최소 요구로, talker와 listener에는 스트림 하나, 브리지에는 포트마다 스트림 하나를 다룰 능력을 요구한다. 브리지와 talker에 대한 요구는 아래와 같다.[@ieee-802-1ba-2021]
 
-- 브리지: AVB를 지원하는 모든 포트가 FQTSS(Forwarding and Queuing Enhancements for Time-Sensitive Streams)를 지원하는 트래픽 클래스에 묶인 스트림 예약 하나, 스트림 하나의 MSRP(Multiple Stream Registration Protocol) 속성의 등록·선언·전파, BMCA(best master clock algorithm)를 구현한 gPTP 도메인 0을 지원해야 한다. 모든 브리지는 SR 클래스 B를 지원하고, IEEE 802.3 포트가 둘 이상인 브리지는 그 포트 모두에서 SR 클래스 A도 지원해야 한다. talker pruning은 지원하지 않아야 한다.
-- talker: 스트림 하나를 보낼 수 있고, 그 스트림의 talker 선언을 하고 그에 따른 listener 선언을 등록할 수 있어야 한다. 포트는 BMCA를 구현한 gPTP 도메인 0을 지원하고, talker를 동기화하는 [[ieee-802-1as#범위|PTP Instance]]는 grandmaster가 될 수 있어야 한다.[@ieee-802-1ba-2021]
+- 브리지: 모든 브리지는 SR 클래스 B를 지원하고, IEEE 802.3 포트가 둘 이상인 브리지는 그 포트 모두에서 SR 클래스 A도 지원해야 한다. [[srp#MRP 응용|talker pruning]]은 지원하지 않아야 한다. AVB를 지원하는 모든 포트는 아래를 지원해야 한다.
+  - FQTSS(Forwarding and Queuing Enhancements for Time-Sensitive Streams)를 지원하는 트래픽 클래스에 묶인 스트림 예약 하나
+  - 스트림 하나의 MSRP(Multiple Stream Registration Protocol) 속성의 등록·선언·전파
+  - [[ieee-802-1as#범위|BMCA]](best master clock algorithm)를 구현한 gPTP 도메인 0
+- talker: 스트림 하나를 보낼 수 있고, 그 스트림의 talker 선언을 하고 그에 따른 listener 선언을 등록할 수 있어야 한다. 포트는 BMCA를 구현한 gPTP 도메인 0을 지원하고, talker를 동기화하는 [[ieee-802-1as#범위|PTP Instance]]는 [[ptp#시계의 계층|grandmaster]]가 될 수 있어야 한다.[@ieee-802-1ba-2021]
 
 이 표준은 [[ethernet-flow-control|흐름 제어]]를 지원하는 AVB 시스템에 AV 스트림을 나르는 포트의 MAC(Medium Access Control) control PAUSE를 끄게 한다. SR 클래스의 우선순위에 PFC(Priority-based Flow Control)를 켠 포트는 그 SR 클래스의 SRP 도메인 경계 포트로 둔다. 흐름 제어가 AVB의 지연 보장을 깨뜨릴 수 있기 때문이다.[@ieee-802-1ba-2021]
 
-이 표준은 활성 예약이 있는 포트에서 [[energy-efficient-ethernet|EEE]]를 지원하는 AVB 시스템에, 그 포트에서 LPI(Low Power Idle)를 아예 쓰지 않거나, 보낼 프레임이 없을 때만 LPI에 들어가고 깨어나는 시간(wake time)을 30 µs와 그 [[ethernet-phy|PHY]]의 최대 크기 [[ethernet-frame|이더넷 프레임]] 전송 시간 가운데 큰 값 이하로 두게 한다.[@ieee-802-1ba-2021]
+이 표준은 활성 예약이 있는 포트에서 [[energy-efficient-ethernet|EEE]]를 지원하는 AVB 시스템에, 그 포트에서 LPI(Low Power Idle)를 아예 쓰지 않게 하거나, 보낼 프레임이 없을 때만 LPI에 들어가고 깨어나는 시간(wake time)을 30 µs와 그 [[ethernet-phy|PHY]]의 최대 크기 [[ethernet-frame|이더넷 프레임]] 전송 시간 가운데 큰 값 이하로 두게 한다.[@ieee-802-1ba-2021]
 
 이 표준은 AV 트래픽을 나르는 포트가 매체와 상관없이 IEEE 802.3의 최대 프레임 크기 규칙을 따르게 하고, 2000옥텟보다 큰 MAC PDU(Protocol Data Unit)를 받도록 설정한 포트는 SRP에서 AVB를 지원하지 않는 포트로 본다.[@ieee-802-1ba-2021]
 
@@ -63,7 +66,7 @@ IEEE 802.1BA-2021은 AVB를 지원한다고 내세우는 장치의 최소 요구
 
 Avnu Alliance의 Automotive Ethernet AVB Functional and Interoperability Specification은 자동차 AVB 장치의 기본 기능을 정해 인증의 바탕으로 삼는 명세로, Revision 1.6이 2019년 11월에 나왔다. 이 명세는 인포테인먼트와 기본 카메라를 대상으로 하고, 엔진 제어나 운전자 보조 같은 장치는 범위 밖에 둔다.[@avnu-automotive-avb-1-6-2019]
 
-이 명세는 차량 네트워크가 닫혀 있고 미리 설정되어 바뀌지 않는다는 점을 들어 gPTP의 동작을 단순화한다. 차량 네트워크에 grandmaster를 하나로 고정해 두고, BMCA를 돌리지 않으며, Announce 메시지도 쓰지 않는다. 장치가 모든 AVB 스트림에 정적으로 설정한 예약을 지원하게 한다. 시험 모드의 엔드 스테이션이 보내는 Test Status Message는 [[ieee-1722-1|IEEE 1722.1]]의 응답 메시지를 바탕으로 정하지만, 엔드 스테이션이 스스로 보내므로 처리하는 데 1722.1 제어 기반이 필요 없다고 둔다.[@avnu-automotive-avb-1-6-2019]
+이 명세는 차량 네트워크가 닫혀 있고 미리 설정되어 바뀌지 않는다는 점을 들어 gPTP의 동작을 단순화한다. 차량 네트워크에 grandmaster를 하나로 고정해 두고, BMCA를 돌리지 않으며, [[ptp#시계의 계층|Announce]] 메시지도 쓰지 않는다. 장치가 모든 AVB 스트림에 정적으로 설정한 예약을 지원하게 한다. 시험 모드의 엔드 스테이션이 보내는 Test Status Message는 [[ieee-1722-1|IEEE 1722.1]]의 응답 메시지를 바탕으로 정하지만, 엔드 스테이션이 스스로 보내므로 처리하는 데 1722.1 제어 기반이 필요 없다고 둔다.[@avnu-automotive-avb-1-6-2019]
 
 이 명세는 측정 간격이 다른 SR 클래스 템플릿 넷 가운데 하나 이상을 지원하게 하고, 템플릿마다 최대 전달 시간(Maximum Transit Time)의 기본값을 둔다.[@avnu-automotive-avb-1-6-2019]
 

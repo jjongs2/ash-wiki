@@ -57,7 +57,7 @@ SOME/IP-SD는 서비스 인스턴스마다 적어도 세 단계를 둔다.[@auto
 
 클라이언트는 OfferService에 SubscribeEventgroup으로 답해 구독하고, 서버는 SubscribeEventgroupAck로 받아들이거나 SubscribeEventgroupNack로 거절한다. 서비스가 [[tcp|TCP]]로 제공되고 클라이언트가 이벤트 그룹을 TCP로 받으려 하면, 클라이언트는 SubscribeEventgroup을 보내기 전에 서버와 TCP 연결을 맺는다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
 
-서버는 구독을 받으면 SubscribeEventgroupAck 바로 뒤에 필드 notifier의 초기값을 보낸다. 순수 이벤트의 초기값은 보내지 않고, 이미 유효한 구독을 갱신하는 SubscribeEventgroup에도 초기값을 보내지 않는다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
+서버는 구독을 받으면 SubscribeEventgroupAck 바로 뒤에 [[service-oriented-communication#서비스 인터페이스|필드]] notifier의 초기값을 보낸다. 순수 이벤트의 초기값은 보내지 않고, 이미 유효한 구독을 갱신하는 SubscribeEventgroup에도 초기값을 보내지 않는다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
 
 ![[diagrams/some-ip-sd-subscribe-sequence.svg]]
 
