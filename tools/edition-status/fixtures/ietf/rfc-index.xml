@@ -1,0 +1,3653 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rfc-index xmlns="https://www.rfc-editor.org/rfc-index" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.rfc-editor.org/rfc-index https://www.rfc-editor.org/rfc-index.xsd">
+  <rfc-entry>
+    <doc-id>RFC768</doc-id>
+    <title>User Datagram Protocol</title>
+    <author>
+      <name>J. Postel</name>
+    </author>
+    <date>
+      <month>August</month>
+      <year>1980</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>3</page-count>
+    <keywords>
+      <kw>UDP</kw>
+    </keywords>
+    <is-also>
+      <doc-id>STD6</doc-id>
+    </is-also>
+    <updated-by>
+      <doc-id>RFC9868</doc-id>
+    </updated-by>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>INTERNET STANDARD</publication-status>
+    <stream>Legacy</stream>
+    <doi>10.17487/RFC768</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC791</doc-id>
+    <title>Internet Protocol</title>
+    <author>
+      <name>J. Postel</name>
+    </author>
+    <date>
+      <month>September</month>
+      <year>1981</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>51</page-count>
+    <keywords>
+      <kw>IP</kw>
+      <kw>IPv4</kw>
+    </keywords>
+    <is-also>
+      <doc-id>STD5</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC760</doc-id>
+    </obsoletes>
+    <updated-by>
+      <doc-id>RFC1349</doc-id>
+      <doc-id>RFC2474</doc-id>
+      <doc-id>RFC6864</doc-id>
+    </updated-by>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>INTERNET STANDARD</publication-status>
+    <stream>Legacy</stream>
+    <errata-url>https://www.rfc-editor.org/errata/rfc791</errata-url>
+    <doi>10.17487/RFC791</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC792</doc-id>
+    <title>Internet Control Message Protocol</title>
+    <author>
+      <name>J. Postel</name>
+    </author>
+    <date>
+      <month>September</month>
+      <year>1981</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>21</page-count>
+    <keywords>
+      <kw>ICMP</kw>
+    </keywords>
+    <is-also>
+      <doc-id>STD5</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC777</doc-id>
+    </obsoletes>
+    <updated-by>
+      <doc-id>RFC950</doc-id>
+      <doc-id>RFC4884</doc-id>
+      <doc-id>RFC6633</doc-id>
+      <doc-id>RFC6918</doc-id>
+    </updated-by>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>INTERNET STANDARD</publication-status>
+    <stream>Legacy</stream>
+    <errata-url>https://www.rfc-editor.org/errata/rfc792</errata-url>
+    <doi>10.17487/RFC792</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC826</doc-id>
+    <title>An Ethernet Address Resolution Protocol: Or Converting Network Protocol Addresses to 48.bit Ethernet Address for Transmission on Ethernet Hardware</title>
+    <author>
+      <name>D. Plummer</name>
+    </author>
+    <date>
+      <month>November</month>
+      <year>1982</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>10</page-count>
+    <keywords>
+      <kw>ARP</kw>
+    </keywords>
+    <abstract>
+      <p>The purpose of this RFC is to present a method of Converting Protocol Addresses (e.g., IP addresses) to Local Network Addresses (e.g., Ethernet addresses).  This is an issue of general concern in the ARPA Internet Community at this time.  The method proposed here is presented for your consideration and comment.  This is not the specification of an Internet Standard.</p>
+    </abstract>
+    <is-also>
+      <doc-id>STD37</doc-id>
+    </is-also>
+    <updated-by>
+      <doc-id>RFC5227</doc-id>
+      <doc-id>RFC5494</doc-id>
+    </updated-by>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>INTERNET STANDARD</publication-status>
+    <stream>Legacy</stream>
+    <errata-url>https://www.rfc-editor.org/errata/rfc826</errata-url>
+    <doi>10.17487/RFC826</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC894</doc-id>
+    <title>A Standard for the Transmission of IP Datagrams over Ethernet Networks</title>
+    <author>
+      <name>C. Hornig</name>
+    </author>
+    <date>
+      <month>April</month>
+      <year>1984</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>3</page-count>
+    <keywords>
+      <kw>IP-E</kw>
+    </keywords>
+    <abstract>
+      <p>This RFC specifies a standard method of encapsulating Internet Protocol (IP) datagrams on an Ethernet.  This RFC specifies a standard protocol for the ARPA-Internet community.</p>
+    </abstract>
+    <is-also>
+      <doc-id>STD41</doc-id>
+    </is-also>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>INTERNET STANDARD</publication-status>
+    <stream>Legacy</stream>
+    <errata-url>https://www.rfc-editor.org/errata/rfc894</errata-url>
+    <doi>10.17487/RFC894</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC919</doc-id>
+    <title>Broadcasting Internet Datagrams</title>
+    <author>
+      <name>J.C. Mogul</name>
+    </author>
+    <date>
+      <month>October</month>
+      <year>1984</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>8</page-count>
+    <abstract>
+      <p>This RFC proposes simple rules for broadcasting Internet datagrams on local networks that support broadcast, for addressing broadcasts, and for how gateways should handle them.  This RFC suggests a proposed protocol for the ARPA-Internet community, and requests discussion and suggestions for improvements.</p>
+    </abstract>
+    <is-also>
+      <doc-id>STD5</doc-id>
+    </is-also>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>INTERNET STANDARD</publication-status>
+    <stream>Legacy</stream>
+    <doi>10.17487/RFC919</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC1042</doc-id>
+    <title>Standard for the transmission of IP datagrams over IEEE 802 networks</title>
+    <author>
+      <name>J. Postel</name>
+    </author>
+    <author>
+      <name>J.K. Reynolds</name>
+    </author>
+    <date>
+      <month>February</month>
+      <year>1988</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>15</page-count>
+    <keywords>
+      <kw>IP-IEEE</kw>
+    </keywords>
+    <abstract>
+      <p>This RFC specifies a standard method of encapsulating the Internet Protocol (IP) datagrams and Address Resolution Protocol (ARP) requests and replies on IEEE 802 Networks to allow compatible and interoperable implementations.  This RFC specifies a protocol standard for the Internet community.</p>
+    </abstract>
+    <is-also>
+      <doc-id>STD43</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC948</doc-id>
+    </obsoletes>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>INTERNET STANDARD</publication-status>
+    <stream>Legacy</stream>
+    <errata-url>https://www.rfc-editor.org/errata/rfc1042</errata-url>
+    <doi>10.17487/RFC1042</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC1071</doc-id>
+    <title>Computing the Internet checksum</title>
+    <author>
+      <name>R.T. Braden</name>
+    </author>
+    <author>
+      <name>D.A. Borman</name>
+    </author>
+    <author>
+      <name>C. Partridge</name>
+    </author>
+    <date>
+      <month>September</month>
+      <year>1988</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>24</page-count>
+    <abstract>
+      <p>This RFC summarizes techniques and algorithms for efficiently computing the Internet checksum.  It is not a standard, but a set of useful implementation techniques.</p>
+    </abstract>
+    <updated-by>
+      <doc-id>RFC1141</doc-id>
+    </updated-by>
+    <current-status>INFORMATIONAL</current-status>
+    <publication-status>UNKNOWN</publication-status>
+    <stream>Legacy</stream>
+    <errata-url>https://www.rfc-editor.org/errata/rfc1071</errata-url>
+    <doi>10.17487/RFC1071</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC1112</doc-id>
+    <title>Host extensions for IP multicasting</title>
+    <author>
+      <name>S.E. Deering</name>
+    </author>
+    <date>
+      <month>August</month>
+      <year>1989</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>17</page-count>
+    <keywords>
+      <kw>IGMP</kw>
+      <kw>multicast</kw>
+    </keywords>
+    <abstract>
+      <p>This memo specifies the extensions required of a host implementation of the Internet Protocol (IP) to support multicasting.  Recommended procedure for IP multicasting in the Internet.  This RFC obsoletes RFCs 998 and 1054. [STANDARDS-TRACK]</p>
+    </abstract>
+    <is-also>
+      <doc-id>STD5</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC988</doc-id>
+      <doc-id>RFC1054</doc-id>
+    </obsoletes>
+    <updated-by>
+      <doc-id>RFC2236</doc-id>
+    </updated-by>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>INTERNET STANDARD</publication-status>
+    <stream>Legacy</stream>
+    <doi>10.17487/RFC1112</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC1122</doc-id>
+    <title>Requirements for Internet Hosts - Communication Layers</title>
+    <author>
+      <name>R. Braden</name>
+      <title>Editor</title>
+    </author>
+    <date>
+      <month>October</month>
+      <year>1989</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>116</page-count>
+    <keywords>
+      <kw>applicability</kw>
+    </keywords>
+    <abstract>
+      <p>This RFC is an official specification for the Internet community.  It incorporates by reference, amends, corrects, and supplements the primary protocol standards documents relating to hosts. [STANDARDS-TRACK]</p>
+    </abstract>
+    <is-also>
+      <doc-id>STD3</doc-id>
+    </is-also>
+    <updates>
+      <doc-id>RFC793</doc-id>
+    </updates>
+    <updated-by>
+      <doc-id>RFC1349</doc-id>
+      <doc-id>RFC4379</doc-id>
+      <doc-id>RFC5884</doc-id>
+      <doc-id>RFC6093</doc-id>
+      <doc-id>RFC6298</doc-id>
+      <doc-id>RFC6633</doc-id>
+      <doc-id>RFC6864</doc-id>
+      <doc-id>RFC8029</doc-id>
+      <doc-id>RFC9293</doc-id>
+    </updated-by>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>INTERNET STANDARD</publication-status>
+    <stream>Legacy</stream>
+    <errata-url>https://www.rfc-editor.org/errata/rfc1122</errata-url>
+    <doi>10.17487/RFC1122</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC1123</doc-id>
+    <title>Requirements for Internet Hosts - Application and Support</title>
+    <author>
+      <name>R. Braden</name>
+      <title>Editor</title>
+    </author>
+    <date>
+      <month>October</month>
+      <year>1989</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>98</page-count>
+    <keywords>
+      <kw>applicability</kw>
+    </keywords>
+    <abstract>
+      <p>This RFC is an official specification for the Internet community.  It incorporates by reference, amends, corrects, and supplements the primary protocol standards documents relating to hosts. [STANDARDS-TRACK]</p>
+    </abstract>
+    <is-also>
+      <doc-id>STD3</doc-id>
+    </is-also>
+    <updates>
+      <doc-id>RFC822</doc-id>
+      <doc-id>RFC952</doc-id>
+    </updates>
+    <updated-by>
+      <doc-id>RFC1349</doc-id>
+      <doc-id>RFC2181</doc-id>
+      <doc-id>RFC5321</doc-id>
+      <doc-id>RFC5966</doc-id>
+      <doc-id>RFC7766</doc-id>
+      <doc-id>RFC9210</doc-id>
+    </updated-by>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>INTERNET STANDARD</publication-status>
+    <stream>Legacy</stream>
+    <errata-url>https://www.rfc-editor.org/errata/rfc1123</errata-url>
+    <doi>10.17487/RFC1123</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC1146</doc-id>
+    <title>TCP alternate checksum options</title>
+    <author>
+      <name>J. Zweig</name>
+    </author>
+    <author>
+      <name>C. Partridge</name>
+    </author>
+    <date>
+      <month>March</month>
+      <year>1990</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>5</page-count>
+    <keywords>
+      <kw>TCP-ACO</kw>
+    </keywords>
+    <abstract>
+      <p>This memo is suggests a pair of TCP options to allow use of alternate data checksum algorithms in the TCP header.  The use of these options is experimental, and not recommended for production use.  Note: This RFC corrects errors introduced in the editing process in RFC 1145.</p>
+    </abstract>
+    <obsoletes>
+      <doc-id>RFC1145</doc-id>
+    </obsoletes>
+    <obsoleted-by>
+      <doc-id>RFC6247</doc-id>
+    </obsoleted-by>
+    <current-status>HISTORIC</current-status>
+    <publication-status>EXPERIMENTAL</publication-status>
+    <stream>Legacy</stream>
+    <doi>10.17487/RFC1146</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC1180</doc-id>
+    <title>TCP/IP tutorial</title>
+    <author>
+      <name>T.J. Socolofsky</name>
+    </author>
+    <author>
+      <name>C.J. Kale</name>
+    </author>
+    <date>
+      <month>January</month>
+      <year>1991</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>28</page-count>
+    <abstract>
+      <p>This RFC is a tutorial on the TCP-IP protocol suite, focusing particularly on the steps in forwarding an IP datagram from source host to destination host through a router.  It does not specify an Internet standard.</p>
+    </abstract>
+    <current-status>INFORMATIONAL</current-status>
+    <publication-status>INFORMATIONAL</publication-status>
+    <stream>Legacy</stream>
+    <errata-url>https://www.rfc-editor.org/errata/rfc1180</errata-url>
+    <doi>10.17487/RFC1180</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC1191</doc-id>
+    <title>Path MTU discovery</title>
+    <author>
+      <name>J. Mogul</name>
+    </author>
+    <author>
+      <name>S. Deering</name>
+    </author>
+    <date>
+      <month>November</month>
+      <year>1990</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>19</page-count>
+    <keywords>
+      <kw>IP-MTU</kw>
+    </keywords>
+    <abstract>
+      <p>This memo describes a technique for dynamically discovering the maximum transmission unit (MTU) of an arbitrary internet path.  It specifies a small change to the way routers generate one type of ICMP message.  For a path that passes through a router that has not been so changed, this technique might not discover the correct Path MTU, but it will always choose a Path MTU as accurate as, and in many cases more accurate than, the Path MTU that would be chosen by current practice. [STANDARDS-TRACK]</p>
+    </abstract>
+    <obsoletes>
+      <doc-id>RFC1063</doc-id>
+    </obsoletes>
+    <current-status>DRAFT STANDARD</current-status>
+    <publication-status>DRAFT STANDARD</publication-status>
+    <stream>Legacy</stream>
+    <errata-url>https://www.rfc-editor.org/errata/rfc1191</errata-url>
+    <doi>10.17487/RFC1191</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC1350</doc-id>
+    <title>The TFTP Protocol (Revision 2)</title>
+    <author>
+      <name>K. Sollins</name>
+    </author>
+    <date>
+      <month>July</month>
+      <year>1992</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>11</page-count>
+    <keywords>
+      <kw>TFTP</kw>
+      <kw>trivial</kw>
+      <kw>file</kw>
+      <kw>transfer</kw>
+      <kw>booting</kw>
+    </keywords>
+    <abstract>
+      <p>TFTP is a very simple protocol used to transfer files.  It is from this that its name comes, Trivial File Transfer Protocol or TFTP.  Each nonterminal packet is acknowledged separately.  This document describes the protocol and its types of packets.  The document also explains the reasons behind some of the design decisions. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-iesg-tftp-00</draft>
+    <is-also>
+      <doc-id>STD33</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC783</doc-id>
+    </obsoletes>
+    <updated-by>
+      <doc-id>RFC1782</doc-id>
+      <doc-id>RFC1783</doc-id>
+      <doc-id>RFC1784</doc-id>
+      <doc-id>RFC1785</doc-id>
+      <doc-id>RFC2347</doc-id>
+      <doc-id>RFC2348</doc-id>
+      <doc-id>RFC2349</doc-id>
+    </updated-by>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>INTERNET STANDARD</publication-status>
+    <stream>Legacy</stream>
+    <errata-url>https://www.rfc-editor.org/errata/rfc1350</errata-url>
+    <doi>10.17487/RFC1350</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC1752</doc-id>
+    <title>The Recommendation for the IP Next Generation Protocol</title>
+    <author>
+      <name>S. Bradner</name>
+    </author>
+    <author>
+      <name>A. Mankin</name>
+    </author>
+    <date>
+      <month>January</month>
+      <year>1995</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>52</page-count>
+    <keywords>
+      <kw>IPNG</kw>
+      <kw>IPng</kw>
+      <kw>Internet</kw>
+    </keywords>
+    <abstract>
+      <p>This document presents the recommendation of the IPng Area Directors on what should be used to replace the current version of the Internet Protocol. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ipng-recommendation-00</draft>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>Legacy</stream>
+    <errata-url>https://www.rfc-editor.org/errata/rfc1752</errata-url>
+    <doi>10.17487/RFC1752</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC1812</doc-id>
+    <title>Requirements for IP Version 4 Routers</title>
+    <author>
+      <name>F. Baker</name>
+      <title>Editor</title>
+    </author>
+    <date>
+      <month>June</month>
+      <year>1995</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>175</page-count>
+    <keywords>
+      <kw>routing</kw>
+      <kw>IPv4</kw>
+    </keywords>
+    <abstract>
+      <p>This memo defines and discusses requirements for devices that perform the network layer forwarding function of the Internet protocol suite. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-rreq-cidr-02</draft>
+    <obsoletes>
+      <doc-id>RFC1009</doc-id>
+      <doc-id>RFC1716</doc-id>
+    </obsoletes>
+    <updated-by>
+      <doc-id>RFC2644</doc-id>
+      <doc-id>RFC6633</doc-id>
+    </updated-by>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>rtg</area>
+    <wg_acronym>rreq</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc1812</errata-url>
+    <doi>10.17487/RFC1812</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC1883</doc-id>
+    <title>Internet Protocol, Version 6 (IPv6) Specification</title>
+    <author>
+      <name>S. Deering</name>
+    </author>
+    <author>
+      <name>R. Hinden</name>
+    </author>
+    <date>
+      <month>December</month>
+      <year>1995</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>37</page-count>
+    <keywords>
+      <kw>IP</kw>
+      <kw>Next</kw>
+      <kw>Generation</kw>
+      <kw>IPng</kw>
+    </keywords>
+    <abstract>
+      <p>This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-ipngwg-ipv6-spec-01</draft>
+    <obsoleted-by>
+      <doc-id>RFC2460</doc-id>
+    </obsoleted-by>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>int</area>
+    <wg_acronym>ipngwg</wg_acronym>
+    <doi>10.17487/RFC1883</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC1918</doc-id>
+    <title>Address Allocation for Private Internets</title>
+    <author>
+      <name>Y. Rekhter</name>
+    </author>
+    <author>
+      <name>B. Moskowitz</name>
+    </author>
+    <author>
+      <name>D. Karrenberg</name>
+    </author>
+    <author>
+      <name>G. J. de Groot</name>
+    </author>
+    <author>
+      <name>E. Lear</name>
+    </author>
+    <date>
+      <month>February</month>
+      <year>1996</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>9</page-count>
+    <keywords>
+      <kw>TCP/IP</kw>
+      <kw>network</kw>
+      <kw>host</kw>
+    </keywords>
+    <abstract>
+      <p>This document describes address allocation for private internets.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
+    </abstract>
+    <draft>draft-ietf-cidrd-private-addr-05</draft>
+    <is-also>
+      <doc-id>BCP5</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC1597</doc-id>
+      <doc-id>RFC1627</doc-id>
+    </obsoletes>
+    <updated-by>
+      <doc-id>RFC6761</doc-id>
+    </updated-by>
+    <current-status>BEST CURRENT PRACTICE</current-status>
+    <publication-status>BEST CURRENT PRACTICE</publication-status>
+    <stream>IETF</stream>
+    <area>ops-old</area>
+    <wg_acronym>cidrd</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc1918</errata-url>
+    <doi>10.17487/RFC1918</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC1950</doc-id>
+    <title>ZLIB Compressed Data Format Specification version 3.3</title>
+    <author>
+      <name>P. Deutsch</name>
+    </author>
+    <author>
+      <name>J-L. Gailly</name>
+    </author>
+    <date>
+      <month>May</month>
+      <year>1996</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>PS</file-format>
+      <file-format>PDF</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>11</page-count>
+    <keywords>
+      <kw>ZLIB</kw>
+      <kw>compressed</kw>
+      <kw>data</kw>
+      <kw>format</kw>
+      <kw>checksum</kw>
+    </keywords>
+    <abstract>
+      <p>This specification defines a lossless compressed data format.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind.</p>
+    </abstract>
+    <draft>draft-deutsch-zlib-spec-03</draft>
+    <current-status>INFORMATIONAL</current-status>
+    <publication-status>INFORMATIONAL</publication-status>
+    <stream>Legacy</stream>
+    <doi>10.17487/RFC1950</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC2104</doc-id>
+    <title>HMAC: Keyed-Hashing for Message Authentication</title>
+    <author>
+      <name>H. Krawczyk</name>
+    </author>
+    <author>
+      <name>M. Bellare</name>
+    </author>
+    <author>
+      <name>R. Canetti</name>
+    </author>
+    <date>
+      <month>February</month>
+      <year>1997</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>11</page-count>
+    <keywords>
+      <kw>ipsec</kw>
+      <kw>Message</kw>
+      <kw>Digest</kw>
+      <kw>Internet</kw>
+      <kw>Protocol</kw>
+      <kw>Security</kw>
+      <kw>encryption</kw>
+    </keywords>
+    <abstract>
+      <p>This document describes HMAC, a mechanism for message authentication using cryptographic hash functions.  HMAC can be used with any iterative cryptographic hash function, e.g., MD5, SHA-1, in combination with a secret shared key.  The cryptographic strength of HMAC depends on the properties of the underlying hash function.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind</p>
+    </abstract>
+    <draft>draft-ietf-ipsec-hmac-md5-00</draft>
+    <updated-by>
+      <doc-id>RFC6151</doc-id>
+    </updated-by>
+    <current-status>INFORMATIONAL</current-status>
+    <publication-status>INFORMATIONAL</publication-status>
+    <stream>IETF</stream>
+    <area>sec</area>
+    <wg_acronym>ipsec</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc2104</errata-url>
+    <doi>10.17487/RFC2104</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC2131</doc-id>
+    <title>Dynamic Host Configuration Protocol</title>
+    <author>
+      <name>R. Droms</name>
+    </author>
+    <date>
+      <month>March</month>
+      <year>1997</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>45</page-count>
+    <keywords>
+      <kw>DHCP</kw>
+      <kw>DHCPv4</kw>
+    </keywords>
+    <abstract>
+      <p>The Dynamic Host Configuration Protocol (DHCP) provides a framework for passing configuration information to hosts on a TCPIP network.  DHCP is based on the Bootstrap Protocol (BOOTP), adding the capability of automatic allocation of reusable network addresses and additional configuration options. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-dhc-dhcp-08</draft>
+    <obsoletes>
+      <doc-id>RFC1541</doc-id>
+    </obsoletes>
+    <updated-by>
+      <doc-id>RFC3396</doc-id>
+      <doc-id>RFC4361</doc-id>
+      <doc-id>RFC5494</doc-id>
+      <doc-id>RFC6842</doc-id>
+    </updated-by>
+    <current-status>DRAFT STANDARD</current-status>
+    <publication-status>DRAFT STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>int</area>
+    <wg_acronym>dhc</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc2131</errata-url>
+    <doi>10.17487/RFC2131</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC2151</doc-id>
+    <title>A Primer On Internet and TCP/IP Tools and Utilities</title>
+    <author>
+      <name>G. Kessler</name>
+    </author>
+    <author>
+      <name>S. Shepard</name>
+    </author>
+    <date>
+      <month>June</month>
+      <year>1997</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>52</page-count>
+    <keywords>
+      <kw>resource</kw>
+      <kw>guide</kw>
+      <kw>user</kw>
+    </keywords>
+    <abstract>
+      <p>This memo is an introductory guide to many of the most commonly- available TCP/IP and Internet tools and utilities.  It also describes discussion lists accessible from the Internet, ways to obtain Internet and TCP/IP documents, and some resources that help users weave their way through the Internet.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind.</p>
+    </abstract>
+    <draft>draft-rfced-info-kessler-00</draft>
+    <is-also>
+      <doc-id>FYI30</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC1739</doc-id>
+    </obsoletes>
+    <current-status>INFORMATIONAL</current-status>
+    <publication-status>INFORMATIONAL</publication-status>
+    <stream>Legacy</stream>
+    <doi>10.17487/RFC2151</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC2246</doc-id>
+    <title>The TLS Protocol Version 1.0</title>
+    <author>
+      <name>T. Dierks</name>
+    </author>
+    <author>
+      <name>C. Allen</name>
+    </author>
+    <date>
+      <month>January</month>
+      <year>1999</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>80</page-count>
+    <keywords>
+      <kw>transport</kw>
+      <kw>protocol</kw>
+      <kw>layer</kw>
+      <kw>authentication</kw>
+      <kw>privacy</kw>
+    </keywords>
+    <abstract>
+      <p>This document specifies Version 1.0 of the Transport Layer Security (TLS) protocol.  The TLS protocol provides communications privacy over the Internet.  The protocol allows client/server applications to communicate in a way that is designed to prevent eavesdropping, tampering, or message forgery.</p>
+    </abstract>
+    <draft>draft-ietf-tls-protocol-06</draft>
+    <obsoleted-by>
+      <doc-id>RFC4346</doc-id>
+    </obsoleted-by>
+    <updated-by>
+      <doc-id>RFC3546</doc-id>
+      <doc-id>RFC5746</doc-id>
+      <doc-id>RFC6176</doc-id>
+      <doc-id>RFC7465</doc-id>
+      <doc-id>RFC7507</doc-id>
+      <doc-id>RFC7919</doc-id>
+    </updated-by>
+    <current-status>HISTORIC</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>sec</area>
+    <wg_acronym>tls</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc2246</errata-url>
+    <doi>10.17487/RFC2246</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC2460</doc-id>
+    <title>Internet Protocol, Version 6 (IPv6) Specification</title>
+    <author>
+      <name>S. Deering</name>
+    </author>
+    <author>
+      <name>R. Hinden</name>
+    </author>
+    <date>
+      <month>December</month>
+      <year>1998</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>39</page-count>
+    <keywords>
+      <kw>IPV6</kw>
+      <kw>internet</kw>
+      <kw>protocol</kw>
+      <kw>next</kw>
+      <kw>generation</kw>
+      <kw>ipng</kw>
+    </keywords>
+    <abstract>
+      <p>This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-ipngwg-ipv6-spec-v2-01</draft>
+    <obsoletes>
+      <doc-id>RFC1883</doc-id>
+    </obsoletes>
+    <obsoleted-by>
+      <doc-id>RFC8200</doc-id>
+    </obsoleted-by>
+    <updated-by>
+      <doc-id>RFC5095</doc-id>
+      <doc-id>RFC5722</doc-id>
+      <doc-id>RFC5871</doc-id>
+      <doc-id>RFC6437</doc-id>
+      <doc-id>RFC6564</doc-id>
+      <doc-id>RFC6935</doc-id>
+      <doc-id>RFC6946</doc-id>
+      <doc-id>RFC7045</doc-id>
+      <doc-id>RFC7112</doc-id>
+    </updated-by>
+    <current-status>DRAFT STANDARD</current-status>
+    <publication-status>DRAFT STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>int</area>
+    <wg_acronym>ipngwg</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc2460</errata-url>
+    <doi>10.17487/RFC2460</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC2474</doc-id>
+    <title>Definition of the Differentiated Services Field (DS Field) in the IPv4 and IPv6 Headers</title>
+    <author>
+      <name>K. Nichols</name>
+    </author>
+    <author>
+      <name>S. Blake</name>
+    </author>
+    <author>
+      <name>F. Baker</name>
+    </author>
+    <author>
+      <name>D. Black</name>
+    </author>
+    <date>
+      <month>December</month>
+      <year>1998</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>20</page-count>
+    <keywords>
+      <kw>internet</kw>
+      <kw>protocol</kw>
+      <kw>network</kw>
+      <kw>nodes</kw>
+    </keywords>
+    <abstract>
+      <p>This document defines the IP header field, called the DS (for differentiated services) field. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-diffserv-header-03</draft>
+    <obsoletes>
+      <doc-id>RFC1349</doc-id>
+      <doc-id>RFC1455</doc-id>
+    </obsoletes>
+    <updates>
+      <doc-id>RFC791</doc-id>
+    </updates>
+    <updated-by>
+      <doc-id>RFC3168</doc-id>
+      <doc-id>RFC3260</doc-id>
+      <doc-id>RFC8436</doc-id>
+    </updated-by>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>tsv</area>
+    <wg_acronym>diffserv</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc2474</errata-url>
+    <doi>10.17487/RFC2474</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC2631</doc-id>
+    <title>Diffie-Hellman Key Agreement Method</title>
+    <author>
+      <name>E. Rescorla</name>
+    </author>
+    <date>
+      <month>June</month>
+      <year>1999</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>13</page-count>
+    <keywords>
+      <kw>Diffie-Hellman</kw>
+      <kw>encryption</kw>
+      <kw>management</kw>
+      <kw>certificate</kw>
+    </keywords>
+    <abstract>
+      <p>This document standardizes one particular Diffie-Hellman variant, based on the ANSI X9.42 draft, developed by the ANSI X9F1 working group. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-smime-x942-07</draft>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>sec</area>
+    <wg_acronym>smime</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc2631</errata-url>
+    <doi>10.17487/RFC2631</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC2914</doc-id>
+    <title>Congestion Control Principles</title>
+    <author>
+      <name>S. Floyd</name>
+    </author>
+    <date>
+      <month>September</month>
+      <year>2000</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>17</page-count>
+    <keywords>
+      <kw>end-to-end</kw>
+    </keywords>
+    <abstract>
+      <p>The goal of this document is to explain the need for congestion control in the Internet, and to discuss what constitutes correct congestion control.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
+    </abstract>
+    <draft>draft-floyd-cong-04</draft>
+    <is-also>
+      <doc-id>BCP41</doc-id>
+    </is-also>
+    <updated-by>
+      <doc-id>RFC7141</doc-id>
+    </updated-by>
+    <current-status>BEST CURRENT PRACTICE</current-status>
+    <publication-status>BEST CURRENT PRACTICE</publication-status>
+    <stream>IETF</stream>
+    <area>tsv</area>
+    <wg_acronym>ecm</wg_acronym>
+    <doi>10.17487/RFC2914</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC3117</doc-id>
+    <title>On the Design of Application Protocols</title>
+    <author>
+      <name>M. Rose</name>
+    </author>
+    <date>
+      <month>November</month>
+      <year>2001</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>27</page-count>
+    <keywords>
+      <kw>beep</kw>
+      <kw>bxxp</kw>
+      <kw>blocks</kw>
+      <kw>extensible</kw>
+      <kw>exchange</kw>
+      <kw>text</kw>
+      <kw>binary</kw>
+    </keywords>
+    <abstract>
+      <p>This memo describes the design principles for the Blocks eXtensible eXchange Protocol (BXXP).  This memo provides information for the Internet community.</p>
+    </abstract>
+    <draft>draft-mrose-beep-design-03</draft>
+    <current-status>INFORMATIONAL</current-status>
+    <publication-status>INFORMATIONAL</publication-status>
+    <stream>Legacy</stream>
+    <doi>10.17487/RFC3117</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC3168</doc-id>
+    <title>The Addition of Explicit Congestion Notification (ECN) to IP</title>
+    <author>
+      <name>K. Ramakrishnan</name>
+    </author>
+    <author>
+      <name>S. Floyd</name>
+    </author>
+    <author>
+      <name>D. Black</name>
+    </author>
+    <date>
+      <month>September</month>
+      <year>2001</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>63</page-count>
+    <keywords>
+      <kw>IP</kw>
+      <kw>internet protocol</kw>
+      <kw>header</kw>
+      <kw>ECN</kw>
+      <kw>Explicit Congestion Notification</kw>
+    </keywords>
+    <abstract>
+      <p>This memo specifies the incorporation of ECN (Explicit Congestion Notification) to TCP and IP, including ECN's use of two bits in the IP header. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-tsvwg-ecn-04</draft>
+    <obsoletes>
+      <doc-id>RFC2481</doc-id>
+    </obsoletes>
+    <updates>
+      <doc-id>RFC793</doc-id>
+      <doc-id>RFC2003</doc-id>
+      <doc-id>RFC2401</doc-id>
+      <doc-id>RFC2474</doc-id>
+    </updates>
+    <updated-by>
+      <doc-id>RFC4301</doc-id>
+      <doc-id>RFC6040</doc-id>
+      <doc-id>RFC8311</doc-id>
+      <doc-id>RFC9768</doc-id>
+    </updated-by>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>tsvwg</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc3168</errata-url>
+    <doi>10.17487/RFC3168</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC3260</doc-id>
+    <title>New Terminology and Clarifications for Diffserv</title>
+    <author>
+      <name>D. Grossman</name>
+    </author>
+    <date>
+      <month>April</month>
+      <year>2002</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>10</page-count>
+    <keywords>
+      <kw>DIFFSRV</kw>
+      <kw>scalability</kw>
+      <kw>IP</kw>
+      <kw>internet</kw>
+      <kw>protocol</kw>
+    </keywords>
+    <abstract>
+      <p>This memo captures Diffserv working group agreements concerning new and improved terminology, and provides minor technical clarifications.  It is intended to update RFC 2474, RFC 2475 and RFC 2597.  When RFCs 2474 and 2597 advance on the standards track, and RFC 2475 is updated, it is intended that the revisions in this memo will be incorporated, and that this memo will be obsoleted by the new RFCs.  This memo provides information for the Internet community.</p>
+    </abstract>
+    <draft>draft-ietf-diffserv-new-terms-08</draft>
+    <updates>
+      <doc-id>RFC2474</doc-id>
+      <doc-id>RFC2475</doc-id>
+      <doc-id>RFC2597</doc-id>
+    </updates>
+    <current-status>INFORMATIONAL</current-status>
+    <publication-status>INFORMATIONAL</publication-status>
+    <stream>IETF</stream>
+    <area>tsv</area>
+    <wg_acronym>diffserv</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc3260</errata-url>
+    <doi>10.17487/RFC3260</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC3366</doc-id>
+    <title>Advice to link designers on link Automatic Repeat reQuest (ARQ)</title>
+    <author>
+      <name>G. Fairhurst</name>
+    </author>
+    <author>
+      <name>L. Wood</name>
+    </author>
+    <date>
+      <month>September</month>
+      <year>2002</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>27</page-count>
+    <keywords>
+      <kw>tcp/ip</kw>
+      <kw>subnetworks</kw>
+    </keywords>
+    <abstract>
+      <p>This document provides advice to the designers of digital&#13;
+communication equipment and link-layer protocols employing link&#13;
+layer Automatic Repeat reQuest (ARQ) techniques.  This document&#13;
+presumes that the designers wish to support Internet protocols, but&#13;
+may be unfamiliar with the architecture of the Internet and with the&#13;
+implications of their design choices on the performance and&#13;
+efficiency of Internet traffic carried over their links.</p>
+    </abstract>
+    <draft>draft-ietf-pilc-link-arq-issues-04</draft>
+    <is-also>
+      <doc-id>BCP62</doc-id>
+    </is-also>
+    <current-status>BEST CURRENT PRACTICE</current-status>
+    <publication-status>BEST CURRENT PRACTICE</publication-status>
+    <stream>IETF</stream>
+    <area>tsv</area>
+    <wg_acronym>pilc</wg_acronym>
+    <doi>10.17487/RFC3366</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC3449</doc-id>
+    <title>TCP Performance Implications of Network Path Asymmetry</title>
+    <author>
+      <name>H. Balakrishnan</name>
+    </author>
+    <author>
+      <name>V. Padmanabhan</name>
+    </author>
+    <author>
+      <name>G. Fairhurst</name>
+    </author>
+    <author>
+      <name>M. Sooriyabandara</name>
+    </author>
+    <date>
+      <month>December</month>
+      <year>2002</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>41</page-count>
+    <keywords>
+      <kw>links</kw>
+      <kw>sender</kw>
+      <kw>receiver</kw>
+      <kw>ack</kw>
+    </keywords>
+    <abstract>
+      <p>This document describes TCP performance problems that arise because of asymmetric effects.  These problems arise in several access networks, including bandwidth-asymmetric networks and packet radio subnetworks, for different underlying reasons.  However, the end result on TCP performance is the same in both cases: performance often degrades significantly because of imperfection and variability in the ACK feedback from the receiver to the sender.  The document details several mitigations to these effects, which have either been proposed or evaluated in the literature, or are currently deployed in networks.  These solutions use a combination of local link- layer techniques, subnetwork, and end-to-end mechanisms, consisting of: (i) techniques to manage the channel used for the upstream bottleneck link carrying the ACKs, typically using header compression or reducing the frequency of TCP ACKs, (ii) techniques to handle this reduced ACK frequency to retain the TCP sender's acknowledgment-triggered self- clocking and (iii) techniques to schedule the data and ACK packets in the reverse direction to improve performance in the presence of two-way traffic.  Each technique is described, together with known issues, and recommendations for use.  A summary of the recommendations is provided at the end of the document.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
+    </abstract>
+    <draft>draft-ietf-pilc-asym-08</draft>
+    <is-also>
+      <doc-id>BCP69</doc-id>
+    </is-also>
+    <current-status>BEST CURRENT PRACTICE</current-status>
+    <publication-status>BEST CURRENT PRACTICE</publication-status>
+    <stream>IETF</stream>
+    <area>tsv</area>
+    <wg_acronym>pilc</wg_acronym>
+    <doi>10.17487/RFC3449</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC3465</doc-id>
+    <title>TCP Congestion Control with Appropriate Byte Counting (ABC)</title>
+    <author>
+      <name>M. Allman</name>
+    </author>
+    <date>
+      <month>February</month>
+      <year>2003</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>10</page-count>
+    <keywords>
+      <kw>TCP</kw>
+      <kw>transmission control protocol</kw>
+      <kw>security performance</kw>
+      <kw>ABC</kw>
+      <kw>Appropriate Byte Counting</kw>
+    </keywords>
+    <abstract>
+      <p>This document proposes a small modification to the way TCP increases its congestion window.  Rather than the traditional method of increasing the congestion window by a constant amount for each arriving acknowledgment, the document suggests basing the increase on the number of previously unacknowledged bytes each ACK covers.  This change improves the performance of TCP, as well as closes a security hole TCP receivers can use to induce the sender into increasing the sending rate too rapidly.  This memo defines an Experimental Protocol for the Internet community.</p>
+    </abstract>
+    <draft>draft-allman-tcp-abc-04</draft>
+    <current-status>EXPERIMENTAL</current-status>
+    <publication-status>EXPERIMENTAL</publication-status>
+    <stream>IETF</stream>
+    <wg_acronym>NON WORKING GROUP</wg_acronym>
+    <doi>10.17487/RFC3465</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC3819</doc-id>
+    <title>Advice for Internet Subnetwork Designers</title>
+    <author>
+      <name>P. Karn</name>
+      <title>Editor</title>
+    </author>
+    <author>
+      <name>C. Bormann</name>
+    </author>
+    <author>
+      <name>G. Fairhurst</name>
+    </author>
+    <author>
+      <name>D. Grossman</name>
+    </author>
+    <author>
+      <name>R. Ludwig</name>
+    </author>
+    <author>
+      <name>J. Mahdavi</name>
+    </author>
+    <author>
+      <name>G. Montenegro</name>
+    </author>
+    <author>
+      <name>J. Touch</name>
+    </author>
+    <author>
+      <name>L. Wood</name>
+    </author>
+    <date>
+      <month>July</month>
+      <year>2004</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>60</page-count>
+    <keywords>
+      <kw>digital communication equipment</kw>
+      <kw>link-layer protocols</kw>
+      <kw>packet-switched local networks</kw>
+    </keywords>
+    <abstract>
+      <p>This document provides advice to the designers of digital communication equipment, link-layer protocols, and packet-switched local networks (collectively referred to as subnetworks), who wish to support the Internet protocols but may be unfamiliar with the Internet architecture and the implications of their design choices on the performance and efficiency of the Internet.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
+    </abstract>
+    <draft>draft-ietf-pilc-link-design-15</draft>
+    <is-also>
+      <doc-id>BCP89</doc-id>
+    </is-also>
+    <updated-by>
+      <doc-id>RFC9599</doc-id>
+    </updated-by>
+    <current-status>BEST CURRENT PRACTICE</current-status>
+    <publication-status>BEST CURRENT PRACTICE</publication-status>
+    <stream>IETF</stream>
+    <area>tsv</area>
+    <wg_acronym>pilc</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc3819</errata-url>
+    <doi>10.17487/RFC3819</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC3927</doc-id>
+    <title>Dynamic Configuration of IPv4 Link-Local Addresses</title>
+    <author>
+      <name>S. Cheshire</name>
+    </author>
+    <author>
+      <name>B. Aboba</name>
+    </author>
+    <author>
+      <name>E. Guttman</name>
+    </author>
+    <date>
+      <month>May</month>
+      <year>2005</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>33</page-count>
+    <keywords>
+      <kw>Dynamic Configuration</kw>
+      <kw>ip network</kw>
+      <kw>ip address</kw>
+      <kw>169.254/16</kw>
+    </keywords>
+    <abstract>
+      <p>To participate in wide-area IP networking, a host needs to be configured with IP addresses for its interfaces, either manually by the user or automatically from a source on the network such as a Dynamic Host Configuration Protocol (DHCP) server. Unfortunately, such address configuration information may not always be available. It is therefore beneficial for a host to be able to depend on a useful subset of IP networking functions even when no address configuration is available. This document describes how a host may automatically configure an interface with an IPv4 address within the 169.254/16 prefix that is valid for communication with other devices connected to the same physical (or logical) link.</p>
+      <p>IPv4 Link-Local addresses are not suitable for communication with devices not directly connected to the same physical (or logical) link, and are only used where stable, routable addresses are not available (such as on ad hoc or isolated networks). This document does not recommend that IPv4 Link-Local addresses and routable addresses be configured simultaneously on the same interface. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-zeroconf-ipv4-linklocal-17</draft>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>int</area>
+    <wg_acronym>zeroconf</wg_acronym>
+    <doi>10.17487/RFC3927</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC3986</doc-id>
+    <title>Uniform Resource Identifier (URI): Generic Syntax</title>
+    <author>
+      <name>T. Berners-Lee</name>
+    </author>
+    <author>
+      <name>R. Fielding</name>
+    </author>
+    <author>
+      <name>L. Masinter</name>
+    </author>
+    <date>
+      <month>January</month>
+      <year>2005</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>61</page-count>
+    <keywords>
+      <kw>Internet protocol</kw>
+      <kw>IP</kw>
+      <kw>uniform resource identifier</kw>
+      <kw>URI</kw>
+      <kw>www</kw>
+      <kw>world wide web</kw>
+    </keywords>
+    <abstract>
+      <p>A Uniform Resource Identifier (URI) is a compact sequence of characters that identifies an abstract or physical resource.  This specification defines the generic URI syntax and a process for resolving URI references that might be in relative form, along with guidelines and security considerations for the use of URIs on the Internet.  The URI syntax defines a grammar that is a superset of all valid URIs, allowing an implementation to parse the common components of a URI reference without knowing the scheme-specific requirements of every possible identifier.  This specification does not define a generative grammar for URIs; that task is performed by the individual specifications of each URI scheme. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-fielding-uri-rfc2396bis-07</draft>
+    <is-also>
+      <doc-id>STD66</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC1808</doc-id>
+      <doc-id>RFC2396</doc-id>
+      <doc-id>RFC2732</doc-id>
+    </obsoletes>
+    <updates>
+      <doc-id>RFC1738</doc-id>
+    </updates>
+    <updated-by>
+      <doc-id>RFC7320</doc-id>
+      <doc-id>RFC8820</doc-id>
+    </updated-by>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>INTERNET STANDARD</publication-status>
+    <stream>IETF</stream>
+    <wg_acronym>NON WORKING GROUP</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc3986</errata-url>
+    <doi>10.17487/RFC3986</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC4291</doc-id>
+    <title>IP Version 6 Addressing Architecture</title>
+    <author>
+      <name>R. Hinden</name>
+    </author>
+    <author>
+      <name>S. Deering</name>
+    </author>
+    <date>
+      <month>February</month>
+      <year>2006</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>25</page-count>
+    <keywords>
+      <kw>internet protocol version 6</kw>
+      <kw>unicast</kw>
+      <kw>anycast</kw>
+      <kw>multicast</kw>
+      <kw>node</kw>
+    </keywords>
+    <abstract>
+      <p>This specification defines the addressing architecture of the IP Version 6 (IPv6) protocol. The document includes the IPv6 addressing model, text representations of IPv6 addresses, definition of IPv6 unicast addresses, anycast addresses, and multicast addresses, and an IPv6 node's required addresses.</p>
+      <p>This document obsoletes RFC 3513, "IP Version 6 Addressing Architecture". [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-ipv6-addr-arch-v4-04</draft>
+    <obsoletes>
+      <doc-id>RFC3513</doc-id>
+    </obsoletes>
+    <updated-by>
+      <doc-id>RFC5952</doc-id>
+      <doc-id>RFC6052</doc-id>
+      <doc-id>RFC7136</doc-id>
+      <doc-id>RFC7346</doc-id>
+      <doc-id>RFC7371</doc-id>
+      <doc-id>RFC8064</doc-id>
+    </updated-by>
+    <current-status>DRAFT STANDARD</current-status>
+    <publication-status>DRAFT STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>int</area>
+    <wg_acronym>ipv6</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc4291</errata-url>
+    <doi>10.17487/RFC4291</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC4346</doc-id>
+    <title>The Transport Layer Security (TLS) Protocol Version 1.1</title>
+    <author>
+      <name>T. Dierks</name>
+    </author>
+    <author>
+      <name>E. Rescorla</name>
+    </author>
+    <date>
+      <month>April</month>
+      <year>2006</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>87</page-count>
+    <abstract>
+      <p>This document specifies Version 1.1 of the Transport Layer Security (TLS) protocol.  The TLS protocol provides communications security over the Internet.  The protocol allows client/server applications to communicate in a way that is designed to prevent eavesdropping, tampering, or message forgery.</p>
+    </abstract>
+    <draft>draft-ietf-tls-rfc2246-bis-13</draft>
+    <obsoletes>
+      <doc-id>RFC2246</doc-id>
+    </obsoletes>
+    <obsoleted-by>
+      <doc-id>RFC5246</doc-id>
+    </obsoleted-by>
+    <updated-by>
+      <doc-id>RFC4366</doc-id>
+      <doc-id>RFC4680</doc-id>
+      <doc-id>RFC4681</doc-id>
+      <doc-id>RFC5746</doc-id>
+      <doc-id>RFC6176</doc-id>
+      <doc-id>RFC7465</doc-id>
+      <doc-id>RFC7507</doc-id>
+      <doc-id>RFC7919</doc-id>
+      <doc-id>RFC10015</doc-id>
+    </updated-by>
+    <current-status>HISTORIC</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>sec</area>
+    <wg_acronym>tls</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc4346</errata-url>
+    <doi>10.17487/RFC4346</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC4443</doc-id>
+    <title>Internet Control Message Protocol (ICMPv6) for the Internet Protocol Version 6 (IPv6) Specification</title>
+    <author>
+      <name>A. Conta</name>
+    </author>
+    <author>
+      <name>S. Deering</name>
+    </author>
+    <author>
+      <name>M. Gupta</name>
+      <title>Editor</title>
+    </author>
+    <date>
+      <month>March</month>
+      <year>2006</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>24</page-count>
+    <abstract>
+      <p>This document describes the format of a set of control messages used in ICMPv6 (Internet Control Message Protocol).  ICMPv6 is the Internet Control Message Protocol for Internet Protocol version 6 (IPv6). [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-ipngwg-icmp-v3-07</draft>
+    <is-also>
+      <doc-id>STD89</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC2463</doc-id>
+    </obsoletes>
+    <updates>
+      <doc-id>RFC2780</doc-id>
+    </updates>
+    <updated-by>
+      <doc-id>RFC4884</doc-id>
+    </updated-by>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>DRAFT STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>int</area>
+    <wg_acronym>ipv6</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc4443</errata-url>
+    <doi>10.17487/RFC4443</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC4543</doc-id>
+    <title>The Use of Galois Message Authentication Code (GMAC) in IPsec ESP and AH</title>
+    <author>
+      <name>D. McGrew</name>
+    </author>
+    <author>
+      <name>J. Viega</name>
+    </author>
+    <date>
+      <month>May</month>
+      <year>2006</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>14</page-count>
+    <keywords>
+      <kw>encapsulating security payload</kw>
+      <kw>gcm</kw>
+      <kw>galois/counter mode</kw>
+      <kw>authentication header</kw>
+    </keywords>
+    <abstract>
+      <p>This memo describes the use of the Advanced Encryption Standard (AES) Galois Message Authentication Code (GMAC) as a mechanism to provide data origin authentication, but not confidentiality, within the IPsec Encapsulating Security Payload (ESP) and Authentication Header (AH).  GMAC is based on the Galois/Counter Mode (GCM) of operation, and can be efficiently implemented in hardware for speeds of 10 gigabits per second and above, and is also well-suited to software implementations. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-mcgrew-aes-gmac-esp-02</draft>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <wg_acronym>NON WORKING GROUP</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc4543</errata-url>
+    <doi>10.17487/RFC4543</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC4632</doc-id>
+    <title>Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan</title>
+    <author>
+      <name>V. Fuller</name>
+    </author>
+    <author>
+      <name>T. Li</name>
+    </author>
+    <date>
+      <month>August</month>
+      <year>2006</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>27</page-count>
+    <keywords>
+      <kw>CIDR-STRA</kw>
+      <kw>global routing state</kw>
+    </keywords>
+    <abstract>
+      <p>This memo discusses the strategy for address assignment of the existing 32-bit IPv4 address space with a view toward conserving the address space and limiting the growth rate of global routing state.  This document obsoletes the original Classless Inter-domain Routing (CIDR) spec in RFC 1519, with changes made both to clarify the concepts it introduced and, after more than twelve years, to update the Internet community on the results of deploying the technology described.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
+    </abstract>
+    <draft>draft-ietf-grow-rfc1519bis-04</draft>
+    <is-also>
+      <doc-id>BCP122</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC1519</doc-id>
+    </obsoletes>
+    <current-status>BEST CURRENT PRACTICE</current-status>
+    <publication-status>BEST CURRENT PRACTICE</publication-status>
+    <stream>IETF</stream>
+    <area>ops</area>
+    <wg_acronym>grow</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc4632</errata-url>
+    <doi>10.17487/RFC4632</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC4861</doc-id>
+    <title>Neighbor Discovery for IP version 6 (IPv6)</title>
+    <author>
+      <name>T. Narten</name>
+    </author>
+    <author>
+      <name>E. Nordmark</name>
+    </author>
+    <author>
+      <name>W. Simpson</name>
+    </author>
+    <author>
+      <name>H. Soliman</name>
+    </author>
+    <date>
+      <month>September</month>
+      <year>2007</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>97</page-count>
+    <keywords>
+      <kw>IPV6-ND</kw>
+      <kw>internet protocol</kw>
+      <kw>link-layer</kw>
+      <kw>link-layer address</kw>
+    </keywords>
+    <abstract>
+      <p>This document specifies the Neighbor Discovery protocol for IP Version 6.  IPv6 nodes on the same link use Neighbor Discovery to discover each other's presence, to determine each other's link-layer addresses, to find routers, and to maintain reachability information about the paths to active neighbors. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-ipv6-2461bis-11</draft>
+    <obsoletes>
+      <doc-id>RFC2461</doc-id>
+    </obsoletes>
+    <updated-by>
+      <doc-id>RFC5942</doc-id>
+      <doc-id>RFC6980</doc-id>
+      <doc-id>RFC7048</doc-id>
+      <doc-id>RFC7527</doc-id>
+      <doc-id>RFC7559</doc-id>
+      <doc-id>RFC8028</doc-id>
+      <doc-id>RFC8319</doc-id>
+      <doc-id>RFC8425</doc-id>
+      <doc-id>RFC9131</doc-id>
+      <doc-id>RFC9685</doc-id>
+      <doc-id>RFC9762</doc-id>
+      <doc-id>RFC9926</doc-id>
+    </updated-by>
+    <current-status>DRAFT STANDARD</current-status>
+    <publication-status>DRAFT STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>int</area>
+    <wg_acronym>ipv6</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc4861</errata-url>
+    <doi>10.17487/RFC4861</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC4862</doc-id>
+    <title>IPv6 Stateless Address Autoconfiguration</title>
+    <author>
+      <name>S. Thomson</name>
+    </author>
+    <author>
+      <name>T. Narten</name>
+    </author>
+    <author>
+      <name>T. Jinmei</name>
+    </author>
+    <date>
+      <month>September</month>
+      <year>2007</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>30</page-count>
+    <keywords>
+      <kw>IPV6-AUTO</kw>
+      <kw>host</kw>
+      <kw>link-local</kw>
+      <kw>internet protocol version 6</kw>
+      <kw>link-local address</kw>
+      <kw>duplicate address detection</kw>
+    </keywords>
+    <abstract>
+      <p>This document specifies the steps a host takes in deciding how to autoconfigure its interfaces in IP version 6.  The autoconfiguration process includes generating a link-local address, generating global addresses via stateless address autoconfiguration, and the Duplicate Address Detection procedure to verify the uniqueness of the addresses on a link. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-ipv6-rfc2462bis-08</draft>
+    <obsoletes>
+      <doc-id>RFC2462</doc-id>
+    </obsoletes>
+    <updated-by>
+      <doc-id>RFC7527</doc-id>
+      <doc-id>RFC9762</doc-id>
+    </updated-by>
+    <current-status>DRAFT STANDARD</current-status>
+    <publication-status>DRAFT STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>int</area>
+    <wg_acronym>ipv6</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc4862</errata-url>
+    <doi>10.17487/RFC4862</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC4949</doc-id>
+    <title>Internet Security Glossary, Version 2</title>
+    <author>
+      <name>R. Shirey</name>
+    </author>
+    <date>
+      <month>August</month>
+      <year>2007</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>365</page-count>
+    <keywords>
+      <kw>abbreviation</kw>
+      <kw>clarity</kw>
+      <kw>definition</kw>
+      <kw>dictionary</kw>
+      <kw>language</kw>
+      <kw>punctuation</kw>
+      <kw>synonym</kw>
+      <kw>terminology</kw>
+      <kw>writing</kw>
+    </keywords>
+    <abstract>
+      <p>This Glossary provides definitions, abbreviations, and explanations of terminology for information system security.  The 334 pages of entries offer recommendations to improve the comprehensibility of written material that is generated in the Internet Standards Process (RFC 2026).  The recommendations follow the principles that such writing should (a) use the same term or definition whenever the same concept is mentioned; (b) use terms in their plainest, dictionary sense; (c) use terms that are already well-established in open publications; and (d) avoid terms that either favor a particular vendor or favor a particular technology or mechanism over other, competing techniques that already exist or could be developed.  This memo provides information for the Internet community.</p>
+    </abstract>
+    <draft>draft-shirey-secgloss-v2-08</draft>
+    <is-also>
+      <doc-id>FYI36</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC2828</doc-id>
+    </obsoletes>
+    <current-status>INFORMATIONAL</current-status>
+    <publication-status>INFORMATIONAL</publication-status>
+    <stream>INDEPENDENT</stream>
+    <errata-url>https://www.rfc-editor.org/errata/rfc4949</errata-url>
+    <doi>10.17487/RFC4949</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC5116</doc-id>
+    <title>An Interface and Algorithms for Authenticated Encryption</title>
+    <author>
+      <name>D. McGrew</name>
+    </author>
+    <date>
+      <month>January</month>
+      <year>2008</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>22</page-count>
+    <keywords>
+      <kw>Encryption</kw>
+      <kw>Authentication</kw>
+      <kw>AEAD</kw>
+      <kw>authenticated encryption with associated data</kw>
+    </keywords>
+    <abstract>
+      <p>This document defines algorithms for Authenticated Encryption with Associated Data (AEAD), and defines a uniform interface and a registry for such algorithms.  The interface and registry can be used as an application-independent set of cryptoalgorithm suites.  This approach provides advantages in efficiency and security, and promotes the reuse of crypto implementations. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-mcgrew-auth-enc-05</draft>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <wg_acronym>NON WORKING GROUP</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc5116</errata-url>
+    <doi>10.17487/RFC5116</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC5227</doc-id>
+    <title>IPv4 Address Conflict Detection</title>
+    <author>
+      <name>S. Cheshire</name>
+    </author>
+    <date>
+      <month>July</month>
+      <year>2008</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>21</page-count>
+    <keywords>
+      <kw>internet protocol version 4</kw>
+    </keywords>
+    <abstract>
+      <p>When two hosts on the same link attempt to use the same IPv4 address at the same time (except in rare special cases where this has been arranged by prior coordination), problems ensue for one or both hosts.  This document describes (i) a simple precaution that a host can take in advance to help prevent this misconfiguration from happening, and (ii) if this misconfiguration does occur, a simple mechanism by which a host can passively detect, after the fact, that it has happened, so that the host or administrator may respond to rectify the problem. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-cheshire-ipv4-acd-06</draft>
+    <updates>
+      <doc-id>RFC826</doc-id>
+    </updates>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <wg_acronym>NON WORKING GROUP</wg_acronym>
+    <doi>10.17487/RFC5227</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC5246</doc-id>
+    <title>The Transport Layer Security (TLS) Protocol Version 1.2</title>
+    <author>
+      <name>T. Dierks</name>
+    </author>
+    <author>
+      <name>E. Rescorla</name>
+    </author>
+    <date>
+      <month>August</month>
+      <year>2008</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>104</page-count>
+    <keywords>
+      <kw>idea</kw>
+      <kw>international data algorithm</kw>
+      <kw>symmetric</kw>
+      <kw>transport protocol layer</kw>
+      <kw>authentication</kw>
+      <kw>privacy</kw>
+    </keywords>
+    <abstract>
+      <p>This document specifies Version 1.2 of the Transport Layer Security (TLS) protocol.  The TLS protocol provides communications security over the Internet.  The protocol allows client/server applications to communicate in a way that is designed to prevent eavesdropping, tampering, or message forgery. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-tls-rfc4346-bis-10</draft>
+    <obsoletes>
+      <doc-id>RFC3268</doc-id>
+      <doc-id>RFC4346</doc-id>
+      <doc-id>RFC4366</doc-id>
+    </obsoletes>
+    <obsoleted-by>
+      <doc-id>RFC8446</doc-id>
+      <doc-id>RFC9846</doc-id>
+    </obsoleted-by>
+    <updates>
+      <doc-id>RFC4492</doc-id>
+    </updates>
+    <updated-by>
+      <doc-id>RFC5746</doc-id>
+      <doc-id>RFC5878</doc-id>
+      <doc-id>RFC6176</doc-id>
+      <doc-id>RFC7465</doc-id>
+      <doc-id>RFC7507</doc-id>
+      <doc-id>RFC7568</doc-id>
+      <doc-id>RFC7627</doc-id>
+      <doc-id>RFC7685</doc-id>
+      <doc-id>RFC7905</doc-id>
+      <doc-id>RFC7919</doc-id>
+      <doc-id>RFC8447</doc-id>
+      <doc-id>RFC9155</doc-id>
+      <doc-id>RFC10015</doc-id>
+    </updated-by>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>sec</area>
+    <wg_acronym>tls</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc5246</errata-url>
+    <doi>10.17487/RFC5246</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC5280</doc-id>
+    <title>Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile</title>
+    <author>
+      <name>D. Cooper</name>
+    </author>
+    <author>
+      <name>S. Santesson</name>
+    </author>
+    <author>
+      <name>S. Farrell</name>
+    </author>
+    <author>
+      <name>S. Boeyen</name>
+    </author>
+    <author>
+      <name>R. Housley</name>
+    </author>
+    <author>
+      <name>W. Polk</name>
+    </author>
+    <date>
+      <month>May</month>
+      <year>2008</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>151</page-count>
+    <keywords>
+      <kw>X.509 v3</kw>
+      <kw>X.509 v2</kw>
+      <kw>certificate extensions</kw>
+    </keywords>
+    <abstract>
+      <p>This memo profiles the X.509 v3 certificate and X.509 v2 certificate revocation list (CRL) for use in the Internet.  An overview of this approach and model is provided as an introduction.  The X.509 v3 certificate format is described in detail, with additional information regarding the format and semantics of Internet name forms.  Standard certificate extensions are described and two Internet-specific extensions are defined.  A set of required certificate extensions is specified.  The X.509 v2 CRL format is described in detail along with standard and Internet-specific extensions.  An algorithm for X.509 certification path validation is described.  An ASN.1 module and examples are provided in the appendices. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-pkix-rfc3280bis-11</draft>
+    <obsoletes>
+      <doc-id>RFC3280</doc-id>
+      <doc-id>RFC4325</doc-id>
+      <doc-id>RFC4630</doc-id>
+    </obsoletes>
+    <updated-by>
+      <doc-id>RFC6818</doc-id>
+      <doc-id>RFC8398</doc-id>
+      <doc-id>RFC8399</doc-id>
+      <doc-id>RFC9549</doc-id>
+      <doc-id>RFC9598</doc-id>
+      <doc-id>RFC9608</doc-id>
+      <doc-id>RFC9618</doc-id>
+      <doc-id>RFC9925</doc-id>
+      <doc-id>RFC10007</doc-id>
+    </updated-by>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>sec</area>
+    <wg_acronym>pkix</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc5280</errata-url>
+    <doi>10.17487/RFC5280</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC5681</doc-id>
+    <title>TCP Congestion Control</title>
+    <author>
+      <name>M. Allman</name>
+    </author>
+    <author>
+      <name>V. Paxson</name>
+    </author>
+    <author>
+      <name>E. Blanton</name>
+    </author>
+    <date>
+      <month>September</month>
+      <year>2009</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>18</page-count>
+    <keywords>
+      <kw>slow start</kw>
+      <kw>congestion avoidance</kw>
+      <kw>fast retransmit</kw>
+      <kw>fast recovery</kw>
+    </keywords>
+    <abstract>
+      <p>This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods.  This document obsoletes RFC 2581. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-tcpm-rfc2581bis-07</draft>
+    <obsoletes>
+      <doc-id>RFC2581</doc-id>
+    </obsoletes>
+    <updated-by>
+      <doc-id>RFC9438</doc-id>
+    </updated-by>
+    <current-status>DRAFT STANDARD</current-status>
+    <publication-status>DRAFT STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>tcpm</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc5681</errata-url>
+    <doi>10.17487/RFC5681</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC5737</doc-id>
+    <title>IPv4 Address Blocks Reserved for Documentation</title>
+    <author>
+      <name>J. Arkko</name>
+    </author>
+    <author>
+      <name>M. Cotton</name>
+    </author>
+    <author>
+      <name>L. Vegoda</name>
+    </author>
+    <date>
+      <month>January</month>
+      <year>2010</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>4</page-count>
+    <keywords>
+      <kw>example addresses</kw>
+      <kw>IPv4</kw>
+    </keywords>
+    <abstract>
+      <p>Three IPv4 unicast address blocks are reserved for use in examples in specifications and other documents.  This document describes the use of these blocks.  This document is not an Internet Standards Track specification; it is published for informational purposes.</p>
+    </abstract>
+    <draft>draft-iana-ipv4-examples-02</draft>
+    <updates>
+      <doc-id>RFC1166</doc-id>
+    </updates>
+    <current-status>INFORMATIONAL</current-status>
+    <publication-status>INFORMATIONAL</publication-status>
+    <stream>IETF</stream>
+    <wg_acronym>NON WORKING GROUP</wg_acronym>
+    <doi>10.17487/RFC5737</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC5771</doc-id>
+    <title>IANA Guidelines for IPv4 Multicast Address Assignments</title>
+    <author>
+      <name>M. Cotton</name>
+    </author>
+    <author>
+      <name>L. Vegoda</name>
+    </author>
+    <author>
+      <name>D. Meyer</name>
+    </author>
+    <date>
+      <month>March</month>
+      <year>2010</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>11</page-count>
+    <keywords>
+      <kw>internet</kw>
+      <kw>assigned</kw>
+      <kw>numbers</kw>
+      <kw>authority</kw>
+      <kw>protocol</kw>
+      <kw>parameters</kw>
+    </keywords>
+    <abstract>
+      <p>This document provides guidance for the Internet Assigned Numbers Authority (IANA) in assigning IPv4 multicast addresses.  It obsoletes RFC 3171 and RFC 3138 and updates RFC 2780.  This memo documents an Internet Best Current Practice.</p>
+    </abstract>
+    <draft>draft-ietf-mboned-rfc3171bis-08</draft>
+    <is-also>
+      <doc-id>BCP51</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC3138</doc-id>
+      <doc-id>RFC3171</doc-id>
+    </obsoletes>
+    <updates>
+      <doc-id>RFC2780</doc-id>
+    </updates>
+    <current-status>BEST CURRENT PRACTICE</current-status>
+    <publication-status>BEST CURRENT PRACTICE</publication-status>
+    <stream>IETF</stream>
+    <area>ops</area>
+    <wg_acronym>mboned</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc5771</errata-url>
+    <doi>10.17487/RFC5771</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC5869</doc-id>
+    <title>HMAC-based Extract-and-Expand Key Derivation Function (HKDF)</title>
+    <author>
+      <name>H. Krawczyk</name>
+    </author>
+    <author>
+      <name>P. Eronen</name>
+    </author>
+    <date>
+      <month>May</month>
+      <year>2010</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>14</page-count>
+    <abstract>
+      <p>This document specifies a simple Hashed Message Authentication Code (HMAC)-based key derivation function (HKDF), which can be used as a building block in various protocols and applications.  The key derivation function (KDF) is intended to support a wide range of applications and requirements, and is conservative in its use of cryptographic hash functions.  This document is not an Internet Standards Track specification; it is published for informational purposes.</p>
+    </abstract>
+    <draft>draft-krawczyk-hkdf-01</draft>
+    <current-status>INFORMATIONAL</current-status>
+    <publication-status>INFORMATIONAL</publication-status>
+    <stream>IETF</stream>
+    <wg_acronym>NON WORKING GROUP</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc5869</errata-url>
+    <doi>10.17487/RFC5869</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC5952</doc-id>
+    <title>A Recommendation for IPv6 Address Text Representation</title>
+    <author>
+      <name>S. Kawamura</name>
+    </author>
+    <author>
+      <name>M. Kawashima</name>
+    </author>
+    <date>
+      <month>August</month>
+      <year>2010</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>14</page-count>
+    <keywords>
+      <kw>IPv6</kw>
+      <kw>text representation</kw>
+      <kw>canonical</kw>
+    </keywords>
+    <abstract>
+      <p>As IPv6 deployment increases, there will be a dramatic increase in the need to use IPv6 addresses in text.  While the IPv6 address architecture in Section 2.2 of RFC 4291 describes a flexible model for text representation of an IPv6 address, this flexibility has been causing problems for operators, system engineers, and users.  This document defines a canonical textual representation format.  It does not define a format for internal storage, such as within an application or database.  It is expected that the canonical format will be followed by humans and systems when representing IPv6 addresses as text, but all implementations must accept and be able to handle any legitimate RFC 4291 format. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-6man-text-addr-representation-07</draft>
+    <updates>
+      <doc-id>RFC4291</doc-id>
+    </updates>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>int</area>
+    <wg_acronym>6man</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc5952</errata-url>
+    <doi>10.17487/RFC5952</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC6056</doc-id>
+    <title>Recommendations for Transport-Protocol Port Randomization</title>
+    <author>
+      <name>M. Larsen</name>
+    </author>
+    <author>
+      <name>F. Gont</name>
+    </author>
+    <date>
+      <month>January</month>
+      <year>2011</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>29</page-count>
+    <keywords>
+      <kw>tcp</kw>
+      <kw>transmission control protocl</kw>
+      <kw>blind attacks</kw>
+    </keywords>
+    <abstract>
+      <p>During the last few years, awareness has been raised about a number of "blind" attacks that can be performed against the Transmission Control Protocol (TCP) and similar protocols.  The consequences of these attacks range from throughput reduction to broken connections or data corruption.  These attacks rely on the attacker's ability to guess or know the five-tuple (Protocol, Source Address, Destination Address, Source Port, Destination Port) that identifies the transport protocol instance to be attacked.  This document describes a number of simple and efficient methods for the selection of the client port number, such that the possibility of an attacker guessing the exact value is reduced.  While this is not a replacement for cryptographic methods for protecting the transport-protocol instance, the aforementioned port selection algorithms provide improved security with very little effort and without any key management overhead.  The algorithms described in this document are local policies that may be incrementally deployed and that do not violate the specifications of any of the transport protocols that may benefit from them, such as TCP, UDP, UDP-lite, Stream Control Transmission Protocol (SCTP), Datagram Congestion Control Protocol (DCCP), and RTP (provided that the RTP application explicitly signals the RTP and RTCP port numbers).  This memo documents an Internet Best Current Practice.</p>
+    </abstract>
+    <draft>draft-ietf-tsvwg-port-randomization-09</draft>
+    <is-also>
+      <doc-id>BCP156</doc-id>
+    </is-also>
+    <current-status>BEST CURRENT PRACTICE</current-status>
+    <publication-status>BEST CURRENT PRACTICE</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>tsvwg</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc6056</errata-url>
+    <doi>10.17487/RFC6056</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC6101</doc-id>
+    <title>The Secure Sockets Layer (SSL) Protocol Version 3.0</title>
+    <author>
+      <name>A. Freier</name>
+    </author>
+    <author>
+      <name>P. Karlton</name>
+    </author>
+    <author>
+      <name>P. Kocher</name>
+    </author>
+    <date>
+      <month>August</month>
+      <year>2011</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>67</page-count>
+    <keywords>
+      <kw>Transport layer security</kw>
+    </keywords>
+    <abstract>
+      <p>This document is published as a historical record of the SSL 3.0 protocol. The original Abstract follows.</p>
+      <p>This document specifies version 3.0 of the Secure Sockets Layer (SSL 3.0) protocol, a security protocol that provides communications privacy over the Internet. The protocol allows client/server applications to communicate in a way that is designed to prevent eavesdropping, tampering, or message forgery. This document defines a Historic Document for the Internet community.</p>
+    </abstract>
+    <draft>draft-mavrogiannopoulos-ssl-version3-06</draft>
+    <current-status>HISTORIC</current-status>
+    <publication-status>HISTORIC</publication-status>
+    <stream>IETF</stream>
+    <wg_acronym>NON WORKING GROUP</wg_acronym>
+    <doi>10.17487/RFC6101</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC6194</doc-id>
+    <title>Security Considerations for the SHA-0 and SHA-1 Message-Digest Algorithms</title>
+    <author>
+      <name>T. Polk</name>
+    </author>
+    <author>
+      <name>L. Chen</name>
+    </author>
+    <author>
+      <name>S. Turner</name>
+    </author>
+    <author>
+      <name>P. Hoffman</name>
+    </author>
+    <date>
+      <month>March</month>
+      <year>2011</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>7</page-count>
+    <abstract>
+      <p>This document includes security considerations for the SHA-0 and SHA-1 message digest algorithm.  This document is not an Internet Standards Track specification; it is published for informational purposes.</p>
+    </abstract>
+    <draft>draft-turner-sha0-sha1-seccon-05</draft>
+    <current-status>INFORMATIONAL</current-status>
+    <publication-status>INFORMATIONAL</publication-status>
+    <stream>IETF</stream>
+    <wg_acronym>NON WORKING GROUP</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc6194</errata-url>
+    <doi>10.17487/RFC6194</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC6247</doc-id>
+    <title>Moving the Undeployed TCP Extensions RFC 1072, RFC 1106, RFC 1110, RFC 1145, RFC 1146, RFC 1379, RFC 1644, and RFC 1693 to Historic Status</title>
+    <author>
+      <name>L. Eggert</name>
+    </author>
+    <date>
+      <month>May</month>
+      <year>2011</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>4</page-count>
+    <abstract>
+      <p>This document reclassifies several TCP extensions that have never seen widespread use to Historic status.  The affected RFCs are RFC 1072, RFC 1106, RFC 1110, RFC 1145, RFC 1146, RFC 1379, RFC 1644, and RFC 1693.  This document is not an Internet Standards Track specification; it is published for informational purposes.</p>
+    </abstract>
+    <draft>draft-eggert-tcpm-historicize-02</draft>
+    <obsoletes>
+      <doc-id>RFC1072</doc-id>
+      <doc-id>RFC1106</doc-id>
+      <doc-id>RFC1110</doc-id>
+      <doc-id>RFC1145</doc-id>
+      <doc-id>RFC1146</doc-id>
+      <doc-id>RFC1379</doc-id>
+      <doc-id>RFC1644</doc-id>
+      <doc-id>RFC1693</doc-id>
+    </obsoletes>
+    <updates>
+      <doc-id>RFC4614</doc-id>
+    </updates>
+    <current-status>INFORMATIONAL</current-status>
+    <publication-status>INFORMATIONAL</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>tcpm</wg_acronym>
+    <doi>10.17487/RFC6247</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC6298</doc-id>
+    <title>Computing TCP's Retransmission Timer</title>
+    <author>
+      <name>V. Paxson</name>
+    </author>
+    <author>
+      <name>M. Allman</name>
+    </author>
+    <author>
+      <name>J. Chu</name>
+    </author>
+    <author>
+      <name>M. Sargent</name>
+    </author>
+    <date>
+      <month>June</month>
+      <year>2011</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>11</page-count>
+    <keywords>
+      <kw>RTO</kw>
+    </keywords>
+    <abstract>
+      <p>This document defines the standard algorithm that Transmission Control Protocol (TCP) senders are required to use to compute and manage their retransmission timer.  It expands on the discussion in Section 4.2.3.1 of RFC 1122 and upgrades the requirement of supporting the algorithm from a SHOULD to a MUST.  This document obsoletes RFC 2988. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-paxson-tcpm-rfc2988bis-02</draft>
+    <obsoletes>
+      <doc-id>RFC2988</doc-id>
+    </obsoletes>
+    <updates>
+      <doc-id>RFC1122</doc-id>
+    </updates>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>tcpm</wg_acronym>
+    <doi>10.17487/RFC6298</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC6335</doc-id>
+    <title>Internet Assigned Numbers Authority (IANA) Procedures for the Management of the Service Name and Transport Protocol Port Number Registry</title>
+    <author>
+      <name>M. Cotton</name>
+    </author>
+    <author>
+      <name>L. Eggert</name>
+    </author>
+    <author>
+      <name>J. Touch</name>
+    </author>
+    <author>
+      <name>M. Westerlund</name>
+    </author>
+    <author>
+      <name>S. Cheshire</name>
+    </author>
+    <date>
+      <month>August</month>
+      <year>2011</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>33</page-count>
+    <keywords>
+      <kw>IANA</kw>
+      <kw>transport</kw>
+      <kw>ports</kw>
+      <kw>port numbers</kw>
+      <kw>allocation</kw>
+      <kw>assignment</kw>
+      <kw>procedures</kw>
+    </keywords>
+    <abstract>
+      <p>This document defines the procedures that the Internet Assigned Numbers Authority (IANA) uses when handling assignment and other requests related to the Service Name and Transport Protocol Port Number registry. It also discusses the rationale and principles behind these procedures and how they facilitate the long-term sustainability of the registry.</p>
+      <p>This document updates IANA's procedures by obsoleting the previous UDP and TCP port assignment procedures defined in Sections 8 and 9.1 of the IANA Allocation Guidelines, and it updates the IANA service name and port assignment procedures for UDP-Lite, the Datagram Congestion Control Protocol (DCCP), and the Stream Control Transmission Protocol (SCTP). It also updates the DNS SRV specification to clarify what a service name is and how it is registered. This memo documents an Internet Best Current Practice.</p>
+    </abstract>
+    <draft>draft-ietf-tsvwg-iana-ports-10</draft>
+    <is-also>
+      <doc-id>BCP165</doc-id>
+    </is-also>
+    <updates>
+      <doc-id>RFC2780</doc-id>
+      <doc-id>RFC2782</doc-id>
+      <doc-id>RFC3828</doc-id>
+      <doc-id>RFC4340</doc-id>
+      <doc-id>RFC4960</doc-id>
+      <doc-id>RFC5595</doc-id>
+    </updates>
+    <current-status>BEST CURRENT PRACTICE</current-status>
+    <publication-status>BEST CURRENT PRACTICE</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>tsvwg</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc6335</errata-url>
+    <doi>10.17487/RFC6335</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC6633</doc-id>
+    <title>Deprecation of ICMP Source Quench Messages</title>
+    <author>
+      <name>F. Gont</name>
+    </author>
+    <date>
+      <month>May</month>
+      <year>2012</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>8</page-count>
+    <keywords>
+      <kw>congestion control</kw>
+      <kw>icmp attacks</kw>
+      <kw>tcp</kw>
+      <kw>tcp security</kw>
+      <kw>udp</kw>
+      <kw>dccp</kw>
+      <kw>sctp</kw>
+    </keywords>
+    <abstract>
+      <p>This document formally deprecates the use of ICMP Source Quench messages by transport protocols, formally updating RFC 792, RFC 1122, and RFC 1812. [STANDARDS-TRACK]</p>
+    </abstract>
+    <draft>draft-ietf-tsvwg-source-quench-06</draft>
+    <updates>
+      <doc-id>RFC792</doc-id>
+      <doc-id>RFC1122</doc-id>
+      <doc-id>RFC1812</doc-id>
+    </updates>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>tsvwg</wg_acronym>
+    <doi>10.17487/RFC6633</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC6890</doc-id>
+    <title>Special-Purpose IP Address Registries</title>
+    <author>
+      <name>M. Cotton</name>
+    </author>
+    <author>
+      <name>L. Vegoda</name>
+    </author>
+    <author>
+      <name>R. Bonica</name>
+      <title>Editor</title>
+    </author>
+    <author>
+      <name>B. Haberman</name>
+    </author>
+    <date>
+      <month>April</month>
+      <year>2013</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>23</page-count>
+    <keywords>
+      <kw>Internet Protocol</kw>
+      <kw>space assignments</kw>
+    </keywords>
+    <abstract>
+      <p>This memo reiterates the assignment of an IPv4 address block (192.0.0.0/24) to IANA.  It also instructs IANA to restructure its IPv4 and IPv6 Special-Purpose Address Registries.  Upon restructuring, the aforementioned registries will record all special-purpose address blocks, maintaining a common set of information regarding each address block.</p>
+    </abstract>
+    <draft>draft-bonica-special-purpose-07</draft>
+    <is-also>
+      <doc-id>BCP153</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC4773</doc-id>
+      <doc-id>RFC5156</doc-id>
+      <doc-id>RFC5735</doc-id>
+      <doc-id>RFC5736</doc-id>
+    </obsoletes>
+    <updated-by>
+      <doc-id>RFC8190</doc-id>
+    </updated-by>
+    <current-status>BEST CURRENT PRACTICE</current-status>
+    <publication-status>BEST CURRENT PRACTICE</publication-status>
+    <stream>IETF</stream>
+    <wg_acronym>NON WORKING GROUP</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc6890</errata-url>
+    <doi>10.17487/RFC6890</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC7252</doc-id>
+    <title>The Constrained Application Protocol (CoAP)</title>
+    <author>
+      <name>Z. Shelby</name>
+    </author>
+    <author>
+      <name>K. Hartke</name>
+    </author>
+    <author>
+      <name>C. Bormann</name>
+    </author>
+    <date>
+      <month>June</month>
+      <year>2014</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>112</page-count>
+    <abstract>
+      <p>The Constrained Application Protocol (CoAP) is a specialized web transfer protocol for use with constrained nodes and constrained (e.g., low-power, lossy) networks. The nodes often have 8-bit microcontrollers with small amounts of ROM and RAM, while constrained networks such as IPv6 over Low-Power Wireless Personal Area Networks (6LoWPANs) often have high packet error rates and a typical throughput of 10s of kbit/s. The protocol is designed for machine- to-machine (M2M) applications such as smart energy and building automation.</p>
+      <p>CoAP provides a request/response interaction model between application endpoints, supports built-in discovery of services and resources, and includes key concepts of the Web such as URIs and Internet media types. CoAP is designed to easily interface with HTTP for integration with the Web while meeting specialized requirements such as multicast support, very low overhead, and simplicity for constrained environments.</p>
+    </abstract>
+    <draft>draft-ietf-core-coap-18</draft>
+    <updated-by>
+      <doc-id>RFC7959</doc-id>
+      <doc-id>RFC8613</doc-id>
+      <doc-id>RFC8974</doc-id>
+      <doc-id>RFC9175</doc-id>
+      <doc-id>RFC9876</doc-id>
+    </updated-by>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>core</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc7252</errata-url>
+    <doi>10.17487/RFC7252</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC7413</doc-id>
+    <title>TCP Fast Open</title>
+    <author>
+      <name>Y. Cheng</name>
+    </author>
+    <author>
+      <name>J. Chu</name>
+    </author>
+    <author>
+      <name>S. Radhakrishnan</name>
+    </author>
+    <author>
+      <name>A. Jain</name>
+    </author>
+    <date>
+      <month>December</month>
+      <year>2014</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>26</page-count>
+    <abstract>
+      <p>This document describes an experimental TCP mechanism called TCP Fast Open (TFO).  TFO allows data to be carried in the SYN and SYN-ACK packets and consumed by the receiving end during the initial connection handshake, and saves up to one full round-trip time (RTT) compared to the standard TCP, which requires a three-way handshake (3WHS) to complete before data can be exchanged.  However, TFO deviates from the standard TCP semantics, since the data in the SYN could be replayed to an application in some rare circumstances.  Applications should not use TFO unless they can tolerate this issue, as detailed in the Applicability section.</p>
+    </abstract>
+    <draft>draft-ietf-tcpm-fastopen-10</draft>
+    <current-status>EXPERIMENTAL</current-status>
+    <publication-status>EXPERIMENTAL</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>tcpm</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc7413</errata-url>
+    <doi>10.17487/RFC7413</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC7641</doc-id>
+    <title>Observing Resources in the Constrained Application Protocol (CoAP)</title>
+    <author>
+      <name>K. Hartke</name>
+    </author>
+    <date>
+      <month>September</month>
+      <year>2015</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>30</page-count>
+    <keywords>
+      <kw>Smart Objects</kw>
+      <kw>Internet of Things</kw>
+      <kw>IoT</kw>
+      <kw>REST</kw>
+    </keywords>
+    <abstract>
+      <p>The Constrained Application Protocol (CoAP) is a RESTful application protocol for constrained nodes and networks.  The state of a resource on a CoAP server can change over time.  This document specifies a simple protocol extension for CoAP that enables CoAP clients to "observe" resources, i.e., to retrieve a representation of a resource and keep this representation updated by the server over a period of time.  The protocol follows a best-effort approach for sending new representations to clients and provides eventual consistency between the state observed by each client and the actual resource state at the server.</p>
+    </abstract>
+    <draft>draft-ietf-core-observe-16</draft>
+    <updated-by>
+      <doc-id>RFC8323</doc-id>
+    </updated-by>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>core</wg_acronym>
+    <doi>10.17487/RFC7641</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC8085</doc-id>
+    <title>UDP Usage Guidelines</title>
+    <author>
+      <name>L. Eggert</name>
+    </author>
+    <author>
+      <name>G. Fairhurst</name>
+    </author>
+    <author>
+      <name>G. Shepherd</name>
+    </author>
+    <date>
+      <month>March</month>
+      <year>2017</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>55</page-count>
+    <keywords>
+      <kw>UDP</kw>
+      <kw>guidelines</kw>
+    </keywords>
+    <abstract>
+      <p>The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms. This document provides guidelines on the use of UDP for the designers of applications, tunnels, and other protocols that use UDP. Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, middlebox traversal, the use of Explicit Congestion Notification (ECN), Differentiated Services Code Points (DSCPs), and ports.</p>
+      <p>Because congestion control is critical to the stable operation of the Internet, applications and other protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic. They may also need to implement additional mechanisms, depending on how they use UDP.</p>
+      <p>Some guidance is also applicable to the design of other protocols (e.g., protocols layered directly on IP or via IP-based tunnels), especially when these protocols do not themselves provide congestion control.</p>
+      <p>This document obsoletes RFC 5405 and adds guidelines for multicast UDP usage.</p>
+    </abstract>
+    <draft>draft-ietf-tsvwg-rfc5405bis-19</draft>
+    <is-also>
+      <doc-id>BCP145</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC5405</doc-id>
+    </obsoletes>
+    <updated-by>
+      <doc-id>RFC8899</doc-id>
+    </updated-by>
+    <current-status>BEST CURRENT PRACTICE</current-status>
+    <publication-status>BEST CURRENT PRACTICE</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>tsvwg</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc8085</errata-url>
+    <doi>10.17487/RFC8085</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC8095</doc-id>
+    <title>Services Provided by IETF Transport Protocols and Congestion Control Mechanisms</title>
+    <author>
+      <name>G. Fairhurst</name>
+      <title>Editor</title>
+    </author>
+    <author>
+      <name>B. Trammell</name>
+      <title>Editor</title>
+    </author>
+    <author>
+      <name>M. Kuehlewind</name>
+      <title>Editor</title>
+    </author>
+    <date>
+      <month>March</month>
+      <year>2017</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>54</page-count>
+    <keywords>
+      <kw>Transmission Control Protocol (TCP)</kw>
+      <kw>Multipath TCP (MPTCP)</kw>
+      <kw>Stream Control Transmission Protocol (SCTP)</kw>
+      <kw>User Datagram Protocol (UDP)</kw>
+      <kw>UDP-Lite</kw>
+      <kw>Datagram Congestion Control Protocol (DCCP)</kw>
+      <kw>Internet Control Message Protocol (ICMP)</kw>
+      <kw>Real-Time Transport Protocol (RTP)</kw>
+      <kw>File Delivery over Unidirectional Transport/Asynchronous Layered Coding (FLUTE/ALC) for Reliable Multicast</kw>
+      <kw>NACK-Oriented Reliable Multicast (NORM)</kw>
+      <kw>Transport Layer Security (TLS)</kw>
+      <kw>Datagram TLS (DTLS)</kw>
+      <kw>Hypertext Transport Protocol (HTTP)</kw>
+      <kw>TAPS</kw>
+    </keywords>
+    <abstract>
+      <p>This document describes, surveys, and classifies the protocol mechanisms provided by existing IETF protocols, as background for determining a common set of transport services.  It examines the Transmission Control Protocol (TCP), Multipath TCP, the Stream Control Transmission Protocol (SCTP), the User Datagram Protocol (UDP), UDP-Lite, the Datagram Congestion Control Protocol (DCCP), the Internet Control Message Protocol (ICMP), the Real-Time Transport Protocol (RTP), File Delivery over Unidirectional Transport / Asynchronous Layered Coding (FLUTE/ALC) for Reliable Multicast, NACK- Oriented Reliable Multicast (NORM), Transport Layer Security (TLS), Datagram TLS (DTLS), and the Hypertext Transport Protocol (HTTP), when HTTP is used as a pseudotransport.  This survey provides background for the definition of transport services within the TAPS working group.</p>
+    </abstract>
+    <draft>draft-ietf-taps-transports-14</draft>
+    <current-status>INFORMATIONAL</current-status>
+    <publication-status>INFORMATIONAL</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>taps</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc8095</errata-url>
+    <doi>10.17487/RFC8095</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC8200</doc-id>
+    <title>Internet Protocol, Version 6 (IPv6) Specification</title>
+    <author>
+      <name>S. Deering</name>
+    </author>
+    <author>
+      <name>R. Hinden</name>
+    </author>
+    <date>
+      <month>July</month>
+      <year>2017</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>42</page-count>
+    <keywords>
+      <kw>IPv6</kw>
+      <kw>internet</kw>
+      <kw>protocol</kw>
+      <kw>next</kw>
+      <kw>generation</kw>
+      <kw>ipng</kw>
+      <kw>flow label</kw>
+    </keywords>
+    <abstract>
+      <p>This document specifies version 6 of the Internet Protocol (IPv6).  It obsoletes RFC 2460.</p>
+    </abstract>
+    <draft>draft-ietf-6man-rfc2460bis-13</draft>
+    <is-also>
+      <doc-id>STD86</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC2460</doc-id>
+    </obsoletes>
+    <updated-by>
+      <doc-id>RFC9673</doc-id>
+    </updated-by>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>INTERNET STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>int</area>
+    <wg_acronym>6man</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc8200</errata-url>
+    <doi>10.17487/RFC8200</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC8201</doc-id>
+    <title>Path MTU Discovery for IP version 6</title>
+    <author>
+      <name>J. McCann</name>
+    </author>
+    <author>
+      <name>S. Deering</name>
+    </author>
+    <author>
+      <name>J. Mogul</name>
+    </author>
+    <author>
+      <name>R. Hinden</name>
+      <title>Editor</title>
+    </author>
+    <date>
+      <month>July</month>
+      <year>2017</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>19</page-count>
+    <keywords>
+      <kw>MTU-IPv6</kw>
+      <kw>Internet</kw>
+      <kw>Protocol</kw>
+      <kw>IPv6</kw>
+      <kw>link MTU</kw>
+      <kw>path MTU</kw>
+      <kw>PMTU</kw>
+      <kw>Path MTU Discovery</kw>
+    </keywords>
+    <abstract>
+      <p>This document describes Path MTU Discovery (PMTUD) for IP version 6.  It is largely derived from RFC 1191, which describes Path MTU Discovery for IP version 4.  It obsoletes RFC 1981.</p>
+    </abstract>
+    <draft>draft-ietf-6man-rfc1981bis-08</draft>
+    <is-also>
+      <doc-id>STD87</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC1981</doc-id>
+    </obsoletes>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>INTERNET STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>int</area>
+    <wg_acronym>6man</wg_acronym>
+    <doi>10.17487/RFC8201</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC8323</doc-id>
+    <title>CoAP (Constrained Application Protocol) over TCP, TLS, and WebSockets</title>
+    <author>
+      <name>C. Bormann</name>
+    </author>
+    <author>
+      <name>S. Lemay</name>
+    </author>
+    <author>
+      <name>H. Tschofenig</name>
+    </author>
+    <author>
+      <name>K. Hartke</name>
+    </author>
+    <author>
+      <name>B. Silverajan</name>
+    </author>
+    <author>
+      <name>B. Raymor</name>
+      <title>Editor</title>
+    </author>
+    <date>
+      <month>February</month>
+      <year>2018</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>54</page-count>
+    <keywords>
+      <kw>CoAP</kw>
+      <kw>Constrained Application Protocol</kw>
+      <kw>REST</kw>
+      <kw>IoT</kw>
+      <kw>Internet of Things</kw>
+      <kw>NAT Traversal</kw>
+      <kw>CoAP in Browsers</kw>
+    </keywords>
+    <abstract>
+      <p>The Constrained Application Protocol (CoAP), although inspired by HTTP, was designed to use UDP instead of TCP. The message layer of CoAP over UDP includes support for reliable delivery, simple congestion control, and flow control.</p>
+      <p>Some environments benefit from the availability of CoAP carried over reliable transports such as TCP or Transport Layer Security (TLS). This document outlines the changes required to use CoAP over TCP, TLS, and WebSockets transports. It also formally updates RFC 7641 for use with these transports and RFC 7959 to enable the use of larger messages over a reliable transport.</p>
+    </abstract>
+    <draft>draft-ietf-core-coap-tcp-tls-11</draft>
+    <updates>
+      <doc-id>RFC7641</doc-id>
+      <doc-id>RFC7959</doc-id>
+    </updates>
+    <updated-by>
+      <doc-id>RFC8974</doc-id>
+    </updated-by>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>core</wg_acronym>
+    <doi>10.17487/RFC8323</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC8446</doc-id>
+    <title>The Transport Layer Security (TLS) Protocol Version 1.3</title>
+    <author>
+      <name>E. Rescorla</name>
+    </author>
+    <date>
+      <month>August</month>
+      <year>2018</year>
+    </date>
+    <format>
+      <file-format>TXT</file-format>
+      <file-format>HTML</file-format>
+    </format>
+    <page-count>160</page-count>
+    <keywords>
+      <kw>international data algorithm</kw>
+      <kw>symmetric</kw>
+      <kw>transport protocol layer</kw>
+      <kw>authentication</kw>
+      <kw>privacy</kw>
+    </keywords>
+    <abstract>
+      <p>This document specifies version 1.3 of the Transport Layer Security (TLS) protocol. TLS allows client/server applications to communicate over the Internet in a way that is designed to prevent eavesdropping, tampering, and message forgery.</p>
+      <p>This document updates RFCs 5705 and 6066, and obsoletes RFCs 5077, 5246, and 6961. This document also specifies new requirements for TLS 1.2 implementations.</p>
+    </abstract>
+    <draft>draft-ietf-tls-tls13-28</draft>
+    <obsoletes>
+      <doc-id>RFC5077</doc-id>
+      <doc-id>RFC5246</doc-id>
+      <doc-id>RFC6961</doc-id>
+    </obsoletes>
+    <obsoleted-by>
+      <doc-id>RFC9846</doc-id>
+    </obsoleted-by>
+    <updates>
+      <doc-id>RFC5705</doc-id>
+      <doc-id>RFC6066</doc-id>
+    </updates>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>sec</area>
+    <wg_acronym>tls</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc8446</errata-url>
+    <doi>10.17487/RFC8446</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC8900</doc-id>
+    <title>IP Fragmentation Considered Fragile</title>
+    <author>
+      <name>R. Bonica</name>
+    </author>
+    <author>
+      <name>F. Baker</name>
+    </author>
+    <author>
+      <name>G. Huston</name>
+    </author>
+    <author>
+      <name>R. Hinden</name>
+    </author>
+    <author>
+      <name>O. Troan</name>
+    </author>
+    <author>
+      <name>F. Gont</name>
+    </author>
+    <date>
+      <month>September</month>
+      <year>2020</year>
+    </date>
+    <format>
+      <file-format>HTML</file-format>
+      <file-format>TXT</file-format>
+      <file-format>PDF</file-format>
+      <file-format>XML</file-format>
+    </format>
+    <page-count>23</page-count>
+    <keywords>
+      <kw>IPv6</kw>
+      <kw>Fragmentation</kw>
+    </keywords>
+    <abstract>
+      <p>This document describes IP fragmentation and explains how it introduces fragility to Internet communication.</p>
+      <p>This document also proposes alternatives to IP fragmentation and provides recommendations for developers and network operators.</p>
+    </abstract>
+    <draft>draft-ietf-intarea-frag-fragile-17</draft>
+    <is-also>
+      <doc-id>BCP230</doc-id>
+    </is-also>
+    <current-status>BEST CURRENT PRACTICE</current-status>
+    <publication-status>BEST CURRENT PRACTICE</publication-status>
+    <stream>IETF</stream>
+    <area>int</area>
+    <wg_acronym>intarea</wg_acronym>
+    <doi>10.17487/RFC8900</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC8996</doc-id>
+    <title>Deprecating TLS 1.0 and TLS 1.1</title>
+    <author>
+      <name>K. Moriarty</name>
+    </author>
+    <author>
+      <name>S. Farrell</name>
+    </author>
+    <date>
+      <month>March</month>
+      <year>2021</year>
+    </date>
+    <format>
+      <file-format>HTML</file-format>
+      <file-format>TXT</file-format>
+      <file-format>PDF</file-format>
+      <file-format>XML</file-format>
+    </format>
+    <page-count>18</page-count>
+    <keywords>
+      <kw>TLS</kw>
+      <kw>deprecate</kw>
+      <kw>TLSv1.0</kw>
+      <kw>TLSv1.1</kw>
+    </keywords>
+    <abstract>
+      <p>This document formally deprecates Transport Layer Security (TLS) versions 1.0 (RFC 2246) and 1.1 (RFC 4346). Accordingly, those documents have been moved to Historic status. These versions lack support for current and recommended cryptographic algorithms and mechanisms, and various government and industry profiles of applications using TLS now mandate avoiding these old TLS versions. TLS version 1.2 became the recommended version for IETF protocols in 2008 (subsequently being obsoleted by TLS version 1.3 in 2018), providing sufficient time to transition away from older versions. Removing support for older versions from implementations reduces the attack surface, reduces opportunity for misconfiguration, and streamlines library and product maintenance.</p>
+      <p>This document also deprecates Datagram TLS (DTLS) version 1.0 (RFC 4347) but not DTLS version 1.2, and there is no DTLS version 1.1.</p>
+      <p>This document updates many RFCs that normatively refer to TLS version 1.0 or TLS version 1.1, as described herein. This document also updates the best practices for TLS usage in RFC 7525; hence, it is part of BCP 195.</p>
+    </abstract>
+    <draft>draft-ietf-tls-oldversions-deprecate-12</draft>
+    <is-also>
+      <doc-id>BCP195</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC5469</doc-id>
+      <doc-id>RFC7507</doc-id>
+    </obsoletes>
+    <updates>
+      <doc-id>RFC3261</doc-id>
+      <doc-id>RFC3329</doc-id>
+      <doc-id>RFC3436</doc-id>
+      <doc-id>RFC3470</doc-id>
+      <doc-id>RFC3501</doc-id>
+      <doc-id>RFC3552</doc-id>
+      <doc-id>RFC3568</doc-id>
+      <doc-id>RFC3656</doc-id>
+      <doc-id>RFC3749</doc-id>
+      <doc-id>RFC3767</doc-id>
+      <doc-id>RFC3856</doc-id>
+      <doc-id>RFC3871</doc-id>
+      <doc-id>RFC3887</doc-id>
+      <doc-id>RFC3903</doc-id>
+      <doc-id>RFC3943</doc-id>
+      <doc-id>RFC3983</doc-id>
+      <doc-id>RFC4097</doc-id>
+      <doc-id>RFC4111</doc-id>
+      <doc-id>RFC4162</doc-id>
+      <doc-id>RFC4168</doc-id>
+      <doc-id>RFC4217</doc-id>
+      <doc-id>RFC4235</doc-id>
+      <doc-id>RFC4261</doc-id>
+      <doc-id>RFC4279</doc-id>
+      <doc-id>RFC4497</doc-id>
+      <doc-id>RFC4513</doc-id>
+      <doc-id>RFC4531</doc-id>
+      <doc-id>RFC4540</doc-id>
+      <doc-id>RFC4582</doc-id>
+      <doc-id>RFC4616</doc-id>
+      <doc-id>RFC4642</doc-id>
+      <doc-id>RFC4680</doc-id>
+      <doc-id>RFC4681</doc-id>
+      <doc-id>RFC4712</doc-id>
+      <doc-id>RFC4732</doc-id>
+      <doc-id>RFC4743</doc-id>
+      <doc-id>RFC4744</doc-id>
+      <doc-id>RFC4785</doc-id>
+      <doc-id>RFC4791</doc-id>
+      <doc-id>RFC4823</doc-id>
+      <doc-id>RFC4851</doc-id>
+      <doc-id>RFC4964</doc-id>
+      <doc-id>RFC4975</doc-id>
+      <doc-id>RFC4976</doc-id>
+      <doc-id>RFC4992</doc-id>
+      <doc-id>RFC5018</doc-id>
+      <doc-id>RFC5019</doc-id>
+      <doc-id>RFC5023</doc-id>
+      <doc-id>RFC5024</doc-id>
+      <doc-id>RFC5049</doc-id>
+      <doc-id>RFC5054</doc-id>
+      <doc-id>RFC5091</doc-id>
+      <doc-id>RFC5158</doc-id>
+      <doc-id>RFC5216</doc-id>
+      <doc-id>RFC5238</doc-id>
+      <doc-id>RFC5263</doc-id>
+      <doc-id>RFC5281</doc-id>
+      <doc-id>RFC5364</doc-id>
+      <doc-id>RFC5415</doc-id>
+      <doc-id>RFC5422</doc-id>
+      <doc-id>RFC5456</doc-id>
+      <doc-id>RFC5734</doc-id>
+      <doc-id>RFC5878</doc-id>
+      <doc-id>RFC5953</doc-id>
+      <doc-id>RFC6012</doc-id>
+      <doc-id>RFC6042</doc-id>
+      <doc-id>RFC6083</doc-id>
+      <doc-id>RFC6084</doc-id>
+      <doc-id>RFC6176</doc-id>
+      <doc-id>RFC6347</doc-id>
+      <doc-id>RFC6353</doc-id>
+      <doc-id>RFC6367</doc-id>
+      <doc-id>RFC6460</doc-id>
+      <doc-id>RFC6614</doc-id>
+      <doc-id>RFC6739</doc-id>
+      <doc-id>RFC6749</doc-id>
+      <doc-id>RFC6750</doc-id>
+      <doc-id>RFC7030</doc-id>
+      <doc-id>RFC7465</doc-id>
+      <doc-id>RFC7525</doc-id>
+      <doc-id>RFC7562</doc-id>
+      <doc-id>RFC7568</doc-id>
+      <doc-id>RFC8261</doc-id>
+      <doc-id>RFC8422</doc-id>
+    </updates>
+    <current-status>BEST CURRENT PRACTICE</current-status>
+    <publication-status>BEST CURRENT PRACTICE</publication-status>
+    <stream>IETF</stream>
+    <area>sec</area>
+    <wg_acronym>tls</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc8996</errata-url>
+    <doi>10.17487/RFC8996</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC9019</doc-id>
+    <title>A Firmware Update Architecture for Internet of Things</title>
+    <author>
+      <name>B. Moran</name>
+    </author>
+    <author>
+      <name>H. Tschofenig</name>
+    </author>
+    <author>
+      <name>D. Brown</name>
+    </author>
+    <author>
+      <name>M. Meriac</name>
+    </author>
+    <date>
+      <month>April</month>
+      <year>2021</year>
+    </date>
+    <format>
+      <file-format>HTML</file-format>
+      <file-format>TXT</file-format>
+      <file-format>PDF</file-format>
+      <file-format>XML</file-format>
+    </format>
+    <page-count>24</page-count>
+    <keywords>
+      <kw>IoT</kw>
+      <kw>update</kw>
+      <kw>software</kw>
+      <kw>firmware</kw>
+      <kw>constrained</kw>
+      <kw>Secure</kw>
+      <kw>Boot</kw>
+    </keywords>
+    <abstract>
+      <p>Vulnerabilities in Internet of Things (IoT) devices have raised the need for a reliable and secure firmware update mechanism suitable for devices with resource constraints. Incorporating such an update mechanism is a fundamental requirement for fixing vulnerabilities, but it also enables other important capabilities such as updating configuration settings and adding new functionality.</p>
+      <p>In addition to the definition of terminology and an architecture, this document provides the motivation for the standardization of a manifest format as a transport-agnostic means for describing and protecting firmware updates.</p>
+    </abstract>
+    <draft>draft-ietf-suit-architecture-16</draft>
+    <current-status>INFORMATIONAL</current-status>
+    <publication-status>INFORMATIONAL</publication-status>
+    <stream>IETF</stream>
+    <area>sec</area>
+    <wg_acronym>suit</wg_acronym>
+    <doi>10.17487/RFC9019</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC9124</doc-id>
+    <title>A Manifest Information Model for Firmware Updates in Internet of Things (IoT) Devices</title>
+    <author>
+      <name>B. Moran</name>
+    </author>
+    <author>
+      <name>H. Tschofenig</name>
+    </author>
+    <author>
+      <name>H. Birkholz</name>
+    </author>
+    <date>
+      <month>January</month>
+      <year>2022</year>
+    </date>
+    <format>
+      <file-format>HTML</file-format>
+      <file-format>TXT</file-format>
+      <file-format>PDF</file-format>
+      <file-format>XML</file-format>
+    </format>
+    <page-count>40</page-count>
+    <keywords>
+      <kw>computer security</kw>
+      <kw>smart objects</kw>
+    </keywords>
+    <abstract>
+      <p>Vulnerabilities with Internet of Things (IoT) devices have raised the need for a reliable and secure firmware update mechanism that is also suitable for constrained devices. Ensuring that devices function and remain secure over their service lifetime requires such an update mechanism to fix vulnerabilities, update configuration settings, and add new functionality.</p>
+      <p>One component of such a firmware update is a concise and machine-processable metadata document, or manifest, that describes the firmware image(s) and offers appropriate protection. This document describes the information that must be present in the manifest.</p>
+    </abstract>
+    <draft>draft-ietf-suit-information-model-13</draft>
+    <current-status>INFORMATIONAL</current-status>
+    <publication-status>INFORMATIONAL</publication-status>
+    <stream>IETF</stream>
+    <area>sec</area>
+    <wg_acronym>suit</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc9124</errata-url>
+    <doi>10.17487/RFC9124</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC9147</doc-id>
+    <title>The Datagram Transport Layer Security (DTLS) Protocol Version 1.3</title>
+    <author>
+      <name>E. Rescorla</name>
+    </author>
+    <author>
+      <name>H. Tschofenig</name>
+    </author>
+    <author>
+      <name>N. Modadugu</name>
+    </author>
+    <date>
+      <month>April</month>
+      <year>2022</year>
+    </date>
+    <format>
+      <file-format>HTML</file-format>
+      <file-format>TXT</file-format>
+      <file-format>PDF</file-format>
+      <file-format>XML</file-format>
+    </format>
+    <page-count>61</page-count>
+    <keywords>
+      <kw>Communication Security</kw>
+    </keywords>
+    <abstract>
+      <p>This document specifies version 1.3 of the Datagram Transport Layer Security (DTLS) protocol. DTLS 1.3 allows client/server applications to communicate over the Internet in a way that is designed to prevent eavesdropping, tampering, and message forgery.</p>
+      <p>The DTLS 1.3 protocol is based on the Transport Layer Security (TLS) 1.3 protocol and provides equivalent security guarantees with the exception of order protection / non-replayability. Datagram semantics of the underlying transport are preserved by the DTLS protocol.</p>
+      <p>This document obsoletes RFC 6347.</p>
+    </abstract>
+    <draft>draft-ietf-tls-dtls13-43</draft>
+    <obsoletes>
+      <doc-id>RFC6347</doc-id>
+    </obsoletes>
+    <updated-by>
+      <doc-id>RFC9853</doc-id>
+    </updated-by>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>sec</area>
+    <wg_acronym>tls</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc9147</errata-url>
+    <doi>10.17487/RFC9147</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC9260</doc-id>
+    <title>Stream Control Transmission Protocol</title>
+    <author>
+      <name>R. Stewart</name>
+    </author>
+    <author>
+      <name>M. Tüxen</name>
+    </author>
+    <author>
+      <name>K. Nielsen</name>
+    </author>
+    <date>
+      <month>June</month>
+      <year>2022</year>
+    </date>
+    <format>
+      <file-format>HTML</file-format>
+      <file-format>TXT</file-format>
+      <file-format>PDF</file-format>
+      <file-format>XML</file-format>
+    </format>
+    <page-count>133</page-count>
+    <keywords>
+      <kw>SCTP</kw>
+      <kw>IP</kw>
+      <kw>internet</kw>
+      <kw>transport</kw>
+      <kw>packet</kw>
+      <kw>network</kw>
+    </keywords>
+    <abstract>
+      <p>This document describes the Stream Control Transmission Protocol (SCTP) and obsoletes RFC 4960. It incorporates the specification of the chunk flags registry from RFC 6096 and the specification of the I bit of DATA chunks from RFC 7053. Therefore, RFCs 6096 and 7053 are also obsoleted by this document. In addition, RFCs 4460 and 8540, which describe errata for SCTP, are obsoleted by this document.</p>
+      <p>SCTP was originally designed to transport Public Switched Telephone Network (PSTN) signaling messages over IP networks. It is also suited to be used for other applications, for example, WebRTC.</p>
+      <p>SCTP is a reliable transport protocol operating on top of a connectionless packet network, such as IP. It offers the following services to its users:</p>
+      <p>The design of SCTP includes appropriate congestion avoidance behavior and resistance to flooding and masquerade attacks.</p>
+    </abstract>
+    <draft>draft-ietf-tsvwg-rfc4960-bis-19</draft>
+    <obsoletes>
+      <doc-id>RFC4460</doc-id>
+      <doc-id>RFC4960</doc-id>
+      <doc-id>RFC6096</doc-id>
+      <doc-id>RFC7053</doc-id>
+      <doc-id>RFC8540</doc-id>
+    </obsoletes>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>tsvwg</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc9260</errata-url>
+    <doi>10.17487/RFC9260</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC9293</doc-id>
+    <title>Transmission Control Protocol (TCP)</title>
+    <author>
+      <name>W. Eddy</name>
+      <title>Editor</title>
+    </author>
+    <date>
+      <month>August</month>
+      <year>2022</year>
+    </date>
+    <format>
+      <file-format>HTML</file-format>
+      <file-format>TXT</file-format>
+      <file-format>PDF</file-format>
+      <file-format>XML</file-format>
+    </format>
+    <page-count>98</page-count>
+    <abstract>
+      <p>This document specifies the Transmission Control Protocol (TCP).  TCP is an important transport-layer protocol in the Internet protocol stack, and it has continuously evolved over decades of use and growth of the Internet.  Over this time, a number of changes have been made to TCP as it was specified in RFC 793, though these have only been documented in a piecemeal fashion.  This document collects and brings those changes together with the protocol specification from RFC 793.  This document obsoletes RFC 793, as well as RFCs 879, 2873, 6093, 6429, 6528, and 6691 that updated parts of RFC 793.  It updates RFCs 1011 and 1122, and it should be considered as a replacement for the portions of those documents dealing with TCP requirements.  It also updates RFC 5961 by adding a small clarification in reset handling while in the SYN-RECEIVED state.  The TCP header control bits from RFC 793 have also been updated based on RFC 3168.</p>
+    </abstract>
+    <draft>draft-ietf-tcpm-rfc793bis-28</draft>
+    <is-also>
+      <doc-id>STD7</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC793</doc-id>
+      <doc-id>RFC879</doc-id>
+      <doc-id>RFC2873</doc-id>
+      <doc-id>RFC6093</doc-id>
+      <doc-id>RFC6429</doc-id>
+      <doc-id>RFC6528</doc-id>
+      <doc-id>RFC6691</doc-id>
+    </obsoletes>
+    <updates>
+      <doc-id>RFC1011</doc-id>
+      <doc-id>RFC1122</doc-id>
+      <doc-id>RFC5961</doc-id>
+    </updates>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>INTERNET STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>tcpm</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc9293</errata-url>
+    <doi>10.17487/RFC9293</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC9438</doc-id>
+    <title>CUBIC for Fast and Long-Distance Networks</title>
+    <author>
+      <name>L. Xu</name>
+    </author>
+    <author>
+      <name>S. Ha</name>
+    </author>
+    <author>
+      <name>I. Rhee</name>
+    </author>
+    <author>
+      <name>V. Goel</name>
+    </author>
+    <author>
+      <name>L. Eggert</name>
+      <title>Editor</title>
+    </author>
+    <date>
+      <month>August</month>
+      <year>2023</year>
+    </date>
+    <format>
+      <file-format>HTML</file-format>
+      <file-format>TXT</file-format>
+      <file-format>PDF</file-format>
+      <file-format>XML</file-format>
+    </format>
+    <page-count>28</page-count>
+    <keywords>
+      <kw>Congestion control</kw>
+      <kw>large BDP</kw>
+      <kw>window scalability</kw>
+      <kw>RTT fairness</kw>
+    </keywords>
+    <abstract>
+      <p>CUBIC is a standard TCP congestion control algorithm that uses a cubic function instead of a linear congestion window increase function to improve scalability and stability over fast and long-distance networks. CUBIC has been adopted as the default TCP congestion control algorithm by the Linux, Windows, and Apple stacks.</p>
+      <p>This document updates the specification of CUBIC to include algorithmic improvements based on these implementations and recent academic work. Based on the extensive deployment experience with CUBIC, this document also moves the specification to the Standards Track and obsoletes RFC 8312. This document also updates RFC 5681, to allow for CUBIC's occasionally more aggressive sending behavior.</p>
+    </abstract>
+    <draft>draft-ietf-tcpm-rfc8312bis-15</draft>
+    <obsoletes>
+      <doc-id>RFC8312</doc-id>
+    </obsoletes>
+    <updates>
+      <doc-id>RFC5681</doc-id>
+    </updates>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>tcpm</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc9438</errata-url>
+    <doi>10.17487/RFC9438</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC9768</doc-id>
+    <title>More Accurate Explicit Congestion Notification (AccECN) Feedback in TCP</title>
+    <author>
+      <name>B. Briscoe</name>
+    </author>
+    <author>
+      <name>M. Kühlewind</name>
+    </author>
+    <author>
+      <name>R. Scheffenegger</name>
+    </author>
+    <date>
+      <month>April</month>
+      <year>2026</year>
+    </date>
+    <format>
+      <file-format>HTML</file-format>
+      <file-format>TXT</file-format>
+      <file-format>PDF</file-format>
+      <file-format>XML</file-format>
+    </format>
+    <page-count>58</page-count>
+    <keywords>
+      <kw>Congestion Control and Management</kw>
+      <kw>Congestion Notification</kw>
+      <kw>Feedback</kw>
+      <kw>Reliable</kw>
+      <kw>Ordered</kw>
+      <kw>Protocol</kw>
+      <kw>ECN</kw>
+    </keywords>
+    <abstract>
+      <p>Explicit Congestion Notification (ECN) is a mechanism by which network nodes can mark IP packets instead of dropping them to indicate incipient congestion to the endpoints.  Receivers with an ECN-capable transport protocol feed back this information to the sender.  ECN was originally specified for TCP in such a way that only one feedback signal can be transmitted per Round-Trip Time (RTT).  More recently defined mechanisms like Congestion Exposure (ConEx), Data Center TCP (DCTCP), or Low Latency, Low Loss, and Scalable Throughput (L4S) need more accurate ECN feedback information whenever more than one marking is received in one RTT.  This document updates the original ECN specification defined in RFC 3168 by specifying a scheme that provides more than one feedback signal per RTT in the TCP header, called More Accurate ECN (AccECN).  Given TCP header space is scarce, it allocates a reserved header bit previously assigned to the ECN-nonce.  It also overloads the two existing ECN flags in the TCP header.  The resulting extra space is additionally exploited to feed back the IP-ECN field received during the TCP connection establishment.  Supplementary feedback information can optionally be provided in two new TCP Option alternatives, which are never used on the TCP SYN.  The document also specifies the treatment of this updated TCP wire protocol by middleboxes.</p>
+    </abstract>
+    <draft>draft-ietf-tcpm-accurate-ecn-34</draft>
+    <updates>
+      <doc-id>RFC3168</doc-id>
+    </updates>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>wit</area>
+    <wg_acronym>tcpm</wg_acronym>
+    <doi>10.17487/RFC9768</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC9846</doc-id>
+    <title>The Transport Layer Security (TLS) Protocol Version 1.3</title>
+    <author>
+      <name>E. Rescorla</name>
+    </author>
+    <date>
+      <month>July</month>
+      <year>2026</year>
+    </date>
+    <format>
+      <file-format>HTML</file-format>
+      <file-format>TXT</file-format>
+      <file-format>PDF</file-format>
+      <file-format>XML</file-format>
+    </format>
+    <page-count>137</page-count>
+    <abstract>
+      <p>This document specifies version 1.3 of the Transport Layer Security (TLS) protocol. TLS allows client/server applications to communicate over the Internet in a way that is designed to prevent eavesdropping, tampering, and message forgery.</p>
+      <p>This document obsoletes RFC 8446, which specified TLS 1.3. This document obsoletes RFC 5246 (specifying TLS 1.2) and RFCs 5077, 6961, 7627, and 8422, all of which pertain to TLS 1.2 or earlier, and updates RFCs 5705 and 6066. This document also specifies new requirements for TLS 1.2 implementations.</p>
+    </abstract>
+    <draft>draft-ietf-tls-rfc8446bis-14</draft>
+    <obsoletes>
+      <doc-id>RFC5077</doc-id>
+      <doc-id>RFC5246</doc-id>
+      <doc-id>RFC6961</doc-id>
+      <doc-id>RFC7627</doc-id>
+      <doc-id>RFC8422</doc-id>
+      <doc-id>RFC8446</doc-id>
+    </obsoletes>
+    <updates>
+      <doc-id>RFC5705</doc-id>
+      <doc-id>RFC6066</doc-id>
+    </updates>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>sec</area>
+    <wg_acronym>tls</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc9846</errata-url>
+    <doi>10.17487/RFC9846</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC9911</doc-id>
+    <title>Common YANG Data Types</title>
+    <author>
+      <name>J. Schönwälder</name>
+      <title>Editor</title>
+    </author>
+    <date>
+      <month>December</month>
+      <year>2025</year>
+    </date>
+    <format>
+      <file-format>HTML</file-format>
+      <file-format>TXT</file-format>
+      <file-format>PDF</file-format>
+      <file-format>XML</file-format>
+    </format>
+    <page-count>37</page-count>
+    <keywords>
+      <kw>yang</kw>
+      <kw>data types</kw>
+      <kw>address types</kw>
+      <kw>time types</kw>
+      <kw>date types</kw>
+    </keywords>
+    <abstract>
+      <p>This document defines a collection of common data types to be used with the YANG data modeling language.  It includes several new type definitions and obsoletes RFC 6991.</p>
+    </abstract>
+    <draft>draft-ietf-netmod-rfc6991-bis-18</draft>
+    <obsoletes>
+      <doc-id>RFC6991</doc-id>
+    </obsoletes>
+    <current-status>PROPOSED STANDARD</current-status>
+    <publication-status>PROPOSED STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>ops</area>
+    <wg_acronym>netmod</wg_acronym>
+    <doi>10.17487/RFC9911</doi>
+  </rfc-entry>
+  <rfc-entry>
+    <doc-id>RFC9915</doc-id>
+    <title>Dynamic Host Configuration Protocol for IPv6 (DHCPv6)</title>
+    <author>
+      <name>T. Mrugalski</name>
+    </author>
+    <author>
+      <name>B. Volz</name>
+    </author>
+    <author>
+      <name>M. Richardson</name>
+    </author>
+    <author>
+      <name>S. Jiang</name>
+    </author>
+    <author>
+      <name>T. Winters</name>
+    </author>
+    <date>
+      <month>January</month>
+      <year>2026</year>
+    </date>
+    <format>
+      <file-format>HTML</file-format>
+      <file-format>TXT</file-format>
+      <file-format>PDF</file-format>
+      <file-format>XML</file-format>
+    </format>
+    <page-count>115</page-count>
+    <keywords>
+      <kw>DHCPv6</kw>
+      <kw>IPv6</kw>
+      <kw>DHCP</kw>
+    </keywords>
+    <abstract>
+      <p>This document specifies the Dynamic Host Configuration Protocol for IPv6 (DHCPv6), an extensible mechanism for configuring nodes with network configuration parameters, IP addresses, and prefixes. Parameters can be provided statelessly or in combination with stateful assignment of one or more IPv6 addresses and/or IPv6 prefixes. DHCPv6 can operate either in place of or in addition to stateless address autoconfiguration (SLAAC).</p>
+      <p>This document obsoletes RFC 8415. It incorporates verified errata and obsoletes the assignment of temporary addresses (the IA_TA option) and the server unicast capability (the Server Unicast option and UseMulticast status code).</p>
+    </abstract>
+    <draft>draft-ietf-dhc-rfc8415bis-12</draft>
+    <is-also>
+      <doc-id>STD102</doc-id>
+    </is-also>
+    <obsoletes>
+      <doc-id>RFC8415</doc-id>
+    </obsoletes>
+    <current-status>INTERNET STANDARD</current-status>
+    <publication-status>INTERNET STANDARD</publication-status>
+    <stream>IETF</stream>
+    <area>int</area>
+    <wg_acronym>dhc</wg_acronym>
+    <errata-url>https://www.rfc-editor.org/errata/rfc9915</errata-url>
+    <doi>10.17487/RFC9915</doi>
+  </rfc-entry>
+</rfc-index>
