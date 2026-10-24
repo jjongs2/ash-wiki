@@ -35,7 +35,7 @@ JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"
 
 ## npm 플러그인 패치
 
-고칠 것이 npm 플러그인 코드 안에 있을 때(컴포넌트에 박힌 문구나 값, 클라이언트 스크립트의 결함)는 `patches/`의 패치를, 플러그인이 낸 결과에 단계를 더할 때(거르기, 바꾸기, 덧붙이기)는 로컬 플러그인(`plugins/`)을 쓴다. 로컬 플러그인으로 컴포넌트를 감싸지 않는 까닭은 [ADR 0021](adr/0021-ui-locale-and-csl-locale.md)에 있다. 플러그인의 동작을 패치로 감당하지 못할 만큼 바꿀 때는 로컬 플러그인으로 fork한다([그래프](#그래프)). `npm ci`의 `postinstall`이 patch-package로 패치를 입힌다. 고친 플러그인은 `ls patches/`로 보고, 고친 이유는 패치가 더한 `// ash-wiki:` 주석에 있다.
+고칠 것이 npm 플러그인 코드 안에 있을 때(컴포넌트에 박힌 문구나 값, 클라이언트 스크립트의 결함)는 `patches/`의 패치를, 플러그인이 낸 결과에 단계를 더할 때(거르기, 바꾸기, 덧붙이기)는 로컬 플러그인(`plugins/`)을 쓴다. 로컬 플러그인으로 컴포넌트를 감싸지 않는 까닭은 [ADR 0021](adr/0021-ui-locale-and-csl-locale.md)에 있다. 플러그인의 동작을 패치로 감당하지 못할 만큼 바꿀 때는 로컬 플러그인으로 fork한다([그래프](#그래프), [검색](#검색)). `npm ci`의 `postinstall`이 patch-package로 패치를 입힌다. 고친 플러그인은 `ls patches/`로 보고, 고친 이유는 패치가 더한 `// ash-wiki:` 주석에 있다.
 
 - 패치는 `node_modules`의 파일을 고친 뒤 `npx patch-package <패키지>`로 만든다.
 - 플러그인을 올려 패치가 맞지 않으면 `npm ci`가 실패한다. 새 버전에서 같은 자리를 다시 고쳐 패치를 만든다. 업스트림이 같은 자리를 고쳤으면 그 패치를 지운다.
@@ -110,6 +110,33 @@ local graph는 태그 노드 없이 링크로 이은 페이지를 그리고, 칸
 ```sh
 npx prettier --stdin-filepath plugins/graph/script.js < graph/src/components/scripts/graph.inline.ts | diff - plugins/graph/script.js
 npx sass --no-source-map graph/src/components/styles/graph.scss | npx prettier --stdin-filepath plugins/graph/style.css | diff - plugins/graph/style.css
+```
+
+## 검색
+
+검색은 검색 플러그인을 fork한 로컬 플러그인(`plugins/search`)이 그린다. 업스트림은 별칭을 색인하지 않고, 영문과 숫자를 공백에서만 끊고, 결과를 FlexSearch 순서로만 보인다.
+
+별칭은 content-index 패치가 색인에 싣는다([npm 플러그인 패치](#npm-플러그인-패치)). 결과는 검색어와 제목·별칭이 정확히 맞는 페이지, 나머지 위키 페이지와 태그 페이지, 주간 소식의 최신 호 순이다. 정확히 맞는 기준, 결과 순서, 인코더, 강조할 낱말은 `plugins/search/model.ts`에 있다.
+
+| 항목       | 값                                                      |
+| ---------- | ------------------------------------------------------- |
+| 저장소     | https://github.com/quartz-community/search              |
+| 버전       | 1.0.0 (태그 `v1.0.0`)                                   |
+| 기준선 SHA | `f425045ac21f74210f858b10c8ab3a40f70b76eb` (2026-09-15) |
+| FlexSearch | 0.8.212 (업스트림 lock의 판)                            |
+| 라이선스   | MIT (`plugins/search/LICENSE`)                          |
+
+기준선의 파일은 다음처럼 옮겼다. 고친 이유는 각 파일의 주석에 있다.
+
+- `script.ts`: `src/components/scripts/search.inline.ts`를 저장소의 Prettier 꼴로 바꾼 것이다. 업스트림 빌드처럼 esbuild로 묶어 싣는다.
+- `style.css`: `src/components/styles/search.scss`를 sass로 컴파일한 것이다.
+- `index.ts`: `src/components/Search.tsx`를 JSX 없이 preact의 `h`로 옮긴 것이다.
+
+업스트림이 바뀌면 [그래프](#그래프)와 같은 절차로 비교한다. 업스트림 저장소를 `search/`에 받아 기준선을 checkout한 뒤 다음을 돌린다.
+
+```sh
+npx prettier --stdin-filepath plugins/search/script.ts < search/src/components/scripts/search.inline.ts | diff - plugins/search/script.ts
+npx sass --no-source-map search/src/components/styles/search.scss | npx prettier --stdin-filepath plugins/search/style.css | diff - plugins/search/style.css
 ```
 
 ## 인용

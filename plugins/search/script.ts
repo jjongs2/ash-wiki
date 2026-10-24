@@ -1,4 +1,7 @@
-import FlexSearch from "flexsearch"
+// ash-wiki: 색인, 인코더, 결과 순서, 강조할 낱말은 model.ts가 맡는다. 이 스크립트는 contentIndex를 색인에
+// 넣고 결과를 그리기만 한다. 업스트림은 화면 문구를 영어로 박아 두었다(ADR 0021).
+import { createSearchIndex, highlightPattern } from "./model"
+import type { SearchPage } from "./model"
 import {
   removeAllChildren,
   normalizeRelativeURLs,
@@ -11,77 +14,29 @@ interface Item {
   id: number
   slug: string
   title: string
+  aliases?: string[]
   content: string
   tags: string[]
   [key: string]: any
 }
 
-type SearchType = "basic" | "tags"
-let searchType: SearchType = "basic"
+const toSearchPage = (slug: string, item: Item): SearchPage => ({
+  slug,
+  title: item.title || "",
+  aliases: item.aliases || [],
+  content: item.content || "",
+  tags: item.tags || [],
+})
+
+// 업스트림은 검색 갈래(searchType)를 적어 두기만 하고 읽지 않는다. 저장소의 타입 검사(noUnusedLocals)가
+// 막아서 뺐다.
 let currentSearchTerm: string = ""
-const numSearchResults = 8
 const numTagResults = 5
 const contextWindowWords = 30
 
-const encoder = (str: string): string[] => {
-  const tokens: string[] = []
-  let bufferStart = -1
-  let bufferEnd = -1
-  const lower = str.toLowerCase()
-  let i = 0
-
-  for (const char of lower) {
-    const code = char.codePointAt(0)!
-
-    const isCJK =
-      (code >= 0x3040 && code <= 0x309f) ||
-      (code >= 0x30a0 && code <= 0x30ff) ||
-      (code >= 0x4e00 && code <= 0x9fff) ||
-      (code >= 0xac00 && code <= 0xd7af) ||
-      (code >= 0x20000 && code <= 0x2a6df)
-
-    const isWhitespace = code === 32 || code === 9 || code === 10 || code === 13
-
-    if (isCJK) {
-      if (bufferStart !== -1) {
-        tokens.push(lower.slice(bufferStart, bufferEnd))
-        bufferStart = -1
-      }
-      tokens.push(char)
-    } else if (isWhitespace) {
-      if (bufferStart !== -1) {
-        tokens.push(lower.slice(bufferStart, bufferEnd))
-        bufferStart = -1
-      }
-    } else {
-      if (bufferStart === -1) bufferStart = i
-      bufferEnd = i + 1
-    }
-    i += char.length
-  }
-
-  if (bufferStart !== -1) {
-    tokens.push(lower.slice(bufferStart))
-  }
-
-  return tokens
-}
-
-const index = new FlexSearch.Document({
-  encode: encoder,
-  document: {
-    id: "id",
-    tag: "tags",
-    index: [
-      { field: "title", tokenize: "forward" },
-      { field: "content", tokenize: "forward" },
-      { field: "tags", tokenize: "forward" },
-    ],
-  },
-})
+const index = createSearchIndex()
 
 let contentData: Record<string, Item> | null = null
-let idDataMap: string[] = []
 let allTags: string[] = []
 const fetchContentCache = new Map<string, Element[]>()
 
@@ -152,17 +107,13 @@ async function setupSearch() {
 
     const sidebar = container.closest(".sidebar") as HTMLElement | null
     const enablePreview = searchLayout.getAttribute("data-preview") === "true"
-    const fieldPriorityAttr = searchLayout.getAttribute("data-field-priority")
-    const fieldPriority: string[] = fieldPriorityAttr
-      ? JSON.parse(fieldPriorityAttr)
-      : ["title", "content", "tags"]
 
     let results = searchLayout.querySelector(".results-container") as HTMLDivElement | null
     if (!results) {
       results = document.createElement("div")
       results.className = "results-container"
       results.setAttribute("role", "listbox")
-      results.setAttribute("aria-label", "Search results")
+      results.setAttribute("aria-label", "검색 결과")
       searchLayout.appendChild(results)
     }
 
@@ -176,7 +127,7 @@ async function setupSearch() {
     const tagDropdown = document.createElement("div")
     tagDropdown.className = "tag-suggestions"
     tagDropdown.setAttribute("role", "listbox")
-    tagDropdown.setAttribute("aria-label", "Tag suggestions")
+    tagDropdown.setAttribute("aria-label", "태그 제안")
     tagDropdown.style.display = "none"
     const searchSpace = searchBar.parentElement!
     searchSpace.insertBefore(tagDropdown, searchBar.nextSibling)
@@ -287,14 +238,12 @@ async function setupSearch() {
       removeAllChildren(results!)
       if (preview) removeAllChildren(preview)
       searchLayout.classList.remove("display-results")
-      searchType = "basic"
       currentHover = null
       hideTagDropdown()
       searchButton.focus()
     }
 
-    const showSearch = (type: SearchType) => {
-      searchType = type
+    const showSearch = () => {
       if (sidebar) sidebar.style.zIndex = "9999"
       container.classList.add("active")
       searchButton.setAttribute("aria-expanded", "true")
@@ -308,9 +257,9 @@ async function setupSearch() {
         const noMatch = document.createElement("a")
         noMatch.className = "result-card no-match"
         const noMatchTitle = document.createElement("h3")
-        noMatchTitle.textContent = "No results."
+        noMatchTitle.textContent = "결과가 없습니다."
         const noMatchHint = document.createElement("p")
-        noMatchHint.textContent = "Try another search term?"
+        noMatchHint.textContent = "다른 검색어로 찾아 보세요."
         noMatch.appendChild(noMatchTitle)
         noMatch.appendChild(noMatchHint)
         results.appendChild(noMatch)
@@ -440,7 +389,6 @@ async function setupSearch() {
       const parsed = parseSearchQuery(inputValue)
       const hasContent = parsed.query !== "" || parsed.tags.length > 0
       searchLayout.classList.toggle("display-results", hasContent)
-      searchType = parsed.tags.length > 0 && !parsed.query ? "tags" : "basic"
 
       if (!hasContent) {
         removeAllChildren(results)
@@ -449,54 +397,19 @@ async function setupSearch() {
         return
       }
 
-      let searchResults: any[]
-      if (parsed.query) {
-        searchResults = await index.searchAsync({
-          query: parsed.query,
-          limit: parsed.tags.length > 0 ? 10000 : numSearchResults,
-          index: ["title", "content"],
-        })
-      } else if (parsed.tags.length > 0) {
-        searchResults = await index.searchAsync({
-          query: parsed.tags[0],
-          limit: 10000,
-          index: ["tags"],
-        })
-      } else {
-        searchResults = []
-      }
-
-      const getByField = (field: string): number[] => {
-        const matched = searchResults.filter((x: any) => x.field === field)
-        return matched.length === 0 ? [] : ([...matched[0].result] as number[])
-      }
-
-      const allIds: Set<number> = new Set(fieldPriority.flatMap((field) => getByField(field)))
-
-      const filteredIds = [...allIds].filter((id) => {
-        if (parsed.tags.length === 0) return true
-        const slug = idDataMap[id]
-        if (!slug) return false
-        const item = contentData?.[slug]
-        if (!item) return false
-        const itemTags: string[] = item.tags || []
-        return parsed.tags.every((tag) =>
-          itemTags.some((t) => t.toLowerCase() === tag.toLowerCase()),
-        )
-      })
-
+      const slugs = await index.search(parsed.query, parsed.tags)
       const displayTerm =
         parsed.query || (parsed.tags.length > 0 ? parsed.tags.join(" ") : inputValue)
-      const finalResults = filteredIds.map((id) => formatForDisplay(displayTerm, id))
+      const finalResults = slugs.map((slug) => formatForDisplay(displayTerm, slug))
 
-      await displayResults(finalResults.slice(0, numSearchResults))
+      await displayResults(finalResults)
       const resultElements = getResultElements()
       setFocus(resultElements[0] ?? null)
     }
 
     const onButtonClick = (e: Event) => {
       e.stopPropagation()
-      showSearch("basic")
+      showSearch()
     }
     searchButton.addEventListener("click", onButtonClick)
     addCleanup(() => searchButton.removeEventListener("click", onButtonClick))
@@ -563,10 +476,10 @@ async function setupSearch() {
     const onDocumentKeydown = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.ctrlKey || e.metaKey) && !e.shiftKey) {
         e.preventDefault()
-        container.classList.contains("active") ? hideSearch() : showSearch("basic")
+        container.classList.contains("active") ? hideSearch() : showSearch()
       } else if (e.shiftKey && (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
         e.preventDefault()
-        showSearch("tags")
+        showSearch()
         searchBar.value = "#"
         searchBar.dispatchEvent(new Event("input"))
       }
@@ -627,26 +540,10 @@ async function setupSearch() {
   }
 }
 
-function tokenizeTerm(term: string): string[] {
-  const tokens = term.split(/\s+/).filter((t) => t.trim() !== "")
-  const tokenLen = tokens.length
-  if (tokenLen > 1) {
-    for (let i = 1; i < tokenLen; i++) {
-      tokens.push(tokens.slice(0, i + 1).join(" "))
-    }
-  }
-  return tokens.sort((a, b) => b.length - a.length)
-}
-
 function highlightHTML(searchTerm: string, el: HTMLElement): string {
-  const tokenizedTerms = tokenizeTerm(searchTerm).filter((term) => term.trim() !== "")
-  if (tokenizedTerms.length === 0) return el.innerHTML
+  const regex = highlightPattern(searchTerm)
+  if (!regex) return el.innerHTML
   const html = parser.parseFromString(el.innerHTML, "text/html")
-  const combined = tokenizedTerms
-    .map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
-    .join("|")
-  if (combined === "") return el.innerHTML
-  const regex = new RegExp(combined, "gi")
   const walker = html.createTreeWalker(html.body, NodeFilter.SHOW_TEXT)
   const nodes: Text[] = []
   let node: Text | null = walker.nextNode() as Text | null
@@ -681,7 +578,7 @@ function highlightHTML(searchTerm: string, el: HTMLElement): string {
 }
 
 function highlight(searchTerm: string, text: string, trim?: boolean): string {
-  const tokenizedTerms = tokenizeTerm(searchTerm)
+  const regex = highlightPattern(searchTerm)
   let tokenizedText = escapeHTML(text)
     .split(/\s+/)
     .filter((t) => t !== "")
@@ -691,7 +588,9 @@ function highlight(searchTerm: string, text: string, trim?: boolean): string {
 
   if (trim) {
     const includesCheck = (tok: string) => {
-      return tokenizedTerms.some((term) => tok.toLowerCase().startsWith(term.toLowerCase()))
+      if (!regex) return false
+      regex.lastIndex = 0
+      return regex.test(tok)
     }
     const occurrencesIndices = tokenizedText.map(includesCheck)
 
@@ -712,17 +611,11 @@ function highlight(searchTerm: string, text: string, trim?: boolean): string {
   }
 
   const slice = tokenizedText
-    .map((tok) => {
-      let result = tok
-      for (const searchTok of tokenizedTerms) {
-        if (tok.toLowerCase().includes(searchTok.toLowerCase())) {
-          const regex = new RegExp(searchTok.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi")
-          result = tok.replace(regex, (match) => `<span class="highlight">${match}</span>`)
-          break
-        }
-      }
-      return result
-    })
+    // 업스트림은 한 낱말에서 처음 맞은 검색어 하나만 칠한다. 100BASE-T1처럼 조각이 여럿 맞는 낱말은
+    // 맞은 곳을 모두 칠한다.
+    .map((tok) =>
+      regex ? tok.replace(regex, (match) => `<span class="highlight">${match}</span>`) : tok,
+    )
     .join(" ")
 
   return (
@@ -744,21 +637,10 @@ function highlightTags(searchTags: string[], tags?: string[]): string[] {
     .slice(0, numTagResults)
 }
 
-function formatForDisplay(term: string, id: number): any {
-  const slug = idDataMap[id]
-  if (!slug || !contentData) {
-    return {
-      id,
-      slug: "",
-      title: "",
-      content: "",
-      tags: [],
-    }
-  }
-  const data = contentData[slug]
+function formatForDisplay(term: string, slug: string): any {
+  const data = contentData?.[slug]
   if (!data) {
     return {
-      id,
       slug,
       title: "",
       content: "",
@@ -767,7 +649,6 @@ function formatForDisplay(term: string, id: number): any {
   }
   const parsed = parseSearchQuery(currentSearchTerm)
   return {
-    id: id,
     slug: slug,
     title:
       parsed.tags.length > 0 && !parsed.query
@@ -780,26 +661,15 @@ function formatForDisplay(term: string, id: number): any {
 
 async function fillDocument() {
   if (!contentData) return
-  let id = 0
-  const promises: Array<Promise<unknown>> = []
+  const pages: SearchPage[] = []
   const tagSet = new Set<string>()
   for (const slug of Object.keys(contentData)) {
     const fileData = contentData[slug]
     if (!fileData) continue
-    idDataMap[id] = slug
     for (const tag of fileData.tags || []) tagSet.add(tag)
-    promises.push(
-      index.addAsync(id, {
-        id: id,
-        slug: slug,
-        title: fileData.title || "",
-        content: fileData.content || "",
-        tags: fileData.tags || [],
-      }),
-    )
-    id++
+    pages.push(toSearchPage(slug, fileData))
   }
-  await Promise.all(promises)
+  await index.add(pages)
   allTags = [...tagSet].sort()
 }
 
@@ -825,17 +695,9 @@ async function addContentIndexEntries(patch: Record<string, Item>): Promise<numb
     if (contentData[slug]) continue
     const fileData = patch[slug]
     if (!fileData) continue
-    const id = idDataMap.length
-    idDataMap[id] = slug
     contentData[slug] = fileData
     for (const tag of fileData.tags || []) tagSet.add(tag)
-    await index.addAsync(id, {
-      id,
-      slug,
-      title: fileData.title || "",
-      content: fileData.content || "",
-      tags: fileData.tags || [],
-    })
+    await index.add([toSearchPage(slug, fileData)])
     added++
   }
   allTags = [...tagSet].sort()
