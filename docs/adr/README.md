@@ -31,6 +31,7 @@
 
 - [0011](0011-standard-page-by-publication.md) 표준 페이지는 출판물로 고른다
 - [0015](0015-weekly-news-outside-wiki-content.md) 주간 소식은 위키 콘텐츠 밖의 페이지다
+- [0023](0023-status-without-revising.md) 표준 페이지의 `status`는 출판물의 상태만 말한다 (0020을 고침)
 
 ## 대체됨
 
