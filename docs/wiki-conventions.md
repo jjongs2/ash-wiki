@@ -67,6 +67,8 @@ npm run check:content
 
 개정이 진행 중인 표준도 `유효`이고, 개정 진행은 개정 이력 절에 쓴다([상태 문장](wiki-verification.md#상태-문장)). `리뷰`
 
+상태를 두 값으로 둔 까닭은 [ADR 0023](adr/0023-status-without-revising.md)에 있다.
+
 ## 절
 
 - 절 제목은 `##`부터 `###`까지 쓴다. `리뷰`
