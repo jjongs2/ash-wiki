@@ -170,7 +170,7 @@ describe("ieee", () => {
         ieeeEntry("ieee-802-1q-2022", "IEEE 802.1Q-2022 IEEE Standard", `${site}/802.1Q/10323/`),
         ieeeEntry("ieee-p802-1q-2023", "IEEE P802.1Q Standard", `${site}/802.1Q/11285/`),
       ],
-      [page("ieee-802-1q", "IEEE 802.1Q", "IEEE", "2022", "개정 중")],
+      [page("ieee-802-1q", "IEEE 802.1Q", "IEEE", "2022")],
       fixtureContext(routes, others),
     )
     assert.deepStrictEqual(keys, [
@@ -208,7 +208,7 @@ describe("ieee", () => {
           wg,
         ),
       ],
-      [page("ieee-802-1q", "IEEE 802.1Q", "IEEE", "2022", "개정 중")],
+      [page("ieee-802-1q", "IEEE 802.1Q", "IEEE", "2022")],
       context(),
     )
     assert.deepStrictEqual(keys, [
@@ -304,7 +304,7 @@ describe("ieee", () => {
       ieeeEntry("ieee-802-1aedk-2023", "IEEE 802.1AEdk-2023 IEEE Standard"),
       ieeeEntry("ieee-802-1ae-cor-2020", "IEEE 802.1AE-2018/Cor 1-2020 IEEE Standard"),
     ]
-    const pages = [page("ieee-802-1ae", "IEEE 802.1AE", "IEEE", "2018", "개정 중")]
+    const pages = [page("ieee-802-1ae", "IEEE 802.1AE", "IEEE", "2018")]
     const { keys, changes } = await run(ieee, entries, pages, context())
     assert.deepStrictEqual(keys, ["IEEE 802.1AE | revision | P802.1AE (802.1AE-2018 개정)"])
     assert.ok(changes[0].evidence.some((e) => e.url === `${site}/802.1AE/12245/`))
@@ -343,7 +343,7 @@ describe("ieee", () => {
           `${site}/1588/11795/`,
         ),
       ],
-      [page("ieee-1588", "IEEE 1588", "IEEE", "2019", "개정 중")],
+      [page("ieee-1588", "IEEE 1588", "IEEE", "2019")],
       context(),
     )
     assert.deepStrictEqual(
@@ -365,7 +365,7 @@ describe("ieee", () => {
       ],
       [
         page("ieee-1722", "IEEE 1722", "IEEE", "2025"),
-        page("ieee-1003-1", "IEEE 1003.1", "IEEE/The Open Group", "2024", "개정 중"),
+        page("ieee-1003-1", "IEEE 1003.1", "IEEE/The Open Group", "2024"),
       ],
       context(),
     )
@@ -379,7 +379,7 @@ describe("ieee", () => {
       ieeeEntry("ieee-p802-1as-2026", "IEEE P802.1AS Standard", `${site}/802.1AS/12553/`),
       ieeeEntry("ieee-802-1asds-2026", "IEEE 802.1ASds-2026 IEEE Standard"),
     ]
-    const asPage = [page("ieee-802-1as", "IEEE 802.1AS", "IEEE", "2025", "개정 중")]
+    const asPage = [page("ieee-802-1as", "IEEE 802.1AS", "IEEE", "2025")]
     assert.deepStrictEqual((await run(ieee, as, asPage, context())).keys, [
       "IEEE 802.1AS | supplement | IEEE 802.1ASed-2026",
     ])

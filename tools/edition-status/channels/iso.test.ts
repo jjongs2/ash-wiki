@@ -58,7 +58,7 @@ describe("iso", () => {
           90020,
         ),
       ],
-      [page("iso-26262", "ISO 26262", "ISO", "2018", "개정 중")],
+      [page("iso-26262", "ISO 26262", "ISO", "2018")],
       context(),
     )
     // 26262-7:2018은 인용하지 않았지만 edition 연도 뒤에 나온 부가 아니다.
@@ -69,7 +69,7 @@ describe("iso", () => {
     const { keys } = await run(
       iso,
       [isoEntry("iso-26262-1-2018", "ISO 26262-1:2018 Road vehicles — Functional safety — Part 1")],
-      [page("iso-26262", "ISO 26262", "ISO", "2018", "개정 중")],
+      [page("iso-26262", "ISO 26262", "ISO", "2018")],
       context(),
     )
     assert.deepStrictEqual(keys, ["ISO 26262 | revision | ISO/DIS 26262-1"])
@@ -115,7 +115,7 @@ describe("iso", () => {
       [
         page("iso-11898-1", "ISO 11898-1", "ISO", "2024"),
         page("iso-11898-2", "ISO 11898-2", "ISO", "2026"),
-        page("iso-21448", "ISO 21448", "ISO", "2022", "개정 중"),
+        page("iso-21448", "ISO 21448", "ISO", "2022"),
       ],
       context(),
     )

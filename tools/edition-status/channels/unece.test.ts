@@ -58,8 +58,8 @@ const r156Series = entry(
   "Proposal for a new 01 series of amendments to UN Regulation No. 156 (Software Update and Software Update Management System) (ECE/TRANS/WP.29/2025/142)",
 )
 const pages = [
-  page("un-r155", "UN R155", "UNECE", "2021", "개정 중"),
-  page("un-r156", "UN R156", "UNECE", "2026", "개정 중"),
+  page("un-r155", "UN R155", "UNECE", "2021"),
+  page("un-r156", "UN R156", "UNECE", "2026"),
 ]
 
 describe("unece", () => {
