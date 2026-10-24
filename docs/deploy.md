@@ -14,7 +14,7 @@
 | Build command          | `npm run build`                                                                |
 | Build output directory | `public`                                                                       |
 | Node                   | 22. 저장소의 `.node-version`이 정하므로 `NODE_VERSION` 환경 변수는 두지 않는다 |
-| Preview branch         | `None`(프리뷰 배포 끔)                                                         |
+| Preview branch         | Custom branches의 `dependabot/*`만. 의존성 PR의 빌드를 check로 본다            |
 | Web Analytics          | 켬(Metrics 탭)                                                                 |
 
 ## 저장소 쪽 값

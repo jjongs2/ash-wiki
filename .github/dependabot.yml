@@ -1,0 +1,48 @@
+version: 2
+
+# 정기 버전 업데이트는 달마다 열린다. 보안 업데이트는 주기와 cooldown을 따르지 않고 알림이 뜨면 바로
+# 열린다. cooldown은 레지스트리에 1주 머문 릴리스만 올린다. 탈취된 릴리스는 대개 그 안에 내려간다.
+# minor와 patch는 묶음마다 PR 하나로 묶고, major는 하나씩 연다.
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 7
+    # 범위 안의 업데이트는 lockfile만 고친다. 기본값은 package.json의 범위도 올려, 업스트림 Quartz
+    # 파일인 package.json의 diff가 커진다.
+    versioning-strategy: increase-if-necessary
+    ignore:
+      # @quartz-community 플러그인이 모두 preact ^10을 peer로 둔다. .npmrc의 legacy-peer-deps 때문에
+      # 11도 설치는 되므로, 플러그인이 11을 받아들일 때까지 막는다.
+      - dependency-name: preact
+        update-types: ["version-update:semver-major"]
+      # CI와 배포는 .node-version의 Node 22로 돈다. 타입이 런타임보다 앞설수록 Node 22에 없는 API가
+      # 타입 검사를 통과한다.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+    groups:
+      # 플러그인 버전이 바뀌면 patches/가 맞지 않아 npm ci가 실패할 수 있다. 다른 업데이트가 함께
+      # 막히지 않게 따로 묶는다.
+      quartz-plugins:
+        patterns: ["@quartz-community/*", "@quartz-themes/*"]
+        update-types: [minor, patch]
+      minor-patch:
+        patterns: ["*"]
+        exclude-patterns: ["@quartz-community/*", "@quartz-themes/*"]
+        update-types: [minor, patch]
+    commit-message:
+      prefix: chore
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 7
+    groups:
+      minor-patch:
+        update-types: [minor, patch]
+    commit-message:
+      prefix: ci
