@@ -14,18 +14,18 @@ updates:
     # 파일인 package.json의 diff가 커진다.
     versioning-strategy: increase-if-necessary
     ignore:
-      # @quartz-community 플러그인이 모두 preact ^10을 peer로 둔다. .npmrc의 legacy-peer-deps 때문에
+      # @quartz-community 플러그인 대부분이 preact ^10을 peer로 둔다. .npmrc의 legacy-peer-deps 때문에
       # 11도 설치는 되므로, 플러그인이 11을 받아들일 때까지 막는다.
       - dependency-name: preact
         update-types: ["version-update:semver-major"]
-      # CI와 배포는 .node-version의 Node 22로 돈다. 타입이 런타임보다 앞설수록 Node 22에 없는 API가
-      # 타입 검사를 통과한다.
+      # CI와 배포는 .node-version의 Node 22로 돈다. 타입은 이미 앞서 있고, 더 앞설수록 Node 22에 없는
+      # API가 타입 검사를 통과한다.
       - dependency-name: "@types/node"
         update-types: ["version-update:semver-major"]
     groups:
-      # 플러그인 버전이 바뀌면 patches/가 맞지 않아 npm ci가 실패할 수 있다. 다른 업데이트가 함께
-      # 막히지 않게 따로 묶는다.
-      quartz-plugins:
+      # 이 생태계의 패키지가 바뀌면 patches/가 맞지 않아 npm ci가 실패할 수 있다(docs/engine.md의 npm
+      # 플러그인 패치 절). 다른 업데이트가 함께 막히지 않게 따로 묶는다.
+      quartz-ecosystem:
         patterns: ["@quartz-community/*", "@quartz-themes/*"]
         update-types: [minor, patch]
       minor-patch:
@@ -41,8 +41,5 @@ updates:
       interval: monthly
     cooldown:
       default-days: 7
-    groups:
-      minor-patch:
-        update-types: [minor, patch]
     commit-message:
       prefix: ci
