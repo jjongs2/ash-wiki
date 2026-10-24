@@ -11,7 +11,7 @@ verified: 2026-09-27
 
 ## 개발 경위
 
-CiA(CAN 사용자·제조사의 국제 단체)에 따르면 2011년 초 General Motors와 Bosch가 CAN의 처리량을 높이는 개발을 시작했다.[@cia-can-history-2026][@cia-about-us-2026] 생산 라인 끝(end-of-line)에서 ECU에 커져 가는 소프트웨어를 내려받는 데 시간이 오래 걸리는 문제가 계기였다. Bosch는 다른 CAN 전문가들과 함께 CAN FD 규격을 먼저 만들었고, 이 규격은 2012년 제13회 iCC(international CAN Conference)에서 공식 발표되었다.[@cia-can-history-2026]
+CiA에 따르면 2011년 초 General Motors와 Bosch가 CAN의 처리량을 높이는 개발을 시작했다. 생산 라인 끝(end-of-line)에서 ECU에 커져 가는 소프트웨어를 내려받는 데 시간이 오래 걸리는 문제가 계기였다. Bosch는 다른 CAN 전문가들과 함께 CAN FD 규격을 먼저 만들었고, 이 규격은 2012년 제13회 iCC(international CAN Conference)에서 공식 발표되었다.[@cia-can-history-2026]
 
 ## 두 비트율
 

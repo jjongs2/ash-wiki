@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-06
 ---
 
-**CAN XL**(CAN Extended Data-Field Length)은 [[can|CAN]] 데이터 링크 계층에서 데이터 필드를 2048바이트까지 쓸 수 있게 한 프레임 포맷이다.[@iso-11898-1-obp-2024] CiA(CAN 사용자·제조사의 국제 단체)는 CAN XL을 classical CAN과 [[can-fd|CAN FD]]에 이은 셋째 세대 CAN 데이터 링크 계층 프로토콜이라 부른다.[@cia-can-history-2026][@cia-about-us-2026]
+**CAN XL**(CAN Extended Data-Field Length)은 [[can|CAN]] 데이터 링크 계층에서 데이터 필드를 2048바이트까지 쓸 수 있게 한 프레임 포맷이다.[@iso-11898-1-obp-2024] CiA는 CAN XL을 classical CAN과 [[can-fd|CAN FD]]에 이은 셋째 세대 CAN 데이터 링크 계층 프로토콜이라 부른다.[@cia-can-history-2026]
 
 [[iso-11898-1|ISO 11898-1:2024]]는 classic, CAN FD, CAN XL 프레임 포맷을 모두 지원하는 구현을 [[iso-11898-1#범위|구현 옵션]] 넷째로 둔다.[@iso-11898-1-obp-2024]
 

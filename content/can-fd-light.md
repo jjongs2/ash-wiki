@@ -11,7 +11,7 @@ verified: 2026-10-06
 
 ## 배경
 
-CiA(CAN 사용자·제조사의 국제 단체)에 따르면 CAN FD light는 깊이 내장되고 가격에 민감한 센서·액추에이터 네트워크를 위한 것이다.[@cia-can-fd-light-2026][@cia-about-us-2026] 가벼운 CAN FD 네트워크가 필요하다는 것은 자동차 조명 시스템을 개발하면서 드러났고, 여기서는 commander 노드 하나가 LED(Light-Emitting Diode) 클러스터인 responder 노드들을 하나씩 제어한다. 중앙 호스트 컨트롤러가 자원이 적은 단순한 단말 여럿을 관리하는 제어 시스템에도 쓸 수 있고, HVAC(Heating, Ventilation, and Air Conditioning) 시스템이 그 예다.[@cia-can-fd-light-2026]
+CiA에 따르면 CAN FD light는 깊이 내장되고 가격에 민감한 센서·액추에이터 네트워크를 위한 것이다. 가벼운 CAN FD 네트워크가 필요하다는 것은 자동차 조명 시스템을 개발하면서 드러났고, 여기서는 commander 노드 하나가 LED(Light-Emitting Diode) 클러스터인 responder 노드들을 하나씩 제어한다. 중앙 호스트 컨트롤러가 자원이 적은 단순한 단말 여럿을 관리하는 제어 시스템에도 쓸 수 있고, HVAC(Heating, Ventilation, and Air Conditioning) 시스템이 그 예다.[@cia-can-fd-light-2026]
 
 CAN FD light는 처음에 CiA 604-1에 규정되었고, ISO 11898-1:2024에 표준화되면서 CiA가 CiA 604-1을 철회했다.[@cia-can-fd-light-2026]
 

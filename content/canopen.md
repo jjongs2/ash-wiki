@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-06
 ---
 
-**CANopen**은 [[can|CAN]] 기반 통신 시스템으로, [[can-higher-layer-protocol|상위 계층 프로토콜]]과 프로파일 규격으로 이뤄진다. CAN CC(classic)를 바탕으로 한 CANopen CC와, 그 뒤에 [[can-fd|CAN FD]]를 바탕으로 만든 CANopen FD가 있다.[@cia-canopen-2026] CANopen CC는 CiA 301이, CANopen FD는 CiA 1301이 정한다. CiA(CAN 사용자·제조사의 국제 단체)에 따르면 CANopen CC는 EN 50325-4로 국제 표준이 되었다.[@cia-standardized-hlp-2026][@cia-about-us-2026]
+**CANopen**은 [[can|CAN]] 기반 통신 시스템으로, [[can-higher-layer-protocol|상위 계층 프로토콜]]과 프로파일 규격으로 이뤄진다. CAN CC(classic)를 바탕으로 한 CANopen CC와, 그 뒤에 [[can-fd|CAN FD]]를 바탕으로 만든 CANopen FD가 있다.[@cia-canopen-2026] CANopen CC는 CiA 301이, CANopen FD는 CiA 1301이 정한다. CiA에 따르면 CANopen CC는 EN 50325-4로 국제 표준이 되었다.[@cia-standardized-hlp-2026]
 
 CiA에 따르면 CANopen CC는 처음에 핸들링 시스템 같은 동작 중심의 기계 제어용으로 설계되었고, 2026년 10월 기준 의료 장비, 비도로 차량, 선박 전자 장비, 철도, 빌딩 자동화 등에 쓰인다.[@cia-canopen-2026]
 

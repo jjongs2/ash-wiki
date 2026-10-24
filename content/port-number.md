@@ -15,7 +15,7 @@ TCP의 연결은 양 끝의 IP 주소와 포트 번호 쌍으로 가려진다. T
 
 ## 번호 범위
 
-IANA(인터넷 식별자 레지스트리를 관리하는 기관)는 포트 번호를 세 범위로 나눈다.[@ietf-rfc-6335-2011][@iana-service-names-port-numbers-registry-2026][@iana-about-2026]
+IANA는 포트 번호를 세 범위로 나눈다.[@ietf-rfc-6335-2011][@iana-service-names-port-numbers-registry-2026]
 
 - **시스템 포트**: 0\~1023. well-known 포트라고도 부른다.
 - **사용자 포트**: 1024\~49151. registered 포트라고도 부른다.

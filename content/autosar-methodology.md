@@ -23,7 +23,7 @@ AUTOSAR가 처음 제안한 방법은 차량 시스템 기술에서 시작해 �
 
 ### System description
 
-**System Description**은 AUTOSAR 시스템 전체의 System Configuration을 기술하며, category가 `SYSTEM_DESCRIPTION`인 System 요소가 그 중심이다. System Template은 다섯 가지 주요 요소로 Topology, Software, Communication, Mapping, Mapping Constraints를 정한다. 최상위 요소 System은 Software, Mapping, Mapping Constraints를 직접 모으고, Topology와 Communication은 직접 담는 대신 ASAM FIBEX(Field Bus Exchange Format, ASAM: 자동차 개발·시험 시스템의 표준화 단체)의 요소를 참조한다.[@autosar-cp-tps-systemtemplate-2025][@asam-home-2026] 앞의 네 요소가 기술하는 것은 아래와 같다.[@autosar-cp-tps-systemtemplate-2025]
+**System Description**은 AUTOSAR 시스템 전체의 System Configuration을 기술하며, category가 `SYSTEM_DESCRIPTION`인 System 요소가 그 중심이다. System Template은 다섯 가지 주요 요소로 Topology, Software, Communication, Mapping, Mapping Constraints를 정한다. 최상위 요소 System은 Software, Mapping, Mapping Constraints를 직접 모으고, Topology와 Communication은 직접 담는 대신 ASAM FIBEX(Field Bus Exchange Format)의 요소를 참조한다. 앞의 네 요소가 기술하는 것은 아래와 같다.[@autosar-cp-tps-systemtemplate-2025]
 
 | 요소          | 기술하는 것                                                                             |
 | ------------- | --------------------------------------------------------------------------------------- |

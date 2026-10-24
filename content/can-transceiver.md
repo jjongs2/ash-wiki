@@ -57,7 +57,7 @@ TJA1462는 표준 CAN FD 트랜시버보다 비트 타이밍 대칭을 더 좁�
 
 ISO 11898-2:2026은 PMA가 버스를 level_0과 level_1 두 상태로 구동하는 모드를 **FAST TX 모드**로 정의한다. PMA가 버스를 recessive로 두고 수신 문턱을 level_0과 level_1을 가르도록 맞추는 모드는 **FAST RX 모드**로 정의한다.[@iso-11898-2-obp-2026]
 
-CiA(CAN 사용자·제조사의 국제 단체)는 SIC 모드와 FAST 모드를 함께 지원하는 트랜시버를 **CAN SIC XL 트랜시버**라 부른다.[@cia-physical-layer-options-2026][@cia-about-us-2026]
+CiA는 SIC 모드와 FAST 모드를 함께 지원하는 트랜시버를 **CAN SIC XL 트랜시버**라 부른다.[@cia-physical-layer-options-2026]
 
 ## 보호 기능
 

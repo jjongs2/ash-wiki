@@ -9,7 +9,7 @@
 - AI: 널리 쓰이는 약어
 - ANSI: 조직
 - API: 널리 쓰이는 약어
-- ASAM: 소개하는 조직
+- ASAM: 조직
 - ASQ: 소개하는 조직
 - AUMOVIO: 소개하는 조직
 - Auto-ISAC: 소개하는 조직
@@ -17,15 +17,15 @@
 - BCH: 널리 쓰이는 약어
 - BMW: 조직
 - BS: 표준·규격 이름
-- BSI: 소개하는 조직
+- BSI: 조직
 - CAN_H: 핀과 신호
 - CAN_L: 핀과 신호
 - CCITT: 소개하는 조직
 - CCRA: 소개하는 조직
 - CCSDS: 소개하는 조직
-- CENELEC: 소개하는 조직
+- CENELEC: 조직
 - CERT: 소개하는 조직
-- CiA: 소개하는 조직
+- CiA: 조직
 - CISA: 소개하는 조직
 - CISPR: 소개하는 조직
 - CMSIS-RTOS2: 표준·규격 이름
@@ -65,7 +65,7 @@
 - HTTP: 널리 쓰이는 약어
 - HTTPS: 널리 쓰이는 약어
 - I/O: 널리 쓰이는 약어
-- IANA: 소개하는 조직
+- IANA: 조직
 - IBM: 조직
 - IEC: 조직
 - IEEE: 조직
@@ -80,7 +80,7 @@
 - ISACA: 소개하는 조직
 - ISO: 조직
 - ISTQB: 조직
-- ITU-T: 소개하는 조직
+- ITU-T: 조직
 - JSON: 널리 쓰이는 약어
 - JTAG: 표준·규격 이름
 - JTC: ISO 위원회 번호
@@ -111,7 +111,7 @@
 - PDF: 널리 쓰이는 약어
 - PEP: 표준·규격 이름
 - PMBOK: 표준·규격 이름
-- PMI: 소개하는 조직
+- PMI: 조직
 - POSIX: 표준·규격 이름
 - PSE51: 표준·규격 이름
 - QoS: 널리 쓰이는 약어
@@ -134,7 +134,7 @@
 - SCK: 핀과 신호
 - SCL: 핀과 신호
 - SDA: 핀과 신호
-- SEI: 소개하는 조직
+- SEI: 조직
 - SP: 표준·규격 이름
 - SPICE: 표준·규격 이름
 - SRAM: 널리 쓰이는 약어
@@ -159,8 +159,8 @@
 - URI: 널리 쓰이는 약어
 - USB: 널리 쓰이는 약어
 - VCC: 전원
-- VDA: 소개하는 조직
-- VDA QMC: 소개하는 조직
+- VDA: 조직
+- VDA QMC: 조직
 - VDI: 소개하는 조직
 - VDO: 소개하는 조직
 - WAKE: 핀과 신호

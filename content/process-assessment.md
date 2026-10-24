@@ -107,7 +107,7 @@ ASPICE 4.1은 ISO/IEC 33020:2019가 정한 평정 방법 셋을 가져온다.[@v
 
 ### ASPICE Guidelines
 
-VDA QMC(독일 자동차 업계 단체의 품질경영 기관)는 ASPICE 4.1의 프로세스 평가 모델로 하는 평가의 지침으로 ASPICE Guidelines 3판(2026년 7월)을 인쇄본으로 펴낸다.[@vda-automotive-spice-publications-2026][@vda-qmc-home-2026] 이 판은 "Blue-Gold Book"이라 불린 ASPICE Guidelines 2판을 대체한다. 1부는 해석과 평정의 규칙을, 2부는 평가 수행의 요구와 평가자 자격의 요구를 담는다.[@vda-automotive-spice-guidelines-webshop-2026]
+VDA QMC는 ASPICE 4.1의 프로세스 평가 모델로 하는 평가의 지침으로 ASPICE Guidelines 3판(2026년 7월)을 인쇄본으로 펴낸다.[@vda-automotive-spice-publications-2026] 이 판은 "Blue-Gold Book"이라 불린 ASPICE Guidelines 2판을 대체한다. 1부는 해석과 평정의 규칙을, 2부는 평가 수행의 요구와 평가자 자격의 요구를 담는다.[@vda-automotive-spice-guidelines-webshop-2026]
 
 ### 평가자 인증
 

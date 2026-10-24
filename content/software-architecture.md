@@ -92,7 +92,7 @@ ASPICE 3.1은 SWE.2의 목적을 아키텍처 설계를 세우고, 소프트웨�
 
 ## 아키텍처 평가
 
-아키텍처 평가 방법으로는 SEI(카네기멜런 대학의 [[software-engineering|소프트웨어 공학]] 연구소)의 Kazman, Klein, Clements가 만든 ATAM(Architecture Tradeoff Analysis Method)이 있다.[@kazman-atam-2000][@sei-about-2026] 이들은 아키텍처를 시스템의 기능·품질 목표 달성을 가르는 열쇠로 보고, 큰 자원을 들이기 전에 구상된 아키텍처로 그 목표를 이룰 수 있는지 가리는 방법으로 ATAM을 제시했다. ATAM은 품질 속성 요구사항에 비추어 아키텍처 결정의 결과를 평가하며, 개발 생명주기 초기에 할 수 있다.[@kazman-atam-2000]
+아키텍처 평가 방법으로는 SEI의 Kazman, Klein, Clements가 만든 ATAM(Architecture Tradeoff Analysis Method)이 있다. 이들은 아키텍처를 시스템의 기능·품질 목표 달성을 가르는 열쇠로 보고, 큰 자원을 들이기 전에 구상된 아키텍처로 그 목표를 이룰 수 있는지 가리는 방법으로 ATAM을 제시했다. ATAM은 품질 속성 요구사항에 비추어 아키텍처 결정의 결과를 평가하며, 개발 생명주기 초기에 할 수 있다.[@kazman-atam-2000]
 
 아키텍처 평가 방법에는 ATAM 말고도 SAAM(Software Architecture Analysis Method)과 QAW(Quality Attribute Workshop)가 있다. 아키텍처 [[software-review|리뷰]]는 하나 이상의 아키텍처 관심사를 평가해 아키텍처의 상태와 품질을 가늠하고 리스크를 찾는 방법으로, 많은 리뷰는 비공식이거나 전문가의 판단에 기대고 일부는 다룰 주제의 체크리스트로 짜인다. SWEBOK V4.0a에 따르면 Parnas와 Weiss는 active review를 제안했다. Active review는 체크리스트 대신, 평가 항목마다 리뷰어가 필요한 정보를 얻으려고 할 구체적인 활동을 둔다. 아키텍처 [[software-metric|메트릭]]은 아키텍처의 특성을 정량으로 잰 척도로, 많은 것이 설계나 코드의 메트릭을 아키텍처에 맞게 끌어올린 것이다. 컴포넌트 의존성, 순환성, [[cyclomatic-complexity|순환 복잡도]], 내부 모듈 복잡도, 모듈 결합도와 응집도, 중첩 수준, 패턴과 스타일의 준수 등이 있다.[@ieee-swebok-v4-0a-2026]
 

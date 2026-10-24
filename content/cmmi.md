@@ -10,11 +10,11 @@ edition: 2023
 status: 유효
 ---
 
-**CMMI**(Capability Maturity Model Integration)는 조직이 업무 성과를 높이도록 돕는 모범 사례(best practice) 모델이다.[@isaca-cmmi-performance-solutions-2026] 처음에는 산업계, 정부, SEI(카네기멜런 대학의 [[software-engineering|소프트웨어 공학]] 연구소) 사람으로 꾸린 CMMI Product Team이 만들었고[@sei-cmmi-short-history-2009][@sei-about-2026], 지금은 ISACA(정보보안·거버넌스 분야의 국제 전문가 협회)가 펴낸다.[@isaca-cmmi-three-new-domains-2023]
+**CMMI**(Capability Maturity Model Integration)는 조직이 업무 성과를 높이도록 돕는 모범 사례(best practice) 모델이다.[@isaca-cmmi-performance-solutions-2026] 처음에는 산업계, 정부, SEI 사람으로 꾸린 CMMI Product Team이 만들었고[@sei-cmmi-short-history-2009], 지금은 ISACA(정보보안·거버넌스 분야의 국제 전문가 협회)가 펴낸다.[@isaca-cmmi-three-new-domains-2023]
 
 ## 범위
 
-ISACA에 따르면 CMMI 모델은 처음에 미 국방부가 소프트웨어 계약업체의 품질과 능력을 평가하는 데 쓰도록 만들어졌고, 지금은 소프트웨어 공학을 넘어 업종에 관계없이 쓰인다.[@isaca-cmmi-performance-solutions-2026] CMMI 3.0은 개발(Development), 서비스(Services), 공급자 관리(Supplier Management), 보안(Security), 안전(Safety), 데이터 관리(Data Management), 인력 관리(People Management), 가상 업무(Virtual Work)의 여덟 도메인을 한 모델 안에 둔다.[@isaca-cmmi-three-new-domains-2023] CMMI 3.0은 모범 사례를 프랙티스 영역(practice area)으로 묶고, 프랙티스 영역 안의 프랙티스를 Level 0\~3의 프랙티스 그룹으로 나눈다.[@cmmi-institute-levels-2026]
+ISACA에 따르면 CMMI 모델은 처음에 미 국방부가 소프트웨어 계약업체의 품질과 능력을 평가하는 데 쓰도록 만들어졌고, 지금은 [[software-engineering|소프트웨어 공학]]을 넘어 업종에 관계없이 쓰인다.[@isaca-cmmi-performance-solutions-2026] CMMI 3.0은 개발(Development), 서비스(Services), 공급자 관리(Supplier Management), 보안(Security), 안전(Safety), 데이터 관리(Data Management), 인력 관리(People Management), 가상 업무(Virtual Work)의 여덟 도메인을 한 모델 안에 둔다.[@isaca-cmmi-three-new-domains-2023] CMMI 3.0은 모범 사례를 프랙티스 영역(practice area)으로 묶고, 프랙티스 영역 안의 프랙티스를 Level 0\~3의 프랙티스 그룹으로 나눈다.[@cmmi-institute-levels-2026]
 
 CMMI AIM(Artificial Intelligence Maturity)은 조직의 인공지능 역량을 체계적으로 높이는 통합 성숙도 모델이다.[@cmmi-institute-aim-2026] ISACA의 CMMI Institute는 2026년 7월 CMMI 모델을 크게 넓힌 확장으로 CMMI AIM을 내놓았다. CMMI AIM은 CMMI의 31개 프랙티스 영역 모두에 인공지능 관련 내용을 더하고, 프랙티스의 50% 가까이에 인공지능 맥락의 내용을 덧붙였다.[@isaca-cmmi-aim-launch-2026]
 
@@ -40,7 +40,7 @@ ASPICE와의 차이는 [[automotive-spice#CMMI와의 차이|ASPICE]]에서, ASPI
 
 - 1991년: SEI가 소프트웨어용 CMM(Capability Maturity Model for Software) 1.0을 냈다.[@paulk-capability-maturity-model-1993]
 - 1993년: 소프트웨어용 CMM 1.1이 나왔다.[@paulk-capability-maturity-model-1993]
-- 2000년: CMMI Product Team이 첫 CMMI 모델(V1.02)을 냈다. 소프트웨어용 CMM v2.0 draft C, SECM(Systems Engineering Capability Model, EIA 731(EIA: 미국 전자 업계 단체)), IPD-CMM(Integrated Product Development CMM) v0.98의 세 원천 모델을 합친 것이다.[@cmmi-product-team-cmmi-development-2010][@eia-about-2006]
+- 2000년: CMMI Product Team이 첫 CMMI 모델(V1.02)을 냈다. 소프트웨어용 CMM v2.0 draft C, SECM(Systems Engineering Capability Model, EIA 731, EIA: 미국 전자 업계 단체), IPD-CMM(Integrated Product Development CMM) v0.98의 세 원천 모델을 합친 것이다.[@cmmi-product-team-cmmi-development-2010][@eia-about-2006]
 - 2002년: CMMI 1.1이 나왔다.[@cmmi-product-team-cmmi-development-2010]
 - 2006년: CMMI 1.2가 나왔다. 첫 모델의 이름이 CMMI for Development로 바뀌고 컨스텔레이션(constellation) 개념이 생겼다. 같은 1.2판으로 획득(CMMI for Acquisition, 2007)과 서비스(CMMI for Services, 2009) 모델이 뒤따랐다.[@cmmi-product-team-cmmi-development-2010]
 - 2010년: 획득, 개발, 서비스 세 모델의 1.3판이 함께 나왔다.[@cmmi-product-team-cmmi-development-2010]

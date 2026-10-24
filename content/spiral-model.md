@@ -38,7 +38,7 @@ ISO/IEC/IEEE 24765:2017은 나선형 모델을 요구 분석, 예비·상세 설
 
 Boehm은 1986년 ACM SIGSOFT Software Engineering Notes 11권 4호에 나선형 모델 논문을 실었고[@boehm-spiral-model-1986], 1988년 IEEE Computer 21권 5호에 같은 제목의 논문을 실었다.[@boehm-spiral-model-1988]
 
-Boehm은 2000년 SEI(카네기멜런 대학의 [[software-engineering|소프트웨어 공학]] 연구소) 특별 보고서 "Spiral Development: Experience, Principles, and Refinements"에서 나선형 개발 모델을 리스크 주도 프로세스 모델 생성기로 정의했다.[@boehm-spiral-development-2000][@sei-about-2026] 이 모델은 여러 이해관계자가 함께하는 소프트웨어 집약 시스템의 동시 공학을 이끌며, 리스크를 줄이면서 시스템의 정의와 구현을 점차 키우는 순환 접근과, 이해관계자의 약속을 확보하는 anchor point 마일스톤을 두 특징으로 한다. 리스크 패턴에 따라 증분, 폭포수, evolutionary prototyping 같은 서로 다른 프로세스가 나온다.[@boehm-spiral-development-2000]
+Boehm은 2000년 SEI 특별 보고서 "Spiral Development: Experience, Principles, and Refinements"에서 나선형 개발 모델을 리스크 주도 프로세스 모델 생성기로 정의했다. 이 모델은 여러 이해관계자가 함께하는 소프트웨어 집약 시스템의 동시 공학을 이끌며, 리스크를 줄이면서 시스템의 정의와 구현을 점차 키우는 순환 접근과, 이해관계자의 약속을 확보하는 anchor point 마일스톤을 두 특징으로 한다. 리스크 패턴에 따라 증분, 폭포수, evolutionary prototyping 같은 서로 다른 프로세스가 나온다.[@boehm-spiral-development-2000]
 
 같은 보고서에서 Boehm은 나선형 모델을 제대로 따르는 프로세스의 바퀴가 늘 갖추는 여섯 불변 특성(invariant)을 들고, 이를 갖추지 못한 채 나선형처럼 보이는 프로세스를 hazardous spiral look-alike라 불렀다.[@boehm-spiral-development-2000]
 

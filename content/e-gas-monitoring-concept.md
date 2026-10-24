@@ -10,7 +10,7 @@ edition: 2015
 status: 유효
 ---
 
-**E-Gas 감시 개념**(Standardized E-Gas Monitoring Concept for Gasoline and Diesel Engine Control Units)은 drive-by-wire로 제어하는 가솔린·디젤 엔진에서, 엔진 제어기가 허용되지 않게 큰 구동 토크로 생기는 의도하지 않은 가속을 검출하도록 감시를 세 층으로 나눈 개념이다.[@egas-monitoring-concept-2015] 독일 자동차 제조사 Audi, BMW, Daimler, Porsche, Volkswagen으로 이루어진 EGAS 작업 그룹(Arbeitskreis EGAS)이 만들었다.[@egas-monitoring-concept-2015][@iav-e-gas-monitoring-concepts-2019] TI F28003x 안전 매뉴얼에 따르면 이 작업 그룹은 VDA(독일 자동차 업계 단체)의 작업 그룹 E-Gas-Arbeitskreis다.[@ti-sffs277-2023][@vda-members-2026]
+**E-Gas 감시 개념**(Standardized E-Gas Monitoring Concept for Gasoline and Diesel Engine Control Units)은 drive-by-wire로 제어하는 가솔린·디젤 엔진에서, 엔진 제어기가 허용되지 않게 큰 구동 토크로 생기는 의도하지 않은 가속을 검출하도록 감시를 세 층으로 나눈 개념이다.[@egas-monitoring-concept-2015] 독일 자동차 제조사 Audi, BMW, Daimler, Porsche, Volkswagen으로 이루어진 EGAS 작업 그룹(Arbeitskreis EGAS)이 만들었다.[@egas-monitoring-concept-2015][@iav-e-gas-monitoring-concepts-2019] TI F28003x 안전 매뉴얼에 따르면 이 작업 그룹은 독일 VDA의 작업 그룹 E-Gas-Arbeitskreis다.[@ti-sffs277-2023]
 
 ## 범위
 

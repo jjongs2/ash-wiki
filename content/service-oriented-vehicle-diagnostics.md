@@ -9,7 +9,7 @@ verified: 2026-10-22
 
 ## ASAM SOVD
 
-ASAM SOVD 1.0.0은 HTTP/REST, JSON, OAuth를 바탕으로 한 API를 정한다. 이 API는 proximity, remote, in-vehicle 세 시나리오에 쓸 수 있고, 외부 기술 파일 없이도 진단할 수 있게 하는 self-describing API다. ASAM(자동차 개발·시험 시스템의 표준화 단체)은 ASAM SOVD를 [[uds|UDS]]를 대체하지 않고 UDS와 함께 쓰도록 만들었다.[@asam-sovd-2022][@asam-home-2026]
+ASAM SOVD 1.0.0은 HTTP/REST, JSON, OAuth를 바탕으로 한 API를 정한다. 이 API는 proximity, remote, in-vehicle 세 시나리오에 쓸 수 있고, 외부 기술 파일 없이도 진단할 수 있게 하는 self-describing API다. ASAM은 ASAM SOVD를 [[uds|UDS]]를 대체하지 않고 UDS와 함께 쓰도록 만들었다.[@asam-sovd-2022]
 
 ISO 17978-3:2026의 소개 NOTE는 이 표준이 일부 API 메서드를 deprecated로 표시한다는 것과, 그 배경이 2022년의 ASAM SOVD 1.0 발표라는 것을 제시한다.[@iso-17978-3-obp-2026]
 

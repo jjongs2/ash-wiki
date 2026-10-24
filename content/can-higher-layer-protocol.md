@@ -9,7 +9,7 @@ verified: 2026-10-06
 
 ## 표준화된 HLP
 
-CiA(CAN 사용자·제조사의 국제 단체)에 따르면 표준화된 CAN 기반 HLP 스택은 대개 응용 계층과 전송 계층을 구현하고, 표현·세션·네트워크 계층의 기능도 일부 갖는다.[@cia-standardized-hlp-2026][@cia-about-us-2026]
+CiA에 따르면 표준화된 CAN 기반 HLP 스택은 대개 응용 계층과 전송 계층을 구현하고, 표현·세션·네트워크 계층의 기능도 일부 갖는다.[@cia-standardized-hlp-2026]
 
 ![[diagrams/can-hlp-osi-layers.svg]]
 

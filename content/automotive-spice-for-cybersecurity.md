@@ -11,7 +11,7 @@ edition: 2025
 status: 유효
 ---
 
-**Automotive SPICE for Cybersecurity**는 [[cybersecurity|사이버보안]] 엔지니어링을 위한 [[automotive-spice-process-reference-model|프로세스 참조 모델]]과 [[automotive-spice-process-assessment-model|프로세스 평가 모델]]을 정의해 [[automotive-spice|ASPICE]]를 보완하는 VDA QMC(독일 자동차 업계 단체의 품질경영 기관)의 문서다.[@vda-automotive-spice-cybersecurity-2025][@vda-qmc-home-2026]
+**Automotive SPICE for Cybersecurity**는 [[cybersecurity|사이버보안]] 엔지니어링을 위한 [[automotive-spice-process-reference-model|프로세스 참조 모델]]과 [[automotive-spice-process-assessment-model|프로세스 평가 모델]]을 정의해 [[automotive-spice|ASPICE]]를 보완하는 VDA QMC의 문서다.[@vda-automotive-spice-cybersecurity-2025]
 
 ## 범위
 

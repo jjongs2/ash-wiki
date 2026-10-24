@@ -88,7 +88,7 @@ Communication Services에는 [[autosar-log-and-trace|Dlt]], XCP(Universal Measur
 
 AUTOSAR Classic Platform R25-11은 양산 차량의 여러 ECU에서 데이터를 모으도록 설계한 VDP(Vehicle Data Protocol)를 들였다. VDP는 샘플링과 송신을 체계적으로 떼어 놓고, 여러 샘플링·송신 전략을 지원한다. VdpCmR(VDP Communication Module Remote) 명세도 이 릴리스에 새로 나왔다.[@autosar-cp-tr-releaseoverview-2025] VdpCmR은 VDP의 원격 ECU 쪽을 구현한다. 데이터 클래스 어댑터가 `VdpCmR_AddSample`로 샘플을 넘기면 VdpCmR은 이를 데이터 메시지 버퍼에 담고, [[autosar-time-synchronization#StbM|StbM]]에서 현재 타임스탬프를 받아 붙인다.[@autosar-cp-sws-vdpcmremote-2025]
 
-XCP 모듈은 ASAM(자동차 개발·시험 시스템의 표준화 단체)이 정한 XCP를 구현한다.[@autosar-cp-sws-xcp-2025][@asam-home-2026] XCP는 마스터(도구)와 슬레이브(장치) 사이의 프로토콜로, 동기 데이터 수집(측정), 동기 데이터 자극, 온라인 메모리 캘리브레이션, 캘리브레이션 데이터 페이지 전환, 개발용 플래시 프로그래밍을 준다. XCP 모듈은 CAN, FlexRay, 이더넷 버스를 지원한다.[@autosar-cp-sws-xcp-2025]
+XCP 모듈은 ASAM이 정한 XCP를 구현한다. XCP는 마스터(도구)와 슬레이브(장치) 사이의 프로토콜로, 동기 데이터 수집(측정), 동기 데이터 자극, 온라인 메모리 캘리브레이션, 캘리브레이션 데이터 페이지 전환, 개발용 플래시 프로그래밍을 준다. XCP 모듈은 CAN, FlexRay, 이더넷 버스를 지원한다.[@autosar-cp-sws-xcp-2025]
 
 충전 모듈 ISO15118Chrg는 서비스 층에 놓이고, PDU 구조를 정하는 V2GTP(Vehicle to Grid Transport Protocol)와 XML 데이터를 압축하는 EXI(Efficient XML Interchange)를 구현한다. 이 모듈은 데이터 인증과 암호화, 인증서 관리와 검증을 위해 [[autosar-crypto-stack|암호 스택]]과 주고받는다. AUTOSAR Classic Platform R25-11은 이 모듈의 이름을 ChrgM(Charging Manager)에서 ISO15118Chrg로 바꾸었다.[@autosar-cp-sws-iso15118charging-2025] 같은 릴리스의 Layered Software Architecture 설명서는 옛 이름 ChrgM을 그대로 쓴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 

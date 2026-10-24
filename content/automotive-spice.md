@@ -10,7 +10,7 @@ edition: 2026
 status: 유효
 ---
 
-**ASPICE**(Automotive SPICE)는 차량용 임베디드 시스템을 개발하는 조직의 프로세스 능력을 평가하는 데 쓰는 프로세스 참조 모델이자 [[automotive-spice-process-assessment-model|프로세스 평가 모델]]이다. 그 지표는 [[process-improvement|프로세스 개선]]에도 쓸 수 있다. 이름의 SPICE는 Systems/Software Process Improvement and Capability dEtermination을 줄인 것이다. VDA QMC(독일 자동차 업계 단체의 품질경영 기관)가 펴낸다.[@vda-automotive-spice-pam-4-1-2026][@vda-qmc-home-2026]
+**ASPICE**(Automotive SPICE)는 차량용 임베디드 시스템을 개발하는 조직의 프로세스 능력을 평가하는 데 쓰는 프로세스 참조 모델이자 [[automotive-spice-process-assessment-model|프로세스 평가 모델]]이다. 그 지표는 [[process-improvement|프로세스 개선]]에도 쓸 수 있다. 이름의 SPICE는 Systems/Software Process Improvement and Capability dEtermination을 줄인 것이다. 독일 자동차산업협회 VDA의 품질경영센터 VDA QMC가 펴낸다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 범위
 

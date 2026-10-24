@@ -7,7 +7,7 @@ verified: 2026-10-03
 
 Martin Fowler는 『Refactoring』에서 명사 **리팩터링**을, 겉보기 동작을 바꾸지 않고 소프트웨어의 내부 구조를 바꿔 이해하기 쉽고 고치기 싸게 만드는 변경으로 정의했다. 동사 리팩터링은 그런 리팩터링을 잇달아 적용해 겉보기 동작을 바꾸지 않고 소프트웨어를 재구성하는 일로 정의했다.[@fowler-refactoring-2026]
 
-ISO/IEC/IEEE 24765 용어집은 refactor(리팩터링하다)를 소프트웨어 코드의 동작을 바꾸지 않고 구조를 고치는 일로 정의하고, 그 목적으로 [[software-quality-model|품질 특성]] 개선, 이후의 확장과 적응을 쉽게 하는 것, 아키텍처 스타일을 따르는 것을 든다. 이 정의는 PMI(프로젝트 관리 전문가의 비영리 회원 단체)의 Software Extension to the PMBOK Guide Fifth Edition에서 왔다.[@ieee-cs-sevocab-2026][@pmi-media-kit-2026] 리팩터링은 프로그램의 동작을 바꾸지 않고 재구성하는 리엔지니어링 기법으로, 소프트웨어의 내부 구조와 유지보수성을 높이려는 것이다.[@ieee-swebok-v4-0a-2026]
+ISO/IEC/IEEE 24765 용어집은 refactor(리팩터링하다)를 소프트웨어 코드의 동작을 바꾸지 않고 구조를 고치는 일로 정의하고, 그 목적으로 [[software-quality-model|품질 특성]] 개선, 이후의 확장과 적응을 쉽게 하는 것, 아키텍처 스타일을 따르는 것을 든다. 이 정의는 PMI의 Software Extension to the PMBOK Guide Fifth Edition에서 왔다.[@ieee-cs-sevocab-2026] 리팩터링은 프로그램의 동작을 바꾸지 않고 재구성하는 리엔지니어링 기법으로, 소프트웨어의 내부 구조와 유지보수성을 높이려는 것이다.[@ieee-swebok-v4-0a-2026]
 
 ## 기원
 
