@@ -122,7 +122,8 @@ export function createSearchIndex() {
     const aliasIds = pages.flatMap((page, id) =>
       page.aliases.some((alias) => exactKey(alias) === key) ? [id] : [],
     )
-    return [...byKind(titleIds), ...byKind(aliasIds)]
+    // 제목과 별칭이 함께 맞는 페이지(ASPICE, 별칭 A-SPICE)는 제목 쪽에 한 번만 둔다.
+    return [...new Set([...byKind(titleIds), ...byKind(aliasIds)])]
   }
 
   return {

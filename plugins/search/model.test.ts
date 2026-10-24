@@ -42,6 +42,14 @@ describe("정확히 맞는 페이지", () => {
     assert.deepStrictEqual(results, ["hardware-security-module", "hsm", "hsm-usage"])
   })
 
+  test("제목과 별칭이 함께 맞아도 한 번만 낸다", async () => {
+    const results = await search(
+      [page("automotive-spice", "ASPICE", { aliases: ["A-SPICE"] })],
+      "ASPICE",
+    )
+    assert.deepStrictEqual(results, ["automotive-spice"])
+  })
+
   test("제목이 같으면 위키 페이지가 태그 페이지보다 앞이다", async () => {
     const results = await search([page("tags/network/can", "CAN"), page("can", "CAN")], "CAN")
     assert.deepStrictEqual(results, ["can", "tags/network/can"])
