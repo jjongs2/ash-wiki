@@ -1,0 +1,27 @@
+# 매달 판 확인(`npm run edition-status`)을 돌린다. 참고문헌이 인용한 출판물의 판이 바뀌었으면 출판물마다
+# `edition:` 이슈를 열거나 갱신한다. 기준은 docs/wiki-verification.md의 판 확인 절에 있다.
+# 통로가 다시 물어도 응답하지 않거나 기대한 필드를 찾지 못하면 실행이 실패한다. 손으로도 돌릴 수 있다.
+name: edition-status
+
+on:
+  schedule:
+    - cron: "0 0 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  edition-status:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm run edition-status
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

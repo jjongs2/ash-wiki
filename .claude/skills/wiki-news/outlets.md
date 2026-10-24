@@ -51,7 +51,7 @@
 <!-- prettier-ignore -->
 | 매체 | 구역 | 찾는 법 | 거르기 | 비고 |
 |---|---|---|---|---|
-| AUTOSAR | platform | 뉴스룸 `https://www.autosar.org/news-events` | 없음 | 3개월 6건. 피드 없음. 쪽 넘김 `/news-events/page-2`. 인증서 체인 문제로 `curl -k`. 날짜 꼴 `DD.MM.YYYY`. 무료. |
+| AUTOSAR | platform | 뉴스룸 `https://www.autosar.org/news-events` | 없음 | 3개월 6건. 피드 없음. 쪽 넘김 `/news-events/page-2`. 날짜 꼴 `DD.MM.YYYY`. 무료. |
 | SAE International | 전체 | 검색 질의 `https://news.google.com/rss/search?q=site:sae.org/news+after:<월요일>+before:<다음 월요일>&hl=en-US&gl=US&ceid=US:en` | 제목으로 고름 | 표준 소식(Standards Newsroom)과 보도자료. 3개월 약 17건이 며칠에 몰려 올라오고, 자동차 임베디드는 5건 안팎이며 항공·소재가 많다. 피드 없음. 루틴 환경에서 뉴스룸(`https://www.sae.org/standards/news-room`)은 curl, Node fetch, 브라우저 모두 빈 틀이라 검색 질의로 찾는다. 무료. |
 | CAN in Automation (CiA) | network | 뉴스룸 `https://www.can-cia.org/services/publications/can-community-news` | 제목으로 고름 | CAN Community News가 3주 간격으로 나오고, 한 호에 소식 5\~8건. 최신 호로 넘어가며 호 목록은 아래에 있다. 보도자료 목록(`/news/pr-english`)은 6월 뒤로 새 글이 없다. 산업용 CAN 소식이 섞인다. 무료. |
 | ASAM | sw-engineering, 기타 | 뉴스룸 `https://www.asam.net/news-media/news/` | 없음 | 3개월 0건, 2026년 1건(2025년 6건). 피드 없음. 연도별 목록 `/news-media/news/2026/`. 루틴 환경에서는 curl과 Node fetch가 빈 틀이라 브라우저 필요. 무료. |
