@@ -151,7 +151,12 @@ export function ieeeChannel(delayMs: number): Channel {
     },
     async check(publications, context) {
       const pages = pager(context, delayMs)
-      const entries = publications.flatMap((publication) => publication.entries)
+      // 다른 통로가 맡은 엔트리도 본다. 대체한 판이 ISO/IEC/IEEE 공동 표준(42010)이거나,
+      // 추보가 YANG 모듈 제목(IEEE Std 802.1Qcw-2023)에만 나오기도 한다.
+      const entries = [
+        ...publications.flatMap((publication) => publication.entries),
+        ...context.cited,
+      ]
       const citedIds = new Set(
         entries.flatMap((entry) =>
           [entry.url, entry.note].flatMap((text) => (text && idOf(text)) || []),

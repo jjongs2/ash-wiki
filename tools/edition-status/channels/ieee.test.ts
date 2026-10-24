@@ -111,6 +111,52 @@ describe("ieee", () => {
     assert.ok(Date.now() - started >= 60)
   })
 
+  test("다른 통로가 맡은 엔트리가 대체한 판이나 추보를 인용했으면 잡지 않는다", async () => {
+    // ieee-42010-2011은 ISO 통로가 맡지만 IEEE 페이지(id 5334)를 가리킨다. 802.1Qcw-2023은 YANG 모듈 제목에만 나온다.
+    const others = [
+      ieeeEntry(
+        "ieee-42010-2011",
+        "IEEE/ISO/IEC 42010-2011 — ISO/IEC/IEEE Systems and software engineering",
+        `https://web.archive.org/web/20260101000000/${site}/42010/5334/`,
+      ),
+      ieeeEntry(
+        "ieee-802-1qcw-sched-yang-2023",
+        "ieee802-dot1q-sched YANG module (IEEE Std 802.1Qcw-2023)",
+        "https://www.ieee802.org/1/files/public/YANGs/ieee802-dot1q-sched.yang",
+        "{IEEE 802.1 Working Group}",
+      ),
+    ]
+    const replaced = await run(
+      ieee,
+      [
+        ieeeEntry(
+          "ieee-1471-2000",
+          "IEEE 1471-2000 — IEEE Recommended Practice",
+          `${site}/1471/2187/`,
+        ),
+      ],
+      [],
+      fixtureContext(routes, others),
+    )
+    assert.deepStrictEqual(replaced.keys, [])
+    const { keys } = await run(
+      ieee,
+      [
+        ieeeEntry("ieee-802-1q-2022", "IEEE 802.1Q-2022 IEEE Standard", `${site}/802.1Q/10323/`),
+        ieeeEntry("ieee-p802-1q-2023", "IEEE P802.1Q Standard", `${site}/802.1Q/11285/`),
+      ],
+      [page("ieee-802-1q", "IEEE 802.1Q", "IEEE", "2022", "개정 중")],
+      fixtureContext(routes, others),
+    )
+    assert.deepStrictEqual(keys, [
+      "IEEE 802.1Q | supplement | IEEE 802.1Qcj-2023",
+      "IEEE 802.1Q | supplement | IEEE 802.1Qcz-2023",
+      "IEEE 802.1Q | supplement | IEEE 802.1Qdj-2024",
+      "IEEE 802.1Q | supplement | IEEE 802.1Qdx-2024",
+      "IEEE 802.1Q | supplement | IEEE 802.1Qdy-2025",
+    ])
+  })
+
   test("현행으로 인용한 판을 대체한 판을 이미 인용했으면 잡지 않는다", async () => {
     // 페이지의 edition은 2018이지만, 참고문헌은 대체한 802.1Q-2022도 인용했다.
     const { keys } = await run(
