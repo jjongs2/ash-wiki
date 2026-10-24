@@ -410,3 +410,83 @@ DNS 실패, 404 같은 그 밖의 실패는 `url` FAIL이다. 다만 시간 초�
 | `unece.org`                 | UN 규정과 WP.29 문서  |
 | `trustedcomputinggroup.org` | TCG 명세와 용어집     |
 | `eur-lex.europa.eu`         | EU 법령               |
+
+## 판 확인
+
+참고문헌이 인용한 출판물의 판이 바뀌면 이슈를 연다. 월간 workflow(`.github/workflows/edition-status.yml`)가 `npm run edition-status`로 감지하고, 반영은 이슈를 받은 흐름이 [표준의 판](#표준의-판)대로 맡는다. 도구는 이 절의 세 표(`edition-channels`, `edition-generic`, `edition-skipped`)를 읽고, 표가 도구의 통로와 어긋나거나 표준 페이지를 맡은 곳이 없으면 멈춘다.
+
+대상은 판을 매기는 출판물이다. 제품 문서(데이터시트, 벤더 매뉴얼), 논문, 단행본은 뺀다.
+
+- **출판물**: 표준 페이지가 있으면 그 페이지의 주제가 출판물 하나다([ADR 0011](adr/0011-standard-page-by-publication.md)). 표준 번호로 쓰는 페이지(`ISO 13400-2`, `IEEE 802.1Q`)는 같은 번호와 그 부(`26262-1`)의 엔트리를 모두 담는다. 표준 페이지가 없으면 통로가 번호(부 포함), RFC, 릴리스 묶음 단위로 묶는다.
+- **현행으로 인용한 판**: 표준 페이지가 있으면 `edition`의 판이다. 시리즈의 부가 서로 다른 해에 나왔으면 부마다 참고문헌에서 가장 새 판이다(`29119`). 표준 페이지가 없으면 참고문헌에서 그 출판물의 가장 새 판이다. 판은 엔트리 제목의 판 표시(`ISO 11898-2:2024`, `AUTOSAR AP R25-11`, `v4.0`)로 가린다. 옛 판 엔트리는 이력 문장의 근거라 신호를 내지 않는다.
+
+상태 파일은 두지 않는다. 매번 통로와 참고문헌을 견준다. 이미 아는 개정은 참고문헌이 그 프로젝트를 인용했는지로 가린다.
+
+### 신호
+
+| 신호              | 조건                                                                                                                            | 대상                  |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| 새 판, 폐지, 대체 | 통로의 현행판이 현행으로 인용한 판과 다르다. 대체한 판을 참고문헌이 이미 인용했으면 알리지 않는다(ISO 11898:1993 → ISO 11898-1) | 모든 출판물           |
+| 개정 착수         | 새 판을 만드는 개정 프로젝트가 진행 중인데 참고문헌이 인용하지 않았다. 시리즈는 어느 부의 프로젝트든 하나를 인용했으면 안다     | 표준 페이지가 있는 것 |
+| 새 부, 추보·정정  | 발행된 추보·정정이나, 표준 페이지의 `edition` 연도 뒤에 발행된 시리즈의 부를 참고문헌이 인용하지 않았다                         | 모든 출판물           |
+
+- 추보(ISO Amd, IEEE amendment)와 정정(Cor) 프로젝트는 현행판을 대체하지 않으므로 진행 중에는 알리지 않는다. 발행되면 새 부, 추보·정정 신호가 잡는다.
+- 단계 변화(CD에서 DIS로 등)는 알리지 않는다. 개정 이력의 [상태 문장](#상태-문장)에는 날짜가 붙어 있어 낡아도 독자를 속이지 않는다. 표준 페이지가 없는 출판물은 개정 착수나 철회 예고가 있어도 개념 페이지의 주장이 바뀌지 않는다.
+- 페이지의 `status`가 이미 `폐지`이면 폐지를 알리지 않는다.
+- 통로가 응답하지 않거나 기대한 필드를 찾지 못하면 "변화 없음"으로 넘기지 않는다. 실패한 통로는 다른 통로를 모두 처리한 뒤 한 번 더 묻고, 그래도 실패하면 workflow를 실패로 끝낸다.
+
+### 이슈
+
+출판물 하나에 이슈 하나를 연다. 제목은 `edition: <출판물>`이고 판은 넣지 않는다. 라벨은 `needs-triage`다. 본문에는 바뀜의 종류, 근거(통로의 필드 값과 원문 URL), 영향받는 페이지를 적는다. 영향받는 페이지는 표준 페이지와, 현행으로 인용한 판의 엔트리를 인용한 페이지이고, 페이지마다 인용 수를 적는다.
+
+- 같은 바뀜은 출판물, 바뀜의 종류, 대상 id 셋을 이은 키로 가린다. 키는 본문에 숨은 표식(HTML 주석)으로 넣는다.
+- 같은 출판물의 열린 이슈가 있으면 새로 열지 않고 그 본문을 갱신한다.
+- 같은 키를 적은 닫힌 이슈가 있으면 닫힌 이유와 상관없이 다시 알리지 않는다. 린트가 중복으로 닫은 이슈도 같다. 더 새 바뀜일 때만 새로 연다.
+- 열 이슈 수에 상한은 없다.
+
+### 통로
+
+통로는 계정 없이 열리는 공개 경로(오픈 데이터, API, 피드, 페이지)만 쓴다. 메일 구독은 쓰지 않는다.
+
+전용 통로는 단계 코드를 읽거나, 대체 체인을 따라가거나, PDF를 읽어야 하는 발행기관이다.
+
+<!-- table: edition-channels -->
+
+| 통로      | 발행기관                            | 원천                                                                   | 읽는 것                                                    |
+| --------- | ----------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `iso`     | ISO, ISO/IEC, ISO/IEC/IEEE, ISO/SAE | ISO 오픈 데이터(`iso_deliverables_metadata.jsonl`, 매일 갱신, 약 80MB) | `currentStage`, `replacedBy`, `replaces`, `supplementType` |
+| `ieee`    | IEEE                                | 표준 페이지(`standards.ieee.org/ieee/<번호>/<id>/`)                    | Status, Superseded by, 활성 개정 PAR                       |
+| `ietf`    | IETF                                | `rfc-index.xml`                                                        | obsoleted-by, current-status                               |
+| `nist`    | NIST CSRC                           | 출판물 레코드                                                          | Withdrawn on, Supersedes                                   |
+| `autosar` | AUTOSAR                             | 플랫폼별 표준 페이지와 릴리스마다의 Release Overview                   | 새 릴리스, Obsolete·Removed 목록                           |
+| `istqb`   | ISTQB                               | WordPress JSON(`wp-json/wp/v2/pages`, `media`)                         | 버전 문자열                                                |
+| `unece`   | UNECE                               | UN 조약 MTDSG PDF                                                      | C.N. 통지 목록과 발효일                                    |
+
+범용 행은 출판물마다 URL 하나와 판 패턴 하나다. 도구는 URL 본문에서 판 패턴이 잡는 가장 새 판이, 엔트리 제목에서 같은 패턴이 잡는 가장 새 판보다 새로우면 새 판으로 알린다. 패턴은 잡을 묶음 하나로 판 이름을 잡고, 표의 칸을 가르는 `|`는 쓰지 않는다. `엔트리`는 표준 번호로 묶이지 않는 엔트리의 키 패턴이다.
+
+<!-- table: edition-generic -->
+
+| 출판물                              | 발행기관                                                  | 페이지                                | 엔트리      | URL                             | 판 패턴              | 요청 |
+| ----------------------------------- | --------------------------------------------------------- | ------------------------------------- | ----------- | ------------------------------- | -------------------- | ---- |
+| MISRA C                             | MISRA                                                     | `misra-c`                             | `^misra-c-` | `https://misra.org.uk/misra-c/` | `MISRA C:([0-9]{4})` | —    |
+| Automotive SPICE for Cybersecurity  | VDA QMC                                                   | `automotive-spice-for-cybersecurity`  | `^TODO-`    | `https://example.invalid/`      | `TODO([0-9]{4})`     | —    |
+| ASPICE                              | VDA QMC                                                   | `automotive-spice`                    | `^TODO-`    | `https://example.invalid/`      | `TODO([0-9]{4})`     | —    |
+| Automotive Threat Matrix            | Auto-ISAC                                                 | `automotive-threat-matrix`            | `^TODO-`    | `https://example.invalid/`      | `TODO([0-9]{4})`     | —    |
+| Common Vulnerability Scoring System | FIRST                                                     | `common-vulnerability-scoring-system` | `^TODO-`    | `https://example.invalid/`      | `TODO([0-9]{4})`     | —    |
+| IEC 61508                           | IEC                                                       | `iec-61508`                           | `^TODO-`    | `https://example.invalid/`      | `TODO([0-9]{4})`     | —    |
+| GB 44495                            | SAMR/SAC                                                  | `gb-44495`                            | `^TODO-`    | `https://example.invalid/`      | `TODO([0-9]{4})`     | —    |
+| SAE J3061                           | SAE                                                       | `sae-j3061`                           | `^TODO-`    | `https://example.invalid/`      | `TODO([0-9]{4})`     | —    |
+| The Update Framework                | TUF project                                               | `the-update-framework`                | `^TODO-`    | `https://example.invalid/`      | `TODO([0-9]{4})`     | —    |
+| LwM2M                               | OMA                                                       | `lwm2m`                               | `^TODO-`    | `https://example.invalid/`      | `TODO([0-9]{4})`     | —    |
+| Uptane                              | Joint Development Foundation Projects, LLC, Uptane Series | `uptane`                              | `^TODO-`    | `https://example.invalid/`      | `TODO([0-9]{4})`     | —    |
+| V-Modell XT                         | Weit e.V.                                                 | `v-modell-xt`                         | `^TODO-`    | `https://example.invalid/`      | `TODO([0-9]{4})`     | —    |
+
+아래 출판물은 감지하지 않는다.
+
+<!-- table: edition-skipped -->
+
+| 출판물          | 발행기관       | 페이지                     | 사유                         |
+| --------------- | -------------- | -------------------------- | ---------------------------- |
+| E-Gas 감시 개념 | EGAS Workgroup | `e-gas-monitoring-concept` | 판이 끊겼다                  |
+| OSEKtime OS     | OSEK/VDX       | `osektime-os`              | 판이 끊겼다                  |
+| CMMI            | ISACA          | `cmmi`                     | 계정 없이 열리는 통로가 없다 |
