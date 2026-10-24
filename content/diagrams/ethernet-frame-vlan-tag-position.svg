@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 10 550 170" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 10 496 170" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -6,31 +6,35 @@
     </marker>
   </defs>
 
-  <!-- 끼워 넣는 태그 -->
-  <rect x="208.75" y="20.75" width="78.5" height="38.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="248" y="37" text-anchor="middle" fill="var(--on-fill, #f8fafd)">VLAN 태그</text>
-  <text x="248" y="53" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">4옥텟</text>
-  <text x="298" y="45" font-size="12" fill="var(--text, #727981)">첫 2옥텟은 0x8100</text>
-  <line x1="248" y1="62" x2="248" y2="88" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <!-- 끼워 넣는 태그: 2옥텟 칸 둘, 앞 칸이 0x8100 -->
+  <text x="176" y="37" text-anchor="end" fill="var(--text, #727981)">VLAN 태그</text>
+  <text x="176" y="53" text-anchor="end" font-size="12" fill="var(--text, #727981)">4옥텟</text>
+  <rect x="184.75" y="20.75" width="102.5" height="38.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <line x1="236" y1="21.5" x2="236" y2="58.5" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="210" y="44" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">0x8100</text>
+  <line x1="236" y1="62" x2="236" y2="88" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 
   <!-- 프레임 한 줄: 출발지 주소와 길이/타입 사이가 벌어진다 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="20.75" y="90.75" width="88.5" height="38.5" fill="var(--surface, none)" />
-    <rect x="114.75" y="90.75" width="88.5" height="38.5" fill="var(--surface, none)" />
-    <rect x="292.75" y="90.75" width="68.5" height="38.5" fill="var(--surface, none)" />
-    <rect x="366.75" y="90.75" width="128.5" height="38.5" fill="var(--surface, none)" />
-    <rect x="500.75" y="90.75" width="48.5" height="38.5" fill="var(--surface, none)" />
+    <rect x="20.75" y="90.75" width="74.5" height="38.5" fill="var(--surface, none)" />
+    <rect x="102.75" y="90.75" width="74.5" height="38.5" fill="var(--surface, none)" />
+    <rect x="294.75" y="90.75" width="60.5" height="38.5" fill="var(--surface, none)" />
+    <rect x="362.75" y="90.75" width="86.5" height="38.5" fill="var(--surface, none)" />
+    <rect x="456.75" y="90.75" width="38.5" height="38.5" fill="var(--surface, none)" />
   </g>
-  <rect x="208.75" y="90.75" width="78.5" height="38.5" stroke="var(--orange, #b0540d)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <g stroke="var(--orange, #b0540d)" stroke-width="1.5" stroke-dasharray="5 4">
+    <rect x="184.75" y="90.75" width="102.5" height="38.5" />
+    <line x1="236" y1="91.5" x2="236" y2="128.5" />
+  </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
-    <text x="65" y="115">목적지 주소</text>
-    <text x="159" y="115">출발지 주소</text>
-    <text x="327" y="115">길이/타입</text>
-    <text x="431" y="115">데이터와 패드</text>
-    <text x="525" y="115">FCS</text>
+    <text x="58" y="115">목적지 주소</text>
+    <text x="140" y="115">출발지 주소</text>
+    <text x="325" y="115">길이/타입</text>
+    <text x="406" y="115">데이터와 패드</text>
+    <text x="476" y="115">FCS</text>
   </g>
 
   <!-- 최대 길이 -->
-  <line x1="22" y1="146" x2="548" y2="146" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
-  <text x="285" y="168" text-anchor="middle" font-size="12" fill="var(--text, #727981)">최대 길이: 태그가 없으면 1518옥텟 → 태그를 넣으면 1522옥텟</text>
+  <line x1="22" y1="146" x2="494" y2="146" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  <text x="258" y="168" text-anchor="middle" font-size="12" fill="var(--text, #727981)">최대 길이: 태그가 없으면 1518옥텟 → 태그를 넣으면 1522옥텟</text>
 </svg>

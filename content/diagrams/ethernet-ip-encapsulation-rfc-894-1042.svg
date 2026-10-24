@@ -1,76 +1,83 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 -0.5 766 235.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 532 330" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
   <!-- RFC 894 -->
-  <text x="20" y="44" fill="var(--text, #727981)">RFC 894</text>
+  <text x="20" y="32" fill="var(--text, #727981)">RFC 894</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="100" y="20" width="72" height="40" />
-    <rect x="176" y="20" width="72" height="40" />
-    <rect x="252" y="20" width="62" height="40" />
-    <rect x="318" y="20" width="384" height="40" />
-    <rect x="706" y="20" width="40" height="40" />
+    <rect x="20" y="40" width="70" height="40" />
+    <rect x="94" y="40" width="70" height="40" />
+    <rect x="168" y="40" width="62" height="40" />
+    <rect x="234" y="40" width="232" height="40" />
+    <rect x="470" y="40" width="42" height="40" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="136" y="44">목적지 주소</text>
-    <text x="212" y="44">출발지 주소</text>
-    <text x="283" y="36">길이/타입</text>
-    <text x="283" y="52">0x0800</text>
-    <text x="510" y="36">IP 데이터그램</text>
-    <text x="510" y="52">MTU 1500</text>
-    <text x="726" y="44">FCS</text>
-  </g>
-
-  <!-- LLC와 SNAP 헤더 -->
-  <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <path d="M318 96 V88 H598 V96" />
-    <path d="M318 124 V116 H458 V124" />
-    <path d="M462 124 V116 H598 V124" />
-  </g>
-  <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="458" y="80">LLC·SNAP 헤더 8옥텟</text>
-    <text x="388" y="108">LLC</text>
-    <text x="530" y="108">SNAP</text>
+    <text x="55" y="64">목적지 주소</text>
+    <text x="129" y="64">출발지 주소</text>
+    <text x="199" y="56">길이/타입</text>
+    <text x="199" y="72">0x0800</text>
+    <text x="350" y="56">IP 데이터그램</text>
+    <text x="350" y="72">MTU 1500</text>
+    <text x="491" y="64">FCS</text>
   </g>
 
   <!-- RFC 1042 -->
-  <text x="20" y="156" fill="var(--text, #727981)">RFC 1042</text>
+  <text x="20" y="108" fill="var(--text, #727981)">RFC 1042</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="100" y="132" width="72" height="40" />
-    <rect x="176" y="132" width="72" height="40" />
-    <rect x="252" y="132" width="62" height="40" />
-    <rect x="602" y="132" width="100" height="40" />
-    <rect x="706" y="132" width="40" height="40" />
+    <rect x="20" y="116" width="70" height="40" />
+    <rect x="94" y="116" width="70" height="40" />
+    <rect x="168" y="116" width="62" height="40" />
+    <rect x="350" y="116" width="116" height="40" />
+    <rect x="470" y="116" width="42" height="40" />
   </g>
-  <g fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5">
-    <rect x="318" y="132" width="46" height="40" />
-    <rect x="368" y="132" width="46" height="40" />
-    <rect x="418" y="132" width="40" height="40" />
-    <rect x="462" y="132" width="62" height="40" />
-    <rect x="528" y="132" width="70" height="40" />
-  </g>
+  <rect x="234" y="116" width="112" height="40" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="136" y="156">목적지 주소</text>
-    <text x="212" y="156">출발지 주소</text>
-    <text x="283" y="156">길이/타입</text>
-    <text x="652" y="148">IP 데이터그램</text>
-    <text x="652" y="164">MTU 1492</text>
-    <text x="726" y="156">FCS</text>
+    <text x="55" y="140">목적지 주소</text>
+    <text x="129" y="140">출발지 주소</text>
+    <text x="199" y="140">길이/타입</text>
+    <text x="408" y="132">IP 데이터그램</text>
+    <text x="408" y="148">MTU 1492</text>
+    <text x="491" y="140">FCS</text>
   </g>
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
-    <text x="341" y="148">DSAP</text>
-    <text x="341" y="164">170</text>
-    <text x="391" y="148">SSAP</text>
-    <text x="391" y="164">170</text>
-    <text x="438" y="148">제어</text>
-    <text x="438" y="164">3</text>
-    <text x="493" y="148">조직 코드</text>
-    <text x="493" y="164">0</text>
-    <text x="563" y="156">EtherType</text>
-  </g>
-  <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="493" y="190">24비트</text>
-    <text x="563" y="190">16비트</text>
+    <text x="290" y="132">LLC·SNAP 헤더</text>
+    <text x="290" y="148">8옥텟</text>
   </g>
 
-  <text x="20" y="214" fill="var(--text, #727981)">칸의 폭은 길이에 비례하지 않는다.</text>
+  <!-- LLC·SNAP 헤더를 펼친 줄 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="234" y1="157" x2="112" y2="195" />
+    <line x1="346" y1="157" x2="468" y2="195" />
+  </g>
+  <g fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5">
+    <rect x="112" y="196" width="64" height="40" />
+    <rect x="180" y="196" width="64" height="40" />
+    <rect x="248" y="196" width="52" height="40" />
+    <rect x="304" y="196" width="76" height="40" />
+    <rect x="384" y="196" width="84" height="40" />
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="144" y="212">DSAP</text>
+    <text x="144" y="228">170</text>
+    <text x="212" y="212">SSAP</text>
+    <text x="212" y="228">170</text>
+    <text x="274" y="212">제어</text>
+    <text x="274" y="228">3</text>
+    <text x="342" y="212">조직 코드</text>
+    <text x="342" y="228">0</text>
+    <text x="426" y="220">EtherType</text>
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="342" y="252">24비트</text>
+    <text x="426" y="252">16비트</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M112 258 V266 H300 V258" />
+    <path d="M304 258 V266 H468 V258" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="206" y="282">LLC</text>
+    <text x="386" y="282">SNAP</text>
+  </g>
+
+  <text x="20" y="310" fill="var(--text, #727981)">칸의 폭은 길이에 비례하지 않는다.</text>
 </svg>

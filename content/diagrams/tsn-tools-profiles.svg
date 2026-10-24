@@ -1,65 +1,65 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 676 354" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 522 354" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
   <!-- 도구의 네 갈래 -->
   <g fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5">
-    <rect x="20.75" y="16.75" width="148.5" height="26.5" rx="2" />
-    <rect x="182.75" y="16.75" width="148.5" height="26.5" rx="2" />
-    <rect x="344.75" y="16.75" width="148.5" height="26.5" rx="2" />
-    <rect x="506.75" y="16.75" width="148.5" height="26.5" rx="2" />
+    <rect x="20.75" y="16.75" width="108.5" height="26.5" rx="2" />
+    <rect x="138.75" y="16.75" width="108.5" height="26.5" rx="2" />
+    <rect x="256.75" y="16.75" width="126.5" height="26.5" rx="2" />
+    <rect x="392.75" y="16.75" width="108.5" height="26.5" rx="2" />
   </g>
   <g font-size="14" fill="var(--on-fill, #f8fafd)" text-anchor="middle">
-    <text x="95" y="35">시간 동기화</text>
-    <text x="257" y="35">지연 상한</text>
-    <text x="419" y="35">고가용성과 초신뢰성</text>
-    <text x="581" y="35">전용 자원과 API</text>
+    <text x="75" y="35">시간 동기화</text>
+    <text x="193" y="35">지연 상한</text>
+    <text x="320" y="35">고가용성과 초신뢰성</text>
+    <text x="447" y="35">전용 자원과 API</text>
   </g>
 
   <!-- 갈래마다의 표준 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="20.75" y="52.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
-    <rect x="182.75" y="52.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
-    <rect x="182.75" y="86.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
-    <rect x="182.75" y="120.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
-    <rect x="182.75" y="154.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
-    <rect x="182.75" y="188.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
-    <rect x="182.75" y="222.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
-    <rect x="344.75" y="52.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
-    <rect x="344.75" y="86.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
-    <rect x="344.75" y="120.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
-    <rect x="506.75" y="52.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
-    <rect x="506.75" y="86.75" width="148.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="20.75" y="52.75" width="108.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="138.75" y="52.75" width="108.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="138.75" y="86.75" width="108.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="138.75" y="120.75" width="108.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="138.75" y="154.75" width="108.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="138.75" y="188.75" width="108.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="138.75" y="222.75" width="108.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="256.75" y="52.75" width="126.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="256.75" y="86.75" width="126.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="256.75" y="120.75" width="126.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="392.75" y="52.75" width="108.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="392.75" y="86.75" width="108.5" height="26.5" rx="2" fill="var(--surface, none)" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
-    <text x="95" y="70">IEEE 802.1AS</text>
-    <text x="257" y="70">IEEE 802.1Qav</text>
-    <text x="257" y="104">IEEE 802.1Qbu</text>
-    <text x="257" y="138">IEEE 802.3br</text>
-    <text x="257" y="172">IEEE 802.1Qbv</text>
-    <text x="257" y="206">IEEE 802.1Qch</text>
-    <text x="257" y="240">IEEE 802.1Qcr</text>
-    <text x="419" y="70">IEEE 802.1CB</text>
-    <text x="419" y="104">IEEE 802.1Qca</text>
-    <text x="419" y="138">IEEE 802.1Qci</text>
-    <text x="581" y="70">IEEE 802.1Qat</text>
-    <text x="581" y="104">IEEE 802.1Qcc</text>
+    <text x="75" y="70">IEEE 802.1AS</text>
+    <text x="193" y="70">IEEE 802.1Qav</text>
+    <text x="193" y="104">IEEE 802.1Qbu</text>
+    <text x="193" y="138">IEEE 802.3br</text>
+    <text x="193" y="172">IEEE 802.1Qbv</text>
+    <text x="193" y="206">IEEE 802.1Qch</text>
+    <text x="193" y="240">IEEE 802.1Qcr</text>
+    <text x="320" y="70">IEEE 802.1CB</text>
+    <text x="320" y="104">IEEE 802.1Qca</text>
+    <text x="320" y="138">IEEE 802.1Qci</text>
+    <text x="447" y="70">IEEE 802.1Qat</text>
+    <text x="447" y="104">IEEE 802.1Qcc</text>
   </g>
 
   <!-- 프로파일 -->
-  <rect x="20.75" y="266.75" width="634.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="338" y="285" font-size="14" text-anchor="middle" fill="var(--on-fill, #f8fafd)">프로파일</text>
+  <rect x="20.75" y="266.75" width="480.5" height="26.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="261" y="285" font-size="14" text-anchor="middle" fill="var(--on-fill, #f8fafd)">프로파일</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="20.75" y="302.75" width="116.5" height="26.5" rx="2" fill="var(--surface, none)" />
-    <rect x="150.25" y="302.75" width="116.5" height="26.5" rx="2" fill="var(--surface, none)" />
-    <rect x="279.75" y="302.75" width="116.5" height="26.5" rx="2" fill="var(--surface, none)" />
-    <rect x="409.25" y="302.75" width="116.5" height="26.5" rx="2" fill="var(--surface, none)" />
-    <rect x="538.75" y="302.75" width="116.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="20.75" y="302.75" width="88" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="116.25" y="302.75" width="88" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="211.75" y="302.75" width="98.5" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="317.75" y="302.75" width="88" height="26.5" rx="2" fill="var(--surface, none)" />
+    <rect x="413.25" y="302.75" width="88" height="26.5" rx="2" fill="var(--surface, none)" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
-    <text x="79" y="320">IEEE 802.1BA</text>
-    <text x="208.5" y="320">IEEE 802.1CM</text>
-    <text x="338" y="320">IEC/IEEE 60802</text>
-    <text x="467.5" y="320">IEEE 802.1DG</text>
-    <text x="597" y="320">IEEE 802.1DP</text>
+    <text x="64.75" y="320">IEEE 802.1BA</text>
+    <text x="160.25" y="320">IEEE 802.1CM</text>
+    <text x="261" y="320">IEC/IEEE 60802</text>
+    <text x="361.75" y="320">IEEE 802.1DG</text>
+    <text x="457.25" y="320">IEEE 802.1DP</text>
   </g>
 </svg>

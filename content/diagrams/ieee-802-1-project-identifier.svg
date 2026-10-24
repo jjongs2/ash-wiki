@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 3.5 480 201.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 3.5 480 217.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
   <!-- 행 이름 -->
   <g font-size="14" fill="var(--text, #727981)">
     <text x="20" y="49">독립 문서</text>
-    <text x="20" y="133">개정</text>
+    <text x="20" y="141">개정</text>
   </g>
 
   <!-- P802.1CS -->
@@ -18,28 +18,37 @@
     <text x="215" y="50">802.1</text>
     <text x="320" y="50">CS</text>
   </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M112 70 V76 H168 V70" />
+    <path d="M262 70 V76 H378 V70" />
+  </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="140" y="84">프로젝트</text>
-    <text x="320" y="84">대문자: 독립 문서</text>
+    <text x="140" y="92">프로젝트</text>
+    <text x="320" y="92">두 글자, 대문자: 독립 문서</text>
   </g>
 
   <!-- P802.1Qcw -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="110" y="108" width="60" height="40" />
-    <rect x="170" y="108" width="90" height="40" />
-    <rect x="260" y="108" width="80" height="40" />
-    <rect x="340" y="108" width="120" height="40" />
+    <rect x="110" y="116" width="60" height="40" />
+    <rect x="170" y="116" width="90" height="40" />
+    <rect x="260" y="116" width="80" height="40" />
+    <rect x="340" y="116" width="120" height="40" />
   </g>
   <g font-size="16" text-anchor="middle" fill="var(--text, #727981)">
-    <text x="140" y="134">P</text>
-    <text x="215" y="134">802.1</text>
-    <text x="300" y="134">Q</text>
-    <text x="400" y="134">cw</text>
+    <text x="140" y="142">P</text>
+    <text x="215" y="142">802.1</text>
+    <text x="300" y="142">Q</text>
+    <text x="400" y="142">cw</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M112 162 V168 H168 V162" />
+    <path d="M262 162 V168 H338 V162" />
+    <path d="M342 162 V168 H458 V162" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="140" y="168">프로젝트</text>
-    <text x="300" y="168">개정 대상</text>
-    <text x="300" y="184">기반 표준</text>
-    <text x="400" y="168">소문자: 개정</text>
+    <text x="140" y="184">프로젝트</text>
+    <text x="300" y="184">개정 대상</text>
+    <text x="300" y="200">기반 표준</text>
+    <text x="400" y="184">두 글자, 소문자: 개정</text>
   </g>
 </svg>
