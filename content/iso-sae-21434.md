@@ -8,7 +8,7 @@ aliases:
 verified: 2026-10-03
 publisher: ISO/SAE
 edition: 2021
-status: 개정 중
+status: 유효
 ---
 
 **ISO/SAE 21434**는 도로 차량의 [[cybersecurity|사이버보안]] 엔지니어링을 다루는 국제 표준이다. 제목은 "Road vehicles — Cybersecurity engineering"이고, ISO와 SAE International이 함께 만들었다.[@iso-sae-21434-2021] ISO/SAE 21434:2021은 ISO/TC 22/SC 32와 SAE의 Vehicle Cybersecurity Systems Engineering Committee가 함께 마련했다.[@iso-sae-21434-obp-2021] ISO 기사에 따르면 ISO/TC 22/SC 32 산하의 작업반 WG 11은 도로 차량 전기·전자 컴포넌트의 사이버보안을 다루고, 이 작업반의 프로젝트 리더들이 ISO/SAE 21434 개발에 참여했다.[@iso-cybersecurity-drivers-seat-2020]

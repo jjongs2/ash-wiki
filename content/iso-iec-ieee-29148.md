@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-02
 publisher: ISO/IEC/IEEE
 edition: 2018
-status: 개정 중
+status: 유효
 ---
 
 **ISO/IEC/IEEE 29148**은 시스템과 소프트웨어의 생명주기 전반에서 [[requirements-engineering|요구 공학]]의 프로세스와 산출물을 다루는 국제 표준이다. ISO, IEC, IEEE가 함께 펴낸다.[@iso-iec-ieee-29148-obp-2018] 정식 제목은 "Systems and software engineering — Life cycle processes — Requirements engineering"이다.[@iso-iec-ieee-29148-2018]

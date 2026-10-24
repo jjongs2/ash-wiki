@@ -7,7 +7,7 @@ publisher: Example Org
 # 위반(frontmatter): 연도가 아니다.
 edition: 2024년
 # 위반(frontmatter): 상태 표에 없는 값이다.
-status: 없음
+status: 개정 중
 ---
 
 머리말이다.
