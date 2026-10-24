@@ -69,7 +69,7 @@ before(async () => {
     "bib/misra-c-2025-product-2025.bib": bib(
       "misra-c-2025-product-2025",
       "MISRA C:2025",
-      "{MISRA}",
+      "MISRA Consortium",
       "https://misra.org.uk/product/misra-c2025/",
     ),
   }
@@ -138,7 +138,7 @@ const statusLines = (lines: string[]) =>
 describe("판 확인 CLI", () => {
   test("바뀜을 찾으면 needs-triage 라벨로 이슈를 연다", async () => {
     const { exitCode, lines } = await runCli()
-    assert.deepStrictEqual(statusLines(lines), ["OK iso", "OK generic"])
+    assert.deepStrictEqual(statusLines(lines), ["OK coverage", "OK iso", "OK generic"])
     assert.strictEqual(exitCode, 0)
     const created = requests.filter((request) => request.method === "POST")
     assert.strictEqual(created.length, 1)
@@ -184,7 +184,7 @@ describe("판 확인 CLI", () => {
   test("다시 물어도 실패한 통로는 다른 통로를 모두 처리한 뒤 FAIL로 끝난다", async () => {
     misra = () => ({ status: 503, body: "" })
     const { exitCode, lines } = await runCli()
-    assert.deepStrictEqual(statusLines(lines), ["OK iso", "FAIL generic"])
+    assert.deepStrictEqual(statusLines(lines), ["OK coverage", "OK iso", "FAIL generic"])
     assert.strictEqual(exitCode, 1)
     const order = requests.map((request) =>
       request.url.startsWith("/misra")
@@ -202,14 +202,14 @@ describe("판 확인 CLI", () => {
     misra = () =>
       calls++ === 0 ? { status: 503, body: "" } : { status: 200, body: "MISRA C:2025" }
     const { exitCode, lines } = await runCli()
-    assert.deepStrictEqual(statusLines(lines), ["OK iso", "OK generic"])
+    assert.deepStrictEqual(statusLines(lines), ["OK coverage", "OK iso", "OK generic"])
     assert.strictEqual(exitCode, 0)
   })
 
   test("판 패턴을 찾지 못하면 변화 없음이 아니라 실패다", async () => {
     misra = () => ({ status: 200, body: "<html>Just a moment...</html>" })
     const { exitCode, lines } = await runCli("--dry-run")
-    assert.deepStrictEqual(statusLines(lines), ["OK iso", "FAIL generic"])
+    assert.deepStrictEqual(statusLines(lines), ["OK coverage", "OK iso", "FAIL generic"])
     assert.strictEqual(exitCode, 1)
   })
 
@@ -218,5 +218,40 @@ describe("판 확인 CLI", () => {
     assert.deepStrictEqual(statusLines(lines), ["OK iso"])
     assert.ok(requests.every((request) => !request.url.startsWith("/api.github.com")))
     assert.ok(lines.includes("=== edition: ISO 13400-2"))
+  })
+
+  test("아는 발행기관의 엔트리가 어디에도 들지 않으면 FAIL, 처음 보는 발행기관은 SKIP이다", async () => {
+    // 범용 행이 맡은 엔트리의 발행기관(MISRA Consortium)이 낸, 어느 통로도 맡지 않는 엔트리와 처음 보는 발행기관의 엔트리
+    const extra = {
+      "content/extra.md":
+        "---\ntitle: 더\n---\n\n문장이다.[@misra-cpp-2023] 문장이다.[@omg-uml-2017]\n",
+      "bib/misra-cpp-2023.bib": bib(
+        "misra-cpp-2023",
+        "MISRA C++:2023",
+        "MISRA Consortium",
+        "https://misra.org.uk/product/misra-cpp2023/",
+      ),
+      "bib/omg-uml-2017.bib": bib(
+        "omg-uml-2017",
+        "UML 2.5.1",
+        "Object Management Group",
+        "https://www.omg.org/spec/UML/",
+      ),
+    }
+    for (const [rel, text] of Object.entries(extra)) fs.writeFileSync(path.join(root, rel), text)
+    try {
+      const { exitCode, lines } = await runCli("--dry-run")
+      assert.deepStrictEqual(statusLines(lines), ["FAIL coverage", "OK iso", "OK generic"])
+      assert.ok(
+        lines.some((line) =>
+          /^ +bib\/misra-cpp-2023\.bib:1: misra-cpp-2023 \(MISRA Consortium\)/.test(line),
+        ),
+      )
+      assert.ok(lines.some((line) => /^SKIP unknown-publishers/.test(line)))
+      assert.ok(lines.includes("  Object Management Group: omg-uml-2017"))
+      assert.strictEqual(exitCode, 1)
+    } finally {
+      for (const rel of Object.keys(extra)) fs.rmSync(path.join(root, rel))
+    }
   })
 })

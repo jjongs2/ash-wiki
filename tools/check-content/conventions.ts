@@ -2,7 +2,7 @@ import fs from "node:fs"
 import path from "node:path"
 import { repoRoot } from "../repo"
 
-// 문서의 표를 사본 없이 직접 읽는다. 표는 `<!-- table: <이름> -->` 주석 바로 뒤에 온다.
+// 문서의 표를 사본 없이 직접 읽는다. 표는 `<!-- table: <이름> -->` 주석 바로 뒤에 온다. 칸 안의 `\|`는 `|`다.
 // 검사기는 위키 규약 문서를, 대비 실측(tools/palette.ts)은 팔레트 문서를, 출처 상태(tools/source-status)는
 // 위키 검증 문서를 읽는다.
 export const conventionsPath = path.join(repoRoot, "docs", "wiki-conventions.md")
@@ -54,8 +54,13 @@ function splitRow(line: string): string[] {
   return line
     .trim()
     .replace(/^\||\|$/g, "")
-    .split("|")
-    .map((cell) => cell.trim().replace(/^`(.*)`$/, "$1"))
+    .split(/(?<!\\)\|/)
+    .map((cell) =>
+      cell
+        .trim()
+        .replace(/^`(.*)`$/, "$1")
+        .replace(/\\\|/g, "|"),
+    )
 }
 
 export function loadConventions(): Conventions {

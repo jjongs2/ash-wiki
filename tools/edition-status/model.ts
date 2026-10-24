@@ -4,6 +4,7 @@
 // 페이지가 인용한 참고문헌 엔트리 하나
 export interface Entry {
   key: string
+  type: string // BibTeX 꼴. 예: misc, article
   title: string
   url?: string
   note?: string

@@ -135,7 +135,7 @@ export const iso: Channel = {
       .split("/")
       .filter((part) => !projectStages.has(part))
     const kinds = number.stages.filter(
-      (stage) => ["PAS", "TR", "TS"].includes(stage) && !head.includes(stage),
+      (stage) => ["PAS", "TR", "TS", "Guide"].includes(stage) && !head.includes(stage),
     )
     return [head.join("/"), ...kinds, number.number].join(" ")
   },

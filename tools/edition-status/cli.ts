@@ -3,16 +3,19 @@ import path from "node:path"
 import { parseArgs } from "node:util"
 import { repoRoot } from "../repo"
 import { Conventions } from "../check-content/conventions"
+import { report } from "../check-content/report"
 import { loadTree } from "../check-content/tree"
 import { channels as loadChannels } from "./channels"
+import { coverage, notTargetRows, publisherName } from "./coverage"
 import { GitHub, issueTitle, plan, type Issue } from "./issues"
 import { changeKey, kindNames, type Change, type Channel, type Context } from "./model"
 import { assign, citedEntries, standardPages } from "./publications"
 
 // 판 확인. 월간 workflow(.github/workflows/edition-status.yml)가 돌리고, 기준은 docs/wiki-verification.md의
-// 판 확인 절과 그 세 표(edition-channels, edition-generic, edition-skipped)에 있다.
+// 판 확인 절과 그 네 표(edition-channels, edition-generic, edition-skipped, edition-not-target)에 있다.
 // 사용: npm run edition-status -- [<트리 루트>] [--dry-run] [--channel <통로>]...
 //   --dry-run은 이슈를 읽거나 쓰지 않고 바뀜과 이슈 본문만 찍는다. 아니면 GITHUB_TOKEN과 GITHUB_REPOSITORY가 있어야 한다.
+//   --channel을 주면 그 통로만 묻고 덮음 검사는 하지 않는다.
 const verificationPath = path.join(repoRoot, "docs", "wiki-verification.md")
 
 const { values, positionals } = parseArgs({
@@ -41,8 +44,11 @@ const channels = loadChannels({
     "판 패턴",
     "요청",
   ]),
-  skipped: verification.table("edition-skipped", ["출판물", "페이지", "사유"]),
+  skipped: verification.table("edition-skipped", ["출판물", "페이지", "엔트리", "사유"]),
 })
+const notTarget = notTargetRows(
+  verification.table("edition-not-target", ["발행기관", "엔트리", "사유"]),
+)
 const only = values.channel
 const unknown = only?.filter((id) => !channels.some((channel) => channel.id === id)) ?? []
 if (unknown.length > 0) throw new Error(`--channel이 통로가 아니다: ${unknown.join(", ")}`)
@@ -50,6 +56,35 @@ if (unknown.length > 0) throw new Error(`--channel이 통로가 아니다: ${unk
 const tree = loadTree(root)
 const cited = citedEntries(tree)
 const assigned = assign(cited, standardPages(tree), channels)
+
+// 아는 발행기관의 미분류 엔트리는 FAIL, 처음 보는 발행기관은 SKIP으로 보인다.
+let unclassified = 0
+if (only === undefined) {
+  const claimed = new Set(
+    [...assigned.values()].flat().flatMap((publication) => publication.entries.map((e) => e.key)),
+  )
+  const found = coverage(cited, claimed, notTarget)
+  unclassified = found.unclassified.length
+  report(
+    "coverage",
+    unclassified > 0 ? "FAIL" : "OK",
+    found.unclassified.map((entry) => ({
+      file: entry.file,
+      line: entry.line,
+      message: `${entry.key} (${publisherName(entry) || "발행기관 없음"}): 통로, 감지하지 않음, 대상 아님 어디에도 없다`,
+    })),
+  )
+  if (found.unknown.size > 0)
+    report(
+      "unknown-publishers",
+      "SKIP",
+      [...found.unknown].map(([name, entries]) => ({
+        file: name || "발행기관 없음",
+        message: entries.map((entry) => entry.key).join(", "),
+      })),
+      `처음 보는 발행기관 ${found.unknown.size}곳, 대상이면 통로나 감지하지 않음 표에, 아니면 대상 아님 표에 둔다`,
+    )
+}
 
 // 도구가 보내는 모든 요청에 도구를 밝히는 User-Agent를 붙인다. 행이 헤더를 주면 그것을 쓴다.
 const context: Context = {
@@ -105,4 +140,5 @@ if (dryRun) {
     )
   }
 }
-process.exitCode = [...results.values()].some((result) => result instanceof Error) ? 1 : 0
+process.exitCode =
+  unclassified > 0 || [...results.values()].some((result) => result instanceof Error) ? 1 : 0

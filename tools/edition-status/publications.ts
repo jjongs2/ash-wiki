@@ -23,10 +23,11 @@ export function citedEntries(tree: Tree): Entry[] {
             const field = (name: string) => entry.fields.get(name)?.value.replace(/\s+/g, " ")
             return {
               key: entry.key,
+              type: entry.type.toLowerCase(),
               title: field("title") ?? "",
               url: field("url"),
               note: field("note"),
-              publisher: publisherOf(entry).replace(/\s+/g, " "),
+              publisher: publisherOf(entry).replace(/\s+/g, " ").trim(),
               file: bib.file,
               line: entry.line,
               citedBy: citedBy.get(entry.key)!,
@@ -60,8 +61,8 @@ export interface StandardNumber {
   project: boolean
 }
 
-// 단계는 머리에 붙거나(ISO/CD 15765-2, ISO/PAS 8800) 띄어 온다(ISO/IEC/IEEE DIS 29148, ISO/IEC TR 29119-6).
-const stagePattern = "PWI|NP|AWI|WD|CD|DIS|FDIS|PRF|PAS|TR|TS"
+// 단계와 종류는 머리에 붙거나(ISO/CD 15765-2, ISO/PAS 8800) 띄어 온다(ISO/IEC/IEEE DIS 29148, ISO/IEC TR 29119-6, ISO/IEC Guide 51).
+const stagePattern = "PWI|NP|AWI|WD|CD|DIS|FDIS|PRF|PAS|TR|TS|Guide"
 const referencePattern = new RegExp(
   `^((?:ISO|IEC|IEEE|SAE)(?:/(?:ISO|IEC|IEEE|SAE|${stagePattern}))*)((?: (?:${stagePattern}|Std))*) (P?)` +
     "([A-Z]?[0-9][0-9A-Za-z.]*(?:-[0-9]{1,3}(?![0-9]))*)(?:[:-]((?:19|20)[0-9]{2})(?![0-9]))?",

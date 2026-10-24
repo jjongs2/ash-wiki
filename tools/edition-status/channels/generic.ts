@@ -12,8 +12,8 @@ import {
 // URL의 본문에서 판 패턴이 잡는 판 가운데 가장 새 판이, 엔트리 제목에서 같은 패턴이 잡는 가장 새 판보다 새로우면
 // 새 판이다. 패턴은 잡을 묶음(capture group) 하나로 판 이름을 잡는다.
 export interface GenericRow {
-  publication: string // 표준 페이지의 title
-  page: string // 표준 페이지 이름
+  publication: string // 표준 페이지가 있으면 그 title
+  page?: string // 표준 페이지 이름
   entries: RegExp // 이 출판물의 엔트리 키
   url: string
   pattern: RegExp
@@ -31,7 +31,7 @@ export function genericRows(rows: Row[]): GenericRow[] {
       )
     return {
       publication: row["출판물"],
-      page: row["페이지"],
+      page: row["페이지"] === "—" ? undefined : row["페이지"],
       entries: new RegExp(row["엔트리"]),
       url: row["URL"],
       pattern,

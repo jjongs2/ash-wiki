@@ -19,6 +19,7 @@ let line = 1
 export function entry(key: string, title: string, fields: Partial<Entry> = {}): Entry {
   return {
     key,
+    type: "misc",
     title,
     publisher: "",
     file: `bib/${key}.bib`,
