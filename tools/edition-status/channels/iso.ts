@@ -1,4 +1,4 @@
-import { standardNumber } from "../publications"
+import { projectStages, standardNumber } from "../publications"
 import {
   ChannelError,
   fetchOk,
@@ -125,15 +125,19 @@ class IsoData {
 export const iso: Channel = {
   id: "iso",
   ownsPage: (page) => /^ISO\b/.test(page.publisher),
+  // ISO 참조로 시작하는 제목이면 펴낸 곳(IEEE가 펴낸 ISO/IEC/IEEE 8802-3 등)과 상관없이 맡는다.
+  // 출판물 이름에서 단계(CD, DIS 등)는 뗀다. 예: ISO/CD 13400-2 → ISO 13400-2, ISO/IEC TR 29119-6
   publicationOf(entry) {
-    if (!/\bISO\b/.test(entry.publisher)) return undefined
     const number = standardNumber(entry.title)
     if (!number || !number.bodies.includes("ISO")) return undefined
-    const head = entry.title.match(/^\S+/)![0]
+    const head = entry.title
+      .match(/^\S+/)![0]
+      .split("/")
+      .filter((part) => !projectStages.has(part))
     const kinds = number.stages.filter(
       (stage) => ["PAS", "TR", "TS"].includes(stage) && !head.includes(stage),
     )
-    return [head, ...kinds, number.number].join(" ")
+    return [head.join("/"), ...kinds, number.number].join(" ")
   },
   async check(publications, context) {
     const response = await fetchOk(context, isoDataUrl)

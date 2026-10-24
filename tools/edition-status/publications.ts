@@ -68,7 +68,7 @@ const referencePattern = new RegExp(
     "([A-Z]?[0-9][0-9A-Za-z.]*(?:-[0-9]{1,3}(?![0-9]))*)(?:[:-]((?:19|20)[0-9]{2})(?![0-9]))?",
 )
 const bodyNames = new Set(["ISO", "IEC", "IEEE", "SAE"])
-const projectStages = new Set(["PWI", "NP", "AWI", "WD", "CD", "DIS", "FDIS", "PRF"])
+export const projectStages = new Set(["PWI", "NP", "AWI", "WD", "CD", "DIS", "FDIS", "PRF"])
 
 export function standardNumber(title: string): StandardNumber | undefined {
   const match = title.match(referencePattern)
