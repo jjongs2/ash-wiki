@@ -54,6 +54,7 @@ export function generic(rows: GenericRow[]): Channel {
     async check(publications, context) {
       const changes: Change[] = []
       for (const publication of publications) {
+        if (publication.entries.length === 0) continue
         const row = rows.find((row) => row.publication === publication.name)!
         const cited = publication.entries.flatMap((entry) =>
           editionsIn(entry.title, row.pattern).map((edition) => ({ entry, edition })),
