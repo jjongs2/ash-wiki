@@ -115,6 +115,27 @@ describe("unece", () => {
     )
   })
 
+  test("규정 번호가 없는 새 규정의 원문을 그 규정의 원판으로 본다", async () => {
+    const proposal155 = entry(
+      "unece-wp29-2020-79-2020",
+      "Proposal for a new UN Regulation on uniform provisions concerning the approval of vehicles with regards to cyber security and cyber security management system (ECE/TRANS/WP.29/2020/79 Revised)",
+    )
+    const proposal156 = entry(
+      "unece-wp29-2020-80-2020",
+      "Proposal for a new UN Regulation on uniform provisions concerning the approval of vehicles with regards to software update and software updates management system (ECE/TRANS/WP.29/2020/80)",
+    )
+    assert.strictEqual(unece.publicationOf(proposal155), "UN R155")
+    assert.strictEqual(unece.publicationOf(proposal156), "UN R156")
+    const { keys, changes } = await run(unece, [proposal156], pages, context())
+    assert.deepStrictEqual(keys, [
+      "UN R156 | new-edition | UN R156 01 series of amendments (ECE/TRANS/WP.29/2025/142)",
+    ])
+    assert.deepStrictEqual(
+      changes[0].current.map((e) => e.key),
+      ["unece-wp29-2020-80-2020"],
+    )
+  })
+
   test("인용하지 않은 추보를 잡는다", async () => {
     const { keys, changes } = await run(
       unece,

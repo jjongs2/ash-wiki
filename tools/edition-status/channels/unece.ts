@@ -27,6 +27,14 @@ const wp29Pattern = /ECE\/TRANS\/WP\.29\/[0-9]{4}\/[0-9]+(?:\/Rev\.[0-9]+)?/g
 const regulationDocumentPattern =
   /E\/ECE\/TRANS\/505\/Rev\.[0-9]+\/Add\.[0-9]+((?:\/(?:Amend|Rev)\.[0-9]+)*)/
 const datePattern = "[0-9]{1,2} [A-Za-z]+ [0-9]{4}"
+// 새 규정의 원문(Proposal for a new UN Regulation …)은 제목에 규정 번호가 없다. 번호는 채택 뒤에 붙기 때문이다.
+// 참고문헌이 인용한 원문만 적는다. 원판을 인용한 것으로 본다.
+const originals: Record<string, string> = {
+  "ECE/TRANS/WP.29/2020/79": "155",
+  "ECE/TRANS/WP.29/2020/80": "156",
+}
+const originalRegulation = (symbols: string[]) =>
+  symbols.map((symbol) => originals[symbol]).find((number) => number !== undefined)
 
 interface Notice {
   reference: string // 예: C.N.237.2026
@@ -39,10 +47,11 @@ interface Notice {
 export const unece: Channel = {
   id: "unece",
   ownsPage: (page) => page.publisher === "UNECE",
-  // 규정 하나를 이름으로 든 엔트리. 해석 문서는 MTDSG에 판이 없어 맡지 않는다.
+  // 규정 하나를 이름으로 든 엔트리와 새 규정의 원문. 해석 문서는 MTDSG에 판이 없어 맡지 않는다.
   publicationOf(entry) {
     if (/Interpretation Document/i.test(entry.title)) return undefined
-    const number = entry.title.match(regulationPattern)?.[1]
+    const number =
+      entry.title.match(regulationPattern)?.[1] ?? originalRegulation(wp29Symbols(entry.title))
     return number ? `UN R${number}` : undefined
   },
   async check(publications, context) {
@@ -77,7 +86,8 @@ async function checkPublication(publication: Publication, context: Context): Pro
     )
     const symbols = wp29Symbols(text)
     const document = entry.title.match(regulationDocumentPattern)
-    let position = document && document[1] === "" ? 0 : -1
+    let position =
+      (document && document[1] === "") || originalRegulation(symbols) === regulation ? 0 : -1
     if (document && document[1] !== "") symbols.push(...(await authenticText(context, document[0])))
     details.forEach((detail, index) => {
       if (
