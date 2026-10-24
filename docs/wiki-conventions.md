@@ -65,9 +65,7 @@ npm run check:content
 
 발행기관의 상태 표시는 이렇게 대응한다. 발행기관이 활성 목록에서 뺀 상태(IEEE Inactive-Reserved·Inactive-Withdrawn, NIST Withdrawn 등)는 `폐지`이다. 유효한 문서로 계속 펴내되 개정만 멈춘 상태(SAE Stabilized 등)는 `유효`이다. 예: `ieee-1028`, `sae-j3061` `리뷰`
 
-개정이 진행 중인 표준도 `유효`이고, 개정 진행은 개정 이력 절에 쓴다([상태 문장](wiki-verification.md#상태-문장)). `리뷰`
-
-상태를 두 값으로 둔 까닭은 [ADR 0023](adr/0023-status-without-revising.md)에 있다.
+개정이 진행 중인 표준도 `유효`이고, 개정 진행은 개정 이력 절에 쓴다([상태 문장](wiki-verification.md#상태-문장)). 발행기관도 상태와 개정 진행을 따로 두고, 개정을 상태 값으로 두면 무엇을 개정으로 셀지(amendment·정정, 보충판) 경계가 필요하기 때문이다. `리뷰`
 
 ## 절
 
