@@ -150,6 +150,10 @@ describe("강조", () => {
     assert.strictEqual(mark("SOME-IP", "SOME/IP 프로토콜"), "[SOME]/[IP] 프로토콜")
   })
 
+  test("한 글자 낱말도 공백으로 띄워 쓰면 강조한다", () => {
+    assert.strictEqual(mark("안전 차", "차 안전"), "[차] [안전]")
+  })
+
   test("검색어가 통째로 있으면 통째로 강조한다", () => {
     assert.strictEqual(mark("IEEE 802.3bw", "IEEE 802.3bw-2015"), "[IEEE 802.3bw]-2015")
   })

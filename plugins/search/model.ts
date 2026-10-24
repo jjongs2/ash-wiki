@@ -75,12 +75,12 @@ const kindRank = (slug: string) => (isNewsIssue(slug) ? 2 : slug.startsWith("tag
 
 // 강조할 낱말이다. 업스트림처럼 공백으로 끊은 낱말과 그 앞부분을 이은 구를 두고, 인코더처럼 문장부호에서
 // 끊은 조각을 더한다. 그래야 SOME-IP로 찾은 SOME/IP에도 강조가 붙는다. 한 글자 조각은 본문의 같은 글자를
-// 모두 칠하므로 뺀다. 긴 것부터 맞힌다.
+// 모두 칠하므로 뺀다. 공백으로 띄운 한 글자 낱말은 업스트림처럼 둔다. 긴 것부터 맞힌다.
 export function highlightTerms(term: string): string[] {
   const words = term.split(/\s+/).filter((word) => word !== "")
   const phrases = words.map((_, i) => words.slice(0, i + 1).join(" "))
   const pieces = words.flatMap((word) => word.split(new RegExp(separator, "u")))
-  const terms = new Set([...phrases, ...pieces.filter((piece) => piece.length > 1)])
+  const terms = new Set([...words, ...phrases, ...pieces.filter((piece) => piece.length > 1)])
   return [...terms].sort((a, b) => b.length - a.length)
 }
 
