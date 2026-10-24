@@ -10,7 +10,7 @@ aliases:
 verified: 2026-10-02
 ---
 
-**PDCA 사이클**(Plan-Do-Check-Act cycle)은 Plan, Do, Check, Act 네 단계로 이뤄진 순환이다. ISO 9001:2026은 품질경영시스템의 프로세스 접근에 이 순환을 둔다.[@iso-9001-obp-2026] ASQ는 PDSA(plan-do-study-act) 사이클, Deming 사이클, Shewhart 사이클을 PDCA 사이클의 변형 이름으로 든다.[@asq-pdca-cycle-2026]
+**PDCA 사이클**(Plan-Do-Check-Act cycle)은 Plan, Do, Check, Act 네 단계로 이뤄진 순환이다. ISO 9001:2026은 품질경영시스템의 프로세스 접근에 이 순환을 둔다.[@iso-9001-obp-2026] ASQ(미국의 품질경영 전문가 단체)는 PDSA(plan-do-study-act) 사이클, Deming 사이클, Shewhart 사이클을 PDCA 사이클의 변형 이름으로 든다.[@asq-pdca-cycle-2026][@asq-about-2026]
 
 ## 네 단계
 

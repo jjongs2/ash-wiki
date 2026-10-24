@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**MQTT**(Message Queuing Telemetry Transport)는 클라이언트와 서버 사이에서 발행·구독(publish/subscribe) 방식으로 메시지를 나르는 프로토콜이다. OASIS가 표준으로 펴낸다. MQTT는 가볍고 단순하며 구현하기 쉽게 설계돼, 코드 크기가 작아야 하거나 네트워크 대역폭이 귀한 M2M(Machine to Machine)과 IoT 같은 제약 환경에 알맞다.[@oasis-mqtt-5-0-2019]
+**MQTT**(Message Queuing Telemetry Transport)는 클라이언트와 서버 사이에서 발행·구독(publish/subscribe) 방식으로 메시지를 나르는 프로토콜이다. OASIS(개방형 표준을 만드는 비영리 표준화 기구)가 표준으로 펴낸다.[@oasis-mqtt-5-0-2019][@oasis-about-2026] MQTT는 가볍고 단순하며 구현하기 쉽게 설계돼, 코드 크기가 작아야 하거나 네트워크 대역폭이 귀한 M2M(Machine to Machine)과 IoT 같은 제약 환경에 알맞다.[@oasis-mqtt-5-0-2019]
 
 ## 클라이언트와 서버
 

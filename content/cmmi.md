@@ -10,7 +10,7 @@ edition: 2023
 status: 유효
 ---
 
-**CMMI**(Capability Maturity Model Integration)는 조직이 업무 성과를 높이도록 돕는 모범 사례(best practice) 모델이다.[@isaca-cmmi-performance-solutions-2026] 처음에는 산업계, 정부, SEI 사람으로 꾸린 CMMI Product Team이 만들었고[@sei-cmmi-short-history-2009], 지금은 ISACA가 펴낸다.[@isaca-cmmi-three-new-domains-2023]
+**CMMI**(Capability Maturity Model Integration)는 조직이 업무 성과를 높이도록 돕는 모범 사례(best practice) 모델이다.[@isaca-cmmi-performance-solutions-2026] 처음에는 산업계, 정부, SEI 사람으로 꾸린 CMMI Product Team이 만들었고[@sei-cmmi-short-history-2009], 지금은 ISACA(정보보안·거버넌스 분야의 국제 전문가 협회)가 펴낸다.[@isaca-cmmi-three-new-domains-2023]
 
 ## 범위
 
@@ -40,7 +40,7 @@ ASPICE와의 차이는 [[automotive-spice#CMMI와의 차이|ASPICE]]에서, ASPI
 
 - 1991년: SEI가 소프트웨어용 CMM(Capability Maturity Model for Software) 1.0을 냈다.[@paulk-capability-maturity-model-1993]
 - 1993년: 소프트웨어용 CMM 1.1이 나왔다.[@paulk-capability-maturity-model-1993]
-- 2000년: CMMI Product Team이 첫 CMMI 모델(V1.02)을 냈다. 소프트웨어용 CMM v2.0 draft C, SECM(Systems Engineering Capability Model, EIA 731), IPD-CMM(Integrated Product Development CMM) v0.98의 세 원천 모델을 합친 것이다.[@cmmi-product-team-cmmi-development-2010]
+- 2000년: CMMI Product Team이 첫 CMMI 모델(V1.02)을 냈다. 소프트웨어용 CMM v2.0 draft C, SECM(Systems Engineering Capability Model, EIA 731, EIA: 미국 전자 업계 단체), IPD-CMM(Integrated Product Development CMM) v0.98의 세 원천 모델을 합친 것이다.[@cmmi-product-team-cmmi-development-2010][@eia-about-2006]
 - 2002년: CMMI 1.1이 나왔다.[@cmmi-product-team-cmmi-development-2010]
 - 2006년: CMMI 1.2가 나왔다. 첫 모델의 이름이 CMMI for Development로 바뀌고 컨스텔레이션(constellation) 개념이 생겼다. 같은 1.2판으로 획득(CMMI for Acquisition, 2007)과 서비스(CMMI for Services, 2009) 모델이 뒤따랐다.[@cmmi-product-team-cmmi-development-2010]
 - 2010년: 획득, 개발, 서비스 세 모델의 1.3판이 함께 나왔다.[@cmmi-product-team-cmmi-development-2010]

@@ -20,7 +20,7 @@ ATM v4.02는 차량을 노리는 공격자의 전술과 기법을 모은 온라�
 
 ![[diagrams/automotive-threat-matrix-layout.svg]]
 
-OASIS 표준 STIX(Structured Threat Information Expression) 2.1은 사이버 위협 정보를 주고받는 데 쓰는 언어이자 직렬화 형식을 정한다.[@oasis-stix-2-1-2021] ATM의 최신 버전은 MITRE ATT&CK처럼 STIX 2와 호환되는 파일로 내려받을 수 있고, 이전 버전도 받을 수 있다.[@auto-isac-atm-2025]
+OASIS(개방형 표준을 만드는 비영리 표준화 기구) 표준 STIX(Structured Threat Information Expression) 2.1은 사이버 위협 정보를 주고받는 데 쓰는 언어이자 직렬화 형식을 정한다.[@oasis-stix-2-1-2021][@oasis-about-2026] ATM의 최신 버전은 MITRE ATT&CK(MITRE: 미국의 비영리 연구 개발 기관)처럼 STIX 2와 호환되는 파일로 내려받을 수 있고, 이전 버전도 받을 수 있다.[@auto-isac-atm-2025][@mitre-rd-centers-2026]
 
 누구나 도구 곳곳의 contribute 기능으로 전술, 기법, 예의 수정, 추가, 삭제를 제안할 수 있다. 제안은 업계 전문가의 검토를 거친 뒤 투표로 ATM에 넣을지 정한다.[@auto-isac-atm-2025]
 

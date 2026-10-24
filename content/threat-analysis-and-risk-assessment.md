@@ -81,7 +81,7 @@ UN R155의 [[un-r155#Annex 5|Annex 5]]는 위협 분석이 가능한 공격 영�
 
 NHTSA의 2022년 지침(Cybersecurity Best Practices for the Safety of Modern Vehicles)은 리스크를 평가할 때 차량 탑승자와 다른 도로 사용자의 안전을 가장 먼저 고려하기를 권한다(G.5). 또 센서 취약점과, GPS 스푸핑, 도로 표지 변조, 라이다·레이더 재밍과 스푸핑, 카메라 블라인딩, 머신러닝의 false positive 유발 같은 센서 신호 조작의 리스크를 고려하기를 권한다(G.6).[@nhtsa-cybersecurity-best-practices-2022]
 
-ENISA의 2019년 보고서 Good practices for security of smart cars는 사이버보안 리스크 분석을 설계 과정의 아주 이른 단계부터 하고, 적어도 해마다, 그리고 큰 변경이 있거나 심각한 보안 취약점을 찾거나 심각한 보안 incident가 일어났을 때 다시 보기를 권한다(PS-12).[@enisa-smart-cars-2019]
+ENISA(EU의 사이버보안 기관)의 2019년 보고서 Good practices for security of smart cars는 사이버보안 리스크 분석을 설계 과정의 아주 이른 단계부터 하고, 적어도 해마다, 그리고 큰 변경이 있거나 심각한 보안 취약점을 찾거나 심각한 보안 incident가 일어났을 때 다시 보기를 권한다(PS-12).[@enisa-smart-cars-2019]
 
 [[vulnerability-management#취약점 보고와 정보 공유|Auto-ISAC]]은 [[automotive-threat-matrix|ATM]]이 쓰일 곳의 하나로 위협·리스크 평가 모델링을 든다.[@auto-isac-about-us-2026]
 

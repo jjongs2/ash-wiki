@@ -147,4 +147,4 @@ ASPICE 3.1은 component를 소프트웨어 아키텍처의 가장 낮은 수준�
 
 ## intacs Hardware SPICE
 
-intacs는 전자 하드웨어 개발을 위한 프로세스 참조 모델이자 프로세스 평가 모델로 Hardware SPICE 4.0을 펴낸다. 이 모델은 ASPICE 4.1에 맞추고, [[iso-26262|ISO 26262-1]]:2018과 ISO 26262-5:2018에 대응시켜 만들었다. 이 모델의 HWE.1\~HWE.4는 ASPICE 4.1을 확장한 것으로, ISO 26262:2018과 [[iso-sae-21434|ISO/SAE 21434]]:2021에 대한 참조와 설명을 더 담는다. Hardware SPICE 4.0은 ASPICE와 따로 떼어 독립된 프로세스 평가 모델로 쓸 수 있다.[@intacs-spice-center-2026]
+intacs(프로세스 평가자 인증 체계를 가진 국제 비영리 단체)는 전자 하드웨어 개발을 위한 프로세스 참조 모델이자 프로세스 평가 모델로 Hardware SPICE 4.0을 펴낸다.[@intacs-spice-center-2026][@intacs-home-2026] 이 모델은 ASPICE 4.1에 맞추고, [[iso-26262|ISO 26262-1]]:2018과 ISO 26262-5:2018에 대응시켜 만들었다. 이 모델의 HWE.1\~HWE.4는 ASPICE 4.1을 확장한 것으로, ISO 26262:2018과 [[iso-sae-21434|ISO/SAE 21434]]:2021에 대한 참조와 설명을 더 담는다. Hardware SPICE 4.0은 ASPICE와 따로 떼어 독립된 프로세스 평가 모델로 쓸 수 있다.[@intacs-spice-center-2026]

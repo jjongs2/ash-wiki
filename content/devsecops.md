@@ -52,7 +52,7 @@ DoD의 DevSecOps Activities & Tools 가이드북이 생명주기 단계에 두�
 
 ## CI/CD 환경을 노리는 위협
 
-NSA와 CISA는 2023년 6월 사이버보안 정보 시트 Defending Continuous Integration/Continuous Delivery (CI/CD) Environments를 펴내, [[continuous-integration|CI]]/CD 환경을 노리는 위협과 대책을 정리했다. 이 자료가 드는 위협은 다음과 같다.[@nsa-cisa-defending-ci-cd-2023]
+NSA와 CISA(미국 [[cybersecurity|사이버보안]] 기관)는 2023년 6월 사이버보안 정보 시트 Defending Continuous Integration/Continuous Delivery (CI/CD) Environments를 펴내, [[continuous-integration|CI]]/CD 환경을 노리는 위협과 대책을 정리했다.[@nsa-cisa-defending-ci-cd-2023][@cisa-about-2026] 이 자료가 드는 위협은 다음과 같다.[@nsa-cisa-defending-ci-cd-2023]
 
 - 안전하지 않은 코드(자체 코드와 서드파티 코드)
 - 파이프라인 실행 오염(poisoned pipeline execution): 빌드 파이프라인 설정에 악성 코드나 명령을 넣어 빌드 중에 실행되게 하는 것

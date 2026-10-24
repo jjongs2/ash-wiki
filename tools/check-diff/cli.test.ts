@@ -386,6 +386,19 @@ describe("check-diff CLI", { concurrency: false }, () => {
     assert.ok(!has(lines, "CAN_H"), "풀이하지 않는 약어 목록의 이름")
   })
 
+  test("약어: 소개하는 조직 약어의 첫 자리에 괄호 소개도 링크도 없으면 찍는다", () => {
+    const lines = report.items.get("abbreviation") ?? []
+    for (const name of ["CISA", "WP.29", "CCSDS", "MIPI", "EIA"]) {
+      assert.ok(has(lines, "content/organizations.md:", `소개가 없다: ${name}`), name)
+    }
+    for (const name of ["MITRE", "Auto-ISAC", "HIS", "CISPR", "CCITT", "TIA", "AUMOVIO", "CCRA"]) {
+      assert.ok(!has(lines, `소개가 없다: ${name}`), `소개했거나 세지 않는 자리: ${name}`)
+    }
+    for (const name of ["ISO", "NIST"]) {
+      assert.ok(!has(lines, "content/organizations.md:", name), `널리 알려진 조직: ${name}`)
+    }
+  })
+
   test("용어: 조건 없는 결정의 쓰지 않는 표기를 더한 줄에서 찾는다", () => {
     const lines = report.items.get("term") ?? []
     assert.ok(has(lines, "content/terms.md:12:", '"문맥" → "context" (#142)'))

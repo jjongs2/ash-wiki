@@ -11,7 +11,7 @@ verified: 2026-10-03
 
 ## 차량용 MCU의 HSM
 
-ENISA의 2019년 보고서 Good practices for security of smart cars는 암호 알고리즘을 안전하게 실행하고 키를 안전하게 저장하는 데 전용의 tamper-resistant HSM을 쓰는 것을 검토하기를 권한다.[@enisa-smart-cars-2019]
+ENISA(EU의 [[cybersecurity|사이버보안]] 기관)의 2019년 보고서 Good practices for security of smart cars는 암호 알고리즘을 안전하게 실행하고 키를 안전하게 저장하는 데 전용의 tamper-resistant HSM을 쓰는 것을 검토하기를 권한다.[@enisa-smart-cars-2019]
 
 차량용 MCU 가운데에는 HSM을 칩 안에 넣고, 그 HSM에 주 CPU와 따로 자기 프로세서, 메모리, 암호 가속기를 두는 제품이 있다.[@infineon-aurix-tc3xx-hsm-training-2020][@renesas-rh850-rcar-secure-boot-part-2-2021]
 
@@ -21,7 +21,7 @@ ENISA의 2019년 보고서 Good practices for security of smart cars는 암호 �
 
 ![[diagrams/hsm-aurix-tc3xx-structure.svg]]
 
-**SHE**(Secure Hardware Extension)는 HIS가 정한 온칩 보안 확장으로, 키 저장 영역과 AES [[symmetric-key-cryptography#블록 암호와 스트림 암호|블록 암호]]를 두고 모든 암호 연산을 AES-128로 처리한다.[@autosar-fo-tr-securehardwareextensions-2025]
+**SHE**(Secure Hardware Extension)는 HIS(독일 완성차 업체들의 소프트웨어 공동 표준 이니셔티브)가 정한 온칩 보안 확장으로, 키 저장 영역과 AES [[symmetric-key-cryptography#블록 암호와 스트림 암호|블록 암호]]를 두고 모든 암호 연산을 AES-128로 처리한다.[@autosar-fo-tr-securehardwareextensions-2025][@his-wg-assessment-2006]
 
 [[autosar|AUTOSAR]] R25-11의 [[autosar-layered-architecture|Layered Software Architecture]]는 SHE나 HSM 같은 온칩 암호 장치를 [[microcontroller-abstraction-layer|MCAL]]의 [[autosar-crypto-stack#Crypto Interface와 Crypto Driver|Crypto Driver]]가 다루게 한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
@@ -35,7 +35,7 @@ EVITA(E-safety Vehicle Intrusion proTected Applications)는 유럽 공동체 제
 
 ## TPM과의 차이
 
-**TPM**(Trusted Platform Module)은 컴퓨팅 플랫폼을 신뢰할 수 있게 하는 장치로, TCG가 펴내는 TPM 2.0 Library 명세가 정한다. 명세는 여러 부로 나뉘며, Part 2가 TPM 인터페이스의 상수, 데이터 타입, 구조체를, Part 3이 명령을 정한다.[@tcg-tpm-2-0-library-part-1-2026] TPM 2.0 Library 명세는 2015년에 ISO/IEC 11889:2015로도 발행됐다.[@tcg-tpm-library-specification-2026]
+**TPM**(Trusted Platform Module)은 컴퓨팅 플랫폼을 신뢰할 수 있게 하는 장치로, TCG(신뢰 컴퓨팅 표준을 만드는 비영리 업계 단체)가 펴내는 TPM 2.0 Library 명세가 정한다.[@tcg-tpm-2-0-library-part-1-2026][@tcg-about-2026] 명세는 여러 부로 나뉘며, Part 2가 TPM 인터페이스의 상수, 데이터 타입, 구조체를, Part 3이 명령을 정한다.[@tcg-tpm-2-0-library-part-1-2026] TPM 2.0 Library 명세는 2015년에 ISO/IEC 11889:2015로도 발행됐다.[@tcg-tpm-library-specification-2026]
 
 TPM 2.0 Library 명세(Version 185)는 부팅 과정의 측정값을 누적하는 PCR(Platform Configuration Register)과, PCR 값에 서명 키로 서명하는 증명 명령 TPM2_Quote를 둔다.[@tcg-tpm-2-0-library-part-1-2026]
 
