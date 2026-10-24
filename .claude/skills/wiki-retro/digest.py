@@ -30,8 +30,8 @@ create·comment가 돌려준 PR·이슈·코멘트이고, 핸드오프는 세션
 ash-wiki-handoff/의 파일이다. 루틴에 넘긴 스킬에는 "(루틴)"을 단다. 기록을 주지
 않으면 ~/.claude/projects/*ash-wiki*/의 기록을 본다.
 
---version은 기록마다 세션 판을 찍는다. 판은 worktree base(git worktree add 결과의 "HEAD is now at"),
-없으면 기록의 첫 timestamp 때의 origin/main이다. 기록의 스킬 본문이 그 판의 SKILL.md와
+--version은 기록마다 세션 버전을 찍는다. 버전은 worktree base(git worktree add 결과의 "HEAD is now at"),
+없으면 기록의 첫 timestamp 때의 origin/main이다. 기록의 스킬 본문이 그 버전의 SKILL.md와
 다르면 origin/main 역사에서 본문이 같은 커밋으로 고친다. 저장소 루트에서 돌린다.
 
 소스 노트를 연 도구 호출은 입력과 결과를 지우고, 그 입력을 <이름>-notes.txt에
@@ -353,7 +353,7 @@ def session_version(path):
         how = "시작 시각의 origin/main"
     uuid = os.path.basename(path)[:8]
     if not commit:
-        print(f"{uuid}\t-\t-\t판을 정하지 못함(첫 timestamp가 origin/main보다 이르다)")
+        print(f"{uuid}\t-\t-\t버전을 정하지 못함(첫 timestamp가 origin/main보다 이르다)")
         return
     skills = called_skills(entries)
     if not skills:
