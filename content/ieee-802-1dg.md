@@ -22,5 +22,5 @@ IEEE SA 자료에 따르면 차량에서 TSN은 다른 IEEE 기술과 함께 시
 
 ## 개정 이력
 
-- 2025년: 첫판. PAR(Project Authorization Request)은 2019년 2월에 승인되었고, 표준은 2025년 5월에 승인되어 6월에 나왔다.[@ieee-802-1dg-project-2025]
+- 2025년: 첫판. 2019년 2월에 PAR(Project Authorization Request)이 승인된 프로젝트로, 2025년 5월에 승인되어 6월에 나왔다.[@ieee-802-1dg-project-2025]
 - 2026년: 차량 내 네트워크를 위해 [[ieee-802-1as|IEEE 802.1AS]] 시간 동기화의 옵션, 기본값, 파라미터 값을 고르고 설정 지침과 제약을 주는 개정 프로젝트 [[tsn#도구|P802.1DGei]]의 PAR이 2026년 9월에 승인되었다.[@ieee-p802-1dgei-2026]

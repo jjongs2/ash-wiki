@@ -47,4 +47,4 @@ Xerox PARC의 Metcalfe와 Boggs는 1976년 논문에서 동축 케이블 약 1 k
 
 ## CAN과의 차이
 
-[[can|CAN]]은 여러 노드가 동시에 송신을 시작하면 식별자로 비트 단위 중재를 해, 그 가운데 한 메시지를 정보도 시간도 잃지 않고 보낸다.[@bosch-can-2-0-1991] 반이중 이더넷에서는 동시에 송신하면 충돌이 생기고, 충돌한 스테이션은 [[bus-access-method#경쟁 방식|백오프]]만큼 기다렸다가 다시 송신한다.[@st-rm0008-2021][@microchip-enc28j60-2012] CAN에서는 수신 노드가 [[can-acknowledgement|ACK]] 슬롯에 [[dominant-and-recessive|dominant]] 비트를 보내 프레임을 제대로 받았음을 알린다.[@bosch-can-2-0-1991]
+[[can|CAN]]은 여러 노드가 동시에 송신을 시작하면 식별자로 비트 단위 중재를 해, 정보도 시간도 잃지 않고 한 메시지를 보낸다.[@bosch-can-2-0-1991] 반이중 이더넷에서는 동시에 송신하면 충돌이 생기고, 충돌한 스테이션은 [[bus-access-method#경쟁 방식|백오프]]만큼 기다렸다가 다시 송신한다.[@st-rm0008-2021][@microchip-enc28j60-2012] CAN에서는 수신 노드가 [[can-acknowledgement|ACK]] 슬롯에 [[dominant-and-recessive|dominant]] 비트를 보내 프레임을 제대로 받았음을 알린다.[@bosch-can-2-0-1991]
