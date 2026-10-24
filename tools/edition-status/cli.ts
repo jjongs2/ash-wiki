@@ -55,7 +55,6 @@ const assigned = assign(cited, standardPages(tree), channels)
 const context: Context = {
   fetch: (url, init = {}) =>
     fetch(url, {
-      method: init.method,
       headers: { "user-agent": "Mozilla/5.0 (compatible; edition-status/1.0)", ...init.headers },
       signal: AbortSignal.timeout(timeoutMs),
     }),

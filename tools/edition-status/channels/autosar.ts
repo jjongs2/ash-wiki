@@ -1,3 +1,4 @@
+import { autosarRelease } from "../../check-diff/editions"
 import zlib from "node:zlib"
 import {
   ChannelError,
@@ -42,12 +43,9 @@ export const acceptanceSearchUrl = `${site}/search?tx_solr%5Bq%5D=AcceptanceTest
 export const releaseOverviewUrl = (code: string, release: string) =>
   `${site}/fileadmin/standards/${release}/${code}/AUTOSAR_${code}_TR_ReleaseOverview.pdf`
 
-// 판 표시. tools/check-diff/editions.ts의 autosarRelease와 같다. 예: AUTOSAR CP R25-11, AUTOSAR R4.0.3, AUTOSAR TC Release 1.2.0
-const releasePattern = /\bAUTOSAR ((?:CP|AP|FO|TC) )?(R[0-9]+(?:[.-][0-9]+)+|Release [0-9.]+[0-9])/
-
 function releaseOf(entry: Entry): { code: string; release: string } | undefined {
   if (!entry.publisher.includes("AUTOSAR")) return undefined
-  const match = entry.title.match(releasePattern)
+  const match = entry.title.match(autosarRelease)
   if (!match) return undefined
   const release = match[2].replace(/^Release /, "R")
   // 플랫폼이 나뉘기 전의 R2.x~R4.x는 Classic Platform이다.

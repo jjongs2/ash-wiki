@@ -1,3 +1,4 @@
+import { publisherOf } from "../check-diff/editions"
 import { citations } from "../check-content/source-checks"
 import { fieldsOf, type Tree } from "../check-content/tree"
 import type { Channel, Entry, Publication, StandardPage } from "./model"
@@ -25,9 +26,7 @@ export function citedEntries(tree: Tree): Entry[] {
               title: field("title") ?? "",
               url: field("url"),
               note: field("note"),
-              publisher: ["author", "organization", "institution", "publisher"]
-                .map((name) => field(name) ?? "")
-                .join(" "),
+              publisher: publisherOf(entry).replace(/\s+/g, " "),
               file: bib.file,
               line: entry.line,
               citedBy: citedBy.get(entry.key)!,

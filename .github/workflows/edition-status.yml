@@ -1,6 +1,5 @@
 # 매달 판 확인(`npm run edition-status`)을 돌린다. 참고문헌이 인용한 출판물의 판이 바뀌었으면 출판물마다
-# `edition:` 이슈를 열거나 갱신한다. 기준은 docs/wiki-verification.md의 판 확인 절에 있다.
-# 통로가 다시 물어도 응답하지 않거나 기대한 필드를 찾지 못하면 실행이 실패한다. 손으로도 돌릴 수 있다.
+# `edition:` 이슈를 열거나 갱신한다. 기준은 docs/wiki-verification.md의 판 확인 절에 있다. 손으로도 돌릴 수 있다.
 name: edition-status
 
 on:

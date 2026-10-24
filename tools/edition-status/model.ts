@@ -69,7 +69,7 @@ export function changeKey(change: Change): string {
 
 export interface Context {
   // 도구의 User-Agent와 제한 시간을 붙인 fetch. 응답 코드는 보지 않는다.
-  fetch(url: string, init?: Pick<RequestInit, "method" | "headers">): Promise<Response>
+  fetch(url: string, init?: Pick<RequestInit, "headers">): Promise<Response>
   // 페이지가 인용한 엔트리 전체. 다른 통로가 맡은 엔트리도 든다. 대체한 판을 참고문헌이 이미 인용했는지
   // 가릴 때 쓴다(IEEE 1471 → ISO/IEC/IEEE 42010).
   cited: Entry[]
@@ -92,7 +92,7 @@ export class ChannelError extends Error {}
 export async function fetchOk(
   context: Context,
   url: string,
-  init?: Pick<RequestInit, "method" | "headers">,
+  init?: Pick<RequestInit, "headers">,
 ): Promise<Response> {
   const response = await context.fetch(url, init)
   if (!response.ok) {

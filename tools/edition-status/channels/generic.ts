@@ -25,6 +25,10 @@ export function genericRows(rows: Row[]): GenericRow[] {
     const pattern = new RegExp(row["판 패턴"], "g")
     if (new RegExp(`${pattern.source}|`).exec("")!.length !== 2)
       throw new Error(`edition-generic 표 ${row["출판물"]}의 판 패턴은 잡을 묶음이 하나여야 한다`)
+    if (!["—", "브라우저 User-Agent"].includes(row["요청"]))
+      throw new Error(
+        `edition-generic 표 ${row["출판물"]}의 요청은 — 또는 브라우저 User-Agent여야 한다`,
+      )
     return {
       publication: row["출판물"],
       page: row["페이지"],
