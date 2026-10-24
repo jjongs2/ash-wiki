@@ -1,0 +1,12 @@
+diff --git a/node_modules/@quartz-community/content-index/dist/index.js b/node_modules/@quartz-community/content-index/dist/index.js
+--- a/node_modules/@quartz-community/content-index/dist/index.js
++++ b/node_modules/@quartz-community/content-index/dist/index.js
+@@ -2337,6 +2337,8 @@ var ContentIndex = (opts) => {
+           slug: slug2,
+           filePath: data.relativePath,
+           title: frontmatter.title ?? "",
++          // ash-wiki: 검색이 별칭으로도 페이지를 찾게 별칭을 싣는다(plugins/search).
++          aliases: frontmatter.aliases ?? [],
+           links: data.links ?? [],
+           tags: frontmatter.tags ?? [],
+           content: text2 ?? "",

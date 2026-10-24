@@ -226,7 +226,8 @@ plugins:
     layout:
       position: right
       priority: 10
-  - source: "@quartz-community/search"
+  # 검색 플러그인 1.0.0을 fork한 로컬 플러그인이다(plugins/search, docs/engine.md 검색 절).
+  - source: ./plugins/search
     enabled: true
     layout:
       position: left
