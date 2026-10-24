@@ -66,10 +66,12 @@ const encoder = (str: string): string[] => {
 const exactKey = (str: string) =>
   str.normalize("NFC").toLowerCase().replace(new RegExp(separator, "gu"), "")
 
-// 페이지 갈래의 순서다. 주간 소식의 호(news/<연도>-w<주차>)는 검증하지 않은 요약이라, 검증된 위키
-// 페이지와 섞어 읽지 않게 뒤로 민다(ADR 0015). 호는 매주 늘어 그대로 두면 결과 칸을 차지한다.
-const kindRank = (slug: string) =>
-  /^news\/\d{4}-w\d{2}$/.test(slug) ? 2 : slug.startsWith("tags/") ? 1 : 0
+// 주간 소식의 호(news/<연도>-w<주차>)다. 검증하지 않은 요약이라, 검증된 위키 페이지와 섞어 읽지 않게 뒤로
+// 민다(ADR 0015). 호는 매주 늘어 그대로 두면 결과 칸을 차지한다.
+const isNewsIssue = (slug: string) => /^news\/\d{4}-w\d{2}$/.test(slug)
+
+// 페이지 갈래의 순서다. 위키 페이지, 태그 목록, 호 순이다.
+const kindRank = (slug: string) => (isNewsIssue(slug) ? 2 : slug.startsWith("tags/") ? 1 : 0)
 
 // 강조할 낱말이다. 업스트림처럼 공백으로 끊은 낱말과 그 앞부분을 이은 구를 두고, 인코더처럼 문장부호에서
 // 끊은 조각을 더한다. 그래야 SOME-IP로 찾은 SOME/IP에도 강조가 붙는다. 한 글자 조각은 본문의 같은 글자를
@@ -147,10 +149,11 @@ export function createSearchIndex() {
       const flexIds = fieldPriority.flatMap(byField)
 
       const exact = exactMatches(query)
-      const rest = [...new Set(flexIds)].filter((id) => !exact.includes(id))
-      const issues = rest.filter((id) => kindRank(pages[id].slug) === 2)
-      issues.sort((a, b) => (pages[a].slug < pages[b].slug ? 1 : -1))
-      const ids = [...exact, ...rest.filter((id) => kindRank(pages[id].slug) < 2), ...issues]
+      const notExact = [...new Set(flexIds)].filter((id) => !exact.includes(id))
+      const newsIssues = notExact.filter((id) => isNewsIssue(pages[id].slug))
+      newsIssues.sort((a, b) => (pages[a].slug < pages[b].slug ? 1 : -1))
+      const wikiAndTags = notExact.filter((id) => !isNewsIssue(pages[id].slug))
+      const ids = [...exact, ...wikiAndTags, ...newsIssues]
 
       const hasTags = (page: SearchPage) =>
         tags.every((tag) => page.tags.some((t) => t.toLowerCase() === tag.toLowerCase()))
