@@ -18,7 +18,7 @@ export interface GenericRow {
   entries: RegExp // 이 출판물의 엔트리 키
   url: string
   pattern: RegExp
-  headers?: Record<string, string>
+  headers: Record<string, string>
 }
 
 export function genericRows(rows: Row[]): GenericRow[] {
@@ -36,14 +36,18 @@ export function genericRows(rows: Row[]): GenericRow[] {
       entries: new RegExp(row["엔트리"]),
       url: row["URL"],
       pattern,
-      // 브라우저 User-Agent가 있어야 답하는 호스트(docs/source-access.md)
-      headers:
-        row["요청"] === "브라우저 User-Agent"
+      // 압축하지 않은 응답을 받는다. saemobilus.sae.org는 압축한 응답의 캐시에 판 목록 없는 셸 페이지를
+      // 몇 분씩 남겨 두고, 압축하지 않은 응답은 본문을 준다(2026-10-25).
+      // 브라우저 User-Agent는 그것이 있어야 답하는 호스트에 붙인다(docs/source-access.md).
+      headers: {
+        "accept-encoding": "identity",
+        ...(row["요청"] === "브라우저 User-Agent"
           ? {
               "user-agent":
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
             }
-          : undefined,
+          : {}),
+      },
     }
   })
 }
@@ -52,7 +56,6 @@ const editionsIn = (text: string, pattern: RegExp) =>
   [...text.matchAll(pattern)].map((match) => match[1]).sort(compareEditions)
 
 // 한 행의 URL에서 판을 읽는다. 2xx가 아니거나 판 패턴을 찾지 못하면 간격을 늘려 두 번 더 묻는다.
-// saemobilus.sae.org는 잇단 요청에 판 목록 없는 셸 페이지를 주기도 한다.
 async function editionsAt(
   row: GenericRow,
   context: Context,
