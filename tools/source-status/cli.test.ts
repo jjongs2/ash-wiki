@@ -21,7 +21,7 @@ const today = "2026-09-25"
 // 도구가 보내는 User-Agent. docs/wiki-verification.md의 출처 상태 절에서 읽어, 문서가 도구와 어긋나면 User-Agent 검사가 실패한다.
 const userAgent = fs
   .readFileSync(path.join(repoRoot, "docs", "wiki-verification.md"), "utf8")
-  .match(/User-Agent `([^`]+)`을 보냅니다/)![1]
+  .match(/User-Agent `([^`]+)`을 보낸다/)![1]
 
 let server: http.Server
 let base: string
