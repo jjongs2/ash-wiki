@@ -25,4 +25,4 @@ TI 앱노트 SPRA530에 따르면 부호의 **최소 해밍 거리** $d_\mathrm{
 
 최소 해밍 거리가 4인 SECDED(Single Error Correction, Double Error Detection) 부호는 비트 하나의 오류를 고치면서 비트 두 개의 오류를 찾아낸다.[@ti-spna139-2011][@microchip-coreedac-2025] SECDED는 [[error-correction-code#SECDED|ECC]]에서 다룬다. TI Hercules MCU의 플래시 ECC는 SECDED라서 비트 하나의 오류를 가장 가까운 유효한 값으로 되돌려 고치지만, 3비트 오류는 잘못 고칠 수 있다. 이 ECC는 3비트 오류 검출이 더 중요하면 오류 검출 전용 모드로 둘 수 있다.[@ti-spna139-2011]
 
-[[cyclic-redundancy-check|CRC]]의 해밍 거리는 생성 다항식이 같아도 CRC를 뺀 데이터 워드의 길이에 따라 달라서, 데이터 워드가 길수록 작아진다.[@koopman-32-bit-crc-2002] [[can|CAN]]이 쓰는 CRC의 해밍 거리는 [[can-crc#검출 능력|CAN CRC]]에서 다룬다.
+[[cyclic-redundancy-check|CRC]]의 최소 해밍 거리는 생성 다항식이 같아도 CRC를 뺀 데이터 워드의 길이에 따라 달라서, 데이터 워드가 길수록 작아진다.[@koopman-32-bit-crc-2002] [[can|CAN]]이 쓰는 CRC의 해밍 거리는 [[can-crc#검출 능력|CAN CRC]]에서 다룬다.

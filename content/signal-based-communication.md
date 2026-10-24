@@ -16,7 +16,7 @@ AUTOSAR COM은 시그널마다 I-PDU 안의 시작 비트 위치(`ComBitPosition
 
 ## 통신 매트릭스
 
-AUTOSAR R25-11 System Template은 어떤 시그널을 어느 프레임에 싣고 ECU마다 무엇을 보내고 받는지를 System Configuration Description의 통신 매트릭스로 정하고, 이 기술을 입력으로 ECU 설정을 만든다. 통신 매트릭스는 프레임, 시그널, 타이밍을 담고, System Template은 [[gateway|게이트웨이]] 표도 기술한다.[@autosar-cp-tps-systemtemplate-2025]
+AUTOSAR R25-11 [[autosar-methodology#System description|System Template]]은 어떤 시그널을 어느 프레임에 싣고 ECU마다 무엇을 보내고 받는지를 System Configuration Description의 통신 매트릭스로 정하고, 이 기술을 입력으로 ECU 설정을 만든다. 통신 매트릭스는 프레임, 시그널, 타이밍을 담고, System Template은 [[gateway|게이트웨이]] 표도 기술한다.[@autosar-cp-tps-systemtemplate-2025]
 
 Vector의 CANdb++ Admin은 통신 매트릭스를 설계하는 도구로, 통신 객체를 정의하고 송수신 관계를 정한다.[@vector-candb-admin-factsheet-2024]
 
@@ -32,7 +32,7 @@ Vector는 DBC 형식을 통신 데이터를 기술하는 사실상의 표준(de 
 
 ## 물리값 변환
 
-AUTOSAR Classic Platform R25-11의 System Template은 ISignal의 네트워크 표현을 CompuMethod로 물리값과 잇도록 정한다.[@autosar-cp-tps-systemtemplate-2025] `LINEAR` 범주의 CompuMethod는 내부값 $x$에 계수 $a$를 곱한 뒤 오프셋 $b$를 더해 물리값 $y = a\,x + b$를 얻는다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+AUTOSAR Classic Platform R25-11의 System Template은 [[autosar-com#System Template과의 연결|ISignal]]의 네트워크 표현을 CompuMethod로 물리값과 잇도록 정한다.[@autosar-cp-tps-systemtemplate-2025] `LINEAR` 범주의 CompuMethod는 내부값 $x$에 계수 $a$를 곱한 뒤 오프셋 $b$를 더해 물리값 $y = a\,x + b$를 얻는다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ## 송신과 수신 감시
 

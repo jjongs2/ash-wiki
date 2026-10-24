@@ -26,7 +26,7 @@ Classical [[can|CAN]] [[can-frame|데이터 프레임]]의 데이터 필드는 0
 [[autosar|AUTOSAR]]의 CAN 전송 계층 모듈 CanTp가 다루는 전송 프로토콜 프레임은 단일 프레임 SF(Single Frame), FF, CF, 흐름 제어 프레임 FC(Flow Control)이고, 이 프레임들을 다음처럼 쓴다.[@autosar-cp-sws-cantransportlayer-2025]
 
 - **SF**: 보낼 데이터 N-SDU(Network Service Data Unit)가 CAN 프레임 하나에 실리는 단위 N-PDU(Network Protocol Data Unit)에 들어가면 SF로 보낸다.
-- **FF**: 분할된 메시지의 첫 부분과 메시지 전체 길이 FF_DL을 싣는다. $\mathrm{FF\_DL} \le 4095$이면 FF_DL을 첫 바이트 하위 4비트와 둘째 바이트에 싣고, $\mathrm{FF\_DL} > 4095$이면 그 자리를 0으로 두고 FF_DL을 셋째부터 여섯째 바이트에 싣는다. 두 형식 모두 CAN 2.0과 [[can-fd|CAN FD]]에 쓴다.
+- **FF**: 분할된 메시지의 첫 부분과 메시지 전체 길이 FF_DL을 싣는다. $\mathrm{FF\_DL} \le 4095$이면 FF_DL을 첫 바이트 하위 4비트와 둘째 바이트에 싣고, $\mathrm{FF\_DL} > 4095$이면 첫 바이트 하위 4비트와 둘째 바이트를 0으로 두고 FF_DL을 셋째부터 여섯째 바이트에 싣는다. 두 형식 모두 CAN 2.0과 [[can-fd|CAN FD]]에 쓴다.
 - **CF**: 나머지 페이로드를 SN(Sequence Number)과 함께 싣는다.
 - **FC**: 수신 쪽이 송신 쪽 CF의 흐름을 조절한다. **BS**(Block Size)는 FC 하나 뒤에 이어지는 CF 수이고, **STmin**(Separation Time minimum)은 송신 쪽이 두 CF 사이에 기다릴 최소 시간이다.[@autosar-cp-sws-cantransportlayer-2025]
 
@@ -40,4 +40,4 @@ CanTp는 연속 프레임을 받을 때마다 N_Cr 타이머를 시작한다(블
 
 [[ipv4|IPv4]] 데이터그램이 최대 패킷 크기가 더 작은 네트워크를 지나야 하면 단편으로 나눈다. 단편마다 식별(Identification) 필드, 원래 데이터그램 안에서의 위치를 나타내는 단편 오프셋, 마지막 단편인지 나타내는 MF(More Fragments) 플래그가 있다. 받는 쪽 IP 모듈은 식별, 출발지, 목적지, 프로토콜 네 필드가 같은 단편을 모아, 단편 오프셋이 가리키는 자리에 데이터를 놓아 합친다.[@ietf-rfc-791-1981]
 
-IPv4 호스트의 IP 계층은 재조립을 구현해야 하고, 재조립할 수 있는 가장 큰 데이터그램 크기 $\mathrm{EMTU\_R}$은 $\mathrm{EMTU\_R} \ge 576$이어야 한다. 호스트에는 재조립 타임아웃이 있어야 하고, 그 값은 남은 Time to Live에서 정하지 않은 고정값으로 두도록 권고되며, 60\~120초 사이가 권장된다. 타임아웃이 지나면 재조립 중이던 데이터그램을 버리고, 오프셋이 0인 단편을 받았으면 출발 호스트에 [[icmp|ICMP]] Time Exceeded 메시지를 보낸다.[@ietf-rfc-1122-1989]
+IPv4 호스트의 IP 계층은 재조립을 구현해야 하고, 재조립할 수 있는 가장 큰 데이터그램 크기 $\mathrm{EMTU\_R}$은 $\mathrm{EMTU\_R} \ge 576$이어야 한다. 호스트에는 재조립 타임아웃이 있어야 하고, 그 값은 남은 Time to Live로 정하지 않고 고정값으로 두도록 권고되며, 60\~120초 사이가 권장된다. 타임아웃이 지나면 재조립 중이던 데이터그램을 버리고, 오프셋이 0인 단편을 받았으면 출발 호스트에 [[icmp|ICMP]] Time Exceeded 메시지를 보낸다.[@ietf-rfc-1122-1989]

@@ -53,7 +53,7 @@ Dcm은 응용이 지원하고 `Dcm_NegativeResponseCodeType`에 정의된 NRC(Ne
 
 ## 서비스
 
-ISO 14229-1:2026은 서비스를 기능 단위(functional unit)로 묶는다. 진단·통신 관리 기능 단위에는 DiagnosticSessionControl, ECUReset, SecurityAccess, CommunicationControl이 속한다.[@iso-14229-1-obp-2026] ISO 14229-1과, UDS를 쓰는 ISO 14229-4, ISO 27145-3의 공개된 목차가 밝힌 서비스의 SID는 아래와 같다.
+ISO 14229-1:2026은 서비스를 기능 단위(functional unit)로 묶는다. 진단·통신 관리 기능 단위에는 DiagnosticSessionControl, ECUReset, SecurityAccess, CommunicationControl이 속한다.[@iso-14229-1-obp-2026] ISO 14229-1의 공개된 목차와, UDS를 쓰는 ISO 14229-4와 ISO 27145-3의 공개된 목차가 밝힌 서비스의 SID는 아래와 같다.
 
 | 서비스                       | SID                           |
 | ---------------------------- | ----------------------------- |
@@ -92,7 +92,7 @@ Dcm은 AccessTimingParameter(`0x83`)와 SecuredDataTransmission(`0x84`) 요청�
 
 ## 보안 접근과 인증
 
-요청한 보안 수준이 아직 활성이 아니면, Dcm은 SecurityAccess(`0x27`)의 requestSeed 요청을 받아 설정한 `Xxx_GetSeed()`를 불러 seed를 구한다. 그 보안 수준이 아직 활성이 아니고 그 수준의 requestSeed가 성공한 뒤 sendKey 요청을 받으면, `Xxx_CompareKey()`를 불러 키 비교 결과를 구한다. 키 비교가 실패했을 때 그 보안 수준에 들어가려다 실패한 횟수 AttemptCounter가 설정한 한도보다 작으면($\mathrm{AttemptCounter} < \mathrm{DcmDspSecurityNumAttDelay}$) NRC `0x35`(InvalidKey)를 보내고, 한도 이상이면($\mathrm{AttemptCounter} \ge \mathrm{DcmDspSecurityNumAttDelay}$) 그 보안 수준의 지연 타이머 SecurityDelayTimer를 켜고 NRC `0x36`(exceededNumberOfAttempts)을 보낸다. 두 경우 모두 Dcm의 보안 수준은 바뀌지 않는다. 지연 타이머가 도는 동안 그 보안 수준의 requestSeed 요청에는 NRC `0x37`(requiredTimeDelayNotExpired)을 보낸다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+요청한 보안 수준이 아직 활성이 아니면, Dcm은 SecurityAccess(`0x27`)의 requestSeed 요청을 받아 설정한 `Xxx_GetSeed()`를 불러 seed를 구한다. 그 수준의 requestSeed가 성공한 뒤 sendKey 요청을 받았을 때 그 보안 수준이 아직 활성이 아니면, `Xxx_CompareKey()`를 불러 키 비교 결과를 구한다. 키 비교가 실패했을 때 그 보안 수준에 들어가려다 실패한 횟수 AttemptCounter가 설정한 한도보다 작으면($\mathrm{AttemptCounter} < \mathrm{DcmDspSecurityNumAttDelay}$) NRC `0x35`(InvalidKey)를 보내고, 한도 이상이면($\mathrm{AttemptCounter} \ge \mathrm{DcmDspSecurityNumAttDelay}$) 그 보안 수준의 지연 타이머 SecurityDelayTimer를 켜고 NRC `0x36`(exceededNumberOfAttempts)을 보낸다. 두 경우 모두 Dcm의 보안 수준은 바뀌지 않는다. 지연 타이머가 도는 동안 그 보안 수준의 requestSeed 요청에는 NRC `0x37`(requiredTimeDelayNotExpired)을 보낸다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 ![[diagrams/uds-security-access-nrc.svg]]
 
@@ -102,7 +102,7 @@ Dcm은 Authentication(`0x29`)을 [[public-key-infrastructure|PKI]] 인증서 교
 
 ISO 14229-1:2026은 기본 세션과 기본이 아닌 세션을 두고, 세션마다 쓸 수 있는 서비스를 정한다.[@iso-14229-1-obp-2026]
 
-AUTOSAR Dcm은 초기화할 때 세션을 기본 세션으로 두고, 기본이 아닌 세션에서 S3Server 타이머가 만료되면 기본 세션으로 돌아간다. Dcm의 세션 형은 기본 세션이 `0x01`, 프로그래밍 세션이 `0x02`, 확장 진단 세션이 `0x03`이다. AUTOSAR R25-11의 Dcm 명세는 Concurrent TesterPresent의 목적을 기본이 아닌 세션을 유지하고 S3 타이머를 다시 시작하는 것으로 둔다. Dcm은 ISO 14229-2에 따라 프로토콜 타이밍 파라미터 P2ServerMin, P2ServerMax, P2*ServerMin, P2*ServerMax, S3Server를 다룬다. `DcmS3ServerTimeoutOverwrite`를 설정하지 않으면 S3Server 타임아웃을 5000 ms로 둔다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+AUTOSAR Dcm은 초기화할 때 세션을 기본 세션으로 두고, 기본이 아닌 세션에서 S3Server 타이머가 만료되면 기본 세션으로 돌아간다. Dcm의 세션 형은 기본 세션이 `0x01`, 프로그래밍 세션이 `0x02`, 확장 진단 세션이 `0x03`이다. AUTOSAR R25-11의 Dcm 명세는 Concurrent TesterPresent의 목적을 기본이 아닌 세션을 유지하고 S3 타이머를 다시 시작하는 것으로 둔다. Dcm은 ISO 14229-2에 따라 프로토콜 타이밍 파라미터 P2ServerMin, P2ServerMax, P2\*ServerMin, P2\*ServerMax, S3Server를 다룬다. `DcmS3ServerTimeoutOverwrite`를 설정하지 않으면 S3Server 타임아웃을 5000 ms로 둔다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 ![[diagrams/uds-diagnostic-session-states.svg]]
 

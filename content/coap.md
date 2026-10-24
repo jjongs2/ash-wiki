@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-22
 ---
 
-**CoAP**(Constrained Application Protocol)는 RFC 7252가 정하는 특수 목적의 웹 전송 프로토콜로, 제약 노드와, 저전력이고 손실이 많은 네트워크 같은 제약 네트워크에서 쓴다. 제약 노드는 흔히 ROM과 RAM이 작은 8비트 마이크로컨트롤러를 갖춘다.[@ietf-rfc-7252-2014]
+**CoAP**(Constrained Application Protocol)는 RFC 7252가 정하는 특수 목적의 웹 전송 프로토콜(web transfer protocol)로, 제약 노드와, 저전력이고 손실이 많은 네트워크 같은 제약 네트워크에서 쓴다. 제약 노드는 흔히 ROM과 RAM이 작은 8비트 마이크로컨트롤러를 갖춘다.[@ietf-rfc-7252-2014]
 
 ## 요청과 응답
 
@@ -32,6 +32,6 @@ CoAP는 보호 수단으로 [[transport-layer-security#DTLS|DTLS]] 바인딩을 
 
 ## 확장
 
-CoAP 클라이언트가 자원을 관찰(observe)하게 하는 확장은 RFC 7641이 정한다. 클라이언트는 자원의 표현을 받아 오고, 서버는 일정 기간 그 표현을 최신으로 유지해 준다.[@ietf-rfc-7641-2015]
+CoAP 클라이언트가 자원을 관찰(observe)하게 하는 확장은 RFC 7641이 정한다. 클라이언트는 자원의 표현(representation)을 받아 오고, 서버는 일정 기간 클라이언트가 받은 그 표현을 최신으로 유지해 준다.[@ietf-rfc-7641-2015]
 
 RFC 8323은 CoAP를 [[tcp|TCP]], [[transport-layer-security|TLS]], WebSocket 위에서 쓰는 데 필요한 변경을 정하고, 이 전송에서 쓰도록 RFC 7641을 갱신한다.[@ietf-rfc-8323-2018]

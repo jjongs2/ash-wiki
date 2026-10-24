@@ -46,4 +46,4 @@ Diagnostic Management는 의사 병렬 처리를 위해 Diagnostic Conversation�
 
 Diagnostic Management의 SOVD 기능에는 SOVD 게이트웨이, SOVD에서 UDS로의 변환, 백엔드 연결, 인가, proximity challenge, 로깅, bulk data, SOVD operation, 고장 처리가 있다. Diagnostic Management의 SOVD는 ASAM SOVD 1.1과 ISO 17978-3 문서를 바탕으로 한다. 보안 기능으로 Diagnostic Management는 UDS의 [[uds#보안 접근과 인증|SecurityAccess]](`0x27`)와 Authentication(`0x29`) 서비스, SOVD의 인가를 지원한다.[@autosar-ap-exp-platformdesign-2025]
 
-독점 접근에는 UDS가 extended session을, SOVD가 SOVD 잠금을 쓰고, 둘 가운데 어느 방식이든 독점 접근을 가진 클라이언트는 한 번에 하나만 허용된다. SOVD 잠금은 extended session에 있는 UDS 클라이언트가 없을 때만 얻을 수 있고, 잠금이 없는 SOVD 클라이언트는 병렬 클라이언트 처리에서 UDS 클라이언트처럼 다룬다.[@autosar-ap-sws-diagnostics-2025]
+독점 접근에는 UDS가 [[uds#진단 세션|extended session]]을, SOVD가 SOVD 잠금을 쓰고, 둘 가운데 어느 방식이든 독점 접근을 가진 클라이언트는 한 번에 하나만 허용된다. SOVD 잠금은 extended session에 있는 UDS 클라이언트가 없을 때만 얻을 수 있고, 잠금이 없는 SOVD 클라이언트는 병렬 클라이언트 처리에서 UDS 클라이언트처럼 다룬다.[@autosar-ap-sws-diagnostics-2025]

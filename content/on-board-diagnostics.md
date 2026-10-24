@@ -21,7 +21,7 @@ ISO 27145 시리즈는 OBD 관련 정보에 접근하는 단일 통신 표준이
 
 ## 고장 표시
 
-WWH-OBD에서 **MI**(malfunction indicator)는 고장(malfunction)이 나면 운전자에게 그것을 분명히 알리는 표시나 계기다. 고장은 배출가스나 OBD 시스템의 감시 능력에 미치는 영향에 따라 WWH-OBD GTR의 요구대로 class A, B1, B2, C로 나뉘고, [[uds#데이터 식별자와 고장 코드|DTC]]가 그 class를 속성으로 가진다. 두 운행 사이클 연속으로 검출되어 아직 남아 있는 DTC(confirmed and active DTC)는 class A, B1, B2이면 MI를 켜고, class C면 MI를 켜지 않는다.[@iso-27145-1-obp-2012]
+WWH-OBD에서 **MI**(malfunction indicator)는 고장(malfunction)이 나면 운전자에게 그것을 분명히 알리는 표시나 계기다. 고장은 배출가스나 OBD 시스템의 감시 능력에 미치는 영향에 따라 WWH-OBD GTR의 요구대로 class A, B1, B2, C로 나뉘고, [[uds#데이터 식별자와 고장 코드|DTC]]가 그 class를 속성으로 가진다. 연속한 두 운행 사이클에서 검출되어 아직 남아 있는 DTC(confirmed and active DTC)는 class A, B1, B2이면 MI를 켜고, class C면 MI를 켜지 않는다.[@iso-27145-1-obp-2012]
 
 ## 수리·정비 정보 접근
 
@@ -29,4 +29,4 @@ WWH-OBD에서 **MI**(malfunction indicator)는 고장(malfunction)이 나면 운
 
 ## AUTOSAR의 OBD 지원
 
-[[autosar|AUTOSAR]] R25-11의 Dcm(Diagnostic Communication Manager) 명세는 SAE J1979와 ISO 15031-5가 정한 OBD 서비스 `$01`\~`$0A`를 지원하는 수단을 Dcm에 둔다. 이 서비스로 AUTOSAR의 OBD 기능은 캘리포니아의 OBD II, 유럽과 일본의 OBD를 비롯한 세계의 경량 차량 OBD 법규를 모두 맞출 수 있다. Dcm은 OBD 프로토콜을 가장 높은 우선순위로 둔다. OBD 서비스는 법규상 인증 상태와 상관없이 늘 쓸 수 있어야 하므로, Dcm은 OBD 서비스를 인증 검사에서 뺀다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+[[autosar|AUTOSAR]] R25-11의 Dcm(Diagnostic Communication Manager) 명세는 SAE J1979와 ISO 15031-5가 정한 OBD 서비스 `$01`\~`$0A`를 지원하는 수단을 Dcm에 둔다. 이 서비스로 AUTOSAR의 OBD 기능은 캘리포니아의 OBD II, 유럽과 일본의 OBD를 비롯한 세계의 경량 차량 OBD 법규를 모두 맞출 수 있다. Dcm은 OBD 프로토콜을 가장 높은 우선순위로 둔다. OBD 서비스는 [[uds#보안 접근과 인증|인증]] 상태와 상관없이 법규상 늘 쓸 수 있어야 하므로, Dcm은 OBD 서비스를 인증 검사에서 뺀다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]

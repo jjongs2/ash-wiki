@@ -6,7 +6,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**TLS**(Transport Layer Security)는 클라이언트와 서버가 인터넷에서 도청, 변조, 메시지 위조를 막도록 설계된 방식으로 통신하게 하는 프로토콜이다. 핸드셰이크로 키 재료를 설정한 뒤 그 키로 오가는 데이터의 기밀성과 무결성을 지킨다. TLS가 아래 전송에 요구하는 것은 신뢰성 있고 순서를 지키는 데이터 스트림뿐이다.[@ietf-rfc-9846-2026] TLS는 그런 전송 채널, 대개 [[tcp|TCP]] 위에서 동작한다.[@ietf-rfc-9147-2022] RFC 9846은 TLS 1.3을 정하고, TLS 1.3을 앞서 정한 RFC 8446과 TLS 1.2를 정한 RFC 5246을 대체한다.[@ietf-rfc-9846-2026]
+**TLS**(Transport Layer Security)는 클라이언트와 서버가 인터넷에서 도청, 변조, 메시지 위조를 막도록 설계된 방식으로 통신하게 하는 프로토콜이다. 핸드셰이크로 키 재료를 설정한 뒤 그 키로 오가는 데이터의 기밀성과 무결성을 지킨다. TLS가 아래 전송에 요구하는 것은 신뢰성 있고 순서를 지키는 데이터 스트림뿐이다.[@ietf-rfc-9846-2026] TLS는 그런 전송 채널, 대개 [[tcp|TCP]] 위에서 동작한다.[@ietf-rfc-9147-2022] RFC 9846은 TLS 1.3을 정하고, 앞서 TLS 1.3을 정한 RFC 8446과, TLS 1.2를 정한 RFC 5246을 대체한다.[@ietf-rfc-9846-2026]
 
 ## 판의 이력
 
@@ -38,7 +38,7 @@ TLS 1.3의 전체 핸드셰이크에서 공유 키는 ClientHello와 ServerHello
 
 1. 클라이언트는 ClientHello에 지원하는 판, cipher suite 목록, 그리고 key_share 확장에 담은 비대칭 키 교환 값이나 pre_shared_key 확장에 담은 PSK(Pre-Shared Key) 라벨, 또는 둘 다를 넣어 보낸다.
 2. 서버는 ServerHello로 협상한 연결 매개변수를 알리고, 비대칭 키 교환을 쓰면 자기의 임시 키 교환 값을 key_share 확장에 담아 보낸다.
-3. 서버는 이어서 EncryptedExtensions, 클라이언트 인증을 원하면 CertificateRequest, [[public-key-infrastructure#공개 키 인증서|인증서]]로 인증하면 Certificate와 CertificateVerify, 그리고 Finished를 보낸다. CertificateVerify는 Certificate의 [[public-key-cryptography|공개 키]]에 대응하는 개인 키로 핸드셰이크 전체에 대한 [[digital-signature|서명]]으로, 보낸 쪽이 그 개인 키를 가졌음을 보인다.
+3. 서버는 이어서 EncryptedExtensions, 클라이언트 인증을 원하면 CertificateRequest, [[public-key-infrastructure#공개 키 인증서|인증서]]로 인증하면 Certificate와 CertificateVerify, 그리고 Finished를 보낸다. CertificateVerify는 Certificate의 [[public-key-cryptography|공개 키]]에 대응하는 개인 키로 만든, 핸드셰이크 전체에 대한 [[digital-signature|서명]]이며, 보낸 쪽이 그 개인 키를 가졌음을 보인다.
 4. 클라이언트는 서버의 CertificateVerify 서명과 Finished를 확인하고, 요청받았으면 자기 Certificate와 CertificateVerify를 보낸 뒤 Finished를 보낸다.[@ietf-rfc-9846-2026]
 
 ![[diagrams/tls-1-3-handshake.svg]]

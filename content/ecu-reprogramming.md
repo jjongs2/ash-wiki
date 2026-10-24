@@ -10,7 +10,7 @@ verified: 2026-10-03
 
 ## AUTOSAR Dcm의 부트로더 전환
 
-[[autosar|AUTOSAR]] R25-11의 Dcm(Diagnostic Communication Manager) 명세는 [[uds|UDS]]의 DiagnosticSessionControl로 요청된 세션이 [[bootloader|부트로더]] 전환을 허용하도록 설정돼 있으면(`DcmDspSessionForBoot`), Dcm이 [[basic-software-mode-manager|BswM]]에 모드 전환으로 알려 OEM 부트로더나 시스템 공급자 부트로더로 넘어갈 준비를 하게 정한다. Dcm은 하위 기능 `0x02`로 programming session을 시작하는 DiagnosticSessionControl 요청을 받으면 `Dcm_SetProgConditions`로 재프로그래밍을 요청하는 ReprogrammingRequest 플래그를 세운다. 이 명세는 Dcm을 부트로더 안에서 쓰도록 의도하지 않는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+[[autosar|AUTOSAR]] R25-11의 Dcm(Diagnostic Communication Manager) 명세는 [[uds|UDS]]의 DiagnosticSessionControl로 요청된 세션이 [[bootloader|부트로더]] 전환을 허용하도록 설정돼 있으면(`DcmDspSessionForBoot`), Dcm이 [[basic-software-mode-manager|BswM]]에 모드 전환으로 알려 OEM 부트로더나 시스템 공급자 부트로더로 넘어갈 준비를 하게 정한다. Dcm은 하위 기능 `0x02`로 [[uds#진단 세션|programming session]]을 시작하는 DiagnosticSessionControl 요청을 받으면 `Dcm_SetProgConditions`로 재프로그래밍을 요청하는 ReprogrammingRequest 플래그를 세운다. 이 명세는 Dcm을 부트로더 안에서 쓰도록 의도하지 않는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 부트로더가 애플리케이션 재프로그래밍을 마치면 ApplUpdated 플래그를 갱신한다. ECU가 리셋된 뒤 새로 프로그래밍된 애플리케이션이 처음 시작되면, Dcm은 `Dcm_GetProgConditions`로 이 플래그를 읽어 BswM에 애플리케이션이 갱신됐음을 알린다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
@@ -20,11 +20,11 @@ verified: 2026-10-03
 
 이 명세는 다운로드에 쓰는 세 서비스를 다음처럼 다룬다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
-- RequestDownload: 다운로드의 시작을 요청한다. Dcm은 데이터를 쓸 서버 메모리의 시작 주소와 압축하기 전의 크기를 콜아웃 `Dcm_ProcessRequestDownload`에 넘기고, 긍정 응답의 maxNumberOfBlockLength로 한 블록의 최대 길이를 돌려준다.
+- RequestDownload: 다운로드의 시작을 요청한다. Dcm은 데이터를 쓸 서버 메모리의 시작 주소와 압축하기 전의 크기를 [[autosar-layered-architecture#Integration Code와 callout|콜아웃]] `Dcm_ProcessRequestDownload`에 넘기고, 긍정 응답의 maxNumberOfBlockLength로 한 블록의 최대 길이를 돌려준다.
 - TransferData: 다운로드나 업로드 중에 데이터를 보낸다. Dcm은 그 앞에 RequestDownload나 RequestUpload를 받았는지 추적해 순서 오류를 검사하고, 블록 순서 계수기를 초기화한다.
 - RequestTransferExit: 다운로드나 업로드를 끝낸다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
-같은 명세는 RequestDownload의 DataFormatIdentifier에서 상위 4비트를 압축 방식, 하위 4비트를 암호화 방식으로 둔다. 각각 `0x0`은 압축하지 않음과 암호화하지 않음이고, `0x1`부터 `0xF`는 제조사가 정하는 값이다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+같은 명세는 RequestDownload의 DataFormatIdentifier에서 상위 4비트를 압축 방식, 하위 4비트를 암호화 방식으로 둔다. 압축 방식의 `0x0`은 압축하지 않음, 암호화 방식의 `0x0`은 암호화하지 않음이고, 두 방식 모두 `0x1`부터 `0xF`는 제조사가 정하는 값이다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 ## Vector Flash Bootloader의 다운로드 시퀀스
 
@@ -32,7 +32,7 @@ Vector의 Flash Bootloader 기술 문서가 정한 UDS 다운로드 시퀀스에
 
 이 시퀀스의 단계 가운데 다음 셋은 이렇게 동작한다.[@vector-fbl-oem-download-sequence-2024]
 
-- SecurityAccess: 이 부트로더에서 ECU에 데이터를 쓰는 서비스처럼 일부 서비스의 접근을 제한한다. 테스터는 seed를 요청한 뒤, 자기가 계산한 key를 보낸다.
+- SecurityAccess: 이 부트로더에서 ECU에 데이터를 쓰는 서비스 같은 일부 서비스의 접근을 제한한다. 테스터는 seed를 요청한 뒤, 자기가 계산한 key를 보낸다.
 - 메모리 지우기: RoutineControl로 루틴 식별자 `0xFF00`(Erase Memory)을 시작하며, 지울 메모리 주소와 길이를 함께 보낸다.
 - 검사: 루틴 `0x0202`는 [[checksum|체크섬]] 계산이나 [[digital-signature|서명]] 검증으로 내려받은 데이터의 무결성을 확인하고, 루틴 `0xFF01`은 프로그래밍 의존성을 확인한다.[@vector-fbl-oem-download-sequence-2024]
 
@@ -50,6 +50,8 @@ AUTOSAR R25-11의 [[autosar-update-and-configuration-management|UCM]] 명세에�
 
 ![[diagrams/autosar-v-ucm-update-targets.svg]]
 
-Flashing Adapter는 업데이트 중 타임아웃 문제를 피하도록 Classic Platform ECU를 알맞은 업데이트 모드로 넣는 로직을 담는다. Flashing Adapter에서 대상 ECU로 가는 진단 통신의 데이터 전송은 우선순위가 더 높은 프로토콜의 통신이 끼면 끊길 수 있고, 그러면 Flashing Adapter는 프로젝트마다 정한 전략으로 끊김을 감지해 전송을 처음부터 다시 할 수 있다. 진단 애플리케이션은 UCM 클라이언트로서 V-UCM 없이 [[autosar-adaptive-platform|Adaptive Platform]]의 ECU나 Machine 하나를 업데이트하고, V-UCM 클라이언트로서는 차량 업데이트의 일부로 Adaptive, Classic, 독자 플랫폼의 어느 ECU든 업데이트한다. V-UCM 클라이언트일 때 진단 애플리케이션은 OTA Client처럼 V-UCM의 서비스로 Vehicle Package와 Software Package를 넘긴다. 대상 ECU가 지금의 [[autosar-software-cluster#Adaptive Platform의 Software Cluster와의 차이|Software Cluster]]와 새 Software Cluster 사이를 전환할 수 없으면, 새 버전에서 옛 버전으로 롤백할 수 있도록 캠페인이 새 버전과 함께 지금 설치된 버전도 내려받게 하는 것이 권고된다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
+Flashing Adapter는 업데이트 중 타임아웃 문제를 피하도록 Classic Platform ECU를 알맞은 업데이트 모드로 넣는 로직을 담는다. Flashing Adapter에서 대상 ECU로 가는 진단 통신의 데이터 전송은 우선순위가 더 높은 프로토콜의 통신이 끼면 끊길 수 있고, 그러면 Flashing Adapter는 프로젝트마다 정한 전략으로 끊김을 감지해 전송을 처음부터 다시 할 수 있다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
+
+진단 애플리케이션은 UCM 클라이언트로서 V-UCM 없이 [[autosar-adaptive-platform|Adaptive Platform]]의 ECU나 [[autosar-adaptive-platform#Machine과 프로세스|Machine]] 하나를 업데이트하고, V-UCM 클라이언트로서는 차량 업데이트의 일부로 Adaptive, Classic, 독자 플랫폼의 어느 ECU든 업데이트한다. V-UCM 클라이언트일 때 진단 애플리케이션은 OTA Client처럼 V-UCM의 서비스로 [[autosar-update-and-configuration-management#패키지|Vehicle Package]]와 [[autosar-update-and-configuration-management#패키지|Software Package]]를 넘긴다. 대상 ECU가 지금의 [[autosar-software-cluster#Adaptive Platform의 Software Cluster와의 차이|Software Cluster]]와 새 Software Cluster 사이를 전환할 수 없으면, 새 버전에서 옛 버전으로 롤백할 수 있도록 캠페인이 새 버전과 함께 지금 설치된 버전도 내려받게 하는 것이 권고된다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
 
 NHTSA의 2022년 모범 사례는 차량과 진단 도구의 제조사가 진단과 재프로그래밍을 할 수 있는 도구의 차량 시스템 접근을 인증과 접근 제어로 통제하기를 권한다. 자동차 제조사에는 펌웨어를 고치는 능력을 인가되고 알맞게 인증된 당사자로 제한하는 최신 기법을 쓰기를 권한다.[@nhtsa-cybersecurity-best-practices-2022]

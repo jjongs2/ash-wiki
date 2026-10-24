@@ -21,13 +21,13 @@ ISO 17458 시리즈는 아래 다섯 부로 이뤄진다.[@iso-17458-1-obp-2013]
 | ISO 17458-4 | 전기 물리 계층               |
 | ISO 17458-5 | 전기 물리 계층 적합성 시험   |
 
-[[osi-model|OSI 참조 모델]]의 1·2계층은 FlexRay 통신 시스템과 제조사 확장 진단(vehicle manufacturer enhanced diagnostics)이 함께 쓰는 ISO 17458-2\~5가 맡고, 3\~7계층은 두 쪽이 다르다. FlexRay 통신 시스템에서는 3\~7계층이 모두 제조사별이다. 제조사 확장 진단에서는 3·4계층에 ISO 10681-2를, 5계층에 ISO 14229-2를, 7계층에 [[iso-14229-1|ISO 14229-1]]과 ISO 14229-4를 쓰고, 6계층은 제조사별이다. ISO 14229의 이 부들은 [[uds|UDS]]를 다룬다.[@iso-17458-1-obp-2013]
+[[osi-model|OSI 참조 모델]]의 1·2계층은 FlexRay 통신 시스템과 제조사 확장 진단(vehicle manufacturer enhanced diagnostics)이 함께 쓰는 ISO 17458의 2\~5부가 맡고, 3\~7계층은 두 쪽이 다르다. FlexRay 통신 시스템에서는 3\~7계층이 모두 제조사별이다. 제조사 확장 진단에서는 3·4계층에 ISO 10681-2를, 5계층에 ISO 14229-2를, 7계층에 [[iso-14229-1|ISO 14229-1]]과 ISO 14229-4를 쓰고, 6계층은 제조사별이다. ISO 14229의 이 부들은 [[uds|UDS]]를 다룬다.[@iso-17458-1-obp-2013]
 
 ![[diagrams/flexray-osi-layers.svg]]
 
 ## 통신 사이클
 
-FlexRay는 통신 사이클을 주기적으로 되풀이한다. 사이클은 정적 세그먼트, 선택 사항인 동적 세그먼트와 심볼 윈도, 네트워크 idle 시간으로 이뤄진다.[@iso-17458-1-obp-2013] 정적 슬롯마다 그 슬롯을 쓸 노드가 배정된다.[@iso-17458-2-obp-2013] NXP 앱노트에 따르면 FlexRay의 정적 세그먼트는 버스 접근에 TDMA(Time Division Multiple Access)를 쓰고, 동적 세그먼트는 FTDMA(Flexible TDMA)를 쓴다.[@nxp-an12233-2021] TDMA는 [[bus-access-method#시분할|버스 접근 방식]]에서 다룬다.
+FlexRay는 통신 사이클을 주기적으로 되풀이한다. 사이클은 정적 세그먼트, 동적 세그먼트, 심볼 윈도, 네트워크 idle 시간으로 이뤄지고, 동적 세그먼트와 심볼 윈도는 선택 사항이다.[@iso-17458-1-obp-2013] 정적 슬롯마다 그 슬롯을 쓸 노드가 배정된다.[@iso-17458-2-obp-2013] NXP 앱노트에 따르면 FlexRay의 정적 세그먼트는 버스 접근에 TDMA(Time Division Multiple Access)를 쓰고, 동적 세그먼트는 FTDMA(Flexible TDMA)를 쓴다.[@nxp-an12233-2021] TDMA는 [[bus-access-method#시분할|버스 접근 방식]]에서 다룬다.
 
 ![[diagrams/flexray-communication-cycle.svg]]
 
@@ -45,7 +45,7 @@ FlexRay는 동기 전송에서 프레임 지연과 지터를 보장한다. 정�
 
 ## 채널
 
-FlexRay 통신 컨트롤러 하나는 두 채널(채널 A, 채널 B)로 데이터 프레임을 서로 독립적으로 보낼 수 있다.[@iso-17458-1-obp-2013] 클러스터는 단일 채널이나 이중 채널로 구성해 [[fault-tolerance|결함 허용]] 수준을 달리할 수 있다.[@iso-17458-2-obp-2013] Freescale 브로셔에 따르면 FlexRay의 이중 채널 구조는 시스템 전체에 중복성을 주어, brake-by-wire 같은 안전 시스템의 신뢰성 요구를 맞춘다.[@freescale-brinvehiclenet-2006]
+FlexRay 통신 컨트롤러 하나는 두 채널(채널 A, 채널 B)로 데이터 프레임을 서로 독립적으로 보낼 수 있다.[@iso-17458-1-obp-2013] [[vehicle-bus#토폴로지|클러스터]]는 단일 채널이나 이중 채널로 구성해 [[fault-tolerance|결함 허용]] 수준을 달리할 수 있다.[@iso-17458-2-obp-2013] Freescale 브로셔에 따르면 FlexRay의 이중 채널 구조는 시스템 전체에 중복성을 주어, brake-by-wire 같은 안전 시스템의 신뢰성 요구를 맞춘다.[@freescale-brinvehiclenet-2006]
 
 FlexRay 버스는 두 선 사이에 [[differential-signaling|차동 전압]]을 걸어 신호를 보낸다. 버스 드라이버의 두 핀 BP(Bus Plus)와 BM(Bus Minus) 사이의 차동 전압 $u_\mathrm{BP} - u_\mathrm{BM}$이 버스 상태(idle, Data_0, Data_1)를 나타낸다. 예를 들어 버스 상태가 idle이면 차동 전압은 약 0 V이고, 통신 중(activity)이면 약 ±600 mV\~±1000 mV다.[@iso-17458-4-obp-2013]
 

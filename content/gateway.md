@@ -19,17 +19,17 @@ NXP는 여러 차량 네트워크를 한데 잇는 중앙 허브 게이트웨이
 
 ## PDU 게이트웨이
 
-[[autosar|AUTOSAR]]의 [[pdu-router|PDU Router]]는 I-PDU(Interaction Layer Protocol Data Unit)를 라우팅한다. 통신 인터페이스 모듈로 받은 I-PDU는 같은 통신 인터페이스 모듈이나 다른 통신 인터페이스 모듈로 곧바로 보내고, TP(Transport Protocol) 모듈로 받은 I-PDU도 같은 TP 모듈이나 다른 TP 모듈로 보낸다. 라우팅은 I-PDU를 고치지 않으며, 명세는 이 동작을 PDU(Protocol Data Unit) Gateway라 부른다. PDU Router는 받은 I-PDU 하나를 여러 목적지로 한꺼번에 보낼 수 있다(1:n). 1:1과 n:1도 지원하지만 n:m은 지원하지 않는다. 통신 인터페이스 모듈 사이에서 주기나 rate가 다른 I-PDU를 라우팅하는 rate conversion은 PDU Router가 지원하지 않는다. 이때는 I-PDU를 [[autosar-com|AUTOSAR COM]]으로 보내 시그널 게이트웨이로 처리한다.[@autosar-cp-sws-pdurouter-2025]
+[[autosar|AUTOSAR]]의 [[pdu-router|PDU Router]]는 I-PDU(Interaction Layer Protocol Data Unit)를 라우팅한다. [[pdu-router#상위 모듈과 하위 모듈|통신 인터페이스 모듈]]로 받은 I-PDU는 같은 통신 인터페이스 모듈이나 다른 통신 인터페이스 모듈로 곧바로 보내고, TP(Transport Protocol) 모듈로 받은 I-PDU도 같은 TP 모듈이나 다른 TP 모듈로 보낸다. 라우팅은 I-PDU를 고치지 않으며, 명세는 이 동작을 PDU(Protocol Data Unit) Gateway라 부른다. PDU Router는 받은 I-PDU 하나를 여러 목적지로 한꺼번에 보낼 수 있다(1:n). 1:1과 n:1도 지원하지만 n:m은 지원하지 않는다. 통신 인터페이스 모듈 사이에서 주기나 rate가 다른 I-PDU를 라우팅하는 rate conversion은 PDU Router가 지원하지 않는다. 이때는 I-PDU를 [[autosar-com|AUTOSAR COM]]으로 보내 시그널 게이트웨이로 처리한다.[@autosar-cp-sws-pdurouter-2025]
 
 ## 시그널 게이트웨이
 
-AUTOSAR COM은 받은 I-PDU의 [[signal-based-communication|시그널]]과 그룹 시그널을 송신할 I-PDU로 옮기는 시그널 게이트웨이를 둔다. 옮길 관계는 `ComGwMapping`으로 정적으로 설정하고, 라우팅하는 시그널의 값은 설정에 따라 송신할 시그널로 복사한다.[@autosar-cp-sws-com-2025] 게이트웨이 요구사항은 시그널 게이트웨이가 COM의 packing·unpacking과 타임아웃 처리 메커니즘을 쓰고, 개별 시그널을 I-PDU 사이에서 1:n으로 라우팅하도록 요구한다. 받은 시그널은 여러 버스로 보낼 수 있다.[@autosar-cp-rs-gateway-2025]
+AUTOSAR COM은 받은 I-PDU의 [[signal-based-communication|시그널]]과 [[autosar-com#시그널과 I-PDU|그룹 시그널]]을 송신할 I-PDU로 옮기는 시그널 게이트웨이를 둔다. 옮길 관계는 `ComGwMapping`으로 정적으로 설정하고, 라우팅하는 시그널의 값은 설정에 따라 송신할 시그널로 복사한다.[@autosar-cp-sws-com-2025] 게이트웨이 요구사항은 시그널 게이트웨이가 COM의 packing·unpacking과 타임아웃 처리 메커니즘을 쓰고, 개별 시그널을 I-PDU 사이에서 1:n으로 라우팅하도록 요구한다. 받은 시그널은 여러 버스로 보낼 수 있다.[@autosar-cp-rs-gateway-2025]
 
 ![[diagrams/pdu-signal-gateway.svg]]
 
 이 명세는 시그널 라우팅의 쓰임새로 세 가지를 든다. 여러 ECU의 시그널을 모아 한 ECU가 받는 I-PDU 수를 줄이는 일, 게이트웨이가 보내는 I-PDU 수를 줄이는 일, 이어진 버스들의 페이로드 길이 차이에 맞추는 일이다.[@autosar-cp-rs-gateway-2025]
 
-시그널 게이트웨이는 라우팅할 시그널의 [[autosar-com#수신 notification과 감시|데드라인 감시]] 타임아웃을 무시한다. 소스 버스에서 메시지가 빠진 것을 게이트웨이 뒤의 ECU가 알아챌 수 있도록, 데드라인 감시할 송신 시그널 가운데 n-times나 direct 송신이 아닌 것에만 update bit를 둔다. 타임아웃 동안 갱신되지 않은 update bit는 지워진 채로 남고, 받는 노드는 데드라인 감시로 타임아웃을 응용에 알린다.[@autosar-cp-rs-gateway-2025]
+시그널 게이트웨이는 라우팅할 시그널의 [[autosar-com#수신 notification과 감시|데드라인 감시]] 타임아웃을 무시한다. 소스 버스에서 메시지가 빠진 것을 게이트웨이 뒤의 ECU가 알아챌 수 있도록, 데드라인 감시할 송신 시그널 가운데 [[autosar-com#전송 속성과 전송 모드|n-times나 direct 송신]]이 아닌 것에만 update bit를 둔다. 타임아웃 동안 갱신되지 않은 update bit는 지워진 채로 남고, 받는 노드는 데드라인 감시로 타임아웃을 응용에 알린다.[@autosar-cp-rs-gateway-2025]
 
 ## AUTOSAR 게이트웨이의 라우팅 규칙
 
