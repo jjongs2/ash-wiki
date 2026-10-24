@@ -1,6 +1,6 @@
 # 이슈 트래커: GitHub
 
-이 저장소의 이슈와 명세(spec)는 GitHub Issues에서 관리한다. 모든 작업에는 `gh` CLI를 사용한다.
+이 저장소의 이슈와 명세는 GitHub Issues에서 관리한다. 모든 작업에는 `gh` CLI를 사용한다.
 
 ## 기본 사용법
 
