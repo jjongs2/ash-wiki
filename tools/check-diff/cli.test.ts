@@ -388,10 +388,10 @@ describe("check-diff CLI", { concurrency: false }, () => {
 
   test("약어: 소개하는 조직 약어의 첫 자리에 괄호 소개도 링크도 없으면 찍는다", () => {
     const lines = report.items.get("abbreviation") ?? []
-    for (const name of ["CISA", "WP.29", "CCSDS", "ITU-T", "EIA"]) {
+    for (const name of ["CISA", "WP.29", "CCSDS", "MIPI", "EIA"]) {
       assert.ok(has(lines, "content/organizations.md:", `소개가 없다: ${name}`), name)
     }
-    for (const name of ["MITRE", "Auto-ISAC", "VDA QMC", "VDA", "HIS", "CISPR", "CCITT", "TIA"]) {
+    for (const name of ["MITRE", "Auto-ISAC", "HIS", "CISPR", "CCITT", "TIA", "AUMOVIO", "CCRA"]) {
       assert.ok(!has(lines, `소개가 없다: ${name}`), `소개했거나 세지 않는 자리: ${name}`)
     }
     for (const name of ["ISO", "NIST"]) {
