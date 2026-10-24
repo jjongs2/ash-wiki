@@ -1,6 +1,6 @@
 # 이슈 트래커: GitHub
 
-이 저장소의 이슈와 명세(spec)는 GitHub Issues에서 관리한다. 모든 작업에는 `gh` CLI를 사용한다.
+이 저장소의 이슈와 명세는 GitHub Issues에서 관리한다. 모든 작업에는 `gh` CLI를 사용한다.
 
 ## 기본 사용법
 
@@ -29,10 +29,10 @@ GitHub의 기본 issue dependencies 기능을 사용한다. UI에서도 보인�
 
 GitHub에서는 이슈와 PR이 번호를 함께 쓰므로 `#42`만으로는 어느 쪽인지 알 수 없다. 먼저 `gh pr view 42`로 확인하고, 없으면 `gh issue view 42`로 찾는다.
 
-## Skill이 "publish to the issue tracker"라고 할 때
+## 스킬이 "publish to the issue tracker"라고 할 때
 
 GitHub 이슈를 생성한다.
 
-## Skill이 "fetch the relevant ticket"이라고 할 때
+## 스킬이 "fetch the relevant ticket"이라고 할 때
 
 [이슈 읽기](#기본-사용법)의 명령을 실행한다.

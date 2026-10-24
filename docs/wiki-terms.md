@@ -27,7 +27,7 @@
 - content addressing: 통일하지 않음 (#441). 인용한 출처의 이름대로. CiA의 content addressing은 "내용 주소 지정", Bosch의 content based addressing은 "내용 기반 주소 지정". node addressing도 CiA는 "노드 주소 지정", Bosch는 "노드 기반 주소 지정"
 - context: 문맥 (#142)
 - context switch: 문맥 전환 (#142)
-- counter: 카운터 (#257). OSEK·AUTOSAR OS 객체일 때. 다른 counter는 이 결정에 들지 않음
+- counter: 카운터 (#257). OSEK·AUTOSAR OS 객체일 때. 다른 counter는 이 결정에 들지 않는다.
 - Cyber Resilience Act: EU 사이버 회복력법 (#438)
 - cybersecurity goal: 사이버보안 목표 (#288)
 - data-based, behavior-based, rule-based: 데이터 기반 (#385). CTAL-TA 강의계획서의 블랙박스 기법 세 갈래일 때. "데이터 기반 테스트"는 data-driven testing
@@ -50,7 +50,7 @@
 - OOPSLA 풀이 Object-Oriented Programming, Systems, Languages, and Applications: Object-Oriented Programming, Systems, Languages & Applications (#291)
 - OSEK OS: OSEK/VDX OS (#257). OS를 가리킬 때. 명세를 가리키는 "OSEK/VDX OS"는 그대로. 예: "OSEK/VDX OS 2.2.3 명세"
 - PKI: 공개 키 기반 구조 (#498). 제목과 본문은 약어, 한국어 이름은 `public-key-infrastructure`의 alias로만
-- prototyping: 프로토타이핑 (#291). prototype도 같다. AUTOSAR의 prototype은 이 결정에 들지 않음
+- prototyping: 프로토타이핑 (#291). prototype도 같다. AUTOSAR의 prototype은 이 결정에 들지 않는다.
 - PWM 풀이: 통일하지 않음 (#441). 인용한 출처의 풀이대로. AUTOSAR 명세를 인용하면 Pulse Width Modulation, ISO 11898-1을 인용하면 Pulse-Width Modulation
 - recessive: 리세시브 (#165). 조사는 원어의 발음대로. 예: "recessive이고"
 - Reed-Solomon: Reed–Solomon (#498)
@@ -88,11 +88,11 @@
 - 비밀 키: 비밀키 (#288)
 - 사용자 스토리: user story (#394). 합성어 포함. 예: 사용자 스토리 매핑
 - 사이버보안 속성: cybersecurity property (#252)
-- 사전 등록(备案): 备案 (#432). 원문의 간체를 쓴다
+- 사전 등록(备案): 备案 (#432). 원문의 간체를 쓴다.
 - 생명주기: 수명주기 (#288)
 - 서명 키: 서명키 (#288)
 - 소스: 원천 (#346). 신호나 사건을 내는 하드웨어·기능일 때. 예: 인터럽트 소스, 클록 소스, 트리거 소스. 802.1AS의 timing source는 원어로. 기원을 뜻하는 일반 낱말 "원천"(원천 문서, 원천 모델)과 검증 자료인 "출처"는 그대로
-- 송신 정지: 서스펜드 트랜스미션 (#68). 원어는 병기하지 않음
+- 송신 정지: 서스펜드 트랜스미션 (#68). 원어는 병기하지 않는다.
 - 신뢰성 성장 모델: 신뢰도 성장 모델 (#385)
 - 실수: 오류 (#291). ISTQB의 error(사람의 실수)일 때. 기법 이름 "오류 추정"과 일반적인 error는 "오류"
 - 안전 메커니즘: 안전 기제 (#223)
@@ -119,7 +119,7 @@
 - 트랜시버 지연 보상: 송신 지연 보상 (#311). 약어와 함께 쓰면 `트랜시버 지연 보상(TDC, Transceiver Delay Compensation)`
 - 특별특성: special characteristics (#394). 처음 쓸 때 "특별특성(special characteristics)". ASPICE 정보 항목 이름 17-57(Special characteristics)은 그대로
 - 특정개조 등: 特定改造等 (#432). 처음 쓸 때 원어를 병기
-- 프레임 간 공간: 인터프레임 공간 (#68). 원어는 병기하지 않음
+- 프레임 간 공간: 인터프레임 공간 (#68). 원어는 병기하지 않는다.
 - 플래시: Flash (#257). 일반 낱말일 때. 모듈과 구성 요소의 이름(Fls(Flash Driver), Flash EEPROM Emulation, Flashing Adapter)은 예외
 - 하위 호환: 역호환 (#257)
 - 행위 주도 개발: 행동 주도 개발 (#385)
