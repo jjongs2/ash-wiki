@@ -15,7 +15,7 @@ CAN에서는 노드를 더해도 어느 노드의 소프트웨어나 하드웨�
 
 ## 필터링
 
-STM32F10x의 bxCAN은 하드웨어 필터로 소프트웨어에 필요한 식별자의 메시지만 받아들이고, 나머지는 소프트웨어가 관여하지 않고 버린다.[@st-rm0008-2021] 이 기능은 [[acceptance-filter|수용 필터]]에서 다룬다.
+STM32F10x의 [[can#노드 구성|bxCAN]]은 하드웨어 필터로 소프트웨어에 필요한 식별자의 메시지만 받아들이고, 나머지는 소프트웨어가 관여하지 않고 버린다.[@st-rm0008-2021] 이 기능은 [[acceptance-filter|수용 필터]]에서 다룬다.
 
 ![[diagrams/can-broadcast-identifier-filter.svg]]
 
@@ -29,4 +29,4 @@ STM32F107의 [[ethernet|이더넷]] MAC(Medium Access Control)이 다루는 프�
 
 STM32F107의 이더넷 MAC에서 목적지 주소가 그룹 주소인 프레임은 여러 스테이션이나 LAN의 모든 스테이션을 가리킨다.[@st-rm0008-2021]
 
-CAN 위의 전송 프로토콜인 [[iso-15765-2|ISO 15765-2]]:2024는 네트워크 계층 PDU(Protocol Data Unit)의 파라미터를 [[can-frame|CAN 프레임]]에 대응시키는 주소 지정 형식으로 normal addressing, normal fixed addressing, extended addressing, mixed addressing을 둔다.[@iso-15765-2-obp-2024] [[autosar|AUTOSAR]]의 CanTp는 1대1 통신에 물리 주소 지정을 쓰고, normal addressing 형식에서는 출발지 주소 N_SA, 목적지 주소 N_TA, 주소 종류, 메시지 종류의 조합마다 CAN 식별자를 하나씩 배정한다. extended addressing 형식은 N_SA와 메시지 종류의 조합마다 CAN 식별자를 하나씩 배정하고, N_TA는 CAN 프레임 데이터 필드의 첫 바이트에 싣는다. mixed addressing 형식은 N_SA, N_TA, 주소 종류의 조합마다 CAN 식별자를 하나씩 배정하고, 주소 확장 N_AE를 데이터 필드의 첫 바이트에 싣는다.[@autosar-cp-sws-cantransportlayer-2025]
+CAN 위의 전송 프로토콜인 [[iso-15765-2|ISO 15765-2]]:2024는 네트워크 계층 PDU(Protocol Data Unit)의 파라미터를 [[can-frame|CAN 프레임]]에 대응시키는 주소 지정 형식으로 normal addressing, normal fixed addressing, extended addressing, mixed addressing을 둔다.[@iso-15765-2-obp-2024] [[autosar|AUTOSAR]]의 [[autosar-can-stack|CanTp]]는 1대1 통신에 물리 주소 지정을 쓰고, normal addressing 형식에서는 출발지 주소 N_SA, 목적지 주소 N_TA, 주소 종류, 메시지 종류의 조합마다 CAN 식별자를 하나씩 배정한다. extended addressing 형식은 N_SA와 메시지 종류의 조합마다 CAN 식별자를 하나씩 배정하고, N_TA는 CAN 프레임 데이터 필드의 첫 바이트에 싣는다. mixed addressing 형식은 N_SA, N_TA, 주소 종류의 조합마다 CAN 식별자를 하나씩 배정하고, 주소 확장 N_AE를 데이터 필드의 첫 바이트에 싣는다.[@autosar-cp-sws-cantransportlayer-2025]

@@ -1,16 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -5.5 844 138.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -5.5 452 242.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
-  <!-- 구간과 비트율 -->
+  <!-- 구간과 비트율: 데이터 구간은 첫 줄 끝에서 둘째 줄로 이어진다 -->
   <path d="M20 46 V40 H178 V46" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="99" y="16" text-anchor="middle" font-size="12" fill="var(--text, #727981)">중재 구간</text>
   <text x="99" y="31" text-anchor="middle" font-size="11" fill="var(--text, #727981)">1 Mbit/s 이하</text>
-  <path d="M178 46 V40 H722 V46" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <text x="450" y="16" text-anchor="middle" font-size="12" fill="var(--text, #727981)">데이터 구간</text>
-  <text x="450" y="31" text-anchor="middle" font-size="11" fill="var(--text, #727981)">20 Mbit/s까지</text>
-  <path d="M722 46 V40 H824 V46" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <text x="773" y="16" text-anchor="middle" font-size="12" fill="var(--text, #727981)">중재 구간</text>
-  <text x="773" y="31" text-anchor="middle" font-size="11" fill="var(--text, #727981)">1 Mbit/s 이하</text>
-  <!-- 필드 -->
+  <path d="M178 46 V40 H408" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="293" y="16" text-anchor="middle" font-size="12" fill="var(--text, #727981)">데이터 구간</text>
+  <text x="293" y="31" text-anchor="middle" font-size="11" fill="var(--text, #727981)">20 Mbit/s까지</text>
+  <!-- 필드: 첫 줄 -->
   <rect x="20.75" y="52.75" width="70.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="56" y="71" text-anchor="middle" font-size="12" fill="var(--text, #727981)">우선순위 ID</text>
   <text x="56" y="86" text-anchor="middle" font-size="11" fill="var(--text, #727981)">11비트</text>
@@ -32,26 +29,33 @@
   <rect x="364.75" y="52.75" width="42.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="386" y="71" text-anchor="middle" font-size="12" fill="var(--text, #727981)">PCRC</text>
   <text x="386" y="86" text-anchor="middle" font-size="11" fill="var(--text, #727981)">13비트</text>
-  <rect x="412.75" y="52.75" width="42.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="434" y="71" text-anchor="middle" font-size="12" fill="var(--text, #727981)">VCID</text>
-  <text x="434" y="86" text-anchor="middle" font-size="11" fill="var(--text, #727981)">8비트</text>
-  <rect x="460.75" y="52.75" width="46.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="484" y="71" text-anchor="middle" font-size="12" fill="var(--text, #727981)">AF</text>
-  <text x="484" y="86" text-anchor="middle" font-size="11" fill="var(--text, #727981)">32비트</text>
-  <rect x="512.75" y="52.75" width="98.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="562" y="71" text-anchor="middle" font-size="12" fill="var(--text, #727981)">데이터</text>
-  <text x="562" y="86" text-anchor="middle" font-size="11" fill="var(--text, #727981)">1~2048바이트</text>
-  <rect x="616.75" y="52.75" width="42.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="638" y="71" text-anchor="middle" font-size="12" fill="var(--text, #727981)">FCRC</text>
-  <text x="638" y="86" text-anchor="middle" font-size="11" fill="var(--text, #727981)">32비트</text>
-  <rect x="664.75" y="52.75" width="34.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="682" y="77" text-anchor="middle" font-size="12" fill="var(--text, #727981)">FCP</text>
-  <rect x="704.75" y="52.75" width="34.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="722" y="77" text-anchor="middle" font-size="12" fill="var(--text, #727981)">DAS</text>
-  <rect x="744.75" y="52.75" width="34.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="762" y="77" text-anchor="middle" font-size="12" fill="var(--text, #727981)">ACK</text>
-  <rect x="784.75" y="52.75" width="38.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="804" y="77" text-anchor="middle" font-size="12" fill="var(--text, #727981)">EOF</text>
+  <path d="M20 144 H330 V150" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="175" y="120" text-anchor="middle" font-size="12" fill="var(--text, #727981)">데이터 구간</text>
+  <text x="175" y="135" text-anchor="middle" font-size="11" fill="var(--text, #727981)">20 Mbit/s까지</text>
+  <path d="M330 150 V144 H432 V150" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="381" y="120" text-anchor="middle" font-size="12" fill="var(--text, #727981)">중재 구간</text>
+  <text x="381" y="135" text-anchor="middle" font-size="11" fill="var(--text, #727981)">1 Mbit/s 이하</text>
+  <!-- 필드: 둘째 줄 -->
+  <rect x="20.75" y="156.75" width="42.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="42" y="175" text-anchor="middle" font-size="12" fill="var(--text, #727981)">VCID</text>
+  <text x="42" y="190" text-anchor="middle" font-size="11" fill="var(--text, #727981)">8비트</text>
+  <rect x="68.75" y="156.75" width="46.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="92" y="175" text-anchor="middle" font-size="12" fill="var(--text, #727981)">AF</text>
+  <text x="92" y="190" text-anchor="middle" font-size="11" fill="var(--text, #727981)">32비트</text>
+  <rect x="120.75" y="156.75" width="98.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="170" y="175" text-anchor="middle" font-size="12" fill="var(--text, #727981)">데이터</text>
+  <text x="170" y="190" text-anchor="middle" font-size="11" fill="var(--text, #727981)">1~2048바이트</text>
+  <rect x="224.75" y="156.75" width="42.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="246" y="175" text-anchor="middle" font-size="12" fill="var(--text, #727981)">FCRC</text>
+  <text x="246" y="190" text-anchor="middle" font-size="11" fill="var(--text, #727981)">32비트</text>
+  <rect x="272.75" y="156.75" width="34.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="290" y="181" text-anchor="middle" font-size="12" fill="var(--text, #727981)">FCP</text>
+  <rect x="312.75" y="156.75" width="34.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="330" y="181" text-anchor="middle" font-size="12" fill="var(--text, #727981)">DAS</text>
+  <rect x="352.75" y="156.75" width="34.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="370" y="181" text-anchor="middle" font-size="12" fill="var(--text, #727981)">ACK</text>
+  <rect x="392.75" y="156.75" width="38.5" height="40.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="412" y="181" text-anchor="middle" font-size="12" fill="var(--text, #727981)">EOF</text>
   <!-- 범례 -->
-  <text x="20" y="120" font-size="12" fill="var(--text, #727981)">Bosch CAN XL 개요의 필드 순서. ADS와 DAS에서 비트율을 바꾼다.</text>
+  <text x="20" y="224" font-size="12" fill="var(--text, #727981)">Bosch CAN XL 개요의 필드 순서. ADS와 DAS에서 비트율을 바꾼다.</text>
 </svg>

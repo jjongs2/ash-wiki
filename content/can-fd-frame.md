@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-27
 ---
 
-**CAN FD 프레임**은 [[can-fd|CAN FD]] 포맷(FD format)으로 보내는 [[can-frame|CAN 프레임]]이다. [[can-identifier|식별자]]가 11비트인 기본 포맷과 29비트인 확장 포맷이 있다.[@iso-11898-1-obp-2024] 데이터 필드는 최대 64바이트이고, [[can-arbitration|중재]]가 끝난 뒤 데이터 구간의 비트율을 중재 구간보다 높일 수 있다. CAN FD 포맷에는 데이터 프레임만 있고 [[remote-frame|리모트 프레임]]은 없다.[@iso-11898-1-obp-2024][@bosch-can-fd-1-0-2012]
+**CAN FD 프레임**은 [[can-fd|CAN FD]] 포맷(FD format)으로 보내는 [[can-frame|CAN 프레임]]이다. [[can-identifier|식별자]]가 11비트인 기본 포맷과 29비트인 확장 포맷이 있다.[@iso-11898-1-obp-2024] 데이터 필드는 최대 64바이트이고, [[can-arbitration|중재]]가 끝난 뒤 [[can-fd#두 비트율|데이터 구간]]의 비트율을 중재 구간보다 높일 수 있다. CAN FD 포맷에는 데이터 프레임만 있고 [[remote-frame|리모트 프레임]]은 없다.[@iso-11898-1-obp-2024][@bosch-can-fd-1-0-2012]
 
 ## 포맷 표시 비트
 
@@ -17,7 +17,7 @@ ISO 11898-1:2024는 classic 포맷만 지원하면서 CAN FD 포맷을 주고받
 
 CAN FD 포맷 프레임에서 classical 포맷의 RTR(Remote Transmission Request) 자리에는 늘 dominant로 보내는 예약 비트 r1이 온다. 기본 포맷의 제어 필드는 IDE(Identifier Extension), EDL, dominant 예약 비트 r0, BRS(Bit Rate Switch), ESI(Error State Indicator), [[data-length-code|DLC]] 4비트 순이다.[@bosch-can-fd-1-0-2012] ISO 11898-1:2015를 따르는 CAN FD 컨트롤러 매뉴얼은 r1 자리의 비트를 RRS(Remote Request Substitution)라 부른다.[@bosch-m-can-2023][@microchip-mcp25xxfd-frm-2020]
 
-- BRS: recessive이면 BRS 비트의 샘플 포인트 직후 데이터 구간의 비트율로 바꾸고, dominant이면 바꾸지 않는다.
+- BRS: recessive이면 BRS 비트의 [[can-bit-timing#샘플 포인트|샘플 포인트]] 직후 데이터 구간의 비트율로 바꾸고, dominant이면 바꾸지 않는다.
 - ESI: 송신 노드가 [[can-fault-confinement|error active]]이면 dominant, error passive이면 recessive다.[@bosch-can-fd-1-0-2012]
 
 ![[diagrams/can-fd-base-format-control-bits.svg]]
@@ -32,7 +32,7 @@ Bosch CAN FD 1.0은 [[can-crc|CRC]] 시퀀스를 데이터 필드의 바이트 �
 
 ![[diagrams/can-fd-crc-fixed-stuff-bits.svg]]
 
-ISO CRC 모드의 CRC 필드에 더해지는 stuff bit count는 [[can-bit-stuffing#CAN FD 프레임과의 차이|CAN 비트 스터핑]]에서 다룬다.
+[[iso-11898-1#Bosch CAN FD와의 차이|ISO CRC 모드]]의 CRC 필드에 더해지는 stuff bit count는 [[can-bit-stuffing#CAN FD 프레임과의 차이|CAN 비트 스터핑]]에서 다룬다.
 
 CAN FD 포맷에서 CRC 구분자는 recessive 1비트나 2비트일 수 있다. 송신 노드는 1비트만 보내지만, [[can-acknowledgement|ACK]] 슬롯을 시작하는 dominant 에지 앞에 recessive 2비트가 와도 받아들인다. 이 여유는 노드마다 송신 노드와의 위상차가 달라서, 짧은 비트 시간에서 긴 비트 시간으로 돌아갈 때 그 차이를 보상하려고 둔다.[@bosch-can-fd-1-0-2012]
 
@@ -40,4 +40,4 @@ CAN FD 포맷에서 CRC 구분자는 recessive 1비트나 2비트일 수 있다.
 
 확장 포맷에서는 기본 식별자 11비트, SRR(Substitute Remote Request), IDE, 확장 식별자 18비트 뒤에 r1이 오고, 이어서 EDL이 온다. 그 뒤 필드는 기본 포맷과 같다.[@bosch-can-fd-1-0-2012]
 
-이 규격은 수신 노드가 SRR 비트를 dominant로 받아도 받아들이게 정한다.[@bosch-can-fd-1-0-2012]
+수신 노드는 SRR 비트를 dominant로 받아도 받아들인다.[@bosch-can-fd-1-0-2012]

@@ -17,7 +17,7 @@ verified: 2026-09-26
 
 ## DLC
 
-리모트 프레임에는 데이터 필드가 없지만 제어 필드와 그 안의 [[data-length-code|DLC]]는 있다. DLC 값은 요청하는 데이터 프레임의 DLC다.[@bosch-can-2-0-1991]
+리모트 프레임에는 데이터 필드가 없지만 제어 필드와 그 안의 [[data-length-code|DLC]]는 있다. DLC 값은 요청 대상인 데이터 프레임의 DLC다.[@bosch-can-2-0-1991]
 
 Bosch CAN FD 1.0은 리모트 프레임의 DLC를 0\~15 범위의 어느 값으로도 둘 수 있게 하고, 그 값이 대응하는 데이터 프레임의 DLC여야 한다고 정한다.[@bosch-can-fd-1-0-2012]
 
@@ -27,8 +27,8 @@ Bosch CAN FD 1.0은 리모트 프레임의 DLC를 0\~15 범위의 어느 값으�
 
 ## 컨트롤러의 처리
 
-MCP2515는 받은 프레임이 리모트 프레임이면 수신 버퍼 제어 레지스터의 `RXRTR` 비트로 표시한다.[@microchip-mcp2515-2019] Bosch M_CAN은 리모트 프레임을 필터링하지 않고 모두 버리도록 설정할 수 있고, 이 설정은 기본 포맷과 확장 포맷에 따로 둔다.[@bosch-m-can-2023]
+[[can-controller#제품 예|MCP2515]]는 받은 프레임이 리모트 프레임이면 수신 버퍼 제어 레지스터의 `RXRTR` 비트로 표시한다.[@microchip-mcp2515-2019] Bosch [[can-controller#제품 예|M_CAN]]은 리모트 프레임을 [[acceptance-filter|필터링]]하지 않고 모두 버리도록 설정할 수 있고, 이 설정은 기본 포맷과 확장 포맷에 따로 둔다.[@bosch-m-can-2023]
 
 ## CAN FD와의 차이
 
-[[can-fd|CAN FD]] 포맷에는 리모트 프레임이 없다. CAN FD 포맷 프레임에서는 classical 포맷의 RTR 자리에 늘 dominant인 비트가 온다. 리모트 프레임은 classical 포맷으로만 보낼 수 있다.[@bosch-can-fd-1-0-2012]
+[[can-fd|CAN FD]] 포맷에는 리모트 프레임이 없다. CAN FD 포맷 프레임에서는 [[can-fd-frame#포맷 표시 비트|classical 포맷]]의 RTR 자리에 늘 dominant인 비트가 온다. 리모트 프레임은 classical 포맷으로만 보낼 수 있다.[@bosch-can-fd-1-0-2012]

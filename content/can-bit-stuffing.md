@@ -31,8 +31,8 @@ CAN 비트열은 NRZ(Non-Return-to-Zero)로 부호화되어, 한 비트 시간 �
 
 이 표준은 비트 스터핑을 동적 비트 스터핑과 고정 비트 스터핑 두 가지로 나눈다. 송신 노드가 스터프 비트를 넣고, 수신 노드가 거꾸로 걷어낸다.[@iso-11898-1-obp-2024]
 
-[[can-fd-frame|CAN FD 포맷 프레임]]의 CRC 시퀀스에서는 스터프 비트를 고정 위치에 넣는다. 첫 비트 앞에 하나, 그 뒤로 4비트마다 하나를 넣고, 값은 바로 앞 비트의 반대다. Bosch CAN FD 1.0은 고정 스터프 비트의 수를 classical 포맷의 스터핑 방식을 적용했을 때 생길 수 있는 스터프 비트의 최대 수와 같게 두고, 수신 노드가 CRC를 검사할 때 고정 스터프 비트를 빼고 계산하게 정한다.[@bosch-can-fd-1-0-2012]
+[[can-fd-frame|CAN FD 포맷 프레임]]의 CRC 시퀀스에서는 스터프 비트를 고정 위치에 넣는다. 첫 비트 앞에 하나, 그 뒤로 4비트마다 하나를 넣고, 값은 바로 앞 비트의 반대다. Bosch CAN FD 1.0은 고정 스터프 비트의 수를 [[can-fd-frame#포맷 표시 비트|classical 포맷]]의 스터핑 방식을 적용했을 때 생길 수 있는 스터프 비트의 최대 수와 같게 두고, 수신 노드가 CRC를 검사할 때 고정 스터프 비트를 빼고 계산하게 정한다.[@bosch-can-fd-1-0-2012]
 
 ![[diagrams/can-fd-crc-fixed-stuff-bits.svg]]
 
-ISO 11898-1:2024는 **stuff bit count**를 CRC 필드 앞까지 프레임에 들어간 스터프 비트의 수(고정 스터프 비트 제외)로 정의한다.[@iso-11898-1-obp-2024] MCP25xxFD 계열 [[can-fd|CAN FD]] 컨트롤러는 ISO CRC 모드에서 CRC 필드에 4비트 stuff bit count를 넣어 보내고, ISO 이전 방식(non-ISO) 모드에서는 넣지 않는다.[@microchip-mcp25xxfd-frm-2020]
+ISO 11898-1:2024는 **stuff bit count**를 CRC 필드 앞까지 프레임에 들어간 스터프 비트의 수(고정 스터프 비트 제외)로 정의한다.[@iso-11898-1-obp-2024] MCP25xxFD 계열 [[can-fd|CAN FD]] 컨트롤러는 [[iso-11898-1#Bosch CAN FD와의 차이|ISO CRC 모드]]에서 CRC 필드에 4비트 stuff bit count를 넣어 보내고, ISO 이전 방식(non-ISO) 모드에서는 넣지 않는다.[@microchip-mcp25xxfd-frm-2020]
