@@ -471,13 +471,13 @@ const romanNumeral = /^[IVX]+$/
 const lettersAndDigits = (part: string) => /[A-Za-z]/.test(part) && /[0-9]/.test(part)
 const token = /(?<![A-Za-z0-9_])[A-Za-z0-9_]+(?:[/.-][A-Za-z0-9_]+)*/g
 
-function exemptAbbreviations(): string[] {
-  return [...fs.readFileSync(abbreviationsPath, "utf8").matchAll(/^- (.+?): \S/gm)].map((m) => m[1])
-}
-
-function introducedOrganizations(): string[] {
-  return [...fs.readFileSync(abbreviationsPath, "utf8").matchAll(/^- (.+?): 소개하는 조직$/gm)].map(
-    (m) => m[1],
+// 풀이하지 않는 약어 목록의 줄(`- <약어>: <종류>`)마다 약어와 종류.
+function listedAbbreviations(): { name: string; kind: string }[] {
+  return [...fs.readFileSync(abbreviationsPath, "utf8").matchAll(/^- (.+?): (\S.*)$/gm)].map(
+    (m) => ({
+      name: m[1],
+      kind: m[2],
+    }),
   )
 }
 
@@ -492,34 +492,38 @@ function unintroduced(
   page: Page,
   change: ChangedFile,
   organizations: string[],
-  text: string,
-  links: [number, number][],
+  { text, links }: { text: string; links: [number, number][] },
 ): Candidate[] {
   const starts = lineStarts(text)
   const inside = (offset: number) => links.some(([s, e]) => offset >= s && offset < e)
   return organizations.flatMap((name) => {
     // 이 이름을 품은 더 긴 이름(VDA 안의 VDA QMC)은 지운다.
-    let own = text
+    let withoutLonger = text
     for (const longer of organizations.filter((n) => n !== name && n.includes(name))) {
-      own = own.replace(new RegExp(escapeRegExp(longer), "g"), blank)
+      withoutLonger = withoutLonger.replace(new RegExp(escapeRegExp(longer), "g"), blank)
     }
     const pattern = new RegExp(
       `(?<![A-Za-z0-9_.&-])${escapeRegExp(name)}(?![A-Za-z0-9_]|[.&][A-Za-z0-9]|-[A-Za-z])`,
       "g",
     )
     // 이름 뒤 소개(`CISPR 25(CISPR: …)`) 안의 약어도 세지 않는다.
-    const found = [...own.matchAll(pattern)].filter(
+    const found = [...withoutLonger.matchAll(pattern)].filter(
       (m) =>
-        !/^#{1,6} /.test(own.slice(starts[lineAt(starts, m.index) - 1])) &&
-        !(/(?:\(|, )$/.test(own.slice(m.index - 2, m.index)) && own[m.index + name.length] === ":"),
+        !/^#{1,6} /.test(withoutLonger.slice(starts[lineAt(starts, m.index) - 1])) &&
+        !(
+          /(?:\(|, )$/.test(withoutLonger.slice(m.index - 2, m.index)) &&
+          withoutLonger[m.index + name.length] === ":"
+        ),
     )
     if (!found.some((m) => change.added.has(lineAt(starts, m.index)))) return []
     const inName = (offset: number) =>
-      /[A-Za-z0-9&][ /]$|\/$/.test(own.slice(Math.max(0, offset - 2), offset)) ||
-      /^[ /-][A-Za-z0-9]|^\//.test(own.slice(offset + name.length, offset + name.length + 2))
+      /[A-Za-z0-9&][ /]$|\/$/.test(withoutLonger.slice(Math.max(0, offset - 2), offset)) ||
+      /^[ /-][A-Za-z0-9]|^\//.test(
+        withoutLonger.slice(offset + name.length, offset + name.length + 2),
+      )
     const alone = found.find((m) => !inName(m.index))
     const at = alone ?? found[0]
-    const after = own.slice(at.index + name.length)
+    const after = withoutLonger.slice(at.index + name.length)
     const introduced =
       inside(at.index) ||
       (alone
@@ -571,14 +575,14 @@ function explainedWords(tree: Tree): Set<string> {
 }
 
 const abbreviationItem: Item = ({ tree, changed }) => {
-  const exempt = exemptAbbreviations()
+  const listed = listedAbbreviations()
+  const exempt = listed.map((a) => a.name)
   const exemptSet = new Set(exempt)
   const explainedSet = explainedWords(tree)
   const pageNameSet = new Set(tree.pages.flatMap(pageNames))
-  const organizations = introducedOrganizations()
+  const organizations = listed.filter((a) => a.kind === "소개하는 조직").map((a) => a.name)
   return changed.flatMap(({ page, change }) => {
     const { text, links } = abbreviationText(page, exempt)
-    const plain = abbreviationText(page, [])
     const starts = lineStarts(text)
     const first = new Map<string, { offset: number; token: string; explained: boolean }>()
     const firstInName = new Map<string, { offset: number; token: string; explained: boolean }>()
@@ -640,7 +644,7 @@ const abbreviationItem: Item = ({ tree, changed }) => {
     })
     return [
       ...unexplained,
-      ...unintroduced(page, change, organizations, plain.text, plain.links),
+      ...unintroduced(page, change, organizations, abbreviationText(page, [])),
       ...[...code].map(([name, line]) => ({
         file: page.file,
         line,
