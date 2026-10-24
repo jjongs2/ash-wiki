@@ -224,18 +224,18 @@ describe("판 확인 CLI", () => {
     // 범용 행이 맡은 엔트리의 발행기관(MISRA Consortium)이 낸, 어느 통로도 맡지 않는 엔트리와 처음 보는 발행기관의 엔트리
     const extra = {
       "content/extra.md":
-        "---\ntitle: 더\n---\n\n문장이다.[@misra-cpp-2023] 문장이다.[@omg-uml-2017]\n",
+        "---\ntitle: 더\n---\n\n문장이다.[@misra-cpp-2023] 문장이다.[@example-spec-2020]\n",
       "bib/misra-cpp-2023.bib": bib(
         "misra-cpp-2023",
         "MISRA C++:2023",
         "MISRA Consortium",
         "https://misra.org.uk/product/misra-cpp2023/",
       ),
-      "bib/omg-uml-2017.bib": bib(
-        "omg-uml-2017",
-        "UML 2.5.1",
-        "Object Management Group",
-        "https://www.omg.org/spec/UML/",
+      "bib/example-spec-2020.bib": bib(
+        "example-spec-2020",
+        "Example Specification 1.0",
+        "Example Consortium",
+        "https://example.org/spec/",
       ),
     }
     for (const [rel, text] of Object.entries(extra)) fs.writeFileSync(path.join(root, rel), text)
@@ -248,7 +248,7 @@ describe("판 확인 CLI", () => {
         ),
       )
       assert.ok(lines.some((line) => /^SKIP unknown-publishers/.test(line)))
-      assert.ok(lines.includes("  Object Management Group: omg-uml-2017"))
+      assert.ok(lines.includes("  Example Consortium: example-spec-2020"))
       assert.strictEqual(exitCode, 1)
     } finally {
       for (const rel of Object.keys(extra)) fs.rmSync(path.join(root, rel))
