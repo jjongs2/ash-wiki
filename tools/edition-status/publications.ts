@@ -62,7 +62,9 @@ export interface StandardNumber {
 }
 
 // 단계와 종류는 머리에 붙거나(ISO/CD 15765-2, ISO/PAS 8800) 띄어 온다(ISO/IEC/IEEE DIS 29148, ISO/IEC TR 29119-6, ISO/IEC Guide 51).
-const stagePattern = "PWI|NP|AWI|WD|CD|DIS|FDIS|PRF|PAS|TR|TS|Guide"
+// 판의 종류(ISO/PAS, ISO/IEC TR, ISO/IEC Guide)
+export const kindStages = ["PAS", "TR", "TS", "Guide"]
+const stagePattern = ["PWI", "NP", "AWI", "WD", "CD", "DIS", "FDIS", "PRF", ...kindStages].join("|")
 const referencePattern = new RegExp(
   `^((?:ISO|IEC|IEEE|SAE)(?:/(?:ISO|IEC|IEEE|SAE|${stagePattern}))*)((?: (?:${stagePattern}|Std))*) (P?)` +
     "([A-Z]?[0-9][0-9A-Za-z.]*(?:-[0-9]{1,3}(?![0-9]))*)(?:[:-]((?:19|20)[0-9]{2})(?![0-9]))?",

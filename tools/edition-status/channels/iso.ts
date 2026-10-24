@@ -1,4 +1,4 @@
-import { projectStages, standardNumber } from "../publications"
+import { kindStages, projectStages, standardNumber } from "../publications"
 import {
   ChannelError,
   fetchOk,
@@ -135,7 +135,7 @@ export const iso: Channel = {
       .split("/")
       .filter((part) => !projectStages.has(part))
     const kinds = number.stages.filter(
-      (stage) => ["PAS", "TR", "TS", "Guide"].includes(stage) && !head.includes(stage),
+      (stage) => kindStages.includes(stage) && !head.includes(stage),
     )
     return [head.join("/"), ...kinds, number.number].join(" ")
   },

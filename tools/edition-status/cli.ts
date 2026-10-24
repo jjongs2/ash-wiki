@@ -3,7 +3,7 @@ import path from "node:path"
 import { parseArgs } from "node:util"
 import { repoRoot } from "../repo"
 import { Conventions } from "../check-content/conventions"
-import { report } from "../check-content/report"
+import { report, verdict } from "../check-content/report"
 import { loadTree } from "../check-content/tree"
 import { channels as loadChannels } from "./channels"
 import { coverage, notTargetRows, publisherName } from "./coverage"
@@ -16,6 +16,7 @@ import { assign, citedEntries, standardPages } from "./publications"
 // 사용: npm run edition-status -- [<트리 루트>] [--dry-run] [--channel <통로>]...
 //   --dry-run은 이슈를 읽거나 쓰지 않고 바뀜과 이슈 본문만 찍는다. 아니면 GITHUB_TOKEN과 GITHUB_REPOSITORY가 있어야 한다.
 //   --channel을 주면 그 통로만 묻고 덮음 검사는 하지 않는다.
+//   --timeout은 요청 하나의 제한 시간, --interval은 범용 행 사이의 간격이다(밀리초).
 const verificationPath = path.join(repoRoot, "docs", "wiki-verification.md")
 
 const { values, positionals } = parseArgs({
@@ -72,15 +73,12 @@ if (only === undefined) {
   )
   const found = coverage(cited, claimed, notTarget)
   unclassified = found.unclassified.length
-  report(
-    "coverage",
-    unclassified > 0 ? "FAIL" : "OK",
-    found.unclassified.map((entry) => ({
-      file: entry.file,
-      line: entry.line,
-      message: `${entry.key} (${publisherName(entry) || "발행기관 없음"}): 통로, 감지하지 않음, 대상 아님 어디에도 없다`,
-    })),
-  )
+  const violations = found.unclassified.map((entry) => ({
+    file: entry.file,
+    line: entry.line,
+    message: `${entry.key} (${publisherName(entry) || "발행기관 없음"}): 통로, 감지하지 않음, 대상 아님 어디에도 없다`,
+  }))
+  report("coverage", verdict(violations), violations)
   if (found.unknown.size > 0)
     report(
       "unknown-publishers",

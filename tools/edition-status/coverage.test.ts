@@ -1,5 +1,8 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
+import fs from "node:fs"
+import path from "node:path"
+import { repoRoot } from "../repo"
 import { Conventions } from "../check-content/conventions"
 import { coverage, notTargetRows } from "./coverage"
 import { entry } from "./testing"
@@ -38,6 +41,37 @@ describe("덮음 검사", () => {
     assert.deepStrictEqual(
       unclassified.map((e) => e.key),
       ["iec-61511-1-2016"],
+    )
+  })
+
+  test("문서의 대상 아님 표는 대상도 내는 발행기관의 새 엔트리를 덮지 않는다", () => {
+    const file = path.join(repoRoot, "docs", "wiki-verification.md")
+    const table = notTargetRows(
+      new Conventions(fs.readFileSync(file, "utf8"), file).table("edition-not-target", [
+        "발행기관",
+        "엔트리",
+      ]),
+    )
+    const fresh = [
+      entry("iec-62443-3-3-2013", "IEC 62443-3-3:2013", { publisher: "{IEC}" }),
+      entry("autosar-news-2027", "AUTOSAR News", { publisher: "AUTOSAR" }),
+      entry("unece-r171-2027", "UN Regulation No. 171", { publisher: "UNECE" }),
+      entry("misra-cpp-2023", "MISRA C++:2023", { publisher: "{MISRA}" }),
+    ]
+    const claimed = [
+      entry("iec-61508-1-2010", "IEC 61508-1:2010", { publisher: "{IEC}" }),
+      entry("autosar-cp-r25-11", "AUTOSAR CP R25-11", { publisher: "AUTOSAR" }),
+      entry("unece-r155-2021", "UN Regulation No. 155", { publisher: "UNECE" }),
+      entry("misra-c-2025", "MISRA C:2025", { publisher: "{MISRA}" }),
+    ]
+    const { unclassified } = coverage(
+      [...claimed, ...fresh],
+      new Set(claimed.map((e) => e.key)),
+      table,
+    )
+    assert.deepStrictEqual(
+      unclassified.map((e) => e.key),
+      fresh.map((e) => e.key),
     )
   })
 
