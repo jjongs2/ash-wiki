@@ -26,6 +26,7 @@ const routes = {
   [`${site}/42010/5334/`]: "ieee/42010-2011.html",
   [`${site}/42010/6846/`]: "ieee/42010-2022.html",
   "https://standards.ieee.org/standard/1012-2024.html": "ieee/1012-2024.html",
+  "https://standards.ieee.org/standard/802_1CM-2018.html": "ieee/802.1CM-2018.html",
 }
 const context = () => fixtureContext(routes)
 const ieeeEntry = (key: string, title: string, url?: string, publisher = "{IEEE}") =>
@@ -50,6 +51,30 @@ describe("ieee", () => {
     assert.strictEqual(name("IEEE SA — P1003.1-2024/Cor 1 IEEE/Open Group Standard"), "IEEE 1003.1")
     assert.strictEqual(name("P802.3dm PAR: IEEE Standard for Ethernet Amendment"), "IEEE 802.3")
     assert.strictEqual(name("IEEE 802.3-2022/Cor 1-2024 IEEE Standard for Ethernet"), "IEEE 802.3")
+    // 머리에 IEEE가 없는 제목은 IEEE가 펴낸 엔트리일 때만 맡는다.
+    const posix =
+      "mq_open — open a message queue (The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024)"
+    assert.strictEqual(name(posix, "{IEEE} and {The Open Group}"), "IEEE 1003.1")
+    assert.strictEqual(name(posix, "{The Open Group}"), undefined)
+    const wg = "{IEEE 802.1 Working Group}"
+    assert.strictEqual(name("IEEE8021-BRIDGE-MIB (IEEE Std 802.1Q-2022)", wg), "IEEE 802.1Q")
+    assert.strictEqual(
+      name("ieee802-dot1q-sched YANG module (IEEE Std 802.1Qcw-2023)", wg),
+      "IEEE 802.1Q",
+    )
+    assert.strictEqual(name("802.1Q-2014 - Bridges and Bridged Networks", wg), "IEEE 802.1Q")
+    assert.strictEqual(
+      name("802.1CM-2018 – Time-Sensitive Networking for Fronthaul", wg),
+      "IEEE 802.1CM",
+    )
+    assert.strictEqual(
+      name("802.1AS-2020-Revision – Timing and Synchronization", wg),
+      "IEEE 802.1AS",
+    )
+    assert.strictEqual(
+      name("PAR for P1722: Standard for a Transport Protocol", "{IEEE SA}"),
+      "IEEE 1722",
+    )
     assert.strictEqual(name("P4 Language Specification", "{P4.org}"), undefined)
     assert.strictEqual(name("IEEE 802.1 Time-Sensitive Networking Task Group"), undefined)
     assert.strictEqual(name("802.1Qbv - Enhancements for Scheduled Traffic"), undefined)
@@ -155,6 +180,63 @@ describe("ieee", () => {
       "IEEE 802.1Q | supplement | IEEE 802.1Qdx-2024",
       "IEEE 802.1Q | supplement | IEEE 802.1Qdy-2025",
     ])
+  })
+
+  test("제목 안의 판 표시와 워킹그룹 페이지도 그 판의 엔트리로 읽는다", async () => {
+    const wg = "{IEEE 802.1 Working Group}"
+    const { keys, changes } = await run(
+      ieee,
+      [
+        ieeeEntry("ieee-802-1q-2022", "IEEE 802.1Q-2022 IEEE Standard", `${site}/802.1Q/10323/`),
+        ieeeEntry(
+          "ieee-8021-bridge-mib-2022",
+          "IEEE8021-BRIDGE-MIB (IEEE Std 802.1Q-2022)",
+          "https://www.ieee802.org/1/files/public/MIBs/IEEE8021-BRIDGE-MIB-202211080000Z.mib",
+          wg,
+        ),
+        ieeeEntry(
+          "ieee-802-1qcw-sched-yang-2023",
+          "ieee802-dot1q-sched YANG module (IEEE Std 802.1Qcw-2023)",
+          "https://www.ieee802.org/1/files/public/YANGs/ieee802-dot1q-sched.yang",
+          wg,
+        ),
+        // 개정 프로젝트 페이지(p802-1q-rev)는 판 이름을 제목에 달았지만, 그 판의 개정 PAR를 인용한 것이다.
+        ieeeEntry(
+          "ieee-802-1q-rev-2025",
+          "802.1Q-2022 – Bridges and Bridged Networks",
+          "https://web.archive.org/web/20250712032402/https://1.ieee802.org/maintenance/p802-1q-rev/",
+          wg,
+        ),
+      ],
+      [page("ieee-802-1q", "IEEE 802.1Q", "IEEE", "2022", "개정 중")],
+      context(),
+    )
+    assert.deepStrictEqual(keys, [
+      "IEEE 802.1Q | supplement | IEEE 802.1Qcj-2023",
+      "IEEE 802.1Q | supplement | IEEE 802.1Qcz-2023",
+      "IEEE 802.1Q | supplement | IEEE 802.1Qdj-2024",
+      "IEEE 802.1Q | supplement | IEEE 802.1Qdx-2024",
+      "IEEE 802.1Q | supplement | IEEE 802.1Qdy-2025",
+    ])
+    assert.deepStrictEqual(
+      changes[0].current.map((e) => e.key),
+      ["ieee-802-1q-2022", "ieee-8021-bridge-mib-2022"],
+    )
+    // 표준 페이지 URL이 없는 워킹그룹 페이지는 판 이름의 옛 주소로 표준 페이지를 찾는다.
+    const fronthaul = await run(
+      ieee,
+      [
+        ieeeEntry(
+          "ieee-802-1cm-2018",
+          "802.1CM-2018 – Time-Sensitive Networking for Fronthaul",
+          "https://web.archive.org/web/20260416081151/https://1.ieee802.org/tsn/802-1cm-2018/",
+          wg,
+        ),
+      ],
+      [],
+      context(),
+    )
+    assert.deepStrictEqual(fronthaul.keys, ["IEEE 802.1CM | supplement | IEEE 802.1CMde-2020"])
   })
 
   test("현행으로 인용한 판을 대체한 판을 이미 인용했으면 잡지 않는다", async () => {

@@ -97,37 +97,59 @@ const stripSite = (title: string) => title.replace(/^IEEE SA\s*[—–-]\s*/, ""
 // 추보(amendment)는 기준 번호 뒤에 소문자를 붙인 별도 번호로 나온다. 예: 802.1Qbv → 802.1Q, 1588g → 1588
 const baseOf = (number: string) => number.replace(/[a-z]+$/, "")
 
-// 제목이 IEEE 프로젝트 번호로 시작하면 그 번호와, 개정하는 판의 연도(P802.1AE-2018-Rev)를 준다.
-function projectOf(title: string): { number: string; revises?: string } | undefined {
-  const match = stripSite(title).match(
-    /^(?:IEEE )?P([0-9][0-9A-Za-z.]*)(?:-((?:19|20)[0-9]{2})-Rev)?/,
-  )
+type Cited = Pick<Entry, "title" | "publisher" | "url" | "note">
+
+// IEEE가 펴낸 엔트리인가. 머리에 IEEE가 없는 제목(워킹그룹 페이지, P 번호)은 이것으로 가린다.
+const byIeee = (entry: Cited) => /IEEE/.test(entry.publisher) || /ieee/i.test(entry.url ?? "")
+
+const number = "([0-9][0-9A-Za-z.]*)"
+const year = "((?:19|20)[0-9]{2})"
+const escape = (text: string) => text.replace(/\./g, "\\.")
+
+// 프로젝트(PAR) 엔트리의 번호와, 개정하는 판의 연도. 꼴은 넷이다.
+// P802.1AE-2018-Rev, IEEE P802.1AS …, PAR for P1722: …, 802.1AS-2020-Revision과
+// 개정 프로젝트 페이지(1.ieee802.org/maintenance/p802-1q-rev/)에 판 이름을 붙인 제목(802.1Q-2022 – …)이다.
+function projectOf(entry: Cited): { number: string; revises?: string } | undefined {
+  if (!byIeee(entry)) return undefined
+  const title = stripSite(entry.title)
+  const match =
+    title.match(new RegExp(`^(?:IEEE |PAR for )?P${number}(?:-${year}-Rev)?`)) ??
+    title.match(new RegExp(`^${number}-${year}-Rev`)) ??
+    (/ieee802\.org\/.*-rev\//.test(entry.url ?? "")
+      ? title.match(new RegExp(`^${number}-${year} [–-] `))
+      : null)
   if (!match) return undefined
   const revises =
     match[2] ??
-    title.match(
-      new RegExp(
-        `Revision to IEEE (?:Standard|Std) ${match[1].replace(/\./g, "\\.")}-((?:19|20)[0-9]{2})`,
-      ),
-    )?.[1]
+    title.match(new RegExp(`Revision to IEEE (?:Standard|Std) ${escape(match[1])}-${year}`))?.[1]
   return { number: match[1], revises }
 }
 
-// 판을 매긴 IEEE 표준의 번호와 판 연도. ISO가 낀 공동 표준은 ISO 통로가 맡는다.
+// 판을 매긴 IEEE 표준의 번호와 판 연도. ISO가 낀 공동 표준은 ISO 통로가 맡는다. 꼴은 셋이다.
+// 머리의 표준 번호(IEEE 802.1Q-2022 …), IEEE가 펴낸 워킹그룹 페이지의 머리(802.1CM-2018 – …),
+// IEEE가 펴낸 엔트리 제목 안의 판 표시(… (The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024), MIB·YANG 모듈)다.
 // 정정(802.3-2022/Cor 1-2024)은 그 판의 번호로 읽히므로 따로 표시한다.
 function editionOf(
-  title: string,
+  entry: Cited,
 ): { head: string; number: string; year: string; corrigendum: boolean } | undefined {
-  const stripped = stripSite(title)
-  const number = standardNumber(stripped)
-  if (!number || number.project || !number.year) return undefined
-  if (!number.bodies.includes("IEEE") || number.bodies.includes("ISO")) return undefined
-  return {
-    head: stripped.match(/^[^ ]+/)![0],
-    number: number.number,
-    year: number.year,
-    corrigendum: /^\S+(?: Std)? [0-9A-Za-z.]+-[0-9]{4}\/Cor\b/.test(stripped),
+  const stripped = stripSite(entry.title)
+  const parsed = standardNumber(stripped)
+  if (parsed) {
+    if (parsed.project || !parsed.year) return undefined
+    if (!parsed.bodies.includes("IEEE") || parsed.bodies.includes("ISO")) return undefined
+    return {
+      head: stripped.match(/^[^ ]+/)![0],
+      number: parsed.number,
+      year: parsed.year,
+      corrigendum: /^\S+(?: Std)? [0-9A-Za-z.]+-[0-9]{4}\/Cor\b/.test(stripped),
+    }
   }
+  // 개정 프로젝트 페이지(802.1Q-2022 – …, p802-1q-rev)는 판이 아니다.
+  if (!byIeee(entry) || projectOf(entry)) return undefined
+  const match =
+    stripped.match(new RegExp(`^${number}-${year} [–-] `)) ??
+    stripped.match(new RegExp(`\\bIEEE Std ${number}-${year}(?![0-9/])`))
+  return match ? { head: "IEEE", number: match[1], year: match[2], corrigendum: false } : undefined
 }
 
 // 판 이름이 제목에 따로 선 낱말로 있는가. 802.1Q-2022가 802.1Qcc-2022나 802.1Q-2022/Cor 1에 걸리지 않게 한다.
@@ -143,10 +165,9 @@ export function ieeeChannel(delayMs: number): Channel {
     // 판을 매긴 표준과, 그 표준을 바꾸는 프로젝트(개정, 추보, 정정)의 엔트리를 기준 번호의 출판물로 묶는다.
     // 프로젝트 엔트리는 "참고문헌이 그 프로젝트를 인용했다"를 가리는 데만 쓴다. 워킹그룹 페이지, 해설은 들지 않는다.
     publicationOf(entry) {
-      const project = projectOf(entry.title)
-      if (project && (/IEEE/.test(entry.publisher) || /ieee/i.test(entry.url ?? "")))
-        return `IEEE ${baseOf(project.number)}`
-      const edition = editionOf(entry.title)
+      const project = projectOf(entry)
+      if (project) return `IEEE ${baseOf(project.number)}`
+      const edition = editionOf(entry)
       return edition && `${edition.head} ${baseOf(edition.number)}`
     },
     async check(publications, context) {
@@ -206,7 +227,7 @@ async function checkPublication(
 ): Promise<Change[]> {
   const base = standardNumber(publication.name)!.number
   const editions = publication.entries.flatMap((entry) => {
-    const edition = editionOf(entry.title)
+    const edition = editionOf(entry)
     return edition && edition.number === base && !edition.corrigendum
       ? [{ entry, year: edition.year }]
       : []
@@ -294,7 +315,7 @@ async function checkPublication(
     const known =
       revisions.some(cited.page) ||
       publication.entries.some((entry) => {
-        const project = projectOf(entry.title)
+        const project = projectOf(entry)
         return project?.number === base && project.revises === year
       })
     if (!known)
