@@ -26,7 +26,11 @@ function skipped(rows: Row[]): Channel {
 }
 
 // 문서의 세 표와 통로가 어긋나면 멈춘다.
-export function channels(tables: { channels: Row[]; generic: Row[]; skipped: Row[] }): Channel[] {
+// intervalMs는 범용 행 사이의 간격이다.
+export function channels(
+  tables: { channels: Row[]; generic: Row[]; skipped: Row[] },
+  intervalMs?: number,
+): Channel[] {
   const listed = tables.channels.map((row) => row["통로"]).sort()
   const implemented = dedicated.map((channel) => channel.id).sort()
   if (listed.join() !== implemented.join())
@@ -34,5 +38,5 @@ export function channels(tables: { channels: Row[]; generic: Row[]; skipped: Row
       `docs/wiki-verification.md: edition-channels 표의 통로(${listed.join(", ")})가 ` +
         `도구의 통로(${implemented.join(", ")})와 다르다`,
     )
-  return [...dedicated, generic(genericRows(tables.generic)), skipped(tables.skipped)]
+  return [...dedicated, generic(genericRows(tables.generic), intervalMs), skipped(tables.skipped)]
 }

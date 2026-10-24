@@ -16,7 +16,7 @@ const rows = genericRows(
     .table("edition-generic", ["출판물"])
     .filter((row) => ["V-Modell XT", "Automotive Threat Matrix"].includes(row["출판물"])),
 )
-const channel = generic(rows)
+const channel = generic(rows, 0)
 const url = (publication: string) => rows.find((row) => row.publication === publication)!.url
 const context = () =>
   fixtureContext({
@@ -67,10 +67,23 @@ describe("generic", () => {
     )
   })
 
-  test("URL에서 판 패턴을 찾지 못하거나 응답하지 않으면 실패한다", async () => {
+  test("URL에서 판 패턴을 찾지 못하거나 응답하지 않으면 세 번 묻고 실패한다", async () => {
     const empty = fixtureContext({ [url("V-Modell XT")]: () => new Response("<html></html>") })
     await assert.rejects(run(channel, [vModell("2.4")], pages, empty), ChannelError)
+    assert.strictEqual(empty.requested.length, 3)
     await assert.rejects(run(channel, [vModell("2.4")], pages, fixtureContext({})), ChannelError)
+  })
+
+  test("판 목록 없는 셸 페이지를 한 번 주면 다시 물어 읽는다", async () => {
+    const listing = fs.readFileSync(
+      path.join(repoRoot, "tools/edition-status/fixtures/generic/v-modell-xt-releases.html"),
+    )
+    let calls = 0
+    const shellOnce = fixtureContext({
+      [url("V-Modell XT")]: () => new Response(calls++ === 0 ? "<html></html>" : listing),
+    })
+    const { keys } = await run(channel, [vModell("2.3")], pages, shellOnce)
+    assert.deepStrictEqual(keys, ["V-Modell XT | new-edition | V-Modell XT 2.4"])
   })
 
   test("엔트리 제목에서 판을 찾지 못하면 멈춘다", async () => {

@@ -112,6 +112,8 @@ function runCli(...args: string[]): Promise<{ exitCode: number; lines: string[] 
         path.join(here, "fake-hosts.ts"),
         path.join(here, "cli.ts"),
         root,
+        "--interval",
+        "0",
         ...args,
       ],
       {

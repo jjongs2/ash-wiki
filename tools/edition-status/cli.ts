@@ -24,6 +24,7 @@ const { values, positionals } = parseArgs({
     "dry-run": { type: "boolean" },
     channel: { type: "string", multiple: true },
     timeout: { type: "string" },
+    interval: { type: "string" },
   },
 })
 const root = path.resolve(positionals[0] ?? ".")
@@ -31,21 +32,27 @@ const dryRun = values["dry-run"] ?? false
 // 요청 하나의 제한 시간. ISO 오픈 데이터가 약 80MB라 넉넉히 둔다. 테스트가 줄여 쓴다.
 const timeoutMs = Number(values.timeout ?? 120_000)
 if (!(timeoutMs > 0)) throw new Error(`--timeout은 양의 밀리초여야 한다: ${values.timeout}`)
+// 범용 행 사이의 간격. 테스트가 줄여 쓴다.
+const intervalMs = Number(values.interval ?? 1_000)
+if (!(intervalMs >= 0)) throw new Error(`--interval은 0 이상의 밀리초여야 한다: ${values.interval}`)
 const repo = process.env.GITHUB_REPOSITORY ?? "jjongs2/ash-wiki"
 
 const verification = new Conventions(fs.readFileSync(verificationPath, "utf8"), verificationPath)
-const channels = loadChannels({
-  channels: verification.table("edition-channels", ["통로"]),
-  generic: verification.table("edition-generic", [
-    "출판물",
-    "페이지",
-    "엔트리",
-    "URL",
-    "판 패턴",
-    "요청",
-  ]),
-  skipped: verification.table("edition-skipped", ["출판물", "페이지", "엔트리", "사유"]),
-})
+const channels = loadChannels(
+  {
+    channels: verification.table("edition-channels", ["통로"]),
+    generic: verification.table("edition-generic", [
+      "출판물",
+      "페이지",
+      "엔트리",
+      "URL",
+      "판 패턴",
+      "요청",
+    ]),
+    skipped: verification.table("edition-skipped", ["출판물", "페이지", "엔트리", "사유"]),
+  },
+  intervalMs,
+)
 const notTarget = notTargetRows(
   verification.table("edition-not-target", ["발행기관", "엔트리", "사유"]),
 )

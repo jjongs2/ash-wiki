@@ -5,6 +5,7 @@ import {
   fetchOk,
   type Change,
   type Channel,
+  type Context,
   type Entry,
 } from "../model"
 
@@ -50,7 +51,30 @@ export function genericRows(rows: Row[]): GenericRow[] {
 const editionsIn = (text: string, pattern: RegExp) =>
   [...text.matchAll(pattern)].map((match) => match[1]).sort(compareEditions)
 
-export function generic(rows: GenericRow[]): Channel {
+// 한 행의 URL에서 판을 읽는다. 2xx가 아니거나 판 패턴을 찾지 못하면 간격을 늘려 두 번 더 묻는다.
+// saemobilus.sae.org는 잇단 요청에 판 목록 없는 셸 페이지를 주기도 한다.
+async function editionsAt(
+  row: GenericRow,
+  context: Context,
+  intervalMs: number,
+): Promise<string[]> {
+  for (let attempt = 1; ; attempt++) {
+    let reason: string
+    try {
+      const response = await fetchOk(context, row.url, { headers: row.headers })
+      const found = editionsIn(await response.text(), row.pattern)
+      if (found.length > 0) return found
+      reason = `${row.url}에서 판 패턴을 찾지 못했다`
+    } catch (error) {
+      reason = (error as Error).message
+    }
+    if (attempt === 3) throw new ChannelError(reason)
+    await new Promise((resolve) => setTimeout(resolve, intervalMs * attempt * 5))
+  }
+}
+
+// 행 사이에 intervalMs만큼 띄운다. 테스트가 줄여 쓴다.
+export function generic(rows: GenericRow[], intervalMs = 1000): Channel {
   return {
     id: "generic",
     ownsPage: (page) => rows.some((row) => row.page === page.name),
@@ -74,10 +98,8 @@ export function generic(rows: GenericRow[]): Channel {
         const current: Entry[] = cited
           .filter(({ edition }) => compareEditions(edition, latestCited) === 0)
           .map(({ entry }) => entry)
-        const response = await fetchOk(context, row.url, { headers: row.headers })
-        const found = editionsIn(await response.text(), row.pattern)
-        if (found.length === 0) throw new ChannelError(`${row.url}에서 판 패턴을 찾지 못했다`)
-        const latest = found.at(-1)!
+        await new Promise((resolve) => setTimeout(resolve, intervalMs))
+        const latest = (await editionsAt(row, context, intervalMs)).at(-1)!
         if (compareEditions(latest, latestCited) <= 0) continue
         changes.push({
           publication,
