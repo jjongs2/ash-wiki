@@ -96,7 +96,7 @@ Uptane 연구자들은 개발 초기에 TUF를 ECU에 그대로 적용할 수 �
 
 Kuppusamy 외는 자동차 고유의 취약점과 한계를 다루려고 TUF에 기능을 더해 Uptane을 만들었고, 2016년 escar Europe에서 발표했다.[@kuppusamy-uptane-2016] Kuppusamy, DeLong, Cappos는 2018년 IEEE Vehicular Technology Magazine에 Uptane을 다룬 글을 실었다.[@kuppusamy-uptane-customizability-2018]
 
-Uptane Alliance는 2018년 IEEE-ISTO 아래 비영리 단체로 세워졌다. Uptane은 Standard 1.0.0을 낸 뒤 Linux Foundation의 Joint Development Foundation 프로젝트가 됐다.[@uptane-about-2026] Uptane Standard 1.0.0은 2019년 IEEE-ISTO 6100.1.0.0이라는 이름으로 Uptane Alliance가 펴냈고, 2.1.0은 Joint Development Foundation Projects, LLC, Uptane Series의 이름으로 나왔다.[@uptane-standard-2-1-0-2023][@uptane-standard-1-0-0-2019] 판은 2019년 1.0.0, 2021년 1.1.0과 1.2.0, 2022년 2.0.0, 2023년 2.1.0 순으로 나왔다.[@uptane-history-2026]
+Uptane Alliance는 2018년 IEEE-ISTO(IEEE가 세운 표준 컨소시엄 지원 단체) 아래 비영리 단체로 세워졌다.[@uptane-about-2026][@ieee-isto-about-2025] Uptane은 Standard 1.0.0을 낸 뒤 Linux Foundation의 Joint Development Foundation 프로젝트가 됐다.[@uptane-about-2026] Uptane Standard 1.0.0은 2019년 IEEE-ISTO 6100.1.0.0이라는 이름으로 Uptane Alliance가 펴냈고, 2.1.0은 Joint Development Foundation Projects, LLC, Uptane Series의 이름으로 나왔다.[@uptane-standard-2-1-0-2023][@uptane-standard-1-0-0-2019] 판은 2019년 1.0.0, 2021년 1.1.0과 1.2.0, 2022년 2.0.0, 2023년 2.1.0 순으로 나왔다.[@uptane-history-2026]
 
 2021년에는 커뮤니티 구성원이 Uptane 명세의 추가나 변경을 제안하는 공식 절차인 PURE(Proposed Uptane Revision and Enhancement)가 마련됐다.[@uptane-history-2026] Uptane 2.0.0판은 Uptane Time Server에 대한 언급을 모두 없앴다. Uptane Standard 2.1.0은 "Uptane-compliant"라는 말을 "Uptane-conformant"로 바꿨다.[@uptane-deployment-best-practices-2-1-0-2023] 이 판은 표준을 따르는 구현으로 인정받으려면 이 판의 규칙을 모두 따라야 한다고 정한다.[@uptane-standard-2-1-0-2023]
 
@@ -104,4 +104,4 @@ Uptane Alliance는 2018년 IEEE-ISTO 아래 비영리 단체로 세워졌다. Up
 
 - aktualizr는 Uptane [[over-the-air-update|OTA]] 업데이트 클라이언트의 C++ 구현이다.[@uptane-aktualizr-readme-2026]
 - Toradex의 Torizon은 aktualizr를 포크한 Aktualizr-Torizon을 Uptane 클라이언트 구현으로 쓴다.[@toradex-torizon-updates-architecture-2026]
-- ENISA의 2019년 보고서 Good practices for security of smart cars는 안전한 OTA 펌웨어 업데이트 지침의 예로 Uptane 프로젝트 문서를 든다.[@enisa-smart-cars-2019]
+- ENISA(EU의 [[cybersecurity|사이버보안]] 기관)의 2019년 보고서 Good practices for security of smart cars는 안전한 OTA 펌웨어 업데이트 지침의 예로 Uptane 프로젝트 문서를 든다.[@enisa-smart-cars-2019]

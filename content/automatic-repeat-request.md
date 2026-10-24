@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**ARQ**(Automatic Repeat Request)는 수신 측이 오류 검출 부호로 찾아낸 오류를 되돌림 통로로 송신 측에 알리고, 송신 측이 그 데이터를 다시 보내게 하는 오류 정정 방식이다.[@iec-60050-721-08-21-1991][@ietf-rfc-3819-2004] ITU-T X.141(11/88)은 ARQ의 오류 복구에서 정보 프레임에 보내는 차례대로 모듈러 순서 번호를 붙이고, 수신 측이 FCS(Frame Check Sequence)로 오류를 찾은 프레임과 유효하지 않은 프레임을 버리도록 정한다.[@itu-t-x-141-1988] [[tcp|TCP]]는 [[checksum|체크섬]] 검사에 실패한 세그먼트처럼 잃은 세그먼트를 재전송으로 메운다.[@ietf-rfc-9293-2022]
+**ARQ**(Automatic Repeat Request)는 수신 측이 오류 검출 부호로 찾아낸 오류를 되돌림 통로로 송신 측에 알리고, 송신 측이 그 데이터를 다시 보내게 하는 오류 정정 방식이다.[@iec-60050-721-08-21-1991][@ietf-rfc-3819-2004] ITU-T X.141(11/88, ITU-T: UN 산하의 국제 전기통신 표준화 기구)은 ARQ의 오류 복구에서 정보 프레임에 보내는 차례대로 모듈러 순서 번호를 붙이고, 수신 측이 FCS(Frame Check Sequence)로 오류를 찾은 프레임과 유효하지 않은 프레임을 버리도록 정한다.[@itu-t-x-141-1988][@itu-t-v-42-2002] [[tcp|TCP]]는 [[checksum|체크섬]] 검사에 실패한 세그먼트처럼 잃은 세그먼트를 재전송으로 메운다.[@ietf-rfc-9293-2022]
 
 ## 확인 응답
 
@@ -37,7 +37,7 @@ ITU-T V.42(03/2002)는 모뎀용 링크 절차인 LAPM(Link Access Procedure for
 
 ![[diagrams/arq-rej-srej-retransmission.svg]]
 
-CCSDS 232.1-B-2는 우주 링크의 COP-1(Communications Operation Procedure-1)이 Go-back-N형 ARQ를 쓰도록 정한다. COP-1의 수신 측은 순서가 처음 어긋난 뒤로 기대한 순서 번호가 아닌 순서 제어 프레임을 모두 거부하고, 송신 측은 재전송 요청이나 타임아웃이 오면 확인받지 못한 순서 제어 프레임을 모두 다시 보낸다.[@ccsds-232-1-b-2-2010]
+CCSDS 232.1-B-2(CCSDS: 각국 우주 기관의 데이터 시스템 표준화 위원회)는 우주 링크의 COP-1(Communications Operation Procedure-1)이 Go-back-N형 ARQ를 쓰도록 정한다. COP-1의 수신 측은 순서가 처음 어긋난 뒤로 기대한 순서 번호가 아닌 순서 제어 프레임을 모두 거부하고, 송신 측은 재전송 요청이나 타임아웃이 오면 확인받지 못한 순서 제어 프레임을 모두 다시 보낸다.[@ccsds-232-1-b-2-2010]
 
 ## CAN의 재전송
 

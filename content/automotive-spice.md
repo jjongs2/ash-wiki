@@ -10,7 +10,7 @@ edition: 2026
 status: 유효
 ---
 
-**ASPICE**(Automotive SPICE)는 차량용 임베디드 시스템을 개발하는 조직의 프로세스 능력을 평가하는 데 쓰는 프로세스 참조 모델이자 [[automotive-spice-process-assessment-model|프로세스 평가 모델]]이다. 그 지표는 [[process-improvement|프로세스 개선]]에도 쓸 수 있다. 이름의 SPICE는 Systems/Software Process Improvement and Capability dEtermination을 줄인 것이다. 독일 자동차산업협회 VDA의 품질경영센터 VDA QMC가 펴낸다.[@vda-automotive-spice-pam-4-1-2026]
+**ASPICE**(Automotive SPICE)는 차량용 임베디드 시스템을 개발하는 조직의 프로세스 능력을 평가하는 데 쓰는 프로세스 참조 모델이자 [[automotive-spice-process-assessment-model|프로세스 평가 모델]]이다. 그 지표는 [[process-improvement|프로세스 개선]]에도 쓸 수 있다. 이름의 SPICE는 Systems/Software Process Improvement and Capability dEtermination을 줄인 것이다. VDA QMC(독일 자동차 업계 단체의 품질경영 기관)가 펴낸다.[@vda-automotive-spice-pam-4-1-2026][@vda-qmc-home-2026]
 
 ## 범위
 
@@ -30,7 +30,7 @@ VDA QMC의 워킹 그룹 13은 ASPICE를 바탕으로 [[process-assessment|프�
 
 ## 개정 이력
 
-Audi, BMW Group, DaimlerChrysler, Porsche, Volkswagen은 HIS를 꾸려 공동 표준을 만들었다. HIS의 평가 작업 그룹은 협력업체의 [[software-process|소프트웨어 프로세스]] 능력을 판정하는 공통 방식을 세우려고 만들어졌다. HIS 회원사를 포함한 유럽 완성차 업체들은 Procurement Forum, SPICE User Group과 함께 ASPICE 이니셔티브를 시작했다.[@his-wg-assessment-2006]
+Audi, BMW Group, DaimlerChrysler, Porsche, Volkswagen은 HIS(소프트웨어 공동 표준 이니셔티브)를 꾸려 공동 표준을 만들었다. HIS의 평가 작업 그룹은 협력업체의 [[software-process|소프트웨어 프로세스]] 능력을 판정하는 공통 방식을 세우려고 만들어졌다. HIS 회원사를 포함한 유럽 완성차 업체들은 Procurement Forum, SPICE User Group과 함께 ASPICE 이니셔티브를 시작했다.[@his-wg-assessment-2006]
 
 이 이니셔티브 안에서 Procurement Forum과 SPICE User Group의 공동 Automotive SIG(Special Interest Group)가 완성차 업체들의 합의로, 프로세스 평가 표준 ISO/IEC 15504에 맞춘 프로세스 참조 모델과 프로세스 평가 모델을 만들었다. 이것이 ASPICE다.[@automotive-sig-aspice-pam-2-5-2010] Automotive SIG의 완성차 업체들은 평가 결과를 협력업체의 개선점을 찾고 협력업체를 고르는 기준으로 썼다.[@automotive-sig-release-statement-2008] VDA QMC에 따르면 주요 완성차 업체와 협력업체가 ASPICE로 차량 소프트웨어 기반 시스템의 개발 프로세스를 평가한다. 2026년 10월 12일에 확인한 수치로는 ASPICE 평가자가 7,619명이고 51개국에 있다.[@vda-automotive-spice-2026]
 
@@ -47,7 +47,7 @@ Audi, BMW Group, DaimlerChrysler, Porsche, Volkswagen은 HIS를 꾸려 공동 �
 
 ## CMMI와의 차이
 
-ISACA의 [[cmmi|CMMI]]는 업종을 가리지 않고 쓰는 프로세스 개선 모델이고[@isaca-cmmi-performance-solutions-2026], ASPICE 4.1은 차량용 임베디드 시스템 개발을 대상으로 한다.[@vda-automotive-spice-pam-4-1-2026]
+ISACA(정보보안·거버넌스 분야의 국제 전문가 협회)의 [[cmmi|CMMI]]는 업종을 가리지 않고 쓰는 프로세스 개선 모델이고[@isaca-cmmi-performance-solutions-2026][@isaca-cmmi-three-new-domains-2023], ASPICE 4.1은 차량용 임베디드 시스템 개발을 대상으로 한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ASPICE 4.1은 평가 대상 프로세스마다 능력 수준을 0부터 5까지 여섯 단계로 매긴다.[@vda-automotive-spice-pam-4-1-2026] ASPICE는 평가 범위 안의 프로세스마다 능력을 따로 평가하도록 하고, 프로젝트나 회사 전체를 하나로 묶은 수준은 두지 않는다.[@vda-automotive-spice-2026] [[process-assessment#평가 등록|평가 등록]]으로 발급하는 인증서에 적는 수준도 회사 전체가 아니라 평가한 프로젝트 하나의 범위 안 프로세스 능력 수준 가운데 가장 낮은 값이다.[@vda-automotive-spice-assessment-registration-2026] CMMI는 프랙티스 영역마다 매기는 능력 수준 0\~3과, 정해 둔 프랙티스 영역 묶음에 매기는 성숙도 수준 0\~5를 함께 둔다.[@cmmi-institute-levels-2026]
 

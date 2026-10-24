@@ -13,7 +13,7 @@ verified: 2026-10-03
 
 NHTSA의 2022년 모범 사례에 따르면 공격자는 소프트웨어 업데이트 메커니즘으로 더 오래되고 취약한 소프트웨어를 대상 기기에 올릴 수 있고, 이 지침은 이 공격을 firmware version rollback 공격 또는 downgrade 공격이라 부른다. NHTSA는 제조사가 firmware version rollback 공격을 줄이는 조치를 쓰기를 권한다.[@nhtsa-cybersecurity-best-practices-2022]
 
-ENISA의 2019년 보고서 Good practices for security of smart cars는 [[over-the-air-update|OTA]] 펌웨어 업데이트를 안전하게 해, 펌웨어가 조작되거나 드러나거나 취약한 버전으로 되돌려지는 것을 막기를 권한다.[@enisa-smart-cars-2019]
+ENISA(EU의 [[cybersecurity|사이버보안]] 기관)의 2019년 보고서 Good practices for security of smart cars는 [[over-the-air-update|OTA]] 펌웨어 업데이트를 안전하게 해, 펌웨어가 조작되거나 드러나거나 취약한 버전으로 되돌려지는 것을 막기를 권한다.[@enisa-smart-cars-2019]
 
 ## 보안 버전과 그 저장
 

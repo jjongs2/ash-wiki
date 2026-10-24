@@ -45,6 +45,6 @@ MDI 포트와 MDI-X 포트는 송신 쌍과 수신 쌍의 핀이 서로 바뀌�
 
 ## 100BASE-T1과의 차이
 
-100BASE-TX는 꼬임쌍선이 두 가닥 필요하고 CISPR 25 Class 5 방사 방출 한도를 맞추지 못해 차량 안에서는 널리 쓰이지 못했다. 차량에 이더넷이 널리 쓰인 것은 비차폐 꼬임쌍선 한 쌍으로 100 Mbit/s를 보내는 [[100base-t1|100BASE-T1]]이 나온 뒤다.[@ti-szzy009-2018]
+100BASE-TX는 꼬임쌍선이 두 가닥 필요하고 CISPR 25(CISPR: IEC의 전자파 적합성 표준화 위원회) Class 5 방사 방출 한도를 맞추지 못해 차량 안에서는 널리 쓰이지 못했다.[@ti-szzy009-2018][@iec-cispr-scope-2024] 차량에 이더넷이 널리 쓰인 것은 비차폐 꼬임쌍선 한 쌍으로 100 Mbit/s를 보내는 [[100base-t1|100BASE-T1]]이 나온 뒤다.[@ti-szzy009-2018]
 
 ![[diagrams/ethernet-phy-pair-comparison.svg]]

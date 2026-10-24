@@ -10,7 +10,7 @@ AUTOSAR R25-11 Adaptive Platform 설계 설명서는 **Diagnostic Management**�
 
 지원하는 전송 계층은 [[doip|DoIP]]다. 차량 안이나 원격 진단에는 다른 전송 프로토콜을 쓰는 일이 많아, 사용자 전송 계층으로 플랫폼을 넓히는 API를 둔다. [[ee-architecture#존 아키텍처|고성능 컴퓨터]]에서는 [[uds|UDS]]와 DoIP에 더해 [[service-oriented-vehicle-diagnostics|SOVD]]도 지원한다.[@autosar-ap-exp-platformdesign-2025]
 
-Diagnostic Management는 [[iso-14229-1|ISO 14229-1]]에 따른 UDS 서버 인스턴스와 ASAM의 SOVD를 구현하는 진단 서버 구현이다. UDS의 전송 계층으로는 [[iso-13400-2|ISO 13400-2]]:2019(ISO 13400-2:2019/Amd 1:2023 포함)에 따른 DoIP나 사용자 구현 전송 프로토콜을 쓸 수 있고, SOVD에는 HTTP나 HTTPS 위의 REST 서비스를 쓴다. DEXT는 Diagnostic Management의 설정 입력이다.[@autosar-ap-sws-diagnostics-2025]
+Diagnostic Management는 [[iso-14229-1|ISO 14229-1]]에 따른 UDS 서버 인스턴스와 ASAM(자동차 개발·시험 시스템의 표준화 단체)의 SOVD를 구현하는 진단 서버 구현이다.[@autosar-ap-sws-diagnostics-2025][@asam-home-2026] UDS의 전송 계층으로는 [[iso-13400-2|ISO 13400-2]]:2019(ISO 13400-2:2019/Amd 1:2023 포함)에 따른 DoIP나 사용자 구현 전송 프로토콜을 쓸 수 있고, SOVD에는 HTTP나 HTTPS 위의 REST 서비스를 쓴다. DEXT는 Diagnostic Management의 설정 입력이다.[@autosar-ap-sws-diagnostics-2025]
 
 ## 진단 주소와 Diagnostic Server
 

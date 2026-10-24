@@ -13,7 +13,7 @@ verified: 2026-09-27
 
 ## PMA 선택지
 
-CiA는 CAN의 PMA 선택지로 고속 트랜시버, [[can-fd|CAN FD]] 트랜시버, [[can-transceiver#SIC|CAN SIC]] 트랜시버, CAN SIC XL 트랜시버, 저속 내결함성 트랜시버(ISO 11898-3:2006), 트럭·트레일러용 트랜시버(ISO 11992-1), 단선 CAN 트랜시버(SAE J2411)를 든다. 이 가운데 저속 내결함성 트랜시버와 단선 CAN 트랜시버는 새 설계에 더는 권하지 않는다.[@cia-physical-layer-options-2026]
+CiA(CAN 사용자·제조사의 국제 단체)는 CAN의 PMA 선택지로 고속 트랜시버, [[can-fd|CAN FD]] 트랜시버, [[can-transceiver#SIC|CAN SIC]] 트랜시버, CAN SIC XL 트랜시버, 저속 내결함성 트랜시버(ISO 11898-3:2006), 트럭·트레일러용 트랜시버(ISO 11992-1), 단선 CAN 트랜시버(SAE J2411)를 든다.[@cia-physical-layer-options-2026][@cia-about-us-2026] 이 가운데 저속 내결함성 트랜시버와 단선 CAN 트랜시버는 새 설계에 더는 권하지 않는다.[@cia-physical-layer-options-2026]
 
 ## 차동 전송
 

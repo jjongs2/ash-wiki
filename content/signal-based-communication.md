@@ -24,7 +24,7 @@ Vector의 CANdb++ Admin은 통신 매트릭스를 설계하는 도구로, 통신
 
 ## 통신 기술 파일
 
-ASAM MCD-2 NET, 곧 **FIBEX**(Field Bus Data Exchange Format)는 차량 네트워크의 통신을 기술하는 XML 기반 인터페이스 기술 표준이며, CAN, LIN, [[flexray|FlexRay]], [[ethernet|이더넷]] 등을 위한 기술별 확장을 둔다. FIBEX 기술은 주고받는 시그널의 정의와 ECU마다 보내고 받는 시그널 목록을 담는다.[@asam-mcd-2-net-2017][@asam-mcd-2-net-toc-2017]
+ASAM MCD-2 NET(ASAM: 자동차 개발·시험 시스템의 표준화 단체), 곧 **FIBEX**(Field Bus Data Exchange Format)는 차량 네트워크의 통신을 기술하는 XML 기반 인터페이스 기술 표준이며, CAN, LIN, [[flexray|FlexRay]], [[ethernet|이더넷]] 등을 위한 기술별 확장을 둔다.[@asam-mcd-2-net-2017][@asam-mcd-2-net-toc-2017][@asam-home-2026] FIBEX 기술은 주고받는 시그널의 정의와 ECU마다 보내고 받는 시그널 목록을 담는다.[@asam-mcd-2-net-2017][@asam-mcd-2-net-toc-2017]
 
 ISO 17987 시리즈는 LIN의 통신 동작을 기술하는 네트워크 기술 파일로 LDF(LIN description file)를 두고, 그 형식은 ISO 17987-2:2025가 다룬다.[@iso-17987-2-obp-2025]
 

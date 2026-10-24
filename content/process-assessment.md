@@ -107,11 +107,11 @@ ASPICE 4.1은 ISO/IEC 33020:2019가 정한 평정 방법 셋을 가져온다.[@v
 
 ### ASPICE Guidelines
 
-VDA QMC는 ASPICE 4.1의 프로세스 평가 모델로 하는 평가의 지침으로 ASPICE Guidelines 3판(2026년 7월)을 인쇄본으로 펴낸다.[@vda-automotive-spice-publications-2026] 이 판은 "Blue-Gold Book"이라 불린 ASPICE Guidelines 2판을 대체한다. 1부는 해석과 평정의 규칙을, 2부는 평가 수행의 요구와 평가자 자격의 요구를 담는다.[@vda-automotive-spice-guidelines-webshop-2026]
+VDA QMC(독일 자동차 업계 단체의 품질경영 기관)는 ASPICE 4.1의 프로세스 평가 모델로 하는 평가의 지침으로 ASPICE Guidelines 3판(2026년 7월)을 인쇄본으로 펴낸다.[@vda-automotive-spice-publications-2026][@vda-qmc-home-2026] 이 판은 "Blue-Gold Book"이라 불린 ASPICE Guidelines 2판을 대체한다. 1부는 해석과 평정의 규칙을, 2부는 평가 수행의 요구와 평가자 자격의 요구를 담는다.[@vda-automotive-spice-guidelines-webshop-2026]
 
 ### 평가자 인증
 
-VDA QMC는 인증 사무국(Certification Office)을 두고 ASPICE 평가자를 인증하는 유일한 인원 인증 기관으로, 평가자 시험과 그 뒤의 인증 과정을 맡는다. 인증은 intacs의 체계를 따른다.[@vda-automotive-spice-certification-2026]
+VDA QMC는 인증 사무국(Certification Office)을 두고 ASPICE 평가자를 인증하는 유일한 인원 인증 기관으로, 평가자 시험과 그 뒤의 인증 과정을 맡는다. 인증은 intacs(프로세스 평가자 인증 체계를 가진 국제 비영리 단체)의 체계를 따른다.[@vda-automotive-spice-certification-2026][@intacs-home-2026]
 
 인증의 첫 단계는 Provisional Assessor다. intacs에 등록된 교육 기관의 교육을 받고 VDA QMC의 시험에 붙어야 하며, 자동차 분야의 소프트웨어 기반 시스템 개발 경력이 24개월 이상이어야 한다. Competent, Principal, Instructor 같은 상위 단계는 선임 평가자(lead assessor)라 불리고, 경험 증명을 계속 갱신해야 한다. 인증은 3년 동안 유효한 평가자 라이선스로 증명하고, 만료되면 갱신해야 한다.[@vda-automotive-spice-certification-2026]
 

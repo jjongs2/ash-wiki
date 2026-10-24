@@ -23,4 +23,4 @@ NIST 용어집은 security control을 시스템과 그 컴포넌트, 프로세�
 
 [[autosar|AUTOSAR]] R25-11의 Explanation of Security Overview는 HSM을 hardware trust anchor의 한 예로 든다. Hardware trust anchor의 주된 기능은 민감한 데이터를 조작에서 지키는 것과 계산량이 많은 암호 기능을 돕는 것이고, 표준화된 hardware trust anchor로는 HSM 말고도 [[hardware-security-module#차량용 MCU의 HSM|SHE]]와 [[hardware-security-module#TPM과의 차이|TPM]]이 있다. 격리되고 신뢰된 환경에서 민감한 데이터를 저장하고 처리하고 보호하는 기술로는 TEE(Trusted Execution Environment), SE(Secure Element), 통합 SE가 잘 알려진 예다.[@autosar-fo-exp-securityoverview-2025]
 
-ENISA의 2019년 보고서 Good practices for security of smart cars는 시스템의 무결성과 진정성을 보장하는 [[secure-boot|secure boot]] 프로세스를 구현하기를 권하고, secure boot가 실제로 필요한 경우는 리스크 기반 접근으로 정해도 된다고 둔다.[@enisa-smart-cars-2019]
+ENISA(EU의 사이버보안 기관)의 2019년 보고서 Good practices for security of smart cars는 시스템의 무결성과 진정성을 보장하는 [[secure-boot|secure boot]] 프로세스를 구현하기를 권하고, secure boot가 실제로 필요한 경우는 리스크 기반 접근으로 정해도 된다고 둔다.[@enisa-smart-cars-2019]

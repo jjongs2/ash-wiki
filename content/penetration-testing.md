@@ -23,7 +23,7 @@ verified: 2026-10-03
 
 이 가이드는 외부 공격 시나리오에서 시험자에게 대상 IP 주소나 주소 범위 말고는 대상 환경의 실제 정보를 주지 않게 하고, 내부 공격 시나리오에서는 그 접근 수준의 사용자, 대개 일반 직원이 가질 네트워크 정보를 주게 한다. 또 이 가이드는 조직의 IT(information technology) 직원이 알고 동의한 가운데 하는 overt 테스트와, IT 직원 모르게 상위 경영진의 승인만 받고 하는 covert 테스트를 나눈다.[@nist-sp-800-115-2008]
 
-PCI SSC의 2017년 Penetration Testing Guidance는 테스트를 시작하기 전에 시험자에게 대상 정보를 얼마나 주는지에 따라 침투 테스트를 블랙박스, 화이트박스, 그레이박스의 세 가지로 나눈다. 블랙박스에서는 정보를 주지 않고, 화이트박스에서는 네트워크와 애플리케이션의 세부를 모두 줄 수 있으며, 그레이박스에서는 일부를 줄 수 있다.[@pci-ssc-penetration-testing-guidance-2017]
+PCI SSC(결제 데이터 보안 표준을 만드는 국제 협의체)의 2017년 Penetration Testing Guidance는 테스트를 시작하기 전에 시험자에게 대상 정보를 얼마나 주는지에 따라 침투 테스트를 블랙박스, 화이트박스, 그레이박스의 세 가지로 나눈다. 블랙박스에서는 정보를 주지 않고, 화이트박스에서는 네트워크와 애플리케이션의 세부를 모두 줄 수 있으며, 그레이박스에서는 일부를 줄 수 있다.[@pci-ssc-penetration-testing-guidance-2017]
 
 ## 차량 사이버보안에서의 자리
 
@@ -31,11 +31,11 @@ ISO/SAE 21434:2021의 11절은 [[cybersecurity-lifecycle#아이템과 운용 환
 
 NHTSA의 2022년 Cybersecurity Best Practices for the Safety of Modern Vehicles는 제조사가 개발 과정에서 침투 테스트를 포함한 제품 사이버보안 테스트를 하기를 권한다. 또 테스트 단계에 자격을 갖추고 취약점을 찾을 동기가 있으며 개발팀에 속하지 않았던 시험자를 쓰기를 권한다.[@nhtsa-cybersecurity-best-practices-2022]
 
-ENISA의 2019년 보고서 Good practices for security of smart cars는 개발 단계에서, 그리고 그 뒤에는 새 위협이나 취약점이 나왔을 때나 큰 업데이트 뒤처럼 사건을 계기로 정기적으로 침투 테스트 같은 보안 평가를 하기를 권한다(PS-14).[@enisa-smart-cars-2019]
+ENISA(EU의 사이버보안 기관)의 2019년 보고서 Good practices for security of smart cars는 개발 단계에서, 그리고 그 뒤에는 새 위협이나 취약점이 나왔을 때나 큰 업데이트 뒤처럼 사건을 계기로 정기적으로 침투 테스트 같은 보안 평가를 하기를 권한다(PS-14).[@enisa-smart-cars-2019]
 
 [[un-r155|UN R155]] 해석 문서는 R155 5.3.1 (a)가 승인 당국과 기술 기관에 요구하는 사이버보안 역량을 갖춘 인력에는, 침투 테스트, [[fuzz-testing|퍼즈 테스트]], 부채널 테스트 같은 차량 사이버보안 실험실 시험의 방법을 적용하는 데 역량과 경험이 있는 인력이 든다고 본다.[@unece-r155-interpretation-2023]
 
-Auto-ISAC의 2025년 백서는 [[automotive-threat-matrix|ATM]]의 전술과 기법을 침투 테스트 같은 탐색적 활동을 계획하는 출발점으로 든다.[@auto-isac-atm-white-paper-2025]
+Auto-ISAC(자동차 업계의 차량 사이버보안 정보 공유 조직)의 2025년 백서는 [[automotive-threat-matrix|ATM]]의 전술과 기법을 침투 테스트 같은 탐색적 활동을 계획하는 출발점으로 든다.[@auto-isac-atm-white-paper-2025][@auto-isac-about-us-2026]
 
 ## 취약점 스캐닝과 퍼즈 테스트
 

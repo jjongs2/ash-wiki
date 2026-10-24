@@ -42,7 +42,7 @@ ISO/PAS(Publicly Available Specification) 5112:2022는 도로 차량 사이버�
 
 R155 해석 문서는 CSMS 감사 수행의 추가 지침으로 ISO/PAS 5112를 들고, ISO/SAE 21434:2021을 쓰는 CSMS 감사 질문 목록의 예로 ISO/PAS 5112:2022의 Annex A를 든다.[@unece-r155-interpretation-2023]
 
-VDA QMC는 2020년 12월 CSMS 감사용 책자 ACSMS(Automotive Cybersecurity Management System Audit)를 펴냈다.[@vda-acsms-2020]
+VDA QMC(독일 자동차 업계 단체의 품질경영 기관)는 2020년 12월 CSMS 감사용 책자 ACSMS(Automotive Cybersecurity Management System Audit)를 펴냈다.[@vda-acsms-2020][@vda-qmc-home-2026]
 
 NHTSA의 2022년 지침(Cybersecurity Best Practices for the Safety of Modern Vehicles)은 자동차 업계가 조직과 제품의 사이버보안 감사를 해마다 하는 것을 고려하기를 권한다.[@nhtsa-cybersecurity-best-practices-2022]
 

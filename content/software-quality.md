@@ -14,7 +14,7 @@ verified: 2026-10-02
 - **프로세스 품질**: ISO/IEC 33001:2015는 프로세스가 정해진 맥락에서 쓰일 때 이해관계자의 명시된 요구와 암묵적 요구를 충족하는 능력으로 정의한다.[@iso-iec-33001-obp-2015]
 - **제품 품질**: ISO/IEC 25002:2024는 시스템이나 그 구성요소가 정해진 조건에서 쓰일 때 명시된 품질 요구와 암묵적 품질 요구를 충족하는 능력으로 정의한다.[@iso-iec-25002-obp-2024]
 
-SEI는 시스템이나 제품의 품질이 그것을 개발하고 유지하는 데 쓰는 프로세스의 품질에 크게 좌우된다는 프로세스 관리의 전제를 받아들여, 이 전제를 담은 CMM(Capability Maturity Model)들을 정의했다.[@cmmi-product-team-cmmi-development-2010]
+SEI(카네기멜런 대학의 [[software-engineering|소프트웨어 공학]] 연구소)는 시스템이나 제품의 품질이 그것을 개발하고 유지하는 데 쓰는 프로세스의 품질에 크게 좌우된다는 프로세스 관리의 전제를 받아들여, 이 전제를 담은 CMM(Capability Maturity Model)들을 정의했다.[@cmmi-product-team-cmmi-development-2010][@sei-about-2026]
 
 ISO/IEC 25010:2023은 제품 품질을 아홉 특성으로 나눈다.[@iso-iec-25010-obp-2023] 특성과 부특성은 [[software-quality-model#ISO/IEC 25010의 제품 품질 모델|소프트웨어 품질 모델]]에서 다룬다.
 

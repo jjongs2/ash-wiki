@@ -122,9 +122,9 @@ MLE.4는 학습된 ML 모델을 시험한 뒤, ML 아키텍처에 따라 학습�
 
 **Plug-in 컨셉**은 맨 위에 시스템 엔지니어링 프로세스를 두고, 개발할 제품에 따라 해당 엔지니어링 분야의 도메인 프로세스(예: HWE, SWE)를 평가 범위에 더하는 방식이다. 이 표준은 시스템 엔지니어링 프로세스를 시스템 V로 배치하고, plug-in 그림에서 SWE와 HWE 프로세스도 V 모양으로 그린다. 관리, 지원, 획득 같은 나머지 프로세스는 도메인에 묶이지 않아 시스템 수준과 도메인 수준 어디에나 적용할 수 있다.[@vda-automotive-spice-pam-4-1-2026] 개발 프로세스와 검증 프로세스를 마주 놓는 V 배치는 [[v-model#왼쪽과 오른쪽의 대응|V 모델]]에서 다룬다.
 
-이 표준의 엔지니어링 프로세스 그룹은 SYS, SWE, MLE, HWE이고, 기계 엔지니어링 프로세스는 없다. 그 밖의 도메인 프로세스는 VDA가 만들지 않았고 ASPICE에도 들지 않는다. 소프트웨어 아키텍처에서 머신러닝으로 개발할 소프트웨어 요소를 정하면, 그 요소에는 MLE 프로세스를, 나머지 component에는 SWE.3과 SWE.4를 적용한다.[@vda-automotive-spice-pam-4-1-2026]
+이 표준의 엔지니어링 프로세스 그룹은 SYS, SWE, MLE, HWE이고, 기계 엔지니어링 프로세스는 없다. 그 밖의 도메인 프로세스는 VDA(독일 자동차 업계 단체)가 만들지 않았고 ASPICE에도 들지 않는다.[@vda-automotive-spice-pam-4-1-2026][@vda-members-2026] 소프트웨어 아키텍처에서 머신러닝으로 개발할 소프트웨어 요소를 정하면, 그 요소에는 MLE 프로세스를, 나머지 component에는 SWE.3과 SWE.4를 적용한다.[@vda-automotive-spice-pam-4-1-2026]
 
-ASPICE 3.1은 plug-in 컨셉의 도메인 예로 하드웨어(HWE), 기계(MEE), 소프트웨어(SWE)를 들고, HWE와 MEE 프로세스는 VDA QMC가 만들지 않은 예시로 그렸다. ASPICE 4.1은 예로 HWE와 SWE만 들고, 프로세스 참조 모델에 HWE.1\~HWE.4를 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+ASPICE 3.1은 plug-in 컨셉의 도메인 예로 하드웨어(HWE), 기계(MEE), 소프트웨어(SWE)를 들고, HWE와 MEE 프로세스는 VDA QMC(독일 자동차 업계 단체의 품질경영 기관)가 만들지 않은 예시로 그렸다. ASPICE 4.1은 예로 HWE와 SWE만 들고, 프로세스 참조 모델에 HWE.1\~HWE.4를 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017][@vda-qmc-home-2026]
 
 ## VDA scope
 
@@ -147,4 +147,4 @@ ASPICE 3.1은 component를 소프트웨어 아키텍처의 가장 낮은 수준�
 
 ## intacs Hardware SPICE
 
-intacs는 전자 하드웨어 개발을 위한 프로세스 참조 모델이자 프로세스 평가 모델로 Hardware SPICE 4.0을 펴낸다. 이 모델은 ASPICE 4.1에 맞추고, [[iso-26262|ISO 26262-1]]:2018과 ISO 26262-5:2018에 대응시켜 만들었다. 이 모델의 HWE.1\~HWE.4는 ASPICE 4.1을 확장한 것으로, ISO 26262:2018과 [[iso-sae-21434|ISO/SAE 21434]]:2021에 대한 참조와 설명을 더 담는다. Hardware SPICE 4.0은 ASPICE와 따로 떼어 독립된 프로세스 평가 모델로 쓸 수 있다.[@intacs-spice-center-2026]
+intacs(프로세스 평가자 인증 체계를 가진 국제 비영리 단체)는 전자 하드웨어 개발을 위한 프로세스 참조 모델이자 프로세스 평가 모델로 Hardware SPICE 4.0을 펴낸다.[@intacs-spice-center-2026][@intacs-home-2026] 이 모델은 ASPICE 4.1에 맞추고, [[iso-26262|ISO 26262-1]]:2018과 ISO 26262-5:2018에 대응시켜 만들었다. 이 모델의 HWE.1\~HWE.4는 ASPICE 4.1을 확장한 것으로, ISO 26262:2018과 [[iso-sae-21434|ISO/SAE 21434]]:2021에 대한 참조와 설명을 더 담는다. Hardware SPICE 4.0은 ASPICE와 따로 떼어 독립된 프로세스 평가 모델로 쓸 수 있다.[@intacs-spice-center-2026]

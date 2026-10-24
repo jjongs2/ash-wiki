@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**MQTT**(Message Queuing Telemetry Transport)는 클라이언트와 서버 사이에서 발행·구독(publish/subscribe) 방식으로 메시지를 나르는 프로토콜이다. OASIS가 표준으로 펴낸다. MQTT는 가볍고 단순하며 구현하기 쉽게 설계돼, 코드 크기가 작아야 하거나 네트워크 대역폭이 귀한 M2M(Machine to Machine)과 IoT 같은 제약 환경에 알맞다.[@oasis-mqtt-5-0-2019]
+**MQTT**(Message Queuing Telemetry Transport)는 클라이언트와 서버 사이에서 발행·구독(publish/subscribe) 방식으로 메시지를 나르는 프로토콜이다. OASIS(개방형 표준을 만드는 비영리 표준화 기구)가 표준으로 펴낸다.[@oasis-mqtt-5-0-2019][@oasis-about-2026] MQTT는 가볍고 단순하며 구현하기 쉽게 설계돼, 코드 크기가 작아야 하거나 네트워크 대역폭이 귀한 M2M(Machine to Machine)과 IoT 같은 제약 환경에 알맞다.[@oasis-mqtt-5-0-2019]
 
 ## 클라이언트와 서버
 
@@ -52,7 +52,7 @@ Will message는 LWT(Last Will and Testament) 메시지라고도 부른다.[@aws-
 
 MQTT 5.0은 클라이언트와 서버 사이에, 순서를 지키고 잃지 않는 양방향 바이트 스트림을 주는 전송을 요구한다. MQTT는 [[tcp|TCP]]/IP 위에서 동작하고, 순서를 지키고 잃지 않는 양방향 연결을 주는 다른 프로토콜 위에서도 동작한다. 이 표준은 WebSocket 위에서 MQTT를 나르는 규칙도 정한다.[@oasis-mqtt-5-0-2019] Eclipse Paho의 JavaScript 클라이언트는 브라우저에서 동작하는 MQTT 클라이언트 라이브러리로, WebSocket으로 MQTT 브로커에 연결한다.[@eclipse-paho-javascript-2026]
 
-IANA는 [[port-number#번호 범위|서비스 이름]] mqtt에 포트 1883을, secure-mqtt에 포트 8883을 할당했다.[@iana-service-names-port-numbers-registry-2026] 포트 8883은 [[transport-layer-security|TLS]] 위의 MQTT, 포트 1883은 TLS 없는 MQTT를 위한 것이며, MQTT 5.0은 TLS를 제공하는 서버가 TCP 포트 8883을 쓰기를 강하게 권한다.[@oasis-mqtt-5-0-2019]
+IANA(인터넷 식별자 레지스트리를 관리하는 기관)는 [[port-number#번호 범위|서비스 이름]] mqtt에 포트 1883을, secure-mqtt에 포트 8883을 할당했다.[@iana-service-names-port-numbers-registry-2026][@iana-about-2026] 포트 8883은 [[transport-layer-security|TLS]] 위의 MQTT, 포트 1883은 TLS 없는 MQTT를 위한 것이며, MQTT 5.0은 TLS를 제공하는 서버가 TCP 포트 8883을 쓰기를 강하게 권한다.[@oasis-mqtt-5-0-2019]
 
 ## 제어 패킷
 

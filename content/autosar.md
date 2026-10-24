@@ -7,7 +7,7 @@ verified: 2026-09-30
 
 **AUTOSAR**는 자동차 제조사, Tier 1 부품 공급사, 반도체 회사, 소프트웨어 공급사, 도구 공급사 등이 함께 만든 연합으로, 자동차 소프트웨어 아키텍처의 개방형 산업 표준을 세웠다.[@autosar-history-2026] 이름은 AUTomotive Open System ARchitecture의 머리글자다.[@autosar-faq-2026]
 
-AUTOSAR의 시작은 2002년 8월 BMW, Bosch, Continental, DaimlerChrysler, Volkswagen이 공통 과제와 목표를 처음 논의한 것이고, 곧 Siemens VDO가 이들 회사에 합류했다.[@autosar-history-2026] AUTOSAR는 2003년 7월에 BMW, Bosch, Continental(지금의 AUMOVIO), DaimlerChrysler(지금의 Mercedes-Benz), Siemens VDO, Volkswagen이 결성했다.[@autosar-core-partner-2026] 같은 달 Core Partner들이 첫 AUTOSAR Development Agreement에 서명했고, 2003년 9월 Baden-Baden의 VDI 학회에서 AUTOSAR를 처음 공식 발표하며 그 목표를 소개했다.[@autosar-history-2026] 2016년 무렵 AUTOSAR 누리집은 "Cooperate on standards, compete on implementation"을 내걸고, AUTOSAR를 하나의 공통 표준을 만드는 파트너십으로 소개했다.[@autosar-home-2016]
+AUTOSAR의 시작은 2002년 8월 BMW, Bosch, Continental, DaimlerChrysler, Volkswagen이 공통 과제와 목표를 처음 논의한 것이고, 곧 Siemens VDO(VDO: Siemens의 자동차 전자 부품 회사)가 이들 회사에 합류했다.[@autosar-history-2026][@siemens-vdo-sale-2007] AUTOSAR는 2003년 7월에 BMW, Bosch, Continental(지금의 AUMOVIO(자동차 기술·전자 기업)), DaimlerChrysler(지금의 Mercedes-Benz), Siemens VDO, Volkswagen이 결성했다.[@autosar-core-partner-2026][@aumovio-listing-2025] 같은 달 Core Partner들이 첫 AUTOSAR Development Agreement에 서명했고, 2003년 9월 Baden-Baden의 VDI(독일의 엔지니어 단체) 학회에서 AUTOSAR를 처음 공식 발표하며 그 목표를 소개했다.[@autosar-history-2026][@vdi-ueber-uns-2026] 2016년 무렵 AUTOSAR 누리집은 "Cooperate on standards, compete on implementation"을 내걸고, AUTOSAR를 하나의 공통 표준을 만드는 파트너십으로 소개했다.[@autosar-home-2016]
 
 AUTOSAR는 소프트웨어 재사용을 목표로 든다. 계층화한 기본 소프트웨어 아키텍처로 ECU의 하드웨어 독립을 이루고, [[ee-architecture|E/E]] 시스템 안에서 기능 [[autosar-software-component|소프트웨어 컴포넌트]]를 옮길 수 있게 하고, 차량 제품군 전체에 걸쳐 확장할 수 있게 하는 것을 내세운다.[@autosar-about-2026]
 
@@ -63,7 +63,7 @@ AUTOSAR Foundation R25-11은 AUTOSAR 플랫폼 사이의 상호운용을 목적�
 
 Foundation의 역할은 둘이다. 하나는 두 플랫폼의 직접 범위 밖에 있거나 두 플랫폼과 무관한 산출물을 모으는 것으로, 프로토콜 명세와 Abstract Platform이 그 예다. 다른 하나는 두 플랫폼에 함께 적용되는 산출물의 저장소가 되는 것이다. **Abstract Platform**은 Classic Platform, Adaptive Platform, 오프보드 가운데 어디에 배치하든 상관없이 기능 수준 통신을 정의하려고 AUTOSAR가 정한 소프트웨어 플랫폼이다. 방법론과 모델링에서만 있는 것이고, 실제로 배치하는 플랫폼이 아니다. Classic Platform과 Adaptive Platform에서 기능 수준 통신은 [[virtual-functional-bus|VFB]] 수준 통신을 뜻한다.[@autosar-fo-tr-glossary-2025]
 
-AUTOSAR는 자동차용 소프트웨어 기술을 표준화하므로 관련 표준을 모두 따르려 하고, ISO, ASAM, GENIVI 같은 다른 표준화 기구와 정기적으로 접촉한다. 쓸 만한 기존 해법이 있으면 적절할 때 통합하거나 참조하거나 채택하고, 겹치는 곳이 있으면 호환성과 책임 분담을 챙긴다. AUTOSAR의 자주 묻는 질문 페이지에 따르면 JasPar 회원 다수가 AUTOSAR 파트너이고 그 반대도 그렇다. JasPar는 AUTOSAR와 [[flexray|FlexRay]] 표준의 활용에 집중해 AUTOSAR 규격을 검토하고 검증하고 구현하며, JasPar 안에는 AUTOSAR와 이어 주는 작업 그룹이 있다. AUTOSAR 파트너가 아닌 JasPar 회원은 공개된 AUTOSAR 규격에만 접근할 수 있다.[@autosar-faq-2026]
+AUTOSAR는 자동차용 소프트웨어 기술을 표준화하므로 관련 표준을 모두 따르려 하고, ISO, ASAM(자동차 개발·시험 시스템의 표준화 단체), GENIVI(차량용 소프트웨어의 개방형 표준 단체) 같은 다른 표준화 기구와 정기적으로 접촉한다.[@autosar-faq-2026][@asam-home-2026][@covesa-genivi-rebrand-2021] 쓸 만한 기존 해법이 있으면 적절할 때 통합하거나 참조하거나 채택하고, 겹치는 곳이 있으면 호환성과 책임 분담을 챙긴다. AUTOSAR의 자주 묻는 질문 페이지에 따르면 JasPar 회원 다수가 AUTOSAR 파트너이고 그 반대도 그렇다. JasPar는 AUTOSAR와 [[flexray|FlexRay]] 표준의 활용에 집중해 AUTOSAR 규격을 검토하고 검증하고 구현하며, JasPar 안에는 AUTOSAR와 이어 주는 작업 그룹이 있다. AUTOSAR 파트너가 아닌 JasPar 회원은 공개된 AUTOSAR 규격에만 접근할 수 있다.[@autosar-faq-2026]
 
 두 플랫폼의 차이는 [[autosar-classic-platform#Adaptive Platform과의 차이|AUTOSAR Classic Platform]]에서 다룬다.
 

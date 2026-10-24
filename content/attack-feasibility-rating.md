@@ -37,4 +37,4 @@ Annex G는 attack feasibility rating의 지침으로 attack potential 기반(G.2
 
 ## ISO/IEC 18045와의 관계
 
-CCRA에 참여하는 기관들은 ISO/IEC가 CEM:2022를 ISO/IEC 18045의 개정판에 옮겨 싣도록 허락했다.[@ccra-cem-2022] ISO/IEC 18045의 현행판은 2026년에 나온 4판이고, 2022년 판은 폐지되었다.[@iso-iec-18045-2026]
+CCRA(Common Criteria 인증서를 서로 인정하는 국가 간 협정)에 참여하는 기관들은 ISO/IEC가 CEM:2022를 ISO/IEC 18045의 개정판에 옮겨 싣도록 허락했다.[@ccra-cem-2022] ISO/IEC 18045의 현행판은 2026년에 나온 4판이고, 2022년 판은 폐지되었다.[@iso-iec-18045-2026]

@@ -19,7 +19,7 @@ CVE Record는 다음 세 상태 가운데 하나에 있다.[@cve-glossary-2026]
 - **Published**: CNA가 CVE ID에 딸린 데이터를 채워 CVE Record를 게시한 상태
 - **Rejected**: CVE ID와 CVE Record를 더는 쓰지 않아야 하는 상태. 사용자가 무효임을 알 수 있게 CVE List에 남겨 둔다.[@cve-glossary-2026]
 
-CVE Record Format은 CNA가 CVE Record를 게시할 때 [[common-vulnerability-scoring-system|CVSS]] 점수를 넣을 수 있게 한다. CVSS는 FIRST가 운영하는, CVE와 별개의 프로그램이다.[@cve-related-efforts-2026]
+CVE Record Format은 CNA가 CVE Record를 게시할 때 [[common-vulnerability-scoring-system|CVSS]] 점수를 넣을 수 있게 한다. CVSS는 FIRST(보안 사고 대응팀들의 국제 협의체)가 운영하는, CVE와 별개의 프로그램이다.[@cve-related-efforts-2026][@first-mission-2026]
 
 ## CVE Record 생명주기
 
@@ -40,9 +40,9 @@ CVE 프로그램은 CVE Record의 생명주기를 여섯 단계로 둔다.[@cve-
 
 ## 구조
 
-CVE Board는 CVE 프로그램의 운영을 감독하고 전략적 방향을 정한다. Secretariat는 CVE Board에 행정·실무 지원을 하고 프로그램의 인프라를 유지하며, 2026년 10월 기준 MITRE가 맡는다.[@cve-structure-2026]
+CVE Board는 CVE 프로그램의 운영을 감독하고 전략적 방향을 정한다. Secretariat는 CVE Board에 행정·실무 지원을 하고 프로그램의 인프라를 유지하며, 2026년 10월 기준 MITRE(미국의 비영리 연구 개발 기관)가 맡는다.[@cve-structure-2026][@mitre-rd-centers-2026]
 
-CVE ID를 매기고 CVE Record를 게시하는 일은 CVE Board가 정한 계층 구조 안에서 이뤄진다. **TL-Root**(Top-Level Root)는 CVE Board에 바로 보고하고, 하나 이상의 Root와 CNA를 둘 수 있는 자기 계층을 관리한다. 계층 안에서 Root는 자기 아래 CNA를 관리하는 관리 기능을, CNA는 ID를 매기고 Record를 게시하는 운영 기능을 맡는다. 2026년 10월 기준 TL-Root는 CISA와 MITRE 둘이다.[@cve-structure-2026]
+CVE ID를 매기고 CVE Record를 게시하는 일은 CVE Board가 정한 계층 구조 안에서 이뤄진다. **TL-Root**(Top-Level Root)는 CVE Board에 바로 보고하고, 하나 이상의 Root와 CNA를 둘 수 있는 자기 계층을 관리한다. 계층 안에서 Root는 자기 아래 CNA를 관리하는 관리 기능을, CNA는 ID를 매기고 Record를 게시하는 운영 기능을 맡는다. 2026년 10월 기준 TL-Root는 CISA(미국 사이버보안 기관)와 MITRE 둘이다.[@cve-structure-2026][@cisa-about-2026]
 
 ![[diagrams/cve-program-hierarchy.svg]]
 

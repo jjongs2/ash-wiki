@@ -18,13 +18,13 @@ ISO/IEC 9899:2024는 C 프로그램의 동작 가운데 표준이 결과를 하�
 
 ![[diagrams/c-undefined-unspecified-behavior.svg]]
 
-SEI CERT C 코딩 표준은 C 언어의 보안 코딩 규칙을 담고, 미정의 동작을 없애는 것 등으로 안전하고 믿을 수 있으며 보안이 갖춰진 시스템을 만드는 것을 목표로 한다. 이 표준은 미정의 동작이 악용할 수 있는 취약점으로 이어질 수 있다고 본다.[@sei-cert-c-introduction-2026]
+SEI CERT C(SEI: 카네기멜런 대학의 [[software-engineering|소프트웨어 공학]] 연구소) 코딩 표준은 C 언어의 보안 코딩 규칙을 담고, 미정의 동작을 없애는 것 등으로 안전하고 믿을 수 있으며 보안이 갖춰진 시스템을 만드는 것을 목표로 한다.[@sei-cert-c-introduction-2026][@sei-about-2026] 이 표준은 미정의 동작이 악용할 수 있는 취약점으로 이어질 수 있다고 본다.[@sei-cert-c-introduction-2026]
 
 ## 대표 표준
 
 [[misra-c|MISRA C]]는 주로 안전 관련 응용을 겨냥해, 특히 임베디드 시스템에서 C 언어의 취약점을 다루는 데 초점을 두어 왔다.[@misra-c-2023-add3-2025]
 
-CERT는 C 표준 위원회 WG14의 위원을 포함한 커뮤니티의 참여로 위키에서 CERT C 보안 코딩 표준을 만들었고, 2008년 책으로 낸 1.0판에 이어 2014년 2판과 2016년 판을 펴냈다.[@sei-cert-c-history-2026] SEI CERT C 코딩 표준의 지침은 규칙(rule)과 권고(recommendation)로 이뤄진다. 규칙은 코드에 대한 규범적 요구이고, 권고는 따르면 안전성, 신뢰성, 보안을 높일 지침이다.[@sei-cert-c-rules-versus-recommendations-2026]
+CERT(카네기멜런 대학 소프트웨어 공학 연구소의 [[cybersecurity|사이버보안]] 연구 부문)는 C 표준 위원회 WG14의 위원을 포함한 커뮤니티의 참여로 위키에서 CERT C 보안 코딩 표준을 만들었고, 2008년 책으로 낸 1.0판에 이어 2014년 2판과 2016년 판을 펴냈다.[@sei-cert-c-history-2026][@sei-cert-division-2026] SEI CERT C 코딩 표준의 지침은 규칙(rule)과 권고(recommendation)로 이뤄진다. 규칙은 코드에 대한 규범적 요구이고, 권고는 따르면 안전성, 신뢰성, 보안을 높일 지침이다.[@sei-cert-c-rules-versus-recommendations-2026]
 
 ## MISRA C와 CERT C의 대응
 
