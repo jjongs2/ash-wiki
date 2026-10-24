@@ -415,10 +415,10 @@ DNS 실패, 404 같은 그 밖의 실패는 `url` FAIL이다. 다만 시간 초�
 
 참고문헌이 인용한 출판물의 판이 바뀌면 이슈를 연다. 월간 workflow(`.github/workflows/edition-status.yml`)가 `npm run edition-status`로 감지하고, 반영은 이슈를 받은 흐름이 [표준의 판](#표준의-판)대로 맡는다. 도구는 이 절의 세 표(`edition-channels`, `edition-generic`, `edition-skipped`)를 읽고, 표가 도구의 통로와 어긋나거나 표준 페이지를 맡은 곳이 없으면 멈춘다.
 
-대상은 판을 매기는 출판물이다. 제품 문서(데이터시트, 벤더 매뉴얼), 논문, 단행본은 뺀다.
+대상은 판을 매기는 출판물이다. 제품 문서(데이터시트, 벤더 매뉴얼), 논문, 단행본은 뺀다. 표준 페이지가 없는 출판물은 전용 통로의 발행기관 것만 감지한다. CSRC에 레코드가 없는 NIST SP 500은 뺀다.
 
-- **출판물**: 표준 페이지가 있으면 그 페이지의 주제가 출판물 하나다([ADR 0011](adr/0011-standard-page-by-publication.md)). 표준 번호로 쓰는 페이지(`ISO 13400-2`, `IEEE 802.1Q`)는 같은 번호와 그 부(`26262-1`)의 엔트리를 모두 담는다. 표준 페이지가 없으면 통로가 번호(부 포함), RFC, 릴리스 묶음 단위로 묶는다.
-- **현행으로 인용한 판**: 표준 페이지가 있으면 `edition`의 판이다. 시리즈의 부가 서로 다른 해에 나왔으면 부마다 참고문헌에서 가장 새 판이다(`29119`). 표준 페이지가 없으면 참고문헌에서 그 출판물의 가장 새 판이다. 판은 엔트리 제목의 판 표시(`ISO 11898-2:2024`, `AUTOSAR AP R25-11`, `v4.0`)로 가린다. 옛 판 엔트리는 이력 문장의 근거라 신호를 내지 않는다.
+- **출판물**: 표준 페이지가 있으면 그 페이지의 주제가 출판물 하나다([ADR 0011](adr/0011-standard-page-by-publication.md)). 표준 번호로 쓰는 페이지(`ISO 13400-2`, `IEEE 802.1Q`)는 같은 번호와 그 부(`26262-1`)의 엔트리를 모두 담는다. IEEE 추보(`802.1Qbv`)와 정정은 기준 번호의 출판물에 붙는다. 표준 페이지가 없으면 통로가 번호(부 포함), RFC, 개정을 뗀 NIST 번호, 플랫폼의 릴리스 묶음, 강의계획서 단위로 묶는다.
+- **현행으로 인용한 판**: 표준 페이지가 있으면 `edition`의 판이다. `edition`에는 연도만 들어가므로, 시리즈의 부가 서로 다른 해에 나왔으면(`29119`) 부마다, 판을 이름으로 부르면(AUTOSAR 릴리스, UN 규정의 시리즈와 추보, 버전) 참고문헌에서 가장 새 판이다. 표준 페이지가 없으면 참고문헌에서 그 출판물의 가장 새 판이다. 판은 엔트리 제목의 판 표시(`ISO 11898-2:2024`, `AUTOSAR AP R25-11`, `v4.0`)로 가린다. 옛 판 엔트리는 이력 문장의 근거라 신호를 내지 않는다.
 
 상태 파일은 두지 않는다. 매번 통로와 참고문헌을 견준다. 이미 아는 개정은 참고문헌이 그 프로젝트를 인용했는지로 가린다.
 
@@ -452,15 +452,15 @@ DNS 실패, 404 같은 그 밖의 실패는 `url` FAIL이다. 다만 시간 초�
 
 <!-- table: edition-channels -->
 
-| 통로      | 발행기관                            | 원천                                                                   | 읽는 것                                                    |
-| --------- | ----------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------- |
-| `iso`     | ISO, ISO/IEC, ISO/IEC/IEEE, ISO/SAE | ISO 오픈 데이터(`iso_deliverables_metadata.jsonl`, 매일 갱신, 약 80MB) | `currentStage`, `replacedBy`, `replaces`, `supplementType` |
-| `ieee`    | IEEE                                | 표준 페이지(`standards.ieee.org/ieee/<번호>/<id>/`)                    | Status, Superseded by, 활성 개정 PAR                       |
-| `ietf`    | IETF                                | `rfc-index.xml`                                                        | obsoleted-by, current-status                               |
-| `nist`    | NIST CSRC                           | 출판물 레코드                                                          | Withdrawn on, Supersedes                                   |
-| `autosar` | AUTOSAR                             | 플랫폼별 표준 페이지와 릴리스마다의 Release Overview                   | 새 릴리스, Obsolete·Removed 목록                           |
-| `istqb`   | ISTQB                               | WordPress JSON(`wp-json/wp/v2/pages`, `media`)                         | 버전 문자열                                                |
-| `unece`   | UNECE                               | UN 조약 MTDSG PDF                                                      | C.N. 통지 목록과 발효일                                    |
+| 통로      | 발행기관                            | 원천                                                                                                          | 읽는 것                                                                           |
+| --------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `iso`     | ISO, ISO/IEC, ISO/IEC/IEEE, ISO/SAE | ISO 오픈 데이터(`iso_deliverables_metadata.jsonl`, 매일 갱신, 약 80MB)                                        | `currentStage`, `replacedBy`, `replaces`, `supplementType`                        |
+| `ieee`    | IEEE                                | 표준 페이지(`standards.ieee.org/ieee/<번호>/<id>/`, 엔트리에 없으면 `standard/<번호>-<연도>.html`)            | Status, Superseded by, Amendments·Corrigenda, 워킹그룹 Active Projects의 개정 PAR |
+| `ietf`    | IETF                                | `rfc-index.xml`                                                                                               | obsoleted-by, current-status, publication-status                                  |
+| `nist`    | NIST CSRC                           | 출판물 레코드(`csrc.nist.gov/pubs/…`)와 다음 개정(`…/r3/…`)의 레코드 경로                                     | Withdrawn on, Superseded by, 다음 개정 레코드의 유무                              |
+| `autosar` | AUTOSAR                             | 플랫폼별 표준 페이지(`/standards/<플랫폼>`)와 릴리스마다의 Release Overview. 인수 시험은 문서 검색(`/search`) | Current Release, Obsolete·Removed 목록, 인수 시험 Release Overview의 릴리스 경로  |
+| `istqb`   | ISTQB                               | WordPress JSON의 자격 페이지(`wp-json/wp/v2/pages`)                                                           | 강의계획서 내려받기 링크의 버전 문자열, `[Retired]` 표시                          |
+| `unece`   | UNECE                               | UN 조약 MTDSG PDF와 C.N. 통지 PDF(`treaties.un.org`), 규정 문서와 원문(`documents.un.org`)                    | C.N. 통지 목록, 발효일, 원문 기호(ECE/TRANS/WP.29/…), 원문 제목의 개정 이름       |
 
 범용 행은 출판물마다 URL 하나와 판 패턴 하나다. 도구는 URL 본문에서 판 패턴이 잡는 가장 새 판이, 엔트리 제목에서 같은 패턴이 잡는 가장 새 판보다 새로우면 새 판으로 알린다. 패턴은 잡을 묶음 하나로 판 이름을 잡고, 표의 칸을 가르는 `|`는 쓰지 않는다. `엔트리`는 표준 번호로 묶이지 않는 엔트리의 키 패턴이다.
 
