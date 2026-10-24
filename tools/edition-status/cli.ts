@@ -48,7 +48,8 @@ const unknown = only?.filter((id) => !channels.some((channel) => channel.id === 
 if (unknown.length > 0) throw new Error(`--channel이 통로가 아니다: ${unknown.join(", ")}`)
 
 const tree = loadTree(root)
-const assigned = assign(citedEntries(tree), standardPages(tree), channels)
+const cited = citedEntries(tree)
+const assigned = assign(cited, standardPages(tree), channels)
 
 // 도구가 보내는 모든 요청에 도구를 밝히는 User-Agent를 붙인다. 행이 헤더를 주면 그것을 쓴다.
 const context: Context = {
@@ -58,6 +59,7 @@ const context: Context = {
       headers: { "user-agent": "Mozilla/5.0 (compatible; edition-status/1.0)", ...init.headers },
       signal: AbortSignal.timeout(timeoutMs),
     }),
+  cited,
 }
 
 // 실패한 통로는 다른 통로를 모두 처리한 뒤 한 번 더 묻는다. 그래도 실패하면 FAIL로 찍고 exit 1로 끝난다.

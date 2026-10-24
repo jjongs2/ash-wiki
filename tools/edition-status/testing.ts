@@ -39,13 +39,17 @@ export function page(
 }
 
 // URL마다 응답. 문자열은 fixtures/ 기준 파일 경로이고, 함수는 응답을 직접 만든다.
-// 목록에 없는 URL은 404다. 물은 URL은 requested에 쌓인다.
-export function fixtureContext(routes: Record<string, string | (() => Response)>): Context & {
+// 목록에 없는 URL은 404다. 물은 URL은 requested에 쌓인다. cited는 다른 통로가 맡은 엔트리까지 든 인용 전체다.
+export function fixtureContext(
+  routes: Record<string, string | (() => Response)>,
+  cited: Entry[] = [],
+): Context & {
   requested: string[]
 } {
   const requested: string[] = []
   return {
     requested,
+    cited,
     async fetch(url) {
       requested.push(url)
       const route = routes[url]
