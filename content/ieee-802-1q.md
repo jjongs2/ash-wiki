@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 publisher: IEEE
 edition: 2022
-status: 개정 중
+status: 유효
 ---
 
 **IEEE 802.1Q**는 브리지와 브리지로 이어진 네트워크를 정하는 IEEE 표준이다. 정식 제목은 "IEEE Standard for Local and Metropolitan Area Networks — Bridges and Bridged Networks"이다.[@ieee-802-1q-2022] IEEE 802.1 작업 그룹에 따르면 802.1Q는 예로부터 [[virtual-lan|VLAN]]과 VLAN 브리지를 정하는 표준이었다.[@ieee-802-1q-project-2014]

@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-06
 publisher: IEEE
 edition: 2017
-status: 개정 중
+status: 유효
 ---
 
 **IEEE 802.1CB**는 신뢰성을 위한 프레임 복제와 중복 제거, 곧 **FRER**(Frame Replication and Elimination for Reliability)를 정하는 IEEE 표준이다. 정식 제목은 "IEEE Standard for Local and metropolitan area networks—Frame Replication and Elimination for Reliability"이다.[@ieee-802-1cb-2017]
