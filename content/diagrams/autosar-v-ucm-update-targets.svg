@@ -42,7 +42,6 @@
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
     <line x1="115" y1="72" x2="115" y2="134" />
     <line x1="115" y1="188" x2="115" y2="246" />
-    <path d="M340 176 H210 V258 H192" />
     <line x1="408" y1="188" x2="408" y2="240" />
     <line x1="190" y1="284" x2="338" y2="284" />
     <line x1="115" y1="300" x2="115" y2="358" />
@@ -50,8 +49,6 @@
     <line x1="408" y1="412" x2="408" y2="470" />
   </g>
   <g font-size="12" fill="var(--text, #727981)">
-    <text x="274" y="169" text-anchor="middle">V-UCM 클라이언트일 때</text>
-    <text x="400" y="219" text-anchor="end">UCM 클라이언트일 때</text>
     <text x="264" y="277" text-anchor="middle">소프트웨어 패키지</text>
     <text x="398" y="438" text-anchor="end">CAN 위의 UDS</text>
     <text x="398" y="454" text-anchor="end">DoIP 위의 UDS</text>
