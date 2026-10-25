@@ -13,7 +13,7 @@ verified: 2026-10-03
 
 ## 규모
 
-이 용어집은 SLOC(source lines of code)를 컴파일하기 전 프로그램에 든 프로그래밍 언어 코드의 줄 수로 정의하고, LOC를 lines of code의 약어로 둔다. 이 용어집은 **line of code**를 주석도 빈 줄도 아닌, 인도되는 소스 문장으로 정의한다.[@ieee-cs-sevocab-2026]
+이 용어집은 SLOC(source lines of code)를 컴파일하기 전 프로그램에 든 프로그래밍 언어 코드의 줄 수로 정의하고, LOC를 lines of code의 약어로 둔다. 이 용어집은 **line of code**를 주석도 빈 줄도 아닌, 인도되는(delivered) 소스 문장으로 정의한다.[@ieee-cs-sevocab-2026]
 
 SonarQube Server는 물리적 줄 수(lines)와, 공백이나 탭이 아니고 주석의 일부도 아닌 글자를 하나 이상 담은 줄의 수(lines of code)를 따로 센다.[@sonarsource-sonarqube-metrics-definition-2026]
 

@@ -37,5 +37,4 @@
     <text x="184" y="281" font-size="12">늦게 시작해도 됨</text>
     <text x="184" y="297" font-size="12">덜 엄격한 테스트 기법</text>
   </g>
-  <line x1="230" y1="238" x2="314" y2="124" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 </svg>

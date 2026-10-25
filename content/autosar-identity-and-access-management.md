@@ -32,7 +32,7 @@ IAM 모델링을 정한 functional cluster는 [[autosar-communication-management
 
 ## 정책과 intent
 
-AUTOSAR R25-11 용어집은 **Access Control Policy**를 호출 대상(서비스 인터페이스)에 묶여, 그 인터페이스에 접근하는 데 필요한 신원 정보를 나타내는 정책으로 정의한다. 정책은 설정이나 모델링으로 주거나 PDP에 정적으로 미리 프로그래밍할 수 있다. **Access Control Decision**은 요청한 동작을 허용하는지를 나타내는 불 값으로, 호출자의 신원과 Access Control Policy를 바탕으로 정해진다. IAM에서 호출자는 Adaptive Application이다.[@autosar-fo-tr-glossary-2025]
+AUTOSAR R25-11 용어집은 **Access Control Policy**를 호출 대상(서비스 인터페이스)에 묶여, 그 인터페이스에 접근하는 데 필요한 신원 정보를 나타내는 정책으로 정의한다. 정책은 설정이나 모델링으로 주거나 PDP에 정적으로 미리 프로그래밍할 수 있다. **Access Control Decision**은 요청한 동작을 허용하는지를 나타내는 Boolean 값으로, 호출자의 신원과 Access Control Policy를 바탕으로 정해진다. IAM에서 호출자는 Adaptive Application이다.[@autosar-fo-tr-glossary-2025]
 
 AUTOSAR R25-11 Identity and Access Management 설명서는 **intent**를 Adaptive Application이 의도한 접근을 나타내는 그 응용의 속성으로 정의한다. Adaptive Application은 어느 자원에 필요한 intent를 모두 승인받아 가지고 있을 때 그 자원에 접근할 수 있다. 자원에는 서비스 인터페이스와 그 Method, Event, Field, 암호 키 슬롯 등이 있다. intent는 설계 단계에서 Application Manifest에 모델링하고, 통합자가 배치 단계에서 GrantDesign을 Grant로 옮겨 승인한다. Grant는 PDP 구현을 위한 접근 제어 목록으로 처리될 수 있다.[@autosar-ap-exp-identityandaccessmanagement-2025]
 

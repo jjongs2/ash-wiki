@@ -1,55 +1,55 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="28 9.5 677 262.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="12.5 9.5 529 276.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="13" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
-  <!-- 가로축: 1년 = 40 단위, 2013년 칸이 x 110에서 시작 -->
+  <!-- 가로축: 1년 = 30 단위, 2013년 칸이 x 84에서 시작 -->
 
   <!-- 부 -->
   <g text-anchor="end" fill="var(--text, #727981)">
-    <text x="96" y="48.5">29119-1</text>
-    <text x="96" y="88.5">29119-2</text>
-    <text x="96" y="128.5">29119-3</text>
-    <text x="96" y="168.5">29119-4</text>
-    <text x="96" y="208.5">29119-5</text>
+    <text x="72" y="48.5">29119-1</text>
+    <text x="72" y="88.5">29119-2</text>
+    <text x="72" y="128.5">29119-3</text>
+    <text x="72" y="168.5">29119-4</text>
+    <text x="72" y="208.5">29119-5</text>
   </g>
 
   <!-- 판 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="110" y="30" width="360" height="28" />
-    <rect x="470" y="30" width="160" height="28" />
-    <rect x="110" y="70" width="320" height="28" />
-    <rect x="430" y="70" width="200" height="28" />
-    <rect x="110" y="110" width="320" height="28" />
-    <rect x="430" y="110" width="200" height="28" />
-    <rect x="190" y="150" width="240" height="28" />
-    <rect x="430" y="150" width="200" height="28" />
-    <rect x="230" y="190" width="320" height="28" />
-    <rect x="550" y="190" width="80" height="28" />
+    <rect x="84" y="30" width="270" height="28" />
+    <rect x="354" y="30" width="120" height="28" />
+    <rect x="84" y="70" width="240" height="28" />
+    <rect x="324" y="70" width="150" height="28" />
+    <rect x="84" y="110" width="240" height="28" />
+    <rect x="324" y="110" width="150" height="28" />
+    <rect x="144" y="150" width="180" height="28" />
+    <rect x="324" y="150" width="150" height="28" />
+    <rect x="174" y="190" width="240" height="28" />
+    <rect x="414" y="190" width="60" height="28" />
   </g>
   <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
-    <text x="290" y="48">첫판</text>
-    <text x="550" y="48">둘째 판</text>
-    <text x="270" y="88">첫판</text>
-    <text x="530" y="88">둘째 판</text>
-    <text x="270" y="128">첫판</text>
-    <text x="530" y="128">둘째 판</text>
-    <text x="310" y="168">첫판</text>
-    <text x="530" y="168">둘째 판</text>
-    <text x="390" y="208">첫판</text>
-    <text x="590" y="208">둘째 판</text>
+    <text x="219" y="48">첫판</text>
+    <text x="414" y="48">둘째 판</text>
+    <text x="204" y="88">첫판</text>
+    <text x="399" y="88">둘째 판</text>
+    <text x="204" y="128">첫판</text>
+    <text x="399" y="128">둘째 판</text>
+    <text x="234" y="168">첫판</text>
+    <text x="399" y="168">둘째 판</text>
+    <text x="294" y="208">첫판</text>
+    <text x="444" y="208">둘째 판</text>
   </g>
 
   <!-- 현행판 -->
-  <path d="M640 30 H646 V218 H640" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <text x="654" y="128" font-size="12" fill="var(--text, #727981)">현행판</text>
+  <path d="M484 30 H490 V218 H484" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="498" y="128" font-size="12" fill="var(--text, #727981)">현행판</text>
 
-  <!-- 연도 축 -->
-  <line x1="110" y1="232" x2="630" y2="232" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <path d="M110 232 v5 M150 232 v5 M190 232 v5 M230 232 v5 M270 232 v5 M310 232 v5 M350 232 v5 M390 232 v5 M430 232 v5 M470 232 v5 M510 232 v5 M550 232 v5 M590 232 v5 M630 232 v5" stroke="var(--ink, #727981)" stroke-width="1" />
+  <!-- 연도 축: 이웃한 해(2015·2016, 2021·2022)의 이름표는 두 줄로 엇갈려 놓는다 -->
+  <line x1="84" y1="232" x2="474" y2="232" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <path d="M84 232 v5 M114 232 v5 M144 232 v5 M174 232 v5 M204 232 v5 M234 232 v5 M264 232 v5 M294 232 v5 M324 232 v5 M354 232 v5 M384 232 v5 M414 232 v5 M444 232 v5 M474 232 v5" stroke="var(--ink, #727981)" stroke-width="1" />
   <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
-    <text x="130" y="252">2013</text>
-    <text x="210" y="252">2015</text>
-    <text x="250" y="252">2016</text>
-    <text x="450" y="252">2021</text>
-    <text x="490" y="252">2022</text>
-    <text x="570" y="252">2024</text>
+    <text x="99" y="252">2013</text>
+    <text x="159" y="252">2015</text>
+    <text x="189" y="266">2016</text>
+    <text x="339" y="252">2021</text>
+    <text x="369" y="266">2022</text>
+    <text x="429" y="252">2024</text>
   </g>
 </svg>

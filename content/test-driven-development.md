@@ -27,7 +27,7 @@ TDD에서는 테스트를 한 번에 하나만 더한다.[@beck-canon-tdd-2023] 
 
 ## 기원
 
-Beck은 자기가 TDD를 재발견했다고 말한다. 그는 1994년에 [[xunit|SUnit]]을 썼고, 1995년 10월 OOPSLA(Object-Oriented Programming, Systems, Languages, and Applications) 학회에서 Ward Cunningham에게 TDD를 시연했다.[@beck-canon-tdd-2023] Beck은 2002년에 『Test-Driven Development: By Example』을 내 TDD를 정리했다. 이 책의 2부에서는 TDD로 xUnit 테스트 프레임워크를 만들어 보이고, 3부에서는 xUnit으로 테스트를 쓰는 패턴을 다룬다.[@beck-test-driven-development-2002]
+Beck은 자기가 TDD를 재발견했다고 말한다. 그는 1994년에 [[xunit#기원|SUnit]]을 썼고, 1995년 10월 OOPSLA(Object-Oriented Programming, Systems, Languages, and Applications) 학회에서 Ward Cunningham에게 TDD를 시연했다.[@beck-canon-tdd-2023] Beck은 2002년에 『Test-Driven Development: By Example』을 내 TDD를 정리했다. 이 책의 2부에서는 TDD로 [[xunit|xUnit]] 테스트 프레임워크를 만들어 보이고, 3부에서는 xUnit으로 테스트를 쓰는 패턴을 다룬다.[@beck-test-driven-development-2002]
 
 ## 효과에 관한 연구
 

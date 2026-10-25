@@ -29,7 +29,7 @@ verified: 2026-10-03
 독립적인 영향을 보이는 방식으로 unique-cause MC/DC와 masking MC/DC가 있고, 강하게 결합된 조건에만 masking을 허용하는 unique-cause+masking MC/DC도 있다.[@chilenski-three-forms-mcdc-2001]
 
 - **Unique-cause MC/DC**: 독립성 쌍의 두 케이스 사이에 그 조건과 결정의 결과만 값이 바뀌고, 다른 조건은 모두 그대로다.
-- **Masking MC/DC**: 결정 안의 다른 조건도 값이 바뀔 수 있다. 다만 불 논리로 따져서 다른 조건이 결정의 결과에 영향을 주지 않는다는 것을 확인해야 한다.[@hayhurst-practical-tutorial-mcdc-2001]
+- **Masking MC/DC**: 결정 안의 다른 조건도 값이 바뀔 수 있다. 다만 Boolean 논리로 따져서 다른 조건이 결정의 결과에 영향을 주지 않는다는 것을 확인해야 한다.[@hayhurst-practical-tutorial-mcdc-2001]
 
 and 연산자에서는 한쪽 피연산자를 거짓으로 두면 다른 쪽이 가려진다. `a && b`에서 a가 거짓이면 b의 값은 결과에 영향을 주지 못한다.[@chilenski-three-forms-mcdc-2001]
 
@@ -43,9 +43,9 @@ and 연산자에서는 한쪽 피연산자를 거짓으로 두면 다른 쪽이 
 
 ## 도구
 
-GCC(GNU Compiler Collection)는 `-fcondition-coverage` 옵션으로 프로그램의 조건을 계측한다. 실행 중에 조건문의 어느 항이 결정에 기여했는지 기록해, 불 함수의 모든 항이 시험되었고 결정의 결과에 독립적으로 영향을 주는지 확인할 수 있게 하고, 그 결과는 gcov의 `--conditions` 옵션으로 읽는다.[@gcc-instrumentation-options-2026] gcov는 결정에 독립적으로 영향을 준 조건 결과를 덮은 것으로 세며, 이 방식은 masking MC/DC다.[@gcc-invoking-gcov-2026]
+GCC(GNU Compiler Collection)는 `-fcondition-coverage` 옵션으로 프로그램의 조건을 계측한다. 실행 중에 조건문의 어느 항이 결정에 기여했는지 기록해, Boolean 함수의 모든 항이 시험되었고 결정의 결과에 독립적으로 영향을 주는지 확인할 수 있게 하고, 그 결과는 gcov의 `--conditions` 옵션으로 읽는다.[@gcc-instrumentation-options-2026] gcov는 결정에 독립적으로 영향을 준 조건 결과를 덮은 것으로 세며, 이 방식은 masking MC/DC다.[@gcc-invoking-gcov-2026]
 
-Clang은 `-fprofile-instr-generate`, `-fcoverage-mapping`에 더해 `-fcoverage-mcdc`를 주면 MC/DC를 계측하고, llvm-cov는 `-show-mcdc-summary`를 줄 때 MC/DC 통계를 보인다. llvm-cov는 조건의 결과를 바꿀 때 결정의 결과도 바뀌고 다른 조건의 결과는 그대로이거나 단락 평가로 평가되지 않아 가려지는 것을, 실행된 테스트 벡터로 보인다. 조건 하나뿐인 불 식은 분기 커버리지로 바로 알 수 있어 MC/DC 분석에서 뺀다.[@llvm-source-based-code-coverage-2026]
+Clang은 `-fprofile-instr-generate`, `-fcoverage-mapping`에 더해 `-fcoverage-mcdc`를 주면 MC/DC를 계측하고, llvm-cov는 `-show-mcdc-summary`를 줄 때 MC/DC 통계를 보인다. llvm-cov는 조건의 결과를 바꿀 때 결정의 결과도 바뀌고 다른 조건의 결과는 그대로이거나 단락 평가로 평가되지 않아 가려지는 것을, 실행된 테스트 벡터로 보인다. 조건 하나뿐인 Boolean 식은 분기 커버리지로 바로 알 수 있어 MC/DC 분석에서 뺀다.[@llvm-source-based-code-coverage-2026]
 
 Clang은 MC/DC 계측에 두 한도를 둔다. 식 하나의 항 수는 32767까지이고, 테스트 벡터 수는 2,147,483,646까지다. 옵션으로 항 수와 식마다의 테스트 벡터 수를 더 좁힐 수 있고, 그렇게 정한 값을 넘는 식은 경고를 내고 MC/DC 커버리지에서 뺀다. 항이 $n$개인 식의 테스트 벡터 수는 최악의 경우 $2^n$까지 늘 수 있지만 대개 훨씬 적고, 연산자 하나가 이어지는 단순한 식에서는 $n+1$이다.[@llvm-source-based-code-coverage-2026]
 

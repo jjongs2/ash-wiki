@@ -9,14 +9,14 @@
     </marker>
   </defs>
 
-  <!-- 사슬: 오류 → fault → failure -->
+  <!-- 사슬: 실수 → fault → failure -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="65" y="20" width="100" height="36" rx="2" />
     <rect x="275" y="20" width="100" height="36" rx="2" />
     <rect x="595" y="20" width="100" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="115" y="42.5">오류</text>
+    <text x="115" y="42.5">실수</text>
     <text x="325" y="42.5">fault</text>
     <text x="645" y="42.5">failure</text>
   </g>
@@ -33,7 +33,7 @@
   </g>
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="115" y="131">결함 예방</text>
-    <text x="115" y="149" font-size="12">오류를 없앤다</text>
+    <text x="115" y="149" font-size="12">실수를 없앤다</text>
     <text x="325" y="131">결함 감소</text>
     <text x="325" y="149" font-size="12">들어간 fault를 찾아 없앤다</text>
     <text x="535" y="131">결함 봉쇄</text>

@@ -19,6 +19,7 @@
 - aperiodic: 비주기 (#350). 합성어 포함. 예: aperiodic 태스크, aperiodic server. CANopen PDO의 주기·비주기 송신처럼 통신의 송신 방식은 예외
 - ASPICE: Automotive SPICE, A-SPICE (#231). 판을 붙이면 `ASPICE 4.1` 꼴. 정식 이름은 `automotive-spice` 머리말의 풀이에만, A-SPICE는 그 페이지의 alias로만. 문서 이름 "Automotive SPICE for Cybersecurity"와 슬러그는 예외
 - baud: 보드레이트 (#496). 기호는 Bd. 음차 "보"도 쓰지 않는다. "Baud Rate Prescaler" 같은 이름은 그대로
+- Boolean: 불리언 (#579). 합성어 포함. 예: Boolean 식, Boolean 연산자. 번역어 "불"도 쓰지 않는다
 - CAN CC 풀이 CAN classic: CAN CC(CC: classic), CAN CC(Classical CAN), CAN classic(CC) (#564)
 - cascading failure: 연쇄 고장 (#291)
 - CDD 풀이 Complex Driver: Complex Device Driver (#440). 근거는 SWS BSWGeneral R25-11 [SWS_BSW_91001]과 FO TR Glossary R25-11 4.72. SW-C 종류 이름 "Complex Device Driver"(`autosar-software-component`)는 예외
@@ -29,6 +30,7 @@
 - content addressing: 통일하지 않음 (#441). 인용한 출처의 이름대로. CiA의 content addressing은 "내용 주소 지정", Bosch의 content based addressing은 "내용 기반 주소 지정". node addressing도 CiA는 "노드 주소 지정", Bosch는 "노드 기반 주소 지정"
 - context: 문맥 (#142)
 - context switch: 문맥 전환 (#142)
+- Conversation: 대화 (#579). 사용자 스토리의 3C(Card, Conversation, Confirmation)일 때
 - counter: 카운터 (#257). OSEK·AUTOSAR OS 객체일 때. 다른 counter는 이 결정에 들지 않는다.
 - Cyber Resilience Act: EU 사이버 회복력법 (#438)
 - cybersecurity goal: 사이버보안 목표 (#288)
@@ -86,6 +88,7 @@
 - 리프 노드: 잎 노드 (#250)
 - 메타모픽 테스트: 변성 테스트 (#385). metamorphic testing일 때. metamorphic relation은 "메타모픽 관계"
 - 무작위 테스트: 랜덤 테스트 (#385)
+- 베이스라인: 기준선 (#579). 형상 관리와 계획의 baseline일 때
 - 변이 테스트: 뮤테이션 테스트 (#385). mutation testing일 때. mutant는 "변이체", equivalent mutant는 "동등 변이체". "뮤테이션 테스트"는 alias로만
 - 분류 트리 기법: 분류 트리 방법 (#385)
 - 비대칭 키: 비대칭키 (#288)
@@ -108,6 +111,7 @@
 - 운용 프로파일: 운영 프로파일 (#385)
 - 위협 시나리오: threat scenario (#252)
 - 인수 기준: 인수 조건 (#385)
+- 입구 노드: 진입 노드 (#579). 제어 흐름 그래프의 entry node일 때
 - 자산: asset (#252)
 - 저속 내결함성 CAN: 저속 결함 허용 CAN (#441). ISO 11898-3의 low-speed, fault-tolerant 매체와 그 트랜시버일 때. 개념 fault tolerance는 "결함 허용"(#223)
 - 전술: tactic (#431). Automotive Threat Matrix의 tactic일 때

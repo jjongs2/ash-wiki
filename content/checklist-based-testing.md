@@ -33,4 +33,4 @@ ISTQB CTAL-TA v4.0 강의계획서에 따르면 체크리스트를 쓰면 테스
 
 ## 체크리스트 기반 리뷰와의 차이
 
-[[software-review#리뷰 기법|체크리스트 기반 리뷰]]는 미리 정한 체크리스트에 비추어 테스트 기준을 평가하는 [[software-review|리뷰]] 기법이다.[@istqb-ctal-ta-syllabus-2025] ISTQB 용어집은 리뷰를 [[software-testing#정적 테스트와 동적 테스트|정적 테스트]]의 한 유형으로 정의한다.[@istqb-glossary-review-2026]
+[[software-review#리뷰 기법|체크리스트 기반 리뷰]]는 미리 정한 체크리스트에 비추어 [[v-model#테스트 기준|테스트 기준]]을 평가하는 [[software-review|리뷰]] 기법이다.[@istqb-ctal-ta-syllabus-2025] ISTQB 용어집은 리뷰를 [[software-testing#정적 테스트와 동적 테스트|정적 테스트]]의 한 유형으로 정의한다.[@istqb-glossary-review-2026]
