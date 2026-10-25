@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
@@ -445,21 +446,43 @@ $panel-tokens:
   }
 }
 
-// 면을 화면 왼쪽 끝부터 칠한다. 데스크톱에서는 사이드바 칸이 페이지 왼쪽 끝에서 시작하지만, 페이지가 가운데로 모이는
-// 넓은 화면(base.scss의 .page max-width, 1500px 초과)에서는 왼쪽에 페이지 색이 남는다. 그 자리는 면의 border-image를
-// 왼쪽으로만 내밀어 칠한다. 내민 부분은 가로 스크롤을 만들지 않는다. 태블릿과 모바일에서는 사이드바 칸이 본문 칸의
-// 좌우 여백(base.scss의 #quartz-body padding 1rem)만큼 들어가 있어, 칸을 그만큼 밖으로 늘린다.
+// 면은 화면 왼쪽 끝부터 칠한다. 데스크톱에서는 사이드바 칸이 페이지 왼쪽 끝에서 시작하고, 태블릿과 모바일에서는 본문
+// 칸의 좌우 여백(base.scss의 #quartz-body padding 1rem)만큼 들어가 있어 칸을 그만큼 밖으로 늘린다.
 // 본문 칸과 footer는 면에서 띄운다. 사이드바 칸과 본문 칸 사이가 5px뿐이다. 칸이 border-box라 띄운 만큼 내용 폭이
 // 줄고, 내용이 칸 밖으로 넘지 않는다.
-.sidebar.left {
-  border-image: linear-gradient(var(--light), var(--light)) fill 0 / 0 / 0 0 0 100vw;
-}
-
 @media all and ($desktop) {
   .center,
   footer {
     box-sizing: border-box;
     padding-left: 2rem;
+  }
+}
+
+// 페이지가 가운데로 모이는 넓은 화면(base.scss의 .page max-width, 1500px 초과)에서는 면을 화면 왼쪽 끝에 붙이고, 본문
+// 칸과 오른쪽 사이드바를 남은 자리의 가운데에 둔다. 칠한 사이드바를 화면 끝에 붙이는 문서 사이트의 흔한 꼴이고, 본문의
+// 자리는 페이지를 화면 가운데에 둘 때와 2.5px만 다르다. 양옆 빈칸은 1500px에서 5px과 0이라 그 폭의 배치와 이어진다.
+// 업스트림의 다른 꼴(full-width, minimal)은 제 그리드를 쓰므로 기본 꼴에만 건다.
+@media all and (min-width: #{map.get($breakpoints, desktop) + 300px}) {
+  .page[data-frame="default"] {
+    max-width: none;
+
+    & > #quartz-body {
+      grid-template-columns:
+        $sidePanelWidth minmax(5px, 1fr)
+        calc(#{map.get($breakpoints, desktop) + 300px} - 2 * #{$sidePanelWidth} - 10px)
+        5px $sidePanelWidth minmax(0, 1fr);
+      grid-template-areas:
+        "grid-sidebar-left . grid-header . grid-sidebar-right ."
+        "grid-sidebar-left . grid-center . grid-sidebar-right ."
+        "grid-sidebar-left . grid-footer . grid-sidebar-right .";
+      column-gap: 0;
+
+      // 업스트림은 본문 칸(.center)에 자리를 주지 않아, 칸이 셋일 때는 자동 배치의 첫 빈칸인 가운데 칸에 놓인다. 칸이
+      // 여섯이면 첫 빈칸이 왼쪽 빈칸이라 열을 정해 준다.
+      & > .center {
+        grid-column: grid-center;
+      }
+    }
   }
 }
 
