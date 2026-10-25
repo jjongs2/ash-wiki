@@ -4,7 +4,7 @@ import type { AddressInfo } from "node:net"
 import path from "node:path"
 import { parseArgs } from "node:util"
 import handler from "serve-handler"
-import { chromium, type Browser } from "playwright"
+import { chromium, type Browser, type Page } from "playwright"
 import { frameWidth } from "../check-diff/diagram-width"
 import { inTopic, loadTree } from "../check-content/tree"
 import { repoRoot } from "../repo"
@@ -85,7 +85,32 @@ async function pageText(base: string, slug: string): Promise<{ text: string; lin
   return readerText(html, diagrams)
 }
 
-// 폭 하나의 스크린샷 조각을 찍고 파일 이름을 돌려준다. 데스크톱 폭에서는 도해 틀 안쪽 폭도 잰다.
+// 도해 틀 안쪽 폭과 viewBox 1단위의 폭. 본문에 빈 도해 틀을 잠시 넣어, 사이트의 CSS가 그리는 폭을
+// 그대로 잰다(quartz/styles/custom.scss). 틀보다 훨씬 넓은 틀은 틀 안쪽에 맞춰 줄고, 120단위 틀은 줄지
+// 않는다. 목록 안의 도해처럼 들여 쓴 틀을 피하려고 본문에 바로 넣는다.
+function frameWidths(page: Page): Promise<Omit<FrameMeasure, "slug">> {
+  return page.evaluate(() => {
+    const article = document.querySelector("article")!
+    const hasDiagram = article.querySelector('object[type="image/svg+xml"]') !== null
+    // 이 콜백 안에는 이름 붙은 함수를 두지 않는다. tsx가 붙이는 __name이 페이지에는 없다.
+    const [inner, narrow] = [1e6, 120].map((width) => {
+      const probe = document.createElement("object")
+      probe.type = "image/svg+xml"
+      probe.style.setProperty("--diagram-width", String(width))
+      article.append(probe)
+      const style = getComputedStyle(probe)
+      const box = ["borderLeftWidth", "borderRightWidth", "paddingLeft", "paddingRight"] as const
+      const content =
+        probe.getBoundingClientRect().width -
+        box.map((key) => parseFloat(style[key])).reduce((a, b) => a + b)
+      probe.remove()
+      return content
+    })
+    return { innerWidth: hasDiagram ? inner : null, unitWidth: narrow / 120 }
+  })
+}
+
+// 폭 하나의 스크린샷 조각을 찍고 파일 이름을 돌려준다. 데스크톱 폭에서는 도해 틀 폭도 잰다.
 async function screenshots(
   browser: Browser,
   base: string,
@@ -125,24 +150,7 @@ async function screenshots(
         ),
       )
     })
-    // 틀 안쪽은 테두리와 최소 padding 2 × 0.75rem을 뺀 폭이다(quartz/styles/custom.scss). 목록 안의 도해는
-    // 들여 쓴 만큼 틀이 좁으므로 가장 넓은 틀을 쓰고, 접힌 곳에 있어 폭이 없는 도해는 뺀다.
-    const frame =
-      view.name === "desktop"
-        ? await page.evaluate((slug) => {
-            const rem = parseFloat(getComputedStyle(document.documentElement).fontSize)
-            const objects = [...document.querySelectorAll('article object[type="image/svg+xml"]')]
-            const widths = objects
-              .map((object) => {
-                const style = getComputedStyle(object)
-                const border =
-                  parseFloat(style.borderLeftWidth) + parseFloat(style.borderRightWidth)
-                return object.getBoundingClientRect().width - border - 2 * 0.75 * rem
-              })
-              .filter((width) => width > 0)
-            return { slug, inner: widths.length > 0 ? Math.max(...widths) : null, rem }
-          }, slug)
-        : undefined
+    const frame = view.name === "desktop" ? { slug, ...(await frameWidths(page)) } : undefined
     const height = await page.evaluate(() => document.documentElement.scrollHeight)
     const files: string[] = []
     let tokens = 0
