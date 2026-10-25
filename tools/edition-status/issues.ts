@@ -1,71 +1,63 @@
-import { changeKey, kindNames, type Change, type Entry, type Publication } from "./model"
+import { changeKey, kindNames, type Change, type Entry } from "./model"
 
-// 출판물 하나에 이슈 하나다. 본문의 숨은 표식으로 출판물과 바뀜의 키를 적고, 억제할 때 이것으로 견준다.
+// 판 확인은 열린 모음 이슈 하나에 출판물마다 코멘트 하나로 바뀜을 더한다. 코멘트의 숨은 표식으로 바뀜의 키를 적고,
+// 모음 이슈(열림·닫힘)의 코멘트에 이미 적힌 키의 바뀜은 다시 알리지 않는다. 모음 이슈는 제목으로 찾는다.
 // 규칙은 docs/wiki-verification.md의 판 확인 절에 있다.
-const publicationMarker = (name: string) => `<!-- edition-status: ${name} -->`
+export const collectionTitle = "edition: 판 확인 모음"
 const keyMarker = (key: string) => `<!-- edition-key: ${key} -->`
-const publicationPattern = /^<!-- edition-status: (.+) -->$/m
 const keyPattern = /^<!-- edition-key: (.+) -->$/gm
 
+// 모음 이슈와 그 코멘트 본문
 export interface Issue {
   number: number
   state: "open" | "closed"
-  title: string
-  body: string
+  comments: string[]
 }
 
-export type Action =
-  | { kind: "open"; title: string; body: string; changes: Change[] }
-  | { kind: "update"; issue: Issue; body: string; changes: Change[] }
-
-export const issueTitle = (publication: Publication) => `edition: ${publication.name}`
-
-export function publicationOfIssue(issue: Issue): string | undefined {
-  return issue.body.match(publicationPattern)?.[1]
+export interface Plan {
+  // 코멘트를 달 열린 모음 이슈. 없으면 새로 연다.
+  issue?: Issue
+  comments: { publication: string; body: string }[]
 }
 
-export function keysOfIssue(issue: Issue): string[] {
-  return [...issue.body.matchAll(keyPattern)].map((match) => match[1])
-}
-
-// 같은 출판물의 열린 이슈가 있으면 그 본문을 갱신하고, 없으면 연다. 닫힌 이슈가 적은 키의 바뀜은 닫힌 이유와
-// 상관없이 다시 알리지 않는다. 남은 바뀜이 없으면 아무것도 하지 않는다.
-export function plan(changes: Change[], issues: Issue[], repo: string): Action[] {
-  const closedKeys = new Set(
-    issues.filter((issue) => issue.state === "closed").flatMap((issue) => keysOfIssue(issue)),
+export function keysOf(issue: Issue): string[] {
+  return issue.comments.flatMap((comment) =>
+    [...comment.matchAll(keyPattern)].map((match) => match[1]),
   )
+}
+
+export function plan(changes: Change[], issues: Issue[], repo: string): Plan {
+  const known = new Set(issues.flatMap(keysOf))
   const byPublication = new Map<string, Change[]>()
   for (const change of changes) {
-    if (closedKeys.has(changeKey(change))) continue
+    if (known.has(changeKey(change))) continue
     const name = change.publication.name
     byPublication.set(name, [...(byPublication.get(name) ?? []), change])
   }
-  const actions: Action[] = []
-  for (const [name, fresh] of byPublication) {
-    const body = render(fresh, repo)
-    const open = issues.find(
-      (issue) => issue.state === "open" && publicationOfIssue(issue) === name,
-    )
-    if (!open)
-      actions.push({ kind: "open", title: issueTitle(fresh[0].publication), body, changes: fresh })
-    else if (open.body.trim() !== body.trim())
-      actions.push({ kind: "update", issue: open, body, changes: fresh })
+  return {
+    issue: issues.filter((issue) => issue.state === "open").sort((a, b) => a.number - b.number)[0],
+    comments: [...byPublication].map(([publication, fresh]) => ({
+      publication,
+      body: render(fresh, repo),
+    })),
   }
-  return actions
 }
 
-// 이슈와 페이지 참조는 명시적 링크로 쓴다. 저장소가 비공개인 동안 workflow의 GITHUB_TOKEN으로 게시한 `#N`은
-// 링크로 풀리지 않는다.
+// 모음 이슈의 본문. 처리 절차는 판 확인 절에만 둔다.
+export function collectionBody(repo: string): string {
+  const doc = `https://github.com/${repo}/blob/main/docs/wiki-verification.md`
+  return (
+    `[판 확인](${doc}#판-확인)이 찾은 바뀜을 출판물마다 코멘트 하나로 모은다. ` +
+    `triage와 닫는 법은 [판 확인의 이슈](${doc}#이슈)를 따른다.\n`
+  )
+}
+
+// 코멘트 하나. 이슈와 페이지 참조는 명시적 링크로 쓴다. 저장소가 비공개인 동안 workflow의 GITHUB_TOKEN으로
+// 게시한 `#N`은 링크로 풀리지 않는다.
 export function render(changes: Change[], repo: string): string {
   const publication = changes[0].publication
   const blob = `https://github.com/${repo}/blob/main`
-  const lines = [
-    publicationMarker(publication.name),
-    `[판 확인](${blob}/docs/wiki-verification.md#판-확인)이 ${publication.name}의 바뀜을 찾았다. ` +
-      `반영은 [표준의 판](${blob}/docs/wiki-verification.md#표준의-판)을 따르고, 반영 범위는 triage에서 정한다.`,
-    "",
-    "## 바뀜",
-  ]
+  const lines = [`## ${publication.name}`]
   for (const change of changes) {
     lines.push(
       "",
@@ -78,7 +70,7 @@ export function render(changes: Change[], repo: string): string {
       lines.push(`- ${field}: ${value} ([원문](${url}))`)
     if (change.notes?.length) lines.push("", ...change.notes.map((note) => `- ${note}`))
   }
-  lines.push("", "## 영향받는 페이지", "")
+  lines.push("", "### 영향받는 페이지", "")
   const counts = affected(changes.flatMap((change) => change.current))
   const page = publication.page?.name
   if (page) {
@@ -131,40 +123,47 @@ export class GitHub {
     return response.json()
   }
 
-  // 판 확인이 연 이슈. PR은 뺀다.
-  async issues(): Promise<Issue[]> {
-    const found: Issue[] = []
+  // 100개씩 끝까지 받는다.
+  private async all<T>(path: string): Promise<T[]> {
+    const found: T[] = []
     for (let page = 1; ; page++) {
-      const batch = (await this.call("GET", `/issues?state=all&per_page=100&page=${page}`)) as {
-        number: number
-        state: "open" | "closed"
-        title: string
-        body: string | null
-        pull_request?: unknown
-      }[]
-      for (const issue of batch) {
-        if (issue.pull_request || !issue.body?.match(publicationPattern)) continue
-        found.push({
-          number: issue.number,
-          state: issue.state,
-          title: issue.title,
-          body: issue.body,
-        })
-      }
+      const batch = (await this.call("GET", `${path}per_page=100&page=${page}`)) as T[]
+      found.push(...batch)
       if (batch.length < 100) return found
     }
   }
 
-  async apply(action: Action): Promise<number> {
-    if (action.kind === "update") {
-      await this.call("PATCH", `/issues/${action.issue.number}`, { body: action.body })
-      return action.issue.number
+  // 제목이 모음 이슈의 제목인 이슈와 그 코멘트. PR은 뺀다.
+  async issues(): Promise<Issue[]> {
+    const issues = await this.all<{
+      number: number
+      state: "open" | "closed"
+      title: string
+      pull_request?: unknown
+    }>("/issues?state=all&")
+    const found: Issue[] = []
+    for (const issue of issues) {
+      if (issue.pull_request || issue.title !== collectionTitle) continue
+      const comments = await this.all<{ body: string | null }>(`/issues/${issue.number}/comments?`)
+      found.push({
+        number: issue.number,
+        state: issue.state,
+        comments: comments.map((comment) => comment.body ?? ""),
+      })
     }
+    return found
+  }
+
+  async open(body: string): Promise<number> {
     const created = (await this.call("POST", "/issues", {
-      title: action.title,
-      body: action.body,
+      title: collectionTitle,
+      body,
       labels: ["needs-triage"],
     })) as { number: number }
     return created.number
+  }
+
+  async comment(number: number, body: string): Promise<void> {
+    await this.call("POST", `/issues/${number}/comments`, { body })
   }
 }

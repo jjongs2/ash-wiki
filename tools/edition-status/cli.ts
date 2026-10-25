@@ -7,14 +7,14 @@ import { report, verdict } from "../check-content/report"
 import { loadTree } from "../check-content/tree"
 import { channels as loadChannels } from "./channels"
 import { coverage, notTargetRows, publisherName } from "./coverage"
-import { GitHub, issueTitle, plan, type Issue } from "./issues"
+import { collectionBody, collectionTitle, GitHub, plan } from "./issues"
 import { changeKey, kindNames, type Change, type Channel, type Context } from "./model"
 import { assign, citedEntries, standardPages } from "./publications"
 
 // 판 확인. 월간 workflow(.github/workflows/edition-status.yml)가 돌리고, 기준은 docs/wiki-verification.md의
 // 판 확인 절과 그 네 표(edition-channels, edition-generic, edition-skipped, edition-not-target)에 있다.
 // 사용: npm run edition-status -- [<트리 루트>] [--dry-run] [--channel <통로>]...
-//   --dry-run은 이슈를 읽거나 쓰지 않고 바뀜과 이슈 본문만 찍는다. 아니면 GITHUB_TOKEN과 GITHUB_REPOSITORY가 있어야 한다.
+//   --dry-run은 이슈를 읽거나 쓰지 않고 바뀜과 모음 이슈에 더할 코멘트만 찍는다. 아니면 GITHUB_TOKEN과 GITHUB_REPOSITORY가 있어야 한다.
 //   --channel을 주면 그 통로만 묻고 덮음 검사는 하지 않는다.
 //   --timeout은 요청 하나의 제한 시간, --interval은 범용 행 사이의 간격이다(밀리초).
 const verificationPath = path.join(repoRoot, "docs", "wiki-verification.md")
@@ -130,19 +130,22 @@ for (const channel of targets) {
   changes.push(...result)
 }
 
+// 열린 모음 이슈에 새 바뀜을 출판물마다 코멘트로 더한다. 열린 모음 이슈가 없으면 연다.
 if (dryRun) {
-  for (const action of plan(changes, [], repo))
-    console.log(`\n=== ${issueTitle(action.changes[0].publication)}\n${action.body}`)
+  for (const { body } of plan(changes, [], repo).comments)
+    console.log(`\n=== ${collectionTitle}에 더할 코멘트\n${body}`)
 } else {
   const token = process.env.GITHUB_TOKEN
   if (!token) throw new Error("GITHUB_TOKEN이 없다. 이슈를 건드리지 않으려면 --dry-run을 준다")
   const github = new GitHub(repo, token, process.env.GITHUB_API_URL)
-  const issues: Issue[] = await github.issues()
-  for (const action of plan(changes, issues, repo)) {
-    const number = await github.apply(action)
-    console.log(
-      `${action.kind === "open" ? "열었다" : "갱신했다"} #${number} ${action.kind === "open" ? action.title : action.issue.title}`,
-    )
+  const { issue, comments } = plan(changes, await github.issues(), repo)
+  if (comments.length > 0) {
+    const number = issue?.number ?? (await github.open(collectionBody(repo)))
+    if (!issue) console.log(`열었다 #${number} ${collectionTitle}`)
+    for (const { publication, body } of comments) {
+      await github.comment(number, body)
+      console.log(`코멘트를 더했다 #${number} ${publication}`)
+    }
   }
 }
 process.exitCode =

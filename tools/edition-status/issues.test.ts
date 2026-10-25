@@ -1,16 +1,17 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
-import { keysOfIssue, plan, render, type Issue } from "./issues"
+import { keysOf, plan, render, type Issue } from "./issues"
 import type { Change, ChangeKind, Publication } from "./model"
 import { entry, page } from "./testing"
 
-// 이슈 동기화를 seam으로 본다. 바뀜과 저장소의 이슈를 넣고 열거나 갱신할 이슈만 본다.
+// 모음 이슈 동기화를 seam으로 본다. 바뀜과 모음 이슈(코멘트 포함)를 넣고, 더할 코멘트와 코멘트를 달 이슈만 본다.
 const repo = "owner/wiki"
 const doip: Publication = {
   name: "ISO 13400-2",
   page: page("iso-13400-2", "ISO 13400-2", "ISO", "2025"),
   entries: [],
 }
+const rfc: Publication = { name: "RFC 1146", entries: [] }
 const current = [
   entry("iso-13400-2-2025", "ISO 13400-2:2025", {
     citedBy: new Map([
@@ -35,85 +36,68 @@ function change(kind: ChangeKind, target: string, publication = doip): Change {
   }
 }
 
-const issue = (number: number, state: Issue["state"], changes: Change[]): Issue => ({
+const collection = (number: number, state: Issue["state"], changes: Change[]): Issue => ({
   number,
   state,
-  title: `edition: ${changes[0].publication.name}`,
-  body: render(changes, repo),
+  comments: [render(changes, repo)],
 })
 
-describe("이슈", () => {
-  test("열린 이슈가 없으면 출판물마다 하나를 연다", () => {
-    const rfc: Publication = { name: "RFC 1146", entries: [] }
-    const actions = plan(
+describe("모음 이슈", () => {
+  test("새 바뀜을 출판물마다 코멘트 하나로 모은다", () => {
+    const { issue, comments } = plan(
       [
         change("revision", "ISO/CD 13400-2"),
-        change("supplement", "X/Amd 1"),
+        change("supplement", "ISO 13400-2:2025/Amd 1:2027"),
         change("withdrawn", "RFC 1146", rfc),
       ],
       [],
       repo,
     )
+    assert.strictEqual(issue, undefined)
     assert.deepStrictEqual(
-      actions.map((action) => [
-        action.kind,
-        action.kind === "open" ? action.title : "",
-        action.changes.length,
-      ]),
-      [
-        ["open", "edition: ISO 13400-2", 2],
-        ["open", "edition: RFC 1146", 1],
-      ],
+      comments.map(({ publication }) => publication),
+      ["ISO 13400-2", "RFC 1146"],
     )
-  })
-
-  test("같은 출판물의 열린 이슈가 있으면 새로 열지 않고 본문을 갱신한다", () => {
-    const open = issue(7, "open", [change("revision", "ISO/CD 13400-2")])
-    const actions = plan(
-      [change("revision", "ISO/CD 13400-2"), change("supplement", "ISO 13400-2:2025/Amd 1:2027")],
-      [open],
-      repo,
-    )
-    assert.strictEqual(actions.length, 1)
-    assert.strictEqual(actions[0].kind, "update")
-    assert.strictEqual(actions[0].kind === "update" && actions[0].issue.number, 7)
-    assert.deepStrictEqual(keysOfIssue({ ...open, body: actions[0].body }), [
+    assert.deepStrictEqual(keysOf({ number: 0, state: "open", comments: [comments[0].body] }), [
       "ISO 13400-2 | revision | ISO/CD 13400-2",
       "ISO 13400-2 | supplement | ISO 13400-2:2025/Amd 1:2027",
     ])
   })
 
-  test("본문이 같으면 갱신하지 않는다", () => {
-    const changes = [change("revision", "ISO/CD 13400-2")]
-    assert.deepStrictEqual(plan(changes, [issue(7, "open", changes)], repo), [])
+  test("열린 모음 이슈가 있으면 거기에 코멘트를 더한다", () => {
+    const open = collection(7, "open", [change("withdrawn", "RFC 1146", rfc)])
+    const { issue, comments } = plan([change("revision", "ISO/CD 13400-2")], [open], repo)
+    assert.strictEqual(issue?.number, 7)
+    assert.deepStrictEqual(
+      comments.map(({ publication }) => publication),
+      ["ISO 13400-2"],
+    )
   })
 
-  test("같은 키의 닫힌 이슈가 있으면 닫힌 이유와 상관없이 열지 않고, 더 새 바뀜일 때만 연다", () => {
-    const closed = issue(5, "closed", [change("revision", "ISO/CD 13400-2")])
-    assert.deepStrictEqual(plan([change("revision", "ISO/CD 13400-2")], [closed], repo), [])
-    const actions = plan(
+  test("열리거나 닫힌 모음 이슈의 코멘트에 적힌 바뀜은 다시 알리지 않고, 더 새 바뀜만 알린다", () => {
+    const closed = collection(5, "closed", [change("revision", "ISO/CD 13400-2")])
+    const open = collection(9, "open", [change("withdrawn", "RFC 1146", rfc)])
+    const repeated = plan(
+      [change("revision", "ISO/CD 13400-2"), change("withdrawn", "RFC 1146", rfc)],
+      [closed, open],
+      repo,
+    )
+    assert.deepStrictEqual(repeated.comments, [])
+    const newer = plan(
       [change("revision", "ISO/CD 13400-2"), change("new-edition", "ISO 13400-2:2028")],
-      [closed],
+      [closed, open],
       repo,
     )
     assert.deepStrictEqual(
-      actions.map((action) => keysOfIssue({ ...closed, body: action.body })),
-      [["ISO 13400-2 | new-edition | ISO 13400-2:2028"]],
+      keysOf({ number: 0, state: "open", comments: newer.comments.map((c) => c.body) }),
+      ["ISO 13400-2 | new-edition | ISO 13400-2:2028"],
     )
+    assert.strictEqual(newer.issue?.number, 9)
   })
 
-  test("다른 출판물의 이슈는 보지 않는다", () => {
-    const other: Publication = { name: "ISO 13400-3", entries: [] }
-    const open = issue(9, "open", [change("revision", "ISO/CD 13400-2", other)])
-    const actions = plan([change("revision", "ISO/CD 13400-2")], [open], repo)
-    assert.deepStrictEqual(
-      actions.map((action) => action.kind),
-      ["open"],
-    )
-  })
-
-  test("본문에 바뀜의 종류, 근거, 영향받는 페이지와 인용 수를 명시적 링크로 적는다", () => {
+  test("코멘트에 바뀜의 종류, 근거, 영향받는 페이지와 인용 수를 명시적 링크로 적는다", () => {
     const body = render([change("revision", "ISO/CD 13400-2")], repo)
+    assert.match(body, /^## ISO 13400-2$/m)
     assert.match(body, /^### 개정 착수: ISO\/CD 13400-2$/m)
     assert.match(
       body,

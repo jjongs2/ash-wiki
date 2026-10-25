@@ -23,7 +23,8 @@ let base: string
 let root: string
 // 테스트마다 정하는 응답
 let misra: () => { status: number; body: string }
-let existing: { number: number; state: string; title: string; body: string }[]
+// GitHub에 있는 이슈와 그 코멘트 본문
+let existing: { number: number; state: string; title: string; comments: string[] }[]
 let requests: { method: string; url: string; body: string }[]
 
 before(async () => {
@@ -39,15 +40,21 @@ before(async () => {
         res.statusCode = status
         return res.end(body)
       }
-      if (req.url!.startsWith(`${issuesPath}?`)) {
-        res.setHeader("content-type", "application/json")
-        return res.end(JSON.stringify(req.url!.includes("page=1") ? existing : []))
+      res.setHeader("content-type", "application/json")
+      const firstPage = req.url!.includes("page=1")
+      if (req.url!.startsWith(`${issuesPath}?`))
+        return res.end(
+          JSON.stringify(firstPage ? existing.map(({ comments, ...issue }) => issue) : []),
+        )
+      const comments = req.url!.match(new RegExp(`^${issuesPath}/([0-9]+)/comments`))
+      if (comments && req.method === "GET") {
+        const issue = existing.find((issue) => issue.number === Number(comments[1]))!
+        return res.end(JSON.stringify(firstPage ? issue.comments.map((body) => ({ body })) : []))
       }
-      if (req.method === "POST" && req.url === issuesPath) {
+      if (req.method === "POST" && (req.url === issuesPath || comments)) {
         res.statusCode = 201
         return res.end(JSON.stringify({ number: 101 }))
       }
-      if (req.method === "PATCH" && req.url!.startsWith(`${issuesPath}/`)) return res.end("{}")
       res.statusCode = 404
       res.end()
     })
@@ -138,41 +145,42 @@ const statusLines = (lines: string[]) =>
     .map((line) => line.split(" (")[0].replace(/ +/, " "))
 
 describe("판 확인 CLI", () => {
-  test("바뀜을 찾으면 needs-triage 라벨로 이슈를 연다", async () => {
+  test("열린 모음 이슈가 없으면 needs-triage 라벨로 열고 바뀜을 코멘트로 더한다", async () => {
     const { exitCode, lines } = await runCli()
     assert.deepStrictEqual(statusLines(lines), ["OK coverage", "OK iso", "OK generic"])
     assert.strictEqual(exitCode, 0)
-    const created = requests.filter((request) => request.method === "POST")
-    assert.strictEqual(created.length, 1)
-    const issue = JSON.parse(created[0].body)
-    assert.strictEqual(issue.title, "edition: ISO 13400-2")
+    const posts = requests.filter((request) => request.method === "POST")
+    assert.deepStrictEqual(
+      posts.map((request) => request.url),
+      [issuesPath, `${issuesPath}/101/comments`],
+    )
+    const issue = JSON.parse(posts[0].body)
+    assert.strictEqual(issue.title, "edition: 판 확인 모음")
     assert.deepStrictEqual(issue.labels, ["needs-triage"])
-    assert.match(issue.body, /\): 인용 2$/m)
-    assert.ok(lines.includes("열었다 #101 edition: ISO 13400-2"))
+    assert.match(JSON.parse(posts[1].body).body, /\): 인용 2$/m)
+    assert.ok(lines.includes("코멘트를 더했다 #101 ISO 13400-2"))
   })
 
-  test("같은 출판물의 열린 이슈는 갱신하고, 같은 키의 닫힌 이슈가 있으면 열지 않는다", async () => {
+  test("열린 모음 이슈에 코멘트를 더하고, 모음 이슈의 코멘트에 적힌 바뀜은 다시 알리지 않는다", async () => {
     existing = [
-      {
-        number: 7,
-        state: "open",
-        title: "edition: ISO 13400-2",
-        body: "<!-- edition-status: ISO 13400-2 -->\n옛 본문\n",
-      },
+      { number: 3, state: "open", title: "edition: ISO 13400-2", comments: [] },
+      { number: 7, state: "open", title: "edition: 판 확인 모음", comments: ["다른 바뀜\n"] },
     ]
     await runCli()
     assert.deepStrictEqual(
       requests
         .filter((request) => request.method !== "GET")
         .map((request) => `${request.method} ${request.url}`),
-      [`PATCH ${issuesPath}/7`],
+      [`POST ${issuesPath}/7/comments`],
     )
     existing = [
       {
         number: 5,
         state: "closed",
-        title: "edition: ISO 13400-2",
-        body: "<!-- edition-status: ISO 13400-2 -->\n<!-- edition-key: ISO 13400-2 | revision | ISO/CD 13400-2 -->\n",
+        title: "edition: 판 확인 모음",
+        comments: [
+          "## ISO 13400-2\n\n<!-- edition-key: ISO 13400-2 | revision | ISO/CD 13400-2 -->\n",
+        ],
       },
     ]
     requests = []
@@ -219,7 +227,8 @@ describe("판 확인 CLI", () => {
     const { lines } = await runCli("--dry-run", "--channel", "iso")
     assert.deepStrictEqual(statusLines(lines), ["OK iso"])
     assert.ok(requests.every((request) => !request.url.startsWith("/api.github.com")))
-    assert.ok(lines.includes("=== edition: ISO 13400-2"))
+    assert.ok(lines.includes("=== edition: 판 확인 모음에 더할 코멘트"))
+    assert.ok(lines.includes("## ISO 13400-2"))
   })
 
   test("아는 발행기관의 판 표시가 있는 엔트리가 어디에도 들지 않으면 FAIL, 나머지는 SKIP이다", async () => {
