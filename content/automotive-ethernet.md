@@ -9,7 +9,7 @@ verified: 2026-09-29
 
 ISO 21111 시리즈는 차량 내 이더넷의 요구사항과 시험 계획을 담는다. 이더넷 요구사항은 대체로 [[ieee-802-3#개정 이력|ISO/IEC/IEEE 8802-3]]에 있고, ISO 21111은 [[ethernet-sleep-wake-up|웨이크업]]과 입출력 기능처럼 차량 응용에 필요한 보충 명세를 더한다.[@iso-21111-1-obp-2020]
 
-OPEN Alliance는 2011년에 설립되었다.[@open-alliance-about-2026][@ti-sszt730-2018] 설립 무렵 OPEN Alliance의 핵심 목표는 100 Mbit/s BroadR-Reach 물리 계층 명세를 개방된 업계 표준이자 사실상 표준으로 세우는 것이었다.[@open-alliance-about-2014]
+OPEN Alliance는 2011년에 설립되었다.[@open-alliance-about-2026][@ti-sszt730-2018] 설립 무렵 OPEN Alliance의 핵심 목표는 100 Mbit/s [[100base-t1|BroadR-Reach]] 물리 계층 명세를 개방된 업계 표준이자 사실상 표준으로 세우는 것이었다.[@open-alliance-about-2014]
 
 ## 물리 계층
 
@@ -22,7 +22,7 @@ IEEE SA에 따르면 차량 배선의 무게와 공간이 큰 과제여서 차�
 | [[10base-t1s\|10BASE-T1S]]                                              | 10 Mbit/s                 | 평형 도체 한 쌍[@ieee-802-3-2022][@ieee-802-3cg-par-2018]     |
 | [[100base-t1\|100BASE-T1]]                                              | 100 Mbit/s                | 평형 꼬임쌍선 한 쌍[@ieee-802-3-2022][@ieee-802-3bw-par-2014] |
 | [[1000base-t1\|1000BASE-T1]]                                            | 1 Gbit/s                  | 꼬임쌍선 한 쌍[@ieee-802-3-2022]                              |
-| [[optical-automotive-ethernet\|1000BASE-RHC]]                           | 1 Gbit/s                  | 이중 플라스틱 광섬유[@ieee-802-3-2022]                        |
+| [[optical-automotive-ethernet\|1000BASE-RHC]]                           | 1 Gbit/s                  | 플라스틱 광섬유 두 가닥[@ieee-802-3-2022]                     |
 | [[multigbase-t1\|2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1]]                   | 2.5, 5, 10 Gbit/s         | 평형 도체 한 쌍[@ieee-802-3-2022]                             |
 | 25GBASE-T1                                                              | 25 Gbit/s                 | 평형 도체 한 쌍[@ieee-802-3cy-2023]                           |
 | [[optical-automotive-ethernet#BASE-AU\|2.5GBASE-AU부터 50GBASE-AU까지]] | 2.5, 5, 10, 25, 50 Gbit/s | 다중 모드 유리 광섬유[@ieee-802-3cz-2023]                     |

@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**100BASE-TX**는 꼬임쌍선 두 쌍으로 100 Mbit/s를 보내는 [[ethernet|이더넷]] 물리 계층이다.[@ieee-802-3-2022][@ti-szzy009-2018] 한 쌍은 송신에, 다른 한 쌍은 수신에 쓰며, Fast Ethernet이라고도 부른다.[@ti-szzy009-2018][@microchip-ksz8081mlx-2022] IEEE 802.3u-1995는 Category 5 평형 케이블 두 쌍이나 150 Ω 차폐 평형 케이블을 쓰는 100BASE-TX를, 100 Mbit/s 물리 계층 묶음인 100BASE-T의 하나로 넣었다.[@ieee-802-3u-1995]
+**100BASE-TX**는 꼬임쌍선 두 쌍으로 100 Mbit/s를 보내는 [[ethernet|이더넷]] 물리 계층이다.[@ieee-802-3-2022][@ti-szzy009-2018] 한 쌍은 송신에, 다른 한 쌍은 수신에 쓴다.[@ti-szzy009-2018][@microchip-ksz8081mlx-2022] IEEE 802.3u-1995는 Category 5 평형 케이블 두 쌍이나 150 Ω 차폐 평형 케이블을 쓰는 100BASE-TX를, 100 Mbit/s 물리 계층 묶음인 100BASE-T의 하나로 넣었고[@ieee-802-3u-1995], 이때 더한 100 Mbit/s 동작은 Fast Ethernet이라고도 부른다.[@ieee-802-3-2022]
 
 ## 송신과 수신
 
@@ -37,7 +37,7 @@ MLT-3은 세 준위(+1, 0, −1)를 쓰는 선로 부호다.[@microchip-lan8720a
 
 100BASE-TX PHY는 보통 트랜스포머를 거쳐 선에 이어진다. 커넥터는 8핀 RJ-45다.[@microchip-ksz8081mlx-2022][@ti-dp83822-2026]
 
-MDI 포트와 MDI-X 포트는 송신 쌍과 수신 쌍의 핀이 서로 바뀌어 있다.[@microchip-ksz8081mlx-2022][@marvell-88e3015-2020] KSZ8081MLX 데이터시트에 따르면 크로스오버 케이블은 MDI 장치끼리나 MDI-X 장치끼리 잇고, 스트레이트 케이블은 MDI 장치와 MDI-X 장치를 잇는다.[@microchip-ksz8081mlx-2022] Auto MDI-X를 지원하는 PHY는 송수신 쌍을 스스로 맞춰, 스트레이트와 크로스오버 어느 케이블로도 이을 수 있다.[@microchip-ksz8081mlx-2022][@marvell-88e3015-2020]
+MDI 포트와 MDI-X 포트(X는 내부 크로스오버를 나타낸다)는 송신 쌍과 수신 쌍의 핀이 서로 바뀌어 있다.[@ieee-802-3-2022][@microchip-ksz8081mlx-2022][@marvell-88e3015-2020] KSZ8081MLX 데이터시트에 따르면 크로스오버 케이블은 MDI 장치끼리나 MDI-X 장치끼리 잇고, 스트레이트 케이블은 MDI 장치와 MDI-X 장치를 잇는다.[@microchip-ksz8081mlx-2022] Auto MDI-X를 지원하는 PHY는 송수신 쌍을 스스로 맞춰, 스트레이트와 크로스오버 어느 케이블로도 이을 수 있다.[@microchip-ksz8081mlx-2022][@marvell-88e3015-2020]
 
 ## 차량 진단 인터페이스
 

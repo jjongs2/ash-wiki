@@ -23,17 +23,17 @@ verified: 2026-09-29
 
 **자동 협상**(Auto-Negotiation)은 링크 양 끝의 PHY가 설정 정보를 주고받아 속도와 이중 모드를 정하는 방식이다. 100BASE-TX PHY는 자동 협상으로 양쪽이 지원하는 모드 가운데 가장 높은 것을 고른다.[@ti-dp83822-2026][@microchip-lan8742a-2015]
 
-IEEE 802.3-2022는 자동 협상을 Clause 28, Clause 37, Clause 73, Clause 98에서 정한다. Clause 37은 1000BASE-X의 자동 협상을, Clause 73은 백플레인 이더넷 PHY의 자동 협상을 정한다. Clause 28의 자동 협상은 변형한 10BASE-T 링크 무결성 시험 펄스열로 동작한다. 링크 양 끝의 장치는 자기 능력을 알리고 함께 가진 동작 모드를 확인하며, 공통 모드가 여럿이면 미리 정한 우선순위로 하나를 고른다. 자동 협상을 지원하지 않는 링크 상대는 parallel detection으로 알아내지만, 이때는 고른 PMA에 해당하는 반이중 모드만 자동으로 알아낼 수 있다. [[1000base-t1#1000BASE-T와의 차이|1000BASE-T]] PHY는 Clause 28의 자동 협상을 반드시 지원해야 한다.[@ieee-802-3-2022]
+IEEE 802.3-2022는 자동 협상을 Clause 28, Clause 37, Clause 73, Clause 98에서 정한다. Clause 37은 1000BASE-X의 자동 협상을, Clause 73은 백플레인 이더넷 PHY의 자동 협상을 정한다. Clause 28의 자동 협상은 변형한 10BASE-T 링크 무결성 시험 펄스열로 동작한다. 링크 양 끝의 장치는 자기 능력을 알리고 함께 가진 동작 모드를 확인하며, 공통 모드가 여럿이면 미리 정한 우선순위로 하나를 고른다. 자동 협상을 지원하지 않는 링크 상대는 parallel detection으로 알아낸다. parallel detection은 MDI로 받은 신호를 100BASE-TX PMA, 100BASE-T4 PMA, 그리고 10BASE-T 장치를 알아보는 자동 협상의 링크 무결성 시험에 함께 넘기고, 이 가운데 꼭 하나만 링크가 준비됐다고 알리면 그 PMA를 켠다. 이때는 켠 PMA에 해당하는 반이중 모드만 자동으로 알아낼 수 있다. [[1000base-t1#1000BASE-T와의 차이|1000BASE-T]] PHY는 Clause 28의 자동 협상을 반드시 지원해야 한다.[@ieee-802-3-2022]
 
-Clause 98은 꼬임쌍선 한 쌍의 자동 협상을 정한다. 이 자동 협상은 DME(Differential Manchester Encoding) 페이지를 반이중으로 주고받으며, 링크 양 끝이 공통 모드를 고르게 하는 것에 더해 링크 트레이닝 전에 두 장치의 시간 기준을 맞추는 것도 목표로 한다. [[100base-t1|100BASE-T1]], [[1000base-t1|1000BASE-T1]], [[10base-t1s|10BASE-T1S]], [[multigbase-t1|MultiGBASE-T1]]의 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1은 Clause 98의 자동 협상을 선택 사항으로 쓴다.[@ieee-802-3-2022] IEEE 802.3cy-2023이 정하는 25GBASE-T1도 Clause 98의 자동 협상을 선택 사항으로 쓴다.[@ieee-802-3cy-2023]
+Clause 98은 꼬임쌍선 한 쌍의 자동 협상을 정한다. 이 자동 협상은 DME(Differential Manchester Encoding) 페이지를 반이중으로 주고받으며, 링크 양 끝이 공통 모드를 고르게 하는 것에 더해 [[100base-t1#링크 수립|링크 트레이닝]] 전에 두 장치의 시간 기준을 맞추는 것도 목표로 한다. [[100base-t1|100BASE-T1]], [[1000base-t1|1000BASE-T1]], [[10base-t1s|10BASE-T1S]], [[multigbase-t1|MultiGBASE-T1]]의 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1은 Clause 98의 자동 협상을 선택 사항으로 쓴다.[@ieee-802-3-2022] IEEE 802.3cy-2023이 정하는 25GBASE-T1도 Clause 98의 자동 협상을 선택 사항으로 쓴다.[@ieee-802-3cy-2023]
 
 ## 진단
 
-차량용 PHY는 케이블의 단선과 단락을 진단한다.[@ti-dp83tg720s-q1-2026][@nxp-tja1103-2026] DP83TC811R-Q1은 TDR(Time Domain Reflectometry)로 꼬임쌍선 케이블에 시험 펄스를 보내고, 결함마다 돌아오는 반사의 시간과 세기를 재어 단선과 단락을 찾고 그 위치를 추정한다.[@ti-dp83tc811r-q1-2018] DP83TG720S-Q1도 TDR로 단선과 단락을 찾고 그 위치를 추정한다.[@ti-dp83tg720s-q1-2026]
+차량용 PHY는 케이블의 단선과 단락을 진단한다.[@ti-dp83tg720s-q1-2026][@nxp-tja1103-2026] DP83TC811R-Q1(Texas Instruments의 100BASE-T1 PHY)은 TDR(Time Domain Reflectometry)로 꼬임쌍선 케이블에 시험 펄스를 보내고, 결함마다 돌아오는 반사의 시간과 세기를 재어 단선과 단락을 찾고 그 위치를 추정한다.[@ti-dp83tc811r-q1-2018] DP83TG720S-Q1(Texas Instruments의 1000BASE-T1 PHY)도 TDR로 단선과 단락을 찾고 그 위치를 추정한다.[@ti-dp83tg720s-q1-2026]
 
 ![[diagrams/phy-tdr-cable-fault.svg]]
 
-차량용 PHY는 링크 품질을 SQI(Signal Quality Indicator)로 알린다.[@ti-dp83tg720s-q1-2026][@nxp-tja1103-2026] DP83TC811R-Q1과 DP83TG720S-Q1은 PHY가 잰 SNR(Signal-to-Noise Ratio)로 SQI를 정한다.[@ti-dp83tc811r-q1-2018][@ti-dp83tg720s-q1-2026] SQI의 단계 수와 단계가 뜻하는 BER(Bit Error Ratio)은 칩마다 다르다. DP83TC811R-Q1은 SQI를 네 단계의 상태와 백분율로 나타낸다.[@ti-dp83tc811r-q1-2018] DP83TG720S-Q1은 여덟 단계로 나타내며, 5단계에서 $\mathrm{BER} < 10^{-10}$이다.[@ti-dp83tg720s-q1-2026] TJA1103은 0(가장 나쁨, 링크 없음)부터 7(가장 좋음)까지로 나타내며, 가우스 잡음을 가정하면 3 이상에서 $\mathrm{BER} \le 10^{-10}$이다.[@nxp-tja1103-2026]
+차량용 PHY는 링크 품질을 SQI(Signal Quality Indicator)로 알린다.[@ti-dp83tg720s-q1-2026][@nxp-tja1103-2026] DP83TC811R-Q1과 DP83TG720S-Q1은 PHY가 잰 SNR(Signal-to-Noise Ratio)로 SQI를 정한다.[@ti-dp83tc811r-q1-2018][@ti-dp83tg720s-q1-2026] SQI의 단계 수와 단계가 뜻하는 BER(Bit Error Ratio)은 칩마다 다르다. DP83TC811R-Q1은 SQI를 네 단계의 상태와 백분율로 나타낸다.[@ti-dp83tc811r-q1-2018] DP83TG720S-Q1은 여덟 단계로 나타내며, 5단계에서 $\mathrm{BER} < 10^{-10}$이다.[@ti-dp83tg720s-q1-2026] TJA1103(NXP Semiconductors의 100BASE-T1 PHY)은 0(가장 나쁨, 링크 없음)부터 7(가장 좋음)까지로 나타내며, 가우스 잡음을 가정하면 3 이상에서 $\mathrm{BER} \le 10^{-10}$이다.[@nxp-tja1103-2026]
 
 ## 관리
 
