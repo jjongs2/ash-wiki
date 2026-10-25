@@ -11,22 +11,22 @@
   <line x1="60" y1="100" x2="60" y2="48" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
   <text x="52" y="68" text-anchor="end" font-size="12" fill="var(--text, #727981)">용량</text>
   <line x1="60" y1="100" x2="508" y2="100" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="508" y="120" text-anchor="end" font-size="12" fill="var(--text, #727981)">시간</text>
+  <text x="508" y="128" text-anchor="end" font-size="12" fill="var(--text, #727981)">시간</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)">
     <rect x="80.75" y="60.75" width="48.5" height="38.5" />
-    <rect x="432.75" y="60.75" width="48.5" height="38.5" />
+    <rect x="400.75" y="60.75" width="48.5" height="38.5" />
   </g>
   <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
     <text x="105" y="84">버려짐</text>
-    <text x="457" y="84">버려짐</text>
+    <text x="425" y="84">버려짐</text>
   </g>
-  <path d="M80 100 H256 V60 L304 100 H490" stroke="var(--ink, #727981)" stroke-width="3" stroke-linejoin="round" />
-  <line x1="148" y1="88" x2="252" y2="88" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrow)" />
-  <text x="200" y="80" text-anchor="middle" font-size="12" fill="var(--text, #727981)">release까지 대기</text>
+  <path d="M80 100 H240 V60 L288 100 H490" stroke="var(--ink, #727981)" stroke-width="3" stroke-linejoin="round" />
+  <line x1="148" y1="88" x2="236" y2="88" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrow)" />
+  <text x="192" y="80" text-anchor="middle" font-size="12" fill="var(--text, #727981)">release까지 대기</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="80" y1="100" x2="80" y2="110" />
-    <line x1="256" y1="100" x2="256" y2="110" />
-    <line x1="432" y1="100" x2="432" y2="110" />
+    <line x1="240" y1="100" x2="240" y2="110" />
+    <line x1="400" y1="100" x2="400" y2="110" />
   </g>
   <path d="M144 103 L149 113 L139 113 z" fill="var(--orange, #b0540d)" />
   <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
@@ -39,37 +39,39 @@
   <line x1="60" y1="230" x2="60" y2="178" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
   <text x="52" y="198" text-anchor="end" font-size="12" fill="var(--text, #727981)">용량</text>
   <line x1="60" y1="230" x2="508" y2="230" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="508" y="250" text-anchor="end" font-size="12" fill="var(--text, #727981)">시간</text>
-  <path d="M80 230 V190 H144 L192 230 H256 V190 H490" stroke="var(--ink, #727981)" stroke-width="3" stroke-linejoin="round" />
+  <text x="508" y="258" text-anchor="end" font-size="12" fill="var(--text, #727981)">시간</text>
+  <path d="M80 230 V190 H144 L192 230 H240 V190 H490" stroke="var(--ink, #727981)" stroke-width="3" stroke-linejoin="round" />
   <g font-size="12" fill="var(--text, #727981)">
-    <text x="180" y="216">곧바로 처리</text>
-    <text x="264" y="182">서버 주기가 시작될 때 가득 보충</text>
+    <text x="175" y="212">곧바로 처리</text>
+    <text x="248" y="182">서버 주기가 시작될 때 가득 보충</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="80" y1="230" x2="80" y2="240" />
-    <line x1="256" y1="230" x2="256" y2="240" />
+    <line x1="240" y1="230" x2="240" y2="240" />
+    <line x1="400" y1="230" x2="400" y2="240" />
   </g>
   <path d="M144 233 L149 243 L139 243 z" fill="var(--orange, #b0540d)" />
+  <text x="400" y="258" text-anchor="middle" font-size="12" fill="var(--text, #727981)">release</text>
 
   <!-- sporadic server -->
   <text x="20" y="294" fill="var(--text, #727981)">sporadic server <tspan font-size="12">(1989년 기술 보고서의 보충 규칙)</tspan></text>
   <line x1="60" y1="360" x2="60" y2="308" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
   <text x="52" y="328" text-anchor="end" font-size="12" fill="var(--text, #727981)">용량</text>
   <line x1="60" y1="360" x2="508" y2="360" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="508" y="380" text-anchor="end" font-size="12" fill="var(--text, #727981)">시간</text>
-  <path d="M80 360 V320 H144 L192 360 H320 V320 H490" stroke="var(--ink, #727981)" stroke-width="3" stroke-linejoin="round" />
+  <text x="508" y="388" text-anchor="end" font-size="12" fill="var(--text, #727981)">시간</text>
+  <path d="M80 360 V320 H144 L192 360 H304 V320 H490" stroke="var(--ink, #727981)" stroke-width="3" stroke-linejoin="round" />
   <g font-size="12" fill="var(--text, #727981)">
-    <text x="180" y="346">곧바로 처리</text>
-    <text x="328" y="312">쓴 만큼 보충</text>
+    <text x="175" y="342">곧바로 처리</text>
+    <text x="312" y="312">쓴 만큼 보충</text>
   </g>
   <path d="M144 363 L149 373 L139 373 z" fill="var(--orange, #b0540d)" />
   <g stroke="var(--ink, #727981)" stroke-width="1">
-    <line x1="146" y1="384" x2="318" y2="384" />
+    <line x1="146" y1="384" x2="302" y2="384" />
     <line x1="146" y1="379" x2="146" y2="389" />
-    <line x1="318" y1="379" x2="318" y2="389" />
+    <line x1="302" y1="379" x2="302" y2="389" />
   </g>
   <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
-    <text x="232" y="402">서버 주기</text>
+    <text x="224" y="402">서버 주기</text>
     <text x="146" y="402">active가 된 시각</text>
   </g>
 </svg>

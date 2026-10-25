@@ -43,7 +43,7 @@ OSEKturbo OS/ARM7에서는 counter 값이 `MAXALLOWEDVALUE`에 이르면 0부터
 
 `SetAbsAlarm`에 준 절댓값을 호출 전에 이미 지났으면, counter가 넘친 뒤 그 값에 다시 이를 때 알람이 만료된다.[@osek-os-2-2-3-2005]
 
-이미 쓰이고 있는 알람에 `SetRelAlarm`이나 `SetAbsAlarm`을 부르면 그 호출은 무시되고 [[osek-hook-routine#Standard status와 extended status|E_OS_STATE]]를 돌려준다. 그래서 쓰이고 있는 알람의 값을 바꾸려면 먼저 취소해야 한다. `SetRelAlarm`의 increment가 0일 때의 동작은 구현이 정한다. increment가 아주 작으면 서비스가 돌아오기 전에 알람이 만료될 수 있다.[@osek-os-2-2-3-2005]
+이미 쓰이고 있는 알람에 `SetRelAlarm`이나 `SetAbsAlarm`을 부르면 그 호출은 무시되고 E_OS_STATE를 돌려준다. 그래서 쓰이고 있는 알람의 값을 바꾸려면 먼저 취소해야 한다. `SetRelAlarm`의 increment가 0일 때의 동작은 구현이 정한다. increment가 아주 작으면 서비스가 돌아오기 전에 알람이 만료될 수 있다.[@osek-os-2-2-3-2005]
 
 `CancelAlarm`은 알람을 취소한다. `GetAlarm`은 만료까지 남은 틱 수를 돌려주고, `GetAlarmBase`는 알람이 딸린 counter의 상수를 읽는다.[@osek-os-2-2-3-2005]
 

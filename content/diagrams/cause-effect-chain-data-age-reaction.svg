@@ -15,8 +15,8 @@
   <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
     <line x1="150" y1="26" x2="150" y2="252" />
     <line x1="302" y1="26" x2="302" y2="214" />
-    <line x1="356" y1="170" x2="356" y2="252" />
-    <line x1="432" y1="170" x2="432" y2="214" />
+    <line x1="349.5" y1="170" x2="349.5" y2="252" />
+    <line x1="425.5" y1="170" x2="425.5" y2="214" />
   </g>
   <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
     <text x="150" y="20">값 변화 도착</text>
@@ -32,41 +32,41 @@
 
   <!-- 태스크 1 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="150" y="50" width="16" height="20" fill="var(--surface, none)" />
-    <rect x="302" y="50" width="16" height="20" fill="var(--surface, none)" />
-    <rect x="454" y="50" width="16" height="20" fill="var(--surface, none)" />
+    <rect x="150" y="50" width="9.5" height="20" fill="var(--surface, none)" />
+    <rect x="302" y="50" width="9.5" height="20" fill="var(--surface, none)" />
+    <rect x="454" y="50" width="9.5" height="20" fill="var(--surface, none)" />
   </g>
 
   <!-- 태스크 2: 태스크 3이 읽기 전에 덮어쓰인 출력은 orange -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="169" y="100" width="16" height="20" fill="var(--surface, none)" />
-    <rect x="245" y="100" width="16" height="20" fill="var(--surface, none)" />
-    <rect x="321" y="100" width="16" height="20" fill="var(--surface, none)" />
-    <rect x="397" y="100" width="16" height="20" fill="var(--surface, none)" />
+    <rect x="169" y="100" width="9.5" height="20" fill="var(--surface, none)" />
+    <rect x="245" y="100" width="9.5" height="20" fill="var(--surface, none)" />
+    <rect x="321" y="100" width="9.5" height="20" fill="var(--surface, none)" />
+    <rect x="397" y="100" width="9.5" height="20" fill="var(--surface, none)" />
   </g>
   <g fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5">
-    <rect x="207.75" y="100.75" width="14.5" height="18.5" />
-    <rect x="283.75" y="100.75" width="14.5" height="18.5" />
-    <rect x="359.75" y="100.75" width="14.5" height="18.5" />
-    <rect x="435.75" y="100.75" width="14.5" height="18.5" />
+    <rect x="207.75" y="100.75" width="8" height="18.5" />
+    <rect x="283.75" y="100.75" width="8" height="18.5" />
+    <rect x="359.75" y="100.75" width="8" height="18.5" />
+    <rect x="435.75" y="100.75" width="8" height="18.5" />
   </g>
 
   <!-- 태스크 3 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="188" y="150" width="16" height="20" fill="var(--surface, none)" />
-    <rect x="264" y="150" width="16" height="20" fill="var(--surface, none)" />
-    <rect x="340" y="150" width="16" height="20" fill="var(--surface, none)" />
-    <rect x="416" y="150" width="16" height="20" fill="var(--surface, none)" />
+    <rect x="188" y="150" width="9.5" height="20" fill="var(--surface, none)" />
+    <rect x="264" y="150" width="9.5" height="20" fill="var(--surface, none)" />
+    <rect x="340" y="150" width="9.5" height="20" fill="var(--surface, none)" />
+    <rect x="416" y="150" width="9.5" height="20" fill="var(--surface, none)" />
   </g>
 
   <!-- 태스크 1이 쓴 값 하나가 지나는 길 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#tip)">
-    <path d="M318 70 C 320 80, 321 88, 323 99" />
-    <path d="M318 70 C 343 76, 356 84, 361 99" />
-    <path d="M318 70 C 372 74, 394 82, 399 99" />
-    <path d="M318 70 C 401 72, 431 80, 437 99" />
-    <path d="M337 120 C 338 130, 340 138, 342 149" />
-    <path d="M413 120 C 414 130, 416 138, 418 149" />
+    <path d="M311.5 70 C 315.5 80, 319.5 88, 323 99" />
+    <path d="M311.5 70 C 340 76, 355 84, 361 99" />
+    <path d="M311.5 70 C 369 74, 393 82, 399 99" />
+    <path d="M311.5 70 C 399 72, 431 80, 437 99" />
+    <path d="M330.5 120 C 334.5 130, 338.5 138, 342 149" />
+    <path d="M406.5 120 C 410.5 130, 414.5 138, 418 149" />
   </g>
 
   <!-- 샘플링 -->
@@ -80,11 +80,11 @@
   <text x="500" y="190" font-size="12" fill="var(--text, #727981)">시간</text>
 
   <!-- Data age: 경로를 끝까지 지난 입력에서 그 입력을 반영한 마지막 출력까지 -->
-  <line x1="302" y1="214" x2="432" y2="214" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#tip)" marker-end="url(#tip)" />
-  <text x="394" y="232" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Data age</text>
+  <line x1="302" y1="214" x2="425.5" y2="214" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#tip)" marker-end="url(#tip)" />
+  <text x="387.5" y="232" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Data age</text>
   <!-- Reaction: 앞 입력을 읽은 직후 도착한 값 변화에서 첫 반응 출력까지 -->
-  <line x1="150" y1="252" x2="356" y2="252" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#tip)" marker-end="url(#tip)" />
-  <text x="253" y="270" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Reaction</text>
+  <line x1="150" y1="252" x2="349.5" y2="252" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#tip)" marker-end="url(#tip)" />
+  <text x="250" y="270" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Reaction</text>
 
   <!-- 범례 -->
   <rect x="150" y="288" width="14" height="14" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />

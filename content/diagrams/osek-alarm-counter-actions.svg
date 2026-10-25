@@ -14,7 +14,7 @@
   </g>
 
   <!-- counter -->
-  <rect x="210.75" y="98.75" width="78.5" height="46.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <rect x="200.75" y="98.75" width="98.5" height="46.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="250" y="127" text-anchor="middle" fill="var(--on-fill, #f8fafd)">counter</text>
 
   <!-- 알람 -->

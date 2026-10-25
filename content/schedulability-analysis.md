@@ -35,13 +35,13 @@ $U$는 태스크 집합을 실행하는 데 쓰인 프로세서 시간의 비율
 
 단일 프로세서에서 서로 독립인 [[periodic-task-model|주기 태스크]]의 마감 시한이 다음 요청 시각이고 실행 시간이 일정하며 선점할 수 있다고 하자. 어떤 고정 우선순위 배정이 태스크 집합에 feasible하고, 어느 태스크의 실행 시간을 늘려도 그 배정이 feasible하지 않게 되면, 그 태스크 집합은 그 배정에서 처리기를 **fully utilize**한다고 한다. [[fixed-priority-scheduling|고정 우선순위 스케줄링]] 알고리즘의 **이용률의 최소 상한**은 처리기를 fully utilize하는 모든 태스크 집합의 이용률 가운데 최솟값이고, 이용률이 이 상한보다 낮은 태스크 집합에는 feasible한 고정 우선순위 배정이 늘 있다.[@liu-hard-real-time-1973]
 
-단일 프로세서에서 서로 독립인 주기 태스크의 마감 시한이 다음 요청 시각이고 실행 시간이 일정하며 선점할 수 있으면, [[rate-monotonic-scheduling|RM]]에 대한 Liu와 Layland의 [[rate-monotonic-scheduling#이용률 상한|이용률 상한]]은 충분조건일 뿐이라, 상한을 넘는 태스크 집합도 스케줄 가능할 수 있다. 같은 가정에서 [[earliest-deadline-first|EDF]]로 모든 마감 시한을 지키는 것은 $U \le 1$일 때이고 그때뿐이다.[@liu-hard-real-time-1973] 마감 시한이 주기보다 짧은 태스크 집합의 EDF 검사는 [[earliest-deadline-first#마감 시한이 주기보다 짧을 때|처리기 수요 분석]]에서 다룬다. critical instant는 [[response-time-analysis#Critical instant|응답 시간 분석]]에서 다룬다.
+단일 프로세서에서 서로 독립인 주기 태스크의 마감 시한이 다음 요청 시각이고 실행 시간이 일정하며 선점할 수 있으면, [[rate-monotonic-scheduling|RM]]에 대한 Liu와 Layland의 [[rate-monotonic-scheduling#이용률 상한|이용률 상한]]은 충분조건일 뿐이라, 상한을 넘는 태스크 집합도 스케줄 가능할 수 있다. 같은 가정에서 [[earliest-deadline-first|EDF]]로 모든 마감 시한을 지키는 것은 $U \le 1$일 때이고 그때뿐이다.[@liu-hard-real-time-1973] 마감 시한이 주기보다 짧은 태스크 집합의 EDF 검사는 [[earliest-deadline-first#마감 시한이 주기보다 짧을 때|처리기 수요 분석]]에서 다룬다.
 
 ![[diagrams/utilization-bound-rm-edf.svg]]
 
 단일 프로세서의 고정 우선순위 선점 스케줄링에서 태스크가 주기적이고 서로 독립이며 마감 시한 $D_i$가 주기 이하이고, 모든 태스크가 같은 시각에 요청할 수 있다고 하자. 그 시각에 요청한 태스크 $i$가 마감 시한까지 우선순위가 더 높은 태스크에게 빼앗기는 처리 시간을 간섭 $I_i$라 하면, 검사 $C_i + I_i \le D_i$는 $I_i$를 정확히 계산할 때 필요충분조건이다. 통과한 태스크는 마감 시한을 지키고, 통과하지 못한 태스크는 모든 태스크가 [[worst-case-execution-time|최악 실행 시간]]만큼 실행될 때 마감 시한을 놓친다. $I_i$를 실제보다 크게 어림하면 이 검사는 충분조건이 되어, 통과한 태스크는 마감 시한을 지키지만 통과하지 못한 태스크도 실제로는 마감 시한을 지킬 수 있다.[@audsley-flexible-scheduling-1993]
 
-같은 가정에서 응답 시간 분석은 필요충분조건 검사다.[@audsley-flexible-scheduling-1993]
+같은 가정에서 [[response-time-analysis|응답 시간 분석]]은 필요충분조건 검사다.[@audsley-flexible-scheduling-1993]
 
 단일 프로세서에서 [[periodic-task-model#Liu와 Layland의 가정|Liu와 Layland의 가정]]을 따르는 주기 태스크 집합을 RM으로 스케줄하고, 모든 태스크가 시각 0에 함께 [[periodic-task-model#Release와 jitter|release]]된다고 하자. 우선순위가 가장 높은 $i$개 태스크가 구간 $[0, t]$에서 프로세서에 요구하는 처리 시간을 $W_i(t)$라 하면, $0 < t \le T_i$에서 $W_i(t) \le t$인 $t$가 있을 때 우선순위가 $i$번째로 높은 태스크의 첫 실행은 마감 시한 안에 끝난다. $W_i(t)$는 아래 식과 같다.[@sha-real-time-scheduling-theory-2004]
 

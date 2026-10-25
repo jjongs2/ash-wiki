@@ -56,6 +56,6 @@ RTEMS의 단일 프로세서 구성에서는 스레드의 선점을 꺼서 스�
 
 ## 우선순위 상한
 
-OSEK/VDX OS 2.2.3 명세는 [[osek-resource|resource]]를 얻은 태스크의 우선순위를 미리 정한 상한까지 올리게 해, 같은 resource를 쓰는 다른 태스크가 그동안 실행되지 못하게 한다.[@osek-os-2-2-3-2005] AUTOSAR R25-11 OS 명세는 이 상호 배제를 같은 코어의 태스크 사이로 한정한다.[@autosar-cp-sws-os-2025]
+OSEK/VDX OS 2.2.3 명세는 [[osek-resource|resource]]를 얻은 태스크의 우선순위를 미리 정한 상한까지 올리게 해, 같은 resource를 쓰는 다른 태스크가 그동안 실행되지 못하게 한다.[@osek-os-2-2-3-2005] 규칙은 [[osek-resource#Ceiling priority|ceiling priority]], 일반형은 [[priority-ceiling-protocol|우선순위 상한 프로토콜]]에서 다룬다.
 
-우선순위를 상한까지 올리는 이 규칙은 [[osek-resource#Ceiling priority|ceiling priority]]에서, 그 일반형은 [[priority-ceiling-protocol|우선순위 상한 프로토콜]]에서 다룬다.
+AUTOSAR R25-11 OS 명세는 이 상호 배제를 같은 코어의 태스크 사이로 한정한다.[@autosar-cp-sws-os-2025]

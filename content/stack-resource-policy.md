@@ -21,7 +21,7 @@ EDF와 함께 쓰면 [[task|태스크]] $\tau_i$의 job마다 절대 마감 시�
 
 ## 성질
 
-스택 자원 정책에서 job은 일단 실행을 시작하면 끝날 때까지 블록되지 않고, 우선순위가 더 높은 태스크에 선점될 뿐이다. 이 정책은 [[deadlock|교착 상태]]를 막고, job이 블록되는 시간은 [[critical-section|임계 구역]] 하나의 길이를 넘지 않는다. 태스크가 실행 도중에 블록되지 않으므로 대기 큐를 둘 필요가 없고, 스케줄 가능성 분석의 [[schedulability-analysis#충분조건 검사와 필요충분조건 검사|블로킹 시간]] $B_i$는 태스크 $\tau_i$가 preemption level 검사 때문에 준비 큐에 머무는 시간이다. 또 태스크들이 실행 스택 하나를 함께 쓸 수 있어, 태스크가 상대 우선순위 단계보다 훨씬 많으면 메모리를 크게 아낄 수 있다.[@sha-real-time-scheduling-theory-2004]
+스택 자원 정책에서 job은 일단 실행을 시작하면 끝날 때까지 블록되지 않고, 우선순위가 더 높은 태스크에 선점될 뿐이다. 이 정책은 [[deadlock|교착 상태]]를 막고, job이 블록되는 시간은 [[critical-section|임계 구역]] 하나의 길이를 넘지 않는다. 태스크가 실행 도중에 블록되지 않으므로 대기 큐를 둘 필요가 없고, 스케줄 가능성 분석의 [[response-time-analysis#반복식|블로킹 시간]] $B_i$는 태스크 $\tau_i$가 preemption level 검사 때문에 준비 큐에 머무는 시간이다. 또 태스크들이 실행 스택 하나를 함께 쓸 수 있어, 태스크가 상대 우선순위 단계보다 훨씬 많으면 메모리를 크게 아낄 수 있다.[@sha-real-time-scheduling-theory-2004]
 
 ![[diagrams/stack-resource-policy-system-ceiling.svg]]
 
