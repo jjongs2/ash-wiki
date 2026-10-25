@@ -25,7 +25,7 @@ ISO 26262-1:2018은 하드웨어 [[fault-error-failure|fault]]와 그것이 낳�
 
 ![[diagrams/residual-fault-coverage-example.svg]]
 
-이 표준은 fault가 검출되거나 인지되는지에 따라서도 이름을 둔다. **Detected fault**는 정해진 시간 안에 안전 메커니즘이 그 존재를 검출한 fault이고, **perceived fault**는 차량 수준에서 벗어난 거동을 거쳐 간접으로 인지될 수 있는 fault다.[@iso-26262-1-obp-2018] Detected fault의 정해진 시간이 어느 시간 구간인지는 [[fault-tolerant-time-interval#시간 구간과 운용 모드|FTTI와 관련된 시간 구간]]에서 다룬다.
+이 표준은 fault가 검출되거나 인지되는지에 따라서도 이름을 둔다. **Detected fault**는 정해진 시간 안에 안전 메커니즘이 그 존재를 검출한 fault이고, **perceived fault**는 차량 수준에서 벗어난 거동을 거쳐 간접으로 인지될 수 있는 fault다.[@iso-26262-1-obp-2018] Detected fault의 정해진 시간이 어느 시간 구간인지는 [[fault-tolerant-time-interval#시간 구간과 운용 모드|FTTI]]에서 다룬다.
 
 ## 진단 커버리지와 failure rate
 

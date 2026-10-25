@@ -32,7 +32,7 @@ Brooks는 10년 안에 생산성, 신뢰성, 단순성 가운데 어느 하나�
 
 ## 전문 분야로 자리 잡기
 
-IEEE Computer Society는 1972년 Transactions on Software Engineering을 처음 펴냈고, 1976년 소프트웨어 공학 표준을 만드는 위원회를 두었다. IEEE Computer Society 이사회와 ACM Council이 각각 승인한 1993년의 두 동의로 두 단체의 공동 위원회가 꾸려졌다. 운영 위원회(steering committee)는 지식 체계와 권장 실무, 윤리와 전문 표준, 교육과정 세 분야에 작업반을 두었고, SWEBOK 2004년판은 그 세 분야 가운데 첫째인 지식 체계와 권장 실무를 담았다.[@ieee-swebok-v4-0a-2026]
+IEEE Computer Society는 1972년 Transactions on Software Engineering을 처음 펴냈고, 1976년 소프트웨어 공학 표준을 만드는 위원회를 두었다. IEEE Computer Society 이사회와 ACM Council이 각각 승인한 1993년의 두 동의로 두 단체의 공동 위원회가 꾸려졌다. 운영 위원회(steering committee)는 지식 체계와 권장 실무, 윤리와 전문 표준, 교육과정 세 분야에 작업반을 두었고, SWEBOK 2004년판은 그 가운데 첫째인 지식 체계와 권장 실무를 담았다.[@ieee-swebok-v4-0a-2026]
 
 ACM과 IEEE Computer Society의 공동 작업반(Joint Task Force)이 권고하고 두 단체가 함께 승인한 Software Engineering Code of Ethics and Professional Practice 5.2는 소프트웨어 엔지니어가 지킬 여덟 원칙을 둔다.[@acm-software-engineering-code-2026]
 
