@@ -8,9 +8,8 @@ python3 digest.py --version <기록.jsonl>...
 
 보관 폴더(기본 ~/documents/ash-wiki-retro)의 <uuid>/에, 기록마다 <이름>-main.md를,
 기록 옆 <uuid>/subagents/의 서브에이전트 기록마다 <이름>-<agent id>.md를 쓴다.
-<이름>은 세션 제목과 uuid 앞 8자다. 기록, 이 스크립트, ASH_WIKI_NOTES의 값이 지난번
-요약 뒤로 바뀌지 않았으면 다시 만들지 않고 "있음"을 찍는다. 다시 만들 때는 요약본만
-지우고 report.md는 둔다. 작업 중 대기열로 온 메시지(서브에이전트 반환, 세션 간 메시지,
+<이름>은 세션 제목과 uuid 앞 8자다. 실행할 때마다 다시 만들고, 지난 요약본만 지우고
+report.md는 둔다. 작업 중 대기열로 온 메시지(서브에이전트 반환, 세션 간 메시지,
 소유자 글)는 사용자 글처럼 전문으로 쓰고 "(대기열, <출처>)"를 단다. 완료 알림은 쓰지
 않고, 뒤이어 user 줄로 차례대로 다시 온 메시지는 한 번만 쓴다.
 
@@ -40,12 +39,12 @@ ash-wiki-handoff/의 파일이다. 루틴에 넘긴 스킬에는 "(루틴)"을 �
 나오는 호출이다. 지운 결과가 너무 커서 tool-results/ 파일로 저장됐으면, 그 파일을
 다시 읽은 호출도 지운다. 변수 이름만 적은 호출("ASH_WIKI_NOTES는 열지 않는다")은
 노트를 연 것으로 보지 않는다. 노트 디렉터리가 나오는 사용자 글과 대기열 메시지도 지운다.
-파일마다 지운 수를 출력한다. 0이 아니면 노트를 열었을 수 있는 기록이다.
+파일마다 지운 수를 출력한다. 0이 아니면 노트를 열었을 수 있는 기록이다. 끝 줄에
+지운 수가 0이 아닌 기록의 수와 이름을 찍는다.
 """
 
 import argparse
 import glob
-import hashlib
 import json
 import os
 import re
@@ -241,13 +240,7 @@ def write(out_dir, name, path, label=""):
         with open(f"{out_dir}/{name}-notes.txt", "w") as notes:
             notes.write("\n".join(note_inputs) + "\n")
     print(f"{name}.md\t지움 {len(hidden)}\t{label}".rstrip())
-
-
-def source_stamp(path, subs):
-    with open(__file__, "rb") as script:
-        version = hashlib.sha256(script.read()).hexdigest()[:12]
-    notes = hashlib.sha256(NOTES.encode()).hexdigest()[:12]
-    return " ".join([version, notes, *(str(os.path.getsize(p)) for p in [path, *subs])])
+    return [f"{name}.md"] if hidden else []
 
 
 def check_uuids(uuids):
@@ -260,28 +253,20 @@ def digest_session(archive, path):
     uuid = os.path.basename(stem(path))
     out_dir = os.path.join(archive, uuid)
     subs = sorted(glob.glob(f"{stem(path)}/subagents/*.jsonl"))
-    stamp_path = os.path.join(out_dir, ".source")
-    stamp = source_stamp(path, subs)
-    if os.path.exists(stamp_path):
-        with open(stamp_path) as f:
-            if f.read() == stamp:
-                print(f"{uuid}\t있음")
-                return
     os.makedirs(out_dir, exist_ok=True)
     for old in glob.glob(f"{out_dir}/*-main.md") + glob.glob(f"{out_dir}/*-agent-*.md") + glob.glob(f"{out_dir}/*-notes.txt"):
         os.remove(old)
     print(out_dir)
     name = session_name(path)
-    write(out_dir, f"{name}-main", path)
+    hidden_records = write(out_dir, f"{name}-main", path)
     for sub in subs:
         meta_path = stem(sub) + ".meta.json"
         label = ""
         if os.path.exists(meta_path):
             with open(meta_path) as meta:
                 label = json.load(meta).get("description", "")
-        write(out_dir, f"{name}-{os.path.basename(stem(sub))}", sub, label)
-    with open(stamp_path, "w") as f:
-        f.write(stamp)
+        hidden_records += write(out_dir, f"{name}-{os.path.basename(stem(sub))}", sub, label)
+    return hidden_records
 
 
 def analyzed(archive):
@@ -507,8 +492,8 @@ def main():
             "다른 값으로 돌리지 않는다(세션이 연 노트를 가리지 못한다)."
         )
     check_uuids([os.path.basename(stem(path)) for path in args.items])
-    for path in args.items:
-        digest_session(args.archive, path)
+    hidden_records = [name for path in args.items for name in digest_session(args.archive, path)]
+    print(f"지움이 있는 기록 {len(hidden_records)}: {', '.join(hidden_records)}" if hidden_records else "지움이 있는 기록 없음")
 
 
 if __name__ == "__main__":
