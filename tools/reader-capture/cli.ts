@@ -5,8 +5,10 @@ import path from "node:path"
 import { parseArgs } from "node:util"
 import handler from "serve-handler"
 import { chromium, type Browser } from "playwright"
+import { frameWidth } from "../check-diff/diagram-width"
 import { inTopic, loadTree } from "../check-content/tree"
 import { repoRoot } from "../repo"
+import { frameDrift, type FrameMeasure } from "./frame"
 import { diagramSources, readerText, svgLines } from "./text"
 
 // Reader Testing의 캡처(.claude/skills/reader-testing). 페이지마다 데스크톱 폭과 390px 폭 스크린샷,
@@ -83,13 +85,13 @@ async function pageText(base: string, slug: string): Promise<{ text: string; lin
   return readerText(html, diagrams)
 }
 
-// 폭 하나의 스크린샷 조각을 찍고 파일 이름을 돌려준다.
+// 폭 하나의 스크린샷 조각을 찍고 파일 이름을 돌려준다. 데스크톱 폭에서는 도해 틀 안쪽 폭도 잰다.
 async function screenshots(
   browser: Browser,
   base: string,
   slug: string,
   view: (typeof views)[number],
-): Promise<{ files: string[]; tokens: number }> {
+): Promise<{ files: string[]; tokens: number; frame?: FrameMeasure }> {
   const context = await browser.newContext({
     viewport: { width: view.width, height: view.height },
     colorScheme: "light",
@@ -123,6 +125,24 @@ async function screenshots(
         ),
       )
     })
+    // 틀 안쪽은 테두리와 최소 padding 2 × 0.75rem을 뺀 폭이다(quartz/styles/custom.scss). 목록 안의 도해는
+    // 들여 쓴 만큼 틀이 좁으므로 가장 넓은 틀을 쓰고, 접힌 곳에 있어 폭이 없는 도해는 뺀다.
+    const frame =
+      view.name === "desktop"
+        ? await page.evaluate((slug) => {
+            const rem = parseFloat(getComputedStyle(document.documentElement).fontSize)
+            const objects = [...document.querySelectorAll('article object[type="image/svg+xml"]')]
+            const widths = objects
+              .map((object) => {
+                const style = getComputedStyle(object)
+                const border =
+                  parseFloat(style.borderLeftWidth) + parseFloat(style.borderRightWidth)
+                return object.getBoundingClientRect().width - border - 2 * 0.75 * rem
+              })
+              .filter((width) => width > 0)
+            return { slug, inner: widths.length > 0 ? Math.max(...widths) : null, rem }
+          }, slug)
+        : undefined
     const height = await page.evaluate(() => document.documentElement.scrollHeight)
     const files: string[] = []
     let tokens = 0
@@ -134,7 +154,7 @@ async function screenshots(
       files.push(file)
       tokens += imageTokens(clip.width, clip.height)
     }
-    return { files, tokens }
+    return { files, tokens, frame }
   } finally {
     await context.close()
   }
@@ -150,6 +170,7 @@ async function main() {
     const pages = []
     const linked = new Set<string>()
     const texts = new Map<string, string>()
+    const frames: FrameMeasure[] = []
     for (const slug of slugs) {
       const { text, links } = await pageText(base, slug)
       fs.writeFileSync(path.join(out, `${slug}.txt`), text)
@@ -158,7 +179,9 @@ async function main() {
       for (const link of links) linked.add(link)
       const shots: Record<string, { files: string[]; tokens: number }> = {}
       for (const view of views) {
-        shots[view.name] = await screenshots(browser, base, slug, view)
+        const { frame, ...shot } = await screenshots(browser, base, slug, view)
+        shots[view.name] = shot
+        if (frame) frames.push(frame)
       }
       pages.push({ slug, text: `${slug}.txt`, chars: text.length, links, screenshots: shots })
       console.log(
@@ -181,6 +204,15 @@ async function main() {
     console.log(`링크된 페이지 ${linkedPages.length}개`)
     const manifest = { base: local ? `local:${values.site}` : base, pages, linked: linkedPages }
     fs.writeFileSync(path.join(out, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n")
+    // 레이아웃이 바뀌어 도해 폭 문턱이 낡으면 알린다. 캡처는 이미 다 썼으므로 그대로 쓸 수 있다.
+    const drift = frameDrift(frames, frameWidth)
+    if (drift.length > 0) {
+      console.error(
+        "도해 틀 안쪽 폭이 도해 폭 문턱과 어긋난다. tools/check-diff/diagram-width.ts의 frameWidth와 계산 주석을 지금 레이아웃에 맞춘다:",
+      )
+      for (const line of drift) console.error(`- ${line}`)
+      process.exitCode = 1
+    }
   } finally {
     await browser.close()
     local?.close()
