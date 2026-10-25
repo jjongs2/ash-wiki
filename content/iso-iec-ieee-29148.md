@@ -12,7 +12,7 @@ status: 유효
 
 ## 범위
 
-ISO/IEC/IEEE 29148:2018은 요구사항을 낳는 공학 활동에서 구현할 프로세스를 정하고, [[iso-iec-ieee-15288|ISO/IEC/IEEE 15288]]과 [[iso-iec-ieee-12207|ISO/IEC/IEEE 12207]]이 기술한 요구사항 관련 프로세스를 적용하는 지침을 둔다. 요구사항 프로세스와 함께, 잘 짜인 텍스트 요구사항의 구성과 요구사항의 특성·속성을 다룬다. 요구사항 프로세스가 만드는 정보 항목과 그 내용을 정하고, 정보 항목의 형식에는 지침을 둔다. 정보 항목에는 BRS(business requirements specification), StRS(stakeholder requirements specification), SyRS(system requirements specification), [[software-requirements-specification|SRS]]가 있다.[@iso-iec-ieee-29148-obp-2018]
+ISO/IEC/IEEE 29148:2018은 요구사항을 낳는 공학 활동에서 구현할 프로세스를 정하고, [[iso-iec-ieee-15288|ISO/IEC/IEEE 15288]]과 [[iso-iec-ieee-12207|ISO/IEC/IEEE 12207]]이 기술한 요구사항 관련 프로세스를 적용하는 지침을 둔다. 요구사항 프로세스와 함께, 잘 짜인 텍스트 요구사항의 구성과 요구사항의 특성·속성을 다룬다. 요구사항 프로세스가 만드는 정보 항목과 그 내용을 정하고, 정보 항목의 형식에는 지침을 둔다. 정보 항목에는 BRS([[software-requirements-specification#다른 요구사항 명세와의 차이|business requirements specification]]), StRS([[software-requirements-specification#다른 요구사항 명세와의 차이|stakeholder requirements specification]]), SyRS([[software-requirements-specification#다른 요구사항 명세와의 차이|system requirements specification]]), [[software-requirements-specification|SRS]]가 있다.[@iso-iec-ieee-29148-obp-2018]
 
 이 표준은 요구사항 프로세스를 생명주기 전반에 반복적·재귀적으로 적용하는 것도 다루고, 그 내용은 ISO/IEC/IEEE 12207이나 15288이 정한 요구사항 관련 생명주기 프로세스에 더해 쓰거나 따로 쓸 수 있다. 인용 규격은 ISO/IEC/IEEE 15288:2015와 ISO/IEC/IEEE 12207:2017이다.[@iso-iec-ieee-29148-obp-2018]
 

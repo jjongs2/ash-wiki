@@ -34,9 +34,9 @@ ISO/IEC/IEEE 24765 용어집은 **양방향 추적성**(bidirectional traceabili
 
 ![[diagrams/aspice-traceability-work-products.svg]]
 
-이 모델은 법규나 형식 승인 요구사항에서 도출된 확인 수단에는 단방향 추적성으로 충분하다고 정한다.[@vda-automotive-spice-pam-4-1-2026] 변경 요청은 [[configuration-management#변경 통제|형상 관리]]에서 다룬다.
+ASPICE 4.1은 법규나 형식 승인 요구사항에서 도출된 확인 수단에는 단방향 추적성으로 충분하다고 정한다.[@vda-automotive-spice-pam-4-1-2026] 변경 요청은 [[configuration-management#변경 통제|형상 관리]]에서 다룬다.
 
-SYS.2(System Requirements Analysis), SWE.1(Software Requirements Analysis), SWE.2(Software Architectural Design)의 추적성 BP 주석은 아래 산출물이 추적하지 않는 상위의 비기능 요구사항이 있을 수 있다고 하고, 그 예로 프로세스 요구사항을 들며(SWE.1은 인시던트 처리처럼 뒤 소프트웨어 제품 생명주기 단계에 걸린 요구사항도 든다), 그런 요구사항도 검증 대상이라고 제시한다. SWE.1의 주석은 중복 추적을 의도하지 않는다고 하고, SWE.3(Software Detailed Design and Unit Construction)의 주석은 세 추적 경로를 조합해 중복을 피하라고 제시한다. SWE.3의 주석은 상세 설계의 소프트웨어 유닛을 소프트웨어 요구사항에 바로 추적하는 예로 통신 매트릭스와, [[autosar|AUTOSAR]] 설정에 든 진단 식별자 목록을 든다.[@vda-automotive-spice-pam-4-1-2026]
+SYS.2(System Requirements Analysis), SWE.1(Software Requirements Analysis), SWE.2(Software Architectural Design)의 추적성 BP 주석은 하위 산출물이 추적하지 않는 상위의 비기능 요구사항이 있을 수 있다고 하고, 그 예로 프로세스 요구사항을 들며(SWE.1은 인시던트 처리처럼 뒤 소프트웨어 제품 생명주기 단계에 걸린 요구사항도 든다), 그런 요구사항도 검증 대상이라고 제시한다. SWE.1의 주석은 중복 추적을 의도하지 않는다고 하고, SWE.3(Software Detailed Design and Unit Construction)의 주석은 세 추적 경로를 조합해 중복을 피하라고 제시한다. SWE.3의 주석은 상세 설계의 소프트웨어 유닛을 소프트웨어 요구사항에 바로 추적하는 예로 통신 매트릭스와, [[autosar|AUTOSAR]] 설정에 든 진단 식별자 목록을 든다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## Vertical 추적성과 horizontal 추적성
 
@@ -50,7 +50,7 @@ Gotel과 Finkelstein은 1994년 논문에서 요구사항 추적성을, 요구�
 
 ISO/IEC/IEEE 24765 용어집은 **일관성**(consistency)을 문서들 사이, 또는 시스템이나 구성요소의 부분들 사이에 균일하고 표준화되어 있으며 서로 모순이 없는 정도로 정의한다.[@ieee-cs-sevocab-2026]
 
-ASPICE 4.1은 추적성과 함께 일관성을 요구하며, 일관성은 MAN.3과 SYS·SWE·HWE 프로세스의 추적성·일관성 BP대로 갖추게 한다. 링크가 있다는 것 같은 추적성만으로는 정보가 일관됨을 뜻하지 않는다고 하고, 일관성 증거(13-51)를 관련 산출물을 따라 정보가 의미상 맞는다는 증거로 정한다. 일관성 증거에는 하이퍼링크, 저장소 위치, 편집상 참조 같은 추적 정보와 명명 규칙이 든다.[@vda-automotive-spice-pam-4-1-2026]
+ASPICE 4.1은 추적성과 함께 일관성을 요구하며, 일관성은 [[automotive-spice-process-reference-model#프로세스 범주와 그룹|MAN.3]]과 SYS·SWE·HWE 프로세스의 추적성·일관성 BP대로 갖추게 한다. 링크가 있다는 것 같은 추적성만으로는 정보가 일관됨을 뜻하지 않는다고 하고, 일관성 증거(13-51)를 관련 산출물을 따라 정보가 의미상 맞는다는 증거로 정한다. 일관성 증거에는 하이퍼링크, 저장소 위치, 편집상 참조 같은 추적 정보와 명명 규칙이 든다.[@vda-automotive-spice-pam-4-1-2026]
 
 ASPICE 3.1은 추적성과 일관성을 서로 다른 두 BP로 두고, 추적성을 산출물 사이에 참조나 링크가 있는 것으로, 일관성을 내용과 의미의 문제로 정의했다. 4.1은 둘을 한 BP로 묶는다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 

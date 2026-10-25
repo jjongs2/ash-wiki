@@ -19,7 +19,7 @@ verified: 2026-10-02
 
 이 표준의 주된 독자는 프로세스 능력을 다루는 프로세스 평가 모델의 개발자다. 선임 평가자와 평가 의뢰자처럼, 이 측정 프레임워크의 요구가 지켜졌는지 확인해야 하는 이해관계자도 독자로 둔다.[@iso-iec-33020-obp-2019]
 
-ISO/IEC 33020:2019는 첫판 ISO/IEC 33020:2015를 기술적으로 고쳐 대체했다. 5.2의 능력 수준과 프로세스 속성 정의를 ISO 9001:2015와 더 일관되게 고쳤고, Annex B(Indicators of process capability)와 Annex C(Guidance on the process assessment framework)를 더했으며, 첫판의 Annex B를 Annex D(Example of a process performance model)로 옮겼다.[@iso-iec-33020-obp-2019]
+ISO/IEC 33020:2019는 첫판 ISO/IEC 33020:2015를 기술적으로 고쳐 대체했다. 5.2절의 능력 수준과 프로세스 속성 정의를 ISO 9001:2015와 더 일관되게 고쳤고, Annex B(Indicators of process capability)와 Annex C(Guidance on the process assessment framework)를 더했으며, 첫판의 Annex B를 Annex D(Example of a process performance model)로 옮겼다.[@iso-iec-33020-obp-2019]
 
 ## 수준과 프로세스 속성
 
@@ -34,7 +34,7 @@ ISO/IEC 33020:2019는 첫판 ISO/IEC 33020:2015를 기술적으로 고쳐 대체
 | CL 4 | Predictable process | 정한 한계 안에서 예측할 수 있게 수행한다. 정량 관리 요구를 정하고 측정 데이터를 모아 분석해 변동의 원인을 찾고 시정한다. |
 | CL 5 | Innovating process  | 조직의 변화에 대응하도록 프로세스를 지속적으로 개선한다.                                                                 |
 
-이 표준은 CL 1부터 CL 5까지 수준마다 **프로세스 속성**(process attribute, PA)을 배정하고, 프로세스 속성마다 무엇을 재는지 범위를 정한다. CL 0에는 프로세스 속성이 없다.[@vda-automotive-spice-pam-4-1-2026]
+ASPICE 4.1은 CL 1부터 CL 5까지 수준마다 **프로세스 속성**(process attribute, PA)을 배정하고, 프로세스 속성마다 무엇을 재는지 범위를 정한다. CL 0에는 프로세스 속성이 없다.[@vda-automotive-spice-pam-4-1-2026]
 
 | 프로세스 속성 | 이름                              | 수준 | 범위                                                                               |
 | ------------- | --------------------------------- | ---- | ---------------------------------------------------------------------------------- |
@@ -52,7 +52,7 @@ PA 2.1은 프로세스 수행을 계획하고, 감시하고, 계획에 맞게 �
 
 ## 등급 척도
 
-이 표준은 프로세스 속성의 달성 정도 $a$를 N(Not achieved), P(Partially achieved), L(Largely achieved), F(Fully achieved) 네 등급으로 평정한다. N은 $0\% \le a \le 15\%$, P는 $15\% < a \le 50\%$, L은 $50\% < a \le 85\%$, F는 $85\% < a \le 100\%$다. P와 L은 다시 둘로 나누는 세분 척도도 둔다. P-는 $15\% < a \le 32.5\%$, P+는 $32.5\% < a \le 50\%$, L-는 $50\% < a \le 67.5\%$, L+는 $67.5\% < a \le 85\%$다.[@vda-automotive-spice-pam-4-1-2026]
+ASPICE 4.1은 프로세스 속성의 달성 정도 $a$를 N(Not achieved), P(Partially achieved), L(Largely achieved), F(Fully achieved) 네 등급으로 평정한다. N은 $0\% \le a \le 15\%$, P는 $15\% < a \le 50\%$, L은 $50\% < a \le 85\%$, F는 $85\% < a \le 100\%$다. P와 L은 다시 둘로 나누는 세분 척도도 둔다. P-는 $15\% < a \le 32.5\%$, P+는 $32.5\% < a \le 50\%$, L-는 $50\% < a \le 67.5\%$, L+는 $67.5\% < a \le 85\%$다.[@vda-automotive-spice-pam-4-1-2026]
 
 ![[diagrams/aspice-pa-rating-scale.svg]]
 
@@ -67,11 +67,11 @@ PA 2.1은 프로세스 수행을 계획하고, 감시하고, 계획에 맞게 �
 
 ## 수준 달성 판정
 
-이 표준은 어떤 수준을 이루려면 그 수준의 프로세스 속성이 L이나 F이고, 그보다 낮은 수준의 프로세스 속성이 모두 F여야 한다고 정한다. 예를 들어 CL 2는 PA 1.1이 F이고, PA 2.1, PA 2.2가 모두 L이나 F일 때 이룬다.[@vda-automotive-spice-pam-4-1-2026]
+ASPICE 4.1은 어떤 수준을 이루려면 그 수준의 프로세스 속성이 L이나 F이고, 그보다 낮은 수준의 프로세스 속성이 모두 F여야 한다고 정한다. 예를 들어 CL 2는 PA 1.1이 F이고, PA 2.1, PA 2.2가 모두 L이나 F일 때 이룬다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## CL 3과 표준 프로세스
 
-이 표준은 CL 3에서 표준 프로세스를 개발·유지하고 테일러링 지침을 정하며(PA 3.1), 표준 프로세스를 고르거나 테일러링해 정의된 프로세스로 배치하기를(PA 3.2) 요구한다.[@vda-automotive-spice-pam-4-1-2026] 두 용어는 ISO/IEC 33001:2015가 다음처럼 정의한다.[@iso-iec-33001-obp-2015]
+ASPICE 4.1은 CL 3에서 표준 프로세스를 개발·유지하고 테일러링 지침을 정하며(PA 3.1), 표준 프로세스를 고르거나 테일러링해 정의된 프로세스로 배치하기를(PA 3.2) 요구한다.[@vda-automotive-spice-pam-4-1-2026] 두 용어는 ISO/IEC 33001:2015가 다음처럼 정의한다.[@iso-iec-33001-obp-2015]
 
 - **표준 프로세스**(standard process): 조직 안의 프로세스를 이끄는 프로세스 정의의 집합. 프로젝트에서 구현하는 정의된 프로세스에 들어가야 할 기본 프로세스 요소와 그 관계를 담는다.
 - **테일러링**(tailoring): 프로젝트가 목표, 제약, 환경에 맞게 조직의 표준 프로세스를 고쳐 정의된 프로세스를 만드는 일. 조직의 테일러링 지침을 따른다.[@iso-iec-33001-obp-2015]

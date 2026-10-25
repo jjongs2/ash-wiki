@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-12
 ---
 
-The Kanban Guide 2025.5는 **Kanban**을, 프로세스를 거쳐 가는 가치의 흐름을 최적화하는 전략으로 정의한다. 이 가이드는 Kanban과 같은 이론에 바탕을 둔 기존의 가치 지향 접근법이 많으므로, Kanban으로 그 인도 기법을 보강할 수 있고 그래야 한다고 둔다.[@kanbanguides-kanban-guide-2025] Kanban University의 Kanban Method 가이드는 Kanban을 방법론이나 프로세스 프레임워크가 아닌 관리 방법으로 둔다. Kanban은 이미 쓰고 있는 프로세스나 일하는 방식을 대신하지 않고, 그 위에 더해 쓴다.[@kanban-university-kanban-guide-2026]
+The Kanban Guide 2025.5는 **Kanban**을, 프로세스를 거쳐 가는 가치의 흐름을 최적화하는 전략으로 정의한다. 이 가이드는 Kanban과 같은 이론에 바탕을 둔 기존의 가치 지향 접근법이 많으므로, Kanban으로 그 접근법들의 인도 기법을 보강할 수 있고 그래야 한다고 둔다.[@kanbanguides-kanban-guide-2025] Kanban University의 Kanban Method 가이드는 Kanban을 방법론이나 프로세스 프레임워크가 아닌 관리 방법으로 둔다. Kanban은 이미 쓰고 있는 프로세스나 일하는 방식을 대신하지 않고, 그 위에 더해 쓴다.[@kanban-university-kanban-guide-2026]
 
 ISO/IEC/IEEE 24765 용어집은 Kanban board를, 병목과 지나친 약속을 찾도록 진행 중인 작업을 보여 주어 팀이 워크플로를 최적화하게 하는 시각화 도구로 정의한다. 소프트웨어 개발에서는 개발자가 태스크 백로그에서 태스크를 끌어오는(pull) 작업을 시각적으로 나타낸 것으로도 정의한다.[@ieee-cs-sevocab-2026]
 
@@ -47,7 +47,7 @@ The Kanban Guide 2025.5는 구성원이 효과성, 효율성, 예측 가능성�
 | Work Item Age | 작업 항목이 시작된 때부터 지금까지 지난 시간    |
 | Cycle Time    | 작업 항목이 시작된 때부터 끝난 때까지 지난 시간 |
 
-이 지표는 세 실천 가운데 하나 이상에 쓸 정보를 줄 때만 의미가 있다. 가이드가 정한 대로 쓰는 한 지표를 다른 이름으로 불러도 되고, 맥락에 맞는 지표를 더 써도 된다.[@kanbanguides-kanban-guide-2025]
+이 지표는 세 실천 가운데 하나 이상에 쓸 정보를 줄 때만 의미가 있다. 가이드가 정한 대로 쓰기만 하면 지표를 다른 이름으로 불러도 되고, 맥락에 맞는 지표를 더 써도 된다.[@kanbanguides-kanban-guide-2025]
 
 ![[diagrams/kanban-flow-metrics.svg]]
 

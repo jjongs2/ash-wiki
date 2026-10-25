@@ -11,7 +11,7 @@ verified: 2026-10-02
 
 ISO/IEC/IEEE 42010:2022는 아키텍처와, 아키텍처를 표현하는 작업 산출물인 **아키텍처 기술**(architecture description, AD)을 구분한다. 이 표준은 AD가 대상을 만들고 쓰고 관리하는 이들 사이의 의사소통과 협력을 높여 함께 일하게 하는 데 쓰인다고 둔다.[@iso-iec-ieee-42010-obp-2022]
 
-이 표준은 AD의 용도로 설계, 개발, 문서화, 분석, 평가, 유지보수, 리스크 완화, 의사소통, 계획, 의사 결정 지원, 교육 등을 든다. **관심사**(concern)는 이해관계자에게 관련이 있거나 중요한 사항이고, 이해관계자는 대상에 이해, 권리, 몫, 청구권을 가진 역할, 직위, 개인, 조직이나 그 부류다. 이해관계자의 예로는 최종 사용자, 운용자, 획득자, 소유자, 공급자, 아키텍트, 개발자, 유지보수자, 규제 기관, 인증 기관 등을 든다.[@iso-iec-ieee-42010-obp-2022]
+이 표준은 AD의 용도로 설계, 개발, 문서화, 분석, 평가, 유지보수, 리스크 완화, 의사소통, 계획, 의사 결정 지원, 교육 등을 든다. **관심사**(concern)는 이해관계자에게 관련이 있거나 중요한 사항이고, 이해관계자는 대상에 이해관계, 권리, 몫, 청구권을 가진 역할, 직위, 개인, 조직이나 그 부류다. 이해관계자의 예로는 최종 사용자, 운용자, 획득자, 소유자, 공급자, 아키텍트, 개발자, 유지보수자, 규제 기관, 인증 기관 등을 든다.[@iso-iec-ieee-42010-obp-2022]
 
 SWEBOK V4.0a에 따르면 잘 계획하고 문서로 남긴 아키텍처는 [[software-design|소프트웨어 설계]]와 컴포넌트의 적용성과 재사용성을 높이는 한 방법이다. 아키텍처는 프로그램 군이나 소프트웨어 제품군 설계의 바탕이 된다.[@ieee-swebok-v4-0a-2026]
 
@@ -54,7 +54,7 @@ ASPICE 4.1은 소프트웨어 아키텍처를 정적 측면과 동적 측면으�
 - 정적 측면: 외부 인터페이스와, 정해 둔 소프트웨어 컴포넌트 집합 및 그 인터페이스와 관계
 - 동적 측면: 소프트웨어 컴포넌트의 동작, 소프트웨어 모드마다의 컴포넌트 상호작용, 인터럽트 처리·선점 처리·멀티스레딩 같은 동시성[@vda-automotive-spice-pam-4-1-2026]
 
-정보 항목 04-04(Software architecture)는 소프트웨어 아키텍처가 밝힐 내용으로, 전체 소프트웨어 구조와 함께 시작·종료·캘리브레이션 같은 상태와 운용 모드마다의 동적 동작, 타임 슬라이스나 주기 같은 타이밍 정의, 프로세스와 스레드의 우선순위, 인터럽트와 그 우선순위 같은 이벤트 처리를 든다. 그 밖에 밝힐 내용으로 인터페이스의 기술적 특성과 응용 파라미터 설정을 들고, 담을 수 있는 내용으로 고른 아키텍처를 정당화하는 근거와 요소·다이어그램·모델에 단 설명 주석을 든다.[@vda-automotive-spice-pam-4-1-2026]
+[[automotive-spice-process-assessment-model#프로세스 수행 지표|정보 항목]] 04-04(Software architecture)는 소프트웨어 아키텍처가 밝힐 내용으로, 전체 소프트웨어 구조와 함께 시작·종료·캘리브레이션 같은 상태와 운용 모드마다의 동적 동작, 타임 슬라이스나 주기 같은 타이밍 정의, 프로세스와 스레드의 우선순위, 인터럽트와 그 우선순위 같은 이벤트 처리를 든다. 그 밖에 밝힐 내용으로 인터페이스의 기술적 특성과 응용 파라미터 설정을 들고, 담을 수 있는 내용으로 고른 아키텍처를 정당화하는 근거와 요소·다이어그램·모델에 단 설명 주석을 든다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 구조 관계
 
@@ -80,7 +80,7 @@ BP3은 기능, 타이밍, 자원 소비 같은 기술적 설계 측면과 프로
 
 BP2의 주석은 동적 측면의 행위를 기술하는 수단의 예로 자연어와 UML 같은 반정형 표기를 든다. BP3의 주석은 기술적 측면을 분석하는 방법의 예로 prototype, 시뮬레이션, 정성 분석을 들고, 자원 소비의 예로 메모리와 CPU 부하를 든다.[@vda-automotive-spice-pam-4-1-2026]
 
-이 모델은 소프트웨어 요소(software element)를 소프트웨어 컴포넌트나 소프트웨어 유닛을 가리키는 말로 정의한다.[@vda-automotive-spice-pam-4-1-2026] 유닛과 그 설계는 [[software-unit-design|소프트웨어 유닛 설계]]에서 다룬다.
+ASPICE 4.1은 소프트웨어 요소(software element)를 소프트웨어 컴포넌트나 소프트웨어 유닛을 가리키는 말로 정의한다.[@vda-automotive-spice-pam-4-1-2026] 유닛과 그 설계는 [[software-unit-design|소프트웨어 유닛 설계]]에서 다룬다.
 
 ![[diagrams/aspice-software-decomposition.svg]]
 
@@ -88,7 +88,7 @@ ASPICE 3.1은 SWE.2의 목적을 아키텍처 설계를 세우고, 소프트웨�
 
 ## ISO 26262-6
 
-[[iso-26262|ISO 26262]]-6:2018은 7절에서 소프트웨어 아키텍처 설계를 다룬다.[@iso-26262-6-obp-2018] ISO 26262-1:2018은 [[freedom-from-interference|freedom from interference]]를, 안전 요구 위반으로 이어질 수 있는 cascading failure가 둘 이상의 요소 사이에 없는 것으로 정의한다.[@iso-26262-1-obp-2018] AUTOSAR R25-11은 소프트웨어 컴포넌트를 서로 보호되는 메모리 partition에 나눠 실행하는 memory partitioning으로 컴포넌트 사이의 freedom from interference를 돕는다.[@autosar-cp-exp-functionalsafetymeasures-2025]
+[[iso-26262|ISO 26262]]-6:2018은 7절에서 소프트웨어 아키텍처 설계를 다룬다.[@iso-26262-6-obp-2018] ISO 26262-1:2018은 [[freedom-from-interference|freedom from interference]]를, 안전 요구 위반으로 이어질 수 있는 cascading failure가 둘 이상의 요소 사이에 없는 것으로 정의한다.[@iso-26262-1-obp-2018] AUTOSAR R25-11은 소프트웨어 컴포넌트를 서로 보호되는 메모리 partition에 나눠 실행하는 [[freedom-from-interference#Memory partitioning|memory partitioning]]으로 컴포넌트 사이의 freedom from interference를 돕는다.[@autosar-cp-exp-functionalsafetymeasures-2025]
 
 ## 아키텍처 평가
 

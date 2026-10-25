@@ -30,13 +30,13 @@ ISO/IEC/IEEE 14764:2022는 **소프트웨어 유지보수**(software maintenance
 
 ![[diagrams/software-maintenance-types.svg]]
 
-**문제 보고**(PR, problem report)는 소프트웨어 제품에서 찾은 문제를 식별하고 기술하는 문서다. 이 표준은 PR을 결함을 알리려고 바로 내거나, MR의 영향 분석 뒤 결함이 발견되면 만든다고 제시한다.[@iso-iec-ieee-14764-obp-2022]
+**문제 보고**(PR, problem report)는 소프트웨어 제품에서 찾은 문제를 식별하고 기술하는 문서다. 이 표준은 PR을 결함을 알리려고 바로 내거나, MR의 [[configuration-management#변경 통제|영향 분석]] 뒤 결함이 발견되면 만든다고 제시한다.[@iso-iec-ieee-14764-obp-2022]
 
 ## ISO/IEC/IEEE 14764의 범위
 
 이 표준은 [[iso-iec-ieee-12207|ISO/IEC/IEEE 12207]]:2017의 6.4.13이 정한 유지보수 프로세스와 그 활동·태스크를 바탕으로 한 소프트웨어 유지보수 지침이다. 유지보수 프로세스를 더 자세히 기술하고 유지보수 유형들을 정의한다. 소프트웨어 운용과, 백업, 복구, 시스템 관리처럼 소프트웨어를 운용하는 쪽이 하는 운용 기능은 다루지 않지만, 12207:2017의 6.4.14가 정한 폐기 프로세스는 포함한다.[@iso-iec-ieee-14764-obp-2022]
 
-이 표준은 생명주기 모델(점진, 폭포수, 진화형, 나선형, 애자일, 지속적 반복 개발 등)과 상관없이 모든 유지보수에 쓰도록 의도한다. 소프트웨어 제품의 크기, 복잡도, 중요도, 신뢰성, 응용에도 제한을 두지 않는다.[@iso-iec-ieee-14764-obp-2022]
+이 표준은 생명주기 모델([[software-development-life-cycle#예측형에서 적응형까지|점진]], [[waterfall-model|폭포수]], [[software-development-life-cycle#예측형에서 적응형까지|진화형]], [[spiral-model|나선형]], [[agile-software-development|애자일]], 지속적 반복 개발 등)과 상관없이 모든 유지보수에 쓰도록 의도한다. 소프트웨어 제품의 크기, 복잡도, 중요도, 신뢰성, 응용에도 제한을 두지 않는다.[@iso-iec-ieee-14764-obp-2022]
 
 ISO/IEC/IEEE 14764:2022는 3판으로, ISO/IEC 14764:2006을 대체했다. 표준을 ISO/IEC/IEEE 12207:2017에 맞추고, 유지보수의 현대적 접근을 들였다.[@iso-iec-ieee-14764-obp-2022]
 

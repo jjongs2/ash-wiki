@@ -15,7 +15,7 @@ verified: 2026-10-02
 
 이 모델은 지표를 두 종류로 둔다.[@vda-automotive-spice-pam-4-1-2026]
 
-- **프로세스 수행 지표**(process performance indicators): 프로세스 성과가 얼마나 이뤄졌는지 보이는 지표로, 프로세스마다 다르고 능력 수준 1에 쓴다.
+- **프로세스 수행 지표**(process performance indicators): 프로세스 성과가 얼마나 이뤄졌는지 보이는 지표로, 프로세스마다 다르고 능력 수준 1([[process-capability-level#수준과 프로세스 속성|CL]] 1)에 쓴다.
 - **프로세스 능력 지표**(process capability indicators): 프로세스 속성이 얼마나 이뤄졌는지 보이는 지표로, 모든 프로세스에 공통이고 능력 수준 1\~5에 쓴다.[@vda-automotive-spice-pam-4-1-2026]
 
 ![[diagrams/aspice-assessment-indicators.svg]]
@@ -29,13 +29,13 @@ verified: 2026-10-02
 이 모델의 프로세스 수행 지표는 BP(base practice)와 출력 정보 항목이다.[@vda-automotive-spice-pam-4-1-2026]
 
 - **BP**: 프로세스 목적과 성과를 이루려고 하는 활동을 정한다. 활동 쪽 지표다.
-- **정보 항목**(information item): 결과 쪽 지표다. ISO/IEC 33001을 따라 사람이 쓰도록 만들고 저장하고 전달하는, 따로 식별되는 정보로 정의한다.[@vda-automotive-spice-pam-4-1-2026]
+- **정보 항목**(information item): 결과 쪽 지표다. [[process-assessment#ISO/IEC 330xx 계열|ISO/IEC 33001]]을 따라 사람이 사용하도록 만들고 저장하고 전달하는, 따로 식별되는 정보로 정의한다.[@vda-automotive-spice-pam-4-1-2026]
 
-이 모델은 정보 항목을 평가받는 조직이 만든 작업 산출물과 구별하고, 둘 사이에 일대일 대응을 두지 않는다. BP는 하나 이상의 프로세스 성과에 연결되고, 프로세스마다 BP와 출력 정보 항목이 어느 성과에 닿는지 표로 보인다. 예를 들어 SWE.1에는 소프트웨어 요구사항을 구조화하고 우선순위를 매기는 BP(SWE.1.BP2)가 있다.[@vda-automotive-spice-pam-4-1-2026]
+이 모델은 정보 항목을 평가받는 조직이 만든 작업 산출물과 구별하고, 둘 사이에 일대일 대응을 두지 않는다. BP는 하나 이상의 프로세스 성과에 연결되고, 프로세스마다 BP와 출력 정보 항목이 어느 성과에 닿는지 표로 보인다. 예를 들어 [[automotive-spice-process-reference-model#프로세스 범주와 그룹|SWE.1]]에는 소프트웨어 요구사항을 구조화하고 우선순위를 매기는 BP(SWE.1.BP2)가 있다.[@vda-automotive-spice-pam-4-1-2026]
 
 ASPICE 3.1은 결과 쪽 수행 지표로 작업 산출물(WP, work product)과 그 특성(WPC, work product characteristics)을 두었다. ASPICE 4.1은 그 자리에 정보 항목과 정보 항목 특성(IIC, information item characteristics)을 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
-ASPICE 4.1의 Annex B는 정보 항목마다 IIC를 표로 싣는다. 평가자는 조직 단위가 낸 표본을 평가할 때 IIC를 쓸 수 있지만, IIC는 점검표로 쓰라고 둔 것이 아니다. 일부 특성은 평가받는 조직의 다른 작업 산출물에 들어 있을 수 있다. IIC를 그에 대응하는 작업 산출물이 갖춰야 할 구조로 해석해서도 안 된다. 작업 산출물의 구조는 프로젝트와 조직이 정한다.[@vda-automotive-spice-pam-4-1-2026]
+ASPICE 4.1의 Annex B는 정보 항목마다 IIC를 표로 싣는다. 평가자는 [[process-assessment#평가의 요소|조직 단위]]가 낸 표본을 평가할 때 IIC를 쓸 수 있지만, IIC는 점검표로 쓰라고 둔 것이 아니다. 일부 특성은 평가받는 조직의 다른 작업 산출물에 들어 있을 수 있다. IIC를 그에 대응하는 작업 산출물이 갖춰야 할 구조로 해석해서도 안 된다. 작업 산출물의 구조는 프로젝트와 조직이 정한다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 객관적 증거와 작업 산출물
 
