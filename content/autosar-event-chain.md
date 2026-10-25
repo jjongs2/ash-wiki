@@ -17,7 +17,7 @@ timing description과 타이밍 제약은 타이밍 뷰로 나뉜다. 뷰는 Vfb
 
 event chain은 계층으로 짤 수 있고, 안에 든 하위 event chain을 **segment**라 부른다. event chain을 합성할 때는 앞 event chain의 응답 이벤트가 뒤 event chain의 자극 이벤트가 되도록 잇는다. segment를 가진 event chain에는 상위 event chain의 자극에서 segment들을 지나 상위 event chain의 응답까지 이어지는 경로가 적어도 하나 있어야 한다.[@autosar-cp-tps-timingextensions-2025]
 
-하향식 분해에서는 event chain에 LatencyTimingConstraint로 시간 예산을 걸고, event chain을 segment로 나누면 예산도 나뉜다. segment $i$의 예산을 $B_i$, event chain 전체 예산을 $B$라 하면 $\sum_i B_i \le B$여야 한다. 상향식 합성에서 segment들을 합해 상위 event chain을 이룰 때도 같은 조건을 지켜야 한다. 뒤 개발 단계에서 시스템 동작을 더 알게 되면, event chain과 그 시간 예산을 시스템의 구성 요소들에 나눠 segment로 만들 수 있다.[@autosar-cp-tps-timingextensions-2025]
+하향식 분해에서는 event chain에 LatencyTimingConstraint로 시간 예산을 걸고, event chain을 segment로 나누면 예산도 나뉜다. segment $i$의 예산을 $B_i$, event chain 전체 예산을 $B$라 하면 $\sum_i B_i \le B$여야 한다. 상향식 합성에서 segment들을 합해 상위 event chain을 이룰 때도 같은 조건을 지켜야 한다. 이후 개발 단계에서 시스템 동작을 더 알게 되면, event chain과 그 시간 예산을 시스템의 구성 요소들에 나눠 segment로 만들 수 있다.[@autosar-cp-tps-timingextensions-2025]
 
 ![[diagrams/event-chain-segments-budget.svg]]
 
@@ -29,6 +29,6 @@ event chain은 계층으로 짤 수 있고, 안에 든 하위 event chain을 **s
 
 ## SW-C 단위 지연
 
-VfbTiming 뷰는 센서와 액추에이터까지 포함한 종단 간 타이밍 제약을 담는 뷰로, 이 제약을 설계 초기에 형식화하게 해 준다. 이 뷰에서는 atomic SW-C 하나를 두고, 입력 포트로 값을 받은 때부터 새로 계산한 값을 출력 포트로 보낸 때까지의 지연에 상한을 걸 수 있다. 예: 최대 2 ms. [[autosar-software-component#Composition|composition]] 수준에서는 컴포넌트 사이의 타이밍 관계, 예를 들어 한 컴포넌트의 provided port에서 다른 컴포넌트의 required port까지의 관계도 다룰 수 있다.[@autosar-cp-tps-timingextensions-2025]
+VfbTiming 뷰는 센서와 액추에이터까지 포함한 종단 간 타이밍 제약을 담는 뷰로, 이 제약을 설계 초기에 형식화하게 해 준다. 이 뷰에서는 [[autosar-software-component#종류|atomic SW-C]] 하나를 두고, 입력 포트로 값을 받은 때부터 새로 계산한 값을 출력 포트로 보낸 때까지의 지연에 상한을 걸 수 있다. 예: 최대 2 ms. [[autosar-software-component#Composition|composition]] 수준에서는 컴포넌트 사이의 타이밍 관계, 예를 들어 한 컴포넌트의 provided port에서 다른 컴포넌트의 required port까지의 관계도 다룰 수 있다.[@autosar-cp-tps-timingextensions-2025]
 
 SwcTiming 뷰는 SW-C의 내부 동작을 runnable 단위로 보며, runnable의 활성화, 시작, 종료와 변수 접근을 timing event로 쓸 수 있다. 이 명세가 드는 예에서 SW-C 안의 데이터 흐름은 required port를 읽는 runnable, runnable 사이 통신, provided port에 쓰는 runnable을 거친다.[@autosar-cp-tps-timingextensions-2025]

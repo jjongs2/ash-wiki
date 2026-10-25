@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784 130.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 300" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -8,35 +8,33 @@
 
   <!-- Process State -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="20" width="120" height="36" rx="2" />
-    <rect x="176" y="20" width="120" height="36" rx="2" />
-    <rect x="332" y="20" width="120" height="36" rx="2" />
-    <rect x="488" y="20" width="120" height="36" rx="2" />
-    <rect x="644" y="20" width="120" height="36" rx="2" />
+    <rect x="20" y="20" width="130" height="36" rx="2" />
+    <rect x="20" y="76" width="130" height="36" rx="2" />
+    <rect x="20" y="132" width="130" height="36" rx="2" />
+    <rect x="20" y="188" width="130" height="36" rx="2" />
+    <rect x="20" y="244" width="130" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="80" y="43">Idle</text>
-    <text x="236" y="43">Starting</text>
-    <text x="392" y="43">Running</text>
-    <text x="548" y="43">Terminating</text>
-    <text x="704" y="43">Terminated</text>
+    <text x="85" y="43">Idle</text>
+    <text x="85" y="99">Starting</text>
+    <text x="85" y="155">Running</text>
+    <text x="85" y="211">Terminating</text>
+    <text x="85" y="267">Terminated</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
-    <line x1="140" y1="38" x2="174" y2="38" />
-    <line x1="296" y1="38" x2="330" y2="38" />
-    <line x1="452" y1="38" x2="486" y2="38" />
-    <line x1="608" y1="38" x2="642" y2="38" />
+    <line x1="85" y1="56" x2="85" y2="74" />
+    <line x1="85" y1="112" x2="85" y2="130" />
+    <line x1="85" y1="168" x2="85" y2="186" />
+    <line x1="85" y1="224" x2="85" y2="242" />
   </g>
 
   <!-- 상태가 적용되는 때 -->
-  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
-    <text x="80" y="78">생성·자원 할당 전</text>
-    <text x="236" y="78">생성·자원 할당 뒤</text>
-    <text x="392" y="78">kRunning을 알린 뒤</text>
-    <text x="392" y="94">알리지 않으면</text>
-    <text x="392" y="110">생성 뒤 암묵적으로</text>
-    <text x="548" y="78">SIGTERM을 보낸 뒤</text>
-    <text x="704" y="78">종료·자원 해제 뒤</text>
-    <text x="704" y="94">다시 시작할 수 있다</text>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="170" y="42.5">생성·자원 할당 전</text>
+    <text x="170" y="98.5">생성·자원 할당 뒤</text>
+    <text x="170" y="146.5">알리는 프로세스: kRunning을 알린 뒤</text>
+    <text x="170" y="162.5">알리지 않는 프로세스: 생성 뒤 암묵적으로</text>
+    <text x="170" y="210.5">SIGTERM을 보낸 뒤</text>
+    <text x="170" y="266.5">종료·자원 해제 뒤, 다시 시작할 수 있다</text>
   </g>
 </svg>

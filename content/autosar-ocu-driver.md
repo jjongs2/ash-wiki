@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## Free running counter와 compare threshold
 
-AUTOSAR R25-11의 OCU Driver 규격은 OCU channel을 free running counter와 compare threshold 두 요소로 둔다. free running counter는 최솟값부터 최댓값까지 센 뒤 저절로 최솟값부터 다시 세며, 최댓값에서 최솟값으로 세는 counter도 이 정의에 든다. OCU는 counter가 한 단위 늘 때마다 counter 값을 threshold와 견주고, 둘이 같으면 설정한 동작을 한다.[@autosar-cp-sws-ocudriver-2025]
+AUTOSAR R25-11의 OCU Driver 규격은 [[microcontroller-abstraction-layer#Channel, channel group, port|OCU channel]]을 free running counter와 compare threshold 두 요소로 둔다. free running counter는 최솟값부터 최댓값까지 센 뒤 저절로 최솟값부터 다시 세며, 최댓값부터 최솟값까지 거꾸로 세는 counter도 이 정의에 든다. OCU는 counter가 한 단위 늘 때마다 counter 값을 threshold와 견주고, 둘이 같으면 설정한 동작을 한다.[@autosar-cp-sws-ocudriver-2025]
 
 ![[diagrams/ocu-counter-threshold-match.svg]]
 
@@ -33,4 +33,4 @@ counter가 threshold와 같아지면 OCU Driver는 두 가지 동작을 할 수 
 
 ## 다른 드라이버와의 관계
 
-OCU Driver는 전역 클록, 전역 prescaler, PLL(Phase-Locked Loop) 설정을 MCU Driver에 맡기고, OCU 주변장치에 고유한 자원만 스스로 설정한다. OCU 출력으로 쓰는 핀은 [[autosar-port-driver|Port Driver]]가 설정하므로, OCU 함수를 쓰기 전에 Port Driver를 초기화해야 한다.[@autosar-cp-sws-ocudriver-2025]
+OCU Driver는 전역 클록, 전역 prescaler, PLL(Phase-Locked Loop) 설정을 [[microcontroller-abstraction-layer#모듈 그룹|MCU Driver]]에 맡기고, OCU 주변장치에 고유한 자원만 스스로 설정한다. OCU 출력으로 쓰는 핀은 [[autosar-port-driver|Port Driver]]가 설정하므로, OCU 함수를 쓰기 전에 Port Driver를 초기화해야 한다.[@autosar-cp-sws-ocudriver-2025]

@@ -16,7 +16,7 @@ Persistency의 저장 위치는 Key-Value Storage와 File Storage 두 갈래로 
 - **Key-Value Storage**: 저장 위치 하나에 키와 값의 짝을 여럿 저장하고 꺼낸다. 키는 Key-Value Storage마다 유일해야 하고, 설계나 배치의 설정에서 정하거나 실행 중에 `SetValue()`로 만든다. 갱신 때 값을 다른 타입으로 옮길 수 있도록, 지금 쓰는 데이터 타입을 같은 키가 이전 버전에서 쓰던 타입들에 대응시키는 데이터 타입 매핑을 둔다.
 - **File Storage**: 저장 위치 하나에 고유한 이름의 파일을 하나 이상 만든다. 키와 값의 짝으로 다루기 알맞지 않은 데이터를 위한 것으로, 하위 디렉터리 없이 파일만 만들 수 있는 파일 시스템 디렉터리에 견줄 수 있다.[@autosar-ap-exp-platformdesign-2025]
 
-Key-Value Storage의 모든 작업은 저장소를 열 때 만드는 임시 저장소에서 한다. `SyncToStorage`를 불러야 그동안의 변경이 영구히 저장되고, 저장하지 않은 변경은 저장소를 닫거나 시스템을 재시작하면 버려진다. File Storage의 파일은 읽기 전용, 쓰기 전용, 읽기·쓰기 가운데 하나로 연다.[@autosar-ap-sws-persistency-2025]
+Key-Value Storage의 모든 작업은 저장소를 열 때 만드는 임시 저장소에서 한다. `SyncToStorage()`를 불러야 그동안의 변경이 영구히 저장되고, 저장하지 않은 변경은 저장소를 닫거나 시스템을 재시작하면 버려진다. File Storage의 파일은 읽기 전용, 쓰기 전용, 읽기·쓰기 가운데 하나로 연다.[@autosar-ap-sws-persistency-2025]
 
 ![[diagrams/persistency-key-value-sync.svg]]
 
@@ -32,7 +32,7 @@ Persistency는 중복 정보로 저장한 데이터의 손상을 검출해 무�
 
 암호화와 MAC 가운데 어느 보호를 어떤 알고리즘으로 할지도 Target Configuration에서 정하고, Persistency 사용자는 이를 알지 못한다. 암호화하면 저장소를 저장할 때 암호화하고 열 때 복호화하므로 영구히 저장되는 것은 암호화된 데이터뿐이다. MAC을 쓰면 저장할 때 MAC을 만들고 열 때 검증해, 허가받지 않은 변경을 검출한다. 암호 연산에는 [[autosar-crypto-stack#Adaptive Platform의 Cryptography|Cryptography]]의 서비스를 쓴다.[@autosar-ap-sws-persistency-2025]
 
-쿼터로는 저장소마다 하한과 상한을 설정한다. Persistency는 저장소가 실제로 차지한 공간이 상한 `MaximumAllowedSize`를 넘지 않게 하고, 하한은 그 저장소를 쓰는 Executable이 든 Software Package를 설치할 때 검사되는 것으로 본다.[@autosar-ap-sws-persistency-2025]
+쿼터로는 저장소마다 하한과 상한을 설정한다. Persistency는 저장소가 실제로 차지한 공간이 상한 `MaximumAllowedSize`를 넘지 않게 하고, 하한은 그 저장소를 쓰는 [[autosar-adaptive-platform#Machine과 프로세스|Executable]]이 든 [[autosar-update-and-configuration-management#패키지|Software Package]]를 설치할 때 검사되는 것으로 본다.[@autosar-ap-sws-persistency-2025]
 
 ## 설치와 갱신
 
@@ -48,7 +48,7 @@ Persistency는 응용 설계자가 정의한 영속 데이터, 통합자가 바�
 
 **Remote Persistency**는 Adaptive Application이 다른 ECU에 있을 수도 있는 비휘발성 메모리에 정보를 저장하게 하는 [[autosar-adaptive-platform#Functional cluster|Vehicle Services]]의 functional cluster다. 저장한 데이터는 부팅과 점화 사이클이 지나도 남고, 여러 Adaptive Application이 접근할 수 있다. Remote Persistency는 대개 아무 ECU에서나 도는 데몬으로 구현되어, Persistency의 서비스를 서비스 인터페이스로 내놓고 그 접근을 [[autosar-identity-and-access-management|IAM]]이 중재한다.[@autosar-ap-sws-remotepersistency-2025]
 
-Remote Persistency는 제공하는 서비스 인터페이스마다 내부 Key-Value Storage를 하나 쓴다. 데이터 항목마다 서비스 인터페이스의 Field 하나로 나타내고, 그 데이터는 해당 Key-Value Storage의 키와 값의 짝에 저장한다. 서비스 인터페이스의 Field와 Method에 대한 접근은 IAM으로 통제한다.[@autosar-ap-sws-remotepersistency-2025]
+Remote Persistency는 제공하는 서비스 인터페이스마다 내부 Key-Value Storage를 하나 쓴다. 데이터 항목마다 서비스 인터페이스의 [[service-oriented-communication#서비스 인터페이스|Field]] 하나로 나타내고, 그 데이터는 해당 Key-Value Storage의 키와 값의 짝에 저장한다. 서비스 인터페이스의 Field와 Method에 대한 접근은 IAM으로 통제한다.[@autosar-ap-sws-remotepersistency-2025]
 
 AUTOSAR R25-11 Adaptive Platform은 Remote Persistency를 차량이나 ECU 안의 여러 응용을 위한 설정·코딩 데이터의 전역 저장소로 들였다. 중앙 인스턴스가 `ara::com` 서비스로 제공하므로, 같은 ECU나 차량의 어느 응용이든 로컬 Persistency와 비슷하게 쓸 수 있다. 이 판의 Remote Persistency는 파일 접근을 지원하지 않아, 하부 Persistency의 File Storage를 쓸 수 없다. 서비스 인터페이스는 예비 상태로, 다른 functional cluster의 서비스 인터페이스처럼 blueprint로 나와 있지 않다.[@autosar-ap-tr-releaseoverview-2025]
 

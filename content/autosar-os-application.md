@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**OS-Application**은 [[autosar-os|AUTOSAR OS]]에서 [[osek-task|태스크]], [[osek-isr|ISR]], [[osek-alarm|알람]], [[autosar-schedule-table|schedule table]], counter처럼 하나의 기능 단위를 이루는 OS 객체의 모음이다. 다른 OS-Application 객체에 대한 접근 권한과 memory protection은 OS-Application 단위로 준다.[@autosar-cp-sws-os-2025]
+**OS-Application**은 [[autosar-os|AUTOSAR OS]]에서 [[osek-task|태스크]], [[osek-isr|ISR]], [[osek-alarm|알람]], [[autosar-schedule-table|schedule table]], [[osek-alarm#Counter|counter]]처럼 하나의 기능 단위를 이루는 OS 객체의 모음이다. 다른 OS-Application 객체에 대한 접근 권한과 memory protection은 OS-Application 단위로 준다.[@autosar-cp-sws-os-2025]
 
 ## 소속
 
@@ -21,7 +21,7 @@ OS-Application마다 자기 [[osek-hook-routine|hook]]으로 `StartupHook_<App>`
 
 OS-Application은 trusted와 non-trusted 둘로 나뉜다.[@autosar-cp-sws-os-2025]
 
-- **Trusted OS-Application**: 실행 중 감시나 보호를 끈 채 실행될 수 있고, 메모리와 OS API에 제한 없이 접근할 수 있으며, 실행 때 타이밍 동작을 강제받지 않아도 된다. 프로세서가 지원하면 privileged mode에서 실행될 수 있다. 다른 OS-Application에 서비스를 제공할 수 있다.
+- **Trusted OS-Application**: 실행 중 감시나 보호를 끈 채 실행될 수 있고, 메모리와 OS API에 제한 없이 접근할 수 있으며, 실행 때 타이밍 동작을 강제받지 않아도 된다. 프로세서가 지원하면 [[autosar-os#하드웨어와 API의 전제|privileged mode]]에서 실행될 수 있다. 다른 OS-Application에 서비스를 제공할 수 있다.
 - **Non-trusted OS-Application**: 감시나 보호를 끈 채 실행될 수 없고, 메모리와 OS API에 제한된 접근만 하며, 타이밍 동작을 강제받는다. privileged mode에서 실행될 수 없다. 주변장치는 자기에게 배정된 것에만 쓸 수 있고, `ShutdownOS`를 불러도 무시된다.[@autosar-cp-sws-os-2025]
 
 AUTOSAR R25-11 Layered Software Architecture와 용어집은 OS-Application의 trusted 속성을 [[automotive-safety-integrity-level|ASIL]]과 관계없는 것으로 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025][@autosar-fo-tr-glossary-2025]
@@ -50,7 +50,7 @@ OS-Application은 두 상태 가운데 하나에 있다. APPLICATION_ACCESSIBLE�
 
 ## Memory protection
 
-**Memory protection**은 실행 프로그램의 데이터, 코드, 스택 섹션을 바탕으로 하는 AUTOSAR OS의 보호다. [[autosar-os#Scalability class|scalability class]] 가운데 SC3과 SC4에 들고, 하드웨어 요건은 MPU(Memory Protection Unit)다. memory protection은 하드웨어 지원이 있는 프로세서에서만 할 수 있다. 보호는 OS가 관리하는 객체에만 할 수 있어, [[osek-isr#Category 1|category 1 ISR]]이 실행되는 동안이나, 같은 태스크나 [[osek-isr#Category 2|category 2 ISR]] 본문에서 부른 함수 사이는 보호하지 못한다.[@autosar-cp-sws-os-2025]
+**Memory protection**은 실행 프로그램의 데이터, 코드, 스택 섹션을 바탕으로 하는 AUTOSAR OS의 보호다. [[autosar-os#Scalability class|scalability class]] 가운데 SC3과 SC4에 들고, 하드웨어 요건은 MPU(Memory Protection Unit)다. memory protection은 하드웨어 지원이 있는 프로세서에서만 할 수 있다. 보호는 OS가 관리하는 객체에만 할 수 있다. 그래서 [[osek-isr#Category 1|category 1 ISR]]이 실행되는 동안은 보호하지 못하고, 같은 태스크나 [[osek-isr#Category 2|category 2 ISR]] 본문에서 부른 함수 사이도 보호하지 못한다.[@autosar-cp-sws-os-2025]
 
 OS는 공유 라이브러리 코드를 모든 OS-Application이 실행할 수 있는 섹션에 둘 수 있게 한다.[@autosar-cp-sws-os-2025] [[autosar-library|라이브러리]]는 부른 쪽의 context에서, 부른 쪽과 같은 보호 환경으로 실행된다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
@@ -58,4 +58,4 @@ OS는 non-trusted OS-Application이 OS 자신의 데이터 섹션과 스택, 다
 
 ## Trusted function
 
-trusted OS-Application은 다른 OS-Application이 부를 수 있는 서비스인 **trusted function**을 내놓을 수 있다. OS-Application은 trusted든 non-trusted든 `CallTrustedFunction`으로 trusted function을 부르고, 그 함수는 그것을 내놓은 OS-Application의 프로세서 모드, memory protection 경계, [[autosar-os#Service protection|service protection]] 제한으로 실행된다. 멀티코어 시스템에서 `CallTrustedFunction`은 같은 코어의 OS-Application 사이에서만 쓸 수 있고, 대상 trusted function이 다른 코어의 OS-Application에 있으면 extended status에서 E_OS_ACCESS를 돌려준다.[@autosar-cp-sws-os-2025]
+trusted OS-Application은 다른 OS-Application이 부를 수 있는 서비스인 **trusted function**을 내놓을 수 있다. OS-Application은 trusted든 non-trusted든 `CallTrustedFunction`으로 trusted function을 부르고, 그 함수는 그것을 내놓은 OS-Application의 프로세서 모드, memory protection 경계, [[autosar-os#Service protection|service protection]] 제한으로 실행된다. 멀티코어 시스템에서 `CallTrustedFunction`은 같은 코어의 OS-Application 사이에서만 쓸 수 있고, 대상 trusted function이 다른 코어의 OS-Application에 있으면 [[osek-hook-routine#Standard status와 extended status|extended status]]에서 E_OS_ACCESS를 돌려준다.[@autosar-cp-sws-os-2025]

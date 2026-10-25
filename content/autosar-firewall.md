@@ -6,7 +6,7 @@ tags:
 verified: 2026-10-07
 ---
 
-**AUTOSAR firewall**은 미리 정한 규칙에 따라 네트워크 트래픽을 걸러 악의적인 메시지에서 호스트를 지키는 [[autosar|AUTOSAR]]의 방화벽이다. [[autosar-classic-platform|Classic Platform]]에서는 BSW(Basic Software) 모듈 Firewall이 이 일을 하며, stateless packet inspection, stateful packet inspection, deep packet inspection을 지원한다.[@autosar-cp-sws-firewall-2025] [[autosar-adaptive-platform|Adaptive Platform]]에서는 Firewall functional cluster인 FC(Functional Cluster) Firewall이 Adaptive Platform이 놓인 ECU의 호스트 기반 방화벽을 관리하며, manifest와 함께 배치된 규칙대로 아래의 firewall engine을 설정한다.[@autosar-ap-sws-firewall-2025]
+**AUTOSAR firewall**은 미리 정한 규칙에 따라 네트워크 트래픽을 걸러 악의적인 메시지에서 호스트를 지키는 [[autosar|AUTOSAR]]의 방화벽이다. [[autosar-classic-platform|Classic Platform]]에서는 BSW(Basic Software) 모듈 Firewall이 이 일을 하며, stateless packet inspection, stateful packet inspection, deep packet inspection을 지원한다.[@autosar-cp-sws-firewall-2025] [[autosar-adaptive-platform|Adaptive Platform]]에서는 Firewall functional cluster인 FC(Functional Cluster) Firewall이 Adaptive Platform이 놓인 ECU의 호스트 기반 방화벽을 관리하며, manifest와 함께 배치된 규칙대로 아래의 [[autosar-firewall#Adaptive Platform의 FC Firewall|firewall engine]]을 설정한다.[@autosar-ap-sws-firewall-2025]
 
 ## 규칙 맞추기
 

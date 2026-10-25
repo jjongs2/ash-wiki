@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## 측정 모드
 
-ICU Driver는 channel마다 측정 모드를 하나 정하며, 모드는 넷이다.[@autosar-cp-sws-icudriver-2025]
+ICU Driver는 [[microcontroller-abstraction-layer#Channel, channel group, port|channel]]마다 측정 모드를 하나 정하며, 모드는 넷이다.[@autosar-cp-sws-icudriver-2025]
 
 - **Signal edge detection**: notification이 켜져 있으면, 설정한 edge(rising, falling, 둘 다)가 들어올 때마다 notification을 한 번 부른다.
 - **Signal measurement**: 설정에 따라 low 구간, high 구간, 주기, 또는 duty cycle을 계산할 active 구간과 주기의 쌍을 잰다. `Icu_StartSignalMeasurement`로 시작하고, `Icu_GetTimeElapsed`(low 구간, high 구간, 주기)와 `Icu_GetDutyCycleValues`(active 구간과 주기)로 결과를 읽는다.
@@ -32,4 +32,4 @@ ICU Driver는 wakeup 인터럽트를 [[ecu-state-manager|EcuM]]에 알린다. �
 
 ## 다른 드라이버와의 관계
 
-ICU 입력으로 쓰는 포트 핀은 [[autosar-port-driver|Port Driver]]가 설정하므로, ICU 함수를 쓰기 전에 Port Driver를 초기화해야 한다. 전역 클록, 전역 prescaler, PLL(Phase-Locked Loop) 설정은 MCU Driver가 맡고, ICU Driver는 ICU 주변장치의 로컬 클록과 prescaler만 설정한다.[@autosar-cp-sws-icudriver-2025]
+ICU 입력으로 쓰는 포트 핀은 [[autosar-port-driver|Port Driver]]가 설정하므로, ICU 함수를 쓰기 전에 Port Driver를 초기화해야 한다. 전역 클록, 전역 prescaler, PLL(Phase-Locked Loop) 설정은 [[microcontroller-abstraction-layer#모듈 그룹|MCU Driver]]가 맡고, ICU Driver는 ICU 주변장치의 로컬 클록과 prescaler만 설정한다.[@autosar-cp-sws-icudriver-2025]

@@ -19,7 +19,7 @@ data element가 큐에 쌓이는지(queued)는 data element의 swImplPolicy가 �
 
 [[autosar-rte|RTE]]는 queued가 아닌 data element를 receiver 쪽 한 벌에 버퍼링한다. 새 값이 오면 이전 값은 읽혔는지와 상관없이 버리고, 읽기는 늘 마지막으로 받은 값을 돌려준다.[@autosar-cp-sws-rte-2025] data element를 아직 받지 않았는데 값을 읽으면 com spec의 초기값(initValue)을 쓴다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
-RTE는 receive 포트에서 queued data element마다 수신 큐를 둔다. 값은 큐의 끝에 넣고 앞에서부터 꺼내 읽는 FIFO다. 큐 길이는 ECU 설정 파라미터 `RteQueuedReceiverQueueLength`로 정하고, 이 값이 없으면 receiver com spec의 queueLength로 정한다. 큐가 가득 찼을 때 새 값이 오면 RTE는 그 값을 버리고 오류 플래그를 세운다.[@autosar-cp-sws-rte-2025]
+RTE는 receive 포트에서 queued data element마다 수신 큐를 둔다. 값은 큐의 끝에 넣고 앞에서부터 꺼내 읽는 FIFO다. 큐 길이는 [[autosar-methodology#ECU 설정|ECU 설정 파라미터]] `RteQueuedReceiverQueueLength`로 정하고, 이 값이 없으면 receiver com spec의 queueLength로 정한다. 큐가 가득 찼을 때 새 값이 오면 RTE는 그 값을 버리고 오류 플래그를 세운다.[@autosar-cp-sws-rte-2025]
 
 ![[diagrams/sender-receiver-last-is-best-queue.svg]]
 

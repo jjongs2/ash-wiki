@@ -20,7 +20,7 @@ SW-C에 대한 RTE 생성은 크게 두 단계다.[@autosar-cp-sws-rte-2025]
 
 RTE 생성기는 component type마다 application header 파일을 만든다. 이 파일은 SW-C가 RTE를 쓰는 데 필요한 API와 데이터 구조를 정의하며, SW-C 소스 파일은 이 파일을 include한다. 파일 이름은 `Rte_<name>.h`이고, `<name>`은 component type의 symbol이다.[@autosar-cp-sws-rte-2025]
 
-같은 파티션 안의 통신에는 RTE가 내부 버퍼와 큐를 쓸 수 있다. 같은 ECU의 다른 파티션 사이 통신에는 [[inter-os-application-communicator|IOC]]나 trusted function call 같은 [[autosar-os|운영체제]]의 메커니즘을 쓸 수 있다. ECU 사이 통신에는 보통 [[autosar-com|AUTOSAR COM]]을 쓴다. primitive [[autosar-sender-receiver-interface#Data element|data element]]를 다른 ECU로 보낼 때 RTE는 그 data element가 매핑된 시그널마다 `Com_SendSignal`을 부른다.[@autosar-cp-sws-rte-2025]
+같은 파티션 안의 통신에는 RTE가 내부 버퍼와 큐를 쓸 수 있다. 같은 ECU의 다른 파티션 사이 통신에는 [[inter-os-application-communicator|IOC]]나 [[autosar-os-application#Trusted function|trusted function call]] 같은 [[autosar-os|운영체제]]의 메커니즘을 쓸 수 있다. ECU 사이 통신에는 보통 [[autosar-com|AUTOSAR COM]]을 쓴다. primitive [[autosar-sender-receiver-interface#Data element|data element]]를 다른 ECU로 보낼 때 RTE는 그 data element가 매핑된 시그널마다 `Com_SendSignal`을 부른다.[@autosar-cp-sws-rte-2025]
 
 ![[diagrams/rte-communication-mechanisms.svg]]
 
@@ -30,22 +30,22 @@ RTE API 이름은 API의 기능을 나타내는 API root 이름과 access point�
 
 API root마다 쓰임은 아래와 같다.[@autosar-cp-sws-rte-2025]
 
-| API                           | 쓰임                                                                                                                              |
-| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `Rte_Write`, `Rte_Read`       | queued가 아닌 [[autosar-sender-receiver-interface\|sender-receiver]] data element를 명시적으로 쓰고 읽는다.                       |
-| `Rte_Send`, `Rte_Receive`     | queued인 sender-receiver data element를 명시적으로 보내고 받는다.                                                                 |
-| `Rte_IWrite`, `Rte_IRead`     | runnable이 쓰기나 읽기로 선언한 data element에 암묵적으로 쓰고 읽는다.                                                            |
-| `Rte_Call`                    | [[autosar-client-server-interface\|client-server]] 통신을 시작한다.                                                               |
-| `Rte_Result`                  | 비동기 client-server 호출의 결과를 받는다.                                                                                        |
-| `Rte_Switch`                  | [[autosar-mode-switch-interface\|mode switch]] 인터페이스의 모드 전환을 시작한다.                                                 |
-| `Rte_Mode`                    | mode switch 포트에서 지금 활성인 모드를 준다.                                                                                     |
-| `Rte_Enter`, `Rte_Exit`       | [[runnable-entity#Exclusive area\|exclusive area]]에 들어가고 나온다.                                                             |
-| `Rte_IrvWrite`, `Rte_IrvRead` | 명시적 접근으로 정한 [[runnable-entity#Inter-runnable 변수\|inter-runnable 변수]]를 쓰고 읽는다.                                  |
-| `Rte_Trigger`                 | trigger 포트에서 external trigger를 일으킨다. 그러면 그 trigger에 ExternalTriggerOccurredEvent가 연결된 runnable이 모두 실행된다. |
+| API                           | 쓰임                                                                                                                                                  |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Rte_Write`, `Rte_Read`       | queued가 아닌 [[autosar-sender-receiver-interface\|sender-receiver]] data element를 명시적으로 쓰고 읽는다.                                           |
+| `Rte_Send`, `Rte_Receive`     | queued인 sender-receiver data element를 명시적으로 보내고 받는다.                                                                                     |
+| `Rte_IWrite`, `Rte_IRead`     | runnable이 쓰기나 읽기로 선언한 data element에 암묵적으로 쓰고 읽는다.                                                                                |
+| `Rte_Call`                    | [[autosar-client-server-interface\|client-server]] 통신을 시작한다.                                                                                   |
+| `Rte_Result`                  | 비동기 client-server 호출의 결과를 받는다.                                                                                                            |
+| `Rte_Switch`                  | [[autosar-mode-switch-interface\|mode switch]] 인터페이스의 모드 전환을 시작한다.                                                                     |
+| `Rte_Mode`                    | mode switch 포트에서 지금 활성인 모드를 준다.                                                                                                         |
+| `Rte_Enter`, `Rte_Exit`       | [[runnable-entity#Exclusive area\|exclusive area]]에 들어가고 나온다.                                                                                 |
+| `Rte_IrvWrite`, `Rte_IrvRead` | 명시적 접근으로 정한 [[runnable-entity#Inter-runnable 변수\|inter-runnable 변수]]를 쓰고 읽는다.                                                      |
+| `Rte_Trigger`                 | trigger 포트에서 external trigger를 일으킨다. 그러면 그 trigger에 [[rte-event#종류\|ExternalTriggerOccurredEvent]]가 연결된 runnable이 모두 실행된다. |
 
 암묵적 접근 API는 이름에 runnable 이름도 넣는다. `Rte_IRead_<re>_<p>_<o>`에서 `<re>`는 runnable의 short name이다.[@autosar-cp-sws-rte-2025]
 
-component type이 multiple instantiation을 지원하면, 여러 인스턴스에 쓸 수 있는 RTE API는 첫 인자로 인스턴스 핸들을 받는다. 지원하지 않으면 이 인자가 없다.[@autosar-cp-sws-rte-2025]
+component type이 [[autosar-software-component#Type과 prototype|multiple instantiation]]을 지원하면, 여러 인스턴스에 쓸 수 있는 RTE API는 첫 인자로 인스턴스 핸들을 받는다. 지원하지 않으면 이 인자가 없다.[@autosar-cp-sws-rte-2025]
 
 ## RTE 설정
 

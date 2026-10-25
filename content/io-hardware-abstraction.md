@@ -21,9 +21,9 @@ IoHwAb는 I/O 신호를 전류, 전압, 주파수처럼 ECU 하드웨어에 물�
 
 IoHwAb는 위 계층에 I/O 신호 인터페이스를 주며, 이 인터페이스의 모양은 신호 종류에 따라 정해진다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-IoHwAb 규격은 ECU 신호마다 포트를 적어도 하나 두기를 권하고, 출력 신호에 딸린 진단 신호는 예외로 둔다. 위 계층은 입력 신호 포트의 GET 연산으로 값을 읽고, 출력 신호 포트의 SET 연산으로 값을 쓴다. IoHwAb가 ECU 신호의 기호 이름으로 신호를 기능과 핀에 이어 주므로, [[autosar-software-component|SW-C]] 설계자는 [[microcontroller-abstraction-layer|MCAL]] 드라이버의 API를 자세히 몰라도 된다. 포트는 설정 과정에서 ECU 전자 설계에 맞춰 만든다. ECU 신호에는 범위, 분해능, 정확도, 반전, 샘플링 속도 같은 속성이 붙고, 이 속성은 설정할 수 있는 특성이다.[@autosar-cp-sws-iohardwareabstraction-2025]
+IoHwAb 규격은 ECU 신호마다 [[software-component-port|포트]]를 적어도 하나 두기를 권하고, 출력 신호에 딸린 진단 신호는 예외로 둔다. 위 계층은 입력 신호 포트의 GET 연산으로 값을 읽고, 출력 신호 포트의 SET 연산으로 값을 쓴다. IoHwAb가 ECU 신호의 기호 이름으로 신호를 기능과 핀에 이어 주므로, [[autosar-software-component|SW-C]] 설계자는 [[microcontroller-abstraction-layer|MCAL]] 드라이버의 API를 자세히 몰라도 된다. 포트는 설정 과정에서 ECU 전자 설계에 맞춰 만든다. ECU 신호에는 범위, 분해능, 정확도, 반전, 샘플링 속도 같은 속성이 붙고, 이 속성은 설정할 수 있는 특성이다.[@autosar-cp-sws-iohardwareabstraction-2025]
 
-IoHwAb가 SW-C에 주는 것은 AUTOSAR Interface다. 위쪽 인터페이스가 신호를 얻는 경로에 크게 좌우되어 Standardized AUTOSAR Interface는 주지 못한다.[@autosar-cp-sws-iohardwareabstraction-2025] [[autosar-layered-architecture|AUTOSAR 계층 구조]]에서 I/O 신호 접근은 ECU Abstraction Layer가 맡고, Services Layer에는 I/O 서비스가 없다. ECU Abstraction Layer의 모듈 가운데 SW-C와 [[autosar-rte|RTE]]가 바로 쓸 수 있는 것은 IoHwAb뿐이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+IoHwAb가 SW-C에 주는 것은 [[autosar-layered-architecture#인터페이스|AUTOSAR Interface]]다. IoHwAb의 위쪽 인터페이스가 신호를 얻는 경로에 크게 좌우되어 Standardized AUTOSAR Interface는 주지 못한다.[@autosar-cp-sws-iohardwareabstraction-2025] [[autosar-layered-architecture|AUTOSAR 계층 구조]]에서 I/O 신호 접근은 ECU Abstraction Layer가 맡고, Services Layer에는 I/O 서비스가 없다. ECU Abstraction Layer의 모듈 가운데 SW-C와 [[autosar-rte|RTE]]가 바로 쓸 수 있는 것은 IoHwAb뿐이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## ECU마다 다른 구현
 

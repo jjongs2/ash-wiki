@@ -35,6 +35,6 @@
   <g font-size="12" fill="var(--text, #727981)">
     <text x="280" y="204.5">latest binding time: 메타모델이 정한다</text>
     <text x="280" y="168.5">실제 binding time: 모델에서 정한다</text>
-    <text x="280" y="240.5">latest binding time보다 늦게 풀 수 없다</text>
+    <text x="280" y="221.5">latest binding time보다 늦게 풀 수 없다</text>
   </g>
 </svg>

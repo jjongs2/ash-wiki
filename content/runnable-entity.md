@@ -13,7 +13,7 @@ runnable은 SW-C의 [[autosar-software-component#Internal behavior|internal beha
 
 runnable은 진입점 하나를 가진 코드 조각이며, C나 C++로 구현한 SW-C에서는 전역 범위의 함수 하나가 그 진입점을 구현한다.[@autosar-cp-sws-rte-2025] runnable의 symbol 속성은 그 진입점을 기술한다.[@autosar-cp-tps-softwarecomponenttemplate-2025] 진입점 함수의 이름은 symbol이며, SW-C 타입의 SymbolProps에 symbol이 있으면 그 값을 앞에 붙인다.[@autosar-cp-sws-rte-2025]
 
-runnable의 시그니처는 runnable을 시작하는 RTE 이벤트마다 정해진다. TimingEvent, DataReceivedEvent 같은 대부분의 이벤트에서 runnable은 인스턴스 핸들 말고는 인자를 받지 않고 `void`를 돌려준다. 인스턴스 핸들은 SW-C의 supportsMultipleInstantiation이 참일 때만 첫 인자로 둔다. OperationInvokedEvent로 시작하는 서버 runnable은 operation의 argument를 정해진 순서대로 받고, operation에 application error가 정해져 있으면 Std_ReturnType을, 없으면 `void`를 돌려준다.[@autosar-cp-sws-rte-2025]
+runnable의 시그니처는 runnable을 시작하는 RTE 이벤트마다 정해진다. TimingEvent, DataReceivedEvent 같은 대부분의 이벤트에서 runnable은 인스턴스 핸들 말고는 인자를 받지 않고 `void`를 돌려준다. 인스턴스 핸들은 SW-C의 supportsMultipleInstantiation이 참일 때만 첫 인자로 둔다. OperationInvokedEvent로 시작하는 [[autosar-client-server-interface#서버 runnable의 실행 context|서버 runnable]]은 operation의 argument를 정해진 순서대로 받고, operation에 [[autosar-client-server-interface#Operation과 argument|application error]]가 정해져 있으면 Std_ReturnType을, 없으면 `void`를 돌려준다.[@autosar-cp-sws-rte-2025]
 
 ## Access point
 
@@ -29,7 +29,7 @@ canBeInvokedConcurrently 속성은 SW-C 인스턴스 하나 안에서도 runnabl
 
 **inter-runnable 변수**는 원자 SW-C 안의 runnable끼리 통신하는 수단이며, 그 SW-C의 runnable만 접근할 수 있다.[@autosar-cp-sws-rte-2025] 같은 SW-C 타입이라도 서로 다른 인스턴스에 속한 runnable끼리는 [[software-component-port|포트]]로만 통신한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
-inter-runnable 변수는 명시적인 것과 암묵적인 것 두 종류가 있다. 암묵적 inter-runnable 변수의 값은 그 변수를 읽는 runnable이 실행되는 동안 바뀌지 않는다.[@autosar-cp-tps-softwarecomponenttemplate-2025] RTE는 명시적 변수에 `Rte_IrvWrite`와 `Rte_IrvRead`를, 암묵적 변수에 `Rte_IrvIWrite`와 `Rte_IrvIRead`를 만든다.[@autosar-cp-sws-rte-2025]
+inter-runnable 변수는 [[autosar-sender-receiver-interface#명시적 접근과 암묵적 접근|명시적인 것과 암묵적인 것]] 두 종류가 있다. 암묵적 inter-runnable 변수의 값은 그 변수를 읽는 runnable이 실행되는 동안 바뀌지 않는다.[@autosar-cp-tps-softwarecomponenttemplate-2025] RTE는 명시적 변수에 `Rte_IrvWrite`와 `Rte_IrvRead`를, 암묵적 변수에 `Rte_IrvIWrite`와 `Rte_IrvIRead`를 만든다.[@autosar-cp-sws-rte-2025]
 
 ## Exclusive area
 

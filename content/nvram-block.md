@@ -32,12 +32,10 @@ Dataset 블록은 administrative block의 인덱스로 한 번에 원소 하나�
 
 CRC를 쓸지(`NvMBlockUseCrc`)와 CRC의 종류(`NvMBlockCrcType`: `NVM_CRC8`, `NVM_CRC16`, `NVM_CRC32`)는 블록마다 설정한다. RAM 블록의 CRC는 짝을 이루는 NV 블록에 CRC가 있을 때만 쓸 수 있고, 종류도 NV 블록의 CRC와 같아야 한다.[@autosar-cp-sws-nvrammanager-2025]
 
-NvM은 CRC를 설정한 블록을 쓸 때 CRC를 다시 계산해 NV 블록에 함께 저장한다. 읽을 때는 CRC를 다시 계산해 저장된 CRC와 비교하고, 맞지 않으면 기본값을 불러오거나, 기본값이 없으면 NVM_REQ_INTEGRITY_FAILED로 끝낸다. Immediate 우선순위 블록에 CRC를 설정하는 것은 권하지 않는다. CRC 계산이 MainFunction 여러 번에 걸쳐 immediate 데이터 쓰기를 늦출 수 있기 때문이다.[@autosar-cp-sws-nvrammanager-2025]
+NvM은 CRC를 설정한 블록을 쓸 때 CRC를 다시 계산해 NV 블록에 함께 저장한다. 읽을 때는 CRC를 다시 계산해 저장된 CRC와 비교하고, 맞지 않으면 기본값을 불러오거나, 기본값이 없으면 NVM_REQ_INTEGRITY_FAILED로 끝낸다. [[nvram-manager#Job 큐와 우선순위|Immediate 우선순위]] 블록에 CRC를 설정하는 것은 권하지 않는다. CRC 계산이 MainFunction 여러 번에 걸쳐 immediate 데이터 쓰기를 늦출 수 있기 때문이다.[@autosar-cp-sws-nvrammanager-2025]
 
 ## 블록 번호
 
-Fee·Ea 블록 번호 $\mathrm{FEE/EA\_BLOCK\_NUMBER}$는 16비트다. `NvMDatasetSelectionBits`는 모든 블록에 공통인 설정으로, 블록 번호의 하위 몇 비트를 dataset이나 redundant 블록의 NV 블록을 고르는 데이터 인덱스 $\mathrm{DataIndex}$로 쓸지 정한다. 블록마다 두는 `NvMNvBlockBaseNumber`는 [[autosar-software-component|SW-C]]가 쓰는 NvM 블록 ID와 Fee·Ea가 기대하는 블록 번호를 잇는 값으로, 블록 번호의 나머지 상위 비트에 놓인다. Dataset이나 redundant 블록이 없으면 `NvMDatasetSelectionBits`를 0으로, redundant 블록만 있으면 1로 둔다. 블록 번호는 base number를 데이터 인덱스 비트 수만큼 왼쪽으로 민 값에 데이터 인덱스를 더한 것으로, $\mathrm{FEE/EA\_BLOCK\_NUMBER} = (\mathrm{NvMNvBlockBaseNumber} \ll \mathrm{NvMDatasetSelectionBits}) + \mathrm{DataIndex}$다.[@autosar-cp-sws-nvrammanager-2025]
+[[autosar-memory-stack#Fee와 Ea|Fee·Ea]] 블록 번호 $\mathrm{FEE/EA\_BLOCK\_NUMBER}$는 16비트다. `NvMDatasetSelectionBits`는 모든 블록에 공통인 설정으로, 블록 번호의 하위 몇 비트를 dataset이나 redundant 블록의 NV 블록을 고르는 데이터 인덱스 $\mathrm{DataIndex}$로 쓸지 정한다. 블록마다 두는 `NvMNvBlockBaseNumber`는 [[autosar-software-component|SW-C]]가 쓰는 NvM 블록 ID와 Fee·Ea가 기대하는 블록 번호를 잇는 값으로, 블록 번호의 나머지 상위 비트에 놓인다. Dataset이나 redundant 블록이 없으면 `NvMDatasetSelectionBits`를 0으로, redundant 블록만 있으면 1로 둔다. 블록 번호는 base number를 데이터 인덱스 비트 수만큼 왼쪽으로 민 값에 데이터 인덱스를 더한 것으로, $\mathrm{FEE/EA\_BLOCK\_NUMBER} = (\mathrm{NvMNvBlockBaseNumber} \ll \mathrm{NvMDatasetSelectionBits}) + \mathrm{DataIndex}$다.[@autosar-cp-sws-nvrammanager-2025]
 
 ![[diagrams/fee-ea-block-number-bits.svg]]
-
-Fee와 Ea는 [[autosar-memory-stack#Fee와 Ea|AUTOSAR 메모리 스택]]에서 다룬다.
