@@ -19,7 +19,7 @@ verified: 2026-10-03
 
 ## ASPICE SWE.4
 
-[[automotive-spice|ASPICE]] 4.1의 SWE.4 Software Unit Verification은 소프트웨어 유닛이 [[software-unit-design|소프트웨어 상세 설계]]와 일관됨을 검증하는 것을 목적으로 한다. 이 모델은 유닛 검증 수단의 예로 단위 테스트뿐 아니라 [[static-analysis|정적 분석]]과 [[software-review|코드 리뷰]]도 든다. [[automotive-spice-process-assessment-model#프로세스 수행 지표|SWE.4.BP1]]의 Note 2는 정적 분석의 바탕이 될 수 있는 [[coding-standard|코딩 표준]]으로 MISRA 규칙 집합을 예로 든다.[@vda-automotive-spice-pam-4-1-2026] 프로세스 이름은 ASPICE 3.1과 같다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017] 유닛의 정의는 [[automotive-spice-process-reference-model#Element, component, unit|ASPICE 프로세스 참조 모델]]에서 다룬다.
+[[automotive-spice|ASPICE]] 4.1의 SWE.4 Software Unit Verification은 소프트웨어 유닛이 [[software-unit-design|소프트웨어 상세 설계]]와 일관됨을 검증하는 것을 목적으로 한다. 이 모델은 유닛 검증 수단의 예로 단위 테스트뿐 아니라 [[static-analysis|정적 분석]]과 [[software-review|코드 리뷰]]도 든다. SWE.4.BP1의 Note 2는 정적 분석의 바탕이 될 수 있는 [[coding-standard|코딩 표준]]으로 MISRA 규칙 집합을 예로 든다.[@vda-automotive-spice-pam-4-1-2026] 프로세스 이름은 ASPICE 3.1과 같다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017] 유닛의 정의는 [[automotive-spice-process-reference-model#Element, component, unit|ASPICE 프로세스 참조 모델]]에서 다룬다.
 
 ## ISO 26262-6
 

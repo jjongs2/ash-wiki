@@ -23,7 +23,7 @@ Boehm은 1979년 글에서 검증을 "Am I building the product right?", 확인�
 
 IEEE 1012-2024는 검증을 한 개발 단계의 산출물이 그 단계를 시작할 때 부과된 조건을 만족하는지 평가하는 일로 정의한다. 명시된 요구사항에 맞아 검증을 통과한 시스템이라도 실제 사용자가 운용하기에는 맞지 않을 수 있다.[@ieee-sevocab-verification-2026]
 
-Boehm은 요구사항 [[configuration-management#베이스라인|기준선]]에서 내려온 설계와 코드를 그 기준선에 맞추는 일을 검증으로, 요구사항 명세를 바꿔야 풀리는 문제를 찾는 일을 확인으로 보았다.[@boehm-guidelines-verifying-validating-1979]
+Boehm은 요구사항 [[configuration-management#베이스라인|베이스라인]]에서 내려온 설계와 코드를 그 베이스라인에 맞추는 일을 검증으로, 요구사항 명세를 바꿔야 풀리는 문제를 찾는 일을 확인으로 보았다.[@boehm-guidelines-verifying-validating-1979]
 
 ## 정적 기법과 동적 기법
 

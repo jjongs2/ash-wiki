@@ -25,7 +25,7 @@ SWEBOK V4.0a는 ATDD를 [[test-case|테스트 케이스]]가 구현보다 먼저
 
 ### 인수 기준
 
-**인수 기준**(acceptance criteria)은 이해관계자가 사용자 스토리의 구현을 받아들이려면 구현이 갖춰야 할 조건이다. 이 관점에서 인수 기준은 테스트가 실행해야 할 [[test-case#테스트 조건|테스트 조건]]으로 볼 수 있다. 인수 기준은 대개 사용자 스토리를 두고 소프트웨어를 어떻게 쓸지 나누는 [[agile-software-development#사용자 스토리|대화]](Conversation)의 결과로 나온다.[@istqb-ctfl-syllabus-2024]
+**인수 기준**(acceptance criteria)은 이해관계자가 사용자 스토리의 구현을 받아들이려면 구현이 갖춰야 할 조건이다. 이 관점에서 인수 기준은 테스트가 실행해야 할 [[test-case#테스트 조건|테스트 조건]]으로 볼 수 있다. 인수 기준은 대개 사용자 스토리를 두고 소프트웨어를 어떻게 쓸지 나누는 [[agile-software-development#사용자 스토리|Conversation]]의 결과로 나온다.[@istqb-ctfl-syllabus-2024]
 
 인수 기준은 다음에 쓴다.[@istqb-ctfl-syllabus-2024]
 

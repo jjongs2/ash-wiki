@@ -35,7 +35,7 @@ ISO/IEC/IEEE 24765 용어집은 **인터페이스 테스트**(interface testing)
 
 ASPICE 4.1의 SWE.5에서 **component verification**은 소프트웨어 컴포넌트가 아키텍처에 정한 동작과 인터페이스를 따르는지 검증하는 것이다. SWE.5는 이것과 함께, 소프트웨어 요소를 완전히 통합된 소프트웨어까지 통합하며 하는 통합 검증을 다룬다. 통합 방식의 예로는 모든 컴포넌트를 한꺼번에 묶는 빅뱅 통합, [[continuous-integration|지속적 통합]], 유닛이나 컴포넌트를 거쳐 소프트웨어 전체까지 단계적으로 묶는 통합을 든다. 유닛의 검증은 SWE.4가 맡는다.[@vda-automotive-spice-pam-4-1-2026] SWE.4는 [[unit-testing#ASPICE SWE.4|단위 테스트]]에서 다룬다.
 
-[[automotive-spice-process-assessment-model#프로세스 수행 지표|SWE.5.BP1]]은 소프트웨어 통합 검증이 볼 것의 예로 소프트웨어 컴포넌트 사이의 올바른 데이터 흐름과 타이밍 의존성을 포함한 동적 상호작용, 인터페이스를 쓰는 모든 소프트웨어 컴포넌트가 데이터를 올바르게 해석하는지, 자원 소비 목표를 지키는지를 든다. 통합 검증을 돕는 수단으로는 하드웨어 디버그 인터페이스나 [[x-in-the-loop#SiL|SiL]] 같은 시뮬레이션 환경도 예로 든다.[@vda-automotive-spice-pam-4-1-2026]
+SWE.5.BP1은 소프트웨어 통합 검증이 볼 것의 예로 소프트웨어 컴포넌트 사이의 올바른 데이터 흐름과 타이밍 의존성을 포함한 동적 상호작용, 인터페이스를 쓰는 모든 소프트웨어 컴포넌트가 데이터를 올바르게 해석하는지, 자원 소비 목표를 지키는지를 든다. 통합 검증을 돕는 수단으로는 하드웨어 디버그 인터페이스나 [[x-in-the-loop#SiL|SiL]] 같은 시뮬레이션 환경도 예로 든다.[@vda-automotive-spice-pam-4-1-2026]
 
 SYS.4 System Integration and Integration Verification은 시스템 요소를 통합하고, 통합한 시스템 요소가 [[system-architecture|시스템 아키텍처]]와 일관됨을 검증하는 것을 목적으로 한다. SYS.4.BP1은 검증이 볼 것의 예로 시스템 아키텍처에 정한 대로 맞닿은 시스템 요소 사이의 올바른 신호 흐름이 갖는 타이밍 의존성과 하드웨어와 소프트웨어의 상호작용을 들고, 시스템 통합 [[test-case|테스트 케이스]]가 초점을 둘 수 있는 것으로 시스템 항목 사이의 올바른 신호 흐름, 신호 흐름의 적시성과 타이밍 의존성, 인터페이스를 쓰는 모든 시스템 항목의 올바른 신호 해석, 시스템 항목 사이의 동적 상호작용을 제시한다.[@vda-automotive-spice-pam-4-1-2026] ASPICE 3.1은 이 프로세스를 System Integration and Integration Test라 불렀다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
