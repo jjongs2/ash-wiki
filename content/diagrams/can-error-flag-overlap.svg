@@ -1,116 +1,116 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="60.5 10 612 244.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="60.5 10 510 244.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
   <!-- 노드 1 -->
   <text x="106" y="40" text-anchor="end" fill="var(--text, #727981)">노드 1</text>
-  <rect x="120.75" y="20.75" width="28.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="135" y="39.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="152.75" y="20.75" width="28.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="167" y="39.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="184.75" y="20.75" width="28.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="199" y="39.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="216.75" y="20.75" width="28.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="231" y="39.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="248.75" y="20.75" width="28.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="263" y="39.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="280.75" y="20.75" width="28.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="295" y="39.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="312.75" y="20.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="327" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="344.75" y="20.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="359" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="376.75" y="20.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="391" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="408.75" y="20.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="423" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="440.75" y="20.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="455" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="472.75" y="20.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="487" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="504.75" y="20.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="519" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="536.75" y="20.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="551" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="568.75" y="20.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="583" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="600.75" y="20.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="615" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="632.75" y="20.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="647" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="120.75" y="20.75" width="22.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="132" y="39.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="146.75" y="20.75" width="22.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="158" y="39.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="172.75" y="20.75" width="22.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="184" y="39.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="198.75" y="20.75" width="22.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="210" y="39.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="224.75" y="20.75" width="22.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="236" y="39.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="250.75" y="20.75" width="22.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="262" y="39.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="276.75" y="20.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="288" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="302.75" y="20.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="314" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="328.75" y="20.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="340" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="354.75" y="20.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="366" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="380.75" y="20.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="392" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="406.75" y="20.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="418" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="432.75" y="20.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="444" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="458.75" y="20.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="470" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="484.75" y="20.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="496" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="510.75" y="20.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="522" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="536.75" y="20.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="548" y="39.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
 
   <!-- 노드 2 -->
   <text x="106" y="90" text-anchor="end" fill="var(--text, #727981)">노드 2</text>
-  <rect x="216.75" y="70.75" width="28.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="231" y="89.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="248.75" y="70.75" width="28.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="263" y="89.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="280.75" y="70.75" width="28.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="295" y="89.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="312.75" y="70.75" width="28.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="327" y="89.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="344.75" y="70.75" width="28.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="359" y="89.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="376.75" y="70.75" width="28.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="391" y="89.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="408.75" y="70.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="423" y="89.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="440.75" y="70.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="455" y="89.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="472.75" y="70.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="487" y="89.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="504.75" y="70.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="519" y="89.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="536.75" y="70.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="551" y="89.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="568.75" y="70.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="583" y="89.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="600.75" y="70.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="615" y="89.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
-  <rect x="632.75" y="70.75" width="28.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="647" y="89.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="198.75" y="70.75" width="22.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="210" y="89.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="224.75" y="70.75" width="22.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="236" y="89.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="250.75" y="70.75" width="22.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="262" y="89.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="276.75" y="70.75" width="22.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="288" y="89.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="302.75" y="70.75" width="22.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="314" y="89.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="328.75" y="70.75" width="22.5" height="28.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="340" y="89.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="354.75" y="70.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="366" y="89.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="380.75" y="70.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="392" y="89.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="406.75" y="70.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="418" y="89.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="432.75" y="70.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="444" y="89.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="458.75" y="70.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="470" y="89.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="484.75" y="70.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="496" y="89.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="510.75" y="70.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="522" y="89.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
+  <rect x="536.75" y="70.75" width="22.5" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="548" y="89.5" text-anchor="middle" font-size="12" fill="var(--text, #727981)">R</text>
 
-  <line x1="120" y1="116" x2="662" y2="116" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+  <line x1="120" y1="116" x2="560" y2="116" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
 
   <!-- 버스 -->
   <text x="106" y="148" text-anchor="end" fill="var(--text, #727981)">버스</text>
-  <rect x="120.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="135" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="152.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="167" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="184.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="199" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="216.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="231" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="248.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="263" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="280.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="295" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="312.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="327" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="344.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="359" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="376.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="391" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
-  <rect x="408.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="423" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
-  <rect x="440.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="455" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
-  <rect x="472.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="487" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
-  <rect x="504.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="519" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
-  <rect x="536.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="551" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
-  <rect x="568.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="583" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
-  <rect x="600.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="615" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
-  <rect x="632.75" y="128.75" width="28.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="647" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
-  <path d="M120 164 V170 H406 V164" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <text x="263" y="188" text-anchor="middle" font-size="12" fill="var(--text, #727981)">오류 플래그 겹침 · dominant 6~12비트</text>
-  <path d="M408 164 V170 H662 V164" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <text x="535" y="188" text-anchor="middle" font-size="12" fill="var(--text, #727981)">오류 구분자 · recessive 8비트</text>
+  <rect x="120.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="132" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="146.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="158" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="172.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="184" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="198.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="210" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="224.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="236" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="250.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="262" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="276.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="288" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="302.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="314" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="328.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="340" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">D</text>
+  <rect x="354.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="366" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="380.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="392" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="406.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="418" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="432.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="444" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="458.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="470" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="484.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="496" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="510.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="522" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
+  <rect x="536.75" y="128.75" width="22.5" height="28.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="548" y="147.5" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">R</text>
+  <path d="M120 164 V170 H352 V164" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="236" y="188" text-anchor="middle" font-size="12" fill="var(--text, #727981)">오류 플래그 겹침 · dominant 6~12비트</text>
+  <path d="M354 164 V170 H560 V164" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="457" y="188" text-anchor="middle" font-size="12" fill="var(--text, #727981)">오류 구분자 · recessive 8비트</text>
 
   <!-- 범례 -->
   <rect x="120.75" y="212.75" width="12.5" height="12.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
