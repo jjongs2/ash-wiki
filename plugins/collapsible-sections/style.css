@@ -14,10 +14,10 @@
 
    간격은 다음을 따른다.
    - `##` 절 사이는 본문과 참고문헌 사이(2.5rem)와 같게 두어, 문단 사이(1rem)와 확실히 구별한다.
-   - 제목은 아래 내용에 붙는다. 제목 아래는 사이트 기본(1rem)으로 위보다 좁고, 절 첫머리의 `###`도
-     구분선에서 본문 문단과 같은 1rem 거리에서 시작한다. `###` 절은 짧아 제목과 본문을 더 붙인다. 본문 첫
-     요소의 위 margin(문단은 1rem)이 제목의 아래 margin보다 크면 그쪽이 이기므로, 그 margin을 없애고 제목의
-     아래 margin(0.6rem)만 남긴다.
+   - 제목은 아래 내용에 붙는다. 제목 아래는 제목 글자 크기의 약 0.54배(`##` 0.75rem, `###` 0.6rem)로 위보다
+     좁고, 절 첫머리의 `###`도 구분선에서 본문 첫 요소와 같은 거리에서 시작한다. `##`에 사이트 기본(1rem)을
+     남기면 비율이 약 0.71배로 커져 제목과 본문 사이가 벌어져 보인다. 본문 첫 요소의 위 margin(문단은 1rem)이 제목의 아래
+     margin보다 크면 그쪽이 이기므로, 그 margin을 없애고 제목의 아래 margin만 남긴다.
    - 접힌 절 바로 뒤의 제목은 뒤 절이 펼쳐져 있어도 좁게 붙여, 접은 절들이 목록처럼 읽히게 한다. 접힌
      <details>는 제목의 아래 margin을 다음 절의 위 margin과 겹치지 않으므로, 접힌 제목의 아래 margin은
      없앤다. */
@@ -44,6 +44,7 @@ details.collapsible-section > summary > :is(h2, h3) {
 
 details.collapsible-section > summary > h2 {
   margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
   padding-bottom: 0.35rem;
 }
 
@@ -52,7 +53,7 @@ details.collapsible-section > summary > h3 {
   padding-bottom: 0.3rem;
 }
 
-details.collapsible-section > summary:has(> h3) + * {
+details.collapsible-section > summary:has(> :is(h2, h3)) + * {
   margin-top: 0;
 }
 
