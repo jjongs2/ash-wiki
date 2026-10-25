@@ -60,23 +60,15 @@ class DigestArchiveTest(unittest.TestCase):
         with open(os.path.join(self.archive, UUID, f"{UUID[:8]}-main.md")) as f:
             self.assertIn("hello", f.read())
 
-    def test_unchanged_transcript_is_kept(self):
+    def test_unchanged_transcript_is_redone_and_counted(self):
         self.run_digest(self.transcript)
         main = os.path.join(self.archive, UUID, f"{UUID[:8]}-main.md")
         with open(main, "a") as f:
             f.write("marker\n")
         out = self.run_digest(self.transcript)
-        self.assertIn("있음", out)
+        self.assertIn(f"{UUID[:8]}-main.md\t지움 0", out)
         with open(main) as f:
-            self.assertIn("marker", f.read())
-
-    def test_grown_transcript_is_redone(self):
-        self.run_digest(self.transcript)
-        with open(self.transcript, "a") as f:
-            f.write(entry("user", "later") + "\n")
-        self.run_digest(self.transcript)
-        with open(os.path.join(self.archive, UUID, f"{UUID[:8]}-main.md")) as f:
-            self.assertIn("later", f.read())
+            self.assertNotIn("marker", f.read())
 
     def test_redo_keeps_report(self):
         self.run_digest(self.transcript)
@@ -87,28 +79,6 @@ class DigestArchiveTest(unittest.TestCase):
             f.write(entry("user", "later") + "\n")
         self.run_digest(self.transcript)
         self.assertTrue(os.path.exists(report))
-
-    def test_changed_script_redoes_digest(self):
-        script = os.path.join(self.tmp.name, "digest.py")
-        shutil.copy(SCRIPT, script)
-        self.run_digest(self.transcript, script=script)
-        main = os.path.join(self.archive, UUID, f"{UUID[:8]}-main.md")
-        with open(main, "a") as f:
-            f.write("marker\n")
-        with open(script, "a") as f:
-            f.write("\n# changed\n")
-        self.run_digest(self.transcript, script=script)
-        with open(main) as f:
-            self.assertNotIn("marker", f.read())
-
-    def test_changed_notes_path_redoes_digest(self):
-        self.run_digest(self.transcript, notes=os.path.join(self.tmp.name, "other-notes"))
-        main = os.path.join(self.archive, UUID, f"{UUID[:8]}-main.md")
-        with open(main, "a") as f:
-            f.write("marker\n")
-        self.run_digest(self.transcript)
-        with open(main) as f:
-            self.assertNotIn("marker", f.read())
 
     def test_rejects_transcript_not_named_by_uuid(self):
         other = os.path.join(self.tmp.name, "notes.jsonl")
@@ -180,6 +150,14 @@ class QueueTest(unittest.TestCase):
     def test_each_user_message_naming_notes_is_counted(self):
         _, out = self.digest(*(entry("user", f"{self.notes}/note-{n}.md") for n in range(3)))
         self.assertIn("지움 3", out)
+
+    def test_last_line_names_records_with_hidden_entries(self):
+        _, out = self.digest(entry("user", f"{self.notes}/note.md"))
+        self.assertEqual(out.splitlines()[-1], f"지움이 있는 기록 1: {UUID[:8]}-main.md")
+
+    def test_last_line_says_when_no_record_has_hidden_entries(self):
+        _, out = self.digest(entry("user", "hello"))
+        self.assertEqual(out.splitlines()[-1], "지움이 있는 기록 없음")
 
     def test_same_text_sent_at_another_time_is_kept(self):
         main, _ = self.digest(entry("user", "계속"), entry("user", "다음"), queued("계속", kind="human"))
