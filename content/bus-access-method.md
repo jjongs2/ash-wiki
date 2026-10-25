@@ -35,6 +35,6 @@ CAN에서는 버스가 [[dominant-and-recessive#버스가 비어 있을 때|idle
 
 LAN의 **토큰**은 데이터 스테이션에서 다음 데이터 스테이션으로 차례로 넘겨지는 권한 표지로, 전송 매체를 잠시 제어하는 스테이션을 가리킨다. 토큰 전달 프로토콜은 데이터 스테이션이 토큰을 얻고, 쓰고, 넘기는 방법을 정한 규칙이다.[@iso-iec-2382-obp-2015]
 
-[[osek-vdx|OSEK/VDX]] NM(Network Management)은 노드를 직접 감시할 때 전용 NM 통신과 토큰 원리를 쓴다. 노드마다 논리적 후속 노드를 정해 논리 링을 만들고, 링 메시지를 후속 노드로 넘기며 NM 통신을 동기화한다.[@osek-nm-2-5-3-2004]
+[[osek-vdx|OSEK/VDX]] NM(Network Management)은 노드를 [[autosar-network-management#Direct NM과 indirect NM|직접 감시]]할 때 전용 NM 통신과 토큰 원리를 쓴다. 노드마다 논리적 후속 노드를 정해 논리 링을 만들고, 링 메시지를 후속 노드로 넘기며 NM 통신을 동기화한다. 링 메시지를 받은 노드는 논리 링 알고리즘에 따라 자기 NM 메시지를 보내기 시작하며, NM 통신은 그 아래 버스 프로토콜과 독립이다.[@osek-nm-2-5-3-2004]
 
 ![[diagrams/osek-nm-logical-ring.svg]]

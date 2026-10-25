@@ -7,13 +7,13 @@ verified: 2026-09-29
 
 **직렬 전송**(serial transmission)은 문자 같은 데이터 단위를 이루는 신호 요소를 한 전송 채널로 차례로 보내는 방식이다.[@iso-iec-2382-obp-2015][@iec-60050-704-16-27-1993] 이와 달리 병렬 전송은 신호 요소를 따로 떨어진 여러 전송 채널로 동시에 보낸다.[@iso-iec-2382-obp-2015] IEC 60050은 병렬 전송을 신호 요소 묶음을 그 수만큼의 병렬 경로로 동시에 보내는 방식으로 정의한다.[@iec-60050-704-16-28-1993]
 
-[[can|CAN]]은 직렬 통신 프로토콜이다.[@bosch-can-2-0-1991] UART(Universal Asynchronous Receiver/Transmitter)는 비동기 직렬 통신을 하고[@ti-tl16c550d-2008][@st-rm0008-2021], SPI(Serial Peripheral Interface)는 동기 직렬 통신을 한다.[@st-rm0008-2021][@microchip-atmega328p-2020] I2C는 직렬로 데이터를 보내며, 그 이름은 Inter-IC 버스에서 왔다.[@nxp-um10204-2021] TI의 TMS570LS31x/21x 기술 참조 매뉴얼에 따르면 [[flexray|FlexRay]]는 직렬 통신 프로토콜이다.[@ti-spnu499c-2018] [[ethernet|이더넷]]의 MAC(Medium Access Control) 부계층은 물리 계층에 직렬 비트 스트림을 넘긴다.[@ieee-802-3-2022]
+[[can|CAN]]은 직렬 통신 프로토콜이다.[@bosch-can-2-0-1991] UART(Universal Asynchronous Receiver/Transmitter)는 비동기 직렬 통신을 하고[@ti-tl16c550d-2008][@st-rm0008-2021], SPI(Serial Peripheral Interface)는 동기 직렬 통신을 한다.[@st-rm0008-2021][@microchip-atmega328p-2020] I2C는 직렬로 데이터를 보내며, 그 이름은 Inter-IC 버스에서 왔다.[@nxp-um10204-2021] TI의 TMS570LS31x/21x 기술 참조 매뉴얼에 따르면 [[flexray|FlexRay]]는 직렬 통신 프로토콜이다.[@ti-spnu499c-2018] [[ethernet|이더넷]]의 MAC(Medium Access Control) [[osi-model#일곱 계층|부계층]]은 물리 계층에 직렬 비트 스트림을 넘긴다.[@ieee-802-3-2022]
 
 ## 비트율
 
 ISO/IEC 2382:2015는 비트율을 비트를 전송하는 속도로 정의하고, 보통 초당 비트 수(bit/s)로 나타낸다.[@iso-iec-2382-obp-2015] IEC 60050은 비트율을 초당 전송되는 이진 숫자의 수로 정의한다.[@iec-60050-704-16-07-1993]
 
-IEC 60050은 **baud**(기호 Bd)를 전신과 데이터 통신에서는 변조 속도(modulation rate)의, 디지털 전송에서는 line digit rate의 단위로 정의하고, $1\,\mathrm{Bd} = 1\,\mathrm{s}^{-1}$로 둔다. 단위 구간이 20 ms면 변조 속도가 50 Bd라는 예도 든다.[@iec-60050-702-05-24-2016]
+IEC 60050은 **baud**(기호 Bd)를 전신과 데이터 통신에서는 변조 속도(modulation rate)의, 디지털 전송에서는 line digit rate의 단위로 정의하고, $1\,\mathrm{Bd} = 1\,\mathrm{s}^{-1}$로 둔다. 단위 구간이 20 ms면 변조 속도가 50 Bd라는 예도 든다.[@iec-60050-702-05-24-2016] ISO/IEC 2382:2015는 1200 bit/s 이상으로 동작하는 일부 모뎀에서는 신호 요소 하나가 비트를 여럿 나르므로 baud로 나타낸 변조 속도가 대개 비트율보다 작다고 제시한다.[@iso-iec-2382-obp-2015]
 
 ## 동기 전송
 
@@ -29,7 +29,7 @@ I2C 명세에 따르면 2선 직렬 버스인 I2C는 연결을 줄여 IC(Integra
 
 **비동기 전송**에서는 문자나 문자 블록의 시작 시점이 임의이지만, 시작한 뒤에는 각 신호 요소가 고정된 시간 기준과 같은 관계로 나타난다.[@iso-iec-2382-obp-2015] **start-stop 전송**은 문자마다 신호 요소 묶음의 앞에 start 신호를, 뒤에 stop 신호를 붙이는 비동기 전송이다.[@iso-iec-2382-obp-2015][@iec-60050-721-03-07-1991]
 
-UART는 문자마다 앞에 start 비트를, 뒤에 stop 비트를 붙여 보낸다. UART 선은 쉬는 동안 high이고, start 비트는 low, stop 비트는 high다.[@st-rm0008-2021][@microchip-atmega328p-2020] TL16C550D 데이터시트는 선의 high 수준을 marking 상태라 부른다.[@ti-tl16c550d-2008] UART 수신기는 idle(high)에서 start 비트(low)로 떨어지는 에지를 보고 문자의 시작을 알고, start 비트에 자기 클록을 맞춘 뒤 각 비트의 가운데를 샘플링한다. USART(Universal Synchronous/Asynchronous Receiver/Transmitter)는 클록 핀을 동기 모드에서만 쓴다.[@st-rm0008-2021][@microchip-atmega328p-2020]
+UART는 문자마다 앞에 start 비트를, 뒤에 stop 비트를 붙여 보낸다. UART 선은 쉬는 동안 high이고, start 비트는 low, stop 비트는 high다.[@st-rm0008-2021][@microchip-atmega328p-2020] TI의 비동기 통신 소자 TL16C550D의 데이터시트는 선의 high 수준을 marking 상태라 부른다.[@ti-tl16c550d-2008] UART 수신기는 idle(high)에서 start 비트(low)로 떨어지는 에지를 보고 문자의 시작을 알고, start 비트에 자기 클록을 맞춘 뒤 각 비트의 가운데를 샘플링한다. USART(Universal Synchronous/Asynchronous Receiver/Transmitter)는 클록 핀을 동기 모드에서만 쓴다.[@st-rm0008-2021][@microchip-atmega328p-2020]
 
 ![[diagrams/uart-frame-sampling.svg]]
 

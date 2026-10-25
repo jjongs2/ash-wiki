@@ -29,4 +29,4 @@ WWH-OBD에서 **MI**(malfunction indicator)는 고장(malfunction)이 나면 운
 
 ## AUTOSAR의 OBD 지원
 
-[[autosar|AUTOSAR]] R25-11의 Dcm(Diagnostic Communication Manager) 명세는 SAE J1979와 ISO 15031-5가 정한 OBD 서비스 `$01`\~`$0A`를 지원하는 수단을 Dcm에 둔다. 이 서비스로 AUTOSAR의 OBD 기능은 캘리포니아의 OBD II, 유럽과 일본의 OBD를 비롯한 세계의 경량 차량 OBD 법규를 모두 맞출 수 있다. Dcm은 OBD 프로토콜을 가장 높은 우선순위로 둔다. OBD 서비스는 법규상 인증 상태와 상관없이 늘 쓸 수 있어야 하므로, Dcm은 OBD 서비스를 인증 검사에서 뺀다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+[[autosar|AUTOSAR]] R25-11의 Dcm(Diagnostic Communication Manager) 명세는 SAE J1979와 ISO 15031-5가 정한 OBD 서비스 `$01`\~`$0A`를 지원하는 수단을 Dcm에 둔다. 이 서비스로 AUTOSAR의 OBD 기능은 캘리포니아의 OBD II, 유럽과 일본의 OBD를 비롯한 세계의 경량 차량 OBD 법규를 모두 맞출 수 있다. Dcm은 OBD 프로토콜을 가장 높은 우선순위로 둔다. Dcm은 OBD 서비스를 [[uds#보안 접근과 인증|Authentication]](`0x29`) 검사에서 뺀다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]

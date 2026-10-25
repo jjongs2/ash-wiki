@@ -31,7 +31,7 @@ $$
 2^k \le \frac{2^n}{n + 1}
 $$
 
-정정 능력을 넘는 오류는 잘못 고쳐질 수 있다.[@xilinx-xapp645-2006][@ti-spna139-2011] Xilinx XAPP645에 따르면 해밍 부호에서 비트 두 개가 뒤집히면 틀린 자리를 가리키거나 자리를 찾지 못한다.[@xilinx-xapp645-2006]
+정정 능력을 넘는 오류는 잘못 고쳐질 수 있다.[@xilinx-xapp645-2006][@ti-spna139-2011] Xilinx XAPP645에 따르면 해밍 부호에서 비트 두 개가 뒤집히면 신드롬이 오류 난 두 비트의 자리를 짚지 못하거나 엉뚱한 자리를 짚는다.[@xilinx-xapp645-2006]
 
 ## SECDED
 
@@ -43,7 +43,7 @@ Microchip CoreEDAC 사용자 가이드에 따르면 고치는 오류가 많을�
 
 메모리에 저장된 비트는 알파 입자나 중성자 같은 방사선 때문에 뒤집힐 수 있다.[@nxp-an12522-2019][@ti-spraco4a-2021]
 
-TI TMS570LS0914는 플래시와 RAM에 ECC를 두어, 단일 비트 오류를 고치고 다중 비트 오류는 알리기만 한다.[@ti-tms570ls0914-2016] NXP S32K1xx는 플래시와 SRAM에 ECC를 두어 단일 비트 오류를 고치고, 고칠 수 없는 오류는 알린다. S32K11x의 SRAM_L에는 ECC가 없다.[@nxp-an12522-2019]
+TI TMS570LS0914는 플래시와 RAM에 ECC를 두어, 단일 비트 오류를 고치고 이중 비트 오류를 찾아낸다.[@ti-tms570ls0914-2016] NXP S32K1xx는 플래시와 SRAM에 ECC를 두어 단일 비트 오류를 고치고, 고칠 수 없는 오류는 알린다. S32K11x의 SRAM_L에는 ECC가 없다.[@nxp-an12522-2019]
 
 TI Hercules MCU는 SRAM과 플래시의 ECC를 실행 중의 하드웨어 [[safety-mechanism|안전 메커니즘]]으로 쓴다.[@ti-spry178-2011] NXP 앱노트 AN13566에 따르면 ECC 메모리는 [[iso-26262|ISO 26262]] 같은 [[functional-safety|기능 안전]] 준수가 필요한 시스템에 알맞다.[@nxp-an13566-2022]
 

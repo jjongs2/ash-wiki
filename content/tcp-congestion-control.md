@@ -50,7 +50,7 @@ fast retransmit 뒤에는 **fast recovery**로 들어간다. ssthresh를 재전�
 
 ## AIMD
 
-손실이 없으면 cwnd를 왕복 시간마다 많아야 한 패킷씩 더해 늘리고, 손실이 나면 절반으로 줄이는 TCP의 방식을 **AIMD**(Additive Increase Multiplicative Decrease)라 부른다.[@ietf-rfc-2914-2000]
+손실이 없으면 cwnd를 왕복 시간마다 많아야 한 패킷씩 더해 늘리고, 손실이 나면 절반으로 줄이는 TCP의 방식을 **AIMD**(Additive Increase Multiplicative Decrease)라 부른다. 재전송 타이머가 만료되면 송신 측은 ssthresh를 현재 윈도의 절반으로 두고 slow start로 들어간다.[@ietf-rfc-2914-2000]
 
 RFC 5681의 알고리즘은 패킷 손실을 혼잡의 신호로 본다.[@ietf-rfc-5681-2009]
 

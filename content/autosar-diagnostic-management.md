@@ -16,7 +16,7 @@ Diagnostic Management는 [[iso-14229-1|ISO 14229-1]]에 따른 UDS 서버 인스
 
 Diagnostic Management는 설치된 [[autosar-software-cluster#Adaptive Platform의 Software Cluster와의 차이|Software Cluster]]마다 진단 주소(DiagnosticAddress)를 따로 두는 것과, [[autosar-adaptive-platform#Machine과 프로세스|Machine]] 전체에 진단 주소 하나를 두는 것, 그 사이의 배치를 모두 지원한다. 진단 주소를 따로 두면 그 주소의 Diagnostic Server 인스턴스도 따로 생기므로, Software Cluster마다 진단도 독립적으로 개발할 수 있다. 이 Software Cluster는 [[autosar-update-and-configuration-management|UCM]]의 Software Package와 짝을 이뤄, Machine에 갱신하거나 새로 들일 수 있다.[@autosar-ap-exp-platformdesign-2025]
 
-모든 Diagnostic Server 인스턴스는 전송 계층 인스턴스 하나(예: [[internet-protocol-suite|TCP/IP]] 포트 13400의 DoIP)를 함께 쓴다. Diagnostic Communication Management의 응답 처리는 대체로 Classic Platform의 Dcm(Diagnostic Communication Manager) 모듈과 같은 일을 한다.[@autosar-ap-sws-diagnostics-2025]
+모든 Diagnostic Server 인스턴스는 UDS 전송 계층 인스턴스 하나(예: [[internet-protocol-suite|TCP/IP]] 포트 13400의 DoIP)를 함께 쓴다. Diagnostic Communication Management의 응답 처리는 대체로 Classic Platform의 Dcm(Diagnostic Communication Manager) 모듈과 같은 일을 한다.[@autosar-ap-sws-diagnostics-2025]
 
 - 네트워크 계층에서 DoIP나 사용자 전송 프로토콜의 UDS 요청과 SOVD의 HTTP·REST 요청을 받는다.
 - 요청에서 정보를 뽑아, UDS 요청은 대상 주소와 주소 종류(물리·기능)에 따라, SOVD 요청은 URI의 대상 개체와 경로에 따라 Diagnostic Server 인스턴스로 보낸다.
@@ -32,7 +32,7 @@ Diagnostic Management는 설치된 [[autosar-software-cluster#Adaptive Platform�
 
 Diagnostic Management는 진단 서버로서 받은 루틴 제어나 DID(Data Identifier) 서비스 같은 진단 요청을, 해당 Adaptive Application의 매핑된 제공 포트로 보낸다. 이를 위해 Adaptive Application은 DiagnosticPortInterface를 제공해야 한다. DiagnosticPortInterface에는 요청·응답 메시지의 파라미터를 모두 API 시그니처에 담고 직렬화를 Diagnostic Management가 맡는 typed 인터페이스와, 바이트 벡터만 주고받고 직렬화를 응용이 맡는 generic 인터페이스가 있다.[@autosar-ap-exp-platformdesign-2025]
 
-Diagnostic Management는 의사 병렬 처리를 위해 Diagnostic Conversation을 지원한다. **Diagnostic Conversation**은 진단 클라이언트와 Diagnostic Server 사이의 대화 하나다. Diagnostic Server는 UDS 요청의 대상 주소로 식별되고, 실행 중에 동적으로 할당된다.[@autosar-ap-exp-platformdesign-2025]
+Diagnostic Management는 의사 병렬 처리를 위해 Diagnostic Conversation을 지원한다. **Diagnostic Conversation**은 진단 클라이언트와 Diagnostic Server 사이의 대화 하나다. Diagnostic Server는 UDS 요청의 대상 주소로 식별되고, Diagnostic Conversation은 Diagnostic Server 인스턴스가 실행되는 동안 동적으로 할당된다.[@autosar-ap-exp-platformdesign-2025][@autosar-ap-sws-diagnostics-2025]
 
 ## 이벤트 메모리
 

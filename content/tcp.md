@@ -26,10 +26,10 @@ TCP 헤더는 옵션이 없으면 20바이트이고, Data Offset이 32비트 워
 | Data Offset           | 4    | TCP 헤더 길이. 32비트 워드 단위[@ietf-rfc-9293-2022]                                                                                                                      |
 | Reserved              | 3    | 예약[@ietf-rfc-9768-2026][@iana-tcp-parameters-2026]                                                                                                                      |
 | AE                    | 1    | AE(Accurate ECN) 플래그[@ietf-rfc-9768-2026][@iana-tcp-parameters-2026]                                                                                                   |
-| Control bits          | 8    | 1비트 플래그 8개: CWR, ECE, URG, ACK, PSH, RST, SYN, FIN[@ietf-rfc-9293-2022]                                                                                             |
+| Control bits          | 8    | 1비트 플래그 8개: CWR(Congestion Window Reduced), ECE(ECN-Echo), URG(urgent), ACK, PSH(Push function), RST, SYN, FIN[@ietf-rfc-9293-2022]                                 |
 | Window                | 16   | 확인 응답 번호가 가리키는 바이트부터 받는 쪽이 더 받을 수 있는 바이트 수[@ietf-rfc-9293-2022]                                                                             |
 | Checksum              | 16   | 의사 헤더, TCP 헤더, 데이터를 덮는 [[checksum\|체크섬]][@ietf-rfc-9293-2022]                                                                                              |
-| Urgent Pointer        | 16   | 순서 번호로부터의 오프셋으로 긴급 데이터 바로 다음 바이트를 가리킨다. URG가 켜진 세그먼트에서만 해석[@ietf-rfc-9293-2022]                                                 |
+| Urgent Pointer        | 16   | 이 세그먼트의 Sequence Number로부터의 양의 오프셋으로 긴급 데이터 바로 다음 바이트를 가리킨다. URG가 켜진 세그먼트에서만 해석[@ietf-rfc-9293-2022]                        |
 | Options               | 가변 | 선택 필드. 예: MSS(Maximum Segment Size) 옵션[@ietf-rfc-9293-2022]                                                                                                        |
 
 ![[diagrams/tcp-header-layout.svg]]
