@@ -159,12 +159,12 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
   }
 }
 
-// 오른쪽 사이드바의 목록(목차, Backlinks)에는 왼쪽에 레일을 긋고, 항목은 레일에서 떨어뜨린다. 레일은 목록을 한
-// 덩어리로 묶고, 항목마다 그어 목차의 깊이 들여쓰기와 상관없이 한 줄로 이어진다. 두 목록은 레일 굵기가 달라도
-// 글자가 같은 자리에서 시작한다. 목록 끝의 li.overflow-end는 항목이 아니라 뺀다.
-// - 목차: 본문을 읽는 동안 곁눈으로 보는 목록이라 제목색 1rem 500으로 크고 진하게 쓰고, 레일은 2px이다.
-// - Backlinks: 목차보다 가볍게 0.85rem으로 쓰고, 본문의 링크처럼 파랑으로 써서 hover에 글자색만 바꾼다. 레일은
-//   탐색기 하위 목록의 안내선처럼 1px이다.
+// 오른쪽 사이드바의 목록(목차, Backlinks)에는 왼쪽에 탐색기 하위 목록의 안내선처럼 1px 레일을 긋고, 항목은
+// 레일에서 떨어뜨린다. 레일은 목록을 한 덩어리로 묶고, 항목마다 그어 목차의 깊이 들여쓰기와 상관없이 끊기지 않는
+// 한 줄로 이어진다. 글자는 목차 막대(2px, 아래 목차 절) 밖에서 띄워, 두 목록의 글자가 같은 자리에서 시작한다. 목록
+// 끝의 li.overflow-end는 항목이 아니라 뺀다.
+// - 목차: 아래 목차 절에서 정한다.
+// - Backlinks: 목차보다 가볍게 0.85rem으로 쓰고, 본문의 링크처럼 파랑으로 써서 hover에 글자색만 바꾼다.
 .toc ul.toc-content.overflow > li:not(.overflow-end),
 .backlinks > ul.overflow > li:not(.overflow-end) {
   position: relative;
@@ -173,7 +173,7 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
     content: "";
     position: absolute;
     inset: 0 auto 0 0;
-    width: 2px;
+    width: 1px;
     background-color: var(--lightgray);
   }
 
@@ -182,25 +182,13 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
   }
 }
 
-.toc ul.toc-content.overflow > li:not(.overflow-end) > a {
-  color: var(--dark);
-  font-size: 1rem;
-  font-weight: 500;
-}
+.backlinks > ul.overflow > li:not(.overflow-end) > a {
+  color: var(--secondary);
+  font-size: 0.85rem;
 
-.backlinks > ul.overflow > li:not(.overflow-end) {
-  &::before {
-    width: 1px;
-  }
-
-  & > a {
-    color: var(--secondary);
-    font-size: 0.85rem;
-
-    &:hover {
-      background-color: transparent;
-      color: var(--tertiary);
-    }
+  &:hover {
+    background-color: transparent;
+    color: var(--tertiary);
   }
 }
 
@@ -216,28 +204,53 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
   }
 }
 
-// 목차는 읽기 시작한 절을 드러낸다. 업스트림 스크립트는 제목이 화면 아래 끝을 넘어서면 그 항목에 in-view를
-// 붙이고, 다시 아래로 내려가면 뗀다. 그래서 in-view는 지금 보이는 절이 아니라 읽은 절 전부이고, 스크롤할수록
-// 늘어난다. 화면을 한 번에 건너뛴 제목은 업스트림이 놓쳐, patches/의 table-of-contents 패치가 바로잡는다.
-// - 레일: 읽은 절의 구간을 파랑으로 채운다. 글자색만으로는 절이 모두 읽힌 뒤 위치가 사라지고, 레일은 읽은
-//   만큼 길어져 목록 어디까지 왔는지 보인다. 탐색기가 지금 페이지를 파랑으로 표시하는 것과 같다.
-// - 글자: 아직 읽지 않은 절은 보조 글자색으로 쓴다. 업스트림은 투명도로 갈라, 흐린 절의 대비가 라이트 테마에서
-//   2.18:1이다. 보조 글자색의 대비는 docs/palette.md에 있다.
-.toc ul.toc-content.overflow > li:not(.overflow-end) {
-  &::before {
-    transition: background-color 0.3s ease;
-  }
-
-  &:has(> a.in-view)::before {
+// 목차는 지금 읽는 절 하나를 레일 위의 막대로 표시한다. 읽은 절을 쌓아 칠하지 않아 목록이 담백하고, 지금 위치는
+// 늘 보인다. 지금 절을 정하는 규칙은 patches/의 table-of-contents 패치에 있다. 패치의 스크립트가 지금 절 항목에
+// aria-current를 붙이고, 목록에 막대의 자리(--toc-bar-y, --toc-bar-h)와 has-current를 준다. 지금 절이 없으면
+// 막대를 그리지 않는다.
+// - 막대: 레일 위에 2px로 강조색을 세우고, 절이 바뀌면 미끄러져 옮겨 간다. 동작 줄이기에서는 아래 동작 줄이기
+//   절이 전환을 꺼 곧바로 옮겨 간다.
+// - 글자: 절 0.9rem, 하위 절 0.85rem이고 모두 줄 규칙의 400이다. 지금 절은 제목색, 나머지는 보조 글자색으로 쓴다.
+//   굵기를 바꾸지 않아 두 줄 항목의 줄바꿈이 흔들리지 않는다. hover에는 바탕 없이 글자만 제목색이 된다. 보조
+//   글자색의 대비는 docs/palette.md에 있다.
+.toc ul.toc-content.overflow {
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: var(--toc-bar-h, 0px);
+    transform: translateY(var(--toc-bar-y, 0px));
     background-color: var(--secondary);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform 0.3s ease,
+      height 0.3s ease,
+      opacity 0.2s ease;
   }
 
-  & > a {
+  &.has-current::after {
+    opacity: 1;
+  }
+
+  & > li:not(.overflow-end) > a {
+    color: var(--gray);
     transition: color 0.3s ease;
 
-    &:not(.in-view) {
-      color: var(--gray);
+    &:hover {
+      background-color: transparent;
+      color: var(--dark);
     }
+
+    &[aria-current] {
+      color: var(--dark);
+    }
+  }
+
+  & > li:not(.overflow-end, .depth-0) > a {
+    font-size: 0.85rem;
   }
 }
 

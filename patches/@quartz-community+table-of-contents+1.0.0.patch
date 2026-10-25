@@ -1,38 +1,140 @@
 diff --git a/node_modules/@quartz-community/table-of-contents/dist/index.js b/node_modules/@quartz-community/table-of-contents/dist/index.js
 --- a/node_modules/@quartz-community/table-of-contents/dist/index.js
 +++ b/node_modules/@quartz-community/table-of-contents/dist/index.js
-@@ -448,8 +448,14 @@ var TableOfContents_default = ((opts) => {
+@@ -448,8 +448,65 @@ var TableOfContents_default = ((opts) => {
      ] });
    };
    TableOfContents.css = toc_default;
-+  // ash-wiki: 업스트림은 목차의 in-view를 IntersectionObserver가 알린 제목에만 고친다. 즉시 스크롤(동작 줄이기,
-+  // End와 Home 키)로 화면을 한 번에 건너뛴 제목은 화면 한쪽 밖에서 반대쪽 밖으로 넘어가 교차 상태가 그대로라,
-+  // 알림이 오지 않아 읽은 절 표시가 어긋난다. 알림이 올 때마다 모든 항목을 제목 위치로 다시 정한다. 바꿀
-+  // 스크립트가 없으면 빌드를 멈춘다.
-+  const tocObserverCallback = 't=>{for(let e of t){let n=e.target.id,o=document.querySelectorAll(`a[data-for="${n}"]`),s=e.rootBounds?.height;s&&o.length>0&&(e.boundingClientRect.y<s?o.forEach(c=>c.classList.add("in-view")):o.forEach(c=>c.classList.remove("in-view")))}}';
-+  if (!toc_inline_default.includes(tocObserverCallback)) throw new Error("ash-wiki table-of-contents 패치: 클라이언트 스크립트에 목차 관찰 처리기가 없다");
++  // ash-wiki: 업스트림은 제목이 화면 아래 끝을 넘으면 그 항목에 in-view를 붙여, 읽은 절 전부를 표시한다. 그
++  // 관찰을 걷어 내고, 지금 읽는 절 하나를 표시하는 스크립트(tocCurrentScript)를 붙인다. 모양은
++  // quartz/styles/custom.scss의 목차 절에 있다. 걷어 낼 스크립트가 없으면 빌드를 멈춘다.
++  const tocObserverSetup = 'var i=new IntersectionObserver(t=>{for(let e of t){let n=e.target.id,o=document.querySelectorAll(`a[data-for="${n}"]`),s=e.rootBounds?.height;s&&o.length>0&&(e.boundingClientRect.y<s?o.forEach(c=>c.classList.add("in-view")):o.forEach(c=>c.classList.remove("in-view")))}});';
++  const tocObserverStart = ',i.disconnect(),document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]").forEach(e=>i.observe(e))';
++  for (const [name, part] of [["tocObserverSetup", tocObserverSetup], ["tocObserverStart", tocObserverStart]]) {
++    if (!toc_inline_default.includes(part)) throw new Error(`ash-wiki table-of-contents 패치: 클라이언트 스크립트에 목차 관찰 코드(${name})가 없다`);
++  }
++  // 지금 절은 화면 위에서 30% 선을 지난 마지막 제목이고, 페이지 끝에 닿으면 화면에 든 마지막 제목이다. 첫 제목이
++  // 선을 지나기 전에는 지금 절이 없다. 절 접기(plugins/collapsible-sections)로 숨은 제목은 건너뛴다.
++  // 판정할 때마다 모든 항목을 제목 위치로 다시 정해, 즉시 스크롤(동작 줄이기, End와 Home 키, 앵커 이동)로 화면을
++  // 한 번에 건너뛰어도 맞는다. 업스트림처럼 교차가 바뀐 제목만 고치면 건너뛴 절이 어긋난다(#473).
++  // 스크롤과 창 크기, 절을 접거나 펴는 일, 항목과 본문의 크기 변화(글꼴, 그림)마다 다음 프레임에 한 번 판정한다.
++  // 이 스크립트는 SPA 이동에도 남아 한 번만 돌므로 처리기는 창과 문서에 한 벌만 걸고, 이동할 때마다 새 페이지의
++  // 항목과 본문을 크기 관찰에 다시 건다.
++  const tocCurrentScript = `
++(() => {
++  let frame = 0
++  function update() {
++    frame = 0
++    const end = scrollY > 0 && Math.ceil(scrollY + innerHeight) >= document.documentElement.scrollHeight - 1
++    const line = end ? innerHeight : innerHeight * 0.3
++    for (const ul of document.querySelectorAll(".toc ul.toc-content")) {
++      const links = ul.querySelectorAll("a[data-for]")
++      let current = null
++      for (const a of links) {
++        const heading = document.getElementById(a.dataset.for)
++        if (heading && heading.checkVisibility?.() !== false && heading.getBoundingClientRect().top < line) current = a
++      }
++      for (const a of links) {
++        if (a === current) a.setAttribute("aria-current", "location")
++        else a.removeAttribute("aria-current")
++      }
++      if (current) {
++        const box = current.getBoundingClientRect()
++        ul.style.setProperty("--toc-bar-y", box.top - ul.getBoundingClientRect().top + ul.scrollTop + "px")
++        ul.style.setProperty("--toc-bar-h", box.height + "px")
++      }
++      ul.classList.toggle("has-current", current !== null)
++    }
++  }
++  function schedule() {
++    if (!frame) frame = requestAnimationFrame(update)
++  }
++  const sizes = new ResizeObserver(schedule)
++  function observeSizes() {
++    sizes.disconnect()
++    for (const el of document.querySelectorAll(".toc a[data-for], article")) sizes.observe(el)
++    schedule()
++  }
++  addEventListener("scroll", schedule, { passive: true })
++  addEventListener("resize", schedule)
++  document.addEventListener("toggle", schedule, true)
++  document.addEventListener("nav", observeSizes)
++  document.addEventListener("render", observeSizes)
++})()
++`;
    TableOfContents.afterDOMLoaded = concatenateResources(
 -    toc_inline_default,
-+    toc_inline_default.replace(tocObserverCallback, 't=>{let s=t[0]?.rootBounds?.height;if(s)for(let o of document.querySelectorAll("a[data-for]")){let h=document.getElementById(o.dataset.for);h&&o.classList.toggle("in-view",h.getBoundingClientRect().y<s)}}'),
++    toc_inline_default.replace(tocObserverSetup, "").replace(tocObserverStart, "") + tocCurrentScript,
      overflowListAfterDOMLoaded
    );
    const LegacyTableOfContents = (props) => {
 diff --git a/node_modules/@quartz-community/table-of-contents/dist/components/index.js b/node_modules/@quartz-community/table-of-contents/dist/components/index.js
 --- a/node_modules/@quartz-community/table-of-contents/dist/components/index.js
 +++ b/node_modules/@quartz-community/table-of-contents/dist/components/index.js
-@@ -448,8 +448,14 @@ var TableOfContents_default = ((opts) => {
+@@ -448,8 +448,65 @@ var TableOfContents_default = ((opts) => {
      ] });
    };
    TableOfContents.css = toc_default;
-+  // ash-wiki: 업스트림은 목차의 in-view를 IntersectionObserver가 알린 제목에만 고친다. 즉시 스크롤(동작 줄이기,
-+  // End와 Home 키)로 화면을 한 번에 건너뛴 제목은 화면 한쪽 밖에서 반대쪽 밖으로 넘어가 교차 상태가 그대로라,
-+  // 알림이 오지 않아 읽은 절 표시가 어긋난다. 알림이 올 때마다 모든 항목을 제목 위치로 다시 정한다. 바꿀
-+  // 스크립트가 없으면 빌드를 멈춘다.
-+  const tocObserverCallback = 't=>{for(let e of t){let n=e.target.id,o=document.querySelectorAll(`a[data-for="${n}"]`),s=e.rootBounds?.height;s&&o.length>0&&(e.boundingClientRect.y<s?o.forEach(c=>c.classList.add("in-view")):o.forEach(c=>c.classList.remove("in-view")))}}';
-+  if (!toc_inline_default.includes(tocObserverCallback)) throw new Error("ash-wiki table-of-contents 패치: 클라이언트 스크립트에 목차 관찰 처리기가 없다");
++  // ash-wiki: 업스트림은 제목이 화면 아래 끝을 넘으면 그 항목에 in-view를 붙여, 읽은 절 전부를 표시한다. 그
++  // 관찰을 걷어 내고, 지금 읽는 절 하나를 표시하는 스크립트(tocCurrentScript)를 붙인다. 모양은
++  // quartz/styles/custom.scss의 목차 절에 있다. 걷어 낼 스크립트가 없으면 빌드를 멈춘다.
++  const tocObserverSetup = 'var i=new IntersectionObserver(t=>{for(let e of t){let n=e.target.id,o=document.querySelectorAll(`a[data-for="${n}"]`),s=e.rootBounds?.height;s&&o.length>0&&(e.boundingClientRect.y<s?o.forEach(c=>c.classList.add("in-view")):o.forEach(c=>c.classList.remove("in-view")))}});';
++  const tocObserverStart = ',i.disconnect(),document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]").forEach(e=>i.observe(e))';
++  for (const [name, part] of [["tocObserverSetup", tocObserverSetup], ["tocObserverStart", tocObserverStart]]) {
++    if (!toc_inline_default.includes(part)) throw new Error(`ash-wiki table-of-contents 패치: 클라이언트 스크립트에 목차 관찰 코드(${name})가 없다`);
++  }
++  // 지금 절은 화면 위에서 30% 선을 지난 마지막 제목이고, 페이지 끝에 닿으면 화면에 든 마지막 제목이다. 첫 제목이
++  // 선을 지나기 전에는 지금 절이 없다. 절 접기(plugins/collapsible-sections)로 숨은 제목은 건너뛴다.
++  // 판정할 때마다 모든 항목을 제목 위치로 다시 정해, 즉시 스크롤(동작 줄이기, End와 Home 키, 앵커 이동)로 화면을
++  // 한 번에 건너뛰어도 맞는다. 업스트림처럼 교차가 바뀐 제목만 고치면 건너뛴 절이 어긋난다(#473).
++  // 스크롤과 창 크기, 절을 접거나 펴는 일, 항목과 본문의 크기 변화(글꼴, 그림)마다 다음 프레임에 한 번 판정한다.
++  // 이 스크립트는 SPA 이동에도 남아 한 번만 돌므로 처리기는 창과 문서에 한 벌만 걸고, 이동할 때마다 새 페이지의
++  // 항목과 본문을 크기 관찰에 다시 건다.
++  const tocCurrentScript = `
++(() => {
++  let frame = 0
++  function update() {
++    frame = 0
++    const end = scrollY > 0 && Math.ceil(scrollY + innerHeight) >= document.documentElement.scrollHeight - 1
++    const line = end ? innerHeight : innerHeight * 0.3
++    for (const ul of document.querySelectorAll(".toc ul.toc-content")) {
++      const links = ul.querySelectorAll("a[data-for]")
++      let current = null
++      for (const a of links) {
++        const heading = document.getElementById(a.dataset.for)
++        if (heading && heading.checkVisibility?.() !== false && heading.getBoundingClientRect().top < line) current = a
++      }
++      for (const a of links) {
++        if (a === current) a.setAttribute("aria-current", "location")
++        else a.removeAttribute("aria-current")
++      }
++      if (current) {
++        const box = current.getBoundingClientRect()
++        ul.style.setProperty("--toc-bar-y", box.top - ul.getBoundingClientRect().top + ul.scrollTop + "px")
++        ul.style.setProperty("--toc-bar-h", box.height + "px")
++      }
++      ul.classList.toggle("has-current", current !== null)
++    }
++  }
++  function schedule() {
++    if (!frame) frame = requestAnimationFrame(update)
++  }
++  const sizes = new ResizeObserver(schedule)
++  function observeSizes() {
++    sizes.disconnect()
++    for (const el of document.querySelectorAll(".toc a[data-for], article")) sizes.observe(el)
++    schedule()
++  }
++  addEventListener("scroll", schedule, { passive: true })
++  addEventListener("resize", schedule)
++  document.addEventListener("toggle", schedule, true)
++  document.addEventListener("nav", observeSizes)
++  document.addEventListener("render", observeSizes)
++})()
++`;
    TableOfContents.afterDOMLoaded = concatenateResources(
 -    toc_inline_default,
-+    toc_inline_default.replace(tocObserverCallback, 't=>{let s=t[0]?.rootBounds?.height;if(s)for(let o of document.querySelectorAll("a[data-for]")){let h=document.getElementById(o.dataset.for);h&&o.classList.toggle("in-view",h.getBoundingClientRect().y<s)}}'),
++    toc_inline_default.replace(tocObserverSetup, "").replace(tocObserverStart, "") + tocCurrentScript,
      overflowListAfterDOMLoaded
    );
    const LegacyTableOfContents = (props) => {
