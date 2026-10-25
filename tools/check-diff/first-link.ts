@@ -3,6 +3,7 @@ import type { Candidate, Context } from "./items"
 import {
   blank,
   dropCovered,
+  escapeRegExp,
   excerpt,
   latinEdge,
   latinGloss,
@@ -37,6 +38,7 @@ interface Hit {
 
 const wordChar = /[\p{L}\p{N}]/u
 const publisher = new RegExp(`^(?:${standardBodies})$`)
+const abbreviation = /^[A-Z][A-Z0-9/.-]*[A-Z0-9]s?(?: [A-Z][A-Z0-9/.-]*[A-Z0-9]s?)*$/ // TSN, CAN FD, SOME/IP
 
 // 이름을 찾을 글. 절 제목도 지운다.
 function nameText(page: Page): string {
@@ -123,9 +125,16 @@ export function firstLinkCandidates(
   for (const [other, hit] of firstHit) {
     const names = pageNames(other)
     const toOther = list.filter((link) => link.target === other.name)
-    // 위키링크 절의 예외: 주제 개념을 링크 글자로 쓴 절 링크와 `X의 [[X#Y|Y]]`는 X 링크를 겸하고,
-    // 하위 개념의 절 링크는 X 링크로 세지 않는다.
+    // 위키링크 절의 예외: 주제 개념을 링크 글자로 쓴 절 링크와 `X의 [[X#Y|Y]]`, 약어 X가 처음 나오는
+    // 자리의 `[[X#Y|X Y]]`는 X 링크를 겸하고, 하위 개념의 절 링크는 X 링크로 세지 않는다.
     if (toOther.some((link) => link.anchor && names.includes(link.display))) continue
+    const leading = (link: Link) =>
+      names.some(
+        (name) =>
+          abbreviation.test(name) &&
+          new RegExp(`^${escapeRegExp(name)}(?:의)? `).test(link.display),
+      )
+    if (toOther.some((link) => link.anchor && link.start < hit.start && leading(link))) continue
     const pageLink = toOther.find((link) => !link.anchor)
     if (pageLink && pageLink.start < hit.start) continue
     const after = text.slice(hit.end).replace(/^\*+/, "")
