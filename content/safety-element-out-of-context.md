@@ -11,7 +11,7 @@ verified: 2026-10-12
 
 ## 요소와 안전 관련 요소
 
-이 표준은 **요소**(element)를 시스템, 하드웨어나 소프트웨어의 컴포넌트, 하드웨어 부품, 소프트웨어 유닛으로 정의하고, 정의의 주석은 요소가 SEooC일 수도 있다고 제시한다. **안전 관련 요소**(safety-related element)는 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]]을 위반하거나 이루는 데 기여할 수 있는 요소다. 정의의 주석은 fail-safe 요소도 safety goal 하나 이상에 기여할 수 있으면 안전 관련으로 본다고 제시한다.[@iso-26262-1-obp-2018]
+이 표준은 **요소**(element)를 시스템, 하드웨어나 소프트웨어의 컴포넌트, 하드웨어 부품, 소프트웨어 유닛으로 정의하고, 주석은 요소가 SEooC일 수도 있다고 제시한다. **안전 관련 요소**(safety-related element)는 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]]을 위반하거나 이루는 데 기여할 수 있는 요소다. 정의의 주석은 fail-safe 요소도 safety goal 하나 이상에 기여할 수 있으면 안전 관련으로 본다고 제시한다.[@iso-26262-1-obp-2018]
 
 가정한 안전 요구사항을 만족하는 요소의 능력은 [[automotive-safety-integrity-level#ASIL capability|ASIL capability]]에서 다룬다.
 

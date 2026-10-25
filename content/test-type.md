@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-13
 ---
 
-**테스트 유형**(test type)은 테스트 대상의 특정 특성에 초점을 맞춘 테스트다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-test-type-2026] [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022는 테스트 유형을 특정 [[software-quality-model|품질 특성]]에 초점을 둔 테스트로 정의하고, 보안 테스트, 기능 테스트, 사용성 테스트, 성능 테스트를 예로 든다. 이 정의의 Note는 테스트 유형을 한 [[software-testing#테스트 레벨|테스트 레벨]]에서 수행할 수도, 여러 테스트 레벨에 걸쳐 수행할 수도 있다고 제시하고, [[unit-testing|단위 테스트]] 레벨과 [[system-testing|시스템 테스트]] 레벨에서 수행하는 성능 테스트를 예로 든다.[@iso-iec-ieee-29119-1-obp-2022]
+**테스트 유형**(test type)은 테스트 대상의 특정 특성에 초점을 맞춘 테스트다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-test-type-2026] [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022는 테스트 유형을 특정 [[software-quality-model|품질 특성]]에 초점을 둔 테스트로 정의하고, 보안 테스트, 기능 테스트, 사용성 테스트, 성능 테스트를 예로 든다. 이 정의의 주석은 테스트 유형을 한 [[software-testing#테스트 레벨|테스트 레벨]]에서 수행할 수도, 여러 테스트 레벨에 걸쳐 수행할 수도 있다고 제시하고, [[unit-testing|단위 테스트]] 레벨과 [[system-testing|시스템 테스트]] 레벨에서 수행하는 성능 테스트를 예로 든다.[@iso-iec-ieee-29119-1-obp-2022]
 
 ## CTFL의 네 유형
 

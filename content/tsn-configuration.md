@@ -54,4 +54,4 @@ verified: 2026-10-06
 
 IEEE 802.1Qcc-2018은 IEEE 802.1Q-2018의 개정으로, 시간에 민감한 스트림의 설정을 보강했다.[@ieee-802-1qcc-2018] IEEE 802.1Qdj-2024는 IEEE 802.1Q-2022의 개정으로, 엔드 스테이션의 TSN 기능 사용을 설정하는 CUC 구성 요소들과 한 관리 도메인 안의 네트워크 자원을 설정하는 CNC 구성 요소 사이의 관계와 책임 분담을 다룬다. CNC와 CUC 사이의 통신에 NETCONF 같은 네트워크 설정 프로토콜이 쓸 YANG(Yet Another Next Generation) 모델과 모듈도 정한다.[@ieee-802-1qdj-2024]
 
-IEEE 802.1Q-2022의 Annex U(참고)는 TSN 설정의 구현 예를 제시한다. 시간 동기화를 아는 talker의 예와, CUC 하나와 CNC 하나를 둔 완전 중앙 모델의 작업 흐름 예가 여기에 있다.[@ieee-802-1q-2022]
+IEEE 802.1Q-2022의 Annex U(informative)는 TSN 설정의 구현 예를 제시한다. 시간 동기화를 아는 talker의 예와, CUC 하나와 CNC 하나를 둔 완전 중앙 모델의 작업 흐름 예가 여기에 있다.[@ieee-802-1q-2022]
