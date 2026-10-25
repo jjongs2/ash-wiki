@@ -127,7 +127,8 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
 // ash-wiki: 사이드바 항목의 줄 규칙이다. 탐색기의 폴더 줄과 페이지 항목, 목차와 Backlinks의 항목이 같이 쓴다.
 // 줄마다 5px 모서리와 안쪽 여백을 두고, hover에는 lightgray를 반쯤 비친 배경만 깔고 글자색은 바꾸지 않는다. 페이지
 // 위에서는 무채색이고, 탐색기가 놓인 사이드바 면 위에서는 면의 lightgray라 푸른 기가 돈다. 항목 링크는 줄 전체를
-// 채우고, 글자는 본문색 0.9rem 400이다. 목차의 글자와 Backlinks의 글자와 hover는 아래에서 따로 정한다.
+// 채우고, 글자는 제목색 0.9rem 400이다. 목차의 글자와 Backlinks의 글자와 hover는 아래에서 따로 정하므로, 이 색은
+// 탐색기 항목에만 남아 면 위의 흰색(sidebar-dark)으로 보인다. 고른 까닭은 docs/palette.md의 사이드바 면 절에 있다.
 // 두 줄로 넘치는 항목이 한 항목으로 보이도록 줄 간격은 글자 크기의 1.3배로 좁히고, 위아래 여백을 0.25rem으로
 // 늘린다. 한 줄 항목의 높이는 전과 거의 같고, 항목 사이가 항목 안의 줄 사이보다 넓어진다. 폴더 이름의 줄
 // 간격은 탐색기가 같은 값으로 정한다.
@@ -150,7 +151,7 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
   // 탐색기가 정한다.
   &:is(a) {
     display: block;
-    color: var(--darkgray);
+    color: var(--dark);
     opacity: 1;
     font-size: 0.9rem;
     font-weight: 400;
@@ -345,6 +346,15 @@ a.internal.tag-link::before {
     position: absolute;
     inset: 0 -2px;
   }
+}
+
+// ash-wiki: 스크롤바는 브라우저 기본값 대신 어디서나 같은 꼴로 그린다. 얇게 두고, 홈은 투명해 놓인 면의 색이 비치며,
+// 손잡이는 그 자리 보조 글자색의 40%다. 기본값은 페이지의 color-scheme을 따라, 라이트 테마에서는 남색 면 위의
+// 탐색기에 흰 스크롤바가 섰다. scrollbar-color는 var()를 푼 값으로 상속되므로, 요소마다 걸어 사이드바 면 안에서는
+// 면의 토큰을, 그 안의 검색 창에서는 페이지 토큰을 받게 한다.
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--gray) 40%, transparent) transparent;
 }
 
 // ash-wiki: 동작 줄이기 설정에서는 사이트의 전환을 끄고 애니메이션을 곧바로 끝내며, 부드러운 스크롤도 끈다.

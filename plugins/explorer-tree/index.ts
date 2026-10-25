@@ -158,8 +158,9 @@ export function explorerInputs(entries: ContentEntry[]): {
 // (plugins/collapsible-sections)와 맞춘다.
 // 줄마다의 모서리, 안쪽 여백, hover 배경과 페이지 항목의 글자는 목차, Backlinks와 같이 쓰는 줄 규칙이라
 // 사용자 스타일시트(quartz/styles/custom.scss)에 있다. 여기에는 트리에만 있는 규칙을 둔다.
-// - 층은 굵기와 크기로 가른다. 구역은 제목색 0.95rem 600, 주제는 본문색 0.9rem 600이다. 파랑은 지금
-//   페이지에만 쓴다. 줄 간격은 줄 규칙의 항목 링크와 같은 1.3이다.
+// - 층은 굵기와 크기로 가른다. 구역은 0.95rem 600, 주제는 0.9rem 600이고, 둘 다 페이지 항목처럼 제목색이다.
+//   탐색기는 사이드바 면 위라 제목색이 면 위의 흰색이다. 파랑은 지금 페이지에만 쓴다. 줄 간격은 줄 규칙의 항목
+//   링크와 같은 1.3이다.
 // - 폴더는 이름 버튼의 누름 영역(::after)을 줄 전체로 늘려, 꺾쇠를 포함해 줄 어디를 눌러도 접고 편다. 지금
 //   페이지에는 highlight 배경을 깔고 파랑으로 써서 hover 배경과 구분한다.
 // - 꺾쇠는 이름 바로 뒤에 두어 이름이 층마다 같은 자리에서 시작하게 한다. 이름보다 눈에 띄지 않도록
@@ -168,7 +169,7 @@ export function explorerInputs(entries: ContentEntry[]): {
 //   여백을 바꾸면 안내선의 margin-left도 함께 바꾼다.
 // - 전환은 탐색기에 있던 폴더 펼침과 꺾쇠 회전만 둔다. 동작 줄이기 설정에서는 사용자 스타일시트가 끈다.
 // - 페이지가 없는 구역과 주제는 이름을 보조 글자색으로 쓰고 투명도로 더 흐린다. 탐색기가 놓인 사이드바 면에서는
-//   보조 글자색과 본문색이 모두 밝아 색만으로는 잘 갈리지 않는다. 면 위 보조 글자의 대비 하한에 못 미치는
+//   보조 글자색과 제목색이 모두 밝아 색만으로는 잘 갈리지 않는다. 면 위 보조 글자의 대비 하한에 못 미치는
 //   예외라 docs/palette.md의 대비 하한 절에 적어 두었다. 꺾쇠는 폴더임을 알리도록 더 흐리게
 //   남기되, 펼칠 것이 없으니 줄 전체를 누를 수 없게 한다.
 // 탐색기의 규칙(.folder-container div > button span 등)은 @layer quartz-base 안에 실려, layer 밖인 이 CSS가
@@ -191,13 +192,12 @@ const CSS = `.explorer .explorer-content :is(.folder-button, ul li > a):focus-vi
   inset: 0;
 }
 .explorer .explorer-content .folder-container .folder-title {
-  color: var(--darkgray);
+  color: var(--dark);
   font-size: 0.9rem;
   font-weight: 600;
   line-height: 1.3;
 }
 .explorer .explorer-content .explorer-ul > li > .folder-container .folder-title {
-  color: var(--dark);
   font-size: 0.95rem;
 }
 .explorer .explorer-content ul li > a.active {

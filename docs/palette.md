@@ -61,8 +61,9 @@
 
 왼쪽 사이드바(폰에서는 머리 줄)는 남색 면이다. 면 안에서는 `sidebar-<토큰>`이 토큰 표의 `<토큰>`을 대신한다. 값의 정본은 `quartz.config.yaml`의 `theme.colors`이고, 사이트에는 CSS 변수(`--sidebar-<토큰>`)로 실린다.
 
-- 값은 대문 시안의 값이다. 면(`sidebar-light`)은 라이트에서 짙은 남색이고, 다크에서는 페이지 바탕과 갈리도록 한 단계 밝은 남색이다.
+- 값은 대문 시안의 값이다. 면(`sidebar-light`)은 라이트에서 짙은 남색이고, 다크에서는 페이지 바탕과 갈리도록 한 단계 밝은 남색이다. 다크의 면은 시안 값(페이지와 1.20:1)이 잘 갈리지 않아, 소유자가 면 위 쌍이 하한을 넘는 안에서 더 밝히기로 했다(2026-10-25, 페이지와 1.38:1). `sidebar-lightgray`도 함께 올려 면과의 단차를 지켰다.
 - 면이 두 테마 모두 어두워, 면 위의 글자는 밝게 쓰고 두 테마에 같은 값을 쓴다. 면 위 링크(`sidebar-secondary`)는 페이지 링크와 색상이 같은 코발트를 밝힌 것이고, 면 위 회색 토큰은 면의 남색 쪽으로 기운다.
+- 탐색기의 주제 이름과 페이지 항목은 본문색(`sidebar-darkgray`)이 아니라 제목색(`sidebar-dark`)으로 쓴다. 본문색은 면 위에서 한 단계 흐려 사이트 이름과 구역 이름 아래의 항목이 묻혀, 소유자가 흰색으로 바꿨다(2026-10-25).
 
 ## 대비 하한
 
@@ -105,7 +106,7 @@
 - 도해의 선, 외곽선, 테두리는 3:1(WCAG 1.4.11, 비텍스트 대비)이다. 테두리는 배경과 제 면 모두에 대해 3:1을 넘어야 도형의 경계가 보인다.
 - 도해 글자는 본문처럼 7:1이다. 도해가 테마마다 값을 받으므로(`plugins/diagram-theme`), 한 색으로 두 배경을 버틸 때의 상한(약 4.2:1)에 묶이지 않는다.
 - 콜아웃(`note`, `warning`)의 색은 엔진(`quartz/styles/callouts.scss`)의 기본값을 그대로 쓰고, 이 표에 넣지 않는다. 설정의 색 토큰에는 경고색 자리가 없고, 소유자가 지금 모양을 유지하기로 했다(2026-09-25). 라이트 테마의 제목 글자 대비는 `note` 3.18:1, `warning` 2.62:1이다.
-- 탐색기에서 페이지가 없는 구역과 주제의 이름은 `sidebar-gray`를 투명도 0.6으로 흐려 면 위 보조 글자의 하한에 못 미친다. 보조 글자색과 본문색이 잘 갈리지 않아, 소유자가 굵기 대신 투명도로 구별하기로 했다(2026-09-30). 그때는 라이트 테마의 `gray`와 `darkgray`가 둘 다 어두웠고, 면 위의 `sidebar-gray`와 `sidebar-darkgray`는 둘 다 밝다. 대비는 라이트 3.35:1, 다크 3.48:1이다.
+- 탐색기에서 페이지가 없는 구역과 주제의 이름은 `sidebar-gray`를 투명도 0.6으로 흐려 면 위 보조 글자의 하한에 못 미친다. 보조 글자색과 본문색이 잘 갈리지 않아, 소유자가 굵기 대신 투명도로 구별하기로 했다(2026-09-30). 그때는 라이트 테마의 `gray`와 `darkgray`가 둘 다 어두웠고, 면 위의 `sidebar-gray`와 탐색기 항목의 `sidebar-dark`는 둘 다 밝다. 대비는 라이트 3.35:1, 다크 3.21:1이다.
 
 ## 실측
 
@@ -125,13 +126,13 @@
 | 구역 이름               | 4.5:1 | 5.21:1  | 6.47:1  | region-security / light, region-other / light                        |
 | 구역 칩                 | 4.5:1 | 4.64:1  | 5.84:1  | region-security / region-security 8%, region-other / region-other 8% |
 | 주제 칩의 페이지 수     | 4.5:1 | 4.67:1  | 5.50:1  | gray / highlight                                                     |
-| 면 위 본문              | 7:1   | 10.28:1 | 10.92:1 | sidebar-darkgray / sidebar-light                                     |
-| 면 위 제목              | 7:1   | 13.59:1 | 14.44:1 | sidebar-dark / sidebar-light                                         |
-| 면 위 링크              | 4.5:1 | 7.92:1  | 8.41:1  | sidebar-secondary / sidebar-light                                    |
-| 면 위 링크 hover        | 4.5:1 | 10.14:1 | 10.77:1 | sidebar-tertiary / sidebar-light                                     |
-| 면 위 보조 글자         | 4.5:1 | 6.66:1  | 7.08:1  | sidebar-gray / sidebar-light                                         |
-| 면 위 바탕 위 링크      | 4.5:1 | 6.11:1  | 6.49:1  | sidebar-secondary / sidebar-highlight                                |
-| 면 위 바탕 위 보조 글자 | 4.5:1 | 5.14:1  | 5.46:1  | sidebar-gray / sidebar-highlight                                     |
+| 면 위 본문              | 7:1   | 10.28:1 | 9.52:1  | sidebar-darkgray / sidebar-light                                     |
+| 면 위 제목              | 7:1   | 13.59:1 | 12.59:1 | sidebar-dark / sidebar-light                                         |
+| 면 위 링크              | 4.5:1 | 7.92:1  | 7.34:1  | sidebar-secondary / sidebar-light                                    |
+| 면 위 링크 hover        | 4.5:1 | 10.14:1 | 9.39:1  | sidebar-tertiary / sidebar-light                                     |
+| 면 위 보조 글자         | 4.5:1 | 6.66:1  | 6.17:1  | sidebar-gray / sidebar-light                                         |
+| 면 위 바탕 위 링크      | 4.5:1 | 6.11:1  | 5.66:1  | sidebar-secondary / sidebar-highlight                                |
+| 면 위 바탕 위 보조 글자 | 4.5:1 | 5.14:1  | 4.76:1  | sidebar-gray / sidebar-highlight                                     |
 | 도해 선과 외곽선        | 3:1   | 5.01:1  | 5.05:1  | ink / light                                                          |
 | 도해 범주 테두리        | 3:1   | 3.45:1  | 4.63:1  | orange / light, blue / light                                         |
 | 도해 외곽선과 기본 면   | 3:1   | 4.21:1  | 3.96:1  | ink / surface                                                        |
