@@ -19,7 +19,7 @@ ISO 26262-1:2018은 **partitioning**을 설계를 이루려고 기능이나 요�
 | --------- | ------------------------------------------------------------------------------------------------------------------------ |
 | 메모리    | memory partitioning                                                                                                      |
 | 타이밍    | [[safety-mechanism#오류 검출 기법\|Watchdog Manager]]의 시간 감시, [[autosar-timing-protection\|OS의 timing protection]] |
-| 실행      | Watchdog Manager의 [[safety-mechanism#오류 검출 기법\|logical supervision]]                                              |
+| 실행      | Watchdog Manager의 logical supervision                                                                                   |
 | 정보 교환 | [[autosar-e2e-protection\|E2E 보호]]                                                                                     |
 
 이 메커니즘들은 안전 관련 시스템의 개발을 돕는 것이므로 소프트웨어든 하드웨어든 그 자체가 안전 관련이고, 그에 맞게 개발하고 통합해야 한다.[@autosar-cp-exp-functionalsafetymeasures-2025]

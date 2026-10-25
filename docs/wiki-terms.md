@@ -62,6 +62,7 @@
 - RSA 풀이 Rivest-Shamir-Adleman: Rivest–Shamir–Adleman (#288)
 - safety case: - (#396)
 - syntax testing: 구문 테스트, 문법 테스트 (#385). "구문 테스트"는 statement testing
+- systematic fault: 체계적 fault (#PRNUM). systematic failure도 같다. 일반 낱말 "체계적으로"는 그대로
 - TDC 풀이 Transceiver Delay Compensation: Transmitter Delay Compensation (#311)
 - time-triggered: 시간 트리거 (#564)
 - Timing Analysis and Design 보고서: AUTOSAR 타이밍 분석 보고서 (#257). 본문에서 AUTOSAR 문서를 부르는 이름
