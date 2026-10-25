@@ -15,13 +15,13 @@ CiA에 따르면 표준화된 CAN 기반 HLP 스택은 대개 응용 계층과 �
 
 CiA는 가장 중요한 표준화된 HLP로 다음을 든다.[@cia-standardized-hlp-2026]
 
-| HLP                                           | 바탕                                   | 쓰임                  |
-| --------------------------------------------- | -------------------------------------- | --------------------- |
-| [[canopen\|CANopen]] CC(CiA 301, CC: classic) | CAN CC                                 | 범용 내장 실시간 제어 |
-| CANopen FD(CiA 1301)                          | [[can-fd\|CAN FD]], [[can-xl\|CAN XL]] | 내장 실시간 제어      |
-| [[j1939\|J1939]] 응용 프로파일                | CAN CC, CAN FD                         | 여러 분야             |
-| DeviceNet 프로파일                            | CAN CC                                 | 공장 자동화           |
-| UAVCAN(Cyphal), DroneCAN                      |                                        | 무인 항공기           |
+| HLP                              | 바탕                                   | 쓰임                  |
+| -------------------------------- | -------------------------------------- | --------------------- |
+| [[canopen\|CANopen]] CC(CiA 301) | CAN CC(CC: classic)                    | 범용 내장 실시간 제어 |
+| CANopen FD(CiA 1301)             | [[can-fd\|CAN FD]], [[can-xl\|CAN XL]] | 내장 실시간 제어      |
+| [[j1939\|J1939]] 응용 프로파일   | CAN CC, CAN FD                         | 여러 분야             |
+| DeviceNet 프로파일               | CAN CC                                 | 공장 자동화           |
+| UAVCAN(Cyphal), DroneCAN         |                                        | 무인 항공기           |
 
 승용차 산업의 응용 계층은 대개 독자 규격이다. 예외로는 [[iso-15765-2|ISO 15765-2]]로 표준화된 CAN 전송 계층, 진단 서비스인 [[uds|UDS]], CiA 447 CANopen 응용 프로파일 시리즈가 정한 부가 장치용 개방 네트워크가 있다.[@cia-standardized-hlp-2026]
 

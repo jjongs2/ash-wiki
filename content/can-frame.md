@@ -43,7 +43,7 @@ verified: 2026-09-26
 | FEFF(FD Extended Frame Format)      | 29비트 | 데이터 프레임                | 바꿔 가며 보낼 수 있음           | —              |
 | XLFF(XL Frame Format)               | 11비트 | 데이터 프레임                | 데이터 구간의 시작과 끝에서 바꿈 | 2048바이트까지 |
 
-이 표준은 CBFF나 CEFF를 쓰는 데이터 프레임과 리모트 프레임을 classic 프레임, FBFF나 FEFF를 쓰는 데이터 프레임을 FD 프레임으로 부른다. FBFF와 FEFF의 정의는 데이터 길이를 적지 않는다.[@iso-11898-1-obp-2024]
+FBFF와 FEFF의 정의는 데이터 길이를 적지 않는다. 이 표준은 CBFF나 CEFF를 쓰는 데이터 프레임과 리모트 프레임을 classic 프레임, FBFF나 FEFF를 쓰는 데이터 프레임을 FD 프레임으로 부른다.[@iso-11898-1-obp-2024]
 
 ## 프레임 사이
 

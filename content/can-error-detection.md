@@ -15,13 +15,13 @@ verified: 2026-09-27
 - **형식 오류**: CRC 구분자, ACK 구분자, EOF(End of Frame)처럼 모양이 정해진 필드에 허용되지 않는 비트가 있다.
 - **ACK 오류**: 송신 노드가 ACK 슬롯에서 [[dominant-and-recessive|dominant]]를 읽지 못한다.[@bosch-can-2-0-1991]
 
-데이터 프레임은 [[can-frame#데이터 프레임의 필드|SOF]]로 시작해 EOF로 끝난다.[@bosch-can-2-0-1991]
+[[can-frame#데이터 프레임의 필드|SOF]]로 시작해 EOF로 끝나는 데이터 프레임의 필드마다 검사하는 오류는 아래 도해와 같다.[@bosch-can-2-0-1991]
 
 ![[diagrams/can-error-detection-fields.svg]]
 
 ## 비트 오류의 예외
 
-중재 필드에서 recessive를 보내고 dominant를 읽은 것은 비트 오류가 아니다. 스터프 비트가 아닌 비트에서는 [[can-arbitration|중재]]에서 진 것이고, recessive여야 할 스터프 비트를 recessive로 보냈는데 dominant로 읽혔으면 송신 노드는 스터프 오류를 찾고 오류 플래그를 낸다. ACK 슬롯에서 recessive를 보내고 dominant를 읽은 것도 비트 오류가 아니다. [[can-error-frame#오류 플래그|passive 오류 플래그]]를 보내는 송신 노드가 dominant를 읽은 것도 비트 오류로 보지 않는다.[@bosch-can-2-0-1991]
+중재 필드에서 recessive를 보내고 dominant를 읽은 것은 비트 오류가 아니다. 스터프 비트가 아닌 비트에서는 [[can-arbitration|중재]]에서 진 것이고, recessive 스터프 비트를 보내고 dominant를 읽었으면 송신 노드는 스터프 오류를 찾고 오류 플래그를 낸다. ACK 슬롯에서 recessive를 보내고 dominant를 읽은 것도 비트 오류가 아니다. [[can-error-frame#오류 플래그|passive 오류 플래그]]를 보내는 송신 노드가 dominant를 읽은 것도 비트 오류로 보지 않는다.[@bosch-can-2-0-1991]
 
 ## 오류를 알리는 시점
 
