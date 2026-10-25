@@ -224,11 +224,14 @@ const nameIn = (name: string) =>
 // 낱말이 키의 발행기관 마디(vda)이거나 제목에 든 대문자 약어(ASPICE)다. 표준 기구로 시작하는 이름은 판 표시와
 // 제목만 본다. 기구의 해설 자료(IEC의 FAQ)가 표준(IEC 61508)을 주어로 쓰는 문장은 출처가 아니라 주제를 말하기
 // 때문이다. 제목 낱말로는 약어만 본다. 제목의 다른 낱말(The Scrum Guide의 Scrum)은 개념 이름과 겹친다.
+// 표의 문서 모음은 표의 이름만 본다. 쪽 제목과 키 마디로 보면 모음 이름으로 시작하는 규격·개념 이름(CiA 301,
+// CVE ID)이 출처 이름으로 잡히기 때문이다.
 const bodyFirst = new RegExp(`^(?:${standardBodies})(?![A-Za-z])`)
 function isSource(name: string, keys: string[], editions: Map<string, Edition>): boolean {
   const first = name.split(" ")[0]
   return keys.some((key) => {
     const edition = editions.get(key)
+    if (edition?.collection) return edition.names.some((source) => nameIn(name).test(source))
     const title = (edition?.title ?? "").replace(/Automotive SPICE/g, "ASPICE")
     if (nameIn(name).test(edition?.id ?? key) || nameIn(name).test(title)) return true
     if (bodyFirst.test(first)) return false

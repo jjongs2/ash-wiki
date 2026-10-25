@@ -61,7 +61,7 @@
 - 같은 출처는 판 하나다. 인용 키가 쪽이나 명세마다 달라도 판이 같으면 한 출처다.
   - 같은 발행기관이 같은 판 표시로 함께 펴낸 자료는 한 출처다. 예: POSIX.1-2024의 함수 쪽들과 근거 설명, 같은 판의 카탈로그 페이지, 원문, OBP 미리보기
   - 부마다 번호와 판을 따로 받는 시리즈는 부마다 다른 출처다. 부 번호가 문장의 범위를 드러내기 때문이다. 예: ISO 11898-1:2024와 ISO 11898-2:2026
-  - 판 표시가 없는 온라인 문서 모음은 그 모음 하나가 한 출처다. 예: µC/OS-III 문서의 쪽들
+  - 판 표시가 없는 온라인 문서 모음은 그 모음 하나가 한 출처다. 예: µC/OS-III 문서의 쪽들. 엔트리 제목에 모음 이름이 드러나지 않는 모음은 아래 문서 모음 표가 정한다.
   - AUTOSAR는 플랫폼 릴리스마다 한 출처다. CP R25-11, AP R25-11, FO R25-11이 각각 한 출처이고, CP와 AP가 번갈아 오면 새 구간이다. 구간을 여는 문장만 "AUTOSAR R25-11의 X 명세는"으로 쓰고, 같은 릴리스의 다른 명세로 이어지는 문장은 개념을 주어로 쓴다. 예: "AUTOSAR R25-11의 BSW 일반 명세는 Csm을 Crypto Services 층에 둔다." 뒤에서 Csm 명세가 뒷받침하는 문장은 "Csm은 암호 서비스와 키 관리 두 서비스를 준다."로 쓴다.
 - 구간은 절, 문단, 머리말의 경계와 상관없이 이어진다. 머리말 끝 문단과 그 뒤 첫 절의 맨 앞 문단이 같은 출처면 그 절에서 다시 적지 않는다. 구간이 문단 가운데서 시작하면 그 문장이 첫 자리다.
 - 구간은 다른 출처의 문장이나 일반 명제에서 끊긴다. 그 뒤에 앞의 출처가 다시 오면 새 구간이므로 출처 표시를 다시 둔다.
@@ -73,6 +73,34 @@
 - 다른 출처의 문장은 구간 한가운데 끼우지 않고, 구간 앞이나 뒤, 따로 된 절에 둔다. 끼우면 뒤 문장이 새 구간을 열어 출처 표시를 다시 둬야 하기 때문이다. 예: OSEK OS 구간이 이어지는 페이지에 OIL 명세의 문장을 더하면 페이지 끝의 `## 설정` 절에 모은다.
 - 구간에 일반 명제를 끼워 넣거나 구간 첫 자리를 지우면, 새로 구간을 여는 자리에 출처 표시를 되살린다. 몇 절 떨어진 문단이 출처 표시 없이 구간을 열 수 있으므로, [반영 뒤 점검](#반영-뒤-점검)의 `source-run` 후보로 찾는다.
 - 브랜치가 고쳐 쓰지 않은 문장(바뀌지 않았거나 옮김, 줄임 같은 편집만 한 문장)이 브랜치 전에도 출처 표시 없이 구간을 열었으면, 그 문장에는 출처 표시를 더하지 않는다. [ADR 0016](adr/0016-source-run-by-edition.md)이 main의 끊긴 구간을 옮기지 않았듯, 구간 규칙은 앞으로 쓰는 문장부터 적용하기 때문이다. `source-run`이 그 문단을 찍어도 이 줄을 근거로 남긴다. 브랜치가 고쳐 쓴 문장(내용 고침과 정정 포함)과, 위 줄대로 새로 구간을 연 자리에는 표시를 둔다.
+
+[반영 뒤 점검](#반영-뒤-점검)의 `source-run`은 문서 모음을 엔트리 제목의 꼴("(µC/OS-III Documentation)", "ISTQB Glossary — …")로 알아보고, 제목에 모음 이름이 드러나지 않는 모음은 아래 표로 묶는다. 표가 제목 꼴보다 앞선다.
+
+- 제목 꼴로 묶이지 않는 모음의 쪽을 둘 이상 인용하게 되면 표에 더한다.
+- 날짜가 박힌 발행물(보도자료, 뉴스, 소식지 호수, 웹 아카이브 스냅숏)과, 같은 사이트에 올라온 이름과 판이 있는 문서(PDF 문서, 명세, Addendum)는 모음에 넣지 않는다. 그 자체로 따로 된 자료다.
+- 드는 쪽은 scheme, `www.`, 끝 슬래시를 떼고 견준다. "(그 쪽만)"은 그 주소 하나만 들고, 나머지는 그 경로 아래의 쪽이 모두 든다. `<제품>`처럼 꺾쇠로 싼 마디는 그 값마다 다른 모음이다.
+- 이름은 구간 안에서 다시 쓴 출처 이름으로 보는 이름이다. 모음 이름으로 시작하는 규격·개념 이름("CiA 301 version 4.2.0", "CVE ID")은 출처 이름이 아니다.
+
+<!-- table: source-collections -->
+
+| 모음                                    | 이름                                                        | 드는 쪽                                                                                                                |
+| --------------------------------------- | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| CiA 웹사이트                            | CiA                                                         | `can-cia.org/can-knowledge`, `can-cia.org/cia-groups`                                                                  |
+| AUTOSAR 웹사이트                        | AUTOSAR                                                     | `autosar.org`(그 쪽만), `autosar.org/about`, `autosar.org/faq`, `autosar.org/standards`, `autosar.org/working-groups`  |
+| FreeRTOS 웹사이트                       | FreeRTOS                                                    | `freertos.org/Documentation`, `freertos.org/Why-FreeRTOS`                                                              |
+| Mastering the FreeRTOS Real Time Kernel | FreeRTOS                                                    | `github.com/FreeRTOS/FreeRTOS-Kernel-Book`                                                                             |
+| Android 소스 문서                       | Android                                                     | `source.android.com/docs`                                                                                              |
+| CMSIS-RTOS2 문서                        | CMSIS-RTOS2                                                 | `arm-software.github.io/CMSIS_6`                                                                                       |
+| CVE Program 웹사이트                    | CVE Program                                                 | `cve.org/About`, `cve.org/PartnerInformation`, `cve.org/ProgramOrganization`, `cve.org/ResourcesSupport`               |
+| CMMI Institute 웹사이트                 | CMMI Institute                                              | `cmmiinstitute.com/aim`, `cmmiinstitute.com/cmmi`, `cmmiinstitute.com/company`, `cmmiinstitute.com/learning`           |
+| OPEN Alliance 웹사이트                  | OPEN Alliance                                               | `opensig.org/about`, `opensig.org/tech-committee`                                                                      |
+| MISRA 웹사이트                          | MISRA                                                       | `misra.org.uk`(그 쪽만), `misra.org.uk/a-brief-history-of-misra`, `misra.org.uk/faqs`, `misra.org.uk/misra-c`(그 쪽만) |
+| FIRST 웹사이트                          | FIRST                                                       | `first.org/about`, `first.org/cvss`(그 쪽만)                                                                           |
+| Uptane 웹사이트                         | Uptane                                                      | `uptane.org/learn-more`                                                                                                |
+| Bosch Mobility 웹사이트                 | Bosch                                                       | `bosch-mobility.com/en/mobility-topics`, `bosch-mobility.com/en/solutions`                                             |
+| MathWorks 문서(제품마다)                | MathWorks, Simulink Test, Simulink Coverage, Embedded Coder | `mathworks.com/help/<제품>`                                                                                            |
+| CSRC Glossary                           | CSRC Glossary, NIST CSRC                                    | `csrc.nist.gov/glossary`                                                                                               |
+| IEV(부마다)                             | IEC 60050, IEV                                              | `electropedia.org/iev/iev.nsf/display?openform&ievref=<부>`                                                            |
 
 자기 역사와 서베이의 명명·분류는 위 규칙으로 범위를 맞추지 않고, 아래 꼴로 쓴다.
 
