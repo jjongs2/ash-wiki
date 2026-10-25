@@ -34,7 +34,7 @@ ISO/IEC/IEEE 24765 용어집은 **양방향 추적성**(bidirectional traceabili
 
 ![[diagrams/aspice-traceability-work-products.svg]]
 
-ASPICE 4.1은 법규나 형식 승인 요구사항에서 도출된 확인 수단에는 단방향 추적성으로 충분하다고 정한다.[@vda-automotive-spice-pam-4-1-2026] 변경 요청은 [[configuration-management#변경 통제|형상 관리]]에서 다룬다.
+법규나 형식 승인 요구사항에서 도출된 확인 수단에는 단방향 추적성으로 충분하다.[@vda-automotive-spice-pam-4-1-2026] 변경 요청은 [[configuration-management#변경 통제|형상 관리]]에서 다룬다.
 
 SYS.2(System Requirements Analysis), SWE.1(Software Requirements Analysis), SWE.2(Software Architectural Design)의 추적성 BP 주석은 하위 산출물이 추적하지 않는 상위의 비기능 요구사항이 있을 수 있다고 하고, 그 예로 프로세스 요구사항을 들며(SWE.1은 인시던트 처리처럼 뒤 소프트웨어 제품 생명주기 단계에 걸린 요구사항도 든다), 그런 요구사항도 검증 대상이라고 제시한다. SWE.1의 주석은 중복 추적을 의도하지 않는다고 하고, SWE.3(Software Detailed Design and Unit Construction)의 주석은 세 추적 경로를 조합해 중복을 피하라고 제시한다. SWE.3의 주석은 상세 설계의 소프트웨어 유닛을 소프트웨어 요구사항에 바로 추적하는 예로 통신 매트릭스와, [[autosar|AUTOSAR]] 설정에 든 진단 식별자 목록을 든다.[@vda-automotive-spice-pam-4-1-2026]
 
