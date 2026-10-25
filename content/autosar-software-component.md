@@ -53,4 +53,4 @@ composition은 component prototype과 [[software-component-port#Connector|connec
 
 원자 SW-C의 **internal behavior**(SwcInternalBehavior)는 RTE에 관련된 SW-C의 측면, 곧 [[runnable-entity|runnable]]과 그것이 반응하는 [[rte-event|RTE 이벤트]]를 기술한다. internal behavior에는 runnable, RTE 이벤트, [[runnable-entity#Inter-runnable 변수|inter-runnable 변수]], [[runnable-entity#Exclusive area|exclusive area]]가 든다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
-SW-C의 실제 구현은 internal behavior와 따로 implementation 기술(description)이 기술하며, 여기에는 메모리 사용량 같은 자원 소비가 든다.[@autosar-cp-sws-rte-2025]
+SW-C의 실제 구현은 internal behavior와 따로 implementation description이 기술하며, 여기에는 메모리 사용량 같은 자원 소비가 든다.[@autosar-cp-sws-rte-2025]

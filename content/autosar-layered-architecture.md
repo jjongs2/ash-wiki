@@ -71,7 +71,7 @@ Complex Driver가 대개 접근할 수 있는 모듈은 아래와 같다. 그래
 - Det, Dem, [[autosar-log-and-trace#Classic Platform의 Dlt|Dlt]]
 - OS(Operating System). 쓰는 OS 객체를 계층 구조의 모듈이 쓰지 않을 때만[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-멀티코어에서는 규칙이 더 있다. 파티션과 코어 경계를 넘는 것은 [[autosar-layered-architecture#멀티코어|master/satellite]] 구현으로 모듈 내부 통신에만 허용하므로, Complex Driver가 BSW의 standardized interface에 접근해야 하면 같은 코어에 있어야 한다. 다른 코어의 Complex Driver는 포트로 AUTOSAR interface와 standardized AUTOSAR interface에 접근할 수 있고, 그러면 RTE가 OS의 [[inter-os-application-communicator|IOC]]로 요청을 다른 코어에 넘긴다. 다른 코어에서 standardized interface가 필요하면, 그 인터페이스를 주는 satellite를 Complex Driver의 코어에서 돌려 호출을 넘기거나, Complex Driver의 stub 부분을 다른 코어에 두고 IOC로 Complex Driver 안에서 통신한다. 뒤의 경우 Complex Driver의 초기화 부분도 그 stub 부분에 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+멀티코어에서는 규칙이 더 있다. 파티션과 코어 경계를 넘는 것은 master/satellite 구현으로 모듈 내부 통신에만 허용하므로, Complex Driver가 BSW의 standardized interface에 접근해야 하면 같은 코어에 있어야 한다. 다른 코어의 Complex Driver는 포트로 AUTOSAR interface와 standardized AUTOSAR interface에 접근할 수 있고, 그러면 RTE가 OS의 [[inter-os-application-communicator|IOC]]로 요청을 다른 코어에 넘긴다. 다른 코어에서 standardized interface가 필요하면, 그 인터페이스를 주는 satellite를 Complex Driver의 코어에서 돌려 호출을 넘기거나, Complex Driver의 stub 부분을 다른 코어에 두고 IOC로 Complex Driver 안에서 통신한다. 뒤의 경우 Complex Driver의 초기화 부분도 그 stub 부분에 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 AUTOSAR R25-11 용어집은 **Complex Driver**를 AUTOSAR가 표준화하지 않았고 AUTOSAR Interface나 BSW 모듈 API로 접근하거나 접근받을 수 있는 소프트웨어 개체로 정의한다. 그 약어 CDD는 원래 Complex Device Driver를 뜻했지만, Complex Driver는 드라이버에 한정되지 않는다. AUTOSAR가 지원하지 않는 버스의 통신 스택, 기존 소프트웨어의 재사용, 하드웨어와 깊이 상호작용하는 소프트웨어의 통합이 그 예다.[@autosar-fo-tr-glossary-2025]
 
