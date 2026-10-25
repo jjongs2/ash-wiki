@@ -5,13 +5,13 @@ tags:
 verified: 2026-09-27
 ---
 
-**DLC**(Data Length Code)는 [[can|CAN]] 프레임의 제어 필드에 있는 4비트 값으로, 데이터 필드의 바이트 수를 나타낸다. 최상위 비트부터 보낸다.[@bosch-can-2-0-1991]
+**DLC**(Data Length Code)는 [[can|CAN]] 프레임의 제어 필드에 있는 4비트 값으로, 데이터 필드의 바이트 수를 나타낸다. DLC는 최상위 비트부터 보낸다.[@bosch-can-2-0-1991]
 
 ## Classical CAN
 
-DLC 값 0\~8은 데이터 필드의 바이트 수와 같다. Bosch CAN 2.0 규격은 DLC로 0\~8만 쓰게 한다. $\mathrm{DLC} > 8$인 프레임을 받았을 때의 동작은 CAN 2.0이 정하지 않았고, Bosch의 Reference CAN Model은 이를 DLC 8로 보고 8바이트를 받는다.[@bosch-can-2-0-1991] MCP2515는 DLC를 $\mathrm{DLC} > 8$로 설정해도 8바이트만 보낸다.[@microchip-mcp2515-2019]
+DLC 값 0\~8은 데이터 필드의 바이트 수와 같다. Bosch CAN 2.0 규격은 DLC로 0\~8만 쓰게 한다. $\mathrm{DLC} > 8$인 프레임을 받았을 때의 동작은 CAN 2.0이 정하지 않았고, Bosch의 Reference CAN Model은 이를 DLC 8로 보고 8바이트를 받는다.[@bosch-can-2-0-1991] [[can-controller#제품 예|MCP2515]]는 DLC를 $\mathrm{DLC} > 8$로 설정해도 8바이트만 보낸다.[@microchip-mcp2515-2019]
 
-DLC가 알려 주는 것은 데이터 필드의 길이다. 데이터가 무엇을 뜻하는지는 [[can-identifier|식별자]]가 나타낸다.[@bosch-can-2-0-1991] [[j1939|J1939]]에서는 응용 계층 문서(SAE J1939-7X)가 데이터 파라미터와 메시지를 정의하고, J1939-71:2025가 파라미터 그룹 데이터 안에 파라미터를 배치하는 관례를 정한다.[@sae-j1939-71-2025] classical CAN을 쓰는 [[canopen|CANopen]]에서는 PDO(Process Data Object) 하나가 CAN 프레임 하나에 응용 데이터를 최대 8바이트 싣고, PDO 매핑이 어떤 응용 객체를 어떤 순서와 길이로 PDO에 넣을지 정한다.[@cia-pdo-protocol-2026]
+DLC가 알려 주는 것은 데이터 필드의 길이다. 데이터가 무엇을 뜻하는지는 [[can-identifier|식별자]]가 나타낸다.[@bosch-can-2-0-1991] [[j1939|J1939]]에서는 응용 계층 문서(SAE J1939-7X)가 데이터 파라미터와 메시지를 정의하고, J1939-71:2025가 [[j1939#파라미터와 주소|파라미터 그룹]] 데이터 안에 파라미터를 배치하는 관례를 정한다.[@sae-j1939-71-2025] classical CAN을 쓰는 [[canopen|CANopen]]에서는 PDO(Process Data Object) 하나가 CAN 프레임 하나에 응용 데이터를 최대 8바이트 싣고, [[canopen#통신 객체|PDO 매핑]]이 어떤 응용 객체를 어떤 순서와 길이로 PDO에 넣을지 정한다.[@cia-pdo-protocol-2026]
 
 ## CAN FD
 
@@ -21,7 +21,7 @@ DLC가 알려 주는 것은 데이터 필드의 길이다. 데이터가 무엇�
 | ------------------- | --- | --- | --- | --- | --- | --- | --- |
 | 데이터 필드(바이트) | 12  | 16  | 20  | 24  | 32  | 48  | 64  |
 
-그래서 [[can-fd-frame|CAN FD 프레임]]의 데이터 필드 길이는 0~8, 12, 16, 20, 24, 32, 48, 64바이트 가운데 하나다. 8바이트를 넘는 데이터는 이 일곱 길이 가운데 하나로만 보낼 수 있다.[@bosch-can-fd-1-0-2012] 보낼 데이터가 DLC가 나타내는 데이터 필드 길이보다 짧으면, 남는 바이트를 패딩 값으로 채워 보낸다.[@bosch-m-can-2023][@autosar-cp-sws-candriver-2025] 예를 들어 [[autosar|AUTOSAR]] CAN 드라이버는 보낼 데이터의 길이가 DLC로 나타낼 수 있는 길이와 맞지 않으면, 그보다 큰 DLC 가운데 가장 작은 것으로 보내고 남는 바이트를 설정한 패딩 값으로 채운다.[@autosar-cp-sws-candriver-2025]
+그래서 [[can-fd-frame|CAN FD 프레임]]의 데이터 필드 길이는 0~8, 12, 16, 20, 24, 32, 48, 64바이트 가운데 하나다. 8바이트를 넘는 데이터는 이 일곱 길이 가운데 하나로만 보낼 수 있다.[@bosch-can-fd-1-0-2012] 보낼 데이터가 DLC가 나타내는 데이터 필드 길이보다 짧으면, 남는 바이트를 패딩 값으로 채워 보낸다.[@bosch-m-can-2023][@autosar-cp-sws-candriver-2025] 예를 들어 [[autosar|AUTOSAR]] CAN 드라이버는 보낼 데이터의 길이가 DLC로 나타낼 수 있는 길이와 맞지 않으면, 그 길이보다 긴 데이터 필드를 나타내는 DLC 가운데 가장 작은 것으로 보내고 남는 바이트를 설정한 패딩 값으로 채운다.[@autosar-cp-sws-candriver-2025]
 
 CAN FD 포맷 프레임에서는 DLC가 [[can-crc|CRC]]의 길이도 고른다. 데이터 필드의 바이트 수 $n$이 $n \le 16$이면 17비트 CRC를, $n > 16$이면 21비트 CRC를 쓴다.[@bosch-can-fd-1-0-2012]
 

@@ -19,7 +19,7 @@ CAN FD 프레임은 중재 구간(arbitration phase)과 데이터 구간(data ph
 
 ISO 11898-1:2024는 **중재 구간**을 공칭 비트 시간을 쓰는 구간으로, **데이터 구간**을 데이터 비트 시간을 쓰는 구간으로 정의한다.[@iso-11898-1-obp-2024]
 
-Bosch CAN FD 1.0은 BRS 비트와 CRC 구분자 비트에서 비트율을 그 샘플 포인트 바로 뒤에 바꾸게 정한다. 그래서 이 두 비트의 길이는 공칭 비트와 데이터 비트의 중간이 되고, BRS 비트와 CRC 구분자 비트의 길이를 $t_\mathrm{BRS}$, $t_\mathrm{CRCdel}$, 공칭 비트 시간과 데이터 비트 시간을 $t_\mathrm{bit,N}$, $t_\mathrm{bit,D}$라 하면 $t_\mathrm{BRS} + t_\mathrm{CRCdel} = t_\mathrm{bit,N} + t_\mathrm{bit,D}$여야 한다.[@bosch-can-fd-1-0-2012]
+Bosch CAN FD 1.0은 BRS 비트와 CRC 구분자 비트에서 비트율을 그 샘플 포인트 바로 뒤에 바꾸게 정한다. 그래서 이 두 비트는 저마다 길이가 공칭 비트와 데이터 비트의 중간이 되고, BRS 비트와 CRC 구분자 비트의 길이를 $t_\mathrm{BRS}$, $t_\mathrm{CRCdel}$, 공칭 비트 시간과 데이터 비트 시간을 $t_\mathrm{bit,N}$, $t_\mathrm{bit,D}$라 하면 $t_\mathrm{BRS} + t_\mathrm{CRCdel} = t_\mathrm{bit,N} + t_\mathrm{bit,D}$여야 한다.[@bosch-can-fd-1-0-2012]
 
 ![[diagrams/can-fd-bit-rate-phases.svg]]
 
@@ -27,7 +27,7 @@ Bosch CAN FD 1.0은 BRS 비트와 CRC 구분자 비트에서 비트율을 그 �
 
 두 구간의 비트 타이밍은 서로 다른 설정 레지스터 묶음으로 따로 설정한다.[@bosch-can-fd-1-0-2012] 설정 방법은 [[can-bit-timing#CAN FD와의 차이|CAN 비트 타이밍]]에서 다룬다.
 
-CAN FD의 높은 비트율을 쓰려면 [[can-transceiver|트랜시버]]가 loop delay symmetry를 보장해야 한다.[@microchip-mcp2561-2fd-2014] CAN FD용 트랜시버 데이터시트는 지원하는 CAN FD 비트율을 명시한다. 예를 들어 TCAN1042-Q1은 2 Mbit/s, G 옵션은 5 Mbit/s다.[@ti-tcan1042-q1-2021]
+CAN FD의 높은 비트율을 쓰려면 [[can-transceiver|트랜시버]]가 loop delay symmetry를 보장해야 한다.[@microchip-mcp2561-2fd-2014] CAN FD용 트랜시버 데이터시트는 지원하는 CAN FD 비트율을 명시한다. 예를 들어 TCAN1042-Q1은 2 Mbit/s, G 변종은 5 Mbit/s다.[@ti-tcan1042-q1-2021]
 
 ## 데이터 필드
 

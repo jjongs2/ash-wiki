@@ -16,7 +16,7 @@
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="320" y="43">PduR</text>
     <text x="210" y="133">J1939Tp</text>
-    <text x="320" y="223">LSduR</text>
+    <text x="320" y="223">L-SDU Router</text>
     <text x="320" y="313">CanIf</text>
   </g>
 

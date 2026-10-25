@@ -43,9 +43,9 @@ Bosch CAN 2.0 규격은 SYNC_SEG를 1 tq로 두고, PROP_SEG와 PHASE_SEG1을 �
 
 ## 컨트롤러 설정
 
-MCP2515는 프리스케일러(BRP, Baud Rate Prescaler)와 세그먼트 길이를 설정 레지스터 `CNF1`\~`CNF3`로 받는다. PROP_SEG, PHASE_SEG1, PHASE_SEG2의 길이는 각각 `PRSEG`, `PHSEG1`, `PHSEG2` 필드로 따로 설정한다. `PHSEG2`는 `BTLMODE`가 1일 때만 쓰이고, 0이면 PHASE_SEG2는 PHASE_SEG1과 정보 처리 시간 가운데 큰 값이 된다. MCP2515는 `CNF2`의 `SAM` 비트가 1이면 샘플 포인트에서 버스를 세 번 샘플링하고, 0이면 한 번 샘플링한다.[@microchip-mcp2515-2019]
+[[can-controller#제품 예|MCP2515]]는 프리스케일러(BRP, Baud Rate Prescaler)와 세그먼트 길이를 설정 레지스터 `CNF1`\~`CNF3`로 받는다. PROP_SEG, PHASE_SEG1, PHASE_SEG2의 길이는 각각 `PRSEG`, `PHSEG1`, `PHSEG2` 필드로 따로 설정한다. `PHSEG2`는 `BTLMODE`가 1일 때만 쓰이고, 0이면 PHASE_SEG2는 PHASE_SEG1과 정보 처리 시간 가운데 큰 값이 된다. MCP2515는 `CNF2`의 `SAM` 비트가 1이면 샘플 포인트에서 버스를 세 번 샘플링하고, 0이면 한 번 샘플링한다.[@microchip-mcp2515-2019]
 
-STM32F10x의 bxCAN은 `CAN_BTR` 레지스터로 프리스케일러(`BRP`)를 받고, PROP_SEG와 PHASE_SEG1을 합친 `BS1`과 PHASE_SEG2에 해당하는 `BS2`를 설정한다.[@st-rm0008-2021]
+STM32F10x의 [[can#노드 구성|bxCAN]]은 `CAN_BTR` 레지스터로 프리스케일러(`BRP`)를 받고, PROP_SEG와 PHASE_SEG1을 합친 `BS1`과 PHASE_SEG2에 해당하는 `BS2`를 설정한다.[@st-rm0008-2021]
 
 ![[diagrams/can-bit-timing-register-fields.svg]]
 
@@ -67,6 +67,6 @@ Bosch CAN FD 1.0은 두 비트율에 프리스케일러 값 $m_\mathrm{N}$(공�
 
 데이터 구간에서는 송신 노드가 자기 비트를 [[can-transceiver|트랜시버]]를 거쳐 되읽는 지연이 비트 시간보다 길어질 수 있다. 그래서 트랜시버 지연 보상(TDC, Transceiver Delay Compensation)이 측정한 지연에 오프셋을 더해 보조 샘플 포인트(SSP, Secondary Sample Point)를 두고, 그 시점에 비트를 비교한다.[@microchip-mcp25xxfd-frm-2020][@bosch-can-fd-1-0-2012]
 
-Bosch CAN FD 1.0은 트랜시버 지연 보상을 CAN FD 노드가 지원해야 하는 선택 기능으로 두고, 데이터 구간의 송신 노드만 쓰게 정한다. 이 기능을 쓰는 송신 노드는 샘플 포인트에서 받은 비트 값을 무시한다. 보상할 지연은 송신하는 프레임마다 EDL 비트에서 r0 비트로 넘어가는 에지에서, 보낸 비트의 에지와 받은 비트의 에지 사이로 잰다. 보조 샘플 포인트는 잰 지연에 오프셋(예: 데이터 비트 시간의 절반)을 더해 tq 단위로 내림한 자리에 두며, 보낸 비트가 끝난 뒤에 놓일 수도 있다. 보조 샘플 포인트에서 찾은 비트 오류에는 그다음 샘플 포인트에서 대응한다.[@bosch-can-fd-1-0-2012]
+Bosch CAN FD 1.0은 트랜시버 지연 보상을 CAN FD 노드가 지원해야 하는 선택 기능으로 두고, 데이터 구간의 송신 노드만 쓰게 정한다. 이 기능을 쓰는 송신 노드는 샘플 포인트에서 받은 비트 값을 무시한다. 보상할 지연은 송신하는 프레임마다 [[can-fd-frame#포맷 표시 비트|EDL]] 비트에서 [[can-fd-frame#제어 필드|r0]] 비트로 넘어가는 에지에서, 보낸 비트의 에지와 받은 비트의 에지 사이로 잰다. 보조 샘플 포인트는 잰 지연과 오프셋(예: 데이터 비트 시간의 절반)의 합을 tq 단위로 내림한 자리에 두며, 보낸 비트가 끝난 뒤에 놓일 수도 있다. 보조 샘플 포인트에서 찾은 비트 오류에는 그다음 샘플 포인트에서 대응한다.[@bosch-can-fd-1-0-2012]
 
 ![[diagrams/can-fd-transceiver-delay-compensation.svg]]

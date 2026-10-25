@@ -9,7 +9,7 @@ verified: 2026-09-27
 
 [[iso-11898-1|ISO 11898-1]]:2024는 트랜시버를 [[can|CAN]] 노드를 버스에 잇고 [[can-physical-layer|PMA]] 부계층을 구현하는 회로로 정의하고, bus comparator와 bus driver로 이뤄진다고 정한다. bus driver는 디지털 신호를 버스로 보낼 아날로그 신호로 바꾸고, bus comparator는 버스의 아날로그 신호를 디지털 신호로 되돌린다.[@iso-11898-1-obp-2024]
 
-[[iso-11898-2|ISO 11898-2]]:2026은 TXD를 PCS(Physical Coding Sublayer)가 구동해 PMA가 버스 상태에 미치는 작용을 정하는 AUI(Attachment Unit Interface) 포트로, RXD를 버스의 실제 상태를 이진 값으로 PCS에 넘기는 AUI 포트로 정의한다.[@iso-11898-2-obp-2026]
+[[iso-11898-2|ISO 11898-2]]:2026은 TXD와 RXD를 AUI(Attachment Unit Interface) 포트로 정의한다. TXD는 PCS(Physical Coding Sublayer)가 구동하며, PMA가 버스 상태에 미치는 작용을 정한다. RXD는 버스의 실제 상태를 이진 값으로 PCS에 넘긴다.[@iso-11898-2-obp-2026]
 
 ![[diagrams/can-node-bus.svg]]
 
@@ -31,7 +31,7 @@ TJA1462의 루프 지연은 TXD에서 버스까지의 지연과 버스에서 RXD
 
 ![[diagrams/tja1462-loop-delay.svg]]
 
-트랜시버 지연 보상(TDC, Transceiver Delay Compensation)이 없으면, [[can-fd|CAN FD]] 데이터 구간의 비트율은 송신 노드가 자기가 낸 비트를 그 비트의 [[can-bit-timing#샘플 포인트|샘플 포인트]]까지 되받아야 한다는 조건에 묶인다.[@bosch-can-fd-1-0-2012] CAN FD 트랜시버는 데이터 구간의 높은 비트율을 지원하려고 loop delay symmetry를 보증한다.[@microchip-mcp2561-2fd-2014][@nxp-tja1145-2018]
+[[can-bit-timing#CAN FD와의 차이|트랜시버 지연 보상]](TDC, Transceiver Delay Compensation)이 없으면, [[can-fd|CAN FD]] 데이터 구간의 비트율은 송신 노드가 자기가 낸 비트를 그 비트의 [[can-bit-timing#샘플 포인트|샘플 포인트]]까지 되받아야 한다는 조건에 묶인다.[@bosch-can-fd-1-0-2012] CAN FD 트랜시버는 데이터 구간의 높은 비트율을 지원하려고 loop delay symmetry를 보증한다.[@microchip-mcp2561-2fd-2014][@nxp-tja1145-2018]
 
 CAN FD의 데이터 구간에서 TCAN1042는 모든 변종이 2 Mbit/s를, G 변종이 5 Mbit/s를 지원하고[@ti-tcan1042-q1-2021], TJA1042는 데이터 구간에서 5 Mbit/s까지 타이밍을 보증한다.[@nxp-tja1042-2023]
 
@@ -89,4 +89,4 @@ recessive 출력 전압은 고속 트랜시버 TJA1042가 Normal 모드에서 �
 
 ![[diagrams/can-recessive-voltage-hs-ls.svg]]
 
-TJA1055는 dominant에서는 반대로 CAN_H를 CAN_L보다 높게 구동한다.[@nxp-tja1055-2013] TJA1055T로 꾸린 내결함성 CAN 망은 고속 트랜시버와 종단 저항을 단 CAN 도구가 이어지면 두 선 사이에 종단 저항이 생겨, 줄곧 [[can-physical-layer#저속 내결함성 CAN|단선 모드]]로 동작한다.[@nxp-ah0801-2016]
+TJA1055는 dominant에서는 recessive와 반대로 CAN_H를 CAN_L보다 높게 구동한다.[@nxp-tja1055-2013] TJA1055T로 꾸린 내결함성 CAN 망은 고속 트랜시버와 종단 저항을 단 CAN 도구가 이어지면 두 선 사이에 종단 저항이 생겨, 줄곧 [[can-physical-layer#저속 내결함성 CAN|단선 모드]]로 동작한다.[@nxp-ah0801-2016]

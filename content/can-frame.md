@@ -49,7 +49,7 @@ verified: 2026-09-26
 
 데이터 프레임과 리모트 프레임은 앞 프레임이 어떤 종류든 프레임 간 공간으로 앞 프레임과 떨어진다. 오류 프레임과 오버로드 프레임 앞에는 프레임 간 공간이 없다.[@bosch-can-2-0-1991]
 
-프레임 간 공간은 인터미션과 버스 idle로 이루어진다. 앞 메시지를 보낸 노드가 [[can-fault-confinement|error passive]]이면 그 사이에 송신 정지가 더 들어간다. 인터미션은 recessive 3비트이고, 그동안 어느 노드도 데이터 프레임이나 리모트 프레임을 시작할 수 없다.[@bosch-can-2-0-1991]
+프레임 간 공간은 인터미션과 버스 idle로 이루어진다. 앞 메시지를 보낸 노드가 [[can-fault-confinement|error passive]]이면 그 사이에 [[can-fault-confinement#상태마다 할 수 있는 일|송신 정지]]가 더 들어간다. 인터미션은 recessive 3비트이고, 그동안 어느 노드도 데이터 프레임이나 리모트 프레임을 시작할 수 없다.[@bosch-can-2-0-1991]
 
 Bosch CAN 2.0 규격과 Bosch CAN FD 1.0은 인터미션의 셋째 비트에서 찾은 dominant를 SOF로 해석하게 정한다.[@bosch-can-2-0-1991][@bosch-can-fd-1-0-2012] Bosch CAN 2.0 규격은 이때 보낼 메시지가 있는 노드가 SOF를 따로 보내지 않고 수신 노드가 되지도 않은 채, 다음 비트부터 식별자의 첫 비트를 보내게 한다.[@bosch-can-2-0-1991] Bosch CAN FD 1.0은 이 동작을 error active이거나 앞 프레임의 수신 노드였던 노드로 한정한다.[@bosch-can-fd-1-0-2012]
 

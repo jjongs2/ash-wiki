@@ -56,7 +56,7 @@ Bosch의 CAN XL 개요에 따르면 CAN XL 데이터 프레임의 필드는 아�
 
 ![[diagrams/can-xl-frame-fields.svg]]
 
-PCRC와 FCRC의 [[can-crc|CRC]]는 모두 [[hamming-distance|해밍 거리]] 6을 준다. 중재 필드에서는 동적 [[can-bit-stuffing|스터프 비트]]를 넣고, XL 데이터 구간에서는 데이터 10비트마다 스터프 비트 하나를 넣는 고정 스터핑을 쓰며, 그 뒤로는 스터프 비트를 넣지 않는다.[@bosch-can-xl-overview-2023]
+PCRC와 FCRC의 [[can-crc|CRC]]는 모두 [[hamming-distance|해밍 거리]] 6을 준다. 중재 필드에서는 동적 [[can-bit-stuffing|스터프 비트]]를 넣고, XL 데이터 구간에서는 데이터 10비트마다 스터프 비트 하나를 넣는 고정 스터핑을 쓰며, XL 데이터 구간 뒤로는 스터프 비트를 넣지 않는다.[@bosch-can-xl-overview-2023]
 
 CAN XL은 버스 접근 우선순위를 정하는 짧은 11비트 우선순위 ID와 메시지를 식별하는 32비트 ID를 나눈다. 우선순위 ID가 짧아 페이로드가 짧아도 순 비트율이 높고, 메시지 ID는 XL 데이터 구간의 AF에 실린다. AF의 해석은 SDT에 따르고, [[message-addressing|내용 기반 주소 지정]](메시지 ID)과 노드 기반 주소 지정(출발지·목적지 주소)을 모두 지원한다.[@bosch-can-xl-overview-2023]
 
@@ -79,7 +79,7 @@ CAN XL의 중재 구간 비트율 $R_\mathrm{b,N}$은 1 Mbit/s 이하이고, 데
 
 이 개요에 따르면 이 트랜시버들은 모두 CAN XL에 쓸 수 있고 핀이 호환된다.[@bosch-can-xl-overview-2023]
 
-이 개요에 따르면 CAN XL 프로토콜 컨트롤러는 ADS와 DAS 동안 CAN SIC XL 트랜시버에 SIC 모드와 FAST 모드 사이의 전환을 알리고, FAST 모드에서는 [[can-error-frame|오류 프레임]]을 쓸 수 없다.[@bosch-can-xl-overview-2023]
+이 개요에 따르면 CAN XL 프로토콜 컨트롤러는 ADS와 DAS 동안 CAN SIC XL 트랜시버에 SIC 모드와 [[can-transceiver#FAST 모드|FAST 모드]] 사이의 전환을 알리고, FAST 모드에서는 [[can-error-frame|오류 프레임]]을 쓸 수 없다.[@bosch-can-xl-overview-2023]
 
 XS_CAN의 프로토콜 컨트롤러는 클록 160 MHz에서 CAN XL 데이터 구간을 20 Mbit/s까지, CAN FD와 CAN XL의 중재 구간을 1 Mbit/s까지 지원한다.[@bosch-xs-can-2026]
 
