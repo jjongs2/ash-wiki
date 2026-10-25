@@ -15,11 +15,13 @@ verified: 2026-09-27
 - **형식 오류**: CRC 구분자, ACK 구분자, EOF(End of Frame)처럼 모양이 정해진 필드에 허용되지 않는 비트가 있다.
 - **ACK 오류**: 송신 노드가 ACK 슬롯에서 [[dominant-and-recessive|dominant]]를 읽지 못한다.[@bosch-can-2-0-1991]
 
+[[can-frame#데이터 프레임의 필드|SOF]]로 시작해 EOF로 끝나는 데이터 프레임의 필드마다 검사하는 오류는 아래 도해와 같다.[@bosch-can-2-0-1991]
+
 ![[diagrams/can-error-detection-fields.svg]]
 
 ## 비트 오류의 예외
 
-중재 필드에서 recessive를 보내고 dominant를 읽은 것은 [[can-arbitration|중재]]에서 진 것이라 비트 오류가 아니다. ACK 슬롯에서 recessive를 보내고 dominant를 읽은 것도 비트 오류가 아니다. [[can-error-frame#오류 플래그|passive 오류 플래그]]를 보내는 송신 노드가 dominant를 읽은 것도 비트 오류로 보지 않는다.[@bosch-can-2-0-1991]
+중재 필드에서 recessive를 보내고 dominant를 읽은 것은 비트 오류가 아니다. 스터프 비트가 아닌 비트에서는 [[can-arbitration|중재]]에서 진 것이고, recessive 스터프 비트를 보내고 dominant를 읽었으면 송신 노드는 스터프 오류를 찾고 오류 플래그를 낸다. ACK 슬롯에서 recessive를 보내고 dominant를 읽은 것도 비트 오류가 아니다. [[can-error-frame#오류 플래그|passive 오류 플래그]]를 보내는 송신 노드가 dominant를 읽은 것도 비트 오류로 보지 않는다.[@bosch-can-2-0-1991]
 
 ## 오류를 알리는 시점
 
@@ -27,7 +29,7 @@ verified: 2026-09-27
 
 ## 프레임이 유효해지는 시점
 
-송신 노드에게는 EOF 끝까지 오류가 없어야 프레임이 유효하다. 수신 노드에게는 EOF의 마지막 비트 직전까지 오류가 없으면 유효하다. 그래서 수신 노드는 EOF 마지막 비트의 dominant를 형식 오류로 보지 않는다.[@bosch-can-2-0-1991] Bosch CAN FD 1.0에서는 이때 수신 노드가 [[can-overload-frame|오버로드 프레임]]으로 응답한다.[@bosch-can-fd-1-0-2012]
+송신 노드에게는 EOF 끝까지 오류가 없어야 프레임이 유효하다. 수신 노드에게는 EOF의 마지막 비트 직전까지 오류가 없으면 유효하다. 수신 노드는 EOF 마지막 비트의 값으로 형식 오류를 판정하지 않으므로, 이 비트가 dominant여도 프레임은 유효하다.[@bosch-can-2-0-1991] Bosch CAN FD 1.0에서는 이때 수신 노드가 [[can-overload-frame|오버로드 프레임]]으로 응답한다.[@bosch-can-fd-1-0-2012]
 
 ## 전역 오류 신호
 

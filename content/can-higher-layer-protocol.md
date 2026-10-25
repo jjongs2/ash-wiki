@@ -17,7 +17,7 @@ CiA는 가장 중요한 표준화된 HLP로 다음을 든다.[@cia-standardized-
 
 | HLP                              | 바탕                                   | 쓰임                  |
 | -------------------------------- | -------------------------------------- | --------------------- |
-| [[canopen\|CANopen]] CC(CiA 301) | CAN CC(classic)                        | 범용 내장 실시간 제어 |
+| [[canopen\|CANopen]] CC(CiA 301) | CAN CC(CAN classic)                    | 범용 내장 실시간 제어 |
 | CANopen FD(CiA 1301)             | [[can-fd\|CAN FD]], [[can-xl\|CAN XL]] | 내장 실시간 제어      |
 | [[j1939\|J1939]] 응용 프로파일   | CAN CC, CAN FD                         | 여러 분야             |
 | DeviceNet 프로파일               | CAN CC                                 | 공장 자동화           |

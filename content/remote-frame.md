@@ -19,7 +19,7 @@ verified: 2026-09-26
 
 리모트 프레임에는 데이터 필드가 없지만 제어 필드와 그 안의 [[data-length-code|DLC]]는 있다. DLC 값은 요청 대상인 데이터 프레임의 DLC다.[@bosch-can-2-0-1991]
 
-Bosch CAN FD 1.0은 리모트 프레임의 DLC를 0\~15 범위의 어느 값으로도 둘 수 있게 하고, 그 값이 대응하는 데이터 프레임의 DLC여야 한다고 정한다.[@bosch-can-fd-1-0-2012]
+Bosch CAN 2.0 규격은 리모트 프레임의 DLC를 0\~8 범위에 둔다.[@bosch-can-2-0-1991] Bosch CAN FD 1.0은 리모트 프레임의 DLC를 0\~15 범위의 어느 값으로도 둘 수 있게 하고, 그 값이 대응하는 데이터 프레임의 DLC여야 한다고 정한다. classical 포맷의 데이터 프레임에서 DLC 9\~15는 모두 [[data-length-code#CAN FD|데이터 8바이트]]를 뜻한다.[@bosch-can-fd-1-0-2012]
 
 ## 중재
 

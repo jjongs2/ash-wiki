@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-06
 ---
 
-**CANopen**은 [[can|CAN]] 기반 통신 시스템으로, [[can-higher-layer-protocol|상위 계층 프로토콜]]과 프로파일 규격으로 이뤄진다. CAN CC(classic)를 바탕으로 한 CANopen CC와, 그 뒤에 [[can-fd|CAN FD]]를 바탕으로 만든 CANopen FD가 있다.[@cia-canopen-2026] CANopen CC는 CiA 301이, CANopen FD는 CiA 1301이 정한다. CiA에 따르면 CANopen CC는 EN 50325-4로 국제 표준이 되었다.[@cia-standardized-hlp-2026]
+**CANopen**은 [[can|CAN]] 기반 통신 시스템으로, [[can-higher-layer-protocol|상위 계층 프로토콜]]과 프로파일 규격으로 이뤄진다. CAN CC(CAN classic)를 바탕으로 한 CANopen CC와, 그 뒤에 [[can-fd|CAN FD]]를 바탕으로 만든 CANopen FD가 있다.[@cia-canopen-2026] CANopen CC는 CiA 301이, CANopen FD는 CiA 1301이 정한다. CiA에 따르면 CANopen CC는 EN 50325-4로 표준화되었다.[@cia-standardized-hlp-2026]
 
 CANopen CC는 처음에 핸들링 시스템 같은 동작 중심의 기계 제어용으로 설계되었고, 2026년 10월 기준 의료 장비, 비도로 차량, 선박 전자 장비, 철도, 빌딩 자동화 등에 쓰인다.[@cia-canopen-2026]
 
@@ -29,7 +29,7 @@ CiA 301 version 4.2.0은 CANopen CC의 프로토콜로 SDO(Service Data Object),
 
 **PDO**는 우선순위가 높은 제어·상태 정보를 브로드캐스트하는 데 쓴다. CANopen CC의 PDO는 CAN 프레임 하나로 응용 데이터만 8바이트까지 나른다. PDO는 장치 내부 이벤트나 타이머, 리모트 요청, SYNC(Synchronization) 메시지 수신에 맞춘 주기·비주기 동기 송신으로 보낸다. PDO에 어떤 응용 객체를 어떤 순서와 길이로 싣는지는 PDO 매핑이 정하고, 매핑은 정적, 가변(NMT pre-operational 상태에서 바꿈), 동적(operational 상태에서도 바꿈) 세 가지다.[@cia-pdo-protocol-2026]
 
-NMT 상태 기계는 모든 CANopen CC 장치가 지원해야 하고, 초기화, pre-operational, operational, stopped 상태로 이뤄진다. 장치는 초기화를 마치면 boot-up 메시지를 보내고 pre-operational 상태로 넘어간다. pre-operational 상태에서는 SDO로 통신할 수 있지만 PDO는 operational 상태에서만 쓸 수 있고, stopped 상태의 장치는 NMT 명령에만 반응한다. NMT 프로토콜은 활성 NMT manager가 보내고, 데이터 2바이트짜리 프레임 하나에 명령 지정자와 대상 장치의 node-ID를 싣는다. NMT 프로토콜을 받은 장치는 명령받은 NMT 상태로 넘어가고, node-ID가 0이면 모든 노드가 명령을 따른다.[@cia-network-management-2026]
+NMT 상태 기계는 모든 CANopen CC 장치가 지원해야 하고, 초기화, pre-operational, operational, stopped 상태로 이뤄진다. 장치는 초기화를 마치면 boot-up 메시지를 보내고 pre-operational 상태로 넘어간다. pre-operational 상태에서는 SDO로 통신할 수 있지만 PDO는 operational 상태에서만 쓸 수 있다. stopped 상태의 장치는 받은 NMT 명령에만 반응하지만, 오류 제어 프로토콜(heartbeat 등)은 계속 지원해 현재 NMT 상태를 알린다.[@cia-error-control-protocols-2026] NMT 프로토콜은 활성 NMT manager가 보내고, 데이터 2바이트짜리 프레임 하나에 명령 지정자와 대상 장치의 node-ID를 싣는다. NMT 프로토콜을 받은 장치는 명령받은 NMT 상태로 넘어가고, node-ID가 0이면 모든 노드가 명령을 따른다.[@cia-network-management-2026]
 
 ![[diagrams/canopen-nmt-state-machine.svg]]
 
@@ -47,8 +47,6 @@ NMT 상태 기계는 모든 CANopen CC 장치가 지원해야 하고, 초기화,
 | TIME                                              | 기본값 `100h`[@cia-special-function-protocols-2026]                 |
 | 오류 제어(heartbeat, node/life guarding, boot-up) | 감시받는 장치의 `700h` + node-ID[@cia-error-control-protocols-2026] |
 
-CiA는 리모트 프레임을 아예 쓰지 않기를 권한다.[@cia-canopen-history-2026]
-
 ## 프로파일
 
 CANopen 프로파일은 PDO에 매핑할 프로세스 데이터, SDO로 접근하는 설정 파라미터, EMCY나 SDO로 얻는 진단 정보를 정하고, 장치가 구현한 프로파일은 인덱스 `1000h`의 장치 종류 파라미터가 알려 준다.[@cia-canopen-profiles-2026]
@@ -59,7 +57,7 @@ CANopen 프로파일은 PDO에 매핑할 프로세스 데이터, SDO로 접근�
 
 ## 역사
 
-CiA는 1994년 11월에 첫 CANopen 규격인 CiA 301을 펴냈다. 이 규격은 유럽 공동체의 연구 프로그램 Esprit의 ASPIC(Automation and Control Systems for Production Units using an Installation Bus Concept) 프로젝트에서 Bosch가 이끈 기업과 연구 기관들이 CiA의 CAL(CAN Application Layer)을 바탕으로 만들었고, 첫판부터 PDO, SDO, PDO의 동기 송신, NMT, emergency 메시지를 정했다. 제품에 쓰인 첫 판은 1996년부터 1999년까지 유효했던 version 3.0이다.[@cia-canopen-history-2026]
+CiA는 1994년 11월에 첫 CANopen 규격인 CiA 301을 펴냈다. 이 규격은 유럽 공동체의 연구 프로그램 Esprit의 ASPIC(Automation and Control Systems for Production Units using an Installation Bus Concept) 프로젝트에서 Bosch가 이끈 기업과 연구 기관들이 CiA의 CAL(CAN Application Layer)을 바탕으로 만들었고, 첫판부터 PDO, SDO, PDO의 동기 송신, NMT, emergency 메시지를 정했다. 제품에 쓰인 첫 판은 1996년부터 1999년까지 유효했던 version 3.0이다. 초기 CANopen 네트워크는 node guarding뿐 아니라 리모트 요청으로 보내는 PDO에도 리모트 프레임을 썼다. CiA는 리모트 프레임을 아예 쓰지 않기를 권한다.[@cia-canopen-history-2026]
 
 CiA는 CANopen에서 master/slave라는 말 대신 NMT manager와 NMT server라는 말을 쓴다.[@cia-can-knowledge-2026]
 

@@ -79,13 +79,13 @@ CAN XL의 중재 구간 비트율 $R_\mathrm{b,N}$은 1 Mbit/s 이하이고, 데
 
 이 개요에 따르면 이 트랜시버들은 모두 CAN XL에 쓸 수 있고 핀이 호환된다.[@bosch-can-xl-overview-2023]
 
-이 개요에 따르면 CAN XL 프로토콜 컨트롤러는 ADS와 DAS 동안 CAN SIC XL 트랜시버에 SIC 모드와 [[can-transceiver#FAST 모드|FAST 모드]] 사이의 전환을 알리고, FAST 모드에서는 [[can-error-frame|오류 프레임]]을 쓸 수 없다.[@bosch-can-xl-overview-2023]
+이 개요에 따르면 CAN XL 프로토콜 컨트롤러는 ADS와 DAS 동안 CAN SIC XL 트랜시버에 SIC 모드와 [[can-transceiver#FAST 모드|FAST 모드]] 사이의 전환을 알리고, FAST 모드에서는 [[can-error-frame|오류 프레임]]을 쓸 수 없다. 오류 신호를 켠 CAN XL은 CAN SIC XL 트랜시버를 모드 전환 없이 쓰고, 오류 신호를 끈 CAN XL만 FAST 모드로 바꿔 가며 쓴다.[@bosch-can-xl-overview-2023]
 
 XS_CAN의 프로토콜 컨트롤러는 클록 160 MHz에서 CAN XL 데이터 구간을 20 Mbit/s까지, CAN FD와 CAN XL의 중재 구간을 1 Mbit/s까지 지원한다.[@bosch-xs-can-2026]
 
 ## 제품 예
 
-Bosch X_CAN은 CAN XL을 지원하는 CAN 통신 컨트롤러 IP(Intellectual Property)로, SoC(System on Chip)에 넣을 수 있다. ISO 11898-1:2015와 CiA 610-1을 따르고, classical CAN은 8바이트·1 Mbit/s까지, CAN FD는 64바이트·8 Mbit/s까지, CAN XL은 2048바이트·20 Mbit/s까지 지원한다. 슬롯을 32개까지 둘 수 있는 우선순위 큐 1개와, 메시지를 1024개까지 담는 송신 FIFO 큐와 수신 FIFO 큐를 8개씩 두고, 송신 필터 요소는 16개, 수신 필터 요소는 255개까지 둔다.[@bosch-x-can-2024]
+Bosch X_CAN은 CAN XL을 지원하는 CAN 통신 컨트롤러 IP(Intellectual Property)로, SoC(System on Chip)에 넣을 수 있다. ISO 11898-1:2015와 CiA 610-1을 따르고, classical CAN은 8바이트·1 Mbit/s까지, CAN FD는 64바이트·8 Mbit/s까지, CAN XL은 2048바이트·20 Mbit/s까지 지원한다. 슬롯을 32개까지 둘 수 있는 우선순위 큐 1개와, 큐마다 메시지를 1024개까지 담는 송신 FIFO 큐와 수신 FIFO 큐를 8개씩 두고, 송신 필터 요소는 16개, 수신 필터 요소는 255개까지 둔다.[@bosch-x-can-2024]
 
 Bosch XS_CAN은 ISO 11898-1:2024에 따라 classical CAN, CAN FD, CAN XL로 통신하는 CAN 컨트롤러 IP이고, 버스에 이으려면 트랜시버가 따로 필요하다. 송신 FIFO 큐 1개, 수신 FIFO 큐 2개, 슬롯을 32개까지 둘 수 있는 송신 우선순위 큐 1개를 두고, 수신 필터 요소는 127개까지 둔다.[@bosch-xs-can-2026]
 

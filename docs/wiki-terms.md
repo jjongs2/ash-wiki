@@ -18,6 +18,7 @@
 - aperiodic: 비주기 (#350). 합성어 포함. 예: aperiodic 태스크, aperiodic server. CANopen PDO의 주기·비주기 송신처럼 통신의 송신 방식은 예외
 - ASPICE: Automotive SPICE, A-SPICE (#231). 판을 붙이면 `ASPICE 4.1` 꼴. 정식 이름은 `automotive-spice` 머리말의 풀이에만, A-SPICE는 그 페이지의 alias로만. 문서 이름 "Automotive SPICE for Cybersecurity"와 슬러그는 예외
 - baud: 보드레이트 (#496). 기호는 Bd. 음차 "보"도 쓰지 않는다. "Baud Rate Prescaler" 같은 이름은 그대로
+- CAN CC 풀이 CAN classic: CAN CC(CC: classic), CAN CC(Classical CAN), CAN classic(CC) (#564)
 - cascading failure: 연쇄 고장 (#291)
 - CDD 풀이 Complex Driver: Complex Device Driver (#440). 근거는 SWS BSWGeneral R25-11 [SWS_BSW_91001]과 FO TR Glossary R25-11 4.72. SW-C 종류 이름 "Complex Device Driver"(`autosar-software-component`)는 예외
 - channel: 채널 (#257). MCAL I/O 드라이버(ADC·DIO·ICU·OCU·PWM)의 channel일 때. 그 밖의 채널은 "채널". 예: ComM·NM의 채널, FlexRay 채널
@@ -35,6 +36,7 @@
 - dominant: 도미넌트 (#165). 조사는 원어의 발음대로. 예: "dominant가"
 - EdDSA 풀이 Edwards-Curve Digital Signature Algorithm: Edwards-curve Digital Signature Algorithm, Edwards Curve Digital Signature Algorithm (#528)
 - edge: 에지 (#257). AUTOSAR 드라이버가 설정과 API로 다루는 edge일 때. 그 밖의 신호 에지는 "에지". 예: CAN 동기화의 에지
+- event-triggered: 이벤트 트리거 (#564)
 - failure: 실패, 고장, 장애 (#291). 합성어 포함. 예: dependent failure, failure mode, target failure measure. 동사("고장 나다", "실패하다"), 테스트의 pass/fail, 일반 낱말 "실패"는 그대로. ISTQB의 error·defect와 같은 문장, 곧 "실수"나 "결함"과 같은 문장에서는 "장애", 페이지에서 처음 쓸 때 "장애(failure)"
 - false positive: 거짓 양성 (#291). ISTQB 용어 이름은 false-positive result
 - fault seeding: 결함 심기 (#385)
@@ -60,6 +62,7 @@
 - safety case: - (#396)
 - syntax testing: 구문 테스트, 문법 테스트 (#385). "구문 테스트"는 statement testing
 - TDC 풀이 Transceiver Delay Compensation: Transmitter Delay Compensation (#311)
+- time-triggered: 시간 트리거 (#564)
 - Timing Analysis and Design 보고서: AUTOSAR 타이밍 분석 보고서 (#257). 본문에서 AUTOSAR 문서를 부르는 이름
 - Timing Extensions 명세: 타이밍 확장 명세 (#257). 본문에서 AUTOSAR 문서를 부르는 이름. "명세" 없이 쓴 "Timing Extensions"도 그대로
 - USART 풀이 Universal Synchronous/Asynchronous Receiver/Transmitter: Universal Synchronous and Asynchronous Receiver Transmitter (#196)

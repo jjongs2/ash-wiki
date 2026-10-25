@@ -14,7 +14,7 @@ verified: 2026-09-26
 - **active 오류 플래그**: [[dominant-and-recessive|dominant]] 6비트다. [[can-fault-confinement|error active]] 노드가 낸다.
 - **passive 오류 플래그**: recessive 6비트다. error passive 노드가 낸다.[@bosch-can-2-0-1991]
 
-active 오류 플래그의 모양은 SOF(Start of Frame)부터 [[can-crc|CRC]] 구분자까지 적용되는 [[can-bit-stuffing|비트 스터핑]] 규칙을 어기거나, [[can-acknowledgement|ACK]] 필드나 EOF(End of Frame)의 고정된 모양을 깨뜨린다. 그래서 다른 노드도 모두 오류를 찾고 자기 오류 플래그를 낸다. 여러 노드의 플래그가 포개지므로, 버스에 나타나는 dominant 열은 짧게는 6비트, 길게는 12비트가 된다.[@bosch-can-2-0-1991]
+active 오류 플래그의 모양은 SOF(Start of Frame)부터 [[can-crc|CRC]] 시퀀스까지 적용되는 [[can-bit-stuffing|비트 스터핑]] 규칙을 어기거나, [[can-acknowledgement|ACK]] 필드나 EOF(End of Frame)의 고정된 모양을 깨뜨린다. 그래서 다른 노드도 모두 오류를 찾고 자기 오류 플래그를 낸다. 여러 노드의 플래그가 포개지므로, 버스에 나타나는 dominant 열은 짧게는 6비트, 길게는 12비트가 된다.[@bosch-can-2-0-1991]
 
 passive 오류 플래그는 recessive라 다른 노드의 송신을 덮어쓰지 못하고, 오히려 다른 노드의 dominant 비트에 덮어쓰인다. error passive 노드는 passive 오류 플래그를 내기 시작한 비트부터 세어, 같은 값의 비트 6개가 이어지는 것을 보면 플래그를 끝낸다.[@bosch-can-2-0-1991]
 
@@ -30,7 +30,7 @@ error passive 수신 노드에 국부 오류가 있으면, error passive 노드�
 
 오류 프레임 뒤에는 프레임 간 공간이나 오버로드 프레임이 온다. 다음 [[can-frame|데이터 프레임]]이나 [[remote-frame|리모트 프레임]]은 앞 프레임이 무엇이든 프레임 간 공간을 두고 떨어지며, 프레임 간 공간은 recessive 3비트의 인터미션으로 시작한다.[@bosch-can-2-0-1991]
 
-오류로 깨진 메시지는 [[can-controller#자동 재전송|자동으로 다시 보내진다]]. 직전 메시지를 보낸 노드가 error passive이면 인터미션 뒤에 recessive 8비트를 더 내고 나서야 다음 송신을 시작한다(송신 정지).[@bosch-can-2-0-1991]
+오류로 깨진 메시지는 [[can-controller#자동 재전송|자동으로 다시 보내진다]]. 직전 메시지를 보낸 노드가 error passive이면, 그 메시지가 오류로 깨졌든 아니든 인터미션 뒤에 recessive 8비트를 더 내고 나서야 다음 송신을 시작한다(송신 정지).[@bosch-can-2-0-1991]
 
 ## 오버로드 프레임과의 차이
 
