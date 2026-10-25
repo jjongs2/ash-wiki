@@ -7,7 +7,7 @@ verified: 2026-09-29
 
 **직렬 전송**(serial transmission)은 문자 같은 데이터 단위를 이루는 신호 요소를 한 전송 채널로 차례로 보내는 방식이다.[@iso-iec-2382-obp-2015][@iec-60050-704-16-27-1993] 이와 달리 병렬 전송은 신호 요소를 따로 떨어진 여러 전송 채널로 동시에 보낸다.[@iso-iec-2382-obp-2015] IEC 60050은 병렬 전송을 신호 요소 묶음을 그 수만큼의 병렬 경로로 동시에 보내는 방식으로 정의한다.[@iec-60050-704-16-28-1993]
 
-[[can|CAN]]은 직렬 통신 프로토콜이다.[@bosch-can-2-0-1991] UART(Universal Asynchronous Receiver/Transmitter)는 비동기 직렬 통신을 하고[@ti-tl16c550d-2008][@st-rm0008-2021], SPI(Serial Peripheral Interface)는 동기 직렬 통신을 한다.[@st-rm0008-2021][@microchip-atmega328p-2020] I2C는 직렬로 데이터를 보내며, 그 이름은 Inter-IC 버스에서 왔다.[@nxp-um10204-2021] TI의 TMS570LS31x/21x 기술 참조 매뉴얼에 따르면 [[flexray|FlexRay]]는 직렬 통신 프로토콜이다.[@ti-spnu499c-2018] [[ethernet|이더넷]]의 MAC(Medium Access Control) 부계층은 물리 계층에 직렬 비트 스트림을 넘긴다.[@ieee-802-3-2022]
+[[can|CAN]]은 직렬 통신 프로토콜이다.[@bosch-can-2-0-1991] UART(Universal Asynchronous Receiver/Transmitter)는 비동기 직렬 통신을 하고[@ti-tl16c550d-2008][@st-rm0008-2021], SPI(Serial Peripheral Interface)는 동기 직렬 통신을 한다.[@st-rm0008-2021][@microchip-atmega328p-2020] I2C는 직렬로 데이터를 보내며, 그 이름은 Inter-IC 버스에서 왔다.[@nxp-um10204-2021] TI의 TMS570LS31x/21x 기술 참조 매뉴얼에 따르면 [[flexray|FlexRay]]는 직렬 통신 프로토콜이다.[@ti-spnu499c-2018] [[ethernet|이더넷]]의 MAC(Medium Access Control) [[osi-model#일곱 계층|부계층]]은 물리 계층에 직렬 비트 스트림을 넘긴다.[@ieee-802-3-2022]
 
 ## 비트율
 
