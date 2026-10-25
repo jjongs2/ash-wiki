@@ -166,6 +166,16 @@ describe("iso", () => {
     assert.deepStrictEqual(cited.keys, [])
   })
 
+  test("머리에 /가 있는 공동 표준(ISO/IEC)의 추보도 잡는다", async () => {
+    const { keys } = await run(
+      iso,
+      [isoEntry("iso-iec-18033-4-2011", "ISO/IEC 18033-4:2011 Encryption algorithms — Part 4")],
+      [],
+      context(),
+    )
+    assert.deepStrictEqual(keys, ["ISO/IEC 18033-4 | supplement | ISO/IEC 18033-4:2011/Amd 1:2020"])
+  })
+
   test("시리즈 페이지의 edition 연도 뒤에 발행된 부를 새 부로 잡는다", async () => {
     // 2026-10-24에는 ISO/IEC/IEEE 29119-8이 60.00(발행 준비)이다. 발행된 것으로 바꿔 넣는다.
     const text = fs

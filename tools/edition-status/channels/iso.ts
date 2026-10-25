@@ -66,8 +66,10 @@ class IsoData {
         )
       this.byId.set(record.id, record)
       this.byReference.set(normalize(record.reference), record)
+      // 추보는 판의 참조 뒤에 붙는다. 공동 표준의 머리(ISO/IEC)에도 /가 있어, 추보 표시 앞에서 자른다.
+      // 예: ISO/IEC 18033-4:2011/Amd 1:2020 → ISO/IEC 18033-4:2011
       if (record.supplementType) {
-        const base = normalize(record.reference.replace(/\/.*$/, ""))
+        const base = normalize(record.reference.replace(/\/(?:Amd|Cor|Add|Suppl|Ext)\b.*$/, ""))
         this.supplementsByBase.set(base, [...(this.supplementsByBase.get(base) ?? []), record])
       }
     }
