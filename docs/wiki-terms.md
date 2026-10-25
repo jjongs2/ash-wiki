@@ -13,7 +13,7 @@
 
 줄은 쓰는 표기의 가나다순으로 둔다. 라틴 문자는 한글보다 앞에 두고 대소문자를 가리지 않으며, 기호와 공백은 글자보다 앞에 둔다. 결정을 더하는 PR끼리 같은 줄을 고치지 않게 하려는 꼴이다.
 
-- (informative): (참고) (#566). 표준의 informative Annex와 절. 꾸밈말 꼴도 같다. 예: "informative Annex로". 원문이 다른 말로 적으면 그 말. 예: 원문이 non-normative라 적은 장은 "(non-normative)". 조사는 괄호 앞의 Annex 이름이나 절 번호에 붙인다. 예: "Annex U(informative)는"
+- (informative): (참고), 참고 Annex (#566). 표준의 informative Annex와 절. 꾸밈말 꼴도 같다. 예: "informative Annex로". 원문이 다른 말로 적으면 그 말. 예: 원문이 non-normative라 적은 장은 "(non-normative)". 조사는 괄호 앞의 Annex 이름이나 절 번호에 맞춘다. 예: "Annex U(informative)는"
 - adaptive update: - (#432)
 - Annex: 부속서, 부록 (#301). 원문이 Annex일 때. 원문이 Appendix인 "부록"은 그대로
 - aperiodic: 비주기 (#350). 합성어 포함. 예: aperiodic 태스크, aperiodic server. CANopen PDO의 주기·비주기 송신처럼 통신의 송신 방식은 예외
@@ -111,6 +111,7 @@
 - 자산: asset (#252)
 - 저속 내결함성 CAN: 저속 결함 허용 CAN (#441). ISO 11898-3의 low-speed, fault-tolerant 매체와 그 트랜시버일 때. 개념 fault tolerance는 "결함 허용"(#223)
 - 전술: tactic (#431). Automotive Threat Matrix의 tactic일 때
+- 정의의 주석: Note (#566). ISO/IEC Directives를 따르는 문서의 용어 항목에 단 주석(Note # to entry)일 때. 번호는 "정의의 둘째 주석"처럼 쓴다. 본문 NOTE와 ASPICE의 BP·GP Note는 그대로
 - 차량 사이버보안: 汽车信息安全 (#431). GB 44495의 汽车信息安全일 때
 - 추적표: 추적 매트릭스, 추적성 매트릭스 (#441). traceability matrix일 때. 합성어 포함. 예: 요구사항 추적표
 - 취약점 공개: vulnerability disclosure (#431)
