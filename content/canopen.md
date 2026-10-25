@@ -29,7 +29,7 @@ CiA 301 version 4.2.0은 CANopen CC의 프로토콜로 SDO(Service Data Object),
 
 **PDO**는 우선순위가 높은 제어·상태 정보를 브로드캐스트하는 데 쓴다. CANopen CC의 PDO는 CAN 프레임 하나로 응용 데이터만 8바이트까지 나른다. PDO는 장치 내부 이벤트나 타이머, 리모트 요청, SYNC(Synchronization) 메시지 수신에 맞춘 주기·비주기 동기 송신으로 보낸다. PDO에 어떤 응용 객체를 어떤 순서와 길이로 싣는지는 PDO 매핑이 정하고, 매핑은 정적, 가변(NMT pre-operational 상태에서 바꿈), 동적(operational 상태에서도 바꿈) 세 가지다.[@cia-pdo-protocol-2026]
 
-NMT 상태 기계는 모든 CANopen CC 장치가 지원해야 하고, 초기화, pre-operational, operational, stopped 상태로 이뤄진다. 장치는 초기화를 마치면 boot-up 메시지를 보내고 pre-operational 상태로 넘어간다. pre-operational 상태에서는 SDO로 통신할 수 있지만 PDO는 operational 상태에서만 쓸 수 있다. stopped 상태의 장치는 받은 NMT 명령에만 반응하지만, 오류 제어 프로토콜은 계속 지원해 현재 NMT 상태를 알린다. NMT 프로토콜은 활성 NMT manager가 보내고, 데이터 2바이트짜리 프레임 하나에 명령 지정자와 대상 장치의 node-ID를 싣는다. NMT 프로토콜을 받은 장치는 명령받은 NMT 상태로 넘어가고, node-ID가 0이면 모든 노드가 명령을 따른다.[@cia-network-management-2026]
+NMT 상태 기계는 모든 CANopen CC 장치가 지원해야 하고, 초기화, pre-operational, operational, stopped 상태로 이뤄진다. 장치는 초기화를 마치면 boot-up 메시지를 보내고 pre-operational 상태로 넘어간다. pre-operational 상태에서는 SDO로 통신할 수 있지만 PDO는 operational 상태에서만 쓸 수 있다. stopped 상태의 장치는 받은 NMT 명령에만 반응하지만, 오류 제어 프로토콜(heartbeat 등)은 계속 지원해 현재 NMT 상태를 알린다.[@cia-error-control-protocols-2026] NMT 프로토콜은 활성 NMT manager가 보내고, 데이터 2바이트짜리 프레임 하나에 명령 지정자와 대상 장치의 node-ID를 싣는다. NMT 프로토콜을 받은 장치는 명령받은 NMT 상태로 넘어가고, node-ID가 0이면 모든 노드가 명령을 따른다.[@cia-network-management-2026]
 
 ![[diagrams/canopen-nmt-state-machine.svg]]
 

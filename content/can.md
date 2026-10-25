@@ -30,7 +30,7 @@ CAN 컨트롤러는 호스트 CPU에 붙어 ISO 11898-1에 따라 통신하고, 
 
 Bosch CAN 2.0 규격은 버스에 잇는 노드 수에 이론적 한계를 두지 않고, 실제 수는 지연 시간과 버스의 전기적 부하가 제한한다고 정한다.[@bosch-can-2-0-1991]
 
-ISO 11898-2:2026은 PMA가 ISO 11898-1의 [[can-xl#물리 부호화와 트랜시버 모드|중재 모드]]일 때의 버스 상태를 [[dominant-and-recessive|dominant]](논리 0)와 recessive(논리 1)로 두고, 두 값을 동시에 내면 버스가 dominant가 된다고 정한다.[@iso-11898-2-obp-2026] 전기적 동작은 [[can-physical-layer|CAN 물리 계층]]에서 다룬다.
+ISO 11898-2:2026은 PMA가 [[can-xl#물리 부호화와 트랜시버 모드|중재 모드]]([[dominant-and-recessive|dominant]] 비트가 recessive 비트를 덮어쓸 수 있는 동작 모드)일 때의 버스 상태를 dominant(논리 0)와 recessive(논리 1)로 두고, 두 값을 동시에 내면 버스가 dominant가 된다고 정한다.[@iso-11898-1-obp-2024][@iso-11898-2-obp-2026] 전기적 동작은 [[can-physical-layer|CAN 물리 계층]]에서 다룬다.
 
 ## 중재
 
