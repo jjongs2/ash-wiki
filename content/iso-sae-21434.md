@@ -49,7 +49,7 @@ ISO/SAE 21434:2021은 도로 차량의 E/E(Electrical/Electronic) 시스템과 �
 - Annex C: [[cybersecurity-interface-agreement|cybersecurity interface agreement]] 템플릿의 예
 - Annex D: 사이버보안 관련성(cybersecurity relevance)을 판단하는 방법과 기준의 예
 - Annex E: CAL(cybersecurity assurance level)
-- Annex F: [[threat-analysis-and-risk-assessment#ISO/SAE 21434의 TARA 방법|impact rating]] 지침
+- Annex F: impact rating 지침
 - Annex G: [[attack-feasibility-rating|attack feasibility rating]] 지침
 - Annex H: 헤드램프 시스템에 TARA 방법을 적용한 예[@iso-sae-21434-obp-2021]
 
