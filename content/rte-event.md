@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**RTE 이벤트**(RTEEvent)는 [[autosar-rte|RTE]]가 [[runnable-entity|runnable]]을 시작하는 계기다. RTE만이 runnable의 실행을 촉발하며, 여러 RTE 이벤트에 응해 촉발한다.[@autosar-cp-sws-rte-2025] RTE 이벤트는 SW-C의 [[autosar-software-component#Internal behavior|internal behavior]]에 속하며, 자신이 일어나는 계기와 일어났을 때 시작할 runnable을 정한다. RTE 이벤트가 가리키는 runnable은 많아야 하나이고, 한 runnable은 여러 RTE 이벤트로 시작될 수 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+**RTE 이벤트**(RTEEvent)는 [[autosar-rte|RTE]]가 [[runnable-entity|runnable]]을 시작하는 계기다. RTE만이 runnable의 실행을 촉발하며, 여러 RTE 이벤트에 응해 촉발한다.[@autosar-cp-sws-rte-2025] RTE 이벤트는 SW-C의 [[autosar-software-component#Internal behavior|internal behavior]]에 속하며, 자신이 일어나는 계기와 일어났을 때 시작할 runnable을 정한다. 가리키는 runnable은 많아야 하나이고, 한 runnable은 여러 RTE 이벤트로 시작될 수 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ## 종류
 

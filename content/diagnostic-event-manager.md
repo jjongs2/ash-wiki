@@ -30,7 +30,7 @@ DTC는 진단 테스터에 보이는 고유 식별자로, Dem의 진단 이벤�
 
 ## Freeze frame
 
-Event related data는 이벤트가 생길 때 함께 저장하는 센서 값, 시각, 주행 거리 같은 추가 데이터로, [[iso-14229-1|ISO 14229-1]]에 따라 snapshot data(freeze frame)와 [[autosar-diagnostic-management#이벤트 메모리|extended data]]로 나뉜다. 어느 데이터를 몇 벌 저장할지는 OEM과 고장에 따라 크게 달라 설정으로 정하고, 데이터는 SW-C나 다른 BSW 모듈이 준다. Dem은 설정된 freeze frame을 이벤트별로 저장하고, freeze frame 레코드 하나에 설정된 DID(Data Identifier)를 하나 이상 담는다. 배출과 무관한 freeze frame은 이벤트마다 설정하고 레코드 번호도 그 이벤트 안에서만 유일하다. [[on-board-diagnostics|배출 관련]] freeze frame은 ECU 전체에 공통으로 설정하고, 그 레코드는 이벤트마다 번호 `0x00`으로 가리킨다.[@autosar-cp-sws-diagnosticeventmanager-2025]
+Event related data는 이벤트가 생길 때 함께 저장하는 센서 값, 시각, 주행 거리 같은 추가 데이터로, [[iso-14229-1|ISO 14229-1]]에 따라 snapshot data(freeze frame)와 [[autosar-diagnostic-management#이벤트 메모리|extended data]]로 나뉜다. 어느 데이터를 몇 벌 저장할지는 OEM과 고장에 따라 크게 달라 설정으로 정하고, 데이터는 SW-C나 다른 BSW 모듈이 준다. Dem은 설정된 freeze frame을 이벤트별로 저장하고, freeze frame 레코드 하나에 설정된 DID(Data Identifier)를 하나 이상 담는다. 배출과 무관한 freeze frame은 이벤트마다 설정하고 레코드 번호도 그 이벤트 안에서만 유일하다. 배출 관련 freeze frame은 ECU 전체에 공통으로 설정하고, 그 레코드는 이벤트마다 번호 `0x00`으로 가리킨다.[@autosar-cp-sws-diagnosticeventmanager-2025]
 
 ## FiM
 

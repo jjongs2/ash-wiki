@@ -32,7 +32,7 @@ BSW 모듈은 설정된 production error와 extended production error를 Dem의 
 | Det의 중앙 callout                                | 제품 수명 동안 오류를 처리한다           |
 | Dem의 중앙 오류 함수                              | 양산 코드에서 오류에 대응하고 기록한다   |
 
-API로 알릴 때 기본 반환형은 성공을 뜻하는 E_OK(값 0)와 실패를 뜻하는 E_NOT_OK(값 1)다. 양산 코드에서 오류를 서로 구분해야 하면 따로 반환형을 정하되, 호출자가 실제로 그 오류를 다룰 수 있을 때만 쓴다. Development error는 API로 돌려주지 않으며, Det에 보고할 수 있다. Det의 callout에서 Integration Code는 development error 때 ECU가 리셋되기 전에 준비를 할 수 있고, runtime error 때 보고를 더 할 수 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] Integration Code와 callout은 [[autosar-layered-architecture#Integration Code와 callout|AUTOSAR 계층 구조]]에서 다룬다.
+API로 알릴 때 기본 반환형은 성공을 뜻하는 E_OK(값 0)와 실패를 뜻하는 E_NOT_OK(값 1)다. 양산 코드에서 오류를 서로 구분해야 하면 따로 반환형을 정하되, 호출자가 실제로 그 오류를 다룰 수 있을 때만 쓴다. Development error는 API로 돌려주지 않으며, Det에 보고할 수 있다. Det의 callout에서 Integration Code는 development error 때 ECU가 리셋되기 전에 준비를 할 수 있고, runtime error 때 보고를 더 할 수 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] Callout은 [[autosar-layered-architecture#Integration Code와 callout|AUTOSAR 계층 구조]]에서 다룬다.
 
 ## Det
 

@@ -18,7 +18,7 @@ PduR는 I-PDU를 주고받는 모듈을 쓰는 API에 따라 두 부류로 나�
 
 ![[diagrams/pdur-upper-lower-modules.svg]]
 
-이 목록은 예일 뿐이고, 다른 모듈과 [[autosar-layered-architecture#층 사이 접근|Complex Driver]]도 설정으로 PduR에 붙일 수 있다.[@autosar-cp-sws-pdurouter-2025] [[ethernet|이더넷]]에서는 [[autosar-communication-stack#이더넷|SoAd]](Socket Adaptor)가 PduR 아래에서 I-PDU를 주고받는다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+이 목록은 예일 뿐이고, 다른 모듈과 [[autosar-layered-architecture#층 사이 접근|Complex Driver]]도 설정으로 PduR에 붙일 수 있다.[@autosar-cp-sws-pdurouter-2025] [[ethernet|이더넷]]에서는 [[autosar-communication-stack#이더넷|SoAd]]가 PduR 아래에서 I-PDU를 주고받는다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 **LSduR**는 정적으로 정한 ID에 따라 L-SDU(Link Layer Service Data Unit)를 라우팅하는 모듈이다. PduR와 버스별 네트워크 관리·전송 프로토콜 모듈은 LSduR를 거쳐 그 아래의 버스 인터페이스 모듈과 이어진다.[@autosar-cp-sws-lsdurouter-2025] [[autosar-can-stack|CanIf]]와 FrIf(FlexRay Interface)는 수신과 송신 확인을 LSduR의 콜백으로 알린다.[@autosar-cp-sws-caninterface-2025][@autosar-cp-sws-flexrayinterface-2025] LinIf(LIN Interface)도 프레임을 LSduR나 Complex Driver 같은 위 모듈과 주고받는다. 다만 LinIf 안의 LinTp 부분은 LSduR를 거치지 않고 PduR를 위 모듈로 둔다.[@autosar-cp-sws-lininterface-2025]
 
