@@ -15,7 +15,7 @@ verified: 2026-09-29
 
 Linux 커널의 `SCHED_DEADLINE` 정책은 EDF에 [[aperiodic-server#CBS|CBS]](Constant Bandwidth Server)를 더해 태스크를 스케줄한다.[@linux-sched-deadline-2026]
 
-RTEMS(Real-Time Executive for Multiprocessor Systems)의 EDF 스케줄러는 단일 코어 응용을 위한 스케줄러로, 마감 시한을 rate monotonic manager로만 선언하며 주기는 늘 마감 시한과 같다. 마감 시한을 선언하지 않았거나 취소한 태스크는 background 태스크가 되어, 마감 시한이 있는 어느 태스크보다도 덜 중요하게 다뤄진다.[@rtems-edf-scheduler-2025]
+RTEMS(Real-Time Executive for Multiprocessor Systems)의 EDF 스케줄러는 단일 코어 응용을 위한 스케줄러로, 마감 시한을 [[software-timer#주기 실행|rate monotonic manager]]로만 선언하며 주기는 늘 마감 시한과 같다. 마감 시한을 선언하지 않았거나 취소한 태스크는 background 태스크가 되어, 마감 시한이 있는 어느 태스크보다도 덜 중요하게 다뤄진다.[@rtems-edf-scheduler-2025]
 
 ## 스케줄 가능 조건
 
