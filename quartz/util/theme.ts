@@ -8,9 +8,11 @@ export interface ColorScheme {
   tertiary: string
   highlight: string
   textHighlight: string
-  // ash-wiki: 구역 색(region-<구역>)과 기타용 중립색(region-other)이다. 고른 근거와 대비 실측은 docs/palette.md에
-  // 있다. joinStyles가 다른 색처럼 CSS 변수(--region-<구역>)로 싣는다.
+  // ash-wiki: 구역 색(region-<구역>)과 기타용 중립색(region-other), 왼쪽 사이드바 면의 색(sidebar-<토큰>)이다. 고른
+  // 근거와 대비 실측은 docs/palette.md에 있다. joinStyles가 다른 색처럼 CSS 변수(--region-<구역>, --sidebar-<토큰>)로
+  // 싣는다.
   [region: `region-${string}`]: string
+  [sidebar: `sidebar-${string}`]: string
 }
 
 interface Colors {
@@ -178,10 +180,10 @@ function hexToHsl(hex: string): { h: number; s: number; l: number } {
   return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) }
 }
 
-// ash-wiki: 구역 색을 CSS 변수 선언으로 늘어놓는다(ColorScheme의 region-<구역>).
-function regionVariables(scheme: ColorScheme) {
+// ash-wiki: 구역 색과 사이드바 면의 색을 CSS 변수 선언으로 늘어놓는다(ColorScheme의 region-<구역>, sidebar-<토큰>).
+function extraVariables(scheme: ColorScheme) {
   return Object.entries(scheme)
-    .filter(([token]) => token.startsWith("region-"))
+    .filter(([token]) => token.startsWith("region-") || token.startsWith("sidebar-"))
     .map(([token, color]) => `  --${token}: ${color};`)
     .join("\n")
 }
@@ -200,7 +202,7 @@ ${stylesheet.join("\n\n")}
   --tertiary: ${theme.colors.lightMode.tertiary};
   --highlight: ${theme.colors.lightMode.highlight};
   --textHighlight: ${theme.colors.lightMode.textHighlight};
-${regionVariables(theme.colors.lightMode)}
+${extraVariables(theme.colors.lightMode)}
 
   --titleFont: "${getFontSpecificationName(theme.typography.title || theme.typography.header)}", ${DEFAULT_SANS_SERIF};
   --headerFont: "${getFontSpecificationName(theme.typography.header)}", ${DEFAULT_SANS_SERIF};
@@ -218,7 +220,7 @@ ${regionVariables(theme.colors.lightMode)}
   --tertiary: ${theme.colors.darkMode.tertiary};
   --highlight: ${theme.colors.darkMode.highlight};
   --textHighlight: ${theme.colors.darkMode.textHighlight};
-${regionVariables(theme.colors.darkMode)}
+${extraVariables(theme.colors.darkMode)}
 }
 
 :root {

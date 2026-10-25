@@ -63,6 +63,8 @@ const diagramColumn: Record<Mode, string> = { lightMode: "라이트", darkMode: 
 // `<색>`은 도해의 범주 색 다섯, `<구역>`은 theme의 구역 색(region-<구역>과 region-other)이다.
 const category = "<색>"
 const region = "<구역>"
+// 반투명한 배경을 합성할 면. 사이드바 면의 토큰(`sidebar-`)은 사이드바 면 위에, 나머지는 페이지 위에 놓인다.
+const backdrop = (token: string) => (token.startsWith("sidebar-") ? "sidebar-light" : "light")
 
 function measure(): Measurement[] {
   const theme = parse(fs.readFileSync(configPath, "utf8")).configuration.theme
@@ -103,11 +105,11 @@ function measure(): Measurement[] {
       throw new Error(`${palettePath}: "${row["쌍"]}"의 하한이 수가 아니다: ${row["하한"]}`)
     const worst = {} as Measurement["worst"]
     for (const mode of ["lightMode", "darkMode"] as Mode[]) {
-      const page = parseColor(colors[mode].light)
       let result = { ratio: Infinity, swatches: "" }
       for (const [fgToken, bgToken] of pairs(row["전경"], row["배경"])) {
         const [fg, bg] = [resolve(fgToken, mode), resolve(bgToken, mode)]
-        const background = over(parseColor(bg.color), page)
+        const base = parseColor(colors[mode][backdrop(bgToken)])
+        const background = over(parseColor(bg.color), base)
         const ratio = contrast(over(parseColor(fg.color), background), background)
         if (ratio < result.ratio) result = { ratio, swatches: `${fg.name} / ${bg.name}` }
       }
