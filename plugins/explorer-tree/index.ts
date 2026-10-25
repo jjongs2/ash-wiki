@@ -158,9 +158,11 @@ export function explorerInputs(entries: ContentEntry[]): {
 // (plugins/collapsible-sections)와 맞춘다.
 // 줄마다의 모서리, 안쪽 여백, hover 배경과 페이지 항목의 글자는 목차, Backlinks와 같이 쓰는 줄 규칙이라
 // 사용자 스타일시트(quartz/styles/custom.scss)에 있다. 여기에는 트리에만 있는 규칙을 둔다.
-// - 층은 굵기와 크기로 가른다. 구역은 0.95rem 600, 주제는 0.9rem 600이고, 둘 다 페이지 항목처럼 제목색이다.
-//   탐색기는 사이드바 면 위라 제목색이 면 위의 흰색이다. 파랑은 지금 페이지에만 쓴다. 줄 간격은 줄 규칙의 항목
-//   링크와 같은 1.3이다.
+// - 층은 굵기와 크기, 여백으로 가른다. 구역은 1rem 700, 주제는 0.9rem 700, 페이지 항목은 0.9rem 400이고, 셋 다
+//   제목색이다. 탐색기는 사이드바 면 위라 제목색이 면 위의 흰색이다. 구역 사이는 0.5rem 띄워 구역마다 덩어리
+//   지게 한다. 파랑은 지금 페이지에만 쓴다. 줄 간격은 줄 규칙의 항목 링크와 같은 1.3이다.
+// - 목록 맨 앞에는 업스트림이 목록 끝을 알아채려고 넣는 빈 항목(li.overflow-end)이 있다. 그 높이(0.5rem)가
+//   검색 줄과 첫 구역 사이만 벌려, 높이를 없앤다.
 // - 폴더는 이름 버튼의 누름 영역(::after)을 줄 전체로 늘려, 꺾쇠를 포함해 줄 어디를 눌러도 접고 편다. 지금
 //   페이지에는 highlight 배경을 깔고 파랑으로 써서 hover 배경과 구분한다.
 // - 꺾쇠는 이름 바로 뒤에 두어 이름이 층마다 같은 자리에서 시작하게 한다. 이름보다 눈에 띄지 않도록
@@ -194,11 +196,17 @@ const CSS = `.explorer .explorer-content :is(.folder-button, ul li > a):focus-vi
 .explorer .explorer-content .folder-container .folder-title {
   color: var(--dark);
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.3;
 }
 .explorer .explorer-content .explorer-ul > li > .folder-container .folder-title {
-  font-size: 0.95rem;
+  font-size: 1rem;
+}
+.explorer .explorer-content .explorer-ul > li:not(.overflow-end) + li {
+  margin-top: 0.5rem;
+}
+.explorer .explorer-content .explorer-ul > li.overflow-end {
+  height: 0;
 }
 .explorer .explorer-content ul li > a.active {
   background-color: var(--highlight);
