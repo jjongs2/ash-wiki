@@ -20,12 +20,13 @@ export interface Edition {
 // 판 연도 뒤의 추록(/Amd 1:1995)은 따로 펴낸 판이다.
 const standardNumber =
   /(?<![A-Za-z])((?:ISO|IEC|IEEE|SAE)(?:\/(?:ISO|IEC|IEEE|SAE))*)(?: Std)? ([A-Z]{0,3}[0-9][0-9A-Za-z.]*?(?:-[0-9A-Za-z]+)*?)[:-]((?:19|20)[0-9]{2})(?![0-9])((?:\/(?:Amd|AMD|Cor|COR) ?[0-9]+(?:[:-](?:19|20)[0-9]{2})?)*)/
-const autosarRelease = /\bAUTOSAR ((?:CP|AP|FO|TC) )?(R[0-9]+(?:[.-][0-9]+)+|Release [0-9.]+[0-9])/
+export const autosarRelease =
+  /\bAUTOSAR ((?:CP|AP|FO|TC) )?(R[0-9]+(?:[.-][0-9]+)+|Release [0-9.]+[0-9])/
 const collection =
   /\(([^()]*\b(?:Documentation|documentation|Guide|Manual|Handbook|Wiki)\b[^()]*)\)$/
 const glossaryTerm = /^(.+ Glossary) — /
 
-const publisherOf = (entry: BibEntry) =>
+export const publisherOf = (entry: BibEntry) =>
   ["author", "organization", "institution", "publisher"]
     .map((field) => entry.fields.get(field)?.value ?? "")
     .join(" ")

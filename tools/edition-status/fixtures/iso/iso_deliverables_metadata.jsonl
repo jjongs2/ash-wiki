@@ -1,0 +1,818 @@
+{"id":7227,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-1:1974","publicationDate":"1974-12-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[7228]}
+{"id":7228,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-1:1984","publicationDate":"1984-09-01","edition":2,"currentStage":9599,"replaces":[7227],"replacedBy":[7229]}
+{"id":7229,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-1:1993","publicationDate":"1993-11-18","edition":3,"currentStage":9599,"replaces":[7228],"replacedBy":[30849,63598]}
+{"id":7230,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-2:1976","publicationDate":"1976-05-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[63598]}
+{"id":7231,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-3:1976","publicationDate":"1976-05-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[7232]}
+{"id":7232,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-3:1987","publicationDate":"1987-04-16","edition":2,"currentStage":9599,"replaces":[7231],"replacedBy":[30850,63598]}
+{"id":7233,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-4:1974","publicationDate":"1974-12-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[7234]}
+{"id":7234,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-4:1987","publicationDate":"1987-07-02","edition":2,"currentStage":9599,"replaces":[7233],"replacedBy":[27922]}
+{"id":7235,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-5:1974","publicationDate":"1974-12-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[7236]}
+{"id":7236,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-5:1989","publicationDate":"1989-05-11","edition":2,"currentStage":9599,"replaces":[7235],"replacedBy":[30851]}
+{"id":7237,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-6:1974","publicationDate":"1974-12-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[7238]}
+{"id":7238,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-6:1987","publicationDate":"1987-04-09","edition":2,"currentStage":9599,"replaces":[7237],"replacedBy":[63598]}
+{"id":7239,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-7:1977","publicationDate":"1977-03-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[7240]}
+{"id":7240,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-7:1989","publicationDate":"1989-10-26","edition":2,"currentStage":9599,"replaces":[7239],"replacedBy":[7241]}
+{"id":7241,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-7:2000","publicationDate":"2000-04-06","edition":3,"currentStage":9092,"replaces":[7240],"replacedBy":[93663,63598]}
+{"id":7242,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-8:1986","publicationDate":"1986-12-19","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[7243]}
+{"id":7243,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-8:1998","publicationDate":"1998-11-05","edition":2,"currentStage":9599,"replaces":[7242],"replacedBy":[63598]}
+{"id":7244,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-9:1984","publicationDate":"1984-03-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[20929]}
+{"id":7247,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-10:1979","publicationDate":"1979-03-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[63598]}
+{"id":7248,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-11:1976","publicationDate":"1976-02-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[7249]}
+{"id":7249,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-11:1987","publicationDate":"1987-07-02","edition":2,"currentStage":9599,"replaces":[7248],"replacedBy":null}
+{"id":7250,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-12:1978","publicationDate":"1978-07-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[7251]}
+{"id":7251,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-12:1988","publicationDate":"1988-12-08","edition":2,"currentStage":9599,"replaces":[7250],"replacedBy":[63598,30852]}
+{"id":7252,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-13:1984","publicationDate":"1984-09-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[7253]}
+{"id":7253,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-13:1996","publicationDate":"1996-05-23","edition":2,"currentStage":9599,"replaces":[7252],"replacedBy":[63598]}
+{"id":7254,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-14:1978","publicationDate":"1978-04-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[7255]}
+{"id":7255,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-14:1997","publicationDate":"1997-12-04","edition":2,"currentStage":9599,"replaces":[7254],"replacedBy":[63598]}
+{"id":7256,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-15:1985","publicationDate":"1985-10-31","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[7257]}
+{"id":7257,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-15:1999","publicationDate":"1999-06-17","edition":1,"currentStage":9092,"replaces":[7256],"replacedBy":[93664,63598]}
+{"id":7258,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-16:1978","publicationDate":"1978-12-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[7259]}
+{"id":7259,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-16:1996","publicationDate":"1996-10-10","edition":2,"currentStage":9092,"replaces":[7258],"replacedBy":[93665,63598]}
+{"id":7260,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-17:1996","publicationDate":"1996-05-30","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[30853]}
+{"id":7261,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-18:1987","publicationDate":"1987-06-18","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[26734]}
+{"id":7262,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-19:1980","publicationDate":"1980-06-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[7263]}
+{"id":7263,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-19:1989","publicationDate":"1989-05-11","edition":2,"currentStage":9092,"replaces":[7262],"replacedBy":[63598,93666]}
+{"id":7264,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-20:1990","publicationDate":"1990-02-22","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[63598]}
+{"id":7265,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-21:1985","publicationDate":"1985-11-21","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[63598]}
+{"id":7266,"deliverableType":"IS","supplementType":null,"reference":"ISO 2382-22:1986","publicationDate":"1986-08-14","edition":1,"currentStage":9092,"replaces":null,"replacedBy":[93667]}
+{"id":7267,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-23:1994","publicationDate":"1994-03-03","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[63598,30859]}
+{"id":7268,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-24:1995","publicationDate":"1995-12-27","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[63598]}
+{"id":7269,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-25:1992","publicationDate":"1992-04-09","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[63598]}
+{"id":7270,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-26:1993","publicationDate":"1993-12-02","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[63598]}
+{"id":7271,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-27:1994","publicationDate":"1994-12-22","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[30860,63598]}
+{"id":7272,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-28:1995","publicationDate":"1995-12-27","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[63598]}
+{"id":7273,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-29:1999","publicationDate":"1999-08-19","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[63598]}
+{"id":14252,"deliverableType":"IS","supplementType":null,"reference":"ISO 7498:1984","publicationDate":"1984-10-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[20269]}
+{"id":14253,"deliverableType":"IS","supplementType":"Add","reference":"ISO 7498:1984/Add 1:1987","publicationDate":"1987-07-02","edition":1,"currentStage":9599,"replaces":null,"replacedBy":null}
+{"id":14255,"deliverableType":"IS","supplementType":"Cor","reference":"ISO 7498:1984/Cor 1:1988","publicationDate":"1988-12-22","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[20269]}
+{"id":14256,"deliverableType":"IS","supplementType":null,"reference":"ISO 7498-2:1989","publicationDate":"1989-02-02","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":14257,"deliverableType":"IS","supplementType":null,"reference":"ISO 7498-3:1989","publicationDate":"1989-03-09","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[25022]}
+{"id":14258,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 7498-4:1989","publicationDate":"1989-11-16","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":16228,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 8802-1:1994","publicationDate":"1994-12-22","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[28641]}
+{"id":16230,"deliverableType":"IS","supplementType":null,"reference":"ISO 8802-2:1989","publicationDate":"1989-12-31","edition":1,"currentStage":9599,"replaces":null,"replacedBy":null}
+{"id":16231,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 8802-2:1994","publicationDate":"1994-12-22","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[30174]}
+{"id":16233,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-2:1994/Amd 3:1995","publicationDate":"1995-07-27","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[30174]}
+{"id":16235,"deliverableType":"IS","supplementType":null,"reference":"ISO 8802-3:1989","publicationDate":"1989-03-23","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[16236,16242]}
+{"id":16236,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 8802-3:1990","publicationDate":"1990-12-13","edition":2,"currentStage":9599,"replaces":[16235],"replacedBy":[16240]}
+{"id":16237,"deliverableType":"IS","supplementType":"Add","reference":"Withdrawn 8802-3/Add 1","publicationDate":null,"edition":null,"currentStage":5098,"replaces":null,"replacedBy":null}
+{"id":16238,"deliverableType":"IS","supplementType":"Add","reference":"Withdrawn 8802-3/Add 5","publicationDate":null,"edition":null,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":16239,"deliverableType":"IS","supplementType":"Amd","reference":"Withdrawn 8802-3/Amd 2","publicationDate":null,"edition":null,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":16240,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 8802-3:1992","publicationDate":"1992-06-25","edition":3,"currentStage":9599,"replaces":[16236],"replacedBy":null}
+{"id":16241,"deliverableType":"IS","supplementType":"Amd","reference":"Withdrawn 8802-3/Amd 4","publicationDate":null,"edition":null,"currentStage":5098,"replaces":null,"replacedBy":null}
+{"id":16242,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 8802-3:1993","publicationDate":"1993-09-02","edition":4,"currentStage":9599,"replaces":[16235],"replacedBy":[20900]}
+{"id":16243,"deliverableType":"IS","supplementType":"Amd","reference":"Withdrawn 8802-3/Amd 7","publicationDate":null,"edition":null,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":16244,"deliverableType":"IS","supplementType":"Amd","reference":"Withdrawn 8802-3/Amd 9","publicationDate":null,"edition":null,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":16245,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 8802-4:1990","publicationDate":"1990-12-13","edition":1,"currentStage":9599,"replaces":null,"replacedBy":null}
+{"id":16246,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 8802-5:1992","publicationDate":"1992-08-27","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[24080]}
+{"id":16248,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-5:1995/PDAM 3","publicationDate":null,"edition":2,"currentStage":4098,"replaces":null,"replacedBy":[29923]}
+{"id":16252,"deliverableType":"IS","supplementType":null,"reference":"ISO 8802-7:1991","publicationDate":"1991-07-04","edition":1,"currentStage":9599,"replaces":null,"replacedBy":null}
+{"id":16529,"deliverableType":"IS","supplementType":null,"reference":"ISO 9000:1987","publicationDate":"1987-03-19","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[16530]}
+{"id":16530,"deliverableType":"IS","supplementType":null,"reference":"ISO 9000-1:1994","publicationDate":"1994-06-30","edition":1,"currentStage":9599,"replaces":[16529],"replacedBy":[21821]}
+{"id":16531,"deliverableType":"IS","supplementType":null,"reference":"ISO 9000-2:1993","publicationDate":"1993-06-03","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[26363]}
+{"id":16532,"deliverableType":"IS","supplementType":null,"reference":"ISO 9000-3:1991","publicationDate":"1991-06-20","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[26364]}
+{"id":16533,"deliverableType":"IS","supplementType":null,"reference":"ISO 9001:1987","publicationDate":"1987-03-19","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[16534]}
+{"id":16534,"deliverableType":"IS","supplementType":null,"reference":"ISO 9001:1994","publicationDate":"1994-06-30","edition":2,"currentStage":9599,"replaces":[16533],"replacedBy":[21823]}
+{"id":16546,"deliverableType":"IS","supplementType":null,"reference":"ISO 10007:1995","publicationDate":"1995-04-27","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[36644]}
+{"id":17661,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-1:1991","publicationDate":"1991-08-29","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[27743]}
+{"id":17662,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-2:1994","publicationDate":"1994-12-15","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[30653]}
+{"id":17663,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-3:1993","publicationDate":"1993-11-18","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[29062]}
+{"id":17782,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9899:1990","publicationDate":"1990-12-20","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[29237]}
+{"id":19687,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 11770-1:1996","publicationDate":"1996-12-26","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[53456]}
+{"id":19983,"deliverableType":"IS","supplementType":null,"reference":"ISO/WD 11783-1","publicationDate":null,"edition":1,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":20116,"deliverableType":"IS","supplementType":null,"reference":"ISO 9000-4:1993","publicationDate":"1993-05-20","edition":1,"currentStage":9599,"replaces":null,"replacedBy":null}
+{"id":20269,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 7498-1:1994","publicationDate":"1994-11-17","edition":1,"currentStage":9093,"replaces":[14255,14252],"replacedBy":null}
+{"id":20380,"deliverableType":"IS","supplementType":null,"reference":"ISO 11898:1993","publicationDate":"1993-11-18","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[33423,33422]}
+{"id":20724,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-5:1995/WD Amd 7","publicationDate":null,"edition":2,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":20785,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3:1996/PDAM 10","publicationDate":null,"edition":5,"currentStage":4098,"replaces":null,"replacedBy":[31002]}
+{"id":20786,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3:1996/PDAM 15","publicationDate":null,"edition":5,"currentStage":4098,"replaces":null,"replacedBy":[31002]}
+{"id":20788,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3:1996/PDAM 17","publicationDate":null,"edition":5,"currentStage":4098,"replaces":null,"replacedBy":[31002]}
+{"id":20898,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 8802-6:1994","publicationDate":"1994-05-19","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[24851]}
+{"id":20900,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 8802-3:1996","publicationDate":"1996-11-28","edition":5,"currentStage":9599,"replaces":[16242],"replacedBy":[31002]}
+{"id":20903,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3:1996/PDAM 14","publicationDate":null,"edition":5,"currentStage":4098,"replaces":null,"replacedBy":[31002]}
+{"id":20929,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-9:1995","publicationDate":"1995-11-02","edition":2,"currentStage":9599,"replaces":[7244],"replacedBy":[63598]}
+{"id":20944,"deliverableType":"IS","supplementType":"Cor","reference":"ISO 8802-2:1989/Cor 1:1992","publicationDate":"1992-06-11","edition":1,"currentStage":9599,"replaces":null,"replacedBy":null}
+{"id":21208,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 12207:1995","publicationDate":"1995-07-20","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[43447]}
+{"id":21821,"deliverableType":"IS","supplementType":null,"reference":"ISO/WD 9000-1","publicationDate":null,"edition":2,"currentStage":2098,"replaces":[16530],"replacedBy":null}
+{"id":21823,"deliverableType":"IS","supplementType":null,"reference":"ISO 9001:2000","publicationDate":"2000-12-08","edition":3,"currentStage":9599,"replaces":[25946,25947,16539,25948,24812,16537,16534],"replacedBy":[46486]}
+{"id":21844,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC CD 2382-30","publicationDate":null,"edition":1,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":21845,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-31:1997","publicationDate":"1997-12-25","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[63598]}
+{"id":21846,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-32:1999","publicationDate":"1999-01-28","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[63598]}
+{"id":21847,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC CD 2382-33","publicationDate":null,"edition":1,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":21848,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-34:1999","publicationDate":"1999-08-19","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[63598]}
+{"id":22392,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 11898:1993/Amd 1:1995","publicationDate":"1995-04-06","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[33423,33422]}
+{"id":23712,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC WD 7498-N","publicationDate":null,"edition":1,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":23909,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 9899:1990/Amd 1:1995","publicationDate":"1995-03-30","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[29237]}
+{"id":23918,"deliverableType":"IS","supplementType":null,"reference":"ISO 14229:1998","publicationDate":"1998-07-16","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[45293,37021,39505]}
+{"id":24069,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3:1996/PDAM 18","publicationDate":null,"edition":5,"currentStage":4098,"replaces":null,"replacedBy":[31002]}
+{"id":24078,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-2:1994/PDAM 6.2","publicationDate":null,"edition":2,"currentStage":4098,"replaces":null,"replacedBy":[30174]}
+{"id":24079,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3:1996/PDAM 19","publicationDate":null,"edition":5,"currentStage":4098,"replaces":null,"replacedBy":[31002]}
+{"id":24080,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 8802-5:1995","publicationDate":"1995-12-27","edition":2,"currentStage":9599,"replaces":[20899,16246],"replacedBy":[29923]}
+{"id":24271,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 9899:1990/Cor 1:1994","publicationDate":"1994-09-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[29237]}
+{"id":24273,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-4:1995","publicationDate":"1995-03-02","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[31488]}
+{"id":24851,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC FCD 8802-6","publicationDate":null,"edition":2,"currentStage":4098,"replaces":[20898],"replacedBy":null}
+{"id":25020,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 8802-9:1996","publicationDate":"1996-12-19","edition":1,"currentStage":9599,"replaces":null,"replacedBy":null}
+{"id":25022,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 7498-3:1997","publicationDate":"1997-04-03","edition":1,"currentStage":9093,"replaces":[14257],"replacedBy":null}
+{"id":25238,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-2:2002","publicationDate":"2002-05-02","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54389]}
+{"id":25239,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-3:1998","publicationDate":"1998-07-02","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[41160]}
+{"id":25240,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-4:2001","publicationDate":"2001-05-10","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[50577]}
+{"id":25241,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-5:2001","publicationDate":"2001-05-10","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[50578]}
+{"id":25242,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-6:2004","publicationDate":"2004-06-15","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[42725]}
+{"id":25243,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-7:2002","publicationDate":"2002-09-12","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[45366]}
+{"id":25244,"deliverableType":"IS","supplementType":null,"reference":"ISO/WD 11783-8","publicationDate":null,"edition":1,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":25245,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-9:2002","publicationDate":"2002-07-04","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54390]}
+{"id":25246,"deliverableType":"IS","supplementType":null,"reference":"ISO/WD 11783-10","publicationDate":null,"edition":1,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":25247,"deliverableType":"IS","supplementType":null,"reference":"ISO/WD 11783-11","publicationDate":null,"edition":1,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":25290,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 11770-2:1996","publicationDate":"1996-04-18","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[46370]}
+{"id":25500,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 14764:1999","publicationDate":"1999-11-11","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[39064]}
+{"id":25537,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 11770-3:1999","publicationDate":"1999-11-11","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[46542]}
+{"id":25538,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC WD 11770-4","publicationDate":null,"edition":1,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":25695,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-6:1994/PDAM 2","publicationDate":null,"edition":1,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":25898,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-5:1999","publicationDate":"1999-03-25","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[39720]}
+{"id":25899,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC WD 7498-5","publicationDate":null,"edition":1,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":25946,"deliverableType":"IS","supplementType":"Cor","reference":"ISO 9001:1994/Cor 1:1995","publicationDate":"1995-06-01","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[21823]}
+{"id":26135,"deliverableType":"IS","supplementType":"Amd","reference":"Withdrawn 8802-2/Amd 7","publicationDate":null,"edition":null,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":26138,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-6:1994/PDAM 3","publicationDate":null,"edition":1,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":26363,"deliverableType":"IS","supplementType":null,"reference":"ISO 9000-2:1997","publicationDate":"1997-06-12","edition":2,"currentStage":9599,"replaces":[16531],"replacedBy":null}
+{"id":26364,"deliverableType":"IS","supplementType":null,"reference":"ISO 9000-3:1997","publicationDate":"1997-12-18","edition":2,"currentStage":9599,"replaces":[16532],"replacedBy":[35867]}
+{"id":26734,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-18:1999","publicationDate":"1999-11-11","edition":1,"currentStage":9599,"replaces":[7261],"replacedBy":[63598]}
+{"id":27110,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 9899:1990/Cor 2:1996","publicationDate":"1996-03-28","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[29237]}
+{"id":27166,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 15288:2002","publicationDate":"2002-11-08","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[43564]}
+{"id":27339,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-5:1995/PDAM 1","publicationDate":null,"edition":2,"currentStage":4098,"replaces":null,"replacedBy":[30659]}
+{"id":27342,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 8802-11:1999","publicationDate":"1999-12-16","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[39777]}
+{"id":27685,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC CD 2382-36","publicationDate":null,"edition":1,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":27743,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-1:1997","publicationDate":"1997-07-31","edition":2,"currentStage":9599,"replaces":[17661],"replacedBy":[53634]}
+{"id":27877,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3:1996/PDAM 22","publicationDate":null,"edition":5,"currentStage":4098,"replaces":null,"replacedBy":[31002]}
+{"id":27922,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-4:1999","publicationDate":"1999-11-11","edition":1,"currentStage":9092,"replaces":[7234],"replacedBy":[63598,93662]}
+{"id":27947,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 15504-1:1998","publicationDate":"1998-08-27","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[38932,34393]}
+{"id":27948,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 15504-2:1998","publicationDate":"1998-08-27","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[34393,37458]}
+{"id":27949,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 15504-3:1998","publicationDate":"1998-08-27","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[34393,37458]}
+{"id":27950,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 15504-4:1998","publicationDate":"1998-08-13","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[34393,37454]}
+{"id":27951,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 15504-5:1999","publicationDate":"1999-05-06","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[34393,38934]}
+{"id":27952,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 15504-6:1998","publicationDate":"1998-08-13","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[34393,37454]}
+{"id":27953,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 15504-7:1998","publicationDate":"1998-08-20","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[34393,37462]}
+{"id":27954,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 15504-8:1998","publicationDate":"1998-08-27","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[34393,37462]}
+{"id":27955,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 15504-9:1998","publicationDate":"1998-09-03","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[38932,34393]}
+{"id":28641,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 8802-1:1997","publicationDate":"1997-03-13","edition":2,"currentStage":9599,"replaces":[16228],"replacedBy":[34385]}
+{"id":28776,"deliverableType":"IS","supplementType":null,"reference":"ISO/WD 15765","publicationDate":null,"edition":1,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":28847,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-5:1995/PDAM 2","publicationDate":null,"edition":2,"currentStage":4098,"replaces":null,"replacedBy":[30659]}
+{"id":29062,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-3:1998","publicationDate":"1998-10-15","edition":2,"currentStage":9599,"replaces":[17663],"replacedBy":[67115]}
+{"id":29237,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9899:1999","publicationDate":"1999-12-16","edition":2,"currentStage":9599,"replaces":[17782,27110,24271,23909],"replacedBy":[57853]}
+{"id":29280,"deliverableType":"IS","supplementType":null,"reference":"ISO 9000:2000","publicationDate":"2000-12-08","edition":2,"currentStage":9599,"replaces":[20115],"replacedBy":[40505,42180]}
+{"id":29521,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 8802-12:1998","publicationDate":"1998-12-17","edition":1,"currentStage":9599,"replaces":null,"replacedBy":null}
+{"id":29654,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3:1996/PDAM 21","publicationDate":null,"edition":5,"currentStage":4098,"replaces":null,"replacedBy":[31002]}
+{"id":29923,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 8802-5:1998","publicationDate":"1998-10-01","edition":3,"currentStage":9599,"replaces":[24080,16248],"replacedBy":null}
+{"id":30155,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3:1996/PDAM 23","publicationDate":null,"edition":5,"currentStage":4098,"replaces":null,"replacedBy":[31002]}
+{"id":30156,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3:1996/PDAM 24","publicationDate":null,"edition":5,"currentStage":4098,"replaces":null,"replacedBy":[31002]}
+{"id":30172,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-2:1994/PDAM 7","publicationDate":null,"edition":2,"currentStage":4098,"replaces":null,"replacedBy":[30174]}
+{"id":30174,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 8802-2:1998","publicationDate":"1998-06-11","edition":3,"currentStage":9093,"replaces":[16233,30172,24078,16231],"replacedBy":null}
+{"id":30478,"deliverableType":"IS","supplementType":null,"reference":"ISO 16845:2004","publicationDate":"2004-03-03","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[59166]}
+{"id":30653,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-2:1999","publicationDate":"1999-07-22","edition":2,"currentStage":9599,"replaces":[17662],"replacedBy":[50522]}
+{"id":30659,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-5:1998/Amd 1:1998","publicationDate":"1998-10-01","edition":3,"currentStage":9599,"replaces":[28847,27339],"replacedBy":null}
+{"id":30818,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC WD 18033","publicationDate":null,"edition":1,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":30830,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 18045:2005","publicationDate":"2005-10-07","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[46412]}
+{"id":30849,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC AWI 2382-1.2","publicationDate":null,"edition":4,"currentStage":2000,"replaces":[63598,7229],"replacedBy":null}
+{"id":30850,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC CD 2382-3","publicationDate":null,"edition":1,"currentStage":3020,"replaces":[7232,63598],"replacedBy":null}
+{"id":30851,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-5:1999","publicationDate":"1999-11-11","edition":1,"currentStage":9599,"replaces":[7236],"replacedBy":[63598]}
+{"id":30852,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC AWI 2382-12.2","publicationDate":null,"edition":1,"currentStage":2000,"replaces":[7251,63598],"replacedBy":null}
+{"id":30853,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-17:1999","publicationDate":"1999-07-15","edition":2,"currentStage":9599,"replaces":[7260],"replacedBy":[63598]}
+{"id":30859,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC WD 2382-23","publicationDate":null,"edition":2,"currentStage":2098,"replaces":[7267],"replacedBy":null}
+{"id":30860,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC WD 2382-27","publicationDate":null,"edition":2,"currentStage":2098,"replaces":[7271],"replacedBy":null}
+{"id":30861,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC AWI 2382-38.2","publicationDate":null,"edition":1,"currentStage":2000,"replaces":[63598],"replacedBy":null}
+{"id":31002,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 8802-3:2000","publicationDate":"2000-12-21","edition":6,"currentStage":9599,"replaces":[20785,31818,27877,30156,20786,20903,34086,20788,24069,33056,30155,24079,20900,29654],"replacedBy":[38884,64882]}
+{"id":31488,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-4:1999","publicationDate":"1999-12-16","edition":2,"currentStage":9093,"replaces":[24273],"replacedBy":null}
+{"id":31818,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3:2000/DAmd 1","publicationDate":null,"edition":6,"currentStage":4098,"replaces":null,"replacedBy":[31002]}
+{"id":32986,"deliverableType":"IS","supplementType":null,"reference":"ISO/WD 11898","publicationDate":null,"edition":2,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":33006,"deliverableType":"IS","supplementType":null,"reference":"ISO 17356-1:2005","publicationDate":"2005-01-12","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":33007,"deliverableType":"IS","supplementType":null,"reference":"ISO 17356-2:2005","publicationDate":"2005-05-13","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":33008,"deliverableType":"IS","supplementType":null,"reference":"ISO/CD 17356-3","publicationDate":null,"edition":1,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":33009,"deliverableType":"IS","supplementType":null,"reference":"ISO/WD 17356-4","publicationDate":null,"edition":1,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":33056,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3:2000/DAmd 2","publicationDate":null,"edition":6,"currentStage":4098,"replaces":null,"replacedBy":[31002]}
+{"id":33383,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-11:1999/Amd 1:2000","publicationDate":"2000-12-21","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[39777]}
+{"id":33422,"deliverableType":"IS","supplementType":null,"reference":"ISO 11898-1:2003","publicationDate":"2003-11-19","edition":1,"currentStage":9599,"replaces":[22392,20380],"replacedBy":[63648]}
+{"id":33423,"deliverableType":"IS","supplementType":null,"reference":"ISO 11898-2:2003","publicationDate":"2003-11-19","edition":1,"currentStage":9599,"replaces":[22392,20380],"replacedBy":[67244]}
+{"id":33615,"deliverableType":"IS","supplementType":null,"reference":"ISO 15765-1:2004","publicationDate":"2004-03-10","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54498]}
+{"id":33616,"deliverableType":"IS","supplementType":null,"reference":"ISO 15765-2:2004","publicationDate":"2004-10-12","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54499]}
+{"id":33618,"deliverableType":"IS","supplementType":null,"reference":"ISO 15765-3:2004","publicationDate":"2004-10-06","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[55284,55042]}
+{"id":33619,"deliverableType":"IS","supplementType":null,"reference":"ISO 15765-4:2005","publicationDate":"2005-01-04","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[46045]}
+{"id":33815,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-11:1999/PDAM 2","publicationDate":null,"edition":1,"currentStage":4098,"replaces":null,"replacedBy":[39777]}
+{"id":34086,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3:2000/DAmd 3","publicationDate":null,"edition":6,"currentStage":4098,"replaces":null,"replacedBy":[31002]}
+{"id":34385,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 8802-1:2001","publicationDate":"2001-10-04","edition":3,"currentStage":9599,"replaces":[28641],"replacedBy":[50922]}
+{"id":34393,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC WD 15504","publicationDate":null,"edition":1,"currentStage":2098,"replaces":[27953,27954,27950,27947,27951,27948,27955,27952,27949],"replacedBy":null}
+{"id":34553,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 8802-2:1998/Cor 1:2000","publicationDate":"2000-10-19","edition":3,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":35263,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 12207:1995/Amd 1:2002","publicationDate":"2002-06-06","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[43447]}
+{"id":35683,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 25000:2005","publicationDate":"2005-07-27","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[64764]}
+{"id":35733,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 25010:2011","publicationDate":"2011-03-01","edition":1,"currentStage":9599,"replaces":[22749],"replacedBy":[78176,78177,78175]}
+{"id":35952,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 9899:1999/Cor 1:2001","publicationDate":"2001-09-06","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[57853]}
+{"id":36055,"deliverableType":"IS","supplementType":null,"reference":"ISO 11898-3:2006","publicationDate":"2006-05-24","edition":1,"currentStage":9093,"replaces":[19470,22393],"replacedBy":null}
+{"id":36306,"deliverableType":"IS","supplementType":null,"reference":"ISO 11898-4:2004","publicationDate":"2004-08-05","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":36644,"deliverableType":"IS","supplementType":null,"reference":"ISO 10007:2003","publicationDate":"2003-06-20","edition":2,"currentStage":9599,"replaces":[16546],"replacedBy":[70400]}
+{"id":36654,"deliverableType":"IS","supplementType":null,"reference":"ISO/CD 17356-5","publicationDate":null,"edition":1,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":36655,"deliverableType":"IS","supplementType":null,"reference":"ISO/CD 17356-6","publicationDate":null,"edition":1,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":37021,"deliverableType":"IS","supplementType":null,"reference":"ISO/WD 14229","publicationDate":null,"edition":2,"currentStage":2098,"replaces":[23918],"replacedBy":null}
+{"id":37160,"deliverableType":"IS","supplementType":"Cor","reference":"ISO 11783-5:2001/Cor 1:2002","publicationDate":"2002-06-20","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[50578]}
+{"id":37170,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 11783-9:2002/CD Amd 1","publicationDate":null,"edition":1,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":37367,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 9000:2000/CD Amd 1","publicationDate":null,"edition":2,"currentStage":3098,"replaces":null,"replacedBy":[40505]}
+{"id":37454,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 15504-3:2004","publicationDate":"2004-01-06","edition":1,"currentStage":9599,"replaces":[27950,27952],"replacedBy":[55121]}
+{"id":37458,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 15504-2:2003","publicationDate":"2003-10-30","edition":1,"currentStage":9599,"replaces":[27948,27949],"replacedBy":[54178,54176,54177,54195]}
+{"id":37462,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 15504-4:2004","publicationDate":"2004-07-02","edition":1,"currentStage":9599,"replaces":[27953,27954],"replacedBy":[55106]}
+{"id":37970,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 18033-1:2005","publicationDate":"2005-03-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54530]}
+{"id":37971,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 18033-2:2006","publicationDate":"2006-05-08","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":37972,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 18033-3:2005","publicationDate":"2005-07-15","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54531]}
+{"id":38209,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-13:2007","publicationDate":"2007-06-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[56765]}
+{"id":38699,"deliverableType":"IS","supplementType":"Cor","reference":"ISO 11783-2:2002/Cor 1:2003","publicationDate":"2003-06-25","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54389]}
+{"id":38784,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-12:2009","publicationDate":"2009-02-26","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[59381]}
+{"id":38884,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC DIS 8802-3","publicationDate":null,"edition":7,"currentStage":4098,"replaces":[31002],"replacedBy":null}
+{"id":38885,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3/PDAM 1","publicationDate":null,"edition":7,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":38932,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 15504-1:2004","publicationDate":"2004-11-12","edition":1,"currentStage":9599,"replaces":[27947,27955],"replacedBy":[54175]}
+{"id":38934,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 15504-5:2006","publicationDate":"2006-03-07","edition":1,"currentStage":9599,"replaces":[27951],"replacedBy":[60555]}
+{"id":39064,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 14764:2006","publicationDate":"2006-08-23","edition":2,"currentStage":9599,"replaces":[25500],"replacedBy":[80710]}
+{"id":39122,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-1:2007","publicationDate":"2007-06-20","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[57556]}
+{"id":39123,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-8:2006","publicationDate":"2006-02-06","edition":1,"currentStage":9599,"replaces":null,"replacedBy":null}
+{"id":39124,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-10:2009","publicationDate":"2009-12-08","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[61581]}
+{"id":39125,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-11:2007","publicationDate":"2007-03-30","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[57849]}
+{"id":39172,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 11783-2:2002/Amd 1:2006","publicationDate":"2006-04-07","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54389]}
+{"id":39505,"deliverableType":"IS","supplementType":null,"reference":"ISO/PRF 14229-1","publicationDate":null,"edition":1,"currentStage":5098,"replaces":[23918],"replacedBy":null}
+{"id":39543,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3/PDAM 2","publicationDate":null,"edition":7,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":39720,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-5:2004","publicationDate":"2004-12-06","edition":2,"currentStage":9599,"replaces":[25898],"replacedBy":[50456]}
+{"id":39721,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-6:2005","publicationDate":"2005-07-29","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54529]}
+{"id":39723,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 11770-4:2006","publicationDate":"2006-05-04","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[67933]}
+{"id":39777,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 8802-11:2005","publicationDate":"2005-08-09","edition":2,"currentStage":9599,"replaces":[33815,33383,27342],"replacedBy":[62000]}
+{"id":39978,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 18033-4:2005","publicationDate":"2005-07-15","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54532]}
+{"id":39984,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 9798-2:1999/Cor 1:2004","publicationDate":"2004-01-20","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[50522]}
+{"id":40079,"deliverableType":"IS","supplementType":null,"reference":"ISO 17356-3:2005","publicationDate":"2005-11-03","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":40080,"deliverableType":"IS","supplementType":null,"reference":"ISO 17356-6:2006","publicationDate":"2006-01-20","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":40118,"deliverableType":"IS","supplementType":null,"reference":"ISO 17356-4:2005","publicationDate":"2005-10-28","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":40182,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 12207:1995/Amd 1:2002/CD Cor 1","publicationDate":null,"edition":1,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":40183,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 12207:1995/Amd 2:2004","publicationDate":"2004-11-12","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[43447]}
+{"id":40184,"deliverableType":"IS","supplementType":null,"reference":"ISO 17356-5:2006","publicationDate":"2006-01-19","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":40192,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 15504-2:2003/Cor 1:2004","publicationDate":"2004-02-11","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54178,54176,54195,54177]}
+{"id":40505,"deliverableType":"IS","supplementType":null,"reference":"ISO/CD 9000","publicationDate":null,"edition":3,"currentStage":3098,"replaces":[29280,37367],"replacedBy":null}
+{"id":40655,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3/PDAM 3","publicationDate":null,"edition":7,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":40656,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-3/PDAM 4","publicationDate":null,"edition":7,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":40839,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC CD 2382-36","publicationDate":null,"edition":1,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":40906,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 9000:2000/DAmd 1","publicationDate":null,"edition":2,"currentStage":4098,"replaces":null,"replacedBy":[42180]}
+{"id":40911,"deliverableType":"IS","supplementType":"Cor","reference":"ISO 11783-7:2002/Cor 1:2004","publicationDate":"2004-10-18","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[45366]}
+{"id":41005,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 9001:2000/CD Amd 1","publicationDate":null,"edition":3,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":41160,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-3:2007","publicationDate":"2007-10-01","edition":2,"currentStage":9599,"replaces":[25239],"replacedBy":[57554]}
+{"id":41243,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-11:2005/Amd 6:2006","publicationDate":"2006-12-13","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[62000]}
+{"id":41284,"deliverableType":"IS","supplementType":null,"reference":"ISO 11898-5:2007","publicationDate":"2007-06-12","edition":1,"currentStage":9599,"replaces":null,"replacedBy":null}
+{"id":41326,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 9899:1999/Cor 2:2004","publicationDate":"2004-11-18","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[57853]}
+{"id":41476,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-11:2005/Amd 4:2006","publicationDate":"2006-08-14","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[62000]}
+{"id":41477,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-11:2005/Amd 5:2006","publicationDate":"2006-08-14","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[62000]}
+{"id":42180,"deliverableType":"IS","supplementType":null,"reference":"ISO 9000:2005","publicationDate":"2005-09-20","edition":3,"currentStage":9599,"replaces":[40906,29280],"replacedBy":[45481]}
+{"id":42715,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 11770-2:1996/Cor 1:2005","publicationDate":"2005-07-15","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[46370]}
+{"id":42725,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-6:2010","publicationDate":"2010-10-18","edition":2,"currentStage":9599,"replaces":[25242,42788],"replacedBy":[61646]}
+{"id":42788,"deliverableType":"IS","supplementType":"Cor","reference":"ISO 11783-6:2004/Cor 1:2005","publicationDate":"2005-10-13","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[42725]}
+{"id":43316,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 8802-11:2005/DAmd 7","publicationDate":null,"edition":2,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":43446,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 15504-6:2008","publicationDate":"2008-09-17","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[61492]}
+{"id":43447,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 12207:2008","publicationDate":"2008-03-18","edition":2,"currentStage":9599,"replaces":[35263,40183,21208],"replacedBy":[63712]}
+{"id":43464,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-1:2011","publicationDate":"2011-11-14","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[68383]}
+{"id":43564,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 15288:2008","publicationDate":"2008-03-18","edition":2,"currentStage":9599,"replaces":[27166],"replacedBy":[63711]}
+{"id":43984,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-14:2013","publicationDate":"2013-09-18","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":44022,"deliverableType":"PAS","supplementType":null,"reference":"ISO/PAS 27145-1:2006","publicationDate":"2006-09-27","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[46273]}
+{"id":44024,"deliverableType":"PAS","supplementType":null,"reference":"ISO/PAS 27145-2:2006","publicationDate":"2006-09-27","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[46276]}
+{"id":44025,"deliverableType":"PAS","supplementType":null,"reference":"ISO/PAS 27145-3:2006","publicationDate":"2006-09-27","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[46277]}
+{"id":44026,"deliverableType":"PAS","supplementType":null,"reference":"ISO/PAS 27145-4:2006","publicationDate":"2006-09-27","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[46278]}
+{"id":44027,"deliverableType":"IS","supplementType":null,"reference":"ISO/WD 27145-5","publicationDate":null,"edition":1,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":44028,"deliverableType":"IS","supplementType":null,"reference":"ISO/WD 27145-6","publicationDate":null,"edition":1,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":44158,"deliverableType":"IS","supplementType":"Cor","reference":"ISO 11898-1:2003/Cor 1:2006","publicationDate":"2006-05-24","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[63648]}
+{"id":44277,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 11783-7:2002/CD Amd 1","publicationDate":null,"edition":1,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":44728,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 18033-3:2005/Cor 1:2006","publicationDate":"2006-08-22","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54531]}
+{"id":45142,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 29119-1:2013","publicationDate":"2013-08-29","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[81291]}
+{"id":45170,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 29147:2014","publicationDate":"2014-02-05","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[72311]}
+{"id":45171,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 29148:2011","publicationDate":"2011-11-24","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[72089]}
+{"id":45280,"deliverableType":"IS","supplementType":"Cor","reference":"ISO 11898-3:2006/Cor 1:2006","publicationDate":"2006-12-08","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":45293,"deliverableType":"IS","supplementType":null,"reference":"ISO 14229-1:2006","publicationDate":"2006-11-28","edition":1,"currentStage":9599,"replaces":[23918],"replacedBy":[55283]}
+{"id":45366,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-7:2009","publicationDate":"2009-05-07","edition":2,"currentStage":9599,"replaces":[40911,25243],"replacedBy":[59380]}
+{"id":45481,"deliverableType":"IS","supplementType":null,"reference":"ISO 9000:2015","publicationDate":"2015-09-22","edition":4,"currentStage":9599,"replaces":[42180],"replacedBy":[88465]}
+{"id":45614,"deliverableType":"IS","supplementType":"Cor","reference":"ISO 14229-1:2006/CD Cor 1","publicationDate":null,"edition":1,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":45763,"deliverableType":"IS","supplementType":null,"reference":"ISO 14229-2:2013","publicationDate":"2013-02-21","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[77322]}
+{"id":45991,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 42010:2007","publicationDate":"2007-07-10","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[50508]}
+{"id":46045,"deliverableType":"IS","supplementType":null,"reference":"ISO 15765-4:2011","publicationDate":"2011-02-16","edition":2,"currentStage":9599,"replaces":[33619],"replacedBy":[67245]}
+{"id":46152,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-36:2008","publicationDate":"2008-04-22","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[63996,50818]}
+{"id":46273,"deliverableType":"IS","supplementType":null,"reference":"ISO 27145-1:2012","publicationDate":"2012-08-14","edition":1,"currentStage":9093,"replaces":[44022],"replacedBy":[69138,85118]}
+{"id":46276,"deliverableType":"IS","supplementType":null,"reference":"ISO 27145-2:2012","publicationDate":"2012-08-14","edition":1,"currentStage":9093,"replaces":[44024],"replacedBy":[85119,69139]}
+{"id":46277,"deliverableType":"IS","supplementType":null,"reference":"ISO 27145-3:2012","publicationDate":"2012-08-14","edition":1,"currentStage":9093,"replaces":[44025],"replacedBy":[85119,69140]}
+{"id":46278,"deliverableType":"IS","supplementType":null,"reference":"ISO 27145-4:2012","publicationDate":"2012-08-14","edition":1,"currentStage":9599,"replaces":[44026],"replacedBy":[68571]}
+{"id":46370,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 11770-2:2008","publicationDate":"2008-06-03","edition":2,"currentStage":9599,"replaces":[42715,25290],"replacedBy":[73207]}
+{"id":46412,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 18045:2008","publicationDate":"2008-08-19","edition":2,"currentStage":9599,"replaces":[30830],"replacedBy":[72889]}
+{"id":46435,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 18033-3:2005/Cor 3:2008","publicationDate":"2008-03-18","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54531]}
+{"id":46447,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 18033-3:2005/Cor 2:2007","publicationDate":"2007-08-16","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54531]}
+{"id":46486,"deliverableType":"IS","supplementType":null,"reference":"ISO 9001:2008","publicationDate":"2008-11-13","edition":4,"currentStage":9599,"replaces":[21823],"replacedBy":[62085]}
+{"id":46542,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 11770-3:2008","publicationDate":"2008-07-02","edition":2,"currentStage":9599,"replaces":[25537,31077],"replacedBy":[60237]}
+{"id":50456,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-5:2009","publicationDate":"2009-12-11","edition":3,"currentStage":9092,"replaces":[39720],"replacedBy":[71291,89516,78724]}
+{"id":50508,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 42010:2011","publicationDate":"2011-11-24","edition":1,"currentStage":9599,"replaces":[45991],"replacedBy":[74393]}
+{"id":50510,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 9899:1999/Cor 3:2007","publicationDate":"2007-11-15","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[57853]}
+{"id":50518,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 24765:2010","publicationDate":"2010-12-15","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[71952]}
+{"id":50519,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 15504-7:2008","publicationDate":"2008-11-25","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54186,54178,54175,54176,54177]}
+{"id":50522,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-2:2008","publicationDate":"2008-12-09","edition":3,"currentStage":9599,"replaces":[30653,39984],"replacedBy":[67114]}
+{"id":50577,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-4:2011","publicationDate":"2011-11-23","edition":2,"currentStage":9093,"replaces":[25240],"replacedBy":null}
+{"id":50578,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-5:2011","publicationDate":"2011-03-29","edition":2,"currentStage":9599,"replaces":[25241,37160],"replacedBy":[74366]}
+{"id":50625,"deliverableType":"TS","supplementType":null,"reference":"ISO/IEC TS 15504-8:2012","publicationDate":"2012-09-05","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[55165]}
+{"id":50818,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC CD 2382-36","publicationDate":null,"edition":2,"currentStage":3098,"replaces":[46152,57340],"replacedBy":null}
+{"id":50922,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC PDTR 8802-1","publicationDate":null,"edition":4,"currentStage":3098,"replaces":[34385],"replacedBy":null}
+{"id":51024,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 18033-4:2005/Amd 1:2009","publicationDate":"2009-12-15","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54532]}
+{"id":51356,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-2:2011","publicationDate":"2011-11-14","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[68384]}
+{"id":51358,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-3:2011","publicationDate":"2011-11-14","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[68385]}
+{"id":51359,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-4:2011","publicationDate":"2011-11-14","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[68386]}
+{"id":51360,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-5:2011","publicationDate":"2011-11-14","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[68387]}
+{"id":51362,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-6:2011","publicationDate":"2011-11-14","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[68388]}
+{"id":51363,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-7:2011","publicationDate":"2011-11-14","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[68389]}
+{"id":51364,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-8:2011","publicationDate":"2011-11-14","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[68390]}
+{"id":51365,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-9:2011","publicationDate":"2011-11-14","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[68391]}
+{"id":51579,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 9798-3:1998/Amd 1:2010","publicationDate":"2010-05-25","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[67115]}
+{"id":51617,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 9798-2:1999/NP Amd 1","publicationDate":null,"edition":2,"currentStage":1098,"replaces":null,"replacedBy":null}
+{"id":51684,"deliverableType":"TS","supplementType":null,"reference":"ISO/IEC TS 15504-9:2011","publicationDate":"2011-07-26","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[55106]}
+{"id":53231,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 30111:2013","publicationDate":"2013-10-22","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[69725]}
+{"id":53456,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 11770-1:2010","publicationDate":"2010-11-22","edition":2,"currentStage":9093,"replaces":[19687],"replacedBy":null}
+{"id":53469,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 9798-2:2008/Cor 1:2010","publicationDate":"2010-02-05","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[67114]}
+{"id":53470,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 9798-3:1998/Cor 1:2009","publicationDate":"2009-09-09","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[67115]}
+{"id":53471,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 9798-4:1999/Cor 1:2009","publicationDate":"2009-09-09","edition":2,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":53472,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 9798-6:2005/Cor 1:2009","publicationDate":"2009-09-09","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54529]}
+{"id":53473,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 11770-2:2008/Cor 1:2009","publicationDate":"2009-09-04","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[73207]}
+{"id":53474,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 11770-3:2008/Cor 1:2009","publicationDate":"2009-09-04","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[60237]}
+{"id":53475,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 11770-4:2006/Cor 1:2009","publicationDate":"2009-09-04","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[67933]}
+{"id":53634,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-1:2010","publicationDate":"2010-06-16","edition":3,"currentStage":9093,"replaces":[27743],"replacedBy":null}
+{"id":53765,"deliverableType":"IS","supplementType":null,"reference":"ISO 13400-1:2011","publicationDate":"2011-10-18","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[73793]}
+{"id":53766,"deliverableType":"IS","supplementType":null,"reference":"ISO 13400-2:2012","publicationDate":"2012-06-04","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[74785]}
+{"id":53767,"deliverableType":"IS","supplementType":null,"reference":"ISO 13400-3:2011","publicationDate":"2011-12-06","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[68424]}
+{"id":54175,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 33001:2015","publicationDate":"2015-02-27","edition":1,"currentStage":9093,"replaces":[38932,50519],"replacedBy":null}
+{"id":54176,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 33002:2015","publicationDate":"2015-02-27","edition":1,"currentStage":9093,"replaces":[40192,50519,37458],"replacedBy":null}
+{"id":54177,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 33003:2015","publicationDate":"2015-02-27","edition":1,"currentStage":9093,"replaces":[40192,50519,37458],"replacedBy":null}
+{"id":54178,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 33004:2015","publicationDate":"2015-02-27","edition":1,"currentStage":9093,"replaces":[40192,50519,37458],"replacedBy":null}
+{"id":54186,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 33014:2013","publicationDate":"2013-11-19","edition":1,"currentStage":6060,"replaces":[50519],"replacedBy":null}
+{"id":54195,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 33020:2015","publicationDate":"2015-02-27","edition":1,"currentStage":9599,"replaces":[40192,37458],"replacedBy":[78526]}
+{"id":54389,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-2:2012","publicationDate":"2012-02-24","edition":2,"currentStage":9599,"replaces":[25238,39172,38699],"replacedBy":[71171]}
+{"id":54390,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-9:2012","publicationDate":"2012-01-30","edition":2,"currentStage":9020,"replaces":[25245],"replacedBy":[71175]}
+{"id":54498,"deliverableType":"IS","supplementType":null,"reference":"ISO 15765-1:2011","publicationDate":"2011-10-11","edition":2,"currentStage":9599,"replaces":[33615],"replacedBy":[73794]}
+{"id":54499,"deliverableType":"IS","supplementType":null,"reference":"ISO 15765-2:2011","publicationDate":"2011-11-15","edition":2,"currentStage":9599,"replaces":[33616],"replacedBy":[66574]}
+{"id":54527,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 11770-5:2011","publicationDate":"2011-12-16","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[75295]}
+{"id":54528,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 18033-1:2005/Amd 1:2011","publicationDate":"2011-02-16","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[54530]}
+{"id":54529,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-6:2010","publicationDate":"2010-11-17","edition":2,"currentStage":9093,"replaces":[53472,39721],"replacedBy":null}
+{"id":54530,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 18033-1:2015","publicationDate":"2015-07-24","edition":2,"currentStage":9599,"replaces":[54528,37970],"replacedBy":[76156]}
+{"id":54531,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 18033-3:2010","publicationDate":"2010-12-14","edition":2,"currentStage":9093,"replaces":[46435,46447,37972,44728],"replacedBy":[77557]}
+{"id":54532,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 18033-4:2011","publicationDate":"2011-12-16","edition":2,"currentStage":9093,"replaces":[39978,51024],"replacedBy":null}
+{"id":54537,"deliverableType":"TS","supplementType":null,"reference":"ISO/IEC TS 15504-10:2011","publicationDate":"2011-11-21","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[89829]}
+{"id":54538,"deliverableType":"IS","supplementType":"Cor","reference":"ISO 9001:2008/Cor 1:2009","publicationDate":"2009-07-17","edition":4,"currentStage":9599,"replaces":null,"replacedBy":[62085]}
+{"id":54591,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-10:2012","publicationDate":"2012-07-25","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[68392]}
+{"id":55042,"deliverableType":"IS","supplementType":null,"reference":"ISO/NP 15765-3","publicationDate":null,"edition":2,"currentStage":1098,"replaces":[33618],"replacedBy":null}
+{"id":55194,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-37:2012","publicationDate":"2012-12-13","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[66693,63598]}
+{"id":55283,"deliverableType":"IS","supplementType":null,"reference":"ISO 14229-1:2013","publicationDate":"2013-03-15","edition":2,"currentStage":9599,"replaces":[45293],"replacedBy":[72439]}
+{"id":55284,"deliverableType":"IS","supplementType":null,"reference":"ISO 14229-3:2012","publicationDate":"2012-11-30","edition":1,"currentStage":9599,"replaces":[33618],"replacedBy":[77323]}
+{"id":55285,"deliverableType":"IS","supplementType":null,"reference":"ISO 14229-4:2012","publicationDate":"2012-11-30","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":55287,"deliverableType":"IS","supplementType":null,"reference":"ISO 14229-5:2013","publicationDate":"2013-10-30","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[76882]}
+{"id":55288,"deliverableType":"IS","supplementType":null,"reference":"ISO 14229-6:2013","publicationDate":"2013-03-20","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":55703,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 11783-13:2007/NP Amd 1","publicationDate":null,"edition":1,"currentStage":1098,"replaces":null,"replacedBy":null}
+{"id":56016,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-15-4:2010","publicationDate":"2010-10-14","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[73370]}
+{"id":56736,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 29119-2:2013","publicationDate":"2013-08-29","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[79428]}
+{"id":56737,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 29119-3:2013","publicationDate":"2013-08-29","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[79429]}
+{"id":56765,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-13:2011","publicationDate":"2011-04-01","edition":2,"currentStage":9599,"replaces":[38209],"replacedBy":[78296]}
+{"id":57316,"deliverableType":"IS","supplementType":null,"reference":"ISO/NP 13400-5","publicationDate":null,"edition":1,"currentStage":1098,"replaces":null,"replacedBy":null}
+{"id":57317,"deliverableType":"IS","supplementType":null,"reference":"ISO 13400-4:2016","publicationDate":"2016-03-29","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":57340,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 2382-36:2008/Cor 1:2012","publicationDate":"2012-04-12","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[63996,50818]}
+{"id":57554,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-3:2014","publicationDate":"2014-05-19","edition":3,"currentStage":9599,"replaces":[41160],"replacedBy":[71172]}
+{"id":57556,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-1:2017","publicationDate":"2017-12-14","edition":2,"currentStage":9093,"replaces":[39122],"replacedBy":null}
+{"id":57558,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 11783-10:2009/CD Amd 1","publicationDate":null,"edition":1,"currentStage":3098,"replaces":null,"replacedBy":[61581]}
+{"id":57791,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 11783-6:2010/CD Amd 1","publicationDate":null,"edition":2,"currentStage":3098,"replaces":null,"replacedBy":[61646]}
+{"id":57849,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-11:2011","publicationDate":"2011-06-29","edition":2,"currentStage":9093,"replaces":[39125],"replacedBy":null}
+{"id":57853,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9899:2011","publicationDate":"2011-12-08","edition":3,"currentStage":9599,"replaces":[41326,29237,50510,35952],"replacedBy":[74528]}
+{"id":59125,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 15504-5:2006/DAM 1","publicationDate":null,"edition":1,"currentStage":4098,"replaces":null,"replacedBy":[60555]}
+{"id":59126,"deliverableType":"TR","supplementType":"Amd","reference":"ISO/IEC TR 15504-6:2008/DAM 1","publicationDate":null,"edition":1,"currentStage":4098,"replaces":null,"replacedBy":[61492]}
+{"id":59165,"deliverableType":"IS","supplementType":null,"reference":"ISO 11898-6:2013","publicationDate":"2013-10-23","edition":1,"currentStage":9599,"replaces":null,"replacedBy":null}
+{"id":59166,"deliverableType":"IS","supplementType":null,"reference":"ISO 16845-1:2016","publicationDate":"2016-10-26","edition":1,"currentStage":9092,"replaces":[30478],"replacedBy":[85135,90696]}
+{"id":59380,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-7:2015","publicationDate":"2015-04-01","edition":3,"currentStage":9599,"replaces":[45366],"replacedBy":[71174,78295]}
+{"id":59381,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-12:2014","publicationDate":"2014-09-09","edition":2,"currentStage":9599,"replaces":[38784],"replacedBy":[71184]}
+{"id":59504,"deliverableType":"IS","supplementType":null,"reference":"ISO 16845-2:2014","publicationDate":"2014-11-04","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[69841]}
+{"id":59649,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 18033-3:2010/WD Amd 1","publicationDate":null,"edition":2,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":59804,"deliverableType":"IS","supplementType":null,"reference":"ISO 17458-1:2013","publicationDate":"2013-01-21","edition":1,"currentStage":9093,"replaces":null,"replacedBy":[76894]}
+{"id":59806,"deliverableType":"IS","supplementType":null,"reference":"ISO 17458-2:2013","publicationDate":"2013-01-21","edition":1,"currentStage":9093,"replaces":null,"replacedBy":[76895]}
+{"id":59807,"deliverableType":"IS","supplementType":null,"reference":"ISO 17458-3:2013","publicationDate":"2013-01-21","edition":1,"currentStage":9093,"replaces":null,"replacedBy":[76896]}
+{"id":59808,"deliverableType":"IS","supplementType":null,"reference":"ISO 17458-4:2013","publicationDate":"2013-01-21","edition":1,"currentStage":9093,"replaces":null,"replacedBy":[76897]}
+{"id":59809,"deliverableType":"IS","supplementType":null,"reference":"ISO 17458-5:2013","publicationDate":"2013-01-21","edition":1,"currentStage":9093,"replaces":null,"replacedBy":[76898]}
+{"id":59867,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 15765-4:2011/Amd 1:2013","publicationDate":"2013-02-04","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[67245]}
+{"id":59948,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 18033-5:2015","publicationDate":"2015-11-23","edition":1,"currentStage":9060,"replaces":null,"replacedBy":null}
+{"id":60237,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 11770-3:2015","publicationDate":"2015-08-04","edition":3,"currentStage":9599,"replaces":[53474,46542],"replacedBy":[82709]}
+{"id":60245,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 29119-4:2015","publicationDate":"2015-12-03","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[79430]}
+{"id":60365,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 9798-2:2008/Cor 2:2012","publicationDate":"2012-03-05","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[67114]}
+{"id":60366,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 9798-3:1998/Cor 2:2012","publicationDate":"2012-03-05","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[67115]}
+{"id":60367,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 9798-4:1999/CD Cor 2","publicationDate":null,"edition":2,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":60555,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 15504-5:2012","publicationDate":"2012-01-26","edition":2,"currentStage":9599,"replaces":[59125,38934],"replacedBy":[80362]}
+{"id":61191,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 9798-4:1999/Cor 2:2012","publicationDate":"2012-07-13","edition":2,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":61221,"deliverableType":"IS","supplementType":null,"reference":"ISO 14229-7:2015","publicationDate":"2015-01-31","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[81381]}
+{"id":61222,"deliverableType":"IS","supplementType":null,"reference":"ISO 17987-1:2016","publicationDate":"2016-08-04","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[85125]}
+{"id":61223,"deliverableType":"IS","supplementType":null,"reference":"ISO 17987-2:2016","publicationDate":"2016-08-04","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[85126]}
+{"id":61224,"deliverableType":"IS","supplementType":null,"reference":"ISO 17987-3:2016","publicationDate":"2016-08-05","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[85127]}
+{"id":61225,"deliverableType":"IS","supplementType":null,"reference":"ISO 17987-4:2016","publicationDate":"2016-08-25","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[85128]}
+{"id":61226,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 17987-5","publicationDate":null,"edition":1,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":61227,"deliverableType":"IS","supplementType":null,"reference":"ISO 17987-6:2016","publicationDate":"2016-10-06","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[85129]}
+{"id":61229,"deliverableType":"IS","supplementType":null,"reference":"ISO 17987-7:2016","publicationDate":"2016-12-14","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[85130]}
+{"id":61492,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 15504-6:2013","publicationDate":"2013-06-05","edition":1,"currentStage":9599,"replaces":[43446,59126],"replacedBy":[55151]}
+{"id":61581,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-10:2015","publicationDate":"2015-09-09","edition":2,"currentStage":9093,"replaces":[57558,39124],"replacedBy":[89951]}
+{"id":61646,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-6:2014","publicationDate":"2014-07-02","edition":3,"currentStage":9599,"replaces":[57791,42725],"replacedBy":[71173]}
+{"id":61717,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 9899:2011/Cor 1:2012","publicationDate":"2012-07-13","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[74528]}
+{"id":61970,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 2382-36:2008/DAmd 1","publicationDate":null,"edition":1,"currentStage":4098,"replaces":null,"replacedBy":[63996]}
+{"id":62000,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-11:2012","publicationDate":"2012-11-05","edition":1,"currentStage":9599,"replaces":[41477,41243,39777,41476],"replacedBy":[73367,63862]}
+{"id":62073,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 18033-3:2010/NP Amd 1","publicationDate":null,"edition":2,"currentStage":1098,"replaces":null,"replacedBy":null}
+{"id":62085,"deliverableType":"IS","supplementType":null,"reference":"ISO 9001:2015","publicationDate":"2015-09-22","edition":5,"currentStage":9599,"replaces":[46486,54538],"replacedBy":[88464]}
+{"id":62399,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 9798-2:2008/Cor 3:2013","publicationDate":"2013-02-13","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[67114]}
+{"id":62445,"deliverableType":"IS","supplementType":null,"reference":"ISO 27145-6:2015","publicationDate":"2015-04-02","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[82185,69141]}
+{"id":62813,"deliverableType":"IS","supplementType":"Cor","reference":"ISO 11783-2:2012/Cor 1:2012","publicationDate":"2012-11-05","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[71171]}
+{"id":62821,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 29119-5:2016","publicationDate":"2016-11-17","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[87233]}
+{"id":63254,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1X:2013","publicationDate":"2013-11-26","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[82672]}
+{"id":63255,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1AE:2013","publicationDate":"2013-11-26","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[78102]}
+{"id":63598,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382:2015","publicationDate":"2015-04-29","edition":1,"currentStage":9092,"replaces":[7253,7232,30853,55194,7255,7271,21848,7272,7251,7243,7273,30851,7267,20929,7238,7268,7247,21845,7269,21846,7270,7241,27922,7263,7264,26734,7265,7257,7229,7259,7230],"replacedBy":[94473,93667,94474,93661,30861,94532,93662,94527,93663,30849,94528,93664,30850,94529,93665,93666,30852]}
+{"id":63648,"deliverableType":"IS","supplementType":null,"reference":"ISO 11898-1:2015","publicationDate":"2015-12-14","edition":2,"currentStage":9599,"replaces":[44158,33422],"replacedBy":[86384,83292]}
+{"id":63711,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 15288:2015","publicationDate":"2015-05-21","edition":1,"currentStage":9599,"replaces":[43564],"replacedBy":[81702]}
+{"id":63712,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 12207:2017","publicationDate":"2017-11-28","edition":1,"currentStage":9599,"replaces":[43447],"replacedBy":[90219]}
+{"id":63862,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE DIS 8802-11","publicationDate":null,"edition":2,"currentStage":4098,"replaces":[62000],"replacedBy":null}
+{"id":63901,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE DIS 8802-1AE","publicationDate":null,"edition":2,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":63996,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-36:2013","publicationDate":"2013-11-19","edition":2,"currentStage":9599,"replaces":[46152,61970,57340],"replacedBy":[66692]}
+{"id":64107,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1AB:2014","publicationDate":"2014-02-07","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[72047]}
+{"id":64109,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1AR:2014","publicationDate":"2014-02-07","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[76650]}
+{"id":64110,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1AS:2014","publicationDate":"2014-02-07","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[81679]}
+{"id":64216,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 18045:2008/CD Cor 1","publicationDate":null,"edition":2,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":64600,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-11:2012/Amd 1:2014","publicationDate":"2014-03-12","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[73367]}
+{"id":64601,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-11:2012/Amd 2:2014","publicationDate":"2014-03-12","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[73367]}
+{"id":64764,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 25000:2014","publicationDate":"2014-03-14","edition":2,"currentStage":9093,"replaces":[35683],"replacedBy":null}
+{"id":64876,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-11:2012/Amd 3:2014","publicationDate":"2014-03-12","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[73367]}
+{"id":64882,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-3:2014","publicationDate":"2014-04-08","edition":1,"currentStage":9599,"replaces":[31002],"replacedBy":[72048]}
+{"id":65275,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 11770-6:2016","publicationDate":"2016-10-05","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":66574,"deliverableType":"IS","supplementType":null,"reference":"ISO 15765-2:2016","publicationDate":"2016-04-12","edition":3,"currentStage":9599,"replaces":[54499],"replacedBy":[84211]}
+{"id":66692,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-36:2019","publicationDate":"2019-06-07","edition":3,"currentStage":9093,"replaces":[63996],"replacedBy":null}
+{"id":66693,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-37:2017","publicationDate":"2017-02-06","edition":2,"currentStage":9599,"replaces":[55194],"replacedBy":[73514]}
+{"id":67004,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1AE:2013/Amd 1:2015","publicationDate":"2015-04-28","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[78102]}
+{"id":67005,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1AE:2013/Amd 2:2015","publicationDate":"2015-04-28","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[78102]}
+{"id":67114,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-2:2019","publicationDate":"2019-06-03","edition":4,"currentStage":9093,"replaces":[53469,50522,62399,60365],"replacedBy":null}
+{"id":67115,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9798-3:2019","publicationDate":"2019-01-30","edition":3,"currentStage":9093,"replaces":[60366,53470,51579,29062],"replacedBy":null}
+{"id":67244,"deliverableType":"IS","supplementType":null,"reference":"ISO 11898-2:2016","publicationDate":"2016-12-14","edition":2,"currentStage":9599,"replaces":[33423],"replacedBy":[85120]}
+{"id":67245,"deliverableType":"IS","supplementType":null,"reference":"ISO 15765-4:2016","publicationDate":"2016-04-12","edition":3,"currentStage":9599,"replaces":[59867,46045],"replacedBy":[78384]}
+{"id":67402,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-22:2015","publicationDate":"2015-04-28","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[82038]}
+{"id":67740,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 18033-6:2019","publicationDate":"2019-05-02","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":67933,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 11770-4:2017","publicationDate":"2017-11-17","edition":2,"currentStage":9092,"replaces":[53475,39723],"replacedBy":[88130]}
+{"id":68106,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE NP 12207-1","publicationDate":null,"edition":1,"currentStage":1098,"replaces":null,"replacedBy":null}
+{"id":68107,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE CD 12207-2","publicationDate":null,"edition":1,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":68307,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-3-1:2015","publicationDate":"2015-07-27","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":68383,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-1:2018","publicationDate":"2018-12-17","edition":2,"currentStage":9092,"replaces":[43464],"replacedBy":[90020]}
+{"id":68384,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-2:2018","publicationDate":"2018-12-17","edition":2,"currentStage":9092,"replaces":[51356],"replacedBy":[90021]}
+{"id":68385,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-3:2018","publicationDate":"2018-12-17","edition":2,"currentStage":9092,"replaces":[51358],"replacedBy":[90022]}
+{"id":68386,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-4:2018","publicationDate":"2018-12-17","edition":2,"currentStage":9092,"replaces":[51359],"replacedBy":[90023]}
+{"id":68387,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-5:2018","publicationDate":"2018-12-17","edition":2,"currentStage":9092,"replaces":[51360],"replacedBy":[90024]}
+{"id":68388,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-6:2018","publicationDate":"2018-12-17","edition":2,"currentStage":9092,"replaces":[51362],"replacedBy":[90025]}
+{"id":68389,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-7:2018","publicationDate":"2018-12-17","edition":2,"currentStage":9092,"replaces":[51363],"replacedBy":[90026]}
+{"id":68390,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-8:2018","publicationDate":"2018-12-17","edition":2,"currentStage":9092,"replaces":[51364],"replacedBy":[90027]}
+{"id":68391,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-9:2018","publicationDate":"2018-12-17","edition":2,"currentStage":9092,"replaces":[51365],"replacedBy":[90028]}
+{"id":68392,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-10:2018","publicationDate":"2018-12-17","edition":2,"currentStage":9092,"replaces":[54591],"replacedBy":[90029]}
+{"id":68412,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-11:2012/Amd 4:2015","publicationDate":"2015-08-25","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[73367]}
+{"id":68413,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-11:2012/Amd 5:2015","publicationDate":"2015-08-25","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[73367]}
+{"id":68424,"deliverableType":"IS","supplementType":null,"reference":"ISO 13400-3:2016","publicationDate":"2016-11-09","edition":2,"currentStage":9093,"replaces":[53767],"replacedBy":null}
+{"id":68571,"deliverableType":"IS","supplementType":null,"reference":"ISO 27145-4:2016","publicationDate":"2016-03-29","edition":2,"currentStage":9093,"replaces":[46278],"replacedBy":null}
+{"id":68839,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-A:2015","publicationDate":"2015-12-01","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[92364]}
+{"id":69116,"deliverableType":"TR","supplementType":null,"reference":"ISO/TR 17987-5:2016","publicationDate":"2016-11-04","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":69138,"deliverableType":"IS","supplementType":null,"reference":"ISO/PWI 27145-1","publicationDate":null,"edition":2,"currentStage":98,"replaces":[46273],"replacedBy":null}
+{"id":69139,"deliverableType":"IS","supplementType":null,"reference":"ISO/PWI 27145-2","publicationDate":null,"edition":2,"currentStage":98,"replaces":[46276],"replacedBy":null}
+{"id":69140,"deliverableType":"IS","supplementType":null,"reference":"ISO/PWI 27145-3","publicationDate":null,"edition":2,"currentStage":98,"replaces":[46277],"replacedBy":null}
+{"id":69141,"deliverableType":"IS","supplementType":null,"reference":"ISO/PWI 27145-6","publicationDate":null,"edition":2,"currentStage":98,"replaces":[62445],"replacedBy":null}
+{"id":69145,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1AX:2016","publicationDate":"2016-01-14","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[81680]}
+{"id":69350,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1X:2013/Amd 1:2016","publicationDate":"2016-02-11","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[82672]}
+{"id":69464,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1Q:2016","publicationDate":"2016-03-11","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[78103]}
+{"id":69466,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 20922:2016","publicationDate":"2016-06-08","edition":1,"currentStage":9020,"replaces":null,"replacedBy":null}
+{"id":69604,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-11:2018","publicationDate":"2018-12-17","edition":1,"currentStage":9092,"replaces":null,"replacedBy":[90030]}
+{"id":69605,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-12:2018","publicationDate":"2018-12-17","edition":1,"currentStage":9092,"replaces":null,"replacedBy":[90031]}
+{"id":69725,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 30111:2019","publicationDate":"2019-10-01","edition":2,"currentStage":9092,"replaces":[53231],"replacedBy":[92946]}
+{"id":69841,"deliverableType":"IS","supplementType":null,"reference":"ISO 16845-2:2018","publicationDate":"2018-07-17","edition":2,"currentStage":9092,"replaces":[59504],"replacedBy":[90695]}
+{"id":69923,"deliverableType":"IS","supplementType":null,"reference":"ISO 21111-1:2020","publicationDate":"2020-10-26","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":70297,"deliverableType":"IS","supplementType":null,"reference":"ISO 21111-3:2020","publicationDate":"2020-06-29","edition":1,"currentStage":9092,"replaces":null,"replacedBy":[92951]}
+{"id":70400,"deliverableType":"IS","supplementType":null,"reference":"ISO 10007:2017","publicationDate":"2017-04-07","edition":3,"currentStage":9092,"replaces":[36644],"replacedBy":[92170]}
+{"id":70621,"deliverableType":"IS","supplementType":null,"reference":"ISO 21111-2:2020","publicationDate":"2020-10-26","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":70891,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-22:2015/Amd 1:2017","publicationDate":"2017-10-27","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[82038]}
+{"id":70892,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-22:2015/Amd 2:2017","publicationDate":"2017-10-27","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[82038]}
+{"id":70893,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1BA:2016","publicationDate":"2016-10-06","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[85353]}
+{"id":70894,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1BR:2016","publicationDate":"2016-10-06","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":70918,"deliverableType":"IS","supplementType":null,"reference":"ISO/SAE 21434:2021","publicationDate":"2021-08-31","edition":1,"currentStage":9092,"replaces":null,"replacedBy":[95437]}
+{"id":70939,"deliverableType":"PAS","supplementType":null,"reference":"ISO/PAS 21448:2019","publicationDate":"2019-01-10","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[77490]}
+{"id":71044,"deliverableType":"IS","supplementType":null,"reference":"ISO 17987-8:2019","publicationDate":"2019-10-07","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":71113,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 11770-3:2015/Amd 1:2017","publicationDate":"2017-11-28","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[82709]}
+{"id":71114,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 18033-2:2006/Amd 1:2017","publicationDate":"2017-11-10","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":71165,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC 11770-3:2015/Cor 1:2016","publicationDate":"2016-05-09","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[82709]}
+{"id":71171,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-2:2019","publicationDate":"2019-04-01","edition":3,"currentStage":9092,"replaces":[62813,54389],"replacedBy":[90373]}
+{"id":71172,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-3:2018","publicationDate":"2018-11-02","edition":4,"currentStage":9599,"replaces":[57554],"replacedBy":[89949]}
+{"id":71173,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-6:2018","publicationDate":"2018-06-06","edition":4,"currentStage":9092,"replaces":[61646],"replacedBy":[89950,92131]}
+{"id":71174,"deliverableType":"IS","supplementType":null,"reference":"ISO/CD 11783-7","publicationDate":null,"edition":4,"currentStage":3098,"replaces":[59380],"replacedBy":null}
+{"id":71175,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 11783-9","publicationDate":null,"edition":3,"currentStage":4098,"replaces":[54390],"replacedBy":null}
+{"id":71184,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-12:2019","publicationDate":"2019-01-30","edition":3,"currentStage":9092,"replaces":[59381],"replacedBy":[92130,89974]}
+{"id":71291,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC CD 9798-5","publicationDate":null,"edition":4,"currentStage":3098,"replaces":[50456],"replacedBy":null}
+{"id":71517,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 11770-3:2015/NP Amd 2","publicationDate":null,"edition":3,"currentStage":1098,"replaces":null,"replacedBy":null}
+{"id":71548,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2016/Amd 1:2017","publicationDate":"2017-08-07","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[78103]}
+{"id":71708,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2016/Amd 2:2018","publicationDate":"2018-01-08","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[78103]}
+{"id":71709,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2016/Amd 3:2017","publicationDate":"2017-08-07","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[78103]}
+{"id":71833,"deliverableType":"IS","supplementType":null,"reference":"ISO 21806-1:2020","publicationDate":"2020-09-18","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":71834,"deliverableType":"IS","supplementType":null,"reference":"ISO 21806-2:2020","publicationDate":"2020-09-18","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":71835,"deliverableType":"IS","supplementType":null,"reference":"ISO 21806-3:2020","publicationDate":"2020-10-21","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":71836,"deliverableType":"IS","supplementType":null,"reference":"ISO 21806-4:2020","publicationDate":"2020-09-18","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":71837,"deliverableType":"IS","supplementType":null,"reference":"ISO 21806-5:2020","publicationDate":"2020-09-18","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":71838,"deliverableType":"IS","supplementType":null,"reference":"ISO 21806-6:2020","publicationDate":"2020-09-18","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":71839,"deliverableType":"IS","supplementType":null,"reference":"ISO 21806-7:2020","publicationDate":"2020-09-18","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":71840,"deliverableType":"IS","supplementType":null,"reference":"ISO 21806-8:2020","publicationDate":"2020-10-26","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":71841,"deliverableType":"IS","supplementType":null,"reference":"ISO 21806-9:2020","publicationDate":"2020-10-26","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":71842,"deliverableType":"IS","supplementType":null,"reference":"ISO/PWI 21806-10","publicationDate":null,"edition":1,"currentStage":98,"replaces":null,"replacedBy":null}
+{"id":71843,"deliverableType":"IS","supplementType":null,"reference":"ISO/PWI 21806-11","publicationDate":null,"edition":1,"currentStage":98,"replaces":null,"replacedBy":null}
+{"id":71937,"deliverableType":"IS","supplementType":null,"reference":"ISO 21111-4:2020","publicationDate":"2020-03-17","edition":1,"currentStage":9060,"replaces":null,"replacedBy":null}
+{"id":71952,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 24765:2017","publicationDate":"2017-09-06","edition":2,"currentStage":9093,"replaces":[50518],"replacedBy":[92875]}
+{"id":72047,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1AB:2017","publicationDate":"2017-08-07","edition":2,"currentStage":9093,"replaces":[64107],"replacedBy":null}
+{"id":72048,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-3:2017","publicationDate":"2017-03-31","edition":2,"currentStage":9599,"replaces":[64882],"replacedBy":[78299]}
+{"id":72075,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2014/DAmd 1","publicationDate":null,"edition":1,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":72089,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 29148:2018","publicationDate":"2018-11-28","edition":2,"currentStage":9092,"replaces":[45171],"replacedBy":[94091]}
+{"id":72133,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2017/Amd 1:2017","publicationDate":"2017-11-06","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[78299]}
+{"id":72248,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-15-3:2017","publicationDate":"2017-11-06","edition":1,"currentStage":9092,"replaces":null,"replacedBy":[91161]}
+{"id":72311,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 29147:2018","publicationDate":"2018-10-23","edition":2,"currentStage":9092,"replaces":[45170],"replacedBy":[92945]}
+{"id":72352,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-15-6:2017","publicationDate":"2017-11-06","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":72439,"deliverableType":"IS","supplementType":null,"reference":"ISO 14229-1:2020","publicationDate":"2020-02-07","edition":3,"currentStage":9599,"replaces":[55283],"replacedBy":[87962]}
+{"id":72527,"deliverableType":"IS","supplementType":null,"reference":"ISO 14229-8:2020","publicationDate":"2020-02-25","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":72666,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2017/Amd 2:2017","publicationDate":"2017-11-29","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[78299]}
+{"id":72667,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2017/Amd 3:2017","publicationDate":"2017-11-29","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[78299]}
+{"id":72668,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2017/Amd 4:2017","publicationDate":"2017-11-29","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[78299]}
+{"id":72885,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2016/Amd 4:2017","publicationDate":"2017-11-29","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[78103]}
+{"id":72886,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2016/Amd 5:2017","publicationDate":"2017-11-29","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[78103]}
+{"id":72889,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 18045:2022","publicationDate":"2022-08-09","edition":3,"currentStage":9599,"replaces":[46412],"replacedBy":[88141]}
+{"id":72973,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2017/Amd 5:2017","publicationDate":"2017-11-29","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[78299]}
+{"id":72975,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2017/Amd 7:2017","publicationDate":"2017-11-29","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[78299]}
+{"id":73001,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 11783-7:2015/Amd 1:2018","publicationDate":"2018-06-21","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[78295]}
+{"id":73205,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 18033-3:2010/DAmd 1","publicationDate":null,"edition":2,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":73207,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 11770-2:2018","publicationDate":"2018-09-28","edition":3,"currentStage":9093,"replaces":[46370,53473],"replacedBy":null}
+{"id":73367,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-11:2018","publicationDate":"2018-05-09","edition":2,"currentStage":9599,"replaces":[64601,62000,68413,64876,68412,64600],"replacedBy":[83242]}
+{"id":73368,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-11:2018/Amd 1:2019","publicationDate":"2019-02-14","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[83242]}
+{"id":73369,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2017/Amd 6:2018","publicationDate":"2018-10-24","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[78299]}
+{"id":73370,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-15-4:2018","publicationDate":"2018-03-08","edition":2,"currentStage":9599,"replaces":[56016],"replacedBy":[88659]}
+{"id":73446,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 12207-2:2020","publicationDate":"2020-10-23","edition":1,"currentStage":9060,"replaces":null,"replacedBy":null}
+{"id":73498,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC/IEEE 8802-1Q:2016/Cor 1:2017","publicationDate":"2017-11-06","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[78103]}
+{"id":73514,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 2382-37:2022","publicationDate":"2022-03-29","edition":3,"currentStage":9092,"replaces":[66693],"replacedBy":[91305]}
+{"id":73718,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC/IEEE 8802-1AX:2016/Cor 1:2018","publicationDate":"2018-09-19","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[81680]}
+{"id":73793,"deliverableType":"IS","supplementType":null,"reference":"ISO/NP 13400-1","publicationDate":null,"edition":2,"currentStage":1098,"replaces":[53765],"replacedBy":null}
+{"id":73794,"deliverableType":"IS","supplementType":null,"reference":"ISO/NP 15765-1","publicationDate":null,"edition":3,"currentStage":1098,"replaces":[54498],"replacedBy":null}
+{"id":73795,"deliverableType":"IS","supplementType":null,"reference":"ISO/PWI 15765-5","publicationDate":null,"edition":2,"currentStage":98,"replaces":null,"replacedBy":null}
+{"id":73902,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 11770-4:2017/Amd 1:2019","publicationDate":"2019-09-06","edition":2,"currentStage":6060,"replaces":null,"replacedBy":[88130]}
+{"id":73903,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 18033-3:2010/DAmd 2","publicationDate":null,"edition":2,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":74282,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-21:2018","publicationDate":"2018-04-27","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":74283,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1AE:2013/Amd 3:2018","publicationDate":"2018-10-18","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[78102]}
+{"id":74310,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-11:2018/Amd 2:2019","publicationDate":"2019-03-28","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[83242]}
+{"id":74347,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 33020:2015/DAmd 1","publicationDate":null,"edition":1,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":74366,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-5:2019","publicationDate":"2019-06-24","edition":3,"currentStage":9093,"replaces":[50578],"replacedBy":null}
+{"id":74393,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 42010:2022","publicationDate":"2022-11-07","edition":2,"currentStage":6060,"replaces":[50508],"replacedBy":null}
+{"id":74406,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-A:2015/Amd 1:2018","publicationDate":"2018-04-27","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[92364]}
+{"id":74413,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2017/Amd 8:2018","publicationDate":"2018-10-24","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[78299]}
+{"id":74414,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2017/Amd 9:2018","publicationDate":"2018-10-24","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[78299]}
+{"id":74465,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-21-1:2018","publicationDate":"2018-04-27","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":74489,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC/IEEE 8802-3:2017/Cor 1:2018","publicationDate":"2018-09-19","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[78299]}
+{"id":74495,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1AC:2018","publicationDate":"2018-04-27","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":74528,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9899:2018","publicationDate":"2018-07-05","edition":4,"currentStage":9599,"replaces":[61717,57853],"replacedBy":[82075]}
+{"id":74728,"deliverableType":"IS","supplementType":null,"reference":"ISO 21111-5:2020","publicationDate":"2020-06-29","edition":1,"currentStage":9092,"replaces":null,"replacedBy":[92952]}
+{"id":74777,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2016/Amd 6:2019","publicationDate":"2019-02-14","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[78103]}
+{"id":74780,"deliverableType":"IS","supplementType":null,"reference":"ISO 21111-6:2021","publicationDate":"2021-11-05","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":74781,"deliverableType":"IS","supplementType":null,"reference":"ISO/CD 21111-7","publicationDate":null,"edition":1,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":74782,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 21111-9","publicationDate":null,"edition":1,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":74784,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 21111-10","publicationDate":null,"edition":1,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":74785,"deliverableType":"IS","supplementType":null,"reference":"ISO 13400-2:2019","publicationDate":"2019-12-13","edition":2,"currentStage":9599,"replaces":[53766],"replacedBy":[87961]}
+{"id":75006,"deliverableType":"IS","supplementType":null,"reference":"ISO 21111-8:2022","publicationDate":"2022-08-09","edition":1,"currentStage":9092,"replaces":null,"replacedBy":[87521]}
+{"id":75295,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 11770-5:2020","publicationDate":"2020-11-10","edition":2,"currentStage":9093,"replaces":[54527],"replacedBy":null}
+{"id":75582,"deliverableType":"IS","supplementType":null,"reference":"ISO 15765-5:2021","publicationDate":"2021-09-22","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[84209]}
+{"id":76156,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 18033-1:2021","publicationDate":"2021-09-10","edition":3,"currentStage":9020,"replaces":[54530],"replacedBy":null}
+{"id":76352,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 11770-4:2017/Amd 2:2021","publicationDate":"2021-02-02","edition":2,"currentStage":6060,"replaces":null,"replacedBy":[88130]}
+{"id":76459,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2016/Amd 7:2019","publicationDate":"2019-02-14","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[78103]}
+{"id":76460,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2017/Amd 10:2019","publicationDate":"2019-02-14","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[78299]}
+{"id":76461,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2017/Amd 11:2019","publicationDate":"2019-02-14","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[78299]}
+{"id":76469,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1CB:2019","publicationDate":"2019-02-14","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":76470,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-A:2015/Amd 2:2019","publicationDate":"2019-02-14","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[92364]}
+{"id":76646,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE DIS 8802-16","publicationDate":null,"edition":1,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":76650,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1AR:2020","publicationDate":"2020-03-19","edition":2,"currentStage":9093,"replaces":[64109],"replacedBy":null}
+{"id":76680,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1CM:2019","publicationDate":"2019-07-31","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":76882,"deliverableType":"IS","supplementType":null,"reference":"ISO 14229-5:2022","publicationDate":"2022-04-25","edition":2,"currentStage":6060,"replaces":[55287],"replacedBy":null}
+{"id":76894,"deliverableType":"IS","supplementType":null,"reference":"ISO/NP 17458-1","publicationDate":null,"edition":2,"currentStage":1098,"replaces":[59804],"replacedBy":null}
+{"id":76895,"deliverableType":"IS","supplementType":null,"reference":"ISO/NP 17458-2","publicationDate":null,"edition":2,"currentStage":1098,"replaces":[59806],"replacedBy":null}
+{"id":76896,"deliverableType":"IS","supplementType":null,"reference":"ISO/NP 17458-3","publicationDate":null,"edition":2,"currentStage":1098,"replaces":[59807],"replacedBy":null}
+{"id":76897,"deliverableType":"IS","supplementType":null,"reference":"ISO/NP 17458-4","publicationDate":null,"edition":2,"currentStage":1098,"replaces":[59808],"replacedBy":null}
+{"id":76898,"deliverableType":"IS","supplementType":null,"reference":"ISO/NP 17458-5","publicationDate":null,"edition":2,"currentStage":1098,"replaces":[59809],"replacedBy":null}
+{"id":76924,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC/IEEE 8802-21:2018/Cor 1:2018","publicationDate":"2018-11-05","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":77322,"deliverableType":"IS","supplementType":null,"reference":"ISO 14229-2:2021","publicationDate":"2021-10-12","edition":2,"currentStage":6060,"replaces":[45763],"replacedBy":null}
+{"id":77323,"deliverableType":"IS","supplementType":null,"reference":"ISO 14229-3:2022","publicationDate":"2022-03-08","edition":2,"currentStage":6060,"replaces":[55284],"replacedBy":null}
+{"id":77490,"deliverableType":"IS","supplementType":null,"reference":"ISO 21448:2022","publicationDate":"2022-06-30","edition":1,"currentStage":9092,"replaces":[70939],"replacedBy":[93071]}
+{"id":77557,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC DIS 18033-3","publicationDate":null,"edition":3,"currentStage":4098,"replaces":[54531],"replacedBy":null}
+{"id":77796,"deliverableType":"IS","supplementType":null,"reference":"ISO 24089:2023","publicationDate":"2023-02-08","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":77814,"deliverableType":"IS","supplementType":null,"reference":"ISO/PWI 21806-12","publicationDate":null,"edition":1,"currentStage":98,"replaces":null,"replacedBy":null}
+{"id":77815,"deliverableType":"IS","supplementType":null,"reference":"ISO/PWI 21806-13","publicationDate":null,"edition":1,"currentStage":98,"replaces":null,"replacedBy":null}
+{"id":77816,"deliverableType":"IS","supplementType":null,"reference":"ISO/PWI 21806-14","publicationDate":null,"edition":1,"currentStage":98,"replaces":null,"replacedBy":null}
+{"id":77817,"deliverableType":"IS","supplementType":null,"reference":"ISO/PWI 21806-15","publicationDate":null,"edition":1,"currentStage":98,"replaces":null,"replacedBy":null}
+{"id":77925,"deliverableType":"IS","supplementType":null,"reference":"ISO 21806-10:2021","publicationDate":"2021-05-31","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":77926,"deliverableType":"IS","supplementType":null,"reference":"ISO 21806-11:2021","publicationDate":"2021-05-31","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":77927,"deliverableType":"IS","supplementType":null,"reference":"ISO 21806-12:2021","publicationDate":"2021-05-28","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":77928,"deliverableType":"IS","supplementType":null,"reference":"ISO 21806-13:2021","publicationDate":"2021-05-28","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":77930,"deliverableType":"IS","supplementType":null,"reference":"ISO 21806-14:2021","publicationDate":"2021-05-26","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":77931,"deliverableType":"IS","supplementType":null,"reference":"ISO 21806-15:2021","publicationDate":"2021-05-26","edition":1,"currentStage":9093,"replaces":null,"replacedBy":null}
+{"id":77967,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-11:2018/Amd 3:2020","publicationDate":"2020-08-21","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[83242]}
+{"id":77968,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-11:2018/Amd 4:2020","publicationDate":"2020-08-21","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[83242]}
+{"id":77969,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-11:2018/Amd 5:2020","publicationDate":"2020-08-21","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[83242]}
+{"id":77982,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 18033-4:2011/Amd 1:2020","publicationDate":"2020-08-05","edition":2,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":78102,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1AE:2020","publicationDate":"2020-08-21","edition":2,"currentStage":9093,"replaces":[63255,74283,67005,67004],"replacedBy":null}
+{"id":78103,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1Q:2020","publicationDate":"2020-08-21","edition":2,"currentStage":9599,"replaces":[71548,76459,72885,73498,74777,71709,69464,72886,71708],"replacedBy":[86733]}
+{"id":78104,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1X:2013/Amd 2:2020","publicationDate":"2020-11-09","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[82672]}
+{"id":78124,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC/IEEE 8802-1AC:2018/Cor 1:2020","publicationDate":"2020-03-13","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":78175,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 25002:2024","publicationDate":"2024-03-04","edition":1,"currentStage":6060,"replaces":[35733],"replacedBy":null}
+{"id":78176,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 25010:2023","publicationDate":"2023-11-15","edition":2,"currentStage":6060,"replaces":[35733],"replacedBy":null}
+{"id":78177,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 25019:2023","publicationDate":"2023-11-24","edition":1,"currentStage":6060,"replaces":[35733],"replacedBy":null}
+{"id":78295,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-7:2022","publicationDate":"2022-12-01","edition":4,"currentStage":6060,"replaces":[73001,59380],"replacedBy":null}
+{"id":78296,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-13:2022","publicationDate":"2022-05-12","edition":3,"currentStage":6060,"replaces":[56765],"replacedBy":null}
+{"id":78299,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-3:2021","publicationDate":"2021-02-23","edition":3,"currentStage":9599,"replaces":[72133,72666,74413,72975,72667,74489,76460,72668,72973,76461,73369,72048,74414],"replacedBy":[89414]}
+{"id":78302,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2021/Amd 1:2021","publicationDate":"2021-12-23","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[89414]}
+{"id":78384,"deliverableType":"IS","supplementType":null,"reference":"ISO 15765-4:2021","publicationDate":"2021-07-30","edition":4,"currentStage":9020,"replaces":[67245],"replacedBy":null}
+{"id":78526,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 33020:2019","publicationDate":"2019-11-21","edition":2,"currentStage":9093,"replaces":[54195],"replacedBy":null}
+{"id":78724,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC WD 9798-5","publicationDate":null,"edition":4,"currentStage":2098,"replaces":[50456],"replacedBy":null}
+{"id":78750,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 11770-3:2015/DAmd 2","publicationDate":null,"edition":3,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":78751,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 18033-5:2015/Amd 1:2021","publicationDate":"2021-02-22","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":79016,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 29119-11:2020","publicationDate":"2020-11-27","edition":1,"currentStage":9060,"replaces":null,"replacedBy":null}
+{"id":79428,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 29119-2:2021","publicationDate":"2021-10-28","edition":2,"currentStage":6060,"replaces":[56736],"replacedBy":null}
+{"id":79429,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 29119-3:2021","publicationDate":"2021-10-28","edition":2,"currentStage":6060,"replaces":[56737],"replacedBy":null}
+{"id":79430,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 29119-4:2021","publicationDate":"2021-10-28","edition":2,"currentStage":6060,"replaces":[60245],"replacedBy":null}
+{"id":80097,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 11770-7:2021","publicationDate":"2021-07-06","edition":1,"currentStage":9020,"replaces":null,"replacedBy":null}
+{"id":80362,"deliverableType":"TS","supplementType":null,"reference":"ISO/IEC TS 33061:2021","publicationDate":"2021-04-20","edition":1,"currentStage":9093,"replaces":[60555],"replacedBy":null}
+{"id":80505,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 18033-7:2022","publicationDate":"2022-04-13","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":80710,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 14764:2022","publicationDate":"2022-01-21","edition":3,"currentStage":6060,"replaces":[39064],"replacedBy":null}
+{"id":80840,"deliverableType":"PAS","supplementType":null,"reference":"ISO/PAS 5112:2022","publicationDate":"2022-03-31","edition":1,"currentStage":9092,"replaces":null,"replacedBy":[92730]}
+{"id":81029,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC WD 11770-8","publicationDate":null,"edition":1,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":81291,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 29119-1:2022","publicationDate":"2022-02-04","edition":2,"currentStage":6060,"replaces":[45142],"replacedBy":null}
+{"id":81293,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 29119-6:2021","publicationDate":"2021-07-15","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":81380,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 14229-1:2020/Amd 1:2022","publicationDate":"2022-10-25","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[87962]}
+{"id":81381,"deliverableType":"IS","supplementType":null,"reference":"ISO 14229-7:2022","publicationDate":"2022-04-25","edition":2,"currentStage":6060,"replaces":[61221],"replacedBy":null}
+{"id":81564,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 18033-3:2010/Amd 1:2021","publicationDate":"2021-06-22","edition":2,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":81679,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1AS:2021","publicationDate":"2021-11-10","edition":2,"currentStage":9092,"replaces":[64110],"replacedBy":[94284]}
+{"id":81680,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1AX:2021","publicationDate":"2021-09-13","edition":2,"currentStage":9020,"replaces":[69145,73718],"replacedBy":null}
+{"id":81702,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 15288:2023","publicationDate":"2023-05-16","edition":2,"currentStage":6060,"replaces":[63711],"replacedBy":null}
+{"id":82038,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-22:2022","publicationDate":"2022-06-22","edition":2,"currentStage":6060,"replaces":[70892,70891,67402],"replacedBy":null}
+{"id":82039,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2021/Amd 2:2021","publicationDate":"2021-12-23","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[89414]}
+{"id":82040,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2021/Amd 3:2021","publicationDate":"2021-12-23","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[89414]}
+{"id":82075,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 9899:2024","publicationDate":"2024-10-31","edition":5,"currentStage":6060,"replaces":[74528],"replacedBy":null}
+{"id":82091,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2020/DAmd 1","publicationDate":null,"edition":2,"currentStage":4098,"replaces":null,"replacedBy":null}
+{"id":82092,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2020/Amd 2:2021","publicationDate":"2021-09-13","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[86733]}
+{"id":82093,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2020/Amd 3:2021","publicationDate":"2021-09-13","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[86733]}
+{"id":82185,"deliverableType":"IS","supplementType":null,"reference":"ISO 27145-6:2023","publicationDate":"2023-05-05","edition":2,"currentStage":6060,"replaces":[62445],"replacedBy":null}
+{"id":82190,"deliverableType":"IS","supplementType":null,"reference":"ISO/NP 21111-11","publicationDate":null,"edition":1,"currentStage":1098,"replaces":null,"replacedBy":null}
+{"id":82191,"deliverableType":"IS","supplementType":null,"reference":"ISO 21111-10:2021","publicationDate":"2021-10-29","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":82193,"deliverableType":"IS","supplementType":null,"reference":"ISO 21111-11:2021","publicationDate":"2021-12-02","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":82511,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1CM:2019/Amd 1:2021","publicationDate":"2021-10-29","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":82547,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-3-2:2021","publicationDate":"2021-11-30","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":82672,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1X:2021","publicationDate":"2021-12-15","edition":2,"currentStage":6060,"replaces":[78104,69350,63254],"replacedBy":null}
+{"id":82673,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2021/Amd 7:2021","publicationDate":"2021-10-29","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[89414]}
+{"id":82674,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2021/Amd 5:2021","publicationDate":"2021-12-15","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[89414]}
+{"id":82675,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2021/Amd 6:2021","publicationDate":"2021-10-29","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[89414]}
+{"id":82676,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2021/Amd 4:2021","publicationDate":"2021-10-29","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[89414]}
+{"id":82678,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2021/Amd 8:2021","publicationDate":"2021-10-29","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[89414]}
+{"id":82679,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2021/Amd 9:2021","publicationDate":"2021-12-15","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[89414]}
+{"id":82680,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2020/Amd 31:2021","publicationDate":"2021-10-29","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[86733]}
+{"id":82692,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 33202:2024","publicationDate":"2024-07-26","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":82709,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 11770-3:2021","publicationDate":"2021-10-22","edition":4,"currentStage":6060,"replaces":[71113,60237,71165],"replacedBy":null}
+{"id":82710,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC/IEEE 8802-1AE:2020/Cor 1:2021","publicationDate":"2021-07-02","edition":2,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":83139,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC WD 18033-8","publicationDate":null,"edition":1,"currentStage":2098,"replaces":null,"replacedBy":null}
+{"id":83240,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2021/Amd 10:2022","publicationDate":"2022-07-08","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[89414]}
+{"id":83241,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2021/Amd 11:2022","publicationDate":"2022-07-08","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[89414]}
+{"id":83242,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-11:2022","publicationDate":"2022-07-27","edition":3,"currentStage":6060,"replaces":[77969,73367,77967,73368,74310,77968],"replacedBy":null}
+{"id":83292,"deliverableType":"IS","supplementType":null,"reference":"ISO/CD 11898-1","publicationDate":null,"edition":3,"currentStage":3098,"replaces":[63648],"replacedBy":null}
+{"id":83303,"deliverableType":"PAS","supplementType":null,"reference":"ISO/PAS 8800:2024","publicationDate":"2024-12-13","edition":1,"currentStage":6060,"replaces":null,"replacedBy":[94041,94042]}
+{"id":83608,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1CS:2022","publicationDate":"2022-07-08","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":83670,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 32675:2022","publicationDate":"2022-08-30","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":83760,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC CD TR 29119-8","publicationDate":null,"edition":1,"currentStage":3098,"replaces":null,"replacedBy":null}
+{"id":83975,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2021/Amd 14:2022","publicationDate":"2022-10-17","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[89414]}
+{"id":83979,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2021/Amd 12:2022","publicationDate":"2022-10-17","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[89414]}
+{"id":83981,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-3:2021/Amd 13:2022","publicationDate":"2022-10-17","edition":3,"currentStage":9599,"replaces":null,"replacedBy":[89414]}
+{"id":84208,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 13400-2:2019/Amd 1:2023","publicationDate":"2023-07-24","edition":2,"currentStage":9599,"replaces":null,"replacedBy":[87961]}
+{"id":84209,"deliverableType":"IS","supplementType":null,"reference":"ISO 15765-5:2023","publicationDate":"2023-11-10","edition":2,"currentStage":6060,"replaces":[75582],"replacedBy":null}
+{"id":84211,"deliverableType":"IS","supplementType":null,"reference":"ISO 15765-2:2024","publicationDate":"2024-04-05","edition":4,"currentStage":9092,"replaces":[66574],"replacedBy":[94385]}
+{"id":84220,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 29119-13:2022","publicationDate":"2022-11-18","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":84422,"deliverableType":"TR","supplementType":null,"reference":"ISO/IEC TR 7052:2023","publicationDate":"2023-09-14","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":84946,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1AC:2018/Amd 1:2023","publicationDate":"2023-03-31","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":85118,"deliverableType":"IS","supplementType":null,"reference":"ISO/SAE PWI 27145-1","publicationDate":null,"edition":2,"currentStage":98,"replaces":[46273],"replacedBy":null}
+{"id":85119,"deliverableType":"IS","supplementType":null,"reference":"ISO/SAE PWI 27145-2","publicationDate":null,"edition":1,"currentStage":98,"replaces":[46276,46277],"replacedBy":null}
+{"id":85120,"deliverableType":"IS","supplementType":null,"reference":"ISO 11898-2:2024","publicationDate":"2024-03-22","edition":3,"currentStage":9599,"replaces":[67244],"replacedBy":[90697]}
+{"id":85125,"deliverableType":"IS","supplementType":null,"reference":"ISO 17987-1:2025","publicationDate":"2025-05-01","edition":2,"currentStage":6060,"replaces":[61222],"replacedBy":null}
+{"id":85126,"deliverableType":"IS","supplementType":null,"reference":"ISO 17987-2:2025","publicationDate":"2025-06-05","edition":2,"currentStage":6060,"replaces":[61223],"replacedBy":null}
+{"id":85127,"deliverableType":"IS","supplementType":null,"reference":"ISO 17987-3:2025","publicationDate":"2025-07-25","edition":2,"currentStage":6060,"replaces":[61224],"replacedBy":null}
+{"id":85128,"deliverableType":"IS","supplementType":null,"reference":"ISO 17987-4:2025","publicationDate":"2025-06-04","edition":2,"currentStage":6060,"replaces":[61225],"replacedBy":null}
+{"id":85129,"deliverableType":"IS","supplementType":null,"reference":"ISO 17987-6:2025","publicationDate":"2025-05-01","edition":2,"currentStage":6060,"replaces":[61227],"replacedBy":null}
+{"id":85130,"deliverableType":"IS","supplementType":null,"reference":"ISO 17987-7:2025","publicationDate":"2025-05-28","edition":2,"currentStage":6060,"replaces":[61229],"replacedBy":null}
+{"id":85133,"deliverableType":"IS","supplementType":null,"reference":"ISO 17978-1:2026","publicationDate":"2026-05-22","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":85135,"deliverableType":"IS","supplementType":null,"reference":"ISO/CD 16845-1","publicationDate":null,"edition":2,"currentStage":3098,"replaces":[59166],"replacedBy":null}
+{"id":85350,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1CB:2019/Amd 1:2023","publicationDate":"2023-02-08","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":85351,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1CB:2019/Amd 2:2023","publicationDate":"2023-02-08","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":85353,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1BA:2023","publicationDate":"2023-03-31","edition":2,"currentStage":6060,"replaces":[70893],"replacedBy":null}
+{"id":85561,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC/IEEE 8802-1AS:2021/Cor 1:2023","publicationDate":"2023-01-13","edition":2,"currentStage":6060,"replaces":null,"replacedBy":[94284]}
+{"id":85654,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1AB:2017/Amd 1:2023","publicationDate":"2023-07-10","edition":2,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":85655,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1AB:2017/Amd 2:2023","publicationDate":"2023-07-10","edition":2,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":85929,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 11770-3:2021/Amd 1:2025","publicationDate":"2025-04-28","edition":4,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":86149,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 27145-2:2012/Amd 1:2023","publicationDate":"2023-11-28","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":86384,"deliverableType":"IS","supplementType":null,"reference":"ISO 11898-1:2024","publicationDate":"2024-05-24","edition":3,"currentStage":6060,"replaces":[63648],"replacedBy":null}
+{"id":86586,"deliverableType":"IS","supplementType":null,"reference":"ISO 17978-2:2026","publicationDate":"2026-04-09","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":86587,"deliverableType":"IS","supplementType":null,"reference":"ISO 17978-3:2026","publicationDate":"2026-03-17","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":86733,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1Q:2024","publicationDate":"2024-08-20","edition":3,"currentStage":6060,"replaces":[82092,78103,82093,82680],"replacedBy":null}
+{"id":86890,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 18033-2:2006/Amd 2:2026","publicationDate":"2026-06-05","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":87233,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 29119-5:2024","publicationDate":"2024-12-19","edition":2,"currentStage":6060,"replaces":[62821],"replacedBy":null}
+{"id":87521,"deliverableType":"IS","supplementType":null,"reference":"ISO/FDIS 21111-8","publicationDate":null,"edition":2,"currentStage":5020,"replaces":[75006],"replacedBy":null}
+{"id":87522,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 24089:2023/Amd 1:2024","publicationDate":"2024-07-25","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":87940,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC FDIS 11770-8","publicationDate":null,"edition":1,"currentStage":5020,"replaces":null,"replacedBy":null}
+{"id":87961,"deliverableType":"IS","supplementType":null,"reference":"ISO 13400-2:2025","publicationDate":"2025-06-13","edition":3,"currentStage":9092,"replaces":[84208,74785],"replacedBy":[95489]}
+{"id":87962,"deliverableType":"IS","supplementType":null,"reference":"ISO 14229-1:2026","publicationDate":"2026-06-05","edition":4,"currentStage":6060,"replaces":[72439,81380],"replacedBy":null}
+{"id":88130,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC DIS 11770-4","publicationDate":null,"edition":3,"currentStage":4060,"replaces":[67933,76352,73902],"replacedBy":null}
+{"id":88141,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC 18045:2026","publicationDate":"2026-05-19","edition":4,"currentStage":6060,"replaces":[72889],"replacedBy":null}
+{"id":88431,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 9001:2015/Amd 1:2024","publicationDate":"2024-02-23","edition":5,"currentStage":9599,"replaces":null,"replacedBy":[88464]}
+{"id":88464,"deliverableType":"IS","supplementType":null,"reference":"ISO 9001:2026","publicationDate":"2026-09-16","edition":6,"currentStage":6060,"replaces":[62085,88431],"replacedBy":null}
+{"id":88465,"deliverableType":"IS","supplementType":null,"reference":"ISO 9000:2026","publicationDate":"2026-05-27","edition":5,"currentStage":6060,"replaces":[45481],"replacedBy":null}
+{"id":88654,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1AE:2020/Amd 4:2024","publicationDate":"2024-11-07","edition":2,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":88655,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-15-9:2024","publicationDate":"2024-12-10","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":88657,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2024/Amd 35:2024","publicationDate":"2024-11-07","edition":3,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":88659,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-15-4:2024","publicationDate":"2024-07-26","edition":3,"currentStage":9092,"replaces":[73370],"replacedBy":[93831]}
+{"id":88835,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE DIS 25000-70","publicationDate":null,"edition":1,"currentStage":4000,"replaces":null,"replacedBy":null}
+{"id":88837,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE CD 29119-14","publicationDate":null,"edition":1,"currentStage":3060,"replaces":null,"replacedBy":null}
+{"id":88853,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE NP 29119-16","publicationDate":null,"edition":1,"currentStage":1098,"replaces":null,"replacedBy":null}
+{"id":89069,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC DIS 25000-23.2","publicationDate":null,"edition":1,"currentStage":4020,"replaces":[35747],"replacedBy":null}
+{"id":89078,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2024/Amd 37:2025","publicationDate":"2025-03-31","edition":3,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":89079,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2024/Amd 36:2025","publicationDate":"2025-02-26","edition":3,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":89231,"deliverableType":"IS","supplementType":null,"reference":"ISO/WD 21111-12.6","publicationDate":null,"edition":1,"currentStage":2060,"replaces":null,"replacedBy":null}
+{"id":89232,"deliverableType":"IS","supplementType":null,"reference":"ISO/WD 21111-13.5","publicationDate":null,"edition":1,"currentStage":2060,"replaces":null,"replacedBy":null}
+{"id":89414,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-3:2026","publicationDate":"2026-08-24","edition":4,"currentStage":6060,"replaces":[82676,82678,82039,82679,82040,78302,83979,82673,82674,83981,83240,82675,83241,83975,78299],"replacedBy":null}
+{"id":89415,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-A:2015/Amd 3:2025","publicationDate":"2025-02-25","edition":1,"currentStage":9599,"replaces":null,"replacedBy":[92364]}
+{"id":89516,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC DIS 9798-5","publicationDate":null,"edition":4,"currentStage":4020,"replaces":[50456],"replacedBy":null}
+{"id":89675,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1AS:2021/Amd 1:2025","publicationDate":"2025-04-08","edition":2,"currentStage":6060,"replaces":null,"replacedBy":[94284]}
+{"id":89908,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 29119-8","publicationDate":null,"edition":1,"currentStage":6000,"replaces":null,"replacedBy":null}
+{"id":89949,"deliverableType":"IS","supplementType":null,"reference":"ISO 11783-3:2026","publicationDate":"2026-03-20","edition":5,"currentStage":6060,"replaces":[71172],"replacedBy":null}
+{"id":89950,"deliverableType":"IS","supplementType":null,"reference":"ISO/CD 11783-6","publicationDate":null,"edition":5,"currentStage":3098,"replaces":[71173],"replacedBy":null}
+{"id":89974,"deliverableType":"IS","supplementType":null,"reference":"ISO/CD 11783-12","publicationDate":null,"edition":4,"currentStage":3098,"replaces":[71184],"replacedBy":null}
+{"id":90020,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 26262-1","publicationDate":null,"edition":3,"currentStage":4020,"replaces":[68383],"replacedBy":null}
+{"id":90021,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 26262-2","publicationDate":null,"edition":3,"currentStage":4020,"replaces":[68384],"replacedBy":null}
+{"id":90022,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 26262-3","publicationDate":null,"edition":3,"currentStage":4020,"replaces":[68385],"replacedBy":null}
+{"id":90023,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 26262-4","publicationDate":null,"edition":3,"currentStage":4020,"replaces":[68386],"replacedBy":null}
+{"id":90024,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 26262-5","publicationDate":null,"edition":3,"currentStage":4020,"replaces":[68387],"replacedBy":null}
+{"id":90025,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 26262-6","publicationDate":null,"edition":3,"currentStage":4020,"replaces":[68388],"replacedBy":null}
+{"id":90026,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 26262-7","publicationDate":null,"edition":3,"currentStage":4020,"replaces":[68389],"replacedBy":null}
+{"id":90027,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 26262-8","publicationDate":null,"edition":3,"currentStage":4020,"replaces":[68390],"replacedBy":null}
+{"id":90028,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 26262-9","publicationDate":null,"edition":3,"currentStage":4020,"replaces":[68391],"replacedBy":null}
+{"id":90029,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 26262-10","publicationDate":null,"edition":3,"currentStage":4020,"replaces":[68392],"replacedBy":null}
+{"id":90030,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 26262-11","publicationDate":null,"edition":2,"currentStage":4020,"replaces":[69604],"replacedBy":null}
+{"id":90031,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 26262-12","publicationDate":null,"edition":2,"currentStage":4020,"replaces":[69605],"replacedBy":null}
+{"id":90142,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-15-7:2025","publicationDate":"2025-09-04","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":90219,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 12207:2026","publicationDate":"2026-04-29","edition":2,"currentStage":6060,"replaces":[63712],"replacedBy":null}
+{"id":90265,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC/IEEE 8802-1CS:2022/Cor 1:2025","publicationDate":"2025-07-02","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":90373,"deliverableType":"IS","supplementType":null,"reference":"ISO/FDIS 11783-2","publicationDate":null,"edition":4,"currentStage":5020,"replaces":[71171],"replacedBy":null}
+{"id":90695,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 16845-2","publicationDate":null,"edition":3,"currentStage":4060,"replaces":[69841],"replacedBy":null}
+{"id":90696,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 16845-1","publicationDate":null,"edition":2,"currentStage":4020,"replaces":[59166],"replacedBy":null}
+{"id":90697,"deliverableType":"IS","supplementType":null,"reference":"ISO 11898-2:2026","publicationDate":"2026-05-21","edition":4,"currentStage":6060,"replaces":[85120],"replacedBy":null}
+{"id":90707,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC 18033-7:2022/DAmd 1","publicationDate":null,"edition":1,"currentStage":4060,"replaces":null,"replacedBy":null}
+{"id":90947,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2024/Amd 38:2025","publicationDate":"2025-09-15","edition":3,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":91160,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2024/Amd 39:2026","publicationDate":"2026-08-24","edition":3,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":91161,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE DIS 8802-15-3","publicationDate":null,"edition":2,"currentStage":4099,"replaces":[72248],"replacedBy":null}
+{"id":91176,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1AS:2021/Amd 2:2026","publicationDate":"2026-08-24","edition":2,"currentStage":6060,"replaces":null,"replacedBy":[94284]}
+{"id":91177,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1AS:2021/Amd 3:2026","publicationDate":"2026-08-24","edition":2,"currentStage":6060,"replaces":null,"replacedBy":[94284]}
+{"id":91305,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC DIS 2382-37","publicationDate":null,"edition":4,"currentStage":4020,"replaces":[73514],"replacedBy":null}
+{"id":91429,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-1DC:2025","publicationDate":"2025-09-04","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":91474,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC PRF 25000-2","publicationDate":null,"edition":1,"currentStage":5000,"replaces":null,"replacedBy":null}
+{"id":91573,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC CD 25000-11.2","publicationDate":null,"edition":1,"currentStage":3060,"replaces":[35735],"replacedBy":null}
+{"id":92130,"deliverableType":"IS","supplementType":null,"reference":"ISO/FDIS 11783-12","publicationDate":null,"edition":4,"currentStage":5000,"replaces":[71184],"replacedBy":null}
+{"id":92131,"deliverableType":"IS","supplementType":null,"reference":"ISO/CD 11783-6","publicationDate":null,"edition":5,"currentStage":3099,"replaces":[71173],"replacedBy":null}
+{"id":92170,"deliverableType":"IS","supplementType":null,"reference":"ISO/WD 10007","publicationDate":null,"edition":4,"currentStage":2060,"replaces":[70400],"replacedBy":null}
+{"id":92363,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1Q:2024/Amd 40:2026","publicationDate":"2026-08-24","edition":3,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":92364,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE 8802-A:2026","publicationDate":"2026-08-24","edition":2,"currentStage":6060,"replaces":[76470,89415,74406,68839],"replacedBy":null}
+{"id":92493,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE CD 29119-15","publicationDate":null,"edition":1,"currentStage":3000,"replaces":null,"replacedBy":null}
+{"id":92688,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC CD 25000-22","publicationDate":null,"edition":1,"currentStage":3060,"replaces":[35746],"replacedBy":null}
+{"id":92730,"deliverableType":"TS","supplementType":null,"reference":"ISO/DTS 5112","publicationDate":null,"edition":2,"currentStage":5020,"replaces":[80840],"replacedBy":null}
+{"id":92875,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE CD 24765","publicationDate":null,"edition":3,"currentStage":3098,"replaces":[71952],"replacedBy":null}
+{"id":92945,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC AWI 29147","publicationDate":null,"edition":3,"currentStage":2000,"replaces":[72311],"replacedBy":null}
+{"id":92951,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 21111-3","publicationDate":null,"edition":2,"currentStage":4060,"replaces":[70297],"replacedBy":null}
+{"id":92952,"deliverableType":"IS","supplementType":null,"reference":"ISO/DIS 21111-5","publicationDate":null,"edition":2,"currentStage":4060,"replaces":[74728],"replacedBy":null}
+{"id":93071,"deliverableType":"IS","supplementType":null,"reference":"ISO/WD 21448","publicationDate":null,"edition":2,"currentStage":2060,"replaces":[77490],"replacedBy":null}
+{"id":93134,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE DIS 8802-1DG","publicationDate":null,"edition":1,"currentStage":4099,"replaces":null,"replacedBy":null}
+{"id":93661,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC NP 2382","publicationDate":null,"edition":2,"currentStage":1098,"replaces":[63598],"replacedBy":null}
+{"id":93662,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC AWI 2382-4","publicationDate":null,"edition":2,"currentStage":2000,"replaces":[63598,27922],"replacedBy":null}
+{"id":93663,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC AWI 2382-7","publicationDate":null,"edition":4,"currentStage":2000,"replaces":[63598,7241],"replacedBy":null}
+{"id":93664,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC AWI 2382-15","publicationDate":null,"edition":2,"currentStage":2000,"replaces":[7257,63598],"replacedBy":null}
+{"id":93665,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC CD 2382-16","publicationDate":null,"edition":3,"currentStage":3020,"replaces":[63598,7259],"replacedBy":null}
+{"id":93666,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC CD 2382-19","publicationDate":null,"edition":1,"currentStage":3020,"replaces":[63598,7263],"replacedBy":null}
+{"id":93667,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC CD 2382-22","publicationDate":null,"edition":1,"currentStage":3020,"replaces":[63598,7266],"replacedBy":null}
+{"id":93829,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-1AX:2021/DAmd 1","publicationDate":null,"edition":2,"currentStage":4099,"replaces":null,"replacedBy":null}
+{"id":93830,"deliverableType":"IS","supplementType":"Amd","reference":"ISO/IEC/IEEE 8802-15-7:2025/DAmd 1","publicationDate":null,"edition":1,"currentStage":4099,"replaces":null,"replacedBy":null}
+{"id":93831,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE DIS 8802-15-4","publicationDate":null,"edition":4,"currentStage":4099,"replaces":[88659],"replacedBy":null}
+{"id":94041,"deliverableType":"PAS","supplementType":null,"reference":"ISO/PWI PAS 8800-1","publicationDate":null,"edition":1,"currentStage":98,"replaces":[83303],"replacedBy":null}
+{"id":94042,"deliverableType":"PAS","supplementType":null,"reference":"ISO/PWI PAS 8800-2","publicationDate":null,"edition":1,"currentStage":98,"replaces":[83303],"replacedBy":null}
+{"id":94070,"deliverableType":"IS","supplementType":null,"reference":"ISO/AWI 8800-1","publicationDate":null,"edition":1,"currentStage":2000,"replaces":null,"replacedBy":null}
+{"id":94071,"deliverableType":"IS","supplementType":null,"reference":"ISO/AWI 8800-2","publicationDate":null,"edition":1,"currentStage":2000,"replaces":null,"replacedBy":null}
+{"id":94091,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE DIS 29148","publicationDate":null,"edition":3,"currentStage":4020,"replaces":[72089],"replacedBy":null}
+{"id":94141,"deliverableType":"IS","supplementType":"Cor","reference":"ISO/IEC/IEEE 8802-3:2026/Cor 1:2026","publicationDate":"2026-08-24","edition":4,"currentStage":6060,"replaces":null,"replacedBy":null}
+{"id":94284,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE DIS 8802-1AS","publicationDate":null,"edition":3,"currentStage":4099,"replaces":[89675,81679,91176,85561,91177],"replacedBy":null}
+{"id":94385,"deliverableType":"IS","supplementType":null,"reference":"ISO/CD 15765-2","publicationDate":null,"edition":5,"currentStage":3099,"replaces":[84211],"replacedBy":null}
+{"id":94473,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC AWI 2382-9","publicationDate":null,"edition":1,"currentStage":2000,"replaces":[63598],"replacedBy":null}
+{"id":94474,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC AWI 2382-13","publicationDate":null,"edition":1,"currentStage":2000,"replaces":[63598],"replacedBy":null}
+{"id":94527,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC AWI 2382-17","publicationDate":null,"edition":3,"currentStage":2000,"replaces":[63598],"replacedBy":null}
+{"id":94528,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC AWI 2382-18","publicationDate":null,"edition":2,"currentStage":2000,"replaces":[63598],"replacedBy":null}
+{"id":94529,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC AWI 2382-25","publicationDate":null,"edition":2,"currentStage":2000,"replaces":[63598],"replacedBy":null}
+{"id":94532,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC AWI 2382-26 ","publicationDate":null,"edition":1,"currentStage":2000,"replaces":[63598],"replacedBy":null}
+{"id":94689,"deliverableType":"IS","supplementType":null,"reference":"ISO/AWI 17978-4","publicationDate":null,"edition":1,"currentStage":2000,"replaces":null,"replacedBy":null}
+{"id":94719,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE NP 29119-12","publicationDate":null,"edition":1,"currentStage":1020,"replaces":null,"replacedBy":null}
+{"id":94758,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE AWI 29119-16","publicationDate":null,"edition":1,"currentStage":2000,"replaces":null,"replacedBy":null}
+{"id":95437,"deliverableType":"IS","supplementType":null,"reference":"ISO/SAE AWI 21434","publicationDate":null,"edition":2,"currentStage":2000,"replaces":[70918],"replacedBy":null}
+{"id":95489,"deliverableType":"IS","supplementType":null,"reference":"ISO/CD 13400-2","publicationDate":null,"edition":4,"currentStage":3099,"replaces":[87961],"replacedBy":null}
+{"id":95490,"deliverableType":"IS","supplementType":"Amd","reference":"ISO 15765-4:2021/CD Amd 1","publicationDate":null,"edition":4,"currentStage":3099,"replaces":null,"replacedBy":null}

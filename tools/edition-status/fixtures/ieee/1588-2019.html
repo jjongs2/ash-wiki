@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html><head><title>IEEE SA - IEEE 1588-2019</title></head><body>
+<div id="standard-details">
+ <dl class="row">
+ <dt class="col-sm-4 col-md-3">Standard Committee</dt>
+ <dd id="stnd-committee"
+ class="col-sm-8 col-md-9">IM/ST - TC9 - Sensor Technology</dd>
+ <dt class="col-sm-4 col-md-3">Status</dt>
+ <dd id="stnd-status"
+ class="col-sm-8 col-md-9">Active Standard</dd>
+ <dt class="col-sm-4 col-md-3">PAR Approval</dt>
+ <dd id="stnd-par-approval-date" class="col-sm-8 col-md-9"><a id="stnd-par-link"
+ class="arrow-link"
+ target="_blank"
+ href="https://development.standards.ieee.org/myproject-web/public/view.html#pardetail/5888">2016-09-22</a>
+ </dd>
+ <dt class="col-sm-4 col-md-3">Superseding</dt>
+ <dd id="stnd-superseding" class="col-sm-8 col-md-9"><a id="stnd-superseding-url"
+ class="arrow-link"
+ href="https://standards.ieee.org/ieee/1588/4355">1588-2008</a>
+ </dd>
+ <dt class="col-sm-4 col-md-3">Amendments</dt>
+ <dd id="" class="stnd-corrigendum-designation col-sm-8 col-md-9">
+ <a class="arrow-link stnd-corrigendum-url"
+ href="https://standards.ieee.org/ieee/1588a/10395">1588a-2023</a>
+ <br>
+ <a class="arrow-link stnd-corrigendum-url"
+ href="https://standards.ieee.org/ieee/1588b/10396">1588b-2022</a>
+ <br>
+ <a class="arrow-link stnd-corrigendum-url"
+ href="https://standards.ieee.org/ieee/1588c/10397">1588c-2024</a>
+ <br>
+ <a class="arrow-link stnd-corrigendum-url"
+ href="https://standards.ieee.org/ieee/1588d/11091">1588d-2023</a>
+ <br>
+ <a class="arrow-link stnd-corrigendum-url"
+ href="https://standards.ieee.org/ieee/1588e/10399">1588e-2024</a>
+ <br>
+ <a class="arrow-link stnd-corrigendum-url"
+ href="https://standards.ieee.org/ieee/1588g/10478">1588g-2022</a>
+ <br>
+ <a class="arrow-link stnd-corrigendum-url"
+ href="https://standards.ieee.org/ieee/1588h/11767">1588h-2026</a>
+ <br>
+ </dd>
+ <dt class="col-sm-4 col-md-3">Proposed Amendments</dt>
+ <dd id="" class="stnd-corrigendum-designation col-sm-8 col-md-9">
+ <a class="arrow-link stnd-corrigendum-url"
+ href="https://standards.ieee.org/ieee/1588f/12029">P1588f</a>
+ <br>
+ <a class="arrow-link stnd-corrigendum-url"
+ href="https://standards.ieee.org/ieee/1588i/12050">P1588i</a>
+ <br>
+ <a class="arrow-link stnd-corrigendum-url"
+ href="https://standards.ieee.org/ieee/1588j/12051">P1588j</a>
+ <br>
+ <a class="arrow-link stnd-corrigendum-url"
+ href="https://standards.ieee.org/ieee/1588k/12117">P1588k</a>
+ <br>
+ <a class="arrow-link stnd-corrigendum-url"
+ href="https://standards.ieee.org/ieee/1588m/12229">P1588m</a>
+ <br>
+ <a class="arrow-link stnd-corrigendum-url"
+ href="https://standards.ieee.org/ieee/1588n/12308">P1588n</a>
+ <br>
+ </dd>
+ <dt class="col-sm-4 col-md-3">Board Approval</dt>
+ <dd id="stnd-approval-date"
+ class="col-sm-8 col-md-9">2019-11-07</dd>
+ <dt class="col-sm-4 col-md-3">History</dt>
+ <dd class="col-sm-8 col-md-9">
+ <dl class="row">
+ <dt class="col-7 col-md-4">Published:</dt>
+ <dd id="stnd-published-date"
+ class="col-5 col-md-8">2020-06-16</dd>
+ </dl>
+ </dd>
+ </dl> <!-- /.row -->
+ </div> <!-- /#standard-details -->
+<div id="wg-active-projects" class="tab-pane fade show active" role="tabpanel"
+ aria-labelledby="wg-active-projects-tab">
+ <div class="tab-pane-content">
+ <p><strong>Current projects that have been authorized by the IEEE SA
+ Standards
+ Board to develop a standard.</strong></p>
+ <hr class="mt-4 mb-4"/>
+ <div class="wg-project wg-active-project">
+ <h5 class="wg-active-project-designation">P1588</h5>
+ <h6
+ class="wg-active-project-title h4">Standard for a Precision Clock Synchronization Protocol for Networked Measurement and Control Systems</h6>
+ <p class="wg-active-project-description">This standard defines a network protocol, the Precision Time Protocol (PTP), enabling accurate and precise synchronization of the real-time clocks of devices in networked distributed systems.
+The protocol is applicable to systems where devices communicate via networks, including Ethernet. The standard allows multicast communication, unicast communication or both.
+The protocol:
+• Enables heterogeneous systems that include clocks of various inherent precision, resolution, and stability to synchronize to a grandmaster clock.
+• Supports synchronization in the sub-microsecond range with minimal network bandwidth and local clock computing resources.
+• Enhances support for synchronization to better than 1 nanosecond.
+• Specifies how corrections for path asymmetry are made, if the asymmetry values are known. The grandmaster clock can be synchronized to a source of time external to the system, if time traceable to international standards or other source of time is required.
+• Provides information for devices to compute Coordinated Universal Time (UTC) from the protocol distributed time, if the grandmaster clock is traceable to international standards and is able to access pending leap-second changes. Options are also provided to allow end devices to compute other time scales from the protocol distributed time scale.
+• Defines timing domains in which system timing is consistent.
+• Establishes the timing topology.
+• Allows, via the default behavior of the protocol, simple systems to be installed and operated without requiring the administrative attention of users to determine the system timing topology.
+The standard:
+• Defines all needed data types, message formats, required computations, internal states, the behavior of devices with respect to transmitting, receiving, and processing protocol communications.
+• Provides for the management of protocol artifacts in devices.
+• Defines formal mechanisms for message extensions and the requirements for profiles that allow customization for specific application domains.
+• Defines conformance requirements.
+• Provides optional specifications for protocol security.
+• Specifies requirements for mapping the protocol to specific network implementations and defines such mappings, including User Datagram Protocol (UDP)/Internet Protocol (IP versions 4 and 6), and layer-2 IEEE Std 802.3 Ethernet.
+• Documents conditions under which this standard is backward compatible with IEEE Std 1588-2008 and IEEE Std 1588-2019.</p>
+ <p><a class="arrow-link wg-active-project-url"
+ href="https://standards.ieee.org/ieee/1588/11795"
+ title="Learn More">Learn More
+ About P1588</a>
+ </div> <!-- /.wg-project .wg-active-project -->
+ <div class="wg-project wg-active-project">
+ <h5 class="wg-active-project-designation">P1588.1</h5>
+ <h6
+ class="wg-active-project-title h4">Standard for Client Server Precision Clock Synchronization Protocol</h6>
+ <p class="wg-active-project-description">This standard defines a simple and precise time transfer protocol called the Client Server Precision Time Protocol (CSPTP). CSPTP uses Precision Time Protocol (PTP) messages defined in IEEE Std 1588, to take advantage of timing support in network switches and routers. Therefore, CSPTP can achieve time transfer accuracies comparable to what can be achieved using PTP. However, CSPTP is logically isolated from PTP, and therefore can coexist with existing PTP networks. CSPTP allows clients to request timing information from any CSPTP server and allows the servers to operate without keeping state information on clients.</p>
+ <p><a class="arrow-link wg-active-project-url"
+ href="https://standards.ieee.org/ieee/1588.1/11644"
+ title="Learn More">Learn More
+ About P1588.1</a>
+ </div> <!-- /.wg-project .wg-active-project -->
+ <div class="wg-project wg-active-project">
+ <h5 class="wg-active-project-designation">P1588f</h5>
+ <h6
+ class="wg-active-project-title h4">IEEE Standard for a Precision Clock Synchronization Protocol for Networked Measurement and Control Systems Amendment: Enhancements for Latency and Asymmetry Calibration</h6>
+ <p class="wg-active-project-description">This amendment enhances support for latency and asymmetry calibration, and also provides informative text related to these enhancements. It corrects errors in the text and clarifies unclear passages.</p>
+ <p><a class="arrow-link wg-active-project-url"
+ href="https://standards.ieee.org/ieee/1588f/12029"
+ title="Learn More">Learn More
+ About P1588f</a>
+ </div> <!-- /.wg-project .wg-active-project -->
+ <div class="wg-project wg-active-project">
+ <h5 class="wg-active-project-designation">P1588i</h5>
+ <h6
+ class="wg-active-project-title h4">IEEE Standard for a Precision Clock Synchronization Protocol for Networked Measurement and Control Systems--Amendment: Profile configuration</h6>
+ <p class="wg-active-project-description">This amendment clarifies the conditions under which a PTP Profile operates on a PTP Instance, or on a PTP Port. The amendment specifies one or more data set members to select the PTP Profile in operation. This amendment fixes errors and clarifies language in the standard.</p>
+ <p><a class="arrow-link wg-active-project-url"
+ href="https://standards.ieee.org/ieee/1588i/12050"
+ title="Learn More">Learn More
+ About P1588i</a>
+ </div> <!-- /.wg-project .wg-active-project -->
+ <div class="wg-project wg-active-project">
+ <h5 class="wg-active-project-designation">P1588j</h5>
+ <h6
+ class="wg-active-project-title h4">IEEE Standard for a Precision Clock Synchronization Protocol for Networked Measurement and Control Systems&ndash;Amendment: Enhancements to the Unicast Message Negotiation Procedures and to Performance Monitoring Options</h6>
+ <p class="wg-active-project-description">This amendment: 
+1. Enhances the existing unicast message negotiation specified in Clause 16.1 making use of Signaling messages to carry the reasons for the grantor to deny the unicast request, while maintaining backward compatibility with current clause 16.1.
+2. Adds more flexibility to the performance monitoring option in Annex J, on the following aspects while maintaining backward compatibility with current Annex J: allowing performance monitoring for parameters listed in Table J.1 also on PTP ports not in the Time-Receiver state, addressing aspects related to the reference used to calculate the statistics (e.g., whether it is the Local PTP Clock or some other external timing reference such as a local Global Navigation Satellite System (GNSS) receiver), adding the possibility to collect data faster than once every 15 minutes. 
+3. updates Management Information Base (MIB) and YANG data models
+4. Corrects errors in the text and clarifies passages that are unclear.</p>
+ <p><a class="arrow-link wg-active-project-url"
+ href="https://standards.ieee.org/ieee/1588j/12051"
+ title="Learn More">Learn More
+ About P1588j</a>
+ </div> <!-- /.wg-project .wg-active-project -->
+ <div class="wg-project wg-active-project">
+ <h5 class="wg-active-project-designation">P1588k</h5>
+ <h6
+ class="wg-active-project-title h4">IEEE Standard for a Precision Clock Synchronization Protocol for Networked Measurement and Control Systems &ndash; Amendment: Security Enhancements</h6>
+ <p class="wg-active-project-description">This amendment provides several enhancements to improve Precision Time Protocol (PTP) security. These enhancements include:1) support for additional key management mechanisms; 2) updates on the use of existing key management mechanisms; 3) updates on the use of optional fields in the authentication Type Length Value (TLV); 4) provision of additional guidance on the use of the security in deployments of PTP; 5) expansion of IEEE 1588 data sets to support security options and updates to the Management Information Base (MIB) and YANG data model to include the new data sets; 6) corrections and clarifications of unclear passages in the standard.</p>
+ <p><a class="arrow-link wg-active-project-url"
+ href="https://standards.ieee.org/ieee/1588k/12117"
+ title="Learn More">Learn More
+ About P1588k</a>
+ </div> <!-- /.wg-project .wg-active-project -->
+ <div class="wg-project wg-active-project">
+ <h5 class="wg-active-project-designation">P1588m</h5>
+ <h6
+ class="wg-active-project-title h4">IEEE Standard for a Precision Clock Synchronization Protocol for Networked Measurement and Control Systems&ndash; Amendment: Maintenance</h6>
+ <p class="wg-active-project-description">This is a maintenance amendment. It clarifies ambiguities, fixes errors, and makes changes in language to improve consistency in the standard.</p>
+ <p><a class="arrow-link wg-active-project-url"
+ href="https://standards.ieee.org/ieee/1588m/12229"
+ title="Learn More">Learn More
+ About P1588m</a>
+ </div> <!-- /.wg-project .wg-active-project -->
+ <div class="wg-project wg-active-project">
+ <h5 class="wg-active-project-designation">P1588n</h5>
+ <h6
+ class="wg-active-project-title h4">IEEE Standard for a Precision Clock Synchronization Protocol for Networked Measurement and Control Systems Amendment: Data Sets for Enhanced Accuracy Metrics and Foreign Master</h6>
+ <p class="wg-active-project-description">This amendment specifies data sets for the Enhanced Accuracy Metrics feature and the Foreign Master feature. This amendment also specifies Management Information Base (MIB) and YANG (see 8.1) for these data sets. This amendment fixes errors in the standard and clarifies unclear passages.</p>
+ <p><a class="arrow-link wg-active-project-url"
+ href="https://standards.ieee.org/ieee/1588n/12308"
+ title="Learn More">Learn More
+ About P1588n</a>
+ </div> <!-- /.wg-project .wg-active-project -->
+ </div> <!-- /.tab-pane-content -->
+ </div> <!-- /#wg-active-projects .tab-pane -->
+ 
+</body></html>
