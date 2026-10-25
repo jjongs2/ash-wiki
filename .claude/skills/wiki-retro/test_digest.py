@@ -41,10 +41,10 @@ class DigestArchiveTest(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def run_digest(self, *args, script=SCRIPT, check=True, notes=None):
-        env = dict(os.environ, ASH_WIKI_NOTES=notes or self.notes)
+    def run_digest(self, *args, check=True):
+        env = dict(os.environ, ASH_WIKI_NOTES=self.notes)
         result = subprocess.run(
-            [sys.executable, "-B", script, "--archive", self.archive, *args],
+            [sys.executable, "-B", SCRIPT, "--archive", self.archive, *args],
             env=env, capture_output=True, text=True, check=check,
         )
         return result if not check else result.stdout

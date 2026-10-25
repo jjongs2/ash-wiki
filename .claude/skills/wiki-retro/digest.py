@@ -258,15 +258,15 @@ def digest_session(archive, path):
         os.remove(old)
     print(out_dir)
     name = session_name(path)
-    hiding = write(out_dir, f"{name}-main", path)
+    hidden_records = write(out_dir, f"{name}-main", path)
     for sub in subs:
         meta_path = stem(sub) + ".meta.json"
         label = ""
         if os.path.exists(meta_path):
             with open(meta_path) as meta:
                 label = json.load(meta).get("description", "")
-        hiding += write(out_dir, f"{name}-{os.path.basename(stem(sub))}", sub, label)
-    return hiding
+        hidden_records += write(out_dir, f"{name}-{os.path.basename(stem(sub))}", sub, label)
+    return hidden_records
 
 
 def analyzed(archive):
@@ -492,8 +492,8 @@ def main():
             "다른 값으로 돌리지 않는다(세션이 연 노트를 가리지 못한다)."
         )
     check_uuids([os.path.basename(stem(path)) for path in args.items])
-    hiding = [name for path in args.items for name in digest_session(args.archive, path)]
-    print(f"지움이 있는 기록 {len(hiding)}: {', '.join(hiding)}" if hiding else "지움이 있는 기록 없음")
+    hidden_records = [name for path in args.items for name in digest_session(args.archive, path)]
+    print(f"지움이 있는 기록 {len(hidden_records)}: {', '.join(hidden_records)}" if hidden_records else "지움이 있는 기록 없음")
 
 
 if __name__ == "__main__":

@@ -33,7 +33,7 @@ python3 -B .claude/skills/wiki-retro/digest.py --candidates <이 세션 uuid>
 - **서브에이전트 기록**: 세션 기록 옆 `<uuid>/subagents/`
 - **세션 버전**: 세션이 실제로 따른 스킬 버전의 커밋. `python3 -B .claude/skills/wiki-retro/digest.py --version <세션 기록>...`의 출력을 쓴다.
 - **티켓과 리뷰 요약**: 세션의 PR은 후보 표 URL 열의 PR이고, 없으면 기록의 세션 URL(`"remote_session_change","url":"<세션 URL>"`)의 `session_…`을 본문에 담은 PR이다(`gh pr list --state all --search '<session_…> in:body'`). PR마다 본문의 `Closes #<티켓>`과 코멘트의 리뷰 요약을 읽는다. PR이 없는 세션(보강, 주제 계획 등)의 받은 티켓은 발행한 티켓의 `## Parent`다.
-- **핸드오프**: 세션이 쓴 핸드오프(후보 표의 핸드오프 열). 머리 정보가 가리키는 앞 세션의 핸드오프(예: 받은 티켓을 발행한 세션)도 읽는다. 넘긴 일을 처리한 세션의 핸드오프도 읽는다. 넘긴 일이 모음 이슈 코멘트면 그 이슈의 `## Triage` 표가 가리키는 티켓의 핸드오프다. 처리 세션은 위키 스킬을 부르지 않아(`mattpocock-skills:implement` 등) 후보에 오르지 않으므로 `grep -l '#<티켓>' ~/documents/ash-wiki-handoff/*.md`로 찾는다.
+- **핸드오프**: 세션이 쓴 핸드오프(후보 표의 핸드오프 열). 머리 정보가 가리키는 앞 세션의 핸드오프(예: 받은 티켓을 발행한 세션)도 읽는다. 넘긴 일을 처리한 세션의 핸드오프도 읽는다. 넘긴 일이 모음 이슈 코멘트면 그 이슈의 `## Triage` 표가 가리키는 티켓의 핸드오프다. 처리 세션은 대개 위키 스킬을 부르지 않아 후보에 오르지 않으므로 `grep -lw '#<티켓>' ~/documents/ash-wiki-handoff/*.md`로 찾는다.
 
 **루틴 세션**은 `RemoteTrigger`로 스킬을 클라우드 루틴에서 돌린 세션이다. 스킬 본체의 기록은 로컬에 `get_run_log`로 가져온 일부뿐이라, 분석은 로컬의 조율과 그 일부까지다. 세션 버전은 루틴이 돈 시각(`list_runs`나 run log)의 `origin/main`이고(`git rev-list -1 --before=<그 시각> origin/main`), PR은 run log의 PR URL이다.
 
