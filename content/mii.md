@@ -34,7 +34,7 @@ MDC(Management Data Clock)와 MDIO(Management Data Input/Output)는 PHY의 레�
 
 ## 한 쌍 PHY의 인터페이스
 
-IEEE 802.3-2022는 [[10base-t1s|10BASE-T1S]]와 [[ieee-802-3#범위|10BASE-T1L]]이 Clause 22의 MII로, Clause 149의 [[multigbase-t1|MultiGBASE-T1]]인 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1이 Clause 46의 XGMII(10 Gigabit Media Independent Interface)로 MAC 쪽과 이어지도록 정한다. 이 표준은 XGMII의 구현을 선택 사항으로 두고, 10BASE-T1S와 10BASE-T1L의 그림 NOTE는 MII도 선택 사항으로 제시한다.[@ieee-802-3-2022]
+IEEE 802.3-2022는 [[10base-t1s|10BASE-T1S]]와 [[ieee-802-3#범위|10BASE-T1L]]이 Clause 22의 MII로, Clause 149의 [[multigbase-t1|MultiGBASE-T1]]인 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1이 Clause 46의 XGMII(10 Gigabit Media Independent Interface)로 MAC 쪽과 이어지도록 정하고, 두 인터페이스의 구현은 모두 선택 사항으로 둔다.[@ieee-802-3-2022]
 
 차량용 PHY 가운데에는 SGMII(Serial Gigabit Media Independent Interface)를 지원하는 것도 있다.[@nxp-tja1103-2026][@ti-dp83tg720s-q1-2026] TJA1103B의 SGMII는 SerDes(Serializer/Deserializer) 인터페이스로, 쓰는 신호가 적고 [[differential-signaling|차동 신호]]로 EMC(Electromagnetic Compatibility) 성능을 높인다. 전송 속도는 1.25 [[serial-communication#비트율|GBd]]로 고정이고, 100 Mbit/s로 동작할 때는 옥텟마다 10번 되풀이해 프레임을 늘린다.[@nxp-tja1103-2026]
 
