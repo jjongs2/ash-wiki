@@ -32,8 +32,9 @@
   <text x="360" y="63" text-anchor="middle" fill="var(--on-fill, #f8fafd)">ISO 14229-1</text>
   <rect x="280.75" y="166.75" width="158.5" height="76.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
   <text x="360" y="210" text-anchor="middle" fill="var(--on-fill, #f8fafd)">ISO 15765-2</text>
-  <rect x="280.75" y="250.75" width="158.5" height="34.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="360" y="273" text-anchor="middle" fill="var(--on-fill, #f8fafd)">ISO 11898-1</text>
+  <rect x="280.75" y="250.75" width="158.5" height="76.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="360" y="284" text-anchor="middle" fill="var(--on-fill, #f8fafd)">ISO 11898-1</text>
+  <text x="360" y="303" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">데이터 링크 계층 · PCS</text>
 
   <!-- 계층과 표준을 잇는 선 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
@@ -41,5 +42,6 @@
     <line x1="242" y1="184" x2="278" y2="184" />
     <line x1="242" y1="226" x2="278" y2="226" />
     <line x1="242" y1="268" x2="278" y2="268" />
+    <line x1="242" y1="310" x2="278" y2="310" />
   </g>
 </svg>

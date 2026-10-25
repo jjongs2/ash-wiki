@@ -29,7 +29,7 @@ TI 백서에 따르면 존 아키텍처에서 전원 분배는 중앙 집중에�
 
 존 아키텍처는 배선의 길이와 무게를 줄인다.[@bosch-ee-architecture-2026][@nxp-s32g2zoneconfs-2021] Renesas 백서에 따르면 가까이 있는 ECU를 그 구역의 존 제어기가 맡으므로 배선이 오가지 않아도 되어 배선량이 준다.[@renesas-ipd-power-distribution-2025]
 
-존 제어기들은 고속 이더넷 백본으로 중앙 컴퓨터에 이어진다.[@bosch-ee-architecture-2026][@ti-ssztd02-2025] 기능을 모으는 소수의 강력한 중앙 컴퓨터를 HPC(High-Performance Computer)라 부르며[@mauser-mixed-criticality-2025], Bosch는 이를 차량 컴퓨터(vehicle computer)라 부른다.[@bosch-vehicle-computer-2026] 존 아키텍처에서 차량 기능의 처리는 중앙 컴퓨터로 모인다.[@ti-sszt211-2023][@bosch-zone-ecu-2026]
+존 제어기들은 고속 이더넷 백본으로 중앙 컴퓨터에 이어진다.[@bosch-ee-architecture-2026][@ti-ssztd02-2025] 기능을 모으는 소수의 강력한 중앙 컴퓨터를 HPC(High-Performance Computer)라 부르며[@mauser-mixed-criticality-2025], Bosch는 이를 차량 컴퓨터(vehicle computer)라 부른다.[@bosch-vehicle-computer-2026] 존 아키텍처는 차량 기능의 처리를 중앙 컴퓨터로 모으는 쪽으로 간다.[@ti-sszt211-2023][@bosch-zone-ecu-2026]
 
 ![[diagrams/domain-zonal-architecture.svg]]
 
@@ -49,4 +49,4 @@ Bosch의 차량 컴퓨터용 플랫폼 소프트웨어는 운영체제와, 응�
 
 기존 차량 플랫폼에서는 E/E 아키텍처를 한 번에 바꾸지 않고 단계적으로 옮겨 간다.[@bosch-ee-architecture-2026][@ti-slyy236-2025] Bosch에 따르면 이때는 여러 도메인을 아우르는 차량 컴퓨터를 기존 도메인 아키텍처에 넣는다. 새 플랫폼에서는 차량 컴퓨터와 존 ECU로 된 존 아키텍처를 체계적으로 구현하는 편이 이점이 가장 크다.[@bosch-ee-architecture-2026]
 
-TI 백서에 따르면 차량 기능을 다스리는 소프트웨어를 어디에 둘지는 OEM마다 다르며, 소프트웨어 제어를 모으는 방식으로는 중앙 컴퓨터에 모두 두는 것, 중앙 컴퓨터와 존 제어기가 나눠 맡는 것, 소수의 도메인 제어기와 존 제어기로 나누는 것 셋이 있다.[@ti-slyy236-2025]
+TI 백서에 따르면 존 아키텍처에서도 차량 기능을 다스리는 소프트웨어를 어디에 둘지는 OEM마다 다르며, 소프트웨어 제어를 모으는 방식으로는 중앙 컴퓨터에 모두 두는 것, 중앙 컴퓨터와 존 제어기가 나눠 맡는 것, 소수의 도메인 제어기와 존 제어기로 나누는 것 셋이 있다.[@ti-slyy236-2025]

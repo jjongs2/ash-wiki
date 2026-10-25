@@ -11,7 +11,7 @@ verified: 2026-10-22
 
 ASAM SOVD 1.0.0은 HTTP/REST, JSON, OAuth를 바탕으로 한 API를 정한다. 이 API는 proximity, remote, in-vehicle 세 시나리오에 쓸 수 있고, 외부 기술 파일 없이도 진단할 수 있게 하는 self-describing API다. ASAM은 ASAM SOVD가 [[uds|UDS]]를 대체하지 않고 UDS와 함께 쓰이도록 만들었다.[@asam-sovd-2022]
 
-ISO 17978-3:2026의 소개 NOTE는 이 표준이 일부 API 메서드를 deprecated로 표시한다는 것과, 그 배경이 2022년의 ASAM SOVD 1.0 발표라는 것을 제시한다.[@iso-17978-3-obp-2026]
+ISO 17978-3:2026의 소개 NOTE는 이 표준이 일부 API 메서드를 deprecated로 표시한다는 것과, 그렇게 표시한 배경이 2022년의 ASAM SOVD 1.0 발표라는 것을 제시한다.[@iso-17978-3-obp-2026]
 
 ## ISO 17978 시리즈
 
@@ -19,6 +19,6 @@ ISO 17978-1:2026은 ISO 17978 시리즈를 개관하고, ISO 20077 시리즈의 
 
 ## API
 
-ISO 17978-3:2026은 SOVD API를 HPC와 기존 ECU의 진단, 진단 능력 조회, extended vehicle 안의 SOVD 메서드 발견을 표준화하는 API로 정의한다. 이 API는 고장 항목 읽기와 지우기, 측정과 식별, 루틴·I/O 제어의 실행, 차량 구성, 제조사별 소프트웨어 업데이트 전략의 캡슐화, HPC의 로그 접근 같은 기능을 준다.[@iso-17978-3-obp-2026]
+ISO 17978-3:2026은 SOVD API를 HPC와 기존 ECU의 진단, 진단 능력 조회, extended vehicle 안의 SOVD 메서드 발견을 표준화하는 API로 정의한다. 이 API는 고장 항목 읽기와 지우기, 측정과 식별, 루틴·I/O 제어의 실행, 차량 구성, 제조사별 소프트웨어 업데이트 전략을 캡슐화한 재프로그래밍, HPC의 로그 접근 같은 기능을 준다.[@iso-17978-3-obp-2026]
 
 [[autosar-adaptive-platform|AUTOSAR Adaptive Platform]]의 SOVD 지원은 [[autosar-diagnostic-management|Diagnostic Management]]에서 다룬다.

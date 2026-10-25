@@ -45,6 +45,6 @@ IANA 레지스트리에 등록된 서비스 이름의 예는 아래와 같다.[@
 | 514   | shell     | syslog    |
 | 13400 | doip-data | doip-disc |
 
-TCP와 UDP는 포트 번호 레지스트리를 따로 둔다. 응용은 한 전송 프로토콜에서 배정받은 포트 번호를 다른 전송 프로토콜에서도 쓸 수 있다고 여겨서는 안 된다.[@ietf-rfc-6335-2011] 같은 번호라도 TCP와 UDP에서 다른 서비스를 가리킬 수 있다. 예: 514는 TCP에서 shell, UDP에서 syslog로 등록되어 있다.[@iana-service-names-port-numbers-registry-2026]
+RFC 6335는 포트 번호를 TCP와 UDP 같은 전송 프로토콜마다 따로 배정하도록 정한다. 응용은 한 전송 프로토콜에서 배정받은 포트 번호를 다른 전송 프로토콜에서도 쓸 수 있다고 여겨서는 안 된다.[@ietf-rfc-6335-2011] 같은 번호라도 TCP와 UDP에서 다른 서비스를 가리킬 수 있다. 예: 514는 TCP에서 shell, UDP에서 syslog로 등록되어 있다.[@iana-service-names-port-numbers-registry-2026]
 
 13400 포트의 쓰임은 [[doip#포트|DoIP]]에서 다룬다. [[some-ip-sd|SOME/IP-SD]] 규격은 SD 메시지를 보내는 UDP 포트(`SD_PORT`)의 기본값을 30490으로 둔다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]

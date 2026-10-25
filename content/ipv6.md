@@ -64,7 +64,7 @@ IPv6에서는 라우터가 패킷을 나누지 않고 발신 노드만 나눈다
 
 IPv6 호스트가 인터페이스의 주소를 스스로 설정하는 절차에는 링크 로컬 주소를 만드는 일, 상태 없는 주소 자동 설정(stateless address autoconfiguration)으로 전역 주소를 만드는 일, 중복 주소 검출(Duplicate Address Detection)로 주소가 링크에서 유일한지 확인하는 일이 든다.[@ietf-rfc-4862-2007]
 
-노드는 잘 알려진 링크 로컬 접두사에 인터페이스 식별자를 붙여 링크 로컬 주소를 만든다. 이 주소를 인터페이스에 붙여 쓰기 전에, 노드는 그 주소를 대상으로 한 [[neighbor-discovery#메시지|Neighbor Solicitation]]을 보내 링크의 다른 노드가 이미 쓰고 있는지 확인해야 한다. 상태 없는 주소 자동 설정은 라우터가 보내는 [[neighbor-discovery#메시지|Router Advertisement]]에 든 Prefix Information 옵션의 정보로 전역 주소를 만든다.[@ietf-rfc-4862-2007]
+노드는 잘 알려진 링크 로컬 접두사에 인터페이스 식별자를 붙여 링크 로컬 주소를 만든다. 이 주소를 인터페이스에 할당해 쓰기 전에, 노드는 그 주소를 대상으로 한 [[neighbor-discovery#메시지|Neighbor Solicitation]]을 보내 링크의 다른 노드가 이미 쓰고 있는지 확인해야 한다. 상태 없는 주소 자동 설정은 라우터가 보내는 [[neighbor-discovery#메시지|Router Advertisement]]에 든 Prefix Information 옵션의 정보로 전역 주소를 만든다.[@ietf-rfc-4862-2007]
 
 IPv6 주소를 설정하는 다른 방법은 [[dhcp#DHCPv6|DHCPv6]]에서 다룬다.
 

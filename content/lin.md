@@ -31,7 +31,7 @@ ISO 17987-1:2025는 LIN 프로토콜의 주요 특성으로 [[signal-based-commu
 
 **commander**는 LIN 네트워크에 하나뿐인 노드로, 프레임을 스케줄하고 백본 네트워크에도 연결된다. commander 태스크는 스케줄 테이블에 따라 모든 헤더를 버스에 보내고, responder 태스크는 헤더를 듣고 그에 맞춰 응답을 보내거나 받거나 무시한다. 스케줄 테이블은 보낼 프레임과 그 순서, 프레임 사이의 시간 간격을 정한다.[@iso-17987-1-obp-2025] ISO 17987-1:2016은 commander와 responder를 master와 slave라 불렀고, 2025년판에서 지금 이름으로 바뀌었다.[@iso-17987-1-obp-2025][@iso-17987-1-obp-2016]
 
-TI 앱노트에 따르면 commander가 버스의 모든 통신을 다스리므로 commander가 고장 나면 클러스터 전체가 멈춘다. 이것이 느린 메시지 속도와 함께 LIN이 안전 관련 응용에 쓰이지 않는 까닭이다.[@ti-slla383a-2022]
+TI 앱노트에 따르면 **클러스터**는 케이블로 이어진 LIN 노드의 묶음이고, commander 하나와 responder들로 이뤄진다. commander가 버스의 모든 통신을 다스리므로 commander가 고장 나면 클러스터 전체가 멈춘다. 이것이 느린 메시지 속도와 함께 LIN이 안전 관련 응용에 쓰이지 않는 까닭이다.[@ti-slla383a-2022]
 
 ## 프레임
 
@@ -57,7 +57,7 @@ $$
 
 ## 동기화
 
-responder는 sync 바이트 필드 패턴의 하강 에지로 commander의 비트 타이밍에 동기화하고, 이로 비트 폭을 잴 수 있다.[@ti-slla383a-2022][@atmel-avr308-2002] responder는 sync로 commander에 맞추므로 수정 발진기 없이 동작할 수 있다.[@ti-slla383a-2022][@freescale-brinvehiclenet-2006] TI 앱노트에 따르면 LIN 노드는 값싼 온칩 발진기를 쓰며, 비트율 허용 오차가 ±14%인 것은 이 때문이다.[@ti-slla383a-2022] 선 하나만 쓰고 responder가 수정 발진기 없이 동기화하므로 LIN은 싸게 구현할 수 있다.[@ti-slla383a-2022][@atmel-avr308-2002]
+responder는 sync 바이트 필드 패턴의 하강 에지로 commander의 비트 타이밍에 동기화하고, 이로 비트 폭을 잴 수 있다.[@ti-slla383a-2022][@atmel-avr308-2002] responder는 sync로 commander에 맞추므로 수정 발진기 없이 동작할 수 있다.[@ti-slla383a-2022][@freescale-brinvehiclenet-2006] TI 앱노트에 따르면 LIN 노드는 값싼 온칩 발진기를 쓰므로 비트율 허용 오차가 ±14%이고, 이 정확도로 break를 알아챈 뒤 sync 바이트 필드로 타이밍을 보정해 메시지를 주고받는다.[@ti-slla383a-2022] 선 하나만 쓰고 responder가 수정 발진기 없이 동기화하므로 LIN은 싸게 구현할 수 있다.[@ti-slla383a-2022][@atmel-avr308-2002]
 
 ## 체크섬
 
@@ -69,7 +69,7 @@ TMS320F2803x의 LIN 모듈은 받은 데이터 바이트(enhanced 체크섬이�
 
 TMS320F2803x의 LIN 모듈은 프레임 ID 0\~59를 신호를 싣는 프레임으로 다룬다.[@ti-sprui10a-2022] Microchip AN1099의 LIN 드라이버는 진단 프레임에 ID 60(`0x3C`)과 61(`0x3D`)을 쓴다.[@microchip-an1099-2007] ISO 17987-3:2025는 진단 프레임을 commander 노드가 보내는 commander request frame(CRF)과 responder 노드 하나가 보내는 responder response frame(RRF)으로 둔다.[@iso-17987-3-obp-2025]
 
-**unconditional 프레임**은 신호를 싣고, 할당된 프레임 슬롯에서 늘 전송된다. **event-triggered 프레임**은 여러 responder 노드가 같은 헤더에 응답할 수 있게 하는 프레임이다. **sporadic 프레임**은 한 스케줄 슬롯에 할당된 unconditional 프레임의 묶음이고, commander가 보낸다.[@iso-17987-3-obp-2025] Microchip AN1099에 따르면 event-triggered 프레임의 헤더에는 관련 프레임의 데이터가 바뀐 responder만 응답하고, 둘 이상이 응답하면 충돌이 난다. sporadic 프레임의 슬롯은 갱신된 데이터가 없으면 비워 둔다.[@microchip-an1099-2007]
+**unconditional 프레임**은 신호를 싣고, 할당된 프레임 슬롯에서 늘 전송된다. **event-triggered 프레임**은 여러 responder 노드가 같은 헤더에 응답할 수 있게 하는 프레임이다. **sporadic 프레임**은 한 스케줄 슬롯에 할당된 unconditional 프레임의 묶음이고, 헤더와 응답을 모두 commander가 보낸다.[@iso-17987-3-obp-2025] Microchip AN1099에 따르면 event-triggered 프레임의 헤더에는 관련 프레임의 데이터가 바뀐 responder만 응답하고, 둘 이상이 응답하면 충돌이 난다. sporadic 프레임의 슬롯은 갱신된 데이터가 없으면 비워 둔다.[@microchip-an1099-2007]
 
 ## 노드 구성과 식별
 

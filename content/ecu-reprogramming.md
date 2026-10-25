@@ -10,7 +10,7 @@ verified: 2026-10-03
 
 ## AUTOSAR Dcm의 부트로더 전환
 
-[[autosar|AUTOSAR]] R25-11의 Dcm(Diagnostic Communication Manager) 명세는 [[uds|UDS]]의 DiagnosticSessionControl로 요청된 세션이 [[bootloader|부트로더]] 전환을 허용하도록 설정돼 있으면(`DcmDspSessionForBoot`), Dcm이 [[basic-software-mode-manager|BswM]]에 모드 전환으로 알려 OEM 부트로더나 시스템 공급자 부트로더로 넘어갈 준비를 하게 정한다. Dcm은 하위 기능 `0x02`로 [[uds#진단 세션|programming session]]을 시작하는 DiagnosticSessionControl 요청을 받으면 `Dcm_SetProgConditions`로 재프로그래밍을 요청하는 ReprogrammingRequest 플래그를 세운다. 이 명세는 Dcm을 부트로더 안에서 쓰도록 의도하지 않는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+[[autosar|AUTOSAR]] R25-11의 Dcm(Diagnostic Communication Manager) 명세는 [[uds|UDS]]의 DiagnosticSessionControl로 요청된 세션이 [[bootloader|부트로더]] 전환을 허용하도록 설정돼 있으면(`DcmDspSessionForBoot`), Dcm이 모드 전환을 일으켜 OEM 부트로더나 시스템 공급자 부트로더로 넘어갈 준비를 하도록 정한다. Dcm은 이 모드 전환으로 [[basic-software-mode-manager|BswM]]에 부트로더로 넘어갈 준비를 하라고 알린다. Dcm은 하위 기능 `0x02`로 [[uds#진단 세션|programming session]]을 시작하는 DiagnosticSessionControl 요청을 받으면 `Dcm_SetProgConditions`로 재프로그래밍을 요청하는 ReprogrammingRequest 플래그를 세운다. 이 명세는 Dcm을 부트로더 안에서 쓰도록 의도하지 않는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 부트로더가 애플리케이션 재프로그래밍을 마치면 ApplUpdated 플래그를 갱신한다. ECU가 리셋된 뒤 새로 프로그래밍된 애플리케이션이 처음 시작되면, Dcm은 `Dcm_GetProgConditions`로 이 플래그를 읽어 BswM에 애플리케이션이 갱신됐음을 알린다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
@@ -46,7 +46,7 @@ Vector의 Flash Bootloader 기술 문서가 정한 UDS 다운로드 시퀀스에
 
 ISO 15765 시리즈는 점검, 진단, 수리를 위해 차량에 연결하는 외부 시험 장비를 전제한다. [[iso-15765-2|ISO 15765-2]]:2024는 차량 안의 CAN 네트워크가 진단 링크 커넥터에 연결된 외부 장치와 통신을 맺고 유지하고 끝내는 요구사항을 정한다.[@iso-15765-2-obp-2024] ISO 14229-1:2026은 테스터의 예로 정비사가 쓰는 오프보드 스캔 툴을 들고, ECU 안에 온보드 테스터를 구현해 차량 통신 링크에서 진단 서비스를 쓰는 것도 막지 않는다.[@iso-14229-1-obp-2026]
 
-AUTOSAR R25-11의 [[autosar-update-and-configuration-management|UCM]] 명세에서 UCM은 [[over-the-air-update|OTA 업데이트]]와 진단으로 하는 정비소 업데이트를 구별하지 않는다. 진단 애플리케이션이나 V-UCM(Vehicle Update and Configuration Management) 같은 UCM 클라이언트가 그 차이를 감추고 데이터와 순서 제어 명령을 UCM에 넘긴다.[@autosar-ap-sws-updateandconfigurationmanagement-2025] V-UCM은 [[autosar-classic-platform|Classic Platform]] ECU처럼 진단으로 플래시하는 플랫폼을 업데이트할 때 Flashing Adapter를 쓴다. Flashing Adapter는 OEM마다의 진단 시퀀스를 담고 D-PDU API(ISO 22900-2)로 [[vehicle-bus|차량 버스]]의 ECU와 통신하며, 그 D-PDU API 구현은 CAN 위의 UDS와 DoIP 위의 UDS를 지원해야 한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
+AUTOSAR R25-11의 [[autosar-update-and-configuration-management|UCM]] 명세에서 UCM은 [[over-the-air-update|OTA 업데이트]]와 진단으로 하는 정비소 업데이트를 구별하지 않는다. 진단 애플리케이션이나 V-UCM(Vehicle Update and Configuration Management) 같은 UCM 클라이언트가 그 차이를 감추고 데이터와 순서 제어 명령을 UCM에 넘긴다.[@autosar-ap-sws-updateandconfigurationmanagement-2025] V-UCM은 [[autosar-classic-platform|Classic Platform]] ECU처럼 진단으로 플래시하는 플랫폼을 업데이트할 때 Flashing Adapter를 쓴다. Flashing Adapter는 OEM마다의 진단 시퀀스를 담고 D-PDU(Diagnostic Protocol Data Unit) API(ISO 22900-2)로 [[vehicle-bus|차량 버스]]의 ECU와 통신하며, 그 D-PDU API 구현은 CAN 위의 UDS와 DoIP 위의 UDS를 지원해야 한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
 
 ![[diagrams/autosar-v-ucm-update-targets.svg]]
 

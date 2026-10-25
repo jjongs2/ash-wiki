@@ -21,7 +21,7 @@ TI 앱노트 SPRA530에 따르면 부호의 **최소 해밍 거리** $d_\mathrm{
 
 ![[diagrams/hamming-distance-dmin-detect-correct.svg]]
 
-최소 해밍 거리가 같은 부호에서는 정정 능력의 일부를 검출 능력으로 바꿔 쓸 수 있다. 위 예처럼 $d_\mathrm{min} = 5$인 부호는 오류 2개 정정, 오류 1개 정정과 3개 검출, 오류 4개 검출 가운데 하나로 쓸 수 있다.[@hamming-error-detecting-1950]
+최소 해밍 거리가 같은 부호에서는 정정 능력의 일부를 검출 능력으로 바꿔 쓸 수 있다. 위 예처럼 $d_\mathrm{min} = 5$인 부호는 오류 2개 정정, 오류 1개는 정정하고 3개까지는 검출하는 방식, 오류 4개 검출 가운데 하나로 쓸 수 있다.[@hamming-error-detecting-1950]
 
 최소 해밍 거리가 4인 SECDED(Single Error Correction, Double Error Detection) 부호는 비트 하나의 오류를 고치면서 비트 두 개의 오류를 찾아낸다.[@ti-spna139-2011][@microchip-coreedac-2025] SECDED는 [[error-correction-code#SECDED|ECC]]에서 다룬다. TI Hercules MCU의 플래시 ECC는 SECDED라서 비트 하나의 오류를 가장 가까운 유효한 값으로 되돌려 고치지만, 3비트 오류는 잘못 고칠 수 있다. 이 ECC는 3비트 오류 검출이 더 중요하면 오류 검출 전용 모드로 둘 수 있다.[@ti-spna139-2011]
 
