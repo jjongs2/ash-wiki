@@ -31,7 +31,7 @@ $$
 
 CRC를 포함한 CAN의 오류 검출 수단(모니터링, CRC, 비트 스터핑, 프레임 검사)은 한 메시지 안에서 임의로 흩어진 오류 5개까지와, 길이 $l$(비트)이 $l < 15$인 [[cyclic-redundancy-check#쓰는 곳|버스트 오류]]를 모두 찾아낸다. 이 수단들은 전역 오류, 송신 노드의 국부 오류, 홀수 개의 오류도 모두 찾아낸다. 찾지 못한 채 남는 오류의 확률 $p_\mathrm{res}$는 메시지 오류율 $p_\mathrm{msg}$에 대해 $p_\mathrm{res} < 4.7 \times 10^{-11}\, p_\mathrm{msg}$이다.[@bosch-can-2-0-1991]
 
-Bosch CAN FD 1.0에 따르면 classical CAN 프레임의 15비트 CRC도 [[can-fd|CAN FD]]의 17비트·21비트 CRC와 마찬가지로 [[hamming-distance|해밍 거리]] 6을 준다.[@bosch-can-fd-1-0-2012] 해밍 거리 6은 길이가 정해진 프레임에서 비트 반전 5개까지를 찾아낸다는 뜻이다.[@bosch-icc-can-fd-error-detection-2015][@ti-spra530-1999] Bosch 논문에 따르면 classical CAN에서는 스터프 조건을 만들고 없애는 비트 반전 두 개를 CRC가 찾지 못하는 드문 경우가 있다.[@bosch-icc-can-fd-error-detection-2015]
+Bosch CAN FD 1.0에 따르면 classical CAN 프레임의 15비트 CRC도 [[can-fd|CAN FD]]의 17비트·21비트 CRC와 마찬가지로 [[hamming-distance|해밍 거리]] 6을 준다.[@bosch-can-fd-1-0-2012] 해밍 거리 6은 길이가 정해진 프레임에서 비트 반전 5개까지를 찾아낸다는 뜻이다.[@bosch-icc-can-fd-error-detection-2015][@ti-spra530-1999] Bosch 논문에 따르면 classical CAN에서는 스터프 조건을 만들고 없애는 비트 반전 두 개를 CRC가 찾지 못하는 드문 경우가 있다. 이 두 반전으로 수신 노드가 데이터 비트를 스터프 비트로, 스터프 비트를 데이터 비트로 읽는 경우다. CAN FD는 동적 스터프 비트를 CRC 계산에 넣고 [[can-bit-stuffing#CAN FD 프레임과의 차이|stuff bit count]]를 프레임에 실어 이 경우를 찾는다.[@bosch-icc-can-fd-error-detection-2015]
 
 ## CAN FD 프레임과의 차이
 

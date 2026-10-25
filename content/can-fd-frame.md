@@ -28,7 +28,7 @@ CAN FD 포맷 프레임에서 classical 포맷의 RTR(Remote Transmission Reques
 
 ## CRC 필드
 
-Bosch CAN FD 1.0은 [[can-crc|CRC]] 시퀀스를 데이터 필드의 바이트 수 $n$이 $n \le 16$이면 17비트, $n > 16$이면 21비트로 정하고, CRC 시퀀스에 [[can-bit-stuffing|스터프 비트]]를 고정 위치에 넣게 한다.[@bosch-can-fd-1-0-2012]
+Bosch CAN FD 1.0은 [[can-crc|CRC]] 시퀀스의 길이를 생성 다항식의 차수로 두어, 데이터 필드의 바이트 수 $n$이 $n \le 16$이면 17비트, $n > 16$이면 21비트로 정한다. CRC 시퀀스에는 [[can-bit-stuffing|스터프 비트]]를 고정 위치에 넣고, 이 고정 스터프 비트는 17비트나 21비트에 들지 않는다.[@bosch-can-fd-1-0-2012]
 
 ![[diagrams/can-fd-crc-fixed-stuff-bits.svg]]
 
