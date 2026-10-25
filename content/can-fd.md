@@ -17,7 +17,7 @@ CiA에 따르면 2011년 초 General Motors와 Bosch가 CAN의 처리량을 높�
 
 CAN FD 프레임은 중재 구간(arbitration phase)과 데이터 구간(data phase)으로 나뉘고, 중재 구간은 classical CAN과 같은 비트율을 쓴다. BRS(Bit Rate Switch) 비트가 [[dominant-and-recessive|recessive]]이면 미리 설정한 데이터 구간 비트율로 바꾸고, dominant이면 바꾸지 않는다. 데이터 구간은 BRS 비트의 [[can-bit-timing#샘플 포인트|샘플 포인트]]에서 시작해 [[can-crc|CRC]] 구분자의 샘플 포인트에서 끝난다.[@bosch-can-fd-1-0-2012]
 
-ISO 11898-1:2024는 **중재 구간**을 [[can-bit-timing#CAN FD와의 차이|공칭 비트 시간]]을 쓰는 구간으로, **데이터 구간**을 데이터 비트 시간을 쓰는 구간으로 정의한다.[@iso-11898-1-obp-2024]
+ISO 11898-1:2024는 **중재 구간**을 공칭 비트 시간을 쓰는 구간으로, **데이터 구간**을 데이터 비트 시간을 쓰는 구간으로 정의한다.[@iso-11898-1-obp-2024]
 
 Bosch CAN FD 1.0은 BRS 비트와 CRC 구분자 비트에서 비트율을 그 샘플 포인트 바로 뒤에 바꾸게 정한다. 그래서 이 두 비트는 저마다 길이가 공칭 비트와 데이터 비트의 중간이 되고, BRS 비트와 CRC 구분자 비트의 길이를 $t_\mathrm{BRS}$, $t_\mathrm{CRCdel}$, 공칭 비트 시간과 데이터 비트 시간을 $t_\mathrm{bit,N}$, $t_\mathrm{bit,D}$라 하면 $t_\mathrm{BRS} + t_\mathrm{CRCdel} = t_\mathrm{bit,N} + t_\mathrm{bit,D}$여야 한다.[@bosch-can-fd-1-0-2012]
 
