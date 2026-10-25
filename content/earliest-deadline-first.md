@@ -23,9 +23,9 @@ RTEMS(Real-Time Executive for Multiprocessor Systems)의 EDF 스케줄러는 단
 
 ## 마감 시한이 주기보다 짧을 때
 
-구간 $[0, t)$에서 release되고 그 구간 안에 끝나야 하는 태스크 실행의 최대량을 **processor demand bound function** $h(t)$라 부르고, 이를 구간 길이로 나눈 $h(t)/t$의 최댓값을 **processor load**라 부른다.[@davis-survey-hard-real-time-2011]
+구간 $[0, t)$에서 [[periodic-task-model#Release와 jitter|release]]되고 그 구간 안에 끝나야 하는 태스크 실행의 최대량을 **processor demand bound function** $h(t)$라 부르고, 이를 구간 길이로 나눈 $h(t)/t$의 최댓값을 **processor load**라 부른다.[@davis-survey-hard-real-time-2011]
 
-단일 프로세서의 EDF에서 마감 시한이 주기보다 짧은 sporadic 태스크는 처리기 수요 분석으로 분석한다. 구간 $[t_1, t_2]$의 처리기 수요는 그 구간에서 활성화되고 그 구간 안에 끝나야 하는 job들이 요구하는 처리 시간이고, 태스크 집합은 어느 구간에서든 처리기 수요가 구간 길이를 넘지 않을 때 그리고 그때만 스케줄 가능하다.[@sha-real-time-scheduling-theory-2004]
+단일 프로세서의 EDF에서 마감 시한이 주기보다 짧은 [[periodic-task-model#주기 태스크와 sporadic 태스크|sporadic 태스크]]는 처리기 수요 분석으로 분석한다. 구간 $[t_1, t_2]$의 처리기 수요는 그 구간에서 활성화되고 그 구간 안에 끝나야 하는 [[periodic-task-model#파라미터|job]]들이 요구하는 처리 시간이고, 태스크 집합은 어느 구간에서든 처리기 수요가 구간 길이를 넘지 않을 때 그리고 그때만 스케줄 가능하다.[@sha-real-time-scheduling-theory-2004]
 
 태스크 $n$개로 된 집합에서 태스크 $i$의 실행 시간을 $C_i$, 상대 마감 시한을 $D_i$, 주기(sporadic 태스크는 최소 도착 간격)를 $T_i$라 하고, $C_i \le D_i$, $C_i \le T_i$라 하자. 이런 sporadic 태스크의 집합은 단일 프로세서에서 선점할 수 있으면, 모든 $t \ge 0$에 대해 $h(t) \le t$일 때 그리고 그때만 EDF로 스케줄 가능하고, $h(t)$는 아래 식과 같다. 모든 태스크가 시각 0에 처음 요청하는 주기 태스크 집합과, 이런 주기 태스크와 sporadic 태스크가 섞인 집합에도 같은 결과가 성립한다.[@baruah-sporadic-tasks-1990]
 

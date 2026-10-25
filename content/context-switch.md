@@ -15,13 +15,13 @@ FreeRTOS는 태스크마다 [[task#스택|스택]]을 따로 두고, 프로세�
 
 ![[diagrams/context-switch-save-restore.svg]]
 
-µC/OS-III는 다른 태스크를 실행하기로 하면 지금 태스크의 context, 대개 CPU 레지스터를 그 태스크의 스택에 저장하고 새 태스크의 context를 복원한다. 준비 상태 태스크의 스택 프레임은 늘 인터럽트가 막 일어나 프로세서 레지스터를 모두 쌓아 둔 것처럼 꾸며져 있다. 태스크는 만들어질 때 준비 상태에 들므로, 소프트웨어가 그 스택 프레임을 같은 모양으로 미리 채워 둔다. 스택 포인터는 스택이 아니라 태스크의 TCB(Task Control Block)에 저장한다. context switch 코드는 대개 µC/OS-III의 프로세서 포트에 들어 있다. 레지스터가 많은 CPU일수록 저장하고 복원할 레지스터가 많아 context switch 부담이 크다.[@micrium-ucos-iii-context-switching-2026] TCB의 첫 필드 `.StkPtr`는 태스크 스택의 꼭대기를 가리키며, context switch 코드가 어셈블리에서 접근하는 TCB 필드를 이것 하나로 두도록 해 맨 앞에 놓았다.[@micrium-ucos-iii-task-management-internals-2026]
+µC/OS-III는 다른 태스크를 실행하기로 하면 지금 태스크의 context, 대개 CPU 레지스터를 그 태스크의 스택에 저장하고 새 태스크의 context를 복원한다. [[task#태스크 상태|준비 상태]] 태스크의 스택 프레임은 늘 인터럽트가 막 일어나 프로세서 레지스터를 모두 쌓아 둔 것처럼 꾸며져 있다. 태스크는 만들어질 때 준비 상태에 들므로, 소프트웨어가 그 스택 프레임을 같은 모양으로 미리 채워 둔다. 스택 포인터는 스택이 아니라 태스크의 TCB(Task Control Block)에 저장한다. context switch 코드는 대개 µC/OS-III의 프로세서 포트에 들어 있다. 레지스터가 많은 CPU일수록 저장하고 복원할 레지스터가 많아 context switch 부담이 크다.[@micrium-ucos-iii-context-switching-2026] TCB의 첫 필드 `.StkPtr`는 태스크 스택의 꼭대기를 가리키며, context switch 코드가 어셈블리에서 접근하는 TCB 필드를 이것 하나로 두도록 해 맨 앞에 놓았다.[@micrium-ucos-iii-task-management-internals-2026]
 
-FreeRTOS 문서에 따르면 협력형 스케줄러는 요청이 있을 때만 context switch를 하므로, [[rtos|RTOS]]가 더하는 처리 오버헤드를 크게 줄인다.[@freertos-solution4-2024]
+FreeRTOS 문서에 따르면 [[real-time-scheduling#선점|협력형 스케줄러]]는 요청이 있을 때만 context switch를 하므로, [[rtos|RTOS]]가 더하는 처리 오버헤드를 크게 줄인다.[@freertos-solution4-2024]
 
 스케줄링 알고리즘을 구현하면 오버헤드와 블로킹이 더해지고, 이는 시간 정확성을 검증할 때 반영해야 한다. Katcher, Arakawa, Strosnider는 1993년 이벤트 구동과 타이머 구동 구현을 분석해, [[fixed-priority-scheduling|고정 우선순위 스케줄링]]에서 구현 비용을 넣으면 이상적인 breakdown 이용률이 90%를 넘는 태스크 집합도 스케줄할 수 없게 될 수 있음을 보였다.[@katcher-fixed-priority-schedulers-1993] 스케줄링 방식은 [[real-time-scheduling|실시간 스케줄링]]에서 다룬다.
 
-[[autosar|AUTOSAR]]의 Timing Analysis and Design 보고서는 ECU 타이밍 최적화의 지표로, 선점 횟수를 줄여 운영체제 오버헤드를 줄이는 것을 든다.[@autosar-fo-tr-timinganalysis-2025]
+[[autosar|AUTOSAR]]의 Timing Analysis and Design 보고서는 ECU 타이밍 최적화의 지표로, [[real-time-scheduling#선점|선점]] 횟수를 줄여 운영체제 오버헤드를 줄이는 것을 든다.[@autosar-fo-tr-timinganalysis-2025]
 
 Tindell의 고정 우선순위 [[response-time-analysis|응답 시간 분석]]은 태스크의 [[worst-case-execution-time|최악 실행 시간]]에 context switch 오버헤드가 들어 있다고 보고, 선점 비용을 0으로 둔다.[@tindell-extendible-approach-1992] Leung과 Zhao도 FAA 보고서 DOT/FAA/AR-05/27에서 context switch 시간을 무시할 만하다고 가정하고, 그렇지 않으면 태스크의 실행 시간을 늘려 context switch로 잃는 시간을 반영하게 했다.[@leung-real-time-scheduling-analysis-2005]
 

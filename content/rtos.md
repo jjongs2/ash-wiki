@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**RTOS**(Real-Time Operating System)는 사건에 제때, 결정적으로 응답하는 것을 주목적으로 하는 운영체제다.[@freertos-faq-what-is-this-all-about-2026][@st-um1722-2019] RTOS는 흔히 우선순위 기반 [[real-time-scheduling#선점|선점형 스케줄러]]를 두고, 실행할 수 있는 [[task|태스크]] 가운데 우선순위가 가장 높은 것을 실행한다.[@freertos-rtos-fundamentals-2026][@silabs-intro-rtos-2019] 실시간이라는 요구는 [[real-time-system|실시간 시스템]]에서 다룬다.
+**RTOS**(Real-Time Operating System)는 사건에 제때, 결정적(deterministic)으로 응답하는 것을 주목적으로 하는 운영체제다.[@freertos-faq-what-is-this-all-about-2026][@st-um1722-2019] RTOS는 흔히 우선순위 기반 [[real-time-scheduling#선점|선점형 스케줄러]]를 두고, 실행할 수 있는 [[task|태스크]] 가운데 우선순위가 가장 높은 것을 실행한다.[@freertos-rtos-fundamentals-2026][@silabs-intro-rtos-2019] 실시간이라는 요구는 [[real-time-system|실시간 시스템]]에서 다룬다.
 
 ## Superloop
 
@@ -35,11 +35,11 @@ RTOS는 태스크 사이의 동기화와 통신에 [[semaphore|세마포어]], [
 
 ## 차량용 RTOS
 
-[[iso-17356-3|ISO 17356-3]]:2005는 차량용 멀티태스킹 실시간 운영체제인 [[osek-os|OSEK OS]]의 개념을 기술하고, 그 API를 정한다.[@iso-17356-3-2005] OSEK/VDX OS 2.2.3 명세에 따르면 이 명세를 따르는 구현은 여럿이고, 인증 절차로 각 구현이 명세에 맞는지 확인한다.[@osek-os-2-2-3-2005]
+[[iso-17356-3|ISO 17356-3]]:2005는 차량용 멀티태스킹 실시간 운영체제인 [[osek-os|OSEK OS]]의 개념을 기술하고, 그 API를 정한다.[@iso-17356-3-2005] [[osek-vdx|OSEK/VDX]] OS 2.2.3 명세에 따르면 이 명세를 따르는 구현은 여럿이고, 인증 절차로 각 구현이 명세에 맞는지 확인한다.[@osek-os-2-2-3-2005]
 
 [[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 [[autosar-os|운영체제 명세]]는 ISO 17356-3을 바탕으로 두고 이를 확장하거나 제한한다.[@autosar-cp-sws-os-2025]
 
-[[autosar-adaptive-platform|AUTOSAR Adaptive Platform]]은 주로 고성능 연산과 통신 기능을 제공하는 플랫폼이고, 그 설계 설명서는 이 플랫폼의 운영체제가 다중 프로세스 POSIX 운영체제 기능을 제공하도록 한다.[@autosar-ap-exp-platformdesign-2025] 운영체제 인터페이스는 [[ieee-1003-13|IEEE 1003.13]]-2003의 PSE51 인터페이스로 운영체제 기능을 제공한다.[@autosar-ap-sws-operatingsysteminterface-2025]
+[[autosar-adaptive-platform|AUTOSAR Adaptive Platform]]은 주로 고성능 연산과 통신 기능을 제공하는 플랫폼이고, 그 설계 설명서는 이 플랫폼의 운영체제가 다중 프로세스 [[ieee-1003-1|POSIX]] 운영체제 기능을 제공하도록 한다.[@autosar-ap-exp-platformdesign-2025] 운영체제 인터페이스는 [[ieee-1003-13|IEEE 1003.13]]-2003의 PSE51 인터페이스로 운영체제 기능을 제공한다.[@autosar-ap-sws-operatingsysteminterface-2025]
 
 ## 비실시간 시스템과의 차이
 

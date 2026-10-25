@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**LET**(Logical Execution Time)은 프로그램의 실제 실행 시간을 추상화해, 입력을 읽고 나서 출력을 쓰기까지의 시간을 실행에 걸리는 시간과 상관없이 정하는 실시간 프로그래밍 추상화다.[@kirsch-logical-execution-time-2012] [[task|태스크]]는 구간이 시작할 때 입력을 읽고, 구간 안에 실행을 마치면 언제 마치든 출력은 구간이 끝날 때 쓴다.[@kirsch-logical-execution-time-2012][@henzinger-giotto-2003] LET은 Henzinger, Horowitz, Kirsch가 2000년에 발표한 시간 구동 프로그래밍 언어 Giotto에서 처음 도입되었다.[@kirsch-logical-execution-time-2012][@henzinger-giotto-2000]
+**LET**(Logical Execution Time)은 프로그램의 실제 실행 시간을 추상화해, 입력을 읽고 나서 출력을 쓰기까지의 시간을 실행에 걸리는 시간과 상관없이 정하는 실시간 프로그래밍 추상화다.[@kirsch-logical-execution-time-2012] [[task|태스크]]는 구간이 시작할 때 입력을 읽고, 구간 안에 실행을 마치면 언제 마치든 출력은 구간이 끝날 때 쓴다.[@kirsch-logical-execution-time-2012][@henzinger-giotto-2003] LET은 Henzinger, Horowitz, Kirsch가 2000년에 발표한 [[cyclic-executive#Time-triggered와 event-triggered|time-triggered]] 프로그래밍 언어 Giotto에서 처음 도입되었다.[@kirsch-logical-execution-time-2012][@henzinger-giotto-2000]
 
 ## 논리적 구간과 실제 실행
 
@@ -29,7 +29,7 @@ SL-LET(System-Level LET)은 LET을 분산 시스템으로 넓힌 것이다. 고�
 
 AUTOSAR R25-11의 [[autosar-classic-platform|Classic Platform]] Timing Extensions 명세는 LET 구간을 `LET_INTERVAL` 범주의 [[autosar-event-chain|TimingDescriptionEventChain]]으로 기술하도록 정하고, 로컬 ECU에서 [[runnable-entity|runnable]]이 실행되는 구간을 정하는 데 쓴다. 여러 ECU의 [[software-component-port|포트]] 사이 데이터 흐름은 `SL_LET_INTERVAL` 범주의 SL-LET 구간으로 기술한다. SL-LET 구간은 주기보다 길 수 있고, 동기 정확도가 유한한 분산 클럭을 다룬다.[@autosar-cp-tps-timingextensions-2025]
 
-이 명세는 runnable과 BSW(Basic Software) module entity를 함께 **executable entity**라 부르고, executable entity의 실행 순서를 ExecutionOrderConstraint로 정한다. ExecutionOrderConstraint는 [[virtual-functional-bus|VFB]], [[autosar-software-component|SW-C]], 시스템, BSW 모듈, ECU 수준의 timing view 어디서든 쓸 수 있고, executable entity를 직접 가리키거나 그것을 시작하는 [[rte-event|RTE 이벤트]]·[[basic-software-scheduler#BSW 이벤트|BSW 이벤트]]로 가리킨다. 종류는 ordinary, hierarchical, repetitive 셋이다. Ordinary는 executable entity 참조를 successor 관계로 이어 실행 순서를 정하고, hierarchical은 executable entity를 그룹으로 묶어 나무 꼴의 순서를 정한다.[@autosar-cp-tps-timingextensions-2025]
+이 명세는 runnable과 BSW(Basic Software) module entity를 함께 **executable entity**라 부르고, executable entity의 실행 순서를 ExecutionOrderConstraint로 정한다. ExecutionOrderConstraint는 [[virtual-functional-bus|VFB]], [[autosar-software-component|SW-C]], 시스템, BSW 모듈, ECU 수준의 [[autosar-event-chain#Timing description|timing view]] 어디서든 쓸 수 있고, executable entity를 직접 가리키거나 그것을 시작하는 [[rte-event|RTE 이벤트]]·[[basic-software-scheduler#BSW 이벤트|BSW 이벤트]]로 가리킨다. 종류는 ordinary, hierarchical, repetitive 셋이다. Ordinary는 executable entity 참조를 successor 관계로 이어 실행 순서를 정하고, hierarchical은 executable entity를 그룹으로 묶어 나무 꼴의 순서를 정한다.[@autosar-cp-tps-timingextensions-2025]
 
 ExecutionOrderConstraint만으로는 어떤 executable entity들이 모두 실행을 마쳐야만 다른 executable entity들이 실행을 시작한다는 것을 드러낼 수 없다. 이를 위해 SynchronizationPointConstraint가 RTE 이벤트·BSW 이벤트로 가리킨 executable entity들이나 executable entity 그룹들 사이에 동기화 지점을 정한다.[@autosar-cp-tps-timingextensions-2025]
 

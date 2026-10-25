@@ -9,13 +9,13 @@ verified: 2026-10-07
 
 ## POSIX의 메시지 큐
 
-POSIX.1-2024는 메시지 큐 함수를 Message Passing 옵션으로 둔다.[@ieee-1003-1-unistd-h-2024][@ieee-1003-1-mq-send-2024] 큐는 `mq_open`으로 만들며, 이때 큐의 `mq_maxmsg`와 `mq_msgsize` 속성을 정한다.[@ieee-1003-1-mq-open-2024] `<mqueue.h>`의 `mq_attr` 구조체에는 큐에 담을 수 있는 메시지의 최대 개수인 `mq_maxmsg`와 메시지의 최대 크기인 `mq_msgsize`가 있다.[@ieee-1003-1-mqueue-h-2024]
+POSIX.1-2024는 메시지 큐 함수를 [[ieee-1003-1#범위|Message Passing 옵션]]으로 둔다.[@ieee-1003-1-unistd-h-2024][@ieee-1003-1-mq-send-2024] 큐는 `mq_open`으로 만들며, 이때 큐의 `mq_maxmsg`와 `mq_msgsize` 속성을 정한다.[@ieee-1003-1-mq-open-2024] `<mqueue.h>`의 `mq_attr` 구조체에는 큐에 담을 수 있는 메시지의 최대 개수인 `mq_maxmsg`와 메시지의 최대 크기인 `mq_msgsize`가 있다.[@ieee-1003-1-mqueue-h-2024]
 
 `mq_send`는 메시지를 `msg_prio`가 가리키는 자리에 넣는다. `msg_prio` 값이 큰 메시지는 값이 작은 메시지보다 앞에, 값이 같은 메시지 뒤에 들어간다. 메시지 길이가 `mq_msgsize`보다 크면 실패한다. 큐가 가득 찼을 때 `O_NONBLOCK`이 설정되어 있지 않으면 자리가 날 때까지 블록하고, 설정되어 있으면 오류를 돌려준다.[@ieee-1003-1-mq-send-2024] `mq_receive`는 우선순위가 가장 높은 메시지 가운데 가장 오래된 것을 꺼낸다. 큐가 비었을 때도 `O_NONBLOCK`에 따라 블록하거나 오류를 돌려준다.[@ieee-1003-1-mq-receive-2024]
 
 ![[diagrams/posix-mq-priority-insertion.svg]]
 
-근거 설명에 따르면 큐마다 메시지 크기의 상한을 고정하고 바꿀 수 없게 한 것은 구현을 최적화하기 위해서다. 크기와 개수가 고정되면 메시지 블록을 미리 할당할 수 있다. 메시지 우선순위의 주목적은 우선순위가 높은 메시지가 낮은 메시지들 뒤에서 늦어지는, 메시지 시스템 안의 [[priority-inversion|우선순위 역전]]을 막는 것이다.[@ieee-1003-1-rationale-message-passing-2024]
+[[ieee-1003-1#범위|근거 설명]]에 따르면 큐마다 메시지 크기의 상한을 고정하고 바꿀 수 없게 한 것은 구현을 최적화하기 위해서다. 크기와 개수가 고정되면 메시지 블록을 미리 할당할 수 있다. 메시지 우선순위의 주목적은 우선순위가 높은 메시지가 낮은 메시지들 뒤에서 늦어지는, 메시지 시스템 안의 [[priority-inversion|우선순위 역전]]을 막는 것이다.[@ieee-1003-1-rationale-message-passing-2024]
 
 ## 기다리는 태스크
 
@@ -32,7 +32,7 @@ POSIX.1-2024는 메시지 큐 함수를 Message Passing 옵션으로 둔다.[@ie
 | µC/OS-III                                             | 메시지는 데이터를 가리키는 포인터와 그 크기, 보낸 시각이다. | 데이터를 복사하지 않고 참조로 보내므로, 받는 쪽이 쓰는 동안 데이터가 살아 있어야 한다.[@micrium-ucos-iii-messages-2026] |
 | RTEMS(Real-Time Executive for Multiprocessor Systems) | 메시지는 길이가 바뀌는 버퍼이고, 큐마다 최대 길이를 정한다. | 큐의 내부 버퍼나 받는 쪽으로 복사한다.[@rtems-message-background-2025]                                                  |
 
-Zephyr와 RTEMS 문서에 따르면 큰 항목을 큐로 보내면 인터럽트 지연이 늘어날 수 있다. 복사하는 동안 인터럽트를 막으므로, Zephyr 문서는 큰 데이터는 포인터를 주고받기를 권하고, RTEMS 문서는 메시지를 되도록 짧게 두기를 권한다.[@zephyr-message-queues-2026][@rtems-message-background-2025]
+Zephyr와 RTEMS 문서에 따르면 큰 항목을 큐로 보내면 [[deferred-interrupt-handling#인터럽트 지연과 응답|인터럽트 지연]]이 늘어날 수 있다. 복사하는 동안 인터럽트를 막으므로, Zephyr 문서는 큰 데이터는 포인터를 주고받기를 권하고, RTEMS 문서는 메시지를 되도록 짧게 두기를 권한다.[@zephyr-message-queues-2026][@rtems-message-background-2025]
 
 µC/OS-III는 급한 메시지를 LIFO(Last-In First-Out) 순서로 넣어 이미 큐에 있는 메시지들을 앞지르게 할 수 있다.[@micrium-ucos-iii-message-queues-2026] RTEMS의 `rtems_message_queue_urgent`는 메시지를 큐의 머리에 넣는다.[@rtems-message-background-2025] FreeRTOS에서도 큐의 앞에 쓰거나, 앞에 있는 데이터를 덮어쓸 수 있다.[@freertos-queue-management-2026] CMSIS-RTOS2의 `osMessageQueuePut`은 `msg_prio`로 메시지를 넣을 때 우선순위 순으로 정렬하며, 값이 클수록 우선순위가 높다.[@arm-cmsis-rtos2-message-queue-2026]
 

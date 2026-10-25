@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-Mok은 주기적이거나 sporadic인 시간 제약을 실시간으로 계속 지키는 문제를 **실시간 스케줄링** 문제라 부르고, 그 문제를 푸는 알고리즘을 실시간 스케줄링 알고리즘이라 불렀다.[@mok-fundamental-design-1983] [[ieee-1003-1|POSIX]]의 근거 문서에 따르면 시분할 시스템의 스케줄링은 처리량을 높이고 공정성을 북돋우는 것을 목표로 하지만, [[real-time-system|실시간 시스템]]에는 맞지 않는다. 실시간 응용은 외부에서 정한 응답 요구를 맞추려고 실행 순서를 직접 제어해야 한다.[@ieee-1003-1-rationale-process-scheduling-2024]
+Mok은 주기적이거나 [[periodic-task-model#주기 태스크와 sporadic 태스크|sporadic]]인 시간 제약을 실시간으로 계속 지키는 문제를 **실시간 스케줄링** 문제라 부르고, 그 문제를 푸는 알고리즘을 실시간 스케줄링 알고리즘이라 불렀다.[@mok-fundamental-design-1983] [[ieee-1003-1|POSIX]]의 근거 문서에 따르면 시분할 시스템의 스케줄링은 처리량을 높이고 공정성을 북돋우는 것을 목표로 하지만, [[real-time-system|실시간 시스템]]에는 맞지 않는다. 실시간 응용은 외부에서 정한 응답 요구를 맞추려고 실행 순서를 직접 제어해야 한다.[@ieee-1003-1-rationale-process-scheduling-2024]
 
 ## 선점
 
@@ -27,7 +27,7 @@ POSIX.1-2024는 실행할 스레드를 우선순위로 고르는 스케줄링을
 
 Liu와 Layland는 태스크에 우선순위를 한 번 정해 두는 알고리즘을 정적 알고리즘 또는 [[fixed-priority-scheduling|고정 우선순위]] 알고리즘이라 부르고, 요청마다 태스크의 우선순위가 바뀔 수 있는 알고리즘을 동적 알고리즘이라 불렀다.[@liu-hard-real-time-1973] 이 논문의 분석은 [[periodic-task-model#Liu와 Layland의 가정|주기 태스크 모델]]에서 다룬다.
 
-job 선점을 허용하면, 우선순위를 주는 방식에 따라 스케줄링 알고리즘을 셋으로 나눈다.[@carpenter-categorization-2004]
+[[periodic-task-model#파라미터|job]] 선점을 허용하면, 우선순위를 주는 방식에 따라 스케줄링 알고리즘을 셋으로 나눈다.[@carpenter-categorization-2004]
 
 - **정적 우선순위**(fixed task priority): 태스크마다 우선순위 하나를 두고, 그 태스크의 모든 job이 그 우선순위를 쓴다. 예: [[rate-monotonic-scheduling|rate monotonic]], deadline monotonic
 - **job 수준 동적 우선순위**(fixed job priority): job마다 우선순위가 다를 수 있지만, 어느 순간 job A가 job B보다 우선순위가 높으면 A는 늘 B보다 높다. 곧 job 하나의 우선순위는 바뀌지 않는다. 예: [[earliest-deadline-first|earliest deadline first]]
@@ -39,7 +39,7 @@ job 선점을 허용하면, [[deadline|마감 시한]]까지 남은 시간에서
 
 ## 최적성
 
-Liu와 Layland는 rate monotonic 배정이 최적이라는 것을, rate monotonic으로 스케줄할 수 없는 태스크 집합은 다른 어떤 고정 우선순위 배정 규칙으로도 스케줄할 수 없다는 뜻으로 썼다. 우선순위를 동적으로 주는 deadline driven 스케줄링 알고리즘에는, 어떤 우선순위 배정으로 스케줄할 수 있는 태스크 집합이면 이 알고리즘으로도 스케줄할 수 있다는 뜻으로 최적이라는 말을 썼다.[@liu-hard-real-time-1973]
+Liu와 Layland는 rate monotonic 배정이 최적이라는 것을, rate monotonic으로 스케줄할 수 없는 태스크 집합은 다른 어떤 고정 우선순위 배정 규칙으로도 스케줄할 수 없다는 뜻으로 썼다. 우선순위를 동적으로 주는 [[earliest-deadline-first|deadline driven 스케줄링]] 알고리즘에는, 어떤 우선순위 배정으로 스케줄할 수 있는 태스크 집합이면 이 알고리즘으로도 스케줄할 수 있다는 뜻으로 최적이라는 말을 썼다.[@liu-hard-real-time-1973]
 
 Mok은 모든 프로세스의 앞으로의 요청 시각을 확실히 예측하는 oracle을 가진 run-time 스케줄러를 clairvoyant 스케줄러라 부르고, clairvoyant 스케줄러가 실행 가능한 스케줄을 만들 수 있을 때마다 늘 실행 가능한 스케줄을 만드는 run-time 스케줄러를 최적이라 정의했다.[@mok-fundamental-design-1983]
 

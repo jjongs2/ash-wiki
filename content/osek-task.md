@@ -13,7 +13,7 @@ basic 태스크는 세 상태를 오간다.[@osek-os-2-2-3-2005]
 
 - running: CPU를 받아 명령을 실행하고 있는 상태다. running인 태스크는 언제나 하나뿐이다.
 - ready: 실행 조건이 모두 갖춰져 CPU 할당만 기다리는 상태다. 다음에 running이 될 태스크는 스케줄러가 ready 태스크 중에서 고른다.
-- suspended: 실행에 참여하지 않는 수동 상태다. 활성화되기를 기다린다.[@osek-os-2-2-3-2005]
+- suspended: 실행에 참여하지 않는 수동적인 상태다. 활성화되기를 기다린다.[@osek-os-2-2-3-2005]
 
 extended 태스크는 여기에 waiting이 더해진 네 상태를 가진다. waiting은 적어도 하나의 [[osek-event|이벤트]]를 기다리느라 실행을 이어가지 못하는 상태다.[@osek-os-2-2-3-2005]
 
@@ -33,7 +33,7 @@ extended 태스크는 끝나지 않은 채 waiting 상태로 들어가 CPU를 �
 
 `TerminateTask`와 `ChainTask`는 호출한 태스크에 배정된 [[osek-resource#Internal resource|internal resource]]를 자동으로 푼다. `ChainTask`는 자기 자신을 체인할 때도 푼다.[@osek-os-2-2-3-2005]
 
-BCC2와 ECC2에서는 basic 태스크가 활성화 요청을 여러 번 받아 둘 수 있다. ECC2에서도 extended 태스크는 그럴 수 없다. Conformance class는 [[osek-os#Conformance class|OSEK OS]]에서 다룬다. 받아 둘 수 있는 요청 수는 시스템 생성 때 basic 태스크마다 정한다. 받아 둔 요청은 우선순위별로 활성화 순서대로 큐에 쌓이고, 태스크의 현재 인스턴스가 끝나면 다음 인스턴스가 ready가 된다. 요청이 최대 개수를 넘으면 `ActivateTask`와 `ChainTask`는 E_OS_LIMIT을 돌려주고 그 활성화는 무시된다.[@osek-os-2-2-3-2005]
+[[osek-os#Conformance class|BCC2와 ECC2]]에서는 basic 태스크가 활성화 요청을 여러 번 받아 둘 수 있다. ECC2에서도 extended 태스크는 그럴 수 없다. 받아 둘 수 있는 요청 수는 시스템 생성 때 basic 태스크마다 정한다. 받아 둔 요청은 우선순위별로 활성화 순서대로 큐에 쌓이고, 태스크의 현재 인스턴스가 끝나면 다음 인스턴스가 ready가 된다. 요청이 최대 개수를 넘으면 `ActivateTask`와 `ChainTask`는 E_OS_LIMIT을 돌려주고 그 활성화는 무시된다.[@osek-os-2-2-3-2005]
 
 ## 우선순위와 스케줄링
 
@@ -47,13 +47,13 @@ BCC2와 ECC2에서는 basic 태스크가 활성화 요청을 여러 번 받아 �
 
 - `TerminateTask`로 태스크가 성공적으로 끝날 때
 - `ChainTask`로 태스크가 성공적으로 끝나고 뒤이을 태스크를 활성화할 때
-- 태스크 레벨에서 태스크를 활성화할 때. `ActivateTask`, 메시지 통지, 태스크 활성화를 정한 알람의 만료가 여기에 든다.
+- [[osek-os#처리 레벨|태스크 레벨]]에서 태스크를 활성화할 때. `ActivateTask`, 메시지 통지, 태스크 활성화를 정한 알람의 만료가 여기에 든다.
 - `WaitEvent`로 waiting 상태에 들어갈 때
 - 태스크 레벨에서 waiting 태스크에 이벤트를 설정할 때. `SetEvent`, 메시지 통지, 이벤트 설정을 정한 알람의 만료가 여기에 든다.
 - 태스크 레벨에서 `ReleaseResource`로 resource를 풀 때
 - 인터럽트 레벨에서 태스크 레벨로 돌아올 때[@osek-os-2-2-3-2005]
 
-`Schedule`은 시스템 생성 때 internal resource가 배정된 태스크에서만 재스케줄링을 일으킨다. 그런 태스크가 `Schedule`을 부르면, 더 높은 우선순위 태스크가 ready일 때 internal resource를 풀고 호출한 태스크를 ready로 돌려, 우선순위가 호출한 태스크보다 높고 internal resource의 ceiling priority 이하인 태스크에 CPU를 넘긴다. `Schedule`에서 돌아올 때는 internal resource를 다시 쥔 상태다. internal resource가 없는 선점할 수 있는 태스크에는 `Schedule`이 영향을 주지 않는다. 선점할 수 없는 태스크는 가장 높은 태스크 우선순위의 internal resource가 배정된 태스크로 본다.[@osek-os-2-2-3-2005]
+`Schedule`은 시스템 생성 때 internal resource가 배정된 태스크에서만 재스케줄링을 일으킨다. 그런 태스크가 `Schedule`을 부르면, 더 높은 우선순위 태스크가 ready일 때 internal resource를 풀고 호출한 태스크를 ready로 돌려, 우선순위가 호출한 태스크보다 높고 internal resource의 [[osek-resource#Ceiling priority|ceiling priority]] 이하인 태스크에 CPU를 넘긴다. `Schedule`에서 돌아올 때는 internal resource를 다시 쥔 상태다. internal resource가 없는 선점할 수 있는 태스크에는 `Schedule`이 영향을 주지 않는다. 선점할 수 없는 태스크는 가장 높은 태스크 우선순위의 internal resource가 배정된 태스크로 본다.[@osek-os-2-2-3-2005]
 
 태스크 종류(basic, extended)와 선점할 수 있는지는 서로 독립이다. 그래서 완전 선점 시스템에 basic 태스크가, 비선점 시스템에 extended 태스크가 있을 수 있다.[@osek-os-2-2-3-2005]
 
@@ -67,11 +67,11 @@ BCC2와 ECC2에서는 basic 태스크가 활성화 요청을 여러 번 받아 �
 
 태스크는 [[osek-implementation-language|OIL]]의 `TASK` 객체로 선언한다. 속성에는 아래 넷이 있고, 그 밖에 태스크가 쓰는 [[osek-resource|resource]], 이벤트, 메시지를 참조한다.[@osek-oil-2-5-2004]
 
-| 속성         | 뜻                                                                       |
-| ------------ | ------------------------------------------------------------------------ |
-| `PRIORITY`   | 우선순위. 0이 가장 낮다.                                                 |
-| `SCHEDULE`   | 선점할 수 있는지. `FULL`이면 선점할 수 있고, `NON`이면 선점할 수 없다.   |
-| `ACTIVATION` | 큐에 쌓아 둘 수 있는 활성화 요청의 최대 수                               |
-| `AUTOSTART`  | 시스템 시작 때 활성화할지와, 활성화한다면 어느 application mode에서 할지 |
+| 속성         | 뜻                                                                                                |
+| ------------ | ------------------------------------------------------------------------------------------------- |
+| `PRIORITY`   | 우선순위. 0이 가장 낮다.                                                                          |
+| `SCHEDULE`   | 선점할 수 있는지. `FULL`이면 선점할 수 있고, `NON`이면 선점할 수 없다.                            |
+| `ACTIVATION` | 큐에 쌓아 둘 수 있는 활성화 요청의 최대 수                                                        |
+| `AUTOSTART`  | 시스템 시작 때 활성화할지와, 활성화한다면 어느 [[osek-os#시작과 종료\|application mode]]에서 할지 |
 
 `PRIORITY` 값은 태스크 사이의 상대 순서만 뜻한다. `SCHEDULE`이 `NON`인 태스크에는 internal resource를 배정할 수 없다. OIL의 `OS` 객체에는 conformance class와 스케줄링 방식을 정하는 속성이 없다.[@osek-oil-2-5-2004]

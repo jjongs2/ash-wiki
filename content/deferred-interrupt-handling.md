@@ -23,9 +23,9 @@ FreeRTOS 문서에 따르면 태스크의 블록을 풀고 그 태스크로 전�
 
 ## 넘기는 수단
 
-FreeRTOS는 API 함수 일부를 태스크용과 ISR용 두 가지로 두고, ISR용 함수의 이름에는 "FromISR"을 붙인다. 이름에 "FromISR"이 없는 FreeRTOS API 함수는 ISR에서 부르면 안 된다. ISR용 함수는 더 높은 우선순위 태스크의 블록을 풀어도 그 자리에서 context switch를 하지 않고, `pxHigherPriorityTaskWoken`이 가리키는 변수를 `pdTRUE`로 바꿔 전환이 필요함을 알린다. ISR은 이 값을 `portYIELD_FROM_ISR()`에 넘겨 context switch를 요청한다. 요청하지 않으면 더 높은 우선순위 태스크는 다음에 스케줄러가 돌 때까지, 최악의 경우 다음 틱 인터럽트까지 준비 상태에 남는다.[@freertos-interrupt-management-2026]
+FreeRTOS는 API 함수 일부를 태스크용과 ISR용 두 가지로 두고, ISR용 함수의 이름에는 "FromISR"을 붙인다. 이름에 "FromISR"이 없는 FreeRTOS API 함수는 ISR에서 부르면 안 된다. ISR용 함수는 더 높은 우선순위 태스크의 블록을 풀어도 그 자리에서 context switch를 하지 않고, `pxHigherPriorityTaskWoken`이 가리키는 변수를 `pdTRUE`로 바꿔 전환이 필요함을 알린다. ISR은 이 값을 `portYIELD_FROM_ISR()`에 넘겨 context switch를 요청한다. 요청하지 않으면 더 높은 우선순위 태스크는 다음에 스케줄러가 돌 때까지, 최악의 경우 다음 [[system-tick|틱 인터럽트]]까지 준비 상태에 남는다.[@freertos-interrupt-management-2026]
 
-FreeRTOS에서 처리를 넘기는 방법은 둘이다. 인터럽트마다 응용이 만든 태스크에 넘기면 넘기는 태스크마다 우선순위를 따로 정할 수 있지만 태스크가 더 필요하다. `xTimerPendFunctionCallFromISR()`로 처리 함수를 RTOS daemon 태스크에 넘기면 인터럽트마다 태스크를 만들 필요가 없다. 대신 넘긴 함수는 모두 daemon 태스크의 우선순위로 실행되고, 함수가 timer command queue를 거쳐 전달되므로 인터럽트 우선순위가 아니라 큐에 들어온 순서대로 처리된다.[@freertos-interrupt-management-2026] 큐에 쓰고 읽는 만큼 지연도 늘어난다.[@freertos-deferred-interrupt-handling-2026]
+FreeRTOS에서 처리를 넘기는 방법은 둘이다. 인터럽트마다 응용이 만든 태스크에 넘기면 넘기는 태스크마다 우선순위를 따로 정할 수 있지만 태스크가 더 필요하다. `xTimerPendFunctionCallFromISR()`로 처리 함수를 [[software-timer#콜백이 도는 context|RTOS daemon 태스크]]에 넘기면 인터럽트마다 태스크를 만들 필요가 없다. 대신 넘긴 함수는 모두 daemon 태스크의 우선순위로 실행되고, 함수가 timer command queue를 거쳐 전달되므로 인터럽트 우선순위가 아니라 큐에 들어온 순서대로 처리된다.[@freertos-interrupt-management-2026] 큐에 쓰고 읽는 만큼 지연도 늘어난다.[@freertos-deferred-interrupt-handling-2026]
 
 Zephyr의 ISR은 FIFO, LIFO(Last-In First-Out), [[semaphore|세마포어]] 같은 커널 객체로 도우미 스레드에 신호하거나, 시스템 workqueue 스레드에 work item을 실행하게 해 처리를 넘긴다. 처리를 넘기면 대개 ISR이 끝날 때 그 스레드로 context switch가 한 번 일어나지만, 넘겨받은 스레드의 우선순위에 따라서는 실행 중인 cooperative 스레드나 더 높은 우선순위 스레드가 먼저 실행될 수 있다.[@zephyr-interrupts-2026]
 

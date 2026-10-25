@@ -23,7 +23,7 @@ CAN의 [[can-arbitration|중재]] 방식 때문에, 메시지는 모든 노드�
 
 ## 전송 시간
 
-[[can-bit-stuffing|스터프 비트]]가 가장 많이 들어가는 경우와 프레임 간 공간까지 넣으면, 데이터가 $s_m$바이트인 메시지 $m$의 최대 전송 시간 $C_m$은 아래와 같다. $t_\mathrm{bit}$는 한 비트의 전송 시간이고, $g$는 기본 포맷(11비트 식별자)에서 34, 확장 포맷(29비트 식별자)에서 54다.[@davis-can-schedulability-2007]
+[[can-bit-stuffing|스터프 비트]]가 가장 많이 들어가는 경우와 [[can-frame#프레임 사이|프레임 간 공간]]까지 넣으면, 데이터가 $s_m$바이트인 메시지 $m$의 최대 전송 시간 $C_m$은 아래와 같다. $t_\mathrm{bit}$는 한 비트의 전송 시간이고, $g$는 기본 포맷(11비트 식별자)에서 34, 확장 포맷(29비트 식별자)에서 54다.[@davis-can-schedulability-2007]
 
 $$
 C_m = \left( g + 8 s_m + 13 + \left\lfloor \frac{g + 8 s_m - 1}{4} \right\rfloor \right) t_\mathrm{bit}

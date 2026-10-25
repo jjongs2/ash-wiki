@@ -23,7 +23,7 @@ FreeRTOS의 뮤텍스는 가져간 태스크가 반드시 돌려줘야 한다. F
 
 뮤텍스를 바로 얻지 못한 스레드는 블록되어 기다린다.[@ieee-1003-1-pthread-mutex-lock-2024][@freertos-mutexes-2026] POSIX.1-2024는 뮤텍스가 풀릴 때 블록된 스레드가 있으면 어느 스레드가 뮤텍스를 얻을지를 스케줄링 정책이 정하게 한다.[@ieee-1003-1-pthread-mutex-lock-2024]
 
-근거 설명에 따르면 뮤텍스는 스레드를 블록하는 데 드는 프로세서 자원이 스핀락보다 크게 구현될 수 있다. 뮤텍스를 얻지 못한 스레드는 스케줄링 상태를 바꾸고 기다리는 스레드 집합에 들어가며, 뮤텍스가 풀리면 이를 모두 되돌린 뒤에 뮤텍스의 소유권을 넘겨받기 때문이다.[@ieee-1003-1-rationale-threads-2024]
+[[ieee-1003-1#범위|근거 설명]]에 따르면 뮤텍스는 스레드를 블록하는 데 드는 프로세서 자원이 스핀락보다 크게 구현될 수 있다. 뮤텍스를 얻지 못한 스레드는 스케줄링 상태를 바꾸고 기다리는 스레드 집합에 들어가며, 뮤텍스가 풀리면 이를 모두 되돌린 뒤에 뮤텍스의 소유권을 넘겨받기 때문이다.[@ieee-1003-1-rationale-threads-2024]
 
 Linux 커널에서 mutex를 얻지 못한 태스크는 스스로 멈췄다가 mutex가 풀리면 깨어나므로, 그동안 CPU는 다른 일을 할 수 있다.[@linux-locking-guide-2026] 다만 Linux 커널의 mutex는 잠들기 전에 소유자가 실행 중이면 잠깐 스핀한다(optimistic spinning). 곧바로 잠들지 않고 몇 사이클 바쁜 대기하게 하자 여러 워크로드에서 성능이 크게 나아졌다.[@linux-mutex-design-2026]
 
@@ -46,7 +46,7 @@ CMSIS-RTOS2는 뮤텍스 속성에 `osMutexRecursive`(같은 스레드가 여러
 
 ## 견고한 뮤텍스
 
-POSIX.1-2024는 견고한 뮤텍스의 소유 스레드가 든 프로세스가 락을 쥔 채 끝나면, 다음 `pthread_mutex_lock`이 `EOWNERDEAD`를 돌려주며 호출한 스레드에게 락을 주도록 정한다. 이때 뮤텍스가 보호하는 상태는 일관되지 않은 것으로 표시된다. 이 표준은 애플리케이션이 상태를 복구한 뒤 `pthread_mutex_consistent`를 부르고, 복구하지 못하면 `pthread_mutex_consistent` 없이 뮤텍스를 풀기를 권한다. 그렇게 풀면 뮤텍스는 영구히 쓸 수 없게 된다.[@ieee-1003-1-pthread-mutex-lock-2024][@ieee-1003-1-pthread-mutex-consistent-2024]
+POSIX.1-2024는 견고한 뮤텍스의 소유 스레드가 속한 프로세스가 락을 쥔 채 끝나면, 다음 `pthread_mutex_lock`이 `EOWNERDEAD`를 돌려주며 호출한 스레드에게 락을 주도록 정한다. 이때 뮤텍스가 보호하는 상태는 일관되지 않은 것으로 표시된다. 이 표준은 애플리케이션이 상태를 복구한 뒤 `pthread_mutex_consistent`를 부르고, 복구하지 못하면 `pthread_mutex_consistent` 없이 뮤텍스를 풀기를 권한다. 그렇게 풀면 뮤텍스는 영구히 쓸 수 없게 된다.[@ieee-1003-1-pthread-mutex-lock-2024][@ieee-1003-1-pthread-mutex-consistent-2024]
 
 ![[diagrams/robust-mutex-owner-death.svg]]
 
@@ -56,7 +56,7 @@ POSIX.1-2024는 견고한 뮤텍스의 소유 스레드가 든 프로세스가 �
 
 뮤텍스를 쥔 낮은 우선순위 스레드는 높은 우선순위 스레드를 블록해 [[priority-inversion|우선순위 역전]]을 일으킬 수 있다.[@freertos-mutexes-2026][@ieee-1003-1-rationale-threads-2024]
 
-POSIX.1-2024는 우선순위 상속 옵션(`_POSIX_THREAD_PRIO_INHERIT`, `_POSIX_THREAD_ROBUST_PRIO_INHERIT`)이나 우선순위 보호 옵션(`_POSIX_THREAD_PRIO_PROTECT`, `_POSIX_THREAD_ROBUST_PRIO_PROTECT`) 가운데 하나라도 지원하는 구현에 뮤텍스 속성 protocol을 두고, 그 값으로 `PTHREAD_PRIO_NONE`을 둔다. 상속 옵션을 지원하는 구현에는 `PTHREAD_PRIO_INHERIT`를, 보호 옵션을 지원하는 구현에는 `PTHREAD_PRIO_PROTECT`를 더 둔다. 기본값은 `PTHREAD_PRIO_NONE`이고, 이 값이면 뮤텍스를 소유해도 우선순위가 바뀌지 않는다.[@ieee-1003-1-pthread-mutexattr-getprotocol-2024][@ieee-1003-1-margin-code-notation-2024][@ieee-1003-1-unistd-h-2024] 근거 설명은 `PTHREAD_PRIO_INHERIT`의 방식을 기본 [[priority-inheritance-protocol|우선순위 상속 프로토콜]], `PTHREAD_PRIO_PROTECT`의 방식을 [[priority-ceiling-protocol|우선순위 상한 프로토콜]] 에뮬레이션이라 부른다.[@ieee-1003-1-rationale-threads-2024]
+POSIX.1-2024는 우선순위 상속 옵션(`_POSIX_THREAD_PRIO_INHERIT`, `_POSIX_THREAD_ROBUST_PRIO_INHERIT`)이나 우선순위 보호 옵션(`_POSIX_THREAD_PRIO_PROTECT`, `_POSIX_THREAD_ROBUST_PRIO_PROTECT`) 가운데 하나라도 지원하는 구현에 뮤텍스 속성 protocol을 두고, 그 값으로 `PTHREAD_PRIO_NONE`을 둔다. 상속 옵션을 지원하는 구현에는 `PTHREAD_PRIO_INHERIT`를, 보호 옵션을 지원하는 구현에는 `PTHREAD_PRIO_PROTECT`를 더 둔다. 기본값은 `PTHREAD_PRIO_NONE`이고, 이 값이면 뮤텍스를 소유해도 우선순위가 바뀌지 않는다.[@ieee-1003-1-pthread-mutexattr-getprotocol-2024][@ieee-1003-1-margin-code-notation-2024][@ieee-1003-1-unistd-h-2024] 근거 설명은 `PTHREAD_PRIO_INHERIT`의 방식을 [[priority-inheritance-protocol|기본 우선순위 상속 프로토콜]], `PTHREAD_PRIO_PROTECT`의 방식을 [[priority-ceiling-protocol|우선순위 상한 프로토콜]] 에뮬레이션이라 부른다.[@ieee-1003-1-rationale-threads-2024]
 
 FreeRTOS의 뮤텍스는 우선순위 상속을 하고, 이진 세마포어는 하지 않는다.[@freertos-mutexes-2026][@freertos-binary-semaphores-2026]
 

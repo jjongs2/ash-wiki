@@ -15,7 +15,7 @@ verified: 2026-09-30
 
 ![[diagrams/deadlock-lock-order-cycle.svg]]
 
-한 스레드가 이미 쥔 락을 다시 잡으려 해도 스스로 교착 상태에 빠질 수 있다.[@linux-locking-guide-2026][@microsoft-driver-verifier-deadlock-2020] [[ieee-1003-1|POSIX.1]]-2024는 `PTHREAD_MUTEX_NORMAL` 타입 [[mutex|뮤텍스]]를 이미 잠근 스레드가 다시 잠그면 교착 상태가 된다고 정한다.[@ieee-1003-1-pthread-mutex-lock-2024] 같은 스레드가 여러 번 얻을 수 있는 재귀 뮤텍스로 이런 교착 상태를 피하는 방법은 [[mutex#뮤텍스 타입|뮤텍스 타입]]에서 다룬다.
+한 스레드가 이미 쥔 락을 다시 잡으려 하면 스스로 교착 상태에 빠질 수 있다.[@linux-locking-guide-2026][@microsoft-driver-verifier-deadlock-2020] [[ieee-1003-1|POSIX.1]]-2024는 `PTHREAD_MUTEX_NORMAL` 타입 [[mutex|뮤텍스]]를 이미 잠근 스레드가 다시 잠그면 교착 상태가 된다고 정한다.[@ieee-1003-1-pthread-mutex-lock-2024] 같은 스레드가 여러 번 얻을 수 있는 재귀 뮤텍스로 이런 교착 상태를 피하는 방법은 [[mutex#뮤텍스 타입|뮤텍스 타입]]에서 다룬다.
 
 여러 락을 모든 스레드가 늘 같은 순서로 잡으면, 순서가 엇갈려 생기는 교착 상태는 생기지 않는다.[@linux-locking-guide-2026][@oracle-816-5137-lock-hierarchies-2010]
 

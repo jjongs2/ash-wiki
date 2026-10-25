@@ -1,17 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="103.5 8 709.5 212" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="106 8.5 525 234" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
-  <!-- 가로축: x = 200 + 500 × U -->
+  <!-- 가로축: x = 200 + 350 × U (0.5단위로 반올림) -->
 
   <!-- 기준선 -->
   <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
-    <line x1="546.5" y1="20" x2="546.5" y2="150" />
-    <line x1="614" y1="20" x2="614" y2="150" />
-    <line x1="700" y1="20" x2="700" y2="150" />
+    <line x1="442.5" y1="20" x2="442.5" y2="150" />
+    <line x1="490" y1="20" x2="490" y2="150" />
+    <line x1="550" y1="20" x2="550" y2="150" />
   </g>
 
   <!-- 행 이름 -->
@@ -22,33 +22,33 @@
   </g>
 
   <!-- RM, n = 2 -->
-  <rect x="200.75" y="26.75" width="412.5" height="22.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <rect x="614.75" y="26.75" width="84.5" height="22.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <rect x="700" y="26" width="80" height="24" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="200.75" y="26.75" width="288.5" height="22.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <rect x="490.75" y="26.75" width="58.5" height="22.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="550" y="26" width="56" height="24" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <!-- RM, n → ∞ -->
-  <rect x="200.75" y="66.75" width="345" height="22.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <rect x="547.25" y="66.75" width="152" height="22.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <rect x="700" y="66" width="80" height="24" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="200.75" y="66.75" width="241" height="22.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <rect x="443.25" y="66.75" width="106" height="22.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="550" y="66" width="56" height="24" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <!-- EDF -->
-  <rect x="200.75" y="106.75" width="498.5" height="22.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <rect x="700" y="106" width="80" height="24" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="200.75" y="106.75" width="348.5" height="22.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <rect x="550" y="106" width="56" height="24" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
 
   <!-- 축 -->
-  <line x1="200" y1="150" x2="800" y2="150" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
-  <path d="M200 150 V155 M546.5 150 V155 M614 150 V155 M700 150 V155" stroke="var(--ink, #727981)" stroke-width="1" />
+  <line x1="200" y1="150" x2="620" y2="150" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <path d="M200 150 V155 M442.5 150 V155 M490 150 V155 M550 150 V155" stroke="var(--ink, #727981)" stroke-width="1" />
   <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
     <text x="200" y="169">0</text>
-    <text x="546.5" y="169">0.693</text>
-    <text x="614" y="169">0.828</text>
-    <text x="700" y="169">1</text>
+    <text x="442.5" y="169">0.693</text>
+    <text x="490" y="169">0.828</text>
+    <text x="550" y="169">1</text>
   </g>
-  <text x="800" y="169" text-anchor="end" font-size="12" fill="var(--text, #727981)">이용률 <tspan font-style="italic">U</tspan></text>
+  <text x="620" y="169" text-anchor="end" font-size="12" fill="var(--text, #727981)">이용률 <tspan font-style="italic">U</tspan></text>
 
   <!-- 범례 -->
   <rect x="200.75" y="194.75" width="12.5" height="12.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
   <text x="220" y="206" font-size="12" fill="var(--text, #727981)">모든 마감 시한을 지킴</text>
   <rect x="360.75" y="194.75" width="12.5" height="12.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
   <text x="380" y="206" font-size="12" fill="var(--text, #727981)">critical instant 검사로 판정</text>
-  <rect x="560" y="194" width="14" height="14" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="580" y="206" font-size="12" fill="var(--text, #727981)">어떤 방식으로도 지키지 못함</text>
+  <rect x="200" y="216" width="14" height="14" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="220" y="228" font-size="12" fill="var(--text, #727981)">어떤 방식으로도 지키지 못함</text>
 </svg>

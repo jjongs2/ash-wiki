@@ -11,21 +11,21 @@ verified: 2026-09-30
 
 hook 루틴마다 운영체제가 부르는 시점과, 쓸지 정하는 OIL 속성은 다음과 같다.[@osek-os-2-2-3-2005][@osek-oil-2-5-2004]
 
-| hook 루틴      | 운영체제가 부르는 시점                                                      | OIL 속성       |
-| -------------- | --------------------------------------------------------------------------- | -------------- |
-| `ErrorHook`    | 시스템 서비스가 E_OK가 아닌 값을 돌려줄 때                                  | `ERRORHOOK`    |
-| `PreTaskHook`  | 새 [[osek-task\|태스크]]가 running에 들어간 직후, 태스크 코드를 실행하기 전 | `PRETASKHOOK`  |
-| `PostTaskHook` | 태스크가 running을 떠나기 직전                                              | `POSTTASKHOOK` |
-| `StartupHook`  | 운영체제 초기화가 끝난 뒤, 스케줄러가 돌기 전                               | `STARTUPHOOK`  |
-| `ShutdownHook` | `ShutdownOS`가 불린 뒤, 운영체제가 멈추기 전                                | `SHUTDOWNHOOK` |
+| hook 루틴      | 운영체제가 부르는 시점                                                                                 | OIL 속성       |
+| -------------- | ------------------------------------------------------------------------------------------------------ | -------------- |
+| `ErrorHook`    | 시스템 서비스가 E_OK가 아닌 값을 돌려줄 때                                                             | `ERRORHOOK`    |
+| `PreTaskHook`  | 새 [[osek-task\|태스크]]가 [[osek-task#태스크 상태\|running]]에 들어간 직후, 태스크 코드를 실행하기 전 | `PRETASKHOOK`  |
+| `PostTaskHook` | 태스크가 running을 떠나기 직전                                                                         | `POSTTASKHOOK` |
+| `StartupHook`  | 운영체제 초기화가 끝난 뒤, 스케줄러가 돌기 전                                                          | `STARTUPHOOK`  |
+| `ShutdownHook` | `ShutdownOS`가 불린 뒤, 운영체제가 멈추기 전                                                           | `SHUTDOWNHOOK` |
 
-`StartupHook`에서는 애플리케이션이 장치 드라이버 초기화 같은 일을 할 수 있다. `PreTaskHook`과 `PostTaskHook`은 태스크가 running 상태인 채로 불리므로, 그 안에서 `GetTaskID`가 INVALID_TASK를 돌려주지 않는다. 두 hook은 디버깅이나, [[context-switch|context switch]] 시간을 포함한 시간 측정에 쓸 수 있다. 태스크가 도는 중에 `ShutdownOS`가 불리면 `PostTaskHook`을 부를지는 정해지지 않고, 부르더라도 `ShutdownHook`의 앞인지 뒤인지 정해지지 않는다. `ShutdownHook`은 `ShutdownOS`에 넘긴 오류 값을 인자로 받는다.[@osek-os-2-2-3-2005]
+`StartupHook`에서는 애플리케이션이 장치 드라이버 초기화 같은 일을 할 수 있다. `PreTaskHook`과 `PostTaskHook`은 태스크가 running 상태인 채로 불리므로, 그 안에서 `GetTaskID`가 [[osek-task#조회|INVALID_TASK]]를 돌려주지 않는다. 두 hook은 디버깅이나, [[context-switch|context switch]] 시간을 포함한 시간 측정에 쓸 수 있다. 태스크가 도는 중에 `ShutdownOS`가 불리면 `PostTaskHook`을 부를지는 정해지지 않고, 부르더라도 `ShutdownHook`의 앞인지 뒤인지 정해지지 않는다. `ShutdownHook`은 `ShutdownOS`에 넘긴 오류 값을 인자로 받는다.[@osek-os-2-2-3-2005]
 
 ![[diagrams/osek-pre-post-task-hook.svg]]
 
 hook 루틴은 모든 태스크보다 우선순위가 높고, [[osek-isr#Category 2|category 2 ISR]]이 끼어들지 못한다. hook 루틴은 시스템 서비스 가운데 일부만 부를 수 있으며, 허용되지 않은 서비스를 부른 동작은 정의되지 않는다.[@osek-os-2-2-3-2005]
 
-이 명세는 hook 루틴의 인터페이스를 표준화하지만, hook 루틴의 환경과 동작 같은 기능은 표준화하지 않는다. 그래서 hook 루틴은 대개 이식성이 없고, OSEK 구현마다 hook 루틴의 규약을 기술해야 한다.[@osek-os-2-2-3-2005]
+OSEK/VDX OS 2.2.3 명세는 hook 루틴의 인터페이스를 표준화하지만, hook 루틴의 환경과 동작 같은 기능은 표준화하지 않는다. 그래서 hook 루틴은 대개 이식성이 없고, OSEK 구현마다 hook 루틴의 규약을 기술해야 한다.[@osek-os-2-2-3-2005]
 
 ## 오류의 두 부류
 

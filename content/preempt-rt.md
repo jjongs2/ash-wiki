@@ -25,4 +25,4 @@ PREEMPT_RT 커널에서 `IRQF_NO_THREAD`, `IRQF_PERCPU`, `IRQF_ONESHOT` 플래�
 
 ## 우선순위 상속
 
-PREEMPT_RT 커널의 `spinlock_t`와 [[mutex|mutex]]는 우선순위 상속을 지원하는 rtmutex 위에 구현된다. 태스크가 이런 락에서 블록되면 블록된 태스크의 스케줄링 정책과 우선순위가 락 소유자에게 잠시 넘어간다. 예를 들어 `SCHED_FIFO` 태스크 A가 `SCHED_OTHER` 태스크 B가 쥔 락에서 블록되면, B는 A의 정책과 우선순위를 물려받아 실행되다가 락을 풀면 원래 스케줄링 파라미터로 돌아간다.[@linux-preempt-rt-theory-2026] rt-mutex의 상속 규칙은 [[priority-inheritance-protocol#구현|우선순위 상속 프로토콜]]에서 다룬다.
+PREEMPT_RT 커널의 `spinlock_t`와 [[mutex|mutex]]는 우선순위 상속을 지원하는 rtmutex 위에 구현된다. 태스크가 이런 락에서 블록되면 블록된 태스크의 스케줄링 정책과 우선순위가 락 소유자에게 잠시 넘어간다. 예를 들어 `SCHED_FIFO` 태스크 A가 `SCHED_OTHER` 태스크 B가 쥔 락에서 블록되면, B는 A의 정책과 우선순위를 물려받아 실행되다가 락을 풀면 원래 스케줄링 파라미터로 돌아간다.[@linux-preempt-rt-theory-2026] rtmutex의 상속 규칙은 [[priority-inheritance-protocol#구현|우선순위 상속 프로토콜]]에서 다룬다.
