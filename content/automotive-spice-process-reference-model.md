@@ -143,7 +143,7 @@ ASPICE 4.1은 아키텍처와 설계의 구성 요소를 가리키는 용어로 
 
 이 표준은 unit을 소프트웨어 도메인에만 쓰고, hardware part를 software unit의 하드웨어 짝으로 본다. 검증 쪽 프로세스에서는 software component와 unit이 소스 코드, 오브젝트 파일, 라이브러리, 실행 파일 같은 구현물로 나타난다고 정의한다.[@vda-automotive-spice-pam-4-1-2026]
 
-ASPICE 3.1은 component를 소프트웨어 아키텍처의 가장 낮은 수준의 element이자 상세 설계를 정의하는 단위로 정의했고, V 모델 오른쪽에서, 왼쪽의 element에 대응하는 것(오브젝트 파일, 라이브러리, 실행 파일 등)을 item이라 불렀다. item과 element의 대응은 1:1일 수도 m:n일 수도 있었다. ASPICE 4.1은 software component를 여러 계층에 걸쳐 두고, item을 정의하지 않는다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+ASPICE 3.1은 component를 소프트웨어 아키텍처의 가장 낮은 수준의 element이자 상세 설계를 정의하는 단위로 정의했고, V 모델 오른쪽에서는 왼쪽의 element에 대응하는 것(오브젝트 파일, 라이브러리, 실행 파일 등)을 item이라 불렀다. item과 element의 대응은 1:1일 수도 m:n일 수도 있었다. ASPICE 4.1은 software component를 여러 계층에 걸쳐 두고, item을 정의하지 않는다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ## intacs Hardware SPICE
 

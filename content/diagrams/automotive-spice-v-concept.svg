@@ -13,7 +13,7 @@
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="20" y="68" width="192" height="60" rx="2" />
     <rect x="328" y="68" width="192" height="60" rx="2" />
-    <rect x="57" y="140" width="180" height="60" rx="2" />
+    <rect x="57" y="140" width="196" height="60" rx="2" />
     <rect x="287" y="140" width="196" height="60" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
@@ -21,15 +21,15 @@
     <text x="116" y="110">System Requirements Analysis</text>
     <text x="424" y="95">SYS.5</text>
     <text x="424" y="110">System Verification</text>
-    <text x="147" y="167">SYS.3</text>
-    <text x="147" y="182">System Architectural Design</text>
+    <text x="155" y="167">SYS.3</text>
+    <text x="155" y="182">System Architectural Design</text>
     <text x="385" y="159">SYS.4</text>
     <text x="385" y="174">System Integration and</text>
     <text x="385" y="189">Integration Verification</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow-ink)" marker-end="url(#arrow-ink)">
     <line x1="214" y1="98" x2="326" y2="98" />
-    <line x1="239" y1="170" x2="285" y2="170" />
+    <line x1="255" y1="170" x2="285" y2="170" />
   </g>
 
   <!-- 소프트웨어 V -->
@@ -37,7 +37,7 @@
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="20" y="254" width="192" height="60" rx="2" />
     <rect x="328" y="254" width="192" height="60" rx="2" />
-    <rect x="57" y="326" width="180" height="60" rx="2" />
+    <rect x="57" y="326" width="196" height="60" rx="2" />
     <rect x="287" y="326" width="196" height="60" rx="2" />
     <rect x="94" y="398" width="154" height="60" rx="2" />
     <rect x="292" y="398" width="154" height="60" rx="2" />
@@ -47,8 +47,8 @@
     <text x="116" y="296">Software Requirements Analysis</text>
     <text x="424" y="281">SWE.6</text>
     <text x="424" y="296">Software Verification</text>
-    <text x="147" y="353">SWE.2</text>
-    <text x="147" y="368">Software Architectural Design</text>
+    <text x="155" y="353">SWE.2</text>
+    <text x="155" y="368">Software Architectural Design</text>
     <text x="385" y="345">SWE.5</text>
     <text x="385" y="360">Software Component Verification</text>
     <text x="385" y="375">and Integration Verification</text>
@@ -60,7 +60,7 @@
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow-ink)" marker-end="url(#arrow-ink)">
     <line x1="214" y1="284" x2="326" y2="284" />
-    <line x1="239" y1="356" x2="285" y2="356" />
+    <line x1="255" y1="356" x2="285" y2="356" />
     <line x1="250" y1="428" x2="290" y2="428" />
   </g>
 

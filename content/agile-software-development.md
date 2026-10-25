@@ -13,7 +13,7 @@ ISO/IEC/IEEE 24765:2017은 **애자일 개발**(agile development)을 반복 개
 
 애자일 방법은 무거운(heavyweight) 개발 방식의 대안으로 나왔다.[@ieee-swebok-v4-0a-2026][@iso-iec-33202-obp-2024]
 
-애자일 방법은 대규모 소프트웨어 개발 프로젝트에서 쓰던 무거운 계획 기반 방법의 큰 부담을 줄이려고 1990년대에 개발되었다. 애자일 방법이 가볍다고 여겨지는 것은 짧은 반복 개발 주기, 스스로 조직하는 팀, 더 단순한 설계, 코드 [[refactoring|리팩터링]], [[test-driven-development|테스트 주도 개발]], 잦은 고객 참여, 개발 주기마다 시연할 수 있는 동작하는 제품을 강조하기 때문이다. SWEBOK V4.0a에 따르면 애자일 방법은 [[pdca-cycle#Shewhart와 Deming의 순환|Deming]]의 [[pdca-cycle|PDCA 사이클]]을 [[software-engineering|소프트웨어 공학]]에 적용한 것으로 볼 수 있다.[@ieee-swebok-v4-0a-2026]
+애자일 방법은 대규모 소프트웨어 개발 프로젝트에서 쓰던 무거운 계획 기반 방법의 큰 부담을 줄이려고 1990년대에 개발되었다. 애자일 방법이 가볍다고 여겨지는 것은 짧은 반복 개발 주기, 스스로 조직하는 팀, 더 단순한 설계, 코드 [[refactoring|리팩터링]], [[test-driven-development|테스트 주도 개발]], 잦은 고객 참여, 개발 주기마다 시연할 수 있는 동작하는 제품을 강조하기 때문이다. SWEBOK V4.0a에 따르면 애자일 방법은 [[pdca-cycle#Shewhart와 Deming의 순환|Deming의 PDCA 사이클]]을 [[software-engineering|소프트웨어 공학]]에 적용한 것으로 볼 수 있다.[@ieee-swebok-v4-0a-2026]
 
 ## 애자일 선언
 
