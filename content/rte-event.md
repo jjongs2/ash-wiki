@@ -36,7 +36,7 @@ RTE는 `Rte_Start`를 실행할 때 InitEvent로 촉발되는 runnable을 한 �
 
 ExternalTriggerOccurredEvent는 trigger source인 SW-C나 BSW(Basic Software) 모듈이 trigger를 일으켰을 때, 연결된 trigger sink의 runnable을 시작한다. InternalTriggerOccurredEvent는 같은 SW-C 인스턴스의 runnable이 internal triggering point로 trigger를 일으켰을 때 시작한다.[@autosar-cp-sws-rte-2025]
 
-OsTaskExecutionEvent는 조건 없이 runnable을 시작하며, 주된 용도는 태스크 실행에 반응해야 하는 [[autosar-layered-architecture#층 사이 접근|complex driver]]의 runnable이다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+OsTaskExecutionEvent는 조건 없이 runnable을 시작하며, 주된 용도는 태스크 실행에 반응해야 하는 [[autosar-software-component#종류|complex driver]]의 runnable이다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ## 태스크 매핑
 

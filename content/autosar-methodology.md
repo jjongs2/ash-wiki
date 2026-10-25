@@ -64,7 +64,7 @@ variant handling은 Generic Structure Template이 정한다. variant handling에
 
 ![[diagrams/variant-binding-times.svg]]
 
-AUTOSAR R25-11 용어집은 시스템이 variant의 집합을 기술하는 성질을 **variability**로, 모든 속성이 정해지고 골라져 그 binding time에 대해 더는 variability가 없는 시스템의 구체적 실현을 **variant**로 정의한다. **코드 변형**(code variant coding)은 외부 요구에 따라 기능 대안을 골라 소프트웨어를 맞추는 것으로, 늘 pre-compile time이나 link time에 하며 C 언어에서는 `#if`나 `#ifdef`로 만들 수 있다. **데이터 변형**(data variant coding)은 외부 요구에 따라 특성 데이터를 설정해 소프트웨어를 맞추는 것으로, 설정 파라미터 세트가 여럿 필요하고 생산 라인 끝 프로그래밍이나 정비소 프로그래밍으로 variant를 고른다. **calibration**은 제어 기능을 맡은 소프트웨어 컴포넌트의 파라미터를 조정하는 것으로, RTE 위의 소프트웨어와 [[ecu-abstraction-layer|ECU 추상화]], [[autosar-layered-architecture#BSW의 층|Complex Driver]]만 calibration할 수 있고 늘 post-build time에 한다. variant coding과 달리 calibration은 소프트웨어 기능 자체를 바꾸지 않고, 특성 데이터를 하드웨어·소프트웨어 환경에 맞추기만 한다.[@autosar-fo-tr-glossary-2025]
+AUTOSAR R25-11 용어집은 시스템이 variant의 집합을 기술하는 성질을 **variability**로, 모든 속성이 정해지고 골라져 그 binding time에 대해 더는 variability가 없는 시스템의 구체적 실현을 **variant**로 정의한다. **코드 변형**(code variant coding)은 외부 요구에 따라 기능 대안을 골라 소프트웨어를 맞추는 것으로, 늘 pre-compile time이나 link time에 하며 C 언어에서는 `#if`나 `#ifdef`로 만들 수 있다. **데이터 변형**(data variant coding)은 외부 요구에 따라 특성 데이터를 설정해 소프트웨어를 맞추는 것으로, 설정 파라미터 세트가 여럿 필요하고 생산 라인 끝 프로그래밍이나 정비소 프로그래밍으로 variant를 고른다. **calibration**은 제어 기능을 맡은 소프트웨어 컴포넌트의 파라미터를 조정하는 것으로, RTE 위의 소프트웨어와 [[ecu-abstraction-layer|ECU 추상화]], [[autosar-layered-architecture#층 사이 접근|Complex Driver]]만 calibration할 수 있고 늘 post-build time에 한다. variant coding과 달리 calibration은 소프트웨어 기능 자체를 바꾸지 않고, 특성 데이터를 하드웨어·소프트웨어 환경에 맞추기만 한다.[@autosar-fo-tr-glossary-2025]
 
 ## AUTOSAR XML
 

@@ -27,7 +27,7 @@ mode user와 mode manager는 `Rte_Mode_<p>_<o>`로 현재 활성인 모드를 �
 
 ## 모드 전환 때 시작하는 runnable
 
-[[rte-event#종류|SwcModeSwitchEvent]]는 지정한 모드에 들어갈 때, 그 모드에서 나올 때, 또는 지정한 두 모드 사이를 전환할 때 runnable을 시작한다.[@autosar-cp-tps-softwarecomponenttemplate-2025] 이 가운데 어느 때인지는 on-entry, on-exit, on-transition 가운데 하나로 정한다.[@autosar-cp-sws-rte-2025]
+SwcModeSwitchEvent는 지정한 모드에 들어갈 때, 그 모드에서 나올 때, 또는 지정한 두 모드 사이를 전환할 때 runnable을 시작한다.[@autosar-cp-tps-softwarecomponenttemplate-2025] 이 가운데 어느 때인지는 on-entry, on-exit, on-transition 가운데 하나로 정한다.[@autosar-cp-sws-rte-2025]
 
 모드 전환 중에 RTE는 이전 모드의 on-exit runnable, 두 모드 사이의 on-transition runnable, 새 모드의 on-entry runnable 순서로 실행한다. 이 순서는 같은 코어에 있는 mode user의 무리 안에서 지키고, 코어가 다른 무리끼리는 병렬로 실행할 수 있다.[@autosar-cp-sws-rte-2025]
 
@@ -35,6 +35,6 @@ mode manager의 제공 쪽에 acknowledgement를 켜면 RTE는 전환이 끝날 
 
 ## 모드에 따른 비활성화
 
-[[rte-event|RTE 이벤트]]에 disabled mode를 걸 수 있고, 그 모드가 활성인 동안에는 그 이벤트가 runnable을 시작하지 않는다.[@autosar-cp-tps-softwarecomponenttemplate-2025][@autosar-cp-sws-rte-2025] 이 비활성화는 그 모드 동안뿐 아니라 그 모드로 들어가는 전환과 그 모드에서 나오는 전환 동안에도 걸리며, 이미 돌고 있는 runnable을 멈추지는 않는다. 전형적인 쓰임은 어떤 모드에서 쓸 수 없는 자원을 쓰는 [[rte-event#TimingEvent와 알람|시간 구동 runnable]]을 그 모드에서 막는 것이다.[@autosar-cp-sws-rte-2025]
+[[rte-event|RTE 이벤트]]에 disabled mode를 걸 수 있고, 그 모드가 활성인 동안에는 그 이벤트가 runnable을 시작하지 않는다.[@autosar-cp-tps-softwarecomponenttemplate-2025][@autosar-cp-sws-rte-2025] 이 비활성화는 그 모드 동안뿐 아니라 그 모드로 들어가는 전환과 그 모드에서 나오는 전환 동안에도 걸리며, 이미 돌고 있는 runnable을 멈추지는 않는다. 전형적인 쓰임은 어떤 모드에서 쓸 수 없는 자원을 쓰는 [[rte-event#종류|시간 구동 runnable]]을 그 모드에서 막는 것이다.[@autosar-cp-sws-rte-2025]
 
 ![[diagrams/mode-switch-transition-order.svg]]

@@ -8,7 +8,7 @@ edition: 2025
 status: 유효
 ---
 
-**AUTOSAR Classic Platform**은 [[autosar|AUTOSAR]]가 펴내는, 깊이 임베디드된 ECU를 위한 표준이다. 이런 ECU의 소프트웨어는 입력 신호와 다른 ECU의 정보를 바탕으로 전기 출력 신호를 제어한다.[@autosar-ap-exp-platformdesign-2025] Classic Platform은 소프트웨어를 마이크로컨트롤러 위에서 도는 응용 계층, [[autosar-rte|RTE]], [[autosar-layered-architecture#BSW의 층|BSW]](Basic Software) 세 계층으로 나눈다. 응용 소프트웨어는 RTE를 거쳐 다른 [[autosar-software-component|소프트웨어 컴포넌트]]와 통신하고 BSW에 접근하며, RTE가 응용에 대한 인터페이스 전체다.[@autosar-standards-classic-platform-2026]
+**AUTOSAR Classic Platform**은 [[autosar|AUTOSAR]]가 펴내는, 깊이 임베디드된 ECU를 위한 표준이다. 이런 ECU의 소프트웨어는 입력 신호와 다른 ECU의 정보를 바탕으로 전기 출력 신호를 제어한다.[@autosar-ap-exp-platformdesign-2025] Classic Platform은 소프트웨어를 마이크로컨트롤러 위에서 도는 응용 계층, [[autosar-rte|RTE]], [[autosar-layered-architecture#최상위 수준의 세 층|BSW]](Basic Software) 세 계층으로 나눈다. 응용 소프트웨어는 RTE를 거쳐 다른 [[autosar-software-component|소프트웨어 컴포넌트]]와 통신하고 BSW에 접근하며, RTE가 응용에 대한 인터페이스 전체다.[@autosar-standards-classic-platform-2026]
 
 ![[diagrams/autosar-layered-software-architecture.svg]]
 

@@ -25,7 +25,7 @@ port interface는 여섯 종류다.[@autosar-cp-tps-softwarecomponenttemplate-20
 | [[autosar-sender-receiver-interface\|Sender-Receiver]] | SenderReceiverInterface | 보내고 받을 [[autosar-sender-receiver-interface#Data element\|data element]]를 정한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]                 |
 | NV Data                                                | NvDataInterface         | [[autosar-software-component#종류\|NV Block SW-C]]와 다른 SW-C 사이에서 비휘발성 데이터를 주고받는다.[@autosar-cp-tps-softwarecomponenttemplate-2025]  |
 | Parameter                                              | ParameterInterface      | 캘리브레이션 데이터나 고정 데이터, 상수 같은 파라미터를 SW-C가 읽을 수 있게 한다.[@autosar-cp-tr-vfb-2025]                                             |
-| [[autosar-mode-switch-interface\|Mode Switch]]         | ModeSwitchInterface     | [[autosar-mode-switch-interface#Mode manager와 mode user\|mode manager]]가 모드 전환을 알리는 데 쓴다.[@autosar-cp-tps-softwarecomponenttemplate-2025] |
+| [[autosar-mode-switch-interface\|Mode Switch]]         | ModeSwitchInterface     | mode manager가 모드 전환을 알리는 데 쓴다.[@autosar-cp-tps-softwarecomponenttemplate-2025] |
 | [[autosar-client-server-interface\|Client-Server]]     | ClientServerInterface   | 클라이언트가 서버에서 호출할 수 있는 operation을 정한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]                                               |
 | Trigger                                                | TriggerInterface        | trigger source가 이어진 trigger sink의 [[runnable-entity\|runnable]] 실행을 시작하게 한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]             |
 
