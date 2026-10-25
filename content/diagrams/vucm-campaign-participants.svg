@@ -12,9 +12,9 @@
     <rect x="20" y="150" width="130" height="36" rx="2" />
     <rect x="20" y="216" width="130" height="36" rx="2" />
     <rect x="214" y="86" width="70" height="166" rx="2" />
-    <rect x="376" y="86" width="124" height="36" rx="2" />
-    <rect x="376" y="150" width="124" height="36" rx="2" />
-    <rect x="376" y="216" width="124" height="36" rx="2" />
+    <rect x="370" y="86" width="130" height="36" rx="2" />
+    <rect x="370" y="150" width="130" height="36" rx="2" />
+    <rect x="370" y="216" width="130" height="36" rx="2" />
     <rect x="20" y="290" width="130" height="36" rx="2" />
     <rect x="190" y="290" width="160" height="36" rx="2" />
   </g>
@@ -24,9 +24,9 @@
     <text x="85" y="173">진단 도구</text>
     <text x="85" y="239">진단 애플리케이션</text>
     <text x="249" y="174">V-UCM</text>
-    <text x="438" y="109">UCM</text>
-    <text x="438" y="173">UCM</text>
-    <text x="438" y="239">Flashing Adapter</text>
+    <text x="435" y="109">UCM</text>
+    <text x="435" y="173">UCM</text>
+    <text x="435" y="239">Flashing Adapter</text>
     <text x="85" y="313">Vehicle driver</text>
     <text x="270" y="313">Vehicle State Manager</text>
   </g>
@@ -36,9 +36,9 @@
     <line x1="150" y1="104" x2="212" y2="104" />
     <line x1="85" y1="186" x2="85" y2="214" />
     <line x1="150" y1="234" x2="212" y2="234" />
-    <line x1="344" y1="104" x2="374" y2="104" />
-    <line x1="344" y1="168" x2="374" y2="168" />
-    <line x1="344" y1="234" x2="374" y2="234" />
+    <line x1="344" y1="104" x2="368" y2="104" />
+    <line x1="344" y1="168" x2="368" y2="168" />
+    <line x1="344" y1="234" x2="368" y2="234" />
     <path d="M228 252 V272 H85 V288" marker-start="url(#arrow)" />
     <line x1="270" y1="290" x2="270" y2="254" />
   </g>

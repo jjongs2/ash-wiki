@@ -43,7 +43,7 @@
   <g font-size="12" fill="var(--text, #727981)">
     <text x="143" y="128.5">RequestTransition</text>
     <text x="403" y="128.5">ErrorCode</text>
-    <text x="202" y="240" text-anchor="end">다음 상태</text>
+    <text x="202" y="244" text-anchor="end">다음 상태</text>
     <text x="328" y="244">복구용 다음 상태</text>
     <text x="273" y="318.5">상태에 들면 모두 실행</text>
   </g>

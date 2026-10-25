@@ -46,24 +46,24 @@
   <!-- Machine State -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="20" y="342" width="80" height="36" rx="2" />
-    <rect x="190" y="342" width="100" height="36" rx="2" />
-    <rect x="350" y="342" width="160" height="36" rx="2" />
+    <rect x="180" y="342" width="100" height="36" rx="2" />
+    <rect x="360" y="342" width="150" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="60" y="364.5">Off</text>
-    <text x="240" y="364.5">Startup</text>
-    <text x="430" y="364.5">State Management</text>
+    <text x="230" y="364.5">Startup</text>
+    <text x="435" y="364.5">State Management</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
-    <line x1="100" y1="360" x2="188" y2="360" />
-    <line x1="290" y1="360" x2="348" y2="360" />
+    <line x1="100" y1="360" x2="178" y2="360" />
+    <line x1="280" y1="360" x2="358" y2="360" />
   </g>
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
-    <text x="144" y="352">준비를 마치면</text>
-    <text x="319" y="352">전이 확인</text>
+    <text x="140" y="352">준비를 마치면</text>
+    <text x="320" y="352">전이 확인</text>
     <text x="60" y="400">기본 상태</text>
-    <text x="240" y="400">Startup에 속한 프로세스 시작</text>
-    <text x="430" y="400">Function Group 상태</text>
-    <text x="430" y="416">변경 시작을 맡는다</text>
+    <text x="230" y="400">Startup에 속한 프로세스 시작</text>
+    <text x="435" y="400">Function Group 상태</text>
+    <text x="435" y="416">변경 시작을 맡는다</text>
   </g>
 </svg>

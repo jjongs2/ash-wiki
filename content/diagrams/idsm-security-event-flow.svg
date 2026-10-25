@@ -36,18 +36,21 @@
 
   <!-- 저장과 sink -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="40" y="300" width="160" height="52" rx="2" />
-    <rect x="215" y="300" width="100" height="36" rx="2" />
-    <rect x="330" y="300" width="110" height="36" rx="2" />
-    <rect x="330" y="400" width="110" height="36" rx="2" />
+    <rect x="40" y="300" width="120" height="66" rx="2" />
+    <rect x="180" y="300" width="120" height="36" rx="2" />
+    <rect x="320" y="300" width="120" height="36" rx="2" />
+    <rect x="320" y="400" width="120" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="120" y="322">Sem</text>
-    <text x="265" y="323">Dem</text>
-    <text x="385" y="323">IdsR</text>
-    <text x="385" y="423">SOC (백엔드)</text>
+    <text x="100" y="322">Sem</text>
+    <text x="240" y="323">Dem</text>
+    <text x="380" y="323">IdsR</text>
+    <text x="380" y="423">SOC (백엔드)</text>
   </g>
-  <text x="120" y="341" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Dem의 사용자 정의 메모리</text>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="100" y="341">Dem의 사용자</text>
+    <text x="100" y="356">정의 메모리</text>
+  </g>
 
   <!-- 흐름 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
@@ -57,17 +60,17 @@
     <line x1="187" y1="188" x2="208" y2="188" marker-end="url(#arrow)" />
     <line x1="272" y1="188" x2="293" y2="188" marker-end="url(#arrow)" />
     <path d="M357 188 H400 V270" />
-    <path d="M120 270 H400" />
-    <line x1="120" y1="270" x2="120" y2="298" marker-end="url(#arrow)" />
-    <line x1="265" y1="270" x2="265" y2="298" marker-end="url(#arrow)" />
-    <line x1="385" y1="270" x2="385" y2="298" marker-end="url(#arrow)" />
-    <line x1="385" y1="338" x2="385" y2="398" marker-end="url(#arrow)" />
+    <path d="M100 270 H400" />
+    <line x1="100" y1="270" x2="100" y2="298" marker-end="url(#arrow)" />
+    <line x1="240" y1="270" x2="240" y2="298" marker-end="url(#arrow)" />
+    <line x1="380" y1="270" x2="380" y2="298" marker-end="url(#arrow)" />
+    <line x1="380" y1="338" x2="380" y2="398" marker-end="url(#arrow)" />
   </g>
   <g font-size="12" fill="var(--text, #727981)">
     <text x="108" y="120">보안 이벤트</text>
     <text x="408" y="262">QSEv</text>
-    <text x="128" y="290">저장</text>
-    <text x="273" y="290">전달</text>
-    <text x="393" y="290">전달</text>
+    <text x="108" y="290">저장</text>
+    <text x="248" y="290">전달</text>
+    <text x="388" y="290">전달</text>
   </g>
 </svg>

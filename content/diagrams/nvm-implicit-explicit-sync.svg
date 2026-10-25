@@ -10,42 +10,42 @@
   <text x="20" y="28" font-size="12" fill="var(--text, #727981)">Implicit synchronization</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="20" y="40" width="52" height="36" rx="2" />
-    <rect x="108" y="40" width="78" height="36" rx="2" />
-    <rect x="286" y="40" width="112" height="36" rx="2" />
-    <rect x="434" y="40" width="70" height="36" rx="2" />
+    <rect x="108" y="40" width="74" height="36" rx="2" />
+    <rect x="282" y="40" width="112" height="36" rx="2" />
+    <rect x="430" y="40" width="74" height="36" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="46" y="63">응용</text>
-    <text x="147" y="63">RAM 블록</text>
-    <text x="342" y="63">NvM</text>
-    <text x="469" y="63">NV 블록</text>
+    <text x="145" y="63">RAM 블록</text>
+    <text x="338" y="63">NvM</text>
+    <text x="467" y="63">NV 블록</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="74" y1="58" x2="106" y2="58" marker-start="url(#arrow)" marker-end="url(#arrow)" />
-    <line x1="188" y1="58" x2="284" y2="58" marker-start="url(#arrow)" marker-end="url(#arrow)" />
-    <line x1="400" y1="58" x2="432" y2="58" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+    <line x1="184" y1="58" x2="280" y2="58" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+    <line x1="396" y1="58" x2="428" y2="58" marker-start="url(#arrow)" marker-end="url(#arrow)" />
   </g>
 
   <!-- Explicit synchronization: NvM의 RAM mirror와 콜백 복사 -->
   <text x="20" y="128" font-size="12" fill="var(--text, #727981)">Explicit synchronization</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="20" y="157" width="52" height="36" rx="2" />
-    <rect x="108" y="157" width="78" height="36" rx="2" />
-    <rect x="294" y="157" width="96" height="36" rx="2" />
-    <rect x="434" y="157" width="70" height="36" rx="2" />
+    <rect x="108" y="157" width="74" height="36" rx="2" />
+    <rect x="290" y="157" width="96" height="36" rx="2" />
+    <rect x="430" y="157" width="74" height="36" rx="2" />
   </g>
-  <rect x="286" y="140" width="112" height="64" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="282" y="140" width="112" height="64" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="46" y="180">응용</text>
-    <text x="147" y="180">RAM 블록</text>
-    <text x="342" y="180">RAM mirror</text>
-    <text x="469" y="180">NV 블록</text>
+    <text x="145" y="180">RAM 블록</text>
+    <text x="338" y="180">RAM mirror</text>
+    <text x="467" y="180">NV 블록</text>
   </g>
-  <text x="342" y="134" text-anchor="middle" font-size="12" fill="var(--text, #727981)">NvM</text>
+  <text x="338" y="134" text-anchor="middle" font-size="12" fill="var(--text, #727981)">NvM</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="74" y1="175" x2="106" y2="175" marker-start="url(#arrow)" marker-end="url(#arrow)" />
-    <line x1="188" y1="175" x2="292" y2="175" marker-start="url(#arrow)" marker-end="url(#arrow)" />
-    <line x1="392" y1="175" x2="432" y2="175" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+    <line x1="184" y1="175" x2="288" y2="175" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+    <line x1="388" y1="175" x2="428" y2="175" marker-start="url(#arrow)" marker-end="url(#arrow)" />
   </g>
-  <text x="240" y="167" text-anchor="middle" font-size="12" fill="var(--text, #727981)">콜백으로 복사</text>
+  <text x="236" y="167" text-anchor="middle" font-size="12" fill="var(--text, #727981)">콜백으로 복사</text>
 </svg>
