@@ -6,7 +6,7 @@ tags:
 verified: 2026-09-29
 ---
 
-[[autosar-adaptive-platform|AUTOSAR Adaptive Platform]] R25-11의 [[autosar-communication-management|Communication Management]] 규격은 **서비스 지향 통신**(service-oriented communication)을 서비스 제공자가 서비스를 내놓고(offer) 요청자가 그 서비스를 찾아(find) 호출하는(call) 통신으로 정의한다. 이 규격은 서비스 지향 통신을 Adaptive Platform 애플리케이션 사이의 주된 통신 방식으로 두고, Communication Management가 프로세스 안, 프로세스 사이, 머신 사이의 모든 수준에서 이를 맡게 한다. Communication Management는 시그널 기반 통신을 쓰는 쪽과 주고받는 시그널도 서비스 인터페이스의 요소로 내놓는다.[@autosar-ap-sws-communicationmanagement-2025] Adaptive Platform은 통신 방식을 서비스 지향 통신으로 한정한다.[@autosar-cp-tps-systemtemplate-2025]
+[[autosar-adaptive-platform|AUTOSAR Adaptive Platform]] R25-11의 [[autosar-communication-management|Communication Management]] 규격은 **서비스 지향 통신**(service-oriented communication)을 서비스 제공자가 서비스를 내놓고(offer) 요청자가 그 서비스를 찾아(find) 호출하는(call) 통신으로 정의한다. 이 규격은 서비스 지향 통신을 Adaptive Platform 애플리케이션 사이의 주된 통신 방식으로 두고, Communication Management가 프로세스 안, 프로세스 사이, [[autosar-adaptive-platform#Machine과 프로세스|머신]] 사이의 모든 수준에서 이를 맡게 한다. Communication Management는 시그널 기반 통신을 쓰는 쪽과 주고받는 시그널도 서비스 인터페이스의 요소로 내놓는다.[@autosar-ap-sws-communicationmanagement-2025] Adaptive Platform은 통신 방식을 서비스 지향 통신으로 한정한다.[@autosar-cp-tps-systemtemplate-2025]
 
 [[some-ip|SOME/IP]]는 네트워크로 서비스 지향 통신을 하는 프로토콜이다.[@autosar-fo-prs-someipprotocol-2025] The Open Group은 SOA(Service-Oriented Architecture)를 서비스 지향을 지원하는 아키텍처 스타일로 정의한다.[@opengroup-w074-2007]
 
@@ -42,4 +42,4 @@ Translation Software Component는 포트와 [[software-component-port#Port inter
 
 ![[diagrams/signal-service-translation.svg]]
 
-AUTOSAR R25-11 [[autosar-manifest|Manifest]] 명세는 Adaptive Platform 쪽의 변환을 위해 서비스 인스턴스의 서비스 인터페이스 요소를 ISignalTriggering에 대응시키는 Signal/Service Translation Mapping을 둔다. 같은 이더넷 소켓을 시그널 기반 통신과 서비스 지향 통신에 함께 쓸 수 있어, 서비스 인스턴스 하나가 직렬화 기술이 다른 이벤트(someip와 signalBased)를 함께 담을 수 있다. Method와 Field의 getter·setter는 이미 SOME/IP 직렬화를 쓰므로 변환이 필요 없고, 시그널 기반 [[autosar-communication-management#Language Binding과 Network Binding|Network Binding]]을 거쳐 `ara::com`으로 바로 접근한다.[@autosar-ap-tps-manifestspecification-2025] 시그널 기반 Network Binding 가운데 SOME/IP를 쓰는 것(Signal-Based SOME/IP Network Binding)은 시그널 기반 직렬화와 SOME/IP 직렬화를 함께 지원하며, 메서드 호출을 SOME/IP의 메서드 직렬화와 똑같이 다룬다.[@autosar-ap-sws-communicationmanagement-2025]
+AUTOSAR R25-11 [[autosar-manifest|Manifest]] 명세는 Adaptive Platform 쪽의 변환을 위해 서비스 인스턴스의 서비스 인터페이스 요소를 ISignalTriggering에 대응시키는 Signal/Service Translation Mapping을 둔다. 같은 이더넷 소켓을 시그널 기반 통신과 서비스 지향 통신에 함께 쓸 수 있어, 서비스 인스턴스 하나가 직렬화 기술이 다른 이벤트(`someip`와 `signalBased`)를 함께 담을 수 있다. Method와 Field의 getter·setter는 이미 SOME/IP 직렬화를 쓰므로 변환이 필요 없고, 시그널 기반 [[autosar-communication-management#Language Binding과 Network Binding|Network Binding]]을 거쳐 `ara::com`으로 바로 접근한다.[@autosar-ap-tps-manifestspecification-2025] 시그널 기반 Network Binding 가운데 SOME/IP를 쓰는 것(Signal-Based SOME/IP Network Binding)은 시그널 기반 직렬화와 SOME/IP 직렬화를 함께 지원하며, 메서드 호출을 SOME/IP의 메서드 직렬화와 똑같이 다룬다.[@autosar-ap-sws-communicationmanagement-2025]

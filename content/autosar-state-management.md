@@ -15,7 +15,7 @@ State Management는 현재 내부 상태를 정하고, Function Group과 Machine
 
 - [[autosar-platform-health-management|Platform Health Management]]가 오류 복구를 일으킬 감시 오류를 알린다.
 - [[autosar-update-and-configuration-management|Update and Configuration Management]]가 소프트웨어나 설정을 갱신하고 그 갱신을 검증할 수 있는 상태로 시스템을 바꾸려 한다.
-- [[autosar-network-management|Network Management]]는 능동적으로 요청하지 않는다. State Management가 Network Management가 주는 NetworkHandle에 등록해 그 변화에 반응한다.
+- [[autosar-network-management|Network Management]]는 능동적으로 요청하지 않는다. State Management가 Network Management가 주는 [[autosar-network-management#Adaptive Platform의 NM|NetworkHandle]]에 등록해 그 변화에 반응한다.
 - Suspend-to-RAM 처리에서 State Management는 Function Group State 전이로, Suspend-to-RAM을 지원하지 않는 응용을 저전력 모드에 들기 전에 끝내고 깨어나는 단계에서 다시 시작하게 조율한다.[@autosar-ap-sws-statemanagement-2025]
 
 어떤 효과를 낼지 최종 결정은 프로젝트 요구사항에 따른 State Management의 내부 논리나, StateMachine 방식을 쓸 때는 그 설정이 내린다. State Management 기능은 중요하므로 다른 Adaptive Application의 접근을 [[autosar-identity-and-access-management|IAM]] 등으로 보호해야 하고, State Management는 Platform Health Management가 감시한다. AUTOSAR는 [[autosar-classic-platform|Classic Platform]]의 [[basic-software-mode-manager|BswM]] 같은 기능을 Adaptive Platform에는 명세하지 않기로 했다. State Management 기능이 프로젝트마다 크게 다르기 때문이다.[@autosar-ap-sws-statemanagement-2025]
@@ -31,7 +31,7 @@ State Management가 요청할 수 있는 일은 아래와 같다.[@autosar-ap-ex
 
 ## Machine State와 Function Group State
 
-**Machine State**는 Function Group State의 특수한 종류다. Machine State를 포함한 Function Group State는 지금 돌고 있는 Modelled Process의 집합을 정하고, 각 Adaptive Application은 자기 Modelled Process가 어느 Function Group State에서 돌아야 하는지를 [[autosar-manifest#종류|Execution Manifest]]에 선언한다. 상태 변경 요청을 받으면 Execution Management는 더는 필요 없는 Modelled Process를 끝내고 새 상태에서 돌 Modelled Process를 시작한 뒤, State Management에 상태 변경을 확인해 준다.[@autosar-ap-sws-statemanagement-2025]
+**Machine State**는 Function Group State의 특수한 종류다. Machine State를 포함한 Function Group State는 지금 돌고 있는 [[autosar-execution-management#프로세스|Modelled Process]]의 집합을 정하고, 각 Adaptive Application은 자기 Modelled Process가 어느 Function Group State에서 돌아야 하는지를 [[autosar-manifest#종류|Execution Manifest]]에 선언한다. 상태 변경 요청을 받으면 Execution Management는 더는 필요 없는 Modelled Process를 끝내고 새 상태에서 돌 Modelled Process를 시작한 뒤, State Management에 상태 변경을 확인해 준다.[@autosar-ap-sws-statemanagement-2025]
 
 한 Machine에 기능상 응집된 Adaptive Application 묶음이 둘 이상 있으면, Machine State만으로는 이 묶음들을 따로 제어하기에 유연하지 않다. 그래서 Function Group과 Function Group State를 더 설정할 수 있다. 대체로 Machine State는 Machine의 생명주기(시작, 종료, 재시작)와 플랫폼 수준 응용의 Modelled Process를 제어하고, 다른 Function Group State는 사용자 수준 응용 묶음의 Modelled Process를 따로 제어한다.[@autosar-ap-sws-statemanagement-2025]
 
@@ -49,4 +49,4 @@ SMControlApplication은 StateMachineService의 RequestTransition 메서드로 �
 
 State Management는 Suspend-to-RAM을 지원해, 운영 맥락을 메모리에 보존한 채 시스템을 저전력 상태에 들게 한다.[@autosar-ap-tr-releaseoverview-2025]
 
-Machine은 시작과 종료 시간을 줄이려고 완전한 종료와 첫 부팅 대신 Suspend-to-RAM을 쓸 수 있다. 운영체제가 suspend 상태에 들기 전에, Suspend-to-RAM을 지원하지 않는 Executable이 든 Function Group을 모두 끄거나 그 프로세스가 돌지 않는 상태로 바꾸고, Suspend-to-RAM을 아는 프로세스에 알린다. 운영체제가 suspend 상태에 들기 전에 상태 동기화가 필요한 Adaptive Application을 위해 State Management는 S2R(Suspend-to-RAM) Hub를 둔다. S2R Hub는 동적으로 등록하는 S2R Satellite와 통신하며, StateMachine 방식이나 C++ API인 `ara::sm::s2r::S2RHub` 가운데 하나로만 쓴다. S2R Satellite는 Suspend-to-RAM을 아는 응용 안에서 S2R Hub에 등록하고, suspend 모드에 들기 전과 나온 뒤 알림을 받는다. S2R Hub는 IAM으로 인증된 S2R Satellite만 등록하게 한다. 이 규격 항목들의 상태는 DRAFT다.[@autosar-ap-sws-statemanagement-2025]
+Machine은 시작과 종료 시간을 줄이려고 완전한 종료와 첫 부팅 대신 Suspend-to-RAM을 쓸 수 있다. 운영체제가 suspend 상태에 들기 전에, Suspend-to-RAM을 지원하지 않는 [[autosar-adaptive-platform#Machine과 프로세스|Executable]]이 든 Function Group을 모두 끄거나 그 프로세스가 돌지 않는 상태로 바꾸고, Suspend-to-RAM을 아는 프로세스에 알린다. 운영체제가 suspend 상태에 들기 전에 상태 동기화가 필요한 Adaptive Application을 위해 State Management는 S2R(Suspend-to-RAM) Hub를 둔다. S2R Hub는 동적으로 등록하는 S2R Satellite와 통신하며, StateMachine 방식이나 C++ API인 `ara::sm::s2r::S2RHub` 가운데 하나로만 쓴다. S2R Satellite는 Suspend-to-RAM을 아는 응용 안에서 S2R Hub에 등록하고, suspend 모드에 들기 전과 나온 뒤 알림을 받는다. S2R Hub는 IAM으로 인증된 S2R Satellite만 등록하게 한다. 이 규격 항목들의 상태는 DRAFT다.[@autosar-ap-sws-statemanagement-2025]

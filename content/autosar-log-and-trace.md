@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-07
 ---
 
-**AUTOSAR Log and Trace**는 [[autosar|AUTOSAR]] 응용이 로그와 트레이스 정보를 통신 버스, 콘솔, 파일 시스템으로 내보내도록 인터페이스를 주는 기능이다.[@autosar-fo-tr-glossary-2025] AUTOSAR [[autosar-classic-platform|Classic Platform]] R25-11의 Dlt 명세는 로그·트레이스 정보를 통신 버스로 내보내는 일을 Dlt(Diagnostic Log and Trace) 모듈에 맡기고, Dlt 메시지 형식, 명령, 외부 로깅·트레이스 도구와 주고받는 프로토콜은 Foundation의 Log and Trace 프로토콜 명세에 맡긴다.[@autosar-cp-sws-diagnosticlogandtrace-2025] AUTOSAR [[autosar-adaptive-platform|Adaptive Platform]] R25-11의 Log and Trace 명세는 이 일을 Log and Trace functional cluster에 맡기고, 로깅 정보를 표준 전달 형식으로 묶는 데 같은 프로토콜 명세의 LT(Log and Trace) 프로토콜을 쓸 수 있게 한다.[@autosar-ap-sws-logandtrace-2025]
+**AUTOSAR Log and Trace**는 [[autosar|AUTOSAR]] 응용이 로그와 트레이스 정보를 통신 버스, 콘솔, 파일 시스템으로 내보내도록 인터페이스를 주는 기능이다.[@autosar-fo-tr-glossary-2025] AUTOSAR [[autosar-classic-platform|Classic Platform]] R25-11의 Dlt 명세는 로그·트레이스 정보를 통신 버스로 내보내는 일을 Dlt(Diagnostic Log and Trace) 모듈에 맡기고, Dlt 메시지 형식, 명령, 외부 로깅·트레이스 도구와 주고받는 프로토콜은 [[autosar#표준|Foundation]]의 Log and Trace 프로토콜 명세에 맡긴다.[@autosar-cp-sws-diagnosticlogandtrace-2025] AUTOSAR [[autosar-adaptive-platform|Adaptive Platform]] R25-11의 Log and Trace 명세는 이 일을 Log and Trace [[autosar-adaptive-platform#Functional cluster|functional cluster]]에 맡기고, 로깅 정보를 표준 전달 형식으로 묶는 데 같은 프로토콜 명세의 LT(Log and Trace) 프로토콜을 쓸 수 있게 한다.[@autosar-ap-sws-logandtrace-2025]
 
 ## Classic Platform의 Dlt
 

@@ -8,7 +8,7 @@ aliases:
 verified: 2026-10-07
 ---
 
-**Intrusion Detection System Manager**(IdsM)는 [[autosar|AUTOSAR]]의 IDS(Intrusion Detection System)를 이루는 요소로, 보안 센서가 보고한 차량 안 보안 이벤트를 받아 설정한 규칙으로 걸러 qualified security event로 만들고, 이를 저장하거나 다른 곳으로 보낸다. [[autosar-classic-platform|Classic Platform]]의 IdsM은 BSW(Basic Software) 모듈이고[@autosar-cp-sws-intrusiondetectionsystemmanager-2025], [[autosar-adaptive-platform|Adaptive Platform]]의 IdsM은 functional cluster다.[@autosar-ap-sws-intrusiondetectionsystemmanager-2025] AUTOSAR R25-11의 BSW 일반 명세는 Classic Platform의 IdsM을 [[autosar-crypto-stack|Crypto Services]] 층에 둔다.[@autosar-cp-sws-bswgeneral-2025]
+**Intrusion Detection System Manager**(IdsM)는 [[autosar|AUTOSAR]]의 IDS(Intrusion Detection System)를 이루는 요소로, 보안 센서가 보고한 차량 안 보안 이벤트를 받아 설정한 규칙으로 걸러 qualified security event로 만들고, 이를 저장하거나 다른 곳으로 보낸다. [[autosar-classic-platform|Classic Platform]]의 IdsM은 BSW(Basic Software) 모듈이고[@autosar-cp-sws-intrusiondetectionsystemmanager-2025], [[autosar-adaptive-platform|Adaptive Platform]]의 IdsM은 [[autosar-adaptive-platform#Functional cluster|functional cluster]]다.[@autosar-ap-sws-intrusiondetectionsystemmanager-2025] AUTOSAR R25-11의 BSW 일반 명세는 Classic Platform의 IdsM을 [[autosar-crypto-stack|Crypto Services]] 층에 둔다.[@autosar-cp-sws-bswgeneral-2025]
 
 ## 보안 이벤트의 수집
 
@@ -16,7 +16,7 @@ IdsM은 차량 안 보안 이벤트(security event, SEv)를 받는 표준 인터
 
 **보안 이벤트**는 공격이 진행 중임을 가리키거나 차량의 보안 상태를 평가하는 데 알맞은 이벤트로, 공격이 없는 정상 동작 중에도 생길 수 있다. 보안 이벤트를 보고하는 **센서**는 BSW 모듈, 독자 CDD(Complex Driver), SW-C 응용일 수 있다. Context data의 내용과 인코딩은 센서가 바깥에서 정하며, IdsM은 이를 알지 못한다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
 
-[[secure-onboard-communication|SecOC]]는 수신 Freshness Value를 얻지 못하거나 Authenticator 검증이 복구할 수 없는 오류로 끝나면 IdsM에 보안 이벤트를 보고한다.[@autosar-cp-sws-secureonboardcommunication-2025] [[autosar-firewall|AUTOSAR firewall]]도 IDS 센서로서 보안 이벤트를 IdsM에 보고한다.[@autosar-cp-sws-firewall-2025]
+[[secure-onboard-communication|SecOC]]는 수신 [[secure-onboard-communication#Freshness Value|Freshness Value]]를 얻지 못하거나 [[secure-onboard-communication#Secured I-PDU|Authenticator]] 검증이 복구할 수 없는 오류로 끝나면 IdsM에 보안 이벤트를 보고한다.[@autosar-cp-sws-secureonboardcommunication-2025] [[autosar-firewall|AUTOSAR firewall]]도 IDS 센서로서 보안 이벤트를 IdsM에 보고한다.[@autosar-cp-sws-firewall-2025]
 
 AUTOSAR R25-11의 Adaptive Platform IdsM 명세는 [[autosar-software-cluster#Adaptive Platform의 Software Cluster와의 차이|Software Cluster]]와 functional cluster가 IdsM의 API로 새 보안 이벤트를 만들 수 있게 한다. Software Cluster가 만들 수 있는 이벤트 종류는 manifest에 설정해 그 Software Cluster의 PortPrototype에 잇고, 응용은 `ara::idsm::EventReporter`로 이벤트를 보고하면서 타임스탬프, 카운터, context data를 함께 줄 수 있다.[@autosar-ap-sws-intrusiondetectionsystemmanager-2025]
 

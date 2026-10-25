@@ -52,7 +52,7 @@ ECU 설정의 입력은 ECU Extract와 BSW Module Delivered Bundle이다.[@autos
 
 ![[diagrams/autosar-configuration-classes.svg]]
 
-Layered Software Architecture 설명서에 따르면 pre-compile time 설정에 쓰는 `#define`은 대개 상수나 포인터로 값을 읽는 것보다 효율적인 코드를 낸다. 여러 설정 세트는 설정 클래스와 상관없이 variation point로 둘 수 있고, variation point가 실행 중에 묶이면 쓸 세트를 실행 중에 고른다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+[[autosar-layered-architecture|Layered Software Architecture]] 설명서에 따르면 pre-compile time 설정에 쓰는 `#define`은 대개 상수나 포인터로 값을 읽는 것보다 효율적인 코드를 낸다. 여러 설정 세트는 설정 클래스와 상관없이 variation point로 둘 수 있고, variation point가 실행 중에 묶이면 쓸 세트를 실행 중에 고른다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 pre-compile time 설정은 모듈의 설정 파일 두 개(`*_Cfg.h`, `*_Cfg.c`)나 코드 생성으로 하며, `*_Cfg.h`에는 매크로와 `#define`을, `*_Cfg.c`에는 상수를 둔다. post-build time 설정 데이터는 따로 다시 올릴 수 있는 메모리 구역의 외부 상수 구조체에 두고, 모듈은 초기화 때 기본 구조체를 가리키는 포인터를 받는다. 설정 세트가 여럿이면 초기화할 때마다 그 가운데 하나를 고를 수 있다. post-build 설정의 메모리 배치 예에서 [[ecu-state-manager|EcuM]]은 모든 모듈 설정의 주소가 든 색인을 알고, 모듈을 초기화할 때 그 모듈 설정 데이터의 시작 주소를 넘겨 설정 데이터의 크기가 달라질 수 있게 한다. 설정 세트가 여럿이면 색인이 세트마다 주소 목록을 담고, EcuM은 고른 세트의 항목을 가리키는 포인터를 넘긴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
@@ -64,7 +64,7 @@ variant handling은 Generic Structure Template이 정한다. variant handling에
 
 ![[diagrams/variant-binding-times.svg]]
 
-AUTOSAR R25-11 용어집은 시스템이 variant의 집합을 기술하는 성질을 **variability**로, 모든 속성이 정해지고 골라져 그 binding time에 대해 더는 variability가 없는 시스템의 구체적 실현을 **variant**로 정의한다. **코드 변형**(code variant coding)은 외부 요구에 따라 기능 대안을 골라 소프트웨어를 맞추는 것으로, 늘 pre-compile time이나 link time에 하며 C 언어에서는 `#if`나 `#ifdef`로 만들 수 있다. **데이터 변형**(data variant coding)은 외부 요구에 따라 특성 데이터를 설정해 소프트웨어를 맞추는 것으로, 설정 파라미터 세트가 여럿 필요하고 생산 라인 끝 프로그래밍이나 정비소 프로그래밍으로 variant를 고른다. **calibration**은 제어 기능을 맡은 소프트웨어 컴포넌트의 파라미터를 조정하는 것으로, RTE 위의 소프트웨어와 [[ecu-abstraction-layer|ECU 추상화]], Complex Driver만 calibration할 수 있고 늘 post-build time에 한다. variant coding과 달리 calibration은 소프트웨어 기능 자체를 바꾸지 않고, 특성 데이터를 하드웨어·소프트웨어 환경에 맞추기만 한다.[@autosar-fo-tr-glossary-2025]
+AUTOSAR R25-11 용어집은 시스템이 variant의 집합을 기술하는 성질을 **variability**로, 모든 속성이 정해지고 골라져 그 binding time에 대해 더는 variability가 없는 시스템의 구체적 실현을 **variant**로 정의한다. **코드 변형**(code variant coding)은 외부 요구에 따라 기능 대안을 골라 소프트웨어를 맞추는 것으로, 늘 pre-compile time이나 link time에 하며 C 언어에서는 `#if`나 `#ifdef`로 만들 수 있다. **데이터 변형**(data variant coding)은 외부 요구에 따라 특성 데이터를 설정해 소프트웨어를 맞추는 것으로, 설정 파라미터 세트가 여럿 필요하고 생산 라인 끝 프로그래밍이나 정비소 프로그래밍으로 variant를 고른다. **calibration**은 제어 기능을 맡은 소프트웨어 컴포넌트의 파라미터를 조정하는 것으로, RTE 위의 소프트웨어와 [[ecu-abstraction-layer|ECU 추상화]], [[autosar-layered-architecture#층 사이 접근|Complex Driver]]만 calibration할 수 있고 늘 post-build time에 한다. variant coding과 달리 calibration은 소프트웨어 기능 자체를 바꾸지 않고, 특성 데이터를 하드웨어·소프트웨어 환경에 맞추기만 한다.[@autosar-fo-tr-glossary-2025]
 
 ## AUTOSAR XML
 

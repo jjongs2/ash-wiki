@@ -1,51 +1,52 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 15 780 240" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 374" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
+  <!-- 위: 입력(모드 요청, 모드 표시), 가운데: BswM(규칙 → action list), 아래: 호출받는 RTE와 BSW 모듈 -->
 
   <!-- BswM -->
-  <rect x="240" y="36" width="340" height="152" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <text x="256" y="58" fill="var(--text, #727981)">BswM</text>
+  <rect x="20" y="112" width="400" height="110" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="36" y="134" fill="var(--text, #727981)">BswM</text>
 
   <!-- 상자 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="40" width="180" height="52" rx="2" />
-    <rect x="20" y="130" width="180" height="52" rx="2" />
-    <rect x="260" y="86" width="120" height="52" rx="2" />
-    <rect x="440" y="86" width="120" height="52" rx="2" />
-    <rect x="620" y="40" width="140" height="52" rx="2" />
-    <rect x="620" y="130" width="140" height="52" rx="2" />
+    <rect x="20" y="20" width="180" height="52" rx="2" />
+    <rect x="240" y="20" width="180" height="52" rx="2" />
+    <rect x="50" y="150" width="130" height="52" rx="2" />
+    <rect x="260" y="150" width="130" height="52" rx="2" />
+    <rect x="180" y="262" width="110" height="52" rx="2" />
+    <rect x="310" y="262" width="110" height="52" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="110" y="62">모드 요청</text>
-    <text x="110" y="152">모드 표시</text>
-    <text x="320" y="108">규칙</text>
-    <text x="500" y="108">action list</text>
-    <text x="690" y="71">RTE</text>
-    <text x="690" y="161">BSW 모듈</text>
+    <text x="110" y="42">모드 요청</text>
+    <text x="330" y="42">모드 표시</text>
+    <text x="115" y="172">규칙</text>
+    <text x="325" y="172">action list</text>
+    <text x="235" y="293">RTE</text>
+    <text x="365" y="293">BSW 모듈</text>
   </g>
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
-    <text x="110" y="81">SW-C, Dcm</text>
-    <text x="110" y="171">State Manager, EcuM</text>
-    <text x="320" y="127">mode arbitration</text>
-    <text x="500" y="127">mode control</text>
+    <text x="110" y="61">SW-C, Dcm</text>
+    <text x="330" y="61">State Manager, EcuM</text>
+    <text x="115" y="191">mode arbitration</text>
+    <text x="325" y="191">mode control</text>
   </g>
 
   <!-- 흐름 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
-    <line x1="200" y1="66" x2="258" y2="104" />
-    <line x1="200" y1="156" x2="258" y2="120" />
-    <line x1="380" y1="112" x2="438" y2="112" />
-    <line x1="560" y1="104" x2="618" y2="66" />
-    <line x1="560" y1="120" x2="618" y2="156" />
-    <path d="M690 182 V212 H110 V184" />
+    <line x1="110" y1="72" x2="110" y2="147" />
+    <line x1="300" y1="72" x2="150" y2="148" />
+    <line x1="180" y1="176" x2="257" y2="176" />
+    <line x1="310" y1="202" x2="242" y2="259" />
+    <line x1="340" y1="202" x2="360" y2="259" />
+    <path d="M365 314 V334 H450 V46 H423" />
   </g>
   <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
-    <text x="409" y="104">참·거짓</text>
-    <text x="604" y="116">호출</text>
-    <text x="400" y="232">State Manager가 현재 상태를 표시</text>
+    <text x="219" y="168">참·거짓</text>
+    <text x="312" y="242">호출</text>
+    <text x="356" y="352">State Manager가 현재 상태를 표시</text>
   </g>
 </svg>

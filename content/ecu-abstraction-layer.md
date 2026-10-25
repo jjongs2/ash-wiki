@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**ECU Abstraction Layer**는 [[autosar-layered-architecture|AUTOSAR 계층 구조]]에서 BSW(Basic Software)를 이루는 층 가운데 하나로, [[microcontroller-abstraction-layer|MCAL]] 위, Services Layer 아래에 놓인다. 이 층은 MCAL의 드라이버와 맞닿고 외부 장치의 드라이버를 담으며, 위 계층에 주변장치와 장치에 접근하는 API를 준다. 이 API는 주변장치가 마이크로컨트롤러 안에 있는지 밖에 있는지, 마이크로컨트롤러에 어떻게 연결됐는지(포트 핀, 인터페이스 종류)와 상관없이 쓸 수 있어, 위 계층을 ECU 하드웨어 배치에서 독립시킨다. 이 층의 구현은 마이크로컨트롤러에 독립적이고 ECU 하드웨어에 의존한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+**ECU Abstraction Layer**는 [[autosar-layered-architecture|AUTOSAR 계층 구조]]에서 BSW(Basic Software)를 이루는 층 가운데 하나로, [[microcontroller-abstraction-layer|MCAL]] 위, [[autosar-layered-architecture#BSW의 층|Services Layer]] 아래에 놓인다. 이 층은 MCAL의 드라이버와 맞닿고 외부 장치의 드라이버를 담으며, 위 계층에 주변장치와 장치에 접근하는 API를 준다. 이 API는 주변장치가 마이크로컨트롤러 안에 있는지 밖에 있는지, 마이크로컨트롤러에 어떻게 연결됐는지(포트 핀, 인터페이스 종류)와 상관없이 쓸 수 있어, 위 계층을 ECU 하드웨어 배치에서 독립시킨다. 이 층의 구현은 마이크로컨트롤러에 독립적이고 ECU 하드웨어에 의존한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ![[diagrams/autosar-layered-software-architecture.svg]]
 
@@ -23,7 +23,7 @@ ECU Abstraction Layer는 Onboard Device Abstraction, [[autosar-memory-stack|Memo
 
 마이크로컨트롤러 안에 있는 암호 장치의 예로 SHE(Secure Hardware Extension)와 [[hardware-security-module|HSM]]이 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-중국 V2X(Vehicle-to-X) 표준을 따르는 통신 스택의 예에서는, SPI(Serial Peripheral Interface)로 이은 외부 cellular V2X 컨트롤러의 드라이버가 Wireless Communication Hardware Abstraction에 놓이고, 마이크로컨트롤러에 든 cellular V2X 컨트롤러의 드라이버는 MCAL의 Wireless Communication Drivers에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] AUTOSAR R25-11은 중국 V2X 명세를 포함한 V2X 명세들과 Cellular V2X Driver 명세를 obsolete로 돌렸다.[@autosar-cp-tr-releaseoverview-2025]
+중국 V2X(Vehicle-to-X) 표준을 따르는 통신 스택의 예에서는, SPI(Serial Peripheral Interface)로 이은 외부 cellular V2X 컨트롤러의 드라이버가 Wireless Communication Hardware Abstraction에 놓이고, 마이크로컨트롤러에 든 cellular V2X 컨트롤러의 드라이버는 MCAL의 [[microcontroller-abstraction-layer#모듈 그룹|Wireless Communication Drivers]]에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] AUTOSAR R25-11은 중국 V2X 명세를 포함한 V2X 명세들과 Cellular V2X Driver 명세를 obsolete로 돌렸다.[@autosar-cp-tr-releaseoverview-2025]
 
 ## External driver
 
@@ -33,4 +33,4 @@ ECU Abstraction Layer는 Onboard Device Abstraction, [[autosar-memory-stack|Memo
 
 ## Watchdog Interface
 
-**Watchdog Interface**는 Onboard Device Abstraction에 드는 BSW 모듈이다. ECU가 watchdog 드라이버를 여럿 쓸 때(예: 내부 소프트웨어 watchdog과 외부 하드웨어 watchdog), Watchdog Interface는 아래 드라이버의 API와 기능을 그대로 두면서 위 모듈이 알맞은 드라이버를 고르게 하고, 모드 전환과 trigger condition 설정 같은 드라이버 서비스에 한결같은 접근을 준다. 드라이버는 매개변수 DeviceIndex로 고르며, 드라이버가 하나만 구성되면 DeviceIndex는 무시된다. 외부 watchdog 드라이버는 내부 watchdog 드라이버와 의미가 같은 API를 가져야 한다.[@autosar-cp-sws-watchdoginterface-2025] Watchdog Manager는 Watchdog Interface를 거쳐 watchdog 드라이버의 서비스를 쓴다.[@autosar-cp-sws-watchdogmanager-2025]
+**Watchdog Interface**는 Onboard Device Abstraction에 드는 BSW 모듈이다. ECU가 watchdog 드라이버를 여럿 쓸 때(예: 내부 소프트웨어 watchdog과 외부 하드웨어 watchdog), Watchdog Interface는 아래 드라이버의 API와 기능을 그대로 두면서 위 모듈이 알맞은 드라이버를 고르게 하고, 모드 전환과 trigger condition 설정 같은 드라이버 서비스에 한결같은 접근을 준다. 드라이버는 매개변수 DeviceIndex로 고르며, 드라이버가 하나만 구성되면 DeviceIndex는 무시된다. 외부 watchdog 드라이버는 내부 watchdog 드라이버와 의미가 같은 API를 가져야 한다.[@autosar-cp-sws-watchdoginterface-2025] [[safety-mechanism#오류 검출 기법|Watchdog Manager]]는 Watchdog Interface를 거쳐 watchdog 드라이버의 서비스를 쓴다.[@autosar-cp-sws-watchdogmanager-2025]

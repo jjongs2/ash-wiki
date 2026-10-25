@@ -5,15 +5,15 @@ tags:
 verified: 2026-09-30
 ---
 
-**AUTOSAR 계층 구조**는 [[autosar-classic-platform|AUTOSAR Classic Platform]]이 가장 높은 추상 수준에서 소프트웨어를 응용 계층(Application Layer), RTE, BSW(Basic Software) 세 층으로 나누고, 이 층들을 마이크로컨트롤러 위에서 돌리는 구조다. 아래 층일수록 하드웨어에 의존하고, 위 층일수록 하드웨어에서 독립적이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+**AUTOSAR 계층 구조**는 [[autosar-classic-platform|AUTOSAR Classic Platform]]이 가장 높은 추상 수준에서 소프트웨어를 응용 계층(Application Layer), [[autosar-rte|RTE]], BSW(Basic Software) 세 층으로 나누고, 이 층들을 마이크로컨트롤러 위에서 돌리는 구조다. 아래 층일수록 하드웨어에 의존하고, 위 층일수록 하드웨어에서 독립적이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## 적용 범위와 확장
 
 AUTOSAR가 말하는 ECU는 마이크로컨트롤러 하나와 그 주변장치, 그에 딸린 소프트웨어와 설정이며, 기계적 설계는 AUTOSAR의 범위 밖이다. 그래서 한 하우징에 마이크로컨트롤러가 여럿 있으면 마이크로컨트롤러마다 AUTOSAR ECU 인스턴스의 기술을 따로 둔다. 표준 모듈은 기능을 넓혀도 규격을 따르는 것으로 남지만, 그 설정은 BSW 자동 설정 과정에서 고려해야 한다. 표준이 아닌 모듈은 Complex Driver로 통합할 수 있고, 층을 더할 수는 없다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-## 최상위 층
+## 최상위 수준의 세 층
 
-Application Layer에는 [[autosar-software-component|SW-C]]와 Sensor/Actuator SW-C로 이루어진 응용 소프트웨어가 놓인다. Sensor/Actuator SW-C는 마이크로컨트롤러와 ECU 하드웨어에서는 독립적이지만 센서와 액추에이터에는 의존한다. SW-C는 RTE를 거쳐 다른 SW-C나 서비스와 통신하며, 상대가 같은 ECU에 있든 다른 ECU에 있든 마찬가지다. RTE는 SW-C를 특정 ECU에 매핑되는 것에서 독립적으로 만들고, RTE의 위쪽 인터페이스는 ECU에서 완전히 독립적이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+Application Layer에는 [[autosar-software-component|SW-C]]와 Sensor/Actuator SW-C로 이루어진 응용 소프트웨어가 놓인다. Sensor/Actuator SW-C는 마이크로컨트롤러와 ECU 하드웨어에서는 독립적이지만 센서와 액추에이터에는 의존한다. SW-C는 RTE를 거쳐 다른 SW-C나 서비스와 통신하며, 상대가 같은 ECU에 있든 다른 ECU에 있든 마찬가지다. RTE는 SW-C를 특정 ECU로의 매핑에서 독립시키고, RTE의 위쪽 인터페이스는 ECU에서 완전히 독립적이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 BSW는 ECU의 기반 기능을 주는 소프트웨어로, Integration Code와 Standard Software로 이루어진다.[@autosar-fo-tr-glossary-2025] BSW는 입출력(센서, 액추에이터, ECU 탑재 주변장치), 메모리, 암호 기능, 차량 네트워크 통신, 차량 밖 통신에 표준화된 접근을 주고, 시스템 서비스를 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
@@ -57,7 +57,7 @@ BSW 모듈은 driver, interface, handler, manager 네 유형으로 나뉜다.[@a
 
 BSW의 층 사이에는 일반 규칙이 있다. 한 층은 바로 아래 층의 모든 인터페이스에 접근할 수 있고, 한 층을 건너뛰는 것은 피해야 하며, 둘 이상을 건너뛰는 것은 허용하지 않는다. MCAL을 건너뛰는 것도 허용하지 않는다. 같은 층 안의 수평 인터페이스는 Services Layer와 ECU Abstraction Layer에서 허용하지만 MCAL에서는 허용하지 않으며, 성능 때문에 설정할 수 있는 notification만 예외로 둔다. 모든 층은 System Services와 상호작용할 수 있고, 한 모듈은 다른 층 묶음의 아래 층 모듈에 접근할 수 있다. 외부 하드웨어를 위해 SPI(Serial Peripheral Interface)를 쓰는 것이 그 예다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-**Layer Interaction Matrix**는 BSW 층 사이에 허용된 상호작용을 보이는 규범 행렬로, 행 방향으로 읽는다. 예를 들어 I/O Drivers 행은 I/O Drivers가 System Services와 하드웨어만 쓸 수 있고 다른 층은 쓸 수 없다는 뜻이다. Complex Drivers 행은 다른 층에 제한된 접근만 한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+**Layer Interaction Matrix**는 BSW 층 사이에 허용된 상호작용을 보이는 규범 행렬로, 행 방향으로 읽는다. 예를 들어 [[microcontroller-abstraction-layer#모듈 그룹|I/O Drivers]] 행은 I/O Drivers가 System Services와 하드웨어만 쓸 수 있고 다른 층은 쓸 수 없다는 뜻이다. Complex Drivers 행은 다른 층에 제한된 접근만 한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 Complex Driver와 다른 모듈 사이의 접근에는 따로 규칙이 있다. 계층 구조의 모듈이 Complex Driver에 접근하는 것은 Complex Driver가 접근하는 모듈 쪽에서 일반적으로 설정할 수 있는 인터페이스를 줄 때만 허용한다. 예로 Complex Driver가 새 버스 시스템의 interface 모듈을 구현하면 [[pdu-router|PDU Router]]의 설정이 이를 다룬다. 거꾸로 Complex Driver가 계층 구조의 모듈에 접근하는 것은 그 모듈이 인터페이스를 주고 Complex Driver의 접근에 대비되어 있을 때만 허용한다. 대비되어 있다는 것은 보통 인터페이스가 재진입할 수 있고, callback을 쓰면 그 이름을 설정할 수 있으며, 그 모듈의 상태를 관리하는 상위 모듈이 없다는 뜻이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
@@ -93,7 +93,7 @@ BSW 모듈은 파티션과 코어 여럿에 나눠 둘 수 있으며, 모든 파
 
 ![[diagrams/bsw-master-satellite.svg]]
 
-BSW 할당 지원은 AUTOSAR 4.0.3과 하위 호환되는 변경으로 묶여 있어, master와 satellite 사이의 통신과 BSW functional cluster 및 그 AUTOSAR BSW Cluster Interface가 표준화되지 않은 한계가 있다.[@autosar-cp-tr-releaseoverview-2025]
+BSW 할당 지원은 AUTOSAR 4.0.3과 하위 호환되는 변경으로 한정돼 있어, master와 satellite 사이의 통신과 BSW functional cluster 및 그 AUTOSAR BSW Cluster Interface가 표준화되지 않은 한계가 있다.[@autosar-cp-tr-releaseoverview-2025]
 
 ### 안전 관련 ECU
 

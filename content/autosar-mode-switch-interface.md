@@ -21,7 +21,7 @@ BSW(Basic Software)에서는 [[basic-software-mode-manager|BswM]]이 mode manage
 
 mode manager는 `Rte_Switch_<p>_<o>(<mode>)`로 다음 모드를 넘겨 모드 전환을 시작한다.[@autosar-cp-sws-rte-2025] 모드를 전환하는 mode manager의 runnable은 자기가 전환하는 mode declaration group prototype을 **mode switch point**로 선언한다.[@autosar-cp-tps-softwarecomponenttemplate-2025] RTE는 mode switch point가 있으면 `Rte_Switch` API를 만들고, 그 API는 해당 mode switch point를 가진 runnable만 쓸 수 있다.[@autosar-cp-sws-rte-2025]
 
-RTE는 mode switch notification을 담는 FIFO 큐를 mode machine instance마다 둔다. 큐 길이는 ECU 설정 파라미터 `RteModeSenderQueueLength`로 정하고, 이 값이 없으면 mode manager 쪽 com spec의 queueLength로 정한다. 전환 중에 온 요청은 큐에 쌓이고, 큐가 차 있으면 버려지며 `Rte_Switch`는 RTE_E_LIMIT을 돌려준다.[@autosar-cp-sws-rte-2025]
+RTE는 mode switch notification을 담는 FIFO 큐를 mode machine instance마다 둔다. 큐 길이는 ECU 설정 파라미터 `RteModeSenderQueueLength`로 정하고, 이 값이 없으면 mode manager 쪽 [[autosar-sender-receiver-interface#Com spec|com spec]]의 queueLength로 정한다. 전환 중에 온 요청은 큐에 쌓이고, 큐가 차 있으면 버려지며 `Rte_Switch`는 RTE_E_LIMIT을 돌려준다.[@autosar-cp-sws-rte-2025]
 
 mode user와 mode manager는 `Rte_Mode_<p>_<o>`로 현재 활성인 모드를 읽는다.[@autosar-cp-sws-rte-2025] 현재 모드를 읽어야 하는 runnable은 **mode access point**를 정의한다.[@autosar-cp-tps-softwarecomponenttemplate-2025] RTE는 mode access point가 있으면 `Rte_Mode` API를 만들고, 그 API는 해당 mode access point를 가진 runnable만 쓸 수 있다.[@autosar-cp-sws-rte-2025]
 
@@ -31,10 +31,10 @@ SwcModeSwitchEvent는 지정한 모드에 들어갈 때, 그 모드에서 나올
 
 모드 전환 중에 RTE는 이전 모드의 on-exit runnable, 두 모드 사이의 on-transition runnable, 새 모드의 on-entry runnable 순서로 실행한다. 이 순서는 같은 코어에 있는 mode user의 무리 안에서 지키고, 코어가 다른 무리끼리는 병렬로 실행할 수 있다.[@autosar-cp-sws-rte-2025]
 
-mode manager의 제공 쪽에 acknowledgement를 켜면 RTE는 전환이 끝날 때 ModeSwitchedAckEvent를 일으키고, 이 이벤트는 mode manager의 runnable을 시작할 수 있다. RTE가 시간 초과를 감지해도 이 이벤트가 일어난다.[@autosar-cp-sws-rte-2025]
+mode manager의 제공 쪽에 acknowledgement를 켜면 RTE는 전환이 끝날 때 [[rte-event#종류|ModeSwitchedAckEvent]]를 일으키고, 이 이벤트는 mode manager의 runnable을 시작할 수 있다. RTE가 시간 초과를 감지해도 이 이벤트가 일어난다.[@autosar-cp-sws-rte-2025]
 
 ## 모드에 따른 비활성화
 
-[[rte-event|RTE 이벤트]]에 disabled mode를 걸 수 있고, 그 모드가 활성인 동안에는 그 이벤트가 runnable을 시작하지 않는다.[@autosar-cp-tps-softwarecomponenttemplate-2025][@autosar-cp-sws-rte-2025] 이 비활성화는 그 모드 동안뿐 아니라 그 모드로 들어가는 전환과 그 모드에서 나오는 전환 동안에도 걸리며, 이미 돌고 있는 runnable을 멈추지는 않는다. 전형적인 쓰임은 어떤 모드에서 쓸 수 없는 자원을 쓰는 시간 구동 runnable을 그 모드에서 막는 것이다.[@autosar-cp-sws-rte-2025]
+[[rte-event|RTE 이벤트]]에 disabled mode를 걸 수 있고, 그 모드가 활성인 동안에는 그 이벤트가 runnable을 시작하지 않는다.[@autosar-cp-tps-softwarecomponenttemplate-2025][@autosar-cp-sws-rte-2025] 이 비활성화는 그 모드 동안뿐 아니라 그 모드로 들어가는 전환과 그 모드에서 나오는 전환 동안에도 걸리며, 이미 돌고 있는 runnable을 멈추지는 않는다. 전형적인 쓰임은 어떤 모드에서 쓸 수 없는 자원을 쓰는 [[rte-event#종류|시간 구동 runnable]]을 그 모드에서 막는 것이다.[@autosar-cp-sws-rte-2025]
 
 ![[diagrams/mode-switch-transition-order.svg]]

@@ -36,7 +36,7 @@ SecOC는 I-PDU가 지나는 경로마다 모듈 안에 버퍼를 두고, `SecOC_
 
 ## 암호 서비스와 키
 
-SecOC는 [[autosar-crypto-stack#Crypto Service Manager|Csm]]이 주는 암호 서비스를 쓰고, 키와 카운터 관리를 위해 RTE와 주고받는다.[@autosar-cp-sws-secureonboardcommunication-2025] SecOC와 다른 서비스의 연동에서 이 키·카운터 관리는 BSW(Basic Software)가 아니라 RTE 위의 Key & Counter Management SW-C가 맡는다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+SecOC는 [[autosar-crypto-stack#Crypto Service Manager|Csm]]이 주는 암호 서비스를 쓰고, 키와 카운터 관리를 위해 RTE와 주고받는다.[@autosar-cp-sws-secureonboardcommunication-2025] SecOC와 다른 서비스의 연동에서 이 키·카운터 관리는 BSW(Basic Software)가 아니라 RTE 위의 Key & Counter Management [[autosar-software-component|SW-C]]가 맡는다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## 검증 결과의 보고
 

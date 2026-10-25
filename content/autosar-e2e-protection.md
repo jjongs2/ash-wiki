@@ -6,7 +6,7 @@ tags:
 verified: 2026-10-07
 ---
 
-**E2E 보호**(End-to-End protection)는 [[autosar|AUTOSAR]]의 통신 보호로, 안전 관련 데이터를 주고받을 때 송신자와 수신자 사이의 통신 경로에 생긴 fault의 영향을 실행 중에 검출한다. AUTOSAR R25-11의 E2E 프로토콜 명세는 송신 측이 보낼 데이터에 제어 데이터를 붙여 보호하고, 수신 측이 그 제어 데이터로 받은 데이터를 검사해 결과를 수신자에게 넘기도록 정한다.[@autosar-fo-prs-e2eprotocol-2025]
+**E2E 보호**(End-to-End protection)는 [[autosar|AUTOSAR]]의 통신 보호로, 안전 관련 데이터를 주고받을 때 송신자와 수신자 사이의 통신 경로에 생긴 [[fault-error-failure|fault]]의 영향을 실행 중에 검출한다. AUTOSAR R25-11의 E2E 프로토콜 명세는 송신 측이 보낼 데이터에 제어 데이터를 붙여 보호하고, 수신 측이 그 제어 데이터로 받은 데이터를 검사해 결과를 수신자에게 넘기도록 정한다.[@autosar-fo-prs-e2eprotocol-2025]
 
 이 명세가 검출하는 fault에는 송신자나 수신자의 하위 통신 계층에 들어온 [[functional-safety#Systematic failure와 random hardware failure|systematic software fault]]와, MCU 하드웨어, 통신 주변장치, 트랜시버, 통신선 같은 통신 인프라에서 생긴 [[functional-safety#Systematic failure와 random hardware failure|random hardware fault]]가 든다. 예로는 [[can|CAN]] 트랜시버의 레지스터 손상, EMC(Electromagnetic Compatibility)로 인한 간섭, [[autosar-rte|RTE]]·[[inter-os-application-communicator|IOC]]·[[autosar-com|COM]]·네트워크 스택의 systematic fault가 있다. E2E 보호는 [[automotive-safety-integrity-level|ASIL]] D까지의 요구를 가진 안전 관련 통신에 맞는 수단이다.[@autosar-fo-prs-e2eprotocol-2025] E2E 보호가 고려하는 통신 결함의 목록은 [[freedom-from-interference#AUTOSAR의 FFI 수단|freedom from interference]]에서 다룬다.
 

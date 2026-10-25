@@ -14,7 +14,7 @@ AUTOSAR R25-11 [[autosar-layered-architecture|Layered Software Architecture]]는
 Software Cluster는 역할에 따라 아래처럼 나뉜다.[@autosar-cp-sws-softwareclusterconnection-2025]
 
 - **Host Software Cluster**: BSW의 대부분, 특히 [[autosar-os|OS]]와 [[microcontroller-abstraction-layer|MCAL]] 같은 마이크로컨트롤러 의존 하위 층 BSW 모듈을 담는 Software Cluster로, 하나뿐이다.
-- **Application Software Cluster**: 주로 [[autosar-software-component|SW-C]]를 담고, 서비스 모듈이나 트랜스포머 같은 고른 BSW 모듈만 함께 담는 Software Cluster다.
+- **Application Software Cluster**: 주로 [[autosar-software-component|SW-C]]를 담고, [[autosar-layered-architecture#BSW의 층|서비스 모듈]]이나 [[autosar-transformer|트랜스포머]] 같은 고른 BSW 모듈만 함께 담는 Software Cluster다.
 - **Substitution Software Cluster**: 버그를 고치려고 다른 Software Cluster가 제공하는 자원을 덮어쓸 수 있는 Software Cluster로, 하나뿐이다.[@autosar-cp-sws-softwareclusterconnection-2025]
 
 Substitution Software Cluster는 개발 중에 한 Software Cluster의 출력을 잠시 덮어쓰려는 것으로, 양산 시스템에서는 지원하지 않는다. 고친 자원을 원래 자원과 같은 global resource Id로 제공하면, 그 자원을 요구하는 Software Cluster는 모두 원래 제공자 대신 Substitution Software Cluster에 이어진다.[@autosar-cp-sws-softwareclusterconnection-2025]
@@ -31,7 +31,7 @@ SwCluC는 세 부분으로 나뉜다. Cross Software Cluster Communication(SwClu
 
 ### 연결
 
-Software Cluster를 잇는 방식은 둘이다. On-board 방식에서는 따로 빌드한 Binary Object를 대상 ECU에 쓴 뒤, 재프로그래밍 단계에 ECU에서 도는 On-board Software Cluster Connector가 연결 결과를 Binary Manifest의 고칠 수 있는 영역에 저장한다. Off-board 방식에서는 ECU 밖의 도구인 Off-board Software Cluster Connector가 Binary Object 파일을 읽어 연결 결과를 파일에 저장하므로, ECU에는 이미 이어진 Binary Object를 쓴다. Binary Manifest에 기댄 직접 연결은 같은 machine 안에서만 하고, 한 마이크로컨트롤러 위의 서로 다른 가상 machine 사이에서는 하지 않는다.[@autosar-cp-sws-softwareclusterconnection-2025]
+Software Cluster를 잇는 방식은 둘이다. On-board 방식에서는 따로 빌드한 Binary Object를 대상 ECU에 쓴 뒤, [[ecu-reprogramming|재프로그래밍]] 단계에 ECU에서 도는 On-board Software Cluster Connector가 연결 결과를 Binary Manifest의 고칠 수 있는 영역에 저장한다. Off-board 방식에서는 ECU 밖의 도구인 Off-board Software Cluster Connector가 Binary Object 파일을 읽어 연결 결과를 파일에 저장하므로, ECU에는 이미 이어진 Binary Object를 쓴다. Binary Manifest에 기댄 직접 연결은 같은 machine 안에서만 하고, 한 마이크로컨트롤러 위의 서로 다른 가상 machine 사이에서는 하지 않는다.[@autosar-cp-sws-softwareclusterconnection-2025]
 
 Software Cluster Connector는 요구 자원과 제공 자원의 machine Id, global resource Id, resource type Id, 보호 값, handle 수가 모두 맞고, Notifier Handle이 있으면 제공 자원에 요구 자원 몫의 Notifier Handle Set이 있을 때 둘을 잇는다. global resource Id 0은 유효한 Id가 없다는 뜻이어서 잇지 않는다. 짝을 찾지 못한 자원에는 Binary Manifest에 미리 둔 기본 handle을 넣고 연결되지 않은 것으로 표시한다.[@autosar-cp-sws-softwareclusterconnection-2025]
 
@@ -47,4 +47,4 @@ AUTOSAR R25-11은 Software Cluster Connection의 Com proxy와 LdCom(Large Data C
 
 ## Adaptive Platform의 Software Cluster와의 차이
 
-AUTOSAR R25-11 용어집은 [[autosar-adaptive-platform|Adaptive Platform]]의 Software Cluster를 Adaptive Platform Machine에 배치하는 데 관련된 AUTOSAR 산출물을 묶는 것으로 따로 정의한다. 그 내용은 범주에 따라 달라, 실행 파일(Adaptive Platform Application), Functional Cluster, [[autosar-manifest|매니페스트]], 영속 저장소 데이터베이스, 트랜스포머나 암호 같은 플랫폼 라이브러리, [[bootloader|부트로더]]를 담을 수 있다. 이 Software Cluster는 [[autosar-update-and-configuration-management|UCM]]이 Software Package에 담아 Machine에 배치하며, Machine에서 도는 응용을 저마다 갱신할 수 있는 cluster로 나누는 데 쓴다. Classic Platform의 Software Cluster가 ECU에 정적으로 배치하는 빌드 단위인 것과 다르다.[@autosar-fo-tr-glossary-2025]
+AUTOSAR R25-11 용어집은 [[autosar-adaptive-platform|Adaptive Platform]]의 Software Cluster를 Adaptive Platform Machine에 배치하는 데 관련된 AUTOSAR 산출물을 묶는 것으로 따로 정의한다. 그 내용은 범주에 따라 달라, 실행 파일(Adaptive Platform Application), [[autosar-adaptive-platform#Functional cluster|Functional Cluster]], [[autosar-manifest|매니페스트]], 영속 저장소 데이터베이스, 트랜스포머나 암호 같은 플랫폼 라이브러리, [[bootloader|부트로더]]를 담을 수 있다. 이 Software Cluster는 [[autosar-update-and-configuration-management|UCM]]이 Software Package에 담아 Machine에 배치하며, Machine에서 도는 응용을 저마다 갱신할 수 있는 cluster로 나누는 데 쓴다. Classic Platform의 Software Cluster가 ECU에 정적으로 배치하는 빌드 단위인 것과 다르다.[@autosar-fo-tr-glossary-2025]

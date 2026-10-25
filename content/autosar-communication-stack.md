@@ -92,7 +92,7 @@ XCP 모듈은 ASAM이 정한 XCP를 구현한다. XCP는 마스터(도구)와 �
 
 충전 모듈 ISO15118Chrg는 서비스 층에 놓이고, PDU 구조를 정하는 V2GTP(Vehicle to Grid Transport Protocol)와 XML 데이터를 압축하는 EXI(Efficient XML Interchange)를 구현한다. 이 모듈은 데이터 인증과 암호화, 인증서 관리와 검증을 위해 [[autosar-crypto-stack|암호 스택]]과 주고받는다. AUTOSAR Classic Platform R25-11은 이 모듈의 이름을 ChrgM(Charging Manager)에서 ISO15118Chrg로 바꾸었다.[@autosar-cp-sws-iso15118charging-2025] 같은 릴리스의 Layered Software Architecture 설명서는 옛 이름 ChrgM을 그대로 쓴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-IEEE1722Tp(IEEE1722 Transport Layer)는 브리지로 이은 LAN에서 시간에 민감한 응용이 [[ieee-1722|IEEE 1722]] 전송 프로토콜을 쓰게 하는 Classic Platform 모듈이다. 응용은 AVTP 스트림으로 데이터를 주고받는다. 이 모듈은 IEEE 1722가 정한 AVTP subtype 가운데 일부를 지원해, 오디오·비디오 스트리밍, media clock 배포, CAN과 LIN 프레임 같은 버스 프레임의 캡슐화를 다룬다.[@autosar-cp-sws-ieee1722transportlayer-2025]
+IEEE1722Tp(IEEE1722 Transport Layer)는 브리지로 이은 LAN에서 시간에 민감한 응용이 [[ieee-1722|IEEE 1722]] 전송 프로토콜을 쓰게 하는 Classic Platform 모듈이다. 응용은 [[ieee-1722|AVTP]] 스트림으로 데이터를 주고받는다. 이 모듈은 IEEE 1722가 정한 AVTP subtype 가운데 일부를 지원해, 오디오·비디오 스트리밍, media clock 배포, CAN과 LIN 프레임 같은 버스 프레임의 캡슐화를 다룬다.[@autosar-cp-sws-ieee1722transportlayer-2025]
 
 AUTOSAR Classic Platform R25-11은 V2X(Vehicle-to-X) 관련 명세(V2XBasicTransport, V2XFacilities, V2XGeoNetworking, V2XManagement, V2XDataManager, 중국 V2X 명세들)와 Cellular V2X Driver 명세를 obsolete로 돌렸다.[@autosar-cp-tr-releaseoverview-2025]
 

@@ -48,6 +48,6 @@
     <text x="138" y="89">RTE</text>
     <text x="98" y="219">DTC 상태</text>
     <text x="438" y="219">이벤트 상태</text>
-    <text x="422" y="309" text-anchor="end">FID 허용 상태</text>
+    <text x="422" y="309" text-anchor="end">FID 허용 상태 묻기</text>
   </g>
 </svg>

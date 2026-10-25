@@ -84,13 +84,13 @@ Standardization Template은 문서 종류를 열 가지로 정한다. 그 가운
 | RS   | Requirement Specification | 소프트웨어 명세와 따로 요구사항을 적는다. PRS와 SWS는 RS의 요구사항을 구현한다. |
 | TR   | Technical Report          | AUTOSAR에 관한 임의의 주제를 다루는 일반 기술 보고서                            |
 
-예를 들어 Layered Software Architecture 설명서는 요구사항을 담지 않은 정보 제공용 문서다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+예를 들어 [[autosar-layered-architecture|Layered Software Architecture]] 설명서는 요구사항을 담지 않은 정보 제공용 문서다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 [[software-requirements-specification|SRS]]는 이 문서 종류에 없다.[@autosar-fo-tps-standardizationtemplate-2025] Port Driver SWS는 입력 요구사항 문서를 SRS 문서라 부르지만, 그 문서의 파일 이름은 `AUTOSAR_CP_RS_PortDriver`처럼 RS이고, 요구사항 ID에는 SRS_BSW_00358처럼 SRS 접두어가 붙는다.[@autosar-cp-sws-portdriver-2025]
 
 ## 규격 항목 ID와 API 명세
 
-AUTOSAR 규격 항목(specification item)의 ID는 표준 약어(생략 가능), 문서 종류 약어, 문서 이름 약어, 특수화(생략 가능), 번호를 밑줄로 이은 꼴이고, 번호는 00000부터 99999까지의 고유 번호다. ID는 [SWS_Port_00140]처럼 대괄호 안에 쓴다.[@autosar-fo-tps-standardizationtemplate-2025] BSW(Basic Software) 모듈의 규격 항목은 BSW 요구사항으로 추적되고, BSW 모듈 구현은 해당 규격 항목까지의 [[traceability|추적성]]을 보장해야 한다.[@autosar-cp-sws-bswgeneral-2025] AUTOSAR R25-11의 Adaptive Platform System Tests 기술 보고서는 Adaptive Platform Demonstrator가 functional cluster의 요구사항을 채우는지 확인하는 [[test-case|테스트 케이스]]를 담는다. 테스트 케이스마다 [STS_CM_00007] 같은 ID가 붙고, 그 테스트 케이스가 확인하는 RS 요구사항과 SWS 규격 항목의 ID가 함께 적힌다.[@autosar-ap-tr-systemtests-2025]
+AUTOSAR 규격 항목(specification item)의 ID는 표준 약어(생략 가능), 문서 종류 약어, 문서 이름 약어, 특수화(생략 가능), 번호를 밑줄로 이은 꼴이고, 번호는 00000부터 99999까지의 고유 번호다. ID는 [SWS_Port_00140]처럼 대괄호 안에 쓴다.[@autosar-fo-tps-standardizationtemplate-2025] BSW(Basic Software) 모듈의 규격 항목은 BSW 요구사항으로 추적되고, BSW 모듈 구현은 해당 규격 항목까지의 [[traceability|추적성]]을 보장해야 한다.[@autosar-cp-sws-bswgeneral-2025] AUTOSAR R25-11의 Adaptive Platform System Tests 기술 보고서는 [[autosar-adaptive-platform#개정 이력|Adaptive Platform Demonstrator]]가 [[autosar-adaptive-platform#Functional cluster|functional cluster]]의 요구사항을 채우는지 확인하는 [[test-case|테스트 케이스]]를 담는다. 테스트 케이스마다 [STS_CM_00007] 같은 ID가 붙고, 그 테스트 케이스가 확인하는 RS 요구사항과 SWS 규격 항목의 ID가 함께 적힌다.[@autosar-ap-tr-systemtests-2025]
 
 ![[diagrams/autosar-specification-item-id.svg]]
 
@@ -127,4 +127,4 @@ AUTOSAR R25-11 Classic Platform Release Overview는 명세 문서에도 상태�
 
 AUTOSAR R25-11 Features 기술 보고서는 **AUTOSAR Feature**를 사용자 목표를 채우는 AUTOSAR 표준의 특성으로 정의하고, Feature와 그 가지를 나무와 비슷한 그래프인 **Feature Graph**로 나타낸다. 모든 Feature를 합하면 AUTOSAR 표준 전체를 덮는 것이 목표이고, 사용자는 짧은 Feature 이름으로 서로 맞는 AUTOSAR 문서 묶음을 고를 수 있다. 이 보고서의 level 1 Feature는 Basic_Functionality, Communication, Development, Diagnostic, Execution_Environment, Hardware_Support, Safety, Security, Software_Update, Standardized_Application_Interface, Storage, Timing의 12개다.[@autosar-fo-tr-features-2025] AUTOSAR는 Feature Graph에서 Feature 사이의 의존 관계로, 한 Feature가 없으면 다른 Feature가 동작하지 못하는 필수 의존, 골라도 빼도 되는 선택 의존, 여러 Feature 가운데 하나만 고르는 택일 의존을 둔다.[@autosar-features-2026]
 
-AUTOSAR의 **concept**은 AUTOSAR 표준이 다루는 기능을 넓히는 기술 해법을 함께 기술하는 문서 묶음이다. concept은 목적과 쓰임새, 기술 접근을 적은 concept 문서, 바뀔 내용을 담은 유지보수 모드 명세의 가지, 새 기술 기능을 기술하는 evolution 모드의 새 문서, 방법론과 템플릿의 변경을 담은 메타모델 사본으로 이뤄질 수 있다. AUTOSAR는 릴리스마다 들어갈 concept을 Concept Roadmap으로 공개하며, 예를 들어 R25-11에는 Remote Persistency, COMHandler, Feature Graph 등의 concept이 들었다.[@autosar-concept-roadmap-2026]
+AUTOSAR의 **concept**은 AUTOSAR 표준이 다루는 기능을 넓히는 기술 해법을 함께 기술하는 문서 묶음이다. concept은 목적과 쓰임새, 기술 접근을 적은 concept 문서, 바뀔 내용을 담은 유지보수 모드 명세의 가지, 새 기술 기능을 기술하는 evolution 모드의 새 문서, 방법론과 템플릿의 변경을 담은 메타모델 사본으로 이뤄질 수 있다. AUTOSAR는 릴리스마다 들어갈 concept을 Concept Roadmap으로 공개하며, 예를 들어 R25-11에는 [[autosar-persistency#Remote Persistency|Remote Persistency]], COMHandler, Feature Graph 등의 concept이 들었다.[@autosar-concept-roadmap-2026]

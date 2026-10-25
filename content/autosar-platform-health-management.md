@@ -32,7 +32,7 @@ watchdog 반응이 필요한 failure는 State Management와 Execution Management
 
 ## Health Monitoring과의 관계
 
-[[autosar-classic-platform|Classic Platform]]과 Adaptive Platform이 공유하는 기능은 Foundation 문서의 Health Monitoring이 다루고, Adaptive Platform에만 있는 명세는 Adaptive Platform 문서의 Platform Health Management가 다룬다.[@autosar-ap-exp-platformdesign-2025]
+[[autosar-classic-platform|Classic Platform]]과 Adaptive Platform이 공유하는 기능은 [[autosar#표준|Foundation]] 문서의 Health Monitoring이 다루고, Adaptive Platform에만 있는 명세는 Adaptive Platform 문서의 Platform Health Management가 다룬다.[@autosar-ap-exp-platformdesign-2025]
 
 AUTOSAR R25-11 Health Monitoring 명세는 Health Monitoring의 오류 검출 기능으로 Alive Supervision, Deadline Supervision, Logical Supervision을 둔다. Health Monitoring은 Classic Platform과 Adaptive Platform이 구현하도록 되어 있고, 다른 플랫폼도 구현할 수 있다. Health Monitoring은 설정한 수의 Supervised Entity의 실행과 그 Health Status를 감시하고, 프로그램 실행에 설정한 시간·논리 제약이나 health 제약의 위반을 검출하면 알맞은 오류 처리기를 부르며, watchdog도 그에 맞게 제어한다.[@autosar-fo-asws-healthmonitoring-2025]
 

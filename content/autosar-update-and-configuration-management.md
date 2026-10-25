@@ -43,7 +43,7 @@ OEM 백엔드가 여러 공급자의 패키지를 이해할 수 있도록 벤더
 
 갱신 사이클은 [[ab-update|A/B 업데이트]]와 [[ab-update#In-place 업데이트와의 차이|in-place]] 갱신을 지원하고, 필요하면 이전 버전으로 되돌릴 수 있다. Software Package의 처리는 한 번에 한 클라이언트만 요청할 수 있고, 여러 클라이언트는 차례로 요청한다. 처리를 마친 패키지는 요청한 클라이언트와 상관없이 한꺼번에 활성화한다. 활성화 전에 UCM은 설치된 소프트웨어의 요구에 시스템이 맞는지 의존성을 검사하고, 맞지 않으면 활성화를 거부한다.[@autosar-ap-exp-platformdesign-2025]
 
-활성화할 때 UCM은 `ara::com`으로 State Management에 UpdateSession을 열고, 영향받는 Software Cluster의 [[autosar-state-management#Machine State와 Function Group State|Function Group]]마다 PrepareUpdate 메서드를 불러 Function Group별 준비를 하게 한다. 준비가 끝나면 UCM은 갱신의 종류에 따라 State Management에 Machine 리셋이나 Function Group 재시작을 요청하고, 대상 Function Group이 제대로 도는지 검증해 달라고 요청한다. 재시작이 성공하면 갱신은 활성화된 상태가 되고, UCM Client나 V-UCM이 Finish로 변경을 확정하거나 Rollback으로 이전 버전으로 되돌린다. Rollback이면 UCM은 영향받는 Function Group마다 PrepareRollback 메서드를 불러 이전 버전을 다시 활성화한다. 어느 쪽이든 UCM은 State Management의 갱신 세션을 끝내야 한다.[@autosar-ap-exp-platformdesign-2025]
+활성화할 때 UCM은 `ara::com`으로 State Management에 UpdateSession을 열고, 영향받는 Software Cluster의 [[autosar-state-management#Machine State와 Function Group State|Function Group]]마다 PrepareUpdate 메서드를 불러 Function Group별 준비를 하게 한다. 준비가 끝나면 UCM은 갱신의 종류에 따라 State Management에 [[autosar-adaptive-platform#Machine과 프로세스|Machine]] 리셋이나 Function Group 재시작을 요청하고, 대상 Function Group이 제대로 도는지 검증해 달라고 요청한다. 재시작이 성공하면 갱신은 활성화된 상태가 되고, UCM Client나 V-UCM이 Finish로 변경을 확정하거나 Rollback으로 이전 버전으로 되돌린다. Rollback이면 UCM은 영향받는 Function Group마다 PrepareRollback 메서드를 불러 이전 버전을 다시 활성화한다. 어느 쪽이든 UCM은 State Management의 갱신 세션을 끝내야 한다.[@autosar-ap-exp-platformdesign-2025]
 
 ![[diagrams/ucm-update-activation-sequence.svg]]
 
@@ -64,7 +64,7 @@ UCM과 V-UCM의 갱신 프로토콜에는 클라이언트를 인증하는 단계
 - 운전자와의 상호작용을 일으키도록 캠페인 상태를 주고, Vehicle Package에 설정되어 있으면 운전자의 승인이나 동의를 받는다.
 - 차량에 설치된 소프트웨어와 갱신 캠페인 이력의 정보를 주고, 실패하면 복구한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
 
-V-UCM은 백엔드나, 진단 애플리케이션을 거친 진단 도구에서 패키지를 받아 Vehicle Package를 해석하고, Software Package를 대상 UCM이나 Flashing Adapter로 전송하며, 처리와 활성화와 롤백을 조율한다. 이 전체를 **캠페인**이라 한다. UCM과 V-UCM은 서비스 인스턴스가 따로 있고, 한 네트워크 도메인에서 V-UCM의 서비스 인터페이스를 제공하는 V-UCM은 어느 때든 많아야 하나다. 차량에 V-UCM이 여럿 돌아도 나머지는 예비다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
+V-UCM은 백엔드나, 진단 애플리케이션을 거친 진단 도구에서 패키지를 받아 Vehicle Package를 해석하고, Software Package를 대상 UCM이나 [[ecu-reprogramming#정비소와 OTA|Flashing Adapter]]로 전송하며, 처리와 활성화와 롤백을 조율한다. 이 전체를 **캠페인**이라 한다. UCM과 V-UCM은 서비스 인스턴스가 따로 있고, 한 네트워크 도메인에서 V-UCM의 서비스 인터페이스를 제공하는 V-UCM은 어느 때든 많아야 하나다. 차량에 V-UCM이 여럿 돌아도 나머지는 예비다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
 
 V-UCM은 Adaptive Platform의 표준 UCM Client다. V-UCM은 차량 안 여러 UCM 사이에서 패키지를 조율하고 나눈다. V-UCM의 상태 기계는 CampaignState와 TransferState 필드로 볼 수 있고, V-UCM은 `ara::com`의 서비스 발견으로 차량 안의 UCM 서비스 인스턴스를 계속 찾는다.[@autosar-ap-exp-platformdesign-2025]
 

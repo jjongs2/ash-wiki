@@ -12,20 +12,20 @@ verified: 2026-09-30
 
 AUTOSAR OS는 기능을 SC1부터 SC4까지 네 scalability class로 묶고, OS마다 애플리케이션의 필요에 맞춰 하나를 고른다. 기능마다 드는 등급은 다음과 같다.[@autosar-cp-sws-os-2025]
 
-| 기능                                                                | SC1 | SC2 | SC3 | SC4 |
-| ------------------------------------------------------------------- | --- | --- | --- | --- |
-| OSEK OS 기능(모든 [[osek-os#Conformance class\|conformance class]]) | 예  | 예  | 예  | 예  |
-| counter API                                                         | 예  | 예  | 예  | 예  |
-| 소프트웨어 free-running timer API                                   | 예  | 예  | 예  | 예  |
-| schedule table                                                      | 예  | 예  | 예  | 예  |
-| stack monitoring                                                    | 예  | 예  | 예  | 예  |
-| protection hook                                                     | —   | 예  | 예  | 예  |
-| timing protection                                                   | —   | 예  | —   | 예  |
-| 전역 시간·동기화 지원                                               | —   | 예  | —   | 예  |
-| memory protection                                                   | —   | —   | 예  | 예  |
-| [[autosar-os-application\|OS-Application]]                          | —   | —   | 예  | 예  |
-| service protection                                                  | —   | —   | 예  | 예  |
-| `CallTrustedFunction`                                               | —   | —   | 예  | 예  |
+| 기능                                                                                 | SC1 | SC2 | SC3 | SC4 |
+| ------------------------------------------------------------------------------------ | --- | --- | --- | --- |
+| OSEK OS 기능(모든 [[osek-os#Conformance class\|conformance class]])                  | 예  | 예  | 예  | 예  |
+| counter API                                                                          | 예  | 예  | 예  | 예  |
+| 소프트웨어 free-running timer API                                                    | 예  | 예  | 예  | 예  |
+| schedule table                                                                       | 예  | 예  | 예  | 예  |
+| stack monitoring                                                                     | 예  | 예  | 예  | 예  |
+| protection hook                                                                      | —   | 예  | 예  | 예  |
+| timing protection                                                                    | —   | 예  | —   | 예  |
+| [[autosar-schedule-table#동기화\|전역 시간·동기화]] 지원                             | —   | 예  | —   | 예  |
+| memory protection                                                                    | —   | —   | 예  | 예  |
+| [[autosar-os-application\|OS-Application]]                                           | —   | —   | 예  | 예  |
+| service protection                                                                   | —   | —   | 예  | 예  |
+| `CallTrustedFunction`([[autosar-os-application#Trusted function\|trusted function]]) | —   | —   | 예  | 예  |
 
 SC2와 SC3은 서로를 포함하지 않는다. SC2는 SC1에 timing protection을, SC3은 SC1에 memory protection을 더한 갈래이며, SC4는 두 갈래를 아우른다.[@autosar-cp-sws-os-2025][@autosar-cp-rs-os-2025]
 
@@ -47,14 +47,14 @@ OSEK OS는 [[osek-alarm|counter]]를 직접 다루는 표준 API를 두지 않�
 
 잘못된 사용마다 OS가 하는 일은 다음과 같다.[@autosar-cp-sws-os-2025]
 
-| 잘못된 사용                                                                                | OS의 처리                                                                                         |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
-| 허용되지 않은 context에서 서비스를 부른다. 예: `StartupHook`에서 `ActivateTask`            | category 1 ISR 안이 아니면 요청을 수행하지 않고 E_OS_CALLEVEL이나 그 서비스의 무효 값을 돌려준다. |
-| 태스크가 `TerminateTask`나 `ChainTask` 없이 끝난다.                                        | 태스크를 끝내고, error hook이 있으면 `ErrorHook`을 E_OS_MISSINGEND로 부른다.                      |
-| category 2 ISR이 인터럽트를 막은 채 끝난다.                                                | 빠진 해제를 대신 하고 `ErrorHook`을 E_OS_DISABLEDINT로 부른다.                                    |
-| category 2 ISR이 [[osek-resource\|resource]]를 쥔 채 끝난다.                               | resource를 대신 놓고 `ErrorHook`을 E_OS_RESOURCE로 부른다.                                        |
-| [[autosar-os-application#접근 권한\|접근 권한]]이 설정되지 않은 OS 객체를 서비스로 다룬다. | E_OS_ACCESS를 돌려준다.                                                                           |
-| non-trusted OS-Application이 `ShutdownOS`를 부른다.                                        | 무시한다.                                                                                         |
+| 잘못된 사용                                                                                           | OS의 처리                                                                                         |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| 허용되지 않은 context에서 서비스를 부른다. 예: `StartupHook`에서 `ActivateTask`                       | category 1 ISR 안이 아니면 요청을 수행하지 않고 E_OS_CALLEVEL이나 그 서비스의 무효 값을 돌려준다. |
+| 태스크가 `TerminateTask`나 `ChainTask` 없이 끝난다.                                                   | 태스크를 끝내고, error hook이 있으면 `ErrorHook`을 E_OS_MISSINGEND로 부른다.                      |
+| category 2 ISR이 인터럽트를 막은 채 끝난다.                                                           | 빠진 해제를 대신 하고 `ErrorHook`을 E_OS_DISABLEDINT로 부른다.                                    |
+| category 2 ISR이 [[osek-resource\|resource]]를 쥔 채 끝난다.                                          | resource를 대신 놓고 `ErrorHook`을 E_OS_RESOURCE로 부른다.                                        |
+| [[autosar-os-application#접근 권한\|접근 권한]]이 설정되지 않은 OS 객체를 서비스로 다룬다.            | E_OS_ACCESS를 돌려준다.                                                                           |
+| [[autosar-os-application#Trusted와 non-trusted\|non-trusted OS-Application]]이 `ShutdownOS`를 부른다. | 무시한다.                                                                                         |
 
 ## Protection hook
 
@@ -74,7 +74,7 @@ OSEK OS는 [[osek-alarm|counter]]를 직접 다루는 표준 API를 두지 않�
 | 반환값                   | OS의 처리                                                                                                             |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------- |
 | PRO_IGNORE               | 요청된 동작을 그대로 수행한다. E_OS_PROTECTION_ARRIVAL일 때만 유효하고, 다른 오류에서 돌려주면 `ShutdownOS`를 부른다. |
-| PRO_PREVENT_ARRIVAL_RATE | E_OS_PROTECTION_ARRIVAL일 때, 도착률 오류를 일으킨 동작을 수행하지 않는다.                                            |
+| PRO_PREVENT_ARRIVAL_RATE | E_OS_PROTECTION_ARRIVAL일 때, 그 이른 도착을 일으킨 동작을 수행하지 않는다.                                           |
 | PRO_TERMINATETASKISR     | 오류를 낸 태스크나 category 2 ISR을 강제로 끝낸다.                                                                    |
 | PRO_TERMINATEAPPL        | 오류를 낸 태스크나 ISR이 속한 OS-Application을 강제로 끝낸다.                                                         |
 | PRO_SHUTDOWN             | `ShutdownOS`를 불러 OS를 멈춘다.                                                                                      |

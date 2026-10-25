@@ -64,4 +64,4 @@ Adaptive NM은 논리 네트워크 핸들(`NmNetworkHandle`)마다 네트워크 
 
 Adaptive NM도 partial networking을 지원한다. `nmPncParticipation`이 PNI 비트의 송수신을 켜고 끄며, `allNmMessagesKeepAwake`가 거짓이면 NM 메시지 가운데 설정한 partial network에 해당하는 비트가 하나도 1이 아닌 것을 걸러 낸다.[@autosar-ap-sws-networkmanagement-2025]
 
-State Management는 Function Group의 상태에 맞춰 `NmNetworkHandle`의 상태를 정할 수 있고, 거꾸로 `NmNetworkHandle`의 값에 맞춰 Function Group을 특정 상태로 바꿀 수도 있다.[@autosar-ap-sws-statemanagement-2025]
+State Management는 [[autosar-state-management#Machine State와 Function Group State|Function Group]]의 상태에 맞춰 `NmNetworkHandle`의 상태를 정할 수 있고, 거꾸로 `NmNetworkHandle`의 값에 맞춰 Function Group을 특정 상태로 바꿀 수도 있다.[@autosar-ap-sws-statemanagement-2025]

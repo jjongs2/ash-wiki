@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-07
 ---
 
-AUTOSAR R25-11 Layered Software Architecture는 **AUTOSAR 라이브러리**를 관련된 목적의 함수를 모은 것으로 정의한다. 라이브러리는 BSW(Basic Software) 모듈([[autosar-rte|RTE]] 포함), [[autosar-software-component|SW-C]], 다른 라이브러리, Integration Code가 부를 수 있고, 라이브러리끼리만 부를 수 있으며 BSW 모듈은 부르지 못한다. 라이브러리는 재진입할 수 있고, 내부 상태가 없으며, 초기화가 필요 없고, 대기 지점이 없는 동기 함수로 이루어진다. 설정을 둘 수는 있지만 권하지 않는다. 라이브러리는 부른 쪽의 context에서, 부른 쪽과 같은 [[autosar-os-application#Memory protection|보호 환경]]으로 실행된다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+AUTOSAR R25-11 Layered Software Architecture는 **AUTOSAR 라이브러리**를 관련된 목적의 함수를 모은 것으로 정의한다. 라이브러리는 BSW(Basic Software) 모듈([[autosar-rte|RTE]] 포함), [[autosar-software-component|SW-C]], 다른 라이브러리, [[autosar-layered-architecture#Integration Code와 callout|Integration Code]]가 부를 수 있다. 라이브러리가 부를 수 있는 것은 라이브러리뿐이며, BSW 모듈은 부르지 못한다. 라이브러리는 재진입할 수 있고, 내부 상태가 없으며, 초기화가 필요 없고, 대기 지점이 없는 동기 함수로 이루어진다. 설정을 둘 수는 있지만 권하지 않는다. 라이브러리는 부른 쪽의 context에서, 부른 쪽과 같은 [[autosar-os-application#Memory protection|보호 환경]]으로 실행된다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## 요구사항
 

@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## Hardware unit과 channel group
 
-**ADC hardware unit**은 AD 변환에 필요한 부분을 모두 담은 마이크로컨트롤러의 입력 장치이고, 마이크로컨트롤러 하나에 여럿 있을 수 있다. **ADC channel group**은 같은 ADC hardware unit에 연결된 ADC channel의 묶음이다. ADC Driver는 변환을 이 그룹 단위로 다루며, 그룹 전체가 트리거 소스 하나로 변환된다.[@autosar-cp-sws-adcdriver-2025]
+**ADC hardware unit**은 AD 변환에 필요한 부분을 모두 담은 마이크로컨트롤러의 입력 장치이고, 마이크로컨트롤러 하나에 여럿 있을 수 있다. **ADC channel group**은 같은 ADC hardware unit에 연결된 [[microcontroller-abstraction-layer#Channel, channel group, port|ADC channel]]의 묶음이다. ADC Driver는 변환을 이 그룹 단위로 다루며, 그룹 전체가 트리거 소스 하나로 변환된다.[@autosar-cp-sws-adcdriver-2025]
 
 ## 트리거
 
@@ -49,4 +49,4 @@ notification이 설정되어 있고 켜져 있으면, ADC Driver는 그룹의 �
 
 ## 다른 드라이버와의 관계
 
-칩 안의 클록 소스와 clock prescaler는 MCU Driver가 초기화하고 제어한다. 하드웨어가 지원하면 변환 유닛이 쓸 ADC 전용 클록 소스와 prescale 계수는 ADC Driver 설정에서 고른다. ADC가 쓰는 아날로그 입력 핀과 외부 트리거 핀은 [[autosar-port-driver|Port Driver]]가 설정한다.[@autosar-cp-sws-adcdriver-2025]
+칩 안의 클록 소스와 clock prescaler는 [[microcontroller-abstraction-layer#모듈 그룹|MCU Driver]]가 초기화하고 제어한다. 하드웨어가 지원하면 변환 유닛이 쓸 ADC 전용 클록 소스와 prescale 계수는 ADC Driver 설정에서 고른다. ADC가 쓰는 아날로그 입력 핀과 외부 트리거 핀은 [[autosar-port-driver|Port Driver]]가 설정한다.[@autosar-cp-sws-adcdriver-2025]

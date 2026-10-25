@@ -13,7 +13,7 @@ SchM이 스케줄링하는 것은 BSW 모듈의 schedulable entity로, main proc
 
 ## RTE와 함께 생성
 
-SchM은 RTE와 함께 생성된다. 그래서 같은 OS 태스크가 BSW main function과 SW-C의 [[runnable-entity|runnable]]을 함께 스케줄링해 자원 소비를 줄이고 둘의 실행 순서를 섞어 설정할 수 있으며, BSW 모듈과 응용 SW-C에 걸친 모드를 맞춰 전환하고, 같은 External Trigger Occurred Event로 runnable과 BSW main function을 함께 촉발할 수 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+SchM은 RTE와 함께 생성된다. 그래서 같은 OS 태스크가 BSW main function과 SW-C의 [[runnable-entity|runnable]]을 함께 스케줄링해 자원 소비를 줄이고 둘의 실행 순서를 섞어 설정할 수 있으며, BSW 모듈과 응용 SW-C에 걸친 모드를 맞춰 전환하고, 같은 [[rte-event#종류|External Trigger Occurred Event]]로 runnable과 BSW main function을 함께 촉발할 수 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ![[diagrams/os-task-runnable-bsw-main-function.svg]]
 
@@ -25,13 +25,13 @@ SchM은 BSW 모듈의 schedulable entity와 BswInterruptEntity를 연결된 BswE
 
 [[rte-event|RTE 이벤트]]처럼 BswEvent는 종류마다 schedulable entity를 시작할 수 있다. 시작되는 schedulable entity 안에서 SchM의 API를 따로 부를 필요는 없고, BSW 모듈 기술의 설정에 따라 SchM이 직접 시작한다. RTE 이벤트와 달리 BswEvent는 wait point를 지원하지 않는다.[@autosar-cp-sws-rte-2025]
 
-RTE 생성기는 schedulable entity를 시작할 수 있는 BswEvent가 OS 태스크나 category 2 [[osek-isr|ISR]]에 매핑되지 않았고 직접 함수 호출이나 trusted function call로도 실행할 수 없으면 그 설정을 거부한다. RTE는 한 태스크나 category 2 ISR 안에서 runnable과 schedulable entity의 실행 순서를 마음대로 설정할 수 있게 지원한다.[@autosar-cp-sws-rte-2025]
+RTE 생성기는 schedulable entity를 시작할 수 있는 BswEvent가 OS 태스크나 category 2 [[osek-isr|ISR]]에 매핑되지 않았고 직접 함수 호출이나 [[autosar-os-application#Trusted function|trusted function call]]로도 실행할 수 없으면 그 설정을 거부한다. RTE는 한 태스크나 category 2 ISR 안에서 runnable과 schedulable entity의 실행 순서를 마음대로 설정할 수 있게 지원한다.[@autosar-cp-sws-rte-2025]
 
 BSW는 여러 코어에 나눠 둘 수 있으며, BSW 서비스 호출을 실행할 코어는 그 서비스의 BswOperationInvokedEvent가 매핑된 태스크로 정해진다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## 모드에 따른 스케줄링
 
-BSW 모듈의 모드 의존 스케줄링은 SW-C runnable의 모드 의존 스케줄링과 똑같다. Mode manager는 BSW 모듈 기술에 provide ModeDeclarationGroupPrototype을 두고, SchM은 mode manager가 모드 전환 요청을 SchM에 전하는 API를 준다. Mode user는 BSW 모듈 기술에 require ModeDeclarationGroupPrototype을 두고, 필요하면 SchM이 지금 활성인 모드를 읽는 API를 준다. BSW 모듈 기술에 mode disabling dependency가 있으면 SchM은 그 모드에서 BSW main function의 스케줄링을 막는다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+BSW 모듈의 모드 의존 스케줄링은 SW-C runnable의 모드 의존 스케줄링과 똑같다. Mode manager는 BSW 모듈 기술에 provide [[autosar-mode-switch-interface#Mode declaration group|ModeDeclarationGroupPrototype]]을 두고, SchM은 mode manager가 모드 전환 요청을 SchM에 전하는 API를 준다. Mode user는 BSW 모듈 기술에 require ModeDeclarationGroupPrototype을 두고, 필요하면 SchM이 지금 활성인 모드를 읽는 API를 준다. BSW 모듈 기술에 mode disabling dependency가 있으면 SchM은 그 모드에서 BSW main function의 스케줄링을 막는다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 BswEvent에 어떤 모드에 대한 mode disabling dependency가 있으면, 그 모드가 활성인 동안 SchM은 그 BswEvent로 schedulable entity를 시작하지 않는다. 이 비활성화는 그 모드 동안뿐 아니라 그 모드로 들어가는 전환과 그 모드에서 나오는 전환 동안에도 걸린다. 모드 전환 때 이미 실행 중인 schedulable entity를 멈추지는 않는다.[@autosar-cp-sws-rte-2025] runnable에 거는 같은 규칙은 [[autosar-mode-switch-interface#모드에 따른 비활성화|mode switch 인터페이스]]에서 다룬다.
 

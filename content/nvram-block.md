@@ -32,7 +32,7 @@ Dataset 블록은 administrative block의 인덱스로 한 번에 원소 하나�
 
 CRC를 쓸지(`NvMBlockUseCrc`)와 CRC의 종류(`NvMBlockCrcType`: `NVM_CRC8`, `NVM_CRC16`, `NVM_CRC32`)는 블록마다 설정한다. RAM 블록의 CRC는 짝을 이루는 NV 블록에 CRC가 있을 때만 쓸 수 있고, 종류도 NV 블록의 CRC와 같아야 한다.[@autosar-cp-sws-nvrammanager-2025]
 
-NvM은 CRC를 설정한 블록을 쓸 때 CRC를 다시 계산해 NV 블록에 함께 저장한다. 읽을 때는 CRC를 다시 계산해 저장된 CRC와 비교하고, 맞지 않으면 기본값을 불러오거나, 기본값이 없으면 NVM_REQ_INTEGRITY_FAILED로 끝낸다. Immediate 우선순위 블록에 CRC를 설정하는 것은 권하지 않는다. CRC 계산이 MainFunction 여러 번에 걸쳐 immediate 데이터 쓰기를 늦출 수 있기 때문이다.[@autosar-cp-sws-nvrammanager-2025]
+NvM은 CRC를 설정한 블록을 쓸 때 CRC를 다시 계산해 NV 블록에 함께 저장한다. 읽을 때는 CRC를 다시 계산해 저장된 CRC와 비교하고, 맞지 않으면 기본값을 불러오거나, 기본값이 없으면 NVM_REQ_INTEGRITY_FAILED로 끝낸다. [[nvram-manager#Job 큐와 우선순위|Immediate 우선순위]] 블록에 CRC를 설정하는 것은 권하지 않는다. CRC 계산이 MainFunction 여러 번에 걸쳐 immediate 데이터 쓰기를 늦출 수 있기 때문이다.[@autosar-cp-sws-nvrammanager-2025]
 
 ## 블록 번호
 

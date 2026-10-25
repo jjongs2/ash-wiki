@@ -34,13 +34,13 @@ Microcontroller Drivers에는 Core Test가, Memory Drivers에는 RAM Test와 Fla
 
 AUTOSAR R25-11의 Core Test 명세는 **Core Test**(CorTst)를 코어, 곧 CPU와 그에 가까이 붙은 MMU(Memory Management Unit)·MPU(Memory Protection Unit)·인터럽트 컨트롤러 같은 단위를 시험하는 모듈로 정의한다. Core Test를 구현하려면 코어 구조를 깊이 알아야 하므로, 실리콘 제조사가 AUTOSAR API로 구현해 라이브러리로 내놓는 것을 전제한다.[@autosar-cp-sws-coretest-2025]
 
-**RAM Test**(RamTst)는 RAM 셀이 물리적으로 성한지 시험하는 모듈이다. RAM의 내용은 시험하지 않으며, 레지스터로 쓰는 RAM도 시험한다. RAM Test는 시험 환경이 동기로 부를 수도 있고(foreground test), [[task|태스크]] 등이 주기적으로 부를 수도 있다(background test).[@autosar-cp-sws-ramtest-2025]
+**RAM Test**(RamTst)는 RAM 셀이 물리적으로 성한지 시험하는 모듈이다. RAM의 내용은 시험하지 않으며, 레지스터로 쓰는 RAM도 시험한다. RAM Test는 시험 환경이 동기 호출로 부를 수도 있고(foreground test), [[task|태스크]] 등이 주기적으로 부를 수도 있다(background test).[@autosar-cp-sws-ramtest-2025]
 
 **Flash Test**(FlsTst)는 마이크로컨트롤러에 들어 있거나 메모리 맵으로 이어진 불변 메모리(데이터·프로그램 플래시, 프로그램 SRAM, locked cache)를 시험하는 알고리즘을 주는 모듈이다. Flash Test는 MCU 초기화 뒤 언제든 실행할 수 있고, 시스템 전체의 안전 개념에 통합되는 것을 전제하며 혼자서는 필요한 진단 커버리지를 내지 않는다.[@autosar-cp-sws-flashtest-2025]
 
 **I2C Driver**는 I2C(Inter-Integrated Circuit) 버스로 이어진 장치(예: EEPROM)를 읽고 쓰는 서비스를 주는 모듈이다. I2C Driver는 Controller 모드와 Target 모드를 구현하고, 위 층에 하드웨어에 독립적인 API를 주며, multi master mode를 지원한다. Controller는 다른 장치를 제어하며 전송을 시작하고 클록 신호를 만들고 전송을 끝내는 장치이고, Target은 Controller가 주소로 부르는 장치다.[@autosar-cp-sws-i2cdriver-2025]
 
-Wireless Ethernet Driver와 Cellular V2X(Vehicle-to-X) Driver는 Wireless Communication Drivers에 든다.[@autosar-cp-sws-bswgeneral-2025] AUTOSAR R25-11은 두 모듈의 명세를 obsolete로 돌렸다.[@autosar-cp-tr-releaseoverview-2025]
+Wireless Communication Drivers에는 Wireless Ethernet Driver와 함께 Cellular V2X(Vehicle-to-X) Driver도 든다.[@autosar-cp-sws-bswgeneral-2025] AUTOSAR R25-11은 두 모듈의 명세를 obsolete로 돌렸다.[@autosar-cp-tr-releaseoverview-2025]
 
 ## Channel, channel group, port
 
