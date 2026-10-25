@@ -35,7 +35,7 @@ Scrum Team이 너무 커지면 같은 제품에 집중하는 여러 Scrum Team�
 
 이 가이드는 이벤트 다섯을 두며, 그 가운데 Sprint가 나머지 넷을 담는다.[@scrumguides-scrum-guide-2020]
 
-- **Sprint**: 길이가 고정된 한 달 이하의 이벤트다. 한 Sprint가 끝나면 곧바로 다음 Sprint가 시작된다. Sprint Goal이 쓸모없어지면 Sprint를 취소할 수 있고, 그 권한은 Product Owner에게만 있다. Sprint 동안에는 Sprint Goal을 위태롭게 하는 변경을 하지 않고, 품질을 낮추지 않으며, Product Backlog는 필요한 만큼 정제하고, 더 알게 되면 Product Owner와 범위를 분명히 하거나 다시 협상할 수 있다.
+- **Sprint**: 길이가 고정된 한 달 이하의 이벤트다. 한 Sprint가 끝나면 곧바로 다음 Sprint가 시작된다. Sprint Goal이 쓸모없어지면 Sprint를 취소할 수 있고, 그 권한은 Product Owner에게만 있다. Sprint 동안에는 Sprint Goal을 위태롭게 하는 변경을 하지 않고, 품질을 낮추지 않는다. 그동안 Product Backlog는 필요한 만큼 정제하고, 더 알게 되면 Product Owner와 범위를 분명히 하거나 다시 협상할 수 있다.
 - **Sprint Planning**: Sprint에서 할 일을 정하며 Sprint를 연다. 이 Sprint가 왜 가치 있는지(Sprint Goal), 무엇을 할지, 어떻게 할지를 다루고, 한 달짜리 Sprint에서 최대 8시간이다.
 - **Daily Scrum**: Developers가 Sprint Goal을 향한 진척을 점검하고 필요하면 Sprint Backlog를 조정하는 15분짜리 이벤트다. Sprint의 근무일마다 같은 시간, 같은 장소에서 연다.
 - **Sprint Review**: Sprint의 결과를 점검하고 앞으로 무엇을 조정할지 정한다. 발표에 그치지 않는 작업 회의다. 한 달짜리 Sprint에서 최대 4시간이다.

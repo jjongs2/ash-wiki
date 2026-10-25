@@ -24,7 +24,7 @@ CMMI Institute에 따르면 CMMI는 모델, 평가 방법, 교육·인증, 도�
 
 이 모델은 프랙티스 영역마다 **능력 수준**(capability level)을 두고, 정해 둔 프랙티스 영역 묶음에는 단계형 경로로 **성숙도 수준**(maturity level)을 둔다. 성숙도 수준은 0\~5(Incomplete, Initial, Managed, Defined, Quantitatively Managed, Optimizing), 능력 수준은 0\~3(Incomplete, Initial, Managed, Defined)이다.[@cmmi-institute-levels-2026]
 
-능력 수준 1(Initial)은 프랙티스 영역의 의도를 채우려는 첫 접근으로, 의도를 다 채우는 프랙티스 집합은 아니며 성과 문제를 다룬다. 능력 수준 2(Managed)는 수준 1의 프랙티스를 아우르는, 단순하지만 프랙티스 영역의 의도 전체를 다루는 완전한 프랙티스 집합이다. 조직 자산을 쓰지 않아도 되고, 프로젝트 성과 목표를 향한 진척을 찾아 살핀다. 능력 수준 3(Defined)은 수준 2의 프랙티스 위에 쌓아, 조직 표준과 테일러링으로 프로젝트와 업무의 특성을 다룬다. 프로젝트는 조직 자산을 쓰고 보태며, 프로젝트와 조직의 성과 목표를 함께 이루는 데 초점을 둔다.[@cmmi-institute-levels-2026]
+능력 수준 1(Initial)은 프랙티스 영역의 의도를 채우려는 첫 접근으로, 의도를 다 채우는 프랙티스 집합은 아니며 성과 문제를 다룬다. 능력 수준 2(Managed)는 수준 1의 프랙티스를 아우르는, 단순하지만 프랙티스 영역의 의도 전체를 다루는 완전한 프랙티스 집합이다. 조직 자산을 쓰지 않아도 되고, 프로젝트 성과 목표를 향한 진척을 찾아 살핀다. 능력 수준 3(Defined)은 수준 2의 프랙티스 위에 쌓아, 조직 표준과 [[process-capability-level#CL 3과 표준 프로세스|테일러링]]으로 프로젝트와 업무의 특성을 다룬다. 프로젝트는 조직 자산을 쓰고 보태며, 프로젝트와 조직의 성과 목표를 함께 이루는 데 초점을 둔다.[@cmmi-institute-levels-2026]
 
 CMMI 1.3은 두 표현 방식을 두었다. 연속형 표현(continuous representation)은 프로세스 영역마다 능력 수준 0\~3(Incomplete, Performed, Managed, Defined)을 매겼고, 단계형 표현(staged representation)은 여러 프로세스 영역에 걸친 조직의 개선 성취에 성숙도 수준 1\~5(Initial, Managed, Defined, Quantitatively Managed, Optimizing)를 매겼다.[@cmmi-product-team-cmmi-development-2010] CMMI 3.0과 달리 능력 수준 1의 이름은 Performed였고, 성숙도 수준에는 0(Incomplete)이 없었다.[@cmmi-institute-levels-2026][@cmmi-product-team-cmmi-development-2010]
 

@@ -11,7 +11,7 @@ verified: 2026-10-02
 
 [[v-modell-xt|V-Modell XT]] 2.4는 V자 절차의 내려가는 가지에서 시스템을 명세하며 분해하고, 올라가는 가지에서 구현하며 통합하며, 수평 단계마다 [[verification-and-validation|검증과 확인]]을 둔다. 시험 명세는 내려가는 가지에서 같은 수평 단계의 요구사항, 명세, 아키텍처로부터 만들고, 시험 기록은 올라가는 가지에서 남긴다.[@weit-v-modell-xt-2-4-2024]
 
-V의 가장 아래 단계에서는 유닛을 구현한다.[@weit-v-modell-xt-2-4-2024][@vda-automotive-spice-pam-4-1-2026]
+V의 가장 아래 단계에서는 [[automotive-spice-process-reference-model#Element, component, unit|유닛]]을 구현한다.[@weit-v-modell-xt-2-4-2024][@vda-automotive-spice-pam-4-1-2026]
 
 ## 테스트 기준
 
@@ -19,7 +19,7 @@ V의 가장 아래 단계에서는 유닛을 구현한다.[@weit-v-modell-xt-2-4
 
 ## 테스트 프로세스
 
-ISTQB 용어집은 V 모델이 개발 단계마다 짝짓는 [[software-testing#테스트 레벨|테스트 레벨]]을 각각 [[test-process|테스트 프로세스]]의 한 인스턴스로 정의한다.[@istqb-glossary-v-model-2026][@istqb-glossary-test-level-2026]
+V 모델이 개발 단계마다 짝짓는 [[software-testing#테스트 레벨|테스트 레벨]] 하나하나를 ISTQB 용어집은 [[test-process|테스트 프로세스]]의 한 인스턴스로 정의한다.[@istqb-glossary-v-model-2026][@istqb-glossary-test-level-2026]
 
 ## 테스트 설계를 앞당김
 
@@ -41,7 +41,7 @@ V 모델은 [[waterfall-model|폭포수 모델]]에서 나온 여러 변형과 �
 
 V-Modell XT 2.4는 V를 반복마다 여러 번 거쳐 기능을 점진적으로 늘린다.[@weit-v-modell-xt-2-4-2024] 점진 개발 전략과 prototype 개발 전략은 [[v-modell-xt#개발 전략|V-Modell XT]]에서 다룬다.
 
-ASPICE 4.1의 [[automotive-spice-process-reference-model|프로세스 참조 모델]]과 [[automotive-spice-process-assessment-model|프로세스 평가 모델]]은 생명주기 모델이 아니어서 프로세스나 BP(base practice)를 수행할 순서를 정하지도 막지도 않고, 프로젝트 생명주기는 MAN.3.BP2에 따라 프로젝트가 정하게 둔다.[@vda-automotive-spice-pam-4-1-2026]
+ASPICE 4.1의 [[automotive-spice-process-reference-model|프로세스 참조 모델]]과 [[automotive-spice-process-assessment-model|프로세스 평가 모델]]은 생명주기 모델이 아니어서 프로세스나 BP(base practice)를 수행할 순서를 정하지도 막지도 않고, 프로젝트 생명주기는 [[automotive-spice-process-reference-model#관리와 공급 프로세스의 BP|MAN.3.BP2]]에 따라 프로젝트가 정하게 둔다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## ASPICE의 V 컨셉
 

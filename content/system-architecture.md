@@ -16,7 +16,7 @@ SYS.3은 시스템 아키텍처를 정적 측면과 동적 측면으로 나누�
 - 정적 측면: 외부 인터페이스와, 정해 둔 [[automotive-spice-process-reference-model#Element, component, unit|시스템 요소]] 집합 및 그 인터페이스와 관계
 - 동적 측면: 시스템 요소의 동작과, 시스템 모드마다의 요소 사이 상호작용[@vda-automotive-spice-pam-4-1-2026]
 
-BP2의 주석은 시스템 요소 사이 상호작용의 예로 기계 부품의 관성을 반영한 타이밍 다이어그램, ECU의 처리 시간, 버스 시스템의 신호 전파 시간을 든다.[@vda-automotive-spice-pam-4-1-2026]
+[[automotive-spice-process-assessment-model#프로세스 수행 지표|BP2]]의 주석은 시스템 요소 사이 상호작용의 예로 기계 부품의 관성을 반영한 타이밍 다이어그램, ECU의 처리 시간, 버스 시스템의 신호 전파 시간을 든다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 아키텍처 분석
 
@@ -30,7 +30,7 @@ BP4는 시스템 아키텍처의 요소와, 물리적 최종 제품의 속성이
 
 ## 시스템 아키텍처가 밝힐 내용
 
-정보 항목 04-06(System architecture)은 시스템 아키텍처가 밝힐 내용으로 다음을 든다.[@vda-automotive-spice-pam-4-1-2026]
+[[automotive-spice-process-assessment-model#프로세스 수행 지표|정보 항목]] 04-06(System architecture)은 시스템 아키텍처가 밝힐 내용으로 다음을 든다.[@vda-automotive-spice-pam-4-1-2026]
 
 - 시스템 구조의 개관과 시스템 요소
 - 운용 모드, 캘리브레이션 순서, 성능 같은 시스템 요소의 동작과, 환경과 맞물린 동작
@@ -39,7 +39,7 @@ BP4는 시스템 아키텍처의 요소와, 물리적 최종 제품의 속성이
 - 자원·성능 특성 같은 파라미터
 - 열 영향에 대한 기계 공학 평가 같은 도메인별 공학 참조[@vda-automotive-spice-pam-4-1-2026]
 
-04-06은 담을 수 있는 것으로 고른 아키텍처의 근거와, 하드웨어 아키텍처(04-52), [[software-architecture|소프트웨어 아키텍처]], ML(machine learning) 아키텍처(04-51) 같은 밑에 놓인 아키텍처의 참조를 든다. 예로는 배선 기술, 제어 장치, 연결용 무선 인터페이스를 밝힌 차량 배선 개관을 든다.[@vda-automotive-spice-pam-4-1-2026]
+04-06은 고른 아키텍처의 근거와, 하드웨어 아키텍처(04-52), [[software-architecture|소프트웨어 아키텍처]], ML(machine learning) 아키텍처(04-51) 같은 밑에 놓인 아키텍처의 참조를 담을 수 있는 것으로 든다. 예로는 배선 기술, 제어 장치, 연결용 무선 인터페이스를 밝힌 차량 배선 개관을 든다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 특별특성
 

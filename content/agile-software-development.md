@@ -13,7 +13,7 @@ ISO/IEC/IEEE 24765:2017은 **애자일 개발**(agile development)을 반복 개
 
 애자일 방법은 무거운(heavyweight) 개발 방식의 대안으로 나왔다.[@ieee-swebok-v4-0a-2026][@iso-iec-33202-obp-2024]
 
-애자일 방법은 대규모 소프트웨어 개발 프로젝트에서 쓰던 무거운 계획 기반 방법의 큰 부담을 줄이려고 1990년대에 개발되었다. 애자일 방법이 가볍다고 여겨지는 것은 짧은 반복 개발 주기, 스스로 조직하는 팀, 더 단순한 설계, 코드 [[refactoring|리팩터링]], [[test-driven-development|테스트 주도 개발]], 잦은 고객 참여, 개발 주기마다 시연할 수 있는 동작하는 제품을 강조하기 때문이다. SWEBOK V4.0a에 따르면 애자일 방법은 Deming의 [[pdca-cycle|PDCA 사이클]]을 [[software-engineering|소프트웨어 공학]]에 적용한 것으로 볼 수 있다.[@ieee-swebok-v4-0a-2026]
+애자일 방법은 대규모 소프트웨어 개발 프로젝트에서 쓰던 무거운 계획 기반 방법의 큰 부담을 줄이려고 1990년대에 개발되었다. 애자일 방법이 가볍다고 여겨지는 것은 짧은 반복 개발 주기, 스스로 조직하는 팀, 더 단순한 설계, 코드 [[refactoring|리팩터링]], [[test-driven-development|테스트 주도 개발]], 잦은 고객 참여, 개발 주기마다 시연할 수 있는 동작하는 제품을 강조하기 때문이다. SWEBOK V4.0a에 따르면 애자일 방법은 [[pdca-cycle#Shewhart와 Deming의 순환|Deming의 PDCA 사이클]]을 [[software-engineering|소프트웨어 공학]]에 적용한 것으로 볼 수 있다.[@ieee-swebok-v4-0a-2026]
 
 ## 애자일 선언
 
@@ -45,7 +45,7 @@ Extreme Programming, [[scrum|Scrum]], DSDM(Dynamic Systems Development Method) �
 
 ## 가치·원칙과 실천
 
-애자일은 고객에게 늘 가치를 인도하는 일이나 기술적 탁월함에 대한 헌신 같은 가치·원칙과, Sprint Planning이나 회고 같은 실천을 분명히 나눈다.[@ieee-swebok-v4-0a-2026]
+애자일은 고객에게 늘 가치를 인도하는 일이나 기술적 탁월함에 대한 헌신 같은 가치·원칙과, [[scrum#이벤트|Sprint Planning]]이나 회고 같은 실천을 분명히 나눈다.[@ieee-swebok-v4-0a-2026]
 
 SWEBOK V4.0a에 따르면 애자일을 두고 여러 오해가 생겼고, 이 지식 체계가 나온 2026년에도 일부가 남아 있었다. 이 지식 체계는 그 예로 애자일이 그 자체로 하나의 방법이라는 것, 문서를 만들지 않아도 되므로 폭포수보다 빠르다는 것, 애자일의 방법과 실천이 빈약하거나 체계가 없다는 것을 든다.[@ieee-swebok-v4-0a-2026]
 
@@ -57,7 +57,7 @@ SWEBOK V4.0a에 따르면 애자일을 두고 여러 오해가 생겼고, 이 �
 
 - **RAD**(rapid application development): 주로 데이터 중심의 업무 시스템 개발에 쓰인다. 특수 목적의 데이터베이스 개발 도구로 새 업무 애플리케이션이나 고친 업무 애플리케이션을 빠르게 개발하고, 테스트하고, 배포한다.
 - **XP**: 요구사항을 스토리나 시나리오로 적고, 테스트를 먼저 만들며, 고객이 팀에 직접 들어와 대개 [[acceptance-testing|인수 테스트]]를 정한다. [[software-review#여러 이름|페어 프로그래밍]]을 쓰고, 코드의 리팩터링과 [[continuous-integration|지속적 통합]]을 계속한다. 스토리는 태스크로 나뉘어 우선순위가 매겨지고, 추정되고, 개발되고, 테스트된다. 증분마다 자동 테스트와 수동 테스트를 하고, 증분은 두어 주마다 출시할 만큼 자주 나올 수 있다.
-- **FDD**(feature-driven development): 모델 주도의 짧은 반복 개발 방식으로, 도메인의 범위를 잡는 제품 모델 개발, 요구나 기능(feature) 목록 작성, 기능 개발 계획 수립, 반복마다의 기능 설계, 기능의 코딩·테스트·통합이라는 다섯 단계를 거친다. 점진 개발 방식과 비슷하고, XP와도 비슷하지만 코드 소유권을 팀이 아니라 개인에게 준다. 소프트웨어 전체의 아키텍처를 중시해, 계속된 리팩터링에 기대기보다 처음부터 기능을 바르게 만들도록 한다.
+- **FDD**(feature-driven development): 모델 주도의 짧은 반복 개발 방식으로, 도메인의 범위를 잡는 제품 모델 개발, 요구나 기능(feature) 목록 작성, 기능 개발 계획 수립, 반복마다의 기능 설계, 기능의 코딩·테스트·통합이라는 다섯 단계를 거친다. [[software-development-life-cycle#예측형에서 적응형까지|점진 개발 방식]]과 비슷하고, XP와도 비슷하지만 코드 소유권을 팀이 아니라 개인에게 준다. 소프트웨어 전체의 아키텍처를 중시해, 계속된 리팩터링에 기대기보다 처음부터 기능을 바르게 만들도록 한다.
 - **Lean**: Toyota Production System에서 온 lean 제조 원칙을 소프트웨어 개발에 맞춰 적용한다. 가장 단순한 판의 제품을 먼저 내는 Minimum Viable Product 전략을 택해, 사용자의 피드백에서 배우고 그에 따라 반복한다. 개별 개발 프로세스가 아니라 개발 프로세스 전체를 최적화하려 하며, 설계, 제조, 판매, 서비스 인도를 아우르는 가치 흐름 전체를 보고 흐름을 최적화해 서비스를 사용자에게 빨리 인도한다.[@ieee-swebok-v4-0a-2026]
 
 [[kanban|Kanban]]도 Lean의 생각을 많이 적용한 가벼운 프로세스이지만, 워크플로 관리와 시각화를 지원한다는 점에서 Lean과 근본적으로 다르다.[@ieee-swebok-v4-0a-2026]
@@ -68,7 +68,7 @@ ISO/IEC/IEEE 24765 용어집은 ISO/IEC TR 7052:2023의 정의를 따라 XP를, 
 
 ## 사용자 스토리
 
-**사용자 스토리**(user story)는 사용자가 시스템의 일부로 이루려는 것을 짧게 적은 것이다.[@iso-iec-tr-7052-obp-2023] ISO/IEC 33202:2024는 사용자 스토리를 원하는 기능을 간단히 적은 것으로 정의한다.[@iso-iec-33202-obp-2024] 사용자 스토리는 구조화된 자연어 요구 명세의 한 꼴이고, [[acceptance-test-driven-development#행위 주도 개발|behavior driven development]]에서도 기능 단위를 적는 데 쓴다.[@ieee-swebok-v4-0a-2026]
+**사용자 스토리**(user story)는 사용자가 시스템의 일부로 이루려는 것을 짧게 적은 것이다.[@iso-iec-tr-7052-obp-2023] ISO/IEC 33202:2024는 사용자 스토리를 원하는 기능을 간단히 적은 것으로 정의한다.[@iso-iec-33202-obp-2024] 사용자 스토리는 [[software-requirements-specification#명세 기법|구조화된 자연어 요구 명세]]의 한 꼴이고, [[acceptance-test-driven-development#행위 주도 개발|behavior driven development]]에서도 기능 단위를 적는 데 쓴다.[@ieee-swebok-v4-0a-2026]
 
 사용자 스토리는 흔히 "As <역할> … so that <목적>"의 뼈대로 쓴다.[@ieee-swebok-v4-0a-2026][@iso-iec-tr-7052-obp-2023] 스토리 뒤에는 [[acceptance-test-driven-development#인수 기준|인수 기준]]이 붙는다. 사용자 스토리에는 3C(Card, Conversation, Confirmation)라 부르는 세 가지 핵심 측면이 있다.[@istqb-ctfl-syllabus-2024]
 
@@ -82,7 +82,7 @@ ISO/IEC/IEEE 24765 용어집은 ISO/IEC TR 7052:2023의 정의를 따라 XP를, 
 
 ISTQB 용어집은 애자일 소프트웨어 개발을, 반복·점진 개발에 바탕을 두고 요구와 해결책이 스스로 조직하는 다기능 팀의 협업으로 발전하는 소프트웨어 개발 생명주기 모델의 묶음으로 정의한다.[@istqb-glossary-agile-software-development-2026]
 
-애자일 소프트웨어 개발은 프로젝트 내내 변경이 일어날 수 있다고 가정하므로, 애자일 프로젝트에서는 작업 산출물의 문서를 가볍게 하고 [[regression-testing|회귀 테스트]]를 쉽게 하는 폭넓은 테스트 자동화를 선호한다. 수동 테스트는 대부분 사전 테스트 분석과 설계를 많이 요구하지 않는 경험 기반 테스트 기법으로 한다.[@istqb-ctfl-syllabus-2024]
+애자일 소프트웨어 개발은 프로젝트 내내 변경이 일어날 수 있다고 가정하므로, 애자일 프로젝트에서는 작업 산출물의 문서를 가볍게 하고 [[regression-testing|회귀 테스트]]를 쉽게 하는 폭넓은 테스트 자동화를 선호한다. 수동 테스트는 대부분 사전 테스트 분석과 설계를 많이 요구하지 않는 [[software-testing#테스트 기법의 분류|경험 기반 테스트 기법]]으로 한다.[@istqb-ctfl-syllabus-2024]
 
 ## 생명주기 표준과 애자일
 

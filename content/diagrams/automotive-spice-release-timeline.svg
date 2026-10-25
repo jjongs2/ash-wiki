@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="47.5 1.5 694 225.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="47.5 1.5 507 225.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
-  <!-- 1년 = 26 단위, 2005년 = x 170. 따로 있던 두 문서가 3.0에서 한 문서로 -->
+  <!-- 1년 = 17 단위, 2005년 = x 170. 따로 있던 두 문서가 3.0에서 한 문서로 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <path d="M170 40 H360 C389 40 389 70 418 70" />
-    <path d="M170 100 H360 C389 100 389 70 418 70" />
-    <path d="M418 70 H716" />
+    <path d="M170 40 H294 C313 40 313 70 332 70" />
+    <path d="M170 100 H294 C313 100 313 70 332 70" />
+    <path d="M332 70 H527" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="end">
     <text x="156" y="44">프로세스 참조 모델</text>
@@ -15,44 +15,44 @@
   <!-- 판 -->
   <g fill="var(--ink, #727981)">
     <circle cx="170" cy="40" r="4" />
-    <circle cx="300" cy="40" r="4" />
+    <circle cx="255" cy="40" r="4" />
     <circle cx="170" cy="100" r="4" />
-    <circle cx="300" cy="100" r="4" />
-    <circle cx="430" cy="70" r="4" />
-    <circle cx="482" cy="70" r="4" />
-    <circle cx="638" cy="70" r="4" />
-    <circle cx="716" cy="70" r="4" />
+    <circle cx="255" cy="100" r="4" />
+    <circle cx="340" cy="70" r="4" />
+    <circle cx="374" cy="70" r="4" />
+    <circle cx="476" cy="70" r="4" />
+    <circle cx="527" cy="70" r="4" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="170" y="30">4.2</text>
-    <text x="300" y="30">4.5</text>
+    <text x="255" y="30">4.5</text>
     <text x="170" y="119">2.2</text>
-    <text x="300" y="119">2.5</text>
-    <text x="430" y="60">3.0</text>
-    <text x="482" y="60">3.1</text>
-    <text x="638" y="60">4.0</text>
-    <text x="716" y="60">4.1</text>
-    <text x="560" y="89">한 문서</text>
+    <text x="255" y="119">2.5</text>
+    <text x="340" y="60">3.0</text>
+    <text x="374" y="60">3.1</text>
+    <text x="476" y="60">4.0</text>
+    <text x="527" y="60">4.1</text>
+    <text x="425" y="89">한 문서</text>
   </g>
 
   <!-- 연도 축 -->
-  <line x1="170" y1="146" x2="716" y2="146" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <path d="M170 146 v5 M196 146 v5 M222 146 v5 M248 146 v5 M274 146 v5 M300 146 v5 M326 146 v5 M352 146 v5 M378 146 v5 M404 146 v5 M430 146 v5 M456 146 v5 M482 146 v5 M508 146 v5 M534 146 v5 M560 146 v5 M586 146 v5 M612 146 v5 M638 146 v5 M664 146 v5 M690 146 v5 M716 146 v5" stroke="var(--ink, #727981)" stroke-width="1" />
+  <line x1="170" y1="146" x2="527" y2="146" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <path d="M170 146 v5 M187 146 v5 M204 146 v5 M221 146 v5 M238 146 v5 M255 146 v5 M272 146 v5 M289 146 v5 M306 146 v5 M323 146 v5 M340 146 v5 M357 146 v5 M374 146 v5 M391 146 v5 M408 146 v5 M425 146 v5 M442 146 v5 M459 146 v5 M476 146 v5 M493 146 v5 M510 146 v5 M527 146 v5" stroke="var(--ink, #727981)" stroke-width="1" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="170" y="167">2005</text>
-    <text x="300" y="167">2010</text>
-    <text x="430" y="167">2015</text>
-    <text x="560" y="167">2020</text>
-    <text x="690" y="167">2025</text>
+    <text x="255" y="167">2010</text>
+    <text x="340" y="167">2015</text>
+    <text x="425" y="167">2020</text>
+    <text x="510" y="167">2025</text>
   </g>
 
   <!-- 펴낸 곳 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <path d="M170 182 V188 H300 V182" />
-    <path d="M430 182 V188 H716 V182" />
+    <path d="M170 182 V188 H255 V182" />
+    <path d="M340 182 V188 H527 V182" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="235" y="206">Automotive SIG</text>
-    <text x="573" y="206">VDA QMC</text>
+    <text x="212.5" y="206">Automotive SIG</text>
+    <text x="433.5" y="206">VDA QMC</text>
   </g>
 </svg>
