@@ -25,4 +25,4 @@ IPv6의 Path MTU Discovery는 RFC 8201이 정한다. 출발 노드는 처음에 
 
 ![[diagrams/ipv6-path-mtu-discovery.svg]]
 
-RFC 8900에 따르면 Path MTU Discovery는 네트워크가 ICMP Packet Too Big 메시지(IPv4에서는 "fragmentation needed and DF set" 코드의 Destination Unreachable 메시지, IPv6에서는 Packet Too Big 메시지)를 출발 노드에 전달할 수 있어야 동작하므로, 이 메시지가 출발 노드에 닿지 못하면 동작하지 않는다.[@ietf-rfc-8900-2020]
+RFC 8900에 따르면 Path MTU Discovery는 네트워크가 ICMP 메시지(IPv4에서는 "fragmentation needed and DF set" 코드의 Destination Unreachable, IPv6에서는 Packet Too Big)를 출발 노드에 전달할 수 있어야 동작하므로, 이 메시지가 출발 노드에 닿지 못하면 동작하지 않는다.[@ietf-rfc-8900-2020]
