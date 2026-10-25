@@ -2,14 +2,14 @@ import fs from "node:fs"
 import path from "node:path"
 import type { BibEntry } from "../check-content/bibtex"
 import { Conventions } from "../check-content/conventions"
+import { normalizeUrl } from "../check-content/source-checks"
 import type { Tree } from "../check-content/tree"
 import { repoRoot } from "../repo"
 import { escapeRegExp } from "./text"
 
-// 출처 구간의 같은 출처는 판 단위다(docs/wiki-verification.md의 좁혀 쓰기). 제목 꼴로 묶이지 않는 문서
-// 모음은 위키 검증 문서의 source-collections 표가 엔트리의 URL로 정하고, 표가 제목 꼴보다 앞선다. 표에
-// 들지 않으면 엔트리 제목에서 판 표시를 읽어 같은 판의 키를 한 출처로 묶는다. 읽는 꼴은 넷이고, 어느 꼴도
-// 아니면 키 하나가 한 출처다.
+// 출처 구간의 같은 출처는 판 단위다(docs/wiki-verification.md의 좁혀 쓰기). 엔트리의 URL이 위키 검증
+// 문서의 source-collections 표에 들면 그 모음이 한 출처다. 들지 않으면 엔트리 제목에서 판 표시를 읽어 같은
+// 판의 키를 한 출처로 묶는다. 읽는 꼴은 넷이고, 어느 꼴도 아니면 키 하나가 한 출처다.
 // - 표준 번호와 판 연도(ISO 11898-1:2024, IEEE Std 1003.1-2024). 부 번호가 번호에 들므로 부마다 다른
 //   판이고, 제목 끝의 (OBP preview)·(preview)는 번호 뒤에 와서 원문과 같은 판이 된다. 엔트리의
 //   발행기관 필드에 그 기구가 있을 때만 읽는다. 다른 발행기관의 해설 자료도 제목에 표준 번호를 담기 때문이다.
@@ -19,9 +19,9 @@ import { escapeRegExp } from "./text"
 // - 판 없이 고쳐지는 온라인 용어집의 용어 쪽(ISTQB Glossary — test case). 줄표 앞의 용어집 이름이 한 판이다.
 export interface Edition {
   id: string
-  names: string[] // 출처 표시로 칠 이름. 표준 기구와 키의 마디로 드러나지 않는 문서 모음의 이름만 둔다
+  names: string[] // 출처 표시로 칠 이름. 제목 꼴의 문서 모음은 표준 기구와 키의 마디로 드러나지 않는 이름만, 표의 모음은 표의 이름을 둔다
   title: string // 엔트리 제목. 제목의 이름("The Kanban Guide", "V-Modell XT")도 출처 표시로 친다(runs.ts)
-  collection?: boolean // 표의 모음. 구간 안에서 다시 쓴 출처 이름은 표의 이름만 본다(runs.ts)
+  collection?: boolean // 표의 모음. 구간 안에서 다시 쓴 출처 이름은 names만 본다(runs.ts)
 }
 
 interface Collection {
@@ -31,19 +31,15 @@ interface Collection {
 }
 
 const verificationPath = path.join(repoRoot, "docs", "wiki-verification.md")
-const normalize = (url: string) =>
-  url
-    .trim()
-    .replace(/^https?:\/\//, "")
-    .replace(/^www\./, "")
-    .replace(/\/+$/, "")
 
-// 표의 쪽들. 주소는 scheme, "www.", 끝 슬래시를 떼고 견준다. "(그 쪽만)"이 아니면 그 경로 아래의 쪽이 모두
-// 든다. `<제품>`처럼 꺾쇠로 싼 마디는 그 값마다 다른 모음이다. 칸의 쪽들은 쉼표로 나누고, 칸 양끝의 백틱은
-// 표를 읽을 때 떨어지므로 백틱은 모두 뗀다.
+// 표의 "드는 쪽" 칸을 URL 패턴으로. 읽는 법은 표 위의 목록에 있다. 칸의 쪽들은 쉼표로 나누고, 칸 양끝의
+// 백틱은 표를 읽을 때 떨어지므로 백틱은 모두 뗀다. 꺾쇠로 싼 마디는 잡아 모음 id에 붙인다.
 function pagesOf(cell: string): RegExp[] {
   return cell.split(/,\s*/).map((token) => {
-    const [, address, only] = token.replace(/`/g, "").match(/^(\S+?)\s*(\(그 쪽만\))?$/)!
+    const match = token.replace(/`/g, "").match(/^(\S+?)\s*(\(그 쪽만\))?$/)
+    if (!match)
+      throw new Error(`${verificationPath}: 표 "source-collections"의 쪽을 읽지 못했다: ${token}`)
+    const [, address, only] = match
     const body = address
       .split(/(<[^<>]+>)/)
       .map((part) => (/^<.+>$/.test(part) ? "([A-Za-z0-9]+)" : escapeRegExp(part)))
@@ -59,13 +55,13 @@ const collections: Collection[] = new Conventions(
 )
   .table("source-collections", ["모음", "이름", "드는 쪽"])
   .map((row) => ({
-    name: row["모음"].replace(/\(.*\)$/, ""),
+    name: row["모음"],
     names: row["이름"].split(/,\s*/),
     pages: pagesOf(row["드는 쪽"]),
   }))
 
 function collectionOf(entry: BibEntry): { id: string; names: string[] } | undefined {
-  const url = normalize(entry.fields.get("url")?.value ?? "")
+  const url = normalizeUrl(entry.fields.get("url")?.value ?? "")
   if (!url) return undefined
   for (const collection of collections) {
     for (const page of collection.pages) {
