@@ -17,7 +17,7 @@ verified: 2026-09-27
 
 ![[diagrams/can-arbitration.svg]]
 
-중재 필드는 기본 포맷에서 [[can-identifier|식별자]] 11비트와 RTR(Remote Transmission Request) 비트다. 확장 포맷에서는 기본 식별자 11비트, SRR(Substitute Remote Request) 비트, IDE(Identifier Extension) 비트, 확장 식별자 18비트, RTR 비트 순이다. 식별자는 최상위 비트부터 보낸다.[@bosch-can-2-0-1991]
+[[can-frame#데이터 프레임의 필드|SOF]] 바로 뒤의 중재 필드는 기본 포맷에서 [[can-identifier|식별자]] 11비트와 RTR(Remote Transmission Request) 비트다. 확장 포맷에서는 기본 식별자 11비트, SRR(Substitute Remote Request) 비트, IDE(Identifier Extension) 비트, 확장 식별자 18비트, RTR 비트 순이다. 식별자는 최상위 비트부터 보낸다.[@bosch-can-2-0-1991]
 
 ![[diagrams/can-base-extended-arbitration-field.svg]]
 

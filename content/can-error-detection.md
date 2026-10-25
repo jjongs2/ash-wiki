@@ -15,6 +15,8 @@ verified: 2026-09-27
 - **형식 오류**: CRC 구분자, ACK 구분자, EOF(End of Frame)처럼 모양이 정해진 필드에 허용되지 않는 비트가 있다.
 - **ACK 오류**: 송신 노드가 ACK 슬롯에서 [[dominant-and-recessive|dominant]]를 읽지 못한다.[@bosch-can-2-0-1991]
 
+데이터 프레임은 [[can-frame#데이터 프레임의 필드|SOF]]로 시작해 EOF로 끝난다.[@bosch-can-2-0-1991]
+
 ![[diagrams/can-error-detection-fields.svg]]
 
 ## 비트 오류의 예외

@@ -24,7 +24,7 @@ ISO 11898 시리즈는 칩 설계자를 위한 표준으로, [[can-controller|CA
 
 ## 노드 구성
 
-CAN 컨트롤러는 호스트 CPU에 붙어 ISO 11898-1에 따라 통신하고, 버스에 연결하려면 트랜시버가 따로 필요하다.[@bosch-m-can-2023] CAN 컨트롤러는 STM32F103xx·STM32F105xx·STM32F107xx의 bxCAN(Basic Extended CAN)처럼 MCU에 주변장치로 들어가기도 하고[@st-rm0008-2021], MCP2515처럼 SPI(Serial Peripheral Interface)로 MCU에 붙는 단독 칩으로 나오기도 한다.[@microchip-mcp2515-2019] NXP에 따르면 CAN 컨트롤러는 MCU에 통합되는 경우가 많다.[@nxp-can-101-2021] CAN 트랜시버는 컨트롤러의 디지털 신호를 버스의 [[differential-signaling|차동 신호]]로 바꾸고, 버스의 차동 전압을 다시 논리 레벨로 되돌린다.[@microchip-mcp2561-2fd-2014]
+CAN 컨트롤러는 호스트 CPU에 붙어 ISO 11898-1에 따라 통신하고, 버스에 연결하려면 트랜시버가 따로 필요하다.[@bosch-m-can-2023] CAN 컨트롤러는 STM32F103xx·STM32F105xx·STM32F107xx의 bxCAN(Basic Extended CAN)처럼 MCU에 주변장치로 들어가기도 하고[@st-rm0008-2021], MCP2515처럼 SPI(Serial Peripheral Interface)로 MCU에 붙는 단독 칩으로 나오기도 한다.[@microchip-mcp2515-2019] NXP에 따르면 CAN 컨트롤러는 MCU에 통합되는 경우가 많다.[@nxp-can-101-2021] CAN 트랜시버는 컨트롤러의 디지털 신호를 버스의 [[differential-signaling|차동 신호]]로 바꾸고, 버스의 차동 전압을 다시 논리 레벨로 되돌린다.[@microchip-mcp2561-2fd-2014] 버스 양 끝에는 120 Ω [[can-physical-layer#종단|종단 저항]]을 단다.[@microchip-an228-2002][@ti-tcan1042-q1-2021]
 
 ![[diagrams/can-node-bus.svg]]
 
@@ -60,4 +60,4 @@ Bosch CAN 2.0 규격은 CAN의 속도가 시스템마다 다를 수 있지만 �
 
 이 표준은 classic 프레임만 지원하는 구현을 CAN FD 프레임을 용인하는 구현과 용인하지 않는 구현 둘로 나눈다.[@iso-11898-1-obp-2024] 두 구현의 통신 범위는 [[can-fd#호환성|CAN FD]]에서 다룬다.
 
-CiA는 CAN 데이터 링크 계층을 CAN CC(classic), CAN FD, CAN XL 세 세대로 나눈다.[@cia-can-dll-generations-2026] ISO 11898-1:2024는 CAN 기능의 일부에 바탕을 둔 responder 노드의 구현 옵션으로 [[can-fd-light|CAN FD light]]를 둔다.[@iso-11898-1-obp-2024]
+CiA는 CAN 데이터 링크 계층을 CAN CC(CC: classic), CAN FD, CAN XL 세 세대로 나눈다.[@iso-11898-1-obp-2024][@cia-can-dll-generations-2026] ISO 11898-1:2024는 CAN 기능의 일부에 바탕을 둔 responder 노드의 구현 옵션으로 [[can-fd-light|CAN FD light]]를 둔다.[@iso-11898-1-obp-2024]

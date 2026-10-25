@@ -15,11 +15,11 @@ Bosch CAN 2.0 규격은 버스를 wired-AND로 구현하는 경우를 예로 들
 
 dominant와 recessive는 버스 상태의 이름이고, 논리 0·1과의 대응은 데이터 링크 계층 표준인 ISO 11898-1:2024가 정한다.[@iso-11898-1-obp-2024]
 
-고속 CAN에서 recessive는 두 선의 차동 전압이 거의 0인 상태이고, dominant는 [[can-transceiver|트랜시버]]가 두 선을 [[differential-signaling|차동]]으로 구동해 CAN_H를 CAN_L보다 높게 벌린 상태다.[@ti-tcan1042-q1-2021] 전기적 값과 모드에 따른 바이어스는 [[can-physical-layer#고속 CAN|CAN 물리 계층]]에서 다룬다.
+고속 CAN에서 recessive는 두 선의 차동 전압이 거의 0인 상태이고, dominant는 [[can-transceiver|트랜시버]]가 두 선을 [[differential-signaling|차동]]으로 구동해 CAN_H를 CAN_L보다 높게 벌린 상태다.[@ti-tcan1042-q1-2021] TJA1042는 NXP의 고속 CAN 트랜시버다.[@nxp-tja1042-2023] 전기적 값과 모드에 따른 바이어스는 [[can-physical-layer#고속 CAN|CAN 물리 계층]]에서 다룬다.
 
 ![[diagrams/hs-can-bus-voltage.svg]]
 
-고속 트랜시버가 Normal 모드에 있을 때, recessive에서는 두 선이 모두 약 0.5 VCC(2~3 V)에 있다.[@ti-tcan1042-q1-2021][@nxp-tja1042-2023] [[can-physical-layer#저속 내결함성 CAN|저속 내결함성 CAN]] 트랜시버도 dominant와 recessive 두 상태로 구동하지만, recessive에서는 CAN_L이 CAN_H보다 높아 전압 배치가 다르다. TJA1055의 recessive 출력은 $V_\mathrm{CAN\_H} \le 0.2\,\mathrm{V}$, $V_\mathrm{CAN\_L} \ge \mathrm{VCC} - 0.2\,\mathrm{V}$이다.[@nxp-tja1055-2013]
+고속 트랜시버가 Normal 모드에 있을 때, recessive에서는 두 선이 모두 약 0.5 VCC(2~3 V)에 있다.[@ti-tcan1042-q1-2021][@nxp-tja1042-2023] [[can-physical-layer#저속 내결함성 CAN|저속 내결함성 CAN]] 트랜시버도 dominant와 recessive 두 상태로 구동하지만, recessive에서는 CAN_L이 CAN_H보다 높아 전압 배치가 다르다. NXP의 저속 내결함성 트랜시버 TJA1055의 recessive 출력은 $V_\mathrm{CAN\_H} \le 0.2\,\mathrm{V}$, $V_\mathrm{CAN\_L} \ge \mathrm{VCC} - 0.2\,\mathrm{V}$이다.[@nxp-tja1055-2013]
 
 ![[diagrams/can-recessive-voltage-hs-ls.svg]]
 
