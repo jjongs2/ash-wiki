@@ -15,15 +15,15 @@ AUTOSAR는 소프트웨어 재사용을 목표로 든다. 계층화한 기본 �
 
 AUTOSAR는 파트너십 유형마다 다른 권리와 의무를 둔다. 파트너십 유형은 Premium Partner Plus, Premium Partner, Development Partner, Associate Partner, Associate Partner [Light], Attendee, Subscriber이고, 이와 따로 Core Partner가 있다.[@autosar-partners-2026] 그 가운데 일곱의 역할은 아래와 같다.
 
-| 유형                      | 역할                                                                                                                                                                                                                        |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Core Partner              | AUTOSAR 개발 파트너십을 조직하고 관리하고 통제한다.[@autosar-core-partner-2026]                                                                                                                                             |
-| Premium Partner Plus      | 시장을 이끄는 회사를 위한 유형으로, AUTOSAR의 기술 표준화를 이끈다.[@autosar-partners-2026] 상근 인력 한 명을 Project Leader Team 위원으로 두어, 기술 표준화를 넘어 표준 개발을 이끄는 데 참여한다.[@autosar-home-2026]     |
-| Premium Partner           | AUTOSAR 표준을 설계하고 쓰며, 작업 그룹을 이끌거나 작업 그룹에 참여한다.[@autosar-home-2026]                                                                                                                                |
-| Development Partner       | 작은 회사와 스타트업을 위한 유형으로, AUTOSAR 표준을 설계하고 쓰며 작업 그룹에 참여한다.[@autosar-home-2026] AUTOSAR의 자주 묻는 질문 페이지에 따르면 규격의 기술 개발에 특정 기여를 하기에 특히 알맞다.[@autosar-faq-2026] |
-| Associate Partner         | AUTOSAR 표준을 쓴다.[@autosar-home-2026]                                                                                                                                                                                    |
-| Associate Partner [Light] | 무료 유형으로, AUTOSAR Work 가운데 정해진 일부만 써서 버스 시스템과 호환되고 상호운용되는 제품을 내려는 회사를 위한 것이다.[@autosar-partners-2026]                                                                         |
-| Attendee                  | 대학과 비영리 단체를 위한 무료 유형으로, AUTOSAR 표준을 정의하는 일에 협력한다.[@autosar-home-2026]                                                                                                                         |
+| 유형                      | 역할                                                                                                                                                                                                                    |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Core Partner              | AUTOSAR 개발 파트너십을 조직하고 관리하고 통제한다.[@autosar-core-partner-2026]                                                                                                                                         |
+| Premium Partner Plus      | 시장을 이끄는 회사를 위한 유형으로, AUTOSAR의 기술 표준화를 이끈다.[@autosar-partners-2026] 상근 인력 한 명을 Project Leader Team 위원으로 두어, 기술 표준화를 넘어 표준 개발을 이끄는 데 참여한다.[@autosar-home-2026] |
+| Premium Partner           | AUTOSAR 표준을 설계하고 쓰며, 작업 그룹을 이끌거나 작업 그룹에 참여한다.[@autosar-home-2026]                                                                                                                            |
+| Development Partner       | 작은 회사와 스타트업을 위한 유형으로, AUTOSAR 표준을 설계하고 쓰며 작업 그룹에 참여한다.[@autosar-home-2026] 규격의 기술 개발에 특정 기여를 하기에 특히 알맞다.[@autosar-faq-2026]                                      |
+| Associate Partner         | AUTOSAR 표준을 쓴다.[@autosar-home-2026]                                                                                                                                                                                |
+| Associate Partner [Light] | 무료 유형으로, AUTOSAR Work 가운데 정해진 일부만 써서 버스 시스템과 호환되고 상호운용되는 제품을 내려는 회사를 위한 것이다.[@autosar-partners-2026]                                                                     |
+| Attendee                  | 대학과 비영리 단체를 위한 무료 유형으로, AUTOSAR 표준을 정의하는 일에 협력한다.[@autosar-home-2026]                                                                                                                     |
 
 Core Partner로는 2003년 11월 Ford, 2003년 12월 Peugeot Citroën Automobiles와 Toyota, 2004년 11월 General Motors가 합류했다. 2008년 2월 Siemens VDO가 Continental에 합쳐지면서, Siemens VDO는 따로 된 Core Partner가 아니게 되었다.[@autosar-history-2026] 2026년 1월에는 DENSO, Huawei, Vector Informatik이 Core Partner로 합류했다. AUTOSAR 누리집의 Core Partner 명단에는 AUMOVIO, BMW, DENSO, General Motors, Huawei, Mercedes-Benz, Bosch, Toyota, Vector Informatik, Volkswagen의 10곳이 있다.[@autosar-core-partner-2026]
 

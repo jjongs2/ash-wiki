@@ -91,9 +91,9 @@ Bosch XS_CAN은 ISO 11898-1:2024에 따라 classical CAN, CAN FD, CAN XL로 통�
 
 ## 개발 경위
 
-CiA는 2018년 말 Volkswagen의 요청으로 CAN XL 개발을 시작했다. CiA에 따르면 PWM 부호화는 NXP의 전문가들이 처음 제안했고, ISO 11898-1:2024는 CiA 610-1에 있던 CAN XL 규격을 넣었다.[@cia-can-history-2026] CiA에 따르면 CAN XL은 2021년 제17회 iCC(international CAN Conference)에서 공식 발표되었다.[@cia-611-2026] CiA는 CiA 610-1과, PWM을 쓰는 CAN XL SIC PMA를 정했던 CiA 610-3을 철회했다.[@cia-612-2026]
+CiA는 2018년 말 Volkswagen의 요청으로 CAN XL 개발을 시작했다. PWM 부호화는 NXP의 전문가들이 처음 제안했고, ISO 11898-1:2024는 CiA 610-1에 있던 CAN XL 규격을 넣었다.[@cia-can-history-2026] CAN XL은 2021년 제17회 iCC(international CAN Conference)에서 공식 발표되었다.[@cia-611-2026] CiA는 CiA 610-1과, PWM을 쓰는 CAN XL SIC PMA를 정했던 CiA 610-3을 철회했다.[@cia-612-2026]
 
-CiA에 따르면 CAN XL은 백본과 서브 백본 네트워크를 위한 것이고, [[internet-protocol-suite|TCP/IP]] 네트워크 시스템에 쉽게 통합되도록 설계되었다.[@cia-can-xl-2026]
+CAN XL은 백본과 서브 백본 네트워크를 위한 것이고, [[internet-protocol-suite|TCP/IP]] 네트워크 시스템에 쉽게 통합되도록 설계되었다.[@cia-can-xl-2026]
 
 ## CiA 문서
 

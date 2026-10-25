@@ -7,7 +7,7 @@ verified: 2026-10-06
 
 **CANopen**은 [[can|CAN]] 기반 통신 시스템으로, [[can-higher-layer-protocol|상위 계층 프로토콜]]과 프로파일 규격으로 이뤄진다. CAN CC(classic)를 바탕으로 한 CANopen CC와, 그 뒤에 [[can-fd|CAN FD]]를 바탕으로 만든 CANopen FD가 있다.[@cia-canopen-2026] CANopen CC는 CiA 301이, CANopen FD는 CiA 1301이 정한다. CiA에 따르면 CANopen CC는 EN 50325-4로 국제 표준이 되었다.[@cia-standardized-hlp-2026]
 
-CiA에 따르면 CANopen CC는 처음에 핸들링 시스템 같은 동작 중심의 기계 제어용으로 설계되었고, 2026년 10월 기준 의료 장비, 비도로 차량, 선박 전자 장비, 철도, 빌딩 자동화 등에 쓰인다.[@cia-canopen-2026]
+CANopen CC는 처음에 핸들링 시스템 같은 동작 중심의 기계 제어용으로 설계되었고, 2026년 10월 기준 의료 장비, 비도로 차량, 선박 전자 장비, 철도, 빌딩 자동화 등에 쓰인다.[@cia-canopen-2026]
 
 ## 하위 계층
 
@@ -35,7 +35,7 @@ NMT 상태 기계는 모든 CANopen CC 장치가 지원해야 하고, 초기화,
 
 특수 기능 프로토콜은 셋이다. SYNC 프로토콜은 동기 동작을 위해 SYNC producer가 주기적으로 보내고, 기본으로는 데이터가 없다. EMCY(Emergency) 프로토콜은 장치 내부 오류를 알리며, 오류 사건마다 한 번 보낸다. TIME(Time Stamp) 프로토콜은 네트워크 시각을 맞추며, 자정 뒤의 밀리초와 1984년 1월 1일 뒤의 날수를 6바이트에 싣는다.[@cia-special-function-protocols-2026]
 
-오류 제어 프로토콜에는 heartbeat, node/life guarding, boot-up 프로토콜이 있다. heartbeat 프로토콜은 producer가 주기적으로 보내 자기가 살아 있음과 NMT 상태를 알린다. node/life guarding은 [[remote-frame|리모트 프레임]]으로 장치를 하나씩 불러 상태를 묻는 방식이다. CiA에 따르면 이는 옛 방식이라 새 설계에서는 heartbeat를 쓴다.[@cia-error-control-protocols-2026]
+오류 제어 프로토콜에는 heartbeat, node/life guarding, boot-up 프로토콜이 있다. heartbeat 프로토콜은 producer가 주기적으로 보내 자기가 살아 있음과 NMT 상태를 알린다. node/life guarding은 [[remote-frame|리모트 프레임]]으로 장치를 하나씩 불러 상태를 묻는 방식이다. 이는 옛 방식이라 새 설계에서는 heartbeat를 쓴다.[@cia-error-control-protocols-2026]
 
 통신 객체가 쓰는 CAN-ID는 아래와 같다.
 
@@ -53,18 +53,18 @@ CiA는 리모트 프레임을 아예 쓰지 않기를 권한다.[@cia-canopen-hi
 
 CANopen 프로파일은 PDO에 매핑할 프로세스 데이터, SDO로 접근하는 설정 파라미터, EMCY나 SDO로 얻는 진단 정보를 정하고, 장치가 구현한 프로파일은 인덱스 `1000h`의 장치 종류 파라미터가 알려 준다.[@cia-canopen-profiles-2026]
 
-- **장치 프로파일**: 논리 장치의 인터페이스로 object dictionary `6000h`\~`9FFFh` 항목을 정한다. CiA에 따르면 가장 많이 쓰는 것은 범용 I/O 모듈의 CiA 401과 모션 컨트롤러·드라이브의 CiA 402다.
+- **장치 프로파일**: 논리 장치의 인터페이스로 object dictionary `6000h`\~`9FFFh` 항목을 정한다. 가장 많이 쓰는 것은 범용 I/O 모듈의 CiA 401과 모션 컨트롤러·드라이브의 CiA 402다.
 - **인터페이스 프로파일**: 응용 기능이 없는 장치를 위해, 응용과 무관한 다른 네트워크 기술의 기능을 정한다. 예: AS-interface(Actuator Sensor Interface)에 접근하는 CiA 446
 - **응용 프로파일**: 네트워크에서 쓰는 모든 기능 인터페이스를 가상 장치의 집합으로 정한다. 예: CiA 417(CANopen Lift), CiA 422(CleANopen), 택시·구급차·경찰차 같은 특수 목적 차량의 CiA 447[@cia-canopen-profiles-2026]
 
 ## 역사
 
-CiA는 1994년 11월에 첫 CANopen 규격인 CiA 301을 펴냈다. CiA에 따르면 이 규격은 유럽 공동체의 연구 프로그램 Esprit의 ASPIC(Automation and Control Systems for Production Units using an Installation Bus Concept) 프로젝트에서 Bosch가 이끈 기업과 연구 기관들이 CiA의 CAL(CAN Application Layer)을 바탕으로 만들었고, 첫판부터 PDO, SDO, PDO의 동기 송신, NMT, emergency 메시지를 정했다. 제품에 쓰인 첫 판은 1996년부터 1999년까지 유효했던 version 3.0이다.[@cia-canopen-history-2026]
+CiA는 1994년 11월에 첫 CANopen 규격인 CiA 301을 펴냈다. 이 규격은 유럽 공동체의 연구 프로그램 Esprit의 ASPIC(Automation and Control Systems for Production Units using an Installation Bus Concept) 프로젝트에서 Bosch가 이끈 기업과 연구 기관들이 CiA의 CAL(CAN Application Layer)을 바탕으로 만들었고, 첫판부터 PDO, SDO, PDO의 동기 송신, NMT, emergency 메시지를 정했다. 제품에 쓰인 첫 판은 1996년부터 1999년까지 유효했던 version 3.0이다.[@cia-canopen-history-2026]
 
 CiA는 CANopen에서 master/slave라는 말 대신 NMT manager와 NMT server라는 말을 쓴다.[@cia-can-knowledge-2026]
 
 ## CANopen FD와의 차이
 
-CiA에 따르면 CANopen FD는 CAN FD의 높은 처리량을 쓰면서 CANopen CC의 주요 특성을 지키려고 만들어졌다.[@cia-canopen-fd-2026]
+CANopen FD는 CAN FD의 높은 처리량을 쓰면서 CANopen CC의 주요 특성을 지키려고 만들어졌다.[@cia-canopen-fd-2026]
 
 CiA 1301 version 1.1.0은 CANopen FD의 응용 계층과 통신 프로파일을 정한다.[@cia-technical-documents-2026] 이 규격은 CANopen FD가 모든 통신 프로토콜에 [[can-fd-frame|CAN FD 프레임]] 포맷을 쓰고, 비트율 전환 여부를 가리지 않으며, CANopen CC와 달리 리모트 프레임을 지원하지 않게 정한다. 비트 타이밍도 이 규격이 정하며, 데이터 구간 비트율을 10 Mbit/s까지 지원한다. 장치 내부 구조는 CANopen CC와 같고, 통신 객체로 SDO가 아니라 USDO(Universal Service Data Object)를 둔다.[@cia-canopen-fd-2026] USDO로는 어떤 CANopen FD 장치든 읽고 쓸 수 있고, 유니캐스트나 브로드캐스트로 어떤 크기의 데이터든 보낼 수 있다.[@cia-standardized-hlp-2026]

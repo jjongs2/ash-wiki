@@ -309,6 +309,28 @@ describe("check-diff CLI", { concurrency: false }, () => {
     assert.ok(!has(lines, "content/consensus.md:48:"), "앞 문장이 같은 용어집의 이름을 밝혔다")
   })
 
+  test("출처 구간: 문서 모음 표의 쪽들은 한 출처이고, 같은 사이트라도 표에 들지 않는 쪽은 따로 센다", () => {
+    const lines = (report.items.get("source-run") ?? [])
+      .filter((line) => line.startsWith("content/run-collection.md"))
+      .map((l) =>
+        l.replace(
+          /^(\S+:\d+): (구간을 여는데 출처 표시가 없다|구간 안에서 출처 이름을 다시 쓴다).*/,
+          "$1 $2",
+        ),
+      )
+    assert.deepStrictEqual(lines, [
+      "content/run-collection.md:10 구간 안에서 출처 이름을 다시 쓴다", // 다른 쪽의 "CiA에 따르면"
+      "content/run-collection.md:14 구간을 여는데 출처 표시가 없다", // 소식지 호수
+      "content/run-collection.md:20 구간을 여는데 출처 표시가 없다", // 홈(그 쪽만) 곁의 제품 쪽
+      "content/run-collection.md:24 구간 안에서 출처 이름을 다시 쓴다", // 같은 부의 "IEC 60050은"
+      "content/run-collection.md:26 구간을 여는데 출처 표시가 없다", // IEV의 다른 부
+    ])
+    assert.ok(
+      !has(lines, "content/run-collection.md:12"),
+      "끝 슬래시 있는 쪽도 모음에 들고, 모음 이름으로 시작하는 규격 이름(CiA 301)은 출처 이름이 아니다",
+    )
+  })
+
   test("주인 페이지: 행마다 링크, 절 앵커, 문단의 문장 수를 보인다", () => {
     const lines = report.items.get("owner-page")
     assert.ok(has(lines, "content/linker-a.md:12:", "#오류 계수기", "앵커 있음", "1문장"))

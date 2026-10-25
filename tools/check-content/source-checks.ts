@@ -412,7 +412,7 @@ export function bibKeys(tree: Tree): Set<string> {
 
 // 같은 문서를 가리키는 url을 맞춘다. 스킴, `www.`, 끝 슬래시만 맞추고 조각(같은 페이지의 다른 절),
 // 쿼리(ITU처럼 쿼리로 갈리는 문서), Wayback 접두(시점이 다른 문서)는 그대로 둔다.
-function normalizeUrl(url: string): string {
+export function normalizeUrl(url: string): string {
   const [, base, rest] = url
     .trim()
     .replace(/^https?:\/\//i, "")
