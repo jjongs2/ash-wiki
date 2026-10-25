@@ -38,7 +38,8 @@ interface Hit {
 
 const wordChar = /[\p{L}\p{N}]/u
 const publisher = new RegExp(`^(?:${standardBodies})$`)
-const abbreviation = /^[A-Z][A-Z0-9/.-]*[A-Z0-9]s?(?: [A-Z][A-Z0-9/.-]*[A-Z0-9]s?)*$/ // TSN, CAN FD, SOME/IP
+// 대문자 약어로 된 이름. 링크가 풀이를 대신하는 약어만 `[[X#Y|X Y]]`로 X 링크를 겸한다. 예: TSN, CAN FD, SOME/IP
+const abbreviation = /^[A-Z][A-Z0-9/.-]*[A-Z0-9]s?(?: [A-Z][A-Z0-9/.-]*[A-Z0-9]s?)*$/
 
 // 이름을 찾을 글. 절 제목도 지운다.
 function nameText(page: Page): string {
