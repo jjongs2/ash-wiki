@@ -36,7 +36,7 @@ Message Type 값은 아래와 같다.[@autosar-fo-prs-someipprotocol-2025]
 | `0x80` | RESPONSE          |
 | `0x81` | ERROR             |
 
-SOME/IP-TP로 나눈 세그먼트는 여기에 TP-Flag `0x20`을 켠 값을 쓴다.[@autosar-fo-prs-someipprotocol-2025]
+SOME/IP-TP로 나눈 세그먼트는 위 값에 TP-Flag `0x20`을 켠 값을 쓴다.[@autosar-fo-prs-someipprotocol-2025]
 
 Return Code 값 가운데 몇 가지는 아래와 같다.[@autosar-fo-prs-someipprotocol-2025]
 
@@ -61,7 +61,7 @@ REQUEST, REQUEST_NO_RETURN, NOTIFICATION 메시지의 Return Code는 `0x00`이�
 - 요청/응답: 클라이언트가 REQUEST를 보내면 서버가 RESPONSE나 ERROR로 답한다.
 - Fire & Forget: 클라이언트가 REQUEST_NO_RETURN을 보내고, 응답은 없다.
 - 이벤트: 서버가 NOTIFICATION으로 갱신된 값이나 일어난 사건을 보낸다. 게시와 구독은 SOME/IP-SD가 맡는다.
-- 필드: getter, setter, notifier 가운데 적어도 하나를 가진다. getter는 빈 페이로드로 요청해 응답으로 값을 받고, setter는 요청에 새 값을 실어 응답으로 설정된 값을 받는다.[@autosar-fo-prs-someipprotocol-2025]
+- [[service-oriented-communication#서비스 인터페이스|필드]]: getter, setter, notifier 가운데 적어도 하나를 가진다. getter는 빈 페이로드로 요청해 응답으로 값을 받고, setter는 요청에 새 값을 실어 응답으로 설정된 값을 받는다.[@autosar-fo-prs-someipprotocol-2025]
 
 ![[diagrams/some-ip-communication-patterns.svg]]
 

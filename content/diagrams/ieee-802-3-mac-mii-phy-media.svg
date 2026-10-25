@@ -1,71 +1,71 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 10 600 243.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 10 524 243.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
   <!-- 공통 MAC -->
-  <rect x="20.75" y="20.75" width="498.5" height="48.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
-  <text x="270" y="41" text-anchor="middle" fill="var(--on-fill, #f8fafd)">공통 MAC</text>
-  <text x="270" y="59" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">CSMA/CD MAC 프로토콜 · 반이중과 전이중</text>
+  <rect x="20.75" y="20.75" width="434.5" height="48.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="238" y="41" text-anchor="middle" fill="var(--on-fill, #f8fafd)">공통 MAC</text>
+  <text x="238" y="59" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">CSMA/CD MAC 프로토콜 · 반이중과 전이중</text>
 
   <!-- 관리 정보 베이스 -->
-  <rect x="532" y="20" width="68" height="196" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="566" y="123" text-anchor="middle" fill="var(--text, #727981)">MIB</text>
+  <rect x="468" y="20" width="56" height="196" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="496" y="123" text-anchor="middle" fill="var(--text, #727981)">MIB</text>
 
   <!-- 잇는 선 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <line x1="78" y1="70" x2="78" y2="86" />
-    <line x1="206" y1="70" x2="206" y2="86" />
-    <line x1="334" y1="70" x2="334" y2="86" />
-    <line x1="462" y1="70" x2="462" y2="86" />
-    <line x1="78" y1="112" x2="78" y2="128" />
-    <line x1="206" y1="112" x2="206" y2="128" />
-    <line x1="334" y1="112" x2="334" y2="128" />
-    <line x1="462" y1="112" x2="462" y2="128" />
-    <line x1="78" y1="164" x2="78" y2="180" />
-    <line x1="206" y1="164" x2="206" y2="180" />
-    <line x1="334" y1="164" x2="334" y2="180" />
-    <line x1="462" y1="164" x2="462" y2="180" />
+    <line x1="70" y1="70" x2="70" y2="86" />
+    <line x1="182" y1="70" x2="182" y2="86" />
+    <line x1="294" y1="70" x2="294" y2="86" />
+    <line x1="406" y1="70" x2="406" y2="86" />
+    <line x1="70" y1="112" x2="70" y2="128" />
+    <line x1="182" y1="112" x2="182" y2="128" />
+    <line x1="294" y1="112" x2="294" y2="128" />
+    <line x1="406" y1="112" x2="406" y2="128" />
+    <line x1="70" y1="164" x2="70" y2="180" />
+    <line x1="182" y1="164" x2="182" y2="180" />
+    <line x1="294" y1="164" x2="294" y2="180" />
+    <line x1="406" y1="164" x2="406" y2="180" />
   </g>
 
   <!-- 속도별 MII -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="20.75" y="86.75" width="114.5" height="24.5" rx="2" fill="var(--surface, none)" />
-    <rect x="148.75" y="86.75" width="114.5" height="24.5" rx="2" fill="var(--surface, none)" />
-    <rect x="276.75" y="86.75" width="114.5" height="24.5" rx="2" fill="var(--surface, none)" />
-    <rect x="404.75" y="86.75" width="114.5" height="24.5" rx="2" fill="var(--surface, none)" />
+    <rect x="20.75" y="86.75" width="98.5" height="24.5" rx="2" fill="var(--surface, none)" />
+    <rect x="132.75" y="86.75" width="98.5" height="24.5" rx="2" fill="var(--surface, none)" />
+    <rect x="244.75" y="86.75" width="98.5" height="24.5" rx="2" fill="var(--surface, none)" />
+    <rect x="356.75" y="86.75" width="98.5" height="24.5" rx="2" fill="var(--surface, none)" />
   </g>
   <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
-    <text x="78" y="103">MII</text>
-    <text x="206" y="103">MII</text>
-    <text x="334" y="103">MII</text>
-    <text x="462" y="103">MII</text>
+    <text x="70" y="103">MII</text>
+    <text x="182" y="103">MII</text>
+    <text x="294" y="103">MII</text>
+    <text x="406" y="103">MII</text>
   </g>
 
   <!-- PHY -->
   <g fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5">
-    <rect x="20.75" y="128.75" width="114.5" height="34.5" rx="2" />
-    <rect x="148.75" y="128.75" width="114.5" height="34.5" rx="2" />
-    <rect x="276.75" y="128.75" width="114.5" height="34.5" rx="2" />
-    <rect x="404.75" y="128.75" width="114.5" height="34.5" rx="2" />
+    <rect x="20.75" y="128.75" width="98.5" height="34.5" rx="2" />
+    <rect x="132.75" y="128.75" width="98.5" height="34.5" rx="2" />
+    <rect x="244.75" y="128.75" width="98.5" height="34.5" rx="2" />
+    <rect x="356.75" y="128.75" width="98.5" height="34.5" rx="2" />
   </g>
   <g fill="var(--on-fill, #f8fafd)" text-anchor="middle">
-    <text x="78" y="151">PHY</text>
-    <text x="206" y="151">PHY</text>
-    <text x="334" y="151">PHY</text>
-    <text x="462" y="151">PHY</text>
+    <text x="70" y="151">PHY</text>
+    <text x="182" y="151">PHY</text>
+    <text x="294" y="151">PHY</text>
+    <text x="406" y="151">PHY</text>
   </g>
 
   <!-- 매체 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="20" y="180" width="116" height="36" rx="2" fill="var(--surface, none)" />
-    <rect x="148" y="180" width="116" height="36" rx="2" fill="var(--surface, none)" />
-    <rect x="276" y="180" width="116" height="36" rx="2" fill="var(--surface, none)" />
-    <rect x="404" y="180" width="116" height="36" rx="2" fill="var(--surface, none)" />
+    <rect x="20" y="180" width="100" height="36" rx="2" fill="var(--surface, none)" />
+    <rect x="132" y="180" width="100" height="36" rx="2" fill="var(--surface, none)" />
+    <rect x="244" y="180" width="100" height="36" rx="2" fill="var(--surface, none)" />
+    <rect x="356" y="180" width="100" height="36" rx="2" fill="var(--surface, none)" />
   </g>
   <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
-    <text x="78" y="202">동축 케이블</text>
-    <text x="206" y="202">꼬임쌍선</text>
-    <text x="334" y="202">광섬유 케이블</text>
-    <text x="462" y="202">전기 백플레인</text>
+    <text x="70" y="202">동축 케이블</text>
+    <text x="182" y="202">꼬임쌍선</text>
+    <text x="294" y="202">광섬유 케이블</text>
+    <text x="406" y="202">전기 백플레인</text>
   </g>
 
   <text x="20" y="242" font-size="12" fill="var(--text, #727981)">PHY는 속도별 MII로 골라 쓴다. 속도는 1 Mbit/s부터 400 Gbit/s까지</text>

@@ -16,13 +16,13 @@ IEEE 802.3 작업 그룹이 정한 P802.3az의 목표는 링크 사용률이 낮
 
 ## 지원하는 PHY
 
-IEEE 802.3-2022는 EEE를 선택으로 지원할 수 있는 PHY와 인터페이스를 표 78-1에 나열하고, PHY마다 EEE의 규범 요구사항을 그 PHY의 Clause에 둔다. 목록에는 10BASE-Te, 10BASE-T1L, 100BASE-TX, [[1000base-t1|1000BASE-T1]], 1000BASE-T, [[multigbase-t1|2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1]]이 들고, [[100base-t1|100BASE-T1]]과 [[10base-t1s|10BASE-T1S]]는 들지 않는다. 10BASE-Te는 EEE가 정하는 10 Mbit/s MAU(Medium Attachment Unit)로, 송신 진폭 요구를 낮추고 Class D(Category 5) 이상의 케이블 100 m에서 10BASE-T MAU와 완전히 상호 운용된다.[@ieee-802-3-2022]
+IEEE 802.3-2022는 EEE를 선택으로 지원할 수 있는 PHY와 인터페이스를 표 78-1에 나열하고, PHY마다 EEE의 규범 요구사항을 그 PHY의 Clause에 둔다. 목록에는 10BASE-Te, [[ieee-802-3#범위|10BASE-T1L]], 100BASE-TX, [[1000base-t1|1000BASE-T1]], 1000BASE-T, [[multigbase-t1|2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1]]이 들고, [[100base-t1|100BASE-T1]]과 [[10base-t1s|10BASE-T1S]]는 들지 않는다. 10BASE-Te는 EEE가 정하는 10 Mbit/s MAU(Medium Attachment Unit)로, 송신 진폭 요구를 낮추고 Class D(Category 5) 이상의 케이블 100 m에서 10BASE-T MAU와 완전히 상호 운용된다.[@ieee-802-3-2022]
 
 ## 1000BASE-T1의 LPI
 
 이 표준은 1000BASE-T1 PHY가 EEE를 선택으로 지원할 수 있게 하고, 학습(training)을 마친 뒤 LPI 모드에 들 수 있게 한다. 전이중 링크의 두 방향은 따로 LPI 모드에 들고 나므로, 링크의 한쪽만 사용률이 낮아도 전력을 아낄 수 있다. 이 표준은 LPI 모드로 들고 나는 전환이 MAC 프레임을 잃거나 손상시키지 않도록 정하고, EEE 지원 여부는 학습 동안 알리게 한다.[@ieee-802-3-2022]
 
-송신 쪽은 GMII(Gigabit Media Independent Interface)에서 PHY 프레임의 마지막 80B/81B 블록에 "Assert Low Power Idle" 조건을 보면, wake 창에 맞춘 다음 PHY 프레임 전체를 LP_IDLE로 채운 sleep 신호로 보내고, 그 직후 LPI 송신 모드에 든다. LPI 송신 모드에서 PHY는 데이터 경로와 제어 논리를 꺼 전력을 더 아낄 수 있고, quiet 신호와 주기적인 refresh 프레임을 되풀이한다. 링크 상대는 refresh 프레임으로 적응 필터와 타이밍 회로를 갱신할 수 있다. GMII의 조건이 Assert Low Power Idle이 아니게 되면 PHY는 다음 PHY 프레임 전체를 Idle로 채운 wake 프레임으로 보내고, 그다음 PHY 프레임부터 정상 전력 모드로 돌아온다. LPI 수신 모드로 들고 나는 것은 링크 상대가 sleep과 wake 신호로 정한다.[@ieee-802-3-2022]
+송신 쪽은 GMII(Gigabit Media Independent Interface)에서 PHY 프레임의 마지막 [[1000base-t1#부호화|80B/81B 블록]]에 "Assert Low Power Idle" 조건을 보면, wake 창에 맞춘 다음 PHY 프레임 전체를 LP_IDLE로 채운 sleep 신호로 보내고, 그 직후 LPI 송신 모드에 든다. LPI 송신 모드에서 PHY는 데이터 경로와 제어 논리를 꺼 전력을 더 아낄 수 있고, quiet 신호와 주기적인 refresh 프레임을 되풀이한다. 링크 상대는 refresh 프레임으로 적응 필터와 타이밍 회로를 갱신할 수 있다. GMII의 조건이 Assert Low Power Idle이 아니게 되면 PHY는 다음 PHY 프레임 전체를 Idle로 채운 wake 프레임으로 보내고, 그다음 PHY 프레임부터 정상 전력 모드로 돌아온다. LPI 수신 모드로 들고 나는 것은 링크 상대가 sleep과 wake 신호로 정한다.[@ieee-802-3-2022]
 
 ![[diagrams/eee-1000base-t1-lpi-transmit.svg]]
 

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="12.5 -6.5 739 243" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -6.5 523 243" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -7,54 +7,54 @@
   </defs>
 
   <!-- Compound Stream -->
-  <rect x="262" y="30" width="236" height="186" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
-  <text x="380" y="22" text-anchor="middle" fill="var(--text, #727981)">Compound Stream</text>
+  <rect x="180" y="30" width="166" height="186" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="263" y="22" text-anchor="middle" fill="var(--text, #727981)">Compound Stream</text>
 
   <!-- 복제와 중복 제거 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="150" y="100" width="80" height="40" rx="2" />
-    <rect x="520" y="100" width="100" height="40" rx="2" />
+    <rect x="98" y="100" width="56" height="40" rx="2" />
+    <rect x="354" y="100" width="66" height="40" rx="2" />
   </g>
   <g font-size="14" text-anchor="middle" fill="var(--text, #727981)">
-    <text x="190" y="125">복제</text>
-    <text x="570" y="125">중복 제거</text>
+    <text x="126" y="125">복제</text>
+    <text x="387" y="125">중복 제거</text>
   </g>
 
   <!-- 경로 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <line x1="100" y1="120" x2="148" y2="120" marker-end="url(#arrow-ink)" />
-    <path d="M230 110 H250 V60 H480 V110 H518" marker-end="url(#arrow-ink)" />
-    <path d="M230 130 H250 V180 H480 V130 H518" marker-end="url(#arrow-ink)" />
-    <line x1="620" y1="120" x2="660" y2="120" marker-end="url(#arrow-ink)" />
+    <line x1="74" y1="120" x2="96" y2="120" marker-end="url(#arrow-ink)" />
+    <path d="M154 110 H168 V60 H328 V110 H352" marker-end="url(#arrow-ink)" />
+    <path d="M154 130 H168 V180 H328 V130 H352" marker-end="url(#arrow-ink)" />
+    <line x1="420" y1="120" x2="442" y2="120" marker-end="url(#arrow-ink)" />
   </g>
 
   <!-- 패킷 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="33" y="113" width="14" height="14" rx="2" />
-    <rect x="53" y="113" width="14" height="14" rx="2" />
-    <rect x="73" y="113" width="14" height="14" rx="2" />
-    <rect x="273" y="53" width="14" height="14" rx="2" />
-    <rect x="303" y="53" width="14" height="14" rx="2" />
-    <rect x="333" y="53" width="14" height="14" rx="2" />
-    <rect x="273" y="173" width="14" height="14" rx="2" />
-    <rect x="303" y="173" width="14" height="14" rx="2" />
-    <rect x="333" y="173" width="14" height="14" rx="2" />
-    <rect x="673" y="113" width="14" height="14" rx="2" />
-    <rect x="693" y="113" width="14" height="14" rx="2" />
-    <rect x="713" y="113" width="14" height="14" rx="2" />
+    <rect x="20" y="113" width="14" height="14" rx="2" />
+    <rect x="38" y="113" width="14" height="14" rx="2" />
+    <rect x="56" y="113" width="14" height="14" rx="2" />
+    <rect x="192" y="53" width="14" height="14" rx="2" />
+    <rect x="218" y="53" width="14" height="14" rx="2" />
+    <rect x="244" y="53" width="14" height="14" rx="2" />
+    <rect x="192" y="173" width="14" height="14" rx="2" />
+    <rect x="218" y="173" width="14" height="14" rx="2" />
+    <rect x="244" y="173" width="14" height="14" rx="2" />
+    <rect x="446" y="113" width="14" height="14" rx="2" />
+    <rect x="464" y="113" width="14" height="14" rx="2" />
+    <rect x="482" y="113" width="14" height="14" rx="2" />
   </g>
 
   <!-- 장비 고장 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <line x1="374" y1="174" x2="386" y2="186" />
-    <line x1="386" y1="174" x2="374" y2="186" />
+    <line x1="300" y1="174" x2="312" y2="186" />
+    <line x1="312" y1="174" x2="300" y2="186" />
   </g>
 
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="60" y="104">스트림</text>
-    <text x="700" y="104">되살린 스트림</text>
-    <text x="420" y="52">Member Stream</text>
-    <text x="440" y="172">Member Stream</text>
-    <text x="380" y="204">장비 고장</text>
+    <text x="45" y="104">스트림</text>
+    <text x="471" y="104">되살린 스트림</text>
+    <text x="263" y="46">Member Stream</text>
+    <text x="232" y="204">Member Stream</text>
+    <text x="306" y="204">장비 고장</text>
   </g>
 </svg>

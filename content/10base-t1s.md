@@ -41,6 +41,6 @@ IEEE 802.3da-2026은 IEEE 802.3-2022에 대한 개정으로, 10BASE-T1S 물리 �
 
 ## OPEN Alliance 명세
 
-OPEN Alliance TC14는 차량에서 10BASE-T1S를 쓸 수 있게 하려고 적합성, 상호 운용성, EMC(Electromagnetic Compatibility) 시험 명세와 고급 진단 기능, 시스템 구현 명세, PMD(Physical Medium Dependent) 트랜시버 인터페이스, PLCA 레지스터, 토폴로지 탐색 방법을 정한다. TC14는 TC6와 꾸린 공동 작업 그룹에서 [[mii|MII]]·SPI(Serial Peripheral Interface) 명세의 표준화도 돕는다.[@open-alliance-tc14-2026]
+OPEN Alliance TC14는 차량에서 10BASE-T1S를 쓸 수 있게 하려고 적합성, 상호 운용성, EMC(Electromagnetic Compatibility) 시험 명세와 고급 진단 기능, 시스템 구현 명세, PMD(Physical Medium Dependent) 트랜시버 인터페이스, PLCA 레지스터, 토폴로지 탐색 방법을 정한다. TC14는 [[mii#한 쌍 PHY의 인터페이스|TC6]]와 꾸린 공동 작업 그룹에서 [[mii|MII]]·SPI(Serial Peripheral Interface) 명세의 표준화도 돕는다.[@open-alliance-tc14-2026]
 
 LAN8650/1은 MAC과 10BASE-T1S PHY를 한 칩에 담아, MAC이 없는 마이크로컨트롤러도 10BASE-T1S 네트워크에 붙게 한다. 마이크로컨트롤러와는 4핀 SPI 하나로 잇고, 이더넷 패킷을 OPEN Alliance 10BASE-T1x MAC-PHY Serial Interface 명세에 따라 나누어 보낸다.[@microchip-lan8650-2025]

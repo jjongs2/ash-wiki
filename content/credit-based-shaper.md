@@ -37,7 +37,7 @@ $$
 \mathrm{hiCredit} = \mathrm{maxInterferenceSize} \cdot \frac{\mathrm{idleSlope}}{\mathrm{portTransmitRate}}
 $$
 
-이 Annex는 번호가 가장 큰 트래픽 클래스의 maxInterferenceSize로 포트로 보낼 수 있는 가장 큰 프레임의 크기를 제시하고, 다른 트래픽 클래스에서는 더 높은 트래픽 클래스의 CBS 큐가 전송을 늦출 수 있는 것까지 셈에 넣는다고 제시한다. 이 Annex의 알고리즘에서 credit 값은 hiCredit을 넘지 않는다.[@ieee-802-1q-2022]
+이 Annex는 maxInterferenceSize로, 번호가 가장 큰 트래픽 클래스에서는 포트로 보낼 수 있는 가장 큰 프레임의 크기를 제시하고, 다른 트래픽 클래스에서는 더 높은 트래픽 클래스의 CBS 큐가 전송을 늦출 수 있는 것까지 셈에 넣는다고 제시한다. 이 Annex의 알고리즘에서 credit 값은 hiCredit을 넘지 않는다.[@ieee-802-1q-2022]
 
 ## 트래픽 클래스와의 관계
 

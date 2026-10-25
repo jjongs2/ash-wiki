@@ -1,66 +1,67 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 0 690 230" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 0 528 247" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
   <!-- Flags의 비트: 최상위 비트가 Reboot, 그다음 비트가 Unicast -->
-  <rect x="108.75" y="40.75" width="15" height="22.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <rect x="126.75" y="40.75" width="15" height="22.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="68.75" y="40.75" width="15" height="22.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="86.75" y="40.75" width="15" height="22.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <rect x="144.75" y="40.75" width="16.5" height="22.5" fill="var(--surface, none)" />
-    <rect x="162.75" y="40.75" width="16.5" height="22.5" fill="var(--surface, none)" />
-    <rect x="180.75" y="40.75" width="16.5" height="22.5" fill="var(--surface, none)" />
-    <rect x="198.75" y="40.75" width="16.5" height="22.5" fill="var(--surface, none)" />
-    <rect x="216.75" y="40.75" width="16.5" height="22.5" fill="var(--surface, none)" />
-    <rect x="234.75" y="40.75" width="16.5" height="22.5" fill="var(--surface, none)" />
+    <rect x="104.75" y="40.75" width="16.5" height="22.5" fill="var(--surface, none)" />
+    <rect x="122.75" y="40.75" width="16.5" height="22.5" fill="var(--surface, none)" />
+    <rect x="140.75" y="40.75" width="16.5" height="22.5" fill="var(--surface, none)" />
+    <rect x="158.75" y="40.75" width="16.5" height="22.5" fill="var(--surface, none)" />
+    <rect x="176.75" y="40.75" width="16.5" height="22.5" fill="var(--surface, none)" />
+    <rect x="194.75" y="40.75" width="16.5" height="22.5" fill="var(--surface, none)" />
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1">
-    <line x1="116" y1="38" x2="116" y2="18" />
-    <line x1="134" y1="38" x2="134" y2="18" />
+    <line x1="76" y1="38" x2="76" y2="18" />
+    <line x1="94" y1="38" x2="94" y2="18" />
   </g>
-  <text x="111" y="24" text-anchor="end" font-size="12" fill="var(--text, #727981)">Reboot</text>
-  <text x="139" y="24" font-size="12" fill="var(--text, #727981)">Unicast</text>
+  <text x="71" y="24" text-anchor="end" font-size="12" fill="var(--text, #727981)">Reboot</text>
+  <text x="99" y="24" font-size="12" fill="var(--text, #727981)">Unicast</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4">
-    <line x1="108" y1="66" x2="152" y2="94" />
-    <line x1="252" y1="66" x2="208" y2="94" />
+    <line x1="68" y1="66" x2="96" y2="94" />
+    <line x1="212" y1="66" x2="152" y2="94" />
   </g>
 
   <!-- 메시지: SOME/IP 헤더 뒤에 SD 부분을 가로로 -->
-  <rect x="20" y="96" width="130" height="44" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="85" y="123" text-anchor="middle" fill="var(--text, #727981)">SOME/IP 헤더</text>
-  <rect x="152.75" y="96.75" width="54.5" height="42.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="180" y="123" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">Flags</text>
-  <rect x="210.75" y="96.75" width="78.5" height="42.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="250" y="123" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Reserved</text>
-  <rect x="292" y="96" width="90" height="44" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="337" y="115" text-anchor="middle" font-size="12" fill="var(--text, #727981)">엔트리 배열</text>
-  <text x="337" y="131" text-anchor="middle" font-size="12" fill="var(--text, #727981)">길이</text>
-  <rect x="384" y="96" width="110" height="44" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="439" y="123" text-anchor="middle" fill="var(--text, #727981)">엔트리 배열</text>
-  <rect x="496" y="96" width="90" height="44" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="541" y="115" text-anchor="middle" font-size="12" fill="var(--text, #727981)">옵션 배열</text>
-  <text x="541" y="131" text-anchor="middle" font-size="12" fill="var(--text, #727981)">길이</text>
-  <rect x="588" y="96" width="100" height="44" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="638" y="123" text-anchor="middle" fill="var(--text, #727981)">옵션 배열</text>
+  <rect x="20" y="96" width="74" height="44" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="57" y="115" text-anchor="middle" fill="var(--text, #727981)">SOME/IP</text>
+  <text x="57" y="132" text-anchor="middle" fill="var(--text, #727981)">헤더</text>
+  <rect x="96.75" y="96.75" width="54.5" height="42.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="124" y="123" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">Flags</text>
+  <rect x="154.75" y="96.75" width="66.5" height="42.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="188" y="123" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Reserved</text>
+  <rect x="224" y="96" width="72" height="44" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="260" y="115" text-anchor="middle" font-size="12" fill="var(--text, #727981)">엔트리 배열</text>
+  <text x="260" y="131" text-anchor="middle" font-size="12" fill="var(--text, #727981)">길이</text>
+  <rect x="298" y="96" width="84" height="44" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="340" y="123" text-anchor="middle" fill="var(--text, #727981)">엔트리 배열</text>
+  <rect x="384" y="96" width="72" height="44" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="420" y="115" text-anchor="middle" font-size="12" fill="var(--text, #727981)">옵션 배열</text>
+  <text x="420" y="131" text-anchor="middle" font-size="12" fill="var(--text, #727981)">길이</text>
+  <rect x="458" y="96" width="70" height="44" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="493" y="123" text-anchor="middle" fill="var(--text, #727981)">옵션 배열</text>
 
   <!-- 필드 길이 -->
   <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
-    <text x="180" y="160">8비트</text>
-    <text x="250" y="160">24비트</text>
-    <text x="337" y="160">32비트</text>
-    <text x="541" y="160">32비트</text>
+    <text x="124" y="160">8비트</text>
+    <text x="188" y="160">24비트</text>
+    <text x="260" y="160">32비트</text>
+    <text x="420" y="160">32비트</text>
   </g>
 
   <!-- 헤더의 고정값. 16진수는 0과 x를 다른 tspan에 두고 루트에서 calt를 꺼, Pretendard가 숫자 사이의 x를 ×로 바꾸지 않게 한다 -->
   <g stroke="var(--ink, #727981)" stroke-width="1">
-    <path d="M32 142 V208" />
-    <path d="M32 158 H40" />
+    <path d="M32 142 V225" />
     <path d="M32 175 H40" />
     <path d="M32 192 H40" />
-    <path d="M32 208 H40" />
+    <path d="M32 209 H40" />
+    <path d="M32 225 H40" />
   </g>
   <g font-size="12" fill="var(--text, #727981)">
-    <text x="45" y="162">Service ID는 0xFFFF</text>
-    <text x="45" y="179">Method ID는 0x8100</text>
-    <text x="45" y="196">Message Type은 0x02</text>
-    <text x="45" y="213">Return Code는 0x00</text>
+    <text x="45" y="179">Service ID는 0xFFFF</text>
+    <text x="45" y="196">Method ID는 0x8100</text>
+    <text x="45" y="213">Message Type은 0x02</text>
+    <text x="45" y="230">Return Code는 0x00</text>
   </g>
 </svg>

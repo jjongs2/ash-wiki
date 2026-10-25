@@ -16,7 +16,7 @@ IEEE 802.1ak-2007이 정한 MRP(Multiple Registration Protocol)는 MRP 응용의
 
 IEEE 802.1Q의 MRP에서 참여자는 속성을 선언하거나 철회하고, 선언을 받은 다른 참여자는 그 속성을 등록하거나 등록을 푼다. 브리지 포트에 등록된 속성은 활성 토폴로지에 든 그 브리지의 다른 포트에서 다시 선언되므로, 선언은 응용의 모든 참여자에게 퍼진다. IEEE 802.1Q-2022는 MMRP, MVRP에 이어 MSRP(Multiple Stream Registration Protocol)를 MRP 응용으로 정하며, MSRP는 데이터 스트림의 특성을 등록하고 예약 요청을 퍼뜨려, QoS를 보장하도록 브리지 자원을 예약한다.[@ieee-802-1q-2022]
 
-SRP는 스트림 예약에 MMRP, MVRP, MSRP 세 신호 프로토콜을 쓴다. MVRP는 스트림이 나오는 VLAN의 멤버십을 선언하는 데 쓰며, listener는 MSRP로 Listener Ready를 선언하기 전에 그 VLAN의 멤버십을 MVRP로 선언한다. MMRP는 talker 선언이 퍼지는 범위를 제한하는 데 쓸 수 있다. talker pruning을 켠 브리지는 스트림의 목적지 주소가 MMRP 등으로 등록된 포트로만 talker 선언을 넘긴다.[@ieee-802-1q-2022]
+SRP는 스트림 예약에 MMRP, MVRP, MSRP 세 신호 프로토콜을 쓴다. MVRP는 스트림이 나오는 VLAN의 멤버십을 선언하는 데 쓰며, [[avb#Talker와 listener|listener]]는 MSRP로 Listener Ready를 선언하기 전에 그 VLAN의 멤버십을 MVRP로 선언한다. MMRP는 talker 선언이 퍼지는 범위를 제한하는 데 쓸 수 있다. talker pruning을 켠 브리지는 스트림의 목적지 주소가 MMRP 등으로 등록된 포트로만 talker 선언을 넘긴다.[@ieee-802-1q-2022]
 
 Micrel의 KSZ956X MRP 개발자 안내서에 따르면 MRP는 스위치를 거쳐 속성을 전달하는 틀이고, MMRP, MVRP, MSRP는 그 위에서 각각 MAC 속성, VLAN 속성, SRP 속성을 전달한다. KSZ956X는 AVB 스트림 예약을 위해 셋을 함께 다룬다.[@micrel-ksz956x-mrp-2014]
 
@@ -56,7 +56,7 @@ talker 속성의 등록이 풀리면 KSZ956X MRP 드라이버는 그 leave 메�
 
 ## 예약 과정
 
-talker는 Talker Advertise로 자기가 낼 수 있는 스트림의 특성을 알리고, 브리지는 이를 등록해 일부 정보를 고친 뒤 다른 포트로 넘긴다. 경로의 브리지에 대역폭이나 자원이 모자라면, 그 브리지는 Talker Advertise를 Talker Failed로 바꿔 넘긴다. Talker Advertise를 받은 listener는 스트림을 받을 준비가 되면 Listener Ready를 talker 쪽으로 돌려보낸다. 브리지는 StreamID로 Listener Ready를 Talker Advertise와 짝지어 Talker Advertise를 등록한 포트로만 넘기고, 필요한 대역폭을 예약하며 큐와 필터링 데이터베이스를 설정한다. 대역폭이나 자원이 모자라면 Listener Ready는 Listener Asking Failed로 바뀐다. talker가 받은 listener 선언을 합친 결과가 Listener Ready나 Listener Ready Failed면 talker는 곧바로 스트림 전송을 시작할 수 있고, Listener Asking Failed면 전송을 멈춘다.[@ieee-802-1q-2022]
+talker는 Talker Advertise로 자기가 낼 수 있는 스트림의 특성을 알리고, 브리지는 이를 등록해 일부 정보를 고친 뒤 다른 포트로 넘긴다. 경로의 브리지에 대역폭이나 자원이 모자라면, 그 브리지는 Talker Advertise를 Talker Failed로 바꿔 넘긴다. Talker Advertise를 받은 listener는 스트림을 받을 준비가 되면 Listener Ready를 talker 쪽으로 돌려보낸다. 브리지는 StreamID로 Listener Ready를 Talker Advertise와 짝지어, Listener Ready를 Talker Advertise를 등록한 포트로만 넘기고, 필요한 대역폭을 예약하며 큐와 [[ethernet-switch#주소 학습|필터링 데이터베이스]]를 설정한다. 대역폭이나 자원이 모자라면 Listener Ready는 Listener Asking Failed로 바뀐다. talker가 받은 listener 선언을 합친 결과가 Listener Ready나 Listener Ready Failed면 talker는 곧바로 스트림 전송을 시작할 수 있고, Listener Asking Failed면 전송을 멈춘다.[@ieee-802-1q-2022]
 
 ![[diagrams/srp-reservation-sequence.svg]]
 

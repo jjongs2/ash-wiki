@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-06
 ---
 
-**이더넷 슬립과 웨이크업**은 차량용 [[ethernet|이더넷]] 링크를 재웠다가 필요할 때 다시 깨우는 기능이다. OPEN Alliance TC10은 차량 네트워크가 일부 구간을 재웠다가 필요할 때 깨우는 partial networking에 크게 기대므로, 차량 쓰임에 맞춘 슬립 모드와 웨이크업 메커니즘을 마련하는 일을 맡는다.[@open-alliance-tc10-2026]
+**이더넷 슬립과 웨이크업**은 차량용 [[ethernet|이더넷]] 링크를 재웠다가 필요할 때 다시 깨우는 기능이다. OPEN Alliance TC10은 차량 네트워크가 일부 구간을 재웠다가 필요할 때 깨우는 [[autosar-network-management#Partial networking|partial networking]]에 크게 기대므로, 차량 쓰임에 맞춘 슬립 모드와 웨이크업 메커니즘을 마련하는 일을 맡는다.[@open-alliance-tc10-2026]
 
 ## OPEN Alliance TC10
 
@@ -13,7 +13,7 @@ TC10은 이더넷 슬립·웨이크업 개념이 갖출 기능으로 아래를 �
 
 - 계층 1에서 네트워크 전체를 깨우도록 빠른 웨이크업과 웨이크업 요청 전달을 지원한다.
 - 네트워크의 고른 부분을 재우도록 제어된 링크 종료를 지원한다.
-- 네트워크 전체 웨이크업에서 링크 트레이닝 시작까지의 시간에 요구를 둔다.
+- 네트워크 전체 웨이크업에서 [[100base-t1#링크 수립|링크 트레이닝]] 시작까지의 시간에 요구를 둔다.
 - 웨이크·슬립 응용을 위한 전기 I/O 인터페이스를 정한다.
 - 표준 MAC(Medium Access Control) 인터페이스와 [[autosar|AUTOSAR]] [[autosar-network-management|네트워크 관리]]를 따른다.
 - 간섭 잡음이 있어도 뜻하지 않게 깨지 않는다.

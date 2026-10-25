@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="47 24 712 219" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6.5 14 523 260.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -8,36 +8,40 @@
 
   <!-- 줄 이름 -->
   <g fill="var(--text, #727981)" text-anchor="end">
-    <text x="156" y="53">받는 포트</text>
-    <text x="156" y="104">보내는 포트</text>
-    <text x="156" y="120" font-size="12">cut-through</text>
-    <text x="156" y="170">보내는 포트</text>
-    <text x="156" y="186" font-size="12">store-and-forward</text>
+    <text x="112" y="53">받는 포트</text>
+    <text x="112" y="104">보내는 포트</text>
+    <text x="112" y="120" font-size="12">cut-through</text>
+    <text x="112" y="170">보내는 포트</text>
+    <text x="112" y="186" font-size="12">store-and-forward</text>
   </g>
 
   <!-- 받는 프레임 -->
-  <rect x="170.75" y="34.75" width="58.5" height="26.5" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
-  <text x="200" y="53" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">64바이트</text>
-  <rect x="232" y="34" width="218" height="28" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="341" y="53" text-anchor="middle" font-size="12" fill="var(--text, #727981)">나머지와 FCS</text>
+  <rect x="124.75" y="34.75" width="56.5" height="26.5" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
+  <text x="153" y="53" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">64바이트</text>
+  <rect x="184" y="34" width="120" height="28" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="244" y="53" text-anchor="middle" font-size="12" fill="var(--text, #727981)">나머지와 FCS</text>
 
   <!-- cut-through -->
-  <rect x="232" y="98" width="280" height="28" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="372" y="117" text-anchor="middle" font-size="12" fill="var(--text, #727981)">프레임 전달</text>
+  <rect x="184" y="98" width="180" height="28" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="244" y="117" text-anchor="middle" font-size="12" fill="var(--text, #727981)">프레임 전달</text>
 
-  <!-- 보내기 시작하는 때. 칸 위로 지나가도록 칸 뒤에 그린다 -->
+  <!-- 보내기 시작하는 때. 칸 위로 지나가도록 칸 뒤에 그리고, 설명 글자 자리는 비운다 -->
   <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
-    <line x1="231" y1="64" x2="231" y2="96" />
-    <line x1="451" y1="64" x2="451" y2="162" />
+    <line x1="183" y1="64" x2="183" y2="96" />
+    <line x1="305" y1="64" x2="305" y2="131" />
+    <line x1="305" y1="151" x2="305" y2="162" />
   </g>
-  <text x="232" y="144" font-size="12" fill="var(--text, #727981)">KSZ9477S: 처음 64바이트를 받은 뒤 전달을 시작한다</text>
+  <text x="184" y="144" font-size="12" fill="var(--text, #727981)">KSZ9477S: 처음 64바이트를 받은 뒤 전달을 시작한다</text>
 
   <!-- store-and-forward -->
-  <rect x="452" y="164" width="280" height="28" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="592" y="183" text-anchor="middle" font-size="12" fill="var(--text, #727981)">프레임 전달</text>
-  <text x="452" y="210" font-size="12" fill="var(--text, #727981)">프레임을 다 받고 FCS를 검사한 뒤 전달한다</text>
+  <rect x="306" y="164" width="180" height="28" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="396" y="183" text-anchor="middle" font-size="12" fill="var(--text, #727981)">프레임 전달</text>
+  <text x="486" y="210" text-anchor="end" font-size="12" fill="var(--text, #727981)">프레임을 다 받고 FCS를 검사한 뒤 전달한다</text>
 
   <!-- 시간 -->
-  <line x1="170" y1="228" x2="748" y2="228" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="156" y="232" text-anchor="end" font-size="12" fill="var(--text, #727981)">시간</text>
+  <line x1="124" y1="228" x2="496" y2="228" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="112" y="232" text-anchor="end" font-size="12" fill="var(--text, #727981)">시간</text>
+
+  <!-- 범례 -->
+  <text x="124" y="254" font-size="12" fill="var(--text, #727981)">점선: 전달을 시작하는 때</text>
 </svg>

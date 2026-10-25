@@ -21,9 +21,11 @@ verified: 2026-09-29
 
 [[ieee-802-3|IEEE 802.3]]-2022는 송신할 때 MAC 부계층이 프레임 앞에 프리앰블과 SFD를 붙이고, 수신할 때 MAC 부계층이 SFD까지의 앞 비트를 버리도록 정한다.[@ieee-802-3-2022] STM32F107의 이더넷 MAC은 송신할 때 `10101010` 패턴을 7바이트 되풀이한 프리앰블과 SFD를 만들어 붙이고, 수신할 때 떼어 낸다.[@st-rm0008-2021]
 
-IEEE 802.3-2022는 목적지 주소부터 FCS까지를 MAC 프레임으로, MAC 프레임 앞에 프리앰블과 SFD를 붙이고 물리 계층에 맞게 부호화한 것을 **패킷**으로 정의해 둘을 구분한다. 이 표준은 물리 계층마다 매체 위에서 전송의 시작과 끝을 표시하는 부호를 따로 정한다. 100BASE-X에서는 SSD(Start-of-Stream Delimiter)가 코드 그룹 /J/K/이고 ESD(End-of-Stream Delimiter)가 /T/R/이며, 송신할 때 프리앰블의 첫 8비트를 SSD로 바꾸고 수신할 때 되돌린다. [[100base-t1|100BASE-T1]]에서는 SSD와 ESD가 저마다 삼진 심볼 쌍 세 개로 이뤄지며, (0, 0)이 세 번 이어지면 SSD, (0, 0), (0, 0), (1, 1)이면 ESD다.[@ieee-802-3-2022]
+IEEE 802.3-2022는 목적지 주소부터 FCS까지를 MAC 프레임으로, MAC 프레임 앞에 프리앰블과 SFD를 붙이고 물리 계층에 맞게 부호화한 것을 **패킷**으로 정의해 둘을 구분한다. 이 표준은 물리 계층마다 매체 위에서 전송의 시작과 끝을 표시하는 부호를 따로 정한다. [[100base-tx#송신과 수신|100BASE-X]]에서는 SSD(Start-of-Stream Delimiter)가 코드 그룹 /J/K/이고 ESD(End-of-Stream Delimiter)가 /T/R/이며, 송신할 때 프리앰블의 첫 8비트를 SSD로 바꾸고 수신할 때 되돌린다. [[100base-t1|100BASE-T1]]에서는 SSD와 ESD가 저마다 삼진 심볼 쌍 세 개로 이뤄지며, (0, 0)이 세 번 이어지면 SSD, (0, 0), (0, 0), (1, 1)이면 ESD다.[@ieee-802-3-2022]
 
 ![[diagrams/ethernet-mac-frame-packet-delimiters.svg]]
+
+## 프레임 크기
 
 Microchip AN1120에 따르면 프레임 크기에는 보통 프리앰블과 SFD를 넣지 않는다.[@microchip-an1120-2008] 태그 없는 프레임의 길이는 최소 64옥텟, 최대 1518옥텟이다.[@st-rm0008-2021][@microchip-an1120-2008]
 
@@ -33,9 +35,9 @@ Microchip AN1120에 따르면 반이중 [[bus-access-method#경쟁 방식|CSMA/C
 
 IEEE 802.3-2022는 충돌 창 $t_\mathrm{slot}$이 물리 계층의 왕복 전파 시간 $t_\mathrm{rt}$와 MAC의 최대 jam 시간 $t_\mathrm{jam}$에 대해 $t_\mathrm{slot} > t_\mathrm{rt} + t_\mathrm{jam}$을 만족하도록 정한다. **jam**은 충돌을 감지한 스테이션이 충돌이 다른 송신 스테이션에도 감지될 만큼 이어지도록 보내는 비트열이다. 1000 Mbit/s 반이중에서는 최소 프레임 크기만으로 CSMA/CD가 제대로 동작하기에 모자라므로, MAC이 충돌 창보다 짧은 프레임 뒤에 확장 비트를 붙여 송신이 적어도 충돌 창 동안 이어지게 하고, 확장 비트를 보내는 동안에도 충돌을 감시한다.[@ieee-802-3-2022]
 
-이 표준은 반이중에서 충돌이 없을 때 가장 짧은 유효 전송이 충돌 창 이상이어야 하고, 버스트 안에서는 첫 프레임이 충돌 창 이상, 이어지는 프레임이 최소 프레임 크기 이상이어야 한다고 정한다. 그보다 짧은 것은 충돌로 생긴 조각으로 보아 수신 측이 버리고, 버린 것을 오류로 알리지 않는다. 전이중에서는 충돌이 생기지 않지만, MAC은 최소 프레임 크기보다 짧은 프레임을 마찬가지로 버리고 오류로 알리지 않는다. 이 표준은 리피터 관리 속성 aRunts가 충돌 없이 끝난 캐리어 이벤트 가운데 아주 짧은 이벤트보다는 길지만 옥텟 수가 64보다 적거나 유효 패킷의 최소 길이에 못 미치는 것을 세도록 정한다.[@ieee-802-3-2022]
+이 표준은 반이중에서 충돌이 없을 때 가장 짧은 유효 전송이 충돌 창 이상이어야 하고, 버스트 안에서는 첫 프레임이 충돌 창 이상, 이어지는 프레임이 최소 프레임 크기 이상이어야 한다고 정한다. 그보다 짧은 것은 충돌로 생긴 조각으로 보아 수신 측이 버리고, 버린 것을 오류로 알리지 않는다. 전이중에서는 충돌이 생기지 않지만, MAC은 최소 프레임 크기보다 짧은 프레임을 마찬가지로 버리고 오류로 알리지 않는다. 이 표준은 [[ethernet-switch#리피터, 브리지, 라우터와의 차이|리피터]] 관리 속성 aRunts가 충돌 없이 끝난 캐리어 이벤트 가운데 아주 짧은 이벤트보다는 길지만 옥텟 수가 64보다 적거나 유효 패킷의 최소 길이에 못 미치는 것을 세도록 정한다.[@ieee-802-3-2022]
 
-이 표준은 받은 MAC 프레임이 maxFrameSizeLimit보다 크면 MAC이 수신 상태를 frameTooLong으로 하고, 계층 관리를 구현했으면 aFrameTooLongErrors로 세도록 정한다. maxFrameSizeLimit는 1518옥텟, 여기에 Q 태그 앞머리 4옥텟을 더한 값, envelope 프레임의 최대 크기 2000옥텟 가운데 하나이고, 이 표준은 새 구현에 envelope 프레임의 최대 크기를 쓰기를 권한다.[@ieee-802-3-2022]
+이 표준은 받은 MAC 프레임이 maxFrameSizeLimit보다 크면 MAC이 수신 상태를 frameTooLong으로 하고, 계층 관리를 구현했으면 aFrameTooLongErrors로 세도록 정한다. maxFrameSizeLimit는 1518옥텟, 1518옥텟에 Q 태그 앞머리 4옥텟을 더한 값, envelope 프레임의 최대 크기 2000옥텟의 세 값 가운데 하나이고, 이 표준은 새 구현에 envelope 프레임의 최대 크기를 쓰기를 권한다.[@ieee-802-3-2022]
 
 ## 길이/타입
 
@@ -49,7 +51,7 @@ IEEE 802.3-2022는 길이 해석과 타입 해석이 서로 배타적이라고 �
 
 RFC 894 캡슐화는 이더넷 위의 IP 데이터그램을 타입 방식으로 싣는다. 타입 필드 값은 `0x0800`이고, 데이터 필드에는 IP 헤더와 그 뒤의 데이터가 바로 들어간다. 데이터 필드가 최소 46옥텟에 못 미치면 0인 옥텟으로 채우며, 이 패드는 IP 패킷에 들지 않는다.[@ietf-rfc-894-1984]
 
-RFC 1042 캡슐화는 IEEE 802 네트워크 위의 IP 데이터그램과 ARP 메시지를 IEEE 802.2 LLC(Logical Link Control) Type 1의 UI(Unnumbered Information) 형식에 SNAP(Sub-Network Access Protocol) 확장을 붙여 싣는다. DSAP(Destination Service Access Point)와 SSAP(Source Service Access Point)는 SNAP에 배정된 전역 값 170, 제어 필드는 3이고, SNAP의 24비트 조직 코드는 0이며, 나머지 16비트에 EtherType이 들어간다. LLC와 SNAP 헤더가 8옥텟을 차지하므로, 10BASE5의 최대 프레임 1518옥텟에서 MAC 헤더와 트레일러 18옥텟을 빼면 IP 데이터그램에 남는 것은 1492옥텟이다.[@ietf-rfc-1042-1988]
+RFC 1042 캡슐화는 IEEE 802 네트워크 위의 IP 데이터그램과 ARP 메시지를 IEEE 802.2 LLC(Logical Link Control) Type 1의 UI(Unnumbered Information) 형식에 SNAP(Sub-Network Access Protocol) 확장을 붙여 싣는다. DSAP(Destination Service Access Point)와 SSAP(Source Service Access Point)는 SNAP에 배정된 전역 값 170, 제어 필드는 3이고, SNAP의 24비트 조직 코드는 0이며, 나머지 16비트에 EtherType이 들어간다. LLC와 SNAP 헤더가 8옥텟을 차지하므로, [[ieee-802-3#개정 이력|10BASE5]]의 최대 프레임 1518옥텟에서 MAC 헤더와 트레일러 18옥텟과 이 8옥텟을 빼면 IP 데이터그램에 남는 것은 1492옥텟이다.[@ietf-rfc-1042-1988]
 
 10 Mbit/s 이더넷 케이블에 연결된 인터넷 호스트는 RFC 894 캡슐화로 패킷을 보내고 받을 수 있어야 하고(MUST), RFC 894 패킷 사이에 섞여 오는 RFC 1042 패킷을 받을 수 있어야 하며(SHOULD), RFC 1042 캡슐화로 보낼 수도 있다(MAY). 두 캡슐화로 모두 보낼 수 있는 호스트는 어느 쪽으로 보낼지 고르는 설정 스위치를 두고, 그 기본값을 RFC 894로 해야 한다. RFC 1122는 이더넷의 [[mtu|MTU]]를 1500, IEEE 802.3의 MTU를 1492로 둔다.[@ietf-rfc-1122-1989]
 

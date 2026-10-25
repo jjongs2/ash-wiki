@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-06
 ---
 
-**이더넷 흐름 제어**(flow control)는 전이중 [[ethernet|이더넷]] 링크에서 한쪽이 링크 상대의 데이터 프레임 송신을 정한 시간 동안 막는 기능이다. [[ieee-802-3|IEEE 802.3]]-2022는 이를 위해 데이터 프레임 전체의 송신을 막는 PAUSE와, 우선순위별로 막는 PFC(Priority-based Flow Control)를 둔다.[@ieee-802-3-2022]
+**이더넷 흐름 제어**(flow control)는 전이중 [[ethernet|이더넷]] 링크에서 한쪽이 링크 상대의 데이터 프레임 송신을 정한 시간 동안 막는 기능이다. [[ieee-802-3|IEEE 802.3]]-2022는 이를 위해 데이터 프레임 전체의 송신을 막는 PAUSE와, [[traffic-class#우선순위와 트래픽 클래스의 대응|우선순위]]별로 막는 PFC(Priority-based Flow Control)를 둔다.[@ieee-802-3-2022]
 
 ## PAUSE
 
@@ -17,11 +17,11 @@ verified: 2026-10-06
 
 이 표준은 [[ethernet-phy#자동 협상|자동 협상]]의 기본 링크 코드워드에 PAUSE 비트와 ASM_DIR 비트를 두고, PAUSE 비트가 대칭 PAUSE 기능을, ASM_DIR 비트가 비대칭 PAUSE 지원을 나타내도록 정하며, ASM_DIR 비트가 설정되면 PAUSE 비트의 값이 PAUSE 프레임을 지원하는 방향을 나타내게 한다. 비대칭 PAUSE 설정에서는 PAUSE 수신 기능과 송신 기능을 따로 켠다.[@ieee-802-3-2022]
 
-이 표준은 [[frame-preemption|프레임 선점]]의 eMAC이나 pMAC에 붙은 MAC Control 부계층이 PAUSE를 만들지 않도록 정한다.[@ieee-802-3-2022]
+이 표준은 프레임 선점의 [[frame-preemption#Express와 preemptable|eMAC이나 pMAC]]에 붙은 MAC Control 부계층이 PAUSE를 만들지 않도록 정한다.[@ieee-802-3-2022]
 
 IEEE 802.1BA-2021은 흐름 제어가 [[avb|AVB]]의 지연 보장을 깨뜨릴 수 있어, 흐름 제어를 지원하는 AVB 시스템이 오디오·비디오 스트림 포트에서 MAC Control PAUSE를 끄고 [[avb#SR 클래스|SR 클래스]]의 우선순위에 PFC를 켠 포트와 그 SR 클래스의 SRPdomainBoundaryPort 파라미터를 TRUE로 두게 한다.[@ieee-802-1ba-2021]
 
-KSZ9477S는 전이중 연결에서 MAC Control PAUSE 프레임을 보내고 받는다. 어느 포트로 PAUSE 프레임을 받으면 그 프레임이 지정한 타이머가 끝날 때까지 그 포트로 다음 일반 프레임을 보내지 않고, 타이머가 끝나기 전에 PAUSE 프레임을 또 받으면 타이머를 새 값으로 바꾼다. 흐름 제어를 받는 동안에는 장치가 만든 흐름 제어 패킷만 보낸다. 송신 방향에서 KSZ9477S는 버퍼와 송신 큐 같은 자원의 여유를 보고 흐름 제어를 걸며, 이때 최대 pause_time을 담은 PAUSE 프레임을 보내고, 자원이 풀리면 pause_time이 0인 흐름 제어 프레임을 보내 송신을 다시 열게 한다. 흐름 제어가 거듭 켜졌다 꺼지지 않도록 히스테리시스를 둔다.[@microchip-ksz9477s-2019]
+KSZ9477S는 전이중 연결에서 MAC Control PAUSE 프레임을 보내고 받는다. 어느 포트로 PAUSE 프레임을 받으면 그 프레임이 지정한 타이머가 끝날 때까지 그 포트로 다음 일반 프레임을 보내지 않고, 타이머가 끝나기 전에 PAUSE 프레임을 또 받으면 타이머를 새 값으로 바꾼다. 흐름 제어를 받는 동안에는 장치가 만든 흐름 제어 프레임만 보낸다. 송신 방향에서 KSZ9477S는 버퍼와 송신 큐 같은 자원의 여유를 보고 흐름 제어를 걸며, 이때 최대 pause_time을 담은 PAUSE 프레임을 보내고, 자원이 풀리면 pause_time이 0인 흐름 제어 프레임을 보내 송신을 다시 열게 한다. 흐름 제어가 거듭 켜졌다 꺼지지 않도록 히스테리시스를 둔다.[@microchip-ksz9477s-2019]
 
 ![[diagrams/ksz9477s-pause-flow-control.svg]]
 
