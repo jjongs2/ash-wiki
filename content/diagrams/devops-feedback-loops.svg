@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="41.5 6.5 559 191" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="41.5 6.5 519 191" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -9,23 +9,23 @@
   <!-- 개발과 운영 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="200" y="78" width="120" height="44" rx="2" />
-    <rect x="460" y="78" width="120" height="44" rx="2" />
+    <rect x="420" y="78" width="120" height="44" rx="2" />
   </g>
   <g font-size="14" text-anchor="middle" fill="var(--text, #727981)">
     <text x="260" y="105">개발</text>
-    <text x="520" y="105">운영</text>
+    <text x="480" y="105">운영</text>
   </g>
 
   <!-- 흐름 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
-    <path d="M260 78 V44 H520 V76" />
-    <path d="M520 122 V156 H260 V124" />
+    <path d="M260 78 V44 H480 V76" />
+    <path d="M480 122 V156 H260 V124" />
     <path d="M200 92 H160 V108 H198" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="390" y="36">빌드·테스트·배포 자동화</text>
-    <text x="390" y="66">작은 변경 단위를 필요할 때</text>
-    <text x="390" y="176">운영에서 오는 피드백: 모니터링·로깅</text>
+    <text x="370" y="36">빌드·테스트·배포 자동화</text>
+    <text x="370" y="66">작은 변경 단위를 필요할 때 내보냄</text>
+    <text x="370" y="176">운영에서 오는 피드백: 모니터링·로깅</text>
   </g>
   <g text-anchor="end" fill="var(--text, #727981)">
     <text x="150" y="96">잦은 반복의 피드백</text>

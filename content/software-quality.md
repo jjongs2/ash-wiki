@@ -9,7 +9,7 @@ verified: 2026-10-02
 
 ## 제품 품질과 프로세스 품질
 
-이 표준은 [[software-quality-model#SQuaRE|SQuaRE]](Systems and software Quality Requirements and Evaluation) 계열이 다루는 시스템·소프트웨어 제품 품질을, ISO 9000 계열이 다루는 프로세스의 품질경영과 구분한다.[@iso-iec-25000-obp-2014] 두 품질은 표준마다 이렇게 정의된다.
+ISO/IEC 25000은 [[software-quality-model#SQuaRE|SQuaRE]](Systems and software Quality Requirements and Evaluation) 계열이 다루는 시스템·소프트웨어 제품 품질을, ISO 9000 계열이 다루는 프로세스의 품질경영과 구분한다.[@iso-iec-25000-obp-2014] 두 품질은 표준마다 이렇게 정의된다.
 
 - **프로세스 품질**: ISO/IEC 33001:2015는 프로세스가 정해진 맥락에서 쓰일 때 이해관계자의 명시된 요구와 암묵적 요구를 충족하는 능력으로 정의한다.[@iso-iec-33001-obp-2015]
 - **제품 품질**: ISO/IEC 25002:2024는 시스템이나 그 구성요소가 정해진 조건에서 쓰일 때 명시된 품질 요구와 암묵적 품질 요구를 충족하는 능력으로 정의한다.[@iso-iec-25002-obp-2024]

@@ -5,14 +5,14 @@ tags:
 verified: 2026-10-01
 ---
 
-**ASIL**(Automotive Safety Integrity Level)은 [[iso-26262|ISO 26262]]가 [[safety-lifecycle#ISO 26262의 안전 생명주기|아이템]]이나 요소에 적용할 요구사항과 안전 조치를 정해 불합리한 리스크를 피하려고 두는 네 등급 가운데 하나다. ASIL D가 가장 엄격하고 ASIL A가 가장 덜 엄격하다.[@iso-26262-1-obp-2018]
+**ASIL**(Automotive Safety Integrity Level)은 [[iso-26262|ISO 26262]]가 [[safety-lifecycle#ISO 26262의 안전 생명주기|아이템]]이나 [[safety-element-out-of-context#요소와 안전 관련 요소|요소]]에 적용할 요구사항과 안전 조치를 정해 불합리한 리스크를 피하려고 두는 네 등급 가운데 하나다. ASIL D가 가장 엄격하고 ASIL A가 가장 덜 엄격하다.[@iso-26262-1-obp-2018]
 
 ## S·E·C 파라미터
 
 ASIL은 [[hazard-analysis-and-risk-assessment|HARA]]에서 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]]과 함께 정한다. ISO 26262-1:2018은 HARA의 파라미터 셋을 다음처럼 정의한다.[@iso-26262-1-obp-2018]
 
 - **심각도**(severity, S): 잠재적 해저드 사건에서 한 명 이상이 입을 수 있는 해의 정도를 추정한 값
-- **노출**(exposure, E): 분석하는 failure mode와 겹치면 위험해질 수 있는 운용 상황에 놓인 상태
+- **노출**(exposure, E): 분석하는 [[safety-analysis#FMEA|failure mode]]와 겹치면 위험해질 수 있는 운용 상황에 놓인 상태
 - **통제 가능성**(controllability, C): 관련된 사람이 제때 반응해 특정한 해나 손상을 피할 수 있는 능력. 관련된 사람에는 운전자, 승객, 차 밖의 사람이 들 수 있고, 외부 조치가 그 반응을 도울 수 있다.[@iso-26262-1-obp-2018]
 
 이 표준은 QM(Quality Management)을 ASIL로 보지 않지만, HARA에서 QM을 지정할 수 있게 한다.[@iso-26262-1-obp-2018]
@@ -31,7 +31,7 @@ ISO 26262-9:2018은 ASIL tailoring에 관한 요구사항 분해와, [[freedom-f
 
 ## ASIL capability
 
-ISO 26262-1:2018은 **ASIL capability**를 아이템이나 요소가 주어진 ASIL이 할당된, 가정한 안전 요구사항을 만족하는 능력으로 정의한다. 정의의 주석은 하드웨어 안전 요구사항의 일부로서, 필요하면 요소에 할당된 fault 메트릭의 random hardware 목표값을 이루는 것도 여기에 든다고 제시한다.[@iso-26262-1-obp-2018] 특정 아이템을 전제하지 않고 안전 요구사항을 가정해 개발하는 요소는 [[safety-element-out-of-context|SEooC]]에서 다룬다.
+ISO 26262-1:2018은 **ASIL capability**를 아이템이나 요소가 주어진 ASIL이 할당된, 가정한 안전 요구사항을 만족하는 능력으로 정의한다. 정의의 주석은 하드웨어 안전 요구사항의 일부로서, 필요하면 요소에 할당된 [[hardware-architectural-metrics|fault 메트릭]]의 random hardware 목표값을 이루는 것도 여기에 든다고 제시한다.[@iso-26262-1-obp-2018] 특정 아이템을 전제하지 않고 안전 요구사항을 가정해 개발하는 요소는 [[safety-element-out-of-context|SEooC]]에서 다룬다.
 
 ## 모터사이클의 안전 무결성 등급
 

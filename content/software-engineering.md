@@ -21,7 +21,7 @@ ISO/IEC/IEEE 12207:2026은 소프트웨어를 컴퓨터 시스템의 운용에 �
 
 ## 본질적 어려움
 
-Brooks는 1986년 기술 보고서 "No Silver Bullet"에서 소프트웨어 개발의 어려움을, 소프트웨어의 본성에 내재한 본질(essence)과 그때의 제작에 따르지만 내재하지는 않는 부수(accidents)로 나누었다. 그는 본질의 내재적 성질로 넷을 들었다.[@brooks-no-silver-bullet-1986]
+Brooks는 1986년 기술 보고서 "No Silver Bullet"에서 소프트웨어 개발의 어려움을, 소프트웨어의 본성에 내재한 본질(essence)과 당시의 제작에 따르지만 내재하지는 않는 부수(accidents)로 나누었다. 그는 본질의 내재적 성질로 넷을 들었다.[@brooks-no-silver-bullet-1986]
 
 - complexity: 같은 부분이 거의 없고, 규모를 키우면 서로 다른 요소의 수가 늘며 요소들이 비선형으로 상호작용해 전체 복잡도가 규모보다 훨씬 빠르게 커진다.
 - conformity: 사람이 만든 여러 제도와 시스템의 인터페이스에 맞춰야 해서, 필연이 아닌 임의의 복잡성을 떠안는다.
@@ -32,7 +32,7 @@ Brooks는 10년 안에 생산성, 신뢰성, 단순성 가운데 어느 하나�
 
 ## 전문 분야로 자리 잡기
 
-IEEE Computer Society는 1972년 Transactions on Software Engineering을 처음 펴냈고, 1976년 소프트웨어 공학 표준을 만드는 위원회를 두었다. IEEE Computer Society 이사회와 ACM Council이 각각 승인한 1993년의 두 동의로 두 단체의 공동 위원회가 꾸려졌다. 운영 위원회(steering committee)는 지식 체계와 권장 실무, 윤리와 전문 표준, 교육과정 세 분야에 작업반을 두었고, SWEBOK 2004년판은 그 가운데 첫째인 지식 체계와 권장 실무를 담았다.[@ieee-swebok-v4-0a-2026]
+IEEE Computer Society는 1972년 Transactions on Software Engineering을 처음 펴냈고, 1976년 소프트웨어 공학 표준을 만드는 위원회를 두었다. IEEE Computer Society 이사회와 ACM Council이 각각 승인한 1993년의 두 동의로 두 단체의 공동 위원회가 꾸려졌다. 운영 위원회(steering committee)는 지식 체계와 권장 실무, 윤리와 전문 표준, 교육과정 세 분야에 작업반을 두었고, SWEBOK 2004년판은 그 세 분야 가운데 첫째인 지식 체계와 권장 실무를 담았다.[@ieee-swebok-v4-0a-2026]
 
 ACM과 IEEE Computer Society의 공동 작업반(Joint Task Force)이 권고하고 두 단체가 함께 승인한 Software Engineering Code of Ethics and Professional Practice 5.2는 소프트웨어 엔지니어가 지킬 여덟 원칙을 둔다.[@acm-software-engineering-code-2026]
 

@@ -12,7 +12,7 @@ AUTOSAR R25-11 Platform Health Management 명세는 **Platform Health Management
 
 ## 감시
 
-Platform Health Management는 Supervised Entity를 감시한다. Supervised Entity는 프로세스의 전체나 일부에 대응하고, 감시는 그 프로세스가 활성인 동안 이어진다. Supervised Entity를 감시하는 수단은 Alive Supervision, Deadline Supervision, Logical Supervision 셋이고, 감시는 Supervised Entity 인스턴스가 보고하는 체크포인트를 바탕으로 한다.[@autosar-ap-sws-platformhealthmanagement-2025] 세 감시의 뜻은 [[safety-mechanism#오류 검출 기법|안전 메커니즘]]에서 다룬다.
+Platform Health Management는 Supervised Entity를 감시한다. Supervised Entity는 프로세스의 전체나 일부에 대응하고, 감시는 그 프로세스가 활성인 동안 이어진다. Supervised Entity를 감시하는 수단은 Alive Supervision, Deadline Supervision, Logical Supervision 셋이고, 감시는 Supervised Entity 인스턴스가 보고하는 [[safety-mechanism#Watchdog|체크포인트]]를 바탕으로 한다.[@autosar-ap-sws-platformhealthmanagement-2025] 세 감시의 뜻은 안전 메커니즘의 [[safety-mechanism#오류 검출 기법|오류 검출 기법]]에서 다룬다.
 
 감시 결과는 Alive, Deadline, Logical 감시마다 하나씩 있는 Elementary Supervision Status에 반영되고, 한 Function Group 안의 Elementary Supervision Status는 해당 Global Supervision Status로 모인다. Global Supervision은 [[autosar-state-management#Machine State와 Function Group State|Function Group]] 하나의 전체나 일부에 대응한다. Global Supervision을 이루는 감시는 모두 한 Function Group 안에서 제어하는 프로세스의 것이어야 하고, 감시 하나는 Global Supervision 하나에만 속할 수 있다.[@autosar-ap-sws-platformhealthmanagement-2025]
 

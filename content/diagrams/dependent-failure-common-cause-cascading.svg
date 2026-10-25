@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="9.5 3.5 735 147" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="5.5 3.5 352 307" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
-  <!-- 왼쪽: common cause failure. 근본 원인 하나가 두 요소를 직접 고장 나게 한다 -->
+  <!-- 위: common cause failure. 근본 원인 하나가 두 요소를 직접 고장 나게 한다 -->
   <text x="170" y="24" fill="var(--text, #727981)" text-anchor="middle">common cause failure</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="20" y="70" width="100" height="36" rx="2" />
@@ -29,26 +29,26 @@
     <text x="306" y="127">failure</text>
   </g>
 
-  <!-- 오른쪽: cascading failure. 한 요소의 failure가 다른 요소를 고장 나게 한다 -->
-  <text x="575" y="24" fill="var(--text, #727981)" text-anchor="middle">cascading failure</text>
+  <!-- 아래: cascading failure. 한 요소의 failure가 다른 요소를 고장 나게 한다 -->
+  <text x="175" y="184" fill="var(--text, #727981)" text-anchor="middle">cascading failure</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="420" y="40" width="100" height="36" rx="2" />
-    <rect x="570" y="40" width="80" height="36" rx="2" />
-    <rect x="570" y="104" width="80" height="36" rx="2" />
+    <rect x="20" y="200" width="100" height="36" rx="2" />
+    <rect x="170" y="200" width="80" height="36" rx="2" />
+    <rect x="170" y="264" width="80" height="36" rx="2" />
   </g>
   <g fill="var(--text, #727981)" text-anchor="middle">
-    <text x="470" y="63">근본 원인</text>
-    <text x="610" y="63">요소</text>
-    <text x="610" y="127">다른 요소</text>
+    <text x="70" y="223">근본 원인</text>
+    <text x="210" y="223">요소</text>
+    <text x="210" y="287">다른 요소</text>
   </g>
-  <text x="470" y="94" font-size="12" fill="var(--text, #727981)" text-anchor="middle">요소 안이나 밖</text>
+  <text x="70" y="254" font-size="12" fill="var(--text, #727981)" text-anchor="middle">요소 안이나 밖</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
-    <line x1="520" y1="58" x2="568" y2="58" />
-    <line x1="610" y1="76" x2="610" y2="102" />
-    <line x1="650" y1="122" x2="688" y2="122" />
+    <line x1="120" y1="218" x2="168" y2="218" />
+    <line x1="210" y1="236" x2="210" y2="262" />
+    <line x1="250" y1="282" x2="288" y2="282" />
   </g>
   <g fill="var(--text, #727981)">
-    <text x="618" y="94" font-size="12">failure</text>
-    <text x="696" y="127">failure</text>
+    <text x="218" y="254" font-size="12">failure</text>
+    <text x="296" y="287">failure</text>
   </g>
 </svg>

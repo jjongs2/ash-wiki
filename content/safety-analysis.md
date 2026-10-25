@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-02
 ---
 
-**안전 분석**(safety analysis)은 [[iso-26262|ISO 26262]]-9:2018이 dependent failure 분석과 함께 요구사항을 정하는 분석이다. 이 표준은 7절에서 dependent failure 분석을, 8절에서 안전 분석을 다룬다. 이 표준은 [[automotive-safety-integrity-level#ASIL decomposition|ASIL tailoring을 위한 요구사항 분해]]와 [[freedom-from-interference|요소의 공존 기준]]에 대한 요구사항도 정한다.[@iso-26262-9-obp-2018] 분석 기법인 FMEA(Failure Modes and Effects Analysis), FTA(Fault Tree Analysis), HAZOP(Hazard and Operability study)은 IEC 60812:2018[@iec-60812-2018], IEC 61025:2006[@iec-61025-preview-2006], IEC 61882:2016이 각각 적용 지침을 둔다.[@iec-61882-preview-2016] [[stpa|STPA]]는 어느 것도 고장 나지 않은 시스템 구성 요소 사이의 안전하지 않은 상호작용도 사고를 일으킬 수 있다고 보는 해저드 분석 기법이다.[@leveson-stpa-handbook-2018]
+**안전 분석**(safety analysis)은 [[iso-26262|ISO 26262]]-9:2018이 dependent failure 분석과 함께 요구사항을 정하는 분석이다. 이 표준은 7절에서 dependent failure 분석을, 8절에서 안전 분석을 다룬다. 이 표준은 [[automotive-safety-integrity-level#ASIL decomposition|ASIL tailoring을 위한 요구사항 분해]]와 [[freedom-from-interference|요소의 공존 기준]]에 대한 요구사항도 정한다.[@iso-26262-9-obp-2018] 분석 기법인 FMEA(Failure Modes and Effects Analysis), FTA(Fault Tree Analysis), HAZOP(Hazard and Operability study)은 IEC 60812:2018[@iec-60812-2018], IEC 61025:2006[@iec-61025-preview-2006], IEC 61882:2016이 각각 적용 지침을 둔다.[@iec-61882-preview-2016] [[stpa|STPA]]는 어느 것도 고장 나지 않은 시스템 구성 요소 사이의 안전하지 않은 상호작용도 사고를 일으킬 수 있다고 보는 [[hazard-analysis-and-risk-assessment#용어|해저드]] 분석 기법이다.[@leveson-stpa-handbook-2018]
 
 ## FMEA
 

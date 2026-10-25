@@ -43,7 +43,7 @@ Jenkins는 지속적 통합을 지원하는 자동화 엔진이다.[@jenkins-pip
 
 ## 지속적 전달·배포·테스트
 
-- **지속적 전달**(continuous delivery): ISTQB 용어집은 코드 변경을 자동으로 빌드하고 테스트해 운영 환경 출시를 준비하는 자동화된 개발 절차로 정의한다.[@istqb-glossary-continuous-delivery-2026] ISO/IEC/IEEE 24765 용어집은 자동화 도구로 새 시스템을 스테이징이나 여러 테스트 환경에 자주 내보낼 수 있게 하는 실천으로 정의한다.[@ieee-cs-sevocab-2026] 자동 테스트와 품질 검사를 통과한 애플리케이션을 늘 운영 환경에 내보낼 수 있는 상태로 두는 실천을 지속적 전달이라 부르며, 지속적 전달은 운영 환경으로의 마지막 배포를 사람이 하는 단계로 남긴다는 점에서 지속적 배포와 갈린다.[@shahin-continuous-integration-delivery-deployment-2017]
+- **지속적 전달**(continuous delivery): ISTQB 용어집은 코드 변경을 자동으로 빌드하고 테스트해 운영 환경 출시를 준비하는 자동화된 개발 절차로 정의한다.[@istqb-glossary-continuous-delivery-2026] ISO/IEC/IEEE 24765 용어집은 자동화 도구로 새 시스템을 스테이징이나 여러 테스트 환경에 자주 내보낼 수 있게 하는 실천으로 정의한다.[@ieee-cs-sevocab-2026] 자동 테스트와 품질 검사를 통과한 애플리케이션을 늘 운영 환경에 내보낼 수 있는 상태로 두는 실천을 지속적 전달이라 부른다. 지속적 전달은 운영 환경으로의 마지막 배포를 사람이 하는 단계로 남긴다는 점에서 지속적 배포와 갈린다.[@shahin-continuous-integration-delivery-deployment-2017]
 - **지속적 배포**(continuous deployment): 정해진 테스트와 검증을 통과한 변경을 자동으로 운영 환경에 배포하는 절차다.[@ieee-cs-sevocab-2026][@istqb-glossary-continuous-deployment-2026]
 
 ![[diagrams/continuous-delivery-vs-deployment.svg]]
@@ -52,4 +52,4 @@ Jenkins는 지속적 통합을 지원하는 자동화 엔진이다.[@jenkins-pip
 
 ## 빅뱅 통합과의 대비
 
-SWEBOK V4.0a에 따르면 점진적 통합은 내보낼 부분이 모두 완성될 때까지 통합을 미루는 [[integration-testing#통합 전략|빅뱅 통합]]보다 오류의 위치를 찾기 쉬운 것으로 여겨진다.[@ieee-swebok-v4-0a-2026]
+SWEBOK V4.0a에 따르면 점진적 통합은, 내보낼 부분이 모두 완성될 때까지 통합을 미루는 [[integration-testing#통합 전략|빅뱅 통합]]보다 오류의 위치를 찾기 쉬운 것으로 여겨진다.[@ieee-swebok-v4-0a-2026]
