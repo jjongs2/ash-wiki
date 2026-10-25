@@ -70,15 +70,10 @@ function fixedShowPopover(
   popoverElement.classList.add("active-popover")
   const positionResult = setPosition(popoverElement)
 
-  if (hash !== "") {
-    const inner = popoverElement.querySelector(".popover-inner")
-    if (inner) {
-      const targetAnchor = `#popover-internal-${hash.slice(1)}`
-      const heading = inner.querySelector(targetAnchor)
-      if (heading) {
-        inner.scroll({ top: heading.offsetTop - 12, behavior: "instant" })
-      }
-    }
+  const inner = popoverElement.querySelector(".popover-inner")
+  if (inner) {
+    const heading = hash !== "" ? inner.querySelector(`#popover-internal-${hash.slice(1)}`) : null
+    inner.scroll({ top: heading ? heading.offsetTop - 12 : 0, behavior: "instant" })
   }
 
   return positionResult
@@ -104,23 +99,24 @@ describe("showPopover on cache-hit with hash", () => {
     assert.deepStrictEqual(inner._selectorsQueried, ["#popover-internal-plugins"])
   })
 
-  test("skips scroll when hash is empty", async () => {
+  // ash-wiki: 절로 내려간 팝오버를 절 없는 링크로 다시 열면 맨 위로 되돌린다.
+  test("scrolls back to top when hash is empty", async () => {
     const inner = makeInner({ offsetTop: 123 })
     const popoverElement = makePopoverElement(inner)
 
     await fixedShowPopover(popoverElement, "", async () => {})
 
-    assert.strictEqual(inner._scrolled, null)
+    assert.deepStrictEqual(inner._scrolled, { top: 0, behavior: "instant" })
     assert.deepStrictEqual(inner._selectorsQueried, [])
   })
 
-  test("skips scroll when heading is not found", async () => {
+  test("scrolls back to top when heading is not found", async () => {
     const inner = makeInner(null)
     const popoverElement = makePopoverElement(inner)
 
     await fixedShowPopover(popoverElement, "#nonexistent", async () => {})
 
-    assert.strictEqual(inner._scrolled, null)
+    assert.deepStrictEqual(inner._scrolled, { top: 0, behavior: "instant" })
     assert.deepStrictEqual(inner._selectorsQueried, ["#popover-internal-nonexistent"])
   })
 

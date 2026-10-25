@@ -29,16 +29,15 @@ async function mouseEnterHandler(
     popoverElement.classList.add("active-popover")
     setPosition(popoverElement as HTMLElement)
 
-    if (hash !== "") {
-      const inner = popoverElement.querySelector(".popover-inner") as HTMLElement | null
-      if (inner) {
-        const targetAnchor = `#popover-internal-${hash.slice(1)}`
-        const heading = inner.querySelector(targetAnchor) as HTMLElement | null
-        if (heading) {
-          // leave ~12px of buffer when scrolling to a heading
-          inner.scroll({ top: heading.offsetTop - 12, behavior: "instant" })
-        }
-      }
+    // ash-wiki: 같은 페이지의 팝오버는 다시 쓰므로, 절이 없는 링크면 앞서 내려간 스크롤을 맨 위로 되돌린다.
+    const inner = popoverElement.querySelector(".popover-inner") as HTMLElement | null
+    if (inner) {
+      const heading =
+        hash !== ""
+          ? (inner.querySelector(`#popover-internal-${hash.slice(1)}`) as HTMLElement | null)
+          : null
+      // leave ~12px of buffer when scrolling to a heading
+      inner.scroll({ top: heading ? heading.offsetTop - 12 : 0, behavior: "instant" })
     }
   }
 
