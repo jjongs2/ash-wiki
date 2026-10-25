@@ -99,7 +99,7 @@ describe("showPopover on cache-hit with hash", () => {
     assert.deepStrictEqual(inner._selectorsQueried, ["#popover-internal-plugins"])
   })
 
-  // ash-wiki: 절로 내려간 팝오버를 절 없는 링크로 다시 열면 맨 위로 되돌린다.
+  // ash-wiki: 아래 두 테스트. 절이 없거나 그 절을 못 찾으면 앞서 절 링크로 내려간 위치를 맨 위로 되돌린다.
   test("scrolls back to top when hash is empty", async () => {
     const inner = makeInner({ offsetTop: 123 })
     const popoverElement = makePopoverElement(inner)

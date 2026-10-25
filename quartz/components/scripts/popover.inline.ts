@@ -29,7 +29,7 @@ async function mouseEnterHandler(
     popoverElement.classList.add("active-popover")
     setPosition(popoverElement as HTMLElement)
 
-    // ash-wiki: 같은 페이지의 팝오버는 다시 쓰므로, 절이 없는 링크면 앞서 내려간 스크롤을 맨 위로 되돌린다.
+    // ash-wiki: 같은 페이지의 팝오버는 다시 쓰므로, 절이 없거나 그 절을 못 찾으면 앞서 절 링크로 내려간 위치를 맨 위로 되돌린다.
     const inner = popoverElement.querySelector(".popover-inner") as HTMLElement | null
     if (inner) {
       const heading =
