@@ -124,9 +124,9 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
 }
 
 // ash-wiki: 사이드바 항목의 줄 규칙이다. 탐색기의 폴더 줄과 페이지 항목, 목차와 Backlinks의 항목이 같이 쓴다.
-// 줄마다 5px 모서리와 안쪽 여백을 두고, hover에는 무채색(lightgray를 반쯤 비친) 배경만 깔고 글자색은 바꾸지
-// 않는다. 항목 링크는 줄 전체를 채우고, 글자는 본문색 0.9rem 400이다. 목차의 글자와 Backlinks의 글자와 hover는
-// 아래에서 따로 정한다.
+// 줄마다 5px 모서리와 안쪽 여백을 두고, hover에는 lightgray를 반쯤 비친 배경만 깔고 글자색은 바꾸지 않는다. 페이지
+// 위에서는 무채색이고, 탐색기가 놓인 사이드바 면 위에서는 면의 lightgray라 푸른 기가 돈다. 항목 링크는 줄 전체를
+// 채우고, 글자는 본문색 0.9rem 400이다. 목차의 글자와 Backlinks의 글자와 hover는 아래에서 따로 정한다.
 // 두 줄로 넘치는 항목이 한 항목으로 보이도록 줄 간격은 글자 크기의 1.3배로 좁히고, 위아래 여백을 0.25rem으로
 // 늘린다. 한 줄 항목의 높이는 전과 거의 같고, 항목 사이가 항목 안의 줄 사이보다 넓어진다. 폴더 이름의 줄
 // 간격은 탐색기가 같은 값으로 정한다.
@@ -239,14 +239,13 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
   }
 }
 
-// ash-wiki: 모바일에서 닫힌 탐색기 서랍을 화면 밖으로 다 밀어 낸다. 서랍은 사이드바를 기준으로 left: 0에
-// 놓이고, 사이드바는 본문 칸의 좌우 여백(base.scss의 #quartz-body padding 1rem)만큼 들어가 있다. 업스트림은
-// 닫힌 서랍을 화면 폭만큼만 옮겨 1rem이 화면 안에 남고, 지금 페이지의 배경이 비친다. 서랍 안의 열린 폴더는
-// 업스트림이 visibility: visible로 두어 닫힌 서랍의 hidden을 이긴다. 열린 서랍의 1rem 들임은 그대로 둔다.
-// 서랍에는 좌우 여백이 없어, 그 들임이 항목을 메뉴 버튼과 같은 줄에 세운다.
+// ash-wiki: 모바일의 탐색기 서랍은 사이드바를 기준으로 left: 0에 놓이고, 사이드바는 남색 면을 칠하느라 화면 끝에서
+// 시작한다(아래 남색 면 절). 업스트림 서랍에는 좌우 여백이 없어 항목 글자가 줄 규칙의 안쪽 여백(0.4rem)만큼만 들어가므로,
+// 서랍에 여백을 두어 항목 글자를 메뉴 아이콘 선과 같은 1rem에 세운다. 닫힌 서랍은 업스트림이 화면 폭만큼 옮겨 화면 밖에
+// 다 나간다.
 @media all and ($mobile) {
-  .explorer.collapsed > .explorer-content {
-    transform: translateX(calc(-100vw - 1rem));
+  .explorer .explorer-content {
+    padding-inline: calc(1rem - 0.4rem);
   }
 }
 
@@ -395,4 +394,127 @@ footer ul {
 // 더 내려간다. 그러면 제목에 맞은 검색어에서도 제목과 머리말 첫 줄이 칸 위로 밀린다.
 .search > .search-container > .search-space > .search-layout > .preview-container {
   position: relative;
+}
+
+// ash-wiki: 왼쪽 사이드바는 남색 면이다(폰에서는 머리 줄). 면의 색은 theme의 sidebar-<토큰>이고, 고른 근거와 대비는
+// docs/palette.md의 사이드바 면 절에 있다. 면 안에서는 사이트 색 변수를 사이드바 면의 토큰으로 바꿔 걸어, 탐색기와
+// 검색 버튼, 테마 버튼이 제 규칙 그대로 면 위의 색을 받는다. 검색 창은 사이드바 안의 요소지만 화면 전체를 덮는 창이라
+// 페이지 색으로 되돌린다. :root의 --page-<토큰>은 var()를 푼 값으로 상속되므로 테마별 페이지 색을 담는다.
+:root {
+  --page-light: var(--light);
+  --page-lightgray: var(--lightgray);
+  --page-gray: var(--gray);
+  --page-darkgray: var(--darkgray);
+  --page-dark: var(--dark);
+  --page-secondary: var(--secondary);
+  --page-tertiary: var(--tertiary);
+  --page-highlight: var(--highlight);
+}
+
+.sidebar.left {
+  --light: var(--sidebar-light);
+  --lightgray: var(--sidebar-lightgray);
+  --gray: var(--sidebar-gray);
+  --darkgray: var(--sidebar-darkgray);
+  --dark: var(--sidebar-dark);
+  --secondary: var(--sidebar-secondary);
+  --tertiary: var(--sidebar-tertiary);
+  --highlight: var(--sidebar-highlight);
+  background-color: var(--light);
+  color: var(--darkgray);
+
+  .search-container {
+    --light: var(--page-light);
+    --lightgray: var(--page-lightgray);
+    --gray: var(--page-gray);
+    --darkgray: var(--page-darkgray);
+    --dark: var(--page-dark);
+    --secondary: var(--page-secondary);
+    --tertiary: var(--page-tertiary);
+    --highlight: var(--page-highlight);
+  }
+
+  // 검색 버튼은 테두리 대신 면보다 한 단계 밝은 바탕으로 가른다.
+  .search > .search-button {
+    border-color: transparent;
+    background-color: var(--highlight);
+  }
+
+  // 사이트 이름은 면 위의 제목색으로 크고 단단하게 쓰고, 페이지 제목과 같은 크기로 두어 굵기와 면으로 가른다. 글자는
+  // 링크라 굵기를 a에 건다. 이름 상자에 걸면 업스트림 링크 굵기(600)에 진다.
+  .page-title {
+    font-size: 2rem;
+    letter-spacing: -0.03em;
+
+    @media all and ($mobile) {
+      font-size: 1.75rem;
+    }
+
+    a {
+      color: var(--dark);
+      font-weight: 800;
+    }
+  }
+}
+
+// 면을 화면 왼쪽 끝부터 칠한다. 데스크톱에서는 사이드바 칸이 페이지 왼쪽 끝에서 시작하지만, 페이지가 가운데로 모이는
+// 넓은 화면(base.scss의 .page max-width, 1500px 초과)에서는 왼쪽에 페이지 색이 남는다. 그 자리는 면의 border-image를
+// 왼쪽으로만 내밀어 칠한다. 내민 부분은 가로 스크롤을 만들지 않는다. 태블릿과 모바일에서는 사이드바 칸이 본문 칸의
+// 좌우 여백(base.scss의 #quartz-body padding 1rem)만큼 들어가 있어, 칸을 그만큼 밖으로 늘린다.
+// 본문 칸과 footer는 면에서 띄운다. 사이드바 칸과 본문 칸 사이가 5px뿐이다. 칸이 border-box라 띄운 만큼 내용 폭이
+// 줄고, 내용이 칸 밖으로 넘지 않는다.
+.sidebar.left {
+  border-image: linear-gradient(var(--light), var(--light)) fill 0 / 0 / 0 0 0 100vw;
+}
+
+@media all and ($desktop) {
+  .center,
+  footer {
+    box-sizing: border-box;
+    padding-left: 2rem;
+  }
+}
+
+// 태블릿에서는 면 안의 사이트 이름과 탐색기를 데스크톱과 같이 화면 끝에서 2rem 들인다.
+@media all and ($tablet) {
+  .sidebar.left {
+    margin-left: -1rem;
+    padding-left: 2rem;
+  }
+
+  .center,
+  footer {
+    box-sizing: border-box;
+    padding-left: 1rem;
+  }
+}
+
+// 모바일의 머리 줄은 높이 3.5rem이다. 메뉴 버튼은 업스트림이 둘레에 5px 여백을 두고, 아이콘(lucide-menu)은 24px 상자의
+// 3px 안쪽에서 선이 시작한다(x=4, 획 폭 2). 탐색기 칸을 그 8px만큼 왼쪽으로 당겨 아이콘 선을 본문 글자와 같은 1rem에
+// 세우고, 아이콘 선과 사이트 이름 사이를 12px로 둔다. 버튼의 여백은 두어 누름 영역(34×34px)을 지킨다.
+@media all and ($mobile) {
+  .sidebar.left {
+    height: 3.5rem;
+    margin-inline: -1rem;
+    padding: 0 1rem;
+
+    .explorer {
+      margin-inline: calc(-5px - 3px) calc(12px - 3px - 5px);
+    }
+  }
+}
+
+// ash-wiki: 페이지 제목은 데스크톱과 태블릿에서 2rem 700, 모바일에서 1.75rem이다. 가장 긴 제목(45자)이 데스크톱에서 한
+// 줄, 모바일에서 두 줄에 든다. 자간과 줄 간격을 좁혀 두 줄 제목이 한 덩어리로 읽히게 한다. 링크 팝오버와 검색 미리보기도
+// 페이지 머리(.popover-hint)를 싣지만, 머리말로 페이지를 알아보는 자리라 제목을 키우지 않는다. 그래서 페이지 머리
+// 안의 제목에만 건다.
+.page-header > .popover-hint > h1.article-title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+
+  @media all and ($mobile) {
+    font-size: 1.75rem;
+  }
 }

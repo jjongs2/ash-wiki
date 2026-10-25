@@ -15,6 +15,7 @@ configuration:
     - .obsidian
   # 색과 폰트 값의 정본은 이 theme다. 고른 근거와 대비 실측은 docs/palette.md에 있다.
   # region-<구역>과 region-other는 구역 색이다(docs/palette.md 구역 색 절).
+  # sidebar-<토큰>은 왼쪽 사이드바 면의 색이다(docs/palette.md 사이드바 면 절).
   # Pretendard는 Google Fonts에 없어 fontOrigin을 local로 두고, 폰트 CSS는 Head가 건다(quartz/util/localFonts.ts).
   # OG 이미지 생성기가 쓰는 폰트는 prebuild가 캐시에 둔다(tools/og-fonts.ts).
   theme:
@@ -40,6 +41,14 @@ configuration:
         region-security: "#bc3f0d"
         region-sw-engineering: "#935e00"
         region-other: "#626a73"
+        sidebar-light: "#17284a"
+        sidebar-lightgray: "#2a3d63"
+        sidebar-gray: "#9fb0cf"
+        sidebar-darkgray: "#cfd9ec"
+        sidebar-dark: "#f4f7fc"
+        sidebar-secondary: "#9cc0ff"
+        sidebar-tertiary: "#c3d8ff"
+        sidebar-highlight: rgba(156, 192, 255, 0.12)
       darkMode:
         light: "#0f1318"
         lightgray: "#25292f"
@@ -55,6 +64,14 @@ configuration:
         region-security: "#ef754f"
         region-sw-engineering: "#c39031"
         region-other: "#9299a1"
+        sidebar-light: "#19243a"
+        sidebar-lightgray: "#2a3854"
+        sidebar-gray: "#9fb0cf"
+        sidebar-darkgray: "#cfd9ec"
+        sidebar-dark: "#f4f7fc"
+        sidebar-secondary: "#9cc0ff"
+        sidebar-tertiary: "#c3d8ff"
+        sidebar-highlight: rgba(156, 192, 255, 0.12)
 plugins:
   - source: "@quartz-community/created-modified-date"
     enabled: true

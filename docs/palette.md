@@ -17,6 +17,8 @@
 - 강조색은 코발트 하나이고, 링크와 인용 번호에 쓴다.
 - 다크 테마는 반전이 아니다. 같은 색상에서 밝기만 옮기고, 강조색은 어두운 배경에서 읽히도록 밝힌 코발트를 쓴다.
 
+대문 시안 일곱을 견줘, 소유자가 지금 꼴을 두고 왼쪽 사이드바를 남색 면으로 칠하는 안을 골랐다(2026-10-25). 칩 바탕을 빼거나 무채로 덜어 낸 넷보다 지금 꼴이 낫고, 힘을 준 셋(코발트로 채운 칩, 구역 색 칩, 남색 사이드바) 가운데 남색 사이드바를 골랐다. 사이트 이름과 페이지 제목도 함께 키웠다(`quartz/styles/custom.scss`).
+
 ## 토큰
 
 | 토큰            | 쓰는 곳                              |
@@ -55,33 +57,49 @@
 3. `npm run palette`를 돌린다. 대비 하한 표의 `<구역>` 줄이 새 토큰을 함께 잰다. 하한을 넘기면 이 문서의 실측 표를 출력으로 바꾸고, 위 토큰 표에 한 줄을 더한다.
 4. 빌드한 대문에서 두 테마의 구역 표를 본다.
 
+## 사이드바 면
+
+왼쪽 사이드바(폰에서는 머리 줄)는 남색 면이다. 면 안에서는 `sidebar-<토큰>`이 토큰 표의 `<토큰>`을 대신해, 탐색기와 버튼이 제 규칙 그대로 면 위의 색을 받는다. 값의 정본은 `quartz.config.yaml`의 `theme.colors`이고, 사이트에는 CSS 변수(`--sidebar-<토큰>`)로 실린다.
+
+- 면(`sidebar-light`)은 라이트에서 짙은 남색, 다크에서 페이지 바탕보다 한 단계 밝은 남색이다. 면 위의 글자는 밝게 쓰고, 두 테마에 같은 값이다.
+- 검색 버튼은 테두리 대신 `sidebar-highlight` 바탕으로 가른다.
+- 검색 창은 사이드바 안의 요소지만 화면 전체를 덮어 페이지 색을 쓴다.
+- 면 위 쌍의 대비 하한은 페이지의 같은 쌍과 같다.
+
 ## 대비 하한
 
-`npm run palette`가 이 표를 읽어 두 테마에서 대비를 재고, 하한에 못 미치면 exit 1이다. CI는 돌리지 않는다. 색을 바꿀 때 사람이 돌린다. `전경`과 `배경`은 theme 색 토큰이거나 도해 팔레트 표의 이름이다. `<색>`은 범주 색 다섯(`-tint` 짝이 있는 이름)으로, `<구역>`은 theme의 구역 색(`region-`으로 시작하는 토큰)으로 풀고, 한 줄의 두 칸에 모두 있으면 같은 색끼리 짝지어 잰다. 반투명한 배경은 `light` 위에 합성해서 잰다. `<토큰> 8%`는 그 색을 8% 불투명도로 깐 배경(`color-mix(in srgb, <색> 8%, transparent)`)이다.
+`npm run palette`가 이 표를 읽어 두 테마에서 대비를 재고, 하한에 못 미치면 exit 1이다. CI는 돌리지 않는다. 색을 바꿀 때 사람이 돌린다. `전경`과 `배경`은 theme 색 토큰이거나 도해 팔레트 표의 이름이다. `<색>`은 범주 색 다섯(`-tint` 짝이 있는 이름)으로, `<구역>`은 theme의 구역 색(`region-`으로 시작하는 토큰)으로 풀고, 한 줄의 두 칸에 모두 있으면 같은 색끼리 짝지어 잰다. 반투명한 배경은 그 배경이 놓인 면에 합성해서 잰다. `sidebar-`로 시작하는 토큰은 사이드바 면(`sidebar-light`) 위, 나머지는 `light` 위다. `<토큰> 8%`는 그 색을 8% 불투명도로 깐 배경(`color-mix(in srgb, <색> 8%, transparent)`)이다.
 
 <!-- table: contrast -->
 
-| 쌍                    | 전경        | 배경            | 하한 |
-| --------------------- | ----------- | --------------- | ---- |
-| 본문                  | `darkgray`  | `light`         | 7    |
-| 제목                  | `dark`      | `light`         | 7    |
-| 인라인 코드           | `dark`      | `lightgray`     | 7    |
-| 형광펜 위 본문        | `darkgray`  | `textHighlight` | 7    |
-| 링크                  | `secondary` | `light`         | 4.5  |
-| 내부 링크             | `secondary` | `highlight`     | 4.5  |
-| 링크 hover            | `tertiary`  | `light`         | 4.5  |
-| 보조 글자             | `gray`      | `light`         | 4.5  |
-| 강조색 위 글자        | `light`     | `secondary`     | 4.5  |
-| 구역 이름             | `<구역>`    | `light`         | 4.5  |
-| 구역 칩               | `<구역>`    | `<구역> 8%`     | 4.5  |
-| 주제 칩의 페이지 수   | `gray`      | `highlight`     | 4.5  |
-| 도해 선과 외곽선      | `ink`       | `light`         | 3    |
-| 도해 범주 테두리      | `<색>`      | `light`         | 3    |
-| 도해 외곽선과 기본 면 | `ink`       | `surface`       | 3    |
-| 도해 범주 테두리와 면 | `<색>`      | `<색>-tint`     | 3    |
-| 도해 글자             | `text`      | `light`         | 7    |
-| 도해 기본 면 위 글자  | `text`      | `surface`       | 7    |
-| 도해 범주 면 위 글자  | `on-fill`   | `<색>-tint`     | 7    |
+| 쌍                      | 전경                | 배경                | 하한 |
+| ----------------------- | ------------------- | ------------------- | ---- |
+| 본문                    | `darkgray`          | `light`             | 7    |
+| 제목                    | `dark`              | `light`             | 7    |
+| 인라인 코드             | `dark`              | `lightgray`         | 7    |
+| 형광펜 위 본문          | `darkgray`          | `textHighlight`     | 7    |
+| 링크                    | `secondary`         | `light`             | 4.5  |
+| 내부 링크               | `secondary`         | `highlight`         | 4.5  |
+| 링크 hover              | `tertiary`          | `light`             | 4.5  |
+| 보조 글자               | `gray`              | `light`             | 4.5  |
+| 강조색 위 글자          | `light`             | `secondary`         | 4.5  |
+| 구역 이름               | `<구역>`            | `light`             | 4.5  |
+| 구역 칩                 | `<구역>`            | `<구역> 8%`         | 4.5  |
+| 주제 칩의 페이지 수     | `gray`              | `highlight`         | 4.5  |
+| 면 위 본문              | `sidebar-darkgray`  | `sidebar-light`     | 7    |
+| 면 위 제목              | `sidebar-dark`      | `sidebar-light`     | 7    |
+| 면 위 링크              | `sidebar-secondary` | `sidebar-light`     | 4.5  |
+| 면 위 링크 hover        | `sidebar-tertiary`  | `sidebar-light`     | 4.5  |
+| 면 위 보조 글자         | `sidebar-gray`      | `sidebar-light`     | 4.5  |
+| 면 위 바탕 위 링크      | `sidebar-secondary` | `sidebar-highlight` | 4.5  |
+| 면 위 바탕 위 보조 글자 | `sidebar-gray`      | `sidebar-highlight` | 4.5  |
+| 도해 선과 외곽선        | `ink`               | `light`             | 3    |
+| 도해 범주 테두리        | `<색>`              | `light`             | 3    |
+| 도해 외곽선과 기본 면   | `ink`               | `surface`           | 3    |
+| 도해 범주 테두리와 면   | `<색>`              | `<색>-tint`         | 3    |
+| 도해 글자               | `text`              | `light`             | 7    |
+| 도해 기본 면 위 글자    | `text`              | `surface`           | 7    |
+| 도해 범주 면 위 글자    | `on-fill`           | `<색>-tint`         | 7    |
 
 - 본문, 제목, 코드는 7:1(WCAG 1.4.6, AAA)이다. 긴 글을 읽는 사이트라 AA보다 높게 둔다.
 - 링크와 보조 글자는 4.5:1(WCAG 1.4.3, AA)이다. 구역 이름, 구역 칩, 주제 칩의 페이지 수도 같다.
@@ -89,33 +107,40 @@
 - 도해의 선, 외곽선, 테두리는 3:1(WCAG 1.4.11, 비텍스트 대비)이다. 테두리는 배경과 제 면 모두에 대해 3:1을 넘어야 도형의 경계가 보인다.
 - 도해 글자는 본문처럼 7:1이다. 도해가 테마마다 값을 받으므로(`plugins/diagram-theme`), 한 색으로 두 배경을 버틸 때의 상한(약 4.2:1)에 묶이지 않는다.
 - 콜아웃(`note`, `warning`)의 색은 엔진(`quartz/styles/callouts.scss`)의 기본값을 그대로 쓰고, 이 표에 넣지 않는다. 설정의 색 토큰에는 경고색 자리가 없고, 소유자가 지금 모양을 유지하기로 했다(2026-09-25). 라이트 테마의 제목 글자 대비는 `note` 3.18:1, `warning` 2.62:1이다.
-- 탐색기에서 페이지가 없는 구역과 주제의 이름은 `gray`를 투명도 0.6으로 흐려 보조 글자의 하한에 못 미친다. 라이트 테마에서 `gray`와 `darkgray`가 잘 갈리지 않아, 소유자가 굵기 대신 투명도로 구별하기로 했다(2026-09-30). 대비는 라이트 2.41:1, 다크 3.09:1이다.
+- 탐색기에서 페이지가 없는 구역과 주제의 이름은 `sidebar-gray`를 투명도 0.6으로 흐려 면 위 보조 글자의 하한에 못 미친다. 보조 글자색과 본문색이 잘 갈리지 않아, 소유자가 굵기 대신 투명도로 구별하기로 했다(2026-09-30). 그때는 라이트 테마의 `gray`와 `darkgray`가 둘 다 어두웠고, 면 위의 `sidebar-gray`와 `sidebar-darkgray`는 둘 다 밝다. 대비는 라이트 3.35:1, 다크 3.48:1이다.
 
 ## 실측
 
-`npm run palette`의 출력이다(2026-10-07).
+`npm run palette`의 출력이다(2026-10-25).
 
-| 쌍                    | 하한  | 라이트  | 다크    | 가장 낮은 쌍(라이트, 다크)                                           |
-| --------------------- | ----- | ------- | ------- | -------------------------------------------------------------------- |
-| 본문                  | 7:1   | 11.67:1 | 13.01:1 | darkgray / light                                                     |
-| 제목                  | 7:1   | 16.56:1 | 16.15:1 | dark / light                                                         |
-| 인라인 코드           | 7:1   | 13.91:1 | 12.66:1 | dark / lightgray                                                     |
-| 형광펜 위 본문        | 7:1   | 10.10:1 | 7.86:1  | darkgray / textHighlight                                             |
-| 링크                  | 4.5:1 | 6.41:1  | 8.64:1  | secondary / light                                                    |
-| 내부 링크             | 4.5:1 | 5.71:1  | 7.34:1  | secondary / highlight                                                |
-| 링크 hover            | 4.5:1 | 9.04:1  | 11.29:1 | tertiary / light                                                     |
-| 보조 글자             | 4.5:1 | 5.25:1  | 6.47:1  | gray / light                                                         |
-| 강조색 위 글자        | 4.5:1 | 6.41:1  | 8.64:1  | light / secondary                                                    |
-| 구역 이름             | 4.5:1 | 5.21:1  | 6.47:1  | region-security / light, region-other / light                        |
-| 구역 칩               | 4.5:1 | 4.64:1  | 5.84:1  | region-security / region-security 8%, region-other / region-other 8% |
-| 주제 칩의 페이지 수   | 4.5:1 | 4.67:1  | 5.50:1  | gray / highlight                                                     |
-| 도해 선과 외곽선      | 3:1   | 5.01:1  | 5.05:1  | ink / light                                                          |
-| 도해 범주 테두리      | 3:1   | 3.45:1  | 4.63:1  | orange / light, blue / light                                         |
-| 도해 외곽선과 기본 면 | 3:1   | 4.21:1  | 3.96:1  | ink / surface                                                        |
-| 도해 범주 테두리와 면 | 3:1   | 3.07:1  | 3.38:1  | violet / violet-tint, blue / blue-tint                               |
-| 도해 글자             | 7:1   | 11.67:1 | 13.01:1 | text / light                                                         |
-| 도해 기본 면 위 글자  | 7:1   | 9.80:1  | 10.20:1 | text / surface                                                       |
-| 도해 범주 면 위 글자  | 7:1   | 10.24:1 | 9.29:1  | on-fill / violet-tint, on-fill / green-tint                          |
+| 쌍                      | 하한  | 라이트  | 다크    | 가장 낮은 쌍(라이트, 다크)                                           |
+| ----------------------- | ----- | ------- | ------- | -------------------------------------------------------------------- |
+| 본문                    | 7:1   | 11.67:1 | 13.01:1 | darkgray / light                                                     |
+| 제목                    | 7:1   | 16.56:1 | 16.15:1 | dark / light                                                         |
+| 인라인 코드             | 7:1   | 13.91:1 | 12.66:1 | dark / lightgray                                                     |
+| 형광펜 위 본문          | 7:1   | 10.10:1 | 7.86:1  | darkgray / textHighlight                                             |
+| 링크                    | 4.5:1 | 6.41:1  | 8.64:1  | secondary / light                                                    |
+| 내부 링크               | 4.5:1 | 5.71:1  | 7.34:1  | secondary / highlight                                                |
+| 링크 hover              | 4.5:1 | 9.04:1  | 11.29:1 | tertiary / light                                                     |
+| 보조 글자               | 4.5:1 | 5.25:1  | 6.47:1  | gray / light                                                         |
+| 강조색 위 글자          | 4.5:1 | 6.41:1  | 8.64:1  | light / secondary                                                    |
+| 구역 이름               | 4.5:1 | 5.21:1  | 6.47:1  | region-security / light, region-other / light                        |
+| 구역 칩                 | 4.5:1 | 4.64:1  | 5.84:1  | region-security / region-security 8%, region-other / region-other 8% |
+| 주제 칩의 페이지 수     | 4.5:1 | 4.67:1  | 5.50:1  | gray / highlight                                                     |
+| 면 위 본문              | 7:1   | 10.28:1 | 10.92:1 | sidebar-darkgray / sidebar-light                                     |
+| 면 위 제목              | 7:1   | 13.59:1 | 14.44:1 | sidebar-dark / sidebar-light                                         |
+| 면 위 링크              | 4.5:1 | 7.92:1  | 8.41:1  | sidebar-secondary / sidebar-light                                    |
+| 면 위 링크 hover        | 4.5:1 | 10.14:1 | 10.77:1 | sidebar-tertiary / sidebar-light                                     |
+| 면 위 보조 글자         | 4.5:1 | 6.66:1  | 7.08:1  | sidebar-gray / sidebar-light                                         |
+| 면 위 바탕 위 링크      | 4.5:1 | 6.11:1  | 6.49:1  | sidebar-secondary / sidebar-highlight                                |
+| 면 위 바탕 위 보조 글자 | 4.5:1 | 5.14:1  | 5.46:1  | sidebar-gray / sidebar-highlight                                     |
+| 도해 선과 외곽선        | 3:1   | 5.01:1  | 5.05:1  | ink / light                                                          |
+| 도해 범주 테두리        | 3:1   | 3.45:1  | 4.63:1  | orange / light, blue / light                                         |
+| 도해 외곽선과 기본 면   | 3:1   | 4.21:1  | 3.96:1  | ink / surface                                                        |
+| 도해 범주 테두리와 면   | 3:1   | 3.07:1  | 3.38:1  | violet / violet-tint, blue / blue-tint                               |
+| 도해 글자               | 7:1   | 11.67:1 | 13.01:1 | text / light                                                         |
+| 도해 기본 면 위 글자    | 7:1   | 9.80:1  | 10.20:1 | text / surface                                                       |
+| 도해 범주 면 위 글자    | 7:1   | 10.24:1 | 9.29:1  | on-fill / violet-tint, on-fill / green-tint                          |
 
 ## 폰트
 

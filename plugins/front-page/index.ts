@@ -282,7 +282,8 @@ const CSS = `.front-regions {
 // 본문 아래 2단의 모양이다. 배치는 docs/engine.md의 대문 절에 있다.
 // - 모바일 폭(800px 이하, quartz/styles/variables.scss의 $mobile)에서 1단으로 쌓을 때, 비어 있는 칸을 숨겨
 //   그 자리의 틈을 없앤다.
-// - 칸 제목은 본문 h2보다 작게, Backlinks 제목(1rem)보다 조금 크게 둔다. 대문 본문에는 다른 제목이 없다.
+// - 칸 제목은 본문 h2(1.4rem)보다 조금 작게, Backlinks 제목(1rem)보다 크게 두고, 페이지 제목처럼 자간을 좁힌다.
+//   대문 본문에는 다른 제목이 없다.
 // - 최근 변경은 타임라인이다. 왼쪽 세로선은 구역 표의 행 선과 같은 1px --lightgray이고, 날짜마다 링크색
 //   테두리의 속 빈 마디를 날짜 글자 줄의 가운데에 둔다. 세로선은 첫 마디에서 목록 끝까지 내려가, 더 오래된
 //   기록이 이어짐을 보인다. 마디와 세로선의 자리는 날짜 줄 높이(--day-line)와 들여쓰기(--rail)로 계산한다.
@@ -323,7 +324,8 @@ const COLUMNS_CSS = `.front-columns {
   }
 }
 .front-columns h2 {
-  font-size: 1.15rem;
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
   margin: 0 0 0.5rem;
 }
 .front-timeline {
