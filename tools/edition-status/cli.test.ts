@@ -222,7 +222,7 @@ describe("판 확인 CLI", () => {
     assert.ok(lines.includes("=== edition: ISO 13400-2"))
   })
 
-  test("아는 발행기관의 엔트리가 어디에도 들지 않으면 FAIL, 처음 보는 발행기관은 SKIP이다", async () => {
+  test("아는 발행기관의 판 표시가 있는 엔트리가 어디에도 들지 않으면 FAIL, 나머지는 SKIP이다", async () => {
     // 범용 행이 맡은 엔트리의 발행기관(MISRA Consortium)이 낸, 어느 통로도 맡지 않는 엔트리와 처음 보는 발행기관의 엔트리
     const extra = {
       "content/extra.md":
@@ -249,7 +249,7 @@ describe("판 확인 CLI", () => {
           /^ +bib\/misra-cpp-2023\.bib:1: misra-cpp-2023 \(MISRA Consortium\)/.test(line),
         ),
       )
-      assert.ok(lines.some((line) => /^SKIP unknown-publishers/.test(line)))
+      assert.ok(lines.some((line) => /^SKIP unlisted/.test(line)))
       assert.ok(lines.includes("  Example Consortium: example-spec-2020"))
       assert.strictEqual(exitCode, 1)
     } finally {

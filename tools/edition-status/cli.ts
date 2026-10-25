@@ -65,7 +65,7 @@ const tree = loadTree(root)
 const cited = citedEntries(tree)
 const assigned = assign(cited, standardPages(tree), channels)
 
-// 아는 발행기관의 미분류 엔트리는 FAIL, 처음 보는 발행기관은 SKIP으로 보인다.
+// 아는 발행기관의 판 표시가 있는 미분류 엔트리는 FAIL, 나머지 미분류는 SKIP 목록으로 보인다.
 let unclassified = 0
 if (only === undefined) {
   const claimed = new Set(
@@ -79,15 +79,15 @@ if (only === undefined) {
     message: `${entry.key} (${publisherName(entry) || "발행기관 없음"}): 통로, 감지하지 않음, 대상 아님 어디에도 없다`,
   }))
   report("coverage", verdict(violations), violations)
-  if (found.unknown.size > 0)
+  if (found.listed.size > 0)
     report(
-      "unknown-publishers",
+      "unlisted",
       "SKIP",
-      [...found.unknown].map(([name, entries]) => ({
+      [...found.listed].map(([name, entries]) => ({
         file: name || "발행기관 없음",
         message: entries.map((entry) => entry.key).join(", "),
       })),
-      `처음 보는 발행기관 ${found.unknown.size}곳, 대상이면 통로나 감지하지 않음 표에, 아니면 대상 아님 표에 둔다`,
+      `발행기관 ${found.listed.size}곳, 대상이면 통로나 감지하지 않음 표에, 아니면 대상 아님 표에 둔다`,
     )
 }
 

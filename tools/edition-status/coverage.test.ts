@@ -15,7 +15,7 @@ const rows = notTargetRows([
 
 describe("덮음 검사", () => {
   test("통로가 맡았거나, 대상 아님 표에 들거나, 논문·단행본 꼴이면 분류된 것이다", () => {
-    const { unclassified, unknown } = coverage(
+    const { unclassified, listed } = coverage(
       [
         entry("iec-61508-1-2010", "IEC 61508-1:2010", { publisher: "{IEC}" }),
         entry("iec-60050-351-2026", "IEC 60050 — control", { publisher: "{IEC}" }),
@@ -26,14 +26,15 @@ describe("덮음 검사", () => {
       rows,
     )
     assert.deepStrictEqual(unclassified, [])
-    assert.deepStrictEqual([...unknown.keys()], [])
+    assert.deepStrictEqual([...listed.keys()], [])
   })
 
-  test("아는 발행기관의 엔트리가 어디에도 들지 않으면 미분류다", () => {
-    const { unclassified } = coverage(
+  test("아는 발행기관의 판 표시가 있는 엔트리가 어디에도 들지 않으면 미분류이고, 판 표시가 없으면 목록이다", () => {
+    const { unclassified, listed } = coverage(
       [
         entry("iec-61508-1-2010", "IEC 61508-1:2010", { publisher: "{IEC}" }),
         entry("iec-61511-1-2016", "IEC 61511-1:2016", { publisher: "{IEC}" }),
+        entry("iec-about-2026", "About the IEC", { publisher: "{IEC}" }),
       ],
       new Set(["iec-61508-1-2010"]),
       rows,
@@ -41,6 +42,10 @@ describe("덮음 검사", () => {
     assert.deepStrictEqual(
       unclassified.map((e) => e.key),
       ["iec-61511-1-2016"],
+    )
+    assert.deepStrictEqual(
+      [...listed].map(([name, entries]) => [name, entries.map((e) => e.key)]),
+      [["IEC", ["iec-about-2026"]]],
     )
   })
 
@@ -54,7 +59,7 @@ describe("덮음 검사", () => {
     )
     const fresh = [
       entry("iec-62443-3-3-2013", "IEC 62443-3-3:2013", { publisher: "{IEC}" }),
-      entry("autosar-news-2027", "AUTOSAR News", { publisher: "AUTOSAR" }),
+      entry("autosar-tps-r26-11", "AUTOSAR TPS System Template R26-11", { publisher: "AUTOSAR" }),
       entry("unece-r171-2027", "UN Regulation No. 171", { publisher: "UNECE" }),
       entry("misra-cpp-2023", "MISRA C++:2023", { publisher: "{MISRA}" }),
     ]
@@ -76,7 +81,7 @@ describe("덮음 검사", () => {
   })
 
   test("처음 보는 발행기관은 미분류가 아니라 목록으로 보인다", () => {
-    const { unclassified, unknown } = coverage(
+    const { unclassified, listed } = coverage(
       [
         entry("omg-uml-2-5-1-2017", "UML 2.5.1", { publisher: "Object Management Group" }),
         entry("anon-2020", "Untitled"),
@@ -86,7 +91,7 @@ describe("덮음 검사", () => {
     )
     assert.deepStrictEqual(unclassified, [])
     assert.deepStrictEqual(
-      [...unknown].map(([name, entries]) => [name, entries.map((e) => e.key)]),
+      [...listed].map(([name, entries]) => [name, entries.map((e) => e.key)]),
       [
         ["Object Management Group", ["omg-uml-2-5-1-2017"]],
         ["", ["anon-2020"]],
