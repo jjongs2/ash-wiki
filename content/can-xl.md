@@ -79,7 +79,7 @@ CAN XL의 중재 구간 비트율 $R_\mathrm{b,N}$은 1 Mbit/s 이하이고, 데
 
 이 개요에 따르면 이 트랜시버들은 모두 CAN XL에 쓸 수 있고 핀이 호환된다.[@bosch-can-xl-overview-2023]
 
-이 개요에 따르면 CAN XL 프로토콜 컨트롤러는 ADS와 DAS 동안 CAN SIC XL 트랜시버에 SIC 모드와 [[can-transceiver#FAST 모드|FAST 모드]] 사이의 전환을 알리고, FAST 모드에서는 [[can-error-frame|오류 프레임]]을 쓸 수 없다. 오류 신호를 켠 CAN XL은 CAN SIC XL 트랜시버를 모드 전환 없이 쓰고, 트랜시버 모드를 바꿔 가며 쓰는 것은 오류 신호를 끈 CAN XL이다.[@bosch-can-xl-overview-2023]
+이 개요에 따르면 CAN XL 프로토콜 컨트롤러는 ADS와 DAS 동안 CAN SIC XL 트랜시버에 SIC 모드와 [[can-transceiver#FAST 모드|FAST 모드]] 사이의 전환을 알리고, FAST 모드에서는 [[can-error-frame|오류 프레임]]을 쓸 수 없다. 오류 신호를 켠 CAN XL은 CAN SIC XL 트랜시버를 모드 전환 없이 쓰고, 오류 신호를 끈 CAN XL만 FAST 모드로 바꿔 가며 쓴다.[@bosch-can-xl-overview-2023]
 
 XS_CAN의 프로토콜 컨트롤러는 클록 160 MHz에서 CAN XL 데이터 구간을 20 Mbit/s까지, CAN FD와 CAN XL의 중재 구간을 1 Mbit/s까지 지원한다.[@bosch-xs-can-2026]
 

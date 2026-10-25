@@ -30,7 +30,7 @@ CAN 컨트롤러는 호스트 CPU에 붙어 ISO 11898-1에 따라 통신하고, 
 
 Bosch CAN 2.0 규격은 버스에 잇는 노드 수에 이론적 한계를 두지 않고, 실제 수는 지연 시간과 버스의 전기적 부하가 제한한다고 정한다.[@bosch-can-2-0-1991]
 
-ISO 11898-2:2026은 PMA가 [[can-xl#물리 부호화와 트랜시버 모드|중재 모드]]([[dominant-and-recessive|dominant]] 비트가 recessive 비트를 덮어쓸 수 있는 동작 모드)일 때의 버스 상태를 dominant(논리 0)와 recessive(논리 1)로 두고, 두 값을 동시에 내면 버스가 dominant가 된다고 정한다.[@iso-11898-1-obp-2024][@iso-11898-2-obp-2026] 전기적 동작은 [[can-physical-layer|CAN 물리 계층]]에서 다룬다.
+버스 값은 [[dominant-and-recessive|dominant]]와 recessive 둘이고, 두 값을 동시에 보내면 버스 값은 dominant가 된다.[@bosch-can-2-0-1991] 전기적 동작은 [[can-physical-layer|CAN 물리 계층]]에서 다룬다.
 
 ## 중재
 
@@ -60,4 +60,4 @@ Bosch CAN 2.0 규격은 CAN의 속도가 시스템마다 다를 수 있지만 �
 
 이 표준은 classic 프레임만 지원하는 구현을 CAN FD 프레임을 용인하는 구현과 용인하지 않는 구현 둘로 나눈다.[@iso-11898-1-obp-2024] 두 구현의 통신 범위는 [[can-fd#호환성|CAN FD]]에서 다룬다.
 
-CiA는 CAN 데이터 링크 계층을 CAN CC(CAN classic), CAN FD, CAN XL 세 세대로 나눈다.[@iso-11898-1-obp-2024][@cia-can-dll-generations-2026] ISO 11898-1:2024는 CAN 기능의 일부에 바탕을 둔 responder 노드의 구현 옵션으로 [[can-fd-light|CAN FD light]]를 둔다.[@iso-11898-1-obp-2024]
+CiA는 CAN 데이터 링크 계층을 CAN CC(CAN classic), CAN FD, CAN XL 세 세대로 나눈다.[@cia-can-dll-generations-2026] ISO 11898-1:2024는 CAN 기능의 일부에 바탕을 둔 responder 노드의 구현 옵션으로 [[can-fd-light|CAN FD light]]를 둔다.[@iso-11898-1-obp-2024]
