@@ -1,61 +1,59 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -5.5 640 325.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -5.5 520 325.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="12" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
   <!-- Concept phase의 절 순서 -->
   <text x="20" y="24" font-size="13" fill="var(--text, #727981)">Concept phase · ISO 26262-3</text>
-  <rect x="20.75" y="34.75" width="598.5" height="56.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="20.75" y="34.75" width="478.5" height="56.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="40.75" y="48.75" width="168.5" height="26.5" rx="2" />
-    <rect x="235.75" y="48.75" width="168.5" height="26.5" rx="2" />
-    <rect x="430.75" y="48.75" width="168.5" height="26.5" rx="2" />
+    <rect x="32.75" y="48.75" width="133.5" height="26.5" rx="2" />
+    <rect x="176.75" y="48.75" width="133.5" height="26.5" rx="2" />
+    <rect x="320.75" y="48.75" width="166.5" height="26.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="125" y="66">Item definition</text>
-    <text x="320" y="66">HARA</text>
-    <text x="515" y="66">Functional safety concept</text>
+    <text x="99.5" y="66">Item definition</text>
+    <text x="243.5" y="66">HARA</text>
+    <text x="404" y="66">Functional safety concept</text>
   </g>
 
   <!-- HARA 펼침 지시선 -->
   <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
-    <line x1="236" y1="76" x2="21" y2="120" />
-    <line x1="404" y1="76" x2="619" y2="120" />
+    <line x1="177" y1="76" x2="21" y2="120" />
+    <line x1="310" y1="76" x2="499" y2="120" />
   </g>
 
   <!-- HARA -->
-  <rect x="20.75" y="120.75" width="598.5" height="178.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="20.75" y="120.75" width="478.5" height="178.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
   <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
-    <line x1="243" y1="134" x2="243" y2="288" />
-    <line x1="397" y1="134" x2="397" y2="288" />
+    <line x1="190" y1="134" x2="190" y2="288" />
+    <line x1="330" y1="134" x2="330" y2="288" />
   </g>
   <g text-anchor="middle" font-size="13" fill="var(--text, #727981)">
-    <text x="136" y="146">찾아 분류하는 것</text>
-    <text x="320" y="146">파라미터</text>
-    <text x="504" y="146">정하는 것</text>
+    <text x="105" y="146">찾아 분류하는 것</text>
+    <text x="260" y="146">파라미터</text>
+    <text x="415" y="146">정하는 것</text>
   </g>
 
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <!-- 해저드 사건의 조합 -->
-    <rect x="46.75" y="158.75" width="178.5" height="26.5" rx="2" />
-    <rect x="46.75" y="208.75" width="178.5" height="26.5" rx="2" />
-    <rect x="46.75" y="258.75" width="178.5" height="26.5" rx="2" />
-    <!-- S·E·C -->
-    <rect x="260.75" y="158.75" width="118.5" height="26.5" rx="2" />
-    <rect x="260.75" y="208.75" width="118.5" height="26.5" rx="2" />
-    <rect x="260.75" y="258.75" width="118.5" height="26.5" rx="2" />
+    <rect x="40.75" y="158.75" width="128.5" height="26.5" rx="2" />
+    <rect x="40.75" y="208.75" width="128.5" height="26.5" rx="2" />
+    <rect x="40.75" y="258.75" width="128.5" height="26.5" rx="2" />
+    <!-- S·E·C: 한 상자에 묶어 왼쪽 열의 줄과 짝지어 보이지 않게 한다 -->
+    <rect x="205.75" y="190.75" width="108.5" height="62.5" rx="2" />
     <!-- 결과 -->
-    <rect x="414.75" y="158.75" width="178.5" height="26.5" rx="2" />
-    <rect x="414.75" y="208.75" width="178.5" height="26.5" rx="2" />
+    <rect x="350.75" y="176.75" width="128.5" height="26.5" rx="2" />
+    <rect x="350.75" y="240.75" width="128.5" height="26.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="136" y="176">Hazard</text>
-    <text x="136" y="202" font-size="14">+</text>
-    <text x="136" y="226">Operational situation</text>
-    <text x="136" y="252" font-size="14">=</text>
-    <text x="136" y="276">Hazardous event</text>
-    <text x="320" y="176">심각도 S</text>
-    <text x="320" y="226">노출 E</text>
-    <text x="320" y="276">통제 가능성 C</text>
-    <text x="504" y="176">Safety goal</text>
-    <text x="504" y="226">ASIL 또는 QM</text>
+    <text x="105" y="176">Hazard</text>
+    <text x="105" y="202" font-size="14">+</text>
+    <text x="105" y="226">Operational situation</text>
+    <text x="105" y="252" font-size="14">=</text>
+    <text x="105" y="276">Hazardous event</text>
+    <text x="260" y="210">심각도 S</text>
+    <text x="260" y="226">노출 E</text>
+    <text x="260" y="242">통제 가능성 C</text>
+    <text x="415" y="194">Safety goal</text>
+    <text x="415" y="258">ASIL 또는 QM</text>
   </g>
 </svg>

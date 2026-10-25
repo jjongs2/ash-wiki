@@ -42,7 +42,7 @@ Fowler는 테스트가 모두 통과하는 상태에서만 리팩터링하고, �
 
 ## 리팩터링의 흐름
 
-리팩터링 기법은 유지보수 중에 코드를 바꾸기 앞뒤로 코드베이스의 [[software-maintenance#비용과 기술 부채|기술 부채]]를 줄이는 데 쓸 수 있다. [[agile-software-development|애자일 개발]]에서는 [[continuous-integration|지속적 통합]]으로 변경을 조금씩 쌓아 가므로, 품질과 신뢰성을 높이려고 코드를 계속 리팩터링해야 하는 일이 흔하다.[@ieee-swebok-v4-0a-2026]
+리팩터링 기법은 유지보수 중에 코드를 바꾸기 전과 후에 코드베이스의 [[software-maintenance#비용과 기술 부채|기술 부채]]를 줄이는 데 쓸 수 있다. [[agile-software-development|애자일 개발]]에서는 [[continuous-integration|지속적 통합]]으로 변경을 조금씩 쌓아 가므로, 품질과 신뢰성을 높이려고 코드를 계속 리팩터링해야 하는 일이 흔하다.[@ieee-swebok-v4-0a-2026]
 
 Fowler는 리팩터링을 프로젝트 계획에 따로 오르는 작업이 아니라 일상 프로그래밍의 일부로 본다.[@fowler-refactoring-2026] 그는 리팩터링이 개발 작업에 섞여 들어가는 흐름(workflow)을 아래 여섯으로 나눈다.[@fowler-workflows-of-refactoring-2014]
 

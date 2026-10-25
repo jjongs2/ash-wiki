@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-12
 ---
 
-[[iso-26262|ISO 26262]]-2:2018은 자동차 응용의 **기능 안전 관리**(functional safety management) 요구사항을 정하고, 이를 관련 조직에 대한 프로젝트와 무관한 요구사항(overall safety management)과 [[safety-lifecycle|안전 생명주기]]의 관리 활동에 대한 프로젝트별 요구사항으로 나눈다. 프로젝트별 요구사항은 concept phase, 시스템·하드웨어·소프트웨어 수준의 제품 개발 단계, 그리고 생산·운용·서비스·폐기에서의 관리를 다룬다.[@iso-26262-2-obp-2018]
+[[iso-26262|ISO 26262]]-2:2018은 자동차 응용의 **기능 안전 관리**(functional safety management) 요구사항을 정하고, 이를 관련 조직에 대한 프로젝트와 무관한 요구사항(overall safety management)과 [[safety-lifecycle|안전 생명주기]]의 관리 활동에 대한 프로젝트별 요구사항으로 나눈다. 프로젝트별 요구사항은 [[safety-lifecycle#ISO 26262의 안전 생명주기|concept phase]], 시스템·하드웨어·소프트웨어 수준의 제품 개발 단계, 그리고 생산·운용·서비스·폐기에서의 관리를 다룬다.[@iso-26262-2-obp-2018]
 
 이 표준은 5절에서 overall safety management를, 6절에서 프로젝트에 따른 safety management를, 7절에서 생산·운용·서비스·폐기에 관한 safety management를 다룬다. Annex B는 safety culture를, Annex C는 confirmation measure의 지침을 다룬다.[@iso-26262-2-obp-2018]
 
@@ -15,7 +15,7 @@ ISO 26262-1:2018은 기능 안전 관리에 쓰는 말을 다음처럼 정의한
 
 - **Safety activity**: 안전 생명주기의 한 단계나 하위 단계 이상에서 수행하는 활동
 - **Safety plan**: 프로젝트의 safety activity 실행을 관리하고 이끄는 계획. 일정, 마일스톤, 작업, 인도물, 책임, 자원을 담는다.
-- **Safety manager**: [[functional-safety|기능 안전]]을 이루는 데 필요한 활동의 실행을 감독하고 보장할 책임을 진 사람이나 조직. 정의의 주석은 아이템 개발의 여러 수준에서 관련 회사마다 내부 매트릭스 조직에 따라 역할을 나눠 한 사람 이상을 지정할 수 있다고 제시한다.
+- **Safety manager**: [[functional-safety|기능 안전]]을 이루는 데 필요한 활동의 실행을 감독하고 보장할 책임을 진 사람이나 조직. 정의의 주석은 [[safety-lifecycle#ISO 26262의 안전 생명주기|아이템]] 개발의 여러 수준에서 관련 회사마다 내부 매트릭스 조직에 따라 역할을 나눠 한 사람 이상을 지정할 수 있다고 제시한다.
 - **Safety culture**: 결정과 행동에서 안전을 경쟁하는 다른 목표보다 앞세우는 조직의 지속적인 가치, 태도, 동기, 지식[@iso-26262-1-obp-2018]
 
 고객과 공급자가 개발의 책임을 나누는 합의는 [[development-interface-agreement|development interface agreement]]에서 다룬다.
@@ -46,7 +46,7 @@ ISO 26262-1:2011은 confirmation review를 작업 산출물이 ISO 26262의 요�
 
 [[iec-61508|IEC 61508]]-1:2010은 6절에서 기능 안전 관리를, 8절에서 functional safety assessment를 다룬다.[@iec-61508-1-preview-2010]
 
-IEC 61508:2010은 **functional safety assessment**를, 표준의 관련 조항 준수를 바탕으로 E/E/PE(Electrical/Electronic/Programmable Electronic) 안전 관련 시스템이나 compliant item이 이룬 기능 안전이 적절한지 조사해 판단하는 활동으로 둔다. 평가를 하는 사람은 역량과 적절한 독립성을 갖추고, 모든 생명주기의 단계마다 수행한 활동과 얻은 산출물을 살펴 IEC 61508의 목표와 요구사항이 얼마나 충족되었는지 판단해야 한다.[@iec-functional-safety-faq-2023]
+IEC 61508:2010은 **functional safety assessment**를, 표준의 관련 조항 준수를 바탕으로 E/E/PE(Electrical/Electronic/Programmable Electronic) 안전 관련 시스템이나 [[safety-element-out-of-context#IEC 61508의 compliant item|compliant item]]이 이룬 기능 안전이 적절한지 조사해 판단하는 활동으로 둔다. 평가를 하는 사람은 역량과 적절한 독립성을 갖추고, 모든 생명주기의 단계마다 수행한 활동과 얻은 산출물을 살펴 IEC 61508의 목표와 요구사항이 얼마나 충족되었는지 판단해야 한다.[@iec-functional-safety-faq-2023]
 
 이 표준은 E/E/PE 안전 관련 시스템의 모든 부분과 생명주기의 모든 단계에 functional safety assessment를 요구하고, 그 요구사항을 IEC 61508-1의 8절에 둔다. 평가자에게 요구하는 독립성은 [[safety-integrity-level|SIL]] 1의 같은 조직 안 독립된 사람부터 SIL 4의 독립된 조직까지 오르고, SIL 2와 SIL 3에서는 시스템 복잡도, 설계의 새로움, 개발자의 이전 경험 같은 요인에 따라 달라진다. 평가자는 맡은 활동에 필요한 역량을 갖춰야 한다.[@iec-functional-safety-faq-2023]
 

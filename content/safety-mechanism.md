@@ -11,7 +11,7 @@ verified: 2026-10-02
 
 ## 안전 상태와 성능 저하
 
-이 표준은 **안전 상태**(safe state)를 failure가 났을 때 불합리한 리스크가 없는 아이템의 운용 모드로 정의하고, fault tolerant가 아닌 시스템의 안전 상태 예로 꺼진 모드를 든다. 같은 표준은 fault를 검출한 뒤 안전 상태에 바로 또는 제때 이르지 못하거나 그 상태에 머물 수 없으면, 안전 메커니즘이 아이템을 emergency operation으로 옮겨 안전 상태에 이를 때까지 안전을 지킬 수 있게 둔다.[@iso-26262-1-obp-2018]
+이 표준은 **안전 상태**(safe state)를 failure가 났을 때 불합리한 리스크가 없는 아이템의 운용 모드로 정의하고, fault tolerant가 아닌 시스템의 안전 상태 예로 꺼진 모드를 든다. 같은 표준은 fault를 검출한 뒤 안전 상태에 바로 또는 제때 이르지 못하거나 그 상태에 머물 수 없으면, 안전 메커니즘이 아이템을 [[fault-tolerant-time-interval#시간 구간과 운용 모드|emergency operation]]으로 옮겨 안전 상태에 이를 때까지 안전을 지킬 수 있게 둔다.[@iso-26262-1-obp-2018]
 
 이 표준은 **성능 저하**(degradation)를 아이템이나 요소의 기능, 성능 또는 둘 다가 줄어든 상태나 그 상태로 옮겨 가는 것으로 정의한다. 또 **warning and degradation strategy**를, 기능이 줄 수 있음을 운전자에게 어떻게 알리고 줄어든 기능을 어떻게 제공해 안전 상태에 이를지 정한 명세로 정의한다. 이 strategy는 운전자에게 주는 경고 신호, 안전 상태, 안전 상태로 옮기는 조건과 돌아오는 조건, 해당하면 emergency operation을 담는다.[@iso-26262-1-obp-2018]
 
@@ -51,6 +51,6 @@ AUTOSAR R25-11의 Watchdog Driver 명세는 Slow-Mode의 예로 트리거 시점
 
 Watchdog Manager는 감시하는 논리 단위를 **Supervised Entity**라 하고, Supervised Entity 안의 중요한 자리를 **체크포인트**(checkpoint)라 한다. Supervised Entity의 코드에는 체크포인트에 이르렀음을 Watchdog Manager에 알리는 함수 호출이 들어 있다.[@autosar-cp-exp-functionalsafetymeasures-2025]
 
-체크포인트의 거칠기는 Watchdog Manager가 정하지 않는다. 체크포인트가 적고 거칠면 Watchdog Manager의 검출 능력이 제한되고, 촘촘하면 Watchdog Manager의 설정이 복잡하고 커진다. 라이브러리는 Basic Software를 부를 수 없어 Watchdog Manager가 감시하지 못하지만, 모듈 코드에서 라이브러리 호출 앞뒤에 체크포인트를 두면 deadline supervision으로 감시할 수 있다. Logical supervision을 deadline supervision과 함께 쓰면 높은 [[hardware-architectural-metrics#진단 커버리지와 failure rate|진단 커버리지]]를 얻는다.[@autosar-cp-exp-functionalsafetymeasures-2025] Supervised Entity 하나에 alive supervision 체크포인트를 여럿 두는 기능은 일관되게 명세되지 않아, Supervised Entity마다 alive supervision 체크포인트를 하나만 지원하기를 권한다.[@autosar-cp-sws-watchdogmanager-2025]
+체크포인트의 거칠기는 Watchdog Manager가 정하지 않는다. 체크포인트가 적고 거칠면 Watchdog Manager의 검출 능력이 제한되고, 촘촘하면 Watchdog Manager의 설정이 복잡하고 커진다. 라이브러리는 [[autosar-layered-architecture|Basic Software]]를 부를 수 없어 Watchdog Manager가 감시하지 못하지만, 모듈 코드에서 라이브러리 호출 앞뒤에 체크포인트를 두면 deadline supervision으로 감시할 수 있다. Logical supervision을 deadline supervision과 함께 쓰면 높은 [[hardware-architectural-metrics#진단 커버리지와 failure rate|진단 커버리지]]를 얻는다.[@autosar-cp-exp-functionalsafetymeasures-2025] Supervised Entity 하나에 alive supervision 체크포인트를 여럿 두는 기능은 일관되게 명세되지 않아, Supervised Entity마다 alive supervision 체크포인트를 하나만 지원하기를 권한다.[@autosar-cp-sws-watchdogmanager-2025]
 
 [[autosar-adaptive-platform|Adaptive Platform]]의 Supervised Entity는 Platform Health Management의 [[autosar-platform-health-management#감시|감시]]에서, Foundation의 Health Monitoring은 [[autosar-platform-health-management#Health Monitoring과의 관계|Health Monitoring과의 관계]]에서, 내부·외부 watchdog 드라이버의 계층 배치는 [[ecu-abstraction-layer#Watchdog Interface|Watchdog Interface]]에서 다룬다.

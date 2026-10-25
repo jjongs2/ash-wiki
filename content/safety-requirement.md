@@ -15,7 +15,7 @@ ISO 26262-1:2018에서 요구사항은 safety goal에서 아래 두 요구사항
 
 - **Functional safety requirement**(FSR): 구현과 상관없는 안전 동작이나 안전 조치를 안전 관련 속성과 함께 명세한 것
 - **Technical safety requirement**(TSR): 관련 FSR을 구현하려고 끌어낸 요구사항. 끌어낸 요구사항에는 완화 요구사항이 든다.
-- **Functional safety concept**: FSR과 관련 정보, 아키텍처 안 요소로의 할당, safety goal을 이루는 데 필요한 상호작용을 정한 명세
+- **Functional safety concept**: FSR과 관련 정보, 아키텍처 안 [[safety-element-out-of-context#요소와 안전 관련 요소|요소]]로의 할당, safety goal을 이루는 데 필요한 상호작용을 정한 명세
 - **Technical safety concept**: TSR과 그 시스템 요소로의 할당을, 시스템 수준 기능 안전의 근거가 되는 정보와 함께 정한 명세[@iso-26262-1-obp-2018]
 
 ![[diagrams/safety-requirement-hierarchy.svg]]

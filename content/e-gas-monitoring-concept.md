@@ -32,7 +32,7 @@ E-Gas 감시 개념 6.0판은 엔진 제어기의 감시를 세 층으로 나눈
 
 ### Level 2의 독립성
 
-이 개념은 Level 2가 감시 대상 기능을 Level 1과 따로 계산하게 하고, 두 층을 독립으로 개발해 체계적 error가 두 층에 같은 영향을 주지 않게 한다.[@egas-monitoring-concept-2015]
+이 개념은 Level 2가 감시 대상 기능을 Level 1과 따로 계산하게 하고, 두 층을 독립으로 개발해 systematic error가 두 층에 같은 영향을 주지 않게 한다.[@egas-monitoring-concept-2015]
 
 ### Level 3의 질의-응답
 

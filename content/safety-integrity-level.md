@@ -31,7 +31,7 @@ SIL과 ASIL의 비교는 [[automotive-safety-integrity-level#SIL과의 차이|AS
 
 IEC 61508:2010은 SIL을 정하는 데 정량적 리스크 분석을 요구하지 않고, 정량적 접근과 정성적 접근을 모두 허용한다.[@iec-functional-safety-faq-2023]
 
-정량적 접근에서 SIL을 정하는 길은 동작 모드에 따라 다르다. 해저드 발생률 $h$는 다른 보호 조치가 없을 때 지정된 해저드 사건이 일어날 것으로 추정되는 비율이다. Low demand mode에서는 $h = f_\mathrm{d} \cdot \mathrm{PFDavg}$이다. 그래서 허용 리스크를 이루는 데 필요한 PFDavg는 아래 식으로 얻고, 이 $h/f_\mathrm{d}$를 리스크 감소 계수(risk reduction factor)라 부르기도 한다.[@iec-functional-safety-faq-2023]
+정량적 접근에서 SIL을 정하는 길은 동작 모드에 따라 다르다. 해저드 발생률 $h$는 다른 보호 조치가 없을 때 지정된 해저드 사건이 일어날 것으로 추정되는 비율이다. Low demand mode에서는 $h = f_\mathrm{d} \cdot \mathrm{PFDavg}$이다. 그래서 [[functional-safety#안전과 리스크|허용 리스크]]를 이루는 데 필요한 PFDavg는 아래 식으로 얻고, 이 $h/f_\mathrm{d}$를 리스크 감소 계수(risk reduction factor)라 부르기도 한다.[@iec-functional-safety-faq-2023]
 
 $$
 \mathrm{PFDavg} = \frac{h}{f_\mathrm{d}}
