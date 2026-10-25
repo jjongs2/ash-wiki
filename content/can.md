@@ -60,4 +60,4 @@ Bosch CAN 2.0 규격은 CAN의 속도가 시스템마다 다를 수 있지만 �
 
 이 표준은 classic 프레임만 지원하는 구현을 CAN FD 프레임을 용인하는 구현과 용인하지 않는 구현 둘로 나눈다.[@iso-11898-1-obp-2024] 두 구현의 통신 범위는 [[can-fd#호환성|CAN FD]]에서 다룬다.
 
-CiA는 CAN 데이터 링크 계층을 CAN CC(CC: classic), CAN FD, CAN XL 세 세대로 나눈다.[@iso-11898-1-obp-2024][@cia-can-dll-generations-2026] ISO 11898-1:2024는 CAN 기능의 일부에 바탕을 둔 responder 노드의 구현 옵션으로 [[can-fd-light|CAN FD light]]를 둔다.[@iso-11898-1-obp-2024]
+CiA는 CAN 데이터 링크 계층을 CAN CC(CAN classic), CAN FD, CAN XL 세 세대로 나눈다.[@iso-11898-1-obp-2024][@cia-can-dll-generations-2026] ISO 11898-1:2024는 CAN 기능의 일부에 바탕을 둔 responder 노드의 구현 옵션으로 [[can-fd-light|CAN FD light]]를 둔다.[@iso-11898-1-obp-2024]
