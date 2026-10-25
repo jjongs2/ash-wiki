@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 -9.5 686 188.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 -9.5 524.5 196.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -11,38 +11,40 @@
   <!-- 줄 이름 -->
   <g font-size="12" fill="var(--text, #727981)">
     <text x="20" y="57">ISR</text>
-    <text x="20" y="89">처리 태스크 (높은 우선순위)</text>
-    <text x="20" y="121">끊긴 태스크 (낮은 우선순위)</text>
+    <text x="20" y="85.5">처리 태스크</text>
+    <text x="20" y="99.5">(높은 우선순위)</text>
+    <text x="20" y="121.5">끊긴 태스크</text>
+    <text x="20" y="135.5">(낮은 우선순위)</text>
   </g>
 
   <!-- 인터럽트 -->
-  <line x1="280" y1="26" x2="280" y2="134" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
-  <text x="280" y="20" text-anchor="middle" font-size="12" fill="var(--text, #727981)">인터럽트</text>
+  <line x1="186" y1="26" x2="186" y2="142" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+  <text x="186" y="20" text-anchor="middle" font-size="12" fill="var(--text, #727981)">인터럽트</text>
 
   <!-- ISR -->
-  <rect x="280.75" y="40.75" width="68.5" height="22.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="315" y="56" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">ISR</text>
-  <text x="358" y="56" font-size="12" fill="var(--text, #727981)">원인 기록, 인터럽트 지움, 블록 풀기</text>
+  <rect x="186.75" y="40.75" width="54.5" height="22.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <text x="214" y="56" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">ISR</text>
+  <text x="250" y="56" font-size="12" fill="var(--text, #727981)">원인 기록, 인터럽트 지움, 블록 풀기</text>
 
   <!-- 처리 태스크 -->
-  <rect x="180.75" y="72.75" width="168.5" height="22.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
-  <text x="265" y="88" text-anchor="middle" font-size="12" fill="var(--text, #727981)">블록</text>
-  <rect x="350.75" y="72.75" width="168.5" height="22.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
-  <text x="435" y="88" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">나머지 처리</text>
-  <rect x="520.75" y="72.75" width="98.5" height="22.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
-  <text x="570" y="88" text-anchor="middle" font-size="12" fill="var(--text, #727981)">블록</text>
+  <rect x="106.75" y="76.75" width="134.5" height="22.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="174" y="92" text-anchor="middle" font-size="12" fill="var(--text, #727981)">블록</text>
+  <rect x="242.75" y="76.75" width="134.5" height="22.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="310" y="92" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">나머지 처리</text>
+  <rect x="378.75" y="76.75" width="78.5" height="22.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="418" y="92" text-anchor="middle" font-size="12" fill="var(--text, #727981)">블록</text>
 
   <!-- 끊긴 태스크 -->
-  <rect x="180.75" y="104.75" width="98.5" height="22.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <text x="230" y="120" text-anchor="middle" font-size="12" fill="var(--text, #727981)">실행</text>
-  <rect x="280.75" y="104.75" width="238.5" height="22.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
-  <text x="400" y="120" text-anchor="middle" font-size="12" fill="var(--text, #727981)">끊김</text>
-  <rect x="520.75" y="104.75" width="98.5" height="22.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <text x="570" y="120" text-anchor="middle" font-size="12" fill="var(--text, #727981)">이어서 실행</text>
+  <rect x="106.75" y="112.75" width="78.5" height="22.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="146" y="128" text-anchor="middle" font-size="12" fill="var(--text, #727981)">실행</text>
+  <rect x="186.75" y="112.75" width="190.5" height="22.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="282" y="128" text-anchor="middle" font-size="12" fill="var(--text, #727981)">끊김</text>
+  <rect x="378.75" y="112.75" width="78.5" height="22.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="418" y="128" text-anchor="middle" font-size="12" fill="var(--text, #727981)">이어서 실행</text>
 
   <!-- 시간 축 -->
-  <line x1="180" y1="134" x2="638" y2="134" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="646" y="138" font-size="12" fill="var(--text, #727981)">시간</text>
-  <line x1="350" y1="134" x2="350" y2="142" stroke="var(--ink, #727981)" stroke-width="1" />
-  <text x="350" y="158" text-anchor="middle" font-size="12" fill="var(--text, #727981)">ISR에서 곧바로 처리 태스크로</text>
+  <line x1="106" y1="142" x2="476" y2="142" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="484" y="146" font-size="12" fill="var(--text, #727981)">시간</text>
+  <line x1="242" y1="142" x2="242" y2="150" stroke="var(--ink, #727981)" stroke-width="1" />
+  <text x="242" y="166" text-anchor="middle" font-size="12" fill="var(--text, #727981)">ISR에서 곧바로 처리 태스크로</text>
 </svg>

@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-30
 ---
 
-**cyclic executive**(순환 실행기)는 주기 프로세스를 제어하는 실행 구조다.[@baker-cyclic-executive-1988] POSIX 근거 문서에 따르면 cyclic executive에서는 주기적인 타이머 인터럽트가 다음 일련의 계산을 시작한다.[@ieee-1003-1-rationale-clocks-and-timers-2024] 실시간 스케줄링 방식은 [[real-time-scheduling|실시간 스케줄링]]에서 다룬다.
+**cyclic executive**(순환 실행기)는 주기 프로세스를 제어하는 실행 구조다.[@baker-cyclic-executive-1988] POSIX [[ieee-1003-1#범위|근거 문서]]에 따르면 cyclic executive에서는 주기적인 타이머 인터럽트가 다음 일련의 계산을 시작한다.[@ieee-1003-1-rationale-clocks-and-timers-2024] 실시간 스케줄링 방식은 [[real-time-scheduling|실시간 스케줄링]]에서 다룬다.
 
 ## 오버런 검사
 

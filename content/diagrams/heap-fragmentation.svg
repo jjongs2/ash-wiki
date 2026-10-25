@@ -38,5 +38,8 @@
       <text x="553" y="100">빈</text>
     </g>
   </g>
+  <!-- 끝의 사용 중 칸 이름표 -->
+  <line x1="587.5" y1="112" x2="587.5" y2="117" stroke="var(--ink, #727981)" stroke-width="1" />
+  <text x="599.25" y="131" text-anchor="end" font-size="12" fill="var(--text, #727981)">사용 중</text>
   <text x="320" y="140" text-anchor="middle" font-size="12" fill="var(--text, #727981)">빈 메모리가 이어지지 않은 작은 조각으로 쪼개짐</text>
 </svg>

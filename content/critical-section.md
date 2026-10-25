@@ -17,7 +17,7 @@ FreeRTOS 커널 책에 따르면 `PORTA |= 0x01` 같은 C 문장은 보통 값�
 
 이처럼 실행 결과가 여러 실행 흐름의 상대적인 실행 시점이나 순서에 따라 달라지는 것을 **race condition**이라 한다.[@linux-locking-guide-2026][@microsoft-managed-threading-best-practices-2026]
 
-[[ieee-1003-1|POSIX.1]]-2024는 서로 다른 스레드의 충돌하는 두 동작 가운데 적어도 하나가 원자적이지 않고 어느 쪽도 다른 쪽보다 먼저 일어나지 않는 상황을 **데이터 경쟁**(data race)으로 정의하고, 데이터 경쟁이 있으면 동작이 정의되지 않는다고 정한다.[@ieee-1003-1-definitions-2024][@ieee-1003-1-general-concepts-2024] 데이터 경쟁을 피하도록, 둘 이상의 스레드나 프로세스가 lock-free가 아닌 방식으로 같은 메모리 위치에 접근할 때 한쪽이 고치는 동안 다른 쪽이 그 위치를 읽거나 고치지 못하게 하는 일을 애플리케이션에 요구한다. 또 `pthread_mutex_lock`, `pthread_mutex_unlock` 같은 함수가 [[mutex|뮤텍스]]를 얻거나 놓을 때 메모리를 동기화한다고 정한다. 메모리를 동기화하는 함수에는 세마포어의 `sem_wait`, `sem_post`와 [[spinlock|스핀락]]의 `pthread_spin_lock`, `pthread_spin_unlock`도 든다.[@ieee-1003-1-general-concepts-2024]
+[[ieee-1003-1|POSIX.1]]-2024는 서로 다른 스레드의 충돌하는 두 동작 가운데 적어도 하나가 [[spinlock#원자 명령|원자적]]이지 않고 어느 쪽도 다른 쪽보다 먼저 일어나지 않는 상황을 **데이터 경쟁**(data race)으로 정의하고, 데이터 경쟁이 있으면 동작이 정의되지 않는다고 정한다.[@ieee-1003-1-definitions-2024][@ieee-1003-1-general-concepts-2024] 이 표준은 데이터 경쟁을 피하도록, 둘 이상의 스레드나 프로세스가 lock-free가 아닌 방식으로 같은 메모리 위치에 접근할 때 한쪽이 고치는 동안 다른 쪽이 그 위치를 읽거나 고치지 못하게 하는 일을 애플리케이션에 요구한다. 또 `pthread_mutex_lock`, `pthread_mutex_unlock` 같은 함수가 [[mutex|뮤텍스]]를 얻거나 놓을 때 메모리를 동기화한다고 정한다. 메모리를 동기화하는 함수에는 세마포어의 `sem_wait`, `sem_post`와 [[spinlock|스핀락]]의 `pthread_spin_lock`, `pthread_spin_unlock`도 든다.[@ieee-1003-1-general-concepts-2024]
 
 ## 인터럽트 금지
 
@@ -29,7 +29,7 @@ FreeRTOS 커널 책에 따르면 `PORTA |= 0x01` 같은 C 문장은 보통 값�
 
 ## 스케줄러 잠금
 
-스케줄러 잠금은 임계 구역 동안 태스크 전환을 막는다.[@micrium-ucos-iii-locking-the-scheduler-2026][@arm-cmsis-rtos2-kernel-2026] µC/OS-III와 FreeRTOS에서는 스케줄러를 잠근 동안에도 인터럽트를 받아 처리한다.[@micrium-ucos-iii-locking-the-scheduler-2026][@freertos-vtasksuspendall-2026] FreeRTOS에 따르면 인터럽트를 끄기에는 너무 긴 임계 구역은 스케줄러를 멈춰 만들 수 있다.[@freertos-resource-management-2026] [[osek-os|OSEK OS]]에서는 태스크가 [[osek-resource|resource]]의 하나인 `RES_SCHEDULER`를 얻어 스케줄러를 잠근다.[@osek-os-2-2-3-2005]
+스케줄러 잠금은 임계 구역 동안 태스크 전환을 막는다.[@micrium-ucos-iii-locking-the-scheduler-2026][@arm-cmsis-rtos2-kernel-2026] µC/OS-III와 FreeRTOS에서는 스케줄러를 잠근 동안에도 인터럽트를 받아 처리한다.[@micrium-ucos-iii-locking-the-scheduler-2026][@freertos-vtasksuspendall-2026] FreeRTOS에 따르면 인터럽트를 끄기에는 너무 긴 임계 구역은 스케줄러를 멈추는 방법으로 만들 수 있다.[@freertos-resource-management-2026] [[osek-os|OSEK OS]]에서는 태스크가 [[osek-resource|resource]]의 하나인 `RES_SCHEDULER`를 얻어 스케줄러를 잠근다.[@osek-os-2-2-3-2005]
 
 µC/OS-III와 FreeRTOS에서는 태스크와 인터럽트 처리기가 함께 쓰는 임계 구역은 인터럽트를 꺼서 보호하고, 태스크끼리만 쓰는 임계 구역은 스케줄러를 잠가 보호할 수 있다.[@freertos-resource-management-2026][@micrium-ucos-iii-critical-sections-2026] FreeRTOS에서 스케줄러를 멈춘 동안 인터럽트가 요청한 [[context-switch|context switch]]는 보류되었다가 스케줄러를 다시 켤 때 일어난다. 커널이 중첩 깊이를 세므로 멈추기와 다시 켜기는 중첩해 부를 수 있고, 깊이가 0으로 돌아와야 스케줄러가 다시 켜진다.[@freertos-resource-management-2026] µC/OS-III에서도 스케줄러를 잠근 동안 인터럽트가 더 높은 우선순위 태스크를 준비시키면 커널은 인터럽트된 태스크로 돌아가고, 잠금을 푼 뒤 context switch를 한다. 잠금은 중첩할 수 있고, 잠근 횟수만큼 풀어야 스케줄러가 다시 돈다.[@micrium-ucos-iii-lock-unlock-2026]
 

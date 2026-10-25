@@ -21,11 +21,11 @@ Liu와 Layland의 논문은 스케줄링 알고리즘을 특정 시점에 실행
 
 [[rtos|RTOS]]는 실행 준비가 된 태스크 가운데 어느 것을 실행할지 정해 CPU를 배정하는 스케줄러를 둔다.[@atmel-at04056-2014][@renesas-res05b0008-2010]
 
-Renesas 앱노트에 따르면 RTOS의 응답성은 처리 속도가 아니라 결정적 동작에 달려 있고, 정해진 시간 안에 응답한다고 해서 빠르다는 뜻은 아니다.[@renesas-res05b0008-2010] 실시간 시스템에서는 시간 동작이 결정적이어서, 태스크가 언제 실행될지 미리 예측할 수 있어야 한다.[@atmel-at04056-2014][@renesas-res05b0008-2010]
+Renesas 앱노트에 따르면 RTOS의 응답성은 처리 속도가 아니라 결정적(deterministic) 동작에 달려 있고, 정해진 시간 안에 응답한다고 해서 빠르다는 뜻은 아니다.[@renesas-res05b0008-2010] 실시간 시스템에서는 시간 동작이 결정적이어서, 태스크가 언제 실행될지 미리 예측할 수 있어야 한다.[@atmel-at04056-2014][@renesas-res05b0008-2010]
 
 ## 차량
 
-FreeRTOS 문서에 따르면 RTOS는 의료 기기나 차량 ECU처럼 엄격한 시간 제약 안에서 외부 사건에 반응해야 하는 임베디드 시스템에 흔히 쓰인다.[@freertos-rtos-fundamentals-2026]
+FreeRTOS 문서에 따르면 RTOS는 의료 기기나 차량 [[electronic-control-unit|ECU]]처럼 엄격한 시간 제약 안에서 외부 사건에 반응해야 하는 임베디드 시스템에 흔히 쓰인다.[@freertos-rtos-fundamentals-2026]
 
 [[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 Timing Extensions 명세는 주어진 시간 요구를 채우는 임베디드 실시간 시스템을 만들고 그 타이밍을 분석·검증하도록 돕는 것을 주목적으로 둔다. 이 명세는 센서 샘플링에서 액추에이터 접근까지의 인과 경로를 [[autosar-event-chain|event chain]]으로 기술하고, event chain의 자극과 응답 사이 시간을 지연 제약(LatencyTimingConstraint)으로 제한한다.[@autosar-cp-tps-timingextensions-2025]
 

@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-07
 ---
 
-**다중 프로세서 스케줄링**(multiprocessor scheduling)은 응용을 이루는 [[task|태스크]] 집합을 프로세서 여럿에서 실행하면서 그 시간 제약을 늘 지키게 하는 [[real-time-scheduling|실시간 스케줄링]]이다. 다중 프로세서 스케줄링은 태스크를 어느 프로세서에서 실행할지 정하는 할당 문제와, 각 job을 다른 태스크의 job과 견주어 언제 어떤 순서로 실행할지 정하는 우선순위 문제를 푸는 일로 볼 수 있다.[@davis-survey-hard-real-time-2011]
+**다중 프로세서 스케줄링**(multiprocessor scheduling)은 응용을 이루는 [[task|태스크]] 집합을 프로세서 여럿에서 실행하면서 그 시간 제약을 늘 지키게 하는 [[real-time-scheduling|실시간 스케줄링]]이다. 다중 프로세서 스케줄링은 태스크를 어느 프로세서에서 실행할지 정하는 할당 문제와, 각 [[periodic-task-model#파라미터|job]]을 다른 태스크의 job과 견주어 언제 어떤 순서로 실행할지 정하는 우선순위 문제를 푸는 일로 볼 수 있다.[@davis-survey-hard-real-time-2011]
 
 ## 프로세서의 분류
 
@@ -51,7 +51,7 @@ partitioned 고정 우선순위 시스템에 쓰는 [[priority-ceiling-protocol|
 
 ### MrsP
 
-**MrsP**(Multiprocessor resource sharing Protocol)는 단일 프로세서의 우선순위 상한 프로토콜에 바탕을 둔 다중 프로세서 프로토콜로, 원 논문은 이 프로토콜을 sporadic 태스크 모델의 partitioned 고정 우선순위 시스템에 맞춰 정의했다.[@burns-mrsp-2013]
+**MrsP**(Multiprocessor resource sharing Protocol)는 단일 프로세서의 우선순위 상한 프로토콜에 바탕을 둔 다중 프로세서 프로토콜로, 원 논문은 이 프로토콜을 [[periodic-task-model#주기 태스크와 sporadic 태스크|sporadic 태스크]] 모델의 partitioned 고정 우선순위 시스템에 맞춰 정의했다.[@burns-mrsp-2013]
 
 원 논문의 정의에서 자원은 그 자원을 쓰는 태스크가 있는 프로세서마다 상한을 하나씩 갖고, 그 값은 그 프로세서에 할당된 태스크 가운데 그 자원을 쓰는 태스크의 가장 높은 우선순위다. 자원을 요청한 태스크의 우선순위는 곧바로 그 프로세서의 상한으로 오르고, 요청은 FIFO 순서로 처리된다. 태스크는 자원을 기다리는 동안과 쓰는 동안 그 상한 우선순위로 계속 실행되어, 기다리는 동안은 바쁜 대기한다. 자원을 기다리는 태스크는 같은 자원을 기다리다 선점된 다른 태스크를 대신해 그 [[critical-section|임계 구역]]을 원래의 FIFO 순서대로 실행할 수 있어야 한다.[@burns-mrsp-2013]
 

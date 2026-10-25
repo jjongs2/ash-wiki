@@ -18,7 +18,7 @@
 
   <!-- 대각선 t -->
   <line x1="80" y1="320" x2="360" y2="40" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <text x="326" y="118" font-size="12" fill="var(--text, #727981)"><tspan font-style="italic">W</tspan><tspan font-style="italic" dy="3" font-size="9">i</tspan><tspan dy="-3">(</tspan><tspan font-style="italic">t</tspan>) ≤ <tspan font-style="italic">t</tspan></text>
+  <text x="368" y="44" font-size="12" font-style="italic" fill="var(--text, #727981)">t</text>
 
   <!-- W_i(t) 계단 -->
   <path d="M80 200 H240 V160 H320" stroke="var(--ink, #727981)" stroke-width="3" stroke-linejoin="round" />
@@ -33,5 +33,6 @@
     <circle cx="240" cy="200" r="4" />
     <circle cx="320" cy="160" r="4" />
   </g>
+  <text x="332" y="164" font-size="12" fill="var(--text, #727981)"><tspan font-style="italic">W</tspan><tspan font-style="italic" dy="3" font-size="9">i</tspan><tspan dy="-3">(</tspan><tspan font-style="italic">t</tspan>) ≤ <tspan font-style="italic">t</tspan></text>
   <text x="240" y="362" text-anchor="middle" font-size="12" fill="var(--text, #727981)">확인할 <tspan font-style="italic">t</tspan>: 태스크 주기의 배수, 0 &lt; <tspan font-style="italic">t</tspan> ≤ <tspan font-style="italic">T</tspan><tspan font-style="italic" dy="3" font-size="9">i</tspan></text>
 </svg>

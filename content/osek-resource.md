@@ -21,14 +21,14 @@ ceiling priority 이하의 우선순위를 가진 태스크는 이 때문에 늦
 
 ## 사용 규칙
 
-OSEK/VDX OS 2.2.3 명세는 resource 관리를 모든 conformance class에 필수로 둔다. resource 관리는 두 태스크가 같은 resource를 동시에 쥐지 못하고, 우선순위 역전이 일어나지 않으며, 이 resource들로 교착 상태가 생기지 않고, resource 접근이 waiting 상태를 낳지 않음을 보장한다.[@osek-os-2-2-3-2005]
+OSEK/VDX OS 2.2.3 명세는 resource 관리를 모든 [[osek-os#Conformance class|conformance class]]에 필수로 둔다. resource 관리는 두 태스크가 같은 resource를 동시에 쥐지 못하고, 우선순위 역전이 일어나지 않으며, 이 resource들로 교착 상태가 생기지 않고, resource 접근이 waiting 상태를 낳지 않음을 보장한다.[@osek-os-2-2-3-2005]
 
 이 명세는 resource를 쓰는 규칙을 아래처럼 정한다.[@osek-os-2-2-3-2005]
 
 - 쥐고 있는 resource를 또 얻는 중첩 접근은 금지된다.
 - 여러 resource를 쥘 때는 나중에 얻은 것부터 먼저 돌려준다(LIFO, Last In, First Out).
 - resource를 쥔 채 `TerminateTask`, `ChainTask`, `Schedule`, `WaitEvent`를 부를 수 없고, [[osek-isr|ISR]]도 resource를 쥔 채 끝날 수 없다.
-- extended status에서 `GetResource`는 어떤 태스크나 ISR이 이미 쥔 resource를 얻으려 하거나, 부른 쪽의 정적 우선순위가 ceiling priority보다 높으면 E_OS_ACCESS를 돌려준다. `ReleaseResource`는 어느 태스크나 ISR도 쥐지 않은 resource를 돌려주려 하거나, 다른 resource를 먼저 돌려줘야 하면 E_OS_NOFUNC를 돌려준다. `ReleaseResource`도 부른 쪽의 정적 우선순위가 그 resource의 ceiling priority보다 높으면 E_OS_ACCESS를 돌려준다.[@osek-os-2-2-3-2005]
+- [[osek-hook-routine#Standard status와 extended status|extended status]]에서 `GetResource`는 어떤 태스크나 ISR이 이미 쥔 resource를 얻으려 하거나, 부른 쪽의 정적 우선순위가 ceiling priority보다 높으면 E_OS_ACCESS를 돌려준다. `ReleaseResource`는 어느 태스크나 ISR도 쥐지 않은 resource를 돌려주려 하거나, 다른 resource를 먼저 돌려줘야 하면 E_OS_NOFUNC를 돌려준다. `ReleaseResource`도 부른 쪽의 정적 우선순위가 그 resource의 ceiling priority보다 높으면 E_OS_ACCESS를 돌려준다.[@osek-os-2-2-3-2005]
 
 ## 인터럽트 수준으로 넓히기
 

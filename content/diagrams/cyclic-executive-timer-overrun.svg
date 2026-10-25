@@ -28,9 +28,9 @@
   <!-- 인터럽트가 하는 일 -->
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="140" y="100">계산 1 시작</text>
-    <text x="300" y="100">계산 1 끝남:</text>
+    <text x="300" y="100">검사: 계산 1 끝남</text>
     <text x="300" y="116">계산 2 시작</text>
-    <text x="460" y="100">계산 2 끝나지 않음:</text>
+    <text x="460" y="100">검사: 계산 2 끝나지 않음</text>
     <text x="460" y="116">오류 복구</text>
   </g>
 

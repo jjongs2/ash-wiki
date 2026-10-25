@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-07
 ---
 
-**aperiodic server**는 주기적이지 않은 [[task|태스크]]를 실행 용량이 정해진 서버 태스크가 처리하게 하여, aperiodic 태스크를 엄격한 [[periodic-task-model|주기 태스크 모델]] 안에서 다루게 하는 방식이다.[@sha-real-time-scheduling-theory-2004] [[ieee-1003-1|POSIX]] 근거 문서에 따르면 sporadic server는 aperiodic 프로세스나 스레드를 주기적인 것처럼 다루게 해 [[real-time-system|실시간 시스템]]의 스케줄 가능성 분석을 단순하게 한다.[@ieee-1003-1-rationale-sporadic-server-2024]
+**aperiodic server**는 주기적이지 않은 [[task|태스크]]를 실행 용량이 정해진 서버 태스크가 처리하게 하여, aperiodic 태스크를 엄격한 [[periodic-task-model|주기 태스크 모델]] 안에서 다루게 하는 방식이다.[@sha-real-time-scheduling-theory-2004] POSIX [[ieee-1003-1#범위|근거 문서]]에 따르면 sporadic server는 aperiodic 프로세스나 스레드를 주기적인 것처럼 다루게 해 [[real-time-system|실시간 시스템]]의 스케줄 가능성 분석을 단순하게 한다.[@ieee-1003-1-rationale-sporadic-server-2024]
 
 ## Background 처리와 polling
 
@@ -41,7 +41,7 @@ Sprunt, Sha, Lehoczky는 1989년 기술 보고서에서 sporadic server의 보�
 
 ## Slack stealing
 
-hard 마감 시한의 주기 태스크에서 남는 처리 시간을 되도록 빨리 aperiodic 요청에 내주는 알고리즘을 **slack stealing** 알고리즘이라 부른다. 이 알고리즘은 남는 용량을 곧바로 내주면서 모든 hard 마감 시한을 지키는 알고리즘 가운데 aperiodic 태스크의 응답 시간을 가장 짧게 한다. 정적 slack stealing 알고리즘은 주기들의 [[periodic-task-model#파라미터|hyperperiod]] 동안 hard 마감 시한 주기 태스크의 release마다 남는 시간을 표로 저장해 두므로, release jitter가 없는 엄격한 주기 태스크에서만 남는 시간을 가져올 수 있다.[@sha-real-time-scheduling-theory-2004]
+hard 마감 시한의 주기 태스크에서 남는 처리 시간을 되도록 빨리 aperiodic 요청에 내주는 알고리즘을 **slack stealing** 알고리즘이라 부른다. 이 알고리즘은 남는 용량을 곧바로 내주면서 모든 hard 마감 시한을 지키는 알고리즘 가운데 aperiodic 태스크의 응답 시간을 가장 짧게 한다. 정적 slack stealing 알고리즘은 주기들의 [[periodic-task-model#파라미터|hyperperiod]] 동안 hard 마감 시한 주기 태스크의 release마다 남는 시간을 표로 저장해 두므로, [[periodic-task-model#Release와 jitter|release jitter]]가 없는 엄격한 주기 태스크에서만 남는 시간을 가져올 수 있다.[@sha-real-time-scheduling-theory-2004]
 
 ## POSIX `SCHED_SPORADIC`
 

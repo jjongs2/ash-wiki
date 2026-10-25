@@ -24,7 +24,7 @@ OSEK OS의 객체와 그것을 적는 OIL 객체는 다음과 같다.[@osek-os-2
 
 운영체제가 부르고 사용자가 구현하는 [[osek-hook-routine|hook 루틴]]도 있다.[@osek-os-2-2-3-2005]
 
-OSEK OS 구현은 프로세서 안의 메시지 처리를 갖추어야 한다. 최소 기능은 OSEK COM(Communication) 명세의 conformance class CCCA이고, 그 밖에 받아들이는 등급은 CCCA의 상위 집합인 CCCB뿐이다.[@osek-os-2-2-3-2005]
+OSEK OS 구현은 프로세서 안의 메시지 처리를 갖추어야 한다. 최소 기능은 [[osek-vdx#명세|OSEK COM]] 명세의 conformance class CCCA이고, 그 밖에 받아들이는 등급은 CCCA의 상위 집합인 CCCB뿐이다.[@osek-os-2-2-3-2005]
 
 ## 처리 레벨
 
@@ -82,7 +82,7 @@ application mode는 서로 완전히 배타적인 동작 모드를 위한 것이
 | `ShutdownHook`                          | `GetActiveApplicationMode`                                                                                                                                                                                                                                                   |
 | 알람 callback 루틴                      | `SuspendAllInterrupts`, `ResumeAllInterrupts`                                                                                                                                                                                                                                |
 
-그래서 `TerminateTask`, `ChainTask`, `Schedule`, `WaitEvent`, `ClearEvent`는 태스크만 부를 수 있다. 이 다섯을 인터럽트 레벨에서 부르면 extended status에서 E_OS_CALLEVEL을 돌려준다. 표에 없는 조합의 동작은 정의되지 않는다.[@osek-os-2-2-3-2005]
+그래서 `TerminateTask`, `ChainTask`, `Schedule`, `WaitEvent`, `ClearEvent`는 태스크만 부를 수 있다. 이 다섯을 인터럽트 레벨에서 부르면 [[osek-hook-routine#Standard status와 extended status|extended status]]에서 E_OS_CALLEVEL을 돌려준다. 표에 없는 조합의 동작은 정의되지 않는다.[@osek-os-2-2-3-2005]
 
 서비스가 오류를 돌려주면 출력 인자의 값은 정의되지 않는다. 운영체제 안에서 오류를 검사하는 순서는 정해지지 않으므로, 오류가 여럿 겹치면 어느 상태를 돌려줄지는 구현에 달렸다.[@osek-os-2-2-3-2005]
 
