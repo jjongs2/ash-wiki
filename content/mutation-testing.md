@@ -29,4 +29,4 @@ DeMillo, Lipton, Sayward는 1978년 논문의 초록에서, 단순한 오류를 
 
 ## Testing criterion으로서의 변이 테스트
 
-변이 테스트는 그 자체로 testing criterion이기도 하다. 충분한 변이체를 죽일 때까지 테스트 케이스를 무작위로 만들거나, 살아남은 변이체를 죽이도록 테스트를 설계한다. 살아남은 변이체를 죽이도록 테스트를 설계하는 경우 변이 테스트를 [[white-box-testing|구조 기반 기법]]으로 분류할 수도 있다.[@ieee-swebok-v4-0a-2026] Fault seeding은 [[fault-injection#Fault seeding|결함 주입]]에서 다룬다.
+변이 테스트는 그 자체로 testing criterion이기도 하다. 충분한 변이체를 죽일 때까지 테스트 케이스를 무작위로 만들거나, 살아남은 변이체를 죽이도록 테스트를 설계한다. 뒤의 경우 변이 테스트를 [[white-box-testing|구조 기반 기법]]으로 분류할 수도 있다.[@ieee-swebok-v4-0a-2026] Fault seeding은 [[fault-injection#Fault seeding|결함 주입]]에서 다룬다.

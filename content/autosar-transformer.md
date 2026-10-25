@@ -35,7 +35,7 @@ Transformer chain의 길이는 이 개념이 고른 해법 때문에 제한되�
 
 **COM Based Transformer**는 대상 버스가 데이터를 빽빽하게 채운 고정 통신 매트릭스를 쓸 때 transformer chain을 쓸 수 있게 하는 transformer다. 이 transformer는 구조를 가진 데이터를 선형으로 직렬화하므로 체인의 맨 앞에만 둘 수 있어, 송신 쪽에서는 첫째, 수신 쪽에서는 마지막에 놓인다. 송신 쪽 COM Based Transformer는 SW-C의 데이터를 통신 매트릭스 기술에 따라 uint8 배열로 직렬화하고, RTE는 다른 transformer가 덧붙인 것까지 담긴 이 배열을 `Com_SendSignalGroupArray` 한 번으로 COM에 넘긴다. COM은 배열을 I-PDU(Interaction Layer Protocol Data Unit)의 시그널 그룹 자리에 놓고, 설정에 따라 배열을 살펴 전송 모드를 고른다. 수신 쪽 RTE는 체인을 역순으로 실행하고, COM Based Transformer가 선형 데이터를 원래 구조로 되돌려 SW-C에 넘긴다.[@autosar-cp-sws-combasedtransformer-2025]
 
-COM Based Transformer의 목표는 고정 통신 매트릭스로 시그널을 PDU에 최적으로 배치해(예: 불리언 데이터를 1비트로) CAN이나 [[lin|LIN]]처럼 페이로드가 작은 네트워크에서도 transformer chain을 쓰게 하는 것이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+COM Based Transformer의 목표는 고정 통신 매트릭스로 시그널을 PDU에 최적으로 배치해(예: Boolean 데이터를 1비트로) CAN이나 [[lin|LIN]]처럼 페이로드가 작은 네트워크에서도 transformer chain을 쓰게 하는 것이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## 그 밖의 transformer
 

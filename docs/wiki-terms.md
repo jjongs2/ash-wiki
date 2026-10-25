@@ -19,7 +19,7 @@
 - aperiodic: 비주기 (#350). 합성어 포함. 예: aperiodic 태스크, aperiodic server. CANopen PDO의 주기·비주기 송신처럼 통신의 송신 방식은 예외
 - ASPICE: Automotive SPICE, A-SPICE (#231). 판을 붙이면 `ASPICE 4.1` 꼴. 정식 이름은 `automotive-spice` 머리말의 풀이에만, A-SPICE는 그 페이지의 alias로만. 문서 이름 "Automotive SPICE for Cybersecurity"와 슬러그는 예외
 - baud: 보드레이트 (#496). 기호는 Bd. 음차 "보"도 쓰지 않는다. "Baud Rate Prescaler" 같은 이름은 그대로
-- Boolean: 불 (#573)
+- Boolean: 불, 불리언 (#573). 합성어 포함. 예: Boolean 식, Boolean 연산자
 - CAN CC 풀이 CAN classic: CAN CC(CC: classic), CAN CC(Classical CAN), CAN classic(CC) (#564)
 - cascading failure: 연쇄 고장 (#291)
 - CDD 풀이 Complex Driver: Complex Device Driver (#440). 근거는 SWS BSWGeneral R25-11 [SWS_BSW_91001]과 FO TR Glossary R25-11 4.72. SW-C 종류 이름 "Complex Device Driver"(`autosar-software-component`)는 예외
