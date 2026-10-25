@@ -27,7 +27,7 @@ idleSlope는 큐에 예약한 대역폭에 해당한다.[@st-rm0436-2025][@intel
 
 credit에는 위 한계 hiCredit이 있다.[@st-rm0436-2025][@intel-i210-2019] I210 데이터시트는 우선순위가 가장 높은 큐의 hiCredit을 최대 전송 패킷 크기와 그 큐의 예약 대역폭으로 계산하게 하고, 다음 큐의 식에는 앞 큐의 프레임도 더한다.[@intel-i210-2019] STM32MP157(STMicroelectronics의 Arm 기반 32비트 마이크로프로세서)의 이더넷은 아래 한계 loCredit도 둔다. STM32MP157 참조 매뉴얼은 hiCredit의 최댓값으로 best-effort 트래픽의 최대 패킷 크기를, loCredit 크기의 최댓값으로 그 큐가 내보내는 최대 프레임 크기를 제시한다.[@st-rm0436-2025]
 
-IEEE 802.1Q-2022의 Annex L(참고)은 loCredit과 hiCredit을 아래 식으로 제시한다. maxFrameSize는 그 트래픽 클래스가 포트로 보낼 수 있는 가장 큰 프레임의 크기이고, maxInterferenceSize는 그 트래픽 클래스의 프레임 전송을 늦출 수 있는 트래픽 버스트의 가장 큰 크기(비트)다.[@ieee-802-1q-2022]
+IEEE 802.1Q-2022의 Annex L(informative)은 loCredit과 hiCredit을 아래 식으로 제시한다. maxFrameSize는 그 트래픽 클래스가 포트로 보낼 수 있는 가장 큰 프레임의 크기이고, maxInterferenceSize는 그 트래픽 클래스의 프레임 전송을 늦출 수 있는 트래픽 버스트의 가장 큰 크기(비트)다.[@ieee-802-1q-2022]
 
 $$
 \mathrm{loCredit} = \mathrm{maxFrameSize} \cdot \frac{\mathrm{sendSlope}}{\mathrm{portTransmitRate}}

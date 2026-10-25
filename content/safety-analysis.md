@@ -17,7 +17,7 @@ IEC 60812:2018은 FMEA의 목적을 아이템이나 프로세스가 기능을 �
 
 Failure mode의 순위를 매길 때 적어도 결과의 심각도를 쓰는 분석을 **FMECA**(Failure Modes, Effects and Criticality Analysis)라 하고, 이 표준은 FMEA라는 말에 FMECA를 포함한다.[@iec-60812-preview-2018]
 
-IEC 60812:2018은 안전, 자동차, 소프트웨어, (서비스) 프로세스의 적용 예를 참고 Annex로 더하고, RPN(Risk Priority Number)을 계산하는 다른 방법과 criticality matrix에 기반한 방법을 새로 넣었다.[@iec-60812-preview-2018]
+IEC 60812:2018은 안전, 자동차, 소프트웨어, (서비스) 프로세스의 적용 예를 informative Annex로 더하고, RPN(Risk Priority Number)을 계산하는 다른 방법과 criticality matrix에 기반한 방법을 새로 넣었다.[@iec-60812-preview-2018]
 
 IEC 60050은 FMECA를 FMEA에 failure mode의 발생 확률과 영향의 심각도에 대한 고려를 더한 정량적이거나 정성적인 분석 방법으로 정의한다.[@iec-60050-192-11-06-2015]
 

@@ -23,7 +23,7 @@ CEM:2022(Common Methodology for Information Technology Security Evaluation)는 a
 
 CEM:2022는 합계를 그 공격 시나리오를 실행하는 데 필요한 attack potential 수준에 대응시킨다. 0\~9는 basic, 10\~13은 enhanced-basic, 14\~19는 moderate, 20\~24는 high, 25 이상은 beyond high다. 합계가 클수록 시나리오에 필요한 attack potential이 높다. 예를 들어 합계 21인 high 시나리오로 TOE를 뚫을 수 있으면, 그 TOE는 moderate attack potential의 공격자까지 견디는 것으로 본다.[@ccra-cem-2022]
 
-CEM v3.1 Revision 5의 표는 TOE가 견디는 attack potential을 열로 따로 두어, 합계 0\~9를 no rating, 10\~13을 basic, 14\~19를 enhanced-basic, 20\~24를 moderate, 25 이상을 high에 대응시켰다.[@ccra-cem-3-1-r5-2017] CEM:2022의 Annex B(참고)는 이 열 없이 표를 제시하고, 위의 합계 21 예를 그 표를 쓰는 절차를 설명하는 본문에서 든다.[@ccra-cem-2022]
+CEM v3.1 Revision 5의 표는 TOE가 견디는 attack potential을 열로 따로 두어, 합계 0\~9를 no rating, 10\~13을 basic, 14\~19를 enhanced-basic, 20\~24를 moderate, 25 이상을 high에 대응시켰다.[@ccra-cem-3-1-r5-2017] CEM:2022의 Annex B(informative)는 이 열 없이 표를 제시하고, 위의 합계 21 예를 그 표를 쓰는 절차를 설명하는 본문에서 든다.[@ccra-cem-2022]
 
 ![[diagrams/cem-attack-potential-ranges.svg]]
 

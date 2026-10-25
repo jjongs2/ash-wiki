@@ -66,7 +66,7 @@ CONNECT의 Keep Alive는 클라이언트가 제어 패킷 하나를 다 보낸 �
 
 ## 보안과 인증
 
-이 표준의 5장(참고)은 MQTT가 네트워크, 프라이버시, 인증, 인가 기술을 구현자가 고르게 두는 메시지 전송 프로토콜 명세라고 제시한다. 이 표준은 CONNECT의 User Name과 Password로 네트워크 연결을 기본 인증하게 하며, 토큰을 Password에 넣는 것처럼 이 필드에 다른 형태의 인증 정보도 실을 수 있다. 이 기본 인증을 challenge/response 방식으로 넓힌 enhanced authentication도 두며, 여기서는 CONNECT 뒤 CONNACK 전에 클라이언트와 서버가 AUTH 패킷을 주고받을 수 있다.[@oasis-mqtt-5-0-2019]
+이 표준의 5장(non-normative)은 MQTT가 네트워크, 프라이버시, 인증, 인가 기술을 구현자가 고르게 두는 메시지 전송 프로토콜 명세라고 제시한다. 이 표준은 CONNECT의 User Name과 Password로 네트워크 연결을 기본 인증하게 하며, 토큰을 Password에 넣는 것처럼 이 필드에 다른 형태의 인증 정보도 실을 수 있다. 이 기본 인증을 challenge/response 방식으로 넓힌 enhanced authentication도 두며, 여기서는 CONNECT 뒤 CONNACK 전에 클라이언트와 서버가 AUTH 패킷을 주고받을 수 있다.[@oasis-mqtt-5-0-2019]
 
 ## 판
 
