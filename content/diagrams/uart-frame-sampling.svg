@@ -1,18 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="30.5 10 580 169" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="29.5 8.5 522 185" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
   <!-- 문자 하나 -->
-  <rect x="122" y="20" width="40" height="32" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <rect x="166" y="20" width="348" height="32" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <rect x="518" y="20" width="40" height="32" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="121.25" y="20" width="35.5" height="32" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="159.25" y="20" width="301.5" height="32" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="463.25" y="20" width="35.5" height="32" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
-    <text x="142" y="40">start</text>
-    <text x="340" y="40">데이터 비트</text>
-    <text x="538" y="40">stop</text>
+    <text x="139" y="40">start</text>
+    <text x="310" y="40">데이터 비트</text>
+    <text x="481" y="40">stop</text>
   </g>
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="104" y="40">idle</text>
-    <text x="580" y="40">idle</text>
+    <text x="520" y="40">idle</text>
   </g>
   <g font-size="12" fill="var(--text, #727981)" text-anchor="end">
     <text x="80" y="80">high</text>
@@ -22,39 +22,42 @@
   <!-- 비트 경계 -->
   <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
     <line x1="120" y1="58" x2="120" y2="116" />
-    <line x1="164" y1="58" x2="164" y2="116" />
-    <line x1="208" y1="58" x2="208" y2="116" />
-    <line x1="252" y1="58" x2="252" y2="116" />
-    <line x1="296" y1="58" x2="296" y2="116" />
-    <line x1="340" y1="58" x2="340" y2="116" />
-    <line x1="384" y1="58" x2="384" y2="116" />
-    <line x1="428" y1="58" x2="428" y2="116" />
-    <line x1="472" y1="58" x2="472" y2="116" />
-    <line x1="516" y1="58" x2="516" y2="116" />
-    <line x1="560" y1="58" x2="560" y2="116" />
+    <line x1="158" y1="58" x2="158" y2="116" />
+    <line x1="196" y1="58" x2="196" y2="116" />
+    <line x1="234" y1="58" x2="234" y2="116" />
+    <line x1="272" y1="58" x2="272" y2="116" />
+    <line x1="310" y1="58" x2="310" y2="116" />
+    <line x1="348" y1="58" x2="348" y2="116" />
+    <line x1="386" y1="58" x2="386" y2="116" />
+    <line x1="424" y1="58" x2="424" y2="116" />
+    <line x1="462" y1="58" x2="462" y2="116" />
+    <line x1="500" y1="58" x2="500" y2="116" />
   </g>
 
   <!-- 파형 -->
-  <path d="M88 76 H120 V110 H164" stroke="var(--ink, #727981)" stroke-width="3" />
-  <path d="M164 110 L169 76 M164 110 H169 M169 76 H203 M169 110 H203 M203 76 L213 110 M203 110 L213 76 M213 76 H247 M213 110 H247 M247 76 L257 110 M247 110 L257 76 M257 76 H291 M257 110 H291 M291 76 L301 110 M291 110 L301 76 M301 76 H335 M301 110 H335 M335 76 L345 110 M335 110 L345 76 M345 76 H379 M345 110 H379 M379 76 L389 110 M379 110 L389 76 M389 76 H423 M389 110 H423 M423 76 L433 110 M423 110 L433 76 M433 76 H467 M433 110 H467 M467 76 L477 110 M467 110 L477 76 M477 76 H511 M477 110 H511 M511 76 H516 M511 110 L516 76" stroke="var(--ink, #727981)" stroke-width="3" />
-  <path d="M516 76 H600" stroke="var(--ink, #727981)" stroke-width="3" />
+  <path d="M88 76 H120 V110 H158" stroke="var(--ink, #727981)" stroke-width="3" />
+  <path d="M158 110 L163 76 M158 110 H163 M163 76 H191 M163 110 H191 M191 76 L201 110 M191 110 L201 76 M201 76 H229 M201 110 H229 M229 76 L239 110 M229 110 L239 76 M239 76 H267 M239 110 H267 M267 76 L277 110 M267 110 L277 76 M277 76 H305 M277 110 H305 M305 76 L315 110 M305 110 L315 76 M315 76 H343 M315 110 H343 M343 76 L353 110 M343 110 L353 76 M353 76 H381 M353 110 H381 M381 76 L391 110 M381 110 L391 76 M391 76 H419 M391 110 H419 M419 76 L429 110 M419 110 L429 76 M429 76 H457 M429 110 H457 M457 76 H462 M457 110 L462 76" stroke="var(--ink, #727981)" stroke-width="3" />
+  <path d="M462 76 H540" stroke="var(--ink, #727981)" stroke-width="3" />
 
   <!-- 샘플링 지점 -->
   <g fill="var(--red, #bb464d)">
-    <path d="M142 120 l5 9 h-10 z" />
-    <path d="M186 120 l5 9 h-10 z" />
-    <path d="M230 120 l5 9 h-10 z" />
-    <path d="M274 120 l5 9 h-10 z" />
-    <path d="M318 120 l5 9 h-10 z" />
-    <path d="M362 120 l5 9 h-10 z" />
-    <path d="M406 120 l5 9 h-10 z" />
-    <path d="M450 120 l5 9 h-10 z" />
-    <path d="M494 120 l5 9 h-10 z" />
-    <path d="M538 120 l5 9 h-10 z" />
+    <path d="M139 120 l5 9 h-10 z" />
+    <path d="M177 120 l5 9 h-10 z" />
+    <path d="M215 120 l5 9 h-10 z" />
+    <path d="M253 120 l5 9 h-10 z" />
+    <path d="M291 120 l5 9 h-10 z" />
+    <path d="M329 120 l5 9 h-10 z" />
+    <path d="M367 120 l5 9 h-10 z" />
+    <path d="M405 120 l5 9 h-10 z" />
+    <path d="M443 120 l5 9 h-10 z" />
+    <path d="M481 120 l5 9 h-10 z" />
   </g>
   <g font-size="12" fill="var(--text, #727981)">
     <text x="114" y="132" text-anchor="end">하강 에지</text>
-    <text x="568" y="132">샘플링</text>
+    <text x="511" y="132">샘플링</text>
   </g>
-  <text x="40" y="166" font-size="12" fill="var(--text, #727981)">수신기는 idle(high)에서 start 비트(low)로 떨어지는 에지로 문자의 시작을 알고, 각 비트의 가운데를 샘플링한다.</text>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="40" y="166">수신기는 idle(high)에서 start 비트(low)로 떨어지는 에지로 문자의 시작을 알고,</text>
+    <text x="40" y="182">각 비트의 가운데를 샘플링한다.</text>
+  </g>
 </svg>

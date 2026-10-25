@@ -21,7 +21,7 @@ ISO 27145 시리즈는 OBD 관련 정보에 접근하는 단일 통신 표준이
 
 ## 고장 표시
 
-WWH-OBD에서 **MI**(malfunction indicator)는 고장(malfunction)이 나면 운전자에게 그것을 분명히 알리는 표시나 계기다. 고장은 배출가스나 OBD 시스템의 감시 능력에 미치는 영향에 따라 WWH-OBD GTR의 요구대로 class A, B1, B2, C로 나뉘고, [[uds#데이터 식별자와 고장 코드|DTC]]가 그 class를 속성으로 가진다. 두 운행 사이클 연속으로 검출되어 아직 남아 있는 DTC(confirmed and active DTC)는 class A, B1, B2이면 MI를 켜고, class C면 MI를 켜지 않는다.[@iso-27145-1-obp-2012]
+WWH-OBD에서 **MI**(malfunction indicator)는 고장(malfunction)이 나면 운전자에게 그것을 분명히 알리는 표시나 계기다. 고장은 배출가스나 OBD 시스템의 감시 능력에 미치는 영향에 따라 WWH-OBD GTR의 요구대로 class A, B1, B2, C로 나뉘고, [[uds#데이터 식별자와 고장 코드|DTC]]가 그 class를 속성으로 가진다. 연속한 두 운행 사이클에서 검출되어 아직 남아 있는 DTC(confirmed and active DTC)는 class A, B1, B2이면 MI를 켜고, class C면 MI를 켜지 않는다.[@iso-27145-1-obp-2012]
 
 ## 수리·정비 정보 접근
 

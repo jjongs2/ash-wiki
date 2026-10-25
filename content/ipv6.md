@@ -13,16 +13,16 @@ verified: 2026-09-29
 
 IPv6 헤더는 40바이트 고정 길이이고, 필드는 아래와 같다.[@ietf-rfc-8200-2017]
 
-| 필드                | 비트 | 뜻                                                                             |
-| ------------------- | ---- | ------------------------------------------------------------------------------ |
-| Version             | 4    | IP 판 번호. IPv6는 6                                                           |
-| Traffic Class       | 8    | 네트워크가 트래픽 관리에 쓴다.                                                 |
-| Flow Label          | 20   | 네트워크에서 하나의 흐름으로 다뤄질 패킷들을 발신자가 표시한다.                |
-| Payload Length      | 16   | 기본 헤더 뒤의 길이. 확장 헤더를 포함한다. 바이트 단위                         |
-| Next Header         | 8    | 기본 헤더 바로 뒤에 오는 헤더의 종류                                           |
-| Hop Limit           | 8    | 패킷을 전달하는 노드마다 1씩 줄이고, 전달할 때 0이거나 줄여서 0이 되면 버린다. |
-| Source Address      | 128  | 발신 주소                                                                      |
-| Destination Address | 128  | 목적 주소. Routing 헤더가 있으면 최종 수신자가 아닐 수 있다.                   |
+| 필드                | 비트 | 뜻                                                                                     |
+| ------------------- | ---- | -------------------------------------------------------------------------------------- |
+| Version             | 4    | IP 판 번호. IPv6는 6                                                                   |
+| Traffic Class       | 8    | 네트워크가 트래픽 관리에 쓴다.                                                         |
+| Flow Label          | 20   | 네트워크에서 하나의 흐름으로 다뤄질 패킷들을 발신자가 표시한다.                        |
+| Payload Length      | 16   | 기본 헤더 뒤의 길이. 확장 헤더를 포함한다. 바이트 단위                                 |
+| Next Header         | 8    | 기본 헤더 바로 뒤에 오는 헤더의 종류                                                   |
+| Hop Limit           | 8    | 패킷을 전달하는 노드마다 1씩 줄이고, 전달할 때 이 값이 0이거나 줄여서 0이 되면 버린다. |
+| Source Address      | 128  | 발신 주소                                                                              |
+| Destination Address | 128  | 목적 주소. Routing 헤더가 있으면 최종 수신자가 아닐 수 있다.                           |
 
 ![[diagrams/ipv6-header-layout.svg]]
 
@@ -64,7 +64,7 @@ IPv6에서는 라우터가 패킷을 나누지 않고 발신 노드만 나눈다
 
 IPv6 호스트가 인터페이스의 주소를 스스로 설정하는 절차에는 링크 로컬 주소를 만드는 일, 상태 없는 주소 자동 설정(stateless address autoconfiguration)으로 전역 주소를 만드는 일, 중복 주소 검출(Duplicate Address Detection)로 주소가 링크에서 유일한지 확인하는 일이 든다.[@ietf-rfc-4862-2007]
 
-노드는 잘 알려진 링크 로컬 접두사에 인터페이스 식별자를 붙여 링크 로컬 주소를 만든다. 이 주소를 인터페이스에 붙여 쓰기 전에, 노드는 그 주소를 대상으로 한 [[neighbor-discovery#메시지|Neighbor Solicitation]]을 보내 링크의 다른 노드가 이미 쓰고 있는지 확인해야 한다. 상태 없는 주소 자동 설정은 라우터가 보내는 Router Advertisement에 든 Prefix Information 옵션의 정보로 전역 주소를 만든다.[@ietf-rfc-4862-2007]
+노드는 잘 알려진 링크 로컬 접두사에 인터페이스 식별자를 붙여 링크 로컬 주소를 만든다. 이 주소를 인터페이스에 붙여 쓰기 전에, 노드는 그 주소를 대상으로 한 [[neighbor-discovery#메시지|Neighbor Solicitation]]을 보내 링크의 다른 노드가 이미 쓰고 있는지 확인해야 한다. 상태 없는 주소 자동 설정은 라우터가 보내는 [[neighbor-discovery#메시지|Router Advertisement]]에 든 Prefix Information 옵션의 정보로 전역 주소를 만든다.[@ietf-rfc-4862-2007]
 
 IPv6 주소를 설정하는 다른 방법은 [[dhcp#DHCPv6|DHCPv6]]에서 다룬다.
 
@@ -78,4 +78,4 @@ IPv4 주소가 32비트인 데 비해 IPv6 주소는 128비트다. IPv6가 IPv4�
 
 IPv4 헤더와 달리 IPv6 헤더에는 헤더 [[checksum|체크섬]] 필드가 없다. 또 IPv4와 달리 IPv6에서는 [[udp#체크섬|UDP 체크섬]]을 기본적으로 생략할 수 없다.[@ietf-rfc-8200-2017]
 
-IPv6에서는 IPv4의 [[arp|ARP]], [[icmp|ICMP]] Router Discovery, ICMP Redirect를 합친 것에 대응하는 [[neighbor-discovery|Neighbor Discovery]]가 같은 링크 노드의 링크 계층 주소를 알아낸다.[@ietf-rfc-4861-2007] IPv6에서 오류 보고는 ICMPv6가 맡는다.[@ietf-rfc-4443-2006]
+[[neighbor-discovery|Neighbor Discovery]]는 IPv4의 [[arp|ARP]], [[icmp|ICMP]] Router Discovery, ICMP [[icmp#주요 메시지|Redirect]]를 합친 것에 대응한다. IPv6에서는 Neighbor Discovery가 같은 링크 노드의 링크 계층 주소를 알아낸다.[@ietf-rfc-4861-2007] IPv6에서 오류 보고는 ICMPv6가 맡는다.[@ietf-rfc-4443-2006]

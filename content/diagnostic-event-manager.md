@@ -8,7 +8,7 @@ aliases:
 verified: 2026-10-07
 ---
 
-AUTOSAR R25-11의 Dem 명세는 **Diagnostic Event Manager**(Dem)를 진단 이벤트(오류)와 그에 딸린 데이터를 처리하고 저장하는 서비스 컴포넌트로 정의한다. Dem은 event memory에 저장된 [[uds#데이터 식별자와 고장 코드|DTC]]를 모두 읽어 주는 일처럼 고장 정보를 Dcm(Diagnostic Communication Manager)에 주고, 응용 계층과 다른 BSW(Basic Software) 모듈에 인터페이스를 준다. 이 명세는 완성차 업체와 부품 공급자가 함께 쓰는 "진단 고장 메모리"의 공통 접근을 목표로 하며, 내부 동작의 일부는 제조사마다 정한다.[@autosar-cp-sws-diagnosticeventmanager-2025]
+AUTOSAR R25-11의 Dem 명세는 **Diagnostic Event Manager**(Dem)를 진단 이벤트(오류)와 그에 딸린 데이터를 처리하고 저장하는 서비스 컴포넌트로 정의한다. Dem은 Dcm(Diagnostic Communication Manager)에 고장 정보를 준다. event memory에 저장된 [[uds#데이터 식별자와 고장 코드|DTC]]를 모두 읽어 주는 일이 그 예다. 또 응용 계층과 다른 BSW(Basic Software) 모듈에 인터페이스를 준다. 이 명세는 완성차 업체와 부품 공급자가 함께 쓰는 "진단 고장 메모리"의 공통 접근을 목표로 하며, 내부 동작의 일부는 제조사마다 정한다.[@autosar-cp-sws-diagnosticeventmanager-2025]
 
 ## 진단 이벤트
 
@@ -34,7 +34,7 @@ Event related data는 이벤트가 생길 때 함께 저장하는 센서 값, �
 
 ## FiM
 
-**FiM**(Function Inhibition Manager)은 SW-C와 그 안의 기능을 제어하는 수단을 주는 모듈이다. 여기서 기능은 같은 허용·금지 조건을 갖는 [[runnable-entity|runnable]] 하나나 여럿, 또는 그 일부로 이루어진다. 기능마다 FID(Function Identifier)와 그 금지 조건을 배정하고, 기능은 실행하기 전에 자기 FID의 허용 상태를 묻는다. 어느 FID의 금지 조건이 참이 되면 그 기능은 더는 실행되지 않는다. 금지는 설정으로 정하고, 실행 중에도 post-build 설정으로 바꿀 수 있다. FiM의 서비스는 SW-C의 기능을 주로 겨누지만 BSW의 기능도 쓸 수 있다.[@autosar-cp-sws-functioninhibitionmanager-2025]
+**FiM**(Function Inhibition Manager)은 SW-C와 그 안의 기능을 제어하는 수단을 주는 모듈이다. 여기서 기능은 같은 허용·금지 조건을 갖는 [[runnable-entity|runnable]] 하나나 여럿, 또는 그 일부로 이루어진다. 기능마다 FID(Function Identifier)와 그 금지 조건을 배정하고, 기능은 실행하기 전에 자기 FID의 허용 상태를 묻는다. 어느 FID의 금지 조건이 참이 되면 그 기능은 더는 실행되지 않는다. 금지는 설정으로 정하고, 실행 중에도 [[autosar-methodology#ECU 설정|post-build]] 설정으로 바꿀 수 있다. FiM의 서비스는 SW-C의 기능을 주로 겨누지만 BSW의 기능도 쓸 수 있다.[@autosar-cp-sws-functioninhibitionmanager-2025]
 
 FiM은 진단 이벤트와 그 상태를 금지 조건으로 쓰므로 Dem과 밀접하다. 어느 센서의 고장처럼 고장이 나면 멈춰야 하는 기능을 FID 하나로 나타내 두면, 그 고장이 감지되어 Dem에 보고될 때 FiM이 그 FID를 금지해 해당 기능을 막는다. 진단 이벤트 여럿을 summarized event 하나로 묶어 금지 조건으로 쓸 수도 있다.[@autosar-cp-sws-functioninhibitionmanager-2025]
 

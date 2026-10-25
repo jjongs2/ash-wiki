@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**UDP**(User Datagram Protocol)는 IP 위에서 응용 프로그램이 최소한의 프로토콜 절차로 메시지를 보내게 하는 프로토콜이다. RFC 768이 정하며, 전달과 중복 없음을 보장하지 않는다.[@ietf-rfc-768-1980] 전송 계층 프로토콜이다.[@ietf-rfc-1122-1989] UDP는 IP 헤더의 Protocol 값 17로 표시된다.[@ietf-rfc-768-1980][@iana-protocol-numbers-2026]
+**UDP**(User Datagram Protocol)는 IP 위에서 응용 프로그램이 최소한의 프로토콜 절차로 메시지를 보내게 하는 프로토콜이다. RFC 768이 정하며, 전달과 중복 방지를 보장하지 않는다.[@ietf-rfc-768-1980] UDP는 전송 계층 프로토콜이다.[@ietf-rfc-1122-1989] UDP는 IP 헤더의 Protocol 값 17로 표시된다.[@ietf-rfc-768-1980][@iana-protocol-numbers-2026]
 
 ## 헤더
 
@@ -42,7 +42,7 @@ RFC 8095에 따르면 UDP는 [[osi-model#연결형과 비연결형|연결을 맺
 
 ## 메시지 크기
 
-RFC 8085는 응용이 목적지까지 경로의 [[mtu|MTU]]를 넘는 IP 패킷이 되는 UDP 데이터그램을 보내지 않도록 권한다(SHOULD NOT). 그 까닭의 하나는 단편 하나만 잃어도 나머지 단편을 모두 제대로 받았더라도 원래 패킷을 재조립할 수 없어, 단편화된 패킷 전체를 잃는다는 것이다.[@ietf-rfc-8085-2017]
+RFC 8085는 응용이 목적지까지 경로의 [[mtu|MTU]]를 넘는 IP 패킷이 되는 UDP 데이터그램을 보내지 않도록 권한다(SHOULD NOT). 그 까닭의 하나는 [[segmentation-and-reassembly#IP 단편화|단편]] 하나만 잃어도 나머지 단편을 모두 제대로 받았더라도 원래 패킷을 재조립할 수 없어, 단편화된 패킷 전체를 잃는다는 것이다.[@ietf-rfc-8085-2017]
 
 ## TCP와의 차이
 

@@ -17,9 +17,9 @@ verified: 2026-10-22
 
 ## Path MTU Discovery
 
-IPv4 호스트에서 IP 계층이 보낼 수 있는 최대 IP 데이터그램 크기(바이트 단위)를 $\mathrm{EMTU\_S}$로 나타낸다. 경로의 최소 MTU를 실제로 알지 못할 때, IP 계층은 목적지 주소가 연결된 네트워크에 있지 않으면 $\mathrm{EMTU\_S} \le 576$을, 그 밖에는 연결된 네트워크의 MTU를 써야 한다(SHOULD).[@ietf-rfc-1122-1989]
+IPv4 호스트에서 IP 계층이 보낼 수 있는 최대 IP 데이터그램 크기(바이트 단위)를 $\mathrm{EMTU\_S}$로 나타낸다. 경로의 최소 MTU를 실제로 알지 못할 때, IP 계층은 목적지 주소가 호스트에 연결된 네트워크에 있지 않으면 $\mathrm{EMTU\_S} \le 576$을, 그 밖에는 연결된 네트워크의 MTU를 써야 한다(SHOULD).[@ietf-rfc-1122-1989]
 
-IPv4의 Path MTU Discovery는 RFC 1191이 정한다. 출발 호스트는 처음에 경로 MTU를 첫 홉의 MTU로 가정하고, 그 경로로 보내는 데이터그램에 모두 DF(Don't Fragment) 비트를 세운다. 경로의 라우터가 데이터그램을 나누지 않고는 넘길 수 없으면, 그 데이터그램을 버리고 "fragmentation needed and DF set"을 뜻하는 코드의 [[icmp|ICMP]] Destination Unreachable 메시지를 돌려준다. 출발 호스트는 이 메시지를 받으면 가정한 경로 MTU를 줄인다. 라우터는 이 메시지에서 ICMP 명세가 "unused"로 둔 헤더 필드의 하위 16비트에 다음 홉 네트워크의 MTU를 넣어야 한다(MUST).[@ietf-rfc-1191-1990]
+IPv4의 Path MTU Discovery는 RFC 1191이 정한다. 출발 호스트는 처음에 경로 MTU를 첫 홉의 MTU로 가정하고, 그 경로로 보내는 데이터그램에 모두 [[ipv4#단편화|DF(Don't Fragment) 비트]]를 세운다. 경로의 라우터가 데이터그램을 나누지 않고는 넘길 수 없으면, 그 데이터그램을 버리고 "fragmentation needed and DF set"을 뜻하는 코드의 [[icmp|ICMP]] Destination Unreachable 메시지를 돌려준다. 출발 호스트는 이 메시지를 받으면 가정한 경로 MTU를 줄인다. 라우터는 이 메시지에서 ICMP 명세가 "unused"로 둔 헤더 필드의 하위 16비트에 다음 홉 네트워크의 MTU를 넣어야 한다(MUST).[@ietf-rfc-1191-1990]
 
 IPv6의 Path MTU Discovery는 RFC 8201이 정한다. 출발 노드는 처음에 경로 MTU를 첫 홉의 MTU로 가정한다. 경로의 노드는 너무 커서 넘길 수 없는 패킷을 버리고 [[icmp#ICMPv6와의 차이|ICMPv6]] Packet Too Big 메시지를 돌려주며, 출발 노드는 이 메시지가 알린 MTU에 따라 가정한 경로 MTU를 줄인다. IPv6 노드는 Path MTU Discovery를 구현해야 하고(should), 부트 ROM 같은 최소 구현은 이를 생략할 수 있다(may). 생략한 노드는 IPv6 최소 링크 MTU를 최대 패킷 크기로 써야 한다(must).[@ietf-rfc-8201-2017]
 

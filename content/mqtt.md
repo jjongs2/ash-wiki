@@ -19,7 +19,7 @@ MQTT 5.0은 메시지가 토픽 이름(topic name)을 달고 발행되고, 서�
 
 ![[diagrams/mqtt-publish-subscribe.svg]]
 
-이 표준은 와일드카드를 토픽 필터에만 쓰고 토픽 이름에는 쓰지 못하게 한다. `+`는 층 하나에 맞고, `#`은 그 자리 아래의 층이 몇 개든 맞으며 부모 층 자체에도 맞는다. `#`은 필터의 마지막 문자여야 한다.[@oasis-mqtt-5-0-2019]
+와일드카드는 토픽 필터에만 쓸 수 있고 토픽 이름에는 쓸 수 없다. `+`는 층 하나에 맞고, `#`은 그 자리 아래의 층이 몇 개든 맞으며 부모 층 자체에도 맞는다. `#`은 필터의 마지막 문자여야 한다.[@oasis-mqtt-5-0-2019]
 
 ## QoS
 
@@ -44,7 +44,7 @@ CONNECT의 Clean Start가 1이면 클라이언트와 서버는 기존 세션을 
 이 표준은 서버가 따로 다루는 메시지 두 가지를 정한다.[@oasis-mqtt-5-0-2019]
 
 - **Retained message**: 발행할 때 RETAIN 플래그를 켜면, 서버는 그 토픽에 저장해 둔 retained message를 새 메시지로 바꿔 저장한다. 그래서 토픽마다 하나만 남는다. 새 구독이 생기면 서버는 맞는 토픽의 retained message를 보내며, 이 동작은 Retain Handling 구독 옵션으로 바꿀 수 있다.
-- **Will message**: 클라이언트가 CONNECT에 넣어 두는 메시지다. 정상 종료를 알리는 DISCONNECT 없이 네트워크 연결이 닫히면, 서버는 Will Delay Interval이 지나거나 세션이 끝난 뒤 이 메시지를 발행한다.[@oasis-mqtt-5-0-2019]
+- **Will message**: 클라이언트가 CONNECT에 넣어 두는 메시지다. 정상 종료를 알리는 DISCONNECT 없이 네트워크 연결이 닫히면, 서버는 Will Delay Interval이 지나는 때와 세션이 끝나는 때 가운데 이른 쪽에 이 메시지를 발행한다.[@oasis-mqtt-5-0-2019]
 
 Will message는 LWT(Last Will and Testament) 메시지라고도 부른다.[@aws-iot-core-mqtt-2026][@eclipse-paho-java-mqttconnectoptions-2026]
 

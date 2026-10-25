@@ -35,7 +35,7 @@ Neighbor Discovery는 [[icmp|ICMP]] 메시지 다섯 종류를 정의한다.[@ie
 | Router Advertisement   | 134       | 라우터가 주기적으로, 또는 Router Solicitation에 답해 자기 존재와 링크·인터넷 파라미터를 알린다. 링크 위 판별이나 주소 설정에 쓰는 접두사와 권장 hop limit 값 등을 담는다. |
 | Neighbor Solicitation  | 135       | 노드가 이웃의 링크 계층 주소를 알아내거나, 캐시한 링크 계층 주소로 이웃에 아직 닿는지 확인하려고 보낸다. 중복 주소 검출에도 쓴다.                                         |
 | Neighbor Advertisement | 136       | Neighbor Solicitation에 대한 응답이다. 노드는 링크 계층 주소가 바뀐 것을 알리려고 요청 없이 보내기도 한다.                                                                |
-| Redirect               | 137       | 라우터가 위 목록의 Redirect에 쓴다.                                                                                                                                       |
+| Redirect               | 137       | 라우터가 앞 절에서 든 Redirect에 쓴다.                                                                                                                                    |
 
 ## 주소 결정
 

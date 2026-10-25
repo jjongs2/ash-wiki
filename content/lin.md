@@ -41,6 +41,10 @@ LIN 프레임은 헤더와 응답으로 이뤄진다. 헤더는 늘 commander가
 
 break 필드는 LIN 프레임의 시작을 알린다.[@iso-17987-3-obp-2025] break 필드는 dominant 부분(break)과 recessive 부분(break delimiter)으로 이뤄지고[@iso-17987-1-obp-2025], break는 적어도 13비트 길이의 dominant 구간이다.[@ti-slla383a-2022][@atmel-avr308-2002] sync 바이트 필드는 값이 `0x55`로 정해진 바이트 필드다. PID는 6비트 프레임 ID와 2비트 패리티로 이뤄진 8비트 값이다. 응답의 데이터는 1\~8바이트다.[@iso-17987-3-obp-2025] 프레임 끝에는 [[checksum|체크섬]] 1바이트가 붙는다.[@iso-17987-1-obp-2025]
 
+바이트 필드는 dominant start 비트, 최하위 비트부터 보내는 8비트 페이로드, recessive stop 비트로 된 10비트 단위다.[@iso-17987-1-obp-2025]
+
+![[diagrams/lin-header-fields.svg]]
+
 TMS320F2803x의 LIN 모듈은 PID의 [[parity-bit|패리티 비트]] 두 개를 프레임 ID 비트의 XOR로 계산한다. 패리티 비트 $P_0$은 ID 비트 0, 1, 2, 4의 XOR이고, $P_1$은 ID 비트 1, 3, 4, 5의 XOR을 반전한 값이다.[@ti-sprui10a-2022]
 
 $$
@@ -50,10 +54,6 @@ $$
 $$
 P_1 = \overline{\mathrm{ID}_1 \oplus \mathrm{ID}_3 \oplus \mathrm{ID}_4 \oplus \mathrm{ID}_5}
 $$
-
-바이트 필드는 dominant start 비트, 최하위 비트부터 보내는 8비트 페이로드, recessive stop 비트로 된 10비트 단위다.[@iso-17987-1-obp-2025]
-
-![[diagrams/lin-header-fields.svg]]
 
 ## 동기화
 
@@ -73,7 +73,7 @@ TMS320F2803x의 LIN 모듈은 프레임 ID 0\~59를 신호를 싣는 프레임�
 
 ## 노드 구성과 식별
 
-ISO 17987-3:2025는 ISO 14229-7(UDSonLIN)에 기반한 노드 구성·식별 서비스(서비스 식별자 `0xB0`\~`0xB8`)를 핵심 프로토콜 명세에 넣는다. **LIN product identification**은 responder 노드의 공급자, 기능, 변형 식별을 담은 번호다.[@iso-17987-3-obp-2025] 2026년 10월 기준 CiA는 ISO를 대신해 LIN Supplier ID를 배정하고 자기 LIN 사이트에 공개한다.[@cia-lin-about-us-2026]
+ISO 17987-3:2025는 ISO 14229-7([[uds#문서 구성|UDSonLIN]])에 기반한 노드 구성·식별 서비스(서비스 식별자 `0xB0`\~`0xB8`)를 핵심 프로토콜 명세에 넣는다. **LIN product identification**은 responder 노드의 공급자, 기능, 변형 식별을 담은 번호다.[@iso-17987-3-obp-2025] 2026년 10월 기준 CiA는 ISO를 대신해 LIN Supplier ID를 배정하고 자기 LIN 사이트에 공개한다.[@cia-lin-about-us-2026]
 
 ISO 17987-1:2025는 **node address for diagnostics**를 responder마다 배정한 진단 주소로 정의한다.[@iso-17987-1-obp-2025]
 

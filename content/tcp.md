@@ -11,26 +11,26 @@ verified: 2026-09-29
 
 TCP는 잃거나 깨진 데이터를 다시 보내고, 순서가 바뀐 데이터를 바로잡고, 중복을 걸러 내어 보낸 순서대로 전달한다. 받는 쪽이 감당할 수 있는 만큼만 보내도록 흐름을 제어하고, 네트워크 혼잡에 맞춰 보내는 양을 조절한다.[@ietf-rfc-9293-2022]
 
-RFC 793은 1981년에 TCP를 문서로 정했다. RFC 9293은 2022년에, 그 뒤 여러 문서에 흩어져 기록된 고침을 RFC 793의 프로토콜 명세와 한데 모아, RFC 793과 그 일부를 고친 문서들을 대체했다. 이때 RFC 793의 헤더 제어 비트도 RFC 3168에 따라 고쳐 실었다.[@ietf-rfc-9293-2022]
+RFC 793은 1981년에 TCP를 문서로 정했다. RFC 9293은 2022년에, RFC 793 이후 여러 문서에 흩어져 기록된 고침을 RFC 793의 프로토콜 명세와 한데 모아, RFC 793과 그 일부를 고친 문서들을 대체했다. 이때 RFC 793의 헤더 제어 비트도 RFC 3168에 따라 고쳐 실었다.[@ietf-rfc-9293-2022]
 
 ## 헤더
 
-TCP 헤더는 옵션이 없으면 20바이트이고, Data Offset이 4비트 32비트 워드 단위이므로 옵션을 포함해 최대 60바이트다.[@ietf-rfc-9293-2022] 헤더 필드는 아래와 같다. Reserved 행과 그다음 플래그 행은 RFC 9768과 IANA TCP Header Flags 레지스트리를, 나머지 행은 RFC 9293을 따른다.
+TCP 헤더는 옵션이 없으면 20바이트이고, Data Offset이 32비트 워드 단위의 4비트 필드이므로 옵션을 포함해 최대 60바이트다.[@ietf-rfc-9293-2022] 헤더 필드는 아래와 같다. Reserved 행과 그다음 플래그 행은 RFC 9768과 IANA TCP Header Flags 레지스트리를, 나머지 행은 RFC 9293을 따른다.
 
-| 필드                  | 비트 | 뜻                                                                                                                                    |
-| --------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| Source Port           | 16   | 보내는 쪽 [[port-number\|포트 번호]][@ietf-rfc-9293-2022]                                                                             |
-| Destination Port      | 16   | 받는 쪽 포트 번호[@ietf-rfc-9293-2022]                                                                                                |
-| Sequence Number       | 32   | 이 세그먼트의 첫 데이터 바이트의 순서 번호. SYN이 켜져 있으면 ISN(Initial Sequence Number)이고 첫 데이터는 ISN+1[@ietf-rfc-9293-2022] |
-| Acknowledgment Number | 32   | ACK가 켜져 있으면 보내는 쪽이 다음에 받기를 기대하는 순서 번호[@ietf-rfc-9293-2022]                                                   |
-| Data Offset           | 4    | TCP 헤더 길이. 32비트 워드 단위[@ietf-rfc-9293-2022]                                                                                  |
-| Reserved              | 3    | 예약[@ietf-rfc-9768-2026][@iana-tcp-parameters-2026]                                                                                  |
-| AE                    | 1    | AE(Accurate ECN) 플래그[@ietf-rfc-9768-2026][@iana-tcp-parameters-2026]                                                               |
-| Control bits          | 8    | 1비트 플래그 8개: CWR, ECE, URG, ACK, PSH, RST, SYN, FIN[@ietf-rfc-9293-2022]                                                         |
-| Window                | 16   | 확인 응답 번호가 가리키는 바이트부터 받는 쪽이 더 받을 수 있는 바이트 수[@ietf-rfc-9293-2022]                                         |
-| Checksum              | 16   | 의사 헤더, TCP 헤더, 데이터를 덮는 [[checksum\|체크섬]][@ietf-rfc-9293-2022]                                                          |
-| Urgent Pointer        | 16   | 순서 번호로부터의 오프셋으로 긴급 데이터 바로 다음 바이트를 가리킨다. URG가 켜진 세그먼트에서만 해석[@ietf-rfc-9293-2022]             |
-| Options               | 가변 | 선택 필드. 예: MSS(Maximum Segment Size) 옵션[@ietf-rfc-9293-2022]                                                                    |
+| 필드                  | 비트 | 뜻                                                                                                                                                                        |
+| --------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Source Port           | 16   | 보내는 쪽 [[port-number\|포트 번호]][@ietf-rfc-9293-2022]                                                                                                                 |
+| Destination Port      | 16   | 받는 쪽 포트 번호[@ietf-rfc-9293-2022]                                                                                                                                    |
+| Sequence Number       | 32   | 이 [[internet-protocol-suite#캡슐화\|세그먼트]]의 첫 데이터 바이트의 순서 번호. SYN이 켜져 있으면 ISN(Initial Sequence Number)이고 첫 데이터는 ISN+1[@ietf-rfc-9293-2022] |
+| Acknowledgment Number | 32   | ACK가 켜져 있으면 보내는 쪽이 다음에 받기를 기대하는 순서 번호[@ietf-rfc-9293-2022]                                                                                       |
+| Data Offset           | 4    | TCP 헤더 길이. 32비트 워드 단위[@ietf-rfc-9293-2022]                                                                                                                      |
+| Reserved              | 3    | 예약[@ietf-rfc-9768-2026][@iana-tcp-parameters-2026]                                                                                                                      |
+| AE                    | 1    | AE(Accurate ECN) 플래그[@ietf-rfc-9768-2026][@iana-tcp-parameters-2026]                                                                                                   |
+| Control bits          | 8    | 1비트 플래그 8개: CWR, ECE, URG, ACK, PSH, RST, SYN, FIN[@ietf-rfc-9293-2022]                                                                                             |
+| Window                | 16   | 확인 응답 번호가 가리키는 바이트부터 받는 쪽이 더 받을 수 있는 바이트 수[@ietf-rfc-9293-2022]                                                                             |
+| Checksum              | 16   | 의사 헤더, TCP 헤더, 데이터를 덮는 [[checksum\|체크섬]][@ietf-rfc-9293-2022]                                                                                              |
+| Urgent Pointer        | 16   | 순서 번호로부터의 오프셋으로 긴급 데이터 바로 다음 바이트를 가리킨다. URG가 켜진 세그먼트에서만 해석[@ietf-rfc-9293-2022]                                                 |
+| Options               | 가변 | 선택 필드. 예: MSS(Maximum Segment Size) 옵션[@ietf-rfc-9293-2022]                                                                                                        |
 
 ![[diagrams/tcp-header-layout.svg]]
 
@@ -46,7 +46,7 @@ TCP는 3-way handshake로 연결을 맺는다. 연결을 여는 쪽이 SYN을 �
 
 ![[diagrams/tcp-connection-setup-teardown.svg]]
 
-연결은 수명 동안 LISTEN, SYN-SENT, SYN-RECEIVED, ESTABLISHED, FIN-WAIT-1, FIN-WAIT-2, CLOSE-WAIT, CLOSING, LAST-ACK, TIME-WAIT 상태를 거친다. 여기에 연결 상태 변수를 담는 레코드인 TCB(Transmission Control Block)가 없어 연결도 없는 상태를 나타내는 가상의 상태 CLOSED가 더해진다. TIME-WAIT는 상대가 자기 연결 종료 요청의 확인 응답을 받았다고 확신할 만큼, 그리고 이전 연결의 늦은 세그먼트가 새 연결에 영향을 주지 않을 만큼 시간이 지나기를 기다리는 상태다. 연결을 능동적으로 닫은 쪽은 TIME-WAIT 상태에 MSL(Maximum Segment Lifetime)의 두 배인 $2 \times \mathrm{MSL}$ 동안 머물러야 한다.[@ietf-rfc-9293-2022]
+연결은 수명 동안 LISTEN, SYN-SENT, SYN-RECEIVED, ESTABLISHED, FIN-WAIT-1, FIN-WAIT-2, CLOSE-WAIT, CLOSING, LAST-ACK, TIME-WAIT 상태를 거친다. 여기에 가상의 상태 CLOSED가 더해진다. CLOSED는 연결 상태 변수를 담는 레코드인 TCB(Transmission Control Block)가 없어 연결도 없는 상태를 나타낸다. TIME-WAIT는 상대의 연결 종료 요청에 대한 확인 응답을 상대가 받았다고 확신할 만큼, 그리고 이전 연결의 늦은 세그먼트가 새 연결에 영향을 주지 않을 만큼 시간이 지나기를 기다리는 상태다. 연결을 능동적으로 닫은 쪽은 TIME-WAIT 상태에 MSL(Maximum Segment Lifetime)의 두 배인 $2 \times \mathrm{MSL}$ 동안 머물러야 한다.[@ietf-rfc-9293-2022]
 
 ## 순서 번호와 확인 응답
 
