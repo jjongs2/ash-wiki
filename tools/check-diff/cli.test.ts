@@ -232,9 +232,20 @@ describe("check-diff CLI", { concurrency: false }, () => {
     assert.ok(
       has(lines, "content/run-repeat.md:10:", '다시 쓴다(앞: 8줄 "The Sample")', "보드에 열을"),
     )
-    assert.ok(has(lines, "content/run-repeat.md:16:", "다시 쓴다", "에 따르면 개선은"))
+    assert.ok(has(lines, "content/run-repeat.md:10:", "다시 쓴다", "에 따르면 열은"))
     assert.ok(!has(lines, "Sample 보드는"), "낱말 하나인 이름은 개념 이름과 겹친다")
     assert.ok(!has(lines, "2020년 판에서"), "이력 문장의 판 주어")
+  })
+
+  test("출처 구간: 다른 출처의 문장 바로 뒤에서 연 구간은 판 연도 없이 다시 쓴 이름을 찍지 않는다", () => {
+    const lines = (report.items.get("source-run") ?? []).filter((line) =>
+      line.includes("다시 쓴다"),
+    )
+    assert.ok(!has(lines, "content/run-repeat.md:16:"), "버전으로 판을 부르는 이름의 '…에 따르면'")
+    assert.ok(!has(lines, "content/run-short-name.md:12:"), "Bosch CAN 2.0 규격")
+    assert.ok(!has(lines, "ISO 11898-1은"), "판 연도를 뗀 이름")
+    assert.ok(has(lines, "content/run-short-name.md:16:", '"ISO 11898-1"'), "판 연도를 붙인 이름")
+    assert.ok(has(lines, "content/run-short-name.md:8:", "ISO 11898-2는"), "페이지 첫 구간")
   })
 
   test("출처 구간: 되풀이는 그 문장이나 이름이 먼저 나온 문장이 더한 줄일 때만 찍는다", () => {
@@ -479,6 +490,12 @@ describe("check-diff CLI", { concurrency: false }, () => {
     const lines = report.items.get("first-link") ?? []
     assert.ok(!has(lines, "[[sync-window]]"), "안내 문장의 절 링크")
     assert.ok(!has(lines, "[[guard-band]]"), "X의 Y")
+  })
+
+  test("첫 등장 링크: 링크 글자가 X로 시작하는 절 링크는 앞에 X가 없으면 X 링크를 겸한다", () => {
+    const lines = report.items.get("first-link") ?? []
+    assert.ok(!has(lines, "content/first-link-abbr.md:8:"), "[[xbus#속도|XBUS 속도]] 뒤의 XBUS")
+    assert.ok(has(lines, "content/first-link-abbr.md:10:", "[[heartbeat]]"), "링크 앞의 하트비트")
   })
 
   test("첫 등장 링크: 하위 개념의 절 링크는 찍지 않고 페이지 링크로도 세지 않는다", () => {

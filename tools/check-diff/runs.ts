@@ -257,12 +257,13 @@ export interface RepeatedName {
   earlier: { line: number; name: string } // 같은 구간에서 그 이름이 먼저 나온 문장
 }
 
-// 문장마다 같은 구간의 앞 문장들. 구간은 판이 바뀌면 끊고, 합의 문서의 구간은 절(`##`, `###`)이 바뀌어도
-// 끊는다(위키 검증의 합의 문서). 같은 합의 문서만 인용한 일반 명제는 판이 같아 구간을 끊지 않는다.
+// 문장마다 같은 구간의 앞 문장들과, 그 구간을 다른 출처의 문장 바로 뒤에서 열었는지(afterOtherSource). 구간은 판이 바뀌면
+// 끊고, 합의 문서의 구간은 절(`##`, `###`)이 바뀌어도 끊는다(위키 검증의 합의 문서). 같은 합의 문서만 인용한
+// 일반 명제는 판이 같아 구간을 끊지 않는다.
 function sentencesInRuns(
   page: Page,
   editions: Map<string, Edition>,
-): { sentence: ClaimSentence; earlier: ClaimSentence[] }[] {
+): { sentence: ClaimSentence; earlier: ClaimSentence[]; afterOtherSource: boolean }[] {
   const list = claimSentences(page, editions)
   const headings = blocks(page)
     .filter((block) => block.kind === "heading" && /^#{2,3} /.test(block.text))
@@ -277,17 +278,19 @@ function sentencesInRuns(
       (allConsensus(sentence.keys) && section(previous.line) !== section(sentence.line))
     )
       start = index
-    return { sentence, earlier: list.slice(start, index) }
+    const afterOtherSource = start > 0 && list[start - 1].editions !== list[start].editions
+    return { sentence, earlier: list.slice(start, index), afterOtherSource }
   })
 }
 
 // 출처 구간 안에서 앞서 밝힌 출처 이름을 주어나 소유격, "…에 따르면"으로 다시 쓴 문장. 구간은 문장의 판이
 // 바뀌는 자리와, 합의 문서의 구간이면 절이 바뀌는 자리에서 끊는다. 문장 앞의 이름이 출처 표시이고 그 이름이
 // 같은 구간의 앞 문장에 이미 나왔거나, 출처 표시가 있는 앞 문장 뒤에서 "…에 따르면"으로 시작하는 문장을
-// 찍는다. 합의 문서 구간 안의 "이 강의계획서에 따르면"은 가리키는 말이라 되풀이가 아니다.
+// 찍는다. 합의 문서 구간 안의 "이 강의계획서에 따르면"은 가리키는 말이라 되풀이가 아니고, 다른 출처의 문장
+// 바로 뒤에서 연 구간에서 판 연도를 뗀 이름도 되풀이로 찍지 않는다.
 export function repeatedNames(page: Page, editions: Map<string, Edition>): RepeatedName[] {
   const found: RepeatedName[] = []
-  sentencesInRuns(page, editions).forEach(({ sentence, earlier }) => {
+  sentencesInRuns(page, editions).forEach(({ sentence, earlier, afterOtherSource }) => {
     const text = strip(sentence.text)
     const name = text.startsWith("**") ? undefined : leadingName(text)
     if (history(text)) return
@@ -307,19 +310,44 @@ export function repeatedNames(page: Page, editions: Map<string, Edition>): Repea
       )
     )
       return
+    const said = text.match(according)?.[0]
     const named = keyAt
       ? earlier.find((other) => keyAt.test(other.text))
-      : according.test(text) && !pointer
+      : said && !pointer
         ? earlier.find((other) => namesSource(other.text, other.keys, editions))
         : undefined
-    if (named)
+    const written = keyAt ? name! : said?.replace(/에 따르면 $/, "")
+    if (named && !(afterOtherSource && written && withoutYear(written, sentence.keys, editions)))
       found.push({
         line: sentence.line,
         text,
-        earlier: { line: named.line, name: key ?? text.match(according)![0].trim() },
+        earlier: { line: named.line, name: key ?? said!.trim() },
       })
   })
   return found
+}
+
+// 판 연도: 표준 번호 뒤의 연도(ISO 11898-1:2024, IEEE 802.3-2022).
+const editionYear = /[:-](?:19|20)[0-9]{2}(?![0-9])/
+// 연도가 아닌 판 이름: 버전 번호(2.0, 2025.5)와 발행 연월(V.42(03/2002)). 802.1Q의 802.1은 버전이 아니다.
+const editionName =
+  /(?<![0-9A-Za-z.])[0-9]+\.[0-9]+(?![0-9A-Za-z])|\((?:[0-9]{2}\/)?(?:19|20)[0-9]{2}\)/
+
+// 다시 쓴 이름이 판 연도를 뗀 출처 이름인지. 다른 출처의 문장 바로 뒤에서 연 구간에서 이 이름을 찍지 않는 것으로,
+// 가리키는 말이 앞 출처로도 읽히는 자리를 어림한다(위키 검증의 좁혀 쓰기). 표준 번호의 판에서 판 연도를 뗀
+// 이름(ISO 11898-1)과 연도가 아닌 이름으로 판을 부르는 이름(Bosch CAN 2.0 규격)이 든다. 판이 없는 데이터시트
+// 이름(KSZ9477S)은 판을 뗀 것인지 가릴 수 없어 찍고, 합의 문서, AUTOSAR, 문서 모음은 각자의 줄을 따른다.
+function withoutYear(written: string, keys: string[], editions: Map<string, Edition>): boolean {
+  const key = nameKey(written)
+  if (!key || !isSource(key, keys, editions) || allConsensus(keys) || editionYear.test(written))
+    return false
+  return keys.every((cited) => {
+    const edition = editions.get(cited)
+    if (edition?.names.length || edition?.id.startsWith("AUTOSAR ")) return false
+    return (
+      editionName.test(written) || (edition?.id !== cited && editionYear.test(edition?.id ?? ""))
+    )
+  })
 }
 
 // 합의 문서 구간을 가리키는 말("이 강의계획서는")로 여는 문장. 새 절이나 다른 출처의 문장 뒤라서 같은 구간의
