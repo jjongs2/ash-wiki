@@ -27,7 +27,7 @@ verified: 2026-10-03
 
 ## ISO 26262의 safety validation
 
-[[functional-safety|기능 안전]] 표준 [[iso-26262|ISO 26262]]-1:2018은 **안전 확인**(safety validation)을 검사와 테스트에 바탕을 두어 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]]이 알맞고 충분한 무결성으로 이루어졌음을 보증하는 것으로 정의하고, 정의의 주석에서 안전 확인에 알맞은 방법을 ISO 26262-4가 준다는 것을 제시한다.[@iso-26262-1-obp-2018]
+[[functional-safety|기능 안전]] 표준 [[iso-26262|ISO 26262]]-1:2018은 **안전 확인**(safety validation)을 검사와 테스트에 바탕을 두어 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]]이 알맞고 충분한 무결성으로 이루어졌음을 보증하는 것으로 정의하고, 주석에서 안전 확인에 알맞은 방법을 ISO 26262-4가 준다는 것을 제시한다.[@iso-26262-1-obp-2018]
 
 ISO 26262-4:2018은 시스템 수준 제품 개발의 요구사항 범위에 안전 확인을 넣고, 그 요구사항을 8절에 둔다. 시리즈 개요 그림에서도 안전 확인은 4부 8절(4-8)이다.[@iso-26262-4-obp-2018]
 
