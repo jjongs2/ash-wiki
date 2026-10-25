@@ -64,7 +64,7 @@ const diagramColumn: Record<Mode, string> = { lightMode: "라이트", darkMode: 
 const category = "<색>"
 const region = "<구역>"
 // 반투명한 배경을 합성할 면. 사이드바 면의 토큰(`sidebar-`)은 사이드바 면 위에, 나머지는 페이지 위에 놓인다.
-const surface = (token: string) => (token.startsWith("sidebar-") ? "sidebar-light" : "light")
+const backdrop = (token: string) => (token.startsWith("sidebar-") ? "sidebar-light" : "light")
 
 function measure(): Measurement[] {
   const theme = parse(fs.readFileSync(configPath, "utf8")).configuration.theme
@@ -108,7 +108,7 @@ function measure(): Measurement[] {
       let result = { ratio: Infinity, swatches: "" }
       for (const [fgToken, bgToken] of pairs(row["전경"], row["배경"])) {
         const [fg, bg] = [resolve(fgToken, mode), resolve(bgToken, mode)]
-        const base = parseColor(colors[mode][surface(bgToken)])
+        const base = parseColor(colors[mode][backdrop(bgToken)])
         const background = over(parseColor(bg.color), base)
         const ratio = contrast(over(parseColor(fg.color), background), background)
         if (ratio < result.ratio) result = { ratio, swatches: `${fg.name} / ${bg.name}` }
