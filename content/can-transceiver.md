@@ -15,7 +15,7 @@ verified: 2026-09-27
 
 ## 송신과 수신
 
-TCAN1042의 Normal 모드에서 TXD가 low이면 드라이버가 버스를 차동으로 구동해 [[dominant-and-recessive|dominant]]로 만든다. high이면 구동하지 않고, 버스는 수신기 내부 저항으로 0.5 VCC에 바이어스된 recessive가 된다.[@ti-tcan1042-q1-2021] 모드에 따른 버스 바이어스는 [[can-physical-layer#고속 CAN|CAN 물리 계층]]에서 다룬다. ISO 11898-2:2026은 PMA가 중재 모드에 있을 때 dominant와 recessive를 동시에 보내면 버스가 dominant가 된다고 정한다.[@iso-11898-2-obp-2026]
+TCAN1042의 Normal 모드에서 TXD가 low이면 드라이버가 버스를 차동으로 구동해 [[dominant-and-recessive|dominant]]로 만든다. high이면 구동하지 않고, 버스는 수신기 내부 저항으로 0.5 VCC에 바이어스된 recessive가 된다.[@ti-tcan1042-q1-2021] 모드에 따른 버스 바이어스는 [[can-physical-layer#고속 CAN|CAN 물리 계층]]에서 다룬다. ISO 11898-2:2026은 PMA가 ISO 11898-1의 [[can-xl#물리 부호화와 트랜시버 모드|중재 모드]]에 있을 때 dominant와 recessive를 동시에 보내면 버스가 dominant가 된다고 정한다.[@iso-11898-2-obp-2026]
 
 ![[diagrams/hs-can-bus-voltage.svg]]
 

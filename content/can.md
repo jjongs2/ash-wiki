@@ -13,7 +13,7 @@ CAN은 멀티마스터 방식이라, 버스가 비어 있으면 어느 노드든
 
 ## 표준의 분담
 
-[[iso-11898-1|ISO 11898-1:2024]]는 데이터 링크 계층과 물리 부호화 부계층(PCS, Physical Coding Sublayer)을[@iso-11898-1-obp-2024], [[iso-11898-2|ISO 11898-2:2026]]은 고속 물리 매체 접속(PMA, Physical Medium Attachment) 부계층을[@iso-11898-2-obp-2026], [[iso-11898-3|ISO 11898-3:2006]]은 [[serial-communication#비트율|비트율]] $R_\mathrm{b}$가 $40\,\mathrm{kbit/s} < R_\mathrm{b} \le 125\,\mathrm{kbit/s}$인 저속 내결함성 매체 의존 인터페이스를 규정한다.[@iso-11898-3-2006]
+[[iso-11898-1|ISO 11898-1:2024]]는 데이터 링크 계층과 물리 부호화 부계층(PCS, Physical Coding Sublayer)을 규정하고, 데이터 링크 계층을 LLC(Logical Link Control)와 MAC(Medium Access Control) 두 부계층으로 나눈다.[@iso-11898-1-obp-2024] [[iso-11898-2|ISO 11898-2:2026]]은 고속 물리 매체 접속(PMA, Physical Medium Attachment) 부계층을 규정하고, CAN_H와 CAN_L로 이뤄진 전기적 인터페이스를 MDI(Medium Dependent Interface)로 정의한다.[@iso-11898-2-obp-2026] [[iso-11898-3|ISO 11898-3:2006]]은 [[serial-communication#비트율|비트율]] $R_\mathrm{b}$가 $40\,\mathrm{kbit/s} < R_\mathrm{b} \le 125\,\mathrm{kbit/s}$인 저속 내결함성 CAN의 MDI와 PMA를 규정한다.[@iso-11898-3-obp-2006]
 
 ![[diagrams/can-iso-11898-sublayers.svg]]
 
@@ -30,7 +30,7 @@ CAN 컨트롤러는 호스트 CPU에 붙어 ISO 11898-1에 따라 통신하고, 
 
 Bosch CAN 2.0 규격은 버스에 잇는 노드 수에 이론적 한계를 두지 않고, 실제 수는 지연 시간과 버스의 전기적 부하가 제한한다고 정한다.[@bosch-can-2-0-1991]
 
-고속 CAN의 버스 인터페이스는 CAN_H와 CAN_L 두 선이다. ISO 11898-2:2026은 PMA가 중재 모드일 때의 버스 상태를 [[dominant-and-recessive|dominant]](논리 0)와 recessive(논리 1)로 두고, 두 값을 동시에 내면 버스가 dominant가 된다고 정한다.[@iso-11898-2-obp-2026] 전기적 동작은 [[can-physical-layer|CAN 물리 계층]]에서 다룬다.
+ISO 11898-2:2026은 PMA가 ISO 11898-1의 [[can-xl#물리 부호화와 트랜시버 모드|중재 모드]]일 때의 버스 상태를 [[dominant-and-recessive|dominant]](논리 0)와 recessive(논리 1)로 두고, 두 값을 동시에 내면 버스가 dominant가 된다고 정한다.[@iso-11898-2-obp-2026] 전기적 동작은 [[can-physical-layer|CAN 물리 계층]]에서 다룬다.
 
 ## 중재
 
