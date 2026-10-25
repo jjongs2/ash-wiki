@@ -25,7 +25,7 @@ verified: 2026-10-03
 
 NIST의 OSAC(Organization of Scientific Area Committees for Forensic Science) 용어집에 따르면 통계적 가설 검정에서 참인 귀무가설을 기각하는 1종 오류(type I error)를 false positive라고도 하고, 거짓인 귀무가설을 받아들이는 2종 오류(type II error)를 false negative라고도 한다.[@nist-osac-type-i-error-2026][@nist-osac-type-ii-error-2026]
 
-ISO/IEC/IEEE 24765 용어집은 검증 도구의 false positive가 분석 규칙의 정밀도가 모자라서 생길 수 있다고 둔다.[@ieee-cs-sevocab-2026] Coverity 논문에 따르면 Coverity의 정적 분석 제품을 쓰는 곳에서 false positive가 30%를 넘으면 사람들이 도구를 무시했고, 진짜 버그가 오탐 속에 묻혔다.[@coverity-few-billion-lines-2010]
+ISO/IEC/IEEE 24765 용어집은 검증 도구의 false positive가 분석 규칙의 정밀도가 모자라서 생길 수 있다고 둔다.[@ieee-cs-sevocab-2026] Coverity 논문에 따르면 Coverity의 정적 분석 제품을 쓰는 곳에서 false positive가 30%를 넘으면 사람들이 도구를 무시했고, 진짜 버그가 false positive 속에 묻혔다.[@coverity-few-billion-lines-2010]
 
 ## 건전성과 abstract interpretation
 
@@ -45,7 +45,7 @@ DSM(Design Structure Matrix)은 Dependency Structure Matrix라고도 부른다.[
 
 Sangal, Jordan, Sinha, Jackson은 2005년 논문에서 DSM으로 소프트웨어 아키텍처의 모듈 간 의존을 관리하는 방법을 내놓고, 이를 LDM이라는 도구로 구현했다. 이 방법은 정적 분석으로 코드에서 모듈 사이의 의존을 뽑는다. 의존은 한 모듈이 다른 모듈의 구문 요소를 명시적으로 참조하는 것이다. 어떤 의존을 허용하는지 design rule로 적어 두고, 시스템이 바뀔 때마다 다시 적용해 위반을 찾는다.[@sangal-dependency-models-2005]
 
-- DSM: Sangal 외의 DSM은 모듈을 가로축과 세로축에 같은 순서로 놓은 인접 행렬이다. $i$번째 모듈이 $j$번째 모듈에 의존하면 $i$열 $j$행에 표시하고, 대각선은 비운다.
+- DSM: Sangal 외의 DSM은 모듈을 가로축과 세로축에 같은 순서로 놓은 인접 행렬이다. $i$번째 모듈이 $j$번째 모듈에 의존하면 $j$행 $i$열에 표시하고, 대각선은 비운다.
 - 계층 위반: 아래 계층이 위 계층을 쓰지 못한다(cannot-use)는 design rule을 두면, 그 규칙이 걸린 칸에 있는 의존이 계층 위반으로 드러난다.
 - 순환 의존: DSM을 partitioning(행과 열을 다시 정렬하고 모듈을 묶음)하면 계층이 드러나고 순환 의존이 부각된다. 서로 의존하는 모듈은 하삼각 행렬로 정렬할 수 없고, 하나로 묶어야 순환이 없어진다.[@sangal-dependency-models-2005]
 

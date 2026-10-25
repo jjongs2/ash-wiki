@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**결함 주입**(fault injection)은 결함 같은 이상 조건을 일부러 만들어, 컴포넌트나 시스템이 어떻게 반응하는지 평가하는 기법이다.[@iso-26262-1-obp-2018][@istqb-glossary-fault-injection-2026] [[iso-26262|ISO 26262]]-1:2018은 결함 주입을 요소 안에서 결함이 미치는 영향을 평가하려고 [[fault-error-failure|fault, error, failure]]를 넣고 관측점에서 반응을 살피는 방법으로 정의한다.[@iso-26262-1-obp-2018] ISTQB 용어집은 결함 주입을 불리한 조건을 만들어 컴포넌트나 시스템이 그 조건을 검출하고 믿을 만하게 동작하는지 평가하는 기법으로 정의하고, fault insertion을 동의어로 둔다.[@istqb-glossary-fault-injection-2026]
+**결함 주입**(fault injection)은 결함 같은 이상 조건을 일부러 만들어, 컴포넌트나 시스템이 어떻게 반응하는지 평가하는 기법이다.[@iso-26262-1-obp-2018][@istqb-glossary-fault-injection-2026] [[iso-26262|ISO 26262]]-1:2018은 결함 주입을 [[safety-element-out-of-context#요소와 안전 관련 요소|요소]] 안에서 결함이 미치는 영향을 평가하려고 [[fault-error-failure|fault, error, failure]]를 넣고 관측점에서 반응을 살피는 방법으로 정의한다.[@iso-26262-1-obp-2018] ISTQB 용어집은 결함 주입을 불리한 조건을 만들어 컴포넌트나 시스템이 그 조건을 검출하고 믿을 만하게 동작하는지 평가하는 기법으로 정의하고, fault insertion을 동의어로 둔다.[@istqb-glossary-fault-injection-2026]
 
 ## 목적
 

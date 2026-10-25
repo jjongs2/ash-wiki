@@ -15,7 +15,7 @@ verified: 2026-10-03
 
 회귀 테스트의 범위는 먼저 [[configuration-management#변경 통제|영향 분석]]으로 소프트웨어의 어느 부분이 영향을 받을 수 있는지 보고 정한다.[@istqb-ctfl-syllabus-2024]
 
-실행할 테스트가 많아 회귀 테스트는 시간이 많이 들 수 있어서, 변경마다 얻는 보증과 드는 자원 사이에서 절충해야 할 때가 있다. 회귀 테스트에서는 기존 스위트에서 [[test-case|테스트 케이스]]를 고르거나 줄이고, 우선순위가 높은 테스트가 먼저 실행되도록 순서를 정하기도 한다.[@ieee-swebok-v4-0a-2026]
+회귀 테스트는 실행할 테스트가 많아 시간이 많이 들 수 있으므로, 변경마다 얻는 보증과 드는 자원 사이에서 절충해야 할 때가 있다. 회귀 테스트에서는 기존 스위트에서 [[test-case|테스트 케이스]]를 고르거나 줄이고, 우선순위가 높은 테스트가 먼저 실행되도록 순서를 정하기도 한다.[@ieee-swebok-v4-0a-2026]
 
 시간, 예산, 테스트 환경, 테스트 데이터 같은 제약 때문에 회귀 테스트를 모두 실행하지 못할 수 있다. 이런 제약은 주로 수동으로 실행하는 테스트에 걸리지만 자동 테스트에도 걸린다. 테스트 주기가 짧고 오래 걸리는 자동 테스트가 많을 때가 그 예다. 그래서 기준을 두어 알맞은 회귀 테스트를 골라야 한다. ISTQB CTAL-TA v4.0 강의계획서는 회귀 테스트의 범위를 테스트 주기마다 다시 검토해야 한다고 본다.[@istqb-ctal-ta-syllabus-2025]
 
@@ -25,7 +25,7 @@ CTAL-TA 강의계획서에 따르면 자동 테스트를 고르는 가장 믿을
 - **이력 기반 테스트**: 지난 실행에서 결함을 드러냈거나 비슷한 변경에 민감했던 테스트를 다시 실행한다.
 - **커버리지 기반 테스트**: 고른 테스트 기법을 기준으로 적은 수의 테스트로 커버리지를 되도록 많이 얻는다.
 - **요구사항 추적표**: 요구사항 변경이 관련 테스트에 주는 영향을 평가해, 직접 영향받은 기능과 관련 기능의 회귀 테스트를 고른다.
-- **운용 프로파일 기반 테스트**: 테스트 대상의 사용 패턴을 바탕으로 실행할 회귀 테스트 케이스를 고른다.
+- **운용 프로파일 기반 테스트**: 테스트 대상의 사용 패턴을 바탕으로 실행할 회귀 테스트 케이스를 고른다. 운용 프로파일은 [[test-type#신뢰성 테스트와 운용 프로파일|테스트 유형]]에서 다룬다.
 - 영향 분석: 어느 테스트가 바뀐 형상 항목과 상호작용하는지 알면 수동 실행할 회귀 테스트를 고르는 데도 쓴다.[@istqb-ctal-ta-syllabus-2025]
 
 ![[diagrams/regression-test-impact-analysis.svg]]
@@ -38,7 +38,7 @@ ISTQB CTFL v4.0.1 강의계획서에 따르면 회귀 테스트 스위트는 여
 
 ## ASPICE
 
-[[automotive-spice|ASPICE]] 4.1은 SYS.4, SYS.5, SWE.4, SWE.5, SWE.6에 검증 수단을 고르는 BP(base practice)를 두고, 그 선택 기준에 회귀 검증 기준을 넣게 한다. SWE.5에서는 그 선택 기준의 예로 [[software-architecture|소프트웨어 아키텍처]]나 상세 설계의 변경 등으로 지속적 통합·지속적 개발(continuous integration / continuous development)에서 회귀 검증이 필요한 경우를 든다.[@vda-automotive-spice-pam-4-1-2026]
+[[automotive-spice|ASPICE]] 4.1은 [[automotive-spice-process-reference-model#프로세스 범주와 그룹|SYS.4, SYS.5, SWE.4, SWE.5, SWE.6]]에 검증 수단을 고르는 BP(base practice)를 두고, 그 선택 기준에 회귀 검증 기준을 넣게 한다. SWE.5에서는 그 선택 기준의 예로 [[software-architecture|소프트웨어 아키텍처]]나 상세 설계의 변경 등으로 지속적 통합·지속적 개발(continuous integration / continuous development)에서 회귀 검증이 필요한 경우를 든다.[@vda-automotive-spice-pam-4-1-2026]
 
 ASPICE 3.1은 SYS.5, SWE.4, SWE.6의 BP1과 SYS.4, SWE.5의 BP2에서 테스트나 검증의 전략을 세울 때 회귀 전략을 함께 세우게 했다. ASPICE 4.1은 이를 검증 수단을 고르는 BP의 회귀 검증 기준으로 바꿨다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017] 전략 BP가 4.1에서 어디로 갔는지는 [[automotive-spice-process-assessment-model#전략과 계획|ASPICE 프로세스 평가 모델]]에서 다룬다.
 

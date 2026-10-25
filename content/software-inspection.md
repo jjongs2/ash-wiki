@@ -8,7 +8,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-**소프트웨어 인스펙션**(software inspection)은 정해진 팀 역할과 측정을 써서 작업 산출물의 결함을 찾는 공식 [[software-review|리뷰]]다. ISTQB 용어집은 인스펙션을 이런 방법으로 작업 산출물의 결함을 찾고, 리뷰 프로세스와 개발 프로세스를 개선하는 공식 리뷰로 정의한다.[@istqb-glossary-inspection-2026] ISO/IEC/IEEE 24765 용어집은 인스펙션을 개발 산출물을 눈으로 살펴 오류, 개발 표준 위반 같은 문제를 찾는 [[static-analysis|정적 분석]] 기법으로 정의한다.[@ieee-cs-sevocab-2026]
+**소프트웨어 인스펙션**(software inspection)은 정해진 팀 역할과 측정을 써서 작업 산출물의 결함을 찾는 공식 [[software-review|리뷰]]다. ISTQB 용어집은 인스펙션을 정해진 팀 역할과 측정을 써서 작업 산출물의 결함을 찾고, 리뷰 프로세스와 개발 프로세스를 개선하는 공식 리뷰로 정의한다.[@istqb-glossary-inspection-2026] ISO/IEC/IEEE 24765 용어집은 인스펙션을 개발 산출물을 눈으로 살펴 오류, 개발 표준 위반 같은 문제를 찾는 [[static-analysis|정적 분석]] 기법으로 정의한다.[@ieee-cs-sevocab-2026]
 
 인스펙션은 소프트웨어 리뷰의 한 유형이다.[@istqb-glossary-inspection-2026]
 
@@ -26,7 +26,7 @@ Fagan은 1976년 논문에서 인스펙션을 다섯 작업으로 나누고, 작
 4. 재작업(rework): 인스펙션 보고서에 적힌 오류와 문제를 설계자나 구현자가 고친다.
 5. 후속 조치(follow-up): 진행자가 모든 문제가 해결됐는지 확인한다. 대상의 5%가 넘게 재작업됐으면 팀이 다시 모여 전체를 다시 인스펙션한다.[@fagan-design-code-inspections-1999]
 
-Fagan은 1986년 논문에서 개요 앞에 계획(planning)을 더해 여섯 작업으로 기술했다. 계획에서는 대상이 인스펙션 진입 기준을 충족하는지 보고, 참여자와 회의 장소를 마련한다.[@fagan-advances-software-inspections-1986]
+Fagan은 1986년 논문에서 개요 앞에 계획(planning)을 더해 여섯 작업으로 기술했다. 계획에서는 대상이 인스펙션 [[test-process#진입 기준과 종료 기준|진입 기준]]을 충족하는지 보고, 참여자와 회의 장소를 마련한다.[@fagan-advances-software-inspections-1986]
 
 ![[diagrams/fagan-inspection-operations.svg]]
 
@@ -36,7 +36,7 @@ Fagan은 1976년 논문에서 진행자(moderator), 설계자(designer), 구현�
 
 ## 기준과 측정
 
-Fagan의 인스펙션은 개발 작업마다 정한 종료 기준을 그 작업의 산출물이 충족하는지 확인한다.[@fagan-design-code-inspections-1999] 1986년 논문에서는 계획 단계에서 대상이 진입 기준을 충족하는지도 본다.[@fagan-advances-software-inspections-1986]
+Fagan의 인스펙션은 개발 작업마다 정한 [[test-process#진입 기준과 종료 기준|종료 기준]]을 그 작업의 산출물이 충족하는지 확인한다.[@fagan-design-code-inspections-1999] 1986년 논문에서는 계획 단계에서 대상이 진입 기준을 충족하는지도 본다.[@fagan-advances-software-inspections-1986]
 
 Fagan의 인스펙션은 찾은 오류를 유형과 심각도로 나누고, 들인 사람과 시간을 기록하며, 그 결과를 분석해 프로세스 개선에 쓴다.[@fagan-design-code-inspections-1999] ISTQB 용어집과 ISO/IEC/IEEE 24765 용어집도 인스펙션이 측정 결과를 써서 리뷰 프로세스를 개선한다고 정의한다.[@istqb-glossary-inspection-2026][@ieee-cs-sevocab-2026]
 
@@ -44,7 +44,7 @@ Fagan의 인스펙션은 찾은 오류를 유형과 심각도로 나누고, 들�
 
 Fagan은 1976년 논문에서 IBM 대형 운영체제 구성요소의 일부를 표본으로, 설계 인스펙션과 코드 인스펙션을 더하자 코딩 작업의 생산성이 23% 올랐다고 보고했다. 같은 연구에서 인스펙션 표본은 워크스루를 쓴 비교 표본보다, [[unit-testing|단위 테스트]] 뒤 7개월 동안의 테스트에서 오류가 38% 적었다.[@fagan-design-code-inspections-1999]
 
-Fagan은 1986년 논문에서 인스펙션이 대개 기계 테스트보다 더 많은 결함을 더 적은 비용으로 찾는다고 했다. 결함을 고치는 비용이 테스트나 유지보수 때보다 10배에서 100배 적은 초기 단계에서 결함을 찾아 고치는 편이 유리하다고도 했다.[@fagan-advances-software-inspections-1986]
+Fagan은 1986년 논문에서 인스펙션이 대개 기계 테스트보다 더 많은 결함을 더 적은 비용으로 찾는다고 했다. 결함을 고치는 비용이 테스트나 유지보수 때의 10분의 1에서 100분의 1인 초기 단계에서 결함을 찾아 고치는 편이 유리하다고도 했다.[@fagan-advances-software-inspections-1986]
 
 ## 워크스루와의 차이
 

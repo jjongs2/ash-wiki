@@ -42,7 +42,7 @@ Embedded Coder의 processor-in-the-loop 시뮬레이션은 개발용 컴퓨터�
 
 ### HiL
 
-ISTQB 용어집은 **HiL**을 소프트웨어가 통합된 실제 하드웨어를 시험하는 가상 테스트 환경으로 정의한다.[@istqb-glossary-hardware-in-the-loop-2026] HiL은 테스트 대상이 시제품으로 나왔거나 개발이 끝났을 때 쓰며, 시제품이나 완성된 ECU를 시험한다. 환경 모델은 실시간 처리가 되는 컴퓨터에서 돈다. 소프트웨어가 실제 하드웨어에서 돌기 때문에 HiL의 시뮬레이션은 늘 실시간으로 흐르고, 잠시 멈추거나 세울 수 없다. 그래서 이 컴퓨터는 관련 신호를 모두 정해진 시간 안에 모으고 내준다.[@istqb-ct-aut-syllabus-2025] dSPACE SCALEXIO는 HiL 테스트에서 ECU의 환경을 시뮬레이션하는 실시간 플랫폼으로, 큰 시뮬레이션 모델도 실시간으로 계산한다.[@dspace-scalexio-2026]
+ISTQB 용어집은 **HiL**을 소프트웨어가 통합된 실제 하드웨어를 시험하는 가상 테스트 환경으로 정의한다.[@istqb-glossary-hardware-in-the-loop-2026] HiL은 테스트 대상이 시제품으로 나왔거나 개발이 끝났을 때 쓰며, 시제품이나 완성된 [[electronic-control-unit|ECU]]를 시험한다. 환경 모델은 실시간 처리가 되는 컴퓨터에서 돈다. 소프트웨어가 실제 하드웨어에서 돌기 때문에 HiL의 시뮬레이션은 늘 실시간으로 흐르고, 잠시 멈추거나 세울 수 없다. 그래서 환경 모델을 돌리는 컴퓨터는 관련 신호를 모두 정해진 시간 안에 모으고 내준다.[@istqb-ct-aut-syllabus-2025] dSPACE SCALEXIO는 HiL 테스트에서 ECU의 환경을 시뮬레이션하는 실시간 플랫폼으로, 큰 시뮬레이션 모델도 실시간으로 계산한다.[@dspace-scalexio-2026]
 
 ## HiL의 구성
 

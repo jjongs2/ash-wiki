@@ -1,31 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="27.5 17 750.5 91" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="17 16 310 284" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
   <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
 
-  <!-- 1년 = 20 단위, 1988년 = x 100 -->
-  <line x1="100" y1="56" x2="720" y2="56" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <!-- 1년 = 7 단위, 1988년 = y 40 -->
+  <line x1="40" y1="40" x2="40" y2="257" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g fill="var(--ink, #727981)">
-    <circle cx="100" cy="56" r="4" />
-    <circle cx="280" cy="56" r="4" />
-    <circle cx="500" cy="56" r="4" />
-    <circle cx="720" cy="56" r="4" />
+    <circle cx="40" cy="40" r="4" />
+    <circle cx="40" cy="103" r="4" />
+    <circle cx="40" cy="180" r="4" />
+    <circle cx="40" cy="257" r="4" />
   </g>
 
   <!-- 판 -->
-  <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="100" y="38">IEEE 1028-1988</text>
-    <text x="280" y="38">IEEE 1028-1997</text>
-    <text x="500" y="38">IEEE 1028-2008</text>
-    <text x="720" y="38">2019년 11월 7일</text>
+  <g fill="var(--text, #727981)">
+    <text x="56" y="45">IEEE 1028-1988</text>
+    <text x="56" y="108">IEEE 1028-1997</text>
+    <text x="56" y="185">IEEE 1028-2008</text>
+    <text x="56" y="262">2019년 11월 7일</text>
   </g>
 
   <!-- 제목과 상태 -->
-  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
-    <text x="100" y="82">IEEE Standard Software</text>
-    <text x="100" y="98">Reviews and Audits</text>
-    <text x="280" y="82">IEEE Standard for</text>
-    <text x="280" y="98">Software Reviews</text>
-    <text x="500" y="82">IEEE Standard for Software</text>
-    <text x="500" y="98">Reviews and Audits</text>
-    <text x="720" y="82">Inactive-Reserved</text>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="56" y="64">IEEE Standard Software Reviews and Audits</text>
+    <text x="56" y="127">IEEE Standard for Software Reviews</text>
+    <text x="56" y="204">IEEE Standard for Software Reviews and Audits</text>
+    <text x="56" y="281">Inactive-Reserved</text>
   </g>
 </svg>

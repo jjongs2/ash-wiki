@@ -17,7 +17,7 @@ Back-to-back 테스트에서는 모든 변형에 같은 [[test-case|테스트 �
 
 모델에서 만든 코드는 기대와 다르게 동작할 수 있다. 모델은 대개 부동소수점을, 컴파일한 코드는 대개 고정소수점을 쓰는 것처럼 데이터 타입이 다르거나 메모리 공간이 다르면 그런 차이가 생길 수 있다.[@istqb-ct-aut-syllabus-2025]
 
-Embedded Coder에서는 수치적 동등성을 확인하려고 normal mode 시뮬레이션의 결과를 software-in-the-loop나 processor-in-the-loop 시뮬레이션의 결과와 견준다.[@mathworks-ecoder-sil-pil-2026]
+Embedded Coder에서는 수치적 동등성을 확인하려고 normal mode 시뮬레이션의 결과를 [[x-in-the-loop#SiL|software-in-the-loop]]나 [[x-in-the-loop#PiL|processor-in-the-loop]] 시뮬레이션의 결과와 견준다.[@mathworks-ecoder-sil-pil-2026]
 
 ## 허용 오차
 
@@ -25,4 +25,4 @@ Simulink Test 문서에 따르면 normal mode 시뮬레이션과 생성 코드�
 
 ## N-version programming과의 차이
 
-Back-to-back 테스트는 테스트에서 변형들의 결과를 견주어 차이를 찾고 그 원인을 분석하는 데 쓰고[@istqb-ct-aut-syllabus-2025], [[n-version-programming|N-version programming]]은 따로 만든 버전들을 운용 중에 함께 실행해 결정 알고리즘이 정한 합의 결과로 소프트웨어 결함을 견디는 데 쓴다.[@avizienis-n-version-methodology-1995]
+Back-to-back 테스트는 테스트 중에 변형들의 결과를 견주어 차이를 찾고 그 원인을 분석하는 데 쓰고[@istqb-ct-aut-syllabus-2025], [[n-version-programming|N-version programming]]은 따로 만든 버전들을 운용 중에 함께 실행해 결정 알고리즘이 정한 합의 결과로 소프트웨어 결함을 견디는 데 쓴다.[@avizienis-n-version-methodology-1995]
