@@ -111,6 +111,7 @@
 - 운용 프로파일: 운영 프로파일 (#385)
 - 위협 시나리오: threat scenario (#252)
 - 인수 기준: 인수 조건 (#385)
+- 입구 노드: 진입 노드 (#573). 제어 흐름 그래프의 entry node일 때
 - 자산: asset (#252)
 - 저속 내결함성 CAN: 저속 결함 허용 CAN (#441). ISO 11898-3의 low-speed, fault-tolerant 매체와 그 트랜시버일 때. 개념 fault tolerance는 "결함 허용"(#223)
 - 전술: tactic (#431). Automotive Threat Matrix의 tactic일 때
