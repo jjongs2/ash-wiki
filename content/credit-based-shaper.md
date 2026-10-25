@@ -18,14 +18,14 @@ CBS는 큐마다 credit 값을 둔다.[@intel-i210-2019][@microchip-sam-e70-2026
 
 - 큐에 보낼 프레임이 있지만 다른 큐가 전송하는 동안 기다리면 credit은 idleSlope의 비율로 오른다.[@intel-i210-2019][@microchip-sam-e70-2026]
 - 큐가 프레임을 내보내는 동안 credit은 sendSlope의 비율로 내려간다.[@st-rm0436-2025][@microchip-sam-e70-2026]
-- 큐가 비었을 때 $\mathrm{credit} > 0$이면 credit은 0이 된다.[@st-rm0436-2025][@intel-i210-2019] credit은 큐가 전송하지 않는 동안([[time-aware-shaper|scheduled traffic]]을 쓰면 [[time-aware-shaper#게이트|게이트]]가 열려 있는 동안) 큐가 비어 있어도 idleSlope의 비율로 오르고, 0으로 되돌려지는 것은 양수일 때뿐이다. 그래서 큐가 비었을 때 음수인 credit은 0이 될 때까지 오른다.[@ieee-802-1q-2022]
+- 큐가 비었을 때 $\mathrm{credit} > 0$이면 credit은 0이 된다.[@st-rm0436-2025][@intel-i210-2019] 음수인 credit은 큐가 비어도 바로 0으로 되돌려지지 않고, 큐가 전송하지 않는 동안 idleSlope의 비율로 0까지 오른다. [[time-aware-shaper|scheduled traffic]]을 쓰면 credit은 [[time-aware-shaper#게이트|게이트]]가 열려 있는 동안에만 오른다.[@ieee-802-1q-2022]
 - 큐는 보낼 프레임이 있고 $\mathrm{credit} \ge 0$일 때 전송할 수 있다.[@intel-i210-2019][@microchip-sam-e70-2026]
 
 ![[diagrams/cbs-credit-timeline.svg]]
 
-idleSlope는 큐에 예약한 대역폭에 해당한다.[@st-rm0436-2025][@intel-i210-2019] sendSlope의 크기는 포트의 전송 속도 portTransmitRate에서 idleSlope를 뺀 값, 곧 $\mathrm{portTransmitRate} - \mathrm{idleSlope}$다.[@st-rm0436-2025][@microchip-sam-e70-2026] I210 데이터시트는 sendSlope를 $\mathrm{idleSlope} - \mathrm{portTransmitRate}$로 계산하며, $\mathrm{idleSlope} < \mathrm{portTransmitRate}$여야 하므로 sendSlope는 음수다.[@intel-i210-2019]
+idleSlope는 큐에 예약한 대역폭에 해당한다.[@st-rm0436-2025][@intel-i210-2019] sendSlope의 크기는 포트의 전송 속도 portTransmitRate에서 idleSlope를 뺀 값, 곧 $\mathrm{portTransmitRate} - \mathrm{idleSlope}$다.[@st-rm0436-2025][@microchip-sam-e70-2026] I210(Intel의 [[ethernet|이더넷]] 컨트롤러) 데이터시트는 sendSlope를 $\mathrm{idleSlope} - \mathrm{portTransmitRate}$로 계산하며, $\mathrm{idleSlope} < \mathrm{portTransmitRate}$여야 하므로 sendSlope는 음수다.[@intel-i210-2019]
 
-credit에는 위 한계 hiCredit이 있다.[@st-rm0436-2025][@intel-i210-2019] I210 데이터시트는 우선순위가 가장 높은 큐의 hiCredit을 최대 전송 패킷 크기와 그 큐의 예약 대역폭으로 계산하게 하고, 다음 큐의 식에는 앞 큐의 프레임도 더한다.[@intel-i210-2019] STM32MP157의 [[ethernet|이더넷]]은 아래 한계 loCredit도 둔다. RM0436은 hiCredit의 최댓값으로 best-effort 트래픽의 최대 패킷 크기를, loCredit 크기의 최댓값으로 그 큐가 내보내는 최대 프레임 크기를 제시한다.[@st-rm0436-2025]
+credit에는 위 한계 hiCredit이 있다.[@st-rm0436-2025][@intel-i210-2019] I210 데이터시트는 우선순위가 가장 높은 큐의 hiCredit을 최대 전송 패킷 크기와 그 큐의 예약 대역폭으로 계산하게 하고, 다음 큐의 식에는 앞 큐의 프레임도 더한다.[@intel-i210-2019] STM32MP157(STMicroelectronics의 Arm 기반 32비트 마이크로프로세서)의 이더넷은 아래 한계 loCredit도 둔다. STM32MP157 참조 매뉴얼은 hiCredit의 최댓값으로 best-effort 트래픽의 최대 패킷 크기를, loCredit 크기의 최댓값으로 그 큐가 내보내는 최대 프레임 크기를 제시한다.[@st-rm0436-2025]
 
 IEEE 802.1Q-2022의 Annex L(참고)은 loCredit과 hiCredit을 아래 식으로 제시한다. maxFrameSize는 그 트래픽 클래스가 포트로 보낼 수 있는 가장 큰 프레임의 크기이고, maxInterferenceSize는 그 트래픽 클래스의 프레임 전송을 늦출 수 있는 트래픽 버스트의 가장 큰 크기(비트)다.[@ieee-802-1q-2022]
 
@@ -45,7 +45,7 @@ $$
 
 이 표준은 CBS가 뜻대로 동작하려면 CBS를 쓰는 트래픽 클래스가 strict priority를 쓰는 어느 트래픽 클래스보다도 번호가 커야 한다고 정한다.[@ieee-802-1q-2022] CBS 큐가 credit 때문에 전송할 수 없는 동안에는 낮은 우선순위의 큐가 전송한다.[@intel-i210-2019][@microchip-sam-e70-2026] CBS를 쓰는 트래픽 클래스가 예약 대역폭을 다 쓰지 않으면, 남는 대역폭을 strict priority의 낮은 트래픽 클래스가 쓸 수 있다.[@microchip-ksz9477s-2019][@st-rm0436-2025]
 
-가장 높은 SR 클래스의 CBS 큐도 바로 전에 전송을 시작한 다른 프레임이 끝나기를 기다려야 하므로, 그 큐의 프레임은 매체가 지원하는 가장 긴 프레임을 보내는 시간만큼 늦어질 수 있다. 저전력 모드에서 돌아오는 매체 접근 지연이 그보다 길면 그만큼 늦어진다. 낮은 SR 클래스의 프레임은 여기에 더해 더 높은 SR 클래스가 몰아 보내는 프레임만큼 기다린다.[@ieee-802-1q-2022] KSZ9477S 데이터시트에 따르면 best-effort 큐의 큰 패킷 전송은 CBS의 성능을 떨어뜨릴 수 있다.[@microchip-ksz9477s-2019]
+가장 높은 SR 클래스의 CBS 큐도 바로 전에 전송을 시작한 다른 프레임이 끝나기를 기다려야 하므로, 그 큐의 프레임은 매체가 지원하는 가장 긴 프레임을 보내는 시간만큼 늦어질 수 있다. 저전력 모드에서 돌아오는 매체 접근 지연이 그보다 길면 그만큼 늦어진다. 낮은 SR 클래스의 프레임은 여기에 더해 더 높은 SR 클래스가 몰아 보내는 프레임만큼 기다린다.[@ieee-802-1q-2022] KSZ9477S(Microchip의 7포트 기가비트 [[ethernet-switch|이더넷 스위치]]) 데이터시트에 따르면 best-effort 큐의 큰 패킷 전송은 CBS의 성능을 떨어뜨릴 수 있다.[@microchip-ksz9477s-2019]
 
 ## 예약할 수 있는 대역폭
 

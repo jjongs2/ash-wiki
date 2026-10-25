@@ -26,5 +26,5 @@
 
   <!-- 길이 -->
   <line x1="102" y1="120" x2="418" y2="120" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
-  <text x="260" y="144" text-anchor="middle" font-size="12" fill="var(--text, #727981)">링크 세그먼트 · 적어도 15 m</text>
+  <text x="260" y="144" text-anchor="middle" font-size="12" fill="var(--text, #727981)">링크 세그먼트</text>
 </svg>

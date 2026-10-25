@@ -20,9 +20,9 @@ IEEE 802.3de-2022는 IEEE 802.3-2022의 개정으로, 10 Mbit/s 단일 쌍 이�
 
 구현은 송신 큐나 [[traffic-class|트래픽 클래스]]마다 express인지 preemptable인지를 설정으로 정한다.[@ti-processor-sdk-linux-am64x-iet-2026][@nxp-realtimeedgeug-2026] IEEE 802.1Q-2022는 선점을 지원하는 포트에서 priority 값마다 express인지 preemptable인지를 frame preemption status 표로 정하고, 그에 따라 프레임을 eMAC이나 pMAC으로 보낸다. 기본값은 모든 priority가 express이고, 같은 트래픽 클래스에 대응하는 priority들에는 같은 값을 주기를 권한다.[@ieee-802-1q-2022]
 
-TI CPSW의 MAC Merge 부계층은 express 큐에 보낼 프레임이 있으면 preemptable 큐에서 전송 중인 프레임을 선점한다.[@ti-processor-sdk-linux-am64x-iet-2026]
+TI CPSW의 MAC Merge 부계층은 express 큐에 보낼 프레임이 있으면, preemptable 큐에서 전송 중인 프레임을 최소 조각 크기 요건을 채우는 첫 부분까지 보낸 뒤 선점한다.[@ti-processor-sdk-linux-am64x-iet-2026]
 
-선점이 없으면 시간이 중요한 프레임은 앞서 시작된 큰 프레임을 기다려야 해서 지연이 커진다.[@adi-adin3310-adin6310-2025][@ieee-802-1qbu-project-2016] ADIN3310/ADIN6310 데이터시트에 따르면 1 Gbit/s에서 선점이 없으면 1528바이트 프레임이 끼어들어 홉마다 지연이 12 µs 넘게 달라질 수 있고, 선점을 쓰면 끼어드는 것이 128바이트 조각으로 줄어 1.2 µs 미만이 된다.[@adi-adin3310-adin6310-2025]
+선점이 없으면 시간이 중요한 프레임은 앞서 시작된 큰 프레임을 기다려야 해서 지연이 커진다.[@adi-adin3310-adin6310-2025][@ieee-802-1qbu-project-2016] ADIN3310/ADIN6310 데이터시트에 따르면 1 Gbit/s에서 선점이 없으면 1528바이트 프레임이 끼어들어 홉마다 지연이 12 µs 넘게 달라질 수 있고, 선점을 쓰면 끼어드는 것이 길어야 128바이트인 조각으로 줄어 1.2 µs 미만이 된다.[@adi-adin3310-adin6310-2025]
 
 선점을 [[time-aware-shaper|scheduled traffic]]과 함께 쓰면 express 창 앞의 [[time-aware-shaper#Guard band|guard band]]를 줄일 수 있다.[@adi-adin3310-adin6310-2025][@ti-processor-sdk-linux-am64x-iet-2026] ADIN3310/ADIN6310 데이터시트에 따르면 guard band를 줄이면 guard band 때문에 비는 대역폭이 줄어든다.[@adi-adin3310-adin6310-2025]
 
@@ -46,7 +46,7 @@ IEEE 802.1Q-2022의 Annex S(참고)는 마지막이 아닌 조각의 최소 크�
 
 선점은 링크 상대가 LLDP(Link Layer Discovery Protocol)의 Additional Ethernet Capabilities TLV(Type-Length-Value)로 선점 지원을 알린 뒤에만 켜진다.[@adi-adin3310-adin6310-2025][@nxp-realtimeedgeug-2026]
 
-IEEE 802.3-2022는 링크 상대가 Nearest Bridge 그룹 주소로 보낸 LLDPDU(LLDP Data Unit)의 Additional Ethernet Capabilities TLV로 선점 지원을 알렸을 때만 송신 방향의 선점을 켜고, MAC Merge 부계층이 링크 고장 표시를 받으면 끄도록 정한다. 이 표준은 검증(verification)을 켜면 검증이 성공한 뒤에만 선점이 동작하게 한다. 검증은 verify mPacket을 보내고 respond mPacket을 받아 상대가 선점을 지원하는지 확인하는 절차로, SMD-V와 올바른 mCRC를 담은 mPacket을 받은 쪽은 respond mPacket을 돌려보내고, SMD-R과 올바른 mCRC를 담은 mPacket을 받은 쪽은 선점 기능이 확인된 것으로 본다. 검증은 끌 수 있으며, 검증을 끄는 것은 링크가 선점을 지원함을 설계로 보장한 닫힌 망(engineered closed network)을 위한 것이다.[@ieee-802-3-2022]
+IEEE 802.3-2022는 링크 상대가 Nearest Bridge 그룹 주소로 보낸 LLDPDU(LLDP Data Unit)의 Additional Ethernet Capabilities TLV로 선점 지원을 알렸을 때만 송신 방향의 선점을 켜고, MAC Merge 부계층이 링크 고장 표시를 받으면 끄도록 정한다. 이 표준은 검증(verification)을 켜면 검증이 성공한 뒤에만 선점이 동작하게 한다. 검증은 verify mPacket을 보내고 respond mPacket을 받아 상대가 선점을 지원하는지 확인하는 절차로, SMD-V(verify mPacket을 나타내는 SMD 값)와 올바른 mCRC를 담은 mPacket을 받은 쪽은 respond mPacket을 돌려보내고, SMD-R(respond mPacket을 나타내는 SMD 값)과 올바른 mCRC를 담은 mPacket을 받은 쪽은 선점 기능이 확인된 것으로 본다. 검증은 끌 수 있으며, 검증을 끄는 것은 링크가 선점을 지원함을 설계로 보장한 닫힌 망(engineered closed network)을 위한 것이다.[@ieee-802-3-2022]
 
 ![[diagrams/frame-preemption-verify-respond.svg]]
 
