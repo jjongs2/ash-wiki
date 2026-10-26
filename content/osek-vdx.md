@@ -7,7 +7,7 @@ verified: 2026-09-30
 
 **OSEK/VDX**는 차량의 분산 제어 유닛을 위한 개방형 구조를 산업 표준으로 만들려는 자동차 업계의 공동 프로젝트다. 그 프로젝트가 펴낸 명세의 묶음도 OSEK/VDX라 부른다.[@osek-binding-1-4-2-2004] OSEK은 독일어 "Offene Systeme und deren Schnittstellen für die Elektronik im Kraftfahrzeug"(차량 전자 장치를 위한 개방형 시스템과 그 인터페이스)의 머리글자이고, VDX는 Vehicle Distributed eXecutive의 머리글자다.[@osek-binding-1-4-2-2004][@osek-vdx-whats-osekvdx-2000]
 
-OSEK은 1993년 5월 독일 자동차 업계의 공동 프로젝트로 시작됐다. 1994년에 프랑스의 PSA와 Renault가 OSEK에 합류하면서, 프랑스 자동차 업계의 비슷한 프로젝트인 VDX의 방식을 들여왔다. 1995년 10월 첫 워크숍에서 OSEK/VDX 그룹은 OSEK과 VDX를 맞춘 명세의 결과를 발표했다.[@osek-vdx-whats-osekvdx-2000]
+OSEK은 1993년 5월 독일 자동차 업계의 공동 프로젝트로 시작됐다. 1994년에 프랑스의 PSA(자동차 제조사)와 Renault가 OSEK에 합류하면서, 프랑스 자동차 업계의 비슷한 프로젝트인 VDX의 방식을 들여왔다. 1995년 10월 첫 워크숍에서 OSEK/VDX 그룹은 OSEK과 VDX를 맞춘 명세의 결과를 발표했다.[@osek-vdx-whats-osekvdx-2000]
 
 ## 명세
 
@@ -25,9 +25,9 @@ OSEK/VDX 명세는 운영체제([[osek-os|OSEK OS]], [[osektime-os|OSEKtime OS]]
 
 Binding 1.4.2 명세는 ORTI를 디버거와 감시 도구가 타깃 메모리의 OSEK 객체에 접근하게 하는 인터페이스로 두며, ORTI는 커널 객체를 기술하는 언어인 KOIL(Kernel Object Interface Language)과 OSEK 고유의 객체·속성 기술로 이루어진다.[@osek-binding-1-4-2-2004]
 
-서로 인터페이스가 맞물린다고 보장하는 명세 판의 묶음은 SB0부터 SB6까지다. 가장 새로운 SB6은 OS 2.2·2.2.1·2.2.2, COM 3.0·3.0.1, NM 2.5.1·2.5.2·2.5.3, OIL 2.5, OSEKtime OS·FTCom 1.0으로 이루어진다. 인증 계획의 묶음은 CB0부터 CB6까지 두어 적합성 방법론과 OS, COM(내부 통신), NM 시험 계획의 판을 묶으며, CB6은 모두 4.5판이다.[@osek-binding-1-4-2-2004]
+서로 인터페이스가 맞물린다고 보장하는 명세 판의 묶음인 SB(Specification Binding)는 SB0부터 SB6까지다. 2004년 7월에 나온 이 명세에서 가장 새로운 SB6은 Binding 1.5, OS 2.2·2.2.1·2.2.2, COM 3.0·3.0.1, NM 2.5.1·2.5.2·2.5.3, OIL 2.5, OSEKtime OS·FTCom 1.0으로 이루어진다. 인증 계획의 묶음인 CB(Certification Binding)는 CB0부터 CB6까지 두어 적합성 방법론과 OS, COM(내부 통신), NM 시험 계획의 판을 묶으며, CB6은 모두 4.5판이다.[@osek-binding-1-4-2-2004]
 
-[[osek-hook-routine#오류의 두 부류|StatusType]] 반환 코드는 값이 명세끼리 겹치지 않도록 OSEK/VDX의 부분마다 값의 범위가 배정돼 있다. 각 부분의 범위는 값 32개이며, 앞쪽 16개까지는 표준 반환값으로, 뒤쪽 16개는 구현 고유의 추가 오류를 알리는 데 쓸 수 있다.[@osek-binding-1-4-2-2004]
+[[osek-hook-routine#오류의 두 부류|StatusType]] 반환 코드는 값이 명세끼리 겹치지 않도록 OSEK/VDX의 부분마다 값의 범위가 배정돼 있다. 각 부분의 범위는 값 32개이며, 앞쪽 16개까지는 표준 반환값으로, 뒤쪽 16개는 구현 고유의 추가 오류를 알리는 데 쓸 수 있다. 첫 범위 0\~31에서 0은 시스템 함수가 따로 알릴 것 없이 성공했음을 뜻하는 E_OK다.[@osek-binding-1-4-2-2004]
 
 | 값       | 쓰는 곳                    |
 | -------- | -------------------------- |

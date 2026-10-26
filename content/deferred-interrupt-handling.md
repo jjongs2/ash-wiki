@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-07
 ---
 
-FreeRTOS 문서는 인터럽트가 요구하는 처리를 ISR(Interrupt Service Routine) 안에서 다 하지 않고, ISR이 블록을 풀어 준 [[task|태스크]]에서 하는 방식을 **deferred interrupt handling**이라 부른다. 보통의 ISR 처리는 인터럽트 원인을 기록하고 인터럽트를 지운 뒤 필요한 처리를 모두 ISR 안에서 하지만, deferred interrupt handling에서는 원인을 기록하고 인터럽트를 지우는 데까지만 ISR에서 하고 나머지는 블록이 풀린 태스크가 한다. 처리를 넘겨받는 태스크의 우선순위가 충분히 높으면 ISR은 곧바로 그 태스크로 돌아가, 처리가 ISR 안에서 다 한 것처럼 시간 틈 없이 이어진다.[@freertos-deferred-interrupt-handling-2026]
+FreeRTOS 문서는 인터럽트가 요구하는 처리를 ISR(Interrupt Service Routine) 안에서 다 하지 않고, ISR이 블록을 풀어 준 [[task|태스크]]에서 하는 방식을 **deferred interrupt handling**이라 부른다. 보통의 ISR 처리는 인터럽트 원인을 기록하고 인터럽트를 지운 뒤 필요한 처리를 모두 ISR 안에서 하지만, deferred interrupt handling에서는 원인을 기록하고 인터럽트를 지우는 데까지만 ISR에서 하고 나머지는 블록이 풀린 태스크가 한다. 처리를 넘겨받는 태스크의 우선순위가 충분히 높으면, ISR은 끊긴 태스크가 아니라 블록이 풀린 그 태스크로 곧바로 돌아간다. 그래서 인터럽트가 요구하는 처리 전체가 ISR 안에서 다 한 것처럼 끊김 없이 한 구간에 이어진다.[@freertos-deferred-interrupt-handling-2026] FreeRTOS 커널 책에 따르면 이렇게 곧바로 돌아가려면 ISR이 그 태스크로의 전환을 요청해야 한다.[@freertos-interrupt-management-2026]
 
 ![[diagrams/deferred-interrupt-handling-timeline.svg]]
 
@@ -39,7 +39,7 @@ RTEMS의 인터럽트 관리자는 ISR이 끝날 때 태스크 스케줄링과 �
 
 ## 커널 서비스를 부를 수 없는 인터럽트
 
-FreeRTOS에서 `configMAX_SYSCALL_INTERRUPT_PRIORITY`는 ISR용 FreeRTOS API 함수를 부를 수 있는 가장 높은 인터럽트 우선순위를 정한다. 이보다 높은 우선순위의 인터럽트는 [[critical-section|임계 구역]]의 영향을 받지 않아 스케줄러가 실행을 막지 못하지만, 그 ISR에서는 FreeRTOS API 함수를 하나도 쓸 수 없다. 모터 제어처럼 타이밍이 아주 엄격한 기능은 스케줄러가 인터럽트 응답 시간을 흔들지 않도록 이 우선순위보다 높게 둔다.[@freertos-interrupt-management-2026]
+FreeRTOS에서 `configMAX_SYSCALL_INTERRUPT_PRIORITY`는 ISR용 FreeRTOS API 함수를 부를 수 있는 가장 높은 인터럽트 우선순위를 정한다. 이보다 높은 우선순위의 인터럽트는 [[critical-section|임계 구역]]의 영향을 받지 않아, 스케줄러가 하는 어떤 일도 이 인터럽트의 실행을 막지 못한다. 하지만 그 ISR에서는 FreeRTOS API 함수를 하나도 쓸 수 없다. 모터 제어처럼 타이밍이 아주 엄격한 기능은 스케줄러가 인터럽트 응답 시간을 흔들지 않도록 이 우선순위보다 높게 둔다.[@freertos-interrupt-management-2026]
 
 Zephyr의 zero-latency 인터럽트는 IRQ(Interrupt Request) 잠금으로 막을 수 없는 우선순위에서 실행되고, direct ISR로 선언해야 한다. zero-latency 인터럽트는 커널 코드와 함께 동작하지 않고 하드웨어 사건을 직접 다루도록 만든 것이라, 그 안에서 커널 API를 부르는 것은 정의되지 않은 동작으로 다뤄야 한다. 이 기능은 아키텍처마다 지원되며, 2026년 10월 기준 Arm Cortex-M에서 구현되어 있다.[@zephyr-interrupts-2026]
 
@@ -47,9 +47,9 @@ RTEMS에서 NMI(Non-Maskable Interrupt)는 끌 수 없으므로, 이 수준에�
 
 ## 인터럽트 지연과 응답
 
-µC/OS-III 문서는 인터럽트를 끈 시간의 최댓값을 **interrupt disable time**이라 부르며, 이는 실시간 커널의 가장 중요한 사양 가운데 하나다. 인터럽트를 오래 끌수록 인터럽트 지연이 커진다. 인터럽트를 받은 때부터 그 인터럽트를 처리하는 사용자 코드가 시작될 때까지를 **인터럽트 응답**(interrupt response), 프로세서가 끊긴 코드나 ISR이 준비 상태로 만든 더 높은 우선순위 태스크로 돌아가는 데 드는 시간을 **인터럽트 복귀**(interrupt recovery), 인터럽트가 일어난 때부터 태스크 수준 코드가 다시 실행될 때까지를 **태스크 지연**(task latency)이라 정의한다.[@micrium-ucos-iii-interrupt-management-2026]
+µC/OS-III 문서는 인터럽트를 끈 시간의 최댓값을 **interrupt disable time**이라 부르며, 이는 실시간 커널의 가장 중요한 사양 가운데 하나다. 인터럽트를 오래 끌수록 인터럽트 지연이 커진다. 인터럽트를 받은 때부터 그 인터럽트를 처리하는 사용자 코드가 시작될 때까지를 **인터럽트 응답**(interrupt response), 프로세서가 끊긴 코드나 ISR이 준비 상태로 만든 더 높은 우선순위 태스크로 돌아가기까지 걸리는 시간을 **인터럽트 복귀**(interrupt recovery), 인터럽트가 일어난 때부터 태스크 수준 코드가 다시 실행될 때까지를 **태스크 지연**(task latency)이라 정의한다.[@micrium-ucos-iii-interrupt-management-2026]
 
-이 시간들은 관련 코드의 실행 시간을 더해 구한다. 인터럽트 지연 $t_\mathrm{lat}$은 인터럽트를 끈 시간의 최댓값 $t_\mathrm{dis}$와 같다. 인터럽트 응답 $t_\mathrm{resp}$는 여기에 인터럽트 처리기로 vectoring하는 시간 $t_\mathrm{vec}$과 ISR prologue 시간 $t_\mathrm{pro}$를 더한 것이다. 인터럽트 복귀 $t_\mathrm{rec}$은 장치 처리 $t_\mathrm{dev}$, 태스크에 신호나 메시지를 보내는 시간 $t_\mathrm{post}$, `OSIntExit()`와 `OSIntCtxSw()`의 실행 시간 $t_\mathrm{exit}$, $t_\mathrm{sw}$의 합이다. 태스크 지연 $t_\mathrm{task}$는 인터럽트 응답과 인터럽트 복귀에 스케줄러를 잠근 시간 $t_\mathrm{lock}$을 더한 것이다.[@micrium-ucos-iii-posting-from-an-isr-2026]
+이 시간들은 관련 코드의 실행 시간을 더해 구한다. 인터럽트 지연 $t_\mathrm{lat}$은 인터럽트를 끈 시간의 최댓값 $t_\mathrm{dis}$와 같다. 인터럽트 응답 $t_\mathrm{resp}$는 여기에 인터럽트 처리기로 vectoring하는 시간 $t_\mathrm{vec}$과 ISR prologue 시간 $t_\mathrm{pro}$를 더한 것이다. 인터럽트 복귀 $t_\mathrm{rec}$의 식에는 `OSIntExit()`와 `OSIntCtxSw()`의 실행 시간 $t_\mathrm{exit}$, $t_\mathrm{sw}$뿐 아니라 ISR의 장치 처리 $t_\mathrm{dev}$와 태스크에 신호나 메시지를 보내는 시간 $t_\mathrm{post}$도 들어간다. 태스크 지연 $t_\mathrm{task}$는 인터럽트 응답과 인터럽트 복귀에 스케줄러를 잠근 시간 $t_\mathrm{lock}$을 더한 것이다.[@micrium-ucos-iii-posting-from-an-isr-2026]
 
 $$
 \begin{aligned}

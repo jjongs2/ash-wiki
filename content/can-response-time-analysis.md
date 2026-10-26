@@ -17,7 +17,7 @@ CAN의 [[can-arbitration|중재]] 방식 때문에, 메시지는 모든 노드�
 - 메시지 집합은 고정되어 있고, 메시지 $m$마다 고정된 [[can-identifier|식별자]], 곧 고유한 우선순위가 있다.
 - 메시지는 호스트의 태스크나 인터럽트 처리기가 큐에 넣는다. 사건이 일어난 뒤 메시지가 큐에 들어가기까지는 0부터 큐잉 지터 $J_m$까지 걸린다.
 - 메시지를 보내게 하는 사건 사이의 최소 간격 $T_m$을 메시지의 **주기**라 한다. 주기적 사건, 최소 간격이 $T_m$인 산발적 사건, 한 번만 일어나는 사건($T_m$이 무한대)을 모두 다룬다.
-- 마감 시한 $D_m$은 사건이 일어난 때부터 메시지 송신을 성공적으로 마칠 때까지 허용되는 가장 긴 시간이다.[@davis-can-schedulability-2007]
+- 마감 시한 $D_m$은 사건이 일어난 때부터 메시지 송신을 성공적으로 마칠 때까지 허용되는 가장 긴 시간이다. 송신을 마친 때에는 메시지 데이터를 그것이 필요한 수신 노드에서 쓸 수 있다고 본다.[@davis-can-schedulability-2007]
 
 컨트롤러의 송신 슬롯에 버퍼가 하나뿐이면 앞 인스턴스가 나가기 전에 새 데이터를 쓰면 앞 메시지를 잃으므로, 마감 시한이 주기 이하($D_m \le T_m$)라는 제약이 더 붙는다.[@davis-can-schedulability-2007]
 
@@ -111,7 +111,7 @@ busy period 식에는 $E_m(t_m^n)$을, 인스턴스마다의 큐잉 지연 식�
 
 ## 옛 분석과의 차이
 
-Tindell, Burns, Wellings는 1995년 논문에서 CAN 메시지의 최악 응답 시간에 상한을 주는 분석을 내놓았다.[@tindell-calculating-can-1995] Tindell과 Burns(1994)와 Tindell 외(1994, 1995)의 분석은 busy period 안의 첫 인스턴스만 보았다. $D_m \le T_m$일 때 메시지가 스케줄 가능하면 busy period가 $T_m$ 안에 끝난다고 암묵적으로 가정한 것인데, 선점 스케줄링에서는 맞지만 비선점인 CAN에서는 맞지 않는다.[@davis-can-schedulability-2007]
+Tindell, Burns, Wellings는 1995년 논문에서 CAN 메시지의 최악 응답 시간에 상한을 주는 분석을 내놓았다.[@tindell-calculating-can-1995] 이 논문의 분석은, 그에 앞서 1994년에 나온 두 논문(Tindell·Burns, Tindell·Hansson·Wellings)의 분석과 마찬가지로 busy period 안의 첫 인스턴스만 보았다. $D_m \le T_m$일 때 메시지가 스케줄 가능하면 busy period가 $T_m$ 안에 끝난다고 암묵적으로 가정한 것인데, 선점 스케줄링에서는 맞지만 비선점인 CAN에서는 맞지 않는다.[@davis-can-schedulability-2007]
 
 Davis, Burns, Bril, Lukkien은 2007년 논문에서 이 결함을 보이는 반례를 들고, 여러 인스턴스를 따지는 분석으로 고쳤다. 125 kbit/s 버스에 전송 시간이 모두 1 ms인 메시지 A, B, C(주기 2.5 ms, 3.5 ms, 3.5 ms, 마감 시한 2.5 ms, 3.25 ms, 3.25 ms)가 있으면, 옛 분석은 최악 응답 시간을 2 ms, 3 ms, 3 ms로 내어 버스 이용률이 97%인데도 스케줄 가능하다고 판정했다. 실제로는 C의 둘째 인스턴스가 3.5 ms 걸려 마감 시한을 놓친다.[@davis-can-schedulability-2007]
 

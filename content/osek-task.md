@@ -17,7 +17,7 @@ basic 태스크는 세 상태를 오간다.[@osek-os-2-2-3-2005]
 
 extended 태스크는 여기에 waiting이 더해진 네 상태를 가진다. waiting은 적어도 하나의 [[osek-event|이벤트]]를 기다리느라 실행을 이어가지 못하는 상태다.[@osek-os-2-2-3-2005]
 
-두 종류 모두 시스템 서비스로 활성화되면(activate) suspended에서 ready로 옮긴다. 스케줄러가 고른 ready 태스크는 실행되며 running이 되고(start), 스케줄러가 다른 태스크를 시작하기로 하면 running에서 ready로 돌아간다(preempt). running 태스크가 시스템 서비스로 스스로 끝나면 suspended가 된다(terminate). extended 태스크만 가지는 전이는 둘이다. `WaitEvent`로 running에서 waiting으로 가고(wait), 기다리던 이벤트 가운데 적어도 하나가 일어나면 waiting에서 ready로 옮긴다(release). suspended에서 waiting으로 곧바로 가는 전이는 없다.[@osek-os-2-2-3-2005]
+두 종류 모두 시스템 서비스로 활성화되면(activate) suspended에서 ready로 옮긴다. 스케줄러가 고른 ready 태스크는 실행되며 running이 되고(start), 스케줄러가 다른 태스크를 시작하기로 하면 running에서 ready로 돌아간다(preempt). running 태스크가 시스템 서비스로 스스로 끝나면 suspended가 된다(terminate). 다만 `ChainTask`로 자기 자신을 체인하면 suspended를 거치지 않고 running에서 곧바로 다시 ready가 된다. extended 태스크만 가지는 전이는 둘이다. `WaitEvent`로 running에서 waiting으로 가고(wait), 기다리던 이벤트 가운데 적어도 하나가 일어나면 waiting에서 ready로 옮긴다(release). suspended에서 waiting으로 곧바로 가는 전이는 없다.[@osek-os-2-2-3-2005]
 
 ![[diagrams/osek-task-state-model.svg]]
 
@@ -29,7 +29,7 @@ extended 태스크는 끝나지 않은 채 waiting 상태로 들어가 CPU를 �
 
 태스크는 `ActivateTask`나 `ChainTask`로 활성화하며, 활성화된 태스크는 첫 문장부터 실행된다. 태스크를 시작할 때 C 함수처럼 인자를 넘기지 않으며, 넘길 값은 메시지나 전역 변수로 전한다. 태스크는 자기 코드 끝에서 `TerminateTask`나 `ChainTask`로 스스로 끝나야 하고, 둘 다 부르지 않고 끝내면 동작이 정의되지 않는다. 태스크는 스스로만 끝낼 수 있고, 다른 태스크가 끝낼 수 없다.[@osek-os-2-2-3-2005]
 
-`ChainTask`는 호출한 태스크를 끝낸 뒤 뒤이을 태스크를 활성화한다. 뒤이을 태스크는 호출한 태스크가 끝난 뒤에야 실행되며, 호출한 태스크 자신이어도 된다. `ChainTask`로 활성화된 태스크는 그 우선순위 큐의 맨 뒤에 놓인다. 자기 자신을 체인하면 다중 활성화 요청으로 세지 않으며, 태스크는 suspended로 가지 않고 곧바로 다시 ready가 된다.[@osek-os-2-2-3-2005]
+`ChainTask`는 호출한 태스크를 끝낸 뒤 뒤이을 태스크를 활성화한다. 뒤이을 태스크는 호출한 태스크가 끝난 뒤에야 실행되며, 호출한 태스크 자신이어도 된다. `ChainTask`로 활성화된 태스크는 그 우선순위 큐의 맨 뒤에 놓인다. 자기 자신을 체인해도 다중 활성화 요청으로 세지 않는다.[@osek-os-2-2-3-2005]
 
 `TerminateTask`와 `ChainTask`는 호출한 태스크에 배정된 [[osek-resource#Internal resource|internal resource]]를 자동으로 푼다. `ChainTask`는 자기 자신을 체인할 때도 푼다.[@osek-os-2-2-3-2005]
 

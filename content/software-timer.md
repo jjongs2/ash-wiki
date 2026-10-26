@@ -9,7 +9,7 @@ verified: 2026-10-07
 
 FreeRTOS의 소프트웨어 타이머는 커널이 구현하고 관리하며, 하드웨어 지원이 필요 없고 하드웨어 타이머나 하드웨어 카운터와 상관이 없다. FreeRTOS는 주기 타이머를 **auto-reload 타이머**라 부른다.[@freertos-software-timer-management-2026]
 
-µC/OS-III의 콜백에서는 타이머 [[task|태스크]]를 블록시키거나 지우는 호출을 해서는 안 된다.[@micrium-ucos-iii-timer-management-2026] FreeRTOS의 콜백은 짧게 두어야 하고 Blocked 상태에 들어가서는 안 된다. 콜백을 실행하는 태스크가 Blocked 상태에 들기 때문이다.[@freertos-software-timer-management-2026]
+µC/OS-III의 콜백은 자신을 실행하는 타이머 [[task|태스크]]를 블록시키거나 지우는 호출을 해서는 안 된다.[@micrium-ucos-iii-timer-management-2026][@micrium-ucos-iii-timer-task-2026] FreeRTOS의 콜백은 짧게 두어야 하고 Blocked 상태에 들어가서는 안 된다. 콜백을 실행하는 태스크가 Blocked 상태에 들기 때문이다.[@freertos-software-timer-management-2026]
 
 ## 콜백이 도는 context
 
@@ -19,7 +19,7 @@ FreeRTOS의 소프트웨어 타이머 콜백은 모두 RTOS daemon 태스크(tim
 
 Zephyr 타이머는 커널의 시스템 클록으로 시간을 재고, 만료 함수는 시스템 클록 인터럽트 처리기가 실행한다.[@zephyr-timers-2026]
 
-RTEMS(Real-Time Executive for Multiprocessor Systems)의 타이머 서비스 루틴은 clock tick directive나 Timer Server 태스크가 부른다. Timer Server는 태스크 기반 타이머의 서비스 루틴을 인터럽트가 아니라 태스크 공간에서 실행해, 부동소수점 연산처럼 서비스 루틴이 할 수 있는 일을 넓힌다. 서비스 루틴은 블록할 수도 있지만, 그러면 Timer Server가 블록되어 이미 대기 중인 다른 서비스 루틴도 그 루틴이 끝날 때까지 실행되지 못한다.[@rtems-timer-background-2025]
+RTEMS(Real-Time Executive for Multiprocessor Systems)의 타이머 서비스 루틴은 clock tick directive나 Timer Server 태스크가 부른다. Timer Server는 태스크 기반 타이머의 서비스 루틴을 인터럽트가 아니라 태스크 공간에서 실행해, 부동소수점 연산처럼 서비스 루틴이 할 수 있는 일을 넓힌다. Timer Server가 부르는 서비스 루틴은 블록할 수도 있지만, 그러면 Timer Server 자신이 블록되어 이미 대기 중인 다른 서비스 루틴도 그 루틴이 끝날 때까지 실행되지 못한다.[@rtems-timer-background-2025]
 
 ## POSIX 타이머
 
@@ -41,7 +41,7 @@ CMSIS-RTOS2는 `osDelayUntil`이 커널 틱으로 지정한 절대 시각까지 
 
 FreeRTOS의 `vTaskDelay()`는 부른 때를 기준으로 상대 시간만큼 블록하고, `vTaskDelayUntil()`은 블록에서 풀릴 틱 카운트 값을 절대 시각으로 지정한다. 그래서 고정 주기로 실행해야 할 때는 `vTaskDelayUntil()`을 쓴다.[@freertos-task-management-2026]
 
-Zephyr 타이머의 주기는 타이머가 마지막으로 만료되었어야 할 시각을 기준으로 잰 최소 지연이다. 그래서 주기 타이머가 시스템 타이머에 대해 밀리지 않지만, 한 번의 주기 지연은 지정한 주기보다 짧거나 길 수 있다.[@zephyr-timers-2026]
+Zephyr 타이머의 주기는 실제로 만료된 시각이 아니라 마지막으로 만료되었어야 할 시각부터 잰 최소 지연이다. 그래서 주기 타이머가 시스템 타이머에 대해 밀리지 않지만, 실제로 만료된 두 시각 사이의 간격은 지정한 주기보다 짧거나 길 수 있다.[@zephyr-timers-2026]
 
 RTEMS의 rate monotonic manager는 주기 태스크의 실행을 관리한다. `rtems_rate_monotonic_period`를 부를 때 주기가 진행 중이면 남은 주기 동안 부른 태스크를 블록했다가 주기가 끝나면 주기를 다시 시작하고, 주기가 이미 만료됐으면 타임아웃 오류 상태값을 받고 곧바로 돌아온다.[@rtems-rate-monotonic-operations-2025] rate monotonic manager는 주기 객체마다 실행한 주기 수, 놓친 주기 수, 주기 루프 한 번에 쓴 CPU 시간과 흐른 시간의 최솟값·최댓값·합 같은 통계를 둔다.[@rtems-rate-monotonic-background-2025]
 

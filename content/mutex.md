@@ -23,7 +23,7 @@ FreeRTOS의 뮤텍스는 가져간 태스크가 반드시 돌려줘야 한다. F
 
 뮤텍스를 바로 얻지 못한 스레드는 블록되어 기다린다.[@ieee-1003-1-pthread-mutex-lock-2024][@freertos-mutexes-2026] POSIX.1-2024는 뮤텍스가 풀릴 때 블록된 스레드가 있으면 어느 스레드가 뮤텍스를 얻을지를 스케줄링 정책이 정하게 한다.[@ieee-1003-1-pthread-mutex-lock-2024]
 
-[[ieee-1003-1#범위|근거 설명]]에 따르면 뮤텍스는 스레드를 블록하는 데 드는 프로세서 자원이 스핀락보다 크게 구현될 수 있다. 뮤텍스를 얻지 못한 스레드는 스케줄링 상태를 바꾸고 기다리는 스레드 집합에 들어가며, 뮤텍스가 풀리면 이를 모두 되돌린 뒤에 뮤텍스의 소유권을 넘겨받기 때문이다.[@ieee-1003-1-rationale-threads-2024]
+[[ieee-1003-1#범위|근거 설명]]에 따르면 뮤텍스는 스레드를 블록하는 데 드는 프로세서 자원이 스핀락보다 크게 구현될 수 있다. 뮤텍스를 얻지 못한 스레드는 스케줄링 상태를 바꾸고 기다리는 스레드 집합에 들어가며, 뮤텍스가 풀리면 이 두 단계를 모두 되돌린 뒤에 뮤텍스의 소유권을 넘겨받기 때문이다.[@ieee-1003-1-rationale-threads-2024]
 
 Linux 커널에서 mutex를 얻지 못한 태스크는 스스로 멈췄다가 mutex가 풀리면 깨어나므로, 그동안 CPU는 다른 일을 할 수 있다.[@linux-locking-guide-2026] 다만 Linux 커널의 mutex는 잠들기 전에 소유자가 실행 중이면 잠깐 스핀한다(optimistic spinning). 곧바로 잠들지 않고 몇 사이클 바쁜 대기하게 하자 여러 워크로드에서 성능이 크게 나아졌다.[@linux-mutex-design-2026]
 
@@ -33,14 +33,14 @@ Linux 커널에서 mutex를 얻지 못한 태스크는 스스로 멈췄다가 mu
 
 POSIX.1-2024는 뮤텍스 타입으로 `PTHREAD_MUTEX_NORMAL`, `PTHREAD_MUTEX_ERRORCHECK`, `PTHREAD_MUTEX_RECURSIVE`, `PTHREAD_MUTEX_DEFAULT`를 두고, 기본값은 `PTHREAD_MUTEX_DEFAULT`다.[@ieee-1003-1-pthread-mutexattr-gettype-2024] 타입마다 이미 잠근 뮤텍스를 다시 잠글 때와, 소유자가 아닌 스레드가 풀 때의 동작이 다르다.[@ieee-1003-1-pthread-mutex-lock-2024]
 
-| 타입                       | 소유자가 다시 잠그면                                             | 소유자가 아닌 스레드가 풀면 |
-| -------------------------- | ---------------------------------------------------------------- | --------------------------- |
-| `PTHREAD_MUTEX_NORMAL`     | [[deadlock\|교착 상태]]가 된다.                                  | 결과가 정의되지 않는다.     |
-| `PTHREAD_MUTEX_ERRORCHECK` | 오류를 돌려준다.                                                 | 오류를 돌려준다.            |
-| `PTHREAD_MUTEX_RECURSIVE`  | 잠금 횟수를 세고, 횟수가 0이 될 때까지 풀어야 풀린다.            | 오류를 돌려준다.            |
-| `PTHREAD_MUTEX_DEFAULT`    | 다른 세 타입 가운데 하나처럼 동작하거나, 결과가 정의되지 않는다. | 결과가 정의되지 않는다.     |
+| 타입                       | 소유자가 다시 잠그면                                             | 소유자가 아닌 스레드가 풀면                                      |
+| -------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `PTHREAD_MUTEX_NORMAL`     | [[deadlock\|교착 상태]]가 된다.                                  | 결과가 정의되지 않는다.                                          |
+| `PTHREAD_MUTEX_ERRORCHECK` | 오류를 돌려준다.                                                 | 오류를 돌려준다.                                                 |
+| `PTHREAD_MUTEX_RECURSIVE`  | 잠금 횟수를 세고, 횟수가 0이 될 때까지 풀어야 풀린다.            | 오류를 돌려준다.                                                 |
+| `PTHREAD_MUTEX_DEFAULT`    | 다른 세 타입 가운데 하나처럼 동작하거나, 결과가 정의되지 않는다. | 다른 세 타입 가운데 하나처럼 동작하거나, 결과가 정의되지 않는다. |
 
-"소유자가 아닌 스레드가 풀면" 열의 "정의되지 않는다"는 견고(robust)하지 않은 뮤텍스의 경우다. 견고한 뮤텍스는 타입과 상관없이, 소유자가 아닌 스레드가 풀면 오류를 돌려준다.[@ieee-1003-1-pthread-mutex-lock-2024]
+`PTHREAD_MUTEX_DEFAULT`를 다른 타입 가운데 하나에 대응시킬지, 전혀 다른 타입으로 둘지는 구현마다 다르다.[@ieee-1003-1-rationale-threads-2024] "소유자가 아닌 스레드가 풀면" 열의 "정의되지 않는다"는 견고(robust)하지 않은 뮤텍스의 경우다. 견고한 뮤텍스는 타입과 상관없이, 소유자가 아닌 스레드가 풀면 오류를 돌려준다.[@ieee-1003-1-pthread-mutex-lock-2024]
 
 CMSIS-RTOS2는 뮤텍스 속성에 `osMutexRecursive`(같은 스레드가 여러 번 얻어도 스스로 막히지 않음), `osMutexPrioInherit`(소유 스레드가 기다리는 더 높은 우선순위 스레드의 우선순위를 물려받음), `osMutexRobust`(소유 스레드가 끝나면 뮤텍스를 저절로 놓음)를 두고, 기본값은 셋 모두 쓰지 않는 비재귀 뮤텍스로 정한다.[@arm-cmsis-rtos2-mutex-2026] Zephyr의 뮤텍스는 이미 잠근 스레드가 다시 잠글 수 있고, 잠근 횟수만큼 풀어야 다른 스레드가 얻을 수 있다.[@zephyr-mutexes-2026] µC/OS-III에서는 뮤텍스를 가진 태스크가 같은 뮤텍스를 250번까지 중첩해 가질 수 있고, 같은 횟수만큼 놓아야 한다.[@micrium-ucos-iii-mutual-exclusion-semaphores-2026] FreeRTOS는 같은 태스크가 여러 번 가져갈 수 있는 재귀 뮤텍스를 표준 뮤텍스와 따로 두고, 다른 함수로 만들고 가져가고 돌려준다.[@freertos-resource-management-2026]
 
@@ -62,7 +62,7 @@ FreeRTOS의 뮤텍스는 우선순위 상속을 하고, 이진 세마포어는 �
 
 ## ISR에서
 
-뮤텍스는 ISR(Interrupt Service Routine)에서 쓰지 않는다.[@arm-cmsis-rtos2-mutex-2026][@micrium-ucos-iii-mutual-exclusion-semaphores-2026] FreeRTOS 책에 따르면 우선순위 상속은 뮤텍스를 쓰는 태스크의 우선순위를 바꾸므로, 뮤텍스는 ISR에서 쓰면 안 된다.[@freertos-resource-management-2026] ISR에서 세마포어를 주는 일은 [[semaphore#쓰임|세마포어]]에서 다룬다.
+뮤텍스는 ISR(Interrupt Service Routine)에서 쓸 수 없다.[@arm-cmsis-rtos2-mutex-2026][@micrium-ucos-iii-mutual-exclusion-semaphores-2026] FreeRTOS 책에 따르면 우선순위 상속은 뮤텍스를 쓰는 태스크의 우선순위를 바꾸므로, 뮤텍스는 ISR에서 쓰면 안 된다.[@freertos-resource-management-2026] ISR에서 세마포어를 주는 일은 [[semaphore#쓰임|세마포어]]에서 다룬다.
 
 ## 락 세분도
 

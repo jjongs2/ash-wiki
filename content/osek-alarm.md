@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## Counter
 
-타이머 인터럽트나 축의 엔코더처럼 반복되는 사건은 구현이 제공하는 counter에 등록된다. **counter**는 틱 단위로 잰 counter 값과 counter별 상수로 나타낸다. counter를 직접 다루는 표준 API는 없다. OSEK/VDX OS 2.0 명세는 1.0 명세에 있던, 애플리케이션이 counter에 접근하는 API를 하드웨어에 크게 기대는 기능이라는 이유로 없앴다. 타이머에서 나오는 counter는 적어도 하나 있으며, 그 타이머는 하드웨어일 수도 소프트웨어일 수도 있다.[@osek-os-2-2-3-2005]
+타이머 인터럽트나 축의 엔코더처럼 반복되는 사건은 구현이 제공하는 counter에 등록된다. **counter**는 틱 단위로 잰 counter 값과 counter별 상수로 나타낸다. counter를 직접 다루는 표준 API는 없다. OSEK/VDX OS 2.0 명세는 1.0 명세에 있던, 애플리케이션이 counter에 접근하는 API를 하드웨어에 크게 기대는 기능이라는 이유로 없앴다. 운영체제는 타이머를 바탕으로 한 counter를 적어도 하나 제공하며, 그 타이머는 하드웨어일 수도 소프트웨어일 수도 있다.[@osek-os-2-2-3-2005]
 
 counter마다 아래 상수를 둔다.[@osek-os-2-2-3-2005][@osek-oil-2-5-2004]
 
@@ -19,7 +19,7 @@ counter마다 아래 상수를 둔다.[@osek-os-2-2-3-2005][@osek-oil-2-5-2004]
 
 counter마다 `GetAlarmBase`로 읽는 값을 상수 `OSMAXALLOWEDVALUE_x`, `OSTICKSPERBASE_x`, `OSMINCYCLE_x`(`x`는 counter 이름)로도 제공하므로, counter 이름을 알면 `GetAlarmBase`를 부르지 않아도 된다. 시간 counter인 시스템 counter의 상수는 `OSMAXALLOWEDVALUE`, `OSTICKSPERBASE`, `OSMINCYCLE`로도 읽는다. `OSTICKDURATION`은 시스템 counter의 틱 하나의 길이를 나노초로 준다.[@osek-os-2-2-3-2005]
 
-OSEKturbo OS/ARM7에서는 counter 값이 `MAXALLOWEDVALUE`에 이르면 0부터 다시 센다.[@freescale-osekturbo-arm7-tr-2002]
+Freescale Semiconductor의 OSEK OS 구현인 OSEKturbo OS/ARM7에서는 counter 값이 `MAXALLOWEDVALUE`에 이르면 0부터 다시 센다.[@freescale-osekturbo-arm7-tr-2002]
 
 ## 만료 동작
 

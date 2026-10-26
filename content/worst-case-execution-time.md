@@ -23,7 +23,7 @@ AUTOSAR Timing Analysis and Design 보고서에 따르면 분기 예측은 같�
 
 ## 측정과 정적 분석
 
-AUTOSAR Timing Analysis and Design 보고서에 따르면 측정은 사용한 입력 데이터가 어느 분기를 밟았느냐에 따라 값이 달라져 평균이나 분포만 줄 수 있고, 실행 시간의 상한은 정적 분석으로 얻는다. 측정과 시뮬레이션의 최댓값은 실제로 관측한 값이고, 분석이 내는 최악값은 분석 알고리즘 때문에 과대평가되기도 한다. 최악값은 실행 중에 가질 수 있는 모든 값의 상한이므로, 실제 시스템에서 관측한 최댓값보다 작을 수 없다. 이 보고서는 분석이 최악값 같은 단일 값을 내고, 시뮬레이션과 측정은 실행 시간의 분포를 낸다고 나눈다. 정적 코드 분석은 소스 코드나 바이너리에서 호출 그래프와 명령어 순서를 재구성해 BCET(Best-Case Execution Time)의 하한과 WCET의 상한을 계산하며, 메모리 영역별 접근 시간이나 캐시 같은 대상 하드웨어의 동작을 자세히 알아야 한다. 코드 조각이 인터럽트되지 않는 한 실제 실행 시간은 이 구간 안에 든다. WCET 분석은 안전하면서도 정확한 값을 내야 하고, 하드웨어 동작 모델이 복잡하면 결과의 정밀도에 한계가 생길 수 있다.[@autosar-fo-tr-timinganalysis-2025]
+AUTOSAR Timing Analysis and Design 보고서에 따르면 측정은 사용한 입력 데이터가 어느 분기를 밟았느냐에 따라 값이 달라져 평균이나 분포만 줄 수 있고, 실행 시간의 상한은 정적 분석으로 얻는다. 측정과 시뮬레이션의 최댓값은 실제로 관측한 값이다. 분석이 내는 최악값은 실행 시간이 가질 수 있는 모든 값의 상한, 곧 WCET의 상한이라 실제 시스템에서 관측한 최댓값보다 작을 수 없고, 분석 알고리즘 때문에 과대평가되기도 한다. 이 보고서는 분석이 최악값 같은 단일 값을 내고, 시뮬레이션과 측정은 실행 시간의 분포를 낸다고 나눈다. 정적 코드 분석은 소스 코드나 바이너리에서 호출 그래프와 명령어 순서를 재구성해 BCET(Best-Case Execution Time)의 하한과 WCET의 상한을 계산하며, 메모리 영역별 접근 시간이나 캐시 같은 대상 하드웨어의 동작을 자세히 알아야 한다. 코드 조각이 인터럽트되지 않는 한 실제 실행 시간은 이 구간 안에 든다. WCET 분석은 안전하면서도 정확한 값을 내야 하고, 하드웨어 동작 모델이 복잡하면 결과의 정밀도에 한계가 생길 수 있다.[@autosar-fo-tr-timinganalysis-2025]
 
 ![[diagrams/wcet-analysis-measurement-bounds.svg]]
 
@@ -31,7 +31,7 @@ AUTOSAR Timing Analysis and Design 보고서에 따르면 측정은 사용한 �
 
 ## 선점과 실행 시간
 
-AUTOSAR는 실행 시간을 선점되거나 중단된 시간, 태스크 전환, 다른 소프트웨어의 실행을 뺀, 실제로 실행된 시간으로 둔다.[@autosar-fo-tr-glossary-2025][@autosar-fo-tr-timinganalysis-2025]
+AUTOSAR R25-11 용어집과 Timing Analysis and Design 보고서는 실행 시간을, 선점되거나 중단된 시간과 CPU가 태스크 전환이나 다른 소프트웨어의 실행에 쓴 시간을 뺀, 실제로 실행된 시간인 net 실행 시간으로 둔다.[@autosar-fo-tr-glossary-2025][@autosar-fo-tr-timinganalysis-2025]
 
 AUTOSAR R25-11 Timing Extensions 명세는 다른 개체가 끼어든 시간과 외부 호출까지 포함해 실행을 끝내기까지 걸린 시간을 응답 시간이라 부른다. 이 명세의 실행 시간 제약(ExecutionTimeConstraint)은 실행 시간의 종류로 net과 gross를 둔다. 둘 다 다른 개체가 끼어든 시간은 뺀다. 외부 호출에 쓴 시간은 gross는 포함하고 net은 포함하지 않는다.[@autosar-cp-tps-timingextensions-2025]
 
