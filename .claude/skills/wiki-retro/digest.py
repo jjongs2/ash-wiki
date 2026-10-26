@@ -344,7 +344,7 @@ def session_version(path):
         return
     skills = called_skills(entries)
     if not skills:
-        print(f"{uuid}\t-\t{commit[:12]}\t{how}. 스킬 본문 없음(루틴 세션 등)")
+        print(f"{uuid}\t-\t{commit[:12]}\t{how}. 스킬 본문 없음(루틴에 넘긴 세션 등)")
     for skill_dir, body in skills.items():
         skill = f"{skill_dir}/SKILL.md"
         name = os.path.basename(skill_dir)
