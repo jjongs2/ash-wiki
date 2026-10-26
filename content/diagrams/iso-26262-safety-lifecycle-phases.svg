@@ -45,9 +45,11 @@
     <text x="352.5" y="214">Part 6</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
-    <path d="M188 66 V190 H197" />
-    <path d="M400 190 H402 V70" />
+    <path d="M182 66 V140 H352.5 V156" />
+    <path d="M248.5 140 V156" />
+    <path d="M248.5 220 V232 H408 V70" />
   </g>
+  <path d="M352.5 220 V232" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="295" y="118" text-anchor="middle" fill="var(--text, #727981)">V 모델</text>
 
   <!-- 생산 이후 -->

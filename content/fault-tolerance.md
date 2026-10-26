@@ -15,17 +15,17 @@ Avizienis 외(2004)는 결함 허용을 구현하는 방법의 하나로 여러 
 
 하드웨어의 결함 허용 설계가 허용하는 것은 설계 fault가 아니라 부품 failure이고, 소프트웨어에 필요한 중복은 프로그램의 복제가 아니라 설계의 중복이다. 대체 구성 요소가 주 구성 요소의 복사본에 지나지 않으면 주 구성 요소를 고장 나게 한 상황에 대처할 수 없으므로, 대체 구성 요소는 따로 설계한다.[@randell-software-fault-tolerance-1975]
 
-공통 원인에서 비롯한 fault들은 대개 검출 메커니즘이 구별하지 못하는 비슷한 error를 내고, 그런 error로 생긴 failure를 common-mode failure라 한다.[@avizienis-dependable-secure-computing-2004]
+Avizienis 외(2004)의 분류에서 공통 원인에서 비롯한 fault들은 대개 검출 메커니즘이 구별하지 못하는 비슷한 error를 내고, 원인이 서로 다른 독립된 fault들은 대개 서로 다른 error를 낸다. 다만 독립된 fault가 비슷한 error를 내거나, 공통 원인에서 비롯한 fault가 서로 다른 error를 내기도 한다. 이 분류는 비슷한 error로 생긴 failure를 common-mode failure라 한다.[@avizienis-dependable-secure-computing-2004]
 
 ## Ariane 5 501편
 
 1996년 6월 4일 Ariane 5의 첫 비행인 501편은 이륙 약 30초 뒤 유도·자세 정보를 잃고, 비행 경로를 벗어나 부서지고 폭발했다. Ariane 5에는 하드웨어도 소프트웨어도 같은 관성 기준 시스템(SRI) 두 대가 병렬로 있었고, 한 대는 동작하고 한 대는 hot stand-by였다.[@esa-ariane-501-inquiry-1996]
 
-64비트 부동소수점 값을 16비트 부호 있는 정수로 바꾸다 operand error가 나서, 예비 SRI가 먼저 멈추고 약 0.05초 뒤 주 SRI가 같은 이유로 멈췄다. 예외가 난 부분은 이륙 전에만 의미 있는 결과를 내는 정렬 기능이었다. 이 기능은 Ariane 4의 요구에 따라 이륙 뒤에도 약 40초 동안 동작했고, Ariane 5에는 쓸모가 없었지만 공통성을 이유로 그대로 남았다. SRI의 설계, 특히 소프트웨어는 Ariane 4의 것과 사실상 같았다.[@esa-ariane-501-inquiry-1996]
+64비트 부동소수점 값을 16비트 부호 있는 정수로 바꾸다 operand error가 나서, 예비 SRI가 먼저 멈추고 약 0.05초 뒤 주 SRI가 같은 이유로 멈췄다. 예외가 난 부분은 이륙 전에만 의미 있는 결과를 내는, 스트랩다운 관성 플랫폼의 정렬(alignment) 기능이었다. 이 기능은 Ariane 4의 요구에 따라 이륙 뒤에도 약 40초 동안 동작했고, Ariane 5에는 쓸모가 없었지만 공통성을 이유로 그대로 남았다. SRI의 설계, 특히 소프트웨어는 Ariane 4의 것과 사실상 같았다.[@esa-ariane-501-inquiry-1996]
 
 ## 다중 채널과 비교
 
-Lockstep 구조는 같은 입력을 받아 함께 동작하는 두 처리 장치의 출력을 비교기로 견주어, 다르면 불일치를 알린다.[@ti-spry178-2011][@infineon-aurix-tc3xx-spulckstp-training-2020]
+Lockstep 구조는 같은 입력을 받아 함께 동작하는 두 처리 장치의 출력을 비교기로 견주어 둘의 차이를 검출하는 구조로, 출력이 다르면 시스템에 불일치를 알린다.[@ti-spry178-2011][@infineon-aurix-tc3xx-spulckstp-training-2020]
 
 TI Hercules MCU는 기능 CPU와 같은 입력을 받는 checker CPU를 lockstep으로 둔다. Core compare 모듈이 두 CPU의 출력을 사이클마다 감시하다가 다르면 시스템에 error를 알린다.[@ti-spry178-2011]
 

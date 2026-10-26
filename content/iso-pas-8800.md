@@ -14,7 +14,7 @@ status: 유효
 
 이 문서는 차량 안 AI 요소의 [[sotif#기능 부족|출력 부족]], systematic error, random hardware error 때문에 차량 수준에서 생기는 원치 않는 안전 관련 거동의 리스크를 다룬다. 차량 밖 AI 요소와의 상호작용 가운데 차량 안전에 직접이나 간접으로 영향을 줄 수 있는 것도 여기에 든다. 장애가 있는 운전자를 위한 E/E 시스템처럼 특수 차량에만 있는 E/E 시스템은 다루지 않는다. AI 방법을 쓰는 소프트웨어 도구에 대한 지침은 주지 않는다. AI 방법 가운데 주로 머신러닝을 다루며, 심층 신경망 같은 특정 AI 방법의 세부에는 초점을 두지 않는다.[@iso-pas-8800-obp-2024]
 
-이 문서는 [[iso-26262|ISO 26262]] 시리즈와 [[iso-21448|ISO 21448]]의 기존 접근을 tailoring하거나 넓혀 AI 안전을 관리하는 틀을 정한다. AI 시스템의 오동작에 따른 [[functional-safety|기능 안전]] 리스크는 ISO 26262 시리즈의 관련 조항을 tailoring하거나 넓혀 다루고, AI 시스템의 기능 부족에 따른 리스크는 ISO 21448의 개념과 지침을 넓혀 다룬다. [[hazard-analysis-and-risk-assessment#용어|해저드]] 분석과 리스크 분석은 범위 밖이며, ISO 26262 시리즈와 ISO 21448이 다루는 차량 수준 시스템 안전 공학 활동에 속한다.[@iso-pas-8800-obp-2024]
+이 문서는 [[iso-26262|ISO 26262]] 시리즈와 [[iso-21448|ISO 21448]]의 기존 접근을 tailoring하거나 넓혀 AI 안전을 관리하는 틀을 정한다. AI 시스템의 오동작에 따른 [[functional-safety|기능 안전]] 리스크는 ISO 26262 시리즈의 관련 조항을 tailoring하거나 넓혀 다루고, AI 시스템의 기능 부족에 따른 리스크는 ISO 21448의 개념과 지침을 넓혀 다룬다. 이 문서는 AI 시스템의 기능 부족이 어디서 오는지 이해하는 인과 모델을 내놓고, 이 모델로 AI 시스템의 [[safety-requirement|안전 요구사항]]과 리스크 감소 조치를 끌어낸다. [[hazard-analysis-and-risk-assessment#용어|해저드]] 분석과 리스크 분석은 범위 밖이며, ISO 26262 시리즈와 ISO 21448이 다루는 차량 수준 시스템 안전 공학 활동에 속한다.[@iso-pas-8800-obp-2024]
 
 ![[diagrams/iso-pas-8800-iso-26262-iso-21448.svg]]
 
@@ -24,7 +24,7 @@ status: 유효
 - AI 시스템에 고유한 error와 그 원인을 따지는 개념 모델
 - 참조 AI [[safety-lifecycle|안전 생명주기]]
 - AI 시스템의 safety assurance argument
-- AI [[safety-requirement|안전 요구사항]]을 끌어내는 방법
+- AI 안전 요구사항을 끌어내는 방법
 - 안전한 AI 시스템 설계의 고려 사항
 - AI 시스템의 데이터 관리 고려 사항
 - AI 시스템의 [[verification-and-validation|검증과 확인]] 전략

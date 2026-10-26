@@ -41,7 +41,7 @@ DoD의 DevSecOps Activities & Tools 가이드북이 생명주기 단계에 두�
 | 위협 모델링                                                                                         | Plan      |
 | IDE(Integrated Development Environment) 보안 플러그인의 커밋 전 [[static-analysis\|정적 코드 스캔]] | Develop   |
 | 의존성 취약점 검사                                                                                  | Build     |
-| SBOM(Software Bill of Materials)의 SCA(Software Composition Analysis)                               | Build 뒤  |
+| SBOM(Software Bill of Materials)을 입력으로 하는 SCA(Software Composition Analysis)                 | Build 뒤  |
 | DAST(Dynamic Application Security Testing)                                                          | Test      |
 | [[penetration-testing\|침투 테스트]] 같은 수동 보안 테스트                                          | Test      |
 | 배포 뒤 보안 스캔                                                                                   | Deploy    |
@@ -64,7 +64,7 @@ NSA와 CISA(미국 [[cybersecurity|사이버보안]] 기관)는 2023년 6월 사
 이 자료가 드는 대책은 다음과 같다.[@nsa-cisa-defending-ci-cd-2023]
 
 - 강한 암호 알고리즘을 쓰고, 오래 쓰는 자격증명을 줄이며, 다요소 인증을 쓴다.
-- 코드에 [[digital-signature|서명]]하고 CI/CD 과정 내내 서명을 검증하며, 모든 코드 변경에 두 사람 규칙을 적용한다.
+- 코드에 [[digital-signature|서명]]하고 CI/CD 과정 내내 서명을 검증하며, 모든 코드 변경에 두 사람 규칙을 적용해, 다른 개발자가 검토하고 승인하지 않은 변경은 체크인할 수 없게 한다.
 - CI/CD 접근에 최소 권한을 적용하고, 비밀 정보를 평문으로 넘기거나 소프트웨어에 박아 두지 않고 비밀 관리 기능으로 다룬다.
 - 개발 시스템과 CI/CD 도구를 최신으로 유지하고, 불필요한 애플리케이션을 지운다.
 - 보안 스캔을 CI/CD 과정에 일찍 넣고, 신뢰할 수 없는 라이브러리와 도구를 제한한다. 보안 스캔에는 테스트 환경에 배포한 애플리케이션의 DAST도 든다.

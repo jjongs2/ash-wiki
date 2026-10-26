@@ -15,7 +15,7 @@ Kent Beck은 1999년 『Extreme Programming Explained: Embrace Change』에서 �
 
 ## 실천 항목
 
-Fowler는 지속적 통합을, 팀원 각자가 적어도 하루에 한 번 변경을 공동 코드베이스에 합치고 통합마다 테스트를 포함한 자동 빌드로 확인해 통합 오류를 되도록 빨리 찾는 관행으로 정의한다. 2024년판 글에서 그가 드는 실천 항목은 다음과 같다.[@fowler-continuous-integration-2024]
+Fowler는 지속적 통합을, 팀원 각자가 적어도 하루에 한 번 변경을 공동 코드베이스에 합치고 통합마다 테스트를 포함한 자동 빌드로 확인해 통합 오류를 되도록 빨리 찾는 관행으로 정의한다. 그는 개발자마다 날마다 주 줄기에 커밋하는 것을 대략의 기준으로 삼고, 지속적 통합에 익숙한 사람은 실제로 이보다 자주 통합한다고 본다. 2024년판 글에서 그가 드는 실천 항목은 다음과 같다.[@fowler-continuous-integration-2024]
 
 - 모든 것을 [[version-control|버전 관리]]되는 주 줄기에 둔다.
 - 빌드를 자동화한다.
@@ -24,18 +24,18 @@ Fowler는 지속적 통합을, 팀원 각자가 적어도 하루에 한 번 변�
 - 주 줄기에 push가 들어올 때마다 빌드한다.
 - 깨진 빌드는 곧바로 고친다.
 - 빌드를 빠르게 유지한다.
-- 작업 중인 기능을 숨긴다.
+- 작업 중인 기능은 주 줄기에 합치되, 운영 환경에서 실행되지 않게 숨긴다.
 - 운영 환경을 본뜬 환경에서 테스트한다.
 - 누구나 진행 상황을 볼 수 있게 한다.
 - 배포를 자동화한다.[@fowler-continuous-integration-2024]
 
-Fowler는 브랜치에서 일하는 개발자가 주 줄기의 변경을 정기적으로 당겨 와 빌드하고 테스트해 자기 작업이 깨지지 않는지 확인하는 것을 **semi-integration**이라 부르고, 지속적 통합이 아니라고 본다. 그가 말하는 지속적 통합은 주 줄기로 완전히 통합하는 것이어서, 몇 시간 넘게 주 줄기에 push되지 않고 브랜치에 머무는 코드가 없어야 한다. 그는 기능 브랜치(feature branch)에서 CI 서비스로 자동 빌드를 돌리는 것도 쓸모는 있지만 semi-integration일 뿐 지속적 통합이 아니라고 하고, 트렁크 기반 개발(trunk-based development)은 대체로 지속적 통합의 동의어로 본다.[@fowler-continuous-integration-2024]
+Fowler는 브랜치에서 일하는 개발자가 주 줄기의 변경을 정기적으로 당겨 와 빌드하고 테스트해 자기 작업이 깨지지 않는지 확인하는 것을 **semi-integration**이라 부르고, 지속적 통합이 아니라고 본다. 그가 말하는 지속적 통합은 주 줄기로 완전히 통합하는 것이어서, 브랜치의 코드는 몇 시간 안에 주 줄기로 push되어야 한다. 그는 기능 브랜치(feature branch)에서 CI 서비스로 자동 빌드를 돌리는 것도 쓸모는 있지만 semi-integration일 뿐 지속적 통합이 아니라고 하고, 트렁크 기반 개발(trunk-based development)은 대체로 지속적 통합의 동의어로 본다.[@fowler-continuous-integration-2024]
 
 ![[diagrams/semi-integration-vs-continuous-integration.svg]]
 
 ## 파이프라인에 넣는 검사
 
-지속적 통합에서는 서버에서 도는 도구가 소스 저장소를 지켜보다가, 변경이 커밋될 때마다 단계로 이은 파이프라인을 시작해 코드를 컴파일하고 링크한다. 여기에 [[static-analysis|정적 분석]]으로 [[coding-standard|코딩 표준]]을 확인하는 단계와, [[unit-testing|단위 테스트]]를 돌리고 코드 [[test-coverage|커버리지]]를 재는 단계를 함께 두는 일이 많다.[@ieee-swebok-v4-0a-2026] 지속적 통합에서는 자동화한 [[regression-testing|회귀 테스트]]도 함께 돌린다.[@ieee-swebok-v4-0a-2026][@istqb-ctfl-syllabus-2024]
+지속적 통합에서는 서버에서 도는 도구가 소스 저장소를 지켜보다가, 특정 브랜치나 영역에 변경이 커밋될 때마다 단계로 이은 파이프라인을 시작해 코드를 컴파일하고 링크한다. 여기에 [[static-analysis|정적 분석]]으로 [[coding-standard|코딩 표준]]을 확인하는 단계와, [[unit-testing|단위 테스트]]를 돌리고 코드 [[test-coverage|커버리지]]를 재는 단계를 함께 두는 일이 많다.[@ieee-swebok-v4-0a-2026] 지속적 통합에서는 자동화한 [[regression-testing|회귀 테스트]]도 함께 돌린다.[@ieee-swebok-v4-0a-2026][@istqb-ctfl-syllabus-2024]
 
 ![[diagrams/continuous-integration-pipeline.svg]]
 
@@ -52,4 +52,4 @@ Jenkins는 지속적 통합을 지원하는 자동화 엔진이다.[@jenkins-pip
 
 ## 빅뱅 통합과의 대비
 
-SWEBOK V4.0a에 따르면 점진적 통합은, 내보낼 부분이 모두 완성될 때까지 통합을 미루는 [[integration-testing#통합 전략|빅뱅 통합]]보다 오류의 위치를 찾기 쉬운 것으로 여겨진다.[@ieee-swebok-v4-0a-2026]
+SWEBOK V4.0a에 따르면 프로그램을 작은 조각으로 나눠 작성하고 테스트한 뒤 조각을 하나씩 합치는 점진적 통합은, 내보낼 부분이 모두 완성될 때까지 통합을 미루는 [[integration-testing#통합 전략|빅뱅 통합]]보다 오류의 위치를 찾기 쉬운 것으로 여겨진다.[@ieee-swebok-v4-0a-2026]

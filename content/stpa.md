@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-12
 ---
 
-**STPA**(System-Theoretic Process Analysis)는 확장된 사고 인과 모델에 바탕을 둔 [[hazard-analysis-and-risk-assessment#용어|해저드]] 분석 기법이다. 부품 failure에 더해, 어느 것도 고장 나지 않은 시스템 구성 요소 사이의 안전하지 않은 상호작용도 사고를 일으킬 수 있다고 본다. 분석에 소프트웨어와 사람 운용자를 넣고, 초기 개념 분석부터 쓸 수 있어 [[safety-requirement|안전 요구사항]]과 제약을 찾는 데 쓰인다.[@leveson-stpa-handbook-2018]
+**STPA**(System-Theoretic Process Analysis)는 확장된 사고 인과 모델에 바탕을 둔 해저드 분석 기법이다. 부품 failure에 더해, 어느 것도 고장 나지 않은 시스템 구성 요소 사이의 안전하지 않은 상호작용도 사고를 일으킬 수 있다고 본다. 분석에 소프트웨어와 사람 운용자를 넣고, 초기 개념 분석부터 쓸 수 있어 [[safety-requirement|안전 요구사항]]과 제약을 찾는 데 쓰인다.[@leveson-stpa-handbook-2018]
 
 ## 이론적 바탕
 
@@ -22,17 +22,17 @@ Leveson과 Thomas는 2018년 3월 STPA Handbook을 펴냈다.[@leveson-stpa-hand
 1. 분석의 목적 정의: 분석이 막으려는 loss와, 분석할 시스템과 그 경계를 정한다. Loss 식별, 시스템 수준 hazard 식별, 시스템 수준 제약 식별, hazard 세분(선택)의 네 부분으로 이뤄진다.
 2. 제어 구조 모델링: 시스템을 피드백 제어 루프의 집합으로 모델링해 기능 관계와 상호작용을 담는다. 제어 구조는 대개 아주 추상적인 수준에서 시작해 되풀이하며 세분된다.
 3. 제어 동작 분석: 제어 구조의 제어 동작이 첫 단계의 loss로 어떻게 이어질 수 있는지 살핀다. 여기서 찾은 unsafe control action으로 시스템의 기능 요구사항과 제약을 만든다.
-4. Loss scenario 식별: 시스템에서 안전하지 않은 제어가 왜 일어날 수 있는지 밝힌다.[@leveson-stpa-handbook-2018]
+4. Loss scenario 식별: 안전하지 않은 제어 동작이 왜 생길 수 있는지와, 안전한 제어 동작이 왜 제대로 따르거나 실행되지 않을 수 있는지 밝힌다.[@leveson-stpa-handbook-2018]
 
 ## Loss와 hazard
 
 STPA에서 **loss**는 이해관계자에게 가치 있는 것을 잃는 것이다. 사람의 죽음이나 부상, 재산 피해, 환경 오염, 임무 실패, 평판 손실, 민감 정보의 유출처럼 이해관계자가 받아들일 수 없는 모든 손실이 든다. **Hazard**는 특정한 최악의 환경 조건과 함께 loss로 이어질 시스템 상태나 조건의 집합이다. Loss에는 시스템 설계자가 일부만 제어하거나 전혀 제어하지 못하는 환경이 걸릴 수 있다는 것이 hazard와 loss를 가르는 주된 까닭이다.[@leveson-stpa-handbook-2018]
 
-[[iso-26262|ISO 26262]]-1:2018은 hazard를 아이템의 오동작이 일으키는 해의 잠재적 원천으로 정의한다.[@iso-26262-1-obp-2018]
+STPA의 hazard가 시스템 상태나 조건인 것과 달리, [[iso-26262|ISO 26262]]-1:2018은 [[hazard-analysis-and-risk-assessment#용어|hazard]]를 아이템의 오동작이 일으키는 해의 잠재적 원천으로 정의하고, 주석에서 이 정의를 ISO 26262 범위로 좁힌 것이라 한다.[@leveson-stpa-handbook-2018][@iso-26262-1-obp-2018]
 
 ## 제어 구조와 unsafe control action
 
-**계층적 제어 구조**(hierarchical control structure)는 피드백 제어 루프로 이뤄진 시스템 모델이다. 효과적인 제어 구조는 전체 시스템의 거동에 제약을 강제한다. 제어 루프에서 제어기는 목표를 이루려고 결정을 내리고, 제어 동작을 내어 피제어 프로세스를 제어하며 그 거동에 제약을 강제한다.[@leveson-stpa-handbook-2018]
+**계층적 제어 구조**(hierarchical control structure)는 피드백 제어 루프로 이뤄진 시스템 모델이다. 시스템에는 대개 서로 겹치고 얽힌 제어 루프가 여럿 있고, 계층적 제어 구조는 이를 한 모델에 담는다. 구조의 세로축은 제어와 권한을 나타내, 각 개체는 바로 아래 개체를 제어하고 바로 위 개체의 제어를 받는다. 효과적인 제어 구조는 전체 시스템의 거동에 제약을 강제한다. 제어 루프에서 제어기는 목표를 이루려고 결정을 내리고, 제어 동작을 내어 피제어 프로세스를 제어하며 그 거동에 제약을 강제한다.[@leveson-stpa-handbook-2018]
 
 ![[diagrams/stpa-control-loop.svg]]
 
@@ -51,7 +51,7 @@ STAMP는 어떤 창발적 성질에도 적용되므로, STPA는 [[cybersecurity|
 
 ## 자동차 예
 
-부록 B는 자동차 적응형 순항 제어 시스템과 auto-hold 시스템의 제어 구조를, 부록 C는 auto-hold 시스템의 UCA 표를 예로 든다.[@leveson-stpa-handbook-2018]
+STPA Handbook의 부록 B는 자동차 적응형 순항 제어 시스템과 auto-hold 시스템의 제어 구조를, 부록 C는 auto-hold 시스템의 UCA 표를 예로 든다.[@leveson-stpa-handbook-2018]
 
 ## SAE의 STPA 표준
 

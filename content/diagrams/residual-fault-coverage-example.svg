@@ -9,6 +9,6 @@
 
   <rect x="20.75" y="64.75" width="300" height="28.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <rect x="320.75" y="64.75" width="200" height="28.5" stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)" />
-  <text x="170.75" y="83" text-anchor="middle" fill="var(--text, #727981)">커버리지 60%</text>
+  <text x="170.75" y="83" text-anchor="middle" fill="var(--text, #727981)">안전 메커니즘이 덮는 60%</text>
   <text x="420.75" y="83" text-anchor="middle" fill="var(--on-fill, #f8fafd)">residual fault 40%</text>
 </svg>

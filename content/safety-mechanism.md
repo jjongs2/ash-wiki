@@ -27,7 +27,9 @@ ISO 26262-1:2018은 **diagnostic point**를 fault의 검출이나 정정이 관�
 
 TI Hercules MCU는 하드웨어 안전 메커니즘으로 [[fault-tolerance#다중 채널과 비교|lockstep]] CPU, [[error-correction-code|ECC]], BIST(Built-In Self-Test)를 둔다.[@ti-spry178-2011]
 
-[[autosar|AUTOSAR]] Watchdog Manager는 소프트웨어 실행을 세 가지로 감시한다.[@autosar-cp-sws-watchdogmanager-2025]
+[[autosar|AUTOSAR]] Watchdog Manager는 감시하는 논리 단위를 **Supervised Entity**라 하고, Supervised Entity 안의 중요한 자리를 **체크포인트**(checkpoint)라 한다. Supervised Entity의 코드에는 체크포인트에 이르렀음을 Watchdog Manager에 알리는 함수 호출이 들어 있다.[@autosar-cp-exp-functionalsafetymeasures-2025]
+
+Watchdog Manager는 소프트웨어 실행을 세 가지로 감시한다.[@autosar-cp-sws-watchdogmanager-2025]
 
 - **Alive supervision**: 주기적인 실행이 너무 잦거나 너무 드물지 않은지 본다.
 - **Deadline supervision**: 두 체크포인트 사이의 시간이 설정한 범위 안인지 본다.
@@ -41,15 +43,13 @@ AUTOSAR R25-11은 통신 경로의 fault를 실행 중에 검출하는 [[autosar
 
 ## Watchdog
 
-**Window watchdog**은 정한 하한과 상한 사이에서 트리거해야 하는 watchdog이다.[@autosar-cp-sws-watchdogdriver-2025][@ti-tps3430-q1-2021]
+**Window watchdog**은 정한 하한과 상한 사이에 트리거를 받아야 하는 watchdog이다.[@autosar-cp-sws-watchdogdriver-2025][@ti-tps3430-q1-2021]
 
-TPS3430-Q1은 watchdog 입력이 window 밖이면 watchdog 출력으로 fault를 알린다.[@ti-tps3430-q1-2021] TI는 F28003x 안전 매뉴얼에서 [[safety-analysis#Dependent failure 분석|common mode failure]]의 리스크를 줄이려 내부 watchdog보다 외부 watchdog을 쓰기를 권하고, 단일 임계값 watchdog보다 더 많은 failure mode를 검출하는 program sequence, window, 질의-응답 watchdog을 쓰기를 권한다. 클록, 전원, 리셋 같은 common cause failure에도 외부 watchdog을 쓰기를 권한다.[@ti-sffs277-2023]
+TPS3430-Q1은 TI의 차량용 window watchdog 타이머로, watchdog 입력이 window 밖이면 watchdog 출력으로 fault를 알린다.[@ti-tps3430-q1-2021] TI는 TMS320F28003x 실시간 MCU의 기능 안전 매뉴얼에서 클록의 진단을 다루며 [[safety-analysis#Dependent failure 분석|common mode failure]]의 리스크를 줄이려 내부 watchdog보다 외부 watchdog을 쓰기를 권하고, 단일 임계값 watchdog보다 더 많은 failure mode를 검출하는 program sequence, window, 질의-응답 watchdog을 쓰기를 권한다. 같은 매뉴얼은 안전 개념 구현 예에서 클록, 전원, 리셋 같은 common cause failure에 외부 watchdog을 쓰기를 권한다.[@ti-sffs277-2023]
 
 AUTOSAR R25-11의 Watchdog Driver 명세는 Slow-Mode의 예로 트리거 시점에 제약이 없는 toggle mode를, Fast-Mode의 예로 timeout 주기 안의 최소·최대 경계 사이에서 트리거해야 하는 window mode를 든다. Watchdog Driver는 Watchdog Manager 같은 상위 개체가 준 트리거 조건이 유효한 동안 watchdog 하드웨어를 트리거하고, 트리거 계수기가 0에 이르면 트리거하지 않아 watchdog이 만료된다.[@autosar-cp-sws-watchdogdriver-2025]
 
 ![[diagrams/watchdog-window-toggle-mode.svg]]
-
-Watchdog Manager는 감시하는 논리 단위를 **Supervised Entity**라 하고, Supervised Entity 안의 중요한 자리를 **체크포인트**(checkpoint)라 한다. Supervised Entity의 코드에는 체크포인트에 이르렀음을 Watchdog Manager에 알리는 함수 호출이 들어 있다.[@autosar-cp-exp-functionalsafetymeasures-2025]
 
 체크포인트의 거칠기는 Watchdog Manager가 정하지 않는다. 체크포인트가 적고 거칠면 Watchdog Manager의 검출 능력이 제한되고, 촘촘하면 Watchdog Manager의 설정이 복잡하고 커진다. 라이브러리는 [[autosar-layered-architecture|Basic Software]]를 부를 수 없어 Watchdog Manager가 감시하지 못하지만, 모듈 코드에서 라이브러리 호출 앞뒤에 체크포인트를 두면 deadline supervision으로 감시할 수 있다. Logical supervision을 deadline supervision과 함께 쓰면 높은 [[hardware-architectural-metrics#진단 커버리지와 failure rate|진단 커버리지]]를 얻는다.[@autosar-cp-exp-functionalsafetymeasures-2025] Supervised Entity 하나에 alive supervision 체크포인트를 여럿 두는 기능은 일관되게 명세되지 않아, Supervised Entity마다 alive supervision 체크포인트를 하나만 지원하기를 권한다.[@autosar-cp-sws-watchdogmanager-2025]
 

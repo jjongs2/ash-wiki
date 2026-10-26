@@ -11,17 +11,17 @@ Avizienis와 Chen은 1977년 COMPSAC(Computer Software and Applications Conferen
 
 ## 독립 개발과 합의
 
-N개의 버전은 개발 과정에서 서로 교류하지 않는 개인이나 팀이 따로 만든다. 버전들은 초기 명세에서 정해 둔 cross-check point(cc-point)에서 비교 벡터를 내고, 결정 알고리즘은 cc-point마다 버전들의 출력에서 합의 결과를 정한다.[@avizienis-n-version-methodology-1995]
+N개의 버전은 개발 과정에서 서로 교류하지 않는 개인이나 팀이 따로 만든다. 버전들은 초기 명세에서 정해 둔 cross-check point(cc-point)마다 명세가 정한 상태 변수를 비교 벡터(c-vector)로 내고, 결정 알고리즘은 이 비교 벡터에 담긴 버전들의 출력을 견주어 합의 결과를 정한다.[@avizienis-n-version-methodology-1995]
 
 ![[diagrams/n-version-programming-decision.svg]]
 
-결정 알고리즘은 N개 버전의 출력 가운데 둘 이상이 일치하는 합의를 찾는다. 버전을 더 두는 것은, 여러 버전이 cc-point에서 비슷한 [[fault-error-failure|error]]를 내는 fault에 함께 걸리지 않는 한 실패한 버전을 메우거나 가리기 위해서다. 버전이 둘이면 버전 사이의 불일치는 찾아내지만 합의를 정하지 못한다. 그래서 불일치가 나면 안전하게 멈추거나 따로 복구 과정을 불러야 한다.[@avizienis-n-version-methodology-1995]
+결정 알고리즘은 N개 버전의 출력 가운데 둘 이상이 일치하는 합의를 찾는다. 버전을 더 두는 것은, 여러 버전이 cc-point에서 비슷한 [[fault-error-failure|error]]를 내는 fault에 함께 걸리지 않는 한 실패한 버전을 메우거나 가리기 위해서다. 버전이 둘이면 두 출력이 어긋날 때 그 불일치는 찾아내지만, 그 경우 합의 결과는 정하지 못한다. 그래서 불일치가 나면 안전하게 멈추거나 따로 복구 과정을 불러야 한다.[@avizienis-n-version-methodology-1995]
 
 ## 다양화 요소
 
 N-version programming에서는 버전 사이의 다양성을 다음 여섯 요소에 요구할 수 있다. 목적은 컴파일러 버그나 모호한 알고리즘 서술처럼 여러 버전에 같은 결함을 들이는 공통 원인을 줄이는 것이다.[@avizienis-n-version-methodology-1995]
 
-- 개발 인력의 훈련, 경험, 위치
+- 개발 인력의 훈련, 경험, 근무지
 - 알고리즘과 자료 구조
 - 프로그래밍 언어
 - 개발 방법
@@ -30,9 +30,9 @@ N-version programming에서는 버전 사이의 다양성을 다음 여섯 요�
 
 ## 독립성에 대한 실험
 
-N-version programming은 개발을 독립시키면 둘 이상의 버전에 같은 결함이 생길 확률이 크게 준다는 추측에 근거하며, 방법의 효과는 이 추측이 맞는지에 달려 있다. Avizienis는 결함의 독립을 이 방법의 가정이 아니라 목표로 본다.[@avizienis-n-version-methodology-1995]
+N-version programming은 개발을 독립시키면 둘 이상의 버전에 같은 결함이 생길 확률이 크게 준다는 추측에 근거하며, 방법의 효과는 이 추측이 맞는지에 달려 있다. Avizienis는 Knight와 Leveson의 1986년 논문과 달리 결함의 독립을 이 방법의 가정이 아니라 목표로 본다.[@avizienis-n-version-methodology-1995]
 
-Knight와 Leveson은 1986년 논문에서 두 대학(버지니아 대학, UC 어바인)의 대학원생과 학부 4학년생이 같은 명세로 독립적으로 만든 27개 버전을 같은 100만 개의 무작위 시험 입력으로 시험했다. 둘 이상의 버전이 같은 입력에서 함께 실패한 시험은 독립 가정으로 기대한 것보다 훨씬 많은 1255회였고, Knight와 Leveson은 버전들이 독립적으로 실패한다는 가정을 99% 신뢰 수준으로 기각했다.[@knight-independence-multiversion-1986]
+Knight와 Leveson은 1986년 논문에서 두 대학(버지니아 대학, UC 어바인)의 대학원생과 학부 4학년생이 같은 명세로 독립적으로 만든 27개 버전을 같은 100만 개의 무작위 시험 입력으로 시험했다. 그 가운데 둘 이상의 버전이 함께 실패한 입력은 1255개였다. 이는 버전들이 독립적으로 실패한다고 보고 버전마다 관찰한 실패 확률로 기대한 것보다 훨씬 많았고, Knight와 Leveson은 이 독립 가정을 N-version programming의 신뢰도 분석이 바탕으로 삼는 가정으로 보고 99% 신뢰 수준으로 기각했다.[@knight-independence-multiversion-1986]
 
 ## Recovery block과의 차이
 

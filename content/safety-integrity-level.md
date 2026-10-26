@@ -11,11 +11,12 @@ IEC 61508:2010은 SIL을 시스템이나 그 일부가 아니라 안전 기능�
 
 ## Demand mode
 
-IEC 61508은 안전 기능의 동작 모드를 low demand mode와 high demand or continuous mode로 나누고, 안전 기능이 요구되는 빈도 $f_\mathrm{d}$가 1년에 한 번을 넘는지로 가른다.[@iec-functional-safety-faq-2023]
+IEC 61508은 안전 기능의 동작 모드를 low demand mode와 high demand or continuous mode의 둘로 나누고, 안전 기능이 요구되는 빈도 $f_\mathrm{d}$가 1년에 한 번을 넘는지로 가른다.[@iec-functional-safety-faq-2023]
 
 - **Low demand mode**: 안전 기능이 요구될 때만 수행되고, $f_\mathrm{d} \le 1\,\mathrm{yr^{-1}}$이다.
-- **High demand mode**: 안전 기능이 요구될 때만 수행되고, $f_\mathrm{d} > 1\,\mathrm{yr^{-1}}$이다.
-- **Continuous mode**: 안전 기능이 EUC(Equipment Under Control)를 늘 제어해 정상의 안전 상태에 머물게 한다. IEC는 continuous mode를 매우 높은 요구로 본다.[@iec-functional-safety-faq-2023]
+- **High demand or continuous mode**: $f_\mathrm{d} > 1\,\mathrm{yr^{-1}}$이다. 아래 둘이 여기에 든다.
+  - **High demand mode**: 안전 기능이 요구될 때만 수행된다.
+  - **Continuous mode**: 안전 기능이 EUC(Equipment Under Control)를 늘 제어해 정상의 안전 상태에 머물게 한다. IEC는 continuous mode를 요구 빈도가 매우 높은 것으로 본다.[@iec-functional-safety-faq-2023]
 
 ## Target failure measure
 
