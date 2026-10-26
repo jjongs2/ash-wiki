@@ -63,7 +63,10 @@
 
   <!-- PA 1.1의 편집상 GP는 수행 지표를 가리킨다 -->
   <path d="M134 236 H48 V76 H68" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrow)" />
-  <text x="91" y="230" text-anchor="middle" fill="var(--text, #727981)">GP 1.1.1</text>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="91" y="214">GP 1.1.1</text>
+    <text x="91" y="230">편집상의 참조</text>
+  </g>
 
   <!-- 능력 수준 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">

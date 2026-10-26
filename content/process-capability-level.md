@@ -7,19 +7,21 @@ aliases:
 verified: 2026-10-02
 ---
 
-**프로세스 능력 수준**(process capability level)은 프로세스를 프로세스 능력의 순서 척도 위에서 나타낸 것이다. 프로세스 능력은 프로세스가 현재나 예상되는 비즈니스 목표를 맞추는 능력이다. ISO/IEC 33020:2019는 [[process-assessment|프로세스 능력 평가]]를 받치는 측정 프레임워크를 정의하고, 이 프레임워크는 프로세스 속성 등급을 내고 거기서 프로세스 능력 수준을 끌어낸다.[@iso-iec-33020-obp-2019]
+**프로세스 능력 수준**(process capability level)은 프로세스 하나가 프로세스 능력의 순서 척도에서 어디에 놓이는지로 그 프로세스를 나타낸 것이다. 프로세스 능력은 프로세스가 현재나 예상되는 비즈니스 목표를 맞추는 능력이다. ISO/IEC 33020:2019는 [[process-assessment|프로세스 능력 평가]]를 받치는 측정 프레임워크를 정의하고, 이 프레임워크는 프로세스 속성 평정을 내고 거기서 프로세스 능력 수준을 끌어낸다.[@iso-iec-33020-obp-2019]
 
 ## ISO/IEC 33020의 측정 프레임워크
 
 이 표준의 측정 프레임워크는 ISO/IEC 33003의 요구를 따르고, ISO/IEC 33004에 맞는 [[process-assessment#프로세스 모델|프로세스 평가 모델]]을 짓는 틀이 된다. 그렇게 지은 모델은 ISO/IEC 33002의 요구에 따라 프로세스 능력을 평가하는 데 쓴다.[@iso-iec-33020-obp-2019]
-
-![[diagrams/iso-iec-330xx-assessment-model-relations.svg]]
 
 이 프레임워크는 자기 평가를 돕고, [[process-improvement|프로세스 개선]]과 프로세스 품질 판정의 바탕이 되며, 모든 적용 도메인과 모든 규모의 조직에 적용된다. 프레임워크가 내는 것은 프로세스 속성 평정의 집합인 [[process-assessment#평가의 요소|process profile]]과, 거기서 끌어낸 프로세스 능력 수준이다. 이 표준은 프로세스 능력의 평가 지표와 능력 수준의 뜻에 대한 지침을 informative Annex로 함께 싣는다.[@iso-iec-33020-obp-2019]
 
 이 표준의 주된 독자는 프로세스 능력을 다루는 프로세스 평가 모델의 개발자다. 선임 평가자와 평가 의뢰자처럼, 이 측정 프레임워크의 요구가 지켜졌는지 확인해야 하는 이해관계자도 독자로 둔다.[@iso-iec-33020-obp-2019]
 
 ISO/IEC 33020:2019는 첫판 ISO/IEC 33020:2015를 기술적으로 고쳐 대체했다. 5.2절의 능력 수준과 프로세스 속성 정의를 ISO 9001:2015와 더 일관되게 고쳤고, Annex B(Indicators of process capability)와 Annex C(Guidance on the process assessment framework)를 더했으며, 첫판의 Annex B를 Annex D(Example of a process performance model)로 옮겼다.[@iso-iec-33020-obp-2019]
+
+ISO/IEC 33001:2015는 프로세스 평가 모델을 하나 이상의 [[process-assessment#프로세스 모델|프로세스 참조 모델]]을 바탕으로, 정한 프로세스 품질 특성을 평가하는 목적에 맞춘 모델로 정의한다.[@iso-iec-33001-obp-2015]
+
+![[diagrams/iso-iec-330xx-assessment-model-relations.svg]]
 
 ## 수준과 프로세스 속성
 

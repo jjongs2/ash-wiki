@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-02
 ---
 
-**ASPICE 프로세스 평가 모델**(process assessment model, PAM)은 [[automotive-spice|ASPICE]]의 [[automotive-spice-process-reference-model|프로세스 참조 모델]]에서 고른 프로세스에 지표를 더해, 평가자가 프로세스 성과와 프로세스 속성 달성이 있는지 판단할 [[process-assessment#평가의 요소|객관적 증거]]를 모으게 하는 모델이다. ASPICE 4.1의 프로세스 평가 모델이 담는 프로세스는 프로세스 참조 모델의 것과 같고, 프로세스마다 참조 모델의 프로세스 ID(identifier), 이름, 목적, 성과를 함께 싣는다.[@vda-automotive-spice-pam-4-1-2026]
+**ASPICE 프로세스 평가 모델**(process assessment model, PAM)은 [[automotive-spice|ASPICE]]의 [[automotive-spice-process-reference-model|프로세스 참조 모델]]이 정의한 프로세스에 지표를 더해, 평가자가 프로세스 성과와 프로세스 속성 달성이 있는지 판단할 [[process-assessment#평가의 요소|객관적 증거]]를 모으게 하는 모델이다. ASPICE 4.1의 프로세스 평가 모델이 담는 프로세스는 프로세스 참조 모델의 것과 같고, 프로세스마다 참조 모델의 프로세스 ID(identifier), 이름, 목적, 성과를 함께 싣는다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 프로세스 차원과 능력 차원
 
@@ -22,7 +22,7 @@ verified: 2026-10-02
 
 지표는 프로세스 성과와 속성 달성이 있는지 가리고 객관적 증거를 모으는 데 쓰는 안내이며, 꼭 따라야 할 점검표가 아니다.[@vda-automotive-spice-pam-4-1-2026]
 
-평가 지표의 꼴로 보면 이 모델은 프랙티스와 정보 항목만 쓰고, 자원과 인프라는 지표로 쓰지 않는다. 프랙티스는 활동 쪽 지표이고, 정보 항목은 결과 쪽 지표다.[@vda-automotive-spice-pam-4-1-2026]
+평가 지표의 꼴로 보면 이 모델은 프랙티스와 정보 항목만 쓰고, 자원과 인프라는 지표로 쓰지 않는다. 프랙티스는 아래의 base practice와 generic practice를 함께 이르는 말로 활동 쪽 지표이고, 정보 항목은 결과 쪽 지표다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 프로세스 수행 지표
 
@@ -45,9 +45,9 @@ ASPICE 4.1의 Annex B는 정보 항목마다 IIC를 표로 싣는다. 평가자�
 
 ## 프로세스 능력 지표
 
-프로세스 능력 지표는 GP와 정보 항목이다. **GP**(generic practice)는 프로세스 속성을 이루려고 하는 활동으로, 하나 이상의 프로세스 속성 달성 항목에 연결되며 모든 프로세스에 쓴다. 능력 수준 1의 프로세스 속성 PA(process attribute) 1.1에는 수행 지표를 가리키는 편집상의 GP 1.1.1 하나만 두고, 능력 수준 2 이상의 프로세스 속성마다 GP와 정보 항목을 둔다.[@vda-automotive-spice-pam-4-1-2026]
+프로세스 능력 지표는 GP와 정보 항목이다. **GP**(generic practice)는 프로세스 속성을 이루려고 하는 활동으로, 프로세스 속성마다 적어 둔 달성 항목(process attribute achievement) 가운데 하나 이상에 연결되며 모든 프로세스에 쓴다. 능력 수준 1에서는 프로세스 성과가 얼마나 이뤄졌는지만으로 프로세스 능력을 나타낸다. 이 수준의 프로세스 속성 PA(process attribute) 1.1에는 GP 1.1.1 하나만 두고, GP 1.1.1은 그 프로세스의 수행 지표를 가리키는 편집상의 참조(editorial reference)다. 능력 수준 2 이상의 프로세스 속성마다 GP와 정보 항목을 둔다.[@vda-automotive-spice-pam-4-1-2026]
 
-ASPICE 3.1은 프로세스 능력 지표로 GP와 GR(generic resource)을 두고, 이를 능력 수준 2\~5에 썼다. GR은 인프라 쪽 지표로 하나 이상의 프로세스 속성 달성 항목에 연결되었다. 예: PA 2.2의 [[configuration-management|형상 관리]] 시스템. ASPICE 4.1은 GR을 두지 않고 GP와 정보 항목만 쓰며, GP를 능력 수준 1\~5에 쓴다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+ASPICE 3.1은 프로세스 능력 지표로 GP와 GR(generic resource)을 두고, 이를 능력 수준 2\~5에 썼다. GR은 인프라 쪽 지표로, GP처럼 프로세스 속성의 달성 항목 가운데 하나 이상에 연결되었다. 예: PA 2.2의 [[configuration-management|형상 관리]] 시스템. ASPICE 4.1은 GR을 두지 않고 GP와 정보 항목만 쓰며, GP를 능력 수준 1\~5에 쓴다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ## 지표와 성과의 관계
 
@@ -79,6 +79,6 @@ ASPICE 4.1은 SYS.2\~SYS.5, SWE.1\~SWE.6, HWE.1\~HWE.4, MLE.1\~MLE.4에 [[tracea
 
 ASPICE 3.1은 Annex D(Key concepts)에서 평가(evaluate), 검증 기준(verification criteria), 준수 보장(ensuring compliance)을 핵심 개념 하나로 묶었다. ASPICE 4.1은 이 셋을 다음처럼 바꿨다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
-- 평가: 3.1은 시스템·[[software-architecture|소프트웨어 아키텍처]]와 [[software-unit-design|소프트웨어 상세 설계]]에서 대안을 정한 기준으로 평가하고 선택 근거를 기록하게 했다(SYS.3.BP5, SWE.2.BP6, SWE.3.BP4). 4.1은 대안 평가 BP 대신 아키텍처를 기술적 측면에서 분석하고 설계 결정의 근거를 기록하게 한다(SYS.3.BP3, SWE.2.BP3).
+- 평가: 3.1은 시스템·[[software-architecture|소프트웨어 아키텍처]]와 [[software-unit-design|소프트웨어 상세 설계]]에서 대안을 정한 기준으로 평가하고 선택 근거를 기록하게 했다(SYS.3.BP5, SWE.2.BP6, SWE.3.BP4). 4.1은 대안 평가 BP 대신 시스템·소프트웨어 아키텍처를 기술적 측면에서 분석하고 설계 결정의 근거를 기록하게 하고(SYS.3.BP3, SWE.2.BP3), 상세 설계(SWE.3)에는 평가나 분석 BP를 두지 않는다.
 - 검증 기준: 3.1은 SYS.2와 SWE.1에서 요구사항마다 검증 기준을 세우게 했고, 4.1은 이 BP를 두지 않는다. 검증 기준은 [[requirements-engineering#검증 기준|요구 공학]]에서 다룬다.
 - 준수 보장: 3.1은 시험 프로세스의 BP가 시험 명세를 V 모델 왼쪽의 대응 산출물에 대한 준수를 입증하기에 알맞게 만들게 했다. 4.1은 이를 아키텍처나 요구사항에 맞춰 검증 수단(verification measure)을 명세하는 BP로 둔다(예: SYS.4.BP1).[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]

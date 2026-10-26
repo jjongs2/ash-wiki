@@ -12,9 +12,9 @@ status: 유효
 
 ## 범위
 
-이 표준은 소프트웨어 시스템과 소프트웨어 제품·서비스를 획득하고 공급하고 개발하고 운용하고 유지보수하고 폐기할 때 적용할 프로세스, 활동, 태스크를 정한다. 조직 안에서 하든 밖에서 하든 적용하고, 한 조직 안에서도 여러 당사자 사이에서도 쓸 수 있으며, 획득자와 공급자가 합의를 만들 때도 쓴다. 특정 소프트웨어 생명주기 모델이나 개발 방법론을 정하거나 요구하지 않는다.[@iso-iec-ieee-12207-obp-2026]
+이 표준은 소프트웨어 시스템과 소프트웨어 제품·서비스를 획득하고 공급하고 개발하고 운용하고 유지보수하고 폐기할 때 적용할 프로세스, 활동, 태스크를 정한다. 소프트웨어 시스템과 서비스의 맥락을 주는 데 필요한 만큼은 시스템 정의의 측면도 담는다. 조직 안에서 하든 밖에서 하든 적용하고, 한 조직 안에서도 여러 당사자 사이에서도 쓸 수 있으며, 획득자와 공급자가 합의를 만들 때도 쓴다. 특정 소프트웨어 생명주기 모델이나 개발 방법론을 정하거나 요구하지 않는다.[@iso-iec-ieee-12207-obp-2026]
 
-이 표준은 펌웨어의 소프트웨어 부분도 소프트웨어에 넣고, 여러 공식 공학 접근을 쓰는 조직과 소프트웨어 프로젝트에 적용할 수 있다. 소프트웨어 개발과 유지보수에 가장 널리 쓰이는 [[agile-software-development|애자일]] 접근과 방법에도 적용할 수 있다. 공학적 판단으로 원하는 품질 수준을 이루도록 돕는 일은 이 표준의 범위 밖이다.[@iso-iec-ieee-12207-obp-2026]
+이 표준은 펌웨어의 소프트웨어 부분도 소프트웨어에 넣고, 여러 공식 공학 접근을 쓰는 조직과 소프트웨어 프로젝트에 적용할 수 있다. 소프트웨어 개발과 유지보수에 가장 널리 쓰이는 [[agile-software-development|애자일]] 접근과 방법에도 적용할 수 있다. 원하는 품질 수준을 이루는 데 공학적 판단을 쓰는 일은 이 표준의 범위 밖이다.[@iso-iec-ieee-12207-obp-2026]
 
 이 표준은 다음 쓰임 가운데 하나 이상으로 쓸 수 있다.[@iso-iec-ieee-12207-obp-2026]
 
@@ -34,7 +34,9 @@ status: 유효
 | 기술 관리(technical management) 프로세스                       | Project planning, Project assessment and control, Decision management, Risk management, Configuration management, Information management, Measurement, Quality assurance                                                                                                             |
 | 기술(technical) 프로세스                                       | Business or mission analysis, Stakeholder needs and requirements definition, System requirements definition, System architecture definition, Design definition, System analysis, Implementation, Integration, Verification, Transition, Validation, Operation, Maintenance, Disposal |
 
-이 표준은 프로세스의 목적과 결과를 시스템 생명주기 프로세스 표준 [[iso-iec-ieee-15288|ISO/IEC/IEEE 15288]]:2023과 같게 두고, 활동과 태스크만 달리 정한다.[@iso-iec-ieee-12207-obp-2026]
+이 표준은 시스템 생명주기 프로세스 표준 [[iso-iec-ieee-15288|ISO/IEC/IEEE 15288]]:2023과 프로세스의 목적과 결과는 같고, 활동과 태스크는 [[software-engineering|소프트웨어 공학]]용과 시스템 공학용으로 서로 다르다고 둔다.[@iso-iec-ieee-12207-obp-2026]
+
+앞서 나온 ISO/IEC/IEEE 15288:2023은 두 문서가 활동과 태스크 대부분을 함께 가지며, 주로 설명 노트에서 다르다고 둔다.[@iso-iec-ieee-15288-obp-2023]
 
 ## 개정 이력
 

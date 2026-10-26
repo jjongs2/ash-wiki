@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-02
 ---
 
-**ASPICE 프로세스 참조 모델**(process reference model, PRM)은 [[automotive-spice|ASPICE]]가 평가할 프로세스를 모아 두고, 프로세스마다 ID(identifier), 이름, 목적, 성과를 정의한 모델이다. [[automotive-spice-process-assessment-model|프로세스 평가 모델]]은 이 모델에서 프로세스를 골라 지표를 더하고, 평가자는 그 지표로 객관적 증거를 모아 프로세스를 [[process-capability-level#등급 척도|평정]]한다. 이 모델은 프로세스가 무엇을 이뤄야 하는지를 정할 뿐, 그것을 [[software-process#프로세스 모델과 조직의 프로세스|어떻게 이룰지]]와 작업 산출물의 구조는 정하지 않는다.[@vda-automotive-spice-pam-4-1-2026]
+**ASPICE 프로세스 참조 모델**(process reference model, PRM)은 [[automotive-spice|ASPICE]]가 평가할 프로세스를 모아 두고, 프로세스마다 ID(identifier), 이름, 목적, 성과를 정의한 모델이다. [[automotive-spice-process-assessment-model|프로세스 평가 모델]]은 이 모델의 프로세스에 지표를 더하고, 평가자는 그 지표로 객관적 증거를 모아 프로세스를 [[process-capability-level#등급 척도|평정]]한다. 이 모델은 프로세스가 무엇을 이뤄야 하는지를 정할 뿐, 그것을 [[software-process#프로세스 모델과 조직의 프로세스|어떻게 이룰지]]와 작업 산출물의 구조는 정하지 않는다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 프로세스의 정의 요소
 
@@ -18,7 +18,7 @@ ASPICE 4.1은 프로세스마다 다음 네 가지를 정의한다.[@vda-automot
 | 프로세스 목적 | 프로세스를 특정 환경에서 수행할 때 이루려는 고유한 기능 목표        |
 | 프로세스 성과 | 목적마다 딸린 목록. 프로세스를 수행해 기대하는 긍정적 결과          |
 
-이 표준은 프로세스마다 표 하나에 이 네 요소와 프로세스 평가 모델의 수행 지표인 BP(base practice)와 출력 정보 항목을 함께 싣는다.[@vda-automotive-spice-pam-4-1-2026]
+프로세스 평가 모델도 같은 문서에 담겨, 프로세스마다 표 하나에 이 네 요소와 평가 모델의 수행 지표인 BP(base practice)와 출력 정보 항목이 실린다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 프로세스 범주와 그룹
 
@@ -59,7 +59,7 @@ ASPICE 4.1이 정의하는 프로세스 목적 가운데 일부는 다음과 같
 | ACQ.4 Supplier Monitoring                        | 외부 계약 공급자의 수행을 합의한 약속에 비추어 추적하고 평가한다.                                                             |
 | SPL.2 Product Release                            | 의도한 고객에게 제품을 출시하는 일을 통제한다.                                                                                |
 | MLE.1 Machine Learning Requirements Analysis     | ML 관련 소프트웨어 요구사항을 ML 요구사항의 집합으로 구체화한다.                                                              |
-| MLE.2 Machine Learning Architecture              | ML 모델의 학습과 배포를 받치고 ML 요구사항과 일관된 ML 아키텍처를 세우고, 정한 기준으로 평가한다.                             |
+| MLE.2 Machine Learning Architecture              | ML 모델의 학습과 배포를 받치는, ML 요구사항과 일관된 ML 아키텍처를 세우고, 그 ML 아키텍처를 정한 기준으로 평가한다.           |
 | MLE.3 Machine Learning Training                  | 정한 ML 요구사항을 충족하도록 ML 모델을 최적화한다.                                                                           |
 | MLE.4 Machine Learning Model Testing             | 학습된 ML 모델과 배포된 ML 모델이 ML 요구사항을 따르는지 보장한다.                                                            |
 | HWE.1 Hardware Requirements Analysis             | 시스템 요구사항, 시스템 아키텍처 설계와 일관되게, 구조화되고 분석된 하드웨어 요구사항을 세운다.                               |
@@ -124,26 +124,26 @@ MLE.4는 학습된 ML 모델을 시험한 뒤, ML 아키텍처에 따라 학습�
 
 이 표준의 엔지니어링 프로세스 그룹은 SYS, SWE, MLE, HWE이고, 기계 엔지니어링 프로세스는 없다. 그 밖의 도메인 프로세스는 VDA가 만들지 않았고 ASPICE에도 들지 않는다. 소프트웨어 아키텍처에서 머신러닝으로 개발할 소프트웨어 요소를 정하면, 그 요소에는 MLE 프로세스를, 나머지 component에는 SWE.3과 SWE.4를 적용한다.[@vda-automotive-spice-pam-4-1-2026]
 
-ASPICE 3.1은 plug-in 컨셉의 도메인 예로 하드웨어(HWE), 기계(MEE), 소프트웨어(SWE)를 들고, HWE와 MEE 프로세스는 VDA QMC가 만들지 않은 예시로 그렸다. ASPICE 4.1은 예로 HWE와 SWE만 들고, 프로세스 참조 모델에 HWE.1\~HWE.4를 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+ASPICE 3.1은 plug-in 컨셉의 도메인 예로 하드웨어(HWE), 기계(MEE), 소프트웨어(SWE)를 들고, HWE와 MEE 프로세스는 VDA QMC가 만들지 않은 예시로 그렸다. ASPICE 4.1은 도메인의 예로 HWE와 SWE만 들고, 프로세스 참조 모델에 HWE.1\~HWE.4를 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ## VDA scope
 
-**VDA scope**는 ASPICE 3.x가 쓴 이름으로, 자동차 산업에서 평가하는 매우 중요한 프로세스의 묶음이다. ASPICE 3.0은 4장을 고치며 이 묶음에 초점을 맞췄고, 3.1의 plug-in 그림은 SYS.1\~SYS.5, SWE.1\~SWE.6, MAN.3, ACQ.4, SUP.1, SUP.8, SUP.9, SUP.10을 VDA scope로 표시했다. ASPICE 4.1은 VDA scope라는 이름을 쓰지 않고, plug-in 그림에서 같은 프로세스에 HWE.1\~HWE.4를 더해 ASPICE 4.0의 프로세스 참조 모델과 프로세스 평가 모델로 표시한다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+**VDA scope**는 ASPICE 3.x가 쓴 이름으로, 자동차 산업에서 평가하는 매우 중요한 프로세스의 묶음이다. ASPICE 3.0은 4장을 고치며 이 묶음에 초점을 맞췄고, 3.1의 plug-in 그림은 SYS.1\~SYS.5, SWE.1\~SWE.6, MAN.3, ACQ.4, SUP.1, SUP.8, SUP.9, SUP.10을 VDA scope로 표시했다. ASPICE 4.1은 VDA scope라는 이름을 쓰지 않는다. 4.1의 plug-in 그림은 같은 프로세스에 HWE.1\~HWE.4를 더한 묶음을 표시하고, 범례에는 이 묶음이 ASPICE 4.0의 프로세스 참조 모델과 프로세스 평가 모델로 적혀 있다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ## Element, component, unit
 
 ASPICE 4.1은 아키텍처와 설계의 구성 요소를 가리키는 용어로 system element, software element, software component, software unit, hardware element, hardware component, hardware part를 정의한다. 이 가운데 element와 소프트웨어 쪽 용어의 뜻은 다음과 같다.[@vda-automotive-spice-pam-4-1-2026]
 
-| 용어               | 뜻                                                                                                                                                                                  |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| System element     | 아키텍처나 설계 수준의 논리적·구조적 개체로, 더 잘게 나눌 수 있다. 그 개체를 물리적으로 나타낸 것(주변 장치, 센서, 액추에이터, 기계 부품, 소프트웨어 실행 파일)도 system element다. |
-| Software element   | software component나 software unit                                                                                                                                                  |
-| Software component | 소프트웨어 아키텍처가 소프트웨어를 여러 계층에 걸쳐 가장 낮은 수준까지 나눈 단위. 상세 설계는 software component마다 그 unit의 동작, 구조, 인터페이스를 정한다.                     |
-| Software unit      | software component를 나눈 결과로, 더 나누지 않기로 정한 소프트웨어 단위                                                                                                             |
+| 용어               | 뜻                                                                                                                                                                                                      |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| System element     | 아키텍처나 설계 수준의 논리적·구조적 개체로, 더 잘게 나눌 수 있다. 그 개체를 물리적으로 나타낸 것(주변 장치, 센서, 액추에이터, 기계 부품, 소프트웨어 실행 파일)도 system element다.                     |
+| Software element   | software component나 software unit                                                                                                                                                                      |
+| Software component | 소프트웨어 아키텍처가 소프트웨어를 여러 계층에 걸쳐 나눈 단위. 아키텍처는 가장 낮은 수준의 software component까지 나눈다. 상세 설계는 software component마다 그 unit의 동작, 구조, 인터페이스를 정한다. |
+| Software unit      | software component를 다시 나눈 결과로, 더 나누지 않기로 정한 소프트웨어 단위                                                                                                                            |
 
 이 표준은 unit을 소프트웨어 도메인에만 쓰고, hardware part를 software unit의 하드웨어 짝으로 본다. 검증 쪽 프로세스에서는 software component와 unit이 소스 코드, 오브젝트 파일, 라이브러리, 실행 파일 같은 구현물로 나타난다고 정의한다.[@vda-automotive-spice-pam-4-1-2026]
 
-ASPICE 3.1은 component를 소프트웨어 아키텍처의 가장 낮은 수준의 element이자 상세 설계를 정의하는 단위로 정의했고, V 모델 오른쪽에서는 왼쪽의 element에 대응하는 것(오브젝트 파일, 라이브러리, 실행 파일 등)을 item이라 불렀다. item과 element의 대응은 1:1일 수도 m:n일 수도 있었다. ASPICE 4.1은 software component를 여러 계층에 걸쳐 두고, item을 정의하지 않는다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+ASPICE 3.1은 소프트웨어 아키텍처를 여러 계층의 element로 나누고, 그 가운데 가장 낮은 수준의 element를 component라 해 component마다 상세 설계를 정의하게 했다. V 모델 오른쪽에서는 왼쪽의 element에 대응하는 것(오브젝트 파일, 라이브러리, 실행 파일 등)을 item이라 불렀다. item과 element의 대응은 1:1일 수도 m:n일 수도 있었다. ASPICE 4.1은 가장 낮은 수준만이 아니라 여러 계층의 단위를 모두 software component라 부르고, item을 정의하지 않는다. 두 판 모두 아키텍처는 component까지 나누고, unit은 component 아래에 둔다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ## intacs Hardware SPICE
 
