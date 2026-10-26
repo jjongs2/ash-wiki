@@ -4,7 +4,6 @@ tags:
   - sw-engineering/sw-testing
 verified: 2026-10-03
 publisher: ISO/IEC/IEEE
-edition: 2022
 status: 유효
 ---
 

@@ -2,7 +2,8 @@ import test, { describe } from "node:test"
 import assert from "node:assert"
 import { channels, dedicated } from "./channels"
 import type { Channel } from "./model"
-import { assign, standardNumber } from "./publications"
+import { assign } from "./publications"
+import { standardNumber } from "./standard-number"
 import { entry, page } from "./testing"
 
 // 엔트리를 출판물로 묶는 것과, 문서의 표가 도구와 어긋나면 멈추는 것을 본다.

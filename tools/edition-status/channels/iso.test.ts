@@ -1,8 +1,11 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
 import fs from "node:fs"
+import os from "node:os"
 import path from "node:path"
-import { ChannelError } from "../model"
+import { loadTree } from "../../check-content/tree"
+import { changeKey, ChannelError } from "../model"
+import { assign, citedEntries, standardPages } from "../publications"
 import { entry, fixtureContext, fixtures, page, run } from "../testing"
 import { iso, isoDataUrl } from "./iso"
 
@@ -176,13 +179,44 @@ describe("iso", () => {
     assert.deepStrictEqual(keys, ["ISO/IEC 18033-4 | supplement | ISO/IEC 18033-4:2011/Amd 1:2020"])
   })
 
-  test("시리즈 페이지의 edition 연도 뒤에 발행된 부를 새 부로 잡는다", async () => {
+  test("시리즈 페이지가 인용한 부의 판 연도 뒤에 발행된 부를 새 부로 잡는다", async () => {
+    // 부의 판이 모두 2018년인 시리즈. 2027년에 발행된 부를 하나 더 넣는다.
+    const text =
+      fs.readFileSync(path.join(fixtures, data), "utf8") +
+      '{"id":990013,"deliverableType":"IS","supplementType":null,"reference":"ISO 26262-13:2027",' +
+      '"publicationDate":"2027-03-01","edition":1,"currentStage":6060,"replaces":null,"replacedBy":null}\n'
+    const entries = [
+      ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((part) =>
+        isoEntry(
+          `iso-26262-${part}-2018`,
+          `ISO 26262-${part}:2018 Road vehicles — Functional safety`,
+        ),
+      ),
+      isoEntry("iso-dis-26262-1-2026", "ISO/DIS 26262-1 Road vehicles — Functional safety", 90020),
+    ]
+    const pages = [page("iso-26262", "ISO 26262", "ISO", "2018")]
+    assert.deepStrictEqual((await run(iso, entries, pages, context())).keys, [])
+    const { keys } = await run(
+      iso,
+      entries,
+      pages,
+      fixtureContext({ [isoDataUrl]: () => new Response(text) }),
+    )
+    assert.deepStrictEqual(keys, ["ISO 26262 | new-part | ISO 26262-13:2027"])
+  })
+
+  test("edition 없는 시리즈 페이지도 한 출판물로 묶고, 인용한 부의 가장 늦은 판 뒤에 발행된 부만 새 부로 잡는다", async () => {
     // 2026-10-24에는 ISO/IEC/IEEE 29119-8이 60.00(발행 준비)이다. 발행된 것으로 바꿔 넣는다.
+    // ISO/IEC TR 29119-13은 인용한 가장 늦은 판(29119-5:2024) 전인 2023년에 발행된 것으로 바꾼다.
     const text = fs
       .readFileSync(path.join(fixtures, data), "utf8")
       .replace(
         /"reference":"ISO\/IEC\/IEEE 29119-8","publicationDate":null,"edition":1,"currentStage":6000/,
         '"reference":"ISO/IEC/IEEE 29119-8:2027","publicationDate":"2027-03-01","edition":1,"currentStage":6060',
+      )
+      .replace(
+        /"reference":"ISO\/IEC TR 29119-13:2022","publicationDate":"2022-11-18"/,
+        '"reference":"ISO/IEC TR 29119-13:2023","publicationDate":"2023-11-18"',
       )
     const parts = [
       ["1", "2022", 81291],
@@ -191,22 +225,41 @@ describe("iso", () => {
       ["4", "2021", 79430],
       ["5", "2024", 87233],
     ] as const
-    const entries = parts.map(([part, year, id]) =>
-      isoEntry(
-        `iso-iec-ieee-29119-${part}-${year}`,
-        `ISO/IEC/IEEE 29119-${part}:${year} Software testing`,
-        id,
-      ),
-    )
-    const pages = [page("iso-iec-ieee-29119", "ISO/IEC/IEEE 29119", "ISO/IEC/IEEE", "2022")]
-    assert.deepStrictEqual((await run(iso, entries, pages, context())).keys, [])
-    const { keys } = await run(
-      iso,
-      entries,
-      pages,
-      fixtureContext({ [isoDataUrl]: () => new Response(text) }),
-    )
-    assert.deepStrictEqual(keys, ["ISO/IEC/IEEE 29119 | new-part | ISO/IEC/IEEE 29119-8:2027"])
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), "edition-status-iso-"))
+    const files: Record<string, string> = {
+      "content/iso-iec-ieee-29119.md":
+        "---\ntitle: ISO/IEC/IEEE 29119\npublisher: ISO/IEC/IEEE\nstatus: 유효\n---\n\n" +
+        parts.map(([part, year]) => `문장이다.[@iso-iec-ieee-29119-${part}-${year}]`).join(" ") +
+        "\n",
+    }
+    for (const [part, year, id] of parts) {
+      const key = `iso-iec-ieee-29119-${part}-${year}`
+      files[`bib/${key}.bib`] =
+        `@misc{${key},\n  title = {ISO/IEC/IEEE 29119-${part}:${year} Software testing},\n` +
+        `  author = {{ISO}},\n  url = {https://www.iso.org/standard/${id}.html},\n}\n`
+    }
+    try {
+      for (const [rel, body] of Object.entries(files)) {
+        fs.mkdirSync(path.dirname(path.join(root, rel)), { recursive: true })
+        fs.writeFileSync(path.join(root, rel), body)
+      }
+      const tree = loadTree(root)
+      const publications = assign(citedEntries(tree), standardPages(tree), [iso]).get(iso)!
+      assert.deepStrictEqual(
+        publications.map((publication) => [publication.name, publication.entries.length]),
+        [["ISO/IEC/IEEE 29119", 5]],
+      )
+      assert.deepStrictEqual(await iso.check(publications, context()), [])
+      const changes = await iso.check(
+        publications,
+        fixtureContext({ [isoDataUrl]: () => new Response(text) }),
+      )
+      assert.deepStrictEqual(changes.map(changeKey), [
+        "ISO/IEC/IEEE 29119 | new-part | ISO/IEC/IEEE 29119-8:2027",
+      ])
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true })
+    }
   })
 
   test("현행으로 인용한 판의 레코드를 찾지 못하면 실패한다", async () => {

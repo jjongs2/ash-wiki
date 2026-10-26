@@ -1,7 +1,9 @@
 import { publisherOf } from "../check-diff/editions"
-import { citations } from "../check-content/source-checks"
+import { loadConventions } from "../check-content/conventions"
+import { citations, pageTypeOf, standardOnlyFields } from "../check-content/source-checks"
 import { fieldsOf, type Tree } from "../check-content/tree"
 import type { Channel, Entry, Publication, StandardPage } from "./model"
+import { inSeries, standardNumber } from "./standard-number"
 
 // 페이지가 인용한 엔트리. 인용하지 않은 엔트리는 판 확인의 대상이 아니다.
 export function citedEntries(tree: Tree): Entry[] {
@@ -36,53 +38,21 @@ export function citedEntries(tree: Tree): Entry[] {
   )
 }
 
+// 부마다 판이 다른 시리즈 표준 페이지(29119)에는 edition이 없다(docs/wiki-conventions.md의 프론트매터).
 export function standardPages(tree: Tree): StandardPage[] {
+  const standardOnly = standardOnlyFields(loadConventions())
   return tree.pages
-    .filter((page) => page.kind === "page" && fieldsOf(page)["edition"] !== undefined)
+    .filter((page) => page.kind === "page" && pageTypeOf(fieldsOf(page), standardOnly) === "표준")
     .map((page) => {
       const fields = fieldsOf(page)
       return {
         name: page.name,
         title: String(fields["title"] ?? ""),
         publisher: String(fields["publisher"] ?? ""),
-        edition: String(fields["edition"]),
+        edition: fields["edition"] === undefined ? undefined : String(fields["edition"]),
         status: String(fields["status"] ?? ""),
       }
     })
-}
-
-// 제목 머리의 표준 번호. 발행기관 묶음(ISO/IEC/IEEE 등), 종류와 단계(PAS, TR, CD, DIS 등), 번호(부 포함), 판 연도다.
-// IEEE 프로젝트(P802.3dm)의 P는 번호에서 떼고 project로 적는다.
-export interface StandardNumber {
-  bodies: string[] // 예: ["ISO", "IEC", "IEEE"]
-  stages: string[] // 예: ["DIS"], ["PAS"], ["Std"]
-  number: string // 예: 13400-2, 802.1Q, J3061
-  year?: string
-  project: boolean
-}
-
-// 단계와 종류는 머리에 붙거나(ISO/CD 15765-2, ISO/PAS 8800) 띄어 온다(ISO/IEC/IEEE DIS 29148, ISO/IEC TR 29119-6, ISO/IEC Guide 51).
-// 판의 종류(ISO/PAS, ISO/IEC TR, ISO/IEC Guide)
-export const kindStages = ["PAS", "TR", "TS", "Guide"]
-const stagePattern = ["PWI", "NP", "AWI", "WD", "CD", "DIS", "FDIS", "PRF", ...kindStages].join("|")
-const referencePattern = new RegExp(
-  `^((?:ISO|IEC|IEEE|SAE)(?:/(?:ISO|IEC|IEEE|SAE|${stagePattern}))*)((?: (?:${stagePattern}|Std))*) (P?)` +
-    "([A-Z]?[0-9][0-9A-Za-z.]*(?:-[0-9]{1,3}(?![0-9]))*)(?:[:-]((?:19|20)[0-9]{2})(?![0-9]))?",
-)
-const bodyNames = new Set(["ISO", "IEC", "IEEE", "SAE"])
-export const projectStages = new Set(["PWI", "NP", "AWI", "WD", "CD", "DIS", "FDIS", "PRF"])
-
-export function standardNumber(title: string): StandardNumber | undefined {
-  const match = title.match(referencePattern)
-  if (!match) return undefined
-  const [, head, stageText, p, number, year] = match
-  const bodies = head.split("/").filter((part) => bodyNames.has(part))
-  const stages = [
-    ...head.split("/").filter((part) => !bodyNames.has(part)),
-    ...stageText.split(" ").filter(Boolean),
-  ]
-  const project = p === "P" || stages.some((stage) => projectStages.has(stage))
-  return { bodies, stages, number, year, project }
 }
 
 // 엔트리를 출판물로 묶고 통로에 나눈다. 표준 번호로 쓰는 표준 페이지(ISO 13400-2, IEEE 802.1Q)는 같은 번호와
@@ -115,14 +85,7 @@ export function assign(
   })
   for (const entry of entries) {
     const number = standardNumber(entry.title)
-    const page =
-      number &&
-      numbered.find(
-        (candidate) =>
-          candidate.number.bodies.some((body) => number.bodies.includes(body)) &&
-          (number.number === candidate.number.number ||
-            number.number.startsWith(`${candidate.number.number}-`)),
-      )?.page
+    const page = number && numbered.find((candidate) => inSeries(candidate.number, number))?.page
     if (page) {
       add(owners.get(page)!, page.title, page, entry)
       continue

@@ -1,4 +1,4 @@
-import { kindStages, projectStages, standardNumber } from "../publications"
+import { kindStages, projectStages, standardNumber } from "../standard-number"
 import {
   ChannelError,
   fetchOk,
@@ -165,19 +165,21 @@ function checkPublication(publication: Publication, data: IsoData, cited: Set<nu
   })
   const editions = parsed.filter(({ number }) => !number.project && number.year)
 
-  // 현행으로 인용한 판. 부마다 표준 페이지의 edition 연도의 엔트리이고, 그 연도의 엔트리가 없는 부는
-  // 가장 새 판이다. 시리즈의 부는 서로 다른 해에 나오기도 한다(29119).
+  // 현행으로 인용한 판. 부마다 표준 페이지의 edition 연도의 엔트리이고, 그 연도의 엔트리가 없는 부와
+  // edition이 없는 시리즈(부마다 판이 다른 29119)의 부는 가장 새 판이다.
   const parts = new Map<string, typeof editions>()
   for (const item of editions)
     parts.set(item.number.number, [...(parts.get(item.number.number) ?? []), item])
   const currentEntries: Entry[] = []
   const currentRecords: IsoRecord[] = []
+  const currentYears: string[] = []
   for (const items of parts.values()) {
     const latest = items
       .map(({ number }) => number.year!)
       .sort()
       .at(-1)!
-    const year = items.some(({ number }) => number.year === page?.edition) ? page!.edition : latest
+    const year = items.some(({ number }) => number.year === page?.edition) ? page!.edition! : latest
+    currentYears.push(year)
     const chosen = items.filter(
       ({ entry, number }) => number.year === year && !/\/(Amd|Cor)\b/.test(entry.title),
     )
@@ -260,7 +262,8 @@ function checkPublication(publication: Publication, data: IsoData, cited: Set<nu
         })
   }
 
-  // 신호 3: 인용하지 않은 추보·정정과, 시리즈 페이지의 edition 연도 뒤에 발행된 새 부
+  // 신호 3: 인용하지 않은 추보·정정과, 현행으로 인용한 부의 가장 늦은 판 연도 뒤에 발행된 새 부.
+  // 페이지를 쓸 때 이미 있던 부는 알리지 않는다.
   const citedTitles = publication.entries.map((entry) => normalize(entry.title))
   for (const record of currentRecords)
     for (const supplement of data.supplements(record)) {
@@ -284,7 +287,8 @@ function checkPublication(publication: Publication, data: IsoData, cited: Set<nu
       })
     }
   const series = page && standardNumber(page.title)
-  if (series && !series.number.includes("-")) {
+  const newest = Number(currentYears.sort().at(-1) ?? page?.edition)
+  if (series && !series.number.includes("-") && !Number.isNaN(newest)) {
     const citedParts = new Set(parsed.map(({ number }) => number.number))
     const partPattern = new RegExp(
       `^[A-Z/]+(?: [A-Z]+)* ${series.number.replace(/\./g, "\\.")}-([0-9]+):`,
@@ -292,11 +296,7 @@ function checkPublication(publication: Publication, data: IsoData, cited: Set<nu
     for (const record of data.all()) {
       const part = record.reference.match(partPattern)?.[1]
       if (!part || !current(record) || record.supplementType) continue
-      if (
-        citedParts.has(`${series.number}-${part}`) ||
-        Number(yearOf(record)) <= Number(page.edition)
-      )
-        continue
+      if (citedParts.has(`${series.number}-${part}`) || Number(yearOf(record)) <= newest) continue
       add({
         kind: "new-part",
         target: record.reference,
