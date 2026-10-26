@@ -5,9 +5,9 @@ tags:
 verified: 2026-10-12
 ---
 
-[[iso-26262|ISO 26262]]-2:2018은 자동차 응용의 **기능 안전 관리**(functional safety management) 요구사항을 정하고, 이를 관련 조직에 대한 프로젝트와 무관한 요구사항(overall safety management)과 [[safety-lifecycle|안전 생명주기]]의 관리 활동에 대한 프로젝트별 요구사항으로 나눈다. 프로젝트별 요구사항은 [[safety-lifecycle#ISO 26262의 안전 생명주기|concept phase]], 시스템·하드웨어·소프트웨어 수준의 제품 개발 단계, 그리고 생산·운용·서비스·폐기에서의 관리를 다룬다.[@iso-26262-2-obp-2018]
+[[iso-26262|ISO 26262]]-2:2018은 자동차 응용의 **기능 안전 관리**(functional safety management) 요구사항을 정하고, 이를 프로젝트와 무관한, 관련 조직에 대한 요구사항(overall safety management)과 [[safety-lifecycle|안전 생명주기]]의 관리 활동에 대한 프로젝트별 요구사항으로 나눈다. 프로젝트별 요구사항은 [[safety-lifecycle#ISO 26262의 안전 생명주기|concept phase]], 시스템·하드웨어·소프트웨어 수준의 제품 개발 단계, 그리고 생산·운용·서비스·폐기에서의 관리를 다룬다.[@iso-26262-2-obp-2018]
 
-이 표준은 5절에서 overall safety management를, 6절에서 프로젝트에 따른 safety management를, 7절에서 생산·운용·서비스·폐기에 관한 safety management를 다룬다. Annex B는 safety culture를, Annex C는 confirmation measure의 지침을 다룬다.[@iso-26262-2-obp-2018]
+이 표준은 5절에서 overall safety management를 다루고, 프로젝트별 요구사항은 6절의 프로젝트에 따른 safety management와 7절의 생산·운용·서비스·폐기에 관한 safety management에 나누어 둔다. Annex B는 safety culture를, Annex C는 confirmation measure의 지침을 다룬다.[@iso-26262-2-obp-2018]
 
 ## Safety plan과 safety manager
 

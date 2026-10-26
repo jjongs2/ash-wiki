@@ -24,11 +24,11 @@ E-Gas 감시 개념 6.0판은 엔진 제어기의 감시를 세 층으로 나눈
 
 이 개념은 참조 문서로 [[iso-26262|ISO 26262]] 1판(2011-11-15)을 들고, 시스템 정의, 해저드 분석과 리스크 분석, functional safety concept, technical safety concept의 순서로 절을 둔다.[@egas-monitoring-concept-2015]
 
-해저드 분석과 리스크 분석의 결과로 이 개념은 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]] 넷을 정한다. 의도하지 않은 가속의 방지(SZ-01)는 [[automotive-safety-integrity-level|ASIL]] B다. 가속이 없는 것의 방지(SZ-02), 의도하지 않은 감속의 방지(SZ-03), 감속이 없는 것의 방지(SZ-04)는 통제 가능한 상태를 나타내므로 이 개념에서 다루지 않는다.[@egas-monitoring-concept-2015]
+해저드 분석과 리스크 분석의 결과로 이 개념은 SZ-01부터 SZ-04까지 식별 번호를 붙인 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]] 넷을 정한다. 의도하지 않은 가속의 방지(SZ-01)는 [[automotive-safety-integrity-level|ASIL]] B다. 가속이 없는 것의 방지(SZ-02), 의도하지 않은 감속의 방지(SZ-03), 감속이 없는 것의 방지(SZ-04)는 통제 가능한 상태를 나타내므로 이 개념에서 다루지 않는다.[@egas-monitoring-concept-2015]
 
 이 개념에서 **주행 주기**(driving cycle)는 키로 엔진을 시동한 때부터 정지할 때까지의 운용 시간이고, 엔진 제어기의 power latch 시간을 포함한다. **Latent error**는 다음 주행 주기에 엔진 제어기도 운전자도 검출하지 못한 error다.[@egas-monitoring-concept-2015]
 
-이 개념은 단일 error와, latent error와 겹친 단일 error가 통제 가능한 시스템 반응으로 이어지도록 시스템을 설계하게 하고, 시스템 가용성을 위해 단계적인 error 반응을 지향한다. 신호 경로는 명시적으로 검출한 뒤(예: debouncing 사건이나 시간 뒤) 반응을 일으키기 전에 confirmed defect로, 그 전에는 assumed defect로 분류하고, 두 경우마다 기능에 알맞은 반응 메커니즘을 정한다. 엔진 정지는 다른 통제 가능한 시스템 반응을 보장할 수 없을 때만 허용한다.[@egas-monitoring-concept-2015]
+이 개념은 단일 error와, latent error와 겹친 단일 error가 통제 가능한 시스템 반응으로 이어지도록 시스템을 설계하게 하고, 시스템 가용성을 위해 단계적인 error 반응을 지향한다. 신호 경로는 명시적으로 검출하기 전에는 assumed defect로, 명시적으로 검출하면(예: debouncing 사건이나 시간 뒤) 반응을 일으키기 전에 confirmed defect로 분류하고, 두 경우마다 기능에 알맞은 반응 메커니즘을 정한다. 엔진 정지는 다른 통제 가능한 시스템 반응을 보장할 수 없을 때만 허용한다.[@egas-monitoring-concept-2015]
 
 ### Level 2의 독립성
 
@@ -38,11 +38,11 @@ E-Gas 감시 개념 6.0판은 엔진 제어기의 감시를 세 층으로 나눈
 
 이 개념의 감시 모듈은 질의를 주기적으로 기능 제어기에 보내고, 기능 제어기의 Level 3 소프트웨어는 응답을 계산해 정한 시간 안에 돌려준다. 응답이 틀리거나 정한 때에 오지 않으면 감시 모듈은 오류 계수기를 올리고 질의를 되풀이하며, 계수기가 한계에 이르면 액추에이터 출력단을 끈다.[@egas-monitoring-concept-2015]
 
-기능 제어기도 자기 오류 계수기가 한계에 이르면 액추에이터 출력단을 끈다. 이 개념은 주행 주기마다 중복 차단 경로(redundant shutoff path)의 효과를 시험하게 한다.[@egas-monitoring-concept-2015]
+기능 제어기도 자기 오류 계수기가 한계에 이르면 액추에이터 출력단을 끈다. 이 개념은 이렇게 감시 모듈과 기능 제어기가 따로 출력단을 끄는 중복 차단 경로(redundant shutoff path)의 효과를 주행 주기마다 시험하게 한다.[@egas-monitoring-concept-2015]
 
 질의-응답의 반복 주기 $T$는 $T \le 80\,\mathrm{ms}$여야 한다. Level 3 소프트웨어의 시험 경로 가운데 명령어 집합 시험은 프로세서 코어와 Level 2 기능 처리의 error를 검출하고, 제어기 내부의 error 검출 하드웨어를 쓰는 방식에서는 [[fault-tolerance#다중 채널과 비교|lockstep]] core의 결과를 base core의 결과와 견주어 다르면 error 반응을 일으킨다. 멀티코어 제어기에서는 Level 2 모듈이 실행되는 코어를 모두 이 명령어 집합 시험의 방식으로 시험한다.[@egas-monitoring-concept-2015]
 
-TMS320F28003x는 E-Gas 감시 개념의 Level 3 checker가 외부 부품으로 구현할 [[safety-requirement|안전 요구사항]]을 가정하고, 그 부품으로 공급 전원을 감시하는 외부 전압 감시기, 진단에 쓰는 외부 [[safety-mechanism#Watchdog|watchdog]] 타이머, 안전 상태로 옮기는 데 필요한 부품을 든다.[@ti-sffs277-2023]
+TMS320F28003x에 적용한 E-Gas 감시 개념에서 Level 3 checker는 MCU 밖의 감시 요소다. TMS320F28003x는 이 checker가 외부 부품으로 구현할 [[safety-requirement|안전 요구사항]]을 가정하고, 그 부품으로 공급 전원을 감시하는 외부 전압 감시기, 진단에 쓰는 외부 [[safety-mechanism#Watchdog|watchdog]] 타이머, 안전 상태로 옮기는 데 필요한 부품을 든다.[@ti-sffs277-2023]
 
 ## 개정 이력
 

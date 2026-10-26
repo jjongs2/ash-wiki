@@ -17,7 +17,7 @@ IEEE 2675-2021은 시스템과 애플리케이션을 신뢰할 수 있고 안전
 
 Flickr의 John Allspaw와 Paul Hammond는 Velocity 2009에서 하루 10번의 배포를 제목으로 내건 발표로, Flickr에서 개발과 운영이 도구와 문화로 협력하는 방식을 소개했다.[@flickr-10-deploys-per-day-2009]
 
-[[agile-software-development|애자일 개발]]은 잦은 반복으로 구현에 이른 피드백을 주고, DevOps는 운영에서 오는 피드백으로 개발자가 자기 코드가 운영 환경에서 어떻게 동작하는지 더 빨리 알게 한다. DevOps는 여러 변경을 묶어 정해진 간격으로 내는 [[configuration-management#빌드와 릴리스|릴리스]] 대신, 작은 변경 단위를 필요할 때 서로 독립적으로 내보내려 한다.[@ieee-swebok-v4-0a-2026]
+[[agile-software-development|애자일 개발]]은 잦은 반복으로 구현에 이른 피드백을 주고, DevOps는 운영에서 오는 피드백으로 개발자가 자기 코드가 운영 환경에서 어떻게 동작하는지 더 빨리 알게 한다. 전통적인 프로세스는 변경을 모두 모아 정해진 간격으로 새 버전을 [[configuration-management#빌드와 릴리스|릴리스]]해 전달한다. DevOps는 그 대신 작은 변경 단위(새 기능 하나나 결함 수정 하나)를 필요할 때 서로 독립적으로 전달하려 하고, 그러려면 소프트웨어가 그런 배포를 할 수 있는 구조여야 한다.[@ieee-swebok-v4-0a-2026]
 
 ![[diagrams/devops-feedback-loops.svg]]
 

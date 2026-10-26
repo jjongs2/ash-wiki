@@ -19,7 +19,7 @@
   <path d="M385 144 V118 H200 V140" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="310" y="92">리스크 감소</text>
-    <text x="310" y="108">기능 안전: 안전 메커니즘 작동</text>
+    <text x="310" y="108">기능 안전 등 여러 방법</text>
   </g>
 
   <!-- 점 -->

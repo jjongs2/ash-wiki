@@ -9,7 +9,7 @@ verified: 2026-10-02
 
 ## FMEA
 
-IEC 60050은 **FMEA**를 하위 항목에서 일어날 수 있는 failure mode와 [[fault-error-failure|fault]], 그리고 그것이 여러 계층(indenture level)에 주는 영향을 살피는 정성적 분석으로 정의한다.[@iec-60050-192-11-05-2015] IEC 60812:2018은 FMEA를 계획하고 수행하고 문서로 남기고 유지하는 지침을 둔다.[@iec-60812-2018]
+IEC 60050(국제 전기기술 용어집)은 **FMEA**를 하위 항목에서 일어날 수 있는 failure mode와 [[fault-error-failure|fault]], 그리고 그것이 여러 계층(indenture level)에 주는 영향을 살피는 정성적 분석으로 정의한다.[@iec-60050-192-11-05-2015] IEC 60812:2018은 FMEA를 계획하고 수행하고 문서로 남기고 유지하는 지침을 둔다.[@iec-60812-2018]
 
 **Failure mode**는 요소나 [[safety-lifecycle#ISO 26262의 안전 생명주기|아이템]]이 고장 나는 방식이다.[@iso-26262-1-obp-2018][@iec-60050-192-03-17-2024]
 
@@ -52,7 +52,7 @@ IEC 60050은 **ETA**(Event Tree Analysis)를 주어진 시작 사건(initiating 
 ISO 26262-1:2018은 **Dependent failure**를 통계적으로 독립이 아닌 failure, 곧 failure들이 함께 일어날 확률이 고려한 각 failure의 발생 확률의 곱과 같지 않은 failure로 정의한다. Dependent failure에는 다음 둘이 있다.[@iso-26262-1-obp-2018]
 
 - **Common cause failure**: 아이템의 둘 이상의 요소가, 그 모든 요소의 안이나 밖에 있는 하나의 특정 사건이나 근본 원인 때문에 직접 고장 나는 것
-- **Cascading failure**: 아이템의 한 요소가 요소 안팎의 근본 원인으로 고장 나고, 그것이 같은 아이템이나 다른 아이템의 다른 요소를 고장 나게 하는 것[@iso-26262-1-obp-2018]
+- **Cascading failure**: 아이템의 한 요소가 요소 안팎의 근본 원인으로 고장 나고, 그 failure가 이어서 같은 아이템이나 다른 아이템의 다른 요소를 고장 나게 하는 것[@iso-26262-1-obp-2018]
 
 ![[diagrams/dependent-failure-common-cause-cascading.svg]]
 
