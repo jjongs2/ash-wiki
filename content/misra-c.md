@@ -10,7 +10,7 @@ status: 유효
 
 **MISRA C**는 중요 시스템(critical systems)을 개발할 때 쓰는 C 언어 [[coding-standard|코딩 지침]] 모음이다. 문서 제목은 "Guidelines for the use of the C language in critical systems"다.[@misra-compliance-2020] MISRA C 지침은 C 언어의 부분집합을 정의하며, 이 부분집합에서는 실수할 여지를 없애거나 줄인다.[@misra-c-2023-add3-2025]
 
-MISRA C는 MISRA가 펴낸다. MISRA는 The MISRA Consortium Limited의 상호다.[@misra-c-overview-2025] MISRA는 1990년대 초 영국 정부의 SafeIT 연구 프로그램 안의 프로젝트로 시작했다.[@misra-history-2021] MISRA C는 MISRA가 1994년에 펴낸 차량용 소프트웨어 개발 지침이 요구한 표준 언어의 제한된 부분집합을 채우려고, 차량용 임베디드 소프트웨어에 C가 쓰이기 시작하던 때 만들어졌다.[@misra-home-2026] 1999년 MISRA 사이트는 MISRA를 Motor Industry Software Reliability Association으로 적었다.[@misra-c-1998-intro-1999]
+MISRA C는 MISRA가 펴낸다. MISRA는 The MISRA Consortium Limited의 상호다.[@misra-c-overview-2025] MISRA는 1990년대 초 영국 정부의 SafeIT 연구 프로그램 안의 프로젝트로 시작했다.[@misra-history-2021] MISRA는 1994년에 펴낸 차량용 소프트웨어 개발 지침이 요구한 표준 언어의 제한된 부분집합을 채우려고, 차량용 임베디드 소프트웨어에 C가 쓰이기 시작하던 때 MISRA C를 만들었다.[@misra-home-2026] 1999년 MISRA 사이트는 MISRA를 Motor Industry Software Reliability Association으로 적었다.[@misra-c-1998-intro-1999]
 
 ## 범위
 

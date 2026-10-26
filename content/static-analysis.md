@@ -31,7 +31,7 @@ ISO/IEC/IEEE 24765 용어집은 검증 도구의 false positive가 분석 규칙
 
 프로그램의 구체적 의미가 보일 수 있는 모든 경우를 추상 의미가 덮으면, 그 추상화를 건전하다(sound)고 한다. 건전한 추상화는 일어날 수 있는 오류를 빠짐없이 알리므로, 알리지 않은 오류는 실제 실행에서 일어날 수 없다.[@cousot-abstract-interpretation-nutshell-2026]
 
-Rice는 1953년 논문에서, 재귀적으로 열거 가능한 집합들의 클래스 가운데 공집합도 아니고 모든 집합을 담지도 않는 것은 어느 것도 결정 가능하지 않음을 보였다.[@rice-classes-recursively-enumerable-1953] 건전한 분석은 가능한 실행의 상위 집합을 다루므로(over-approximation) 실제로 일어나지 않는 실행도 고려하게 되고, 그 가운데 오류 상태에 닿는 것이 false alarm이 된다. 분석하려는 질문이 결정 불가능하므로, 자동화된 건전한 분석은 어느 것이든 실제로는 오류가 없는 프로그램 가운데 무수히 많은 것에 false alarm을 낸다. 그래서 false alarm을 모든 프로그램에서 없앨 수는 없다. 더 정밀한 추상 의미를 고르면 false alarm을 줄일 수 있지만 계산 비용이 커진다.[@cousot-abstract-interpretation-nutshell-2026]
+Rice는 1953년 논문에서, 재귀적으로 열거 가능한 집합들의 클래스 가운데 공집합도 아니고 모든 집합을 담지도 않는 것은 어느 것도 결정 가능하지 않음을 보였다.[@rice-classes-recursively-enumerable-1953] 건전한 분석은 가능한 실행의 상위 집합을 다루므로(over-approximation) 실제로 일어나지 않는 실행도 고려하게 되고, 그 가운데 오류 상태에 닿는 것이 false alarm이 된다. 분석하려는 질문이 결정 불가능하므로, 자동화된 건전한 분석은 어느 것이든 무수히 많은 프로그램에서 실제로는 일어날 수 없는 오류를 알리며, 실행 오류가 하나도 없는데 false alarm을 내는 프로그램도 언제나 찾을 수 있다. 그래서 false alarm을 모든 프로그램에서 없앨 수는 없다. 더 정밀한 추상 의미를 고르면 false alarm을 줄일 수 있지만 계산 비용이 커진다.[@cousot-abstract-interpretation-nutshell-2026]
 
 ![[diagrams/sound-analysis-false-alarm.svg]]
 
