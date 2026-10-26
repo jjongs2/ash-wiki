@@ -12,3 +12,7 @@ verified: 2026-01-01
 [[layered|FRER]](IEEE 802.1CB)는 표준 번호다.[@bosch-can-2-0-1991]
 
 [[layered|CDD]](Complex Driver)는 머리말이 풀지 않는다. [[layered#이더넷|BSW]](Basic Software)는 절이 풀지 않는다.[@bosch-can-2-0-1991]
+
+| 이름                             | 설명         |
+| -------------------------------- | ------------ |
+| [[layered\|BSW]](Basic Software) | 표 안의 링크 |

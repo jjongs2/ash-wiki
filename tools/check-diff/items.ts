@@ -471,6 +471,16 @@ const romanNumeral = /^[IVX]+$/
 const lettersAndDigits = (part: string) => /[A-Za-z]/.test(part) && /[0-9]/.test(part)
 const token = /(?<![A-Za-z0-9_])[A-Za-z0-9_]+(?:[/.-][A-Za-z0-9_]+)*/g
 
+// 토큰을 `/.-`로 가른 조각 가운데 약어인 것. 코드 이름 조각은 빼고, 풀린 적 없는 글자·숫자 조각이 있으면
+// 토큰 전체를 거른다(TJA1042).
+function abbreviationParts(word: string, explained: Set<string>): string[] {
+  const words = word.split(/[/.-]/).filter((p) => !codeName.test(p))
+  if (words.some((p) => lettersAndDigits(p) && !explained.has(p))) return []
+  return words.filter(
+    (p) => (abbreviationPart.test(p) || explained.has(p)) && !romanNumeral.test(p),
+  )
+}
+
 // 풀이하지 않는 약어 목록의 줄(`- <약어>: <종류>`)마다 약어와 종류.
 function listedAbbreviations(): { name: string; kind: string }[] {
   return [...fs.readFileSync(abbreviationsPath, "utf8").matchAll(/^- (.+?): (\S.*)$/gm)].map(
@@ -587,7 +597,7 @@ function explainedWords(tree: Tree): Set<string> {
 // (`[[srp|SRP]](IEEE 802.1Qat)`). 다른 페이지의 이름인 약어는 그 페이지와 다른 뜻으로 쓰여 링크와 함께 풀
 // 수 있다(`[[aperiodic-server#CBS|CBS]](Constant Bandwidth Server)`).
 const linkGloss =
-  /\[\[([^\]\n|#]+)(?:#([^\]\n|]+))?\\?\|([A-Za-z0-9_]+(?:[/.-][A-Za-z0-9_]+)*)\]\]\(((?=[A-Za-z])[^()\n가-힣]+)\)/g
+  /\[\[([^\]\n|#\\]+)(?:#([^\]\n|\\]+))?\\?\|([A-Za-z0-9_]+(?:[/.-][A-Za-z0-9_]+)*)\]\]\(((?=[A-Za-z])[^()\n가-힣]+)\)/g
 
 // 대상 페이지의 머리말이나, 제목이 anchor인 절(그 아래 절까지)의 글.
 function leadOrSection(page: Page, anchor: string | undefined): string {
@@ -647,15 +657,8 @@ const abbreviationItem: Item = ({ tree, changed }) => {
   const owners = new Map<string, Page[]>()
   for (const page of tree.pages.filter((p) => p.kind === "page"))
     for (const name of pageNames(page)) owners.set(name, [...(owners.get(name) ?? []), page])
-  // 낱말이 약어인지. 아래 토큰을 고르는 규칙과 같다.
-  const isAbbreviation = (word: string) => {
-    const parts = word.split(/[/.-]/)
-    if (parts.some((p) => codeName.test(p) || (lettersAndDigits(p) && !explainedSet.has(p))))
-      return false
-    return parts.some(
-      (p) => (abbreviationPart.test(p) || explainedSet.has(p)) && !romanNumeral.test(p),
-    )
-  }
+  // 풀이하지 않는 약어 목록의 약어도 자기 페이지로 거는 링크 뒤에서는 찍는다(`[[can|CAN]](…)`).
+  const isAbbreviation = (word: string) => abbreviationParts(word, explainedSet).length > 0
   return changed.flatMap(({ page, change }) => {
     const { text, links } = abbreviationText(page, exempt)
     const starts = lineStarts(text)
@@ -685,11 +688,8 @@ const abbreviationItem: Item = ({ tree, changed }) => {
         if (change.added.has(line) && !code.has(part) && !inside(links, offset))
           code.set(part, line)
       }
-      const words = parts.filter((p) => !codeName.test(p))
-      if (words.some((p) => lettersAndDigits(p) && !explainedSet.has(p))) continue
-      for (const part of words) {
-        const abbreviation = abbreviationPart.test(part) || explainedSet.has(part)
-        if (!abbreviation || romanNumeral.test(part) || exemptSet.has(part)) continue
+      for (const part of abbreviationParts(word, explainedSet)) {
+        if (exemptSet.has(part)) continue
         if (change.added.has(line)) inAdded.add(part)
         if (first.has(part)) continue
         // 풀이는 `ABBR(풀이)`나 `풀이(ABBR)`, `풀이(ABBR, 원어)` 꼴이다. 괄호 안에 약어가 있어도 뒤에 다른

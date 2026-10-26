@@ -426,8 +426,16 @@ describe("check-diff CLI", { concurrency: false }, () => {
       ),
       "절이 푸는 약어",
     )
-    for (const line of [10, 12, 14]) {
-      assert.ok(!has(lines, `content/link-gloss.md:${line}:`), `거르는 경우: ${line}줄`)
+    assert.ok(
+      has(lines, "content/link-gloss.md:18:", "링크 뒤 풀이: [[layered\\|BSW]](Basic Software)"),
+      "표 안의 링크",
+    )
+    for (const [line, reason] of [
+      [10, "다른 페이지의 이름인 약어"],
+      [12, "풀이에 표준 번호가 든 경우"],
+      [14, "대상이 약어를 풀지 않는 경우"],
+    ] as const) {
+      assert.ok(!has(lines, `content/link-gloss.md:${line}:`, "링크 뒤 풀이"), reason)
     }
   })
 
