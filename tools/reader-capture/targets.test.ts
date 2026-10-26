@@ -21,7 +21,7 @@ function tree(pages: Record<string, string[]>) {
 }
 
 describe("topicSlugs", () => {
-  const pages = tree({
+  const fixture = tree({
     "index.md": ["platform"],
     "mutex.md": ["platform/rtos"],
     "semaphore.md": ["platform/rtos", "sw-engineering"],
@@ -30,17 +30,17 @@ describe("topicSlugs", () => {
     "platformx.md": ["platformx"],
     "tags/platform/rtos.md": ["platform"],
   })
-  after(() => fs.rmSync(pages.root, { recursive: true, force: true }))
+  after(() => fs.rmSync(fixture.root, { recursive: true, force: true }))
 
   test("주제 태그는 그 태그를 단 페이지만 준다", () => {
-    assert.deepStrictEqual(topicSlugs(pages, "platform/rtos"), ["mutex", "semaphore"])
+    assert.deepStrictEqual(topicSlugs(fixture, "platform/rtos"), ["mutex", "semaphore"])
   })
 
   test("구역 태그는 하위 태그를 단 페이지까지 주고, 태그 페이지, 첫 페이지, 이름만 같게 시작하는 태그는 뺀다", () => {
-    assert.deepStrictEqual(topicSlugs(pages, "platform"), ["hypervisor", "mutex", "semaphore"])
+    assert.deepStrictEqual(topicSlugs(fixture, "platform"), ["hypervisor", "mutex", "semaphore"])
   })
 
   test("태그를 단 페이지가 없으면 멈춘다", () => {
-    assert.throws(() => topicSlugs(pages, "security"), /security 태그를 단 페이지가 없다/)
+    assert.throws(() => topicSlugs(fixture, "security"), /security 태그를 단 페이지가 없다/)
   })
 })
