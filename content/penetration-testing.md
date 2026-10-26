@@ -33,7 +33,7 @@ NHTSA의 2022년 Cybersecurity Best Practices for the Safety of Modern Vehicles�
 
 ENISA(EU의 사이버보안 기관)의 2019년 보고서 Good practices for security of smart cars는 개발 단계에서, 그리고 그 뒤에는 새 위협이나 취약점이 나왔을 때나 큰 업데이트 뒤처럼 사건을 계기로 정기적으로 침투 테스트 같은 보안 평가를 하기를 권한다(PS-14).[@enisa-smart-cars-2019]
 
-[[un-r155|UN R155]] 5.3.1 (a)는 승인 당국과 기술 기관이 사이버보안 역량을 갖춘 인력을 두게 하고, R155 해석 문서는 이 인력에 침투 테스트, [[fuzz-testing|퍼즈 테스트]], 부채널 테스트 같은 차량 사이버보안 실험실 시험의 방법을 적용하는 데 역량과 경험이 있는 인력이 든다고 본다.[@unece-r155-interpretation-2023]
+[[un-r155|UN R155]] 해석 문서는 R155 5.3.1 (a)가 승인 당국과 기술 기관에 사이버보안 역량을 갖춘 인력을 두게 한다고 풀고, 이 인력에 침투 테스트, [[fuzz-testing|퍼즈 테스트]], 부채널 테스트 같은 차량 사이버보안 실험실 시험의 방법을 적용하는 데 역량과 경험이 있는 인력이 든다고 본다.[@unece-r155-interpretation-2023]
 
 Auto-ISAC(자동차 업계의 차량 사이버보안 정보 공유 조직)의 2025년 백서는 [[automotive-threat-matrix|ATM]]의 전술과 기법을 침투 테스트 같은 탐색적 활동을 계획하는 출발점으로 든다.[@auto-isac-atm-white-paper-2025][@auto-isac-about-us-2026]
 

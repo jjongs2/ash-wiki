@@ -11,7 +11,7 @@ verified: 2026-10-13
 
 ISTQB CTFL v4.0.1 강의계획서는 탐색적 테스트를 [[error-guessing|오류 추정]], [[checklist-based-testing|체크리스트 기반 테스트]]와 함께 [[software-testing#테스트 기법의 분류|경험 기반 기법]]으로 다룬다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 탐색적 테스트를 테스트 접근법(test approach)으로 정의한다.[@istqb-glossary-exploratory-testing-2026]
 
-ISO/IEC/IEEE 29119-1:2022는 탐색적 테스트를 경험 기반 테스트(experience-based testing)의 하나로 정의하고, 경험 기반 테스트를 테스터의 경험으로 [[test-case|테스트 케이스]]를 만드는 테스트 케이스 설계 기법의 갈래로 정의한다. 한편 이 표준은 테스트 설계 기법 정의의 둘째 주석에서, 탐색적 테스트 같은 [[model-based-testing#테스트 설계 기법과의 관계|테스트 실천]](test practice)은 ISO/IEC/IEEE 29119 시리즈의 정의로는 테스트 설계 기법이 아니라고 제시한다. 까닭으로는 테스트 실천이 스스로 테스트 케이스를 만드는 방법을 주지 않고 테스트 설계 기법을 써서 만든다는 점을 든다.[@iso-iec-ieee-29119-1-obp-2022]
+ISO/IEC/IEEE 29119-1:2022는 탐색적 테스트를 경험 기반 테스트(experience-based testing)의 하나로 정의하고, 경험 기반 테스트를 테스터의 경험으로 [[test-case|테스트 케이스]]를 만드는 테스트 케이스 설계 기법의 갈래로 정의한다. 한편 이 표준은 테스트 설계 기법 정의의 둘째 주석에서, 탐색적 테스트 같은 [[model-based-testing#테스트 설계 기법과의 관계|테스트 실천]](test practice)은 ISO/IEC/IEEE 29119 시리즈의 정의로는 테스트 설계 기법이 아니라고 제시한다.[@iso-iec-ieee-29119-1-obp-2022]
 
 ## 쓰임
 
