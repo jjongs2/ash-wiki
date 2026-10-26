@@ -6,14 +6,16 @@ import { parseArgs } from "node:util"
 import handler from "serve-handler"
 import { chromium, type Browser, type Page } from "playwright"
 import { frameWidth } from "../check-diff/diagram-width"
-import { inTopic, loadTree } from "../check-content/tree"
+import { loadTree } from "../check-content/tree"
 import { repoRoot } from "../repo"
 import { frameDrift, type FrameMeasure } from "./frame"
+import { topicSlugs } from "./targets"
 import { diagramSources, readerText, svgLines } from "./text"
 
 // Reader Testing의 캡처(.claude/skills/reader-testing). 페이지마다 데스크톱 폭과 390px 폭 스크린샷,
 // 독자 텍스트를 받고, 본문이 위키링크로 가리키는 페이지는 독자 텍스트만 받는다.
 // 사용: npm run reader-capture -- --out <폴더> (--topic <태그> | <슬러그>...) [--site <빌드 폴더>]
+//       npm run --silent reader-capture -- --list --topic <태그>  (캡처하지 않고 대상 슬러그를 한 줄에 하나씩 찍는다)
 // --site가 없으면 배포 사이트에서 받는다. --site는 로컬 빌드 폴더를 이 프로세스 안의 서버로 띄워 받는다. 따로 띄운 서버는 셸이 끝나면 죽기 때문이다.
 const { values, positionals } = parseArgs({
   allowPositionals: true,
@@ -21,8 +23,14 @@ const { values, positionals } = parseArgs({
     out: { type: "string" },
     topic: { type: "string" },
     site: { type: "string" },
+    list: { type: "boolean" },
   },
 })
+if (values.list) {
+  if (values.topic === undefined) throw new Error("--list에는 --topic <태그>가 필요하다")
+  console.log(topicSlugs(loadTree(repoRoot), values.topic).join("\n"))
+  process.exit()
+}
 if (values.out === undefined) throw new Error("--out <폴더>가 필요하다")
 const out = path.resolve(values.out)
 
@@ -42,11 +50,7 @@ function targetSlugs(): string[] {
     if (positionals.length === 0) throw new Error("--topic <태그>나 슬러그 목록이 필요하다")
     return positionals
   }
-  const slugs = loadTree(repoRoot)
-    .pages.filter((page) => page.kind === "page" && inTopic(page, values.topic))
-    .map((page) => page.name)
-  if (slugs.length === 0) throw new Error(`${values.topic} 태그를 단 페이지가 없다`)
-  return slugs
+  return topicSlugs(loadTree(repoRoot), values.topic)
 }
 
 // 배포 사이트 주소. quartz.config.yaml의 baseUrl이다.
