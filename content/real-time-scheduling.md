@@ -11,7 +11,7 @@ Mok은 주기적이거나 [[periodic-task-model#주기 태스크와 sporadic 태
 
 **선점형 스케줄링**에서는 우선순위가 더 높은 [[task|태스크]]가 준비되면, 실행 중인 태스크가 스스로 프로세서를 내놓지 않아도 실행 도중에 멈추고 그 태스크로 바뀐다.[@osek-os-2-2-3-2005][@microchip-an2751-2018]
 
-[[osek-os|OSEK/VDX OS]] 2.2.3 명세는 명시적으로 정한 시스템 서비스에서만 [[osek-task|태스크]]를 바꾸는 방식을 **비선점 스케줄링**이라 정의한다. 그 서비스는 태스크가 끝날 때(`TerminateTask`, `ChainTask`), 스케줄러를 부를 때(`Schedule`), 대기 상태로 들 때(`WaitEvent`)이고, 그 밖에는 우선순위가 더 높은 태스크가 준비되어도 다음 재스케줄 지점까지 태스크를 바꾸지 않는다. 이 명세는 완전 선점, 비선점, 둘을 섞은 mixed preemptive 스케줄링을 정의한다.[@osek-os-2-2-3-2005]
+[[osek-os|OSEK/VDX OS]] 2.2.3 명세는 명시적으로 정한 시스템 서비스에서만 [[osek-task|태스크]]를 바꾸는 방식을 **비선점 스케줄링**이라 정의한다. 그 서비스는 태스크를 끝내는 `TerminateTask`와 `ChainTask`, 스케줄러를 부르는 `Schedule`, 대기 상태로 드는 `WaitEvent`이다. 그 밖에는 우선순위가 더 높은 태스크가 준비되어도 이 서비스가 불릴 때까지 태스크를 바꾸지 않는다. 이 명세는 완전 선점, 비선점, 둘을 섞은 mixed preemptive 스케줄링을 정의한다.[@osek-os-2-2-3-2005]
 
 ![[diagrams/preemptive-nonpreemptive-scheduling.svg]]
 

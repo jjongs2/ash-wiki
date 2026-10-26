@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-[[autosar|AUTOSAR]]의 Timing Analysis and Design 보고서에 따르면 **스케줄링 분석**(scheduling analysis)은 특정 스케줄러의 모델에 core execution time과 애플리케이션 모델을 넣어 보장된 최악 응답 시간을 구하고, 이로써 주어진 조건에서 [[deadline|마감 시한]]을 놓치는지 확인하는 분석이다. 새 구성을 구현하지 않고도 검증할 수 있다. core execution time은 [[task|태스크]]가 선점되거나 기다린 시간을 뺀 실행 시간이다.[@autosar-fo-tr-timinganalysis-2025]
+[[autosar|AUTOSAR]]의 Timing Analysis and Design 보고서에 따르면 **스케줄링 분석**(scheduling analysis)은 특정 스케줄러의 모델에 core execution time과 애플리케이션 모델을 넣어 보장된 최악 응답 시간을 구하고, 이로써 주어진 조건에서 [[deadline|마감 시한]]을 놓치는지 확인하는 분석이다. 이 분석으로 새 구성을 구현하지 않고도 검증할 수 있다. core execution time은 [[task|태스크]]가 선점되거나 기다린 시간을 뺀 실행 시간이다.[@autosar-fo-tr-timinganalysis-2025]
 
 Liu와 Layland는 마감 시한, 곧 같은 태스크의 다음 요청 시각이 지나도록 끝나지 않은 요청을 overflow라 하고, overflow가 한 번도 생기지 않게 태스크를 스케줄하는 스케줄링 방식을 feasible이라 불렀다.[@liu-hard-real-time-1973]
 

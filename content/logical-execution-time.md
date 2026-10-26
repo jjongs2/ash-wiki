@@ -43,4 +43,4 @@ ExecutionOrderConstraint가 executable entity를 묶는 그룹(EOCExecutableEnti
 
 BET(Bounded Execution Time) 모델에서 [[deadline|마감 시한]]은 상한일 뿐이지만, LET에서 구간의 끝은 출력 시점의 상한이자 논리적 하한이다.[@kirsch-logical-execution-time-2012]
 
-SL-LET은 지연을 줄이는 최적화를 하지 않으면, BET 모델에서는 드물게 나타나는 최악 지연을 보통의 경우로 만든다. 입력을 주는 태스크가 쓰는 시점에 맞춰 읽는 태스크의 읽기를 오프셋만큼 늦추는 LET의 최적화는 SL-LET에도 쓸 수 있다.[@gemlau-system-level-let-2021]
+SL-LET은 지연을 줄이는 최적화를 하지 않으면, BET 모델에서는 드물게 나타나는 최악 지연을 보통의 경우로 만든다. 읽는 태스크의 읽기를 오프셋만큼 늦춰, 입력을 주는 태스크가 쓰는 시점에 맞추는 LET의 최적화는 SL-LET에도 쓸 수 있다.[@gemlau-system-level-let-2021]
