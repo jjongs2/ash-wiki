@@ -17,9 +17,9 @@ verified: 2026-09-30
 
 data element가 큐에 쌓이는지(queued)는 data element의 swImplPolicy가 정한다. swImplPolicy가 queued인 data element는 queued com spec을, 그 밖의 data element는 nonqueued com spec을 쓴다. queued가 아닌 data element는 last-is-best 의미를 따른다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
-[[autosar-rte|RTE]]는 queued가 아닌 data element를 receiver 쪽 한 벌에 버퍼링한다. 새 값이 오면 이전 값은 읽혔는지와 상관없이 버리고, 읽기는 늘 마지막으로 받은 값을 돌려준다.[@autosar-cp-sws-rte-2025] data element를 아직 받지 않았는데 값을 읽으면 com spec의 초기값(initValue)을 쓴다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+[[autosar-rte|RTE]]는 receiver 쪽에서 queued가 아닌 data element를 그 인스턴스마다 한 벌씩 버퍼링한다. 새 값이 오면 이전 값은 읽혔는지와 상관없이 버리고, 읽기는 늘 마지막으로 받은 값을 돌려준다.[@autosar-cp-sws-rte-2025] data element를 아직 받지 않았는데 값을 읽으면 com spec의 초기값(initValue)을 쓴다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
-RTE는 receive 포트에서 queued data element마다 수신 큐를 둔다. 값은 큐의 끝에 넣고 앞에서부터 꺼내 읽는 FIFO다. 큐 길이는 [[autosar-methodology#ECU 설정|ECU 설정 파라미터]] `RteQueuedReceiverQueueLength`로 정하고, 이 값이 없으면 receiver com spec의 queueLength로 정한다. 큐가 가득 찼을 때 새 값이 오면 RTE는 그 값을 버리고 오류 플래그를 세운다.[@autosar-cp-sws-rte-2025]
+RTE는 receive 포트에서 queued data element마다 수신 큐를 둔다. 값은 큐의 끝에 넣고 앞에서부터 꺼내 읽는 FIFO다. 큐 길이는 [[autosar-methodology#ECU 설정|ECU 설정 파라미터]] `RteQueuedReceiverQueueLength`로 정하고, 이 값이 없으면 receiver com spec의 queueLength로 정한다. 큐가 가득 찼을 때 새 값이 오면 RTE는 새로 받은 값을 버리고 오류 플래그를 세운다.[@autosar-cp-sws-rte-2025]
 
 ![[diagrams/sender-receiver-last-is-best-queue.svg]]
 
@@ -27,7 +27,7 @@ RTE는 receive 포트에서 queued data element마다 수신 큐를 둔다. 값�
 
 ## 명시적 접근과 암묵적 접근
 
-**명시적 접근**은 runnable이 API를 직접 불러 data element를 보내거나 받는 방식으로, 언제 몇 번 보내고 받을지를 runnable이 정한다. queued가 아닌 data element는 `Rte_Write`로 보내고 `Rte_Read`로 읽으며, queued인 data element는 `Rte_Send`로 보내고 `Rte_Receive`로 받는다.[@autosar-cp-sws-rte-2025]
+**명시적 접근**은 runnable이 API를 직접 불러 data element를 보내거나 받는 방식으로, 언제 몇 번 보내고 받을지를 runnable이 정한다. queued가 아닌 data element는 `Rte_Write`로 보내고 `Rte_Read`로 읽으며, queued인 data element는 `Rte_Send`로 보내고 `Rte_Receive`로 받는다. `Rte_DRead`도 queued가 아닌 data element를 명시적으로 읽는 API로, 받은 데이터를 인자가 아니라 반환값으로 돌려주며 primitive 데이터 타입에만 생성된다.[@autosar-cp-sws-rte-2025]
 
 **암묵적 접근**은 `Rte_IRead`로 읽고 `Rte_IWrite`로 쓰는 방식이다. 읽을 때 RTE는 runnable이 시작되기 전에 데이터를 읽어 복사본으로 넘기므로, runnable이 실행되는 동안 그 값은 바뀌지 않는다. 쓴 값은 runnable이 끝난 뒤에 RTE가 보내며, 그보다 먼저 다른 쪽에 보이지 않는다.[@autosar-cp-sws-rte-2025] 암묵적 읽기는 swImplPolicy가 queued인 data element에 쓸 수 없다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 

@@ -28,7 +28,7 @@
     <text x="425" y="115">Service Provider</text>
     <text x="425" y="132">Skeleton</text>
   </g>
-  <text x="330" y="202.5" text-anchor="middle" font-size="13" fill="var(--text, #727981)">SOME/IP · DDS · IPC · Signal PDU · 시그널 기반 정적</text>
+  <text x="330" y="202.5" text-anchor="middle" font-size="13" fill="var(--text, #727981)">SOME/IP · DDS · IPC · 시그널 기반</text>
 
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
     <line x1="235" y1="56" x2="235" y2="94" />

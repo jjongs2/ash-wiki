@@ -11,9 +11,11 @@ verified: 2026-09-30
 
 ## 시그널과 I-PDU
 
-시그널이 I-PDU에서 차지하는 자리는 시작 비트 위치(`ComBitPosition`), 비트 크기(`ComBitSize`), 네트워크 표현의 [[byte-order|바이트 순서]](`ComSignalEndianness`)로 설정한다. AUTOSAR COM은 시그널 그룹도 다룬다. 사용자가 복합 데이터 타입을 쪼갠 여러 시그널을 한 시그널 그룹으로 묶으면, AUTOSAR COM은 이 시그널들을 일관되게 다룬다.[@autosar-cp-sws-com-2025]
+시그널이 I-PDU에서 차지하는 자리는 시작 비트 위치(`ComBitPosition`), 비트 크기(`ComBitSize`), 네트워크 표현의 [[byte-order|바이트 순서]](`ComSignalEndianness`)로 설정한다.[@autosar-cp-sws-com-2025]
 
 ![[diagrams/com-signal-ipdu-layout.svg]]
+
+AUTOSAR COM은 시그널 그룹도 다룬다. 사용자가 복합 데이터 타입을 쪼갠 여러 시그널을 한 시그널 그룹으로 묶으면, AUTOSAR COM은 이 시그널들을 한 덩어리로 일관되게 주고받는다. 시그널 그룹에 든 시그널을 **그룹 시그널**이라 한다. 송신 쪽에서 AUTOSAR COM은 그룹 시그널의 값을 shadow buffer에 모아 두었다가, `Com_SendSignalGroup`이 불리면 shadow buffer를 I-PDU 버퍼로 원자적으로 복사한다.[@autosar-cp-sws-com-2025]
 
 AUTOSAR COM은 송신할 I-PDU를 PduR에 넘기고, 받은 I-PDU는 PduR에게서 통지받는다.[@autosar-cp-sws-com-2025]
 
@@ -21,22 +23,22 @@ AUTOSAR COM은 송신할 I-PDU를 PduR에 넘기고, 받은 I-PDU는 PduR에게�
 
 전송 속성(`ComTransferProperty`)은 시그널과 시그널 그룹마다 두며, 시그널을 쓸 때 I-PDU의 송신을 일으킬 수 있는지 정한다. 실제로 송신이 일어나는지는 I-PDU의 전송 모드에도 달려 있다.[@autosar-cp-sws-com-2025]
 
-| 전송 속성                                | 시그널을 쓸 때                                                                             |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `PENDING`                                | 송신을 일으키지 않는다.                                                                    |
-| `TRIGGERED`                              | I-PDU의 전송 모드가 `DIRECT`나 `MIXED`이면 송신을 일으키고, 반복 횟수 설정만큼 되풀이한다. |
-| `TRIGGERED_ON_CHANGE`                    | 새 값이 저장된 값(마지막으로 보낸 값이나 초깃값)과 길이나 값이 다를 때만 송신을 일으킨다.  |
-| `TRIGGERED_WITHOUT_REPETITION`           | `TRIGGERED`와 조건이 같지만 반복 없이 한 번만 보낸다.                                      |
-| `TRIGGERED_ON_CHANGE_WITHOUT_REPETITION` | `TRIGGERED_ON_CHANGE`와 조건이 같지만 반복 없이 한 번만 보낸다.                            |
+| 전송 속성                                | 시그널을 쓸 때                                                                                                |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `PENDING`                                | 송신을 일으키지 않는다.                                                                                       |
+| `TRIGGERED`                              | I-PDU의 전송 모드가 `DIRECT`나 `MIXED`이면 송신을 일으키고, 반복 횟수 설정만큼 되풀이한다.                    |
+| `TRIGGERED_ON_CHANGE`                    | `TRIGGERED`와 같되, 새 값이 저장된 값(마지막으로 보낸 값이나 초깃값)과 길이나 값이 다를 때만 송신을 일으킨다. |
+| `TRIGGERED_WITHOUT_REPETITION`           | `TRIGGERED`와 조건이 같지만 반복 없이 한 번만 보낸다.                                                         |
+| `TRIGGERED_ON_CHANGE_WITHOUT_REPETITION` | `TRIGGERED_ON_CHANGE`와 조건이 같지만 반복 없이 한 번만 보낸다.                                               |
 
 I-PDU마다 전송 모드(`ComTxModeMode`)를 둔다.[@autosar-cp-sws-com-2025]
 
-| 전송 모드  | 보내는 때                                                                                |
-| ---------- | ---------------------------------------------------------------------------------------- |
-| `PERIODIC` | 설정한 주기마다 보낸다.                                                                  |
-| `DIRECT`   | 시그널이 송신을 일으킬 때 보낸다.                                                        |
-| `MIXED`    | 주기 송신과 이벤트 송신을 함께 쓴다.                                                     |
-| `NONE`     | AUTOSAR COM이 스스로 송신을 일으키지 않고, `Com_TriggerTransmit`로 요청받을 때만 보낸다. |
+| 전송 모드  | 보내는 때                                                                                                        |
+| ---------- | ---------------------------------------------------------------------------------------------------------------- |
+| `PERIODIC` | 설정한 주기마다 보낸다.                                                                                          |
+| `DIRECT`   | 시그널이 송신을 일으킬 때 보낸다.                                                                                |
+| `MIXED`    | 주기 송신과 이벤트 송신을 함께 쓴다.                                                                             |
+| `NONE`     | AUTOSAR COM이 스스로 송신을 일으키지 않고, 아래 모듈이 콜백 `Com_TriggerTransmit`로 데이터를 요청할 때만 보낸다. |
 
 I-PDU마다 전송 모드를 두 벌(`ComTxModeTrue`, `ComTxModeFalse`) 정해 둘 수 있다. 어느 벌을 쓸지는 I-PDU에 매핑된 시그널 값으로 계산하는 전송 모드 선택자(TMS, Transmission Mode Selector)가 참인지 거짓인지로 고른다.[@autosar-cp-sws-com-2025]
 

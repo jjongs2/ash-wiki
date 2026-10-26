@@ -23,11 +23,11 @@ AUTOSAR OS는 기능을 SC1부터 SC4까지 네 scalability class로 묶고, OS�
 | timing protection                                                                    | —   | 예  | —   | 예  |
 | [[autosar-schedule-table#동기화\|전역 시간·동기화]] 지원                             | —   | 예  | —   | 예  |
 | memory protection                                                                    | —   | —   | 예  | 예  |
-| [[autosar-os-application\|OS-Application]]                                           | —   | —   | 예  | 예  |
+| [[autosar-os-application\|OS-Application]](SC1·SC2는 멀티코어에서만)                 | 예  | 예  | 예  | 예  |
 | service protection                                                                   | —   | —   | 예  | 예  |
 | `CallTrustedFunction`([[autosar-os-application#Trusted function\|trusted function]]) | —   | —   | 예  | 예  |
 
-SC2와 SC3은 서로를 포함하지 않는다. SC2는 SC1에 timing protection을, SC3은 SC1에 memory protection을 더한 갈래이며, SC4는 두 갈래를 아우른다.[@autosar-cp-sws-os-2025][@autosar-cp-rs-os-2025]
+SC2와 SC3은 서로를 포함하지 않는다. SC2는 SC1에 timing protection, protection hook, 전역 시간·동기화 지원을 더한 갈래다. SC3은 SC1에 memory protection, protection hook, service protection, `CallTrustedFunction`을 더하고 단일 코어에서는 OS-Application도 더한 갈래다. SC4는 두 갈래를 아우른다.[@autosar-cp-sws-os-2025][@autosar-cp-rs-os-2025]
 
 ![[diagrams/autosar-os-scalability-classes.svg]]
 
@@ -39,11 +39,11 @@ OSEK OS는 [[osek-alarm|counter]]를 직접 다루는 표준 API를 두지 않�
 
 ## Stack monitoring
 
-**Stack monitoring**은 태스크와 [[osek-isr#Category 2|category 2 ISR]]이 정해 둔 스택 사용량을 넘었는지 검사하는 기능이다. 검사는 [[context-switch|context switch]] 때 하므로, 넘침이 일어난 뒤 그것을 찾기까지 시간이 꽤 걸릴 수 있다. 넘침을 찾으면 OS는 protection hook을 E_OS_STACKFAULT로 부르고, protection hook이 없으면 E_OS_STACKFAULT로 `ShutdownOS`를 부른다. MPU(Memory Protection Unit)를 쓰는 SC3·SC4 시스템에서는 stack monitoring이 찾기 전에 스택 넘침이 메모리 예외를 일으킬 수 있다.[@autosar-cp-sws-os-2025]
+**Stack monitoring**은 태스크와 [[osek-isr#Category 2|category 2 ISR]]이 정해 둔 스택 사용량을 넘었는지 검사하는 기능이다. 검사는 [[context-switch|context switch]] 때 하므로, 넘침이 일어난 뒤 그것을 찾기까지 시간이 꽤 걸릴 수 있다. 넘침을 찾으면 OS는 protection hook을 E_OS_STACKFAULT로 부르고, protection hook이 없으면 E_OS_STACKFAULT로 `ShutdownOS`를 부른다. MPU(Memory Protection Unit)를 쓰는 SC3·SC4 시스템에서는 스택에 건 memory protection이 stack monitoring보다 먼저 스택 넘침을 메모리 접근 위반으로 찾을 수 있고, 이때 OS는 protection hook을 E_OS_PROTECTION_MEMORY로 부른다.[@autosar-cp-sws-os-2025]
 
 ## Service protection
 
-**Service protection**은 OS-Application이 OS 서비스를 잘못 불러 OS를 망가뜨리지 않게 막는 기능이다. OS는 서비스마다 부를 수 있는 context(태스크, [[osek-isr#Category 1|category 1]]·2 ISR, 각 [[osek-hook-routine|hook]], 알람 callback 등)를 정해 둔다. OSEK OS 서비스는 이미 잘못된 객체에 E_OS_ID를, 범위 밖 값에 E_OS_VALUE를 돌려주고, AUTOSAR OS는 이를 service protection의 바탕으로 쓴다.[@autosar-cp-sws-os-2025]
+**Service protection**은 OS-Application이 OS 서비스를 잘못 불러 OS를 망가뜨리지 않게 막는 기능이다. OS는 서비스마다 부를 수 있는 context(태스크, [[osek-isr#Category 1|category 1]]·2 ISR, 각 [[osek-hook-routine|hook]], 알람 callback 등)를 정해 둔다. AUTOSAR OS는 OSEK OS 서비스가 돌려주는 상태 코드를 service protection의 바탕으로 쓰므로, service protection은 [[osek-hook-routine#Standard status와 extended status|extended status]]에서만 적용된다. 아래 표의 처리는 AUTOSAR OS가 extended status에 더해 요구하는 것이다.[@autosar-cp-sws-os-2025]
 
 잘못된 사용마다 OS가 하는 일은 다음과 같다.[@autosar-cp-sws-os-2025]
 
@@ -71,13 +71,13 @@ OSEK OS는 [[osek-alarm|counter]]를 직접 다루는 표준 API를 두지 않�
 
 반환값은 OS가 이어서 할 일을 정한다.[@autosar-cp-sws-os-2025]
 
-| 반환값                   | OS의 처리                                                                                                             |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| PRO_IGNORE               | 요청된 동작을 그대로 수행한다. E_OS_PROTECTION_ARRIVAL일 때만 유효하고, 다른 오류에서 돌려주면 `ShutdownOS`를 부른다. |
-| PRO_PREVENT_ARRIVAL_RATE | E_OS_PROTECTION_ARRIVAL일 때, 그 이른 도착을 일으킨 동작을 수행하지 않는다.                                           |
-| PRO_TERMINATETASKISR     | 오류를 낸 태스크나 category 2 ISR을 강제로 끝낸다.                                                                    |
-| PRO_TERMINATEAPPL        | 오류를 낸 태스크나 ISR이 속한 OS-Application을 강제로 끝낸다.                                                         |
-| PRO_SHUTDOWN             | `ShutdownOS`를 불러 OS를 멈춘다.                                                                                      |
+| 반환값                   | OS의 처리                                                                                                                                       |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| PRO_IGNORE               | 이른 도착으로 막았던 활성화나 release를 그대로 수행한다. E_OS_PROTECTION_ARRIVAL일 때만 유효하고, 다른 오류에서 돌려주면 `ShutdownOS`를 부른다. |
+| PRO_PREVENT_ARRIVAL_RATE | E_OS_PROTECTION_ARRIVAL일 때, 그 이른 도착을 일으킨 동작을 수행하지 않는다.                                                                     |
+| PRO_TERMINATETASKISR     | 오류를 낸 태스크나 category 2 ISR을 강제로 끝낸다.                                                                                              |
+| PRO_TERMINATEAPPL        | 오류를 낸 태스크나 ISR이 속한 OS-Application을 강제로 끝낸다.                                                                                   |
+| PRO_SHUTDOWN             | `ShutdownOS`를 불러 OS를 멈춘다.                                                                                                                |
 
 protection hook을 두지 않으면 OS는 보호 오류에서 `ShutdownOS`를 부른다.[@autosar-cp-sws-os-2025]
 
@@ -87,7 +87,7 @@ OS는 인터럽트 제어 레지스터, 프로세서 상태 워드, 스택 포�
 
 - [[autosar-os-application#Memory protection|memory protection]]에는 하드웨어 MPU(Memory Protection Unit)가 있어야 한다.
 - timing protection에는 실행 시간과 도착률을 감시할 타이머 하드웨어가 있어야 한다.
-- 보호에는 MCU의 privileged mode와 non-privileged mode가 있어야 한다. OS가 제어하는 레지스터에 쓰는 일로 OS 내부가 망가지지 않게 하려는 것으로, OS-Application이 이 모드로 memory protection 레지스터나 프로세서 상태 워드에 써서 보호를 우회할 수 없어야 한다. privileged mode는 보호받는 OS가 온전히 제어하며, OS 안에서 쓰고 non-trusted OS-Application과 trusted OS-Application 사이에서 제어를 넘기는 데 쓴다.
+- 보호에는 MCU의 privileged mode와 non-privileged mode가 있어야 한다. 두 모드는 OS가 제어하는 레지스터에 쓰는 일로 OS 내부가 망가지지 않게 하고, OS-Application이 memory protection 레지스터나 프로세서 상태 워드에 써서 보호를 우회하지 못하게 하려는 것이다. privileged mode는 보호받는 OS가 온전히 제어하며, OS 안에서 쓰고 non-trusted OS-Application과 trusted OS-Application 사이에서 제어를 넘기는 데 쓴다. 프로세서가 지원하면 trusted OS-Application은 privileged mode에서 실행될 수 있고, non-trusted OS-Application은 non-privileged mode에서 실행된다.
 - 로컬·전역 시간 동기화에는 전역 시간 소스가 있어야 한다.[@autosar-cp-sws-os-2025]
 
 OS는 대개 프로세서의 하드웨어 고장을 감지하지 못하며, 하드웨어가 고장 나면 OS가 올바로 동작한다고 보장할 수 없다. OS의 API는 C 함수 호출이나 매크로로 정의되며, 다른 언어를 쓰면 이 C 인터페이스에 맞춰야 한다. OS는 동적 메모리 관리 서비스를 주지 않는다.[@autosar-cp-sws-os-2025]
@@ -95,6 +95,8 @@ OS는 대개 프로세서의 하드웨어 고장을 감지하지 못하며, 하�
 ## OSEK OS와 달라진 점
 
 알람이 만료될 때 할 수 있는 동작에는 AUTOSAR OS에서 소프트웨어 counter를 올리는 것이 더해졌다.[@autosar-cp-sws-os-2025]
+
+AUTOSAR OS는 OSEK OS 기능의 쓰임을 일부 제한한다. 알람 callback에는 timing protection과 memory protection을 걸기가 너무 비효율적이어서, 알람 callback은 SC1에서만 허용된다. 태스크 사이의 내부 통신은 [[autosar-rte|RTE]]나 [[autosar-com|COM]]이 맡으므로, AUTOSAR OS는 이를 지원하지 않아도 된다.[@autosar-cp-sws-os-2025]
 
 OSEK OS는 스케줄러를 잠그는 resource `RES_SCHEDULER`를 자동으로 만든다.[@osek-os-2-2-3-2005] AUTOSAR OS는 `RES_SCHEDULER`를 다른 resource와 똑같이 다루며 자동으로 만들지 않는다.[@autosar-cp-sws-os-2025]
 

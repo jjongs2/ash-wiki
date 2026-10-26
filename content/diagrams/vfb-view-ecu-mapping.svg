@@ -22,24 +22,31 @@
   <line x1="215" y1="228" x2="215" y2="272" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
   <text x="223" y="254" font-size="12" fill="var(--text, #727981)">ECU에 매핑</text>
 
-  <!-- connector: ECU 사이 -->
+  <!-- RTE: ECU마다 하나 -->
+  <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="30.75" y="380.75" width="98.5" height="24.5" rx="2" />
+    <rect x="170.75" y="380.75" width="228.5" height="24.5" rx="2" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="80" y="397">RTE</text>
+    <text x="275" y="397">RTE</text>
+  </g>
+
+  <!-- connector: ECU 사이, 두 ECU의 RTE를 지난다 -->
   <g stroke="var(--orange, #b0540d)" stroke-width="1.5">
     <line x1="195" y1="78" x2="235" y2="78" />
-    <line x1="120" y1="338" x2="310" y2="338" />
+    <line x1="80" y1="356" x2="80" y2="380" />
+    <line x1="130" y1="393" x2="170" y2="393" />
+    <line x1="330" y1="356" x2="330" y2="380" />
     <line x1="165" y1="508" x2="195" y2="508" />
   </g>
   <!-- connector: ECU 안, RTE를 지난다 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="275" y1="96" x2="275" y2="164" />
     <line x1="195" y1="182" x2="235" y2="182" />
-    <path d="M350 356 V382 M350 406 V424" />
-    <path d="M260 442 H270 M300 442 H310" />
+    <path d="M370 356 V380 M370 406 V424" />
+    <line x1="220" y1="406" x2="220" y2="424" />
     <line x1="165" y1="528" x2="195" y2="528" />
-  </g>
-
-  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
-    <text x="350" y="398">RTE</text>
-    <text x="285" y="446">RTE</text>
   </g>
 
   <!-- SW-C -->

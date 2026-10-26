@@ -49,7 +49,7 @@
     <text x="380" y="138">E_OK</text>
     <text x="550" y="168">송신 요청</text>
     <text x="550" y="194">E_OK</text>
-    <text x="200" y="224">E_OK</text>
+    <text x="200" y="224">E_OK(하나라도 E_OK면)</text>
     <text x="380" y="262">송신 확인</text>
     <text x="550" y="292">마지막 송신 확인</text>
     <text x="200" y="322">송신 확인</text>

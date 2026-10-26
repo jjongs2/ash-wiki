@@ -25,7 +25,7 @@
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="395" y="59.5">Platform Health Management</text>
     <text x="395" y="74.5">Execution Management</text>
-    <text x="395" y="89.5">State Management</text>
+    <text x="395" y="89.5">State Management 안의 오류</text>
     <text x="110" y="210">입력값과 현재 상태로 정한다</text>
   </g>
   <g font-size="12" fill="var(--text, #727981)">

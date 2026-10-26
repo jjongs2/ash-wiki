@@ -22,9 +22,9 @@ Csm이 처리하는 단위를 **job**이라 하며, job은 설정한 암호 prim
 
 ## Crypto Interface와 Crypto Driver
 
-**CryIf**는 Csm과 그 아래의 Crypto Driver·소프트웨어 기반 CDD(Complex Driver) 사이에 놓여 Csm에 Crypto Driver의 서비스를 내놓는 인터페이스다. CryIf는 [[hardware-security-module|HSM]], SHE(Secure Hardware Extension), 소프트웨어 기반 CDD 같은 여러 암호 하드웨어·소프트웨어 해법을 한 인터페이스로 다루고, 그 사이의 매핑을 관리해 Csm이 칩 안팎의 여러 해법을 쓸 수 있게 한다. CryIf는 Csm을 거쳐 오는 위 BSW의 암호 연산 요청이 지나는 유일한 인터페이스이자 Crypto Driver의 유일한 사용자다. 하드웨어 접근과 소프트웨어 접근의 차이를 감싸므로, CryIf의 구현은 Crypto Driver가 하드웨어로 구현되든 소프트웨어로 구현되든 그에 매이지 않는다.[@autosar-cp-sws-cryptointerface-2025]
+**CryIf**는 Csm과 그 아래의 Crypto Driver·소프트웨어 기반 CDD(Complex Driver) 사이에 놓여 Csm에 Crypto Driver의 서비스를 내놓는 인터페이스다. CryIf는 [[hardware-security-module|HSM]], SHE(Security Hardware Extension), 소프트웨어 기반 CDD 같은 여러 암호 하드웨어·소프트웨어 해법을 한 인터페이스로 다룬다. CryIf가 관리하는 매핑으로 Csm은 칩 안팎의 여러 해법을 쓸 수 있다. CryIf 설정은 채널마다 이어질 Crypto Driver Object와, Csm의 키마다 대응할 Crypto Driver의 키를 정한다. CryIf는 Csm을 거쳐 오는 위 BSW의 암호 연산 요청이 지나는 유일한 인터페이스이자 Crypto Driver의 유일한 사용자다. 하드웨어 접근과 소프트웨어 접근의 차이를 감싸므로, CryIf의 구현은 Crypto Driver가 하드웨어로 구현되든 소프트웨어로 구현되든 그에 매이지 않는다.[@autosar-cp-sws-cryptointerface-2025]
 
-**Crypto Driver**는 특정 장치를 위한 드라이버다. Crypto Driver에는 동시에 들어온 요청을 따로 처리할 **Crypto Driver Object**(예: [[symmetric-key-cryptography#AES|AES]] 가속기, 소프트웨어 컴포넌트)를 여럿 둘 수 있고, 하드웨어 객체마다 우선순위에 따라 job을 처리한다. 소프트웨어로 만든 암호 해법(소프트웨어 기반 CDD)도 위 층과 주고받는 인터페이스를 Crypto Driver와 똑같이 둘 수 있다. Crypto Driver Object는 암호 primitive를 하드웨어로도 소프트웨어로도 줄 수 있고, 한 Crypto Driver의 Crypto Driver Object는 기본 [[random-bit-generator|난수 생성기]]를 함께 쓰는 것 말고는 서로 독립이다. Crypto Driver Object마다 작업 공간이 하나뿐이어서, 한 번에 암호 primitive 하나만 수행한다.[@autosar-cp-sws-cryptodriver-2025]
+**Crypto Driver**는 특정 장치를 위한 드라이버다. Crypto Driver에는 동시에 들어온 요청을 따로 처리할 **Crypto Driver Object**(예: [[symmetric-key-cryptography#AES|AES]] 가속기, 소프트웨어 컴포넌트)를 여럿 둘 수 있다. Crypto Driver Object마다 job을 차례로 처리할 큐를 둘 수 있고, 큐는 job마다 설정한 우선순위 순으로 job을 정렬한다. 소프트웨어로 만든 암호 해법(소프트웨어 기반 CDD)도 위 층과 주고받는 인터페이스를 Crypto Driver와 똑같이 둘 수 있다. Crypto Driver Object는 암호 primitive를 하드웨어로도 소프트웨어로도 줄 수 있고, 한 Crypto Driver의 Crypto Driver Object는 기본 [[random-bit-generator|난수 생성기]]를 함께 쓰는 것 말고는 서로 독립이다. Crypto Driver Object마다 작업 공간이 하나뿐이어서, 한 번에 암호 primitive 하나만 수행한다.[@autosar-cp-sws-cryptodriver-2025]
 
 ![[diagrams/autosar-crypto-stack-channel.svg]]
 

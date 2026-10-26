@@ -54,7 +54,8 @@
     <text x="108" y="315">alive 알림을 멈춘다</text>
     <text x="282" y="330" text-anchor="end">kEXPIRED</text>
     <text x="282" y="345" text-anchor="end">RecoveryHandler</text>
-    <text x="358" y="330">watchdog 반응 요청</text>
-    <text x="358" y="345">kSMCanNotHandleRecovery</text>
+    <text x="358" y="315">RecoveryHandler 반환</text>
+    <text x="358" y="330">kSMCanNotHandleRecovery</text>
+    <text x="358" y="345">watchdog 반응 요청</text>
   </g>
 </svg>

@@ -7,7 +7,7 @@ verified: 2026-10-07
 
 AUTOSAR R25-11 Adaptive Platform 설계 설명서는 **Communication Management**(CM)를 분산 실시간 임베디드 환경에서 응용 사이 통신의 모든 측면을 맡는 [[autosar-adaptive-platform|AUTOSAR Adaptive Platform]]의 functional cluster로 정의한다. 통신 상대를 찾고 잇는 실제 메커니즘을 추상화해, 응용 소프트웨어 구현자가 응용 자체의 목적에 집중하게 하려는 것이다.[@autosar-ap-exp-platformdesign-2025]
 
-[[osi-model|OSI 모델]]의 데이터 링크 계층에서 Adaptive Platform의 통신은 [[ieee-802-3|IEEE 802.3]]의 [[ethernet|이더넷]] MAC(Medium Access Control) 프레임을 바탕으로 한다. 물리 계층으로는 [[100base-t1|100BASE-T1]], [[1000base-t1|1000BASE-T1]] 같은 [[automotive-ethernet|차량용 이더넷]] 기술을 쓸 수 있다. [[can-xl|CAN XL]]도 Adaptive Platform의 물리 계층 선택지이지만, 이때 Adaptive Platform은 이더넷 프레임을 CAN XL 네트워크로 터널링하는 것만 지원한다.[@autosar-ap-exp-platformdesign-2025] 머신 안팎의 서비스 지향 통신에서 Communication Management가 맡는 역할은 [[service-oriented-communication#서비스 발견|서비스 지향 통신]]에서 다룬다.
+[[osi-model|OSI 모델]]의 데이터 링크 계층에서 Adaptive Platform의 통신은 [[ieee-802-3|IEEE 802.3]]의 [[ethernet|이더넷]] MAC(Medium Access Control) 프레임을 바탕으로 한다. 물리 계층으로는 [[100base-t1|100BASE-T1]], [[1000base-t1|1000BASE-T1]] 같은 [[automotive-ethernet|차량용 이더넷]] 기술을 쓸 수 있다. [[can-xl|CAN XL]] 네트워크도 Adaptive Platform의 물리 계층 선택지다. 이때 Adaptive Platform은 이더넷 프레임을 CAN XL 네트워크로 터널링하는 것만 지원하므로, Adaptive Platform이 보는 데이터 링크 계층은 그대로 이더넷 MAC 프레임이다.[@autosar-ap-exp-platformdesign-2025] 머신 안팎의 서비스 지향 통신에서 Communication Management가 맡는 역할은 [[service-oriented-communication#서비스 발견|서비스 지향 통신]]에서 다룬다.
 
 ## 서비스
 
@@ -21,9 +21,9 @@ Communication Management는 정의한 서비스를 응용 구현자에게 어떻
 
 Language Binding은 서비스의 Method, Event, Field를 대상 프로그래밍 언어의 기능을 써서 바로 접근할 수 있는 식별자로 옮긴다. 성능과, 대상 언어가 지원하는 만큼의 타입 안전이 주된 목표다. 그래서 대개 서비스 인터페이스 정의를 입력으로 받는 소스 코드 생성기로 구현한다.[@autosar-ap-exp-platformdesign-2025]
 
-Network Binding은 설정한 서비스의 실제 데이터를 어떻게 직렬화해 특정 네트워크에 묶을지 정한다. 생성한 서비스별 레시피를 해석하거나 직렬화 코드를 직접 생성하는 방식으로 구현할 수 있다. Communication Management가 지원하는 Network Binding은 SOME/IP, DDS(Data Distribution Service), IPC(Inter-Process Communication, 그 밖의 사용자 정의 바인딩 포함), 시그널 기반 Network Binding인 Signal PDU(Protocol Data Unit), 시그널 기반 정적 Network Binding이다. 로컬 Service Registry도 Network Binding의 일부다. Language Binding과 Network Binding 사이의 인터페이스는 Communication Management 안의 비공개 인터페이스로 보아, 이를 정하는 규범 명세는 범위 밖이다.[@autosar-ap-exp-platformdesign-2025]
+Network Binding은 설정한 서비스의 실제 데이터를 어떻게 직렬화해 특정 네트워크에 묶을지 정한다. 생성한 서비스별 레시피를 해석하거나 직렬화 코드를 직접 생성하는 방식으로 구현할 수 있다. Communication Management가 지원하는 Network Binding은 SOME/IP, DDS(Data Distribution Service), IPC(Inter-Process Communication, 그 밖의 사용자 정의 바인딩 포함), 시그널 기반 Network Binding이다. 로컬 Service Registry도 Network Binding의 일부다. Language Binding과 Network Binding 사이의 인터페이스는 Communication Management 안의 비공개 인터페이스로 보아, 이를 정하는 규범 명세는 범위 밖이다.[@autosar-ap-exp-platformdesign-2025]
 
-Communication Management는 [[signal-based-communication|시그널 기반 통신]]을 쓰는 [[autosar-classic-platform|Classic Platform]]의 [[autosar-software-component|소프트웨어 컴포넌트]]와 정보를 주고받을 때 시그널 기반 통신과 서비스 지향 통신을 변환한다. 시그널 기반 정보를 Adaptive Platform의 [[autosar-adaptive-platform#Machine과 프로세스|Machine]]에 내놓는 방법으로는 SOME/IP를 쓰는 것, 정적인 것, [[ieee-1722|IEEE 1722]]를 쓰는 것의 세 가지 시그널 기반 Network Binding을 둔다.[@autosar-ap-sws-communicationmanagement-2025] 이 변환은 [[service-oriented-communication#시그널 기반 통신과의 차이|서비스 지향 통신]]에서 다룬다.
+Communication Management는 [[signal-based-communication|시그널 기반 통신]]을 쓰는 [[autosar-classic-platform|Classic Platform]]의 [[autosar-software-component|소프트웨어 컴포넌트]]와 정보를 주고받을 때 시그널 기반 통신과 서비스 지향 통신을 변환한다. 시그널 기반 정보를 Adaptive Platform의 [[autosar-adaptive-platform#Machine과 프로세스|Machine]]에 내놓는 방법으로는 SOME/IP를 쓰는 것, 정적인 것, [[ieee-1722|IEEE 1722]]를 쓰는 것의 세 가지 시그널 기반 Network Binding(Signal2Service)을 둔다.[@autosar-ap-sws-communicationmanagement-2025] 이 변환은 [[service-oriented-communication#시그널 기반 통신과의 차이|서비스 지향 통신]]에서 다룬다.
 
 ## Proxy와 Skeleton
 
@@ -33,7 +33,7 @@ C++ Language Binding의 상위 인터페이스는 AUTOSAR 메타모델의 인터
 
 Proxy는 서비스 Method를 동기로 부르는 메커니즘과 비동기로 부르는 메커니즘을 준다. 동기 호출은 서버가 결과를 돌려줄 때까지 호출자를 막고, 비동기 호출은 부른 함수가 바로 돌아온다. 비동기 호출에서 호출자는 다른 일을 병행하다가, 서버의 반환값이 준비되면 Core Type `ara::core::Future`의 기능으로 결과를 받는다. 클라이언트는 Proxy 클래스를 바로 쓸 수 있지만, C++ 바인딩의 Skeleton은 추상 기반 클래스일 뿐이어서 서비스 구현이 생성된 기반 클래스를 상속해 기능을 구현해야 한다. 서버가 아직 없을 때 클라이언트 개발과 [[unit-testing|단위 테스트]]를 돕는 mock-up 클래스를 생성기가 만들게 설정할 수도 있다.[@autosar-ap-exp-platformdesign-2025]
 
-`ara::com` 인터페이스는 safety-related [[autosar-e2e-protection|E2E 보호]] 통신용 Proxy와 Skeleton도 줄 수 있다. 이 인터페이스는 E2E 보호를 켜든 끄든 응용과의 호환이 보장되게 설계됐다.[@autosar-ap-exp-platformdesign-2025]
+Communication Management의 API인 `ara::com`의 인터페이스는 safety-related [[autosar-e2e-protection|E2E 보호]] 통신용 Proxy와 Skeleton도 줄 수 있다. 이 인터페이스는 E2E 보호를 켜든 끄든 응용과의 호환이 보장되게 설계됐다.[@autosar-ap-exp-platformdesign-2025][@autosar-ap-sws-communicationmanagement-2025]
 
 ## 정적 구성과 동적 구성
 

@@ -27,7 +27,7 @@ IoHwAb가 SW-C에 주는 것은 [[autosar-layered-architecture#인터페이스|A
 
 ## ECU마다 다른 구현
 
-AUTOSAR는 IoHwAb 모듈을 표준화하지 않고, 기능 인터페이스를 구현하는 지침만 둔다. IoHwAb는 SW-C의 요구를 특정 MCAL 구현이 가진 기능에 맞춰야 하므로 언제나 ECU마다 따로 구현한다. ECU 신호라는 개념은 하드웨어 플랫폼을 서로 바꿔 쓸 수 있게 하려고 둔 것이다.[@autosar-cp-sws-iohardwareabstraction-2025] 신호마다 고유한 기호 이름을 정적으로 설정할 수 있어야 하는 것도, 하드웨어 할당이 바뀌어도 위 계층은 바뀌지 않게 하려는 것이다.[@autosar-cp-rs-iohwabstraction-2025] 예를 들어 출력 전력단 드라이버가 여러 MCAL 드라이버와 통신 핸들러를 불러 출력을 다루어도, IoHwAb의 신호 추상화는 이 출력들을 모두 포트에 매핑된 신호로 SW-C에 보인다.[@autosar-cp-sws-iohardwareabstraction-2025]
+IoHwAb 규격은 IoHwAb를 모듈 하나로든 모듈 그룹으로든 표준화하지 않고, 다른 모듈과의 기능 인터페이스를 구현하는 지침만 둔다. IoHwAb는 SW-C의 요구를 그 ECU에 쓰인 MCAL 구현이 가진 기능에 맞춰야 하므로 언제나 ECU마다 따로 구현한다. ECU 신호라는 개념은 하드웨어 플랫폼을 서로 바꿔 쓸 수 있게 하려고 둔 것이다.[@autosar-cp-sws-iohardwareabstraction-2025] 신호마다 고유한 기호 이름을 정적으로 설정할 수 있어야 하는 것도, 하드웨어 할당이 바뀌어도 위 계층은 바뀌지 않게 하려는 것이다.[@autosar-cp-rs-iohwabstraction-2025] 예를 들어 출력 전력단 드라이버가 여러 MCAL 드라이버와 통신 핸들러를 불러 출력을 다루어도, IoHwAb의 신호 추상화는 이 출력들을 모두 포트에 매핑된 신호로 SW-C에 보인다.[@autosar-cp-sws-iohardwareabstraction-2025]
 
 ## 드라이버와 notification
 

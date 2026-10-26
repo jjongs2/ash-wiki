@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 ## Free running counter와 compare threshold
 
-AUTOSAR R25-11의 OCU Driver 규격은 [[microcontroller-abstraction-layer#Channel, channel group, port|OCU channel]]을 free running counter와 compare threshold 두 요소로 둔다. free running counter는 최솟값부터 최댓값까지 센 뒤 저절로 최솟값부터 다시 세며, 최댓값부터 최솟값까지 거꾸로 세는 counter도 이 정의에 든다. OCU는 counter가 한 단위 늘 때마다 counter 값을 threshold와 견주고, 둘이 같으면 설정한 동작을 한다.[@autosar-cp-sws-ocudriver-2025]
+AUTOSAR R25-11의 OCU Driver 규격은 [[microcontroller-abstraction-layer#Channel, channel group, port|OCU channel]]을 free running counter와 compare threshold 두 요소로 둔다. free running counter는 최솟값부터 최댓값까지 센 뒤 저절로 최솟값부터 다시 세며, 최댓값부터 최솟값까지 거꾸로 세는 counter도 이 정의에 든다. OCU는 counter가 한 단위 늘 때마다 counter 값을 threshold와 견주고, 둘이 같으면 설정한 동작을 한다. 규격은 견주는 때를 counter가 늘 때로만 정하며, 거꾸로 세는 counter에서 견주는 때는 따로 정하지 않는다.[@autosar-cp-sws-ocudriver-2025]
 
 ![[diagrams/ocu-counter-threshold-match.svg]]
 
@@ -19,7 +19,7 @@ AUTOSAR R25-11의 OCU Driver 규격은 [[microcontroller-abstraction-layer#Chann
 
 OCU Driver는 threshold를 두 방식으로 정한다.[@autosar-cp-sws-ocudriver-2025]
 
-- **절대 threshold**: `Ocu_SetAbsoluteThreshold`는 threshold를 주어진 값 그대로 정한다. 호출자가 함께 넘기는 참조값에서 새 threshold까지의 구간(reference interval)을 보고, 이 구간 안에서 일치가 일어나거나 이미 일어났으면 OCU_CM_IN_REF_INTERVAL을, 일어나지 않으면 OCU_CM_OUT_REF_INTERVAL을 돌려준다.
+- **절대 threshold**: `Ocu_SetAbsoluteThreshold`는 threshold를 주어진 값 그대로 정한다. 호출자가 함께 넘기는 참조값부터 새 threshold까지 counter가 지나는 구간(reference interval)을 본다. 이 구간은 counter가 최댓값을 지나 최솟값으로 되돌아가는 경우도 셈에 넣는다. 이 구간 안에서 일치가 일어나거나 이미 일어났으면 OCU_CM_IN_REF_INTERVAL을, 일어나지 않으면 OCU_CM_OUT_REF_INTERVAL을 돌려준다.
 - **상대 threshold**: `Ocu_SetRelativeThreshold`는 호출하는 순간의 counter 값 $C$와 주어진 값 $R$로 threshold를 $C + R$로 정하고, 반환값은 절대 threshold와 같은 방식으로 준다.[@autosar-cp-sws-ocudriver-2025]
 
 ## 일치 때 동작

@@ -25,7 +25,7 @@ UCM이 맡는 일은 아래와 같다.[@autosar-ap-sws-updateandconfigurationman
 
 UCM은 Adaptive Platform의 소프트웨어를 [[autosar-software-cluster#Adaptive Platform의 Software Cluster와의 차이|Software Cluster]] 단위로 관리한다. Software Cluster는 한 번에 통째로 갱신할 수 있는 소프트웨어 단위가 될 수 있고, UCM은 Software Cluster마다 버전을 보고한다. UCM이 처리하는 Software Package는 정확히 한 Software Cluster를 가리키고, 그 Software Cluster를 더할지, 갱신할지, 지울지를 담는다.[@autosar-ap-exp-platformdesign-2025]
 
-UCM은 설정 관리를 위한 인터페이스를 패키지 관리 서비스 인터페이스와 따로 두지 않고, 갱신과 설정 관리를 이 인터페이스 하나로 묶는다. 그래서 설정 파라미터 하나를 바꾸더라도 Software Package를 만들어 처리해야 하고, Software Cluster의 버전이 새로 생긴다. 소프트웨어 버전을 대개 바꾸지 않는 calibration이나 variant coding 같은 쓰임새는 지원하지 않는다.[@autosar-ap-exp-platformdesign-2025]
+UCM은 설정 관리를 위한 인터페이스를 패키지 관리 서비스 인터페이스와 따로 두지 않고, 갱신과 설정 관리를 이 인터페이스 하나로 묶는다. 그래서 설정 파라미터 하나를 바꾸더라도 Software Package를 만들어 처리해야 하고, Software Cluster의 버전이 새로 생긴다. calibration 데이터를 바꿀 때도 버전이 새로 생기므로, 대개 소프트웨어 버전을 바꾸지 않는 calibration이나 variant coding 같은 쓰임새는 지원하지 않는다.[@autosar-ap-exp-platformdesign-2025]
 
 ## 패키지
 
@@ -38,20 +38,22 @@ OEM 백엔드가 여러 공급자의 패키지를 이해할 수 있도록 벤더
 전송한 Software Package에서 활성화된 Software Cluster까지 이르는 갱신 사이클은 세 단계로 나뉜다.[@autosar-ap-sws-updateandconfigurationmanagement-2025]
 
 - **준비 단계**: UCM Client가 Software Package를 UCM에 전송하고, UCM이 이를 처리해 갱신에 드는 Software Cluster를 설치, 갱신, 제거한다.
-- **활성화 단계**: 갱신 사이클의 중요한 단계로, UCM이 관련 Software Cluster의 의존성을 검사하고 Software Cluster를 활성화한 뒤, [[autosar-state-management|State Management]]의 도움으로 설치를 검증한다.
+- **활성화 단계**: 갱신 사이클의 중요한 단계로, UCM이 관련 Software Cluster의 의존성을 검사하고, 갱신하거나 설치한 Software Cluster를 Adaptive Platform이 쓸 수 있게 해 활성화한 뒤, [[autosar-state-management|State Management]]의 도움으로 설치를 검증한다.
 - **정리 단계**: Software Package 같은 불필요한 산출물을 지워 시스템을 깨끗한 상태로 되돌리고, 다음 갱신 사이클을 준비한다.[@autosar-ap-sws-updateandconfigurationmanagement-2025]
 
-갱신 사이클은 [[ab-update|A/B 업데이트]]와 [[ab-update#In-place 업데이트와의 차이|in-place]] 갱신을 지원하고, 필요하면 이전 버전으로 되돌릴 수 있다. Software Package의 처리는 한 번에 한 클라이언트만 요청할 수 있고, 여러 클라이언트는 차례로 요청한다. 처리를 마친 패키지는 요청한 클라이언트와 상관없이 한꺼번에 활성화한다. 활성화 전에 UCM은 설치된 소프트웨어의 요구에 시스템이 맞는지 의존성을 검사하고, 맞지 않으면 활성화를 거부한다.[@autosar-ap-exp-platformdesign-2025]
+갱신 사이클은 [[ab-update|A/B 업데이트]]나 [[ab-update#In-place 업데이트와의 차이|in-place]] 갱신 같은 시나리오를 지원하도록 설계됐고, 필요하면 UCM이 이전 버전으로 되돌릴 수 있게 한다. Software Package의 처리는 한 번에 한 클라이언트만 요청할 수 있고, 여러 클라이언트는 차례로 요청한다. 처리를 마친 패키지는 요청한 클라이언트와 상관없이 한꺼번에 활성화한다. 활성화 전에 UCM은 설치된 소프트웨어의 요구에 시스템이 맞는지 의존성을 검사하고, 맞지 않으면 활성화를 거부한다.[@autosar-ap-exp-platformdesign-2025]
 
-활성화할 때 UCM은 `ara::com`으로 State Management에 UpdateSession을 열고, 영향받는 Software Cluster의 [[autosar-state-management#Machine State와 Function Group State|Function Group]]마다 PrepareUpdate 메서드를 불러 Function Group별 준비를 하게 한다. 준비가 끝나면 UCM은 갱신의 종류에 따라 State Management에 [[autosar-adaptive-platform#Machine과 프로세스|Machine]] 리셋이나 Function Group 재시작을 요청하고, 대상 Function Group이 제대로 도는지 검증해 달라고 요청한다. 재시작이 성공하면 갱신은 활성화된 상태가 되고, UCM Client나 V-UCM이 Finish로 변경을 확정하거나 Rollback으로 이전 버전으로 되돌린다. Rollback이면 UCM은 영향받는 Function Group마다 PrepareRollback 메서드를 불러 이전 버전을 다시 활성화한다. 어느 쪽이든 UCM은 State Management의 갱신 세션을 끝내야 한다.[@autosar-ap-exp-platformdesign-2025]
+활성화할 때 UCM은 `ara::com`으로 State Management에 UpdateSession을 열고, 영향받는 Software Cluster의 [[autosar-state-management#Machine State와 Function Group State|Function Group]]마다 PrepareUpdate 메서드를 불러 Function Group별 준비를 하게 한다. 준비가 끝나면 UCM은 갱신의 종류에 따라 State Management에 [[autosar-adaptive-platform#Machine과 프로세스|Machine]] 리셋이나 Function Group 재시작을 요청하고, 대상 Function Group이 제대로 도는지 검증해 달라고 요청한다. 재시작과 검증이 성공하면 UCM은 kActivated 상태가 되고, UCM Client나 V-UCM이 Finish로 변경을 확정하거나 Rollback으로 이전 버전으로 되돌린다. Rollback이면 UCM은 영향받는 Function Group마다 PrepareRollback 메서드를 불러 이전 버전을 다시 활성화한다. 어느 쪽이든 UCM은 State Management의 갱신 세션을 끝내야 한다.[@autosar-ap-exp-platformdesign-2025]
 
 ![[diagrams/ucm-update-activation-sequence.svg]]
+
+Rollback은 A/B 파티션을 쓰거나 UCM이 갱신·제거한 Software Package의 백업을 따로 둘 때 부를 수 있고, UCM이 검증 중(kVerifying)이거나 활성화를 마쳤거나(kActivated) 앞선 Rollback이 실패한(kRollingBackFailed) 상태일 때만 받아들인다. Finish 때 UCM은 바뀐 소프트웨어의 옛 버전도 지우는 것이 좋다. [[rollback-protection#구현 예|롤백 방지]] 때문에, 확정한 Software Cluster를 예전 것으로 되돌리려면 잘 동작하던 예전 Software Cluster를 더 높은 버전 번호로 다시 패키징해야 한다.[@autosar-ap-sws-updateandconfigurationmanagement-2025]
 
 UCM이 State Management의 UpdateRequest 서비스 인터페이스로 요청한 갱신 세션은 상태 충돌이나 안전을 이유로 거부될 수 있다. UCM은 VerifyUpdate 메서드로 갱신, 설치, 제거를 검증하고, 검증에 실패하면 Function Group 상태를 되돌리도록 요청할 수 있다. Machine을 리셋하지 않으면 활성화 뒤 Manifest를 다시 읽어 플랫폼 설정을 일관되게 유지해야 한다.[@autosar-ap-exp-platformdesign-2025]
 
 ## 인증과 접근 제어
 
-UCM과 V-UCM은 패키지 전체를 덮는 인증 태그로 각자의 패키지를 인증해야 한다. Adaptive Platform은 패키지를 검증할 [[checksum|체크섬]] 알고리즘, 암호 서명이나 벤더·OEM 고유의 메커니즘을 제공해야 하고, 검증하지 못하면 UCM이나 V-UCM이 오류를 돌려준다. 인증 알고리즘이 맞도록, 패키지는 대개 대상 UCM이나 V-UCM을 만든 벤더의 도구로 만든다. 인증 알고리즘이 해시를 쓰므로 인증하면서 일관성도 확인하고, 이 확인은 UCM이나 V-UCM이 패키지를 처리하기 전에 해야 한다.[@autosar-ap-exp-platformdesign-2025]
+UCM과 V-UCM은 패키지 전체를 덮는 인증 태그로 각자의 패키지를 인증해야 한다. Adaptive Platform은 패키지를 검증할 [[checksum|체크섬]] 알고리즘, 암호 서명이나 벤더·OEM 고유의 메커니즘을 제공해야 하고, 검증하지 못하면 UCM이나 V-UCM이 오류를 돌려준다. 인증 알고리즘이 맞도록, 패키지는 대개 대상 UCM이나 V-UCM을 만든 벤더의 도구로 만든다. 인증 알고리즘이 해시를 쓰므로 인증하면서 일관성도 확인하고, 이 확인은 UCM이나 V-UCM이 패키지를 처리하기 전에 해야 한다.[@autosar-ap-exp-platformdesign-2025] UCM은 Software Package를 받을 때 무결성 검사도 하며, 이 검사에 실패하면 인증 실패(kAuthenticationFailed)와는 다른 오류 kPackageInconsistent를 낸다. 무결성 검사는 Software Package의 체크섬 검사 등으로 할 수 있다.[@autosar-ap-sws-updateandconfigurationmanagement-2025]
 
 UCM과 V-UCM의 갱신 프로토콜에는 클라이언트를 인증하는 단계가 없다. `ara::com`으로 서비스를 요청하는 클라이언트가 정당한지는 [[autosar-identity-and-access-management|IAM]]이 보장한다.[@autosar-ap-exp-platformdesign-2025]
 
@@ -102,7 +104,7 @@ OTA Client는 TransferState 필드를 구독해 캠페인 상태를 아는 것�
 
 캠페인에 든 모든 UCM이 활성화에 성공하면 V-UCM은 kVehicleChecking 상태로 간다. 이 상태로 바뀌면 Vehicle State Manager가 먼저 활성화 뒤의 차량 상태를 점검한다. 점검 결과가 참으로 오면 V-UCM은 캠페인의 모든 UCM에 Finish로 소프트웨어를 확정하고, 거짓으로 오면 kCancelling 상태로 가서 활성화되었거나 검증 중인 Software Cluster를 Rollback으로 되돌린다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
 
-V-UCM은 Software Cluster 사이의 의존성을 검사할 때 버전의 MajorVersion과 MinorVersion만 견준다. 캠페인이 성공해 kVehicleChecking에서 kIdle로 가면, V-UCM은 그 캠페인에 쓰려고 저장해 둔 Software Package를 지운다. 더는 필요 없고, 남겨 두면 UCM의 [[rollback-protection#구현 예|롤백 방지]]에도 어긋나기 때문이다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
+V-UCM은 Software Cluster 사이의 의존성을 검사할 때 버전의 MajorVersion과 MinorVersion만 견준다. 캠페인이 성공해 kVehicleChecking에서 kIdle로 가면, V-UCM은 그 캠페인에 쓰려고 저장해 둔 Software Package를 지운다. 더는 필요 없고, 남겨 두면 UCM의 롤백 방지에도 어긋나기 때문이다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
 
 ### 취소
 

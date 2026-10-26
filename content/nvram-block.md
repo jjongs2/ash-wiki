@@ -10,9 +10,9 @@ verified: 2026-09-30
 ## 기본 저장 객체
 
 - **NV 블록**: 비휘발성 메모리에 있는 저장 객체로, 사용자 데이터에 더해 [[cyclic-redundancy-check|CRC]]와 NV block header를 선택적으로 담는다.
-- **RAM 블록**: RAM에 있는 저장 객체로, 사용자 데이터에 더해 CRC와 NV block header를 선택적으로 담는다. NvM과 응용이 모두 데이터 영역에 접근한다. 영구 RAM 블록은 설정 때 주소가 정해지고, 임시 RAM 블록은 설정 때 주소를 알 수 없어 실행 중에 요청과 함께 NvM에 넘긴다.
+- **RAM 블록**: RAM에 있는 저장 객체로, 사용자 데이터에 더해 CRC와 NV block header를 선택적으로 담는다. NvM과 응용이 모두 데이터 영역에 접근할 수 있어야 한다. 다만 [[nvram-manager#동기화|explicit synchronization]]을 쓰는 블록은 NvM이 RAM 블록을 읽고 쓸 때 자기 RAM mirror를 버퍼로 쓰고, RAM 블록과 mirror 사이의 복사는 응용이 NvM이 부르는 콜백에서 한다. 영구 RAM 블록은 설정 때 주소가 정해지고, 임시 RAM 블록은 설정 때 주소를 알 수 없어 실행 중에 요청과 함께 NvM에 넘긴다.
 - **ROM 블록**: ROM(플래시)에 있는 저장 객체로, NV 블록이 비었거나 깨졌을 때 쓸 기본값을 담는다.
-- **Administrative block**: RAM에 있고, dataset 블록에 쓰는 블록 인덱스와 블록의 속성·오류·상태 정보를 담는다. RAM 블록이 유효한지, 마지막 요청의 결과, 쓰기 보호 속성이 여기에 든다. 응용에는 보이지 않고 NvM만 쓴다.[@autosar-cp-sws-nvrammanager-2025]
+- **Administrative block**: RAM에 있고, dataset 블록에 쓰는 데이터 인덱스와 블록의 속성·오류·상태 정보를 담는다. RAM 블록이 유효한지, 마지막 요청의 결과, 쓰기 보호 속성이 여기에 든다. 응용에는 보이지 않고 NvM만 쓴다.[@autosar-cp-sws-nvrammanager-2025]
 
 ## Management type
 
@@ -24,7 +24,7 @@ NvM은 management type으로 `NVM_BLOCK_NATIVE`, `NVM_BLOCK_REDUNDANT`, `NVM_BLO
 
 Redundant 블록을 읽을 때 첫째 NV 블록을 읽지 못하면 둘째 NV 블록을 읽는다. 둘 가운데 하나라도 RAM으로 옮기면 요청은 NVM_REQ_OK로 끝나고, 두 NV 블록이 모두 무효면 블록 전체를 무효로 한다. NV 블록 하나가 무효로 판정되면 NvM은 성한 쪽의 데이터로 그 NV 블록을 되살리려 하고, 되살리지 못하면 [[diagnostic-event-manager|Dem]]에 NVM_E_LOSS_OF_REDUNDANCY를 알린다.[@autosar-cp-sws-nvrammanager-2025]
 
-Dataset 블록은 administrative block의 인덱스로 한 번에 원소 하나를 골라 읽고 쓴다. ROM 블록이 있으면 인덱스 범위가 ROM 블록까지 넓어져, 0부터 NV 블록 수에서 1을 뺀 값까지가 NV 블록이고 그 뒤가 ROM 블록이다. ROM 블록은 읽기만 할 수 있다.[@autosar-cp-sws-nvrammanager-2025]
+Dataset 블록은 administrative block에 둔 데이터 인덱스로 한 번에 원소 하나를 골라 읽고 쓰며, 응용이 `NvM_SetDataIndex`로 그 인덱스를 정한다. ROM 블록이 있으면 인덱스 범위가 ROM 블록까지 넓어져, 0부터 NV 블록 수에서 1을 뺀 값까지가 NV 블록이고 그 뒤가 ROM 블록이다. ROM 블록은 읽기만 할 수 있다.[@autosar-cp-sws-nvrammanager-2025]
 
 ![[diagrams/nvram-block-management-types.svg]]
 
@@ -36,8 +36,6 @@ NvM은 CRC를 설정한 블록을 쓸 때 CRC를 다시 계산해 NV 블록에 �
 
 ## 블록 번호
 
-Fee·Ea 블록 번호 $\mathrm{FEE/EA\_BLOCK\_NUMBER}$는 16비트다. `NvMDatasetSelectionBits`는 모든 블록에 공통인 설정으로, 블록 번호의 하위 몇 비트를 dataset이나 redundant 블록의 NV 블록을 고르는 데이터 인덱스 $\mathrm{DataIndex}$로 쓸지 정한다. 블록마다 두는 `NvMNvBlockBaseNumber`는 [[autosar-software-component|SW-C]]가 쓰는 NvM 블록 ID와 Fee·Ea가 기대하는 블록 번호를 잇는 값으로, 블록 번호의 나머지 상위 비트에 놓인다. Dataset이나 redundant 블록이 없으면 `NvMDatasetSelectionBits`를 0으로, redundant 블록만 있으면 1로 둔다. 블록 번호는 base number를 데이터 인덱스 비트 수만큼 왼쪽으로 민 값에 데이터 인덱스를 더한 것으로, $\mathrm{FEE/EA\_BLOCK\_NUMBER} = (\mathrm{NvMNvBlockBaseNumber} \ll \mathrm{NvMDatasetSelectionBits}) + \mathrm{DataIndex}$다.[@autosar-cp-sws-nvrammanager-2025]
+[[autosar-memory-stack#Fee와 Ea|Fee·Ea]] 블록 번호 $\mathrm{FEE/EA\_BLOCK\_NUMBER}$는 16비트다. `NvMDatasetSelectionBits`는 모든 블록에 공통인 설정으로, 블록 번호의 하위 몇 비트를 dataset이나 redundant 블록의 NV 블록을 고르는 데이터 인덱스 $\mathrm{DataIndex}$로 쓸지 정한다. 블록마다 두는 `NvMNvBlockBaseNumber`는 블록 ID(`NvMNvramBlockIdentifier`)와 따로 설정하는 값으로, 블록 번호의 나머지 상위 비트에 놓인다. 이 값이 [[autosar-software-component|SW-C]]가 쓰는 블록 ID를 Fee·Ea가 기대하는 블록 번호에 잇는다. Dataset이나 redundant 블록이 없으면 `NvMDatasetSelectionBits`를 0으로, redundant 블록만 있으면 1로 둔다. 블록 번호는 base number를 데이터 인덱스 비트 수만큼 왼쪽으로 민 값에 데이터 인덱스를 더한 것으로, $\mathrm{FEE/EA\_BLOCK\_NUMBER} = (\mathrm{NvMNvBlockBaseNumber} \ll \mathrm{NvMDatasetSelectionBits}) + \mathrm{DataIndex}$다.[@autosar-cp-sws-nvrammanager-2025]
 
 ![[diagrams/fee-ea-block-number-bits.svg]]
-
-Fee와 Ea는 [[autosar-memory-stack#Fee와 Ea|AUTOSAR 메모리 스택]]에서 다룬다.

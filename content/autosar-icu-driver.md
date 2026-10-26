@@ -18,7 +18,7 @@ ICU Driver는 [[microcontroller-abstraction-layer#Channel, channel group, port|c
 
 ![[diagrams/icu-signal-measurement-times.svg]]
 
-`Icu_GetInputState`는 마지막 호출이나 `Icu_Init` 뒤에 activation edge가 들어왔는지 읽으며, signal edge detection channel과 signal measurement channel에 쓸 수 있다.[@autosar-cp-sws-icudriver-2025]
+`Icu_GetInputState`는 자기를 마지막으로 부른 뒤나 `Icu_Init` 뒤에 activation edge가 들어왔는지 읽으며, signal edge detection channel과 signal measurement channel에 쓸 수 있다.[@autosar-cp-sws-icudriver-2025]
 
 ## Wakeup
 
@@ -28,7 +28,7 @@ ICU Driver는 wakeup 인터럽트를 [[ecu-state-manager|EcuM]]에 알린다. �
 
 ## Notification
 
-`Icu_EnableNotification`과 `Icu_DisableNotification`은 channel의 notification을 켜고 끈다. timestamp channel은 notification이 켜져 있으면, `Icu_StartTimestamp`에 넘긴 간격만큼 timestamp가 쌓였을 때 notification을 부른다.[@autosar-cp-sws-icudriver-2025]
+`Icu_EnableNotification`과 `Icu_DisableNotification`은 channel의 notification을 켜고 끈다. timestamp channel은 notification이 켜져 있으면, `Icu_StartTimestamp`에 notification 간격으로 넘긴 개수만큼 timestamp가 쌓였을 때 notification을 부른다.[@autosar-cp-sws-icudriver-2025]
 
 ## 다른 드라이버와의 관계
 

@@ -26,7 +26,7 @@ AUTOSAR Classic Platform R25-11의 IdsM 명세는 IdsM이 보고된 보안 이�
 
 ## 저장과 전달
 
-Qualified security event는 보안 개념에 따라 ECU 안의 Sem(Security Event Memory)에 저장하거나, 설정한 sink로 보내거나, 둘 다 한다. Classic Platform에서 sink는 [[diagnostic-event-manager|Dem]] 모듈과 IdsR(Intrusion Detection System Reporter)이고, IdsR은 qualified security event를 백엔드의 SOC(Security Operation Center)로 넘길 수 있다. Sem은 Dem의 기본 메모리와 따로 둔, Dem 모듈의 사용자 정의 메모리다. IdsM은 [[autosar-crypto-stack#Crypto Service Manager|Csm]]과 암호 스택으로 만든 Authenticator([[digital-signature|디지털 서명]]이나 [[message-authentication-code|MAC]] 등)를 qualified security event에 붙여 무결성과 authenticity를 줄 수 있다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
+Qualified security event는 보안 개념에 따라 ECU 안에 저장하거나, 다른 곳으로 전달하거나, 둘 다 한다. Classic Platform에서는 어느 쪽이든 설정한 sink로 보내며, sink는 [[diagnostic-event-manager|Dem]] 모듈과 IdsR(Intrusion Detection System Reporter) 둘이다. Dem sink로 보낸 qualified security event는 Dem을 거쳐 Sem(Security Event Memory)에 저장된다. Sem은 Dem의 기본 메모리와 따로 둔, Dem 모듈의 사용자 정의 메모리다. IdsR은 qualified security event를 백엔드의 SOC(Security Operation Center)로 넘길 수 있다. IdsM은 [[autosar-crypto-stack#Crypto Service Manager|Csm]]과 암호 스택으로 만든 Authenticator([[digital-signature|디지털 서명]]이나 [[message-authentication-code|MAC]] 등)를 qualified security event에 붙여 무결성과 authenticity를 줄 수 있다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
 
 ![[diagrams/idsm-security-event-flow.svg]]
 

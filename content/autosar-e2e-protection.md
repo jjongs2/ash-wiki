@@ -8,7 +8,7 @@ verified: 2026-10-07
 
 **E2E 보호**(End-to-End protection)는 [[autosar|AUTOSAR]]의 통신 보호로, 안전 관련 데이터를 주고받을 때 송신자와 수신자 사이의 통신 경로에 생긴 [[fault-error-failure|fault]]의 영향을 실행 중에 검출한다. AUTOSAR R25-11의 E2E 프로토콜 명세는 송신 측이 보낼 데이터에 제어 데이터를 붙여 보호하고, 수신 측이 그 제어 데이터로 받은 데이터를 검사해 결과를 수신자에게 넘기도록 정한다.[@autosar-fo-prs-e2eprotocol-2025]
 
-이 명세가 검출하는 fault에는 송신자나 수신자의 하위 통신 계층에 들어온 [[functional-safety#Systematic failure와 random hardware failure|systematic software fault]]와, MCU 하드웨어, 통신 주변장치, 트랜시버, 통신선 같은 통신 인프라에서 생긴 [[functional-safety#Systematic failure와 random hardware failure|random hardware fault]]가 든다. 예로는 [[can|CAN]] 트랜시버의 레지스터 손상, EMC(Electromagnetic Compatibility)로 인한 간섭, [[autosar-rte|RTE]]·[[inter-os-application-communicator|IOC]]·[[autosar-com|COM]]·네트워크 스택의 systematic fault가 있다. E2E 보호는 [[automotive-safety-integrity-level|ASIL]] D까지의 요구를 가진 안전 관련 통신에 맞는 수단이다.[@autosar-fo-prs-e2eprotocol-2025] E2E 보호가 고려하는 통신 결함의 목록은 [[freedom-from-interference#AUTOSAR의 FFI 수단|freedom from interference]]에서 다룬다.
+이 명세가 검출하는 fault에는 송신자나 수신자의 하위 통신 계층에 들어온 [[functional-safety#Systematic failure와 random hardware failure|systematic software fault]]와, MCU 하드웨어, 통신 주변장치, 트랜시버, 통신선 같은 통신 인프라에서 생긴 [[functional-safety#Systematic failure와 random hardware failure|random hardware fault]]가 든다. 예로는 [[can|CAN]] 트랜시버의 레지스터 손상, EMC(Electromagnetic Compatibility)로 인한 간섭, [[autosar-rte|RTE]]·[[inter-os-application-communicator|IOC]]·[[autosar-com|COM]]·네트워크 스택의 systematic fault가 있다. E2E 보호는 [[automotive-safety-integrity-level|ASIL]] D까지의 요구를 가진 안전 관련 통신에 맞는 메커니즘을 준다. 다만 그 메커니즘을 묶은 E2E 프로파일 가운데 고른 것이 쓰임새에 충분한지는 사용자가 보여야 한다.[@autosar-fo-prs-e2eprotocol-2025] E2E 보호가 고려하는 통신 결함의 목록은 [[freedom-from-interference#AUTOSAR의 FFI 수단|freedom from interference]]에서 다룬다.
 
 ## 보호 메커니즘
 
@@ -32,7 +32,7 @@ Sequence counter는 메시지가 빠지거나 되풀이됐는지 확인하는 �
 
 프로파일은 ECU 안의 통신과 ECU 사이의 통신 모두에 쓸 수 있고, CAN, [[can-fd|CAN FD]], [[flexray|FlexRay]], [[lin|LIN]], [[ethernet|이더넷]] 같은 통신 인프라를 두고 정해졌다. 어느 프로파일을 쓸지는 시스템에 따라 사용자가 고른다.[@autosar-fo-prs-e2eprotocol-2025]
 
-송신 측은 CRC나 카운터 같은 제어 필드를 보낼 데이터에 덧붙인다. 수신 측은 받은 데이터로 제어 필드를 계산하고, 그 값을 받은 값이나 기대값과 견준다. 프로파일마다 protect, forward, check 세 기능을 두며, protect 기능이 E2E 헤더를 만들어 보낼 데이터를 보호한다.[@autosar-fo-prs-e2eprotocol-2025]
+송신 측이 보낼 데이터에 덧붙이는 제어 데이터는 CRC나 카운터 같은 제어 필드이고, 이 제어 필드들이 E2E 헤더를 이룬다. 수신 측은 받은 데이터로 제어 필드를 계산하고, 그 값을 받은 값이나 기대값과 견준다. 프로파일마다 protect, forward, check 세 기능을 둔다. protect 기능은 E2E 헤더를 만들어 보낼 데이터를 보호한다. forward 기능도 protect 기능처럼 내보낼 데이터의 E2E 헤더를 만들되, 들어온 데이터를 검사해 얻은 E2E 상태를 나가는 데이터에 그대로 옮긴다. 주된 쓰임새는 E2E 보호된 시그널을 받아 옮기는 [[service-oriented-communication#시그널 기반 통신과의 차이|signal/service translation]]이다. check 기능은 받은 메시지의 E2E 헤더를 평가해 통신 결함을 검사한다.[@autosar-fo-prs-e2eprotocol-2025]
 
 ![[diagrams/e2e-protect-check-flow.svg]]
 
@@ -40,7 +40,7 @@ Sequence counter는 메시지가 빠지거나 되풀이됐는지 확인하는 �
 
 E2E 보호는 검사 결과를 수신자에게 넘길 뿐이고, 그 결과를 알맞게 처리하는 것은 수신자의 몫이다. 특정 프로파일을 쓰는 사용자는 그 프로파일이 쓰임새에 충분한 오류 검출 능력을 갖는지 보여야 한다. 이때 하드웨어 failure rate, 비트 오류율, 네트워크의 노드 수, 메시지 반복률, 게이트웨이 사용, 통신 채널의 소프트웨어 fault 같은 요인을 따진다. 검출한 fault에 대한 반응(되풀이된 메시지 버리기, 타임아웃 판정, 손상된 메시지에 안전 반응 시작 등)이 알맞은지도 사용자가 보여야 한다.[@autosar-fo-prs-e2eprotocol-2025]
 
-AUTOSAR R25-11의 [[autosar-adaptive-platform|Adaptive Platform]] 설계 설명서는 E2E 보호가 통신 결함을 검사해 결과를 줄 뿐 그 이상의 반응을 일으키지 않게 하고, 송신 확인과 전송 보안은 E2E 보호의 범위에 두지 않는다.[@autosar-ap-exp-platformdesign-2025]
+AUTOSAR R25-11의 [[autosar-adaptive-platform|Adaptive Platform]] 설계 설명서는 E2E 보호가 통신 결함을 검사해 결과를 줄 뿐 그 이상의 반응을 일으키지 않게 하고, 송신 확인 응답(acknowledgment of transmission)과 전송 보안은 Adaptive Platform의 E2E 보호가 제공하지 않는 것으로 둔다.[@autosar-ap-exp-platformdesign-2025]
 
 ## E2E Library와 E2E Transformer
 
@@ -48,7 +48,7 @@ AUTOSAR R25-11의 E2E 프로토콜 명세는 E2E 보호를 Adaptive Platform의 
 
 AUTOSAR Classic Platform R25-11의 E2E Library 명세는 보호 메커니즘의 알고리즘을 E2E Library에 두고, [[autosar-library|라이브러리]]를 부르는 쪽이 올바른 파라미터를 넘길 책임을 지게 한다. E2E Library는 E2E Transformer나 COM E2E [[autosar-layered-architecture#Integration Code와 callout|callout]]에서 불린다. 어느 쪽이든 보호는 데이터 요소에 하며, 버스로 나가는 것과 같은 비트 배치로 직렬화된 표현에 한다. E2E Transformer를 쓰면 그 위의 [[autosar-transformer|transformer]](COM Based Transformer나 [[some-ip|SOME/IP]] Transformer)가 직렬화하고, COM callout을 쓰면 RTE와 COM이 직렬화하므로 callout은 I-PDU(Interaction Layer Protocol Data Unit) 안의 직렬화된 [[autosar-com#시그널과 I-PDU|시그널 그룹]]에 바로 작용한다. 데이터 요소와 그에 대응하는 시그널 그룹은 통째로 보호하거나 아예 보호하지 않으며, 일부만 보호할 수는 없다. I-PDU 하나에 데이터 요소가 여럿 실리면 그 가운데 일부만 따로 보호할 수 있다.[@autosar-cp-sws-e2elibrary-2025]
 
-**E2E Transformer**는 E2E 보호의 설정과 처리를 감싸 표준 transformer 인터페이스로 내놓는 BSW(Basic Software) 모듈이다. 그래서 부르는 쪽은 E2E의 내부를 몰라도 된다. E2E Transformer는 transformer 분류의 [[autosar-transformer#Transformer chain|Safety]]에 들고, 통신 스택을 black channel로 보고 그 위로 I-signal이 바르게 오가게 한다. [[autosar-software-component|SW-C]]가 RTE의 API인 read, write, send, receive를 부르면 E2E Transformer가 불린다. 받는 SW-C가 E2E Transformer의 반환 코드를 평가하지 않으면 손상된 데이터를 쓸 수 있다.[@autosar-cp-sws-e2etransformer-2025]
+**E2E Transformer**는 E2E 보호의 설정과 처리를 감싸 표준 transformer 인터페이스로 내놓는 BSW(Basic Software) 모듈이다. 그래서 부르는 쪽은 E2E의 내부를 몰라도 된다. E2E Transformer는 transformer 분류의 [[autosar-transformer#Transformer chain|Safety]]에 들고, 통신 스택을 black channel로 보고 그 위로 I-signal(I-PDU에 실리는 시그널)이 바르게 오가게 한다. 데이터 요소는 I-signal이나 I-signal 그룹에 일대일로 대응한다. [[autosar-software-component|SW-C]]가 RTE의 API인 read, write, send, receive를 부르면 E2E Transformer가 불린다. 받는 SW-C가 E2E Transformer의 반환 코드를 평가하지 않으면 손상된 데이터를 쓸 수 있다.[@autosar-cp-sws-e2etransformer-2025]
 
 ## Adaptive Platform의 E2E
 

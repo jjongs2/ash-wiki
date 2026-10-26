@@ -34,13 +34,13 @@ verified: 2026-09-30
 변환 결과는 사용자가 `Adc_SetupResultBuffer`로 그룹마다 지정한 결과 버퍼에 담긴다. 담는 방식은 두 가지다.[@autosar-cp-sws-adcdriver-2025]
 
 - **Single access**: 그룹의 channel마다 결과를 하나씩 담는다.
-- **Streaming access**: channel마다 설정한 개수만큼 결과를 담는다.[@autosar-cp-sws-adcdriver-2025]
+- **Streaming access**: 그룹 변환이 한 번 끝날 때마다 channel마다 결과를 하나씩 쌓아, 설정한 횟수만큼의 그룹 변환 결과를 담는다.[@autosar-cp-sws-adcdriver-2025]
 
 두 방식 모두 `Adc_GetStreamLastPointer`와 `Adc_ReadGroup`으로 결과를 읽는다. `Adc_GetStreamLastPointer`는 최신 결과의 위치와 유효한 결과 수를 알려 주고, `Adc_ReadGroup`은 최신 결과를 사용자 버퍼로 복사한다.[@autosar-cp-sws-adcdriver-2025]
 
 streaming 버퍼는 두 가지 가운데 하나로 설정한다.[@autosar-cp-sws-adcdriver-2025]
 
-- **Linear**: 버퍼가 차는 즉시 ADC Driver가 변환을 멈춘다.
+- **Linear**: 그룹 변환을 설정한 횟수만큼 마쳐 버퍼가 차면, ADC Driver가 그 그룹의 변환을 스스로 멈춘다.
 - **Circular**: 버퍼가 차도 처음으로 돌아가 덮어쓰며 변환을 이어 간다.[@autosar-cp-sws-adcdriver-2025]
 
 ## Notification
