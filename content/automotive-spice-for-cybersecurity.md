@@ -24,7 +24,7 @@ Automotive SPICE for Cybersecurity 2.0은 ASPICE 4.0을 보완해, ASPICE의 평
 | [[cybersecurity-goal#Automotive SPICE for Cybersecurity의 SEC.1\|SEC.1]]                              | Cybersecurity Requirements Elicitation | 주 프로세스   |
 | [[cybersecurity-specification#Automotive SPICE for Cybersecurity의 SEC.2\|SEC.2]]                     | Cybersecurity Implementation           | 주 프로세스   |
 | [[cybersecurity-verification-and-validation#Automotive SPICE for Cybersecurity의 SEC.3·SEC.4\|SEC.3]] | Risk Treatment Verification            | 주 프로세스   |
-| [[cybersecurity-verification-and-validation#Automotive SPICE for Cybersecurity의 SEC.3·SEC.4\|SEC.4]] | Risk Treatment Validation              | 주 프로세스   |
+| SEC.4                                                                                                 | Risk Treatment Validation              | 주 프로세스   |
 
 ACQ.2는 ASPICE 4.1의 프로세스 참조 모델에는 없고, Automotive SPICE for Cybersecurity 2.0이 정의한다.[@vda-automotive-spice-cybersecurity-2025][@vda-automotive-spice-pam-4-1-2026]
 

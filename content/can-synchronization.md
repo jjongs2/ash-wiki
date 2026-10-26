@@ -16,7 +16,7 @@ verified: 2026-09-26
 프레임이 이어지는 동안에는 recessive에서 dominant로 바뀌는 에지로 **재동기화**한다. 에지의 **위상 오차**는 SYNC_SEG를 기준으로 한 에지의 위치로, [[can-bit-timing#Time quantum|time quantum]](tq) 단위로 재며 에지가 SYNC_SEG 안에 있으면 0이다.[@bosch-can-2-0-1991]
 
 - 에지가 SYNC_SEG 뒤, [[can-bit-timing#샘플 포인트|샘플 포인트]] 앞에 오면 위상 오차는 양수이고, 재동기화는 [[can-bit-timing#세그먼트|PHASE_SEG1]]을 늘린다.[@bosch-can-2-0-1991] 송신 노드가 수신 노드보다 느린 경우다.[@microchip-mcp2515-2019]
-- 에지가 이전 비트의 샘플 포인트 뒤, SYNC_SEG 앞에 오면 위상 오차는 음수이고, 재동기화는 [[can-bit-timing#세그먼트|PHASE_SEG2]]를 줄인다.[@bosch-can-2-0-1991] 송신 노드가 수신 노드보다 빠른 경우다.[@microchip-mcp2515-2019]
+- 에지가 이전 비트의 샘플 포인트 뒤, SYNC_SEG 앞에 오면 위상 오차는 음수이고, 재동기화는 PHASE_SEG2를 줄인다.[@bosch-can-2-0-1991] 송신 노드가 수신 노드보다 빠른 경우다.[@microchip-mcp2515-2019]
 
 PHASE_SEG를 늘리거나 줄이는 양의 상한을 **SJW**(Synchronization Jump Width)라 한다. Bosch CAN 2.0 규격은 SJW를 1 tq부터, 4 tq와 PHASE_SEG1 가운데 짧은 쪽까지 설정할 수 있게 정한다.[@bosch-can-2-0-1991]
 

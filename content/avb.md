@@ -53,7 +53,7 @@ IEEE 802.1BA-2021은 AVB를 지원한다고 내세우는 장치의 최소 요구
 - 브리지: 모든 브리지는 SR 클래스 B를 지원하고, IEEE 802.3 포트가 둘 이상인 브리지는 그 포트 모두에서 SR 클래스 A도 지원해야 한다. [[srp#MRP 응용|talker pruning]]은 지원하지 않아야 한다. AVB를 지원하는 모든 포트는 아래를 지원해야 한다.
   - FQTSS(Forwarding and Queuing Enhancements for Time-Sensitive Streams)를 지원하는 트래픽 클래스에 묶인 스트림 예약 하나
   - 스트림 하나의 MSRP(Multiple Stream Registration Protocol) 속성의 등록·선언·전파
-  - [[ieee-802-1as#범위|BMCA]](best master clock algorithm)를 구현한 gPTP 도메인 0
+  - BMCA(best master clock algorithm)를 구현한 gPTP 도메인 0
 - talker: 스트림 하나를 보낼 수 있고, 그 스트림의 talker 선언을 하고 그에 따른 listener 선언을 등록할 수 있어야 한다. 포트는 BMCA를 구현한 gPTP 도메인 0을 지원하고, talker를 동기화하는 [[ieee-802-1as#범위|PTP Instance]]는 [[ptp#시계의 계층|grandmaster]]가 될 수 있어야 한다.[@ieee-802-1ba-2021]
 
 이 표준은 [[ethernet-flow-control|흐름 제어]]를 지원하는 AVB 시스템에 AV 스트림을 나르는 포트의 MAC(Medium Access Control) control PAUSE를 끄게 한다. SR 클래스의 우선순위에 PFC(Priority-based Flow Control)를 켠 포트는 그 SR 클래스의 SRP 도메인 경계 포트로 둔다. 흐름 제어가 AVB의 지연 보장을 깨뜨릴 수 있기 때문이다.[@ieee-802-1ba-2021]

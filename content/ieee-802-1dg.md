@@ -14,7 +14,7 @@ status: 유효
 
 이 표준은 IEEE 802.1 TSN 표준을 바탕으로, 지연에 상한이 있는 차량 안의 브리지 IEEE 802.3 이더넷 네트워크를 위한 프로파일을 정한다. 차량 안의 여러 응용을 지원하는 네트워크를 설계하고 구현하는 사람에게 프로파일을 주는 것이 목적이다. 이 표준은 IEEE 802.1 표준의 넓은 기능 가운데 차량 내 네트워크에 바로 쓸 수 있는 기능을 고르고, 선택 파라미터의 설정 권고를 포함해 그 기능을 어떻게 쓰는지 다룬다.[@ieee-802-1dg-2025]
 
-이 표준은 자신을 따른다는 스테이션에 IEEE 802.3의 점대점 전이중 링크 세그먼트를 지원하도록 요구한다. 브리지에는 모든 포트에서 [[virtual-lan#VLAN 태그|C-VLAN 태그]], [[ethernet-switch#주소 학습|학습 과정]], 최대 SDU(Service Data Unit) 크기 필터링, ingress·egress 필터링, [[per-stream-filtering-and-policing#스트림 게이트|stream gating]]을 지원하고, [[ethernet-switch#주소 학습|필터링 데이터베이스]]에 MAC(Medium Access Control) 주소 등록 항목을 1024개 이상 둘 수 있도록 요구한다. 브리지에는 시간 동기화 방식을 하나 이상 지원하기를 권하고, [[ieee-802-1ae|MACsec]] 지원은 선택으로 둔다. 이 표준은 [[asynchronous-traffic-shaping|ATS]], [[credit-based-shaper|credit-based shaper]], [[time-aware-shaper|scheduled traffic]]의 설정을 저마다 따로 다룬다.[@ieee-802-1dg-2025]
+이 표준은 자신을 따른다는 스테이션에 IEEE 802.3의 점대점 전이중 링크 세그먼트를 지원하도록 요구한다. 브리지에는 모든 포트에서 [[virtual-lan#VLAN 태그|C-VLAN 태그]], [[ethernet-switch#주소 학습|학습 과정]], 최대 SDU(Service Data Unit) 크기 필터링, ingress·egress 필터링, [[per-stream-filtering-and-policing#스트림 게이트|stream gating]]을 지원하고, 필터링 데이터베이스에 MAC(Medium Access Control) 주소 등록 항목을 1024개 이상 둘 수 있도록 요구한다. 브리지에는 시간 동기화 방식을 하나 이상 지원하기를 권하고, [[ieee-802-1ae|MACsec]] 지원은 선택으로 둔다. 이 표준은 [[asynchronous-traffic-shaping|ATS]], [[credit-based-shaper|credit-based shaper]], [[time-aware-shaper|scheduled traffic]]의 설정을 저마다 따로 다룬다.[@ieee-802-1dg-2025]
 
 IEEE 802.1 작업 그룹의 P802.1DG 프로젝트 페이지에 따르면, 이 프로젝트의 범위는 보안, 고가용성과 신뢰성, 유지보수성, 지연 상한을 요구하는 응용까지 차량 안의 모든 응용을 지원하는 결정적 이더넷 네트워크의 프로파일이다. 이 프로젝트의 연락 기관은 [[autosar|AUTOSAR]], [[avb|Avnu Alliance]], JASPAR(Japan Automotive Software Platform and Architecture)다.[@ieee-802-1dg-project-2025]
 

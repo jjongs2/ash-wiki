@@ -15,7 +15,7 @@ VFB 개념은 애플리케이션과 인프라를 엄격히 나눈다. 애플리�
 
 **VFB view**는 차량의 시스템이나 하위 시스템을 ECU의 종류와 수, 각 요소가 어느 ECU에서 도는지, ECU를 잇는 네트워크 기술과 토폴로지에 상관없이 기술하는 관점이다. VFB view에서 시스템은 컴포넌트와 [[software-component-port#Connector|connector]]로 이루어진 [[autosar-software-component#Composition|composition]]이다.[@autosar-fo-tr-glossary-2025] AUTOSAR R25-11의 [[autosar-rte|RTE]] 명세는 이 이름을 관점이 아니라 그 관점이 기술하는 대상에 써서, 실제 ECU에 매핑하기 전의 서로 연결된 SW-C의 모음을 VFB view라 부른다.[@autosar-cp-sws-rte-2025]
 
-VFB에서 애플리케이션은 서로 연결된 컴포넌트의 composition으로 모델링된다. 컴포넌트는 자기 [[software-component-port|포트]]로만 서로 상호 작용하고, 통신할 포트끼리는 [[software-component-port#Connector|assembly connector]]로 잇는다. 포트마다 타입은 port interface 하나로 정해진다. port interface는 그 인터페이스를 제공하거나 요구하는 포트가 지킬 계약으로, [[autosar-client-server-interface|client-server 인터페이스]]는 operation을, [[autosar-sender-receiver-interface|sender-receiver 인터페이스]]는 [[autosar-sender-receiver-interface#Data element|data element]]를 정한다.[@autosar-cp-tr-vfb-2025]
+VFB에서 애플리케이션은 서로 연결된 컴포넌트의 composition으로 모델링된다. 컴포넌트는 자기 [[software-component-port|포트]]로만 서로 상호 작용하고, 통신할 포트끼리는 assembly connector로 잇는다. 포트마다 타입은 port interface 하나로 정해진다. port interface는 그 인터페이스를 제공하거나 요구하는 포트가 지킬 계약으로, [[autosar-client-server-interface|client-server 인터페이스]]는 operation을, [[autosar-sender-receiver-interface|sender-receiver 인터페이스]]는 [[autosar-sender-receiver-interface#Data element|data element]]를 정한다.[@autosar-cp-tr-vfb-2025]
 
 VFB로 시스템의 통신 전체를 모든 송신원과 수신처까지 지정할 수 있어서, SW-C 사이 통신이 타당한지 검사하는 데 VFB를 쓸 수 있다. 통신 연결과 연결된 SW-C는 기술(description) 하나에 저장되어, 매핑과 소프트웨어 구성 같은 다음 단계에 쓰인다.[@autosar-cp-tr-vfb-2025]
 
