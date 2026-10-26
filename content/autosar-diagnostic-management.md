@@ -16,13 +16,13 @@ Diagnostic Management는 [[iso-14229-1|ISO 14229-1]]에 따른 UDS 서버 인스
 
 Diagnostic Management는 설치된 [[autosar-software-cluster#Adaptive Platform의 Software Cluster와의 차이|Software Cluster]]마다 진단 주소(DiagnosticAddress)를 따로 두는 것과, [[autosar-adaptive-platform#Machine과 프로세스|Machine]] 전체에 진단 주소 하나를 두는 것, 그 사이의 배치를 모두 지원한다. 진단 주소를 따로 두면 그 주소의 Diagnostic Server 인스턴스도 따로 생기므로, Software Cluster마다 진단도 독립적으로 개발할 수 있다. 이 Software Cluster는 [[autosar-update-and-configuration-management|UCM]]의 Software Package와 짝을 이뤄, Machine에 갱신하거나 새로 들일 수 있다.[@autosar-ap-exp-platformdesign-2025]
 
-모든 Diagnostic Server 인스턴스는 UDS 전송 계층 인스턴스 하나(예: [[internet-protocol-suite|TCP/IP]] 포트 13400의 DoIP)를 함께 쓴다. Diagnostic Communication Management는 Diagnostic Management에서 테스터 통신과 UDS 서비스 처리를 맡는 부분이고, 그 응답 처리는 대체로 Classic Platform의 Dcm(Diagnostic Communication Manager) 모듈과 같은 일을 한다. 곧 이 응답 처리가 ISO 14229-1에 따른 진단 서비스와 SOVD 서비스를 아래처럼 처리하고 분배한다.[@autosar-ap-sws-diagnostics-2025]
+모든 Diagnostic Server 인스턴스는 UDS 전송 계층 인스턴스 하나(예: [[internet-protocol-suite|TCP/IP]] 포트 13400의 DoIP)를 함께 쓴다. Diagnostic Communication Management는 Diagnostic Management에서 테스터 통신과 UDS 서비스 처리를 맡는 부분이고, 그 응답 처리는 대체로 Classic Platform의 Dcm(Diagnostic Communication Manager) 모듈과 같은 일을 한다. Diagnostic Communication Management의 응답 처리는 요청을 받는 데서부터 맡아, ISO 14229-1에 따른 진단 서비스와 SOVD 서비스를 아래처럼 처리하고 분배한다.[@autosar-ap-sws-diagnostics-2025]
 
 - 네트워크 계층에서 DoIP나 사용자 전송 프로토콜의 UDS 요청과 SOVD의 HTTP·REST 요청을 받는다.
 - 요청에서 정보를 뽑아, UDS 요청은 대상 주소와 주소 종류(물리·기능)에 따라, SOVD 요청은 URI의 대상 개체와 경로에 따라 Diagnostic Server 인스턴스로 보낸다.
 - 여러 요청과 클라이언트를 다룬다. UDS 요청은 기존 UDS 세션에 연결하고, SOVD 요청은 요청한 자원의 모드와 잠금으로 접근을 보호한다.
 - UDS 요청은 현재 세션과 보안 설정으로, SOVD 요청은 인가와 검증으로 허용 여부를 확인한다. 허용하지 않으면 UDS 부정 응답이나 SOVD 오류 코드를 담은 HTTP 오류 응답을 보낸다.
-- 허용한 요청은 설정과 요청 종류에 따라 Diagnostic Communication Management나 Diagnostic Event Management 기능 블록 안에서 처리하거나, Diagnostic Management 밖의 [[autosar-adaptive-platform#Functional cluster|Adaptive Application]]에 넘긴다.[@autosar-ap-sws-diagnostics-2025]
+- 허용한 요청은 설정과 요청 종류에 따라 Diagnostic Communication Management나 Diagnostic Event Management 기능 블록 안에서 직접 처리하거나, Diagnostic Management 밖의 [[autosar-adaptive-platform#Functional cluster|Adaptive Application]]에 넘긴다.[@autosar-ap-sws-diagnostics-2025]
 
 ![[diagrams/diagnostic-management-request-routing.svg]]
 

@@ -32,7 +32,7 @@ Vector는 DBC 형식을 통신 데이터를 기술하는 사실상의 표준(de 
 
 ## 물리값 변환
 
-AUTOSAR Classic Platform R25-11의 System Template은 [[autosar-com#System Template과의 연결|ISignal]]의 네트워크 표현을 CompuMethod로 물리값과 잇도록 정한다. CompuMethod는 데이터가 놓이는 자리마다 따로 정할 수 있고, 내부값은 그 자리에서 AUTOSAR 소프트웨어가 다루는 값이다. ISignal의 네트워크 표현에 붙인 CompuMethod에서는 버스로 나르는 값이 내부값이다.[@autosar-cp-tps-systemtemplate-2025] `LINEAR` 범주의 CompuMethod는 내부값 $x$에 계수 $a$를 곱한 뒤 오프셋 $b$를 더해 물리값 $y = a\,x + b$를 얻는다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+AUTOSAR Classic Platform R25-11의 System Template은 [[autosar-com#System Template과의 연결|ISignal]]의 네트워크 표현을 CompuMethod로 물리값과 잇도록 정한다. 이 CompuMethod는 ISignal이 나르는 SystemSignal의 물리 속성에 정하고, ISignal의 네트워크 표현은 이를 따로 정하지 않고 이어받는다. 이 CompuMethod에서 내부값은 ISignal이 버스에서 갖는 네트워크 표현의 값이다.[@autosar-cp-tps-systemtemplate-2025] `LINEAR` 범주의 CompuMethod는 내부값 $x$에 계수 $a$를 곱한 뒤 오프셋 $b$를 더해 물리값 $y = a\,x + b$를 얻는다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ## 송신과 수신 감시
 

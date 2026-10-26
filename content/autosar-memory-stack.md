@@ -29,7 +29,7 @@ TI 앱노트에 따르면 플래시로 EEPROM을 흉내 내는 루틴은 대개 
 
 Fee는 16비트 블록 번호와 16비트 오프셋을 합쳐 아래 드라이버에 넘길 물리 주소를 얻는다. 플래시가 설정한 쓰기 횟수를 견디지 못하면, Fee는 쓰기를 여러 메모리 영역에 나눠 한 자리가 지나치게 지워지지 않게 한다. Fee는 블록 쓰기를 시작할 때 블록을 깨짐으로 표시하고, 성공적으로 끝나면 표시를 거둔다. 그래서 쓰기가 중단된 블록을 알아채고, 그런 블록의 job 결과로 MEMIF_BLOCK_INCONSISTENT를 돌려준다.[@autosar-cp-sws-flasheepromemulation-2025]
 
-Ea는 EEPROM 장치의 주소 체계와 분할을 감추고, 위 층에 가상 주소 체계와 분할을 준다. Ea도 16비트 블록 번호와 16비트 블록 오프셋을 합쳐 EEPROM 물리 주소를 얻는다. Fee처럼 블록 쓰기를 시작할 때 블록을 불일치로 표시하고 성공적으로 끝나면 일치로 되돌려, 쓰기가 중단된 블록을 읽으면 job 결과로 MEMIF_BLOCK_INCONSISTENT를 돌려준다.[@autosar-cp-sws-flasheepromemulation-2025][@autosar-cp-sws-eepromabstraction-2025]
+Ea는 EEPROM 장치의 주소 체계와 분할을 감추고, 위 층에 가상 주소 체계와 분할을 준다. Ea도 16비트 블록 번호와 16비트 블록 오프셋을 합쳐 EEPROM 물리 주소를 얻는다. 또 Fee처럼 쓰기가 중단된 블록을 알아채, 그런 블록의 job 결과로 MEMIF_BLOCK_INCONSISTENT를 돌려준다.[@autosar-cp-sws-flasheepromemulation-2025][@autosar-cp-sws-eepromabstraction-2025]
 
 NvM 블록에서 Fee와 Ea의 블록 번호를 구하는 방법은 [[nvram-block#블록 번호|NVRAM 블록]]에서 다룬다.
 

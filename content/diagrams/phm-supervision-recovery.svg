@@ -26,12 +26,13 @@
     <text x="410" y="163">Logical</text>
     <text x="260" y="240">Global</text>
     <text x="260" y="257">Supervision Status</text>
-    <text x="100" y="393">하드웨어 watchdog</text>
+    <text x="100" y="393">WatchdogInterface</text>
     <text x="350" y="393">State Management</text>
   </g>
   <g font-size="12" fill="var(--text, #727981)">
     <text x="50" y="134">Elementary Supervision Status</text>
     <text x="345" y="249">Function Group에 대응</text>
+    <text x="100" y="428" text-anchor="middle">watchdog 반응을 일으킨다</text>
     <text x="350" y="428" text-anchor="middle">Function Group을 다른 상태로 바꿔 복구</text>
   </g>
 
