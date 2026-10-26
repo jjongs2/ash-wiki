@@ -471,6 +471,16 @@ const romanNumeral = /^[IVX]+$/
 const lettersAndDigits = (part: string) => /[A-Za-z]/.test(part) && /[0-9]/.test(part)
 const token = /(?<![A-Za-z0-9_])[A-Za-z0-9_]+(?:[/.-][A-Za-z0-9_]+)*/g
 
+// 토큰을 `/.-`로 가른 조각 가운데 약어인 것. 코드 이름 조각은 빼고, 풀린 적 없는 글자·숫자 조각이 있으면
+// 토큰 전체를 거른다(TJA1042).
+function abbreviationParts(word: string, explained: Set<string>): string[] {
+  const words = word.split(/[/.-]/).filter((p) => !codeName.test(p))
+  if (words.some((p) => lettersAndDigits(p) && !explained.has(p))) return []
+  return words.filter(
+    (p) => (abbreviationPart.test(p) || explained.has(p)) && !romanNumeral.test(p),
+  )
+}
+
 // 풀이하지 않는 약어 목록의 줄(`- <약어>: <종류>`)마다 약어와 종류.
 function listedAbbreviations(): { name: string; kind: string }[] {
   return [...fs.readFileSync(abbreviationsPath, "utf8").matchAll(/^- (.+?): (\S.*)$/gm)].map(
@@ -541,10 +551,11 @@ function unintroduced(
 }
 
 // 약어를 찾을 글. 줄 번호와 오프셋을 원문과 맞추려고 지울 곳은 공백으로 바꾼다. 위키링크는 표시 글자만
-// 남기고 그 자리를 따로 준다.
+// 남기고 그 자리를 따로 준다. µ로 시작하는 낱말(µC/OS-III, µs)은 지운다. 토큰이 µ 뒤에서 시작해 OS를
+// 약어로 보기 때문이다.
 function abbreviationText(page: Page, exempt: string[]) {
   const links: [number, number][] = []
-  let text = maskRefs(page.masked)
+  let text = maskRefs(page.masked).replace(/[µμ][A-Za-z0-9_]*(?:[/.-][A-Za-z0-9_]+)*/g, blank)
   text = text.replace(/\[\[([^\]\n|]*\\?\|)?([^\]\n]*)\]\]/g, (_link, target, display, offset) => {
     const shown = target ? display : display.replace(/^[^#]*/, blank)
     const start = offset + 2 + (target?.length ?? 0)
@@ -580,6 +591,62 @@ function explainedWords(tree: Tree): Set<string> {
   return words
 }
 
+// 링크 뒤 풀이: 더한 줄의 `[[대상|약어]](풀이)`, `[[대상#절|약어]](풀이)` 가운데 링크가 풀이를 대신하는데
+// 괄호로 또 푼 것(위키 규약의 약어 절). 풀이는 라틴 문자로 시작하고 한글이 없다. 대상의 머리말(절 링크면
+// 그 절)이 그 약어를 풀어야 링크가 풀이를 대신하고, 숫자가 든 괄호는 풀이가 아니라 표준 번호다
+// (`[[srp|SRP]](IEEE 802.1Qat)`). 다른 페이지의 이름인 약어는 그 페이지와 다른 뜻으로 쓰여 링크와 함께 풀
+// 수 있다(`[[aperiodic-server#CBS|CBS]](Constant Bandwidth Server)`).
+const linkGloss =
+  /\[\[([^\]\n|#\\]+)(?:#([^\]\n|\\]+))?\\?\|([A-Za-z0-9_]+(?:[/.-][A-Za-z0-9_]+)*)\]\]\(((?=[A-Za-z])[^()\n가-힣]+)\)/g
+
+// 대상 페이지의 머리말이나, 제목이 anchor인 절(그 아래 절까지)의 글.
+function leadOrSection(page: Page, anchor: string | undefined): string {
+  const lines = maskRefs(page.masked).split("\n")
+  const heading = (line: string) => line.match(/^(#{1,6}) (.*)$/)
+  let start = 0
+  let level = 0
+  if (anchor !== undefined) {
+    start = lines.findIndex((line) => heading(line)?.[2].trim() === anchor.trim())
+    if (start < 0) return ""
+    level = heading(lines[start])![1].length
+  }
+  let end = start + 1
+  while (end < lines.length) {
+    const next = heading(lines[end])
+    if (next && (level === 0 || next[1].length <= level)) break
+    end++
+  }
+  return lines
+    .slice(start, end)
+    .join("\n")
+    .replace(/\[\[(?:[^\]\n|]*\\?\|)?([^\]\n]*)\]\]/g, "$1")
+}
+
+function linkGlosses(
+  tree: Tree,
+  page: Page,
+  change: ChangedFile,
+  isAbbreviation: (word: string) => boolean,
+  owners: Map<string, Page[]>,
+): Candidate[] {
+  const text = maskRefs(page.masked)
+  const starts = lineStarts(text)
+  return [...text.matchAll(linkGloss)].flatMap((match) => {
+    const [link, target, anchor, abbreviation, gloss] = match
+    const line = lineAt(starts, match.index)
+    if (!change.added.has(line) || !isAbbreviation(abbreviation) || /[0-9]/.test(gloss)) return []
+    const name = target.trim()
+    const linked = tree.pages.find((p) => p.name === name || path.basename(p.name) === name)
+    if (!linked || (owners.get(abbreviation) ?? []).some((p) => p !== linked)) return []
+    const word = escapeRegExp(abbreviation)
+    const explains = new RegExp(
+      `(?<![A-Za-z0-9_/.-])${word}(?![A-Za-z0-9_])\\**\\((?=[A-Za-z])|\\(\\**${word}\\**[),]`,
+    )
+    if (!explains.test(leadOrSection(linked, anchor))) return []
+    return [{ file: page.file, line, message: `링크 뒤 풀이: ${link}` }]
+  })
+}
+
 const abbreviationItem: Item = ({ tree, changed }) => {
   const listed = listedAbbreviations()
   const exempt = listed.map((a) => a.name)
@@ -587,6 +654,11 @@ const abbreviationItem: Item = ({ tree, changed }) => {
   const explainedSet = explainedWords(tree)
   const pageNameSet = new Set(tree.pages.flatMap(pageNames))
   const organizations = listed.filter((a) => a.kind === "소개하는 조직").map((a) => a.name)
+  const owners = new Map<string, Page[]>()
+  for (const page of tree.pages.filter((p) => p.kind === "page"))
+    for (const name of pageNames(page)) owners.set(name, [...(owners.get(name) ?? []), page])
+  // 풀이하지 않는 약어 목록의 약어도 자기 페이지로 거는 링크 뒤에서는 찍는다(`[[can|CAN]](…)`).
+  const isAbbreviation = (word: string) => abbreviationParts(word, explainedSet).length > 0
   return changed.flatMap(({ page, change }) => {
     const { text, links } = abbreviationText(page, exempt)
     const starts = lineStarts(text)
@@ -616,11 +688,8 @@ const abbreviationItem: Item = ({ tree, changed }) => {
         if (change.added.has(line) && !code.has(part) && !inside(links, offset))
           code.set(part, line)
       }
-      const words = parts.filter((p) => !codeName.test(p))
-      if (words.some((p) => lettersAndDigits(p) && !explainedSet.has(p))) continue
-      for (const part of words) {
-        const abbreviation = abbreviationPart.test(part) || explainedSet.has(part)
-        if (!abbreviation || romanNumeral.test(part) || exemptSet.has(part)) continue
+      for (const part of abbreviationParts(word, explainedSet)) {
+        if (exemptSet.has(part)) continue
         if (change.added.has(line)) inAdded.add(part)
         if (first.has(part)) continue
         // 풀이는 `ABBR(풀이)`나 `풀이(ABBR)`, `풀이(ABBR, 원어)` 꼴이다. 괄호 안에 약어가 있어도 뒤에 다른
@@ -650,6 +719,7 @@ const abbreviationItem: Item = ({ tree, changed }) => {
     })
     return [
       ...unexplained,
+      ...linkGlosses(tree, page, change, isAbbreviation, owners),
       ...unintroduced(page, change, organizations, abbreviationText(page, [])),
       ...[...code].map(([name, line]) => ({
         file: page.file,
