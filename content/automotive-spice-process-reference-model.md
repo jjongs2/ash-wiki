@@ -18,7 +18,7 @@ ASPICE 4.1은 프로세스마다 다음 네 가지를 정의한다.[@vda-automot
 | 프로세스 목적 | 프로세스를 특정 환경에서 수행할 때 이루려는 고유한 기능 목표        |
 | 프로세스 성과 | 목적마다 딸린 목록. 프로세스를 수행해 기대하는 긍정적 결과          |
 
-이 문서는 프로세스 평가 모델도 함께 담아, 프로세스마다 표 하나에 이 네 요소와 평가 모델의 수행 지표인 BP(base practice)와 출력 정보 항목을 싣는다.[@vda-automotive-spice-pam-4-1-2026]
+프로세스 평가 모델도 같은 문서에 담겨, 프로세스마다 표 하나에 이 네 요소와 평가 모델의 수행 지표인 BP(base practice)와 출력 정보 항목이 실린다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 프로세스 범주와 그룹
 
@@ -128,7 +128,7 @@ ASPICE 3.1은 plug-in 컨셉의 도메인 예로 하드웨어(HWE), 기계(MEE),
 
 ## VDA scope
 
-**VDA scope**는 ASPICE 3.x가 쓴 이름으로, 자동차 산업에서 평가하는 매우 중요한 프로세스의 묶음이다. ASPICE 3.0은 4장을 고치며 이 묶음에 초점을 맞췄고, 3.1의 plug-in 그림은 SYS.1\~SYS.5, SWE.1\~SWE.6, MAN.3, ACQ.4, SUP.1, SUP.8, SUP.9, SUP.10을 VDA scope로 표시했다. ASPICE 4.1은 VDA scope라는 이름을 쓰지 않는다. 4.1의 plug-in 그림은 같은 프로세스에 HWE.1\~HWE.4를 더한 묶음을 표시하고, 범례에서 이 묶음을 4.1이 아닌 ASPICE 4.0의 프로세스 참조 모델과 프로세스 평가 모델로 적는다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+**VDA scope**는 ASPICE 3.x가 쓴 이름으로, 자동차 산업에서 평가하는 매우 중요한 프로세스의 묶음이다. ASPICE 3.0은 4장을 고치며 이 묶음에 초점을 맞췄고, 3.1의 plug-in 그림은 SYS.1\~SYS.5, SWE.1\~SWE.6, MAN.3, ACQ.4, SUP.1, SUP.8, SUP.9, SUP.10을 VDA scope로 표시했다. ASPICE 4.1은 VDA scope라는 이름을 쓰지 않는다. 4.1의 plug-in 그림은 같은 프로세스에 HWE.1\~HWE.4를 더한 묶음을 표시하고, 범례에는 이 묶음이 "Automotive SPICE 4.0 PRM/PAM"으로 적혀 있다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ## Element, component, unit
 

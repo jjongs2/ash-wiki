@@ -22,7 +22,7 @@ CMMI Institute에 따르면 CMMI는 모델, 평가 방법, 교육·인증, 도�
 
 ### 성숙도 수준과 능력 수준
 
-이 모델은 프랙티스 영역마다 **능력 수준**(capability level)을 두고, 정해 둔 프랙티스 영역 묶음에는 단계형 경로로 **성숙도 수준**(maturity level)을 둔다. 성숙도 수준은 0\~5(Incomplete, Initial, Managed, Defined, Quantitatively Managed, Optimizing), 능력 수준은 0\~3(Incomplete, Initial, Managed, Defined)이다. 능력 수준이 매겨지는 프랙티스 영역 안에서 프랙티스는 Level 0\~3으로 이름 붙인 프랙티스 그룹으로 나뉘고, 이 그룹들이 성과 개선으로 가는 진화 경로가 된다. 각 Level은 앞 Level에 새 기능이나 엄격함을 더해 쌓이며, 그만큼 능력이 높아진다.[@cmmi-institute-levels-2026]
+이 모델은 프랙티스 영역마다 **능력 수준**(capability level)을 두고, 정해 둔 프랙티스 영역 묶음에는 단계형 경로로 **성숙도 수준**(maturity level)을 둔다. 성숙도 수준은 0\~5(Incomplete, Initial, Managed, Defined, Quantitatively Managed, Optimizing), 능력 수준은 0\~3(Incomplete, Initial, Managed, Defined)이다. 능력 수준이 매겨지는 프랙티스 영역 안에서 프랙티스는 능력 수준과 같은 번호(Level 0\~3)의 프랙티스 그룹으로 나뉘고, 이 그룹들이 성과 개선으로 가는 진화 경로가 된다. 각 Level은 앞 Level에 새 기능이나 엄격함을 더해 쌓이며, 그만큼 능력이 높아진다.[@cmmi-institute-levels-2026]
 
 능력 수준 1(Initial)은 프랙티스 영역의 의도를 채우려는 첫 접근으로, 의도를 다 채우는 프랙티스 집합은 아니며 성과 문제를 다룬다. 능력 수준 2(Managed)는 Level 1 프랙티스를 아우르는, 단순하지만 프랙티스 영역의 의도 전체를 다루는 완전한 프랙티스 집합이다. 조직 자산을 쓰지 않아도 되고, 프로젝트 성과 목표를 향한 진척을 찾아 살핀다. 능력 수준 3(Defined)은 Level 2 프랙티스 위에 쌓아, 조직 표준과 [[process-capability-level#CL 3과 표준 프로세스|테일러링]]으로 프로젝트와 업무의 특성을 다룬다. 프로젝트는 조직 자산을 쓰고 보태며, 프로젝트와 조직의 성과 목표를 함께 이루는 데 초점을 둔다.[@cmmi-institute-levels-2026]
 
@@ -32,7 +32,7 @@ CMMI 1.3은 두 표현 방식을 두었다. 연속형 표현(continuous represen
 
 ### 평가
 
-**CMMI 평가**(appraisal)는 조직의 프로세스가 CMMI 모범 사례와 얼마나 맞는지 견주어 강점과 약점을 찾는 활동이다. 평가 방법은 CMMI Appraisal Method이고, 그 정의는 Method Definition Document에 있다.[@cmmi-institute-appraisals-2026] CMMI Appraisal Method는 사람을 평가하기보다 프로세스 구현에 초점을 두고, 프로세스 구현의 강점과 약점과 함께 프로세스의 지속과 습관화를 찾는 데 쓰인다.[@cmmi-institute-appraisal-method-2026] CMMI 1.3은 평가 방법으로 SCAMPI(Standard CMMI Appraisal Method for Process Improvement)를 두었다. SCAMPI에는 A, B, C 등급이 있었고, 벤치마크 등급은 SCAMPI A로만 낼 수 있었다.[@cmmi-product-team-cmmi-development-2010] CMMI 2.0은 새 성과 중심 평가 방법을 들였다.[@cmmi-institute-cmmi-development-v2-0-2018] CMMI Institute에 따르면 CMMI의 평가 방법은 성과 중심 평가 방법이고, CMMI Appraisal Method는 여러 옛 평가 방법의 특징을 바탕으로 한다.[@cmmi-institute-cmmi-2026][@cmmi-institute-appraisal-method-2026] SCAMPI의 세 등급과 달리 CMMI Appraisal Method는 평가를 Benchmark, Sustainment, Evaluation, Action Plan Reappraisal의 네 유형으로 나누고, 이 가운데 Evaluation은 등급을 내지 않는다.[@cmmi-institute-appraisal-types-2026]
+**CMMI 평가**(appraisal)는 조직의 프로세스가 CMMI 모범 사례와 얼마나 맞는지 견주어 강점과 약점을 찾는 활동이다. 평가 방법은 CMMI Appraisal Method이고, 그 정의는 Method Definition Document에 있다.[@cmmi-institute-appraisals-2026] CMMI Appraisal Method는 사람을 평가하기보다 프로세스 구현에 초점을 두고, 프로세스 구현의 강점과 약점과 함께 프로세스의 지속과 습관화를 찾는 데 쓰인다.[@cmmi-institute-appraisal-method-2026] CMMI 1.3은 평가 방법으로 SCAMPI(Standard CMMI Appraisal Method for Process Improvement)를 두었다. SCAMPI에는 A, B, C 등급이 있었고, 벤치마크 등급은 SCAMPI A로만 낼 수 있었다.[@cmmi-product-team-cmmi-development-2010] CMMI 2.0은 새 성과 중심 평가 방법을 들였다.[@cmmi-institute-cmmi-development-v2-0-2018] CMMI Institute에 따르면 CMMI의 평가 방법은 성과 중심이고, CMMI Appraisal Method는 여러 옛 평가 방법의 특징을 바탕으로 한다.[@cmmi-institute-cmmi-2026][@cmmi-institute-appraisal-method-2026] SCAMPI의 세 등급과 달리 CMMI Appraisal Method는 평가를 Benchmark, Sustainment, Evaluation, Action Plan Reappraisal의 네 유형으로 나누고, 이 가운데 Evaluation은 등급을 내지 않는다.[@cmmi-institute-appraisal-types-2026]
 
 ASPICE와의 차이는 [[automotive-spice#CMMI와의 차이|ASPICE]]에서, ASPICE가 쓰는 능력 수준과 성숙도 모델의 일반 정의는 [[process-capability-level|프로세스 능력 수준]]에서, 평가와 개선의 일반 개념은 [[process-assessment|프로세스 평가]]와 [[process-improvement|프로세스 개선]]에서 다룬다.
 

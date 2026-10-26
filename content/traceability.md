@@ -15,7 +15,7 @@ ISO/IEC/IEEE 24765 용어집은 **양방향 추적성**(bidirectional traceabili
 
 ![[diagrams/requirements-backward-forward-traceability.svg]]
 
-[[automotive-spice|ASPICE]] 4.1은 산출물 사이에 다음과 같은 연결을 요구한다. 표의 행은 모두 SYS(시스템 엔지니어링)·SWE(소프트웨어 엔지니어링) 프로세스와 VAL.1(Validation)의 "Ensure consistency and establish bidirectional traceability" BP(base practice), 변경 요청 관리(SUP.10)의 "Establish bidirectional traceability" BP에 들어 있다. 이름이 같은 BP라도 요구는 연결마다 달라, 검증 결과와 확인 결과에는 일관성은 빼고 양방향 추적성만 요구하고, [[software-unit-design|소프트웨어 상세 설계]]와 소프트웨어 요구사항 사이에는 양방향이라 하지 않고 일관성과 추적성을 요구한다.[@vda-automotive-spice-pam-4-1-2026]
+[[automotive-spice|ASPICE]] 4.1은 산출물 사이에 다음과 같은 연결을 요구한다. 표의 행은 모두 SYS(시스템 엔지니어링)·SWE(소프트웨어 엔지니어링) 프로세스와 VAL.1(Validation)의 "Ensure consistency and establish bidirectional traceability" BP(base practice), 변경 요청 관리(SUP.10)의 "Establish bidirectional traceability" BP에 들어 있다. 이름이 같은 BP라도 요구는 연결마다 다르다.[@vda-automotive-spice-pam-4-1-2026]
 
 | 산출물                                         | 상대                                      | 요구                  |
 | ---------------------------------------------- | ----------------------------------------- | --------------------- |
@@ -23,7 +23,7 @@ ISO/IEC/IEEE 24765 용어집은 **양방향 추적성**(bidirectional traceabili
 | [[system-architecture\|시스템 아키텍처]] 요소  | 시스템 요구사항                           | 일관성, 양방향 추적성 |
 | 소프트웨어 요구사항                            | 시스템 요구사항, 시스템 아키텍처          | 일관성, 양방향 추적성 |
 | [[software-architecture\|소프트웨어 아키텍처]] | 소프트웨어 요구사항                       | 일관성, 양방향 추적성 |
-| 소프트웨어 상세 설계                           | 소프트웨어 아키텍처                       | 일관성, 양방향 추적성 |
+| [[software-unit-design\|소프트웨어 상세 설계]] | 소프트웨어 아키텍처                       | 일관성, 양방향 추적성 |
 | 소프트웨어 상세 설계                           | 소프트웨어 요구사항                       | 일관성, 추적성        |
 | 소프트웨어 유닛                                | 소프트웨어 상세 설계                      | 일관성, 양방향 추적성 |
 | 검증 수단                                      | 검증 대상(요구사항, 아키텍처, 설계, 유닛) | 일관성, 양방향 추적성 |
