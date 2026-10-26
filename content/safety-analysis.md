@@ -9,7 +9,7 @@ verified: 2026-10-02
 
 ## FMEA
 
-국제 전기기술 용어집(International Electrotechnical Vocabulary)인 IEC 60050은 **FMEA**를 하위 항목에서 일어날 수 있는 failure mode와 [[fault-error-failure|fault]], 그리고 그것이 여러 계층(indenture level)에 주는 영향을 살피는 정성적 분석으로 정의한다.[@iec-60050-192-11-05-2015] IEC 60812:2018은 FMEA를 계획하고 수행하고 문서로 남기고 유지하는 지침을 둔다.[@iec-60812-2018]
+IEC 60050(국제 전기기술 용어집)은 **FMEA**를 하위 항목에서 일어날 수 있는 failure mode와 [[fault-error-failure|fault]], 그리고 그것이 여러 계층(indenture level)에 주는 영향을 살피는 정성적 분석으로 정의한다.[@iec-60050-192-11-05-2015] IEC 60812:2018은 FMEA를 계획하고 수행하고 문서로 남기고 유지하는 지침을 둔다.[@iec-60812-2018]
 
 **Failure mode**는 요소나 [[safety-lifecycle#ISO 26262의 안전 생명주기|아이템]]이 고장 나는 방식이다.[@iso-26262-1-obp-2018][@iec-60050-192-03-17-2024]
 
