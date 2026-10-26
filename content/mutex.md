@@ -40,7 +40,7 @@ POSIX.1-2024는 뮤텍스 타입으로 `PTHREAD_MUTEX_NORMAL`, `PTHREAD_MUTEX_ER
 | `PTHREAD_MUTEX_RECURSIVE`  | 잠금 횟수를 세고, 횟수가 0이 될 때까지 풀어야 풀린다.            | 오류를 돌려준다.                                                 |
 | `PTHREAD_MUTEX_DEFAULT`    | 다른 세 타입 가운데 하나처럼 동작하거나, 결과가 정의되지 않는다. | 다른 세 타입 가운데 하나처럼 동작하거나, 결과가 정의되지 않는다. |
 
-"소유자가 아닌 스레드가 풀면" 열의 "정의되지 않는다"는 견고(robust)하지 않은 뮤텍스의 경우다. 견고한 뮤텍스는 타입과 상관없이, 소유자가 아닌 스레드가 풀면 오류를 돌려준다.[@ieee-1003-1-pthread-mutex-lock-2024] `PTHREAD_MUTEX_DEFAULT`를 다른 타입 가운데 하나에 대응시킬지, 전혀 다른 타입으로 둘지는 구현마다 다르다.[@ieee-1003-1-rationale-threads-2024]
+`PTHREAD_MUTEX_DEFAULT`를 다른 타입 가운데 하나에 대응시킬지, 전혀 다른 타입으로 둘지는 구현마다 다르다.[@ieee-1003-1-rationale-threads-2024] "소유자가 아닌 스레드가 풀면" 열의 "정의되지 않는다"는 견고(robust)하지 않은 뮤텍스의 경우다. 견고한 뮤텍스는 타입과 상관없이, 소유자가 아닌 스레드가 풀면 오류를 돌려준다.[@ieee-1003-1-pthread-mutex-lock-2024]
 
 CMSIS-RTOS2는 뮤텍스 속성에 `osMutexRecursive`(같은 스레드가 여러 번 얻어도 스스로 막히지 않음), `osMutexPrioInherit`(소유 스레드가 기다리는 더 높은 우선순위 스레드의 우선순위를 물려받음), `osMutexRobust`(소유 스레드가 끝나면 뮤텍스를 저절로 놓음)를 두고, 기본값은 셋 모두 쓰지 않는 비재귀 뮤텍스로 정한다.[@arm-cmsis-rtos2-mutex-2026] Zephyr의 뮤텍스는 이미 잠근 스레드가 다시 잠글 수 있고, 잠근 횟수만큼 풀어야 다른 스레드가 얻을 수 있다.[@zephyr-mutexes-2026] µC/OS-III에서는 뮤텍스를 가진 태스크가 같은 뮤텍스를 250번까지 중첩해 가질 수 있고, 같은 횟수만큼 놓아야 한다.[@micrium-ucos-iii-mutual-exclusion-semaphores-2026] FreeRTOS는 같은 태스크가 여러 번 가져갈 수 있는 재귀 뮤텍스를 표준 뮤텍스와 따로 두고, 다른 함수로 만들고 가져가고 돌려준다.[@freertos-resource-management-2026]
 

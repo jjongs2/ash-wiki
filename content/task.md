@@ -11,7 +11,7 @@ RTOS는 태스크마다 그 태스크의 정보를 담는 자료 구조인 TCB(T
 
 ## 태스크 상태
 
-태스크는 실행되는 동안 다음 세 상태를 오가고, RTOS에 따라 이 밖의 상태를 더 두기도 한다.[@micrium-ucos-iii-task-management-internals-2026][@arm-cmsis-rtos2-thread-management-2026]
+태스크는 다음 세 상태를 오가고, RTOS에 따라 이 밖의 상태를 더 두기도 한다.[@micrium-ucos-iii-task-management-internals-2026][@arm-cmsis-rtos2-thread-management-2026]
 
 - **실행 중**(running): CPU를 받아 실행되고 있는 상태다. 한 번에 한 태스크만 이 상태에 있다.
 - **준비**(ready): 실행할 수 있지만 CPU를 받지 못한 상태다. 실행 중인 태스크가 끝나거나 블록되면, 준비 상태의 태스크 가운데 우선순위가 가장 높은 것이 실행 중이 된다. 실행 중인 태스크보다 우선순위가 높은 태스크가 준비 상태가 되면, 실행 중인 태스크는 선점되어 준비 상태로 돌아가고 그 태스크가 실행 중이 된다.

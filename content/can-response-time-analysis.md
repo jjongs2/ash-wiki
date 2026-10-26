@@ -111,7 +111,7 @@ busy period 식에는 $E_m(t_m^n)$을, 인스턴스마다의 큐잉 지연 식�
 
 ## 옛 분석과의 차이
 
-Tindell, Burns, Wellings는 1995년 논문에서 CAN 메시지의 최악 응답 시간에 상한을 주는 분석을 내놓았다.[@tindell-calculating-can-1995] 이 논문의 분석은, 그에 앞서 1994년에 나온 Tindell과 Burns의 논문, Tindell, Hansson, Wellings의 논문의 분석과 마찬가지로 busy period 안의 첫 인스턴스만 보았다. $D_m \le T_m$일 때 메시지가 스케줄 가능하면 busy period가 $T_m$ 안에 끝난다고 암묵적으로 가정한 것인데, 선점 스케줄링에서는 맞지만 비선점인 CAN에서는 맞지 않는다.[@davis-can-schedulability-2007]
+Tindell, Burns, Wellings는 1995년 논문에서 CAN 메시지의 최악 응답 시간에 상한을 주는 분석을 내놓았다.[@tindell-calculating-can-1995] 이 논문의 분석은, 그에 앞서 1994년에 나온 두 논문(Tindell·Burns, Tindell·Hansson·Wellings)의 분석과 마찬가지로 busy period 안의 첫 인스턴스만 보았다. $D_m \le T_m$일 때 메시지가 스케줄 가능하면 busy period가 $T_m$ 안에 끝난다고 암묵적으로 가정한 것인데, 선점 스케줄링에서는 맞지만 비선점인 CAN에서는 맞지 않는다.[@davis-can-schedulability-2007]
 
 Davis, Burns, Bril, Lukkien은 2007년 논문에서 이 결함을 보이는 반례를 들고, 여러 인스턴스를 따지는 분석으로 고쳤다. 125 kbit/s 버스에 전송 시간이 모두 1 ms인 메시지 A, B, C(주기 2.5 ms, 3.5 ms, 3.5 ms, 마감 시한 2.5 ms, 3.25 ms, 3.25 ms)가 있으면, 옛 분석은 최악 응답 시간을 2 ms, 3 ms, 3 ms로 내어 버스 이용률이 97%인데도 스케줄 가능하다고 판정했다. 실제로는 C의 둘째 인스턴스가 3.5 ms 걸려 마감 시한을 놓친다.[@davis-can-schedulability-2007]
 

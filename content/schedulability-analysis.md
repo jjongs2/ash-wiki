@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-[[autosar|AUTOSAR]]의 Timing Analysis and Design 보고서에 따르면 **스케줄링 분석**(scheduling analysis)은 특정 스케줄러의 모델에, [[task|태스크]]가 선점되거나 기다린 시간을 뺀 실행 시간인 core execution time과 애플리케이션 모델을 넣어 보장된 최악 응답 시간을 구하고, 이로써 주어진 조건에서 [[deadline|마감 시한]]을 놓치는지 확인하는 분석이다. 새 구성을 구현하지 않고도 검증할 수 있다.[@autosar-fo-tr-timinganalysis-2025]
+[[autosar|AUTOSAR]]의 Timing Analysis and Design 보고서에 따르면 **스케줄링 분석**(scheduling analysis)은 특정 스케줄러의 모델에 core execution time과 애플리케이션 모델을 넣어 보장된 최악 응답 시간을 구하고, 이로써 주어진 조건에서 [[deadline|마감 시한]]을 놓치는지 확인하는 분석이다. core execution time은 [[task|태스크]]가 선점되거나 기다린 시간을 뺀 실행 시간이다. 새 구성을 구현하지 않고도 검증할 수 있다.[@autosar-fo-tr-timinganalysis-2025]
 
 Liu와 Layland는 마감 시한, 곧 같은 태스크의 다음 요청 시각이 지나도록 끝나지 않은 요청을 overflow라 하고, overflow가 한 번도 생기지 않게 태스크를 스케줄하는 스케줄링 방식을 feasible이라 불렀다.[@liu-hard-real-time-1973]
 
@@ -35,7 +35,7 @@ $U$는 태스크 집합을 실행하는 데 쓰인 프로세서 시간의 비율
 
 단일 프로세서에서 서로 독립인 [[periodic-task-model|주기 태스크]]의 마감 시한이 다음 요청 시각이고 실행 시간이 일정하며 선점할 수 있다고 하자. 어떤 고정 우선순위 배정이 태스크 집합에 feasible하고, 집합의 어느 태스크든 하나만 실행 시간을 늘려도 그 배정이 feasible하지 않게 되면, 그 태스크 집합은 그 배정에서 처리기를 **fully utilize**한다고 한다. [[fixed-priority-scheduling|고정 우선순위 스케줄링]] 알고리즘의 **이용률의 최소 상한**은 그 알고리즘이 정한 배정에서 처리기를 fully utilize하는 모든 태스크 집합의 이용률 가운데 최솟값이고, 이용률이 이 상한보다 낮은 태스크 집합에는 feasible한 고정 우선순위 배정이 늘 있다.[@liu-hard-real-time-1973]
 
-단일 프로세서에서 서로 독립인 주기 태스크의 마감 시한이 다음 요청 시각이고 실행 시간이 일정하며 선점할 수 있으면, [[rate-monotonic-scheduling|RM]]에 대한 Liu와 Layland의 [[rate-monotonic-scheduling#이용률 상한|이용률 상한]]은 충분조건일 뿐이라, 상한을 넘는 태스크 집합도 스케줄 가능할 수 있고, 그런지는 모든 태스크가 [[response-time-analysis#Critical instant|critical instant]]에 낸 요청이 마감 시한 안에 끝나는지로 판정할 수 있다. 같은 가정에서 [[earliest-deadline-first|EDF]]로 모든 마감 시한을 지키는 것은 $U \le 1$일 때이고 그때뿐이다.[@liu-hard-real-time-1973] 마감 시한이 주기보다 짧은 태스크 집합의 EDF 검사는 [[earliest-deadline-first#마감 시한이 주기보다 짧을 때|처리기 수요 분석]]에서 다룬다.
+단일 프로세서에서 서로 독립인 주기 태스크의 마감 시한이 다음 요청 시각이고 실행 시간이 일정하며 선점할 수 있으면, [[rate-monotonic-scheduling|RM]]에 대한 Liu와 Layland의 [[rate-monotonic-scheduling#이용률 상한|이용률 상한]]은 충분조건일 뿐이라, 상한을 넘는 태스크 집합도 스케줄 가능할 수 있고, 그 여부는 모든 태스크가 [[response-time-analysis#Critical instant|critical instant]]에 낸 요청이 마감 시한 안에 끝나는지로 판정할 수 있다. 같은 가정에서 [[earliest-deadline-first|EDF]]로 모든 마감 시한을 지키는 것은 $U \le 1$일 때이고 그때뿐이다.[@liu-hard-real-time-1973] 마감 시한이 주기보다 짧은 태스크 집합의 EDF 검사는 [[earliest-deadline-first#마감 시한이 주기보다 짧을 때|처리기 수요 분석]]에서 다룬다.
 
 ![[diagrams/utilization-bound-rm-edf.svg]]
 

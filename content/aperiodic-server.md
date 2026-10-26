@@ -23,7 +23,7 @@ priority exchange, deferrable server, sporadic server는 polling server와 비�
 
 **deferrable server**는 aperiodic 처리용 실행 시간을 서버 주기 동안 유지하여, 그 주기의 실행 시간이 남아 있는 한 언제든 서버의 높은 우선순위로 aperiodic 요청을 처리한다. 서버의 실행 시간은 서버 주기가 시작될 때마다 가득 보충된다.[@sprunt-sporadic-aperiodic-1989]
 
-deferrable server는 처리할 요청이 없으면 실행 시간을 보존하는데, 이는 주기 태스크가 실행을 미루는 것과 같다. 그래서 deferrable server는 [[rate-monotonic-scheduling|RM]]으로 스케줄 가능한 주기 태스크 집합에서 우선순위가 가장 높은 준비된 주기 태스크는 곧바로 실행되어야 한다는 요구를 어기며, 이 때문에 원래 스케줄 가능한 태스크 집합에서도 더 낮은 우선순위 태스크가 [[deadline|마감 시한]]을 놓칠 수 있다. deferrable server는 priority exchange보다 구현이 훨씬 간단하지만, 주기 태스크 수가 한없이 많아질 때, 같은 서버 크기에서 RM이 주기 태스크를 늘 스케줄할 수 있는 이용률 상한이 priority exchange보다 낮다.[@sprunt-sporadic-aperiodic-1989]
+deferrable server는 처리할 요청이 없으면 실행 시간을 보존하는데, 이는 주기 태스크가 실행을 미루는 것과 같다. 그래서 deferrable server는 우선순위가 가장 높은 준비된 주기 태스크는 곧바로 실행되어야 한다는 [[rate-monotonic-scheduling|RM]] 스케줄 가능성 분석의 전제를 어기며, 이 때문에 원래 스케줄 가능한 태스크 집합에서도 더 낮은 우선순위 태스크가 [[deadline|마감 시한]]을 놓칠 수 있다. deferrable server는 priority exchange보다 구현이 훨씬 간단하지만, 주기 태스크 수가 한없이 많아질 때, 같은 서버 크기에서 RM이 주기 태스크를 늘 스케줄할 수 있는 이용률 상한이 priority exchange보다 낮다.[@sprunt-sporadic-aperiodic-1989]
 
 ### Priority exchange
 
@@ -67,7 +67,7 @@ $$
 
 **CBS**(Constant Bandwidth Server)는 예산 $c_s$와 최대 예산 $Q_s$, 서버 주기 $T_s$로 정해지는 서버이고, $U_s = Q_s / T_s$를 **서버 대역폭**이라 한다. 서버는 언제나 마감 시한 $d_{s,k}$를 하나 갖고, 서버가 처리하는 job은 지금의 서버 마감 시한을 마감 시한으로 받는다. job이 실행되는 만큼 예산이 줄고, 예산이 0이 되면 곧바로 $Q_s$로 다시 채워지며 서버 마감 시한이 $d_{s,k+1} = d_{s,k} + T_s$로 늦춰진다. 서버가 쉬는 동안 job이 시각 $r$에 도착하면, $c_s \ge (d_{s,k} - r) U_s$일 때 새 서버 마감 시한 $r + T_s$를 만들고 예산을 $Q_s$로 채우며, 아니면 지금의 마감 시한과 예산으로 처리한다.[@abeni-integrating-multimedia-1998]
 
-hard 태스크마다 최악 실행 시간과 최소 도착 간격 $T_i$를 두고 각 job의 마감 시한을 도착 시각에 $T_i$를 더한 값으로 둘 때, 그 가운데 도착 간격이 늘 $T_i$인 hard 주기 태스크의 이용률이 $U_p$이고 CBS의 이용률이 $U_s$이면, 전체는 $U_p + U_s \le 1$일 때 그리고 그때만 EDF로 스케줄 가능하다. Abeni와 Buttazzo는 이를 **격리 성질**(isolation property)이라 불렀다. 이 성질 덕분에 계산 시간을 묶기 어려운 soft 태스크에 CPU 시간의 일부를 예약해 hard 태스크와 함께 스케줄해도, soft 요청이 예상 부하를 넘을 때조차 hard 태스크의 사전 보장이 깨지지 않는다.[@abeni-integrating-multimedia-1998]
+hard 태스크는 최악 실행 시간과 최소 도착 간격 $T_i$로 나타내고, 각 job의 마감 시한은 도착 시각에 $T_i$를 더한 값으로 둔다고 하자. 도착 간격이 늘 $T_i$인 hard 주기 태스크만 있을 때 그 이용률이 $U_p$이고 CBS의 이용률이 $U_s$이면, 전체는 $U_p + U_s \le 1$일 때 그리고 그때만 EDF로 스케줄 가능하다. Abeni와 Buttazzo는 이를 **격리 성질**(isolation property)이라 불렀다. 이 성질 덕분에 계산 시간을 묶기 어려운 soft 태스크에 CPU 시간의 일부를 예약해 hard 태스크와 함께 스케줄해도, soft 요청이 예상 부하를 넘을 때조차 hard 태스크의 사전 보장이 깨지지 않는다.[@abeni-integrating-multimedia-1998]
 
 Linux 커널의 `SCHED_DEADLINE` 정책은 runtime, period, deadline 세 파라미터로 태스크를 스케줄한다. 태스크가 깨어날 때마다 스케줄러는 CBS 알고리즘으로 스케줄링 마감 시한을 계산하고, 이 마감 시한에 EDF를 적용해 가장 이른 태스크를 고른다. 다만 남은 runtime이 0 이하가 되면, 예산을 곧바로 다시 채우는 위 CBS 정의와 달리 태스크는 throttled 상태가 되어 스케줄링 마감 시한까지 스케줄되지 않고, 그 시각에 스케줄링 마감 시한에는 period가, 남은 runtime에는 runtime이 더해진다.[@abeni-integrating-multimedia-1998][@linux-sched-deadline-2026]
 

@@ -15,7 +15,7 @@ Mok은 주기적이거나 [[periodic-task-model#주기 태스크와 sporadic 태
 
 ![[diagrams/preemptive-nonpreemptive-scheduling.svg]]
 
-선점할 수 있는 시점에 따라 스케줄링 알고리즘을 셋으로 나눈다. pre-emptive 알고리즘에서는 더 높은 우선순위 태스크가 언제든 태스크를 선점할 수 있다. non-pre-emptive 알고리즘에서는 태스크가 실행을 시작하면 선점되지 않고 끝까지 실행된다. co-operative 알고리즘에서는 태스크가 실행 중 정해진 스케줄링 지점에서만 선점될 수 있어, 태스크의 실행이 사실상 선점할 수 없는 구간들로 이어진다.[@davis-survey-hard-real-time-2011] OSEK/VDX OS 2.2.3 명세는 비선점 스케줄링에서 태스크가 끝날 때(`TerminateTask`, `ChainTask`), 스케줄러를 부를 때(`Schedule`), 대기 상태로 들 때(`WaitEvent`)에만 재스케줄하도록 정한다.[@osek-os-2-2-3-2005]
+선점할 수 있는 시점에 따라 스케줄링 알고리즘을 셋으로 나눈다. pre-emptive 알고리즘에서는 더 높은 우선순위 태스크가 언제든 태스크를 선점할 수 있다. non-pre-emptive 알고리즘에서는 태스크가 실행을 시작하면 선점되지 않고 끝까지 실행된다. co-operative 알고리즘에서는 태스크가 실행 중 정해진 스케줄링 지점에서만 선점될 수 있어, 태스크의 실행이 사실상 선점할 수 없는 구간들로 이어진다.[@davis-survey-hard-real-time-2011] OSEK/VDX OS 2.2.3 명세는 비선점 스케줄링에서 태스크가 끝날 때(`TerminateTask`, `ChainTask`)뿐 아니라 스케줄러를 부를 때(`Schedule`)와 대기 상태로 들 때(`WaitEvent`)에도 재스케줄하고, 그 밖에는 우선순위가 더 높은 태스크가 준비되어도 다음 재스케줄 지점까지 태스크를 바꾸지 않도록 정한다.[@osek-os-2-2-3-2005]
 
 **협력형 멀티태스킹**에서는 각 태스크가 스스로 CPU 시간을 다음 태스크에 넘긴다.[@microchip-an2751-2018][@renesas-res05b0008-2010] Renesas 앱노트와 Micrium 문서는 스케줄러를 비선점과 선점 둘로 나누고, 실행 중인 태스크가 스스로 프로세서를 내놓아야 다른 태스크가 실행되는 비선점 스케줄링을 협력형 멀티태스킹이라고도 부른다.[@renesas-res05b0008-2010][@micrium-ucos-ii-rtsc-2026]
 
