@@ -128,7 +128,7 @@ ASPICE 3.1은 plug-in 컨셉의 도메인 예로 하드웨어(HWE), 기계(MEE),
 
 ## VDA scope
 
-**VDA scope**는 ASPICE 3.x가 쓴 이름으로, 자동차 산업에서 평가하는 매우 중요한 프로세스의 묶음이다. ASPICE 3.0은 4장을 고치며 이 묶음에 초점을 맞췄고, 3.1의 plug-in 그림은 SYS.1\~SYS.5, SWE.1\~SWE.6, MAN.3, ACQ.4, SUP.1, SUP.8, SUP.9, SUP.10을 VDA scope로 표시했다. ASPICE 4.1은 VDA scope라는 이름을 쓰지 않는다. 4.1의 plug-in 그림은 같은 프로세스에 HWE.1\~HWE.4를 더한 묶음을 표시하고, 범례에는 이 묶음이 "Automotive SPICE 4.0 PRM/PAM"으로 적혀 있다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+**VDA scope**는 ASPICE 3.x가 쓴 이름으로, 자동차 산업에서 평가하는 매우 중요한 프로세스의 묶음이다. ASPICE 3.0은 4장을 고치며 이 묶음에 초점을 맞췄고, 3.1의 plug-in 그림은 SYS.1\~SYS.5, SWE.1\~SWE.6, MAN.3, ACQ.4, SUP.1, SUP.8, SUP.9, SUP.10을 VDA scope로 표시했다. ASPICE 4.1은 VDA scope라는 이름을 쓰지 않는다. 4.1의 plug-in 그림은 같은 프로세스에 HWE.1\~HWE.4를 더한 묶음을 표시하고, 범례에는 이 묶음이 ASPICE 4.0의 프로세스 참조 모델과 프로세스 평가 모델로 적혀 있다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ## Element, component, unit
 

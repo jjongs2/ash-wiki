@@ -111,7 +111,7 @@ VDA QMC는 ASPICE 4.1의 프로세스 평가 모델로 하는 평가의 지침�
 
 ### 평가자 인증
 
-VDA QMC는 인증 사무국(Certification Office)을 두고 ASPICE 평가자를 인증하는 유일한 인원 인증 기관으로, 평가자 시험과 그 뒤의 인증 과정을 맡는다. 인증 체계의 규칙은 intacs(프로세스 평가자 인증 체계를 가진 국제 비영리 단체)가 정하고, VDA QMC는 그 규칙대로 평가자를 인증한다. 경험 증거와 assessment log를 확인하는 일도 VDA QMC가 맡는다.[@vda-automotive-spice-certification-2026][@intacs-home-2026]
+VDA QMC는 인증 사무국(Certification Office)을 두고 ASPICE 평가자를 인증하는 유일한 인원 인증 기관으로, 평가자 시험과 그 뒤의 인증 과정을 맡는다. 인증 체계의 규칙은 intacs(프로세스 평가자 인증 체계를 가진 국제 비영리 단체)가 정하고, VDA QMC는 그 규칙을 따른다. 경험 증거와 assessment log를 확인하는 일도 VDA QMC가 맡는다.[@vda-automotive-spice-certification-2026][@intacs-home-2026]
 
 평가자 인증의 첫 단계는 Provisional Assessor다. intacs에 등록된 교육 기관의 교육을 받고 VDA QMC의 시험에 붙어야 하며, 자동차 분야의 소프트웨어 기반 시스템 개발 경력이 24개월 이상이어야 한다. Competent, Principal, Instructor 같은 상위 단계는 선임 평가자(lead assessor)라 불리고, 경험 증명을 계속 갱신해야 한다. 인증은 VDA QMC가 intacs 체계로 내주는, 3년 동안 유효한 평가자 라이선스로 증명하고, 만료되면 갱신해야 한다.[@vda-automotive-spice-certification-2026]
 
