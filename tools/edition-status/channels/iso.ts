@@ -287,8 +287,8 @@ function checkPublication(publication: Publication, data: IsoData, cited: Set<nu
       })
     }
   const series = page && standardNumber(page.title)
-  const newest = Number(currentYears.sort().at(-1) ?? page?.edition)
-  if (series && !series.number.includes("-") && !Number.isNaN(newest)) {
+  const latestCurrentYear = Number(currentYears.sort().at(-1) ?? page?.edition)
+  if (series && !series.number.includes("-") && !Number.isNaN(latestCurrentYear)) {
     const citedParts = new Set(parsed.map(({ number }) => number.number))
     const partPattern = new RegExp(
       `^[A-Z/]+(?: [A-Z]+)* ${series.number.replace(/\./g, "\\.")}-([0-9]+):`,
@@ -296,7 +296,8 @@ function checkPublication(publication: Publication, data: IsoData, cited: Set<nu
     for (const record of data.all()) {
       const part = record.reference.match(partPattern)?.[1]
       if (!part || !current(record) || record.supplementType) continue
-      if (citedParts.has(`${series.number}-${part}`) || Number(yearOf(record)) <= newest) continue
+      if (citedParts.has(`${series.number}-${part}`) || Number(yearOf(record)) <= latestCurrentYear)
+        continue
       add({
         kind: "new-part",
         target: record.reference,

@@ -71,8 +71,8 @@ export const standardOnlyFields = (conventions: Conventions) =>
 export const pageTypeOf = (fields: Record<string, unknown>, standardOnly: string[]) =>
   Object.keys(fields).some((field) => standardOnly.includes(field)) ? "표준" : "개념"
 
-// 시리즈 표준 페이지가 인용한 부들의 가장 새 판이 둘 이상의 해로 갈리면 그 판들을, 아니면 null을 준다.
-// 예: ISO/IEC/IEEE 29119 → 29119-1:2022, 29119-2:2021, … 규약 문서의 형식 목록에 있는 edition 조건이다.
+// 부마다 판이 다른 시리즈(docs/wiki-conventions.md의 프론트매터 표 아래 edition 줄)면 부마다 가장 새 판을,
+// 아니면 null을 준다. 예: ISO/IEC/IEEE 29119 → 29119-1:2022, 29119-2:2021, …
 function splitEditions(page: Page, title: unknown, titles: Map<string, string>): string[] | null {
   const series = typeof title === "string" ? standardNumber(title) : undefined
   if (!series) return null

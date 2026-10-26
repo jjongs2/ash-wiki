@@ -205,11 +205,15 @@ describe("iso", () => {
     assert.deepStrictEqual(keys, ["ISO 26262 | new-part | ISO 26262-13:2027"])
   })
 
-  test("edition 없는 시리즈 페이지도 한 출판물로 묶고, 인용한 부의 가장 늦은 판 뒤에 발행된 부만 새 부로 잡는다", async () => {
+  test("edition 없는 시리즈 페이지도 한 출판물로 묶어 개정 착수를 받고, 인용한 부의 가장 늦은 판 뒤에 발행된 부만 새 부로 잡는다", async () => {
     // 2026-10-24에는 ISO/IEC/IEEE 29119-8이 60.00(발행 준비)이다. 발행된 것으로 바꿔 넣는다.
     // ISO/IEC TR 29119-13은 인용한 가장 늦은 판(29119-5:2024) 전인 2023년에 발행된 것으로 바꾼다.
-    const text = fs
-      .readFileSync(path.join(fixtures, data), "utf8")
+    // 29119-5:2024를 대체할 개정 프로젝트도 하나 넣는다.
+    const text = (
+      fs.readFileSync(path.join(fixtures, data), "utf8") +
+      '{"id":990005,"deliverableType":"IS","supplementType":null,"reference":"ISO/IEC/IEEE CD 29119-5",' +
+      '"publicationDate":null,"edition":3,"currentStage":3020,"replaces":[87233],"replacedBy":null}\n'
+    )
       .replace(
         /"reference":"ISO\/IEC\/IEEE 29119-8","publicationDate":null,"edition":1,"currentStage":6000/,
         '"reference":"ISO/IEC/IEEE 29119-8:2027","publicationDate":"2027-03-01","edition":1,"currentStage":6060',
@@ -254,8 +258,9 @@ describe("iso", () => {
         publications,
         fixtureContext({ [isoDataUrl]: () => new Response(text) }),
       )
-      assert.deepStrictEqual(changes.map(changeKey), [
+      assert.deepStrictEqual(changes.map(changeKey).sort(), [
         "ISO/IEC/IEEE 29119 | new-part | ISO/IEC/IEEE 29119-8:2027",
+        "ISO/IEC/IEEE 29119 | revision | ISO/IEC/IEEE CD 29119-5",
       ])
     } finally {
       fs.rmSync(root, { recursive: true, force: true })
