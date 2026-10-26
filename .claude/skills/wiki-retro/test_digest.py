@@ -97,6 +97,13 @@ class DigestArchiveTest(unittest.TestCase):
         self.assertEqual(rows[0][1], "retro-uuid")
         self.assertRegex(rows[0][2], r"^\d{4}-\d{2}-\d{2}$")
 
+    def test_mark_takes_a_routine_run_id(self):
+        run = "cse_01AbCdEfGhIjKlMnOpQrStUv"
+        self.run_digest("--mark", "retro-uuid", run, UUID)
+        self.run_digest("--mark", "retro-uuid-2", run)
+        with open(os.path.join(self.archive, "analyzed.tsv")) as f:
+            self.assertEqual([line.split("\t")[0] for line in f], [run, UUID])
+
     def test_mark_rejects_a_path(self):
         result = self.run_digest("--mark", "retro-uuid", self.transcript, check=False)
         self.assertNotEqual(result.returncode, 0)
