@@ -412,6 +412,33 @@ describe("check-diff CLI", { concurrency: false }, () => {
     }
   })
 
+  test("약어: 대상이 푸는 약어를 링크 뒤 괄호로 또 풀면 찍는다", () => {
+    const lines = report.items.get("abbreviation") ?? []
+    assert.ok(
+      has(lines, "content/link-gloss.md:8:", "링크 뒤 풀이: [[layered|BSW]](Basic Software)"),
+      "머리말이 푸는 약어",
+    )
+    assert.ok(
+      has(
+        lines,
+        "content/link-gloss.md:8:",
+        "링크 뒤 풀이: [[layered#이더넷|SoAd]](Socket Adaptor)",
+      ),
+      "절이 푸는 약어",
+    )
+    for (const line of [10, 12, 14]) {
+      assert.ok(!has(lines, `content/link-gloss.md:${line}:`), `거르는 경우: ${line}줄`)
+    }
+  })
+
+  test("약어: µ로 시작하는 낱말 안의 대문자열은 세지 않는다", () => {
+    const lines = report.items.get("abbreviation") ?? []
+    assert.ok(has(lines, "content/definitions.md:34:", "풀이가 없다: RTOS"), "같은 줄의 약어")
+    for (const word of ["OS", "III", "II"]) {
+      assert.ok(!has(lines, `풀이가 없다: ${word}`), `µC/OS-III 안의 ${word}`)
+    }
+  })
+
   test("약어: 밑줄이 든 이름은 백틱 없는 코드 이름으로 따로 찍는다", () => {
     const lines = report.items.get("abbreviation") ?? []
     assert.ok(has(lines, "content/definitions.md:32:", "백틱 없는 코드 이름: BIG_ENDIAN"))

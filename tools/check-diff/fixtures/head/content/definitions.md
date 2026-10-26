@@ -30,3 +30,5 @@ CRC 시퀀스는 LDPC 부호와 다르다. ISO/DIS 16845-2가 개발 중이다. 
 데이터 오류(NVM 워드의 패리티 오류)를 찾는다. ICU 모듈이 신호를 잰다. [[autosar-icu-driver|ICU Driver]]가 펄스를 센다. **DIO Driver**는 핀을 다루고, DIO(Digital Input/Output)는 디지털 입출력이다. **PWM Driver**(PWM 신호 드라이버)는 PWM(Pulse Width Modulation) 신호를 낸다.[@bosch-can-2-0-1991]
 
 ChrgM이 충전을 다루고 PAM3 신호를 쓴다. DevSecOps, SnapshotRecord와 FlexRay, MHz는 약어 후보가 아니다. 설정값이 BIG_ENDIAN이면 CAN_H를 본다.[@bosch-can-2-0-1991]
+
+µC/OS-III와 µC/OS-II는 RTOS 커널이고, µ-velOSity도 커널이다.[@bosch-can-2-0-1991]
