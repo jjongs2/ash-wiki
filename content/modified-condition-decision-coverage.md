@@ -49,7 +49,7 @@ Clang은 `-fprofile-instr-generate`, `-fcoverage-mapping`에 더해 `-fcoverage-
 
 Clang은 MC/DC 계측에 두 한도를 둔다. 식 하나의 항 수는 32767까지이고, 식에서 나올 수 있는 조합의 최대 수인 테스트 벡터 수는 2,147,483,646까지다. 옵션으로 항 수와 식마다의 테스트 벡터 수를 더 좁힐 수 있고, 그렇게 정한 값을 넘는 식은 경고를 내고 MC/DC 커버리지에서 뺀다. 항이 $n$개인 식의 테스트 벡터 수는 최악의 경우 $2^n$까지 늘 수 있지만 대개 훨씬 적고, 연산자 하나가 이어지는 단순한 식에서는 $n+1$이다.[@llvm-source-based-code-coverage-2026]
 
-MathWorks의 커버리지 분석 소프트웨어인 Simulink Coverage의 모델 커버리지에서는 MCDC가 위 정의와 달리 결정 커버리지나 조건 커버리지를 다 이루지 않을 수 있어서, 결정 커버리지 100% 없이 MCDC 100%를 이룰 수 있다.[@mathworks-slcoverage-model-coverage-2026]
+MathWorks의 커버리지 분석 소프트웨어인 Simulink Coverage의 모델 커버리지에서는 MCDC(modified condition/decision coverage)가 위 정의와 달리 결정 커버리지나 조건 커버리지를 다 이루지 않을 수 있어서, 결정 커버리지 100% 없이 MCDC 100%를 이룰 수 있다.[@mathworks-slcoverage-model-coverage-2026]
 
 ## 기원
 
