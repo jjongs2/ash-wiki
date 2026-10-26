@@ -25,7 +25,7 @@ AUTOSAR는 파트너십 유형마다 다른 권리와 의무를 둔다. 파트�
 | Associate Partner [Light] | 무료 유형으로, AUTOSAR Work 가운데 정해진 일부만 써서 버스 시스템과 호환되고 상호운용되는 제품을 내려는 회사를 위한 것이다.[@autosar-partners-2026]                                                                     |
 | Attendee                  | 대학과 비영리 단체를 위한 무료 유형으로, AUTOSAR 표준을 정의하는 일에 협력한다.[@autosar-home-2026]                                                                                                                     |
 
-Core Partner로는 2003년 11월 Ford, 2003년 12월 Peugeot Citroën Automobiles와 Toyota, 2004년 11월 General Motors가 합류했다. 2008년 2월 Siemens VDO가 Continental에 합쳐지면서, Siemens VDO는 따로 된 Core Partner가 아니게 되었다.[@autosar-history-2026] 2026년 1월에는 DENSO, Huawei, Vector Informatik이 Core Partner로 합류했다. AUTOSAR 누리집의 Core Partner 명단에는 AUMOVIO, BMW, DENSO, General Motors, Huawei, Mercedes-Benz, Bosch, Toyota, Vector Informatik, Volkswagen의 10곳이 있다.[@autosar-core-partner-2026]
+Core Partner로는 2003년 11월 Ford, 2003년 12월 Peugeot Citroën Automobiles와 Toyota, 2004년 11월 General Motors가 합류했다. 2008년 2월 Siemens VDO가 Continental에 합쳐지면서, Siemens VDO는 따로 된 Core Partner가 아니게 되었다.[@autosar-history-2026] 2026년 1월에는 DENSO, Huawei, Vector Informatik이 Core Partner로 합류했다. 2026년 9월 기준 AUTOSAR 누리집의 Core Partner 명단에는 AUMOVIO, BMW, DENSO, General Motors, Huawei, Mercedes-Benz, Bosch, Toyota, Vector Informatik, Volkswagen의 10곳이 있고, Ford와 Peugeot Citroën Automobiles는 없다.[@autosar-core-partner-2026]
 
 AUTOSAR 소개 자료에 따르면 2025년 말 AUTOSAR 파트너는 339곳이었다. 유형별로는 Core Partner 9곳, Premium Partner Plus 3곳, Premium Partner 64곳, Development Partner 61곳, Associate Partner 154곳, Attendee 48곳이다.[@autosar-exp-introduction-part1-2026]
 
@@ -35,7 +35,7 @@ AUTOSAR는 AUTOSAR Work를 활용하려는 회사에 AUTOSAR 파트너가 되기
 
 ## 조직
 
-AUTOSAR 소개 자료는 AUTOSAR의 공식 역할을 거버넌스(Executive Board), 전략 관리(Steering Committee, Legal Team, Communication Team), 기술 조정(Project Leader Team 등), 표준화(작업 그룹 등)의 층으로 나눈다. 작업 그룹은 표준 사이에 걸친 작업 그룹, [[autosar-classic-platform|Classic Platform]] 작업 그룹, [[autosar-adaptive-platform|Adaptive Platform]] 작업 그룹으로 나뉜다.[@autosar-exp-introduction-part1-2026]
+AUTOSAR 소개 자료는 AUTOSAR의 공식 역할을 거버넌스(Executive Board), 전략 관리(Steering Committee, Legal Team, Communication Team), 기술 조정(Project Leader Team 등), 표준화(작업 그룹 등)의 층으로 나눈다. 작업 그룹은 표준 사이에 걸친 작업 그룹, [[autosar-classic-platform|Classic Platform]] 작업 그룹, [[autosar-adaptive-platform|Adaptive Platform]] 작업 그룹으로 나뉜다. 작업 그룹에는 Core Partner, Premium Partner Plus, Premium Partner, Development Partner가 참여한다.[@autosar-exp-introduction-part1-2026]
 
 ![[diagrams/autosar-organization-layers.svg]]
 
@@ -113,15 +113,15 @@ AUTOSAR Foundation R25-11은 major release 하나의 생명주기를 차례로 �
 
 ![[diagrams/autosar-release-lifecycle.svg]]
 
-AUTOSAR는 Ryy-mm 꼴의 플랫폼 릴리스 번호와 따로 `R<major>.<minor>.<revision>` 꼴의 내부 릴리스 번호를 두고, 내부 번호로 릴리스의 종류를 가린다. major release는 valid와 draft 규격 부분을 하위 호환 없이 바꿀 수 있다. minor release는 valid 부분을 하위 호환되게만 바꿀 수 있고, draft 부분은 하위 호환 없이 바꿀 수 있다. revision은 확장 없이 하위 호환되는 버그 수정만 담는다.[@autosar-fo-tr-releaseoverview-2025]
+AUTOSAR는 Ryy-mm 꼴의 플랫폼 릴리스 번호와 따로 `R<major>.<minor>.<revision>` 꼴의 내부 릴리스 번호를 두고, 내부 번호로 릴리스의 종류를 가린다. major release는 valid와 draft 규격 부분을 하위 호환 없이 바꿀 수 있다. minor release는 valid 부분을 하위 호환되게만 바꿀 수 있고, draft 부분은 하위 호환 없이 바꿀 수 있다. revision은 확장 없이 하위 호환되는 버그 수정만 담는다. R19-11부터는 플랫폼 릴리스 하나에 내부 번호 하나가 대응한다. 예를 들어 R25-11의 내부 번호는 R4.11.0이고, R25-11은 minor release다.[@autosar-fo-tr-releaseoverview-2025]
 
-규격 항목의 생명주기 상태는 규격 항목 ID 뒤의 중괄호 안에 있고, 요구사항의 상태는 Status 속성에 있다. 상태는 셋이다.[@autosar-fo-tr-releaseoverview-2025]
+규격 항목의 생명주기 상태는 규격 항목 ID 뒤의 중괄호 안에 있고, 요구사항의 상태는 Status 속성에 있다. 규격 항목과 요구사항의 상태는 같은 셋이다.[@autosar-fo-tr-releaseoverview-2025]
 
 - **VALID**: 문서의 유효한 부분이다. 상태를 따로 적지 않은 항목도 VALID다.
 - **DRAFT**: 새로 넣었지만 아직 실험적인 부분이다. 펴내기는 하지만 하위 호환 보장 없이 바뀔 수 있다.
 - **OBSOLETE**: 다음 릴리스 가운데 하나에서 따로 알리지 않고 뺄 수 있는 부분이다.[@autosar-fo-tr-releaseoverview-2025]
 
-AUTOSAR R25-11 Classic Platform Release Overview는 명세 문서에도 상태를 매겨, 그 릴리스에서 obsolete 상태로 정한 명세의 목록과, removed 상태로 정해 더는 펴내지 않는 명세의 목록을 따로 둔다.[@autosar-cp-tr-releaseoverview-2025]
+AUTOSAR R25-11 Classic Platform Release Overview는 규격 항목의 상태와 따로 명세 문서에도 상태를 매겨, 그 릴리스에서 obsolete 상태로 정한 명세의 목록과, removed 상태로 정해 더는 펴내지 않는 명세의 목록을 따로 둔다.[@autosar-cp-tr-releaseoverview-2025]
 
 ## Feature와 concept
 

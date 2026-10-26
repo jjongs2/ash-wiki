@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**RTE 이벤트**(RTEEvent)는 [[autosar-rte|RTE]]가 [[runnable-entity|runnable]]을 시작하는 계기다. RTE만이 runnable의 실행을 촉발하며, 여러 RTE 이벤트에 응해 촉발한다.[@autosar-cp-sws-rte-2025] RTE 이벤트는 SW-C의 [[autosar-software-component#Internal behavior|internal behavior]]에 속하며, 자신이 일어나는 계기와 일어났을 때 시작할 runnable을 정한다. 가리키는 runnable은 많아야 하나이고, 한 runnable은 여러 RTE 이벤트로 시작될 수 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+**RTE 이벤트**(RTEEvent)는 [[autosar-rte|RTE]]가 [[runnable-entity|runnable]]을 시작하는 계기다. RTE만이 runnable의 실행을 촉발하며, 여러 RTE 이벤트에 응해 촉발한다.[@autosar-cp-sws-rte-2025] RTE 이벤트는 SW-C의 [[autosar-software-component#Internal behavior|internal behavior]]에 속하며, 자신이 일어나는 계기와 일어났을 때 시작할 runnable을 정한다. RTE 이벤트 하나가 가리키는 runnable은 많아야 하나이고, 한 runnable은 여러 RTE 이벤트로 시작될 수 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ## 종류
 
@@ -15,7 +15,7 @@ RTE 이벤트는 열여섯 종류다. 종류마다 runnable을 시작하는 때�
 | ----------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | 시간        | TimingEvent                                                                          | 정해진 주기(초 단위)마다                                                                                                                   |
 | 백그라운드  | BackgroundEvent                                                                      | 백그라운드에서 실행할 runnable을 촉발할 때                                                                                                 |
-| 시작        | InitEvent                                                                            | 파티션을 시작하거나 다시 시작할 때처럼 초기화할 때                                                                                         |
+| 시작        | InitEvent                                                                            | 파티션을 시작할 때처럼 초기화할 때                                                                                                         |
 | 태스크      | OsTaskExecutionEvent                                                                 | 이 이벤트를 매핑한 태스크가 실행될 때마다                                                                                                  |
 | 데이터 수신 | DataReceivedEvent                                                                    | 참조한 [[autosar-sender-receiver-interface#Data element\|data element]]를 받았을 때                                                        |
 | 데이터 수신 | DataReceiveErrorEvent                                                                | [[autosar-com\|COM]] 계층이 참조한 data element의 수신 오류를 알렸을 때                                                                    |
@@ -32,7 +32,7 @@ RTE 이벤트는 열여섯 종류다. 종류마다 runnable을 시작하는 때�
 
 BackgroundEvent는 고정된 주기 없이 되풀이해 일어나며, 보통 가장 낮은 우선순위로만 활성화된다. RTE는 BackgroundEvent를 전용 백그라운드 태스크로 구현하거나, [[osek-alarm|알람]]이나 schedule table [[autosar-schedule-table#Expiry point|expiry point]]로 ECU 통합자가 정한 고정 반복에 따라 TimingEvent처럼 구현한다. 백그라운드 태스크로 구현하면 그 태스크는 코어에서 가장 낮은 우선순위여야 한다.[@autosar-cp-sws-rte-2025]
 
-RTE는 `Rte_Start`를 실행할 때 InitEvent로 촉발되는 runnable을 한 번 활성화한다.[@autosar-cp-sws-rte-2025] 그렇다고 InitEvent가 가리키는 runnable이 다른 runnable보다 먼저 실행된다는 보장은 없고, 실행 순서는 태스크 매핑에 달려 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+RTE는 `Rte_Start`를 실행할 때 InitEvent로 촉발되는 runnable을 한 번 활성화한다.[@autosar-cp-sws-rte-2025] 그렇다고 InitEvent가 가리키는 runnable이 다른 runnable보다 먼저 실행된다는 보장은 없고, 실행 순서는 태스크 매핑에 달려 있다.[@autosar-cp-tps-softwarecomponenttemplate-2025] AUTOSAR R23-11은 RTE 명세에서 파티션의 종료와 재시작 지원을 뺐다.[@autosar-cp-sws-rte-2025]
 
 ExternalTriggerOccurredEvent는 trigger source인 SW-C나 BSW(Basic Software) 모듈이 trigger를 일으켰을 때, 연결된 trigger sink의 runnable을 시작한다. InternalTriggerOccurredEvent는 같은 SW-C 인스턴스의 runnable이 internal triggering point로 trigger를 일으켰을 때 시작한다.[@autosar-cp-sws-rte-2025]
 

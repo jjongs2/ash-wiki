@@ -39,7 +39,7 @@ AA는 다른 AA에 서비스를 제공할 수도 있다. Adaptive Platform Found
 
 Adaptive Platform은 자신이 도는 하드웨어를 **Machine**이라 부른다. Machine은 실제 물리 머신일 수도 있고, 완전 가상화 머신, 반가상화 운영체제, 운영체제 수준 가상화 컨테이너 같은 가상 환경일 수도 있다. 어떤 가상화 기술을 쓰든 플랫폼을 일관되게 보려는 것이다. 하드웨어 하나에 Machine이 하나 이상 있을 수 있고, Machine마다 Adaptive Platform 인스턴스는 하나만 돈다.[@autosar-ap-exp-platformdesign-2025]
 
-운영체제는 다중 프로세스 POSIX 기능을 제공해야 하고, 운영체제가 보기에 Adaptive Platform과 AA는 프로세스의 집합이다. 각 AA는 자기 논리 메모리 공간과 네임스페이스를 가진 독립 프로세스로 구현되며, AA 하나가 프로세스 여러 개를 담아 여러 Adaptive Platform 인스턴스에 나뉘어 배치될 수도 있다. AA는 Executable 여러 개로 이뤄질 수 있고, Executable은 대개 파일 시스템의 실행 파일에 해당한다. 운영체제는 Executable에서 프로세스를 만들고, Executable 하나에서 프로세스 여러 개를 만들 수 있다. functional cluster도 대개 프로세스로 구현된다.[@autosar-ap-exp-platformdesign-2025]
+운영체제는 다중 프로세스 POSIX 기능을 제공해야 하고, 운영체제가 보기에 Adaptive Platform과 AA는 프로세스의 집합이다. 각 AA는 자기 논리 메모리 공간과 네임스페이스를 가진 독립 프로세스로 구현된다. 다만 AA 하나가 그런 프로세스를 여러 개 담을 수도 있고, 그 프로세스들은 Adaptive Platform 인스턴스 하나에 배치하거나 여러 인스턴스에 나눠 배치할 수 있다. AA는 Executable 여러 개로 이뤄질 수 있고, Executable은 대개 파일 시스템의 실행 파일에 해당한다. 운영체제는 Executable에서 프로세스를 만들고, Executable 하나에서 프로세스 여러 개를 만들 수 있다. functional cluster도 대개 프로세스로 구현된다.[@autosar-ap-exp-platformdesign-2025]
 
 ![[diagrams/adaptive-platform-machine-processes.svg]]
 
@@ -59,7 +59,7 @@ functional cluster마다 지원하는 프로토콜은 다음과 같다.[@autosar
 | Sensor Interfaces                                                          | ISO 23150                                                                                                        |
 | [[autosar-network-management\|Network Management]]                         | UdpNm([[udp\|UDP]] Network Management)                                                                           |
 | [[autosar-time-synchronization\|Time Synchronization]]                     | [[ieee-802-1as\|gPTP]](IEEE 802.1AS)와, 이를 확장하고 프로파일링한 AUTOSAR 시간 동기화 프로토콜                  |
-| Raw Data Stream                                                            | [[ipv4\|IPv4]]와 [[ipv6\|IPv6]] 위의 [[tcp\|TCP]]와 UDP                                                          |
+| Raw Data Stream                                                            | [[ipv4\|IPv4]]와 [[ipv6\|IPv6]] 위의 [[tcp\|TCP]]와 UDP, 데이터 링크 계층의 [[ieee-1722\|IEEE 1722]]             |
 | [[autosar-log-and-trace\|Log and Trace]]                                   | AUTOSAR Log and Trace 프로토콜                                                                                   |
 
 보안 기능으로 Communication Management는 [[secure-onboard-communication|SecOC]], [[transport-layer-security|TLS]]와 DTLS(Datagram Transport Layer Security), IPsec(Internet Protocol Security), [[ieee-802-1ae|MACsec]]을 지원한다.[@autosar-ap-exp-platformdesign-2025]
@@ -71,7 +71,7 @@ AUTOSAR는 Adaptive Platform을 [[functional-safety|기능 안전]] 프로젝트
 ### 그 밖의 functional cluster
 
 - **Core Types**: 여러 functional cluster가 공개 인터페이스에 함께 쓰는 클래스와 기능을 정한다. [[automotive-safety-integrity-level|ASIL]] 인증 C++ 컴파일러가 대개 예외를 지원하지 않아, Adaptive Platform은 C++ 예외 없이 오류를 다루는 개념을 두고 그 중심 타입으로 `ara::core::ErrorCode`와 `ara::core::Result`를 정한다.
-- **Raw Data Stream**: 센서나 오디오·비디오 스트리밍처럼 외부 ECU와 원시 바이너리 데이터 스트림을 주고받는 독립 통신 API를 제공한다. 네트워크 계층의 IP 기반 프로토콜과 데이터 링크 계층의 [[ieee-1722|IEEE 1722]] 프로토콜을 지원하고, 주고받는 데이터를 [[autosar-e2e-protection|E2E 보호]]하지 않으므로 그 보호는 응용 계층이 맡는다.
+- **Raw Data Stream**: 센서나 오디오·비디오 스트리밍처럼 외부 ECU와 원시 바이너리 데이터 스트림을 주고받는 독립 통신 API를 제공한다. 네트워크 계층의 IP 기반 프로토콜과 데이터 링크 계층의 IEEE 1722 프로토콜을 지원하고, 주고받는 데이터를 [[autosar-e2e-protection|E2E 보호]]하지 않으므로 그 보호는 응용 계층이 맡는다.
 - **Automotive API Gateway**: Vehicle Services 묶음의 functional cluster로, 차량 밖과 안의 클라이언트에 VISS(Vehicle Information Service Specification)를 따르는 인터페이스를 준다. 그 인터페이스의 VSS(Vehicle Signal Specification) 데이터를 차량 안의 `ara::com` 서비스 인터페이스 데이터에 대응시킨다.
 - **Sensor Interfaces**: ISO 23150을 따르는 공통 인터페이스로, 비플랫폼 서비스가 센서 정보를 `ara::com` 미들웨어로 클라이언트 응용에 내준다.
 - **Safe Hardware Acceleration**: 응용과 다른 functional cluster가 하드웨어 가속기로 작업하는 API를 제공한다.[@autosar-ap-exp-platformdesign-2025]

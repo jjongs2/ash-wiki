@@ -23,14 +23,15 @@ AUTOSAR가 처음 제안한 방법은 차량 시스템 기술에서 시작해 �
 
 ### System description
 
-**System Description**은 AUTOSAR 시스템 전체의 System Configuration을 기술하며, category가 `SYSTEM_DESCRIPTION`인 System 요소가 그 중심이다. System Template은 다섯 가지 주요 요소로 Topology, Software, Communication, Mapping, Mapping Constraints를 정한다. 최상위 요소 System은 Software, Mapping, Mapping Constraints를 직접 모으고, Topology와 Communication은 직접 담는 대신 ASAM FIBEX(Field Bus Exchange Format)의 요소를 참조한다. 앞의 네 요소가 기술하는 것은 아래와 같다.[@autosar-cp-tps-systemtemplate-2025]
+**System Description**은 AUTOSAR 시스템 전체의 System Configuration을 기술하며, category가 `SYSTEM_DESCRIPTION`인 System 요소가 그 중심이다. System Template은 다섯 가지 주요 요소로 Topology, Software, Communication, Mapping, Mapping Constraints를 정한다. 최상위 요소 System은 Software, Mapping, Mapping Constraints를 직접 모으고, Topology와 Communication은 직접 담는 대신 ASAM FIBEX(Field Bus Exchange Format)의 요소를 참조한다. System Template은 Mapping과 Mapping Constraints를 다른 요소로 세지만, 메타모델에서는 System이 모으는 SystemMapping에 매핑과 매핑 제약(MappingConstraint)이 함께 든다. 다섯 요소가 기술하는 것은 아래와 같다.[@autosar-cp-tps-systemtemplate-2025]
 
-| 요소          | 기술하는 것                                                                             |
-| ------------- | --------------------------------------------------------------------------------------- |
-| Topology      | 어떤 ECU가 있고 어떻게 이어지는지, 곧 ECU 인스턴스와 통신 클러스터                      |
-| Software      | 시스템의 모든 SW-C를 계층 구조로 담은 루트 소프트웨어 합성                              |
-| Communication | SystemSignal, ISignal, PDU(Protocol Data Unit), 프레임을 주요 요소로 하는 통신 매트릭스 |
-| Mapping       | SW-C를 ECU에 배치하는 것, 데이터 요소를 시그널에 대응시키는 것, 매핑 제약               |
+| 요소                | 기술하는 것                                                                                                                                           |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Topology            | 어떤 ECU가 있고 어떻게 이어지는지, 곧 ECU 인스턴스와 통신 클러스터                                                                                    |
+| Software            | 시스템의 모든 SW-C를 계층 구조로 담은 루트 소프트웨어 합성                                                                                            |
+| Communication       | SystemSignal, ISignal, PDU(Protocol Data Unit), 프레임을 주요 요소로 하는 통신 매트릭스                                                               |
+| Mapping             | SW-C를 ECU에 배치하는 것, 데이터 요소를 시그널에 대응시키는 것                                                                                        |
+| Mapping Constraints | 같은 ECU에 함께 매핑할 SW-C(ComponentClustering)와 같은 ECU에 매핑하지 않을 SW-C(ComponentSeparation)처럼, SW-C를 ECU에 매핑하는 자유를 제한하는 제약 |
 
 ![[diagrams/autosar-system-template-elements.svg]]
 
@@ -56,11 +57,11 @@ ECU 설정의 입력은 ECU Extract와 BSW Module Delivered Bundle이다.[@autos
 
 pre-compile time 설정은 모듈의 설정 파일 두 개(`*_Cfg.h`, `*_Cfg.c`)나 코드 생성으로 하며, `*_Cfg.h`에는 매크로와 `#define`을, `*_Cfg.c`에는 상수를 둔다. post-build time 설정 데이터는 따로 다시 올릴 수 있는 메모리 구역의 외부 상수 구조체에 두고, 모듈은 초기화 때 기본 구조체를 가리키는 포인터를 받는다. 설정 세트가 여럿이면 초기화할 때마다 그 가운데 하나를 고를 수 있다. post-build 설정의 메모리 배치 예에서 [[ecu-state-manager|EcuM]]은 모든 모듈 설정의 주소가 든 색인을 알고, 모듈을 초기화할 때 그 모듈 설정 데이터의 시작 주소를 넘겨 설정 데이터의 크기가 달라질 수 있게 한다. 설정 세트가 여럿이면 색인이 세트마다 주소 목록을 담고, EcuM은 고른 세트의 항목을 가리키는 포인터를 넘긴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-BSW 모듈에는 쓰임새마다 다른 설정 가능성을 주는 설정 variant가 셋 있다. `VARIANT-PRE-COMPILE`은 파라미터를 pre-compile time에만, `VARIANT-LINK-TIME`은 pre-compile time이나 link time에, `VARIANT-POST-BUILD`는 pre-compile time, link time, post-build time 가운데 하나에 정할 수 있게 한다. 한 variant 안에서 파라미터 하나는 설정 클래스 하나에만 속한다. BSW 모듈의 설정 소스 파일 이름에는 [[autosar#규격 항목 ID와 API 명세|모듈 구현 접두어]] 뒤에 설정 클래스에 따라 `_Cfg`, `_Lcfg`, `_PBcfg`를 붙이며, 예를 들어 [[autosar-com|COM]] 모듈의 파일은 `Com_Cfg.c`, `Com_Lcfg.c`, `Com_PBcfg.c`다.[@autosar-cp-sws-bswgeneral-2025]
+BSW 모듈의 설정 variant는 설정 파라미터의 집합을 기술하며, 쓰임새마다 필요한 설정 가능성이 달라 셋이 있다. `VARIANT-PRE-COMPILE`은 파라미터를 pre-compile time에만, `VARIANT-LINK-TIME`은 pre-compile time이나 link time에, `VARIANT-POST-BUILD`는 pre-compile time, link time, post-build time 가운데 하나에 정할 수 있게 한다. 한 variant 안에서 파라미터 하나는 설정 클래스 하나에만 속한다. BSW 모듈의 설정 소스 파일 이름에는 [[autosar#규격 항목 ID와 API 명세|모듈 구현 접두어]] 뒤에 설정 클래스에 따라 `_Cfg`, `_Lcfg`, `_PBcfg`를 붙이며, 예를 들어 [[autosar-com|COM]] 모듈의 파일은 `Com_Cfg.c`, `Com_Lcfg.c`, `Com_PBcfg.c`다.[@autosar-cp-sws-bswgeneral-2025]
 
 ## Variant handling
 
-variant handling은 Generic Structure Template이 정한다. variant handling에서 변형 대상으로 지정한 AUTOSAR 메타모델의 자리를 **variation point**라 하며, variation point는 그 변형이 활성인 조건과 변형을 풀 때를 정하는 binding time으로 이뤄진다. 모델에 variation point가 많아도 실제로 쓰는 조합은 적어서, 그 조합 하나하나를 미리 정한 variant(predefined variant)로 둔다. binding time은 시점이 아니라 개발 단계를 뜻하며, 이른 것부터 BlueprintDerivationTime, SystemDesignTime, CodeGenerationTime, PreCompileTime, LinkTime, PostBuild가 있다. variation point마다 메타모델이 정한 latest binding time이 있어 그보다 늦게 풀 수 없고, 모델에서 variation point에 정하는 실제 binding time은 이보다 이를 수 있다.[@autosar-cp-tr-methodology-2025]
+variant handling은 Generic Structure Template이 정한다. variant handling에서 변형 대상으로 지정한 AUTOSAR 메타모델의 자리를 **variation point**라 하며, variation point는 그 변형이 활성인 조건과 변형을 풀 때를 정하는 binding time으로 이뤄진다. 모델에 variation point가 많아도 실제로 쓰는 조합은 적어서, 그 조합 하나하나를 미리 정한 variant(predefined variant)로 둔다. binding time은 시점이 아니라 개발 단계를 뜻하며, AUTOSAR 메타모델의 variant handling은 이른 것부터 BlueprintDerivationTime, SystemDesignTime, CodeGenerationTime, PreCompileTime, LinkTime, PostBuild를 지원한다. PostBuild는 늦어도 ECU를 시작할 때 묶이며, ECU를 시작하고 초기화한 뒤인 Runtime의 variant handling은 메타모델과 방법론의 범위 밖이다. variation point마다 메타모델이 정한 latest binding time이 있어 그보다 늦게 풀 수 없고, 모델에서 variation point에 정하는 실제 binding time은 이보다 이를 수 있다.[@autosar-cp-tr-methodology-2025]
 
 ![[diagrams/variant-binding-times.svg]]
 
@@ -68,7 +69,7 @@ AUTOSAR R25-11 용어집은 시스템이 variant의 집합을 기술하는 성�
 
 ## AUTOSAR XML
 
-XML로 AUTOSAR 모델을 나타낸 것을 **AUTOSAR XML 기술**이라 한다. 각 파일은 AUTOSAR XML Schema에 맞아야 하고, 이 스키마는 AUTOSAR 메타모델에서 도출되며 AUTOSAR의 데이터 교환 형식을 정한다.[@autosar-fo-tr-glossary-2025] 방법론에서 SW-C 기술, System Description, ECU Extract, 표준과 벤더별 모듈 정의는 종류가 AUTOSAR XML인 산출물이다.[@autosar-cp-tr-methodology-2025] ECU Configuration Values는 ARXML 파일로 저장되고, Parameter Definition도 XML 파일이다. AUTOSAR는 AUTOSAR 호환 도구가 시스템 개발 중에 정보를 정의하고 공유하는 기술로 XML을 골랐다.[@autosar-cp-tps-ecuconfiguration-2025]
+XML로 AUTOSAR 모델을 나타낸 것을 **AUTOSAR XML 기술**이라 한다. 각 파일은 AUTOSAR XML Schema에 맞아야 하고, 이 스키마는 AUTOSAR 메타모델에서 도출되며 AUTOSAR의 데이터 교환 형식을 정한다.[@autosar-fo-tr-glossary-2025] 방법론에서 SW-C 기술, System Description, ECU Extract, 표준과 벤더별 모듈 정의는 종류가 AUTOSAR XML인 산출물이다.[@autosar-cp-tr-methodology-2025] ECU Configuration Values는 AUTOSAR 스키마를 따르는 XML 파일인 ARXML로 저장되고, Parameter Definition도 XML 파일이다. AUTOSAR는 AUTOSAR 호환 도구가 시스템 개발 중에 정보를 정의하고 공유하는 기술로 XML을 골랐다.[@autosar-cp-tps-ecuconfiguration-2025]
 
 AUTOSAR R25-11 용어집은 **AUTOSAR 메타모델**을 AUTOSAR 시스템과 관련 산출물을 기술하는 언어를 정하는 UML 2.0 모델로 정의한다. **AUTOSAR 도구**는 방법론이 정한 작업을 하나 이상 지원하는 소프트웨어 도구이고, 지원하는 작업에 따라 authoring 도구, converter 도구, processor 도구나 그 조합으로 동작한다. authoring 도구는 AUTOSAR XML 기술을 만들고 고치며(예: System Description 편집기), converter 도구는 다른 AUTOSAR XML 파일의 정보를 바꿔 AUTOSAR XML 파일을 만들고(예: ECU flattener), processor 도구는 AUTOSAR XML 파일의 정보로 AUTOSAR가 아닌 파일을 만든다(예: RTE 생성기).[@autosar-fo-tr-glossary-2025]
 
@@ -78,4 +79,4 @@ AUTOSAR R25-11 용어집은 **AUTOSAR 메타모델**을 AUTOSAR 시스템과 관
 
 System Template은 통신과 토폴로지 기술에 ASAM FIBEX의 기술을 담고, AUTOSAR의 요구에 맞게 PDU 개념 등을 더해 확장했다. FIBEX는 버스 통신 시스템을 다루는 도구 사이의 데이터 교환을 위한 XML 형식이다.[@autosar-cp-tps-systemtemplate-2025] ASAM MCD-2 NET(FIBEX) 4.1.2는 [[flexray|FlexRay]], [[can|CAN]], [[lin|LIN]], [[ethernet|이더넷]] 등을 기술 확장으로 다룬다.[@asam-mcd-2-net-2017]
 
-Vector의 [[signal-based-communication#통신 기술 파일|DBC 데이터베이스]]는 CAN·[[can-fd|CAN FD]] 네트워크, 버스에 이어진 ECU, 메시지와 시그널을 기술한다.[@vector-candb-admin-factsheet-2024] LIN을 규정하는 ISO 17987 시리즈 가운데 ISO 17987-2:2025는 약어 LDF를 LIN description file로 정의한다.[@iso-17987-2-obp-2025] Vector DaVinci Configurator Classic의 Ecu Extract Producer는 DBC 같은 기존 형식의 파일을 ECU Extract로 변환한다.[@vector-davinci-configurator-classic-ecuxpro-2026] ECU Extract를 만들 때 DBC, LDF, FIBEX 같은 기존 통신 파일을 함께 넣으면, 따로 설치하는 Legacy Converter가 이 파일들을 ARXML로 변환해 함께 넣은 ARXML 파일에 합친다.[@vector-davinci-configurator-classic-invariant-ecu-extract-2026]
+Vector의 [[signal-based-communication#통신 기술 파일|DBC 데이터베이스]]는 CAN·[[can-fd|CAN FD]] 네트워크, 버스에 이어진 ECU, 메시지와 시그널을 기술한다.[@vector-candb-admin-factsheet-2024] LIN을 규정하는 ISO 17987 시리즈 가운데 ISO 17987-2:2025는 약어 LDF를 LIN description file로 정의한다.[@iso-17987-2-obp-2025] Vector DaVinci Configurator Classic의 Ecu Extract Producer는 DBC 같은 기존 형식의 파일을 ECU Extract로 변환한다.[@vector-davinci-configurator-classic-ecuxpro-2026] Ecu Extract Producer는 ECU Extract를 만들 때 입력에 DBC, LDF, FIBEX 같은 기존 통신 파일이 있으면, 따로 설치하는 Legacy Converter 도구로 이 파일들을 ARXML로 변환해 함께 넣은 ARXML 파일에 합친다.[@vector-davinci-configurator-classic-invariant-ecu-extract-2026]

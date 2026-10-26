@@ -30,7 +30,7 @@ PWM Driver 규격은 아래 용어를 정의한다.[@autosar-cp-sws-pwmdriver-20
 
 ## 출력 설정과 읽기
 
-`Pwm_SetDutyCycle`은 channel의 duty cycle을 정하고, `Pwm_SetPeriodAndDuty`는 주기와 duty cycle을 함께 정한다. 주기를 바꿀 수 있는 channel은 variable period뿐이어서, [[autosar-error-handling#오류 유형|개발 오류 검출]]을 켠 상태로 다른 class의 channel에 `Pwm_SetPeriodAndDuty`를 부르면 PWM_E_PERIOD_UNCHANGEABLE 오류가 보고된다. `Pwm_GetOutputState`는 PWM 출력 신호의 내부 상태를 읽어 PWM_HIGH나 PWM_LOW로 돌려준다.[@autosar-cp-sws-pwmdriver-2025]
+`Pwm_SetDutyCycle`은 channel의 duty cycle을 정하고, `Pwm_SetPeriodAndDuty`는 주기와 duty cycle을 함께 정한다. 주기를 바꿀 수 있는 channel은 variable period뿐이어서, [[autosar-error-handling#오류 유형|개발 오류 검출]]을 켠 상태로 다른 class의 channel에 `Pwm_SetPeriodAndDuty`를 부르면 PWM_E_PERIOD_UNCHANGEABLE 오류가 보고된다. `Pwm_GetOutputState`는 PWM 출력 신호의 내부 상태를 읽어, 출력이 high면 PWM_HIGH를, low면 PWM_LOW를 돌려준다. 실시간 제약과 channel 설정에 따라 출력 상태는 호출 바로 뒤에 바뀔 수 있다.[@autosar-cp-sws-pwmdriver-2025]
 
 ## Duty cycle 표현
 

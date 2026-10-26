@@ -7,7 +7,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**RTE**(Run-Time Environment)는 특정 ECU에서 AUTOSAR [[virtual-functional-bus|VFB]]의 인터페이스를 구현한 것이다. RTE는 [[autosar-software-component|SW-C]] 사이의 통신과, SW-C가 BSW(Basic Software) 모듈에 접근하는 수단을 제공한다. SW-C는 BSW 모듈에 직접 접근하지 못하며, SW-C의 통신은 모두 자기 [[software-component-port|포트]]를 거쳐 RTE의 통제 아래 이루어진다. SW-C 안의 모든 활동은 RTE가 [[rte-event|RTE 이벤트]]에 따라 [[runnable-entity|runnable]]을 촉발하면서 시작된다.[@autosar-cp-sws-rte-2025]
+**RTE**(Run-Time Environment)는 특정 ECU에서 AUTOSAR [[virtual-functional-bus|VFB]]의 인터페이스를 구현한 것이다. RTE는 [[autosar-software-component|SW-C]] 사이의 통신과, SW-C가 BSW(Basic Software) 모듈에 접근하는 수단을 제공한다. RTE 위에 놓이는 application SW-C와 sensor-actuator SW-C는 운영체제와 통신 서비스를 포함한 BSW 모듈에 직접 접근하지 못하며, BSW 모듈과의 통신은 모두 자기 [[software-component-port|포트]]의 AUTOSAR 인터페이스를 거치므로 RTE의 통제 아래 이루어진다. RTE 아래에도 AUTOSAR 인터페이스를 가진 소프트웨어가 있으며, AUTOSAR 서비스, [[ecu-abstraction-layer|ECU Abstraction]], [[autosar-layered-architecture#층 사이 접근|Complex Driver]]가 그것이다. RTE는 SW-C의 포트와 이들의 포트 사이 통신도 맡는다. SW-C 안의 모든 활동은 RTE가 [[rte-event|RTE 이벤트]]에 따라 [[runnable-entity|runnable]]을 촉발하면서 시작된다.[@autosar-cp-sws-rte-2025]
 
 ## 생성되는 코드
 
@@ -53,15 +53,15 @@ RTE 모듈의 ECU 설정에서 `RteSwComponentInstance` 컨테이너는 설정�
 
 ## 측정과 캘리브레이션
 
-측정과 캘리브레이션은 서로 구별되는 두 메커니즘이다. **측정**은 ECU 사이, 파티션 사이, 파티션 안, SW-C 안의 통신 데이터를 감시하는 것처럼 ECU 안에서 일어나는 일을 재는 것이다. **캘리브레이션**은 측정 데이터를 바탕으로 실행 중 소프트웨어 스위치, 제어 데이터, 보간 곡선이나 보간 필드 같은 파라미터를 바꿔 ECU의 동작을 고치는 것이고, 이 파라미터를 **캘리브레이션 파라미터**라 한다.[@autosar-cp-sws-rte-2025]
+측정과 캘리브레이션은 서로 구별되는 두 메커니즘이다. **측정**은 ECU에서 일어나는 일을 재는 것으로, 예를 들어 그 ECU가 다른 ECU와 주고받는 통신 데이터를 감시하고, 파티션 사이, 파티션 안, SW-C 안의 통신 데이터도 감시한다. **캘리브레이션**은 측정 데이터를 바탕으로 실행 중 소프트웨어 스위치, 제어 데이터, 보간 곡선이나 보간 필드 같은 파라미터를 바꿔 ECU의 동작을 고치는 것이고, 이 파라미터를 **캘리브레이션 파라미터**라 한다.[@autosar-cp-sws-rte-2025]
 
-캘리브레이션은 두 상황으로 나뉜다. **오프라인 캘리브레이션**은 ECU가 도는 동안 측정하고, ECU를 끈 뒤 캘리브레이션 파라미터를 바꿔 새 프로그램 파일을 만들어 다시 플래시에 쓰는 일을 되풀이한다. **온라인 캘리브레이션**은 측정과 캘리브레이션을 함께 하며, ECU를 다시 쓰지 않고 실행 중에 파라미터를 잠시 바꿔 가며 맞춘 뒤, 그 결과로 새 프로그램 파일을 만든다.[@autosar-cp-sws-rte-2025]
+캘리브레이션은 두 상황으로 나뉜다. **오프라인 캘리브레이션**은 ECU가 도는 동안 측정하고, ECU를 끈 뒤 캘리브레이션 파라미터를 바꿔 새 프로그램 파일을 만들어 다시 플래시에 쓰는 일을 되풀이한다. **온라인 캘리브레이션**은 측정과 캘리브레이션을 함께 하며, ECU를 다시 플래시하지 않고 실행 중에 파라미터를 잠시 바꿔 가며 맞춘 뒤, 그 결과로 새 프로그램 파일을 만든다.[@autosar-cp-sws-rte-2025]
 
 RTE와 [[basic-software-scheduler|SchM]]은 캘리브레이션 파라미터를 할당하고 그 파라미터를 쓰는 소프트웨어가 접근하게 하는 일을 지원해야 하지만, 캘리브레이션 값을 주고받거나 ECU와 외부 캘리브레이션 도구 사이에서 나르는 일은 대개 맡지 않는다. 외부 캘리브레이션 도구와 데이터를 주고받는 일은 [[autosar-communication-stack#그 밖의 모듈|XCP]] 드라이버 같은 BSW가 다룬다.[@autosar-cp-sws-rte-2025]
 
 ## Bypass
 
-Rapid prototyping은 ECU 개발 중에 새 제어 알고리즘을 평가하고 시험하는 데 쓰며, fullpass와 bypass로 나뉜다. Fullpass는 원래 ECU를 RPU(Rapid Prototyping Unit)로 통째로 바꾼다. Bypass는 원래 ECU와 소프트웨어를 제어 루프에 남겨 둔 채, 시험할 알고리즘만 RPU로 옮기거나(external bypass) 원래 ECU 안에서 실행한다(internal bypass). Bypass는 주로 원래 알고리즘의 입력이나 출력을 실행 중에 시험할 알고리즘이 계산한 값으로 바꾼다. RTE는 bypass를 직접 구현하지 않고, [[autosar-layered-architecture#층 사이 접근|Complex Driver]]나 [[autosar-layered-architecture#Integration Code와 callout|Integration Code]]가 구현하도록 돕는다.[@autosar-cp-sws-rte-2025]
+Rapid prototyping은 ECU 개발 중에 새 제어 알고리즘을 평가하고 시험하는 데 쓰며, fullpass와 bypass로 나뉜다. Fullpass는 원래 ECU를 RPU(Rapid Prototyping Unit)로 통째로 바꾼다. Bypass는 원래 ECU와 소프트웨어를 제어 루프에 남겨 둔 채, 시험할 알고리즘만 RPU로 옮기거나(external bypass) 원래 ECU 안에서 실행한다(internal bypass). Bypass는 주로 원래 알고리즘의 입력이나 출력을 실행 중에 시험할 알고리즘이 계산한 값으로 바꾼다. RTE는 bypass를 직접 구현하지 않고, Complex Driver나 [[autosar-layered-architecture#Integration Code와 callout|Integration Code]]가 구현하도록 돕는다.[@autosar-cp-sws-rte-2025]
 
 ![[diagrams/rapid-prototyping-fullpass-bypass.svg]]
 

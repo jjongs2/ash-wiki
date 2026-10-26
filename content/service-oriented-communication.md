@@ -6,13 +6,13 @@ tags:
 verified: 2026-09-29
 ---
 
-[[autosar-adaptive-platform|AUTOSAR Adaptive Platform]] R25-11의 [[autosar-communication-management|Communication Management]] 규격은 **서비스 지향 통신**(service-oriented communication)을 서비스 제공자가 서비스를 내놓고(offer) 요청자가 그 서비스를 찾아(find) 호출하는(call) 통신으로 정의한다. 이 규격은 서비스 지향 통신을 Adaptive Platform 애플리케이션 사이의 주된 통신 방식으로 두고, Communication Management가 프로세스 안, 프로세스 사이, [[autosar-adaptive-platform#Machine과 프로세스|머신]] 사이의 모든 수준에서 이를 맡게 한다. Communication Management는 시그널 기반 통신을 쓰는 쪽과 주고받는 시그널도 서비스 인터페이스의 요소로 내놓는다.[@autosar-ap-sws-communicationmanagement-2025] Adaptive Platform은 통신 방식을 서비스 지향 통신으로 한정한다.[@autosar-cp-tps-systemtemplate-2025]
+[[autosar-adaptive-platform|AUTOSAR Adaptive Platform]] R25-11의 [[autosar-communication-management|Communication Management]] 규격은 **서비스 지향 통신**(service-oriented communication)을 서비스 제공자인 애플리케이션이 서비스를 내놓고(offer) 요청자인 애플리케이션이 그 서비스를 찾아(find) 호출하는(call) 통신으로 정의한다. 이 규격은 서비스 지향 통신을 Adaptive Platform 애플리케이션 사이의 주된 통신 방식으로 두고, Communication Management가 프로세스 안, 프로세스 사이, [[autosar-adaptive-platform#Machine과 프로세스|머신]] 사이의 모든 수준에서 이를 맡게 한다. Communication Management는 시그널 기반 통신을 쓰는 쪽과 주고받는 시그널도 서비스 인터페이스의 요소로 내놓는다.[@autosar-ap-sws-communicationmanagement-2025] Adaptive Platform에는 서비스 지향 통신과 따로, 외부 [[electronic-control-unit|ECU]]와 원시 바이너리 데이터 스트림을 주고받는 독립 통신 API인 [[autosar-adaptive-platform#그 밖의 functional cluster|Raw Data Stream]]도 있다.[@autosar-ap-exp-platformdesign-2025]
 
 [[some-ip|SOME/IP]]는 네트워크로 서비스 지향 통신을 하는 프로토콜이다.[@autosar-fo-prs-someipprotocol-2025] The Open Group은 SOA(Service-Oriented Architecture)를 서비스 지향을 지원하는 아키텍처 스타일로 정의한다.[@opengroup-w074-2007]
 
 ## 서버와 클라이언트
 
-SOME/IP 규격은 서비스 인스턴스를 제공하는 ECU를 서버, 그 서비스 인스턴스를 쓰는 ECU를 클라이언트라 부른다.[@autosar-fo-prs-someipprotocol-2025]
+AUTOSAR R25-11의 SOME/IP 프로토콜 명세는 서비스 인스턴스를 제공하는 ECU를 그 서비스 인스턴스의 서버, 그 서비스 인스턴스를 쓰는 ECU를 클라이언트라 부른다.[@autosar-fo-prs-someipprotocol-2025]
 
 ## 서비스 인터페이스
 
@@ -24,7 +24,7 @@ SOME/IP에서 서비스는 메서드, 이벤트, 필드를 0개 이상 묶은 �
 
 SOME/IP의 이벤트 알림은 발행·구독(publish/subscribe) 방식이며, 발행과 구독의 메커니즘은 SOME/IP가 아니라 [[some-ip-sd|SOME/IP-SD]]가 구현한다.[@autosar-fo-prs-someipprotocol-2025] SOME/IP-SD에서 클라이언트가 이벤트 그룹을 구독하면, 서버는 그 뒤로 구독한 클라이언트에게 이벤트를 보낸다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
 
-[[mqtt|MQTT]] 5.0 규격은 MQTT를 클라이언트·서버 구조의 발행·구독 메시지 전송 프로토콜로 정하고, M2M(Machine to Machine)과 IoT 환경에 알맞다고 한다.[@oasis-mqtt-5-0-2019]
+[[mqtt|MQTT]] 5.0 규격은 MQTT를 클라이언트·서버 구조의 발행·구독 메시지 전송 프로토콜로 정하고, M2M(Machine to Machine)과 IoT 환경에 알맞다고 한다. 발행·구독은 이처럼 SOME/IP만의 방식이 아니다.[@oasis-mqtt-5-0-2019]
 
 ## 서비스 발견
 
@@ -36,10 +36,10 @@ AUTOSAR Adaptive Platform의 Communication Management는 머신 안과 머신 �
 
 Adaptive Platform의 서비스 지향 통신은 통신 경로를 실행 중에 세울 수 있어, 참여자 수를 모르는 동적 통신을 만들 수 있다.[@autosar-ap-sws-communicationmanagement-2025] 시그널과 송수신 관계를 시스템 구성에서 통신 매트릭스로 정하는 방식은 [[signal-based-communication#통신 매트릭스|시그널 기반 통신]]에서 다룬다.
 
-AUTOSAR R25-11 System Template은 이 릴리스가 나온 2025년에도 차량의 큰 부분이 시그널 기반 통신을 썼으므로, [[autosar-classic-platform|Classic Platform]]의 시그널 기반 통신과 Adaptive Platform의 서비스 지향 통신을 서로 옮기는 방법 가운데 Classic Platform ECU에서 하는 것을 표준화한다. 이 기능을 **signal/service translation**이라 하고, 변환 방향은 어느 쪽으로도 정하지 않는다. 이 변환을 Classic Platform ECU에서 할지 Adaptive Platform Machine에서 할지는 차량 아키텍처 설계가 고른다. Classic Platform에서는 [[autosar-rte|RTE]] 위의 응용 [[autosar-software-component|소프트웨어 컴포넌트]]인 Translation Software Component가 이벤트와 필드 notifier를 변환하고, 메서드는 따로 다룬다. 시그널 쪽에서는 Classic Platform [[autosar-communication-stack|통신 스택]]의 기능을 모두 써서 [[can|CAN]], [[lin|LIN]], [[flexray|FlexRay]]에서 온 ISignalIPdu를 다룰 수 있고, 서비스 쪽에서는 정의한 SOME/IP 서비스가 Adaptive Platform과 호환되어야 한다.[@autosar-cp-tps-systemtemplate-2025]
+AUTOSAR R25-11 System Template에 따르면 Adaptive Platform은 서비스 지향 통신을 쓰지만, 이 릴리스가 나온 2025년에도 차량의 큰 부분은 시그널 기반 통신을 썼다. 그래서 이 템플릿은 [[autosar-classic-platform|Classic Platform]]의 시그널 기반 통신과 Adaptive Platform의 서비스 지향 통신을 서로 옮기는 방법 가운데 Classic Platform ECU에서 하는 것을 표준화한다. 이 기능을 **signal/service translation**이라 하고, 변환 방향은 어느 쪽으로도 정하지 않는다. 이 변환을 Classic Platform ECU에서 할지 Adaptive Platform Machine에서 할지는 차량 아키텍처 설계가 고른다. Classic Platform에서는 [[autosar-rte|RTE]] 위의 응용 [[autosar-software-component|소프트웨어 컴포넌트]]인 Translation Software Component가 이벤트와 필드 notifier를 변환한다. 메서드(필드의 getter·setter 호출 포함)는 SOME/IP Transformer로 직렬화해야 하고 [[ethernet|이더넷]]에서만 지원된다. 그래서 메서드는 이미 Adaptive Platform에서 쓸 수 있어 변환할 필요가 없다. 시그널 쪽에서는 Classic Platform [[autosar-communication-stack|통신 스택]]의 기능을 모두 써서 [[can|CAN]], [[lin|LIN]], [[flexray|FlexRay]]에서 온 ISignalIPdu, 곧 [[autosar-com|AUTOSAR COM]]이 다루며 ISignal(I-PDU에 실리는 시그널)을 하나 이상 담는 I-PDU(Interaction Layer Protocol Data Unit)를 다룰 수 있고, 서비스 쪽에서는 정의한 SOME/IP 서비스가 Adaptive Platform과 호환되어야 한다.[@autosar-cp-tps-systemtemplate-2025]
 
 Translation Software Component는 포트와 [[software-component-port#Port interface|PortInterface]]로 페이로드를 기술한다. 시그널에서 서비스로 옮길 때는 들어오는 시그널의 포트와 나가는 이벤트의 포트를, 서비스에서 시그널로 옮길 때는 들어오는 이벤트의 포트와 나가는 시그널의 포트를 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ![[diagrams/signal-service-translation.svg]]
 
-AUTOSAR R25-11 [[autosar-manifest|Manifest]] 명세는 Adaptive Platform 쪽의 변환을 위해 서비스 인스턴스의 서비스 인터페이스 요소를 ISignalTriggering에 대응시키는 Signal/Service Translation Mapping을 둔다. 같은 이더넷 소켓을 시그널 기반 통신과 서비스 지향 통신에 함께 쓸 수 있어, 서비스 인스턴스 하나가 직렬화 기술이 다른 이벤트(`someip`와 `signalBased`)를 함께 담을 수 있다. Method와 Field의 getter·setter는 이미 SOME/IP 직렬화를 쓰므로 변환이 필요 없고, 시그널 기반 [[autosar-communication-management#Language Binding과 Network Binding|Network Binding]]을 거쳐 `ara::com`으로 바로 접근한다.[@autosar-ap-tps-manifestspecification-2025] 시그널 기반 Network Binding 가운데 SOME/IP를 쓰는 것(Signal-Based SOME/IP Network Binding)은 시그널 기반 직렬화와 SOME/IP 직렬화를 함께 지원하며, 메서드 호출을 SOME/IP의 메서드 직렬화와 똑같이 다룬다.[@autosar-ap-sws-communicationmanagement-2025]
+AUTOSAR R25-11 [[autosar-manifest|Manifest]] 명세는 Adaptive Platform 쪽의 변환을 위해 서비스 인스턴스의 서비스 인터페이스 요소를 ISignalTriggering에 대응시키는 Signal/Service Translation Mapping을 둔다. 같은 이더넷 소켓을 시그널 기반 통신과 서비스 지향 통신에 함께 쓸 수 있어, 서비스 인스턴스 하나가 직렬화 기술이 다른 이벤트(`someip`와 `signalBased`)를 함께 담을 수 있다. Method와 Field의 getter·setter는 이미 SOME/IP 직렬화를 쓰므로 변환이 필요 없고, 시그널 기반 [[autosar-communication-management#Language Binding과 Network Binding|Network Binding]]을 거쳐 Communication Management의 API인 `ara::com`으로 바로 접근한다.[@autosar-ap-tps-manifestspecification-2025] 시그널 기반 Network Binding 가운데 SOME/IP를 쓰는 것(Signal-Based SOME/IP Network Binding)은 시그널 기반 직렬화와 SOME/IP 직렬화를 함께 지원하며, 메서드 호출을 SOME/IP의 메서드 직렬화와 똑같이 다룬다.[@autosar-ap-sws-communicationmanagement-2025]

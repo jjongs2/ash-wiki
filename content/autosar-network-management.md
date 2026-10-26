@@ -10,7 +10,7 @@ verified: 2026-09-30
 ## 모듈
 
 - **Nm interface**(Generic Network Management Interface): ComM(Communication Manager)과 버스별 NM 모듈 사이의 버스 독립 적응 계층이다. ComM이 부른 일반 함수는 버스별 NM의 함수로 바꾸고, 버스별 NM이 부른 콜백은 ComM에 주는 일반 콜백으로 바꾼다.
-- **NM coordinator**: Nm interface의 선택 기능으로, [[gateway|게이트웨이]] ECU가 자신이 이어진 여러 버스를 함께 재우도록 조정한다. 조정하는 버스들을 함께 깨우는 것은 Nm interface의 범위 밖이며 응용의 몫이다. ComM은 설정에 따라, 한 네트워크가 시작했다는 표시를 받으면 여러 네트워크를 함께 시작할 수 있다.
+- **NM coordinator**: Nm interface의 선택 기능으로, [[gateway|게이트웨이]] ECU가 자신이 이어진 여러 버스를 함께 재우도록 조정한다. 조정하는 버스들을 함께 깨우는 것은 Nm interface의 범위 밖이다. 한 채널이 깨어날 때 필요한 채널이나 모든 채널을 깨우는 것은 응용(차량 모드 관리)의 몫이다. 다만 ComM을 설정해 두면 한 네트워크가 시작했다는 표시를 받을 때 여러 네트워크를 함께 시작하며, 명세는 NM 조정 클러스터에서는 그 클러스터의 모든 네트워크를 자동으로 시작하도록 설정하기를 권한다.
 - **버스별 NM**: [[can|CAN]]의 CanNm, [[flexray|FlexRay]]의 FrNm(FlexRay Network Management), [[ethernet|이더넷]]의 UdpNm([[udp|UDP]] Network Management), J1939의 [[j1939#AUTOSAR의 J1939 지원|J1939Nm]](J1939 Network Management)이 있다.[@autosar-cp-sws-networkmanagementinterface-2025]
 
 ComM은 [[autosar-communication-stack#통신 모드 관리|AUTOSAR 통신 스택]]에서 다룬다.
@@ -19,12 +19,12 @@ ComM은 [[autosar-communication-stack#통신 모드 관리|AUTOSAR 통신 스택
 
 CanNm은 NM PDU(Protocol Data Unit)를 브로드캐스트로 주기적으로 주고받고, 이 PDU는 클러스터의 모든 노드가 받는다.[@autosar-cp-sws-cannetworkmanagement-2025] CanNm과 UdpNm은 Network Mode, Prepare Bus-Sleep Mode, Bus-Sleep Mode의 세 동작 모드를 둔다.[@autosar-cp-sws-cannetworkmanagement-2025][@autosar-cp-sws-udpnetworkmanagement-2025] FrNm은 Prepare Bus-Sleep Mode 대신 Synchronize Mode를 두며, Network Mode 안의 세 상태는 CanNm과 같다.[@autosar-cp-sws-flexraynetworkmanagement-2025] 아래는 CanNm을 기준으로 한 동작이다.[@autosar-cp-sws-cannetworkmanagement-2025]
 
-- **Bus-Sleep Mode**: 주고받을 메시지가 없을 때 통신 컨트롤러를 슬립으로 두어 전력 소비를 줄이는 모드다. 네트워크 요청이 오면 Network Mode로 가며, 기본으로 Repeat Message State에 든다. 이 모드에서 NM 메시지를 받으면 스스로 Network Mode로 가지 않고 상위 계층에 알리기만 하며, 깨울지는 상위 계층이 정한다.
+- **Bus-Sleep Mode**: 주고받을 메시지가 없을 때 통신 컨트롤러를 슬립으로 두어 전력 소비를 줄이는 모드다. 네트워크 요청이 오면 Network Mode로 가며, 기본으로 Repeat Message State에 든다. 이 모드에서 NM 메시지를 받으면 스스로 Network Mode로 가지 않고 Nm interface를 거쳐 ComM에 알리기만 하며, 깨울지는 ComM이 정한다.[@autosar-cp-sws-cannetworkmanagement-2025][@autosar-cp-sws-networkmanagementinterface-2025]
 - **Network Mode**: Repeat Message State, Normal Operation State, Ready Sleep State의 세 내부 상태로 이루어진다.
   - **Repeat Message State**: 노드가 Network Mode로 넘어온 것을 다른 노드가 알 수 있게 하는 상태다. 이 상태에 들면 passive mode가 아닌 노드는 NM 메시지 송신을 시작한다. `CanNmRepeatMessageTime`이 지나면 이 상태를 떠나, 네트워크가 요청된 상태면 Normal Operation State로, 해제된 상태면 Ready Sleep State로 간다.
   - **Normal Operation State**: 네트워크가 요청된 동안 노드가 클러스터를 깨어 있게 하는 상태다. NM 메시지를 주기적으로 보내고, 네트워크가 해제되면 Ready Sleep State로 간다.
-  - **Ready Sleep State**: 다른 노드가 클러스터를 깨어 있게 하는 동안 Prepare Bus-Sleep Mode로 가는 것을 미루며 기다리는 상태다. 이 상태에 들면 NM 메시지 송신을 멈춘다.
-- **Prepare Bus-Sleep Mode**: Bus-Sleep Mode에 들기 전에 모든 노드가 네트워크 활동을 멈출 시간을 주는 모드다. 대기 중인 메시지를 내보내 버스를 조용히 만들고, Wait Bus-Sleep 타이머가 만료되면 Bus-Sleep Mode로 간다. `CanNmStayInPbsEnabled`를 켜면 전원이 꺼지거나 재시작 사유가 생길 때까지 이 모드에 머문다.[@autosar-cp-sws-cannetworkmanagement-2025]
+  - **Ready Sleep State**: 다른 노드가 클러스터를 깨어 있게 하는 동안 Prepare Bus-Sleep Mode로 가는 것을 미루며 기다리는 상태다. 이 상태에 들면 NM 메시지 송신을 멈추고, 네트워크가 다시 요청되면 Normal Operation State로 간다.
+- **Prepare Bus-Sleep Mode**: Bus-Sleep Mode에 들기 전에 모든 노드가 네트워크 활동을 멈출 시간을 주는 모드다. 대기 중인 메시지를 내보내 버스를 조용히 만들고, Wait Bus-Sleep 타이머가 만료되면 Bus-Sleep Mode로 간다. 그 전에 네트워크가 요청되거나 NM 메시지를 받으면 Network Mode로 돌아가며, 기본으로 Repeat Message State에 든다. `CanNmStayInPbsEnabled`를 켜면 전원이 꺼지거나 재시작 사유가 생길 때까지 이 모드에 머문다.[@autosar-cp-sws-cannetworkmanagement-2025]
 
 Network Mode에서 NM 메시지를 받거나 NM 메시지 송신에 성공하면 NM-Timeout 타이머를 다시 시작한다. Ready Sleep State에서 NM-Timeout 타이머가 만료되면 Prepare Bus-Sleep Mode로 간다.[@autosar-cp-sws-cannetworkmanagement-2025]
 
@@ -58,7 +58,7 @@ NM coordinator는 조정 클러스터에 묶인 여러 버스의 셧다운이 �
 
 ## Adaptive Platform의 NM
 
-AUTOSAR [[autosar-adaptive-platform|Adaptive Platform]] R25-11의 Network Management 명세는 Adaptive NM이 쓰는 통신 스택과 상관없이 동작하며, 물리 네트워크와 partial network의 정상 동작과 bus-sleep 모드 사이의 전환을 조율하도록 정한다. Adaptive NM은 UdpNm만 지원한다. 알고리즘은 분산 direct NM 전략을 따라, 각 노드가 주고받은 NM 패킷만을 바탕으로 스스로 동작한다.[@autosar-ap-sws-networkmanagement-2025]
+AUTOSAR [[autosar-adaptive-platform|Adaptive Platform]] R25-11의 Network Management 명세는 Adaptive NM이 물리 네트워크와 partial network의 정상 동작과 bus-sleep 모드 사이의 전환을 조율하도록 정한다. Adaptive NM은 쓰는 통신 스택과 상관없이 동작하도록 설계되었지만, UdpNm만 지원한다. 알고리즘은 분산 direct NM 전략을 따라, 각 노드가 주고받은 NM 패킷만을 바탕으로 스스로 동작한다.[@autosar-ap-sws-networkmanagement-2025]
 
 Adaptive NM은 논리 네트워크 핸들(`NmNetworkHandle`)마다 네트워크 상태를 요청하고 조회하는 서비스를 준다. 논리 네트워크 핸들은 partial network나 [[virtual-lan|VLAN]]에 매핑되며, 핸들 하나로 거기에 배정된 partial network, VLAN, 물리 채널을 함께 제어한다. NM은 응용에게서 직접 네트워크 요청을 받지 않는다. [[autosar-state-management|State Management]] 기능 클러스터가 응용이 요청한 기능의 활성화에 따라 논리 네트워크를 요청하거나 놓고, NM은 모든 논리 네트워크 핸들의 요청 상태를 모아 물리 네트워크를 켜거나 끈다. 어느 핸들에서든 전체 통신(`kFullCom`)을 요청하면 그 핸들에 배정된 PNC, VLAN, 물리 채널을 내부에서 요청된 것으로 보고, 핸들의 상태는 배정된 PNC, VLAN, 물리 채널이 모두 `FULL_COM`일 때만 `kFullCom`이다.[@autosar-ap-sws-networkmanagement-2025]
 

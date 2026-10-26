@@ -7,13 +7,13 @@ aliases:
 verified: 2026-09-30
 ---
 
-**MCAL**(Microcontroller Abstraction Layer)은 [[autosar-layered-architecture|AUTOSAR 계층 구조]]에서 BSW(Basic Software)의 가장 아래 소프트웨어 층이다. 마이크로컨트롤러의 온칩 주변장치와 칩 밖에 있는 메모리 맵 주변장치에 정해진 API로 접근하게 하는 드라이버를 담고, 위 소프트웨어 계층을 마이크로컨트롤러에서 독립시킨다. MCAL의 구현은 마이크로컨트롤러에 의존하지만, 위쪽 인터페이스는 표준화할 수 있고 마이크로컨트롤러에 독립적이다.[@autosar-fo-tr-glossary-2025]
+**MCAL**(Microcontroller Abstraction Layer)은 [[autosar-layered-architecture|AUTOSAR 계층 구조]]에서 BSW(Basic Software)의 가장 아래 소프트웨어 층이다. 마이크로컨트롤러의 온칩 주변장치와 칩 밖에 있는 메모리 맵 주변장치에 정해진 API로 접근하게 하는 드라이버를 담고, 위 소프트웨어 계층을 마이크로컨트롤러에서 독립시킨다. MCAL의 구현은 마이크로컨트롤러에 의존하지만, 위쪽 인터페이스는 표준화할 수 있고 마이크로컨트롤러에 독립적이다.[@autosar-fo-tr-glossary-2025] [[autosar-rte|RTE]]와 MCAL 위의 BSW 층은 [[autosar-layered-architecture#최상위 수준의 세 층|최상위 수준의 세 층]]과 [[autosar-layered-architecture#BSW의 층|BSW의 층]] 절에서 다룬다.
 
 ![[diagrams/autosar-layered-software-architecture.svg]]
 
 ## Internal driver
 
-마이크로컨트롤러 안에 있는 장치를 **internal device**라 한다. 예로 내부 EEPROM, 내부 [[can-controller|CAN 컨트롤러]], 내부 ADC(Analogue Digital Converter)가 있다. internal device의 드라이버인 **internal driver**는 MCAL에 놓인다. [[ecu-abstraction-layer#External driver|외부 장치]] 가운데서도 메모리 맵 방식 장치(외부 플래시 등)의 드라이버는 마이크로컨트롤러에 의존하므로 MCAL에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+마이크로컨트롤러 안에 있는 장치를 **internal device**라 한다. 예로 내부 EEPROM, 내부 [[can-controller|CAN 컨트롤러]], 내부 ADC(Analogue Digital Converter)가 있다. internal device의 드라이버인 **internal driver**는 MCAL에 놓인다. [[ecu-abstraction-layer#External driver|외부 장치]] 가운데서도 메모리 맵 방식 장치(외부 플래시 등)의 드라이버는 마이크로컨트롤러에 의존하므로 MCAL에 놓인다. 외부 EEPROM 같은 나머지 외부 장치의 드라이버는 [[ecu-abstraction-layer|ECU Abstraction Layer]]에 놓이고, Communication Drivers에 드는 SPI Handler Driver 같은 MCAL 드라이버를 거쳐 장치에 닿는다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ![[diagrams/autosar-internal-external-driver-placement.svg]]
 
@@ -50,7 +50,7 @@ DIO Driver 규격은 입출력 단위를 부르는 용어 셋을 정의한다.[@
 - **DIO port**: 하드웨어가 묶어 둔 여러 DIO channel. 대개 하드웨어 레지스터 하나로 제어된다.
 - **DIO channel group**: 한 DIO port 안의 이웃한 DIO channel 여러 개를 논리적으로 묶은 것[@autosar-cp-sws-diodriver-2025]
 
-Port Driver 규격은 MCU의 설정 가능한 입출력 핀 하나를 **port pin**, 설정 가능한 포트 전체를 **port**라 부른다. 이 규격은 DIO Driver의 channel을 port pin에, port를 port에 대응시키며, channel group에 대응하는 이름은 두지 않는다.[@autosar-cp-sws-portdriver-2025]
+Port Driver 규격은 MCU의 설정 가능한 입출력 핀 하나를 **port pin**, 설정 가능한 포트 하나 전체를 **port**라 부른다. 이 규격은 DIO Driver의 channel을 port pin에, port를 port에 대응시키며, channel group에 대응하는 이름은 두지 않는다.[@autosar-cp-sws-portdriver-2025]
 
 ![[diagrams/dio-channel-port-channel-group.svg]]
 

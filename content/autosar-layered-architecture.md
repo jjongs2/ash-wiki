@@ -23,12 +23,12 @@ BSW는 다시 Services Layer, [[ecu-abstraction-layer|ECU Abstraction Layer]], [
 
 ![[diagrams/autosar-layered-software-architecture.svg]]
 
-| 층                    | 하는 일                                                                                                                                                                                                                    | 구현의 하드웨어 의존                            |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| Services Layer        | BSW의 가장 위 층. [[autosar-os\|운영체제]] 기능, 차량 네트워크 통신과 관리, NVRAM(Non-Volatile Random-Access Memory)을 관리하는 메모리 서비스, 진단, ECU의 상태와 모드 관리 같은 기본 서비스를 응용, RTE, BSW 모듈에 준다. | 대부분 마이크로컨트롤러와 ECU 하드웨어에서 독립 |
-| ECU Abstraction Layer | MCAL의 드라이버와 외부 장치의 드라이버를 담아, 장치가 마이크로컨트롤러 안에 있든 밖에 있든, 마이크로컨트롤러에 어떻게 연결되든 같은 API로 주변장치와 장치에 접근하게 한다.                                                 | 마이크로컨트롤러에서 독립, ECU 하드웨어에 의존  |
-| MCAL                  | BSW의 가장 아래 층. 마이크로컨트롤러와 내부 주변장치에 직접 접근하는 내부 드라이버를 담는다.                                                                                                                               | 마이크로컨트롤러에 의존                         |
-| Complex Drivers       | 하드웨어에서 RTE까지 걸친 층. AUTOSAR가 규정하지 않은 장치나 타이밍 제약이 매우 엄격한 장치의 드라이버처럼 특수 목적 기능을 통합하게 한다. 예로 분사 제어가 있다.                                                          | —                                               |
+| 층                    | 하는 일                                                                                                                                                                                                                    | 구현의 하드웨어 의존                                   |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| Services Layer        | BSW의 가장 위 층. [[autosar-os\|운영체제]] 기능, 차량 네트워크 통신과 관리, NVRAM(Non-Volatile Random-Access Memory)을 관리하는 메모리 서비스, 진단, ECU의 상태와 모드 관리 같은 기본 서비스를 응용, RTE, BSW 모듈에 준다. | 대부분 마이크로컨트롤러와 ECU 하드웨어에서 독립        |
+| ECU Abstraction Layer | MCAL의 드라이버와 맞닿고, 외부 장치의 드라이버를 담는다. 장치가 마이크로컨트롤러 안에 있든 밖에 있든, 마이크로컨트롤러에 어떻게 연결되든 같은 API로 주변장치와 장치에 접근하게 한다.                                       | 마이크로컨트롤러에서 독립, ECU 하드웨어에 의존         |
+| MCAL                  | BSW의 가장 아래 층. 마이크로컨트롤러와 내부 주변장치에 직접 접근하는 내부 드라이버와, 외부 플래시 같은 메모리 맵 방식 외부 장치의 드라이버를 담는다.                                                                       | 마이크로컨트롤러에 의존                                |
+| Complex Drivers       | 하드웨어에서 RTE까지 걸친 층. AUTOSAR가 규정하지 않은 장치나 타이밍 제약이 매우 엄격한 장치의 드라이버처럼 특수 목적 기능을 통합하게 한다. 예로 분사 제어가 있다.                                                          | 마이크로컨트롤러와 ECU 하드웨어, 응용에 의존할 수 있음 |
 
 Services Layer는 기능에 따라 System Services, [[autosar-memory-stack|Memory Services]], [[autosar-crypto-stack|Crypto Services]], [[autosar-communication-stack|Communication Services]], Off-board Communication Services로 나뉜다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
@@ -48,14 +48,14 @@ Off-board Communication Services에는 V2X 모듈 다섯과 중국 V2X 모듈 �
 
 BSW 모듈은 driver, interface, handler, manager 네 유형으로 나뉜다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-- **Driver**: 내부나 외부 장치를 제어하고 그 장치에 접근하는 기능을 담는다. 마이크로컨트롤러 안의 장치를 다루는 [[microcontroller-abstraction-layer#Internal driver|internal driver]]는 MCAL에, 마이크로컨트롤러 밖 장치를 다루는 [[ecu-abstraction-layer#External driver|external driver]]는 대개 ECU Abstraction Layer에 놓인다.
+- **Driver**: 내부나 외부 장치를 제어하고 그 장치에 접근하는 기능을 담는다. 마이크로컨트롤러 안의 장치를 다루는 [[microcontroller-abstraction-layer#Internal driver|internal driver]]는 MCAL에, 마이크로컨트롤러 밖 장치를 다루는 [[ecu-abstraction-layer#External driver|external driver]]는 ECU Abstraction Layer에 놓인다. 그 예외는 위 표의 MCAL 행에 있다.
 - **Interface**: 아래에 놓인 모듈을 추상화해, 같은 종류의 장치가 몇 개이든 하드웨어로 어떻게 구현되든 그 종류의 장치에 접근하는 일반 API를 준다. 데이터의 내용은 바꾸지 않으며, 대개 ECU Abstraction Layer에 놓인다.
-- **Handler**: 클라이언트 하나나 여럿이 드라이버 하나나 여럿에 동시에, 여러 번, 비동기로 접근하는 것을 제어하는 특수한 interface로, 버퍼링, 큐잉, 중재, 다중화를 한다. 데이터의 내용은 바꾸지 않으며, 그 기능이 드라이버나 interface에 합쳐진 경우가 많다. 예로 [[autosar-adc-driver|ADC Driver]]가 있다.
+- **Handler**: 클라이언트 하나나 여럿이 드라이버 하나나 여럿에 동시에, 여러 번, 비동기로 접근하는 것을 제어하는 특수한 interface로, 버퍼링, 큐잉, 중재, 다중화를 한다. 데이터의 내용은 바꾸지 않는다. handler 기능은 드라이버나 interface에 합쳐진 경우가 많으며, [[autosar-adc-driver|ADC Driver]]가 handler 기능을 합친 드라이버의 예다.
 - **Manager**: 여러 클라이언트에 특정 서비스를 주는 모듈로, handler 기능만으로는 여러 클라이언트를 추상화하기에 모자랄 때 쓴다. handler 기능에 더해 데이터의 내용을 평가하고 바꿀 수 있으며, 대개 Services Layer에 놓인다. 예로 내부·외부 메모리 장치에 대한 동시 접근을 관리하는 NVRAM Manager가 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ## 층 사이 접근
 
-BSW의 층 사이에는 일반 규칙이 있다. 한 층은 바로 아래 층의 모든 인터페이스에 접근할 수 있고, 한 층을 건너뛰는 것은 피해야 하며, 둘 이상을 건너뛰는 것은 허용하지 않는다. MCAL을 건너뛰는 것도 허용하지 않는다. 같은 층 안의 수평 인터페이스는 Services Layer와 ECU Abstraction Layer에서 허용하지만 MCAL에서는 허용하지 않으며, 성능 때문에 설정할 수 있는 notification만 예외로 둔다. 모든 층은 System Services와 상호작용할 수 있고, 한 모듈은 다른 층 묶음의 아래 층 모듈에 접근할 수 있다. 외부 하드웨어를 위해 SPI(Serial Peripheral Interface)를 쓰는 것이 그 예다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+BSW의 층 사이에는 일반 규칙이 있다. 한 층은 바로 아래 층의 모든 인터페이스에 접근할 수 있고, 한 층을 건너뛰는 것은 피해야 하며, 둘 이상을 건너뛰는 것은 허용하지 않는다. MCAL을 건너뛰어 그 위 층이 마이크로컨트롤러에 바로 접근하는 것도 허용하지 않는다. 같은 층 안의 수평 인터페이스는 Services Layer와 ECU Abstraction Layer에서 허용하지만 MCAL에서는 허용하지 않으며, 성능 때문에 설정할 수 있는 notification만 예외로 둔다. 모든 층은 System Services와 상호작용할 수 있고, 한 모듈은 다른 층 묶음의 아래 층 모듈에 접근할 수 있다. 외부 하드웨어를 위해 [[serial-communication#동기 전송|SPI]]를 쓰는 것이 그 예로, ECU Abstraction Layer의 Memory Hardware Abstraction에 든 외부 EEPROM 드라이버는 MCAL의 Communication Drivers에 든 SPI Handler Driver를 거쳐 외부 EEPROM에 닿는다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 **Layer Interaction Matrix**는 BSW 층 사이에 허용된 상호작용을 보이는 규범 행렬로, 행 방향으로 읽는다. 예를 들어 [[microcontroller-abstraction-layer#모듈 그룹|I/O Drivers]] 행은 I/O Drivers가 System Services와 하드웨어만 쓸 수 있고 다른 층은 쓸 수 없다는 뜻이다. Complex Drivers 행은 다른 층에 제한된 접근만 한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
@@ -79,11 +79,11 @@ AUTOSAR R25-11 용어집은 **Complex Driver**를 AUTOSAR가 표준화하지 않
 
 **Integration Code**는 통합자가 표준화되지 않은 기능을 맞추려고 AUTOSAR 시스템에 더하는 코드로, EcuM의 callout과 여러 BSW 모듈의 callback이 그 예다. **Callout**은 AUTOSAR가 정할 수 없는 기능을 모듈에 더하도록 시스템 설계자가 코드로 바꿔 넣는 함수 stub이다. 모듈은 그런 기능, 곧 Integration Code를 실행하려고 callout을 부르고, 다른 모듈이 자기 처리를 시작하게 하려고는 callback을 준다. Callout은 필수 기능을 주어 하드웨어 추상화 층 구실을 하는 것과 선택 기능을 주는 것으로 나뉜다. EcuM의 `EcuM_EnableWakeupSources`가 앞의 예이고, 초기화 목록 `EcuM_AL_DriverInitZero`가 뒤의 예다.[@autosar-fo-tr-glossary-2025]
 
-AUTOSAR R25-11의 BSW 일반 명세는 callout 함수마다 자기 메모리 섹션에 매핑하도록 요구한다. 모듈 개발자는 callout이 놓일 메모리 세그먼트를 모르고, 통합자는 그 함수를 모듈 설계와 따로 매핑할 수 있어야 하기 때문이다. BSW 모듈이 쓰도록 명세되거나 설정된 callout의 선언은 `<Mip>_Externals.h`에 둔다.[@autosar-cp-sws-bswgeneral-2025]
+AUTOSAR R25-11의 BSW 일반 명세는 callout 함수마다 자기 메모리 섹션에 매핑하도록 요구한다. 모듈 개발자는 callout이 놓일 메모리 세그먼트를 모르고, 통합자는 그 함수를 모듈 설계와 따로 매핑할 수 있어야 하기 때문이다. BSW 모듈이 쓰도록 명세되거나 설정된 callout의 선언은 `<Mip>_Externals.h`에 두며, `<Mip>`는 모듈 약어로 만드는 모듈 구현 접두어다.[@autosar-cp-sws-bswgeneral-2025]
 
 ## BSW 분산
 
-BSW 모듈은 파티션과 코어 여럿에 나눠 둘 수 있으며, 모든 파티션이 같은 코드를 함께 쓴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+BSW 모듈은 파티션과 코어 여럿에 나눠 둘 수 있으며, 한 모듈을 나눠 둔 파티션들은 모두 그 모듈의 같은 코드를 함께 쓴다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ### 멀티코어
 

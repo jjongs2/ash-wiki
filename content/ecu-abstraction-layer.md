@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-30
 ---
 
-**ECU Abstraction Layer**는 [[autosar-layered-architecture|AUTOSAR 계층 구조]]에서 BSW(Basic Software)를 이루는 층 가운데 하나로, [[microcontroller-abstraction-layer|MCAL]] 위, [[autosar-layered-architecture#BSW의 층|Services Layer]] 아래에 놓인다. 이 층은 MCAL의 드라이버와 맞닿고 외부 장치의 드라이버를 담으며, 위 계층에 주변장치와 장치에 접근하는 API를 준다. 이 API는 주변장치가 마이크로컨트롤러 안에 있는지 밖에 있는지, 마이크로컨트롤러에 어떻게 연결됐는지(포트 핀, 인터페이스 종류)와 상관없이 쓸 수 있어, 위 계층을 ECU 하드웨어 배치에서 독립시킨다. 이 층의 구현은 마이크로컨트롤러에 독립적이고 ECU 하드웨어에 의존한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+**ECU Abstraction Layer**는 [[autosar-layered-architecture|AUTOSAR 계층 구조]]에서 BSW(Basic Software)를 이루는 층 가운데 하나로, [[microcontroller-abstraction-layer|MCAL]] 위, [[autosar-layered-architecture#BSW의 층|Services Layer]] 아래에 놓인다. 이 층은 MCAL의 드라이버와 맞닿고, 외부 플래시 같은 메모리 맵 방식 장치를 뺀 외부 장치의 드라이버를 담으며, 위 계층에 주변장치와 장치에 접근하는 API를 준다. 이 API는 주변장치가 마이크로컨트롤러 안에 있는지 밖에 있는지, 마이크로컨트롤러에 어떻게 연결됐는지(포트 핀, 인터페이스 종류)와 상관없이 쓸 수 있어, 위 계층을 ECU 하드웨어 배치에서 독립시킨다. 이 층의 구현은 마이크로컨트롤러에 독립적이고 ECU 하드웨어에 의존한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ![[diagrams/autosar-layered-software-architecture.svg]]
 
@@ -27,7 +27,7 @@ ECU Abstraction Layer는 Onboard Device Abstraction, [[autosar-memory-stack|Memo
 
 ## External driver
 
-마이크로컨트롤러 바깥, ECU 보드에 달린 장치를 **external device**라 한다. 외부 EEPROM, 외부 watchdog, 외부 플래시가 그 예다. external device의 드라이버인 **external driver**는 ECU Abstraction Layer에 놓이고, MCAL의 드라이버를 거쳐 장치에 접근한다. 예를 들어 SPI로 연결된 외부 EEPROM의 드라이버는 SPI 버스를 다루는 MCAL 쪽 handler나 드라이버를 통해 EEPROM에 닿는다. 다만 메모리 맵 방식 외부 장치(외부 플래시 등)의 드라이버는 마이크로컨트롤러에 직접 접근할 수 있고 마이크로컨트롤러에 의존하므로 MCAL에 놓인다. 이렇게 나눈 덕분에 transceiver와 watchdog처럼 SBC(System Basis Chip) 안에 들어간 부품도 AUTOSAR로 다룰 수 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+마이크로컨트롤러 바깥, ECU 보드에 달린 장치를 **external device**라 한다. 외부 EEPROM, 외부 watchdog, 외부 플래시가 그 예다. external device의 드라이버인 **external driver**는 ECU Abstraction Layer에 놓이고, MCAL의 드라이버를 거쳐 장치에 접근한다. 예를 들어 SPI로 연결된 외부 EEPROM의 드라이버는 MCAL의 Communication Drivers에 드는 SPI Handler Driver를 거쳐 EEPROM에 닿는다. SPI Handler Driver는 여러 클라이언트가 SPI 버스 하나나 여럿에 함께 접근하게 하는 드라이버로, [[autosar-layered-architecture#모듈 유형|handler]] 기능을 드라이버에 합친 모듈이다. external driver가 이렇게 MCAL의 드라이버를 거쳐 접근하므로, transceiver와 watchdog처럼 SBC(System Basis Chip) 안에 들어간 부품도 AUTOSAR로 다룰 수 있다. 예외로, 메모리 맵 방식 외부 장치(외부 플래시 등)의 external driver는 마이크로컨트롤러에 직접 접근할 수 있고 마이크로컨트롤러에 의존하므로 MCAL에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ![[diagrams/autosar-internal-external-driver-placement.svg]]
 

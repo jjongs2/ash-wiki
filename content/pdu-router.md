@@ -13,8 +13,8 @@ verified: 2026-09-30
 
 PduR는 I-PDU를 주고받는 모듈을 쓰는 API에 따라 두 부류로 나눈다.[@autosar-cp-sws-pdurouter-2025]
 
-- **통신 인터페이스 모듈**(communication interface module): I-PDU 하나를 호출 한 번으로 통째로 넘기는 모듈이다. 상위에는 AUTOSAR COM과 IpduM(I-PDU Multiplexer)이, 하위에는 [[autosar-network-management|CanNm]], FrNm(FlexRay Network Management), IpduM, LSduR가 든다. IpduM은 AUTOSAR COM에는 하위 모듈로, 하위 통신 인터페이스에는 상위 모듈로 이어져 두 역할을 한다.
-- **전송 프로토콜 모듈**(transport protocol module): 프레임보다 긴 I-PDU도 조각인 N-PDU(Network Layer Protocol Data Unit)로 나눠 주고받을 수 있는 모듈이다. PduR는 조각마다 데이터를 복사해 옮긴다. 상위에는 AUTOSAR COM과 Dcm이, 하위에는 CanTp(CAN Transport Layer), FrTp(FlexRay ISO Transport Layer), LinTp(LIN Transport Protocol), J1939Tp(J1939 Transport Layer)가 든다.[@autosar-cp-sws-pdurouter-2025]
+- **통신 인터페이스 모듈**(communication interface module): I-PDU 하나를 호출 한 번으로 통째로 넘기는 모듈이다. 상위에는 AUTOSAR COM과 IpduM(I-PDU Multiplexer)이, 하위에는 [[autosar-network-management|CanNm]], FrNm(FlexRay Network Management), IpduM, LSduR가 든다. IpduM은 두 역할을 한다. PduR를 거쳐 AUTOSAR COM과 주고받을 때는 PduR의 하위 모듈이고, PduR를 거쳐 하위 통신 인터페이스 모듈과 주고받을 때는 PduR의 상위 모듈이다.
+- **전송 프로토콜 모듈**(transport protocol module): 프레임보다 긴 I-PDU도 조각인 N-PDU(Network Layer Protocol Data Unit)로 나눠 주고받을 수 있는 모듈이다. PduR와 이 모듈 사이에서 오가는 것은 I-PDU이고, PduR는 I-PDU를 N-PDU 하나에 실리는 조각마다 복사해 옮긴다. 상위에는 AUTOSAR COM과 Dcm이, 하위에는 CanTp(CAN Transport Layer), FrTp(FlexRay ISO Transport Layer), LinTp(LIN Transport Protocol), J1939Tp(J1939 Transport Layer)가 든다.[@autosar-cp-sws-pdurouter-2025]
 
 ![[diagrams/pdur-upper-lower-modules.svg]]
 
@@ -24,7 +24,7 @@ PduR는 I-PDU를 주고받는 모듈을 쓰는 API에 따라 두 부류로 나�
 
 AUTOSAR R25-11의 BSW(Basic Software) 일반 명세는 LSduR를 Communication Hardware Abstraction 층에 둔다.[@autosar-cp-sws-bswgeneral-2025] LSduR에는 시그널을 꺼내거나 변환하는 메커니즘과 [[checksum|체크섬]] 같은 무결성 검사 메커니즘이 없다. LSduR는 L-SDU를 고치지 않고, 페이로드에 따라 경로를 고르지 않으며, 통신 인터페이스 모듈 사이에서 rate를 바꾸는 라우팅도 지원하지 않는다.[@autosar-cp-sws-lsdurouter-2025]
 
-LSduR는 IEEE1722Tp(IEEE1722 Transport Layer) 같은 위 모듈이 보낸 L-SDU를 여러 목적지로 보낼 수 있다(1:n). 위 모듈은 목적지가 몇인지 모르므로, LSduR는 목적지 가운데 하나라도 송신 요청에 [[autosar-error-handling#보고 경로|E_OK]]를 돌려주면 위 모듈에 E_OK를 돌려주고, 마지막 목적지의 송신 확인을 받은 뒤에야 위 모듈에 송신 확인을 준다.[@autosar-cp-sws-lsdurouter-2025]
+LSduR는 IEEE1722Tp(IEEE1722 Transport Layer) 같은 위 모듈이 보낸 L-SDU를 여러 목적지로 보낼 수 있다(1:n). 위 모듈은 목적지가 몇인지 모르므로, LSduR는 송신 요청을 목적지마다 넘기고, 넘긴 요청 가운데 하나라도 [[autosar-error-handling#보고 경로|E_OK]]를 돌려받으면 위 모듈의 송신 요청에 E_OK를 돌려주며, 마지막 목적지의 송신 확인을 받은 뒤에야 위 모듈에 송신 확인을 준다.[@autosar-cp-sws-lsdurouter-2025]
 
 ![[diagrams/lsdur-one-to-many-transmit.svg]]
 

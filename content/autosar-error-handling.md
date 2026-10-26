@@ -32,7 +32,7 @@ BSW 모듈은 설정된 production error와 extended production error를 Dem의 
 | Det의 중앙 callout                                | 제품 수명 동안 오류를 처리한다           |
 | Dem의 중앙 오류 함수                              | 양산 코드에서 오류에 대응하고 기록한다   |
 
-API로 알릴 때 기본 반환형은 성공을 뜻하는 E_OK(값 0)와 실패를 뜻하는 E_NOT_OK(값 1)다. 양산 코드에서 오류를 서로 구분해야 하면 따로 반환형을 정하되, 호출자가 실제로 그 오류를 다룰 수 있을 때만 쓴다. Development error는 API로 돌려주지 않으며, Det에 보고할 수 있다. Det의 callout에서 Integration Code는 development error 때 ECU가 리셋되기 전에 준비를 할 수 있고, runtime error 때 보고를 더 할 수 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] Callout은 [[autosar-layered-architecture#Integration Code와 callout|AUTOSAR 계층 구조]]에서 다룬다.
+API로 알릴 때 기본 반환형은 성공을 뜻하는 E_OK(값 0)와 실패를 뜻하는 E_NOT_OK(값 1)다. 양산 코드에서 오류를 서로 구분해야 하면 따로 반환형을 정하되, 호출자가 실제로 그 오류를 다룰 수 있을 때만 쓴다. Development error는 API로 돌려주지 않으며, Det에 보고할 수 있다. Det의 callout에서 Integration Code는 development error 때 ECU가 리셋되기 전에 준비를 할 수 있고, runtime error 때 보고를 더 할 수 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] Integration Code와 callout은 [[autosar-layered-architecture#Integration Code와 callout|AUTOSAR 계층 구조]]에서 다룬다.
 
 ## Det
 
@@ -47,6 +47,6 @@ API로 알릴 때 기본 반환형은 성공을 뜻하는 E_OK(값 0)와 실패�
 | ApiId      | uint8  | 오류를 감지한 API 서비스의 ID. 호출한 모듈의 SWS가 정한다                                     |
 | ErrorId    | uint8  | 감지한 development error의 ID. 호출한 모듈의 SWS가 정한다                                     |
 
-`Det_ReportRuntimeError`도 같은 꼴의 인자를 받되 ErrorId는 감지한 runtime error의 ID이고, 설정된 callout이 있으면 그것을 부르며, 늘 E_OK를 돌려준다. 두 보고 함수는 재진입할 수 있고, 설정된 error hook을 모두 곧바로 부른다. `Det_ReportError`는 실행을 멈춘다.[@autosar-cp-sws-defaulterrortracer-2025]
+`Det_ReportRuntimeError`도 같은 꼴의 인자를 받되 ErrorId는 감지한 runtime error의 ID이고, 설정된 callout이 있으면 그것을 부르며, 늘 E_OK를 돌려준다. 두 보고 함수는 재진입할 수 있고, 설정된 error hook을 모두 곧바로 부른다. `Det_ReportError`는 error hook을 부른 뒤 시스템을 멈추고(HALT) 호출자에게 돌아가지 않는다.[@autosar-cp-sws-defaulterrortracer-2025]
 
 Runtime error가 일어나면 대응하는 오류 처리기가 돌고, 통합자는 이 처리기를 Det 안의 callout으로 구현할 수 있다. 이 처리기는 오류 이벤트를 메모리에 저장하거나, Dem을 부르거나, 짧고 합당한 동작만 한다. 이 callout의 함수 이름은 Det의 설정 파라미터 `DetReportRuntimeErrorCallout`으로 정한다.[@autosar-cp-sws-bswgeneral-2025]

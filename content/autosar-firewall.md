@@ -10,7 +10,7 @@ verified: 2026-10-07
 
 ## 규칙 맞추기
 
-AUTOSAR Classic Platform R25-11의 Firewall 명세는 방화벽이 네트워크 패킷의 패턴과 그 패턴에 딸린 동작(허용이나 차단)의 짝, 곧 **FirewallRule**의 목록을 관리하도록 둔다. 방화벽은 지나가는 패킷을 규칙의 패턴과 설정한 순서대로 견주어, 처음 맞는 규칙에서 비교를 멈추고 그 규칙의 동작을 한다. 맞는 규칙이 없으면 기본 동작을 한다. 방화벽은 패킷 전체를 검사하므로, 패턴은 [[osi-model|OSI]] 계층마다 따로 둔 설정을 FirewallRule에 모아 이룬다.[@autosar-cp-sws-firewall-2025]
+AUTOSAR Classic Platform R25-11의 Firewall 명세는 방화벽이 네트워크 패킷의 패턴과 그 패턴에 딸린 동작(허용이나 차단)의 짝, 곧 **FirewallRule**의 목록을 관리하도록 둔다. 방화벽은 지나가는 패킷을 규칙의 패턴과 설정한 순서대로 견주어, 처음 맞는 규칙에서 비교를 멈추고 그 규칙의 동작을 한다. 맞는 규칙이 없으면 설정에서 허용이나 차단으로 정한 기본 동작을 한다. 방화벽은 패킷 전체를 검사하므로, 패턴은 [[osi-model|OSI]] 계층마다 따로 둔 설정을 FirewallRule에 모아 이룬다.[@autosar-cp-sws-firewall-2025]
 
 AUTOSAR Adaptive Platform R25-11의 Firewall 명세도 FC Firewall이 같은 방식으로 FirewallRule을 설정한 순서대로 맞춰 보고, 맞는 규칙이 없으면 기본 동작을 하도록 정한다.[@autosar-ap-sws-firewall-2025]
 
@@ -22,7 +22,7 @@ AUTOSAR Classic Platform R25-11의 Firewall 명세는 방화벽을 allowlist 방
 
 방화벽은 세 수준의 검사를 지원한다.[@autosar-cp-sws-firewall-2025]
 
-- **Stateless packet inspection**: 헤더 필드 같은 필드 값을 정적으로 정한 값과 견준다. Classic Platform의 Firewall은 OSI 4계층까지의 프로토콜 헤더를 보며, [[ethernet|이더넷]], [[ipv4|IPv4]], [[ipv6|IPv6]], [[icmp|ICMP]], [[tcp|TCP]], [[udp|UDP]]를 기본으로 지원한다.
+- **Stateless packet inspection**: 헤더 필드 같은 필드 값을 정적으로 정한 값과 견준다. 이 검사에서 Classic Platform의 Firewall은 OSI 4계층까지의 프로토콜 헤더를 보며, [[ethernet|이더넷]], [[ipv4|IPv4]], [[ipv6|IPv6]], [[icmp|ICMP]], [[tcp|TCP]], [[udp|UDP]]를 기본으로 지원한다.
 - **Stateful packet inspection**: 허용된 상태 전이나 열린 연결 수처럼 프로토콜의 상태를 따진다. Classic Platform의 Firewall은 TCP의 타임아웃, 열린 연결 수, TCP 상태 기계를 검사한다.
 - **Deep packet inspection**: [[some-ip|SOME/IP]], DDS(Data Distribution Service), [[doip|DoIP]] 같은 응용 계층 프로토콜을 검사한다. 오프셋과 기대 바이트 값으로 페이로드를 일반 검사할 수도 있다.[@autosar-cp-sws-firewall-2025]
 
@@ -30,7 +30,7 @@ AUTOSAR Classic Platform R25-11의 Firewall 명세는 방화벽을 allowlist 방
 
 ## 상태에 따른 규칙
 
-차량 안의 트래픽은 주행, 주차, 진단 세션 같은 차량 상태에 따라 크게 달라진다. 그래서 FirewallRule을 통합자가 프로젝트마다 미리 정한 **firewall state**에 묶을 수 있고, 한 번에 한 state에 묶인 규칙만 활성이다. Classic Platform에서는 [[basic-software-mode-manager|BswM]]이 `Fw_SetFirewallState`를 불러 활성 state를 바꾼다.[@autosar-cp-sws-firewall-2025] AUTOSAR Adaptive Platform R25-11의 Firewall 명세는 사용자 응용이 FC Firewall의 `ara::fw::FirewallStateSwitchInterface` API로 활성 state를 바꾸도록 둔다.[@autosar-ap-sws-firewall-2025]
+차량 안의 트래픽은 주행, 주차, 진단 세션 같은 차량 상태에 따라 크게 달라진다. 그래서 FirewallRule을 통합자가 프로젝트마다 미리 정한 **firewall state**에 묶을 수 있다. 한 번에 한 state만 활성이고 검사에는 활성 state에 묶인 규칙만 쓰므로, 어느 state에도 묶이지 않은 규칙은 쓰이지 않는다. Classic Platform에서는 [[basic-software-mode-manager|BswM]]이 `Fw_SetFirewallState`를 불러 활성 state를 바꾼다.[@autosar-cp-sws-firewall-2025] AUTOSAR Adaptive Platform R25-11의 Firewall 명세는 사용자 응용이 FC Firewall의 `ara::fw::FirewallStateSwitchInterface` API로 활성 state를 바꾸도록 둔다.[@autosar-ap-sws-firewall-2025]
 
 ## 보안 이벤트
 

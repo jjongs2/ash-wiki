@@ -7,15 +7,15 @@ verified: 2026-10-07
 
 AUTOSAR R25-11 용어집은 **Manifest**를 [[autosar-adaptive-platform|AUTOSAR Adaptive Platform]] 제품의 설정을 돕도록 만들어 그 제품에 올리는 AUTOSAR 모델 기술의 한 부분으로 정의한다. Manifest는 그것이 적용되는 실행 코드를 담은 바이너리 파일 같은 다른 산출물과 함께 올리기도 한다. Manifest라는 말은 흔히 소프트웨어와 함께 실려 그 소프트웨어를 현장에 배치하는 데 쓰는 설정 내용을 가리킨다.[@autosar-fo-tr-glossary-2025]
 
-AUTOSAR R25-11 Adaptive Platform 설계 설명서는 Manifest의 쓰임을 Adaptive Platform으로 한정한다. 그렇다고 Adaptive Platform을 대상으로 한 개발 프로젝트에서 만든 AUTOSAR 모델 파일(ARXML)이 모두 Manifest인 것은 아니다. 차량에는 대개 [[autosar-classic-platform|Classic Platform]]으로 만든 ECU도 함께 있어서, 차량 전체의 시스템 설계는 두 플랫폼의 ECU를 모두 다뤄야 하기 때문이다.[@autosar-ap-exp-platformdesign-2025]
+AUTOSAR R25-11 Adaptive Platform 설계 설명서는 Manifest의 쓰임을 Adaptive Platform으로 한정한다. 그렇다고 Adaptive Platform을 대상으로 한 개발 프로젝트에서 만든 AUTOSAR 모델 파일(ARXML)이 모두 Manifest인 것은 아니다. 차량에는 대개 [[autosar-classic-platform|Classic Platform]]으로 만든 ECU도 함께 있어서, 차량 전체의 시스템 설계는 두 플랫폼의 ECU를 모두 다뤄야 하기 때문이다. 이런 시스템 설계는 Manifest가 아닌 System Design으로 기술한다.[@autosar-ap-exp-platformdesign-2025]
 
 Uptane의 차량 버전 매니페스트는 이와 다른 것으로, [[uptane|Uptane]]에서 다룬다.
 
 ## 종류
 
-Manifest와 관련된 모델 요소는 개발 프로젝트의 전혀 다른 단계에서 쓰인다. 그래서 Application Design과 따로 Manifest를 셋으로 나눈다.[@autosar-ap-exp-platformdesign-2025]
+Manifest와 관련된 모델 요소는 개발 프로젝트의 전혀 다른 단계에서 쓰인다. 그래서 Manifest를 Execution Manifest, Service Instance Manifest, Machine Manifest의 셋으로 나누고, Application Design은 이 셋과 따로 둔다.[@autosar-ap-exp-platformdesign-2025]
 
-- **Application Design**: Adaptive Platform용 응용 소프트웨어를 만드는 데 드는 설계 측면을 모두 기술한다. [[autosar-adaptive-platform#Machine과 프로세스|Machine]]에 반드시 배치하지는 않으며, Execution Manifest와 Service Instance Manifest에서 응용 소프트웨어의 배치를 정하는 것을 돕는다.
+- **Application Design**: Adaptive Platform용 응용 소프트웨어를 만드는 데 드는 설계 측면을 모두 기술한다. [[autosar-adaptive-platform#Machine과 프로세스|Machine]]에 꼭 배치해야 하는 것은 아니며, Execution Manifest와 Service Instance Manifest에서 응용 소프트웨어의 배치를 정하는 것을 돕는다.
 - **Execution Manifest**: Adaptive Platform에서 도는 응용의 배치 정보를 기술한다. 실제 실행 코드와 함께 묶여, 그 코드를 Machine에 통합하는 것을 돕는다.
 - **Service Instance Manifest**: [[service-oriented-communication|서비스 지향 통신]]을 하부 전송 프로토콜의 요구에 맞춰 어떻게 설정하는지 기술한다. 그 서비스 지향 통신을 쓰는 실행 코드와 함께 묶인다.
 - **Machine Manifest**: 응용 없이 Adaptive Platform을 돌리는 Machine 자체의 설정에 관한 배치 내용을 기술한다. Adaptive Platform 인스턴스를 세우는 소프트웨어와 함께 묶인다.[@autosar-ap-exp-platformdesign-2025]
@@ -46,7 +46,7 @@ Execution Manifest의 최상위 요소는 Process다. Adaptive Platform에서 �
 네트워크에서 서비스 지향 통신을 구현하는 데 필요한, [[some-ip|SOME/IP]] 같은 통신 기술에 고유한 설정은 Service Instance Manifest에 둔다. 통신 인프라는 서비스의 제공자와 요청자 쪽에서 똑같이 동작해야 하므로, 서비스 구현이 양쪽에서 호환되어야 한다. Service Instance Manifest가 다루는 것은 아래와 같다.[@autosar-ap-exp-platformdesign-2025]
 
 - **서비스 인터페이스 배치**: 서비스를 특정 통신 기술에서 어떻게 나타낼지 정한다.
-- **서비스 인스턴스 배치**: 제공하거나 요구하는 서비스 인스턴스마다 통신 기술에 필요한 자격 정보를 정한다.
+- **서비스 인스턴스 배치**: 제공하거나 요구하는 서비스 인스턴스마다 통신 기술에 필요한 식별 정보를 정한다. 예: SOME/IP의 서비스 인스턴스 식별자[@autosar-ap-exp-platformdesign-2025][@autosar-ap-tps-manifestspecification-2025]
 - [[autosar-e2e-protection|E2E 보호]], 보안 보호, [[autosar-log-and-trace|Log and Trace]]의 설정[@autosar-ap-exp-platformdesign-2025]
 
 ApApplicationEndpoint는 EthernetCommunicationConnector의 [[udp|UDP]]나 [[tcp|TCP]] 포트를 정하고, 같은 커넥터가 unicastNetworkEndpoint 역할로 가리키는 NetworkEndpoint와 함께 네트워크 통신 경로의 로컬 종단, 곧 소켓을 이룬다.[@autosar-ap-tps-manifestspecification-2025]
@@ -55,7 +55,7 @@ ApApplicationEndpoint는 EthernetCommunicationConnector의 [[udp|UDP]]나 [[tcp|
 
 Machine Manifest로는 특정 하드웨어에서 도는 Adaptive Platform 인스턴스를 설정한다. Machine Manifest가 다루는 것은 아래와 같다.[@autosar-ap-exp-platformdesign-2025]
 
-- 네트워크 연결 설정과 네트워크 기술의 기본 자격 정보. 예: [[ethernet|이더넷]]의 고정 IP 주소나 [[dhcp|DHCP]] 설정
+- 네트워크 연결 설정과 네트워크 기술의 기본 주소 정보. 예: [[ethernet|이더넷]]의 고정 IP 주소나 [[dhcp|DHCP]] 설정
 - 서비스 발견 기술의 설정. 예: SOME/IP가 쓸 IP 포트와 IP 멀티캐스트 주소
 - 쓰는 Machine State와 Function Group의 정의
 - [[autosar-adaptive-platform#Functional cluster|functional cluster]] 구현의 설정. 예: 운영체제가 특정 권한을 가진 운영체제 사용자 목록을 제공하는 것

@@ -15,7 +15,7 @@ status: 유효
 이 표준은 소프트웨어 명세를 바탕으로, 시험 범위를 응용 수준과 버스 수준에서 보이는 AUTOSAR 기능으로 좁힌다.[@autosar-tc-exp-acceptancetestsoverview-2016]
 
 - **응용 수준**: 응용에 영향을 주는 [[autosar-rte|RTE]] 요구사항(산출물에서의 생성, API의 존재, 동작 등), BSW(Basic Software) 서비스, 라이브러리
-- **버스 수준**: 송신 동작, 버스 오프 처리, [[autosar-network-management|네트워크 관리]] 같은 버스 동작과, 전송 프로토콜, 네트워크 관리, 진단 통신 같은 버스 프로토콜[@autosar-tc-exp-acceptancetestsoverview-2016]
+- **버스 수준**: 송신 동작, 버스 오프 처리 같은 버스 동작과, 전송 프로토콜, 진단 통신 같은 버스 프로토콜. [[autosar-network-management|네트워크 관리]]는 버스 동작과 버스 프로토콜에 모두 든다.[@autosar-tc-exp-acceptancetestsoverview-2016]
 
 ![[diagrams/acceptance-test-levels.svg]]
 

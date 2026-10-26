@@ -17,12 +17,12 @@ EcuM은 STARTUP, UP, SHUTDOWN, SLEEP, OFF 단계를 거친다. Flexible ECU mana
 
 ## Shutdown target
 
-**Shutdown target**은 UP 단계를 떠난 상태 기계가 향하는, 코드를 실행하지 않는 상태로, Off, Sleep, Reset이 있다. BswM이 ECU 자원 대부분을 다루므로, shutdown target을 언제 무엇으로 정할지도 BswM이 직접이나 간접으로 정한다. Off에 닿으려면 ECU가 스스로 전원을 끌 수 있어야 하는데, 모든 하드웨어 설계가 이를 갖추지는 않는다. EcuM은 설정할 수 있는 sleep 모드 묶음을 둘 수 있고 설정할 수 있는 reset 모드 묶음은 반드시 두며, reset 모드에는 적어도 `Mcu_PerformReset`, `WdgM_PerformReset`과 DIO(Digital Input/Output)·SPI(Serial Peripheral Interface)로 I/O 핀 토글하기가 든다.[@autosar-cp-sws-ecustatemanager-2025]
+**Shutdown target**은 UP 단계를 떠난 상태 기계가 향하는, 코드를 실행하지 않는 상태로, Off, Sleep, Reset이 있다. Sleep이면 상태 기계가 UP에서 SLEEP 단계로 가고, Off나 Reset이면 SHUTDOWN 단계를 거쳐 OFF 단계에 들거나 ECU를 리셋해 STARTUP 단계로 돌아간다. BswM이 ECU 자원 대부분을 다루므로, shutdown target을 언제 무엇으로 정할지도 BswM이 직접이나 간접으로 정한다. Off에 닿으려면 ECU가 스스로 전원을 끌 수 있어야 하는데, 모든 하드웨어 설계가 이를 갖추지는 않는다. EcuM은 설정할 수 있는 sleep 모드 묶음을 둘 수 있고 설정할 수 있는 reset 모드 묶음은 반드시 두며, reset 모드에는 적어도 `Mcu_PerformReset`, `WdgM_PerformReset`과 DIO(Digital Input/Output)·SPI(Serial Peripheral Interface)로 I/O 핀 토글하기가 든다.[@autosar-cp-sws-ecustatemanager-2025]
 
 EcuM 명세에는 ECU를 늘 끌 수 있는 것은 아니라는 한계가 있다. OFF에는 power hold 회로 같은 ECU 전용 하드웨어가 있어야 닿을 수 있고, 그 하드웨어가 없으면 EcuM 명세는 reset을 대신 하기를 권하되 다른 기본 동작도 허용한다.[@autosar-cp-tr-releaseoverview-2025]
 
 ## 멀티코어
 
-멀티코어 ECU에서는 EcuM을 코어마다 하나씩 둔다. [[bootloader|부트로더]]가 master core를 정하고 그 코어에서 `EcuM_Init`으로 master EcuM을 띄운다. master EcuM은 몇몇 드라이버를 시작하고 [[autosar-methodology#ECU 설정|post-build]] 설정을 정한 뒤, 나머지 코어와 그 코어의 satellite EcuM을 모두 띄운다. 나머지 코어는 **slave core**라 부른다. 각 EcuM은 자기 코어의 OS와 BswM을 시작하고, BswM은 파티션마다 하나씩 있다. EcuM은 모든 코어에서 SchM과 OS를 시작하고, master core와 slave core의 BswM을 모두 초기화한다. [[safety-mechanism|안전 메커니즘]]을 쓰면 EcuM은 full trust level로 돌아야 한다.[@autosar-cp-sws-ecustatemanager-2025]
+멀티코어 ECU에서는 EcuM을 코어마다 하나씩 둔다. [[bootloader|부트로더]]가 master core를 정하고 그 코어에서 `EcuM_Init`으로 master EcuM을 띄운다. 나머지 코어는 **slave core**라 부르고, slave core마다 하나씩 도는 EcuM을 **satellite EcuM**이라 부른다. master EcuM은 몇몇 드라이버를 시작하고 [[autosar-methodology#ECU 설정|post-build]] 설정을 정한 뒤 slave core를 모두 띄우고, slave core는 저마다 `EcuM_Init`을 불러 satellite EcuM을 띄운다. 그 뒤 master core와 slave core의 EcuM은 저마다 자기 코어의 OS를 시작하고, SchM과 그 코어의 모든 BswM(파티션마다 하나)을 초기화한다. [[safety-mechanism|안전 메커니즘]]을 쓰면 EcuM은 full trust level로 돌아야 한다.[@autosar-cp-sws-ecustatemanager-2025]
 
 BSW 모듈을 파티션과 코어에 나눠 두는 일은 [[autosar-layered-architecture#BSW 분산|AUTOSAR 계층 구조]]에서 다룬다.
