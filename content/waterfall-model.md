@@ -5,9 +5,9 @@ tags:
 verified: 2026-10-02
 ---
 
-ISO/IEC/IEEE 24765:2017은 **폭포수 모델**(waterfall model)을 보통 개념, 요구, 설계, 구현, 테스트, 설치·점검 단계로 이루어지는 활동을 이 순서로 수행하는 소프트웨어 개발 모델로 정의하고, 단계끼리 겹칠 수는 있지만 반복은 거의 없다고 둔다.[@iso-iec-ieee-24765-obp-2017]
+ISO/IEC/IEEE 24765:2017은 **폭포수 모델**(waterfall model)을 구성 활동을 차례로 수행하는 소프트웨어 개발 모델로 정의한다. 구성 활동은 보통 개념, 요구, 설계, 구현, 테스트, 설치·점검 단계이고, 단계끼리 겹칠 수는 있지만 반복은 거의 없다.[@iso-iec-ieee-24765-obp-2017]
 
-반면 ISTQB CTFL v4.0.1 강의계획서는 폭포수 모델을 [[software-development-life-cycle#모델|순차 개발 모델]]의 예로 들고[@istqb-ctfl-syllabus-2024], ISTQB 용어집은 순차 개발 모델을 완전한 시스템을 서로 겹치지 않는 여러 단계로 차례로 개발하는 모델로 정의한다.[@istqb-glossary-sequential-development-model-2026]
+반면 ISTQB 용어집은 [[software-development-life-cycle#모델|순차 개발 모델]]을 완전한 시스템을 서로 겹치지 않는 여러 단계로 차례로 개발하는 모델로 정의한다.[@istqb-glossary-sequential-development-model-2026] ISTQB CTFL v4.0.1 강의계획서는 폭포수 모델을 순차 개발 모델의 예로 든다.[@istqb-ctfl-syllabus-2024]
 
 ## 원 논문의 단계
 
