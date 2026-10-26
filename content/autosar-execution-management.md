@@ -9,7 +9,7 @@ AUTOSAR R25-11 Adaptive Platform 설계 설명서는 **Execution Management**(EM
 
 ## 시스템 시작
 
-[[autosar-adaptive-platform#Machine과 프로세스|Machine]]이 시작되면 운영체제가 초기화된 뒤 Execution Management가 플랫폼의 첫 프로세스로 실행된다. Execution Management는 [[autosar-adaptive-platform#Functional cluster|Adaptive Platform Foundation]]의 functional cluster를 나타내는 플랫폼 수준 프로세스를 띄우고, Foundation이 돌기 시작하면 Adaptive Application의 프로세스를 이어 띄운다. 플랫폼 수준과 응용 수준 프로세스의 시작 순서는 Execution Management가 [[autosar-manifest#종류|Machine Manifest]]와, Execution Manifest에 적은 의존성을 바탕으로 정한다.[@autosar-ap-exp-platformdesign-2025]
+[[autosar-adaptive-platform#Machine과 프로세스|Machine]]이 시작되면 운영체제가 초기화된 뒤 Execution Management가 플랫폼의 첫 프로세스로 실행된다. Execution Management는 [[autosar-adaptive-platform#Functional cluster|Adaptive Platform Foundation]]의 functional cluster를 나타내는 플랫폼 수준 프로세스를 띄우고, Foundation이 돌기 시작하면 Adaptive Application의 프로세스를 이어 띄운다. 플랫폼 수준과 응용 수준 프로세스의 시작 순서는 Execution Management가 [[autosar-manifest|Machine Manifest와 Execution Manifest]]에 적은 의존성을 바탕으로 정한다.[@autosar-ap-exp-platformdesign-2025]
 
 운영체제는 Execution Management를 Adaptive Platform의 첫 프로세스로 시작할 수 있어야 한다.[@autosar-ap-sws-operatingsysteminterface-2025]
 
