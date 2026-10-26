@@ -71,13 +71,13 @@ OSEK OS는 [[osek-alarm|counter]]를 직접 다루는 표준 API를 두지 않�
 
 반환값은 OS가 이어서 할 일을 정한다.[@autosar-cp-sws-os-2025]
 
-| 반환값                   | OS의 처리                                                                                                                                       |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| PRO_IGNORE               | 이른 도착으로 막았던 활성화나 release를 그대로 수행한다. E_OS_PROTECTION_ARRIVAL일 때만 유효하고, 다른 오류에서 돌려주면 `ShutdownOS`를 부른다. |
-| PRO_PREVENT_ARRIVAL_RATE | E_OS_PROTECTION_ARRIVAL일 때, 그 이른 도착을 일으킨 동작을 수행하지 않는다.                                                                     |
-| PRO_TERMINATETASKISR     | 오류를 낸 태스크나 category 2 ISR을 강제로 끝낸다.                                                                                              |
-| PRO_TERMINATEAPPL        | 오류를 낸 태스크나 ISR이 속한 OS-Application을 강제로 끝낸다.                                                                                   |
-| PRO_SHUTDOWN             | `ShutdownOS`를 불러 OS를 멈춘다.                                                                                                                |
+| 반환값                   | OS의 처리                                                                                                                                                            |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PRO_IGNORE               | 이른 도착으로 막았던 활성화나 release, category 2 ISR 실행을 그대로 수행한다. E_OS_PROTECTION_ARRIVAL일 때만 유효하고, 다른 오류에서 돌려주면 `ShutdownOS`를 부른다. |
+| PRO_PREVENT_ARRIVAL_RATE | E_OS_PROTECTION_ARRIVAL일 때, 그 이른 도착을 일으킨 동작을 수행하지 않는다.                                                                                          |
+| PRO_TERMINATETASKISR     | 오류를 낸 태스크나 category 2 ISR을 강제로 끝낸다.                                                                                                                   |
+| PRO_TERMINATEAPPL        | 오류를 낸 태스크나 ISR이 속한 OS-Application을 강제로 끝낸다.                                                                                                        |
+| PRO_SHUTDOWN             | `ShutdownOS`를 불러 OS를 멈춘다.                                                                                                                                     |
 
 protection hook을 두지 않으면 OS는 보호 오류에서 `ShutdownOS`를 부른다.[@autosar-cp-sws-os-2025]
 

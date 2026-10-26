@@ -32,7 +32,7 @@ Action list에 쓸 수 있는 action은 미리 정해져 있다(`BswMAvailableAc
 
 정해진 action 밖에도 BswM은 BSW의 어느 함수든 부를 수 있고, 사용자 정의 함수도 부를 수 있다.[@autosar-cp-sws-bswmodemanager-2025]
 
-시동 설정의 한 예에서 BswM 규칙은 [[nvram-manager|NVRAM]] 접근에 필요한 드라이버를 초기화하는 action list에서 `NvM_ReadAll`을 불러 [[nvram-manager|NvM]]이 RAM 데이터 블록을 채우게 하고, ReadAll job이 끝나면 나머지 BSW를 초기화한다. 종료 설정의 예에서는 action list가 `NvM_WriteAll`을 부른다.[@autosar-cp-exp-modemanagementguide-2025][@autosar-cp-sws-nvrammanager-2025]
+시동 설정의 한 예에서 BswM 규칙은 비휘발성 메모리 접근에 필요한 드라이버를 초기화하는 action list에서 `NvM_ReadAll`을 불러 [[nvram-manager|NvM]]이 RAM 데이터 블록을 채우게 하고, ReadAll job이 끝나면 나머지 BSW를 초기화한다. 종료 설정의 예에서는 action list가 `NvM_WriteAll`을 부른다.[@autosar-cp-exp-modemanagementguide-2025][@autosar-cp-sws-nvrammanager-2025]
 
 ## Mode request와 mode switch
 

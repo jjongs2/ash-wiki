@@ -48,7 +48,7 @@ Off-board Communication Services에는 V2X 모듈 다섯과 중국 V2X 모듈 �
 
 BSW 모듈은 driver, interface, handler, manager 네 유형으로 나뉜다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-- **Driver**: 내부나 외부 장치를 제어하고 그 장치에 접근하는 기능을 담는다. 마이크로컨트롤러 안의 장치를 다루는 [[microcontroller-abstraction-layer#Internal driver|internal driver]]는 MCAL에, 마이크로컨트롤러 밖 장치를 다루는 [[ecu-abstraction-layer#External driver|external driver]]는 ECU Abstraction Layer에 놓인다. 다만 메모리 맵 방식 외부 장치(외부 플래시 등)의 external driver는 마이크로컨트롤러에 의존하므로 MCAL에 놓인다.
+- **Driver**: 내부나 외부 장치를 제어하고 그 장치에 접근하는 기능을 담는다. 마이크로컨트롤러 안의 장치를 다루는 [[microcontroller-abstraction-layer#Internal driver|internal driver]]는 MCAL에, 마이크로컨트롤러 밖 장치를 다루는 [[ecu-abstraction-layer#External driver|external driver]]는 ECU Abstraction Layer에 놓인다. 그 예외는 위 표의 MCAL 행에 있다.
 - **Interface**: 아래에 놓인 모듈을 추상화해, 같은 종류의 장치가 몇 개이든 하드웨어로 어떻게 구현되든 그 종류의 장치에 접근하는 일반 API를 준다. 데이터의 내용은 바꾸지 않으며, 대개 ECU Abstraction Layer에 놓인다.
 - **Handler**: 클라이언트 하나나 여럿이 드라이버 하나나 여럿에 동시에, 여러 번, 비동기로 접근하는 것을 제어하는 특수한 interface로, 버퍼링, 큐잉, 중재, 다중화를 한다. 데이터의 내용은 바꾸지 않는다. handler 기능은 드라이버나 interface에 합쳐진 경우가 많으며, [[autosar-adc-driver|ADC Driver]]가 handler 기능을 합친 드라이버의 예다.
 - **Manager**: 여러 클라이언트에 특정 서비스를 주는 모듈로, handler 기능만으로는 여러 클라이언트를 추상화하기에 모자랄 때 쓴다. handler 기능에 더해 데이터의 내용을 평가하고 바꿀 수 있으며, 대개 Services Layer에 놓인다. 예로 내부·외부 메모리 장치에 대한 동시 접근을 관리하는 NVRAM Manager가 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
@@ -79,7 +79,7 @@ AUTOSAR R25-11 용어집은 **Complex Driver**를 AUTOSAR가 표준화하지 않
 
 **Integration Code**는 통합자가 표준화되지 않은 기능을 맞추려고 AUTOSAR 시스템에 더하는 코드로, EcuM의 callout과 여러 BSW 모듈의 callback이 그 예다. **Callout**은 AUTOSAR가 정할 수 없는 기능을 모듈에 더하도록 시스템 설계자가 코드로 바꿔 넣는 함수 stub이다. 모듈은 그런 기능, 곧 Integration Code를 실행하려고 callout을 부르고, 다른 모듈이 자기 처리를 시작하게 하려고는 callback을 준다. Callout은 필수 기능을 주어 하드웨어 추상화 층 구실을 하는 것과 선택 기능을 주는 것으로 나뉜다. EcuM의 `EcuM_EnableWakeupSources`가 앞의 예이고, 초기화 목록 `EcuM_AL_DriverInitZero`가 뒤의 예다.[@autosar-fo-tr-glossary-2025]
 
-AUTOSAR R25-11의 BSW 일반 명세는 callout 함수마다 자기 메모리 섹션에 매핑하도록 요구한다. 모듈 개발자는 callout이 놓일 메모리 세그먼트를 모르고, 통합자는 그 함수를 모듈 설계와 따로 매핑할 수 있어야 하기 때문이다. BSW 모듈이 쓰도록 명세되거나 설정된 callout의 선언은 `<Mip>_Externals.h`에 두며, `<Mip>`는 모듈 약어로 만드는 module implementation prefix다.[@autosar-cp-sws-bswgeneral-2025]
+AUTOSAR R25-11의 BSW 일반 명세는 callout 함수마다 자기 메모리 섹션에 매핑하도록 요구한다. 모듈 개발자는 callout이 놓일 메모리 세그먼트를 모르고, 통합자는 그 함수를 모듈 설계와 따로 매핑할 수 있어야 하기 때문이다. BSW 모듈이 쓰도록 명세되거나 설정된 callout의 선언은 `<Mip>_Externals.h`에 두며, `<Mip>`는 모듈 약어로 만드는 모듈 구현 접두어다.[@autosar-cp-sws-bswgeneral-2025]
 
 ## BSW 분산
 
