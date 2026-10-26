@@ -28,7 +28,7 @@ Leveson과 Thomas는 2018년 3월 STPA Handbook을 펴냈다.[@leveson-stpa-hand
 
 STPA에서 **loss**는 이해관계자에게 가치 있는 것을 잃는 것이다. 사람의 죽음이나 부상, 재산 피해, 환경 오염, 임무 실패, 평판 손실, 민감 정보의 유출처럼 이해관계자가 받아들일 수 없는 모든 손실이 든다. **Hazard**는 특정한 최악의 환경 조건과 함께 loss로 이어질 시스템 상태나 조건의 집합이다. Loss에는 시스템 설계자가 일부만 제어하거나 전혀 제어하지 못하는 환경이 걸릴 수 있다는 것이 hazard와 loss를 가르는 주된 까닭이다.[@leveson-stpa-handbook-2018]
 
-STPA의 hazard가 시스템 상태나 조건인 것과 달리, [[iso-26262|ISO 26262]]-1:2018은 [[hazard-analysis-and-risk-assessment#용어|hazard]]를 아이템의 오동작이 일으키는 해의 잠재적 원천으로 정의하고, 주석에서 이 정의를 ISO 26262 범위로 좁힌 것이라 한다.[@leveson-stpa-handbook-2018][@iso-26262-1-obp-2018]
+STPA의 hazard가 시스템 상태나 조건인 것과 달리, [[iso-26262|ISO 26262]]-1:2018은 [[hazard-analysis-and-risk-assessment#용어|hazard]]를 아이템의 오동작이 일으키는 해의 잠재적 원천으로 정의하고, 주석에서 이 정의를 ISO 26262 범위로 좁힌 것이라고 제시한다.[@leveson-stpa-handbook-2018][@iso-26262-1-obp-2018]
 
 ## 제어 구조와 unsafe control action
 

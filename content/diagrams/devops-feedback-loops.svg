@@ -24,7 +24,7 @@
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="370" y="36">빌드·테스트·배포 자동화</text>
-    <text x="370" y="66">작은 변경 단위를 필요할 때 내보냄</text>
+    <text x="370" y="66">작은 변경 단위를 필요할 때 전달</text>
     <text x="370" y="176">운영에서 오는 피드백: 모니터링·로깅</text>
   </g>
   <g text-anchor="end" fill="var(--text, #727981)">

@@ -15,7 +15,7 @@ Avizienis 외(2004)는 결함 허용을 구현하는 방법의 하나로 여러 
 
 하드웨어의 결함 허용 설계가 허용하는 것은 설계 fault가 아니라 부품 failure이고, 소프트웨어에 필요한 중복은 프로그램의 복제가 아니라 설계의 중복이다. 대체 구성 요소가 주 구성 요소의 복사본에 지나지 않으면 주 구성 요소를 고장 나게 한 상황에 대처할 수 없으므로, 대체 구성 요소는 따로 설계한다.[@randell-software-fault-tolerance-1975]
 
-Avizienis 외(2004)의 분류에서 공통 원인에서 비롯한 fault들은 대개 검출 메커니즘이 구별하지 못하는 비슷한 error를 내고, 원인이 서로 다른 독립된 fault들은 대개 서로 다른 error를 낸다. 다만 독립된 fault가 비슷한 error를 내거나, 공통 원인에서 비롯한 fault가 서로 다른 error를 내기도 한다. 이 분류는 비슷한 error로 생긴 failure를 common-mode failure라 한다.[@avizienis-dependable-secure-computing-2004]
+Avizienis 외(2004)의 분류에서 공통 원인에서 비롯한 fault들은 대개 검출 메커니즘이 구별하지 못하는 비슷한 error를 내고, 원인이 서로 다른 독립된 fault들은 대개 서로 다른 error를 낸다. 다만 독립된 fault가 비슷한 error를 내거나, 공통 원인에서 비롯한 fault가 서로 다른 error를 내기도 한다. 이 분류는 비슷한 error로 생긴 failure를 **common-mode failure**라 한다.[@avizienis-dependable-secure-computing-2004]
 
 ## Ariane 5 501편
 
