@@ -21,7 +21,7 @@ ceiling priority 이하의 우선순위를 가진 태스크는 이 때문에 늦
 
 ## 사용 규칙
 
-OSEK/VDX OS 2.2.3 명세는 resource 관리를 모든 [[osek-os#Conformance class|conformance class]]에 필수로 둔다. resource 관리는 두 태스크가 같은 resource를 동시에 쥐지 못하고, 우선순위 역전이 일어나지 않으며, 이 resource들로 교착 상태가 생기지 않고, resource 접근이 waiting 상태를 낳지 않음을 보장한다.[@osek-os-2-2-3-2005]
+OSEK/VDX OS 2.2.3 명세는 resource 관리를 모든 [[osek-os#Conformance class|conformance class]]에 필수로 둔다. resource 관리는 두 태스크가 같은 resource를 동시에 쥐지 못하고, [[priority-inversion#제한 없는 우선순위 역전|제한 없는 우선순위 역전]]이 일어나지 않으며, 이 resource들로 교착 상태가 생기지 않고, resource 접근이 waiting 상태를 낳지 않음을 보장한다.[@osek-os-2-2-3-2005]
 
 이 명세는 resource를 쓰는 규칙을 아래처럼 정한다.[@osek-os-2-2-3-2005]
 
@@ -46,7 +46,7 @@ OSEK/VDX OS 2.2.3 명세는 resource 관리를 모든 [[osek-os#Conformance clas
 
 ![[diagrams/osek-internal-resource-group.svg]]
 
-resource를 쥔 채 부를 수 없는 서비스의 제한은 internal resource에는 걸리지 않는다. 그 서비스들 안에서 internal resource를 다루기 때문이다. 다만 internal resource를 풀기 전에 표준 resource를 모두 풀어야 한다.[@osek-os-2-2-3-2005]
+resource를 쥔 채 부를 수 없는 서비스의 제한은 internal resource에는 걸리지 않는다. 그 서비스들 안에서 internal resource를 다루기 때문이다. 다만 internal resource를 풀기 전에, 쥐고 있는 다른 resource를 모두 풀어야 한다.[@osek-os-2-2-3-2005]
 
 ## Linked resource
 

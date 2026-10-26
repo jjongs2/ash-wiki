@@ -25,7 +25,7 @@ $R_i$가 양변에 있으므로 반복해 푼다. 첫 값을 $C_i$로 두고 오
 
 ![[diagrams/response-time-iteration.svg]]
 
-공유 자원을 [[priority-inheritance-protocol|우선순위 상속]] 계열 프로토콜로 다루어, 우선순위가 낮은 태스크가 자원을 잡고 있어 태스크 $i$가 기다리는 시간이 $B_i$ 이하로 묶이면, 이를 블로킹 항으로 더한다.[@audsley-flexible-scheduling-1993]
+태스크가 자원을 공유해 서로 독립이 아니면, 공유 자원을 [[priority-inheritance-protocol|우선순위 상속]] 계열 프로토콜로 다루어 우선순위가 낮은 태스크가 자원을 잡고 있어 태스크 $i$가 기다리는 시간을 $B_i$ 이하로 묶고, 이를 블로킹 항으로 더한다.[@audsley-flexible-scheduling-1993]
 
 $$
 R_i = C_i + B_i + \sum_{j \in \mathrm{hp}(i)} \left\lceil \frac{R_i}{T_j} \right\rceil C_j
@@ -37,4 +37,4 @@ $$
 
 태스크가 최소 도착 간격이 $T_i$인 [[periodic-task-model#주기 태스크와 sporadic 태스크|sporadic 태스크]]이고 같은 태스크의 요청은 도착 순서대로 실행된다고 두면, 마감 시한이 주기보다 길 때는 $R_i$가 $T_i$를 넘을 수 있다. 그러면 같은 태스크의 요청 여럿이 한 priority level-$i$ busy period 안에서 함께 활성일 수 있고, 그 가운데 어느 요청이든 최악 응답 시간을 낼 수 있다. 그래서 첫 요청만 보아서는 최악 응답 시간을 얻지 못하고, busy period 안의 요청을 모두 따져 그 최댓값을 취해야 한다.[@burns-arbitrary-deadlines-2017]
 
-태스크가 서로 독립이고 선점할 수 있으면 응답 시간 분석은 필요충분조건 검사다.[@joseph-response-times-1986][@audsley-flexible-scheduling-1993] 이 검사는 우선순위를 어떻게 정했든 적용된다.[@audsley-flexible-scheduling-1993] 그래서 RM의 [[rate-monotonic-scheduling#이용률 상한|이용률 상한]] 같은 충분조건 검사가 판정하지 못하는 태스크 집합도 판정한다.[@joseph-response-times-1986][@liu-hard-real-time-1973] 검사의 종류는 [[schedulability-analysis#충분조건 검사와 필요충분조건 검사|스케줄링 분석]]에서 다룬다.
+단일 프로세서에서 태스크가 주기적이고 서로 독립이며 선점할 수 있고, 마감 시한이 주기 이하이고 모든 태스크가 같은 시각에 도착할 수 있으면 응답 시간 분석은 필요충분조건 검사다.[@joseph-response-times-1986][@audsley-flexible-scheduling-1993] 이 검사는 고정 우선순위를 어떻게 배정했든 적용된다.[@audsley-flexible-scheduling-1993] 그래서 RM의 [[rate-monotonic-scheduling#이용률 상한|이용률 상한]] 같은 충분조건 검사가 판정하지 못하는 태스크 집합도 판정한다.[@joseph-response-times-1986][@liu-hard-real-time-1973] 검사의 종류는 [[schedulability-analysis#충분조건 검사와 필요충분조건 검사|스케줄링 분석]]에서 다룬다.

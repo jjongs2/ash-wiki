@@ -25,7 +25,7 @@ EDF와 함께 쓰면 [[task|태스크]] $\tau_i$의 job마다 절대 마감 시�
 
 ![[diagrams/stack-resource-policy-system-ceiling.svg]]
 
-EDF로 스케줄하고 주기 태스크와 [[periodic-task-model#주기 태스크와 sporadic 태스크|sporadic 태스크]]만 있는 자원 공유 태스크 집합에서, 태스크를 preemption level이 높은 순으로 늘어놓아 $i < j$일 때만 $\pi_i \ge \pi_j$라 하자. 태스크 $\tau_k$의 실행 시간을 $C_k$, 주기를 $T_k$라 할 때, 모든 $i$($1 \le i \le n$)에 대해 아래 조건이 성립하면 태스크 집합은 스케줄 가능하다. 이 조건은 충분조건이다.[@sha-real-time-scheduling-theory-2004]
+EDF로 스케줄하고 주기 태스크와 [[periodic-task-model#주기 태스크와 sporadic 태스크|sporadic 태스크]]만 있는 자원 공유 태스크 집합에서, 태스크 $n$개에 preemption level이 높은 순으로 번호를 매겨 $i < j$이면 $\pi_i \ge \pi_j$라 하자. 태스크 $\tau_k$의 실행 시간을 $C_k$, 주기를 $T_k$라 할 때, 모든 $i$($1 \le i \le n$)에 대해 아래 조건이 성립하면 태스크 집합은 스케줄 가능하다. 이 조건은 충분조건이다.[@sha-real-time-scheduling-theory-2004]
 
 $$
 \sum_{k=1}^{i} \frac{C_k}{T_k} + \frac{B_i}{T_i} \le 1

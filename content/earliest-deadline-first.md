@@ -11,11 +11,11 @@ verified: 2026-09-29
 
 ## 우선순위
 
-요청의 마감 시한은 같은 태스크의 다음 요청 시각이다. 요청은 끝날 때까지 이 마감 시한으로 다른 요청과 비교되므로, 같은 두 태스크라도 요청마다 앞서는 쪽이 바뀔 수 있다. 실행 중인 요청보다 마감 시한이 이른 요청이 도착하면 그 요청이 실행 중인 요청을 곧바로 [[real-time-scheduling#선점|선점]]한다.[@liu-hard-real-time-1973]
+Liu와 Layland의 가정에서는 요청의 마감 시한이 같은 태스크의 다음 요청 시각이다. 요청은 끝날 때까지 이 마감 시한으로 다른 요청과 비교되므로, 같은 두 태스크라도 요청마다 앞서는 쪽이 바뀔 수 있다. 실행 중인 요청보다 마감 시한이 이른 요청이 도착하면 그 요청이 실행 중인 요청을 곧바로 [[real-time-scheduling#선점|선점]]한다.[@liu-hard-real-time-1973]
 
 Linux 커널의 `SCHED_DEADLINE` 정책은 EDF에 [[aperiodic-server#CBS|CBS]](Constant Bandwidth Server)를 더해 태스크를 스케줄한다.[@linux-sched-deadline-2026]
 
-RTEMS(Real-Time Executive for Multiprocessor Systems)의 EDF 스케줄러는 단일 코어 응용을 위한 스케줄러로, 마감 시한을 [[software-timer#주기 실행|rate monotonic manager]]로만 선언하며 주기는 늘 마감 시한과 같다. 마감 시한을 선언하지 않았거나 취소한 태스크는 background 태스크가 되어, 마감 시한이 있는 어느 태스크보다도 덜 중요하게 다뤄진다.[@rtems-edf-scheduler-2025]
+RTEMS(Real-Time Executive for Multiprocessor Systems)의 EDF 스케줄러는 단일 코어 응용을 위한 스케줄러로, 마감 시한을 [[software-timer#주기 실행|rate monotonic manager]]로만 선언하며 주기는 늘 마감 시한과 같다. 마감 시한을 선언하지 않았거나 취소한 태스크는 초기화 때 받은 우선순위를 쓰는 background 태스크가 되어, 마감 시한이 있는 태스크도 우선순위가 더 높은 background 태스크도 준비되어 있지 않을 때 스케줄된다.[@rtems-edf-scheduler-2025]
 
 ## 스케줄 가능 조건
 
@@ -25,7 +25,7 @@ RTEMS(Real-Time Executive for Multiprocessor Systems)의 EDF 스케줄러는 단
 
 구간 $[0, t)$에서 [[periodic-task-model#Release와 jitter|release]]되고 그 구간 안에 끝나야 하는 태스크 실행의 최대량을 **processor demand bound function** $h(t)$라 부르고, 이를 구간 길이로 나눈 $h(t)/t$의 최댓값을 **processor load**라 부른다.[@davis-survey-hard-real-time-2011]
 
-단일 프로세서의 EDF에서 마감 시한이 주기보다 짧은 [[periodic-task-model#주기 태스크와 sporadic 태스크|sporadic 태스크]]는 처리기 수요 분석으로 분석한다. 구간 $[t_1, t_2]$의 처리기 수요는 그 구간에서 활성화되고 그 구간 안에 끝나야 하는 [[periodic-task-model#파라미터|job]]들이 요구하는 처리 시간이고, 태스크 집합은 어느 구간에서든 처리기 수요가 구간 길이를 넘지 않을 때 그리고 그때만 스케줄 가능하다.[@sha-real-time-scheduling-theory-2004]
+단일 프로세서의 EDF에서 마감 시한이 주기보다 짧은 [[periodic-task-model#주기 태스크와 sporadic 태스크|sporadic 태스크]]는 처리기 수요 분석으로 분석한다. 구간 $[t_1, t_2]$의 처리기 수요는 그 구간에서 활성화되고 그 구간 안에 끝나야 하는 [[periodic-task-model#파라미터|job]]들이 요구하는 처리 시간이고, 태스크 집합은 어느 구간에서든 처리기 수요가 구간 길이를 넘지 않을 때 그리고 그때만 스케줄 가능하다.[@sha-real-time-scheduling-theory-2004] 앞 문단의 $h(t)$는 구간 $[0, t)$의 처리기 수요가 가질 수 있는 최댓값이다.[@davis-survey-hard-real-time-2011][@sha-real-time-scheduling-theory-2004]
 
 태스크 $n$개로 된 집합에서 태스크 $i$의 실행 시간을 $C_i$, 상대 마감 시한을 $D_i$, 주기(sporadic 태스크는 최소 도착 간격)를 $T_i$라 하고, $C_i \le D_i$, $C_i \le T_i$라 하자. 이런 sporadic 태스크의 집합은 단일 프로세서에서 선점할 수 있으면, 모든 $t \ge 0$에 대해 $h(t) \le t$일 때 그리고 그때만 EDF로 스케줄 가능하고, $h(t)$는 아래 식과 같다. 모든 태스크가 시각 0에 처음 요청하는 주기 태스크 집합과, 이런 주기 태스크와 sporadic 태스크가 섞인 집합에도 같은 결과가 성립한다.[@baruah-sporadic-tasks-1990]
 

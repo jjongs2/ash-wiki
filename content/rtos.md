@@ -9,13 +9,13 @@ verified: 2026-09-29
 
 ## Superloop
 
-운영체제를 쓰지 않는 임베디드 소프트웨어는 흔히 superloop 구조를 쓰며, 복잡도가 낮은 작은 시스템이 대개 이렇게 설계된다. **superloop**는 무한 루프 안에서 할 일을 맡은 모듈의 함수를 호출한다. 루프 밖의 인터럽트 처리기는 비동기 사건을 맡고, 시간이 급한 일을 제때 하려면 인터럽트 처리기에서 해야 한다. 인터럽트가 넘긴 일도 루프가 그 모듈의 차례에 이르러야 처리되므로, 최악의 응답 시간은 루프 한 바퀴의 실행 시간에 달린다.[@micrium-ucos-ii-rtsc-2026][@microchip-harmony-overview-2017]
+운영체제를 쓰지 않는 임베디드 소프트웨어는 흔히 superloop 구조를 쓰며, 복잡도가 낮은 작은 시스템이 대개 이렇게 설계된다. **superloop**는 무한 루프 안에서 할 일을 맡은 모듈의 함수를 호출한다. 루프 밖의 인터럽트 처리기는 비동기 사건을 맡고, 시간이 급한 일을 제때 하려면 인터럽트 처리기에서 해야 한다. µC/OS-II 문서에 따르면 인터럽트 처리기가 어느 모듈에 넘긴 일도 루프가 그 모듈을 부를 차례에 이르러야 처리되므로, 최악의 응답 시간은 루프 한 바퀴의 실행 시간에 달린다.[@micrium-ucos-ii-rtsc-2026][@microchip-harmony-overview-2017]
 
 Microchip MPLAB Harmony의 `main` 함수는 모든 모듈을 초기화한 뒤, 무한 루프에서 각 모듈의 상태 기계 함수를 차례로 호출한다.[@microchip-harmony-overview-2017]
 
 MPLAB Harmony 문서에 따르면 폴링 superloop는 가장 이해하기 쉬운 구성이다.[@microchip-harmony-overview-2017] 대신 superloop에 모듈이 늘수록 모든 일의 시간 요구를 맞추기 어려워지고, 코드를 고치면 루프의 타이밍이 바뀐다.[@micrium-ucos-ii-rtsc-2026][@microchip-harmony-overview-2017]
 
-Microchip 앱노트 AN2751에 따르면 superloop의 태스크마다 실행 주기가 다르면 복잡도가 커진다. 루프 한 바퀴는 시스템이 요구하는 지연보다 길 수 없고, 루프를 돌 때 그 태스크를 지금 실행할지 가리는 상태 기계 같은 제어 코드가 더 필요하다.[@microchip-an2751-2018]
+Microchip 앱노트 AN2751에 따르면 superloop 안에서 차례로 도는 일마다 실행 주기가 다르면 복잡도가 커진다. 루프 한 바퀴는 시스템이 요구하는 지연보다 길 수 없고, 루프를 돌 때 그 일을 지금 실행할지 가리는 상태 기계 같은 제어 코드가 더 필요하다.[@microchip-an2751-2018]
 
 RTOS 기반 소프트웨어는 일을 여러 태스크로 나누고, 태스크마다 우선순위를 준다.[@freertos-rtos-fundamentals-2026][@silabs-intro-rtos-2019]
 
@@ -39,7 +39,7 @@ RTOS는 태스크 사이의 동기화와 통신에 [[semaphore|세마포어]], [
 
 [[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 [[autosar-os|운영체제 명세]]는 ISO 17356-3을 바탕으로 두고 이를 확장하거나 제한한다.[@autosar-cp-sws-os-2025]
 
-[[autosar-adaptive-platform|AUTOSAR Adaptive Platform]]은 주로 고성능 연산과 통신 기능을 제공하는 플랫폼이고, 그 설계 설명서는 이 플랫폼의 운영체제가 다중 프로세스 [[ieee-1003-1|POSIX]] 운영체제 기능을 제공하도록 한다.[@autosar-ap-exp-platformdesign-2025] 운영체제 인터페이스는 [[ieee-1003-13|IEEE 1003.13]]-2003의 PSE51 인터페이스로 운영체제 기능을 제공한다.[@autosar-ap-sws-operatingsysteminterface-2025]
+[[autosar-adaptive-platform|AUTOSAR Adaptive Platform]]은 주로 고성능 연산과 통신 기능을 제공하는 플랫폼이고, 그 설계 설명서는 이 플랫폼의 운영체제가 다중 프로세스 [[ieee-1003-1|POSIX]] 운영체제 기능을 제공하도록 한다. 응용인 Adaptive Application은 저마다 따로 된 프로세스로 구현된다.[@autosar-ap-exp-platformdesign-2025] 이 응용들에는 Operating System Interface가 [[ieee-1003-13|IEEE 1003.13]]-2003의 PSE51 인터페이스로 운영체제 기능을 제공한다.[@autosar-ap-sws-operatingsysteminterface-2025]
 
 ## 비실시간 시스템과의 차이
 

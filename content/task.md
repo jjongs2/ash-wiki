@@ -11,10 +11,10 @@ RTOS는 태스크마다 그 태스크의 정보를 담는 자료 구조인 TCB(T
 
 ## 태스크 상태
 
-태스크는 다음 세 상태를 오간다.[@micrium-ucos-iii-task-management-internals-2026][@arm-cmsis-rtos2-thread-management-2026]
+태스크는 실행되는 동안 다음 세 상태를 오가고, RTOS에 따라 이 밖의 상태를 더 두기도 한다.[@micrium-ucos-iii-task-management-internals-2026][@arm-cmsis-rtos2-thread-management-2026]
 
 - **실행 중**(running): CPU를 받아 실행되고 있는 상태다. 한 번에 한 태스크만 이 상태에 있다.
-- **준비**(ready): 실행할 수 있지만 CPU를 받지 못한 상태다. 실행 중인 태스크가 끝나거나 블록되면, 준비 상태의 태스크 가운데 우선순위가 가장 높은 것이 실행 중이 된다.
+- **준비**(ready): 실행할 수 있지만 CPU를 받지 못한 상태다. 실행 중인 태스크가 끝나거나 블록되면, 준비 상태의 태스크 가운데 우선순위가 가장 높은 것이 실행 중이 된다. 실행 중인 태스크보다 우선순위가 높은 태스크가 준비 상태가 되면, 실행 중인 태스크는 선점되어 준비 상태로 돌아가고 그 태스크가 실행 중이 된다.
 - **블록**(blocked): 지연 시간이 지나기를 기다리거나, 사건이 일어나기를 기다리거나, 정지되어 실행할 수 없는 상태다.[@micrium-ucos-iii-task-management-internals-2026][@arm-cmsis-rtos2-thread-management-2026]
 
 ![[diagrams/task-state-transitions.svg]]
@@ -31,7 +31,7 @@ FreeRTOS, µC/OS-III, Zephyr, RTEMS(Real-Time Executive for Multiprocessor Syste
 | Zephyr      | ready, unready                                                        | running은 따로 선 스레드 상태가 아니라 ready 스레드에만 붙는 schedule state다.[@zephyr-threads-2026]                                                                              |
 | RTEMS       | executing, ready, blocked, dormant, non-existent                      | dormant는 만들었지만 시작하지 않은 태스크, non-existent는 만들지 않았거나 지운 태스크다.[@rtems-task-background-2025]                                                             |
 
-FreeRTOS의 Blocked 태스크는 지연이 끝나거나 절대 시각에 이르는 시간 사건, 또는 다른 태스크나 인터럽트가 내는 동기화 사건을 기다린다. Suspended 태스크는 스케줄러가 고르지 않으며, `vTaskSuspend()`로 명시적으로 정지시켜야만 들어가고 `vTaskResume()`이나 `xTaskResumeFromISR()`로만 나온다.[@freertos-task-management-2026] 같은 suspended라는 이름을 OSEK/VDX OS 2.2.3 명세는 [[osek-task#태스크 상태|OSEK 태스크]]가 수동적이며 활성화될 수 있는 상태로 정의한다.[@osek-os-2-2-3-2005]
+FreeRTOS의 Blocked 태스크는 지연이 끝나거나 절대 시각에 이르는 시간 사건, 또는 다른 태스크나 인터럽트가 내는 동기화 사건을 기다린다. Suspended 태스크는 스케줄러가 고르지 않으며, `vTaskSuspend()`로 명시적으로 정지시켜야만 들어가고 `vTaskResume()`이나 `xTaskResumeFromISR()`로만 나온다.[@freertos-task-management-2026] OSEK/VDX OS 2.2.3 명세도 suspended라는 이름의 상태를 두지만, 이를 FreeRTOS의 Suspended와 달리 [[osek-task#태스크 상태|OSEK 태스크]]가 수동적이며 활성화될 수 있는 상태로 정의한다.[@osek-os-2-2-3-2005]
 
 Zephyr는 실행을 막는 요인이 없는 스레드를 ready, 요인이 하나라도 있는 스레드를 unready로 나눈다. 시작되지 않았거나, 커널 객체나 타임아웃을 기다리거나, 정지되었거나, 끝났으면 unready다.[@zephyr-threads-2026]
 
@@ -52,7 +52,7 @@ FreeRTOS의 idle hook 함수는 idle 태스크가 루프마다 부르는 함수�
 
 FreeRTOS에서는 idle hook으로 처리기를 저전력 모드에 둘 수 있지만, 얻는 절전은 [[system-tick#Tickless|tickless idle 모드]]보다 작다.[@freertos-task-management-2026] µC/OS-III에서는 `OSIdleTaskHook()`으로 CPU를 저전력 모드에 둘 수 있다. 이때 idle 태스크가 올리는 카운터로는 CPU 사용률을 잴 수 없게 된다.[@micrium-ucos-iii-idle-task-2026]
 
-FreeRTOS에서는 응용 태스크도 idle 태스크와 같은 우선순위를 쓸 수 있다. 이때 `configIDLE_SHOULD_YIELD`를 1로 두면, idle 태스크는 같은 우선순위의 준비된 태스크가 있을 때 루프를 돌 때마다 남은 [[real-time-scheduling#같은 우선순위(타임 슬라이싱)|타임 슬라이스]]를 내준다. 스스로를 지운 태스크의 커널 자원은 idle 태스크가 정리하므로, 그런 태스크가 있으면 idle 태스크가 처리 시간을 받지 못해서는 안 된다.[@freertos-task-management-2026] µC/OS-III는 다른 태스크를 idle 태스크의 우선순위로 만들지 못하게 하고, idle 태스크를 빼도 그 우선순위에는 태스크를 만들 수 없다.[@micrium-ucos-iii-idle-task-2026] CMSIS-RTOS2는 가장 낮은 우선순위 `osPriorityIdle`을 idle 스레드에 남겨 두고, 다른 스레드에는 쓰지 않기를 권한다.[@arm-cmsis-rtos2-thread-management-2026]
+FreeRTOS에서는 응용 태스크도 idle 태스크와 같은 우선순위를 쓸 수 있다. 이때 `configIDLE_SHOULD_YIELD`를 1로 두면, idle 태스크는 같은 우선순위의 준비된 태스크가 있을 때 루프를 돌 때마다 남은 [[real-time-scheduling#같은 우선순위(타임 슬라이싱)|타임 슬라이스]]를 내준다. 스스로를 지운 태스크의 커널 자원은 idle 태스크가 정리하므로, 그런 태스크가 있으면 idle 태스크도 처리 시간을 받아야 한다.[@freertos-task-management-2026] µC/OS-III는 다른 태스크를 idle 태스크의 우선순위로 만들지 못하게 하고, idle 태스크를 빼도 그 우선순위에는 태스크를 만들 수 없다.[@micrium-ucos-iii-idle-task-2026] CMSIS-RTOS2는 가장 낮은 우선순위 `osPriorityIdle`을 idle 스레드에 남겨 두고, 다른 스레드에는 쓰지 않기를 권한다.[@arm-cmsis-rtos2-thread-management-2026]
 
 ## 스택
 

@@ -13,7 +13,7 @@ Dijkstra가 EWD123(Cooperating Sequential Processes)에서 정의한 세마포�
 
 값이 0인 세마포어에 P를 시작한 프로세스는 다른 프로세스가 같은 세마포어에 V를 해서 값을 1로 만들 때까지 P를 끝내지 못한다. 그때 여러 프로세스가 P를 시작해 두었으면 그 가운데 하나만 P를 끝내고, 어느 것인지는 정해지지 않는다.[@dijkstra-cooperating-sequential-processes-1965]
 
-값이 0과 1만 되는 세마포어를 **이진 세마포어**(binary semaphore), 더 큰 값도 되는 세마포어를 **일반 세마포어**(general semaphore)라 부른다.[@dijkstra-cooperating-sequential-processes-1965] RTEMS(Real-Time Executive for Multiprocessor Systems)는 이진 세마포어와 함께 음이 아닌 어떤 정수 값도 되는 세마포어를 두고, 이를 **계수 세마포어**(counting semaphore)라 부른다.[@rtems-semaphore-background-2025] [[critical-section|임계 구역]]을 가진 N개 프로세스의 상호 배제는 초기값이 1인 이진 세마포어 하나로 풀린다. 각 프로세스는 임계 구역에 들어가기 전에 P를, 나온 뒤에 V를 한다. 생산자와 소비자가 용량 제한이 없는 버퍼로 이어질 때는 버퍼에 쌓인 몫의 수를 일반 세마포어로 센다. 초기값은 0이고, 생산자는 몫을 넣은 뒤 V를, 소비자는 몫을 꺼내기 전에 P를 한다.[@dijkstra-cooperating-sequential-processes-1965]
+값이 0과 1만 되는 세마포어를 **이진 세마포어**(binary semaphore), 더 큰 값도 되는 세마포어를 **일반 세마포어**(general semaphore)라 부른다.[@dijkstra-cooperating-sequential-processes-1965] RTEMS(Real-Time Executive for Multiprocessor Systems)는 이진 세마포어와 함께, 일반 세마포어처럼 음이 아닌 어떤 정수 값도 되는 세마포어를 두고, 이를 **계수 세마포어**(counting semaphore)라 부른다.[@dijkstra-cooperating-sequential-processes-1965][@rtems-semaphore-background-2025] [[critical-section|임계 구역]]을 가진 N개 프로세스의 상호 배제는 초기값이 1인 이진 세마포어 하나로 풀린다. 각 프로세스는 임계 구역에 들어가기 전에 P를, 나온 뒤에 V를 한다. 생산자와 소비자가 용량 제한이 없는 버퍼로 이어질 때는 버퍼에 쌓인 몫의 수를 일반 세마포어로 센다. 초기값은 0이고, 생산자는 몫을 넣은 뒤 V를, 소비자는 몫을 꺼내기 전에 P를 한다.[@dijkstra-cooperating-sequential-processes-1965]
 
 ## POSIX의 세마포어
 

@@ -33,7 +33,7 @@ Intel 64·IA-32 아키텍처의 XSAVE 기능 집합은 프로세서 상태를 �
 
 ## Cortex-M
 
-Armv7-M 프로세서는 예외에 들어갈 때 `R0`–`R3`, `R12`, `LR`, 반환 주소, `xPSR`로 된 8워드 프레임을 하드웨어로 현재 스택에 쌓는다. 부동소수점 확장이 있고 부동소수점 context가 활성이면 부동소수점 상태도 쌓는다. 프로세스를 바꿀 때는 소프트웨어가 옛 프로세스의 context 전부를 `EXC_RETURN` 값까지 저장하고, 그 프로세스로 돌아가기 전에 복원해야 한다.[@arm-ddi-0403-2021]
+Armv7-M 프로세서는 예외에 들어갈 때 `R0`–`R3`, `R12`, `LR`, 반환 주소, `xPSR`(Program Status Register)로 된 8워드 프레임을 하드웨어로 현재 스택에 쌓는다. 부동소수점 확장이 있고 부동소수점 context가 활성이면 부동소수점 상태도 쌓는다. context switch로 프로세스를 바꿀 때는 소프트웨어가 옛 프로세스의 context 전부를 `EXC_RETURN` 값까지 저장하고, 그 프로세스로 돌아가기 전에 복원해야 한다.[@arm-ddi-0403-2021]
 
 ![[diagrams/cortex-m-exception-stack-frame.svg]]
 

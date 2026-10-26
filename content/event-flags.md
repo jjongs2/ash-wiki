@@ -19,12 +19,12 @@ FreeRTOS의 [[semaphore|세마포어]]와 [[message-queue|큐]]는 사건 하나
 
 | 제품        | 플래그 비트 수                                                           | 깨우는 대기자                                                                                                                                                |
 | ----------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| µC/OS-III   | 그룹마다 8, 16, 32비트 가운데 하나                                       | 플래그가 설정되거나 지워질 때마다 기다리는 모든 태스크를 살펴 원하는 비트가 맞았는지 본다.[@micrium-ucos-iii-event-flags-2026]                               |
+| µC/OS-III   | 그룹마다 8, 16, 32비트 가운데 하나                                       | 플래그가 설정되거나 지워질 때마다 기다리는 모든 태스크를 살펴, 원하는 비트가 맞은 태스크를 모두 깨운다.[@micrium-ucos-iii-event-flags-2026]                  |
 | CMSIS-RTOS2 | 31개까지                                                                 | 우선순위가 가장 높은 스레드가 깨어난다. 기다릴 때 `osFlagsNoClear`를 주면 다음 스레드들도 우선순위 순으로 깨어날 수 있다.[@arm-cmsis-rtos2-event-flags-2026] |
 | FreeRTOS    | [[system-tick#틱과 시간 서비스\|틱 카운트]] 타입의 폭에 따라 8, 24, 56개 | 같은 사건을 기다리던 태스크를 모두 깨운다.[@freertos-event-groups-2026]                                                                                      |
 | Zephyr      | 32비트                                                                   | 조건이 맞은 스레드가 모두 함께 [[task#태스크 상태\|준비 상태]]가 된다.[@zephyr-events-2026]                                                                  |
 
-CMSIS-RTOS2에서는 스레드가 깨어나면 기다린 플래그가 `osFlagsNoClear`를 주지 않는 한 저절로 지워진다.[@arm-cmsis-rtos2-event-flags-2026] FreeRTOS에서 기다리는 쪽이 `xClearOnExit`를 주면 비트 검사와 지우기가 다른 태스크나 인터럽트에 끊기지 않는 한 동작처럼 일어난다. 비트를 설정하면 몇 태스크가 깨어날지 미리 알 수 없어 결정적이지 않으므로, FreeRTOS는 인터럽트 처리기에서 비트를 직접 설정하지 않고 [[rtos|RTOS]] [[software-timer#콜백이 도는 context|daemon 태스크]]에 넘긴다.[@freertos-event-groups-2026] Zephyr에서 이벤트를 받으면서 원자적으로 지우는 것은 `k_event_wait_safe`, `k_event_wait_all_safe` 같은 `_safe` 함수다.[@zephyr-events-2026]
+CMSIS-RTOS2에서는 스레드가 깨어나면 기다린 플래그가 `osFlagsNoClear`를 주지 않는 한 저절로 지워진다.[@arm-cmsis-rtos2-event-flags-2026] FreeRTOS에서 기다리는 쪽이 `xClearOnExit`를 주면 비트 검사와 지우기가 다른 태스크나 인터럽트가 끼어들 수 없는 한 동작처럼 일어난다. 비트를 설정하면 몇 태스크가 깨어날지 미리 알 수 없어 결정적이지 않으므로, 인터럽트 처리기에서 부르는 FreeRTOS의 `xEventGroupSetBitsFromISR`는 비트를 그 자리에서 설정하지 않고 [[rtos|RTOS]] [[software-timer#콜백이 도는 context|daemon 태스크]]에 넘긴다.[@freertos-event-groups-2026] Zephyr에서 `k_event_wait`와 `k_event_wait_all`은 받은 이벤트를 지우지 않고, `k_event_wait_safe`와 `k_event_wait_all_safe`는 이벤트를 받으면서 원자적으로 지운다.[@zephyr-events-2026]
 
 ## 태스크에 딸린 플래그
 

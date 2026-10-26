@@ -63,7 +63,7 @@ TT 태스크는 마감 시한 전에 스스로 끝나야 한다.[@osek-osektime-
 
 ### `ttIdleTask`
 
-OSEKtime 디스패처가 처음 시작하는 태스크는 늘 이름이 정해진 `ttIdleTask`이며, OSEKtime OS의 idle 태스크 구실을 한다. `ttIdleTask`는 디스패처 라운드에 등록되지 않아 주기적으로 다시 시작되지 않고, OSEKtime이 다루는 모든 인터럽트에 끊길 수 있으며, 마감 시한이 없다. 가장 먼저 시작되므로 ready인 다른 태스크가 없으면 늘 돌고, 돌아오지 않는다. 기본 `ttIdleTask`는 OSEKtime OS와 함께 제공되어야 하며, 사용자는 이 제약을 지키는 자기 태스크로 바꿀 수 있다.[@osek-osektime-os-1-0-2001]
+OSEK OS 서브시스템 없이 구현할 때 OSEKtime 디스패처가 처음 시작하는 태스크는 늘 이름이 정해진 `ttIdleTask`이며, OSEKtime OS의 idle 태스크 구실을 한다. `ttIdleTask`는 디스패처 라운드에 등록되지 않아 주기적으로 다시 시작되지 않고, OSEKtime이 다루는 모든 인터럽트에 끊길 수 있으며, 마감 시한이 없다. 가장 먼저 시작되고 끝나지 않으므로, 돌 다른 태스크가 없으면 언제나 `ttIdleTask`가 돈다. 기본 `ttIdleTask`는 OSEKtime OS와 함께 제공되어야 하며, 사용자는 이 제약을 지키는 자기 태스크로 바꿀 수 있다.[@osek-osektime-os-1-0-2001]
 
 ### Application mode
 
@@ -97,7 +97,7 @@ ECU는 저마다 로컬 클록에 따라 늘어나는 로컬 시간으로 동작
 
 ![[diagrams/osektime-osek-os-processing-levels.svg]]
 
-결합 시스템은 `ttStartOS`로 시작하며, 이 호출이 OSEK OS의 시작도 일으킨다. OSEKtime이 정해 둔 시작 시간 안에 먼저 시작해야 하고, OSEK OS의 시작이 실패하더라도 이 시간을 한없이 늦추면 안 된다. OSEK OS의 태스크와 ISR은 OSEKtime만 있는 시스템이라면 `ttIdleTask`가 돌기 시작했을 시점보다 먼저 활성화되지 않는다.[@osek-osektime-os-1-0-2001] OSEK/VDX OS 2.2.3 명세는 이때 OSEKtime의 초기화가 늘 먼저 돌고, OSEKtime이 idle 루프에 들어가면 자기에게 넘어온 application mode로 `StartOS`를 자동으로 부르도록 정한다.[@osek-os-2-2-3-2005]
+결합 시스템은 `ttStartOS`로 시작하며, 이 호출이 OSEK OS의 시작도 일으킨다. OSEKtime이 정해 둔 시작 시간 안에 먼저 시작해야 하고, OSEK OS의 시작이 실패하더라도 이 시간을 한없이 늦추면 안 된다. OSEK OS의 태스크와 ISR은, 결합 시스템이 아니라 OSEKtime만 있는 시스템이었다면 `ttIdleTask`가 돌기 시작했을 시점보다 먼저 활성화되지 않는다.[@osek-osektime-os-1-0-2001] OSEK/VDX OS 2.2.3 명세는 이때 OSEKtime의 초기화가 늘 먼저 돌고, OSEKtime이 idle 루프에 들어가면 자기에게 넘어온 application mode로 `StartOS`를 자동으로 부르도록 정한다.[@osek-os-2-2-3-2005]
 
 OSEKtime OS 1.0 명세는 종료를 두 가지로 정한다.[@osek-osektime-os-1-0-2001]
 
@@ -115,5 +115,5 @@ OSEKtime OS 1.0 명세는 오류 처리를 OSEK/VDX와 같게 둔다. 이름이 
 ## 개정 이력
 
 - 2001년 7월 24일: 1.0. OSEKtime OS 명세의 이력 표에 실린 판은 이것뿐이다.[@osek-osektime-os-1-0-2001]
-- Binding 1.4.2 명세는 명세 묶음 SB3부터 SB6까지에 모두 OSEKtime OS 1.0을 넣는다.[@osek-binding-1-4-2-2004]
+- Binding 1.4.2 명세는 명세 묶음 SB(Specification Binding)의 SB3부터 SB6까지에 모두 OSEKtime OS 1.0을 넣는다.[@osek-binding-1-4-2-2004]
 - 2012년 1월 OSEK/VDX 포털의 명세 목록에 올라 있던 OSEKtime OS 파일도 1.0판(`ttos10.pdf`)이다.[@osek-vdx-portal-specs-2012]

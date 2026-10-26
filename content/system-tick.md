@@ -15,13 +15,13 @@ FreeRTOS 커널은 틱 카운트 변수로 시간을 잰다. 틱 인터럽트가
 
 µC/OS-III의 주기 틱 모드에서 틱 ISR은 `OSTimeTick()`을 부른다. `OSTimeTick()`은 tick hook을 부르고, [[real-time-scheduling#같은 우선순위(타임 슬라이싱)|round-robin 스케줄링]]으로 지금 태스크의 타임 슬라이스가 끝났는지 본 뒤, 지연이나 타임아웃이 이 틱에 끝나는 태스크를 준비 상태로 만든다.[@micrium-ucos-iii-periodic-tick-mode-2026]
 
-RTEMS(Real-Time Executive for Multiprocessor Systems)는 시간의 기본 단위를 clock tick으로 두고, 틱 간격(`CONFIGURE_MICROSECONDS_PER_TICK`)이 모든 간격·달력 시간 연산의 기본 해상도를 정한다. 틱으로 시간을 재므로 태스크 지연, 타임아웃, 타임 슬라이싱, 타이머 서비스 루틴의 지연 실행, [[rate-monotonic-scheduling|rate monotonic 스케줄링]]을 지원한다.[@rtems-key-concepts-time-2025] FreeRTOS API는 시간을 틱 주기의 배수로 지정하고, 쓸 수 있는 해상도는 틱 주파수(`configTICK_RATE_HZ`)에 달렸다.[@freertos-task-management-2026] µC/OS-III의 주기 틱 모드에서 틱은 초당 10\~1000번 일어나야 하고, 실제 주파수는 응용이 원하는 틱 해상도에 달렸다.[@micrium-ucos-iii-clock-tick-2026]
+RTEMS(Real-Time Executive for Multiprocessor Systems)는 시간의 기본 단위를 clock tick으로 두고, 틱 간격(`CONFIGURE_MICROSECONDS_PER_TICK`)이 모든 간격·달력 시간 연산의 기본 해상도를 정한다. 틱으로 시간을 재므로 태스크 지연, 타임아웃, 타임 슬라이싱, 타이머 서비스 루틴의 지연 실행, [[rate-monotonic-scheduling|rate monotonic 스케줄링]]을 지원한다.[@rtems-key-concepts-time-2025] FreeRTOS API는 시간을 틱 주기의 배수로 지정하고, 쓸 수 있는 해상도는 틱 주파수(`configTICK_RATE_HZ`)에 달렸다.[@freertos-task-management-2026] µC/OS-III 문서는 주기 틱 모드의 틱을 초당 10\~1000번으로 두기를 권하고, 실제 주파수는 응용이 원하는 틱 해상도에 달렸다.[@micrium-ucos-iii-clock-tick-2026]
 
 ## 지연의 오차
 
 CMSIS-RTOS2는 `osDelay`가 커널 틱 단위로 지정한 시간만큼 기다리게 하고, 실제 지연은 지정한 값보다 최대 한 틱 짧을 수 있다고 정한다. 다음 시스템 틱 바로 앞에서 `osDelay(1)`을 부르면 스레드는 곧바로 다시 스케줄된다.[@arm-cmsis-rtos2-wait-2026]
 
-RTEMS 문서에 따르면 간격으로 잰 실제 지연은 요청한 간격보다 한 틱의 일부만큼 짧을 수 있다. 지연 타이머를 거는 시점이 두 틱 사이 어딘가여서, 첫 카운트다운 틱이 한 틱보다 짧은 시간 뒤에 오기 때문이다. 틱 해상도가 크면 이것이 문제가 될 수 있다.[@rtems-key-concepts-time-2025]
+RTEMS 문서에 따르면 간격으로 잰 실제 지연은 요청한 간격보다 한 틱의 일부만큼 짧을 수 있다. 지연 타이머를 거는 시점이 두 틱 사이 어딘가여서, 첫 카운트다운 틱이 한 틱보다 짧은 시간 뒤에 오기 때문이다. 틱 간격이 길면 이 차이가 문제가 될 수 있다.[@rtems-key-concepts-time-2025]
 
 ![[diagrams/tick-delay-shorter-than-requested.svg]]
 
@@ -29,7 +29,7 @@ RTEMS 문서에 따르면 간격으로 잰 실제 지연은 요청한 간격보�
 
 µC/OS-III의 주기 틱 모드는 틱 주파수가 높을수록 부담이 커지고, 실행할 태스크가 없어도 틱 인터럽트를 자주 처리해야 해서 저전력 응용에 맞지 않을 때가 많다.[@micrium-ucos-iii-clock-tick-2026] 주기 틱 모드에서는 일정한 주파수의 틱 인터럽트가 할 일이 없어도 시스템을 저전력 모드에서 끌어내므로, 소비 전력이 틱 주파수에 따라 달라진다.[@micrium-ucos-iii-periodic-tick-mode-2026]
 
-FreeRTOS에서 [[task#Idle 태스크|idle hook]]으로 MCU를 저전력 상태에 두면, 틱 인터럽트를 처리하려고 주기적으로 저전력 상태를 나왔다가 다시 들어가야 해서 절전 효과가 제한된다. 틱 주파수가 너무 높으면 틱마다 저전력 상태를 드나드는 에너지와 시간이 가장 가벼운 절전 모드를 빼고는 절전 이득보다 커진다.[@freertos-low-power-support-2026]
+FreeRTOS에서 [[task#Idle 태스크|idle hook]]으로 MCU를 저전력 상태에 두면, 틱 인터럽트를 처리하려고 주기적으로 저전력 상태를 나왔다가 다시 들어가야 해서 절전 효과가 제한된다. 틱 주파수가 너무 높으면, 가장 가벼운 절전 모드를 뺀 모든 절전 모드에서 틱마다 저전력 상태를 드나드는 에너지와 시간이 절전 이득보다 커진다.[@freertos-low-power-support-2026]
 
 ## Tickless
 
