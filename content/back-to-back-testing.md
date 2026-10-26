@@ -21,7 +21,7 @@ Embedded Coder에서는 수치적 동등성을 확인하려고 normal mode 시�
 
 ## 허용 오차
 
-Simulink Test 문서에 따르면 normal mode 시뮬레이션과 생성 코드의 결과는 부동소수점 값을 비교할 때 허용 오차가 다른 것 같은 수치 차이나 시간 지연, 컴파일러 문제로 다를 수 있다. 결과가 맞지 않으면 이미 있던 문제가 드러날 수 있고, 그 문제를 고쳐 모델과 생성 코드가 산업 표준과 인증을 따르게 할 수 있다.[@mathworks-sltest-back-to-back-equivalence-2026] equivalence 테스트 케이스는 두 시뮬레이션의 신호를 견줄 때 절대·상대 허용 오차와 leading·lagging 시간 허용 오차를 정해 합격 기준으로 삼을 수 있어서, 결과가 똑같지 않아도 정한 허용 오차 안이면 합격으로 볼 수 있다.[@mathworks-sltest-test-properties-2026]
+Simulink Test 문서에 따르면 normal mode 시뮬레이션과 생성 코드의 결과는 부동소수점 값을 비교할 때 쓰는 허용 오차가 서로 다른 경우 같은 수치 차이나 시간 지연, 컴파일러 문제로 다를 수 있다. 결과가 맞지 않으면 이미 있던 문제가 드러날 수 있고, 그 문제를 고쳐 모델과 생성 코드가 산업 표준과 인증을 따르게 할 수 있다.[@mathworks-sltest-back-to-back-equivalence-2026] equivalence 테스트 케이스는 두 시뮬레이션의 신호를 견줄 때 절대·상대 허용 오차와 leading·lagging 시간 허용 오차를 정해 합격 기준으로 삼을 수 있어서, 결과가 똑같지 않아도 정한 허용 오차 안이면 합격으로 볼 수 있다.[@mathworks-sltest-test-properties-2026]
 
 ## N-version programming과의 차이
 

@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**회귀 테스트**(regression testing)는 소프트웨어나 그 운영 환경을 바꾼 뒤, 바꾸지 않은 부분에 결함이 새로 생기거나 드러났는지 찾는 테스트다.[@ieee-cs-sevocab-2026][@istqb-glossary-regression-testing-2026] ISTQB 용어집은 회귀 테스트를 변경 관련 테스트(change-related testing)의 한 종류로 둔다.[@istqb-glossary-regression-testing-2026] 실무의 회귀 테스트는 스위트에서 전에 통과한 테스트를 테스트 대상이 여전히 통과하는지 보인다.[@ieee-swebok-v4-0a-2026]
+**회귀 테스트**(regression testing)는 소프트웨어나 그 운영 환경을 바꾼 뒤, 바꾸지 않은 부분에 결함이 새로 생기거나 드러났는지 찾는 테스트다.[@ieee-cs-sevocab-2026][@istqb-glossary-regression-testing-2026] ISTQB 용어집은 회귀 테스트를 변경 관련 테스트(change-related testing)의 한 종류로 둔다.[@istqb-glossary-regression-testing-2026] 실무의 회귀 테스트는 스위트의 테스트 가운데 전에 통과한 것을 테스트 대상이 여전히 통과하는지 보인다.[@ieee-swebok-v4-0a-2026]
 
 ## 회귀 테스트의 계기
 

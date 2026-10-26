@@ -63,7 +63,7 @@ llvm-cov의 커버리지 요약에서 branch coverage는 참 분기와 거짓 �
 
 MathWorks의 커버리지 분석 소프트웨어인 Simulink Coverage의 코드 커버리지에서 조건은 관계 연산자, 등가 연산자, 논리 부정 연산자를 담되 논리 연산자 `&&`, `||`를 담지 않는 C/C++ Boolean 식이고, `if`, `while`, `do-while` 같은 분기 구문 안의 조건은 조건 커버리지가 아니라 결정 커버리지로 보고된다. 결정은 조건과 하나 이상의 `&&`나 `||`로 이루어진 Boolean 식이며, 분기 구문 안의 조건도 결정이다.[@mathworks-slcoverage-code-coverage-2026]
 
-같은 제품의 모델 커버리지에서는 MCDC(modified condition/decision coverage)가 구조적 커버리지 기준 표의 MC/DC와 달리 결정 커버리지나 조건 커버리지를 다 이루지 않을 수 있어서, 결정 커버리지 100% 없이 MCDC 100%를 이룰 수 있다.[@mathworks-slcoverage-model-coverage-2026]
+같은 제품의 모델 커버리지에서는 MCDC(modified condition/decision coverage)가 구조적 커버리지 기준 표의 MC/DC와 달리 결정 커버리지나 조건 커버리지를 다 이루지 않을 수 있어서, 결정 커버리지가 100%가 아니어도 MCDC는 100%가 될 수 있다.[@mathworks-slcoverage-model-coverage-2026]
 
 ## ISO 26262-6
 
