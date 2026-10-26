@@ -4,6 +4,7 @@ import type { Heading } from "mdast"
 import type { Position } from "unist"
 import { visit } from "unist-util-visit"
 import { pretendardStylesheet } from "../../quartz/util/localFonts"
+import { latestPartYears, standardNumber } from "../edition-status/standard-number"
 import type { Conventions } from "./conventions"
 import {
   marginTolerance,
@@ -60,20 +61,38 @@ function checkFormat(format: string, value: unknown, statuses: string[]): string
   }
 }
 
-const standardOnlyFields = (conventions: Conventions) =>
+export const standardOnlyFields = (conventions: Conventions) =>
   conventions
     .table("frontmatter", ["필드", "개념"])
     .filter((row) => row["개념"] === "—")
     .map((row) => row["필드"])
 
-// 표준 페이지에만 있는 필드가 하나라도 있으면 표준 페이지다.
-const pageTypeOf = (fields: Record<string, unknown>, standardOnly: string[]) =>
+// 표준 페이지에만 있는 필드가 하나라도 있으면 표준 페이지다. 판 확인(tools/edition-status)도 이것으로 가린다.
+export const pageTypeOf = (fields: Record<string, unknown>, standardOnly: string[]) =>
   Object.keys(fields).some((field) => standardOnly.includes(field)) ? "표준" : "개념"
+
+// 부마다 판이 다른 시리즈(docs/wiki-conventions.md의 프론트매터 표 아래 edition 줄)면 부마다 가장 새 판을,
+// 아니면 null을 준다. 예: ISO/IEC/IEEE 29119 → 29119-1:2022, 29119-2:2021, …
+function splitEditions(page: Page, title: unknown, titles: Map<string, string>): string[] | null {
+  const series = typeof title === "string" ? standardNumber(title) : undefined
+  if (!series) return null
+  const cited = citations(page).flatMap(({ key }) => (key && titles.get(key)) || [])
+  const latest = latestPartYears(series, cited)
+  if (new Set(latest.values()).size < 2) return null
+  return [...latest].map(([part, year]) => `${part}:${year}`)
+}
 
 export const frontmatter: SourceCheck = (tree, conventions) => {
   const schema = conventions.table("frontmatter", ["필드", "개념", "표준", "형식"])
   const statuses = conventions.column("status", "값")
   const standardOnly = standardOnlyFields(conventions)
+  const titles = new Map(
+    tree.bib.flatMap((bib) =>
+      "error" in bib.entries
+        ? []
+        : bib.entries.map((entry) => [entry.key, entry.fields.get("title")?.value ?? ""] as const),
+    ),
+  )
   const violations: Violation[] = []
   for (const page of tree.pages) {
     if ("error" in page.frontmatter) {
@@ -102,8 +121,20 @@ export const frontmatter: SourceCheck = (tree, conventions) => {
     }
     for (const row of schema) {
       const field = row["필드"]
+      let required = row[pageType] === "필수"
+      if (row[pageType] === "조건부") {
+        if (field !== "edition")
+          throw new Error(`규약 문서의 조건부 필드 "${field}"를 검사기가 모른다`)
+        const split = splitEditions(page, fields.title, titles)
+        required = split === null
+        if (split && field in fields)
+          at(
+            `부마다 판이 다른 시리즈 표준 페이지에는 edition을 두지 않는다: ${split.join(", ")}`,
+            field,
+          )
+      }
       if (!(field in fields)) {
-        if (row[pageType] === "필수") at(`필수 필드가 없다: ${field}`)
+        if (required) at(`필수 필드가 없다: ${field}`)
         continue
       }
       const reason = checkFormat(row["형식"], fields[field], statuses)

@@ -9,11 +9,11 @@ AUTOSAR R25-11 Adaptive Platform 설계 설명서는 **Execution Management**(EM
 
 ## 시스템 시작
 
-[[autosar-adaptive-platform#Machine과 프로세스|Machine]]이 시작되면 운영체제가 초기화된 뒤 Execution Management가 플랫폼의 첫 프로세스로 실행된다. Execution Management는 [[autosar-adaptive-platform#Functional cluster|Adaptive Platform Foundation]]의 functional cluster를 나타내는 플랫폼 수준 프로세스를 띄우고, Foundation이 돌기 시작하면 Adaptive Application의 프로세스를 이어 띄운다. 플랫폼 수준과 응용 수준 프로세스의 시작 순서는 Execution Management가 [[autosar-manifest#종류|Machine Manifest]]와, [[autosar-manifest#종류|Execution Manifest]]에 적은 의존성을 바탕으로 정한다.[@autosar-ap-exp-platformdesign-2025]
+[[autosar-adaptive-platform#Machine과 프로세스|Machine]]이 시작되면 운영체제가 초기화된 뒤 Execution Management가 플랫폼의 첫 프로세스로 실행된다. Execution Management는 [[autosar-adaptive-platform#Functional cluster|Adaptive Platform Foundation]]의 functional cluster를 나타내는 플랫폼 수준 프로세스를 띄우고, Foundation이 돌기 시작하면 Adaptive Application의 프로세스를 이어 띄운다. 플랫폼 수준과 응용 수준 프로세스의 시작 순서는 Execution Management가 [[autosar-manifest|Machine Manifest와 Execution Manifest]]에 적은 의존성을 바탕으로 정한다.[@autosar-ap-exp-platformdesign-2025]
 
 운영체제는 Execution Management를 Adaptive Platform의 첫 프로세스로 시작할 수 있어야 한다.[@autosar-ap-sws-operatingsysteminterface-2025]
 
-준비를 마친 Execution Management는 [[autosar-state-management#Machine State와 Function Group State|Machine State]]를 Off에서 Startup으로 바꾸고, 그동안 Startup Machine State에 속한 프로세스의 시작을 요청한다. Off는 Execution Management가 시작되기 전의 기본 상태다. 전이 조건이 채워지면 Execution Management는 [[autosar-state-management|State Management]]에 Startup 전이를 확인해 주고, 이때부터 [[autosar-state-management#Machine State와 Function Group State|Function Group]] 상태 변경을 시작하는 책임을 State Management에 넘긴다. 다만 운영체제의 init 프로세스나 마이크로커널의 사용자 수준 드라이버처럼 Adaptive Platform 밖에서 시작하고 관리하는 프로세스가 Execution Management보다 먼저 있을 수 있다.[@autosar-ap-sws-executionmanagement-2025]
+준비를 마친 Execution Management는 [[autosar-state-management#Machine State와 Function Group State|Machine State]]를 Off에서 Startup으로 바꾸고, 그동안 Startup Machine State에 속한 프로세스의 시작을 요청한다. Off는 Execution Management가 시작되기 전의 기본 상태다. 전이 조건이 채워지면 Execution Management는 [[autosar-state-management|State Management]]에 Startup 전이를 확인해 주고, 이때부터 Function Group 상태 변경을 시작하는 책임을 State Management에 넘긴다. 다만 운영체제의 init 프로세스나 마이크로커널의 사용자 수준 드라이버처럼 Adaptive Platform 밖에서 시작하고 관리하는 프로세스가 Execution Management보다 먼저 있을 수 있다.[@autosar-ap-sws-executionmanagement-2025]
 
 ![[diagrams/execution-management-startup.svg]]
 

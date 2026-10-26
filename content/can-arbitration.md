@@ -37,4 +37,4 @@ dominant는 논리 0, recessive는 논리 1이다.[@iso-11898-1-obp-2024] 그래
 
 ## 진 프레임
 
-Bosch [[can-controller#제품 예|M_CAN]]은 중재에서 진 프레임을 기본 설정에서 [[can-controller#자동 재전송|자동으로 다시 보내고]], 이 동작은 설정으로 끌 수 있다. M_CAN 매뉴얼에 따르면 한 [[electronic-control-unit|ECU]]가 CAN 메시지를 연달아 보내면, 중재 우선순위가 더 낮은 다른 ECU의 메시지가 늦어질 수 있다. M_CAN의 transmit pause 기능을 켜면 메시지를 하나 보낼 때마다 2비트 시간 쉬어, 우선순위가 낮은 다른 노드도 메시지를 보낼 수 있게 한다.[@bosch-m-can-2023]
+[[can-controller#제품 예|Bosch M_CAN]]은 중재에서 진 프레임을 기본 설정에서 [[can-controller#자동 재전송|자동으로 다시 보내고]], 이 동작은 설정으로 끌 수 있다. M_CAN 매뉴얼에 따르면 한 [[electronic-control-unit|ECU]]가 CAN 메시지를 연달아 보내면, 중재 우선순위가 더 낮은 다른 ECU의 메시지가 늦어질 수 있다. M_CAN의 transmit pause 기능을 켜면 메시지를 하나 보낼 때마다 2비트 시간 쉬어, 우선순위가 낮은 다른 노드도 메시지를 보낼 수 있게 한다.[@bosch-m-can-2023]

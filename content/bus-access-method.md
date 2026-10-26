@@ -21,9 +21,9 @@ NXP 앱노트에 따르면 [[flexray|FlexRay]]의 정적 세그먼트는 버스 
 
 전송 매체에서 송신이 동시에 일어나 생기는 상태를 **충돌**(collision)이라 한다. LAN에서 MAC 프로토콜이 둘 이상의 데이터 스테이션에 동시에 송신을 시작하도록 허용해 충돌 위험이 있는 상황은 **경합**(contention)이다.[@iso-iec-2382-obp-2015]
 
-[[ethernet|이더넷]]의 CSMA/CD(Carrier Sense Multiple Access with Collision Detection) MAC 프로토콜은 공유 매체에서의 반이중 동작을 규정한다.[@ieee-802-3-2022] ISO/IEC 2382:2015는 CSMA/CD 네트워크를 MAC 프로토콜이 캐리어 감지를 요구하는 버스 네트워크로 정의한다. 캐리어 감지는 데이터 스테이션이 다른 스테이션이 송신 중인지 계속 살피는 활동이고, 전송 매체가 사용 중이면 스테이션은 진행 중인 송신과 충돌하지 않도록 송신을 미룬다. CSMA/CD 네트워크는 충돌로 생긴 예외 상황을 재전송으로 해결한다. truncated binary exponential backoff는 충돌 뒤 재전송을 [[ethernet-frame#필드|slot time]]과 재전송 시도 횟수로 정한 시간만큼 늦추는 알고리즘이다.[@iso-iec-2382-obp-2015]
+[[ethernet|이더넷]]의 CSMA/CD(Carrier Sense Multiple Access with Collision Detection) MAC 프로토콜은 공유 매체에서의 반이중 동작을 규정한다.[@ieee-802-3-2022] ISO/IEC 2382:2015는 CSMA/CD 네트워크를 MAC 프로토콜이 캐리어 감지를 요구하는 버스 네트워크로 정의한다. 캐리어 감지는 데이터 스테이션이 다른 스테이션이 송신 중인지 계속 살피는 활동이고, 전송 매체가 사용 중이면 스테이션은 진행 중인 송신과 충돌하지 않도록 송신을 미룬다. CSMA/CD 네트워크는 충돌로 생긴 예외 상황을 재전송으로 해결한다. truncated binary exponential backoff는 충돌 뒤 재전송을 [[ethernet-frame#프레임 크기|slot time]]과 재전송 시도 횟수로 정한 시간만큼 늦추는 알고리즘이다.[@iso-iec-2382-obp-2015]
 
-반이중 이더넷 MAC은 다른 스테이션이 송신하는 동안 송신을 미루고, 그 송신이 끝나면 송신을 시도한다. 충돌 뒤에는 무작위로 정한 백오프 시간만큼 기다렸다가 다시 송신한다.[@microchip-enc28j60-2012][@st-rm0008-2021] STM32F107의 이더넷 MAC은 반이중에서 송신 중 충돌을 감지하면 [[ethernet-frame#필드|잼 패턴]]을 보내 다른 스테이션에 알리고, 백오프만큼 기다렸다가 프레임을 다시 보낸다.[@st-rm0008-2021]
+반이중 이더넷 MAC은 다른 스테이션이 송신하는 동안 송신을 미루고, 그 송신이 끝나면 송신을 시도한다. 충돌 뒤에는 무작위로 정한 백오프 시간만큼 기다렸다가 다시 송신한다.[@microchip-enc28j60-2012][@st-rm0008-2021] STM32F107의 이더넷 MAC은 반이중에서 송신 중 충돌을 감지하면 잼 패턴을 보내 다른 스테이션에 알리고, 백오프만큼 기다렸다가 프레임을 다시 보낸다.[@st-rm0008-2021]
 
 CAN에서는 버스가 [[dominant-and-recessive#버스가 비어 있을 때|idle]]이면 어느 노드든 송신을 시작할 수 있고, 여러 노드가 동시에 시작하면 [[can-identifier|식별자]]로 비트 단위 [[can-arbitration|중재]]를 해 이긴 한 메시지가 정보도 시간도 잃지 않고 송신을 이어 간다.[@bosch-can-2-0-1991] ISO 11898-1:2024는 이 식별자 기반 중재를 CSMA/CR(Collision Resolution)이라 부른다.[@iso-11898-1-obp-2024] CAN의 버스 접근은 이벤트 구동이다.[@ti-sloa101b-2016][@nxp-can-101-2021] TI 앱노트에 따르면 버스 접근은 무작위로 일어난다.[@ti-sloa101b-2016]
 

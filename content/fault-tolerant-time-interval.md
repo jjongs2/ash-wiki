@@ -27,7 +27,7 @@ FTTI 정의의 주석은 [[safety-element-out-of-context#요소와 안전 관련
 
 이 표준은 **maximum time to repair time interval**을 안전 상태를 유지할 수 있도록 정해 둔 시간 간격으로 정의한다. 정의의 주석은 이 구간이 남은 차량 수명이 끝날 때까지 안전 상태를 유지할 수 없을 때 의미 있는 특성이고, 해당하면 warning and degradation strategy에 기술하며, 안전 상태에서 돌아오는 조건도 그 전략에 기술한다고 제시한다.[@iso-26262-1-obp-2018]
 
-이 표준은 **multiple-point fault detection time interval**을 [[hardware-architectural-metrics#Fault와 failure의 종류|multiple-point fault]]가 multiple-point failure에 기여하기 전에 그것을 검출하는 시간 간격으로 정의한다. [[hardware-architectural-metrics#Fault와 failure의 종류|Detected fault]] 정의의 주석은 fault를 검출해야 하는 정해진 시간으로 FDTI나 multiple-point fault detection time interval을 제시한다.[@iso-26262-1-obp-2018]
+이 표준은 **multiple-point fault detection time interval**을 [[hardware-architectural-metrics#Fault와 failure의 종류|multiple-point fault]]가 multiple-point failure에 기여하기 전에 그것을 검출하는 시간 간격으로 정의한다. Detected fault 정의의 주석은 fault를 검출해야 하는 정해진 시간으로 FDTI나 multiple-point fault detection time interval을 제시한다.[@iso-26262-1-obp-2018]
 
 ## 구간 사이의 관계
 

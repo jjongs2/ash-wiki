@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-[[iso-sae-21434|ISO/SAE 21434]]:2021은 **cybersecurity concept**을 세 가지, 곧 [[cybersecurity-lifecycle#아이템과 운용 환경|아이템]]의 사이버보안 요구사항, [[cybersecurity-lifecycle#아이템과 운용 환경|운용 환경]]이 맞춰야 할 요구사항, 관련 cybersecurity control의 정보로 정의한다. 이 표준의 9절(concept)은 아이템의 사이버보안 리스크, [[cybersecurity-goal|cybersecurity goal]], 사이버보안 요구사항을 정하는 활동을 담는다.[@iso-sae-21434-obp-2021]
+[[iso-sae-21434|ISO/SAE 21434]]:2021은 **cybersecurity concept**을 세 가지, 곧 [[cybersecurity-lifecycle#아이템과 운용 환경|아이템]]의 사이버보안 요구사항, 운용 환경이 맞춰야 할 요구사항, 관련 cybersecurity control의 정보로 정의한다. 이 표준의 9절(concept)은 아이템의 사이버보안 리스크, [[cybersecurity-goal|cybersecurity goal]], 사이버보안 요구사항을 정하는 활동을 담는다.[@iso-sae-21434-obp-2021]
 
 ![[diagrams/cybersecurity-concept-specification-contents.svg]]
 

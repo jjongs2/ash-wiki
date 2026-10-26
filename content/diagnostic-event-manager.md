@@ -14,7 +14,7 @@ AUTOSAR R25-11의 Dem 명세는 **Diagnostic Event Manager**(Dem)를 진단 이�
 
 진단 이벤트는 Dem이 다루는 가장 작은 단위로, 그 상태는 [[autosar-diagnostic-management#이벤트 메모리|monitor]]의 결과를 나타낸다. Dem은 monitor의 결과를 [[autosar-rte|RTE]]를 거쳐 [[autosar-software-component|SW-C]]에서 받거나 다른 BSW 모듈에서 받는다. Dem은 보고받은 이벤트의 상태를 내부 monitor status에 저장하고, Dcm에는 DTC 단위의 상태 바이트인 [[uds|UDS]] 상태를 보고한다. Dem은 진단 이벤트마다 EventId와 EventName을 두며, 둘은 ECU 설정이 나타내는 Dem 모듈 안에서 유일해야 한다. Dem 모듈은 ECU마다 하나만 두므로, 이 범위는 곧 ECU 전체다. monitor와 BSW 모듈은 EventId를 기호 이름으로 쓰고, Dem 설정 도구가 그 기호를 숫자로 바꾼다. Dem은 monitor 여럿이 EventId 하나를 함께 쓰는 경우를 처리하도록 설계되지 않았다.[@autosar-cp-sws-diagnosticeventmanager-2025]
 
-Dem의 API `Dem_SetEventStatus`로 넘기는 이벤트 ID(EventId)는 ECU 전체에서 정적으로 정하고, 효율을 위해 촘촘한 값 범위에 둔다. Dem이 이 ID를 ROM 배열의 첨자로 쓰기 때문이다. 각 BSW 모듈은 필요한 [[autosar-error-handling#오류 유형|양산 관련 오류]]를 ECU 설정 기술에 적고, Dem의 설정 도구가 그 기술을 읽어 모듈들이 쓸 전역 상수를 담은 파일 하나를 만든다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+Dem의 API `Dem_SetEventStatus`로 넘기는 이벤트 ID(EventId)는 ECU 전체에서 정적으로 정하고, 효율을 위해 촘촘한 값 범위에 둔다. Dem이 이 ID를 ROM 배열의 첨자로 쓰기 때문이다. 각 BSW 모듈은 필요한 양산 관련 오류를 ECU 설정 기술에 적고, Dem의 설정 도구가 그 기술을 읽어 모듈들이 쓸 전역 상수를 담은 파일 하나를 만든다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 production error와 extended production error의 이벤트 ID 값도 Dem 모듈의 설정이 정한다. 이 ID는 Dem이 `Dem.h`로 주는 기호 이름 값이며, production error의 기호는 BSW 모듈의 ServiceNeeds 짧은 이름 앞에 `DemConf_DemEventParameter_`를 붙인 꼴이다.[@autosar-cp-sws-bswgeneral-2025] BSW 모듈이 Dem에 이벤트를 보고하는 길은 [[autosar-error-handling#오류 유형|AUTOSAR 오류 처리]]에서 다룬다.
 

@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-01
 ---
 
-**HARA**(Hazard Analysis and Risk Assessment)는 [[safety-lifecycle#ISO 26262의 안전 생명주기|아이템]]의 해저드 사건을 찾아 분류하고, 불합리한 리스크를 피하도록 그 해저드를 막거나 줄이는 safety goal과 [[automotive-safety-integrity-level|ASIL]]을 정하는 방법이다.[@iso-26262-1-obp-2018] [[iso-26262|ISO 26262]]-3:2018은 HARA 절을 concept phase의 [[safety-lifecycle#ISO 26262의 안전 생명주기|item definition]] 절 바로 다음에 둔다.[@iso-26262-3-obp-2018] 안전 생명주기 전체에서의 자리는 [[safety-lifecycle|안전 생명주기]]에서 다룬다.
+**HARA**(Hazard Analysis and Risk Assessment)는 [[safety-lifecycle#ISO 26262의 안전 생명주기|아이템]]의 해저드 사건을 찾아 분류하고, 불합리한 리스크를 피하도록 그 해저드를 막거나 줄이는 safety goal과 [[automotive-safety-integrity-level|ASIL]]을 정하는 방법이다.[@iso-26262-1-obp-2018] [[iso-26262|ISO 26262]]-3:2018은 HARA 절을 concept phase의 item definition 절 바로 다음에 둔다.[@iso-26262-3-obp-2018] 안전 생명주기 전체에서의 자리는 [[safety-lifecycle|안전 생명주기]]에서 다룬다.
 
 ## 용어
 

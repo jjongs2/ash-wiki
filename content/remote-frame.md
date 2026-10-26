@@ -27,7 +27,7 @@ Bosch CAN 2.0 규격은 리모트 프레임의 DLC를 0\~8 범위에 둔다.[@bo
 
 ## 컨트롤러의 처리
 
-[[can-controller#제품 예|MCP2515]]는 받은 프레임이 리모트 프레임이면 수신 버퍼 제어 레지스터의 `RXRTR` 비트로 표시한다.[@microchip-mcp2515-2019] Bosch [[can-controller#제품 예|M_CAN]]은 리모트 프레임을 [[acceptance-filter|필터링]]하지 않고 모두 버리도록 설정할 수 있고, 이 설정은 기본 포맷과 확장 포맷에 따로 둔다.[@bosch-m-can-2023]
+[[can-controller#제품 예|MCP2515]]는 받은 프레임이 리모트 프레임이면 수신 버퍼 제어 레지스터의 `RXRTR` 비트로 표시한다.[@microchip-mcp2515-2019] Bosch M_CAN은 리모트 프레임을 [[acceptance-filter|필터링]]하지 않고 모두 버리도록 설정할 수 있고, 이 설정은 기본 포맷과 확장 포맷에 따로 둔다.[@bosch-m-can-2023]
 
 ## CAN FD와의 차이
 

@@ -1,4 +1,4 @@
-import { standardNumber } from "../publications"
+import { standardNumber } from "../standard-number"
 import {
   ChannelError,
   fetchOk,

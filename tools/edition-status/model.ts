@@ -20,7 +20,7 @@ export interface StandardPage {
   name: string // 예: iso-13400-2
   title: string
   publisher: string
-  edition: string
+  edition?: string // 부마다 판이 다른 시리즈(29119)에는 없다
   status: string
 }
 
