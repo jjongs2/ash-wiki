@@ -18,7 +18,7 @@ ISTQB CTFL v4.0.1 강의계획서에 따르면 사용성 같은 일부 비기능
 - SWE.6 Software Verification: 통합한 소프트웨어가 소프트웨어 요구사항과 일관됨을 검증하는 것을 목적으로 한다.
 - SYS.5 System Verification: 시스템이 시스템 요구사항과 일관됨을 검증하는 것을 목적으로 한다.[@vda-automotive-spice-pam-4-1-2026]
 
-SWE.6의 BP(base practice) 가운데 BP1의 Note 1은 검증 수단의 기법을 고르는 일이 소프트웨어 요구사항의 내용에 달릴 수 있다고 제시하고, 데이터 범위를 다루는 요구사항의 [[boundary-value-analysis|경계값]]과 [[equivalence-partitioning|동치 클래스]], 정상 경로 테스트를 쓸지 [[fault-injection|결함 주입]] 같은 부정 테스트를 쓸지를 예로 든다. 기법 선택이 요구사항 기반 테스트와 지식이나 경험에 기댄 [[error-guessing|오류 추정]] 가운데 어느 쪽을 쓰는지에도 달릴 수 있다는 것도 제시한다. SYS.5.BP1의 Note 1은 시스템 검증 수단이 다룰 수 있는 측면으로 열, 환경, 견고성·수명, EMC(Electromagnetic Compatibility)를 예로 든다.[@vda-automotive-spice-pam-4-1-2026][@iec-60050-161-01-07-2018]
+SWE.6의 BP(base practice) 가운데 BP1의 Note 1은 검증 수단의 기법을 고르는 일이 소프트웨어 요구사항의 내용에 달릴 수 있다고 제시하고, 데이터 범위를 다루는 요구사항의 [[boundary-value-analysis|경계값]]과 [[equivalence-partitioning|동치 클래스]]를 쓰는 것과, 정상 경로 테스트와 [[fault-injection|결함 주입]] 같은 부정 테스트 가운데 무엇을 쓸지를 예로 든다. 기법 선택이 요구사항 기반 테스트와 지식이나 경험에 기댄 [[error-guessing|오류 추정]] 가운데 어느 쪽을 쓰는지에도 달릴 수 있다는 것도 제시한다. SYS.5.BP1의 Note 1은 시스템 검증 수단이 다룰 수 있는 측면으로 열, 환경, 견고성·수명, EMC(Electromagnetic Compatibility)를 예로 든다.[@vda-automotive-spice-pam-4-1-2026][@iec-60050-161-01-07-2018]
 
 ASPICE 3.1은 SWE.6을 Software Qualification Test, SYS.5를 System Qualification Test라 불렀고, ASPICE 4.0이 두 이름을 지금의 Verification으로 바꾸었다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017][@vda-automotive-spice-pam-4-0-2023]
 

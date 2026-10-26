@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**기본 경로 테스트**(basis path testing)는 모듈의 제어 흐름 그래프에서 기본 경로 집합을 골라 그 경로를 모두 테스트하는 [[white-box-testing|화이트박스]] 기법이다. 그래프의 경로를 모두 어떤 입력으로든 실행할 수 있으면, 고르는 경로의 수이자 필요한 최소 테스트 수는 [[cyclomatic-complexity|순환 복잡도]] $v(G)$다. 실행할 수 없는 경로가 있으면 기준이 실제 복잡도(actual complexity)로 바뀐다.[@nist-sp-500-235-1996]
+**기본 경로 테스트**(basis path testing)는 모듈의 제어 흐름 그래프에서 기본 경로 집합을 골라 그 경로를 모두 테스트하는 [[white-box-testing|화이트박스]] 기법이다. 그래프의 경로마다 그 경로를 지나게 하는 입력이 있으면, 고르는 경로의 수이자 필요한 최소 테스트 수는 [[cyclomatic-complexity|순환 복잡도]] $v(G)$다. 실행할 수 없는 경로가 있으면 기준이 실제 복잡도(actual complexity)로 바뀐다.[@nist-sp-500-235-1996]
 
 ## 기원
 

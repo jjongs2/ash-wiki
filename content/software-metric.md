@@ -25,7 +25,7 @@ SonarSource는 2016년 12월 cognitive complexity를 내놓았다. 메서드의 
 
 - 코드의 선형 흐름을 끊는 구조마다 1을 더한다. 반복문, 조건문, `catch`, `switch`, 같은 종류의 이항 논리 연산자 열, 재귀 고리에 든 메서드, `goto`와 레이블로 가는 `break`·`continue`가 그런 구조다. 조기 `return` 같은 다른 점프에는 더하지 않는다.
 - 반복문, 조건문, `catch` 같은 구조가 다른 구조 안에 중첩되면 중첩 수준마다 1을 더 더한다. `else if`와 `else`는 중첩 가산을 받지 않는다.
-- 백서에 따르면 순환 복잡도는 `switch`의 `case`마다 1을 더하지만, cognitive complexity는 `switch` 전체에 1만 더한다. 이항 논리 연산자도 cognitive complexity는 하나마다 세지 않고, 같은 연산자가 이어진 열을 한 번만 세어 순환 복잡도보다 덜 센다.[@sonarsource-cognitive-complexity-2023]
+- 백서에 따르면 순환 복잡도는 `switch`의 `case`마다 1을 더하지만, cognitive complexity는 `switch` 전체에 1만 더한다. 이항 논리 연산자에서도 cognitive complexity는 연산자마다 1을 더하지 않고 같은 연산자가 이어진 열에 1만 더해, 순환 복잡도보다 덜 센다.[@sonarsource-cognitive-complexity-2023]
 
 ## 결합
 
