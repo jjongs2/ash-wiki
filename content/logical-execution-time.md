@@ -35,7 +35,7 @@ ExecutionOrderConstraint만으로는 어떤 executable entity들이 모두 실�
 
 ExecutionOrderConstraint가 executable entity를 묶는 그룹(EOCExecutableEntityRefGroup, EOC: Execution Order Constraint)을 **executable entity cluster**라 한다. 그룹은 cluster에 드는 executable entity의 RTE 이벤트나 BSW 이벤트를 모두 가리키고, 다른 그룹을 가리켜 cluster의 위계를 이룰 수 있다. Cluster는 `letInterval` 속성으로 LET 구간을 나타내는 TimingDescriptionEventChain을 가리켜 그 구간에 매핑되며, 이 속성은 최상위 그룹에만 둘 수 있다. [[autosar-software-cluster|Software Cluster]]에 든 executable entity는 [[autosar-software-cluster#Host와 Application Software Cluster|Host Software Cluster]]가 주는 시간 자원인 dispatcher나 LET 구간에 배정된다. Dispatcher에 배정할 때도 executable entity cluster를 쓰는데, 이때는 그룹의 `triggeringEvent`가 dispatcher 역할을 하는 complex timing event인 TDEventComplex를 가리킨다.[@autosar-cp-tps-timingextensions-2025]
 
-구간이 다르면 executable entity 사이의 데이터는 구간의 release와 terminate 때 오가 흐름이 하나로 정해지지만, 한 LET 구간에 매핑된 executable entity끼리 데이터를 주고받는 방식은 둘이다. interLetOnly에서는 구간의 release와 terminate 때만 데이터를 주고받아, 구간 안의 실행 순서가 데이터 흐름에 영향을 주지 않지만 종단 간 지연이 주기의 배수만큼 길어진다. intraLetEOC에서는 같은 그룹의 executable entity가 그룹이 정한 순서로 실행되며 구간 안에서 [[autosar-sender-receiver-interface#명시적 접근과 암묵적 접근|implicit]] 의미로 데이터를 바로 주고받는다. intraLetEOC에서 LET 방식으로 데이터를 넘기는 것은 구간의 경계에서와 서로 독립인 그룹 사이에서뿐이다.[@autosar-cp-tps-timingextensions-2025]
+구간이 다른 executable entity끼리는 데이터가 구간의 release와 terminate 때 오가므로 흐름이 하나로 정해진다. 한 LET 구간에 매핑된 executable entity끼리 데이터를 주고받는 방식은 둘이다. interLetOnly에서는 구간의 release와 terminate 때만 데이터를 주고받아, 구간 안의 실행 순서가 데이터 흐름에 영향을 주지 않지만 종단 간 지연이 주기의 배수만큼 길어진다. intraLetEOC에서는 같은 그룹의 executable entity가 그룹이 정한 순서로 실행되며 구간 안에서 [[autosar-sender-receiver-interface#명시적 접근과 암묵적 접근|implicit]] 의미로 데이터를 바로 주고받는다. intraLetEOC에서 LET 방식으로 데이터를 넘기는 것은 구간의 경계에서와 서로 독립인 그룹 사이에서뿐이다.[@autosar-cp-tps-timingextensions-2025]
 
 ![[diagrams/let-inter-intra-data-exchange.svg]]
 
@@ -43,4 +43,4 @@ ExecutionOrderConstraint가 executable entity를 묶는 그룹(EOCExecutableEnti
 
 BET(Bounded Execution Time) 모델에서 [[deadline|마감 시한]]은 상한일 뿐이지만, LET에서 구간의 끝은 출력 시점의 상한이자 논리적 하한이다.[@kirsch-logical-execution-time-2012]
 
-SL-LET은 지연을 줄이는 최적화를 하지 않으면, BET 모델에서는 드물게 나타나는 최악 지연을 보통의 경우로 만든다. 태스크의 읽기를 오프셋만큼 늦춰 입력을 주는 태스크의 쓰기에 맞추는 LET의 최적화는 SL-LET에도 쓸 수 있다.[@gemlau-system-level-let-2021]
+SL-LET은 지연을 줄이는 최적화를 하지 않으면, BET 모델에서는 드물게 나타나는 최악 지연을 보통의 경우로 만든다. 입력을 주는 태스크가 쓰는 시점에 맞춰 읽는 태스크의 읽기를 오프셋만큼 늦추는 LET의 최적화는 SL-LET에도 쓸 수 있다.[@gemlau-system-level-let-2021]

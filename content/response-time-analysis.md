@@ -25,7 +25,7 @@ $R_i$가 양변에 있으므로 반복해 푼다. 첫 값을 $C_i$로 두고 오
 
 ![[diagrams/response-time-iteration.svg]]
 
-태스크가 자원을 공유해 서로 독립이 아니면 공유 자원을 [[priority-inheritance-protocol|우선순위 상속]] 계열 프로토콜로 다룬다. 그러면 우선순위가 낮은 태스크가 자원을 잡고 있어서 태스크 $i$가 기다리는 시간이 $B_i$ 이하로 묶이고, 이를 블로킹 항으로 더한다.[@audsley-flexible-scheduling-1993]
+태스크가 자원을 공유해 서로 독립이 아닐 때 공유 자원을 [[priority-inheritance-protocol|우선순위 상속]] 계열 프로토콜로 다루면, 우선순위가 낮은 태스크가 자원을 잡고 있어서 태스크 $i$가 기다리는 시간이 $B_i$ 이하로 묶이고, 이를 블로킹 항으로 더한다.[@audsley-flexible-scheduling-1993]
 
 $$
 R_i = C_i + B_i + \sum_{j \in \mathrm{hp}(i)} \left\lceil \frac{R_i}{T_j} \right\rceil C_j

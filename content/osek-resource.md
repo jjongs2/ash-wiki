@@ -46,7 +46,7 @@ OSEK/VDX OS 2.2.3 명세는 resource 관리를 모든 [[osek-os#Conformance clas
 
 ![[diagrams/osek-internal-resource-group.svg]]
 
-resource를 쥔 채 부를 수 없는 서비스의 제한은 internal resource에는 걸리지 않는다. 그 서비스들 안에서 internal resource를 다루기 때문이다. 다만 internal resource가 풀리기 전에, 쥐고 있는 다른 resource를 모두 풀어야 한다.[@osek-os-2-2-3-2005]
+resource를 쥔 채 부를 수 없는 서비스의 제한은 internal resource에는 걸리지 않는다. 그 서비스들 안에서 internal resource를 다루기 때문이다. 다만 태스크는 internal resource가 풀리기 전에, 쥐고 있는 다른 resource를 모두 풀어야 한다.[@osek-os-2-2-3-2005]
 
 ## Linked resource
 
