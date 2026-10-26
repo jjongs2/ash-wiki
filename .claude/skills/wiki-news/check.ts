@@ -1,6 +1,7 @@
 // 소식 조사의 기계 검사(SKILL.md의 7. 쓰기와 9. PR). 주간 소식 호를 형식 함수(plugins/weekly-news의
 // parseWeeklyNews)로 읽어 실패와 알림(위키 링크 후보, 분포 줄)을 내고, 실패가 있으면 exit 1이다. 규칙은 SKILL.md
-// 7단계, docs/weekly-news.md, outlets.md의 열 절에 있고, PR 전 확인에 넣지 않는 까닭도 7단계에 있다.
+// 7단계, docs/weekly-news.md, outlets.md의 열 절에 있다. PR 전 확인에 넣지 않는 것은 규칙이 생기기 전의 지난 호가
+// 소급해 실패하기 때문이다.
 // 사용: npx tsx .claude/skills/wiki-news/check.ts <주차나 달>...
 //       npx tsx .claude/skills/wiki-news/check.ts --pr <본문 파일> [--base <ref>]
 import fs from "node:fs"

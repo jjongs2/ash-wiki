@@ -1,7 +1,7 @@
 """세션 기록(jsonl)을 분석 에이전트가 읽을 요약본으로 줄이고, 회고가 분석한 세션을 적는다.
 
 python3 digest.py [--archive <폴더>] <기록.jsonl>...
-python3 digest.py [--archive <폴더>] --mark <회고 세션 uuid> <세션 uuid>...
+python3 digest.py [--archive <폴더>] --mark <회고 세션 uuid> <세션 uuid나 실행 id>...
 python3 digest.py [--archive <폴더>] --report <에이전트 기록> <세션 uuid> '<첫 줄>'
 python3 digest.py [--archive <폴더>] --candidates <이 세션 uuid> [<기록.jsonl>...]
 python3 digest.py --version <기록.jsonl>...
@@ -14,7 +14,8 @@ report.md는 둔다. 작업 중 대기열로 온 메시지(서브에이전트 �
 않고, 뒤이어 user 줄로 차례대로 다시 온 메시지는 한 번만 쓴다.
 
 --mark는 보관 폴더의 analyzed.tsv에 세션 uuid, 회고 세션 uuid, 날짜를 한 줄씩
-더한다. 이미 있는 uuid는 더하지 않는다. 회고는 이 목록에 없는 세션을 분석한다.
+더한다. 루틴 실행은 세션 uuid 대신 실행 id(cse_…)를 받는다. 이미 있는 것은 더하지
+않는다. 회고는 이 목록에 없는 세션과 루틴 실행을 분석한다.
 
 --report는 에이전트 기록의 마지막 SubagentHandback 메시지(없으면 마지막 어시스턴트
 글)를 첫 줄 아래에 붙여 <uuid>/report.md에 쓴다. 반환이 없거나 uuid가 아니면 쓰지
@@ -58,6 +59,7 @@ SESSIONS = os.path.expanduser("~/.claude/projects/*ash-wiki*/*.jsonl")
 NOTE_REFS = ("$ASH_WIKI_NOTES", "${ASH_WIKI_NOTES")
 PERSISTED = re.compile(r"tool-results/[\w.-]+")
 UUID = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
+RUN_ID = re.compile(r"^cse_[A-Za-z0-9]+$")
 HEADING = re.compile(r"#{1,6}\s")
 ISSUE_NUMBER = re.compile(r"#\d+")
 WORKTREE_BASE = re.compile(r"HEAD is now at ([0-9a-f]{7,40})")
@@ -243,10 +245,10 @@ def write(out_dir, name, path, label=""):
     return [f"{name}.md"] if hidden else []
 
 
-def check_uuids(uuids):
-    bad = [u for u in uuids if not UUID.match(u)]
+def check_uuids(uuids, runs=False):
+    bad = [u for u in uuids if not UUID.match(u) and not (runs and RUN_ID.match(u))]
     if bad:
-        sys.exit(f"세션 uuid가 아니다: {', '.join(bad)}")
+        sys.exit(f"세션 uuid{'나 실행 id' if runs else ''}가 아니다: {', '.join(bad)}")
 
 
 def digest_session(archive, path):
@@ -342,7 +344,7 @@ def session_version(path):
         return
     skills = called_skills(entries)
     if not skills:
-        print(f"{uuid}\t-\t{commit[:12]}\t{how}. 스킬 본문 없음(루틴 세션 등)")
+        print(f"{uuid}\t-\t{commit[:12]}\t{how}. 스킬 본문 없음(루틴에 넘긴 세션 등)")
     for skill_dir, body in skills.items():
         skill = f"{skill_dir}/SKILL.md"
         name = os.path.basename(skill_dir)
@@ -483,7 +485,7 @@ def main():
     if not args.items:
         parser.error("기록이나 uuid가 필요하다")
     if args.mark:
-        check_uuids(args.items)
+        check_uuids(args.items, runs=True)
         mark(args.archive, args.mark, args.items)
         return
     if not NOTES:
