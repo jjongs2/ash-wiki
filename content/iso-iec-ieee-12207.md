@@ -34,7 +34,7 @@ status: 유효
 | 기술 관리(technical management) 프로세스                       | Project planning, Project assessment and control, Decision management, Risk management, Configuration management, Information management, Measurement, Quality assurance                                                                                                             |
 | 기술(technical) 프로세스                                       | Business or mission analysis, Stakeholder needs and requirements definition, System requirements definition, System architecture definition, Design definition, System analysis, Implementation, Integration, Verification, Transition, Validation, Operation, Maintenance, Disposal |
 
-이 표준은 시스템 생명주기 프로세스 표준 [[iso-iec-ieee-15288|ISO/IEC/IEEE 15288]]:2023과 프로세스의 목적과 결과는 같고, 활동과 태스크는 소프트웨어 공학과 시스템 공학을 하도록 서로 다르다고 둔다.[@iso-iec-ieee-12207-obp-2026]
+이 표준은 시스템 생명주기 프로세스 표준 [[iso-iec-ieee-15288|ISO/IEC/IEEE 15288]]:2023과 프로세스의 목적과 결과는 같고, 활동과 태스크는 [[software-engineering|소프트웨어 공학]]과 시스템 공학을 하도록 서로 다르다고 둔다.[@iso-iec-ieee-12207-obp-2026]
 
 ISO/IEC/IEEE 15288:2023이 두 문서의 차이를 어떻게 두는지는 [[iso-iec-ieee-15288#ISO/IEC/IEEE 12207과의 관계|ISO/IEC/IEEE 15288]]에서 다룬다.
 
