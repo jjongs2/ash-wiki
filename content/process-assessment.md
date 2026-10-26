@@ -50,7 +50,7 @@ ASPICE의 두 모델은 [[automotive-spice-process-reference-model|ASPICE 프로
 
 ISO/IEC 33002:2015는 평가 결과가 객관적이고, 일관되고, 반복 가능하고, 평가한 프로세스를 대표하도록 보장하는 평가 수행의 최소 요구를 정한다. 이 표준은 모든 적용 도메인과 모든 규모의 조직에 적용된다.[@iso-iec-33002-obp-2015]
 
-이 표준은 프로세스 평가를 적용하는 상황으로 셋을 든다. 조직이 [[process-improvement|프로세스 개선]]을 위해 자기 프로세스의 상태를 이해하려는 경우, 특정 요구에 자기 프로세스가 알맞은지 판단하려는 경우, 특정 목적이나 계약에 다른 조직의 프로세스가 알맞은지 판단하려는 경우다. 평가는 그 조직이 하거나 조직을 대신해 할 수 있다.[@iso-iec-33002-obp-2015]
+이 표준은 프로세스 평가를 적용하는 상황으로 셋을 든다. 조직이 [[process-improvement|프로세스 개선]]을 위해 자기 프로세스의 상태를 이해하려는 경우, 특정 요구에 자기 프로세스가 알맞은지 판단하려는 경우, 특정 목적이나 계약에 다른 조직의 프로세스가 알맞은지 판단하려는 경우다. 어느 경우든 평가하는 쪽은 그 목적을 가진 조직이거나, 그 조직을 대신하는 쪽이다.[@iso-iec-33002-obp-2015]
 
 이 표준의 요구는 자기 평가를 돕고, 프로세스 수행 개선과 프로세스 관련 리스크 완화의 바탕을 주며, 해당 프로세스 품질 특성의 달성 평정을 내고, 조직 사이의 객관적 벤치마크를 주는 데 쓸 수 있다.[@iso-iec-33002-obp-2015]
 
@@ -95,13 +95,13 @@ ISO/IEC 15504-5:2012의 소프트웨어 생명주기 프로세스 평가 모델 
 
 ### 평정 방법
 
-ASPICE 4.1은 ISO/IEC 33020:2019가 정한 평정 방법 셋을 가져온다.[@vda-automotive-spice-pam-4-1-2026]
+ASPICE 4.1은 ISO/IEC 33020:2019가 정한 평정 방법 셋을 가져온다. 세 방법은 프로세스 속성만 평정하는지, 프로세스 속성 성과까지 평정하는지와, 평가한 프로세스 인스턴스들에 걸쳐 평정을 어떻게 모으는지로 갈린다.[@vda-automotive-spice-pam-4-1-2026]
 
-- **R1**: 평가 범위 안 프로세스마다, 프로세스 성과와 프로세스 속성 성과를 프로세스 인스턴스마다 검증된 데이터로 특성화한다. 모든 인스턴스의 프로세스 성과 특성화를 모아 프로세스 수행 속성의 달성 평정을, 프로세스 속성 성과 특성화를 모아 프로세스 속성의 달성 평정을 낸다.
-- **R2**: 프로세스 속성을 프로세스 인스턴스마다 검증된 데이터로 특성화하고, 모든 인스턴스의 특성화를 모아 프로세스 속성의 달성 평정을 낸다.
-- **R3**: 평가한 프로세스 인스턴스들을 모으지 않고 프로세스 속성을 평정한다.[@vda-automotive-spice-pam-4-1-2026]
+- **R1**: 프로세스 성과와 프로세스 속성 성과까지 평정한다. 평가 범위 안 프로세스마다, 성과를 프로세스 인스턴스마다 검증된 데이터로 특성화하고, 모든 인스턴스의 특성화를 모은다. 프로세스 성과를 모으면 프로세스 수행 속성의 달성 평정이, 프로세스 속성 성과를 모으면 프로세스 속성의 달성 평정이 나온다.
+- **R2**: 프로세스 속성만 평정한다. 프로세스 속성을 프로세스 인스턴스마다 검증된 데이터로 특성화하고, 모든 인스턴스의 특성화를 모아 프로세스 속성의 달성 평정을 낸다.
+- **R3**: 프로세스 속성만 평정하되, 평가한 프로세스 인스턴스들에 걸쳐 모으지 않는다.[@vda-automotive-spice-pam-4-1-2026]
 
-어느 평정 방법을 쓸지는 평가의 class, 범위, 맥락에 따라 선임 평가자가 정하고, 고른 방법을 평가 입력에 적고 평가 보고서에서 가리킨다. 평정을 모으는 방법은 한 프로세스 안에서 모으는 수직 집계(1차원), 여러 프로세스 인스턴스에 걸쳐 모으는 수평 집계(1차원), 둘을 함께 하는 행렬 집계(2차원)로 나뉘고, 평가의 class, 범위, 맥락에 따라 고른다.[@vda-automotive-spice-pam-4-1-2026]
+어느 평정 방법을 쓸지는 평가의 class, 범위, 맥락에 따라 선임 평가자가 정하고, 고른 방법을 평가 입력에 적고 평가 보고서에서 가리킨다. 평정을 모으는 꼴도 평가의 class, 범위, 맥락에 따라 셋 가운데 하나다. 한 프로세스 안에서 성과의 평정을 모아 프로세스 속성을 평정하는 수직 집계(1차원), 여러 프로세스 인스턴스에 걸쳐 같은 성과의 평정을 모으는 수평 집계(1차원), 모든 인스턴스의 모든 성과 평정을 모으는 행렬 집계(2차원)다.[@vda-automotive-spice-pam-4-1-2026]
 
 ASPICE 4.1의 프로세스 평가 모델은 프로세스 속성과 그 평정이 측정 프레임워크의 것과 같아서, 평가 결과는 다른 꼴로 바꾸지 않고 평가 범위 안 프로세스마다의 프로세스 속성 평정 집합으로 바로 나타난다.[@vda-automotive-spice-pam-4-1-2026] 평정 척도와 능력 수준을 끌어내는 규칙은 프로세스 능력 수준의 [[process-capability-level#등급 척도|등급 척도]]와 [[process-capability-level#수준 달성 판정|수준 달성 판정]] 절에서 다룬다.
 
@@ -111,11 +111,11 @@ VDA QMC는 ASPICE 4.1의 프로세스 평가 모델로 하는 평가의 지침�
 
 ### 평가자 인증
 
-VDA QMC는 인증 사무국(Certification Office)을 두고 ASPICE 평가자를 인증하는 유일한 인원 인증 기관으로, 평가자 시험과 그 뒤의 인증 과정을 맡는다. 인증은 intacs(프로세스 평가자 인증 체계를 가진 국제 비영리 단체)의 체계를 따른다.[@vda-automotive-spice-certification-2026][@intacs-home-2026]
+VDA QMC는 인증 사무국(Certification Office)을 두고 ASPICE 평가자를 인증하는 유일한 인원 인증 기관으로, 평가자 시험과 그 뒤의 인증 과정을 맡는다. 인증 체계의 규칙은 intacs(프로세스 평가자 인증 체계를 가진 국제 비영리 단체)가 정하고, VDA QMC는 그 규칙대로 평가자를 인증한다. 경험 증거와 assessment log를 확인하는 일은 VDA QMC 같은 인증 기관이 맡는다.[@vda-automotive-spice-certification-2026][@intacs-home-2026]
 
-인증의 첫 단계는 Provisional Assessor다. intacs에 등록된 교육 기관의 교육을 받고 VDA QMC의 시험에 붙어야 하며, 자동차 분야의 소프트웨어 기반 시스템 개발 경력이 24개월 이상이어야 한다. Competent, Principal, Instructor 같은 상위 단계는 선임 평가자(lead assessor)라 불리고, 경험 증명을 계속 갱신해야 한다. 인증은 3년 동안 유효한 평가자 라이선스로 증명하고, 만료되면 갱신해야 한다.[@vda-automotive-spice-certification-2026]
+평가자 인증의 첫 단계는 Provisional Assessor다. intacs에 등록된 교육 기관의 교육을 받고 VDA QMC의 시험에 붙어야 하며, 자동차 분야의 소프트웨어 기반 시스템 개발 경력이 24개월 이상이어야 한다. Competent, Principal, Instructor 같은 상위 단계는 선임 평가자(lead assessor)라 불리고, 경험 증명을 계속 갱신해야 한다. 인증은 VDA QMC가 내주는, 3년 동안 유효한 평가자 라이선스로 증명하고, 만료되면 갱신해야 한다.[@vda-automotive-spice-certification-2026]
 
-intacs는 인증 단계를 Process Expert, Provisional Assessor, Competent Assessor, Principal Assessor, Instructor(provisional level, competent level)로 두고, 평가를 이끄는 것은 Competent Assessor부터 할 수 있게 한다. 자동차 분야에서 평가자를 인증하고 교육 기관을 인정하는 기관은 VDA QMC다.[@intacs-certification-center-2026]
+intacs의 인증은 Expert, Assessor, Instructor를 아우른다. 인증 단계는 Process Expert, Provisional Assessor, Competent Assessor, Principal Assessor와, Instructor의 두 단계인 provisional level과 competent level이고, 평가를 이끄는 것은 Competent Assessor부터 할 수 있다. 2026년 10월 기준 자동차 분야에서 이 체계로 평가자를 인증하고 교육 기관을 인정하는 기관은 VDA QMC다.[@intacs-certification-center-2026]
 
 ### 평가 등록
 
@@ -124,7 +124,7 @@ VDA QMC는 2026년 1월부터 평가 등록 절차를 두어, 등록한 평가 �
 등록할 수 있는 평가는 다음 조건을 채워야 한다.[@vda-automotive-spice-assessment-registration-2026]
 
 - 평가 팀에 선임 평가자 한 명과 공동 평가자(co-assessor) 한 명 이상이 있다.
-- 선임 평가자는 intacs ASPICE Competent Assessor 이상이고, 공동 평가자는 Provisional Assessor 이상이며, 팀원의 intacs 라이선스는 평가 기간 내내 유효하다.
+- 선임 평가자는 intacs의 ASPICE Competent Assessor 단계 이상이고, 공동 평가자는 Provisional Assessor 단계 이상이며, 팀원의 intacs 라이선스는 평가 기간 내내 유효하다.
 - 평가는 ASPICE 4.0 이상의 프로세스 평가 모델에 바탕을 둔다.
 - 자기 평가가 아니다. 평가 기관은 평가받는 조직과 독립된 법인이어야 한다.[@vda-automotive-spice-assessment-registration-2026]
 

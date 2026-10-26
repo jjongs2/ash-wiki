@@ -5,13 +5,13 @@ tags:
 verified: 2026-10-02
 ---
 
-**폭포수 모델**(waterfall model)은 개념, 요구, 설계, 구현, 테스트, 설치·점검 단계를 이 순서로 수행하는 소프트웨어 개발 모델이다. 단계끼리 겹칠 수는 있지만 반복은 거의 없다.[@iso-iec-ieee-24765-obp-2017]
+ISO/IEC/IEEE 24765:2017은 **폭포수 모델**(waterfall model)을 보통 개념, 요구, 설계, 구현, 테스트, 설치·점검 단계로 이루어지는 활동을 이 순서로 수행하는 소프트웨어 개발 모델로 정의하고, 단계끼리 겹칠 수는 있지만 반복은 거의 없다고 둔다.[@iso-iec-ieee-24765-obp-2017]
 
-반면 ISTQB 용어집은 [[software-development-life-cycle#모델|순차 개발 모델]]을 완전한 시스템을 서로 겹치지 않는 여러 단계로 차례로 개발하는 모델로 정의한다.[@istqb-glossary-sequential-development-model-2026] ISTQB CTFL v4.0.1 강의계획서는 폭포수 모델을 순차 개발 모델의 예로 든다.[@istqb-ctfl-syllabus-2024]
+반면 ISTQB CTFL v4.0.1 강의계획서는 폭포수 모델을 [[software-development-life-cycle#모델|순차 개발 모델]]의 예로 들고[@istqb-ctfl-syllabus-2024], ISTQB 용어집은 순차 개발 모델을 완전한 시스템을 서로 겹치지 않는 여러 단계로 차례로 개발하는 모델로 정의한다.[@istqb-glossary-sequential-development-model-2026]
 
 ## 원 논문의 단계
 
-Royce는 1970년 논문에서 고객에게 인도할 큰 프로그램을 개발하는 단계를 시스템 요구사항, 소프트웨어 요구사항, 분석, 프로그램 설계, 코딩, 테스트, 운용 순서로 그렸다. 그는 각 단계가 바로 앞뒤 단계와는 오가며 다듬어지되, 멀리 떨어진 단계와는 거의 오가지 않기를 바랐다.[@royce-managing-development-1987]
+Winston W. Royce는 1970년 논문에서 고객에게 인도할 큰 프로그램을 개발하는 단계를 시스템 요구사항, 소프트웨어 요구사항, 분석, 프로그램 설계, 코딩, 테스트, 운용 순서로 그렸다. 그는 각 단계가 바로 앞뒤 단계와는 오가며 다듬어지되, 멀리 떨어진 단계와는 거의 오가지 않기를 바랐다.[@royce-managing-development-1987]
 
 ![[diagrams/royce-waterfall-phases.svg]]
 
@@ -25,7 +25,7 @@ Royce는 이 단계 구성 자체는 믿을 만하다고 보았지만, 그대로
 4. 테스트를 계획하고 통제하고 감시한다.
 5. 고객을 개발에 참여시킨다.[@royce-managing-development-1987]
 
-Royce는 순차 단계를 버리지 않고 기본으로 두었다. 그 위에 이웃 단계와 오가며 다듬는 반복과, 전체 과정을 축소판으로 먼저 한 번 해 보는 반복을 더했다. 단계를 건너뛰어 멀리 되돌아가는 일은 피하려 했다. 그의 논문에는 "waterfall"이라는 이름이 나오지 않는다.[@royce-managing-development-1987] Bell과 Thayer는 1976년 논문에서 Royce가 제시한 개발 활동의 차례를 "waterfall"이라 불렀다.[@bell-software-requirements-1976]
+Royce는 순차 단계를 버리지 않고 기본으로 두었다. 그 위에 이웃 단계와 오가며 다듬는 반복과, 전체 과정을 축소판으로 먼저 한 번 해 보는 반복을 더했다. 단계를 건너뛰어 멀리 되돌아가는 일은 피하려 했다. 그의 논문에는 "waterfall"이라는 이름이 나오지 않는다.[@royce-managing-development-1987] T. E. Bell과 T. A. Thayer는 1976년 논문에서 Royce가 제시한 개발 활동의 차례를 "waterfall"이라 불렀다.[@bell-software-requirements-1976]
 
 ## 문서 주도 순차 모델
 

@@ -19,7 +19,8 @@
     <text x="105" y="57" font-size="12">SYS.1</text>
     <text x="105" y="126">시스템 요구사항</text>
     <text x="105" y="143" font-size="12">SYS.2</text>
-    <text x="355" y="134">시스템 아키텍처</text>
+    <text x="355" y="126">시스템 아키텍처</text>
+    <text x="355" y="143" font-size="12">SYS.3</text>
     <text x="135" y="226">소프트웨어 요구사항</text>
     <text x="135" y="243" font-size="12">SWE.1</text>
     <text x="325" y="226">하드웨어 요구사항</text>

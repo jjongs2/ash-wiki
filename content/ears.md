@@ -17,7 +17,7 @@ Mavin과 Wilkinson은 2010년 논문에서 EARS 템플릿을 서로 다른 요�
 
 ## 문장 구조
 
-EARS 요구사항의 절은 늘 같은 순서로 쓴다. 이 순서는 시간 논리를 따른다. 일반 꼴은 "While <선택적인 전제 조건>, when <선택적인 트리거>, the <시스템 이름> shall <시스템 응답>"이다. 요구사항 하나에는 전제 조건이 0개 이상, 트리거가 0개나 1개, 시스템 이름이 1개, 시스템 응답이 1개 이상 있다.[@mavin-ears-guide-2026]
+EARS 요구사항의 절은 늘 같은 순서로 쓴다. 이 순서는 시간 논리를 따른다. 일반 꼴은 "While <선택적인 전제 조건>, when <선택적인 트리거>, the <시스템 이름> shall <시스템 응답>"이다. 요구사항 하나에는 전제 조건이 0개 이상, 트리거가 0개나 1개, 시스템 이름이 1개, 시스템 응답이 1개 이상 있다. Unwanted behaviour 패턴에서는 일반 꼴에 없는 If 절이 트리거를 담는다.[@mavin-ears-guide-2026]
 
 ![[diagrams/ears-clause-order.svg]]
 
@@ -34,7 +34,7 @@ EARS의 패턴은 다음과 같다.[@mavin-ears-guide-2026]
 | Optional feature   | Where   | 지정한 기능을 갖춘 제품이나 시스템에 | Where <기능이 있음>, the <시스템 이름> shall <시스템 응답>                 |
 | Complex            | 둘 이상 | 위 조건이 겹칠 때                    | While <전제 조건>, when <트리거>, the <시스템 이름> shall <시스템 응답> 등 |
 
-Unwanted behaviour 패턴은 잘못된 입력 같은 원하지 않는 상황에 대한 시스템 응답을 정한다. 원하지 않는 동작을 다루는 Complex 요구사항에는 If–Then도 든다.[@mavin-ears-guide-2026]
+Unwanted behaviour 패턴은 잘못된 입력 같은 원하지 않는 상황에 대한 시스템 응답을 정한다. Complex 요구사항은 위 패턴들을 조합해 EARS 키워드를 둘 이상 담은 요구사항이고, 원하지 않는 동작을 다루는 Complex 요구사항에는 If–Then도 든다.[@mavin-ears-guide-2026]
 
 패턴마다의 요구사항 예는 다음과 같다.[@mavin-ears-guide-2026]
 

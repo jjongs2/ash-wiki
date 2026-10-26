@@ -41,7 +41,7 @@
   <g fill="var(--text, #727981)">
     <text x="270" y="135">합쳐 세움</text>
     <text x="270" y="210">평가에 씀</text>
-    <text x="270" y="290">평가가 냄</text>
+    <text x="270" y="290">프레임워크로 평정</text>
     <text x="270" y="370">끌어냄</text>
   </g>
 </svg>

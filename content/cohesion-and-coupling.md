@@ -6,7 +6,7 @@ tags:
 verified: 2026-10-02
 ---
 
-ISO/IEC/IEEE 24765 용어집은 **응집도**(cohesion)를 한 모듈 안의 요소들이 서로 얼마나 관련되어 있는지의 정도로, **결합도**(coupling)를 모듈 사이의 관계가 얼마나 강한지의 척도로 정의한다.[@ieee-cs-sevocab-2026] Stevens, Myers, Constantine은 1974년 IBM Systems Journal 논문 "Structured design"에서 결합도와 binding을 프로그램을 모듈로 나누는 기준으로 제시했다. 이 논문에서 모듈은 다른 부분이 이름으로 호출하는, 연속된 프로그램 문장의 묶음이다. 모듈 안 요소들의 관계를 늘리고 모듈 사이의 관계를 줄이면 결합이 약해지고, 결합이 약할수록 모듈 하나를 다른 모듈과 따로 이해하고 고치고 바로잡기 쉽다.[@stevens-structured-design-1974]
+ISO/IEC/IEEE 24765 용어집은 **응집도**(cohesion)를 한 모듈 안의 요소들이 서로 얼마나 관련되어 있는지의 정도로, **결합도**(coupling)를 모듈 사이의 관계가 얼마나 강한지의 척도로 정의한다.[@ieee-cs-sevocab-2026] Stevens, Myers, Constantine은 1974년 IBM Systems Journal 논문 "Structured design"에서 결합도와 [[cohesion-and-coupling#응집도|binding]]을 프로그램을 모듈로 나누는 기준으로 제시했다. 이 논문에서 모듈은 다른 부분이 이름으로 호출하는, 연속된 프로그램 문장의 묶음이다. 모듈 안 요소들의 관계를 늘리고 모듈 사이의 관계를 줄이면 결합이 약해지고, 결합이 약할수록 모듈 하나를 다른 모듈과 따로 이해하고 고치고 바로잡기 쉽다.[@stevens-structured-design-1974]
 
 ## 결합도
 

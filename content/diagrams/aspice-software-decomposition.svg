@@ -35,4 +35,10 @@
     <text x="340" y="107">컴포넌트</text>
     <text x="98" y="175">컴포넌트</text>
   </g>
+
+  <!-- 분해의 경계 -->
+  <g text-anchor="end" font-size="12" fill="var(--text, #727981)">
+    <text x="418" y="222">컴포넌트: 아키텍처가 나눔</text>
+    <text x="418" y="242">유닛: 상세 설계가 정함</text>
+  </g>
 </svg>

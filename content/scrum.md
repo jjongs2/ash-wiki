@@ -28,7 +28,7 @@ Scrum Team이 너무 커지면 같은 제품에 집중하는 여러 Scrum Team�
 가이드는 Scrum Team 안에 세 책임(accountability)을 둔다.[@scrumguides-scrum-guide-2020]
 
 - **Product Owner**: Scrum Team의 작업에서 나오는 제품의 가치를 최대로 할 책임을 진다. Product Backlog를 잘 관리할 책임도 지는데, 여기에는 Product Goal을 세워 알리는 일, 항목을 만들어 알리는 일, 항목의 순서를 정하는 일이 든다. 이 일을 남에게 맡겨도 책임은 Product Owner에게 남는다. Product Owner는 위원회가 아니라 한 사람이다.
-- **Scrum Master**: 가이드가 정의한 대로 Scrum을 자리 잡게 하고, Scrum Team의 효과성에 책임을 진다. Scrum Team과 더 넓은 조직을 섬기는 리더로, Scrum Team에게는 자기 관리와 다기능성을 코칭하고 진척을 막는 장애를 없애게 하며, Product Owner에게는 Product Goal을 정의하고 Product Backlog를 관리하는 기법을 찾도록 돕고, 조직에게는 Scrum 도입을 이끌고 이해관계자와 Scrum Team 사이의 장벽을 없앤다.
+- **Scrum Master**: 가이드가 정의한 대로 Scrum을 자리 잡게 하고, Scrum Team의 효과성에 책임을 진다. Scrum Team과 더 넓은 조직을 섬기는 리더로, Scrum Team을 위해서는 팀원에게 자기 관리와 다기능성을 코칭하고 팀의 진척을 막는 장애가 없어지게 하며, Product Owner에게는 Product Goal을 정의하고 Product Backlog를 관리하는 기법을 찾도록 돕고, 조직에게는 Scrum 도입을 이끌고 이해관계자와 Scrum Team 사이의 장벽을 없앤다.
 - **Developers**: 매 Sprint 쓸 수 있는 Increment를 만드는 데 몰두하는 사람들이다. Sprint Backlog를 세우고, Definition of Done을 지켜 품질을 넣고, Sprint Goal을 향해 날마다 계획을 조정할 책임을 진다.[@scrumguides-scrum-guide-2020]
 
 ## 이벤트

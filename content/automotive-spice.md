@@ -22,7 +22,7 @@ ASPICE 4.1은 프로세스 참조 모델과 프로세스 평가 모델을 한 �
 
 VDA QMC는 ASPICE에 [[cybersecurity|사이버보안]] 내용을 더하는 확장으로 [[automotive-spice-for-cybersecurity|Automotive SPICE for Cybersecurity]]를 따로 펴낸다. 협력업체 평가용 프로세스 평가 모델인 ASPICE Potential Analysis도 펴낸다. 출판물 목록에는 ASPICE Potential Analysis의 판이 1.0(2024년 8월)으로 나온다.[@vda-automotive-spice-publications-2026] 문서 표지에는 1판(2024년 6월)으로 나온다.[@vda-automotive-spice-potential-analysis-2024]
 
-ASPICE Potential Analysis는 ASPICE 4.0과 Automotive SPICE for Cybersecurity 1.0의 내용을 바탕으로 그 일부만 담아 따로 쓰는 모델이고, 두 모델의 확장이 아니다. ASPICE 4.0 평가보다 내용을 줄여 능력 수준 1에 초점을 맞추고, 살펴볼 표본 수가 적어 시간이 덜 드는데, 협력업체 선정 단계나 문제가 생긴 프로젝트에서는 그 시간이 모자라기 쉽다. 고객이 계약을 맡기기 전의 전제 조건으로 쓰거나, 공급자 자기 평가(SuSE, Supplier Self-Evaluation)가 없을 때 그 자리를 대신하도록 만든 것이다.[@vda-automotive-spice-potential-analysis-2024] VDA QMC는 SuSE를 협력업체 개발 프로세스의 능력을 짧은 꼴로 문서화하는 도구로 펴낸다.[@vda-automotive-spice-publications-2026]
+ASPICE Potential Analysis는 ASPICE 4.0과 Automotive SPICE for Cybersecurity 1.0의 내용을 바탕으로 그 일부만 담아 따로 쓰는 모델이고, 두 모델의 확장이 아니다. ASPICE 4.0 평가보다 내용을 줄여 능력 수준 1에 초점을 맞추고, 살펴볼 표본 수가 적어 시간이 덜 드는데, 협력업체 선정 단계나 문제가 생긴 프로젝트에서는 평가에 쓸 수 있는 시간이 모자라기 쉽다. 고객이 계약을 맡기기 전의 전제 조건으로 쓰거나, 공급자 자기 평가(SuSE, Supplier Self-Evaluation)가 없을 때 그 자리를 대신하도록 만든 것이다.[@vda-automotive-spice-potential-analysis-2024] VDA QMC는 SuSE를 협력업체 개발 프로세스의 능력을 짧은 꼴로 문서화하는 도구로 펴낸다.[@vda-automotive-spice-publications-2026]
 
 ASPICE Potential Analysis 1.0은 평정을 Class 3 평가로만 하도록 정한다. 프로세스 수행 속성 하나를 Fragmentary(빨강), Valid(노랑), Satisfactory(초록)의 세 등급으로 매기고, 능력 수준 1에는 Valid 이상이 필요하다.[@vda-automotive-spice-potential-analysis-2024]
 

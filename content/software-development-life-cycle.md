@@ -35,7 +35,7 @@ SWEBOK V4.0a는 알맞은 SDLC 모델을 고르고, 필요하면 프로젝트 �
 
 지속적 개발(continuous development)은 자동화 도구로 새 시스템을 스테이징이나 여러 테스트 환경에 자주 릴리스할 수 있게 하는 소프트웨어 공학 실천을 가리킨다.[@ieee-swebok-v4-0a-2026] 지속적 전달과 지속적 배포는 [[continuous-integration#지속적 전달·배포·테스트|지속적 통합]]에서 다룬다.
 
-ISO/IEC/IEEE 24765:2017은 **적응형 생명주기**(adaptive life cycle)를 변경 주도 방법이나 애자일 방법이라고도 부르는 프로젝트 생명주기로 정의한다. 이 생명주기는 변경을 쉽게 받아들이고 이해관계자가 계속 깊이 참여해야 하며, 반복적이고 점진적이되 반복이 대개 2주에서 4주로 매우 짧고 시간과 자원이 고정된다.[@iso-iec-ieee-24765-obp-2017]
+ISO/IEC/IEEE 24765:2017은 **적응형 생명주기**(adaptive life cycle)를 변경 주도 방법이나 애자일 방법이라고도 부르는 프로젝트 생명주기로 정의한다. 이 생명주기는 변경을 쉽게 받아들이고 이해관계자가 계속 깊이 참여해야 하며, 반복적이고 점진적이되, 반복은 대개 2주에서 4주로 매우 짧고 반복마다 시간과 자원이 고정된다.[@iso-iec-ieee-24765-obp-2017]
 
 ![[diagrams/predictive-adaptive-life-cycle-delivery.svg]]
 
@@ -51,8 +51,10 @@ prototyping은 대개 미완성이거나 기능을 최소한만 갖춘 판을 �
 
 ## 모델
 
-- [[waterfall-model|폭포수 모델]]: 개념, 요구, 설계, 구현, 테스트, 설치·점검 단계를 이 순서로 수행하고, 단계끼리 겹칠 수는 있지만 반복은 거의 없는 모델.[@iso-iec-ieee-24765-obp-2017]
+- [[waterfall-model|폭포수 모델]]: ISO/IEC/IEEE 24765:2017은 보통 개념, 요구, 설계, 구현, 테스트, 설치·점검 단계로 이루어지는 활동을 이 순서로 수행하고, 단계끼리 겹칠 수는 있지만 반복은 거의 없는 모델로 정의한다.[@iso-iec-ieee-24765-obp-2017]
 - [[spiral-model|나선형 모델]]: 주기를 거듭하며 소프트웨어를 만들고, 주기마다 대안의 리스크를 평가한 뒤 남은 리스크의 상대적 크기로 다음 단계를 정하는 리스크 주도 모델.[@boehm-spiral-model-1986]
 - [[v-model|V 모델]]: ISTQB 용어집은 주요 개발 단계를 [[acceptance-testing|인수 테스트]]부터 [[unit-testing#컴포넌트 테스트|컴포넌트 테스트]]까지의 [[software-testing#테스트 레벨|테스트 레벨]]과 하나씩 짝짓는 순차 생명주기 모델로 분류한다.[@istqb-glossary-v-model-2026]
 
-ISTQB CTFL v4.0.1 강의계획서는 SDLC 모델의 예로 순차 개발 모델(폭포수 모델, V 모델), 반복 개발 모델(나선형 모델, prototyping), 점진 개발 모델(Unified Process)을 든다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 **순차 개발 모델**(sequential development model)을 완전한 시스템을 서로 겹치지 않는 여러 단계로 차례로 개발하는 SDLC 모델로 정의한다.[@istqb-glossary-sequential-development-model-2026] **반복 개발 모델**(iterative development model)은 컴포넌트나 시스템을 되풀이되는 주기의 연속으로 개발하는 모델이고[@istqb-glossary-iterative-development-model-2026], **점진 개발 모델**(incremental development model)은 일련의 증분으로 개발하는 모델이다.[@istqb-glossary-incremental-development-model-2026]
+ISTQB CTFL v4.0.1 강의계획서는 SDLC 모델의 예로 순차 개발 모델(폭포수 모델, V 모델), 반복 개발 모델(나선형 모델, prototyping), 점진 개발 모델(Unified Process)을 든다.[@istqb-ctfl-syllabus-2024] Unified Process는 반복적이고 점진적인 소프트웨어 개발 프로세스 프레임워크다.[@ieee-swebok-v4-0a-2026] ISTQB 용어집은 **순차 개발 모델**(sequential development model)을 완전한 시스템을 서로 겹치지 않는 여러 단계로 차례로 개발하는 SDLC 모델로 정의한다.[@istqb-glossary-sequential-development-model-2026] **반복 개발 모델**(iterative development model)은 컴포넌트나 시스템을 되풀이되는 주기의 연속으로 개발하는 모델이고[@istqb-glossary-iterative-development-model-2026], **점진 개발 모델**(incremental development model)은 일련의 증분으로 개발하는 모델이다.[@istqb-glossary-incremental-development-model-2026]
+
+ISTQB CTFL v4.0.1 강의계획서와 ISTQB 용어집의 분류로는 폭포수 모델이 단계끼리 겹치지 않는 순차 개발 모델에 들어, 단계끼리 겹칠 수 있다고 정의한 ISO/IEC/IEEE 24765:2017과 다르다.[@iso-iec-ieee-24765-obp-2017][@istqb-ctfl-syllabus-2024][@istqb-glossary-sequential-development-model-2026]

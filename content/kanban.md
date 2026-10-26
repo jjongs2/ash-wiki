@@ -30,7 +30,7 @@ The Kanban Guide 2025.5는 Kanban을 함께 맞물려 돌아가는 세 실천, �
 
 가이드는 워크플로 안의 항목을 능동적으로 관리해야 한다고 정한다. 관리에는 WIP 통제, SLE를 기준 삼아 작업 항목이 쓸데없이 오래 머물지 않게 하는 일, 막힌 작업을 푸는 일이 든다. 구성원은 시작부터 끝까지 워크플로 안의 작업 항목 수를 명시적으로 통제해야 하고, 그 통제를 Kanban 보드에 어떻게 나타낼지는 구성원이 정한다.[@kanbanguides-kanban-guide-2025]
 
-The Kanban Guide 2025.5와 Kanban University의 Kanban Method 가이드는 모두 WIP 제한이 pull 시스템을 만든다고 보고, 용량이 있다는 신호가 있을 때만 새 작업 항목을 끌어와 시작하도록 둔다.[@kanbanguides-kanban-guide-2025][@kanban-university-kanban-guide-2026]
+The Kanban Guide 2025.5는 WIP 통제가, Kanban University의 Kanban Method 가이드는 WIP 제한이 pull 시스템을 만든다고 보고, 두 가이드 모두 용량이 있다는 신호가 있을 때만 새 작업 항목을 끌어와 시작하도록 둔다.[@kanbanguides-kanban-guide-2025][@kanban-university-kanban-guide-2026]
 
 ### 워크플로의 개선
 
@@ -72,7 +72,7 @@ Kanban University의 Kanban Method 가이드는 모든 Kanban 구현에 공통�
 
 ## 기원
 
-Kanban은 Lean에 바탕을 둔다.[@kanbanguides-kanban-guide-2025][@kanban-university-kanban-guide-2026]
+Kanban은 Lean의 원칙에 바탕을 둔다.[@kanbanguides-kanban-guide-2025][@kanban-university-kanban-guide-2026]
 
 The Kanban Guide 2025.5에 따르면 Kanban은 Toyota Production System과 그 앞선 것들, Taiichi Ohno와 W. Edwards Deming 같은 사람들의 작업으로 거슬러 올라간다. 지식 노동을 위한 실천 묶음은 주로 2006년 Corbis의 한 팀에서 나왔다.[@kanbanguides-kanban-guide-2025]
 
@@ -86,7 +86,7 @@ The Kanban Guide 2025.5는 앞 판에서 다음을 바꿨다.[@kanbanguides-kanb
 - 가치를 실현하는 대상을 고객에 한정하지 않고 이해관계자로 넓혔다.
 - Kanban의 정의를 지식 노동에 맞춰 더 단순하게 했다.
 - SLE를 Definition of Workflow 절로 옮겼다.
-- WIP를 어떻게 통제하는지를 덜 명시적으로, 곧 더 유연하게 했다.
+- WIP를 통제하는 방법을 덜 명시적으로, 곧 더 유연하게 했다.
 - Definition of Workflow를 여럿 두는 것, 변동, 흐름과 가치 실현의 연결을 더 분명히 했다.
 - 세 실천을 단순하게 하고, 항목을 고른다(select)는 말을 더 자주 쓴다.
 - Kanban Measures를 Flow Metrics로 이름을 바꿨다.
