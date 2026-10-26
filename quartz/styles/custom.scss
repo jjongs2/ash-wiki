@@ -525,15 +525,23 @@ $panel-tokens:
   }
 }
 
-// 태블릿에서는 면 안의 사이트 이름과 탐색기를 데스크톱과 같이 화면 끝에서 2rem 들인다.
+// 태블릿에서는 면 안의 사이트 이름과 탐색기를 데스크톱과 같이 화면 끝에서 2rem 들이고, 면의 폭도 데스크톱과 같게
+// 사이드바 칸을 화면 밖으로 늘린 1rem만큼 줄인다. 본문 아래에 놓이는 오른쪽 사이드바(그래프와 Backlinks)도 본문 칸과
+// 같이 면에서 띄운다. 업스트림이 태블릿에서 오른쪽 사이드바의 안쪽 여백을 0으로 두므로 같은 무게의 선택자로 덮는다.
+// 칸의 폭은 업스트림의 다른 꼴(full-width, minimal)이 제 그리드를 쓰므로 기본 꼴에만 건다.
 @media all and ($tablet) {
+  .page[data-frame="default"] > #quartz-body {
+    grid-template-columns: calc(#{$sidePanelWidth} - 1rem) auto;
+  }
+
   .sidebar.left {
     margin-left: -1rem;
     padding-left: 2rem;
   }
 
   .center,
-  footer {
+  footer,
+  .page > #quartz-body > .sidebar.right {
     box-sizing: border-box;
     padding-left: 1rem;
   }

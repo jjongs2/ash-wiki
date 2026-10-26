@@ -13,7 +13,10 @@ $breakpoints: (
 );
 
 $mobile: "(max-width: #{map.get($breakpoints, mobile)})";
-$tablet: "(min-width: #{map.get($breakpoints, mobile)}) and (max-width: #{map.get($breakpoints, desktop)})";
+// ash-wiki: 태블릿은 두 경계를 뺀다. 업스트림은 경계를 포함해 800px에서는 모바일과, 1200px에서는 데스크톱과 함께
+// 걸린다. 그 폭에서는 그리드와 사이드바가 서로 다른 꼴의 규칙을 받아 배치가 깨진다. 범위 문법으로 쓰면 모바일,
+// 태블릿, 데스크톱이 소수점 폭에서도 빈틈없이 나뉜다.
+$tablet: "(#{map.get($breakpoints, mobile)} < width < #{map.get($breakpoints, desktop)})";
 $desktop: "(min-width: #{map.get($breakpoints, desktop)})";
 
 $pageWidth: #{map.get($breakpoints, mobile)};
