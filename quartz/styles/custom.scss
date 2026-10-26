@@ -525,7 +525,9 @@ $panel-tokens:
   }
 }
 
-// 태블릿에서는 면 안의 사이트 이름과 탐색기를 데스크톱과 같이 화면 끝에서 2rem 들인다.
+// 태블릿에서는 면 안의 사이트 이름과 탐색기를 데스크톱과 같이 화면 끝에서 2rem 들인다. 본문 아래에 놓이는 오른쪽
+// 사이드바(그래프와 Backlinks)도 본문 칸과 같이 면에서 띄운다. 업스트림이 태블릿에서 그 칸의 안쪽 여백을 0으로 두므로
+// 같은 무게의 선택자로 덮는다.
 @media all and ($tablet) {
   .sidebar.left {
     margin-left: -1rem;
@@ -533,7 +535,8 @@ $panel-tokens:
   }
 
   .center,
-  footer {
+  footer,
+  .page > #quartz-body > .sidebar.right {
     box-sizing: border-box;
     padding-left: 1rem;
   }
