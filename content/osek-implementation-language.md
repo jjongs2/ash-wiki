@@ -70,7 +70,7 @@ OIL의 판은 OSEK OS와 OSEK COM 명세의 판에 대응한다.[@osek-oil-2-5-2
 | 2.4 | OSEK OS 2.2·2.2.x, OSEK COM 3.0·3.0.x | 호환되지 않음. `TASK`와 `ISR` 객체의 `ACCESSOR` 속성을 `MESSAGE` 속성으로 바꾸고 `MESSAGE` 객체를 완전히 다시 정의했다. |
 | 2.5 | 2.4와 같음                            | 호환되지 않음. `MESSAGE` 객체를 공급자 쪽 `MESSAGE`와 OEM 쪽 `NETWORKMESSAGE`로 나눴다.                                 |
 
-OIL은 객체와 표준 속성의 집합을 둘 정한다. 전체 집합은 OSEK OS와 기능을 다 갖춘 OSEK COM을 다루며, OSEK OS의 [[osek-os#Conformance class|conformance class]] BCC1, BCC2, ECC1, ECC2와 OSEK COM의 conformance class CCCA, CCCB, CCC0, CCC1을 지원한다. 부분집합은 내부 통신만 하는 OSEK OS를 다루며, OSEK OS의 네 등급과 OSEK COM의 CCCA, CCCB를 지원한다. OSEK 구현은 OIL에서 둘 가운데 하나를 지원해야 한다. 내부 통신용 부분집합과 표준 속성의 기본값은 OIL 2.4에서 들어왔다.[@osek-oil-2-5-2004]
+OIL은 객체와 표준 속성의 집합을 둘 정한다. 전체 집합은 OSEK OS와 기능을 다 갖춘 OSEK COM을 다루며, OSEK OS의 [[osek-os#Conformance class|conformance class]] BCC1, BCC2, ECC1, ECC2와 OSEK COM의 conformance class CCCA, CCCB, CCC0, CCC1을 지원한다. 부분집합은 내부 통신만 하는 OSEK OS를 다루며, OSEK OS의 네 conformance class와 OSEK COM의 CCCA, CCCB를 지원한다. OSEK 구현은 OIL에서 둘 가운데 하나를 지원해야 한다. 내부 통신용 부분집합과 표준 속성의 기본값은 OIL 2.4에서 들어왔다.[@osek-oil-2-5-2004]
 
 ## System Generator와 빌드
 

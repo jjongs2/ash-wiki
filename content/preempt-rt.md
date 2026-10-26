@@ -21,7 +21,7 @@ PREEMPT_RT 커널은 인터럽트 처리기를 강제로 스레드로 돌려 [[d
 
 ![[diagrams/preempt-rt-threaded-irq.svg]]
 
-PREEMPT_RT 커널에서 `IRQF_NO_THREAD`, `IRQF_PERCPU`, `IRQF_ONESHOT` 플래그 가운데 하나라도 붙여 요청한 인터럽트는 강제 스레드화에서 빠져, 스레드로 돌지 않는 처리기가 PREEMPT_RT가 아닌 커널에서처럼 하드 IRQ context에서 실행된다. `IRQF_ONESHOT`을 붙인 인터럽트는 `request_threaded_irq()`로 스레드 처리기를 따로 등록한 것이므로, 1차 처리기를 함께 등록했다면 하드 IRQ context에서 도는 것은 그것뿐이고, 스레드 처리기는 그대로 스레드에서 돈다. 고해상도 타이머인 hrtimer는 PREEMPT_RT 커널에서 기본적으로 하드 IRQ context가 아니라 softirq context에서, 대개는 가장 낮은 실시간 우선순위로 도는 `ktimersd` 스레드에서 실행된다. 하드 IRQ context에서 실행하려면 `HRTIMER_MODE_HARD`로 표시한다.[@linux-preempt-rt-differences-2026][@linux-driver-basics-2026]
+PREEMPT_RT 커널에서 `IRQF_NO_THREAD`, `IRQF_PERCPU`, `IRQF_ONESHOT` 플래그 가운데 하나라도 붙여 요청한 인터럽트는 강제 스레드화에서 빠져, 스레드로 돌지 않는 처리기가 PREEMPT_RT가 아닌 커널에서처럼 하드 IRQ context에서 실행된다. `IRQF_ONESHOT`을 붙인 인터럽트는 `request_threaded_irq`로 스레드 처리기를 따로 등록한 것이므로, 1차 처리기를 함께 등록했다면 하드 IRQ context에서 도는 것은 그것뿐이고, 스레드 처리기는 그대로 스레드에서 돈다. 고해상도 타이머인 hrtimer는 PREEMPT_RT 커널에서 기본적으로 하드 IRQ context가 아니라 softirq context에서, 대개는 가장 낮은 실시간 우선순위로 도는 `ktimersd` 스레드에서 실행된다. 하드 IRQ context에서 실행하려면 `HRTIMER_MODE_HARD`로 표시한다.[@linux-preempt-rt-differences-2026][@linux-driver-basics-2026]
 
 ## 우선순위 상속
 
