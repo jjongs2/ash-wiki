@@ -37,7 +37,7 @@ all states 커버리지는 대개 모든 전이를 실행하지 않고도 이룰
 
 상태 전이 테스트의 커버리지 기준에는 앞 절의 기준 말고도 다음 기준이 있다. ISTQB CTAL-TA v4.0 강의계획서에 따르면 N-switch 커버리지와 round-trip 커버리지는 결함 검출 효과가 높다는 것이 실증되었다.[@istqb-ctal-ta-syllabus-2025]
 
-- **N-switch 커버리지**: 연이은 유효한 전이 $N+1$개의 열을 N-switch라 부르고, 이를 커버리지 항목으로 삼는다. 0-switch 커버리지는 valid transitions 커버리지와 같다. 1-switch는 한 상태로 들어오는 전이와 나가는 전이의 쌍이다. N-switch의 끝에 이어지는 유효한 전이를 붙이면 $(N+1)$-switch가 된다. 실무에서는 0-switch와 1-switch 커버리지를 자주 쓴다. 이 강의계획서는 N-switch의 수가 $N$에 따라 지수로 늘 수 있으므로, 2-switch 이상의 커버리지 100%는 예상하지 못한 이벤트 순서로 [[fault-error-failure|failure]]가 날 리스크가 높을 때만 권한다.
+- **N-switch 커버리지**: 연이은 유효한 전이 $N+1$개의 열을 N-switch라 부르고, 이를 커버리지 항목으로 삼는다. 0-switch 커버리지는 valid transitions 커버리지와 같다. 1-switch는 한 상태로 들어오는 전이와 나가는 전이의 쌍이다. N-switch의 끝에 이어지는 유효한 전이를 붙이면 $(N+1)$-switch가 된다. 실무에서는 0-switch와 1-switch 커버리지를 자주 쓴다. 이 강의계획서는 N-switch의 개수가 $N$이 커짐에 따라 지수로 늘 수 있으므로, 2-switch 이상의 커버리지 100%는 예상하지 못한 이벤트 순서로 [[fault-error-failure|failure]]가 날 리스크가 높을 때만 권한다.
 - **round-trip 커버리지**: 상태 기반 모델에서 루프를 이루는 경로를 대상으로 한다. round trip은 시작 상태와 끝 상태가 같고, 루프 안의 다른 상태가 두 번 나오지 않는 루프다. 커버리지 항목은 round trip이다.[@istqb-ctal-ta-syllabus-2025]
 
 ![[diagrams/state-transition-n-switch-round-trip.svg]]

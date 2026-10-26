@@ -11,7 +11,7 @@
   <text x="98" y="82" text-anchor="middle" fill="var(--on-fill, #f8fafd)">결함 수정</text>
   <text x="362" y="82" text-anchor="middle" fill="var(--text, #727981)">바꾸지 않은 부분</text>
 
-  <!-- 회귀 테스트: 수정까지 포함한 전체 -->
-  <path d="M20 106 V114 H540 V106" stroke="var(--ink, #727981)" stroke-width="1" />
-  <text x="20" y="134" fill="var(--text, #727981)">회귀 테스트: 변경이 다른 부분에 뜻하지 않은 영향을 주지 않았는지</text>
+  <!-- 회귀 테스트: 바꾸지 않은 부분 -->
+  <path d="M184 106 V114 H540 V106" stroke="var(--ink, #727981)" stroke-width="1" />
+  <text x="184" y="134" fill="var(--text, #727981)">회귀 테스트: 변경이 바꾸지 않은 부분에 뜻하지 않은 영향을 주지 않았는지</text>
 </svg>

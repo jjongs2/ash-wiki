@@ -14,8 +14,10 @@
   <text x="32" y="60" fill="var(--text, #727981)">현재 함수</text>
   <rect x="36" y="68" width="140" height="28" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="106" y="86" text-anchor="middle" fill="var(--text, #727981)">ASSERT_* 실패</text>
+  <rect x="256" y="68" width="140" height="28" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="326" y="86" text-anchor="middle" fill="var(--text, #727981)">남은 코드는 건너뜀</text>
   <line x1="106" y1="96" x2="106" y2="130" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="116" y="126" fill="var(--text, #727981)">fatal failure를 내고 곧바로 빠져나감</text>
+  <text x="116" y="126" fill="var(--text, #727981)">fatal failure를 내고 이 함수에서 곧바로 돌아감</text>
 
   <!-- non-fatal assertion -->
   <text x="20" y="162" font-size="14" fill="var(--text, #727981)">non-fatal assertion(EXPECT_*)</text>

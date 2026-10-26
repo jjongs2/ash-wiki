@@ -30,6 +30,10 @@
   <line x1="130" y1="88" x2="130" y2="116" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
   <text x="138" y="107" font-size="12" fill="var(--text, #727981)">서비스를 부름</text>
 
+  <!-- 상속하거나 facade를 쓰는 관계 -->
+  <line x1="130" y1="166" x2="130" y2="194" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="138" y="185" font-size="12" fill="var(--text, #727981)">상속하거나 facade를 씀</text>
+
   <!-- 바로 부르지 않는 관계 -->
   <path d="M240 64 H272 V220 H242" stroke="var(--red, #bb464d)" stroke-width="1.5" marker-end="url(#arrow-red)" />
   <g stroke="var(--red, #bb464d)" stroke-width="1.5">

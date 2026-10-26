@@ -39,7 +39,7 @@ ISO/IEC/IEEE 24765 용어집은 **조건**(condition)을 Boolean 연산자를 �
 
 구문 커버리지 100%를 이뤄도, 분모가 0일 때만 실패하는 나눗셈처럼 데이터에 따라 드러나는 결함은 찾지 못할 수 있고, 결정 논리의 분기를 모두 실행하지 않았을 수도 있다. 분기 커버리지 100%를 이뤄도 특정 경로를 실행해야 드러나는 결함은 찾지 못할 수 있다.[@istqb-ctfl-syllabus-2024]
 
-llvm-cov의 커버리지 요약에서 **함수 커버리지**(function coverage)는 적어도 한 번 실행된 함수의 비율이다.[@llvm-source-based-code-coverage-2026]
+LLVM Project의 커버리지 도구 llvm-cov가 내는 커버리지 요약에서 **함수 커버리지**(function coverage)는 적어도 한 번 실행된 함수의 비율이다.[@llvm-source-based-code-coverage-2026]
 
 ## 포함 관계
 
@@ -61,9 +61,9 @@ ISTQB CTFL v4.0.1 강의계획서는 **분기**(branch)를 제어 흐름 그래�
 
 llvm-cov의 커버리지 요약에서 branch coverage는 참 분기와 거짓 분기 가운데 적어도 한 번 지난 것의 백분율이고, 각 분기는 소스 코드의 개별 조건에 묶인다. 예를 들어 `x = (y == 2) || (z < 10)`은 조건 둘로 이루어져 분기 결과가 넷이다.[@llvm-source-based-code-coverage-2026]
 
-Simulink Coverage의 코드 커버리지에서 조건은 관계 연산자, 등가 연산자, 논리 부정 연산자를 담되 논리 연산자 `&&`, `||`를 담지 않는 C/C++ Boolean 식이고, `if`, `while`, `do-while` 같은 분기 구문 안의 조건은 조건 커버리지가 아니라 결정 커버리지로 보고된다. 결정은 조건과 하나 이상의 `&&`나 `||`로 이루어진 Boolean 식이며, 분기 구문 안의 조건도 결정이다.[@mathworks-slcoverage-code-coverage-2026]
+MathWorks의 커버리지 분석 소프트웨어인 Simulink Coverage의 코드 커버리지에서 조건은 관계 연산자, 등가 연산자, 논리 부정 연산자를 담되 논리 연산자 `&&`, `||`를 담지 않는 C/C++ Boolean 식이고, `if`, `while`, `do-while` 같은 분기 구문 안의 조건은 조건 커버리지가 아니라 결정 커버리지로 보고된다. 결정은 조건과 하나 이상의 `&&`나 `||`로 이루어진 Boolean 식이며, 분기 구문 안의 조건도 결정이다.[@mathworks-slcoverage-code-coverage-2026]
 
-같은 제품의 모델 커버리지에서는 MCDC가 결정 커버리지나 조건 커버리지를 다 이루지 않을 수 있어서, 결정 커버리지 100% 없이 MCDC 100%를 이룰 수 있다.[@mathworks-slcoverage-model-coverage-2026]
+같은 제품의 모델 커버리지에서는 MCDC(modified condition/decision coverage)가 구조적 커버리지 기준 표의 MC/DC와 달리 결정 커버리지나 조건 커버리지를 다 이루지 않을 수 있어서, 결정 커버리지가 100%가 아니어도 MCDC는 100%가 될 수 있다.[@mathworks-slcoverage-model-coverage-2026]
 
 ## ISO 26262-6
 

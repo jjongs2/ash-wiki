@@ -15,14 +15,14 @@ Kent Beck은 Smalltalk 테스트 프레임워크를 만들었고, 1994년 10월 
 
 JUnit, GoogleTest, Python unittest 같은 프레임워크는 다음 구성 요소를 둔다.
 
-| 구성 요소       | 하는 일                                                                                                                                                                                           |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| test case       | 특정 입력에 대한 응답 하나를 검사하는 개별 테스트 단위[@psf-python-unittest-2026][@google-googletest-primer-2026]                                                                                 |
-| test suite      | 함께 실행할 테스트를 묶는 단위[@psf-python-unittest-2026][@google-googletest-primer-2026]                                                                                                         |
-| fixture         | 테스트를 실행하려고 준비해 두는 환경으로, 여러 테스트가 같은 구성을 함께 쓴다. 테스트마다 새로 만들어 테스트끼리 상태를 나누지 않는다.[@psf-python-unittest-2026][@google-googletest-primer-2026] |
-| setup, teardown | 테스트마다 앞에서 fixture를 준비하고 뒤에서 정리하는 루틴[@psf-python-unittest-2026][@google-googletest-primer-2026]                                                                              |
-| assertion       | 결과가 기대와 맞는지 검사하는 문. 실패하면 테스트가 실패한다.[@google-googletest-primer-2026][@junit-6-user-guide-2026]                                                                           |
-| test runner     | 테스트 실행을 맡고 결과를 사용자에게 보여 주는 구성 요소[@psf-python-unittest-2026][@junit-4-test-runners-2020]                                                                                   |
+| 구성 요소       | 하는 일                                                                                                                                                                                                                                        |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| test case       | 특정 입력에 대한 응답 하나를 검사하는 개별 테스트 단위[@psf-python-unittest-2026][@google-googletest-primer-2026]                                                                                                                              |
+| test suite      | 함께 실행할 테스트를 묶는 단위[@psf-python-unittest-2026][@google-googletest-primer-2026]                                                                                                                                                      |
+| fixture         | 테스트를 실행하려고 준비해 두는 환경으로, 여러 테스트가 같은 구성을 다시 쓴다. 다만 그 구성대로 테스트마다 새로 만들므로, 한 테스트가 fixture를 바꿔도 다른 테스트에는 영향이 없다.[@psf-python-unittest-2026][@google-googletest-primer-2026] |
+| setup, teardown | 테스트마다 앞에서 fixture를 준비하고 뒤에서 정리하는 루틴[@psf-python-unittest-2026][@google-googletest-primer-2026]                                                                                                                           |
+| assertion       | 결과가 기대와 맞는지 검사하는 문. 실패하면 테스트가 실패한다.[@google-googletest-primer-2026][@junit-6-user-guide-2026]                                                                                                                        |
+| test runner     | 테스트 실행을 맡고 결과를 사용자에게 보여 주는 구성 요소[@psf-python-unittest-2026][@junit-4-test-runners-2020]                                                                                                                                |
 
 ![[diagrams/xunit-test-runner-setup-teardown.svg]]
 
@@ -36,8 +36,8 @@ JUnit, GoogleTest, Python unittest 같은 프레임워크는 다음 구성 요�
 
 GoogleTest의 assertion은 같은 것을 검사하되 실패했을 때 현재 함수에 주는 영향이 다른 짝으로 나온다.[@google-googletest-primer-2026]
 
-- fatal assertion(`ASSERT_*`): 실패하면 fatal failure를 내고 현재 함수에서 곧바로 빠져나간다.
-- non-fatal assertion(`EXPECT_*`): 실패하면 non-fatal failure를 기록하고 현재 함수를 계속 실행하므로, 한 테스트에서 실패를 여럿 보고할 수 있다.[@google-googletest-primer-2026]
+- fatal assertion(`ASSERT_*`): 실패하면 fatal failure를 내고, 그 assertion이 든 함수에서 곧바로 돌아온다. 함수의 남은 코드는 건너뛰므로, 뒤에 있는 정리 코드가 실행되지 않을 수 있다.
+- non-fatal assertion(`EXPECT_*`): 실패하면 non-fatal failure를 기록하고 그 함수를 계속 실행하므로, 한 테스트에서 실패를 여럿 보고할 수 있다.[@google-googletest-primer-2026]
 
 ![[diagrams/googletest-fatal-nonfatal-assertion.svg]]
 

@@ -8,7 +8,7 @@ aliases:
 verified: 2026-10-03
 ---
 
-MiL(model-in-the-loop), SiL(software-in-the-loop), HiL(hardware-in-the-loop) 같은 in-the-loop 테스트 환경을 묶어 **X-in-the-loop**(XiL)이라 부르고, X는 구체적인 테스트 환경의 이름이 들어갈 자리다. in-the-loop은 closed loop의 다른 이름이다. 환경 모델이 테스트 대상의 출력을 받아 바로 또는 다른 요소를 거쳐 입력으로 되돌리므로, 테스트 환경 안에 제어 루프가 생긴다.[@istqb-ct-aut-syllabus-2025]
+MiL(model-in-the-loop), SiL(software-in-the-loop), HiL(hardware-in-the-loop) 같은 in-the-loop 테스트 환경을 묶어 **X-in-the-loop**(XiL)이라 부르고, X는 구체적인 테스트 환경의 이름이 들어갈 자리다. in-the-loop은 테스트 대상을 closed loop로 자극하는(입력을 주는) 방식을 달리 부르는 이름이다. 환경 모델이 테스트 대상의 출력을 받아 바로 또는 다른 요소를 거쳐 입력으로 되돌리므로, 테스트 환경 안에 제어 루프가 생긴다.[@istqb-ct-aut-syllabus-2025]
 
 ![[diagrams/xil-closed-loop.svg]]
 
@@ -16,7 +16,7 @@ ISTQB 용어집은 **테스트 환경**(test environment)을 테스트를 수행
 
 ## Closed loop와 open loop
 
-closed loop는 주로 제어기를 시험하는 데 쓰이며, 엔진과 변속 제어, ABS(anti-lock braking system)나 VDC(vehicle dynamics control) 같은 운전자 보조 시스템처럼 복잡한 기능을 시험할 수 있다. open loop에서는 시스템의 출력이 입력과 관계가 없어 되먹임 루프가 없고, 테스터가 테스트 절차에서 테스트 대상의 입력을 바로 정한다. ISTQB CT-AuT v2.1.1 강의계획서에 따르면 테스트 대상이 반응형으로 동작하거나 상태 기계를 따르면 open loop가 낫고, 실내와 섀시 전장의 조명, 스위치가 그 예다.[@istqb-ct-aut-syllabus-2025]
+제어 시스템은 closed loop와 open loop로 나뉜다. 둘은 제어 장치가 환경에 반응하는 방식이 달라서, 가상 테스트 환경에 필요한 시뮬레이션도 다르다. 테스트에서 closed loop는 주로 제어기를 시험하는 데 쓰이며, 엔진과 변속 제어, ABS(anti-lock braking system)나 VDC(vehicle dynamics control) 같은 운전자 보조 시스템처럼 복잡한 기능을 시험할 수 있다. open loop에서는 시스템의 출력이 입력과 관계가 없어 되먹임 루프가 없고, 테스터가 테스트 절차에서 테스트 대상의 입력을 바로 정한다. ISTQB CT-AuT v2.1.1 강의계획서에 따르면 테스트 대상이 반응형으로 동작하거나 상태 기계를 따르면 open loop가 낫고, 실내와 섀시 전장의 조명, 스위치가 그 예다.[@istqb-ct-aut-syllabus-2025]
 
 ![[diagrams/xil-open-loop.svg]]
 
@@ -34,11 +34,11 @@ ISTQB 용어집은 **MiL**을 시스템의 시뮬레이션 모델을 시험하�
 
 ISTQB 용어집은 **SiL**을 실제 소프트웨어를 시험하는 가상 테스트 환경으로 정의한다. SiL은 안전 무결성 등급인 [[safety-integrity-level|SIL]]과 다른 용어다.[@istqb-glossary-software-in-the-loop-2026][@istqb-glossary-safety-integrity-level-2026] SiL에서는 소스 코드를 특정 컴퓨터 아키텍처용으로 컴파일하고, 래퍼(wrapper)로 신호에 접근하게 해 환경 모델에 잇는다. 실행에는 특수 하드웨어가 필요 없다. SiL의 테스트도 MiL처럼 시뮬레이션 시간으로 돌아, 계산 방식과 환경 모델의 복잡도에 따라 실시간보다 짧거나 길 수 있고 언제든 멈출 수 있다. SiL에서는 기능 적합성 테스트, 인터페이스 테스트, [[regression-testing|회귀 테스트]]가 흔하고, 대상 하드웨어의 영향을 주로 받는 성능 효율 테스트와 신뢰성 테스트는 드물다.[@istqb-ct-aut-syllabus-2025]
 
-Embedded Coder의 software-in-the-loop 시뮬레이션은 모델에서 생성한 코드나 기존 코드를 개발용 컴퓨터용으로 컴파일해 그 컴퓨터에서 실행한다.[@mathworks-ecoder-sil-pil-2026]
+MathWorks의 Embedded Coder로 돌리는 software-in-the-loop 시뮬레이션은 모델에서 생성한 코드나 기존 코드를 개발용 컴퓨터용으로 컴파일해 그 컴퓨터에서 실행한다.[@mathworks-ecoder-sil-pil-2026]
 
 ### PiL
 
-Embedded Coder의 processor-in-the-loop 시뮬레이션은 개발용 컴퓨터에서 코드를 교차 컴파일하고, 오브젝트 코드를 대상 프로세서나 그에 맞먹는 명령어 집합 시뮬레이터에 내려받아 실행한다. 모델에서 코드로 만들지 않은 부분은 Simulink에 남아 테스트 벡터를 주고, 알고리즘이 놓인 환경을 나타낼 수 있다.[@mathworks-ecoder-sil-pil-2026]
+Embedded Coder의 processor-in-the-loop 시뮬레이션은 개발용 컴퓨터에서 코드를 교차 컴파일하고, 오브젝트 코드를 대상 프로세서나 그에 맞먹는 명령어 집합 시뮬레이터에 내려받아 실행한다. 모델에서 코드로 만들지 않은 부분은 같은 회사의 모델 시뮬레이션 환경인 Simulink에 남아 테스트 벡터를 주고, 알고리즘이 놓인 환경을 나타낼 수 있다.[@mathworks-ecoder-sil-pil-2026]
 
 ### HiL
 
@@ -85,7 +85,7 @@ ISTQB CT-AuT v2.1.1 강의계획서는 테스트 목적마다 알맞은 환경�
 | 인터페이스에서의 상호작용 시험 | o   | +   | +   |
 | 사용성 입증                    | -   | o   | +   |
 
-MiL은 일반적인 설계 결함을, SiL은 주로 기술적인 소프트웨어 결함을, HiL은 기술적인 하드웨어·소프트웨어 결함을 찾는 데 쓴다. 테스트 관리자는 이 두 비교의 기준을 함께 보고 알맞은 테스트 환경을 고를 수 있다.[@istqb-ct-aut-syllabus-2025]
+MiL은 일반적인 설계 결함을, SiL은 주로 기술적인 소프트웨어 결함을, HiL은 기술적인 하드웨어·소프트웨어 결함을 찾는 데 쓴다. 테스트 관리자는 앞의 비교 기준과 테스트 목적별 표를 함께 보고 알맞은 테스트 환경을 고를 수 있다.[@istqb-ct-aut-syllabus-2025]
 
 ## ISO 26262-6
 

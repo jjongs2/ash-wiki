@@ -32,10 +32,10 @@
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="290" y="71">상위 키워드</text>
-    <text x="158" y="223">단순 키워드</text>
-    <text x="246" y="223">단순 키워드</text>
-    <text x="334" y="223">단순 키워드</text>
-    <text x="422" y="223">단순 키워드</text>
+    <text x="158" y="223">하위 키워드</text>
+    <text x="246" y="223">하위 키워드</text>
+    <text x="334" y="223">하위 키워드</text>
+    <text x="422" y="223">하위 키워드</text>
   </g>
 
   <!-- decomposer가 상위 키워드를 하위 키워드의 순서로 풀어낸다 -->

@@ -5,13 +5,13 @@ tags:
 verified: 2026-10-13
 ---
 
-**탐색적 테스트**(exploratory testing)는 테스터가 자기 지식, 테스트 항목을 앞서 탐색한 것, 앞선 테스트의 결과를 바탕으로 테스트를 그때그때 설계하고 실행하는 방식이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-exploratory-testing-2026] [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022는 그 바탕에 흔한 소프트웨어 동작과 [[fault-error-failure|failure]] 유형에 대한 경험칙(heuristic)도 넣어 정의한다.[@iso-iec-ieee-29119-1-obp-2022]
+**탐색적 테스트**(exploratory testing)는 테스터가 자기 지식, 테스트 항목(테스트할 작업 산출물)을 앞서 탐색한 것, 앞선 테스트의 결과를 바탕으로 테스트를 그때그때 설계하고 실행하는 방식이다.[@iso-iec-ieee-29119-1-obp-2022][@istqb-glossary-exploratory-testing-2026] [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022는 그 바탕에 흔한 소프트웨어 동작과 [[fault-error-failure|failure]] 유형에 대한 경험칙(heuristic)도 넣어 정의한다.[@iso-iec-ieee-29119-1-obp-2022]
 
 ## 분류
 
 ISTQB CTFL v4.0.1 강의계획서는 탐색적 테스트를 [[error-guessing|오류 추정]], [[checklist-based-testing|체크리스트 기반 테스트]]와 함께 [[software-testing#테스트 기법의 분류|경험 기반 기법]]으로 다룬다.[@istqb-ctfl-syllabus-2024] ISTQB 용어집은 탐색적 테스트를 테스트 접근법(test approach)으로 정의한다.[@istqb-glossary-exploratory-testing-2026]
 
-ISO/IEC/IEEE 29119-1:2022는 탐색적 테스트를 경험 기반 테스트(experience-based testing)의 하나로 정의하고, 경험 기반 테스트를 테스터의 경험으로 [[test-case|테스트 케이스]]를 만드는 테스트 케이스 설계 기법의 갈래로 정의한다. 테스트 설계 기법 정의의 주석은 이 시리즈의 정의로는 테스트 설계 기법이 아닌 [[model-based-testing#테스트 설계 기법과의 관계|테스트 실천]](test practice)의 예로 탐색적 테스트를 든다.[@iso-iec-ieee-29119-1-obp-2022]
+ISO/IEC/IEEE 29119-1:2022는 탐색적 테스트를 경험 기반 테스트(experience-based testing)의 하나로 정의하고, 경험 기반 테스트를 테스터의 경험으로 [[test-case|테스트 케이스]]를 만드는 테스트 케이스 설계 기법의 갈래로 정의한다. 한편 이 표준은 테스트 설계 기법 정의의 둘째 주석에서, 탐색적 테스트 같은 [[model-based-testing#테스트 설계 기법과의 관계|테스트 실천]](test practice)은 ISO/IEC/IEEE 29119 시리즈의 정의로는 테스트 설계 기법이 아니라고 제시한다.[@iso-iec-ieee-29119-1-obp-2022]
 
 ## 쓰임
 
