@@ -59,7 +59,7 @@ ASPICE 4.1이 ISO/IEC 33020:2019에서 가져온 [[process-assessment#평정 방
 
 GP 2.1.1의 주석은 프로세스 수행 목표가 프로젝트 목표와 같지 않고, 능력 수준 1의 프로세스 성과를 되풀이한 것도 아니라는 점을 제시한다. 그 예로 SUP.10에서 들어오는 변경 요청을 모두 정한 날수 안에 분석한다는 목표를 든다. 다른 주석은 프로세스 수행 전략을 프로세스마다 따로 문서화하지 않아도 되고, 여러 프로세스에 걸치는 요소는 공통 프로젝트 핸드북이나 공동 테스트 전략처럼 한 문서에 함께 담아도 된다는 점을 제시한다.[@vda-automotive-spice-pam-4-1-2026]
 
-ASPICE 3.1은 SYS.4, SYS.5, SWE.4, SWE.5, SWE.6, SUP.1, SUP.8, SUP.9, SUP.10의 BP1을 전략 수립으로 두고, 그 전략을 프로세스별 계획에 대응시켰다. ASPICE 4.1은 이 BP를 두지 않고 GP 2.1.1에서 프로세스 수행 전략을 정하게 한다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
+ASPICE 3.1은 SYS.4, SYS.5, SWE.4, SWE.5, SWE.6, SUP.1, SUP.8, SUP.9, SUP.10의 BP1을 전략 수립으로 두고, 그 전략을 프로세스별 계획에 대응시켰다. SYS.4와 SWE.5에서는 BP1이 통합 전략을 세우고, 회귀 테스트 전략을 포함한 통합 테스트 전략은 BP2가 세웠다. ASPICE 4.1은 이 BP들을 두지 않고 GP 2.1.1에서 프로세스 수행 전략을 정하게 한다.[@vda-automotive-spice-pam-4-1-2026][@vda-automotive-spice-pam-3-1-2017]
 
 ## BP에 되풀이되는 개념
 

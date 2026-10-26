@@ -5,9 +5,9 @@ tags:
 verified: 2026-10-03
 ---
 
-**정적 분석**(static analysis)은 구성 요소나 시스템을 그 형태, 구조, 내용, 문서를 근거로 평가하는 일이다.[@istqb-glossary-static-analysis-2026][@ieee-cs-sevocab-2026] ISTQB 용어집은 정적 분석을, 구성 요소나 시스템을 실행하지 않고 이런 것을 근거로 평가하는 자동화된 프로세스로 정의한다.[@istqb-glossary-static-analysis-2026] ISO/IEC/IEEE 24765 용어집은 정적 분석을 같은 근거로 하는 평가 프로세스로 정의하고, 실행 중의 동작을 근거로 한 평가를 동적 분석(dynamic analysis)으로 정의한다.[@ieee-cs-sevocab-2026]
+**정적 분석**(static analysis)은 구성 요소나 시스템을 그 형태, 구조, 내용, 문서를 근거로 평가하는 일이다.[@istqb-glossary-static-analysis-2026][@ieee-cs-sevocab-2026] ISTQB 용어집은 정적 분석을, 구성 요소나 시스템을 실행하지 않고 이런 것을 근거로 평가하는 자동화된 프로세스로 정의한다.[@istqb-glossary-static-analysis-2026] ISO/IEC/IEEE 24765 용어집은 정적 분석을 같은 근거로 하는 평가 프로세스로 정의하고, 실행 중의 동작을 근거로 한 평가를 동적 분석(dynamic analysis)으로 정의한다. 이 용어집은 사람이 하는 [[software-inspection|인스펙션]], [[software-inspection#워크스루와의 차이|워크스루]], [[software-review#여러 이름|데스크 체크]]도 정적 분석 기법으로 정의한다.[@ieee-cs-sevocab-2026]
 
-정적 분석에는 흔히 도구를 쓴다.[@istqb-ctfl-syllabus-2024] 사람이 하는 정적 기법인 리뷰는 [[software-review|소프트웨어 리뷰]]에서, 정적 기법과 동적 기법의 구분은 [[verification-and-validation#정적 기법과 동적 기법|검증과 확인]]에서 다룬다.
+ISTQB CTFL v4.0.1 강의계획서는 [[software-testing#정적 테스트와 동적 테스트|정적 테스트]]에 사람이 살피는 [[software-review|리뷰]]와, 흔히 도구를 쓰는 정적 분석을 따로 넣는다.[@istqb-ctfl-syllabus-2024] 정적 기법과 동적 기법의 구분은 [[verification-and-validation#정적 기법과 동적 기법|검증과 확인]]에서 다룬다.
 
 ## 찾는 것
 
@@ -16,7 +16,7 @@ verified: 2026-10-03
 - [[misra-c|MISRA C]] 같은 [[coding-standard|코딩 표준]]의 규칙 위반[@absint-astree-2026][@cppcheck-manual-2026]
 - 0으로 나누기, 배열 경계 넘기, 널 포인터 역참조, 초기화하지 않은 변수 읽기 같은 [[coding-standard#C 언어에서 피하려는 동작|미정의 동작]][@absint-astree-2026][@cppcheck-home-2026]
 
-제품마다 더 찾는 것도 있다. Astrée는 dead code를 찾고, 그 RuleChecker는 주석 밀도, [[cyclomatic-complexity|순환 복잡도]] 같은 코드 [[software-metric|메트릭]]도 검사한다.[@absint-astree-2026] Cppcheck는 값을 대입하고 쓰지 않는 변수를 알린다.[@cppcheck-manual-2026]
+제품마다 더 찾는 것도 있다. AbsInt의 C·C++ 정적 분석 도구 Astrée는 dead code를 찾고, Astrée에 통합된 코딩 표준 검사기 RuleChecker는 주석 밀도, [[cyclomatic-complexity|순환 복잡도]] 같은 코드 [[software-metric|메트릭]]도 검사한다.[@absint-astree-2026] Cppcheck는 값을 대입하고 쓰지 않는 변수를 알린다.[@cppcheck-manual-2026]
 
 ## False positive와 false negative
 
@@ -29,9 +29,9 @@ ISO/IEC/IEEE 24765 용어집은 검증 도구의 false positive가 분석 규칙
 
 ## 건전성과 abstract interpretation
 
-프로그램의 구체적 의미가 보일 수 있는 모든 경우를 추상 의미가 덮으면, 그 추상화를 건전하다(sound)고 한다. 건전한 추상화에서는 알리지 않은 오류가 일어날 수 없다.[@cousot-abstract-interpretation-nutshell-2026]
+프로그램의 구체적 의미가 보일 수 있는 모든 경우를 추상 의미가 덮으면, 그 추상화를 건전하다(sound)고 한다. 건전한 추상화는 일어날 수 있는 오류를 빠짐없이 알리므로, 알리지 않은 오류는 실제 실행에서 일어날 수 없다.[@cousot-abstract-interpretation-nutshell-2026]
 
-Rice는 1953년 논문에서, 재귀적으로 열거 가능한 집합들의 클래스 가운데 공집합도 아니고 모든 집합을 담지도 않는 것은 어느 것도 결정 가능하지 않음을 보였다.[@rice-classes-recursively-enumerable-1953] 건전한 분석은 가능한 실행의 상위 집합을 다루므로(over-approximation) 실제로 일어나지 않는 실행도 고려하게 되고, 그 가운데 오류 상태에 닿는 것이 false alarm이 된다. 분석하려는 질문이 결정 불가능하므로, 자동화된 건전한 분석에서 false alarm은 피할 수 없다. 더 정밀한 추상 의미를 고르면 false alarm을 줄일 수 있지만 계산 비용이 커진다.[@cousot-abstract-interpretation-nutshell-2026]
+Rice는 1953년 논문에서, 재귀적으로 열거 가능한 집합들의 클래스 가운데 공집합도 아니고 모든 집합을 담지도 않는 것은 어느 것도 결정 가능하지 않음을 보였다.[@rice-classes-recursively-enumerable-1953] 건전한 분석은 가능한 실행의 상위 집합을 다루므로(over-approximation) 실제로 일어나지 않는 실행도 고려하게 되고, 그 가운데 오류 상태에 닿는 것이 false alarm이 된다. 분석하려는 질문이 결정 불가능하므로, 자동화된 건전한 분석은 어느 것이든 실제로는 오류가 없는 프로그램 가운데 무수히 많은 것에 false alarm을 낸다. 그래서 false alarm을 모든 프로그램에서 없앨 수는 없다. 더 정밀한 추상 의미를 고르면 false alarm을 줄일 수 있지만 계산 비용이 커진다.[@cousot-abstract-interpretation-nutshell-2026]
 
 ![[diagrams/sound-analysis-false-alarm.svg]]
 

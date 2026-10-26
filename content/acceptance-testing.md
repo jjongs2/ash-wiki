@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-03
 ---
 
-**인수 테스트**(acceptance testing)는 시스템을 받아들일지 정하는 데 초점을 둔 [[software-testing#테스트 레벨|테스트 레벨]]이다.[@iso-iec-ieee-24765-obp-2017][@istqb-glossary-acceptance-testing-2026] 인수 테스트는 [[verification-and-validation|확인]](validation)을 하고 배포 준비가 되었음을, 곧 시스템이 사용자의 업무상 필요를 채운다는 것을 보이는 데 초점을 둔다. ISTQB CTFL v4.0.1 강의계획서는 인수 테스트를 되도록 의도한 사용자가 수행하기를 권한다.[@istqb-ctfl-syllabus-2024]
+**인수 테스트**(acceptance testing)는 시스템을 받아들일지 정하는 데 초점을 둔 [[software-testing#테스트 레벨|테스트 레벨]]이다.[@iso-iec-ieee-24765-obp-2017][@istqb-glossary-acceptance-testing-2026] 인수 테스트는 [[verification-and-validation|확인]](validation)과, 배포 준비가 되었음을 보이는 일에 초점을 둔다. 배포 준비가 되었다는 것은 시스템이 사용자의 업무상 필요를 채운다는 뜻이다. ISTQB CTFL v4.0.1 강의계획서는 인수 테스트를 되도록 의도한 사용자가 수행하기를 권한다.[@istqb-ctfl-syllabus-2024]
 
 ## 인수 테스트의 형태
 

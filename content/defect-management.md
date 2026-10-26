@@ -25,15 +25,15 @@ ISTQB 용어집은 결함이 일어났음과 그 성질, 상태를 적은 문서
 - 상태
 - 참조(이 결함을 드러낸 테스트 케이스 등)[@istqb-ctfl-syllabus-2024]
 
-ISO/IEC/IEEE 24765:2017은 이슈 추적 시스템의 이슈 기록이 식별자와 짧은 설명을 담고, 흔히 환경, 상태, 심각도, 우선순위, 해결을 함께 적는다고 둔다.[@iso-iec-ieee-24765-obp-2017]
+ISO/IEC/IEEE 24765:2017 용어집은 이슈 추적 시스템의 이슈 기록이 식별자와 짧은 설명을 담고, 흔히 환경, 상태, 심각도, 우선순위, 해결을 함께 적는다고 둔다.[@iso-iec-ieee-24765-obp-2017]
 
 [[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-2:2021은 **사건**(incident)을 프로젝트, 제품, 서비스, 시스템의 생명주기 어느 때든 일어나는 이상하거나 예상하지 못한 사건이나 조건으로 정의하고, **사건 보고서**(incident report)를 사건의 발생, 성질, 상태를 적은 문서로 정의하고, 이를 이상 보고서, 버그 보고서, 결함 보고서, 문제 보고서 같은 이름으로도 부른다고 둔다. 같은 표준의 프로세스 모델에서는 테스트 사건 보고 프로세스가 사건 보고를 맡는다.[@iso-iec-ieee-29119-2-obp-2021] 이 모델은 [[test-process#ISO/IEC/IEEE 29119-2의 프로세스 모델|테스트 프로세스]]에서 다룬다.
 
-보고된 이상은 실제 결함일 수도 있고, [[static-analysis#False positive와 false negative|false-positive result]]나 변경 요청 같은 다른 것일 수도 있으며, 어느 쪽인지는 결함 보고서를 처리하면서 가린다.[@istqb-ctfl-syllabus-2024] 테스트 대상에 실제로 없는 결함이 보고된 테스트 결과를 false-positive result라 부른다.[@istqb-glossary-false-positive-result-2026] 테스트 실행에서 나온 이상은 테스트 대상의 결함 말고도 갖춰지지 않은 사전 조건, 잘못된 테스트 데이터, 테스트 스크립트나 테스트 환경의 결함, 명세를 잘못 이해한 것 때문에 생길 수 있다.[@istqb-ctal-ta-syllabus-2025]
+결함 보고서로 "결함"이라 보고한 이상도 실제 결함일 수도 있고, [[static-analysis#False positive와 false negative|false-positive result]]나 변경 요청 같은 다른 것으로 드러날 수도 있으며, 어느 쪽인지는 결함 보고서를 처리하면서 가린다.[@istqb-ctfl-syllabus-2024] 테스트 대상에 실제로 없는 결함이 보고된 테스트 결과를 false-positive result라 부른다.[@istqb-glossary-false-positive-result-2026] 테스트 실행에서 나온 이상은 테스트 대상의 결함 말고도 갖춰지지 않은 사전 조건, 잘못된 테스트 데이터, 테스트 스크립트나 테스트 환경의 결함, 명세를 잘못 이해한 것 때문에 생길 수 있다.[@istqb-ctal-ta-syllabus-2025]
 
 ## 결함의 처리 흐름
 
-결함 관리 프로세스는 적어도 이상 하나하나를 발견부터 종료까지 다루는 워크플로와 분류 규칙을 담는다. 워크플로는 대개 보고된 이상을 기록하고, 분석하고 분류하고, 고칠지 그대로 둘지 대응을 정하고, 결함 보고서를 닫는 활동으로 이루어진다. 결함 상태의 예로는 open, deferred, duplicate, waiting to be fixed, awaiting confirmation testing, re-opened, closed, rejected가 있다.[@istqb-ctfl-syllabus-2024] Bugzilla의 기본 워크플로는 해결(resolution) 값으로 FIXED, DUPLICATE, WONTFIX, WORKSFORME, INVALID를 두고[@bugzilla-editing-a-bug-2026], Jira는 기본 해결 값으로 Done, Won't do, Duplicate, Cannot reproduce를 둔다.[@atlassian-jira-statuses-resolutions-2026]
+결함 관리 프로세스는 적어도 이상 하나하나를 발견부터 종료까지 다루는 워크플로와 분류 규칙을 담는다. 워크플로는 대개 보고된 이상을 기록하고, 분석하고 분류하고, 고칠지 그대로 둘지 대응을 정하고, 결함 보고서를 닫는 활동으로 이루어진다. 결함 상태의 예로는 open, deferred, duplicate, waiting to be fixed, awaiting confirmation testing, re-opened, closed, rejected가 있다.[@istqb-ctfl-syllabus-2024] Bugzilla의 기본 워크플로는 버그를 RESOLVED 상태로 옮길 때 매기는 해결(resolution) 값으로 FIXED, DUPLICATE, WONTFIX, WORKSFORME, INVALID를 두고[@bugzilla-editing-a-bug-2026], Jira는 상태와 따로 두는 해결 필드의 기본 값으로 Done, Won't do, Duplicate, Cannot reproduce를 둔다.[@atlassian-jira-statuses-resolutions-2026]
 
 결함을 고친 뒤에는 [[regression-testing#확인 테스트와의 차이|확인 테스트]]로 그 결함이 일으킨 장애가 다시 일어나지 않는지 본다.[@istqb-glossary-confirmation-testing-2026] 확인 테스트에서 고쳐지지 않은 것으로 드러나면 결함 보고서를 다시 연다.[@bugzilla-editing-a-bug-2026][@istqb-ctal-tm-syllabus-2024]
 
@@ -41,7 +41,7 @@ ISO/IEC/IEEE 24765:2017은 이슈 추적 시스템의 이슈 기록이 식별자
 
 IEEE 1044-2009는 소프트웨어 이상이 생명주기의 언제 생기거나 드러나든 그것을 한 가지 방식으로 분류하는 방법을 정한다. 장애와 결함을 분류하는 핵심 속성의 집합을 두되, 응용이나 업무마다 고유한 속성이 따로 있을 수 있음을 인정하고, 생명주기에 맞춰 속성 값을 어느 정도 고쳐 쓰리라 본다. 분류 데이터는 결함 원인 분석, 프로젝트 관리, 그리고 결함이 들어갈 가능성을 줄이거나 일찍 찾을 가능성을 높이는 [[software-process|소프트웨어 프로세스]] 개선에 쓸 수 있는 것으로 둔다.[@ieee-1044-2009] IEEE SA는 IEEE 1044-2009를 2020년 3월에 비활성(Inactive-Reserved) 표준으로 돌렸다.[@ieee-1044-status-2026]
 
-결함 보고서에 결함이 들어간 단계와 찾은 단계를 적어 두면, 결함이 들어간 단계 안에서 그 결함을 없애는지(phase containment)를 평가할 수 있다. 들어간 단계의 정보로는 결함이 가장 많이 들어가는 단계를 가려 결함 예방을 위한 개선을 그 단계에 겨눌 수 있다.[@istqb-ctal-tm-syllabus-2024]
+결함 보고서에 결함이 들어간 단계와 찾은 단계를 적어 두면, phase containment, 곧 결함을 그것이 들어간 개발 단계 안에서 없애 뒤 단계로 넘기지 않는지를 평가할 수 있다. 들어간 단계의 정보로는 결함이 가장 많이 들어가는 단계를 가려 결함 예방을 위한 개선을 그 단계에 겨눌 수 있다.[@istqb-ctal-tm-syllabus-2024]
 
 ## 심각도와 우선순위
 
@@ -70,7 +70,7 @@ Boehm과 Basili는 2001년 글에서, 인도한 뒤에 소프트웨어 문제를
 
 결함 예방의 목표는 작업 산출물에 결함이 생기거나 다시 생길 가능성을 낮추고, 결함이 개발 생명주기의 뒤 단계로 번지는 것을 줄이는 조치를 하는 것이다. ISTQB CTAL-TA v4.0 강의계획서는 결함 예방을 팀 전체의 책임으로 본다. 결함 예방 조치가 원하는 효과를 냈는지 평가하는 데 쓰는 메트릭의 예는 다음과 같다.[@istqb-ctal-ta-syllabus-2025]
 
-- **DRE**(Defect Removal Efficiency): 릴리스 전에 없앤 결함 수와 전체 결함 수의 비. 알 수 없는 분모는 추정하거나, 릴리스 뒤 6개월까지처럼 어느 시점까지 찾은 결함의 총수로 대신할 수 있다. DRE가 높으면 운영으로 새는 결함이 적다는 뜻이지만, 예방으로 막은 결함과 검출로 잡은 결함을 가리지 못한다.
+- **DRE**(Defect Removal Efficiency): 릴리스 전에 없앤 결함 수와 전체 결함 수의 비. 알 수 없는 분모는 추정하거나, 릴리스 뒤 6개월까지처럼 어느 시점까지 찾은 결함의 총수로 대신할 수 있다. DRE가 높으면 운영으로 새는 결함이 적다는 뜻이고 결함 예방이 나아졌다는 뜻일 수도 있지만, DRE는 결함을 예방으로 잡았는지 검출로 잡았는지 가리지 못한다.
 - **PCE**(Phase Containment Effectiveness): 어느 단계에 들어간 결함의 총수에 대한, 같은 단계에서 들어가고 없앤 결함 수의 비. PCE가 높으면 뒤 단계로 새는 결함이 적다.
 - **품질 비용**(cost of quality): 결함 예방 비용과 결함 검출·제거 비용 사이의 관계를 보인다.[@istqb-ctal-ta-syllabus-2025]
 

@@ -28,16 +28,16 @@ CERT(카네기멜런 대학 [[software-engineering|소프트웨어 공학]] 연�
 
 ## MISRA C와 CERT C의 대응
 
-MISRA는 MISRA C:2012 Addendum 3에서 Amendment 1을 포함한 MISRA C:2012가 CERT C 2016년 판의 지침을 어디까지 다루는지 보였다.[@misra-c-2012-add3-2018] MISRA C:2023 Addendum 3에서는 MISRA C:2023이 CERT C 2016년 판을 다루는 범위를 지침마다 보이고, MISRA C가 안전 환경만큼 보안 환경에도 들어맞는다고 주장했다. 이 문서는 MISRA C 지침이 언어 기능을 제한해 CERT C 지침을 다루는 경우를 Restrictive 대응으로 분류했다.[@misra-c-2023-add3-2025]
+MISRA는 MISRA C:2012 Addendum 3에서 Amendment 1을 포함한 MISRA C:2012가 CERT C 2016년 판의 지침을 어디까지 다루는지 보였다.[@misra-c-2012-add3-2018] MISRA는 MISRA C:2023 Addendum 3에서 MISRA C:2023이 CERT C 2016년 판을 다루는 범위를 지침마다 보이고, MISRA C가 안전 환경만큼 보안 환경에도 들어맞는다고 주장했다. 이 Addendum은 MISRA C 지침이 언어 기능을 제한해 CERT C 지침을 다루는 경우를 Restrictive 대응으로 분류했다.[@misra-c-2023-add3-2025]
 
 ## 준수 확인
 
 [[misra-c#범위|MISRA Compliance:2020]]은 MISRA 지침 대부분의 위반은 분석 도구나 컴파일러로 찾는 것이 가장 쉽고 믿을 만하며 비용이 적다고 보고, 도구로 완전히 검사할 수 없는 지침에는 수작업 [[software-review|리뷰]]가 필요할 수 있다고 둔다.[@misra-compliance-2020] SEI CERT C 코딩 표준은 규칙의 요건 하나로, 자동 분석(정적이나 동적), 형식 기법, 수작업 검사로 준수 여부를 판정할 수 있을 것을 든다.[@sei-cert-c-rules-versus-recommendations-2026] 이 표준은 규칙을 손으로 검사할 수도 있지만 프로그램이 크고 복잡해지면 곧 감당할 수 없으므로, [[static-analysis|정적 분석]] 도구를 쓰기를 권한다.[@sei-cert-c-tool-selection-and-validation-2026]
 
-ISTQB CTFL v4.0.1 강의계획서에 따르면 코딩 표준의 이름 짓기 관례를 지키지 않은 것 같은 표준 위반은 [[software-testing#정적 테스트와 동적 테스트|정적 테스트]]로 찾기가 더 쉽고 비용이 적으며, 코딩 표준 검사는 [[test-automation|테스트 자동화]]로 얻는 이점에 든다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL v4.0.1 강의계획서에 따르면 코딩 표준의 이름 짓기 관례를 지키지 않은 것 같은 표준 위반은 동적 테스트보다 [[software-testing#정적 테스트와 동적 테스트|정적 테스트]]로 찾기가 더 쉽거나 비용이 적으며, 코딩 표준 검사는 [[test-automation|테스트 자동화]]로 얻는 이점에 든다.[@istqb-ctfl-syllabus-2024]
 
-MISRA Compliance:2020은 코드 배치와 들여쓰기, 중괄호 위치, 이름 짓기 관례, 주석처럼 코드의 정확성에 직접 영향을 주지 않는 겉모양은 조직의 사내 스타일 가이드로 다루기를 권하고, 그 시행은 자기 범위 밖에 둔다.[@misra-compliance-2020]
+MISRA Compliance:2020은 MISRA 지침을 지켰다고 주장할 때 갖출 프로세스 활동의 하나로 조직의 사내 스타일 가이드를 든다. 코드 배치와 들여쓰기, 중괄호 위치, 이름 짓기 관례, 주석처럼 코드의 정확성에 직접 영향을 주지 않는 겉모양은 이 스타일 가이드로 다루기를 권하고, 그 시행은 자기 범위 밖에 둔다.[@misra-compliance-2020]
 
 ## ISO 26262-6
 
-[[iso-26262|ISO 26262]]-6:2018은 5절(소프트웨어 수준 제품 개발의 일반 주제)에 모델링·코딩 지침이 다룰 주제의 표를 두고, 참고문헌에 MISRA C:2012를 든다.[@iso-26262-6-obp-2018] 유닛 설계와 구현의 원칙은 [[software-unit-design#ASPICE SWE.3|소프트웨어 유닛 설계]]에서 다룬다.
+[[iso-26262|ISO 26262]]-6:2018은 5절(소프트웨어 수준 제품 개발의 일반 주제)에 모델링·코딩 지침이 다룰 주제의 표를 둔다. 이 표준은 내용이 요구사항이 되는 문서를 2절(Normative references)에 드는데, MISRA C:2012는 거기에 없고 참고문헌에 든다.[@iso-26262-6-obp-2018] 유닛 설계와 구현의 원칙은 [[software-unit-design#ASPICE SWE.3|소프트웨어 유닛 설계]]에서 다룬다.

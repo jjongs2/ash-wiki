@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-13
 ---
 
-**유지보수 테스트**(maintenance testing)는 운영 중인 시스템이나 그 환경에 가한 변경의 영향을 평가하는 [[test-type|테스트 유형]]이다.[@istqb-glossary-maintenance-testing-2026] 운영 중인 시스템의 변경을 테스트할 때는 변경을 제대로 구현했는지 평가하는 일과, 바꾸지 않은 부분(대개 시스템의 대부분)에 [[regression-testing|회귀]]가 생겼는지 확인하는 일을 함께 한다.[@istqb-ctfl-syllabus-2024]
+**유지보수 테스트**(maintenance testing)는 운영 중인 시스템이나 그 환경에 가한 변경의 영향을 평가하는 [[test-type|테스트 유형]]이다.[@istqb-glossary-maintenance-testing-2026] ISTQB 용어집은 테스트 유형을 특정 테스트 목표에 바탕을 두고 컴포넌트나 시스템의 특정 특성을 겨냥한 테스트 활동의 묶음으로 정의한다.[@istqb-glossary-test-type-2026] 운영 중인 시스템의 변경을 테스트할 때는 변경을 제대로 구현했는지 평가하는 일과, 바꾸지 않은 부분(대개 시스템의 대부분)에 [[regression-testing|회귀]]가 생겼는지 확인하는 일을 함께 한다.[@istqb-ctfl-syllabus-2024]
 
 ## 범위와 계기
 
@@ -17,4 +17,4 @@ verified: 2026-10-13
 
 ## 유지보수성 테스트와의 차이
 
-[[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022는 **유지보수성 테스트**(maintainability testing)를 테스트 항목을 얼마나 효과적이고 효율적으로 고칠 수 있는지 평가하는 테스트 유형으로 정의한다.[@iso-iec-ieee-29119-1-obp-2022]
+[[iso-iec-ieee-29119|ISO/IEC/IEEE 29119]]-1:2022는 유지보수 테스트의 용어 항목을 두지 않고, **유지보수성 테스트**(maintainability testing)를 테스트 항목을 얼마나 효과적이고 효율적으로 고칠 수 있는지 평가하는 테스트 유형으로 정의한다.[@iso-iec-ieee-29119-1-obp-2022]

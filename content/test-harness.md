@@ -7,7 +7,7 @@ verified: 2026-10-03
 
 ISTQB 용어집은 **테스트 하네스**(test harness)를 [[test-case#테스트 스위트|테스트 스위트]]를 실행하는 데 필요한 드라이버와 test double의 모음으로 정의한다.[@istqb-glossary-test-harness-2026] ISO/IEC/IEEE 24765 용어집은 테스트 하네스를 상위 코드가 아직 없을 때 하위 코드를 실행해 보려고 작성한 비계 코드(scaffolding)로 정의한다.[@ieee-cs-sevocab-2026] SWEBOK V4.0a는 드라이버와 스텁 같은 테스트 하네스를 테스트 도구의 한 갈래로 두고, 테스트를 시작하고 그 출력을 기록할 수 있는 통제된 환경을 주는 도구로 정의한다.[@ieee-swebok-v4-0a-2026]
 
-테스트 환경 항목의 예로는 스텁, 드라이버, 시뮬레이터, 서비스 가상화가 있다.[@istqb-ctfl-syllabus-2024]
+테스트 구현 활동이 만드는 테스트 환경 항목의 예로는 스텁과 드라이버 말고도 시뮬레이터와 서비스 가상화가 있다.[@istqb-ctfl-syllabus-2024]
 
 [[test-automation#아키텍처와 프레임워크|테스트 자동화 프레임워크]]는 흔히 테스트 하네스를 담는다. ISTQB CTAL-TAE v2.0 강의계획서는 이 테스트 하네스를 test runner라고도 부른다.[@istqb-ctal-tae-syllabus-2024] xUnit 프레임워크의 구성 요소인 test runner는 [[xunit#공통 구성|xUnit]]에서 다룬다.
 
@@ -31,12 +31,12 @@ ISO/IEC/IEEE 24765 용어집은 **스텁**(stub)을 소프트웨어 모듈을 �
 
 ## Test double
 
-**Test double**은 테스트하려고 테스트 대상이 부르는 대체 컴포넌트다.[@istqb-glossary-test-double-2026] Meszaros는 xUnit Test Patterns에서 SUT가 의존하는 실제 컴포넌트를 테스트에서 대신하는 객체들을 아우르는 이름으로 Test Double을 쓰고, 이를 다음 다섯으로 나눈다.[@meszaros-test-double-2008][@meszaros-mocks-fakes-stubs-2008]
+**Test double**은 테스트 대상이 부르는 대체 컴포넌트로, 테스트를 하려고 둔다.[@istqb-glossary-test-double-2026] Meszaros는 xUnit Test Patterns에서 SUT가 의존하는 실제 컴포넌트를 테스트에서 대신하는 객체들을 아우르는 이름으로 Test Double을 쓰고, 이를 다음 다섯으로 나눈다.[@meszaros-test-double-2008][@meszaros-mocks-fakes-stubs-2008]
 
-| 종류         | 하는 일                                                                              |
-| ------------ | ------------------------------------------------------------------------------------ |
-| Dummy object | 메서드 인자 자리를 채우려고 넘기기만 하고, 테스트도 SUT도 쓰지 않는다.               |
-| Test stub    | SUT의 간접 입력을 테스트가 정한 값으로 준다.                                         |
-| Test spy     | SUT가 내보낸 간접 출력을 기록해 두었다가 테스트가 나중에 확인하게 한다.              |
-| Mock object  | 받을 호출을 기대값으로 미리 설정받고, SUT의 간접 출력이 그와 맞는지 스스로 확인한다. |
-| Fake object  | 실제 의존 컴포넌트와 같은 기능을 훨씬 단순하고 가볍게 구현한다.                      |
+| 종류         | 하는 일                                                                                                                                                |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Dummy object | 메서드 인자 자리를 채우려고 넘기기만 하고, 테스트도 SUT도 쓰지 않는다. 이 점에서 엄밀히는 test double이라기보다 Literal Value 같은 값 패턴의 대안이다. |
+| Test stub    | SUT의 간접 입력을 테스트가 정한 값으로 준다.                                                                                                           |
+| Test spy     | SUT가 내보낸 간접 출력을 기록해 두었다가 테스트가 나중에 확인하게 한다.                                                                                |
+| Mock object  | 받을 호출을 기대값으로 미리 설정받고, SUT의 간접 출력이 그와 맞는지 스스로 확인한다.                                                                   |
+| Fake object  | 실제 의존 컴포넌트와 같은 기능을 훨씬 단순하고 가볍게 구현한다.                                                                                        |
