@@ -13,7 +13,7 @@ verified: 2026-10-13
 
 ## 테스트로 개발을 이끄는 접근
 
-ISTQB CTFL v4.0.1 강의계획서는 [[test-driven-development|TDD]], ATDD, 행위 주도 개발(BDD, Behavior-Driven Development)을 테스트로 개발을 이끄는 비슷한 개발 접근으로 든다. 셋 모두 코드를 쓰기 전에 테스트를 정하므로 [[software-testing#테스트 원칙|일찍 테스트하는 원칙]]을 실천하고 [[v-model#테스트 설계를 앞당김|shift left]]를 따르며, [[software-development-life-cycle#예측형에서 적응형까지|반복적 개발 모델]]을 뒷받침한다. 세 접근 모두 테스트를 자동 테스트로 남겨 둘 수 있고, 남긴 테스트는 나중에 코드를 고치거나 [[refactoring|리팩터링]]할 때 코드 품질을 지키는 데 쓴다.[@istqb-ctfl-syllabus-2024]
+ISTQB CTFL v4.0.1 강의계획서는 [[test-driven-development|TDD]], ATDD, 행위 주도 개발(BDD, Behavior-Driven Development)을 테스트로 개발을 이끄는 비슷한 개발 접근으로 든다. 셋 모두 코드를 쓰기 전에 테스트를 정하므로 [[software-testing#테스트 원칙|일찍 테스트하는 원칙]]을 실천하고 [[v-model#테스트 설계를 앞당김|shift left]]를 따르며, [[software-development-life-cycle#모델|반복적 개발 모델]]을 뒷받침한다. 세 접근 모두 테스트를 자동 테스트로 남겨 둘 수 있고, 남긴 테스트는 나중에 코드를 고치거나 [[refactoring|리팩터링]]할 때 코드 품질을 지키는 데 쓴다.[@istqb-ctfl-syllabus-2024]
 
 SWEBOK V4.0a는 ATDD를 [[test-case|테스트 케이스]]가 구현보다 먼저 온다는 TDD의 일부로 둔다.[@ieee-swebok-v4-0a-2026]
 

@@ -14,7 +14,7 @@ status: 유효
 
 AUTOSAR Adaptive Platform R25-11은 깊이 임베디드된 ECU의 요구를 다루는 [[autosar-classic-platform|Classic Platform]]으로는 채울 수 없는 요구, 곧 고도 자동 주행처럼 연산 자원을 많이 쓰고 차량 수명 동안 갱신해야 하는 소프트웨어의 요구를 위한 AUTOSAR의 둘째 소프트웨어 플랫폼이다. 주로 고성능 연산과 통신 메커니즘을 제공하고, [[over-the-air-update|무선 소프트웨어 업데이트]] 같은 유연한 소프트웨어 구성을 지원한다. 전기 신호 접근이나 차량 전용 버스 시스템처럼 Classic Platform을 위해 정한 기능은 Adaptive Platform에 통합할 수 있지만 표준화의 초점은 아니다.[@autosar-ap-exp-platformdesign-2025]
 
-응용은 C++로 작성할 수 있고, Adaptive Platform은 [[service-oriented-communication|서비스 지향]] 아키텍처를 따른다. 개발 중에는 응용을 점진적으로 배치하며 자원과 통신을 동적으로 관리하고, 양산용으로는 시스템 통합자가 동적 동작을 신중하게 제한할 수 있다. 이를 **planned dynamics**라 한다. 응용의 동적 동작은 [[autosar-manifest#종류|Execution Manifest]]에 적은 제약 안으로 제한된다. 서비스 발견 과정을 미리 정해 두는 것, [[dynamic-memory-allocation|동적 메모리 할당]]을 시작 단계로 한정하는 것, 프로세스를 CPU 코어에 고정 배정하는 것, 인증된 코드만 실행하는 것이 그 예다.[@autosar-ap-exp-platformdesign-2025]
+응용은 C++로 작성할 수 있고, Adaptive Platform은 [[service-oriented-communication|서비스 지향]] 아키텍처를 따른다. 개발 중에는 응용을 점진적으로 배치하며 자원과 통신을 동적으로 관리하고, 양산용으로는 시스템 통합자가 동적 동작을 신중하게 제한할 수 있다. 이를 **planned dynamics**라 한다. 응용의 동적 동작은 [[autosar-manifest#Execution Manifest|Execution Manifest]]에 적은 제약 안으로 제한된다. 서비스 발견 과정을 미리 정해 두는 것, [[dynamic-memory-allocation|동적 메모리 할당]]을 시작 단계로 한정하는 것, 프로세스를 CPU 코어에 고정 배정하는 것, 인증된 코드만 실행하는 것이 그 예다.[@autosar-ap-exp-platformdesign-2025]
 
 ## 범위
 

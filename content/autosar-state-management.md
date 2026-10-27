@@ -31,7 +31,7 @@ State Management가 요청할 수 있는 일은 아래와 같다.[@autosar-ap-ex
 
 ## Machine State와 Function Group State
 
-**Machine State**는 Function Group State의 특수한 종류다. Machine State를 포함한 Function Group State는 지금 돌고 있는 [[autosar-execution-management#프로세스|Modelled Process]]의 집합을 정하고, 각 Adaptive Application은 자기 Modelled Process가 어느 Function Group State에서 돌아야 하는지를 [[autosar-manifest#종류|Execution Manifest]]에 선언한다. 상태 변경 요청을 받으면 Execution Management는 더는 필요 없는 Modelled Process를 끝내고 새 상태에서 돌 Modelled Process를 시작한 뒤, State Management에 상태 변경을 확인해 준다.[@autosar-ap-sws-statemanagement-2025]
+**Machine State**는 Function Group State의 특수한 종류다. Machine State를 포함한 Function Group State는 지금 돌고 있는 [[autosar-execution-management#프로세스|Modelled Process]]의 집합을 정하고, 각 Adaptive Application은 자기 Modelled Process가 어느 Function Group State에서 돌아야 하는지를 [[autosar-manifest#Execution Manifest|Execution Manifest]]에 선언한다. 상태 변경 요청을 받으면 Execution Management는 더는 필요 없는 Modelled Process를 끝내고 새 상태에서 돌 Modelled Process를 시작한 뒤, State Management에 상태 변경을 확인해 준다.[@autosar-ap-sws-statemanagement-2025]
 
 한 Machine에 기능상 응집된 Adaptive Application 묶음이 둘 이상 있으면, Machine State만으로는 이 묶음들을 따로 제어하기에 유연하지 않다. 그래서 Function Group과 Function Group State를 더 설정할 수 있다. 대체로 Machine State는 Machine의 생명주기(시작, 종료, 재시작)와 플랫폼 수준 응용의 Modelled Process를 제어하고, 다른 Function Group State는 사용자 수준 응용 묶음의 Modelled Process를 따로 제어한다.[@autosar-ap-sws-statemanagement-2025]
 

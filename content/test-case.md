@@ -41,7 +41,7 @@ ISO/IEC/IEEE 24765:2017은 테스트 케이스를, 특정 프로그램 경로를
 | 일관성(consistency)                    | 언어, 서식, 구조가 일관되면 이해하고 유지보수하기 쉽다.                                                                                                                                                                                                                                                                |
 | 정밀성(precision)                      | [[static-analysis#False positive와 false negative\|false-negative]] result와 false-positive result를 피하도록 해석이 하나뿐이어야 하고, "알맞은", "필요한 만큼" 같은 모호한 말을 피한다.                                                                                                                               |
 | 완전성(completeness)                   | 필요한 테스트 데이터와, 실제 결과에 견줄 분명한 기대 결과를 비롯해 필요한 속성을 모두 갖춰야 한다.                                                                                                                                                                                                                     |
-| 간결성(conciseness)                    | 크기가 [[v-model#테스트 기준\|테스트 기준]]과 테스트 조건에 맞아야 한다. [[test-coverage#기법마다 다른 커버리지 항목\|커버리지 항목]] 몇 개에 집중한 작은 테스트 케이스가 낫다. failure의 원인을 찾기 쉽고, 테스트 절차와 테스트 스위트로 유연하게 엮을 수 있으며, 실행 중 failure가 뒤의 테스트를 막지 않기 때문이다. |
+| 간결성(conciseness)                    | 크기가 [[v-model#테스트 기준\|테스트 기준]]과 테스트 조건에 맞아야 한다. [[test-coverage\|커버리지 항목]] 몇 개에 집중한 작은 테스트 케이스가 낫다. failure의 원인을 찾기 쉽고, 테스트 절차와 테스트 스위트로 유연하게 엮을 수 있으며, 실행 중 failure가 뒤의 테스트를 막지 않기 때문이다. |
 
 테스트 케이스의 꼴과 상세 수준은 프로젝트와 제품의 맥락에 따라 다르다. 이 강의계획서는 이를 테스트 팀 안에서 합의해야 한다고 본다.[@istqb-ctal-ta-syllabus-2025]
 
