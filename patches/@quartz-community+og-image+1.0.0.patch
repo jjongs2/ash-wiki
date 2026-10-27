@@ -29,7 +29,7 @@ diff --git a/node_modules/@quartz-community/og-image/dist/index.js b/node_module
    defaultTitle: "Untitled",
    defaultDescription: "No description provided",
 -  readingTimeText: (minutes) => `${minutes} min read`
-+  // ash-wiki: 위키는 읽는 시간을 보이지 않는다(quartz.config.yaml의 content-meta 주석). 빈 문자열이면 그 칸을 그리지 않는다.
++  // ash-wiki: 위키는 읽는 시간을 보이지 않는다(docs/engine.md의 locale 절). 빈 문자열이면 그 칸을 그리지 않는다.
 +  readingTimeText: () => ""
  };
  async function generateSocialImage({ cfg, description, fonts, title, fileData }, userOpts) {
