@@ -2,7 +2,7 @@
 // 지시와 반환 꼴은 캡처 폴더의 지시.md(reader.md)에 있다. 반환을 파일로 받는 것은, 워크플로가
 // 돌려주는 값이 끝날 때 한꺼번에 메인 문맥에 들어오기 때문이다.
 export const meta = {
-  name: "reader-testing-read",
+  name: "wiki-reader-testing-read",
   description: "Reader Testing 3단계: 고른 페이지마다 외부 독자 하나를 띄운다",
   phases: [{ title: "읽기" }],
 }
