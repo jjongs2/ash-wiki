@@ -10,7 +10,7 @@
 - `docs/wiki-verification.md`: 판정 세 갈래, 좁혀 쓰기(표준 문장의 꼴과 세 갈래 꼴, 합의 문서, Standards Track RFC), 이론 주장, 표준의 판, 정정, 미검증 사유 절(재조사 방법과 다시 시도하는 순서), 재조사 절, 봇 차단 호스트
 - `docs/source-access.md`: 머리의 공통 줄과 호스트별 여는 법 절
 - `docs/source-hierarchy.md`: 주장 종류마다 1층 출처
-- `docs/wiki-conventions.md`의 출처 문장, 인용, 용어, 약어, 수식, 위키링크, 강조, 중복 절과 `docs/wiki-abbreviations.md`, `docs/wiki-terms.md`
+- `docs/wiki-conventions.md`의 출처 문장, 인용, 용어, 약어, 중복 절과 `docs/wiki-abbreviations.md`, `docs/wiki-terms.md`
 - `.claude/skills/wiki-verify/SKILL.md`의 판정 라벨 절: 라벨, 언제 쓰는지, 이슈 본문 메모의 꼴
 
 할 일:
