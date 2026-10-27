@@ -67,3 +67,12 @@
   width: 100%;
   height: 100%;
 }
+
+/* ash-wiki: 데스크톱의 오른쪽 사이드바에서는 local graph 칸을 정사각형으로 둔다. 태블릿과 모바일에서는 그래프가
+   백링크와 한 줄에 놓여 폭이 화면을 따라 커지므로(1199px에서 411px) 업스트림의 높이 250px를 둔다. */
+@media all and (min-width: 1200px) {
+  .graph > .graph-outer {
+    height: auto;
+    aspect-ratio: 1;
+  }
+}
