@@ -156,8 +156,8 @@ import {
       }
 
       var width = graph.offsetWidth
-      // ash-wiki: 칸 높이를 그대로 쓴다. 업스트림은 250px 아래로 줄이지 않아, 데스크톱의 정사각형 칸(style.css)에서
-      // 캔버스가 칸보다 높아져 아래가 잘린다. 높이를 잴 수 없을 때만 250px를 쓴다.
+      // ash-wiki: 칸 높이를 그대로 쓴다. 업스트림은 250px 아래로 줄이지 않아, 캔버스가 테두리 안쪽보다 높아져 아래가
+      // 잘린다(높이 250px 칸에서 2px, 데스크톱의 정사각형 칸(style.css)에서 7px). 높이를 잴 수 없을 때만 250px를 쓴다.
       var height = graph.offsetHeight || 250
 
       var pages = []
