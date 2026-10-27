@@ -487,9 +487,8 @@ $panel-tokens:
 }
 
 // 넓은 화면(base.scss의 .page max-width, 1500px 초과)에서는 사이드바 면, 본문, 오른쪽 사이드바가 1500px 페이지 하나로
-// 화면 가운데에 서고, 페이지 바깥만 outside로 칠한다. 위키백과처럼 테두리와 그림자 없이 톤 차이로만 가른다. 고른 까닭은
-// docs/palette.md의 페이지 바깥 절에 있다. 1500px 이하에서는 페이지가 화면을 채워 바깥이 없다. 데스크톱의 사이드바는
-// 높이가 100vh라 페이지가 늘 화면 높이를 채운다.
+// 화면 가운데에 서고, 페이지 바깥만 outside로 칠한다. 고른 까닭은 docs/palette.md의 페이지 바깥 절에 있다. 1500px
+// 이하에서는 페이지가 화면을 채워 바깥이 없다. 데스크톱의 사이드바는 높이가 100vh라 페이지가 늘 화면 높이를 채운다.
 @media all and (width > #{map.get($breakpoints, desktop) + 300px}) {
   body {
     background-color: var(--outside);
