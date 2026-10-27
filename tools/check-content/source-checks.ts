@@ -3,8 +3,10 @@ import GithubSlugger, { slug as anchorSlug } from "github-slugger"
 import type { Heading } from "mdast"
 import type { Position } from "unist"
 import { visit } from "unist-util-visit"
-import { pretendardStylesheet } from "../../quartz/util/localFonts"
+import { diagramFontStylesheet } from "../../quartz/util/localFonts"
+import { getFontSpecificationNames } from "../../quartz/util/theme"
 import { latestPartYears, standardNumber } from "../edition-status/standard-number"
+import { readTheme } from "../og-fonts"
 import { loadDiagramConventions, type Conventions } from "./conventions"
 import {
   marginTolerance,
@@ -675,16 +677,16 @@ const variableDeclaration = /(?:^|[\s;{])(--[\w-]+)\s*:/g
 // CSS 선언은 style 속성과 <style> 요소 안에만 있다. 글자 노드의 "fill: ..."는 보지 않는다.
 const styleSources = [/\sstyle\s*=\s*(["'])(.*?)\1/gs, /<style[^>]*>([\s\S]*?)<\/style>/gi]
 
-// 도해의 글자는 사이트와 같은 Pretendard로, 글리프 폭을 픽셀에 맞춰 반올림하지 않고 그린다.
-// 브라우저와 검사기가 같은 폭으로 그려야 검사기가 잰 여백이 독자가 보는 여백과 맞는다.
-// Linux의 Chromium은 geometricPrecision이 없으면 글리프 폭을 반올림해 여백이 한 변에서 4까지 달라진다.
-// 합자를 끄지 않으면 Pretendard가 "0x"의 x를 ×로 그리는 때가 있다(예: "ID 0x8100").
+// 도해의 글자는 사이트 본문과 같은 폰트(quartz.config.yaml의 theme.typography.body)로, 글리프 폭을 픽셀에
+// 맞춰 반올림하지 않고 그린다. 브라우저와 검사기가 같은 폭으로 그려야 검사기가 잰 여백이 독자가 보는 여백과
+// 맞는다. Linux의 Chromium은 geometricPrecision이 없으면 글리프 폭을 반올림해 여백이 한 변에서 4까지 달라진다.
+const theme = readTheme()
 const textProperties = {
-  "font-family": "Pretendard, sans-serif",
+  "font-family": [...getFontSpecificationNames(theme.typography.body), "sans-serif"].join(", "),
   "text-rendering": "geometricPrecision",
-  "font-variant": "none",
 }
-const fontImport = `@import url("${pretendardStylesheet}");`
+// SVG는 XML이라 주소의 &를 &amp;로 쓴다.
+const fontImport = `@import url("${diagramFontStylesheet(theme).replaceAll("&", "&amp;")}");`
 
 // 속성(`fill="..."`)과 CSS 선언(`fill: ...`)으로 준 값을 찾는다. offset은 속성 이름이 시작하는 곳이다.
 function attributeValues(text: string, property: string) {
@@ -937,9 +939,9 @@ async function marginViolation(
 }
 
 // 두 상자 사이 글자의 잉크 세로 중심이 상자 세로 중심에서 벗어나도 되는 한도. font-size에 곱한다.
-// Pretendard로 잰 어긋남(#208): baseline 쪽에 앉는 `_`는 14에서 5.6(0.40배), 13에서 5.0(0.38배)
-// 아래였고(e53a1e99가 고치기 전의 도해), `…`는 14에서 4.3(0.31배) 아래였다. 합자를 끈 `:`는 14에서
-// 1.5(0.11배) 아래였다(규약이 감수한다). 가장 가까운 둘인 `…`와 `:`의 가운데인 0.2배(14에서 2.8)로 가른다.
+// 본문 폰트로 잰 어긋남(#612, 상자 세로 중심이 baseline보다 5 위인 배치): baseline 쪽에 앉는 `_`는 14에서
+// 6.9(0.49배), 13에서 6.6(0.51배) 아래였고(e53a1e99가 고치기 전의 도해, #208), `…`는 14에서 4.3(0.30배),
+// `:`는 14에서 1.4(0.10배) 아래였다. 가장 가까운 둘인 `…`와 `:`의 가운데인 0.2배(14에서 2.8)로 가른다.
 const betweenBoxesTolerance = 0.2
 
 // 그 안의 요소는 그려지지 않거나 다른 곳에 쓰여, 놓인 자리를 속성으로 알 수 없다.
@@ -1147,7 +1149,7 @@ export const svg: SourceCheck = async (tree) => {
           }
         }
         if (!text.includes(fontImport)) {
-          atRoot(`Pretendard를 불러오지 않는다: <style>${fontImport}</style>`)
+          atRoot(`본문 폰트를 불러오지 않는다: <style>${fontImport}</style>`)
         }
       }
       const marginMessage = await marginViolation(source, { index: root.index!, tag: root[0] })

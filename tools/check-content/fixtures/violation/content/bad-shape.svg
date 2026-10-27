@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" fill="none" stroke="var(--ink, #727981)">
-  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" fill="none" stroke="var(--ink, #727981)">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
   <!-- 위반(svg): 척도(0, 2) 밖의 rx와 ry다. -->
   <rect x="10.75" y="10.75" width="98.5" height="28.5" rx="4" stroke-width="1.5" />
   <rect x="130.75" y="10.75" width="98.5" height="28.5" ry="6" stroke-width="1.5" />
