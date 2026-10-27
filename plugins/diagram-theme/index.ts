@@ -1,5 +1,5 @@
 // ash-wiki: 도해가 사이트 테마를 따르게 하는 로컬 플러그인이다. 도해 SVG는 색을 `var(--<이름>, <대체값>)`으로
-// 쓰고(docs/wiki-diagrams.md), 이 플러그인이 싣는 스크립트(script.js)가 도해 <object>의 SVG 문서
+// 쓰고(docs/wiki-diagrams.md의 도해의 색 절), 이 플러그인이 싣는 스크립트(script.js)가 도해 <object>의 SVG 문서
 // 루트에 현재 테마의 토큰 값을 넣는다. 칠하는 때는 <object>의 load, themechange, SPA 이동(nav)이다.
 // 스크립트가 돌지 않는 곳에서는 SVG가 대체값으로 그려진다.
 //
@@ -58,8 +58,8 @@ const DiagramTheme: QuartzTransformerPlugin = () => {
       return []
     },
     externalResources() {
-      const conventions = new URL("../../docs/wiki-diagrams.md", import.meta.url)
-      const palette = readPalette(fs.readFileSync(conventions, "utf8"))
+      const diagrams = new URL("../../docs/wiki-diagrams.md", import.meta.url)
+      const palette = readPalette(fs.readFileSync(diagrams, "utf8"))
       // 다른 인라인 스크립트와 이름이 겹치지 않게 블록으로 감싼다.
       const script = `{\nconst palette = ${JSON.stringify(palette)}\n${readSibling("./script.js")}}\n`
       return {

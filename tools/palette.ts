@@ -2,7 +2,7 @@ import fs from "node:fs"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 import { parse } from "yaml"
-import { Conventions, loadDiagrams } from "./check-content/conventions"
+import { Conventions, loadDiagramConventions } from "./check-content/conventions"
 import { repoRoot } from "./repo"
 
 // 대비 실측. 색의 정본(quartz.config.yaml의 theme, 도해 규약의 도해 팔레트)을 읽어
@@ -69,7 +69,7 @@ const backdrop = (token: string) => (token.startsWith("sidebar-") ? "sidebar-lig
 function measure(): Measurement[] {
   const theme = parse(fs.readFileSync(configPath, "utf8")).configuration.theme
   const colors = theme.colors as Record<Mode, Record<string, string>>
-  const diagram = loadDiagrams().table("diagram-palette", ["이름", "라이트", "다크"])
+  const diagram = loadDiagramConventions().table("diagram-palette", ["이름", "라이트", "다크"])
   const floors = new Conventions(fs.readFileSync(palettePath, "utf8"), palettePath).table(
     "contrast",
     ["쌍", "전경", "배경", "하한"],

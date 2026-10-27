@@ -6,7 +6,7 @@ import { repoRoot } from "../repo"
 // 검사기는 위키 규약 문서와 도해 규약 문서를, 대비 실측(tools/palette.ts)은 도해 규약 문서와 팔레트 문서를,
 // 출처 상태(tools/source-status)는 위키 검증 문서를 읽는다.
 export const conventionsPath = path.join(repoRoot, "docs", "wiki-conventions.md")
-export const diagramsPath = path.join(repoRoot, "docs", "wiki-diagrams.md")
+export const diagramConventionsPath = path.join(repoRoot, "docs", "wiki-diagrams.md")
 
 export type Row = Record<string, string>
 
@@ -68,6 +68,6 @@ export function loadConventions(): Conventions {
   return new Conventions(fs.readFileSync(conventionsPath, "utf8"))
 }
 
-export function loadDiagrams(): Conventions {
-  return new Conventions(fs.readFileSync(diagramsPath, "utf8"), diagramsPath)
+export function loadDiagramConventions(): Conventions {
+  return new Conventions(fs.readFileSync(diagramConventionsPath, "utf8"), diagramConventionsPath)
 }

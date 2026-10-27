@@ -5,7 +5,7 @@ import type { Position } from "unist"
 import { visit } from "unist-util-visit"
 import { pretendardStylesheet } from "../../quartz/util/localFonts"
 import { latestPartYears, standardNumber } from "../edition-status/standard-number"
-import { loadDiagrams, type Conventions } from "./conventions"
+import { loadDiagramConventions, type Conventions } from "./conventions"
 import {
   marginTolerance,
   measureMargins,
@@ -1090,7 +1090,7 @@ async function textBetweenBoxesViolations(
 
 export const svg: SourceCheck = async (tree) => {
   const fallbacks = new Map(
-    loadDiagrams()
+    loadDiagramConventions()
       .table("diagram-palette", ["이름", "대체값"])
       .map((row) => {
         const fallback = normalizeColor(row["대체값"])
