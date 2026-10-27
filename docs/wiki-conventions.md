@@ -179,7 +179,7 @@ npm run check:content
 
 ## 코드 표기
 
-- 진법 표기와 바이트 열·비트 열은 백틱으로 쓴다. 예: `0x7F`, `0b1010`, `7Fh`, `01 02 03 04`, `0101 1000`. 옮겨 적는 값임을 드러내고, 본문 글꼴 Pretendard가 `0x`의 `x`를 `×`로 그리는 것을 코드 글꼴로 피한다. `리뷰`
+- 진법 표기와 바이트 열·비트 열은 백틱으로 쓴다. 예: `0x7F`, `0b1010`, `7Fh`, `01 02 03 04`, `0101 1000`. 옮겨 적는 값임을 드러낸다. `리뷰`
 - 코드나 설정에 그대로 적는 이름도 백틱으로 쓴다. 함수, C 타입, 설정 파라미터와 그 값, 레지스터와 그 필드가 해당한다. 예: `htonl`, `uint32_t`, `ComSignalEndianness`, `BIG_ENDIAN`, `CAN_BTR`, `SCTLR_ELx.EE`. 옮겨 적는 이름임을 드러낸다. `리뷰`
 - 프로토콜이 정한 메시지·서비스·필드·파라미터 이름과 데이터 타입 이름은 평문으로 둔다. 표준이 camelCase로 적은 이름도 평문이다. 예: DiagnosticSessionControl, OfferService, Message ID, suppressPosRspMsgIndicationBit, E_OK, uint8. 코드가 아니라 표준 문서의 용어다. `리뷰`
 - 둘을 가르는 기준은 생김새가 아니라 의미다. 그 글자를 그대로 코드나 설정에 적는지 본다. 칩 이름, IP 이름, 모듈 이름과 풀이를 단 개념 약어는 평문이다. 예: bxCAN, M_CAN, Dcm, CanTp, BRP(Baud Rate Prescaler). 대문자와 밑줄로 된 이름이 모두 코드는 아니다. `리뷰`
