@@ -501,7 +501,7 @@ function listedAbbreviations(): { name: string; kind: string }[] {
 // 괄호 안이면 그 괄호의 쉼표 뒤를 소개로 센다(`Continental(지금의 AUMOVIO, …)`, `SECM(…, EIA 731, EIA: …)`).
 // 하이픈 뒤에 번호가 붙은 자리(EIA-649)는 표준 번호 안으로 보고, 하이픈이나 점으로 다른 낱말과 붙은
 // 자리(CCITT-FALSE, US-CERT)는 다른 이름이라 세지 않는다. 괄호 안의 글이 소개인지와 괄호가 약어 바로 뒤에
-// 있는지는 리뷰가 본다.
+// 있는지는 표기 검토가 본다(docs/wiki-verification.md).
 function unintroduced(
   page: Page,
   change: ChangedFile,
