@@ -12,7 +12,7 @@ omitClaudeMd: true
 
 먼저 읽는다. 맡는 규칙은 이것뿐이다.
 
-- `docs/wiki-conventions.md`: 끝에 `` `리뷰` ``가 붙은 규칙. 도해 절(`### 도해의 색`, `### 도해의 모양` 포함)과 열린 PR과 겹치는 파일 절은 빼고, 마침표와 단위 절의 그 아래 문단도 읽는다. `` `검사 <id>` ``가 붙은 규칙은 검사기가 보므로 맡지 않는다.
+- `docs/wiki-conventions.md`: 끝에 `` `리뷰` ``가 붙은 규칙. 열린 PR과 겹치는 파일 절은 빼고, 마침표와 단위 절의 그 아래 문단도 읽는다. `` `검사 <id>` ``가 붙은 규칙은 검사기가 보므로 맡지 않는다.
 - `docs/wiki-terms.md`, `docs/wiki-abbreviations.md`
 - `docs/wiki-verification.md`의 반영 뒤 점검 절(받는 쪽이 표기 검토인 항목의 후보 뜻)과 반영 뒤 재판정 절의 첫 줄(뜻을 이루는 것: 범위, 값, 조건, 주장의 주어, 말의 힘)
 - 띄운 프롬프트가 "검증자가 돌지 않는다"고 하면 `docs/wiki-verification.md` 좁혀 쓰기 절의 출처 구간 줄과, 합의 문서와 Standards Track RFC 절의 출처 구간 줄도
