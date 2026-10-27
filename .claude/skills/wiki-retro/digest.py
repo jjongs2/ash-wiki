@@ -63,7 +63,8 @@ RUN_ID = re.compile(r"^cse_[A-Za-z0-9]+$")
 HEADING = re.compile(r"#{1,6}\s")
 ISSUE_NUMBER = re.compile(r"#\d+")
 WORKTREE_BASE = re.compile(r"HEAD is now at ([0-9a-f]{7,40})")
-WIKI_SKILL = r"wiki-[a-z]+|reader-testing"
+# reader-testing은 wiki-reader-testing의 옛 이름이다. 지난 기록을 읽으려고 남긴다.
+WIKI_SKILL = r"wiki-[a-z]+(?:-[a-z]+)*|reader-testing"
 SKILL_DIR = re.compile(rf"Base directory for this skill: \S*?(\.claude/skills/(?:{WIKI_SKILL}))\n")
 COMMAND_SKILL = re.compile(rf"<command-message>({WIKI_SKILL})</command-message>")
 ROUTINE_SKILL = re.compile(rf'"content": "/({WIKI_SKILL})\b')

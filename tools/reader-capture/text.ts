@@ -1,7 +1,7 @@
 import { fromHtml } from "hast-util-from-html"
 import type { Element, ElementContent, Root, RootContent } from "hast"
 
-// 렌더된 페이지 HTML을 Reader Testing의 독자가 읽을 텍스트로 바꾼다(.claude/skills/reader-testing).
+// 렌더된 페이지 HTML을 Reader Testing의 외부 독자가 읽을 텍스트로 바꾼다(.claude/skills/wiki-reader-testing).
 // 독자가 화면에서 보는 것(제목, 속성, 본문, 참고문헌)만 옮기고 사이드바와 머리글은 뺀다.
 // 꼴은 마크다운에 가깝게 두되, 링크는 대상 슬러그를, 도해는 도해 안의 글자를 적어 화면의 정보를 잃지 않게 한다.
 

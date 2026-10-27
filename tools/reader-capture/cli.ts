@@ -12,7 +12,7 @@ import { frameDrift, type FrameMeasure } from "./frame"
 import { topicSlugs } from "./targets"
 import { diagramSources, readerText, svgLines } from "./text"
 
-// Reader Testing의 캡처(.claude/skills/reader-testing). 페이지마다 데스크톱 폭과 390px 폭 스크린샷,
+// Reader Testing의 캡처(.claude/skills/wiki-reader-testing). 페이지마다 데스크톱 폭과 390px 폭 스크린샷,
 // 독자 텍스트를 받고, 본문이 위키링크로 가리키는 페이지는 독자 텍스트만 받는다.
 // 사용: npm run reader-capture -- --out <폴더> (--topic <태그> | <슬러그>...) [--site <빌드 폴더>]
 //       npm run --silent reader-capture -- --list --topic <태그>  (캡처하지 않고 대상 슬러그를 한 줄에 하나씩 찍는다)

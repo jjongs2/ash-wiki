@@ -1,6 +1,6 @@
 // 소식 조사의 절차 검사(SKILL.md의 3. 찾기와 9. PR). 조사 에이전트의 접속 기록(작업 폴더의 out/*-access.jsonl)을
 // 매체 목록과 검색 질의(outlets.md)에 대 보고, 기록이 없거나 이유 없이 열지 않은 곳이 있으면 exit 1이다. 기록의
-// 꼴은 research-brief.md에 있다.
+// 꼴은 researcher.md에 있다.
 // 사용: npx tsx .claude/skills/wiki-news/procedure.ts <작업 폴더> <주차나 달>...
 import fs from "node:fs"
 import path from "node:path"
