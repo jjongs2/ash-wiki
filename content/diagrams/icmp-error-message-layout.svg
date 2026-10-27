@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 4.5 520 199.5" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
-  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 4.5 520 199.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
   <!-- IP 데이터그램에 실린 ICMP 메시지 -->
   <rect x="20.75" y="44.75" width="118.5" height="42.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="80" y="63" text-anchor="middle" fill="var(--on-fill, #f8fafd)">IP 헤더</text>
