@@ -17,15 +17,20 @@ configuration:
   # region-<구역>과 region-other는 구역 색이다(docs/palette.md 구역 색 절).
   # sidebar-<토큰>은 왼쪽 사이드바 면의 색이다(docs/palette.md 사이드바 면 절).
   # outside는 넓은 화면에서 페이지 바깥의 색이다(docs/palette.md 페이지 바깥 절).
-  # Pretendard는 Google Fonts에 없어 fontOrigin을 local로 두고, 폰트 CSS는 Head가 건다(quartz/util/localFonts.ts).
-  # OG 이미지 생성기가 쓰는 폰트는 prebuild가 캐시에 둔다(tools/og-fonts.ts).
+  # 코드 폰트 Monoplex KR은 Google Fonts에 없어 fontOrigin을 local로 두고, 폰트 CSS는 Head가 건다(quartz/util/localFonts.ts).
+  # OG 이미지 생성기와 도해 여백 검사가 쓰는 폰트는 prebuild가 캐시에 둔다(tools/og-fonts.ts).
+  # 제목과 본문은 라틴·그리스 문자·기호를 IBM Plex Sans로, 한글을 IBM Plex Sans KR로 그린다. 둘이 같은 CSS 하나를
+  # 쓰도록 값을 함께 둔다. 이름은 라틴 폰트, 한글 폰트 순이다(도해 여백 검사가 이 순서를 쓴다).
   theme:
     fontOrigin: local
     cdnCaching: true
     typography:
-      header: Pretendard
-      body: Pretendard
-      code: IBM Plex Mono
+      header: &sans
+        name: [IBM Plex Sans, IBM Plex Sans KR]
+        weights: [400, 600, 700]
+        includeItalic: false
+      body: *sans
+      code: Monoplex KR
     colors:
       lightMode:
         light: "#f8fafd"

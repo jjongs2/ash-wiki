@@ -2,11 +2,12 @@
 
 사이트의 색과 폰트, 도해 팔레트를 고른 근거와 대비 실측이다. 값은 여기에 옮겨 적지 않고, 정본이 있는 곳을 토큰 이름으로 가리킨다.
 
-| 값                                   | 정본                                                     |
-| ------------------------------------ | -------------------------------------------------------- |
-| 사이트 색, 폰트 이름                 | `quartz.config.yaml`의 `configuration.theme`             |
-| 도해 색                              | [도해 규약](wiki-diagrams.md#도해의-색)의 도해 팔레트 표 |
-| 웹 폰트 파일의 출처, Pretendard 버전 | `quartz/util/localFonts.ts`                              |
+| 값                                  | 정본                                                     |
+| ----------------------------------- | -------------------------------------------------------- |
+| 사이트 색, 폰트 이름                | `quartz.config.yaml`의 `configuration.theme`             |
+| 도해 색                             | [도해 규약](wiki-diagrams.md#도해의-색)의 도해 팔레트 표 |
+| 웹 폰트 파일의 출처                 | `quartz/util/localFonts.ts`                              |
+| 코드 폰트의 버전, 저작권과 라이선스 | `quartz/static/fonts/monoplex-kr/`                       |
 
 ## 방향
 
@@ -151,16 +152,25 @@
 
 ## 폰트
 
-제목과 본문은 Pretendard, 코드는 IBM Plex Mono이다.
+제목과 본문은 IBM Plex Sans와 IBM Plex Sans KR, 코드는 Monoplex KR이다. 다른 문서와 견준 시안에서 소유자가 골랐다(2026-10-27).
+
+- 라틴, 그리스 문자, 기호는 IBM Plex Sans로, 한글은 IBM Plex Sans KR로 그린다. Google Fonts판 IBM Plex Sans KR에는 `Æ`, `µ`, `Ω`, `Δ`, `≈`와 라틴 악센트 글자가 없다. 두 폰트의 ASCII 글자는 폭과 모양이 같다.
+- 숫자는 고정폭(0.6em)이다. IBM Plex는 700까지만 있어 사이트 이름도 700이다.
+- Monoplex KR은 IBM Plex Mono(라틴)와 IBM Plex Sans KR(한글)을 합친 고정폭 폰트로, 한글 폭이 라틴의 두 배다. 라틴 폭은 IBM Plex Mono의 0.88배다.
+- 1배 화면의 Linux에서는 브라우저가 글자 폭을 정수 px로 반올림해 영문 사이가 조금 벌어진다(16px의 `tttt`가 22.05px 대신 24px, 보통 단어는 1% 안). 눈으로 갈리지 않아 본문에 `text-rendering: geometricPrecision`을 걸지 않는다.
+
+예전 결정은 아래와 같았다.
 
 - 시안 청사진은 IBM Plex Sans KR이었다. 그런데 Google Fonts판에는 `Æ`와 `Ω`가 없어, 빌드한 OG 이미지에서 사이트 이름이 ` wiki`로 찍혔다. 소유자가 Pretendard로 바꿨다.
-- Pretendard는 한글 11,172자와 `Æ`, `Ω`를 모두 담고 있다. 라틴 글자는 Inter를 바탕으로 한다.
-- IBM Plex Mono에는 한글이 없다. 코드 안의 한글(주석 등)은 시스템 폰트로 대체된다.
+- Pretendard는 한글 11,172자와 `Æ`, `Ω`를 모두 담고 있었다. 코드 폰트 IBM Plex Mono에는 한글이 없어, 코드 안의 한글(주석 등)은 시스템 폰트로 대체됐다.
 
-폰트 파일은 두 경로로 받는다.
+폰트 파일은 세 경로로 받는다.
 
-- 웹: `theme.fontOrigin`이 `local`이라 코어는 폰트를 불러오지 않는다. `Head`가 `theme.typography`의 폰트마다 CSS를 건다(`quartz/util/localFonts.ts`). Pretendard는 Google Fonts에 없어 공식 배포처인 jsDelivr에서, 나머지는 Google Fonts에서 받는다.
-- OG 이미지: 생성기(`@quartz-community/og-image`)는 `theme.typography`의 `header`(700)와 `body`(400)를 Google Fonts에서만 받고, 받기 전에 `quartz/.quartz-cache/fonts/<이름>-<굵기>`를 먼저 읽는다. prebuild의 `npm run og-fonts`(`tools/og-fonts.ts`)가 `header`나 `body`가 Pretendard이면 웹 폰트와 같은 버전의 OTF를 그 자리에 둔다. 없으면 한글이 없는 시스템 폰트로 넘어가 두부가 찍힌다.
+- 웹: `theme.fontOrigin`이 `local`이라 코어는 폰트를 불러오지 않는다. `Head`가 `theme.typography`의 폰트마다 CSS를 건다(`quartz/util/localFonts.ts`). 제목과 본문 폰트는 Google Fonts에서 받는다.
+- 코드 폰트: Monoplex KR은 Google Fonts에도 jsDelivr에도 없고, GitHub 릴리스의 zip(TTF)만 있다. 릴리스 v1.1.0의 TTF를 WOFF2로 압축만 해(fontTools `woff2.compress`) 코드가 쓰는 굵기 400, 600, 700을 `quartz/static/fonts/monoplex-kr/`에 싣는다.
+- OG 이미지와 도해 여백 검사: 생성기(`@quartz-community/og-image`)는 `theme.typography`의 `header`(700)와 `body`(400)를 Google Fonts에서 받고, 받기 전에 `quartz/.quartz-cache/fonts/<이름>-<굵기>`를 먼저 읽는다. prebuild의 `npm run og-fonts`(`tools/og-fonts.ts`)가 웹과 같은 css2 API에서 굵기별 TTF를 받아 그 자리에 둔다. 받은 주소에 판이 들어 있어, Google Fonts가 판을 올리면 새로 받는다. 이름이 여럿인 역할은 생성기가 모두 싣도록 패치했다.
+
+Monoplex KR의 라이선스는 SIL OFL 1.1이고, "Monoplex", "Plex", "PlemolJP"가 예약 폰트 이름이다. 폰트 데이터를 바꾸지 않고 WOFF2로 압축만 한 파일은 수정본이 아니어서 이름을 그대로 쓴다([OFL FAQ 2.2.1](https://openfontlicense.org/ofl-faq/)). 다시 풀면 `head`의 checkSumAdjustment와 flags 11번 비트(WOFF2 규격이 압축할 때 고치는 값) 말고는 원본과 같다. 서브셋으로 쪼개면 수정본이 되어(FAQ 2.6) 예약 이름을 쓸 수 없으므로 쪼개지 않는다.
 
 `@quartz-community/quartz-fonts` 플러그인은 끈다. 이 플러그인은 `theme.typography`를 읽지 않고 자기 기본값(Schibsted Grotesk 등)으로 제목의 `font-family`를 덮어써, 폰트의 정본이 둘이 된다.
 

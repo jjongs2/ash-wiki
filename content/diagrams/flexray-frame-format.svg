@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 20 550.5 189" font-family="Pretendard, sans-serif" text-rendering="geometricPrecision" font-variant="none" font-size="14" fill="none">
-  <style>@import url("https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css");</style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 20 550.5 189" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
 
   <!-- 세그먼트 -->
   <rect x="100.75" y="30.75" width="156.5" height="44.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
@@ -26,7 +26,7 @@
     <rect x="376.75" y="124.75" width="126.5" height="48.5" />
     <rect x="508.75" y="124.75" width="70.5" height="48.5" />
   </g>
-  <g text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">
+  <g text-anchor="middle" font-size="11" fill="var(--on-fill, #f8fafd)">
     <text x="128" y="145">indicator</text>
     <text x="224" y="145">프레임 ID</text>
     <text x="332" y="145">페이로드 길이</text>

@@ -1,0 +1,24 @@
+/* ash-wiki: 코드 글꼴 Monoplex KR v1.1.0이다(docs/palette.md 폰트 절). 저작권과 라이선스(SIL OFL 1.1)는
+   LICENSE.md에 있다. woff2는 릴리스의 TTF를 압축만 한 것이라 수정본이 아니다(OFL FAQ 2.2.1). 코드가 쓰는
+   굵기만 싣는다. */
+@font-face {
+  font-family: "Monoplex KR";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("MonoplexKR-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Monoplex KR";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("MonoplexKR-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Monoplex KR";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("MonoplexKR-Bold.woff2") format("woff2");
+}

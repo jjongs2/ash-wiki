@@ -1,7 +1,17 @@
 diff --git a/node_modules/@quartz-community/og-image/dist/index.js b/node_modules/@quartz-community/og-image/dist/index.js
 --- a/node_modules/@quartz-community/og-image/dist/index.js
 +++ b/node_modules/@quartz-community/og-image/dist/index.js
-@@ -23885,11 +23885,8 @@ function isAbsoluteURL(url) {
+@@ -23847,7 +23847,8 @@ function getFontSpecificationName(spec) {
+   if (typeof spec === "string") {
+     return spec;
+   }
+-  return spec.name;
++  // ash-wiki: 이름이 여럿이면(quartz/util/theme.ts의 FontSpecification) satori의 fontFamily 목록으로 잇는다.
++  return [spec.name].flat().join(", ");
+ }
+ 
+ // src/emoji.ts
+@@ -23885,37 +23886,38 @@ function isAbsoluteURL(url) {
    return /^https?:\/\//.test(url);
  }
  function formatDate(d3, locale = "en-US") {
@@ -14,8 +24,50 @@ diff --git a/node_modules/@quartz-community/og-image/dist/index.js b/node_module
 +  return [d3.getFullYear(), String(d3.getMonth() + 1).padStart(2, "0"), String(d3.getDate()).padStart(2, "0")].join("-");
  }
  async function getSatoriFonts(headerFont, bodyFont) {
-   const headerWeights = typeof headerFont === "string" ? defaultHeaderWeight : headerFont.weights ?? defaultHeaderWeight;
-@@ -24272,7 +24269,7 @@ var defaultImage = ({
+-  const headerWeights = typeof headerFont === "string" ? defaultHeaderWeight : headerFont.weights ?? defaultHeaderWeight;
+-  const bodyWeights = typeof bodyFont === "string" ? defaultBodyWeight : bodyFont.weights ?? defaultBodyWeight;
+-  const headerFontName = typeof headerFont === "string" ? headerFont : headerFont.name;
+-  const bodyFontName = typeof bodyFont === "string" ? bodyFont : bodyFont.name;
+-  const headerFontPromises = headerWeights.map(async (weight) => {
+-    const data = await fetchTtf(headerFontName, weight);
++  // ash-wiki: 그림은 제목을 700, 나머지를 400으로만 그리므로 typography의 굵기(웹이 받는 굵기)는 따르지 않는다.
++  // 이름이 여럿이면(quartz/util/theme.ts의 FontSpecification) 모두 싣고, 앞의 폰트에 없는 글자는 satori가 뒤의
++  // 폰트로 그린다. 받을 파일은 prebuild가 캐시에 둔다(tools/og-fonts.ts).
++  const headerWeights = defaultHeaderWeight;
++  const bodyWeights = defaultBodyWeight;
++  const headerFontName = getFontSpecificationName(headerFont);
++  const bodyFontName = getFontSpecificationName(bodyFont);
++  const fontNames = (spec) => [typeof spec === "string" ? spec : spec.name].flat();
++  const headerFontPromises = fontNames(headerFont).flatMap((name) => headerWeights.map(async (weight) => {
++    const data = await fetchTtf(name, weight);
+     if (!data) return null;
+     return {
+-      name: headerFontName,
++      name,
+       data,
+       weight,
+       style: "normal"
+     };
+-  });
+-  const bodyFontPromises = bodyWeights.map(async (weight) => {
+-    const data = await fetchTtf(bodyFontName, weight);
++  }));
++  const bodyFontPromises = fontNames(bodyFont).flatMap((name) => bodyWeights.map(async (weight) => {
++    const data = await fetchTtf(name, weight);
+     if (!data) return null;
+     return {
+-      name: bodyFontName,
++      name,
+       data,
+       weight,
+       style: "normal"
+     };
+-  });
++  }));
+   const [headerFonts, bodyFonts] = await Promise.all([
+     Promise.all(headerFontPromises),
+     Promise.all(bodyFontPromises)
+@@ -24272,7 +24274,7 @@ var defaultImage = ({
                        ),
                        date
                      ] }),
@@ -24,7 +76,7 @@ diff --git a/node_modules/@quartz-community/og-image/dist/index.js b/node_module
                        /* @__PURE__ */ u3(
                          "svg",
                          {
-@@ -24339,7 +24336,8 @@ var defaultOptions = {
+@@ -24339,7 +24341,8 @@ var defaultOptions = {
    excludeRoot: false,
    defaultTitle: "Untitled",
    defaultDescription: "No description provided",

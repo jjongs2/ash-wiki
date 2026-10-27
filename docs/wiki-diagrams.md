@@ -20,8 +20,7 @@
 - 기존 도해를 다시 그리면 기준 도해의 꼴(같은 폭 상자, 대칭, 정렬, 계단)을 지킨다. 긴 이름표는 상자 폭을 늘리지 않고 줄을 나눈다. `리뷰`
 - 루트 `<svg>`에 `viewBox`를 둔다. `viewBox`는 그림의 상하좌우 여백이 같게 잡는다. 사이트는 `viewBox`를 틀 가운데에 놓으므로, 그림이 `viewBox` 안에서 쏠리면 틀 안에서도 쏠려 보인다. 검사는 여백의 차가 허용치를 넘으면 옮긴 `viewBox`를 알려 준다. 허용치와 그 근거는 `tools/check-content/diagram-margin.ts`에 있다. `검사 svg`
 - 그림은 `viewBox` 안에 둔다. `viewBox` 밖은 사이트에서 그려지지 않는다. 검사는 `viewBox` 밖에 칠한 것이 있으면 넘친 변과 양을 알려 주고, 이때는 여백 치우침을 알리지 않는다. 밖을 얼마나 넓혀 보는지는 `tools/check-content/diagram-margin.ts`에 있다. `검사 svg`
-- 글자는 Pretendard로 그린다. 루트 `<svg>`에 `font-family="Pretendard, sans-serif"`와 `text-rendering="geometricPrecision"`을 두고, `<style>`에서 사이트와 같은 Pretendard CSS를 `@import`로 불러온다(넣을 줄은 검사가 알려 준다). SVG는 `<object>`로 들어가 별도 문서로 그려지므로 사이트의 웹 폰트를 물려받지 못한다. 브라우저가 검사와 같은 폰트로, 글자 폭을 픽셀에 맞춰 반올림하지 않고 그려야 검사가 잰 여백이 독자가 보는 여백과 맞는다. `검사 svg`
-- 루트 `<svg>`에 `font-variant="none"`을 두어 합자를 끈다. 끄지 않으면 Pretendard가 `0x`의 `x`를 `×`로 그리는 때가 있다. 예: `ID 0x8100`. 숫자·대문자 옆의 하이픈, 대시, 콜론(`15765-2`, `10:30`)이 조금 내려가는 것은 감수한다. 두 동작이 같은 기능에 묶여 있어 하나만 끌 수 없다. `검사 svg`
+- 글자는 본문과 같은 IBM Plex Sans와 IBM Plex Sans KR로 그린다. 루트 `<svg>`에 `font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif"`와 `text-rendering="geometricPrecision"`을 두고, `<style>`에서 사이트와 같은 폰트 CSS를 `@import`로 불러온다(넣을 줄은 검사가 알려 준다). SVG는 `<object>`로 들어가 별도 문서로 그려지므로 사이트의 웹 폰트를 물려받지 못한다. 브라우저가 검사와 같은 폰트로, 글자 폭을 픽셀에 맞춰 반올림하지 않고 그려야 검사가 잰 여백이 독자가 보는 여백과 맞는다. `검사 svg`
 
 ## 도해의 색
 

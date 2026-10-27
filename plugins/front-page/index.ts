@@ -254,7 +254,7 @@ const CSS = `.front-regions {
   margin-right: 0.45em;
   border-radius: 50%;
   background-color: currentColor;
-  vertical-align: 0.08em;
+  vertical-align: 0.05em;
 }
 .front-regions a.front-topic {
   display: inline-block;
@@ -293,7 +293,7 @@ const CSS = `.front-regions {
 //   (--secondary)에 밑줄이 생긴다(GitHub의 Link--primary). 사이트 링크의 hover색(--tertiary)이 아니라
 //   링크색으로 바뀌어야 링크임이 드러난다.
 // - 아이콘은 제목 안의 인라인 요소라 첫 줄 글자에 맞춰 선다. 꺾인 줄은 내어쓰기(padding과 음수 text-indent)로
-//   아이콘 오른쪽에서 시작한다. vertical-align은 Pretendard 글자 상자의 가운데에 아이콘 가운데를 맞춘 값이다.
+//   아이콘 오른쪽에서 시작한다. vertical-align은 첫 줄 한글의 가운데에 아이콘 가운데를 맞춘 값이다.
 // - 날짜, PR 번호, 쪽수와 아이콘은 보조 글자색이고, 대비 하한은 docs/palette.md의 "보조 글자"다. 날짜는
 //   굵게 쓴다.
 // - 주간 소식도 같은 타임라인이다. 발행일마다 마디를 두고, 그 아래 주요 소식의 제목과, 제목 아래 작은 구역
@@ -301,8 +301,8 @@ const CSS = `.front-regions {
 //   (plugins/weekly-news)의 CSS가 정하고, 여기서는 크기만 줄인다. 칸 제목 줄의 오른쪽에 "N건 모두 보기(그 호)
 //   · 지난 호"를 보조 글자색으로 둔다. 주요 소식이 없는 주는 타임라인 대신 보조 글자 한 줄을 둔다.
 // - 칸 제목 줄은 최근 변경의 칸 제목과 높이가 같아야 두 칸의 첫 날짜 줄이 맞는다. 링크 문단에 사이트 공통
-//   문단 줄 높이(1.6rem)가 걸리면 기준선 맞춤으로 제목 줄이 4.59px 높아지므로, 링크의 줄 높이를 글자 크기로
-//   줄인다. 칸이 좁아 링크가 제목 옆에 들지 않으면(창 폭 850px쯤 아래) 링크를 제목 아래 줄로 내리고, 링크 글자는
+//   문단 줄 높이(글자 크기의 1.7배)가 걸리면 기준선 맞춤으로 제목 줄이 1.11px 높아지므로, 링크의 줄 높이를 글자
+//   크기로 줄인다. 칸이 좁아 링크가 제목 옆에 들지 않으면(창 폭 850px쯤 아래) 링크를 제목 아래 줄로 내리고, 링크 글자는
 //   꺾지 않는다. 사이트 링크 규칙이 white-space를 normal로 걸어 링크에도 nowrap을 건다.
 // - 칩은 바탕이 상자 맨 위에서 시작해, 같은 여백이면 최근 변경의 보조 글자 줄보다 제목에 붙어 보이고 행도
 //   길어진다. 그래서 대문의 칩은 글자와 줄 높이를 줄이고 위 여백을 넓혀, 행 높이를 보조 글자 줄과 비슷하게
@@ -391,7 +391,7 @@ li.front-day li {
   width: 0.85em;
   height: 0.85em;
   margin-right: 0.5rem;
-  vertical-align: -0.1em;
+  vertical-align: -0.13em;
   fill: var(--gray);
 }
 .front-recent a.front-change-link {

@@ -9,3 +9,5 @@ tools/check-content/fixtures/violation/content/bad-table-link.md
 .claude/worktrees/
 # 판 확인의 픽스처는 통로의 실제 응답이다. 닫히지 않은 태그도 그대로 둔다
 tools/edition-status/fixtures/
+# 글꼴과 함께 배포하는 라이선스는 받은 그대로 둔다
+quartz/static/fonts/monoplex-kr/LICENSE.md
