@@ -1,4 +1,5 @@
-import { fieldsOf, type Page } from "../check-content/tree"
+import path from "node:path"
+import { fieldsOf, type Page, type Tree } from "../check-content/tree"
 import { tableLines } from "../check-content/source-checks"
 
 // 문장에서 표준 원문을 가리키는 표준 기구와 발행기관의 이름.
@@ -148,6 +149,50 @@ export function maskRefs(text: string): string {
     .replace(/\[@[^\]\n]*\]/g, blank)
     .replace(/https?:\/\/\S+/g, blank)
     .replace(/<[^>\n]+>/g, blank)
+}
+
+// 절 제목 줄의 수준과 제목.
+export const heading = (line: string) => line.match(/^(#{1,6}) (.*)$/)
+
+// 머리말(anchor가 없을 때)이나 제목이 anchor인 절(그 아래 절까지)의 줄 범위. 끝은 들지 않는다. 절 제목은
+// 글자 그대로 맞추고, 못 찾으면 undefined다.
+function sectionRange(
+  lines: string[],
+  anchor: string | undefined,
+): { start: number; end: number } | undefined {
+  let start = 0
+  let level = 0
+  if (anchor !== undefined) {
+    start = lines.findIndex((line) => heading(line)?.[2].trim() === anchor.trim())
+    if (start < 0) return undefined
+    level = heading(lines[start])![1].length
+  }
+  let end = start + 1
+  while (end < lines.length) {
+    const next = heading(lines[end])
+    if (next && (level === 0 || next[1].length <= level)) break
+    end++
+  }
+  return { start, end }
+}
+
+// 위키링크를 링크 글자로 바꾼다.
+export const linkDisplays = (text: string) =>
+  text.replace(/\[\[(?:[^\]\n|]*\\?\|)?([^\]\n]*)\]\]/g, "$1")
+
+// 위키링크 대상(슬러그나 폴더를 뺀 이름)의 페이지.
+export function linkedPage(tree: Tree, target: string): Page | undefined {
+  const name = target.trim()
+  return tree.pages.find((p) => p.name === name || path.basename(p.name) === name)
+}
+
+// 페이지의 머리말이나 제목이 anchor인 절. lines는 페이지의 줄(maskRefs를 거친 것)이고, text는 그 절의 글을
+// 위키링크를 링크 글자로 바꿔 이은 것이다. 절을 못 찾으면 range가 없고 text는 빈 글이다.
+export function anchorSection(page: Page, anchor: string | undefined) {
+  const lines = maskRefs(page.masked).split("\n")
+  const range = sectionRange(lines, anchor)
+  const text = range ? linkDisplays(lines.slice(range.start, range.end).join("\n")) : ""
+  return { lines, range, text }
 }
 
 // 영문 낱말 바로 뒤의 한글 없는 괄호. 약어나 이름의 풀이다. 예: `GMII(Gigabit Media Independent Interface)`

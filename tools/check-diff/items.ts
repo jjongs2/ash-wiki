@@ -6,6 +6,7 @@ import { repoRoot } from "../repo"
 import { isNew, type ChangedFile } from "./diff"
 import { diagramWidthItem } from "./diagram-width"
 import {
+  anchorSection,
   blank,
   blocks,
   citedSentences,
@@ -13,6 +14,7 @@ import {
   excerpt,
   lineAt,
   lineStarts,
+  linkedPage,
   listNames,
   maskRefs,
   pageNames,
@@ -22,6 +24,7 @@ import {
   touches,
 } from "./text"
 import { firstLinkItem } from "./first-link"
+import { sectionLinkItem } from "./section-link"
 import { ownerPage } from "./owner"
 import { editions } from "./editions"
 import { consensusWithoutEdition, isConsensus, sectionText, shortNameAllowed } from "./consensus"
@@ -599,29 +602,6 @@ function explainedWords(tree: Tree): Set<string> {
 const linkGloss =
   /\[\[([^\]\n|#\\]+)(?:#([^\]\n|\\]+))?\\?\|([A-Za-z0-9_]+(?:[/.-][A-Za-z0-9_]+)*)\]\]\(((?=[A-Za-z])[^()\n가-힣]+)\)/g
 
-// 대상 페이지의 머리말이나, 제목이 anchor인 절(그 아래 절까지)의 글.
-function leadOrSection(page: Page, anchor: string | undefined): string {
-  const lines = maskRefs(page.masked).split("\n")
-  const heading = (line: string) => line.match(/^(#{1,6}) (.*)$/)
-  let start = 0
-  let level = 0
-  if (anchor !== undefined) {
-    start = lines.findIndex((line) => heading(line)?.[2].trim() === anchor.trim())
-    if (start < 0) return ""
-    level = heading(lines[start])![1].length
-  }
-  let end = start + 1
-  while (end < lines.length) {
-    const next = heading(lines[end])
-    if (next && (level === 0 || next[1].length <= level)) break
-    end++
-  }
-  return lines
-    .slice(start, end)
-    .join("\n")
-    .replace(/\[\[(?:[^\]\n|]*\\?\|)?([^\]\n]*)\]\]/g, "$1")
-}
-
 function linkGlosses(
   tree: Tree,
   page: Page,
@@ -635,14 +615,13 @@ function linkGlosses(
     const [link, target, anchor, abbreviation, gloss] = match
     const line = lineAt(starts, match.index)
     if (!change.added.has(line) || !isAbbreviation(abbreviation) || /[0-9]/.test(gloss)) return []
-    const name = target.trim()
-    const linked = tree.pages.find((p) => p.name === name || path.basename(p.name) === name)
+    const linked = linkedPage(tree, target)
     if (!linked || (owners.get(abbreviation) ?? []).some((p) => p !== linked)) return []
     const word = escapeRegExp(abbreviation)
     const explains = new RegExp(
       `(?<![A-Za-z0-9_/.-])${word}(?![A-Za-z0-9_])\\**\\((?=[A-Za-z])|\\(\\**${word}\\**[),]`,
     )
-    if (!explains.test(leadOrSection(linked, anchor))) return []
+    if (!explains.test(anchorSection(linked, anchor).text)) return []
     return [{ file: page.file, line, message: `링크 뒤 풀이: ${link}` }]
   })
 }
@@ -776,6 +755,7 @@ export const items: [string, Item][] = [
   ["abbreviation", abbreviationItem],
   ["term", termItem],
   ["first-link", firstLinkItem],
+  ["section-link", sectionLinkItem],
   ["diagram-place", diagramPlaceItem],
   ["diagram-width", diagramWidthItem],
   ["inline-math", inlineMathItem],
