@@ -1,13 +1,13 @@
-import path from "node:path"
 import type { Candidate, Context } from "./items"
 import {
+  anchorSection,
   heading,
   lineAt,
   lineStarts,
   linkDisplays,
+  linkedPage,
   maskRefs,
   pageNames,
-  sectionRange,
 } from "./text"
 
 // 절 링크의 대상 절: 더한 줄의 `[[대상#절|링크 글자]]` 가운데 링크 글자가 대상 절(그 아래 절까지)에 나오지
@@ -27,12 +27,9 @@ export const sectionLinkItem = ({ tree, changed }: Context): Candidate[] =>
       const [link, target, anchor, display] = match
       const line = lineAt(starts, match.index)
       if (!change.added.has(line)) return []
-      const name = target.trim()
-      const linked = tree.pages.find((p) => p.name === name || path.basename(p.name) === name)
+      const linked = linkedPage(tree, target)
       if (!linked) return []
-      const lines = maskRefs(linked.masked).split("\n")
-      const range = sectionRange(lines, anchor)
-      const section = range ? linkDisplays(lines.slice(range.start, range.end).join("\n")) : ""
+      const { lines, range, text: section } = anchorSection(linked, anchor)
       const word = subject(display.trim().toLowerCase(), pageNames(linked))
       if (word === undefined) return []
       const reasons: string[] = []
@@ -40,12 +37,12 @@ export const sectionLinkItem = ({ tree, changed }: Context): Candidate[] =>
       // 앵커 절 밖의 절 제목과 강조. 그 아래 절은 앵커 절이 다루는 것이다.
       let current = "머리말"
       lines.forEach((raw, index) => {
-        const text = linkDisplays(raw)
-        const title = heading(text)
-        if (title) current = text.trim()
+        const shown = linkDisplays(raw)
+        const title = heading(shown)
+        if (title) current = shown.trim()
         if (range && index >= range.start && index < range.end) return
         if (title?.[2].trim().toLowerCase() === word) reasons.push(`다른 절 제목 \`${current}\``)
-        const emphasized = [...text.matchAll(/\*\*([^*\n]+)\*\*/g)]
+        const emphasized = [...shown.matchAll(/\*\*([^*\n]+)\*\*/g)]
         if (emphasized.some((m) => m[1].trim().toLowerCase() === word))
           reasons.push(`다른 절의 강조(${current})`)
       })
@@ -56,11 +53,11 @@ export const sectionLinkItem = ({ tree, changed }: Context): Candidate[] =>
 
 // 링크 글자에서 대상의 이름을 뗀 말. 링크 글자가 대상의 이름이면 undefined다.
 function subject(display: string, names: string[]): string | undefined {
-  let word = display
-  for (const name of names.map((n) => n.toLowerCase()).sort((a, b) => b.length - a.length)) {
-    if (display === name) return undefined
-    const joint = [`${name}의 `, `${name} `].find((prefix) => display.startsWith(prefix))
-    if (joint && word === display) word = display.slice(joint.length).trim()
-  }
-  return word
+  const lower = names.map((name) => name.toLowerCase())
+  if (lower.includes(display)) return undefined
+  const prefix = lower
+    .flatMap((name) => [`${name}의 `, `${name} `])
+    .filter((p) => display.startsWith(p))
+    .sort((a, b) => b.length - a.length)[0]
+  return prefix ? display.slice(prefix.length).trim() : display
 }
