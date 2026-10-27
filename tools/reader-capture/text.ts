@@ -60,7 +60,7 @@ function linkedSlug(node: Element): string | undefined {
   return slug
 }
 
-// 화면에서 접혀 있는 절과 콜아웃의 표시. 독자 프롬프트가 이 표시를 설명한다.
+// 화면에서 접혀 있는 절과 콜아웃의 표시. 외부 독자 지시 파일이 이 표시를 설명한다.
 const collapsedMark = " (접힌 채로 보임)"
 
 class Writer {
