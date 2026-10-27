@@ -32,7 +32,7 @@ PR 본문에는 처리가 원래대로인 항목을 까닭과 함께 적고, Ver
 - `docs/wiki-verification.md`: 좁혀 쓰기, 이론 주장, 표준의 판, 상태 문장, 반영 뒤 재판정 절과, 검토 절의 처리 줄
 - `docs/source-hierarchy.md`: 1층 출처 절
 - `docs/source-access.md`: 머리의 공통 줄과 호스트별 여는 법 절
-- `docs/wiki-conventions.md`: 페이지 타입과 프론트매터, 절, 슬러그, 출처 문장, 인용, 약어, 용어, 중복 절. 도해를 고치면 도해 절도
+- `docs/wiki-conventions.md`: 페이지 타입과 프론트매터, 절, 슬러그, 출처 문장, 인용, 약어, 용어, 중복 절. 도해를 고치면 `docs/wiki-diagrams.md`도
 - `docs/wiki-terms.md`, `docs/wiki-abbreviations.md`
 
 할 일:

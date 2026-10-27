@@ -6,7 +6,7 @@ import { formatFontSpecification, getFontSpecificationName, type Theme } from ".
 // OG 이미지용 폰트를 받는 tools/og-fonts.ts도 이 배포처와 버전을 쓴다.
 export const pretendardVersion = "1.3.9"
 export const pretendardDist = `https://cdn.jsdelivr.net/npm/pretendard@${pretendardVersion}/dist`
-// 도해 SVG도 이 CSS를 불러와 글자를 Pretendard로 그린다(docs/wiki-conventions.md 도해 절).
+// 도해 SVG도 이 CSS를 불러와 글자를 Pretendard로 그린다(docs/wiki-diagrams.md).
 export const pretendardStylesheet = `${pretendardDist}/web/static/pretendard-dynamic-subset.css`
 
 export function localFontStylesheets(theme: Theme): string[] {

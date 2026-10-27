@@ -5,7 +5,7 @@ import type { Position } from "unist"
 import { visit } from "unist-util-visit"
 import { pretendardStylesheet } from "../../quartz/util/localFonts"
 import { latestPartYears, standardNumber } from "../edition-status/standard-number"
-import type { Conventions } from "./conventions"
+import { loadDiagramConventions, type Conventions } from "./conventions"
 import {
   marginTolerance,
   measureMargins,
@@ -665,7 +665,7 @@ export const math: SourceCheck = (tree) => {
   return violations
 }
 
-// 도해 SVG는 색을 규약 문서의 도해 팔레트 토큰으로 쓴다(`var(--<이름>, <대체값>)`). 사이트가 현재 테마의
+// 도해 SVG는 색을 도해 규약의 도해 팔레트 토큰으로 쓴다(`var(--<이름>, <대체값>)`). 사이트가 현재 테마의
 // 값을 도해 문서에 넣고(plugins/diagram-theme), 스크립트가 돌지 않는 곳에서는 대체값으로 그려진다.
 const colorProperty = "fill|stroke|stop-color|flood-color|lighting-color|color"
 const colorKeywords = /^(none|transparent|inherit|url\(#[^)]+\))$/i
@@ -744,7 +744,7 @@ function colorViolation(value: string, fallbacks: Map<string, string>): string |
   return null
 }
 
-// 모양 척도(docs/wiki-conventions.md 도해 절). 점선은 선 두께와 짝을 이룬다.
+// 모양 척도(docs/wiki-diagrams.md의 도해의 모양 절). 점선은 선 두께와 짝을 이룬다.
 const strokeWidths = [1, 1.5, 3]
 const cornerRadii = [0, 2]
 const dashes: Record<string, { fits: (width: number) => boolean; rule: string }> = {
@@ -1088,15 +1088,17 @@ async function textBetweenBoxesViolations(
   return found
 }
 
-export const svg: SourceCheck = async (tree, conventions) => {
+export const svg: SourceCheck = async (tree) => {
   const fallbacks = new Map(
-    conventions.table("diagram-palette", ["이름", "대체값"]).map((row) => {
-      const fallback = normalizeColor(row["대체값"])
-      if (!normalizeHex(fallback) && fallback !== "none") {
-        throw new Error(`규약 문서의 도해 팔레트 대체값이 hex나 none이 아니다: ${row["대체값"]}`)
-      }
-      return [row["이름"], fallback]
-    }),
+    loadDiagramConventions()
+      .table("diagram-palette", ["이름", "대체값"])
+      .map((row) => {
+        const fallback = normalizeColor(row["대체값"])
+        if (!normalizeHex(fallback) && fallback !== "none") {
+          throw new Error(`도해 규약의 도해 팔레트 대체값이 hex나 none이 아니다: ${row["대체값"]}`)
+        }
+        return [row["이름"], fallback]
+      }),
   )
   const violations: Violation[] = []
   for (const { file, source } of tree.svgs) {

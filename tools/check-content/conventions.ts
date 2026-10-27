@@ -3,9 +3,10 @@ import path from "node:path"
 import { repoRoot } from "../repo"
 
 // 문서의 표를 사본 없이 직접 읽는다. 표는 `<!-- table: <이름> -->` 주석 바로 뒤에 온다. 칸 안의 `\|`는 `|`다.
-// 검사기는 위키 규약 문서를, 대비 실측(tools/palette.ts)은 팔레트 문서를, 출처 상태(tools/source-status)는
-// 위키 검증 문서를 읽는다.
+// 검사기는 위키 규약 문서와 도해 규약 문서를, 대비 실측(tools/palette.ts)은 도해 규약 문서와 팔레트 문서를,
+// 출처 상태(tools/source-status)는 위키 검증 문서를 읽는다.
 export const conventionsPath = path.join(repoRoot, "docs", "wiki-conventions.md")
+export const diagramConventionsPath = path.join(repoRoot, "docs", "wiki-diagrams.md")
 
 export type Row = Record<string, string>
 
@@ -65,4 +66,8 @@ function splitRow(line: string): string[] {
 
 export function loadConventions(): Conventions {
   return new Conventions(fs.readFileSync(conventionsPath, "utf8"))
+}
+
+export function loadDiagramConventions(): Conventions {
+  return new Conventions(fs.readFileSync(diagramConventionsPath, "utf8"), diagramConventionsPath)
 }

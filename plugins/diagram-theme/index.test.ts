@@ -1,7 +1,7 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
 import type { BuildCtx } from "../../quartz/util/ctx"
-import { loadConventions } from "../../tools/check-content/conventions"
+import { loadDiagramConventions } from "../../tools/check-content/conventions"
 import DiagramTheme, { readPalette } from "./index"
 
 // externalResources가 싣는 스크립트가 seam이다. 가짜 document로 스크립트를 돌려 리스너를 받아 두고,
@@ -9,7 +9,7 @@ import DiagramTheme, { readPalette } from "./index"
 const resources = DiagramTheme().externalResources!({} as BuildCtx)!
 const script = resources.js![0]
 const source = script.contentType === "inline" ? script.script : ""
-const rows = loadConventions().table("diagram-palette", ["이름", "라이트", "다크"])
+const rows = loadDiagramConventions().table("diagram-palette", ["이름", "라이트", "다크"])
 const table = (column: "라이트" | "다크") =>
   Object.fromEntries(rows.map((row) => [row["이름"], row[column]]))
 

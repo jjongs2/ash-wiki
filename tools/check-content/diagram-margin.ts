@@ -6,7 +6,7 @@ import { cacheDir, ensurePretendard } from "../og-fonts"
 // 안에서도 쏠려 보인다. SVG를 래스터화해 그림이 칠한 영역을 재고, viewBox 가장자리까지의 여백을 준다.
 // viewBox 밖은 그려지지 않아 사이트에서 보이지 않으므로, viewBox를 넓혀 그려 밖으로 나간 양도 함께 잰다.
 //
-// 도해는 글자를 Pretendard로 그리므로(docs/wiki-conventions.md 도해 절), fontconfig도 Pretendard만
+// 도해는 글자를 Pretendard로 그리므로(docs/wiki-diagrams.md), fontconfig도 Pretendard만
 // 보게 한다. 시스템 폰트에 맡기면 한글 폰트가 없는 CI 러너(ubuntu-latest)에서 한글이 그려지지 않는다.
 // 같은 폰트를 geometricPrecision으로 그리면 렌더러 차이만 남는다. main의 도해 7개에서 이 측정(librsvg)과
 // Linux Chromium 151(headless 포함)의 여백은 한 변에서 최대 0.25 달랐으므로, 두 변의 차는 최대 0.5
