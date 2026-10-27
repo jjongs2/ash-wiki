@@ -61,7 +61,9 @@ export default (() => {
         {/* ash-wiki: fontOrigin이 local이면 코어는 폰트를 불러오지 않는다. custom.scss는 번들 CSS
             가운데에 들어가 @import를 쓸 수 없어, 폰트 CSS를 여기서 건다(util/localFonts.ts). */}
         {cfg.theme.fontOrigin === "local" &&
-          localFontStylesheets(cfg.theme).map((href) => <link rel="stylesheet" href={href} />)}
+          localFontStylesheets(cfg.theme, baseDir).map((href) => (
+            <link rel="stylesheet" href={href} />
+          ))}
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 

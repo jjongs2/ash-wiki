@@ -21,10 +21,11 @@ interface Colors {
   darkMode: ColorScheme
 }
 
+// ash-wiki: name에 이름을 여럿 주면 앞의 폰트에 없는 글자를 뒤의 폰트로 그린다(quartz.config.yaml).
 export type FontSpecification =
   | string
   | {
-      name: string
+      name: string | string[]
       weights?: number[]
       includeItalic?: boolean
     }
@@ -47,19 +48,39 @@ const DEFAULT_SANS_SERIF =
   'system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
 const DEFAULT_MONO = "ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace"
 
-export function getFontSpecificationName(spec: FontSpecification): string {
+export function getFontSpecificationNames(spec: FontSpecification): string[] {
   if (typeof spec === "string") {
-    return spec
+    return [spec]
   }
 
-  return spec.name
+  return typeof spec.name === "string" ? [spec.name] : spec.name
 }
 
-// ash-wiki: fontOrigin이 local일 때 Head가 거는 Google Fonts URL도 같은 굵기 기본값을 쓰도록
-// 내보낸다(util/localFonts.ts).
-export function formatFontSpecification(
+// ash-wiki: CSS의 font-family 값이다. 이름마다 따옴표로 감싸 기본 폰트 목록 앞에 둔다.
+function fontFamilyList(spec: FontSpecification, fallback: string) {
+  return [...getFontSpecificationNames(spec).map((name) => `"${name}"`), fallback].join(", ")
+}
+
+// ash-wiki: Google Fonts css2 URL의 family 인자다. 이름이 여럿이면 폰트마다 하나씩 두고, 굵기는 모두 같다.
+// fontOrigin이 local일 때 Head가 거는 Google Fonts URL도 이것을 쓴다(util/localFonts.ts).
+export function googleFontFamilies(
   type: "title" | "header" | "body" | "code",
   spec: FontSpecification,
+) {
+  return getFontSpecificationNames(spec)
+    .map((name) => {
+      const family = formatFontSpecification(
+        type,
+        typeof spec === "string" ? name : { ...spec, name },
+      )
+      return `family=${family.replaceAll(" ", "+")}`
+    })
+    .join("&")
+}
+
+function formatFontSpecification(
+  type: "title" | "header" | "body" | "code",
+  spec: string | { name: string; weights?: number[]; includeItalic?: boolean },
 ) {
   if (typeof spec === "string") {
     spec = { name: spec }
@@ -95,18 +116,18 @@ export function formatFontSpecification(
 
 export function googleFontHref(theme: Theme) {
   const { header, body, code } = theme.typography
-  const headerFont = formatFontSpecification("header", header)
-  const bodyFont = formatFontSpecification("body", body)
-  const codeFont = formatFontSpecification("code", code)
+  const headerFont = googleFontFamilies("header", header)
+  const bodyFont = googleFontFamilies("body", body)
+  const codeFont = googleFontFamilies("code", code)
 
-  return `https://fonts.googleapis.com/css2?family=${headerFont}&family=${bodyFont}&family=${codeFont}&display=swap`
+  return `https://fonts.googleapis.com/css2?${headerFont}&${bodyFont}&${codeFont}&display=swap`
 }
 
 export function googleFontSubsetHref(theme: Theme, text: string) {
   const title = theme.typography.title || theme.typography.header
-  const titleFont = formatFontSpecification("title", title)
+  const titleFont = googleFontFamilies("title", title)
 
-  return `https://fonts.googleapis.com/css2?family=${titleFont}&text=${encodeURIComponent(text)}&display=swap`
+  return `https://fonts.googleapis.com/css2?${titleFont}&text=${encodeURIComponent(text)}&display=swap`
 }
 
 export interface GoogleFontFile {
@@ -209,10 +230,10 @@ ${stylesheet.join("\n\n")}
   --textHighlight: ${theme.colors.lightMode.textHighlight};
 ${extraVariables(theme.colors.lightMode)}
 
-  --titleFont: "${getFontSpecificationName(theme.typography.title || theme.typography.header)}", ${DEFAULT_SANS_SERIF};
-  --headerFont: "${getFontSpecificationName(theme.typography.header)}", ${DEFAULT_SANS_SERIF};
-  --bodyFont: "${getFontSpecificationName(theme.typography.body)}", ${DEFAULT_SANS_SERIF};
-  --codeFont: "${getFontSpecificationName(theme.typography.code)}", ${DEFAULT_MONO};
+  --titleFont: ${fontFamilyList(theme.typography.title || theme.typography.header, DEFAULT_SANS_SERIF)};
+  --headerFont: ${fontFamilyList(theme.typography.header, DEFAULT_SANS_SERIF)};
+  --bodyFont: ${fontFamilyList(theme.typography.body, DEFAULT_SANS_SERIF)};
+  --codeFont: ${fontFamilyList(theme.typography.code, DEFAULT_MONO)};
 }
 
 :root[saved-theme="dark"] {
