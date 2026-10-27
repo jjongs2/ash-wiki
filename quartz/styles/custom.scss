@@ -472,12 +472,18 @@ $panel-tokens:
 // 면은 페이지 왼쪽 끝부터 칠한다. 데스크톱에서는 사이드바 칸이 페이지 왼쪽 끝에서 시작하고, 태블릿과 모바일에서는 본문
 // 칸의 좌우 여백(base.scss의 #quartz-body padding 1rem)만큼 들어가 있어 칸을 그만큼 밖으로 늘린다.
 // 본문 칸과 footer는 면에서 띄운다. 사이드바 칸과 본문 칸 사이가 5px뿐이다. 칸이 border-box라 띄운 만큼 내용 폭이
-// 줄고, 내용이 칸 밖으로 넘지 않는다.
+// 줄고, 내용이 칸 밖으로 넘지 않는다. 본문과 오른쪽 사이드바(그래프 뷰, 목차, 백링크) 사이는 칸 사이 5px과 오른쪽
+// 사이드바의 안쪽 여백을 합쳐 48px로, 면 쪽(37px)보다 넓게 둔다. 본문 폭은 그대로 두고 오른쪽 사이드바 안쪽에서
+// 가져온다. 업스트림이 사이드바에 거는 안쪽 여백(2rem)을 태블릿 절과 같은 무게의 선택자로 덮는다.
 @media all and ($desktop) {
   .center,
   footer {
     box-sizing: border-box;
     padding-left: 2rem;
+  }
+
+  .page > #quartz-body > .sidebar.right {
+    padding-left: calc(48px - 5px);
   }
 }
 
