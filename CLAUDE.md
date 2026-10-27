@@ -8,7 +8,7 @@
 
 ## 기여
 
-커밋, PR, 리뷰, 이슈는 `CONTRIBUTING.md`를 따른다.
+커밋, PR, 리뷰, 이슈, 스킬과 에이전트는 `CONTRIBUTING.md`를 따른다.
 
 ## Agent skills
 

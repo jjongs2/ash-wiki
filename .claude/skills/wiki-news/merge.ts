@@ -1,6 +1,6 @@
 // 소식 조사의 병합 스크립트(SKILL.md의 2. 지난 호, 5. 중복, 9. PR). 조사 에이전트가 낸 후보를 합치고, 같은 사건으로
 // 보이는 후보와 지난 호 항목을 이유와 함께 알린다. 묶음은 제안이고, 무엇을 실을지는 5단계가 정한다. 후보와 검토
-// 기록의 꼴은 research-brief.md와 review-brief.md에 있다.
+// 기록의 꼴은 researcher.md와 news-reviewer.md에 있다.
 // 사용: npx tsx .claude/skills/wiki-news/merge.ts past <작업 폴더> [--ref <브랜치>]... [--today <YYYY-MM-DD>]
 //       npx tsx .claude/skills/wiki-news/merge.ts merge <작업 폴더> [--force]
 //       npx tsx .claude/skills/wiki-news/merge.ts drop <작업 폴더> --reason <이유> <번호>...
@@ -14,7 +14,7 @@ import { repoRoot as root } from "../../../tools/repo"
 import { LISTED, OUTLETS, tableRows, visibleText } from "./check"
 import { git, readJsonl, weeksOf, writeJsonl } from "./work"
 
-/** 조사 에이전트의 후보 한 줄(research-brief.md의 출력). id는 병합이 붙인다. */
+/** 조사 에이전트의 후보 한 줄(researcher.md의 출력). id는 병합이 붙인다. */
 export interface Candidate {
   id?: string
   week: string
@@ -41,7 +41,7 @@ export interface PastItem {
   summary: string
 }
 
-/** 검토 에이전트의 기록 한 줄(review-brief.md의 출력). from은 원문을 바꿨을 때 바꾸기 전 주소다. */
+/** 검토 에이전트의 기록 한 줄(news-reviewer.md의 출력). from은 원문을 바꿨을 때 바꾸기 전 주소다. */
 export interface Review {
   url: string
   from?: string

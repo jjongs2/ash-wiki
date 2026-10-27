@@ -395,6 +395,13 @@ class CandidatesTest(unittest.TestCase):
         self.assertEqual(list(rows), [UUID])
         self.assertEqual(rows[UUID][1], "wiki-news(루틴)")
 
+    def test_renamed_skill_and_its_old_name_are_both_candidates(self):
+        self.transcript(UUID, entry("user", "<command-message>wiki-reader-testing</command-message>\n<command-args>platform</command-args>"))
+        self.transcript(OTHER, entry("user", "<command-message>reader-testing</command-message>\n<command-args>platform</command-args>"))
+        rows = self.candidates()
+        self.assertEqual(rows[UUID][1], "wiki-reader-testing")
+        self.assertEqual(rows[OTHER][1], "reader-testing")
+
     def test_analyzed_session_and_this_session_are_left_out(self):
         command = entry("user", "<command-message>wiki-verify</command-message>\n<command-args>#3</command-args>")
         self.transcript(UUID, command)

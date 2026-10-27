@@ -11,9 +11,9 @@
 
 - 티켓 `<티켓>`(`gh issue view <티켓>`): 페이지 표와 출처 약칭 범례, `## 범위`(주인 페이지 표와 alias 표), 있으면 `## 표기 결정`과 `## Tags`
 - `.claude/skills/wiki-ingest/SKILL.md`: 머리의 형제 PR 문단, 1단계의 `### 두 경로 공통` 절, `### 브리프` 절의 현행판 표와 사본 항목
-- `docs/wiki-conventions.md`: 표, 도해, 열린 PR과 겹치는 파일, 빌드 절을 뺀 전부
+- `docs/wiki-conventions.md`: 페이지 타입과 프론트매터, 절, 슬러그, 출처 문장, 인용, 약어, 용어, 중복 절
 - `docs/wiki-terms.md`, `docs/wiki-abbreviations.md`
-- `docs/wiki-verification.md`: 판정 절의 약어 풀이·소개 문단과 인용 위치 문단, 좁혀 쓰기(규범 주장의 꼴, 출처 구간, 합의 문서, Standards Track RFC), 이론 주장, 표준의 판, 정정, 봇 차단 호스트, 반영 뒤 점검의 `standard-sentence`, `source-run`, `abbreviation`, `repeated-citation`, `term`, `first-link`, `emphasis` 항목
+- `docs/wiki-verification.md`: 판정 절의 약어 풀이·소개 문단과 인용 위치 문단, 좁혀 쓰기(규범 주장의 꼴, 출처 구간, 합의 문서, Standards Track RFC), 이론 주장, 표준의 판, 정정, 봇 차단 호스트, 반영 뒤 점검의 `standard-sentence`, `source-run`, `abbreviation`, `repeated-citation`, `term` 항목
 - `docs/source-access.md`: 머리의 공통 줄과 호스트별 여는 법 절
 - `docs/source-hierarchy.md`: 발행기관, 원 논문과 원 저자의 글, 1층 출처 절
 
@@ -23,7 +23,7 @@
 2. 출처 후보의 표준·명세마다 현행판을 확인해 `<사본 폴더>/brief-part.md`의 `## 현행판 표`에 적는다. 브리프의 `## 현행판 표`에 이미 있는 줄은 다시 확인하지 않는다.
 3. 줄마다 `요지`를 위키 규약의 출처 문장 절을 따라 자기 말로 쓴다. 공통 절과 아래 초안 규칙을 지키고, 티켓에 `## 표기 결정`이 있으면 따른다. 브리프에 `## 표기 표`가 있으면 그 표기를 쓴다. 표에 없는 용어, alias, 약어 풀이, 출처 이름을 새로 정하면 반환의 `새로 정한 표기`에 적는다. 약어 풀이는 표기 표에 있어도 주장이다(위키 검증 문서의 판정 절).
 4. 다른 에이전트가 맡은 페이지는 이 묶음의 페이지다. 그 페이지의 주제 개념은 설명하지 않고 위키 규약의 중복 절을 따라 링크한다.
-5. 다 쓴 초안에 `npm run check:diff -- --only standard-sentence --only source-run --only abbreviation --only repeated-citation --only term --only first-link --only emphasis`를 한 번 돌려 고친다. 명령은 아직 커밋하지 않은 초안과 추적하지 않는 새 페이지도 보므로, 함께 도는 다른 에이전트의 페이지 후보도 찍힌다. 맡은 페이지의 후보만 본다. `source-run`의 "구간을 여는데 출처 표시가 없다" 후보 가운데, 초안이 고쳐 쓰지 않은 문장(바뀌지 않았거나 뜻을 바꾸지 않아 `(편집)`을 단 문장)이 `<기준 커밋>`의 그 페이지(`git show`로 연다)에서도 출처 표시 없이 구간을 열었으면 고치지 않는다(좁혀 쓰기 절).
+5. 다 쓴 초안에 `npm run check:diff -- --only standard-sentence --only source-run --only abbreviation --only repeated-citation --only term`를 한 번 돌려 고친다. 명령은 아직 커밋하지 않은 초안과 추적하지 않는 새 페이지도 보므로, 함께 도는 다른 에이전트의 페이지 후보도 찍힌다. 맡은 페이지의 후보만 본다. `source-run`의 "구간을 여는데 출처 표시가 없다" 후보 가운데, 초안이 고쳐 쓰지 않은 문장(바뀌지 않았거나 뜻을 바꾸지 않아 `(편집)`을 단 문장)이 `<기준 커밋>`의 그 페이지(`git show`로 연다)에서도 출처 표시 없이 구간을 열었으면 고치지 않는다(좁혀 쓰기 절).
 
 커밋하지 않는다. 메인 세션이 반환을 확인한 뒤 검증에 넘긴다.
 
