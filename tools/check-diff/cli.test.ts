@@ -93,6 +93,7 @@ describe("check-diff CLI", { concurrency: false }, () => {
         "abbreviation",
         "term",
         "first-link",
+        "section-link",
         "diagram-place",
         "diagram-width",
         "inline-math",
@@ -101,7 +102,7 @@ describe("check-diff CLI", { concurrency: false }, () => {
   })
 
   test("마지막 줄에 돈 항목 수와 전체 항목 수, SKIP 수를 찍는다", () => {
-    assert.strictEqual(report.last, "돈 항목 15/전체 15, SKIP 0")
+    assert.strictEqual(report.last, "돈 항목 16/전체 16, SKIP 0")
   })
 
   test("표준 문장: 에서는과 밝힌다 꼴을 잡고, 추적하지 않는 새 페이지도 본다", () => {
@@ -558,6 +559,64 @@ describe("check-diff CLI", { concurrency: false }, () => {
     assert.ok(!has(report.items.get("first-link"), "content/linker-a.md:"))
   })
 
+  test("절 링크: 링크 글자가 대상 절(하위 절 포함)에 나오지 않으면 찍는다", () => {
+    const lines = report.items.get("section-link") ?? []
+    assert.ok(
+      has(
+        lines,
+        "content/section-link.md:8:",
+        "[[section-target#필드|슬롯 시간]]",
+        "대상 절에 없다",
+      ),
+    )
+  })
+
+  test("절 링크: 앵커 절이 언급하는 링크 글자가 대상 페이지의 다른 절 제목이면 찍는다", () => {
+    const lines = report.items.get("section-link") ?? []
+    assert.ok(
+      has(
+        lines,
+        "content/section-link.md:10:",
+        "[[section-target#종류|Alpha Manifest]]",
+        "다른 절 제목 `## Alpha Manifest`",
+      ),
+    )
+    assert.ok(!has(lines, "content/section-link.md:10:", "대상 절에 없다"))
+  })
+
+  test("절 링크: 링크 글자가 앵커 절 밖의 강조와 같으면 강조가 든 절과 함께 찍는다", () => {
+    const lines = report.items.get("section-link") ?? []
+    assert.ok(
+      has(lines, "content/section-link.md:8:", "대상 절에 없다, 다른 절의 강조(## 프레임 크기)"),
+      "slot time 꼴: 필드 절에 없고 프레임 크기 절에서 정의된다",
+    )
+    assert.ok(
+      has(
+        lines,
+        "content/section-link.md:12:",
+        "[[section-target#종류|머리 개념]]",
+        "다른 절의 강조(머리말)",
+      ),
+    )
+    assert.ok(!has(lines, "content/section-link.md:12:", "대상 절에 없다"))
+  })
+
+  test("절 링크: 대상의 title·alias인 링크 글자는 넘기고, <이름>의 Y와 <이름> Y는 Y로 본다", () => {
+    const lines = report.items.get("section-link") ?? []
+    assert.ok(!has(lines, "content/section-link.md:14:"), "title과 대소문자만 다른 alias")
+    assert.ok(!has(lines, "content/section-link.md:16:"), "섹션 대상의 길이, STG 길이")
+  })
+
+  test("절 링크: 같은 이름의 절 제목이나 강조가 앵커 절의 하위 절에만 있거나 대소문자만 다르면 찍지 않는다", () => {
+    assert.ok(!has(report.items.get("section-link"), "content/section-link.md:18:"))
+  })
+
+  test("절 링크: 브랜치가 더하거나 고치지 않은 줄의 절 링크는 찍지 않는다", () => {
+    const lines = report.items.get("section-link") ?? []
+    assert.ok(!has(lines, "content/section-link-old.md:8:"))
+    assert.ok(has(lines, "content/section-link-old.md:10:", "대상 절에 없다"))
+  })
+
   test("도해 위치: 기존 도해 앞에 새로 들어온 문단만 잡는다", () => {
     const lines = report.items.get("diagram-place") ?? []
     assert.deepStrictEqual(
@@ -590,7 +649,7 @@ describe("check-diff CLI", { concurrency: false }, () => {
       only.headers.map((h) => h.replace(/ 후보 \d+/, "")),
       ["SKIP owner-page (--ticket 없음)", "abbreviation:"],
     )
-    assert.strictEqual(only.last, "돈 항목 1/전체 15, SKIP 1")
+    assert.strictEqual(only.last, "돈 항목 1/전체 16, SKIP 1")
     assert.strictEqual(only.exitCode, 0)
   })
 })

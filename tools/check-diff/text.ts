@@ -150,6 +150,35 @@ export function maskRefs(text: string): string {
     .replace(/<[^>\n]+>/g, blank)
 }
 
+// 절 제목 줄의 수준과 제목.
+export const heading = (line: string) => line.match(/^(#{1,6}) (.*)$/)
+
+// 머리말(anchor가 없을 때)이나 제목이 anchor인 절(그 아래 절까지)의 줄 범위. 끝은 들지 않는다. 절 제목은
+// 글자 그대로 맞추고, 못 찾으면 undefined다.
+export function sectionRange(
+  lines: string[],
+  anchor: string | undefined,
+): { start: number; end: number } | undefined {
+  let start = 0
+  let level = 0
+  if (anchor !== undefined) {
+    start = lines.findIndex((line) => heading(line)?.[2].trim() === anchor.trim())
+    if (start < 0) return undefined
+    level = heading(lines[start])![1].length
+  }
+  let end = start + 1
+  while (end < lines.length) {
+    const next = heading(lines[end])
+    if (next && (level === 0 || next[1].length <= level)) break
+    end++
+  }
+  return { start, end }
+}
+
+// 위키링크를 링크 글자로 바꾼다.
+export const linkDisplays = (text: string) =>
+  text.replace(/\[\[(?:[^\]\n|]*\\?\|)?([^\]\n]*)\]\]/g, "$1")
+
 // 영문 낱말 바로 뒤의 한글 없는 괄호. 약어나 이름의 풀이다. 예: `GMII(Gigabit Media Independent Interface)`
 export const latinGloss = /(?<=[A-Za-z0-9]\**)\([^()\n가-힣]*\)/g
 

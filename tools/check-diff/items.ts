@@ -13,15 +13,18 @@ import {
   excerpt,
   lineAt,
   lineStarts,
+  linkDisplays,
   listNames,
   maskRefs,
   pageNames,
+  sectionRange,
   sentences,
   similarity,
   standardBodies,
   touches,
 } from "./text"
 import { firstLinkItem } from "./first-link"
+import { sectionLinkItem } from "./section-link"
 import { ownerPage } from "./owner"
 import { editions } from "./editions"
 import { consensusWithoutEdition, isConsensus, sectionText, shortNameAllowed } from "./consensus"
@@ -602,24 +605,8 @@ const linkGloss =
 // 대상 페이지의 머리말이나, 제목이 anchor인 절(그 아래 절까지)의 글.
 function leadOrSection(page: Page, anchor: string | undefined): string {
   const lines = maskRefs(page.masked).split("\n")
-  const heading = (line: string) => line.match(/^(#{1,6}) (.*)$/)
-  let start = 0
-  let level = 0
-  if (anchor !== undefined) {
-    start = lines.findIndex((line) => heading(line)?.[2].trim() === anchor.trim())
-    if (start < 0) return ""
-    level = heading(lines[start])![1].length
-  }
-  let end = start + 1
-  while (end < lines.length) {
-    const next = heading(lines[end])
-    if (next && (level === 0 || next[1].length <= level)) break
-    end++
-  }
-  return lines
-    .slice(start, end)
-    .join("\n")
-    .replace(/\[\[(?:[^\]\n|]*\\?\|)?([^\]\n]*)\]\]/g, "$1")
+  const range = sectionRange(lines, anchor)
+  return range ? linkDisplays(lines.slice(range.start, range.end).join("\n")) : ""
 }
 
 function linkGlosses(
@@ -776,6 +763,7 @@ export const items: [string, Item][] = [
   ["abbreviation", abbreviationItem],
   ["term", termItem],
   ["first-link", firstLinkItem],
+  ["section-link", sectionLinkItem],
   ["diagram-place", diagramPlaceItem],
   ["diagram-width", diagramWidthItem],
   ["inline-math", inlineMathItem],
