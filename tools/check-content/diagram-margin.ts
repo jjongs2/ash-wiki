@@ -1,7 +1,7 @@
 import fs from "node:fs"
 import path from "node:path"
 import { getFontSpecificationNames } from "../../quartz/util/theme"
-import { cacheDir, ensureGoogleFonts, readTheme } from "../og-fonts"
+import { cacheDir, cachedFontFile, ensureGoogleFonts, readTheme } from "../og-fonts"
 
 // 도해는 사이트가 틀 가운데에 놓으므로(quartz/styles/custom.scss), 그림이 viewBox 안에서 쏠리면 틀
 // 안에서도 쏠려 보인다. SVG를 래스터화해 그림이 칠한 영역을 재고, viewBox 가장자리까지의 여백을 준다.
@@ -55,7 +55,7 @@ async function fontconfigFile(): Promise<string> {
   const links = new Map<string, string>(
     names.flatMap((name) =>
       weights.map((weight) => {
-        const file = `${name.replaceAll(" ", "+")}-${weight}`
+        const file = cachedFontFile(name, weight)
         return [`${file}.ttf`, path.join(cacheDir, file)] as const
       }),
     ),

@@ -20,7 +20,7 @@ configuration:
   # 코드 폰트 Monoplex KR은 Google Fonts에 없어 fontOrigin을 local로 두고, 폰트 CSS는 Head가 건다(quartz/util/localFonts.ts).
   # OG 이미지 생성기와 도해 여백 검사가 쓰는 폰트는 prebuild가 캐시에 둔다(tools/og-fonts.ts).
   # 제목과 본문은 라틴·그리스 문자·기호를 IBM Plex Sans로, 한글을 IBM Plex Sans KR로 그린다. 둘이 같은 CSS 하나를
-  # 쓰도록 값을 함께 둔다.
+  # 쓰도록 값을 함께 둔다. 이름은 라틴 폰트, 한글 폰트 순이다(도해 여백 검사가 이 순서를 쓴다).
   theme:
     fontOrigin: local
     cdnCaching: true

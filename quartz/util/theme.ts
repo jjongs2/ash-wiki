@@ -48,6 +48,7 @@ const DEFAULT_SANS_SERIF =
   'system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
 const DEFAULT_MONO = "ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace"
 
+// ash-wiki: 업스트림의 getFontSpecificationName을 이름 목록을 주도록 바꿨다(FontSpecification).
 export function getFontSpecificationNames(spec: FontSpecification): string[] {
   if (typeof spec === "string") {
     return [spec]
@@ -78,6 +79,7 @@ export function googleFontFamilies(
     .join("&")
 }
 
+// ash-wiki: 이름 하나만 받도록 좁히고 내보내지 않는다. 밖에서는 googleFontFamilies를 쓴다.
 function formatFontSpecification(
   type: "title" | "header" | "body" | "code",
   spec: string | { name: string; weights?: number[]; includeItalic?: boolean },

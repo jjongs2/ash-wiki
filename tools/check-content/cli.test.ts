@@ -208,7 +208,7 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/bad-font.svg:4",
         "content/bad-font.svg:5",
         "content/no-precision.svg:1",
-        "content/one-font.svg:1",
+        "content/root-font-family.svg:1",
         "content/no-viewbox.svg:1",
         "content/overflow-diagram.svg:1",
         "content/bad-separator.svg:10",

@@ -14,6 +14,11 @@ export const cacheDir = path.join(repoRoot, "quartz", ".quartz-cache", "fonts")
 const configPath = path.join(repoRoot, "quartz.config.yaml")
 const ogWeights = { header: 700, body: 400 } as const
 
+// 캐시의 파일 이름이다. 생성기의 fetchTtf가 같은 이름을 읽는다.
+export function cachedFontFile(name: string, weight: number): string {
+  return `${name.replaceAll(" ", "+")}-${weight}`
+}
+
 export function readTheme(): Theme {
   return parse(fs.readFileSync(configPath, "utf8")).configuration.theme
 }
@@ -34,11 +39,10 @@ export async function ensureOgFonts(): Promise<void> {
 export async function ensureGoogleFonts(names: string[], weights: number[]): Promise<void> {
   fs.mkdirSync(cacheDir, { recursive: true })
   for (const name of names) {
-    const key = name.replaceAll(" ", "+")
-    const target = (weight: number) => path.join(cacheDir, `${key}-${weight}`)
+    const target = (weight: number) => path.join(cacheDir, cachedFontFile(name, weight))
     let urls: Map<number, string>
     try {
-      urls = await ttfUrls(key, weights)
+      urls = await ttfUrls(name, weights)
     } catch (error) {
       if (weights.every((weight) => fs.existsSync(target(weight)))) {
         console.warn(`${name}: 판을 확인하지 못해 캐시의 폰트를 쓴다(${(error as Error).message})`)
@@ -65,8 +69,9 @@ export async function ensureGoogleFonts(names: string[], weights: number[]): Pro
 }
 
 // User-Agent를 주지 않으면 css2 API가 woff2 대신 TTF 주소를 준다. 생성기도 그렇게 받는다.
-async function ttfUrls(key: string, weights: number[]): Promise<Map<number, string>> {
-  const cssUrl = `https://fonts.googleapis.com/css2?family=${key}:wght@${weights.join(";")}`
+async function ttfUrls(name: string, weights: number[]): Promise<Map<number, string>> {
+  const family = name.replaceAll(" ", "+")
+  const cssUrl = `https://fonts.googleapis.com/css2?family=${family}:wght@${weights.join(";")}`
   const response = await fetch(cssUrl)
   if (!response.ok) throw new Error(`${cssUrl}: HTTP ${response.status}`)
   const css = await response.text()

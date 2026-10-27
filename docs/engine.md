@@ -29,9 +29,10 @@ git diff --name-only --diff-filter=A 97a2d05f80c4c50534959b1d0d41cc4b3895625e HE
 
 JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"` 키에 이유를 적는다. `tsconfig.json`은 주석을 허용하는 JSONC라 주석으로 적는다.
 
-이미지도 주석을 달 수 없어서 이유를 여기 적는다.
+이미지와 폰트도 주석을 달 수 없어서 이유를 여기 적는다.
 
 - `quartz/static/icon.png`: 소유자의 손글씨 아이콘이다(#85). favicon과 OG 이미지가 이 파일을 읽는다.
+- `quartz/static/fonts/monoplex-kr/`: 코드 폰트 Monoplex KR의 WOFF2와 받은 그대로 둔 `LICENSE.md`다(#612). 까닭은 같은 폴더의 `monoplex-kr.css` 머리 주석과 [팔레트](palette.md#폰트)에 있다.
 
 ## npm 플러그인 패치
 
