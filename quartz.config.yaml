@@ -353,11 +353,12 @@ plugins:
         - description
         - tags
         - aliases
-        # 검증일과 표준 페이지의 칸이다(docs/wiki-conventions.md). 값이 없는 키는 칸이 나오지 않는다.
-        - verified
+        # 표준 페이지의 칸과 검증일이다(docs/wiki-conventions.md). 값이 없는 키는 칸이 나오지 않는다. 표준을
+        # 설명하는 칸 뒤에 이 페이지의 날짜(검증일, 그 다음 줄의 수정일)를 둔다.
         - publisher
         - edition
         - status
+        - verified
       excludedProperties: []
       # 속성 키의 표시 이름이다. 플러그인은 키를 그대로 찍어, 이 옵션은 patches/의 note-properties 패치가 더했다.
       labels:
