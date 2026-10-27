@@ -271,10 +271,10 @@ plugins:
     layout:
       position: beforeBody
       priority: 10
-  # 읽는 시간은 보이지 않는다. 위키는 절을 골라 읽고, 한글 음절을 단어 하나로 세는 추정은 길게 잡힌다(#460).
-  # 대문에서는 수정일도 두지 않는다. 대문 파일을 고친 날이라 독자에게 뜻이 없고, 사이트의 움직임은 최근 변경이 보인다.
+  # 날짜 줄은 두지 않는다. 수정일은 속성 칸이 검증일 다음 줄에 싣는다(note-properties의 modifiedAfter). 속성 칸
+  # 바로 아래의 이름표 없는 날짜는 검증일과 갈리지 않았다(#611). 읽는 시간을 두지 않는 까닭은 docs/engine.md의 locale 절에 있다.
   - source: "@quartz-community/content-meta"
-    enabled: true
+    enabled: false
     options:
       showReadingTime: false
     layout:
@@ -368,6 +368,9 @@ plugins:
         publisher: 발행기관
         edition: 판
         status: 상태
+        modified: 수정일
+      # 수정일(created-modified-date가 정한 값)을 이 키의 다음 줄에 둔다. 이 옵션도 note-properties 패치가 더했다.
+      modifiedAfter: verified
       hidePropertiesView: false
       delimiters: ---
       language: yaml
@@ -421,11 +424,7 @@ layout:
         - reader-mode
       positions:
         right: []
-    # 주간 소식과 지난 호 목록(plugins/weekly-news). 그래프, 목차, Backlinks를 두지 않는다. content-meta의
-    # 날짜는 git 수정일이라 호의 기간과 어긋나 빼고, 그 자리에 플러그인이 기간과 이웃 호 줄을 둔다. npm 플러그인은
-    # source 전체가 이름이다(config-loader의 extractPluginName).
+    # 주간 소식과 지난 호 목록(plugins/weekly-news). 그래프, 목차, Backlinks를 두지 않는다.
     news:
-      exclude:
-        - "@quartz-community/content-meta"
       positions:
         right: []
