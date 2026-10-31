@@ -2,7 +2,7 @@
 
 # Æ wiki
 
-**자동차 임베디드 지식을 공개 출처로 검증해 게시하는 위키**
+**자동차 임베디드 도메인 기술 지식 위키 by LLM**
 
 [![Quartz v5](https://img.shields.io/badge/engine-Quartz%20v5-284b63)](docs/engine.md)
 [![Cloudflare Pages](https://img.shields.io/badge/deploy-Cloudflare%20Pages-f38020)](https://ash-wiki.pages.dev)
@@ -17,8 +17,8 @@ LLM이 쓰고 관리하되, 모든 주장을 공개 출처로 검증해 인용�
 
 - **주장 단위 검증**: 주장마다 종류(규범·동작·배경·이론)에 맞는 1층 출처로 판정합니다. 검증된 주장만 게시하고, 미검증 주장은 `verify:` 이슈에서 한 번 더 조사합니다.
 - **번호 인용**: 본문의 `[@키]`를 IEEE 스타일 번호로 바꾸고, 페이지 끝에 참고문헌을 붙입니다.
-- **하네스**: 표기는 콘텐츠 검사기(CI), 문장의 정확성은 리뷰, 주제 전체의 일관성은 린트가 봅니다. 규칙마다 정본 문서는 하나입니다.
-- **회고**: 세션 기록에서 반복된 문제를 찾아 스킬과 문서를 고치는 티켓을 만듭니다.
+- **하네스**: 기계로 판정되는 규칙은 콘텐츠 검사기(CI)가, 읽고 판단해야 하는 규칙은 에이전트가 맡습니다. 표기와 도해는 검토자가, 읽다 걸리는 곳은 외부 독자가, 페이지 사이의 모순과 중복은 린트가 봅니다. 규칙마다 정본 문서는 하나입니다.
+- **회고**: 작업 기록에서 반복된 실수를 찾아 스킬과 문서를 고치는 티켓을 만듭니다.
 
 ## 다루는 주제
 
@@ -29,7 +29,7 @@ LLM이 쓰고 관리하되, 모든 주장을 공개 출처로 검증해 인용�
 | 보안·업데이트     | 암호, 사이버보안, OTA                             |
 | 소프트웨어 공학   | 소프트웨어 프로세스, 소프트웨어 테스트, 기능 안전 |
 
-2026년 10월 기준 390여 쪽, 도해 490여 개, 참고문헌 1,700여 개입니다. 검증을 거치지 않는 [주간 소식](docs/weekly-news.md)은 위키 콘텐츠와 따로 둡니다. 둘 다 RSS 피드([사이트](https://ash-wiki.pages.dev/index.xml), [주간 소식](https://ash-wiki.pages.dev/news/index.xml))로 구독할 수 있습니다.
+2026년 10월 기준 400여 쪽, 도해 520여 개, 참고문헌 1,800여 개, 본문 인용 8,200여 곳입니다. 검증을 거치지 않는 [주간 소식](docs/weekly-news.md)은 위키 콘텐츠와 따로 둡니다. 둘 다 RSS 피드([사이트](https://ash-wiki.pages.dev/index.xml), [주간 소식](https://ash-wiki.pages.dev/news/index.xml))로 구독할 수 있습니다.
 
 ## 작동 방식
 
@@ -37,7 +37,7 @@ LLM이 쓰고 관리하되, 모든 주장을 공개 출처로 검증해 인용�
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/images/pipeline-dark.svg">
-  <img src="docs/images/pipeline-light.svg" alt="계획과 보강을 사람이 승인하면 인제스트 PR이 생기고, 사람이 머지하면 배포된다. 미검증 주장은 재조사, 배포된 위키는 린트를 거친다.">
+  <img src="docs/images/pipeline-light.svg" alt="계획과 보강을 사람이 승인하면 인제스트 PR이 생기고, 사람이 머지하면 배포된다. 미검증 주장은 재조사, 배포된 위키는 린트와 Reader Testing을 거친다.">
 </picture>
 
 | 스킬                  | 하는 일                                                    |
@@ -48,7 +48,7 @@ LLM이 쓰고 관리하되, 모든 주장을 공개 출처로 검증해 인용�
 | `wiki-verify`         | `verify:` 이슈의 미검증 주장 재조사(한 번만)               |
 | `wiki-lint`           | 주제나 구역 전체의 모순, 중복, 용어 불일치, 낡은 출처 점검 |
 | `wiki-retro`          | 세션 기록에서 스킬 개선점 도출                             |
-| `wiki-reader-testing` | 규칙을 모르는 외부 독자의 시점에서 오독되는 문장 찾기      |
+| `wiki-reader-testing` | 외부 독자 시점에서 페이지 읽어 보기                        |
 | `wiki-news`           | 주간 업계 소식 정리                                        |
 
 판정 기준은 [검증 절차](docs/wiki-verification.md)와 [출처 위계](docs/source-hierarchy.md)에, 결정 배경은 [ADR](docs/adr/)에 있습니다.
