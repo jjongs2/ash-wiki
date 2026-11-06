@@ -1,0 +1,10 @@
+{
+  "//": "ash-wiki: 로더는 컴포넌트 플러그인의 컴포넌트를 \"./components\" 서브패스에서 찾는다(quartz/plugins/loader/componentLoader.ts). plugins/graph처럼 그 서브패스를 index.ts로 잇는다",
+  "name": "narrow-toc",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./components": "./index.ts"
+  }
+}

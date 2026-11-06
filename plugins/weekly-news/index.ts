@@ -187,6 +187,9 @@ export function weekLabel(week: string, from?: string): string {
   return sameYear ? `${parsed.week}주차` : `${parsed.year}년 ${parsed.week}주차`
 }
 
+// 기간의 두 날짜 사이 부호. 앞뒤를 띄운 en dash다(docs/engine.md의 locale 절).
+const PERIOD_SEP = " \u2013 "
+
 /**
  * 기간 끝의 날짜(YYYY-MM-DD)를 `10월 5일` 꼴로 쓴다. year(기준 해)와 다른 해면 연도를 붙인다. 날짜 하나는
  * ISO 8601로 찍지만 기간은 이 꼴이다(docs/engine.md의 locale 절).
@@ -203,7 +206,7 @@ export function dayLabel(day: string, locale: string, year?: number): string {
 
 const periodLabel = (week: string, locale: string) => {
   const { start, end } = weekDays(week)
-  return `${dayLabel(start, locale)} ~ ${dayLabel(end, locale)}`
+  return `${dayLabel(start, locale)}${PERIOD_SEP}${dayLabel(end, locale)}`
 }
 
 /**
@@ -682,7 +685,7 @@ const periodTimes = (week: string, locale: string, year?: number): ElementConten
   const { start, end } = weekDays(week)
   return [
     el("time", { dateTime: start }, [text(dayLabel(start, locale, year))]),
-    text(" ~ "),
+    text(PERIOD_SEP),
     el("time", { dateTime: end }, [text(dayLabel(end, locale, year))]),
   ]
 }
@@ -870,13 +873,15 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 //   옅게 깔고 글자는 구역 색으로 쓴다. 대비 하한은 docs/palette.md의 "구역 칩"이다.
 // - 첫 줄은 칩 묶음과 "매체 · 발행일"이다. 칩끼리는 좁게, 칩 묶음과 매체 사이는 넓게 띄운다. 매체와 날짜는
 //   보조 글자색이다.
+// - 요약 문단의 줄 간격은 본문 문단(1.7)보다 조금 좁은 1.6이다(소유자 결정, #632). 카드 사이 간격은 그대로다.
 // - 정렬·거르기 줄은 목록 위에 둔다. 거르기 칩은 카드의 칩과 같은 꼴의 버튼이고, 주요 칩 뒤만 넓게 띄운다.
 //   아무것도 고르지 않으면 모든 칩이 카드의 칩과 같고, 하나라도 고르면 고른 칩은 제 색으로 채우고 나머지는 보조
 //   글자색과 1px --lightgray 테두리로 물린다. 고르지 않은 칩에 올리면 바탕은 두고 테두리와 글자를 구역 색으로
 //   바꾼다. 바탕을 진하게 하지 않는 까닭은 docs/palette.md의 구역 칩 바탕 메모에 있다.
 // - 칩 줄 아래의 상태 줄은 왼쪽에 소식 수, 오른쪽에 정렬을 둔다. 늘 보여서 거를 때 목록이 움직이지 않는다. 칩
 //   줄보다 목록 윗선에 가깝게 두어(글자 상자 기준 14px와 6px) 목록의 머리줄로 읽힌다(소유자 결정, #404). 글자는
-//   대문 소식 칸 제목 줄의 링크("N건 모두 보기 · 지난 호")와 같은 꼴이고, 고른 정렬은 제목색으로 굵게 쓴다.
+//   대문 소식 칸 제목 줄의 링크("N건 모두 보기 · 지난 호")와 같은 크기와 굵기이고, 색은 링크색이 아니라 보조
+//   글자색이다. 정렬은 다른 곳으로 가는 링크가 아니라 전환 버튼이다. 고른 정렬은 제목색으로 굵게 쓴다.
 // - 대문에서 소식 항목의 앵커로 들어오면 그 카드의 왼쪽 바깥에 링크색 세로 막대를 둔다. 바탕을 칠하지 않는 까닭은
 //   칩 글자의 대비다(docs/palette.md의 구역 칩 바탕 메모). 막대는 글자가 아니다.
 // - 거른 결과가 없을 때의 안내 줄은 아랫선을 두지 않는다. 바로 아래 페이지 끝의 hr과 두 겹이 된다.
@@ -890,7 +895,7 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 //   고정해 기간이 한 열로 서고, 피드 줄과 첫 달 사이는 달과 달 사이와 같게 둔다. 줄이 한 줄씩 촘촘해, 달
 //   소제목과 첫 줄 사이는 줄과 줄 사이보다 조금 넓게 띄워 소제목이 묶음 전체의 머리로 읽히게 한다.
 // - 글자 대비는 docs/palette.md의 쌍에 든다. 구역 칩은 구역 칩, 고르지 않고 거를 때의 칩은 구역 이름, 고른 칩은
-//   구역 이름과 강조색 위 글자(전경과 배경을 바꿔도 대비는 같다), 주요 칩은 내부 링크, 상태 줄은 보조 글자, 링크,
+//   구역 이름과 강조색 위 글자(전경과 배경을 바꿔도 대비는 같다), 주요 칩은 칩 위 링크, 상태 줄은 보조 글자, 링크,
 //   제목이다. 제목 아래 줄, 이전·다음 링크, 지난 호 목록, 피드 링크도 보조 글자, 링크, 제목 쌍만 쓴다. hover의
 //   테두리, 도착한 카드의 막대, 타임라인의 선·마디는 글자가 아니다.
 const CSS = `.news-tools {
@@ -1042,6 +1047,9 @@ const CSS = `.news-tools {
 .news-card-title a.news-card-link:hover {
   color: var(--secondary);
   text-decoration: underline;
+}
+.news-card-summary p {
+  line-height: 1.6;
 }
 .news-card-summary > :first-child {
   margin-top: 0;

@@ -206,7 +206,7 @@ function recentChanges(pages: FrontPagePage[], commits: FrontPageCommit[]): Rece
 
 // 구역 표의 모양이다. 표 머리(구역, 주제)는 스크린 리더에만 남기고 화면에서는 숨긴다. 표 위에 제목을 두지
 // 않으므로, 구역 이름 앞의 점과 칩 모양이 열의 뜻을 대신한다.
-// - 구역 이름은 구역 색(--region, 행마다 플러그인이 붙인다)으로 굵게 쓰고, 내부 링크의 배경을 지운다. 이름
+// - 구역 이름은 구역 색(--region, 행마다 플러그인이 붙인다)으로 굵게 쓰고, 업스트림 내부 링크의 배경을 지운다. 이름
 //   앞의 점도 같은 색이다. 대비 하한은 docs/palette.md의 "구역 이름"이다.
 // - 주제 칩은 같은 태그 목록으로 가는 본문 페이지 속성 칸의 태그(note-properties의 .tag-link)와 같은 꼴이다.
 //   모서리 3px, 같은 여백에, 마우스를 올리면 배경과 글자색이 뒤집힌다. 페이지 수는 보조 글자색으로 붙이고,
@@ -299,7 +299,9 @@ const CSS = `.front-regions {
 // - 주간 소식도 같은 타임라인이다. 발행일마다 마디를 두고, 그 아래 주요 소식의 제목과, 제목 아래 작은 구역
 //   칩을 둔다. 최근 변경의 제목과 보조 글자 줄과 같은 짜임이다. 칩의 꼴(.news-chip)은 주간 소식 플러그인
 //   (plugins/weekly-news)의 CSS가 정하고, 여기서는 크기만 줄인다. 칸 제목 줄의 오른쪽에 "N건 모두 보기(그 호)
-//   · 지난 호"를 보조 글자색으로 둔다. 주요 소식이 없는 주는 타임라인 대신 보조 글자 한 줄을 둔다.
+//   · 지난 호"를 링크색으로 두고, 마우스를 올리면 사이트 링크처럼 hover색(--tertiary)에 밑줄이 생긴다. 보조
+//   글자색으로 두었을 때는 사용성 테스트 파일럿의 두 세션이 링크로 읽지 못했다. 둘 사이의 가운뎃점은 보조
+//   글자색이다. 주요 소식이 없는 주는 타임라인 대신 보조 글자 한 줄을 둔다.
 // - 칸 제목 줄은 최근 변경의 칸 제목과 높이가 같아야 두 칸의 첫 날짜 줄이 맞는다. 링크 문단에 사이트 공통
 //   문단 줄 높이(글자 크기의 1.7배)가 걸리면 기준선 맞춤으로 제목 줄이 1.11px 높아지므로, 링크의 줄 높이를 글자
 //   크기로 줄인다. 칸이 좁아 링크가 제목 옆에 들지 않으면(창 폭 850px쯤 아래) 링크를 제목 아래 줄로 내리고, 링크 글자는
@@ -431,11 +433,14 @@ li.front-day li {
   white-space: nowrap;
 }
 .front-news a.front-news-action {
-  color: var(--gray);
+  color: var(--secondary);
   font-weight: 400;
   white-space: nowrap;
 }
-.front-news a.front-news-action:hover,
+.front-news a.front-news-action:hover {
+  color: var(--tertiary);
+  text-decoration: underline;
+}
 .front-news a.front-news-link:hover {
   color: var(--secondary);
   text-decoration: underline;

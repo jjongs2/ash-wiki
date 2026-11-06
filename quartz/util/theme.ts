@@ -9,11 +9,12 @@ export interface ColorScheme {
   highlight: string
   textHighlight: string
   // ash-wiki: 구역 색(region-<구역>)과 기타용 중립색(region-other), 왼쪽 사이드바 면의 색(sidebar-<토큰>), 넓은 화면의
-  // 페이지 바깥 색(outside)이다. 고른 근거와 대비 실측은 docs/palette.md에 있다. joinStyles가 다른 색처럼 CSS
-  // 변수(--region-<구역>, --sidebar-<토큰>, --outside)로 싣는다.
+  // 페이지 바깥 색(outside), 좁은 화면 목차 바의 바탕(narrow-toc)이다. 고른 근거와 대비 실측은 docs/palette.md에 있다.
+  // joinStyles가 다른 색처럼 CSS 변수(--region-<구역>, --sidebar-<토큰>, --outside, --narrow-toc)로 싣는다.
   [region: `region-${string}`]: string
   [sidebar: `sidebar-${string}`]: string
   outside?: string
+  "narrow-toc"?: string
 }
 
 interface Colors {
@@ -204,13 +205,16 @@ function hexToHsl(hex: string): { h: number; s: number; l: number } {
   return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) }
 }
 
-// ash-wiki: 구역 색, 사이드바 면의 색, 페이지 바깥 색을 CSS 변수 선언으로 늘어놓는다(ColorScheme의 region-<구역>,
-// sidebar-<토큰>, outside).
+// ash-wiki: 구역 색, 사이드바 면의 색, 페이지 바깥 색, 목차 바의 바탕을 CSS 변수 선언으로 늘어놓는다(ColorScheme의
+// region-<구역>, sidebar-<토큰>, outside, narrow-toc).
 function extraVariables(scheme: ColorScheme) {
   return Object.entries(scheme)
     .filter(
       ([token]) =>
-        token.startsWith("region-") || token.startsWith("sidebar-") || token === "outside",
+        token.startsWith("region-") ||
+        token.startsWith("sidebar-") ||
+        token === "outside" ||
+        token === "narrow-toc",
     )
     .map(([token, color]) => `  --${token}: ${color};`)
     .join("\n")
