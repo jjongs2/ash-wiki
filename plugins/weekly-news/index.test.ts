@@ -378,7 +378,7 @@ describe("issueDescription", () => {
   test("기간, 소식 수, 주요 소식의 한국어 제목", () => {
     assert.strictEqual(
       issueDescription("2026-w41", items, "ko-KR"),
-      "2026년 10월 5일 ~ 2026년 10월 11일, 자동차 임베디드 업계 소식 3건. 주요: AUTOSAR, R25-11 Adaptive Platform 변경 정리",
+      "2026년 10월 5일 – 2026년 10월 11일, 자동차 임베디드 업계 소식 3건. 주요: AUTOSAR, R25-11 Adaptive Platform 변경 정리",
     )
   })
 
@@ -400,7 +400,7 @@ describe("issueDescription", () => {
     )
     assert.strictEqual(
       issueDescription("2026-w41", two, "ko-KR"),
-      "2026년 10월 5일 ~ 2026년 10월 11일, 자동차 임베디드 업계 소식 2건. 주요: 나중, 쉼표가 든 제목 · Title",
+      "2026년 10월 5일 – 2026년 10월 11일, 자동차 임베디드 업계 소식 2건. 주요: 나중, 쉼표가 든 제목 · Title",
     )
   })
 
@@ -408,7 +408,7 @@ describe("issueDescription", () => {
     const { items: plain } = parseWeeklyNews("2026-w01", source())
     assert.strictEqual(
       issueDescription("2026-w01", plain, "ko-KR"),
-      "2025년 12월 29일 ~ 2026년 1월 4일, 자동차 임베디드 업계 소식 1건.",
+      "2025년 12월 29일 – 2026년 1월 4일, 자동차 임베디드 업계 소식 1건.",
     )
   })
 })
