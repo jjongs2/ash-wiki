@@ -499,9 +499,8 @@ function linkedTag(link: Element): string | null {
   return typeof slug === "string" && slug.startsWith("tags/") ? slug.slice("tags/".length) : null
 }
 
-// 대문 본문에서 구역 링크가 든 표를 구역 표로 보고, 행에 구역 색을, 주제 칩에 페이지 수를 붙인다. 화면
-// 낭독기가 이름과 수를 붙여 읽지 않도록 그 사이와 수 뒤에 화면에 보이지 않는 글자(`, `와 최근 변경과 같은
-// 단위 `쪽`, 사이트 스타일의 .sr-text)를 넣는다(#633).
+// 대문 본문에서 구역 링크가 든 표를 구역 표로 보고, 행에 구역 색을, 주제 칩에 페이지 수를 붙인다. 칩의 이름과
+// 수 사이와 수 뒤에는 화면 낭독기만 읽는 `, `와 최근 변경과 같은 단위 `쪽`을 넣는다(사이트 스타일의 .sr-text).
 export function decorateRegionTable(tree: Root, topicCounts: Record<string, number>) {
   for (const table of elements(tree, "table")) {
     let isRegionTable = false

@@ -313,9 +313,12 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
 // 둔다. 왼쪽 사이드바 면(폰에서는 머리 줄과 서랍) 위에서는 면이 secondary를 sidebar-secondary로 바꿔 걸어(아래 남색 면
 // 절) 링도 면의 링크색이 되고, 면 안의 검색 창은 페이지 색으로 돌아온다. 대비는 docs/palette.md의 대비 하한에 있다.
 // 링은 2px 띄워 그린다. 업스트림과 플러그인의 포커스 규칙은 layer 안이거나 지웠고, 남은 것은 로컬 프리뷰 전용인 diff
-// 이동 버튼(plugins/wiki-diff)뿐이다.
+// 이동 버튼(plugins/wiki-diff)뿐이다. 링의 꼴은 $focus-ring 하나로, :focus-visible을 받지 않는 탐색기 폴더 줄과 고른
+// 검색 결과도 이 값을 쓴다.
+$focus-ring: 2px solid var(--secondary);
+
 :focus-visible {
-  outline: 2px solid var(--secondary);
+  outline: $focus-ring;
   outline-offset: 2px;
 }
 
@@ -355,20 +358,20 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
 
   &:focus-visible::after {
     border-radius: 5px;
-    outline: 2px solid var(--secondary);
+    outline: $focus-ring;
     outline-offset: -2px;
   }
 }
 
 // 검색 창의 입력칸과 화살표로 고른 검색 결과(.focus, plugins/search)도 같은 링을 받는다. 입력칸은 테두리 안쪽에, 결과는
-// 스크롤 목록 안이라 항목 안쪽에 그린다. 검색 플러그인은 입력칸과 결과의 기본 링을 지운다.
+// 스크롤 목록 안이라 항목 안쪽에 그린다.
 .search > .search-container > .search-space {
   & > input:focus-visible {
     outline-offset: -2px;
   }
 
   .results-container .result-card:is(.focus, :focus-visible) {
-    outline: 2px solid var(--secondary);
+    outline: $focus-ring;
     outline-offset: -2px;
   }
 }
