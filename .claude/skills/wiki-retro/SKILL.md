@@ -32,12 +32,12 @@ python3 -B .claude/skills/wiki-retro/digest.py --candidates <이 세션 uuid>
 
 - **서브에이전트 기록**: 세션 기록 옆 `<uuid>/subagents/`. Workflow가 띄운 것은 그 아래 `workflows/`에 있다.
 - **세션 버전**: 세션이 실제로 따른 스킬 버전의 커밋. `python3 -B .claude/skills/wiki-retro/digest.py --version <세션 기록>...`의 출력을 쓴다. 출력은 세션이 띄운 에이전트의 파일도 그 버전으로 찍는다.
-- **티켓과 리뷰 요약**: 세션의 PR은 후보 표 URL 열의 PR이고, 없으면 기록의 세션 URL(`"remote_session_change","url":"<세션 URL>"`)의 `session_…`을 본문에 담은 PR이다(`gh pr list --state all --search '<session_…> in:body'`). PR마다 본문의 `Closes #<티켓>`과 코멘트의 리뷰 요약을 읽는다. PR이 없는 세션(보강, 주제 계획 등)의 받은 티켓은 발행한 티켓의 `## Parent`다.
+- **티켓과 PR**: 세션의 PR은 후보 표 URL 열의 PR이고, 없으면 기록의 세션 URL(`"remote_session_change","url":"<세션 URL>"`)의 `session_…`을 본문에 담은 PR이다(`gh pr list --state all --search '<session_…> in:body'`). PR마다 본문을 읽고, 받은 티켓은 본문의 `Closes #<티켓>`이다. PR이 없는 세션(보강, 주제 계획 등)의 받은 티켓은 발행한 티켓의 `## Parent`다.
 - **핸드오프**: 세션이 쓴 핸드오프(후보 표의 핸드오프 열). 머리 정보가 가리키는 앞 세션의 핸드오프(예: 받은 티켓을 발행한 세션)도 읽는다. 넘긴 일을 처리한 세션의 핸드오프도 읽는다. 넘긴 일이 모음 이슈 코멘트면 그 이슈의 `## Triage` 표가 가리키는 티켓의 핸드오프다. 처리 세션은 대개 위키 스킬을 부르지 않아 후보에 오르지 않으므로 `grep -lE '#<티켓>([^0-9]|$)' ~/documents/ash-wiki-handoff/*.md`로 찾는다.
 
 **루틴 실행**은 클라우드 루틴이 스킬을 한 번 돈 것이다. 로컬 세션이 없어 위 명령에 오르지 않으므로, `RemoteTrigger`의 `list`로 루틴을 찾고 루틴마다 `list_runs`의 실행 가운데 `analyzed.tsv`에 없는 것을 실행 id(`cse_…`)로 후보 표에 넣는다. 지금 분석할 실행은 소유자에게 따로 만든 worktree에서 `claude --teleport <session_…>`을 쳐 달라고 해 메인 기록 전문을 받는다. `session_…`은 `list_runs`가 실행마다 주는 claude.ai 링크에 있고, 기록은 그 worktree 경로의 프로젝트 폴더에 생긴다. 요약본은 이 기록으로 만든다. `get_run_log`는 thinking을 가리고 도구 입출력을 잘라, 다른 명령의 결과를 검사 결과로 읽게 하기 때문이다. 서브에이전트 기록은 따라오지 않으므로, 서브에이전트 안쪽은 `get_run_log`를 `next_cursor`가 없어질 때까지 받아 요약본 폴더에 보탠다. 분석은 메인 기록 전문과 run log의 서브에이전트 부분까지다. 세션 버전은 루틴이 돈 시각(`list_runs`나 run log)의 `origin/main`이고(`git rev-list -1 --before=<그 시각> origin/main`), PR은 run log의 PR URL이다.
 
-완료: 후보마다 소유자의 답이 있고, 뺀 세션은 목록에 적었다. 대상 세션마다 세션 버전과 띄운 에이전트 파일이 정해졌고, 티켓과 리뷰 요약, 넘긴 일, 핸드오프는 있는 것을 모두 찾았다.
+완료: 후보마다 소유자의 답이 있고, 뺀 세션은 목록에 적었다. 대상 세션마다 세션 버전과 띄운 에이전트 파일이 정해졌고, 티켓과 PR, 넘긴 일, 핸드오프는 있는 것을 모두 찾았다.
 
 ## 2. 요약본
 
