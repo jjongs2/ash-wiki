@@ -134,14 +134,18 @@ describe("낱말을 담는지 견주는 꼴", () => {
   })
 
   test("낱말이 제목과 본문에 나뉜 페이지도 모두 담은 것으로 본다", async () => {
+    // 나뉜 페이지는 본문 점수가 두 낱말을 본문에 함께 담은 페이지보다 높아, 같은 무리일 때만 앞선다.
+    // 링크는 흔해서 IDF가 낮다.
+    const common = [1, 2, 3].map((i) => page(`link-${i}`, `링크 ${i}`))
     const results = await search(
       [
-        page("link", "링크", { content: "링크" }),
-        page("100base-t1", "100BASE-T1 링크", { content: "세그먼트 길이는 15 m다" }),
+        page("both", "가", { content: "링크 세그먼트" }),
+        page("100base-t1", "100BASE-T1 링크", { content: "세그먼트 ".repeat(3) }),
+        ...common,
       ],
       "링크 세그먼트",
     )
-    assert.deepStrictEqual(results, ["100base-t1", "link"])
+    assert.deepStrictEqual(results, ["100base-t1", "both", "link-1", "link-2", "link-3"])
   })
 })
 
@@ -151,7 +155,7 @@ describe("결과 순서", () => {
       [
         page("body", "본문", { content: "시간 동기화 시간 동기화 시간 동기화" }),
         page("alias", "gPTP", { aliases: ["시간 동기화 프로토콜"] }),
-        page("title", "시간 동기화"),
+        page("title", "시간 동기화 개요"),
         page("split", "시간", { aliases: ["동기화"] }),
       ],
       "시간 동기화",
