@@ -27,9 +27,17 @@ const CITATION = /\s*\[@[^[\]]*\]/g
 
 const stripCitations = (text: string) => text.replace(CITATION, "")
 
-// hast-util-to-string의 toString과 같은 글이다. description 플러그인은 이 글로 설명과 검색 본문을 만든다.
-const textOf = (node: Root | RootContent): string =>
-  node.type === "text" ? node.value : "children" in node ? node.children.map(textOf).join("") : ""
+// 자식이 표의 줄이나 칸인 요소다. 렌더된 표에는 칸과 줄 사이에 공백 글이 없어, 이 요소의 자식은 공백으로 잇는다.
+const TABLE_PARTS = new Set(["table", "thead", "tbody", "tfoot", "tr"])
+
+// hast-util-to-string의 toString과 같은 글에, 표의 이웃한 칸과 줄 사이의 공백을 더한 것이다. description
+// 플러그인은 이 글로 설명과 검색 본문을 만든다.
+const textOf = (node: Root | RootContent): string => {
+  if (node.type === "text") return node.value
+  if (!("children" in node)) return ""
+  const separator = node.type === "element" && TABLE_PARTS.has(node.tagName) ? " " : ""
+  return node.children.map(textOf).join(separator)
+}
 
 const CitationFreeDescription: QuartzTransformerPlugin = () => ({
   name: "CitationFreeDescription",
