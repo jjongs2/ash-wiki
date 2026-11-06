@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="29.5 5 598 160" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="29.5 5 598 160" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="OSI 참조 모델과 IEEE 802.3-2022 계층의 대응">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
   <!-- 열 제목 -->
   <text x="140" y="24" text-anchor="middle" font-size="12" fill="var(--text, #727981)">OSI 참조 모델</text>

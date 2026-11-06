@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 0 528 247" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 0 528 247" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="SOME/IP-SD 메시지와 Flags의 배치">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
 
   <!-- Flags의 비트: 최상위 비트가 Reboot, 그다음 비트가 Unicast -->

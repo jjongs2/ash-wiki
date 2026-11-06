@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" style="--ink-fill: none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" style="--ink-fill: none" aria-label="색 토큰 위반 예시">
   <!-- 위반(svg): 루트에 fill이 없다. 루트 style의 선언은 fill이 아니라 SVG 안의 변수 선언이다. -->
   <!-- 위반(svg): <style> 안의 변수 선언이다. librsvg는 선언을 무시하고 대체값으로 그린다. -->
   <style>svg { --blue: #ff0000; }</style>

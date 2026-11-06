@@ -123,6 +123,11 @@ plugins:
   - source: ./plugins/diagram-theme
     enabled: true
     order: 36
+  # 도해 <object>에 SVG 루트의 aria-label을 이름으로, img를 역할로 준다(plugins/diagram-name). embed가 <object>를
+  # 만든 뒤에 돌아야 한다.
+  - source: ./plugins/diagram-name
+    enabled: true
+    order: 37
   - source: "@quartz-community/github-flavored-markdown"
     enabled: true
     order: 40

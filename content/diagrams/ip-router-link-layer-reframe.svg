@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 10 510 208.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 10 510 208.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="라우터에서 새 링크 계층 프레임에 다시 담는 데이터그램">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
   <!-- 노드와 링크 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
