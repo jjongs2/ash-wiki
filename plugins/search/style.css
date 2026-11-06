@@ -91,9 +91,8 @@
   border: 1px solid var(--lightgray);
 }
 
-.search > .search-container > .search-space > input:focus {
-  outline: none;
-}
+/* ash-wiki: 입력칸과 결과 카드(.result-card)의 outline: none을 지웠다. 둘은 사이트의 포커스 링을 받는다
+   (quartz/styles/custom.scss의 키보드 포커스 링, #633). */
 
 .search > .search-container > .search-space > .search-layout {
   display: none;
@@ -195,7 +194,6 @@
   margin: 0;
   text-transform: none;
   text-align: left;
-  outline: none;
   font-weight: inherit;
   text-decoration: none;
   color: var(--dark);

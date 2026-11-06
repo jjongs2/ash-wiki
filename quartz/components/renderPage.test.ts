@@ -1,6 +1,6 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
-import { renderTranscludes, pageResources } from "./renderPage"
+import { renderTranscludes, pageResources, renderPage } from "./renderPage"
 import { Root, Element } from "hast"
 import { FullSlug } from "../util/path"
 import { GlobalConfiguration } from "../cfg"
@@ -323,5 +323,42 @@ describe("pageResources", () => {
       !inlineJsServe.script.includes("/quartz/static/contentIndex.json"),
       `expected contentIndex fetch without /quartz/ prefix in serve mode, got: ${inlineJsServe.script}`,
     )
+  })
+})
+
+// ash-wiki: 페이지의 첫 Tab 정지인 건너뛰기 링크를 본다(#633).
+describe("renderPage skip link", () => {
+  test("the first focusable element in <body> is a skip link to <main>", () => {
+    const empty = () => null
+    const componentData = {
+      tree: { type: "root", children: [] },
+      fileData: { frontmatter: {} },
+      ctx: { argv: { serve: true } },
+      allFiles: [],
+      cfg,
+    } as unknown as QuartzComponentProps
+    const html = renderPage(
+      { ...cfg, locale: "ko-KR" } as GlobalConfiguration,
+      "index" as FullSlug,
+      componentData,
+      {
+        head: empty,
+        header: [],
+        beforeBody: [],
+        pageBody: empty,
+        afterBody: [],
+        left: [],
+        right: [],
+        footer: [],
+      },
+      { css: [], js: [], additionalHead: [] },
+    )
+    const body = html.slice(html.indexOf("<body"))
+    const first = body.match(/<(a|button|input|select|textarea)\b[^>]*>([^<]*)/)
+    assert.ok(first, "no focusable element")
+    assert.match(first[0], /\bhref="#quartz-main"/)
+    assert.match(first[0], /\bdata-router-ignore\b/)
+    assert.strictEqual(first[2], "본문으로 이동")
+    assert.match(html, /<main\b[^>]*\bid="quartz-main"/)
   })
 })

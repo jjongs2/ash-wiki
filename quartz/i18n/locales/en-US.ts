@@ -59,6 +59,8 @@ export default {
     contentMeta: {
       readingTime: ({ minutes }) => `${minutes} min read`,
     },
+    // ash-wiki: 건너뛰기 링크의 문구다(definition.ts의 skipToContent).
+    skipToContent: "Skip to content",
   },
   pages: {
     rss: {

@@ -595,11 +595,12 @@ function card(
 }
 
 // 정렬·거르기 줄. 첫 줄은 주요 칩과 구역 칩(누르면 거르는 버튼)이고, 그 아래 상태 줄은 왼쪽에 소식 수, 오른쪽에
-// 정렬을 둔다(소유자 결정, #404). 소식 수는 거르지 않을 때 "N건", 거를 때 "N건 중 M건"이고 스크립트가
-// 바꾼다. 칩은 카드의 칩과 같은 꼴(.news-chip)이다. 거르기가 무엇을 남기는지는 docs/weekly-news.md의 사이트에
-// 보이는 범위에 있다. 항목이 없는 칩(주요 소식이 없는 호의 주요 칩 포함)도 숨겨 두고, 쿼리로 이어받은 상태가
-// 그 칩을 고르면 스크립트가 0으로 보인다.
-function toolbar(filters: IssueFilters, names: Map<string, string>, total: number): Element {
+// 정렬을 둔다(소유자 결정, #404). 칩의 이름과 개수 사이와 개수 뒤에는 화면 낭독기만 읽는 `, `와 `건`을 넣는다
+// (사이트 스타일의 .sr-text). 소식 수는 거르지 않을 때 "N건", 거를 때 "N건 중 M건"이고 스크립트가 바꾼다. 칩은
+// 카드의 칩과 같은 꼴(.news-chip)이다. 거르기가 무엇을 남기는지는 docs/weekly-news.md의 사이트에 보이는 범위에
+// 있다. 항목이 없는 칩(주요 소식이 없는 호의 주요 칩 포함)도 숨겨 두고, 쿼리로 이어받은 상태가 그 칩을 고르면
+// 스크립트가 0으로 보인다.
+export function toolbar(filters: IssueFilters, names: Map<string, string>, total: number): Element {
   const chip = (label: string, count: number, color: string, data: Element["properties"]) =>
     el(
       "button",
@@ -612,7 +613,14 @@ function toolbar(filters: IssueFilters, names: Map<string, string>, total: numbe
         dataCount: String(count),
         ...data,
       },
-      [text(label), el("span", { className: ["news-filter-count"] }, [text(String(count))])],
+      [
+        text(label),
+        el("span", { className: ["sr-text"] }, [text(", ")]),
+        el("span", { className: ["news-filter-count"] }, [
+          text(String(count)),
+          el("span", { className: ["sr-text"] }, [text("건")]),
+        ]),
+      ],
     )
   const featured = [chip(FEATURED_LABEL, filters.featured, FEATURED_COLOR, { dataFeatured: "" })]
   const regions = filters.regions.map(({ region, count }) =>
@@ -1192,10 +1200,6 @@ const CSS = `.news-tools {
 }
 .news-month > summary::-webkit-details-marker {
   display: none;
-}
-.news-month > summary:focus-visible {
-  outline: 2px solid var(--secondary);
-  outline-offset: 2px;
 }
 .news-month > summary::before {
   content: "";

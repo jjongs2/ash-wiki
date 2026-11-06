@@ -1,8 +1,8 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
-import type { Element, ElementContent } from "hast"
+import type { Element, ElementContent, Root } from "hast"
 import type { FrontPageCommit, FrontPageIssue, FrontPagePage } from "./index"
-import { frontPage, newsColumn, RECENT_CHANGES_LIMIT } from "./index"
+import { decorateRegionTable, frontPage, newsColumn, RECENT_CHANGES_LIMIT } from "./index"
 
 // 최근 변경은 빌드의 시간대로 날짜를 가른다. 배포 빌드와 같은 한국 시각으로 고정해, 테스트를 돌리는 머신의
 // 시간대와 관계없이 같은 결과를 본다(docs/deploy.md의 날짜의 시간대).
@@ -338,6 +338,49 @@ describe("newsColumn", () => {
       [
         [undefined, undefined],
         [undefined, undefined],
+      ],
+    )
+  })
+})
+
+// 구역 표 꾸미기가 seam이다. 대문 본문의 표를 넣고, 주제 칩을 화면 낭독기가 읽는 글자(모든 글자)와 화면에
+// 보이는 글자(.sr-text 밖)로 나눠 본다.
+function chipTexts(node: ElementContent, hidden = false): { spoken: string; shown: string } {
+  if (node.type === "text") return { spoken: node.value, shown: hidden ? "" : node.value }
+  if (node.type !== "element") return { spoken: "", shown: "" }
+  const inner = hidden || ((node.properties.className as string[]) ?? []).includes("sr-text")
+  const parts = node.children.map((child) => chipTexts(child, inner))
+  return {
+    spoken: parts.map((part) => part.spoken).join(""),
+    shown: parts.map((part) => part.shown).join(""),
+  }
+}
+
+describe("decorateRegionTable", () => {
+  test("주제 칩은 이름과 페이지 수 사이에 쉼표를, 수 뒤에 쪽을 읽히고 보이는 글자는 그대로 둔다", () => {
+    const link = (slug: string, label: string): Element => ({
+      type: "element",
+      tagName: "a",
+      properties: { "data-slug": slug },
+      children: [{ type: "text", value: label }],
+    })
+    const topics = [link("tags/security/ota", "OTA"), link("tags/security/crypto", "암호")]
+    const row: Element = {
+      type: "element",
+      tagName: "tr",
+      properties: {},
+      children: [link("tags/security", "보안·업데이트"), ...topics],
+    }
+    const tree: Root = {
+      type: "root",
+      children: [{ type: "element", tagName: "table", properties: {}, children: [row] }],
+    }
+    decorateRegionTable(tree, { "security/ota": 13 })
+    assert.deepStrictEqual(
+      topics.map((topic) => chipTexts(topic)),
+      [
+        { spoken: "OTA, 13쪽", shown: "OTA13" },
+        { spoken: "암호, 0쪽", shown: "암호0" },
       ],
     )
   })

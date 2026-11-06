@@ -10,6 +10,8 @@ const Header = HeaderConstructor()
  *
  * Useful for page types like Canvas, presentations, or dashboards that
  * need maximum horizontal space.
+ *
+ * ash-wiki: 가운데 칸은 기본 꼴(DefaultFrame.tsx)과 같은 <main>이다(#633).
  */
 export const FullWidthFrame: PageFrame = {
   name: "full-width",
@@ -23,7 +25,7 @@ export const FullWidthFrame: PageFrame = {
   }: PageFrameProps) {
     return (
       <>
-        <div class="center full-width">
+        <main class="center full-width" id="quartz-main" tabindex={-1}>
           <div class="page-header">
             <Header {...componentData}>
               {header.map((HeaderComponent) => (
@@ -43,7 +45,7 @@ export const FullWidthFrame: PageFrame = {
               <BodyComponent {...componentData} />
             ))}
           </div>
-        </div>
+        </main>
         {footer.map((FooterComponent) => (
           <FooterComponent {...componentData} />
         ))}

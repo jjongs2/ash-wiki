@@ -10,11 +10,11 @@ import type { BuildCtx } from "../../quartz/util/ctx"
 import DiagramWidth from "./index"
 
 // 플러그인의 htmlPlugins가 seam이다. 임시 content 폴더에 SVG를 두고, embed가 만든 꼴의
-// <object>를 넣어 그 <object>의 style만 본다.
+// <object>를 넣어 그 <object>의 style과 tabindex만 본다.
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "diagram-width-"))
 after(() => fs.rmSync(tmp, { recursive: true, force: true }))
 
-function transform(files: Record<string, string>, html: string): unknown {
+function transformed(files: Record<string, string>, html: string): Element["properties"] {
   const directory = fs.mkdtempSync(path.join(tmp, "content-"))
   for (const [name, source] of Object.entries(files)) {
     fs.mkdirSync(path.dirname(path.join(directory, name)), { recursive: true })
@@ -23,8 +23,11 @@ function transform(files: Record<string, string>, html: string): unknown {
   const ctx = { argv: { directory } } as BuildCtx
   const processor = unified().use(DiagramWidth().htmlPlugins!(ctx))
   const tree = processor.runSync(fromHtml(html, { fragment: true })) as Root
-  return (tree.children[0] as Element).properties.style
+  return (tree.children[0] as Element).properties
 }
+
+const transform = (files: Record<string, string>, html: string): unknown =>
+  transformed(files, html).style
 
 const embed = (data: string) =>
   `<object data="${data}" type="image/svg+xml" width="auto" height="auto" aria-label=""></object>`
@@ -48,7 +51,7 @@ describe("diagram-width 플러그인", () => {
     assert.strictEqual(style, "--diagram-width: 749.5")
   })
 
-  test("viewBox를 읽지 못하면 <object>를 그대로 둔다", () => {
+  test("viewBox를 읽지 못하면 폭을 붙이지 않는다", () => {
     const files = {
       "diagrams/none.svg": `<svg width="100" height="50"><rect viewBox="0 0 10 10"/></svg>`,
       "diagrams/bad.svg": `<svg viewBox="0 0 auto 10"></svg>`,
@@ -59,15 +62,26 @@ describe("diagram-width 플러그인", () => {
     }
   })
 
-  test("SVG 파일이 없으면 <object>를 그대로 둔다", () => {
+  test("SVG 파일이 없으면 폭을 붙이지 않는다", () => {
     assert.strictEqual(transform({}, embed("diagrams/missing.svg")), undefined)
   })
 
   test("SVG가 아닌 <object>는 건드리지 않는다", () => {
-    const style = transform(
+    const properties = transformed(
       { "diagrams/doc.pdf": `<svg viewBox="0 0 100 100"></svg>` },
       `<object data="diagrams/doc.pdf" type="application/pdf"></object>`,
     )
-    assert.strictEqual(style, undefined)
+    assert.strictEqual(properties.style, undefined)
+    assert.strictEqual(properties.tabIndex, undefined)
+  })
+
+  test("도해 <object>는 viewBox를 읽지 못해도 탭 순서에서 뺀다", () => {
+    const files = {
+      "diagrams/ack.svg": `<svg viewBox="0 0 385 252.5"/>`,
+      "diagrams/none.svg": `<svg width="100" height="50"></svg>`,
+    }
+    for (const data of ["diagrams/ack.svg", "diagrams/none.svg", "diagrams/missing.svg"]) {
+      assert.strictEqual(transformed(files, embed(data)).tabIndex, -1, data)
+    }
   })
 })

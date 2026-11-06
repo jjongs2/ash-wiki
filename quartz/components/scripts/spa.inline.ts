@@ -2,6 +2,12 @@ import micromorph from "micromorph"
 import { FullSlug, RelativeURL, getFullSlug, normalizeRelativeURLs } from "../../util/path"
 import { fetchCanonical } from "./util"
 import { patchHead } from "./headPatch"
+import {
+  diagramsSettled,
+  focusRouteTarget,
+  releaseRouteFocus,
+  routeFocusTarget,
+} from "./routeFocus"
 
 // adapted from `micromorph`
 // https://github.com/natemoo-re/micromorph
@@ -110,13 +116,18 @@ async function _navigate(url: URL, isBack: boolean = false) {
     const h1 = document.querySelector("h1")
     title = h1?.innerText ?? h1?.textContent ?? url.pathname
   }
-  if (announcer.textContent !== title) {
-    announcer.textContent = title
+  // ash-wiki: 이동 뒤 포커스를 받을 제목이 있으면 알림 영역을 비운다(routeFocus.ts). 화면 낭독기는 포커스를
+  // 받은 제목을 읽으므로, 알림까지 두면 제목을 두 번 읽는다.
+  const announcement = routeFocusTarget(html, url.hash) ? "" : title
+  if (announcer.textContent !== announcement) {
+    announcer.textContent = announcement
   }
   announcer.dataset.persist = ""
   html.body.appendChild(announcer)
 
   document.querySelector(".navigation-progress")?.remove()
+  // ash-wiki: 앞 이동이 옮겨 둔 포커스를 갈기 전에 푼다(routeFocus.ts).
+  releaseRouteFocus(document)
   micromorph(document.body, html.body)
 
   // scroll into place and add history
@@ -141,7 +152,22 @@ async function _navigate(url: URL, isBack: boolean = false) {
 
   notifyNav(getFullSlug(window))
   delete announcer.dataset.persist
+
+  // ash-wiki: 포커스를 새 페이지의 제목으로 옮긴다(routeFocus.ts). nav를 받는 스크립트가 다 돈 뒤에 옮긴다.
+  // 주소로 처음 불러온 페이지는 이 함수를 거치지 않아 포커스를 옮기지 않고, 첫 Tab이 건너뛰기 링크다.
+  // 뒤로·앞으로 가기는 라우터가 스크롤하지 않고 브라우저의 스크롤 고정에 맡기므로, 본문의 도해를 다 읽은 뒤에
+  // 옮긴다(diagramsSettled). 그 사이 다른 페이지로 옮겼으면 옮기지 않는다.
+  const generation = ++navGeneration
+  const focus = () => {
+    if (generation !== navGeneration) return
+    const focusTarget = routeFocusTarget(document, url.hash)
+    if (focusTarget) focusRouteTarget(focusTarget)
+  }
+  if (isBack) diagramsSettled(document).then(focus)
+  else focus()
 }
+
+let navGeneration = 0
 
 async function navigate(url: URL, isBack: boolean = false) {
   if (isNavigating) return
@@ -161,6 +187,14 @@ window.spaNavigate = navigate
 
 function createRouter() {
   if (typeof window !== "undefined") {
+    // ash-wiki: 건너뛰기 링크(renderPage.tsx)는 라우터를 거치지 않고(data-router-ignore) 여기서 <main>에
+    // 포커스를 옮긴다. 다음 Tab은 <main> 안의 첫 정지다.
+    window.addEventListener("click", (event) => {
+      if (!isElement(event.target) || !event.target.closest("a.skip-link")) return
+      event.preventDefault()
+      document.getElementById("quartz-main")?.focus()
+    })
+
     window.addEventListener("click", async (event) => {
       const { url } = getOpts(event) ?? {}
       // dont hijack behaviour, just let browser act normally
