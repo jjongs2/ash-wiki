@@ -207,11 +207,20 @@ const periodLabel = (week: string, locale: string) => {
 }
 
 /**
- * 한국어 제목이 있어야 하는 소식 항목인가. 원어 제목이 한국어(한글이 든 제목)가 아닌 주요 소식이다. 형식상 없어도
- * 되는 필드라 형식 함수는 보지 않고, 콘텐츠 테스트와 소식 조사의 기계 검사가 본다.
+ * 주요 소식의 한국어 제목이 있을 자리에 있는가. 원어 제목이 한국어(한글이 든 제목)가 아닌 주요 소식에만 있어야
+ * 하고, 어긋나면 그 까닭을 준다. 형식상 없어도 되는 필드라 형식 함수는 보지 않고, 콘텐츠 테스트와 소식 조사의
+ * 기계 검사가 본다. 주요 소식이 아닌 항목의 한국어 제목은 형식 함수가 막는다.
  */
-export const needsKoreanTitle = (item: Pick<NewsItem, "title" | "featured">) =>
-  item.featured && !/\p{Script=Hangul}/u.test(item.title)
+export function koreanTitlePresence(
+  item: Pick<NewsItem, "title" | "koreanTitle" | "featured">,
+): string | null {
+  if (!item.featured) return null
+  const needed = !/\p{Script=Hangul}/u.test(item.title)
+  if (needed && item.koreanTitle === null) return "주요 소식에 한국어 제목이 없다"
+  if (!needed && item.koreanTitle !== null)
+    return "원어 제목이 한국어인 주요 소식에는 한국어 제목을 달지 않는다"
+  return null
+}
 
 /** 대문과 메타 설명이 주요 소식에 보이는 제목. 한국어 제목이고, 없으면(지난 호) 원어 제목이다. */
 const shownTitle = (item: Pick<NewsItem, "title" | "koreanTitle">) => item.koreanTitle ?? item.title
@@ -255,7 +264,7 @@ function maskFrontmatter(source: string): string {
  * - 소식 항목은 `## [원어 제목](원문 URL)` 제목으로 시작해 다음 `##`까지다. 첫 항목 앞에는 아무것도 없다.
  * - 제목 바로 다음은 필드 목록(`- 구역: network`)이다. 구역, 매체, 발행일은 반드시 있고 이미지는 없어도 된다.
  *   구역은 구역 태그를 쉼표로 나눠 여럿 쓰거나 기타 하나로 쓴다. 주요는 예 하나로만 쓰고, 없으면 주요 소식이
- *   아니다. 한국어 제목은 주요 소식에만 단다. 주요 소식에 없어도 형식 오류가 아니다(needsKoreanTitle).
+ *   아니다. 한국어 제목은 주요 소식에만 단다. 주요 소식에 없어도 형식 오류가 아니다(koreanTitlePresence).
  * - 필드 목록 뒤의 블록이 모두 한국어 요약이다. 요약 안에는 제목을 두지 않는다.
  * - 항목의 id는 제목 글자를 github-slugger로 바꾼 값이다. 사이트가 제목에 붙이는 id와 같은 규칙이다.
  */

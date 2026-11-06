@@ -11,7 +11,7 @@ import {
   issueNeighbors,
   issueTitle,
   monthWeeks,
-  needsKoreanTitle,
+  koreanTitlePresence,
   parseWeeklyNews,
   weekDays,
   weekLabel,
@@ -413,21 +413,33 @@ describe("issueDescription", () => {
   })
 })
 
-describe("needsKoreanTitle", () => {
-  const item = (title: string, featured = true) => ({ title, featured })
+describe("koreanTitlePresence", () => {
+  const item = (title: string, koreanTitle: string | null = null, featured = true) => ({
+    title,
+    koreanTitle,
+    featured,
+  })
+  const missing = "주요 소식에 한국어 제목이 없다"
+  const extra = "원어 제목이 한국어인 주요 소식에는 한국어 제목을 달지 않는다"
 
-  test("원어 제목이 한국어가 아닌 주요 소식에 한국어 제목이 필요하다", () => {
-    assert.strictEqual(needsKoreanTitle(item("CAN XL Physical Layer Specification Released")), true)
-    assert.strictEqual(needsKoreanTitle(item("关于公开征求《电动汽车安全要求》意见的公示")), true)
-    assert.strictEqual(needsKoreanTitle(item("自動運転レベル4の認可")), true)
+  test("원어 제목이 한국어가 아닌 주요 소식에 한국어 제목이 없으면 알린다", () => {
+    assert.strictEqual(koreanTitlePresence(item("CAN XL Physical Layer Released")), missing)
+    assert.strictEqual(
+      koreanTitlePresence(item("关于公开征求《电动汽车安全要求》意见的公示")),
+      missing,
+    )
+    assert.strictEqual(koreanTitlePresence(item("自動運転レベル4の認可")), missing)
+    assert.strictEqual(koreanTitlePresence(item("CAN XL Released", "CAN XL 공개")), null)
   })
 
-  test("원어 제목이 한국어인 주요 소식과 주요 소식이 아닌 항목에는 필요 없다", () => {
-    assert.strictEqual(
-      needsKoreanTitle(item("[현대] 투싼 등 2차종 - 전방 카메라 관련 리콜")),
-      false,
-    )
-    assert.strictEqual(needsKoreanTitle(item("CAN XL Released", false)), false)
+  test("원어 제목이 한국어인 주요 소식에 한국어 제목이 있으면 알린다", () => {
+    const korean = "[현대] 투싼 등 2차종 - 전방 카메라 관련 리콜"
+    assert.strictEqual(koreanTitlePresence(item(korean)), null)
+    assert.strictEqual(koreanTitlePresence(item(korean, "현대 투싼 리콜")), extra)
+  })
+
+  test("주요 소식이 아닌 항목은 보지 않는다(형식 함수가 막는다)", () => {
+    assert.strictEqual(koreanTitlePresence(item("CAN XL Released", null, false)), null)
   })
 })
 

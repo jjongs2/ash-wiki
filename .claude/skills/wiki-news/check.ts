@@ -1,7 +1,7 @@
 // 소식 조사의 기계 검사(SKILL.md의 7. 쓰기와 9. PR). 주간 소식 호를 형식 함수(plugins/weekly-news의
 // parseWeeklyNews)로 읽어 실패와 알림(한국어 제목 길이, 위키 링크 후보, 분포 줄)을 내고, 실패가 있으면 exit
 // 1이다. 규칙은 SKILL.md 7단계, docs/weekly-news.md, outlets.md의 열 절에 있다. PR 전 확인에 넣지 않는 것은 규칙이
-// 생기기 전의 지난 호가 소급해 실패하기 때문이다. 한국어 제목이 있어야 하는 주요 소식(needsKoreanTitle)은 PR 전
+// 생기기 전의 지난 호가 소급해 실패하기 때문이다. 한국어 제목이 있을 자리(koreanTitlePresence)는 PR 전
 // 확인의 콘텐츠 테스트도 보지만, 그 테스트는 규칙이 생긴 주차부터의 호만 보므로 소급 조사의 호는 여기서 잡는다.
 // 사용: npx tsx .claude/skills/wiki-news/check.ts <주차나 달>...
 //       npx tsx .claude/skills/wiki-news/check.ts --pr <본문 파일> [--base <ref>]
@@ -11,7 +11,7 @@ import { fileURLToPath } from "node:url"
 import { parseArgs } from "node:util"
 import { parse as parseYaml } from "yaml"
 import {
-  needsKoreanTitle,
+  koreanTitlePresence,
   parseWeeklyNews,
   weekDays,
   type NewsItem,
@@ -43,8 +43,9 @@ export interface IssueReport {
 }
 
 const SUMMARY_LIMIT = 250
-// 한국어 제목은 40자 안팎을 목표로 쓰고, 이 길이를 넘으면 알린다(SKILL.md 7단계)
-const KOREAN_TITLE_NOTICE = 50
+// 한국어 제목은 KOREAN_TITLE_TARGET자 안팎을 목표로 쓰고, KOREAN_TITLE_NOTICE_LENGTH자를 넘으면 알린다(SKILL.md 7단계)
+const KOREAN_TITLE_TARGET = 40
+const KOREAN_TITLE_NOTICE_LENGTH = 50
 
 /** 요약 마크다운에서 독자에게 보이는 글자. 위키 링크와 링크는 보이는 이름, 이스케이프는 그 글자로 바꾼다. */
 export function visibleText(markdown: string): string {
@@ -191,15 +192,13 @@ function distribution(issues: Issue[], week: string): string {
 }
 
 /**
- * 한국어 제목의 실패. 있어야 하는 주요 소식에만 있고(needsKoreanTitle), 값은 글자만이다. 대문과 메타 설명에
- * 그대로 찍히므로 마크다운, 위키 링크, 이스케이프(`\~`)를 쓰지 않는다.
+ * 한국어 제목의 실패. 있을 자리에 있고(koreanTitlePresence), 값은 글자만이다(docs/weekly-news.md의 필드 표).
  */
 function koreanTitleFailures(item: NewsItem): string[] {
-  if (!item.featured) return []
+  const presence = koreanTitlePresence(item)
+  if (presence) return [presence]
   const value = item.koreanTitle
-  if (value === null) return needsKoreanTitle(item) ? ["주요 소식에 한국어 제목이 없다"] : []
-  if (!needsKoreanTitle(item))
-    return ["원어 제목이 한국어인 주요 소식에는 한국어 제목을 달지 않는다"]
+  if (value === null) return []
   return visibleText(value) !== value || /\*\*|`/.test(value)
     ? ["한국어 제목은 글자만 쓴다(마크다운, 위키 링크, \\~ 없이)"]
     : []
@@ -250,9 +249,9 @@ export function checkIssues(input: {
         )
       failures.push(...koreanTitleFailures(item).map((f) => `${label(week, item)}: ${f}`))
       const koreanLength = [...(item.koreanTitle ?? "")].length
-      if (koreanLength > KOREAN_TITLE_NOTICE)
+      if (koreanLength > KOREAN_TITLE_NOTICE_LENGTH)
         notices.push(
-          `${label(week, item)}: 한국어 제목이 ${koreanLength}자다(목표 40자 안팎, ${KOREAN_TITLE_NOTICE}자 넘음)`,
+          `${label(week, item)}: 한국어 제목이 ${koreanLength}자다(목표 ${KOREAN_TITLE_TARGET}자 안팎, ${KOREAN_TITLE_NOTICE_LENGTH}자 넘음)`,
         )
     }
     const candidates: string[] = []
