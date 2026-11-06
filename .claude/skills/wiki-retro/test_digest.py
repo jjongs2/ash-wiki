@@ -335,8 +335,10 @@ class VersionTest(unittest.TestCase):
     def test_agent_files_follow_the_commit_the_skill_body_fixed(self):
         self.commit_with_agent()
         subagent(stem_of(self.transcript), "a1", "source-verifier", "Verify")
+        subagent(stem_of(self.transcript), "a2", "general-purpose", "Search")
         rows = self.version_rows(skill_call("# 소식\n\n첫 판"))
-        self.assertEqual([r[1:3] for r in rows], [["wiki-news", self.v1[:12]]])
+        self.assertEqual([r[1:3] for r in rows], [["wiki-news", self.v1[:12]], [".claude/agents/source-verifier.md", "-"]])
+        self.assertIn("세션 버전에 없음", rows[1][3])
 
     def version_rows(self, *lines, first_ts="2026-03-01T00:00:00Z"):
         start = json.dumps({"type": "custom-title", "timestamp": first_ts})
@@ -472,11 +474,14 @@ class CandidatesTest(unittest.TestCase):
         self.paths.append(path)
         return stem_of(path)
 
-    def candidates(self):
-        result = subprocess.run(
+    def run_candidates(self):
+        return subprocess.run(
             [sys.executable, "-B", SCRIPT, "--archive", self.archive, "--candidates", RETRO, *self.paths],
             cwd=self.repo, env=env_without_notes(), capture_output=True, text=True,
         )
+
+    def candidates(self):
+        result = self.run_candidates()
         self.assertEqual(result.returncode, 0, result.stderr)
         return {row[0]: row for row in (line.split("\t") for line in result.stdout.splitlines()[1:])}
 
@@ -503,11 +508,7 @@ class CandidatesTest(unittest.TestCase):
     def test_outside_a_repository_fails(self):
         self.transcript(UUID, entry("user", "hello"))
         self.repo = self.tmp.name
-        result = subprocess.run(
-            [sys.executable, "-B", SCRIPT, "--archive", self.archive, "--candidates", RETRO, *self.paths],
-            cwd=self.repo, env=env_without_notes(), capture_output=True, text=True,
-        )
-        self.assertNotEqual(result.returncode, 0)
+        self.assertNotEqual(self.run_candidates().returncode, 0)
 
     def test_session_handing_a_skill_to_a_routine_is_a_candidate(self):
         self.transcript(UUID, trigger("/wiki-news 2026-w01\n\n인자는 하나다."))

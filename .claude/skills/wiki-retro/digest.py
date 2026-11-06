@@ -40,7 +40,8 @@ RemoteTrigger로 루틴에 넘긴 세션 가운데 analyzed.tsv에 없고 이 �
 없으면 기록의 첫 timestamp 때의 origin/main이다. 기록의 스킬 본문이 그 버전의 SKILL.md와
 다르면 origin/main 역사에서 본문이 같은 커밋으로 고친다. 이어서 세션이 띄운 에이전트
 가운데 첫 스킬의 버전(스킬이 없으면 위 버전)의 .claude/agents/에 있는 것을 그 파일과
-버전으로 한 줄씩 찍는다. 저장소 루트에서 돌린다.
+버전으로 한 줄씩 찍는다. 역사에는 있는데 그 버전에 없는 에이전트는 버전 자리에 "-"를
+찍는다. 저장소 루트에서 돌린다.
 
 소스 노트를 연 도구 호출은 입력과 결과를 지우고, 그 입력을 <이름>-notes.txt에
 모은다. 입력에 노트 디렉터리(ASH_WIKI_NOTES의 값, ~나 $HOME으로 쓴 꼴 포함)나 그
@@ -375,10 +376,18 @@ def base_commit(entries):
     return git("rev-list", "-1", f"--before={start}", "origin/main"), "시작 시각의 origin/main"
 
 
+def agent_names(git_output):
+    return {os.path.basename(p)[: -len(".md")] for p in git_output.split("\n") if p.endswith(".md")}
+
+
 def project_agents(commit):
     """커밋의 .claude/agents/에 있는 에이전트 이름. 내장 에이전트(general-purpose, fork 등)는 없다."""
-    paths = git("ls-tree", "--name-only", commit, "--", f"{AGENTS}/").split("\n")
-    return {os.path.basename(p)[: -len(".md")] for p in paths if p.endswith(".md")}
+    return agent_names(git("ls-tree", "--name-only", commit, "--", f"{AGENTS}/"))
+
+
+def agents_in_history():
+    """origin/main 역사의 .claude/agents/에 한 번이라도 있던 에이전트 이름."""
+    return agent_names(git("log", "--format=", "--name-only", "--no-renames", "origin/main", "--", f"{AGENTS}/"))
 
 
 def session_version(path):
@@ -396,20 +405,22 @@ def session_version(path):
         skill = f"{skill_dir}/SKILL.md"
         name = os.path.basename(skill_dir)
         if without_frontmatter(git("show", f"{commit}:{skill}")) == body:
-            fixed, note = commit, how
+            skill_version, note = commit, how
         else:
             history = git("log", "--format=%H", "origin/main", "--", skill).split()
-            fixed = next((c for c in history if without_frontmatter(git("show", f"{c}:{skill}")) == body), "")
-            note = f"{how}({commit[:12]})와 본문이 달라, 본문이 같은 커밋으로 고침" if fixed else f"{how}. 본문이 같은 커밋 없음"
-            fixed = fixed or commit
-        print(f"{uuid}\t{name}\t{fixed[:12]}\t{note}")
-        versions.append(fixed)
+            same = next((c for c in history if without_frontmatter(git("show", f"{c}:{skill}")) == body), "")
+            note = f"{how}({commit[:12]})와 본문이 달라, 본문이 같은 커밋으로 고침" if same else f"{how}. 본문이 같은 커밋 없음"
+            skill_version = same or commit
+        print(f"{uuid}\t{name}\t{skill_version[:12]}\t{note}")
+        versions.append(skill_version)
     # 에이전트 파일은 첫 스킬의 세션 버전으로 읽고, 그 버전을 따로 맞추지 않는다.
     version = (versions or [commit])[0]
-    names = project_agents(version)
+    names, in_history = project_agents(version), agents_in_history()
     for agent in spawned_agents(path):
         if agent in names:
             print(f"{uuid}\t{AGENTS}/{agent}.md\t{version[:12]}\t띄운 에이전트")
+        elif agent in in_history:
+            print(f"{uuid}\t{AGENTS}/{agent}.md\t-\t띄운 에이전트인데 세션 버전에 없음({version[:12]})")
 
 
 def final_report(path):
@@ -467,21 +478,16 @@ def invoked_wiki_skills(block):
     return []
 
 
-def ever_agents():
-    paths = git("log", "--format=", "--name-only", "--no-renames", "origin/main", "--", f"{AGENTS}/").split("\n")
-    return {os.path.basename(p)[: -len(".md")] for p in paths if p.endswith(".md")}
-
-
-def agents_at_version(path, known):
-    """세션이 띄운 에이전트 가운데 세션 버전의 .claude/agents/에 있는 것. known은 역사에 있던 이름으로 거른다."""
-    agents = [a for a in spawned_agents(path) if a in known]
+def agents_at_version(path, in_history):
+    """세션이 띄운 에이전트 가운데 세션 버전의 .claude/agents/에 있는 것. 역사에 있던 이름으로 먼저 거른다."""
+    agents = [a for a in spawned_agents(path) if a in in_history]
     if not agents:
         return []
     names = project_agents(base_commit(read_entries(path))[0])
     return [a for a in agents if a in names]
 
 
-def candidate_row(path, known):
+def candidate_row(path, in_history):
     skills, urls, handoffs = [], [], []
     start, title, writes = "", "", set()
     with open(path) as transcript:
@@ -504,7 +510,7 @@ def candidate_row(path, known):
                     handoffs.append(inp["file_path"])
                 elif block.get("type") == "tool_result" and block.get("tool_use_id") in writes:
                     urls += GITHUB_URL.findall(result_text(block.get("content")))
-    agents = agents_at_version(path, known)
+    agents = agents_at_version(path, in_history)
     if not skills and not agents:
         return None
     uuid = os.path.basename(stem(path))
@@ -517,8 +523,8 @@ def joined(items, sep=" "):
 
 def candidates(archive, retro, paths):
     done = analyzed(archive) | {retro}
-    known = ever_agents()
-    rows = [candidate_row(p, known) for p in paths if os.path.basename(stem(p)) not in done]
+    in_history = agents_in_history()
+    rows = [candidate_row(p, in_history) for p in paths if os.path.basename(stem(p)) not in done]
     print("uuid\t스킬\t에이전트\t시작일\t제목\tURL\t핸드오프")
     for row in sorted((r for r in rows if r), key=lambda r: r[3]):
         print("\t".join(row))
