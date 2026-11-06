@@ -27,6 +27,19 @@ export const manifest = {
 // 절을 만드는 제목. 본문 최상위는 앞의 것으로 나누고, 그렇게 만든 절 안은 다음 것으로 나눈다.
 const HEADINGS = ["h2", "h3"]
 
+// summary는 대화형 요소라 그 안에 초점을 받을 수 있는 링크를 두면 안 된다(axe nested-interactive, #638).
+// 제목의 앵커 링크는 href를 data-href로 옮겨 초점을 받지 않게 하고, 누르면 스크립트(script.js)가 옮겨 간다.
+// 앵커는 이미 aria-hidden에 tabindex=-1이라 키보드와 스크린 리더에는 달라지는 것이 없다. 모양은 style.css가 잇는다.
+function inertAnchors(heading: Element): Element {
+  for (const child of heading.children) {
+    if (child.type !== "element" || child.tagName !== "a" || child.properties.role !== "anchor")
+      continue
+    const { href, ...rest } = child.properties
+    child.properties = { ...rest, dataHref: href }
+  }
+  return heading
+}
+
 // nodes를 HEADINGS[depth] 제목마다 펼친 절로 감싼다. 첫 제목 앞의 노드는 그대로 둔다.
 function wrapSections(nodes: RootContent[], depth: number): RootContent[] {
   const tagName = HEADINGS[depth]
@@ -39,7 +52,9 @@ function wrapSections(nodes: RootContent[], depth: number): RootContent[] {
         type: "element",
         tagName: "details",
         properties: { className: ["collapsible-section"], open: true },
-        children: [{ type: "element", tagName: "summary", properties: {}, children: [node] }],
+        children: [
+          { type: "element", tagName: "summary", properties: {}, children: [inertAnchors(node)] },
+        ],
       }
       sections.push(section)
       children.push(section)

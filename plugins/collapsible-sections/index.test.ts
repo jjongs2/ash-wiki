@@ -25,10 +25,13 @@ const heading = (tag: string, id: string) =>
 const h2 = (id: string) => heading("h2", id)
 const h3 = (id: string) => heading("h3", id)
 
+// summary 안으로 옮긴 제목. 앵커의 href는 data-href로 옮겨진다.
+const summaryHeading = (tag: string, id: string) =>
+  heading(tag, id).replace(`href="#${id}"`, `data-href="#${id}"`)
 const details = (summary: string, body: string) =>
   `<details class="collapsible-section" open><summary>${summary}</summary>${body}</details>`
-const section = (id: string, body: string) => details(h2(id), body)
-const subsection = (id: string, body: string) => details(h3(id), body)
+const section = (id: string, body: string) => details(summaryHeading("h2", id), body)
+const subsection = (id: string, body: string) => details(summaryHeading("h3", id), body)
 
 describe("collapsible-sections 플러그인", () => {
   test("## 제목마다 다음 ## 전까지를 펼친 절로 감싼다", () => {
@@ -55,10 +58,13 @@ describe("collapsible-sections 플러그인", () => {
     )
   })
 
-  test("제목의 id와 앵커 링크는 그대로 남는다", () => {
+  // summary는 대화형 요소라 그 안에 초점을 받을 수 있는 링크를 두지 않는다(axe nested-interactive). href가 없는
+  // <a>는 초점을 받지 않고, 누르면 스크립트가 data-href로 옮겨 간다.
+  test("제목의 id는 그대로 남고, 앵커는 href 대신 data-href를 가진다", () => {
     const out = transform(`${h2("can-fd")}${h3("brs")}<p>가</p>`)
-    assert.match(out, /<summary><h2 id="can-fd">can-fd<a role="anchor"[^>]* href="#can-fd">/)
-    assert.match(out, /<summary><h3 id="brs">brs<a role="anchor"[^>]* href="#brs">/)
+    assert.match(out, /<summary><h2 id="can-fd">can-fd<a role="anchor"[^>]* data-href="#can-fd">/)
+    assert.match(out, /<summary><h3 id="brs">brs<a role="anchor"[^>]* data-href="#brs">/)
+    assert.doesNotMatch(out, /<summary>(?:(?!<\/summary>).)*(?<!data-)href="#/)
   })
 
   test("다른 요소 안의 ##는 절을 나누지 않는다", () => {
@@ -99,7 +105,11 @@ describe("collapsible-sections 스크립트", () => {
       addEventListener: (type: string, fn: (event: unknown) => void) => (handlers[type] = fn),
       getElementById: (id: string) => (id === "target" ? target : null),
     }
-    const window = { addEventListener: () => {} }
+    const pushed: string[] = []
+    const window = {
+      addEventListener: () => {},
+      history: { pushState: (_state: unknown, _title: string, url: string) => pushed.push(url) },
+    }
     const location = {
       origin: "https://wiki.test",
       pathname: "/page",
@@ -114,8 +124,16 @@ describe("collapsible-sections 스크립트", () => {
     )
     return {
       target,
-      click: (anchor: object) =>
-        handlers.click({ target: Object.assign(new Element(), { closest: () => anchor }) }),
+      pushed,
+      // 기본 동작(summary라면 절 접기)을 막았는지 돌려준다.
+      click: (anchor: object) => {
+        let prevented = false
+        handlers.click({
+          target: Object.assign(new Element(), { closest: () => anchor }),
+          preventDefault: () => (prevented = true),
+        })
+        return prevented
+      },
       nav: () => handlers.nav({}),
     }
   }
@@ -141,6 +159,14 @@ describe("collapsible-sections 스크립트", () => {
     const svgAnchor = { href: { baseVal: "#target" }, getAttribute: () => "#target" }
     assert.doesNotThrow(() => clicker(section)(svgAnchor))
     assert.strictEqual(section.open, true)
+  })
+
+  test("접는 절 제목의 앵커를 누르면 절을 접지 않고 그 제목으로 옮겨 가 주소에 해시를 남긴다", () => {
+    const page = load({ open: true, parentElement: null })
+    const anchor = { dataset: { href: "#target" }, getAttribute: () => null }
+    assert.strictEqual(page.click(anchor), true)
+    assert.strictEqual(page.target.scrolled, 1)
+    assert.deepStrictEqual(page.pushed, ["#target"])
   })
 
   // 해시만 바뀐 뒤로·앞으로 가기에서 라우터는 페이지를 다시 그리고 스크롤하지 않는다. 다시 그리면 대상 위의

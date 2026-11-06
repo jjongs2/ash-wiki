@@ -96,3 +96,19 @@ details.collapsible-section > summary:hover > :is(h2, h3)::before {
 details.collapsible-section:not([open]) > summary > :is(h2, h3)::before {
   transform: rotateZ(-90deg);
 }
+
+/* 제목의 앵커는 href 대신 data-href를 가진다(index.ts의 inertAnchors). 사이트가 href로 거는 앵커 모양(base.scss의
+   `h2[id] > a[href^="#"]`와 hover)과 링크의 손가락 커서를 여기서 잇는다. */
+details.collapsible-section > summary > :is(h2, h3)[id] > a[data-href] {
+  margin: 0 0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  transform: translateY(-0.1rem);
+  font-family: var(--codeFont);
+  user-select: none;
+  cursor: pointer;
+}
+
+details.collapsible-section > summary > :is(h2, h3)[id]:hover > a[data-href] {
+  opacity: 1;
+}
