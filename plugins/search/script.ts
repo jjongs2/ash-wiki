@@ -646,6 +646,7 @@ function formatForDisplay(term: string, slug: string): any {
     }
   }
   const parsed = parseSearchQuery(currentSearchTerm)
+  // 제목은 발췌문과 달리 통째로 칠해, 띄어 쓰거나 문장부호가 끼어든 꼴도 칠한다.
   return {
     slug: slug,
     title:
