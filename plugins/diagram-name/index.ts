@@ -32,8 +32,9 @@ function decodeXml(value: string): string {
 }
 
 // 루트 <svg>의 aria-label을 엔티티를 풀어 준다. 없거나 공백뿐이면 null을 준다.
-// 이스케이프는 hast를 직렬화하는 쪽이 맡으므로 여기서는 글자 그대로 둔다.
-function rootLabel(source: string): string | null {
+// 이스케이프는 hast를 직렬화하는 쪽이 맡으므로 여기서는 글자 그대로 둔다. 콘텐츠 검사기(svg 검사)도 이
+// 함수로 이름이 있는지 보아, 검사가 통과시킨 이름은 사이트도 이름으로 쓴다.
+export function rootLabel(source: string): string | null {
   const root = source.match(/<(?:[\w-]+:)?svg[\s>][^>]*>/i)?.[0]
   const raw = root?.match(/\saria-label\s*=\s*(["'])([\s\S]*?)\1/i)?.[2]
   const label = raw === undefined ? "" : decodeXml(raw).trim()

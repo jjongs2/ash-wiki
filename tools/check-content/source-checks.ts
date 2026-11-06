@@ -3,6 +3,7 @@ import GithubSlugger, { slug as anchorSlug } from "github-slugger"
 import type { Heading } from "mdast"
 import type { Position } from "unist"
 import { visit } from "unist-util-visit"
+import { rootLabel } from "../../plugins/diagram-name/index"
 import { diagramFontStylesheet } from "../../quartz/util/localFonts"
 import { getFontSpecificationNames } from "../../quartz/util/theme"
 import { latestPartYears, standardNumber } from "../edition-status/standard-number"
@@ -1142,8 +1143,8 @@ export const svg: SourceCheck = async (tree) => {
       if (!/\sfill\s*=|\sstyle\s*=\s*(["'])[^"']*(?<![\w-])fill\s*:/i.test(root[0])) {
         atRoot("루트 <svg>에 fill이 없다")
       }
-      // 사이트가 이 이름을 도해 <object>의 접근성 이름으로 쓴다(plugins/diagram-name).
-      if (!root[0].match(/\saria-label\s*=\s*(["'])([\s\S]*?)\1/i)?.[2].trim()) {
+      // 사이트가 이 이름을 도해 <object>의 접근성 이름으로 쓴다. 이름을 읽는 법은 사이트와 같다.
+      if (rootLabel(root[0]) === null) {
         atRoot("루트 <svg>에 도해가 보이는 것을 적은 aria-label이 없거나 비었다")
       }
       if (/<(?:[\w-]+:)?text[\s>]/i.test(text)) {

@@ -216,6 +216,7 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/no-name.svg:1",
         "content/empty-name.svg:1",
         "content/blank-name.svg:1",
+        "content/space-reference-name.svg:1",
       ],
       output: [
         "content/bad-citations.md:16",
@@ -276,14 +277,16 @@ describe("check-content CLI", { concurrency: false }, () => {
   })
 
   test("루트 <svg>에 이름이 없거나 비었거나 공백뿐이면 그 SVG만 이름 위반 하나로 찍는다", () => {
+    // 문자 참조로 쓴 공백도 공백이다. 사이트가 이름으로 쓰지 않는 값은 검사도 막는다.
     const report = runChecker("violation")
     const named = report.messages.get("svg")!.filter((m) => m.includes("aria-label"))
     assert.deepStrictEqual(named.map((m) => m.split(":")[0]).sort(), [
       "content/blank-name.svg",
       "content/empty-name.svg",
       "content/no-name.svg",
+      "content/space-reference-name.svg",
     ])
-    for (const file of ["no-name", "empty-name", "blank-name"]) {
+    for (const file of ["no-name", "empty-name", "blank-name", "space-reference-name"]) {
       const messages = report.messages.get("svg")!.filter((m) => m.includes(`${file}.svg`))
       assert.strictEqual(messages.length, 1, file)
     }
