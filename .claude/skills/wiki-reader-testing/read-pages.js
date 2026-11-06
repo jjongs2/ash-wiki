@@ -1,5 +1,5 @@
 // Reader Testing 3단계의 외부 독자(SKILL.md). Workflow 도구가 scriptPath로 부른다.
-// 지시와 반환 꼴은 캡처 폴더의 지시.md(reader.md)에 있다. 반환을 파일로 받는 것은, 워크플로가
+// 지시와 반환 꼴은 캡처 폴더의 지시.md(reader.md)에 있다. 반환을 파일로 받는 것은, Workflow가
 // 돌려주는 값이 끝날 때 한꺼번에 메인 문맥에 들어오기 때문이다.
 export const meta = {
   name: "wiki-reader-testing-read",

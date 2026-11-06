@@ -1,6 +1,6 @@
 # 매달 판 확인(`npm run edition-status`)을 돌린다. 참고문헌이 인용한 출판물의 판이 바뀌었으면 모음 이슈
 # `edition: 판 확인 모음`에 코멘트로 알린다. 기준은 docs/wiki-verification.md의 판 확인 절에 있다. 손으로도 돌릴 수 있다.
-name: edition-status
+name: Edition Status
 
 on:
   schedule:

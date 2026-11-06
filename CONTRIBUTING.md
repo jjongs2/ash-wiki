@@ -6,7 +6,7 @@
 
 - 모든 변경은 PR로 들어옵니다. main에 직접 push하지 않습니다.
 - 머지는 squash만 씁니다. main에는 PR 하나가 커밋 하나로 남습니다.
-- 강제 수단은 CI와 룰셋뿐입니다. 로컬 훅과 PR 제목·본문 검사는 두지 않습니다. CI는 [무결성 워크플로](.github/workflows/integrity.yml), 룰셋은 [`main.json`](.github/rulesets/main.json)입니다.
+- 강제 수단은 CI와 룰셋뿐입니다. 로컬 훅과 PR 제목·본문 검사는 두지 않습니다. CI는 [`ci.yml`](.github/workflows/ci.yml), 룰셋은 [`main.json`](.github/rulesets/main.json)입니다.
 - **PR 전 확인**: PR을 올리기 전에 `npm run check`를 통과시킵니다. CI와 같은 검사입니다. 표기 규칙은 [위키 규약](docs/wiki-conventions.md)에 있습니다.
 - 이슈, PR 본문, 리뷰 코멘트는 간결하게 씁니다.
 - 이 문서가 다루는 글에도 격리 경계가 적용됩니다. 적용 대상과 지킬 것은 [ADR 0001](docs/adr/0001-isolation-boundary.md)에 있습니다.
@@ -31,7 +31,7 @@
 | `chore`    | 설정, 의존성, 그 밖의 유지 작업       |
 | `refactor` | 동작을 바꾸지 않는 코드 정리          |
 | `test`     | 테스트와 픽스처                       |
-| `ci`       | CI 워크플로                           |
+| `ci`       | `.github/workflows/`                  |
 
 예: `feat: 번호 인용 렌더와 표기 위반 CI 검사`
 
