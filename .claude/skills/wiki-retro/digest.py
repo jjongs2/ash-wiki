@@ -7,7 +7,10 @@ python3 digest.py [--archive <폴더>] --candidates <이 세션 uuid> [<기록.j
 python3 digest.py --version <기록.jsonl>...
 
 보관 폴더(기본 ~/documents/ash-wiki-retro)의 <uuid>/에, 기록마다 <이름>-main.md를,
-기록 옆 <uuid>/subagents/의 서브에이전트 기록마다 <이름>-<agent id>.md를 쓴다.
+기록 옆 <uuid>/subagents/의 서브에이전트 기록(Workflow가 띄운 workflows/<wf id>/의 것
+포함)마다 <이름>-<agent id>.md를 쓴다. 서브에이전트 요약본의 첫 줄은 .meta.json의
+agentType과 description(Workflow면 wf id도)이고, 메인 요약본의 Agent 호출 줄은
+subagent_type으로 시작한다.
 <이름>은 세션 제목과 uuid 앞 8자다. 실행할 때마다 다시 만들고, 지난 요약본만 지우고
 report.md는 둔다. 작업 중 대기열로 온 메시지(서브에이전트 반환, 세션 간 메시지,
 소유자 글)는 사용자 글처럼 전문으로 쓰고 "(대기열, <출처>)"를 단다. 완료 알림은 쓰지
@@ -23,16 +26,22 @@ report.md는 둔다. 작업 중 대기열로 온 메시지(서브에이전트 �
 #N을 담으면 그 줄을 떼고 저장하고, 뗀 줄을 찍는다. 반환이 첫 줄을 제 문구로 다시 쓰면
 첫 줄이 두 번 들어가기 때문이다.
 
---candidates는 위키 스킬을 부르거나 RemoteTrigger로 루틴에 넘긴 세션 가운데
-analyzed.tsv에 없고 이 세션도 아닌 것을 찾아, 세션마다 uuid, 스킬, 시작일(첫
-timestamp), 제목, URL, 핸드오프를 한 줄씩 찍는다. URL은 기록에서 gh pr/issue
-create·comment가 돌려준 PR·이슈·코멘트이고, 핸드오프는 세션이 쓰거나 고친
-ash-wiki-handoff/의 파일이다. 루틴에 넘긴 스킬에는 "(루틴)"을 단다. 기록을 주지
-않으면 ~/.claude/projects/*ash-wiki*/의 기록을 본다.
+--candidates는 위키 스킬을 부르거나, .claude/agents/의 에이전트를 띄우거나,
+RemoteTrigger로 루틴에 넘긴 세션 가운데 analyzed.tsv에 없고 이 세션도 아닌 것을 찾아,
+세션마다 uuid, 스킬, 에이전트, 시작일(첫 timestamp), 제목, URL, 핸드오프를 한 줄씩
+찍는다. 에이전트를 띄운 세션은 서브에이전트 .meta.json의 agentType이 세션 버전(스킬
+본문으로 고치기 전)의 .claude/agents/에 있는 세션이다. isBuiltIn은 옛 기록에 없어 쓰지
+않는다. URL은 기록에서 gh pr/issue create·comment가 돌려준 PR·이슈·코멘트이고,
+핸드오프는 세션이 쓰거나 고친 ash-wiki-handoff/의 파일이다. 루틴에 넘긴 스킬에는
+"(루틴)"을 단다. 기록을 주지 않으면 ~/.claude/projects/*ash-wiki*/의 기록을 본다.
+저장소 루트에서 돌린다.
 
 --version은 기록마다 세션 버전을 찍는다. 버전은 worktree base(git worktree add 결과의 "HEAD is now at"),
 없으면 기록의 첫 timestamp 때의 origin/main이다. 기록의 스킬 본문이 그 버전의 SKILL.md와
-다르면 origin/main 역사에서 본문이 같은 커밋으로 고친다. 저장소 루트에서 돌린다.
+다르면 origin/main 역사에서 본문이 같은 커밋으로 고친다. 이어서 세션이 띄운 에이전트
+가운데 첫 스킬의 버전(스킬이 없으면 위 버전)의 .claude/agents/에 있는 것을 그 파일과
+버전으로 한 줄씩 찍는다. 역사에는 있는데 그 버전에 없는 에이전트는 버전 자리에 "-"를
+찍는다. 저장소 루트에서 돌린다.
 
 소스 노트를 연 도구 호출은 입력과 결과를 지우고, 그 입력을 <이름>-notes.txt에
 모은다. 입력에 노트 디렉터리(ASH_WIKI_NOTES의 값, ~나 $HOME으로 쓴 꼴 포함)나 그
@@ -71,6 +80,7 @@ ROUTINE_SKILL = re.compile(rf'"content": "/({WIKI_SKILL})\b')
 GH_WRITE = re.compile(r"\bgh (?:pr|issue) (?:create|comment)\b")
 GITHUB_URL = re.compile(r"https://github\.com/[\w.-]+/[\w.-]+/(?:pull|issues)/\d+(?:#issuecomment-\d+)?")
 HANDOFF = re.compile(r"/documents/ash-wiki-handoff/.*\.md$")
+AGENTS = ".claude/agents"
 CANDIDATE_MARKS = ("<command-message>", '"Skill"', '"RemoteTrigger"', "custom-title", "gh ", "github.com/", "ash-wiki-handoff")
 
 
@@ -103,7 +113,8 @@ def tool_input(name, inp):
         new = clip(inp.get("new_string", ""), 160)
         return f"{inp.get('file_path', '')} old={old} new={new}"
     if name == "Agent":
-        return clip(inp.get("description", "") + " | " + inp.get("prompt", ""), 1500)
+        agent = inp.get("subagent_type") or "subagent_type 없음"
+        return clip(f"{agent} | {inp.get('description', '')} | {inp.get('prompt', '')}", 1500)
     return clip(inp, 300)
 
 
@@ -164,7 +175,7 @@ def opens_notes(raw, persisted):
     return any(f in raw for f in note_forms()) or any(r in raw for r in (*NOTE_REFS, *persisted))
 
 
-def digest(path, out_path):
+def digest(path, out_path, header=""):
     hidden = set()
     persisted = set()
     note_inputs = []
@@ -176,6 +187,11 @@ def digest(path, out_path):
         persisted.update(PERSISTED.findall(text))
 
     with open(out_path, "w") as out:
+        if header and names_notes(header):
+            hide(("header",), header)
+            header = "(노트, 지움)"
+        if header:
+            out.write(header + "\n")
         for i, entry in enumerate(entries):
             ts = (entry.get("timestamp") or "")[:16]
             kind = entry.get("type")
@@ -237,8 +253,8 @@ def session_name(path):
     return f"{title}-{uuid}" if title else uuid
 
 
-def write(out_dir, name, path, label=""):
-    hidden, note_inputs = digest(path, f"{out_dir}/{name}.md")
+def write(out_dir, name, path, label="", header=""):
+    hidden, note_inputs = digest(path, f"{out_dir}/{name}.md", header)
     if note_inputs:
         with open(f"{out_dir}/{name}-notes.txt", "w") as notes:
             notes.write("\n".join(note_inputs) + "\n")
@@ -252,23 +268,44 @@ def check_uuids(uuids, runs=False):
         sys.exit(f"세션 uuid{'나 실행 id' if runs else ''}가 아니다: {', '.join(bad)}")
 
 
+def subagent_records(path):
+    """세션이 띄운 서브에이전트의 기록. Workflow가 띄운 것은 subagents/workflows/<wf id>/에 있다."""
+    base = f"{stem(path)}/subagents"
+    return sorted(glob.glob(f"{base}/*.jsonl")) + sorted(glob.glob(f"{base}/workflows/*/agent-*.jsonl"))
+
+
+def subagent_meta(sub):
+    try:
+        with open(stem(sub) + ".meta.json") as meta:
+            return json.load(meta)
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+
+def spawned_agents(path):
+    return list(dict.fromkeys(t for t in (subagent_meta(s).get("agentType") for s in subagent_records(path)) if t))
+
+
+def subagent_header(sub, meta):
+    parts = [f"agentType: {meta.get('agentType') or '-'}", f"description: {meta.get('description') or '-'}"]
+    if os.path.basename(os.path.dirname(os.path.dirname(sub))) == "workflows":
+        parts.append(f"workflow: {os.path.basename(os.path.dirname(sub))}")
+    return " | ".join(parts)
+
+
 def digest_session(archive, path):
     uuid = os.path.basename(stem(path))
     out_dir = os.path.join(archive, uuid)
-    subs = sorted(glob.glob(f"{stem(path)}/subagents/*.jsonl"))
     os.makedirs(out_dir, exist_ok=True)
     for old in glob.glob(f"{out_dir}/*-main.md") + glob.glob(f"{out_dir}/*-agent-*.md") + glob.glob(f"{out_dir}/*-notes.txt"):
         os.remove(old)
     print(out_dir)
     name = session_name(path)
     hidden_records = write(out_dir, f"{name}-main", path)
-    for sub in subs:
-        meta_path = stem(sub) + ".meta.json"
-        label = ""
-        if os.path.exists(meta_path):
-            with open(meta_path) as meta:
-                label = json.load(meta).get("description", "")
-        hidden_records += write(out_dir, f"{name}-{os.path.basename(stem(sub))}", sub, label)
+    for sub in subagent_records(path):
+        meta = subagent_meta(sub)
+        header = subagent_header(sub, meta)
+        hidden_records += write(out_dir, f"{name}-{os.path.basename(stem(sub))}", sub, meta.get("description", ""), header)
     return hidden_records
 
 
@@ -330,34 +367,60 @@ def worktree_base(entries):
     return None
 
 
-def session_version(path):
-    entries = read_entries(path)
+def base_commit(entries):
     base = worktree_base(entries)
     commit = base and git("rev-parse", "--verify", "-q", base + "^{commit}")
-    how = "worktree base"
-    if not commit:
-        start = next((e["timestamp"] for e in entries if e.get("timestamp")), "")
-        commit = git("rev-list", "-1", f"--before={start}", "origin/main")
-        how = "시작 시각의 origin/main"
+    if commit:
+        return commit, "worktree base"
+    start = next((e["timestamp"] for e in entries if e.get("timestamp")), "")
+    return git("rev-list", "-1", f"--before={start}", "origin/main"), "시작 시각의 origin/main"
+
+
+def agent_names(git_output):
+    return {os.path.basename(p)[: -len(".md")] for p in git_output.split("\n") if p.endswith(".md")}
+
+
+def project_agents(commit):
+    """커밋의 .claude/agents/에 있는 에이전트 이름. 내장 에이전트(general-purpose, fork 등)는 없다."""
+    return agent_names(git("ls-tree", "--name-only", commit, "--", f"{AGENTS}/"))
+
+
+def agents_in_history():
+    """origin/main 역사의 .claude/agents/에 한 번이라도 있던 에이전트 이름."""
+    return agent_names(git("log", "--format=", "--name-only", "--no-renames", "origin/main", "--", f"{AGENTS}/"))
+
+
+def session_version(path):
+    entries = read_entries(path)
+    commit, how = base_commit(entries)
     uuid = os.path.basename(path)[:8]
     if not commit:
         print(f"{uuid}\t-\t-\t버전을 정하지 못함(첫 timestamp가 origin/main보다 이르다)")
         return
     skills = called_skills(entries)
     if not skills:
-        print(f"{uuid}\t-\t{commit[:12]}\t{how}. 스킬 본문 없음(루틴에 넘긴 세션 등)")
+        print(f"{uuid}\t-\t{commit[:12]}\t{how}. 스킬 본문 없음(루틴에 넘긴 세션, 에이전트만 띄운 세션 등)")
+    versions = []
     for skill_dir, body in skills.items():
         skill = f"{skill_dir}/SKILL.md"
         name = os.path.basename(skill_dir)
         if without_frontmatter(git("show", f"{commit}:{skill}")) == body:
-            print(f"{uuid}\t{name}\t{commit[:12]}\t{how}")
-            continue
-        history = git("log", "--format=%H", "origin/main", "--", skill).split()
-        fixed = next((c for c in history if without_frontmatter(git("show", f"{c}:{skill}")) == body), "")
-        if fixed:
-            print(f"{uuid}\t{name}\t{fixed[:12]}\t{how}({commit[:12]})와 본문이 달라, 본문이 같은 커밋으로 고침")
+            skill_version, note = commit, how
         else:
-            print(f"{uuid}\t{name}\t{commit[:12]}\t{how}. 본문이 같은 커밋 없음")
+            history = git("log", "--format=%H", "origin/main", "--", skill).split()
+            same = next((c for c in history if without_frontmatter(git("show", f"{c}:{skill}")) == body), "")
+            note = f"{how}({commit[:12]})와 본문이 달라, 본문이 같은 커밋으로 고침" if same else f"{how}. 본문이 같은 커밋 없음"
+            skill_version = same or commit
+        print(f"{uuid}\t{name}\t{skill_version[:12]}\t{note}")
+        versions.append(skill_version)
+    # 에이전트 파일은 첫 스킬의 세션 버전으로 읽고, 그 버전을 따로 맞추지 않는다.
+    version = (versions or [commit])[0]
+    names, in_history = project_agents(version), agents_in_history()
+    for agent in spawned_agents(path):
+        if agent in names:
+            print(f"{uuid}\t{AGENTS}/{agent}.md\t{version[:12]}\t띄운 에이전트")
+        elif agent in in_history:
+            print(f"{uuid}\t{AGENTS}/{agent}.md\t-\t띄운 에이전트인데 세션 버전에 없음({version[:12]})")
 
 
 def final_report(path):
@@ -415,7 +478,16 @@ def invoked_wiki_skills(block):
     return []
 
 
-def candidate_row(path):
+def agents_at_version(path, in_history):
+    """세션이 띄운 에이전트 가운데 세션 버전의 .claude/agents/에 있는 것. 역사에 있던 이름으로 먼저 거른다."""
+    agents = [a for a in spawned_agents(path) if a in in_history]
+    if not agents:
+        return []
+    names = project_agents(base_commit(read_entries(path))[0])
+    return [a for a in agents if a in names]
+
+
+def candidate_row(path, in_history):
     skills, urls, handoffs = [], [], []
     start, title, writes = "", "", set()
     with open(path) as transcript:
@@ -438,10 +510,11 @@ def candidate_row(path):
                     handoffs.append(inp["file_path"])
                 elif block.get("type") == "tool_result" and block.get("tool_use_id") in writes:
                     urls += GITHUB_URL.findall(result_text(block.get("content")))
-    if not skills:
+    agents = agents_at_version(path, in_history)
+    if not skills and not agents:
         return None
     uuid = os.path.basename(stem(path))
-    return [uuid, joined(skills, ","), start or "-", title or "-", joined(urls), joined(handoffs)]
+    return [uuid, joined(skills, ","), joined(agents, ","), start or "-", title or "-", joined(urls), joined(handoffs)]
 
 
 def joined(items, sep=" "):
@@ -450,10 +523,16 @@ def joined(items, sep=" "):
 
 def candidates(archive, retro, paths):
     done = analyzed(archive) | {retro}
-    rows =[candidate_row(p) for p in paths if os.path.basename(stem(p)) not in done]
-    print("uuid\t스킬\t시작일\t제목\tURL\t핸드오프")
-    for row in sorted((r for r in rows if r), key=lambda r: r[2]):
+    in_history = agents_in_history()
+    rows = [candidate_row(p, in_history) for p in paths if os.path.basename(stem(p)) not in done]
+    print("uuid\t스킬\t에이전트\t시작일\t제목\tURL\t핸드오프")
+    for row in sorted((r for r in rows if r), key=lambda r: r[3]):
         print("\t".join(row))
+
+
+def require_origin_main():
+    if not git("rev-parse", "--verify", "-q", "origin/main"):
+        sys.exit("origin/main이 없다. 저장소 루트에서 돌린다.")
 
 
 def main():
@@ -468,13 +547,13 @@ def main():
     if args.version:
         if not args.items:
             parser.error("기록이 필요하다")
-        if not git("rev-parse", "--verify", "-q", "origin/main"):
-            sys.exit("origin/main이 없다. 저장소 루트에서 돌린다.")
+        require_origin_main()
         for path in args.items:
             session_version(path)
         return
     if args.candidates:
         check_uuids([args.candidates])
+        require_origin_main()
         candidates(args.archive, args.candidates, args.items or sorted(glob.glob(SESSIONS)))
         return
     os.makedirs(args.archive, exist_ok=True)

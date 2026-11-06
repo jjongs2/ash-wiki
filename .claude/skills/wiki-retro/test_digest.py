@@ -15,12 +15,45 @@ SCRIPT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "digest.py")
 UUID = "11111111-2222-3333-4444-555555555555"
 
 
+def stem_of(path):
+    return path[: -len(".jsonl")]
+
+
 def env_without_notes():
     return {k: v for k, v in os.environ.items() if k != "ASH_WIKI_NOTES"}
 
 
 def entry(kind, text):
     return json.dumps({"type": kind, "timestamp": "2026-10-08T01:00:00Z", "message": {"content": text}})
+
+
+def subagent(session_dir, agent_id, agent_type, description, *lines, workflow=None):
+    sub_dir = os.path.join(session_dir, "subagents", *(("workflows", workflow) if workflow else ()))
+    os.makedirs(sub_dir, exist_ok=True)
+    with open(os.path.join(sub_dir, f"agent-{agent_id}.jsonl"), "w") as f:
+        f.write("\n".join(lines or [entry("assistant", "sub reply")]) + "\n")
+    with open(os.path.join(sub_dir, f"agent-{agent_id}.meta.json"), "w") as f:
+        json.dump({"agentType": agent_type, "description": description}, f)
+
+
+def git_repo(path, files, date="2026-01-01T00:00:00Z"):
+    """files를 한 커밋에 담고 origin/main을 그 커밋에 둔 저장소를 만들어 커밋을 돌려준다."""
+    env = dict(os.environ, GIT_AUTHOR_NAME="t", GIT_AUTHOR_EMAIL="t@t", GIT_COMMITTER_NAME="t", GIT_COMMITTER_EMAIL="t@t",
+               GIT_AUTHOR_DATE=date, GIT_COMMITTER_DATE=date)
+    for name, body in files.items():
+        os.makedirs(os.path.join(path, os.path.dirname(name)), exist_ok=True)
+        with open(os.path.join(path, name), "w") as f:
+            f.write(body)
+
+    def git(*args):
+        return subprocess.run(["git", *args], cwd=path, env=env, capture_output=True, text=True, check=True).stdout.strip()
+
+    git("init", "-q")
+    git("add", ".")
+    git("commit", "-q", "-m", "c")
+    commit = git("rev-parse", "HEAD")
+    git("update-ref", "refs/remotes/origin/main", commit)
+    return commit
 
 
 class DigestArchiveTest(unittest.TestCase):
@@ -59,6 +92,33 @@ class DigestArchiveTest(unittest.TestCase):
         self.assertIn(f"{UUID[:8]}-agent-a1.md", files)
         with open(os.path.join(self.archive, UUID, f"{UUID[:8]}-main.md")) as f:
             self.assertIn("hello", f.read())
+
+    def read(self, name):
+        with open(os.path.join(self.archive, UUID, f"{UUID[:8]}-{name}.md")) as f:
+            return f.read()
+
+    def test_agent_call_line_names_the_agent(self):
+        call = {"subagent_type": "source-verifier", "description": "Verify sentences", "prompt": "읽어라"}
+        with open(self.transcript, "w") as f:
+            f.write(assistant({"type": "tool_use", "id": "a1", "name": "Agent", "input": call}) + "\n")
+        self.run_digest(self.transcript)
+        self.assertIn("- Agent: source-verifier | Verify sentences | 읽어라", self.read("main"))
+
+    def test_subagent_digest_starts_with_agent_name_and_description(self):
+        subagent(os.path.join(self.tmp.name, UUID), "b2", "style-reviewer", "Style review round 1")
+        self.run_digest(self.transcript)
+        self.assertEqual(self.read("agent-b2").splitlines()[0], "agentType: style-reviewer | description: Style review round 1")
+
+    def test_workflow_agent_record_is_digested(self):
+        session_dir = os.path.join(self.tmp.name, UUID)
+        subagent(session_dir, "c3", "external-reader", "Reader review", entry("assistant", "걸린 곳"), workflow="wf_1234abcd-ef0")
+        with open(os.path.join(session_dir, "subagents", "workflows", "wf_1234abcd-ef0", "journal.jsonl"), "w") as f:
+            f.write(entry("user", "journal") + "\n")
+        out = self.run_digest(self.transcript)
+        digest = self.read("agent-c3")
+        self.assertEqual(digest.splitlines()[0], "agentType: external-reader | description: Reader review | workflow: wf_1234abcd-ef0")
+        self.assertIn("걸린 곳", digest)
+        self.assertNotIn("journal", out)
 
     def test_unchanged_transcript_is_redone_and_counted(self):
         self.run_digest(self.transcript)
@@ -218,15 +278,9 @@ class VersionTest(unittest.TestCase):
         return self.git("rev-parse", "HEAD")
 
     def version(self, *lines, first_ts="2026-03-01T00:00:00Z"):
-        start = json.dumps({"type": "custom-title", "timestamp": first_ts})
-        with open(self.transcript, "w") as f:
-            f.write("\n".join([start, *lines]) + "\n")
-        result = subprocess.run(
-            [sys.executable, "-B", SCRIPT, "--version", self.transcript],
-            cwd=self.repo, env=env_without_notes(), capture_output=True, text=True,
-        )
-        self.assertEqual(result.returncode, 0, result.stderr)
-        return result.stdout.strip().split("\t")
+        rows = self.version_rows(*lines, first_ts=first_ts)
+        self.assertEqual(len(rows), 1, rows)
+        return rows[0]
 
     def test_worktree_base_is_the_version(self):
         base = bash("git worktree add -b x .claude/worktrees/x origin/main", f"Preparing worktree\nHEAD is now at {self.v1[:8]} 첫 판", "w1")
@@ -259,6 +313,43 @@ class VersionTest(unittest.TestCase):
         row = self.version(entry("user", "/wiki-news 루틴을 돌려 줘"))
         self.assertEqual(row[1:3], ["-", self.v2[:12]])
         self.assertIn("스킬 본문 없음", row[3])
+
+    def commit_with_agent(self):
+        agent = os.path.join(self.repo, ".claude/agents/source-verifier.md")
+        os.makedirs(os.path.dirname(agent))
+        with open(agent, "w") as f:
+            f.write("---\nname: source-verifier\n---\n")
+        v3 = self.commit("# 소식\n\n셋째 판\n", "2026-02-15T00:00:00Z")
+        self.git("update-ref", "refs/remotes/origin/main", v3)
+        return v3
+
+    def test_project_agents_the_session_spawned_are_listed_at_the_version(self):
+        v3 = self.commit_with_agent()
+        session_dir = stem_of(self.transcript)
+        subagent(session_dir, "a1", "source-verifier", "Verify")
+        subagent(session_dir, "a2", "general-purpose", "Search")
+        subagent(session_dir, "a3", "source-verifier", "Re-verify", workflow="wf_1")
+        rows = self.version_rows(skill_call("# 소식\n\n셋째 판"))
+        self.assertEqual([r[1:3] for r in rows], [["wiki-news", v3[:12]], [".claude/agents/source-verifier.md", v3[:12]]])
+
+    def test_agent_files_follow_the_commit_the_skill_body_fixed(self):
+        self.commit_with_agent()
+        subagent(stem_of(self.transcript), "a1", "source-verifier", "Verify")
+        subagent(stem_of(self.transcript), "a2", "general-purpose", "Search")
+        rows = self.version_rows(skill_call("# 소식\n\n첫 판"))
+        self.assertEqual([r[1:3] for r in rows], [["wiki-news", self.v1[:12]], [".claude/agents/source-verifier.md", "-"]])
+        self.assertIn("세션 버전에 없음", rows[1][3])
+
+    def version_rows(self, *lines, first_ts="2026-03-01T00:00:00Z"):
+        start = json.dumps({"type": "custom-title", "timestamp": first_ts})
+        with open(self.transcript, "w") as f:
+            f.write("\n".join([start, *lines]) + "\n")
+        result = subprocess.run(
+            [sys.executable, "-B", SCRIPT, "--version", self.transcript],
+            cwd=self.repo, env=env_without_notes(), capture_output=True, text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        return [line.split("\t") for line in result.stdout.splitlines()]
 
     def test_outside_a_repository_fails(self):
         with open(self.transcript, "w") as f:
@@ -369,7 +460,9 @@ class CandidatesTest(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.archive = os.path.join(self.tmp.name, "archive")
+        self.repo = os.path.join(self.tmp.name, "repo")
         self.paths = []
+        git_repo(self.repo, {f".claude/agents/{name}.md": f"---\nname: {name}\n---\n" for name in ("source-verifier", "external-reader")})
 
     def tearDown(self):
         self.tmp.cleanup()
@@ -379,14 +472,43 @@ class CandidatesTest(unittest.TestCase):
         with open(path, "w") as f:
             f.write("\n".join(lines) + "\n")
         self.paths.append(path)
+        return stem_of(path)
+
+    def run_candidates(self):
+        return subprocess.run(
+            [sys.executable, "-B", SCRIPT, "--archive", self.archive, "--candidates", RETRO, *self.paths],
+            cwd=self.repo, env=env_without_notes(), capture_output=True, text=True,
+        )
 
     def candidates(self):
-        result = subprocess.run(
-            [sys.executable, "-B", SCRIPT, "--archive", self.archive, "--candidates", RETRO, *self.paths],
-            env=env_without_notes(), capture_output=True, text=True,
-        )
+        result = self.run_candidates()
         self.assertEqual(result.returncode, 0, result.stderr)
         return {row[0]: row for row in (line.split("\t") for line in result.stdout.splitlines()[1:])}
+
+    def test_session_spawning_a_project_agent_without_a_wiki_skill_is_a_candidate(self):
+        subagent(self.transcript(UUID, entry("user", "#626 구현")), "a1", "source-verifier", "Verify")
+        subagent(self.transcript(OTHER, entry("user", "검색")), "a2", "general-purpose", "Search")
+        rows = self.candidates()
+        self.assertEqual(list(rows), [UUID])
+        self.assertEqual(rows[UUID][1:3], ["-", "source-verifier"])
+
+    def test_agent_a_workflow_spawned_makes_a_candidate(self):
+        session_dir = self.transcript(UUID, entry("user", "Reader Testing"))
+        subagent(session_dir, "a1", "external-reader", "Reader", workflow="wf_1")
+        subagent(session_dir, "a2", "source-verifier", "Verify")
+        self.assertEqual(self.candidates()[UUID][2], "source-verifier,external-reader")
+
+    def test_agent_missing_from_the_session_version_does_not_make_a_candidate(self):
+        later = os.path.join(self.tmp.name, "later")
+        git_repo(later, {".claude/agents/source-verifier.md": "x"}, date="2026-11-01T00:00:00Z")
+        self.repo = later
+        subagent(self.transcript(UUID, entry("user", "#626 구현")), "a1", "source-verifier", "Verify")
+        self.assertEqual(self.candidates(), {})
+
+    def test_outside_a_repository_fails(self):
+        self.transcript(UUID, entry("user", "hello"))
+        self.repo = self.tmp.name
+        self.assertNotEqual(self.run_candidates().returncode, 0)
 
     def test_session_handing_a_skill_to_a_routine_is_a_candidate(self):
         self.transcript(UUID, trigger("/wiki-news 2026-w01\n\n인자는 하나다."))
@@ -424,8 +546,8 @@ class CandidatesTest(unittest.TestCase):
         )
         self.transcript(OTHER, assistant({"type": "tool_use", "id": "s1", "name": "Skill", "input": {"skill": "wiki-verify"}}))
         rows = self.candidates()
-        self.assertEqual(rows[UUID][1:], ["wiki-verify", "2026-10-08", "CAN 재조사", "https://github.com/o/r/pull/7", handoff])
-        self.assertEqual(rows[OTHER][4:], ["-", "-"])
+        self.assertEqual(rows[UUID][1:], ["wiki-verify", "-", "2026-10-08", "CAN 재조사", "https://github.com/o/r/pull/7", handoff])
+        self.assertEqual(rows[OTHER][5:], ["-", "-"])
 
 
 if __name__ == "__main__":
