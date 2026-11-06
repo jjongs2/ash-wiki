@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -3 441 528" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -3 441 528" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="코어에 통째로 놓이는 OS-Application">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
   <!-- 코어 틀 안에 OS-Application, 그 안에 소속 객체. 코어 0 위, 코어 1 아래.
        resource와 스핀락은 어느 OS-Application에도 속하지 않고 접근 권한으로만 쓴다 -->

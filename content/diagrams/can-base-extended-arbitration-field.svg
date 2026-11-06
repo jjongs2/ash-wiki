@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="93.5 1 474.5 174.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="93.5 1 474.5 174.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="확장 포맷의 중재 필드">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
   <path d="M144 34 V28 H540 V34" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="342" y="20" text-anchor="middle" font-size="12" fill="var(--text, #727981)">중재 필드</text>
