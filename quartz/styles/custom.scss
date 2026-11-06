@@ -363,8 +363,12 @@ a.internal.tag-link::before {
 // ash-wiki: 다크 모드 버튼과 읽기 모드 버튼은 20×32px라 누르는 영역이 WCAG 2.2의 최소 크기(24×24px)에
 // 못 미친다. 겉모양과 자리는 두고, 누르는 영역만 투명한 ::after로 좌우 2px씩 넓힌다. 두 버튼 사이는 8px라
 // 넓혀도 겹치지 않는다.
+// 두 버튼은 블록 상자로 둔다. 기본값인 인라인 상자로 두면 감싼 칸이 버튼을 글줄에 얹어 칸 높이가 줄 높이(36px)가 되고,
+// 버튼이 칸 위쪽에 붙어 아이콘이 옆 검색 창보다 2px 높게 선다.
 .darkmode,
 .readermode {
+  display: block;
+
   &::after {
     content: "";
     position: absolute;
@@ -482,16 +486,27 @@ $panel-tokens:
 
 // 면은 페이지 왼쪽 끝부터 칠한다. 데스크톱에서는 사이드바 칸이 페이지 왼쪽 끝에서 시작하고, 태블릿과 모바일에서는 본문
 // 칸의 좌우 여백(base.scss의 #quartz-body padding 1rem)만큼 들어가 있어 칸을 그만큼 밖으로 늘린다.
-// 데스크톱에서는 본문을 양옆 칸에서 같은 48px씩 띄운다. 왼쪽은 면과 본문 칸 사이, 오른쪽은 본문과 오른쪽
+// 데스크톱에서는 본문을 양옆 칸에서 적어도 48px씩 띄운다. 왼쪽은 면과 본문 칸 사이, 오른쪽은 본문과 오른쪽
 // 사이드바(그래프 뷰, 목차, 백링크) 사이이고, 둘 다 칸 사이 5px에 안쪽 여백을 더한 폭이다. 칸이 border-box라 띄운 만큼
 // 내용 폭이 줄고, 내용이 칸 밖으로 넘지 않는다. footer는 본문 칸과 같이 띄운다. 오른쪽은 업스트림이 사이드바에 거는
 // 안쪽 여백(2rem)을 태블릿 절과 같은 무게의 선택자로 덮는다.
+// 본문 글 상자는 $center-max-width를 넘지 않고, 넘는 폭은 양옆 간격에 반씩 더한다. 상한은 사이드바가 320px이던 때
+// 1500px 페이지의 본문 폭이고, 사이드바를 줄인 뒤에도 넓은 화면의 한 줄 길이를 그대로 둔다. 본문 칸의 % 여백은 그리드
+// 칸의 폭에 대한 값이다.
+$center-max-width: 807px;
+
 @media all and ($desktop) {
   .center,
   footer,
   .page > #quartz-body > .sidebar.right {
     box-sizing: border-box;
     padding-left: calc(48px - 5px);
+  }
+
+  .center,
+  footer {
+    padding-left: max(calc(48px - 5px), calc((100% - #{$center-max-width} + 48px - 5px) / 2));
+    padding-right: max(0px, calc((100% - #{$center-max-width} - 48px + 5px) / 2));
   }
 }
 
@@ -527,7 +542,8 @@ $panel-tokens:
 // 태블릿에서는 면 안의 사이트 이름과 탐색기를 데스크톱과 같이 화면 끝에서 2rem 들이고, 면의 폭도 데스크톱과 같게
 // 사이드바 칸을 화면 밖으로 늘린 1rem만큼 줄인다. 본문 아래에 놓이는 오른쪽 사이드바(그래프와 Backlinks)도 본문 칸과
 // 같이 면에서 띄운다. 업스트림이 태블릿에서 오른쪽 사이드바의 안쪽 여백을 0으로 두므로 같은 무게의 선택자로 덮는다.
-// 칸의 폭은 업스트림의 다른 꼴(full-width, minimal)이 제 그리드를 쓰므로 기본 꼴에만 건다.
+// 칸의 폭은 업스트림의 다른 꼴(full-width, minimal)이 제 그리드를 쓰므로 기본 꼴에만 건다. 본문 글 상자는 데스크톱과
+// 같은 상한을 넘지 않고, 남는 폭은 오른쪽에 둔다. 태블릿에는 본문 오른쪽에 칸이 없다.
 @media all and ($tablet) {
   .page[data-frame="default"] > #quartz-body {
     grid-template-columns: calc(#{$sidePanelWidth} - 1rem) auto;
@@ -543,6 +559,10 @@ $panel-tokens:
   .page > #quartz-body > .sidebar.right {
     box-sizing: border-box;
     padding-left: 1rem;
+  }
+
+  .center {
+    padding-right: max(0px, calc(100% - 1rem - #{$center-max-width}));
   }
 }
 
