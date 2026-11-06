@@ -106,9 +106,11 @@ describe("collapsible-sections 스크립트", () => {
       getElementById: (id: string) => (id === "target" ? target : null),
     }
     const pushed: string[] = []
+    const opened: string[] = []
     const window = {
       addEventListener: () => {},
       history: { pushState: (_state: unknown, _title: string, url: string) => pushed.push(url) },
+      open: (url: string, name: string) => opened.push(`${name} ${url}`),
     }
     const location = {
       origin: "https://wiki.test",
@@ -125,12 +127,14 @@ describe("collapsible-sections 스크립트", () => {
     return {
       target,
       pushed,
-      // 기본 동작(summary라면 절 접기)을 막았는지 돌려준다.
-      click: (anchor: object) => {
+      opened,
+      // 기본 동작(summary라면 절 접기)을 막았는지 돌려준다. keys는 함께 누른 키다(ctrlKey 등).
+      click: (anchor: object, keys: object = {}) => {
         let prevented = false
         handlers.click({
           target: Object.assign(new Element(), { closest: () => anchor }),
           preventDefault: () => (prevented = true),
+          ...keys,
         })
         return prevented
       },
@@ -167,6 +171,18 @@ describe("collapsible-sections 스크립트", () => {
     assert.strictEqual(page.click(anchor), true)
     assert.strictEqual(page.target.scrolled, 1)
     assert.deepStrictEqual(page.pushed, ["#target"])
+  })
+
+  // 링크였을 때처럼 ctrl·cmd 클릭은 새 탭으로 연다(라우터도 이 클릭은 브라우저에 맡긴다).
+  test("접는 절 제목의 앵커를 ctrl·cmd와 함께 누르면 그 절의 주소를 새 탭으로 연다", () => {
+    for (const keys of [{ ctrlKey: true }, { metaKey: true }]) {
+      const page = load({ open: true, parentElement: null })
+      const anchor = { dataset: { href: "#target" }, getAttribute: () => null }
+      assert.strictEqual(page.click(anchor, keys), true)
+      assert.deepStrictEqual(page.opened, ["_blank https://wiki.test/page#target"])
+      assert.deepStrictEqual(page.pushed, [])
+      assert.strictEqual(page.target.scrolled, 0)
+    }
   })
 
   // 해시만 바뀐 뒤로·앞으로 가기에서 라우터는 페이지를 다시 그리고 스크롤하지 않는다. 다시 그리면 대상 위의

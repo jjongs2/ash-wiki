@@ -34,13 +34,18 @@ document.addEventListener(
   "click",
   (event) => {
     // 접는 절 제목의 앵커(href 대신 data-href, index.ts의 inertAnchors). summary의 기본 동작(절 접기)을 막고,
-    // 라우터가 같은 페이지 앵커를 다루듯 대상으로 스크롤한 뒤 주소에 해시를 남긴다.
-    const heading =
+    // 라우터가 같은 페이지 앵커를 다루듯 대상으로 스크롤한 뒤 주소에 해시를 남긴다. ctrl·cmd 클릭은 링크였을
+    // 때처럼 새 탭으로 연다.
+    const anchor =
       event.target instanceof Element ? event.target.closest("summary a[data-href]") : null
-    if (heading?.dataset?.href) {
+    if (anchor?.dataset?.href) {
       event.preventDefault()
-      targetOf(heading.dataset.href)?.scrollIntoView()
-      window.history.pushState({}, "", heading.dataset.href)
+      if (event.ctrlKey || event.metaKey) {
+        window.open(new URL(anchor.dataset.href, location.href).href, "_blank")
+        return
+      }
+      targetOf(anchor.dataset.href)?.scrollIntoView()
+      window.history.pushState({}, "", anchor.dataset.href)
       return
     }
     const a = event.target instanceof Element ? event.target.closest("a[href]") : null

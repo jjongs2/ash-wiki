@@ -7,8 +7,7 @@ import { repoRoot } from "../repo"
 import { serve } from "../serve"
 import { axeTargets, EXCEPTIONS, splitExceptions, type Violation } from "./targets"
 
-// 접근성 자동 검사(docs/engine.md의 화면을 고칠 때 절). 로컬 빌드의 대표 페이지에 axe-core를 두 폭, 두 테마로
-// 돌리고, 예외가 아닌 위반이 있으면 exit 1이다. CI는 돌리지 않는다. 화면을 고칠 때 사람이 돌린다.
+// 접근성 자동 검사. 무엇을 재고 언제 돌리는지는 docs/engine.md의 화면을 고칠 때 절에 있다.
 // 사용: npm run axe -- --site <빌드 폴더> [--json <파일>]
 const { values } = parseArgs({
   options: { site: { type: "string" }, json: { type: "string" } },

@@ -280,7 +280,7 @@ async function setupSearch() {
         for (const item of finalResults) {
           const itemTile = document.createElement("a")
           itemTile.className = "result-card"
-          // 목록(listbox)의 항목이다(axe aria-required-children, #638). 고른 항목은 setFocus가 aria-selected로 알린다.
+          // ash-wiki: 목록(listbox)의 항목이다(axe aria-required-children, #638). 고른 항목은 setFocus가 aria-selected로 알린다.
           itemTile.setAttribute("role", "option")
           itemTile.setAttribute("aria-selected", "false")
           itemTile.id = item.slug

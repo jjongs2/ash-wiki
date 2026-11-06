@@ -17,7 +17,8 @@ describe("axeTargets", () => {
   })
 })
 
-// 브라우저가 노드마다 걸린 예외 선택자의 이름을 적어 오면, 결정 3의 예외만 위반에서 빠지는지를 seam으로 본다.
+// 브라우저가 노드마다 걸린 예외 선택자의 이름을 적어 오면, 소유자가 허용한 예외(EXCEPTIONS)만 위반에서 빠지는지를
+// seam으로 본다.
 const node = (target: string, exceptions: string[] = []) => ({
   target,
   html: "<p></p>",
