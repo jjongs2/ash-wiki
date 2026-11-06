@@ -339,6 +339,12 @@ $focus-ring: 2px solid var(--secondary);
   }
 }
 
+// 목차 바의 연 목록(plugins/narrow-toc)은 항목 좌우에 바의 여백이 있어 링을 밖에 그리고, 포커스로 스크롤할 때 링이 차지하는
+// 4px만큼 띄워 세운다.
+.narrow-toc-list > li > a {
+  scroll-margin-block: 4px;
+}
+
 // 목차와 Backlinks의 접기 버튼은 칸의 위 끝과 양옆에 붙어 있고 글자에 여백이 없어, 링을 안쪽에 그리면 글자에 겹친다. 칸을
 // 링 폭만큼 넓히고(padding) 같은 만큼 당겨(margin) 자리는 그대로 두고, 버튼의 링은 버튼에 붙여 넓힌 자리에 그린다.
 .toc,
