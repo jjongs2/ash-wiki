@@ -56,7 +56,7 @@ disable-model-invocation: true
 
 PR을 올리기 전에 위키 검증 문서의 반영 뒤 점검과 `CONTRIBUTING.md`의 PR 전 확인을 돌린다. 그다음 위키 검증 문서 검토 절의 1회차와 2회차를 따른다. 린트 수정 PR은 `style-reviewer`의 표기 검토와, 도해를 고쳤으면 `diagram-reviewer`의 도해 검토만 돌고, 검증자가 돌지 않는 흐름의 줄을 따른다. 2회차에는 `CONTRIBUTING.md`의 리뷰 절대로 두 축 리뷰를 함께 돌린다.
 
-완료: PR 전 확인이 통과하고, PR과 리뷰 요약 코멘트가 있다.
+완료: PR 전 확인이 통과하고, PR이 있다.
 
 ## 5. 이슈
 

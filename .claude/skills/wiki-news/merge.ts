@@ -45,7 +45,7 @@ export interface PastItem {
 export interface Review {
   url: string
   from?: string
-  result: "통과" | "고침" | "뺌" | "소유자 확인"
+  result: "통과" | "고침" | "뺌" | "소유자 확인 요청"
   reason: string
 }
 
