@@ -177,12 +177,7 @@ export function explorerInputs(entries: ContentEntry[]): {
 // 탐색기의 규칙(.folder-container div > button span 등)은 @layer quartz-base 안에 실려, layer 밖인 이 CSS가
 // 구체성과 상관없이 이긴다. 사용자 스타일시트도 layer 밖이라 둘은 구체성으로 겨루고, 이 CSS가 뒤에 실리므로
 // 구체성이 같은 선택자(hover한 지금 페이지의 배경)는 여기 적은 값이 이긴다.
-const CSS = `.explorer .explorer-content :is(.folder-button, ul li > a):focus-visible {
-  outline: 2px solid var(--secondary);
-  outline-offset: 2px;
-  border-radius: 5px;
-}
-.explorer .explorer-content .folder-container {
+const CSS = `.explorer .explorer-content .folder-container {
   position: relative;
 }
 .explorer .explorer-content .folder-container > div {
@@ -331,6 +326,38 @@ const SCRIPT = `(() => {
 })()
 `
 
+// 폰의 탐색기 서랍이 열린 동안 서랍 밖을 막아(inert) 포커스가 서랍 안에만 머물게 한다(#633). 서랍(.explorer-content)과
+// 서랍을 닫는 메뉴 버튼은 남기고, 탐색기에서 body까지 올라가며 형제를 모두 막는다. 라우터의 알림 영역은 막지 않는다.
+// 업스트림은 서랍을 열고 닫을 때 html의 mobile-no-scroll을 붙였다 떼므로 그 class와 화면 폭이 바뀔 때 다시 맞춘다.
+// 화면 폭으로 거르는 까닭은 닫힌 서랍을 막는 사이트 스타일(custom.scss의 모바일 탐색기 서랍)의 주석에 있다. 막은
+// 요소에는 표시를 남겨 이 스크립트가 막은 것만 푼다. SPA 이동은 새 페이지로 속성을 갈아 표시가 사라지고, 탐색기가
+// 서랍을 닫으며 class를 바꿔 다시 맞춘다.
+const DRAWER_SCRIPT = `(() => {
+  const mobile = window.matchMedia("(max-width: 800px)")
+  const MARK = "data-drawer-inert"
+  const sync = () => {
+    for (const element of document.querySelectorAll("[" + MARK + "]")) {
+      element.inert = false
+      element.removeAttribute(MARK)
+    }
+    const explorer = document.querySelector(".explorer")
+    if (!explorer || !mobile.matches || explorer.classList.contains("collapsed")) return
+    const keep = new Set([explorer.querySelector(".explorer-content"), explorer.querySelector(".mobile-explorer")])
+    const block = (element) => {
+      if (keep.has(element) || element.inert || element.matches("script, style, template, route-announcer")) return
+      element.inert = true
+      element.setAttribute(MARK, "")
+    }
+    for (const child of explorer.children) block(child)
+    for (let node = explorer; node.parentElement && node !== document.body; node = node.parentElement) {
+      for (const sibling of node.parentElement.children) if (sibling !== node) block(sibling)
+    }
+  }
+  new MutationObserver(sync).observe(document.documentElement, { attributeFilter: ["class"] })
+  mobile.addEventListener("change", sync)
+})()
+`
+
 const ExplorerTree: QuartzTransformerPlugin = () => {
   return {
     name: "ExplorerTree",
@@ -341,7 +368,10 @@ const ExplorerTree: QuartzTransformerPlugin = () => {
     externalResources() {
       return {
         css: [{ content: CSS, inline: true }],
-        js: [{ loadTime: "afterDOMReady", contentType: "inline", script: SCRIPT }],
+        js: [
+          { loadTime: "afterDOMReady", contentType: "inline", script: SCRIPT },
+          { loadTime: "afterDOMReady", contentType: "inline", script: DRAWER_SCRIPT },
+        ],
       }
     },
   }

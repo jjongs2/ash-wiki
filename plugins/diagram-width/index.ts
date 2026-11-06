@@ -1,6 +1,8 @@
 // ash-wiki: 도해 <object>에 SVG의 viewBox 폭을 --diagram-width로 붙이는 로컬 플러그인이다.
 // 사이트 스타일(quartz/styles/custom.scss)이 이 값으로 도해를 viewBox 폭에 비례한 크기로 그려, 폭이
 // 다른 도해도 같은 font-size의 글자가 같은 크기로 보인다. 배율과 크기 계산은 스타일에 있다.
+// 도해 <object>는 탭 순서에서도 뺀다(tabindex="-1"). 브라우저는 <object>를 Tab에 잡지만 도해에는 링크가 없고
+// (docs/wiki-diagrams.md), 잡혀도 포커스 표시가 보이지 않는다.
 //
 // 빌드가 이 파일을 Node의 type stripping으로 불러오므로, 타입만 지우면 돌아가는 문법만 쓴다. enum, namespace,
 // parameter property를 쓰지 않고, 타입은 import type으로 가져온다.
@@ -14,7 +16,7 @@ import type { QuartzTransformerPlugin } from "../../quartz/plugins/types"
 export const manifest = {
   name: "diagram-width",
   displayName: "Diagram width",
-  description: "도해 <object>에 SVG의 viewBox 폭을 붙인다",
+  description: "도해 <object>에 SVG의 viewBox 폭을 붙이고 탭 순서에서 뺀다",
   version: "1.0.0",
   category: "transformer",
 }
@@ -53,6 +55,7 @@ const DiagramWidth: QuartzTransformerPlugin = () => {
           visit(tree, "element", (node) => {
             const { data, type, style } = node.properties
             if (node.tagName !== "object" || type !== "image/svg+xml") return
+            node.properties.tabIndex = -1
             if (typeof data !== "string") return
             const width = diagramWidth(ctx.argv.directory, data)
             if (width === null) return

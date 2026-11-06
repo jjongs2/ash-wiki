@@ -293,12 +293,123 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
 
 // ash-wiki: 모바일의 탐색기 서랍은 사이드바를 기준으로 left: 0에 놓이고, 사이드바는 남색 면을 칠하느라 화면 끝에서
 // 시작한다(아래 남색 면 절). 업스트림 서랍에는 좌우 여백이 없어 항목 글자가 줄 규칙의 안쪽 여백(0.4rem)만큼만 들어가므로,
-// 서랍에 여백을 두어 항목 글자를 메뉴 아이콘 선과 같은 1rem에 세운다. 닫힌 서랍은 업스트림이 화면 폭만큼 옮겨 화면 밖에
-// 다 나간다.
+// 서랍에 여백을 두어 항목 글자를 메뉴 아이콘 선과 같은 1rem에 세운다.
+// 닫힌 서랍은 업스트림이 화면 폭만큼 옮겨 화면 밖에 내보내고 visibility: hidden으로 숨긴다. 그런데 업스트림은 펼친
+// 폴더(.folder-outer.open)에 visibility: visible을 걸어, 그 안의 항목은 화면 밖에서 Tab에 잡힌다. 닫힌 서랍 안의 펼친
+// 폴더도 숨겨 탭 순서에서 뺀다(#633). 폰 폭에서만 CSS로 막는다. 탐색기의 접힘 표시(.collapsed)는 폰 폭에서 붙은 채
+// 창을 넓혀도 남아, 그 표시를 기준으로 막으면 넓힌 뒤 데스크톱 탐색기가 막힌다. 열린 서랍 밖을 막는 것은
+// explorer-tree 플러그인의 스크립트다.
 @media all and ($mobile) {
   .explorer .explorer-content {
     padding-inline: calc(1rem - 0.4rem);
   }
+
+  .explorer.collapsed > .explorer-content .folder-outer.open {
+    visibility: hidden;
+  }
+}
+
+// ash-wiki: 키보드 포커스 링이다(#633). 사이트 전체의 키보드 포커스(:focus-visible)에 2px 실선 링을 secondary로
+// 둔다. 왼쪽 사이드바 면(폰에서는 머리 줄과 서랍) 위에서는 면이 secondary를 sidebar-secondary로 바꿔 걸어(아래 남색 면
+// 절) 링도 면의 링크색이 되고, 면 안의 검색 창은 페이지 색으로 돌아온다. 대비는 docs/palette.md의 대비 하한에 있다.
+// 링은 2px 띄워 그린다. 업스트림과 플러그인의 포커스 규칙은 layer 안이거나 지웠고, 남은 것은 로컬 프리뷰 전용인 diff
+// 이동 버튼(plugins/wiki-diff)뿐이다.
+:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}
+
+// 넘침을 자르는 상자(탐색기, 목차, Backlinks, 검색 결과의 스크롤 목록과 폰의 탐색기 칸) 안의 Tab 정지는 링을 항목 안쪽에
+// 그려 네 변이 다 보이게 한다. 항목은 줄 규칙의 안쪽 여백(위아래 0.25rem)이 링 폭보다 넓어 링이 글자에 겹치지 않는다.
+// 탐색기 폴더는 이름 버튼의 안쪽 여백이 없어, 링을 버튼 대신 줄 전체를 덮는 누름 영역(::after, plugins/explorer-tree)에
+// 그린다.
+// 포커스로 목록을 스크롤할 때 항목을 링 폭만큼 띄워 세운다. 그러지 않으면 목록의 스크롤 위치가 정수로 맞춰져, 끝 항목의
+// 아래 변이 1px 안쪽으로 잘린다.
+.explorer .explorer-content ul li > a,
+.toc ul.toc-content.overflow > li > a,
+.backlinks > ul.overflow > li > a,
+.explorer .mobile-explorer {
+  scroll-margin-block: 2px;
+
+  &:focus-visible {
+    outline-offset: -2px;
+  }
+}
+
+// 목차와 Backlinks의 접기 버튼은 칸의 위 끝과 양옆에 붙어 있고 글자에 여백이 없어, 링을 안쪽에 그리면 글자에 겹친다. 칸을
+// 링 폭만큼 넓히고(padding) 같은 만큼 당겨(margin) 자리는 그대로 두고, 버튼의 링은 버튼에 붙여 넓힌 자리에 그린다.
+.toc,
+.backlinks {
+  margin: -2px;
+  padding: 2px;
+
+  & > :is(.toc-header, .backlinks-header):focus-visible {
+    outline-offset: 0;
+  }
+}
+
+.explorer .explorer-content .folder-container .folder-button {
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:focus-visible::after {
+    border-radius: 5px;
+    outline: 2px solid var(--secondary);
+    outline-offset: -2px;
+  }
+}
+
+// 검색 창의 입력칸과 화살표로 고른 검색 결과(.focus, plugins/search)도 같은 링을 받는다. 입력칸은 테두리 안쪽에, 결과는
+// 스크롤 목록 안이라 항목 안쪽에 그린다. 검색 플러그인은 입력칸과 결과의 기본 링을 지운다.
+.search > .search-container > .search-space {
+  & > input:focus-visible {
+    outline-offset: -2px;
+  }
+
+  .results-container .result-card:is(.focus, :focus-visible) {
+    outline: 2px solid var(--secondary);
+    outline-offset: -2px;
+  }
+}
+
+// 건너뛰기 링크와 SPA 이동이 프로그램으로 포커스를 옮기는 <main>과 제목은 Tab 정지가 아니라 링을 그리지 않는다
+// (quartz/components/scripts/routeFocus.ts).
+#quartz-main,
+#quartz-main [tabindex="-1"] {
+  &:focus {
+    outline: none;
+  }
+}
+
+// ash-wiki: 첫 Tab 정지인 건너뛰기 링크다(quartz/components/renderPage.tsx). 포커스를 받을 때만 화면 왼쪽 위에
+// 그리고, 그 전에는 1px로 잘라 그리지 않는다. 서랍(z-index 100)과 메뉴 버튼(101)보다 위에 둔다.
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 1000;
+  padding: 0.5rem 0.75rem;
+  border-radius: 5px;
+  background-color: var(--light);
+  color: var(--secondary);
+  font-weight: $semiBoldWeight;
+
+  &:not(:focus) {
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+// ash-wiki: 화면에 보이지 않고 화면 낭독기만 읽는 글자다. 칩의 이름과 개수 사이의 `, `와 개수 뒤의 단위에 쓴다
+// (plugins/front-page, plugins/weekly-news). 글자 크기를 0으로 두어 자리를 차지하지 않는다. 흔한 숨김 꼴(position:
+// absolute와 1px 자르기)은 Chromium이 접근성 이름을 셀 때 그 앞뒤에 공백을 넣어 `보안·업데이트 , 2 건`으로 읽힌다.
+.sr-text {
+  font-size: 0;
 }
 
 // ash-wiki: 사이트 화면의 상자 모서리는 5px이고 태그와 칩만 3px이다(원형 점, 도해 SVG의 rx는 따로다). 업스트림이

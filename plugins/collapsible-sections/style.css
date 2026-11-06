@@ -32,11 +32,6 @@ details.collapsible-section > summary::-webkit-details-marker {
   display: none;
 }
 
-details.collapsible-section > summary:focus-visible {
-  outline: 2px solid var(--secondary);
-  outline-offset: 2px;
-}
-
 details.collapsible-section > summary > :is(h2, h3) {
   padding-left: 1.75rem;
   border-bottom: 1px solid var(--lightgray);

@@ -347,6 +347,12 @@ export function renderPage(
     <html lang={lang} dir={direction}>
       <Head {...componentData} />
       <body data-slug={slug} data-basepath={basePath}>
+        {/* ash-wiki: 첫 Tab 정지는 본문(<main>, frames/)으로 건너뛰는 링크다(#633). 같은 쪽 해시 링크는 SPA
+            라우터가 가로채 스크롤만 하므로 라우터를 거치지 않게 하고, 라우터 스크립트(spa.inline.ts)가 <main>에
+            포커스를 옮긴다. 포커스를 받을 때만 보이는 모양은 사이트 스타일(custom.scss)에 있다. */}
+        <a class="skip-link" href="#quartz-main" data-router-ignore>
+          {i18n(cfg.locale).components.skipToContent ?? i18n("en-US").components.skipToContent}
+        </a>
         {frame.css && <style dangerouslySetInnerHTML={{ __html: frame.css }} />}
         <div id="quartz-root" class="page" data-frame={frame.name}>
           <Body {...componentData}>

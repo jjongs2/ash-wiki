@@ -76,6 +76,15 @@ async function fetchContent(slug: string): Promise<Element[]> {
     const html = parser.parseFromString(text ?? "", "text/html")
     normalizeRelativeURLs(html, targetUrl)
     const contents = Array.from(html.getElementsByClassName("popover-hint"))
+    // ash-wiki: 미리보기는 다른 페이지의 머리를 싣는다. 그 브레드크럼은 지금 페이지의 브레드크럼과 이름이 같은
+    // 랜드마크라(axe landmark-unique) 랜드마크에서 뺀다(#633). 이름(aria-label)이 남으면 브라우저가 role="none"을
+    // 무시하므로 이름도 뗀다.
+    for (const content of contents) {
+      for (const nav of content.querySelectorAll("nav")) {
+        nav.setAttribute("role", "none")
+        nav.removeAttribute("aria-label")
+      }
+    }
     fetchContentCache.set(slug, contents)
     return contents
   } catch {

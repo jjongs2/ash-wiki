@@ -13,9 +13,11 @@ import {
   monthWeeks,
   koreanTitlePresence,
   parseWeeklyNews,
+  toolbar,
   weekDays,
   weekLabel,
 } from "./index"
+import type { Element, ElementContent } from "hast"
 
 // 형식 함수 parseWeeklyNews가 주간 소식 형식의 정본이다. 예시 주간 소식과 형식을 어긴 짧은 원본을 넣고
 // 소식 항목 목록과 오류만 본다.
@@ -289,6 +291,50 @@ describe("issueFilters", () => {
           { region: null, count: 0 },
         ],
       },
+    )
+  })
+})
+
+// 칩의 글자를 화면 낭독기가 읽는 글자(모든 글자)와 화면에 보이는 글자(.sr-text 밖)로 나눠 본다.
+function chipTexts(node: ElementContent, hidden = false): { spoken: string; shown: string } {
+  if (node.type === "text") return { spoken: node.value, shown: hidden ? "" : node.value }
+  if (node.type !== "element") return { spoken: "", shown: "" }
+  const inner = hidden || ((node.properties.className as string[]) ?? []).includes("sr-text")
+  const parts = node.children.map((child) => chipTexts(child, inner))
+  return {
+    spoken: parts.map((part) => part.spoken).join(""),
+    shown: parts.map((part) => part.shown).join(""),
+  }
+}
+
+function findAll(node: Element, match: (element: Element) => boolean): Element[] {
+  const children = node.children.filter((child): child is Element => child.type === "element")
+  return [...(match(node) ? [node] : []), ...children.flatMap((child) => findAll(child, match))]
+}
+
+describe("toolbar", () => {
+  test("거르기 칩은 이름과 개수 사이에 쉼표를, 개수 뒤에 건을 읽히고 보이는 글자는 그대로 둔다", () => {
+    const tools = toolbar(
+      {
+        featured: 1,
+        regions: [
+          { region: "security", count: 2 },
+          { region: null, count: 0 },
+        ],
+      },
+      new Map([["security", "보안·업데이트"]]),
+      3,
+    )
+    const chips = findAll(tools, (element) =>
+      ((element.properties.className as string[]) ?? []).includes("news-filter"),
+    )
+    assert.deepStrictEqual(
+      chips.map((chip) => chipTexts(chip)),
+      [
+        { spoken: "주요, 1건", shown: "주요1" },
+        { spoken: "보안·업데이트, 2건", shown: "보안·업데이트2" },
+        { spoken: "기타, 0건", shown: "기타0" },
+      ],
     )
   })
 })

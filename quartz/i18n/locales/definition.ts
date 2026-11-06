@@ -62,6 +62,9 @@ export interface Translation {
     contentMeta: {
       readingTime: (variables: { minutes: number }) => string
     }
+    // ash-wiki: 첫 Tab 정지인 건너뛰기 링크의 문구다(renderPage.tsx, #633). 업스트림 번역 파일을 모두 고치지
+    // 않도록 선택 항목으로 두고, 없는 locale은 en-US 문구를 쓴다.
+    skipToContent?: string
   }
   pages: {
     rss: {
