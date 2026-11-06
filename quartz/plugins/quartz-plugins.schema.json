@@ -1,5 +1,5 @@
 {
-  "//": "ash-wiki: theme.colors의 lightMode와 darkMode가 구역 색(region-<구역>)과 사이드바 면의 색(sidebar-<토큰>)을 더 받도록 patternProperties를, 넓은 화면의 페이지 바깥 색(outside)을 더 받도록 properties.outside를 더했다. 쓰임은 quartz/util/theme.ts의 ColorScheme에 있다. theme.typography의 header, body, code가 이름 하나뿐 아니라 이름 목록과 굵기를 담은 객체도 받도록 했다($defs.fontSpecification). 쓰임은 quartz/util/theme.ts의 FontSpecification에 있다.",
+  "//": "ash-wiki: theme.colors의 lightMode와 darkMode가 구역 색(region-<구역>)과 사이드바 면의 색(sidebar-<토큰>)을 더 받도록 patternProperties를, 넓은 화면의 페이지 바깥 색(outside)과 좁은 화면 목차 바의 바탕(narrow-toc)을 더 받도록 properties.outside와 properties.narrow-toc를 더했다. 쓰임은 quartz/util/theme.ts의 ColorScheme에 있다. theme.typography의 header, body, code가 이름 하나뿐 아니라 이름 목록과 굵기를 담은 객체도 받도록 했다($defs.fontSpecification). 쓰임은 quartz/util/theme.ts의 FontSpecification에 있다.",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Quartz Plugins Configuration Schema",
   "description": "Schema for validating quartz.plugins.json configuration files",
@@ -130,6 +130,10 @@
                     "outside": {
                       "type": "string",
                       "description": "Color outside the page on wide screens"
+                    },
+                    "narrow-toc": {
+                      "type": "string",
+                      "description": "Background of the table of contents bar on narrow screens"
                     }
                   }
                 },
@@ -186,6 +190,10 @@
                     "outside": {
                       "type": "string",
                       "description": "Color outside the page on wide screens"
+                    },
+                    "narrow-toc": {
+                      "type": "string",
+                      "description": "Background of the table of contents bar on narrow screens"
                     }
                   }
                 }

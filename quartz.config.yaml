@@ -17,6 +17,7 @@ configuration:
   # region-<구역>과 region-other는 구역 색이다(docs/palette.md 구역 색 절).
   # sidebar-<토큰>은 왼쪽 사이드바 면의 색이다(docs/palette.md 사이드바 면 절).
   # outside는 넓은 화면에서 페이지 바깥의 색이다(docs/palette.md 페이지 바깥 절).
+  # narrow-toc는 좁은 화면 목차 바의 바탕이다(docs/palette.md 목차 바 절).
   # 코드 폰트 Monoplex KR은 Google Fonts에 없어 fontOrigin을 local로 두고, 폰트 CSS는 Head가 건다(quartz/util/localFonts.ts).
   # OG 이미지 생성기와 도해 여백 검사가 쓰는 폰트는 prebuild가 캐시에 둔다(tools/og-fonts.ts).
   # 제목과 본문은 라틴·그리스 문자·기호를 IBM Plex Sans로, 한글을 IBM Plex Sans KR로 그린다. 둘이 같은 CSS 하나를
@@ -56,6 +57,7 @@ configuration:
         sidebar-tertiary: "#c3d8ff"
         sidebar-highlight: rgba(156, 192, 255, 0.12)
         outside: "#e6ebf2"
+        narrow-toc: "#ecf0f6"
       darkMode:
         light: "#0f1318"
         lightgray: "#25292f"
@@ -80,6 +82,7 @@ configuration:
         sidebar-tertiary: "#c3d8ff"
         sidebar-highlight: rgba(156, 192, 255, 0.12)
         outside: "#090c10"
+        narrow-toc: "#181c22"
 plugins:
   - source: "@quartz-community/created-modified-date"
     enabled: true
@@ -385,6 +388,13 @@ plugins:
       position: beforeBody
       priority: 15
       display: all
+  # 데스크톱보다 좁은 화면에서 속성 칸 아래에 목차 바를 둔다(plugins/narrow-toc). 데스크톱 목차를 두지 않는 페이지
+  # 타입(태그 목록, 폴더, 주간 소식)에서는 아래 byPageType이 함께 뺀다. 404는 본문 위를 비운다.
+  - source: ./plugins/narrow-toc
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 40
   # 위키는 목록에서 빼는 페이지를 쓰지 않는다.
   - source: "@quartz-community/unlisted-pages"
     enabled: false
@@ -423,14 +433,18 @@ layout:
     folder:
       exclude:
         - reader-mode
+        - narrow-toc
       positions:
         right: []
     tag:
       exclude:
         - reader-mode
+        - narrow-toc
       positions:
         right: []
-    # 주간 소식과 지난 호 목록(plugins/weekly-news). 그래프, 목차, Backlinks를 두지 않는다.
+    # 주간 소식과 지난 호 목록(plugins/weekly-news). 그래프, 목차, Backlinks를 두지 않는다. 목차가 없으니 목차 바도 뺀다.
     news:
+      exclude:
+        - narrow-toc
       positions:
         right: []
