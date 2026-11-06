@@ -7,14 +7,14 @@ import { lineAt, lineStarts } from "./text"
 // 그리고, 틀 안쪽보다 넓은 도해는 틀에 맞춰 줄어 글자도 그만큼 작아진다(quartz/styles/custom.scss).
 // 틀 안쪽 폭은 화면 폭에 따라 바뀌므로, Reader Testing이 데스크톱을 찍는 화면 폭 1280px에서 잰다
 // (tools/reader-capture). 이 폭은 Quartz의 데스크톱 레이아웃(1200px 이상)으로 양쪽 사이드바가 보여,
-// 본문 칸이 1280 - 2 × 320 - 2 × 5 = 630px이다(quartz/styles/variables.scss의 $desktopGrid). 본문 칸의
-// 내용 폭은 사이드바 면에서 띄우는 padding-left 2rem을 뺀 598px이다(quartz/styles/custom.scss). 틀 안쪽은
-// 테두리 2px와 최소 padding 2 × 0.75rem을 뺀 572px이고, 572 × 12 / (0.85 × 16) = 504.7단위다. 빌드한
-// 사이트를 Linux Chromium(Playwright)으로 재어, 스크롤바가 있을 때와 없을 때 같았다(html이 100vw라
-// 스크롤바가 본문 폭을 줄이지 않는다). 폭 504인 도해는 1단위가 1.133px로 줄지 않았고, 506인 도해는
-// 1.130px로 줄었다. 레이아웃이나 1단위 배율이 바뀌어 이 값이 낡으면 Reader Testing 캡처가 틀 안쪽과
-// 1단위의 폭을 재어 알린다.
-export const frameWidth = 504.7
+// 본문 칸이 1280 - 2 × 280 - 2 × 5 = 710px이다(quartz/styles/variables.scss의 $sidePanelWidth와
+// $desktopGrid). 본문 칸의 padding-left는 max(43px, (710 - 807 + 43) / 2)로 최소값 43px에 걸리고
+// padding-right는 0이라(quartz/styles/custom.scss의 $center-inset, $center-max-width), 내용 폭은
+// 667px이다. 틀 안쪽은 테두리 2px와 최소 padding 2 × 0.75rem을 뺀 641px이고, 641 × 12 / (0.85 × 16) =
+// 565.6단위다. 빌드한 사이트를 1280 × 900 Linux Chromium(Playwright)으로 재어 보니 계산과 맞았다. 폭
+// 561인 도해는 1단위가 1.1333px로 줄지 않았고, 566인 도해는 1.1325px로 줄었다. 레이아웃이나 1단위
+// 배율이 바뀌어 이 값이 낡으면 Reader Testing 캡처가 틀 안쪽과 1단위의 폭을 재어 알린다.
+export const frameWidth = 565.6
 
 function rootWidth(source: string): { width: number; offset: number } | null {
   const text = source.replace(/<!--[\s\S]*?-->/g, (comment) => comment.replace(/[^\n]/g, " "))
