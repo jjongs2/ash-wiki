@@ -408,8 +408,10 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
 // ash-wiki: 화면에 보이지 않고 화면 낭독기만 읽는 글자다. 칩의 이름과 개수 사이의 `, `와 개수 뒤의 단위에 쓴다
 // (plugins/front-page, plugins/weekly-news). 글자 크기를 0으로 두어 자리를 차지하지 않는다. 흔한 숨김 꼴(position:
 // absolute와 1px 자르기)은 Chromium이 접근성 이름을 셀 때 그 앞뒤에 공백을 넣어 `보안·업데이트 , 2 건`으로 읽힌다.
+// 줄 높이도 0으로 두어, 칩의 고정 줄 높이를 물려받아 줄 상자를 키우지 않게 한다.
 .sr-text {
   font-size: 0;
+  line-height: 0;
 }
 
 // ash-wiki: 사이트 화면의 상자 모서리는 5px이고 태그와 칩만 3px이다(원형 점, 도해 SVG의 rx는 따로다). 업스트림이
