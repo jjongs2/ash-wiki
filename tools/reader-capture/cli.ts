@@ -1,13 +1,11 @@
 import fs from "node:fs"
-import http from "node:http"
-import type { AddressInfo } from "node:net"
 import path from "node:path"
 import { parseArgs } from "node:util"
-import handler from "serve-handler"
 import { chromium, type Browser, type Page } from "playwright"
 import { frameWidth } from "../check-diff/diagram-width"
 import { loadTree } from "../check-content/tree"
 import { repoRoot } from "../repo"
+import { serve } from "../serve"
 import { frameDrift, type FrameMeasure } from "./frame"
 import { topicSlugs } from "./targets"
 import { diagramSources, readerText, svgLines } from "./text"
@@ -59,18 +57,6 @@ function siteUrl(): string {
   const baseUrl = /^\s*baseUrl:\s*(\S+)/m.exec(config)?.[1]
   if (baseUrl === undefined) throw new Error("quartz.config.yaml에 baseUrl이 없다")
   return `https://${baseUrl}`
-}
-
-async function serve(dir: string): Promise<{ base: string; close: () => void }> {
-  const server = http.createServer((req, res) =>
-    handler(req, res, { public: dir, cleanUrls: true, directoryListing: false }).catch((error) => {
-      res.statusCode = 500
-      res.end(String(error))
-    }),
-  )
-  await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve))
-  const { port } = server.address() as AddressInfo
-  return { base: `http://127.0.0.1:${port}`, close: () => server.close() }
 }
 
 async function fetchText(url: string): Promise<string> {

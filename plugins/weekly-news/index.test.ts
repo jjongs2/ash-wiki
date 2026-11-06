@@ -3,6 +3,7 @@ import assert from "node:assert"
 import fs from "node:fs"
 import {
   byDate,
+  card,
   dayLabel,
   indexMonths,
   issueDescription,
@@ -335,6 +336,18 @@ describe("toolbar", () => {
         { spoken: "보안·업데이트, 2건", shown: "보안·업데이트2" },
         { spoken: "기타, 0건", shown: "기타0" },
       ],
+    )
+  })
+})
+
+describe("card", () => {
+  test("카드 제목은 호 페이지 제목(h1) 바로 아래 수준인 h2다", () => {
+    const [item] = parseWeeklyNews("2026-w41", source()).items
+    const tree = card(item, 0, new Map([["network", "네트워크"]]), [], "ko-KR")
+    const headings = findAll(tree, (element) => /^h[1-6]$/.test(element.tagName))
+    assert.deepStrictEqual(
+      headings.map((h) => h.tagName),
+      ["h2"],
     )
   })
 })

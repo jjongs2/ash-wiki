@@ -32,7 +32,7 @@
 | `secondary`     | 링크, 인용 번호, 주간 소식의 주요 칩, 도착한 카드의 막대, 포커스 링 |
 | `tertiary`      | 링크 hover                                                          |
 | `highlight`     | 칩 모양 링크와 태그의 배경(반투명)                                  |
-| `textHighlight` | 형광펜 표시(`==`)의 배경(반투명)                                    |
+| `textHighlight` | 형광펜 표시(`==`)와 검색어 강조의 배경(반투명)                      |
 | `narrow-toc`    | 좁은 화면 목차 바의 배경([목차 바](#목차-바))                       |
 
 ## 구역 색
@@ -213,5 +213,5 @@ Monoplex KR의 라이선스는 SIL OFL 1.1이고, "Monoplex", "Plex", "PlemolJP"
 ## 바꿀 때
 
 1. `quartz.config.yaml`의 `theme`나 도해 규약의 도해 팔레트 표를 고친다.
-2. `npm run palette`로 하한을 확인하고, 이 문서의 실측 표를 출력으로 바꾼다.
+2. `npm run palette`로 하한을 확인하고, 이 문서의 실측 표를 출력으로 바꾼다. 화면에 칠해진 색은 [접근성 자동 검사](engine.md#화면을-고칠-때)로 본다.
 3. `npm run build` 뒤 로컬 프리뷰에서 두 테마를 보고, `public/`의 OG 이미지(`*-og-image.webp`)에 두부가 없는지 본다. `--serve`로 볼 때는 `OG_IMAGES=1`을 준다([배포](deploy.md#로컬-프리뷰)). 폰트를 바꿨다면 한글, `Æ`, `Ω`가 폰트에 있는지도 본다.

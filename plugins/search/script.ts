@@ -265,6 +265,8 @@ async function setupSearch() {
       if (finalResults.length === 0) {
         const noMatch = document.createElement("a")
         noMatch.className = "result-card no-match"
+        noMatch.setAttribute("role", "option")
+        noMatch.setAttribute("aria-disabled", "true")
         const noMatchTitle = document.createElement("h3")
         noMatchTitle.textContent = "결과가 없습니다."
         const noMatchHint = document.createElement("p")
@@ -278,6 +280,9 @@ async function setupSearch() {
         for (const item of finalResults) {
           const itemTile = document.createElement("a")
           itemTile.className = "result-card"
+          // ash-wiki: 목록(listbox)의 항목이다(axe aria-required-children, #638). 고른 항목은 setFocus가 aria-selected로 알린다.
+          itemTile.setAttribute("role", "option")
+          itemTile.setAttribute("aria-selected", "false")
           itemTile.id = item.slug
           itemTile.href = resolveBasePath(item.slug)
 
@@ -348,10 +353,14 @@ async function setupSearch() {
     }
 
     const setFocus = (el: HTMLElement | null) => {
-      if (currentHover) currentHover.classList.remove("focus")
+      if (currentHover) {
+        currentHover.classList.remove("focus")
+        currentHover.setAttribute("aria-selected", "false")
+      }
       currentHover = el
       if (currentHover) {
         currentHover.classList.add("focus")
+        currentHover.setAttribute("aria-selected", "true")
         currentHover.scrollIntoView({ block: "nearest" })
       }
       if (previewDebounceTimer) clearTimeout(previewDebounceTimer)

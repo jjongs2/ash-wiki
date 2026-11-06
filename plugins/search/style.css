@@ -148,8 +148,12 @@
     flex: 0 0 100%;
   }
 }
+/* ash-wiki: 검색어 강조는 사이트의 형광펜 표시(==)와 같은 바탕과 글자색이다(docs/palette.md의 형광펜 위 본문 쌍).
+   업스트림의 tertiary 60% 바탕은 위의 글자와 1.21~3.6:1이었다(axe color-contrast, #638). 글자를 본문색으로
+   두어 제목(링크색)과 설명(보조 글자색) 안의 강조도, 포커스된 카드(lightgray 바탕) 위의 강조도 하한을 넘긴다. */
 .search > .search-container > .search-space > .search-layout .highlight {
-  background: color-mix(in srgb, var(--tertiary) 60%, rgba(255, 255, 255, 0));
+  background: var(--textHighlight);
+  color: var(--darkgray);
   border-radius: 5px;
   scroll-margin-top: 2rem;
 }
@@ -292,6 +296,18 @@
   margin-top: 0.5em;
   font-size: 0.9em;
   color: var(--gray);
+}
+
+/* ash-wiki: 포커스와 hover의 lightgray 바탕 위에서는 보조 글자색이 4.40:1로 하한에 못 미쳐(axe color-contrast,
+   #638) 설명을 본문색으로 진하게 한다. */
+.search
+  > .search-container
+  > .search-space
+  > .search-layout
+  > .results-container
+  .result-card:is(:hover, :focus, .focus)
+  > p {
+  color: var(--darkgray);
 }
 
 .search
