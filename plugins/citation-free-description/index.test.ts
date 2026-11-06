@@ -62,7 +62,7 @@ describe("citation-free-description 플러그인", () => {
   })
 
   test("표의 이웃한 칸과 줄의 글 사이에 공백을 넣는다", async () => {
-    // 렌더된 표에는 칸과 줄 사이에 공백 글이 없다. 머리 줄과 몸 줄의 경계(thead, tbody)도 본다.
+    // 머리 줄과 몸 줄의 경계(thead, tbody)도 본다.
     const { text } = await describePage(
       "<table><thead><tr><th>프로세스</th><th>범주</th></tr></thead>" +
         "<tbody><tr><td>ACQ.2</td><td>Supplier Request</td></tr><tr><td>MAN.7</td><td>Risk</td></tr></tbody></table>",
