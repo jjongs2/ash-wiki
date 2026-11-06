@@ -1142,6 +1142,10 @@ export const svg: SourceCheck = async (tree) => {
       if (!/\sfill\s*=|\sstyle\s*=\s*(["'])[^"']*(?<![\w-])fill\s*:/i.test(root[0])) {
         atRoot("루트 <svg>에 fill이 없다")
       }
+      // 사이트가 이 이름을 도해 <object>의 접근성 이름으로 쓴다(plugins/diagram-name).
+      if (!root[0].match(/\saria-label\s*=\s*(["'])([\s\S]*?)\1/i)?.[2].trim()) {
+        atRoot("루트 <svg>에 도해가 보이는 것을 적은 aria-label이 없거나 비었다")
+      }
       if (/<(?:[\w-]+:)?text[\s>]/i.test(text)) {
         for (const [property, expected] of Object.entries(textProperties)) {
           if (!new RegExp(`\\s${property}\\s*=`, "i").test(root[0])) {

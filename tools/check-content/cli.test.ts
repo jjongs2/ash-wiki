@@ -213,6 +213,9 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/overflow-diagram.svg:1",
         "content/bad-separator.svg:10",
         "content/skewed-diagram.svg:1",
+        "content/no-name.svg:1",
+        "content/empty-name.svg:1",
+        "content/blank-name.svg:1",
       ],
       output: [
         "content/bad-citations.md:16",
@@ -270,6 +273,20 @@ describe("check-content CLI", { concurrency: false }, () => {
       separator[0],
       /글자 `_`의 잉크 중심이 상자 세로 중심에서 [\d.]+ 아래에 있다\(허용 2\.8\)/,
     )
+  })
+
+  test("루트 <svg>에 이름이 없거나 비었거나 공백뿐이면 그 SVG만 이름 위반 하나로 찍는다", () => {
+    const report = runChecker("violation")
+    const named = report.messages.get("svg")!.filter((m) => m.includes("aria-label"))
+    assert.deepStrictEqual(named.map((m) => m.split(":")[0]).sort(), [
+      "content/blank-name.svg",
+      "content/empty-name.svg",
+      "content/no-name.svg",
+    ])
+    for (const file of ["no-name", "empty-name", "blank-name"]) {
+      const messages = report.messages.get("svg")!.filter((m) => m.includes(`${file}.svg`))
+      assert.strictEqual(messages.length, 1, file)
+    }
   })
 
   test("도해 색 위반은 표의 그 행으로 고칠 꼴을 알려 준다", () => {

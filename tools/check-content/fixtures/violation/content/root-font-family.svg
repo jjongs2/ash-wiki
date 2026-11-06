@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" font-family="IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" font-family="IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" fill="none" aria-label="루트 폰트 목록이 다른 예시">
   <!-- 위반(svg): 루트 font-family가 본문 폰트 목록과 다르다. 속성이 있어도 값이 다르면 위반이다. -->
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
   <text x="120" y="55" text-anchor="middle" fill="var(--text, #727981)">ECU</text>

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" fill="none" aria-label="본문 폰트를 쓰지 않는 예시">
   <!-- 위반(svg): 글자가 있는데 본문 폰트를 불러오지 않는다. -->
   <!-- 위반(svg): 속성과 style로 다른 font-family를 준다. -->
   <text x="120" y="40" text-anchor="middle" font-family="Arial" fill="var(--text, #727981)">ECU</text>
