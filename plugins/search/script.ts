@@ -1,6 +1,6 @@
-// ash-wiki: 색인, 인코더, 결과 순서, 강조할 낱말은 model.ts가 맡는다. 이 스크립트는 contentIndex를 색인에
+// ash-wiki: 찾기, 맞춤, 결과 순서, 강조할 자리는 model.ts가 맡는다. 이 스크립트는 contentIndex를 색인에
 // 넣고 결과를 그리기만 한다. 업스트림은 화면 문구를 영어로 박아 두었다(ADR 0021).
-import { createSearchIndex, highlightPattern } from "./model"
+import { createSearchIndex, highlightRanges } from "./model"
 import type { SearchPage } from "./model"
 import {
   removeAllChildren,
@@ -540,9 +540,19 @@ async function setupSearch() {
   }
 }
 
+// 강조할 자리를 칠한 HTML이다. 칠하지 않은 글도 이스케이프한다.
+function markRanges(text: string, ranges: [number, number][]): string {
+  let out = ""
+  let last = 0
+  for (const [start, end] of ranges) {
+    out += escapeHTML(text.slice(last, start))
+    out += `<span class="highlight">${escapeHTML(text.slice(start, end))}</span>`
+    last = end
+  }
+  return out + escapeHTML(text.slice(last))
+}
+
 function highlightHTML(searchTerm: string, el: HTMLElement): string {
-  const regex = highlightPattern(searchTerm)
-  if (!regex) return el.innerHTML
   const html = parser.parseFromString(el.innerHTML, "text/html")
   const walker = html.createTreeWalker(html.body, NodeFilter.SHOW_TEXT)
   const nodes: Text[] = []
@@ -553,21 +563,19 @@ function highlightHTML(searchTerm: string, el: HTMLElement): string {
   }
   for (const textNode of nodes) {
     const text = textNode.nodeValue ?? ""
-    regex.lastIndex = 0
-    if (!regex.test(text)) continue
-    regex.lastIndex = 0
+    const ranges = highlightRanges(searchTerm, text)
+    if (ranges.length === 0) continue
     const fragment = html.createDocumentFragment()
     let lastIndex = 0
-    let match: RegExpExecArray | null
-    while ((match = regex.exec(text)) !== null) {
-      if (match.index > lastIndex) {
-        fragment.appendChild(html.createTextNode(text.slice(lastIndex, match.index)))
+    for (const [start, end] of ranges) {
+      if (start > lastIndex) {
+        fragment.appendChild(html.createTextNode(text.slice(lastIndex, start)))
       }
       const span = html.createElement("span")
       span.className = "highlight"
-      span.textContent = match[0]
+      span.textContent = text.slice(start, end)
       fragment.appendChild(span)
-      lastIndex = match.index + match[0].length
+      lastIndex = end
     }
     if (lastIndex < text.length) {
       fragment.appendChild(html.createTextNode(text.slice(lastIndex)))
@@ -577,21 +585,15 @@ function highlightHTML(searchTerm: string, el: HTMLElement): string {
   return html.body.innerHTML
 }
 
+// 결과 목록의 발췌문을 칠한다. 공백으로 끊은 토큰마다 칠해, 띄어 쓴 꼴은 칠하지 못한다.
 function highlight(searchTerm: string, text: string, trim?: boolean): string {
-  const regex = highlightPattern(searchTerm)
-  let tokenizedText = escapeHTML(text)
-    .split(/\s+/)
-    .filter((t) => t !== "")
+  let tokenizedText = text.split(/\s+/).filter((t) => t !== "")
 
   let startIndex = 0
   let endIndex = tokenizedText.length - 1
 
   if (trim) {
-    const includesCheck = (tok: string) => {
-      if (!regex) return false
-      regex.lastIndex = 0
-      return regex.test(tok)
-    }
+    const includesCheck = (tok: string) => highlightRanges(searchTerm, tok).length > 0
     const occurrencesIndices = tokenizedText.map(includesCheck)
 
     let bestSum = 0
@@ -611,11 +613,7 @@ function highlight(searchTerm: string, text: string, trim?: boolean): string {
   }
 
   const slice = tokenizedText
-    // 업스트림은 한 낱말에서 처음 맞은 검색어 하나만 칠한다. 100BASE-T1처럼 조각이 여럿 맞는 낱말은
-    // 맞은 곳을 모두 칠한다.
-    .map((tok) =>
-      regex ? tok.replace(regex, (match) => `<span class="highlight">${match}</span>`) : tok,
-    )
+    .map((tok) => markRanges(tok, highlightRanges(searchTerm, tok)))
     .join(" ")
 
   return (
@@ -653,7 +651,7 @@ function formatForDisplay(term: string, slug: string): any {
     title:
       parsed.tags.length > 0 && !parsed.query
         ? escapeHTML(data.title)
-        : highlight(term, data.title || ""),
+        : markRanges(data.title || "", highlightRanges(term, data.title || "")),
     content: highlight(term, data.content || "", true),
     tags: highlightTags(parsed.tags, data.tags),
   }

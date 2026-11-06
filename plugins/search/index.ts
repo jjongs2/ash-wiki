@@ -3,7 +3,7 @@
 //
 // 컴포넌트는 JSX 대신 preact의 h로 업스트림 Search.tsx와 같은 마크업을 만든다. 클라이언트 스크립트(script.ts)는
 // 업스트림 빌드처럼 esbuild로 묶어 import를 풀어 싣는다. 스크립트가 불러오는 색인 모듈(model.ts)과
-// FlexSearch도 함께 묶인다. 필드별 결과를 잇는 순서는 model.ts가 정해서 업스트림의 fieldPriority 옵션은 뺐다.
+// FlexSearch도 함께 묶인다. 결과 순서는 model.ts가 정해서 업스트림의 fieldPriority 옵션은 뺐다.
 //
 // 빌드가 이 파일을 Node의 type stripping으로 불러오므로, 타입만 지우면 돌아가는 문법만 쓴다. enum, namespace,
 // parameter property와 JSX를 쓰지 않고, 타입은 import type으로 가져온다.
