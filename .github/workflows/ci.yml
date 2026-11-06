@@ -2,7 +2,7 @@
 # 순서는 package.json의 scripts.check 한 곳에만 둔다. 룰셋(.github/rulesets/main.json)이
 # PR에서 이 job의 통과를 요구한다. 룰셋은 브랜치 최신화를 요구하지 않으므로, PR 여럿을 합친 뒤에야
 # 생기는 위반은 main의 push 실행이 잡는다.
-name: integrity
+name: CI
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ on:
     branches: [main]
 
 jobs:
-  integrity:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
