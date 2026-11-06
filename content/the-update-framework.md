@@ -79,3 +79,4 @@ TUF는 2017년 CNCF(Cloud Native Computing Foundation)에 incubating 프로젝�
 - Sigstore의 Trust Root는 TUF의 원칙을 따른다.[@sigstore-security-model-2026]
 - Fuchsia의 소프트웨어 업데이트 시스템은 TUF 1.0을 쓴다.[@fuchsia-software-update-system-2026]
 - PyPI(Python Package Index)가 서명된 저장소 메타데이터를 내도록 TUF를 들이는 안인 PEP 458은 2026년 10월 기준 Accepted 상태다.[@python-pep-458-2013]
+- [[uptane|Uptane]]은 TUF의 기본 설계를 출발점으로 삼아 개발됐다.[@uptane-history-2026]
