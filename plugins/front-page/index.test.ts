@@ -1,7 +1,8 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
+import type { Element, ElementContent } from "hast"
 import type { FrontPageCommit, FrontPageIssue, FrontPagePage } from "./index"
-import { frontPage, RECENT_CHANGES_LIMIT } from "./index"
+import { frontPage, newsColumn, RECENT_CHANGES_LIMIT } from "./index"
 
 // 최근 변경은 빌드의 시간대로 날짜를 가른다. 배포 빌드와 같은 한국 시각으로 고정해, 테스트를 돌리는 머신의
 // 시간대와 관계없이 같은 결과를 본다(docs/deploy.md의 날짜의 시간대).
@@ -200,7 +201,7 @@ describe("frontPage의 주간 소식", () => {
   const item = (title: string, date: string, featured = true, regions: string[] = []) => ({
     id: title,
     title,
-    url: `https://example.com/${title}`,
+    koreanTitle: null,
     regions,
     date,
     featured,
@@ -273,5 +274,71 @@ describe("frontPage의 주간 소식", () => {
   test("주간 소식이 없으면 null이다", () => {
     assert.strictEqual(latest(), null)
     assert.strictEqual(frontPage({ pages: [] }).latestNews, null)
+  })
+})
+
+// 대문의 주간 소식 칸이 seam이다. 최신 호를 넣고 그린 칸에서 주요 소식의 링크만 본다.
+describe("newsColumn", () => {
+  const links = (nodes: ElementContent[]): Element[] =>
+    nodes.flatMap((node) =>
+      node.type !== "element"
+        ? []
+        : [
+            ...((node.properties.className as string[] | undefined)?.includes("front-news-link")
+              ? [node]
+              : []),
+            ...links(node.children),
+          ],
+    )
+  const textOf = (node: Element) =>
+    node.children.map((child) => (child.type === "text" ? child.value : "")).join("")
+  const latest = frontPage({
+    pages: [],
+    news: [
+      {
+        slug: "news/2026-w44",
+        week: "2026-w44",
+        items: [
+          {
+            id: "关于公开征求意见的公示",
+            title: "关于公开征求意见的公示",
+            koreanTitle: "중국 공신부, 강제 국가표준 의견 공시",
+            regions: [],
+            date: "2026-10-30",
+            featured: true,
+          },
+          {
+            id: "openchain-sbom-framework-10",
+            title: "OpenChain SBOM Framework 1.0",
+            koreanTitle: null,
+            regions: ["security"],
+            date: "2026-10-28",
+            featured: true,
+          },
+        ],
+      },
+    ],
+  }).latestNews!
+
+  test("주요 소식마다 한국어 제목을 보이고, 없으면 원어 제목을 보인다", () => {
+    assert.deepStrictEqual(links(newsColumn(latest, new Map(), "ko-KR")).map(textOf), [
+      "중국 공신부, 강제 국가표준 의견 공시",
+      "OpenChain SBOM Framework 1.0",
+    ])
+  })
+
+  test("제목은 같은 탭에서 호의 그 소식 항목으로 간다", () => {
+    const found = links(newsColumn(latest, new Map(), "ko-KR"))
+    assert.deepStrictEqual(
+      found.map((link) => link.properties.href),
+      ["./news/2026-w44#关于公开征求意见的公示", "./news/2026-w44#openchain-sbom-framework-10"],
+    )
+    assert.deepStrictEqual(
+      found.map((link) => [link.properties.target, link.properties.rel]),
+      [
+        [undefined, undefined],
+        [undefined, undefined],
+      ],
+    )
   })
 })
