@@ -57,7 +57,7 @@ export interface RecentChange {
 }
 
 // 주간 소식 한 호. week는 ISO 주차(2026-w41)이고 slug는 news/<주차>다. items는 소식 항목의 앵커, 원어 제목,
-// 원문 URL, 구역(기타는 빈 목록), 발행일(YYYY-MM-DD), 주요 소식인지이고 파일에 적은 순서다.
+// 한국어 제목(없으면 null), 구역(기타는 빈 목록), 발행일(YYYY-MM-DD), 주요 소식인지이고 파일에 적은 순서다.
 export interface FrontPageIssue {
   slug: string
   week: string
@@ -67,7 +67,7 @@ export interface FrontPageIssue {
 export interface FrontPageNewsItem {
   id: string
   title: string
-  url: string
+  koreanTitle: string | null
   regions: string[]
   date: string
   featured: boolean
@@ -566,10 +566,11 @@ const pullRequestIcon = (): Element =>
     }),
   ])
 
-// 주간 소식. 최신 호의 주요 소식을 발행일마다 타임라인의 마디 아래에 두고, 제목은 원문으로 링크해 새 탭에서
-// 연다. 요약과 나머지 소식 항목은 제목 줄의 "N건 모두 보기"로 그 호에서 본다. 칩의 이름은 구역의 표시
-// 이름이고, 기타는 기타 칩 하나다.
-function newsColumn(
+// 주간 소식. 최신 호의 주요 소식을 발행일마다 타임라인의 마디 아래에 둔다. 제목은 한국어 제목이고, 없으면(지난
+// 호) 원어 제목이다. 제목은 같은 탭에서 호의 그 소식 항목(카드의 앵커)으로 가고, 원문 링크와 요약은 그 카드에
+// 있다. 나머지 소식 항목은 제목 줄의 "N건 모두 보기"로 그 호에서 본다. 칩의 이름은 구역의 표시 이름이고, 기타는
+// 기타 칩 하나다.
+export function newsColumn(
   issue: LatestNews,
   regionNames: Map<string, string>,
   locale: string,
@@ -590,16 +591,9 @@ function newsColumn(
     )
   const row = (item: FrontPageNewsItem) =>
     el("li", {}, [
-      el(
-        "a",
-        {
-          href: item.url,
-          className: ["front-news-link"],
-          target: "_blank",
-          rel: ["noopener", "noreferrer"],
-        },
-        [text(item.title)],
-      ),
+      el("a", { href: `${issueHref}#${item.id}`, className: ["front-news-link"] }, [
+        text(item.koreanTitle ?? item.title),
+      ]),
       el(
         "span",
         { className: ["front-news-chips"] },
@@ -707,10 +701,10 @@ const FrontPageBody = () => {
         news.push({
           slug: file.slug ?? "",
           week: data.week,
-          items: data.items.map(({ id, title, url, regions, date, featured }) => ({
+          items: data.items.map(({ id, title, koreanTitle, regions, date, featured }) => ({
             id,
             title,
-            url,
+            koreanTitle,
             regions,
             date,
             featured,

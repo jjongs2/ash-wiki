@@ -36,8 +36,9 @@ export const manifest = {
 }
 
 // 소식 항목 하나. regions는 구역 태그(network)의 목록이고 기타는 빈 목록이다. id는 카드의 앵커로, 위키 링크의 절
-// 링크(`[[news/2026-w41#원어 제목]]`)가 가리키는 값과 같다. featured는 주요 소식인지다. summary의 start와
-// end는 요약이 차지하는 원본의 첫 줄과 끝 줄(1부터)이다.
+// 링크(`[[news/2026-w41#원어 제목]]`)가 가리키는 값과 같다. featured는 주요 소식인지이고, koreanTitle은 주요
+// 소식에만 다는 한국어 제목(없으면 null)이다. summary의 start와 end는 요약이 차지하는 원본의 첫 줄과 끝
+// 줄(1부터)이다.
 export interface NewsItem {
   id: string
   regions: string[]
@@ -47,6 +48,7 @@ export interface NewsItem {
   date: string
   image: string | null
   featured: boolean
+  koreanTitle: string | null
   summary: { markdown: string; start: number; end: number }
 }
 
@@ -69,6 +71,7 @@ const FIELDS = {
   date: "발행일",
   image: "이미지",
   featured: "주요",
+  koreanTitle: "한국어 제목",
 } as const
 const FEATURED_VALUE = "예"
 const REQUIRED = [FIELDS.region, FIELDS.outlet, FIELDS.date]
@@ -204,15 +207,23 @@ const periodLabel = (week: string, locale: string) => {
 }
 
 /**
- * 호의 설명. 메타 설명과 피드 항목이 쓴다. 기간과 소식 수에, 주요 소식이 있으면 그 원어 제목을 호 페이지의
- * 기본 정렬(최근순)대로 잇는다.
+ * 한국어 제목이 있어야 하는 소식 항목인가. 원어 제목이 한국어(한글이 든 제목)가 아닌 주요 소식이다. 형식상 없어도
+ * 되는 필드라 형식 함수는 보지 않고, 콘텐츠 테스트와 소식 조사의 기계 검사가 본다.
+ */
+export const needsKoreanTitle = (item: Pick<NewsItem, "title" | "featured">) =>
+  item.featured && !/\p{Script=Hangul}/u.test(item.title)
+
+/** 대문과 메타 설명이 주요 소식에 보이는 제목. 한국어 제목이고, 없으면(지난 호) 원어 제목이다. */
+const shownTitle = (item: Pick<NewsItem, "title" | "koreanTitle">) => item.koreanTitle ?? item.title
+
+/**
+ * 호의 설명. 메타 설명과 피드 항목이 쓴다. 기간과 소식 수에, 주요 소식이 있으면 그 제목(shownTitle)을 호
+ * 페이지의 기본 정렬(최근순)대로 ` · `로 잇는다. 쉼표로 이으면 제목 안의 쉼표와 소식의 경계가 섞인다.
  */
 export function issueDescription(week: string, items: NewsItem[], locale: string): string {
   const head = `${periodLabel(week, locale)}, 자동차 임베디드 업계 소식 ${items.length}건.`
   const featured = byDate(items, "newest").filter((item) => item.featured)
-  return featured.length === 0
-    ? head
-    : `${head} 주요: ${featured.map((item) => item.title).join(", ")}`
+  return featured.length === 0 ? head : `${head} 주요: ${featured.map(shownTitle).join(" · ")}`
 }
 
 function isDate(value: string): boolean {
@@ -244,7 +255,7 @@ function maskFrontmatter(source: string): string {
  * - 소식 항목은 `## [원어 제목](원문 URL)` 제목으로 시작해 다음 `##`까지다. 첫 항목 앞에는 아무것도 없다.
  * - 제목 바로 다음은 필드 목록(`- 구역: network`)이다. 구역, 매체, 발행일은 반드시 있고 이미지는 없어도 된다.
  *   구역은 구역 태그를 쉼표로 나눠 여럿 쓰거나 기타 하나로 쓴다. 주요는 예 하나로만 쓰고, 없으면 주요 소식이
- *   아니다.
+ *   아니다. 한국어 제목은 주요 소식에만 단다. 주요 소식에 없어도 형식 오류가 아니다(needsKoreanTitle).
  * - 필드 목록 뒤의 블록이 모두 한국어 요약이다. 요약 안에는 제목을 두지 않는다.
  * - 항목의 id는 제목 글자를 github-slugger로 바꾼 값이다. 사이트가 제목에 붙이는 id와 같은 규칙이다.
  */
@@ -333,6 +344,10 @@ export function parseWeeklyNews(
         `${FIELDS.featured}는 ${FEATURED_VALUE}로만 쓰고, 주요 소식이 아니면 필드를 뺀다: ${featured.value}`,
       )
     }
+    const koreanTitle = fields.get(FIELDS.koreanTitle)
+    if (koreanTitle && !featured) {
+      error(koreanTitle.line, `${FIELDS.koreanTitle}은 주요 소식에만 단다`)
+    }
 
     const subheading = summary.find((node) => node.type === "heading")
     if (subheading) error(lineOf(subheading), "소식 항목 안에는 제목을 두지 않는다")
@@ -350,6 +365,7 @@ export function parseWeeklyNews(
       date: date!.value,
       image: image?.value || null,
       featured: featured !== undefined,
+      koreanTitle: koreanTitle?.value || null,
       summary: {
         markdown: slice(first, last),
         start: lineOf(first),
@@ -852,6 +868,8 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 // - 칩 줄 아래의 상태 줄은 왼쪽에 소식 수, 오른쪽에 정렬을 둔다. 늘 보여서 거를 때 목록이 움직이지 않는다. 칩
 //   줄보다 목록 윗선에 가깝게 두어(글자 상자 기준 14px와 6px) 목록의 머리줄로 읽힌다(소유자 결정, #404). 글자는
 //   대문 소식 칸 제목 줄의 링크("N건 모두 보기 · 지난 호")와 같은 꼴이고, 고른 정렬은 제목색으로 굵게 쓴다.
+// - 대문에서 소식 항목의 앵커로 들어오면 그 카드의 왼쪽 바깥에 링크색 세로 막대를 둔다. 바탕을 칠하지 않는 까닭은
+//   칩 글자의 대비다(docs/palette.md의 구역 칩 바탕 메모). 막대는 글자가 아니다.
 // - 거른 결과가 없을 때의 안내 줄은 아랫선을 두지 않는다. 바로 아래 페이지 끝의 hr과 두 겹이 된다.
 // - 제목 아래 줄은 호의 기간과 오른쪽 끝의 이웃 호 링크이고, 둘은 기준선으로 맞춘다. 이웃 호 링크는 상태 줄의
 //   정렬과 같은 보조 글자 꼴이다.
@@ -865,7 +883,7 @@ function indexTree(props: QuartzComponentProps): HastRoot {
 // - 글자 대비는 docs/palette.md의 쌍에 든다. 구역 칩은 구역 칩, 고르지 않고 거를 때의 칩은 구역 이름, 고른 칩은
 //   구역 이름과 강조색 위 글자(전경과 배경을 바꿔도 대비는 같다), 주요 칩은 내부 링크, 상태 줄은 보조 글자, 링크,
 //   제목이다. 제목 아래 줄, 이전·다음 링크, 지난 호 목록, 피드 링크도 보조 글자, 링크, 제목 쌍만 쓴다. hover의
-//   테두리와 타임라인의 선·마디는 글자가 아니다.
+//   테두리, 도착한 카드의 막대, 타임라인의 선·마디는 글자가 아니다.
 const CSS = `.news-tools {
   display: flex;
   flex-direction: column;
@@ -959,11 +977,22 @@ const CSS = `.news-tools {
   border-top: 1px solid var(--lightgray);
 }
 .news-card {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 1rem;
   padding: 1rem 0;
   border-bottom: 1px solid var(--lightgray);
+}
+.news-card.news-arrived::before {
+  content: "";
+  position: absolute;
+  left: -0.75rem;
+  top: 1rem;
+  bottom: 1rem;
+  width: 3px;
+  border-radius: 2px;
+  background-color: var(--secondary);
 }
 .news-card-meta {
   display: flex;
@@ -1226,6 +1255,10 @@ const CSS = `.news-tools {
 // 원문 이미지를 불러오지 못한 카드는 이미지 칸을 숨긴다. 스크립트가 돌기 전에 이미 실패한 이미지도 있어
 // 불러오기가 끝난 이미지의 크기도 본다.
 //
+// 주소의 앵커가 가리키는 카드(대문의 주요 소식 링크로 온 카드)에 news-arrived를 단다. SPA 이동은 pushState라
+// :target이 바뀌지 않아, 페이지를 그릴 때마다 주소의 앵커를 읽는다. 카드로 스크롤하는 것은 SPA 라우터와
+// 브라우저가 한다.
+//
 // 정렬·거르기 줄의 버튼을 누르면 카드를 다시 늘어놓고 거른다. 순서는 byDate와 같이 발행일(data-date) 순이고 같은
 // 날은 파일에 적은 순서(data-index)다. 고른 상태를 주소의 쿼리에 담고 이웃 호가 이어받는 규칙, ←/→ 키가
 // 동작하지 않는 때는 docs/weekly-news.md의 사이트에 보이는 범위에 있다. 상태는 페이지를 그릴 때마다 주소의
@@ -1349,7 +1382,18 @@ const SCRIPT = `(() => {
     render()
   }
 
+  function markArrival() {
+    let id = ""
+    try {
+      id = decodeURIComponent(location.hash.slice(1))
+    } catch {}
+    for (const card of document.querySelectorAll(".news-card")) {
+      card.classList.toggle("news-arrived", id !== "" && card.id === id)
+    }
+  }
+
   function setup() {
+    markArrival()
     for (const image of document.querySelectorAll(".news-card-image img")) {
       if (image.complete && image.naturalWidth === 0) hide.call(image)
       else image.addEventListener("error", hide, { once: true })

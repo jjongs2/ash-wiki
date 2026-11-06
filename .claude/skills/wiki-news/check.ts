@@ -1,7 +1,8 @@
 // 소식 조사의 기계 검사(SKILL.md의 7. 쓰기와 9. PR). 주간 소식 호를 형식 함수(plugins/weekly-news의
-// parseWeeklyNews)로 읽어 실패와 알림(위키 링크 후보, 분포 줄)을 내고, 실패가 있으면 exit 1이다. 규칙은 SKILL.md
-// 7단계, docs/weekly-news.md, outlets.md의 열 절에 있다. PR 전 확인에 넣지 않는 것은 규칙이 생기기 전의 지난 호가
-// 소급해 실패하기 때문이다.
+// parseWeeklyNews)로 읽어 실패와 알림(한국어 제목 길이, 위키 링크 후보, 분포 줄)을 내고, 실패가 있으면 exit
+// 1이다. 규칙은 SKILL.md 7단계, docs/weekly-news.md, outlets.md의 열 절에 있다. PR 전 확인에 넣지 않는 것은 규칙이
+// 생기기 전의 지난 호가 소급해 실패하기 때문이다. 한국어 제목이 있어야 하는 주요 소식(needsKoreanTitle)은 PR 전
+// 확인의 콘텐츠 테스트도 보지만, 그 테스트는 규칙이 생긴 주차부터의 호만 보므로 소급 조사의 호는 여기서 잡는다.
 // 사용: npx tsx .claude/skills/wiki-news/check.ts <주차나 달>...
 //       npx tsx .claude/skills/wiki-news/check.ts --pr <본문 파일> [--base <ref>]
 import fs from "node:fs"
@@ -9,7 +10,12 @@ import path from "node:path"
 import { fileURLToPath } from "node:url"
 import { parseArgs } from "node:util"
 import { parse as parseYaml } from "yaml"
-import { parseWeeklyNews, weekDays, type NewsItem } from "../../../plugins/weekly-news/index"
+import {
+  needsKoreanTitle,
+  parseWeeklyNews,
+  weekDays,
+  type NewsItem,
+} from "../../../plugins/weekly-news/index"
 import { repoRoot as root } from "../../../tools/repo"
 import { git, weeksOf } from "./work"
 
@@ -31,11 +37,14 @@ export interface Page {
 export interface IssueReport {
   week: string
   failures: string[]
+  notices: string[]
   candidates: string[]
   distribution: string
 }
 
 const SUMMARY_LIMIT = 250
+// 한국어 제목은 40자 안팎을 목표로 쓰고, 이 길이를 넘으면 알린다(SKILL.md 7단계)
+const KOREAN_TITLE_NOTICE = 50
 
 /** 요약 마크다운에서 독자에게 보이는 글자. 위키 링크와 링크는 보이는 이름, 이스케이프는 그 글자로 바꾼다. */
 export function visibleText(markdown: string): string {
@@ -181,6 +190,21 @@ function distribution(issues: Issue[], week: string): string {
   )
 }
 
+/**
+ * 한국어 제목의 실패. 있어야 하는 주요 소식에만 있고(needsKoreanTitle), 값은 글자만이다. 대문과 메타 설명에
+ * 그대로 찍히므로 마크다운, 위키 링크, 이스케이프(`\~`)를 쓰지 않는다.
+ */
+function koreanTitleFailures(item: NewsItem): string[] {
+  if (!item.featured) return []
+  const value = item.koreanTitle
+  if (value === null) return needsKoreanTitle(item) ? ["주요 소식에 한국어 제목이 없다"] : []
+  if (!needsKoreanTitle(item))
+    return ["원어 제목이 한국어인 주요 소식에는 한국어 제목을 달지 않는다"]
+  return visibleText(value) !== value || /\*\*|`/.test(value)
+    ? ["한국어 제목은 글자만 쓴다(마크다운, 위키 링크, \\~ 없이)"]
+    : []
+}
+
 function label(week: string, item: NewsItem): string {
   return `${week} "${item.title.length > 40 ? `${item.title.slice(0, 40)}…` : item.title}"`
 }
@@ -205,6 +229,7 @@ export function checkIssues(input: {
   return input.weeks.map((week) => {
     const issue = input.issues.find((i) => i.week === week)
     const failures: string[] = []
+    const notices: string[] = []
     for (const item of issue?.items ?? []) {
       const length = [...visibleText(item.summary.markdown)].length
       if (length > SUMMARY_LIMIT)
@@ -223,6 +248,12 @@ export function checkIssues(input: {
         failures.push(
           `${label(week, item)}: 이미지가 같은 매체의 다른 항목(${label(other.week, other.item)})과 같다. 사이트 공통 이미지면 비운다`,
         )
+      failures.push(...koreanTitleFailures(item).map((f) => `${label(week, item)}: ${f}`))
+      const koreanLength = [...(item.koreanTitle ?? "")].length
+      if (koreanLength > KOREAN_TITLE_NOTICE)
+        notices.push(
+          `${label(week, item)}: 한국어 제목이 ${koreanLength}자다(목표 40자 안팎, ${KOREAN_TITLE_NOTICE}자 넘음)`,
+        )
     }
     const candidates: string[] = []
     const seen = new Set<string>()
@@ -234,7 +265,7 @@ export function checkIssues(input: {
           candidates.push(`${label(week, item)}: ${mention.name} → [[${mention.slug}]]`)
       }
     }
-    return { week, failures, candidates, distribution: distribution(input.issues, week) }
+    return { week, failures, notices, candidates, distribution: distribution(input.issues, week) }
   })
 }
 
@@ -400,9 +431,12 @@ function main(): number {
   const reports = checkIssues({ issues, weeks, outlets: outletNames(after), pages: readPages() })
 
   const failures = reports.flatMap((r) => r.failures)
+  const notices = reports.flatMap((r) => r.notices)
   const candidates = reports.flatMap((r) => r.candidates)
   console.log(`실패 ${failures.length}건`)
   for (const line of failures) console.log(`- ${line}`)
+  console.log(`\n알림 ${notices.length}건(통과 조건 아님)`)
+  for (const line of notices) console.log(`- ${line}`)
   console.log(`\n위키 링크 후보 ${candidates.length}건(통과 조건 아님, 확정은 검토가 한다)`)
   for (const line of candidates) console.log(`- ${line}`)
   console.log("\n분포")

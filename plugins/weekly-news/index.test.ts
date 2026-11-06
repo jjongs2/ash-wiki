@@ -11,6 +11,7 @@ import {
   issueNeighbors,
   issueTitle,
   monthWeeks,
+  needsKoreanTitle,
   parseWeeklyNews,
   weekDays,
   weekLabel,
@@ -47,6 +48,7 @@ describe("parseWeeklyNews", () => {
           date: "2026-10-06",
           image: "https://www.can-cia.org/images/can-xl-og.png",
           featured: false,
+          koreanTitle: null,
         },
         {
           id: "software-defined-vehicle-survey-2026",
@@ -57,6 +59,7 @@ describe("parseWeeklyNews", () => {
           date: "2026-10-08",
           image: null,
           featured: false,
+          koreanTitle: null,
         },
         {
           id: "autosar-r25-11-adaptive-platform-changes",
@@ -67,6 +70,7 @@ describe("parseWeeklyNews", () => {
           date: "2026-10-05",
           image: "https://www.autosar.org/og.png",
           featured: true,
+          koreanTitle: "AUTOSAR, R25-11 Adaptive Platform 변경 정리",
         },
       ],
     )
@@ -105,6 +109,24 @@ describe("parseWeeklyNews", () => {
     assert.deepStrictEqual(errors, [])
     assert.strictEqual(items[0].featured, true)
     assert.strictEqual(parseWeeklyNews("2026-w41", source()).items[0].featured, false)
+  })
+
+  test("주요 소식의 한국어 제목을 읽고, 없으면 null이다", () => {
+    const { items, errors } = parseWeeklyNews(
+      "2026-w41",
+      source({
+        fields: [
+          "- 구역: network",
+          "- 매체: M",
+          "- 발행일: 2026-10-06",
+          "- 주요: 예",
+          "- 한국어 제목:  CiA, CAN XL 물리 계층 명세 공개 ",
+        ],
+      }),
+    )
+    assert.deepStrictEqual(errors, [])
+    assert.strictEqual(items[0].koreanTitle, "CiA, CAN XL 물리 계층 명세 공개")
+    assert.strictEqual(parseWeeklyNews("2026-w41", source()).items[0].koreanTitle, null)
   })
 
   test("요약은 위키 링크를 원문 그대로 담고, 문단이 여럿이면 모두 담는다", () => {
@@ -185,6 +207,12 @@ describe("parseWeeklyNews", () => {
       [
         source({ fields: ["- 구역: network", "- 매체: M", "- 발행일: 2026-10-06", "- 주요:"] }),
         ["6: 주요는 예로만 쓰고, 주요 소식이 아니면 필드를 뺀다: "],
+      ],
+      [
+        source({
+          fields: ["- 구역: network", "- 매체: M", "- 발행일: 2026-10-06", "- 한국어 제목: 제목"],
+        }),
+        ["6: 한국어 제목은 주요 소식에만 단다"],
       ],
       [source({ summary: "" }), ["1: 요약이 없다"]],
       [source({ summary: "### 소제목" }), ["7: 소식 항목 안에는 제목을 두지 않는다"]],
@@ -347,26 +375,32 @@ describe("indexMonths", () => {
 describe("issueDescription", () => {
   const { items } = parseWeeklyNews("2026-w41", example)
 
-  test("기간, 소식 수, 주요 소식의 원어 제목", () => {
+  test("기간, 소식 수, 주요 소식의 한국어 제목", () => {
     assert.strictEqual(
       issueDescription("2026-w41", items, "ko-KR"),
-      "2026년 10월 5일 ~ 2026년 10월 11일, 자동차 임베디드 업계 소식 3건. 주요: AUTOSAR R25-11 Adaptive Platform Changes",
+      "2026년 10월 5일 ~ 2026년 10월 11일, 자동차 임베디드 업계 소식 3건. 주요: AUTOSAR, R25-11 Adaptive Platform 변경 정리",
     )
   })
 
-  test("주요 소식이 여럿이면 최근순으로 쉼표로 잇는다", () => {
+  test("주요 소식이 여럿이면 최근순으로 가운뎃점으로 잇고, 한국어 제목이 없으면 원어 제목을 쓴다", () => {
     const { items: two } = parseWeeklyNews(
       "2026-w41",
       [
         source({ fields: ["- 구역: network", "- 매체: M", "- 발행일: 2026-10-05", "- 주요: 예"] }),
         source({
-          fields: ["- 구역: network", "- 매체: M", "- 발행일: 2026-10-07", "- 주요: 예"],
+          fields: [
+            "- 구역: network",
+            "- 매체: M",
+            "- 발행일: 2026-10-07",
+            "- 주요: 예",
+            "- 한국어 제목: 나중, 쉼표가 든 제목",
+          ],
         }).replace("Title", "Later"),
       ].join("\n"),
     )
     assert.strictEqual(
       issueDescription("2026-w41", two, "ko-KR"),
-      "2026년 10월 5일 ~ 2026년 10월 11일, 자동차 임베디드 업계 소식 2건. 주요: Later, Title",
+      "2026년 10월 5일 ~ 2026년 10월 11일, 자동차 임베디드 업계 소식 2건. 주요: 나중, 쉼표가 든 제목 · Title",
     )
   })
 
@@ -376,6 +410,24 @@ describe("issueDescription", () => {
       issueDescription("2026-w01", plain, "ko-KR"),
       "2025년 12월 29일 ~ 2026년 1월 4일, 자동차 임베디드 업계 소식 1건.",
     )
+  })
+})
+
+describe("needsKoreanTitle", () => {
+  const item = (title: string, featured = true) => ({ title, featured })
+
+  test("원어 제목이 한국어가 아닌 주요 소식에 한국어 제목이 필요하다", () => {
+    assert.strictEqual(needsKoreanTitle(item("CAN XL Physical Layer Specification Released")), true)
+    assert.strictEqual(needsKoreanTitle(item("关于公开征求《电动汽车安全要求》意见的公示")), true)
+    assert.strictEqual(needsKoreanTitle(item("自動運転レベル4の認可")), true)
+  })
+
+  test("원어 제목이 한국어인 주요 소식과 주요 소식이 아닌 항목에는 필요 없다", () => {
+    assert.strictEqual(
+      needsKoreanTitle(item("[현대] 투싼 등 2차종 - 전방 카메라 관련 리콜")),
+      false,
+    )
+    assert.strictEqual(needsKoreanTitle(item("CAN XL Released", false)), false)
   })
 })
 

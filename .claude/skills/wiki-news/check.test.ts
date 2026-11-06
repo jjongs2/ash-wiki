@@ -12,6 +12,7 @@ interface Entry {
   region?: string
   image?: string
   featured?: boolean
+  koreanTitle?: string
   summary?: string
 }
 
@@ -26,6 +27,7 @@ function issue(week: string, entries: Entry[]): Issue {
         `- 발행일: ${e.date ?? "2026-10-06"}`,
         ...(e.image ? [`- 이미지: ${e.image}`] : []),
         ...(e.featured ? ["- 주요: 예"] : []),
+        ...(e.koreanTitle ? [`- 한국어 제목: ${e.koreanTitle}`] : []),
         "",
         e.summary ?? "요약이다.",
         "",
@@ -55,6 +57,52 @@ describe("요약 길이", () => {
   test("위키 링크와 이스케이프는 보이는 글자로 센다", () => {
     const summary = `${"가".repeat(238)} [[can-xl|CAN XL]] \\~ 나`
     assert.deepStrictEqual(failures([issue("2026-w41", [{ summary }])]), [])
+  })
+})
+
+describe("한국어 제목", () => {
+  const check = (entry: Entry) =>
+    checkIssues({
+      issues: [issue("2026-w45", [{ title: "T", featured: true, ...entry }])],
+      weeks: ["2026-w45"],
+      outlets,
+      pages: [],
+    })[0]
+
+  test("원어 제목이 한국어가 아닌 주요 소식에 한국어 제목이 없으면 실패한다", () => {
+    assert.deepStrictEqual(check({}).failures, ['2026-w45 "T": 주요 소식에 한국어 제목이 없다'])
+    assert.deepStrictEqual(check({ koreanTitle: "제목" }).failures, [])
+  })
+
+  test("원어 제목이 한국어인 주요 소식에 한국어 제목이 있으면 실패한다", () => {
+    assert.deepStrictEqual(check({ title: "현대 리콜" }).failures, [])
+    assert.deepStrictEqual(check({ title: "현대 리콜", koreanTitle: "현대 리콜" }).failures, [
+      '2026-w45 "현대 리콜": 원어 제목이 한국어인 주요 소식에는 한국어 제목을 달지 않는다',
+    ])
+  })
+
+  test("마크다운, 위키 링크, 이스케이프가 든 한국어 제목은 실패한다", () => {
+    for (const koreanTitle of [
+      "[[can-xl|CAN XL]] 공개",
+      "11\\~30ms 지연",
+      "**굵게** 공개",
+      "`code` 공개",
+    ])
+      assert.deepStrictEqual(
+        check({ koreanTitle }).failures,
+        ['2026-w45 "T": 한국어 제목은 글자만 쓴다(마크다운, 위키 링크, \\~ 없이)'],
+        koreanTitle,
+      )
+    assert.deepStrictEqual(check({ koreanTitle: "지연 11~30ms, 쉼표 · 가운뎃점" }).failures, [])
+  })
+
+  test("50자를 넘는 한국어 제목은 알리고 실패하지 않는다", () => {
+    const report = check({ koreanTitle: "가".repeat(51) })
+    assert.deepStrictEqual(report.failures, [])
+    assert.deepStrictEqual(report.notices, [
+      '2026-w45 "T": 한국어 제목이 51자다(목표 40자 안팎, 50자 넘음)',
+    ])
+    assert.deepStrictEqual(check({ koreanTitle: "가".repeat(50) }).notices, [])
   })
 })
 
