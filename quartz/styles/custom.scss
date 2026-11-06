@@ -577,10 +577,13 @@ a.internal.tag-link::before {
 
 // ash-wiki: 업스트림은 footer 전체를 투명도 0.7로 흐려, 링크(secondary)의 대비가 3.34:1로 떨어진다(axe
 // color-contrast, #638). 투명도를 걷고 docs/palette.md의 토큰을 쓴다. 링크는 링크색 그대로이고, 링크가 아닌 글자는
-// 흐리던 모양을 보조 글자색으로 잇는다.
+// 흐리던 모양을 보조 글자색으로 잇는다. 그 글자는 <p> 안이라 base.scss의 p 색을 덮도록 p에 준다.
 footer {
   opacity: 1;
-  color: var(--gray);
+
+  & p {
+    color: var(--gray);
+  }
 }
 
 // ash-wiki: footer 링크 사이에 가운뎃점을 둔다. 점은 뒤 항목의 ::before라 링크 밑줄과 클릭 범위에 들지 않는다.
