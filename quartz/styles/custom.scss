@@ -316,6 +316,9 @@ article :is(#refs, #popover-internal-refs).csl-bib-body {
 // 이동 버튼(plugins/wiki-diff)뿐이다. 링의 꼴은 $focus-ring 하나로, :focus-visible을 받지 않는 탐색기 폴더 줄과 고른
 // 검색 결과도 이 값을 쓴다.
 $focus-ring: 2px solid var(--secondary);
+// 안쪽에 그리는 링은 항목 끝에서 1px 띄운다. 레이아웃의 소수점 반올림으로 항목 상자가 자르는 상자보다 1px 안쪽까지 넘칠
+// 수 있어, 끝에 붙여 그리면 한 변이 1px 잘린다.
+$focus-ring-inset: -3px;
 
 :focus-visible {
   outline: $focus-ring;
@@ -335,7 +338,7 @@ $focus-ring: 2px solid var(--secondary);
   scroll-margin-block: 2px;
 
   &:focus-visible {
-    outline-offset: -2px;
+    outline-offset: $focus-ring-inset;
   }
 }
 
@@ -362,10 +365,13 @@ $focus-ring: 2px solid var(--secondary);
     outline: none;
   }
 
+  // 버튼은 줄의 안쪽 여백(0.25rem) 안에 있어, 포커스로 스크롤할 때 줄 전체와 링이 보이게 그만큼 더 띄운다.
+  scroll-margin-block: calc(0.25rem + 2px);
+
   &:focus-visible::after {
     border-radius: 5px;
     outline: $focus-ring;
-    outline-offset: -2px;
+    outline-offset: $focus-ring-inset;
   }
 }
 
@@ -373,12 +379,12 @@ $focus-ring: 2px solid var(--secondary);
 // 스크롤 목록 안이라 항목 안쪽에 그린다.
 .search > .search-container > .search-space {
   & > input:focus-visible {
-    outline-offset: -2px;
+    outline-offset: $focus-ring-inset;
   }
 
   .results-container .result-card:is(.focus, :focus-visible) {
     outline: $focus-ring;
-    outline-offset: -2px;
+    outline-offset: $focus-ring-inset;
   }
 }
 
@@ -403,6 +409,11 @@ $focus-ring: 2px solid var(--secondary);
   background-color: var(--light);
   color: var(--secondary);
   font-weight: $semiBoldWeight;
+
+  // 링크는 남색 면 위에 뜨므로, 링을 링크의 밝은 바탕 안에 그려 페이지 위의 링과 같은 대비를 지킨다.
+  &:focus-visible {
+    outline-offset: $focus-ring-inset;
+  }
 
   &:not(:focus) {
     width: 1px;
