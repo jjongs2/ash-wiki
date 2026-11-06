@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 438 272" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="소프트웨어 컴포넌트와 소프트웨어 유닛으로의 분해">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 438 272" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="ASPICE 4.1의 소프트웨어 컴포넌트와 소프트웨어 유닛">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
 
   <text x="20" y="38" font-size="12" fill="var(--text, #727981)">ASPICE 4.1</text>
