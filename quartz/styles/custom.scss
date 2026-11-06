@@ -95,6 +95,32 @@ article span:is([id^="citation--"], [id^="popover-internal-citation--"]) {
   vertical-align: super;
 }
 
+// ash-wiki: 본문 링크는 보통 굵기에 옅은 1px 밑줄로 쓴다. 링크 색과 둘레 본문 글자의 대비는 라이트 1.82, 다크
+// 1.51이라 색을 가르지 못하는 독자에게는 다른 단서가 있어야 하고, 지금 팔레트로는 링크가 본문 글자와 3:1, 바탕과
+// 4.5:1을 함께 넘을 수 없다. 업스트림의 굵기 600은 굵은 글씨와 같고, 내부 링크의 반투명 바탕은 페이지 바탕과 거의
+// 갈리지 않아 밑줄을 단서로 쓴다. 밑줄 색은 글자색의 45%라 hover에 글자색과 함께 바뀐다.
+// 원고에서 온 문단, 목록 항목, 표 칸의 링크와 참고문헌의 링크에만 건다. 대문의 구역 표와 아래 2단, 지난 호 목록은
+// 같은 꼴의 마크업 안에 플러그인이 그린 링크라 뺀다. 칩, 탐색기, 목차, Backlinks, 소식 카드 제목처럼 칸 밖의 링크는
+// 제 규칙 그대로다. 내부 링크의 바탕과 좌우 여백은 본문에서만 빼고, 바탕으로 칩 모양을 내는 링크에는 남긴다.
+// 인용 번호는 굵기만 맞추고 밑줄을 긋지 않는다. 대괄호와 위첨자가 이미 단서이고, 작은 글자에 그은 밑줄은 번호에
+// 붙는다.
+article :is(p, li, td) a:not(:is(.front-regions, .front-columns, .news-index, .news-feed) *),
+article :is(#refs, #popover-internal-refs) a {
+  font-weight: $normalWeight;
+  text-decoration: underline 1px color-mix(in srgb, currentColor 45%, transparent);
+  text-underline-offset: 0.22em;
+
+  &.internal {
+    background-color: transparent;
+    padding-inline: 0;
+  }
+}
+
+article span:is([id^="citation--"], [id^="popover-internal-citation--"]) a {
+  font-weight: $normalWeight;
+  text-decoration: none;
+}
+
 // 참고문헌(#refs)은 제목 없이 본문 바로 뒤에 붙는다. 제목을 heading으로 넣으면 목차에 들어가므로
 // ::before 라벨로 달고, 크기와 굵기는 h3에 맞춘다. 항목은 번호 열과 항목 열로 나누고, 번호 열 폭은
 // subgrid로 모든 항목이 같이 쓴다([9]와 [10]의 항목 열이 같은 자리에서 시작한다). 항목의 긴 URL은
