@@ -45,6 +45,20 @@ JSON 파일은 주석을 달 수 없어서, npm 관례에 따라 최상위 `"//"
 
 사이트 설정은 `quartz.config.yaml`에 둔다. 업스트림 기본값인 `quartz.config.default.yaml`은 고치지 않고, 설정 로더가 `quartz.config.yaml`을 먼저 읽는다. 기본값과 다르게 둔 항목 가운데 값만 봐서 이유를 알 수 없는 것은 `quartz.config.yaml`의 주석에 이유를 적는다.
 
+## 화면을 고칠 때
+
+엔진, 플러그인(`plugins/`, `patches/`), `quartz/styles/`처럼 화면을 바꾸는 PR은 로컬 빌드에 접근성 자동 검사를 돌린다. CI와 정기 workflow는 돌리지 않는다.
+
+```sh
+npm run build
+npm run axe -- --site public
+```
+
+- axe-core(WCAG 2.2 AA와 best-practice)를 페이지 꼴마다 하나씩 1280px과 390px, 라이트와 다크에서 돌린다. 대상은 `tools/axe/targets.ts`에 있다.
+- 예외가 아닌 위반이 있으면 exit 1이다. `--json <파일>`은 노드별 결과를 남긴다.
+- 예외는 소유자가 하한 밑을 허용한 두 자리의 대비다. 콜아웃 제목과 탐색기의 흐린 이름이고, 까닭은 [팔레트](palette.md#대비-하한)에 있다. 예외는 개수만 찍는다.
+- `npm run palette`는 토큰 쌍만 재고 CSS를 읽지 않는다. 플러그인 CSS가 투명도 등으로 토큰 색을 바꾸는 회귀는 이 검사가 잡는다.
+
 ## 태그 목록
 
 태그 목록 페이지는 tag-page 플러그인이 만든다. 태그의 한국어 표시 이름은 `content/tags/<구역>.md`, `content/tags/<구역>/<주제>.md`의 `title`로 주고, 본문은 비워 둔다.
