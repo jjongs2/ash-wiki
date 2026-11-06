@@ -2,8 +2,9 @@ import test, { describe } from "node:test"
 import assert from "node:assert"
 import { frameDrift } from "./frame"
 
-// 데스크톱 캡처에서 잰 도해 틀 안쪽 폭을 문턱과 견주는 함수를 seam으로 본다. 572px와 1.1333px는 #575 뒤
-// 1280px 화면에서 잰 틀 안쪽과 viewBox 1단위이고, 572 / 1.1333 ≈ 504.7단위다.
+// 데스크톱 캡처에서 잰 도해 틀 안쪽 폭을 문턱과 견주는 함수를 seam으로 본다. 입력값은 예로 든 측정이다.
+// 572px와 1.1333px는 #575 뒤 레이아웃의 1280px 화면에서 잰 틀 안쪽과 viewBox 1단위로, 572 / 1.1333 ≈
+// 504.7단위다. 지금 레이아웃의 값은 tools/check-diff/diagram-width.ts의 frameWidth 주석에 있다.
 describe("frameDrift", () => {
   test("잰 폭이 문턱과 맞으면 알리지 않는다", () => {
     assert.deepStrictEqual(
