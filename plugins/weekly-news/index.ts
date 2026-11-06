@@ -527,7 +527,7 @@ const featuredChip = () =>
     text(FEATURED_LABEL),
   ])
 
-function card(
+export function card(
   item: NewsItem,
   index: number,
   names: Map<string, string>,
@@ -547,7 +547,9 @@ function card(
         el("time", { dateTime: item.date }, [text(date)]),
       ]),
     ]),
-    el("h3", { className: ["news-card-title"] }, [
+    // 호 페이지에서 카드 제목은 페이지 제목(h1) 바로 아래 수준이라 h2다(axe heading-order, #638). 크기는
+    // .news-card-title이 정한다.
+    el("h2", { className: ["news-card-title"] }, [
       externalLink(item.url, "news-card-link", [text(item.title)]),
     ]),
     el("div", { className: ["news-card-summary"] }, summary),

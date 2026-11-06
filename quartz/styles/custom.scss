@@ -471,6 +471,12 @@ ul.section-ul {
     color: var(--gray);
   }
 
+  // 한 태그의 목록에서 항목 제목은 h2다(tag-page 패치, axe heading-order). 크기는 태그 전체 목록의 항목 제목(h3)과
+  // 같게 base.scss의 h3 크기로 둔다.
+  .desc > h2 {
+    font-size: 1.12rem;
+  }
+
   & > li.section-li,
   & > li.section-li > .section {
     display: grid;
