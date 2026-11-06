@@ -20,8 +20,8 @@ $tablet: "(#{map.get($breakpoints, mobile)} < width < #{map.get($breakpoints, de
 $desktop: "(min-width: #{map.get($breakpoints, desktop)})";
 
 $pageWidth: #{map.get($breakpoints, mobile)};
-// ash-wiki: 업스트림은 320px이다. 1200px에서 오른쪽 사이드바가 옆으로 올라오면 본문이 507px까지 좁아져 280px로
-// 줄였다(587px). 넓은 화면의 본문 상한은 quartz/styles/custom.scss의 데스크톱 절에 있다.
+// ash-wiki: 업스트림은 320px이다. 오른쪽 사이드바가 본문 옆에 서는 1200px에서 본문 폭이 507px로 좁아, 280px로
+// 줄여 587px로 넓혔다. 넓은 화면의 본문 상한은 quartz/styles/custom.scss의 데스크톱 절에 있다.
 $sidePanelWidth: 280px; //380px;
 $topSpacing: 6rem;
 $boldWeight: 700;

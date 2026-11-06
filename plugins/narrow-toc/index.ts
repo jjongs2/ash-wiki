@@ -4,7 +4,7 @@
 // 열린다.
 // - 항목은 목차 플러그인(@quartz-community/table-of-contents)이 페이지 데이터에 둔 목차(fileData.toc)로, 목차
 //   컴포넌트와 같은 마크업을 만든다. 목차가 없는 페이지에는 바를 내지 않는다. 데스크톱 목차를 두지 않는 페이지
-//   타입(주간 소식, 태그 목록, 404)은 quartz.config.yaml의 layout에서 이 컴포넌트를 함께 뺀다.
+//   타입에서 바를 빼는 곳은 quartz.config.yaml의 이 플러그인 항목 주석에 있다.
 // - 지금 절은 따로 정하지 않고 데스크톱 목차의 표시를 옮겨 싣는다(script.js). 정하는 규칙은 patches/의
 //   table-of-contents 패치에 하나만 있고, 그 스크립트는 목차가 숨은 폭에서도 돈다.
 // - 목차를 고치지 않고 그 결과에 바를 덧붙이므로 패치가 아니라 로컬 플러그인이다(docs/engine.md의 npm 플러그인

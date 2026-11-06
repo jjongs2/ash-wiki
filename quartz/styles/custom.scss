@@ -104,7 +104,7 @@ article span:is([id^="citation--"], [id^="popover-internal-citation--"]) {
 // 제 규칙 그대로다. 내부 링크의 바탕과 좌우 여백은 본문에서만 빼고, 바탕으로 칩 모양을 내는 링크에는 남긴다.
 // 인용 번호는 굵기만 맞추고 밑줄을 긋지 않는다. 대괄호와 위첨자가 이미 단서이고, 작은 글자에 그은 밑줄은 번호에
 // 붙는다.
-article :is(p, li, td) a:not(:is(.front-regions, .front-columns, .news-index, .news-feed) *),
+article :is(p, li, td, th) a:not(:is(.front-regions, .front-columns, .news-index, .news-feed) *),
 article :is(#refs, #popover-internal-refs) a {
   font-weight: $normalWeight;
   text-decoration: underline 1px color-mix(in srgb, currentColor 45%, transparent);
@@ -522,19 +522,21 @@ $panel-tokens:
 // 1500px 페이지의 본문 폭이고, 사이드바를 줄인 뒤에도 넓은 화면의 한 줄 길이를 그대로 둔다. 본문 칸의 % 여백은 그리드
 // 칸의 폭에 대한 값이다.
 $center-max-width: 807px;
+// 칸 사이 5px에 더해 48px을 채우는 안쪽 여백
+$center-inset: 48px - 5px;
 
 @media all and ($desktop) {
   .center,
   footer,
   .page > #quartz-body > .sidebar.right {
     box-sizing: border-box;
-    padding-left: calc(48px - 5px);
+    padding-left: $center-inset;
   }
 
   .center,
   footer {
-    padding-left: max(calc(48px - 5px), calc((100% - #{$center-max-width} + 48px - 5px) / 2));
-    padding-right: max(0px, calc((100% - #{$center-max-width} - 48px + 5px) / 2));
+    padding-left: max(#{$center-inset}, calc((100% - #{$center-max-width} + #{$center-inset}) / 2));
+    padding-right: max(0px, calc((100% - #{$center-max-width} - #{$center-inset}) / 2));
   }
 }
 
@@ -624,8 +626,9 @@ $mobile-header-height: 3.5rem;
 //   상한(위 태블릿 절) 때문에 본문 칸 끝이 화면 끝과 다르므로, 바 폭을 면 경계에서 화면 끝까지(100vw - 면 폭)로 둔다.
 //   화면 밖으로 나간 부분은 html의 overflow-x: hidden이 자른다. 열린 목록도 같은 폭과 여백이다. 고른 까닭과 대비는
 //   docs/palette.md의 목차 바 절에 있다.
-// - 바의 높이는 누름 영역 하한(WCAG 2.2의 24px)보다 넉넉한 2.75rem이다. 열린 목록은 화면 아래 끝까지만 내려오고,
-//   그보다 길면 목록 안에서 스크롤된다.
+// - 바의 높이는 누름 영역 하한(WCAG 2.2의 24px)보다 넉넉한 2.75rem이다. 열린 목록의 높이는 붙은 바 아래에서 화면
+//   아래 끝까지이고, 그보다 길면 목록 안에서 스크롤된다. 바가 붙기 전에 열면 목록이 화면 아래로 넘을 수 있고, 넘친
+//   부분은 페이지를 스크롤해 본다.
 // - 바는 본문 위에 그리되, 폰의 탐색기 서랍과 검색 창이 든 왼쪽 사이드바보다는 아래에 둔다. 업스트림은 사이드바의
 //   z-index를 1로 두어, 바와 같으면 문서 순서로 바가 서랍을 덮는다.
 // - 목차 항목, 본문의 절 링크, 인용 번호로 옮겨 가면 목표가 바 밑에 가려지지 않게 앵커 이동의 위 여백을 바 높이만큼

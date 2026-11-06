@@ -51,6 +51,18 @@ describe("narrow-toc 컴포넌트", () => {
     assert.match(barHtml, /<span class="narrow-toc-current"><\/span><\/summary>/)
   })
 
+  // 바는 지금 절을 데스크톱 목차의 aria-current에서 옮겨 온다. 목차 패치가 그 표시를 내지 않게 바뀌면 바의 지금 절이
+  // 소리 없이 비므로, 패치된 목차 스크립트가 바의 스크립트가 읽는 목록에 그 속성을 거는지 본다.
+  test("데스크톱 목차 스크립트가 바가 읽는 지금 절 표시를 낸다", () => {
+    const tocScript = String(desktop.afterDOMLoaded)
+    const barScript = String(bar.afterDOMLoaded)
+    for (const part of ['".toc ul.toc-content"', 'setAttribute("aria-current"']) {
+      assert.ok(tocScript.includes(part), `목차 스크립트에 ${part}가 없다`)
+    }
+    assert.ok(barScript.includes('".toc ul.toc-content"'))
+    assert.ok(barScript.includes('"a[aria-current]"'))
+  })
+
   test("목차가 없는 페이지에는 바를 내지 않는다", () => {
     assert.strictEqual(renderWith(bar, {}), "")
   })
