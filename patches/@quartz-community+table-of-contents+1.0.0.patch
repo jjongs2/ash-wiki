@@ -1,7 +1,20 @@
 diff --git a/node_modules/@quartz-community/table-of-contents/dist/index.js b/node_modules/@quartz-community/table-of-contents/dist/index.js
 --- a/node_modules/@quartz-community/table-of-contents/dist/index.js
 +++ b/node_modules/@quartz-community/table-of-contents/dist/index.js
-@@ -448,8 +448,65 @@ var TableOfContents_default = ((opts) => {
+@@ -433,7 +433,11 @@ var TableOfContents_default = ((opts) => {
+         }
+       ),
+       /* @__PURE__ */ u2(
+-        OverflowList2,
++        // ash-wiki: 목차 버튼의 aria-controls(toc-N)가 가리키도록 목록에 그 id를 준다. 업스트림의 감싼 목록
++        // (OverflowList2)은 id를 list-N으로 덮어써, aria-controls가 없는 요소를 가리켰다(axe aria-valid-attr-value,
++        // #638). list-N은 플러그인마다 0부터 세어 탐색기 목록과 겹치므로 목차의 것으로 쓰지 않는다. 넘침 그라데이션
++        // 스크립트는 그대로 list-N을 찾아, 목차 목록에는 지금처럼 걸리지 않는다.
++        OverflowList,
+         {
+           id,
+           class: fileData.collapseToc ? "collapsed toc-content" : "toc-content",
+@@ -448,8 +452,65 @@ var TableOfContents_default = ((opts) => {
      ] });
    };
    TableOfContents.css = toc_default;
@@ -71,7 +84,20 @@ diff --git a/node_modules/@quartz-community/table-of-contents/dist/index.js b/no
 diff --git a/node_modules/@quartz-community/table-of-contents/dist/components/index.js b/node_modules/@quartz-community/table-of-contents/dist/components/index.js
 --- a/node_modules/@quartz-community/table-of-contents/dist/components/index.js
 +++ b/node_modules/@quartz-community/table-of-contents/dist/components/index.js
-@@ -448,8 +448,65 @@ var TableOfContents_default = ((opts) => {
+@@ -433,7 +433,11 @@ var TableOfContents_default = ((opts) => {
+         }
+       ),
+       /* @__PURE__ */ u2(
+-        OverflowList2,
++        // ash-wiki: 목차 버튼의 aria-controls(toc-N)가 가리키도록 목록에 그 id를 준다. 업스트림의 감싼 목록
++        // (OverflowList2)은 id를 list-N으로 덮어써, aria-controls가 없는 요소를 가리켰다(axe aria-valid-attr-value,
++        // #638). list-N은 플러그인마다 0부터 세어 탐색기 목록과 겹치므로 목차의 것으로 쓰지 않는다. 넘침 그라데이션
++        // 스크립트는 그대로 list-N을 찾아, 목차 목록에는 지금처럼 걸리지 않는다.
++        OverflowList,
+         {
+           id,
+           class: fileData.collapseToc ? "collapsed toc-content" : "toc-content",
+@@ -448,8 +452,65 @@ var TableOfContents_default = ((opts) => {
      ] });
    };
    TableOfContents.css = toc_default;
