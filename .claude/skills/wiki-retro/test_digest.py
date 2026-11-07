@@ -603,6 +603,16 @@ class CandidatesTest(unittest.TestCase):
         self.assertEqual(list(rows), [UUID, "cse_02New"])
         self.assertEqual(rows["cse_02New"][1:], ["루틴 실행(받지 않음)", "-", "-", "-", "-", "-"])
 
+    def test_fetched_copy_wins_over_a_larger_copy_without_remote_json(self):
+        fetched = os.path.join(self.tmp.name, "cloud", "-home-user-ash-wiki", f"{UUID}.jsonl")
+        os.makedirs(os.path.dirname(fetched))
+        with open(fetched, "w") as f:
+            f.write(entry("user", "/wiki-news 2026-w01") + "\n")
+        remote(stem_of(fetched), RUN, "scheduled_trigger")
+        self.paths.append(fetched)
+        self.transcript(UUID, entry("user", "/wiki-news 2026-w01"), entry("user", "teleport로 이어 받은 뒤의 글"))
+        self.assertEqual(self.candidates()[UUID][1], f"루틴 실행({RUN})")
+
     def test_session_in_several_places_is_one_row_from_the_largest_copy(self):
         command = entry("user", "<command-message>wiki-verify</command-message>")
         self.transcript(UUID, command, json.dumps({"type": "custom-title", "customTitle": "늦게 붙인 제목"}))

@@ -35,7 +35,8 @@ RemoteTrigger로 루틴에 넘긴 세션 가운데 analyzed.tsv에 없고 이 �
 않는다. URL은 기록에서 gh pr/issue create·comment가 돌려준 PR·이슈·코멘트이고,
 핸드오프는 세션이 쓰거나 고친 ash-wiki-handoff/의 파일이다. 루틴에 넘긴 스킬에는
 "(루틴)"을 단다. 기록을 주지 않으면 ~/.claude/projects/*ash-wiki*/의 기록을 본다.
-같은 세션의 기록이 여러 자리(백업 사본과 원본)에 있으면 가장 큰 것 하나로 센다.
+같은 세션의 기록이 여러 자리(백업 사본과 원본)에 있으면 하나로 센다. remote.json이 있는
+것, 그다음 가장 큰 것, 크기가 같으면 이 컴퓨터의 원본을 고른다.
 받아 둔 클라우드 기록은 세션 폴더에 remote.json이 있다. 그 origin이 scheduled_trigger인
 루틴 실행은 기록에 스킬 실행의 표시가 없어도 후보이고, 스킬 열에 "루틴 실행(<cse_…>)"을
 찍는다. remote.json의 실행 id가 analyzed.tsv의 옛 줄에 있으면 뺀다. --runs로 받은
@@ -104,7 +105,7 @@ def homes():
                 home = json.load(f).get("home")
         except (OSError, json.JSONDecodeError):
             continue
-        if isinstance(home, str) and home.startswith("/"):
+        if isinstance(home, str) and home.startswith("/") and home.rstrip("/"):
             found.append(home.rstrip("/"))
     return list(dict.fromkeys(found))
 
@@ -555,12 +556,18 @@ def joined(items, sep=" "):
     return sep.join(dict.fromkeys(items)) or "-"
 
 
+def copy_rank(path):
+    """받아 둔 클라우드 기록, 그다음 큰 기록, 크기가 같으면 이 컴퓨터의 원본(tool-results/가 있다)."""
+    in_backup = os.path.realpath(path).startswith(os.path.realpath(TRANSCRIPTS) + os.sep)
+    return bool(remote_info(path)), os.path.getsize(path), not in_backup
+
+
 def one_copy_each(paths):
-    """세션마다 가장 큰 기록 하나. 백업 사본은 원본보다 늦을 뿐이다."""
+    """세션마다 기록 하나. 백업 사본은 원본보다 늦을 뿐이고, teleport로 이은 로컬 기록은 remote.json이 없다."""
     chosen = {}
     for path in paths:
         uuid = os.path.basename(stem(path))
-        if uuid not in chosen or os.path.getsize(path) > os.path.getsize(chosen[uuid]):
+        if uuid not in chosen or copy_rank(path) > copy_rank(chosen[uuid]):
             chosen[uuid] = path
     return list(chosen.values())
 
@@ -577,7 +584,7 @@ def remote_info(path):
 def routine_run(path):
     """루틴 실행이면 실행 id(cse_…). 루틴 실행의 기록에는 <command-message>도 스킬 본문도 없다."""
     info = remote_info(path)
-    return info.get("cse") or "-" if info.get("origin") == "scheduled_trigger" else None
+    return (info.get("cse") or "-") if info.get("origin") == "scheduled_trigger" else None
 
 
 def run_suffix(run_id):
