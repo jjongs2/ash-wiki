@@ -7,3 +7,4 @@
 | 보안·업데이트 | OTA           |
 | 네트워크      | CAN           |
 | 플랫폼        | AUTOSAR, RTOS |
+| 네트워크      | MOST          |

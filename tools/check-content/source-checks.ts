@@ -1258,8 +1258,15 @@ export const frontPage: SourceCheck = (tree) => {
       at(row.line, `다루는 주제 표의 행이 대문 구역 표와 다르다: ${tableRow(cells)}`)
   }
   const sections = new Set(expected.map((cells) => cells[0]))
-  for (const row of readme.rows.filter((row) => !sections.has(row.cells[0])))
-    at(row.line, `다루는 주제 표에 대문에 없는 구역 행이 있다: ${tableRow(row.cells)}`)
+  const seen = new Set<string>()
+  for (const row of readme.rows) {
+    const section = row.cells[0]
+    if (!sections.has(section))
+      at(row.line, `다루는 주제 표에 대문에 없는 구역 행이 있다: ${tableRow(row.cells)}`)
+    else if (seen.has(section))
+      at(row.line, `다루는 주제 표에 같은 구역 행이 또 있다: ${tableRow(row.cells)}`)
+    seen.add(section)
+  }
   return violations
 }
 
