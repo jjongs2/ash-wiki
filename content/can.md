@@ -2,6 +2,7 @@
 title: CAN
 tags:
   - network/can
+  - network/vehicle-bus
 aliases:
   - Controller Area Network
 verified: 2026-09-27

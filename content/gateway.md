@@ -2,6 +2,7 @@
 title: 게이트웨이
 tags:
   - hardware/ee-architecture
+  - network/vehicle-bus
 verified: 2026-09-29
 ---
 
@@ -9,7 +10,7 @@ ISO/IEC 2382:2015는 **게이트웨이**(gateway)를 네트워크 구조가 서�
 
 차량에서는 [[can|CAN]], [[lin|LIN]], [[flexray|FlexRay]], [[ethernet|이더넷]]처럼 서로 다른 차량 네트워크를 잇는 ECU가 게이트웨이 역할을 한다.[@nxp-autogwdevwpus-2018][@autosar-cp-sws-pdurouter-2025] NXP 백서에 따르면 차량 게이트웨이는 호환되지 않는 네트워크 사이에서 데이터와 제어 정보를 변환해 둘이 통신할 수 있게 한다.[@nxp-autogwdevwpus-2018]
 
-SAE 기술 논문 931808에 따르면 데이터율 요구가 다른 하위 네트워크들은 브리지나 게이트웨이로 이어져 차량 전체의 데이터 일관성을 지킨다. 이 논문은 그 예로 J1850(Class B)과 CAN(Class C)을 잇는 브리지를 다룬다.[@sae-931808-1993] SAE Class는 [[vehicle-bus#비트율|차량 버스]]에서 다룬다.
+SAE 기술 논문 931808에 따르면 데이터율 요구가 다른 하위 네트워크들은 브리지나 게이트웨이로 이어져 차량 전체의 데이터 일관성을 지킨다. 이 논문은 그 예로 [[sae-j1850|J1850]](Class B)과 CAN(Class C)을 잇는 브리지를 다룬다.[@sae-931808-1993] SAE Class는 [[vehicle-bus#비트율|차량 버스]]에서 다룬다.
 
 ## 중앙 게이트웨이
 

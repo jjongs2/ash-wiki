@@ -14,11 +14,15 @@
 줄은 쓰는 표기의 가나다순으로 둔다. 라틴 문자는 한글보다 앞에 두고 대소문자를 가리지 않으며, 기호와 공백은 글자보다 앞에 둔다. 결정을 더하는 PR끼리 같은 줄을 고치지 않게 하려는 꼴이다.
 
 - (informative): (참고), 참고 Annex (#566). 표준의 informative Annex와 절. 꾸밈말 꼴도 같다. 예: "informative Annex로". 원문이 다른 말로 적으면 그 말. 예: 원문이 non-normative라 적은 장은 "(non-normative)". 조사는 괄호 앞의 Annex 이름이나 절 번호에 맞춘다. 예: "Annex U(informative)는"
+- 5 baud initialization, fast initialization: - (#667). K-Line 초기화일 때
+- action point: - (#667). FlexRay의 action point일 때
 - adaptive update: - (#432)
 - ADAS 풀이 Advanced Driver Assistance Systems: Advanced Driver Assistance System (#659)
 - Annex: 부속서, 부록 (#301). 원문이 Annex일 때. 원문이 Appendix인 "부록"은 그대로
 - aperiodic: 비주기 (#350). 합성어 포함. 예: aperiodic 태스크, aperiodic server. CANopen PDO의 주기·비주기 송신처럼 통신의 송신 방식은 예외
 - ASPICE: Automotive SPICE, A-SPICE (#231). 판을 붙이면 `ASPICE 4.1` 꼴. 정식 이름은 `automotive-spice` 머리말의 풀이에만, A-SPICE는 그 페이지의 alias로만. 문서 이름 "Automotive SPICE for Cybersecurity"와 슬러그는 예외
+- auto addressing: - (#667). LIN의 auto addressing일 때
+- balanced media: - (#667). ISO 21806의 MOST50 bPHY 매체일 때
 - baud: 보드레이트 (#496). 기호는 Bd. 음차 "보"도 쓰지 않는다. "Baud Rate Prescaler" 같은 이름은 그대로
 - Boolean: 불리언 (#579). 합성어 포함. 예: Boolean 식, Boolean 연산자. 번역어 "불"도 쓰지 않는다.
 - CAN CC 풀이 CAN classic: CAN CC(CC: classic), CAN CC(Classical CAN), CAN classic(CC) (#564)
@@ -33,6 +37,7 @@
 - context switch: 문맥 전환 (#142)
 - Conversation: 대화 (#579). 사용자 스토리의 3C(Card, Conversation, Confirmation)일 때
 - counter: 카운터 (#257). OSEK·AUTOSAR OS 객체일 때. 다른 counter는 이 결정에 들지 않는다.
+- CXPI 풀이 Clock Extension Peripheral Interface: Clock eXtension Peripheral Interface (#667). 근거는 SAE J3076, JSAE, Infineon, ROHM. ISO 20794의 "Clock extension peripheral interface"는 ISO 제목의 sentence case라 같은 철자다
 - Cyber Resilience Act: EU 사이버 회복력법 (#438)
 - cybersecurity goal: 사이버보안 목표 (#288)
 - data-based, behavior-based, rule-based: 데이터 기반 (#385). CTAL-TA 강의계획서의 블랙박스 기법 세 갈래일 때. "데이터 기반 테스트"는 data-driven testing
@@ -49,10 +54,13 @@
 - Kanban: 칸반 (#393)
 - KDF 풀이 Key Derivation Function: Key-Derivation Function (#498)
 - KEM 풀이 Key-Encapsulation Mechanism: Key Encapsulation Mechanism (#498)
+- key word: - (#667). ISO 9141의 key word일 때
 - LdCom 풀이 Large Data COM: - (#440). 근거는 SWS BSWGeneral R24-11 부록 A
 - MAC 풀이 Medium Access Control: Media Access Control (#165). 출처마다의 풀이를 비교하는 문장은 예외
+- NAD 풀이 node address: node address for responder nodes (#667). 근거는 ISO 17987-3:2025. ISO 17987-1:2025의 용어 이름 node address for diagnostics는 그대로
 - notification: 통지 (#257). AUTOSAR 모듈이 부르는 notification 콜백일 때. 동사로 쓴 자리("통지받는다")와 그 밖의 통지는 "통지"
 - OBD 풀이 On-Board Diagnostics: On-Board Diagnosis (#496)
+- offset correction, rate correction: - (#667). FlexRay 클록 동기화일 때
 - OOPSLA 풀이 Object-Oriented Programming, Systems, Languages, and Applications: Object-Oriented Programming, Systems, Languages & Applications (#291)
 - OSEK OS: OSEK/VDX OS (#257). OS를 가리킬 때. 명세를 가리키는 "OSEK/VDX OS"는 그대로. 예: "OSEK/VDX OS 2.2.3 명세"
 - PKI: 공개 키 기반 구조 (#498). 제목과 본문은 약어, 한국어 이름은 `public-key-infrastructure`의 alias로만
