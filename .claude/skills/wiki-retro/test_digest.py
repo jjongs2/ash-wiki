@@ -332,9 +332,15 @@ class VersionTest(unittest.TestCase):
     def test_fetched_routine_run_takes_origin_main_at_run_time(self):
         remote(stem_of(self.transcript), RUN, "scheduled_trigger")
         row = self.version(entry("user", "/wiki-news 2026-w01"), first_ts="2026-01-15T00:00:00Z")
-        self.assertEqual(row[1:3], ["-", self.v1[:12]])
+        self.assertEqual(row[1:3], ["wiki-news", self.v1[:12]])
         self.assertIn("루틴 실행", row[3])
-        self.assertIn("트리거의 프롬프트", row[3])
+        self.assertIn("시작 시각의 origin/main", row[3])
+
+    def test_fetched_cloud_session_takes_its_slash_command_at_start(self):
+        remote(stem_of(self.transcript), "cse_02Web", "web_claude_ai")
+        row = self.version(entry("user", "/wiki-news 2026-w01"), first_ts="2026-01-15T00:00:00Z")
+        self.assertEqual(row[1:3], ["wiki-news", self.v1[:12]])
+        self.assertIn("슬래시 명령", row[3])
 
     def commit_with_agent(self):
         agent = os.path.join(self.repo, ".claude/agents/source-verifier.md")
@@ -581,11 +587,22 @@ class CandidatesTest(unittest.TestCase):
         self.assertEqual(rows[OTHER][5:], ["-", "-"])
 
     def test_fetched_routine_run_is_a_candidate_without_a_command_mark(self):
-        remote(self.transcript(UUID, entry("user", "/wiki-news 2026-w01")), RUN, "scheduled_trigger")
-        remote(self.transcript(OTHER, entry("user", "/wiki-news 2026-w01")), "cse_02Web", "web")
+        remote(self.transcript(UUID, entry("user", "이번 주 소식을 모아 줘")), RUN, "scheduled_trigger")
+        remote(self.transcript(OTHER, entry("user", "이번 주 소식을 모아 줘")), "cse_02Web", "web_claude_ai")
         rows = self.candidates()
         self.assertEqual(list(rows), [UUID])
         self.assertEqual(rows[UUID][1], f"루틴 실행({RUN})")
+
+    def test_slash_command_starts_a_skill_only_in_a_fetched_cloud_record(self):
+        remote(self.transcript(UUID, entry("user", "/wiki-ingest #18")), "cse_02Web", "web_claude_ai")
+        remote(self.transcript(RETRO.replace("9", "8"), entry("user", "/wiki-news\n<system-reminder>fired</system-reminder>")), RUN, "scheduled_trigger")
+        self.transcript(OTHER, entry("user", "/wiki-ingest #18"))
+        rows = self.candidates()
+        self.assertEqual(sorted(r[1] for r in rows.values()), ["wiki-ingest", f"루틴 실행({RUN}),wiki-news"])
+
+    def test_routine_run_started_by_hand_is_a_candidate(self):
+        remote(self.transcript(UUID, entry("user", "/wiki-news 2026-w01")), RUN, "force_run_trigger")
+        self.assertEqual(self.candidates()[UUID][1], f"루틴 실행({RUN}),wiki-news")
 
     def test_run_marked_under_its_old_run_id_is_left_out(self):
         remote(self.transcript(UUID, entry("user", "/wiki-news 2026-w01")), RUN, "scheduled_trigger")
@@ -611,7 +628,7 @@ class CandidatesTest(unittest.TestCase):
         remote(stem_of(fetched), RUN, "scheduled_trigger")
         self.paths.append(fetched)
         self.transcript(UUID, entry("user", "/wiki-news 2026-w01"), entry("user", "teleport로 이어 받은 뒤의 글"))
-        self.assertEqual(self.candidates()[UUID][1], f"루틴 실행({RUN})")
+        self.assertEqual(self.candidates()[UUID][1], f"루틴 실행({RUN}),wiki-news")
 
     def test_session_in_several_places_is_one_row_from_the_largest_copy(self):
         command = entry("user", "<command-message>wiki-verify</command-message>")

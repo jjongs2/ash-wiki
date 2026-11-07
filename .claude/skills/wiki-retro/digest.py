@@ -37,9 +37,11 @@ RemoteTrigger로 루틴에 넘긴 세션 가운데 analyzed.tsv에 없고 이 �
 "(루틴)"을 단다. 기록을 주지 않으면 ~/.claude/projects/*ash-wiki*/의 기록을 본다.
 같은 세션의 기록이 여러 자리(백업 사본과 원본)에 있으면 하나로 센다. remote.json이 있는
 것, 그다음 가장 큰 것, 크기가 같으면 이 컴퓨터의 원본을 고른다.
-받아 둔 클라우드 기록은 세션 폴더에 remote.json이 있다. 그 origin이 scheduled_trigger인
-루틴 실행은 기록에 스킬 실행의 표시가 없어도 후보이고, 스킬 열에 "루틴 실행(<cse_…>)"을
-찍는다. remote.json의 실행 id가 analyzed.tsv의 옛 줄에 있으면 뺀다. --runs로 받은
+받아 둔 클라우드 기록은 세션 폴더에 remote.json이 있다. 그 origin이 ROUTINE_ORIGINS인
+루틴 실행(손으로 돌린 실행 포함)은 기록에 스킬 실행의 표시가 없어도 후보이고, 스킬 열에
+"루틴 실행(<cse_…>)"을 찍는다. 받아 둔
+클라우드 기록에는 <command-message>도 스킬 본문도 없어, 사용자 글 첫머리의 /wiki-…
+슬래시 명령을 스킬 실행으로 센다. 로컬 기록에서는 세지 않는다. remote.json의 실행 id가 analyzed.tsv의 옛 줄에 있으면 뺀다. --runs로 받은
 실행 id(session_…이나 cse_…) 가운데 받아 둔 기록도 옛 줄도 없는 것은 스킬 열이
 "루틴 실행(받지 않음)"인 줄로 끝에 찍는다. 저장소 루트에서 돌린다.
 
@@ -48,8 +50,9 @@ RemoteTrigger로 루틴에 넘긴 세션 가운데 analyzed.tsv에 없고 이 �
 다르면 origin/main 역사에서 본문이 같은 커밋으로 고친다. 이어서 세션이 띄운 에이전트
 가운데 첫 스킬의 버전(스킬이 없으면 위 버전)의 .claude/agents/에 있는 것을 그 파일과
 버전으로 한 줄씩 찍는다. 역사에는 있는데 그 버전에 없는 에이전트는 버전 자리에 "-"를
-찍는다. 루틴 실행(remote.json의 origin이 scheduled_trigger)은 스킬 본문이 없어, 스킬
-자리에 "-"를, 버전 자리에 실행 시각의 origin/main을 찍는다. 저장소 루트에서 돌린다.
+찍는다. 루틴 실행(remote.json의 origin이 ROUTINE_ORIGINS)과 클라우드 세션은 스킬 본문이 없다. 그래서 받아 둔
+클라우드 기록은 스킬 자리에 첫 프롬프트의 슬래시 명령(없으면 "-")을, 버전 자리에 시작
+시각의 origin/main을 찍는다. 저장소 루트에서 돌린다.
 
 소스 노트를 연 도구 호출은 입력과 결과를 지우고, 그 입력을 <이름>-notes.txt에
 모은다. 입력에 노트 디렉터리(ASH_WIKI_NOTES의 값, ~나 $HOME으로 쓴 꼴, 백업 사본의
@@ -75,6 +78,8 @@ from datetime import date
 NOTES = os.environ.get("ASH_WIKI_NOTES", "").rstrip("/")
 ARCHIVE = os.path.expanduser("~/documents/ash-wiki-retro")
 SESSIONS = os.path.expanduser("~/.claude/projects/*ash-wiki*/*.jsonl")
+# 루틴 실행의 remote.json origin. force_run_trigger는 RemoteTrigger의 run으로 손으로 돌린 실행이다.
+ROUTINE_ORIGINS = ("scheduled_trigger", "force_run_trigger")
 TRANSCRIPTS = os.environ.get("CLAUDE_TRANSCRIPTS_ROOT") or os.path.expanduser("~/.local/share/claude-transcripts")
 NOTE_REFS = ("$ASH_WIKI_NOTES", "${ASH_WIKI_NOTES")
 PERSISTED = re.compile(r"tool-results/[\w.-]+")
@@ -89,11 +94,13 @@ WIKI_SKILL = r"wiki-[a-z]+(?:-[a-z]+)*|reader-testing"
 SKILL_DIR = re.compile(rf"Base directory for this skill: \S*?(\.claude/skills/(?:{WIKI_SKILL}))\n")
 COMMAND_SKILL = re.compile(rf"<command-message>({WIKI_SKILL})</command-message>")
 ROUTINE_SKILL = re.compile(rf'"content": "/({WIKI_SKILL})\b')
+# 받아 둔 클라우드 기록은 슬래시 명령을 사용자 글 그대로 남기고, <command-message>도 스킬 본문도 없다.
+SLASH_SKILL = re.compile(rf"/({WIKI_SKILL})(?![A-Za-z0-9_-])")
 GH_WRITE = re.compile(r"\bgh (?:pr|issue) (?:create|comment)\b")
 GITHUB_URL = re.compile(r"https://github\.com/[\w.-]+/[\w.-]+/(?:pull|issues)/\d+(?:#issuecomment-\d+)?")
 HANDOFF = re.compile(r"/documents/ash-wiki-handoff/.*\.md$")
 AGENTS = ".claude/agents"
-CANDIDATE_MARKS = ("<command-message>", '"Skill"', '"RemoteTrigger"', "custom-title", "gh ", "github.com/", "ash-wiki-handoff")
+CANDIDATE_MARKS = ("<command-message>", '"/wiki-', '"/reader-testing', '"Skill"', '"RemoteTrigger"', "custom-title", "gh ", "github.com/", "ash-wiki-handoff")
 
 
 def homes():
@@ -428,8 +435,12 @@ def session_version(path):
         return
     skills = called_skills(entries)
     run = routine_run(path)
-    if run:
-        print(f"{uuid}\t-\t{commit[:12]}\t루틴 실행({run}). {how}. 스킬은 트리거의 프롬프트로 정한다")
+    slashed = [] if skills or not remote_info(path) else slash_skills(entries)
+    if run or slashed:
+        kind = f"루틴 실행({run})" if run else "클라우드 세션"
+        note = "스킬 본문이 없어 첫 프롬프트의 슬래시 명령으로 정함" if slashed else "스킬은 트리거의 프롬프트로 정한다"
+        for name in slashed or ["-"]:
+            print(f"{uuid}\t{name}\t{commit[:12]}\t{kind}. {how}. {note}")
     elif not skills:
         print(f"{uuid}\t-\t{commit[:12]}\t{how}. 스킬 본문 없음(루틴에 넘긴 세션, 에이전트만 띄운 세션 등)")
     versions = []
@@ -496,6 +507,19 @@ def save_report(archive, path, uuid, first):
     print(f"{out_dir}/report.md")
 
 
+def slash_skill(entry):
+    """사용자 글이 슬래시 명령으로 시작하면 그 위키 스킬. 받아 둔 클라우드 기록에만 쓴다."""
+    if entry.get("type") != "user":
+        return []
+    texts = [b.get("text", "") for b in blocks(entry.get("message")) if b.get("type") == "text"]
+    match = SLASH_SKILL.match(texts[0].lstrip()) if texts else None
+    return [match.group(1)] if match else []
+
+
+def slash_skills(entries):
+    return list(dict.fromkeys(s for entry in entries for s in slash_skill(entry)))
+
+
 def invoked_wiki_skills(block):
     if block.get("type") == "text":
         match = COMMAND_SKILL.match(block.get("text", ""))
@@ -522,6 +546,7 @@ def agents_at_version(path, in_history):
 def candidate_row(path, in_history):
     skills, urls, handoffs = [], [], []
     start, title, writes = "", "", set()
+    cloud = bool(remote_info(path))
     with open(path) as transcript:
         for line in transcript:
             if start and not any(m in line for m in CANDIDATE_MARKS):
@@ -533,6 +558,8 @@ def candidate_row(path, in_history):
             start = start or (entry.get("timestamp") or "")[:10]
             if entry.get("type") == "custom-title":
                 title = entry.get("customTitle") or title
+            if cloud:
+                skills += slash_skill(entry)
             for block in blocks(entry.get("message")):
                 skills += invoked_wiki_skills(block)
                 inp = block.get("input") or {}
@@ -584,7 +611,7 @@ def remote_info(path):
 def routine_run(path):
     """루틴 실행이면 실행 id(cse_…). 루틴 실행의 기록에는 <command-message>도 스킬 본문도 없다."""
     info = remote_info(path)
-    return (info.get("cse") or "-") if info.get("origin") == "scheduled_trigger" else None
+    return (info.get("cse") or "-") if info.get("origin") in ROUTINE_ORIGINS else None
 
 
 def run_suffix(run_id):
