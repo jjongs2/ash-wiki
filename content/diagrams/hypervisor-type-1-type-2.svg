@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -4.5 564 324.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="Type-1 하이퍼바이저와 Type-2 하이퍼바이저">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -4.5 564 324.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="Type 1 하이퍼바이저와 Type 2 하이퍼바이저">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
 
   <text x="20" y="24" font-size="12" fill="var(--text, #727981)">Arm의 AArch64 가상화 가이드가 말하는 두 갈래</text>
 
   <!-- 갈래 이름 -->
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="145" y="54">Type-1(standalone)</text>
-    <text x="419" y="54">Type-2(hosted)</text>
+    <text x="145" y="54">Type 1(standalone)</text>
+    <text x="419" y="54">Type 2(hosted)</text>
     <text x="145" y="72" font-size="12">하이퍼바이저가 하드웨어를 모두 다스림</text>
     <text x="419" y="72" font-size="12">호스트 운영체제가 하드웨어를 모두 다스림</text>
   </g>

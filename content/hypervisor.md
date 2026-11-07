@@ -18,7 +18,7 @@ verified: 2026-11-07
 
 Arm의 Armv8-R 가상화 가이드에 따르면, ECU마다 프로세서가 [[rtos|RTOS]]를 돌리는 차량에서 ECU의 처리를 더 적은 프로세서로 모으면 제조 비용과 공간, 차량 무게가 준다. 이렇게 통합한 시스템에서도 ECU마다 RTOS가 돌지만, 그 RTOS는 하이퍼바이저가 다스리는 하드웨어 시스템 하나 위에서, 하이퍼바이저가 관리하는 가상 머신 안의 게스트 운영체제로 돈다.[@arm-102909-2026]
 
-Renesas는 2022년 RH850/U2x MCU와 ETAS의 하이퍼바이저 RTA-HVR을 묶은 ECU 가상화 플랫폼을 내놓았다. 이 플랫폼으로 MCU 기반의 [[ee-architecture#존 아키텍처|존]] ECU 하나에 논리 ECU 여럿을 둘 수 있다. RH850/U2x는 하이퍼바이저 하드웨어 지원과, freedom from interference를 위한 안전·보안 기능을 갖춘다. RTA-HVR은 하드웨어 가상화를 지원하는 MCU용 하이퍼바이저로, RH850/U2x의 하드웨어 가상화 기능으로 가상 머신을 하나 이상 만든다. 가상 머신끼리는 공간으로는 RH850/U2x의 memory protection unit과 guard 기능으로, 시간으로는 RTA-HVR의 VM 스케줄러로 떼어 놓는다. RTA-HVR의 가상 머신 하나는 가상 CPU 코어 하나 이상과 장치 메모리 공간의 일부, 주변장치 묶음으로 이뤄진다.[@renesas-ecu-virtualization-2022]
+Renesas는 2022년 RH850/U2x MCU와 ETAS의 하이퍼바이저 RTA-HVR을 묶은 ECU 가상화 플랫폼을 내놓았다. 이 플랫폼으로 MCU 기반의 [[zone-controller|존 ECU]] 하나에 논리 ECU 여럿을 둘 수 있다. RH850/U2x는 하이퍼바이저 하드웨어 지원과, freedom from interference를 위한 안전·보안 기능을 갖춘다. RTA-HVR은 하드웨어 가상화를 지원하는 MCU용 하이퍼바이저로, RH850/U2x의 하드웨어 가상화 기능으로 가상 머신을 하나 이상 만든다. 가상 머신끼리는 공간으로는 RH850/U2x의 memory protection unit과 guard 기능으로, 시간으로는 RTA-HVR의 VM 스케줄러로 떼어 놓는다. RTA-HVR의 가상 머신 하나는 가상 CPU 코어 하나 이상과 장치 메모리 공간의 일부, 주변장치 묶음으로 이뤄진다.[@renesas-ecu-virtualization-2022]
 
 3세대 R-Car SoC(System on Chip)는 하이퍼바이저와 함께 쓰는 것을 전제로 설계되어, Arm CPU 코어와 그래픽 코어, 비디오·오디오 처리 블록 같은 기능에 가상화 기능이 있다. R-Car용 하이퍼바이저는 통합 콕핏과 커넥티드 카 응용에서 Linux, Android, RTOS 같은 게스트 운영체제 여럿을 칩 하나에서 서로 독립적으로 돌린다.[@renesas-rcar-virtualization-2018]
 
@@ -32,7 +32,7 @@ Popek과 Goldberg는 1974년 논문에서 VMM이 갖출 세 성질을 정했다.
 
 ## 하이퍼바이저의 갈래
 
-하이퍼바이저는 하드웨어 위에서 바로 도는 Type-1과, 호스트 운영체제 위에서 도는 Type-2로 나뉜다.[@mauser-mixed-criticality-2025] Arm의 AArch64 가상화 가이드에 따르면 Type-1(standalone) 하이퍼바이저는 호스트 운영체제 없이 하드웨어 위에서 돌며, CPU와 물리 메모리를 비롯한 하드웨어 플랫폼과 그 자원을 모두 다스린다. Type-2(hosted) 하이퍼바이저에서는 호스트 운영체제가 하드웨어를 모두 다스리고, 하이퍼바이저는 호스트 운영체제 안에서 돌며 그 기능으로 하드웨어를 관리한다. 두 갈래 모두 가상 머신을 두고, 가상 머신 안에서는 게스트 운영체제가 돈다.[@arm-102142-2025]
+하이퍼바이저는 하드웨어 위에서 바로 도는 Type 1과, 호스트 운영체제 위에서 도는 Type 2로 나뉜다.[@mauser-mixed-criticality-2025] Arm의 AArch64 가상화 가이드에 따르면 Type 1(standalone) 하이퍼바이저는 호스트 운영체제 없이 하드웨어 위에서 돌며, CPU와 물리 메모리를 비롯한 하드웨어 플랫폼과 그 자원을 모두 다스린다. Type 2(hosted) 하이퍼바이저에서는 호스트 운영체제가 하드웨어를 모두 다스리고, 하이퍼바이저는 호스트 운영체제 안에서 돌며 그 기능으로 하드웨어를 관리한다. 두 갈래 모두 가상 머신을 두고, 가상 머신 안에서는 게스트 운영체제가 돈다.[@arm-102142-2025]
 
 ![[diagrams/hypervisor-type-1-type-2.svg]]
 
@@ -52,7 +52,7 @@ NXP 앱노트 AN14355는 S32G3 기준 보드에서 QNX Hypervisor로 QNX와 Linu
 
 ## AArch64의 가상화 지원
 
-AArch64에서는 EL(Exception level) 가운데 EL2 이상에서 도는 소프트웨어가 가상화 제어로 stage 2 변환, EL1·EL0의 명령과 레지스터 접근 트랩, 가상 예외 생성을 쓸 수 있다. Type-1 하이퍼바이저는 EL2에서, 가상 머신은 EL0과 EL1에서 돈다.[@arm-102142-2025]
+AArch64에서는 EL(Exception level) 가운데 EL2 이상에서 도는 소프트웨어가 가상화 제어로 stage 2 변환, EL1·EL0의 명령과 레지스터 접근 트랩, 가상 예외 생성을 쓸 수 있다. Type 1 하이퍼바이저는 EL2에서, 가상 머신은 EL0과 EL1에서 돈다.[@arm-102142-2025]
 
 stage 2 변환에서는 게스트 운영체제가 다스리는 stage 1 변환이 가상 주소를 IPA(Intermediate Physical Address)로 옮기고, 하이퍼바이저가 다스리는 stage 2 변환이 IPA를 실제 물리 주소로 옮긴다. IPA 공간은 게스트 운영체제가 물리 메모리로 여기는 주소 공간이다. 하이퍼바이저는 stage 2 변환으로 가상 머신이 어느 메모리 매핑 자원에 닿고 그 자원이 가상 머신의 주소 공간 어디에 보일지를 정해, 가상 머신이 자기에게 배정된 자원만 보게 한다.[@arm-102142-2025]
 
