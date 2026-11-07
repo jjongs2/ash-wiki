@@ -26,6 +26,8 @@ VSS 6.1은 VSS를 이루는 세 요소로, 데이터 정의를 문법적으로 �
 
 VSS는 트리 하나만 두므로 모든 신호가 같은 뿌리에 속하고, 표준 카탈로그의 뿌리 branch는 `Vehicle`이다. 노드는 뿌리에서 그 노드까지의 이름을 점(.)으로 이어 부른다. 예를 들어 실내 룸미러의 dimming 상태는 `Vehicle.Cabin.RearviewMirror.Dimmed`다. 새 리프 노드를 정의하면 그 이름에 든 부모 branch도 모두 정의해야 한다.[@covesa-vss-6-1-2026]
 
+![[diagrams/vss-tree-node-name.svg]]
+
 표준 카탈로그의 노드 이름은 대문자로 시작하는 camel case로 쓰고 A-Z, a-z, 0-9만 쓴다. Boolean 신호의 이름은 `Is`로 시작해야 한다. 노드 이름은 비교할 때 대소문자를 가리지 않으므로, 전체 경로가 그 기준으로 겹치면 안 된다. 예를 들어 `Vehicle.Abc`와 `Vehicle.ABC`는 함께 둘 수 없다.[@covesa-vss-6-1-2026]
 
 문짝이나 축처럼 되풀이되는 branch와 데이터 항목은 정의를 되풀이해 적지 않고, 노드에 그 노드가 몇 번 나오는지를 적는 instance 개념으로 적는다.[@covesa-vss-6-1-2026]
@@ -53,7 +55,7 @@ COVESA는 VSS의 판을 버전 번호로 매기고, 현행판은 2026년 9월에
 - VSS 4.0(2023년 5월)은 VSS 3.1에서 실험적이던 struct 문법을 정식으로 지원했다.
 - VSS 5.0(2024년 10월)은 `Vehicle.OBD` branch를 deprecated로 했다.
 - VSS 6.0(2026년 1월)은 `Vehicle.OBD` branch를 빼고, 문자열 값을 정규식으로 제한하는 `pattern` 키워드를 더했다.
-- VSS 6.1(2026년 9월)은 허용값(`allowed`)의 대안으로 정수 바탕의 `enum`을 더하고, 대부분의 단위가 QUDT(Quantities, Units, Dimensions, and Data Types) 단위를 참조하게 했다.[@covesa-vss-6-1-2026][@covesa-vss-changelog-6-1-2026][@covesa-vss-releases-2026]
+- VSS 6.1(2026년 9월)은 허용값(`allowed`)의 대안으로 정수 바탕의 `enum`을 더하고, 대부분의 단위가 QUDT(Quantities, Units, Dimensions, and Data Types) 단위를 참조하게 했다.[@covesa-vss-6-1-2026][@covesa-vss-releases-2026][@covesa-vss-changelog-6-1-2026]
 
 ## 쓰는 곳
 
@@ -64,3 +66,5 @@ VSS는 차량 응용에서 의미가 잘 정해진 차량 정보를 주고받는
 AUTOSAR R25-11의 [[autosar-adaptive-platform|Adaptive Platform]]은 [[autosar-adaptive-platform#그 밖의 functional cluster|Automotive API Gateway]]가 외부 인터페이스(VISS/VSS)의 차량 데이터를 차량 안 `ara::com` 서비스 인터페이스의 데이터에 대응시키도록 정한다.[@autosar-ap-exp-platformdesign-2025]
 
 Eclipse Kuksa Databroker는 차량 안의 마이크로프로세서 기반 플랫폼에서 돌도록 만든, 자원을 적게 쓰는 VSS 신호 트리 구현이다. 차량의 응용은 Databroker의 gRPC API로 신호를 조회하고, 센서와 액추에이터의 값을 갱신하고, 관심 있는 신호의 변경을 통지받는다. Kuksa provider는 [[electronic-control-unit|ECU]]와 대개 [[can|CAN]] 버스나 [[some-ip|SOME/IP]] 같은 [[ethernet|이더넷]] 기반 프로토콜로 데이터를 주고받으며, 이 프로토콜의 저수준 메시지와 Databroker의 gRPC API 호출 사이를 변환해 Databroker와 ECU를 잇는다.[@eclipse-kuksa-databroker-2026]
+
+![[diagrams/kuksa-databroker-connections.svg]]

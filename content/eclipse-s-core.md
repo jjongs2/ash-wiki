@@ -27,6 +27,8 @@ Eclipse S-CORE 플랫폼은 위에서부터 다음 계층으로 이루어지고,
 - **Platform services**: Platform API 뒤의 구현. Base Services, Application Management, Communication, Diagnosis, Security로 묶인다.
 - **Common**: 다른 모든 부분이 함께 쓰는 기능. 예: 기본 라이브러리(baselibs)와 설정 관리[@eclipse-score-architecture-2026]
 
+![[diagrams/eclipse-s-core-platform-layers.svg]]
+
 2026년 11월 기준 아키텍처 그림은 블록마다 개발 중, 앞으로 개발, 개발 대상 아님, 범위 밖, 운영체제·하드웨어별 구현 가운데 하나의 상태를 색으로 표시한다. 개발 중인 블록은 아래와 같다.[@eclipse-score-architecture-2026]
 
 - Frameworks: FEO(Fixed Execution Order), DAAL(Deterministic App Abstraction Layer), AI Platform

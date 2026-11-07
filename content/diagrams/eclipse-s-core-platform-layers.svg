@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 556 390" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="13" fill="none" aria-label="Eclipse S-CORE 플랫폼의 계층">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 계층 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="16" width="450" height="30" rx="2" />
+    <rect x="20" y="58" width="450" height="30" rx="2" />
+    <rect x="20" y="94" width="450" height="30" rx="2" />
+    <rect x="20" y="300" width="450" height="30" rx="2" />
+    <rect x="20" y="336" width="450" height="30" rx="2" />
+  </g>
+  <!-- 블록을 담는 계층 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20" y="130" width="450" height="76" rx="2" />
+    <rect x="20" y="212" width="450" height="76" rx="2" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="32" y="35.5">응용</text>
+    <text x="32" y="77.5">Frameworks</text>
+    <text x="32" y="113.5">Platform API</text>
+    <text x="32" y="149.5">Platform services</text>
+    <text x="32" y="231.5">Common</text>
+    <text x="32" y="319.5">기존 운영체제</text>
+    <text x="32" y="355.5">하이퍼바이저·하드웨어</text>
+  </g>
+  <g font-size="12" text-anchor="end" fill="var(--text, #727981)">
+    <text x="458" y="77">분야별 framework</text>
+    <text x="458" y="113">C++·Rust 네이티브 API</text>
+    <text x="458" y="319">QNX, Linux 등</text>
+  </g>
+
+  <!-- 블록 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="32" y="158" width="88" height="36" rx="2" />
+    <rect x="126" y="158" width="82" height="36" rx="2" />
+    <rect x="214" y="158" width="98" height="36" rx="2" />
+    <rect x="318" y="158" width="70" height="36" rx="2" />
+    <rect x="394" y="158" width="64" height="36" rx="2" />
+    <rect x="32" y="240" width="88" height="36" rx="2" />
+    <rect x="126" y="240" width="120" height="36" rx="2" />
+  </g>
+  <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
+    <text x="76" y="180.5">Base Services</text>
+    <text x="167" y="173.5">Application</text>
+    <text x="167" y="187.5">Management</text>
+    <text x="263" y="180.5">Communication</text>
+    <text x="353" y="180.5">Diagnosis</text>
+    <text x="426" y="180.5">Security</text>
+    <text x="76" y="262.5">Baselibs</text>
+    <text x="186" y="262.5">Config Management</text>
+  </g>
+
+  <!-- S-CORE 플랫폼의 범위 -->
+  <path d="M480 58 H486 V288 H480" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="494" y="170.5">S-CORE</text>
+    <text x="494" y="184.5">플랫폼</text>
+  </g>
+</svg>
