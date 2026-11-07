@@ -8,9 +8,9 @@ aliases:
 verified: 2026-11-07
 ---
 
-[[autosar|AUTOSAR]] R25-11 용어집은 **하이퍼바이저**를 물리 머신 하나에서 가상 머신 여럿을 제공하고 관리하는 저수준 소프트웨어로 정의한다. 하이퍼바이저는 따로 된 소프트웨어일 수도, 운영체제의 기능으로 들어 있을 수도 있다. 가상 머신들이 함께 쓰는 물리 자원은 가상 머신 하나에 따로 배정하거나, 하이퍼바이저가 관리하는 가상 장치를 거쳐 쓰게 한다.[@autosar-fo-tr-glossary-2025]
+[[autosar|AUTOSAR]] R25-11 용어집은 **하이퍼바이저**를 물리 머신 하나에서 가상 머신 여럿을 제공하고 관리하는 저수준 소프트웨어로 정의한다. 하이퍼바이저는 따로 된 소프트웨어일 수도, 운영체제의 기능으로 들어 있을 수도 있다. 물리 자원은 가상 머신 하나에 전용으로 배정하거나, 하이퍼바이저가 관리하는 가상 장치를 거쳐 여러 가상 머신이 함께 쓰게 한다.[@autosar-fo-tr-glossary-2025]
 
-가상 머신(VM, Virtual Machine)을 관리하는 하이퍼바이저는 VMM(Virtual Machine Monitor)이라고도 부른다.[@guo-virtualisation-technologies-2025] 차량에서는 여러 [[electronic-control-unit|ECU]]의 기능을 프로세서나 MCU 하나에 모으면서, 그 기능들이 [[freedom-from-interference|freedom from interference]]를 지키도록 서로 떼어 놓는 데 가상화를 쓴다.[@renesas-ecu-virtualization-2022][@nxp-s32n55fs-2024] 감독자 모드와 사용자 모드, 재배치·경계 레지스터, 트랩을 갖추고 I/O 명령과 인터럽트는 없는 관례적인 3세대 컴퓨터 모형에서 민감 명령이 모두 특권 명령이면, VMM은 해롭지 않은 명령은 하드웨어가 바로 실행하게 두고 사용자 모드에서 트랩한 특권 명령은 받아 그 효과를 흉내 내어 가상 머신을 만들 수 있다.[@popek-formal-requirements-1974]
+가상 머신(VM, Virtual Machine)을 관리하는 하이퍼바이저는 VMM(Virtual Machine Monitor)이라고도 부른다.[@guo-virtualisation-technologies-2025] 차량에서는 여러 [[electronic-control-unit|ECU]]의 기능을 프로세서나 MCU 하나에 모으면서, 그 기능들이 [[freedom-from-interference|freedom from interference]]를 지키도록 서로 떼어 놓는 데 가상화를 쓴다.[@renesas-ecu-virtualization-2022][@nxp-s32n55fs-2024]
 
 ## 차량에서의 쓰임
 
@@ -18,7 +18,7 @@ verified: 2026-11-07
 
 Arm의 Armv8-R 가상화 가이드에 따르면, ECU마다 프로세서가 [[rtos|RTOS]]를 돌리는 차량에서 ECU의 처리를 더 적은 프로세서로 모으면 제조 비용과 공간, 차량 무게가 준다. 이렇게 통합한 시스템에서도 ECU마다 RTOS가 돌지만, 그 RTOS는 하이퍼바이저가 다스리는 하드웨어 시스템 하나 위에서, 하이퍼바이저가 관리하는 가상 머신 안의 게스트 운영체제로 돈다.[@arm-102909-2026]
 
-Renesas는 2022년 RH850/U2x MCU와 ETAS의 하이퍼바이저 RTA-HVR을 묶은 ECU 가상화 플랫폼을 내놓았다. 이 플랫폼으로 MCU 기반의 존 ECU 하나에 논리 ECU 여럿을 둘 수 있다. RH850/U2x는 하이퍼바이저 하드웨어 지원과, freedom from interference를 위한 안전·보안 기능을 갖춘다. RTA-HVR은 하드웨어 가상화를 지원하는 MCU용 하이퍼바이저로, RH850/U2x의 하드웨어 가상화 기능으로 가상 머신을 하나 이상 만든다. 가상 머신끼리는 공간으로는 RH850/U2x의 memory protection unit과 guard 기능으로, 시간으로는 RTA-HVR의 VM 스케줄러로 떼어 놓는다. 가상 머신 하나는 가상 CPU 코어 하나 이상과 장치 메모리 공간의 일부, 주변장치 묶음으로 이뤄진다.[@renesas-ecu-virtualization-2022]
+Renesas는 2022년 RH850/U2x MCU와 ETAS의 하이퍼바이저 RTA-HVR을 묶은 ECU 가상화 플랫폼을 내놓았다. 이 플랫폼으로 MCU 기반의 [[ee-architecture#존 아키텍처|존]] ECU 하나에 논리 ECU 여럿을 둘 수 있다. RH850/U2x는 하이퍼바이저 하드웨어 지원과, freedom from interference를 위한 안전·보안 기능을 갖춘다. RTA-HVR은 하드웨어 가상화를 지원하는 MCU용 하이퍼바이저로, RH850/U2x의 하드웨어 가상화 기능으로 가상 머신을 하나 이상 만든다. 가상 머신끼리는 공간으로는 RH850/U2x의 memory protection unit과 guard 기능으로, 시간으로는 RTA-HVR의 VM 스케줄러로 떼어 놓는다. 가상 머신 하나는 가상 CPU 코어 하나 이상과 장치 메모리 공간의 일부, 주변장치 묶음으로 이뤄진다.[@renesas-ecu-virtualization-2022]
 
 3세대 R-Car SoC(System on Chip)는 하이퍼바이저와 함께 쓰는 것을 전제로 설계되어, Arm CPU 코어와 그래픽 코어, 비디오·오디오 처리 블록 같은 기능에 가상화 기능이 있다. R-Car용 하이퍼바이저는 통합 콕핏과 커넥티드 카 응용에서 Linux, Android, RTOS 같은 게스트 운영체제 여럿을 칩 하나에서 서로 독립적으로 돌린다.[@renesas-rcar-virtualization-2018]
 
@@ -36,7 +36,7 @@ Popek과 Goldberg는 1974년 논문에서 VMM이 갖출 세 성질을 정했다.
 
 ![[diagrams/hypervisor-type-1-type-2.svg]]
 
-Goldberg는 1973년 학위논문에서 가상 컴퓨터 시스템을, VMM이 bare machine 위에서 도는 Type I과 호스트 운영체제 아래에서 확장 호스트(extended host) 위에 도는 Type II로 나눴다.[@goldberg-architectural-principles-1973]
+Goldberg는 1973년 학위논문에서 가상 컴퓨터 시스템을, VMM이 bare machine 위에서 도는 Type I과 VMM이 호스트 운영체제가 돌리는 프로그램으로서 확장 호스트(extended host) 위에서 도는 Type II로 나눴다.[@goldberg-architectural-principles-1973]
 
 ## 완전 가상화와 반가상화
 
@@ -52,13 +52,13 @@ NXP 앱노트 AN14355는 S32G3 기준 보드에서 QNX Hypervisor로 QNX와 Linu
 
 ## AArch64의 가상화 지원
 
-AArch64에서는 EL(Exception level) 가운데 EL2 이상에서 도는 소프트웨어가 가상화 제어 셋을 쓸 수 있다. stage 2 변환, EL1·EL0의 명령과 레지스터 접근 트랩, 가상 예외 생성이다. Type-1 하이퍼바이저는 EL2에서, 가상 머신은 EL0과 EL1에서 돈다.[@arm-102142-2025]
+AArch64에서는 EL(Exception level) 가운데 EL2 이상에서 도는 소프트웨어가 가상화 제어로 stage 2 변환, EL1·EL0의 명령과 레지스터 접근 트랩, 가상 예외 생성을 쓸 수 있다. Type-1 하이퍼바이저는 EL2에서, 가상 머신은 EL0과 EL1에서 돈다.[@arm-102142-2025]
 
 stage 2 변환에서는 게스트 운영체제가 다스리는 stage 1 변환이 가상 주소를 IPA(Intermediate Physical Address)로 옮기고, 하이퍼바이저가 다스리는 stage 2 변환이 IPA를 실제 물리 주소로 옮긴다. IPA 공간은 게스트 운영체제가 물리 메모리로 여기는 주소 공간이다. 하이퍼바이저는 stage 2 변환으로 가상 머신이 어느 메모리 매핑 자원에 닿고 그 자원이 가상 머신의 주소 공간 어디에 보일지를 정해, 가상 머신이 자기에게 배정된 자원만 보게 한다.[@arm-102142-2025]
 
 ![[diagrams/aarch64-stage-1-stage-2-translation.svg]]
 
-가상 머신은 IPA 공간의 주변장치 영역으로 실제 주변장치와 가상 주변장치를 쓴다. **할당된 주변장치**(assigned peripheral)는 가상 머신에 배정해 IPA 공간에 매핑한 실제 장치로, 가상 머신 안의 소프트웨어가 바로 다룬다. **가상 주변장치**는 하이퍼바이저가 소프트웨어로 흉내 내는 장치다. 그 stage 2 항목은 fault로 표시되어 있어 접근마다 stage 2 fault가 나서 EL2로 예외가 가고, 하이퍼바이저가 예외 처리기에서 그 접근을 흉내 낸다.[@arm-102142-2025]
+가상 머신은 IPA 공간의 주변장치 영역으로 실제 주변장치와 가상 주변장치를 쓴다. **할당된 주변장치**(assigned peripheral)는 가상 머신에 배정해 IPA 공간에 매핑한 실제 장치로, 가상 머신 안의 소프트웨어가 바로 다룬다. **가상 주변장치**는 하이퍼바이저가 소프트웨어로 흉내 내는 장치다. 가상 주변장치의 stage 2 변환표 항목은 fault로 표시되어 있어 접근마다 stage 2 fault가 나서 EL2로 예외가 가고, 하이퍼바이저가 예외 처리기에서 그 접근을 흉내 낸다.[@arm-102142-2025]
 
 DMA 컨트롤러 같은 다른 마스터도 가상 머신에 배정할 수 있다. 이 마스터는 stage 2 표를 따르지 않아, 가상 머신 안의 드라이버가 직접 다루면 가상 머신의 격리를 깰 수 있다. 그래서 그 마스터에 SMMU(System Memory Management Unit)를 붙이고, 하이퍼바이저가 SMMU를 설정해 stage 2 보호를 그 마스터에도 넓힌다. 그러면 마스터는 자신이 배정된 가상 머신과 같은 메모리를 본다. SMMU는 IOMMU라고도 부른다.[@arm-102142-2025]
 
