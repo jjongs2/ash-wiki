@@ -10,7 +10,7 @@ verified: 2026-11-07
 
 [[autosar|AUTOSAR]] R25-11 용어집은 **하이퍼바이저**를 물리 머신 하나에서 가상 머신 여럿을 제공하고 관리하는 저수준 소프트웨어로 정의한다. 하이퍼바이저는 따로 된 소프트웨어일 수도, 운영체제의 기능으로 들어 있을 수도 있다. 물리 자원은 가상 머신 하나에 전용으로 배정하거나, 하이퍼바이저가 관리하는 가상 장치를 거쳐 여러 가상 머신이 함께 쓰게 한다.[@autosar-fo-tr-glossary-2025]
 
-가상 머신(VM, Virtual Machine)을 관리하는 하이퍼바이저는 VMM(Virtual Machine Monitor)이라고도 부른다.[@guo-virtualisation-technologies-2025] 차량에서는 여러 [[electronic-control-unit|ECU]]의 기능을 프로세서나 MCU 하나에 모으면서, 그 기능들이 [[freedom-from-interference|freedom from interference]]를 지키도록 서로 떼어 놓는 데 가상화를 쓴다.[@renesas-ecu-virtualization-2022][@nxp-s32n55fs-2024]
+하이퍼바이저는 가상 머신(VM, Virtual Machine)을 관리하며, VMM(Virtual Machine Monitor)이라고도 부른다.[@guo-virtualisation-technologies-2025] 차량에서는 여러 [[electronic-control-unit|ECU]]의 기능을 프로세서나 MCU 하나에 모으면서, 그 기능들이 [[freedom-from-interference|freedom from interference]]를 지키도록 서로 떼어 놓는 데 가상화를 쓴다.[@renesas-ecu-virtualization-2022][@nxp-s32n55fs-2024]
 
 ## 차량에서의 쓰임
 
@@ -18,7 +18,7 @@ verified: 2026-11-07
 
 Arm의 Armv8-R 가상화 가이드에 따르면, ECU마다 프로세서가 [[rtos|RTOS]]를 돌리는 차량에서 ECU의 처리를 더 적은 프로세서로 모으면 제조 비용과 공간, 차량 무게가 준다. 이렇게 통합한 시스템에서도 ECU마다 RTOS가 돌지만, 그 RTOS는 하이퍼바이저가 다스리는 하드웨어 시스템 하나 위에서, 하이퍼바이저가 관리하는 가상 머신 안의 게스트 운영체제로 돈다.[@arm-102909-2026]
 
-Renesas는 2022년 RH850/U2x MCU와 ETAS의 하이퍼바이저 RTA-HVR을 묶은 ECU 가상화 플랫폼을 내놓았다. 이 플랫폼으로 MCU 기반의 [[ee-architecture#존 아키텍처|존]] ECU 하나에 논리 ECU 여럿을 둘 수 있다. RH850/U2x는 하이퍼바이저 하드웨어 지원과, freedom from interference를 위한 안전·보안 기능을 갖춘다. RTA-HVR은 하드웨어 가상화를 지원하는 MCU용 하이퍼바이저로, RH850/U2x의 하드웨어 가상화 기능으로 가상 머신을 하나 이상 만든다. 가상 머신끼리는 공간으로는 RH850/U2x의 memory protection unit과 guard 기능으로, 시간으로는 RTA-HVR의 VM 스케줄러로 떼어 놓는다. 가상 머신 하나는 가상 CPU 코어 하나 이상과 장치 메모리 공간의 일부, 주변장치 묶음으로 이뤄진다.[@renesas-ecu-virtualization-2022]
+Renesas는 2022년 RH850/U2x MCU와 ETAS의 하이퍼바이저 RTA-HVR을 묶은 ECU 가상화 플랫폼을 내놓았다. 이 플랫폼으로 MCU 기반의 [[ee-architecture#존 아키텍처|존]] ECU 하나에 논리 ECU 여럿을 둘 수 있다. RH850/U2x는 하이퍼바이저 하드웨어 지원과, freedom from interference를 위한 안전·보안 기능을 갖춘다. RTA-HVR은 하드웨어 가상화를 지원하는 MCU용 하이퍼바이저로, RH850/U2x의 하드웨어 가상화 기능으로 가상 머신을 하나 이상 만든다. 가상 머신끼리는 공간으로는 RH850/U2x의 memory protection unit과 guard 기능으로, 시간으로는 RTA-HVR의 VM 스케줄러로 떼어 놓는다. RTA-HVR의 가상 머신 하나는 가상 CPU 코어 하나 이상과 장치 메모리 공간의 일부, 주변장치 묶음으로 이뤄진다.[@renesas-ecu-virtualization-2022]
 
 3세대 R-Car SoC(System on Chip)는 하이퍼바이저와 함께 쓰는 것을 전제로 설계되어, Arm CPU 코어와 그래픽 코어, 비디오·오디오 처리 블록 같은 기능에 가상화 기능이 있다. R-Car용 하이퍼바이저는 통합 콕핏과 커넥티드 카 응용에서 Linux, Android, RTOS 같은 게스트 운영체제 여럿을 칩 하나에서 서로 독립적으로 돌린다.[@renesas-rcar-virtualization-2018]
 
@@ -36,11 +36,11 @@ Popek과 Goldberg는 1974년 논문에서 VMM이 갖출 세 성질을 정했다.
 
 ![[diagrams/hypervisor-type-1-type-2.svg]]
 
-Goldberg는 1973년 학위논문에서 가상 컴퓨터 시스템을, VMM이 bare machine 위에서 도는 Type I과 VMM이 호스트 운영체제가 돌리는 프로그램으로서 확장 호스트(extended host) 위에서 도는 Type II로 나눴다.[@goldberg-architectural-principles-1973]
+Goldberg는 1973년 학위논문에서 가상 컴퓨터 시스템을, VMM이 bare machine 위에서 도는 Type I과, VMM이 확장 호스트(extended host) 위에서 호스트 운영체제가 돌리는 프로그램으로 도는 Type II로 나눴다.[@goldberg-architectural-principles-1973]
 
 ## 완전 가상화와 반가상화
 
-가상화는 완전 가상화와 반가상화로 나뉜다.[@guo-virtualisation-technologies-2025][@mauser-mixed-criticality-2025] Arm의 AArch64 가상화 가이드에 따르면 엄밀한 뜻의 완전 가상화는 실제 물리 머신을 흉내 내고, 반가상화는 게스트 운영체제의 핵심 부분을 물리 머신 대신 가상 하드웨어 플랫폼에서 돌도록 고쳐 성능을 높인다. 이 가이드가 나온 2025년 무렵에는 Arm을 비롯해 가상화 하드웨어 지원이 있는 대부분의 아키텍처에서 게스트 운영체제를 대부분 고치지 않고 돌렸고, 블록 저장장치와 네트워크 같은 I/O 주변장치의 드라이버만 Virtio 같은 반가상화 장치와 드라이버를 썼다.[@arm-102142-2025]
+가상화는 완전 가상화와 반가상화로 나뉜다.[@guo-virtualisation-technologies-2025][@mauser-mixed-criticality-2025] Arm의 AArch64 가상화 가이드에 따르면 엄밀한 뜻의 완전 가상화는 실제 물리 머신을 흉내 내고, 반가상화는 게스트 운영체제의 핵심 부분을 물리 머신 대신 가상 하드웨어 플랫폼에서 돌도록 고쳐 성능을 높인다. 이 가이드가 나온 2025년 무렵에는 Arm을 비롯해 가상화 하드웨어 지원이 있는 대부분의 아키텍처에서 게스트 운영체제를 대부분 고치지 않고 돌렸고, 블록 저장장치와 네트워크 같은 I/O 주변장치의 드라이버만 virtio 같은 반가상화 장치와 드라이버를 썼다.[@arm-102142-2025]
 
 VIRTIO(Virtual I/O Device) 1.4 명세는 가상 장치를 환경이나 운영체제마다 따로 만든 방식이 아니라, 단순하고 효율적이며 표준적이고 확장할 수 있는 방식으로 가상 환경과 게스트에 주는 것을 목적으로 한다. virtio 장치는 가상 환경에 있지만 게스트에게는 물리 장치처럼 보이도록 설계되어, 게스트가 표준 드라이버와 장치 발견 방식을 그대로 쓸 수 있다.[@oasis-virtio-1-4-2026]
 
