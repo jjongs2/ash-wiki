@@ -10,7 +10,7 @@ edition: 2026
 status: 유효
 ---
 
-**VSS**(Vehicle Signal Specification)는 COVESA(커넥티드 차량을 위한 공통 접근법과 기술을 개발하는 비영리 단체)가 펴내는 명세로, 차량 신호를 구조적으로 정의하는 문법과 차량 신호의 카탈로그를 정한다.[@covesa-vss-6-1-2026][@covesa-about-2026] VSS는 공통 이름 공간으로 차량 데이터를 주고받게 해, 차량마다 다른 구현 세부를 가린다. 표준 카탈로그의 신호는 `Vehicle`을 뿌리로 한 트리 하나에 두고 뿌리부터 점으로 이은 경로로 부르며, 리프 노드인 신호는 sensor, actuator, attribute로 나뉜다.[@covesa-vss-6-1-2026]
+**VSS**(Vehicle Signal Specification)는 COVESA(커넥티드 차량을 위한 공통 접근법과 기술을 개발하는 비영리 단체)가 펴내는 명세로, 차량 신호를 구조적으로 정의하는 문법과 차량 신호의 카탈로그를 정한다.[@covesa-about-2026] VSS는 공통 이름 공간으로 차량 데이터를 주고받게 해, 차량마다 다른 구현 세부를 가린다. 표준 카탈로그의 신호는 `Vehicle`을 뿌리로 한 트리 하나에 두고 뿌리부터 점으로 이은 경로로 부르며, 리프 노드인 신호는 sensor, actuator, attribute로 나뉜다.[@covesa-vss-6-1-2026]
 
 COVESA는 GENIVI Alliance(GENIVI: 차량 내 시스템용 개방형 표준과 소프트웨어를 개발하던 단체)가 2021년 10월 이름을 바꾼 조직이다.[@covesa-genivi-rebrand-2021]
 
@@ -20,7 +20,7 @@ VSS 6.1은 VSS를 이루는 세 요소로, 데이터 정의를 문법적으로 �
 
 ### 명세 파일
 
-명세는 VSS 규칙 집합을 따르는 YAML 파일인 vspec 파일로 적고, vspec 파일은 include 지시자로 다른 vspec 파일을 끌어온다. 뿌리 파일은 `VehicleSignalSpecification.vspec`이다. 원본 vspec 파일은 도구로 다른 형식으로 바꿀 수 있고, 바꾼 형식은 VSS 릴리스마다 릴리스 산출물로 함께 나온다.[@covesa-vss-6-1-2026]
+명세는 VSS 규칙 집합을 따르는 YAML 파일인 vspec 파일로 적고, vspec 파일은 `include` 지시자로 다른 vspec 파일을 끌어온다. 뿌리 파일은 `VehicleSignalSpecification.vspec`이다. 원본 vspec 파일은 도구로 다른 형식으로 바꿀 수 있고, 바꾼 형식은 VSS 릴리스마다 릴리스 산출물로 함께 나온다.[@covesa-vss-6-1-2026]
 
 ### 트리와 노드 이름
 
@@ -59,9 +59,9 @@ COVESA는 VSS의 판을 버전 번호로 매기고, 현행판은 2026년 9월에
 
 ## 쓰는 곳
 
-COVESA에 따르면 VSS는 차량 안과 클라우드에서 차량 데이터를 기술하는 공통 언어 구실을 하고, 프로토콜과 기술에 매이지 않는 것을 설계 원칙의 하나로 둔다. VSS 파일(.vspec)은 사람과 기계가 함께 읽을 수 있다.[@covesa-vss-2026]
+COVESA에 따르면 VSS는 차량 안과 클라우드에서 차량 데이터를 기술하는 공통 언어 구실을 하고, 프로토콜과 기술에 매이지 않는 것을 설계 원칙의 하나로 둔다. VSS 파일(`.vspec`)은 사람과 기계가 함께 읽을 수 있다.[@covesa-vss-2026]
 
-VSS는 차량 응용에서 의미가 잘 정해진 차량 정보를 주고받는 표준으로 쓸 수 있다. [[vehicle-bus|차량 버스]]로 오가는 원시 데이터인 속성, 센서, 액추에이터와 인포테인먼트 쪽 데이터를 함께 다룬다. 표준 카탈로그의 데이터는 벤더에 매이지 않는 것을 목표로 하고, VSS 문법을 따르는 벤더 고유의 확장과 조정은 따로 정의할 수 있다. VSS 6.1 문서는 VSS 데이터에 접근하는 프로토콜로 COVESA의 VISS(Vehicle Information Service Specification)를 든다. VISS는 판에 따라 WebSocket, HTTP, [[mqtt|MQTT]], gRPC 같은 전송 프로토콜 위에서 JSON 메시지로 VSS 데이터에 접근하는 프로토콜을 정한다.[@covesa-vss-6-1-2026]
+VSS는 차량 응용에서 의미가 잘 정해진 차량 정보를 주고받는 표준으로 쓸 수 있다. [[vehicle-bus|차량 버스]]로 오가는 원시 데이터인 속성, 센서, 액추에이터와 인포테인먼트 쪽 데이터를 함께 다룬다. 표준 카탈로그의 데이터는 벤더에 매이지 않는 것을 목표로 하고, VSS 문법을 따르는 벤더 고유의 확장과 조정은 따로 정의할 수 있다. VSS 데이터에 접근하는 프로토콜로는 COVESA의 VISS(Vehicle Information Service Specification)가 있다. VISS는 자기 판에 따라 WebSocket, HTTP, [[mqtt|MQTT]], gRPC 같은 전송 프로토콜 위에서 JSON 메시지로 VSS 데이터에 접근하는 프로토콜을 정한다.[@covesa-vss-6-1-2026]
 
 AUTOSAR R25-11의 [[autosar-adaptive-platform|Adaptive Platform]]은 [[autosar-adaptive-platform#그 밖의 functional cluster|Automotive API Gateway]]가 외부 인터페이스(VISS/VSS)의 차량 데이터를 차량 안 `ara::com` 서비스 인터페이스의 데이터에 대응시키도록 정한다.[@autosar-ap-exp-platformdesign-2025]
 
