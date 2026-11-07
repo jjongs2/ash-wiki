@@ -11,7 +11,7 @@ verified: 2026-10-03
 
 ## 하드웨어와 소프트웨어의 분리
 
-SDV에서는 하드웨어를 바꾸지 않고 소프트웨어만 갱신해 기능을 더할 수 있다.[@ti-slyy236-2025][@bosch-software-defined-vehicle-2026] SDV는 응용 소프트웨어를 특정 하드웨어에 묶지 않는 플랫폼 위에서 개발해, 같은 소프트웨어를 여러 차종에 다시 쓸 수 있게 한다.[@ti-slyy236-2025][@nxp-future-of-sdvs-2024] NXP에 따르면 하드웨어와 소프트웨어를 떼어 내면 시제품 하드웨어가 나오기 전에도 소프트웨어를 개발할 수 있다.[@nxp-future-of-sdvs-2024]
+SDV에서는 하드웨어를 바꾸지 않고 소프트웨어만 갱신해 기능을 더할 수 있다.[@ti-slyy236-2025][@bosch-software-defined-vehicle-2026] SDV는 응용 소프트웨어를 특정 하드웨어에 묶지 않는 플랫폼 위에서 개발해, 같은 소프트웨어를 여러 차종에 다시 쓸 수 있게 한다.[@ti-slyy236-2025][@nxp-future-of-sdvs-2024]
 
 ![[diagrams/sdv-software-reuse-across-vehicles.svg]]
 
@@ -23,7 +23,7 @@ NXP에 따르면 SDV에서는 가상화와 소프트웨어 컨테이너로 소�
 
 SDV에서는 소프트웨어 개발이 차량의 생명주기 내내 이어진다.[@nxp-future-of-sdvs-2024][@bosch-software-defined-vehicle-2026] Bosch에 따르면 기존 차량은 공장을 떠날 때 가장 좋은 상태였고, 구성 선택지가 구매 시점에 한정됐다.[@bosch-software-defined-vehicle-2026] NXP에 따르면 기존 차량의 펌웨어 업데이트는 대개 정비 때만 적용하는 필수적이거나 제한된 것이었다.[@nxp-future-of-sdvs-2024]
 
-NXP는 시제품 하드웨어가 없어도 소프트웨어를 개발 주기 앞쪽에서 끝내는 것을 **shift left**, 판매한 뒤에도 차량을 업데이트하는 것을 **stretch right**라 부른다. 디지털 트윈으로 하드웨어 없이 대부분의 시험을 하더라도, 디지털 트윈 시뮬레이션의 동작을 실제 조건과 견주는 [[x-in-the-loop#HiL|HiL]](hardware-in-the-loop) 시험은 여전히 필요하다.[@nxp-future-of-sdvs-2024]
+NXP는 하드웨어와 소프트웨어를 떼어 내 시제품 하드웨어가 없어도 소프트웨어를 개발 주기 앞쪽에서 끝내는 것을 **shift left**, 판매한 뒤에도 차량을 업데이트하는 것을 **stretch right**라 부른다. 디지털 트윈으로 하드웨어 없이 대부분의 시험을 하더라도, 디지털 트윈 시뮬레이션의 동작을 실제 조건과 견주는 [[x-in-the-loop#HiL|HiL]](hardware-in-the-loop) 시험은 여전히 필요하다.[@nxp-future-of-sdvs-2024]
 
 TI 백서에 따르면 자동차 제조사는 SDV가 보낸 데이터로 특정 차종에 공통된 문제를 찾아, 큰 문제가 되기 전에 고칠 수 있다.[@ti-slyy236-2025]
 
