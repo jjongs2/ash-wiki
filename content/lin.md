@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**LIN**(Local Interconnect Network)은 [[serial-communication|UART]] 기반의 저속 네트워크다.[@iso-17987-1-obp-2025] LIN은 차량 ECU를 잇는 저비용 네트워크로 선 하나로 최대 20 kbit/s로 통신하고[@iso-17987-4-obp-2025], 네트워크에 하나뿐인 commander 노드가 프레임을 스케줄한다.[@iso-17987-1-obp-2025] 매체와 비트율은 [[vehicle-bus|차량 버스]]에서 다룬다.
+**LIN**(Local Interconnect Network)은 [[serial-communication|UART]] 기반의 저속 네트워크다.[@iso-17987-1-obp-2025] LIN은 차량 [[electronic-control-unit|ECU]]를 잇는 저비용 네트워크로 선 하나로 최대 20 kbit/s로 통신하고[@iso-17987-4-obp-2025], 네트워크에 하나뿐인 commander 노드가 프레임을 스케줄한다.[@iso-17987-1-obp-2025] 매체와 비트율은 [[vehicle-bus|차량 버스]]에서 다룬다.
 
 LIN 컨소시엄이 LIN 명세를 처음 개발했다.[@cia-lin-standards-2026][@ti-slla383a-2022] CiA에 따르면 LIN 컨소시엄은 LIN 2.0을 2003년에, LIN 2.1을 2006년에 냈다. LIN 2.2A는 컨소시엄이 닫힌 뒤인 2010년에 나왔지만 가장 많이 구현된 판 가운데 하나다.[@cia-lin-standards-2026] LIN은 2016년부터 ISO 17987 시리즈로 국제 표준이 되었다.[@cia-lin-standards-2026][@ti-slla383a-2022] LIN은 [[can|CAN]] 같은 상위 네트워크 아래에서 CAN의 대역폭이 필요 없는 장치를 잇는 하위 네트워크로 쓰인다.[@ti-slla383a-2022][@freescale-brinvehiclenet-2006] Freescale 브로셔에 따르면 LIN은 차량의 모터, 스위치, 센서, 램프를 싸게 잇는 네트워크다.[@freescale-brinvehiclenet-2006]
 
