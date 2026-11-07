@@ -71,6 +71,7 @@ describe("check-content CLI", { concurrency: false }, () => {
       "OK emphasis",
       "OK math",
       "OK svg",
+      "OK front-page",
       "OK build",
       "OK output",
     ])
@@ -103,6 +104,7 @@ describe("check-content CLI", { concurrency: false }, () => {
       "FAIL emphasis",
       "FAIL math",
       "FAIL svg",
+      "FAIL front-page",
       "OK build",
       "FAIL output",
     ])
@@ -217,6 +219,15 @@ describe("check-content CLI", { concurrency: false }, () => {
         "content/empty-name.svg:1",
         "content/blank-name.svg:1",
         "content/space-reference-name.svg:1",
+      ],
+      "front-page": [
+        "README.md:3",
+        "README.md:7",
+        "README.md:8",
+        "README.md:9",
+        "README.md:10",
+        "content/tags/bus/lin.md",
+        "content/tags/network/no-title.md",
       ],
       output: [
         "content/bad-citations.md:16",
@@ -413,6 +424,18 @@ describe("check-content CLI", { concurrency: false }, () => {
     for (const message of tilde) assert.match(message, /\\~/)
   })
 
+  test("README 주제 표가 대문 구역 표와 다르면 그 행과 대문의 행을 알려 준다", () => {
+    const report = runChecker("violation")
+    const readme = report.messages.get("front-page")!.filter((m) => m.startsWith("README.md"))
+    assert.deepStrictEqual(readme, [
+      "README.md:3: 다루는 주제 표에 대문의 구역 행이 없다: | 소프트웨어 플랫폼 | RTOS, AUTOSAR |",
+      "README.md:7: 다루는 주제 표의 구역 순서가 대문 구역 표와 다르다: 보안·업데이트 행은 네트워크 행 뒤에 온다",
+      "README.md:8: 다루는 주제 표의 행이 대문 구역 표와 다르다: | 네트워크 | CAN, Ethernet |",
+      "README.md:9: 다루는 주제 표에 대문에 없는 구역 행이 있다: | 플랫폼 | AUTOSAR, RTOS |",
+      "README.md:10: 다루는 주제 표에 같은 구역 행이 또 있다: | 네트워크 | MOST |",
+    ])
+  })
+
   test("빌드가 실패해도 파일 검사는 돌고 산출물 검사만 SKIP한다", () => {
     const report = runChecker("build-fail")
     assert.deepStrictEqual(report.statuses, [
@@ -426,6 +449,7 @@ describe("check-content CLI", { concurrency: false }, () => {
       "OK emphasis",
       "OK math",
       "OK svg",
+      "OK front-page",
       "FAIL build",
       "SKIP output",
     ])

@@ -1173,6 +1173,103 @@ export const svg: SourceCheck = async (tree) => {
   return violations
 }
 
+// 표 행 한 줄의 칸. 칸 안의 \|는 칸 경계가 아니다.
+const cellsOf = (line: string) =>
+  line
+    .trim()
+    .replace(/^\||\|$/g, "")
+    .split(unescapedPipe)
+    .map((cell) => cell.trim())
+
+const tableRow = (cells: string[]) => `| ${cells.join(" | ")} |`
+
+const tagLink = /\[\[tags\/([^\]|\\#]+)/g
+
+// 대문 구역 표(대문의 첫 표)의 행마다 구역 칸과 주제 칸의 태그. 머리 행처럼 태그 링크가 없는 행은 뺀다.
+function frontRows(index: Page | undefined): { section: string[]; topics: string[] }[] {
+  if (!index) return []
+  const lines = index.masked.split("\n")
+  const tagsIn = (cell: string | undefined) =>
+    [...(cell ?? "").matchAll(tagLink)].map((match) => match[1].trim())
+  const table = [...tableLines(index)]
+  return table
+    .filter((line, i) => line === table[0] + i)
+    .map((line) => cellsOf(lines[line - 1]))
+    .map((cells) => ({ section: tagsIn(cells[0]), topics: tagsIn(cells[1]) }))
+    .filter((row) => row.section.length + row.topics.length > 0)
+}
+
+const readmeFile = "README.md"
+const readmeHeading = "## 다루는 주제"
+
+// README의 다루는 주제 표에서 머리 행과 구분 행을 뺀 행. 제목이나 표가 없으면 null을 준다.
+function readmeRows(readme: string) {
+  const lines = readme.split("\n")
+  const heading = lines.findIndex((line) => line.trim() === readmeHeading)
+  if (heading < 0) return null
+  let i = heading + 1
+  while (lines[i]?.trim() === "") i++
+  const rows: { line: number; cells: string[] }[] = []
+  for (; lines[i]?.trim().startsWith("|"); i++) rows.push({ line: i + 1, cells: cellsOf(lines[i]) })
+  return rows.length < 2 ? null : { heading: heading + 1, rows: rows.slice(2) }
+}
+
+// 대문 구역 표가 표시 이름 파일의 태그를 모두 담고, README의 다루는 주제 표가 그 표와 같은가.
+// 탐색기와 대문이 이 표에서 구역과 주제를 읽는다(docs/engine.md의 대문 절).
+export const frontPage: SourceCheck = (tree) => {
+  const rows = frontRows(tree.pages.find((page) => page.kind === "index"))
+  const linked = new Set(rows.flatMap((row) => [...row.section, ...row.topics]))
+  const titles = new Map<string, string>()
+  const violations: Violation[] = []
+  for (const page of tree.pages) {
+    if (page.kind !== "tag" || page.name === "tags/index") continue
+    const tag = page.name.slice("tags/".length)
+    const title = fieldsOf(page).title
+    if (typeof title === "string") titles.set(tag, title)
+    if (linked.has(tag)) continue
+    const link = typeof title === "string" ? `[[${page.name}\\|${title}]]` : `[[${page.name}]]`
+    violations.push({ file: page.file, message: `대문 구역 표에 이 태그의 링크가 없다: ${link}` })
+  }
+
+  // 표시 이름 파일이 없는 태그는 wikilink 검사가 잡으므로 여기서는 태그를 그대로 이름으로 쓴다.
+  const names = (tags: string[]) => tags.map((tag) => titles.get(tag) ?? tag).join(", ")
+  const expected = rows.map((row) => [names(row.section), names(row.topics)])
+  const at = (line: number | undefined, message: string) =>
+    violations.push({ file: readmeFile, line, message })
+  const readme = tree.readme === null ? null : readmeRows(tree.readme)
+  if (!readme) {
+    at(undefined, `"${readmeHeading}" 제목 아래 표가 없다`)
+    return violations
+  }
+  // 행은 구역 이름으로 맞댄다. 자리로 맞대면 한 행이 빠졌을 때 그 뒤의 행이 모두 다르다고 나온다.
+  let last: { index: number; section: string } | undefined
+  for (const cells of expected) {
+    const index = readme.rows.findIndex((row) => row.cells[0] === cells[0])
+    const row = readme.rows[index]
+    if (!row) {
+      at(readme.heading, `다루는 주제 표에 대문의 구역 행이 없다: ${tableRow(cells)}`)
+      continue
+    }
+    if (last && index < last.index) {
+      const order = `${cells[0]} 행은 ${last.section} 행 뒤에 온다`
+      at(row.line, `다루는 주제 표의 구역 순서가 대문 구역 표와 다르다: ${order}`)
+    } else last = { index, section: cells[0] }
+    if (tableRow(row.cells) !== tableRow(cells))
+      at(row.line, `다루는 주제 표의 행이 대문 구역 표와 다르다: ${tableRow(cells)}`)
+  }
+  const sections = new Set(expected.map((cells) => cells[0]))
+  const seen = new Set<string>()
+  for (const row of readme.rows) {
+    const section = row.cells[0]
+    if (!sections.has(section))
+      at(row.line, `다루는 주제 표에 대문에 없는 구역 행이 있다: ${tableRow(row.cells)}`)
+    else if (seen.has(section))
+      at(row.line, `다루는 주제 표에 같은 구역 행이 또 있다: ${tableRow(row.cells)}`)
+    seen.add(section)
+  }
+  return violations
+}
+
 export const sourceChecks: [string, SourceCheck][] = [
   ["frontmatter", frontmatter],
   ["namespace", namespace],
@@ -1184,4 +1281,5 @@ export const sourceChecks: [string, SourceCheck][] = [
   ["emphasis", emphasis],
   ["math", math],
   ["svg", svg],
+  ["front-page", frontPage],
 ]

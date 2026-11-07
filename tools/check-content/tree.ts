@@ -49,6 +49,7 @@ export interface Tree {
   svgs: SvgFile[]
   tags: Set<string>
   bib: BibFile[]
+  readme: string | null // 트리 루트의 README.md. 없으면 null이다.
 }
 
 // 주간 소식(content/news/)은 위키 콘텐츠 밖의 페이지라 검사하지 않는다(ADR 0015). 빌드에는 든다.
@@ -71,7 +72,9 @@ export function loadTree(root: string): Tree {
   const bib = walk(bibDir)
     .filter((rel) => rel.endsWith(".bib"))
     .map((rel) => loadBib(`bib/${rel}`, fs.readFileSync(path.join(bibDir, rel), "utf8")))
-  return { root, pages, files: new Set(files), svgs, tags, bib }
+  const readmePath = path.join(root, "README.md")
+  const readme = fs.existsSync(readmePath) ? fs.readFileSync(readmePath, "utf8") : null
+  return { root, pages, files: new Set(files), svgs, tags, bib, readme }
 }
 
 function walk(dir: string, prefix = ""): string[] {
