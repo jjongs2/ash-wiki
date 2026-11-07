@@ -157,12 +157,11 @@ class DigestArchiveTest(unittest.TestCase):
         self.assertEqual(rows[0][1], "retro-uuid")
         self.assertRegex(rows[0][2], r"^\d{4}-\d{2}-\d{2}$")
 
-    def test_mark_takes_a_routine_run_id(self):
-        run = "cse_01AbCdEfGhIjKlMnOpQrStUv"
-        self.run_digest("--mark", "retro-uuid", run, UUID)
-        self.run_digest("--mark", "retro-uuid-2", run)
-        with open(os.path.join(self.archive, "analyzed.tsv")) as f:
-            self.assertEqual([line.split("\t")[0] for line in f], [run, UUID])
+    def test_mark_rejects_a_routine_run_id(self):
+        result = self.run_digest("--mark", "retro-uuid", "cse_01AbCdEfGhIjKlMnOpQrStUv", UUID, check=False)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("CLI uuid", result.stderr)
+        self.assertFalse(os.path.exists(os.path.join(self.archive, "analyzed.tsv")))
 
     def test_mark_rejects_a_path(self):
         result = self.run_digest("--mark", "retro-uuid", self.transcript, check=False)
@@ -314,6 +313,13 @@ class VersionTest(unittest.TestCase):
         self.assertEqual(row[1:3], ["-", self.v2[:12]])
         self.assertIn("스킬 본문 없음", row[3])
 
+    def test_fetched_routine_run_takes_origin_main_at_run_time(self):
+        remote(stem_of(self.transcript), RUN, "scheduled_trigger")
+        row = self.version(entry("user", "/wiki-news 2026-w01"), first_ts="2026-01-15T00:00:00Z")
+        self.assertEqual(row[1:3], ["-", self.v1[:12]])
+        self.assertIn("루틴 실행", row[3])
+        self.assertIn("트리거의 프롬프트", row[3])
+
     def commit_with_agent(self):
         agent = os.path.join(self.repo, ".claude/agents/source-verifier.md")
         os.makedirs(os.path.dirname(agent))
@@ -449,6 +455,15 @@ class ReportTest(unittest.TestCase):
 
 OTHER = "66666666-7777-8888-9999-000000000000"
 RETRO = "99999999-8888-7777-6666-555555555555"
+RUN = "cse_01AbCdEfGhIjKlMnOpQrStUv"
+
+
+def remote(session_dir, run, origin):
+    """받기 절차가 클라우드 기록의 세션 폴더에 남기는 remote.json."""
+    os.makedirs(session_dir, exist_ok=True)
+    suffix = run.removeprefix("cse_")
+    with open(os.path.join(session_dir, "remote.json"), "w") as f:
+        json.dump({"session": f"session_{suffix}", "cse": run, "uuid": os.path.basename(session_dir), "origin": origin}, f)
 
 
 def trigger(content):
@@ -474,14 +489,14 @@ class CandidatesTest(unittest.TestCase):
         self.paths.append(path)
         return stem_of(path)
 
-    def run_candidates(self):
+    def run_candidates(self, *extra):
         return subprocess.run(
-            [sys.executable, "-B", SCRIPT, "--archive", self.archive, "--candidates", RETRO, *self.paths],
+            [sys.executable, "-B", SCRIPT, "--archive", self.archive, "--candidates", RETRO, *self.paths, *extra],
             cwd=self.repo, env=env_without_notes(), capture_output=True, text=True,
         )
 
-    def candidates(self):
-        result = self.run_candidates()
+    def candidates(self, *extra):
+        result = self.run_candidates(*extra)
         self.assertEqual(result.returncode, 0, result.stderr)
         return {row[0]: row for row in (line.split("\t") for line in result.stdout.splitlines()[1:])}
 
@@ -548,6 +563,42 @@ class CandidatesTest(unittest.TestCase):
         rows = self.candidates()
         self.assertEqual(rows[UUID][1:], ["wiki-verify", "-", "2026-10-08", "CAN 재조사", "https://github.com/o/r/pull/7", handoff])
         self.assertEqual(rows[OTHER][5:], ["-", "-"])
+
+    def test_fetched_routine_run_is_a_candidate_without_a_command_mark(self):
+        remote(self.transcript(UUID, entry("user", "/wiki-news 2026-w01")), RUN, "scheduled_trigger")
+        remote(self.transcript(OTHER, entry("user", "/wiki-news 2026-w01")), "cse_02Web", "web")
+        rows = self.candidates()
+        self.assertEqual(list(rows), [UUID])
+        self.assertEqual(rows[UUID][1], f"루틴 실행({RUN})")
+
+    def test_run_marked_under_its_old_run_id_is_left_out(self):
+        remote(self.transcript(UUID, entry("user", "/wiki-news 2026-w01")), RUN, "scheduled_trigger")
+        os.makedirs(self.archive)
+        with open(os.path.join(self.archive, "analyzed.tsv"), "w") as f:
+            f.write(f"{RUN}\t{RETRO}\t2026-10-08\n")
+        self.assertEqual(self.candidates(), {})
+
+    def test_runs_not_fetched_are_rows_of_their_own(self):
+        remote(self.transcript(UUID, entry("user", "/wiki-news 2026-w01")), RUN, "scheduled_trigger")
+        os.makedirs(self.archive)
+        with open(os.path.join(self.archive, "analyzed.tsv"), "w") as f:
+            f.write(f"cse_03Old\t{RETRO}\t2026-10-08\n")
+        rows = self.candidates("--runs", RUN.replace("cse_", "session_"), "cse_02New", "cse_03Old")
+        self.assertEqual(list(rows), [UUID, "cse_02New"])
+        self.assertEqual(rows["cse_02New"][1:], ["루틴 실행(받지 않음)", "-", "-", "-", "-", "-"])
+
+    def test_session_in_several_places_is_one_row_from_the_largest_copy(self):
+        command = entry("user", "<command-message>wiki-verify</command-message>")
+        self.transcript(UUID, command, json.dumps({"type": "custom-title", "customTitle": "늦게 붙인 제목"}))
+        copy = os.path.join(self.tmp.name, "backup", "-home-u-ash-wiki", f"{UUID}.jsonl")
+        os.makedirs(os.path.dirname(copy))
+        with open(copy, "w") as f:
+            f.write(command + "\n")
+        self.paths.insert(0, copy)
+        result = self.run_candidates()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        rows = [line.split("\t") for line in result.stdout.splitlines()[1:]]
+        self.assertEqual([(r[0], r[4]) for r in rows], [(UUID, "늦게 붙인 제목")])
 
 
 if __name__ == "__main__":

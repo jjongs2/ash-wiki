@@ -1,9 +1,9 @@
 """세션 기록(jsonl)을 분석 에이전트가 읽을 요약본으로 줄이고, 회고가 분석한 세션을 적는다.
 
 python3 digest.py [--archive <폴더>] <기록.jsonl>...
-python3 digest.py [--archive <폴더>] --mark <회고 세션 uuid> <세션 uuid나 실행 id>...
+python3 digest.py [--archive <폴더>] --mark <회고 세션 uuid> <세션 uuid>...
 python3 digest.py [--archive <폴더>] --report <에이전트 기록> <세션 uuid> '<첫 줄>'
-python3 digest.py [--archive <폴더>] --candidates <이 세션 uuid> [<기록.jsonl>...]
+python3 digest.py [--archive <폴더>] --candidates <이 세션 uuid> [<기록.jsonl>...] [--runs <실행 id>...]
 python3 digest.py --version <기록.jsonl>...
 
 보관 폴더(기본 ~/documents/ash-wiki-retro)의 <uuid>/에, 기록마다 <이름>-main.md를,
@@ -17,8 +17,9 @@ report.md는 둔다. 작업 중 대기열로 온 메시지(서브에이전트 �
 않고, 뒤이어 user 줄로 차례대로 다시 온 메시지는 한 번만 쓴다.
 
 --mark는 보관 폴더의 analyzed.tsv에 세션 uuid, 회고 세션 uuid, 날짜를 한 줄씩
-더한다. 루틴 실행은 세션 uuid 대신 실행 id(cse_…)를 받는다. 이미 있는 것은 더하지
-않는다. 회고는 이 목록에 없는 세션과 루틴 실행을 분석한다.
+더한다. 루틴 실행도 기록 파일 이름의 CLI uuid로 적는다. 실행 id(cse_…)로 적힌 옛
+줄은 --candidates가 읽기만 한다. 이미 있는 것은 더하지 않는다. 회고는 이 목록에 없는
+세션과 루틴 실행을 분석한다.
 
 --report는 에이전트 기록의 마지막 SubagentHandback 메시지(없으면 마지막 어시스턴트
 글)를 첫 줄 아래에 붙여 <uuid>/report.md에 쓴다. 반환이 없거나 uuid가 아니면 쓰지
@@ -34,14 +35,20 @@ RemoteTrigger로 루틴에 넘긴 세션 가운데 analyzed.tsv에 없고 이 �
 않는다. URL은 기록에서 gh pr/issue create·comment가 돌려준 PR·이슈·코멘트이고,
 핸드오프는 세션이 쓰거나 고친 ash-wiki-handoff/의 파일이다. 루틴에 넘긴 스킬에는
 "(루틴)"을 단다. 기록을 주지 않으면 ~/.claude/projects/*ash-wiki*/의 기록을 본다.
-저장소 루트에서 돌린다.
+같은 세션의 기록이 여러 자리(백업 사본과 원본)에 있으면 가장 큰 것 하나로 센다.
+받아 둔 클라우드 기록은 세션 폴더에 remote.json이 있다. 그 origin이 scheduled_trigger인
+루틴 실행은 기록에 스킬 실행의 표시가 없어도 후보이고, 스킬 열에 "루틴 실행(<cse_…>)"을
+찍는다. remote.json의 실행 id가 analyzed.tsv의 옛 줄에 있으면 뺀다. --runs로 받은
+실행 id(session_…이나 cse_…) 가운데 받아 둔 기록도 옛 줄도 없는 것은 스킬 열이
+"루틴 실행(받지 않음)"인 줄로 끝에 찍는다. 저장소 루트에서 돌린다.
 
 --version은 기록마다 세션 버전을 찍는다. 버전은 worktree base(git worktree add 결과의 "HEAD is now at"),
 없으면 기록의 첫 timestamp 때의 origin/main이다. 기록의 스킬 본문이 그 버전의 SKILL.md와
 다르면 origin/main 역사에서 본문이 같은 커밋으로 고친다. 이어서 세션이 띄운 에이전트
 가운데 첫 스킬의 버전(스킬이 없으면 위 버전)의 .claude/agents/에 있는 것을 그 파일과
 버전으로 한 줄씩 찍는다. 역사에는 있는데 그 버전에 없는 에이전트는 버전 자리에 "-"를
-찍는다. 저장소 루트에서 돌린다.
+찍는다. 루틴 실행(remote.json의 origin이 scheduled_trigger)은 스킬 본문이 없어, 스킬
+자리에 "-"를, 버전 자리에 실행 시각의 origin/main을 찍는다. 저장소 루트에서 돌린다.
 
 소스 노트를 연 도구 호출은 입력과 결과를 지우고, 그 입력을 <이름>-notes.txt에
 모은다. 입력에 노트 디렉터리(ASH_WIKI_NOTES의 값, ~나 $HOME으로 쓴 꼴 포함)나 그
@@ -68,6 +75,7 @@ SESSIONS = os.path.expanduser("~/.claude/projects/*ash-wiki*/*.jsonl")
 NOTE_REFS = ("$ASH_WIKI_NOTES", "${ASH_WIKI_NOTES")
 PERSISTED = re.compile(r"tool-results/[\w.-]+")
 UUID = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
+# 옛 analyzed.tsv 줄의 루틴 실행 id. 새 줄은 루틴 실행도 CLI uuid로 적는다.
 RUN_ID = re.compile(r"^cse_[A-Za-z0-9]+$")
 HEADING = re.compile(r"#{1,6}\s")
 ISSUE_NUMBER = re.compile(r"#\d+")
@@ -262,10 +270,10 @@ def write(out_dir, name, path, label="", header=""):
     return [f"{name}.md"] if hidden else []
 
 
-def check_uuids(uuids, runs=False):
-    bad = [u for u in uuids if not UUID.match(u) and not (runs and RUN_ID.match(u))]
+def check_uuids(uuids, hint=""):
+    bad = [u for u in uuids if not UUID.match(u)]
     if bad:
-        sys.exit(f"세션 uuid{'나 실행 id' if runs else ''}가 아니다: {', '.join(bad)}")
+        sys.exit(f"세션 uuid가 아니다: {', '.join(bad)}{hint}")
 
 
 def subagent_records(path):
@@ -398,7 +406,10 @@ def session_version(path):
         print(f"{uuid}\t-\t-\t버전을 정하지 못함(첫 timestamp가 origin/main보다 이르다)")
         return
     skills = called_skills(entries)
-    if not skills:
+    run = routine_run(path)
+    if run:
+        print(f"{uuid}\t-\t{commit[:12]}\t루틴 실행({run}). {how}. 스킬은 트리거의 프롬프트로 정한다")
+    elif not skills:
         print(f"{uuid}\t-\t{commit[:12]}\t{how}. 스킬 본문 없음(루틴에 넘긴 세션, 에이전트만 띄운 세션 등)")
     versions = []
     for skill_dir, body in skills.items():
@@ -511,6 +522,9 @@ def candidate_row(path, in_history):
                 elif block.get("type") == "tool_result" and block.get("tool_use_id") in writes:
                     urls += GITHUB_URL.findall(result_text(block.get("content")))
     agents = agents_at_version(path, in_history)
+    run = routine_run(path)
+    if run:
+        skills.insert(0, f"루틴 실행({run})")
     if not skills and not agents:
         return None
     uuid = os.path.basename(stem(path))
@@ -521,13 +535,53 @@ def joined(items, sep=" "):
     return sep.join(dict.fromkeys(items)) or "-"
 
 
-def candidates(archive, retro, paths):
+def one_copy_each(paths):
+    """세션마다 가장 큰 기록 하나. 백업 사본은 원본보다 늦을 뿐이다."""
+    chosen = {}
+    for path in paths:
+        uuid = os.path.basename(stem(path))
+        if uuid not in chosen or os.path.getsize(path) > os.path.getsize(chosen[uuid]):
+            chosen[uuid] = path
+    return list(chosen.values())
+
+
+def remote_info(path):
+    """받기 절차가 클라우드 기록의 세션 폴더에 남긴 remote.json. 로컬 기록에는 없다."""
+    try:
+        with open(f"{stem(path)}/remote.json") as f:
+            return json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+
+def routine_run(path):
+    """루틴 실행이면 실행 id(cse_…). 루틴 실행의 기록에는 <command-message>도 스킬 본문도 없다."""
+    info = remote_info(path)
+    return info.get("cse") or "-" if info.get("origin") == "scheduled_trigger" else None
+
+
+def run_suffix(run_id):
+    return re.sub(r"^(?:session_|cse_)", "", run_id or "")
+
+
+def candidates(archive, retro, paths, runs=()):
     done = analyzed(archive) | {retro}
     in_history = agents_in_history()
-    rows = [candidate_row(p, in_history) for p in paths if os.path.basename(stem(p)) not in done]
+    # 옛 줄은 루틴 실행을 실행 id(cse_…)로 적었다.
+    old_runs = {x for x in done if RUN_ID.match(x)}
+    paths = one_copy_each(paths)
+    rows = [
+        candidate_row(p, in_history)
+        for p in paths
+        if os.path.basename(stem(p)) not in done and remote_info(p).get("cse") not in old_runs
+    ]
+    fetched = {run_suffix(remote_info(p).get("cse")) for p in paths} - {""}
+    unfetched = [f"cse_{s}" for s in dict.fromkeys(map(run_suffix, runs)) if s not in fetched and f"cse_{s}" not in old_runs]
     print("uuid\t스킬\t에이전트\t시작일\t제목\tURL\t핸드오프")
     for row in sorted((r for r in rows if r), key=lambda r: r[3]):
         print("\t".join(row))
+    for run in unfetched:
+        print("\t".join([run, "루틴 실행(받지 않음)", "-", "-", "-", "-", "-"]))
 
 
 def require_origin_main():
@@ -542,6 +596,7 @@ def main():
     parser.add_argument("--candidates", metavar="RETRO")
     parser.add_argument("--report", nargs=3, metavar=("AGENT", "UUID", "FIRST"))
     parser.add_argument("--version", action="store_true")
+    parser.add_argument("--runs", nargs="+", default=[], metavar="RUN")
     parser.add_argument("items", nargs="*")
     args = parser.parse_args()
     if args.version:
@@ -554,7 +609,7 @@ def main():
     if args.candidates:
         check_uuids([args.candidates])
         require_origin_main()
-        candidates(args.archive, args.candidates, args.items or sorted(glob.glob(SESSIONS)))
+        candidates(args.archive, args.candidates, args.items or sorted(glob.glob(SESSIONS)), args.runs)
         return
     os.makedirs(args.archive, exist_ok=True)
     if args.report:
@@ -565,7 +620,7 @@ def main():
     if not args.items:
         parser.error("기록이나 uuid가 필요하다")
     if args.mark:
-        check_uuids(args.items, runs=True)
+        check_uuids(args.items, ". 루틴 실행도 기록 파일 이름의 CLI uuid로 적는다")
         mark(args.archive, args.mark, args.items)
         return
     if not NOTES:
