@@ -41,7 +41,7 @@ $$
 
 ## SPC
 
-SENT는 원래 단방향이지만, SPC(Short PWM Code)를 쓰면 양방향 통신을 할 수 있다.[@nxp-an4856-2014][@microchip-ds70005145-2014] NXP 앱노트에 따르면 SPC의 통신은 반이중 동기 방식으로, 수신 측 MCU가 선을 정해진 시간 동안 low로 끌어 master trigger 펄스를 내고, 센서는 그 펄스의 폭이 정해진 범위 안일 때만 SENT 전송을 시작한다. SPC에서는 SENT 전송이 끝난 뒤 end pulse를 더 보내 CRC 니블을 끝내는 하강 에지를 주고, 그 뒤 선은 다음 master trigger 펄스까지 쉰다. 예를 들어 TLE4998C는 병렬로 이은 센서 최대 넷 가운데 어느 센서가 보낼지를 master trigger 펄스의 폭으로 고르는 모드도 둔다.[@nxp-an4856-2014]
+SENT는 원래 단방향이지만, SPC(Short PWM Code)를 쓰면 양방향 통신을 할 수 있다.[@nxp-an4856-2014][@microchip-ds70005145-2014] NXP 앱노트에 따르면 SPC의 통신은 반이중 동기 방식으로, 수신 측 MCU가 선을 정해진 시간 동안 low로 끌어 master trigger 펄스를 내고, 센서는 그 펄스의 폭이 정해진 범위 안일 때만 SENT 전송을 시작한다. 예를 들어 TLE4998C는 병렬로 이은 센서 최대 넷 가운데 어느 센서가 보낼지를 master trigger 펄스의 폭으로 고르는 모드도 둔다. SPC에서는 SENT 전송이 끝난 뒤 end pulse를 더 보내 CRC 니블 펄스를 끝내는 하강 에지를 주고, 그 뒤 선은 다음 master trigger 펄스까지 쉰다.[@nxp-an4856-2014]
 
 ![[diagrams/sent-spc-frame.svg]]
 
@@ -53,7 +53,7 @@ TLE4998C3C도 동기 모드에서 SENT 프레임 뒤에 end pulse를 보내, CRC
 
 ## 쓰는 곳
 
-NXP 앱노트에 따르면 SENT 센서의 대상 응용으로는 전동 조향, 스로틀 위치 감지, 페달 위치 감지, 공기 질량 유량 감지, 액위 감지 등이 있다. SENT는 [[lin|LIN]]이나 [[can|CAN]]보다 값싼 대안으로 볼 수도 있다.[@nxp-an4856-2014]
+NXP 앱노트에 따르면 SENT 센서의 대상 응용으로는 전동 조향, 스로틀 위치 감지, 페달 위치 감지, 공기 질량 유량 감지, 액위 감지 등이 있고, 센서에서 ECU로 고해상도 데이터를 보내는 데 SENT를 [[lin|LIN]]이나 [[can|CAN]]보다 값싼 대안으로 볼 수도 있다.[@nxp-an4856-2014]
 
 ## 아날로그 출력과의 차이
 

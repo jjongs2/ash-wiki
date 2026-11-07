@@ -1,33 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 10 554 113" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="J1850 프레임의 구성">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 10 426 103" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="J1850 프레임의 구성">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
 
   <!-- 프레임의 부분 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="20" width="40" height="46" />
-    <rect x="64" y="20" width="108" height="46" />
-    <rect x="176" y="20" width="80" height="46" />
-    <rect x="260" y="20" width="84" height="46" />
-    <rect x="348" y="20" width="40" height="46" />
-    <rect x="392.75" y="20.75" width="116.5" height="44.5" stroke-dasharray="5 4" />
-    <rect x="514" y="20" width="40" height="46" />
+    <rect x="20" y="20" width="40" height="60" />
+    <rect x="64" y="20" width="66" height="60" />
+    <rect x="134" y="20" width="66" height="60" />
+    <rect x="204" y="20" width="60" height="60" />
+    <rect x="268" y="20" width="40" height="60" />
+    <rect x="312.75" y="20.75" width="68.5" height="58.5" stroke-dasharray="5 4" />
+    <rect x="386" y="20" width="40" height="60" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="40" y="47">SOF</text>
-    <text x="118" y="39">헤더</text>
-    <text x="118" y="56">1바이트나 3바이트</text>
-    <text x="216" y="39">데이터</text>
-    <text x="216" y="56">0~8바이트</text>
-    <text x="302" y="39">CRC나 체크섬</text>
-    <text x="302" y="56">1바이트</text>
-    <text x="368" y="47">EOD</text>
-    <text x="451" y="39">in-frame response</text>
-    <text x="451" y="56">선택 사항</text>
-    <text x="534" y="47">EOF</text>
+    <text x="40" y="54">SOF</text>
+    <text x="97" y="38">헤더</text>
+    <text x="97" y="54">1바이트나</text>
+    <text x="97" y="70">3바이트</text>
+    <text x="167" y="46">데이터</text>
+    <text x="167" y="62">0~8바이트</text>
+    <text x="234" y="46">CRC나</text>
+    <text x="234" y="62">체크섬</text>
+    <text x="288" y="54">EOD</text>
+    <text x="347" y="38">in-frame</text>
+    <text x="347" y="54">response</text>
+    <text x="347" y="70">선택 사항</text>
+    <text x="406" y="54">EOF</text>
   </g>
 
-  <!-- 설명 -->
-  <g fill="var(--text, #727981)">
-    <text x="20" y="92">Freescale 앱노트에 따른 J1850 프레임. SOF, EOD, EOF는 구분자다.</text>
-    <text x="20" y="110">단일 바이트 헤더면 체크섬을, 1바이트 통합 헤더나 3바이트 헤더면 CRC를 담는다.</text>
-  </g>
+  <text x="20" y="102" fill="var(--text, #727981)">Freescale AN1212에 따른 J1850 프레임. SOF, EOD, EOF는 구분자다.</text>
 </svg>

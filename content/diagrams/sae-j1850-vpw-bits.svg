@@ -47,5 +47,5 @@
     <text x="356" y="156">128 µs</text>
     <text x="452" y="156">64 µs</text>
   </g>
-  <text x="28" y="184" font-size="12" fill="var(--text, #727981)">Freescale 앱노트에 따른 VPW. 펄스폭은 공칭값이다.</text>
+  <text x="28" y="184" font-size="12" fill="var(--text, #727981)">Freescale AN1731에 따른 VPW. 펄스폭은 공칭값이다.</text>
 </svg>

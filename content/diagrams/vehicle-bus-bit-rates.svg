@@ -36,11 +36,10 @@
   <!-- 값 -->
   <g font-size="12" fill="var(--text, #727981)">
     <text x="297.3" y="36">1 kbit/s 이상, 20 kbit/s 이하</text>
-    <text x="297.3" y="76">20 kbit/s까지</text>
+    <text x="269.3" y="76" text-anchor="end">20 kbit/s까지</text>
     <text x="317.6" y="116">두 구현: 10.4 kbit/s, 41.6 kbit/s</text>
     <text x="348.2" y="156">40 kbit/s 초과, 125 kbit/s 이하</text>
-    <text x="406" y="189">Bosch CAN 2.0의 예:</text>
-    <text x="406" y="204">1 Mbit/s까지</text>
+    <text x="378" y="196" text-anchor="end">Bosch CAN 2.0의 예: 1 Mbit/s까지</text>
     <text x="442" y="236" text-anchor="end">최대 10 Mbit/s</text>
     <text x="486.7" y="276" text-anchor="end">MOST50: 50 Mbit/s, MOST150: 150 Mbit/s</text>
   </g>

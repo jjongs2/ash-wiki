@@ -60,7 +60,9 @@ MOST는 데이터 종류마다 채널을 따로 두어 낮은 지연으로 나�
 
 **스트리밍 연결**은 데이터 스트림이 끊기거나 충돌하거나 늦어지지 않도록 네트워크에 예약한 대역으로, connection label로 가린다. 스트리밍 데이터와 패킷 데이터에 대역을 얼마씩 나눠 줄지는 boundary descriptor라는 값이 정한다. **네트워크 프레임**은 MOST 네트워크의 다른 모든 프레임 종류가 바탕으로 삼는 프레임이다.[@iso-21806-1-obp-2020]
 
-MOST Specification Rev. 3.0 E2는 패킷 채널에 모든 노드가 공평하게 [[bus-access-method#토큰 원리|토큰]] 링 방식으로 접근하게 하고, 이 채널의 대역을 boundary descriptor로 4바이트 단위로 조절하게 한다. 패킷 채널의 주소 방식은 16비트 target address를 쓰는 classic MOST addressing과 48비트 target address를 쓰는 [[mac-address|MAC]] addressing 둘이다. 등시 데이터는 동기 데이터처럼 소스 하나에서 수신 쪽 하나 이상으로 가므로 중재가 필요 없고, 등시 전송에는 [[cyclic-redundancy-check|CRC]] 같은 오류 검출이 없다.[@most-cooperation-spec-3-0-e2-2010]
+ISO 21806-1:2020은 MOST Specification Rev. 3.0 E2를 인용 규격(normative reference)으로 둔다.[@iso-21806-1-obp-2020] MOST Specification Rev. 3.0 E2는 패킷 채널에 모든 노드가 공평하게 [[bus-access-method#토큰 원리|토큰]] 링 방식으로 접근하게 하고, 이 채널의 대역을 boundary descriptor로 4바이트 단위로 조절하게 한다. 패킷 채널의 주소 방식은 16비트 target address를 쓰는 classic MOST addressing과 48비트 target address를 쓰는 [[mac-address|MAC]](Medium Access Control) addressing 둘이다.[@most-cooperation-spec-3-0-e2-2010]
+
+등시 데이터는 동기 데이터처럼 소스 하나에서 수신 쪽 하나 이상으로 가므로 중재가 필요 없고, 등시 전송에는 [[cyclic-redundancy-check|CRC]] 같은 오류 검출이 없다.[@most-cooperation-spec-3-0-e2-2010]
 
 ## 노드와 장치
 
@@ -68,7 +70,7 @@ MOST Specification Rev. 3.0 E2는 패킷 채널에 모든 노드가 공평하게
 
 노드는 TimingMaster, TimingSlave, listen-only 노드 가운데 하나다. **TimingMaster**는 네트워크 클록을 주고, **TimingSlave**는 MOST 네트워크에서 네트워크 클록을 얻는다. **listen-only 노드**는 네트워크 프레임의 내용을 바꾸지 않는다. 노드 사이의 점대점 전송에는 노드 위치와 상관없이 배정할 수 있는 논리 노드 주소를 쓴다.[@iso-21806-1-obp-2020]
 
-ISO 21806-2:2020은 논리 노드 주소와 기능 주소를 대응시키는 조회 표인 central registry를 관리하는 노드를 **NetworkMaster**로, 자기 FBlock을 NetworkMaster에 알리는 노드를 **NetworkSlave**로, MOST 네트워크의 기동과 종료를 제어하는 노드를 **PowerMaster**로 정의한다. 스트리밍 연결을 관리하는 connection manager에 인터페이스를 주는 FBlock은 **ConnectionMaster**다.[@iso-21806-2-obp-2020]
+ISO 21806-2:2020은 논리 노드 주소와 기능 주소를 대응시키는 조회 표인 central registry를 관리하는 노드를 **NetworkMaster**로, 자기 FBlock을 NetworkMaster에 알리는 노드를 **NetworkSlave**로 정의한다. MOST 네트워크의 기동과 종료를 제어하는 노드는 **PowerMaster**다. FBlock 가운데 스트리밍 연결을 관리하는 connection manager에 인터페이스를 주는 것은 **ConnectionMaster**다.[@iso-21806-2-obp-2020]
 
 ## 토폴로지
 
@@ -78,7 +80,7 @@ MOST Specification Rev. 3.0 E2는 MOST 시스템의 노드를 64개까지로 정
 
 ## 프레임
 
-이 명세는 MOST의 속도 등급(speed grade)을 **MOST25**, MOST50, MOST150이라 부른다. 부록 D(informative)는 MOST150 프레임 하나를 3072비트(384바이트)로 들고, 앞 12바이트는 프리앰블, boundary descriptor, 제어 데이터 4바이트 등을 담는 관리 영역으로, 나머지 372바이트는 패킷 데이터와 스트리밍 데이터 전송에 쓰는 구성을 제시한다. 시스템의 샘플링 주파수로는 44.1 kHz와 48 kHz를 들고, 그 가운데 48 kHz를 권장값으로 제시한다.[@most-cooperation-spec-3-0-e2-2010]
+이 명세는 MOST의 속도 등급(speed grade)을 **MOST25**, MOST50, MOST150이라 부른다. MOST150 프레임으로는 3072비트(384바이트) 프레임 하나의 앞 12바이트를 프리앰블, boundary descriptor, 제어 데이터 4바이트 등을 담는 관리 영역으로, 나머지 372바이트를 패킷 데이터와 스트리밍 데이터 전송에 쓰는 영역으로 두는 구성을 제시한다. 시스템의 샘플링 주파수로는 44.1 kHz와 48 kHz를 들고, 그 가운데 48 kHz를 권장값으로 제시한다.[@most-cooperation-spec-3-0-e2-2010]
 
 ![[diagrams/most150-frame.svg]]
 

@@ -83,6 +83,8 @@
 - ISO: 조직
 - ISTQB: 조직
 - ITU-T: 조직
+- JASO: 표준·규격 이름
+- JSAE: 소개하는 조직
 - JSON: 널리 쓰이는 약어
 - JTAG: 표준·규격 이름
 - JTC: ISO 위원회 번호

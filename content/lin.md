@@ -30,7 +30,7 @@ ISO 17987-1:2025는 LIN 프로토콜의 주요 특성으로 [[signal-based-commu
 
 ## Commander와 responder
 
-**commander**는 LIN 네트워크에 하나뿐인 노드로, 프레임을 스케줄하고 백본 네트워크에도 연결된다. commander 태스크는 스케줄 테이블에 따라 모든 헤더를 버스에 보내고, responder 태스크는 헤더를 듣고 그에 맞춰 응답을 보내거나 받거나 무시한다. 스케줄 테이블은 보낼 프레임과 그 순서, 프레임 사이의 시간 간격을 정한다.[@iso-17987-1-obp-2025] ISO 17987-1:2016은 commander와 responder를 master와 slave라 불렀고, 2025년판에서 지금 이름으로 바뀌었다.[@iso-17987-1-obp-2025][@iso-17987-1-obp-2016] 2025년에는 ISO 17987-1, -2, -3, -4, -6, -7이 함께 2판으로 나와 각각 2016년 1판을 대체했고, 부마다 노드 이름 master와 slave를 commander와 responder로 바꿨다.[@iso-17987-1-obp-2025][@iso-17987-4-obp-2025][@iso-17987-2-obp-2025][@iso-17987-3-obp-2025][@iso-17987-6-obp-2025][@iso-17987-7-obp-2025]
+**commander**는 LIN 네트워크에 하나뿐인 노드로, 프레임을 스케줄하고 백본 네트워크에도 연결된다. commander 태스크는 스케줄 테이블에 따라 모든 헤더를 버스에 보내고, responder 태스크는 헤더를 듣고 그에 맞춰 응답을 보내거나 받거나 무시한다. 스케줄 테이블은 보낼 프레임과 그 순서, 프레임 사이의 시간 간격을 정한다.[@iso-17987-1-obp-2025] ISO 17987-1:2016은 commander와 responder를 master와 slave라 불렀고, 2025년판에서 지금 이름으로 바뀌었다.[@iso-17987-1-obp-2025][@iso-17987-1-obp-2016] 같은 해 ISO 17987-2, -3, -4, -6, -7도 2판으로 나와 각각 2016년 1판을 대체했고, 부마다 같은 이름으로 바꿨다.[@iso-17987-4-obp-2025][@iso-17987-2-obp-2025][@iso-17987-3-obp-2025][@iso-17987-6-obp-2025][@iso-17987-7-obp-2025]
 
 TI 앱노트에 따르면 **클러스터**는 케이블로 이어진 LIN 노드의 묶음이고, commander 하나와 responder들로 이뤄진다. commander가 버스의 모든 통신을 다스리므로 commander가 고장 나면 클러스터 전체가 멈춘다. 이것이 느린 메시지 속도와 함께 LIN이 안전 관련 응용에 쓰이지 않는 까닭이다.[@ti-slla383a-2022]
 
@@ -74,15 +74,24 @@ TMS320F2803x의 LIN 모듈은 프레임 ID 0\~59를 신호를 싣는 프레임�
 
 ## 전송 계층
 
-ISO 17987-2:2025는 LIN의 전송 프로토콜과 네트워크 계층 서비스를 정하고, 이 전송 프로토콜은 확인 응답 없는(unconfirmed) 통신이다. 전송 계층은 하나 이상의 프레임에 담긴 데이터를 나르며, 전송 계층 메시지는 진단 프레임에 실린다. 이 전송 계층은 백본 버스(예: CAN)에서 진단하는 시스템이 같은 진단 기능을 LIN 하위 클러스터에도 쓰려는 경우를 겨냥한다. 메시지는 [[iso-15765-2|ISO 15765-2]]의 메시지와 같고, 메시지를 나르는 [[osi-model#서비스와 프로토콜|PDU]]도 그와 매우 비슷하다.[@iso-17987-2-obp-2025]
+LIN의 전송 프로토콜은 확인 응답 없는(unconfirmed) 통신이다. 전송 계층은 하나 이상의 프레임에 담긴 데이터를 나르며, 전송 계층 메시지는 진단 프레임에 실린다. 이 전송 계층은 백본 버스(예: CAN)에서 진단하는 시스템이 같은 진단 기능을 LIN 하위 클러스터에도 쓰려는 경우를 겨냥한다. 메시지는 [[iso-15765-2|ISO 15765-2]]의 메시지와 같고, 메시지를 나르는 [[osi-model#서비스와 프로토콜|PDU]]도 ISO 15765-2의 PDU와 매우 비슷하다.[@iso-17987-2-obp-2025]
 
 ## 노드 구성과 식별
 
 ISO 17987-3:2025는 ISO 14229-7([[uds#문서 구성|UDSonLIN]])에 기반한 노드 구성·식별 서비스(서비스 식별자 `0xB0`\~`0xB8`)를 핵심 프로토콜 명세에 넣는다. **LIN product identification**은 responder 노드의 공급자, 기능, 변형 식별을 담은 번호다.[@iso-17987-3-obp-2025] 2026년 10월 기준 CiA는 ISO를 대신해 LIN Supplier ID를 배정하고 자기 LIN 사이트에 공개한다.[@cia-lin-about-us-2026]
 
-ISO 17987-1:2025는 **node address for diagnostics**를 responder마다 배정한 진단 주소로 정의한다.[@iso-17987-1-obp-2025] ISO 17987-2:2025는 NAD(node address)에 관한 용어 넷을 정의한다. **broadcast NAD**는 값이 `0x7F`이고 모든 responder 노드가 받아 처리하는 요청에 쓰며, **functional NAD**는 값이 `0x7E`이고 진단 요청을 브로드캐스트하는 데 쓴다. **configured NAD**는 responder 노드마다 배정하는 `0x01`\~`0x7D` 범위의 값이고, **initial NAD**는 같은 범위의 고정값이다.[@iso-17987-2-obp-2025]
+ISO 17987-1:2025는 **node address for diagnostics**를 responder마다 배정한 진단 주소로 정의한다.[@iso-17987-1-obp-2025]
 
-이 표준은 configured NAD 정의의 첫째 주석에서, configured NAD의 배정은 [[signal-based-communication#통신 기술 파일|LDF]]에 정하고 configured NAD는 노드 구성·식별 서비스와 ISO 14229-7의 [[uds|UDS]] 서비스에 쓴다고 제시한다. 둘째 주석에서는 통신을 시작할 때 responder 노드들의 configured NAD가 같아도 되고, commander 노드는 진단 통신을 시작하기 전에 모든 responder 노드에 서로 다른 configured NAD를 배정해야 한다고 정한다.[@iso-17987-2-obp-2025]
+ISO 17987-2:2025는 NAD(node address)에 관한 용어 넷을 아래처럼 정의한다.[@iso-17987-2-obp-2025]
+
+| 용어               | 값             | 쓰임                                     |
+| ------------------ | -------------- | ---------------------------------------- |
+| **broadcast NAD**  | `0x7F`         | 모든 responder 노드가 받아 처리하는 요청 |
+| **functional NAD** | `0x7E`         | 진단 요청의 브로드캐스트                 |
+| **configured NAD** | `0x01`\~`0x7D` | responder 노드마다 배정하는 값           |
+| **initial NAD**    | `0x01`\~`0x7D` | 고정값                                   |
+
+이 표준은 configured NAD의 배정은 [[signal-based-communication#통신 기술 파일|LDF]]에 정하고 configured NAD는 노드 구성·식별 서비스와 ISO 14229-7의 [[uds|UDS]] 서비스에 쓴다고 제시한다. 또 통신을 시작할 때 responder 노드들의 configured NAD가 같아도 되고, commander 노드는 진단 통신을 시작하기 전에 모든 responder 노드에 서로 다른 configured NAD를 배정해야 한다고 정한다.[@iso-17987-2-obp-2025]
 
 ISO 17987-3:2025는 auto addressing을 새로 넣었다.[@iso-17987-3-obp-2025] TI 앱노트에 따르면 auto addressing은 LIN 버스에서 responder 노드의 위치를 자동으로 알아내 장치마다 고유 ID를 배정하는 일이다.[@ti-slda038-2015]
 

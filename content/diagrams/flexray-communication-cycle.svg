@@ -30,7 +30,6 @@
   <g fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5">
     <rect x="128.75" y="80.75" width="24.5" height="34.5" />
     <rect x="158.75" y="80.75" width="24.5" height="34.5" />
-    <rect x="188.75" y="80.75" width="24.5" height="34.5" />
     <rect x="218.75" y="80.75" width="24.5" height="34.5" />
     <rect x="248.75" y="80.75" width="24.5" height="34.5" />
   </g>
@@ -41,9 +40,6 @@
     <rect x="302.75" y="80.75" width="4.5" height="34.5" />
     <rect x="310.75" y="80.75" width="4.5" height="34.5" />
     <rect x="318.75" y="80.75" width="4.5" height="34.5" />
-    <rect x="326.75" y="80.75" width="4.5" height="34.5" />
-    <rect x="334.75" y="80.75" width="4.5" height="34.5" />
-    <rect x="342.75" y="80.75" width="4.5" height="34.5" />
     <rect x="350.75" y="80.75" width="4.5" height="34.5" />
     <rect x="358.75" y="80.75" width="4.5" height="34.5" />
     <rect x="366.75" y="80.75" width="4.5" height="34.5" />
@@ -53,21 +49,19 @@
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <line x1="141" y1="118" x2="141" y2="124" />
-    <line x1="380" y1="118" x2="380" y2="124" />
+    <line x1="377" y1="118" x2="377" y2="124" />
   </g>
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="141" y="138">정적 슬롯</text>
-    <text x="380" y="138">미니슬롯</text>
+    <text x="377" y="138">미니슬롯</text>
   </g>
 
-  <!-- 정적 슬롯 하나를 펼친 macrotick -->
-  <path d="M248 118 L128 172 M274 118 L388 172" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+  <!-- macrotick -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="128" y="174" width="26" height="30" />
     <rect x="154" y="174" width="26" height="30" />
     <rect x="180" y="174" width="26" height="30" />
     <rect x="206" y="174" width="26" height="30" />
-    <rect x="232" y="174" width="26" height="30" />
     <rect x="258" y="174" width="26" height="30" />
     <rect x="284" y="174" width="26" height="30" />
     <rect x="310" y="174" width="26" height="30" />
@@ -81,11 +75,25 @@
     <rect x="128" y="244" width="32.5" height="30" />
     <rect x="160.5" y="244" width="32.5" height="30" />
     <rect x="193" y="244" width="32.5" height="30" />
-    <rect x="225.5" y="244" width="32.5" height="30" />
-    <rect x="258" y="244" width="32.5" height="30" />
     <rect x="290.5" y="244" width="32.5" height="30" />
     <rect x="323" y="244" width="32.5" height="30" />
     <rect x="355.5" y="244" width="32.5" height="30" />
+  </g>
+
+  <!-- 생략: 칸의 수는 정해진 값이 아니다 -->
+  <g fill="var(--ink, #727981)">
+    <circle cx="194" cy="98" r="1.5" />
+    <circle cx="201" cy="98" r="1.5" />
+    <circle cx="208" cy="98" r="1.5" />
+    <circle cx="330" cy="98" r="1.5" />
+    <circle cx="337" cy="98" r="1.5" />
+    <circle cx="344" cy="98" r="1.5" />
+    <circle cx="238" cy="189" r="1.5" />
+    <circle cx="245" cy="189" r="1.5" />
+    <circle cx="252" cy="189" r="1.5" />
+    <circle cx="250" cy="259" r="1.5" />
+    <circle cx="258" cy="259" r="1.5" />
+    <circle cx="266" cy="259" r="1.5" />
   </g>
 
   <!-- 시간 단위 -->
