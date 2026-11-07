@@ -1185,14 +1185,15 @@ const tableRow = (cells: string[]) => `| ${cells.join(" | ")} |`
 
 const tagLink = /\[\[tags\/([^\]|\\#]+)/g
 
-// 대문 구역 표의 행마다 구역 칸과 주제 칸의 태그. 머리 행처럼 태그 링크가 없는 행은 뺀다.
+// 대문 구역 표(대문의 첫 표)의 행마다 구역 칸과 주제 칸의 태그. 머리 행처럼 태그 링크가 없는 행은 뺀다.
 function frontRows(index: Page | undefined): { section: string[]; topics: string[] }[] {
   if (!index) return []
   const lines = index.masked.split("\n")
   const tagsIn = (cell: string | undefined) =>
     [...(cell ?? "").matchAll(tagLink)].map((match) => match[1].trim())
-  return [...tableLines(index)]
-    .sort((a, b) => a - b)
+  const table = [...tableLines(index)]
+  return table
+    .filter((line, i) => line === table[0] + i)
     .map((line) => cellsOf(lines[line - 1]))
     .map((cells) => ({ section: tagsIn(cells[0]), topics: tagsIn(cells[1]) }))
     .filter((row) => row.section.length + row.topics.length > 0)
@@ -1240,14 +1241,25 @@ export const frontPage: SourceCheck = (tree) => {
     at(undefined, `"${readmeHeading}" 제목 아래 표가 없다`)
     return violations
   }
-  expected.forEach((cells, i) => {
-    const row = readme.rows[i]
-    if (!row) at(readme.heading, `다루는 주제 표에 대문의 구역 행이 없다: ${tableRow(cells)}`)
-    else if (tableRow(row.cells) !== tableRow(cells))
+  // 행은 구역 이름으로 맞댄다. 자리로 맞대면 한 행이 빠졌을 때 그 뒤의 행이 모두 다르다고 나온다.
+  let last: { index: number; section: string } | undefined
+  for (const cells of expected) {
+    const index = readme.rows.findIndex((row) => row.cells[0] === cells[0])
+    const row = readme.rows[index]
+    if (!row) {
+      at(readme.heading, `다루는 주제 표에 대문의 구역 행이 없다: ${tableRow(cells)}`)
+      continue
+    }
+    if (last && index < last.index) {
+      const order = `${cells[0]} 행은 ${last.section} 행 뒤에 온다`
+      at(row.line, `다루는 주제 표의 구역 순서가 대문 구역 표와 다르다: ${order}`)
+    } else last = { index, section: cells[0] }
+    if (tableRow(row.cells) !== tableRow(cells))
       at(row.line, `다루는 주제 표의 행이 대문 구역 표와 다르다: ${tableRow(cells)}`)
-  })
-  for (const row of readme.rows.slice(expected.length))
-    at(row.line, `다루는 주제 표에 대문에 없는 행이 있다: ${tableRow(row.cells)}`)
+  }
+  const sections = new Set(expected.map((cells) => cells[0]))
+  for (const row of readme.rows.filter((row) => !sections.has(row.cells[0])))
+    at(row.line, `다루는 주제 표에 대문에 없는 구역 행이 있다: ${tableRow(row.cells)}`)
   return violations
 }
 

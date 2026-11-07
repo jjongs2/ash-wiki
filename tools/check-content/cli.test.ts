@@ -224,6 +224,7 @@ describe("check-content CLI", { concurrency: false }, () => {
         "README.md:3",
         "README.md:7",
         "README.md:8",
+        "README.md:9",
         "content/tags/bus/lin.md",
         "content/tags/network/no-title.md",
       ],
@@ -426,9 +427,10 @@ describe("check-content CLI", { concurrency: false }, () => {
     const report = runChecker("violation")
     const readme = report.messages.get("front-page")!.filter((m) => m.startsWith("README.md"))
     assert.deepStrictEqual(readme, [
-      "README.md:3: 다루는 주제 표에 대문의 구역 행이 없다: | 보안·업데이트 | OTA |",
-      "README.md:7: 다루는 주제 표의 행이 대문 구역 표와 다르다: | 네트워크 | CAN, Ethernet |",
-      "README.md:8: 다루는 주제 표의 행이 대문 구역 표와 다르다: | 소프트웨어 플랫폼 | RTOS, AUTOSAR |",
+      "README.md:3: 다루는 주제 표에 대문의 구역 행이 없다: | 소프트웨어 플랫폼 | RTOS, AUTOSAR |",
+      "README.md:7: 다루는 주제 표의 구역 순서가 대문 구역 표와 다르다: 보안·업데이트 행은 네트워크 행 뒤에 온다",
+      "README.md:8: 다루는 주제 표의 행이 대문 구역 표와 다르다: | 네트워크 | CAN, Ethernet |",
+      "README.md:9: 다루는 주제 표에 대문에 없는 구역 행이 있다: | 플랫폼 | AUTOSAR, RTOS |",
     ])
   })
 
