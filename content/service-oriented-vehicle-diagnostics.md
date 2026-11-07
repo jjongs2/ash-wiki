@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-22
 ---
 
-**SOVD**(Service-Oriented Vehicle Diagnostics)는 [[ee-architecture#존 아키텍처|HPC]]와 기존 [[electronic-control-unit|ECU]]를 같은 방식으로 진단하는 서비스 지향 진단 API다.[@iso-17978-3-obp-2026][@asam-sovd-2022] ISO 17978 시리즈와 ASAM SOVD 1.0.0이 이 API를 정한다.[@asam-sovd-2022][@iso-17978-1-obp-2026]
+**SOVD**(Service-Oriented Vehicle Diagnostics)는 [[high-performance-computer|HPC]]와 기존 [[electronic-control-unit|ECU]]를 같은 방식으로 진단하는 서비스 지향 진단 API다.[@iso-17978-3-obp-2026][@asam-sovd-2022] ISO 17978 시리즈와 ASAM SOVD 1.0.0이 이 API를 정한다.[@asam-sovd-2022][@iso-17978-1-obp-2026]
 
 ## ASAM SOVD
 

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 10 542 217" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="계산 계층과 존 계층">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 계층 이름 -->
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="20" y="38">계산 계층</text>
+    <text x="20" y="114">존 계층</text>
+  </g>
+
+  <!-- 연결 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M300 48 V72 H169 V96" />
+    <path d="M321 48 V96" />
+    <path d="M342 48 V72 H473 V96" />
+    <path d="M169 124 V143 M133 162 V143 H205 V162" />
+    <path d="M321 124 V143 M285 162 V143 H357 V162" />
+    <path d="M473 124 V143 M437 162 V143 H509 V162" />
+  </g>
+
+  <!-- 차량 컴퓨터 -->
+  <rect x="266.75" y="20.75" width="108.5" height="26.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="321" y="38" text-anchor="middle" font-size="12" fill="var(--text, #727981)">차량 컴퓨터</text>
+
+  <!-- 존 ECU -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="119.75" y="96.75" width="98.5" height="26.5" />
+    <rect x="271.75" y="96.75" width="98.5" height="26.5" />
+    <rect x="423.75" y="96.75" width="98.5" height="26.5" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="169" y="114">존 ECU</text>
+    <text x="321" y="114">존 ECU</text>
+    <text x="473" y="114">존 ECU</text>
+  </g>
+
+  <!-- 센서, 액추에이터, 스마트 ECU -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="100.75" y="162.75" width="64.5" height="18.5" />
+    <rect x="172.75" y="162.75" width="64.5" height="18.5" />
+    <rect x="252.75" y="162.75" width="64.5" height="18.5" />
+    <rect x="324.75" y="162.75" width="64.5" height="18.5" />
+    <rect x="404.75" y="162.75" width="64.5" height="18.5" />
+    <rect x="476.75" y="162.75" width="64.5" height="18.5" />
+  </g>
+  <g text-anchor="middle" font-size="11" fill="var(--text, #727981)">
+    <text x="133" y="176">센서</text>
+    <text x="205" y="176">액추에이터</text>
+    <text x="285" y="176">스마트 ECU</text>
+    <text x="357" y="176">센서</text>
+    <text x="437" y="176">액추에이터</text>
+    <text x="509" y="176">스마트 ECU</text>
+  </g>
+
+  <text x="281" y="214" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Bosch에 따른 계층</text>
+</svg>

@@ -24,7 +24,7 @@ ISTQB 용어집은 **테스트 환경**(test environment)을 테스트를 수행
 
 자동차 업계에서 쓰는 XiL로는 MiL, SiL, PiL(processor-in-the-loop), HiL, ViL(vehicle-in-the-loop)이 있다. ISTQB CT-AuT v2.1.1 강의계획서는 이 가운데 PiL과 ViL을 본문에서 다루지 않는다.[@istqb-ct-aut-syllabus-2025]
 
-dSPACE에 따르면 ViL 테스트는 디지털 검증에 실제 세계의 동역학을 더해 HiL 구성을 넓힌 것으로, 주행 환경과 시나리오를 실시간으로 시뮬레이션하고 운전자 보조에 관련된 센서를 자극해 완성차의 운전자 보조·자율 주행 시스템을 시험한다. 운전자 보조 시스템의 ViL 테스트는 루프 안의 하드웨어가 차량 전체인, 운전자 보조 시스템 HiL 테스트의 특수한 경우다.[@dspace-hil-testing-2026]
+dSPACE에 따르면 ViL 테스트는 디지털 검증에 실제 세계의 동역학을 더해 HiL 구성을 넓힌 것으로, 주행 환경과 시나리오를 실시간으로 시뮬레이션하고 운전자 보조에 관련된 센서를 자극해 완성차의 운전자 보조·자율주행 시스템을 시험한다. 운전자 보조 시스템의 ViL 테스트는 루프 안의 하드웨어가 차량 전체인, 운전자 보조 시스템 HiL 테스트의 특수한 경우다.[@dspace-hil-testing-2026]
 
 ### MiL
 

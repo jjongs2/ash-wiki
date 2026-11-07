@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="13.5 9 533 334" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="중앙 전원 분배와 존 제어기의 전원 분배">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="140" y="30">중앙에서 나눌 때</text>
+    <text x="420" y="30">존 제어기가 나눌 때</text>
+  </g>
+
+  <!-- 구역 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <rect x="24" y="160" width="112" height="140" />
+    <rect x="144" y="160" width="112" height="140" />
+    <rect x="304" y="160" width="112" height="140" />
+    <rect x="424" y="160" width="112" height="140" />
+  </g>
+
+  <!-- 전원선 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M140 78 V106" />
+    <path d="M104 134 V148 H52 V262" />
+    <path d="M128 134 V148 H108 V262" />
+    <path d="M152 134 V148 H172 V262" />
+    <path d="M176 134 V148 H228 V262" />
+    <path d="M404 78 V96 H360 V176" />
+    <path d="M436 78 V96 H480 V176" />
+    <path d="M352 228 V245 H332 V262" />
+    <path d="M368 228 V245 H388 V262" />
+    <path d="M472 228 V245 H452 V262" />
+    <path d="M488 228 V245 H508 V262" />
+  </g>
+
+  <!-- 배터리 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="100.75" y="50.75" width="78.5" height="26.5" />
+    <rect x="380.75" y="50.75" width="78.5" height="26.5" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="140" y="68">배터리</text>
+    <text x="420" y="68">배터리</text>
+  </g>
+
+  <!-- 존 제어기 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="313.75" y="176.75" width="92.5" height="50.5" />
+    <rect x="433.75" y="176.75" width="92.5" height="50.5" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="360" y="195">존 제어기</text>
+    <text x="480" y="195">존 제어기</text>
+  </g>
+
+  <!-- 퓨즈·릴레이 -->
+  <g fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5">
+    <rect x="92.75" y="106.75" width="94.5" height="26.5" />
+    <rect x="321.75" y="202.75" width="76.5" height="18.5" />
+    <rect x="441.75" y="202.75" width="76.5" height="18.5" />
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="140" y="124" font-size="12">퓨즈·릴레이</text>
+    <text x="360" y="216" font-size="11">퓨즈·릴레이</text>
+    <text x="480" y="216" font-size="11">퓨즈·릴레이</text>
+  </g>
+
+  <!-- 모듈 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="30.75" y="262.75" width="42.5" height="18.5" />
+    <rect x="86.75" y="262.75" width="42.5" height="18.5" />
+    <rect x="150.75" y="262.75" width="42.5" height="18.5" />
+    <rect x="206.75" y="262.75" width="42.5" height="18.5" />
+    <rect x="310.75" y="262.75" width="42.5" height="18.5" />
+    <rect x="366.75" y="262.75" width="42.5" height="18.5" />
+    <rect x="430.75" y="262.75" width="42.5" height="18.5" />
+    <rect x="486.75" y="262.75" width="42.5" height="18.5" />
+  </g>
+  <g text-anchor="middle" font-size="11" fill="var(--text, #727981)">
+    <text x="52" y="276">모듈</text>
+    <text x="108" y="276">모듈</text>
+    <text x="172" y="276">모듈</text>
+    <text x="228" y="276">모듈</text>
+    <text x="332" y="276">모듈</text>
+    <text x="388" y="276">모듈</text>
+    <text x="452" y="276">모듈</text>
+    <text x="508" y="276">모듈</text>
+  </g>
+
+  <text x="280" y="330" text-anchor="middle" font-size="12" fill="var(--text, #727981)">TI 백서에 따른 비교 · 선: 전원선 · 점선: 구역</text>
+</svg>

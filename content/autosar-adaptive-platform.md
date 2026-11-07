@@ -10,7 +10,7 @@ edition: 2025
 status: 유효
 ---
 
-**AUTOSAR Adaptive Platform**은 [[autosar|AUTOSAR]]가 펴내는, 고성능 연산 ECU를 위한 표준이다. 고도 자동 주행과 자율 주행 같은 쓰임새에서 safety-related 시스템을 만드는 데 쓴다.[@autosar-ap-tr-releaseoverview-2025]
+**AUTOSAR Adaptive Platform**은 [[autosar|AUTOSAR]]가 펴내는, 고성능 연산 [[electronic-control-unit|ECU]]를 위한 표준이다. 고도 자동 주행과 자율주행 같은 쓰임새에서 safety-related 시스템을 만드는 데 쓴다.[@autosar-ap-tr-releaseoverview-2025]
 
 AUTOSAR Adaptive Platform R25-11은 깊이 임베디드된 ECU의 요구를 다루는 [[autosar-classic-platform|Classic Platform]]으로는 채울 수 없는 요구, 곧 고도 자동 주행처럼 연산 자원을 많이 쓰고 차량 수명 동안 갱신해야 하는 소프트웨어의 요구를 위한 AUTOSAR의 둘째 소프트웨어 플랫폼이다. 주로 고성능 연산과 통신 메커니즘을 제공하고, [[over-the-air-update|무선 소프트웨어 업데이트]] 같은 유연한 소프트웨어 구성을 지원한다. 전기 신호 접근이나 차량 전용 버스 시스템처럼 Classic Platform을 위해 정한 기능은 Adaptive Platform에 통합할 수 있지만 표준화의 초점은 아니다.[@autosar-ap-exp-platformdesign-2025]
 
