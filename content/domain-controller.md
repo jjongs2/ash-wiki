@@ -25,4 +25,4 @@ Renesas 백서에 따르면 도메인 아키텍처와 [[ee-architecture#존 아�
 
 TI Jacinto 7 프로세서는 도메인 제어기용으로, 데이터 처리용 Arm Cortex-A72 코어, 실시간 제어용 Arm Cortex-R5F, 고속 네트워크용 기가비트 [[tsn|TSN]] [[ethernet-switch|이더넷 스위치]]를 함께 둔다.[@ti-sszt211-2023]
 
-NXP S32G2는 서비스 지향 게이트웨이, 도메인 제어기, [[zone-controller|존 제어기]]용 프로세서에 두루 쓰도록 나온 차량 네트워크 프로세서다.[@nxp-s32g2-2026]
+NXP S32G2는 서비스 지향 게이트웨이, 도메인 제어기, [[zone-controller|존 제어기]]에 두루 쓰도록 나온 차량 네트워크 프로세서다.[@nxp-s32g2-2026]

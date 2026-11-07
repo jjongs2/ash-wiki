@@ -15,6 +15,7 @@
 
 - (informative): (참고), 참고 Annex (#566). 표준의 informative Annex와 절. 꾸밈말 꼴도 같다. 예: "informative Annex로". 원문이 다른 말로 적으면 그 말. 예: 원문이 non-normative라 적은 장은 "(non-normative)". 조사는 괄호 앞의 Annex 이름이나 절 번호에 맞춘다. 예: "Annex U(informative)는"
 - adaptive update: - (#432)
+- ADAS 풀이 Advanced Driver Assistance Systems: Advanced Driver Assistance System (#659)
 - Annex: 부속서, 부록 (#301). 원문이 Annex일 때. 원문이 Appendix인 "부록"은 그대로
 - aperiodic: 비주기 (#350). 합성어 포함. 예: aperiodic 태스크, aperiodic server. CANopen PDO의 주기·비주기 송신처럼 통신의 송신 방식은 예외
 - ASPICE: Automotive SPICE, A-SPICE (#231). 판을 붙이면 `ASPICE 4.1` 꼴. 정식 이름은 `automotive-spice` 머리말의 풀이에만, A-SPICE는 그 페이지의 alias로만. 문서 이름 "Automotive SPICE for Cybersecurity"와 슬러그는 예외
