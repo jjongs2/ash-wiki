@@ -20,7 +20,7 @@ Eclipse S-CORE는 응용 계층 아래, board support package 위의 소프트�
 
 ## 구조
 
-Eclipse S-CORE 플랫폼은 위에서부터 다음 계층으로 이루어지고, 그 아래에 기존 운영체제와 하이퍼바이저·하드웨어가 있다.[@eclipse-score-architecture-2026]
+Eclipse S-CORE 플랫폼은 위에서부터 다음 계층으로 이루어지고, 그 아래에 기존 운영체제와 [[hypervisor|하이퍼바이저]]·하드웨어가 있다.[@eclipse-score-architecture-2026]
 
 - **Frameworks**: 응용이 그 위에 만들어지는 분야별 framework
 - **Platform API**: 응용이 쓰는 C++·Rust 네이티브 API
