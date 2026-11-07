@@ -234,6 +234,22 @@ class QueueTest(unittest.TestCase):
         main, _ = self.digest(queued(text), entry("user", text))
         self.assertNotIn("iso-26262", main)
 
+    def test_notes_under_another_machines_home_are_hidden(self):
+        copies = os.path.join(self.tmp.name, "copies")
+        for host, home in (("a", "/home/alice"), ("b", "/home/bob")):
+            os.makedirs(os.path.join(copies, host))
+            with open(os.path.join(copies, host, "manifest.json"), "w") as f:
+                json.dump({"host": host, "home": home, "files": {}}, f)
+        self.notes = "/home/alice/lecture-notes"
+        with open(self.transcript, "w") as f:
+            f.write("\n".join(entry("user", f"{home}/lecture-notes/iso.md") for home in ("/home/bob", os.path.expanduser("~"))) + "\n")
+        out = subprocess.run(
+            [sys.executable, "-B", SCRIPT, "--archive", self.archive, self.transcript],
+            env=dict(os.environ, ASH_WIKI_NOTES=self.notes, CLAUDE_TRANSCRIPTS_ROOT=copies),
+            capture_output=True, text=True, check=True,
+        ).stdout
+        self.assertIn("지움 2", out)
+
     def test_queued_message_naming_notes_is_hidden_and_counted(self):
         main, out = self.digest(queued(f"읽은 노트: {self.notes}/iso-26262.md 본문"))
         self.assertNotIn("iso-26262", main)

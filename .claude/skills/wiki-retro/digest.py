@@ -51,7 +51,8 @@ RemoteTrigger로 루틴에 넘긴 세션 가운데 analyzed.tsv에 없고 이 �
 자리에 "-"를, 버전 자리에 실행 시각의 origin/main을 찍는다. 저장소 루트에서 돌린다.
 
 소스 노트를 연 도구 호출은 입력과 결과를 지우고, 그 입력을 <이름>-notes.txt에
-모은다. 입력에 노트 디렉터리(ASH_WIKI_NOTES의 값, ~나 $HOME으로 쓴 꼴 포함)나 그
+모은다. 입력에 노트 디렉터리(ASH_WIKI_NOTES의 값, ~나 $HOME으로 쓴 꼴, 백업 사본의
+manifest.json이 적은 다른 컴퓨터의 홈 아래 같은 자리 포함)나 그
 변수의 참조($ASH_WIKI_NOTES, ${ASH_WIKI_NOTES)가 있거나, 결과에 노트 디렉터리가
 나오는 호출이다. 지운 결과가 너무 커서 tool-results/ 파일로 저장됐으면, 그 파일을
 다시 읽은 호출도 지운다. 변수 이름만 적은 호출("ASH_WIKI_NOTES는 열지 않는다")은
@@ -61,6 +62,7 @@ RemoteTrigger로 루틴에 넘긴 세션 가운데 analyzed.tsv에 없고 이 �
 """
 
 import argparse
+import functools
 import glob
 import json
 import os
@@ -72,6 +74,7 @@ from datetime import date
 NOTES = os.environ.get("ASH_WIKI_NOTES", "").rstrip("/")
 ARCHIVE = os.path.expanduser("~/documents/ash-wiki-retro")
 SESSIONS = os.path.expanduser("~/.claude/projects/*ash-wiki*/*.jsonl")
+TRANSCRIPTS = os.environ.get("CLAUDE_TRANSCRIPTS_ROOT") or os.path.expanduser("~/.local/share/claude-transcripts")
 NOTE_REFS = ("$ASH_WIKI_NOTES", "${ASH_WIKI_NOTES")
 PERSISTED = re.compile(r"tool-results/[\w.-]+")
 UUID = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
@@ -92,12 +95,29 @@ AGENTS = ".claude/agents"
 CANDIDATE_MARKS = ("<command-message>", '"Skill"', '"RemoteTrigger"', "custom-title", "gh ", "github.com/", "ash-wiki-handoff")
 
 
+def homes():
+    """이 컴퓨터의 홈과, 백업 사본의 manifest.json마다 적힌 그 컴퓨터의 홈."""
+    found = [os.path.expanduser("~")]
+    for path in sorted(glob.glob(os.path.join(TRANSCRIPTS, "*", "manifest.json"))):
+        try:
+            with open(path) as f:
+                home = json.load(f).get("home")
+        except (OSError, json.JSONDecodeError):
+            continue
+        if isinstance(home, str) and home.startswith("/"):
+            found.append(home.rstrip("/"))
+    return list(dict.fromkeys(found))
+
+
+@functools.cache
 def note_forms():
-    home = os.path.expanduser("~")
-    if not NOTES.startswith(home + "/"):
+    """노트 디렉터리의 꼴. 다른 컴퓨터의 기록은 그 홈 아래 같은 자리에 노트를 둔 것으로 본다."""
+    known = homes()
+    home = next((h for h in known if NOTES.startswith(h + "/")), None)
+    if not home:
         return [NOTES]
     rest = NOTES[len(home) :]
-    return [NOTES] + [prefix + rest for prefix in ("~", "$HOME", "${HOME}")]
+    return list(dict.fromkeys([NOTES] + [h + rest for h in known] + [prefix + rest for prefix in ("~", "$HOME", "${HOME}")]))
 
 
 def clip(text, n):
