@@ -16,11 +16,11 @@ S-CORE는 QNX, Linux 같은 기존 POSIX 호환 운영체제 위에 선다.[@ecl
 
 S-CORE를 세운 업계 회원들의 공동 목표는 업계 전체가 바탕으로 삼을, 차량 탑재 ECU용 오픈소스 소프트웨어 플랫폼이다. S-CORE는 그대로 통합해 양산에 쓰는 제품이 아니라 상용 배포판을 위한 일반 바탕이며, 최종 시스템이 [[automotive-spice|ASPICE]], [[iso-sae-21434|ISO/SAE 21434]], [[iso-26262|ISO 26262]]를 따르는지는 늘 양산 프로젝트가 책임진다.[@eclipse-score-docs-2026]
 
-Eclipse S-CORE는 응용 계층 아래, board support package 위의 소프트웨어 플랫폼 계층을 모두 쌓는 것을 목표로 한다.[@eclipse-score-website-2026] S-CORE는 주로 차량용 고성능 컴퓨팅 플랫폼에 맞춰 설계하고 최적화했으며, 구성 요소는 동적 메모리 관리와 프로세스 격리, 그리고 Linux, QNX 같은 안전 중요 운영체제가 주는 기능을 쓰도록 짜였다.[@eclipse-score-faq-2026]
+Eclipse S-CORE는 응용 계층 아래, board support package 위의 소프트웨어 플랫폼 계층을 모두 쌓는 것을 목표로 한다.[@eclipse-score-website-2026] S-CORE는 주로 차량용 고성능 컴퓨팅 플랫폼에 맞춰 설계하고 최적화했으며, 구성 요소는 동적 메모리 관리, 프로세스 격리와 Linux, QNX 같은 안전 중요 운영체제의 기능을 쓰도록 짜였다.[@eclipse-score-faq-2026]
 
 ## 구조
 
-Eclipse S-CORE 플랫폼은 위에서부터 다음 계층으로 이루어지고, 그 아래에 기존 운영체제와 하이퍼바이저·하드웨어가 있다. 아키텍처는 계속 다듬어지며 앞으로의 릴리스에서 바뀐다.[@eclipse-score-architecture-2026]
+Eclipse S-CORE 플랫폼은 위에서부터 다음 계층으로 이루어지고, 그 아래에 기존 운영체제와 하이퍼바이저·하드웨어가 있다.[@eclipse-score-architecture-2026]
 
 - **Frameworks**: 응용이 그 위에 만들어지는 분야별 framework
 - **Platform API**: 응용이 쓰는 C++·Rust 네이티브 API
@@ -29,7 +29,7 @@ Eclipse S-CORE 플랫폼은 위에서부터 다음 계층으로 이루어지고,
 
 ![[diagrams/eclipse-s-core-platform-layers.svg]]
 
-2026년 11월 기준 S-CORE 문서의 아키텍처 그림은 블록마다 개발 중, 앞으로 개발, 개발 대상 아님, 범위 밖, 운영체제·하드웨어별 구현 가운데 하나의 상태를 색으로 표시한다. 개발 중인 블록은 아래 표와 같다.[@eclipse-score-architecture-2026]
+2026년 11월 기준 아키텍처 그림은 블록마다 개발 중, 앞으로 개발, 개발 대상 아님, 범위 밖, 운영체제·하드웨어별 구현 가운데 하나의 상태를 색으로 표시한다. 개발 중인 블록은 아래 표와 같다.[@eclipse-score-architecture-2026]
 
 | 계층                  | 개발 중인 블록                                                                                                                                                                                      |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -49,10 +49,10 @@ Eclipse S-CORE가 지원하는 언어는 C++17(필요하면 C++20의 요소를 �
 
 ## 역사와 상태
 
-Eclipse S-CORE는 2024년 9월 자동차 업계 회원들이 세웠다.[@eclipse-score-docs-2026] 결성 회원으로는 Accenture, BMW, ETAS, Mercedes-Benz, Qorix 등이 있다.[@eclipse-score-website-2026]
+Eclipse S-CORE는 2024년 9월 자동차 업계 회원들이 세웠다.[@eclipse-score-docs-2026] 결성 회원으로는 Accenture, BMW, Mercedes-Benz, Qorix 등이 있다.[@eclipse-score-website-2026]
 
 Eclipse SDV에 따르면 2025년 6월 유럽의 주요 자동차 회사 11곳이 SDV 오픈소스 협력을 다짐하는 양해각서에 서명했고, 그 노력은 먼저 S-CORE에 모였다.[@eclipse-sdv-about-2026]
 
 S-CORE의 첫 공개 릴리스는 2025년 11월의 v0.5.0-alpha였다.[@eclipse-score-v0-5-alpha-release-note-2025]
 
-2026년 11월 기준 S-CORE는 Eclipse 프로젝트로서 Incubating 단계에 있다.[@eclipse-score-project-2026] 같은 때 가장 최근의 플랫폼 릴리스는 v0.10이다.[@eclipse-score-releases-2026] 2026년 11월 2일에 나온 v0.10.0은 안전 논증과 수행된 안전 평가를 갖추지 않았으므로 양산용 출시가 아니다.[@eclipse-score-v0-10-release-note-2026]
+2026년 11월 기준 S-CORE는 Eclipse 프로젝트로서 Incubating 단계에 있고[@eclipse-score-project-2026], 가장 최근의 플랫폼 릴리스는 v0.10.0이다.[@eclipse-score-releases-2026] 2026년 11월 2일에 나온 v0.10.0은 안전 논증과 수행된 안전 평가를 갖추지 않았으므로 양산용 출시가 아니다.[@eclipse-score-v0-10-release-note-2026]

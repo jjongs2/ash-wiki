@@ -35,6 +35,6 @@ SDV는 소프트웨어를 소수의 고성능 중앙 컴퓨터로 모으는 중�
 
 ## 오픈소스 플랫폼
 
-Eclipse SDV는 Eclipse Foundation이 호스트하는 오픈소스 생태계로, 참여 조직들이 차량 아키텍처용 소프트웨어 building block을 함께 개발한다.[@eclipse-sdv-2026] Eclipse SDV working group의 프로젝트들이 공용 building block을 개발하는 영역으로는 middleware, orchestration, safety, simulation 등이 있다.[@eclipse-sdv-about-2026] Eclipse SDV는 생태계의 기술을 한데 묶는 integration project로 Linux 기반 배포판인 Eclipse Leda, SDV용 오픈소스 코어 스택인 [[eclipse-s-core|Eclipse S-CORE]], 실제 쓰임새를 모듈로 보이는 Eclipse SDV Blueprints를 둔다.[@eclipse-sdv-integration-projects-2026]
+Eclipse SDV는 Eclipse Foundation이 호스트하는 오픈소스 생태계로, 참여 조직들이 차량 아키텍처용 소프트웨어 building block을 함께 개발한다.[@eclipse-sdv-2026] Eclipse SDV working group의 프로젝트들이 공용 building block을 개발하는 영역으로는 middleware, orchestration, safety, simulation 등이 있다.[@eclipse-sdv-about-2026] Eclipse SDV는 생태계의 기술을 한데 묶는 integration project로 Linux 기반 배포판인 Eclipse Leda, [[eclipse-s-core|Eclipse S-CORE]], 실제 쓰임새를 모듈로 보이는 Eclipse SDV Blueprints를 둔다.[@eclipse-sdv-integration-projects-2026]
 
-COVESA(커넥티드 차량을 위한 공통 접근법과 기술을 개발하는 비영리 단체)가 펴내는 [[vehicle-signal-specification|VSS]]는 차량 안과 클라우드에서 차량 데이터를 같은 방식으로 기술하는 공통 언어 구실을 하는 데이터 모델이다.[@covesa-vss-2026][@covesa-about-2026]
+[[vehicle-signal-specification|VSS]]는 차량 안과 클라우드에서 차량 데이터를 같은 방식으로 기술하는 공통 언어 구실을 하는 데이터 모델이다.[@covesa-vss-2026]

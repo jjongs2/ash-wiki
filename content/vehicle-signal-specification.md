@@ -61,7 +61,7 @@ COVESA는 VSS의 판을 버전 번호로 매기고, 현행판은 2026년 9월에
 
 COVESA에 따르면 VSS는 차량 안과 클라우드에서 차량 데이터를 기술하는 공통 언어 구실을 하고, 프로토콜과 기술에 매이지 않는 것을 설계 원칙의 하나로 둔다. VSS 파일(`.vspec`)은 사람과 기계가 함께 읽을 수 있다.[@covesa-vss-2026]
 
-VSS는 차량 응용에서 의미가 잘 정해진 차량 정보를 주고받는 표준으로 쓸 수 있다. [[vehicle-bus|차량 버스]]로 오가는 원시 데이터인 속성, 센서, 액추에이터와 인포테인먼트 쪽 데이터를 함께 다룬다. 표준 카탈로그의 데이터는 벤더에 매이지 않는 것을 목표로 하고, VSS 문법을 따르는 벤더 고유의 확장과 조정은 따로 정의할 수 있다. VSS 데이터에 접근하는 프로토콜로는 COVESA의 VISS(Vehicle Information Service Specification)가 있다. VISS는 자기 판에 따라 WebSocket, HTTP, [[mqtt|MQTT]], gRPC 같은 전송 프로토콜 위에서 JSON 메시지로 VSS 데이터에 접근하는 프로토콜을 정한다.[@covesa-vss-6-1-2026]
+VSS는 차량 응용에서 의미가 잘 정해진 차량 정보를 주고받는 표준으로 쓸 수 있다. [[vehicle-bus|차량 버스]]로 오가는 원시 데이터인 속성, 센서, 액추에이터와 인포테인먼트 쪽 데이터를 함께 다룬다. 표준 카탈로그의 데이터는 벤더에 매이지 않는 것을 목표로 하고, VSS 문법을 따르는 벤더 고유의 확장과 조정은 따로 정의할 수 있다. VSS 데이터에 접근하는 프로토콜로는 COVESA의 VISS(Vehicle Information Service Specification)가 있다. VISS는 판에 따라 WebSocket, HTTP, [[mqtt|MQTT]], gRPC 같은 전송 프로토콜 위에서 JSON 메시지로 VSS 데이터에 접근하는 프로토콜을 정한다.[@covesa-vss-6-1-2026]
 
 AUTOSAR R25-11의 [[autosar-adaptive-platform|Adaptive Platform]]은 [[autosar-adaptive-platform#그 밖의 functional cluster|Automotive API Gateway]]가 외부 인터페이스(VISS/VSS)의 차량 데이터를 차량 안 `ara::com` 서비스 인터페이스의 데이터에 대응시키도록 정한다.[@autosar-ap-exp-platformdesign-2025]
 
