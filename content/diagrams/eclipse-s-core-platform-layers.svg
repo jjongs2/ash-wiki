@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 506" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="13" fill="none" aria-label="Eclipse S-CORE 플랫폼의 계층">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- S-CORE 플랫폼의 범위 -->
+  <rect x="20" y="62" width="260" height="346" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="32" y="81" fill="var(--text, #727981)">S-CORE 플랫폼</text>
+
+  <!-- 계층 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="20" width="260" height="30" rx="2" />
+    <rect x="32" y="90" width="236" height="30" rx="2" />
+    <rect x="32" y="126" width="236" height="30" rx="2" />
+    <rect x="20" y="420" width="260" height="30" rx="2" />
+    <rect x="20" y="456" width="260" height="30" rx="2" />
+  </g>
+  <!-- 블록을 담는 계층 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="32" y="162" width="236" height="154" rx="2" />
+    <rect x="32" y="322" width="236" height="74" rx="2" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="32" y="39.5">응용</text>
+    <text x="44" y="109.5">Frameworks</text>
+    <text x="44" y="145.5">Platform API</text>
+    <text x="44" y="181.5">Platform services</text>
+    <text x="44" y="341.5">Common</text>
+    <text x="32" y="439.5">기존 운영체제</text>
+    <text x="32" y="475.5">하이퍼바이저·하드웨어</text>
+  </g>
+  <g font-size="12" text-anchor="end" fill="var(--text, #727981)">
+    <text x="256" y="109">분야별 framework</text>
+    <text x="256" y="145">C++·Rust 네이티브 API</text>
+    <text x="268" y="439">QNX, Linux 등</text>
+  </g>
+
+  <!-- 블록 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="44" y="190" width="103" height="34" rx="2" />
+    <rect x="153" y="190" width="103" height="34" rx="2" />
+    <rect x="44" y="230" width="103" height="34" rx="2" />
+    <rect x="153" y="230" width="103" height="34" rx="2" />
+    <rect x="44" y="270" width="103" height="34" rx="2" />
+    <rect x="44" y="350" width="80" height="34" rx="2" />
+    <rect x="130" y="350" width="126" height="34" rx="2" />
+  </g>
+  <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
+    <text x="95.5" y="211.5">Base Services</text>
+    <text x="204.5" y="204.5">Application</text>
+    <text x="204.5" y="218.5">Management</text>
+    <text x="95.5" y="251.5">Communication</text>
+    <text x="204.5" y="251.5">Diagnosis</text>
+    <text x="95.5" y="291.5">Security</text>
+    <text x="84" y="371.5">Baselibs</text>
+    <text x="193" y="371.5">Config Management</text>
+  </g>
+</svg>
