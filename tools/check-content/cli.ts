@@ -7,8 +7,8 @@ import { report, verdict, type Status } from "./report"
 import { sourceChecks } from "./source-checks"
 import { loadTree } from "./tree"
 
-// 콘텐츠 검사기. 규칙과 검사 id는 docs/wiki-conventions.md와 docs/wiki-diagrams.md에 있다.
-// 사용: npm run check:content [-- [<트리 루트>] [--no-build]]   트리 루트에는 content/와 bib/가 있다.
+// 콘텐츠 검사기. 규칙과 검사 id는 docs/wiki-conventions.md와 docs/wiki-diagrams.md, docs/engine.md의 대문 절에 있다.
+// 사용: npm run check:content [-- [<트리 루트>] [--no-build]]   트리 루트에는 content/와 bib/, README.md가 있다.
 // --no-build는 docs/wiki-conventions.md의 검사기 절을 따른다.
 const { values, positionals } = parseArgs({
   allowPositionals: true,
