@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="9.5 7 541 425.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="ISO 20794 시리즈가 정하는 CXPI의 계층">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 열 이름 -->
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="280" y="26" text-anchor="middle">OSI 참조 모델의 계층</text>
+    <text x="422" y="26">ISO 20794</text>
+  </g>
+
+  <!-- 계층 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="160" y="36" width="240" height="36" />
+    <rect x="160" y="76" width="240" height="36" />
+    <rect x="160" y="116" width="240" height="36" />
+    <rect x="160" y="156" width="240" height="36" />
+    <rect x="160" y="196" width="240" height="36" />
+  </g>
+  <g text-anchor="end" fill="var(--text, #727981)">
+    <text x="148" y="59">7</text>
+    <text x="148" y="99">4</text>
+    <text x="148" y="139">3</text>
+    <text x="148" y="179">2</text>
+    <text x="148" y="219">1</text>
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="280" y="59">응용 계층</text>
+    <text x="280" y="99">전송 계층</text>
+    <text x="280" y="139">네트워크 계층</text>
+    <text x="280" y="179">데이터 링크 계층</text>
+    <text x="280" y="219">물리 계층</text>
+  </g>
+
+  <!-- 계층을 정하는 부 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M406 38 H412 V70 H406" />
+    <path d="M406 78 H412 V150 H406" />
+    <path d="M406 158 H412 V230 H406" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="422" y="59">ISO 20794-2</text>
+    <text x="422" y="119">ISO 20794-3</text>
+    <text x="422" y="199">ISO 20794-4</text>
+  </g>
+
+  <!-- 물리 계층을 펼친 모습 -->
+  <path d="M160 236 L20 262 M400 236 L540 262" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="266" width="520" height="36" />
+    <rect x="20" y="306" width="520" height="36" />
+    <rect x="20" y="346" width="520" height="36" />
+    <rect x="20" y="386" width="520" height="36" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="32" y="289">physical signalling</text>
+    <text x="32" y="329">physical media attachment</text>
+    <text x="32" y="369">physical media dependent</text>
+    <text x="32" y="409">physical media</text>
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="232" y="288">클록 생성, 프레임 부호화·복호화, 비트 단위 충돌 해소</text>
+    <text x="232" y="328">신호 파형</text>
+    <text x="232" y="368">네트워크 종단, 정전기 방전 보호, 커넥터</text>
+    <text x="232" y="408">케이블과 와이어 하네스</text>
+  </g>
+</svg>

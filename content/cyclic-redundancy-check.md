@@ -61,15 +61,15 @@ AUTOSAR R25-11의 CRC 라이브러리 규격은 CRC 알고리즘을 결과의 �
 
 이 규격은 아래 CRC 루틴을 정한다. 다항식은 최고차 비트를 뺀 normal representation으로 적고, 표기법으로는 이 밖에 최고차 비트를 넣은 꼴과 reversed reciprocal(Koopman 표기)도 든다.[@autosar-cp-sws-crclibrary-2025]
 
-| 함수                    | 기반                            | 다항식               | 초기값               | 입력·결과 반사 | XOR 값               |
-| ----------------------- | ------------------------------- | -------------------- | -------------------- | -------------- | -------------------- |
+| 함수                    | 기반                     | 다항식               | 초기값               | 입력·결과 반사 | XOR 값               |
+| ----------------------- | ------------------------ | -------------------- | -------------------- | -------------- | -------------------- |
 | `Crc_CalculateCRC8`     | [[sae-j1850\|SAE J1850]] | `0x1D`               | `0xFF`               | 없음           | `0xFF`               |
-| `Crc_CalculateCRC8H2F`  | —                               | `0x2F`               | `0xFF`               | 없음           | `0xFF`               |
-| `Crc_CalculateCRC16`    | CCITT-FALSE                     | `0x1021`             | `0xFFFF`             | 없음           | `0x0000`             |
-| `Crc_CalculateCRC16ARC` | —                               | `0x8005`             | `0x0000`             | 있음           | `0x0000`             |
-| `Crc_CalculateCRC32`    | IEEE 802.3                      | `0x04C11DB7`         | `0xFFFFFFFF`         | 있음           | `0xFFFFFFFF`         |
-| `Crc_CalculateCRC32P4`  | —                               | `0xF4ACFB13`         | `0xFFFFFFFF`         | 있음           | `0xFFFFFFFF`         |
-| `Crc_CalculateCRC64`    | ECMA                            | `0x42F0E1EBA9EA3693` | `0xFFFFFFFFFFFFFFFF` | 있음           | `0xFFFFFFFFFFFFFFFF` |
+| `Crc_CalculateCRC8H2F`  | —                        | `0x2F`               | `0xFF`               | 없음           | `0xFF`               |
+| `Crc_CalculateCRC16`    | CCITT-FALSE              | `0x1021`             | `0xFFFF`             | 없음           | `0x0000`             |
+| `Crc_CalculateCRC16ARC` | —                        | `0x8005`             | `0x0000`             | 있음           | `0x0000`             |
+| `Crc_CalculateCRC32`    | IEEE 802.3               | `0x04C11DB7`         | `0xFFFFFFFF`         | 있음           | `0xFFFFFFFF`         |
+| `Crc_CalculateCRC32P4`  | —                        | `0xF4ACFB13`         | `0xFFFFFFFF`         | 있음           | `0xFFFFFFFF`         |
+| `Crc_CalculateCRC64`    | ECMA                     | `0x42F0E1EBA9EA3693` | `0xFFFFFFFFFFFFFFFF` | 있음           | `0xFFFFFFFFFFFFFFFF` |
 
 이 릴리스는 [[j1939|SAE J1939-76]] 기반 32비트 CRC 루틴 `Crc_CalculateCRC32P76`(다항식 `0x6938392D`, 초기값 `0xFFFFFFFF`, 입력·결과 반사 없음, XOR 값 `0x00000000`)도 두지만, 그 요구사항은 초안(draft) 상태다.[@autosar-cp-sws-crclibrary-2025]
 

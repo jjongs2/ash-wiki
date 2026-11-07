@@ -8,6 +8,8 @@ verified: 2026-11-07
 
 **K-Line**은 차량 진단 시스템이 [[electronic-control-unit|ECU]]와 외부 진단 장비 사이에 쓰는 [[serial-communication|UART]] 기반 직렬 통신 링크다. 진단 장비 쪽 기능이 클라이언트, ECU 쪽 기능이 서버이고, 이 직렬 링크는 K-Line과 선택적인 L-Line으로 이뤄진다. 확장 진단과 배출 관련 [[on-board-diagnostics|OBD]] 같은 진단 통신에 쓰이며, 통신은 초기화로 연다.[@iso-14230-2-obp-2016]
 
+![[diagrams/k-line-client-server.svg]]
+
 ## 쓰는 곳
 
 ISO 14230-2:2016은 확장 진단과, ISO 15031·SAE J1979-DA·SAE J2012-DA가 정한 배출 관련 OBD 같은 응용 계층 구현을 받치는 데이터 링크 계층 서비스를 정한다.[@iso-14230-2-obp-2016] K-Line 위의 UDS는 [[uds#문서 구성|UDS]]에서 다룬다.
@@ -32,6 +34,6 @@ L9637은 배터리 전압의 진단 버스에 이어지는 양방향 링크 K와
 
 ## 이력
 
-ISO 14230-1:1999는 시리즈의 총제목에 Keyword Protocol 2000을 썼고, ISO 14230-1:2012부터 총제목은 "Road vehicles — Diagnostic communication over K-Line (DoK-Line)"이다.[@iso-14230-1-1999][@iso-14230-1-obp-2012] 데이터 링크 계층을 정하는 2부는 ISO 14230-2:2013(2판)에서 DoK-Line 총제목을 썼고, ISO 14230-2:2016(3판)이 그 판을 대체했다.[@iso-14230-2-2013][@iso-14230-2-obp-2016]
+ISO 14230-1:1999는 시리즈의 총제목에 Keyword Protocol 2000을 썼고, ISO 14230-1:2012부터 총제목은 "Road vehicles — Diagnostic communication over K-Line (DoK-Line)"이다.[@iso-14230-1-obp-2012][@iso-14230-1-1999] 데이터 링크 계층을 정하는 2부는 ISO 14230-2:2013(2판)에서 DoK-Line 총제목을 썼고, ISO 14230-2:2016(3판)이 그 판을 대체했다.[@iso-14230-2-obp-2016][@iso-14230-2-2013]
 
 2026년 11월 기준 응용 계층을 정하는 3부와 배출 관련 시스템의 요구를 정하는 4부는 Keyword Protocol 2000 총제목의 1판인 ISO 14230-3:1999와 ISO 14230-4:2000이 현행판이다. 두 판은 모두 2026년에 검토를 거쳐 그대로 유지되었다.[@iso-14230-3-1999][@iso-14230-4-2000]

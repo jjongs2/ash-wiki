@@ -13,15 +13,15 @@ verified: 2026-09-28
 
 2026년 10월 기준 ISO 14229는 1부부터 8부까지 있다.[@iso-14229-1-obp-2026] 부마다 정하는 것은 아래와 같다.
 
-| 문서        | 정하는 것                                                              |
-| ----------- | ---------------------------------------------------------------------- |
-| ISO 14229-1 | 응용 계층[@iso-14229-1-obp-2026]                                       |
-| ISO 14229-2 | 세션 계층 서비스[@iso-14229-2-obp-2021]                                |
-| ISO 14229-3 | [[can\|CAN]] 위의 UDS(UDSonCAN)[@iso-14229-3-obp-2022]                 |
-| ISO 14229-4 | [[flexray\|FlexRay]] 위의 UDS(UDSonFR)[@iso-14229-4-obp-2012]          |
-| ISO 14229-5 | IP 위의 UDS(UDSonIP)[@iso-14229-5-obp-2022]                            |
+| 문서        | 정하는 것                                                       |
+| ----------- | --------------------------------------------------------------- |
+| ISO 14229-1 | 응용 계층[@iso-14229-1-obp-2026]                                |
+| ISO 14229-2 | 세션 계층 서비스[@iso-14229-2-obp-2021]                         |
+| ISO 14229-3 | [[can\|CAN]] 위의 UDS(UDSonCAN)[@iso-14229-3-obp-2022]          |
+| ISO 14229-4 | [[flexray\|FlexRay]] 위의 UDS(UDSonFR)[@iso-14229-4-obp-2012]   |
+| ISO 14229-5 | IP 위의 UDS(UDSonIP)[@iso-14229-5-obp-2022]                     |
 | ISO 14229-6 | [[k-line\|K-Line]] 위의 UDS(UDSonK-Line)[@iso-14229-6-obp-2013] |
-| ISO 14229-7 | [[lin\|LIN]] 위의 UDS(UDSonLIN)[@iso-14229-7-obp-2022]                 |
+| ISO 14229-7 | [[lin\|LIN]] 위의 UDS(UDSonLIN)[@iso-14229-7-obp-2022]          |
 | ISO 14229-8 | [[cxpi\|CXPI]] 위의 UDS(UDSonCXPI)[@iso-14229-8-obp-2020]       |
 
 ISO 14229-2:2021은 ISO 14229-1과, DoCAN(Diagnostic communication over Controller Area Network)이나 [[doip|DoIP]] 같은 전송 프로토콜 사이의 독립성을 준다.[@iso-14229-2-obp-2021] ISO 14229-5:2022는 ISO 14229-1과 ISO 14229-2를 참조해, IP 위의 진단 통신에 쓸 진단 서비스의 구현 요구사항을 정한다.[@iso-14229-5-obp-2022] ISO 14229-8:2020은 CXPI 네트워크에 UDS를 구현하는 법을 정하고, 클라이언트와 CXPI slave 노드 사이의 진단 데이터 전송은 CXPI master 노드를 거친다.[@iso-14229-8-obp-2020]

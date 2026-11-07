@@ -1,39 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="60 16 530 192.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="LIN, CAN과 FlexRay의 비트율">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="60 16 510 312.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="차량 버스의 비트율">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
-  <!-- 가로축은 로그 스케일: x = 200 + 90 × (log10(비트율 bit/s) − 3) -->
+  <!-- 가로축은 로그 스케일: x = 200 + 64 × (log10(비트율 bit/s) − 3) -->
 
   <!-- 행 이름 -->
   <g text-anchor="end" fill="var(--text, #727981)">
     <text x="178" y="37">LIN</text>
-    <text x="178" y="77">저속 내결함성 CAN</text>
-    <text x="178" y="117">CAN</text>
-    <text x="178" y="157">FlexRay</text>
+    <text x="178" y="77">CXPI</text>
+    <text x="178" y="117">SAE J1850</text>
+    <text x="178" y="157">저속 내결함성 CAN</text>
+    <text x="178" y="197">CAN</text>
+    <text x="178" y="237">FlexRay</text>
+    <text x="178" y="277">MOST</text>
   </g>
 
-  <!-- 상한만 있는 버스와 예로 든 값은 점, 두 끝이 있는 버스는 구간(열린 원은 그 값을 빼는 끝) -->
+  <!-- 상한만 있는 버스와 예로 든 값, 정해진 값은 점, 두 끝이 있는 버스는 구간(열린 원은 그 값을 빼는 끝) -->
   <circle cx="200" cy="32" r="6" fill="var(--ink, #727981)" />
-  <line x1="206" y1="32" x2="311.1" y2="32" stroke="var(--ink, #727981)" stroke-width="3" />
-  <circle cx="317.1" cy="32" r="6" fill="var(--ink, #727981)" />
-  <line x1="349.2" y1="72" x2="382.7" y2="72" stroke="var(--ink, #727981)" stroke-width="3" />
-  <circle cx="344.2" cy="72" r="5" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <circle cx="388.7" cy="72" r="6" fill="var(--ink, #727981)" />
-  <circle cx="470" cy="112" r="6" fill="var(--ink, #727981)" />
-  <circle cx="560" cy="152" r="6" fill="var(--ink, #727981)" />
+  <line x1="206" y1="32" x2="277.3" y2="32" stroke="var(--ink, #727981)" stroke-width="3" />
+  <circle cx="283.3" cy="32" r="6" fill="var(--ink, #727981)" />
+  <circle cx="283.3" cy="72" r="6" fill="var(--ink, #727981)" />
+  <circle cx="265.1" cy="112" r="6" fill="var(--ink, #727981)" />
+  <circle cx="303.6" cy="112" r="6" fill="var(--ink, #727981)" />
+  <line x1="307.5" y1="152" x2="328.2" y2="152" stroke="var(--ink, #727981)" stroke-width="3" />
+  <circle cx="302.5" cy="152" r="5" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <circle cx="334.2" cy="152" r="6" fill="var(--ink, #727981)" />
+  <circle cx="392" cy="192" r="6" fill="var(--ink, #727981)" />
+  <circle cx="456" cy="232" r="6" fill="var(--ink, #727981)" />
+  <circle cx="500.7" cy="272" r="6" fill="var(--ink, #727981)" />
+  <circle cx="531.3" cy="272" r="6" fill="var(--ink, #727981)" />
 
   <!-- 값 -->
   <g font-size="12" fill="var(--text, #727981)">
-    <text x="331.1" y="36">1 kbit/s 이상, 20 kbit/s 이하</text>
-    <text x="402.7" y="76">40 kbit/s 초과, 125 kbit/s 이하</text>
-    <text x="456" y="116" text-anchor="end">Bosch CAN 2.0의 예: 1 Mbit/s까지</text>
-    <text x="546" y="156" text-anchor="end">최대 10 Mbit/s</text>
+    <text x="297.3" y="36">1 kbit/s 이상, 20 kbit/s 이하</text>
+    <text x="297.3" y="76">20 kbit/s까지</text>
+    <text x="317.6" y="116">두 구현: 10.4 kbit/s, 41.6 kbit/s</text>
+    <text x="348.2" y="156">40 kbit/s 초과, 125 kbit/s 이하</text>
+    <text x="406" y="189">Bosch CAN 2.0의 예:</text>
+    <text x="406" y="204">1 Mbit/s까지</text>
+    <text x="442" y="236" text-anchor="end">최대 10 Mbit/s</text>
+    <text x="486.7" y="276" text-anchor="end">MOST50: 50 Mbit/s, MOST150: 150 Mbit/s</text>
   </g>
 
   <!-- 축 -->
-  <line x1="190" y1="174" x2="580" y2="174" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="580" y="196" text-anchor="end" font-size="12" fill="var(--text, #727981)">비트율 (로그 스케일)</text>
+  <line x1="190" y1="294" x2="560" y2="294" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="560" y="316" text-anchor="end" font-size="12" fill="var(--text, #727981)">비트율 (로그 스케일)</text>
 </svg>

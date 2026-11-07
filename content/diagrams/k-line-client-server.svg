@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="9.5 17 501 168" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="K-Line과 L-Line으로 이은 클라이언트와 서버">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- K-Line -->
+  <path d="M75 70 V44 H460 V70 M240 44 V70 M350 44 V70" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g fill="var(--ink, #727981)">
+    <circle cx="240" cy="44" r="3" />
+    <circle cx="350" cy="44" r="3" />
+  </g>
+  <!-- L-Line: 선택 사항 -->
+  <path d="M75 130 V156 H460 V130 M240 156 V130 M350 156 V130" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <g fill="var(--ink, #727981)">
+    <circle cx="240" cy="156" r="3" />
+    <circle cx="350" cy="156" r="3" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="140" y="36">K-Line</text>
+    <text x="140" y="173">L-Line · 선택 사항</text>
+  </g>
+
+  <!-- 클라이언트와 서버 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="70" width="110" height="60" rx="2" />
+    <rect x="200" y="70" width="80" height="60" rx="2" />
+    <rect x="310" y="70" width="80" height="60" rx="2" />
+    <rect x="420" y="70" width="80" height="60" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="75" y="96">진단 장비</text>
+    <text x="75" y="114" font-size="12">클라이언트</text>
+    <text x="240" y="96">ECU</text>
+    <text x="240" y="114" font-size="12">서버</text>
+    <text x="350" y="96">ECU</text>
+    <text x="350" y="114" font-size="12">서버</text>
+    <text x="460" y="96">ECU</text>
+    <text x="460" y="114" font-size="12">서버</text>
+  </g>
+</svg>

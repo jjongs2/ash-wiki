@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 20 545 190" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="SPC의 master trigger 펄스와 SENT 전송">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 니블 이름 -->
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="190" y="40">동기·보정 펄스</text>
+    <text x="265" y="40">상태·통신</text>
+    <text x="335" y="40">데이터 니블</text>
+    <text x="402.5" y="40">CRC</text>
+  </g>
+  <text x="430" y="40" fill="var(--text, #727981)">end pulse</text>
+
+  <!-- 센서가 내는 하강 에지 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="140" y1="50" x2="140" y2="104" />
+    <line x1="240" y1="50" x2="240" y2="104" />
+    <line x1="290" y1="50" x2="290" y2="104" />
+    <line x1="335" y1="50" x2="335" y2="104" />
+    <line x1="380" y1="50" x2="380" y2="104" />
+    <line x1="425" y1="50" x2="425" y2="104" />
+  </g>
+
+  <!-- 파형: 센서 쪽 -->
+  <path d="M20 64 H70 M110 64 H140 V96 H150 V64 H240 V96 H250 V64 H290 V96 H300 V64 H335 V96 H345 V64 H380 V96 H390 V64 H425 V96 H435 V64 H490 M530 64 H545" stroke="var(--ink, #727981)" stroke-width="3" />
+  <!-- 파형: MCU가 내는 master trigger 펄스 -->
+  <g stroke="var(--orange, #b0540d)" stroke-width="3">
+    <path d="M70 64 V96 H110 V64" />
+    <path d="M490 64 V96 H530 V64" />
+  </g>
+
+  <!-- 구간 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M70 110 V116 H110 V110" />
+    <path d="M140 110 V116 H425 V110" />
+    <path d="M435 110 V116 H488 V110" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="90" y="134">master trigger 펄스</text>
+    <text x="90" y="150">MCU</text>
+    <text x="282.5" y="134">SENT 전송</text>
+    <text x="282.5" y="150">센서</text>
+    <text x="461.5" y="134">쉼</text>
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="20" y="180">NXP 앱노트에 따른 SPC. 주황 선은 MCU가 내는 master trigger 펄스다.</text>
+    <text x="20" y="198">end pulse의 하강 에지가 CRC 니블을 끝낸다.</text>
+  </g>
+</svg>

@@ -43,6 +43,8 @@ $$
 
 SENT는 원래 단방향이지만, SPC(Short PWM Code)를 쓰면 양방향 통신을 할 수 있다.[@nxp-an4856-2014][@microchip-ds70005145-2014] NXP 앱노트에 따르면 SPC의 통신은 반이중 동기 방식으로, 수신 측 MCU가 선을 정해진 시간 동안 low로 끌어 master trigger 펄스를 내고, 센서는 그 펄스의 폭이 정해진 범위 안일 때만 SENT 전송을 시작한다. SPC에서는 SENT 전송이 끝난 뒤 end pulse를 더 보내 CRC 니블을 끝내는 하강 에지를 주고, 그 뒤 선은 다음 master trigger 펄스까지 쉰다. 예를 들어 TLE4998C는 병렬로 이은 센서 최대 넷 가운데 어느 센서가 보낼지를 master trigger 펄스의 폭으로 고르는 모드도 둔다.[@nxp-an4856-2014]
 
+![[diagrams/sent-spc-frame.svg]]
+
 TLE4998C3C도 동기 모드에서 SENT 프레임 뒤에 end pulse를 보내, CRC 니블을 읽을 수 있게 하고 데이터 선이 다시 쉬는 상태임을 알린다.[@infineon-tle4998c3c-2009] dsPIC33/PIC24 제품군의 SENT 모듈은 동기 모드에서 사용자 소프트웨어로 SPC를 구현할 수 있게 한다.[@microchip-ds70005145-2014]
 
 ## 구현

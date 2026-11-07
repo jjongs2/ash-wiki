@@ -33,6 +33,8 @@ ISO 20794 시리즈는 [[osi-model|OSI 참조 모델]]에 바탕을 두고, CXPI
 
 ISO 20794-4:2020은 데이터 링크 계층과 물리 계층을 정한다. 이 표준은 물리 계층의 요구를 넷으로 나눈다. physical signalling 부계층은 클록 생성, 프레임 부호화·복호화, 비트 단위 충돌 해소를, physical media attachment 부계층은 신호 파형을, physical media dependent 부계층은 네트워크 종단, 정전기 방전 보호, 커넥터를, physical media는 케이블과 와이어 하네스를 다룬다.[@iso-20794-4-obp-2020]
 
+![[diagrams/cxpi-iso-20794-layers.svg]]
+
 ## 배경
 
 JSAE(일본의 자동차 기술 단체)는 JASO(Japanese Automotive Standards) 규격의 제정과 개정을 맡고[@jsae-standard-2026], CXPI를 JASO D015 시리즈로 냈다. JSAE가 2021년 9월에 낸 영문 번역 JASO 목록에는 D015의 1부부터 7부까지가 올라 있고, 그 판은 1·3·5부가 2015년, 2·4부가 2016년, 6·7부가 2019년이다.[@jsae-jaso-list-2021]

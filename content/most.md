@@ -80,6 +80,8 @@ MOST Specification Rev. 3.0 E2는 MOST 시스템의 노드를 64개까지로 정
 
 이 명세는 MOST의 속도 등급(speed grade)을 **MOST25**, MOST50, MOST150이라 부른다. 부록 D(informative)는 MOST150 프레임 하나를 3072비트(384바이트)로 들고, 앞 12바이트는 프리앰블, boundary descriptor, 제어 데이터 4바이트 등을 담는 관리 영역으로, 나머지 372바이트는 패킷 데이터와 스트리밍 데이터 전송에 쓰는 구성을 제시한다. 시스템의 샘플링 주파수로는 44.1 kHz와 48 kHz를 들고, 그 가운데 48 kHz를 권장값으로 제시한다.[@most-cooperation-spec-3-0-e2-2010]
 
+![[diagrams/most150-frame.svg]]
+
 ## 역사
 
 MOST는 1990년대 말 차량의 복잡한 오디오 응용을 지원하려고 처음 개발되었고, MOST Cooperation은 1998년에 세워졌다.[@iso-21806-1-obp-2020]

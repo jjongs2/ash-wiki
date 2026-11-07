@@ -45,13 +45,13 @@ Bosch CAN 2.0 규격은 자동차 전자 장치를 1 Mbit/s까지의 비트율�
 
 FlexRay의 비트율은 최대 10 Mbit/s이며, FlexRay는 차량의 고속 제어 응용을 위한 것이다.[@iso-17458-4-obp-2013] FlexRay 물리 계층은 비트율 $R_\mathrm{b}$가 $2.5\,\mathrm{Mbit/s} \le R_\mathrm{b} \le 10\,\mathrm{Mbit/s}$인 시스템에서 제대로 동작한다.[@iso-17458-5-obp-2013]
 
-![[diagrams/vehicle-bus-bit-rates.svg]]
-
 MOST50과 MOST150은 비트율이 각각 50 Mbit/s와 150 Mbit/s인 MOST 네트워크다.[@iso-21806-1-obp-2020]
 
 [[sent|SENT]]의 기본 시간 단위인 틱은 3\~90 µs다.[@nxp-an4856-2014][@microchip-ds70005145-2014]
 
 SAE J2057/1:2022는 차량 네트워크를 Class A, Class B, Class C로 나눈다.[@sae-j2057-1-2022] SAE J1850:2022는 Class B 데이터 통신 네트워크 인터페이스를 정하고, 매체와 물리 계층이 다른 두 구현을 정해 하나는 10.4 kbit/s, 다른 하나는 41.6 kbit/s의 비트율에 맞춘다.[@sae-j1850-2022] SAE 기술 논문 931808은 차량 내 네트워크가 저속·중속·고속의 데이터율 요구를 맡는 하위 네트워크로 이루어질 수 있다고 하고, 이 셋을 각각 SAE Class A, B, C라 부른다.[@sae-931808-1993]
+
+![[diagrams/vehicle-bus-bit-rates.svg]]
 
 ## 버스 사이 연결
 
