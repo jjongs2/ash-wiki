@@ -5,42 +5,34 @@
   <text x="140" y="30" text-anchor="middle" fill="var(--text, #727981)">도메인 아키텍처</text>
   <rect x="20.75" y="50.75" width="238.5" height="398.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g stroke-width="1.5">
-    <path d="M110 86 V170" stroke="var(--blue, #336fb8)" />
-    <path d="M170 414 V404 H34 V184 H48" stroke="var(--blue, #336fb8)" />
-    <path d="M216 86 V170" stroke="var(--orange, #b0540d)" />
-    <path d="M110 414 V396 H252 V184 H232" stroke="var(--orange, #b0540d)" />
-    <path d="M64 414 V330" stroke="var(--green, #337b47)" />
-    <path d="M170 86 V110 H240 V214 H40 V316 H48" stroke="var(--green, #337b47)" />
-    <path d="M216 414 V330" stroke="var(--red, #bb464d)" />
-    <path d="M64 86 V104 H28 V286 H246 V316 H232" stroke="var(--red, #bb464d)" />
+    <path d="M70 86 V170" stroke="var(--blue, #336fb8)" />
+    <path d="M210 414 V404 H34 V184 H48" stroke="var(--blue, #336fb8)" />
+    <path d="M210 86 V170" stroke="var(--red, #bb464d)" />
+    <path d="M70 414 V396 H252 V184 H232" stroke="var(--red, #bb464d)" />
+    <path d="M140 414 V330" stroke="var(--green, #337b47)" />
+    <path d="M140 86 V110 H240 V316 H182" stroke="var(--green, #337b47)" />
   </g>
-  <path d="M140 236 V229 H90 V198 M140 229 H190 V198 M140 264 V271 H90 V302 M140 271 H190 V302" stroke="var(--ink, #727981)" stroke-width="3" />
-  <rect x="47.75" y="66.75" width="32.5" height="18.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="64" y="80" text-anchor="middle" font-size="11" fill="var(--text, #727981)">ECU</text>
-  <rect x="47.75" y="414.75" width="32.5" height="18.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="64" y="428" text-anchor="middle" font-size="11" fill="var(--text, #727981)">ECU</text>
-  <rect x="93.75" y="66.75" width="32.5" height="18.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="110" y="80" text-anchor="middle" font-size="11" fill="var(--text, #727981)">ECU</text>
-  <rect x="93.75" y="414.75" width="32.5" height="18.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="110" y="428" text-anchor="middle" font-size="11" fill="var(--text, #727981)">ECU</text>
-  <rect x="153.75" y="66.75" width="32.5" height="18.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="170" y="80" text-anchor="middle" font-size="11" fill="var(--text, #727981)">ECU</text>
-  <rect x="153.75" y="414.75" width="32.5" height="18.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="170" y="428" text-anchor="middle" font-size="11" fill="var(--text, #727981)">ECU</text>
-  <rect x="199.75" y="66.75" width="32.5" height="18.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="216" y="80" text-anchor="middle" font-size="11" fill="var(--text, #727981)">ECU</text>
-  <rect x="199.75" y="414.75" width="32.5" height="18.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="216" y="428" text-anchor="middle" font-size="11" fill="var(--text, #727981)">ECU</text>
+  <path d="M140 236 V229 H90 V198 M140 229 H190 V198 M140 264 V302" stroke="var(--ink, #727981)" stroke-width="3" />
+  <rect x="53.75" y="66.75" width="32.5" height="18.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="70" y="80" text-anchor="middle" font-size="11" fill="var(--text, #727981)">ECU</text>
+  <rect x="53.75" y="414.75" width="32.5" height="18.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="70" y="428" text-anchor="middle" font-size="11" fill="var(--text, #727981)">ECU</text>
+  <rect x="123.75" y="66.75" width="32.5" height="18.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="140" y="80" text-anchor="middle" font-size="11" fill="var(--text, #727981)">ECU</text>
+  <rect x="123.75" y="414.75" width="32.5" height="18.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="140" y="428" text-anchor="middle" font-size="11" fill="var(--text, #727981)">ECU</text>
+  <rect x="193.75" y="66.75" width="32.5" height="18.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="210" y="80" text-anchor="middle" font-size="11" fill="var(--text, #727981)">ECU</text>
+  <rect x="193.75" y="414.75" width="32.5" height="18.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="210" y="428" text-anchor="middle" font-size="11" fill="var(--text, #727981)">ECU</text>
   <rect x="92.75" y="236.75" width="94.5" height="26.5" fill="var(--violet-tint, #825da9)" stroke="var(--violet, #825da9)" stroke-width="1.5" />
   <text x="140" y="254" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">중앙 게이트웨이</text>
   <rect x="48.75" y="170.75" width="82.5" height="26.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <text x="90" y="188" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">파워트레인</text>
-  <rect x="148.75" y="170.75" width="82.5" height="26.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
-  <text x="190" y="188" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">섀시</text>
-  <rect x="48.75" y="302.75" width="82.5" height="26.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
-  <text x="90" y="320" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">바디</text>
-  <rect x="148.75" y="302.75" width="82.5" height="26.5" fill="var(--red-tint, #bb464d)" stroke="var(--red, #bb464d)" stroke-width="1.5" />
-  <text x="190" y="320" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">인포테인먼트</text>
+  <rect x="148.75" y="170.75" width="82.5" height="26.5" fill="var(--red-tint, #bb464d)" stroke="var(--red, #bb464d)" stroke-width="1.5" />
+  <text x="190" y="188" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">인포테인먼트</text>
+  <rect x="98.75" y="302.75" width="82.5" height="26.5" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <text x="140" y="320" text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">바디</text>
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="140" y="476">ECU를 기능 도메인으로 묶는다</text>
     <text x="140" y="494">이름을 적은 색 상자: 도메인 제어기</text>

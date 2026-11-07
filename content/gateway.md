@@ -15,17 +15,17 @@ SAE 기술 논문 931808에 따르면 데이터율 요구가 다른 하위 네�
 
 NXP는 여러 차량 네트워크를 한데 잇는 중앙 허브 게이트웨이를 중앙 게이트웨이(central gateway)라 부른다. 게이트웨이는 네트워크 사이에서 데이터가 목적지에 닿도록 라우팅하고, 외부 진단 장비와 ECU 사이에서 진단 메시지를 라우팅한다. 이때 [[doip|DoIP]]와 [[uds|UDS]] 사이의 변환이 따를 수 있다. 게이트웨이는 파워트레인, 섀시·안전, 바디, 인포테인먼트, 텔레매틱스, ADAS(Advanced Driver Assistance Systems) 같은 기능 도메인 사이의 데이터를 라우팅한다.[@nxp-autogwdevwpus-2018]
 
-게이트웨이의 주요 기능으로는 그 밖에도 방화벽, 메시지 미러링(받은 데이터를 진단이나 데이터 기록을 위해 다른 인터페이스로 내보내는 것), 침입 탐지, 네트워크 관리, [[key-management|키 관리]], 게이트웨이로 닿는 ECU의 [[over-the-air-update|OTA]] 펌웨어 업데이트 관리가 있다.[@nxp-autogwdevwpus-2018]
+게이트웨이의 주요 기능으로는 그 밖에도 방화벽, 메시지 미러링(받은 데이터를 진단이나 데이터 기록을 위해 다른 인터페이스로 내보내는 것), 침입 탐지, 네트워크 관리, [[key-management|키 관리]], 게이트웨이를 거쳐 닿는 ECU의 [[over-the-air-update|OTA]] 펌웨어 업데이트 관리가 있다.[@nxp-autogwdevwpus-2018]
 
 차량 네트워크가 이더넷으로 옮겨 가면 게이트웨이 기능이 [[domain-controller|도메인 제어기]]로 나뉠 수 있고, 이때 중앙 게이트웨이는 도메인 사이의 이더넷 패킷을 라우팅한다.[@nxp-autogwdevwpus-2018] NXP 발표 자료에 따르면 도메인을 [[virtual-lan|VLAN]]으로 나눈 이더넷 네트워크에서 도메인 안의 트래픽은 2계층 [[ethernet-switch|이더넷 스위치]]가 스위칭할 수 있지만, 도메인 사이의 트래픽은 IP나 게이트웨이 같은 더 높은 계층에서 라우팅하고 방화벽으로 검사해야 한다.[@nxp-amf-aut-t3190-2018] 도메인 제어기와 차량 네트워크의 구성은 [[ee-architecture#도메인 아키텍처|E/E 아키텍처]]에서 다룬다.
 
-Bosch에 따르면 옛 차량에서는 바디 컴퓨터 같은 ECU 안에 게이트웨이 기능을 두었지만, 통신 버스와 데이터 교환이 빠르게 늘어 게이트웨이 기능을 독립된 제어기로 떼어 낼 필요가 생겼다. Bosch Central gateway는 차량 안 통신과 차량 밖과의 통신을 라우팅하고, 차량으로 들어오는 모든 데이터가 거치는 관문이다. 진단의 중앙 접근점으로서 테스터의 진단 요청을 차량의 여러 도메인으로 라우팅한다.[@bosch-central-gateway-2026]
+Bosch에 따르면 옛 차량에서는 바디 컴퓨터 같은 ECU 안에 게이트웨이 기능을 두었지만, 통신 버스와 데이터 교환이 빠르게 늘어 게이트웨이 기능을 독립된 제어기로 떼어 낼 필요가 생겼다. Bosch의 중앙 게이트웨이 제품 Central gateway는 차량 안 통신과 차량 밖과의 통신을 라우팅하고, 차량으로 들어오는 모든 데이터가 거치는 관문이다. 진단의 중앙 접근점으로서 진단 장비(테스터)의 진단 요청을 차량의 여러 도메인으로 라우팅한다.[@bosch-central-gateway-2026]
 
 [[ee-architecture#존 아키텍처|존 아키텍처]]에서는 [[zone-controller|존 제어기]]도 게이트웨이 기능을 맡는다.[@infineon-zcu-2026][@ti-spry345-2024]
 
 ## AUTOSAR의 게이트웨이
 
-[[autosar|AUTOSAR]] R25-11 용어집은 게이트웨이를 [[autosar-classic-platform|Classic Platform]] ECU 안에서 CAN 시스템이나 FlexRay 채널 하나 같은 두 통신 시스템 사이의 프레임이나 시그널 매핑을 하는 기능으로 정의한다.[@autosar-fo-tr-glossary-2025]
+[[autosar|AUTOSAR]] R25-11 용어집은 게이트웨이를 [[autosar-classic-platform|Classic Platform]] ECU 안에서 CAN 시스템 하나나 FlexRay 채널 하나 같은 두 통신 시스템 사이의 프레임이나 시그널 매핑을 하는 기능으로 정의한다.[@autosar-fo-tr-glossary-2025]
 
 ## PDU 게이트웨이
 
@@ -55,7 +55,7 @@ AUTOSAR COM은 받은 I-PDU의 [[signal-based-communication|시그널]]과 [[aut
 
 ## 네트워크 분리
 
-차량 게이트웨이는 방화벽과 침입 탐지로 차량 내부망을 허가 없는 접근에서 지킨다.[@nxp-autogwdevwpus-2018][@bosch-central-gateway-2026] NXP 백서에 따르면 보안 게이트웨이 층은 인터넷 같은 외부 인터페이스에서 내부망으로 들어오는 접근과 내부 노드끼리의 통신을 통제하고, 신뢰하지 않는 인포테인먼트 시스템과 신뢰하는 안전 시스템처럼 기능 도메인을 서로 격리한다.[@nxp-autogwdevwpus-2018]
+NXP 백서에 따르면 보안 게이트웨이 층은 인터넷 같은 외부 인터페이스에서 내부망으로 들어오는 접근과 내부 노드끼리의 통신을 통제하고, 신뢰하지 않는 인포테인먼트 시스템과 신뢰하는 안전 시스템처럼 기능 도메인을 서로 격리한다.[@nxp-autogwdevwpus-2018]
 
 NHTSA의 2022년 지침(Cybersecurity Best Practices for the Safety of Modern Vehicles)은 무선으로 연결된 ECU와 저수준 차량 제어 시스템, 특히 제동, 조향, 추진, 전원 관리처럼 안전에 중요한 기능을 제어하는 시스템 사이의 연결을 네트워크 분할과 격리 기법으로 제한하기를 권한다. 네트워크 사이의 인터페이스는, 서로 다른 네트워크 세그먼트 사이의 메시지 흐름을 엄격한 화이트리스트 기반으로 거르는 것 같은 강한 경계 통제를 갖춘 게이트웨이로 보호하기를 권한다.[@nhtsa-cybersecurity-best-practices-2022]
 

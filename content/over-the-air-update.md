@@ -31,7 +31,7 @@ NXP 백서에 따르면 OTA 업데이트에서 차량과 제조사 서버 사이
 
 ![[diagrams/update-check-pull-push.svg]]
 
-기능을 중앙 컴퓨터에 모은 [[ee-architecture|E/E 아키텍처]]는 OTA 업데이트로 차량 기능을 바꾸거나 더하기 쉽게 한다.[@bosch-ee-architecture-2026][@ti-slyy236-2025]
+기능을 [[high-performance-computer|중앙 컴퓨터]]에 모은 [[ee-architecture|E/E 아키텍처]]는 OTA 업데이트로 차량 기능을 바꾸거나 더하기 쉽게 한다.[@bosch-ee-architecture-2026][@ti-slyy236-2025]
 
 Volkswagen ID. 모델은 소프트웨어 업데이트를 이동통신으로 중앙 고성능 컴퓨터 ICAS(In Car Application Server)에 받는다. ICAS는 예전 세대 차량에서 여러 제어기에 흩어져 있던 기능을 맡는다. 이렇게 바뀐 전자 아키텍처는 OTA 업데이트로 제어기를 35개까지 업데이트할 수 있게 한다.[@volkswagen-id-ota-press-2021]
 

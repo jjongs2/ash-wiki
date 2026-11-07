@@ -9,9 +9,7 @@ verified: 2026-11-07
 
 **도메인 제어기**(domain controller)는 [[ee-architecture#도메인 아키텍처|도메인 아키텍처]]에서 파워트레인, 바디처럼 기능 도메인 하나의 기능을 모아 다스리는 제어기로, 그 도메인의 [[electronic-control-unit|ECU]]들이 그 아래에 붙어 계층을 이룬다.[@renesas-ipd-power-distribution-2025][@ti-sszt211-2023] DCU(Domain Control Unit)라고도 부른다.[@guo-virtualisation-technologies-2025]
 
-![[diagrams/domain-zonal-architecture.svg]]
-
-TI 기술 기사에 따르면 도메인 제어기는 [[gateway|게이트웨이]] 기능을 품어, 도메인 안의 ECU 사이와 도메인과 차량의 나머지 사이로 데이터를 넘긴다.[@ti-sszt211-2023]
+TI 기술 기사에 따르면 도메인 제어기는 [[gateway|게이트웨이]] 기능을 품어, 도메인 안의 ECU 사이와 도메인과 차량의 나머지 사이로 데이터를 넘긴다.[@ti-sszt211-2023] NXP의 2017년 백서에 따르면 센서 데이터 처리와 알고리즘을 도메인 제어기가 맡을 수 있어, 그 아래 ECU는 덜 강력한 마이크로컨트롤러를 쓸 수 있다.[@nxp-fvnecua4wp-2017]
 
 ## 도메인의 예
 
@@ -27,4 +25,4 @@ Renesas 백서에 따르면 도메인 아키텍처와 [[ee-architecture#존 아�
 
 TI Jacinto 7 프로세서는 도메인 제어기용으로, 데이터 처리용 Arm Cortex-A72 코어, 실시간 제어용 Arm Cortex-R5F, 고속 네트워크용 기가비트 [[tsn|TSN]] [[ethernet-switch|이더넷 스위치]]를 함께 둔다.[@ti-sszt211-2023]
 
-NXP S32G2는 서비스 지향 게이트웨이, 도메인 제어기, 존 프로세서에 두루 쓰도록 나온 차량 네트워크 프로세서다.[@nxp-s32g2-2026]
+NXP S32G2는 서비스 지향 게이트웨이, 도메인 제어기, [[zone-controller|존 제어기]]용 프로세서에 두루 쓰도록 나온 차량 네트워크 프로세서다.[@nxp-s32g2-2026]
