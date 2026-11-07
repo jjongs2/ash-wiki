@@ -37,7 +37,7 @@ AA는 다른 AA에 서비스를 제공할 수도 있다. Adaptive Platform Found
 
 ### Machine과 프로세스
 
-Adaptive Platform은 자신이 도는 하드웨어를 **Machine**이라 부른다. Machine은 실제 물리 머신일 수도 있고, 완전 가상화 머신, 반가상화 운영체제, 운영체제 수준 가상화 컨테이너 같은 가상 환경일 수도 있다. 어떤 가상화 기술을 쓰든 플랫폼을 일관되게 보려는 것이다. 하드웨어 하나에 Machine이 하나 이상 있을 수 있고, Machine마다 Adaptive Platform 인스턴스는 하나만 돈다.[@autosar-ap-exp-platformdesign-2025]
+Adaptive Platform은 자신이 도는 하드웨어를 **Machine**이라 부른다. Machine은 실제 물리 머신일 수도 있고, [[hypervisor#완전 가상화와 반가상화|완전 가상화]] 머신, 반가상화 운영체제, 운영체제 수준 가상화 컨테이너 같은 가상 환경일 수도 있다. 어떤 가상화 기술을 쓰든 플랫폼을 일관되게 보려는 것이다. 하드웨어 하나에 Machine이 하나 이상 있을 수 있고, Machine마다 Adaptive Platform 인스턴스는 하나만 돈다.[@autosar-ap-exp-platformdesign-2025]
 
 운영체제는 다중 프로세스 POSIX 기능을 제공해야 하고, 운영체제가 보기에 Adaptive Platform과 AA는 프로세스의 집합이다. 각 AA는 자기 논리 메모리 공간과 네임스페이스를 가진 독립 프로세스로 구현된다. 다만 AA 하나가 그런 프로세스를 여러 개 담을 수도 있고, 그 프로세스들은 Adaptive Platform 인스턴스 하나에 배치하거나 여러 인스턴스에 나눠 배치할 수 있다. AA는 Executable 여러 개로 이뤄질 수 있고, Executable은 대개 파일 시스템의 실행 파일에 해당한다. 운영체제는 Executable에서 프로세스를 만들고, Executable 하나에서 프로세스 여러 개를 만들 수 있다. functional cluster도 대개 프로세스로 구현된다.[@autosar-ap-exp-platformdesign-2025]
 

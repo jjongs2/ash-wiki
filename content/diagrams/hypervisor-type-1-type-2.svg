@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -4.5 564 324.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="Type-1 하이퍼바이저와 Type-2 하이퍼바이저">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <text x="20" y="24" font-size="12" fill="var(--text, #727981)">Arm의 AArch64 가상화 가이드가 말하는 두 갈래</text>
+
+  <!-- 갈래 이름 -->
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="145" y="54">Type-1(standalone)</text>
+    <text x="419" y="54">Type-2(hosted)</text>
+    <text x="145" y="72" font-size="12">하이퍼바이저가 하드웨어를 모두 다스림</text>
+    <text x="419" y="72" font-size="12">호스트 운영체제가 하드웨어를 모두 다스림</text>
+  </g>
+
+  <!-- 가상 머신 틀과 호스트 운영체제 틀 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20" y="88" width="120" height="80" rx="2" />
+    <rect x="150" y="88" width="120" height="80" rx="2" />
+    <rect x="294" y="88" width="120" height="80" rx="2" />
+    <rect x="424" y="88" width="120" height="80" rx="2" />
+    <rect x="294" y="178" width="250" height="76" rx="2" />
+  </g>
+
+  <!-- 게스트 운영체제와 하드웨어 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="26" y="118" width="108" height="36" rx="2" />
+    <rect x="156" y="118" width="108" height="36" rx="2" />
+    <rect x="300" y="118" width="108" height="36" rx="2" />
+    <rect x="430" y="118" width="108" height="36" rx="2" />
+    <rect x="20" y="264" width="250" height="36" rx="2" />
+    <rect x="294" y="264" width="250" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="80" y="108">가상 머신</text>
+    <text x="210" y="108">가상 머신</text>
+    <text x="354" y="108">가상 머신</text>
+    <text x="484" y="108">가상 머신</text>
+    <text x="80" y="141">게스트 운영체제</text>
+    <text x="210" y="141">게스트 운영체제</text>
+    <text x="354" y="141">게스트 운영체제</text>
+    <text x="484" y="141">게스트 운영체제</text>
+    <text x="419" y="243">호스트 운영체제</text>
+    <text x="145" y="287">하드웨어</text>
+    <text x="419" y="287">하드웨어</text>
+  </g>
+
+  <!-- 하이퍼바이저 -->
+  <g stroke="var(--blue, #336fb8)" stroke-width="1.5" fill="var(--blue-tint, #336fb8)">
+    <rect x="20" y="178" width="250" height="76" rx="2" />
+    <rect x="302" y="186" width="234" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="145" y="221">하이퍼바이저</text>
+    <text x="419" y="209">하이퍼바이저</text>
+  </g>
+</svg>
