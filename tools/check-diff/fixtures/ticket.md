@@ -17,7 +17,3 @@
 | 아직 없는 것                              | `planned-page`             | `linker-b`                                                                                                |
 | 두 주인                                   | `owner-page`, `other-page` | `linker-a`                                                                                                |
 | FTTI와 시간 구간, distributed development | `section-owner`            | `linker-a`                                                                                                |
-
-## Acceptance criteria
-
-- [ ] `CONTRIBUTING.md`의 PR 전 확인 통과

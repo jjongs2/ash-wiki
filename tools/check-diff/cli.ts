@@ -11,7 +11,7 @@ import { items } from "./items"
 // 반영 뒤 점검. 브랜치에서 content/를 더하거나 지우거나 고친 자리(커밋하지 않은 것과 추적하지 않는 새 파일
 // 포함)에서 항목마다 후보를 찍는다. 그 자리 뒤의 바뀌지 않은 줄을 찍는 항목도 있다. 판정은 사람이 하므로
 // 후보가 있어도 exit 0이다. 항목과 규칙은 docs/wiki-verification.md의 반영 뒤 점검 절에 있다.
-// 사용: npm run check:diff -- [--base <ref>] [--ticket <묶음 티켓 번호>] [--only <항목>]...
+// 사용: npm run check:diff -- [--base <ref>] [--ticket <인제스트 티켓 번호>] [--only <항목>]...
 //   --ticket-body <파일>은 --ticket 대신 티켓 본문을 파일로 준다. 테스트가 쓴다.
 const { values } = parseArgs({
   options: {

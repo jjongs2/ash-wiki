@@ -8,7 +8,7 @@ export interface OwnerRow {
   linkers: string[]
 }
 
-// 묶음 티켓 `## 범위`의 주인 페이지 표(.claude/skills/wiki-plan/SKILL.md의 ingest: 템플릿)를 읽는다.
+// 인제스트 티켓 `## 범위`의 주인 페이지 표(.claude/skills/wiki-plan/SKILL.md의 ingest: 템플릿)를 읽는다.
 // 링크만 하는 곳 칸은 첫 마침표 앞의 슬러그만 쓴다. 뒤는 "…는 고치지 않는다" 같은 단서다.
 export function ownerRows(body: string): OwnerRow[] {
   const scope = body.split(/^## /m).find((section) => section.startsWith("범위"))
