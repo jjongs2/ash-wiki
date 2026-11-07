@@ -12,6 +12,8 @@ ISO 17978-1:2026은 **HPC**(High Performance Computer)를 차량 안에서 높�
 
 기능을 모으는 소수의 강력한 중앙 컴퓨터를 HPC라 부른다.[@mauser-mixed-criticality-2025] Bosch는 앞으로 차량 기능을 다스릴 소수의 아주 강력한 중앙 컴퓨터를 차량 컴퓨터(vehicle computer)라 부른다. 차량 컴퓨터는 모든 도메인에 걸쳐 동작해, 따로 된 제어기들이 돌리던 파워트레인, 섀시, 운전자 보조, 인포테인먼트 같은 도메인의 여러 소프트웨어 기능을 컴퓨터 하나가 함께 돌리게 된다.[@bosch-vehicle-computer-2026] TI 기술 기사에 따르면 [[ee-architecture#존 아키텍처|존 아키텍처]]에 더하는 중앙 컴퓨터는 기능과 상관없이 모든 계산을 맡는, 처리 능력이 큰 컴퓨터다.[@ti-sszt211-2023]
 
+![[diagrams/vehicle-computer-consolidation.svg]]
+
 ## 칩
 
 Renesas R-Car X5H는 ADAS(Advanced Driver Assistance Systems), 인포테인먼트, [[gateway|게이트웨이]] 기능을 칩 하나에 모아, 중앙 집중형 [[electronic-control-unit|ECU]]로 옮겨 가도록 나온 다중 도메인 칩이다. 소프트웨어 격리에 더해 하드웨어 기반 [[freedom-from-interference|freedom from interference]] 기술을 두어, 브레이크 바이 와이어 같은 안전 기능을 안전과 무관한 기능과 떼어 놓는다. 안전 기능에는 저마다 독립된 CPU 코어, 메모리, 인터페이스를 가진 이중화 도메인을 따로 줄 수 있다.[@renesas-r-car-x5h-2024]
