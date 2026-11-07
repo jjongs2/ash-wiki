@@ -11,7 +11,7 @@ verified: 2026-09-27
 
 고속 CAN은 CAN_H와 CAN_L 두 선의 전압 차로 버스 상태를 나타낸다.[@iso-11898-2-obp-2026] 이 방식은 [[differential-signaling|차동 신호]]에서 다룬다. LIN은 접지를 기준으로 선 하나로 송수신하는 단선 매체를 쓴다.[@iso-17987-4-obp-2025] FlexRay의 전기 물리 계층은 두 선을 매체로 쓰고, 두 선 사이에 차동 전압을 걸어 버스에 신호를 보낸다.[@iso-17458-4-obp-2013]
 
-[[cxpi|CXPI]]는 차량용 저속 단선 네트워크다.[@iso-20794-4-obp-2020] [[k-line|K-Line]] 진단 통신에서 클라이언트와 서버를 잇는 직렬 링크는 K-Line 선과 선택적인 L-Line 선으로 이뤄진다.[@iso-14230-2-obp-2016] Freescale 앱노트에 따르면 [[sae-j1850|J1850]]의 두 구현 가운데 VPW(Variable Pulse Width Modulation)는 10.4 kbit/s의 단선 버스이고, PWM(Pulse Width Modulation)은 41.6 kbit/s의 2선 버스다.[@freescale-an1731-2004]
+[[cxpi|CXPI]]는 차량용 저속 단선 네트워크다.[@iso-20794-4-obp-2020] [[k-line|K-Line]] 진단 통신에서 클라이언트와 서버를 잇는 직렬 링크는 K-Line 선과 선택적인 L-Line 선으로 이뤄진다.[@iso-14230-2-obp-2016] Freescale 앱노트에 따르면 [[sae-j1850|J1850]]의 두 구현 가운데 VPW(Variable Pulse Width Modulation)는 단선 버스이고, PWM(Pulse Width Modulation)은 2선 버스다.[@freescale-an1731-2004]
 
 [[most|MOST]]의 물리 계층으로는 150 Mbit/s 광 물리 계층[@iso-21806-8-obp-2020], 150 Mbit/s 동축 물리 계층[@iso-21806-10-obp-2021], 50 Mbit/s balanced media(차폐하거나 차폐하지 않은 꼬임쌍선) 물리 계층이 있다.[@iso-21806-12-obp-2021]
 

@@ -33,7 +33,7 @@ FlexRay는 통신 사이클을 주기적으로 되풀이한다. 사이클은 정
 
 FlexRay는 동기 전송에서 프레임 지연과 지터를 보장한다. 정적 세그먼트에서 슬롯을 배정받은 노드는 보낼 데이터가 없어도 null 프레임을 보낸다. 동적 세그먼트에서는 슬롯을 배정받은 노드라도 그 슬롯에서 보내지 않을 수 있다.[@iso-17458-2-obp-2013]
 
-정적 슬롯의 프레임 전송은 그 슬롯의 action point에서 시작하고, 동적 세그먼트의 전송은 미니슬롯의 action point에서 시작한다. action point는 슬롯이나 미니슬롯이 시작한 뒤 설정한 offset만큼 지난 시점이다.[@nxp-an12233-2021][@ti-spnu499c-2018] NXP 앱노트에 따르면 이 offset은 macrotick 단위로 설정한다.[@nxp-an12233-2021]
+정적 슬롯의 프레임 전송은 그 슬롯의 action point에서 시작하고, 동적 세그먼트의 전송은 미니슬롯의 action point에서 시작한다. **action point**는 슬롯이나 미니슬롯이 시작한 뒤 macrotick 단위로 설정한 offset만큼 지난 시점이다.[@nxp-an12233-2021][@ti-spnu499c-2018]
 
 심볼 윈도로는 웨이크업 같은 일을 돕는 FlexRay 심볼을 보내고, 네트워크 idle 시간은 클록 보정에 쓴다.[@iso-17458-1-obp-2013] NXP 앱노트에 따르면 심볼 윈도로는 물리 연결을 시험하는 MTS(Media Access Test Symbol)를 보낸다.[@nxp-an12233-2021]
 
@@ -55,7 +55,7 @@ FlexRay 버스는 두 선 사이에 [[differential-signaling|차동 전압]]을 
 
 FlexRay는 모든 노드에 공통 시간 기준을 제공하고, 정적 세그먼트의 시간 분할은 분산 클록에 기반한다.[@iso-17458-1-obp-2013]
 
-**microtick**은 노드의 발진기 클록에서 나온 노드별 시간 단위다. **macrotick**은 FlexRay 네트워크 전체가 함께 쓰는 시간 단위이고, 정수 개의 microtick으로 이뤄진다.[@nxp-an12233-2021][@ti-spnu499c-2018] 노드들은 sync 프레임의 도착 시각을 재어 클록을 맞춘다.[@iso-17458-2-obp-2013][@ti-spnu499c-2018] 클록 동기화는 두 보정으로 이뤄진다. **offset correction**은 사이클 시작 시점의 어긋남을 고치는 보정이고, **rate correction**은 사이클 길이의 어긋남을 고치는 보정이다. offset correction은 홀수 사이클에 적용하고, rate correction은 짝수·홀수 사이클 한 쌍에서 잰 값으로 홀수 사이클에 구해 다음 짝수·홀수 사이클 한 쌍에 적용한다.[@nxp-an12233-2021][@ti-spnu499c-2018]
+**microtick**은 노드의 발진기 클록에서 나온 노드별 시간 단위다. **macrotick**은 FlexRay 네트워크 전체가 함께 쓰는 시간 단위이고, 정수 개의 microtick으로 이뤄진다.[@nxp-an12233-2021][@ti-spnu499c-2018] 노드들은 sync 프레임의 도착 시각을 재어 클록을 맞춘다.[@iso-17458-2-obp-2013][@ti-spnu499c-2018] 클록 동기화는 두 보정으로 이뤄진다. **offset correction**은 사이클 시작 시점의 어긋남을 고치는 보정이고, **rate correction**은 사이클 길이의 어긋남을 고치는 보정이다. offset correction은 홀수 사이클에 적용하고, rate correction은 짝수·홀수 사이클 한 쌍에서 잰 값으로 그 쌍의 홀수 사이클에 구해 다음 쌍에 적용한다.[@nxp-an12233-2021][@ti-spnu499c-2018]
 
 ISO 17458-2:2013은 단일·다중 마스터 클록 동기화와 여러 네트워크에 걸친 시간 동기화를 FlexRay 프로토콜의 기본 특성으로 둔다. 다중 마스터 클록 동기화는 셋 이상의 sync 노드의 클록에 기반한 동기화다.[@iso-17458-2-obp-2013]
 

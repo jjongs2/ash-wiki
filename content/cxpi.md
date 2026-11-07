@@ -19,7 +19,7 @@ CXPI는 도어 제어 그룹, 라이트 스위치, 공조 시스템 같은 차�
 
 메시지는 request 필드와 response 필드로 이뤄지고, request 필드에 담긴 request identifier에 해당하는 노드가 response 필드를 보낼 수 있다. 통신 방식은 둘이고, 노드마다 시스템을 설계할 때 고른다. event-triggered 방식에서는 노드가 내부 이벤트가 생기면 request protected identifier 필드와 response 필드를 요청할 수 있다. 폴링 방식에서는 master 노드가 request protected type identifier 필드를 요청하고, 그 뒤 각 노드가 request protected identifier 필드를 보낼 수 있다.[@iso-20794-2-obp-2020]
 
-클록을 만드는 노드는 기본으로 master 노드이고, 이 노드는 CXPI 네트워크에 클록을 끊임없이 보낸다. 노드들은 네트워크에 클록의 하강 에지가 보이는지로 클록이 있는지 알아내고, 클록을 만드는 노드에 맞춰 통신한다. 프레임이 오가지 않는 idle 상태에도 네트워크에는 노드들을 동기화하는 클록만은 흐른다.[@iso-20794-4-obp-2020]
+클록을 만드는 노드는 기본으로 master 노드이고, 이 노드는 CXPI 네트워크에 클록을 끊임없이 보낸다. 노드들은 클록의 하강 에지가 네트워크에 보이는지로 클록이 있는지 알아내고, 클록을 만드는 노드에 맞춰 통신한다. 프레임이 오가지 않는 idle 상태에도 네트워크에는 노드들을 동기화하는 클록만은 흐른다.[@iso-20794-4-obp-2020]
 
 CXPI 네트워크가 idle 상태면 이어진 어느 노드든 PID(Protected Identifier) 전송을 시작할 수 있다. 둘 이상의 노드가 같은 때에 PID를 보내기 시작하면 PID 값에 따른 비파괴 [[bus-access-method#경쟁 방식|중재]]로 버스 접근 충돌을 풀고, 우선순위가 가장 높은 PID 값을 보낸 노드가 버스를 얻는다. 프레임은 broadcast로 보내고, 받는 쪽은 acceptance filtering으로 고른다.[@iso-20794-4-obp-2020]
 
@@ -33,7 +33,7 @@ ISO 20794-4:2020은 데이터 링크 계층과 물리 계층을 정한다. 이 �
 
 ![[diagrams/cxpi-iso-20794-layers.svg]]
 
-이 표준은 CXPI의 차량 진단 통신 틀이 [[iso-14229-1|ISO 14229-1]], ISO 14229-2, ISO 14229-8로 이뤄진다고 제시한다.[@iso-20794-4-obp-2020] CXPI 위의 진단 서비스는 [[uds#문서 구성|UDS]]에서 다룬다.
+ISO 20794-4는 CXPI의 차량 진단 통신 틀이 [[iso-14229-1|ISO 14229-1]], ISO 14229-2, ISO 14229-8로 이뤄진다고 제시한다.[@iso-20794-4-obp-2020] CXPI 위의 진단 서비스는 [[uds#문서 구성|UDS]]에서 다룬다.
 
 ## 배경
 
