@@ -8,7 +8,7 @@ verified: 2026-10-07
 
 AUTOSAR R25-11 Adaptive Platform 설계 설명서는 **Diagnostic Management**를 ISO 14229-5(UDSonIP)를 구현하는 [[autosar-adaptive-platform|AUTOSAR Adaptive Platform]]의 functional cluster로 정의한다. Diagnostic Management는 [[autosar-adaptive-platform#Functional cluster|Adaptive Platform Foundation]]에 속하고, 그 설정은 [[autosar-classic-platform|Classic Platform]]의 DEXT(Diagnostic Extract Template)를 바탕으로 한다.[@autosar-ap-exp-platformdesign-2025]
 
-지원하는 전송 계층은 [[doip|DoIP]]다. 차량 안이나 원격 진단에는 다른 전송 프로토콜을 쓰는 일이 많아, 사용자 전송 계층으로 플랫폼을 넓히는 API를 둔다. [[ee-architecture#존 아키텍처|고성능 컴퓨터]]에서는 [[uds|UDS]]와 DoIP에 더해 [[service-oriented-vehicle-diagnostics|SOVD]]도 지원한다.[@autosar-ap-exp-platformdesign-2025]
+지원하는 전송 계층은 [[doip|DoIP]]다. 차량 안이나 원격 진단에는 다른 전송 프로토콜을 쓰는 일이 많아, 사용자 전송 계층으로 플랫폼을 넓히는 API를 둔다. [[high-performance-computer|고성능 컴퓨터]]에서는 [[uds|UDS]]와 DoIP에 더해 [[service-oriented-vehicle-diagnostics|SOVD]]도 지원한다.[@autosar-ap-exp-platformdesign-2025]
 
 Diagnostic Management는 [[iso-14229-1|ISO 14229-1]]에 따른 UDS 서버 인스턴스와 ASAM의 SOVD를 구현하는 진단 서버 구현이다. UDS의 전송 계층으로는 [[iso-13400-2|ISO 13400-2]]에 따른 DoIP나 사용자 구현 전송 프로토콜을 쓸 수 있고, SOVD에는 HTTP나 HTTPS 위의 REST 서비스를 쓴다. Diagnostic Management는 DoIP 프로토콜 버전을 설정으로 고르며, 버전 2는 ISO 13400-2:2012를, 버전 3은 ISO 13400-2:2019를, 버전 4는 ISO 13400-2:2019/Amd 1:2023과 ISO 13400-2:2025를 따른다. DEXT는 Diagnostic Management의 설정 입력이다.[@autosar-ap-sws-diagnostics-2025]
 

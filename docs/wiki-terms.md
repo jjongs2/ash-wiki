@@ -69,6 +69,7 @@
 - time-triggered: 시간 트리거 (#564)
 - Timing Analysis and Design 보고서: AUTOSAR 타이밍 분석 보고서 (#257). 본문에서 AUTOSAR 문서를 부르는 이름
 - Timing Extensions 명세: 타이밍 확장 명세 (#257). 본문에서 AUTOSAR 문서를 부르는 이름. "명세" 없이 쓴 "Timing Extensions"도 그대로
+- Type 1: Type-1 (#659). 하이퍼바이저의 갈래일 때. Type 2도 같다
 - USART 풀이 Universal Synchronous/Asynchronous Receiver/Transmitter: Universal Synchronous and Asynchronous Receiver Transmitter (#196)
 - use case: 유스케이스 (#394). 합성어 포함. 예: use case 테스트
 - V2X 풀이 Vehicle-to-X: Vehicle-to-Everything (#257)
@@ -110,14 +111,18 @@
 - 오브젝트 코드: 목적 코드 (#401)
 - 오브젝트 파일: 목적 파일 (#401)
 - 운용 프로파일: 운영 프로파일 (#385)
+- 운전 자동화 레벨: 자동화 레벨 (#653). SAE J3016의 레벨일 때
 - 위협 시나리오: threat scenario (#252)
 - 인수 기준: 인수 조건 (#385)
 - 입구 노드: 진입 노드 (#579). 제어 흐름 그래프의 entry node일 때
 - 자산: asset (#252)
+- 자율주행: 자율 주행 (#653). 근거는 한글 맞춤법 제50항과 법령 표기
 - 저속 내결함성 CAN: 저속 결함 허용 CAN (#441). ISO 11898-3의 low-speed, fault-tolerant 매체와 그 트랜시버일 때. 개념 fault tolerance는 "결함 허용"(#223)
 - 전술: tactic (#431). Automotive Threat Matrix의 tactic일 때
 - 정의의 주석: Note (#566). ISO/IEC Directives를 따르는 문서의 용어 항목에 단 주석(Note # to entry)일 때. 번호는 "정의의 둘째 주석"처럼 쓴다. 본문 NOTE와 ASPICE의 BP·GP Note는 그대로
+- 존 제어기: 존 모듈 (#659). 존 아키텍처의 zone controller와 zone module일 때
 - 차량 사이버보안: 汽车信息安全 (#431). GB 44495의 汽车信息安全일 때
+- 차량 신호: 차량 시그널 (#659). VSS의 vehicle signal일 때. AUTOSAR COM의 signal은 "시그널" 그대로
 - 추적표: 추적 매트릭스, 추적성 매트릭스 (#441). traceability matrix일 때. 합성어 포함. 예: 요구사항 추적표
 - 취약점 공개: vulnerability disclosure (#431)
 - 취약점 처리: vulnerability handling (#431)

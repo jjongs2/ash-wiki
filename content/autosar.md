@@ -55,7 +55,7 @@ AUTOSAR 의장은 내부 업무를 맡고 부의장이 돕는다. 두 사람은 
 
 ## 표준
 
-AUTOSAR 표준에는 Classic Platform, Adaptive Platform, Foundation이 있다.[@autosar-standards-2026] AUTOSAR R25-11 용어집은 Classic Platform을 깊이 임베디드된 시스템과, 예측 가능성·안전·응답성 요구가 높은 응용 소프트웨어를 위해 AUTOSAR가 정의한 소프트웨어 플랫폼으로 정의한다.[@autosar-fo-tr-glossary-2025] AUTOSAR Adaptive Platform R25-11은 고도 자동 주행과 자율 주행 같은 쓰임새에서 safety-related 시스템을 만드는 고성능 연산 ECU를 위한 AUTOSAR의 해법이다.[@autosar-ap-tr-releaseoverview-2025]
+AUTOSAR 표준에는 Classic Platform, Adaptive Platform, Foundation이 있다.[@autosar-standards-2026] AUTOSAR R25-11 용어집은 Classic Platform을 깊이 임베디드된 시스템과, 예측 가능성·안전·응답성 요구가 높은 응용 소프트웨어를 위해 AUTOSAR가 정의한 소프트웨어 플랫폼으로 정의한다.[@autosar-fo-tr-glossary-2025] AUTOSAR Adaptive Platform R25-11은 고도 자동 주행과 자율주행 같은 쓰임새에서 safety-related 시스템을 만드는 고성능 연산 ECU를 위한 AUTOSAR의 해법이다.[@autosar-ap-tr-releaseoverview-2025]
 
 AUTOSAR는 Classic Platform과 Adaptive Platform의 공통 부분을 Foundation이라는 표준으로 따로 펴내며, 버스 프로토콜과 [[autosar-methodology|방법론]]의 공통 측면이 그 예다.[@autosar-standards-2026] [[some-ip|SOME/IP]] 프로토콜 명세와 AUTOSAR 용어집은 Foundation에 속한다.[@autosar-fo-tr-glossary-2025][@autosar-fo-prs-someipprotocol-2025]
 
