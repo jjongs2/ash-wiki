@@ -1,7 +1,7 @@
 ---
 title: SDV
 tags:
-  - platform
+  - hardware/ee-architecture
 aliases:
   - 소프트웨어 정의 차량
 verified: 2026-10-03
@@ -31,7 +31,7 @@ SDV에서는 소프트웨어로 켤 수 있는 기능을 구독 모델로 제공
 
 ## E/E 아키텍처와 OTA
 
-SDV는 소프트웨어를 소수의 고성능 중앙 컴퓨터로 모으는 중앙 집중형 [[ee-architecture|E/E 아키텍처]]를 바탕으로 하고, 출고 뒤의 기능 변경을 [[over-the-air-update|OTA 업데이트]]로 차량에 전달한다.[@bosch-software-defined-mobility-2026][@ti-slyy236-2025]
+SDV는 소프트웨어를 소수의 고성능 [[high-performance-computer|중앙 컴퓨터]]로 모으는 중앙 집중형 [[ee-architecture|E/E 아키텍처]]를 바탕으로 하고, 출고 뒤의 기능 변경을 [[over-the-air-update|OTA 업데이트]]로 차량에 전달한다.[@bosch-software-defined-mobility-2026][@ti-slyy236-2025]
 
 ## 오픈소스 플랫폼
 
