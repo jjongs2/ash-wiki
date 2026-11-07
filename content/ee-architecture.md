@@ -13,7 +13,7 @@ verified: 2026-09-29
 
 기능마다 ECU를 따로 두는 E/E 아키텍처를 **분산 아키텍처**(distributed architecture)라 부른다.[@guo-virtualisation-technologies-2025] NXP 백서에 따르면 백서가 나온 2017년 무렵 차량 네트워크의 ECU는 대개 엔진 제어, 윈도 리프터, 전동 조향처럼 응용 하나만 맡았고, 센서 처리와 알고리즘도 그 ECU 안에서 돌았다.[@nxp-fvnecua4wp-2017]
 
-NXP 백서에 따르면 백서가 나온 2018년 무렵 차량에는 [[can|CAN]], [[lin|LIN]], [[flexray|FlexRay]], [[ethernet|이더넷]] 같은 여러 네트워크로 이어진 ECU가 100개 넘게 들 수 있었다.[@nxp-autogwdevwpus-2018] Bosch에 따르면 2026년 11월 기준 E/E 아키텍처는 제어기 100개 이상으로 이뤄진다.[@bosch-ee-architecture-2026][@bosch-vehicle-computer-2026] ECU 수가 늘수록 전원 분배, 네트워크, 배선이 복잡해진다.[@ti-spry345-2024][@renesas-ipd-power-distribution-2025]
+Bosch에 따르면 2026년 11월 기준 E/E 아키텍처는 제어기 100개 이상으로 이뤄진다.[@bosch-ee-architecture-2026][@bosch-vehicle-computer-2026] ECU 수가 늘수록 전원 분배, 네트워크, 배선이 복잡해진다.[@ti-spry345-2024][@renesas-ipd-power-distribution-2025]
 
 ISO 17978-1:2026의 소개는 차량에 [[high-performance-computer|HPC]]가 들어오는 것이 고전적인 차량 E/E 아키텍처의 변화와 이어지고, 고전적인 분산 임베디드 ECU 아키텍처 밖에 도메인·존 기반 아키텍처도 있다고 제시한다.[@iso-17978-1-obp-2026]
 
@@ -31,7 +31,7 @@ TI 기술 기사는 ECU를 기능에 따라 다섯 도메인으로 나눈다.[@t
 | 바디 전자·조명          | 바디 제어 모듈, 도어 모듈, 전조등 제어 모듈  |
 | 수동 안전               | 에어백·제동·섀시 제어 모듈                   |
 
-도메인마다 네트워크가 다를 수 있어 [[gateway|게이트웨이]]가 도메인 사이를 잇고, [[gateway#중앙 게이트웨이|중앙 게이트웨이]] 모듈이 여러 도메인에 붙는다.[@nxp-autogwdevwpus-2018][@ti-sszt211-2023] NXP 백서에 따르면 도메인 기반 네트워크에서는 이더넷이 도메인 제어기들을 잇는 통신 백본이 된다.[@nxp-fvnecua4wp-2017]
+도메인마다 네트워크가 다를 수 있어 [[gateway|게이트웨이]]가 도메인 사이를 잇고, [[gateway#중앙 게이트웨이|중앙 게이트웨이]] 모듈이 여러 도메인에 붙는다.[@ti-sszt211-2023][@nxp-autogwdevwpus-2018] NXP 백서에 따르면 도메인 기반 네트워크에서는 [[ethernet|이더넷]]이 도메인 제어기들을 잇는 통신 백본이 된다.[@nxp-fvnecua4wp-2017]
 
 TI 백서에 따르면 도메인 아키텍처에서는 차량 기능의 제어가 나뉘어 있어 여러 도메인에 걸친 기능의 소프트웨어를 개발하기 어렵고, 도메인마다의 시스템은 서로 다른 Tier-1 공급사가 서로 다른 반도체 회사의 프로세서와 MCU로 설계하고 만들어 소프트웨어를 갱신하기도 어렵다.[@ti-slyy236-2025]
 
@@ -49,7 +49,7 @@ TI 자료에 따르면 존 아키텍처에서는 센서와 액추에이터가 �
 
 ![[diagrams/domain-zonal-architecture.svg]]
 
-TI 자료에 따르면 존 제어기는 스마트 센서·액추에이터와 [[can-fd|CAN FD]]나 LIN 같은 저속 버스로 잇고[@ti-spry345-2024], 대역폭이 작은 바디 모듈에는 CAN, LIN과 10 Mbit/s 이더넷([[10base-t1s|10BASE-T1S]])을 쓴다. 바디 도메인 기능은 대개 10 Mbit/s 이하면 되지만, 레이더, 라이다, 오디오, 카메라 같은 ADAS(Advanced Driver Assistance Systems)와 인포테인먼트 기능이 존 아키텍처에 들어오면 백본의 속도와 대역 요구가 커지거나 이더넷 백본의 토폴로지가 스타에서 링으로 바뀔 수 있다.[@ti-ssztd02-2025]
+TI 자료에 따르면 존 제어기는 스마트 센서·액추에이터와 [[can-fd|CAN FD]]나 [[lin|LIN]] 같은 저속 버스로 잇고[@ti-spry345-2024], 대역폭이 작은 바디 모듈에는 [[can|CAN]], LIN과 10 Mbit/s 이더넷([[10base-t1s|10BASE-T1S]])을 쓴다. 바디 도메인 기능은 대개 10 Mbit/s 이하면 되지만, 레이더, 라이다, 오디오, 카메라 같은 ADAS(Advanced Driver Assistance Systems)와 인포테인먼트 기능이 존 아키텍처에 들어오면 백본의 속도와 대역 요구가 커지거나 이더넷 백본의 토폴로지가 스타에서 링으로 바뀔 수 있다.[@ti-ssztd02-2025]
 
 ## 보안
 
