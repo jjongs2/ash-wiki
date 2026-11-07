@@ -1,68 +1,107 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 0 522 200" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="FlexRay 통신 사이클의 세그먼트">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="26.5 9.5 534 304.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="FlexRay 통신 사이클과 시간의 네 단계">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
-  <!-- 세그먼트 이름 -->
-  <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <path d="M20 64 V58 H218 V64" />
-    <path d="M222 64 V58 H364 V64" />
-    <path d="M366 64 V58 H430 V64" />
-    <path d="M432 64 V58 H502 V64" />
+
+  <!-- 단계 이름 -->
+  <g text-anchor="end" font-size="12" fill="var(--text, #727981)">
+    <text x="116" y="47">통신 사이클</text>
+    <text x="116" y="102">arbitration grid</text>
+    <text x="116" y="192">macrotick</text>
+    <text x="116" y="262">microtick</text>
+  </g>
+
+  <!-- 통신 사이클: 세그먼트 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="128" y="20" width="146" height="46" />
+    <rect x="278.75" y="20.75" width="116.5" height="44.5" stroke-dasharray="5 4" />
+    <rect x="400.75" y="20.75" width="68.5" height="44.5" stroke-dasharray="5 4" />
+    <rect x="474" y="20" width="76" height="46" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="119" y="50">정적 세그먼트</text>
-    <text x="293" y="32">동적 세그먼트</text>
-    <text x="293" y="50" font-size="12">선택 사항</text>
-    <text x="398" y="32">심볼 윈도</text>
-    <text x="398" y="50" font-size="12">선택 사항</text>
-    <text x="467" y="32">네트워크</text>
-    <text x="467" y="50">idle 시간</text>
+    <text x="201" y="48">정적 세그먼트</text>
+    <text x="337" y="39">동적 세그먼트</text>
+    <text x="337" y="56" font-size="12">선택 사항</text>
+    <text x="435" y="39">심볼 윈도</text>
+    <text x="435" y="56" font-size="12">선택 사항</text>
+    <text x="512" y="39">네트워크</text>
+    <text x="512" y="56">idle 시간</text>
   </g>
 
-  <!-- 정적 세그먼트: 정적 슬롯 -->
+  <!-- arbitration grid: 정적 슬롯, 미니슬롯 -->
   <g fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5">
-    <rect x="20.75" y="70.75" width="36.5" height="38.5" />
-    <rect x="60.75" y="70.75" width="36.5" height="38.5" />
-    <rect x="100.75" y="70.75" width="36.5" height="38.5" />
-    <rect x="140.75" y="70.75" width="36.5" height="38.5" />
-    <rect x="180.75" y="70.75" width="36.5" height="38.5" />
+    <rect x="128.75" y="80.75" width="24.5" height="34.5" />
+    <rect x="158.75" y="80.75" width="24.5" height="34.5" />
+    <rect x="218.75" y="80.75" width="24.5" height="34.5" />
+    <rect x="248.75" y="80.75" width="24.5" height="34.5" />
   </g>
-
-  <!-- 동적 세그먼트: 미니슬롯 -->
-  <g fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5">
-    <rect x="222.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="230.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="238.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="246.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="254.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="262.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="270.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="278.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="286.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="294.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="302.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="310.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="318.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="326.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="334.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="342.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="350.75" y="70.75" width="4.5" height="38.5" />
-    <rect x="358.75" y="70.75" width="4.5" height="38.5" />
+  <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="278.75" y="80.75" width="4.5" height="34.5" />
+    <rect x="286.75" y="80.75" width="4.5" height="34.5" />
+    <rect x="294.75" y="80.75" width="4.5" height="34.5" />
+    <rect x="302.75" y="80.75" width="4.5" height="34.5" />
+    <rect x="310.75" y="80.75" width="4.5" height="34.5" />
+    <rect x="318.75" y="80.75" width="4.5" height="34.5" />
+    <rect x="350.75" y="80.75" width="4.5" height="34.5" />
+    <rect x="358.75" y="80.75" width="4.5" height="34.5" />
+    <rect x="366.75" y="80.75" width="4.5" height="34.5" />
+    <rect x="374.75" y="80.75" width="4.5" height="34.5" />
+    <rect x="382.75" y="80.75" width="4.5" height="34.5" />
+    <rect x="390.75" y="80.75" width="4.5" height="34.5" />
   </g>
-
-  <!-- 심볼 윈도, 네트워크 idle 시간 -->
-  <rect x="366" y="70" width="64" height="40" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <rect x="432" y="70" width="70" height="40" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-
-  <!-- 단위 이름 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <line x1="39" y1="112" x2="39" y2="126" />
-    <line x1="225" y1="112" x2="225" y2="126" />
+    <line x1="141" y1="118" x2="141" y2="124" />
+    <line x1="377" y1="118" x2="377" y2="124" />
   </g>
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
-    <text x="39" y="141">정적 슬롯</text>
-    <text x="225" y="141">미니슬롯</text>
+    <text x="141" y="138">정적 슬롯</text>
+    <text x="377" y="138">미니슬롯</text>
   </g>
 
-  <!-- 사이클 -->
-  <path d="M20 152 V158 H502 V152" stroke="var(--ink, #727981)" stroke-width="1.5" />
-  <text x="261" y="178" text-anchor="middle" fill="var(--text, #727981)">통신 사이클 · 주기적으로 되풀이</text>
+  <!-- macrotick -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="128" y="174" width="26" height="30" />
+    <rect x="154" y="174" width="26" height="30" />
+    <rect x="180" y="174" width="26" height="30" />
+    <rect x="206" y="174" width="26" height="30" />
+    <rect x="284" y="174" width="26" height="30" />
+    <rect x="310" y="174" width="26" height="30" />
+    <rect x="336" y="174" width="26" height="30" />
+    <rect x="362" y="174" width="26" height="30" />
+  </g>
+
+  <!-- macrotick 하나를 펼친 microtick -->
+  <path d="M128 206 L128 242 M154 206 L388 242" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="128" y="244" width="32.5" height="30" />
+    <rect x="160.5" y="244" width="32.5" height="30" />
+    <rect x="193" y="244" width="32.5" height="30" />
+    <rect x="290.5" y="244" width="32.5" height="30" />
+    <rect x="323" y="244" width="32.5" height="30" />
+    <rect x="355.5" y="244" width="32.5" height="30" />
+  </g>
+
+  <!-- 생략: 칸의 수는 정해진 값이 아니다 -->
+  <g fill="var(--ink, #727981)">
+    <circle cx="193" cy="98" r="1.5" />
+    <circle cx="201" cy="98" r="1.5" />
+    <circle cx="209" cy="98" r="1.5" />
+    <circle cx="329" cy="98" r="1.5" />
+    <circle cx="337" cy="98" r="1.5" />
+    <circle cx="345" cy="98" r="1.5" />
+    <circle cx="250" cy="189" r="1.5" />
+    <circle cx="258" cy="189" r="1.5" />
+    <circle cx="266" cy="189" r="1.5" />
+    <circle cx="250" cy="259" r="1.5" />
+    <circle cx="258" cy="259" r="1.5" />
+    <circle cx="266" cy="259" r="1.5" />
+  </g>
+
+  <!-- 시간 단위 -->
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="402" y="185">네트워크 전체가 함께</text>
+    <text x="402" y="201">쓰는 시간 단위</text>
+    <text x="402" y="255">노드의 발진기 클록에서</text>
+    <text x="402" y="271">나온 노드별 시간 단위</text>
+  </g>
+
+  <text x="128" y="302" font-size="12" fill="var(--text, #727981)">NXP 앱노트에 따른 네 단계. 통신 사이클은 주기적으로 되풀이한다.</text>
 </svg>

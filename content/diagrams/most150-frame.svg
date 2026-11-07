@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="30 12 500 172" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="MOST150 프레임의 구성">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <!-- 가로 폭은 바이트 수에 비례한다: 1바이트 = 1.25단위 -->
+
+  <!-- 관리 영역 -->
+  <rect x="40.75" y="60.75" width="13.5" height="38.5" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <line x1="47.5" y1="50" x2="47.5" y2="60" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g fill="var(--text, #727981)">
+    <text x="40" y="26">관리 영역 · 12바이트</text>
+    <text x="40" y="44" font-size="12">프리앰블, boundary descriptor, 제어 데이터 4바이트 등</text>
+  </g>
+
+  <!-- 데이터 영역 -->
+  <rect x="55" y="60" width="465" height="40" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="287.5" y="85" text-anchor="middle" fill="var(--text, #727981)">패킷 데이터와 스트리밍 데이터 · 372바이트</text>
+
+  <!-- 프레임 -->
+  <path d="M40 106 V112 H520 V106" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="280" y="132" text-anchor="middle" fill="var(--text, #727981)">MOST150 프레임 · 384바이트(3072비트)</text>
+
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="40" y="160">MOST Specification Rev. 3.0 E2 부록 D의 MOST150 프레임. 폭은 바이트 수에 비례한다.</text>
+    <text x="40" y="178">boundary descriptor가 패킷 채널의 대역을 4바이트 단위로 조절한다.</text>
+  </g>
+</svg>

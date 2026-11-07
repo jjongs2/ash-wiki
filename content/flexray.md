@@ -1,7 +1,7 @@
 ---
 title: FlexRay
 tags:
-  - network
+  - network/vehicle-bus
 verified: 2026-09-29
 ---
 
@@ -27,11 +27,13 @@ ISO 17458 시리즈는 아래 다섯 부로 이뤄진다.[@iso-17458-1-obp-2013]
 
 ## 통신 사이클
 
-FlexRay는 통신 사이클을 주기적으로 되풀이한다. 사이클은 정적 세그먼트, 동적 세그먼트, 심볼 윈도, 네트워크 idle 시간으로 이뤄지고, 동적 세그먼트와 심볼 윈도는 선택 사항이다.[@iso-17458-1-obp-2013] 정적 슬롯마다 그 슬롯을 쓸 노드가 배정된다.[@iso-17458-2-obp-2013] NXP 앱노트에 따르면 FlexRay의 정적 세그먼트는 버스 접근에 TDMA(Time Division Multiple Access)를 쓰고, 동적 세그먼트는 FTDMA(Flexible TDMA)를 쓴다.[@nxp-an12233-2021] TDMA는 [[bus-access-method#시분할|버스 접근 방식]]에서 다룬다.
+FlexRay는 통신 사이클을 주기적으로 되풀이한다. 사이클은 정적 세그먼트, 동적 세그먼트, 심볼 윈도, 네트워크 idle 시간으로 이뤄지고, 동적 세그먼트와 심볼 윈도는 선택 사항이다.[@iso-17458-1-obp-2013] 정적 슬롯마다 그 슬롯을 쓸 노드가 배정된다.[@iso-17458-2-obp-2013] NXP 앱노트에 따르면 FlexRay의 정적 세그먼트는 버스 접근에 TDMA(Time Division Multiple Access)를 쓰고, 동적 세그먼트는 FTDMA(Flexible TDMA)를 쓴다. FlexRay의 시간은 통신 사이클, arbitration grid(정적 슬롯과 미니슬롯), macrotick, microtick의 네 단계로 나뉜다.[@nxp-an12233-2021] TDMA는 [[bus-access-method#시분할|버스 접근 방식]]에서 다룬다.
 
 ![[diagrams/flexray-communication-cycle.svg]]
 
 FlexRay는 동기 전송에서 프레임 지연과 지터를 보장한다. 정적 세그먼트에서 슬롯을 배정받은 노드는 보낼 데이터가 없어도 null 프레임을 보낸다. 동적 세그먼트에서는 슬롯을 배정받은 노드라도 그 슬롯에서 보내지 않을 수 있다.[@iso-17458-2-obp-2013]
+
+정적 슬롯의 프레임 전송은 그 슬롯의 action point에서 시작하고, 동적 세그먼트의 전송은 미니슬롯의 action point에서 시작한다. **action point**는 슬롯이나 미니슬롯이 시작한 뒤 macrotick 단위로 설정한 offset만큼 지난 시점이다.[@nxp-an12233-2021][@ti-spnu499c-2018]
 
 심볼 윈도로는 웨이크업 같은 일을 돕는 FlexRay 심볼을 보내고, 네트워크 idle 시간은 클록 보정에 쓴다.[@iso-17458-1-obp-2013] NXP 앱노트에 따르면 심볼 윈도로는 물리 연결을 시험하는 MTS(Media Access Test Symbol)를 보낸다.[@nxp-an12233-2021]
 
@@ -53,9 +55,13 @@ FlexRay 버스는 두 선 사이에 [[differential-signaling|차동 전압]]을 
 
 FlexRay는 모든 노드에 공통 시간 기준을 제공하고, 정적 세그먼트의 시간 분할은 분산 클록에 기반한다.[@iso-17458-1-obp-2013]
 
-**microtick**은 노드의 발진기 클록에서 나온 노드별 시간 단위다. **macrotick**은 FlexRay 네트워크 전체가 함께 쓰는 시간 단위이고, 정수 개의 microtick으로 이뤄진다.[@nxp-an12233-2021][@ti-spnu499c-2018] 노드들은 sync 프레임의 도착 시각을 재어 클록을 맞춘다.[@iso-17458-2-obp-2013][@ti-spnu499c-2018]
+**microtick**은 노드의 발진기 클록에서 나온 노드별 시간 단위다. **macrotick**은 FlexRay 네트워크 전체가 함께 쓰는 시간 단위이고, 정수 개의 microtick으로 이뤄진다.[@nxp-an12233-2021][@ti-spnu499c-2018] 노드들은 sync 프레임의 도착 시각을 재어 클록을 맞춘다.[@iso-17458-2-obp-2013][@ti-spnu499c-2018] 클록 동기화는 두 보정으로 이뤄진다. **offset correction**은 사이클 시작 시점의 어긋남을 고치는 보정이고, **rate correction**은 사이클 길이의 어긋남을 고치는 보정이다. offset correction은 홀수 사이클에 적용하고, rate correction은 짝수·홀수 사이클 한 쌍에서 잰 값으로 그 쌍의 홀수 사이클에 구해 다음 쌍에 적용한다.[@nxp-an12233-2021][@ti-spnu499c-2018]
 
 ISO 17458-2:2013은 단일·다중 마스터 클록 동기화와 여러 네트워크에 걸친 시간 동기화를 FlexRay 프로토콜의 기본 특성으로 둔다. 다중 마스터 클록 동기화는 셋 이상의 sync 노드의 클록에 기반한 동기화다.[@iso-17458-2-obp-2013]
+
+## 웨이크업
+
+TI의 TMS570LS31x/21x 기술 참조 매뉴얼에 따르면 버스 드라이버는 채널에서 웨이크업 패턴(WUP, Wakeup Pattern)을 받으면 자기 노드의 다른 부품을 깨울 수 있다.[@ti-spnu499c-2018] 웨이크업 패턴은 웨이크업 심볼(WUS, Wakeup Symbol)을 되풀이해 만든다.[@iso-17458-2-obp-2013][@ti-spnu499c-2018] ISO 17458-2:2013은 웨이크업 노드가 coldstart 노드일 필요도, coldstart 노드가 웨이크업 노드일 필요도 없다고 제시한다.[@iso-17458-2-obp-2013]
 
 ## 기동
 
@@ -68,6 +74,10 @@ TI의 TMS570LS31x/21x 기술 참조 매뉴얼에 따르면 TT-D(Time-Triggered D
 FlexRay 프레임은 헤더, 페이로드, 트레일러 세그먼트로 이뤄진다. 헤더에는 11비트 프레임 ID, 7비트 페이로드 길이, 11비트 헤더 [[cyclic-redundancy-check|CRC]]가 있다. 페이로드 길이 필드는 페이로드를 2바이트 워드 수로 나타낸다. 프레임 CRC는 24비트다.[@iso-17458-2-obp-2013] NXP 앱노트에 따르면 헤더는 5바이트로, 한 비트짜리 indicator 다섯 개와 6비트 사이클 카운트도 담는다. 트레일러는 헤더와 페이로드 전체에 대해 계산한 이 프레임 CRC다.[@nxp-an12233-2021] 페이로드는 0\~254바이트다.[@nxp-an12233-2021][@renesas-r01an7076-2024]
 
 ![[diagrams/flexray-frame-format.svg]]
+
+FlexRay 데이터 프레임과 CAS/MTS 앞에는 비트열 TSS(Transmission Start Sequence)를 보내고, 바이트마다 앞에는 두 비트 `10`인 BSS(Byte Start Sequence)를, 데이터 프레임 끝에는 두 비트 `01`인 FES(Frame End Sequence)를 보낸다. TSS는 버스 드라이버와 [[vehicle-bus#토폴로지|능동 스타]]가 버스 활동을 알아보는 데 필요하고, 둘은 TSS를 줄이거나 늘일 수 있다.[@iso-17458-4-obp-2013]
+
+FlexRay의 비트 하나는 샘플 클록 여덟 주기다.[@nxp-an12233-2021][@renesas-r01an7076-2024]
 
 ISO 17458-2:2013은 프레임 ID가 1\~2047이고, 0은 무효 프레임이나 빈 슬롯을 표시하는 데 쓴다고 제시한다. 송신 프레임의 ID는 그 프레임을 보내는 슬롯의 번호다.[@iso-17458-2-obp-2013]
 

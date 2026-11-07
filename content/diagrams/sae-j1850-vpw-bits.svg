@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="19 24 476.5 172" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="VPW의 상태와 펄스폭">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+  <!-- 가로축: 1 µs = 1단위. 비트마다 상태가 바뀐다 -->
+
+  <!-- 행 이름 -->
+  <g text-anchor="end" fill="var(--text, #727981)">
+    <text x="86" y="45">비트</text>
+    <text x="86" y="69">능동 상태</text>
+    <text x="86" y="119">수동 상태</text>
+  </g>
+
+  <!-- 비트 값 -->
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="132" y="45">0</text>
+    <text x="228" y="45">0</text>
+    <text x="356" y="45">1</text>
+    <text x="452" y="45">1</text>
+  </g>
+
+  <!-- 비트 경계 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="100" y1="54" x2="100" y2="142" />
+    <line x1="164" y1="54" x2="164" y2="142" />
+    <line x1="292" y1="54" x2="292" y2="142" />
+    <line x1="420" y1="54" x2="420" y2="142" />
+    <line x1="484" y1="54" x2="484" y2="142" />
+  </g>
+
+  <!-- 파형: 능동 상태가 위 -->
+  <path d="M100 64 V114 H164 V64 H292 V114 H420 V64 H484 V114" stroke="var(--ink, #727981)" stroke-width="3" />
+
+  <!-- 펄스폭 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="102" y1="134" x2="162" y2="134" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+    <line x1="166" y1="134" x2="290" y2="134" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+    <line x1="294" y1="134" x2="418" y2="134" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+    <line x1="422" y1="134" x2="482" y2="134" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="132" y="156">64 µs</text>
+    <text x="228" y="156">128 µs</text>
+    <text x="356" y="156">128 µs</text>
+    <text x="452" y="156">64 µs</text>
+  </g>
+  <text x="28" y="184" font-size="12" fill="var(--text, #727981)">Freescale AN1731에 따른 VPW. 펄스폭은 공칭값이다.</text>
+</svg>
