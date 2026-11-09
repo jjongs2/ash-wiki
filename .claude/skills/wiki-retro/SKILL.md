@@ -16,7 +16,7 @@ disable-model-invocation: true
 
 **보관 폴더**는 `~/documents/ash-wiki-retro/`다. 세션마다 요약본과 분석 보고서를 `<uuid>/`에 두고, 회고가 분석한 세션과 루틴 실행을 `analyzed.tsv`(세션 uuid, 회고 세션 uuid, 날짜)에 적는다. 루틴 실행도 기록 파일 이름의 uuid로 적는다. 실행 id(`cse_…`)로 적힌 옛 줄은 후보 명령이 받아 둔 기록의 `remote.json`으로 맞춘다. 회고 세션 자리의 `-`는 분석 없이 적은 것이다(1단계의 뺌). Claude Code가 오래된 세션 기록을 지워도 무엇을 분석했고 무엇이 나왔는지 남기기 위해서다.
 
-**후보 세션**은 위키 스킬을 부르거나, `.claude/agents/`의 에이전트를 띄우거나, `RemoteTrigger`로 루틴에 넘긴 세션과 루틴 실행 가운데 `analyzed.tsv`에 없는 것이다. 어느 컴퓨터에서 돈 세션이든, 클라우드 세션이든 같다. 먼저 **기록 모으기**로 모든 컴퓨터의 백업, 받아 둔 클라우드 기록, 이 컴퓨터의 원본에서 ash-wiki 세션 기록의 경로를 모은다. 기록 모으기는 로컬 스킬 `gather-transcripts`를 Skill 도구로 인자 `ash-wiki <scratchpad>/transcripts.txt`와 함께 불러 한다. 기록을 어디에 두고 어떻게 받는지는 소유자의 환경이라 그 스킬이 맡는다. 스킬이 없으면 멈추고 소유자에게 알린다. 이어서 아래 명령으로 후보를 한 줄씩 찍는다. 이 세션의 uuid는 scratchpad 경로에 있고, `--runs`는 아래 루틴 실행 문단의 실행 id다(없으면 뺀다).
+**후보 세션**은 위키 스킬을 부르거나, `.claude/agents/`의 에이전트를 띄우거나, `RemoteTrigger`로 루틴에 넘긴 세션과 루틴 실행 가운데 `analyzed.tsv`에 없는 것이다. 어느 컴퓨터에서 돈 세션이든, 클라우드 세션이든 같다. 먼저 **기록 모으기**로 모든 컴퓨터의 백업, 받아 둔 클라우드 기록, 이 컴퓨터의 원본에서 ash-wiki 세션 기록의 경로를 모은다. 기록 모으기는 로컬 스킬 `gather-transcripts`를 Skill 도구로 인자 `ash-wiki <scratchpad>/transcripts.txt`와 함께 불러 한다. 기록을 어디에 두고 어떻게 받는지는 소유자의 환경이라 그 스킬이 맡는다. 스킬이 없으면 이 컴퓨터의 원본만으로 진행할지(다른 컴퓨터와 클라우드의 기록이 빠진다), 스킬을 갖춘 뒤 다시 돌릴지 소유자에게 묻는다. 원본만으로 진행하면 아래 명령에서 `--records`를 뺀다. 이어서 아래 명령으로 후보를 한 줄씩 찍는다. 이 세션의 uuid는 scratchpad 경로에 있고, `--runs`는 아래 루틴 실행 문단의 실행 id다(없으면 뺀다).
 
 ```sh
 python3 -B .claude/skills/wiki-retro/digest.py --candidates <이 세션 uuid> \
