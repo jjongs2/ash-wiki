@@ -524,9 +524,14 @@ def trigger(content):
     return assistant({"type": "tool_use", "id": "r1", "name": "RemoteTrigger", "input": {"action": "update", "body": body}})
 
 
-def session_lines(stdout):
+def session_lines(stdout, header=False):
     """후보 명령 출력의 첫 표(세션 줄). 빈 줄 뒤는 흐름 표다."""
-    return stdout.split("\n\n")[0].splitlines()[1:]
+    return stdout.split("\n\n")[0].splitlines()[0 if header else 1 :]
+
+
+def flow_rows(stdout):
+    """후보 명령 출력의 흐름 표(머리 줄 포함)."""
+    return [line.split("\t") for line in stdout.split("\n\n")[1].splitlines()]
 
 
 class CandidatesTest(unittest.TestCase):
@@ -828,7 +833,7 @@ class SignalTest(unittest.TestCase):
         return result.stdout
 
     def rows(self, *extra):
-        lines = self.output(*extra).split("\n\n")[0].splitlines()
+        lines = session_lines(self.output(*extra), header=True)
         header = lines[0].split("\t")
         return {cells[0]: dict(zip(header, cells)) for cells in (line.split("\t") for line in lines[1:])}
 
@@ -891,7 +896,7 @@ class SignalTest(unittest.TestCase):
             (D, "wiki-reader-testing", "0"), (E, "wiki-reader-testing", "0"),
             (F, "에이전트(source-verifier)", "0"),
         ])
-        flows = [line.split("\t") for line in self.output().split("\n\n")[1].splitlines()]
+        flows = flow_rows(self.output())
         self.assertEqual([f[:2] for f in flows], [["흐름", "세션"], ["wiki-verify", "3"], ["wiki-reader-testing", "2"], ["에이전트(source-verifier)", "1"]])
 
     def five_verify_sessions(self):
@@ -908,7 +913,7 @@ class SignalTest(unittest.TestCase):
         marks = self.marks()
         self.assertEqual((marks[E], marks[D], marks[F]), ("신호", "신호", "신호"))
         self.assertEqual(sorted(marks[u] for u in (A, B, C)), ["-", "-", "무작위"])
-        flows = [line.split("\t") for line in self.output().split("\n\n")[1].splitlines()]
+        flows = flow_rows(self.output())
         self.assertEqual(flows[1][0], "wiki-verify")
         self.assertEqual(len(flows[1][2].split()), 3)
 
@@ -932,7 +937,17 @@ class SignalTest(unittest.TestCase):
         marks = self.marks("--fixed", "wiki-verify=2026-10-03T12:00:00Z", "wiki-verify=2026-10-01T12:00:00Z")
         self.assertIn("고친 뒤", marks[D])
 
-    def test_routine_run_joins_the_flow_of_its_skill(self):
+    def test_fetched_cloud_records_are_ranked_and_recommended_like_local_ones(self):
+        cloud = os.path.join(self.tmp.name, "cloud", "-home-user-ash-wiki")
+        for n, uuid in enumerate((A, B, C, D)):
+            run = f"cse_0{n}Run"
+            remote(self.session(uuid, "/wiki-news 2026-w4" + str(n), errors=n, calls=4 + n, start=f"2026-10-0{n + 1}T01:00:00Z", folder=cloud), run, "scheduled_trigger")
+        marks = self.marks("--fixed", "wiki-news=2026-10-01T12:00:00Z")
+        self.assertEqual(list(marks), [D, C, B, A])
+        self.assertEqual((marks[D], marks[C], marks[B]), ("신호", "신호", "고친 뒤"))
+        self.assertEqual(marks[A], "무작위")
+
+    def test_routine_run_joins_its_skill_flow_and_handing_a_skill_over_is_a_flow_of_its_own(self):
         cloud = os.path.join(self.tmp.name, "cloud", "-home-user-ash-wiki")
         remote(self.session(A, "/wiki-news 2026-w44", folder=cloud), RUN, "scheduled_trigger")
         self.session(B, "<command-message>wiki-news</command-message>")
