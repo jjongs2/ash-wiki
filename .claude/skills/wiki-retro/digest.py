@@ -3,7 +3,7 @@
 python3 digest.py [--archive <폴더>] <기록.jsonl>...
 python3 digest.py [--archive <폴더>] --mark <회고 세션 uuid> <세션 uuid>...
 python3 digest.py [--archive <폴더>] --report <에이전트 기록> <세션 uuid> '<첫 줄>'
-python3 digest.py [--archive <폴더>] --candidates <이 세션 uuid> [<기록.jsonl>...] [--runs <실행 id>...]
+python3 digest.py [--archive <폴더>] --candidates <이 세션 uuid> [<기록.jsonl>...] [--records <목록>] [--runs <실행 id>...]
 python3 digest.py --version <기록.jsonl>...
 
 보관 폴더(기본 ~/documents/ash-wiki-retro)의 <uuid>/에, 기록마다 <이름>-main.md를,
@@ -34,7 +34,8 @@ RemoteTrigger로 루틴에 넘긴 세션 가운데 analyzed.tsv에 없고 이 �
 본문으로 고치기 전)의 .claude/agents/에 있는 세션이다. isBuiltIn은 옛 기록에 없어 쓰지
 않는다. URL은 기록에서 gh pr/issue create·comment가 돌려준 PR·이슈·코멘트이고,
 핸드오프는 세션이 쓰거나 고친 ash-wiki-handoff/의 파일이다. 루틴에 넘긴 스킬에는
-"(루틴)"을 단다. 기록을 주지 않으면 ~/.claude/projects/*ash-wiki*/의 기록을 본다.
+"(루틴)"을 단다. 기록은 인자와 --records의 목록(한 줄에 경로 하나)으로 받고, 둘 다 없으면
+~/.claude/projects/*ash-wiki*/의 기록을 본다.
 같은 세션의 기록이 여러 자리(백업 사본과 원본)에 있으면 하나로 센다. remote.json이 있는
 것, 그다음 가장 큰 것, 크기가 같으면 이 컴퓨터의 원본을 고른다.
 받아 둔 클라우드 기록은 세션 폴더에 remote.json이 있다. 그 origin이 ROUTINE_ORIGINS인
@@ -55,8 +56,8 @@ RemoteTrigger로 루틴에 넘긴 세션 가운데 analyzed.tsv에 없고 이 �
 시각의 origin/main을 찍는다. 저장소 루트에서 돌린다.
 
 소스 노트를 연 도구 호출은 입력과 결과를 지우고, 그 입력을 <이름>-notes.txt에
-모은다. 입력에 노트 디렉터리(ASH_WIKI_NOTES의 값, ~나 $HOME으로 쓴 꼴, 백업 사본의
-manifest.json이 적은 다른 컴퓨터의 홈 아래 같은 자리 포함)나 그
+모은다. 입력에 노트 디렉터리(ASH_WIKI_NOTES의 값, ~나 $HOME으로 쓴 꼴, 기록이 백업 사본이면
+사본 꼭대기의 manifest.json이 적은 그 컴퓨터의 홈 아래 같은 자리 포함)나 그
 변수의 참조($ASH_WIKI_NOTES, ${ASH_WIKI_NOTES)가 있거나, 결과에 노트 디렉터리가
 나오는 호출이다. 지운 결과가 너무 커서 tool-results/ 파일로 저장됐으면, 그 파일을
 다시 읽은 호출도 지운다. 변수 이름만 적은 호출("ASH_WIKI_NOTES는 열지 않는다")은
@@ -66,7 +67,6 @@ manifest.json이 적은 다른 컴퓨터의 홈 아래 같은 자리 포함)나 
 """
 
 import argparse
-import functools
 import glob
 import json
 import os
@@ -80,8 +80,9 @@ ARCHIVE = os.path.expanduser("~/documents/ash-wiki-retro")
 SESSIONS = os.path.expanduser("~/.claude/projects/*ash-wiki*/*.jsonl")
 # 루틴 실행의 remote.json origin. force_run_trigger는 RemoteTrigger의 run으로 손으로 돌린 실행이다.
 ROUTINE_ORIGINS = ("scheduled_trigger", "force_run_trigger")
-TRANSCRIPTS = os.environ.get("CLAUDE_TRANSCRIPTS_ROOT") or os.path.expanduser("~/.local/share/claude-transcripts")
+PROJECTS = os.path.expanduser("~/.claude/projects")
 NOTE_REFS = ("$ASH_WIKI_NOTES", "${ASH_WIKI_NOTES")
+NOTE_FORMS = [NOTES]  # main이 요약할 기록의 홈으로 다시 정한다.
 PERSISTED = re.compile(r"tool-results/[\w.-]+")
 UUID = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
 # 옛 analyzed.tsv 줄의 루틴 실행 id. 새 줄은 루틴 실행도 CLI uuid로 적는다.
@@ -103,10 +104,15 @@ AGENTS = ".claude/agents"
 CANDIDATE_MARKS = ("<command-message>", '"/wiki-', '"/reader-testing', '"Skill"', '"RemoteTrigger"', "custom-title", "gh ", "github.com/", "ash-wiki-handoff")
 
 
-def homes():
-    """이 컴퓨터의 홈과, 백업 사본의 manifest.json마다 적힌 그 컴퓨터의 홈."""
+def manifest_of(path):
+    """백업 사본의 기록이면 사본 꼭대기의 manifest.json(<사본>/<프로젝트 폴더>/<uuid>.jsonl)."""
+    return os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(path))), "manifest.json")
+
+
+def homes(paths):
+    """이 컴퓨터의 홈과, 넘겨받은 기록이 백업 사본이면 그 사본의 manifest.json이 적은 홈."""
     found = [os.path.expanduser("~")]
-    for path in sorted(glob.glob(os.path.join(TRANSCRIPTS, "*", "manifest.json"))):
+    for path in sorted({manifest_of(p) for p in paths}):
         try:
             with open(path) as f:
                 home = json.load(f).get("home")
@@ -117,10 +123,8 @@ def homes():
     return list(dict.fromkeys(found))
 
 
-@functools.cache
-def note_forms():
+def note_forms(known):
     """노트 디렉터리의 꼴. 다른 컴퓨터의 기록은 그 홈 아래 같은 자리에 노트를 둔 것으로 본다."""
-    known = homes()
     home = next((h for h in known if NOTES.startswith(h + "/")), None)
     if not home:
         return [NOTES]
@@ -188,7 +192,7 @@ def queued_prompt(entry):
 
 
 def names_notes(text):
-    return any(f in text for f in note_forms())
+    return any(f in text for f in NOTE_FORMS)
 
 
 def redelivered(entries):
@@ -208,7 +212,7 @@ def redelivered(entries):
 
 
 def opens_notes(raw, persisted):
-    return any(f in raw for f in note_forms()) or any(r in raw for r in (*NOTE_REFS, *persisted))
+    return any(f in raw for f in NOTE_FORMS) or any(r in raw for r in (*NOTE_REFS, *persisted))
 
 
 def digest(path, out_path, header=""):
@@ -585,8 +589,8 @@ def joined(items, sep=" "):
 
 def copy_rank(path):
     """받아 둔 클라우드 기록, 그다음 큰 기록, 크기가 같으면 이 컴퓨터의 원본(tool-results/가 있다)."""
-    in_backup = os.path.realpath(path).startswith(os.path.realpath(TRANSCRIPTS) + os.sep)
-    return bool(remote_info(path)), os.path.getsize(path), not in_backup
+    local = os.path.realpath(path).startswith(os.path.realpath(PROJECTS) + os.sep)
+    return bool(remote_info(path)), os.path.getsize(path), local
 
 
 def one_copy_each(paths):
@@ -638,6 +642,11 @@ def candidates(archive, retro, paths, runs=()):
         print("\t".join([run, "루틴 실행(받지 않음)", "-", "-", "-", "-", "-"]))
 
 
+def read_list(path):
+    with open(path) as f:
+        return [line.strip() for line in f if line.strip()]
+
+
 def require_origin_main():
     if not git("rev-parse", "--verify", "-q", "origin/main"):
         sys.exit("origin/main이 없다. 저장소 루트에서 돌린다.")
@@ -651,6 +660,7 @@ def main():
     parser.add_argument("--report", nargs=3, metavar=("AGENT", "UUID", "FIRST"))
     parser.add_argument("--version", action="store_true")
     parser.add_argument("--runs", nargs="+", default=[], metavar="RUN")
+    parser.add_argument("--records", metavar="FILE")
     parser.add_argument("items", nargs="*")
     args = parser.parse_args()
     if args.version:
@@ -663,7 +673,8 @@ def main():
     if args.candidates:
         check_uuids([args.candidates])
         require_origin_main()
-        candidates(args.archive, args.candidates, args.items or sorted(glob.glob(SESSIONS)), args.runs)
+        paths = args.items + (read_list(args.records) if args.records else [])
+        candidates(args.archive, args.candidates, paths or sorted(glob.glob(SESSIONS)), args.runs)
         return
     os.makedirs(args.archive, exist_ok=True)
     if args.report:
@@ -683,6 +694,8 @@ def main():
             "다른 값으로 돌리지 않는다(세션이 연 노트를 가리지 못한다)."
         )
     check_uuids([os.path.basename(stem(path)) for path in args.items])
+    global NOTE_FORMS
+    NOTE_FORMS = note_forms(homes(args.items))
     hidden_records = [name for path in args.items for name in digest_session(args.archive, path)]
     print(f"지움이 있는 기록 {len(hidden_records)}: {', '.join(hidden_records)}" if hidden_records else "지움이 있는 기록 없음")
 

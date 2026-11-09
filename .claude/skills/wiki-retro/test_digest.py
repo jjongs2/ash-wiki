@@ -234,19 +234,18 @@ class QueueTest(unittest.TestCase):
         main, _ = self.digest(queued(text), entry("user", text))
         self.assertNotIn("iso-26262", main)
 
-    def test_notes_under_another_machines_home_are_hidden(self):
-        copies = os.path.join(self.tmp.name, "copies")
-        for host, home in (("a", "/home/alice"), ("b", "/home/bob")):
-            os.makedirs(os.path.join(copies, host))
-            with open(os.path.join(copies, host, "manifest.json"), "w") as f:
-                json.dump({"host": host, "home": home, "files": {}}, f)
-        self.notes = "/home/alice/lecture-notes"
-        with open(self.transcript, "w") as f:
-            f.write("\n".join(entry("user", f"{home}/lecture-notes/iso.md") for home in ("/home/bob", os.path.expanduser("~"))) + "\n")
+    def test_notes_under_the_home_of_the_machine_a_copy_came_from_are_hidden(self):
+        copy = os.path.join(self.tmp.name, "copies", "b")
+        os.makedirs(os.path.join(copy, "-home-bob-ash-wiki"))
+        with open(os.path.join(copy, "manifest.json"), "w") as f:
+            json.dump({"host": "b", "home": "/home/bob", "files": {}}, f)
+        transcript = os.path.join(copy, "-home-bob-ash-wiki", f"{UUID}.jsonl")
+        home = os.path.expanduser("~")
+        with open(transcript, "w") as f:
+            f.write("\n".join(entry("user", f"{h}/lecture-notes/iso.md") for h in ("/home/bob", home)) + "\n")
         out = subprocess.run(
-            [sys.executable, "-B", SCRIPT, "--archive", self.archive, self.transcript],
-            env=dict(os.environ, ASH_WIKI_NOTES=self.notes, CLAUDE_TRANSCRIPTS_ROOT=copies),
-            capture_output=True, text=True, check=True,
+            [sys.executable, "-B", SCRIPT, "--archive", self.archive, transcript],
+            env=dict(os.environ, ASH_WIKI_NOTES=f"{home}/lecture-notes"), capture_output=True, text=True, check=True,
         ).stdout
         self.assertIn("지움 2", out)
 
@@ -629,6 +628,14 @@ class CandidatesTest(unittest.TestCase):
         self.paths.append(fetched)
         self.transcript(UUID, entry("user", "/wiki-news 2026-w01"), entry("user", "teleport로 이어 받은 뒤의 글"))
         self.assertEqual(self.candidates()[UUID][1], f"루틴 실행({RUN}),wiki-news")
+
+    def test_records_are_read_from_a_list_file(self):
+        self.transcript(UUID, entry("user", "<command-message>wiki-verify</command-message>"))
+        listing = os.path.join(self.tmp.name, "transcripts.txt")
+        with open(listing, "w") as f:
+            f.write("\n".join(self.paths) + "\n\n")
+        self.paths = []
+        self.assertEqual(list(self.candidates("--records", listing)), [UUID])
 
     def test_session_in_several_places_is_one_row_from_the_largest_copy(self):
         command = entry("user", "<command-message>wiki-verify</command-message>")
