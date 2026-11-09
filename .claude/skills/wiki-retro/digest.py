@@ -59,7 +59,9 @@ RemoteTrigger로 루틴에 넘긴 세션 가운데 analyzed.tsv에 없고 이 �
 모은다. 입력에 노트 디렉터리(ASH_WIKI_NOTES의 값, ~나 $HOME으로 쓴 꼴, 기록이 백업 사본이면
 사본 꼭대기의 manifest.json이 적은 그 컴퓨터의 홈 아래 같은 자리 포함)나 그
 변수의 참조($ASH_WIKI_NOTES, ${ASH_WIKI_NOTES)가 있거나, 결과에 노트 디렉터리가
-나오는 호출이다. 지운 결과가 너무 커서 tool-results/ 파일로 저장됐으면, 그 파일을
+나오는 호출이다. 받아 둔 클라우드 기록(remote.json이 있는 기록)에서는 노트 폴더 이름
+(ASH_WIKI_NOTES의 마지막 조각)이 한 낱말로 나오는 곳을 모두 노트 디렉터리로 본다. 클라우드는
+노트 저장소를 홈과 다른 자리에 clone하고, 저장소를 붙이는 호출에도 그 이름이 나온다. 지운 결과가 너무 커서 tool-results/ 파일로 저장됐으면, 그 파일을
 다시 읽은 호출도 지운다. 변수 이름만 적은 호출("ASH_WIKI_NOTES는 열지 않는다")은
 노트를 연 것으로 보지 않는다. 노트 디렉터리가 나오는 사용자 글과 대기열 메시지도 지운다.
 파일마다 지운 수를 출력한다. 0이 아니면 노트를 열었을 수 있는 기록이다. 끝 줄에
@@ -83,6 +85,10 @@ ROUTINE_ORIGINS = ("scheduled_trigger", "force_run_trigger")
 PROJECTS = os.path.expanduser("~/.claude/projects")
 NOTE_REFS = ("$ASH_WIKI_NOTES", "${ASH_WIKI_NOTES")
 NOTE_FORMS = [NOTES]  # main이 요약할 기록의 홈으로 다시 정한다.
+# 받아 둔 클라우드 기록을 요약하는 동안만 정한다. 클라우드는 노트 저장소를 /home/user/<노트 폴더>에
+# clone하는데 사본의 홈은 /root라, 홈으로 짐작하지 않는다. 노트 폴더 이름이 한 낱말로 나오는 곳(경로,
+# 저장소를 붙이는 호출, URL)을 모두 노트로 본다.
+NOTE_SEGMENT = None
 PERSISTED = re.compile(r"tool-results/[\w.-]+")
 UUID = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
 # 옛 analyzed.tsv 줄의 루틴 실행 id. 새 줄은 루틴 실행도 CLI uuid로 적는다.
@@ -192,7 +198,7 @@ def queued_prompt(entry):
 
 
 def names_notes(text):
-    return any(f in text for f in NOTE_FORMS)
+    return any(f in text for f in NOTE_FORMS) or bool(NOTE_SEGMENT and NOTE_SEGMENT.search(text))
 
 
 def redelivered(entries):
@@ -212,7 +218,7 @@ def redelivered(entries):
 
 
 def opens_notes(raw, persisted):
-    return any(f in raw for f in NOTE_FORMS) or any(r in raw for r in (*NOTE_REFS, *persisted))
+    return names_notes(raw) or any(r in raw for r in (*NOTE_REFS, *persisted))
 
 
 def digest(path, out_path, header=""):
@@ -340,6 +346,9 @@ def digest_session(archive, path):
     for old in glob.glob(f"{out_dir}/*-main.md") + glob.glob(f"{out_dir}/*-agent-*.md") + glob.glob(f"{out_dir}/*-notes.txt"):
         os.remove(old)
     print(out_dir)
+    global NOTE_SEGMENT
+    folder = os.path.basename(NOTES)
+    NOTE_SEGMENT = re.compile(rf"(?<![A-Za-z0-9_.-]){re.escape(folder)}(?![A-Za-z0-9_.-])") if remote_info(path) and folder else None
     name = session_name(path)
     hidden_records = write(out_dir, f"{name}-main", path)
     for sub in subagent_records(path):

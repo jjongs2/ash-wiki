@@ -234,6 +234,38 @@ class QueueTest(unittest.TestCase):
         main, _ = self.digest(queued(text), entry("user", text))
         self.assertNotIn("iso-26262", main)
 
+    def test_notes_folder_anywhere_in_a_fetched_cloud_record_is_hidden(self):
+        cloud = os.path.join(self.tmp.name, "cloud", "-home-user-ash-wiki")
+        os.makedirs(cloud)
+        transcript = os.path.join(cloud, f"{UUID}.jsonl")
+        remote(stem_of(transcript), "cse_02Web", "web_claude_ai")
+        lines = [
+            *bash("cd /home/user/lecture-notes && ls can", "a.md b.md", "b1"),
+            assistant({"type": "tool_use", "id": "r1", "name": "Read", "input": {"file_path": "/home/user/lecture-notes/can/a.md"}}),
+            entry("user", "노트는 /home/user/lecture-notes에 있다"),
+            assistant({"type": "tool_use", "id": "g1", "name": "mcp__remote__add_repo", "input": {"owner": "o", "repo": "lecture-notes"}}),
+            entry("user", "lecture-notes-archive는 다른 저장소다"),
+        ]
+        with open(transcript, "w") as f:
+            f.write("\n".join(lines) + "\n")
+        out = subprocess.run(
+            [sys.executable, "-B", SCRIPT, "--archive", self.archive, transcript],
+            env=dict(os.environ, ASH_WIKI_NOTES=f"{os.path.expanduser('~')}/lecture-notes"),
+            capture_output=True, text=True, check=True,
+        ).stdout
+        digest_dir = os.path.join(self.archive, UUID)
+        with open(os.path.join(digest_dir, f"{UUID[:8]}-main.md")) as f:
+            main = f.read()
+        with open(os.path.join(digest_dir, f"{UUID[:8]}-main-notes.txt")) as f:
+            notes = f.read()
+        self.assertNotIn("/lecture-notes", main)
+        self.assertNotIn('"lecture-notes"', main)
+        self.assertIn("lecture-notes-archive는 다른 저장소다", main)
+        self.assertIn("cd /home/user/lecture-notes", notes)
+        self.assertIn("/home/user/lecture-notes/can/a.md", notes)
+        self.assertIn('"repo": "lecture-notes"', notes)
+        self.assertIn("지움 4", out)
+
     def test_notes_under_the_home_of_the_machine_a_copy_came_from_are_hidden(self):
         copy = os.path.join(self.tmp.name, "copies", "b")
         os.makedirs(os.path.join(copy, "-home-bob-ash-wiki"))
