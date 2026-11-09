@@ -157,12 +157,11 @@ class DigestArchiveTest(unittest.TestCase):
         self.assertEqual(rows[0][1], "retro-uuid")
         self.assertRegex(rows[0][2], r"^\d{4}-\d{2}-\d{2}$")
 
-    def test_mark_takes_a_routine_run_id(self):
-        run = "cse_01AbCdEfGhIjKlMnOpQrStUv"
-        self.run_digest("--mark", "retro-uuid", run, UUID)
-        self.run_digest("--mark", "retro-uuid-2", run)
-        with open(os.path.join(self.archive, "analyzed.tsv")) as f:
-            self.assertEqual([line.split("\t")[0] for line in f], [run, UUID])
+    def test_mark_rejects_a_routine_run_id(self):
+        result = self.run_digest("--mark", "retro-uuid", "cse_01AbCdEfGhIjKlMnOpQrStUv", UUID, check=False)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("CLI uuid", result.stderr)
+        self.assertFalse(os.path.exists(os.path.join(self.archive, "analyzed.tsv")))
 
     def test_mark_rejects_a_path(self):
         result = self.run_digest("--mark", "retro-uuid", self.transcript, check=False)
@@ -234,6 +233,53 @@ class QueueTest(unittest.TestCase):
         text = f"읽은 노트: {self.notes}/iso-26262.md"
         main, _ = self.digest(queued(text), entry("user", text))
         self.assertNotIn("iso-26262", main)
+
+    def test_notes_folder_anywhere_in_a_fetched_cloud_record_is_hidden(self):
+        cloud = os.path.join(self.tmp.name, "cloud", "-home-user-ash-wiki")
+        os.makedirs(cloud)
+        transcript = os.path.join(cloud, f"{UUID}.jsonl")
+        remote(stem_of(transcript), "cse_02Web", "web_claude_ai")
+        lines = [
+            *bash("cd /home/user/lecture-notes && ls can", "a.md b.md", "b1"),
+            assistant({"type": "tool_use", "id": "r1", "name": "Read", "input": {"file_path": "/home/user/lecture-notes/can/a.md"}}),
+            entry("user", "노트는 /home/user/lecture-notes에 있다"),
+            assistant({"type": "tool_use", "id": "g1", "name": "mcp__remote__add_repo", "input": {"owner": "o", "repo": "lecture-notes"}}),
+            entry("user", "lecture-notes-archive는 다른 저장소다"),
+        ]
+        with open(transcript, "w") as f:
+            f.write("\n".join(lines) + "\n")
+        out = subprocess.run(
+            [sys.executable, "-B", SCRIPT, "--archive", self.archive, transcript],
+            env=dict(os.environ, ASH_WIKI_NOTES=f"{os.path.expanduser('~')}/lecture-notes"),
+            capture_output=True, text=True, check=True,
+        ).stdout
+        digest_dir = os.path.join(self.archive, UUID)
+        with open(os.path.join(digest_dir, f"{UUID[:8]}-main.md")) as f:
+            main = f.read()
+        with open(os.path.join(digest_dir, f"{UUID[:8]}-main-notes.txt")) as f:
+            notes = f.read()
+        self.assertNotIn("/lecture-notes", main)
+        self.assertNotIn('"lecture-notes"', main)
+        self.assertIn("lecture-notes-archive는 다른 저장소다", main)
+        self.assertIn("cd /home/user/lecture-notes", notes)
+        self.assertIn("/home/user/lecture-notes/can/a.md", notes)
+        self.assertIn('"repo": "lecture-notes"', notes)
+        self.assertIn("지움 4", out)
+
+    def test_notes_under_the_home_of_the_machine_a_copy_came_from_are_hidden(self):
+        copy = os.path.join(self.tmp.name, "copies", "b")
+        os.makedirs(os.path.join(copy, "-home-bob-ash-wiki"))
+        with open(os.path.join(copy, "manifest.json"), "w") as f:
+            json.dump({"host": "b", "home": "/home/bob", "files": {}}, f)
+        transcript = os.path.join(copy, "-home-bob-ash-wiki", f"{UUID}.jsonl")
+        home = os.path.expanduser("~")
+        with open(transcript, "w") as f:
+            f.write("\n".join(entry("user", f"{h}/lecture-notes/iso.md") for h in ("/home/bob", home)) + "\n")
+        out = subprocess.run(
+            [sys.executable, "-B", SCRIPT, "--archive", self.archive, transcript],
+            env=dict(os.environ, ASH_WIKI_NOTES=f"{home}/lecture-notes"), capture_output=True, text=True, check=True,
+        ).stdout
+        self.assertIn("지움 2", out)
 
     def test_queued_message_naming_notes_is_hidden_and_counted(self):
         main, out = self.digest(queued(f"읽은 노트: {self.notes}/iso-26262.md 본문"))
@@ -313,6 +359,19 @@ class VersionTest(unittest.TestCase):
         row = self.version(entry("user", "/wiki-news 루틴을 돌려 줘"))
         self.assertEqual(row[1:3], ["-", self.v2[:12]])
         self.assertIn("스킬 본문 없음", row[3])
+
+    def test_fetched_routine_run_takes_origin_main_at_run_time(self):
+        remote(stem_of(self.transcript), RUN, "scheduled_trigger")
+        row = self.version(entry("user", "/wiki-news 2026-w01"), first_ts="2026-01-15T00:00:00Z")
+        self.assertEqual(row[1:3], ["wiki-news", self.v1[:12]])
+        self.assertIn("루틴 실행", row[3])
+        self.assertIn("시작 시각의 origin/main", row[3])
+
+    def test_fetched_cloud_session_takes_its_slash_command_at_start(self):
+        remote(stem_of(self.transcript), "cse_02Web", "web_claude_ai")
+        row = self.version(entry("user", "/wiki-news 2026-w01"), first_ts="2026-01-15T00:00:00Z")
+        self.assertEqual(row[1:3], ["wiki-news", self.v1[:12]])
+        self.assertIn("슬래시 명령", row[3])
 
     def commit_with_agent(self):
         agent = os.path.join(self.repo, ".claude/agents/source-verifier.md")
@@ -449,6 +508,15 @@ class ReportTest(unittest.TestCase):
 
 OTHER = "66666666-7777-8888-9999-000000000000"
 RETRO = "99999999-8888-7777-6666-555555555555"
+RUN = "cse_01AbCdEfGhIjKlMnOpQrStUv"
+
+
+def remote(session_dir, run, origin):
+    """받기 절차가 클라우드 기록의 세션 폴더에 남기는 remote.json."""
+    os.makedirs(session_dir, exist_ok=True)
+    suffix = run.removeprefix("cse_")
+    with open(os.path.join(session_dir, "remote.json"), "w") as f:
+        json.dump({"session": f"session_{suffix}", "cse": run, "uuid": os.path.basename(session_dir), "origin": origin}, f)
 
 
 def trigger(content):
@@ -474,14 +542,14 @@ class CandidatesTest(unittest.TestCase):
         self.paths.append(path)
         return stem_of(path)
 
-    def run_candidates(self):
+    def run_candidates(self, *extra):
         return subprocess.run(
-            [sys.executable, "-B", SCRIPT, "--archive", self.archive, "--candidates", RETRO, *self.paths],
+            [sys.executable, "-B", SCRIPT, "--archive", self.archive, "--candidates", RETRO, *self.paths, *extra],
             cwd=self.repo, env=env_without_notes(), capture_output=True, text=True,
         )
 
-    def candidates(self):
-        result = self.run_candidates()
+    def candidates(self, *extra):
+        result = self.run_candidates(*extra)
         self.assertEqual(result.returncode, 0, result.stderr)
         return {row[0]: row for row in (line.split("\t") for line in result.stdout.splitlines()[1:])}
 
@@ -548,6 +616,71 @@ class CandidatesTest(unittest.TestCase):
         rows = self.candidates()
         self.assertEqual(rows[UUID][1:], ["wiki-verify", "-", "2026-10-08", "CAN 재조사", "https://github.com/o/r/pull/7", handoff])
         self.assertEqual(rows[OTHER][5:], ["-", "-"])
+
+    def test_fetched_routine_run_is_a_candidate_without_a_command_mark(self):
+        remote(self.transcript(UUID, entry("user", "이번 주 소식을 모아 줘")), RUN, "scheduled_trigger")
+        remote(self.transcript(OTHER, entry("user", "이번 주 소식을 모아 줘")), "cse_02Web", "web_claude_ai")
+        rows = self.candidates()
+        self.assertEqual(list(rows), [UUID])
+        self.assertEqual(rows[UUID][1], f"루틴 실행({RUN})")
+
+    def test_slash_command_starts_a_skill_only_in_a_fetched_cloud_record(self):
+        remote(self.transcript(UUID, entry("user", "/wiki-ingest #18")), "cse_02Web", "web_claude_ai")
+        remote(self.transcript(RETRO.replace("9", "8"), entry("user", "/wiki-news\n<system-reminder>fired</system-reminder>")), RUN, "scheduled_trigger")
+        self.transcript(OTHER, entry("user", "/wiki-ingest #18"))
+        rows = self.candidates()
+        self.assertEqual(sorted(r[1] for r in rows.values()), ["wiki-ingest", f"루틴 실행({RUN}),wiki-news"])
+
+    def test_routine_run_started_by_hand_is_a_candidate(self):
+        remote(self.transcript(UUID, entry("user", "/wiki-news 2026-w01")), RUN, "force_run_trigger")
+        self.assertEqual(self.candidates()[UUID][1], f"루틴 실행({RUN}),wiki-news")
+
+    def test_run_marked_under_its_old_run_id_is_left_out(self):
+        remote(self.transcript(UUID, entry("user", "/wiki-news 2026-w01")), RUN, "scheduled_trigger")
+        os.makedirs(self.archive)
+        with open(os.path.join(self.archive, "analyzed.tsv"), "w") as f:
+            f.write(f"{RUN}\t{RETRO}\t2026-10-08\n")
+        self.assertEqual(self.candidates(), {})
+
+    def test_runs_not_fetched_are_rows_of_their_own(self):
+        remote(self.transcript(UUID, entry("user", "/wiki-news 2026-w01")), RUN, "scheduled_trigger")
+        os.makedirs(self.archive)
+        with open(os.path.join(self.archive, "analyzed.tsv"), "w") as f:
+            f.write(f"cse_03Old\t{RETRO}\t2026-10-08\n")
+        rows = self.candidates("--runs", RUN.replace("cse_", "session_"), "cse_02New", "cse_03Old")
+        self.assertEqual(list(rows), [UUID, "cse_02New"])
+        self.assertEqual(rows["cse_02New"][1:], ["루틴 실행(받지 않음)", "-", "-", "-", "-", "-"])
+
+    def test_fetched_copy_wins_over_a_larger_copy_without_remote_json(self):
+        fetched = os.path.join(self.tmp.name, "cloud", "-home-user-ash-wiki", f"{UUID}.jsonl")
+        os.makedirs(os.path.dirname(fetched))
+        with open(fetched, "w") as f:
+            f.write(entry("user", "/wiki-news 2026-w01") + "\n")
+        remote(stem_of(fetched), RUN, "scheduled_trigger")
+        self.paths.append(fetched)
+        self.transcript(UUID, entry("user", "/wiki-news 2026-w01"), entry("user", "teleport로 이어 받은 뒤의 글"))
+        self.assertEqual(self.candidates()[UUID][1], f"루틴 실행({RUN}),wiki-news")
+
+    def test_records_are_read_from_a_list_file(self):
+        self.transcript(UUID, entry("user", "<command-message>wiki-verify</command-message>"))
+        listing = os.path.join(self.tmp.name, "transcripts.txt")
+        with open(listing, "w") as f:
+            f.write("\n".join(self.paths) + "\n\n")
+        self.paths = []
+        self.assertEqual(list(self.candidates("--records", listing)), [UUID])
+
+    def test_session_in_several_places_is_one_row_from_the_largest_copy(self):
+        command = entry("user", "<command-message>wiki-verify</command-message>")
+        self.transcript(UUID, command, json.dumps({"type": "custom-title", "customTitle": "늦게 붙인 제목"}))
+        copy = os.path.join(self.tmp.name, "backup", "-home-u-ash-wiki", f"{UUID}.jsonl")
+        os.makedirs(os.path.dirname(copy))
+        with open(copy, "w") as f:
+            f.write(command + "\n")
+        self.paths.insert(0, copy)
+        result = self.run_candidates()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        rows = [line.split("\t") for line in result.stdout.splitlines()[1:]]
+        self.assertEqual([(r[0], r[4]) for r in rows], [(UUID, "늦게 붙인 제목")])
 
 
 if __name__ == "__main__":

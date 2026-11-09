@@ -14,28 +14,33 @@ disable-model-invocation: true
 
 ## 1. 입력
 
-**보관 폴더**는 `~/documents/ash-wiki-retro/`다. 세션마다 요약본과 분석 보고서를 `<uuid>/`에 두고, 회고가 분석한 세션과 루틴 실행을 `analyzed.tsv`(세션 uuid나 실행 id, 회고 세션 uuid, 날짜)에 적는다. 회고 세션 자리의 `-`는 분석 없이 적은 것이다(1단계의 뺌). Claude Code가 오래된 세션 기록을 지워도 무엇을 분석했고 무엇이 나왔는지 남기기 위해서다.
+**보관 폴더**는 `~/documents/ash-wiki-retro/`다. 세션마다 요약본과 분석 보고서를 `<uuid>/`에 두고, 회고가 분석한 세션과 루틴 실행을 `analyzed.tsv`(세션 uuid, 회고 세션 uuid, 날짜)에 적는다. 루틴 실행도 기록 파일 이름의 uuid로 적는다. 실행 id(`cse_…`)로 적힌 옛 줄은 후보 명령이 받아 둔 기록의 `remote.json`으로 맞춘다. 회고 세션 자리의 `-`는 분석 없이 적은 것이다(1단계의 뺌). Claude Code가 오래된 세션 기록을 지워도 무엇을 분석했고 무엇이 나왔는지 남기기 위해서다.
 
-**후보 세션**은 위키 스킬을 부르거나, `.claude/agents/`의 에이전트를 띄우거나, `RemoteTrigger`로 루틴에 넘긴 로컬 세션과 루틴 실행 가운데 `analyzed.tsv`에 없는 것이다. 아래 명령이 로컬 세션을 한 줄씩 찍고, 루틴 실행은 아래 루틴 실행 문단대로 더한다. 이 세션의 uuid는 scratchpad 경로에 있다.
+**후보 세션**은 위키 스킬을 부르거나, `.claude/agents/`의 에이전트를 띄우거나, `RemoteTrigger`로 루틴에 넘긴 세션과 루틴 실행 가운데 `analyzed.tsv`에 없는 것이다. 어느 컴퓨터에서 돈 세션이든, 클라우드 세션이든 같다. 먼저 **기록 모으기**로 모든 컴퓨터의 백업, 받아 둔 클라우드 기록, 이 컴퓨터의 원본에서 ash-wiki 세션 기록의 경로를 모은다. 기록 모으기는 로컬 스킬 `gather-transcripts`를 Skill 도구로 인자 `ash-wiki <scratchpad>/transcripts.txt`와 함께 불러 한다. 기록을 어디에 두고 어떻게 받는지는 소유자의 환경이라 그 스킬이 맡는다. 스킬이 없으면 이 컴퓨터의 원본만으로 진행할지(다른 컴퓨터와 클라우드의 기록이 빠진다), 스킬을 갖춘 뒤 다시 돌릴지 소유자에게 묻는다. 원본만으로 진행하면 아래 명령에서 `--records`를 뺀다. 이어서 아래 명령으로 후보를 한 줄씩 찍는다. 이 세션의 uuid는 scratchpad 경로에 있고, `--runs`는 아래 루틴 실행 문단의 실행 id다(없으면 뺀다).
 
 ```sh
-python3 -B .claude/skills/wiki-retro/digest.py --candidates <이 세션 uuid>
+python3 -B .claude/skills/wiki-retro/digest.py --candidates <이 세션 uuid> \
+  --records <scratchpad>/transcripts.txt --runs <실행 id>...
 ```
+
+같은 세션이 여러 자리에 있으면 하나로 센다(받아 둔 클라우드 기록, 그다음 가장 큰 기록).
 
 후보를 표로 대화에 보이고, 세션마다 지금 분석, 나중에, 뺌 가운데 무엇으로 할지 소유자에게 묻는다. 세션이 끝났는지, 넘긴 일의 결과가 나왔는지는 소유자가 가장 잘 알기 때문이다. 표의 열은 명령이 찍는 스킬, 에이전트, 시작일, 제목, URL, 핸드오프에 `gh`로 본 PR과 이슈의 상태를 더한다. URL 가운데 세션의 PR과 그 코멘트가 아닌 것(`verify:` 코멘트, `lint:` 이슈, `범위 밖` 이슈, 모음 이슈 코멘트, 발행한 티켓)이 **넘긴 일**이다.
 
 - **지금 분석**이 대상 세션이다.
 - **나중에**는 목록에 적지 않아 다음 회고에 다시 나온다.
-- **뺌**은 분석할 거리가 없는 세션(중간에 끊긴 세션 등)이고, 바로 `python3 -B .claude/skills/wiki-retro/digest.py --mark - <uuid나 실행 id>...`로 목록에 적는다.
+- **뺌**은 분석할 거리가 없는 세션(중간에 끊긴 세션 등)이고, 바로 `python3 -B .claude/skills/wiki-retro/digest.py --mark - <uuid>...`로 목록에 적는다. 받지 않은 루틴 실행은 uuid가 없어, 받은 뒤에 적는다.
 
 대상 세션마다 아래를 찾는다.
 
 - **서브에이전트 기록**: 세션 기록 옆 `<uuid>/subagents/`. Workflow가 띄운 것은 그 아래 `workflows/`에 있다.
 - **세션 버전**: 세션이 실제로 따른 스킬 버전의 커밋. `python3 -B .claude/skills/wiki-retro/digest.py --version <세션 기록>...`의 출력을 쓴다. 출력은 세션이 띄운 에이전트의 파일도 그 버전으로 찍는다.
-- **티켓과 PR**: 세션의 PR은 후보 표 URL 열의 PR이고, 없으면 기록의 세션 URL(`"remote_session_change","url":"<세션 URL>"`)의 `session_…`을 본문에 담은 PR이다(`gh pr list --state all --search '<session_…> in:body'`). PR마다 본문을 읽고, 받은 티켓은 본문의 `Closes #<티켓>`이다. PR이 없는 세션(보강, 주제 계획 등)의 받은 티켓은 발행한 티켓의 `## Parent`다.
+- **티켓과 PR**: 세션의 PR은 후보 표 URL 열의 PR이고, 없으면 세션의 `session_…`을 본문에 담은 PR이다(`gh pr list --state all --search '<session_…> in:body'`). `session_…`은 로컬 기록이면 세션 URL(`"remote_session_change","url":"<세션 URL>"`)에, 받아 둔 클라우드 기록이면 세션 폴더의 `remote.json`에 있다. PR마다 본문을 읽고, 받은 티켓은 본문의 `Closes #<티켓>`이다. PR이 없는 세션(보강, 주제 계획 등)의 받은 티켓은 발행한 티켓의 `## Parent`다.
 - **핸드오프**: 세션이 쓴 핸드오프(후보 표의 핸드오프 열). 머리 정보가 가리키는 앞 세션의 핸드오프(예: 받은 티켓을 발행한 세션)도 읽는다. 넘긴 일을 처리한 세션의 핸드오프도 읽는다. 넘긴 일이 모음 이슈 코멘트면 그 이슈의 `## Triage` 표가 가리키는 티켓의 핸드오프다. 처리 세션은 대개 위키 스킬을 부르지 않아 후보에 오르지 않으므로 `grep -lE '#<티켓>([^0-9]|$)' ~/documents/ash-wiki-handoff/*.md`로 찾는다.
 
-**루틴 실행**은 클라우드 루틴이 스킬을 한 번 돈 것이다. 로컬 세션이 없어 위 명령에 오르지 않으므로, `RemoteTrigger`의 `list`로 루틴을 찾고 루틴마다 `list_runs`의 실행 가운데 `analyzed.tsv`에 없는 것을 실행 id(`cse_…`)로 후보 표에 넣는다. 지금 분석할 실행은 소유자에게 따로 만든 worktree에서 `claude --teleport <session_…>`을 쳐 달라고 해 메인 기록 전문을 받는다. `session_…`은 `list_runs`가 실행마다 주는 claude.ai 링크에 있고, 기록은 그 worktree 경로의 프로젝트 폴더에 생긴다. 요약본은 이 기록으로 만든다. `get_run_log`는 thinking을 가리고 도구 입출력을 잘라, 다른 명령의 결과를 검사 결과로 읽게 하기 때문이다. 서브에이전트 기록은 따라오지 않으므로, 서브에이전트 안쪽은 `get_run_log`를 `next_cursor`가 없어질 때까지 받아 요약본 폴더에 보탠다. 분석은 메인 기록 전문과 run log의 서브에이전트 부분까지다. 세션 버전은 루틴이 돈 시각(`list_runs`나 run log)의 `origin/main`이고(`git rev-list -1 --before=<그 시각> origin/main`), PR은 run log의 PR URL이다.
+**루틴 실행**은 클라우드 루틴이 스킬을 한 번 돈 것이다. `RemoteTrigger`의 `list`로 루틴을 찾고, 루틴마다 `list_runs`가 주는 실행 id를 후보 명령의 `--runs`에 넘긴다. 받아 둔 실행은 스킬 열이 `루틴 실행(cse_…)`인 줄로, 받지 않은 실행은 `루틴 실행(받지 않음)`인 줄로 오른다. 이미 분석한 실행은 옛 `cse_…` 줄로 적혔어도 오르지 않는다. 받지 않은 실행을 지금 분석하려면, 기록 모으기가 안내하는 받기 절차를 소유자에게 알리고, 받은 뒤 기록 모으기와 후보 명령을 다시 돌린다. 받아 둔 기록에는 서브에이전트 기록과 잘리지 않은 도구 결과가 있어, 로컬 세션처럼 요약본을 만들고 분석한다.
+
+받아 둔 클라우드 기록(클라우드 세션과 루틴 실행)은 첫 프롬프트가 슬래시 명령 그대로라 스킬 실행의 표시도 스킬 본문도 없다. 후보 명령과 `--version`은 그 슬래시 명령을 스킬로 찍고, 세션 버전은 시작 시각의 `origin/main`이다. 루틴 실행의 스킬은 `list_runs`에서 그 실행의 트리거 프롬프트로 정한다. 스킬 열의 이름은 첫 프롬프트에서 읽은 것이라 트리거 프롬프트와 같아야 한다.
 
 완료: 후보마다 소유자의 답이 있고, 뺀 세션은 목록에 적었다. 대상 세션마다 세션 버전과 띄운 에이전트 파일이 정해졌고, 티켓과 PR, 넘긴 일, 핸드오프는 있는 것을 모두 찾았다.
 
@@ -117,7 +122,7 @@ gh api markdown -f mode=gfm -f context=jjongs2/ash-wiki -F text=@<글 파일> \
 티켓이 나갔거나 소유자가 멈추라고 하면, 분석한 세션을 `analyzed.tsv`에 적는다.
 
 ```sh
-python3 -B .claude/skills/wiki-retro/digest.py --mark <이 세션 uuid> <대상 세션 uuid나 실행 id>...
+python3 -B .claude/skills/wiki-retro/digest.py --mark <이 세션 uuid> <대상 세션 uuid>...
 ```
 
 완료: 소유자가 고른 개선안과 덜 것이 티켓으로 나갔거나 소유자가 멈추라고 했고, 대상 세션이 모두 `analyzed.tsv`에 있다.
