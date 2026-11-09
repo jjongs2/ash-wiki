@@ -524,6 +524,11 @@ def trigger(content):
     return assistant({"type": "tool_use", "id": "r1", "name": "RemoteTrigger", "input": {"action": "update", "body": body}})
 
 
+def session_lines(stdout):
+    """후보 명령 출력의 첫 표(세션 줄). 빈 줄 뒤는 흐름 표다."""
+    return stdout.split("\n\n")[0].splitlines()[1:]
+
+
 class CandidatesTest(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -551,7 +556,7 @@ class CandidatesTest(unittest.TestCase):
     def candidates(self, *extra):
         result = self.run_candidates(*extra)
         self.assertEqual(result.returncode, 0, result.stderr)
-        return {row[0]: row for row in (line.split("\t") for line in result.stdout.splitlines()[1:])}
+        return {row[0]: row for row in (line.split("\t") for line in session_lines(result.stdout))}
 
     def test_session_spawning_a_project_agent_without_a_wiki_skill_is_a_candidate(self):
         subagent(self.transcript(UUID, entry("user", "#626 구현")), "a1", "source-verifier", "Verify")
@@ -614,8 +619,8 @@ class CandidatesTest(unittest.TestCase):
         )
         self.transcript(OTHER, assistant({"type": "tool_use", "id": "s1", "name": "Skill", "input": {"skill": "wiki-verify"}}))
         rows = self.candidates()
-        self.assertEqual(rows[UUID][1:], ["wiki-verify", "-", "2026-10-08", "CAN 재조사", "https://github.com/o/r/pull/7", handoff])
-        self.assertEqual(rows[OTHER][5:], ["-", "-"])
+        self.assertEqual(rows[UUID][1:7], ["wiki-verify", "-", "2026-10-08", "CAN 재조사", "https://github.com/o/r/pull/7", handoff])
+        self.assertEqual(rows[OTHER][5:7], ["-", "-"])
 
     def test_fetched_routine_run_is_a_candidate_without_a_command_mark(self):
         remote(self.transcript(UUID, entry("user", "이번 주 소식을 모아 줘")), RUN, "scheduled_trigger")
@@ -649,7 +654,7 @@ class CandidatesTest(unittest.TestCase):
             f.write(f"cse_03Old\t{RETRO}\t2026-10-08\n")
         rows = self.candidates("--runs", RUN.replace("cse_", "session_"), "cse_02New", "cse_03Old")
         self.assertEqual(list(rows), [UUID, "cse_02New"])
-        self.assertEqual(rows["cse_02New"][1:], ["루틴 실행(받지 않음)", "-", "-", "-", "-", "-"])
+        self.assertEqual(rows["cse_02New"][1:7], ["루틴 실행(받지 않음)", "-", "-", "-", "-", "-"])
 
     def test_fetched_copy_wins_over_a_larger_copy_without_remote_json(self):
         fetched = os.path.join(self.tmp.name, "cloud", "-home-user-ash-wiki", f"{UUID}.jsonl")
@@ -679,8 +684,285 @@ class CandidatesTest(unittest.TestCase):
         self.paths.insert(0, copy)
         result = self.run_candidates()
         self.assertEqual(result.returncode, 0, result.stderr)
-        rows = [line.split("\t") for line in result.stdout.splitlines()[1:]]
+        rows = [line.split("\t") for line in session_lines(result.stdout)]
         self.assertEqual([(r[0], r[4]) for r in rows], [(UUID, "늦게 붙인 제목")])
+
+
+A, B, C, D, E, F = (f"{n}{n}{n}{n}{n}{n}{n}{n}-0000-0000-0000-000000000000" for n in "abcdef")
+SIGNALS = ["오류", "거부", "재실행", "소유자 글", "compact", "호출", "분", "메모리"]
+MEMORY = "/home/u/.claude/projects/-home-u-ash-wiki/memory"
+
+
+def said(text, origin="human", ts="2026-10-08T01:00:00Z", **extra):
+    record = {"type": "user", "timestamp": ts, "message": {"content": text}, **extra}
+    if origin:
+        record["origin"] = {"kind": origin}
+    return json.dumps(record)
+
+
+def reply(msg_id, *content, output=10, read=100, write=5, model="claude-opus-5-5"):
+    usage = {"output_tokens": output, "cache_read_input_tokens": read, "cache_creation_input_tokens": write}
+    return json.dumps({"type": "assistant", "timestamp": "2026-10-08T01:00:00Z",
+                       "message": {"id": msg_id, "model": model, "content": list(content), "usage": usage}})
+
+
+def call(call_id, name, **inp):
+    return {"type": "tool_use", "id": call_id, "name": name, "input": inp}
+
+
+def result(call_id, text, error=False):
+    return json.dumps({"type": "user", "timestamp": "2026-10-08T01:00:00Z", "message": {"content": [
+        {"type": "tool_result", "tool_use_id": call_id, "content": text, "is_error": error}]}})
+
+
+def system(subtype, **fields):
+    return json.dumps({"type": "system", "subtype": subtype, "timestamp": "2026-10-08T01:00:00Z", **fields})
+
+
+class CostTest(unittest.TestCase):
+    """--cost: 기록과 그 서브에이전트의 호출 수, 캐시 읽기와 쓰기, 출력."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def cost(self, path):
+        result = subprocess.run([sys.executable, "-B", SCRIPT, "--cost", path], env=env_without_notes(), capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        lines = [line.split("\t") for line in result.stdout.splitlines()]
+        self.assertEqual(lines[0], ["uuid", "호출", "캐시 읽기", "캐시 쓰기", "출력"])
+        return lines[1]
+
+    def write(self, path, *lines):
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w") as f:
+            f.write("\n".join(lines) + "\n")
+
+    def test_local_record_adds_each_message_once_with_its_subagents(self):
+        path = os.path.join(self.tmp.name, f"{UUID}.jsonl")
+        self.write(path, reply("m1", output=10, read=100, write=5), reply("m1", output=10, read=100, write=5),
+                   reply("m2", output=20, read=200, write=7), reply("m3", output=1, read=1, write=1, model="<synthetic>"))
+        subagent(stem_of(path), "a1", "general-purpose", "Search", reply("s1", output=3, read=30, write=2))
+        self.assertEqual(self.cost(path), [UUID, "3", "330", "14", "33"])
+
+    def test_fetched_cloud_record_takes_the_last_result_totals(self):
+        path = os.path.join(self.tmp.name, "cloud", f"{UUID}.jsonl")
+        totals = {"claude-sonnet-5-5": {"outputTokens": 490561, "cacheReadInputTokens": 1000, "cacheCreationInputTokens": 50},
+                  "claude-haiku-5-5": {"outputTokens": 37599, "cacheReadInputTokens": 0, "cacheCreationInputTokens": 0}}
+        early = {"claude-sonnet-5-5": {"outputTokens": 9, "cacheReadInputTokens": 9, "cacheCreationInputTokens": 9}}
+        self.write(path, reply("m1", output=4, read=600, write=30),
+                   json.dumps({"type": "result", "modelUsage": early}),
+                   reply("m2", output=3, read=300, write=10),
+                   json.dumps({"type": "result", "modelUsage": totals}))
+        subagent(stem_of(path), "a1", "general-purpose", "Search", reply("s1", output=1, read=100, write=10))
+        remote(stem_of(path), RUN, "scheduled_trigger")
+        self.assertEqual(self.cost(path), [UUID, "3", "1000", "50", "528160"])
+
+
+class LastRetroTest(unittest.TestCase):
+    """--last-retro: 분석 목록의 회고 세션 열에서 가장 최근 회고와, 그 기록에서 낸 티켓."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.archive = os.path.join(self.tmp.name, "archive")
+        os.makedirs(self.archive)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def last_retro(self, *paths):
+        result = subprocess.run([sys.executable, "-B", SCRIPT, "--archive", self.archive, "--last-retro", *paths],
+                                env=env_without_notes(), capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        return result.stdout.splitlines()
+
+    def test_most_recent_retro_and_the_tickets_its_record_made(self):
+        old, new = A, B
+        with open(os.path.join(self.archive, "analyzed.tsv"), "w") as f:
+            f.write(f"{C}\t{old}\t2026-10-01\n{D}\t-\t2026-10-30\n{E}\t{new}\t2026-10-26\n{F}\t포화\t2026-10-31\n")
+        records = []
+        for uuid, number in ((old, 1), (new, 2)):
+            path = os.path.join(self.tmp.name, f"{uuid}.jsonl")
+            with open(path, "w") as f:
+                f.write("\n".join([*bash("gh issue create --title t", f"https://github.com/o/r/issues/{number}\n", "b1"),
+                                   *bash("gh issue view 9", "https://github.com/o/r/issues/9\n", "b2")]) + "\n")
+            records.append(path)
+        self.assertEqual(self.last_retro(*records), [
+            "회고 세션\t날짜\t기록\tURL", f"{new}\t2026-10-26\t{records[1]}\thttps://github.com/o/r/issues/2"])
+
+    def test_without_a_retro_in_the_list(self):
+        with open(os.path.join(self.archive, "analyzed.tsv"), "w") as f:
+            f.write(f"{C}\t-\t2026-10-01\n")
+        self.assertEqual(self.last_retro(), ["지난 회고 없음"])
+
+
+class SignalTest(unittest.TestCase):
+    """후보 명령이 세션마다 메인과 서브에이전트 기록을 합쳐 세는 신호."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.archive = os.path.join(self.tmp.name, "archive")
+        self.repo = os.path.join(self.tmp.name, "repo")
+        self.paths = []
+        git_repo(self.repo, {".claude/agents/source-verifier.md": "---\nname: source-verifier\n---\n"})
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def transcript(self, uuid, *lines, folder=None):
+        path = os.path.join(folder or self.tmp.name, f"{uuid}.jsonl")
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w") as f:
+            f.write("\n".join(lines) + "\n")
+        self.paths.append(path)
+        return stem_of(path)
+
+    def output(self, *extra):
+        result = subprocess.run(
+            [sys.executable, "-B", SCRIPT, "--archive", self.archive, "--candidates", RETRO, *self.paths, *extra],
+            cwd=self.repo, env=env_without_notes(), capture_output=True, text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        return result.stdout
+
+    def rows(self, *extra):
+        lines = self.output(*extra).split("\n\n")[0].splitlines()
+        header = lines[0].split("\t")
+        return {cells[0]: dict(zip(header, cells)) for cells in (line.split("\t") for line in lines[1:])}
+
+    def signals(self, uuid, *extra):
+        row = self.rows(*extra)[uuid]
+        return {name: row[name] for name in SIGNALS}
+
+    def test_local_record_signals_add_main_and_subagents(self):
+        command = "<command-message>wiki-verify</command-message>"
+        session = self.transcript(
+            UUID,
+            said(command),
+            reply("m1", call("b1", "Bash", command="npm run check")),
+            result("b1", "Exit code 1\nfail", error=True),
+            reply("m1", call("b2", "Bash", command="npm run check")),
+            result("b2", "The user doesn't want to proceed with this tool use. The tool use was rejected", error=True),
+            reply("m2", call("b3", "Bash", command=" npm run check")),
+            result("b3", "This session is isolated in the worktree /w, but this command is too complex", error=True),
+            said("진행해줘"),
+            said("<task-notification>done</task-notification>", origin="task-notification"),
+            said("Base directory for this skill: /x", origin=None, isMeta=True),
+            system("compact_boundary", compactMetadata={"trigger": "auto"}),
+            reply("m3", call("r1", "Read", file_path=f"{MEMORY}/handoff-format.md")),
+            reply("m4", call("r2", "Read", file_path=f"{MEMORY}/MEMORY.md")),
+            system("turn_duration", durationMs=100_000),
+            system("turn_duration", durationMs=80_000),
+        )
+        subagent(
+            session, "a1", "source-verifier", "Verify",
+            said("너는 검증자다", origin=None),
+            reply("s1", call("c1", "Bash", command=f"cat {MEMORY}/handoff-format.md {MEMORY}/source-host-access.md")),
+            result("c1", "Permission for this action was denied by the Claude Code auto mode classifier.", error=True),
+            reply("s2", call("c2", "Read", file_path="/repo/x.md")),
+            result("c2", "File does not exist.", error=True),
+            reply("s3", {"type": "text", "text": "끝"}, model="<synthetic>"),
+        )
+        self.assertEqual(self.signals(UUID), {
+            "오류": "2", "거부": "3", "재실행": "2", "소유자 글": "1", "compact": "1",
+            "호출": "6", "분": "3", "메모리": "2",
+        })
+
+    def session(self, uuid, first, errors=0, calls=1, compacts=0, start="2026-10-08T01:00:00Z", folder=None):
+        lines = [said(first, ts=start)]
+        lines += [line for n in range(errors) for line in (reply(f"e{n}", call(f"x{n}", "Read", file_path=f"/{n}")), result(f"x{n}", "nope", error=True))]
+        lines += [reply(f"c{n}") for n in range(calls - errors)]
+        lines += [system("compact_boundary", compactMetadata={})] * compacts
+        return self.transcript(uuid, *lines, folder=folder)
+
+    def test_sessions_are_grouped_by_flow_and_ranked_by_signals_above_the_flow_median(self):
+        verify = "<command-message>wiki-verify</command-message>"
+        self.session(A, verify, errors=2, calls=3, compacts=1)
+        self.session(B, verify, calls=5)
+        self.session(C, verify, errors=1, calls=1)
+        self.session(D, "<command-message>reader-testing</command-message>")
+        self.session(E, "<command-message>wiki-reader-testing</command-message>", start="2026-10-09T01:00:00Z")
+        subagent(self.session(F, "#626 구현"), "a1", "source-verifier", "Verify")
+        rows = self.rows()
+        self.assertEqual([(u, r["흐름"], r["점수"]) for u, r in rows.items()], [
+            (A, "wiki-verify", "2"), (B, "wiki-verify", "1"), (C, "wiki-verify", "0"),
+            (D, "wiki-reader-testing", "0"), (E, "wiki-reader-testing", "0"),
+            (F, "에이전트(source-verifier)", "0"),
+        ])
+        flows = [line.split("\t") for line in self.output().split("\n\n")[1].splitlines()]
+        self.assertEqual([f[:2] for f in flows], [["흐름", "세션"], ["wiki-verify", "3"], ["wiki-reader-testing", "2"], ["에이전트(source-verifier)", "1"]])
+
+    def five_verify_sessions(self):
+        verify = "<command-message>wiki-verify</command-message>"
+        for n, uuid in enumerate((A, B, C, D, E)):
+            self.session(uuid, verify, errors=n, calls=5 + n, start=f"2026-10-0{n + 1}T01:00:00Z")
+        self.session(F, "<command-message>wiki-news</command-message>")
+
+    def marks(self, *extra):
+        return {u: r["추천"] for u, r in self.rows(*extra).items()}
+
+    def test_two_strongest_and_one_random_session_are_recommended_per_flow(self):
+        self.five_verify_sessions()
+        marks = self.marks()
+        self.assertEqual((marks[E], marks[D], marks[F]), ("신호", "신호", "신호"))
+        self.assertEqual(sorted(marks[u] for u in (A, B, C)), ["-", "-", "무작위"])
+        flows = [line.split("\t") for line in self.output().split("\n\n")[1].splitlines()]
+        self.assertEqual(flows[1][0], "wiki-verify")
+        self.assertEqual(len(flows[1][2].split()), 3)
+
+    def test_same_retro_session_picks_the_same_random_session(self):
+        self.five_verify_sessions()
+        self.assertEqual(self.marks(), self.marks())
+
+    def test_first_session_after_the_last_retro_fixed_the_flow_is_recommended(self):
+        self.five_verify_sessions()
+        marks = self.marks("--fixed", "wiki-verify=2026-10-02T12:00:00Z", "wiki-ingest=2026-10-01T00:00:00Z")
+        self.assertEqual(marks[C], "고친 뒤")
+        self.assertEqual(marks[D], "신호")
+        self.assertEqual(list(marks.values()).count("무작위"), 1)
+
+    def test_fixed_session_already_strong_carries_both_marks(self):
+        self.five_verify_sessions()
+        self.assertEqual(self.marks("--fixed", "wiki-verify=2026-10-04T00:00:00Z")[D], "신호,고친 뒤")
+
+    def test_two_fixes_of_one_flow_wait_for_the_later(self):
+        self.five_verify_sessions()
+        marks = self.marks("--fixed", "wiki-verify=2026-10-03T12:00:00Z", "wiki-verify=2026-10-01T12:00:00Z")
+        self.assertIn("고친 뒤", marks[D])
+
+    def test_routine_run_joins_the_flow_of_its_skill(self):
+        cloud = os.path.join(self.tmp.name, "cloud", "-home-user-ash-wiki")
+        remote(self.session(A, "/wiki-news 2026-w44", folder=cloud), RUN, "scheduled_trigger")
+        self.session(B, "<command-message>wiki-news</command-message>")
+        self.transcript(C, trigger("/wiki-news 2026-w01"))
+        rows = self.rows()
+        self.assertEqual({u: r["흐름"] for u, r in rows.items()}, {A: "wiki-news", B: "wiki-news", C: "wiki-news(루틴)"})
+
+    def test_fetched_cloud_record_signals_follow_its_own_record_shapes(self):
+        cloud = os.path.join(self.tmp.name, "cloud", "-home-user-ash-wiki")
+        session = self.transcript(
+            UUID,
+            said("/wiki-ingest #18", origin=None, clientPlatform="web"),
+            json.dumps({"type": "autocompact_state", "value": {"enabled": True, "threshold": 784000}}),
+            reply("m1", call("b1", "Bash", command="gh pr checks 7")),
+            result("b1", "Exit code 8\npending", error=True),
+            json.dumps({"type": "queued_notification", "notification": {"content": "<wake reason=\"external-event\">"}}),
+            said("Another Claude session sent a message: <agent-message>", origin="peer", isMeta=True),
+            said("<task-notification>done</task-notification>", origin="task-notification"),
+            said("PR 올려줘", origin=None, clientPlatform="android"),
+            system("compact_boundary_like", compactMetadata={"pre_tokens": 900000}),
+            reply("m2", call("r1", "Read", file_path="/root/.claude/projects/-home-user-ash-wiki/memory/news.md")),
+            json.dumps({"type": "result", "subtype": "success", "durationMs": 150_000, "modelUsage": {}}),
+            json.dumps({"type": "result", "subtype": "success", "durationMs": 30_000, "modelUsage": {}}),
+            folder=cloud,
+        )
+        remote(session, "cse_02Web", "web_claude_ai")
+        self.assertEqual(self.signals(UUID), {
+            "오류": "1", "거부": "0", "재실행": "0", "소유자 글": "1", "compact": "1",
+            "호출": "2", "분": "3", "메모리": "1",
+        })
 
 
 if __name__ == "__main__":

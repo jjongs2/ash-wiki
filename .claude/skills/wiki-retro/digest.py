@@ -3,7 +3,9 @@
 python3 digest.py [--archive <폴더>] <기록.jsonl>...
 python3 digest.py [--archive <폴더>] --mark <회고 세션 uuid> <세션 uuid>...
 python3 digest.py [--archive <폴더>] --report <에이전트 기록> <세션 uuid> '<첫 줄>'
-python3 digest.py [--archive <폴더>] --candidates <이 세션 uuid> [<기록.jsonl>...] [--records <목록>] [--runs <실행 id>...]
+python3 digest.py [--archive <폴더>] --candidates <이 세션 uuid> [<기록.jsonl>...] [--records <목록>] [--runs <실행 id>...] [--fixed <흐름>=<시각>...]
+python3 digest.py [--archive <폴더>] --last-retro [<기록.jsonl>...] [--records <목록>]
+python3 digest.py --cost <기록.jsonl>...
 python3 digest.py --version <기록.jsonl>...
 
 보관 폴더(기본 ~/documents/ash-wiki-retro)의 <uuid>/에, 기록마다 <이름>-main.md를,
@@ -17,7 +19,7 @@ report.md는 둔다. 작업 중 대기열로 온 메시지(서브에이전트 �
 않고, 뒤이어 user 줄로 차례대로 다시 온 메시지는 한 번만 쓴다.
 
 --mark는 보관 폴더의 analyzed.tsv에 세션 uuid, 회고 세션 uuid, 날짜를 한 줄씩
-더한다. 루틴 실행도 기록 파일 이름의 CLI uuid로 적는다. 실행 id(cse_…)로 적힌 옛
+더한다. 회고 세션 자리에는 분석 없이 뺀 세션이면 -, 흐름을 멈춰 분석하지 않은 세션이면 포화를 넘긴다. 루틴 실행도 기록 파일 이름의 CLI uuid로 적는다. 실행 id(cse_…)로 적힌 옛
 줄은 --candidates가 읽기만 한다. 이미 있는 것은 더하지 않는다. 회고는 이 목록에 없는
 세션과 루틴 실행을 분석한다.
 
@@ -45,6 +47,30 @@ RemoteTrigger로 루틴에 넘긴 세션 가운데 analyzed.tsv에 없고 이 �
 슬래시 명령을 스킬 실행으로 센다. 로컬 기록에서는 세지 않는다. remote.json의 실행 id가 analyzed.tsv의 옛 줄에 있으면 뺀다. --runs로 받은
 실행 id(session_…이나 cse_…) 가운데 받아 둔 기록도 옛 줄도 없는 것은 스킬 열이
 "루틴 실행(받지 않음)"인 줄로 끝에 찍는다. 저장소 루트에서 돌린다.
+후보 줄은 이어서 흐름, 추천, 점수와 신호를 찍는다. 신호는 메인과 서브에이전트 기록을 합쳐 LLM 없이 센다.
+  오류: 거부가 아닌 도구 오류(is_error인 tool_result)
+  거부: 소유자의 거절, auto mode 분류기와 worktree 격리 훅이 막은 도구 호출(DENIAL)
+  재실행: 기록 안에서 앞서 돌린 것과 같은 Bash 명령
+  소유자 글: 첫 프롬프트 뒤 소유자의 글. 로컬 기록은 origin이 human인 글과 대기열 메시지, 받아 둔 클라우드
+    기록은 origin 없이 clientPlatform이 있는 글이다. 메인 기록에서만 센다
+  compact: compact 경계(compact_boundary나 compactMetadata가 있는 system 레코드). 클라우드의
+    autocompact_state는 설정이라 세지 않는다
+  호출: API 호출(어시스턴트 메시지 id, <synthetic> 제외)
+  분: 메인 기록의 turn 시간 합. 로컬은 turn_duration, 받아 둔 클라우드 기록은 result의 durationMs다
+  메모리: 세션이 연(Edit·Write 밖의 도구 입력에 나온) 메모리 파일 수. MEMORY.md는 세지 않는다
+흐름은 스킬 열의 첫 위키 스킬(옛 이름 reader-testing은 wiki-reader-testing)이고, 위키 스킬 없이 에이전트만
+띄운 세션은 "에이전트(<에이전트 묶음>)"다. 점수는 흐름 안의 중앙값을 넘는 신호의 수다. 줄은 세션이 많은
+흐름부터, 흐름 안에서는 점수, 같으면 호출 수가 큰 것부터 찍는다. 추천은 흐름마다 앞의 둘에 "신호", --fixed가
+그 흐름에 준 시각(같은 흐름이 여럿이면 늦은 것) 뒤에 처음 시작한 세션에 "고친 뒤", 표시가 없는 세션 가운데
+이 세션 uuid와 흐름을 씨앗으로 고른 하나에 "무작위"를 단다. 같은 회고에서 다시 돌려도 같은 세션을 고른다.
+빈 줄 뒤에 흐름마다 세션 수와 추천한 세션(uuid 앞 8자)을 찍는다.
+
+--last-retro는 analyzed.tsv의 회고 세션 열에서 가장 최근 회고(날짜가 같으면 뒤 줄)를 찾아, 그 uuid, 날짜,
+기록, 그 기록에서 gh pr/issue create·comment가 돌려준 URL을 찍는다. 기록은 --candidates처럼 받는다.
+
+--cost는 기록마다 메인과 서브에이전트 기록의 API 호출 수, 캐시 읽기, 캐시 쓰기, 출력 토큰을 찍는다. 로컬
+기록은 메시지마다 한 번 더한다. 받아 둔 클라우드 기록은 메시지마다의 출력이 스트림을 시작할 때의 값이라,
+토큰은 마지막 result 레코드의 누적 사용량(modelUsage를 모델마다 더한 것)으로 센다.
 
 --version은 기록마다 세션 버전을 찍는다. 버전은 worktree base(git worktree add 결과의 "HEAD is now at"),
 없으면 기록의 첫 timestamp 때의 origin/main이다. 기록의 스킬 본문이 그 버전의 SKILL.md와
@@ -72,7 +98,9 @@ import argparse
 import glob
 import json
 import os
+import random
 import re
+import statistics
 import subprocess
 import sys
 from datetime import date
@@ -107,6 +135,10 @@ GH_WRITE = re.compile(r"\bgh (?:pr|issue) (?:create|comment)\b")
 GITHUB_URL = re.compile(r"https://github\.com/[\w.-]+/[\w.-]+/(?:pull|issues)/\d+(?:#issuecomment-\d+)?")
 HANDOFF = re.compile(r"/documents/ash-wiki-handoff/.*\.md$")
 AGENTS = ".claude/agents"
+SIGNALS = ("오류", "거부", "재실행", "소유자 글", "compact", "호출", "분", "메모리")
+# 권한 거부: 소유자가 거절한 것, auto mode 분류기가 막은 것, worktree 격리 훅이 막은 것.
+DENIAL = re.compile(r"The user doesn't want to proceed|Permission (?:for this action|to use \S+) (?:was|has been) denied|This session is isolated in the worktree")
+MEMORY_FILE = re.compile(r"\.claude/projects/[^/\s\"']+/memory/([^/\s\"'|;&)]+\.md)")
 CANDIDATE_MARKS = ("<command-message>", '"/wiki-', '"/reader-testing', '"Skill"', '"RemoteTrigger"', "custom-title", "gh ", "github.com/", "ash-wiki-handoff")
 
 
@@ -556,6 +588,37 @@ def agents_at_version(path, in_history):
     return [a for a in agents if a in names]
 
 
+def made_urls(block, writes):
+    """gh pr/issue create·comment가 돌려준 PR·이슈·코멘트 URL. 그 호출의 id를 writes에 모은다."""
+    if block.get("type") == "tool_use" and block.get("name") == "Bash" and GH_WRITE.search(str((block.get("input") or {}).get("command", ""))):
+        writes.add(block.get("id"))
+    elif block.get("type") == "tool_result" and block.get("tool_use_id") in writes:
+        return GITHUB_URL.findall(result_text(block.get("content")))
+    return []
+
+
+def last_retro(archive, paths):
+    """분석 목록의 회고 세션 열에서 가장 최근 회고(날짜가 같으면 뒤 줄)와 그 기록, 기록에서 낸 URL.
+    회고 세션 자리의 -(뺌)와 포화는 회고가 아니다."""
+    ledger = os.path.join(archive, "analyzed.tsv")
+    rows = []
+    if os.path.exists(ledger):
+        with open(ledger) as f:
+            rows = [line.rstrip("\n").split("\t") for line in f if line.strip()]
+    retros = [(row[2] if len(row) > 2 else "", n, row[1]) for n, row in enumerate(rows) if len(row) > 1 and UUID.match(row[1])]
+    if not retros:
+        print("지난 회고 없음")
+        return
+    when, _, retro = max(retros)
+    path = next((p for p in one_copy_each(paths) if os.path.basename(stem(p)) == retro), None)
+    writes, urls = set(), []
+    for entry in read_entries(path) if path else []:
+        for block in blocks(entry.get("message")):
+            urls += made_urls(block, writes)
+    print("회고 세션\t날짜\t기록\tURL")
+    print("\t".join([retro, when or "-", path or "-", joined(urls)]))
+
+
 def candidate_row(path, in_history):
     skills, urls, handoffs = [], [], []
     start, title, writes = "", "", set()
@@ -568,20 +631,17 @@ def candidate_row(path, in_history):
                 entry = json.loads(line)
             except json.JSONDecodeError:
                 continue
-            start = start or (entry.get("timestamp") or "")[:10]
+            start = start or entry.get("timestamp") or ""
             if entry.get("type") == "custom-title":
                 title = entry.get("customTitle") or title
             if cloud:
                 skills += slash_skill(entry)
             for block in blocks(entry.get("message")):
                 skills += invoked_wiki_skills(block)
+                urls += made_urls(block, writes)
                 inp = block.get("input") or {}
-                if block.get("type") == "tool_use" and block.get("name") == "Bash" and GH_WRITE.search(str(inp.get("command", ""))):
-                    writes.add(block.get("id"))
-                elif block.get("type") == "tool_use" and block.get("name") in ("Write", "Edit") and HANDOFF.search(str(inp.get("file_path", ""))):
+                if block.get("type") == "tool_use" and block.get("name") in ("Write", "Edit") and HANDOFF.search(str(inp.get("file_path", ""))):
                     handoffs.append(inp["file_path"])
-                elif block.get("type") == "tool_result" and block.get("tool_use_id") in writes:
-                    urls += GITHUB_URL.findall(result_text(block.get("content")))
     agents = agents_at_version(path, in_history)
     run = routine_run(path)
     if run:
@@ -589,7 +649,148 @@ def candidate_row(path, in_history):
     if not skills and not agents:
         return None
     uuid = os.path.basename(stem(path))
-    return [uuid, joined(skills, ","), joined(agents, ","), start or "-", title or "-", joined(urls), joined(handoffs)]
+    cells = [uuid, joined(skills, ","), joined(agents, ","), start[:10] or "-", title or "-", joined(urls), joined(handoffs)]
+    return {"cells": cells, "start": start, "flow": flow_of(skills, agents, run), "signals": session_signals(path), "marks": []}
+
+
+def flow_of(skills, agents, run):
+    """흐름: 첫 위키 스킬(옛 이름은 지금 이름으로), 위키 스킬 없이 에이전트만 띄운 세션은 그 에이전트 묶음."""
+    wiki = [s for s in skills if not s.startswith("루틴 실행(")]
+    if wiki:
+        return re.sub(r"^reader-testing\b", "wiki-reader-testing", wiki[0])
+    if agents:
+        return f"에이전트({','.join(sorted(agents))})"
+    return "루틴 실행" if run else "-"
+
+
+def rank(rows):
+    """흐름마다 중앙값을 넘는 신호의 수(점수)로 매긴다. 같으면 호출 수가 많은 쪽, 그다음 이른 세션이다.
+    흐름은 세션이 많은 것부터 찍는다."""
+    flows = {}
+    for row in rows:
+        flows.setdefault(row["flow"], []).append(row)
+    for members in flows.values():
+        medians = {name: statistics.median(m["signals"][name] for m in members) for name in SIGNALS}
+        for m in members:
+            m["score"] = sum(m["signals"][name] > medians[name] for name in SIGNALS)
+        members.sort(key=lambda m: (-m["score"], -m["signals"]["호출"], m["start"], m["cells"][0]))
+    return sorted(flows.items(), key=lambda item: (-len(item[1]), item[0]))
+
+
+def recommend(flows, retro, fixed):
+    """흐름마다 신호가 큰 둘, 지난 회고가 고친 흐름이면 고친 뒤 처음 돈 세션, 남은 세션에서 무작위 하나.
+    무작위는 회고 세션 uuid와 흐름을 씨앗으로 해, 같은 회고에서 다시 돌려도 같은 세션이다."""
+    for flow, members in flows:
+        for m in members[:2]:
+            m["marks"].append("신호")
+        if flow in fixed:
+            after = sorted((m for m in members if m["start"][:19] >= fixed[flow][:19]), key=lambda m: m["start"])
+            if after:
+                after[0]["marks"].append("고친 뒤")
+        rest = sorted(m["cells"][0] for m in members if not m["marks"])
+        if rest:
+            pick = random.Random(f"{retro}:{flow}").choice(rest)
+            next(m for m in members if m["cells"][0] == pick)["marks"].append("무작위")
+
+
+def fixed_flows(items):
+    """--fixed의 <흐름>=<시각>(지난 회고의 티켓이 머지된 시각)."""
+    fixed = {}
+    for item in items:
+        flow, sep, when = item.partition("=")
+        if not sep or not flow or not when:
+            sys.exit(f"--fixed는 <흐름>=<시각>이다: {item}")
+        fixed[flow] = max(fixed.get(flow, when), when)
+    return fixed
+
+
+def owner_text(entry):
+    """소유자가 쓴 글. 로컬 기록은 origin이 human이고, 받아 둔 클라우드 기록은 origin 없이 clientPlatform이 있다."""
+    if entry.get("type") != "user" or entry.get("isMeta"):
+        return False
+    origin = entry.get("origin")
+    if (origin or {}).get("kind") != "human" and (origin or "clientPlatform" not in entry):
+        return False
+    return any(b.get("type") == "text" for b in blocks(entry.get("message")))
+
+
+def first_prompt(entries):
+    """첫 프롬프트: 메타가 아닌 첫 사용자 글."""
+    return next((i for i, e in enumerate(entries) if e.get("type") == "user" and not e.get("isMeta")
+                 and any(b.get("type") == "text" for b in blocks(e.get("message")))), None)
+
+
+def record_signals(entries):
+    """기록 하나의 신호. 소유자 글과 걸린 시간은 메인 기록에서만 쓴다."""
+    counts = dict.fromkeys(SIGNALS, 0)
+    commands, memories = set(), set()
+    first = first_prompt(entries)
+    duplicates = redelivered(entries)
+    for i, entry in enumerate(entries):
+        kind = entry.get("type")
+        if kind == "system" and (entry.get("subtype") == "compact_boundary" or "compactMetadata" in entry):
+            counts["compact"] += 1
+        elif kind == "system" and entry.get("subtype") == "turn_duration":
+            counts["분"] += entry.get("durationMs") or 0
+        elif kind == "result":
+            counts["분"] += entry.get("durationMs") or 0
+        elif kind == "attachment" and queued_prompt(entry) and i not in duplicates:
+            counts["소유자 글"] += (entry["attachment"].get("origin") or {}).get("kind") == "human"
+        elif owner_text(entry) and i != first:
+            counts["소유자 글"] += 1
+        for block in blocks(entry.get("message")):
+            if block.get("type") == "tool_use":
+                inp = block.get("input") or {}
+                if block.get("name") == "Bash":
+                    command = str(inp.get("command", "")).strip()
+                    counts["재실행"] += command in commands
+                    commands.add(command)
+                if block.get("name") not in ("Edit", "Write"):
+                    memories.update(m for m in MEMORY_FILE.findall(json.dumps(inp, ensure_ascii=False)) if m != "MEMORY.md")
+            elif block.get("type") == "tool_result" and block.get("is_error"):
+                denied = DENIAL.search(result_text(block.get("content")))
+                counts["거부" if denied else "오류"] += 1
+    counts["호출"] = len(usage_by_message(entries))
+    return counts, memories
+
+
+def session_signals(path):
+    """메인과 서브에이전트 기록을 합친 신호. 걸린 시간은 메인 기록의 turn 시간 합(분)이다."""
+    main, memories = record_signals(read_entries(path))
+    for sub in subagent_records(path):
+        counts, more = record_signals(read_entries(sub))
+        memories |= more
+        for name in ("오류", "거부", "재실행", "compact", "호출"):
+            main[name] += counts[name]
+    main["분"] = round(main["분"] / 60000)
+    main["메모리"] = len(memories)
+    return main
+
+
+def usage_by_message(entries):
+    """API 호출(어시스턴트 메시지 id)마다 사용량. 로컬 기록은 한 메시지를 블록마다 같은 usage로 여러 줄에 쓴다."""
+    calls = {}
+    for entry in entries:
+        message = entry.get("message") if isinstance(entry.get("message"), dict) else {}
+        if entry.get("type") == "assistant" and message.get("usage") and message.get("model") != "<synthetic>":
+            calls[message.get("id") or entry.get("uuid")] = message["usage"]
+    return calls
+
+
+def session_cost(path):
+    """메인과 서브에이전트 기록의 호출 수, 캐시 읽기, 캐시 쓰기, 출력. 받아 둔 클라우드 기록은 메시지마다의 출력이
+    스트림을 시작할 때의 값이라, 토큰은 마지막 result 레코드의 누적 사용량(modelUsage, 서브에이전트 포함)으로 센다."""
+    calls = {}
+    for record in [path, *subagent_records(path)]:
+        calls.update({(record, k): v for k, v in usage_by_message(read_entries(record)).items()})
+    tokens = [sum(u.get(key) or 0 for u in calls.values())
+              for key in ("cache_read_input_tokens", "cache_creation_input_tokens", "output_tokens")]
+    if remote_info(path):
+        last = next((e for e in reversed(read_entries(path)) if e.get("type") == "result" and e.get("modelUsage")), None)
+        if last:
+            models = last["modelUsage"].values()
+            tokens = [sum(m.get(key) or 0 for m in models) for key in ("cacheReadInputTokens", "cacheCreationInputTokens", "outputTokens")]
+    return [len(calls), *tokens]
 
 
 def joined(items, sep=" "):
@@ -631,7 +832,7 @@ def run_suffix(run_id):
     return re.sub(r"^(?:session_|cse_)", "", run_id or "")
 
 
-def candidates(archive, retro, paths, runs=()):
+def candidates(archive, retro, paths, runs=(), fixed=None):
     done = analyzed(archive) | {retro}
     in_history = agents_in_history()
     # 옛 줄은 루틴 실행을 실행 id(cse_…)로 적었다.
@@ -644,11 +845,18 @@ def candidates(archive, retro, paths, runs=()):
     ]
     fetched = {run_suffix(remote_info(p).get("cse")) for p in paths} - {""}
     unfetched = [f"cse_{s}" for s in dict.fromkeys(map(run_suffix, runs)) if s not in fetched and f"cse_{s}" not in old_runs]
-    print("uuid\t스킬\t에이전트\t시작일\t제목\tURL\t핸드오프")
-    for row in sorted((r for r in rows if r), key=lambda r: r[3]):
-        print("\t".join(row))
+    flows = rank([r for r in rows if r])
+    recommend(flows, retro, fixed or {})
+    print("\t".join(["uuid", "스킬", "에이전트", "시작일", "제목", "URL", "핸드오프", "흐름", "추천", "점수", *SIGNALS]))
+    for flow, members in flows:
+        for m in members:
+            signals = (str(m["signals"][name]) for name in SIGNALS)
+            print("\t".join([*m["cells"], flow, joined(m["marks"], ","), str(m["score"]), *signals]))
     for run in unfetched:
-        print("\t".join([run, "루틴 실행(받지 않음)", "-", "-", "-", "-", "-"]))
+        print("\t".join([run, "루틴 실행(받지 않음)", *["-"] * (8 + len(SIGNALS))]))
+    print("\n흐름\t세션\t추천")
+    for flow, members in flows:
+        print(f"{flow}\t{len(members)}\t{joined(m['cells'][0][:8] for m in members if m['marks'])}")
 
 
 def read_list(path):
@@ -668,8 +876,11 @@ def main():
     parser.add_argument("--candidates", metavar="RETRO")
     parser.add_argument("--report", nargs=3, metavar=("AGENT", "UUID", "FIRST"))
     parser.add_argument("--version", action="store_true")
+    parser.add_argument("--cost", action="store_true")
+    parser.add_argument("--last-retro", action="store_true")
     parser.add_argument("--runs", nargs="+", default=[], metavar="RUN")
     parser.add_argument("--records", metavar="FILE")
+    parser.add_argument("--fixed", nargs="+", default=[], metavar="FLOW=TIME")
     parser.add_argument("items", nargs="*")
     args = parser.parse_args()
     if args.version:
@@ -679,11 +890,22 @@ def main():
         for path in args.items:
             session_version(path)
         return
+    if args.cost:
+        if not args.items:
+            parser.error("기록이 필요하다")
+        print("uuid\t호출\t캐시 읽기\t캐시 쓰기\t출력")
+        for path in args.items:
+            print("\t".join([os.path.basename(stem(path)), *map(str, session_cost(path))]))
+        return
+    if args.last_retro:
+        paths = args.items + (read_list(args.records) if args.records else [])
+        last_retro(args.archive, paths or sorted(glob.glob(SESSIONS)))
+        return
     if args.candidates:
         check_uuids([args.candidates])
         require_origin_main()
         paths = args.items + (read_list(args.records) if args.records else [])
-        candidates(args.archive, args.candidates, paths or sorted(glob.glob(SESSIONS)), args.runs)
+        candidates(args.archive, args.candidates, paths or sorted(glob.glob(SESSIONS)), args.runs, fixed_flows(args.fixed))
         return
     os.makedirs(args.archive, exist_ok=True)
     if args.report:
