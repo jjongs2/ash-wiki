@@ -2,6 +2,7 @@
 title: HSM
 tags:
   - security/cryptography
+  - hardware/mcu-soc
 aliases:
   - 하드웨어 보안 모듈
 verified: 2026-10-03
