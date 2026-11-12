@@ -23,11 +23,11 @@ ECU Abstraction Layer는 Onboard Device Abstraction, [[autosar-memory-stack|Memo
 
 마이크로컨트롤러 안에 있는 암호 장치의 예로 SHE(Secure Hardware Extension)와 [[hardware-security-module|HSM]]이 있다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-중국 V2X(Vehicle-to-X) 표준을 따르는 통신 스택의 예에서는, SPI(Serial Peripheral Interface)로 이은 외부 cellular V2X 컨트롤러의 드라이버가 Wireless Communication Hardware Abstraction에 놓이고, 마이크로컨트롤러에 든 cellular V2X 컨트롤러의 드라이버는 MCAL의 [[microcontroller-abstraction-layer#모듈 그룹|Wireless Communication Drivers]]에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] AUTOSAR R25-11은 중국 V2X 명세를 포함한 V2X 명세들과 Cellular V2X Driver 명세를 obsolete로 돌렸다.[@autosar-cp-tr-releaseoverview-2025]
+중국 V2X(Vehicle-to-X) 표준을 따르는 통신 스택의 예에서는, SPI(Serial Peripheral Interface)로 이은 외부 cellular V2X 컨트롤러의 드라이버가 Wireless Communication Hardware Abstraction에 놓이고, 마이크로컨트롤러에 든 cellular V2X 컨트롤러의 드라이버는 MCAL의 [[microcontroller-abstraction-layer#모듈 그룹|Wireless Communication Drivers]]에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] [[autosar|AUTOSAR]] R25-11은 중국 V2X 명세를 포함한 V2X 명세들과 Cellular V2X Driver 명세를 obsolete로 돌렸다.[@autosar-cp-tr-releaseoverview-2025]
 
 ## External driver
 
-마이크로컨트롤러 바깥, ECU 보드에 달린 장치를 **external device**라 한다. 외부 EEPROM, 외부 watchdog, 외부 플래시가 그 예다. external device의 드라이버인 **external driver**는 ECU Abstraction Layer에 놓이고, MCAL의 드라이버를 거쳐 장치에 접근한다. 예를 들어 SPI로 연결된 외부 EEPROM의 드라이버는 MCAL의 Communication Drivers에 드는 SPI Handler Driver를 거쳐 EEPROM에 닿는다. SPI Handler Driver는 여러 클라이언트가 SPI 버스 하나나 여럿에 함께 접근하게 하는 드라이버로, [[autosar-layered-architecture#모듈 유형|handler]] 기능을 드라이버에 합친 모듈이다. external driver가 이렇게 MCAL의 드라이버를 거쳐 접근하므로, transceiver와 watchdog처럼 [[system-basis-chip|SBC]] 안에 들어간 부품도 [[autosar|AUTOSAR]]로 다룰 수 있다. 예외로, 메모리 맵 방식 외부 장치(외부 플래시 등)의 external driver는 마이크로컨트롤러에 직접 접근할 수 있고 마이크로컨트롤러에 의존하므로 MCAL에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+마이크로컨트롤러 바깥, ECU 보드에 달린 장치를 **external device**라 한다. 외부 EEPROM, 외부 watchdog, 외부 플래시가 그 예다. external device의 드라이버인 **external driver**는 ECU Abstraction Layer에 놓이고, MCAL의 드라이버를 거쳐 장치에 접근한다. 예를 들어 SPI로 연결된 외부 EEPROM의 드라이버는 MCAL의 Communication Drivers에 드는 SPI Handler Driver를 거쳐 EEPROM에 닿는다. SPI Handler Driver는 여러 클라이언트가 SPI 버스 하나나 여럿에 함께 접근하게 하는 드라이버로, [[autosar-layered-architecture#모듈 유형|handler]] 기능을 드라이버에 합친 모듈이다. external driver가 이렇게 MCAL의 드라이버를 거쳐 접근하므로, transceiver와 watchdog처럼 [[system-basis-chip|SBC]] 안에 들어간 부품도 AUTOSAR로 다룰 수 있다. 예외로, 메모리 맵 방식 외부 장치(외부 플래시 등)의 external driver는 마이크로컨트롤러에 직접 접근할 수 있고 마이크로컨트롤러에 의존하므로 MCAL에 놓인다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
 ![[diagrams/autosar-internal-external-driver-placement.svg]]
 

@@ -36,7 +36,7 @@
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
     <line x1="210" y1="72" x2="398" y2="72" />
     <path d="M230 72 V120 H212" />
-    <line x1="398" y1="168" x2="212" y2="168" />
+    <line x1="398" y1="168" x2="212" y2="168" marker-start="url(#arrow)" />
     <line x1="398" y1="216" x2="212" y2="216" />
     <line x1="210" y1="264" x2="398" y2="264" />
     <line x1="210" y1="312" x2="398" y2="312" />
@@ -44,7 +44,7 @@
   <circle cx="230" cy="72" r="3" fill="var(--ink, #727981)" />
   <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
     <text x="324" y="66">전원</text>
-    <text x="324" y="162">트리거</text>
+    <text x="324" y="162">질의/응답</text>
     <text x="324" y="210">error 핀</text>
     <text x="324" y="258">리셋</text>
     <text x="324" y="306">끔</text>
