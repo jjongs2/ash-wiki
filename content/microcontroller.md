@@ -20,6 +20,8 @@ CPU는 메모리에 저장된 프로그램의 명령을 정해진 순서로 읽�
 
 MCU는 순차 회로로 이뤄져 클록 신호가 필요하다. 전원을 넣은 직후에는 내부 회로가 안정되지 않아 CPU가 제대로 돌지 못하므로, 전원과 클록이 안정될 때까지 리셋 핀에 리셋 신호를 넣어 둔다. 리셋은 프로그램 카운터를 다시 정해 첫 프로그램의 시작 주소를 담게 한다. 시작 주소는 MCU 모델마다 정해진 고정 주소이거나, ROM의 고정 주소에 담긴 포인터 값이다. 이 고정 주소를 **reset vector**라 한다.[@renesas-engineer-school-mcu-02-2015]
 
+![[diagrams/mcu-reset-start-address.svg]]
+
 ## 메모리
 
 MCU의 메모리는 프로그램 코드와 데이터를 담는다. 많은 Renesas MCU는 ROM 대신 플래시를 쓰는데, 플래시는 ROM처럼 전원이 꺼져도 내용을 지키면서 ROM과 달리 다시 쓸 수 있다. 많은 single-chip MCU는 내부 RAM으로 SRAM을 쓴다. DRAM(dynamic RAM)은 고속 로직과 한 웨이퍼에 함께 만들기 어려워 single-chip MCU 안에는 대개 두지 않고, 칩 밖에 달아 주변 회로로 다룬다.[@renesas-engineer-school-mcu-01-2026]
@@ -63,7 +65,11 @@ Infineon AURIX TC4x, Renesas RH850/U2A, NXP S32K3, TI AM263x의 CPU와 코어 �
 
 AURIX TC3xx의 CPU는 저마다 자기 PSPR과 DSPR을 둔다.[@infineon-aurix-tc3xx-memory-maps-training-2020] TriCore 코어는 이들과 데이터·프로그램 캐시에 이어진다.[@infineon-aurix-tc3xx-cpu-2024] AURIX TC3xx의 LMU(Local Memory Unit)는 SRI에 붙은 주변장치로, 범용으로 쓸 로컬 메모리를 256 KB까지 준다.[@infineon-aurix-tc3xx-lmu-2024] AURIX TC4xx의 SRI 크로스바는 CPU와 DMA 같은 모듈을 메모리와 주변장치에 잇고, 서로 다른 master와 slave 사이의 전송을 동시에 처리한다.[@infineon-aurix-tc4xx-sri-2025] TI AM263x는 R5F 코어들을 클러스터 서브시스템으로 묶고, 256 KB 공유 TCM과 2 MB 공유 SRAM을 둔다.[@ti-am2634-2026]
 
+![[diagrams/aurix-tc3xx-cpu-scratch-pad-lmu.svg]]
+
 TI AM263x MCU+ SDK의 IPC(inter-processor communication)는 여러 CPU에서 도는 소프트웨어를 메시지를 주고받아 맞추는 통신이다. RP Message는 패킷 버퍼를 두 CPU가 모두 보는 공유 메모리에 두고, 하드웨어 인터럽트로 상대 CPU에 새 패킷을 알린다. IPC Notify는 28비트 메시지 ID만 인터럽트와 함께 보내 지연이 아주 짧다. RP Message의 공유 메모리는 모든 CPU에서 같은 주소로 매핑하고, 각 CPU의 메모리 보호·관리 설정에서 캐시하지 않는 영역으로 둔다. safe 코어가 끼는 시스템의 SafeIPC는 공유 메모리의 방화벽과 페이로드의 무결성 검사를 함께 요구하고, 방화벽은 자동으로 설정되지 않아 손으로 켜고 설정한다.[@ti-mcu-plus-sdk-am263x-ipc-2026]
+
+![[diagrams/am263x-ipc-rp-message-notify.svg]]
 
 NXP S32K3의 소프트웨어에는 코어 사이 통신과 자원 접근·공유를 위한 미들웨어 IPCF(Inter-platform communication framework)가 있다.[@nxp-s32kbra4-2026]
 

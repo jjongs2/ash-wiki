@@ -23,6 +23,8 @@ Jacinto 7 프로세서 제품군에는 DRA8xx와 TDA4xx SoC가 든다. Jacinto 7
 
 MCU domain은 lockstep이나 split 모드로 설정하는 Arm Cortex-R5F 둘과, [[can-fd|CAN FD]] 여럿, 이더넷, 여러 입출력 주변장치를 두고, SoC 전체의 부트 마스터이자 보안 마스터다. MCU domain에는 전원을 따로 주므로, 흔한 쓰임에서는 MCU domain을 꺼 두었다가 CAN 활동이 있을 때만 깨우고, 받은 메시지에 따라 시스템 전체를 켜거나 다시 끈다.[@ti-spry337-2020]
 
+![[diagrams/jacinto-7-main-mcu-domain.svg]]
+
 ## 코어 구성
 
 Renesas R-Car S4, NXP S32G2, TI TDA4VM의 코어 구성은 다음과 같다.
@@ -38,3 +40,5 @@ Jacinto 7의 코어 구성은 [[domain-controller#제품|도메인 제어기]]�
 ## 외부 차량 MCU와의 차이
 
 TI 백서에 따르면 외부 차량 MCU는 내장 플래시를 써서 플래시가 커질수록 MCU 값이 크게 오르고, 응용 프로세서와 직렬 인터페이스 같은 외부 인터페이스로 통신한다. 이와 달리 Jacinto 7에 넣은 MCU는 외부 플래시를 쓰고, 칩 안의 IPC(inter-processor communication)로 더 빠르고 안전하게 통신한다.[@ti-spry337-2020]
+
+![[diagrams/external-vehicle-mcu-jacinto-7-mcu.svg]]
