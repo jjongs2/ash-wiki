@@ -63,11 +63,11 @@ Infineon AURIX TC4xx, Renesas RH850/U2A, NXP S32K3, TI AM263x의 CPU와 코어 �
 | NXP S32K3            | Arm Cortex-M7             | 단일, 이중, lockstep[@nxp-s32kbra4-2026]                                                                                      |
 | TI AM263x            | Arm Cortex-R5F, 400 MHz   | 넷까지. R5F 서브시스템을 lockstep이나 dual-core 모드로 돌도록 프로그램할 수 있다.[@ti-am2634-2026]                            |
 
-AURIX TC3xx의 CPU는 저마다 자기 PSPR과 DSPR을 둔다.[@infineon-aurix-tc3xx-memory-maps-training-2020] TriCore 코어는 이들과 데이터·프로그램 캐시에 이어진다.[@infineon-aurix-tc3xx-cpu-2024] AURIX TC3xx의 LMU(Local Memory Unit)는 SRI에 붙은 주변장치로, 범용으로 쓸 로컬 메모리를 256 KB까지 준다.[@infineon-aurix-tc3xx-lmu-2024] AURIX TC4xx의 SRI 크로스바는 CPU와 DMA 같은 모듈을 메모리와 주변장치에 잇고, 서로 다른 master와 slave 사이의 전송을 동시에 처리한다.[@infineon-aurix-tc4xx-sri-2025] TI AM263x는 R5F 코어들을 클러스터 서브시스템으로 묶고, 256 KB 공유 TCM과 2 MB 공유 SRAM을 둔다.[@ti-am2634-2026]
+AURIX TC3xx의 CPU는 저마다 자기 PSPR과 DSPR을 둔다.[@infineon-aurix-tc3xx-memory-maps-training-2020] TriCore 코어는 이들과 데이터·프로그램 캐시에 이어진다.[@infineon-aurix-tc3xx-cpu-2024] AURIX TC3xx의 LMU(Local Memory Unit)는 SRI에 붙은 주변장치로, 범용으로 쓸 로컬 메모리를 256 KB까지 준다.[@infineon-aurix-tc3xx-lmu-2024] TI AM263x는 R5F 코어들을 클러스터 서브시스템으로 묶고, 256 KB 공유 TCM과 2 MB 공유 SRAM을 둔다.[@ti-am2634-2026]
 
 ![[diagrams/aurix-tc3xx-cpu-scratch-pad-lmu.svg]]
 
-MCU+ SDK는 TI AM263x의 SDK(Software development kit)다.[@ti-am2634-2026] 이 SDK의 IPC(inter-processor communication)는 여러 CPU에서 도는 소프트웨어를 메시지를 주고받아 맞추는 통신이다. RPMessage는 패킷 버퍼를 두 CPU가 모두 보는 공유 메모리에 두고, 하드웨어 인터럽트로 상대 CPU에 새 패킷을 알린다. IPC Notify는 28비트 메시지 식별자만 인터럽트와 함께 보내 지연이 아주 짧다. RPMessage의 공유 메모리는 모든 CPU에서 같은 주소로 매핑하고, 각 CPU의 메모리 보호·관리 설정에서 캐시하지 않는 영역으로 둔다.[@ti-mcu-plus-sdk-am263x-ipc-2026]
+TI AM263x용 MCU+ SDK(Software development kit)의 IPC(inter-processor communication)는 여러 CPU에서 도는 소프트웨어를 메시지를 주고받아 맞추는 통신이다. RPMessage는 패킷 버퍼를 두 CPU가 모두 보는 공유 메모리에 두고, 하드웨어 인터럽트로 상대 CPU에 새 패킷을 알린다. IPC Notify는 28비트 메시지 식별자만 인터럽트와 함께 보내 지연이 아주 짧다. RPMessage의 공유 메모리는 모든 CPU에서 같은 주소로 매핑하고, 각 CPU의 메모리 보호·관리 설정에서 캐시하지 않는 영역으로 둔다.[@ti-am2634-2026][@ti-mcu-plus-sdk-am263x-ipc-2026]
 
 ![[diagrams/am263x-ipc-rp-message-notify.svg]]
 
