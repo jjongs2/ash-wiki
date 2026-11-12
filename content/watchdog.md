@@ -30,11 +30,15 @@ TPS3430-Q1은 TI의 차량용 window watchdog 타이머로, watchdog 입력이 w
 
 UJA1169는 Window 모드와 함께, watchdog 주기 안 아무 때나 트리거할 수 있는 Timeout 모드를 둔다.[@nxp-uja1169-2016]
 
+![[diagrams/watchdog-timeout-window-fault.svg]]
+
 TI 백서에 따르면 단일 임계값 watchdog에서는 시스템이 fault 상태에 빠져도 임계에 이르기 전에 watchdog이 여러 번 리셋되어, 그 상태를 놓칠 수 있다. Window watchdog은 정한 window 안에서 CPU의 응답을 요구해 이를 막고, CPU가 돈다는 것과 함께 CPU가 맞는 시간 기준으로 돈다는 것도 보인다.[@ti-spry178-2011]
 
 ## 질의-응답 watchdog
 
 질의-응답 watchdog은 MCU에 질의를 주고, 그 질의에 맞는 응답 바이트 넷을 정한 시간 안에 정한 순서로 받는다. 응답이 틀리면 watchdog의 오류 계수기를 올린다.[@infineon-tlf35584-2017][@ti-tps65381a-q1-2017] TPS65381A-Q1에서는 MCU가 질의에 정해진 산술 연산을 차례로 해 응답을 계산한다.[@ti-tps65381a-q1-2017]
+
+![[diagrams/watchdog-question-answer.svg]]
 
 ## Fail-safe 출력
 

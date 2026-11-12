@@ -57,3 +57,5 @@ TI Hercules와 AURIX TC3xx의 칩 안 전압 감시는 공급 전압이 감시 �
 ISO 26262-1:2018의 [[hardware-architectural-metrics#Fault와 failure의 종류|single-point fault]] 정의의 주석은 안전 메커니즘의 예로 MCU의 [[watchdog|watchdog]]을 든다.[@iso-26262-1-obp-2018]
 
 TPS65381A-Q1은 안전 관련 응용의 MCU에 전원을 주는 칩으로, 출력 전압을 감시하고, watchdog을 두며, MCU의 error 핀도 감시한다. Fault를 검출하면 enable 출력으로 안전 경로나 외부 출력단을 끄고, MCU를 리셋하는 회로도 둔다.[@ti-tps65381a-q1-2017] TLF35584는 AURIX TC3xx 옆에서 시스템의 공급 전압을 감시하고 외부 watchdog을 맡으며, MCU가 내부 failure를 알리는 FSP(fault signaling protocol) 핀도 감시한다. Watchdog error처럼 기능과 진단에 함께 미치는 failure를 검출하면 출력 핀으로 액추에이터의 전원을 끊거나 MCU를 리셋해 안전 상태로 돌린다.[@infineon-aurix-tc3xx-an0001-2025]
+
+![[diagrams/tps65381a-q1-mcu-monitoring.svg]]

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 10 532 200" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="Split-mode, Lock-mode, Hybrid-mode의 코어와 DSU-AE">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <text x="20" y="28" font-size="12" fill="var(--text, #727981)">Arm Cortex-A78AE</text>
+
+  <!-- 모드 이름 -->
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="100" y="60">Split-mode</text>
+    <text x="276" y="60">Lock-mode</text>
+    <text x="452" y="60">Hybrid-mode</text>
+  </g>
+
+  <!-- 따로 도는 부분 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="72" width="74" height="36" rx="2" />
+    <rect x="106" y="72" width="74" height="36" rx="2" />
+    <rect x="20" y="120" width="160" height="32" rx="2" />
+    <rect x="372" y="72" width="74" height="36" rx="2" />
+    <rect x="458" y="72" width="74" height="36" rx="2" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="57" y="94">코어</text>
+    <text x="143" y="94">코어</text>
+    <text x="409" y="94">코어</text>
+    <text x="495" y="94">코어</text>
+  </g>
+  <text x="100" y="141" fill="var(--text, #727981)" text-anchor="middle">DSU-AE</text>
+
+  <!-- lockstep으로 도는 부분 -->
+  <g stroke="var(--blue, #336fb8)" stroke-width="1.5" fill="var(--blue-tint, #336fb8)">
+    <rect x="196" y="72" width="74" height="36" rx="2" />
+    <rect x="282" y="72" width="74" height="36" rx="2" />
+    <rect x="196" y="120" width="160" height="32" rx="2" />
+    <rect x="372" y="120" width="160" height="32" rx="2" />
+  </g>
+  <g font-size="12" fill="var(--on-fill, #f8fafd)" text-anchor="middle">
+    <text x="233" y="94">주 기능 코어</text>
+    <text x="319" y="94">중복 사본</text>
+  </g>
+  <g fill="var(--on-fill, #f8fafd)" text-anchor="middle">
+    <text x="276" y="141">DSU-AE</text>
+    <text x="452" y="141">DSU-AE</text>
+  </g>
+
+  <!-- 설명 -->
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="100" y="174">코어가 따로 돈다</text>
+    <text x="276" y="174">클러스터 전체가 DCLS</text>
+    <text x="452" y="174">DSU-AE만 lockstep</text>
+  </g>
+  <rect x="196" y="188" width="14" height="14" rx="2" stroke="var(--blue, #336fb8)" stroke-width="1.5" fill="var(--blue-tint, #336fb8)" />
+  <text x="218" y="199" font-size="12" fill="var(--text, #727981)">lockstep으로 도는 부분</text>
+</svg>

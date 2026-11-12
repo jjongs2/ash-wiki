@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="30 10 490 304" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="SBC가 모은 기능과 MCU의 연결">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- SBC 경계 -->
+  <rect x="110" y="20" width="220" height="284" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="122" y="40" font-size="12" fill="var(--text, #727981)">SBC</text>
+
+  <!-- 블록 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="130" y="52" width="180" height="32" rx="2" />
+    <rect x="130" y="152" width="180" height="32" rx="2" />
+    <rect x="130" y="200" width="180" height="32" rx="2" />
+    <rect x="130" y="260" width="180" height="32" rx="2" />
+    <rect x="430" y="52" width="80" height="240" rx="2" />
+  </g>
+  <rect x="130" y="98" width="180" height="40" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="220" y="73">CAN 트랜시버</text>
+    <text x="220" y="115">LIN 트랜시버</text>
+    <text x="220" y="173">전압 레귤레이터</text>
+    <text x="220" y="221">SPI 제어</text>
+    <text x="220" y="281">watchdog</text>
+    <text x="470" y="177">MCU</text>
+  </g>
+  <text x="220" y="131" font-size="12" fill="var(--text, #727981)" text-anchor="middle">제품에 따라</text>
+
+  <!-- 버스 -->
+  <g fill="var(--text, #727981)" text-anchor="end" font-size="12">
+    <text x="88" y="72">CAN 버스</text>
+    <text x="88" y="122">LIN 버스</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="94" y1="68" x2="130" y2="68" />
+    <line x1="94" y1="118" x2="130" y2="118" stroke-dasharray="5 4" />
+  </g>
+
+  <!-- MCU와의 연결 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="312" y1="68" x2="428" y2="68" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+    <line x1="310" y1="168" x2="428" y2="168" marker-end="url(#arrow)" />
+    <line x1="428" y1="216" x2="312" y2="216" marker-end="url(#arrow)" />
+    <line x1="310" y1="276" x2="428" y2="276" marker-end="url(#arrow)" />
+    <line x1="220" y1="232" x2="220" y2="258" marker-end="url(#arrow)" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="380" y="62">TXD/RXD</text>
+    <text x="380" y="162">전원</text>
+    <text x="380" y="210">SPI</text>
+    <text x="380" y="270">리셋</text>
+  </g>
+  <text x="228" y="249" font-size="12" fill="var(--text, #727981)">트리거</text>
+</svg>

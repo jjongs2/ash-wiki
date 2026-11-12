@@ -7,7 +7,9 @@ verified: 2026-11-13
 
 **SBC**(System Basis Chip)는 [[microcontroller|MCU]]에 전원을 주는 전압 레귤레이터, [[can-transceiver|CAN 트랜시버]], [[watchdog|watchdog]], 리셋 출력, SPI(Serial Peripheral Interface) 제어, 웨이크업을 받는 저전력 모드 같은 기능을 칩 하나에 모은 장치다.[@nxp-uja1169-2016][@infineon-tle9471-3es-2022] 제품에 따라 [[lin|LIN]] 트랜시버도 둔다.[@infineon-optireg-sbc-2026][@ti-tcan2845-q1-2025]
 
-SBC는 차체 제어 모듈과 조명 제어 같은 차체 전장의 [[electronic-control-unit|ECU]]에 쓰인다.[@infineon-tle9263-3bqx-2026][@ti-tcan2845-q1-2025] SBC는 저전력 모드에서 웨이크업을 기다리고, MCU는 SPI로 SBC의 watchdog을 트리거한다.[@nxp-uja1169-2016][@infineon-tle9471-3es-2022]
+SBC는 차체 제어 모듈과 조명 제어 같은 차체 전장의 [[electronic-control-unit|ECU]]에 쓰인다.[@ti-tcan2845-q1-2025][@infineon-tle9263-3bqx-2026] SBC는 저전력 모드에서 웨이크업을 기다리고, MCU는 SPI로 SBC의 watchdog을 트리거한다.[@nxp-uja1169-2016][@infineon-tle9471-3es-2022]
+
+![[diagrams/sbc-blocks-mcu.svg]]
 
 ## 쓰는 곳
 
@@ -25,7 +27,7 @@ SBC의 watchdog은 MCU가 SPI로 트리거하고, timeout 모드와 [[watchdog#T
 
 ## Fail 출력
 
-SBC는 failure를 알리는 fail 출력을 둔다.[@ti-tcan2845-q1-2025][@infineon-tle9471-3es-2022] UJA1169의 LIMP 핀은 ECU에 심한 failure가 났을 때 limp-home 하드웨어를 켜는 데 쓴다. 과온, watchdog 서비스 상실, 리셋 핀이나 V1 출력의 단락이 LIMP 핀을 켜는 조건에 든다.[@nxp-uja1169-2016]
+SBC는 failure를 알리는 fail 출력을 둔다.[@infineon-tle9471-3es-2022][@ti-tcan2845-q1-2025] UJA1169의 LIMP 핀은 ECU에 심한 failure가 났을 때 limp-home 하드웨어를 켜는 데 쓴다. 과온, watchdog 서비스 상실, 리셋 핀이나 V1 출력의 단락이 LIMP 핀을 켜는 조건에 든다.[@nxp-uja1169-2016]
 
 ## Safety SBC
 
