@@ -106,6 +106,8 @@
 | MathWorks 문서(제품마다)                | MathWorks, Simulink Test, Simulink Coverage, Embedded Coder | `mathworks.com/help/<제품>`                                                                                            |
 | CSRC Glossary                           | CSRC Glossary, NIST CSRC                                    | `csrc.nist.gov/glossary`                                                                                               |
 | IEV(부마다)                             | IEC 60050, IEV                                              | `electropedia.org/iev/iev.nsf/display?openform&ievref=<부>`                                                            |
+| Bosch Semiconductors 용어집             | Bosch                                                       | `bosch-semiconductors.com/glossary`                                                                                    |
+| Renesas Engineer School                 | Renesas                                                     | `renesas.com/en/support/engineer-school`                                                                               |
 
 자기 역사와 서베이의 명명·분류는 위 규칙으로 범위를 맞추지 않고, 아래 꼴로 쓴다.
 

@@ -4,7 +4,7 @@ title: 대문
 
 | 구역                                     | 주제                                                                                                                                                                     |
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [[tags/hardware\|하드웨어]]              | [[tags/hardware/ee-architecture\|E/E 아키텍처]]                                                                                                                          |
+| [[tags/hardware\|하드웨어]]              | [[tags/hardware/mcu-soc\|MCU·SoC]] [[tags/hardware/ee-architecture\|E/E 아키텍처]]                                                                                       |
 | [[tags/network\|네트워크]]               | [[tags/network/vehicle-bus\|차량 버스]] [[tags/network/can\|CAN]] [[tags/network/ethernet\|Ethernet]] [[tags/network/tcp-ip\|TCP/IP]] [[tags/network/diagnostics\|진단]] |
 | [[tags/platform\|소프트웨어 플랫폼]]     | [[tags/platform/rtos\|RTOS]] [[tags/platform/autosar\|AUTOSAR]]                                                                                                          |
 | [[tags/security\|보안·업데이트]]         | [[tags/security/cryptography\|암호]] [[tags/security/cybersecurity\|사이버보안]] [[tags/security/ota\|OTA]]                                                              |

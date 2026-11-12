@@ -18,6 +18,7 @@
 - action point: - (#667). FlexRay의 action point일 때
 - adaptive update: - (#432)
 - ADAS 풀이 Advanced Driver Assistance Systems: Advanced Driver Assistance System (#659)
+- ADC 풀이: 통일하지 않음 (#674). 인용한 출처의 풀이대로. AUTOSAR 명세를 인용하면 Analogue Digital Converter, 벤더 문서를 인용하면 그 문서의 풀이. 예: TI TRM의 Analog To Digital Converter
 - Annex: 부속서, 부록 (#301). 원문이 Annex일 때. 원문이 Appendix인 "부록"은 그대로
 - aperiodic: 비주기 (#350). 합성어 포함. 예: aperiodic 태스크, aperiodic server. CANopen PDO의 주기·비주기 송신처럼 통신의 송신 방식은 예외
 - ASPICE: Automotive SPICE, A-SPICE (#231). 판을 붙이면 `ASPICE 4.1` 꼴. 정식 이름은 `automotive-spice` 머리말의 풀이에만, A-SPICE는 그 페이지의 alias로만. 문서 이름 "Automotive SPICE for Cybersecurity"와 슬러그는 예외
@@ -41,10 +42,14 @@
 - Cyber Resilience Act: EU 사이버 회복력법 (#438)
 - cybersecurity goal: 사이버보안 목표 (#288)
 - data-based, behavior-based, rule-based: 데이터 기반 (#385). CTAL-TA 강의계획서의 블랙박스 기법 세 갈래일 때. "데이터 기반 테스트"는 data-driven testing
+- DCC 풀이: 통일하지 않음 (#674). 인용한 출처의 풀이대로. TI SPRY178은 dual clock compare, SFFS277은 Dual Clock Comparator
 - Diffie-Hellman: Diffie–Hellman (#288)
+- DMA 풀이 Direct Memory Access: direct memory access (#674)
 - dominant: 도미넌트 (#165). 조사는 원어의 발음대로. 예: "dominant가"
 - EdDSA 풀이 Edwards-Curve Digital Signature Algorithm: Edwards-curve Digital Signature Algorithm, Edwards Curve Digital Signature Algorithm (#528)
 - edge: 에지 (#257). AUTOSAR 드라이버가 설정과 API로 다루는 edge일 때. 그 밖의 신호 에지는 "에지". 예: CAN 동기화의 에지
+- EEPROM emulation: EEPROM 에뮬레이션 (#674)
+- endurance, data retention: 내구성, 데이터 보존 (#674). 플래시 메모리의 endurance와 data retention일 때
 - event-triggered: 이벤트 트리거 (#564)
 - failure: 실패, 고장, 장애 (#291). 합성어 포함. 예: dependent failure, failure mode, target failure measure. 동사("고장 나다", "실패하다"), 테스트의 pass/fail, 일반 낱말 "실패"는 그대로. ISTQB의 error·defect와 같은 문장, 곧 "실수"나 "결함"과 같은 문장에서는 "장애", 페이지에서 처음 쓸 때 "장애(failure)"
 - false positive: 거짓 양성 (#291). ISTQB 용어 이름은 false-positive result
@@ -55,8 +60,10 @@
 - KDF 풀이 Key Derivation Function: Key-Derivation Function (#498)
 - KEM 풀이 Key-Encapsulation Mechanism: Key Encapsulation Mechanism (#498)
 - key word: - (#667). ISO 9141의 key word일 때
+- LBIST 풀이: 통일하지 않음 (#674). 인용한 출처의 풀이대로. TI는 logic built-in self-test, NXP FS26은 logical built-in self-test
 - LdCom 풀이 Large Data COM: - (#440). 근거는 SWS BSWGeneral R24-11 부록 A
 - MAC 풀이 Medium Access Control: Media Access Control (#165). 출처마다의 풀이를 비교하는 문장은 예외
+- MCU: 통일하지 않음 (#674). AUTOSAR 명세의 microcontroller를 옮긴 AUTOSAR·ECU 쪽 페이지는 "마이크로컨트롤러", 하드웨어 페이지는 MCU
 - NAD 풀이 node address: node address for responder nodes (#667). 근거는 ISO 17987-3:2025. ISO 17987-1:2025의 용어 이름 node address for diagnostics는 그대로
 - notification: 통지 (#257). AUTOSAR 모듈이 부르는 notification 콜백일 때. 동사로 쓴 자리("통지받는다")와 그 밖의 통지는 "통지"
 - OBD 풀이 On-Board Diagnostics: On-Board Diagnosis (#496)
@@ -66,12 +73,16 @@
 - PKI: 공개 키 기반 구조 (#498). 제목과 본문은 약어, 한국어 이름은 `public-key-infrastructure`의 alias로만
 - prototyping: 프로토타이핑 (#291). prototype도 같다. AUTOSAR의 prototype은 이 결정에 들지 않는다.
 - PWM 풀이: 통일하지 않음 (#441). 인용한 출처의 풀이대로. AUTOSAR 명세를 인용하면 Pulse Width Modulation, ISO 11898-1을 인용하면 Pulse-Width Modulation
+- read-while-write: - (#674). 플래시의 RWW일 때
 - recessive: 리세시브 (#165). 조사는 원어의 발음대로. 예: "recessive이고"
 - Reed-Solomon: Reed–Solomon (#498)
 - resource: 리소스 (#165). OSEK 객체일 때. 일반적인 뜻이면 "자원"
 - root of trust: 신뢰의 뿌리 (#288)
 - RSA 풀이 Rivest-Shamir-Adleman: Rivest–Shamir–Adleman (#288)
 - safety case: - (#396)
+- SBC 풀이 System Basis Chip: System-Basis-Chip (#674)
+- scratch-pad RAM: Scratchpad SRAM (#674). AURIX의 PSPR·DSPR일 때
+- SoC 풀이 System on Chip: system-on-chip (#674)
 - syntax testing: 구문 테스트, 문법 테스트 (#385). "구문 테스트"는 statement testing
 - systematic fault: 체계적 fault (#578). systematic failure와 systematic error도 같다. 일반 낱말 "체계적으로"는 그대로
 - TDC 풀이 Transceiver Delay Compensation: Transmitter Delay Compensation (#311)
@@ -122,6 +133,7 @@
 - 운용 프로파일: 운영 프로파일 (#385)
 - 운전 자동화 레벨: 자동화 레벨 (#653). SAE J3016의 레벨일 때
 - 위협 시나리오: threat scenario (#252)
+- 응용 프로세서: application processor (#674)
 - 인수 기준: 인수 조건 (#385)
 - 입구 노드: 진입 노드 (#579). 제어 흐름 그래프의 entry node일 때
 - 자산: asset (#252)
@@ -136,6 +148,7 @@
 - 취약점 공개: vulnerability disclosure (#431)
 - 취약점 처리: vulnerability handling (#431)
 - 카나리 릴리스: canary release, 카나리 배포 (#499)
+- 코드 플래시: 프로그램 플래시 (#674). 프로그램을 두는 플래시일 때. 제품의 구성 요소 이름(PFlash, P-Flash)은 그대로
 - 타원 곡선 암호: ECC (#289). 타원 곡선 암호를 가리킬 때. ECDSA·ECDH 같은 알고리즘 이름은 그대로. 예: SP 800-56A의 ECC CDH는 "타원 곡선 CDH"
 - 태스크 그룹: 태스크 묶음 (#349). OSEK OS 명세의 group of tasks일 때
 - 테스트 기준: test basis (#291)

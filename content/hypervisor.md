@@ -10,7 +10,7 @@ verified: 2026-11-07
 
 [[autosar|AUTOSAR]] R25-11 용어집은 **하이퍼바이저**를 물리 머신 하나에서 가상 머신 여럿을 제공하고 관리하는 저수준 소프트웨어로 정의한다. 하이퍼바이저는 따로 된 소프트웨어일 수도, 운영체제의 기능으로 들어 있을 수도 있다. 물리 자원은 가상 머신 하나에 전용으로 배정하거나, 하이퍼바이저가 관리하는 가상 장치를 거쳐 여러 가상 머신이 함께 쓰게 한다.[@autosar-fo-tr-glossary-2025]
 
-하이퍼바이저는 가상 머신(VM, Virtual Machine)을 관리하며, VMM(Virtual Machine Monitor)이라고도 부른다.[@guo-virtualisation-technologies-2025] 차량에서는 여러 [[electronic-control-unit|ECU]]의 기능을 프로세서나 MCU 하나에 모으면서, 그 기능들이 [[freedom-from-interference|freedom from interference]]를 지키도록 서로 떼어 놓는 데 가상화를 쓴다.[@renesas-ecu-virtualization-2022][@nxp-s32n55fs-2024]
+하이퍼바이저는 가상 머신(VM, Virtual Machine)을 관리하며, VMM(Virtual Machine Monitor)이라고도 부른다.[@guo-virtualisation-technologies-2025] 차량에서는 여러 [[electronic-control-unit|ECU]]의 기능을 프로세서나 [[microcontroller|MCU]] 하나에 모으면서, 그 기능들이 [[freedom-from-interference|freedom from interference]]를 지키도록 서로 떼어 놓는 데 가상화를 쓴다.[@renesas-ecu-virtualization-2022][@nxp-s32n55fs-2024]
 
 ## 차량에서의 쓰임
 
@@ -20,9 +20,11 @@ Arm의 Armv8-R 가상화 가이드에 따르면, ECU마다 프로세서가 [[rto
 
 Renesas는 2022년 RH850/U2x MCU와 ETAS의 하이퍼바이저 RTA-HVR을 묶은 ECU 가상화 플랫폼을 내놓았다. 이 플랫폼으로 MCU 기반의 [[zone-controller|존 ECU]] 하나에 논리 ECU 여럿을 둘 수 있다. RH850/U2x는 하이퍼바이저 하드웨어 지원과, freedom from interference를 위한 안전·보안 기능을 갖춘다. RTA-HVR은 하드웨어 가상화를 지원하는 MCU용 하이퍼바이저로, RH850/U2x의 하드웨어 가상화 기능으로 가상 머신을 하나 이상 만든다. 가상 머신끼리는 공간으로는 RH850/U2x의 memory protection unit과 guard 기능으로, 시간으로는 RTA-HVR의 VM 스케줄러로 떼어 놓는다. RTA-HVR의 가상 머신 하나는 가상 CPU 코어 하나 이상과 장치 메모리 공간의 일부, 주변장치 묶음으로 이뤄진다.[@renesas-ecu-virtualization-2022]
 
-3세대 R-Car SoC(System on Chip)는 하이퍼바이저와 함께 쓰는 것을 전제로 설계되어, Arm CPU 코어와 그래픽 코어, 비디오·오디오 처리 블록 같은 기능에 가상화 기능이 있다. R-Car용 하이퍼바이저는 통합 콕핏과 커넥티드 카 응용에서 Linux, Android, RTOS 같은 게스트 운영체제 여럿을 칩 하나에서 서로 독립적으로 돌린다.[@renesas-rcar-virtualization-2018]
+3세대 R-Car [[system-on-chip|SoC]]는 하이퍼바이저와 함께 쓰는 것을 전제로 설계되어, Arm CPU 코어와 그래픽 코어, 비디오·오디오 처리 블록 같은 기능에 가상화 기능이 있다. R-Car용 하이퍼바이저는 통합 콕핏과 커넥티드 카 응용에서 Linux, Android, RTOS 같은 게스트 운영체제 여럿을 칩 하나에서 서로 독립적으로 돌린다.[@renesas-rcar-virtualization-2018]
 
 Infineon의 AURIX TC4xx MCU는 CPU 가상화와 시스템 가상화를 지원한다.[@infineon-aurix-tc4xx-overview-2025]
+
+NXP S32Z2 실시간 프로세서는 코어에서 핀까지(core-to-pin) 이르는 하드웨어 가상화로, 여러 실시간 응용을 하드웨어로 격리해 freedom from interference를 준다.[@nxp-s32z2fs-2022]
 
 ## 가상화의 조건
 
@@ -46,7 +48,7 @@ VIRTIO(Virtual I/O Device) 1.4 명세는 가상 장치를 환경이나 운영체
 
 ## I/O 가상화
 
-I/O 가상화 방식은 가상 머신이 주변장치에 직접 접근하는 방식, VMM이 트랩한 접근을 받아 장치의 동작을 흉내 내는 trap-emulation, SR-IOV(Single-Root I/O Virtualisation)로 나뉜다. 주변장치의 DMA(direct memory access) 요청을 다시 매핑해 가상 머신이 자기에게 배정된 메모리에만 닿게 하는 장치를 **IOMMU**(I/O Memory Management Unit)라 부른다.[@guo-virtualisation-technologies-2025]
+I/O 가상화 방식은 가상 머신이 주변장치에 직접 접근하는 방식, VMM이 트랩한 접근을 받아 장치의 동작을 흉내 내는 trap-emulation, SR-IOV(Single-Root I/O Virtualisation)로 나뉜다. 주변장치의 DMA 요청을 다시 매핑해 가상 머신이 자기에게 배정된 메모리에만 닿게 하는 장치를 **IOMMU**(I/O Memory Management Unit)라 부른다.[@guo-virtualisation-technologies-2025]
 
 NXP 앱노트 AN14355는 S32G3 기준 보드에서 QNX Hypervisor로 QNX와 Linux 게스트를 돌리며, 게스트를 네트워크에 잇는 두 방식을 보인다. 하나는 QNX Hypervisor의 VirtIO-Net 가상 네트워크 브리지를 거치는 간접 연결이고, 다른 하나는 드라이버 passthrough로 게스트가 네트워크 주변장치에 바로 닿는 직접 연결이다.[@nxp-an14355-2024]
 
@@ -67,3 +69,5 @@ DMA 컨트롤러 같은 다른 마스터도 가상 머신에 배정할 수 있�
 ## Armv8-R의 가상화 지원
 
 Armv8-R 프로세서에서는 게스트 운영체제가 도는 EL1 위의 EL2에서 코드가 돌 수 있어 가상화가 된다. 하이퍼바이저는 이 특권 수준에서 게스트 운영체제 하나 이상 위에 놓인다. PMSA(Protected Memory System Architecture)는 메모리 영역을 정의하고 다른 영역의 접근을 막아 공간 분리를 이룬다. 그래서 한 게스트 운영체제는 대개 다른 게스트 운영체제가 쓰는 영역에 닿지 못하고, 게스트 운영체제의 코드는 하이퍼바이저의 코드나 데이터 영역에 닿지 못한다.[@arm-102909-2026]
+
+Arm Cortex-R52는 가상화 기술로 PMSA context 여럿을 한 코어에서 서로 떼어 담아 돌려, 어느 context도 자기보다 중요도가 높은 context의 응답 시간과 결정성에 영향을 주지 못하게 한다.[@arm-100026-2024]

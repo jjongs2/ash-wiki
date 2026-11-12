@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 540 372" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="TI AM263x의 RPMessage와 IPC Notify">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- RPMessage -->
+  <text x="20" y="32" fill="var(--text, #727981)">RPMessage</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="48" width="120" height="36" rx="2" />
+    <rect x="400" y="48" width="120" height="36" rx="2" />
+    <rect x="180" y="112" width="180" height="48" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="80" y="71">CPU</text>
+    <text x="460" y="71">상대 CPU</text>
+    <text x="270" y="132">공유 메모리</text>
+  </g>
+  <text x="270" y="150" text-anchor="middle" font-size="12" fill="var(--text, #727981)">패킷 버퍼</text>
+  <line x1="140" y1="66" x2="398" y2="66" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="270" y="58" text-anchor="middle" font-size="12" fill="var(--text, #727981)">하드웨어 인터럽트로 새 패킷을 알림</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <polyline points="80,84 80,136 180,136" />
+    <polyline points="460,84 460,136 360,136" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="270" y="182">모든 CPU에서 같은 주소로 매핑</text>
+    <text x="270" y="198">캐시하지 않는 영역</text>
+  </g>
+
+  <!-- IPC Notify -->
+  <text x="20" y="248" fill="var(--text, #727981)">IPC Notify</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="264" width="120" height="36" rx="2" />
+    <rect x="400" y="264" width="120" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="80" y="287">CPU</text>
+    <text x="460" y="287">상대 CPU</text>
+  </g>
+  <line x1="140" y1="282" x2="398" y2="282" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="270" y="274">인터럽트와 28비트 메시지 식별자</text>
+    <text x="270" y="318">지연이 아주 짧음</text>
+    <text x="270" y="352">TI AM263x MCU+ SDK의 RPMessage와 IPC Notify</text>
+  </g>
+</svg>

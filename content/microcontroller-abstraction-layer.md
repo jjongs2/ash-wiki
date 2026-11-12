@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-30
 ---
 
-**MCAL**(Microcontroller Abstraction Layer)은 [[autosar-layered-architecture|AUTOSAR 계층 구조]]에서 BSW(Basic Software)의 가장 아래 소프트웨어 층이다. 마이크로컨트롤러의 온칩 주변장치와 칩 밖에 있는 메모리 맵 주변장치에 정해진 API로 접근하게 하는 드라이버를 담고, 위 소프트웨어 계층을 마이크로컨트롤러에서 독립시킨다. MCAL의 구현은 마이크로컨트롤러에 의존하지만, 위쪽 인터페이스는 표준화할 수 있고 마이크로컨트롤러에 독립적이다.[@autosar-fo-tr-glossary-2025] [[autosar-rte|RTE]]와 MCAL 위의 BSW 층은 [[autosar-layered-architecture#최상위 수준의 세 층|최상위 수준의 세 층]]과 [[autosar-layered-architecture#BSW의 층|BSW의 층]] 절에서 다룬다.
+**MCAL**(Microcontroller Abstraction Layer)은 [[autosar-layered-architecture|AUTOSAR 계층 구조]]에서 BSW(Basic Software)의 가장 아래 소프트웨어 층이다. [[microcontroller|마이크로컨트롤러]]의 온칩 주변장치와 칩 밖에 있는 메모리 맵 주변장치에 정해진 API로 접근하게 하는 드라이버를 담고, 위 소프트웨어 계층을 마이크로컨트롤러에서 독립시킨다. MCAL의 구현은 마이크로컨트롤러에 의존하지만, 위쪽 인터페이스는 표준화할 수 있고 마이크로컨트롤러에 독립적이다.[@autosar-fo-tr-glossary-2025] [[autosar-rte|RTE]]와 MCAL 위의 BSW 층은 [[autosar-layered-architecture#최상위 수준의 세 층|최상위 수준의 세 층]]과 [[autosar-layered-architecture#BSW의 층|BSW의 층]] 절에서 다룬다.
 
 ![[diagrams/autosar-layered-software-architecture.svg]]
 

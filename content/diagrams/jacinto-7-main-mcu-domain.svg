@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 470" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="Jacinto 7 SoC의 main domain과 MCU domain">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- SoC와 두 도메인의 틀 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20" y="20" width="520" height="430" rx="2" />
+    <rect x="36" y="52" width="488" height="156" rx="2" />
+    <rect x="36" y="264" width="488" height="170" rx="2" />
+  </g>
+  <text x="34" y="40" font-size="12" fill="var(--text, #727981)">Jacinto 7 SoC</text>
+  <g fill="var(--text, #727981)">
+    <text x="52" y="76">main domain</text>
+    <text x="52" y="288">MCU domain</text>
+  </g>
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="end">
+    <text x="508" y="76">따로 둔 전압·전원·클록·리셋</text>
+    <text x="508" y="288">따로 둔 전압·전원·클록·리셋</text>
+  </g>
+
+  <!-- main domain -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="52" y="90" width="222" height="46" rx="2" />
+    <rect x="286" y="90" width="222" height="46" rx="2" />
+    <rect x="52" y="146" width="222" height="46" rx="2" />
+    <rect x="286" y="146" width="222" height="46" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="163" y="108">고성능 계산 코어</text>
+    <text x="397" y="108">비전 하드웨어 가속기</text>
+    <text x="163" y="174">멀티미디어 가속기</text>
+    <text x="397" y="174">입출력·영상 인터페이스</text>
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="163" y="126">마이크로프로세서, 그래픽 처리 장치</text>
+    <text x="397" y="126">디지털 신호 프로세서 포함</text>
+  </g>
+
+  <!-- 하드웨어 방화벽 -->
+  <rect x="36" y="220" width="488" height="32" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="280" y="241" text-anchor="middle" fill="var(--text, #727981)">하드웨어 방화벽</text>
+
+  <!-- MCU domain -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="52" y="302" width="222" height="46" rx="2" />
+    <rect x="286" y="302" width="222" height="46" rx="2" />
+    <rect x="52" y="358" width="222" height="46" rx="2" />
+    <rect x="286" y="358" width="222" height="46" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="163" y="320">Arm Cortex-R5F 둘</text>
+    <text x="397" y="330">CAN FD 여럿</text>
+    <text x="163" y="386">이더넷</text>
+    <text x="397" y="386">입출력 주변장치</text>
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="163" y="338">lockstep이나 split 모드</text>
+    <text x="280" y="424">SoC 전체의 부트 마스터이자 보안 마스터</text>
+  </g>
+</svg>

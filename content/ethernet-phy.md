@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-29
 ---
 
-**이더넷 PHY**(Physical Layer Device)는 [[ethernet|이더넷]]의 물리 계층을 맡는 장치다.[@ieee-802-3-2022] 이더넷 PHY 칩은 꼬임쌍선 케이블로 데이터를 주고받는 데 필요한 물리 계층 기능을 한다. 위쪽으로는 [[mii|MII]] 계열 인터페이스로 MAC(Medium Access Control)에 이어지고, 아래쪽으로는 MDI(Medium Dependent Interface)로 트랜스포머와 케이블에 이어진다. MAC은 별도 칩으로 두기도 하고, 프로세서나 SoC(System on Chip) 같은 칩에 넣기도 한다.[@ti-dp83822-2026][@microchip-lan8742a-2015]
+**이더넷 PHY**(Physical Layer Device)는 [[ethernet|이더넷]]의 물리 계층을 맡는 장치다.[@ieee-802-3-2022] 이더넷 PHY 칩은 꼬임쌍선 케이블로 데이터를 주고받는 데 필요한 물리 계층 기능을 한다. 위쪽으로는 [[mii|MII]] 계열 인터페이스로 MAC(Medium Access Control)에 이어지고, 아래쪽으로는 MDI(Medium Dependent Interface)로 트랜스포머와 케이블에 이어진다. MAC은 별도 칩으로 두기도 하고, 프로세서나 [[system-on-chip|SoC]] 같은 칩에 넣기도 한다.[@ti-dp83822-2026][@microchip-lan8742a-2015]
 
 ![[diagrams/ethernet-phy-mac-mdi-connection.svg]]
 
