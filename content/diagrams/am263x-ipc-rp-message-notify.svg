@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 540 372" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="TI AM263x의 RP Message와 IPC Notify">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 540 372" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="TI AM263x의 RPMessage와 IPC Notify">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -6,8 +6,8 @@
     </marker>
   </defs>
 
-  <!-- RP Message -->
-  <text x="20" y="32" fill="var(--text, #727981)">RP Message</text>
+  <!-- RPMessage -->
+  <text x="20" y="32" fill="var(--text, #727981)">RPMessage</text>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="20" y="48" width="120" height="36" rx="2" />
     <rect x="400" y="48" width="120" height="36" rx="2" />
@@ -42,8 +42,8 @@
   </g>
   <line x1="140" y1="282" x2="398" y2="282" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
-    <text x="270" y="274">인터럽트와 28비트 메시지 ID</text>
+    <text x="270" y="274">인터럽트와 28비트 메시지 식별자</text>
     <text x="270" y="318">지연이 아주 짧음</text>
-    <text x="270" y="352">TI AM263x MCU+ SDK의 RP Message와 IPC Notify</text>
+    <text x="270" y="352">TI AM263x MCU+ SDK의 RPMessage와 IPC Notify</text>
   </g>
 </svg>

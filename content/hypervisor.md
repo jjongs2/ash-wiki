@@ -24,7 +24,7 @@ Renesas는 2022년 RH850/U2x MCU와 ETAS의 하이퍼바이저 RTA-HVR을 묶은
 
 Infineon의 AURIX TC4xx MCU는 CPU 가상화와 시스템 가상화를 지원한다.[@infineon-aurix-tc4xx-overview-2025]
 
-NXP S32Z2 실시간 프로세서는 코어에서 핀까지(core-to-pin) 이르는 하드웨어 가상화로, 여러 실시간 응용을 끝에서 끝까지 하드웨어로 격리해 freedom from interference를 준다.[@nxp-s32z2fs-2022]
+NXP S32Z2 실시간 프로세서는 코어에서 핀까지(core-to-pin) 이르는 하드웨어 가상화로, 여러 실시간 응용을 하드웨어로 격리해 freedom from interference를 준다.[@nxp-s32z2fs-2022]
 
 ## 가상화의 조건
 
@@ -70,4 +70,4 @@ DMA 컨트롤러 같은 다른 마스터도 가상 머신에 배정할 수 있�
 
 Armv8-R 프로세서에서는 게스트 운영체제가 도는 EL1 위의 EL2에서 코드가 돌 수 있어 가상화가 된다. 하이퍼바이저는 이 특권 수준에서 게스트 운영체제 하나 이상 위에 놓인다. PMSA(Protected Memory System Architecture)는 메모리 영역을 정의하고 다른 영역의 접근을 막아 공간 분리를 이룬다. 그래서 한 게스트 운영체제는 대개 다른 게스트 운영체제가 쓰는 영역에 닿지 못하고, 게스트 운영체제의 코드는 하이퍼바이저의 코드나 데이터 영역에 닿지 못한다.[@arm-102909-2026]
 
-Arm Cortex-R52는 가상화 기술로 PMSA context 여럿을 한 코어에서 서로 떼어 담아 돌려, 한 context가 더 임계한 context의 응답 시간과 결정성에 영향을 주지 못하게 한다.[@arm-100026-2024]
+Arm Cortex-R52는 가상화 기술로 PMSA context 여럿을 한 코어에서 서로 떼어 담아 돌려, 한 context가 중요도가 더 높은 context의 응답 시간과 결정성에 영향을 주지 못하게 한다.[@arm-100026-2024]
