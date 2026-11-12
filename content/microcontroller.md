@@ -30,15 +30,13 @@ MCU의 메모리는 프로그램 코드와 데이터를 담는다. 많은 Renesa
 
 코어에 가까이 붙은 RAM은 코어가 빠르게 접근한다.[@arm-100026-2024][@infineon-aurix-tc3xx-memory-maps-training-2020] Arm Cortex-R52는 코어마다 지연이 가장 짧은 TCM(Tightly Coupled Memory)을 세 개 둘 수 있다. 이 TCM은 코어 전용이고, 접근 시간을 가장 잘 예측할 수 있다.[@arm-100026-2024] Infineon AURIX TC3xx의 프로그램 scratch-pad RAM(PSPR)과 데이터 scratch-pad RAM(DSPR)은 TriCore에 가까이 붙어, CPU가 다른 RAM과 플래시보다 빨리 코드와 데이터에 접근하게 한다.[@infineon-aurix-tc3xx-memory-maps-training-2020]
 
-TI Hercules MCU는 Arm Cortex-R4F를 바탕으로 하고, 그 CPU의 두 TCM 인터페이스 가운데 하나에 주 플래시를, 다른 하나에 CPU 데이터 RAM을 잇는다.[@ti-spnu499c-2018]
-
 ## 주변장치
 
-MCU의 ADC(Analog To Digital Converter) 변환은 소프트웨어로도, 하드웨어 이벤트로도 시작할 수 있다.[@ti-spnu499c-2018][@infineon-aurix-tc3xx-evadc-training-2020] TI Hercules TMS570LS31x/21x의 ADC는 축차 비교(successive approximation register) 구조이고, 변환 결과를 옮기는 DMA 요청을 낼 수 있다.[@ti-spnu499c-2018]
+MCU의 ADC(Analog To Digital Converter) 변환은 소프트웨어로도, 하드웨어 이벤트로도 시작할 수 있다.[@ti-spnu499c-2018][@infineon-aurix-tc3xx-evadc-training-2020]
 
 MCU의 타이머 주변장치는 펄스 폭 측정 같은 시간 측정과, PWM(pulse width modulation) 같은 펄스 생성에 쓰인다.[@ti-spnu499c-2018][@infineon-aurix-tc3xx-gpt12-training-2020] AURIX TC3xx의 STM(System Timer)은 CPU마다 하나씩 있는 64비트 자유 계수 타이머로, 운영체제 같은 소프트웨어가 쓸 시간 기준과 트리거 이벤트를 만든다.[@infineon-aurix-tc3xx-stm-training-2020]
 
-Bosch의 GTM(Generic Timer Module)은 기능이 다른 하위 모듈을 가운데의 ARU(Advanced Routing Unit) 둘레에 두고 설정으로 묶어 복잡한 타이머 기능을 이루는 타이머 모듈이다. 한 번 설정하면 GTM 안의 작업 대부분이 CPU 소프트웨어와 따로 나란히 돌도록 해, CPU의 인터럽트 부하를 덜게 설계됐다.[@bosch-gtm-4-1-specification-2026] GTM은 차량 파워트레인과 능동 안전 응용에서 여러 입력의 데이터 수집과 여러 출력 신호의 생성을 맡는다.[@bosch-gtm-2026] AURIX TC2xx에 넣은 GTM은 여러 포트로 PWM 신호를 내고 받으며, ADC 변환을 트리거하는 신호를 낸다.[@infineon-aurix-tc2xx-gtm-training-2019]
+Bosch의 GTM(Generic Timer Module)은 기능이 다른 하위 모듈을 가운데의 ARU(Advanced Routing Unit) 둘레에 두고 설정으로 묶어 복잡한 타이머 기능을 이루는 타이머 모듈이다. 한 번 설정하면 GTM 안의 작업 대부분이 CPU 소프트웨어와 따로 나란히 돌도록 해, CPU의 인터럽트 부하를 덜게 설계됐다.[@bosch-gtm-4-1-specification-2026] GTM은 차량 파워트레인과 능동 안전 응용에서 여러 입력의 데이터 수집과 여러 출력 신호의 생성을 맡는다.[@bosch-gtm-2026]
 
 이 주변장치들을 다루는 [[autosar|AUTOSAR]] 드라이버는 [[microcontroller-abstraction-layer|MCAL]]과 [[autosar-adc-driver|ADC Driver]], [[autosar-pwm-driver|PWM Driver]], [[autosar-icu-driver|ICU Driver]]에서 다룬다.
 
@@ -72,8 +70,6 @@ AURIX TC3xx의 CPU는 저마다 자기 PSPR과 DSPR을 둔다.[@infineon-aurix-t
 MCU+ SDK는 TI AM263x의 SDK(Software development kit)다.[@ti-am2634-2026] 이 SDK의 IPC(inter-processor communication)는 여러 CPU에서 도는 소프트웨어를 메시지를 주고받아 맞추는 통신이다. RPMessage는 패킷 버퍼를 두 CPU가 모두 보는 공유 메모리에 두고, 하드웨어 인터럽트로 상대 CPU에 새 패킷을 알린다. IPC Notify는 28비트 메시지 식별자만 인터럽트와 함께 보내 지연이 아주 짧다. RPMessage의 공유 메모리는 모든 CPU에서 같은 주소로 매핑하고, 각 CPU의 메모리 보호·관리 설정에서 캐시하지 않는 영역으로 둔다.[@ti-mcu-plus-sdk-am263x-ipc-2026]
 
 ![[diagrams/am263x-ipc-rp-message-notify.svg]]
-
-NXP S32K3의 소프트웨어에는 코어 사이 통신과 자원 접근·공유를 위한 미들웨어 IPCF(Inter-platform communication framework)가 있다.[@nxp-s32kbra4-2026]
 
 다중 프로세서의 분류와 스케줄링은 [[multiprocessor-scheduling|다중 프로세서 스케줄링]]에서, 코어 사이의 상호 배제와 통신은 [[spinlock|스핀락]]과 [[autosar-os|AUTOSAR OS]]의 [[inter-os-application-communicator|IOC]]에서, MCU의 가상화 지원은 [[hypervisor|하이퍼바이저]]에서 다룬다.
 
