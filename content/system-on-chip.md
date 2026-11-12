@@ -13,7 +13,7 @@ TI Jacinto 7 SoC는 차량 [[microcontroller|MCU]]를 응용 프로세서에 넣
 
 Bosch에 따르면 SoC는 레이더 처리, 센서 융합 알고리즘, 통신 프로토콜을 칩 하나에 넣어 차량 시스템을 작게 만든다.[@bosch-soc-glossary-2026] 차량용 SoC는 범용 SoC와 달리 긴 공급 기간, [[functional-safety|기능 안전]] 준수, 환경 견고성을 앞세운다. 차량용 SoC는 lockstep 코어, MPU, [[hardware-security-module|HSM]] 같은 [[safety-mechanism|안전 메커니즘]]을 선택 사항이 아니라 표준 기능으로 둔다.[@bosch-automotive-soc-glossary-2026]
 
-ECU의 블록을 SoC로 합치는 구성은 ECU의 [[electronic-control-unit#구성|구성]]에서, 중앙 컴퓨터용 칩은 [[high-performance-computer#칩|HPC]]에서, 도메인 제어기용 칩은 [[domain-controller#제품|도메인 제어기]]에서, SoC의 하드웨어 가상화 지원은 [[hypervisor|하이퍼바이저]]에서 다룬다.
+ECU의 블록을 SoC로 합치는 구성은 ECU의 [[electronic-control-unit#구성|구성]]에서, 중앙 컴퓨터용 칩은 [[high-performance-computer#칩|HPC]]에서, SoC의 하드웨어 가상화 지원은 [[hypervisor|하이퍼바이저]]에서 다룬다.
 
 ## 도메인 분리
 
@@ -27,13 +27,15 @@ MCU domain은 lockstep이나 split 모드로 설정하는 Arm Cortex-R5F 둘과,
 
 ## 코어 구성
 
-Renesas R-Car S4, NXP S32G2, TI TDA4VM의 코어 구성은 다음과 같다. 세 SoC 모두 Cortex-A 코어 여럿과 함께 Cortex-R이나 Cortex-M, RH850 같은 다른 코어를 둔다.[@renesas-r-car-s4-2026][@nxp-s32g2-2026][@ti-tda4vm-2026]
+Renesas R-Car S4, NXP S32G2, TI TDA4VM의 코어 구성은 다음과 같다. 세 SoC 모두 Cortex-A 코어와 함께 종류가 다른 코어를 한 칩에 둔다.[@renesas-r-car-s4-2026][@nxp-s32g2-2026][@ti-tda4vm-2026]
 
 | 제품             | 용도                       | 코어                                                                                                                            | 그 밖의 구성                                                                                                                                                                                                                    |
 | ---------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Renesas R-Car S4 | 차량 서버, 통신 게이트웨이 | 1.2 GHz Cortex-A55 여덟, lockstep으로 묶은 1.0 GHz Cortex-R52 이중 코어 하나, lockstep으로 묶은 400 MHz RH850 G4MH 이중 코어 둘 | G4MH 코어가 코드를 짧은 지연으로 실행하도록 넣은 8 MB SRAM[@renesas-r-car-s4-2026]                                                                                                                                              |
 | NXP S32G2        | 차량 네트워킹              | 응용과 서비스용 Cortex-A53 넷(두 클러스터에 둘씩, 클러스터 lockstep을 고를 수 있음), 실시간 응용용 lockstep Cortex-M7 셋        | 차량 네트워크를 가속하는 LLCE(Low Latency Communication Engine), 이더넷 네트워크를 가속하는 PFE(Packet Forwarding Engine), [[secure-boot\|secure boot]]와 보안 서비스를 가속하는 HSE(Hardware Security Engine)[@nxp-s32g2-2026] |
 | TI TDA4VM        | 비전 인식과 분석           | Cortex-A72 둘, Cortex-R5F 여섯(분리된 MCU 서브시스템에 둘, 일반 계산 파티션에 넷)                                               | C7x 디지털 신호 프로세서 하나, C66x 디지털 신호 프로세서 둘, 3D 그래픽 처리 장치[@ti-tda4vm-2026]                                                                                                                               |
+
+도메인 제어기용 칩과 Jacinto 7의 코어 구성은 [[domain-controller#제품|도메인 제어기]]에서 다룬다.
 
 ## 외부 차량 MCU와의 차이
 
