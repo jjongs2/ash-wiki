@@ -58,7 +58,7 @@ ISO 26262-1:2018은 **Dependent failure**를 통계적으로 독립이 아닌 fa
 
 Dependent failure 정의의 주석은 dependent failure가 동시에, 또는 동시에 일어난 것과 같은 영향을 낼 만큼 짧은 간격 안에 나타날 수 있고, failure 확률을 계산하지 않더라도 소프트웨어 failure를 포함할 수 있다고 제시한다. 또 어떤 failure가 cascading failure인지 common cause failure인지는 요소의 계층 구조와 시간 거동에 따라 달라질 수 있다고 제시한다.[@iso-26262-1-obp-2018]
 
-**Common mode failure**는 여러 요소가 같은 방식으로 고장 나는 common cause failure다. 같은 정의의 주석은 같은 방식이 꼭 똑같다는 뜻은 아니며 failure mode가 얼마나 가까워야 common mode failure로 분류되는지는 맥락에 달려 있다고 제시하고, 예로 두 CPU의 출력을 사이클마다 견주는 [[fault-tolerance#다중 채널과 비교|lockstep]] 구조에서 두 CPU가 똑같이 고장 나 failure가 검출되지 않는 경우를 든다.[@iso-26262-1-obp-2018]
+**Common mode failure**는 여러 요소가 같은 방식으로 고장 나는 common cause failure다. 같은 정의의 주석은 같은 방식이 꼭 똑같다는 뜻은 아니며 failure mode가 얼마나 가까워야 common mode failure로 분류되는지는 맥락에 달려 있다고 제시하고, 예로 두 CPU의 출력을 사이클마다 견주는 [[lockstep|lockstep]] 구조에서 두 CPU가 똑같이 고장 나 failure가 검출되지 않는 경우를 든다.[@iso-26262-1-obp-2018]
 
 **Coupling factor**는 요소들의 failure를 서로 의존하게 만드는 요소들의 공통 특성이나 관계다. **DFI**(Dependent Failure Initiator)는 coupling factor를 거쳐 여러 요소를 고장 나게 하는 하나의 근본 원인이고, 그 요소들의 failure는 동시에 또는 차례로 일어날 수 있다. DFI 정의의 예는 같은 RAM을 쓰는 두 소프트웨어 유닛(coupling factor)에서 한 유닛이 다른 유닛이 쓰는 데이터를 뜻하지 않게 망가뜨리는 것(근본 원인)과, 같은 3.3 V 전원을 쓰는 두 마이크로컨트롤러에 과전압이 걸려 둘 다 망가지는 것을 든다.[@iso-26262-1-obp-2018]
 

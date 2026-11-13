@@ -40,9 +40,9 @@ E-Gas 감시 개념 6.0판은 엔진 제어기의 감시를 세 층으로 나눈
 
 기능 제어기도 자기 오류 계수기가 한계에 이르면 액추에이터 출력단을 끈다. 이 개념은 이렇게 감시 모듈과 기능 제어기가 따로 출력단을 끄는 중복 차단 경로(redundant shutoff path)의 효과를 주행 주기마다 시험하게 한다.[@egas-monitoring-concept-2015]
 
-질의-응답의 반복 주기 $T$는 $T \le 80\,\mathrm{ms}$여야 한다. Level 3 소프트웨어의 시험 경로 가운데 명령어 집합 시험은 프로세서 코어와 Level 2 기능 처리의 error를 검출하고, 제어기 내부의 error 검출 하드웨어를 쓰는 방식에서는 [[fault-tolerance#다중 채널과 비교|lockstep]] core의 결과를 base core의 결과와 견주어 다르면 error 반응을 일으킨다. 멀티코어 제어기에서는 Level 2 모듈이 실행되는 코어를 모두 이 명령어 집합 시험의 방식으로 시험한다.[@egas-monitoring-concept-2015]
+질의-응답의 반복 주기 $T$는 $T \le 80\,\mathrm{ms}$여야 한다. Level 3 소프트웨어의 시험 경로 가운데 명령어 집합 시험은 프로세서 코어와 Level 2 기능 처리의 error를 검출하고, 제어기 내부의 error 검출 하드웨어를 쓰는 방식에서는 [[lockstep|lockstep]] core의 결과를 base core의 결과와 견주어 다르면 error 반응을 일으킨다. 멀티코어 제어기에서는 Level 2 모듈이 실행되는 코어를 모두 이 명령어 집합 시험의 방식으로 시험한다.[@egas-monitoring-concept-2015]
 
-TMS320F28003x에 적용한 E-Gas 감시 개념에서 Level 3 checker는 MCU 밖의 감시 요소다. TMS320F28003x는 이 checker가 외부 부품으로 구현할 [[safety-requirement|안전 요구사항]]을 가정하고, 그 부품으로 공급 전원을 감시하는 외부 전압 감시기, 진단에 쓰는 외부 [[safety-mechanism#Watchdog|watchdog]] 타이머, 안전 상태로 옮기는 데 필요한 부품을 든다.[@ti-sffs277-2023]
+TMS320F28003x에 적용한 E-Gas 감시 개념에서 Level 3 checker는 [[microcontroller|MCU]] 밖의 감시 요소다. TMS320F28003x는 이 checker가 외부 부품으로 구현할 [[safety-requirement|안전 요구사항]]을 가정하고, 그 부품으로 공급 전원을 감시하는 외부 전압 감시기, 진단에 쓰는 외부 [[watchdog|watchdog]] 타이머, 안전 상태로 옮기는 데 필요한 부품을 든다.[@ti-sffs277-2023]
 
 ## 개정 이력
 

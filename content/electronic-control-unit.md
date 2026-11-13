@@ -17,7 +17,7 @@ NXP 백서에 따르면 ECU는 [[microcontroller|마이크로컨트롤러]]를 �
 
 ![[diagrams/ecu-main-blocks.svg]]
 
-마이크로컨트롤러를 둘러싼 블록들은 배터리선의 큰 전압 변동과 과도 현상을 견디며 마이크로컨트롤러를 지켜야 하므로, 이를 견디는 고전압 공정으로 만든다. 그래서 이 백서가 나온 2017년의 ECU에는 반도체 공정이 적어도 둘 쓰였다. 전압 레귤레이터와 차량 네트워크 인터페이스를 SBC(System-Basis-Chip) 하나로 합치기도 하고, 여기에 센서 인터페이스나 액추에이터 드라이버까지 더해 ASSP(Application Specific Standard Product)로 합치기도 한다. 마이크로컨트롤러까지 한 칩에 넣은 [[system-on-chip|SoC]]는 비휘발성 메모리 쪽 비용이 너무 커 그 무렵 ECU에서 드물었고, 비휘발성 메모리와 처리 능력이 적게 드는 [[lin|LIN]] responder 노드에서 주로 쓰였다.[@nxp-fvnecua4wp-2017]
+마이크로컨트롤러를 둘러싼 블록들은 배터리선의 큰 전압 변동과 과도 현상을 견디며 마이크로컨트롤러를 지켜야 하므로, 이를 견디는 고전압 공정으로 만든다. 그래서 이 백서가 나온 2017년의 ECU에는 반도체 공정이 적어도 둘 쓰였다. 전압 레귤레이터와 차량 네트워크 인터페이스를 [[system-basis-chip|SBC]] 하나로 합치기도 하고, 여기에 센서 인터페이스나 액추에이터 드라이버까지 더해 ASSP(Application Specific Standard Product)로 합치기도 한다. 마이크로컨트롤러까지 한 칩에 넣은 [[system-on-chip|SoC]]는 비휘발성 메모리 쪽 비용이 너무 커 그 무렵 ECU에서 드물었고, 비휘발성 메모리와 처리 능력이 적게 드는 [[lin|LIN]] responder 노드에서 주로 쓰였다.[@nxp-fvnecua4wp-2017]
 
 ## 처리 집중과 구성
 

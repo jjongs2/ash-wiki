@@ -27,7 +27,7 @@ verified: 2026-10-03
 - Android는 새 슬롯으로 부팅한 뒤 `update_verifier`의 검증이 끝나야 그 슬롯을 부팅 성공으로 표시하고, 표시 전에 부팅이 여러 번 실패하면 이전 슬롯으로 돌아간다.[@google-android-ota-ab-2026]
 - MCUboot는 새 이미지를 시험(test) swap으로 맞바꾼 뒤, 이미지가 자신을 확정하지 않은 채 재부팅되면 이전 이미지로 되돌린다.[@mcuboot-design-2026]
 
-Android와 RAUC에서는 부트로더가 확정되지 않은 슬롯으로 부팅을 시도한 횟수를 세어, 정한 횟수를 다 쓰면 다른 슬롯으로 부팅한다.[@google-android-ota-ab-2026][@rauc-integration-2026] RAUC 문서는 아무것도 부팅하지 않거나 부팅한 시스템이 갑자기 멈추는 경우처럼 잘못된 부팅을 스스로 알아채지 못할 때가 많다고 보아, 부팅하는 동안 하드웨어 [[safety-mechanism#Watchdog|watchdog]]을 쓰고 부트로더가 watchdog 리셋을 부팅 실패로 보게 하기를 권한다.[@rauc-basics-2026]
+Android와 RAUC에서는 부트로더가 확정되지 않은 슬롯으로 부팅을 시도한 횟수를 세어, 정한 횟수를 다 쓰면 다른 슬롯으로 부팅한다.[@google-android-ota-ab-2026][@rauc-integration-2026] RAUC 문서는 아무것도 부팅하지 않거나 부팅한 시스템이 갑자기 멈추는 경우처럼 잘못된 부팅을 스스로 알아채지 못할 때가 많다고 보아, 부팅하는 동안 하드웨어 [[watchdog|watchdog]]을 쓰고 부트로더가 watchdog 리셋을 부팅 실패로 보게 하기를 권한다.[@rauc-basics-2026]
 
 ## 장점과 비용
 

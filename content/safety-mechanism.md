@@ -2,6 +2,7 @@
 title: 안전 메커니즘
 tags:
   - sw-engineering/functional-safety
+  - hardware/mcu-soc
 verified: 2026-10-02
 ---
 
@@ -25,8 +26,6 @@ IEC 60050은 **fail-safe**를 failure가 나도 안전을 지킬 수 있는 시�
 
 ISO 26262-1:2018은 **diagnostic point**를 fault의 검출이나 정정이 관측되는 요소의 출력 신호로 정의한다. 같은 정의의 주석은 diagnostic point를 alarm, error flag, correction flag라고도 부른다고 제시하고, 예로 다시 읽은 정보(read back information)를 든다.[@iso-26262-1-obp-2018]
 
-TI Hercules MCU는 하드웨어 안전 메커니즘으로 [[fault-tolerance#다중 채널과 비교|lockstep]] CPU, [[error-correction-code|ECC]], BIST(Built-In Self-Test)를 둔다.[@ti-spry178-2011]
-
 [[autosar|AUTOSAR]] Watchdog Manager는 감시하는 논리 단위를 **Supervised Entity**라 하고, Supervised Entity 안의 중요한 자리를 **체크포인트**(checkpoint)라 한다. Supervised Entity의 코드에는 체크포인트에 이르렀음을 Watchdog Manager에 알리는 함수 호출이 들어 있다.[@autosar-cp-exp-functionalsafetymeasures-2025]
 
 Watchdog Manager는 소프트웨어 실행을 세 가지로 감시한다.[@autosar-cp-sws-watchdogmanager-2025]
@@ -43,14 +42,19 @@ Watchdog Manager는 소프트웨어 실행을 세 가지로 감시한다.[@autos
 
 AUTOSAR R25-11은 통신 경로의 fault를 실행 중에 검출하는 [[autosar-e2e-protection|E2E 통신 보호]]를 둔다.[@autosar-fo-prs-e2eprotocol-2025] 수신 시그널이 정한 시간 안에 오지 않는 것은 [[autosar-com|AUTOSAR COM]]의 수신 데드라인 감시가 검출한다.[@autosar-cp-sws-com-2025]
 
-## Watchdog
+## MCU의 하드웨어 안전 메커니즘
 
-**Window watchdog**은 정한 하한과 상한 사이에 트리거를 받아야 하는 watchdog이다.[@autosar-cp-sws-watchdogdriver-2025][@ti-tps3430-q1-2021]
+TI Hercules [[microcontroller|MCU]]는 하드웨어 안전 메커니즘으로 [[lockstep|lockstep]] CPU, [[error-correction-code|ECC]], BIST(Built-In Self-Test)를 둔다.[@ti-spry178-2011]
 
-TPS3430-Q1은 TI의 차량용 window watchdog 타이머로, watchdog 입력이 window 밖이면 watchdog 출력으로 fault를 알린다.[@ti-tps3430-q1-2021] TI는 TMS320F28003x 실시간 MCU의 기능 안전 매뉴얼에서 [[safety-analysis#Dependent failure 분석|common mode failure]]의 리스크를 줄이려 내부 watchdog보다 외부 watchdog을 쓰기를 권하고, 클록·전원·리셋 같은 common cause failure에도 외부 watchdog을 쓰기를 권한다. 단일 임계값 watchdog보다 더 많은 failure mode를 검출하는 program sequence, window, 질의-응답 watchdog을 쓰기도 권한다.[@ti-sffs277-2023]
+TI Hercules와 AURIX TC3xx는 모두 시동 때 LBIST(logic built-in self-test)로 로직을 시험하고, 클록을 독립된 기준 클록과 견주어 클록의 이상을 검출하며, 칩 안 전압 감시로 공급 전압이 감시 범위를 벗어나면 리셋이나 alarm을 일으킨다. 두 MCU의 오류 신호 모듈은 MCU 안 안전 메커니즘의 error를 모아, 설정에 따라 인터럽트나 NMI(non-maskable interrupt)를 일으키거나 error 핀으로 MCU 밖에 알린다. 메커니즘마다 다른 점은 아래 표와 같다.[@ti-spry178-2011][@infineon-aurix-tc3xx-an0001-2025] [[system-basis-chip#Safety SBC|Safety SBC]]가 품은 BIST는 그 절에서 다룬다.
 
-AUTOSAR R25-11의 Watchdog Driver 명세는 Slow-Mode의 예로 트리거 시점에 제약이 없는 toggle mode를, Fast-Mode의 예로 timeout 주기 안의 최소·최대 경계 사이에서 트리거해야 하는 window mode를 든다. Watchdog Driver는 Watchdog Manager 같은 상위 개체가 준 트리거 조건이 유효한 동안 watchdog 하드웨어를 트리거하고, 트리거 계수기가 0에 이르면 트리거하지 않아 watchdog이 만료된다.[@autosar-cp-sws-watchdogdriver-2025]
+| 메커니즘       | TI Hercules                                                                                                                                                                                                                              | AURIX TC3xx                                                                                                                                                                                                                            |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| BIST           | LBIST를 시동이나 정지 때 돌리거나, 동작 중에 작은 시험 조각으로 나눠 돌린다. SRAM을 시험하는 PBIST(programmable memory BIST)는 메모리 내용을 지우므로 대개 시동이나 정지 때 돌린다.                                                      | 디지털 블록의 [[hardware-architectural-metrics#Fault와 failure의 종류\|latent fault]]는 주로 LBIST와 동작 중의 안전 메커니즘이 맡는다.                                                                                                 |
+| 오류 신호 모듈 | ESM(error signaling module)에 기록된 치명적 error는 warm reset 뒤에도 남아, 리셋 뒤 CPU가 진단하는 데 쓸 수 있다.                                                                                                                        | SMU(safety management unit)는 CPU 리셋과 응용·시스템 리셋도 요청할 수 있다. Common cause fault를 줄이려 core 영역의 SMU와 stand-by 영역의 SMU로 나뉘고, 둘은 서로 다르게 설계되어 물리적으로 떨어진 서로 다른 클록·전원 영역에 놓인다. |
+| 클록 감시      | 칩 안 LPO(low power oscillator)를 기준 클록으로 써 입력 클록의 끊김을 검출하고, DCC(dual clock compare)로 칩 안 클록과 고른 기준 클록의 비를 견주어 주파수 drift와 클록 slip을 검출한다. PLL(phase lock loop)에도 slip 검출 기능이 있다. | PLL 출력을 따로 된 backup 클록과 견주고, PLL의 lock이 풀리면 SMU alarm을 낸다.                                                                                                                                                         |
+| 전압 감시      | TI는 전원의 1차 진단을 칩 밖에 두기를 권한다. 정확도를 높이고 [[safety-analysis#Dependent failure 분석\|common mode failure]]의 확률을 줄이기 위해서다.                                                                                  | 두 주 전원의 과전압 감시를 MCU 밖의 시스템 수준 안전 조치로 요구한다.                                                                                                                                                                  |
 
-![[diagrams/watchdog-window-toggle-mode.svg]]
+TPS65381A-Q1은 안전 관련 응용의 MCU에 전원을 주는 칩으로, 출력 전압을 감시하고, [[watchdog|watchdog]]을 두며, MCU의 error 핀도 감시한다. Fault를 검출하면 enable 출력으로 안전 경로나 외부 출력단을 끄고, MCU를 리셋하는 회로도 둔다.[@ti-tps65381a-q1-2017] AURIX TC3xx 옆에 두는 전원 칩 TLF35584는 시스템의 공급 전압을 감시하고 외부 watchdog을 맡으며, MCU가 내부 failure를 알리는 FSP(fault signaling protocol) 핀도 감시한다.[@infineon-aurix-tc3xx-an0001-2025] Watchdog이 잘못된 동작을 검출했을 때 출력단을 끄는 것은 [[watchdog#Fail-safe 출력|fail-safe 출력]]에서 다룬다.
 
-[[autosar-adaptive-platform|Adaptive Platform]]의 Supervised Entity는 Platform Health Management의 [[autosar-platform-health-management#감시|감시]]에서, Foundation의 Health Monitoring은 [[autosar-platform-health-management#Health Monitoring과의 관계|Health Monitoring과의 관계]]에서, 내부·외부 watchdog 드라이버의 계층 배치는 [[ecu-abstraction-layer#Watchdog Interface|Watchdog Interface]]에서 다룬다.
+![[diagrams/tps65381a-q1-mcu-monitoring.svg]]

@@ -56,12 +56,12 @@ Infineon AURIX는 TriCore CPU 여럿, 프로그램·데이터 메모리, 인터�
 
 Infineon AURIX TC4xx, Renesas RH850/U2A, NXP S32K3, TI AM263x의 CPU와 코어 구성은 다음과 같다.
 
-| 제품                 | CPU                       | 코어 구성                                                                                                                     |
-| -------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| Infineon AURIX TC4xx | TriCore 1.8, 최대 500 MHz | 멀티코어. [[automotive-safety-integrity-level\|ASIL]] D를 위해 모두 lockstep으로 묶는다.[@infineon-aurix-tc4xx-overview-2025] |
-| Renesas RH850/U2A    | RH850 G4MH, 400 MHz       | 넷까지, dual-core lockstep 구조[@renesas-rh850-u2a-2026]                                                                      |
-| NXP S32K3            | Arm Cortex-M7             | 단일, 이중, lockstep[@nxp-s32kbra4-2026]                                                                                      |
-| TI AM263x            | Arm Cortex-R5F, 400 MHz   | 넷까지. R5F 서브시스템을 lockstep이나 dual-core 모드로 돌도록 프로그램할 수 있다.[@ti-am2634-2026]                            |
+| 제품                 | CPU                       | 코어 구성                                                                                                                                   |
+| -------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Infineon AURIX TC4xx | TriCore 1.8, 최대 500 MHz | 멀티코어. [[automotive-safety-integrity-level\|ASIL]] D를 위해 모두 [[lockstep\|lockstep]]으로 묶는다.[@infineon-aurix-tc4xx-overview-2025] |
+| Renesas RH850/U2A    | RH850 G4MH, 400 MHz       | 넷까지, dual-core lockstep 구조[@renesas-rh850-u2a-2026]                                                                                    |
+| NXP S32K3            | Arm Cortex-M7             | 단일, 이중, lockstep[@nxp-s32kbra4-2026]                                                                                                    |
+| TI AM263x            | Arm Cortex-R5F, 400 MHz   | 넷까지. R5F 서브시스템을 lockstep이나 dual-core 모드로 돌도록 프로그램할 수 있다.[@ti-am2634-2026]                                          |
 
 AURIX TC3xx의 CPU는 저마다 자기 PSPR과 DSPR을 둔다.[@infineon-aurix-tc3xx-memory-maps-training-2020] TriCore 코어는 이들과 데이터·프로그램 캐시에 이어진다.[@infineon-aurix-tc3xx-cpu-2024] AURIX TC3xx의 LMU(Local Memory Unit)는 SRI에 붙은 주변장치로, 범용으로 쓸 로컬 메모리를 256 KB까지 준다.[@infineon-aurix-tc3xx-lmu-2024] TI AM263x는 R5F 코어들을 클러스터 서브시스템으로 묶고, 256 KB 공유 TCM과 2 MB 공유 SRAM을 둔다.[@ti-am2634-2026]
 

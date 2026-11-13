@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10.5 9.5 464.5 198.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="AURIX TC3xx lockstep의 두 클록 사이클 지연">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+  <text x="20" y="28" font-size="12" fill="var(--text, #727981)">AURIX TC3xx</text>
+
+  <!-- 입력: 두 코어가 같은 입력을 받는다 -->
+  <text x="20" y="105" fill="var(--text, #727981)">입력</text>
+  <line x1="52" y1="100" x2="64" y2="100" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <circle cx="64" cy="100" r="3" fill="var(--ink, #727981)" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M64 100 V60 H78" />
+    <path d="M64 100 V140 H78" />
+  </g>
+
+  <!-- 상자: 같은 폭 두 열, 지연과 코어가 계단으로 엇갈린다 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="80" y="42" width="110" height="36" rx="2" />
+    <rect x="220" y="40" width="110" height="40" rx="2" />
+    <rect x="80" y="120" width="110" height="40" rx="2" />
+    <rect x="220" y="122" width="110" height="36" rx="2" />
+    <rect x="370" y="50" width="80" height="100" rx="2" />
+  </g>
+  <g fill="var(--text, #727981)" text-anchor="middle">
+    <text x="135" y="65">주 코어</text>
+    <text x="275" y="145">checker 코어</text>
+    <text x="410" y="105">비교기</text>
+  </g>
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
+    <text x="275" y="57">두 클록 사이클</text>
+    <text x="275" y="73">지연</text>
+    <text x="135" y="137">두 클록 사이클</text>
+    <text x="135" y="153">지연</text>
+  </g>
+
+  <!-- 연결 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="190" y1="60" x2="218" y2="60" />
+    <line x1="190" y1="140" x2="218" y2="140" />
+    <path d="M330 60 H350 V80 H368" />
+    <path d="M330 140 H350 V120 H368" />
+    <line x1="410" y1="150" x2="410" y2="178" />
+  </g>
+  <text x="410" y="196" font-size="12" fill="var(--text, #727981)" text-anchor="middle">어긋나면 시스템에 알림</text>
+</svg>

@@ -13,7 +13,7 @@ ISO 26262-5:2018은 하드웨어 수준 제품 개발의 요구사항을 정하�
 
 ISO 26262-1:2018은 하드웨어 [[fault-error-failure|fault]]와 그것이 낳는 failure의 종류를 다음처럼 정의한다.[@iso-26262-1-obp-2018]
 
-- **Single-point fault**: 요소 안에서 safety goal 위반에 바로 이르고, 그 요소의 어떤 fault도 [[safety-mechanism|안전 메커니즘]]이 덮지 않는 하드웨어 fault. 정의의 주석은 하드웨어 요소에 안전 메커니즘이 하나라도 정의되어 있으면(예: 마이크로컨트롤러의 [[safety-mechanism#Watchdog|watchdog]]) 그 요소의 fault는 single-point fault가 아니라고 제시한다.
+- **Single-point fault**: 요소 안에서 safety goal 위반에 바로 이르고, 그 요소의 어떤 fault도 [[safety-mechanism|안전 메커니즘]]이 덮지 않는 하드웨어 fault. 정의의 주석은 하드웨어 요소에 안전 메커니즘이 하나라도 정의되어 있으면(예: [[microcontroller|마이크로컨트롤러]]의 [[watchdog|watchdog]]) 그 요소의 fault는 single-point fault가 아니라고 제시한다.
 - **Single-point failure**: single-point fault에서 비롯한 failure
 - **Residual fault**: 하드웨어 요소에서 일어난 random hardware fault 가운데, 안전 메커니즘이 제어하지 않으면서 그 자체로 safety goal 위반에 이르는 부분. 정의의 주석은 하드웨어 요소의 fault 가운데 일부만 안전 메커니즘이 덮는다는 전제를 제시한다. 정의의 예는 안전과 관련 있고 safe fault가 아닌 fault 집합의 60%를 안전 메커니즘이 덮으면, 그것이 제어하지 않는 나머지 40%가 residual fault라는 것을 든다.
 - **Multiple-point fault**: 다른 독립 fault와 겹쳐, 검출되지도 인지되지도 않으면 multiple-point failure에 이를 수 있는 개별 fault. 정의의 주석은 multiple-point fault를 fault tree의 cut set 분석 등으로 multiple-point failure를 찾은 뒤에야 알아볼 수 있다고 제시한다.

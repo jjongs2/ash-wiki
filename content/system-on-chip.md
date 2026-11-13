@@ -11,7 +11,7 @@ TI Jacinto 7 SoC는 차량 [[microcontroller|MCU]]를 응용 프로세서에 넣
 
 ## 차량에서의 쓰임
 
-Bosch에 따르면 SoC는 레이더 처리, 센서 융합 알고리즘, 통신 프로토콜을 칩 하나에 넣어 차량 시스템을 작게 만든다.[@bosch-soc-glossary-2026] 차량용 SoC는 범용 SoC와 달리 긴 공급 기간, [[functional-safety|기능 안전]] 준수, 환경 견고성을 앞세운다. 차량용 SoC는 lockstep 코어, MPU, [[hardware-security-module|HSM]] 같은 [[safety-mechanism|안전 메커니즘]]을 선택 사항이 아니라 표준 기능으로 둔다.[@bosch-automotive-soc-glossary-2026]
+Bosch에 따르면 SoC는 레이더 처리, 센서 융합 알고리즘, 통신 프로토콜을 칩 하나에 넣어 차량 시스템을 작게 만든다.[@bosch-soc-glossary-2026] 차량용 SoC는 범용 SoC와 달리 긴 공급 기간, [[functional-safety|기능 안전]] 준수, 환경 견고성을 앞세운다. 차량용 SoC는 [[lockstep|lockstep]] 코어, MPU, [[hardware-security-module|HSM]] 같은 [[safety-mechanism|안전 메커니즘]]을 선택 사항이 아니라 표준 기능으로 둔다.[@bosch-automotive-soc-glossary-2026]
 
 ECU의 블록을 SoC로 합치는 구성은 ECU의 [[electronic-control-unit#구성|구성]]에서, 중앙 컴퓨터용 칩은 [[high-performance-computer#칩|HPC]]에서, SoC의 하드웨어 가상화 지원은 [[hypervisor|하이퍼바이저]]에서 다룬다.
 
