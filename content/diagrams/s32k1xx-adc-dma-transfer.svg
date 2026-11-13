@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 3.5 511 263" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="S32K1xx에서 ADC 변환 결과를 SRAM으로 옮기는 DMA">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--blue, #336fb8)" />
+    </marker>
+  </defs>
+  <text x="20" y="32" font-size="12" fill="var(--text, #727981)">NXP S32K1xx</text>
+
+  <!-- 모듈 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="48" width="90" height="104" rx="2" />
+    <rect x="190" y="78" width="110" height="36" rx="2" />
+    <rect x="355" y="78" width="120" height="36" rx="2" />
+    <rect x="380" y="210" width="110" height="36" rx="2" />
+  </g>
+  <rect x="340" y="48" width="150" height="104" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="65" y="105">ADC</text>
+    <text x="245" y="101">멀티플렉서</text>
+    <text x="415" y="101">채널</text>
+    <text x="435" y="233">SRAM</text>
+  </g>
+  <text x="352" y="66" font-size="12" fill="var(--text, #727981)">DMA 컨트롤러</text>
+
+  <!-- 요청 -->
+  <g stroke="var(--blue, #336fb8)" stroke-width="1.5" marker-end="url(#arrow-blue)">
+    <line x1="110" y1="96" x2="188" y2="96" />
+    <line x1="300" y1="96" x2="353" y2="96" />
+    <line x1="370" y1="114" x2="370" y2="196" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="150" y="88">DMA 요청</text>
+    <text x="360" y="186" text-anchor="end">원하는 횟수만큼 변환이 끝나면</text>
+    <text x="360" y="202" text-anchor="end">채널 인터럽트 요청</text>
+  </g>
+
+  <!-- 데이터 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="110" y1="136" x2="338" y2="136" />
+    <line x1="435" y1="152" x2="435" y2="208" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="245" y="130" text-anchor="middle">변환 결과</text>
+    <text x="445" y="185">변환 결과</text>
+  </g>
+</svg>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 3.5 561 193" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="Mem의 메모리 장치, 뱅크, sector batch, 섹터">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <text x="20" y="32" font-size="12" fill="var(--text, #727981)">Mem</text>
+
+  <!-- 메모리 장치, 뱅크, sector batch -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20" y="44" width="520" height="132" rx="2" />
+    <rect x="32" y="72" width="244" height="92" rx="2" />
+    <rect x="284" y="72" width="244" height="92" rx="2" />
+    <rect x="44" y="98" width="112" height="56" rx="2" />
+    <rect x="164" y="98" width="100" height="56" rx="2" />
+    <rect x="296" y="98" width="112" height="56" rx="2" />
+    <rect x="416" y="98" width="100" height="56" rx="2" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="32" y="62">메모리 장치</text>
+    <text x="44" y="90">뱅크</text>
+    <text x="296" y="90">뱅크</text>
+    <text x="52" y="114">sector batch</text>
+    <text x="172" y="114">sector batch</text>
+    <text x="304" y="114">sector batch</text>
+    <text x="424" y="114">sector batch</text>
+  </g>
+
+  <!-- 섹터 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="52" y="120" width="32" height="26" />
+    <rect x="84" y="120" width="32" height="26" />
+    <rect x="116" y="120" width="32" height="26" />
+    <rect x="172" y="120" width="42" height="26" />
+    <rect x="214" y="120" width="42" height="26" />
+    <rect x="304" y="120" width="32" height="26" />
+    <rect x="336" y="120" width="32" height="26" />
+    <rect x="368" y="120" width="32" height="26" />
+    <rect x="424" y="120" width="42" height="26" />
+    <rect x="466" y="120" width="42" height="26" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="68" y="137">섹터</text>
+    <text x="100" y="137">섹터</text>
+    <text x="132" y="137">섹터</text>
+    <text x="193" y="137">섹터</text>
+    <text x="235" y="137">섹터</text>
+    <text x="320" y="137">섹터</text>
+    <text x="352" y="137">섹터</text>
+    <text x="384" y="137">섹터</text>
+    <text x="445" y="137">섹터</text>
+    <text x="487" y="137">섹터</text>
+  </g>
+</svg>

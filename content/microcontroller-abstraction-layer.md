@@ -24,7 +24,7 @@ MCAL은 비슷한 종류의 모듈을 묶은 여섯 모듈 그룹으로 이루�
 | 모듈 그룹                                                                 | 담는 것                                                                                                                                                                                                                            |
 | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Microcontroller Drivers                                                   | 내부 주변장치([[watchdog\|watchdog]], 범용 타이머 등)의 드라이버와 마이크로컨트롤러에 직접 접근하는 기능(core test 등). GPT(General Purpose Timer) Driver, Watchdog Driver, MCU Driver가 든다.                                     |
-| [[autosar-memory-stack\|Memory Drivers]]                                  | 온칩 메모리 장치(내부 플래시, 내부 EEPROM 등)와 메모리 맵 외부 메모리 장치(외부 플래시 등)의 드라이버                                                                                                                              |
+| [[autosar-memory-stack\|Memory Drivers]]                                  | 온칩 메모리 장치(내부 [[flash-memory\|플래시]], 내부 EEPROM 등)와 메모리 맵 외부 메모리 장치(외부 플래시 등)의 드라이버                                                                                                            |
 | [[autosar-crypto-stack#Crypto Interface와 Crypto Driver\|Crypto Drivers]] | SHE(Secure Hardware Extension), [[hardware-security-module\|HSM]] 같은 온칩 암호 장치의 드라이버                                                                                                                                   |
 | [[autosar-communication-stack\|Communication Drivers]]                    | SPI(Serial Peripheral Interface) 같은 ECU 보드 안 통신과 [[can\|CAN]] 같은 차량 통신의 드라이버                                                                                                                                    |
 | Wireless Communication Drivers                                            | 차량 안이나 차량 밖 통신에 쓰는 무선 네트워크 시스템의 드라이버. Wireless Ethernet Driver가 든다.                                                                                                                                  |
@@ -32,7 +32,7 @@ MCAL은 비슷한 종류의 모듈을 묶은 여섯 모듈 그룹으로 이루�
 
 Microcontroller Drivers에는 Core Test가, Memory Drivers에는 RAM Test와 Flash Test가, Communication Drivers에는 I2C Driver가 든다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-AUTOSAR R25-11의 Core Test 명세는 **Core Test**(CorTst)를 코어, 곧 CPU와 그에 가까이 붙은 MMU(Memory Management Unit)·MPU(Memory Protection Unit)·인터럽트 컨트롤러 같은 단위를 시험하는 모듈로 정의한다. Core Test를 구현하려면 코어 구조를 깊이 알아야 하므로, 실리콘 제조사가 AUTOSAR API로 구현해 라이브러리로 내놓는 것을 전제한다.[@autosar-cp-sws-coretest-2025]
+[[autosar|AUTOSAR]] R25-11의 Core Test 명세는 **Core Test**(CorTst)를 코어, 곧 CPU와 그에 가까이 붙은 MMU(Memory Management Unit)·[[memory-protection-unit|MPU]]·인터럽트 컨트롤러 같은 단위를 시험하는 모듈로 정의한다. Core Test를 구현하려면 코어 구조를 깊이 알아야 하므로, 실리콘 제조사가 AUTOSAR API로 구현해 라이브러리로 내놓는 것을 전제한다.[@autosar-cp-sws-coretest-2025]
 
 **RAM Test**(RamTst)는 RAM 셀이 물리적으로 성한지 시험하는 모듈이다. RAM의 내용은 시험하지 않으며, 레지스터로 쓰는 RAM도 시험한다. RAM Test는 시험 환경이 동기 호출로 부를 수도 있고(foreground test), [[task|태스크]] 등이 주기적으로 부를 수도 있다(background test).[@autosar-cp-sws-ramtest-2025]
 

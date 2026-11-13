@@ -44,7 +44,7 @@ AUTOSAR R25-11은 통신 경로의 fault를 실행 중에 검출하는 [[autosar
 
 ## MCU의 하드웨어 안전 메커니즘
 
-TI Hercules [[microcontroller|MCU]]는 하드웨어 안전 메커니즘으로 [[lockstep|lockstep]] CPU, [[error-correction-code|ECC]], BIST(Built-In Self-Test)를 둔다.[@ti-spry178-2011]
+TI Hercules [[microcontroller|MCU]]는 하드웨어 안전 메커니즘으로 [[lockstep|lockstep]] CPU, [[error-correction-code#메모리의 ECC|ECC]], BIST(Built-In Self-Test)를 둔다.[@ti-spry178-2011]
 
 TI Hercules와 AURIX TC3xx는 모두 시동 때 LBIST(logic built-in self-test)로 로직을 시험하고, 클록을 독립된 기준 클록과 견주어 클록의 이상을 검출하며, 칩 안 전압 감시로 공급 전압이 감시 범위를 벗어나면 리셋이나 alarm을 일으킨다. 두 MCU의 오류 신호 모듈은 MCU 안 안전 메커니즘의 error를 모아, 설정에 따라 인터럽트나 NMI(non-maskable interrupt)를 일으키거나 error 핀으로 MCU 밖에 알린다. 메커니즘마다 다른 점은 아래 표와 같다.[@ti-spry178-2011][@infineon-aurix-tc3xx-an0001-2025] [[system-basis-chip#Safety SBC|Safety SBC]]가 품은 BIST는 그 절에서 다룬다.
 

@@ -28,7 +28,7 @@ E2E 보호는 정보의 반복, 손실, 지연, 삽입, 위장, 잘못된 주소
 
 ## Memory partitioning
 
-Memory partitioning은 [[autosar-os-application|OS-Application]]들을 서로 보호되는 다른 메모리 영역(partition)에 두는 것이고, 한 partition에서 실행되는 코드는 다른 partition의 메모리를 고치지 못한다. Memory partitioning은 MPU(Memory Protection Unit)나 그와 비슷한 하드웨어 기능이 있는 마이크로컨트롤러에서 구현한다.[@autosar-cp-exp-functionalsafetymeasures-2025] [[autosar-os|AUTOSAR OS]]가 하는 보호는 OS-Application의 [[autosar-os-application#Memory protection|memory protection]]에서 다룬다.
+Memory partitioning은 [[autosar-os-application|OS-Application]]들을 서로 보호되는 다른 메모리 영역(partition)에 두는 것이고, 한 partition에서 실행되는 코드는 다른 partition의 메모리를 고치지 못한다. Memory partitioning은 [[memory-protection-unit|MPU]]나 그와 비슷한 하드웨어 기능이 있는 [[microcontroller|마이크로컨트롤러]]에서 구현한다.[@autosar-cp-exp-functionalsafetymeasures-2025] [[autosar-os|AUTOSAR OS]]가 하는 보호는 OS-Application의 [[autosar-os-application#Memory protection|memory protection]]에서 다룬다.
 
 Memory partitioning은 메모리 맵 하드웨어에 대한 접근도 제한하고, user mode로 실행되는 [[autosar-software-component|소프트웨어 컴포넌트]]는 재구성 같은 CPU 명령을 쓰는 데 제한을 받는다.[@autosar-cp-exp-functionalsafetymeasures-2025]
 

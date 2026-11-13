@@ -19,7 +19,7 @@ STMicroelectronics의 STM32F107xx와 Renesas RA MCU는 이더넷 MAC을 내장�
 
 IEEE 802.3-2022는 MAC 부계층이 목적지 주소 필드에 자기 개별 주소나 브로드캐스트 주소, 또는 상위 계층이 활성화한 그룹 주소가 든 프레임을 알아보고 받도록 정한다. MAC 부계층은 promiscuous 수신 모드를 둘 수 있고, 이 모드에서는 목적지 주소와 상관없이 유효한 프레임을 모두 받는다. 이 표준은 관리 속성 aPromiscuousStatus를 참으로 두면 이 모드가 켜지게 하고, 이 모드 때문에만 받은 프레임도 오류가 없으면 정상 수신으로, 오류가 있으면 해당 오류 카운터로 세도록 정한다.[@ieee-802-3-2022]
 
-MCU에 내장된 이더넷 MAC은 전용 DMA(Direct Memory Access)를 둔다. STM32F107xx와 Renesas RA의 이더넷 MAC은 MCU 밖의 PHY와 MII나 RMII(Reduced MII)로 이어진다.[@st-rm0008-2021][@renesas-r01an6628-2025]
+MCU에 내장된 이더넷 MAC은 전용 [[direct-memory-access|DMA]]를 둔다. STM32F107xx와 Renesas RA의 이더넷 MAC은 MCU 밖의 PHY와 MII나 RMII(Reduced MII)로 이어진다.[@st-rm0008-2021][@renesas-r01an6628-2025]
 
 ![[diagrams/ethernet-mcu-mac-phy.svg]]
 
