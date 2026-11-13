@@ -32,7 +32,7 @@ MCAL은 비슷한 종류의 모듈을 묶은 여섯 모듈 그룹으로 이루�
 
 Microcontroller Drivers에는 Core Test가, Memory Drivers에는 RAM Test와 Flash Test가, Communication Drivers에는 I2C Driver가 든다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-AUTOSAR R25-11의 Core Test 명세는 **Core Test**(CorTst)를 코어, 곧 CPU와 그에 가까이 붙은 MMU(Memory Management Unit)·MPU(Memory Protection Unit)·인터럽트 컨트롤러 같은 단위를 시험하는 모듈로 정의한다. Core Test를 구현하려면 코어 구조를 깊이 알아야 하므로, 실리콘 제조사가 AUTOSAR API로 구현해 라이브러리로 내놓는 것을 전제한다.[@autosar-cp-sws-coretest-2025]
+[[autosar|AUTOSAR]] R25-11의 Core Test 명세는 **Core Test**(CorTst)를 코어, 곧 CPU와 그에 가까이 붙은 MMU(Memory Management Unit)·[[memory-protection-unit|MPU]]·인터럽트 컨트롤러 같은 단위를 시험하는 모듈로 정의한다. Core Test를 구현하려면 코어 구조를 깊이 알아야 하므로, 실리콘 제조사가 AUTOSAR API로 구현해 라이브러리로 내놓는 것을 전제한다.[@autosar-cp-sws-coretest-2025]
 
 **RAM Test**(RamTst)는 RAM 셀이 물리적으로 성한지 시험하는 모듈이다. RAM의 내용은 시험하지 않으며, 레지스터로 쓰는 RAM도 시험한다. RAM Test는 시험 환경이 동기 호출로 부를 수도 있고(foreground test), [[task|태스크]] 등이 주기적으로 부를 수도 있다(background test).[@autosar-cp-sws-ramtest-2025]
 

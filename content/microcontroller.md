@@ -26,7 +26,7 @@ MCU는 순차 회로로 이뤄져 클록 신호가 필요하다. 전원을 넣�
 
 ## 메모리
 
-MCU의 메모리는 프로그램 코드와 데이터를 담는다. 많은 Renesas MCU는 ROM 대신 플래시를 쓰는데, 플래시는 ROM처럼 전원이 꺼져도 내용을 지키면서 ROM과 달리 다시 쓸 수 있다. 많은 single-chip MCU는 내부 RAM으로 SRAM을 쓴다. DRAM(dynamic RAM)은 고속 로직과 한 웨이퍼에 함께 만들기 어려워 single-chip MCU 안에는 대개 두지 않고, 칩 밖에 달아 주변 회로로 다룬다.[@renesas-engineer-school-mcu-01-2026]
+MCU의 메모리는 프로그램 코드와 데이터를 담는다. 많은 Renesas MCU는 ROM 대신 [[flash-memory|플래시]]를 쓰는데, 플래시는 ROM처럼 전원이 꺼져도 내용을 지키면서 ROM과 달리 다시 쓸 수 있다. 많은 single-chip MCU는 내부 RAM으로 SRAM을 쓴다. DRAM(dynamic RAM)은 고속 로직과 한 웨이퍼에 함께 만들기 어려워 single-chip MCU 안에는 대개 두지 않고, 칩 밖에 달아 주변 회로로 다룬다.[@renesas-engineer-school-mcu-01-2026]
 
 코어에 가까이 붙은 RAM은 코어가 빠르게 접근한다.[@arm-100026-2024][@infineon-aurix-tc3xx-memory-maps-training-2020] Arm Cortex-R52는 코어마다 지연이 가장 짧은 TCM(Tightly Coupled Memory)을 세 개 둘 수 있다. 이 TCM은 코어 전용이고, 접근 시간을 가장 잘 예측할 수 있다.[@arm-100026-2024] Infineon AURIX TC3xx의 프로그램 scratch-pad RAM(PSPR)과 데이터 scratch-pad RAM(DSPR)은 TriCore에 가까이 붙어, CPU가 다른 RAM과 플래시보다 빨리 코드와 데이터에 접근하게 한다.[@infineon-aurix-tc3xx-memory-maps-training-2020]
 
@@ -52,7 +52,7 @@ TriCore 명령어 집합 아키텍처는 MCU의 실시간성, DSP(Digital Signal
 
 ## 멀티코어
 
-Infineon AURIX는 TriCore CPU 여럿, 프로그램·데이터 메모리, 인터커넥트와 그 중재, 인터럽트 시스템, DMA 컨트롤러와, 직렬 컨트롤러·타이머·ADC 같은 온칩 주변장치를 갖춘 멀티코어 MCU 제품군이다. AURIX TC3xx와 TC4xx에서는 모든 주변장치가 FPI(Flexible Peripheral Interconnect)와 SRI(Shared Resource Interconnect)로 TriCore CPU와 시스템에 이어진다.[@infineon-aurix-tc3xx-overview-2025][@infineon-aurix-tc4xx-overview-2025]
+Infineon AURIX는 TriCore CPU 여럿, 프로그램·데이터 메모리, 인터커넥트와 그 중재, 인터럽트 시스템, [[direct-memory-access|DMA]] 컨트롤러와, 직렬 컨트롤러·타이머·ADC 같은 온칩 주변장치를 갖춘 멀티코어 MCU 제품군이다. AURIX TC3xx와 TC4xx에서는 모든 주변장치가 FPI(Flexible Peripheral Interconnect)와 SRI(Shared Resource Interconnect)로 TriCore CPU와 시스템에 이어진다.[@infineon-aurix-tc3xx-overview-2025][@infineon-aurix-tc4xx-overview-2025]
 
 Infineon AURIX TC4xx, Renesas RH850/U2A, NXP S32K3, TI AM263x의 CPU와 코어 구성은 다음과 같다.
 

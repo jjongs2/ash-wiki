@@ -48,7 +48,7 @@ VIRTIO(Virtual I/O Device) 1.4 명세는 가상 장치를 환경이나 운영체
 
 ## I/O 가상화
 
-I/O 가상화 방식은 가상 머신이 주변장치에 직접 접근하는 방식, VMM이 트랩한 접근을 받아 장치의 동작을 흉내 내는 trap-emulation, SR-IOV(Single-Root I/O Virtualisation)로 나뉜다. 주변장치의 DMA 요청을 다시 매핑해 가상 머신이 자기에게 배정된 메모리에만 닿게 하는 장치를 **IOMMU**(I/O Memory Management Unit)라 부른다.[@guo-virtualisation-technologies-2025]
+I/O 가상화 방식은 가상 머신이 주변장치에 직접 접근하는 방식, VMM이 트랩한 접근을 받아 장치의 동작을 흉내 내는 trap-emulation, SR-IOV(Single-Root I/O Virtualisation)로 나뉜다. 주변장치의 [[direct-memory-access|DMA]] 요청을 다시 매핑해 가상 머신이 자기에게 배정된 메모리에만 닿게 하는 장치를 **IOMMU**(I/O Memory Management Unit)라 부른다.[@guo-virtualisation-technologies-2025]
 
 NXP 앱노트 AN14355는 S32G3 기준 보드에서 QNX Hypervisor로 QNX와 Linux 게스트를 돌리며, 게스트를 네트워크에 잇는 두 방식을 보인다. 하나는 QNX Hypervisor의 VirtIO-Net 가상 네트워크 브리지를 거치는 간접 연결이고, 다른 하나는 드라이버 passthrough로 게스트가 네트워크 주변장치에 바로 닿는 직접 연결이다.[@nxp-an14355-2024]
 
@@ -71,3 +71,5 @@ DMA 컨트롤러 같은 다른 마스터도 가상 머신에 배정할 수 있�
 Armv8-R 프로세서에서는 게스트 운영체제가 도는 EL1 위의 EL2에서 코드가 돌 수 있어 가상화가 된다. 하이퍼바이저는 이 특권 수준에서 게스트 운영체제 하나 이상 위에 놓인다. PMSA(Protected Memory System Architecture)는 메모리 영역을 정의하고 다른 영역의 접근을 막아 공간 분리를 이룬다. 그래서 한 게스트 운영체제는 대개 다른 게스트 운영체제가 쓰는 영역에 닿지 못하고, 게스트 운영체제의 코드는 하이퍼바이저의 코드나 데이터 영역에 닿지 못한다.[@arm-102909-2026]
 
 Arm Cortex-R52는 가상화 기술로 PMSA context 여럿을 한 코어에서 서로 떼어 담아 돌려, 어느 context도 자기보다 중요도가 높은 context의 응답 시간과 결정성에 영향을 주지 못하게 한다.[@arm-100026-2024]
+
+Cortex-R52의 메모리 보호 장치가 가상화를 돕는 방식은 [[memory-protection-unit#가상화 지원|MPU]]에서 다룬다.

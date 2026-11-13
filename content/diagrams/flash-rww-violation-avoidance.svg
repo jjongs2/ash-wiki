@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 384" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="RWW 위반과 그것을 피하는 두 방법">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <text x="20" y="32" font-size="12" fill="var(--text, #727981)">NXP 앱노트</text>
+
+  <!-- 경우 -->
+  <g fill="var(--text, #727981)">
+    <text x="20" y="66">RWW 위반</text>
+    <text x="20" y="176">다른 블록에서 실행</text>
+    <text x="20" y="286">SRAM에서 실행</text>
+  </g>
+
+  <!-- 블록과 SRAM 틀 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20" y="78" width="340" height="64" rx="2" />
+    <rect x="20" y="188" width="340" height="64" rx="2" />
+    <rect x="380" y="188" width="160" height="64" rx="2" />
+    <rect x="20" y="298" width="340" height="64" rx="2" />
+    <rect x="380" y="298" width="160" height="64" rx="2" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="30" y="96">블록</text>
+    <text x="30" y="206">블록</text>
+    <text x="390" y="206">다른 블록</text>
+    <text x="30" y="316">블록</text>
+    <text x="390" y="316">SRAM</text>
+  </g>
+
+  <!-- 섹터 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="110" y="104" width="80" height="30" />
+    <rect x="270" y="104" width="80" height="30" />
+    <rect x="110" y="214" width="80" height="30" />
+    <rect x="190" y="214" width="80" height="30" />
+    <rect x="270" y="214" width="80" height="30" />
+    <rect x="460" y="214" width="70" height="30" />
+    <rect x="110" y="324" width="80" height="30" />
+    <rect x="190" y="324" width="80" height="30" />
+    <rect x="270" y="324" width="80" height="30" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="150" y="123">섹터</text>
+    <text x="310" y="123">섹터</text>
+    <text x="150" y="233">섹터</text>
+    <text x="230" y="233">섹터</text>
+    <text x="310" y="233">섹터</text>
+    <text x="495" y="233">섹터</text>
+    <text x="150" y="343">섹터</text>
+    <text x="230" y="343">섹터</text>
+    <text x="310" y="343">섹터</text>
+  </g>
+
+  <!-- 지우기·쓰기 -->
+  <g stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)">
+    <rect x="30" y="104" width="80" height="30" />
+    <rect x="30" y="214" width="80" height="30" />
+    <rect x="30" y="324" width="80" height="30" />
+  </g>
+
+  <!-- 실행 -->
+  <g stroke="var(--blue, #336fb8)" stroke-width="1.5" fill="var(--blue-tint, #336fb8)">
+    <rect x="190" y="104" width="80" height="30" />
+    <rect x="390" y="214" width="70" height="30" />
+    <rect x="390" y="324" width="70" height="30" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">
+    <text x="70" y="123">지우기·쓰기</text>
+    <text x="70" y="233">지우기·쓰기</text>
+    <text x="70" y="343">지우기·쓰기</text>
+    <text x="230" y="123">코드 실행</text>
+    <text x="425" y="233">루틴 실행</text>
+    <text x="425" y="343">루틴 실행</text>
+  </g>
+</svg>

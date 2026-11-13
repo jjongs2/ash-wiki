@@ -26,7 +26,7 @@ OS-Application은 trusted와 non-trusted 둘로 나뉜다.[@autosar-cp-sws-os-20
 
 AUTOSAR R25-11 Layered Software Architecture와 용어집은 OS-Application의 trusted 속성을 [[automotive-safety-integrity-level|ASIL]]과 관계없는 것으로 둔다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025][@autosar-fo-tr-glossary-2025]
 
-AUTOSAR R25-11 Guide to BSW Distribution은 시스템에 ASIL BSW(Basic Software) 파티션이 있으면, MPU(Memory Protection Unit) 설정 같은 하드웨어 레지스터가 바뀌지 않도록 QM(Quality Management) BSW 파티션을 되도록 user mode로 돌리기를 강하게 권한다. 하드웨어가 supervisor mode만 지원하는 등 그럴 수 없으면 [[freedom-from-interference|freedom from interference]]를 보장할 추가 수단이 필요하다.[@autosar-cp-exp-bswdistributionguide-2025] BSW를 ASIL 파티션과 QM 파티션에 나누는 방법은 [[autosar-layered-architecture#안전 관련 ECU|AUTOSAR 계층 구조]]에서 다룬다.
+AUTOSAR R25-11 Guide to BSW Distribution은 시스템에 ASIL BSW(Basic Software) 파티션이 있으면, [[memory-protection-unit|MPU]] 설정 같은 하드웨어 레지스터가 바뀌지 않도록 QM(Quality Management) BSW 파티션을 되도록 user mode로 돌리기를 강하게 권한다. 하드웨어가 supervisor mode만 지원하는 등 그럴 수 없으면 [[freedom-from-interference|freedom from interference]]를 보장할 추가 수단이 필요하다.[@autosar-cp-exp-bswdistributionguide-2025] BSW를 ASIL 파티션과 QM 파티션에 나누는 방법은 [[autosar-layered-architecture#안전 관련 ECU|AUTOSAR 계층 구조]]에서 다룬다.
 
 ## AUTOSAR 소프트웨어의 배치
 
@@ -50,7 +50,7 @@ OS-Application은 두 상태 가운데 하나에 있다. APPLICATION_ACCESSIBLE�
 
 ## Memory protection
 
-**Memory protection**은 실행 프로그램의 데이터, 코드, 스택 섹션을 바탕으로 하는 AUTOSAR OS의 보호다. [[autosar-os#Scalability class|scalability class]] 가운데 SC3과 SC4에 들고, 하드웨어 요건은 MPU(Memory Protection Unit)다. memory protection은 하드웨어 지원이 있는 프로세서에서만 할 수 있다. 보호는 OS가 관리하는 객체에만 할 수 있다. 그래서 [[osek-isr#Category 1|category 1 ISR]]이 실행되는 동안은 보호하지 못하고, 같은 태스크나 [[osek-isr#Category 2|category 2 ISR]] 본문에서 부른 함수 사이도 보호하지 못한다.[@autosar-cp-sws-os-2025]
+**Memory protection**은 실행 프로그램의 데이터, 코드, 스택 섹션을 바탕으로 하는 AUTOSAR OS의 보호다. [[autosar-os#Scalability class|scalability class]] 가운데 SC3과 SC4에 들고, 하드웨어 요건은 MPU다. memory protection은 하드웨어 지원이 있는 프로세서에서만 할 수 있다. 보호는 OS가 관리하는 객체에만 할 수 있다. 그래서 [[osek-isr#Category 1|category 1 ISR]]이 실행되는 동안은 보호하지 못하고, 같은 태스크나 [[osek-isr#Category 2|category 2 ISR]] 본문에서 부른 함수 사이도 보호하지 못한다.[@autosar-cp-sws-os-2025]
 
 OS는 공유 라이브러리 코드를 모든 OS-Application이 실행할 수 있는 섹션에 둘 수 있게 한다.[@autosar-cp-sws-os-2025] [[autosar-library|라이브러리]]는 부른 쪽의 context에서, 부른 쪽과 같은 보호 환경으로 실행된다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 

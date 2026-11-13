@@ -39,7 +39,7 @@ OSEK OS는 [[osek-alarm|counter]]를 직접 다루는 표준 API를 두지 않�
 
 ## Stack monitoring
 
-**Stack monitoring**은 태스크와 [[osek-isr#Category 2|category 2 ISR]]이 정해 둔 스택 사용량을 넘었는지 검사하는 기능이다. 검사는 [[context-switch|context switch]] 때 하므로, 넘침이 일어난 뒤 그것을 찾기까지 시간이 꽤 걸릴 수 있다. 넘침을 찾으면 OS는 protection hook을 E_OS_STACKFAULT로 부르고, protection hook이 없으면 E_OS_STACKFAULT로 `ShutdownOS`를 부른다. MPU(Memory Protection Unit)를 쓰는 SC3·SC4 시스템에서는 스택에 건 memory protection이 stack monitoring보다 먼저 스택 넘침을 메모리 접근 위반으로 찾을 수 있고, 이때 OS는 protection hook을 E_OS_PROTECTION_MEMORY로 부른다.[@autosar-cp-sws-os-2025]
+**Stack monitoring**은 태스크와 [[osek-isr#Category 2|category 2 ISR]]이 정해 둔 스택 사용량을 넘었는지 검사하는 기능이다. 검사는 [[context-switch|context switch]] 때 하므로, 넘침이 일어난 뒤 그것을 찾기까지 시간이 꽤 걸릴 수 있다. 넘침을 찾으면 OS는 protection hook을 E_OS_STACKFAULT로 부르고, protection hook이 없으면 E_OS_STACKFAULT로 `ShutdownOS`를 부른다. [[memory-protection-unit|MPU]]를 쓰는 SC3·SC4 시스템에서는 스택에 건 memory protection이 stack monitoring보다 먼저 스택 넘침을 메모리 접근 위반으로 찾을 수 있고, 이때 OS는 protection hook을 E_OS_PROTECTION_MEMORY로 부른다.[@autosar-cp-sws-os-2025]
 
 ## Service protection
 
@@ -85,7 +85,7 @@ protection hook을 두지 않으면 OS는 보호 오류에서 `ShutdownOS`를 �
 
 OS는 인터럽트 제어 레지스터, 프로세서 상태 워드, 스택 포인터 같은 하드웨어 자원에 자유롭게 접근해 스스로 관리하는 것을 전제로 한다. 확장 기능은 하드웨어 요건을 더하며, 그 기능을 쓰지 않는 시스템에는 그 요건이 없다.[@autosar-cp-sws-os-2025]
 
-- [[autosar-os-application#Memory protection|memory protection]]에는 하드웨어 MPU(Memory Protection Unit)가 있어야 한다.
+- [[autosar-os-application#Memory protection|memory protection]]에는 하드웨어 MPU가 있어야 한다.
 - timing protection에는 실행 시간과 도착률을 감시할 타이머 하드웨어가 있어야 한다.
 - 보호에는 MCU의 privileged mode와 non-privileged mode가 있어야 한다. 두 모드는 OS가 제어하는 레지스터에 쓰는 일로 OS 내부가 망가지지 않게 하고, OS-Application이 memory protection 레지스터나 프로세서 상태 워드에 써서 보호를 우회하지 못하게 하려는 것이다. privileged mode는 보호받는 OS가 온전히 제어하며, OS 안에서 쓰고 non-trusted OS-Application과 trusted OS-Application 사이에서 제어를 넘기는 데 쓴다. 프로세서가 지원하면 trusted OS-Application은 privileged mode에서 실행될 수 있고, non-trusted OS-Application은 non-privileged mode에서 실행된다.
 - 로컬·전역 시간 동기화에는 전역 시간 소스가 있어야 한다.[@autosar-cp-sws-os-2025]

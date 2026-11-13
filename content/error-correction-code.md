@@ -2,6 +2,7 @@
 title: ECC
 tags:
   - network
+  - hardware/mcu-soc
 aliases:
   - 오류 정정 부호
 verified: 2026-09-29
@@ -43,9 +44,17 @@ Microchip CoreEDAC 사용자 가이드에 따르면 고치는 오류가 많을�
 
 메모리에 저장된 비트는 알파 입자나 중성자 같은 방사선 때문에 뒤집힐 수 있다.[@nxp-an12522-2019][@ti-spraco4a-2021]
 
-TI TMS570LS0914는 플래시와 RAM에 ECC를 두어, 단일 비트 오류를 고치고 이중 비트 오류를 찾아낸다.[@ti-tms570ls0914-2016] NXP S32K1xx는 플래시와 SRAM에 ECC를 두어 단일 비트 오류를 고치고, 고칠 수 없는 오류는 알린다. S32K11x의 SRAM_L에는 ECC가 없다.[@nxp-an12522-2019]
+TI TMS570LS0914는 [[flash-memory|플래시]]와 RAM에 ECC를 두어, 단일 비트 오류를 고치고 이중 비트 오류를 찾아낸다.[@ti-tms570ls0914-2016] NXP S32K1xx는 플래시와 SRAM에 ECC를 두어 단일 비트 오류를 고치고, 고칠 수 없는 오류는 알린다. S32K11x의 SRAM_L에는 ECC가 없다. SRAM에서 고친 단일 비트 오류는 ERM(Error Reporting Module) 인터럽트로 알릴 수 있다.[@nxp-an12522-2019]
 
 TI Hercules MCU는 SRAM과 플래시의 ECC를 실행 중의 하드웨어 [[safety-mechanism|안전 메커니즘]]으로 쓴다.[@ti-spry178-2011] NXP 앱노트 AN13566에 따르면 ECC 메모리는 [[iso-26262|ISO 26262]] 같은 [[functional-safety|기능 안전]] 준수가 필요한 시스템에 알맞다.[@nxp-an13566-2022]
+
+메모리의 ECC 회로는 고친 단일 비트 오류와 고칠 수 없는 오류를 따로 알린다.[@nxp-an12522-2019][@infineon-aurix-tc3xx-mtu-training-2020] TI TMS570LS31x/21x의 TCRAM(Tightly-Coupled RAM) 모듈은 단일 비트 오류와 다중 비트 오류를 알리는 신호를 ESM(Error Signaling Module)으로 내고, 그 오류가 난 횟수와 오류가 난 RAM 주소를 레지스터에 남긴다.[@ti-spnu499c-2018] Infineon AURIX TC3xx에서는 MTU(Memory Test Unit)가 SRAM의 correctable error 경보와 uncorrectable critical error 경보를 SMU(Safety Management Unit)로 보낸다.[@infineon-aurix-tc3xx-mtu-training-2020]
+
+NXP S32K1xx의 SRAM은 리셋 뒤 내용이 정해지지 않아, 쓰기 전에 읽으면 고칠 수 없는 ECC 오류가 나기 쉽다. 그래서 전원을 넣은 뒤 모든 주소에 아는 값을 써서 SRAM을 초기화해야 한다.[@nxp-an12522-2019] AURIX TC3xx는 MTU로 SRAM마다 따로 초기화할 수 있으며, 모든 자리에 0을 쓰거나 사용자가 고른 패턴으로 채운다. 어느 쪽이든 CPU는 SRAM에 접근하지 않는다.[@infineon-aurix-tc3xx-mtu-training-2020] TMS570LS31x/21x의 TCRAM 모듈은 CPU 데이터 RAM의 자동 초기화를 지원한다.[@ti-spnu499c-2018]
+
+NXP S32K1xx는 진단용으로 SRAM 읽기 데이터에 단일 비트 반전과 다중 비트 반전을 일으키는 EIM(Error Injection Module)을 두고, NXP는 안전 응용에서 SRAM에 오류를 주입해 그 오류가 보고되는지 확인하기를 권한다. 플래시에서는 플래시 메모리 모듈이 이중 비트 오류 플래그가 켜진 것처럼 흉내 내어, 그 인터럽트 처리 루틴을 시험하게 한다. 실제로 이중 비트 오류가 나면 플래시 컨트롤러가 버스 오류 응답을 내어 bus fault를 일으키고, bus fault는 기본으로 꺼져 있으므로 hard fault로 올라간다.[@nxp-an12522-2019]
+
+AURIX TC3xx의 코드 플래시 PFlash는 데이터 256비트마다 ECC 비트를 붙인 DEC-TED(Double Error Correction, Triple Error Detection) 부호로 2비트 오류까지 고치고 3비트 오류를 찾아내며, 주소 오류도 찾는다. 데이터 플래시 DFlash는 데이터 64비트마다 ECC 비트를 붙인 TEC-QED(Triple Error Correction, Quad Error Detection) 부호로 3비트 오류까지 고치고 4비트 오류를 찾아내지만, 주소 오류는 찾지 못한다.[@infineon-aurix-tc3xx-nvm-training-2020] TMS570LS31x/21x의 F021 플래시는 SECDED ECC를 계산할 때 주소 비트도 넣는다.[@ti-spnu499c-2018]
 
 ## Reed-Solomon 부호
 

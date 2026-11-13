@@ -11,11 +11,21 @@ verified: 2026-09-30
 
 - **Memory Services**: 이 층의 NvM과 BndM은 둘 다 자기가 쓰는 비휘발성 메모리를 추상화해 비휘발성 데이터를 다룬다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 - **Memory Hardware Abstraction**: MemIf, Fee, Ea, MemAcc로 이루어진다. 메모리 장치가 칩 안에 있는지 보드 위에 있는지와 ECU 하드웨어 배치를 감추고, 위 층에 메모리 장치와 상관없는 인터페이스를 준다.
-- **Memory Drivers**: Mem이 플래시, EEPROM 같은 메모리 장치를 읽고, 쓰고, 지우고, 비었는지 검사하는 기본 서비스를 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025][@autosar-cp-sws-memorydriver-2025]
+- **Memory Drivers**: Mem이 [[flash-memory|플래시]], EEPROM 같은 메모리 장치를 읽고, 쓰고, 지우고, 비었는지 검사하는 기본 서비스를 준다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025][@autosar-cp-sws-memorydriver-2025]
 
 ![[diagrams/autosar-memory-stack-layers.svg]]
 
 칩 안의 메모리 장치와 메모리 맵 외부 장치의 드라이버는 [[microcontroller-abstraction-layer|MCAL]]의 Memory Drivers에, 그 밖의 외부 메모리 장치를 다루는 [[ecu-abstraction-layer#External driver|external driver]]는 ECU Abstraction Layer에 놓인다. AUTOSAR Classic Platform R25-11의 [[autosar-layered-architecture|Layered Software Architecture]]는 이전 릴리스에 있던 Fls(Flash Driver)와 Eep(EEPROM Driver)를 뺐다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
+
+## Mem
+
+Mem에서 **write page**는 메모리 장치에 한 번에 써야 하는 가장 작은 단위다. **Sector batch**는 크기가 같은 연속 섹터를 논리적으로 묶은 것이고, **뱅크**(bank)는 sector batch들의 묶음으로 그 안에서는 read-while-write가 허용되지 않는다. 플래시 메모리 장치에서 뱅크는 대개 플래시 컨트롤러 하나에 대응한다. 한 뱅크를 쓰거나 지우는 동안 다른 뱅크를 읽는 메모리 장치의 능력은 **RWW**(Read While Write)라 한다.[@autosar-cp-sws-memorydriver-2025]
+
+![[diagrams/mem-bank-sector-batch-write-page.svg]]
+
+메모리 하드웨어가 [[error-correction-code#메모리의 ECC|ECC]] 정보를 주면, Mem은 고칠 수 없는 ECC 오류를 검사해 job 결과를 MEM_ECC_UNCORRECTED로 두고 처리하던 job을 멈춘다. 고칠 수 있는 ECC 오류면 job 처리를 이어 가고, job이 끝나면 결과를 MEM_ECC_CORRECTED로 둔다.[@autosar-cp-sws-memorydriver-2025]
+
+오류 반응은 시스템 수준에서 다뤄야 하므로 ECC 오류도 시스템 수준에서 다룬다. Mem은 시스템의 ECC 오류 처리기가 메모리 ECC 오류를 위 층에 넘길 때 부르는 `Mem_PropagateError` API를 준다.[@autosar-cp-sws-memorydriver-2025]
 
 ## MemIf
 
