@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 384" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="RWW 위반과 그것을 피하는 두 방법">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
-  <text x="20" y="32" font-size="12" fill="var(--text, #727981)">NXP 앱노트</text>
+  <text x="20" y="32" font-size="12" fill="var(--text, #727981)">NXP 앱노트 AN4695</text>
 
   <!-- 경우 -->
   <g fill="var(--text, #727981)">

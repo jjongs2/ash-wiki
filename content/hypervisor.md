@@ -72,4 +72,4 @@ Armv8-R 프로세서에서는 게스트 운영체제가 도는 EL1 위의 EL2에
 
 Arm Cortex-R52는 가상화 기술로 PMSA context 여럿을 한 코어에서 서로 떼어 담아 돌려, 어느 context도 자기보다 중요도가 높은 context의 응답 시간과 결정성에 영향을 주지 못하게 한다.[@arm-100026-2024]
 
-Cortex-R52의 메모리 보호 장치가 가상화를 돕는 방식은 [[memory-protection-unit#가상화 지원|MPU]]에서 다룬다.
+Cortex-R52의 메모리 보호와 가상화는 [[memory-protection-unit#가상화 지원|MPU]]에서 다룬다.

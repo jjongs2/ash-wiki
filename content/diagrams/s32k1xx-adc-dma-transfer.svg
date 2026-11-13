@@ -30,12 +30,12 @@
   <g stroke="var(--blue, #336fb8)" stroke-width="1.5" marker-end="url(#arrow-blue)">
     <line x1="110" y1="96" x2="188" y2="96" />
     <line x1="300" y1="96" x2="353" y2="96" />
-    <path d="M370 114 V228 H222" />
+    <line x1="370" y1="114" x2="370" y2="196" />
   </g>
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="150" y="88">DMA 요청</text>
-    <text x="212" y="224" text-anchor="end">원하는 횟수만큼 변환이 끝나면</text>
-    <text x="212" y="240" text-anchor="end">채널 인터럽트 요청</text>
+    <text x="360" y="186" text-anchor="end">원하는 횟수만큼 변환이 끝나면</text>
+    <text x="360" y="202" text-anchor="end">채널 인터럽트 요청</text>
   </g>
 
   <!-- 데이터 -->

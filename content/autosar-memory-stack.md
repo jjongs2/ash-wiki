@@ -19,13 +19,13 @@ verified: 2026-09-30
 
 ## Mem
 
-Mem에서 **write page**는 메모리 장치에 한 번에 써야 하는 가장 작은 단위다. **Sector batch**는 크기가 같은 연속 섹터를 논리적으로 묶은 것이고, **뱅크**(bank)는 sector batch들의 묶음으로 그 안에서는 read-while-write가 허용되지 않는다. 플래시 메모리 장치에서 뱅크는 대개 플래시 컨트롤러 하나에 대응한다. 한 뱅크를 쓰거나 지우는 동안 다른 뱅크를 읽는 메모리 장치의 능력은 **RWW**(Read While Write)라 한다.[@autosar-cp-sws-memorydriver-2025]
+Mem에서 **write page**는 메모리 장치에 한 번에 써야 하는 가장 작은 단위다. **Sector batch**는 크기가 같은 연속 섹터를 논리적으로 묶은 것이고, **뱅크**(bank)는 sector batch들의 묶음이고, 한 뱅크 안에서는 read-while-write가 허용되지 않는다. 플래시 메모리 장치에서 뱅크는 대개 플래시 컨트롤러 하나에 대응한다. Mem에서 [[flash-memory#뱅크와 RWW|RWW]]는 한 뱅크를 쓰거나 지우는 동안 다른 뱅크를 읽는 메모리 장치의 능력이다.[@autosar-cp-sws-memorydriver-2025]
 
-![[diagrams/mem-bank-sector-batch-write-page.svg]]
+![[diagrams/mem-device-bank-sector-batch.svg]]
 
-메모리 하드웨어가 [[error-correction-code#메모리의 ECC|ECC]] 정보를 주면, Mem은 고칠 수 없는 ECC 오류를 검사해 job 결과를 MEM_ECC_UNCORRECTED로 두고 처리하던 job을 멈춘다. 고칠 수 있는 ECC 오류면 job 처리를 이어 가고, job이 끝나면 결과를 MEM_ECC_CORRECTED로 둔다.[@autosar-cp-sws-memorydriver-2025]
+메모리 하드웨어가 [[error-correction-code#메모리의 ECC|ECC]] 정보를 주면, Mem은 고칠 수 없는 ECC 오류를 검사해 [[autosar-memory-stack#비동기 job|job]] 결과를 MEM_ECC_UNCORRECTED로 두고 처리하던 job을 멈춘다. 고칠 수 있는 ECC 오류면 job 처리를 이어 가고, job이 끝나면 결과를 MEM_ECC_CORRECTED로 둔다.[@autosar-cp-sws-memorydriver-2025]
 
-오류 반응은 시스템 수준에서 다뤄야 하므로 ECC 오류도 시스템 수준에서 다룬다. Mem은 시스템의 ECC 오류 처리기가 메모리 ECC 오류를 위 층에 넘길 때 부르는 `Mem_PropagateError` API를 준다.[@autosar-cp-sws-memorydriver-2025]
+ECC 오류도 오류 반응처럼 시스템 수준에서 다룬다. 시스템의 ECC 오류 처리기는 Mem이 주는 `Mem_PropagateError` API를 불러 메모리 ECC 오류를 위 층에 넘길 수 있다.[@autosar-cp-sws-memorydriver-2025]
 
 ## MemIf
 

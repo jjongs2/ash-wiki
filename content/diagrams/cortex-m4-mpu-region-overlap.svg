@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 3.5 538.5 417" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="Cortex-M4 MPU에서 겹친 영역과 background region">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 3.5 432.5 372.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="Cortex-M4 MPU에서 겹친 영역이 따르는 속성">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -8,45 +8,30 @@
   <text x="20" y="32" font-size="12" fill="var(--text, #727981)">Arm Cortex-M4</text>
 
   <!-- 주소 축 -->
-  <line x1="30" y1="400" x2="30" y2="94" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="30" y="80" text-anchor="middle" font-size="12" fill="var(--text, #727981)">주소</text>
+  <line x1="30" y1="356" x2="30" y2="94" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 
   <!-- 열 이름 -->
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
-    <text x="105" y="62">background region</text>
-    <text x="105" y="78">특권 소프트웨어만</text>
-    <text x="221" y="78">번호가 작은 영역</text>
-    <text x="330" y="78">번호가 큰 영역</text>
-    <text x="463" y="78">따르는 속성</text>
-  </g>
-
-  <!-- background region -->
-  <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)">
-    <rect x="50" y="92" width="110" height="308" />
-    <rect x="408" y="92" width="110" height="68" />
-    <rect x="408" y="340" width="110" height="60" />
-  </g>
-  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
-    <text x="463" y="123">background</text>
-    <text x="463" y="139">region</text>
-    <text x="463" y="367">background</text>
-    <text x="463" y="383">region</text>
+    <text x="30" y="78">주소</text>
+    <text x="100" y="78">번호가 작은 영역</text>
+    <text x="216" y="78">번호가 큰 영역</text>
+    <text x="357" y="78">따르는 속성</text>
   </g>
 
   <!-- 번호가 작은 영역 -->
   <g stroke="var(--blue, #336fb8)" stroke-width="1.5" fill="var(--blue-tint, #336fb8)">
-    <rect x="174" y="230" width="95" height="110" />
-    <rect x="408" y="270" width="110" height="70" />
+    <rect x="50" y="190" width="100" height="140" />
+    <rect x="302" y="260" width="110" height="70" />
   </g>
   <!-- 번호가 큰 영역 -->
   <g stroke="var(--orange, #b0540d)" stroke-width="1.5" fill="var(--orange-tint, #b0540d)">
-    <rect x="283" y="160" width="95" height="110" />
-    <rect x="408" y="160" width="110" height="110" />
+    <rect x="166" y="120" width="100" height="140" />
+    <rect x="302" y="120" width="110" height="140" />
   </g>
   <g text-anchor="middle" font-size="12" fill="var(--on-fill, #f8fafd)">
-    <text x="463" y="219">번호가 큰 영역</text>
-    <text x="463" y="309">번호가 작은 영역</text>
+    <text x="357" y="194">번호가 큰 영역</text>
+    <text x="357" y="299">번호가 작은 영역</text>
   </g>
 
-  <line x1="384" y1="246" x2="402" y2="246" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="272" y1="225" x2="296" y2="225" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
 </svg>
