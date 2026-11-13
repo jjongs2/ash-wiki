@@ -8,7 +8,7 @@ aliases:
 verified: 2026-11-13
 ---
 
-**Watchdog**은 [[microcontroller|MCU]]가 정한 때에 watchdog을 트리거하는지 감시해, 제때 트리거하지 않으면 MCU가 바르게 돌지 않는다고 보고 이를 알리거나 리셋을 일으키는 장치다.[@ti-ssztah7-2017][@infineon-tlf35584-2017]
+**Watchdog**은 [[microcontroller|MCU]]가 정한 때에 watchdog에 트리거 신호를 보내는지 감시해, 제때 보내지 않으면 MCU가 바르게 돌지 않는다고 보고 이를 알리거나 리셋을 일으키는 장치다.[@ti-ssztah7-2017][@infineon-tlf35584-2017]
 
 Watchdog은 MCU 안에 넣기도 하고 MCU 밖의 칩에 두기도 한다.[@ti-ssztah7-2017][@infineon-aurix-tc3xx-an0001-2025] 트리거를 받아도 되는 때는 watchdog 주기 전체이기도 하고, 주기 안의 정한 window로 좁혀지기도 한다.[@nxp-uja1169-2016][@infineon-tle9471-3es-2022]
 
@@ -18,7 +18,7 @@ AURIX TC3xx는 CPU마다 watchdog timer를 두고, 공유 자원을 위한 safet
 
 TI 기술 기사에 따르면 MCU에 넣은 watchdog은 다른 칩이 필요 없어 쓰기 쉽지만, MCU를 오동작하게 한 코드 문제가 그 watchdog을 뜻하지 않게 꺼 버릴 수도 있다. 그래서 watchdog을 품은 voltage supervisor로 전원 전압과 watchdog 신호를 MCU 밖에서 함께 감시하기도 한다.[@ti-ssztah7-2017]
 
-TI는 TMS320F28003x 실시간 MCU의 기능 안전 매뉴얼에서 내부 watchdog보다 외부 watchdog을 쓰기를 권한다. 외부 watchdog은 감시 대상과 따로 된 클록·리셋·전원을 써 [[safety-analysis#Dependent failure 분석|common mode failure]]의 리스크를 줄인다. 클록·전원·리셋 같은 common cause failure에도 외부 watchdog을 쓰기를 권한다.[@ti-sffs277-2023]
+TI는 TMS320F28003x 실시간 MCU의 기능 안전 매뉴얼에서 내부 watchdog보다 외부 watchdog을 쓰기를 권한다. 외부 watchdog은 감시 대상과 따로 된 클록·리셋·전원을 써 [[safety-analysis#Dependent failure 분석|common mode failure]]의 리스크를 줄인다.[@ti-sffs277-2023]
 
 MCU 밖의 watchdog은 [[system-basis-chip|SBC]]나 안전 전원 칩에 들기도 한다.[@infineon-tlf35584-2017][@nxp-uja1169-2016] 안전 전원 칩이 watchdog과 함께 MCU의 전원과 error 신호를 감시하는 것은 [[safety-mechanism#MCU의 하드웨어 안전 메커니즘|MCU의 하드웨어 안전 메커니즘]]에서 다룬다.
 
@@ -26,7 +26,7 @@ MCU 밖의 watchdog은 [[system-basis-chip|SBC]]나 안전 전원 칩에 들기�
 
 **Timeout watchdog**은 watchdog 주기 안 아무 때나 트리거를 받는 watchdog이다.[@nxp-uja1169-2016][@infineon-tle9471-3es-2022]
 
-**Window watchdog**은 정한 하한과 상한 사이에 트리거를 받아야 하는 watchdog이다.[@autosar-cp-sws-watchdogdriver-2025][@ti-tps3430-q1-2021] Window watchdog은 트리거가 너무 늦을 때뿐 아니라 너무 이를 때도 fault로 본다.[@infineon-tlf35584-2017][@nxp-uja1169-2016]
+**Window watchdog**은 정한 하한과 상한 사이에 트리거를 받아야 하는 watchdog이다.[@autosar-cp-sws-watchdogdriver-2025][@ti-tps3430-q1-2021] Window watchdog은 트리거가 너무 늦을 때뿐 아니라 너무 이를 때도 [[fault-error-failure|fault]]로 본다.[@infineon-tlf35584-2017][@nxp-uja1169-2016]
 
 TPS3430-Q1은 TI의 차량용 window watchdog 타이머로, watchdog 입력이 window 밖이면 watchdog 출력으로 fault를 알린다.[@ti-tps3430-q1-2021]
 
@@ -34,9 +34,9 @@ NXP의 SBC UJA1169는 Window 모드와 Timeout 모드를 함께 둔다.[@nxp-uja
 
 ![[diagrams/watchdog-timeout-window-fault.svg]]
 
-TI 백서에 따르면 단일 임계값 watchdog에서는 시스템이 fault 상태에 빠져도 임계에 이르기 전에 watchdog 계수기가 여러 번 다시 시작되어, 그 상태를 놓칠 수 있다. Window watchdog은 정한 window 안에서 CPU의 응답을 요구해 이를 막고, CPU가 돈다는 것과 함께 CPU가 맞는 시간 기준으로 돈다는 것도 보인다.[@ti-spry178-2011]
+TI 백서에 따르면 단일 임계값 watchdog에서는 시스템이 fault 상태에 빠져도 임계에 이르기 전에 watchdog이 여러 번 리셋되어, 그 상태를 놓칠 수 있다. Window watchdog은 정한 window 안에서 CPU의 응답을 요구해 이를 막고, CPU가 돈다는 것과 함께 CPU가 맞는 시간 기준으로 돈다는 것도 보인다.[@ti-spry178-2011]
 
-TI는 TMS320F28003x 실시간 MCU의 기능 안전 매뉴얼에서 단일 임계값 watchdog보다 더 많은 [[fault-error-failure|failure]] mode를 검출하는 program sequence, window, 질의-응답 watchdog을 쓰기를 권한다.[@ti-sffs277-2023]
+TI는 TMS320F28003x 실시간 MCU의 기능 안전 매뉴얼에서 단일 임계값 watchdog보다 더 많은 failure mode를 검출하는 program sequence, window, 질의-응답 watchdog을 쓰기를 권한다.[@ti-sffs277-2023]
 
 ## 질의-응답 watchdog
 

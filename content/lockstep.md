@@ -24,7 +24,7 @@ Hercules는 common mode failure를 줄이는 방법으로 CPU 둘레에 전압 g
 
 AURIX TC3xx는 lockstep 비교기를 배경에서 늘 자체 시험한다. 이 시험은 감시하는 노드마다 두 입력에 fault를 넣고, 감시 로직이 그 fault를 바르게 검출하는지 확인한다.[@infineon-aurix-tc3xx-an0001-2025]
 
-TI 백서에 따르면 lockstep은 어떤 회로의 failure를 그 회로가 동작 중에 쓰일 때까지 검출하지 못한다. 그래서 Hercules는 [[safety-mechanism#MCU의 하드웨어 안전 메커니즘|LBIST]]로 진단을 한 층 더 둔다.[@ti-spry178-2011]
+TI 백서에 따르면 lockstep은 어떤 회로의 failure를 그 회로가 쓰일 때까지 검출하지 못한다. 그래서 Hercules는 [[safety-mechanism#MCU의 하드웨어 안전 메커니즘|LBIST]]로 진단을 한 층 더 둔다.[@ti-spry178-2011]
 
 ## 쓰는 곳
 
