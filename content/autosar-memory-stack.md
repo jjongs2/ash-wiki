@@ -19,13 +19,13 @@ verified: 2026-09-30
 
 ## Mem
 
-Mem에서 **write page**는 메모리 장치에 한 번에 써야 하는 가장 작은 단위다. **Sector batch**는 크기가 같은 연속 섹터를 논리적으로 묶은 것이고, **뱅크**(bank)는 sector batch들의 묶음이고, 한 뱅크 안에서는 read-while-write가 허용되지 않는다. 플래시 메모리 장치에서 뱅크는 대개 플래시 컨트롤러 하나에 대응한다. Mem에서 [[flash-memory#뱅크와 RWW|RWW]]는 한 뱅크를 쓰거나 지우는 동안 다른 뱅크를 읽는 메모리 장치의 능력이다.[@autosar-cp-sws-memorydriver-2025]
+Mem에서 **write page**는 메모리 장치에 한 번에 써야 하는 가장 작은 단위다. **Sector batch**는 크기가 같은 연속 섹터를 논리적으로 묶은 것이다. **뱅크**(bank)는 sector batch들의 묶음이고, 한 뱅크 안에서는 쓰거나 지우는 동안 읽을 수 없다. 플래시 메모리 장치에서 뱅크는 대개 플래시 컨트롤러 하나에 대응한다. Mem에서 [[flash-memory#뱅크와 RWW|RWW]]는 한 뱅크를 쓰거나 지우는 동안 다른 뱅크를 읽는 메모리 장치의 능력이다.[@autosar-cp-sws-memorydriver-2025]
 
 ![[diagrams/mem-device-bank-sector-batch.svg]]
 
-메모리 하드웨어가 [[error-correction-code#메모리의 ECC|ECC]] 정보를 주면, Mem은 고칠 수 없는 ECC 오류를 검사해 [[autosar-memory-stack#비동기 job|job]] 결과를 MEM_ECC_UNCORRECTED로 두고 처리하던 job을 멈춘다. 고칠 수 있는 ECC 오류면 job 처리를 이어 가고, job이 끝나면 결과를 MEM_ECC_CORRECTED로 둔다.[@autosar-cp-sws-memorydriver-2025]
+메모리 하드웨어가 [[error-correction-code#메모리의 ECC|ECC]] 정보를 주면, Mem은 고칠 수 없는 ECC 오류를 검사해 job 결과를 MEM_ECC_UNCORRECTED로 두고 처리하던 job을 멈춘다. 고칠 수 있는 ECC 오류면 job 처리를 이어 가고, job이 끝나면 결과를 MEM_ECC_CORRECTED로 둔다.[@autosar-cp-sws-memorydriver-2025]
 
-ECC 오류도 오류 반응처럼 시스템 수준에서 다룬다. 시스템의 ECC 오류 처리기는 Mem이 주는 `Mem_PropagateError` API를 불러 메모리 ECC 오류를 위 층에 넘길 수 있다.[@autosar-cp-sws-memorydriver-2025]
+ECC 오류는 시스템 수준에서 다룬다. 오류에 대한 반응을 시스템 수준에서 정해야 하기 때문이다. 시스템의 ECC 오류 처리기는 Mem이 주는 `Mem_PropagateError` API를 불러 메모리 ECC 오류를 위 층에 넘길 수 있다.[@autosar-cp-sws-memorydriver-2025]
 
 ## MemIf
 
@@ -35,7 +35,7 @@ MemIf, Fee, Ea는 NvM에 16비트 블록 번호와 16비트 블록 오프셋으�
 
 Fee는 플래시 위에 EEPROM을 흉내 내어, MemIf를 거쳐 두 종류의 장치에 같은 방식으로 접근하게 한다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025] Mem 명세는 섹터를 가장 작은 지우기 단위로 정하며, 어떤 메모리 기술은 쓰기 전에 따로 지워야 한다.[@autosar-cp-sws-memorydriver-2025]
 
-TI 앱노트에 따르면 플래시로 EEPROM을 흉내 내는 루틴은 대개 값이 바뀔 때마다 새 항목을 연결 리스트에 덧붙여 쓰고, 섹터가 이런 항목으로 차면 가장 새 항목만 다른 섹터로 옮긴 뒤 앞 섹터를 지운다.[@ti-spna139-2011]
+TI 앱노트에 따르면 플래시로 [[flash-memory#EEPROM emulation|EEPROM을 흉내 내는]] 루틴은 대개 값이 바뀔 때마다 새 항목을 연결 리스트에 덧붙여 쓰고, 섹터가 이런 항목으로 차면 가장 새 항목만 다른 섹터로 옮긴 뒤 앞 섹터를 지운다.[@ti-spna139-2011]
 
 Fee는 16비트 블록 번호와 16비트 오프셋을 합쳐 아래 드라이버에 넘길 물리 주소를 얻는다. 플래시가 설정한 쓰기 횟수를 견디지 못하면, Fee는 쓰기를 여러 메모리 영역에 나눠 한 자리가 지나치게 지워지지 않게 한다. Fee는 블록 쓰기를 시작할 때 블록을 깨짐으로 표시하고, 성공적으로 끝나면 표시를 거둔다. 그래서 쓰기가 중단된 블록을 알아채고, 그런 블록의 job 결과로 MEMIF_BLOCK_INCONSISTENT를 돌려준다.[@autosar-cp-sws-flasheepromemulation-2025]
 

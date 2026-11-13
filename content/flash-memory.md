@@ -21,7 +21,7 @@ NXP S32K1xx는 주로 프로그램을 두는 P-Flash 블록과, 설정에 따라
 
 NXP S32K1xx의 플래시는 한 번 쓴 자리를 지우지 않은 채 다시 쓰는 것(cumulative programming)을 허용하지 않는다.[@nxp-an12522-2019]
 
-Infineon AURIX TC3xx에서는 메모리 맵 읽기를 뺀 모든 플래시 조작을 명령 시퀀스로 한다. DFlash 주소 범위에 쓰는 접근은 데이터를 그 자리에 쓰지 않고 모두 명령 시퀀스의 명령 사이클로 해석되고, PFlash 주소 범위에 쓰는 접근은 버스 오류로 거절된다. 플래시에 데이터를 쓸 때는 [[error-correction-code#메모리의 ECC|ECC]] 부호가 저절로 만들어지고, 읽을 때 그 부호가 평가된다.[@infineon-aurix-tc3xx-nvm-training-2020]
+Infineon AURIX TC3xx에서는 메모리 맵 읽기를 뺀 모든 플래시 조작을 명령 시퀀스로 한다. DFlash 주소 범위에 쓰는 접근은 그 주소에 데이터를 저장하지 않고 모두 명령 시퀀스의 명령 사이클로 해석되고, PFlash 주소 범위에 쓰는 접근은 버스 오류로 거절된다. 플래시에 데이터를 쓸 때는 [[error-correction-code#메모리의 ECC|ECC]] 부호가 저절로 만들어지고, 읽을 때 그 부호가 평가된다.[@infineon-aurix-tc3xx-nvm-training-2020]
 
 TI TMS570LS0914의 쓰기·지우기 허용 횟수는 15년 data retention을 요구할 때, 온도 $T$가 $-40\,{}^\circ\mathrm{C} \le T \le 125\,{}^\circ\mathrm{C}$인 조건에서 코드 플래시가 1000회, EEPROM emulation용 데이터 플래시(bank 7)가 100000회다.[@ti-tms570ls0914-2016]
 
@@ -39,7 +39,7 @@ Renesas RH850/U2A-EVA의 double map mode는 코드 플래시 뱅크들을 valid 
 
 NXP 앱노트 AN11983에 따르면 EEPROM 기능은 실제 EEPROM을 두거나, 소프트웨어로 플래시에 EEPROM 기능을 구현하거나, S32K1xx처럼 펌웨어로 구현하는 세 방법으로 만든다. 소프트웨어 방식은 값이 싸지만 구현 코드와 EEPROM을 흉내 낼 공간으로 플래시를 차지하고, 펌웨어 방식은 EEPROM 기능이 사용자에게 드러나지 않고 구현 코드를 담을 플래시도 따로 필요 없다.[@nxp-an11983-2019]
 
-S32K1xx의 EEPROM emulation은 RAM 블록인 FlexRAM을 EEPROM 공간으로 쓰고, 상태 기계가 그 데이터를 FlexNVM의 일부인 E-flash에 레코드로 백업한다. 리셋 때 EEPROM 이미지를 RAM으로 올리고, 읽기와 쓰기는 RAM에서 하며, RAM의 이미지는 플래시와 자동으로 맞춰진다. 데이터시트에 적힌 쓰기·지우기 endurance를 얻으려면 E-flash 백업 크기 $S_\mathrm{E}$와 FlexRAM의 EEPROM 영역 크기 $S_\mathrm{R}$가 $S_\mathrm{E} \ge 16\,S_\mathrm{R}$를 만족해야 한다. 응용이 쓰는 FlexRAM 주소를 줄이면 이 비가 커져 endurance가 는다. 예를 들어 S32K14x에서 4 KB FlexRAM 가운데 2 KB에만 쓰면 비가 1:16에서 1:32가 되어 쓰기·지우기 endurance가 두 배가 된다.[@nxp-an11983-2019]
+S32K1xx의 EEPROM emulation은 RAM 블록인 FlexRAM을 EEPROM 공간으로 쓰고, 상태 기계가 그 데이터를 FlexNVM의 일부인 E-flash에 레코드로 백업한다. 리셋 때 EEPROM 이미지를 RAM으로 올리고, 읽기와 쓰기는 RAM에서 하며, RAM의 이미지는 플래시와 자동으로 맞춰진다. 데이터시트에 적힌 쓰기·지우기 endurance를 얻으려면 E-flash 백업 크기 $S_\mathrm{E}$와 FlexRAM의 EEPROM 영역 크기 $S_\mathrm{R}$가 $S_\mathrm{E} \ge 16\,S_\mathrm{R}$를 만족해야 한다. 응용이 FlexRAM 가운데 쓰는 주소를 줄이면 쓰는 RAM 크기에 대한 백업 크기의 비가 커져 endurance가 는다. 예를 들어 S32K14x에서 4 KB FlexRAM 가운데 2 KB에만 쓰면 쓰는 RAM 크기와 백업 크기의 비가 $1:16$에서 $1:32$가 되어 쓰기·지우기 endurance가 두 배가 된다.[@nxp-an11983-2019]
 
 ![[diagrams/s32k1xx-eeprom-emulation-flexram-eflash.svg]]
 

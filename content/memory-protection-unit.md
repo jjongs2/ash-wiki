@@ -27,7 +27,7 @@ Arm Cortex-R52에서는 영역마다 기준 주소(base address)와 끝 주소(l
 
 NXP의 SYSMPU(System Memory Protection Unit)는 기기 안에서 생기는 모든 메모리 참조의 접근을 다스린다. Region descriptor로 메모리 공간과 그 접근 권한을 정하고, 버스 마스터마다 접근 권한을 따로 줄 수 있다. 초기화한 뒤에는 시스템 버스의 트랜잭션을 지켜보며 적절한지 판단한다.[@nxp-mcuxpresso-sdk-sysmpu-2016]
 
-Infineon AURIX TC3xx의 CPU는 데이터 접근 권한을 쓰기 허가와 읽기 허가의 조합으로, 명령어 가져오기 권한은 접근 허가로 정한다. 데이터 범위는 모두 합쳐 최대 18개, 코드 범위는 최대 10개를 두고, 이 범위들을 보호 세트 6개에 유연하게 배정해 세트를 바꿔 가며 권한을 빨리 전환한다.[@infineon-aurix-tc3xx-cpu-training-2020]
+Infineon AURIX TC3xx의 CPU는 데이터 접근 권한을 쓰기 허가와 읽기 허가의 조합으로, 명령어 가져오기 권한은 접근 허가로 정한다. 데이터 범위는 최대 18개, 코드 범위는 최대 10개를 두고, 이 범위들을 보호 세트 6개에 유연하게 배정해 세트를 바꿔 가며 권한을 빨리 전환한다.[@infineon-aurix-tc3xx-cpu-training-2020]
 
 ## 가상화 지원
 
