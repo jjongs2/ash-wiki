@@ -22,3 +22,9 @@ verified: 2026-01-01
 context(문맥)를 저장한다. 테스트 케이스는 중요하다(시험 케이스와 같다).[@bosch-can-2-0-1991]
 
 소프트웨어 장애가 일어난다.[@bosch-can-2-0-1991]
+
+시리얼 버스를 쓴다. Type-A 하이퍼바이저를 쓴다.[@bosch-can-2-0-1991]
+
+샘플(Sample Frame Unit)을 둔다.[@bosch-can-2-0-1991]
+
+sample frame unit도 둔다.[@bosch-can-2-0-1991]

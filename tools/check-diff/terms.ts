@@ -5,8 +5,9 @@ import { repoRoot } from "../repo"
 import type { Candidate, Context } from "./items"
 import { blank, dropCovered, escapeRegExp, excerpt, latinEdge, maskRefs } from "./text"
 
-// 용어: 용어 표기 결정 목록의 쓰지 않는 표기. 조건이 붙은 결정은 문맥으로만 가려져 패턴으로는 어긴 곳인지
-// 알 수 없으므로, 결정의 조건과 함께 "조건 확인" 후보로 따로 찍는다.
+// 용어: 용어 표기 결정 목록과 `--ticket`의 `## 표기 결정` 절의 쓰지 않는 표기. 티켓의 결정은 그 PR이 목록에
+// 더하기 전이라 목록만 보면 놓친다. 조건이 붙은 결정은 문맥으로만 가려져 패턴으로는 어긴 곳인지 알 수
+// 없으므로, 결정의 조건과 함께 "조건 확인" 후보로 따로 찍는다.
 const termsPath = path.join(repoRoot, "docs", "wiki-terms.md")
 
 export interface TermDecision {
@@ -29,6 +30,13 @@ export function termDecisions(text: string): TermDecision[] {
   )
 }
 
+// 티켓 본문의 `## 표기 결정` 절에 든 결정 줄. 줄 끝의 `. 적용할 페이지: …`는 결정의 조건이 아니라 지운다.
+export function ticketDecisions(body: string | undefined): TermDecision[] {
+  const section = body?.match(/^## 표기 결정[ \t]*$([\s\S]*?)(?=^## |(?![\s\S]))/m)?.[1]
+  if (!section) return []
+  return termDecisions(section.replace(/\. 적용할 페이지: .*$/gm, ""))
+}
+
 // 표기를 찾을 글. 위키링크는 표시 글자만 남긴다.
 function termText(text: string): string {
   return maskRefs(text)
@@ -39,8 +47,11 @@ function termText(text: string): string {
 // 인용한 문서 제목은 원문 그대로 쓰므로 큰따옴표 안은 보지 않는다.
 const quoted = /"[^"\n]*"|“[^”\n]*”/g
 
-export const termItem = ({ changed }: Context): Candidate[] => {
-  const decisions = termDecisions(fs.readFileSync(termsPath, "utf8")).map((decision) => {
+export const termItem = ({ changed, ticketBody }: Context): Candidate[] => {
+  const decisions = [
+    ...termDecisions(fs.readFileSync(termsPath, "utf8")),
+    ...ticketDecisions(ticketBody),
+  ].map((decision) => {
     const start = latinEdge.test(decision.unused[0]) ? "(?<![A-Za-z0-9])" : ""
     const end = latinEdge.test(decision.unused.at(-1)!) ? "(?![A-Za-z0-9])" : ""
     const flags = /[A-Za-z]/.test(decision.unused) ? "gi" : "g"
@@ -73,6 +84,8 @@ function unusedTerms(
       const start = match.index
       const end = start + match[0].length
       if (quotes.some(([s, e]) => start >= s && end <= e)) continue
+      // 대소문자만 다른 결정은 대소문자를 무시하고 찾으므로, 쓰는 표기 그대로인 글은 넘긴다.
+      if (match[0] === decision.used) continue
       if (glossed(text, start, decision.used)) continue
       hits.push({ start, end, decision })
     }

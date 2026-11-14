@@ -26,12 +26,13 @@ import {
 import { firstLinkItem } from "./first-link"
 import { sectionLinkItem } from "./section-link"
 import { ownerPage } from "./owner"
-import { editions } from "./editions"
+import { editions, type Edition } from "./editions"
 import { consensusWithoutEdition, isConsensus, sectionText, shortNameAllowed } from "./consensus"
 import { isStandardsTrackRfc } from "./rfc"
 import {
   attributed,
   claimBlocks,
+  type ClaimBlock,
   interleaved,
   opensRun,
   pointerOpenings,
@@ -44,7 +45,7 @@ import { inlineMathItem } from "./math"
 // 있고, 여기 있는 것은 후보를 뽑는 패턴뿐이다. 판정은 사람이 한다.
 export interface Context {
   tree: Tree
-  changed: { page: Page; change: ChangedFile }[]
+  changed: { page: Page; change: ChangedFile; before?: Page }[] // before는 기준 커밋의 페이지
   diagrams: { svg: SvgFile; change: ChangedFile }[]
   ticketBody?: string
 }
@@ -248,7 +249,8 @@ const emphasisItem: Item = ({ changed }) =>
   })
 
 // 한 문단 안에서 같은 인용 자리가 이어진 곳. 목록은 통째로, 콜아웃은 하나하나를 문단 하나로 본다.
-// 표의 행은 따로 읽히므로 보지 않는다.
+// 표의 행은 따로 읽히므로 보지 않는다. 고친 줄이 닿은 문단이면 브랜치 전부터 있던 되풀이도 "(기존 줄)"을
+// 달아 찍는다. 그 문단을 고치는 PR이 함께 고친다.
 const repeatedCitationItem: Item = ({ changed }) =>
   changed.flatMap(({ page, change }) => {
     const runs = citationRuns(page, citations(page))
@@ -264,11 +266,12 @@ const repeatedCitationItem: Item = ({ changed }) =>
       return inside.flatMap((run, index) => {
         const previous = inside[index - 1]
         if (!previous || keyOf(previous) !== keyOf(run)) return []
+        const old = !change.added.has(run[0].line) && !change.added.has(previous[0].line)
         return [
           {
             file: page.file,
             line: run[0].line,
-            message: `같은 인용이 이어진다(앞: ${previous[0].line}줄): ${run.map((c) => c.raw).join("")}`,
+            message: `${old ? "(기존 줄) " : ""}같은 인용이 이어진다(앞: ${previous[0].line}줄): ${run.map((c) => c.raw).join("")}`,
           },
         ]
       })
@@ -358,16 +361,20 @@ const shortenedItem: Item = ({ tree, changed }) => {
 // 떨어진 블록이 구간을 열 수 있기 때문이다. 같은 출처인지는 판으로 가리고, 판은 엔트리 제목에서 읽는다
 // (editions.ts). 같은 판의 구간 사이에 다른 출처의 블록이 끼어 구간을 다시 여는 블록은 출처 표시가 있어도
 // 끼움으로 따로 찍는다. 더한 줄에서는 구간 안에서 출처 이름을 다시 쓴 문장과, 합의 문서 구간을 가리키는 말로
-// 여는 문장도 찍는다.
+// 여는 문장도 찍는다. 인용만 지우거나 옮긴 줄은 고친 줄로 세지 않는다. 기준 커밋에서도 같은 블록이 같은
+// 여는 문장으로 출처 표시 없이 구간을 열었으면, 브랜치가 고쳐 쓰지 않은 문장이라 찍지 않는다(좁혀 쓰기).
 const sourceRunItem: Item = ({ tree, changed }) => {
   const sources = editions(tree)
-  return changed.flatMap(({ page, change }) => {
+  return changed.flatMap(({ page, change, before }) => {
     const list = claimBlocks(page, sources)
+    const rewritten = rewrittenLines(change)
+    const openedBefore = before ? unattributedOpenings(before, sources) : new Set<string>()
     const picked = new Set<number>()
     for (const hunk of change.hunks) {
       const lines = hunk.added.map((a) => a.line)
       list.forEach((claim, index) => {
-        if (lines.some((line) => claim.start <= line && line <= claim.end)) picked.add(index)
+        if (lines.some((line) => rewritten.has(line) && claim.start <= line && line <= claim.end))
+          picked.add(index)
       })
       const after =
         lines.length > 0
@@ -397,7 +404,8 @@ const sourceRunItem: Item = ({ tree, changed }) => {
         const keys = claim.firstKeys.split(" ")
         if (
           attributed(claim, sources) ||
-          keys.every((key) => isConsensus(key) || isStandardsTrackRfc(key))
+          keys.every((key) => isConsensus(key) || isStandardsTrackRfc(key)) ||
+          openedBefore.has(openingKey(claim))
         )
           return []
         const previous = list[index - 1]
@@ -405,14 +413,14 @@ const sourceRunItem: Item = ({ tree, changed }) => {
         return at(`구간을 여는데 출처 표시가 없다(앞: ${before}, 이: ${claim.firstKeys})`)
       })
     const repeated = repeatedNames(page, sources)
-      .filter(({ line, earlier }) => change.added.has(line) || change.added.has(earlier.line))
+      .filter(({ line, earlier }) => rewritten.has(line) || rewritten.has(earlier.line))
       .map(({ line, text, earlier }) => ({
         file: page.file,
         line,
         message: `구간 안에서 출처 이름을 다시 쓴다(앞: ${earlier.line}줄 "${earlier.name}"): ${excerpt(text)}`,
       }))
     const pointers = pointerOpenings(page, sources)
-      .filter(({ line }) => change.added.has(line))
+      .filter(({ line }) => rewritten.has(line))
       .map(({ line, text }) => ({
         file: page.file,
         line,
@@ -420,6 +428,38 @@ const sourceRunItem: Item = ({ tree, changed }) => {
       }))
     return [...opening, ...repeated, ...pointers]
   })
+}
+
+// 인용 자리를 지우고 공백을 하나로 줄인 글.
+const withoutCitations = (text: string) =>
+  text
+    .replace(/\[@[^\]\n]*\]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+
+// 고친 줄 가운데 인용만 지우거나 옮긴 줄을 뺀 것. 인용을 지운 글이 같은 덩어리의 지운 줄과 같으면 뺀다.
+function rewrittenLines(change: ChangedFile): Set<number> {
+  const rewritten = new Set<number>()
+  for (const hunk of change.hunks) {
+    const removed = new Set(hunk.removed.map(withoutCitations))
+    for (const { line, text } of hunk.added)
+      if (!removed.has(withoutCitations(text))) rewritten.add(line)
+  }
+  return rewritten
+}
+
+// 블록을 견줄 열쇠: 첫 인용 자리의 판과, 인용을 지운 여는 글의 첫 문장.
+const openingKey = (claim: ClaimBlock) =>
+  `${claim.firstEditions}\n${sentences(withoutCitations(claim.opening))[0]?.text ?? ""}`
+
+// 페이지에서 출처 표시 없이 구간을 연 블록의 열쇠.
+function unattributedOpenings(page: Page, sources: Map<string, Edition>): Set<string> {
+  const list = claimBlocks(page, sources)
+  return new Set(
+    list.flatMap((claim, index) =>
+      opensRun(list, index) && !attributed(claim, sources) ? [openingKey(claim)] : [],
+    ),
+  )
 }
 
 // 이어진 낱말 하나에서 셋까지의 묶음.
@@ -465,8 +505,9 @@ function decode(text: string): string {
 // 약어: 더한 줄의 약어 가운데, 페이지에서 처음 나온 자리에 풀이가 없고 풀이하지 않는 약어 목록에 없는 것.
 // 약어는 대문자로만 된 낱말과, 대소문자가 섞이거나 숫자가 든 낱말 가운데 위키 어딘가에서 `낱말(풀이)`로
 // 풀린 적이 있는 것(ChrgM, PAM3)이다. 대소문자 섞인 낱말을 모두 보면 FlexRay, MHz 같은 이름까지 걸린다.
-// 그 밖의 글자와 숫자가 섞인 낱말(부품 번호, 판 번호)과 로마 숫자는 거른다. 밑줄이 든 이름은 약어가 아니라
-// 백틱 없는 코드 이름 후보로 따로 찍는다(위키 규약의 코드 표기 절). 페이지 이름(M_CAN, PREEMPT_RT)은 빼낸다.
+// 그 밖의 글자와 숫자가 섞인 낱말(부품 번호, 판 번호)과 로마 숫자는 거른다. 절 제목 줄의 약어는 세지 않는다.
+// 밑줄이 든 이름은 약어가 아니라 백틱 없는 코드 이름 후보로 따로 찍는다(위키 규약의 코드 표기 절). 페이지
+// 이름(M_CAN, PREEMPT_RT)은 빼낸다.
 const abbreviationsPath = path.join(repoRoot, "docs", "wiki-abbreviations.md")
 const abbreviationPart = /^[A-Z]{2,}s?$/
 const codeName = /^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)+$/
@@ -641,6 +682,7 @@ const abbreviationItem: Item = ({ tree, changed }) => {
   return changed.flatMap(({ page, change }) => {
     const { text, links } = abbreviationText(page, exempt)
     const starts = lineStarts(text)
+    const lines = text.split("\n")
     const first = new Map<string, { offset: number; token: string; explained: boolean }>()
     const firstInName = new Map<string, { offset: number; token: string; explained: boolean }>()
     const inAdded = new Set<string>()
@@ -667,6 +709,8 @@ const abbreviationItem: Item = ({ tree, changed }) => {
         if (change.added.has(line) && !code.has(part) && !inside(links, offset))
           code.set(part, line)
       }
+      // 절 제목의 약어는 세지 않고, 본문에서 처음 나온 자리를 본다(위키 규약의 약어 절).
+      if (/^#{1,6} /.test(lines[line - 1])) continue
       for (const part of abbreviationParts(word, explainedSet)) {
         if (exemptSet.has(part)) continue
         if (change.added.has(line)) inAdded.add(part)
