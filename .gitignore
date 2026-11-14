@@ -18,3 +18,9 @@ quartz/cli/tui/dist/
 bibliography.bib
 .playwright-mcp/
 __pycache__/
+
+# Pipeline worktrees, one per Ticket.
+.worktrees/
+
+# Run logs, transcripts and state.
+.ticket-runner/
