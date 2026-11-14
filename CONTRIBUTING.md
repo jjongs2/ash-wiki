@@ -79,15 +79,6 @@ Changes·Verification의 수는 원 산출물(에이전트 반환, `git diff`, �
 - agent는 판정하면 `-verifier`, 규칙을 들고 보면 `-reviewer`, 규칙 없이 읽으면 `-reader`로 끝납니다. agent 파일 이름은 frontmatter의 `name`과 같습니다.
 - agent의 `description`은 "위키 검증 문서의 검토 절을 따르는 흐름이 부를 때만 쓴다"로 씁니다. agent에는 스킬의 `disable-model-invocation` 같은 필드가 없어, 이 문장으로 자동 위임을 줄입니다.
 
-## ticket-runner
-
-[ticket-runner](https://github.com/jjongs2/ticket-runner)는 사람 없이 티켓을 구현·검증해 PR까지 올리는 파이프라인입니다. 저장소에 요구하는 것은 [파이프라인 규약](docs/agents/pipeline-conventions.md)에 있습니다.
-
-- 머지는 사람이 합니다. [`ticket-runner.json`](ticket-runner.json)의 `merge: false`로, CI를 통과한 PR도 Hand-off로 넘깁니다.
-- 위키 스킬이 있는 흐름의 티켓(`ingest`, `verify` 등)은 맡기지 않습니다. 파이프라인은 `ready-for-agent` 티켓을 모두 가져가므로, Run은 번호를 지정해 띄웁니다.
-- Run은 `ASH_WIKI_NOTES`가 없는 셸에서 띄웁니다. 예: `env -u ASH_WIKI_NOTES ticket-runner run 698`
-- `ticket-runner init`이 쓰는 `.claude/skills/ticket-runner/`와 파이프라인 규약, 파이프라인 브랜치 `agent/<n>-<slug>`는 이 문서의 이름 규칙을 따르지 않습니다. 다음 `init`이 덮어쓰므로 손으로 고치지 않습니다.
-
 ## 이슈
 
 제목은 `<접두사>: <한국어 명사구>` 꼴로 씁니다.
