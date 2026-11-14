@@ -3,9 +3,9 @@ import path from "node:path"
 import { spawnSync } from "node:child_process"
 import { parseArgs } from "node:util"
 import { Conventions } from "../check-content/conventions"
-import { loadTree } from "../check-content/tree"
+import { loadTree, parsePage } from "../check-content/tree"
 import { repoRoot } from "../repo"
-import { changedFiles, mergeBase, repoTop } from "./diff"
+import { baseSource, changedFiles, mergeBase, repoTop } from "./diff"
 import { items } from "./items"
 
 // 반영 뒤 점검. 브랜치에서 content/를 더하거나 지우거나 고친 자리(커밋하지 않은 것과 추적하지 않는 새 파일
@@ -42,7 +42,10 @@ const svgs = new Map(tree.svgs.map((svg) => [svg.file, svg]))
 const changes = changedFiles(root, base)
 const changed = changes.flatMap((change) => {
   const page = pages.get(change.file)
-  return page && page.kind === "page" ? [{ page, change }] : []
+  if (!page || page.kind !== "page") return []
+  const source = change.untracked ? undefined : baseSource(root, base, change.file)
+  const before = source === undefined ? undefined : parsePage(page.rel, source)
+  return [{ page, change, before }]
 })
 const diagrams = changes.flatMap((change) => {
   const svg = svgs.get(change.file)

@@ -129,9 +129,21 @@ describe("check-diff CLI", { concurrency: false }, () => {
   test("이어진 인용: 목록을 문단 하나로 보고 같은 인용이 이어진 항목을 잡는다", () => {
     const lines = report.items.get("repeated-citation") ?? []
     assert.deepStrictEqual(
-      lines.map((line) => line.replace(/: 같은.*/, "")),
+      lines
+        .filter((line) => line.startsWith("content/definitions.md"))
+        .map((line) => line.replace(/: (?:\(기존 줄\) )?같은.*/, "")),
       ["content/definitions.md:21"],
     )
+  })
+
+  test("이어진 인용: 고친 줄이 닿은 문단에서 두 자리 모두 기존 줄이면 (기존 줄)을 달아 찍는다", () => {
+    const lines = (report.items.get("repeated-citation") ?? []).filter((line) =>
+      line.startsWith("content/revision-history.md"),
+    )
+    assert.ok(has(lines, "content/revision-history.md:13:", "(기존 줄)", "앞: 12줄"))
+    assert.ok(has(lines, "content/revision-history.md:14:", "앞: 13줄"))
+    assert.ok(!has(lines, "content/revision-history.md:14:", "(기존 줄)"), "더한 줄")
+    assert.strictEqual(lines.length, 2)
   })
 
   test("짝 없는 괄호: 인용 위치를 뺀 뒤 문장 끝과 목록 항목에 남은 꼬리를 찍고, 수식과 코드는 세지 않는다", () => {
@@ -253,6 +265,25 @@ describe("check-diff CLI", { concurrency: false }, () => {
     const lines = report.items.get("source-run") ?? []
     assert.ok(has(lines, "content/run-repeat-old.md:10:", '다시 쓴다(앞: 8줄 "The Sample")'))
     assert.ok(!has(lines, "content/run-repeat-old.md:16:"), "바뀌지 않은 구간")
+  })
+
+  test("출처 구간: 기준 커밋에서도 같은 여는 문장으로 출처 표시 없이 구간을 연 블록은 찍지 않는다", () => {
+    const lines = report.items.get("source-run") ?? []
+    assert.ok(!has(lines, "content/revision-history.md:"), "항목만 더한 개정 이력 목록")
+  })
+
+  test("출처 구간: 인용만 지우거나 옮긴 줄은 고친 줄로 세지 않는다", () => {
+    const lines = report.items.get("source-run") ?? []
+    assert.ok(!has(lines, "content/revision-merge.md:"), "인용만 합친 개정 이력 목록과 문단")
+    assert.ok(!has(lines, "content/run-move-cite.md:"), "줄 안에서 인용 자리만 옮긴 줄")
+  })
+
+  test("출처 구간: 인용의 출처를 바꾸거나 인용을 더한 줄은 고친 줄로 세어, 새로 연 구간을 찍는다", () => {
+    const lines = report.items.get("source-run") ?? []
+    assert.ok(has(lines, "content/run-swap.md:10:", "출처 표시가 없다", "이: iso-11898-2-obp-2026"))
+    assert.ok(
+      has(lines, "content/run-add-cite.md:10:", "출처 표시가 없다", "이: iso-11898-2-obp-2026"),
+    )
   })
 
   test("표준 문장: 판 없는 합의 문서 주어와 '…에 따르면'을 찍고, 판을 붙인 것은 찍지 않는다", () => {
@@ -404,6 +435,14 @@ describe("check-diff CLI", { concurrency: false }, () => {
     }
   })
 
+  test("약어: 절 제목 줄의 약어는 세지 않고, 제품 이름은 풀이하지 않는 약어 목록으로 거른다", () => {
+    const lines = (report.items.get("abbreviation") ?? []).filter((line) =>
+      line.startsWith("content/heading-abbr.md"),
+    )
+    assert.ok(!has(lines, "SECDED"), "본문의 첫 자리에서 풀었다")
+    assert.deepStrictEqual(lines, ["content/heading-abbr.md:16: 풀이가 없다: PDU"])
+  })
+
   test("약어: 대소문자 섞인 낱말과 숫자가 든 낱말은 위키 어딘가에서 풀린 것만 본다", () => {
     const lines = report.items.get("abbreviation") ?? []
     assert.ok(has(lines, "content/definitions.md:32:", "풀이가 없다: ChrgM"))
@@ -498,6 +537,29 @@ describe("check-diff CLI", { concurrency: false }, () => {
     assert.ok(
       has(lines, "content/terms.md:24:", '조건 확인 "장애" → "failure" (#291, 조건: 합성어 포함.'),
     )
+  })
+
+  test("용어: --ticket이 있으면 티켓의 표기 결정 줄도 결정으로 읽는다", () => {
+    const lines = report.items.get("term") ?? []
+    assert.ok(
+      has(lines, "content/terms.md:26:", '쓰지 않는 표기 "시리얼 버스" → "직렬 버스" (#9001)'),
+    )
+    assert.ok(
+      has(
+        lines,
+        "content/terms.md:26:",
+        '조건 확인 "Type-A" → "Type A" (#9003, 조건: 하이퍼바이저의 갈래일 때):',
+      ),
+      "적용할 페이지는 조건이 아니다",
+    )
+    const bare = run(repo, "--only", "term")
+    assert.ok(!has(bare.items.get("term"), "#9001"), "--ticket이 없으면 읽지 않는다")
+  })
+
+  test("용어: 일치한 글이 쓰는 표기와 글자 그대로 같으면 찍지 않는다", () => {
+    const lines = report.items.get("term") ?? []
+    assert.ok(!has(lines, "content/terms.md:28:"), "대소문자만 다른 결정의 쓰는 표기")
+    assert.ok(has(lines, "content/terms.md:30:", '"sample frame unit" → "Sample Frame Unit"'))
   })
 
   test("용어: 원어 병기, 낱말 경계 밖, alias, 큰따옴표 안은 건너뛴다", () => {

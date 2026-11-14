@@ -90,8 +90,12 @@ function walk(dir: string, prefix = ""): string[] {
 }
 
 function loadPage(root: string, rel: string): Page {
+  return parsePage(rel, fs.readFileSync(path.join(root, "content", rel), "utf8"))
+}
+
+// content/ 기준 경로와 원문으로 페이지를 읽는다. 반영 뒤 점검은 기준 커밋의 원문도 이것으로 읽는다.
+export function parsePage(rel: string, source: string): Page {
   const file = `content/${rel}`
-  const source = fs.readFileSync(path.join(root, file), "utf8")
   const kind = rel === "index.md" ? "index" : rel.startsWith("tags/") ? "tag" : "page"
   const lines = source.split("\n")
   let bodyStart = 0

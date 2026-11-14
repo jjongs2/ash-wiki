@@ -49,6 +49,16 @@ export function mergeBase(root: string, ref: string): string {
   return git(root, ["merge-base", ref, "HEAD"]).trim()
 }
 
+// 기준 커밋의 파일 원문. 기준 커밋에 없는 파일(새 파일)이면 undefined다.
+export function baseSource(root: string, base: string, file: string): string | undefined {
+  const result = spawnSync("git", ["show", `${base}:${file}`], {
+    cwd: root,
+    encoding: "utf8",
+    maxBuffer: 64 * 1024 * 1024,
+  })
+  return result.status === 0 ? result.stdout : undefined
+}
+
 // 기준 커밋과 작업 트리 사이의 content/ 변경. 커밋하지 않은 고침과, 아직 추적하지 않는 새 파일도 든다.
 // 지운 파일은 뺀다.
 export function changedFiles(root: string, base: string): ChangedFile[] {
