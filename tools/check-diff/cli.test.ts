@@ -275,6 +275,15 @@ describe("check-diff CLI", { concurrency: false }, () => {
   test("출처 구간: 인용만 지우거나 옮긴 줄은 고친 줄로 세지 않는다", () => {
     const lines = report.items.get("source-run") ?? []
     assert.ok(!has(lines, "content/revision-merge.md:"), "인용만 합친 개정 이력 목록과 문단")
+    assert.ok(!has(lines, "content/run-move-cite.md:"), "줄 안에서 인용 자리만 옮긴 줄")
+  })
+
+  test("출처 구간: 인용의 출처를 바꾸거나 인용을 더한 줄은 고친 줄로 세어, 새로 연 구간을 찍는다", () => {
+    const lines = report.items.get("source-run") ?? []
+    assert.ok(has(lines, "content/run-swap.md:10:", "출처 표시가 없다", "이: iso-11898-2-obp-2026"))
+    assert.ok(
+      has(lines, "content/run-add-cite.md:10:", "출처 표시가 없다", "이: iso-11898-2-obp-2026"),
+    )
   })
 
   test("표준 문장: 판 없는 합의 문서 주어와 '…에 따르면'을 찍고, 판을 붙인 것은 찍지 않는다", () => {

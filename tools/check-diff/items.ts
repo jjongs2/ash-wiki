@@ -362,7 +362,7 @@ const shortenedItem: Item = ({ tree, changed }) => {
 // 떨어진 블록이 구간을 열 수 있기 때문이다. 같은 출처인지는 판으로 가리고, 판은 엔트리 제목에서 읽는다
 // (editions.ts). 같은 판의 구간 사이에 다른 출처의 블록이 끼어 구간을 다시 여는 블록은 출처 표시가 있어도
 // 끼움으로 따로 찍는다. 더한 줄에서는 구간 안에서 출처 이름을 다시 쓴 문장과, 합의 문서 구간을 가리키는 말로
-// 여는 문장도 찍는다. 인용만 지우거나 옮긴 줄은 고친 줄로 세지 않는다. 기준 커밋에서도 같은 블록이 같은
+// 여는 문장도 찍는다. 인용만 지우거나 옮긴 줄은 고친 줄로 세지 않는다(rewrittenLines). 기준 커밋에서도 같은 블록이 같은
 // 여는 문장으로 출처 표시 없이 구간을 열었으면, 브랜치가 고쳐 쓰지 않은 문장이라 찍지 않는다(좁혀 쓰기).
 const sourceRunItem: Item = ({ tree, changed }) => {
   const sources = editions(tree)
@@ -438,13 +438,25 @@ const withoutCitations = (text: string) =>
     .replace(/\s+/g, " ")
     .trim()
 
-// 고친 줄 가운데 인용만 지우거나 옮긴 줄을 뺀 것. 인용을 지운 글이 같은 덩어리의 지운 줄과 같으면 뺀다.
+// 줄이 인용한 키.
+const citedKeys = (text: string) =>
+  new Set([...text.matchAll(/\[@[^\]\n]*\]/g)].flatMap((m) => m[0].match(/@[^\s;,\]]+/g) ?? []))
+
+// 고친 줄 가운데 인용만 지우거나 옮긴 줄을 뺀 것. 인용을 지운 글이 같은 덩어리의 지운 줄과 같고, 그 지운
+// 줄이 인용하지 않던 키를 인용하지 않으면 뺀다. 인용의 출처를 바꾸거나 인용을 더한 줄은 새로 구간을 열 수
+// 있으므로 고친 줄로 센다.
 function rewrittenLines(change: ChangedFile): Set<number> {
   const rewritten = new Set<number>()
   for (const hunk of change.hunks) {
-    const removed = new Set(hunk.removed.map(withoutCitations))
-    for (const { line, text } of hunk.added)
-      if (!removed.has(withoutCitations(text))) rewritten.add(line)
+    for (const { line, text } of hunk.added) {
+      const keys = citedKeys(text)
+      const same = hunk.removed.some((old) => {
+        if (withoutCitations(old) !== withoutCitations(text)) return false
+        const oldKeys = citedKeys(old)
+        return [...keys].every((key) => oldKeys.has(key))
+      })
+      if (!same) rewritten.add(line)
+    }
   }
   return rewritten
 }
