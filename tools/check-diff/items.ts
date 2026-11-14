@@ -12,6 +12,7 @@ import {
   citedSentences,
   escapeRegExp,
   excerpt,
+  heading,
   lineAt,
   lineStarts,
   linkedPage,
@@ -250,7 +251,7 @@ const emphasisItem: Item = ({ changed }) =>
 
 // 한 문단 안에서 같은 인용 자리가 이어진 곳. 목록은 통째로, 콜아웃은 하나하나를 문단 하나로 본다.
 // 표의 행은 따로 읽히므로 보지 않는다. 고친 줄이 닿은 문단이면 브랜치 전부터 있던 되풀이도 "(기존 줄)"을
-// 달아 찍는다. 그 문단을 고치는 PR이 함께 고친다.
+// 달아 찍는다. 바뀌지 않은 줄이라고 오탐으로 넘기지 않게 하려는 것이다.
 const repeatedCitationItem: Item = ({ changed }) =>
   changed.flatMap(({ page, change }) => {
     const runs = citationRuns(page, citations(page))
@@ -266,12 +267,12 @@ const repeatedCitationItem: Item = ({ changed }) =>
       return inside.flatMap((run, index) => {
         const previous = inside[index - 1]
         if (!previous || keyOf(previous) !== keyOf(run)) return []
-        const old = !change.added.has(run[0].line) && !change.added.has(previous[0].line)
+        const bothExisting = !change.added.has(run[0].line) && !change.added.has(previous[0].line)
         return [
           {
             file: page.file,
             line: run[0].line,
-            message: `${old ? "(기존 줄) " : ""}같은 인용이 이어진다(앞: ${previous[0].line}줄): ${run.map((c) => c.raw).join("")}`,
+            message: `${bothExisting ? "(기존 줄) " : ""}같은 인용이 이어진다(앞: ${previous[0].line}줄): ${run.map((c) => c.raw).join("")}`,
           },
         ]
       })
@@ -710,7 +711,7 @@ const abbreviationItem: Item = ({ tree, changed }) => {
           code.set(part, line)
       }
       // 절 제목의 약어는 세지 않고, 본문에서 처음 나온 자리를 본다(위키 규약의 약어 절).
-      if (/^#{1,6} /.test(lines[line - 1])) continue
+      if (heading(lines[line - 1])) continue
       for (const part of abbreviationParts(word, explainedSet)) {
         if (exemptSet.has(part)) continue
         if (change.added.has(line)) inAdded.add(part)
