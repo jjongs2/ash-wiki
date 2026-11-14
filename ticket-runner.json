@@ -1,0 +1,4 @@
+{
+  "merge": false,
+  "checks": ["npm run check"]
+}

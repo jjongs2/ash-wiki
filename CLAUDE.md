@@ -23,3 +23,7 @@
 ### 도메인 문서
 
 Single-context 구조로, 저장소 루트의 `GLOSSARY.md` 하나와 `docs/adr/`를 사용한다. 자세한 내용은 `docs/agents/domain.md`를 참고한다.
+
+## Pipeline conventions
+
+`ticket-runner` runs unattended sessions in this repository. What it requires of a commit, a branch, a Stage and a Ticket: `docs/agents/pipeline-conventions.md`. Read it before committing, opening a pull request or creating an issue.
