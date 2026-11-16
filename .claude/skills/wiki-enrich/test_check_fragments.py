@@ -73,7 +73,7 @@ class CheckFragments(unittest.TestCase):
         self.assertEqual(len(findings), 1)
         self.assertIn("I11898", findings[0])
         self.assertIn("사본에 없다", findings[0])
-        self.assertTrue(findings[0].endswith("specifies the data link layer”") or "specifies the data link layer" in findings[0])
+        self.assertTrue(findings[0].endswith("“specifies the data link layer”"))
         self.assertIn(":6:", findings[0])
 
     SPEC = "\n".join(
@@ -109,6 +109,20 @@ class CheckFragments(unittest.TestCase):
             )
         )
         self.assertEqual((code, findings), (0, []))
+
+    def test_numbered_body_lines_are_not_headings(self):
+        self.copy("ST", "5 Electrical\n7.3 Supply\nThe LDO supplies the core.\n8 channels are sampled at once.\n3.3 V rail powers the core.\nThe LDO is trimmed at test.\n7.4 Timing\nClock.")
+        code, findings = self.run_check(
+            self.draft(
+                "LDO는 시험에서 맞춘다. [`ST` (7.3) “trimmed at test”]",
+                "LDO는 시험에서 맞춘다. [`ST` (5) “trimmed at test”]",
+                "LDO는 시험에서 맞춘다. [`ST` (3.3) “trimmed at test”]",
+            )
+        )
+        self.assertEqual(code, 1)
+        self.assertEqual(len(findings), 1)
+        self.assertIn(":8:", findings[0])
+        self.assertIn("찾지 못했다", findings[0])
 
     def test_quote_outside_cited_section_is_reported(self):
         self.copy("TI-BQ", self.SPEC)
@@ -163,13 +177,14 @@ class CheckFragments(unittest.TestCase):
         self.assertTrue(all("위치 밖" in finding for finding in findings))
 
     def test_expansion_inside_quote_passes(self):
-        self.copy("R100", "2.37 Rechargeable Electrical Energy Storage System (REESS) means the system.")
+        self.copy("R100", "2.37 Rechargeable Electrical Energy Storage System (REESS) means the system. Storage Systems on printed circuit boards (PCBs).")
         self.copy("I15118", "3.3 certificate authority (CA) issues certificates.\n3.4 Power over Coax (PoC) carries power.")
         code, findings = self.run_check(
             self.draft(
                 "REESS(Rechargeable Electrical Energy Storage System)를 관리한다. [`R100` (2.37) “Rechargeable Electrical Energy Storage System (REESS)”]",
                 "CA(Certificate Authority)가 발급한다. [`I15118` (3.3) “certificate authority (CA)”]",
                 "PoC(Power-over-Coax)로 보낸다. [`I15118` (3.4) “Power over Coax (PoC)”]",
+                "PCB(printed circuit board)에 둔다. [`I15118` (3.3) “issues certificates”; `R100` (2.37) “printed circuit boards (PCBs)”]",
                 "ASA(차량 SerDes 업계 연합)가 정하고 Annex U(informative)가 다룬다. [`R100` (2.37) “means the system”]",
             )
         )
@@ -187,14 +202,18 @@ class CheckFragments(unittest.TestCase):
         self.assertEqual((code, findings), (0, []))
 
     def test_expansion_missing_from_quotes_is_reported(self):
-        self.copy("R100", "2.37 Rechargeable Electrical Energy Storage System (REESS) means the system.")
+        self.copy("R100", "2.37 Rechargeable Electrical Energy Storage System (REESS) means the system.\nnon-maskable interrupt (NMI)")
         code, findings = self.run_check(
-            self.draft("REESS(Rechargeable Energy Storage System)를 관리한다. [`R100` (2.37) “Rechargeable Electrical Energy Storage System (REESS)”]")
+            self.draft(
+                "REESS(Rechargeable Energy Storage System)를 관리한다. [`R100` (2.37) “Rechargeable Electrical Energy Storage System (REESS)”]",
+                "NMI(Non Maskable Int)는 막을 수 없다. [`R100` (2.37) “non-maskable interrupt (NMI)”]",
+            )
         )
         self.assertEqual(code, 1)
-        self.assertEqual(len(findings), 1)
+        self.assertEqual(len(findings), 2)
         self.assertIn("REESS", findings[0])
-        self.assertIn("풀이가 인용에 없다", findings[0])
+        self.assertIn("NMI", findings[1])
+        self.assertTrue(all("풀이가 인용에 없다" in finding for finding in findings))
 
     def test_expansion_differing_from_content_is_reported(self):
         self.copy("I26262", "3.94 phase-locked loop (PLL) and phase locked loop.\n3.95 non-maskable interrupt (NMI)")
@@ -216,6 +235,7 @@ class CheckFragments(unittest.TestCase):
     def test_expansion_follows_term_decision(self):
         self.decide(
             "- ADAS 풀이 Advanced Driver Assistance Systems: Advanced Driver Assistance System (#659)\n"
+            "- CAN CC 풀이 CAN classic: CAN CC(CC: classic) (#564)\n"
             "- PLL 풀이: 통일하지 않음 (#675). 인용한 출처의 풀이대로\n"
         )
         self.copy("SAE", "Driver assistance systems assist the driver.\nphase lock loop (PLL)")
@@ -224,12 +244,13 @@ class CheckFragments(unittest.TestCase):
             self.draft(
                 "ADAS(Advanced Driver Assistance Systems)는 돕는다. [`SAE` (Scope) “assist the driver”]",
                 "PLL(phase lock loop)이 곱한다. [`SAE` (Scope) “phase lock loop (PLL)”]",
+                "CAN CC(CAN classic)를 쓴다. [`SAE` (Scope) “assist the driver”]",
                 "ADAS(Advanced Driver Assistance System)는 돕는다. [`SAE` (Scope) “assist the driver”]",
             )
         )
         self.assertEqual(code, 1)
         self.assertEqual(len(findings), 1)
-        self.assertIn(":8:", findings[0])
+        self.assertIn(":9:", findings[0])
         self.assertIn("용어 표기 결정", findings[0])
         self.assertIn("Advanced Driver Assistance Systems", findings[0])
 

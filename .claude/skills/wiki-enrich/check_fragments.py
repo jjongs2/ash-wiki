@@ -7,17 +7,18 @@ python3 -B check_fragments.py [--content <폴더>] [--terms <용어 표기 결�
 글은 NFKC, 공백 하나, 소문자로 견주고, …나 ...로 끊은 인용은 조각이 차례로 있으면 된다.
 
 - 쪽: `n쪽`은 그 번호만 적힌 줄(쪽 번호)이 있는 쪽, 없으면 n번째 쪽이다. `PDF n쪽`은
-  n번째 쪽이다. 쪽은 폼 피드(pdftotext의 쪽 경계)로 센다.
-- 절: 줄머리의 번호(`3.3`, `B.2`, `Annex B`)가 제목이다. 절은 다음 같은 층이나 윗층의
-  번호(3.3이면 3.4, 4)나 다른 Annex 제목에서 끝난다. 숫자 하나만 있는 줄(쪽 번호)과
-  점 지시선으로 끝나는 줄(목차)은 제목으로 보지 않는다.
+  n번째 쪽이다. `n–m쪽`은 그 사이 쪽 모두다. 쪽은 폼 피드(pdftotext의 쪽 경계)로 센다.
+- 절: 줄머리의 번호(`3.3`, `B.2`, `Annex B`)가 제목이다. 번호 뒤 첫 낱말이 단위(`3.3 V`)인
+  줄, 숫자 하나 뒤가 대문자나 한글로 시작하지 않는 줄(`8 channels`), 숫자 하나만 있는
+  줄(쪽 번호), 점 지시선으로 끝나는 줄(목차)은 제목으로 보지 않는다. 절은 다음 같은 층이나 윗층의
+  번호(3.3이면 3.4, 4)나 다른 Annex 제목에서 끝난다.
 - 위치가 여럿이면 하나만 인용을 담으면 된다. 쪽도 절 번호도 없는 위치(`Overview`)는
   인용이 사본에 있는지만 본다.
 
-조각 글의 약어 풀이(`<약어>(<풀이>)`, `<이름>(<약어>: <풀이>)`)는 줄의 인용 안에
-있는지(대소문자, 공백, 기호 무시) 보고, `content/`의 같은 약어 풀이와 글자가 다르면 알린다.
-용어 표기 결정에 풀이 결정이 있는 약어는 그 결정과만 견주고, `풀이: 통일하지 않음`인
-약어는 `content/`와 견주지 않는다.
+조각 글의 약어 풀이(`<약어>(<풀이>)`, `<이름>(<약어>: <풀이>)`)는 그 낱말들이 줄의 인용
+하나에 이어서 있는지(대소문자, 기호, 영어 복수 꼴 무시) 보고, `content/`의 같은 약어 풀이와 글자가
+다르면 알린다. 용어 표기 결정에 풀이 결정이 있는 약어(`CAN CC`처럼 앞 낱말을 붙인 것
+포함)는 그 결정과만 견주고, `풀이: 통일하지 않음`인 약어는 `content/`와 견주지 않는다.
 
 알림을 한 줄씩 `<초안>:<줄>: …`로 내고, 알림이 있으면 1로 끝난다.
 """
@@ -29,60 +30,47 @@ import sys
 import unicodedata
 
 OPEN_QUOTE, CLOSE_QUOTE = "“", "”"
+UNITS = set("V mV kV A mA µA W mW Hz kHz MHz GHz s ms µs us ns ps bps kbps Mbps Gbps kbit/s Mbit/s Gbit/s B KB kB MB GB bit bits byte bytes Ω kΩ °C K % m mm cm km g kg".split())
+
+ANNEX = re.compile(r"(?:annex|appendix|부속서)\s+([a-z0-9]+(?:\.\d+)*)(?=$|[\s.,:)])", re.I)
+NUMBER = re.compile(r"([a-z](?:\.\d+)+|\d+(?:\.\d+)*)(?=$|[\s.,:)])", re.I)
+PAGE = re.compile(r"(pdf\s*)?(\d+)(?:\s*(?:–|-|\\?~)\s*(\d+))?\s*쪽")
+TOC = re.compile(r"(?:\.\s*){4,}\d+$|…+\s*\d+$")
+PAGE_NUMBER = re.compile(r"(?:page\s+)?-?\s*(\d+)\s*-?(?:\s+of\s+\d+)?")
+WIKILINK = re.compile(r"\[\[([^|\]]*)(?:\|([^\]]*))?\]\]")
+ABBREVIATION = r"[A-Za-z0-9][A-Za-z0-9/&.+-]*"
+EXPANSION = re.compile(rf"(?<![A-Za-z0-9])({ABBREVIATION})\(([^()]*)\)")
+
+
+def clean(text):
+    """NFKC, 따옴표 통일, 공백 하나."""
+    text = unicodedata.normalize("NFKC", text)
+    text = text.replace("‘", "'").replace("’", "'").replace("“", '"').replace("”", '"')
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def normalize(text):
-    """대조용 글. NFKC, 따옴표 통일, 공백 하나, 소문자."""
-    text = unicodedata.normalize("NFKC", text)
-    text = text.replace("‘", "'").replace("’", "'").replace("“", '"').replace("”", '"')
-    return re.sub(r"\s+", " ", text).strip().lower()
+    """대조용 글. clean에 소문자."""
+    return clean(text).lower()
 
 
-def split_top(text, separator):
-    """괄호와 “” 밖의 separator로 나눈다."""
-    parts, depth, quoted, start = [], 0, 0, 0
+def words(text):
+    """견줄 낱말. 소문자로, 글자와 숫자만."""
+    return re.findall(r"[0-9a-z]+", normalize(text))
+
+
+def scan(text):
+    """글자마다 (자리, 글자, “” 안인가). 겹친 “”도 센다. 따옴표 자신은 안으로 친다."""
+    depth = 0
     for index, char in enumerate(text):
         if char == OPEN_QUOTE:
-            quoted += 1
-        elif char == CLOSE_QUOTE:
-            quoted = max(quoted - 1, 0)
-        elif not quoted and char == "(":
             depth += 1
-        elif not quoted and char == ")":
-            depth = max(depth - 1, 0)
-        elif not quoted and depth == 0 and char == separator:
-            parts.append(text[start:index])
-            start = index + 1
-    parts.append(text[start:])
-    return parts
-
-
-def parse_citation(item):
-    """`<약칭>` (<위치>) “<인용>” 하나를 읽는다. 약칭이 없으면 None."""
-    match = re.match(r"\s*`([^`]+)`", item)
-    if not match:
-        return None
-    rest = item[match.end() :]
-    location, quotes, depth, start, quoted, opened = None, [], 0, None, 0, None
-    for index, char in enumerate(rest):
-        if char == OPEN_QUOTE:
-            quoted += 1
-            opened = index + 1 if quoted == 1 else opened
-        elif quoted and char == CLOSE_QUOTE:
-            quoted -= 1
-            if not quoted:
-                quotes.append(rest[opened:index])
-        elif quoted:
-            continue
-        elif char == "(":
-            if depth == 0 and location is None:
-                start = index + 1
-            depth += 1
-        elif char == ")" and depth:
+            yield index, char, True
+        elif char == CLOSE_QUOTE and depth:
             depth -= 1
-            if depth == 0 and location is None:
-                location = rest[start:index]
-    return {"abbreviation": match.group(1), "location": location or "", "quotes": quotes}
+            yield index, char, True
+        else:
+            yield index, char, depth > 0
 
 
 def quotes_in(text):
@@ -97,6 +85,44 @@ def quotes_in(text):
             if not depth:
                 quotes.append(text[opened:index])
     return quotes
+
+
+def split_top(text, separator):
+    """괄호와 “” 밖의 separator로 나눈다."""
+    parts, depth, start = [], 0, 0
+    for index, char, quoted in scan(text):
+        if quoted:
+            continue
+        if char == "(":
+            depth += 1
+        elif char == ")":
+            depth = max(depth - 1, 0)
+        elif depth == 0 and char == separator:
+            parts.append(text[start:index])
+            start = index + 1
+    parts.append(text[start:])
+    return parts
+
+
+def parse_citation(item):
+    """`<약칭>` (<위치>) “<인용>” 하나를 읽는다. 위치는 “” 밖의 첫 괄호다. 약칭이 없으면 None."""
+    match = re.match(r"\s*`([^`]+)`", item)
+    if not match:
+        return None
+    rest = item[match.end() :]
+    location, depth, start = "", 0, None
+    for index, char, quoted in scan(rest):
+        if quoted:
+            continue
+        if char == "(":
+            start = index + 1 if depth == 0 else start
+            depth += 1
+        elif char == ")" and depth:
+            depth -= 1
+            if depth == 0:
+                location = rest[start:index]
+                break
+    return {"abbreviation": match.group(1), "location": location, "quotes": quotes_in(rest)}
 
 
 def citation_block(line):
@@ -132,81 +158,32 @@ def fragments(path):
                 yield number, block[0], block[1], quotes_in(line)
 
 
-class Copy:
-    """사본 하나. 대조용 글(flat)과, 줄마다 flat에서의 시작 자리, 글, 쪽(폼 피드로 센다)."""
-
-    def __init__(self, text):
-        self.lines, offset, page = [], 0, 1
-        for raw in text.split("\n"):
-            for index, segment in enumerate(raw.split("\f")):
-                page += 1 if index else 0
-                line = normalize(segment)
-                if line:
-                    self.lines.append((offset, line, page))
-                    offset += len(line) + 1
-        self.flat = " ".join(line for _, line, _ in self.lines)
-        self.headings = [(index, heading(line)) for index, (_, line, _) in enumerate(self.lines) if heading(line)]
-
-    def find(self, quote):
-        """인용이 시작하는 자리들. …나 ...로 끊은 인용은 조각이 차례로 있어야 한다."""
-        parts = [normalize(part) for part in re.split(r"\.\.\.|…", quote) if normalize(part)]
-        starts = []
-        for match in re.finditer(re.escape(parts[0]) if parts else r"(?!)", self.flat):
-            position = match.end()
-            for part in parts[1:]:
-                position = self.flat.find(part, position)
-                if position < 0:
-                    break
-                position += len(part)
-            else:
-                starts.append(match.start())
-        return starts
-
-    def end(self, index):
-        """index번째 줄 뒤 글의 끝 자리."""
-        return self.lines[index][0] if index < len(self.lines) else len(self.flat)
-
-    def section_spans(self, section):
-        """절 제목 줄마다 그 절이 끝나는 곳까지의 (시작, 끝)."""
-        spans = []
-        for order, (index, found) in enumerate(self.headings):
-            if found != section:
-                continue
-            ends = [after for after, other in self.headings[order + 1 :] if ends_section(section, other)]
-            spans.append((self.lines[index][0], self.end(ends[0]) if ends else len(self.flat)))
-        return spans
-
-    def page_spans(self, number, printed):
-        """쪽의 (시작, 끝). 인쇄된 쪽은 쪽 번호 줄이 있는 쪽, 없으면 n번째 쪽이다."""
-        pages = {page for _, line, page in self.lines if printed and PAGE_NUMBER.fullmatch(line) and int(PAGE_NUMBER.fullmatch(line).group(1)) == number}
-        pages = pages or {number}
-        spans = []
-        for page in pages:
-            indexes = [index for index, (_, _, p) in enumerate(self.lines) if p == page]
-            if indexes:
-                spans.append((self.lines[indexes[0]][0], self.end(indexes[-1] + 1)))
-        return spans
-
-
-ANNEX = re.compile(r"(?:annex|appendix|부속서)\s+([a-z0-9]+(?:\.\d+)*)(?=$|[\s.,:)])")
-NUMBER = re.compile(r"([a-z](?:\.\d+)+|\d+(?:\.\d+)*)(?=$|[\s.,:)])")
-PAGE = re.compile(r"(pdf\s*)?(\d+)(?:\s*(?:–|-|\\?~)\s*(\d+))?\s*쪽")
-TOC = re.compile(r"(?:\.\s*){4,}\d+$|…+\s*\d+$")
-PAGE_NUMBER = re.compile(r"(?:page\s+)?-?\s*(\d+)\s*-?(?:\s+of\s+\d+)?")
-
-
 def heading(line):
-    """줄머리의 절 번호. 숫자 하나만 있는 줄은 쪽 번호일 수 있고, 점 지시선으로 끝나는 줄은
-    목차라 절로 보지 않는다."""
+    """줄머리의 절. ("annex"|"number", 소문자 이름) 또는 None. 모듈 머리 설명의 절 줄을 따른다."""
     if TOC.search(line):
         return None
     match = ANNEX.match(line)
     if match:
-        return ("annex", match.group(1))
+        return ("annex", match.group(1).lower())
     match = NUMBER.match(line)
-    if match and not (line.strip(" .") == match.group(1) and match.group(1).isdigit()):
-        return ("number", match.group(1))
-    return None
+    if not match:
+        return None
+    rest = line[match.end() :].lstrip(" .:)")
+    if not rest:
+        return None if match.group(1).isdigit() else ("number", match.group(1).lower())
+    first = rest.split()[0]
+    if first in UNITS or (match.group(1).isdigit() and not (first[0].isupper() or "가" <= first[0] <= "힣")):
+        return None
+    return ("number", match.group(1).lower())
+
+
+def cited_section(part):
+    """위치 글 한 부분의 머리에 있는 절. 숫자 하나(`5`)도 장 번호로 읽는다."""
+    match = ANNEX.match(part)
+    if match:
+        return ("annex", match.group(1).lower())
+    match = NUMBER.match(part)
+    return ("number", match.group(1).lower()) if match else None
 
 
 def successors(name):
@@ -233,48 +210,125 @@ def ends_section(section, other):
 
 
 def locations(location):
-    """위치 글에서 절과 쪽. 쉼표로 나눈 부분마다 머리의 것 하나를 읽는다."""
+    """위치 글에서 절과 쪽. 쉼표로 나눈 부분마다 머리의 것을 읽는다. 쪽은 ("page", n, 인쇄된 쪽인가)."""
     result = []
-    for part in split_top(normalize(location), ","):
+    for part in split_top(clean(location), ","):
         part = part.strip()
-        page = PAGE.match(part)
+        page = PAGE.match(part.lower())
         if page:
             first = int(page.group(2))
             result += [("page", number, not page.group(1)) for number in range(first, int(page.group(3) or first) + 1)]
             continue
-        section = heading(part)
+        section = cited_section(part)
         if section:
             result.append(section)
     return result
 
 
-WIKILINK = re.compile(r"\[\[([^|\]]*)(?:\|([^\]]*))?\]\]")
-EXPANSION = re.compile(r"(?<![A-Za-z0-9])([A-Za-z0-9][A-Za-z0-9/&.+-]*)\(([^()]*)\)")
+class SourceCopy:
+    """사본 하나. 대조용 글(flat)과, 줄마다 flat에서의 시작 자리, 대조용 글, 쪽(폼 피드로 센다)."""
+
+    def __init__(self, text):
+        self.lines, self.headings, offset, page = [], [], 0, 1
+        for raw in text.split("\n"):
+            for index, segment in enumerate(raw.split("\f")):
+                page += 1 if index else 0
+                line = clean(segment)
+                if line:
+                    if heading(line):
+                        self.headings.append((len(self.lines), heading(line)))
+                    self.lines.append((offset, line.lower(), page))
+                    offset += len(line) + 1
+        self.flat = " ".join(line for _, line, _ in self.lines)
+
+    def find(self, quote):
+        """인용이 시작하는 자리들. …나 ...로 끊은 인용은 조각이 차례로 있어야 한다."""
+        parts = [normalize(part) for part in re.split(r"\.\.\.|…", quote) if normalize(part)]
+        starts = []
+        for match in re.finditer(re.escape(parts[0]) if parts else r"(?!)", self.flat):
+            position = match.end()
+            for part in parts[1:]:
+                position = self.flat.find(part, position)
+                if position < 0:
+                    break
+                position += len(part)
+            else:
+                starts.append(match.start())
+        return starts
+
+    def end(self, index):
+        """index번째 줄이 시작하는 자리. 줄이 없으면 글의 끝."""
+        return self.lines[index][0] if index < len(self.lines) else len(self.flat)
+
+    def section_spans(self, section):
+        """절 제목 줄마다 그 절이 끝나는 곳까지의 (시작, 끝)."""
+        spans = []
+        for order, (index, found) in enumerate(self.headings):
+            if found != section:
+                continue
+            ends = [after for after, other in self.headings[order + 1 :] if ends_section(section, other)]
+            spans.append((self.lines[index][0], self.end(ends[0]) if ends else len(self.flat)))
+        return spans
+
+    def page_spans(self, number, printed):
+        """쪽의 (시작, 끝). 인쇄된 쪽은 쪽 번호 줄이 있는 쪽, 없으면 n번째 쪽이다."""
+        pages = set()
+        if printed:
+            for _, line, page in self.lines:
+                match = PAGE_NUMBER.fullmatch(line)
+                if match and int(match.group(1)) == number:
+                    pages.add(page)
+        spans = []
+        for page in pages or {number}:
+            indexes = [index for index, (_, _, p) in enumerate(self.lines) if p == page]
+            if indexes:
+                spans.append((self.lines[indexes[0]][0], self.end(indexes[-1] + 1)))
+        return spans
+
+    def spans(self, location):
+        """위치의 절과 쪽이 담는 (시작, 끝)들."""
+        result = []
+        for place in locations(location):
+            result += self.page_spans(place[1], place[2]) if place[0] == "page" else self.section_spans(place)
+        return result
 
 
 def expansions(text):
-    """글의 `<약어>(<풀이>)`와 `<이름>(<약어>: <풀이>)`. 약어는 대문자가 둘 이상이고, 풀이는
-    한글 없이 글자로 시작한다. 위키링크 하나뿐이거나 약어 자신이 든 괄호는 풀이가 아니다."""
+    """글의 (약어, 풀이, 앞 낱말). `<약어>(<풀이>)`와 `<이름>(<약어>: <풀이>)`를 읽는다. 약어는
+    대문자가 둘 이상이고, 풀이는 한글 없이 글자로 시작한다. 위키링크 하나뿐이거나 약어 자신이
+    든 괄호는 풀이가 아니다. 앞 낱말은 `CAN CC`처럼 여러 낱말인 약어를 찾는 데 쓴다."""
     for match in EXPANSION.finditer(text):
         abbreviation, expansion = match.group(1), match.group(2).strip()
-        inner = re.fullmatch(r"([A-Za-z0-9][A-Za-z0-9/&.+-]*):\s+(.+)", expansion)
+        before = re.search(rf"({ABBREVIATION}) $", text[: match.start()])
+        inner = re.fullmatch(rf"({ABBREVIATION}):\s+(.+)", expansion)
         if inner:
-            abbreviation, expansion = inner.groups()
+            (abbreviation, expansion), before = inner.groups(), None
         if WIKILINK.fullmatch(expansion) or re.search(rf"(?<![A-Za-z0-9]){re.escape(abbreviation)}(?![A-Za-z0-9])", expansion):
             continue
-        expansion = WIKILINK.sub(lambda link: link.group(2) or link.group(1), expansion)
+        expansion = re.sub(r"\s+", " ", WIKILINK.sub(lambda link: link.group(2) or link.group(1), expansion))
         if (
             sum(char.isupper() for char in abbreviation) >= 2
             and re.match(r"[A-Za-z]", expansion)
             and not re.search(r"[가-힣]", expansion)
             and len(expansion) > len(abbreviation)
         ):
-            yield abbreviation, re.sub(r"\s+", " ", expansion)
+            yield abbreviation, expansion, before.group(1) if before else ""
 
 
-def letters(text):
-    """견줄 글자. 소문자로, 글자와 숫자만."""
-    return re.sub(r"[^0-9a-z]", "", normalize(text))
+def same_word(wanted, word):
+    """같은 낱말인가. 영어 복수 꼴(-s, -es)도 같게 본다."""
+    return word in (wanted, wanted + "s", wanted + "es")
+
+
+def in_quote(expansion, quotes):
+    """풀이의 낱말들이 인용 하나에 이어서 있는가."""
+    wanted = words(expansion)
+    for quote in quotes:
+        have = words(quote)
+        for start in range(len(have) - len(wanted) + 1):
+            if all(same_word(w, h) for w, h in zip(wanted, have[start : start + len(wanted)])):
+                return True
+    return False
 
 
 def content_expansions(folder):
@@ -285,7 +339,7 @@ def content_expansions(folder):
             if name.endswith(".md"):
                 path = os.path.join(root, name)
                 with open(path, encoding="utf-8") as f:
-                    for abbreviation, expansion in expansions(f.read()):
+                    for abbreviation, expansion, _ in expansions(f.read()):
                         paths = result.setdefault(abbreviation, {}).setdefault(expansion, [])
                         if os.path.relpath(path) not in paths:
                             paths.append(os.path.relpath(path))
@@ -294,7 +348,7 @@ def content_expansions(folder):
 
 def term_decisions(path):
     """용어 표기 결정의 약어 풀이. ({약어: 풀이}, 풀이를 통일하지 않는 약어)."""
-    decided, open_ = {}, set()
+    decided, undecided = {}, set()
     if os.path.exists(path):
         with open(path, encoding="utf-8") as f:
             for line in f:
@@ -302,27 +356,28 @@ def term_decisions(path):
                 if match and match.group(2):
                     decided[match.group(1)] = match.group(2)
                 elif match:
-                    open_.add(match.group(1))
-    return decided, open_
+                    undecided.add(match.group(1))
+    return decided, undecided
 
 
 def check(copies, drafts, content, terms):
-    findings = []
-    cache = {}
+    findings, cache = [], {}
     existing = content_expansions(content)
-    decided, open_ = term_decisions(terms)
+    decided, undecided = term_decisions(terms)
     for draft in drafts:
         for number, text, citations, line_quotes in fragments(draft):
-            quoted = " ".join(letters(quote) for quote in line_quotes)
-            for abbreviation, expansion in expansions(text):
+            for abbreviation, expansion, before in expansions(text):
+                joined = f"{before} {abbreviation}"
+                if joined in decided or joined in undecided:
+                    abbreviation = joined
                 label = f"{draft}:{number}: {abbreviation}({expansion})"
                 if abbreviation in decided:
                     if expansion != decided[abbreviation]:
                         findings.append(f"{label}: 용어 표기 결정의 풀이와 다르다: {decided[abbreviation]}")
                     continue
-                if letters(expansion) not in quoted:
+                if not in_quote(expansion, line_quotes):
                     findings.append(f"{label}: 풀이가 인용에 없다")
-                known = {} if abbreviation in open_ else existing.get(abbreviation, {})
+                known = {} if abbreviation in undecided else existing.get(abbreviation, {})
                 if known and expansion not in known:
                     others = "; ".join(f"{other} ({', '.join(paths)})" for other, paths in sorted(known.items()))
                     findings.append(f"{label}: content/의 풀이와 다르다: {others}")
@@ -334,19 +389,17 @@ def check(copies, drafts, content, terms):
                     cache[abbreviation] = None
                     if os.path.exists(path):
                         with open(path, encoding="utf-8") as f:
-                            cache[abbreviation] = Copy(f.read())
+                            cache[abbreviation] = SourceCopy(f.read())
                 copy = cache[abbreviation]
                 if copy is None:
                     findings.append(f"{where}: 사본 {abbreviation}.txt가 없다")
                     continue
-                places, spans = locations(citation["location"]), []
-                for place in places:
-                    spans += copy.page_spans(place[1], place[2]) if place[0] == "page" else copy.section_spans(place)
+                cited, spans = locations(citation["location"]), copy.spans(citation["location"])
                 for quote in citation["quotes"]:
                     starts = copy.find(quote)
                     if not starts:
                         findings.append(f"{where}: 인용이 사본에 없다 “{quote}”")
-                    elif places and not spans:
+                    elif cited and not spans:
                         findings.append(f"{where}: 위치의 절이나 쪽을 사본에서 찾지 못했다 “{quote}”")
                     elif spans and not any(a <= start < b for start in starts for a, b in spans):
                         findings.append(f"{where}: 인용이 위치 밖에 있다 “{quote}”")

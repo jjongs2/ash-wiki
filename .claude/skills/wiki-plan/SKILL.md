@@ -56,7 +56,7 @@ Agent 도구로 빈 컨텍스트 서브에이전트(`general-purpose`) 하나를
 
 ## 5. 발행
 
-발행하기 직전에 `git fetch origin`을 하고 `git diff --stat <시작 커밋> origin/main -- .claude/skills/wiki-plan/ .claude/skills/wiki-enrich/ .claude/skills/wiki-ingest/`로 주제 계획, 보강, 인제스트 스킬이 시작한 뒤 바뀌었는지 본다. `<시작 커밋>`은 계획 파일의 것이다. 바뀌었으면 `git show origin/main:<파일>`로 새 판을 읽고, 발행 단계와 티켓 꼴은 새 판을 따른다. 인제스트 스킬은 티켓을 읽는 쪽이라, 바뀐 곳이 티켓의 절이나 꼴에 닿는지 본다. 발행 단계 앞의 단계가 바뀌었으면 무엇이 바뀌었는지 소유자에게 알리고, 그 단계를 다시 할지 답을 받은 뒤 발행한다. 세션이 읽은 스킬은 시작할 때의 판이라, 그 사이 머지된 바뀜을 모른 채 옛 꼴로 발행하지 않기 위해서다.
+발행하기 직전에 `git fetch origin`을 하고 `git diff --stat <시작 커밋> origin/main -- .claude/skills/wiki-plan/ .claude/skills/wiki-enrich/ .claude/skills/wiki-ingest/`로 주제 계획, 보강, 인제스트 스킬이 시작한 뒤 바뀌었는지 본다. `<시작 커밋>`은 계획 파일의 것이다. 바뀌었으면 `git show origin/main:<파일>`로 바뀐 스킬을 읽고, 발행 단계와 티켓 꼴은 그것을 따른다. 인제스트 스킬은 티켓을 읽는 쪽이라, 바뀐 곳이 티켓의 절이나 꼴에 닿는지 본다. 발행 단계 앞의 단계가 바뀌었으면 무엇이 바뀌었는지 소유자에게 알리고, 그 단계를 다시 할지 답을 받은 뒤 발행한다. 세션은 시작할 때 읽은 스킬을 따르므로, 그 사이 머지된 바뀜을 모른 채 옛 꼴로 발행하지 않기 위해서다.
 
 `gh` 사용법과 blocked-by API는 `docs/agents/issue-tracker.md`를 따른다. 인제스트 티켓이 막을 `verify:` 이슈를 먼저 만든다. 주제 계획 티켓이 있으면 두 본문 모두 `## Parent`에 그 번호를 적고, 이슈마다 `gh issue create --parent <주제 계획 티켓>`으로 만들어 그 하위 이슈로 잇는다(이슈 트래커 안내의 하위 이슈로 잇기). 없으면 `## Parent` 절을 뺀다. 발행한 티켓 목록은 하위 이슈가 보이므로 주제 계획 티켓에 코멘트로 남기지 않는다.
 
