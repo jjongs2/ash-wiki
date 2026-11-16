@@ -373,15 +373,20 @@ class CheckFragments(unittest.TestCase):
                 "요구한다. [`ISO` (제1절) “the quote lives here”]",
                 "요구한다. [`ISO` (Overview) “the quote lives here”]",
                 "요구한다. [`ISO` (Table 3) “the quote lives here”]",
+                "요구한다. [`ISO` ('NDS.Live' 절) “the quote lives here”]",
+                "요구한다. [`ISO` (첫 절(머리 문단 뒤)) “the quote lives here”]",
+                "요구한다. [`ISO` (Executive summary 첫 문장) “the quote lives here”]",
+                "요구한다. [`ISO` (쪽 머리 요약) “the quote lives here”]",
             )
         )
         self.assertEqual(code, 1)
-        self.assertEqual(len(findings), 1)
-        self.assertIn(":6:", findings[0])
-        self.assertIn("위치를 읽지 못했다", findings[0])
+        self.assertEqual([finding.split(":")[1] for finding in findings], ["6", "9", "10"])
+        self.assertTrue(all("위치를 읽지 못했다" in finding for finding in findings))
 
     def test_reverse_and_annotated_expansions_are_read(self):
-        self.copy("SAE", "On-Road Automated Driving (ORAD)\nthe control pilot (CP) line\nsleepiness is rated\nsystem MMU\nElectrical/Electronic architecture")
+        self.copy("SAE", "On-Road Automated Driving (ORAD)\nthe control pilot (CP) line\nsleepiness is rated\nsystem MMU\nElectrical/Electronic architecture\nHomePlug Green PHY (HPGP)")
+        self.page("ethernet-phy", "**PHY**(Physical Layer Device)는 신호를 만든다.\n")
+        self.page("homeplug", "**HPGP**(HomePlug GreenPHY)는 전력선 통신이다.\n")
         code, findings = self.run_check(
             self.draft(
                 "On-Road Automated Driving(ORAD) 위원회. [`SAE` (Scope) “On-Road Automated Driving (ORAD)”]",
@@ -390,11 +395,14 @@ class CheckFragments(unittest.TestCase):
                 "SMMU(System Memory Management Unit, IOMMU라고도 부름)를 둔다. [`SAE` (Scope) “system MMU”]",
                 "Department of Transportation(DOT)이 정한다. [`SAE` (Scope) “sleepiness is rated”]",
                 "E/E(Electrical/Electronic) 아키텍처. [`SAE` (Scope) “Electrical/Electronic architecture”]",
+                "HomePlug Green PHY(HPGP)를 쓴다. [`SAE` (Scope) “HomePlug Green PHY (HPGP)”]",
+                "HomePlug AV(HPGP)를 쓴다. [`SAE` (Scope) “HomePlug Green PHY (HPGP)”]",
             )
         )
         self.assertEqual(code, 1)
-        self.assertEqual([finding.split(":")[1] for finding in findings], ["8", "9", "10"])
-        self.assertTrue(all("풀이가 인용에 없다" in finding for finding in findings))
+        self.assertEqual([finding.split(":")[1] for finding in findings], ["8", "9", "10", "12"])
+        self.assertTrue(all("풀이가 인용에 없다" in finding for finding in findings[:3]))
+        self.assertIn("HPGP(HomePlug Green PHY): content/의 풀이와 다르다", findings[3])
         self.assertIn("KSS(Karolinska Sleepiness Scale)", findings[0])
         self.assertIn("SMMU(System Memory Management Unit)", findings[1])
         self.assertIn("DOT(Department of Transportation)", findings[2])

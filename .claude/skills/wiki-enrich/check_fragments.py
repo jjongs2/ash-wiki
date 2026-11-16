@@ -19,7 +19,8 @@ python3 -B check_fragments.py [--content <폴더>] [--terms <용어 표기 결�
 - 위치 글은 쉼표나 쌍반점으로 나눈 부분마다 머리의 절 번호(`§3.2`, `2절 …`, `19장 …`, `1(Scope)`, `B3.5`)와
   어디든 있는 쪽(`인쇄 22쪽(PDF 42쪽)`, `Definitions(2쪽)`, `p.4`)을 읽는다. 위치가 여럿이면
   하나만 인용을 담으면 된다. 쪽도 절 번호도 없는 위치(`Overview`, `Table 3`, `Art. 3(5)`)는 인용이
-  사본에 있는지만 보고, `§`, `절`, `장`, `쪽`이 있는데 읽지 못한 부분(`제2절`)은 알린다.
+  사본에 있는지만 보고, `§`나 번호 뒤 `절`, `장`, `쪽`, 낱말로 선 `절`, `장`이 있는데 읽지 못한
+  부분(`제2절`, `'NDS.Live' 절`)은 알린다.
 
 조각 글의 약어 풀이(`<약어>(<풀이>)`, `[[<슬러그>|<약어>]](<풀이>)`, `**<약어>**(<풀이>)`, `<이름>(<약어>: <풀이>)`,
 `<풀이>(<약어>)`, `**<풀이>**(<약어>)`)는 그 낱말들이 줄의 인용
@@ -44,7 +45,7 @@ SECTION_NUMBER = r"[A-Z]\d*(?:\.\d+)+|\d+(?:\.\d+)*"
 NUMBER = re.compile(rf"({SECTION_NUMBER})(?=$|[\s.,:)])")
 CITED_NUMBER = re.compile(rf"§?\s*({SECTION_NUMBER})(?:\s*[절장])?(?=$|[\s.,:)]|\([^\W\d_]{{2}})")
 PAGE = re.compile(r"(?<![\d.])(pdf\s*)?(\d+)(?:\s*(?:–|-|\\?~)\s*(\d+))?\s*쪽|(?<![a-z])()pp?\.\s*(\d+)(?:\s*(?:–|-|\\?~)\s*(\d+))?")
-LOCATION_LIKE = re.compile(r"§|\d\s*[절장쪽]")
+LOCATION_LIKE = re.compile(r"§|\d\s*[절장쪽]|(?<![가-힣])[절장](?![가-힣])")
 TOC = re.compile(r"(?:\.\s*){4,}\d+$|…+\s*\d+$")
 PAGE_NUMBER = re.compile(r"(?:page\s+)?-?\s*(\d+)\s*-?(?:\s+of\s+\d+)?")
 EDGE = 5
@@ -53,6 +54,7 @@ WIKILINK = re.compile(r"\[\[([^|\]]*)(?:\|([^\]]*))?\]\]")
 ABBREVIATION = r"[A-Za-z0-9][A-Za-z0-9/&.+-]*"
 EXPANSION = re.compile(rf"(?<![A-Za-z0-9])({ABBREVIATION})(?:\]\]|\*\*)?\(([^()]*)\)")
 REVERSE = re.compile(rf"(?<![A-Za-z0-9'/-])((?:[A-Za-z0-9][A-Za-z0-9'/-]* )*[A-Za-z0-9][A-Za-z0-9'/-]*) ?\(({ABBREVIATION})\)")
+CAMEL = re.compile(r"[A-Z]+(?![a-z])|[A-Z]?[a-z]+|\d+")
 BOLD_REVERSE = re.compile(rf"\*\*([^*\n]+)\*\* ?\(({ABBREVIATION})\)")
 
 
@@ -348,10 +350,12 @@ def expansions(text):
     """글의 (약어, 풀이, 앞 낱말). `<약어>(<풀이>)`, `[[<슬러그>|<약어>]](<풀이>)`, 머리말의 `**<약어>**(<풀이>)`,
     `<이름>(<약어>: <풀이>)`, `<풀이>(<약어>)`, 머리말의 `**<풀이>**(<약어>)`를 읽는다. 약어는 대문자가 둘 이상이고, 풀이는 한글 없이 글자로
     시작한다. 풀이 뒤에 쉼표로 붙인 한글 덧말(`, IOMMU라고도 부름`)은 뗀다. 위키링크 하나뿐이거나 약어 자신이 든
-    괄호는 풀이가 아니다. 앞 낱말은 `CAN CC`처럼 여러 낱말인 약어를 찾는 데 쓴다."""
+    괄호와, 대문자 약어 하나뿐인 괄호(`PHY(HPGP)`는 `HomePlug Green PHY(HPGP)`의 끝)는 풀이가 아니다. 앞 낱말은 `CAN CC`처럼 여러 낱말인 약어를 찾는 데 쓴다."""
     yield from reverse_expansions(text)
     for match in EXPANSION.finditer(text):
         abbreviation, expansion = match.group(1), match.group(2).strip()
+        if re.fullmatch(ABBREVIATION, expansion) and not re.search(r"[a-z]", expansion):
+            continue
         head = expansion.split(",")[0].strip()
         if re.search(r"[가-힣]", expansion) and not re.search(r"[가-힣]", head):
             expansion = head
@@ -380,7 +384,7 @@ def initials_match(units, letters):
 
 def reverse_expansions(text):
     """`<풀이>(<약어>)` 꼴. 괄호 앞 영어 낱말 가운데 머리글자가 약어의 대문자(모두 대문자면 글자)와 맞는
-    (initials_match) 가장 짧은 끝 열을 풀이로 읽는다. 맞는 열이 없으면 풀이가 아니다. 머리말의
+    (initials_match) 가장 짧은 끝 열을 풀이로 읽는다. 낙타 표기 낱말(`HomePlug`)은 나눠 센다. 맞는 열이 없으면 풀이가 아니다. 머리말의
     `**<풀이>**(<약어>)`는 굵은 글자가 풀이의 범위라 머리글자를 보지 않는다(`**Basic Software Scheduler**(SchM)`)."""
     for match in BOLD_REVERSE.finditer(text):
         abbreviation, expansion = match.group(2), match.group(1).strip()
@@ -400,7 +404,7 @@ def reverse_expansions(text):
         tokens = match.group(1).split(" ")
         for size in range(1, min(len(tokens), len(letters) + 3) + 1):
             window = tokens[-size:]
-            units = [unit.lower() for token in window for unit in re.split(r"[-/]", token) if unit]
+            units = [unit.lower() for token in window for part in re.split(r"[-/]", token) for unit in CAMEL.findall(part)]
             if units and initials_match(units, letters) and len(" ".join(window)) > len(abbreviation):
                 yield abbreviation, " ".join(window), ""
                 break
