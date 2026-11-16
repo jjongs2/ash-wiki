@@ -326,6 +326,65 @@ class CheckFragments(unittest.TestCase):
         self.assertIn("풀이가 인용에 없다", findings[1])
         self.assertIn("content/의 풀이와 다르다", findings[2])
 
+    def test_location_forms_in_tickets_are_read(self):
+        self.copy(
+            "ISO",
+            "1 Introduction\nalpha text\n\f2 Normative references\nbeta text\n\f3 Terms\ngamma text\n\f4 Requirements\nthe quote lives here\n",
+        )
+        wrong = ["§2", "2절 Normative references", "2장 제목", "2(Normative references)", "인쇄 2쪽", "Normative references(2쪽)", "p.2"]
+        right = ["§4", "4절 Requirements", "4장 제목", "4(Requirements)", "인쇄 4쪽", "Requirements(PDF 4쪽, 인쇄 4쪽)", "표 4-1(4쪽)", "p.4 Requirements"]
+        code, findings = self.run_check(
+            self.draft(*[f"요구한다. [`ISO` ({location}) “the quote lives here”]" for location in wrong + right])
+        )
+        self.assertEqual(code, 1)
+        self.assertEqual([finding.split(":")[1] for finding in findings], [str(6 + i) for i in range(len(wrong))])
+        self.assertTrue(all("인용이 위치 밖에 있다" in finding for finding in findings))
+
+    def test_lettered_section_numbers_are_read(self):
+        self.copy("ARM", "B3.4 Memory types\nordinary text\nB3.5 Caches\nthe cache quote\nB3.10 Barriers\nlater text\n")
+        code, findings = self.run_check(
+            self.draft(
+                "캐시를 둔다. [`ARM` (B3.5) “the cache quote”]",
+                "캐시를 둔다. [`ARM` (B3.4) “the cache quote”]",
+                "캐시를 둔다. [`ARM` (B3.10) “the cache quote”]",
+            )
+        )
+        self.assertEqual(code, 1)
+        self.assertEqual([finding.split(":")[1] for finding in findings], ["7", "8"])
+        self.assertTrue(all("인용이 위치 밖에 있다" in finding for finding in findings))
+
+    def test_unreadable_location_is_reported(self):
+        self.copy("ISO", "1 Introduction\nthe quote lives here\n")
+        code, findings = self.run_check(
+            self.draft(
+                "요구한다. [`ISO` (제1절) “the quote lives here”]",
+                "요구한다. [`ISO` (Overview) “the quote lives here”]",
+                "요구한다. [`ISO` (Table 3) “the quote lives here”]",
+            )
+        )
+        self.assertEqual(code, 1)
+        self.assertEqual(len(findings), 1)
+        self.assertIn(":6:", findings[0])
+        self.assertIn("위치를 읽지 못했다", findings[0])
+
+    def test_reverse_and_annotated_expansions_are_read(self):
+        self.copy("SAE", "On-Road Automated Driving (ORAD)\nthe control pilot (CP) line\nsleepiness is rated\nsystem MMU")
+        code, findings = self.run_check(
+            self.draft(
+                "On-Road Automated Driving(ORAD) 위원회. [`SAE` (Scope) “On-Road Automated Driving (ORAD)”]",
+                "Control pilot(CP) 선을 쓴다. [`SAE` (Scope) “the control pilot (CP) line”]",
+                "졸음은 Karolinska Sleepiness Scale(KSS)로 잰다. [`SAE` (Scope) “sleepiness is rated”]",
+                "SMMU(System Memory Management Unit, IOMMU라고도 부름)를 둔다. [`SAE` (Scope) “system MMU”]",
+                "Department of Transportation(DOT)이 정한다. [`SAE` (Scope) “sleepiness is rated”]",
+            )
+        )
+        self.assertEqual(code, 1)
+        self.assertEqual([finding.split(":")[1] for finding in findings], ["8", "9", "10"])
+        self.assertTrue(all("풀이가 인용에 없다" in finding for finding in findings))
+        self.assertIn("KSS(Karolinska Sleepiness Scale)", findings[0])
+        self.assertIn("SMMU(System Memory Management Unit)", findings[1])
+        self.assertIn("DOT(Department of Transportation)", findings[2])
+
     def test_bold_lead_expansion_in_content_is_read(self):
         self.copy("NIST", "micro controller unit (MCU)\nengine control unit (ECU)\nadvanced encryption scheme (AES)")
         self.page("microcontroller", "---\ntitle: 마이크로컨트롤러\n---\n\n**MCU**(Microcontroller Unit)는 칩 하나에 CPU를 담는다.\n")

@@ -16,10 +16,13 @@ python3 -B check_fragments.py [--content <폴더>] [--terms <용어 표기 결�
   줄지 않는 가장 무거운 열(글이 붙은 줄 4, 번호만 있는 줄 1)만 제목으로 쓰고, 그 열을 벗어난
   줄(장 안의 번호 목록 `6. Repeat …`, 표 값 `5.5`)은 버린다. 절은 다음 제목 가운데 그 절 안이
   아닌 번호 제목(3.3이면 3.4, 4)이나 다른 Annex 제목에서 끝난다.
-- 위치가 여럿이면 하나만 인용을 담으면 된다. 쪽도 절 번호도 없는 위치(`Overview`)는
-  인용이 사본에 있는지만 본다.
+- 위치 글은 쉼표로 나눈 부분마다 머리의 절 번호(`§3.2`, `2절 …`, `19장 …`, `1(Scope)`, `B3.5`)와
+  어디든 있는 쪽(`인쇄 22쪽(PDF 42쪽)`, `Definitions(2쪽)`, `p.4`)을 읽는다. 위치가 여럿이면
+  하나만 인용을 담으면 된다. 쪽도 절 번호도 없는 위치(`Overview`, `Table 3`, `Art. 3(5)`)는 인용이
+  사본에 있는지만 보고, `§`, `절`, `장`, `쪽`이 있는데 읽지 못한 부분(`제2절`)은 알린다.
 
-조각 글의 약어 풀이(`<약어>(<풀이>)`, `[[<슬러그>|<약어>]](<풀이>)`, `**<약어>**(<풀이>)`, `<이름>(<약어>: <풀이>)`)는 그 낱말들이 줄의 인용
+조각 글의 약어 풀이(`<약어>(<풀이>)`, `[[<슬러그>|<약어>]](<풀이>)`, `**<약어>**(<풀이>)`, `<이름>(<약어>: <풀이>)`,
+`<풀이>(<약어>)`)는 그 낱말들이 줄의 인용
 하나에 이어서 있는지(대소문자, 기호, 영어 복수 꼴 무시) 보고, `content/`의 같은 약어 풀이와 글자가
 다르면 알린다. 용어 표기 결정에 풀이 결정이 있는 약어(`CAN CC`처럼 앞 낱말을 붙인 것
 포함)는 그 결정과만 견주고, `풀이: 통일하지 않음`인 약어는 `content/`와 견주지 않는다.
@@ -37,8 +40,11 @@ OPEN_QUOTE, CLOSE_QUOTE = "“", "”"
 UNITS = set("V mV kV A mA µA W mW Hz kHz MHz GHz s ms µs us ns ps bps kbps Mbps Gbps kbit/s Mbit/s Gbit/s B KB kB MB GB bit bits byte bytes Ω kΩ °C K % m mm cm km g kg".split())
 
 ANNEX = re.compile(r"(?:annex|appendix|부속서)\s+([a-z0-9]+(?:\.\d+)*)(?=$|[\s.,:)])", re.I)
-NUMBER = re.compile(r"([a-z](?:\.\d+)+|\d+(?:\.\d+)*)(?=$|[\s.,:)])", re.I)
-PAGE = re.compile(r"(pdf\s*)?(\d+)(?:\s*(?:–|-|\\?~)\s*(\d+))?\s*쪽")
+SECTION_NUMBER = r"[A-Z]\d*(?:\.\d+)+|\d+(?:\.\d+)*"
+NUMBER = re.compile(rf"({SECTION_NUMBER})(?=$|[\s.,:)])")
+CITED_NUMBER = re.compile(rf"§?\s*({SECTION_NUMBER})(?:\s*[절장])?(?=$|[\s.,:)]|\([^\W\d_]{{2}})")
+PAGE = re.compile(r"(?<![\d.])(pdf\s*)?(\d+)(?:\s*(?:–|-|\\?~)\s*(\d+))?\s*쪽|(?<![a-z])()pp?\.\s*(\d+)(?:\s*(?:–|-|\\?~)\s*(\d+))?")
+LOCATION_LIKE = re.compile(r"§|\d\s*[절장쪽]")
 TOC = re.compile(r"(?:\.\s*){4,}\d+$|…+\s*\d+$")
 PAGE_NUMBER = re.compile(r"(?:page\s+)?-?\s*(\d+)\s*-?(?:\s+of\s+\d+)?")
 EDGE = 5
@@ -46,6 +52,8 @@ TITLED, BARE = 4, 1
 WIKILINK = re.compile(r"\[\[([^|\]]*)(?:\|([^\]]*))?\]\]")
 ABBREVIATION = r"[A-Za-z0-9][A-Za-z0-9/&.+-]*"
 EXPANSION = re.compile(rf"(?<![A-Za-z0-9])({ABBREVIATION})(?:\]\]|\*\*)?\(([^()]*)\)")
+REVERSE = re.compile(rf"(?<![A-Za-z0-9'/-])((?:[A-Za-z0-9][A-Za-z0-9'/-]* )*[A-Za-z0-9][A-Za-z0-9'/-]*) ?\(({ABBREVIATION})\)")
+STOPWORDS = set("a an and for in of on the to with".split())
 
 
 def clean(text):
@@ -184,17 +192,17 @@ def heading(line):
 
 
 def cited_section(part):
-    """위치 글 한 부분의 머리에 있는 절. 숫자 하나(`5`)도 장 번호로 읽는다."""
+    """위치 글 한 부분의 머리에 있는 절. 숫자 하나(`5`)도 장 번호로 읽는다. `§`와 `절`, `장`은 뗀다."""
     match = ANNEX.match(part)
     if match:
         return ("annex", match.group(1).lower())
-    match = NUMBER.match(part)
+    match = CITED_NUMBER.match(part)
     return ("number", match.group(1).lower()) if match else None
 
 
 def outline_key(name):
-    """번호 절의 차례. 숫자 층은 글자 층(`B.2`)보다 앞이다."""
-    return tuple((0, int(part), "") if part.isdigit() else (1, 0, part) for part in name.split("."))
+    """번호 절의 차례. 숫자 층은 글자 층(`B.2`, `B3.5`)보다 앞이다."""
+    return tuple((0, int(part), "") if part.isdigit() else (1, part[0], int(part[1:] or -1)) for part in name.split("."))
 
 
 def outline(entries):
@@ -223,19 +231,29 @@ def inside(section, other):
 
 
 def locations(location):
-    """위치 글에서 절과 쪽. 쉼표로 나눈 부분마다 머리의 것을 읽는다. 쪽은 ("page", n, 인쇄된 쪽인가)."""
+    """위치 글에서 절과 쪽. 쉼표로 나눈 부분마다 머리의 절과 어디든 있는 쪽을 읽는다. 쪽은
+    ("page", n, 인쇄된 쪽인가)."""
+    return [place for part in location_parts(location) for place in part[1]]
+
+
+def location_parts(location):
+    """위치 글의 부분마다 (글, 읽은 절과 쪽)."""
     result = []
     for part in split_top(clean(location), ","):
-        part = part.strip()
-        page = PAGE.match(part.lower())
-        if page:
-            first = int(page.group(2))
-            result += [("page", number, not page.group(1)) for number in range(first, int(page.group(3) or first) + 1)]
-            continue
+        part, places = part.strip(), []
         section = cited_section(part)
         if section:
-            result.append(section)
+            places.append(section)
+        for page in PAGE.finditer(part.lower()):
+            first, last = int(page.group(2) or page.group(5)), page.group(3) or page.group(6)
+            places += [("page", number, not page.group(1)) for number in range(first, int(last or first) + 1)]
+        result.append((part, places))
     return result
+
+
+def unread(location):
+    """절이나 쪽처럼 보이는데 읽지 못한 위치 부분들."""
+    return [part for part, places in location_parts(location) if not places and LOCATION_LIKE.search(part)]
 
 
 def page_offsets(lines):
@@ -328,10 +346,15 @@ class SourceCopy:
 
 def expansions(text):
     """글의 (약어, 풀이, 앞 낱말). `<약어>(<풀이>)`, `[[<슬러그>|<약어>]](<풀이>)`, 머리말의 `**<약어>**(<풀이>)`,
-    `<이름>(<약어>: <풀이>)`를 읽는다. 약어는 대문자가 둘 이상이고, 풀이는 한글 없이 글자로 시작한다. 위키링크 하나뿐이거나
-    약어 자신이 든 괄호는 풀이가 아니다. 앞 낱말은 `CAN CC`처럼 여러 낱말인 약어를 찾는 데 쓴다."""
+    `<이름>(<약어>: <풀이>)`, `<풀이>(<약어>)`를 읽는다. 약어는 대문자가 둘 이상이고, 풀이는 한글 없이 글자로
+    시작한다. 풀이 뒤에 쉼표로 붙인 한글 덧말(`, IOMMU라고도 부름`)은 뗀다. 위키링크 하나뿐이거나 약어 자신이 든
+    괄호는 풀이가 아니다. 앞 낱말은 `CAN CC`처럼 여러 낱말인 약어를 찾는 데 쓴다."""
+    yield from reverse_expansions(text)
     for match in EXPANSION.finditer(text):
         abbreviation, expansion = match.group(1), match.group(2).strip()
+        head = expansion.split(",")[0].strip()
+        if re.search(r"[가-힣]", expansion) and not re.search(r"[가-힣]", head):
+            expansion = head
         before = re.search(rf"({ABBREVIATION}) $", text[: match.start()])
         inner = re.fullmatch(rf"({ABBREVIATION}):\s+(.+)", expansion)
         if inner:
@@ -346,6 +369,34 @@ def expansions(text):
             and len(expansion) > len(abbreviation)
         ):
             yield abbreviation, expansion, before.group(1) if before else ""
+
+
+def initials_match(units, letters):
+    """낱말 조각들의 머리글자가 차례로 letters인가. 첫 조각은 글자를 내고, 기능어(of, on 등)는 건너뛸 수 있다."""
+    if not units:
+        return not letters
+    unit, rest = units[0], units[1:]
+    if letters and unit[0] == letters[0] and initials_match(rest, letters[1:]):
+        return True
+    return unit in STOPWORDS and initials_match(rest, letters)
+
+
+def reverse_expansions(text):
+    """`<풀이>(<약어>)` 꼴. 괄호 앞 영어 낱말 가운데 머리글자가 약어의 대문자(모두 대문자면 글자)와 맞는
+    가장 짧은 끝 열을 풀이로 읽는다. 맞는 열이 없으면 풀이가 아니다."""
+    for match in REVERSE.finditer(text):
+        abbreviation = match.group(2)
+        if sum(char.isupper() for char in abbreviation) < 2:
+            continue
+        upper = [char.lower() for char in abbreviation if char.isupper()]
+        letters = upper if any(char.islower() for char in abbreviation) else [char.lower() for char in abbreviation if char.isalpha()]
+        tokens = match.group(1).split(" ")
+        for size in range(1, min(len(tokens), len(letters) + 3) + 1):
+            window = tokens[-size:]
+            units = [unit.lower() for token in window for unit in re.split(r"[-/]", token) if unit]
+            if units and units[0][0] == letters[0] and initials_match(units, letters):
+                yield abbreviation, " ".join(window), ""
+                break
 
 
 def same_word(wanted, word):
@@ -427,6 +478,8 @@ def check(copies, drafts, content, terms):
                 if copy is None:
                     findings.append(f"{where}: 사본 {abbreviation}.txt가 없다")
                     continue
+                for part in unread(citation["location"]):
+                    findings.append(f"{where}: 위치를 읽지 못했다: {part}")
                 cited, spans = locations(citation["location"]), copy.spans(citation["location"])
                 for quote in citation["quotes"]:
                     starts = copy.find(quote)
