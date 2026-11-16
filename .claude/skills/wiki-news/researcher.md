@@ -37,7 +37,7 @@
 4. 배포본(PR Newswire, Business Wire, GlobeNewswire, PR TIMES)
 5. Wayback CDX로 낸 곳의 그 기간 주소 찾기
 
-찾은 주소는 `docs/source-access.md`와 [outlets.md의 접속 절](outlets.md#접속)의 여는 법으로 한 번 연다. 열리지 않으면 같은 주소를 User-Agent, 헤더, 도구, Wayback으로 바꿔 다시 받지 않고, `primary_outlet`에 낸 곳을, `note`에 HTTP 코드나 캡차 같은 까닭과 쓴 방법을 적는다. 원문도 같은 소식의 제3자 기사도 열리지 않으면 `열리지 않음`으로 뺀다([4. 고르기](SKILL.md#4-고르기)).
+찾은 주소는 `docs/source-access.md`와 [outlets.md의 접속 절](outlets.md#접속)의 여는 법으로 한 번 연다. 열리지 않으면 `docs/source-access.md` 머리의 공통 줄대로 다시 받지 않고, `primary_outlet`에 낸 곳을, `note`에 HTTP 코드나 캡차 같은 까닭과 쓴 방법을 적는다. 원문도 같은 소식의 제3자 기사도 열리지 않으면 `열리지 않음`으로 뺀다([4. 고르기](SKILL.md#4-고르기)).
 
 **리콜**(리콜 그룹)
 

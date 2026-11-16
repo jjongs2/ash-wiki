@@ -39,7 +39,7 @@
 ## 접속
 
 - 매체는 curl에 브라우저 User-Agent를 붙여 연다(`-A 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36'`). 기본 User-Agent는 막는 매체가 있다. 기본 User-Agent가 필요한 매체는 비고에 적는다. 매체 목록에 없는 호스트는 `docs/source-access.md`를 따른다.
-- 비고가 여는 법(기본 User-Agent, Node `fetch`, 브라우저)을 적은 매체는 첫 요청부터 그 법으로 연다. 막혀도 같은 주소를 User-Agent, 헤더, 도구, Wayback으로 바꿔 다시 받지 않고, 열지 못한 곳으로 접속 기록에 적는다(`docs/source-access.md` 머리의 공통 줄).
+- 비고가 여는 법(기본 User-Agent, Node `fetch`, 브라우저)을 적은 매체는 첫 요청부터 그 법으로 연다. 열리지 않으면 `docs/source-access.md` 머리의 공통 줄대로 다시 받지 않고, 열지 못한 곳으로 접속 기록에 적는다.
 - 비고의 "브라우저 필요"는 Playwright headless Chromium으로 연다는 뜻이다. 루틴 환경에는 `/opt/pw-browsers` 아래 Chromium이 있고, 설치한 Playwright가 다른 판을 찾으면 `executablePath`로 그 Chromium을 준다.
 - 같은 호스트에는 요청 사이를 1초 이상(arXiv는 [검색 질의 절](#검색-질의)의 간격) 띄우고, 병렬 요청을 몰지 않는다.
 - 브라우저는 여러 에이전트가 함께 쓴다. 자기 탭을 열어 쓰고 끝나면 닫는다.
