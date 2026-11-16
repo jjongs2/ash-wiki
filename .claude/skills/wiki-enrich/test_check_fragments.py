@@ -62,7 +62,7 @@ class CheckFragments(unittest.TestCase):
     def test_quote_with_nested_quotes_is_one_quote(self):
         self.copy("R171", "Introduction\n2. DCAS are treated as \"SAE level 2 according to SAE J3016\" here.")
         code, findings = self.run_check(
-            self.draft("DCAS는 레벨 2로 다룬다. [`R171` (Introduction 2.; 4.) “treated as “SAE level 2 according to SAE J3016” here”]")
+            self.draft("DCAS는 레벨 2로 다룬다. [`R171` (Introduction 2.) “treated as “SAE level 2 according to SAE J3016” here”]")
         )
         self.assertEqual((code, findings), (0, []))
 
@@ -340,6 +340,19 @@ class CheckFragments(unittest.TestCase):
         self.assertEqual([finding.split(":")[1] for finding in findings], [str(6 + i) for i in range(len(wrong))])
         self.assertTrue(all("인용이 위치 밖에 있다" in finding for finding in findings))
 
+    def test_semicolon_separated_locations_are_read(self):
+        self.copy("R157", "5.5.4.2.6.5 Lane change\nearlier text\n7.1 Activation\nthe quote lives here\n")
+        code, findings = self.run_check(
+            self.draft(
+                "요구한다. [`R157` (표지; 5.5.4.2.6.5) “the quote lives here”]",
+                "요구한다. [`R157` (표지; 5.5.4.2.6.1.3; 5.5.4.2.6.5) “the quote lives here”]",
+                "요구한다. [`R157` (표지; 7.1) “the quote lives here”]",
+            )
+        )
+        self.assertEqual(code, 1)
+        self.assertEqual([finding.split(":")[1] for finding in findings], ["6", "7"])
+        self.assertTrue(all("인용이 위치 밖에 있다" in finding for finding in findings))
+
     def test_lettered_section_numbers_are_read(self):
         self.copy("ARM", "B3.4 Memory types\nordinary text\nB3.5 Caches\nthe cache quote\nB3.10 Barriers\nlater text\n")
         code, findings = self.run_check(
@@ -405,19 +418,22 @@ class CheckFragments(unittest.TestCase):
             self.assertIn(page, finding)
 
     def test_bold_lead_name_before_abbreviation_in_content_is_read(self):
-        self.copy("IEEE", "time-aware scheduler (TAS)\nsecure on-board communication (SecOC)")
+        self.copy("IEEE", "time-aware scheduler (TAS)\nsecure on-board communication (SecOC)\nSchedule Manager (SchM)")
         self.page("time-aware-shaper", "**Time-aware shaper**(TAS)는 시간 창마다 큐를 연다.\n")
         self.page("secure-onboard-communication", "**Secure Onboard Communication**(SecOC)은 메시지를 인증한다.\n")
+        self.page("basic-software-scheduler", "**Basic Software Scheduler**(SchM)는 실행 단위를 부른다.\n")
         code, findings = self.run_check(
             self.draft(
                 "TAS(time-aware scheduler)가 창을 연다. [`IEEE` (Overview) “time-aware scheduler (TAS)”]",
                 "SecOC(secure on-board communication)이 인증한다. [`IEEE` (Overview) “secure on-board communication (SecOC)”]",
+                "SchM(Schedule Manager)이 부른다. [`IEEE` (Overview) “Schedule Manager (SchM)”]",
             )
         )
         self.assertEqual(code, 1)
-        self.assertEqual(len(findings), 2)
+        self.assertEqual(len(findings), 3)
         self.assertIn("time-aware-shaper.md", findings[0])
         self.assertIn("secure-onboard-communication.md", findings[1])
+        self.assertIn("basic-software-scheduler.md", findings[2])
         self.assertTrue(all("content/의 풀이와 다르다" in finding for finding in findings))
 
     def test_expansion_follows_term_decision(self):

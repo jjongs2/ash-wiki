@@ -16,7 +16,7 @@ python3 -B check_fragments.py [--content <폴더>] [--terms <용어 표기 결�
   줄지 않는 가장 무거운 열(글이 붙은 줄 4, 번호만 있는 줄 1)만 제목으로 쓰고, 그 열을 벗어난
   줄(장 안의 번호 목록 `6. Repeat …`, 표 값 `5.5`)은 버린다. 절은 다음 제목 가운데 그 절 안이
   아닌 번호 제목(3.3이면 3.4, 4)이나 다른 Annex 제목에서 끝난다.
-- 위치 글은 쉼표로 나눈 부분마다 머리의 절 번호(`§3.2`, `2절 …`, `19장 …`, `1(Scope)`, `B3.5`)와
+- 위치 글은 쉼표나 쌍반점으로 나눈 부분마다 머리의 절 번호(`§3.2`, `2절 …`, `19장 …`, `1(Scope)`, `B3.5`)와
   어디든 있는 쪽(`인쇄 22쪽(PDF 42쪽)`, `Definitions(2쪽)`, `p.4`)을 읽는다. 위치가 여럿이면
   하나만 인용을 담으면 된다. 쪽도 절 번호도 없는 위치(`Overview`, `Table 3`, `Art. 3(5)`)는 인용이
   사본에 있는지만 보고, `§`, `절`, `장`, `쪽`이 있는데 읽지 못한 부분(`제2절`)은 알린다.
@@ -52,7 +52,8 @@ TITLED, BARE = 4, 1
 WIKILINK = re.compile(r"\[\[([^|\]]*)(?:\|([^\]]*))?\]\]")
 ABBREVIATION = r"[A-Za-z0-9][A-Za-z0-9/&.+-]*"
 EXPANSION = re.compile(rf"(?<![A-Za-z0-9])({ABBREVIATION})(?:\]\]|\*\*)?\(([^()]*)\)")
-REVERSE = re.compile(rf"(?<![A-Za-z0-9'/-])((?:[A-Za-z0-9][A-Za-z0-9'/-]* )*[A-Za-z0-9][A-Za-z0-9'/-]*)(?:\*\*)? ?\(({ABBREVIATION})\)")
+REVERSE = re.compile(rf"(?<![A-Za-z0-9'/-])((?:[A-Za-z0-9][A-Za-z0-9'/-]* )*[A-Za-z0-9][A-Za-z0-9'/-]*) ?\(({ABBREVIATION})\)")
+BOLD_REVERSE = re.compile(rf"\*\*([^*\n]+)\*\* ?\(({ABBREVIATION})\)")
 
 
 def clean(text):
@@ -230,7 +231,7 @@ def inside(section, other):
 
 
 def locations(location):
-    """위치 글에서 절과 쪽. 쉼표로 나눈 부분마다 머리의 절과 어디든 있는 쪽을 읽는다. 쪽은
+    """위치 글에서 절과 쪽. 쉼표나 쌍반점으로 나눈 부분마다 머리의 절과 어디든 있는 쪽을 읽는다. 쪽은
     ("page", n, 인쇄된 쪽인가)."""
     return [place for part in location_parts(location) for place in part[1]]
 
@@ -238,7 +239,7 @@ def locations(location):
 def location_parts(location):
     """위치 글의 부분마다 (글, 읽은 절과 쪽)."""
     result = []
-    for part in split_top(clean(location), ","):
+    for part in [piece for chunk in split_top(clean(location), ";") for piece in split_top(chunk, ",")]:
         part, places = part.strip(), []
         section = cited_section(part)
         if section:
@@ -379,7 +380,17 @@ def initials_match(units, letters):
 
 def reverse_expansions(text):
     """`<풀이>(<약어>)` 꼴. 괄호 앞 영어 낱말 가운데 머리글자가 약어의 대문자(모두 대문자면 글자)와 맞는
-    (initials_match) 가장 짧은 끝 열을 풀이로 읽는다. 맞는 열이 없으면 풀이가 아니다."""
+    (initials_match) 가장 짧은 끝 열을 풀이로 읽는다. 맞는 열이 없으면 풀이가 아니다. 머리말의
+    `**<풀이>**(<약어>)`는 굵은 글자가 풀이의 범위라 머리글자를 보지 않는다(`**Basic Software Scheduler**(SchM)`)."""
+    for match in BOLD_REVERSE.finditer(text):
+        abbreviation, expansion = match.group(2), match.group(1).strip()
+        if (
+            sum(char.isupper() for char in abbreviation) >= 2
+            and re.match(r"[A-Za-z]", expansion)
+            and not re.search(r"[가-힣]", expansion)
+            and len(expansion) > len(abbreviation)
+        ):
+            yield abbreviation, expansion, ""
     for match in REVERSE.finditer(text):
         abbreviation = match.group(2)
         if sum(char.isupper() for char in abbreviation) < 2:
