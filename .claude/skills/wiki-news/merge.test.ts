@@ -229,7 +229,10 @@ describe("판정표의 실림", () => {
       issue,
     )
     assert.deepStrictEqual(missing, [])
-    assert.strictEqual(summary(markdown), "<details><summary>후보 판정표 4건(실림 2, 뺌 2)</summary>")
+    assert.strictEqual(
+      summary(markdown),
+      "<details><summary>후보 판정표 4건(실림 2, 뺌 2)</summary>",
+    )
     assert.match(markdown, /\| C01 \|.*\| 뺌 \| 같은 사건 중복: A01 \|/)
     assert.match(markdown, /\| F02 \|.*\| 뺌 \| 범위 밖: 하드웨어 리콜 \|/)
   })
@@ -244,7 +247,10 @@ describe("판정표의 실림", () => {
       [published(list, "Rückruf Mercedes Sprinter Software")],
     )
     assert.deepStrictEqual(missing, ["F01"])
-    assert.strictEqual(summary(markdown), "<details><summary>후보 판정표 2건(실림 1, 뺌 1)</summary>")
+    assert.strictEqual(
+      summary(markdown),
+      "<details><summary>후보 판정표 2건(실림 1, 뺌 1)</summary>",
+    )
     assert.match(markdown, /\| F02 \|.*\| 실림 \|/)
   })
 
@@ -257,7 +263,9 @@ describe("판정표의 실림", () => {
       [],
       [],
     )
-    assert.deepStrictEqual(unopened, ["B01 Vector BBBB 0000 1111: 열리지 않음: 원문 403, 기사 없음"])
+    assert.deepStrictEqual(unopened, [
+      "B01 Vector BBBB 0000 1111: 열리지 않음: 원문 403, 기사 없음",
+    ])
   })
 })
 
@@ -270,7 +278,11 @@ describe("소식 파일을 고치는 열린 PR", () => {
         {
           number: 691,
           branch: "fix/news",
-          files: ["content/news/2026-w44.md", "content/news/index.md", ".claude/skills/wiki-news/outlets.md"],
+          files: [
+            "content/news/2026-w44.md",
+            "content/news/index.md",
+            ".claude/skills/wiki-news/outlets.md",
+          ],
         },
       ]),
       [

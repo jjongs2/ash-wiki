@@ -41,6 +41,8 @@ export interface PastItem {
   outlet: string
   date: string
   summary: string
+  /** 항목의 제목 id. 이전 호 링크의 앵커다(docs/weekly-news.md). */
+  id?: string
 }
 
 /** 검토 에이전트의 기록 한 줄(news-reviewer.md의 출력). from은 원문을 바꿨을 때 바꾸기 전 주소다. */
@@ -229,7 +231,8 @@ export function verdictTable(
     if (c.verdict !== "싣기") return
     const url = normalizeUrl(reviewOf[ci]?.url || c.url)
     published.forEach((p, pi) => {
-      if (normalizeUrl(p.url) === url) pairs.push({ c: ci, p: pi, score: similarity(c.title, p.title) })
+      if (normalizeUrl(p.url) === url)
+        pairs.push({ c: ci, p: pi, score: similarity(c.title, p.title) })
     })
   })
   const matched = new Map<number, number>()
@@ -382,7 +385,7 @@ function past(folder: string, refs: string[], today: string): number {
     .sort(([a], [b]) => a.localeCompare(b))
     .flatMap(([week, { items }]) =>
       items.map((it) =>
-        [week, it.title, it.url, it.outlet, it.date, visibleText(it.summary.markdown)]
+        [week, it.title, it.url, it.outlet, it.date, visibleText(it.summary.markdown), it.id]
           .map(tsv)
           .join("\t"),
       ),
@@ -465,8 +468,8 @@ function merge(folder: string, force: boolean): number {
         .split("\n")
         .filter(Boolean)
         .map((line) => {
-          const [week, title, url, outlet, date, summary = ""] = line.split("\t")
-          return { week, title, url, outlet, date, summary }
+          const [week, title, url, outlet, date, summary = "", id] = line.split("\t")
+          return { week, title, url, outlet, date, summary, id }
         })
     : []
   if (!items.length) console.log("\npast.tsv가 없거나 비었다(2단계)")

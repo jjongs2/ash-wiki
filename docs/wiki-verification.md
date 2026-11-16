@@ -532,6 +532,7 @@ DNS 실패, 404 같은 그 밖의 실패는 `url` FAIL이다. 다만 시간 초�
 | `unece.org`                 | UN 규정과 WP.29 문서  |
 | `trustedcomputinggroup.org` | TCG 명세와 용어집     |
 | `eur-lex.europa.eu`         | EU 법령               |
+| `webstore.iec.ch`           | IEC 표준 미리보기     |
 
 ## 판 확인
 

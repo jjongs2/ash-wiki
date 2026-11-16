@@ -14,7 +14,7 @@
 2. [outlets.md](outlets.md): 맡은 매체의 줄, 열·접속·검색 질의 절
 3. `docs/source-access.md`(호스트별 여는 법)
 4. `docs/weekly-news.md`의 필드 표
-5. 작업 폴더의 `past.tsv`: 지난 호의 소식 항목(탭 구분: 주차, 원어 제목, URL, 매체, 발행일, 요약)
+5. 작업 폴더의 `past.tsv`: 지난 호의 소식 항목(탭 구분: 주차, 원어 제목, URL, 매체, 발행일, 요약, 제목 id)
 6. 구역의 뜻: `content/tags/<구역>.md`와 그 아래 파일
 
 ## 찾는 요령
@@ -23,7 +23,7 @@
 
 1. 피드의 `?paged=N`, HTML 목록의 쪽 넘김, 연도별·월별 보관 목록, WordPress REST(`/wp-json/wp/v2/posts?after=…&before=…`)
 2. Google News로 그 매체의 그 기간 글: `https://news.google.com/rss/search?q=site:<호스트>+after:<월요일>+before:<다음 월요일>&hl=…`
-3. Wayback(`https://web.archive.org/cdx/search/cdx?…`)이나 사이트맵
+3. Wayback CDX(`https://web.archive.org/cdx/search/cdx?url=<호스트>/*&from=…&to=…`)로 그 기간의 글 주소를 찾거나 사이트맵
 
 어디로도 닿지 않으면 접속 기록의 `shallow`에 가장 오래 닿은 글의 날짜를 적는다.
 
@@ -35,9 +35,9 @@
 2. 낸 곳의 뉴스룸과 사이트 검색(사이트 안 검색, Google News `site:` 질의). 정부 발표는 정책브리핑(korea.kr) 같은 정부 포털도 본다.
 3. 낸 곳의 WordPress REST
 4. 배포본(PR Newswire, Business Wire, GlobeNewswire, PR TIMES)
-5. Wayback
+5. Wayback CDX로 낸 곳의 그 기간 주소 찾기
 
-열리지 않는다고 정하기 전에 `docs/source-access.md`의 여는 법을 모두 써 본다. 그래도 열리지 않으면 `primary_outlet`에 낸 곳을, `note`에 HTTP 코드나 캡차 같은 까닭과 해 본 방법을 적는다.
+찾은 주소는 `docs/source-access.md`와 [outlets.md의 접속 절](outlets.md#접속)의 여는 법으로 한 번 연다. 열리지 않으면 같은 주소를 User-Agent, 헤더, 도구, Wayback으로 바꿔 다시 받지 않고, `primary_outlet`에 낸 곳을, `note`에 HTTP 코드나 캡차 같은 까닭과 쓴 방법을 적는다. 원문도 같은 소식의 제3자 기사도 열리지 않으면 `열리지 않음`으로 뺀다([4. 고르기](SKILL.md#4-고르기)).
 
 **리콜**(리콜 그룹)
 
@@ -68,7 +68,7 @@
 | `regions`            | [7. 쓰기](SKILL.md#7-쓰기)의 구역 규칙대로 구역 이름의 배열. 기타는 `["기타"]`                                                                     |
 | `kind`               | `1차` 또는 `제3자`([3. 찾기](SKILL.md#3-찾기)의 두 갈래)                                                                                           |
 | `inlist`             | 3단계의 목록 밖이면 `false`                                                                                                                        |
-| `verdict`, `reason`  | `싣기`나 `빼기`. 빼면 `reason`에 4단계 기준 이름(기간, 1차 발표 우선, 유료, 광고성 기사, 루머, 문턱)이나 `범위 밖`과 한 줄 설명                    |
+| `verdict`, `reason`  | `싣기`나 `빼기`. 빼면 `reason`에 4단계 기준 이름(기간, 1차 발표 우선, 유료, 열리지 않음, 광고성 기사, 루머, 문턱)이나 `범위 밖`과 한 줄 설명       |
 | `threshold`          | 제품·인증 발표 문턱을 넘었으면 넘은 조건. 문턱 대상이 아니면 빈 문자열                                                                             |
 | `primary_outlet`     | 1차 발표가 열리지 않아 제3자 기사를 실을 때 1차 발표를 낸 곳                                                                                       |
 | `event`              | 사건 키. `org`는 발표하거나 결함이 난 회사·기관, `subject`는 리콜 번호(NHTSA 캠페인 번호가 있으면 그것), 표준 번호(판 포함), 결함이나 제품 이름    |

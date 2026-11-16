@@ -36,7 +36,7 @@ export const manifest = {
 }
 
 // 소식 항목 하나. regions는 구역 태그(network)의 목록이고 기타는 빈 목록이다. id는 카드의 앵커로, 위키 링크의 절
-// 링크(`[[news/2026-w41#원어 제목]]`)가 가리키는 값과 같다. featured는 주요 소식인지이고, koreanTitle은 주요
+// 링크(`[[news/2026-w41#<id>|…]]`)의 앵커다. featured는 주요 소식인지이고, koreanTitle은 주요
 // 소식에만 다는 한국어 제목(없으면 null)이다. summary의 start와 end는 요약이 차지하는 원본의 첫 줄과 끝
 // 줄(1부터)이다.
 export interface NewsItem {
@@ -227,8 +227,7 @@ export function koreanTitlePresence(
 
 // 이전 호 항목으로 가는 링크(docs/weekly-news.md). 묶음은 `(이전 호: L, L)`이고, 닫는 괄호 뒤에 글자가 붙지 않는다.
 const NEWS_LINK = /\[\[news\/[^\]]*\]\]/g
-const PRIOR_GROUP =
-  /\(이전 호: \[\[news\/[^\]]*\]\](?:, \[\[news\/[^\]]*\]\])*\)(?![\p{L}\p{N}])/gu
+const PRIOR_GROUP = /\(이전 호: \[\[news\/[^\]]*\]\](?:, \[\[news\/[^\]]*\]\])*\)(?![\p{L}\p{N}])/gu
 const PRIOR_LINK = /^\[\[news\/(\d{4}-w\d{2})(?:#([^\]|]*))?\|([^\]]+)\]\]$/
 const PRIOR_SHAPE = "(이전 호: [[news/<주차>#<제목 id>|<표시 이름>]])"
 
