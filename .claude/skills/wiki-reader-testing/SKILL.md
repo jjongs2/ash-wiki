@@ -16,8 +16,8 @@ disable-model-invocation: true
 ## 1. 시작
 
 - `git fetch origin` 뒤 `origin/main`에서 worktree와 브랜치를 만든다. 브랜치는 `CONTRIBUTING.md`의 브랜치 절을 따라 이슈 번호 없이 `content/reader-<영문 kebab-case 요약>`이다.
+- 바로 worktree에 들어가 `npm ci`를 돌린다. 들어가는 법은 `CONTRIBUTING.md` 원칙 절의 PR 전 확인을 따른다.
 - **기준 SHA**를 `git merge-base origin/main HEAD`로 적어 둔다. 캡처, 반영 뒤 점검, 프리뷰가 모두 이것을 기준으로 삼는다.
-- worktree에 들어가 `npm ci`를 돌린다. 들어가는 법은 `CONTRIBUTING.md` 원칙 절의 PR 전 확인을 따른다.
 
 완료: worktree와 브랜치가 있고, 세션이 그 worktree에 들어가 있고, 기준 SHA를 적었다.
 
