@@ -16,7 +16,8 @@ python3 -B check_fragments.py [--content <폴더>] [--terms <용어 표기 결�
   줄지 않는 가장 무거운 열(글이 붙은 줄 4, 번호만 있는 줄 1)만 제목으로 쓰고, 그 열을 벗어난
   줄(장 안의 번호 목록 `6. Repeat …`, 표 값 `5.5`)은 버린다. 절은 다음 제목 가운데 그 절 안이
   아닌 번호 제목(3.3이면 3.4, 4)이나 다른 Annex 제목에서 끝난다.
-- 위치 글은 쉼표나 쌍반점으로 나눈 부분마다 머리의 절 번호(`§3.2`, `2절 …`, `19장 …`, `1(Scope)`, `B3.5`)와
+- 위치 글은 쉼표나 쌍반점으로 나눈 부분마다 머리의 절 번호(`§3.2`, `2절 …`, `19장 …`, `1(Scope)`, `B3.5`,
+  `3.21과 Note`, `3.4·3.6`, `3.22~3.25`, `Annex I(…)`, Annex 뒤의 `Part 1 3.3.1`)와
   어디든 있는 쪽(`인쇄 22쪽(PDF 42쪽)`, `Definitions(2쪽)`, `p.4`)을 읽는다. 위치가 여럿이면
   하나만 인용을 담으면 된다. 쪽도 절 번호도 없는 위치(`Overview`, `Table 3`, `Art. 3(5)`)는 인용이
   사본에 있는지만 보고, `§`나 번호 뒤 `절`, `장`, `쪽`, 낱말로 선 `절`, `장`이 있는데 읽지 못한
@@ -40,10 +41,11 @@ import unicodedata
 OPEN_QUOTE, CLOSE_QUOTE = "“", "”"
 UNITS = set("V mV kV A mA µA W mW Hz kHz MHz GHz s ms µs us ns ps bps kbps Mbps Gbps kbit/s Mbit/s Gbit/s B KB kB MB GB bit bits byte bytes Ω kΩ °C K % m mm cm km g kg".split())
 
-ANNEX = re.compile(r"(?:annex|appendix|부속서)\s+([a-z0-9]+(?:\.\d+)*)(?=$|[\s.,:)])", re.I)
+ANNEX = re.compile(r"(?:annex|appendix|부속서)\s+([a-z0-9]+(?:\.\d+)*)(?=$|[\s.,:()])", re.I)
 SECTION_NUMBER = r"[A-Z]\d*(?:\.\d+)+|\d+(?:\.\d+)*"
 NUMBER = re.compile(rf"({SECTION_NUMBER})(?=$|[\s.,:)])")
-CITED_NUMBER = re.compile(rf"§?\s*({SECTION_NUMBER})(?:\s*[절장])?(?=$|[\s.,:)]|\([^\W\d_]{{2}})")
+CITED_HEAD = re.compile(rf"(?:§\s*|새\s+|(Part\s+\d+)\s+)?({SECTION_NUMBER})(?!\.?\d)(?:\s*[절장])?")
+CITED_MORE = re.compile(rf"\s*(\\?~|–|·)\s*({SECTION_NUMBER})(?!\.?\d)")
 PAGE = re.compile(r"(?<![\d.])(pdf\s*)?(\d+)(?:\s*(?:–|-|\\?~)\s*(\d+))?\s*쪽|(?<![a-z])()pp?\.\s*(\d+)(?:\s*(?:–|-|\\?~)\s*(\d+))?")
 LOCATION_LIKE = re.compile(r"§|\d\s*[절장쪽]|(?<![가-힣])[절장](?![가-힣])")
 TOC = re.compile(r"(?:\.\s*){4,}\d+$|…+\s*\d+$")
@@ -193,13 +195,26 @@ def heading(line):
     return ("number", match.group(1).lower())
 
 
-def cited_section(part):
-    """위치 글 한 부분의 머리에 있는 절. 숫자 하나(`5`)도 장 번호로 읽는다. `§`와 `절`, `장`은 뗀다."""
+def cited_sections(part):
+    """위치 글 한 부분의 머리에 있는 절들과, `Part n`으로 Annex 안을 가리키는가. 숫자 하나(`5`)도 장
+    번호로 읽는다. `§`, `새`, `절`, `장`은 떼고, 번호 뒤 조사(`3.21과`)도 받는다. `·`로 이은 번호는
+    저마다의 절, `~`로 이은 번호는 처음 절부터 끝 절까지("range")다. 숫자 하나 뒤의 괄호는 글자로 시작할
+    때만 받는다(`1(Scope)`는 절, `3(5)`는 조항)."""
     match = ANNEX.match(part)
     if match:
-        return ("annex", match.group(1).lower())
-    match = CITED_NUMBER.match(part)
-    return ("number", match.group(1).lower()) if match else None
+        return [("annex", match.group(1).lower())], False
+    match = CITED_HEAD.match(part)
+    if not match:
+        return [], False
+    names, joiner, end = [match.group(2).lower()], None, match.end()
+    while more := CITED_MORE.match(part, end):
+        joiner, end = more.group(1), more.end()
+        names.append(more.group(2).lower())
+    rest = part[end:]
+    if not (not rest or re.match(r"[\s.,:)과와의]|\([^\W\d_]{2}", rest) or rest[0] == "(" and "." in names[-1]):
+        return [], False
+    places = [("range", names[0], names[-1])] if joiner and joiner != "·" else [("number", name) for name in names]
+    return places, bool(match.group(1))
 
 
 def outline_key(name):
@@ -242,10 +257,13 @@ def location_parts(location):
     """위치 글의 부분마다 (글, 읽은 절과 쪽)."""
     result = []
     for part in [piece for chunk in split_top(clean(location), ";") for piece in split_top(chunk, ",")]:
-        part, places = part.strip(), []
-        section = cited_section(part)
-        if section:
-            places.append(section)
+        part = part.strip()
+        places, within = cited_sections(part)
+        annexes = [(index, place) for index, (_, read) in enumerate(result) for place in read if place[0] == "annex"]
+        if within and annexes:
+            index, annex = annexes[-1]
+            result[index][1].remove(annex)
+            places = [("within", annex, place) for place in places]
         for page in PAGE.finditer(part.lower()):
             first, last = int(page.group(2) or page.group(5)), page.group(3) or page.group(6)
             places += [("page", number, not page.group(1)) for number in range(first, int(last or first) + 1)]
@@ -338,11 +356,41 @@ class SourceCopy:
                 spans.append((self.lines[indexes[0]][0], self.end(indexes[-1] + 1)))
         return spans
 
+    def range_spans(self, first, last, lo=0, hi=None):
+        """first 절의 시작부터 그 뒤 last 절의 끝까지."""
+        starts = [a for a, _ in self.local_spans(("number", first), lo, hi)]
+        ends = [b for a, b in self.local_spans(("number", last), lo, hi) if starts and a >= starts[0]]
+        return [(starts[0], ends[-1])] if starts and ends else []
+
+    def local_spans(self, section, lo=0, hi=None):
+        """lo와 hi 사이(Annex 안)의 절. 그 안은 번호가 처음부터 다시 서서 차례 열(outline)을 보지 않고
+        제목 후보를 모두 쓴다. lo와 hi가 없으면 section_spans다."""
+        if hi is None:
+            return self.section_spans(section)
+        spans = []
+        for order, (index, found, _) in enumerate(self.headings):
+            start = self.lines[index][0]
+            if found != section or not lo <= start < hi:
+                continue
+            ends = [self.end(after) for after, other, _ in self.headings[order + 1 :] if other[0] == "annex" or not inside(section, other)]
+            spans.append((start, min([end for end in ends if end > start] + [hi])))
+        return spans
+
+    def place_spans(self, place, lo=0, hi=None):
+        if place[0] == "range":
+            return self.range_spans(place[1], place[2], lo, hi)
+        return self.local_spans(place, lo, hi)
+
     def spans(self, location):
-        """위치의 절과 쪽이 담는 (시작, 끝)들."""
+        """위치의 절과 쪽이 담는 (시작, 끝)들. `Annex I, Part 1 3.3.1`은 Annex I 안의 3.3.1이다."""
         result = []
         for place in locations(location):
-            result += self.page_spans(place[1], place[2]) if place[0] == "page" else self.section_spans(place)
+            if place[0] == "page":
+                result += self.page_spans(place[1], place[2])
+            elif place[0] == "within":
+                result += [span for lo, hi in self.section_spans(place[1]) for span in self.place_spans(place[2], lo, hi)]
+            else:
+                result += self.place_spans(place)
         return result
 
 

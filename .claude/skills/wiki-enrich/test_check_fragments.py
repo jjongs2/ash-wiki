@@ -353,6 +353,63 @@ class CheckFragments(unittest.TestCase):
         self.assertEqual([finding.split(":")[1] for finding in findings], ["6", "7"])
         self.assertTrue(all("인용이 위치 밖에 있다" in finding for finding in findings))
 
+    def test_section_lists_ranges_and_annex_parts_are_read(self):
+        self.copy(
+            "R157",
+            "\n".join(
+                [
+                    "3 Definitions",
+                    "3.21 Alpha term",
+                    "alpha text",
+                    "3.22 Beta term",
+                    "the beta quote",
+                    "3.23 Gamma term",
+                    "gamma text",
+                    "6 Requirements",
+                    "6.6 First",
+                    "6.6.2 Second",
+                    "early text",
+                    "6.7 Third",
+                    "the range quote",
+                    "6.10 Fourth",
+                    "6.10.2 Fifth",
+                    "late text",
+                    "7 Tests",
+                    "after text",
+                    "Annex I Critical Scenarios",
+                    "Part 1",
+                    "3.3.1 Inner one",
+                    "the annex quote",
+                    "3.3.2 Inner two",
+                    "other annex text",
+                ]
+            ),
+        )
+        wrong = [
+            ("3.21과 Note 1", "the beta quote"),
+            ("3.21·3.23 Note 1", "the beta quote"),
+            ("3.28의 SOURCE", "the beta quote"),
+            ("새 3.21", "the beta quote"),
+            ("Annex I(Critical Scenarios)", "the beta quote"),
+            ("Annex I, Part 1 3.3.2", "the annex quote"),
+            ("6.6.2~6.10.2", "after text"),
+        ]
+        right = [
+            ("3.22와 NOTE", "the beta quote"),
+            ("3.21·3.22 Note 1", "the beta quote"),
+            ("Annex I(Critical Scenarios)", "the annex quote"),
+            ("Annex I, Part 1 3.3.1", "the annex quote"),
+            ("6.6.2~6.10.2", "the range quote"),
+            ("3.21\\~3.23", "the beta quote"),
+        ]
+        code, findings = self.run_check(
+            self.draft(*[f"요구한다. [`R157` ({location}) “{quote}”]" for location, quote in wrong + right])
+        )
+        self.assertEqual(code, 1)
+        self.assertEqual([finding.split(":")[1] for finding in findings], [str(6 + i) for i in range(len(wrong))])
+        self.assertIn("찾지 못했다", findings[2])
+        self.assertTrue(all("인용이 위치 밖에 있다" in finding for finding in findings[:2] + findings[3:]))
+
     def test_lettered_section_numbers_are_read(self):
         self.copy("ARM", "B3.4 Memory types\nordinary text\nB3.5 Caches\nthe cache quote\nB3.10 Barriers\nlater text\n")
         code, findings = self.run_check(
