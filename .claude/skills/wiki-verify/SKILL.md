@@ -11,7 +11,7 @@ description: 재조사. `verify:` 이슈 하나의 미검증 주장을 재조사
 
 `ASH_WIKI_NOTES`는 열지 않는다. 재조사는 이슈에 모인 주장과 출처, 게시된 페이지만 본다.
 
-준비(`npm ci`, 에이전트의 작업 폴더, `npm run check` 결과 보기)는 [인제스트](../wiki-ingest/SKILL.md) 머리의 준비 문단을 따른다.
+준비(worktree 진입과 `npm ci`, 에이전트의 작업 폴더, `npm run check` 결과 보기)는 [인제스트](../wiki-ingest/SKILL.md) 머리의 준비 문단을 따른다.
 
 ## 판정 라벨
 
