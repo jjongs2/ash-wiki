@@ -22,7 +22,7 @@ python3 -B check_fragments.py [--content <폴더>] [--terms <용어 표기 결�
   사본에 있는지만 보고, `§`, `절`, `장`, `쪽`이 있는데 읽지 못한 부분(`제2절`)은 알린다.
 
 조각 글의 약어 풀이(`<약어>(<풀이>)`, `[[<슬러그>|<약어>]](<풀이>)`, `**<약어>**(<풀이>)`, `<이름>(<약어>: <풀이>)`,
-`<풀이>(<약어>)`)는 그 낱말들이 줄의 인용
+`<풀이>(<약어>)`, `**<풀이>**(<약어>)`)는 그 낱말들이 줄의 인용
 하나에 이어서 있는지(대소문자, 기호, 영어 복수 꼴 무시) 보고, `content/`의 같은 약어 풀이와 글자가
 다르면 알린다. 용어 표기 결정에 풀이 결정이 있는 약어(`CAN CC`처럼 앞 낱말을 붙인 것
 포함)는 그 결정과만 견주고, `풀이: 통일하지 않음`인 약어는 `content/`와 견주지 않는다.
@@ -52,8 +52,7 @@ TITLED, BARE = 4, 1
 WIKILINK = re.compile(r"\[\[([^|\]]*)(?:\|([^\]]*))?\]\]")
 ABBREVIATION = r"[A-Za-z0-9][A-Za-z0-9/&.+-]*"
 EXPANSION = re.compile(rf"(?<![A-Za-z0-9])({ABBREVIATION})(?:\]\]|\*\*)?\(([^()]*)\)")
-REVERSE = re.compile(rf"(?<![A-Za-z0-9'/-])((?:[A-Za-z0-9][A-Za-z0-9'/-]* )*[A-Za-z0-9][A-Za-z0-9'/-]*) ?\(({ABBREVIATION})\)")
-STOPWORDS = set("a an and for in of on the to with".split())
+REVERSE = re.compile(rf"(?<![A-Za-z0-9'/-])((?:[A-Za-z0-9][A-Za-z0-9'/-]* )*[A-Za-z0-9][A-Za-z0-9'/-]*)(?:\*\*)? ?\(({ABBREVIATION})\)")
 
 
 def clean(text):
@@ -346,7 +345,7 @@ class SourceCopy:
 
 def expansions(text):
     """글의 (약어, 풀이, 앞 낱말). `<약어>(<풀이>)`, `[[<슬러그>|<약어>]](<풀이>)`, 머리말의 `**<약어>**(<풀이>)`,
-    `<이름>(<약어>: <풀이>)`, `<풀이>(<약어>)`를 읽는다. 약어는 대문자가 둘 이상이고, 풀이는 한글 없이 글자로
+    `<이름>(<약어>: <풀이>)`, `<풀이>(<약어>)`, 머리말의 `**<풀이>**(<약어>)`를 읽는다. 약어는 대문자가 둘 이상이고, 풀이는 한글 없이 글자로
     시작한다. 풀이 뒤에 쉼표로 붙인 한글 덧말(`, IOMMU라고도 부름`)은 뗀다. 위키링크 하나뿐이거나 약어 자신이 든
     괄호는 풀이가 아니다. 앞 낱말은 `CAN CC`처럼 여러 낱말인 약어를 찾는 데 쓴다."""
     yield from reverse_expansions(text)
@@ -372,18 +371,15 @@ def expansions(text):
 
 
 def initials_match(units, letters):
-    """낱말 조각들의 머리글자가 차례로 letters인가. 첫 조각은 글자를 내고, 기능어(of, on 등)는 건너뛸 수 있다."""
-    if not units:
-        return not letters
-    unit, rest = units[0], units[1:]
-    if letters and unit[0] == letters[0] and initials_match(rest, letters[1:]):
-        return True
-    return unit in STOPWORDS and initials_match(rest, letters)
+    """낱말 조각들의 머리글자에 letters가 차례로 들어 있고, 첫 조각과 끝 조각이 letters의 처음과 끝인가.
+    `Department of Transportation`(DOT), `ECU State Manager`(EcuM)가 맞는다."""
+    initials = iter(unit[0] for unit in units)
+    return units[0][0] == letters[0] and units[-1][0] == letters[-1] and all(letter in initials for letter in letters)
 
 
 def reverse_expansions(text):
     """`<풀이>(<약어>)` 꼴. 괄호 앞 영어 낱말 가운데 머리글자가 약어의 대문자(모두 대문자면 글자)와 맞는
-    가장 짧은 끝 열을 풀이로 읽는다. 맞는 열이 없으면 풀이가 아니다."""
+    (initials_match) 가장 짧은 끝 열을 풀이로 읽는다. 맞는 열이 없으면 풀이가 아니다."""
     for match in REVERSE.finditer(text):
         abbreviation = match.group(2)
         if sum(char.isupper() for char in abbreviation) < 2:
@@ -394,7 +390,7 @@ def reverse_expansions(text):
         for size in range(1, min(len(tokens), len(letters) + 3) + 1):
             window = tokens[-size:]
             units = [unit.lower() for token in window for unit in re.split(r"[-/]", token) if unit]
-            if units and units[0][0] == letters[0] and initials_match(units, letters):
+            if units and initials_match(units, letters) and len(" ".join(window)) > len(abbreviation):
                 yield abbreviation, " ".join(window), ""
                 break
 

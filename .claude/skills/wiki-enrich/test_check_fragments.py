@@ -368,7 +368,7 @@ class CheckFragments(unittest.TestCase):
         self.assertIn("위치를 읽지 못했다", findings[0])
 
     def test_reverse_and_annotated_expansions_are_read(self):
-        self.copy("SAE", "On-Road Automated Driving (ORAD)\nthe control pilot (CP) line\nsleepiness is rated\nsystem MMU")
+        self.copy("SAE", "On-Road Automated Driving (ORAD)\nthe control pilot (CP) line\nsleepiness is rated\nsystem MMU\nElectrical/Electronic architecture")
         code, findings = self.run_check(
             self.draft(
                 "On-Road Automated Driving(ORAD) 위원회. [`SAE` (Scope) “On-Road Automated Driving (ORAD)”]",
@@ -376,6 +376,7 @@ class CheckFragments(unittest.TestCase):
                 "졸음은 Karolinska Sleepiness Scale(KSS)로 잰다. [`SAE` (Scope) “sleepiness is rated”]",
                 "SMMU(System Memory Management Unit, IOMMU라고도 부름)를 둔다. [`SAE` (Scope) “system MMU”]",
                 "Department of Transportation(DOT)이 정한다. [`SAE` (Scope) “sleepiness is rated”]",
+                "E/E(Electrical/Electronic) 아키텍처. [`SAE` (Scope) “Electrical/Electronic architecture”]",
             )
         )
         self.assertEqual(code, 1)
@@ -402,6 +403,22 @@ class CheckFragments(unittest.TestCase):
         self.assertTrue(all("content/의 풀이와 다르다" in finding for finding in findings))
         for finding, page in zip(findings, ["microcontroller.md", "electronic-control-unit.md", "symmetric-key-cryptography.md"]):
             self.assertIn(page, finding)
+
+    def test_bold_lead_name_before_abbreviation_in_content_is_read(self):
+        self.copy("IEEE", "time-aware scheduler (TAS)\nsecure on-board communication (SecOC)")
+        self.page("time-aware-shaper", "**Time-aware shaper**(TAS)는 시간 창마다 큐를 연다.\n")
+        self.page("secure-onboard-communication", "**Secure Onboard Communication**(SecOC)은 메시지를 인증한다.\n")
+        code, findings = self.run_check(
+            self.draft(
+                "TAS(time-aware scheduler)가 창을 연다. [`IEEE` (Overview) “time-aware scheduler (TAS)”]",
+                "SecOC(secure on-board communication)이 인증한다. [`IEEE` (Overview) “secure on-board communication (SecOC)”]",
+            )
+        )
+        self.assertEqual(code, 1)
+        self.assertEqual(len(findings), 2)
+        self.assertIn("time-aware-shaper.md", findings[0])
+        self.assertIn("secure-onboard-communication.md", findings[1])
+        self.assertTrue(all("content/의 풀이와 다르다" in finding for finding in findings))
 
     def test_expansion_follows_term_decision(self):
         self.decide(
