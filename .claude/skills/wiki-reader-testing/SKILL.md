@@ -16,10 +16,10 @@ disable-model-invocation: true
 ## 1. 시작
 
 - `git fetch origin` 뒤 `origin/main`에서 worktree와 브랜치를 만든다. 브랜치는 `CONTRIBUTING.md`의 브랜치 절을 따라 이슈 번호 없이 `content/reader-<영문 kebab-case 요약>`이다.
+- 바로 worktree에 들어가 `npm ci`를 돌린다. 들어가는 법은 `CONTRIBUTING.md` 원칙 절의 PR 전 확인을 따른다.
 - **기준 SHA**를 `git merge-base origin/main HEAD`로 적어 둔다. 캡처, 반영 뒤 점검, 프리뷰가 모두 이것을 기준으로 삼는다.
-- 새 worktree에서 `npm ci`를 돌린다.
 
-완료: worktree와 브랜치가 있고, 기준 SHA를 적었다.
+완료: worktree와 브랜치가 있고, 세션이 그 worktree에 들어가 있고, 기준 SHA를 적었다.
 
 ## 2. 고르기와 캡처
 
@@ -62,7 +62,7 @@ npm run reader-capture -- --out .work/capture <슬러그>...
 
 읽는다: [reader.md](reader.md).
 
-[reader.md](reader.md)의 지시 블록과 반환 꼴 블록을 이어 `.work/capture/지시.md`에 옮긴다. 그다음 Workflow 도구로 [read-pages.js](read-pages.js)를 `scriptPath`로, `args`에 `{ "capture": "<worktree>/.work/capture", "slugs": [<2단계의 슬러그>] }`를 주어 부른다. 두 경로는 절대 경로다. 스크립트가 페이지마다 외부 독자(`external-reader`) 하나를 범위 "페이지 통째"로 띄운다.
+[reader.md](reader.md)의 지시 블록과 반환 꼴 블록을 이어 `.work/capture/지시.md`에 옮긴다. 반환 꼴 블록은 네 백틱 울타리 안을 통째로 옮긴다. 그다음 Workflow 도구로 [read-pages.js](read-pages.js)를 `scriptPath`로, `args`에 `{ "capture": "<worktree>/.work/capture", "slugs": [<2단계의 슬러그>] }`를 주어 부른다. 두 경로는 절대 경로다. 스크립트가 페이지마다 외부 독자(`external-reader`) 하나를 범위 "페이지 통째"로 띄운다.
 
 Workflow가 끝나면 페이지마다 [reader.md](reader.md)의 반환 확인을 한다. 인용이 맞지 않는 항목은 반환 파일에서 지우지 않고 그 항목에 `"인용 불일치": true`를 더해 4단계로 넘긴다. 외부 독자는 인용을 "…"로 줄이기도 해, 페이지에 있는 자리도 맞지 않을 수 있다. 외부 독자에게 돌려보내지 않는 것은, 끝난 Workflow 에이전트에 SendMessage가 닿는다는 근거가 없고, 새로 띄우면 이미지까지 다시 읽어 페이지당 수만 토큰이 들기 때문이다. 파일이 없거나 키가 빠진 페이지만 `slugs`에 그 슬러그를 주어 같은 스크립트를 다시 돌린다.
 
