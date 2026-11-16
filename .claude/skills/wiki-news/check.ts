@@ -3,6 +3,7 @@
 // 1이다. 규칙은 SKILL.md 7단계, docs/weekly-news.md, outlets.md의 열 절에 있다. PR 전 확인에 넣지 않는 것은 규칙이
 // 생기기 전의 지난 호가 소급해 실패하기 때문이다. 한국어 제목이 있을 자리(koreanTitlePresence)는 PR 전
 // 확인의 콘텐츠 테스트도 보지만, 그 테스트는 규칙이 생긴 주차부터의 호만 보므로 소급 조사의 호는 여기서 잡는다.
+// 이전 호 링크의 꼴과 앵커(priorLinkProblems)도 같다.
 // 사용: npx tsx .claude/skills/wiki-news/check.ts <주차나 달>...
 //       npx tsx .claude/skills/wiki-news/check.ts --pr <본문 파일> [--base <ref>]
 import fs from "node:fs"
@@ -13,6 +14,7 @@ import { parse as parseYaml } from "yaml"
 import {
   koreanTitlePresence,
   parseWeeklyNews,
+  priorLinkProblems,
   weekDays,
   type NewsItem,
 } from "../../../plugins/weekly-news/index"
@@ -222,6 +224,8 @@ export function checkIssues(input: {
         byImage.set(imageKey(item), [...(byImage.get(imageKey(item)) ?? []), { week, item }])
     }
   }
+  const idsOf = (week: string) =>
+    input.issues.find((i) => i.week === week)?.items.map((item) => item.id)
   const names = input.pages
     .flatMap(({ slug, names }) => names.map((name) => ({ slug, name })))
     .sort((a, b) => b.name.length - a.name.length)
@@ -248,6 +252,11 @@ export function checkIssues(input: {
           `${label(week, item)}: 이미지가 같은 매체의 다른 항목(${label(other.week, other.item)})과 같다. 사이트 공통 이미지면 비운다`,
         )
       failures.push(...koreanTitleFailures(item).map((f) => `${label(week, item)}: ${f}`))
+      failures.push(
+        ...priorLinkProblems(week, item.summary.markdown, idsOf).map(
+          (p) => `${label(week, item)}: ${p}`,
+        ),
+      )
       const koreanLength = [...(item.koreanTitle ?? "")].length
       if (koreanLength > KOREAN_TITLE_NOTICE_LENGTH)
         notices.push(
