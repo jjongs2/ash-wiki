@@ -326,6 +326,24 @@ class CheckFragments(unittest.TestCase):
         self.assertIn("풀이가 인용에 없다", findings[1])
         self.assertIn("content/의 풀이와 다르다", findings[2])
 
+    def test_bold_lead_expansion_in_content_is_read(self):
+        self.copy("NIST", "micro controller unit (MCU)\nengine control unit (ECU)\nadvanced encryption scheme (AES)")
+        self.page("microcontroller", "---\ntitle: 마이크로컨트롤러\n---\n\n**MCU**(Microcontroller Unit)는 칩 하나에 CPU를 담는다.\n")
+        self.page("electronic-control-unit", "**ECU**(Electronic Control Unit)는 차량을 제어한다.\n")
+        self.page("symmetric-key-cryptography", "**AES**(Advanced Encryption Standard)는 블록 암호다.\n")
+        code, findings = self.run_check(
+            self.draft(
+                "MCU(Micro Controller Unit)를 쓴다. [`NIST` (Overview) “micro controller unit (MCU)”]",
+                "ECU(Engine Control Unit)가 제어한다. [`NIST` (Overview) “engine control unit (ECU)”]",
+                "AES(Advanced Encryption Scheme)로 암호화한다. [`NIST` (Overview) “advanced encryption scheme (AES)”]",
+            )
+        )
+        self.assertEqual(code, 1)
+        self.assertEqual(len(findings), 3)
+        self.assertTrue(all("content/의 풀이와 다르다" in finding for finding in findings))
+        for finding, page in zip(findings, ["microcontroller.md", "electronic-control-unit.md", "symmetric-key-cryptography.md"]):
+            self.assertIn(page, finding)
+
     def test_expansion_follows_term_decision(self):
         self.decide(
             "- ADAS 풀이 Advanced Driver Assistance Systems: Advanced Driver Assistance System (#659)\n"
