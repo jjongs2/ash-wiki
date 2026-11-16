@@ -111,11 +111,11 @@ class CheckFragments(unittest.TestCase):
         self.assertEqual((code, findings), (0, []))
 
     def test_numbered_body_lines_are_not_headings(self):
-        self.copy("ST", "5 Electrical\n7.3 Supply\nThe LDO supplies the core.\n8 channels are sampled at once.\n3.3 V rail powers the core.\nThe LDO is trimmed at test.\n7.4 Timing\nClock.")
+        self.copy("ST", "7 Electrical\n7.3 Supply\nThe LDO supplies the core.\n8 channels are sampled at once.\n3.3 V rail powers the core.\nThe LDO is trimmed at test.\n7.4 Timing\nClock.")
         code, findings = self.run_check(
             self.draft(
                 "LDO는 시험에서 맞춘다. [`ST` (7.3) “trimmed at test”]",
-                "LDO는 시험에서 맞춘다. [`ST` (5) “trimmed at test”]",
+                "LDO는 시험에서 맞춘다. [`ST` (7) “trimmed at test”]",
                 "LDO는 시험에서 맞춘다. [`ST` (3.3) “trimmed at test”]",
             )
         )
@@ -123,6 +123,53 @@ class CheckFragments(unittest.TestCase):
         self.assertEqual(len(findings), 1)
         self.assertIn(":8:", findings[0])
         self.assertIn("찾지 못했다", findings[0])
+
+    # 목차 줄(점 지시선 없음), 장 안의 번호 목록, 표 값 줄이 제목 후보로 섞인 사본.
+    OUTLINE = "\n".join(
+        [
+            "6 Specifications",
+            "7 Detailed Description",
+            "6 Specifications",
+            "6.1 Ratings",
+            "Supply voltage",
+            "5.5",
+            "8.1",
+            "7 Detailed Description",
+            "7.3 Feature Description",
+            "7.3.1 Wake",
+            "1. Send a WAKE ping.",
+            "6. Repeat this procedure for every device.",
+            "7.3.2 Hotplug",
+            "8.1",
+            "9 Mode",
+            "The ladder spreads the hotplug spike.",
+            "7.3.3 Faults",
+            "Faults latch in the summary register.",
+            "8 Application",
+            "8.1 Typical",
+            "Isolate the host.",
+        ]
+    )
+
+    def test_out_of_order_headings_do_not_bound_sections(self):
+        self.copy("TI-BQ", self.OUTLINE)
+        code, findings = self.run_check(
+            self.draft(
+                "사다리가 퍼뜨린다. [`TI-BQ` (7) “ladder spreads the hotplug spike”]",
+                "사다리가 퍼뜨린다. [`TI-BQ` (7.3, 7.3.2) “ladder spreads the hotplug spike”]",
+                "요약에 래치한다. [`TI-BQ` (7.3) “faults latch in the summary register”]",
+                "공급 전압. [`TI-BQ` (6.1) “supply voltage”]",
+                "호스트를 떼어 둔다. [`TI-BQ` (8.1) “isolate the host”]",
+                "사다리가 퍼뜨린다. [`TI-BQ` (6) “ladder spreads the hotplug spike”]",
+                "사다리가 퍼뜨린다. [`TI-BQ` (9) “ladder spreads the hotplug spike”]",
+                "사다리가 퍼뜨린다. [`TI-BQ` (8.1) “ladder spreads the hotplug spike”]",
+                "요약에 래치한다. [`TI-BQ` (7.3.2) “faults latch in the summary register”]",
+            )
+        )
+        self.assertEqual(code, 1)
+        self.assertEqual([finding.split(":")[1] for finding in findings], ["11", "12", "13", "14"])
+        self.assertIn("찾지 못했다", findings[1])
+        self.assertTrue(all("위치 밖" in finding for finding in findings[:1] + findings[2:]))
 
     def test_quote_outside_cited_section_is_reported(self):
         self.copy("TI-BQ", self.SPEC)
@@ -160,6 +207,35 @@ class CheckFragments(unittest.TestCase):
             )
         )
         self.assertEqual((code, findings), (0, []))
+
+    # 쪽 번호가 끝 줄에 있고, 본문에도 숫자만 있는 줄(표 칸, 비트 번호)이 있는 사본.
+    BITS = "\f".join(
+        [
+            "Cover\nBattery monitor",
+            "Contents\n7\n6\n5\n2",
+            "Features\nMeasures 16 cells.\n3",
+            "Pinout\nVC2\nCopyright\n4",
+            "5\nBit field\n7\n6\n5\nThe register is cleared on read.\n5\nFeedback",
+            "Figure only",
+            "Write a register for all devices in the chain.\n7\n6\n5\n4\n3\n2\nCopyright\n7",
+        ]
+    )
+
+    def test_number_lines_in_body_are_not_page_numbers(self):
+        self.copy("TI-BQ", self.BITS)
+        code, findings = self.run_check(
+            self.draft(
+                "읽으면 지운다. [`TI-BQ` (5쪽) “cleared on read”]",
+                "그림. [`TI-BQ` (6쪽) “figure only”]",
+                "모두에 쓴다. [`TI-BQ` (7쪽) “for all devices in the chain”]",
+                "모두에 쓴다. [`TI-BQ` (5쪽) “for all devices in the chain”]",
+                "모두에 쓴다. [`TI-BQ` (2쪽) “for all devices in the chain”]",
+                "셀을 잰다. [`TI-BQ` (5쪽) “measures 16 cells”]",
+            )
+        )
+        self.assertEqual(code, 1)
+        self.assertEqual([finding.split(":")[1] for finding in findings], ["9", "10", "11"])
+        self.assertTrue(all("위치 밖" in finding for finding in findings))
 
     def test_quote_on_other_page_is_reported(self):
         self.copy("TI-BQ", self.DATASHEET)
@@ -231,6 +307,24 @@ class CheckFragments(unittest.TestCase):
         self.assertIn(":6:", findings[0])
         self.assertIn("Phase Locked Loop", findings[0])
         self.assertIn("clock.md", findings[0])
+
+    def test_expansion_after_wikilink_is_read(self):
+        self.copy("NIST", "true random number generator (TRNG)\nElliptic Curve Diffie-Hellman (ECDH)")
+        self.page("hsm", "HSM은 [[true-random-number-generator|TRNG]](True Random Number Generator)를 둔다.\n")
+        self.page("ecc", "[[ecdh|ECDH]](Elliptic Curve Diffie-Hellman)로 키를 나눈다.\n")
+        code, findings = self.run_check(
+            self.draft(
+                "TRNG(True-Random Number Generator)를 둔다. [`NIST` (Overview) “true random number generator (TRNG)”]",
+                "[[ecdh|ECDH]](Elliptic Curve Diffie-Hellman)로 나눈다. [`NIST` (Overview) “Elliptic Curve Diffie-Hellman (ECDH)”]",
+                "[[true-random-number-generator|TRNG]](Truly Random Generator)를 둔다. [`NIST` (Overview) “true random number generator (TRNG)”]",
+            )
+        )
+        self.assertEqual(code, 1)
+        self.assertEqual([finding.split(":")[1] for finding in findings], ["6", "8", "8"])
+        self.assertIn("content/의 풀이와 다르다", findings[0])
+        self.assertIn("hsm.md", findings[0])
+        self.assertIn("풀이가 인용에 없다", findings[1])
+        self.assertIn("content/의 풀이와 다르다", findings[2])
 
     def test_expansion_follows_term_decision(self):
         self.decide(

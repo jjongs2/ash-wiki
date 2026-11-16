@@ -6,16 +6,20 @@ python3 -B check_fragments.py [--content <폴더>] [--terms <용어 표기 결�
 `<사본 폴더>/<약칭>.txt`에서 인용을 찾고, 위치의 쪽이나 절 번호가 그 자리를 담는지 본다.
 글은 NFKC, 공백 하나, 소문자로 견주고, …나 ...로 끊은 인용은 조각이 차례로 있으면 된다.
 
-- 쪽: `n쪽`은 그 번호만 적힌 줄(쪽 번호)이 있는 쪽, 없으면 n번째 쪽이다. `PDF n쪽`은
-  n번째 쪽이다. `n–m쪽`은 그 사이 쪽 모두다. 쪽은 폼 피드(pdftotext의 쪽 경계)로 센다.
-- 절: 줄머리의 번호(`3.3`, `B.2`, `Annex B`)가 제목이다. 번호 뒤 첫 낱말이 단위(`3.3 V`)인
+- 쪽: 쪽은 폼 피드(pdftotext의 쪽 경계)로 센다. `n쪽`은 인쇄된 쪽 번호가 n인 쪽이다. 쪽마다
+  처음과 끝 다섯 줄의 번호만 적힌 줄로 인쇄된 번호와 몇 번째 쪽인지의 차이를 정하고(여러 쪽이
+  같은 차이를 보일 때만), 차이가 없으면 n번째 쪽이다. 표 칸이나 비트 번호처럼 숫자만 있는 본문
+  줄은 쪽 번호로 치지 않는다. `PDF n쪽`은 n번째 쪽이다. `n–m쪽`은 그 사이 쪽 모두다.
+- 절: 줄머리의 번호(`3.3`, `B.2`, `Annex B`)가 제목 후보다. 번호 뒤 첫 낱말이 단위(`3.3 V`)인
   줄, 숫자 하나 뒤가 대문자나 한글로 시작하지 않는 줄(`8 channels`), 숫자 하나만 있는
-  줄(쪽 번호), 점 지시선으로 끝나는 줄(목차)은 제목으로 보지 않는다. 절은 다음 같은 층이나 윗층의
-  번호(3.3이면 3.4, 4)나 다른 Annex 제목에서 끝난다.
+  줄(쪽 번호), 점 지시선으로 끝나는 줄(목차)은 후보가 아니다. 번호 후보 가운데 번호가 글 차례대로
+  줄지 않는 가장 무거운 열(글이 붙은 줄 4, 번호만 있는 줄 1)만 제목으로 쓰고, 그 열을 벗어난
+  줄(장 안의 번호 목록 `6. Repeat …`, 표 값 `5.5`)은 버린다. 절은 다음 제목 가운데 그 절 안이
+  아닌 번호 제목(3.3이면 3.4, 4)이나 다른 Annex 제목에서 끝난다.
 - 위치가 여럿이면 하나만 인용을 담으면 된다. 쪽도 절 번호도 없는 위치(`Overview`)는
   인용이 사본에 있는지만 본다.
 
-조각 글의 약어 풀이(`<약어>(<풀이>)`, `<이름>(<약어>: <풀이>)`)는 그 낱말들이 줄의 인용
+조각 글의 약어 풀이(`<약어>(<풀이>)`, `[[<슬러그>|<약어>]](<풀이>)`, `<이름>(<약어>: <풀이>)`)는 그 낱말들이 줄의 인용
 하나에 이어서 있는지(대소문자, 기호, 영어 복수 꼴 무시) 보고, `content/`의 같은 약어 풀이와 글자가
 다르면 알린다. 용어 표기 결정에 풀이 결정이 있는 약어(`CAN CC`처럼 앞 낱말을 붙인 것
 포함)는 그 결정과만 견주고, `풀이: 통일하지 않음`인 약어는 `content/`와 견주지 않는다.
@@ -37,9 +41,11 @@ NUMBER = re.compile(r"([a-z](?:\.\d+)+|\d+(?:\.\d+)*)(?=$|[\s.,:)])", re.I)
 PAGE = re.compile(r"(pdf\s*)?(\d+)(?:\s*(?:–|-|\\?~)\s*(\d+))?\s*쪽")
 TOC = re.compile(r"(?:\.\s*){4,}\d+$|…+\s*\d+$")
 PAGE_NUMBER = re.compile(r"(?:page\s+)?-?\s*(\d+)\s*-?(?:\s+of\s+\d+)?")
+EDGE = 5
+TITLED, BARE = 4, 1
 WIKILINK = re.compile(r"\[\[([^|\]]*)(?:\|([^\]]*))?\]\]")
 ABBREVIATION = r"[A-Za-z0-9][A-Za-z0-9/&.+-]*"
-EXPANSION = re.compile(rf"(?<![A-Za-z0-9])({ABBREVIATION})\(([^()]*)\)")
+EXPANSION = re.compile(rf"(?<![A-Za-z0-9])({ABBREVIATION})(?:\]\])?\(([^()]*)\)")
 
 
 def clean(text):
@@ -186,27 +192,34 @@ def cited_section(part):
     return ("number", match.group(1).lower()) if match else None
 
 
-def successors(name):
-    """번호 절 다음에 올 수 있는 같은 층이나 윗층의 절 번호."""
-    parts, result = name.split("."), set()
-    for depth in range(len(parts), 0, -1):
-        last = parts[depth - 1]
-        if last.isdigit():
-            following = str(int(last) + 1)
-        elif len(last) == 1 and last.isalpha():
-            following = chr(ord(last) + 1)
-        else:
-            continue
-        result.add(".".join(parts[: depth - 1] + [following]))
-    return result
+def outline_key(name):
+    """번호 절의 차례. 숫자 층은 글자 층(`B.2`)보다 앞이다."""
+    return tuple((0, int(part), "") if part.isdigit() else (1, 0, part) for part in name.split("."))
 
 
-def ends_section(section, other):
-    """other 제목이 section을 끝내는가."""
-    kind, name = section
-    if other[0] == "annex":
-        return other != section
-    return kind == "number" and other[1] in successors(name)
+def outline(entries):
+    """번호 제목 (차례, 무게) 가운데 차례가 줄지 않는 가장 무거운 열의 자리들. 본문의 제목은
+    차례대로 늘고, 표 값이나 번호 목록 줄은 그 차례를 벗어나 빠진다."""
+    ranks = {key: rank for rank, key in enumerate(sorted({key for key, _ in entries}), 1)}
+    tree, best = [(0, -1)] * (len(ranks) + 1), []
+    for index, (key, weight) in enumerate(entries):
+        rank, before = ranks[key], (0, -1)
+        while rank:
+            before, rank = max(before, tree[rank]), rank & (rank - 1)
+        best.append((before[0] + weight, before[1]))
+        rank = ranks[key]
+        while rank < len(tree):
+            tree[rank], rank = max(tree[rank], (best[index][0], index)), rank + (rank & -rank)
+    chosen, index = set(), max(range(len(best)), key=lambda i: best[i][0], default=-1)
+    while index >= 0:
+        chosen.add(index)
+        index = best[index][1]
+    return chosen
+
+
+def inside(section, other):
+    """other 제목이 번호 절 section 자신이나 그 아래 층인가."""
+    return other[0] == "number" and (other[1] == section[1] or other[1].startswith(section[1] + "."))
 
 
 def locations(location):
@@ -225,21 +238,41 @@ def locations(location):
     return result
 
 
+def page_offsets(lines):
+    """인쇄된 쪽 번호와 몇 번째 쪽인지의 차이들. 쪽마다 처음과 끝 EDGE줄 가운데 번호만 적힌
+    줄이 차이 하나에 한 표를 내고, 두 표 이상이면서 가장 많은 표의 절반 이상을 받은 차이를
+    쓴다. 표 칸이나 비트 번호처럼 숫자만 있는 본문 줄은 쪽마다 차이가 달라 표가 모이지 않는다."""
+    pages, votes = {}, {}
+    for _, line, page in lines:
+        pages.setdefault(page, []).append(line)
+    for page, texts in pages.items():
+        for offset in {page - int(match.group(1)) for line in texts[:EDGE] + texts[-EDGE:] if (match := PAGE_NUMBER.fullmatch(line))}:
+            votes[offset] = votes.get(offset, 0) + 1
+    top = max(votes.values(), default=0)
+    return {offset for offset, count in votes.items() if count >= 2 and 2 * count >= top}
+
+
 class SourceCopy:
     """사본 하나. 대조용 글(flat)과, 줄마다 flat에서의 시작 자리, 대조용 글, 쪽(폼 피드로 센다)."""
 
     def __init__(self, text):
-        self.lines, self.headings, offset, page = [], [], 0, 1
+        self.lines, headings, offset, page = [], [], 0, 1
         for raw in text.split("\n"):
             for index, segment in enumerate(raw.split("\f")):
                 page += 1 if index else 0
                 line = clean(segment)
                 if line:
-                    if heading(line):
-                        self.headings.append((len(self.lines), heading(line)))
+                    found = heading(line)
+                    if found:
+                        titled = re.search(r"[^\W\d_]", line[len(found[1]) :]) is not None
+                        headings.append((len(self.lines), found, TITLED if titled else BARE))
                     self.lines.append((offset, line.lower(), page))
                     offset += len(line) + 1
         self.flat = " ".join(line for _, line, _ in self.lines)
+        numbered = [order for order, (_, found, _) in enumerate(headings) if found[0] == "number"]
+        chosen = {numbered[i] for i in outline([(outline_key(headings[o][1][1]), headings[o][2]) for o in numbered])}
+        self.headings = [(index, found, found[0] == "annex" or order in chosen) for order, (index, found, _) in enumerate(headings)]
+        self.offsets = page_offsets(self.lines)
 
     def find(self, quote):
         """인용이 시작하는 자리들. …나 ...로 끊은 인용은 조각이 차례로 있어야 한다."""
@@ -261,25 +294,25 @@ class SourceCopy:
         return self.lines[index][0] if index < len(self.lines) else len(self.flat)
 
     def section_spans(self, section):
-        """절 제목 줄마다 그 절이 끝나는 곳까지의 (시작, 끝)."""
+        """절 제목 줄마다 그 절이 끝나는 곳까지의 (시작, 끝). 제목은 차례가 맞는 것만 쓴다. 절은
+        다음 제목 가운데 그 절 안이 아닌 번호 제목이나 다른 Annex 제목에서 끝난다."""
         spans = []
-        for order, (index, found) in enumerate(self.headings):
-            if found != section:
+        for order, (_, found, kept) in enumerate(self.headings):
+            if found != section or not kept:
                 continue
-            ends = [after for after, other in self.headings[order + 1 :] if ends_section(section, other)]
-            spans.append((self.lines[index][0], self.end(ends[0]) if ends else len(self.flat)))
+            ends = [
+                after
+                for after, other, kept in self.headings[order + 1 :]
+                if kept and (other[0] == "annex" and other != section or section[0] == "number" and not inside(section, other))
+            ]
+            spans.append((self.lines[self.headings[order][0]][0], self.end(ends[0]) if ends else len(self.flat)))
         return spans
 
     def page_spans(self, number, printed):
-        """쪽의 (시작, 끝). 인쇄된 쪽은 쪽 번호 줄이 있는 쪽, 없으면 n번째 쪽이다."""
-        pages = set()
-        if printed:
-            for _, line, page in self.lines:
-                match = PAGE_NUMBER.fullmatch(line)
-                if match and int(match.group(1)) == number:
-                    pages.add(page)
+        """쪽의 (시작, 끝). 인쇄된 쪽은 사본의 쪽 번호 차이(page_offsets)만큼 옮긴 쪽, 차이가
+        없으면 n번째 쪽이다."""
         spans = []
-        for page in pages or {number}:
+        for page in {number + offset for offset in self.offsets} if printed and self.offsets else {number}:
             indexes = [index for index, (_, _, p) in enumerate(self.lines) if p == page]
             if indexes:
                 spans.append((self.lines[indexes[0]][0], self.end(indexes[-1] + 1)))
@@ -294,9 +327,9 @@ class SourceCopy:
 
 
 def expansions(text):
-    """글의 (약어, 풀이, 앞 낱말). `<약어>(<풀이>)`와 `<이름>(<약어>: <풀이>)`를 읽는다. 약어는
-    대문자가 둘 이상이고, 풀이는 한글 없이 글자로 시작한다. 위키링크 하나뿐이거나 약어 자신이
-    든 괄호는 풀이가 아니다. 앞 낱말은 `CAN CC`처럼 여러 낱말인 약어를 찾는 데 쓴다."""
+    """글의 (약어, 풀이, 앞 낱말). `<약어>(<풀이>)`, `[[<슬러그>|<약어>]](<풀이>)`, `<이름>(<약어>: <풀이>)`를
+    읽는다. 약어는 대문자가 둘 이상이고, 풀이는 한글 없이 글자로 시작한다. 위키링크 하나뿐이거나
+    약어 자신이 든 괄호는 풀이가 아니다. 앞 낱말은 `CAN CC`처럼 여러 낱말인 약어를 찾는 데 쓴다."""
     for match in EXPANSION.finditer(text):
         abbreviation, expansion = match.group(1), match.group(2).strip()
         before = re.search(rf"({ABBREVIATION}) $", text[: match.start()])
