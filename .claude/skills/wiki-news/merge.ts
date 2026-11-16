@@ -1,11 +1,13 @@
-// 소식 조사의 병합 스크립트(SKILL.md의 2. 지난 호, 5. 중복, 9. PR). 조사 에이전트가 낸 후보를 합치고, 같은 사건으로
+// 소식 조사의 병합 스크립트(SKILL.md의 1. 주차, 2. 지난 호, 5. 중복, 9. PR). 조사 에이전트가 낸 후보를 합치고, 같은 사건으로
 // 보이는 후보와 지난 호 항목을 이유와 함께 알린다. 묶음은 제안이고, 무엇을 실을지는 5단계가 정한다. 후보와 검토
 // 기록의 꼴은 researcher.md와 news-reviewer.md에 있다.
-// 사용: npx tsx .claude/skills/wiki-news/merge.ts past <작업 폴더> [--ref <브랜치>]... [--today <YYYY-MM-DD>]
+// 사용: npx tsx .claude/skills/wiki-news/merge.ts open
+//       npx tsx .claude/skills/wiki-news/merge.ts past <작업 폴더> [--ref <브랜치>]... [--today <YYYY-MM-DD>]
 //       npx tsx .claude/skills/wiki-news/merge.ts merge <작업 폴더> [--force]
 //       npx tsx .claude/skills/wiki-news/merge.ts drop <작업 폴더> --reason <이유> <번호>...
 //       npx tsx .claude/skills/wiki-news/merge.ts table <작업 폴더> <주차나 달>...
 import fs from "node:fs"
+import { spawnSync } from "node:child_process"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 import { parseArgs } from "node:util"
@@ -39,6 +41,8 @@ export interface PastItem {
   outlet: string
   date: string
   summary: string
+  /** 항목의 제목 id. 이전 호 링크의 앵커다(docs/weekly-news.md). */
+  id?: string
 }
 
 /** 검토 에이전트의 기록 한 줄(news-reviewer.md의 출력). from은 원문을 바꿨을 때 바꾸기 전 주소다. */
@@ -205,27 +209,47 @@ const cell = (text: string) =>
     .replace(/(?<!\\)~/g, "\\~")
     .trim()
 
+// 원문이 열리지 않아 뺀 후보의 이유 머리(SKILL.md 4. 고르기). 9단계가 PR 본문의 열지 못한 곳에 적는다.
+const UNOPENED = "열리지 않음"
+
 /**
- * 후보별 판정표(번호, 날짜, 매체, 제목, 판정, 이유). 이번 실행의 호에 실린 후보는 실림이고, 검토가 원문을 바꾼
- * 후보는 바뀐 주소로 찾는다. 실리지 않은 후보의 이유는 검토 기록, 그다음 후보의 이유에서 가져오고, 둘 다 없는
- * 후보의 번호는 missing으로 낸다.
+ * 후보별 판정표(번호, 날짜, 매체, 제목, 판정, 이유). 싣기로 남은 후보만 호의 소식 항목에 맞추고, 검토가 원문을
+ * 바꾼 후보는 바뀐 주소로 찾는다. 같은 주소의 항목과 후보가 여럿이면(목록 주소를 함께 쓰는 리콜) 제목이 가까운
+ * 짝부터 하나씩 맞춰, 실림 수는 호의 소식 항목 수와 같다. 실리지 않은 후보의 이유는 검토 기록, 그다음 후보의
+ * 이유에서 가져오고, 둘 다 없는 후보의 번호는 missing으로, 열리지 않음으로 뺀 후보는 unopened로 낸다.
  */
 export function verdictTable(
   candidates: Candidate[],
   reviews: Review[],
   published: Published[],
-): { markdown: string; missing: string[] } {
-  const byUrl = new Map(published.map((p) => [normalizeUrl(p.url), p]))
-  const used = new Set<string>()
+): { markdown: string; missing: string[]; unopened: string[] } {
+  const reviewOf = candidates.map((c) =>
+    reviews.find((r) => normalizeUrl(r.from || r.url) === normalizeUrl(c.url)),
+  )
+  const pairs: { c: number; p: number; score: number }[] = []
+  candidates.forEach((c, ci) => {
+    if (c.verdict !== "싣기") return
+    const url = normalizeUrl(reviewOf[ci]?.url || c.url)
+    published.forEach((p, pi) => {
+      if (normalizeUrl(p.url) === url)
+        pairs.push({ c: ci, p: pi, score: similarity(c.title, p.title) })
+    })
+  })
+  const matched = new Map<number, number>()
+  const used = new Set<number>()
+  for (const { c, p } of pairs.sort((a, b) => b.score - a.score)) {
+    if (matched.has(c) || used.has(p)) continue
+    matched.set(c, p)
+    used.add(p)
+  }
   const missing: string[] = []
+  const unopened: string[] = []
   const rows: { date: string; id: string; verdict: string; cells: string[] }[] = []
-  for (const c of candidates) {
-    const review = reviews.find((r) => normalizeUrl(r.from || r.url) === normalizeUrl(c.url))
-    const url = normalizeUrl(review?.url || c.url)
+  candidates.forEach((c, ci) => {
+    const review = reviewOf[ci]
     let verdict = "뺌"
     let reason = ""
-    if (byUrl.has(url)) {
-      used.add(url)
+    if (matched.has(ci)) {
       verdict = "실림"
       reason = review?.from ? `검토: ${review.reason}` : ""
     } else if (review?.result === "뺌") reason = `검토: ${review.reason}`
@@ -234,15 +258,17 @@ export function verdictTable(
       missing.push(c.id ?? c.url)
       reason = "이유 없음"
     }
+    if (verdict === "뺌" && reason.replace(/^검토: /, "").startsWith(UNOPENED))
+      unopened.push(`${c.id ?? c.url} ${c.outlet} ${c.title}: ${reason}`)
     rows.push({
       date: c.date,
       id: c.id ?? "-",
       verdict,
       cells: [c.date, c.outlet, c.title, verdict, reason],
     })
-  }
-  for (const p of published) {
-    if (!used.has(normalizeUrl(p.url)))
+  })
+  for (const [pi, p] of published.entries()) {
+    if (!used.has(pi))
       rows.push({
         date: p.date,
         id: "-",
@@ -261,7 +287,7 @@ export function verdictTable(
     "",
     "</details>",
   ].join("\n")
-  return { markdown, missing }
+  return { markdown, missing, unopened }
 }
 
 // 빼는 기준의 셋째 조건(outlets.md)으로 빼지 않는 줄의 표시.
@@ -275,6 +301,61 @@ export function exclusionCandidates(outletsMd: string, counts: Map<string, numbe
 }
 
 const ISSUE = /^content\/news\/(\d{4}-w\d{2})\.md$/
+
+/** 열린 PR 하나와 그 PR이 고친 파일. */
+export interface Pull {
+  number: number
+  branch: string
+  files: string[]
+}
+
+/** 열린 PR 가운데 content/news의 호를 고치는 것과 그 호의 주차. */
+export function newsPulls(pulls: Pull[]): { number: number; branch: string; weeks: string[] }[] {
+  return pulls
+    .map(({ number, branch, files }) => ({
+      number,
+      branch,
+      weeks: files.flatMap((f) => f.match(ISSUE)?.[1] ?? []).sort(),
+    }))
+    .filter((p) => p.weeks.length)
+}
+
+function gh(args: string[]): string {
+  const result = spawnSync("gh", args, { cwd: root, encoding: "utf8", maxBuffer: 64 * 1024 * 1024 })
+  if (result.status !== 0) throw new Error(`gh ${args.join(" ")}: ${result.stderr.trim()}`)
+  return result.stdout
+}
+
+const lines = (text: string) => text.split("\n").filter(Boolean)
+
+// 열린 PR과 그 PR이 고친 파일. 루틴 환경은 GraphQL이 막혀 gh pr list가 실패하므로 REST로 묻는다.
+function openPulls(): number {
+  const pulls: Pull[] = lines(
+    gh([
+      "api",
+      "--paginate",
+      "repos/{owner}/{repo}/pulls?state=open&per_page=100",
+      "--jq",
+      ".[] | [.number, .head.ref] | @tsv",
+    ]),
+  ).map((line) => {
+    const [number, branch] = line.split("\t")
+    const files = lines(
+      gh([
+        "api",
+        "--paginate",
+        `repos/{owner}/{repo}/pulls/${number}/files?per_page=100`,
+        "--jq",
+        ".[].filename",
+      ]),
+    )
+    return { number: Number(number), branch, files }
+  })
+  const news = newsPulls(pulls)
+  console.log(`열린 PR ${pulls.length}개, 그 가운데 호를 고치는 PR ${news.length}개`)
+  for (const p of news) console.log(`#${p.number}\t${p.branch}\t${p.weeks.join(" ")}`)
+  return 0
+}
 
 /** ref들의 호. 같은 주차가 여러 ref에 있으면 앞 ref의 것을 쓴다. */
 function issuesAt(refs: string[]): Map<string, { ref: string; items: NewsItem[] }> {
@@ -304,7 +385,7 @@ function past(folder: string, refs: string[], today: string): number {
     .sort(([a], [b]) => a.localeCompare(b))
     .flatMap(([week, { items }]) =>
       items.map((it) =>
-        [week, it.title, it.url, it.outlet, it.date, visibleText(it.summary.markdown)]
+        [week, it.title, it.url, it.outlet, it.date, visibleText(it.summary.markdown), it.id]
           .map(tsv)
           .join("\t"),
       ),
@@ -387,8 +468,8 @@ function merge(folder: string, force: boolean): number {
         .split("\n")
         .filter(Boolean)
         .map((line) => {
-          const [week, title, url, outlet, date, summary = ""] = line.split("\t")
-          return { week, title, url, outlet, date, summary }
+          const [week, title, url, outlet, date, summary = "", id] = line.split("\t")
+          return { week, title, url, outlet, date, summary, id }
         })
     : []
   if (!items.length) console.log("\npast.tsv가 없거나 비었다(2단계)")
@@ -436,8 +517,10 @@ function table(folder: string, weeks: string[]): number {
     const file = path.join(root, "content", "news", `${week}.md`)
     return fs.existsSync(file) ? parseWeeklyNews(week, fs.readFileSync(file, "utf8")).items : []
   })
-  const { markdown, missing } = verdictTable(candidates, reviews, published)
+  const { markdown, missing, unopened } = verdictTable(candidates, reviews, published)
   console.log(markdown)
+  console.error(`\n${UNOPENED}으로 뺀 후보 ${unopened.length}건(PR 본문의 열지 못한 곳에 적는다)`)
+  for (const line of unopened) console.error(`- ${line}`)
   if (missing.length) {
     console.error(
       `\n실리지 않았는데 이유가 없는 후보 ${missing.length}건: ${missing.join(", ")}(drop으로 이유를 적는다)`,
@@ -458,13 +541,14 @@ function main(): number {
     },
   })
   const [command, folder, ...rest] = positionals
+  if (command === "open") return openPulls()
   const dir = folder && path.resolve(folder)
   if (dir && command === "past") return past(dir, values.ref!, values.today!)
   if (dir && command === "merge") return merge(dir, values.force!)
   if (dir && command === "drop" && values.reason && rest.length)
     return drop(dir, rest, values.reason)
   if (dir && command === "table" && rest.length) return table(dir, weeksOf(rest))
-  console.error("사용: merge.ts past|merge|drop|table <작업 폴더> …(머리 주석)")
+  console.error("사용: merge.ts open | merge.ts past|merge|drop|table <작업 폴더> …(머리 주석)")
   return 2
 }
 

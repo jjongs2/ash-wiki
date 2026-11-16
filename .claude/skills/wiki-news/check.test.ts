@@ -60,6 +60,28 @@ describe("요약 길이", () => {
   })
 })
 
+describe("이전 호 링크", () => {
+  test("지난 호 항목의 제목 id로 (이전 호: …) 꼴에 단 링크만 통과한다", () => {
+    const old = issue("2026-w43", [{ title: "Rückruf 17191R: Audi A6" }])
+    const good = "[[news/2026-w43#rückruf-17191r-audi-a6|Audi 17191R 리콜]]"
+    const raw = "[[news/2026-w43#Rückruf 17191R: Audi A6|Audi 17191R 리콜]]"
+    assert.deepStrictEqual(
+      failures([old, issue("2026-w47", [{ title: "T", summary: `리콜이다. (이전 호: ${good})` }])]),
+      [],
+    )
+    assert.deepStrictEqual(
+      failures([old, issue("2026-w47", [{ title: "T", summary: `이전 호의 ${good}을 본다.` }])]),
+      [
+        `2026-w47 "T": 이전 호 링크는 (이전 호: [[news/<주차>#<제목 id>|<표시 이름>]]) 꼴로 쓴다: ${good}`,
+      ],
+    )
+    assert.deepStrictEqual(
+      failures([old, issue("2026-w47", [{ title: "T", summary: `리콜이다. (이전 호: ${raw})` }])]),
+      [`2026-w47 "T": 이전 호 링크의 앵커가 2026-w43 호의 제목 id가 아니다: ${raw}`],
+    )
+  })
+})
+
 describe("한국어 제목", () => {
   const check = (entry: Entry) =>
     checkIssues({

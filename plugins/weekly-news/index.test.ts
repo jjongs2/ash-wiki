@@ -14,6 +14,7 @@ import {
   monthWeeks,
   koreanTitlePresence,
   parseWeeklyNews,
+  priorLinkProblems,
   toolbar,
   weekDays,
   weekLabel,
@@ -499,6 +500,66 @@ describe("koreanTitlePresence", () => {
 
   test("주요 소식이 아닌 항목은 보지 않는다(형식 함수가 막는다)", () => {
     assert.strictEqual(koreanTitlePresence(item("CAN XL Released", null, false)), null)
+  })
+})
+
+describe("priorLinkProblems", () => {
+  const ids = new Map([
+    ["2026-w41", ["recall-26v659-toyota", "lg-electronics-brings-genesis-gv90"]],
+    ["2026-w43", ["リコールの届出についてbrpspyder-rt-ltd他"]],
+  ])
+  const problems = (markdown: string, week = "2026-w46") =>
+    priorLinkProblems(week, markdown, (w) => ids.get(w))
+  const link = (target: string, name = "미국 26V659 리콜") => `[[news/${target}|${name}]]`
+
+  test("조사가 붙지 않는 (이전 호: …) 꼴에 지난 호의 제목 id를 단 링크는 통과한다", () => {
+    assert.deepStrictEqual(
+      problems(`시정은 재프로그래밍이다. (이전 호: ${link("2026-w41#recall-26v659-toyota")})`),
+      [],
+    )
+    assert.deepStrictEqual(
+      problems(
+        `리콜이다. (이전 호: ${link("2026-w41#recall-26v659-toyota")}, ${link("2026-w43#リコールの届出についてbrpspyder-rt-ltd他", "일본 BRP 신고")})`,
+      ),
+      [],
+    )
+  })
+
+  test("(이전 호: …) 밖의 링크와 조사가 붙은 링크를 알린다", () => {
+    const target = "2026-w41#recall-26v659-toyota"
+    assert.deepStrictEqual(problems(`이전 호의 ${link(target)}을 함께 본다.`), [
+      `이전 호 링크는 (이전 호: [[news/<주차>#<제목 id>|<표시 이름>]]) 꼴로 쓴다: ${link(target)}`,
+    ])
+    assert.deepStrictEqual(problems(`리콜이다. (이전 호: ${link(target)})을 본다.`), [
+      `이전 호 링크는 (이전 호: [[news/<주차>#<제목 id>|<표시 이름>]]) 꼴로 쓴다: ${link(target)}`,
+    ])
+  })
+
+  test("앵커가 그 호의 제목 id가 아니면 알린다", () => {
+    const raw = "2026-w41#Recall 26V659 (Toyota)"
+    assert.deepStrictEqual(problems(`(이전 호: ${link(raw)})`), [
+      `이전 호 링크의 앵커가 2026-w41 호의 제목 id가 아니다: ${link(raw)}`,
+    ])
+    assert.deepStrictEqual(problems(`(이전 호: ${link("2026-w41")})`), [
+      `이전 호 링크의 앵커가 2026-w41 호의 제목 id가 아니다: ${link("2026-w41")}`,
+    ])
+  })
+
+  test("없는 호와 이 호보다 늦은 호, 표시 이름이 없는 링크를 알린다", () => {
+    assert.deepStrictEqual(problems(`(이전 호: ${link("2026-w42#x")})`), [
+      `이전 호 링크의 호가 없다: ${link("2026-w42#x")}`,
+    ])
+    assert.deepStrictEqual(problems(`(이전 호: ${link("2026-w43#x")})`, "2026-w41"), [
+      `이전 호 링크가 이 호(2026-w41)보다 늦은 호를 가리킨다: ${link("2026-w43#x")}`,
+    ])
+    const bare = "[[news/2026-w41#recall-26v659-toyota]]"
+    assert.deepStrictEqual(problems(`(이전 호: ${bare})`), [
+      `이전 호 링크는 (이전 호: [[news/<주차>#<제목 id>|<표시 이름>]]) 꼴로 쓴다: ${bare}`,
+    ])
+  })
+
+  test("이전 호가 아닌 위키 링크는 보지 않는다", () => {
+    assert.deepStrictEqual(problems("[[electronic-control-unit|ECU]] 리콜이다."), [])
   })
 })
 

@@ -36,7 +36,7 @@ export const manifest = {
 }
 
 // 소식 항목 하나. regions는 구역 태그(network)의 목록이고 기타는 빈 목록이다. id는 카드의 앵커로, 위키 링크의 절
-// 링크(`[[news/2026-w41#원어 제목]]`)가 가리키는 값과 같다. featured는 주요 소식인지이고, koreanTitle은 주요
+// 링크(`[[news/2026-w41#<id>|…]]`)의 앵커다. featured는 주요 소식인지이고, koreanTitle은 주요
 // 소식에만 다는 한국어 제목(없으면 null)이다. summary의 start와 end는 요약이 차지하는 원본의 첫 줄과 끝
 // 줄(1부터)이다.
 export interface NewsItem {
@@ -223,6 +223,41 @@ export function koreanTitlePresence(
   if (!needed && item.koreanTitle !== null)
     return "원어 제목이 한국어인 주요 소식에는 한국어 제목을 달지 않는다"
   return null
+}
+
+// 이전 호 항목으로 가는 링크(docs/weekly-news.md). 묶음은 `(이전 호: L, L)`이고, 닫는 괄호 뒤에 글자가 붙지 않는다.
+const NEWS_LINK = /\[\[news\/[^\]]*\]\]/g
+const PRIOR_GROUP = /\(이전 호: \[\[news\/[^\]]*\]\](?:, \[\[news\/[^\]]*\]\])*\)(?![\p{L}\p{N}])/gu
+const PRIOR_LINK = /^\[\[news\/(\d{4}-w\d{2})(?:#([^\]|]*))?\|([^\]]+)\]\]$/
+const PRIOR_SHAPE = "(이전 호: [[news/<주차>#<제목 id>|<표시 이름>]])"
+
+/**
+ * 요약의 이전 호 링크가 어긴 것. 링크는 `(이전 호: …)` 묶음 안에 `[[news/<주차>#<제목 id>|<표시 이름>]]` 꼴로
+ * 있고, 주차는 이 호(week)보다 이른 호이며, 앵커는 그 호 항목의 id(github-slugger 값)다. idsOf는 주차의 항목
+ * id 목록을 주고, 호가 없으면 undefined다. 꼴이 정해지기 전의 호는 보지 않는다(content.test.ts).
+ */
+export function priorLinkProblems(
+  week: string,
+  markdown: string,
+  idsOf: (week: string) => string[] | undefined,
+): string[] {
+  const grouped = new Set<number>()
+  for (const group of markdown.matchAll(PRIOR_GROUP)) {
+    for (const link of group[0].matchAll(NEWS_LINK)) grouped.add(group.index! + link.index!)
+  }
+  return [...markdown.matchAll(NEWS_LINK)].flatMap((match) => {
+    const link = match[0]
+    const parts = link.match(PRIOR_LINK)
+    if (!grouped.has(match.index!) || !parts?.[3].trim())
+      return [`이전 호 링크는 ${PRIOR_SHAPE} 꼴로 쓴다: ${link}`]
+    const [, target, anchor] = parts
+    if (target >= week) return [`이전 호 링크가 이 호(${week})보다 늦은 호를 가리킨다: ${link}`]
+    const ids = idsOf(target)
+    if (!ids) return [`이전 호 링크의 호가 없다: ${link}`]
+    return anchor !== undefined && ids.includes(anchor)
+      ? []
+      : [`이전 호 링크의 앵커가 ${target} 호의 제목 id가 아니다: ${link}`]
+  })
 }
 
 /** 대문과 메타 설명이 주요 소식에 보이는 제목. 한국어 제목이고, 없으면(지난 호) 원어 제목이다. */

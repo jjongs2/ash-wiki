@@ -3,6 +3,7 @@ import assert from "node:assert"
 import {
   exclusionCandidates,
   isoWeek,
+  newsPulls,
   normalizeUrl,
   pastMatches,
   sameEvents,
@@ -190,6 +191,105 @@ describe("판정표", () => {
       "",
       "</details>",
     ])
+  })
+})
+
+describe("판정표의 실림", () => {
+  const list = "https://www.kba-online.de/rrdb/buerger/api/rueckruf/export?format=csv&type=cars"
+  const published = (url: string, title: string) => ({
+    url,
+    title,
+    outlet: "KBA",
+    date: "2026-09-08",
+  })
+  const summary = (markdown: string) => markdown.split("\n")[0]
+
+  test("호에 실린 주소와 같은 주소를 가진 뺀 후보는 뺌이고, 실림 수가 호의 소식 항목 수와 같다", () => {
+    const issue = [
+      published("https://www.infineon.com/pr/1", "Infineon AURIX TC5"),
+      published(list, "Rückruf BMW X5 Steuergerät"),
+    ]
+    const { markdown, missing } = verdictTable(
+      [
+        candidate("A01", { url: "https://www.infineon.com/pr/1", title: "Infineon AURIX TC5" }),
+        candidate("C01", {
+          url: "https://infineon.com/pr/1/",
+          verdict: "빼기",
+          reason: "같은 사건 중복: A01",
+        }),
+        candidate("F01", { url: list, title: "Rückruf BMW X5 Steuergerät" }),
+        candidate("F02", {
+          url: list,
+          title: "Rückruf Opel Corsa Kabelbaum",
+          verdict: "빼기",
+          reason: "범위 밖: 하드웨어 리콜",
+        }),
+      ],
+      [],
+      issue,
+    )
+    assert.deepStrictEqual(missing, [])
+    assert.strictEqual(
+      summary(markdown),
+      "<details><summary>후보 판정표 4건(실림 2, 뺌 2)</summary>",
+    )
+    assert.match(markdown, /\| C01 \|.*\| 뺌 \| 같은 사건 중복: A01 \|/)
+    assert.match(markdown, /\| F02 \|.*\| 뺌 \| 범위 밖: 하드웨어 리콜 \|/)
+  })
+
+  test("같은 주소의 싣기 후보가 둘인데 호에 하나만 실렸으면, 남은 후보는 이유 없음으로 알린다", () => {
+    const { markdown, missing } = verdictTable(
+      [
+        candidate("F01", { url: list, title: "Rückruf BMW X5 Steuergerät" }),
+        candidate("F02", { url: list, title: "Rückruf Mercedes Sprinter Software" }),
+      ],
+      [],
+      [published(list, "Rückruf Mercedes Sprinter Software")],
+    )
+    assert.deepStrictEqual(missing, ["F01"])
+    assert.strictEqual(
+      summary(markdown),
+      "<details><summary>후보 판정표 2건(실림 1, 뺌 1)</summary>",
+    )
+    assert.match(markdown, /\| F02 \|.*\| 실림 \|/)
+  })
+
+  test("열리지 않음으로 뺀 후보를 따로 낸다", () => {
+    const { unopened } = verdictTable(
+      [
+        candidate("B01", { verdict: "빼기", reason: "열리지 않음: 원문 403, 기사 없음" }),
+        candidate("B02", { verdict: "빼기", reason: "문턱: 새 사양 없음" }),
+      ],
+      [],
+      [],
+    )
+    assert.deepStrictEqual(unopened, [
+      "B01 Vector BBBB 0000 1111: 열리지 않음: 원문 403, 기사 없음",
+    ])
+  })
+})
+
+describe("소식 파일을 고치는 열린 PR", () => {
+  test("고친 파일에 content/news의 호가 있는 PR만 주차와 함께 낸다", () => {
+    assert.deepStrictEqual(
+      newsPulls([
+        { number: 687, branch: "content/news-2026-w45", files: ["content/news/2026-w45.md"] },
+        { number: 690, branch: "feat/x", files: ["plugins/weekly-news/index.ts"] },
+        {
+          number: 691,
+          branch: "fix/news",
+          files: [
+            "content/news/2026-w44.md",
+            "content/news/index.md",
+            ".claude/skills/wiki-news/outlets.md",
+          ],
+        },
+      ]),
+      [
+        { number: 687, branch: "content/news-2026-w45", weeks: ["2026-w45"] },
+        { number: 691, branch: "fix/news", weeks: ["2026-w44"] },
+      ],
+    )
   })
 })
 
