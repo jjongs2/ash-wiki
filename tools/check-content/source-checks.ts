@@ -294,8 +294,9 @@ function sectionIds(page: Page): Set<string> {
 }
 
 const quoteMarker = /^\s*(?:>\s*)*/
-const delimiterRow = /^\|?\s*:?-+:?\s*(?:\|\s*:?-+:?\s*)*\|?\s*$/
-const unescapedPipe = /(?<!\\)\|/
+// 하네스 조사의 검사기(tools/check-research)도 같은 표 문법을 쓴다.
+export const delimiterRow = /^\|?\s*:?-+:?\s*(?:\|\s*:?-+:?\s*)*\|?\s*$/
+export const unescapedPipe = /(?<!\\)\|/
 
 // GFM 표의 줄 번호. 머리 행 바로 다음에 구분 행(`--- | ---`)이 오면 표가 시작하고 빈 줄에서 끝난다.
 // 행 앞뒤의 |는 없어도 되고, 콜아웃 안의 표는 줄 앞에 >가 붙는다.

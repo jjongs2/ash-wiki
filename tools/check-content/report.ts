@@ -1,7 +1,7 @@
 import type { Violation } from "./tree"
 
 // 검사마다 `OK/FAIL/SKIP <id>` 한 줄과 위반 위치를 `<파일>:<줄>: <내용>` 꼴로 찍는다.
-// 콘텐츠 검사기와 출처 상태(tools/source-status)가 같이 쓴다.
+// tools/의 검사기들이 같이 쓴다.
 export type Status = "OK" | "FAIL" | "SKIP"
 
 export function report(id: string, status: Status, violations: Violation[] = [], note?: string) {
