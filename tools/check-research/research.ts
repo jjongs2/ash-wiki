@@ -1,20 +1,20 @@
 import fs from "node:fs"
 import path from "node:path"
+import { delimiterRow, unescapedPipe } from "../check-content/source-checks"
 import type { Violation } from "../check-content/tree"
 
 // 하네스 조사 기록과 출처 목록의 검사. 규칙은 docs/research/README.md에 있다.
 
-export interface Table {
+interface Table {
   line: number // 머리 행의 줄 번호
   header: string[]
   rows: { line: number; cells: string[] }[]
 }
 
-export interface ResearchFile {
+interface ResearchFile {
   file: string // 검사 루트 기준 경로
-  lines: string[]
   tables: Table[]
-  // 코드 블록 밖의 줄. 코드 블록 안의 줄은 빈 문자열로 둬 줄 번호를 지킨다.
+  // HTML 주석을 공백으로, 코드 블록 안의 줄을 빈 문자열로 지운 본문. 줄 번호는 원본과 같다.
   prose: string[]
 }
 
@@ -23,11 +23,20 @@ export interface ResearchTree {
   records: ResearchFile[]
 }
 
-export const SOURCES_FILE = "sources.md"
-const NOT_RECORDS = new Set(["README.md", SOURCES_FILE])
+interface Source {
+  line: number
+  primary: boolean
+}
 
-export const SOURCE_HEADER = ["ID", "제목", "URL", "판", "읽은 날", "종류"]
-export const CLAIM_HEADER = ["ID", "주장", "출처", "인용", "신뢰도"]
+const SOURCES_FILE = "sources.md"
+const NOT_RECORDS = new Set(["README.md", SOURCES_FILE])
+const SOURCE_HEADER = ["ID", "제목", "URL", "판", "읽은 날", "종류"]
+const CLAIM_HEADER = ["ID", "주장", "출처", "인용", "신뢰도"]
+const SOURCE_ID = /\bS\d+\b/g
+const CLAIM_ID = /\bC\d+\b/g
+const isSourceId = (id: string) => /^S\d+$/.test(id)
+const isClaimId = (id: string) => /^C\d+$/.test(id)
+const idsIn = (text: string, pattern: RegExp) => [...text.matchAll(pattern)].map((m) => m[0])
 
 export function loadResearch(root: string): ResearchTree {
   const read = (name: string) => parseFile(name, fs.readFileSync(path.join(root, name), "utf8"))
@@ -41,11 +50,13 @@ export function loadResearch(root: string): ResearchTree {
   }
 }
 
-export function parseFile(file: string, source: string): ResearchFile {
-  const lines = source.split("\n")
+function parseFile(file: string, source: string): ResearchFile {
   const prose: string[] = []
   let fence: string | undefined
-  for (const line of lines) {
+  const uncommented = source.replace(/<!--[\s\S]*?-->/g, (comment) =>
+    comment.replace(/[^\n]/g, " "),
+  )
+  for (const line of uncommented.split("\n")) {
     const marker = line.match(/^ {0,3}(`{3,}|~{3,})/)?.[1]
     if (fence) {
       if (marker && marker[0] === fence[0] && marker.length >= fence.length) fence = undefined
@@ -57,7 +68,7 @@ export function parseFile(file: string, source: string): ResearchFile {
       prose.push(line)
     }
   }
-  return { file, lines, tables: parseTables(prose), prose }
+  return { file, tables: parseTables(prose), prose }
 }
 
 // 머리 행 다음 줄이 구분 행인 `|` 줄의 묶음을 표로 읽는다.
@@ -65,7 +76,7 @@ function parseTables(prose: string[]): Table[] {
   const tables: Table[] = []
   const isRow = (line: string | undefined) => line !== undefined && /^\s*\|/.test(line)
   const isDelimiter = (line: string | undefined) =>
-    line !== undefined && /^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)*\|?\s*$/.test(line)
+    line !== undefined && delimiterRow.test(line.trim())
   for (let i = 0; i < prose.length; i++) {
     if (!isRow(prose[i]) || !isDelimiter(prose[i + 1])) continue
     const table: Table = { line: i + 1, header: splitCells(prose[i]), rows: [] }
@@ -78,12 +89,13 @@ function parseTables(prose: string[]): Table[] {
 }
 
 // GFM처럼 `\|`가 아닌 `|`에서 셀을 가른다. 코드 스팬 안의 `|`도 셀을 가른다.
-export function splitCells(line: string): string[] {
+function splitCells(line: string): string[] {
+  const pipe = new RegExp(unescapedPipe.source, "g")
   const cells = line
     .trim()
     .replace(/^\|/, "")
-    .replace(/(?<!\\)\|$/, "")
-    .split(/(?<!\\)\|/)
+    .replace(new RegExp(`${unescapedPipe.source}$`), "")
+    .split(pipe)
   return cells.map((cell) => cell.trim().replace(/\\\|/g, "|"))
 }
 
@@ -110,25 +122,33 @@ export function checkTables(tree: ResearchTree): Violation[] {
   return violations
 }
 
+// 남은 자리로 보지 않는 `<…>`: 자동 링크와 본문에 쓸 만한 HTML 태그.
+const notPlaceholder =
+  /^<(https?:\/\/|mailto:|\/?(a|abbr|b|br|code|del|details|em|i|img|kbd|mark|small|span|strong|sub|summary|sup|u)(\s[^<>]*)?\/?>$)/i
+
 export function checkPlaceholders(tree: ResearchTree): Violation[] {
   const violations: Violation[] = []
   for (const file of all(tree)) {
     file.prose.forEach((line, i) => {
-      const left = line.match(/<(?!!)[^<>\n]*[가-힣…][^<>\n]*>|YYYY-MM-DD/)
-      if (left) violations.push({ file: file.file, line: i + 1, message: `남은 자리: ${left[0]}` })
+      const text = line.replace(/(`+)[^`]*?\1/g, "") // 코드 스팬은 보지 않는다
+      const left = [...text.matchAll(/<[^<>\n]+>|YYYY-MM-DD/g)]
+        .map((m) => m[0])
+        .filter((match) => !notPlaceholder.test(match))
+      for (const match of left) {
+        violations.push({ file: file.file, line: i + 1, message: `남은 자리: ${match}` })
+      }
     })
   }
   return violations
 }
 
-export interface Source {
-  id: string
-  line: number
-  primary: boolean
+// 같은 URL로 볼 꼴: 스킴과 호스트의 대소문자, http와 https, `#` 뒤 조각, 끝의 `/`를 가리지 않는다.
+function normalizeUrl(url: string): string {
+  return url
+    .replace(/^https?:\/\/[^/?#]+/i, (origin) => origin.toLowerCase().replace(/^http:/, "https:"))
+    .replace(/#.*$/, "")
+    .replace(/\/+$/, "")
 }
-
-// 같은 URL로 볼 꼴: `#` 뒤 조각과 끝의 `/`를 뗀다.
-const normalizeUrl = (url: string) => url.replace(/#.*$/, "").replace(/\/+$/, "")
 
 export function loadSources(tree: ResearchTree): {
   sources: Map<string, Source>
@@ -153,10 +173,10 @@ export function loadSources(tree: ResearchTree): {
     if (cells.length !== SOURCE_HEADER.length) continue // 표 검사가 알린다
     const [id, title, url, edition, read, kind] = cells
     const flag = (message: string) => violations.push({ file: file.file, line, message })
-    if (!/^S\d+$/.test(id)) flag(`ID는 S 뒤에 숫자여야 한다: ${id}`)
+    if (!isSourceId(id)) flag(`ID는 S 뒤에 숫자여야 한다: ${id || "(빈칸)"}`)
     else if (sources.has(id)) flag(`${id}: ID가 ${sources.get(id)!.line}줄에도 있다`)
     if (!title) flag(`${id}: 제목이 비었다`)
-    if (!/^https?:\/\/\S+$/.test(url)) flag(`${id}: URL이 http(s) 주소가 아니다`)
+    if (!/^https?:\/\/\S+$/i.test(url)) flag(`${id}: URL이 http(s) 주소가 아니다`)
     else {
       const key = normalizeUrl(url)
       const other = urls.get(key)
@@ -167,8 +187,7 @@ export function loadSources(tree: ResearchTree): {
     if (!isDate(read)) flag(`${id}: 읽은 날이 YYYY-MM-DD 꼴의 날짜가 아니다: ${read || "(빈칸)"}`)
     if (kind !== "1차" && kind !== "2차")
       flag(`${id}: 종류는 1차나 2차여야 한다: ${kind || "(빈칸)"}`)
-    if (/^S\d+$/.test(id) && !sources.has(id))
-      sources.set(id, { id, line, primary: kind === "1차" })
+    if (isSourceId(id) && !sources.has(id)) sources.set(id, { line, primary: kind === "1차" })
   }
   return { sources, violations }
 }
@@ -199,7 +218,7 @@ export function checkClaims(tree: ResearchTree, sources: Map<string, Source>): V
       if (cells.length !== CLAIM_HEADER.length) continue // 표 검사가 알린다
       const [id, claim, cited, quote, confidence] = cells
       const at = (message: string) => flag(`${id}: ${message}`, line)
-      if (!/^C\d+$/.test(id)) flag(`ID는 C 뒤에 숫자여야 한다: ${id}`, line)
+      if (!isClaimId(id)) flag(`ID는 C 뒤에 숫자여야 한다: ${id || "(빈칸)"}`, line)
       else if (ids.has(id)) at(`${ids.get(id)}줄에도 있다`)
       else ids.set(id, line)
       if (!claim) at("주장이 비었다")
@@ -207,12 +226,15 @@ export function checkClaims(tree: ResearchTree, sources: Map<string, Source>): V
         at(`신뢰도는 H, M, U 가운데 하나여야 한다: ${confidence || "(빈칸)"}`)
         continue
       }
-      if (/https?:\/\//.test(cited)) {
+      if (/https?:\/\//i.test(cited)) {
         at("출처 칸에 URL이 있다. 출처 목록에 등록하고 ID로 쓴다")
         continue
       }
-      const citedIds = [...cited.matchAll(/\bS\d+\b/g)].map((match) => match[0])
-      if (cited && citedIds.length === 0) at("출처 칸에 출처 ID가 없다")
+      const parts = cited ? cited.split(";").map((part) => part.trim()) : []
+      if (parts.some((part) => !/^S\d+\b/.test(part) || idsIn(part, SOURCE_ID).length !== 1)) {
+        at("출처는 ID 하나와 그 자리씩 ;로 가른다. 예: S101 §2; S102")
+      }
+      const citedIds = idsIn(cited, SOURCE_ID)
       const unknown = citedIds.filter((source) => !sources.has(source))
       if (unknown.length > 0) at(`출처 목록에 없는 ID: ${unknown.join(", ")}`)
       if (citedIds.length === 0 && confidence !== "U")
@@ -223,6 +245,19 @@ export function checkClaims(tree: ResearchTree, sources: Map<string, Source>): V
           at("H인데 2차 출처만 인용했다")
         }
         if (!quote) at("H인데 인용이 비었다")
+      }
+    }
+    for (const other of record.tables) {
+      if (other === table) continue
+      if (other.header.some((cell) => cell === "출처" || cell === "신뢰도")) {
+        flag("출처나 신뢰도 열은 주장 표에만 둔다. 주장은 주장 표에 쓴다", other.line)
+        continue
+      }
+      for (const { line, cells } of other.rows) {
+        const refs = idsIn(cells.join(" "), CLAIM_ID)
+        const unknown = refs.filter((ref) => !ids.has(ref))
+        if (refs.length === 0) flag("주장 표 밖의 표는 행마다 근거인 주장 ID를 가리킨다", line)
+        else if (unknown.length > 0) flag(`주장 표에 없는 주장 ID: ${unknown.join(", ")}`, line)
       }
     }
   }

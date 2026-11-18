@@ -1,5 +1,6 @@
 import path from "node:path"
 import { report, verdict, type Status } from "../check-content/report"
+import type { Violation } from "../check-content/tree"
 import { repoRoot } from "../repo"
 import { checkClaims, checkPlaceholders, checkTables, loadResearch, loadSources } from "./research"
 
@@ -10,7 +11,7 @@ const tree = loadResearch(root)
 const { sources, violations: sourceViolations } = loadSources(tree)
 
 const statuses: Status[] = []
-const run = (id: string, violations: ReturnType<typeof checkTables>) =>
+const run = (id: string, violations: Violation[]) =>
   statuses.push(report(id, verdict(violations), violations))
 
 run("table", checkTables(tree))

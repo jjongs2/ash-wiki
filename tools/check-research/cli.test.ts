@@ -57,14 +57,16 @@ describe("check-research CLI", () => {
   })
 
   test("셀 안의 이스케이프하지 않은 |를 잡는다", () => {
-    has("table", "claims.md:14", "\\|로 쓴다")
+    has("table", "claims.md:24", "\\|로 쓴다")
     assert.strictEqual(at("table").length, 1)
   })
 
-  test("남은 자리를 잡고, 코드 블록과 README는 보지 않는다", () => {
-    has("placeholder", "claims.md:15", "<주장>")
+  test("영어 자리와 출처 꼴의 자리도 잡고, 코드, 주석, 태그, 자동 링크, README는 보지 않는다", () => {
+    has("placeholder", "claims.md:25", "<주장>")
+    has("placeholder", "claims.md:25", "<S101 §2>")
+    has("placeholder", "claims.md:25", "<original text>")
     has("placeholder", "no-table.md:1", "YYYY-MM-DD")
-    assert.strictEqual(at("placeholder").length, 2)
+    assert.strictEqual(at("placeholder").length, 4)
   })
 
   test("출처 목록의 겹친 ID, 겹친 URL, 빈 판, 틀린 날짜와 종류를 잡는다", () => {
@@ -73,19 +75,26 @@ describe("check-research CLI", () => {
     has("sources", "sources.md:8", "판이 비었다")
     has("sources", "sources.md:8", "2026-02-30")
     has("sources", "sources.md:8", "3차")
-    assert.strictEqual(at("sources").length, 5)
+    has("sources", "sources.md:10", "S202의 URL과 같다")
+    assert.strictEqual(at("sources").length, 6)
   })
 
   test("주장 표의 출처와 신뢰도를 잡는다", () => {
-    has("claims", "claims.md:7", "2차 출처만")
-    has("claims", "claims.md:8", "U만 된다")
-    has("claims", "claims.md:9", "S999")
-    has("claims", "claims.md:10", "URL이 있다")
-    has("claims", "claims.md:11", "인용이 비었다")
-    has("claims", "claims.md:12", "H, M, U")
-    has("claims", "claims.md:13", "12줄에도")
+    has("claims", "claims.md:17", "2차 출처만")
+    has("claims", "claims.md:18", "U만 된다")
+    has("claims", "claims.md:19", "S999")
+    has("claims", "claims.md:20", "URL이 있다")
+    has("claims", "claims.md:21", "인용이 비었다")
+    has("claims", "claims.md:22", "H, M, U")
+    has("claims", "claims.md:23", "22줄에도")
+    has("claims", "claims.md:26", ";로 가른다")
     has("claims", "no-table.md", "주장 표가 하나여야")
     has("claims", "no-table.md:1", "제목")
-    assert.strictEqual(at("claims").length, 9)
+  })
+
+  test("주장 표 밖의 표는 주장 ID로 근거를 가리키고, 출처나 신뢰도 열을 두지 않는다", () => {
+    has("claims", "claims.md:6", "주장 ID를 가리킨다")
+    has("claims", "claims.md:7", "C99")
+    has("claims", "claims.md:9", "주장 표에만 둔다")
   })
 })
