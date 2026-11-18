@@ -15,7 +15,7 @@
   "scripts": {
     "quartz": "./quartz/bootstrap-cli.mjs",
     "docs": "npx quartz build --serve -d docs",
-    "check": "npx prettier . --check && npm run install-plugins && tsc --noEmit && npm run check:content && npm test",
+    "check": "npx prettier . --check && npm run install-plugins && tsc --noEmit && npm run check:content && npm run check:research && npm test",
     "format": "npx prettier . --write",
     "test": "tsx --test",
     "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1",
@@ -29,6 +29,7 @@
     "palette": "tsx tools/palette.ts",
     "check:content": "tsx tools/check-content/cli.ts",
     "check:diff": "tsx tools/check-diff/cli.ts",
+    "check:research": "tsx tools/check-research/cli.ts",
     "source-status": "tsx tools/source-status/cli.ts",
     "edition-status": "tsx tools/edition-status/cli.ts",
     "reader-capture": "tsx tools/reader-capture/cli.ts",
