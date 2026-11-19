@@ -7,7 +7,7 @@ aliases:
 verified: 2026-11-19
 ---
 
-**HomePlug Green PHY**(HPGP)는 전기차 충전에서 차량과 충전 설비 사이의 통신을 나르는 PLC(Power Line Communications) 기술이다.[@qualcomm-qca7005-2026] SAE J2931/4:2023은 SAE J1772에 기술된 [[control-pilot|Control Pilot]] 선 위의 차량 충전 응용을 지원하는 데 필요한 HomePlug Green PHY v1.1의 수정과 선택 기능을 정한다.[@sae-j2931-4-2023]
+**HomePlug Green PHY**(HPGP)는 전기차 충전에서 차량과 충전 설비 사이의 통신을 나르는 PLC(Power Line Communications) 기술이다.[@qualcomm-qca7005-2026] SAE J2931/4:2023은 SAE J1772에 기술된 [[control-pilot|Control pilot]] 선 위의 차량 충전 응용을 지원하는 데 필요한 HomePlug Green PHY v1.1의 수정과 선택 기능을 정한다.[@sae-j2931-4-2023]
 
 같은 네트워크 키를 쓰는 저층 통신 스테이션끼리 logical network를 이루고, HPGP 스테이션 사이의 신호 세기는 SLAC(signal level attenuation characterization) 프로토콜로 잰다.[@iso-15118-3-obp-2015]
 

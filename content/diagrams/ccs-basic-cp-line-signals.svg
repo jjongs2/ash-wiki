@@ -6,8 +6,8 @@
 
   <!-- 충전 방식 -->
   <g fill="var(--text, #727981)">
-    <text x="20" y="95">DC 충전</text>
-    <text x="20" y="195">AC 충전</text>
+    <text x="20" y="95">직류 충전</text>
+    <text x="20" y="195">교류 충전</text>
   </g>
 
   <!-- 충전 설비와 차량 -->
@@ -36,20 +36,20 @@
 
   <!-- CP 선이 함께 나르는 신호 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <path d="M200 84 V78 H430 V84" />
-    <path d="M200 184 V178 H430 V184" />
+    <path d="M200 90 V80 H430 V90" />
+    <path d="M200 190 V180 H430 V190" />
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="240" y="46" width="70" height="24" rx="2" />
-    <rect x="320" y="46" width="70" height="24" rx="2" />
-    <rect x="240" y="146" width="70" height="24" rx="2" />
+    <rect x="240" y="52" width="70" height="24" rx="2" />
+    <rect x="320" y="52" width="70" height="24" rx="2" />
+    <rect x="240" y="152" width="70" height="24" rx="2" />
   </g>
-  <rect x="320" y="146" width="70" height="24" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
+  <rect x="320" y="152" width="70" height="24" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
   <g text-anchor="middle" font-size="13" fill="var(--text, #727981)">
-    <text x="275" y="63">PWM</text>
-    <text x="355" y="63">PLC</text>
-    <text x="275" y="163">PWM</text>
-    <text x="355" y="163">PLC</text>
+    <text x="275" y="69">PWM</text>
+    <text x="355" y="69">PLC</text>
+    <text x="275" y="169">PWM</text>
+    <text x="355" y="169">PLC</text>
   </g>
 
   <!-- 범례 -->

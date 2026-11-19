@@ -9,21 +9,21 @@
 
   <!-- 부 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20" y="42" width="231" height="40" rx="2" />
-    <rect x="263" y="42" width="231" height="40" rx="2" />
+    <rect x="20" y="42" width="150" height="40" rx="2" />
+    <rect x="182" y="42" width="150" height="40" rx="2" />
     <rect x="20" y="124" width="150" height="40" rx="2" />
     <rect x="182" y="124" width="150" height="40" rx="2" />
     <rect x="344" y="124" width="150" height="40" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="135.5" y="67">ISO 15118-2:2014</text>
-    <text x="378.5" y="58">ISO 15118-20:2022</text>
+    <text x="95" y="67">ISO 15118-2:2014</text>
+    <text x="257" y="58">ISO 15118-20:2022</text>
     <text x="95" y="140">ISO 15118-3:2015</text>
     <text x="257" y="140">ISO 15118-8:2020</text>
     <text x="419" y="140">ISO 15118-10:2025</text>
   </g>
   <g text-anchor="middle" font-size="13" fill="var(--text, #727981)">
-    <text x="378.5" y="75">2세대</text>
+    <text x="257" y="75">2세대</text>
     <text x="95" y="157">유선</text>
     <text x="257" y="157">무선</text>
     <text x="419" y="157">단일 쌍 이더넷</text>

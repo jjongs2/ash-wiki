@@ -24,7 +24,7 @@
   </g>
   <g text-anchor="middle" font-size="13" fill="var(--text, #727981)">
     <text x="299.4" y="50">nominal duty cycle</text>
-    <text x="286.2" y="98">valid duty cycle</text>
+    <text x="299.4" y="98">valid duty cycle</text>
   </g>
 
   <!-- 범위 -->

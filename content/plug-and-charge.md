@@ -26,18 +26,20 @@ Vector의 MICROSAR Charge는 ISO 15118에 따른 인증서 기반 PnC를 지원�
 
 ISO 15118-20:2022는 인증서를 발급하는 CA(certificate authority) 가운데 **V2G root CA**를 sub-CA에 sub-CA 인증서를 발급하는 CA로 정의한다. 이 부는 **sub-CA**를 V2G root CA 같은 root CA를 대신해 SECC(supply equipment communication controller) 인증서나 계약 인증서 같은 인증서를 발급하는 하위 CA로 정의하고, sub-CA가 둘째 sub-CA에 인증서를 발급하거나 계약 인증서와 SECC 인증서 같은 leaf 인증서를 직접 발급한다고 제시한다. root CA가 sub-CA를 언제든 폐지할 수 있다는 것도 제시한다.[@iso-15118-20-obp-2022]
 
-![[diagrams/v2g-certificate-issuing-chain.svg]]
-
 이 부는 **계약 인증서**를 eMSP(eMobility service provider)의 sub-CA가 EVCC(electric vehicle communication controller) 몫으로 발급해 응용 계층의 XML 서명에 쓰고, SECC나 secondary actor가 그 서명을 검증하는 인증서로 정의하고, secondary actor가 인증서 subject 필드의 EMAID(eMobility account identifier)로 eMSP 계약에 따라 차량의 충전을 인가한다고 제시한다.[@iso-15118-20-obp-2022]
 
-ISO 15118-2:2014는 계약 인증서를 V2G Root CA나 Sub-CA가 EVCC에 발급하는 인증서로 정의한다. 이 부는 **OEM provisioning 인증서**를 EVCC가 secondary actor에게서 계약 인증서를 안전하게 요청해 받을 수 있도록 EVCC에 발급하는 인증서로 정의한다.[@iso-15118-2-obp-2014] ISO 15118-20:2022는 OEM provisioning 인증서를 계약 인증서의 프로비저닝을 위해 OEM이 EVCC에 발급하는 인증서로 정의한다.[@iso-15118-20-obp-2022]
+![[diagrams/v2g-certificate-issuing-chain.svg]]
+
+이 부는 **OEM provisioning 인증서**를 계약 인증서의 프로비저닝을 위해 OEM이 EVCC에 발급하는 인증서로 정의한다.[@iso-15118-20-obp-2022]
 
 이 부는 **SECC 인증서**를 TLS에서 EVCC가 SECC의 진위를 확인하는 데 쓰는 leaf 인증서로, **차량 인증서**를 TLS에서 SECC가 EVCC의 진위를 확인하는 데 쓰는 leaf 인증서로 정의한다. 또 SECC가 차량 인증서로 같은 V2G(vehicle to grid) 세션에 속한 여러 TLS 세션을 묶기도 한다고 제시한다.[@iso-15118-20-obp-2022]
 
 ![[diagrams/plug-and-charge-certificate-use.svg]]
 
+ISO 15118-2:2014는 계약 인증서를 V2G Root CA나 Sub-CA가 EVCC에 발급하는 인증서로, OEM provisioning 인증서를 EVCC가 secondary actor에게서 계약 인증서를 안전하게 요청해 받을 수 있도록 EVCC에 발급하는 인증서로 정의한다.[@iso-15118-2-obp-2014]
+
 ## 다른 식별 수단과 사설 환경
 
-ISO 15118-2:2014는 **식별 방식**(Identification Mode)을, **EIM**(External Identification Means)으로 식별하는 충전 시나리오와 PnC로 식별하는 충전 시나리오에 관한 필수·선택 메시지와 파라미터로 정의한다.[@iso-15118-2-obp-2014] ISO 15118-1:2019는 EIM의 예로 신용·직불 카드, 스마트폰이나 웹 앱, 전화 같은 수단을 든다.[@iso-15118-1-obp-2019] ISO 15118-20:2022는 EIM을 이 문서 밖에서 다루는 인가 수단으로 정의한다.[@iso-15118-20-obp-2022]
+ISO 15118-20:2022는 **EIM**(external identification means)을 이 문서 밖에서 다루는 인가 수단으로 정의한다.[@iso-15118-20-obp-2022] ISO 15118-1:2019는 EIM의 예로 신용·직불 카드, 스마트폰이나 웹 앱, 전화 같은 수단을 든다.[@iso-15118-1-obp-2019] ISO 15118-2:2014는 **식별 방식**(Identification Mode)을, EIM으로 식별하는 충전 시나리오와 PnC로 식별하는 충전 시나리오에 관한 필수·선택 메시지와 파라미터로 정의한다.[@iso-15118-2-obp-2014]
 
-이 부는 **사설 환경**(PE, private environment)을 소수의 차량만 물리적으로 드나드는, 사적 책임 아래의 구역으로 정의하고, **PE 인증서**를 사설 환경에서 PE private root CA나 PE sub CA가 사설 SECC에 발급해 TLS에서 EVCC가 사설 SECC의 진위를 확인하는 데 쓰는 leaf 인증서로 정의한다.[@iso-15118-20-obp-2022]
+ISO 15118-20:2022는 **사설 환경**(PE, private environment)을 소수의 차량만 물리적으로 드나드는, 사적 책임 아래의 구역으로 정의하고, **PE 인증서**를 사설 환경에서 PE private root CA나 PE sub CA가 사설 SECC에 발급해 TLS에서 EVCC가 사설 SECC의 진위를 확인하는 데 쓰는 leaf 인증서로 정의한다.[@iso-15118-20-obp-2022]

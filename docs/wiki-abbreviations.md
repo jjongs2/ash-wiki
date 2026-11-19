@@ -27,6 +27,7 @@
 - CD: 표준·규격 이름
 - CENELEC: 조직
 - CERT: 소개하는 조직
+- CharIN: 소개하는 조직
 - CiA: 조직
 - CISA: 소개하는 조직
 - CISPR: 소개하는 조직
