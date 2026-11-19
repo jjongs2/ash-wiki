@@ -51,7 +51,7 @@ LLM이 쓰고 관리하되, 모든 주장을 공개 출처로 검증해 인용�
 | `wiki-reader-testing` | 외부 독자 시점에서 페이지 읽어 보기                        |
 | `wiki-news`           | 주간 업계 소식 정리                                        |
 
-판정 기준은 [검증 절차](docs/wiki-verification.md)와 [출처 위계](docs/source-hierarchy.md)에, 결정 배경은 [ADR](docs/adr/)에 있습니다.
+판정 기준은 [검증 절차](docs/wiki-verification.md)와 [출처 위계](docs/source-hierarchy.md)에, 결정 배경은 [ADR](docs/adr/)과 [결정 로그](docs/decision-log.md)에 있습니다.
 
 ## 로컬 개발
 
@@ -113,6 +113,7 @@ GLOSSARY.md       운영 용어집
 | [팔레트](docs/palette.md)                        | 색, 폰트, 도해 팔레트와 대비 실측                                                          |
 | [주간 소식](docs/weekly-news.md)                 | 주간 소식 형식                                                                             |
 | [ADR](docs/adr/)                                 | 되돌리기 어려운 결정의 기록                                                                |
+| [결정 로그](docs/decision-log.md)                | ADR에 못 미치는 결정과 버린 대안                                                           |
 | [CONTRIBUTING.md](CONTRIBUTING.md)               | 브랜치, PR, 리뷰, 이슈 규칙                                                                |
 
 ## 라이선스
