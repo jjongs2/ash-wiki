@@ -57,7 +57,7 @@ describe("check-trace CLI", () => {
     has("decision-log", `${LOG}:15`, "7줄에도 있다")
     has("decision-log", `${LOG}:37`, "ID로 시작한다")
     has("decision-log", `${LOG}:91`, "제목에 이름이 없다")
-    has("decision-log", `${LOG}:98`, "### 항목 제목과 그 아래 필드 불릿만")
+    has("decision-log", `${LOG}:99`, "### 항목 제목과 그 아래 필드 불릿만")
   })
 
   test("빠지거나 겹치거나 모르는 필드, 꼴이 틀린 규칙과 근거를 잡는다", () => {
@@ -65,11 +65,12 @@ describe("check-trace CLI", () => {
     has("decision-log", `${LOG}:22`, "링크나 없음")
     has("decision-log", `${LOG}:22`, "근거는")
     has("decision-log", `${LOG}:29`, "빠진 필드: 까닭")
-    has("decision-log", `${LOG}:29`, "근거 필드가 둘")
+    has("decision-log", `${LOG}:35`, "근거 필드가 둘")
     has("decision-log", `${LOG}:77`, "절(#앵커) 링크")
     has("decision-log", `${LOG}:84`, "절(#앵커) 링크")
     has("decision-log", `${LOG}:91`, "결정이 비었다")
-    has("decision-log", `${LOG}:93`, "필드는 채택·보류·기각")
+    has("decision-log", `${LOG}:93`, "필드는 채택·기각·보류")
+    has("decision-log", `${LOG}:94`, "기각 필드의 값이 비었다")
   })
 
   test("대체 짝이 어긋난 곳을 양쪽에서 잡는다", () => {

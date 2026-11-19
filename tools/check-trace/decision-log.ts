@@ -7,10 +7,12 @@ import type { Violation } from "../check-content/tree"
 const LOG_FILE = "docs/decision-log.md"
 const ADR_DIR = "docs/adr"
 const SECTION = "## 항목"
-const FIELDS = ["채택", "보류", "기각", "까닭", "규칙", "근거", "대체"] as const
+const DECISIONS = ["채택", "기각", "보류"] as const
+const FIELDS = [...DECISIONS, "까닭", "규칙", "근거", "대체"] as const
 type Field = (typeof FIELDS)[number]
+const isField = (label: string): label is Field => (FIELDS as readonly string[]).includes(label)
 const HEAD = /^### (\S+)(?: \((D\d+|ADR \d+)[이가] 대체\))?(?: (.*))?$/
-const FIELD = /^- ([^:]+): ([\s\S]*)$/
+const FIELD = /^- ([^:]+):(?: ([\s\S]*))?$/
 const LINK = /\[[^\]]+\]\([^)]+\)/
 const SECTION_LINK = /\[[^\]]+\]\([^)#]*#[^)]+\)/
 const withoutCode = (text: string) => text.replace(/(`+)[^`]*?\1/g, "")
@@ -77,13 +79,15 @@ export function checkDecisionLog(root: string): Violation[] {
     const fields = new Map<Field, string>()
     for (const { line: fieldLine, text } of fieldLines) {
       const match = text.match(FIELD)
-      const label = match?.[1] as Field | undefined
-      if (!match || !FIELDS.includes(label!)) {
+      const label = match?.[1] ?? ""
+      if (!isField(label)) {
         flag(`${id}: 필드는 ${FIELDS.join("·")} 가운데 하나다`, fieldLine)
         continue
       }
-      if (fields.has(label!)) at(`${id}: ${label} 필드가 둘이다`)
-      else fields.set(label!, match[2].trim().replace(/\.$/, ""))
+      const value = (match![2] ?? "").trim().replace(/\.$/, "")
+      if (!value) flag(`${id}: ${label} 필드의 값이 비었다`, fieldLine)
+      else if (fields.has(label)) flag(`${id}: ${label} 필드가 둘이다`, fieldLine)
+      else fields.set(label, value)
     }
     const item: Item = { id, line, replacedBy, fields }
     const other = byId.get(id)
@@ -91,9 +95,10 @@ export function checkDecisionLog(root: string): Violation[] {
     else byId.set(id, item)
     items.push(item)
 
-    if (!fields.get("채택") && !fields.get("보류") && !fields.get("기각")) {
-      at(`${id}: 결정이 비었다. 채택·보류·기각 가운데 하나 이상을 쓴다`)
-    } else if (!fields.get("보류") && !fields.get("기각")) {
+    const decided = DECISIONS.filter((name) => fields.get(name))
+    if (decided.length === 0) {
+      at(`${id}: 결정이 비었다. ${DECISIONS.join("·")} 가운데 하나 이상을 쓴다`)
+    } else if (decided.length === 1 && decided[0] === "채택") {
       at(`${id}: 버린 대안이 없다. 기각이나 보류로 적는다`)
     }
     for (const name of ["까닭", "규칙", "근거"] as const) {
