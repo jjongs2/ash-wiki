@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 424" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="ISO 15118 시리즈의 부와 계층">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 열 이름 -->
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="245" y="30">요구</text>
+    <text x="443" y="30">적합성 시험</text>
+  </g>
+
+  <!-- 계층 -->
+  <g fill="var(--text, #727981)">
+    <text x="20" y="109">네트워크·응용</text>
+    <text x="20" y="127">계층</text>
+    <text x="20" y="279">물리·데이터 링크</text>
+    <text x="20" y="297">계층</text>
+  </g>
+  <line x1="20" y1="199" x2="540" y2="199" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+
+  <!-- 부 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="160" y="44" width="170" height="40" rx="2" />
+    <rect x="160" y="94" width="170" height="40" rx="2" />
+    <rect x="346" y="44" width="194" height="40" rx="2" />
+    <rect x="346" y="94" width="194" height="40" rx="2" />
+    <rect x="346" y="144" width="194" height="40" rx="2" />
+    <rect x="160" y="214" width="170" height="40" rx="2" />
+    <rect x="160" y="264" width="170" height="40" rx="2" />
+    <rect x="160" y="314" width="170" height="40" rx="2" />
+    <rect x="346" y="214" width="194" height="40" rx="2" />
+    <rect x="346" y="264" width="194" height="40" rx="2" />
+    <rect x="160" y="364" width="380" height="40" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="245" y="60">ISO 15118-2:2014</text>
+    <text x="245" y="110">ISO 15118-20:2022</text>
+    <text x="443" y="60">ISO 15118-4:2018</text>
+    <text x="443" y="110">ISO 15118-21:2025</text>
+    <text x="443" y="160">ISO/PAS 15118-23:2026</text>
+    <text x="245" y="230">ISO 15118-3:2015</text>
+    <text x="245" y="280">ISO 15118-8:2020</text>
+    <text x="245" y="330">ISO 15118-10:2025</text>
+    <text x="443" y="239">ISO 15118-5:2018</text>
+    <text x="443" y="280">ISO 15118-9:2022</text>
+    <text x="350" y="380">ISO 15118-1:2019</text>
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="245" y="76">네트워크·응용 프로토콜</text>
+    <text x="245" y="126">2세대 네트워크·응용 계층</text>
+    <text x="443" y="76">ISO 15118-2 구현 대상</text>
+    <text x="443" y="126">ISO 15118-20 공통 요구</text>
+    <text x="443" y="176">ISO 15118-20 DC 충전 고유 요구</text>
+    <text x="245" y="246">유선</text>
+    <text x="245" y="296">무선</text>
+    <text x="245" y="346">단일 쌍 이더넷</text>
+    <text x="443" y="296">무선</text>
+    <text x="350" y="396">일반 정보와 use case 정의, 다른 부의 바탕</text>
+  </g>
+</svg>

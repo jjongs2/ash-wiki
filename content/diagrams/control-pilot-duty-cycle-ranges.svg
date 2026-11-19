@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 0 562 200" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="nominal duty cycle과 valid duty cycle의 범위">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 판 -->
+  <text x="291" y="24" text-anchor="middle" font-size="13" fill="var(--text, #727981)">ISO 15118-3:2015</text>
+
+  <!-- duty cycle 축: 1 % = 5.4 단위, 5 % = x 45, 10 % = x 72, 96 % = x 536.4 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="45" y1="102" x2="45" y2="140" />
+    <line x1="72" y1="74" x2="72" y2="140" />
+    <line x1="536.4" y1="74" x2="536.4" y2="140" />
+  </g>
+  <line x1="30" y1="140" x2="552" y2="140" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <path d="M45 140 v5 M72 140 v5 M536.4 140 v5" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="72" y="159">10 %</text>
+    <text x="536.4" y="159">96 %</text>
+  </g>
+  <text x="291" y="181" text-anchor="middle" font-size="12" fill="var(--text, #727981)">충전 설비가 내는 CP duty cycle</text>
+
+  <!-- 범위 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="72" y="50" width="464.4" height="24" />
+    <rect x="72" y="86" width="464.4" height="24" />
+  </g>
+  <circle cx="45" cy="98" r="4" fill="var(--ink, #727981)" />
+  <text x="45" y="86" text-anchor="middle" font-size="12" fill="var(--text, #727981)">5 %</text>
+  <g text-anchor="middle" font-size="13" fill="var(--text, #727981)">
+    <text x="304.2" y="67">nominal duty cycle</text>
+    <text x="304.2" y="103">valid duty cycle</text>
+  </g>
+</svg>

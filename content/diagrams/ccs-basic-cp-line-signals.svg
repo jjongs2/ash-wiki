@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 -6 560 284.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="CCS Basic에서 CP 선이 나르는 신호">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 범위 -->
+  <text x="315" y="24" text-anchor="middle" font-size="13" fill="var(--text, #727981)">CharIN CCS Basic 구현 가이드 v1.1.1.1</text>
+
+  <!-- 충전 방식 -->
+  <g fill="var(--text, #727981)">
+    <text x="20" y="75">DC 충전</text>
+    <text x="20" y="145">AC 충전</text>
+  </g>
+
+  <!-- 충전 설비와 차량 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="90" y="50" width="100" height="40" rx="2" />
+    <rect x="440" y="50" width="100" height="40" rx="2" />
+    <rect x="90" y="120" width="100" height="40" rx="2" />
+    <rect x="440" y="120" width="100" height="40" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="140" y="75">충전 설비</text>
+    <text x="490" y="75">차량</text>
+    <text x="140" y="145">충전 설비</text>
+    <text x="490" y="145">차량</text>
+  </g>
+
+  <!-- CP 선 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M190 70 H215 M285 70 H345 M415 70 H440" />
+    <path d="M190 140 H215 M285 140 H345 M415 140 H440" />
+  </g>
+  <text x="315" y="90" text-anchor="middle" font-size="12" fill="var(--text, #727981)">CP 선</text>
+
+  <!-- CP 선 위의 신호 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="215" y="58" width="70" height="24" rx="2" />
+    <rect x="345" y="58" width="70" height="24" rx="2" />
+    <rect x="215" y="128" width="70" height="24" rx="2" />
+  </g>
+  <rect x="345" y="128" width="70" height="24" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
+  <g text-anchor="middle" font-size="13" fill="var(--text, #727981)">
+    <text x="250" y="75">PWM</text>
+    <text x="380" y="75">PLC</text>
+    <text x="250" y="145">PWM</text>
+    <text x="380" y="145">PLC</text>
+  </g>
+
+  <!-- 범례 -->
+  <rect x="90" y="190" width="28" height="16" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <rect x="250" y="190" width="28" height="16" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)" />
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="126" y="202">필수</text>
+    <text x="286" y="202">CCS Basic에 들지 않음</text>
+    <text x="90" y="236">PWM: PWM 기반 basic signalling</text>
+    <text x="90" y="256">PLC: HomePlug Green PHY PLC 기반 HLC</text>
+  </g>
+</svg>
