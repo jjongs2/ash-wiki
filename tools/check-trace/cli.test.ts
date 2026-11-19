@@ -52,29 +52,33 @@ describe("check-trace CLI", () => {
     assert.strictEqual(violation.exitCode, 1)
   })
 
-  test("결정 로그의 겹친 ID와 ID 없는 항목, 항목 밖의 줄을 잡는다", () => {
-    has("decision-log", `${LOG}:7`, "5줄에도 있다")
-    has("decision-log", `${LOG}:13`, "ID로 시작한다")
-    has("decision-log", `${LOG}:30`, "항목 불릿만")
+  test("결정 로그의 겹친 ID와 ID나 이름 없는 제목, 항목 밖의 줄을 잡는다", () => {
+    has("decision-log", `${LOG}:5`, "### 항목 제목과 그 아래 필드 불릿만")
+    has("decision-log", `${LOG}:15`, "7줄에도 있다")
+    has("decision-log", `${LOG}:37`, "ID로 시작한다")
+    has("decision-log", `${LOG}:91`, "제목에 이름이 없다")
+    has("decision-log", `${LOG}:98`, "### 항목 제목과 그 아래 필드 불릿만")
   })
 
-  test("빠지거나 겹친 필드, 꼴이 틀린 규칙과 근거를 잡는다", () => {
-    has("decision-log", `${LOG}:9`, "빠진 필드: 버린 것")
-    has("decision-log", `${LOG}:9`, "링크나 없음")
-    has("decision-log", `${LOG}:9`, "근거는")
-    has("decision-log", `${LOG}:11`, "빠진 필드: 까닭")
-    has("decision-log", `${LOG}:11`, "근거 필드가 둘")
-    has("decision-log", `${LOG}:25`, "절(#앵커) 링크")
-    has("decision-log", `${LOG}:27`, "절(#앵커) 링크")
+  test("빠지거나 겹치거나 모르는 필드, 꼴이 틀린 규칙과 근거를 잡는다", () => {
+    has("decision-log", `${LOG}:22`, "버린 대안이 없다")
+    has("decision-log", `${LOG}:22`, "링크나 없음")
+    has("decision-log", `${LOG}:22`, "근거는")
+    has("decision-log", `${LOG}:29`, "빠진 필드: 까닭")
+    has("decision-log", `${LOG}:29`, "근거 필드가 둘")
+    has("decision-log", `${LOG}:77`, "절(#앵커) 링크")
+    has("decision-log", `${LOG}:84`, "절(#앵커) 링크")
+    has("decision-log", `${LOG}:91`, "결정이 비었다")
+    has("decision-log", `${LOG}:93`, "필드는 채택·보류·기각")
   })
 
   test("대체 짝이 어긋난 곳을 양쪽에서 잡는다", () => {
-    has("decision-log", `${LOG}:14`, "D5에 대체: D4")
-    has("decision-log", `${LOG}:16`, "D6의 머리에 (D5이 대체)가 없다")
-    has("decision-log", `${LOG}:16`, "대체한 항목이 없다: D9")
-    has("decision-log", `${LOG}:16`, "쉼표로 가른다: 셋")
-    has("decision-log", `${LOG}:21`, "대체한 ADR이 없다: ADR 2")
-    has("decision-log", `${LOG}:23`, "대체한 항목이 없다: D10")
+    has("decision-log", `${LOG}:41`, "D5에 대체: D4")
+    has("decision-log", `${LOG}:48`, "D6의 제목에 (D5이 대체)가 없다")
+    has("decision-log", `${LOG}:48`, "대체한 항목이 없다: D9")
+    has("decision-log", `${LOG}:48`, "쉼표로 가른다: 셋")
+    has("decision-log", `${LOG}:63`, "대체한 ADR이 없다: ADR 2")
+    has("decision-log", `${LOG}:70`, "대체한 항목이 없다: D10")
   })
 
   test("없는 파일, 폴더, 그림, 절과 저장소 밖 링크를 잡는다", () => {
