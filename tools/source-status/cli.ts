@@ -8,17 +8,10 @@ import { repoRoot } from "../repo"
 import { Conventions } from "../check-content/conventions"
 import { report, verdict, type Status } from "../check-content/report"
 import { citations } from "../check-content/source-checks"
-import {
-  fieldsOf,
-  inTopic,
-  loadTree,
-  type Page,
-  type Tree,
-  type Violation,
-} from "../check-content/tree"
+import { inTopic, loadTree, type Page, type Tree, type Violation } from "../check-content/tree"
 
-// 출처 상태. 린트가 쓰고, 기준은 docs/wiki-verification.md의 source-status 표와 bot-blocked-hosts 표에 있다.
-// 사용: npm run source-status -- [<트리 루트>] [--topic <태그>] [--url <URL>]... [--today <YYYY-MM-DD>]
+// 출처 상태. 린트가 쓰고, 검사와 봇 차단 호스트는 docs/wiki-verification.md의 source-status 표와 bot-blocked-hosts 표에 있다.
+// 사용: npm run source-status -- [<트리 루트>] [--topic <태그>] [--url <URL>]...
 //   [--timeout <밀리초>] [--interval <밀리초>]
 const verificationPath = path.join(repoRoot, "docs", "wiki-verification.md")
 
@@ -27,13 +20,11 @@ const { values, positionals } = parseArgs({
   options: {
     topic: { type: "string" },
     url: { type: "string", multiple: true },
-    today: { type: "string" },
     timeout: { type: "string" },
     interval: { type: "string" },
   },
 })
 const root = path.resolve(positionals[0] ?? ".")
-const today = values.today ?? new Date().toISOString().slice(0, 10)
 // 요청 하나의 제한 시간. 테스트가 줄여 쓴다.
 const timeoutMs = Number(values.timeout ?? 15_000)
 if (!(timeoutMs > 0)) throw new Error(`--timeout은 양의 밀리초여야 한다: ${values.timeout}`)
@@ -59,14 +50,10 @@ net.setDefaultAutoSelectFamilyAttemptTimeout(2_000)
 
 // 문서의 표와 이 스크립트의 검사가 어긋나면 조용히 넘어가지 않고 멈춘다.
 const verification = new Conventions(fs.readFileSync(verificationPath, "utf8"), verificationPath)
-const criteria = new Map(
-  verification.table("source-status", ["검사", "기준"]).map((row) => [row["검사"], row["기준"]]),
-)
-const ids = ["url", "verified"]
-if ([...criteria.keys()].sort().join() !== ids.join()) {
+const ids = ["url"]
+if (verification.column("source-status", "검사").sort().join() !== ids.join()) {
   throw new Error(`${verificationPath}: source-status 표의 검사는 ${ids.join(", ")}여야 한다`)
 }
-const staleDays = Number(criteria.get("verified"))
 const blockedHosts = verification.column("bot-blocked-hosts", "호스트")
 
 const tree = loadTree(root)
@@ -300,19 +287,6 @@ async function trustIssuer(url: string): Promise<boolean> {
   return false
 }
 
-function checkVerified(pages: Page[], today: string, staleDays: number): Violation[] {
-  const violations: Violation[] = []
-  for (const page of pages) {
-    const verified = fieldsOf(page)["verified"]
-    if (typeof verified !== "string") continue
-    const days = Math.floor((Date.parse(today) - Date.parse(verified)) / 86_400_000)
-    if (days <= staleDays) continue
-    const line = "error" in page.frontmatter ? 1 : page.frontmatter.lineOf("verified")
-    violations.push({ file: page.file, line, message: `검증일 ${verified}에서 ${days}일 지났다` })
-  }
-  return violations
-}
-
 const statuses: Status[] = []
 const urls = await checkUrls(tree, pages, blockedHosts, values.url)
 statuses.push(report("url", verdict(urls.dead), urls.dead))
@@ -338,6 +312,4 @@ for (const [id, unchecked] of [
       : report(id, "SKIP", unchecked, "확인 불가, 브라우저로 확인"),
   )
 }
-const stale = checkVerified(pages, today, staleDays)
-statuses.push(report("verified", verdict(stale), stale))
 process.exitCode = statuses.includes("FAIL") ? 1 : 0

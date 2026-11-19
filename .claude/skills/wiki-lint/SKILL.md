@@ -29,7 +29,7 @@ disable-model-invocation: true
 | 용어 불일치    | 같은 개념을 페이지마다 다른 용어나 표기로 부르거나, `docs/wiki-terms.md`의 결정과 다르게 쓴다                                                                                |
 | 태그 정합      | 주제에 속하는데 주제 태그가 없거나, 속하지 않는데 달려 있거나, 주 태그가 위키 규약의 주 태그 기준에 맞지 않는다. 위키 규약의 보조 태그 기준에 맞는데 빠진 보조 태그도 찾는다 |
 | 위키링크       | 위키 규약 위키링크 절의 첫 등장 링크 규칙을 어긴 자리                                                                                                                        |
-| 출처 상태      | `source-status`가 `url`과 `verified`에서 `FAIL`로 찍은 URL과 검증일                                                                                                          |
+| 출처 상태      | `source-status`가 `url`에서 `FAIL`로 찍은 URL                                                                                                                                |
 
 `SKIP url-blocked`로 찍힌 URL은 봇 차단 호스트라 `확인 불가`다. 1단계에서 다시 물어도 남은 `url-timeout`, `url-refused`의 URL과 함께, 출처 상태로 세지 않고 [6. 확인 불가](#6-확인-불가)로 넘긴다.
 

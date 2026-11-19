@@ -17,7 +17,6 @@ import { repoRoot } from "../repo"
 // 인증서 검사는 openssl로 만든 루트, 중간, leaf 인증서와 leaf만 보내는 로컬 HTTPS 서버로 한다.
 // 루트는 NODE_EXTRA_CA_CERTS로 CLI가 신뢰하게 하고, 중간 인증서는 로컬 HTTP 서버가 DER로 준다.
 const here = path.dirname(fileURLToPath(import.meta.url))
-const today = "2026-09-25"
 // 도구가 보내는 User-Agent. docs/wiki-verification.md의 출처 상태 절에서 읽어, 문서가 도구와 어긋나면 User-Agent 검사가 실패한다.
 const userAgent = fs
   .readFileSync(path.join(repoRoot, "docs", "wiki-verification.md"), "utf8")
@@ -208,8 +207,6 @@ function runStatus(root: string, ...args: string[]): Promise<Report> {
         path.join(here, "fake-hosts.ts"),
         path.join(here, "cli.ts"),
         root,
-        "--today",
-        today,
         "--interval",
         "0",
         ...args,
@@ -245,7 +242,7 @@ function runStatus(root: string, ...args: string[]): Promise<Report> {
 }
 
 describe("source-status CLI", () => {
-  test("인용한 URL이 살아 있고 검증일이 기준 안이면 모두 OK이고 exit 0이다", async () => {
+  test("인용한 URL이 살아 있으면 OK이고 exit 0이다", async () => {
     const root = makeTree({
       "content/fresh.md": page(
         ["network/can"],
@@ -258,7 +255,7 @@ describe("source-status CLI", () => {
       "bib/org-accepted-2024.bib": bib("org-accepted-2024", `${base}/accepted`),
     })
     const report = await runStatus(root)
-    assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["OK url"])
     assert.strictEqual(report.exitCode, 0)
   })
 
@@ -275,7 +272,7 @@ describe("source-status CLI", () => {
       "bib/org-closed-2024.bib": bib("org-closed-2024", `${closed}/closed`),
     })
     const report = await runStatus(root)
-    assert.deepStrictEqual(report.statuses, ["FAIL url", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["FAIL url"])
     assert.deepStrictEqual(report.locations.get("url"), [
       "bib/org-closed-2024.bib:3",
       "bib/org-dead-2024.bib:3",
@@ -294,7 +291,7 @@ describe("source-status CLI", () => {
       "bib/org-dead-2024.bib": bib("org-dead-2024", `${base}/dead`),
     })
     const report = await runStatus(root)
-    assert.deepStrictEqual(report.statuses, ["FAIL url", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["FAIL url"])
     assert.deepStrictEqual(report.locations.get("url"), [
       "bib/org-bad-2024.bib:3",
       "bib/org-dead-2024.bib:3",
@@ -314,7 +311,7 @@ describe("source-status CLI", () => {
       "bib/iec-60050-2024.bib": bib("iec-60050-2024", "https://www.electropedia.org/blocked"),
     })
     const report = await runStatus(root)
-    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-blocked", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-blocked"])
     assert.deepStrictEqual(report.locations.get("url-blocked"), [
       "bib/iec-60050-2024.bib:3",
       "bib/iso-11898-1-2024.bib:3",
@@ -329,7 +326,7 @@ describe("source-status CLI", () => {
       "org-agent-get-2024": `${base}/agent-gated/GET`,
     })
     const report = await runStatus(root)
-    assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["OK url"])
     assert.strictEqual(report.exitCode, 0)
   })
 
@@ -344,7 +341,7 @@ describe("source-status CLI", () => {
       "bib/iso-dead-2024.bib": bib("iso-dead-2024", "https://www.iso.org/dead"),
     })
     const report = await runStatus(root)
-    assert.deepStrictEqual(report.statuses, ["FAIL url", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["FAIL url"])
     assert.deepStrictEqual(report.locations.get("url"), [
       "bib/iso-dead-2024.bib:3",
       "bib/org-blocked-2024.bib:3",
@@ -358,7 +355,7 @@ describe("source-status CLI", () => {
       "bib/ieee-802-3-2022.bib": bib("ieee-802-3-2022", "https://ieeexplore.ieee.org/challenge"),
     })
     const report = await runStatus(root)
-    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-blocked", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-blocked"])
     assert.deepStrictEqual(report.locations.get("url-blocked"), ["bib/ieee-802-3-2022.bib:3"])
     assert.strictEqual(report.exitCode, 0)
   })
@@ -372,7 +369,7 @@ describe("source-status CLI", () => {
       ),
     })
     const report = await runStatus(root)
-    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-blocked", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-blocked"])
     assert.deepStrictEqual(report.locations.get("url-blocked"), ["bib/tcg-glossary-2017.bib:3"])
     assert.strictEqual(report.exitCode, 0)
   })
@@ -383,7 +380,7 @@ describe("source-status CLI", () => {
       "bib/org-rate-limited-2024.bib": bib("org-rate-limited-2024", `${base}/rate-limited`),
     })
     const report = await runStatus(root)
-    assert.deepStrictEqual(report.statuses, ["FAIL url", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["FAIL url"])
     assert.deepStrictEqual(report.locations.get("url"), ["bib/org-rate-limited-2024.bib:3"])
     assert.strictEqual(report.exitCode, 1)
   })
@@ -398,7 +395,7 @@ describe("source-status CLI", () => {
       ),
     })
     const report = await runStatus(root)
-    assert.deepStrictEqual(report.statuses, ["FAIL url", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["FAIL url"])
     assert.deepStrictEqual(report.locations.get("url"), ["bib/ieee-sa-802-3-2022.bib:3"])
     assert.strictEqual(report.exitCode, 1)
   })
@@ -409,7 +406,7 @@ describe("source-status CLI", () => {
       "bib/org-hang-2024.bib": bib("org-hang-2024", `${base}/hang`),
     })
     const report = await runStatus(root, "--timeout", "300")
-    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-timeout", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-timeout"])
     assert.deepStrictEqual(report.locations.get("url-timeout"), ["bib/org-hang-2024.bib:3"])
     assert.strictEqual(report.exitCode, 0)
   })
@@ -420,7 +417,7 @@ describe("source-status CLI", () => {
       "bib/org-hang-once-2024.bib": bib("org-hang-once-2024", `${base}/hang-once`),
     })
     const report = await runStatus(root, "--timeout", "300")
-    assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["OK url"])
     assert.strictEqual(report.exitCode, 0)
   })
 
@@ -430,7 +427,7 @@ describe("source-status CLI", () => {
       "bib/org-aia-2024.bib": bib("org-aia-2024", secure.get("aia")!),
     })
     const report = await runStatus(root)
-    assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["OK url"])
     assert.strictEqual(report.exitCode, 0)
   })
 
@@ -445,7 +442,7 @@ describe("source-status CLI", () => {
       "bib/org-stranger-2024.bib": bib("org-stranger-2024", secure.get("stranger")!),
     })
     const report = await runStatus(root)
-    assert.deepStrictEqual(report.statuses, ["FAIL url", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["FAIL url"])
     assert.deepStrictEqual(report.locations.get("url"), [
       "bib/org-no-aia-2024.bib:3",
       "bib/org-stranger-2024.bib:3",
@@ -459,7 +456,7 @@ describe("source-status CLI", () => {
       "bib/org-via-aia-2024.bib": bib("org-via-aia-2024", `${base}/via/aia`),
     })
     const report = await runStatus(root)
-    assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["OK url"])
     assert.strictEqual(report.exitCode, 0)
   })
 
@@ -474,7 +471,7 @@ describe("source-status CLI", () => {
       "bib/org-to-stranger-2024.bib": bib("org-to-stranger-2024", `${base}/to/stranger`),
     })
     const report = await runStatus(root)
-    assert.deepStrictEqual(report.statuses, ["FAIL url", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["FAIL url"])
     assert.deepStrictEqual(report.locations.get("url"), [
       "bib/org-to-no-aia-2024.bib:3",
       "bib/org-to-stranger-2024.bib:3",
@@ -482,17 +479,13 @@ describe("source-status CLI", () => {
     assert.strictEqual(report.exitCode, 1)
   })
 
-  test("검증일에서 기준 일수가 지난 페이지는 verified 검사가 필드 위치를 찍는다", async () => {
+  test("페이지의 verified는 날짜가 오래돼도 보지 않는다", async () => {
     const root = makeTree({
-      // 오늘(2026-09-25)에서 180일 전이다. 기준 안이다.
-      "content/boundary.md": page(["network/can"], "2026-03-29", "문장이다."),
-      // 181일 전이다.
-      "content/stale.md": page(["network/can"], "2026-03-28", "문장이다."),
+      "content/stale.md": page(["network/can"], "2020-01-01", "문장이다."),
     })
     const report = await runStatus(root)
-    assert.deepStrictEqual(report.statuses, ["OK url", "FAIL verified"])
-    assert.deepStrictEqual(report.locations.get("verified"), ["content/stale.md:5"])
-    assert.strictEqual(report.exitCode, 1)
+    assert.deepStrictEqual(report.statuses, ["OK url"])
+    assert.strictEqual(report.exitCode, 0)
   })
 
   test("--topic을 주면 그 태그(와 하위 태그)의 페이지와 그 페이지가 인용한 엔트리만 본다", async () => {
@@ -507,9 +500,9 @@ describe("source-status CLI", () => {
       "bib/org-dead-2024.bib": bib("org-dead-2024", `${base}/dead`),
     })
     const topic = await runStatus(root, "--topic", "network/can")
-    assert.deepStrictEqual(topic.statuses, ["OK url", "OK verified"])
+    assert.deepStrictEqual(topic.statuses, ["OK url"])
     const area = await runStatus(root, "--topic", "network")
-    assert.deepStrictEqual(area.statuses, ["FAIL url", "FAIL verified"])
+    assert.deepStrictEqual(area.statuses, ["FAIL url"])
   })
 
   test("동시 요청은 전체 8건, 호스트마다 2건까지다", async () => {
@@ -520,7 +513,7 @@ describe("source-status CLI", () => {
         urls[`org-slow-${host}${n}-2024`] = `https://${host}.example.org/slow/${host}/${n}`
     maxInFlight = { total: 0, host: 0 }
     const report = await runStatus(citingTree(urls))
-    assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["OK url"])
     assert.deepStrictEqual(maxInFlight, { total: 8, host: 2 })
   })
 
@@ -529,7 +522,7 @@ describe("source-status CLI", () => {
       [1, 2, 3].map((n) => [`org-tick${n}-2024`, `https://tick.example.org/tick/tick/${n}`]),
     )
     const report = await runStatus(citingTree(urls), "--interval", "500")
-    assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["OK url"])
     const times = ticks.get("tick")!
     assert.strictEqual(times.length, 3)
     // 서버가 받은 시각이라 첫 요청의 연결 수립만큼 짧게 잴 수 있다. 간격을 두지 않으면 몇 밀리초다.
@@ -560,7 +553,7 @@ describe("source-status CLI", () => {
       ...["a", "b", "c"].flatMap((host) => ["--url", urls[`org-recheck-${host}-2024`]]),
     )
     // 주지 않은 /dead는 묻지 않는다.
-    assert.deepStrictEqual(report.statuses, ["OK url", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["OK url"])
     assert.deepStrictEqual(maxInFlight, { total: 1, host: 1 })
   })
 
@@ -570,7 +563,7 @@ describe("source-status CLI", () => {
       urls[`org-hang-${host}-2024`] = `https://${host}.example.org/hang/${host}`
     const args = Object.values(urls).flatMap((url) => ["--url", url])
     const report = await runStatus(citingTree(urls), "--timeout", "300", ...args)
-    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-timeout", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-timeout"])
     assert.strictEqual(report.exitCode, 0)
   })
 
@@ -588,7 +581,7 @@ describe("source-status CLI", () => {
         "org-closed-b-2024": `${closed}/b`,
       }),
     )
-    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-refused", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-refused"])
     assert.deepStrictEqual(report.locations.get("url-refused"), [
       "bib/org-closed-a-2024.bib:3",
       "bib/org-closed-b-2024.bib:3",
@@ -601,7 +594,7 @@ describe("source-status CLI", () => {
     for (const host of "abcde")
       urls[`org-hang-${host}-2024`] = `https://${host}.example.org/hang/${host}`
     const report = await runStatus(citingTree(urls), "--timeout", "300")
-    assert.deepStrictEqual(report.statuses, ["OK url", "FAIL url-timeout", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["OK url", "FAIL url-timeout"])
     assert.strictEqual(report.locations.get("url-timeout")!.length, 5)
     assert.strictEqual(report.exitCode, 1)
   })
@@ -612,7 +605,7 @@ describe("source-status CLI", () => {
       urls[`org-hang-${host}-2024`] = `https://${host}.example.org/hang/${host}`
     for (let n = 0; n < 100; n++) urls[`org-alive${n}-2024`] = `${base}/alive`
     const report = await runStatus(citingTree(urls), "--timeout", "300")
-    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-timeout", "OK verified"])
+    assert.deepStrictEqual(report.statuses, ["OK url", "SKIP url-timeout"])
     assert.strictEqual(report.exitCode, 0)
   })
 })

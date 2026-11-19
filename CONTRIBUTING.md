@@ -43,7 +43,7 @@
 - `Closes #N`: 이 PR이 닫는 이슈. 없으면 뺍니다
 - `결정 로그:`: 규칙 파일을 고친 PR이 두는 줄. 값은 [결정 로그](docs/decision-log.md)의 `D<n>`(여럿이면 쉼표로 가릅니다), `ADR <n>`, `없음` 가운데 하나이고, 리뷰의 Standards 축이 봅니다. 규칙 파일이 아니면 뺍니다
 - `## 소유자 확인 요청`: [리뷰](#리뷰) 절의 소유자 확인 요청 가운데 본문에 둘 항목. 항목마다 `<정한 것>. <까닭>. 권고: <이 PR에 이미 반영된 상태>` 꼴로 씁니다. 항목이 없으면 절을 두지 않습니다
-- `## Changes`: 무엇이 바뀌었는지
+- `## Changes`: 무엇이 바뀌었는지. 검증 규칙이나 검증 에이전트의 결함을 고친 PR은 [위키 검증의 결함을 고칠 때](docs/wiki-verification.md#결함을-고칠-때)대로 그 결함이 닿았을 페이지를 다시 볼지도 적습니다
 - `## Verification`: 어떻게 확인했는지(실행한 명령과 결과)와, 두 가지로 읽히는 인수 기준을 어떻게 읽었는지
 
 규칙 파일은 `docs/` 아래 운영 문서, `.claude/`, `CONTRIBUTING.md`, `CLAUDE.md`, `.github/`, `tools/`, `ticket-runner.json`입니다. 다만 `docs/adr/`, `docs/wiki-terms.md`, 결정 로그, 조사 기록과 `docs/research/sources.md`, 데이터 목록(`docs/wiki-abbreviations.md`, `.claude/skills/wiki-news/outlets.md` 같은 것), 파이프라인이 소유한 파일(`docs/agents/pipeline-conventions.md`, `.claude/skills/ticket-runner/`)은 뺍니다.
