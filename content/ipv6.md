@@ -72,6 +72,10 @@ IPv6 주소를 설정하는 다른 방법은 [[dhcp#DHCPv6|DHCPv6]]에서 다룬
 
 RFC 1883은 1995년 12월에 Proposed Standard인 IPv6 명세로 나왔다.[@rfc-editor-info-rfc1883-2026] RFC 2460은 1998년 12월에 Draft Standard로 나왔고[@rfc-editor-info-rfc2460-2026], RFC 1883을 대체했다.[@ietf-rfc-2460-1998] RFC 8200은 2017년 7월에 RFC 2460을 대체했고[@ietf-rfc-8200-2017], Internet Standard(STD 86)가 되었다.[@rfc-editor-info-rfc8200-2026]
 
+## 쓰는 곳
+
+[[iso-15118|ISO 15118]]-2:2014와 ISO 15118-20:2022는 차량 쪽과 충전 설비 쪽 통신 제어기 사이에 IP 기반 통신을 가능하게 하려는 ISO 15118의 부로, 그 통신에 쓰는 IPv6의 쓰임을 정한다.[@iso-15118-2-obp-2014][@iso-15118-20-obp-2022]
+
 ## IPv4와의 차이
 
 IPv4 주소가 32비트인 데 비해 IPv6 주소는 128비트다. IPv6가 IPv4에서 바꾼 점으로는 주소 공간 확장, 헤더 형식 단순화, 확장 헤더와 옵션의 개선, 흐름 레이블, 인증과 기밀성 기능이 있다.[@ietf-rfc-8200-2017]

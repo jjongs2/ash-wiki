@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 514 184" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="계층별 요구를 정하는 ISO 15118 부">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 계층 -->
+  <g fill="var(--text, #727981)">
+    <text x="20" y="30">네트워크·응용 계층</text>
+    <text x="20" y="112">물리·데이터 링크 계층</text>
+  </g>
+
+  <!-- 부 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="42" width="150" height="40" rx="2" />
+    <rect x="182" y="42" width="150" height="40" rx="2" />
+    <rect x="20" y="124" width="150" height="40" rx="2" />
+    <rect x="182" y="124" width="150" height="40" rx="2" />
+    <rect x="344" y="124" width="150" height="40" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="95" y="67">ISO 15118-2:2014</text>
+    <text x="257" y="58">ISO 15118-20:2022</text>
+    <text x="95" y="140">ISO 15118-3:2015</text>
+    <text x="257" y="140">ISO 15118-8:2020</text>
+    <text x="419" y="140">ISO 15118-10:2025</text>
+  </g>
+  <g text-anchor="middle" font-size="13" fill="var(--text, #727981)">
+    <text x="257" y="75">2세대</text>
+    <text x="95" y="157">유선</text>
+    <text x="257" y="157">무선</text>
+    <text x="419" y="157">단일 쌍 이더넷</text>
+  </g>
+</svg>
