@@ -72,6 +72,7 @@
 - OOPSLA 풀이 Object-Oriented Programming, Systems, Languages, and Applications: Object-Oriented Programming, Systems, Languages & Applications (#291)
 - OSEK OS: OSEK/VDX OS (#257). OS를 가리킬 때. 명세를 가리키는 "OSEK/VDX OS"는 그대로. 예: "OSEK/VDX OS 2.2.3 명세"
 - PKI: 공개 키 기반 구조 (#498). 제목과 본문은 약어, 한국어 이름은 `public-key-infrastructure`의 alias로만
+- PLC 풀이: 통일하지 않음 (#679). 전력선 통신일 때 인용한 출처의 풀이대로. 예: SAE J2847/2를 인용한 control-pilot은 powerline communications, SAE J2931/4를 인용한 homeplug-green-phy는 Power Line Communications, CharIN 구현 가이드를 인용한 combined-charging-system은 power line communication
 - PLL 풀이: 통일하지 않음 (#675). 인용한 출처의 풀이대로. 예: TI SPRY178은 phase lock loop, AUTOSAR 명세는 Phase-Locked Loop
 - prototyping: 프로토타이핑 (#291). prototype도 같다. AUTOSAR의 prototype은 이 결정에 들지 않는다.
 - PWM 풀이: 통일하지 않음 (#441). 인용한 출처의 풀이대로. AUTOSAR 명세를 인용하면 Pulse Width Modulation, ISO 11898-1을 인용하면 Pulse-Width Modulation
