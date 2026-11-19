@@ -3,6 +3,8 @@
 
 Closes #638
 
+결정 로그: 없음
+
 ## Changes
 
 - `npm run axe`를 더했습니다. 로컬 빌드 7쪽을 1280px·390px, 라이트·다크로 검사합니다.
@@ -17,6 +19,8 @@ Closes #638
 -->
 
 Closes #
+
+결정 로그:
 
 ## Changes
 

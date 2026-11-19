@@ -22,7 +22,7 @@
 
 ### 도메인 문서
 
-Single-context 구조로, 저장소 루트의 `GLOSSARY.md` 하나와 `docs/adr/`를 사용한다. 자세한 내용은 `docs/agents/domain.md`를 참고한다.
+Single-context 구조로, 저장소 루트의 `GLOSSARY.md` 하나와 `docs/adr/`, 결정 로그 `docs/decision-log.md`를 사용한다. 자세한 내용은 `docs/agents/domain.md`를 참고한다.
 
 ## Pipeline conventions
 
