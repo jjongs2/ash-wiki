@@ -1,5 +1,6 @@
 import path from "node:path"
 import { report, verdict, type Status } from "../check-content/report"
+import type { Violation } from "../check-content/tree"
 import { repoRoot } from "../repo"
 import { checkDecisionLog } from "./decision-log"
 import { checkLinks, loadTree } from "./links"
@@ -9,9 +10,10 @@ import { checkLinks, loadTree } from "./links"
 const root = path.resolve(process.argv[2] ?? repoRoot)
 
 const statuses: Status[] = []
-const decisionLog = checkDecisionLog(root)
-statuses.push(report("decision-log", verdict(decisionLog), decisionLog))
-const links = checkLinks(loadTree(root))
-statuses.push(report("links", verdict(links), links))
+const run = (id: string, violations: Violation[]) =>
+  statuses.push(report(id, verdict(violations), violations))
+
+run("decision-log", checkDecisionLog(root))
+run("links", checkLinks(loadTree(root)))
 
 process.exitCode = statuses.includes("FAIL") ? 1 : 0

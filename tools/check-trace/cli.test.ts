@@ -55,15 +55,17 @@ describe("check-trace CLI", () => {
   test("결정 로그의 겹친 ID와 ID 없는 항목, 항목 밖의 줄을 잡는다", () => {
     has("decision-log", `${LOG}:7`, "5줄에도 있다")
     has("decision-log", `${LOG}:13`, "ID로 시작한다")
-    has("decision-log", `${LOG}:26`, "항목 불릿만")
+    has("decision-log", `${LOG}:30`, "항목 불릿만")
   })
 
   test("빠지거나 겹친 필드, 꼴이 틀린 규칙과 근거를 잡는다", () => {
     has("decision-log", `${LOG}:9`, "빠진 필드: 버린 것")
-    has("decision-log", `${LOG}:9`, "절 링크나 없음")
+    has("decision-log", `${LOG}:9`, "링크나 없음")
     has("decision-log", `${LOG}:9`, "근거는")
     has("decision-log", `${LOG}:11`, "빠진 필드: 까닭")
     has("decision-log", `${LOG}:11`, "근거 필드가 둘")
+    has("decision-log", `${LOG}:25`, "절(#앵커) 링크")
+    has("decision-log", `${LOG}:27`, "절(#앵커) 링크")
   })
 
   test("대체 짝이 어긋난 곳을 양쪽에서 잡는다", () => {

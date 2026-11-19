@@ -10,10 +10,9 @@ import type { Root } from "mdast"
 import type { Violation } from "../check-content/tree"
 
 // content/ 밖 Markdown의 상대 링크가 가리키는 파일과 절이 있는지 본다. 규칙은 docs/agents/domain.md에 있다.
-// content/는 Quartz 링크 꼴이라, 테스트 픽스처는 일부러 깬 링크를 담아 보지 않는다.
-
+// content/ 폴더(검사기 픽스처 안의 것도)는 Quartz 링크 꼴이라, 이 검사의 픽스처는 일부러 깬 링크를 담아 보지 않는다.
 const skipped = (file: string) =>
-  file.startsWith("content/") || file.split("/").includes("fixtures")
+  file.split("/").slice(0, -1).includes("content") || file.startsWith("tools/check-trace/fixtures/")
 
 export interface Tree {
   root: string
@@ -107,7 +106,9 @@ export function checkLinks(tree: Tree): Violation[] {
         if (!isDir(tree, clean)) flag(`없는 파일: ${url}`)
         return
       }
-      if (anchor && clean.endsWith(".md") && !anchorsOf(tree, clean).has(anchor)) {
+      // GitHub의 줄 앵커(#L3, #L3-L5)는 절이 아니다.
+      const lineAnchor = anchor !== undefined && /^L\d+(-L\d+)?$/.test(anchor)
+      if (anchor && !lineAnchor && clean.endsWith(".md") && !anchorsOf(tree, clean).has(anchor)) {
         flag(`${clean}에 없는 절: #${anchor}`)
       }
     })
