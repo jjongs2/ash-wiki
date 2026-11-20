@@ -1,10 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="34 0.5 683.5 210.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="13" fill="none" aria-label="UN R155와 EU 2019/2144의 적용 일정">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="36 1 683.5 210.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="13" fill="none" aria-label="UN R155와 EU 규정 2019/2144의 적용 일정">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
 
   <!-- 1년 = 60 단위, 2021년 1월 1일 = x 150 -->
   <g fill="var(--text, #727981)" text-anchor="end">
     <text x="136" y="64.5">UN R155</text>
-    <text x="136" y="130">EU 2019/2144</text>
+    <text x="136" y="114">EU 규정</text>
+    <text x="136" y="130">2019/2144</text>
     <text x="136" y="146" font-size="12">항목 미충족 차량</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1">

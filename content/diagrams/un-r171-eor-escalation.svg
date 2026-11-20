@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -1.5 540 210" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="EOR에서 운전자 미응답 대응까지의 경고 단계">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 판과 조건 -->
+  <text x="20" y="24" fill="var(--text, #727981)">UN R171 01 시리즈, 차속 &gt; 10 km/h</text>
+
+  <!-- 1초 = 24 단위, 눈을 뗀 때 = x 40 -->
+  <!-- 늦어도: 처음 높인 요청 뒤 10초 -->
+  <text x="352" y="52" text-anchor="middle" fill="var(--text, #727981)">늦어도 10초</text>
+  <path d="M232 66 v-6 H472 v6" stroke="var(--ink, #727981)" stroke-width="1" />
+
+  <!-- 늦어도: 눈을 뗀 뒤 5초, EOR을 높인 뒤 5초 -->
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="100" y="86">늦어도 5초</text>
+    <text x="292" y="86">늦어도 5초</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1">
+    <path d="M40 100 v-6 H160 v6" />
+    <path d="M232 100 v-6 H352 v6" />
+  </g>
+
+  <!-- 시간 축 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="40" y1="100" x2="40" y2="118" />
+    <line x1="160" y1="100" x2="160" y2="118" />
+    <line x1="232" y1="100" x2="232" y2="118" />
+    <line x1="352" y1="100" x2="352" y2="118" />
+    <line x1="472" y1="66" x2="472" y2="118" />
+  </g>
+  <line x1="20" y1="122" x2="518" y2="122" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <g fill="var(--ink, #727981)">
+    <circle cx="40" cy="122" r="4" />
+    <circle cx="160" cy="122" r="4" />
+    <circle cx="232" cy="122" r="4" />
+    <circle cx="352" cy="122" r="4" />
+    <circle cx="472" cy="122" r="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="40" y="144">눈을 뗌</text>
+    <text x="160" y="144">EOR</text>
+    <text x="232" y="144">EOR을</text>
+    <text x="232" y="160">높임</text>
+    <text x="352" y="144">DCA</text>
+    <text x="472" y="144">운전자 미응답</text>
+    <text x="472" y="160">대응 시작</text>
+  </g>
+
+  <text x="20" y="190" fill="var(--text, #727981)">안전 개념에 따라 어느 단계에서든 시작하거나 어느 단계든 건너뛸 수 있다</text>
+</svg>
