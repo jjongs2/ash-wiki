@@ -4,9 +4,9 @@
   <!-- 1년 = 60 단위, 2021년 1월 1일 = x 150 -->
   <g fill="var(--text, #727981)" text-anchor="end">
     <text x="136" y="64.5">UN R155</text>
-    <text x="136" y="114">EU 규정</text>
-    <text x="136" y="130">2019/2144</text>
-    <text x="136" y="146" font-size="12">항목 미충족 차량</text>
+    <text x="136" y="122">EU 규정</text>
+    <text x="136" y="138">2019/2144</text>
+    <text x="136" y="154" font-size="12">항목 미충족 차량</text>
   </g>
   <g stroke="var(--ink, #727981)" stroke-width="1">
     <line x1="150" y1="60" x2="690" y2="60" />
