@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 349" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="레벨 3과 레벨 4·5의 DDT fallback">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 판 -->
+  <text x="20" y="30" font-size="12" fill="var(--text, #727981)">ISO/SAE PAS 22736:2021</text>
+
+  <!-- 상자 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="44" width="200" height="40" rx="2" />
+    <rect x="280" y="44" width="200" height="40" rx="2" />
+    <rect x="20" y="128" width="200" height="40" rx="2" />
+    <rect x="280" y="128" width="200" height="40" rx="2" />
+    <rect x="20" y="208" width="200" height="40" rx="2" />
+    <rect x="20" y="288" width="200" height="40" rx="2" />
+    <rect x="280" y="288" width="200" height="40" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="120" y="69">DDT 관련 시스템 failure</text>
+    <text x="250" y="69">또는</text>
+    <text x="380" y="69">ODD exit</text>
+    <text x="120" y="153">레벨 3 ADS</text>
+    <text x="380" y="153">레벨 4·5 ADS</text>
+    <text x="120" y="233">fallback-ready user</text>
+    <text x="120" y="313">DDT를 이어 수행</text>
+    <text x="380" y="313">minimal risk condition</text>
+  </g>
+
+  <!-- 계기에서 레벨마다의 ADS로 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <polyline points="120,84 120,104 380,104 380,84" />
+    <line x1="120" y1="104" x2="120" y2="126" marker-end="url(#arrow)" />
+    <line x1="380" y1="104" x2="380" y2="126" marker-end="url(#arrow)" />
+  </g>
+  <text x="250" y="122" text-anchor="middle" font-size="12" fill="var(--text, #727981)">DDT fallback</text>
+
+  <!-- 레벨 3: 개입 요청 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="120" y1="168" x2="120" y2="206" marker-end="url(#arrow)" />
+    <line x1="120" y1="248" x2="120" y2="286" marker-end="url(#arrow)" />
+    <polyline points="220,228 330,228 330,286" marker-end="url(#arrow)" />
+    <line x1="380" y1="168" x2="380" y2="286" marker-end="url(#arrow)" />
+  </g>
+  <text x="130" y="192" font-size="12" fill="var(--text, #727981)">개입 요청</text>
+</svg>

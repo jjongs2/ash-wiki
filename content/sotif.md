@@ -2,6 +2,7 @@
 title: SOTIF
 tags:
   - sw-engineering/functional-safety
+  - applications/adas
 aliases:
   - Safety of the intended functionality
 verified: 2026-10-01
@@ -20,7 +21,7 @@ verified: 2026-10-01
 
 ## Triggering condition
 
-이 표준은 **triggering condition**을 시나리오의 특정 조건으로 정의한다. 이 조건이 뒤따르는 시스템 반응을 일으켜, 해저드 동작이나 간접 오용에 대처하지 못하는 결과로 이어지게 한다. 기능 부족을 활성화하는 것이 triggering condition이다. Triggering condition이 속하는 시나리오는 이어진 장면(scene) 사이의 시간 관계를 기술한 것이고, 장면에는 날씨나 조명 같은 환경 요소, 도로와 교통 표지 같은 기반 시설, 움직이거나 서 있는 객체와 행위자가 들 수 있다.[@iso-21448-obp-2022]
+이 표준은 **triggering condition**을 [[ads-scenario-based-testing|시나리오]]의 특정 조건으로 정의한다. 이 조건이 뒤따르는 시스템 반응을 일으켜, 해저드 동작이나 간접 오용에 대처하지 못하는 결과로 이어지게 한다. 기능 부족을 활성화하는 것이 triggering condition이다. Triggering condition이 속하는 시나리오는 이어진 장면(scene) 사이의 시간 관계를 기술한 것이고, 장면에는 날씨나 조명 같은 환경 요소, 도로와 교통 표지 같은 기반 시설, 움직이거나 서 있는 객체와 행위자가 들 수 있다.[@iso-21448-obp-2022]
 
 ![[diagrams/sotif-triggering-condition-chain.svg]]
 
@@ -30,7 +31,7 @@ verified: 2026-10-01
 
 ISO 21448:2022는 합리적으로 예견할 수 있는 오용을 범위에 넣고, 시스템의 의도된 사용을 고의로 명백히 어기는 행위는 범위에서 뺀다.[@iso-21448-obp-2022]
 
-이 표준은 해저드 동작과의 인과 관계에 따라 오용을 직접 오용과 간접 오용으로 나눈다. 직접 오용은 시스템의 해저드 동작을 일으킬 수 있어 potential triggering condition으로 보고, 해저드 동작에 기여할 수 있음이 확인되면 triggering condition으로 본다. 다른 시나리오 조건과 함께 triggering condition의 일부가 되기도 한다. 고속도로용 기능을 도심에서 켜 차량이 정지 표지를 감지하지 못하는 것이 그 예다. 간접 오용은 해저드 동작의 통제 가능성을 낮추거나 사고의 심각도를 높일 수 있지만, 시스템의 해저드 동작 자체에는 기여하지 못하므로 potential triggering condition으로 보지 않는다. 운전자가 레벨 2 고속도로 보조 기능을 쓰다가 잠들어 감시하지 않는 것이 그 예다.[@iso-21448-obp-2022]
+이 표준은 해저드 동작과의 인과 관계에 따라 오용을 직접 오용과 간접 오용으로 나눈다. 직접 오용은 시스템의 해저드 동작을 일으킬 수 있어 potential triggering condition으로 보고, 해저드 동작에 기여할 수 있음이 확인되면 triggering condition으로 본다. 다른 시나리오 조건과 함께 triggering condition의 일부가 되기도 한다. 고속도로용 기능을 도심에서 켜 차량이 정지 표지를 감지하지 못하는 것이 그 예다. 간접 오용은 해저드 동작의 통제 가능성을 낮추거나 사고의 심각도를 높일 수 있지만, 시스템의 해저드 동작 자체에는 기여하지 못하므로 potential triggering condition으로 보지 않는다. 운전자가 [[levels-of-driving-automation|운전 자동화 레벨]] 2 고속도로 보조 기능을 쓰다가 잠들어 감시하지 않는 것이 그 예다. 이 표준은 사용자 설명서에 명시한 [[operational-design-domain|ODD]] 밖에서 운전자가 자동 시스템을 켜는 것을, ODD 밖에서 켜지지 않게 하는 자차 측위 요소가 시스템에 있든 없든 직접 오용인 예로 든다. 위 간접 오용의 예도 DMS가 그 상황을 감지해 완화하든 아니든 간접 오용으로 든다.[@iso-21448-obp-2022]
 
 ## 해저드의 원천
 
