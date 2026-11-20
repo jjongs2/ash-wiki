@@ -7,7 +7,7 @@ aliases:
 verified: 2026-11-20
 ---
 
-**ODD**(Operational Design Domain)는 운전 자동화 시스템이나 그 기능이 작동하도록 특별히 설계된 운행 조건이다. 환경·지리·시간대의 제약과, 특정 교통·도로 특성이 있어야 하거나 없어야 한다는 조건이 들어간다.[@iso-sae-pas-22736-obp-2021][@unece-wp29-2023-44-rev1-2023] ISO 34503:2023은 ODD를 정의하는 것을 [[levels-of-driving-automation|ADS]]가 무엇을 할 수 있는지 정하는 첫 단계로 제시한다.[@iso-34503-obp-2023] ODD를 벗어나는 것(ODD exit)은 [[levels-of-driving-automation#ADS|DDT]](Dynamic Driving Task) 수행에 관련된 시스템 failure와 더불어 [[levels-of-driving-automation#ADS|DDT fallback]]을 부르는 두 경우 가운데 하나다.[@iso-sae-pas-22736-obp-2021]
+**ODD**(Operational Design Domain)는 운전 자동화 시스템이나 그 기능이 작동하도록 특별히 설계된 운행 조건이다. 환경·지리·시간대의 제약과, 특정 교통·도로 특성이 있어야 하거나 없어야 한다는 조건이 들어간다.[@iso-sae-pas-22736-obp-2021][@unece-wp29-2023-44-rev1-2023] ISO 34503:2023은 ODD를 정의하는 것을 [[levels-of-driving-automation|ADS]]가 무엇을 할 수 있는지 정하는 첫 단계로 제시한다.[@iso-34503-obp-2023] ODD를 벗어나는 것(ODD exit)은 [[levels-of-driving-automation#ADS|DDT]](Dynamic Driving Task) 수행에 관련된 시스템 failure와 더불어 DDT fallback을 부르는 두 경우 가운데 하나다.[@iso-sae-pas-22736-obp-2021]
 
 ## 쓰는 곳
 

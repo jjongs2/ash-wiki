@@ -74,7 +74,7 @@ ISO 34501\~34505는 'Road vehicles — Test scenarios for automated driving syst
 
 ISO 34501:2022는 ADS 테스트 시나리오의 용어를 정의하고, ISO/SAE PAS 22736이 정의한 운전 자동화 레벨 3 이상의 ADS에 적용한다. 이 표준의 Introduction은 시나리오를 기술하는 말을 표준화할 필요가 ADS의 설계, 테스트, 평가, 관리를 하는 정부와 산업계의 요구에서 나왔다고 제시하고, 이 문서의 용어는 시나리오 기술의 맥락에서 정의돼 [[iso-21448|ISO 21448]]이나 [[iso-26262|ISO 26262]]-1의 용어와 같지 않을 수 있다고 제시한다.[@iso-34501-obp-2022]
 
-ISO 34502:2022는 ADS의 시나리오 기반 안전 평가 틀에 대한 지침을 준다. ISO/SAE PAS 22736이 정의한 ADS와 UNECE가 공통 정의한 차량 범주 1·2에 적용하며, limited access highway를 대상으로 한다. 오용, human machine interface, [[cybersecurity|사이버보안]]에 관한 안전 쟁점과, 안락·에너지 효율·교통 흐름 효율 같은 안전 밖 쟁점은 다루지 않는다. critical scenario와 리스크 요인에 더해 **hazardous scenario**(ADS 밖의 개체가 막지 않으면 해가 생기는 시나리오)와 **safety test objective**(테스트 묶음으로 보일 ADS의 안전 속성)를 정의한다.[@iso-34502-obp-2022]
+ISO 34502:2022는 ADS의 시나리오 기반 안전 평가 틀에 대한 지침을 준다. ISO/SAE PAS 22736이 정의한 ADS와 UNECE가 공통 정의한 차량 범주 1·2에 적용하며, limited access highway를 대상으로 한다. 오용, human machine interface, [[cybersecurity|사이버보안]]에 관한 안전 쟁점과, 안락·에너지 효율·교통 흐름 효율 같은 안전 밖 쟁점은 다루지 않는다. critical scenario와 리스크 요인에 더해 **hazardous scenario**(ADS 밖의 개체가 막지 않으면 해가 생기는 시나리오)와 **safety test objective**(테스트 묶음으로 보일 ADS의 안전 속성)를 정의한다. 4절(Test scenario-based safety evaluation process)은 개발 프로세스에의 통합, safety test objective, 관련 시나리오 공간의 명세, 리스크 요인에 따른 critical scenario 도출, 시나리오 공간을 덮는 테스트 시나리오 도출, concrete 테스트 시나리오의 도출과 할당, 테스트 실행, 안전 평가를 하위 절로 둔다.[@iso-34502-obp-2022]
 
 ISO 34504:2024는 시나리오에 대한 정보를 담은 tag로 시나리오를 분류하는 접근을 정하고, [[sae-j3016|SAE J3016]]의 레벨 3\~5 ADS에 적용한다. 이 표준은 시나리오의 계층 구조는 주지 않는다고 제시한다.[@iso-34504-obp-2024]
 

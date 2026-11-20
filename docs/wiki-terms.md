@@ -15,13 +15,13 @@
 
 - (informative): (참고), 참고 Annex (#566). 표준의 informative Annex와 절. 꾸밈말 꼴도 같다. 예: "informative Annex로". 원문이 다른 말로 적으면 그 말. 예: 원문이 non-normative라 적은 장은 "(non-normative)". 조사는 괄호 앞의 Annex 이름이나 절 번호에 맞춘다. 예: "Annex U(informative)는"
 - 5 baud initialization, fast initialization: - (#667). K-Line 초기화일 때
-- ACC, BSD, FCW, LCA, LDW, LKA, RCTA: 전방 충돌 경고(FCW), 적응형 순항 제어(ACC) 같은 한국어 이름 (#682). ADAS 기능 이름일 때. 풀이는 Clearing the Confusion·NHTSA의 풀이. 한국어 기능 설명은 산문에만 쓴다
+- ACC, BSD, FCW, LCA, LDW, LKA, RCTA: 전방 충돌 경고, 적응형 순항 제어 (#682). ADAS 기능 이름일 때. 풀이는 Clearing the Confusion·NHTSA의 풀이. 한국어 기능 설명은 산문에만 쓴다
 - action point: - (#667). FlexRay의 action point일 때
 - adaptive update: - (#432)
 - ADAS 풀이 Advanced Driver Assistance Systems: Advanced Driver Assistance System (#659)
 - ADASIS 풀이 Advanced Driver Assistance Systems Interface Specification: ADAS Interface Specification (#682)
 - ADC 풀이: 통일하지 않음 (#674). 인용한 출처의 풀이대로. AUTOSAR 명세를 인용하면 Analogue Digital Converter, 벤더 문서를 인용하면 그 문서의 풀이. 예: TI TRM의 Analog To Digital Converter
-- ADDW, ALKS, DCAS, DDAW, DMS, EDR, ODD: 자동 차로 유지 시스템, 사고기록장치, 운행 설계 영역, 운전자 감시 시스템 같은 한국어 이름 (#682). 원어 약어로 쓴다
+- ADDW, ALKS, DCAS, DDAW, DMS, EDR, ODD: 자동 차로 유지 시스템, 사고기록장치, 운행 설계 영역, 운전자 감시 시스템 (#682). 원어 약어로 쓴다
 - ADS: 자동 운전 시스템, 자율주행 시스템 (#682). 레벨 3\~5의 시스템일 때. `sotif`의 "레벨 2 자동 운전 시스템"은 ISO 21448의 Level 2 문구라 조건 밖이다. `x-in-the-loop`의 "자율주행 시스템"(dSPACE의 autonomous driving systems)은 레벨이 드러나지 않아 이 결정에 들지 않는다
 - ADS 풀이 Automated Driving System: - (#682)
 - AEB, AEBS: 통일하지 않음 (#682). UN R152·EU 규정의 시스템은 AEBS, ADAS 기능 이름은 AEB
@@ -82,7 +82,7 @@
 - minimal risk manoeuvre, minimum risk manoeuvre: 통일하지 않음 (#682). 출처 철자대로. ISO 34503·EU 시행 규정 2022/1426은 minimal risk manoeuvre, UN R157은 minimum risk manoeuvre. 약어는 MRM. "최소 위험 기동"은 쓰지 않는다
 - NAD 풀이 node address: node address for responder nodes (#667). 근거는 ISO 17987-3:2025. ISO 17987-1:2025의 용어 이름 node address for diagnostics는 그대로
 - NMI 풀이: 통일하지 않음 (#675). 인용한 출처의 풀이대로. 예: Infineon AN0001을 인용한 safety-mechanism은 non-maskable interrupt, RTEMS 문서를 인용한 deferred-interrupt-handling은 Non-Maskable Interrupt
-- No Driving Automation, Driver Assistance, Partial·Conditional·High·Full Driving Automation: 부분 자동화 같은 한국어 이름 (#682). 운전 자동화 레벨의 이름일 때. 출처 문장 안에서 원어 그대로 쓴다
+- No Driving Automation, Driver Assistance, Partial·Conditional·High·Full Driving Automation: 부분 자동화 (#682). 운전 자동화 레벨의 이름일 때. 출처 문장 안에서 원어 그대로 쓴다
 - notification: 통지 (#257). AUTOSAR 모듈이 부르는 notification 콜백일 때. 동사로 쓴 자리("통지받는다")와 그 밖의 통지는 "통지"
 - OBD 풀이 On-Board Diagnostics: On-Board Diagnosis (#496)
 - ODD 풀이 Operational Design Domain: - (#682)
