@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 0 370 304" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="수동 밸런싱과 능동 밸런싱">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 수동 밸런싱: 전압이 가장 높은 셀에 저항을 걸어 열로 버린다 -->
+  <text x="20" y="20" fill="var(--text, #727981)">수동 밸런싱</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M175 60 V70 M175 96 V106" />
+    <path d="M175 65 H260 V72 M260 90 V101 H175" />
+    <line x1="268" y1="81" x2="298" y2="81" marker-end="url(#arrow)" />
+  </g>
+  <g fill="var(--ink, #727981)">
+    <circle cx="175" cy="65" r="2.5" />
+    <circle cx="175" cy="101" r="2.5" />
+  </g>
+  <rect x="150.75" y="34.75" width="48.5" height="24.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="150.75" y="70.75" width="48.5" height="24.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="150.75" y="106.75" width="48.5" height="24.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="253.75" y="72.75" width="12.5" height="16.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g fill="var(--text, #727981)">
+    <text x="138" y="51" text-anchor="end">셀</text>
+    <text x="138" y="87" text-anchor="end">전압이 가장 높은 셀</text>
+    <text x="138" y="123" text-anchor="end">셀</text>
+    <text x="246" y="85" text-anchor="end">저항</text>
+    <text x="305" y="85">열</text>
+  </g>
+
+  <!-- 능동 밸런싱: 에너지 저장 소자로 더 낮은 셀에 옮긴다 -->
+  <text x="20" y="180" fill="var(--text, #727981)">능동 밸런싱</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M175 220 V230 M175 256 V266" />
+    <line x1="201" y1="243" x2="249" y2="243" marker-end="url(#arrow)" />
+    <line x1="250" y1="279" x2="202" y2="279" marker-end="url(#arrow)" />
+  </g>
+  <rect x="150.75" y="194.75" width="48.5" height="24.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="150.75" y="230.75" width="48.5" height="24.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="150.75" y="266.75" width="48.5" height="24.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="250.75" y="230.75" width="118.5" height="60.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g fill="var(--text, #727981)">
+    <text x="138" y="211" text-anchor="end">셀</text>
+    <text x="138" y="247" text-anchor="end">전압이 가장 높은 셀</text>
+    <text x="138" y="283" text-anchor="end">더 낮은 셀</text>
+    <text x="225" y="236" text-anchor="middle">전하</text>
+    <text x="310" y="257" text-anchor="middle">에너지 저장 소자</text>
+    <text x="310" y="274" text-anchor="middle" font-size="11">인덕터나 커패시터</text>
+  </g>
+</svg>

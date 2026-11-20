@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="48 -0.5 368 303" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="BQ7961x-Q1의 링 연결">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--orange, #b0540d)" />
+    </marker>
+  </defs>
+
+  <!-- 통신 방향: MCU에서 맨 아래 장치를 거쳐 위로 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="140" y1="248" x2="199" y2="248" marker-end="url(#arrow-ink)" />
+    <line x1="250" y1="234" x2="250" y2="195" marker-end="url(#arrow-ink)" />
+    <line x1="250" y1="166" x2="250" y2="127" />
+  </g>
+  <text x="240" y="218" text-anchor="end" fill="var(--text, #727981)">통신 방향</text>
+
+  <!-- 끊김 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="241" y1="137" x2="259" y2="155" />
+    <line x1="259" y1="137" x2="241" y2="155" />
+  </g>
+  <text x="268" y="150" fill="var(--text, #727981)">끊김</text>
+
+  <!-- 뒤집은 방향: 링 연결로 맨 위 장치에 닿아 아래로 -->
+  <path d="M250 262 V290 H360 V12 H250 V29" stroke="var(--orange, #b0540d)" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrow-orange)" />
+  <line x1="250" y1="58" x2="250" y2="97" stroke="var(--orange, #b0540d)" stroke-width="1.5" marker-end="url(#arrow-orange)" />
+  <g fill="var(--text, #727981)">
+    <text x="240" y="82" text-anchor="end">뒤집은 방향</text>
+    <text x="370" y="155">링 연결</text>
+  </g>
+
+  <!-- 장치 -->
+  <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="60.75" y="234.75" width="78.5" height="26.5" rx="2" />
+    <rect x="200.75" y="30.75" width="98.5" height="26.5" rx="2" />
+    <rect x="200.75" y="98.75" width="98.5" height="26.5" rx="2" />
+    <rect x="200.75" y="166.75" width="98.5" height="26.5" rx="2" />
+    <rect x="200.75" y="234.75" width="98.5" height="26.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="100" y="252">MCU</text>
+    <text x="250" y="48">BQ7961x-Q1</text>
+    <text x="250" y="116">BQ7961x-Q1</text>
+    <text x="250" y="184">BQ7961x-Q1</text>
+    <text x="250" y="252">BQ7961x-Q1</text>
+  </g>
+</svg>

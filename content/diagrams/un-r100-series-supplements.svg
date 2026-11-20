@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="98.5 19 513 236" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="UN R100 시리즈와 보충판">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 1년 = 90 단위, 2021년 1월 1일 = x 130 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1">
+    <line x1="169.2" y1="60" x2="580" y2="60" />
+    <line x1="492.2" y1="120" x2="580" y2="120" />
+    <line x1="556.1" y1="180" x2="580" y2="180" />
+  </g>
+
+  <!-- 03 시리즈: 2021-06-09, 보충판 1~5 -->
+  <g fill="var(--ink, #727981)">
+    <circle cx="169.2" cy="60" r="4" />
+    <circle cx="262.4" cy="60" r="4" />
+    <circle cx="310.7" cy="60" r="4" />
+    <circle cx="440.8" cy="60" r="4" />
+    <circle cx="529.9" cy="60" r="4" />
+    <circle cx="556.1" cy="60" r="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="169.2" y="46">03 시리즈</text>
+    <text x="262.4" y="46">보충판 1</text>
+    <text x="310.7" y="82">보충판 2</text>
+    <text x="440.8" y="46">보충판 3</text>
+    <text x="529.9" y="46">보충판 4</text>
+    <text x="556.1" y="82">보충판 5</text>
+  </g>
+
+  <!-- 04 시리즈: 2025-01-10, 보충판 1~2 -->
+  <g fill="var(--ink, #727981)">
+    <circle cx="492.2" cy="120" r="4" />
+    <circle cx="529.9" cy="120" r="4" />
+    <circle cx="556.1" cy="120" r="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="492.2" y="106">04 시리즈</text>
+    <text x="529.9" y="142">보충판 1</text>
+    <text x="556.1" y="106">보충판 2</text>
+  </g>
+
+  <!-- 05 시리즈: 2025-09-26 -->
+  <circle cx="556.1" cy="180" r="4" fill="var(--ink, #727981)" />
+  <text x="556.1" y="166" text-anchor="middle" fill="var(--text, #727981)">05 시리즈</text>
+
+  <!-- 연도 축 -->
+  <line x1="130" y1="216" x2="580" y2="216" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <path d="M130 216 v5 M220 216 v5 M310 216 v5 M400 216 v5 M490 216 v5 M580 216 v5" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="130" y="237">2021</text>
+    <text x="220" y="237">2022</text>
+    <text x="310" y="237">2023</text>
+    <text x="400" y="237">2024</text>
+    <text x="490" y="237">2025</text>
+    <text x="580" y="237">2026</text>
+  </g>
+</svg>

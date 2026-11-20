@@ -32,6 +32,7 @@
 - auto addressing: - (#667). LIN의 auto addressing일 때
 - automated vehicle, fully automated vehicle: 완전 자동화 차량 (#682). EU 규정 2019/2144 3조의 정의 용어일 때
 - balanced media: - (#667). ISO 21806의 MOST50 bPHY 매체일 때
+- basic signalling: basic signaling (#678). ISO 15118의 basic signalling일 때
 - baud: 보드레이트 (#496). 기호는 Bd. 음차 "보"도 쓰지 않는다. "Baud Rate Prescaler" 같은 이름은 그대로
 - Boolean: 불리언 (#579). 합성어 포함. 예: Boolean 식, Boolean 연산자. 번역어 "불"도 쓰지 않는다.
 - CAN CC 풀이 CAN classic: CAN CC(CC: classic), CAN CC(Classical CAN), CAN classic(CC) (#564)
@@ -80,6 +81,7 @@
 - MAC 풀이 Medium Access Control: Media Access Control (#165). 출처마다의 풀이를 비교하는 문장은 예외
 - MCU: 통일하지 않음 (#674). AUTOSAR 명세의 microcontroller를 옮긴 AUTOSAR·ECU 쪽 페이지는 "마이크로컨트롤러", 하드웨어 페이지는 MCU
 - minimal risk manoeuvre, minimum risk manoeuvre: 통일하지 않음 (#682). 출처 철자대로. ISO 34503·EU 시행 규정 2022/1426은 minimal risk manoeuvre, UN R157은 minimum risk manoeuvre. 약어는 MRM. "최소 위험 기동"은 쓰지 않는다
+- NACS 풀이 North American Charging System: North American Charging Standard (#678)
 - NAD 풀이 node address: node address for responder nodes (#667). 근거는 ISO 17987-3:2025. ISO 17987-1:2025의 용어 이름 node address for diagnostics는 그대로
 - NMI 풀이: 통일하지 않음 (#675). 인용한 출처의 풀이대로. 예: Infineon AN0001을 인용한 safety-mechanism은 non-maskable interrupt, RTEMS 문서를 인용한 deferred-interrupt-handling은 Non-Maskable Interrupt
 - No Driving Automation, Driver Assistance, Partial·Conditional·High·Full Driving Automation: 부분 자동화 (#682). 운전 자동화 레벨의 이름일 때. 출처 문장 안에서 원어 그대로 쓴다
@@ -92,6 +94,8 @@
 - PKI: 공개 키 기반 구조 (#498). 제목과 본문은 약어, 한국어 이름은 `public-key-infrastructure`의 alias로만
 - PLC 풀이: 통일하지 않음 (#679). 전력선 통신일 때 인용한 출처의 풀이대로. 예: SAE J2847/2를 인용한 control-pilot은 powerline communications, SAE J2931/4를 인용한 homeplug-green-phy는 Power Line Communications, CharIN 구현 가이드를 인용한 combined-charging-system은 power line communication
 - PLL 풀이: 통일하지 않음 (#675). 인용한 출처의 풀이대로. 예: TI SPRY178은 phase lock loop, AUTOSAR 명세는 Phase-Locked Loop
+- Plug and Charge: Plug and charge, Plug & Charge (#678). 제목과 본문. Plug & Charge는 CharIN 로고 이름과 alias로만
+- PnC 풀이 Plug and Charge: park and charge (#678). ISO 15118-20:2022가 PnC를 park and charge라 부른다고 견주는 문장은 예외
 - prototyping: 프로토타이핑 (#291). prototype도 같다. AUTOSAR의 prototype은 이 결정에 들지 않는다.
 - PWM 풀이: 통일하지 않음 (#441). 인용한 출처의 풀이대로. AUTOSAR 명세를 인용하면 Pulse Width Modulation, ISO 11898-1을 인용하면 Pulse-Width Modulation
 - read-while-write: - (#674). 플래시의 RWW일 때
@@ -114,6 +118,7 @@
 - Type 1: Type-1 (#659). 하이퍼바이저의 갈래일 때. Type 2도 같다
 - USART 풀이 Universal Synchronous/Asynchronous Receiver/Transmitter: Universal Synchronous and Asynchronous Receiver Transmitter (#196)
 - use case: 유스케이스 (#394). 합성어 포함. 예: use case 테스트
+- V2GTP 풀이 V2G Transfer Protocol: Vehicle to Grid Transport Protocol (#678)
 - V2X 풀이 Vehicle-to-X: Vehicle-to-Everything (#257)
 - validation: 통일하지 않음 (#288). "확인"과 원어 cybersecurity validation을 맥락에 따라. 페이지 `cybersecurity-verification-and-validation`의 title과 정의는 "확인"
 - Virtual A/B: - (#432)
@@ -121,6 +126,7 @@
 - 개인 키: 개인키 (#288)
 - 결정 테이블: 결정표 (#441)
 - 결함 허용: - (#223)
+- 경량: 경차 (#678). light-duty vehicle일 때
 - 공개 키: 공개키 (#288)
 - 근적외선, 적외선 LED: IR LED (#682)
 - 기법: technique (#431). Automotive Threat Matrix의 technique일 때
@@ -171,6 +177,7 @@
 - 차량 신호: 차량 시그널 (#659). VSS의 vehicle signal일 때. AUTOSAR COM의 signal은 "시그널" 그대로
 - 차량용 레이더, 차량용 카메라, 차량용 SerDes: 차량 레이더 (#682). 제목
 - 추적표: 추적 매트릭스, 추적성 매트릭스 (#441). traceability matrix일 때. 합성어 포함. 예: 요구사항 추적표
+- 충전 설비: 충전기, 충전소 (#678). EVSE(electric vehicle supply equipment)일 때. 충전소(charging station)와 충전기(charger)를 가리키는 자리는 그대로
 - 취약점 공개: vulnerability disclosure (#431)
 - 취약점 처리: vulnerability handling (#431)
 - 카나리 릴리스: canary release, 카나리 배포 (#499)
