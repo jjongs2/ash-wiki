@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 23.5 339 432.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="UN R100 시리즈와 보충판">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 위에서 아래로 시간. 1년 = 80 단위, 2021년 1월 1일 = y 40 -->
+  <!-- 03 시리즈 -->
+  <line x1="90" y1="74.8" x2="90" y2="440" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g fill="var(--ink, #727981)">
+    <circle cx="90" cy="74.8" r="4" />
+    <circle cx="90" cy="157.7" r="4" />
+    <circle cx="90" cy="200.7" r="4" />
+    <circle cx="90" cy="316.3" r="4" />
+    <circle cx="90" cy="395.5" r="4" />
+    <circle cx="90" cy="418.7" r="4" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="100" y="78.8">03 시리즈</text>
+    <text x="100" y="161.7">보충판 1</text>
+    <text x="100" y="204.7">보충판 2</text>
+    <text x="100" y="320.3">보충판 3</text>
+    <text x="100" y="399.5">보충판 4</text>
+    <text x="100" y="422.7">보충판 5</text>
+  </g>
+  <!-- 04 시리즈 -->
+  <line x1="180" y1="362.0" x2="180" y2="440" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g fill="var(--ink, #727981)">
+    <circle cx="180" cy="362.0" r="4" />
+    <circle cx="180" cy="395.5" r="4" />
+    <circle cx="180" cy="418.7" r="4" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="190" y="366.0">04 시리즈</text>
+    <text x="190" y="399.5">보충판 1</text>
+    <text x="190" y="422.7">보충판 2</text>
+  </g>
+  <!-- 05 시리즈 -->
+  <line x1="270" y1="418.7" x2="270" y2="440" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g fill="var(--ink, #727981)">
+    <circle cx="270" cy="418.7" r="4" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="280" y="422.7">05 시리즈</text>
+  </g>
+
+  <!-- 연도 축 -->
+  <line x1="50" y1="40" x2="50" y2="440" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <path d="M50 40 h-5 M50 120 h-5 M50 200 h-5 M50 280 h-5 M50 360 h-5 M50 440 h-5" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g text-anchor="end" fill="var(--text, #727981)">
+    <text x="40" y="44">2021</text>
+    <text x="40" y="124">2022</text>
+    <text x="40" y="204">2023</text>
+    <text x="40" y="284">2024</text>
+    <text x="40" y="364">2025</text>
+    <text x="40" y="444">2026</text>
+  </g>
+</svg>

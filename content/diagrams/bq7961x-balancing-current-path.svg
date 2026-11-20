@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1.5 1 271.5 445" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="BQ7961x-Q1의 밸런싱 전류 경로">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 색 선: 밸런싱 전류가 흐르는 길. 핀마다 외부 저항, IC 안에 셀마다 밸런싱 스위치 -->
+  <g transform="translate(0 0)">
+    <text x="10" y="20" fill="var(--text, #727981)">이웃한 스위치가 함께 켜지지 않을 때</text>
+    <rect x="150.75" y="34.75" width="108.5" height="110.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
+    <path d="M70 50 V86 M70 94 V130 M70 50 H104 M128 50 H200 V75 M200 105 V130 H128 M104 130 H70" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+    <path d="M172 46 L180 50 L172 54 z" fill="var(--blue, #336fb8)" />
+    <path d="M58 86 H82 M64 94 H76" stroke="var(--ink, #727981)" stroke-width="1.5" />
+    <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+      <rect x="104.75" y="45.75" width="22.5" height="8.5" />
+      <rect x="104.75" y="125.75" width="22.5" height="8.5" />
+      <rect x="194.75" y="75.75" width="10.5" height="28.5" />
+    </g>
+    <g fill="var(--text, #727981)">
+      <text x="166" y="68">I<tspan baseline-shift="sub" font-size="10">bal</tspan></text>
+      <text x="52" y="94" text-anchor="end">V<tspan baseline-shift="sub" font-size="10">cell</tspan></text>
+      <text x="212" y="94">R<tspan baseline-shift="sub" font-size="10">on</tspan></text>
+      <text x="116" y="38" text-anchor="middle">R<tspan baseline-shift="sub" font-size="10">ext</tspan></text>
+      <text x="116" y="152" text-anchor="middle">R<tspan baseline-shift="sub" font-size="10">ext</tspan></text>
+      <text x="205" y="164" text-anchor="middle">BQ7961x-Q1</text>
+    </g>
+  </g>
+
+  <g transform="translate(0 190)">
+    <text x="10" y="20" fill="var(--text, #727981)">이웃한 두 스위치가 함께 켜질 때</text>
+    <rect x="150.75" y="34.75" width="108.5" height="190.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
+    <path d="M70 50 V86 M70 94 V166 M70 174 V210 M70 50 H104 M128 50 H200 V75 M200 105 V155 M200 185 V210 H128 M104 210 H70" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+    <path d="M70 130 H104 M128 130 H200" stroke="var(--ink, #727981)" stroke-width="1.5" />
+    <g fill="var(--ink, #727981)"><circle cx="70" cy="130" r="2.5" /><circle cx="200" cy="130" r="2.5" /></g>
+    <path d="M172 46 L180 50 L172 54 z" fill="var(--blue, #336fb8)" />
+    <path d="M58 86 H82 M64 94 H76 M58 166 H82 M64 174 H76" stroke="var(--ink, #727981)" stroke-width="1.5" />
+    <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+      <rect x="104.75" y="45.75" width="22.5" height="8.5" />
+      <rect x="104.75" y="125.75" width="22.5" height="8.5" />
+      <rect x="104.75" y="205.75" width="22.5" height="8.5" />
+      <rect x="194.75" y="75.75" width="10.5" height="28.5" />
+      <rect x="194.75" y="155.75" width="10.5" height="28.5" />
+    </g>
+    <g fill="var(--text, #727981)">
+      <text x="166" y="68">I<tspan baseline-shift="sub" font-size="10">bal</tspan></text>
+      <text x="52" y="94" text-anchor="end">V<tspan baseline-shift="sub" font-size="10">cell,n</tspan></text>
+      <text x="52" y="174" text-anchor="end">V<tspan baseline-shift="sub" font-size="10">cell,n−1</tspan></text>
+      <text x="212" y="94">R<tspan baseline-shift="sub" font-size="10">on,n</tspan></text>
+      <text x="212" y="174">R<tspan baseline-shift="sub" font-size="10">on,n−1</tspan></text>
+      <text x="116" y="38" text-anchor="middle">R<tspan baseline-shift="sub" font-size="10">ext</tspan></text>
+      <text x="116" y="118" text-anchor="middle">R<tspan baseline-shift="sub" font-size="10">ext</tspan></text>
+      <text x="116" y="232" text-anchor="middle">R<tspan baseline-shift="sub" font-size="10">ext</tspan></text>
+      <text x="205" y="244" text-anchor="middle">BQ7961x-Q1</text>
+    </g>
+  </g>
+</svg>
