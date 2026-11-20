@@ -7,7 +7,26 @@ aliases:
 verified: 2026-11-20
 ---
 
-**운전 자동화 레벨**(levels of driving automation)은 운전 자동화 기능을 사람 사용자와 운전 자동화 시스템 같은 운전의 주체가 맡는 역할에 따라 레벨 0부터 레벨 5까지로 나눈 분류다.[@sae-j3016-2026] 레벨은 서로 겹치지 않는다.[@iso-21448-obp-2022] [[iso-21448|ISO 21448]]:2022와 [[ads-scenario-based-testing|ISO 34501]]:2022 같은 표준은 적용 대상을 운전 자동화 레벨로 정한다.[@iso-21448-obp-2022][@iso-34501-obp-2022] 레벨이 오를수록 횡·종 방향 제어, 객체·사건의 감지와 대응, fallback이 차례로 시스템의 몫이 된다.[@iso-21448-obp-2022] 레벨 3\~5에서는 ADS(Automated Driving System)가 DDT(Dynamic Driving Task) 전체를 수행한다.[@sae-j3016-2026][@iso-sae-pas-22736-obp-2021]
+**운전 자동화 레벨**(levels of driving automation)은 운전 자동화 기능을 사람 사용자와 운전 자동화 시스템 같은 운전의 주체가 맡는 역할에 따라 레벨 0부터 레벨 5까지로 나눈 분류다.[@sae-j3016-2026] 레벨은 서로 겹치지 않는다. 레벨이 오를수록 횡·종 방향 제어, 객체·사건의 감지와 대응, DDT fallback이 차례로 시스템의 몫이 된다.[@iso-21448-obp-2022] 레벨 3\~5에서는 ADS(Automated Driving System)가 DDT(Dynamic Driving Task) 전체를 수행한다.[@sae-j3016-2026][@iso-sae-pas-22736-obp-2021]
+
+## 레벨
+
+[[iso-21448|ISO 21448]]:2022는 표 2에서 레벨마다 이름과 함께 횡·종 방향 제어, OEDR(Object and Event Detection and Response), DDT fallback을 누가 맡는지와 [[operational-design-domain|ODD]]가 어떤지를 아래처럼 제시한다.[@iso-21448-obp-2022]
+
+| 레벨 | 이름                           | 횡·종 방향 제어 | OEDR   | DDT fallback        | ODD       |
+| ---- | ------------------------------ | --------------- | ------ | ------------------- | --------- |
+| 0    | No driving automation          | 운전자          | 운전자 | 운전자              | 해당 없음 |
+| 1    | Driver assistance              | 운전자와 시스템 | 운전자 | 운전자              | 제한      |
+| 2    | Partial driving automation     | 시스템          | 운전자 | 운전자              | 제한      |
+| 3    | Conditional driving automation | 시스템          | 시스템 | fallback-ready user | 제한      |
+| 4    | High driving automation        | 시스템          | 시스템 | 시스템              | 제한      |
+| 5    | Full driving automation        | 시스템          | 시스템 | 시스템              | 제한 없음 |
+
+[[sae-j3016#개정 이력|ISO/SAE PAS 22736]]:2021은 레벨 1·2가 자동화하는 OEDR을 그 레벨이 맡는 차량 운동 제어 축에 딸린 제한된 OEDR로 두고, 레벨 3\~5는 횡·종 방향 제어와 완전한 OEDR을 모두 자동화하도록 둔다. 레벨 1과 레벨 2의 운전 자동화 시스템 기능을 묶어 **운전자 지원 기능**(driver support feature)이라 하고, 정의의 주석에서 이 기능은 DDT의 일부만 수행하므로 운전자가 나머지를 수행하고 기능을 감독해야 한다고 제시한다.[@iso-sae-pas-22736-obp-2021]
+
+이 PAS는 사용자 감시(monitor the user)가 운전 자동화 시스템의 오용이나 남용(안주에서 오는 과신 포함)에 대한 대응책으로 쓰일 가능성이 가장 크고 주로 레벨 2·3에서 쓸모 있다고 제시한다. 레벨 1 기능에서는 현장에서 오용이나 남용이 두드러지게 나타나지 않았고, 그보다 높은 레벨에서는 ADS가 정의상 스스로 minimal risk condition에 이를 수 있다는 것을 그 까닭으로 든다.[@iso-sae-pas-22736-obp-2021]
+
+이 PAS는 [[sae-j3016#개정 이력|레벨 이름]]을 No Driving Automation(레벨 0), Driver Assistance(레벨 1), Partial·Conditional·High·Full Driving Automation(레벨 2\~5)으로 둔다.[@iso-sae-pas-22736-obp-2021]
 
 ## 쓰는 곳
 
@@ -22,28 +41,9 @@ verified: 2026-11-20
 | ISO/TS 5083:2025                                                                                                                 | ISO/SAE PAS 22736이 정의한 레벨 3·4 ADS feature                                                                                            | [[iso-ts-5083\|ISO/TS 5083]][@iso-ts-5083-obp-2025]                                                                 |
 | WP.29(UNECE 산하의 국제 차량 규정 포럼)의 자동·자율 차량 기본 문서(ECE/TRANS/WP.29/2019/34/Rev.2와 그 뒤 Table 1을 고친 개정 셋) | 레벨 3 이상 자동·자율 차량. 그 안전·보안 핵심 원칙을 밝혀 WP.29 산하 작업반에 지침을 준다                                                  | 없음[@unece-wp29-2019-34-rev2-2019][@unece-wp29-2024-33-2023][@unece-wp29-1177-2024][@unece-wp29-introduction-2025] |
 
-## 동작
-
-ISO 21448:2022는 운전 자동화 레벨 정의의 주석이 가리키는 표 2에서, 레벨마다 이름과 함께 횡·종 방향 제어, OEDR(Object and Event Detection and Response), DDT fallback을 누가 맡는지와 ODD가 어떤지를 아래처럼 제시한다.[@iso-21448-obp-2022]
-
-| 레벨 | 이름                           | 횡·종 방향 제어 | OEDR   | DDT fallback        | ODD       |
-| ---- | ------------------------------ | --------------- | ------ | ------------------- | --------- |
-| 0    | No driving automation          | 운전자          | 운전자 | 운전자              | 해당 없음 |
-| 1    | Driver assistance              | 운전자와 시스템 | 운전자 | 운전자              | 제한      |
-| 2    | Partial driving automation     | 시스템          | 운전자 | 운전자              | 제한      |
-| 3    | Conditional driving automation | 시스템          | 시스템 | fallback-ready user | 제한      |
-| 4    | High driving automation        | 시스템          | 시스템 | 시스템              | 제한      |
-| 5    | Full driving automation        | 시스템          | 시스템 | 시스템              | 제한 없음 |
-
-ISO/SAE PAS 22736:2021은 레벨 1·2가 자동화하는 OEDR을 그 레벨이 맡는 차량 운동 제어 축에 딸린 제한된 OEDR로 두고, 레벨 3\~5는 횡·종 방향 제어와 완전한 OEDR을 모두 자동화하도록 둔다. 레벨 1과 레벨 2의 운전 자동화 시스템 기능을 묶어 **운전자 지원 기능**(driver support feature)이라 하고, 정의의 주석에서 이 기능은 DDT의 일부만 수행하므로 운전자가 나머지를 수행하고 기능을 감독해야 한다고 제시한다.[@iso-sae-pas-22736-obp-2021]
-
-이 PAS는 사용자 감시(monitor the user)의 정의의 주석에서, 사용자 감시가 운전 자동화 시스템의 오용이나 남용(안주에서 오는 과신 포함)에 대한 대응책으로 쓰일 가능성이 가장 크고 주로 레벨 2·3에서 쓸모 있다고 제시한다. 레벨 1 기능에서는 현장에서 오용이나 남용이 두드러지게 나타나지 않았고, 그보다 높은 레벨에서는 ADS가 정의상 스스로 minimal risk condition에 이를 수 있다는 것을 그 까닭으로 든다.[@iso-sae-pas-22736-obp-2021]
-
-이 PAS는 [[sae-j3016#개정 이력|레벨 이름]]을 No Driving Automation(레벨 0), Driver Assistance(레벨 1), Partial·Conditional·High·Full Driving Automation(레벨 2\~5)으로 둔다.[@iso-sae-pas-22736-obp-2021]
-
 ## 분류 밖의 시스템
 
-이 PAS는 ESC(electronic stability control)·AEB(automatic emergency braking) 같은 능동 안전 시스템과 LKA(lane keeping assistance) 같은 일부 운전자 보조 시스템을 이 분류 체계에서 뺀다. 이들은 DDT를 지속적으로 수행하지 않고 위험할 수 있는 상황에 순간적으로 개입할 뿐이라, 운전자의 역할을 바꾸지 않기 때문이다. 이 PAS는 지속적 운행의 정의의 주석에서, anti-lock brake system·ESC·AEB처럼 순간적으로만 개입하고 DDT의 어느 부분도 지속적으로 수행하지 않는 시스템과, 외부 사건에 반응하지 않는 일반 크루즈 컨트롤은 레벨 0 말고는 분류되지 않는다고 제시한다.[@iso-sae-pas-22736-obp-2021]
+ISO/SAE PAS 22736:2021은 ESC(electronic stability control)·AEB(automatic emergency braking) 같은 능동 안전 시스템과 LKA(lane keeping assistance) 같은 일부 운전자 보조 시스템을 이 분류 체계에서 뺀다. 이들은 DDT를 지속적으로 수행하지 않고 위험할 수 있는 상황에 순간적으로 개입할 뿐이라, 운전자의 역할을 바꾸지 않기 때문이다. 이 PAS는 또 anti-lock brake system·ESC·AEB처럼 순간적으로만 개입하고 DDT의 어느 부분도 지속적으로 수행하지 않는 시스템과, 외부 사건에 반응하지 않는 일반 크루즈 컨트롤은 레벨 0 말고는 분류되지 않는다고 제시한다.[@iso-sae-pas-22736-obp-2021]
 
 ## ADS
 
@@ -59,7 +59,7 @@ ISO/SAE PAS 22736:2021은 레벨 1·2가 자동화하는 OEDR을 그 레벨이 �
 
 이 PAS는 **minimal risk condition**을, 여정을 이어 갈 수 없거나 이어 가지 말아야 할 때 충돌 위험을 줄이려고 사용자나 ADS가 DDT fallback 뒤 차량을 데려가는 안정된 정지 상태로 정의한다. 레벨 4 ADS가 연산 모듈 하나의 failure 때 중복 연산 모듈을 써서 DDT fallback으로 넘어가 minimal risk condition에 이르는 것과, 주 전원 계통의 failure 때 예비 전원으로 minimal risk condition에 이르는 것을 예로 든다.[@iso-sae-pas-22736-obp-2021]
 
-레벨 3 ADS 기능의 fallback-ready user가 개입 요청을 받고도 오래 fallback을 하지 않을 때나, ADS가 차량 운동을 더는 제어하지 못할 만큼 큰 시스템 failure나 외부 사건이 일어났을 때 차량을 자동으로 경로 안에 세우는 **failure mitigation strategy**는 ADS 기능이 아니라 차량 기능이다.[@iso-sae-pas-22736-obp-2021]
+**Failure mitigation strategy**는 레벨 3 ADS 기능의 fallback-ready user가 개입 요청을 받고도 오래 fallback을 하지 않을 때나, ADS가 차량 운동을 더는 제어하지 못할 만큼 큰 시스템 failure나 외부 사건이 일어났을 때 차량을 달리던 경로 위에서 자동으로 멈춰 세우는 차량 기능이고, ADS 기능이 아니다.[@iso-sae-pas-22736-obp-2021]
 
 이 PAS는 차량을, 모든 여정에서 적어도 일부 구간을 차내 운전자가 운전하도록 설계된 **conventional vehicle**, 정해진 ODD 안의 완전한 여정을 무인 운행이나 차내 운전자의 운전 가운데 골라 할 수 있는 **dual-mode vehicle**, 정해진 ODD 안의 모든 여정을 평상시 무인 운행하도록 설계된 ADS-DV로 나눈다. 또 원격의 사람이 ADS가 다루지 못하는 상황에서 무인 운행 중인 차량에 정보나 조언을 주는 **remote assistance**와, 원격 운전자가 DDT나 DDT fallback의 일부나 전부를 실시간으로 수행하는 **remote driving**을 구별하고, 정의의 주석에서 remote driving은 운전 자동화가 아니라고 제시한다.[@iso-sae-pas-22736-obp-2021]
 
