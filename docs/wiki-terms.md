@@ -15,14 +15,22 @@
 
 - (informative): (참고), 참고 Annex (#566). 표준의 informative Annex와 절. 꾸밈말 꼴도 같다. 예: "informative Annex로". 원문이 다른 말로 적으면 그 말. 예: 원문이 non-normative라 적은 장은 "(non-normative)". 조사는 괄호 앞의 Annex 이름이나 절 번호에 맞춘다. 예: "Annex U(informative)는"
 - 5 baud initialization, fast initialization: - (#667). K-Line 초기화일 때
+- ACC, BSD, FCW, LCA, LDW, LKA, RCTA: 전방 충돌 경고, 적응형 순항 제어 (#682). ADAS 기능 이름일 때. 풀이는 Clearing the Confusion·NHTSA의 풀이. 한국어 기능 설명은 산문에만 쓴다
 - action point: - (#667). FlexRay의 action point일 때
 - adaptive update: - (#432)
 - ADAS 풀이 Advanced Driver Assistance Systems: Advanced Driver Assistance System (#659)
+- ADASIS 풀이 Advanced Driver Assistance Systems Interface Specification: ADAS Interface Specification (#682)
 - ADC 풀이: 통일하지 않음 (#674). 인용한 출처의 풀이대로. AUTOSAR 명세를 인용하면 Analogue Digital Converter, 벤더 문서를 인용하면 그 문서의 풀이. 예: TI TRM의 Analog To Digital Converter
+- ADDW, ALKS, DCAS, DDAW, DMS, EDR, ODD: 자동 차로 유지 시스템, 사고기록장치, 운행 설계 영역, 운전자 감시 시스템 (#682). 원어 약어로 쓴다
+- ADS: 자동 운전 시스템, 자율주행 시스템 (#682). 레벨 3\~5의 시스템일 때. `sotif`의 "레벨 2 자동 운전 시스템"은 ISO 21448의 Level 2 문구라 조건 밖이다. `x-in-the-loop`의 "자율주행 시스템"(dSPACE의 autonomous driving systems)은 레벨이 드러나지 않아 이 결정에 들지 않는다
+- ADS 풀이 Automated Driving System: - (#682)
+- AEB, AEBS: 통일하지 않음 (#682). UN R152·EU 규정의 시스템은 AEBS, ADAS 기능 이름은 AEB
+- ALKS 풀이 Automated Lane Keeping System: - (#682). UN R157 2.1의 단수 꼴
 - Annex: 부속서, 부록 (#301). 원문이 Annex일 때. 원문이 Appendix인 "부록"은 그대로
 - aperiodic: 비주기 (#350). 합성어 포함. 예: aperiodic 태스크, aperiodic server. CANopen PDO의 주기·비주기 송신처럼 통신의 송신 방식은 예외
 - ASPICE: Automotive SPICE, A-SPICE (#231). 판을 붙이면 `ASPICE 4.1` 꼴. 정식 이름은 `automotive-spice` 머리말의 풀이에만, A-SPICE는 그 페이지의 alias로만. 문서 이름 "Automotive SPICE for Cybersecurity"와 슬러그는 예외
 - auto addressing: - (#667). LIN의 auto addressing일 때
+- automated vehicle, fully automated vehicle: 완전 자동화 차량 (#682). EU 규정 2019/2144 3조의 정의 용어일 때
 - balanced media: - (#667). ISO 21806의 MOST50 bPHY 매체일 때
 - baud: 보드레이트 (#496). 기호는 Bd. 음차 "보"도 쓰지 않는다. "Baud Rate Prescaler" 같은 이름은 그대로
 - Boolean: 불리언 (#579). 합성어 포함. 예: Boolean 식, Boolean 연산자. 번역어 "불"도 쓰지 않는다.
@@ -30,6 +38,7 @@
 - cascading failure: 연쇄 고장 (#291)
 - CDD 풀이 Complex Driver: Complex Device Driver (#440). 근거는 SWS BSWGeneral R25-11 [SWS_BSW_91001]과 FO TR Glossary R25-11 4.72. SW-C 종류 이름 "Complex Device Driver"(`autosar-software-component`)는 예외
 - channel: 채널 (#257). MCAL I/O 드라이버(ADC·DIO·ICU·OCU·PWM)의 channel일 때. 그 밖의 채널은 "채널". 예: ComM·NM의 채널, FlexRay 채널
+- chirp, AoA, Doppler-FFT, IF, range-FFT: 처프, 도래각 (#682). 레이더 신호 처리 용어일 때
 - classic: classical (#311). ISO 11898-1:2024를 주어로 한 문장에서 이 판의 이름(약어 CC)을 쓸 때. 위키의 개념 이름 "Classical CAN"은 그대로
 - common cause failure: 공통 원인 고장 (#291)
 - Communication Management: 통신 관리 (#359). AUTOSAR Adaptive Platform의 functional cluster일 때
@@ -43,19 +52,25 @@
 - cybersecurity goal: 사이버보안 목표 (#288)
 - data-based, behavior-based, rule-based: 데이터 기반 (#385). CTAL-TA 강의계획서의 블랙박스 기법 세 갈래일 때. "데이터 기반 테스트"는 data-driven testing
 - DCC 풀이: 통일하지 않음 (#674). 인용한 출처의 풀이대로. TI SPRY178은 dual clock compare, SFFS277은 Dual Clock Comparator
+- DDT 풀이 Dynamic Driving Task: - (#682)
+- dead reckoning, map matching: 추측 항법 (#682)
 - Diffie-Hellman: Diffie–Hellman (#288)
 - DMA 풀이 Direct Memory Access: direct memory access (#674)
 - dominant: 도미넌트 (#165). 조사는 원어의 발음대로. 예: "dominant가"
 - EdDSA 풀이 Edwards-Curve Digital Signature Algorithm: Edwards-curve Digital Signature Algorithm, Edwards Curve Digital Signature Algorithm (#528)
 - edge: 에지 (#257). AUTOSAR 드라이버가 설정과 API로 다루는 edge일 때. 그 밖의 신호 에지는 "에지". 예: CAN 동기화의 에지
+- EDR 풀이 Event Data Recorder: - (#682)
 - EEPROM emulation: EEPROM 에뮬레이션 (#674)
 - endurance, data retention: 내구성, 데이터 보존 (#674). 플래시 메모리의 endurance와 data retention일 때
+- EU 규정 2019/2144, EU 위임 규정 2021/1341, EU 시행 규정 2022/1426: 규정 (EU) 2019/2144, EU 2019/2144 (#682). EU 규정을 부르는 꼴 전체다. 2024/2847, 2024/1257, 2018/858 같은 다른 EU 규정도 종류(규정, 위임 규정, 시행 규정)를 앞에 둔 이 꼴로 부른다
 - event-triggered: 이벤트 트리거 (#564)
 - failure: 실패, 고장, 장애 (#291). 합성어 포함. 예: dependent failure, failure mode, target failure measure. 동사("고장 나다", "실패하다"), 테스트의 pass/fail, 일반 낱말 "실패"는 그대로. ISTQB의 error·defect와 같은 문장, 곧 "실수"나 "결함"과 같은 문장에서는 "장애", 페이지에서 처음 쓸 때 "장애(failure)"
 - false positive: 거짓 양성 (#291). ISTQB 용어 이름은 false-positive result
 - fault seeding: 결함 심기 (#385)
 - GMII 풀이: 통일하지 않음 (#196). 페이지마다 그대로. `mii`는 Gigabit MII, `1000base-t1`은 Gigabit Media Independent Interface
 - hardware architectural metrics: 하드웨어 아키텍처 메트릭 (#396). 하위 용어(single-point fault, latent fault 등)도 원어로
+- HD 지도, SD 지도: HD map, SD map (#682)
+- Highway: 고속도로 (#682). UN R171 2.27의 Highway일 때. 첫 등장에 정의(보행자·자전거 금지, 반대 방향의 물리적 분리)를 풀어 쓴다
 - Kanban: 칸반 (#393)
 - KDF 풀이 Key Derivation Function: Key-Derivation Function (#498)
 - KEM 풀이 Key-Encapsulation Mechanism: Key Encapsulation Mechanism (#498)
@@ -64,10 +79,13 @@
 - LdCom 풀이 Large Data COM: - (#440). 근거는 SWS BSWGeneral R24-11 부록 A
 - MAC 풀이 Medium Access Control: Media Access Control (#165). 출처마다의 풀이를 비교하는 문장은 예외
 - MCU: 통일하지 않음 (#674). AUTOSAR 명세의 microcontroller를 옮긴 AUTOSAR·ECU 쪽 페이지는 "마이크로컨트롤러", 하드웨어 페이지는 MCU
+- minimal risk manoeuvre, minimum risk manoeuvre: 통일하지 않음 (#682). 출처 철자대로. ISO 34503·EU 시행 규정 2022/1426은 minimal risk manoeuvre, UN R157은 minimum risk manoeuvre. 약어는 MRM. "최소 위험 기동"은 쓰지 않는다
 - NAD 풀이 node address: node address for responder nodes (#667). 근거는 ISO 17987-3:2025. ISO 17987-1:2025의 용어 이름 node address for diagnostics는 그대로
 - NMI 풀이: 통일하지 않음 (#675). 인용한 출처의 풀이대로. 예: Infineon AN0001을 인용한 safety-mechanism은 non-maskable interrupt, RTEMS 문서를 인용한 deferred-interrupt-handling은 Non-Maskable Interrupt
+- No Driving Automation, Driver Assistance, Partial·Conditional·High·Full Driving Automation: 부분 자동화 (#682). 운전 자동화 레벨의 이름일 때. 출처 문장 안에서 원어 그대로 쓴다
 - notification: 통지 (#257). AUTOSAR 모듈이 부르는 notification 콜백일 때. 동사로 쓴 자리("통지받는다")와 그 밖의 통지는 "통지"
 - OBD 풀이 On-Board Diagnostics: On-Board Diagnosis (#496)
+- ODD 풀이 Operational Design Domain: - (#682)
 - offset correction, rate correction: - (#667). FlexRay 클록 동기화일 때
 - OOPSLA 풀이 Object-Oriented Programming, Systems, Languages, and Applications: Object-Oriented Programming, Systems, Languages & Applications (#291)
 - OSEK OS: OSEK/VDX OS (#257). OS를 가리킬 때. 명세를 가리키는 "OSEK/VDX OS"는 그대로. 예: "OSEK/VDX OS 2.2.3 명세"
@@ -85,6 +103,7 @@
 - safety case: - (#396)
 - SBC 풀이 System Basis Chip: System-Basis-Chip (#674)
 - scratch-pad RAM: Scratchpad SRAM (#674). AURIX의 PSPR·DSPR일 때
+- SerDes 풀이 Serializer/Deserializer: Serializer/De-Serializer (#682)
 - SoC 풀이 System on Chip: system-on-chip (#674)
 - syntax testing: 구문 테스트, 문법 테스트 (#385). "구문 테스트"는 statement testing
 - systematic fault: 체계적 fault (#578). systematic failure와 systematic error도 같다. 일반 낱말 "체계적으로"는 그대로
@@ -103,6 +122,7 @@
 - 결정 테이블: 결정표 (#441)
 - 결함 허용: - (#223)
 - 공개 키: 공개키 (#288)
+- 근적외선, 적외선 LED: IR LED (#682)
 - 기법: technique (#431). Automotive Threat Matrix의 technique일 때
 - 길쌈 부호: convolutional 부호, 컨볼루션 부호 (#498). 페이지에서 처음 쓸 때 원어를 병기
 - 난수 생성기: random bit generator (#498). RBG는 `random-bit-generator`의 alias로만. DRBG·NRBG 같은 약어의 풀이는 그대로
@@ -123,8 +143,10 @@
 - 사전 등록(备案): 备案 (#432). 원문의 간체를 쓴다.
 - 생명주기: 수명주기 (#288)
 - 서명 키: 서명키 (#288)
+- 센서 융합: 센서 퓨전 (#682). sensor fusion일 때. `autosar-time-synchronization`의 "센서 데이터 융합"(sensor data fusion)은 그대로
 - 소스: 원천 (#346). 신호나 사건을 내는 하드웨어·기능일 때. 예: 인터럽트 소스, 클록 소스, 트리거 소스. 802.1AS의 timing source는 원어로. 기원을 뜻하는 일반 낱말 "원천"(원천 문서, 원천 모델)과 검증 자료인 "출처"는 그대로
 - 송신 정지: 서스펜드 트랜스미션 (#68). 원어는 병기하지 않는다.
+- 시변 이득: time-varying gain (#682)
 - 신뢰성 성장 모델: 신뢰도 성장 모델 (#385)
 - 실수: 오류 (#291). ISTQB의 error(사람의 실수)일 때. 기법 이름 "오류 추정"과 일반적인 error는 "오류"
 - 안전 메커니즘: 안전 기제 (#223)
@@ -134,7 +156,7 @@
 - 오브젝트 코드: 목적 코드 (#401)
 - 오브젝트 파일: 목적 파일 (#401)
 - 운용 프로파일: 운영 프로파일 (#385)
-- 운전 자동화 레벨: 자동화 레벨 (#653). SAE J3016의 레벨일 때
+- 운전 자동화 레벨: 자동화 레벨 (#653, #682). SAE J3016, ISO/SAE PAS 22736, ISO 21448의 레벨일 때. 페이지에서 처음은 "운전 자동화 레벨 2", 그 뒤는 "레벨 2"
 - 위협 시나리오: threat scenario (#252)
 - 응용 프로세서: application processor (#674)
 - 인수 기준: 인수 조건 (#385)
@@ -147,6 +169,7 @@
 - 존 제어기: 존 모듈 (#659). 존 아키텍처의 zone controller와 zone module일 때
 - 차량 사이버보안: 汽车信息安全 (#431). GB 44495의 汽车信息安全일 때
 - 차량 신호: 차량 시그널 (#659). VSS의 vehicle signal일 때. AUTOSAR COM의 signal은 "시그널" 그대로
+- 차량용 레이더, 차량용 카메라, 차량용 SerDes: 차량 레이더 (#682). 제목
 - 추적표: 추적 매트릭스, 추적성 매트릭스 (#441). traceability matrix일 때. 합성어 포함. 예: 요구사항 추적표
 - 취약점 공개: vulnerability disclosure (#431)
 - 취약점 처리: vulnerability handling (#431)

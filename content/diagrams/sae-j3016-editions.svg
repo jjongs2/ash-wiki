@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 206" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="SAE J3016의 판과 ISO/SAE PAS 22736:2021">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- SAE J3016의 판 -->
+  <text x="20" y="30" font-size="12" fill="var(--text, #727981)">SAE J3016</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="40" width="72" height="46" rx="2" />
+    <rect x="116" y="40" width="72" height="46" rx="2" />
+    <rect x="212" y="40" width="72" height="46" rx="2" />
+    <rect x="308" y="40" width="72" height="46" rx="2" />
+    <rect x="404" y="40" width="72" height="46" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="56" y="60">2014년</text>
+    <text x="56" y="77" font-size="12">1월</text>
+    <text x="152" y="60">2016년</text>
+    <text x="152" y="77" font-size="12">9월</text>
+    <text x="248" y="60">2018년</text>
+    <text x="248" y="77" font-size="12">6월</text>
+    <text x="344" y="60">2021년</text>
+    <text x="344" y="77" font-size="12">4월</text>
+    <text x="440" y="60">2026년</text>
+    <text x="440" y="77" font-size="12">9월</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="94" y1="63" x2="114" y2="63" marker-end="url(#arrow)" />
+    <line x1="190" y1="63" x2="210" y2="63" marker-end="url(#arrow)" />
+    <line x1="286" y1="63" x2="306" y2="63" marker-end="url(#arrow)" />
+    <line x1="382" y1="63" x2="402" y2="63" marker-end="url(#arrow)" />
+  </g>
+
+  <!-- ISO/SAE PAS 22736 -->
+  <rect x="245.75" y="140.75" width="196.5" height="44.5" rx="2" fill="var(--green-tint, #337b47)" stroke="var(--green, #337b47)" stroke-width="1.5" />
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="344" y="160">ISO/SAE PAS 22736:2021</text>
+    <text x="344" y="177" font-size="12">2021년 8월</text>
+  </g>
+  <line x1="344" y1="86" x2="344" y2="140" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="336" y="117" text-anchor="end" font-size="12" fill="var(--text, #727981)">기술적으로 같음</text>
+</svg>

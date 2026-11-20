@@ -2,6 +2,7 @@
 title: ISO/PAS 8800
 tags:
   - sw-engineering/functional-safety
+  - applications/adas
 verified: 2026-10-12
 publisher: ISO
 edition: 2024

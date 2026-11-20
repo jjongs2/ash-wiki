@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="1.5 0.5 530 229" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="시나리오의 scene과 action">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 판 -->
+  <text x="20" y="30" font-size="12" fill="var(--text, #727981)">ISO 34501:2022</text>
+
+  <!-- scenario: scene의 열 -->
+  <path d="M40 66 V58 H440 V66" stroke="var(--ink, #727981)" stroke-width="1" />
+  <text x="240" y="50" text-anchor="middle" fill="var(--text, #727981)">scenario</text>
+
+  <!-- scene: 한 시점의 스냅숏 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="40" y="76" width="88" height="36" rx="2" />
+    <rect x="196" y="76" width="88" height="36" rx="2" />
+    <rect x="352" y="76" width="88" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="84" y="99">scene</text>
+    <text x="240" y="99">scene</text>
+    <text x="396" y="99">scene</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="84" y1="112" x2="84" y2="150" />
+    <line x1="240" y1="112" x2="240" y2="150" />
+    <line x1="396" y1="112" x2="396" y2="150" />
+  </g>
+
+  <!-- 시간 축 -->
+  <line x1="20" y1="150" x2="480" y2="150" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="488" y="155" fill="var(--text, #727981)">시간</text>
+
+  <!-- trigger: action을 시작하고 끝내는 event -->
+  <g fill="var(--ink, #727981)">
+    <circle cx="150" cy="150" r="4" />
+    <circle cx="330" cy="150" r="4" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="150" y="140">trigger</text>
+    <text x="330" y="140">trigger</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="150" y1="154" x2="150" y2="176" />
+    <line x1="330" y1="154" x2="330" y2="176" />
+  </g>
+  <rect x="150" y="176" width="180" height="32" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="240" y="197" text-anchor="middle" fill="var(--text, #727981)">actor의 action</text>
+</svg>
