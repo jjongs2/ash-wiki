@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 543 259" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="BQ7961x-Q1의 밸런싱 전류 경로">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1.5 1 271.5 445" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="BQ7961x-Q1의 밸런싱 전류 경로">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
 
   <!-- 색 선: 밸런싱 전류가 흐르는 길. 핀마다 외부 저항, IC 안에 셀마다 밸런싱 스위치 -->
@@ -23,7 +23,7 @@
     </g>
   </g>
 
-  <g transform="translate(270 0)">
+  <g transform="translate(0 190)">
     <text x="10" y="20" fill="var(--text, #727981)">이웃한 두 스위치가 함께 켜질 때</text>
     <rect x="150.75" y="34.75" width="108.5" height="190.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
     <path d="M70 50 V86 M70 94 V166 M70 174 V210 M70 50 H104 M128 50 H200 V75 M200 105 V155 M200 185 V210 H128 M104 210 H70" stroke="var(--blue, #336fb8)" stroke-width="1.5" />

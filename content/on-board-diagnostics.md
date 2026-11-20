@@ -11,7 +11,7 @@ verified: 2026-10-22
 
 규정 (EU) 2024/1257은 Euro 7이라 부르는, 배출가스와 배터리 내구성에 관한 차량 형식 승인 규정이다. 이 규정은 배출가스를 감시하는 OBM(on-board monitoring) 시스템이 차량의 배출 성능 데이터와 배터리 내구성 데이터를 OBD 포트로 보낼 수 있도록 요구하고, 그 쓰임에 정기 검사와 노상 기술 검사를 든다.[@eu-2024-1257-2024]
 
-[[un-gtr-22|UN GTR 22]]는 전동화 경량 차량의 제조사가, 차량이 가장 최근에 정한 SOCE(State of Certified Energy)와 SOCR(State of Certified Range) 값을 OBD 포트로 내도록 요구한다.[@unece-gtr22-amend1-2024]
+[[un-gtr-22|UN GTR 22]]는 전동화 경량 차량의 제조사가, 사용 가능 배터리 에너지와 전기 주행 거리를 인증 때의 값에 대한 백분율로 나타낸 [[un-gtr-22#SOCE와 SOCR monitor|SOCE와 SOCR]]의, 차량이 가장 최근에 추정한 값을 OBD 포트로 내도록 요구한다.[@unece-gtr22-amend1-2024]
 
 ## WWH-OBD
 
