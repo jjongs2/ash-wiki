@@ -11,13 +11,13 @@ verified: 2026-11-21
 
 ## 쓰는 곳
 
-ADAS에서는 ACC, AEB(automatic emergency braking), blind spot detection, lane change assistance, rear cross traffic alert, 주차 보조 같은 기능에 레이더를 쓴다.[@infineon-radar-sensors-automotive-2026][@nxp-saf85xxfs-2022] 차량용 레이더는 감지 거리에 따라 단거리, 중거리, 장거리 레이더로 나뉜다.[@infineon-radar-sensors-automotive-2026][@nxp-tef82xxfs-2020]
+ADAS에서는 ACC, [[adas#기능|AEB]], blind spot detection, lane change assistance, rear cross traffic alert, 주차 보조 같은 기능에 레이더를 쓴다.[@infineon-radar-sensors-automotive-2026][@nxp-saf85xxfs-2022] 차량용 레이더는 감지 거리에 따라 단거리, 중거리, 장거리 레이더로 나뉜다.[@infineon-radar-sensors-automotive-2026][@nxp-tef82xxfs-2020]
 
 Infineon에 따르면 단거리 레이더는 차가 느리게 움직이거나 장애물이 가까이 있는 blind spot detection과 lane change assistance에 쓴다. 단거리·중거리 레이더를 차의 네 모서리에 둔 것을 **코너 레이더**라 하며, 코너 레이더는 운전자가 보기 전에 장애물이나 보행자를 찾아 AEB를 작동시킬 수 있다. 장거리 레이더는 먼 앞쪽의 교통 변화를 더 잘 감지하므로 주로 차 앞쪽에 둔다.[@infineon-radar-sensors-automotive-2026]
 
 ![[diagrams/radar-corner-long-range-placement.svg]]
 
-Infineon의 60 GHz 차량용 레이더 트랜시버는 주로 실내 감시에 쓰며, 차 안에 남겨진 아이를 감지하는 기능과 [[software-defined-vehicle#하드웨어와 소프트웨어의 분리|안전띠 알림]]을 만들 수 있게 한다.[@infineon-radar-sensors-automotive-2026]
+Infineon의 60 GHz 차량용 레이더 트랜시버는 주로 실내 감시에 쓰며, 차 안에 남겨진 아이를 감지하는 기능과 안전띠 알림을 만들 수 있게 한다.[@infineon-radar-sensors-automotive-2026]
 
 ## 동작
 
@@ -51,13 +51,13 @@ $$
 
 ### 속도
 
-속도는 간격 $T_c$로 보낸 두 chirp의 range-FFT 봉우리 사이의 위상차로 잰다. 위상차로 재므로 잴 수 있는 최대 속도 $v_\mathrm{max}$가 있고, 파장을 $\lambda$라 하면 아래와 같다.[@ti-spyy005a-2020]
+간격 $T_c$로 보낸 두 chirp의 range-FFT는 같은 자리에 봉우리를 내지만 위상이 달라, 그 위상차로 속도를 잰다. 위상차로 재므로 잴 수 있는 최대 속도 $v_\mathrm{max}$가 있고, 파장을 $\lambda$라 하면 아래와 같다.[@ti-spyy005a-2020]
 
 $$
 v_\mathrm{max} = \frac{\lambda}{4 T_c}
 $$
 
-같은 거리에 속도가 다른 물체가 여럿이면 두 chirp로는 가려낼 수 없다. 이때는 chirp N개로 된 chirp frame을 보내고, range-FFT가 낸 N개의 phasor에 둘째 FFT인 **Doppler-FFT**를 해 물체를 가른다. 속도 분해능은 frame 시간 $T_f = N T_c$에 반비례한다.[@ti-spyy005a-2020]
+같은 거리에 속도가 다른 물체가 여럿이면 두 chirp로는 가려낼 수 없다. 이때는 chirp N개로 된 chirp frame을 보내고, range-FFT가 낸 N개의 phasor에 둘째 FFT를 해 물체를 가른다. 이 둘째 FFT를 **Doppler-FFT**라 한다. 속도 분해능은 frame 시간 $T_f = N T_c$에 반비례한다.[@ti-spyy005a-2020]
 
 ![[diagrams/fmcw-chirp-frame.svg]]
 
@@ -69,8 +69,8 @@ $$
 
 Infineon에 따르면 4D 이미징 레이더는 보통 레이더가 쓰는 다섯 개 미만의 송수신 안테나 대신 MIMO(multi-input, multi-output) 48 안테나 배열을 써, 움직이는 물체와 멈춘 물체를 보통 레이더보다 먼 거리에서 더 정확히 감지한다.[@infineon-radar-sensors-automotive-2026]
 
-TEF82xx는 송신기 3개, 수신기 4개와 ADC(analog-to-digital converter)를 품은 트랜시버로, 레이더 데이터를 [[automotive-serdes#MIPI CSI-2|MIPI CSI-2]] 같은 외부 인터페이스로 NXP S32R 레이더 [[microcontroller|MCU]]에 넘긴다.[@ti-spyy005a-2020][@nxp-tef82xxfs-2020] TEF82xx 칩 4개를 이으면(cascade) 송신기 12개, 수신기 16개까지의 고해상도 이미징 레이더를 꾸릴 수 있다.[@nxp-tef82xxfs-2020]
+TEF82xx는 송신기 3개, 수신기 4개와 ADC(analog-to-digital converter)를 품은 트랜시버로, 레이더 데이터를 [[automotive-serdes|MIPI CSI-2]](MIPI: 모바일 기기의 인터페이스 명세를 만드는 국제 단체) 같은 외부 인터페이스로 NXP S32R 레이더 [[microcontroller|MCU]]에 넘긴다.[@ti-spyy005a-2020][@nxp-tef82xxfs-2020][@mipi-about-us-2026] TEF82xx 칩 4개를 이으면(cascade) 송신기 12개, 수신기 16개까지의 고해상도 이미징 레이더를 꾸릴 수 있다.[@nxp-tef82xxfs-2020]
 
 ## 날씨와 분해능
 
-TI 백서에 따르면 레이더는 비, 안개, 눈에서도 믿을 만하다. 이미징 레이더는 스스로 신호를 내므로 밤에도 성능이 높다. 다만 77 GHz 레이더는 파장이 4 mm라 먼 거리의 작은 형상을 가려내기 어렵다.[@ti-slyy150d-2025]
+TI의 차량용 라이다 백서에 따르면 레이더는 비, 안개, 눈에서도 믿을 만하다. 이미징 레이더는 스스로 신호를 내므로 밤에도 성능이 높다. 다만 77 GHz 레이더는 파장이 4 mm라 먼 거리의 작은 형상을 가려내기 어렵다.[@ti-slyy150d-2025]

@@ -1,56 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="47 19 477.5 207" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="A-PHY 판마다의 하향 속도 기어">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="27 13 317.5 213" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="A-PHY 판마다의 하향 속도 기어">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
 
   <!-- 축 -->
-  <line x1="60" y1="170" x2="508" y2="170" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <line x1="40" y1="170" x2="328" y2="170" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <line x1="60" y1="170" x2="60" y2="176" />
-    <line x1="172" y1="170" x2="172" y2="176" />
-    <line x1="284" y1="170" x2="284" y2="176" />
-    <line x1="396" y1="170" x2="396" y2="176" />
-    <line x1="508" y1="170" x2="508" y2="176" />
+    <line x1="40" y1="170" x2="40" y2="176" />
+    <line x1="112" y1="170" x2="112" y2="176" />
+    <line x1="184" y1="170" x2="184" y2="176" />
+    <line x1="256" y1="170" x2="256" y2="176" />
+    <line x1="328" y1="170" x2="328" y2="176" />
   </g>
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
-    <text x="60" y="192">0</text>
-    <text x="172" y="192">8</text>
-    <text x="284" y="192">16</text>
-    <text x="396" y="192">24</text>
-    <text x="508" y="192">32</text>
-    <text x="284" y="214">하향 속도 (Gbit/s)</text>
+    <text x="40" y="192">0</text>
+    <text x="112" y="192">8</text>
+    <text x="184" y="192">16</text>
+    <text x="256" y="192">24</text>
+    <text x="328" y="192">32</text>
+    <text x="184" y="214">하향 속도 (Gbit/s)</text>
   </g>
 
   <!-- 기준선 -->
   <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
-    <line x1="88" y1="74" x2="88" y2="170" />
-    <line x1="116" y1="74" x2="116" y2="170" />
-    <line x1="172" y1="74" x2="172" y2="170" />
-    <line x1="228" y1="74" x2="228" y2="170" />
-    <line x1="284" y1="74" x2="284" y2="170" />
-    <line x1="396" y1="134" x2="396" y2="170" />
-    <line x1="508" y1="134" x2="508" y2="170" />
+    <line x1="58" y1="74" x2="58" y2="170" />
+    <line x1="76" y1="74" x2="76" y2="170" />
+    <line x1="112" y1="74" x2="112" y2="170" />
+    <line x1="148" y1="74" x2="148" y2="170" />
+    <line x1="184" y1="74" x2="184" y2="170" />
+    <line x1="256" y1="144" x2="256" y2="170" />
+    <line x1="328" y1="144" x2="328" y2="170" />
   </g>
 
   <!-- 기어 -->
   <g fill="var(--text, #727981)">
-    <text x="60" y="40">v1.0과 v1.1의 하향 속도 기어</text>
-    <text x="508" y="96" text-anchor="end">v2.0이 더한 하향 속도 기어</text>
+    <text x="40" y="34">v1.0과 v1.1의 하향 속도 기어</text>
+    <text x="328" y="96" text-anchor="end">v2.0이 더한</text>
+    <text x="328" y="114" text-anchor="end">하향 속도 기어</text>
   </g>
   <g fill="var(--ink, #727981)">
-    <circle cx="88" cy="70" r="4" />
-    <circle cx="116" cy="70" r="4" />
-    <circle cx="172" cy="70" r="4" />
-    <circle cx="228" cy="70" r="4" />
-    <circle cx="284" cy="70" r="4" />
-    <circle cx="396" cy="130" r="4" />
-    <circle cx="508" cy="130" r="4" />
+    <circle cx="58" cy="70" r="4" />
+    <circle cx="76" cy="70" r="4" />
+    <circle cx="112" cy="70" r="4" />
+    <circle cx="148" cy="70" r="4" />
+    <circle cx="184" cy="70" r="4" />
+    <circle cx="256" cy="140" r="4" />
+    <circle cx="328" cy="140" r="4" />
   </g>
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
-    <text x="88" y="60">2</text>
-    <text x="116" y="60">4</text>
-    <text x="172" y="60">8</text>
-    <text x="228" y="60">12</text>
-    <text x="284" y="60">16</text>
-    <text x="396" y="120">24</text>
-    <text x="508" y="120">32</text>
+    <text x="58" y="58">2</text>
+    <text x="76" y="58">4</text>
+    <text x="112" y="58">8</text>
+    <text x="148" y="58">12</text>
+    <text x="184" y="58">16</text>
+    <text x="256" y="130">24</text>
+    <text x="328" y="130">32</text>
   </g>
 </svg>
