@@ -66,7 +66,7 @@ UCM과 V-UCM의 갱신 프로토콜에는 클라이언트를 인증하는 단계
 - 운전자와의 상호작용을 일으키도록 캠페인 상태를 주고, Vehicle Package에 설정되어 있으면 운전자의 승인이나 동의를 받는다.
 - 차량에 설치된 소프트웨어와 갱신 캠페인 이력의 정보를 주고, 실패하면 복구한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
 
-V-UCM은 백엔드나, 진단 애플리케이션을 거친 진단 도구에서 패키지를 받아 Vehicle Package를 해석하고, Software Package를 대상 UCM이나 [[ecu-reprogramming#정비소와 OTA|Flashing Adapter]]로 전송하며, 처리와 활성화와 롤백을 조율한다. 이 전체를 **캠페인**이라 한다. UCM과 V-UCM은 서비스 인스턴스가 따로 있고, 한 네트워크 도메인에서 V-UCM의 서비스 인터페이스를 제공하는 V-UCM은 어느 때든 많아야 하나다. 차량에 V-UCM이 여럿 돌아도 나머지는 예비다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
+V-UCM은 백엔드나, 진단 응용 프로그램을 거친 진단 도구에서 패키지를 받아 Vehicle Package를 해석하고, Software Package를 대상 UCM이나 [[ecu-reprogramming#정비소와 OTA|Flashing Adapter]]로 전송하며, 처리와 활성화와 롤백을 조율한다. 이 전체를 **캠페인**이라 한다. UCM과 V-UCM은 서비스 인스턴스가 따로 있고, 한 네트워크 도메인에서 V-UCM의 서비스 인터페이스를 제공하는 V-UCM은 어느 때든 많아야 하나다. 차량에 V-UCM이 여럿 돌아도 나머지는 예비다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
 
 V-UCM은 Adaptive Platform의 표준 UCM Client다. V-UCM은 차량 안 여러 UCM 사이에서 패키지를 조율하고 나눈다. V-UCM의 상태 기계는 CampaignState와 TransferState 필드로 볼 수 있고, V-UCM은 `ara::com`의 서비스 발견으로 차량 안의 UCM 서비스 인스턴스를 계속 찾는다.[@autosar-ap-exp-platformdesign-2025]
 

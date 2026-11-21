@@ -25,7 +25,7 @@ ETSI EN 302 665 V1.1.1은 ITS 응용을 처음에 "Road Safety", "Traffic Effici
 
 ## ITS station 참조 구조
 
-ITS station 참조 구조는 Access, Networking & Transport, Facilities 위에 ITS-S(ITS Station) 응용을 담는 Applications를 두고, 그 곁에 ITS station의 통신을 관리하는 Management와 보안 서비스를 주는 Security 개체를 둔다.[@etsi-en-302-665-2010]
+ITS station 참조 구조는 Access, Networking & Transport, Facilities 위에 ITS-S(ITS Station) 응용을 담는 Applications를 두고, 그 곁에 ITS station의 통신을 관리하는 Management와 보안 서비스를 주는 [[v2x-security#보안 구조|Security 개체]]를 둔다.[@etsi-en-302-665-2010]
 
 ![[diagrams/its-station-reference-architecture.svg]]
 
@@ -64,6 +64,6 @@ ETSI는 ITS 표준을 Release로 펴내며, Release 1은 이미 동결했다. Re
 
 3GPP TS 22.185 V19.0.0의 개요 절(informative)은 V2X 응용의 메시지 집합을 3GPP 밖의 자동차 표준 기구가 정하고, 3GPP는 그 메시지의 전송만 다룬다고 제시한다.[@3gpp-ts-22-185-2025]
 
-SAE J2735:2024는 V2X 통신 시스템을 쓰는 응용을 위한 메시지 집합과 그 data frame, data element를 정한다.[@sae-j2735-2024] SAE J2735:2016은 이 메시지 집합을 5.9 GHz DSRC(Dedicated Short Range Communications) 통신 시스템을 쓰는 응용용으로 정했고, SAE J2735:2020은 V2X 응용에서 데이터를 주고받는 하부 통신 프로토콜과 무관하게 쓰도록 했다.[@sae-j2735-2016][@sae-j2735-2020]
+SAE J2735:2024는 V2X 통신 시스템을 쓰는 응용을 위한 메시지 집합과 그 data frame, data element를 정한다.[@sae-j2735-2024] SAE J2735:2016은 이 메시지 집합을 5.9 GHz [[ieee-1609#미국 5.9 GHz 대역|DSRC]](Dedicated Short Range Communications) 통신 시스템을 쓰는 응용용으로 정했고, SAE J2735:2020은 V2X 응용에서 데이터를 주고받는 하부 통신 프로토콜과 무관하게 쓰도록 했다.[@sae-j2735-2016][@sae-j2735-2020]
 
 SAE J2945/1:2026은 J2735가 정한 BSM(basic safety message)을 [[ieee-1609|IEEE 1609]]와 IEEE 802.11이 정한 DSRC 무선 링크로 주고받는, 경량 차량의 V2V 안전 통신 시스템의 요구를 정한다.[@sae-j2945-1-2026]

@@ -23,7 +23,7 @@ AUTOSAR가 처음 제안한 방법은 차량 시스템 기술에서 시작해 �
 
 ### System description
 
-**System Description**은 AUTOSAR 시스템 전체의 System Configuration을 기술하며, category가 `SYSTEM_DESCRIPTION`인 System 요소가 그 중심이다. System Template은 다섯 가지 주요 요소로 Topology, Software, Communication, Mapping, Mapping Constraints를 정한다. 최상위 요소 System은 Software, Mapping, Mapping Constraints를 직접 모으고, Topology와 Communication은 직접 담는 대신 ASAM FIBEX(Field Bus Exchange Format)의 요소를 참조한다. System Template은 Mapping과 Mapping Constraints를 다른 요소로 세지만, 메타모델에서는 System이 모으는 SystemMapping에 매핑과 매핑 제약(MappingConstraint)이 함께 든다. 다섯 요소가 기술하는 것은 아래와 같다.[@autosar-cp-tps-systemtemplate-2025]
+**System Description**은 AUTOSAR 시스템 전체의 System Configuration을 기술하며, category가 `SYSTEM_DESCRIPTION`인 System 요소가 그 중심이다. System Template은 다섯 가지 주요 요소로 Topology, Software, Communication, Mapping, Mapping Constraints를 정한다. 최상위 요소 System은 Software, Mapping, Mapping Constraints를 직접 모으고, Topology와 Communication은 직접 담는 대신 ASAM [[signal-based-communication#통신 기술 파일|FIBEX]]의 요소를 참조한다. System Template은 Mapping과 Mapping Constraints를 다른 요소로 세지만, 메타모델에서는 System이 모으는 SystemMapping에 매핑과 매핑 제약(MappingConstraint)이 함께 든다. 다섯 요소가 기술하는 것은 아래와 같다.[@autosar-cp-tps-systemtemplate-2025]
 
 | 요소                | 기술하는 것                                                                                                                                           |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -77,6 +77,6 @@ AUTOSAR R25-11 용어집은 **AUTOSAR 메타모델**을 AUTOSAR 시스템과 관
 
 ## 네트워크 기술 형식
 
-System Template은 통신과 토폴로지 기술에 ASAM FIBEX의 기술을 담고, AUTOSAR의 요구에 맞게 PDU 개념 등을 더해 확장했다. FIBEX는 버스 통신 시스템을 다루는 도구 사이의 데이터 교환을 위한 XML 형식이다.[@autosar-cp-tps-systemtemplate-2025] ASAM MCD-2 NET(FIBEX) 4.1.2는 [[flexray|FlexRay]], [[can|CAN]], [[lin|LIN]], [[ethernet|이더넷]] 등을 기술 확장으로 다룬다.[@asam-mcd-2-net-2017]
+System Template은 통신과 토폴로지 기술에 ASAM FIBEX의 기술을 담고, AUTOSAR의 요구에 맞게 PDU 개념 등을 더해 확장했다. FIBEX는 버스 통신 시스템을 다루는 도구 사이의 데이터 교환을 위한 XML 형식이다.[@autosar-cp-tps-systemtemplate-2025]
 
-Vector의 [[signal-based-communication#통신 기술 파일|DBC 데이터베이스]]는 CAN·[[can-fd|CAN FD]] 네트워크, 버스에 이어진 ECU, 메시지와 시그널을 기술한다.[@vector-candb-admin-factsheet-2024] LIN을 규정하는 ISO 17987 시리즈 가운데 ISO 17987-2:2025는 약어 LDF를 LIN description file로 정의한다.[@iso-17987-2-obp-2025] Vector DaVinci Configurator Classic의 Ecu Extract Producer는 DBC 같은 기존 형식의 파일을 ECU Extract로 변환한다.[@vector-davinci-configurator-classic-ecuxpro-2026] Ecu Extract Producer는 ECU Extract를 만들 때 입력에 DBC, LDF, FIBEX 같은 기존 통신 파일이 있으면, 따로 설치하는 Legacy Converter 도구로 이 파일들을 ARXML로 변환해 함께 넣은 ARXML 파일에 합친다.[@vector-davinci-configurator-classic-invariant-ecu-extract-2026]
+Vector의 [[signal-based-communication#통신 기술 파일|DBC 데이터베이스]]는 [[can|CAN]]·[[can-fd|CAN FD]] 네트워크, 버스에 이어진 ECU, 메시지와 시그널을 기술한다.[@vector-candb-admin-factsheet-2024] [[lin|LIN]]을 규정하는 ISO 17987 시리즈 가운데 ISO 17987-2:2025는 약어 LDF를 LIN description file로 정의한다.[@iso-17987-2-obp-2025] Vector DaVinci Configurator Classic의 Ecu Extract Producer는 DBC 같은 기존 형식의 파일을 ECU Extract로 변환한다.[@vector-davinci-configurator-classic-ecuxpro-2026] Ecu Extract Producer는 ECU Extract를 만들 때 입력에 DBC, LDF, FIBEX 같은 기존 통신 파일이 있으면, 따로 설치하는 Legacy Converter 도구로 이 파일들을 ARXML로 변환해 함께 넣은 ARXML 파일에 합친다.[@vector-davinci-configurator-classic-invariant-ecu-extract-2026]

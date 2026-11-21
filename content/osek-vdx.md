@@ -21,7 +21,7 @@ OSEK/VDX 명세는 운영체제([[osek-os|OSEK OS]], [[osektime-os|OSEKtime OS]]
 | OS      | 단일 프로세서용 실시간 멀티태스킹 운영체제의 개념과 API     | [[iso-17356-3\|ISO 17356-3]][@osek-os-2-2-3-2005][@iso-17356-3-2005] |
 | COM     | ECU 안과 ECU 사이의 메시지 전달 인터페이스                  | ISO 17356-4[@osek-binding-1-4-2-2004][@iso-17356-4-2005]             |
 | NM      | 네트워크의 구성 파악과 노드 감시                            | ISO 17356-5[@osek-binding-1-4-2-2004][@iso-17356-5-2006]             |
-| OIL     | CPU 하나에 올라가는 애플리케이션의 구성을 기술하는 언어     | [[iso-17356-6\|ISO 17356-6]][@osek-oil-2-5-2004][@iso-17356-6-2006]  |
+| OIL     | CPU 하나에 올라가는 응용 프로그램의 구성을 기술하는 언어    | [[iso-17356-6\|ISO 17356-6]][@osek-oil-2-5-2004][@iso-17356-6-2006]  |
 
 Binding 1.4.2 명세는 ORTI를 디버거와 감시 도구가 타깃 메모리의 OSEK 객체에 접근하게 하는 인터페이스로 두며, ORTI는 커널 객체를 기술하는 언어인 KOIL(Kernel Object Interface Language)과 OSEK 고유의 객체·속성 기술로 이루어진다.[@osek-binding-1-4-2-2004]
 

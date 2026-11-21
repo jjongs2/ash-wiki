@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="5.5 0 506 456" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="13" fill="none" aria-label="부트로더를 거친 애플리케이션 재프로그래밍">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="5.5 0 506 456" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="13" fill="none" aria-label="부트로더를 거친 응용 프로그램 재프로그래밍">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -13,9 +13,9 @@
     <rect x="286" y="240" width="200" height="170" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)" font-weight="600">
-    <text x="120" y="44">애플리케이션의 Dcm</text>
+    <text x="120" y="44">응용 프로그램의 Dcm</text>
     <text x="386" y="44">부트로더</text>
-    <text x="386" y="264">새로 프로그래밍된 애플리케이션</text>
+    <text x="386" y="264">새로 프로그래밍된 응용 프로그램</text>
   </g>
 
   <!-- 단계 -->
@@ -30,17 +30,17 @@
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="120" y="81">DiagnosticSessionControl</text>
-    <text x="120" y="98" font-size="12">programming session</text>
+    <text x="120" y="98" font-size="12">프로그래밍 세션</text>
     <text x="120" y="151">BswM에 모드 전환으로 알림</text>
     <text x="120" y="168" font-size="12">부트로더로 넘어갈 준비</text>
     <text x="120" y="221">Dcm_SetProgConditions</text>
     <text x="120" y="238" font-size="12">ReprogrammingRequest</text>
-    <text x="386" y="89.5">애플리케이션 재프로그래밍</text>
+    <text x="386" y="89.5">응용 프로그램 재프로그래밍</text>
     <text x="386" y="159.5">ApplUpdated 갱신</text>
     <text x="386" y="301">Dcm_GetProgConditions</text>
     <text x="386" y="318" font-size="12">ApplUpdated 읽기</text>
     <text x="386" y="371">BswM에 알림</text>
-    <text x="386" y="388" font-size="12">애플리케이션이 갱신됨</text>
+    <text x="386" y="388" font-size="12">응용 프로그램이 갱신됨</text>
   </g>
 
   <!-- 흐름 -->

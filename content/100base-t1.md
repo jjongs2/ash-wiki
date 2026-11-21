@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**100BASE-T1**은 꼬임쌍선 한 쌍으로 100 Mbit/s를 전이중으로 주고받는 [[ethernet|이더넷]] 물리 계층이다.[@ieee-802-3-2022][@ti-dp83tc811r-q1-2018] IEEE 802.3bw-2015가 100BASE-T1을 [[ieee-802-3|IEEE 802.3]]에 넣었다.[@ieee-802-3bw-2015] IEEE 802.3 작업 그룹은 이 프로젝트가 필요한 까닭으로, 이더넷이 차량 시장에 들어오면서 한 쌍 균형 케이블로 100 Mbit/s를 내는 방식이 필요해졌다는 점을 들었다.[@ieee-802-3bw-par-2014]
+**100BASE-T1**은 꼬임쌍선 한 쌍으로 100 Mbit/s를 전이중으로 주고받는 [[ethernet|이더넷]] 물리 계층이다.[@ieee-802-3-2022][@ti-dp83tc811r-q1-2018] IEEE 802.3bw-2015가 100BASE-T1을 [[ieee-802-3|IEEE 802.3]]에 넣었다.[@ieee-802-3bw-2015] IEEE 802.3 작업 그룹은 이 프로젝트가 필요한 까닭으로, 이더넷이 차량 시장에 들어오면서 한 쌍 평형 케이블로 100 Mbit/s를 내는 방식이 필요해졌다는 점을 들었다.[@ieee-802-3bw-par-2014]
 
 BroadR-Reach는 Broadcom의 이더넷 [[ethernet-phy|PHY]] 기술이고, OPEN Alliance가 이를 OABR(OPEN Alliance BroadR-Reach) PHY로 받아들였다.[@broadcom-broadr-reach-3-0-2014][@open-alliance-incorporation-2021] P802.3bw PAR(Project Authorization Request)는 표준이 Broadcom이 저작권을 가진 기존 공개 자료에 크게 기댈 것이라고 밝혔고[@ieee-802-3bw-par-2014], 태스크 포스는 기존 OABR PHY와 전기적으로 상호 운용하는 것을 목표로 삼았다.[@ieee-802-3bw-objectives-2014] IEEE 802.3 작업 그룹에 따르면 OABR PHY는 2013년부터 양산차에 쓰였다.[@ieee-802-3bw-csd-2014]
 
@@ -35,7 +35,7 @@ IEEE 802.3-2022는 100BASE-T1 PHY에 정상 동작과 링크 트레이닝 동작
 
 ## 링크 세그먼트
 
-P802.3bw 태스크 포스는 인라인 커넥터를 4개까지 둔 한 쌍 균형 케이블에서 적어도 15 m를 잇는 링크 세그먼트와 PHY의 성능 특성을 정하는 것을 목표로 삼았다.[@ieee-802-3bw-objectives-2014] IEEE 802.3-2022는 100BASE-T1 링크 세그먼트를 인라인 커넥터 4개까지와 짝 커넥터 2개를 둔, 15 m까지의 평형 꼬임쌍선 한 쌍으로 정한다.[@ieee-802-3-2022] TJA1100은 비차폐 꼬임쌍선 한 쌍에서 적어도 15 m 길이의 케이블을 지원한다.[@nxp-tja1100-2017]
+P802.3bw 태스크 포스는 인라인 커넥터를 4개까지 둔 한 쌍 평형 케이블에서 적어도 15 m를 잇는 링크 세그먼트와 PHY의 성능 특성을 정하는 것을 목표로 삼았다.[@ieee-802-3bw-objectives-2014] IEEE 802.3-2022는 100BASE-T1 링크 세그먼트를 인라인 커넥터 4개까지와 짝 커넥터 2개를 둔, 15 m까지의 평형 꼬임쌍선 한 쌍으로 정한다.[@ieee-802-3-2022] TJA1100은 비차폐 꼬임쌍선 한 쌍에서 적어도 15 m 길이의 케이블을 지원한다.[@nxp-tja1100-2017]
 
 ![[diagrams/link-segment-inline-connectors.svg]]
 

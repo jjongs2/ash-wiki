@@ -39,13 +39,13 @@ $$
 
 Bosch CAN 2.0 규격은 SYNC_SEG를 1 tq로 두고, PROP_SEG와 PHASE_SEG1을 각각 1\~8 tq로 설정할 수 있게 정한다. 한 비트의 tq 수는 적어도 8\~25 범위에서 설정할 수 있어야 한다. 이 규격은 PHASE_SEG2를 PHASE_SEG1과 정보 처리 시간 가운데 큰 값으로 두고, 정보 처리 시간은 2 tq 이하로 정한다.[@bosch-can-2-0-1991]
 
-[[iso-11898-1|ISO 11898-1]]:2024는 **최소 time quantum**을 그 노드에서 설정할 수 있는 가장 작은 time quantum으로, **노드 클록**을 CAN 노드에서 비트 시간에 관련된 상태 기계를 맞추는 시간 기준으로 정의한다.[@iso-11898-1-obp-2024]
+[[iso-11898-1|ISO 11898-1]]:2024는 **최소 time quantum**을 그 노드에서 설정할 수 있는 가장 작은 time quantum으로, **노드 클럭**을 CAN 노드에서 비트 시간에 관련된 상태 기계를 맞추는 시간 기준으로 정의한다.[@iso-11898-1-obp-2024]
 
 ## 컨트롤러 설정
 
 [[can-controller#제품 예|MCP2515]]는 프리스케일러(BRP, Baud Rate Prescaler)와 세그먼트 길이를 설정 레지스터 `CNF1`\~`CNF3`로 받는다. PROP_SEG, PHASE_SEG1, PHASE_SEG2의 길이는 각각 `PRSEG`, `PHSEG1`, `PHSEG2` 필드로 따로 설정한다. `PHSEG2`는 `BTLMODE`가 1일 때만 쓰이고, 0이면 PHASE_SEG2는 PHASE_SEG1과 정보 처리 시간 가운데 큰 값이 된다. MCP2515는 `CNF2`의 `SAM` 비트가 1이면 샘플 포인트에서 버스를 세 번 샘플링하고, 0이면 한 번 샘플링한다.[@microchip-mcp2515-2019]
 
-STM32F10x의 [[can#노드 구성|bxCAN]]은 `CAN_BTR` 레지스터로 프리스케일러(`BRP`)를 받고, PROP_SEG와 PHASE_SEG1을 합친 `BS1`과 PHASE_SEG2에 해당하는 `BS2`를 설정한다.[@st-rm0008-2021]
+STM32F10x의 [[can-controller|CAN 컨트롤러]] bxCAN(Basic Extended CAN)은 `CAN_BTR` 레지스터로 프리스케일러(`BRP`)를 받고, PROP_SEG와 PHASE_SEG1을 합친 `BS1`과 PHASE_SEG2에 해당하는 `BS2`를 설정한다.[@st-rm0008-2021]
 
 ![[diagrams/can-bit-timing-register-fields.svg]]
 

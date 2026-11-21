@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-28
 ---
 
-**UDS**(Unified Diagnostic Services)는 진단 장비와 차량의 [[electronic-control-unit|ECU]] 사이에서 주고받는 진단 통신 서비스를 정한 응용 계층 프로토콜이며, ISO 14229 시리즈가 정한다. 진단 서비스는 클라이언트가 시작해 서버에 진단 정보를 요구하는 정보 교환이고, 클라이언트는 진단 장비(tester)의 기능, 서버는 ECU의 기능이다. [[iso-14229-1|ISO 14229-1:2026]]은 특정 데이터 링크에 매이지 않는 진단 통신 서비스 요구사항을 정한다.[@iso-14229-1-obp-2026]
+**UDS**(Unified Diagnostic Services)는 진단 테스터와 차량의 [[electronic-control-unit|ECU]] 사이에서 주고받는 진단 통신 서비스를 정한 응용 계층 프로토콜이며, ISO 14229 시리즈가 정한다. 진단 서비스는 클라이언트가 시작해 서버에 진단 정보를 요구하는 정보 교환이고, 클라이언트는 테스터의 기능, 서버는 ECU의 기능이다. [[iso-14229-1|ISO 14229-1:2026]]은 특정 데이터 링크에 매이지 않는 진단 통신 서비스 요구사항을 정한다.[@iso-14229-1-obp-2026]
 
 ## 문서 구성
 
@@ -30,7 +30,7 @@ ISO 14229-2:2021은 ISO 14229-1과, DoCAN(Diagnostic communication over Controll
 
 ## 요청과 응답
 
-ISO 14229-1:2026은 서브펑션(SubFunction) 파라미터가 있는 요청 메시지와 없는 요청 메시지를 나눠 정한다.[@iso-14229-1-obp-2026] [[autosar|AUTOSAR]]의 진단 통신 관리자 Dcm(Diagnostic Communication Manager)은 진단 메시지의 첫 바이트를 서비스 식별자(SID, Service Identifier)로 보고 지원하는 서비스인지 검사한다. 서브펑션이 있는 서비스에서 메시지 둘째 바이트의 비트 7(suppressPosRspMsgIndicationBit)이 1이면 긍정 응답을 보내지 않는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+ISO 14229-1:2026은 SubFunction 파라미터가 있는 요청 메시지와 없는 요청 메시지를 나눠 정한다.[@iso-14229-1-obp-2026] [[autosar|AUTOSAR]]의 진단 통신 관리자 Dcm(Diagnostic Communication Manager)은 진단 메시지의 첫 바이트를 서비스 식별자(SID, Service Identifier)로 보고 지원하는 서비스인지 검사한다. SubFunction이 있는 서비스에서 메시지 둘째 바이트의 비트 7(suppressPosRspMsgIndicationBit)이 1이면 긍정 응답을 보내지 않는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 ## 부정 응답 코드
 
@@ -49,7 +49,7 @@ Dcm은 응용이 지원하고 `Dcm_NegativeResponseCodeType`에 정의된 NRC(Ne
 | `0x7E` | subFunctionNotSupportedInActiveSession |
 | `0x7F` | serviceNotSupportedInActiveSession     |
 
-기능 주소 지정(functional addressing)으로 받은 요청의 처리 결과가 부정이면, Dcm은 NRC `0x11`, `0x12`, `0x31`, `0x7E`, `0x7F`의 부정 응답을 보내지 않는다. 요청받은 진단 작업을 할 수는 있지만 마치고 응답을 준비하는 데 시간이 더 걸리면, Dcm은 응답 시간에 이를 때 NRC `0x78`(Response pending) 부정 응답을 보낸다. 한 요청에 보내는 NRC `0x78` 부정 응답 수의 상한은 `DcmDslDiagRespMaxNumRespPend`로 설정할 수 있고, 설정하지 않으면 무한이다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+기능 주소 지정(functional addressing)으로 받은 요청의 처리 결과가 부정이면, Dcm은 NRC `0x11`, `0x12`, `0x31`, `0x7E`, `0x7F`의 부정 응답을 보내지 않는다. 요청받은 진단 작업을 할 수는 있지만 마치고 응답을 준비하는 데 시간이 더 걸리면, Dcm은 응답 시간에 이를 때 NRC `0x78`(requestCorrectlyReceivedResponsePending) 부정 응답을 보낸다. 한 요청에 보내는 NRC `0x78` 부정 응답 수의 상한은 `DcmDslDiagRespMaxNumRespPend`로 설정할 수 있고, 설정하지 않으면 무한이다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 ## 서비스
 
@@ -102,7 +102,7 @@ Dcm은 Authentication(`0x29`)을 [[public-key-infrastructure|PKI]] 인증서 교
 
 ISO 14229-1:2026은 기본 세션과 기본이 아닌 세션을 두고, 세션마다 쓸 수 있는 서비스를 정한다.[@iso-14229-1-obp-2026]
 
-AUTOSAR Dcm은 초기화할 때 세션을 기본 세션으로 두고, 기본이 아닌 세션에서 S3Server 타이머가 만료되면 기본 세션으로 돌아간다. Dcm의 세션 형은 기본 세션이 `0x01`, 프로그래밍 세션이 `0x02`, 확장 진단 세션이 `0x03`이다. AUTOSAR R25-11의 Dcm 명세는 Concurrent TesterPresent의 목적을 기본이 아닌 세션을 유지하고 S3 타이머를 다시 시작하는 것으로 둔다. Dcm은 ISO 14229-2에 따라 프로토콜 타이밍 파라미터 P2ServerMin, P2ServerMax, P2\*ServerMin, P2\*ServerMax, S3Server를 다룬다. `DcmS3ServerTimeoutOverwrite`를 설정하지 않으면 S3Server 타임아웃을 5000 ms로 둔다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+AUTOSAR Dcm은 초기화할 때 세션을 기본 세션으로 두고, 기본이 아닌 세션에서 S3Server 타이머가 만료되면 기본 세션으로 돌아간다. Dcm의 세션 형은 기본 세션이 `0x01`, 프로그래밍 세션이 `0x02`, 확장 진단 세션이 `0x03`이다. AUTOSAR R25-11의 Dcm 명세는 Concurrent TesterPresent의 목적을 기본이 아닌 세션을 유지하고 S3Server 타이머를 다시 시작하는 것으로 둔다. Dcm은 ISO 14229-2에 따라 프로토콜 타이밍 파라미터 P2ServerMin, P2ServerMax, P2\*ServerMin, P2\*ServerMax, S3Server를 다룬다. `DcmS3ServerTimeoutOverwrite`를 설정하지 않으면 S3Server 타임아웃을 5000 ms로 둔다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 ![[diagrams/uds-diagnostic-session-states.svg]]
 

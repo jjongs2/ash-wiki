@@ -11,7 +11,7 @@ verified: 2026-10-06
 
 이 표준은 **PAUSE**를 전이중 흐름 제어 메커니즘으로 정의한다. PAUSE 프레임은 MAC Control 프레임의 하나이고, MAC Control 프레임은 MAC(Medium Access Control)이 주고받는 다른 프레임과 [[ethernet-frame#길이/타입|길이/타입]] 필드로만 구별된다. 이 표준은 MAC Control 프레임의 길이/타입 필드 값을 EtherType `0x8808`로 정한다.[@ieee-802-3-2022]
 
-이 표준은 다른 스테이션의 데이터 프레임 송신을 막으려는 MAC Control 클라이언트가 멀티캐스트 주소 `01-80-C2-00-00-01`, PAUSE opcode, 막을 시간을 지정해 PAUSE를 요청하도록 정한다. PAUSE로는 MAC Control 프레임의 송신을 막을 수 없고, PAUSE 프레임은 전이중 모드로 설정된 DTE(Data Terminal Equipment)만 보낸다. [[ieee-802-1q|IEEE 802.1Q]]를 따르는 브리지는 포트의 상태나 MAC Control 부계층 구현 여부와 상관없이 이 멀티캐스트 주소로 가는 프레임을 전달하지 않으며, PAUSE를 구현하는 스테이션은 이 주소의 프레임을 받도록 MAC을 설정해야 한다.[@ieee-802-3-2022]
+이 표준은 다른 스테이션의 데이터 프레임 송신을 막으려는 MAC Control 클라이언트가 멀티캐스트 주소 `01-80-C2-00-00-01`, PAUSE opcode, 막을 시간을 지정해 PAUSE를 요청하도록 정한다. PAUSE로는 MAC Control 프레임의 송신을 막을 수 없고, PAUSE 프레임은 전이중 모드로 설정된 DTE(Data Terminal Equipment)만 보낸다. [[ieee-802-1q|IEEE 802.1Q]]를 따르는 [[ethernet-switch#리피터, 브리지, 라우터와의 차이|브리지]]는 포트의 상태나 MAC Control 부계층 구현 여부와 상관없이 이 멀티캐스트 주소로 가는 프레임을 전달하지 않으며, PAUSE를 구현하는 스테이션은 이 주소의 프레임을 받도록 MAC을 설정해야 한다.[@ieee-802-3-2022]
 
 이 표준은 막을 시간 pause_time을 2옥텟 부호 없는 정수로 두고, 그 단위 pause_quanta를 그 구현에서 512비트를 보내는 시간으로, 범위를 0부터 65535 pause_quanta까지로 정한다.[@ieee-802-3-2022]
 
@@ -19,7 +19,7 @@ verified: 2026-10-06
 
 이 표준은 프레임 선점의 [[frame-preemption#Express와 preemptable|eMAC이나 pMAC]]에 붙은 MAC Control 부계층이 PAUSE를 만들지 않도록 정한다.[@ieee-802-3-2022]
 
-IEEE 802.1BA-2021은 흐름 제어가 [[avb|AVB]]의 지연 보장을 깨뜨릴 수 있어, 흐름 제어를 지원하는 AVB 시스템이 오디오·비디오 스트림을 나르는 포트에서 MAC Control PAUSE를 끄게 한다. 또 어느 포트에서 [[avb#SR 클래스|SR 클래스]]의 우선순위에 PFC가 켜져 있으면, 그 포트에서 그 SR 클래스의 SRPdomainBoundaryPort 파라미터를 TRUE로 두게 한다. 그러면 이 포트는 그 SR 클래스의 [[srp|SRP]] 도메인 경계가 되어, 그 클래스의 스트림 예약이 이 포트를 넘지 않는다.[@ieee-802-1ba-2021]
+IEEE 802.1BA-2021은 흐름 제어가 [[avb|AVB]]의 지연 보장을 깨뜨릴 수 있어, 흐름 제어를 갖춘 AVB 시스템이 오디오·비디오 스트림을 지원하는 포트에서 MAC Control PAUSE를 끄게 하고, 어느 포트에서 [[avb#SR 클래스|SR 클래스]]의 우선순위에 PFC가 켜져 있으면 그 포트를 그 클래스의 [[srp|SRP]] 도메인 경계로 두게 한다.[@ieee-802-1ba-2021]
 
 KSZ9477S(Microchip의 7포트 기가비트 [[ethernet-switch|이더넷 스위치]])는 전이중 연결에서 MAC Control PAUSE 프레임을 보내고 받는다. 어느 포트로 PAUSE 프레임을 받으면 그 프레임이 지정한 타이머가 끝날 때까지 그 포트로 다음 일반 프레임을 보내지 않고, 타이머가 끝나기 전에 PAUSE 프레임을 또 받으면 타이머를 새 값으로 바꾼다. 흐름 제어를 받는 동안에는 장치가 만든 흐름 제어 프레임만 보낸다. 송신 방향에서 KSZ9477S는 버퍼와 송신 큐 같은 자원의 여유를 보고 흐름 제어를 걸며, 이때 최대 pause_time을 담은 PAUSE 프레임을 보내고, 자원이 풀리면 pause_time이 0인 흐름 제어 프레임을 보내 송신을 다시 열게 한다. 흐름 제어가 거듭 켜졌다 꺼지지 않도록 히스테리시스를 둔다.[@microchip-ksz9477s-2019]
 

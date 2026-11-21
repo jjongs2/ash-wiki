@@ -8,7 +8,7 @@ aliases:
 verified: 2026-10-06
 ---
 
-**Per-stream filtering and policing**(PSFP)은 브리지가 받은 프레임을 그 프레임이 속한 스트림에 따라 세고, 거르고, policing하는 [[ieee-802-1q|IEEE 802.1Q]]의 기능이다. 스트림 필터가 프레임을 스트림 게이트와 flow meter에 이어 주고, 스트림 게이트는 시간 스케줄에 맞지 않는 프레임을 버리며, flow meter는 트래픽 한도를 넘은 프레임을 버리거나 drop eligible로 표시한다.[@ieee-802-1q-2022] IEEE 802.1Qci-2017이 IEEE 802.1Q-2014의 개정(Amendment 28)으로 PSFP를 넣었고[@ieee-802-1qci-2017], 이 개정은 IEEE 802.1Q-2018에 합쳐졌다.[@ieee-802-1q-2022]
+**Per-stream filtering and policing**(PSFP)은 [[ethernet-switch#리피터, 브리지, 라우터와의 차이|브리지]]가 받은 프레임을 그 프레임이 속한 스트림에 따라 세고, 거르고, policing하는 [[ieee-802-1q|IEEE 802.1Q]]의 기능이다. 스트림 필터가 프레임을 스트림 게이트와 flow meter에 이어 주고, 스트림 게이트는 시간 스케줄에 맞지 않는 프레임을 버리며, flow meter는 트래픽 한도를 넘은 프레임을 버리거나 drop eligible로 표시한다.[@ieee-802-1q-2022] IEEE 802.1Qci-2017이 IEEE 802.1Q-2014의 개정(Amendment 28)으로 PSFP를 넣었고[@ieee-802-1qci-2017], 이 개정은 IEEE 802.1Q-2018에 합쳐졌다.[@ieee-802-1q-2022]
 
 P802.1Qci 프로젝트는 브리지가 프레임이 속한 데이터 스트림과 동기화된 주기적 시간 스케줄에 따라 프레임 계수, 필터링, policing, 서비스 클래스 선택을 하는 절차와 관리 객체를 정하는 것을 범위로 삼았다. 이 프로젝트에서 policing과 필터링 기능에는 네트워크의 다른 시스템이 보내는 방해 전송을 찾아내고 그 영향을 줄여 네트워크를 더 견고하게 하는 일이 든다. 이 프로젝트는 한 스트림에 할당된 대역폭을 넘는 장치가 그 스트림만이 아니라 어느 스트림이나 모든 스트림에서 [[tsn|TSN]]의 이점을 잃게 할 수 있다는 점을 배경으로 들었다.[@ieee-802-1qci-project-2026]
 

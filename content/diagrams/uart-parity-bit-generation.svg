@@ -18,11 +18,11 @@
   </g>
   <text x="118" y="68" text-anchor="middle" fill="var(--text, #727981)">…</text>
 
-  <!-- 패리티 비트, 정지 비트 -->
+  <!-- 패리티 비트, stop 비트 -->
   <rect x="220.75" y="44.75" width="98.5" height="38.5" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
   <text x="270" y="69" text-anchor="middle" fill="var(--on-fill, #f8fafd)">패리티 비트</text>
   <rect x="324.75" y="44.75" width="82.5" height="38.5" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="366" y="69" text-anchor="middle" fill="var(--text, #727981)">정지 비트</text>
+  <text x="366" y="69" text-anchor="middle" fill="var(--text, #727981)">stop 비트</text>
 
   <!-- 데이터 비트를 모두 XOR -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">

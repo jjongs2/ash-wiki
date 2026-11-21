@@ -19,7 +19,7 @@ NXP의 SBC UJA1169는 Normal 모드에서 V1 레귤레이터로 MCU에 전원을
 
 ## Watchdog
 
-SBC의 watchdog은 MCU가 SPI로 트리거하고, timeout 모드와 [[watchdog#Timeout과 window|window 모드]]를 둔다.[@nxp-uja1169-2016][@infineon-tle9471-3es-2022] UJA1169는 Watchdog control register에 유효하게 쓰는 것을 트리거로 보고, MCU와 따로 된 클록으로 watchdog을 돌린다. Timeout 모드의 watchdog은 Standby나 Sleep 모드에서 MCU를 주기적으로 깨우는 데도 쓸 수 있다.[@nxp-uja1169-2016]
+SBC의 watchdog은 MCU가 SPI로 트리거하고, timeout 모드와 [[watchdog#Timeout과 window|window 모드]]를 둔다.[@nxp-uja1169-2016][@infineon-tle9471-3es-2022] UJA1169는 Watchdog control register에 유효하게 쓰는 것을 트리거로 보고, MCU와 따로 된 클럭으로 watchdog을 돌린다. Timeout 모드의 watchdog은 Standby나 Sleep 모드에서 MCU를 주기적으로 깨우는 데도 쓸 수 있다.[@nxp-uja1169-2016]
 
 ## Fail 출력
 

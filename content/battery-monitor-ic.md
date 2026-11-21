@@ -41,7 +41,7 @@ ISL78714의 흔한 구성에서는 마스터 ISL78714 하나가 SPI로 호스트
 
 ![[diagrams/battery-monitor-daisy-chain-ring.svg]]
 
-BQ7961x-Q1의 데이지 체인은 [[differential-signaling|차동 신호]]로 전자기 내성을 높이고, 비트마다 그 보수(complement)를 함께 보내 직류 성분 없이 반이중으로 주고받는다. 장치마다 통신을 다시 클록해, 먼 거리에서도 통신의 무결성을 지킨다.[@ti-bq79616-q1-2026]
+BQ7961x-Q1의 데이지 체인은 [[differential-signaling|차동 신호]]로 전자기 내성을 높이고, 비트마다 그 보수(complement)를 함께 보내 직류 성분 없이 반이중으로 주고받는다. 장치마다 통신을 다시 클럭해, 먼 거리에서도 통신의 무결성을 지킨다.[@ti-bq79616-q1-2026]
 
 ## 측정과 fault 알림
 

@@ -19,7 +19,7 @@ hook 루틴마다 운영체제가 부르는 시점과, 쓸지 정하는 OIL 속�
 | `StartupHook`  | 운영체제 초기화가 끝난 뒤, 스케줄러가 돌기 전                               | `STARTUPHOOK`  |
 | `ShutdownHook` | `ShutdownOS`가 불린 뒤, 운영체제가 멈추기 전                                | `SHUTDOWNHOOK` |
 
-`StartupHook`에서는 애플리케이션이 장치 드라이버 초기화 같은 일을 할 수 있다. `PreTaskHook`과 `PostTaskHook`은 태스크가 running 상태인 채로 불리므로, 그 안에서 `GetTaskID`가 [[osek-task#조회|INVALID_TASK]]를 돌려주지 않는다. 두 hook은 디버깅이나, [[context-switch|context switch]] 시간을 포함한 시간 측정에 쓸 수 있다. 태스크가 도는 중에 `ShutdownOS`가 불리면 `PostTaskHook`을 부를지는 정해지지 않고, 부르더라도 `ShutdownHook`의 앞인지 뒤인지 정해지지 않는다. `ShutdownHook`은 `ShutdownOS`에 넘긴 오류 값을 인자로 받는다.[@osek-os-2-2-3-2005]
+`StartupHook`에서는 응용 프로그램이 장치 드라이버 초기화 같은 일을 할 수 있다. `PreTaskHook`과 `PostTaskHook`은 태스크가 running 상태인 채로 불리므로, 그 안에서 `GetTaskID`가 [[osek-task#조회|INVALID_TASK]]를 돌려주지 않는다. 두 hook은 디버깅이나, [[context-switch|context switch]] 시간을 포함한 시간 측정에 쓸 수 있다. 태스크가 도는 중에 `ShutdownOS`가 불리면 `PostTaskHook`을 부를지는 정해지지 않고, 부르더라도 `ShutdownHook`의 앞인지 뒤인지 정해지지 않는다. `ShutdownHook`은 `ShutdownOS`에 넘긴 오류 값을 인자로 받는다.[@osek-os-2-2-3-2005]
 
 ![[diagrams/osek-pre-post-task-hook.svg]]
 
@@ -31,7 +31,7 @@ OSEK/VDX OS 2.2.3 명세는 hook 루틴의 인터페이스를 표준화하지만
 
 운영체제는 오류를 두 부류로 나눈다.[@osek-os-2-2-3-2005]
 
-- **애플리케이션 오류**: 운영체제가 요청받은 서비스를 올바르게 수행하지 못했지만 내부 데이터는 올바르다고 보는 경우다. 중앙 오류 처리인 `ErrorHook`을 부르고, 상태 정보로도 오류를 돌려준다.
+- **응용 오류**: 운영체제가 요청받은 서비스를 올바르게 수행하지 못했지만 내부 데이터는 올바르다고 보는 경우다. 중앙 오류 처리인 `ErrorHook`을 부르고, 상태 정보로도 오류를 돌려준다.
 - **치명적 오류**: 운영체제가 내부 데이터가 올바르다고 더는 볼 수 없는 경우다. 운영체제가 `ShutdownOS`를 부른다.[@osek-os-2-2-3-2005]
 
 대부분의 시스템 서비스는 상태를 StatusType으로 돌려주며, 제약 없이 수행하면 E_OK(값 0)다.[@osek-os-2-2-3-2005]
@@ -40,7 +40,7 @@ OSEK/VDX OS 2.2.3 명세는 hook 루틴의 인터페이스를 표준화하지만
 
 운영체제는 오류 검사를 **standard status**와 **extended status** 두 수준으로 제공한다.[@osek-os-2-2-3-2005] 어느 쪽을 쓸지는 OIL의 `OS` 객체에서 `STATUS` 속성(`STANDARD` 또는 `EXTENDED`)으로 고른다.[@osek-oil-2-5-2004]
 
-standard status는 디버깅을 마친 애플리케이션을 위한 것이다. standard status에서 돌아오는 E_OK가 아닌 값은 경고다. extended status는 standard status보다 오류를 더 검사해 값을 더 돌려주며, 디버깅이 끝나지 않은 애플리케이션의 시험에 쓴다. extended status에서만 돌아오는 값은 대상 애플리케이션을 실행할 때는 더 나오지 않아야 하므로, 실행 시 버전의 운영체제는 그 오류를 검사하지 않는다.[@osek-os-2-2-3-2005]
+standard status는 디버깅을 마친 응용 프로그램을 위한 것이다. standard status에서 돌아오는 E_OK가 아닌 값은 경고다. extended status는 standard status보다 오류를 더 검사해 값을 더 돌려주며, 디버깅이 끝나지 않은 응용 프로그램의 시험에 쓴다. extended status에서만 돌아오는 값은 대상 응용 프로그램을 실행할 때는 더 나오지 않아야 하므로, 실행 시 버전의 운영체제는 그 오류를 검사하지 않는다.[@osek-os-2-2-3-2005]
 
 오류 코드와 그것이 돌아오는 경우는 다음과 같다. standard status에서도 돌아오는 것은 E_OS_LIMIT, E_OS_NOFUNC, E_OS_STATE의 일부 경우뿐이다.[@osek-os-2-2-3-2005] OSEK/VDX의 부분마다 나눈 오류 코드 값의 범위는 [[osek-vdx#명세|OSEK/VDX]]에서 다룬다.
 

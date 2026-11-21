@@ -66,7 +66,7 @@ RFC 3366은 TCP를 전송 계층의 [[automatic-repeat-request#슬라이딩 윈�
 
 TCP는 RTO(retransmission timeout)를 Karn 알고리즘을 포함한 RFC 6298의 알고리즘으로 계산한다.[@ietf-rfc-9293-2022]
 
-이 알고리즘은 RTO 계산에 송신 측의 상태 변수 SRTT(smoothed round-trip time)와 RTTVAR(round-trip time variation)를 두고, 클록 단위를 $G$초로 둔다. 송신 측은 RTT(round-trip time)를 처음 재기 전에는 RTO를 1초로 두도록 권고되고, 첫 측정값 $R$을 얻으면 $\mathrm{SRTT} = R$, $\mathrm{RTTVAR} = R/2$로 두고 $\mathrm{RTO} = \mathrm{SRTT} + \max(G,\ 4\,\mathrm{RTTVAR})$로 두어야 한다. RTO를 계산할 때마다 1초보다 작으면 1초로 올리도록 권고된다.[@ietf-rfc-6298-2011]
+이 알고리즘은 RTO 계산에 송신 측의 상태 변수 SRTT(smoothed round-trip time)와 RTTVAR(round-trip time variation)를 두고, 클럭 단위를 $G$초로 둔다. 송신 측은 RTT(round-trip time)를 처음 재기 전에는 RTO를 1초로 두도록 권고되고, 첫 측정값 $R$을 얻으면 $\mathrm{SRTT} = R$, $\mathrm{RTTVAR} = R/2$로 두고 $\mathrm{RTO} = \mathrm{SRTT} + \max(G,\ 4\,\mathrm{RTTVAR})$로 두어야 한다. RTO를 계산할 때마다 1초보다 작으면 1초로 올리도록 권고된다.[@ietf-rfc-6298-2011]
 
 재전송 타이머가 만료되면 보내는 쪽은 아직 확인 응답을 받지 못한 가장 이른 세그먼트를 다시 보낸다. 이때 RTO를 두 배로 늘려야 한다. 재전송한 세그먼트로는 RTT를 재지 않아야 한다(Karn 알고리즘). 확인 응답이 어느 전송에 대한 것인지 가릴 수 있는 TCP Timestamps 옵션을 쓸 때만 예외다.[@ietf-rfc-6298-2011]
 
@@ -84,4 +84,4 @@ TCP는 주고받은 세그먼트의 경계와 응용이 읽고 쓰는 버퍼의 
 
 [[udp|UDP]]는 연결을 맺지 않는 데이터그램 전송 서비스이고, 재전송과 흐름 제어가 필요하면 응용이 직접 맡아야 한다.[@ietf-rfc-1122-1989] UDP [[udp#헤더|헤더]]는 8바이트이고[@ietf-rfc-768-1980], TCP 헤더는 최소 20바이트다.[@ietf-rfc-9293-2022]
 
-[[autosar|AUTOSAR]]의 [[doip|DoIP]] 모듈은 진단 메시지를 TCP 연결로 받는다.[@autosar-cp-sws-diagnosticoverip-2025] [[some-ip|SOME/IP]] 명세는 UDP 바인딩의 신뢰성을 "maybe", TCP 바인딩의 신뢰성을 "exactly once"로 정하고, 1400바이트가 넘는 큰 데이터를 보내야 하고 오류 시 지연 요구가 엄하지 않을 때만 TCP를 쓰도록 권한다.[@autosar-fo-prs-someipprotocol-2025]
+[[autosar|AUTOSAR]]의 [[doip|DoIP]] 모듈은 진단 메시지를 TCP 연결로 받는다.[@autosar-cp-sws-diagnosticoverip-2025] AUTOSAR R25-11의 [[some-ip|SOME/IP]] 프로토콜 명세는 1400바이트가 넘는 큰 데이터를 보내야 하고 오류가 났을 때의 지연에 엄한 요구가 없을 때만 TCP를 쓰도록 권한다.[@autosar-fo-prs-someipprotocol-2025]

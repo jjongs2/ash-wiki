@@ -17,7 +17,7 @@ ISO 11898-1:2024는 classic 포맷만 지원하면서 CAN FD 포맷을 주고받
 
 CAN FD 포맷 프레임에서 classical 포맷의 RTR(Remote Transmission Request) 자리에는 늘 dominant로 보내는 예약 비트 r1이 온다. 기본 포맷의 제어 필드는 IDE(Identifier Extension), EDL, dominant 예약 비트 r0, BRS(Bit Rate Switch), ESI(Error State Indicator), [[data-length-code|DLC]] 4비트 순이다.[@bosch-can-fd-1-0-2012] ISO 11898-1:2015를 따르는 CAN FD 컨트롤러 매뉴얼은 r1 자리의 비트를 RRS(Remote Request Substitution)라 부른다.[@bosch-m-can-2023][@microchip-mcp25xxfd-frm-2020]
 
-- BRS: recessive이면 BRS 비트의 [[can-bit-timing#샘플 포인트|샘플 포인트]] 직후 데이터 구간의 비트율로 바꾸고, dominant이면 바꾸지 않는다.
+- BRS: 데이터 구간의 비트율로 바꿀지 정한다.
 - ESI: 송신 노드가 [[can-fault-confinement|error active]]이면 dominant, error passive이면 recessive다.[@bosch-can-fd-1-0-2012]
 
 ![[diagrams/can-fd-base-format-control-bits.svg]]
@@ -28,9 +28,7 @@ CAN FD 포맷 프레임에서 classical 포맷의 RTR(Remote Transmission Reques
 
 ## CRC 필드
 
-Bosch CAN FD 1.0은 [[can-crc|CRC]] 시퀀스의 길이를 생성 다항식의 차수로 두어, 데이터 필드의 바이트 수 $n$이 $n \le 16$이면 17비트, $n > 16$이면 21비트로 정한다. CRC 시퀀스에는 [[can-bit-stuffing|스터프 비트]]를 고정 위치에 넣고, 이 고정 스터프 비트는 17비트나 21비트에 들지 않는다.[@bosch-can-fd-1-0-2012]
-
-![[diagrams/can-fd-crc-fixed-stuff-bits.svg]]
+[[can-crc|CRC]] 시퀀스는 데이터 필드 길이에 따라 17비트나 21비트이고, 여기에 스터프 비트가 고정 위치에 더 들어간다.[@bosch-can-fd-1-0-2012]
 
 [[iso-11898-1#Bosch CAN FD와의 차이|ISO CRC 모드]]의 CRC 필드에 더해지는 stuff bit count는 [[can-bit-stuffing#CAN FD 프레임과의 차이|CAN 비트 스터핑]]에서 다룬다.
 
@@ -38,6 +36,6 @@ CAN FD 포맷에서 CRC 구분자는 recessive 1비트나 2비트일 수 있다.
 
 ## 확장 포맷
 
-확장 포맷에서는 기본 식별자 11비트, SRR(Substitute Remote Request), IDE, 확장 식별자 18비트 뒤에 r1이 오고, 이어서 EDL이 온다. 그 뒤 필드는 기본 포맷과 같다.[@bosch-can-fd-1-0-2012]
+확장 포맷에서는 [[can-frame#기본 포맷과 확장 포맷|확장 식별자]] 18비트 뒤에 r1이, 이어서 EDL이 온다. 그 뒤 필드는 기본 포맷과 같다.[@bosch-can-fd-1-0-2012]
 
-수신 노드는 SRR 비트를 dominant로 받아도 받아들인다.[@bosch-can-fd-1-0-2012]
+수신 노드는 SRR(Substitute Remote Request) 비트를 dominant로 받아도 받아들인다.[@bosch-can-fd-1-0-2012]

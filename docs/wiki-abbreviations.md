@@ -15,6 +15,7 @@
 - AM: 널리 쓰이는 약어
 - ANSI: 조직
 - API: 널리 쓰이는 약어
+- AS: 표준·규격 이름
 - ASA: 소개하는 조직
 - ASAM: 조직
 - ASQ: 소개하는 조직
@@ -44,6 +45,7 @@
 - CISPR: 소개하는 조직
 - CMSIS-RTOS2: 표준·규격 이름
 - COVESA: 소개하는 조직
+- CPSW: 제품 이름
 - CPU: 널리 쓰이는 약어
 - CRS_DV: 핀과 신호
 - CT-AcT: 표준·규격 이름
@@ -54,11 +56,13 @@
 - CTAL-TM: 표준·규격 이름
 - CTFL: 표준·규격 이름
 - D-PHY: 표준·규격 이름
+- DBC: 표준·규격 이름
 - DENSO: 조직
 - DETA: 널리 쓰이는 약어
 - DIN: 조직
 - DIS: 표준·규격 이름
 - DoD: 조직
+- EC: 조직
 - ECC: 소개하는 조직. Electronic Communications Committee일 때
 - ECMA: 소개하는 조직
 - ECU: 널리 쓰이는 약어
@@ -99,6 +103,7 @@
 - IANA: 조직
 - IBM: 조직
 - IC: 널리 쓰이는 약어
+- ID: 널리 쓰이는 약어
 - IEC: 조직
 - IEEE: 조직
 - IEEE SA: 조직
@@ -112,8 +117,11 @@
 - ISACA: 소개하는 조직
 - ISO: 조직
 - ISTQB: 조직
+- IT: 널리 쓰이는 약어
 - ITU-T: 조직
+- J1939DA: 표준·규격 이름
 - JASO: 표준·규격 이름
+- JASPAR: 소개하는 조직
 - JSAE: 소개하는 조직
 - JSON: 널리 쓰이는 약어
 - JTAG: 표준·규격 이름
@@ -168,6 +176,7 @@
 - ROM: 널리 쓰이는 약어
 - RS: 표준·규격 이름
 - RTA-HVR: 제품 이름
+- RX: 널리 쓰이는 약어
 - RX_CLK: 핀과 신호
 - RX_DV: 핀과 신호
 - RX_ER: 핀과 신호
@@ -193,6 +202,7 @@
 - TR: 표준·규격 이름
 - TRAVEO: 제품 이름
 - TS: 표준·규격 이름
+- TX: 널리 쓰이는 약어
 - TX_CLK: 핀과 신호
 - TX_D: 핀과 신호
 - TX_EN: 핀과 신호

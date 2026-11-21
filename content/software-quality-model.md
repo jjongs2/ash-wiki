@@ -34,7 +34,7 @@ ISO/IEC 25000:2014는 품질을 재는 척도를 둘로 나누어 정의한다.[
 - **내부 품질 척도**(internal measure of software quality): 소프트웨어 제품의 정적 속성(아키텍처, 구조, 구성요소)이 명시된 요구와 암묵적 요구를 만족하는 정도의 척도
 - **외부 품질 척도**(external measure of system or software quality): 시스템이나 소프트웨어 제품의 동작이 요구를 만족하는 정도의 척도[@iso-iec-25000-obp-2014]
 
-ISO/IEC 25019:2023은 **사용 품질**(quality-in-use)을, 시스템이나 제품을 정한 사용 맥락에서 쓸 때 이해관계자의 요구를 만족하거나 넘어서 정한 이로운 목표나 결과를 이루는 정도로 정의한다. 사용 품질은 소프트웨어, 데이터, IT(information technology) 서비스의 품질 같은 여러 요인의 영향을 받는다.[@iso-iec-25019-obp-2023]
+ISO/IEC 25019:2023은 **사용 품질**(quality-in-use)을, 시스템이나 제품을 정한 사용 맥락에서 쓸 때 이해관계자의 요구를 만족하거나 넘어서 정한 이로운 목표나 결과를 이루는 정도로 정의한다. 사용 품질은 소프트웨어, 데이터, IT 서비스의 품질 같은 여러 요인의 영향을 받는다.[@iso-iec-25019-obp-2023]
 
 ISO/IEC 25010:2011은 내부 품질 모델과 외부 품질 모델을 제품 품질 모델 하나로 합쳐, 소프트웨어의 정적 속성과 컴퓨터 시스템의 동적 속성을 함께 다루게 했고, 사용 품질 모델을 effectiveness, efficiency, satisfaction, freedom from risk, context coverage의 다섯 특성으로 두었다. ISO/IEC 25010:2023도 제품 품질 모델 하나를 정의하고, ISO/IEC 25019:2023은 beneficialness, freedom from risk, acceptability의 세 특성으로 사용 품질 모델을 정의한다.[@iso-iec-25010-obp-2023][@iso-iec-25019-obp-2023][@iso-iec-25010-obp-2011]
 

@@ -78,5 +78,5 @@ Courgette는 간이 디스어셈블러로 컴파일된 코드 안의 내부 포�
 
 - Android는 `ota_from_target_files`에 이전 빌드와 새 빌드의 target files를 주어 incremental [[over-the-air-update|OTA]] 패키지를 만든다.[@google-android-ota-tools-2026]
 - Android의 OTA 생성 도구(releasetools)는 파일 확장자가 `.gz`, `.zip`, `.jar`, `.apk`, `.img`면 imgdiff를, 그 밖이면 bsdiff를 기본 차분 도구로 쓴다.[@google-aosp-releasetools-common-2026] android14-release 브랜치의 non-A/B incremental OTA는 zlib이 버전마다 같은 출력을 낸다고 보장할 수 없어, 파티션 차분에서 imgdiff를 끄고 bsdiff를 쓴다.[@google-aosp-releasetools-non-ab-ota-2026]
-- Silicon Labs의 Gecko Bootloader는 슬롯에 있는 현재 펌웨어에 패치를 적용해 새 펌웨어를 만들고, 바르게 만들어지면 애플리케이션 영역으로 복사한다.[@silabs-ug489-2025]
+- Silicon Labs의 Gecko Bootloader는 슬롯에 있는 현재 펌웨어에 패치를 적용해 새 펌웨어를 만들고, 바르게 만들어지면 응용 프로그램 영역으로 복사한다.[@silabs-ug489-2025]
 - Mender의 바이너리 delta는 xdelta 압축 도구로 만든다.[@mender-create-delta-artifact-2026] Mender 서버는 delta Artifact를 만들지 못하면 delta가 아닌 Artifact로 대신한다.[@mender-server-side-delta-2026]

@@ -50,4 +50,4 @@ $$
 
 ## 다른 드라이버와의 관계
 
-PWM Driver는 prescaler, 시스템 클록, PLL(Phase-Locked Loop) 설정을 [[microcontroller-abstraction-layer#모듈 그룹|MCU Driver]]에 맡기고, 포트 핀의 기능 설정을 [[autosar-port-driver|Port Driver]]에 맡긴다.[@autosar-cp-sws-pwmdriver-2025]
+PWM Driver는 prescaler, 시스템 클럭, PLL(Phase-Locked Loop) 설정을 [[microcontroller-abstraction-layer#모듈 그룹|MCU Driver]]에 맡기고, 포트 핀의 기능 설정을 [[autosar-port-driver|Port Driver]]에 맡긴다.[@autosar-cp-sws-pwmdriver-2025]

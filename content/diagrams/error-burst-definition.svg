@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="27.5 14.5 421 192.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="오류 버스트와 버스트 길이">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="27.5 14.5 421 192.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="버스트 오류와 버스트 길이">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
 
-  <!-- 오류 버스트 -->
+  <!-- 버스트 오류 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5">
     <path d="M85 52 V46 H171 V52" />
     <path d="M261 52 V46 H347 V52" />
   </g>
   <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
-    <text x="128" y="36">오류 버스트</text>
-    <text x="304" y="36">오류 버스트</text>
+    <text x="128" y="36">버스트 오류</text>
+    <text x="304" y="36">버스트 오류</text>
   </g>
 
   <!-- 자리: 올바른 자리 -->

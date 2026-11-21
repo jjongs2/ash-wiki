@@ -41,11 +41,11 @@ P802.3ch 태스크 포스는 비차폐 꼬임쌍선, 차폐 꼬임쌍선, 차폐
 
 ## 상위 프로토콜
 
-[[doip|DoIP]]를 정하는 [[iso-13400-2|ISO 13400-2]]:2025는 IP, [[tcp|TCP]], [[udp|UDP]]를 써서 진단 테스터와 차량 안 서버 사이의 진단 통신 요구사항을 정한다.[@iso-13400-2-obp-2025] [[some-ip|SOME/IP]]는 [[service-oriented-communication|서비스 지향 통신]]을 제공하며, 메시지를 IP 기반 차량 내 네트워크의 UDP나 TCP 페이로드로 나른다.[@autosar-fo-prs-someipprotocol-2025]
+[[doip|DoIP]]를 정하는 [[iso-13400-2|ISO 13400-2]]:2025는 IP, [[tcp|TCP]], [[udp|UDP]]를 써서 시험 장비와 차량 안 서버 사이의 진단 통신 요구사항을 정한다.[@iso-13400-2-obp-2025] [[some-ip|SOME/IP]]는 [[service-oriented-communication|서비스 지향 통신]]을 제공하며, 메시지를 IP 기반 차량 내 네트워크의 UDP나 TCP 페이로드로 나른다.[@autosar-fo-prs-someipprotocol-2025]
 
 ![[diagrams/automotive-ethernet-protocol-stack.svg]]
 
-IEEE 802.1 [[tsn|TSN]] 태스크 그룹은 IEEE 802 네트워크에서 지연 상한이 있는 패킷 전달을 목표로 삼으며, 옛 [[avb|AVB]] 태스크 그룹에서 이어졌다.[@ieee-802-1-tsn-tg-2026] IEEE SA에 따르면 AVB 표준은 차량 인포테인먼트 시스템에 쓰인다.[@ieee-tsn-automotive-flyer-2026] [[ieee-802-1dg|IEEE 802.1DG]]-2025는 TSN 표준에 기반해, 지연 상한이 있는 차량 내 브리지 IEEE 802.3 이더넷 네트워크의 [[tsn#프로파일|프로파일]]을 정한다.[@ieee-802-1dg-2025]
+IEEE 802.1 [[tsn|TSN]] 태스크 그룹은 IEEE 802 네트워크에서 지연 상한이 있는 패킷 전달을 목표로 삼으며, 옛 [[avb|AVB]] 태스크 그룹에서 이어졌다.[@ieee-802-1-tsn-tg-2026] IEEE SA에 따르면 AVB 표준은 차량 인포테인먼트 시스템에 쓰인다.[@ieee-tsn-automotive-flyer-2026] [[ieee-802-1dg|IEEE 802.1DG]]-2025는 TSN 표준에 기반해, 지연 상한이 있는 차량 내 [[ethernet-switch#리피터, 브리지, 라우터와의 차이|브리지]]로 이어진 IEEE 802.3 이더넷 네트워크의 [[tsn#프로파일|프로파일]]을 정한다.[@ieee-802-1dg-2025]
 
 ## OPEN Alliance 명세
 
@@ -61,6 +61,6 @@ IEEE 802.3 작업 그룹은 차량용 이더넷 수요를 이끄는 것으로 �
 
 ## 차량 버스와의 차이
 
-TI 기술 기사에 따르면 이더넷은 스위치 네트워크를 이루어, [[can|CAN]], [[lin|LIN]], [[flexray|FlexRay]], [[most|MOST]] 같은 공유 버스 토폴로지로는 얻을 수 없는 대역과 데이터 속도를 낸다.[@ti-sszt730-2018] [[ieee-802-1q|IEEE 802.1Q]]-2022는 브리지가 필터링 정보로 프레임을 출발지와 목적지 사이의 경로에 가두어 트래픽을 줄이게 한다.[@ieee-802-1q-2022] IEEE 802.3-2022가 상정하는 전이중 동작의 가장 흔한 구성은 브리지([[ethernet-switch|스위치]])의 포트마다 장치 하나를 전용 링크로 잇는 것이고, 이때는 공유 매체를 두고 다투는 일이 없다.[@ieee-802-3-2022]
+TI 기술 기사에 따르면 이더넷은 스위치 네트워크를 이루어, [[can|CAN]], [[lin|LIN]], [[flexray|FlexRay]], [[most|MOST]] 같은 공유 매체 버스로는 얻을 수 없는 대역과 데이터 속도를 낸다.[@ti-sszt730-2018] [[ieee-802-1q|IEEE 802.1Q]]-2022는 브리지가 필터링 정보로 프레임을 출발지와 목적지 사이의 경로에 가두어 트래픽을 줄이게 한다.[@ieee-802-1q-2022] IEEE 802.3-2022가 상정하는 전이중 동작의 가장 흔한 구성은 브리지([[ethernet-switch|스위치]])의 포트마다 장치 하나를 전용 링크로 잇는 것이고, 이때는 공유 매체를 두고 다투는 일이 없다.[@ieee-802-3-2022]
 
 차량 버스 전반은 [[vehicle-bus|차량 버스]]에서 다룬다.

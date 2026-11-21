@@ -38,7 +38,7 @@ ISO 21448:2022는 합리적으로 예견할 수 있는 오용을 범위에 넣�
 이 표준은 Introduction의 표 1에서 [[hazard-analysis-and-risk-assessment#용어|해저드 사건]]의 원인을 시스템과 외부 요인으로 나누고, 원인마다 그것을 다루는 표준을 제시한다. 그 가운데 몇 가지는 다음과 같다.[@iso-21448-obp-2022]
 
 - 시스템의 E/E [[fault-error-failure|fault]]: ISO 26262 시리즈
-- 시스템의 기능 부족, 잘못되거나 부적절한 HMI(Human Machine Interface) 설계(사용자의 혼동, 과부하, 부주의 등), AI 기반 알고리즘의 기능 부족: ISO 21448
+- 시스템의 기능 부족, 잘못되거나 부적절한 HMI(Human-Machine Interface) 설계(사용자의 혼동, 과부하, 부주의 등), AI 기반 알고리즘의 기능 부족: ISO 21448
 - [[lidar|라이다]] 빔에 의한 눈 손상처럼 시스템 기술이 일으키는 해저드: 개별 표준(IEC 60825 등)
 - 외부 요인인 차량 보안 취약점을 노린 공격: [[iso-sae-21434|ISO/SAE 21434]][@iso-21448-obp-2022]
 

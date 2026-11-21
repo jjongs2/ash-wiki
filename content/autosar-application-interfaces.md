@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-07
 ---
 
-**AUTOSAR Application Interfaces**는 [[autosar|AUTOSAR]]가 표준화하는 응용 사이의 인터페이스 명세다. AUTOSAR는 소프트웨어 재사용과 교환을 위해 응용의 인터페이스 명세에 초점을 둔다. 응용은 ECU의 경쟁력이 되는 부분이어서, AUTOSAR는 알고리즘 같은 응용 내부의 기능 동작은 표준화하지 않고 응용 사이에 주고받는 내용을 표준화한다. 표준 인터페이스는 특정 하드웨어나 ECU와 상관없이 [[autosar-software-component|소프트웨어 컴포넌트]]를 확장하거나 재사용할 때 쓸 수 있다. 응용의 예로는 전기 모터 제어, 엔진 제어, 변속기 제어, ESC(Electronic Stability Control), 조향, 전자식 주차 브레이크, 주차 거리 제어, 외부 조명, 도난 방지, 원격 키리스 엔트리가 있다.[@autosar-standards-classic-platform-application-interfaces-2026]
+**AUTOSAR Application Interfaces**는 [[autosar|AUTOSAR]]가 표준화하는 응용 사이의 인터페이스 명세다. AUTOSAR는 소프트웨어 재사용과 교환을 위해 응용의 인터페이스 명세에 초점을 둔다. 응용은 [[electronic-control-unit|ECU]]의 경쟁력이 되는 부분이어서, AUTOSAR는 알고리즘 같은 응용 내부의 기능 동작은 표준화하지 않고 응용 사이에 주고받는 내용을 표준화한다. 표준 인터페이스는 특정 하드웨어나 ECU와 상관없이 [[autosar-software-component|소프트웨어 컴포넌트]]를 확장하거나 재사용할 때 쓸 수 있다. 응용의 예로는 전기 모터 제어, 엔진 제어, 변속기 제어, ESC(electronic stability control), 조향, 전자식 주차 브레이크, 주차 거리 제어, 외부 조명, 도난 방지, 원격 키리스 엔트리가 있다.[@autosar-standards-classic-platform-application-interfaces-2026]
 
 AUTOSAR R25-11 Application Interfaces 사용자 안내서는 [[autosar-classic-platform|Classic Platform]] 표준에 속한다. Application Interfaces의 정의는 Classic Platform 릴리스의 Application Interfaces 부분에 파일 묶음으로 나온다. Application Interfaces는 ECU 네트워크에 거의 마음대로 배치할 수 있는 소프트웨어 컴포넌트들이 서로 통신해 기능을 내는 것을 목표로 한다. 공급자가 다른 소프트웨어 컴포넌트끼리 상호운용되도록 그 인터페이스를 통일하고, 안정되고 널리 받아들여지는 응용 인터페이스를 정의해 펴내는 것도 목표다.[@autosar-cp-exp-aiuserguide-2025]
 
