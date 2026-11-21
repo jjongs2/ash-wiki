@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-01
 ---
 
-IEC 60050은 **기능 안전**(functional safety)을 전체 안전 가운데, 기능 단위와 물리 단위가 입력에 맞게 올바르게 동작하는 데 달린 부분으로 정의한다.[@iec-60050-351-57-06-2013] [[iso-26262|ISO 26262]]-1:2018은 기능 안전을 E/E(Electrical/Electronic) 시스템의 오동작이 일으키는 hazard 때문에 생기는 불합리한 리스크가 없는 상태로 정의한다.[@iso-26262-1-obp-2018]
+IEC 60050은 **기능 안전**(functional safety)을 전체 안전 가운데, 기능 단위와 물리 단위가 입력에 맞게 올바르게 동작하는 데 달린 부분으로 정의한다.[@iec-60050-351-57-06-2013] [[iso-26262|ISO 26262]]-1:2018은 기능 안전을 E/E(Electrical/Electronic) 시스템의 오동작이 일으키는 [[hazard-analysis-and-risk-assessment#용어|hazard]] 때문에 생기는 불합리한 리스크가 없는 상태로 정의한다.[@iso-26262-1-obp-2018]
 
 [[iec-61508|IEC 61508]]은 응용 분야와 상관없이 모든 E/E/PE(Electrical/Electronic/Programmable Electronic) 안전 관련 시스템에 적용하는 일반 표준이다.[@iec-61508-1-preview-2010] ISO 26262는 양산 도로 차량의 E/E 시스템을 대상으로 IEC 61508을 고친 표준이다.[@iso-26262-1-obp-2018]
 

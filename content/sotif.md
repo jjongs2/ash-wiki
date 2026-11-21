@@ -33,7 +33,7 @@ ISO 21448:2022는 합리적으로 예견할 수 있는 오용을 범위에 넣�
 
 이 표준은 hazardous behaviour와의 인과 관계에 따라 오용을 직접 오용과 간접 오용으로 나눈다. 직접 오용은 시스템의 hazardous behaviour를 일으킬 수 있어 potential triggering condition으로 보고, hazardous behaviour에 기여할 수 있음이 확인되면 triggering condition으로 본다. 다른 시나리오 조건과 함께 triggering condition의 일부가 되기도 한다. 고속도로용 기능을 도심에서 켜 차량이 정지 표지를 감지하지 못하는 것이 그 예다. 간접 오용은 hazardous behaviour의 통제 가능성을 낮추거나 사고의 심각도를 높일 수 있지만, 시스템의 hazardous behaviour 자체에는 기여하지 못하므로 potential triggering condition으로 보지 않는다. 운전자가 [[levels-of-driving-automation|운전 자동화 레벨]] 2 고속도로 보조 기능을 쓰다가 잠들어 감시하지 않는 것이 그 예다. 이 표준은 사용자 설명서에 명시한 [[operational-design-domain|ODD]] 밖에서 운전자가 자동 시스템을 켜는 것을 직접 오용의 예로 들고, 시스템에 ODD 밖에서의 활성화를 막는 자차 측위(ego vehicle localization) 요소가 있는지와 상관없이 직접 오용으로 본다. 위 간접 오용의 예도 [[driver-monitoring-system|DMS]]가 그 상황을 감지해 완화하든 아니든 간접 오용으로 든다.[@iso-21448-obp-2022]
 
-## hazard의 원천
+## Hazard의 원천
 
 이 표준은 Introduction의 표 1에서 [[hazard-analysis-and-risk-assessment#용어|hazardous event]]의 원인을 시스템과 외부 요인으로 나누고, 원인마다 그것을 다루는 표준을 제시한다. 그 가운데 몇 가지는 다음과 같다.[@iso-21448-obp-2022]
 
@@ -50,7 +50,7 @@ AI 시스템의 기능 부족에서 오는 리스크는 [[iso-pas-8800|ISO/PAS 8
 
 ISO 21448:2022는 SOTIF를 위해 hazard를 없애거나 리스크를 줄이는 조치를 아래 세 단계에 두고, 단계마다 예를 든다.[@iso-21448-obp-2022]
 
-- 명세와 설계 단계: 찾아낸 시스템의 부족이나 hazardous scenario에 따라 차량 기능이나 센서 성능 요구사항을 고친다.
+- 명세와 설계 단계: 찾아낸 시스템의 부족이나 hazard 시나리오에 따라 차량 기능이나 센서 성능 요구사항을 고친다.
 - [[verification-and-validation|검증과 확인]] 단계: 기술 검토, 관련 시나리오를 넓게 덮는 [[test-case|테스트 케이스]], potential triggering condition의 주입, 고른 시나리오의 software·hardware·model in the loop 테스트, 장기 차량 시험, 시험장 차량 시험, 시뮬레이션 시험
 - 운용 단계: SOTIF incident의 현장 모니터링[@iso-21448-obp-2022]
 

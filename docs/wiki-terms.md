@@ -79,7 +79,7 @@
 - functional cluster, Machine, Software Package, Vehicle Package: 기능 클러스터, 머신, 소프트웨어 패키지, 차량 패키지 (#359). AUTOSAR Adaptive Platform의 이름일 때. 물리 머신, 가상 머신 같은 일반 낱말은 그대로
 - GMII 풀이: 통일하지 않음 (#196). 페이지마다 그대로. `mii`는 Gigabit MII, `1000base-t1`은 Gigabit Media Independent Interface
 - hardware architectural metrics: 하드웨어 아키텍처 메트릭 (#396). 하위 용어(single-point fault, latent fault 등)도 원어로
-- hazard: 해저드, 위험원 (#759). 합성어 포함. 원어 이름이 있으면 그 이름. 예: hazardous event, hazardous situation, hazardous behaviour, hazard rate. 그 밖은 "hazard 분석"처럼 쓴다
+- hazard: 해저드, 위험원 (#759). 합성어 포함. 원어 이름이 있으면 그 이름. 예: hazardous event, hazardous situation, hazardous behaviour. 그 밖은 "hazard 분석"처럼 쓴다
 - HD 지도, SD 지도: HD map, SD map (#682)
 - Highway: 고속도로 (#682). UN R171 2.27의 Highway일 때. 첫 등장에 정의(보행자·자전거 금지, 반대 방향의 물리적 분리)를 풀어 쓴다
 - HLC 풀이 high level communication: 고수준 통신, 고수준 통신(HLC) (#759)
