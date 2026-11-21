@@ -35,7 +35,7 @@ DMS는 흔히 근적외선 LED를 짧고 큰 전류 펄스로 켜고, 이미지 
 
 TI 자료에 따르면 DMS 카메라 모듈은 계기판, 대시보드, 조향 칼럼, 실내 거울, A 필러 같은 여러 자리에 둘 수 있다.[@ti-snvaa88-2023][@ti-sszt567-2018]
 
-DMS [[electronic-control-unit|ECU]]는 원격 카메라 모듈에 전원을 주고, SerDes 링크로 카메라 모듈의 영상 데이터를 받는다. Power-over-Coax를 쓰면 동축 케이블 하나로 영상 데이터와 전원을 함께 나른다.[@onsemi-tnd6416-2023][@ti-snvaa88-2023]
+DMS [[electronic-control-unit|ECU]]는 원격 카메라 모듈에 전원을 주고, [[automotive-serdes|SerDes]] 링크로 카메라 모듈의 영상 데이터를 받는다. [[automotive-serdes#동작|Power-over-Coax]]를 쓰면 동축 케이블 하나로 영상 데이터와 전원을 함께 나른다.[@onsemi-tnd6416-2023][@ti-snvaa88-2023]
 
 ![[diagrams/dms-camera-ecu-connection.svg]]
 

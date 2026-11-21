@@ -39,7 +39,7 @@ CPM은 facilities 계층 메시지에 공통인 header 하나와 여러 containe
 
 ![[diagrams/cpm-header-containers.svg]]
 
-CPS가 아래 계층에 넘기는 제어 정보에서 패킷 전송 종류와 헤더 종류는 [[v2x#GeoNetworking과 BTP|GeoNetworking SHB와 BTP]] header type B이고, 통신 프로파일은 unspecified, ITS-G5, LTE-V2X 가운데 하나다. 이 값들은 모두 GeoNetworking/BTP 스택을 쓰고 GeoNetworking을 네트워크 계층 프로토콜로 쓸 때의 값이다. UPER(Unaligned Packed Encoding Rules)로 인코딩한 CPM의 크기는 MTU_CPM을 넘지 않아야 하고, MTU_CPM은 CPM을 나르는 접속 계층 기술의 [[mtu|MTU]]에 따라 정해진다.[@etsi-ts-103-324-2023]
+CPS가 아래 계층에 넘기는 제어 정보에서 패킷 전송 종류와 헤더 종류는 [[v2x#GeoNetworking과 BTP|GeoNetworking SHB와 BTP]] header type B이고, 통신 프로파일은 unspecified, [[its-g5|ITS-G5]], [[c-v2x|LTE-V2X]] 가운데 하나다. 이 값들은 모두 GeoNetworking/BTP 스택을 쓰고 GeoNetworking을 네트워크 계층 프로토콜로 쓸 때의 값이다. UPER(Unaligned Packed Encoding Rules)로 인코딩한 CPM의 크기는 MTU_CPM을 넘지 않아야 하고, MTU_CPM은 CPM을 나르는 접속 계층 기술의 [[mtu|MTU]]에 따라 정해진다.[@etsi-ts-103-324-2023]
 
 ## 개정 이력
 

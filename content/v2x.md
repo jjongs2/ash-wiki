@@ -66,4 +66,4 @@ ETSI는 ITS 표준을 Release로 펴내며, Release 1은 이미 동결했다. Re
 
 SAE J2735:2024는 V2X 통신 시스템을 쓰는 응용을 위한 메시지 집합과 그 data frame, data element를 정한다.[@sae-j2735-2024] SAE J2735:2016은 이 메시지 집합을 5.9 GHz DSRC(Dedicated Short Range Communications) 통신 시스템을 쓰는 응용용으로 정했고, SAE J2735:2020은 V2X 응용에서 데이터를 주고받는 하부 통신 프로토콜과 무관하게 쓰도록 했다.[@sae-j2735-2016][@sae-j2735-2020]
 
-SAE J2945/1:2026은 J2735가 정한 BSM(basic safety message)을 IEEE 1609와 IEEE 802.11이 정한 DSRC 무선 링크로 주고받는, 경량 차량의 V2V 안전 통신 시스템의 요구를 정한다.[@sae-j2945-1-2026]
+SAE J2945/1:2026은 J2735가 정한 BSM(basic safety message)을 [[ieee-1609|IEEE 1609]]와 IEEE 802.11이 정한 DSRC 무선 링크로 주고받는, 경량 차량의 V2V 안전 통신 시스템의 요구를 정한다.[@sae-j2945-1-2026]

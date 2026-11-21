@@ -37,7 +37,7 @@ TI 백서에 따르면 존 제어기는 여러 ECU의 논리 입출력 기능을
 
 - 높은 실시간 성능
 - 큰 프로그램·데이터 메모리
-- 가상화로 [[automotive-safety-integrity-level|ASIL]]이 서로 다른 기능을 함께 돌리는 혼합 임계도(mixed-criticality) 지원
+- [[hypervisor|가상화]]로 [[automotive-safety-integrity-level|ASIL]]이 서로 다른 기능을 함께 돌리는 혼합 임계도(mixed-criticality) 지원
 - 백본 쪽 고속 통신 인터페이스
 - 스마트 센서·액추에이터와 잇는 [[can-fd|CAN FD]]나 [[lin|LIN]] 같은 저속 통신 주변장치 여러 개[@ti-spry345-2024]
 
