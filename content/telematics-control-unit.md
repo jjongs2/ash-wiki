@@ -25,6 +25,8 @@ TI 기술 기사(2018)에 따르면 TCU는 eCall 기능에 더해 위치 같은 
 
 TCU 설계는 백업 배터리에서 시작하기 좋고, 백업 배터리의 화학 종류와 셀 수, 전류 능력에 따라 나머지 시스템이 정해진다. TCU의 입력 전압은 대개 4.5 V에서 시작해 최고 42 V까지 오른다. 스위칭 레귤레이터는 차량 라디오의 AM·FM 대역을 방해하지 않아야 하므로, 스위칭 주파수를 약 2.1 MHz(AM 대역 위, FM 대역 아래)나 약 400 kHz(AM 대역 아래)에 둔다. 텔레매틱스 시스템은 앞유리, 실내, 트렁크, 엔진 같은 뜨거워지는 자리에 놓이기도 해, IC 접합 온도는 150 °C까지 견뎌야 한다.[@ti-sszt633-2018]
 
+![[diagrams/tcu-switching-frequency-am-fm-bands.svg]]
+
 기사가 나온 2018년 무렵 TCU가 헤드 유닛이나 [[gateway#중앙 게이트웨이|중앙 게이트웨이]]와 잇는 데이터 속도는 높아지고 있었고, [[can|CAN]], [[lin|LIN]], USB만 쓰던 링크는 10/100 Mbit/s와 1 Gbit/s 링크로 바뀌었다.[@ti-sszt633-2018]
 
 ## 제품 예
@@ -38,3 +40,5 @@ NXP의 S32K3 Automotive T-Box는 S32K344 MCU 기반의 참조 설계로, TCU, �
 NXP 백서(2016)에 따르면 백서가 나온 2016년 무렵 흔한 차량 네트워크는 보호되지 않아, TCU나 [[on-board-diagnostics|OBD]] 포트에 들어간 공격자가 위조한 CAN 메시지를 보내 브레이크 같은 안전에 중요한 기능을 조종할 수 있었다.[@nxp-multi-layer-vehicle-security-wp-2016]
 
 이 백서가 제시하는 첫 보호층은 TCU에 Secure Element를 붙여 보안을 더한다. Secure Element는 셀룰러나 Wi-Fi 연결 위에 [[transport-layer-security|TLS]] 같은 바깥과의 종단 간 보안 채널을 맺는 데 쓰이고, 키와 인증서를 지키는 금고 구실도 한다. 둘째 보호층에서는 중앙 게이트웨이 [[electronic-control-unit|ECU]]가 TCU와 OBD를 네트워크에서 떼고, 차량 네트워크를 [[gateway#네트워크 분리|기능 도메인]]으로 나눈다.[@nxp-multi-layer-vehicle-security-wp-2016]
+
+![[diagrams/tcu-gateway-protection-layers.svg]]

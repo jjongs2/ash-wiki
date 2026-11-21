@@ -43,6 +43,8 @@ FCC 20-164(2020년 First Report and Order)는 미국 5.9 GHz 대역의 ITS 서�
 
 V2X 통신은 PC5 reference point로 하는 것과 Uu reference point로 하는 것 두 모드로 나뉘고, 단말은 두 모드를 송신과 수신에 따로 쓸 수 있다. LTE의 PC5는 broadcast만 쓰고, NR의 PC5는 broadcast, groupcast, unicast를 지원한다. groupcast와 unicast는 NR의 PC5에서만 된다.[@3gpp-ts-23-287-2026]
 
+![[diagrams/v2x-pc5-uu-modes-cast-types.svg]]
+
 LTE의 PC5 통신은 단말이 LTE 망의 서비스를 받을 때와 받지 않을 때 모두 되고, 연결이 없어 연결 설정을 위한 PC5 제어 평면 신호가 없다. PC5로는 IP 기반과 non-IP 기반 V2X 메시지를 모두 보내고, IP 기반이면 [[ipv6|IPv6]]만 쓴다. non-IP 메시지에는 Non-IP Type 헤더가 붙어, 응용 계층이 쓰는 V2X 메시지 계열(예: IEEE 1609 계열의 메시지)을 가리킨다.[@3gpp-ts-23-285-2025]
 
 3GPP TS 23.285 V19.0.0은 단말에 진행 중인 긴급 세션이 있으면 그 세션의 통신이 PC5 V2X 통신보다 앞서도록 정한다.[@3gpp-ts-23-285-2025]
@@ -55,6 +57,8 @@ LTE sidelink 기반 V2V에서 기지국이 돕는 스케줄링을 Mode 3, 차량
 
 NR sidelink는 망이 자원을 할당하는 mode 1과, 단말이 자원 풀에서 송신 자원을 정하는 mode 2를 둔다.[@3gpp-ts-38-300-2026] 3GPP TR 21.916 V16.2.0에 따르면 두 모드는 LTE sidelink의 Mode 3·Mode 4와 매우 비슷하다.[@3gpp-tr-21-916-2022]
 
+![[diagrams/v2x-sidelink-resource-allocation-modes.svg]]
+
 ## 동기와 혼잡 제어
 
 LTE의 V2X sidelink 동기 기준은 기지국, 단말, GNSS(Global Navigation Satellite System) 셋이다. 단말은 RRC(Radio Resource Control) 상태와 상관없이 CBR(Channel Busy Ratio)에 따라 송신 파라미터를 조정한다.[@3gpp-ts-36-300-2026]
@@ -66,6 +70,8 @@ ETSI EN 303 613 V1.1.1의 Annex B는 동기 우선순위(SyncPriority)의 기본
 sidelink에서 MAC(Medium Access Control) 계층은 주로 V2X sidelink 통신의 자원 할당을, RLC(Radio Link Control) 계층은 SDU(Service Data Unit)의 분할과 연결을, PDCP(Packet Data Convergence Protocol) 계층은 IP와 non-IP 같은 SDU 종류의 구별을 맡는다.[@etsi-en-303-613-2020]
 
 Annex D(informative)는 GeoNetworking 패킷을 MAC, RLC, PDCP 헤더와 Non-IP Type 헤더 뒤에 싣는 프레임 구조와, 그때 PDCP 헤더의 SDU Type 필드를 Non-IP로, Non-IP Type 필드를 3(ETSI-ITS)으로 두는 설정을 제시한다.[@etsi-en-303-613-2020]
+
+![[diagrams/lte-v2x-geonetworking-packet-structure.svg]]
 
 ## 보안과 프라이버시
 

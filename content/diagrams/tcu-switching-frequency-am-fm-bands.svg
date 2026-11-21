@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="9 13 523 143" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="13" fill="none" aria-label="AM·FM 대역과 스위칭 주파수">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 차량 라디오의 대역: 눈금 없이 순서만 -->
+  <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="140.75" y="56.75" width="118.5" height="38.5" rx="2" />
+    <rect x="390.75" y="56.75" width="118.5" height="38.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="200" y="80.5">AM 대역</text>
+    <text x="450" y="80.5">FM 대역</text>
+  </g>
+
+  <!-- 주파수 축 -->
+  <line x1="20" y1="96" x2="520" y2="96" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="520" y="117" text-anchor="end" font-size="12" fill="var(--text, #727981)">주파수</text>
+
+  <!-- 스위칭 주파수 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="80" y1="44" x2="80" y2="95" />
+    <line x1="325" y1="44" x2="325" y2="95" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="80" y="34">약 400 kHz</text>
+    <text x="325" y="34">약 2.1 MHz</text>
+    <text x="270" y="142">세로선: 스위칭 레귤레이터의 스위칭 주파수</text>
+  </g>
+</svg>

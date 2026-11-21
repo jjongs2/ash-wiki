@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="34.5 0 494 274" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="EU 규정의 eCall IMS 이행 일정">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 1년 = 80 단위, 2025년 1월 1일 = x 60 -->
+
+  <!-- 날짜마다 지시선과 내용 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="140" y1="12" x2="140" y2="196" />
+    <line x1="220" y1="56" x2="220" y2="196" />
+    <line x1="300" y1="116" x2="300" y2="196" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="148" y="24" font-size="13">2026년 1월 1일</text>
+    <text x="148" y="40">형식 승인 표준: CEN/TS 17184:2022(IMS)</text>
+    <text x="228" y="68" font-size="13">2027년 1월 1일</text>
+    <text x="228" y="84">EN 17184:2024·EN 17240:2024를</text>
+    <text x="228" y="100">따르지 않는 새 형식 승인 거부</text>
+    <text x="308" y="128" font-size="13">2028년 1월 1일</text>
+    <text x="308" y="144">2018년 3월 31일 뒤 승인된 새 차량 가운데</text>
+    <text x="308" y="160">두 표준을 따르지 않는 차량의</text>
+    <text x="308" y="176">적합성 증명서 무효</text>
+  </g>
+
+  <!-- 연도 축 -->
+  <line x1="60" y1="200" x2="460" y2="200" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <path d="M60 200 v5 M140 200 v5 M220 200 v5 M300 200 v5 M380 200 v5 M460 200 v5" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g fill="var(--ink, #727981)">
+    <circle cx="140" cy="200" r="4" />
+    <circle cx="220" cy="200" r="4" />
+    <circle cx="300" cy="200" r="4" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="60" y="221">2025</text>
+    <text x="140" y="221">2026</text>
+    <text x="220" y="221">2027</text>
+    <text x="300" y="221">2028</text>
+    <text x="380" y="221">2029</text>
+    <text x="460" y="221">2030</text>
+  </g>
+
+  <!-- 2G·3G 망 끄기 계획 -->
+  <rect x="60.75" y="234.75" width="398.5" height="26.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="260" y="252.5" text-anchor="middle" fill="var(--text, #727981)">망 사업자들의 2G·3G 망 차례로 끄기 계획(2025~2030년)</text>
+</svg>
