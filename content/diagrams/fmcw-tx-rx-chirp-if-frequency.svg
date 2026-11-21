@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="45 19 296 293" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="물체 하나의 송신 신호와 수신 신호">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 축 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="60" y1="210" x2="60" y2="34" />
+    <line x1="60" y1="210" x2="330" y2="210" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="68" y="38">주파수</text>
+    <text x="330" y="230" text-anchor="end">시간</text>
+  </g>
+
+  <!-- 송신 신호와 수신 신호 -->
+  <line x1="80" y1="180" x2="230" y2="60" stroke="var(--ink, #727981)" stroke-width="3" stroke-linecap="round" />
+  <line x1="160" y1="180" x2="310" y2="60" stroke="var(--blue, #336fb8)" stroke-width="3" stroke-linecap="round" />
+  <g font-size="12" fill="var(--text, #727981)" text-anchor="end">
+    <text x="230" y="48">송신 신호</text>
+    <text x="310" y="48">수신 신호</text>
+  </g>
+
+  <!-- 주파수 차 -->
+  <line x1="210" y1="79" x2="210" y2="137" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  <text x="200" y="114" text-anchor="end" fill="var(--text, #727981)"><tspan font-style="italic">f</tspan><tspan baseline-shift="sub" font-size="10">0</tspan></text>
+
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="195" y="264">TI 백서에 따른 물체 하나의 신호.</text>
+    <text x="195" y="282">물체의 속도가 주는 영향은 무시했다.</text>
+    <text x="195" y="300">두 신호의 주파수 차 <tspan font-style="italic">f</tspan><tspan baseline-shift="sub" font-size="9">0</tspan>이 IF 신호의 주파수다.</text>
+  </g>
+</svg>

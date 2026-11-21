@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="1.5 3.5 283 247" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="센서 영상을 ECU로 나르는 SerDes 링크">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 쪽 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4">
+    <rect x="12" y="14" width="262" height="80" rx="2" />
+    <rect x="12" y="160" width="262" height="80" rx="2" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="22" y="30">센서 쪽</text>
+    <text x="22" y="232">ECU 쪽</text>
+  </g>
+
+  <!-- 블록 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="24" y="42" width="90" height="36" rx="2" />
+    <rect x="172" y="42" width="90" height="36" rx="2" />
+    <rect x="172" y="176" width="90" height="36" rx="2" />
+    <rect x="24" y="176" width="90" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="69" y="65">이미지 센서</text>
+    <text x="217" y="65">직렬화기</text>
+    <text x="217" y="199">역직렬화기</text>
+    <text x="69" y="199">프로세서</text>
+  </g>
+
+  <!-- 연결 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="114" y1="60" x2="170" y2="60" />
+    <line x1="217" y1="78" x2="217" y2="174" />
+    <line x1="172" y1="194" x2="116" y2="194" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="143" y="52" text-anchor="middle">CSI-2</text>
+    <text x="143" y="186" text-anchor="middle">CSI-2</text>
+    <text x="209" y="114" text-anchor="end">케이블 한 가닥</text>
+    <text x="209" y="130" text-anchor="end">동축이나</text>
+    <text x="209" y="146" text-anchor="end">차폐 꼬임쌍선</text>
+  </g>
+</svg>
