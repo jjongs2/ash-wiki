@@ -2,7 +2,13 @@ import test, { describe } from "node:test"
 import assert from "node:assert"
 import type { Element, ElementContent, Root } from "hast"
 import type { FrontPageCommit, FrontPageIssue, FrontPagePage } from "./index"
-import { decorateRegionTable, frontPage, newsColumn, RECENT_CHANGES_LIMIT } from "./index"
+import {
+  decorateRegionTable,
+  frontPage,
+  newsColumn,
+  RECENT_CHANGES_LIMIT,
+  recentColumn,
+} from "./index"
 
 // 최근 변경은 빌드의 시간대로 날짜를 가른다. 배포 빌드와 같은 한국 시각으로 고정해, 테스트를 돌리는 머신의
 // 시간대와 관계없이 같은 결과를 본다(docs/deploy.md의 날짜의 시간대).
@@ -10,10 +16,12 @@ process.env.TZ = "Asia/Seoul"
 
 // 대문 함수가 seam이다. 페이지와 커밋 목록을 넣고 나온 주제별 페이지 수와 최근 변경 묶음만 본다.
 const page = (slug: string, ...tags: string[]): FrontPagePage => ({ slug, title: slug, tags })
+// 파일 앞의 `+`는 그 커밋이 새로 만든 파일이다
 const commit = (subject: string, date: string, ...files: string[]): FrontPageCommit => ({
   subject,
   date,
-  files,
+  files: files.map((file) => file.replace(/^\+/, "")),
+  added: files.filter((file) => file.startsWith("+")).map((file) => file.slice(1)),
 })
 
 describe("frontPage", () => {
@@ -79,7 +87,7 @@ describe("frontPage의 최근 변경", () => {
         "content: CAN FD 보강 (#12)",
         "2026-10-01T10:00:00+09:00",
         "can-frame.md",
-        "can-fd.md",
+        "+can-fd.md",
       ),
     )
     assert.deepStrictEqual(changes, [
@@ -87,8 +95,37 @@ describe("frontPage의 최근 변경", () => {
         title: "CAN FD 보강",
         pr: 12,
         date: "2026-10-02T10:00:00+09:00",
-        pages: ["can-fd", "can-frame"],
+        pages: [
+          { slug: "can-fd", title: "can-fd", added: true },
+          { slug: "can-frame", title: "can-frame", added: false },
+        ],
       },
+    ])
+  })
+
+  // 대문은 slug가 아니라 페이지 제목을 보인다. 인제스트 묶음의 고친 페이지는 대개 새 페이지로 가는 링크만 받으므로,
+  // 읽을 새 페이지를 앞에 둔다. 같은 쪽 안은 탐색기와 같은 한국어 정렬(가나다 뒤에 로마자)이다.
+  test("바뀐 페이지는 제목과 함께 새 페이지부터, 각각 제목의 한국어 순서로 준다", () => {
+    const [change] = frontPage({
+      pages: [
+        { slug: "uds", title: "UDS", tags: [] },
+        { slug: "doip", title: "진단 통신 DoIP", tags: [] },
+        { slug: "can-frame", title: "CAN 프레임", tags: [] },
+        { slug: "can-xl", title: "CAN XL", tags: [] },
+        { slug: "obd", title: "온보드 진단", tags: [] },
+      ],
+      commits: [
+        commit("content: 진단 보강 (#40)", "2026-10-02T10:00:00+09:00", "uds.md", "doip.md"),
+        commit("content: 진단 보강 (#40)", "2026-10-01T10:00:00+09:00", "can-frame.md"),
+        commit("content: 진단 보강 (#40)", "2026-10-01T09:00:00+09:00", "+can-xl.md", "+obd.md"),
+      ],
+    }).recentChanges.flatMap((day) => day.changes)
+    assert.deepStrictEqual(change?.pages, [
+      { slug: "obd", title: "온보드 진단", added: true },
+      { slug: "can-xl", title: "CAN XL", added: true },
+      { slug: "doip", title: "진단 통신 DoIP", added: false },
+      { slug: "can-frame", title: "CAN 프레임", added: false },
+      { slug: "uds", title: "UDS", added: false },
     ])
   })
 
@@ -128,7 +165,10 @@ describe("frontPage의 최근 변경", () => {
         "can-old.md",
       ),
     )
-    assert.deepStrictEqual(changes[0]?.pages, ["can-frame"])
+    assert.deepStrictEqual(
+      changes[0]?.pages.map((page) => page.slug),
+      ["can-frame"],
+    )
   })
 
   test("세지 않는 파일만 바꾼 묶음은 나오지 않는다", () => {
@@ -339,6 +379,117 @@ describe("newsColumn", () => {
         [undefined, undefined],
         [undefined, undefined],
       ],
+    )
+  })
+})
+
+// 대문의 최근 변경 칸이 seam이다. 묶음을 넣고 그린 칸에서 묶음 제목(summary), 펼친 페이지 링크, PR 링크를 본다.
+describe("recentColumn", () => {
+  const find = (nodes: ElementContent[], match: (node: Element) => boolean): Element[] =>
+    nodes.flatMap((node) =>
+      node.type !== "element"
+        ? []
+        : [...(match(node) ? [node] : []), ...find(node.children, match)],
+    )
+  const textOf = (node: ElementContent): string =>
+    node.type === "text"
+      ? node.value
+      : node.type === "element"
+        ? node.children.map(textOf).join("")
+        : ""
+  const hasClass = (name: string) => (node: Element) =>
+    ((node.properties.className as string[] | undefined) ?? []).includes(name)
+  const column = recentColumn(
+    frontPage({
+      pages: [
+        { slug: "can-fd", title: "CAN FD", tags: [] },
+        { slug: "can-frame", title: "CAN 프레임", tags: [] },
+        { slug: "uds", title: "UDS", tags: [] },
+      ],
+      commits: [
+        commit(
+          "content: CAN 보강 (#12)",
+          "2026-10-02T10:00:00+09:00",
+          "+can-fd.md",
+          "can-frame.md",
+        ),
+        commit("content: UDS 정정", "2026-10-01T10:00:00+09:00", "uds.md"),
+      ],
+    }).recentChanges,
+    "ko-KR",
+  )
+  const items = find(column, hasClass("front-change"))
+
+  test("묶음 제목은 펼침 단추(summary)이고 그 안에는 초점을 받는 요소가 없다", () => {
+    const summaries = items.map((item) => find([item], (node) => node.tagName === "summary")[0])
+    assert.deepStrictEqual(summaries.map(textOf), ["CAN 보강", "UDS 정정"])
+    for (const summary of summaries) {
+      assert.deepStrictEqual(
+        find(summary.children, (node) => ["a", "button", "input"].includes(node.tagName)),
+        [],
+      )
+    }
+  })
+
+  test("펼친 묶음은 페이지마다 제목을 글자로 한 위키 안 링크를 두고, 새 페이지에는 new 표시를 단다", () => {
+    const pages = items.map((item) =>
+      find([item], (node) => node.tagName === "li" && node !== item).map((li) => [
+        textOf(find([li], hasClass("front-change-page"))[0]),
+        find([li], hasClass("front-change-page"))[0].properties.href,
+        find([li], hasClass("front-change-new")).map(textOf).join(""),
+      ]),
+    )
+    assert.deepStrictEqual(pages, [
+      [
+        ["CAN FD", "./can-fd", "new"],
+        ["CAN 프레임", "./can-frame", ""],
+      ],
+      [["UDS", "./uds", ""]],
+    ])
+  })
+
+  // 린트나 Reader Testing 묶음은 수십 쪽을 고친다. 칸이 길어지지 않게 앞의 10쪽만 두고, 나머지는 한 번 더 펼친다.
+  test("10쪽이 넘는 묶음은 나머지 페이지를 '외 N쪽 더 보기' 아래에 접어 둔다", () => {
+    const slugs = Array.from({ length: 13 }, (_, i) => `p${String(i).padStart(2, "0")}`)
+    const [item] = find(
+      recentColumn(
+        frontPage({
+          pages: slugs.map((slug) => page(slug)),
+          commits: [
+            commit(
+              "content: 린트 수정 (#50)",
+              "2026-10-02T10:00:00+09:00",
+              ...slugs.map((slug) => `${slug}.md`),
+            ),
+          ],
+        }).recentChanges,
+        "ko-KR",
+      ),
+      hasClass("front-change"),
+    )
+    const more = find([item], hasClass("front-change-more"))[0]
+    const inMore = find([more], hasClass("front-change-page")).map(textOf)
+    const all = find([item], hasClass("front-change-page")).map(textOf)
+    assert.deepStrictEqual(all, slugs)
+    assert.deepStrictEqual(inMore, slugs.slice(10))
+    const summary = find([more], (node) => node.tagName === "summary")[0]
+    assert.strictEqual(textOf(summary), "외 3쪽 더 보기")
+    assert.deepStrictEqual(
+      find(summary.children, (node) => ["a", "button", "input"].includes(node.tagName)),
+      [],
+    )
+  })
+
+  test("PR 번호는 summary 밖에서 PR로 링크하고, 번호가 없는 묶음은 쪽수만 적는다", () => {
+    const links = items.map((item) =>
+      find([item], (node) => node.tagName === "a" && !hasClass("front-change-page")(node)).map(
+        (link) => [textOf(link), link.properties.href],
+      ),
+    )
+    assert.deepStrictEqual(links, [[["#12", "https://github.com/jjongs2/ash-wiki/pull/12"]], []])
+    assert.deepStrictEqual(
+      items.map((item) => textOf(find([item], hasClass("front-change-meta"))[0])),
+      ["#12 · 2쪽", "1쪽"],
     )
   })
 })

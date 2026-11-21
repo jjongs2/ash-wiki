@@ -41,19 +41,22 @@ export interface FrontPagePage {
   tags: string[]
 }
 
-// 커밋 하나. date는 ISO 8601 시각이고, files는 content 폴더 기준 경로(`can-frame.md`)다.
+// 커밋 하나. date는 ISO 8601 시각이고, files는 content 폴더 기준 경로(`can-frame.md`)다. added는 files 가운데
+// 그 커밋이 새로 만든 파일이다.
 export interface FrontPageCommit {
   subject: string
   date: string
   files: string[]
+  added: string[]
 }
 
-// pr은 묶음의 PR 번호이고, 번호가 없는 커밋이면 null이다. pages는 바뀐 위키 페이지의 slug다.
+// pr은 묶음의 PR 번호이고, 번호가 없는 커밋이면 null이다. pages는 바뀐 위키 페이지의 slug와 제목이고, added는
+// 그 묶음이 새로 만든 페이지인지다.
 export interface RecentChange {
   title: string
   pr: number | null
   date: string
-  pages: string[]
+  pages: { slug: string; title: string; added: boolean }[]
 }
 
 // 주간 소식 한 호. week는 ISO 주차(2026-w41)이고 slug는 news/<주차>다. items는 소식 항목의 앵커, 원어 제목,
@@ -106,7 +109,10 @@ function localDay(time: number): string {
  * - 최근 변경: `content:` 커밋을 제목 끝의 PR 번호(`(#N)`)로 묶는다. 번호가 없는 커밋은 따로 묶는다. 묶음의
  *   제목은 타입과 번호를 뗀 커밋 제목이고, 날짜는 묶음에서 가장 늦은 커밋의 시각이다. 바뀐 페이지는 지금
  *   있는 페이지 가운데 대문, 태그 목록, 주간 소식이 아닌 것만 세고, 그런 페이지가 없는 묶음은 뺀다. bib/처럼
- *   content 폴더 밖의 파일은 커밋 목록에 오지 않는다(readCommits).
+ *   content 폴더 밖의 파일은 커밋 목록에 오지 않는다(readCommits). 바뀐 페이지는 제목과 함께, 묶음의 어느
+ *   커밋이 새로 만든 페이지를 앞에 두고 고친 페이지를 뒤에 둔다. 인제스트 묶음의 고친 페이지는 대개 새 페이지로
+ *   가는 링크만 받아, 읽을 새 페이지가 그 사이에 묻히지 않게 하려는 것이다. 같은 쪽 안은 탐색기와 같은 제목의
+ *   한국어 정렬(가나다 뒤에 로마자, plugins/explorer-tree)이다.
  *   묶음은 날짜별로 모아 최근 날짜부터 준다. RECENT_CHANGES_LIMIT 묶음을 채운 날까지 주고, 그날은 끝까지 준다.
  *   날짜 하나의 묶음이 중간에서 잘려 그날 작업이 그것뿐인 것처럼 보이지 않게 한다.
  * - 최신 호: 주차가 가장 늦은 주간 소식이다. ISO 주차(2026-w41)는 연도 네 자리와 주 두 자리라 글자 순서가
@@ -156,10 +162,19 @@ function newsDays(items: FrontPageNewsItem[]): LatestNews["days"] {
 }
 
 function recentChanges(pages: FrontPagePage[], commits: FrontPageCommit[]): RecentDay[] {
-  const changedPages = new Set(pages.map((page) => page.slug).filter(isChangedPage))
+  const titles = new Map(
+    pages.filter((page) => isChangedPage(page.slug)).map((page) => [page.slug, page.title]),
+  )
   const bundles = new Map<
     string,
-    { title: string; pr: number | null; time: number; date: string; slugs: Set<string> }
+    {
+      title: string
+      pr: number | null
+      time: number
+      date: string
+      slugs: Set<string>
+      added: Set<string>
+    }
   >()
   commits.forEach((commit, i) => {
     const match = commit.subject.match(/^content: (.*?)(?: \(#(\d+)\))?$/)
@@ -170,14 +185,16 @@ function recentChanges(pages: FrontPagePage[], commits: FrontPageCommit[]): Rece
     let bundle = bundles.get(key)
     if (!bundle) {
       const pr = match[2] ? Number(match[2]) : null
-      bundle = { title: match[1], pr, time, date: commit.date, slugs: new Set() }
+      bundle = { title: match[1], pr, time, date: commit.date, slugs: new Set(), added: new Set() }
       bundles.set(key, bundle)
     } else if (time > bundle.time) {
       Object.assign(bundle, { title: match[1], time, date: commit.date })
     }
     for (const file of commit.files) {
       const slug = file.replace(/\.md$/, "")
-      if (file.endsWith(".md") && changedPages.has(slug)) bundle.slugs.add(slug)
+      if (!file.endsWith(".md") || !titles.has(slug)) continue
+      bundle.slugs.add(slug)
+      if (commit.added.includes(file)) bundle.added.add(slug)
     }
   })
   const sorted = [...bundles.values()]
@@ -197,7 +214,13 @@ function recentChanges(pages: FrontPagePage[], commits: FrontPageCommit[]): Rece
       title: bundle.title,
       pr: bundle.pr,
       date: bundle.date,
-      pages: [...bundle.slugs].sort(),
+      pages: [...bundle.slugs]
+        .map((slug) => ({ slug, title: titles.get(slug)!, added: bundle.added.has(slug) }))
+        .sort(
+          (a, b) =>
+            Number(b.added) - Number(a.added) ||
+            a.title.localeCompare(b.title, "ko", { numeric: true }),
+        ),
     })
     count++
   }
@@ -288,14 +311,29 @@ const CSS = `.front-regions {
 //   테두리의 속 빈 마디를 날짜 글자 줄의 가운데에 둔다. 세로선은 첫 마디에서 목록 끝까지 내려가, 더 오래된
 //   기록이 이어짐을 보인다. 마디와 세로선의 자리는 날짜 줄 높이(--day-line)와 들여쓰기(--rail)로 계산한다.
 // - 항목이 서로 갈리도록 항목 사이는 띄우고, 꺾인 제목의 줄 사이는 좁힌다. 날짜 사이는 항목 사이보다 더 띄운다.
-// - 묶음 하나는 GitHub의 PR 목록을 본뜬다. 첫 줄에 pull request 아이콘과 제목 링크, 그 아래 보조 글자 줄에
+// - 묶음 하나는 GitHub의 PR 목록을 본뜬다. 첫 줄에 pull request 아이콘과 제목, 그 아래 보조 글자 줄에
 //   PR 번호와 쪽수를 둔다. 제목은 제목 글자색(--dark)의 보통 굵기로 쓰고, 마우스를 올리면 링크색
 //   (--secondary)에 밑줄이 생긴다(GitHub의 Link--primary). 사이트 링크의 hover색(--tertiary)이 아니라
-//   링크색으로 바뀌어야 링크임이 드러난다.
+//   링크색으로 바뀌어야 누를 수 있음이 드러난다.
+// - 제목은 묶음을 펼치는 summary다. 브라우저의 펼침 삼각형 대신 제목 끝에 접는 절(plugins/collapsible-sections)과
+//   같은 꺾쇠를 보조 글자색으로 두고, 접혔을 때는 오른쪽, 펼쳤을 때는 아래를 향한다.
+// - 펼친 묶음의 페이지 목록은 보조 글자 줄 아래에 둔다. 페이지 링크는 칸 제목 줄의 "N건 모두 보기"와 같은 꼴
+//   (링크색 보통 굵기, hover색에 밑줄)을 조금 작게 쓴다. 본문의 위키 안 링크 꼴(굵은 글자와 바탕)은 10쪽이
+//   쌓이면 무거워, 소유자가 시안에서 이 꼴을 골랐다. 팝오버가 뜨도록 a.internal은 두고 그 바탕만 지운다. 목록의
+//   줄 사이는 묶음 사이보다 좁히되, 링크의 간격을 누름 영역 하한(WCAG 2.2의 24px)에 맞춘다. 목록 줄 높이
+//   21.6px에 위아래 여백 0.075rem으로 24px이다. 0.05rem(23.2px)이면 axe target-size가 잡는다.
+//   "new" 표시는 링크색 테두리의 작은 글자로, 링크 뒤에 둔다. 한글 "새"는 같은 크기에서도 칸을 꽉 채워 튀어
+//   소유자가 바꿨다. "외 N쪽 더 보기"는 보조 글자 줄과 같은 글자이고, 누르면 사라져 나머지 페이지가 앞 목록에
+//   끊김 없이 이어진다. 사라지는 줄이라 열림과 닫힘을 보이는 꺾쇠는 달지 않는다. 다시 접는 단추는 두지 않는다. 묶음을 접으면 함께 숨는다.
+//   키보드로 누르면 초점을 가진 단추가 사라지지만, 브라우저가 그 자리에서 Tab을 이어 가 다음 Tab은 이어진 첫
+//   페이지 링크에 선다.
 // - 아이콘은 제목 안의 인라인 요소라 첫 줄 글자에 맞춰 선다. 꺾인 줄은 내어쓰기(padding과 음수 text-indent)로
-//   아이콘 오른쪽에서 시작한다. vertical-align은 첫 줄 한글의 가운데에 아이콘 가운데를 맞춘 값이다.
+//   아이콘 오른쪽에서 시작한다. vertical-align은 첫 줄 한글의 가운데에 아이콘 가운데를 맞춘 값이다. 보조 글자
+//   줄과 페이지 목록은 summary 밖이라 같은 폭(--icon-indent)을 따로 들인다. 폭은 em이라, 길이로 등록해
+//   (@property) 묶음 줄의 글자 크기로 한 번 계산한다. 등록하지 않으면 글자가 작은 보조 글자 줄에서 em이 다시
+//   풀려 2.7px 덜 들어간다.
 // - 날짜, PR 번호, 쪽수와 아이콘은 보조 글자색이고, 대비 하한은 docs/palette.md의 "보조 글자"다. 날짜는
-//   굵게 쓴다.
+//   굵게 쓴다. PR 번호는 링크라 마우스를 올리면 제목처럼 링크색에 밑줄이 생긴다.
 // - 주간 소식도 같은 타임라인이다. 발행일마다 마디를 두고, 그 아래 주요 소식의 제목과, 제목 아래 작은 구역
 //   칩을 둔다. 최근 변경의 제목과 보조 글자 줄과 같은 짜임이다. 칩의 꼴(.news-chip)은 주간 소식 플러그인
 //   (plugins/weekly-news)의 CSS가 정하고, 여기서는 크기만 줄인다. 칸 제목 줄의 오른쪽에 "N건 모두 보기(그 호)
@@ -309,8 +347,9 @@ const CSS = `.front-regions {
 // - 칩은 바탕이 상자 맨 위에서 시작해, 같은 여백이면 최근 변경의 보조 글자 줄보다 제목에 붙어 보이고 행도
 //   길어진다. 그래서 대문의 칩은 글자와 줄 높이를 줄이고 위 여백을 넓혀, 행 높이를 보조 글자 줄과 비슷하게
 //   맞춘다(소유자가 시안에서 골랐다).
-// - 제목과 칩 묶음 사이의 여백은 `li >` 선택자로 건다. 업스트림의 `.page article li > *`가 같은 레이어
-//   (quartz-base)에서 margin-top을 0으로 두어, 클래스 하나짜리 선택자로는 구체성에서 진다.
+// - 주간 소식의 제목과 칩 묶음 사이, 최근 변경의 묶음 제목과 보조 글자 줄, 페이지 목록 사이의 여백은 `li >`
+//   선택자로 건다. 업스트림의 `.page article li > *`가 같은 레이어(quartz-base)에서 margin-top을 0으로 두어,
+//   클래스 하나짜리 선택자로는 구체성에서 진다.
 const COLUMNS_CSS = `.front-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -382,11 +421,43 @@ li.front-day li {
   padding: 0.4rem 0;
   line-height: 1.35;
 }
-.front-change-title {
+@property --icon-indent {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+li.front-change {
   --icon-indent: calc(0.85em + 0.5rem);
+}
+summary.front-change-title {
   display: block;
+  list-style: none;
   padding-left: var(--icon-indent);
   text-indent: calc(-1 * var(--icon-indent));
+  color: var(--dark);
+  cursor: pointer;
+}
+summary.front-change-title::-webkit-details-marker {
+  display: none;
+}
+summary.front-change-title:hover {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+.front-change-chevron {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  margin-left: 0.2rem;
+  vertical-align: -0.13em;
+  background-color: var(--gray);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  transform: rotateZ(-90deg);
+  transition: transform 0.3s ease;
+}
+details[open] > summary .front-change-chevron {
+  transform: none;
 }
 .front-change-icon {
   display: inline-block;
@@ -396,21 +467,71 @@ li.front-day li {
   vertical-align: -0.13em;
   fill: var(--gray);
 }
-.front-recent a.front-change-link {
-  color: var(--dark);
-  font-weight: 400;
-}
-.front-recent a.front-change-link:hover {
-  color: var(--secondary);
-  text-decoration: underline;
-}
-.front-change-meta {
+li.front-change > .front-change-meta {
   display: block;
   margin-top: 0.1rem;
-  text-indent: 0;
+  padding-left: var(--icon-indent);
   color: var(--gray);
   font-size: 0.8em;
   font-variant-numeric: tabular-nums;
+}
+.front-recent a.front-change-pr {
+  color: inherit;
+  font-weight: 400;
+}
+.front-recent a.front-change-pr:hover {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+li.front-change > details:not([open]) ~ .front-change-body {
+  display: none;
+}
+li.front-change > .front-change-body {
+  margin-top: 0.3rem;
+  padding-left: var(--icon-indent);
+}
+li.front-day .front-change-pages li {
+  padding: 0.075rem 0;
+}
+.front-recent a.front-change-page {
+  background-color: transparent;
+  padding: 0;
+  color: var(--secondary);
+  font-weight: 400;
+  font-size: 0.9em;
+  line-height: 1.25;
+}
+.front-recent a.front-change-page:hover {
+  color: var(--tertiary);
+  text-decoration: underline;
+}
+.front-change-new {
+  margin-left: 0.6em;
+  padding: 0 0.25em;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  color: var(--secondary);
+  font-size: 0.6em;
+  line-height: 1;
+  vertical-align: 0.15em;
+}
+.front-change-more > summary {
+  display: block;
+  list-style: none;
+  margin-top: 0.1rem;
+  color: var(--gray);
+  font-size: 0.8em;
+  cursor: pointer;
+}
+.front-change-more > summary::-webkit-details-marker {
+  display: none;
+}
+.front-change-more > summary:hover {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+.front-change-more[open] > summary {
+  display: none;
 }
 .front-news-head {
   display: flex;
@@ -537,7 +658,8 @@ function git(cwd: string, args: string[]): string {
   return execFileSync("git", args, { cwd, encoding: "utf8", stdio: "pipe" })
 }
 
-// content 폴더를 건드린 최근 커밋. 경로는 content 폴더 기준이다(--relative).
+// content 폴더를 건드린 최근 커밋. 경로는 content 폴더 기준이다(--relative). 이름을 바꾼 파일은 지운 파일과 새
+// 파일로 본다(--no-renames).
 function readCommits(directory: string): FrontPageCommit[] {
   const cwd = path.resolve(directory)
   try {
@@ -551,7 +673,7 @@ function readCommits(directory: string): FrontPageCommit[] {
     "log",
     `--max-count=${COMMIT_SCAN_LIMIT}`,
     "--no-renames",
-    "--name-only",
+    "--name-status",
     "--relative",
     "--format=%x1e%cI%x1f%s",
     "--",
@@ -561,13 +683,23 @@ function readCommits(directory: string): FrontPageCommit[] {
     .split("\x1e")
     .filter(Boolean)
     .map((record) => {
-      const [head = "", ...files] = record.split("\n")
+      const [head = "", ...lines] = record.split("\n")
       const [date = "", subject = ""] = head.split("\x1f")
-      return { subject, date, files: files.filter(Boolean) }
+      const files = lines.filter(Boolean).map((line) => line.split("\t"))
+      return {
+        subject,
+        date,
+        files: files.map(([, file = ""]) => file),
+        added: files.filter(([status]) => status === "A").map(([, file = ""]) => file),
+      }
     })
 }
 
-// 묶음 제목이 링크하는 PR의 주소. 저장소가 비공개인 동안 독자에게는 404다(#366의 소유자 결정).
+// 펼침 표시. 접는 절(plugins/collapsible-sections)과 같은 꺾쇠를 CSS가 그린다.
+const chevron = (): Element =>
+  el("span", { className: ["front-change-chevron"], ariaHidden: "true" })
+
+// 묶음의 PR 번호가 링크하는 PR의 주소.
 const PULL_URL = "https://github.com/jjongs2/ash-wiki/pull/"
 
 // GitHub의 pull request 아이콘. Primer Octicons 19.40.0(MIT)의 git-pull-request-16 경로를 그대로 옮겼다.
@@ -644,37 +776,83 @@ export function newsColumn(
   ]
 }
 
-// 본문 아래 2단. 왼쪽은 주간 소식이고 오른쪽이 최근 변경이다. 어느 한쪽이 없으면 그 칸은 비워 둔다.
-// 최근 변경은 날짜마다 타임라인의 마디 하나를 두고, 그 아래 묶음마다 PR 아이콘과 제목, 그 아래 줄에 PR 번호와
-// 쪽수를 둔다. 제목은 PR로 링크하고 새 탭에서 연다. PR 번호가 없는 묶음은 아이콘 자리를 비우고 제목을
-// 글자로만 두며, 쪽수만 적는다.
-function frontColumns(news: ElementContent[], days: RecentDay[], locale: string): Element {
+// 펼친 묶음이 바로 보이는 페이지 수. 린트나 Reader Testing 묶음은 수십 쪽(최대 186쪽)을 고쳐, 다 보이면 칸이
+// 화면 몇 장 길이가 된다.
+export const RECENT_PAGES_SHOWN = 10
+
+// 최근 변경. 날짜마다 타임라인의 마디 하나를 두고, 그 아래 묶음마다 PR 아이콘, 제목과 펼침 표시, 그 아래 줄에
+// PR 번호와 쪽수를 둔다. 제목은 <details>의 <summary>라, 누르거나 키보드로 고르면 묶음이 펼쳐져 그 묶음이
+// 새로 만들거나 고친 페이지가 페이지 제목으로 된 위키 안 링크로 보인다. 새로 만든 페이지에는 "new" 표시를 단다.
+// 바깥 독자가 알고 싶은 것은 PR 본문(내부 절차의 말)이 아니라 위키에 무엇이 생겼는지라, 제목은 PR로 링크하지
+// 않는다. summary 안에는 초점을 받는 링크를 두지 않으므로(axe nested-interactive, #638) PR 번호의 링크는 summary
+// 밖의 보조 글자 줄에 두고, 새 탭에서 연다. PR 번호가 없는 묶음은 아이콘 자리를 비우고 쪽수만 적는다.
+// 페이지 목록은 <details> 안이 아니라 보조 글자 줄 뒤에 두고, 묶음이 접혀 있으면 CSS가 숨긴다. 안에 두면 펼칠 때
+// 보조 글자 줄이 목록 아래로 밀려 제목과 떨어진다(소유자가 시안에서 골랐다). RECENT_PAGES_SHOWN을 넘는 페이지는
+// "외 N쪽 더 보기"라는 <details> 하나에 한 번 더 접는다.
+export function recentColumn(days: RecentDay[], locale: string): ElementContent[] {
+  if (days.length === 0) return []
   const row = (change: RecentChange) => {
     const count = `${change.pages.length}쪽`
-    const meta = el("span", { className: ["front-change-meta"] }, [
-      text(change.pr === null ? count : `#${change.pr} · ${count}`),
-    ])
-    return el("li", {}, [
+    const meta = el(
+      "span",
+      { className: ["front-change-meta"] },
+      change.pr === null
+        ? [text(count)]
+        : [
+            el(
+              "a",
+              {
+                href: `${PULL_URL}${change.pr}`,
+                className: ["front-change-pr"],
+                target: "_blank",
+                rel: ["noopener", "noreferrer"],
+              },
+              [text(`#${change.pr}`)],
+            ),
+            text(` · ${count}`),
+          ],
+    )
+    const list = (pages: RecentChange["pages"]) =>
       el(
-        "span",
-        { className: ["front-change-title"] },
-        change.pr === null
-          ? [el("span", { className: ["front-change-icon"] }), text(change.title), meta]
-          : [
-              pullRequestIcon(),
-              el(
-                "a",
-                {
-                  href: `${PULL_URL}${change.pr}`,
-                  className: ["front-change-link"],
-                  target: "_blank",
-                  rel: ["noopener", "noreferrer"],
-                },
-                [text(change.title)],
-              ),
-              meta,
-            ],
-      ),
+        "ul",
+        { className: ["front-change-pages"] },
+        pages.map((page) =>
+          el("li", {}, [
+            el(
+              "a",
+              {
+                href: resolveRelative("index" as FullSlug, page.slug as FullSlug),
+                className: ["internal", "front-change-page"],
+                dataSlug: page.slug,
+              },
+              [text(page.title)],
+            ),
+            ...(page.added ? [el("span", { className: ["front-change-new"] }, [text("new")])] : []),
+          ]),
+        ),
+      )
+    const rest = change.pages.slice(RECENT_PAGES_SHOWN)
+    const body = el("div", { className: ["front-change-body"] }, [
+      list(change.pages.slice(0, RECENT_PAGES_SHOWN)),
+      ...(rest.length === 0
+        ? []
+        : [
+            el("details", { className: ["front-change-more"] }, [
+              el("summary", {}, [text(`외 ${rest.length}쪽 더 보기`)]),
+              list(rest),
+            ]),
+          ]),
+    ])
+    return el("li", { className: ["front-change"] }, [
+      el("details", {}, [
+        el("summary", { className: ["front-change-title"] }, [
+          change.pr === null ? el("span", { className: ["front-change-icon"] }) : pullRequestIcon(),
+          text(change.title),
+          chevron(),
+        ]),
+      ]),
+      meta,
+      body,
     ])
   }
   // 날짜 글은 day의 0시(빌드의 시간대)로 만들어, 묶을 때 쓴 날짜와 늘 같다
@@ -684,13 +862,14 @@ function frontColumns(news: ElementContent[], days: RecentDay[], locale: string)
       el("ul", {}, changes.map(row)),
     ]),
   )
-  const recent =
-    days.length === 0
-      ? []
-      : [
-          el("h2", { id: "최근-변경" }, [text("최근 변경")]),
-          el("ul", { className: ["front-timeline"] }, timeline),
-        ]
+  return [
+    el("h2", { id: "최근-변경" }, [text("최근 변경")]),
+    el("ul", { className: ["front-timeline"] }, timeline),
+  ]
+}
+
+// 본문 아래 2단. 왼쪽은 주간 소식이고 오른쪽이 최근 변경이다. 어느 한쪽이 없으면 그 칸은 비워 둔다.
+function frontColumns(news: ElementContent[], recent: ElementContent[]): Element {
   return el("div", { className: ["front-columns"] }, [
     el("section", { className: ["front-news"] }, news),
     el("section", { className: ["front-recent"] }, recent),
@@ -736,7 +915,7 @@ const FrontPageBody = () => {
     // 트리를 새로 만들어 붙인다. 원래 트리에 붙이면 다시 그릴 때(--serve) 2단이 거듭 붙는다.
     const newsContent =
       latestNews === null ? [] : newsColumn(latestNews, regionNames, props.cfg.locale)
-    const columns = frontColumns(newsContent, recentChanges, props.cfg.locale)
+    const columns = frontColumns(newsContent, recentColumn(recentChanges, props.cfg.locale))
     const withColumns: Root = { ...tree, children: [...tree.children, columns] }
     return Body({ ...props, tree: withColumns })
   }

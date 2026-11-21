@@ -1021,18 +1021,26 @@ body:has(#wiki-diff-nav) { padding-bottom: 7rem; }
 
 // ---------------------------------------------------------------------------------------------------
 // 바뀐 곳 훑기. 오른쪽 아래 막대에서 바뀌지 않은 블록을 숨기고(바뀐 곳만), ↑·↓나 n·p 키로 바뀐 블록을
-// 차례로 옮겨 다닌다. 페이지의 끝에 이르면 바뀐 페이지 목록(대문 배너와 같은 순서)의 다음이나 이전 페이지로
+// 차례로 옮겨 다닌다. 페이지의 끝에 이르면 옮겨 다닐 페이지 목록(navPages)의 다음이나 이전 페이지로
 // 넘어간다. 숨길 때 바뀐 블록을 품은 인용문, 목록, 표는 남기고, 제목과 callout 제목, 표 머리는 맥락으로
 // 남긴다. 제목 밑에 남는 블록이 없으면 그 제목도 숨긴다. SPA 이동마다 `nav`에서 다시 계산한다.
 // 빌드가 문자열로 넣는 브라우저 스크립트라 타입 검사를 받지 않는다.
 
-// 브라우저가 읽는 바뀐 페이지 목록. 재빌드는 리소스 파일을 다시 쓰지 않아 목록을 스크립트에 넣으면 낡으므로,
+// 브라우저가 읽는 옮겨 다닐 페이지 목록. 재빌드는 리소스 파일을 다시 쓰지 않아 목록을 스크립트에 넣으면 낡으므로,
 // 빌드마다 출력 폴더에 쓰고 스크립트가 페이지를 옮길 때마다 읽는다.
 const PAGES_FILE = "static/wiki-diff-pages.json"
 
-// 새 페이지와 바뀐 페이지의 slug. 지운 페이지는 옮겨 갈 곳이 없어 뺀다.
-function writePages(output: string, changes: PageChanges) {
+// 옮겨 다닐 페이지 목록. 새 페이지 뒤에 바뀐 페이지를 각각 경로의 알파벳순으로 잇고, 지운 페이지는 옮겨 갈 곳이
+// 없어 뺀다. 대문이 바뀌었으면 맨 앞에 둔다. 새 주제를 여는 인제스트는 대문의 구역 표를 고치는데, 알파벳순이면
+// 대문이 목록 중간에 끼어 대문에서 시작한 훑기가 앞 페이지를 건너뛴다. 대문 배너와 터미널 목록은 이 순서를 따르지
+// 않고 pageChanges의 순서 그대로다.
+export function navPages(changes: PageChanges): string[] {
   const pages = [...changes.added, ...changes.changed].map((file) => file.replace(/\.md$/, ""))
+  return pages.includes("index") ? ["index", ...pages.filter((page) => page !== "index")] : pages
+}
+
+function writePages(output: string, changes: PageChanges) {
+  const pages = navPages(changes)
   const file = path.join(output, PAGES_FILE)
   fs.mkdirSync(path.dirname(file), { recursive: true })
   fs.writeFileSync(file, JSON.stringify({ pages }))
