@@ -1,11 +1,11 @@
 ---
 name: wiki-verify
-description: 재조사. 열린 `verify:` 이슈 하나 이상의 미검증 주장을 재조사 에이전트, 원문 재대조, 사후 점검, 검토를 거쳐 PR 하나와 이슈 본문 체크로 끝낸다. `verify:` 이슈를 맡았을 때 쓴다.
+description: 재조사. 열린 `verify:` 이슈 하나 이상의 미검증 주장을 재조사 에이전트, 원문 재대조, 사후 점검, 검토를 거쳐 PR 하나와 이슈 본문 체크로 끝낸다. `verify:` 이슈를 맡았을 때 쓴다. 인자는 `[#<verify 이슈> …]`이고, 없으면 열린 `verify:` 이슈를 모두 맡는다.
 ---
 
 # 재조사
 
-한 실행이 열린 `verify:` 이슈 하나 이상을 맡아 PR 하나로 닫는다. 1단계, 5단계의 이슈 본문, 6단계의 형제 묶음 링크는 맡은 이슈마다 돌고, 나머지 단계는 맡은 이슈를 함께 놓고 돈다. 절차의 정본은 위키 검증 문서의 재조사 절이고, 이 스킬은 그것을 실행 단계로 옮긴다. 용어는 `GLOSSARY.md`를 따른다.
+한 실행이 열린 `verify:` 이슈 하나 이상을 맡아 PR 하나로 닫는다. 인자로 받은 이슈를 맡고, 인자가 없으면 열린 `verify:` 이슈를 모두 맡는다(`gh issue list --state open --limit 100 --json number,title --jq '.[] | select(.title | startswith("verify:")) | .number'`). 막힌 이슈는 1단계에서 빠진다. 1단계, 5단계의 이슈 본문, 6단계의 형제 묶음 링크는 맡은 이슈마다 돌고, 나머지 단계는 맡은 이슈를 함께 놓고 돈다. 절차의 정본은 위키 검증 문서의 재조사 절이고, 이 스킬은 그것을 실행 단계로 옮긴다. 용어는 `GLOSSARY.md`를 따른다.
 
 먼저 읽는다: 맡은 이슈(`docs/agents/issue-tracker.md`의 이슈 읽기), `docs/wiki-verification.md`, `docs/source-hierarchy.md`, `docs/wiki-conventions.md`. 브랜치와 커밋은 `CONTRIBUTING.md`를 따르고, 타입은 `content`다.
 
