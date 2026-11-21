@@ -2,6 +2,7 @@
 title: 부트로더
 tags:
   - platform
+  - security/ota
 verified: 2026-10-03
 ---
 

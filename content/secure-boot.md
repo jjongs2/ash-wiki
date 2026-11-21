@@ -2,6 +2,7 @@
 title: Secure boot
 tags:
   - security
+  - security/cryptography
 verified: 2026-10-03
 ---
 
@@ -21,7 +22,7 @@ NIST SP 800-193은 모든 root of trust와 신뢰 사슬을 바꿀 수 없게 �
 
 TF-A(Trusted Firmware-A)의 Trusted Board Boot에서는 root of trust [[public-key-cryptography|공개 키]](ROTPK)나 그 해시와, ROM에 있어 바꿀 수 없다고 가정한 첫 부트로더 BL1이 함께 신뢰의 기점이 된다.[@trustedfirmware-tf-a-trusted-board-boot-2026]
 
-Arm Platform Security Boot Guide 1.1은 리셋 직후 실행되는 첫 부트 코드를 온칩 boot ROM이나 그에 준하는 쓰기 잠금 영역, 보안 프로세서에 둔 바꿀 수 없는 부트로더로 두고, 이를 하드웨어 root of trust로 본다. 이 가이드는 ROTPK를 바꿀 수 없게 두게 하고, 잠근 온칩 플래시 섹터, secure element, 온칩 OTP(One-Time Programmable) 메모리에 둘 수 있게 한다. ROTPK를 신뢰할 수 없는 저장소에 두면, 바꿀 수 없게 둔 ROTPK의 해시로 ROTPK의 무결성을 확인해도 된다. 이 가이드는 OTP 메모리의 예로 eFuse를 든다.[@arm-den0072-2020]
+Arm Platform Security Boot Guide 1.1은 리셋 직후 실행되는 첫 부트 코드를 온칩 boot ROM이나 그에 준하는 쓰기 잠금 영역, 보안 프로세서에 둔 바꿀 수 없는 부트로더로 두고, 이를 하드웨어 root of trust로 본다. 이 가이드는 ROTPK를 바꿀 수 없게 두게 하고, 잠근 온칩 [[flash-memory|플래시]] 섹터, secure element, 온칩 OTP(One-Time Programmable) 메모리에 둘 수 있게 한다. ROTPK를 신뢰할 수 없는 저장소에 두면, 바꿀 수 없게 둔 ROTPK의 해시로 ROTPK의 무결성을 확인해도 된다. 이 가이드는 OTP 메모리의 예로 eFuse를 든다.[@arm-den0072-2020]
 
 ## 구현 예
 
@@ -37,7 +38,7 @@ Arm Platform Security Boot Guide 1.1은 리셋 직후 실행되는 첫 부트 �
 
 ## 차량 사이버보안 지침의 권고
 
-NHTSA의 2022년 지침(Cybersecurity Best Practices for the Safety of Modern Vehicles)은 자동차 제조사가 최신 기법을 써서, [[ecu-reprogramming|펌웨어를 고치는 능력]]을 인가되고 적절히 인증된 주체로 제한하기를 권한다. 이 지침은 디지털 서명 기법을 쓰면 ECU가 변조되었거나 인가되지 않은 펌웨어 이미지로 부팅하는 것을 막을 수 있다고 본다.[@nhtsa-cybersecurity-best-practices-2022]
+NHTSA의 2022년 지침(Cybersecurity Best Practices for the Safety of Modern Vehicles)은 자동차 제조사가 최신 기법을 써서, [[ecu-reprogramming|펌웨어를 고치는 능력]]을 인가되고 적절히 인증된 주체로 제한하기를 권한다. 이 지침은 디지털 서명 기법을 쓰면 [[electronic-control-unit|ECU]]가 변조되었거나 인가되지 않은 펌웨어 이미지로 부팅하는 것을 막을 수 있다고 본다.[@nhtsa-cybersecurity-best-practices-2022]
 
 ENISA(EU의 사이버보안 기관)의 2019년 보고서 Good practices for security of smart cars는 시스템의 무결성과 진정성을 보장하는 secure boot 프로세스를 구현하기를 권하고, secure boot가 실제로 필요한 경우는 리스크 기반 접근으로 정해도 된다고 둔다. Annex C에 따르면 secure boot는 실행되는 소프트웨어의 진정성과 무결성을 보장하는 데 필수이고, 제조사가 가진 개인 키로 소프트웨어에 서명한 뒤 secure boot 과정에서 대응하는 인증서로 그 서명을 검증하는 방식이다. 소프트웨어가 바뀌어 검증에 실패하면, 차량의 [[functional-safety|기능 안전]]을 지키려고 비상 프로그램을 실행하는 것처럼 부팅 과정이 그에 맞게 대응해야 한다.[@enisa-smart-cars-2019]
 

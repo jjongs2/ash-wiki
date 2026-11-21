@@ -11,14 +11,14 @@ verified: 2026-10-03
 
 아래 표의 설명은 Microsoft Threat Modeling Tool 문서를 따르고, 막는 속성은 위협마다 [[cybersecurity-property|보안 속성]]을 하나씩 짝지은 Microsoft의 2006년 MSDN Magazine 기사를 따른다.[@microsoft-tmt-threats-2022][@microsoft-msdn-stride-2006]
 
-| 위협                   | 설명                                                                          | 막는 속성                                 |
-| ---------------------- | ----------------------------------------------------------------------------- | ----------------------------------------- |
-| Spoofing               | 다른 사용자의 사용자 이름이나 비밀번호 같은 인증 정보를 불법으로 얻어 쓴다.   | [[entity-authentication\|Authentication]] |
-| Tampering              | 데이터베이스에 저장된 데이터나 열린 네트워크로 오가는 데이터를 악의로 바꾼다. | Integrity                                 |
-| Repudiation            | 한 행위를 부인하고, 상대는 이를 반증할 수단이 없다.                           | Non-repudiation                           |
-| Information disclosure | 접근 권한이 없는 사람에게 정보가 드러난다.                                    | Confidentiality                           |
-| Denial of service      | 웹 서버를 잠시 쓸 수 없게 만드는 것처럼 정당한 사용자에게 서비스를 거부한다.  | Availability                              |
-| Elevation of privilege | 권한이 없는 사용자가 권한 있는 접근을 얻는다.                                 | Authorization                             |
+| 위협                   | 설명                                                                          | 막는 속성                                                                 |
+| ---------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Spoofing               | 다른 사용자의 사용자 이름이나 비밀번호 같은 인증 정보를 불법으로 얻어 쓴다.   | [[entity-authentication\|Authentication]]                                 |
+| Tampering              | 데이터베이스에 저장된 데이터나 열린 네트워크로 오가는 데이터를 악의로 바꾼다. | [[cybersecurity-property#기밀성, 무결성, 가용성\|Integrity]]              |
+| Repudiation            | 한 행위를 부인하고, 상대는 이를 반증할 수단이 없다.                           | [[cybersecurity-property#Authenticity, 부인 방지, 인가\|Non-repudiation]] |
+| Information disclosure | 접근 권한이 없는 사람에게 정보가 드러난다.                                    | [[cybersecurity-property#기밀성, 무결성, 가용성\|Confidentiality]]        |
+| Denial of service      | 웹 서버를 잠시 쓸 수 없게 만드는 것처럼 정당한 사용자에게 서비스를 거부한다.  | [[cybersecurity-property#기밀성, 무결성, 가용성\|Availability]]           |
+| Elevation of privilege | 권한이 없는 사용자가 권한 있는 접근을 얻는다.                                 | [[cybersecurity-property#Authenticity, 부인 방지, 인가\|Authorization]]   |
 
 ## 위협 모델링에서의 쓰임
 

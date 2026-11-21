@@ -14,7 +14,7 @@ verified: 2026-10-03
 
 ENISA(EU의 [[cybersecurity|사이버보안]] 기관)의 2019년 보고서 Good practices for security of smart cars는 암호 알고리즘을 안전하게 실행하고 키를 안전하게 저장하는 데 전용의 tamper-resistant HSM을 쓰는 것을 검토하기를 권한다.[@enisa-smart-cars-2019]
 
-차량용 MCU 가운데에는 HSM을 칩 안에 넣고, 그 HSM에 주 CPU와 따로 자기 프로세서, 메모리, 암호 가속기를 두는 제품이 있다.[@infineon-aurix-tc3xx-hsm-training-2020][@renesas-rh850-rcar-secure-boot-part-2-2021]
+차량용 [[microcontroller|MCU]] 가운데에는 HSM을 칩 안에 넣고, 그 HSM에 주 CPU와 따로 자기 프로세서, 메모리, 암호 가속기를 두는 제품이 있다.[@infineon-aurix-tc3xx-hsm-training-2020][@renesas-rh850-rcar-secure-boot-part-2-2021]
 
 - NXP S32K3는 HSE(Hardware Security Engine)라는 하드웨어 보안 서브시스템을 두고, [[symmetric-key-cryptography#AES|AES]]-128/192/256, RSA(Rivest-Shamir-Adleman)와 [[elliptic-curve-cryptography|타원 곡선 암호]], [[secure-boot|secure boot]], 키 저장을 지원한다.[@nxp-s32kbra4-2026]
 - Renesas RH850 계열에는 ICU-S(Intelligent Cryptographic Unit Slave)와 ICU-M(Intelligent Cryptographic Unit Master) 두 가지 보안 IP가 있다. ICU-M 안에서는 별도 프로세서가 암호 가속기와 보안 [[flash-memory|플래시]]를 혼자 다루고, 주 CPU는 이들에 직접 닿지 못한다.[@renesas-rh850-rcar-secure-boot-part-2-2021]

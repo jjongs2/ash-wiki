@@ -40,6 +40,6 @@ ENISA(EU의 [[cybersecurity|사이버보안]] 기관)의 2019년 보고서 Good 
 
 [[uptane|Uptane]] Deployment Best Practices 2.1.0에 따르면 Uptane은 기본적으로 업데이트를 되돌리지 못하게 하고, 이를 두 장치로 강제한다. 하나는 이전 메타데이터보다 버전 번호가 낮은 새 메타데이터를 거부해 공격자가 옛 메타데이터를 다시 보내지 못하게 한다. 다른 하나는 이전 Targets 메타데이터의 release counter보다 release counter가 낮은 새 이미지를 거부해, director repository를 침해한 공격자도 옛 이미지를 고르지 못하게 한다.[@uptane-deployment-best-practices-2-1-0-2023]
 
-이 지침은 release counter를 올리지 않고 두는 방법은 director repository를 침해한 공격자가 낡은 이미지로 rollback 공격을 할 수 있게 하므로 쓰지 말고, ECU가 release counter가 낮은 이미지를 설치하지 않는 것이 중요할 때마다 그 이미지의 release counter를 올리는 방법을 더 안전하므로 택하기를 권한다.[@uptane-deployment-best-practices-2-1-0-2023]
+이 지침은 release counter를 올리지 않고 두는 방법은 director repository를 침해한 공격자가 낡은 이미지로 rollback 공격을 할 수 있게 하므로 쓰지 말고, [[electronic-control-unit|ECU]]가 release counter가 낮은 이미지를 설치하지 않는 것이 중요할 때마다 그 이미지의 release counter를 올리는 방법을 더 안전하므로 택하기를 권한다.[@uptane-deployment-best-practices-2-1-0-2023]
 
 RFC 9124에 따르면 IoT 기기의 펌웨어 업데이트 [[suit|매니페스트]]에는 단조 증가 시퀀스 번호를 두고, 이 번호는 펌웨어 버전이 아니라 매니페스트의 순번이다. 그래서 펌웨어 설치 권한을 가진 주체는 옛 펌웨어 버전에 더 큰 시퀀스 번호를 단 새 매니페스트를 만들어 펌웨어를 되돌릴 수 있고, 시퀀스 번호가 막는 것은 악의적 행위자가 그 주체의 정책을 어기고 펌웨어를 되돌리는 것이다. 또 안전한 시계가 있고 매니페스트에 만료 시각이 있으면, 기기는 현재 시각이 만료 시각보다 늦은 매니페스트를 거부해야 한다.[@ietf-rfc-9124-2022]

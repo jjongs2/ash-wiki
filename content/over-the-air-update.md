@@ -15,7 +15,7 @@ NHTSA의 2022년 모범 사례는 OTA를 무선 전송을 쓰는 소프트웨어
 
 [[iso-24089|ISO 24089]]:2023은 소개에서, 차량 소프트웨어를 정비소에서 숙련자가 업데이트하거나 차량 사용자가 무선으로 업데이트한다고 밝힌다. 이 표준은 소프트웨어 업데이트 배포 방법의 예로 유선(도구, USB 플래시 드라이브), 무선(셀룰러, Wi-Fi), 하드웨어 교체를 든다.[@iso-24089-obp-2023]
 
-산업통상자원부에 따르면 전에는 정비소를 찾아야만 전자제어장치의 소프트웨어를 업데이트할 수 있었고, OTA 업데이트는 정비소에 가지 않고 원하는 시간과 장소에서 무선 통신으로 업데이트하게 한다.[@motie-sandbox-ota-2020]
+산업통상자원부에 따르면 전에는 정비소를 찾아야만 [[electronic-control-unit|전자제어장치]]의 소프트웨어를 업데이트할 수 있었고, OTA 업데이트는 정비소에 가지 않고 원하는 시간과 장소에서 무선 통신으로 업데이트하게 한다.[@motie-sandbox-ota-2020]
 
 ## 업데이트 대상
 
@@ -23,11 +23,11 @@ NHTSA의 2022년 모범 사례는 OTA를 무선 전송을 쓰는 소프트웨어
 
 ## 시스템 구성
 
-[[uptane|Uptane]] Standard 2.1.0은 차량의 버전 정보를 모아 서버에 보내고 자기와 다른 ECU를 위한 이미지를 내려받아 검증하는 ECU를 primary ECU라 한다.[@uptane-standard-2-1-0-2023] [[autosar|AUTOSAR]] R25-11의 [[autosar-adaptive-platform|Adaptive Platform]]에서는 기능 클러스터 V-UCM(Vehicle Update and Configuration Management)이 차량 안의 업데이트 캠페인을 조율해, 각 머신의 [[autosar-update-and-configuration-management|UCM]]에 소프트웨어 패키지를 보낸다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] 진단으로 플래시하는 ECU를 V-UCM이 업데이트하는 방식은 [[ecu-reprogramming#정비소와 OTA|ECU 재프로그래밍의 정비소와 OTA]]에서 다룬다.
+[[uptane|Uptane]] Standard 2.1.0은 차량의 버전 정보를 모아 서버에 보내고 자기와 다른 ECU를 위한 이미지를 내려받아 검증하는 ECU를 primary ECU라 한다.[@uptane-standard-2-1-0-2023] [[autosar|AUTOSAR]] R25-11의 [[autosar-adaptive-platform|Adaptive Platform]]에서는 functional cluster [[autosar-update-and-configuration-management#Vehicle UCM|V-UCM]]이 차량 안의 업데이트 캠페인을 조율해, 각 Machine의 [[autosar-update-and-configuration-management|UCM]]에 Software Package를 보낸다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] 진단으로 플래시하는 ECU를 V-UCM이 업데이트하는 방식은 ECU 재프로그래밍의 [[ecu-reprogramming#정비소와 OTA|정비소와 OTA]]에서 다룬다.
 
 NXP 백서에 따르면 OTA 업데이트에서 차량과 제조사 서버 사이의 연결은 보통 [[telematics-control-unit|텔레매틱스 유닛]]이 셀룰러 망 위에 맺고, 차량 안 ECU들의 업데이트를 관리하는 OTA 매니저는 [[gateway#중앙 게이트웨이|중앙 게이트웨이]]에 두기 알맞다.[@nxp-making-full-vehicle-ota-updates-reality-2016] AWS(Amazon Web Services) 백서에 따르면 AWS IoT Jobs로 차량 소프트웨어를 OTA 업데이트할 때, 차량의 에이전트는 [[mqtt|MQTT]]나 HTTPS로 Jobs 서비스에 접속해 예정된 업데이트가 있는지 확인한다.[@aws-vehicle-communication-mqtt-2024]
 
-새 업데이트가 있는지 확인하는 일은 클라이언트가 서버에 묻는 pull 방식이나, 서버가 클라이언트에 먼저 알리는 push 방식으로 시작할 수 있다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025][@ietf-rfc-9019-2021] RFC 9019는 서버가 업데이트가 있음을 알리고 기기가 펌웨어 이미지를 서버에서 가져오게 하는, 둘을 섞은 방식도 예로 든다.[@ietf-rfc-9019-2021]
+새 업데이트가 있는지 확인하는 일은 클라이언트가 서버에 묻는 pull 방식이나, 서버가 클라이언트에 먼저 알리는 push 방식으로 시작할 수 있다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025][@ietf-rfc-9019-2021] [[suit|RFC 9019]]는 서버가 업데이트가 있음을 알리고 기기가 펌웨어 이미지를 서버에서 가져오게 하는, 둘을 섞은 방식도 예로 든다.[@ietf-rfc-9019-2021]
 
 ![[diagrams/update-check-pull-push.svg]]
 
@@ -47,7 +47,7 @@ ISO 24089:2023은 차량, 차량 시스템, ECU에서 업데이트 패키지를 
 
 ## 안전 조건과 사용자
 
-ISO 24089:2023은 업데이트 작업을 위험 없이 할 수 있는 차량 운전 모드를 **안전한 차량 상태**로 정의하고, 원동기가 꺼지고 주차 브레이크가 걸린 상태를 예로 든다. 이 표준은 주석에서, 안전한 차량 상태가 패키지에 필요한 조건과 진행 중인 업데이트 작업 단계에 따라 달라질 수 있다는 점을 제시한다.[@iso-24089-obp-2023] Uptane Standard 2.1.0은 전제 조건이 갖춰졌을 때 설치하기를 권하며, 특정 ECU를 업데이트할 때 차량이 주차된 상태를 예로 든다.[@uptane-standard-2-1-0-2023] AUTOSAR R25-11의 V-UCM은 정차, 시동 꺼짐, 문 닫힘 같은 안전 조건을 활성화 전에 확인할 수 있고, 차량 패키지에 설정되어 있으면 운전자에게 승인이나 동의를 받는다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] TI 백서에 따르면 업데이트가 있으면 운전자에게 알리고 차량을 안전하게 주차한 뒤 운전자가 시작을 확인하게 할 수도 있고, 차량을 쓰는 시간을 살펴 사용자 개입 없이 업데이트할 때를 고를 수도 있다.[@ti-slyy236-2025]
+ISO 24089:2023은 업데이트 작업을 위험 없이 할 수 있는 차량 운전 모드를 **안전한 차량 상태**로 정의하고, 원동기가 꺼지고 주차 브레이크가 걸린 상태를 예로 든다. 이 표준은 주석에서, 안전한 차량 상태가 패키지에 필요한 조건과 진행 중인 업데이트 작업 단계에 따라 달라질 수 있다는 점을 제시한다.[@iso-24089-obp-2023] Uptane Standard 2.1.0은 전제 조건이 갖춰졌을 때 설치하기를 권하며, 특정 ECU를 업데이트할 때 차량이 주차된 상태를 예로 든다.[@uptane-standard-2-1-0-2023] AUTOSAR R25-11의 V-UCM은 정차, 시동 꺼짐, 문 닫힘 같은 안전 조건을 활성화 전에 확인할 수 있고, Vehicle Package에 설정되어 있으면 운전자에게 승인이나 동의를 받는다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] TI 백서에 따르면 업데이트가 있으면 운전자에게 알리고 차량을 안전하게 주차한 뒤 운전자가 시작을 확인하게 할 수도 있고, 차량을 쓰는 시간을 살펴 사용자 개입 없이 업데이트할 때를 고를 수도 있다.[@ti-slyy236-2025]
 
 UN R156 원판과 01 시리즈는 OTA 업데이트를 하는 차량 형식에 업데이트 실행 전후에 사용자가 업데이트를 알 수 있게 하는 것, 업데이트 실행 중의 주행 제한, 실패하거나 중단될 때 이전 버전이나 [[safety-mechanism#안전 상태와 성능 저하|안전 상태]]로의 복귀 등을 요구한다.[@unece-r156-2021] R156 해석 문서는 차량 사용자가 업데이트를 알 수 있게 하는 [[software-update-management-system#UN R156의 요구|프로세스]]의 요구가 사용자의 동의까지 다루지는 않는다고 본다. 해석 문서는 사용자가 업데이트의 일회 승인을 골랐다면 업데이트마다 알릴 필요는 없다고 본다.[@unece-r156-interpretation-2025] 요구의 목록은 [[un-r156#차량 형식 요구|UN R156의 차량 형식 요구]]에서 다룬다.
 

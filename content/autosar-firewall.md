@@ -6,7 +6,7 @@ tags:
 verified: 2026-10-07
 ---
 
-**AUTOSAR firewall**은 미리 정한 규칙에 따라 네트워크 트래픽을 걸러 악의적인 메시지에서 호스트를 지키는 [[autosar|AUTOSAR]]의 방화벽이다. [[autosar-classic-platform|Classic Platform]]에서는 BSW(Basic Software) 모듈 Firewall이 이 일을 하며, stateless packet inspection, stateful packet inspection, deep packet inspection을 지원한다.[@autosar-cp-sws-firewall-2025] [[autosar-adaptive-platform|Adaptive Platform]]에서는 Firewall functional cluster인 FC(Functional Cluster) Firewall이 Adaptive Platform이 놓인 ECU의 호스트 기반 방화벽을 관리하며, manifest와 함께 배치된 규칙대로 아래의 firewall engine을 설정한다.[@autosar-ap-sws-firewall-2025]
+**AUTOSAR firewall**은 미리 정한 규칙에 따라 네트워크 트래픽을 걸러 악의적인 메시지에서 호스트를 지키는 [[autosar|AUTOSAR]]의 방화벽이다. [[autosar-classic-platform|Classic Platform]]에서는 BSW(Basic Software) 모듈 Firewall이 이 일을 하며, stateless packet inspection, stateful packet inspection, deep packet inspection을 지원한다.[@autosar-cp-sws-firewall-2025] [[autosar-adaptive-platform|Adaptive Platform]]에서는 Firewall functional cluster인 FC(Functional Cluster) Firewall이 Adaptive Platform이 놓인 [[electronic-control-unit|ECU]]의 호스트 기반 방화벽을 관리하며, manifest와 함께 배치된 규칙대로 아래의 firewall engine을 설정한다.[@autosar-ap-sws-firewall-2025]
 
 ## 규칙 맞추기
 
@@ -24,9 +24,9 @@ AUTOSAR Classic Platform R25-11의 Firewall 명세는 방화벽을 allowlist 방
 
 - **Stateless packet inspection**: 헤더 필드 같은 필드 값을 정적으로 정한 값과 견준다. 이 검사에서 Classic Platform의 Firewall은 OSI 4계층까지의 프로토콜 헤더를 보며, [[ethernet|이더넷]], [[ipv4|IPv4]], [[ipv6|IPv6]], [[icmp|ICMP]], [[tcp|TCP]], [[udp|UDP]]를 기본으로 지원한다.
 - **Stateful packet inspection**: 허용된 상태 전이나 열린 연결 수처럼 프로토콜의 상태를 따진다. Classic Platform의 Firewall은 TCP의 타임아웃, 열린 연결 수, TCP 상태 기계를 검사한다.
-- **Deep packet inspection**: [[some-ip|SOME/IP]], DDS(Data Distribution Service), [[doip|DoIP]] 같은 응용 계층 프로토콜을 검사한다. 오프셋과 기대 바이트 값으로 페이로드를 일반 검사할 수도 있다.[@autosar-cp-sws-firewall-2025]
+- **Deep packet inspection**: [[some-ip|SOME/IP]], [[autosar-communication-stack#Data Distribution Service|DDS]], [[doip|DoIP]] 같은 응용 계층 프로토콜을 검사한다. 오프셋과 기대 바이트 값으로 페이로드를 일반 검사할 수도 있다.[@autosar-cp-sws-firewall-2025]
 
-방화벽은 패턴이 맞은 횟수를 leaky bucket 알고리즘으로 세는 rate limiting도 지원한다. 중간자 공격이나 고장 난 ECU 때문에 주기가 어긋난 주기 메시지를 찾아내려는 것이다.[@autosar-cp-sws-firewall-2025]
+방화벽은 패턴이 맞은 횟수를 leaky bucket 알고리즘으로 세는 rate limiting도 지원한다. [[diffie-hellman-key-exchange#중간자 공격|중간자 공격]]이나 고장 난 ECU 때문에 주기가 어긋난 주기 메시지를 찾아내려는 것이다.[@autosar-cp-sws-firewall-2025]
 
 ## 상태에 따른 규칙
 
