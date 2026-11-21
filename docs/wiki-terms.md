@@ -104,7 +104,7 @@
 - notification: 통지 (#257). AUTOSAR 모듈이 부르는 notification 콜백일 때. 동사로 쓴 자리("통지받는다")와 그 밖의 통지는 "통지"
 - OBD 풀이 On-Board Diagnostics: On-Board Diagnosis (#496)
 - ODD 풀이 Operational Design Domain: - (#682)
-- offset correction, rate correction: - (#667). FlexRay 클록 동기화일 때
+- offset correction, rate correction: - (#667). FlexRay 클럭 동기화일 때
 - OOPSLA 풀이 Object-Oriented Programming, Systems, Languages, and Applications: Object-Oriented Programming, Systems, Languages & Applications (#291)
 - operation cycle: 운행 사이클, 운전 사이클 (#763). driving cycle은 "주행 주기"
 - OSEK OS: OSEK/VDX OS (#257). OS를 가리킬 때. 명세를 가리키는 "OSEK/VDX OS"는 그대로. 예: "OSEK/VDX OS 2.2.3 명세"
@@ -178,7 +178,7 @@
 - 생명주기: 수명주기 (#288)
 - 서명 키: 서명키 (#288)
 - 센서 융합: 센서 퓨전 (#682). sensor fusion일 때. `autosar-time-synchronization`의 "센서 데이터 융합"(sensor data fusion)은 그대로
-- 소스: 원천 (#346). 신호나 사건을 내는 하드웨어·기능일 때. 예: 인터럽트 소스, 클록 소스, 트리거 소스. 802.1AS의 timing source는 원어로. 기원을 뜻하는 일반 낱말 "원천"(원천 문서, 원천 모델)과 검증 자료인 "출처"는 그대로
+- 소스: 원천 (#346). 신호나 사건을 내는 하드웨어·기능일 때. 예: 인터럽트 소스, 클럭 소스, 트리거 소스. 802.1AS의 timing source는 원어로. 기원을 뜻하는 일반 낱말 "원천"(원천 문서, 원천 모델)과 검증 자료인 "출처"는 그대로
 - 송신 정지: 서스펜드 트랜스미션 (#68). 원어는 병기하지 않는다.
 - 시변 이득: time-varying gain (#682)
 - 신뢰성 성장 모델: 신뢰도 성장 모델 (#385)
@@ -193,7 +193,7 @@
 - 운용 프로파일: 운영 프로파일 (#385)
 - 운전 자동화 레벨: 자동화 레벨 (#653, #682). SAE J3016, ISO/SAE PAS 22736, ISO 21448의 레벨일 때. 페이지에서 처음은 "운전 자동화 레벨 2", 그 뒤는 "레벨 2"
 - 위협 시나리오: threat scenario (#252)
-- 응용: 애플리케이션 (#763). 개념 application일 때. 꼴은 "응용", "응용 프로그램", "응용 소프트웨어". 고유 이름과 코드 표기는 그대로
+- 응용: 애플리케이션 (#763). 개념 application일 때. 꼴은 "응용", "응용 프로그램", "응용 소프트웨어". 사용자나 제3자가 설치하는 소프트웨어 제품(앱)이면 "애플리케이션". 예: 제3자 애플리케이션, 애프터마켓 소프트웨어, 서비스, 애플리케이션, 데이터. 고유 이름과 코드 표기는 그대로
 - 응용 프로세서: application processor (#674)
 - 인수 기준: 인수 조건 (#385)
 - 입구 노드: 진입 노드 (#579). 제어 흐름 그래프의 entry node일 때
@@ -212,7 +212,7 @@
 - 취약점 처리: vulnerability handling (#431)
 - 카나리 릴리스: canary release, 카나리 배포 (#499)
 - 코드 플래시: 프로그램 플래시 (#674). 프로그램을 두는 플래시일 때. 제품의 구성 요소 이름(PFlash, P-Flash)은 그대로
-- 클록: 클럭 (#763). 합성어 포함. 예: 클록 신호, 클록 도메인
+- 클럭: 클록 (#763). 합성어 포함. 예: 클럭 신호, 클럭 도메인
 - 타원 곡선 암호: ECC (#289). 타원 곡선 암호를 가리킬 때. ECDSA·ECDH 같은 알고리즘 이름은 그대로. 예: SP 800-56A의 ECC CDH는 "타원 곡선 CDH"
 - 태스크 그룹: 태스크 묶음 (#349). OSEK OS 명세의 group of tasks일 때
 - 테스터, 진단 테스터, 시험 장비: 진단 장비 (#763). 각각 tester, diagnostic tester, (external) test equipment일 때. 인용한 출처가 diagnostic equipment처럼 장비로 쓴 자리는 "진단 장비"

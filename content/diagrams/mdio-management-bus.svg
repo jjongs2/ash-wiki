@@ -13,7 +13,7 @@
   <!-- 버스 두 선 -->
   <line x1="110" y1="70" x2="509" y2="70" stroke="var(--ink, #727981)" stroke-width="3" />
   <line x1="110" y1="110" x2="509" y2="110" stroke="var(--ink, #727981)" stroke-width="3" />
-  <text x="120" y="62" font-size="12" fill="var(--text, #727981)">MDC (클록)</text>
+  <text x="120" y="62" font-size="12" fill="var(--text, #727981)">MDC (클럭)</text>
   <text x="120" y="102" font-size="12" fill="var(--text, #727981)">MDIO (양방향 데이터)</text>
 
   <!-- PHY 주소 0 -->

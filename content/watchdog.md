@@ -18,7 +18,7 @@ AURIX TC3xx는 CPU마다 watchdog timer를 두고, 공유 자원을 위한 safet
 
 TI 기술 기사에 따르면 MCU에 넣은 watchdog은 다른 칩이 필요 없어 쓰기 쉽지만, MCU를 오동작하게 한 코드 문제가 그 watchdog을 뜻하지 않게 꺼 버릴 수도 있다. 그래서 watchdog을 품은 voltage supervisor로 전원 전압과 watchdog 신호를 MCU 밖에서 함께 감시하기도 한다.[@ti-ssztah7-2017]
 
-TI는 TMS320F28003x 실시간 MCU의 기능 안전 매뉴얼에서 내부 watchdog보다 외부 watchdog을 쓰기를 권한다. 외부 watchdog은 감시 대상과 따로 된 클록·리셋·전원을 써 [[safety-analysis#Dependent failure 분석|common mode failure]]의 리스크를 줄인다.[@ti-sffs277-2023]
+TI는 TMS320F28003x 실시간 MCU의 기능 안전 매뉴얼에서 내부 watchdog보다 외부 watchdog을 쓰기를 권한다. 외부 watchdog은 감시 대상과 따로 된 클럭·리셋·전원을 써 [[safety-analysis#Dependent failure 분석|common mode failure]]의 리스크를 줄인다.[@ti-sffs277-2023]
 
 MCU 밖의 watchdog은 [[system-basis-chip|SBC]]나 안전 전원 칩에 들기도 한다.[@infineon-tlf35584-2017][@nxp-uja1169-2016] 안전 전원 칩이 watchdog과 함께 MCU의 전원과 error 신호를 감시하는 것은 [[safety-mechanism#MCU의 하드웨어 안전 메커니즘|MCU의 하드웨어 안전 메커니즘]]에서 다룬다.
 

@@ -81,7 +81,7 @@ CAN XL의 중재 구간 비트율 $R_\mathrm{b,N}$은 1 Mbit/s 이하이고, 데
 
 이 개요에 따르면 CAN XL [[can-controller|프로토콜 컨트롤러]]는 ADS와 DAS 동안 CAN SIC XL 트랜시버에 SIC 모드와 [[can-transceiver#FAST 모드|FAST 모드]] 사이의 전환을 알리고, FAST 모드에서는 [[can-error-frame|오류 프레임]]을 쓸 수 없다. 오류 신호를 켠 CAN XL은 CAN SIC XL 트랜시버를 모드 전환 없이 쓰고, 오류 신호를 끈 CAN XL만 FAST 모드로 바꿔 가며 쓴다.[@bosch-can-xl-overview-2023]
 
-XS_CAN의 프로토콜 컨트롤러는 클록 160 MHz에서 CAN XL 데이터 구간을 20 Mbit/s까지, CAN FD와 CAN XL의 중재 구간을 1 Mbit/s까지 지원한다.[@bosch-xs-can-2026]
+XS_CAN의 프로토콜 컨트롤러는 클럭 160 MHz에서 CAN XL 데이터 구간을 20 Mbit/s까지, CAN FD와 CAN XL의 중재 구간을 1 Mbit/s까지 지원한다.[@bosch-xs-can-2026]
 
 ## 제품 예
 
@@ -104,7 +104,7 @@ CiA 611 시리즈는 상위 계층의 PDU(Protocol Data Unit)를 CAN XL LLC 부�
 | CiA 611-1 version 2.0.0  | DSP(Draft Specification Proposal) | SDT 필드의 쓰임을 정한다. 내용 기반 주소 지정에 쓰는 SDT, Classical CAN이나 CAN FD 프레임을 싣는 SDT, [[ieee-802-3\|IEEE 802.3]] MAC 프레임을 싣는 SDT를 둔다.[@cia-611-2026][@cia-can-xl-2026][@cia-can-community-news-13-2024] |
 | CiA 611-1 version 2.0.1  | WD(Work Draft)                    | version 2.0.0의 뒤 버전으로, 제목은 version 2.0.0과 같다.[@cia-611-2026]                                                                                                                                                         |
 | CiA 611-2 version 1.0.0  | DSP                               | 여러 PDU를 CAN XL 데이터 프레임 하나에 묶어 보내는 multi-PDU 프로토콜을 정한다.[@cia-611-2026]                                                                                                                                   |
-| CiA 612-1 version 0.0.9  | WD                                | 네트워크 설계, 클록 허용 오차, 비트 타이밍 설정, 트랜시버 동작 모드, MAC 프레임 필드의 쓰임, 우선순위 ID[@cia-612-2026]                                                                                                          |
+| CiA 612-1 version 0.0.9  | WD                                | 네트워크 설계, 클럭 허용 오차, 비트 타이밍 설정, 트랜시버 동작 모드, MAC 프레임 필드의 쓰임, 우선순위 ID[@cia-612-2026]                                                                                                          |
 | CiA 612-2                |                                   | PWM 기반 AUI(Attachment Unit Interface)와 물리 신호 요건[@cia-612-2026]                                                                                                                                                          |
 | CiA 612-3 version 0.0.2  | WD                                | SIC와 CAN SIC XL의 중재 비트율 선택지에 대한 권고[@cia-612-2026]                                                                                                                                                                 |
 | CiA 613-1 version 0.0.5  | WD                                | 부가 기능을 SEC 비트로 알리는 방법[@cia-613-2026]                                                                                                                                                                                |

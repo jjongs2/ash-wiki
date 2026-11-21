@@ -49,7 +49,7 @@ KSZ9477S는 레이어 2 관리형 스위치로, SPI(Serial Peripheral Interface)
 
 ## AUTOSAR의 스위치 모델
 
-[[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 Ethernet Switch Driver 명세는 스위치 포트에 역할을 줄 수 있게 한다. Host port는 스위치를 제어하는 [[electronic-control-unit|ECU]](host ECU)와 이어진 포트이고, up link port는 같은 ECU 안의 다른 스위치 포트와 이어져 cascaded switch를 나타내는 포트다. 역할을 주지 않은 포트는 보통 포트다. 스위치 하나는 host port를 꼭 하나 갖거나 up link port를 하나 이상 가지며, host port가 있는 스위치도 up link port를 여럿 가질 수 있다. Master switch는 host port 하나로 host ECU와 잇고, slave switch는 up link port 하나로 master switch와 잇는다. 내부 클록을 동기화할 수 있는 스위치끼리 up link port로 이어져 있을 때 그 클록 동기화를 켜면(`EthSwtClockSynchronizationSupport`가 `TRUE`), 이어진 두 up link port 사이의 지연은 잴 필요가 없다.[@autosar-cp-sws-ethernetswitchdriver-2025]
+[[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 Ethernet Switch Driver 명세는 스위치 포트에 역할을 줄 수 있게 한다. Host port는 스위치를 제어하는 [[electronic-control-unit|ECU]](host ECU)와 이어진 포트이고, up link port는 같은 ECU 안의 다른 스위치 포트와 이어져 cascaded switch를 나타내는 포트다. 역할을 주지 않은 포트는 보통 포트다. 스위치 하나는 host port를 꼭 하나 갖거나 up link port를 하나 이상 가지며, host port가 있는 스위치도 up link port를 여럿 가질 수 있다. Master switch는 host port 하나로 host ECU와 잇고, slave switch는 up link port 하나로 master switch와 잇는다. 내부 클럭을 동기화할 수 있는 스위치끼리 up link port로 이어져 있을 때 그 클럭 동기화를 켜면(`EthSwtClockSynchronizationSupport`가 `TRUE`), 이어진 두 up link port 사이의 지연은 잴 필요가 없다.[@autosar-cp-sws-ethernetswitchdriver-2025]
 
 ![[diagrams/autosar-switch-port-roles.svg]]
 

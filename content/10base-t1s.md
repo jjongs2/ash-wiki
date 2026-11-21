@@ -21,7 +21,7 @@ IEEE 802.3-2022는 모든 10BASE-T1S [[ethernet-phy|PHY]]가 링크 상대 하�
 
 ## 부호화
 
-이 표준은 10BASE-T1S PHY를 PCS(Physical Coding Sublayer)와 PMA(Physical Medium Attachment)로 이루고, 두 [[ethernet-phy#부계층|부계층]]을 하나로 묶은 구조라 AUI(Attachment Unit Interface)를 두지 않는다. PCS는 데이터를 17비트 자기 동기 스크램블러로 스크램블한 뒤 4B/5B로 부호화하고, PMA는 두 준위의 DME(Differential Manchester Encoding)로 보낸다. DME는 클록이 신호에 실리고 그 자체로 균형 잡힌 선로 부호여서, 직류 기준선이 거의 흔들리지 않고 잡음이 많은 환경에서도 클록과 데이터를 복구할 수 있다.[@ieee-802-3-2022]
+이 표준은 10BASE-T1S PHY를 PCS(Physical Coding Sublayer)와 PMA(Physical Medium Attachment)로 이루고, 두 [[ethernet-phy#부계층|부계층]]을 하나로 묶은 구조라 AUI(Attachment Unit Interface)를 두지 않는다. PCS는 데이터를 17비트 자기 동기 스크램블러로 스크램블한 뒤 4B/5B로 부호화하고, PMA는 두 준위의 DME(Differential Manchester Encoding)로 보낸다. DME는 클럭이 신호에 실리고 그 자체로 균형 잡힌 선로 부호여서, 직류 기준선이 거의 흔들리지 않고 잡음이 많은 환경에서도 클럭과 데이터를 복구할 수 있다.[@ieee-802-3-2022]
 
 ## PLCA
 

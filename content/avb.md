@@ -79,7 +79,7 @@ Avnu Alliance의 Automotive Ethernet AVB Functional and Interoperability Specifi
 
 tpl_250의 10 ms는 무선 구간 둘을 전제한 IEEE 802.1BA의 클래스 B 값을 차량에 맞게 줄인 값이다. 장치가 SR 클래스를 동시에 둘보다 많이 지원할 필요는 없다.[@avnu-automotive-avb-1-6-2019]
 
-미디어 형식으로는, AAF(AVTP Audio Format)를 지원하는 오디오 장치가 IEEE 1722-2016의 AAF와 16비트 정수 샘플 형식, 48 kHz와 44.1 kHz 가운데 하나 이상의 샘플링 레이트를 지원하게 한다. 미디어 클록 기준을 주고받는 장치 가운데 오디오 talker가 IEEE 1722-2016의 오디오 샘플 CRF(Clock Reference Format)를 지원하게 한다.[@avnu-automotive-avb-1-6-2019]
+미디어 형식으로는, AAF(AVTP Audio Format)를 지원하는 오디오 장치가 IEEE 1722-2016의 AAF와 16비트 정수 샘플 형식, 48 kHz와 44.1 kHz 가운데 하나 이상의 샘플링 레이트를 지원하게 한다. 미디어 클럭 기준을 주고받는 장치 가운데 오디오 talker가 IEEE 1722-2016의 오디오 샘플 CRF(Clock Reference Format)를 지원하게 한다.[@avnu-automotive-avb-1-6-2019]
 
 ## TSN과의 관계
 

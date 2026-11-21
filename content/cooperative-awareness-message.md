@@ -17,7 +17,7 @@ ETSI TS 103 900 V2.3.1은 CAM을 보낸 ITS-S에서 직접 통신 범위 안의 
 
 ## 생성
 
-차량 CAM의 생성 간격 $T$는 $\mathrm{T\_GenCamMin} \le T \le \mathrm{T\_GenCamMax}$이고, T_GenCamMin은 100 ms, T_GenCamMax는 1000 ms다. 생성 조건은 주기 T_CheckCamGen마다 검사하고, $\mathrm{T\_CheckCamGen} \le \mathrm{T\_GenCamMin}$이다. 검사는 임의의 시점에 시작하고 실시간 클록에 동기하지 않는다. 마지막 CAM 생성에서 흐른 시간을 $t$라 하면, 아래 둘 가운데 하나를 만족할 때 CAM을 만든다.[@etsi-ts-103-900-2026]
+차량 CAM의 생성 간격 $T$는 $\mathrm{T\_GenCamMin} \le T \le \mathrm{T\_GenCamMax}$이고, T_GenCamMin은 100 ms, T_GenCamMax는 1000 ms다. 생성 조건은 주기 T_CheckCamGen마다 검사하고, $\mathrm{T\_CheckCamGen} \le \mathrm{T\_GenCamMin}$이다. 검사는 임의의 시점에 시작하고 실시간 클럭에 동기하지 않는다. 마지막 CAM 생성에서 흐른 시간을 $t$라 하면, 아래 둘 가운데 하나를 만족할 때 CAM을 만든다.[@etsi-ts-103-900-2026]
 
 1. $t \ge \mathrm{T\_GenCam\_Dcc}$이고, 지난 CAM에 담은 값과 견준 heading 차이 $\Delta h$, 위치 사이의 거리 $\Delta p$, 속도 차이 $\Delta v$ 가운데 하나가 $\Delta h > 4^\circ$, $\Delta p > 4\,\mathrm{m}$, $\Delta v > 0.5\,\mathrm{m/s}$이다.
 2. $t \ge \mathrm{T\_GenCam}$이고 $t \ge \mathrm{T\_GenCam\_Dcc}$이다.[@etsi-ts-103-900-2026]

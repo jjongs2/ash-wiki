@@ -25,7 +25,7 @@ verified: 2026-09-27
 
 ## 목적
 
-CAN 비트열은 NRZ(Non-Return-to-Zero)로 부호화되어, 한 비트 시간 내내 레벨이 dominant나 recessive 하나로 유지된다.[@bosch-can-2-0-1991] NRZ는 데이터에 클록을 싣지 않으므로, 에지가 적어도 6비트 시간마다 생기게 하려고 비트 스터핑을 쓴다.[@microchip-mcp2515-2019] [[iso-11898-1|ISO 11898-1:2024]]는 비트 스터핑을, NRZ 비트 표현에서 주기적 [[can-synchronization#재동기화|재동기화]]에 필요한 버스 상태 변화를 만들어 주는 프레임 부호화 방식으로 정의한다.[@iso-11898-1-obp-2024]
+CAN 비트열은 NRZ(Non-Return-to-Zero)로 부호화되어, 한 비트 시간 내내 레벨이 dominant나 recessive 하나로 유지된다.[@bosch-can-2-0-1991] NRZ는 데이터에 클럭을 싣지 않으므로, 에지가 적어도 6비트 시간마다 생기게 하려고 비트 스터핑을 쓴다.[@microchip-mcp2515-2019] [[iso-11898-1|ISO 11898-1:2024]]는 비트 스터핑을, NRZ 비트 표현에서 주기적 [[can-synchronization#재동기화|재동기화]]에 필요한 버스 상태 변화를 만들어 주는 프레임 부호화 방식으로 정의한다.[@iso-11898-1-obp-2024]
 
 ## CAN FD 프레임과의 차이
 

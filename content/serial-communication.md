@@ -19,9 +19,9 @@ IEC 60050은 **baud**(기호 Bd)를 전신과 데이터 통신에서는 변조 �
 
 **동기 전송**에서는 각 신호 요소가 나타나는 시점이 고정된 시간 기준에 묶인다.[@iso-iec-2382-obp-2015] IEC 60050은 동기 전송을 송신 장치와 수신 장치가 대응하는 유의 순간 사이에 일정한 시간 차를 두고 계속 동작하는 전송으로 정의한다.[@iec-60050-721-03-05-1991]
 
-SPI는 데이터 선과 따로 클록 선(SCK)을 두고, 마스터가 클록을 낸다. SPI는 클록 극성(CPOL)과 클록 위상(CPHA)의 조합으로 데이터를 잡는 클록 에지를 정하고, 마스터는 칩 선택(슬레이브 선택) 신호로 통신할 장치를 고른다.[@st-rm0008-2021][@microchip-atmega328p-2020]
+SPI는 데이터 선과 따로 클럭 선(SCK)을 두고, 마스터가 클럭을 낸다. SPI는 클럭 극성(CPOL)과 클럭 위상(CPHA)의 조합으로 데이터를 잡는 클럭 에지를 정하고, 마스터는 칩 선택(슬레이브 선택) 신호로 통신할 장치를 고른다.[@st-rm0008-2021][@microchip-atmega328p-2020]
 
-I2C는 직렬 데이터 선 SDA와 직렬 클록 선 SCL, 두 선을 쓰고, 전송을 시작하는 controller가 클록 신호를 낸다.[@nxp-um10204-2021]
+I2C는 직렬 데이터 선 SDA와 직렬 클럭 선 SCL, 두 선을 쓰고, 전송을 시작하는 controller가 클럭 신호를 낸다.[@nxp-um10204-2021]
 
 I2C 명세에 따르면 2선 직렬 버스인 I2C는 연결을 줄여 IC의 핀과 PCB(Printed-Circuit Board) 배선이 적어진다.[@nxp-um10204-2021] TI의 LVDS(Low-Voltage Differential Signaling) 핸드북에 따르면 직렬화기(serializer)는 병렬 데이터를 직렬 스트림으로 바꿔 보내 연결선의 비용과 크기를 줄이고, 넓은 병렬 데이터를 더 적은 수의 전송 선로로 보낼 수 있게 한다.[@ti-slld009-2002]
 
@@ -29,11 +29,11 @@ I2C 명세에 따르면 2선 직렬 버스인 I2C는 연결을 줄여 IC의 핀�
 
 **비동기 전송**에서는 문자나 문자 블록의 시작 시점이 임의이지만, 시작한 뒤에는 각 신호 요소가 고정된 시간 기준과 같은 관계로 나타난다.[@iso-iec-2382-obp-2015] **start-stop 전송**은 문자마다 신호 요소 묶음의 앞에 start 신호를, 뒤에 stop 신호를 붙이는 비동기 전송이다.[@iso-iec-2382-obp-2015][@iec-60050-721-03-07-1991]
 
-UART는 문자마다 앞에 start 비트를, 뒤에 stop 비트를 붙여 보낸다. UART 선은 쉬는 동안 high이고, start 비트는 low, stop 비트는 high다.[@st-rm0008-2021][@microchip-atmega328p-2020] TI의 비동기 통신 소자 TL16C550D의 데이터시트는 선의 high 수준을 marking 상태라 부른다.[@ti-tl16c550d-2008] UART 수신기는 idle(high)에서 start 비트(low)로 떨어지는 에지를 보고 문자의 시작을 알고, start 비트에 자기 클록을 맞춘 뒤 각 비트의 가운데를 샘플링한다. USART(Universal Synchronous/Asynchronous Receiver/Transmitter)는 클록 핀을 동기 모드에서만 쓴다.[@st-rm0008-2021][@microchip-atmega328p-2020]
+UART는 문자마다 앞에 start 비트를, 뒤에 stop 비트를 붙여 보낸다. UART 선은 쉬는 동안 high이고, start 비트는 low, stop 비트는 high다.[@st-rm0008-2021][@microchip-atmega328p-2020] TI의 비동기 통신 소자 TL16C550D의 데이터시트는 선의 high 수준을 marking 상태라 부른다.[@ti-tl16c550d-2008] UART 수신기는 idle(high)에서 start 비트(low)로 떨어지는 에지를 보고 문자의 시작을 알고, start 비트에 자기 클럭을 맞춘 뒤 각 비트의 가운데를 샘플링한다. USART(Universal Synchronous/Asynchronous Receiver/Transmitter)는 클럭 핀을 동기 모드에서만 쓴다.[@st-rm0008-2021][@microchip-atmega328p-2020]
 
 ![[diagrams/uart-frame-sampling.svg]]
 
-비동기 수신기는 송신 측과 수신 측 클록의 편차가 허용 오차 안에 있어야 제대로 받으며, 허용되는 편차는 프레임이 길수록 작다.[@st-rm0008-2021][@microchip-atmega328p-2020] Analog Devices 기술 문서에 따르면 UART 수신기는 프레임마다 다시 동기하므로 클록 차이에 따른 타이밍 오차는 한 프레임 안에서 쌓이고, 가장 큰 오차는 마지막 샘플링 지점인 stop 비트에서 난다.[@adi-uart-clock-accuracy-2003]
+비동기 수신기는 송신 측과 수신 측 클럭의 편차가 허용 오차 안에 있어야 제대로 받으며, 허용되는 편차는 프레임이 길수록 작다.[@st-rm0008-2021][@microchip-atmega328p-2020] Analog Devices 기술 문서에 따르면 UART 수신기는 프레임마다 다시 동기하므로 클럭 차이에 따른 타이밍 오차는 한 프레임 안에서 쌓이고, 가장 큰 오차는 마지막 샘플링 지점인 stop 비트에서 난다.[@adi-uart-clock-accuracy-2003]
 
 Bosch CAN 2.0 규격은 버스를 비트를 나르는 채널 하나로 두고, [[can-synchronization#재동기화|재동기화]] 정보를 이 데이터에서 얻게 한다.[@bosch-can-2-0-1991]
 

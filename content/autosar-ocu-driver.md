@@ -33,4 +33,4 @@ counter가 threshold와 같아지면 OCU Driver는 두 가지 동작을 할 수 
 
 ## 다른 드라이버와의 관계
 
-OCU Driver는 전역 클록, 전역 prescaler, PLL(Phase-Locked Loop) 설정을 [[microcontroller-abstraction-layer#모듈 그룹|MCU Driver]]에 맡기고, OCU 주변장치에 고유한 자원만 스스로 설정한다. OCU 출력으로 쓰는 핀은 [[autosar-port-driver|Port Driver]]가 설정하므로, OCU 함수를 쓰기 전에 Port Driver를 초기화해야 한다.[@autosar-cp-sws-ocudriver-2025]
+OCU Driver는 전역 클럭, 전역 prescaler, PLL(Phase-Locked Loop) 설정을 [[microcontroller-abstraction-layer#모듈 그룹|MCU Driver]]에 맡기고, OCU 주변장치에 고유한 자원만 스스로 설정한다. OCU 출력으로 쓰는 핀은 [[autosar-port-driver|Port Driver]]가 설정하므로, OCU 함수를 쓰기 전에 Port Driver를 초기화해야 한다.[@autosar-cp-sws-ocudriver-2025]
