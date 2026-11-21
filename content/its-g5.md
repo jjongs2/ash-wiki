@@ -31,7 +31,7 @@ LLC는 Type 1, 곧 확인 없는 비연결 모드로 동작하고, [[ethernet-fr
 
 MAC 부계층은 IEEE 802.11-2016의 MIB(Management Information Base) 파라미터 dot11OCBActivated를 true로 두어 켠다.[@etsi-en-302-663-2020]
 
-이 명세는 ITS-G5의 [[v2x-security|보안]]을 협력 ITS 분야의 다른 표준이 맡는다고 제시한다.[@etsi-en-302-663-2020]
+Annex C(informative)는 ITS-G5의 [[v2x-security|보안]]을 협력 ITS 분야의 다른 표준이 맡는다고 제시한다.[@etsi-en-302-663-2020]
 
 ## 혼잡 제어
 
