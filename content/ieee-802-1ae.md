@@ -11,20 +11,20 @@ edition: 2018
 status: 유효
 ---
 
-**IEEE 802.1AE**는 IEEE 802 LAN의 MAC(Medium Access Control) 서비스를 쓰는 상위 프로토콜 실체에 드러나지 않게, 네트워크의 전부나 일부를 보호하는 방법을 정하는 IEEE 표준이다. 정식 제목은 "IEEE Standard for Local and metropolitan area networks—Media Access Control (MAC) Security"이다. 이 표준이 정하는 보안을 **MACsec**(MAC Security)이라 한다.[@ieee-802-1ae-2018]
+**IEEE 802.1AE**는 IEEE 802 LAN의 MAC(Medium Access Control) 서비스를 쓰는 상위 프로토콜 개체에 드러나지 않게, 네트워크의 전부나 일부를 보호하는 방법을 정하는 IEEE 표준이다. 정식 제목은 "IEEE Standard for Local and metropolitan area networks—Media Access Control (MAC) Security"이다. 이 표준이 정하는 보안을 **MACsec**(MAC Security)이라 한다.[@ieee-802-1ae-2018]
 
 ## 범위
 
-이 표준은 MAC 클라이언트에 드러나지 않게 동작하고 매체 접근 방식에 매이지 않는 프로토콜과 실체로, 비연결형 사용자 데이터의 기밀성, 프레임 데이터의 무결성, 데이터 출처의 진정성을 제공하는 것을 정한다. 이 표준은 MACsec을 네트워크 기반 구조의 신뢰하는 구성 요소 사이의 통신을 보호하는 수단으로 두며, 신뢰하는 구성 요소 자체를 이용한 공격은 막지 못하므로 응용 사이의 종단 간 보안 프로토콜을 대신하지 않고 보완한다고 둔다.[@ieee-802-1ae-2018]
+이 표준은 MAC 클라이언트에 드러나지 않게 동작하고 매체 접근 방식에 매이지 않는 프로토콜과 개체로, 비연결형 사용자 데이터의 기밀성, 프레임 데이터의 무결성, 데이터 출처의 authenticity를 제공하는 것을 정한다. 이 표준은 MACsec을 네트워크 기반 구조의 신뢰하는 구성 요소 사이의 통신을 보호하는 수단으로 두며, 신뢰하는 구성 요소 자체를 이용한 공격은 막지 못하므로 응용 사이의 종단 간 보안 프로토콜을 대신하지 않고 보완한다고 둔다.[@ieee-802-1ae-2018]
 
 이 표준이 쓰는 보안 관계와 식별자는 아래와 같다.[@ieee-802-1ae-2018]
 
-- **SecY**(MAC Security Entity): 한 시스템 안에서 MACsec 프로토콜을 운용하는 실체.
+- **SecY**(MAC Security Entity): 한 시스템 안에서 MACsec 프로토콜을 운용하는 개체.
 - **CA**(secure Connectivity Association): 키 합의 프로토콜이 세우고 유지하는 보안 관계. 한 LAN에 붙은 스테이션들의 서비스 접근점 가운데 MACsec으로 보호할, 서로 모두 이어진 부분 집합이다.
 - **SA**(Secure Association): CA의 한 구성원이 나머지 구성원에게 보내는 프레임을 보호하는 보안 관계로, 비밀 키 하나(한 프레임을 보호하는 데 키가 여럿 필요하면 키 한 벌)가 받친다. 이 키가 **SAK**(Secure Association Key)다.
 - **SC**(Secure Channel): CA의 한 구성원이 나머지 구성원에게 보내는 프레임을 보호하는 보안 관계. SA가 차례로 이어 받치므로 관계를 끝내지 않고 키를 새로 바꿀 수 있다. SC는 [[mac-address|MAC 주소]]와 포트 식별자로 된 SCI(Secure Channel Identifier)로 가린다.
 - **AN**(Association Number): 보호한 프레임 머리의 SecTAG(MAC Security TAG)에 실리는 2비트 정수로, SC 안의 SA를 넷까지 가린다.
-- **PN**(Packet Number): SecTAG에 하위 32비트가 실리는 번호로, 같은 SA로 보내는 MPDU(MACsec Protocol Data Unit)마다 암호 계산에 넣는 IV(Initialization Vector)를 다르게 하고 재전송 공격을 막는 데 쓴다.
+- **PN**(Packet Number): SecTAG에 하위 32비트가 실리는 번호로, 같은 SA로 보내는 MPDU(MACsec Protocol Data Unit)마다 암호 계산에 넣는 IV(Initialization Vector)를 다르게 하고 replay 공격을 막는 데 쓴다.
 - **ICV**(Integrity Check Value): 보호한 프레임에 붙는 무결성 검사 값. 길이는 cipher suite에 따라 8옥텟에서 16옥텟이다.[@ieee-802-1ae-2018]
 
 ![[diagrams/macsec-ca-sc-sa.svg]]
@@ -48,7 +48,7 @@ OPEN Alliance의 TC17은 IEEE 802.1AE의 MACsec과 IEEE 802.1X의 MKA를 차량�
 - 2006년: 첫판이 나왔다.
 - 2011년: 개정 802.1AEbn-2011이 GCM-AES-256 cipher suite를 선택 사항으로 더했다.
 - 2013년: 개정 802.1AEbw-2013이 확장 패킷 번호 cipher suite를 더해, SAK 하나로 $2^{32}$개보다 많은 프레임을 보호할 수 있게 했다.
-- 2017년: 개정 802.1AEcg-2017이 provider 네트워크의 서비스 선택을 유지하면서 투명한 보안 연결을 주는 EDE(Ethernet Data Encryption device)를 정했다. 우선순위가 다른 프레임의 순서가 바뀔 수 있는 경우(프레임 선점 등)에 엄격한 재전송 보호를 위해 송신 SC를 여럿 쓰는 방식도 정했다.
+- 2017년: 개정 802.1AEcg-2017이 provider 네트워크의 서비스 선택을 유지하면서 투명한 보안 연결을 주는 EDE(Ethernet Data Encryption device)를 정했다. 우선순위가 다른 프레임의 순서가 바뀔 수 있는 경우(프레임 선점 등)에 엄격한 replay 보호를 위해 송신 SC를 여럿 쓰는 방식도 정했다.
 - 2018년: 2판. 첫판과 그 개정들을 합쳐 대체했다. 이 판 뒤로 정오표 802.1AE-2018/Cor 1-2020과 MAC 프라이버시 보호를 정한 개정 802.1AEdk-2023이 나왔다.[@ieee-802-1ae-2018][@ieee-802-1ae-project-2026]
 - 2025년: 2018년판과 그 정오표, 개정을 합치는 유지보수 개정 프로젝트 P802.1AE-2018-Rev의 PAR(Project Authorization Request)이 2025년 9월에 승인되었고, 2026년 10월 기준 진행 중이다.[@ieee-p802-1ae-rev-2025]
 

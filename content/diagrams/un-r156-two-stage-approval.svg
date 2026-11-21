@@ -41,7 +41,7 @@
     <rect x="478" y="168" width="212" height="66" rx="2" />
   </g>
   <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
-    <text x="584" y="108.5">업데이트의 진위성과 무결성 보호</text>
+    <text x="584" y="108.5">업데이트의 authenticity와 무결성 보호</text>
     <text x="584" y="148.5">RXSWIN의 식별, 읽기, 보호</text>
     <text x="584" y="188" font-weight="600">OTA 업데이트를 하는 차량 형식</text>
     <text x="584" y="205">사용자가 업데이트를 알 수 있게 함</text>
