@@ -6,10 +6,10 @@
 
   <!-- 경고: 7은 해도 되고 8 이상은 해야 한다 -->
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="390" y="56">경고해도 된다</text>
+    <text x="390" y="40">경고해도 된다</text>
     <text x="465" y="56">경고해야 한다</text>
   </g>
-  <path d="M368 76 v-6 H412 v6" stroke="var(--orange, #b0540d)" stroke-width="1" />
+  <path d="M368 76 v-6 H412 v6 M390 70 V46" stroke="var(--orange, #b0540d)" stroke-width="1" />
   <path d="M418 76 v-6 H512 v6" stroke="var(--red, #bb464d)" stroke-width="1" />
 
   <!-- KSS 9단계: 맞붙는 칸이므로 모서리는 0 -->

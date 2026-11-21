@@ -13,13 +13,13 @@ u-blox의 3D Automotive Dead Reckoning 솔루션은 GNSS(Global Navigation Satel
 
 ## 쓰는 곳
 
-ADASIS 백서에 따르면 백서가 나온 2024년 무렵 ADASISv2는 Predictive Powertrain Control, Predictive Cruise Control, overspeed warning, intelligent speed limit assist, overtaking assist, predictive [[adas#기능|ACC]] 같은 기본 ADAS 기능에 쓰였다. ADASISv3는 2022년 중반부터 [[levels-of-driving-automation|운전 자동화 레벨]] 3 양산차에 쓰였고, 일부 OEM이 레벨 3 기능을 돕고 가능하게 하는 데 썼다.[@adasis-white-paper-2024]
+ADASIS 백서에 따르면 백서가 나온 2024년 무렵 ADASISv2는 Predictive Powertrain Control, Predictive Cruise Control, overspeed warning, intelligent speed limit assist, overtaking assist, predictive [[adas#기능|ACC]] 같은 기본 ADAS 기능에 쓰였다. ADASISv3는 2022년 중반부터 일부 OEM의 [[levels-of-driving-automation|운전 자동화 레벨]] 3 양산차에 쓰였다.[@adasis-white-paper-2024]
 
 EU 규정 2019/2144는 [[adas#EU 규정|ISA]]의 피드백이 도로 표지와 신호를 관찰하거나, 차 안에서 받는 인프라 신호나 전자 지도 데이터, 또는 둘 다에서 얻은 속도 제한 정보에 근거하게 한다.[@eu-2019-2144-2026]
 
 ## 동작
 
-ADASIS에서는 ADASIS Horizon Provider(AHP)가 지도에서 도로망을 지나는 하나 이상의 가능한 경로(path)를 계산하고, 그 경로와 속성을 차량 앞 정해진 범위까지 보낸다. 이 범위는 카메라 같은 센서의 범위보다 훨씬 멀리 닿을 수 있다. AHP는 차량 위치를 보낸 경로 트리에 map matching해 경로 위의 위치도 함께 준다. 응용 쪽의 ADASIS Horizon Reconstructor(AHR)는 받은 메시지를 해석해 Horizon의 사본을 다시 만든다.[@adasis-white-paper-2024]
+ADASIS에서는 ADASIS Horizon Provider(AHP)가 지도에서 도로망을 지나는 하나 이상의 가능한 경로(path)를 계산해 경로 트리로 만들고, 그 경로 트리와 속성을 차량 앞 정해진 범위까지 보낸다. 이 범위는 카메라 같은 센서의 범위보다 훨씬 멀리 닿을 수 있다. AHP는 차량 위치를 보낸 경로 트리에 map matching해 경로 위의 위치도 함께 준다. 응용 쪽의 ADASIS Horizon Reconstructor(AHR)는 받은 메시지를 해석해 Horizon의 사본을 다시 만든다.[@adasis-white-paper-2024]
 
 ![[diagrams/adasis-horizon-provider-reconstructor.svg]]
 
@@ -29,7 +29,7 @@ ADASIS에서는 ADASIS Horizon Provider(AHP)가 지도에서 도로망을 지나
 
 ADASISv2는 [[can|CAN]] 버스를 쓰는 시스템을 겨냥한 프로토콜로, 적은 수의 메시지로 차량 주변 전체와 앞 몇 km를 기술한다. ADASISv2는 브로드캐스트 프로토콜이라 메시지가 전달되지 않았는지 감지하지 못해, provider와 reconstructor 사이의 신뢰성 있는 통신을 보장하지 못한다. ADASISv3는 IP 기반 프로토콜로 HD 지도의 차로 수준 정보를 보낸다. ADASISv3에서는 auxiliary horizon provider가 차량 센서나 교통 정보·V2X(Vehicle-to-X) 같은 외부 소스의 데이터를 Horizon에 더할 수 있다.[@adasis-white-paper-2024]
 
-백서가 나온 2024년 무렵 ADASISv3 프로토콜은 [[osi-model|OSI 참조 모델]]의 응용 계층(7계층)에 정의되어 있었다. ADASISv3는 운영체제나 미들웨어와 무관해 [[autosar-classic-platform|AUTOSAR Classic Platform]]·[[autosar-adaptive-platform|Adaptive Platform]]이나 자체 미들웨어에서 쓸 수 있고, 차량 안의 [[some-ip|SOME/IP]]나, 클라우드에서 바로 오는 REST API·보안 WebSocket 위에서도 쓸 수 있다. 필요한 대역폭은 기본 지도 지원과 짧은 Horizon에서 평균 1 kB/s 미만이고, 긴 Horizon과 많은 profile 종류에서는 10 kB/s 이상으로 늘 수 있다.[@adasis-white-paper-2024]
+백서가 나온 2024년 무렵 ADASISv3 프로토콜은 [[osi-model|OSI 참조 모델]]의 응용 계층(7계층)에 정의되어 있었다. ADASISv3는 특정 운영체제나 미들웨어에 매이지 않아 [[autosar-classic-platform|AUTOSAR Classic Platform]]·[[autosar-adaptive-platform|Adaptive Platform]]이나 자체 미들웨어에서 쓸 수 있고, 차량 안의 [[some-ip|SOME/IP]]나, 클라우드에서 바로 오는 REST API·보안 WebSocket 위에서도 쓸 수 있다. 필요한 대역폭은 기본 지도 지원과 짧은 Horizon에서 평균 1 kB/s 미만이고, 긴 Horizon과 많은 profile 종류에서는 10 kB/s 이상으로 늘 수 있다.[@adasis-white-paper-2024]
 
 ## HD 지도와 NDS
 

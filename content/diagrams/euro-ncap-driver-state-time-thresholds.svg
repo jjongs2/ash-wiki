@@ -1,7 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="1 -1 540 298.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="Driver Engagement 프로토콜의 운전자 상태별 시간 기준">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 549 350" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="Driver Engagement 프로토콜의 운전자 상태별 시간 기준">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+    <marker id="arrow-thick" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
@@ -11,50 +14,60 @@
 
   <!-- 상태와 재는 시간 -->
   <g text-anchor="end" fill="var(--text, #727981)">
-    <text x="150" y="56">long distraction</text>
-    <text x="150" y="71" font-size="11">시선을 뗀 시간</text>
-    <text x="150" y="98">microsleep</text>
-    <text x="150" y="113" font-size="11">눈을 감은 시간</text>
-    <text x="150" y="140">sleep</text>
-    <text x="150" y="155" font-size="11">눈을 감은 시간</text>
-    <text x="150" y="182">unresponsive</text>
-    <text x="150" y="197" font-size="11">눈을 감은 시간</text>
+    <text x="184" y="56">long distraction</text>
+    <text x="184" y="72">시선을 뗀 시간</text>
+    <text x="184" y="100">microsleep</text>
+    <text x="184" y="116">눈을 감은 시간</text>
+    <text x="184" y="144">sleep</text>
+    <text x="184" y="160">눈을 감은 시간</text>
+    <text x="184" y="188">unresponsive</text>
+    <text x="184" y="204">눈을 감은 시간</text>
+    <text x="184" y="232">unresponsive</text>
+    <text x="184" y="248">경고 뒤 시선이 돌아오기까지</text>
   </g>
 
-  <!-- 시간 축: 1초 = 50 단위, 0초 = x 170 -->
+  <!-- 시간 축: 1초 = 45 단위, 0초 = x 200, 1 = 245, 2 = 290, 3 = 335, 4 = 380, 6 = 470 -->
   <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
-    <line x1="220" y1="112" x2="220" y2="214" />
-    <line x1="270" y1="112" x2="270" y2="214" />
-    <line x1="320" y1="70" x2="320" y2="214" />
-    <line x1="370" y1="70" x2="370" y2="214" />
-    <line x1="470" y1="196" x2="470" y2="214" />
+    <line x1="245" y1="108" x2="245" y2="272" />
+    <line x1="290" y1="108" x2="290" y2="272" />
+    <line x1="335" y1="64" x2="335" y2="272" />
+    <line x1="380" y1="64" x2="380" y2="272" />
+    <line x1="470" y1="196" x2="470" y2="272" />
   </g>
 
-  <!-- 범위: 축 위의 구간이므로 모서리는 0. 끝이 열린 범위는 오른쪽 변을 그리지 않는다 -->
-  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="320" y="50" width="50" height="20" />
-    <rect x="220" y="92" width="50" height="20" />
+  <!-- 범위: 닫힌 끝은 채운 점, 열린 끝은 빈 점, '이상'은 화살표로 연다 -->
+  <g stroke="var(--ink, #727981)" stroke-width="3">
+    <line x1="335" y1="64" x2="380" y2="64" />
+    <line x1="245" y1="108" x2="290" y2="108" />
+    <line x1="335" y1="152" x2="505" y2="152" marker-end="url(#arrow-thick)" />
+    <line x1="470" y1="196" x2="505" y2="196" marker-end="url(#arrow-thick)" />
+    <line x1="340" y1="240" x2="505" y2="240" marker-end="url(#arrow-thick)" />
   </g>
-  <g fill="var(--surface, none)">
-    <rect x="320" y="134" width="190" height="20" />
-    <rect x="470" y="176" width="40" height="20" />
+  <g fill="var(--ink, #727981)">
+    <circle cx="335" cy="64" r="5" />
+    <circle cx="380" cy="64" r="5" />
+    <circle cx="245" cy="108" r="5" />
+    <circle cx="290" cy="108" r="5" />
+    <circle cx="335" cy="152" r="5" />
+    <circle cx="470" cy="196" r="5" />
   </g>
-  <g stroke="var(--ink, #727981)" stroke-width="1.5">
-    <path d="M510 134 H320 V154 H510" />
-    <path d="M510 176 H470 V196 H510" />
-  </g>
+  <circle cx="335" cy="240" r="4.25" stroke="var(--ink, #727981)" stroke-width="1.5" />
 
-  <line x1="170" y1="214" x2="520" y2="214" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
-  <path d="M170 214 v5 M220 214 v5 M270 214 v5 M320 214 v5 M370 214 v5 M470 214 v5" stroke="var(--ink, #727981)" stroke-width="1" />
+  <line x1="200" y1="272" x2="528" y2="272" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <path d="M200 272 v5 M245 272 v5 M290 272 v5 M335 272 v5 M380 272 v5 M470 272 v5" stroke="var(--ink, #727981)" stroke-width="1" />
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="170" y="233">0</text>
-    <text x="220" y="233">1</text>
-    <text x="270" y="233">2</text>
-    <text x="320" y="233">3</text>
-    <text x="370" y="233">4</text>
-    <text x="470" y="233">6</text>
-    <text x="345" y="253">시간 (s)</text>
+    <text x="200" y="291">0</text>
+    <text x="245" y="291">1</text>
+    <text x="290" y="291">2</text>
+    <text x="335" y="291">3</text>
+    <text x="380" y="291">4</text>
+    <text x="470" y="291">6</text>
+    <text x="360" y="311">시간 (s)</text>
   </g>
 
-  <text x="20" y="279" fill="var(--text, #727981)">unresponsive는 주의 분산 경고 뒤 3초 안에 시선이 앞 도로로 돌아오지 않을 때도 분류할 수 있다</text>
+  <!-- 범례 -->
+  <circle cx="25" cy="327" r="5" fill="var(--ink, #727981)" />
+  <text x="36" y="331" fill="var(--text, #727981)">그 값을 포함</text>
+  <circle cx="125" cy="327" r="4.25" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="136" y="331" fill="var(--text, #727981)">그 값을 포함하지 않음</text>
 </svg>

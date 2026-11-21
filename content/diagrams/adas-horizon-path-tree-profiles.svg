@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 529 256" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="ADAS Horizon의 경로 트리와 ADASIS profile">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 529 332" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="ADAS Horizon의 경로 트리와 ADASIS profile">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -43,14 +43,32 @@
     <text x="450" y="194">곡률</text>
   </g>
 
-  <!-- 범위 -->
-  <g stroke="var(--ink, #727981)" stroke-width="1">
-    <path d="M56 160 v6 H150 v-6" />
-    <path d="M56 214 v6 H508 v-6" />
+  <!-- ECU마다 처리 능력에 맞게 고른 profile 종류 -->
+  <text x="20" y="242" fill="var(--text, #727981)">ECU마다 처리 능력에 맞게 고른 profile</text>
+  <g fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5">
+    <rect x="20.75" y="256.75" width="58.5" height="22.5" rx="2" />
+    <rect x="86.75" y="256.75" width="70.5" height="22.5" rx="2" />
+    <rect x="20.75" y="294.75" width="58.5" height="22.5" rx="2" />
+    <rect x="86.75" y="294.75" width="70.5" height="22.5" rx="2" />
+    <rect x="164.75" y="294.75" width="94.5" height="22.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="50" y="272">곡률</text>
+    <text x="122" y="272">속도 제한</text>
+    <text x="50" y="310">곡률</text>
+    <text x="122" y="310">속도 제한</text>
+    <text x="212" y="310">차로 수준 정보</text>
+  </g>
+  <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="340.75" y="256.75" width="166.5" height="22.5" rx="2" />
+    <rect x="340.75" y="294.75" width="166.5" height="22.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
-    <text x="103" y="184">카메라 같은</text>
-    <text x="103" y="200">센서의 범위</text>
-    <text x="282" y="240">경로와 속성을 보내는 범위</text>
+    <text x="424" y="272">처리 능력이 낮은 ECU</text>
+    <text x="424" y="310">처리 능력이 높은 ECU</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="166" y1="268" x2="339" y2="268" />
+    <line x1="268" y1="306" x2="339" y2="306" />
   </g>
 </svg>
