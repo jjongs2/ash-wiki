@@ -2,6 +2,7 @@
 title: ADS 시나리오 기반 테스트
 tags:
   - applications/adas
+  - sw-engineering/sw-testing
 aliases:
   - ISO 34501
   - ISO 34502

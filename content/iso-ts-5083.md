@@ -2,6 +2,7 @@
 title: ISO/TS 5083
 tags:
   - applications/adas
+  - sw-engineering/functional-safety
 verified: 2026-11-20
 publisher: ISO
 edition: 2025
