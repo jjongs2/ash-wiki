@@ -17,7 +17,7 @@ verified: 2026-09-27
 
 ![[diagrams/can-arbitration.svg]]
 
-[[can-frame#데이터 프레임의 필드|SOF]] 바로 뒤의 중재 필드는 [[can-identifier|식별자]]와 RTR(Remote Transmission Request) 비트로 이루어지고 [[can-frame#기본 포맷과 확장 포맷|확장 포맷]]에서는 SRR(Substitute Remote Request) 비트와 IDE(Identifier Extension) 비트가 더 들며, 식별자는 최상위 비트부터 보낸다.[@bosch-can-2-0-1991]
+[[can-frame#데이터 프레임의 필드|SOF]] 바로 뒤의 중재 필드는 [[can-identifier|식별자]]와 RTR(Remote Transmission Request) 비트로 이루어지고, [[can-frame#기본 포맷과 확장 포맷|확장 포맷]]에서는 SRR(Substitute Remote Request) 비트와 IDE(Identifier Extension) 비트가 더 든다. 식별자는 최상위 비트부터 보낸다.[@bosch-can-2-0-1991]
 
 Microchip 문서에 따르면 중재에 참여하는 모든 노드가 같은 비트 시간 안에 버스의 같은 비트를 샘플링할 수 있어야 중재가 성립하고, 송신 노드는 [[can-bit-timing#샘플 포인트|샘플 포인트]]를 최대 전파 지연, 곧 신호가 버스 양 끝의 두 노드 사이를 갔다 돌아오는 왕복 지연 뒤에 두어야 한다.[@microchip-an754-2001][@microchip-mcp25xxfd-frm-2020]
 
@@ -29,10 +29,10 @@ Microchip 문서에 따르면 중재에 참여하는 모든 노드가 같은 비
 
 dominant는 논리 0, recessive는 논리 1이다.[@iso-11898-1-obp-2024] 그래서 식별자 값이 가장 작은 프레임이 우선순위가 가장 높아 중재에서 이긴다.[@st-rm0008-2021]
 
-식별자가 같은 [[can-frame|데이터 프레임]]과 [[remote-frame|리모트 프레임]]이 만나면 RTR 비트가 dominant인 데이터 프레임이 이긴다. 기본 식별자가 같은 기본 포맷 프레임과 확장 포맷 프레임이 만나면 기본 포맷 프레임이 이긴다.[@bosch-can-2-0-1991]
+식별자가 같은 [[can-frame|데이터 프레임]]과 [[remote-frame|리모트 프레임]]이 만나면 RTR 비트가 dominant인 데이터 프레임이 이긴다. [[can-frame#기본 포맷과 확장 포맷|기본 식별자]]가 같은 기본 포맷 프레임과 확장 포맷 프레임이 만나면 기본 포맷 프레임이 이긴다.[@bosch-can-2-0-1991]
 
 같은 식별자의 데이터 프레임을 두 노드가 함께 보내면 중재 필드에서 승자가 가려지지 않아 둘 다 송신을 이어 간다. 중재 필드 밖에서 보낸 비트와 읽은 비트가 다르면 [[can-error-detection|비트 오류]]가 난다.[@bosch-can-2-0-1991]
 
 ## 진 프레임
 
-[[can-controller#제품 예|Bosch M_CAN]]은 중재에서 진 프레임을 기본 설정에서 [[can-controller#자동 재전송|자동 재전송]]으로 다시 보내고, 이 동작은 설정으로 끌 수 있다. M_CAN 매뉴얼에 따르면 한 [[electronic-control-unit|ECU]]가 CAN 메시지를 연달아 보내면, 중재 우선순위가 더 낮은 다른 ECU의 메시지가 늦어질 수 있다. M_CAN의 transmit pause 기능을 켜면 메시지를 하나 보낼 때마다 2비트 시간 쉬어, 우선순위가 낮은 다른 노드도 메시지를 보낼 수 있게 한다.[@bosch-m-can-2023]
+[[can-controller#제품 예|Bosch M_CAN]]은 중재에서 진 프레임을 기본 설정에서 [[can-controller#자동 재전송|자동 재전송]]하고, 이 동작은 설정으로 끌 수 있다. M_CAN 매뉴얼에 따르면 한 [[electronic-control-unit|ECU]]가 CAN 메시지를 연달아 보내면, 중재 우선순위가 더 낮은 다른 ECU의 메시지가 늦어질 수 있다. M_CAN의 transmit pause 기능을 켜면 메시지를 하나 보낼 때마다 2비트 시간 쉬어, 우선순위가 낮은 다른 노드도 메시지를 보낼 수 있게 한다.[@bosch-m-can-2023]

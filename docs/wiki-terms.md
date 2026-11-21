@@ -120,7 +120,7 @@
 - read-while-write: - (#674). 플래시의 RWW일 때
 - recessive: 리세시브 (#165). 조사는 원어의 발음대로. 예: "recessive이고"
 - Reed-Solomon: Reed–Solomon (#498)
-- resource: 리소스 (#165, #763). OSEK 객체와, 프로토콜이 정한 resource(CoAP resource, LwM2M Resource, oneM2M resource, SOVD resource)일 때. 일반적인 뜻이면 "자원"
+- resource: 리소스 (#165, #763). OSEK 객체일 때. 일반적인 뜻이면 "자원". 예외로 프로토콜이 정한 resource(CoAP resource, LwM2M Resource, oneM2M resource, SOVD resource)는 "리소스"
 - root of trust: 신뢰의 뿌리 (#288)
 - RSA 풀이 Rivest-Shamir-Adleman: Rivest–Shamir–Adleman (#288)
 - S3Server 타이머: S3 타이머 (#763). UDS의 S3Server일 때

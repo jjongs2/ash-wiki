@@ -35,11 +35,11 @@ Bosch CAN FD 1.0에 따르면 Classical CAN 프레임의 15비트 CRC도 [[can-f
 
 ## CAN FD 프레임과의 차이
 
-CAN FD 포맷 프레임은 데이터 필드의 바이트 수 $n$이 $n \le 16$이면 17비트 CRC를, $n > 16$이면 21비트 CRC를 쓴다. CRC 시퀀스의 길이는 생성 다항식의 차수와 같다. 프레임이 시작되면 송신 노드를 포함한 모든 노드가 세 CRC를 함께 계산하고, 프레임의 EDL(Extended Data Length) 비트와 [[data-length-code|DLC]]가 그중 하나를 고른다. 수신 노드는 고른 CRC로만 CRC 오류를 판정한다.[@bosch-can-fd-1-0-2012]
+CAN FD 포맷 프레임은 데이터 필드의 바이트 수 $n$이 $n \le 16$이면 17비트 CRC를, $n > 16$이면 21비트 CRC를 쓴다. 프레임이 시작되면 송신 노드를 포함한 모든 노드가 15비트·17비트·21비트 세 CRC를 함께 계산하고, 프레임의 EDL(Extended Data Length) 비트와 [[data-length-code|DLC]]가 그중 하나를 고른다. 수신 노드는 고른 CRC로만 CRC 오류를 판정한다.[@bosch-can-fd-1-0-2012]
 
 CAN FD 포맷 프레임은 스터프 비트도 CRC 계산에 넣지만, classical 포맷 프레임은 넣지 않는다.[@bosch-can-fd-1-0-2012]
 
-Bosch CAN FD 1.0은 17비트 CRC(CRC_17)와 21비트 CRC(CRC_21)의 생성 다항식을 아래처럼 정한다.[@bosch-can-fd-1-0-2012]
+CRC 시퀀스의 길이는 생성 다항식의 차수와 같다. Bosch CAN FD 1.0은 17비트 CRC(CRC_17)와 21비트 CRC(CRC_21)의 생성 다항식을 아래처럼 정한다.[@bosch-can-fd-1-0-2012]
 
 $$
 x^{17} + x^{16} + x^{14} + x^{13} + x^{11} + x^{6} + x^{4} + x^{3} + x + 1

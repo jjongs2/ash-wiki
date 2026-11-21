@@ -83,4 +83,4 @@ tpl_250의 10 ms는 무선 구간 둘을 전제한 IEEE 802.1BA의 클래스 B �
 
 ## TSN과의 관계
 
-AV Bridging 태스크 그룹은 네트워크 지연을 더 줄이려고 [[frame-preemption|프레임 선점]](P802.1Qbu)과 [[time-aware-shaper|scheduled traffic]](P802.1Qbv) 프로젝트를 시작했고, 이중화와 처리량 향상을 위한 다중 경로 작업도 검토했다.[@ieee-802-1-avb-tg-2013] TSN 태스크 그룹은 AVB 태스크 그룹에서 이어졌고 AVB 표준을 이어받았으며, scheduled traffic(IEEE 802.1Qbv)과 프레임 선점(IEEE 802.1Qbu)을 더했다.[@ieee-802-1-tsn-tg-2017] 중복 전송을 위해 프레임을 복제하고 중복을 없애는 [[ieee-802-1cb|IEEE 802.1CB]]도 TSN 태스크 그룹에서 나왔다.[@ieee-802-1cb-project-2017]
+AV Bridging 태스크 그룹은 네트워크 지연을 더 줄이려고 [[frame-preemption|프레임 선점]](P802.1Qbu)과 [[time-aware-shaper|scheduled traffic]](P802.1Qbv) 프로젝트를 시작했고, 이중화와 처리량 향상을 위한 다중 경로 작업도 검토했다.[@ieee-802-1-avb-tg-2013] TSN 태스크 그룹은 AVB 태스크 그룹에서 이어졌고 AVB 표준을 이어받았으며, scheduled traffic(IEEE 802.1Qbv)과 프레임 선점(IEEE 802.1Qbu)을 더했다.[@ieee-802-1-tsn-tg-2017] 중복 전송을 위해 프레임을 복제하고 겹친 복제본을 없애는 [[ieee-802-1cb|IEEE 802.1CB]]도 TSN 태스크 그룹에서 나왔다.[@ieee-802-1cb-project-2017]

@@ -28,7 +28,7 @@ CAN FD 포맷 프레임에서 classical 포맷의 RTR(Remote Transmission Reques
 
 ## CRC 필드
 
-[[can-crc|CRC]] 시퀀스는 데이터 필드 길이에 따라 17비트나 21비트이고, 스터프 비트가 고정 위치에 들어간다.[@bosch-can-fd-1-0-2012]
+[[can-crc|CRC]] 시퀀스는 데이터 필드 길이에 따라 17비트나 21비트이고, 여기에 스터프 비트가 고정 위치에 더 들어간다.[@bosch-can-fd-1-0-2012]
 
 [[iso-11898-1#Bosch CAN FD와의 차이|ISO CRC 모드]]의 CRC 필드에 더해지는 stuff bit count는 [[can-bit-stuffing#CAN FD 프레임과의 차이|CAN 비트 스터핑]]에서 다룬다.
 

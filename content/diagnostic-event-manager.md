@@ -16,7 +16,7 @@ AUTOSAR R25-11의 Dem 명세는 **Diagnostic Event Manager**(Dem)를 진단 이�
 
 Dem의 API `Dem_SetEventStatus`로 넘기는 이벤트 ID(EventId)는 ECU 전체에서 정적으로 정하고, 효율을 위해 촘촘한 값 범위에 둔다. Dem이 이 ID를 ROM 배열의 첨자로 쓰기 때문이다.[@autosar-cp-exp-layeredsoftwarearchitecture-2025]
 
-production error의 EventId 기호는 BSW 모듈의 ServiceNeeds 짧은 이름 앞에 `DemConf_DemEventParameter_`를 붙인 꼴이다.[@autosar-cp-sws-bswgeneral-2025] BSW 모듈이 Dem에 이벤트를 보고하는 길은 [[autosar-error-handling#오류 유형|AUTOSAR 오류 처리]]에서 다룬다.
+BSW 모듈이 Dem에 이벤트를 보고하는 길은 [[autosar-error-handling#오류 유형|AUTOSAR 오류 처리]]에서 다룬다. production error의 EventId 기호는 BSW 모듈의 ServiceNeeds 짧은 이름 앞에 `DemConf_DemEventParameter_`를 붙인 꼴이다.[@autosar-cp-sws-bswgeneral-2025]
 
 ## Debouncing
 

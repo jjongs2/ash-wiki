@@ -10,13 +10,13 @@ AUTOSAR R25-11 Adaptive Platform 설계 설명서는 **Diagnostic Management**�
 
 지원하는 전송 계층은 [[doip|DoIP]]다. 차량 안이나 원격 진단에는 다른 전송 프로토콜을 쓰는 일이 많아, 사용자 전송 계층으로 플랫폼을 넓히는 API를 둔다. [[high-performance-computer|고성능 컴퓨터]]에서는 [[uds|UDS]]와 DoIP에 더해 [[service-oriented-vehicle-diagnostics|SOVD]]도 지원한다.[@autosar-ap-exp-platformdesign-2025]
 
-Diagnostic Management는 [[iso-14229-1|ISO 14229-1]]에 따른 UDS 서버 인스턴스와 ASAM의 SOVD를 구현하는 진단 서버 구현이고, SOVD에는 HTTP나 HTTPS 위의 REST 서비스를 쓴다. Diagnostic Management는 DoIP 프로토콜 버전을 설정으로 고르며, 버전 2는 [[iso-13400-2|ISO 13400-2]]:2012를, 버전 3은 ISO 13400-2:2019를, 버전 4는 ISO 13400-2:2019/Amd 1:2023과 ISO 13400-2:2025를 따른다.[@autosar-ap-sws-diagnostics-2025]
+Diagnostic Management는 [[iso-14229-1|ISO 14229-1]]에 따른 UDS 서버 인스턴스와 ASAM의 SOVD를 구현하는 진단 서버 구현이다. SOVD에는 HTTP나 HTTPS 위의 REST 서비스를 쓴다. Diagnostic Management는 DoIP 프로토콜 버전을 설정으로 고르며, 버전 2는 [[iso-13400-2|ISO 13400-2]]:2012를, 버전 3은 ISO 13400-2:2019를, 버전 4는 ISO 13400-2:2019/Amd 1:2023과 ISO 13400-2:2025를 따른다.[@autosar-ap-sws-diagnostics-2025]
 
 ## 진단 주소와 Diagnostic Server
 
 Diagnostic Management는 설치된 [[autosar-software-cluster#Adaptive Platform의 Software Cluster와의 차이|Software Cluster]]마다 진단 주소(DiagnosticAddress)를 따로 두는 것과, [[autosar-adaptive-platform#Machine과 프로세스|Machine]] 전체에 진단 주소 하나를 두는 것, 그 사이의 배치를 모두 지원한다. 진단 주소를 따로 두면 그 주소의 Diagnostic Server 인스턴스도 따로 생기므로, Software Cluster마다 진단도 독립적으로 개발할 수 있다. 이 Software Cluster는 [[autosar-update-and-configuration-management|UCM]]의 Software Package와 짝을 이뤄, Machine에 갱신하거나 새로 들일 수 있다.[@autosar-ap-exp-platformdesign-2025]
 
-모든 Diagnostic Server 인스턴스는 UDS 전송 계층 인스턴스 하나(예: [[internet-protocol-suite|TCP/IP]] 포트 13400의 DoIP)를 함께 쓴다. Diagnostic Communication Management는 Diagnostic Management에서 테스터 통신과 UDS 서비스 처리를 맡는 부분이다. Diagnostic Communication Management의 응답 처리는 요청을 받는 데서부터 맡아, ISO 14229-1에 따른 진단 서비스와 SOVD 서비스를 아래처럼 처리하고 분배한다.[@autosar-ap-sws-diagnostics-2025]
+모든 Diagnostic Server 인스턴스는 UDS 전송 계층 인스턴스 하나(예: [[internet-protocol-suite|TCP/IP]] 포트 13400의 DoIP)를 함께 쓴다. Diagnostic Communication Management는 Diagnostic Management에서 테스터 통신과 UDS 서비스 처리를 맡는 부분이다. Diagnostic Communication Management는 요청을 받는 데서부터 응답까지 맡아, ISO 14229-1에 따른 진단 서비스와 SOVD 서비스를 아래처럼 처리하고 분배한다.[@autosar-ap-sws-diagnostics-2025]
 
 - 네트워크 계층에서 DoIP나 사용자 전송 프로토콜의 UDS 요청과 SOVD의 HTTP·REST 요청을 받는다.
 - 요청에서 정보를 뽑아, UDS 요청은 대상 주소와 주소 종류(물리·기능)에 따라, SOVD 요청은 URI의 대상 개체와 경로에 따라 Diagnostic Server 인스턴스로 보낸다.

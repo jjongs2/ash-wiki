@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-27
 ---
 
-**CAN 컨트롤러**는 [[can|CAN]]의 데이터 링크 계층([[iso-11898-1|ISO 11898-1]])을 하드웨어로 구현하는 장치다.[@ti-tcan4550-2020] [[microcontroller|MCU]] 안에 주변장치로 들어가기도 하고[@st-rm0008-2021], SPI(Serial Peripheral Interface)로 호스트 MCU에 붙는 독립형 칩으로 나오기도 한다.[@microchip-mcp2515-2019] NXP에 따르면 CAN 컨트롤러는 MCU에 통합되는 경우가 많다.[@nxp-can-101-2021]
+**CAN 컨트롤러**는 [[can|CAN]]의 데이터 링크 계층([[iso-11898-1|ISO 11898-1]])을 하드웨어로 구현하는 장치다.[@ti-tcan4550-2020] [[microcontroller|MCU]] 안에 주변장치로 들어가기도 하고[@st-rm0008-2021], SPI(Serial Peripheral Interface)로 호스트 MCU에 붙는 독립형 칩으로 나오기도 한다.[@microchip-mcp2515-2019] NXP에 따르면 이 가운데 MCU에 통합되는 경우가 많다.[@nxp-can-101-2021]
 
 컨트롤러는 버스에 직접 닿지 않고, [[can-transceiver|CAN 트랜시버]]를 거쳐 CAN_H와 CAN_L 버스에 연결된다.[@st-rm0008-2021]
 
@@ -36,7 +36,7 @@ Bosch CAN FD 1.0은 공유 메모리에서 꺼내 보내는 메시지의 데이�
 
 ![[diagrams/can-node-bus.svg]]
 
-송신 노드는 내보낸 비트를 버스에서 되읽어 대조하고, 중재 구간의 [[can-arbitration#비트 비교|비트 비교]]에서 자기가 낸 recessive 비트가 dominant로 읽히면 즉시 송신을 그만두고 수신 노드로 넘어간다.[@bosch-can-2-0-1991]
+송신 노드는 내보낸 비트를 버스에서 되읽어 대조하는데, 중재 구간의 이 [[can-arbitration#비트 비교|비트 비교]]에서 자기가 낸 recessive 비트가 dominant로 읽히면 즉시 송신을 그만두고 수신 노드로 넘어간다.[@bosch-can-2-0-1991]
 
 ## 자동 재전송
 
@@ -67,7 +67,7 @@ Bosch CAN 2.0 규격은 CAN 장치가 전력 소비를 줄이려고 슬립 모�
 
 ## 제품 예
 
-MCP2515는 SPI로 MCU와 통신하는 독립형 컨트롤러다. [[can-frame#기본 포맷과 확장 포맷|CAN 2.0B]]를 1 Mbit/s까지 지원하고, 송신 버퍼 3개, 수신 버퍼 2개, 수용 마스크 2개, 수용 필터 6개를 둔다.[@microchip-mcp2515-2019] STM32F103xx·STM32F105xx·STM32F107xx의 bxCAN(Basic Extended CAN)은 MCU에 주변장치로 들어간 컨트롤러다.[@st-rm0008-2021] Bosch M_CAN은 [[can-fd|CAN FD]]를 64바이트 데이터까지 지원하는 컨트롤러 IP(Intellectual Property) 모듈이다.[@bosch-m-can-2023]
+MCP2515는 SPI로 MCU와 통신하는 독립형 컨트롤러다. [[can-frame#기본 포맷과 확장 포맷|CAN 2.0B]]를 1 Mbit/s까지 지원하고, 송신 버퍼 3개, 수신 버퍼 2개, 수용 마스크 2개, 수용 필터 6개를 둔다.[@microchip-mcp2515-2019] STM32F103xx·STM32F105xx·STM32F107xx의 bxCAN(Basic Extended CAN)은 MCU에 주변장치로 들어간 컨트롤러로, CAN 2.0A·2.0B를 1 Mbit/s까지 지원하고 송신 메일박스 3개와 3단 수신 FIFO 2개를 둔다.[@st-rm0008-2021] Bosch M_CAN은 [[can-fd|CAN FD]]를 64바이트 데이터까지 지원하는 컨트롤러 IP(Intellectual Property) 모듈이다.[@bosch-m-can-2023]
 
 ## CAN FD 컨트롤러와의 차이
 

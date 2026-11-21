@@ -36,4 +36,4 @@ AUTOSAR COM은 I-PDU를 주기 송신, 이벤트 송신, 둘을 섞은 [[autosar
 
 ## 서비스 지향 통신과의 차이
 
-시그널 기반 통신은 시그널과 송수신 관계를 시스템 구성에서 [[#통신 매트릭스|통신 매트릭스]]로 미리 정하지만[@autosar-cp-tps-systemtemplate-2025], AUTOSAR R25-11의 Communication Management 명세에 따르면 [[service-oriented-communication#시그널 기반 통신과의 차이|서비스 지향 통신]]은 통신 경로를 실행 중에 세울 수 있다.[@autosar-ap-sws-communicationmanagement-2025]
+시그널 기반 통신은 시그널과 송수신 관계를 시스템 구성에서 [[#통신 매트릭스|통신 매트릭스]]로 미리 정하지만[@autosar-cp-tps-systemtemplate-2025], AUTOSAR R25-11의 Communication Management 명세에 따르면 서비스 지향 통신은 통신 경로를 실행 중에 세울 수 있다.[@autosar-ap-sws-communicationmanagement-2025]

@@ -30,7 +30,7 @@ error passive 수신 노드에 국부 오류가 있으면, error passive 노드�
 
 오류 프레임 뒤에는 [[can-frame#프레임 사이|프레임 간 공간]]이나 [[can-overload-frame|오버로드 프레임]]이 온다.[@bosch-can-2-0-1991]
 
-오류로 깨진 메시지는 [[can-controller#자동 재전송|자동 재전송]]으로 다시 보내진다. 직전 메시지를 보낸 노드가 error passive이면 다음 송신을 시작하기 전에 [[can-fault-confinement#상태마다 할 수 있는 일|송신 정지]]를 거친다.[@bosch-can-2-0-1991]
+오류로 깨진 메시지는 [[can-controller#자동 재전송|자동 재전송]]된다. 직전 메시지를 보낸 노드가 error passive이면 다음 송신을 시작하기 전에 [[can-fault-confinement#상태마다 할 수 있는 일|송신 정지]]를 거친다.[@bosch-can-2-0-1991]
 
 ## 오버로드 프레임과의 차이
 

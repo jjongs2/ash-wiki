@@ -58,7 +58,7 @@ Bosch의 CAN XL 개요에 따르면 CAN XL 데이터 프레임의 필드는 아�
 
 PCRC와 FCRC의 [[can-crc|CRC]]는 모두 [[hamming-distance|해밍 거리]] 6을 준다. 중재 필드에서는 동적 [[can-bit-stuffing|스터프 비트]]를 넣고, XL 데이터 구간에서는 데이터 10비트마다 스터프 비트 하나를 넣는 고정 스터핑을 쓰며, XL 데이터 구간 뒤로는 스터프 비트를 넣지 않는다.[@bosch-can-xl-overview-2023]
 
-CAN XL은 짧은 우선순위 ID와 메시지를 식별하는 32비트 ID를 나눈다. 우선순위 ID가 짧아 페이로드가 짧아도 순 비트율이 높고, 메시지 ID는 XL 데이터 구간의 AF에 실린다. AF는 [[message-addressing|내용 기반 주소 지정]](메시지 ID)과 노드 기반 주소 지정(출발지·목적지 주소)을 모두 지원한다.[@bosch-can-xl-overview-2023]
+CAN XL은 짧은 우선순위 ID와 메시지를 식별하는 32비트 ID를 따로 둔다. 우선순위 ID가 짧아 페이로드가 짧아도 순 비트율이 높고, 메시지 ID는 XL 데이터 구간의 AF에 실린다. AF는 [[message-addressing|내용 기반 주소 지정]](메시지 ID)과 노드 기반 주소 지정(출발지·목적지 주소)을 모두 지원한다.[@bosch-can-xl-overview-2023]
 
 ## CAN FD와 섞어 쓰기
 

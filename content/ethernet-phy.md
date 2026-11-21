@@ -37,7 +37,7 @@ Clause 98은 꼬임쌍선 한 쌍의 자동 협상을 정한다. 이 자동 협�
 
 ## 관리
 
-PHY의 레지스터는 MDC(Management Data Clock)와 MDIO(Management Data Input/Output) 두 신호로 읽고 쓴다.[@ti-dp83822-2026][@microchip-lan8742a-2015] PHY 주소는 5비트이며, 관리 버스 하나를 PHY 32개까지 함께 쓸 수 있다.[@ti-dp83822-2026][@nxp-an13236-2022] MDC는 PHY 바깥의 관리 쪽이 주는 클럭이고, MDIO는 양방향 데이터 선이다. 관리 프레임은 PHY 주소와 함께 레지스터 주소 5비트를 담는다.[@ti-dp83822-2026][@st-rm0008-2021] 자동 협상을 끄면 기본 제어 레지스터로 속도와 이중 모드를 정하고, 기본 상태 레지스터로 링크 상태를 본다.[@ti-dp83822-2026][@microchip-lan8742a-2015]
+PHY의 레지스터는 MDC(Management Data Clock)와 MDIO(Management Data Input/Output) 두 신호로 읽고 쓴다.[@ti-dp83822-2026][@microchip-lan8742a-2015] MDC는 PHY 바깥의 관리 쪽이 주는 클럭이고, MDIO는 양방향 데이터 선이다. 관리 프레임은 PHY 주소와 함께 레지스터 주소 5비트를 담는다.[@ti-dp83822-2026][@st-rm0008-2021] PHY 주소는 5비트이며, 관리 버스 하나를 PHY 32개까지 함께 쓸 수 있다.[@ti-dp83822-2026][@nxp-an13236-2022] 자동 협상을 끄면 기본 제어 레지스터로 속도와 이중 모드를 정하고, 기본 상태 레지스터로 링크 상태를 본다.[@ti-dp83822-2026][@microchip-lan8742a-2015]
 
 ![[diagrams/mdio-management-bus.svg]]
 
