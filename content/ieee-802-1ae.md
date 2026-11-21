@@ -58,4 +58,4 @@ OPEN Alliance의 TC17은 IEEE 802.1AE의 MACsec과 IEEE 802.1X의 MKA를 차량�
 
 AUTOSAR Classic Platform R25-11은 MACsec 지원을 고치는 개념을 들여, MKA 모듈의 송수신을 LSduR로 하게 하고 [[ethernet-switch|이더넷 스위치]] 포트와 이더넷 컨트롤러에서도 MACsec을 지원하게 했다.[@autosar-cp-tr-releaseoverview-2025]
 
-AUTOSAR R25-11의 [[autosar-adaptive-platform|Adaptive Platform]] 설계 설명서는 [[autosar-communication-management|Communication Management]] functional cluster의 보안 수단에 [[secure-onboard-communication|SecOC]], [[transport-layer-security|TLS]]와 [[transport-layer-security#DTLS|DTLS]], IPsec(Internet Protocol Security)과 함께 MACsec을 넣는다.[@autosar-ap-exp-platformdesign-2025]
+AUTOSAR R25-11의 [[autosar-adaptive-platform|Adaptive Platform]] 설계 설명서는 [[autosar-communication-management|Communication Management]] 기능 클러스터의 보안 수단에 [[secure-onboard-communication|SecOC]], [[transport-layer-security|TLS]]와 [[transport-layer-security#DTLS|DTLS]], IPsec(Internet Protocol Security)과 함께 MACsec을 넣는다.[@autosar-ap-exp-platformdesign-2025]
