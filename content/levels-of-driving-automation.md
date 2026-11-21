@@ -41,7 +41,7 @@ verified: 2026-11-20
 
 ## 분류 밖의 시스템
 
-ISO/SAE PAS 22736:2021은 ESC(electronic stability control)·AEB(automatic emergency braking) 같은 능동 안전 시스템과 LKA(lane keeping assistance) 같은 일부 운전자 보조 시스템을 이 분류 체계에서 뺀다. 이들은 DDT를 지속적으로 수행하지 않고 위험할 수 있는 상황에 순간적으로 개입할 뿐이라, 운전자의 역할을 바꾸지 않기 때문이다. 이 PAS는 또 ABS(anti-lock brake system)·ESC·AEB처럼 순간적으로만 개입하고 DDT의 어느 부분도 지속적으로 수행하지 않는 시스템과, 외부 사건에 반응하지 않는 일반 크루즈 컨트롤은 레벨 0 말고는 분류되지 않는다고 제시한다.[@iso-sae-pas-22736-obp-2021]
+ISO/SAE PAS 22736:2021은 ESC(electronic stability control)·AEB(automatic emergency braking) 같은 능동 안전 시스템과 LKA(lane keeping assistance) 같은 일부 운전자 보조 시스템을 이 분류 체계에서 뺀다. 이들은 DDT를 지속적으로 수행하지 않고 위험할 수 있는 상황에 순간적으로 개입할 뿐이라, 운전자의 역할을 바꾸지 않기 때문이다. 이 PAS는 또 ABS·ESC·AEB처럼 순간적으로만 개입하고 DDT의 어느 부분도 지속적으로 수행하지 않는 시스템과, 외부 사건에 반응하지 않는 일반 크루즈 컨트롤은 레벨 0 말고는 분류되지 않는다고 제시한다.[@iso-sae-pas-22736-obp-2021]
 
 ## ADS
 

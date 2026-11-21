@@ -16,7 +16,6 @@
 - (informative): (참고), 참고 Annex (#566). 표준의 informative Annex와 절. 꾸밈말 꼴도 같다. 예: "informative Annex로". 원문이 다른 말로 적으면 그 말. 예: 원문이 non-normative라 적은 장은 "(non-normative)". 조사는 괄호 앞의 Annex 이름이나 절 번호에 맞춘다. 예: "Annex U(informative)는"
 - 5 baud initialization, fast initialization: - (#667). K-Line 초기화일 때
 - ABS: 잠김 방지 제동 기능 (#759). 원어 약어로 쓴다. 출처가 약어 없이 기능 이름으로 쓰면 그 원어 이름. 예: UN R152의 anti-lock braking function
-- ABS 풀이: 통일하지 않음 (#759). 인용한 출처의 풀이대로. UN R160·ISO/SAE PAS 22736은 anti-lock brake system, ISO 14229-1·ISTQB CT-AuT는 anti-lock braking system
 - ACC, BSD, FCW, LCA, LDW, LKA, RCTA: 전방 충돌 경고, 적응형 순항 제어 (#682, #759). ADAS 기능 이름일 때. 풀이는 인용한 출처의 풀이. BSD·LCA·RCTA는 Infineon의 blind spot detection·lane change assistance·rear cross traffic alert. NHTSA의 blind spot warning·rear cross traffic warning·lane centering assistance는 약어 없이 쓴다. 한국어 기능 설명은 산문에만 쓰고, ADAS 기능 표의 기능 이름은 이 줄에 없는 기능도 원어로 쓴다
 - action point: - (#667). FlexRay의 action point일 때
 - adaptive update: - (#432)
