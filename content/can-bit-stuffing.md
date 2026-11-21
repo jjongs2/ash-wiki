@@ -21,11 +21,11 @@ verified: 2026-09-27
 
 스터핑 구간에서 같은 값의 비트가 6번째로 이어지면, 그 비트 시점에 **스터프 오류**가 검출된다.[@bosch-can-2-0-1991] 자세한 것은 [[can-error-detection#다섯 가지 오류|CAN 오류 검출]]에서 다룬다.
 
-[[can-fault-confinement|error active]] 노드가 내는 [[can-error-frame#오류 플래그|active 오류 플래그]]는 스터핑하지 않는 dominant 6비트다. 이 모양은 데이터 프레임이나 리모트 프레임의 SOF부터 CRC 시퀀스까지에 적용되는 스터핑 규칙을 어기므로, 이 구간에서 플래그가 나오면 다른 노드도 모두 오류를 찾는다.[@bosch-can-2-0-1991]
+[[can-fault-confinement|error active]] 노드가 내는 [[can-error-frame#오류 플래그|active 오류 플래그]]는 스터핑하지 않는 [[dominant-and-recessive|dominant]] 6비트다. 이 모양은 데이터 프레임이나 리모트 프레임의 SOF부터 CRC 시퀀스까지에 적용되는 스터핑 규칙을 어기므로, 이 구간에서 플래그가 나오면 다른 노드도 모두 오류를 찾는다.[@bosch-can-2-0-1991]
 
 ## 목적
 
-CAN 비트열은 NRZ(Non-Return-to-Zero)로 부호화되어, 한 비트 시간 내내 레벨이 [[dominant-and-recessive|dominant]]나 recessive 하나로 유지된다.[@bosch-can-2-0-1991] NRZ는 데이터에 클록을 싣지 않으므로, 에지가 적어도 6비트 시간마다 생기게 하려고 비트 스터핑을 쓴다.[@microchip-mcp2515-2019] [[iso-11898-1|ISO 11898-1:2024]]는 비트 스터핑을, NRZ 비트 표현에서 주기적 [[can-synchronization#재동기화|재동기화]]에 필요한 버스 상태 변화를 만들어 주는 프레임 부호화 방식으로 정의한다.[@iso-11898-1-obp-2024]
+CAN 비트열은 NRZ(Non-Return-to-Zero)로 부호화되어, 한 비트 시간 내내 레벨이 dominant나 recessive 하나로 유지된다.[@bosch-can-2-0-1991] NRZ는 데이터에 클록을 싣지 않으므로, 에지가 적어도 6비트 시간마다 생기게 하려고 비트 스터핑을 쓴다.[@microchip-mcp2515-2019] [[iso-11898-1|ISO 11898-1:2024]]는 비트 스터핑을, NRZ 비트 표현에서 주기적 [[can-synchronization#재동기화|재동기화]]에 필요한 버스 상태 변화를 만들어 주는 프레임 부호화 방식으로 정의한다.[@iso-11898-1-obp-2024]
 
 ## CAN FD 프레임과의 차이
 

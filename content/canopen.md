@@ -11,7 +11,7 @@ CANopen CC는 처음에 핸들링 시스템 같은 동작 중심의 기계 제�
 
 ## 하위 계층
 
-CiA 301 version 4.2.0은 CANopen CC가 [[iso-11898-1|ISO 11898-1]]에 따른 데이터 링크 계층을 쓰고, [[iso-11898-2|ISO 11898-2]]에 따른 물리 계층을 전제하되 다른 물리 계층도 배제하지 않게 정한다. [[can-bit-timing|비트 타이밍]]도 이 규격이 정하며, 비트율 $R_\mathrm{b}$는 $10\,\mathrm{kbit/s} \le R_\mathrm{b} \le 1000\,\mathrm{kbit/s}$에서 고를 수 있다. 정해진 CAN 식별자(CAN-ID) 배정은 모두 11비트 [[can-identifier|식별자]]를 바탕으로 하지만, 29비트 식별자도 지원한다.[@cia-canopen-2026]
+CiA 301 version 4.2.0은 CANopen CC가 [[iso-11898-1|ISO 11898-1]]에 따른 데이터 링크 계층을 쓰고, [[iso-11898-2|ISO 11898-2]]에 따른 [[can-physical-layer|물리 계층]]을 전제하되 다른 물리 계층도 배제하지 않게 정한다. [[can-bit-timing|비트 타이밍]]도 이 규격이 정하며, 비트율 $R_\mathrm{b}$는 $10\,\mathrm{kbit/s} \le R_\mathrm{b} \le 1000\,\mathrm{kbit/s}$에서 고를 수 있다. 정해진 [[can-identifier|CAN 식별자]](CAN-ID) 배정은 모두 11비트 식별자를 바탕으로 하지만, 29비트 식별자도 지원한다.[@cia-canopen-2026]
 
 ## 장치 구조
 

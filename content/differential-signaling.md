@@ -27,7 +27,7 @@ SN65HVD23x의 전형적인 응용에서 [[can|CAN]] 버스는 특성 임피던�
 
 ## 쓰이는 곳
 
-고속 CAN은 CAN_H와 CAN_L 두 선의 전압 차로 버스 상태를 나타낸다.[@iso-11898-2-obp-2026] [[can-transceiver|트랜시버]] SN65HVD23x는 [[dominant-and-recessive|dominant]]에서 두 선을 차동으로 구동하고, recessive일 때는 0.5 VCC로 [[can-transceiver#송신과 수신|바이어스]]만 한다.[@ti-sn65hvd230-2018]
+[[can-physical-layer#고속 CAN|고속 CAN]]은 CAN_H와 CAN_L 두 선의 전압 차로 버스 상태를 나타낸다.[@iso-11898-2-obp-2026] [[can-transceiver|트랜시버]] SN65HVD23x는 [[dominant-and-recessive|dominant]]에서 두 선을 차동으로 구동하고, recessive일 때는 0.5 VCC로 [[can-transceiver#송신과 수신|바이어스]]만 한다.[@ti-sn65hvd230-2018]
 
 RS-485 수신기 THVD1450은 두 입력 선 A와 B의 $V_\mathrm{diff}$로 출력을 정한다. 이때 $V_\mathrm{diff} = V_\mathrm{A} - V_\mathrm{B}$다.[@ti-thvd1450-2019]
 
@@ -35,7 +35,7 @@ RS-485 수신기 THVD1450은 두 입력 선 A와 B의 $V_\mathrm{diff}$로 출�
 
 LVDS도 차동 신호 방식이다. LVDS 드라이버의 차동 출력 전압은 100 Ω 부하에서 전형값 약 350 mV다.[@ti-sn65lvds31-2021]
 
-LVDS는 TIA/EIA-422B(TIA: 미국 통신 업계 단체, EIA: 미국 전자 업계 단체) 같은 5 V 차동 표준보다 출력 전압 수준을 낮춰, 전력을 줄이고 스위칭 속도를 높인다.[@ti-sn65lvds31-2021][@tia-about-2026][@eia-about-2006] ADI 앱노트에 따르면 LVDS는 출력 전압 폭이 작아서, 높은 데이터율을 낼 만큼 전이가 빠르면서도 슬루율은 지나치게 가파르지 않다.[@adi-an-1177-2012]
+LVDS는 TIA/EIA-422B(TIA: 미국 통신 업계 단체, EIA: 미국 전자 업계 단체) 같은 5 V 차동 표준보다 출력 전압 수준을 낮춰, 전력을 줄이고 스위칭 속도를 높인다.[@ti-sn65lvds31-2021][@tia-about-2026][@eia-about-2006] Analog Devices 앱노트에 따르면 LVDS는 출력 전압 폭이 작아서, 높은 데이터율을 낼 만큼 전이가 빠르면서도 슬루율은 지나치게 가파르지 않다.[@adi-an-1177-2012]
 
 [[100base-t1|100BASE-T1]] [[ethernet|이더넷]] 트랜시버 DP83TC811R-Q1은 MDI(Medium Dependent Interface) 핀에서 양방향 차동 신호를 쓴다.[@ti-dp83tc811r-q1-2018]
 

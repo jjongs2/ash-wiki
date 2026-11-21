@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-26
 ---
 
-**CAN ACK**(Acknowledgement)는 [[can|CAN]] 프레임을 제대로 받은 수신 노드가 같은 프레임의 ACK 슬롯에서 dominant 비트를 보내, 송신 노드에 그 사실을 알리는 것이다. [[can-frame|데이터 프레임]]과 [[remote-frame|리모트 프레임]]에서 ACK 필드는 [[can-crc|CRC]] 필드 바로 뒤에 온다.[@bosch-can-2-0-1991]
+**CAN ACK**(Acknowledgement)는 [[can|CAN]] 프레임을 제대로 받은 수신 노드가 같은 프레임의 ACK 슬롯에서 [[dominant-and-recessive|dominant]] 비트를 보내, 송신 노드에 그 사실을 알리는 것이다. [[can-frame|데이터 프레임]]과 [[remote-frame|리모트 프레임]]에서 ACK 필드는 [[can-crc|CRC]] 필드 바로 뒤에 온다.[@bosch-can-2-0-1991]
 
 ## ACK 필드
 
@@ -15,7 +15,7 @@ CRC 시퀀스가 맞는 프레임을 받은 노드는 모두 ACK 슬롯에서 do
 
 ![[diagrams/can-ack-slot.svg]]
 
-ACK 슬롯의 dominant가 알려 주는 것은 프레임을 제대로 받은 노드가 하나 이상 있다는 사실까지다. 수신 노드는 모두 ACK를 보내므로, 그 프레임을 실제로 쓰는 노드가 받았는지는 ACK로 알 수 없다. dominant와 recessive를 동시에 보내면 버스는 [[dominant-and-recessive|dominant]]가 되므로, 여러 수신 노드의 ACK는 버스에서 하나로 합쳐진다.[@bosch-can-2-0-1991]
+ACK 슬롯의 dominant가 알려 주는 것은 프레임을 제대로 받은 노드가 하나 이상 있다는 사실까지다. 수신 노드는 모두 ACK를 보내므로, 그 프레임을 실제로 쓰는 노드가 받았는지는 ACK로 알 수 없다. dominant와 recessive를 동시에 보내면 버스는 dominant가 되므로, 여러 수신 노드의 ACK는 버스에서 하나로 합쳐진다.[@bosch-can-2-0-1991]
 
 ## ACK 오류
 

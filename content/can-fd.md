@@ -11,11 +11,11 @@ verified: 2026-09-27
 
 ## 개발 경위
 
-CiA에 따르면 2011년 초 General Motors와 Bosch가 CAN의 처리량을 높이는 개발을 시작했다. 생산 라인 끝(end-of-line)에서 ECU에 커져 가는 소프트웨어를 내려받는 데 시간이 오래 걸리는 문제가 계기였다. Bosch는 다른 CAN 전문가들과 함께 CAN FD 규격을 먼저 만들었고, 이 규격은 2012년 제13회 iCC(international CAN Conference)에서 공식 발표되었다.[@cia-can-history-2026]
+CiA에 따르면 2011년 초 General Motors와 Bosch가 CAN의 처리량을 높이는 개발을 시작했다. 생산 라인 끝(end-of-line)에서 [[electronic-control-unit|ECU]]에 커져 가는 소프트웨어를 내려받는 데 시간이 오래 걸리는 문제가 계기였다. Bosch는 다른 CAN 전문가들과 함께 CAN FD 규격을 먼저 만들었고, 이 규격은 2012년 제13회 iCC(international CAN Conference)에서 공식 발표되었다.[@cia-can-history-2026]
 
 ## 두 비트율
 
-CAN FD 프레임은 중재 구간(arbitration phase)과 데이터 구간(data phase)으로 나뉘고, 중재 구간은 classical CAN과 같은 비트율을 쓴다. BRS(Bit Rate Switch) 비트가 [[dominant-and-recessive|recessive]]이면 미리 설정한 데이터 구간 비트율로 바꾸고, dominant이면 바꾸지 않는다. 데이터 구간은 BRS 비트의 [[can-bit-timing#샘플 포인트|샘플 포인트]]에서 시작해 [[can-crc|CRC]] 구분자의 샘플 포인트에서 끝난다.[@bosch-can-fd-1-0-2012]
+CAN FD 프레임은 중재 구간(arbitration phase)과 데이터 구간(data phase)으로 나뉘고, 중재 구간은 Classical CAN과 같은 비트율을 쓴다. BRS(Bit Rate Switch) 비트가 [[dominant-and-recessive|recessive]]이면 미리 설정한 데이터 구간 비트율로 바꾸고, dominant이면 바꾸지 않는다. 데이터 구간은 BRS 비트의 [[can-bit-timing#샘플 포인트|샘플 포인트]]에서 시작해 [[can-crc|CRC]] 구분자의 샘플 포인트에서 끝난다.[@bosch-can-fd-1-0-2012]
 
 ISO 11898-1:2024는 **중재 구간**을 공칭 비트 시간을 쓰는 구간으로, **데이터 구간**을 데이터 비트 시간을 쓰는 구간으로 정의한다.[@iso-11898-1-obp-2024]
 
@@ -35,7 +35,7 @@ CAN FD 포맷 프레임의 데이터 필드는 0\~64바이트이고, [[data-leng
 
 ![[diagrams/can-fd-dlc-data-length.svg]]
 
-Bosch CAN FD 1.0은 모든 구현이 8바이트보다 긴 데이터 필드를 지원하도록 요구하지 않는다. 다만 긴 데이터를 다 다루지 못하는 구현도 받은 긴 프레임을 오류로 보지 않고, 오류 없는 긴 프레임에는 ACK를 보내고 [[acceptance-filter|수용 필터링]]에도 참여해야 한다. 다루지 못하는 데이터 바이트는 버린다.[@bosch-can-fd-1-0-2012]
+Bosch CAN FD 1.0은 모든 구현이 8바이트보다 긴 데이터 필드를 지원하도록 요구하지 않는다. 다만 긴 데이터를 다 다루지 못하는 구현도 받은 긴 프레임을 오류로 보지 않고, 오류 없는 긴 프레임에는 [[can-acknowledgement|ACK]]를 보내고 [[acceptance-filter|수용 필터링]]에도 참여해야 한다. 다루지 못하는 데이터 바이트는 버린다.[@bosch-can-fd-1-0-2012]
 
 ## 호환성
 

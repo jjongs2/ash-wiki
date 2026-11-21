@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**SENT**(Single Edge Nibble Transmission)는 센서가 ECU로 데이터를 보내는 단방향 통신이다.[@nxp-an4856-2014][@microchip-ds70005145-2014] SAE J2716:2016은 센서 정보를 SENT 부호화로 보내는 디지털 펄스 방식을 정한다.[@sae-j2716-2016] SENT는 세 선으로 센서와 ECU를 잇는다.[@ti-sprab22-2010][@allegro-an296244-2022] TI 앱노트에 따르면 세 선은 센서 전원, 접지, 데이터 선 하나다.[@ti-sprab22-2010]
+**SENT**(Single Edge Nibble Transmission)는 센서가 [[electronic-control-unit|ECU]]로 데이터를 보내는 단방향 통신이다.[@nxp-an4856-2014][@microchip-ds70005145-2014] SAE J2716:2016은 센서 정보를 SENT 부호화로 보내는 디지털 펄스 방식을 정한다.[@sae-j2716-2016] SENT는 세 선으로 센서와 ECU를 잇는다.[@ti-sprab22-2010][@allegro-an296244-2022] TI 앱노트에 따르면 세 선은 센서 전원, 접지, 데이터 선 하나다.[@ti-sprab22-2010]
 
 Microchip 레퍼런스 매뉴얼에 따르면 SENT는 점대점 전송용으로 설계되었다.[@microchip-ds70005145-2014] NXP 앱노트에 따르면 SENT는 아날로그 전압 출력 센서와 PWM(Pulse Width Modulation) 출력 센서의 대안이다.[@nxp-an4856-2014]
 
@@ -41,7 +41,7 @@ $$
 
 ## SPC
 
-SENT는 원래 단방향이지만, SPC(Short PWM Code)를 쓰면 양방향 통신을 할 수 있다.[@nxp-an4856-2014][@microchip-ds70005145-2014] NXP 앱노트에 따르면 SPC의 통신은 반이중 동기 방식으로, 수신 측 MCU가 선을 정해진 시간 동안 low로 끌어 master trigger 펄스를 내고, 센서는 그 펄스의 폭이 정해진 범위 안일 때만 SENT 전송을 시작한다. 예를 들어 TLE4998C는 병렬로 이은 센서 최대 넷 가운데 어느 센서가 보낼지를 master trigger 펄스의 폭으로 고르는 모드도 둔다. SPC에서는 SENT 전송이 끝난 뒤 end pulse를 더 보내 CRC 니블 펄스를 끝내는 하강 에지를 주고, 그 뒤 선은 다음 master trigger 펄스까지 쉰다.[@nxp-an4856-2014]
+SENT는 원래 단방향이지만, SPC(Short PWM Code)를 쓰면 양방향 통신을 할 수 있다.[@nxp-an4856-2014][@microchip-ds70005145-2014] NXP 앱노트에 따르면 SPC의 통신은 반이중 동기 방식으로, 수신 측 [[microcontroller|MCU]]가 선을 정해진 시간 동안 low로 끌어 master trigger 펄스를 내고, 센서는 그 펄스의 폭이 정해진 범위 안일 때만 SENT 전송을 시작한다. 예를 들어 TLE4998C는 병렬로 이은 센서 최대 넷 가운데 어느 센서가 보낼지를 master trigger 펄스의 폭으로 고르는 모드도 둔다. SPC에서는 SENT 전송이 끝난 뒤 end pulse를 더 보내 CRC 니블 펄스를 끝내는 하강 에지를 주고, 그 뒤 선은 다음 master trigger 펄스까지 쉰다.[@nxp-an4856-2014]
 
 ![[diagrams/sent-spc-frame.svg]]
 

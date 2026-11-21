@@ -71,7 +71,7 @@ TI CAN 트랜시버는 전원이 있든 없든 출력 임피던스가 높아, �
 
 ISO 11898-2:2026은 트랜시버가 송수신할 수 있는 모드를 **normal-power mode**로, 웨이크업 패턴(WUP, wake-up pattern)이나 웨이크업 프레임(WUF, wake-up frame)을 받는지 가리는 것 말고는 프레임을 송수신하지 못하는 모드를 **low-power mode**로 정의한다.[@iso-11898-2-obp-2026]
 
-TCAN1042의 Standby 모드에서는 드라이버와 일반 수신기를 끄고 저전력 수신기만 버스를 감시한다. 웨이크업 패턴을 감지하면 RXD를 low로 내려 MCU에 웨이크업 요청을 알린다.[@ti-tcan1042-q1-2021] TJA1042는 Standby 모드에서 버스의 dominant가 정해진 시간보다 오래 이어지면 RXD를 high로 되돌려, 단락된 버스가 웨이크업 요청을 계속 만들지 않게 한다.[@nxp-tja1042-2023]
+TCAN1042의 Standby 모드에서는 드라이버와 일반 수신기를 끄고 저전력 수신기만 버스를 감시한다. 웨이크업 패턴을 감지하면 RXD를 low로 내려 [[microcontroller|MCU]]에 웨이크업 요청을 알린다.[@ti-tcan1042-q1-2021] TJA1042는 Standby 모드에서 버스의 dominant가 정해진 시간보다 오래 이어지면 RXD를 high로 되돌려, 단락된 버스가 웨이크업 요청을 계속 만들지 않게 한다.[@nxp-tja1042-2023]
 
 TJA1462가 받아들이는 웨이크업 패턴은 dominant 구간, recessive 구간, dominant 구간이 차례로 이어진 것이고, 구간마다 정해진 최소 길이를 넘어야 한다. 구간 사이에 끼인 그보다 짧은 dominant나 recessive 비트는 무시하고, 패턴 전체를 정해진 시간 안에 받지 못하면 웨이크업 논리를 초기화한다.[@nxp-tja1462-2025]
 

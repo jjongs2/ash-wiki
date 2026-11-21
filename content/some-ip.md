@@ -8,7 +8,7 @@ aliases:
 verified: 2026-09-28
 ---
 
-**SOME/IP**(Scalable service-Oriented MiddlewarE over IP)는 차량의 ECU 사이에서 IP 네트워크를 거쳐 [[service-oriented-communication|서비스 지향 통신]]을 하게 하는 프로토콜이다. 원격 절차 호출(RPC, Remote Procedure Call), 이벤트 알림, 그리고 그 밑에 깔리는 직렬화 형식을 정한다. 프로토콜 명세는 [[autosar|AUTOSAR]]가 펴낸다.[@autosar-fo-prs-someipprotocol-2025] BMW가 쓴 SOME/IP 명세 초안은 2011년 11월에 처음 공개되었고, BMW는 이 초안을 ISO와 AUTOSAR 등에 표준화를 위해 제공했다.[@bmw-someip-specification-draft-2012] [[autosar-classic-platform|AUTOSAR Classic Platform]]에는 데이터를 SOME/IP 형식으로 직렬화하는 SOME/IP Transformer가 있고[@autosar-cp-sws-someiptransformer-2025], [[autosar-adaptive-platform|Adaptive Platform]]의 [[autosar-communication-management|Communication Management]]는 SOME/IP와 [[some-ip-sd|SOME/IP-SD]]를 구현하는 SOME/IP 네트워크 바인딩을 둔다.[@autosar-ap-sws-communicationmanagement-2025]
+**SOME/IP**(Scalable service-Oriented MiddlewarE over IP)는 차량의 [[electronic-control-unit|ECU]] 사이에서 IP 네트워크를 거쳐 [[service-oriented-communication|서비스 지향 통신]]을 하게 하는 프로토콜이다. 원격 절차 호출(RPC, Remote Procedure Call), 이벤트 알림, 그리고 그 밑에 깔리는 직렬화 형식을 정한다. 프로토콜 명세는 [[autosar|AUTOSAR]]가 펴낸다.[@autosar-fo-prs-someipprotocol-2025] BMW가 쓴 SOME/IP 명세 초안은 2011년 11월에 처음 공개되었고, BMW는 이 초안을 ISO와 AUTOSAR 등에 표준화를 위해 제공했다.[@bmw-someip-specification-draft-2012] [[autosar-classic-platform|AUTOSAR Classic Platform]]에는 데이터를 SOME/IP 형식으로 직렬화하는 [[autosar-transformer|SOME/IP Transformer]]가 있고[@autosar-cp-sws-someiptransformer-2025], [[autosar-adaptive-platform|Adaptive Platform]]의 [[autosar-communication-management|Communication Management]]는 SOME/IP와 [[some-ip-sd|SOME/IP-SD]]를 구현하는 SOME/IP 네트워크 바인딩을 둔다.[@autosar-ap-sws-communicationmanagement-2025]
 
 ## 전송
 
@@ -71,4 +71,4 @@ REQUEST, REQUEST_NO_RETURN, NOTIFICATION 메시지의 Return Code는 `0x00`이�
 
 구조체는 멤버를 깊이 우선 순회 순서로 차례대로 직렬화한다. 가변 길이 문자열과 가변 길이 배열은 앞에 길이 필드를 둔다. 열거형은 부호 없는 정수로 보내고, 비트 필드는 uint8\~uint64로 보내며, 유니언(variant)도 쓸 수 있다.[@autosar-fo-prs-someipprotocol-2025]
 
-Classic Platform에서는 [[autosar-transformer|SOME/IP Transformer]]가 데이터를 SOME/IP 형식으로 직렬화하고, 프로토콜의 나머지 일부는 SoAd(Socket Adaptor)와 Service Discovery 모듈이 맡는다.[@autosar-cp-sws-someiptransformer-2025] SoAd는 PDU(Protocol Data Unit)를 쓰는 통신 서비스 모듈과 소켓 기반 [[internet-protocol-suite|TCP/IP]] 스택을 잇고, SOME/IP 메시지는 SoAd를 거쳐 TCP/IP로 오간다.[@autosar-cp-sws-socketadaptor-2025]
+Classic Platform에서는 SOME/IP Transformer가 데이터를 SOME/IP 형식으로 직렬화하고, 프로토콜의 나머지 일부는 SoAd(Socket Adaptor)와 Service Discovery 모듈이 맡는다.[@autosar-cp-sws-someiptransformer-2025] SoAd는 PDU(Protocol Data Unit)를 쓰는 통신 서비스 모듈과 소켓 기반 [[internet-protocol-suite|TCP/IP]] 스택을 잇고, SOME/IP 메시지는 SoAd를 거쳐 TCP/IP로 오간다.[@autosar-cp-sws-socketadaptor-2025]

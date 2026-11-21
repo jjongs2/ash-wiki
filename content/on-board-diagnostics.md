@@ -17,7 +17,7 @@ EU 규정 2024/1257은 Euro 7이라 부르는, 배출가스와 배터리 내구�
 
 ISO 27145 시리즈는 [[iso-14229-1|ISO 14229-1]]의 [[uds|UDS]]를 WWH-OBD(World-Wide Harmonized On-Board Diagnostics) 시스템에 적용하려고 만들어졌다.[@iso-27145-1-obp-2012][@iso-27145-3-obp-2012]
 
-ISO 27145-1:2012는 ISO 27145 시리즈가 WWH-OBD GTR(Global Technical Regulations)의 범위 안에서 차량의 OBD 시스템과 외부 시험 장비 사이의 통신을 다루도록 둔다.[@iso-27145-1-obp-2012]
+ISO 27145-1:2012는 ISO 27145 시리즈가 WWH-OBD GTR의 범위 안에서 차량의 OBD 시스템과 외부 시험 장비 사이의 통신을 다루도록 둔다.[@iso-27145-1-obp-2012]
 
 ISO 27145 시리즈는 OBD 관련 정보에 접근하는 단일 통신 표준이 되는 것을 목표로 한다. 이 시리즈의 WWH-OBD 통신은 [[iso-15765-2|DoCAN]](ISO 15765 시리즈)과 [[doip|DoIP]](ISO 13400 시리즈)에 바탕을 둔다. 외부 시험 장비는 통신을 초기화한 결과로 차량의 배출 관련 시스템이 어느 프로토콜과 진단 서비스를 지원하는지 알아내는데, 법규 OBD면 DoCAN 기반의 ISO 15031 시리즈이고 법규 WWH-OBD면 ISO 27145 시리즈다.[@iso-27145-1-obp-2012]
 

@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-27
 ---
 
-**CAN 컨트롤러**는 [[can|CAN]]의 데이터 링크 계층([[iso-11898-1|ISO 11898-1]])을 하드웨어로 구현하는 장치다.[@ti-tcan4550-2020] MCU 안에 주변장치로 들어가기도 하고[@st-rm0008-2021], SPI(Serial Peripheral Interface)로 호스트 MCU에 붙는 독립형 칩으로 나오기도 한다.[@microchip-mcp2515-2019]
+**CAN 컨트롤러**는 [[can|CAN]]의 데이터 링크 계층([[iso-11898-1|ISO 11898-1]])을 하드웨어로 구현하는 장치다.[@ti-tcan4550-2020] [[microcontroller|MCU]] 안에 주변장치로 들어가기도 하고[@st-rm0008-2021], SPI(Serial Peripheral Interface)로 호스트 MCU에 붙는 독립형 칩으로 나오기도 한다.[@microchip-mcp2515-2019]
 
 컨트롤러는 버스에 직접 닿지 않고, [[can-transceiver|CAN 트랜시버]]를 거쳐 CAN_H와 CAN_L 버스에 연결된다.[@st-rm0008-2021]
 
@@ -36,7 +36,7 @@ Bosch CAN FD 1.0은 공유 메모리에서 꺼내 보내는 메시지의 데이�
 
 ![[diagrams/can-node-bus.svg]]
 
-송신 노드는 내보낸 비트를 버스에서 되읽어 대조한다. [[can-arbitration|중재]] 구간에서 자기가 낸 recessive 비트가 dominant로 읽히면 즉시 송신을 그만두고 수신 노드로 넘어간다.[@bosch-can-2-0-1991]
+송신 노드는 내보낸 비트를 버스에서 되읽어 대조한다. 중재 구간에서 자기가 낸 recessive 비트가 dominant로 읽히면 즉시 송신을 그만두고 수신 노드로 넘어간다.[@bosch-can-2-0-1991]
 
 ![[diagrams/can-arbitration.svg]]
 
@@ -73,4 +73,4 @@ MCP2515는 SPI로 MCU와 통신하는 독립형 컨트롤러다. [[can-frame#기
 
 ## CAN FD 컨트롤러와의 차이
 
-ISO 11898-1:2024는 CAN FD 프레임을 주고받지는 못해도 방해하지 않는 classic 구현(FD tolerant)도 규정하며, classic 구현의 통신 범위는 [[can-fd#호환성|CAN FD]]에서 다룬다.[@iso-11898-1-obp-2024] CAN FD 노드는 classical CAN 프레임도 주고받을 수 있다.[@bosch-can-fd-1-0-2012]
+ISO 11898-1:2024는 [[can-fd-frame|CAN FD 프레임]]을 주고받지는 못해도 방해하지 않는 classic 구현(FD tolerant)도 규정하며, classic 구현의 통신 범위는 [[can-fd#호환성|CAN FD]]에서 다룬다.[@iso-11898-1-obp-2024] CAN FD 노드는 Classical CAN 프레임도 주고받을 수 있다.[@bosch-can-fd-1-0-2012]

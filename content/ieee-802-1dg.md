@@ -8,7 +8,7 @@ edition: 2025
 status: 유효
 ---
 
-**IEEE 802.1DG**는 차량 안의 [[ethernet-switch|브리지]]로 이어진 [[ieee-802-3|IEEE 802.3]] [[ethernet|이더넷]] 네트워크를 위한 [[tsn|TSN]] 프로파일을 정하는 IEEE 표준이다. 정식 제목은 "IEEE Standard for Local and metropolitan area networks — Time-Sensitive Networking Profile for Automotive In-Vehicle Ethernet Communications"이다.[@ieee-802-1dg-2025]
+**IEEE 802.1DG**는 차량 안의 [[ethernet-switch|브리지]]로 이어진 [[ieee-802-3|IEEE 802.3]] [[ethernet|이더넷]] 네트워크를 위한 [[tsn#프로파일|TSN 프로파일]]을 정하는 IEEE 표준이다. 정식 제목은 "IEEE Standard for Local and metropolitan area networks — Time-Sensitive Networking Profile for Automotive In-Vehicle Ethernet Communications"이다.[@ieee-802-1dg-2025]
 
 ## 범위
 
