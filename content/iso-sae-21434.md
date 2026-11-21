@@ -15,26 +15,26 @@ status: 유효
 
 ## 범위
 
-ISO/SAE 21434:2021은 도로 차량의 E/E(Electrical/Electronic) 시스템과 그 컴포넌트, 인터페이스에 대해, 개념, 제품 개발, 생산, 운용, 정비, 폐기에 걸친 사이버보안 리스크 관리의 엔지니어링 요구사항을 정한다. 양산 도로 차량의 E/E 시스템과 그 컴포넌트, 인터페이스 가운데 이 표준이 나온 뒤에 개발이나 변경을 시작한 것에 적용하고, 특정 사이버보안 기술이나 해결책은 정하지 않는다. 이 표준이 정하는 틀은 사이버보안 프로세스의 요구사항과, 사이버보안 리스크를 전하고 관리하는 공통 언어를 담는다.[@iso-sae-21434-obp-2021]
+ISO/SAE 21434:2021은 도로 차량의 E/E(Electrical/Electronic) 시스템과 그 컴포넌트, 인터페이스에 대해, concept, product development, production, operation, maintenance, decommissioning에 걸친 사이버보안 리스크 관리의 엔지니어링 요구사항을 정한다. 양산 도로 차량의 E/E 시스템과 그 컴포넌트, 인터페이스 가운데 이 표준이 나온 뒤에 개발이나 변경을 시작한 것에 적용하고, 특정 사이버보안 기술이나 해결책은 정하지 않는다. 이 표준이 정하는 틀은 사이버보안 프로세스의 요구사항과, 사이버보안 리스크를 전하고 관리하는 공통 언어를 담는다.[@iso-sae-21434-obp-2021]
 
 이 표준은 공급망 전체가 함께 이해할 바탕으로 사이버보안 엔지니어링의 용어, 목표, 요구사항, 지침을 준다. 사이버보안을 알맞게 고려하게 해, 도로 차량 E/E 시스템의 엔지니어링이 최신 기술과 진화하는 공격 방법을 따라가게 하려는 것이다.[@iso-sae-21434-obp-2021]
 
-이 표준의 4절부터 15절까지가 다루는 것은 다음과 같다. 4절은 informative 절이다.[@iso-sae-21434-obp-2021]
+이 표준의 4절부터 15절까지의 절 제목은 다음과 같다. 4절은 informative 절이다.[@iso-sae-21434-obp-2021]
 
-| 절  | 다루는 것                     |
-| --- | ----------------------------- |
-| 4   | 일반 고려 사항                |
-| 5   | 조직 사이버보안 관리          |
-| 6   | 프로젝트 의존 사이버보안 관리 |
-| 7   | 분산 사이버보안 활동          |
-| 8   | 지속적 사이버보안 활동        |
-| 9   | 개념 단계                     |
-| 10  | 제품 개발                     |
-| 11  | 사이버보안 확인(validation)   |
-| 12  | 생산                          |
-| 13  | 운용과 정비                   |
-| 14  | 사이버보안 지원 종료와 폐기   |
-| 15  | 위협 분석과 리스크 평가 방법  |
+| 절  | 절 제목                                          |
+| --- | ------------------------------------------------ |
+| 4   | General considerations                           |
+| 5   | Organizational cybersecurity management          |
+| 6   | Project dependent cybersecurity management       |
+| 7   | Distributed cybersecurity activities             |
+| 8   | Continual cybersecurity activities               |
+| 9   | Concept                                          |
+| 10  | Product development                              |
+| 11  | Cybersecurity validation                         |
+| 12  | Production                                       |
+| 13  | Operations and maintenance                       |
+| 14  | End of cybersecurity support and decommissioning |
+| 15  | Threat analysis and risk assessment methods      |
 
 이 표준은 5절부터 15절까지 절마다 목표, 조항, 작업 산출물을 둔다. 조항은 요구사항, 권고, 허용으로 나뉜다. 조항과 작업 산출물에는 RQ(requirement), RC(recommendation), PM(permission), WP(work product) 뒤에 절 번호와 절 안의 순번을 붙인 식별자를 매긴다. 예를 들어 RQ-05-14는 5절의 열네 번째 요구사항이다.[@iso-sae-21434-obp-2021]
 

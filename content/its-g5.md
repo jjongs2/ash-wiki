@@ -35,7 +35,7 @@ Annex C(informative)는 ITS-G5의 [[v2x-security|보안]]을 협력 ITS 분야�
 
 ## 혼잡 제어
 
-**DCC**(Decentralized Congestion Control)는 현재 부하에 따라 ITS station의 송신 기회 수를 조절하는 식으로 망 부하를 다스리는 관리 실체다. DCC는 상호 운용을 위한 프로토콜이 아니라, 한 ITS station이 채널의 자원을 다 쓰지 못하게 하는 알고리즘이다.[@etsi-en-302-663-2020]
+**DCC**(Decentralized Congestion Control)는 현재 부하에 따라 ITS station의 송신 기회 수를 조절하는 식으로 망 부하를 다스리는 관리 개체다. DCC는 상호 운용을 위한 프로토콜이 아니라, 한 ITS station이 채널의 자원을 다 쓰지 못하게 하는 알고리즘이다.[@etsi-en-302-663-2020]
 
 ETSI EN 302 571 V2.1.1은 IEEE 802.11-2012에 바탕한 접속 계층 기술을 쓰는 장비에 DCC를 의무 메커니즘으로 둔다. 장비는 채널이 얼마나 차 있는지에 따라 송신 동작을 바꾸고, 그 기준으로 CBR(Channel Busy Ratio)을 쓴다. **CBR**은 $T_\mathrm{CBR} = 100\,\mathrm{ms}$ 동안 받은 신호의 세기가 −85 dBm을 넘은 시간을 $T_\mathrm{busy}$라 할 때 다음과 같다.[@etsi-en-302-571-2017]
 

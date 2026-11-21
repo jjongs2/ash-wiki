@@ -19,7 +19,7 @@ ISO/IEC 2382:2015는 둘을 나눠, **사용자 식별자**(user ID)를 데이�
 
 ![[diagrams/challenge-response-authentication.svg]]
 
-ISO/IEC 9798-1:2010은 메시지가 재전송된 것이 아님을 확인하는 데 쓰는 값을 **시간 가변 매개변수**(time variant parameter)라 하고, 그 예로 [[random-bit-generator|난수]], 타임스탬프, 순번을 든다.[@iso-iec-9798-1-obp-2010] 챌린지 같은 시간 가변 매개변수를 쓰는 인증은, 지난 인증 메시지를 녹음해 다시 보내는 재전송 공격을 막는다. 다시 보낸 옛 메시지에는 맞는 챌린지나 시각 정보가 없기 때문이다.[@iso-iec-9798-4-obp-1999][@nist-sp-800-63b-4-2025]
+ISO/IEC 9798-1:2010은 메시지가 replay된 것이 아님을 확인하는 데 쓰는 값을 **시간 가변 매개변수**(time variant parameter)라 하고, 그 예로 [[random-bit-generator|난수]], 타임스탬프, 순번을 든다.[@iso-iec-9798-1-obp-2010] 챌린지 같은 시간 가변 매개변수를 쓰는 인증은, 지난 인증 메시지를 녹음해 다시 보내는 replay 공격을 막는다. 다시 보낸 옛 메시지에는 맞는 챌린지나 시각 정보가 없기 때문이다.[@iso-iec-9798-4-obp-1999][@nist-sp-800-63b-4-2025]
 
 ## 대칭 키 방식과 공개 키 방식
 

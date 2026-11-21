@@ -59,7 +59,7 @@ RFC 5246은 cipher suite 하나가 키 교환 알고리즘, 대량 암호 알고
 
 ## TLS 1.2의 키 교환
 
-RFC 5246은 클라이언트가 premaster secret을 서버 인증서의 RSA 공개 키로 암호화해 보내는 RSA 키 교환과, DHE_DSS·DHE_RSA(임시 Diffie-Hellman), DH_DSS·DH_RSA(인증서에 든 고정 Diffie-Hellman), DH_anon(익명 Diffie-Hellman)을 정했다. RFC 9846은 정적 RSA와 정적 Diffie-Hellman cipher suite를 없앴다.[@ietf-rfc-9846-2026][@ietf-rfc-5246-2008]
+RFC 5246은 클라이언트가 premaster secret을 서버 인증서의 RSA 공개 키로 암호화해 보내는 RSA 키 교환과, DHE_DSS·DHE_RSA(임시 Diffie-Hellman), DH_DSS·DH_RSA(인증서에 든 고정 Diffie-Hellman), DH_anon(익명 Diffie-Hellman)을 정했다.[@ietf-rfc-5246-2008]
 
 RFC 5246은 양쪽이 보안 매개변수를 합의한 뒤 Finished 앞에 ChangeCipherSpec 메시지를 보내, 이후 레코드를 새로 협상한 방식과 키로 보호함을 알리게 했다. RFC 9846은 ChangeCipherSpec을 미들박스와의 호환을 위해서만 남겼다.[@ietf-rfc-9846-2026][@ietf-rfc-5246-2008]
 
@@ -69,4 +69,4 @@ RFC 5246은 양쪽이 보안 매개변수를 합의한 뒤 Finished 앞에 Chang
 
 ## DTLS
 
-**DTLS**(Datagram Transport Layer Security)는 [[udp|UDP]] 같은 데이터그램 전송 위에서 쓰도록 TLS를 본뜬 프로토콜이다. RFC 9147은 DTLS 1.3을 정하고 DTLS 1.2(RFC 6347)를 대체한다. DTLS 1.3은 TLS 1.3을 바탕으로 하며, 순서 보호와 재전송 공격 방지를 제외하면 TLS 1.3과 같은 보안 보장을 준다. 데이터그램은 잃거나 순서가 바뀔 수 있으므로, DTLS는 레코드에 순서 번호를 명시하고 핸드셰이크 메시지의 재전송과 조각 재조립을 스스로 맡는다. 응용 데이터의 손실과 순서 바뀜은 바로잡지 않는다.[@ietf-rfc-9147-2022]
+**DTLS**(Datagram Transport Layer Security)는 [[udp|UDP]] 같은 데이터그램 전송 위에서 쓰도록 TLS를 본뜬 프로토콜이다. RFC 9147은 DTLS 1.3을 정하고 DTLS 1.2(RFC 6347)를 대체한다. DTLS 1.3은 TLS 1.3을 바탕으로 하며, 순서 보호와 replay 공격 방지를 제외하면 TLS 1.3과 같은 보안 보장을 준다. 데이터그램은 잃거나 순서가 바뀔 수 있으므로, DTLS는 레코드에 순서 번호를 명시하고 핸드셰이크 메시지의 재전송과 조각 재조립을 스스로 맡는다. 응용 데이터의 손실과 순서 바뀜은 바로잡지 않는다.[@ietf-rfc-9147-2022]
