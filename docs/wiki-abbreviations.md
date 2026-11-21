@@ -65,7 +65,6 @@
 - ERTICO: 소개하는 조직
 - ES: 표준·규격 이름
 - ETAS: 소개하는 조직
-- ETSI: 조직
 - EU: 조직
 - Euro NCAP: 소개하는 조직
 - EVE: 소개하는 조직
