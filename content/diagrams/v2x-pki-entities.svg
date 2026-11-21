@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2.5 1 538.5 267.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="PKI 실체가 주고받는 증명, 인증서, ECTL">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 판 -->
+  <text x="10" y="22" font-size="13" fill="var(--text, #727981)">ETSI TS 102 940 V2.1.1</text>
+
+  <!-- 실체 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="70" y="40" width="120" height="36" rx="2" />
+    <rect x="300" y="40" width="100" height="36" rx="2" />
+    <rect x="10" y="130" width="100" height="36" rx="2" />
+    <rect x="150" y="130" width="100" height="36" rx="2" />
+    <rect x="300" y="130" width="100" height="36" rx="2" />
+    <rect x="100" y="220" width="60" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="130" y="63">Root CA</text>
+    <text x="350" y="63">CPOC</text>
+    <text x="60" y="153">EA</text>
+    <text x="200" y="153">AA</text>
+    <text x="350" y="153">TLM</text>
+    <text x="130" y="243">ITS-S</text>
+  </g>
+
+  <!-- 흐름 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="190" y1="58" x2="299" y2="58" />
+    <line x1="400" y1="58" x2="449" y2="58" />
+    <line x1="335" y1="76" x2="335" y2="129" />
+    <line x1="365" y1="130" x2="365" y2="77" />
+    <path d="M100 76 V103 H60 V129" />
+    <path d="M160 76 V103 H200 V129" />
+    <path d="M60 166 V238 H99" />
+    <path d="M200 166 V238 H161" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="245" y="50" text-anchor="middle">root CA 인증서</text>
+    <text x="424.5" y="50" text-anchor="middle">배포</text>
+    <text x="455" y="62">관심 있는 실체</text>
+    <text x="329" y="107" text-anchor="end">root CA 인증서</text>
+    <text x="371" y="107">ECTL</text>
+    <text x="130" y="96" text-anchor="middle">증명</text>
+    <text x="66" y="204">등록 인증서</text>
+    <text x="194" y="204" text-anchor="end">AT 여럿</text>
+  </g>
+</svg>
