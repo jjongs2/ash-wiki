@@ -16,7 +16,7 @@
   <!-- 첫 보호층: TCU에 붙인 Secure Element -->
   <rect x="20.75" y="64.75" width="138.5" height="85.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="90" y="86" text-anchor="middle" fill="var(--text, #727981)">TCU</text>
-  <rect x="34.75" y="98.75" width="110.5" height="40.5" rx="2" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <rect x="34.75" y="98.75" width="110.5" height="40.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <g font-size="12" text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="90" y="115">Secure Element</text>
     <text x="90" y="131">(첫 보호층)</text>
@@ -26,7 +26,7 @@
   <rect x="20.75" y="170.75" width="138.5" height="34.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="90" y="192.5" text-anchor="middle" fill="var(--text, #727981)">OBD 포트</text>
 
-  <!-- 둘째 보호층: TCU와 OBD를 떼고 기능 도메인으로 나누는 중앙 게이트웨이 ECU -->
+  <!-- 둘째 보호층: TCU와 OBD를 나머지 네트워크와 갈라 놓고 기능 도메인으로 나누는 중앙 게이트웨이 ECU -->
   <rect x="230.75" y="80.75" width="108.5" height="134.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
   <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
     <text x="285" y="138.5">중앙 게이트웨이</text>

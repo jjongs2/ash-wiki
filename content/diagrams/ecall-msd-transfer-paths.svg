@@ -16,19 +16,19 @@
     <text x="460" y="104.5">PSAP</text>
   </g>
 
-  <!-- 음성 채널 위 in-band modem, IMS 긴급 통화 -->
+  <!-- 위: NG-eCall(IMS 긴급 통화), 아래: 음성 채널 위 in-band modem -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
     <line x1="100" y1="72" x2="419" y2="72" />
     <line x1="100" y1="128" x2="419" y2="128" />
   </g>
   <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
-    <text x="260" y="46">이동통신망과 공중 전화망의 음성 채널</text>
-    <text x="260" y="62">in-band modem으로 MSD 전송</text>
-    <text x="260" y="148">IMS 긴급 통화</text>
-    <text x="260" y="164">SIP 메시지의 body part에 MSD</text>
+    <text x="260" y="46">NG-eCall: IMS 긴급 통화</text>
+    <text x="260" y="62">SIP 메시지의 body part에 MSD</text>
+    <text x="260" y="148">이동통신망과 공중 전화망의 음성 채널</text>
+    <text x="260" y="164">in-band modem으로 MSD 전송</text>
   </g>
 
-  <!-- PSAP가 확인하지 않으면 in-band로 -->
-  <line x1="128" y1="122" x2="128" y2="79" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrow)" />
+  <!-- PSAP가 확인하지 않으면 IMS 길에서 in-band 길로 -->
+  <line x1="128" y1="72.75" x2="128" y2="127.25" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrow)" />
   <text x="138" y="104.5" font-size="12" fill="var(--text, #727981)">PSAP의 확인이 없으면 in-band로 되돌아감</text>
 </svg>

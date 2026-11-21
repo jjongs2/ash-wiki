@@ -10,38 +10,36 @@ verified: 2026-11-21
 
 FCC 규칙 § 90.7은 FCC 24-123이 더한 정의에서 **C-V2X**(Cellular Vehicle-to-Everything)를 노변 장치와 차량 탑재 장치 사이, 또는 차량 탑재 장치끼리 셀룰러 무선 기법으로 데이터를 주고받아 교통 흐름과 교통 안전 같은 ITS(Intelligent Transportation System) 응용을 하는 것으로 정의한다.[@fcc-24-123-2024]
 
+**sidelink**는 단말과 단말 사이의 인터페이스로, PC5 인터페이스에 해당한다.[@3gpp-ts-36-300-2026] LTE 기반 V2X 통신에는 PC5로 하는 모드와 LTE-Uu로 하는 모드가 있다.[@3gpp-ts-23-285-2025]
+
 3GPP는 Release 14와 Release 15에서 LTE 기반 V2X를 정했고, Release 16에서 그 뒤를 잇는 5G NR(New Radio) 기반 sidelink를 V2X phase 3로 정했다.[@3gpp-tr-21-916-2022]
-
-V2X 통신에는 PC5로 하는 모드와 LTE-Uu로 하는 모드가 있다.[@3gpp-ts-23-285-2025] LTE의 PC5는 연결 없는 broadcast만 쓰고, NR의 PC5는 groupcast와 unicast도 쓴다.[@3gpp-ts-23-287-2026] LTE의 V2X sidelink 자원은 기지국이 스케줄하거나 단말이 스스로 고른다.[@3gpp-ts-36-300-2026]
-
-ETSI EN 303 613 V1.1.1은 LTE-V2X(Long Term Evolution based Vehicle-to-Everything)를 ITS station 구조의 접속 계층 기술 가운데 하나로 둔다.[@etsi-en-303-613-2020]
 
 ## 쓰는 곳
 
-LTE-V2X를 접속 계층 기술로 쓰는 ITS station은 ETSI TS 136 300이 정한 LTE-V2X sidelink 통신을 지원해야 한다. 이 표준이 정하는 접속 계층은 ITS 전용 대역(5.855\~5.925 GHz)에서 쓰는 LTE-V2X의 sidelink, 곧 PC5 인터페이스다.[@etsi-en-303-613-2020]
+ETSI EN 303 613 V1.1.1은 LTE-V2X(Long Term Evolution based Vehicle-to-Everything)를 ITS station 구조의 접속 계층 기술 가운데 하나로 둔다. 이 표준이 정하는 접속 계층은 ITS 전용 대역(5.855\~5.925 GHz)에서 쓰는 LTE-V2X의 sidelink, 곧 PC5 인터페이스다. LTE-V2X를 접속 계층 기술로 쓰는 ITS station은 ETSI TS 136 300이 정한 LTE-V2X sidelink 통신을 지원해야 한다.[@etsi-en-303-613-2020]
 
 FCC 20-164(2020년 First Report and Order)는 미국 5.9 GHz 대역의 ITS 서비스가 전환 기간이 끝나면 C-V2X 기반 기술을 쓰도록 했다.[@fcc-20-164-2020]
 
 3GPP는 Release 14의 V2X 작업에서 CAM, DENM, BSM(Basic Safety Message) 같은 기본 도로 안전 서비스의 데이터 운반을 주로 겨냥했다.[@3gpp-tr-21-915-2019]
 
+## 서비스 요구
+
 3GPP TS 22.186 V19.1.0은 3GPP 시스템이 V2X 시나리오를 더 지원하도록 서비스 요구를 일반 사항, Vehicles Platooning, Advanced Driving, Extended Sensors, Remote Driving, 차량 QoS 지원의 여섯 영역으로 나눠 정한다. Vehicles Platooning은 차량들이 동적으로 무리를 지어 함께 달리게 한다.[@3gpp-ts-22-186-2026]
 
-3GPP TS 22.185 V19.0.0은 단말 사이의 V2X 메시지 전달에 아래 값을 요구하고, pre-crash sensing의 지연만 권고(should)로 둔다.[@3gpp-ts-22-185-2025]
+3GPP TS 22.185 V19.0.0은 단말 사이의 메시지 전달에 아래 요구를 둔다. pre-crash sensing의 지연만 권고(should)다.[@3gpp-ts-22-185-2025]
 
-| 항목            | 값                              | 대상                                                                                                       |
-| --------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| 최대 지연       | 100 ms                          | V2V(Vehicle-to-Vehicle)·V2P(Vehicle-to-Pedestrian) 응용을 지원하는 두 단말 사이, 직접이나 노변 장치를 거쳐 |
-| 최대 지연(권고) | 20 ms                           | pre-crash sensing에 한한 V2V 메시지                                                                        |
-| 메시지 크기     | 50\~300바이트(보안 부분 제외)   | 주기 broadcast 메시지                                                                                      |
-| 메시지 크기     | 최대 1200바이트(보안 부분 제외) | 이벤트로 트리거되는 메시지                                                                                 |
-| 메시지 빈도     | 초당 최대 10건                  | 송신 단말 하나                                                                                             |
-| 상대 속도       | 최대 500 km/h                   | V2V 메시지를 주고받는 단말 사이                                                                            |
+| 요구                                                           | 대상                                                                                                       |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| 최대 지연 100 ms로 메시지를 나를 수 있어야 한다                | V2V(Vehicle-to-Vehicle)·V2P(Vehicle-to-Pedestrian) 응용을 지원하는 두 단말 사이(직접이나 노변 장치를 거쳐) |
+| 최대 지연 20 ms로 메시지를 나를 수 있기를 권한다               | pre-crash sensing에 한해, V2V 응용을 지원하는 두 단말 사이                                                 |
+| 50\~300바이트(보안 부분 제외)의 메시지를 나를 수 있어야 한다   | 주기 broadcast 메시지                                                                                      |
+| 최대 1200바이트(보안 부분 제외)의 메시지를 나를 수 있어야 한다 | 이벤트로 트리거되는 메시지                                                                                 |
+| 초당 최대 10건의 메시지를 지원해야 한다                        | 송신 단말 하나                                                                                             |
+| 상대 속도 최대 500 km/h에서 메시지를 나를 수 있어야 한다       | V2V 응용을 지원하는 단말 사이                                                                              |
 
 ## 통신 모드
 
-**sidelink**는 단말과 단말 사이의 인터페이스로, PC5 인터페이스에 해당한다.[@3gpp-ts-36-300-2026]
-
-V2X 통신은 PC5 reference point로 하는 것과 Uu reference point로 하는 것 두 모드로 나뉘고, 단말은 두 모드를 송신과 수신에 따로 쓸 수 있다. LTE의 PC5는 broadcast만 쓰고, NR의 PC5는 broadcast, groupcast, unicast를 지원한다. groupcast와 unicast는 NR의 PC5에서만 된다.[@3gpp-ts-23-287-2026]
+V2X 통신은 PC5 reference point로 하는 것과 Uu reference point로 하는 것 두 모드로 나뉘고, 단말은 두 모드를 송신과 수신에 따로 쓸 수 있다. LTE의 PC5는 broadcast만 쓰고, NR의 PC5는 broadcast, groupcast, unicast를 지원한다.[@3gpp-ts-23-287-2026]
 
 ![[diagrams/v2x-pc5-uu-modes-cast-types.svg]]
 
@@ -53,7 +51,7 @@ LTE의 PC5 통신은 단말이 LTE 망의 서비스를 받을 때와 받지 않�
 
 LTE의 V2X sidelink 자원 할당은 두 가지다. scheduled resource allocation에서는 단말이 기지국에 송신 자원을 요청하고, 기지국이 sidelink 제어 정보와 데이터의 송신 자원을 스케줄한다. autonomous resource selection에서는 단말이 자원 풀에서 스스로 자원을 고르고, 센싱 결과에 따라 sidelink 자원을 고르거나 다시 고르며 여러 자원을 예약한다.[@3gpp-ts-36-300-2026]
 
-LTE sidelink 기반 V2V에서 기지국이 돕는 스케줄링을 Mode 3, 차량끼리의 분산 스케줄링을 Mode 4라 부른다. Mode 4는 센싱과 semi-persistent 송신에 기반한 방식이다.[@3gpp-tr-21-914-2018]
+LTE sidelink 기반 V2V에서 기지국이 돕는 스케줄링을 **Mode 3**, 차량끼리의 분산 스케줄링을 **Mode 4**라 부른다. Mode 4는 센싱과 semi-persistent 송신에 기반한 방식이다.[@3gpp-tr-21-914-2018]
 
 NR sidelink는 망이 자원을 할당하는 mode 1과, 단말이 자원 풀에서 송신 자원을 정하는 mode 2를 둔다.[@3gpp-ts-38-300-2026] 3GPP TR 21.916 V16.2.0에 따르면 두 모드는 LTE sidelink의 Mode 3·Mode 4와 매우 비슷하다.[@3gpp-tr-21-916-2022]
 
