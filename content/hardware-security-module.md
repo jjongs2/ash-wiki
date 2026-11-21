@@ -30,7 +30,7 @@ ENISA(EU의 [[cybersecurity|사이버보안]] 기관)의 2019년 보고서 Good 
 
 EVITA(E-safety Vehicle Intrusion proTected Applications)는 유럽 공동체 제7차 연구 프레임워크 프로그램의 공동 프로젝트로, 2008년 7월부터 2011년 12월까지 차량 온보드 네트워크의 보안 구조를 설계했다. EVITA는 충분한 처리량과 공격 저항성을 얻으려고 [[secure-boot#Root of trust|root of trust]]를 HSM에 두고, 서로 다른 비용 제약과 보안 요구에 맞춰 HSM을 세 등급으로 정했다.[@evita-d0-2012]
 
-- Full HSM: V2X(Vehicle-to-X) 통신 장치나 [[gateway#중앙 게이트웨이|중앙 게이트웨이]]처럼 차량 밖과 통신하는 자리를 위한 등급이다. 타원 곡선 암호와 해시를 하드웨어로 가속해 V2X 메시지의 [[digital-signature|서명]]을 빠르게 만들고 검증한다.[@evita-d1-2-5-2-2011]
+- Full HSM: [[v2x|V2X]] 통신 장치나 [[gateway#중앙 게이트웨이|중앙 게이트웨이]]처럼 차량 밖과 통신하는 자리를 위한 등급이다. 타원 곡선 암호와 해시를 하드웨어로 가속해 V2X 메시지의 [[digital-signature|서명]]을 빠르게 만들고 검증한다.[@evita-d1-2-5-2-2011]
 - Medium HSM: 차량 안 통신을 지키는 등급이다. 대칭 키 암호 엔진은 하드웨어로 두지만 비대칭 암호 엔진은 두지 않고, 시간이 급하지 않은 비대칭 연산은 소프트웨어로 처리한다.
 - Light HSM: ECU와 센서·액추에이터 사이의 통신을 지키는 등급이다. 센서와 액추에이터의 빠듯한 비용·효율 요구에 맞춰, 암호 엔진으로는 대칭 키 암호 엔진만 둔다.[@evita-d0-2012]
 

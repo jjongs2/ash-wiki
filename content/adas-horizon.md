@@ -27,7 +27,7 @@ ADASIS에서는 ADASIS Horizon Provider(AHP)가 지도에서 도로망을 지나
 
 ![[diagrams/adas-horizon-path-tree-profiles.svg]]
 
-ADASISv2는 [[can|CAN]] 버스를 쓰는 시스템을 겨냥한 프로토콜로, 적은 수의 메시지로 차량 주변 전체와 앞 몇 km를 기술한다. ADASISv2는 브로드캐스트 프로토콜이라 메시지가 전달되지 않았는지 감지하지 못해, provider와 reconstructor 사이의 신뢰성 있는 통신을 보장하지 못한다. ADASISv3는 IP 기반 프로토콜로 HD 지도의 차로 수준 정보를 보낸다. ADASISv3에서는 auxiliary horizon provider가 차량 센서나 교통 정보·V2X(Vehicle-to-X) 같은 외부 소스의 데이터를 Horizon에 더할 수 있다.[@adasis-white-paper-2024]
+ADASISv2는 [[can|CAN]] 버스를 쓰는 시스템을 겨냥한 프로토콜로, 적은 수의 메시지로 차량 주변 전체와 앞 몇 km를 기술한다. ADASISv2는 브로드캐스트 프로토콜이라 메시지가 전달되지 않았는지 감지하지 못해, provider와 reconstructor 사이의 신뢰성 있는 통신을 보장하지 못한다. ADASISv3는 IP 기반 프로토콜로 HD 지도의 차로 수준 정보를 보낸다. ADASISv3에서는 auxiliary horizon provider가 차량 센서나 교통 정보·[[v2x|V2X]] 같은 외부 소스의 데이터를 Horizon에 더할 수 있다.[@adasis-white-paper-2024]
 
 백서가 나온 2024년 무렵 ADASISv3 프로토콜은 [[osi-model|OSI 참조 모델]]의 응용 계층(7계층)에 정의되어 있었다. ADASISv3는 특정 운영체제나 미들웨어에 매이지 않아 [[autosar-classic-platform|AUTOSAR Classic Platform]]·[[autosar-adaptive-platform|Adaptive Platform]]이나 자체 미들웨어에서 쓸 수 있고, 차량 안의 [[some-ip|SOME/IP]]나, 클라우드에서 바로 오는 REST API·보안 WebSocket 위에서도 쓸 수 있다. 필요한 대역폭은 기본 지도 지원과 짧은 Horizon에서 평균 1 kB/s 미만이고, 긴 Horizon과 많은 profile 종류에서는 10 kB/s 이상으로 늘 수 있다.[@adasis-white-paper-2024]
 

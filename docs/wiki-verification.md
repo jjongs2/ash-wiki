@@ -172,6 +172,7 @@
 | `istqb-`       | ISTQB 강의계획서와 용어집       |
 | `ieee-swebok-` | SWEBOK                          |
 | `iso-iec-tr-`  | ISO/IEC 기술 보고서(ISO/IEC TR) |
+| `etsi-tr-`     | ETSI 기술 보고서(ETSI TR)       |
 
 #### Standards Track RFC
 
