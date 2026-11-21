@@ -23,9 +23,9 @@ NXP의 [[can-transceiver#저속 내결함성 트랜시버와의 차이|저속 �
 
 ## 트랜시버 모드와 버스 상태
 
-ISO 11898-1:2024는 dominant와 recessive를 버스 상태로 정의하고, 이 두 낱말을 트랜시버 모드와 상관없이 MAC(Medium Access Control) 프레임의 비트 값에도 쓴다. 이 표준은 중재 모드를 dominant 비트가 recessive 비트를 덮어쓸 수 있는 PCS(Physical Coding Sublayer)의 동작 모드로 정의한다.[@iso-11898-1-obp-2024]
+ISO 11898-1:2024는 dominant와 recessive를 버스 상태로 정의하고, 이 두 낱말을 트랜시버 모드와 상관없이 MAC(Medium Access Control) 프레임의 비트 값에도 쓴다고 제시한다. 이 표준은 중재 모드를 dominant 비트가 recessive 비트를 덮어쓸 수 있는 PCS(Physical Coding Sublayer)의 동작 모드로 정의한다.[@iso-11898-1-obp-2024]
 
-버스 위의 상태는 PMA 모드에 따라 이름이 갈린다. ISO 11898-2:2026은 PMA가 중재 모드일 때의 버스 상태를 dominant와 recessive로, 그 밖의 모드일 때의 버스 상태를 **level_0**과 **level_1**로 정의하고, level_0이 논리 0을, level_1이 논리 1을 나타낸다고 제시한다. [[can-transceiver#FAST 모드|FAST TX 모드]]의 PMA는 버스를 level_0과 level_1로 구동하는데, 두 상태를 함께 구동하면 결과가 정해지지 않는다.[@iso-11898-2-obp-2026]
+ISO 11898-2:2026은 버스 상태의 이름을 PMA 모드에 따라 달리 정의한다. 이 표준은 PMA가 중재 모드일 때의 버스 상태를 dominant와 recessive로, 그 밖의 모드일 때의 버스 상태를 **level_0**과 **level_1**로 정의하고, level_0이 논리 0을, level_1이 논리 1을 나타낸다고 제시한다. [[can-transceiver#FAST 모드|FAST TX 모드]]의 PMA는 버스를 level_0과 level_1로 구동하는데, 두 상태를 함께 구동하면 결과가 정해지지 않는다.[@iso-11898-2-obp-2026]
 
 [[can-physical-layer#저속 내결함성 CAN|저속 내결함성 CAN]]을 규정하는 [[iso-11898-3|ISO 11898-3]]:2006도 버스 값을 dominant와 recessive로 두고, 둘을 함께 보내면 버스 값이 dominant가 된다고 제시한다.[@iso-11898-3-obp-2006]
 
