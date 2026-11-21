@@ -320,10 +320,13 @@ const CSS = `.front-regions {
 // - 펼친 묶음의 페이지 목록은 보조 글자 줄 아래에 둔다. 페이지 링크는 칸 제목 줄의 "N건 모두 보기"와 같은 꼴
 //   (링크색 보통 굵기, hover색에 밑줄)을 조금 작게 쓴다. 본문의 위키 안 링크 꼴(굵은 글자와 바탕)은 10쪽이
 //   쌓이면 무거워, 소유자가 시안에서 이 꼴을 골랐다. 팝오버가 뜨도록 a.internal은 두고 그 바탕만 지운다. 목록의
-//   줄 사이는 묶음 사이보다 좁히되, 링크의 간격이 누름 영역 하한(WCAG 2.2의 24px)을 넘게 둔다. 목록 줄
-//   높이 21.6px에 위아래 여백 0.1rem으로 24.8px이다. 0.05rem(23.2px)이면 axe target-size가 잡는다.
-//   "새" 표시는 링크색 테두리의 작은 글자로, 링크 뒤에 둔다. "외 N쪽 더 보기"는 보조 글자 줄과 같은 글자에
-//   묶음 제목과 같은 꺾쇠를 단다.
+//   줄 사이는 묶음 사이보다 좁히되, 링크의 간격을 누름 영역 하한(WCAG 2.2의 24px)에 맞춘다. 목록 줄 높이
+//   21.6px에 위아래 여백 0.075rem으로 24px이다. 0.05rem(23.2px)이면 axe target-size가 잡는다.
+//   "new" 표시는 링크색 테두리의 작은 글자로, 링크 뒤에 둔다. 한글 "새"는 같은 크기에서도 칸을 꽉 채워 튀어
+//   소유자가 바꿨다. "외 N쪽 더 보기"는 보조 글자 줄과 같은 글자이고, 누르면 사라져 나머지 페이지가 앞 목록에
+//   끊김 없이 이어진다. 사라지는 줄이라 열림과 닫힘을 보이는 꺾쇠는 달지 않는다. 다시 접는 단추는 두지 않는다. 묶음을 접으면 함께 숨는다.
+//   키보드로 누르면 초점을 가진 단추가 사라지지만, 브라우저가 그 자리에서 Tab을 이어 가 다음 Tab은 이어진 첫
+//   페이지 링크에 선다.
 // - 아이콘은 제목 안의 인라인 요소라 첫 줄 글자에 맞춰 선다. 꺾인 줄은 내어쓰기(padding과 음수 text-indent)로
 //   아이콘 오른쪽에서 시작한다. vertical-align은 첫 줄 한글의 가운데에 아이콘 가운데를 맞춘 값이다. 보조 글자
 //   줄과 페이지 목록은 summary 밖이라 같은 폭(--icon-indent)을 따로 들인다. 폭은 em이라, 길이로 등록해
@@ -488,7 +491,7 @@ li.front-change > .front-change-body {
   padding-left: var(--icon-indent);
 }
 li.front-day .front-change-pages li {
-  padding: 0.1rem 0;
+  padding: 0.075rem 0;
 }
 .front-recent a.front-change-page {
   background-color: transparent;
@@ -503,13 +506,14 @@ li.front-day .front-change-pages li {
   text-decoration: underline;
 }
 .front-change-new {
-  margin-left: 0.35em;
+  margin-left: 0.6em;
   padding: 0 0.25em;
   border: 1px solid currentColor;
   border-radius: 3px;
   color: var(--secondary);
-  font-size: 0.7em;
-  vertical-align: 0.1em;
+  font-size: 0.6em;
+  line-height: 1;
+  vertical-align: 0.15em;
 }
 .front-change-more > summary {
   display: block;
@@ -525,6 +529,9 @@ li.front-day .front-change-pages li {
 .front-change-more > summary:hover {
   color: var(--secondary);
   text-decoration: underline;
+}
+.front-change-more[open] > summary {
+  display: none;
 }
 .front-news-head {
   display: flex;
@@ -775,7 +782,7 @@ export const RECENT_PAGES_SHOWN = 10
 
 // 최근 변경. 날짜마다 타임라인의 마디 하나를 두고, 그 아래 묶음마다 PR 아이콘, 제목과 펼침 표시, 그 아래 줄에
 // PR 번호와 쪽수를 둔다. 제목은 <details>의 <summary>라, 누르거나 키보드로 고르면 묶음이 펼쳐져 그 묶음이
-// 새로 만들거나 고친 페이지가 페이지 제목으로 된 위키 안 링크로 보인다. 새로 만든 페이지에는 "새" 표시를 단다.
+// 새로 만들거나 고친 페이지가 페이지 제목으로 된 위키 안 링크로 보인다. 새로 만든 페이지에는 "new" 표시를 단다.
 // 바깥 독자가 알고 싶은 것은 PR 본문(내부 절차의 말)이 아니라 위키에 무엇이 생겼는지라, 제목은 PR로 링크하지
 // 않는다. summary 안에는 초점을 받는 링크를 두지 않으므로(axe nested-interactive, #638) PR 번호의 링크는 summary
 // 밖의 보조 글자 줄에 두고, 새 탭에서 연다. PR 번호가 없는 묶음은 아이콘 자리를 비우고 쪽수만 적는다.
@@ -820,7 +827,7 @@ export function recentColumn(days: RecentDay[], locale: string): ElementContent[
               },
               [text(page.title)],
             ),
-            ...(page.added ? [el("span", { className: ["front-change-new"] }, [text("새")])] : []),
+            ...(page.added ? [el("span", { className: ["front-change-new"] }, [text("new")])] : []),
           ]),
         ),
       )
@@ -831,7 +838,7 @@ export function recentColumn(days: RecentDay[], locale: string): ElementContent[
         ? []
         : [
             el("details", { className: ["front-change-more"] }, [
-              el("summary", {}, [text(`외 ${rest.length}쪽 더 보기`), chevron()]),
+              el("summary", {}, [text(`외 ${rest.length}쪽 더 보기`)]),
               list(rest),
             ]),
           ]),

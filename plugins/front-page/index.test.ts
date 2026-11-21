@@ -431,7 +431,7 @@ describe("recentColumn", () => {
     }
   })
 
-  test("펼친 묶음은 페이지마다 제목을 글자로 한 위키 안 링크를 두고, 새 페이지에는 새 표시를 단다", () => {
+  test("펼친 묶음은 페이지마다 제목을 글자로 한 위키 안 링크를 두고, 새 페이지에는 new 표시를 단다", () => {
     const pages = items.map((item) =>
       find([item], (node) => node.tagName === "li" && node !== item).map((li) => [
         textOf(find([li], hasClass("front-change-page"))[0]),
@@ -441,7 +441,7 @@ describe("recentColumn", () => {
     )
     assert.deepStrictEqual(pages, [
       [
-        ["CAN FD", "./can-fd", "새"],
+        ["CAN FD", "./can-fd", "new"],
         ["CAN 프레임", "./can-frame", ""],
       ],
       [["UDS", "./uds", ""]],
