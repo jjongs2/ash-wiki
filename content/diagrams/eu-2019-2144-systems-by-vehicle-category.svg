@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 540 272" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="EU 규정 2019/2144가 차량 범주별로 요구하는 시스템">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 규정 -->
+  <text x="20" y="24" fill="var(--text, #727981)">EU 규정 2019/2144</text>
+
+  <!-- 모든 자동차: 안의 범주 상자를 담는 틀이므로 칠하지 않는다 -->
+  <rect x="20" y="40" width="500" height="212" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <g fill="var(--text, #727981)">
+    <text x="36" y="64" font-size="13" font-weight="600">모든 자동차</text>
+    <text x="36" y="88">ISA · 음주 시동 잠금 장치 설치 편의 · DDAW · ADDW</text>
+    <text x="36" y="106">비상 정지 신호 · 후진 감지 · EDR</text>
+    <text x="36" y="136">범주에 따라 더 요구하는 시스템</text>
+  </g>
+
+  <!-- 범주: 같은 폭 상자 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="36" y="148" width="226" height="88" rx="2" />
+    <rect x="278" y="148" width="226" height="88" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="149" y="172" font-size="13" font-weight="600">M1·N1</text>
+    <text x="149" y="198">AEBS</text>
+    <text x="149" y="218">ELKS</text>
+    <text x="391" y="172" font-size="13" font-weight="600">M2·M3·N2·N3</text>
+    <text x="391" y="198">AEBS</text>
+    <text x="391" y="218">LDWS</text>
+  </g>
+</svg>
