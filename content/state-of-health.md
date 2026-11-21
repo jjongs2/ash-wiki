@@ -5,7 +5,7 @@ tags:
 verified: 2026-11-20
 ---
 
-**SOH**(State of Health)는 배터리의 능력을 새것일 때와 견주어 나타낸 척도다.[@eu-2023-1542-2026][@adi-soc-soh-estimation-2017] Analog Devices 기술 기사에 따르면 SOH는 배터리가 전기 에너지를 저장하고 내는 능력의 척도다.[@adi-soc-soh-estimation-2017] SOH라는 말은 흔히 쓰이지만 공통된 정의가 없고, 여러 방법으로 정해진다.[@unece-gtr22-amend1-2024][@eu-2024-1257-2024]
+**SOH**(State of Health)는 배터리의 능력을 새것일 때와 견주어 나타낸 척도다.[@eu-2023-1542-2026][@adi-soc-soh-estimation-2017] SOH라는 말은 흔히 쓰이지만 공통된 정의가 없고, 여러 방법으로 정해진다.[@unece-gtr22-amend1-2024][@eu-2024-1257-2024]
 
 배터리와 폐배터리에 관한 EU 규정 2023/1542는 SOH를 판단하는 데 쓰는 파라미터의 최신 데이터를 전기차 배터리의 [[battery-management-system|BMS]]에 담도록 요구한다.[@eu-2023-1542-2026] EU 규정 2024/1257은 **배터리 내구성**(battery durability)을, 트랙션 배터리의 차량 내 내구성을 SOH로 잰 것으로 정의한다.[@eu-2024-1257-2024]
 
