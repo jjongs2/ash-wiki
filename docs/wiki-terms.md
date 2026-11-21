@@ -48,7 +48,7 @@
 - context switch: 문맥 전환 (#142)
 - Conversation: 대화 (#579). 사용자 스토리의 3C(Card, Conversation, Confirmation)일 때
 - counter: 카운터 (#257). OSEK·AUTOSAR OS 객체일 때. 다른 counter는 이 결정에 들지 않는다.
-- CPM 풀이 Collective Perception Message: Cooperative Perception Message (#742)
+- CPM 풀이 Collective Perception Message: Cooperative Perception Message (#742). 근거는 정의하는 명세 ETSI TS 103 324
 - CXPI 풀이 Clock Extension Peripheral Interface: Clock eXtension Peripheral Interface (#667). 근거는 SAE J3076, JSAE, Infineon, ROHM. ISO 20794의 "Clock extension peripheral interface"는 ISO 제목의 sentence case라 같은 철자다
 - Cyber Resilience Act: EU 사이버 회복력법 (#438)
 - cybersecurity goal: 사이버보안 목표 (#288)
@@ -59,7 +59,7 @@
 - Diffie-Hellman: Diffie–Hellman (#288)
 - DMA 풀이 Direct Memory Access: direct memory access (#674)
 - dominant: 도미넌트 (#165). 조사는 원어의 발음대로. 예: "dominant가"
-- DSRC 풀이: 통일하지 않음 (#742). 인용한 출처의 풀이대로. 유럽 ETSI 명세(EN 302 571, EN 302 663)의 DSRC는 5,8 GHz 전자 요금 징수의 CEN DSRC이고, 미국 FCC 자료의 DSRC는 5.9 GHz ITS 통신이라 뜻도 다르다
+- DSRC 풀이: 통일하지 않음 (#742). 인용한 출처의 풀이대로. 유럽 ETSI 명세(EN 302 571, EN 302 663)의 DSRC는 5.8 GHz 전자 요금 징수의 CEN DSRC이고, 미국 FCC 자료의 DSRC는 5.9 GHz ITS 통신이라 뜻도 다르다
 - EdDSA 풀이 Edwards-Curve Digital Signature Algorithm: Edwards-curve Digital Signature Algorithm, Edwards Curve Digital Signature Algorithm (#528)
 - edge: 에지 (#257). AUTOSAR 드라이버가 설정과 API로 다루는 edge일 때. 그 밖의 신호 에지는 "에지". 예: CAN 동기화의 에지
 - EDR 풀이 Event Data Recorder: - (#682)
@@ -75,7 +75,7 @@
 - HD 지도, SD 지도: HD map, SD map (#682)
 - Highway: 고속도로 (#682). UN R171 2.27의 Highway일 때. 첫 등장에 정의(보행자·자전거 금지, 반대 방향의 물리적 분리)를 풀어 쓴다
 - ITS 풀이: 통일하지 않음 (#742). 인용한 출처의 풀이대로. ETSI 명세를 인용하면 Intelligent Transport Systems, 미국 자료(FCC, IEEE 1609)를 인용하면 그 자료의 풀이. 예: FCC 24-123은 Intelligent Transportation System
-- ITS-S 풀이 ITS Station: ITS-Station, Intelligent Transport Systems Station (#742)
+- ITS-S 풀이 ITS Station: ITS-Station, Intelligent Transport Systems Station (#742). 근거는 ETSI EN 302 637-2·EN 302 637-3·TS 102 940·TS 102 687의 3.3
 - Kanban: 칸반 (#393)
 - KDF 풀이 Key Derivation Function: Key-Derivation Function (#498)
 - KEM 풀이 Key-Encapsulation Mechanism: Key Encapsulation Mechanism (#498)
@@ -85,7 +85,7 @@
 - MAC 풀이 Medium Access Control: Media Access Control (#165). 출처마다의 풀이를 비교하는 문장은 예외
 - MCU: 통일하지 않음 (#674). AUTOSAR 명세의 microcontroller를 옮긴 AUTOSAR·ECU 쪽 페이지는 "마이크로컨트롤러", 하드웨어 페이지는 MCU
 - minimal risk manoeuvre, minimum risk manoeuvre: 통일하지 않음 (#682). 출처 철자대로. ISO 34503·EU 시행 규정 2022/1426은 minimal risk manoeuvre, UN R157은 minimum risk manoeuvre. 약어는 MRM. "최소 위험 기동"은 쓰지 않는다
-- MSD 풀이 Minimum Set of Data: Minimum Set of emergency related Data (#742)
+- MSD 풀이 Minimum Set of Data: Minimum Set of emergency related Data (#742). 근거는 UN R144와 3GPP TS 26.267
 - NACS 풀이 North American Charging System: North American Charging Standard (#678)
 - NAD 풀이 node address: node address for responder nodes (#667). 근거는 ISO 17987-3:2025. ISO 17987-1:2025의 용어 이름 node address for diagnostics는 그대로
 - NMI 풀이: 통일하지 않음 (#675). 인용한 출처의 풀이대로. 예: Infineon AN0001을 인용한 safety-mechanism은 non-maskable interrupt, RTEMS 문서를 인용한 deferred-interrupt-handling은 Non-Maskable Interrupt
@@ -102,7 +102,7 @@
 - Plug and Charge: Plug and charge, Plug & Charge (#678). 제목과 본문. Plug & Charge는 CharIN 로고 이름과 alias로만
 - PnC 풀이 Plug and Charge: park and charge (#678). ISO 15118-20:2022가 PnC를 park and charge라 부른다고 견주는 문장은 예외
 - prototyping: 프로토타이핑 (#291). prototype도 같다. AUTOSAR의 prototype은 이 결정에 들지 않는다.
-- PSAP 풀이 Public Safety Answering Point: Public/Private Safety Answering Point, Primary Safety Answering Point (#742)
+- PSAP 풀이 Public Safety Answering Point: Public/Private Safety Answering Point, Primary Safety Answering Point (#742). 근거는 3GPP TS 26.267·23.167과 EU 규정 2015/758 3조
 - PWM 풀이: 통일하지 않음 (#441). 인용한 출처의 풀이대로. AUTOSAR 명세를 인용하면 Pulse Width Modulation, ISO 11898-1을 인용하면 Pulse-Width Modulation
 - read-while-write: - (#674). 플래시의 RWW일 때
 - recessive: 리세시브 (#165). 조사는 원어의 발음대로. 예: "recessive이고"
@@ -125,7 +125,7 @@
 - USART 풀이 Universal Synchronous/Asynchronous Receiver/Transmitter: Universal Synchronous and Asynchronous Receiver Transmitter (#196)
 - use case: 유스케이스 (#394). 합성어 포함. 예: use case 테스트
 - V2GTP 풀이 V2G Transfer Protocol: Vehicle to Grid Transport Protocol (#678)
-- V2X 풀이 Vehicle-to-Everything: Vehicle-to-X (#257, #742). V2X 통신일 때. `un-gtr-22`의 V2X(트랙션 배터리로 외부에 에너지를 대는 용도)는 다른 뜻이라 조건 밖이다
+- V2X 풀이 Vehicle-to-Everything: Vehicle-to-X (#257, #742). V2X 통신일 때. 근거는 3GPP TS 22.185·23.285·23.287, ETSI EN 302 637-2·EN 303 613, SAE J2735, FCC 24-123의 풀이다. `un-gtr-22`의 V2X(트랙션 배터리로 외부에 에너지를 대는 용도)는 다른 뜻이라 조건 밖이다
 - validation: 통일하지 않음 (#288). "확인"과 원어 cybersecurity validation을 맥락에 따라. 페이지 `cybersecurity-verification-and-validation`의 title과 정의는 "확인"
 - Virtual A/B: - (#432)
 - wakeup: 웨이크업 (#257). AUTOSAR가 다루는 wakeup일 때. 예: EcuM에 알리는 wakeup. 트랜시버와 버스의 웨이크업은 "웨이크업"

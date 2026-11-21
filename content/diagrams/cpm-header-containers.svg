@@ -3,7 +3,7 @@
 
   <!-- header, 그 곁에 Management Container와 그 뒤의 container 1~8개 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <rect x="20.75" y="20.75" width="62.5" height="240.5" rx="2" />
+    <rect x="20.75" y="20.75" width="62.5" height="241.5" rx="2" />
     <rect x="91.75" y="20.75" width="228.5" height="34.5" rx="2" />
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
@@ -13,7 +13,7 @@
 
   <!-- 넣을 수 있는 container 묶음(실선 틀) -->
   <text x="206" y="76" text-anchor="middle" font-size="12" fill="var(--text, #727981)">합해 1~8개</text>
-  <rect x="91.75" y="85.75" width="228.5" height="175.5" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="91.75" y="85.75" width="228.5" height="176.5" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="103.75" y="97.75" width="204.5" height="32.5" rx="2" />
     <rect x="103.75" y="137.75" width="204.5" height="32.5" rx="2" />

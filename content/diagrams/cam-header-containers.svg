@@ -7,7 +7,7 @@
 
   <!-- container 묶음(실선 틀). 점선 상자는 일부 CAM에만 넣는 container -->
   <text x="202" y="34" text-anchor="middle" font-size="12" fill="var(--text, #727981)">container</text>
-  <rect x="91.75" y="46.75" width="219.5" height="274.5" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="91.75" y="46.75" width="220.5" height="274.5" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="103.75" y="58.75" width="196.5" height="42.5" rx="2" />
     <rect x="103.75" y="110.75" width="196.5" height="42.5" rx="2" />

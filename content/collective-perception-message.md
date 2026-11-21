@@ -33,7 +33,7 @@ Sensor Information Container는 처음 만드는 CPM과, 마지막으로 넣은 
 
 감지 객체를 CPM에 넣는 규칙은 설정 ObjectInclusionConfig에 따른다. 0이면 보내는 쪽이 스스로 정하고, 1(차량 ITS-S에 권하는 값)이면 이 명세의 포함 규칙을 따른다. 이 규칙은 분류 신뢰도가 가장 높은 class로 객체를 둘로 나눈다. Type-A는 VRU(Vulnerable Road User) profile이 보행자, 자전거 이용자·경량 VRU 차량, 동물인 VRU와, group class, 기타 class이고, Type-B는 차량과 motorcyclist profile의 VRU처럼 Type-A가 아닌 class다.[@etsi-ts-103-324-2023]
 
-인지 품질이 임계를 넘는 객체 가운데 Type-A는 직전 CPM 생성 사건 뒤 처음 감지됐으면 넣고, CPM에 넣지 않은 채 T_GenCpmMax/2 이상 지난 Type-A 객체가 하나라도 있으면 이 명세는 Type-A 객체를 모두 넣기를 권한다. Type-B는 직전 CPM 생성 사건 뒤 처음 감지됐거나, 마지막으로 CPM에 넣은 때보다 위치나 지면 속도가 임계보다 크게 바뀌었거나, 지면 속도의 방향이 임계 이상 바뀌었거나, 마지막으로 넣은 뒤 T_GenCpmMax 이상 지났으면 넣는다. ITS-S가 MCO(Multi Channel Operations)를 지원하면 CPS는 MCO facility가 주는 한도에 맞춰 T_GenCpm과 채널·생성 사건마다 만드는 데이터 양을 조정해야 하고, 이 명세는 이를 위해 VoI(Value of Information)가 가장 낮은 객체를 빼기를 권한다.[@etsi-ts-103-324-2023]
+인지 품질이 임계를 넘는 객체 가운데 Type-A는 직전 CPM 생성 사건 뒤 처음 감지됐으면 넣고, CPM에 넣지 않은 시간 $t$가 $t \ge \mathrm{T\_GenCpmMax}/2$인 Type-A 객체가 하나라도 있으면 이 명세는 Type-A 객체를 모두 넣기를 권한다. Type-B는 직전 CPM 생성 사건 뒤 처음 감지됐거나, 마지막으로 CPM에 넣은 때보다 위치나 지면 속도가 임계보다 크게 바뀌었거나, 지면 속도의 방향이 임계 이상 바뀌었거나, 마지막으로 넣은 뒤 T_GenCpmMax 이상 지났으면 넣는다. ITS-S가 MCO(Multi Channel Operations)를 지원하면 CPS는 MCO facility가 주는 한도에 맞춰 T_GenCpm과 채널·생성 사건마다 만드는 데이터 양을 조정해야 하고, 이 명세는 이를 위해 VoI(Value of Information)가 가장 낮은 객체를 빼기를 권한다.[@etsi-ts-103-324-2023]
 
 CPM은 facilities 계층 메시지에 공통인 header 하나와 여러 container로 이뤄진다. Management Container 뒤에 보내는 ITS-S를 기술하는 originating container, Sensor Information Container, Perception Region Container, Perceived Object Container를 합해 1\~8개 넣는다. 차량 ITS-S가 보내는 CPM에는 Originating Vehicle Container가 하나 있어야 하고, 감지 객체의 상태 변수는 차량 기준 위치를 중심으로 한 East-North-Up 좌표계로 나타낸다.[@etsi-ts-103-324-2023]
 
