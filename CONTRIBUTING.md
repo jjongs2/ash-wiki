@@ -85,7 +85,6 @@ PR-body 스킬(`mattpocock-skills:pr`)의 꼴로 씁니다. 저장소는 두 가
 | `spec`     | 여러 티켓으로 나뉘는 상위 명세                                                                                  |
 | `ingest`   | 페이지 묶음 하나의 인제스트. `ingest: <묶음 이름>`                                                              |
 | `verify`   | 주제 계획이나 보강 한 번의 미검증 주장 모음. `verify: <주제>`                                                   |
-| `term`     | 용어 선택이 갈려 소유자의 결정이 필요한 항목. 결정은 [용어 표기 결정](docs/wiki-terms.md) 목록으로              |
 | `lint`     | 린트가 넘긴, 의미를 바꾸는 항목. `lint: <주제나 구역> <YYYY-MM-DD>`                                             |
 | `edition`  | 판 확인의 모음 이슈(`edition: 판 확인 모음`)와, 거기서 나눈 출판물 하나의 판 바뀜. `edition: <출판물>`          |
 | `research` | 하네스 조사의 질문 묶음 하나. `research: <질문 묶음>`. 진행은 [하네스 조사](docs/research/README.md)를 따릅니다 |
@@ -95,6 +94,6 @@ PR-body 스킬(`mattpocock-skills:pr`)의 꼴로 씁니다. 저장소는 두 가
 
 그 밖의 이슈는 PR 타입을 접두사로 씁니다(`feat`, `docs`, `chore` 등).
 
-PR 안에서 고치기보다 규약부터 다시 정해야 하는 항목은 열린 `docs: 규약 검토 모음` 이슈에 코멘트로 쌓습니다. 열린 것이 없으면 [모음 이슈 템플릿](.github/ISSUE_TEMPLATE/convention-review.md)으로 엽니다.
+triage를 거쳐 티켓이 되기 전의 발견 세 종류는 이슈로 내지 않고 [보드](docs/agents/issue-tracker.md#보드)의 draft로 둡니다. PR 안에서 고치기보다 규약부터 다시 정해야 하는 항목(규약 검토), 용어 선택이 갈려 소유자의 결정이 필요한 항목(용어 표기), 보강이 티켓에 싣지 못한 후속입니다. draft의 꼴과 triage는 그 절을 따릅니다.
 
 `gh` 사용법은 [이슈 트래커](docs/agents/issue-tracker.md), 라벨은 [triage 라벨](docs/agents/triage-labels.md)을 참고하세요.
