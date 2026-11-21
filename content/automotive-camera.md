@@ -11,7 +11,7 @@ verified: 2026-11-21
 
 ## 쓰는 곳
 
-카메라용 [[automotive-serdes|SerDes]] 직렬화기는 전방 카메라, 서라운드 뷰, 후방 카메라, DMS 같은 차량 카메라 시스템에 쓴다.[@adi-max96717-2025][@ti-ds90ub953-q1-2024]
+카메라용 [[automotive-serdes|SerDes]] 직렬화기는 전방 카메라, 서라운드 뷰, 후방 카메라, [[driver-monitoring-system|DMS]] 같은 차량 카메라 시스템에 쓴다.[@adi-max96717-2025][@ti-ds90ub953-q1-2024]
 
 ## LED 깜빡임
 
