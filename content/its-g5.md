@@ -19,7 +19,7 @@ EU 시행 결정 2020/1426은 회원국이 2021년 6월 30일까지 5875\~5935 M
 
 EU 시행 결정 2026/1800은 2020/1426의 Annex를 바꿨다. 바뀐 Annex는 이 대역의 ITS 장비에 평균 EIRP로 스펙트럼 전력 밀도 최대 23 dBm/MHz와 전체 송신 전력 최대 33 dBm을 두고, TPC(transmit power control)가 전체 전력을 최대에서 3 dBm EIRP까지 낮출 수 있어야 한다고 정한다. 도로 ITS 응용은 5875 MHz부터 10 MHz씩 나눈 블록 하나 안에 드는 채널을 쓰고, 두 블록을 이어 20 MHz 채널 하나로 쓸 수 있다. 5905\~5925 MHz의 두 블록으로 만든 20 MHz 채널은 I2V 통신에만 쓴다.[@eu-2026-1800-2026]
 
-CEPT(유럽 우편·전기통신 주관청 회의)의 ECC/DEC/(08)01(2025년 3월 7일 개정)은 CEPT 주관청이 차량에 단 ITS 장비와 이동 ITS 장비를 모두 개별 면허에서 면제하도록 정한다.[@eu-2020-1426-2020][@cept-ecc-dec-08-01-2025]
+CEPT(유럽 우편·전기통신 주관청 회의)의 ECC/DEC/(08)01(2025년 3월 7일 개정, ECC: 유럽의 전자통신 정책과 주파수 조화를 맡는 CEPT 위원회)은 CEPT 주관청이 차량에 단 ITS 장비와 이동 ITS 장비를 모두 개별 면허에서 면제하도록 정한다.[@cept-ecc-dec-08-01-2025][@cept-leaflet-2025]
 
 ## 물리 계층
 
@@ -58,9 +58,28 @@ ETSI EN 302 571 V2.1.1은 5795\~5815 MHz의 전자 요금 징수를 해로운 �
 > [!warning]
 > 이 명세는 **DSRC**(Dedicated Short Range Communication)를 5.8 GHz 요금 징수에 쓰는 CEN DSRC로 정의한다.[@etsi-en-302-571-2017] 2024년 당시 미국 FCC 규칙은 [[ieee-1609#미국 5.9 GHz 대역|DSRC]]를 노변 장치와 이동 장치 사이 등에서 짧은 거리로 데이터를 보내 교통 흐름과 교통 안전 같은 ITS 응용에 쓰는 무선 기술로 정의했다.[@fcc-24-123-2024]
 
+## IEEE 802.11의 물리 계층과 MAC
+
+IEEE 802.11-2024는 clause 17의 OFDM 물리 계층에서 채널 간격이 10 MHz일 때 부반송파를 52개(데이터 48개, 파일럿 4개)로, OFDM 심볼 간격을 8 µs로 둔다.[@ieee-802-11-2024]
+
+dot11OCBActivated가 true인 스테이션은 IEEE 802.11 LAN의 기본 구성 단위인 BSS(Basic Service Set)에 속하지 않고, BSS 밖에서 Data 프레임을 보낸다. 이 스테이션은 IEEE 802.11의 인증, 연결(association), data confidentiality 서비스를 쓰지 않고, BSS에 들거나 BSS를 시작하지 않는다. BSS의 구성원이 아니므로 공통 클록에 동기화할 필요도 없다. 처음에는 규제로 지정되었거나 다른 대역 밖 통신으로 미리 알려진 채널에서 송수신한다.[@ieee-802-11-2024]
+
+이 스테이션은 모든 관리 프레임과 Data 프레임의 BSSID(Basic Service Set Identifier) 필드를 모든 비트가 1인 wildcard BSSID로 둔다.[@ieee-802-11-2024]
+
+이 표준은 DMG(Directional Multi-Gigabit) 스테이션이 아닌 스테이션의 기본 MAC 접근 방식을 CSMA/CA(Carrier Sense Multiple Access with Collision Avoidance)인 DCF(Distributed Coordination Function)로 정한다. 스테이션은 송신하기 전에 매체를 감지하고, 정해진 최소 시간 동안 매체가 비어 있어야 송신한다. 매체가 차 있으면 지금의 송신이 끝날 때까지 미룬 뒤, backoff 카운터를 무작위 값으로 두고 매체가 비어 있는 동안 slot 시간마다 하나씩 줄인다. **EDCA**(Enhanced Distributed Channel Access)는 QoS BSS의 QoS 스테이션과 BSS 밖에서 동작하는 스테이션이 쓰는, 우선순위를 둔 CSMA/CA 접근 메커니즘이다. EDCA에서는 access category마다 따로 도는, DCF를 고친 접근 함수가 자기 EDCA 파라미터로 송신 기회를 다툰다.[@ieee-802-11-2024]
+
+이 표준이 dot11OCBActivated가 true일 때 QoS 프레임을 보내는 스테이션에 정한 기본 EDCA 파라미터는 아래와 같다. access category마다의 대기 시간 AIFS(Arbitration Interframe Space)는 AIFSN(AIFS Number)으로 $\mathrm{AIFS} = \mathrm{AIFSN} \times \mathrm{aSlotTime} + \mathrm{aSIFSTime}$이다. 채널 간격이 10 MHz인 OFDM 물리 계층에서는 aCWmin이 15, aCWmax가 1023, aSIFSTime이 32 µs이고, aSlotTime은 dot11OperatingClassesRequired가 false면 13 µs다.[@ieee-802-11-2024]
+
+| access category | 쓰임        | CWmin                     | CWmax                     | AIFSN |
+| --------------- | ----------- | ------------------------- | ------------------------- | ----- |
+| AC_BK           | background  | aCWmin                    | aCWmax                    | 9     |
+| AC_BE           | best effort | aCWmin                    | aCWmax                    | 6     |
+| AC_VI           | video       | aCWmin                    | aCWmax                    | 4     |
+| AC_VO           | voice       | $(\mathrm{aCWmin}+1)/4-1$ | $(\mathrm{aCWmin}+1)/2-1$ | 2     |
+
 ## 이력
 
-EU 집행위원회는 2016년 협력 ITS 전략에서, ETSI의 단거리 무선 통신 ITS-G5가 쓰는 주파수의 지정을 안전 관련 ITS 서비스에 유지하자고 제안했다. 업계의 노력으로 차량과 주변 사이의 단거리 통신에는 서로 경쟁하는 두 기술, ITS-G5와 LTE-V2X가 개발되었다.[@eu-2020-1426-2020]
+EU 집행위원회는 2016년 협력 ITS 전략에서, ETSI의 단거리 무선 통신 ITS-G5가 쓰는 주파수의 지정을 안전 관련 ITS 서비스에 유지하자고 제안했다. 업계의 노력으로 차량과 주변 사이의 단거리 통신에는 서로 경쟁하는 두 기술, ITS-G5와 [[c-v2x#쓰는 곳|LTE-V2X]]가 개발되었다.[@eu-2020-1426-2020]
 
 IEEE 802.11p-2010은 차량 환경에서 무선 통신을 할 수 있도록 IEEE 802.11 무선 LAN을 넓혔고, 2026년 11월 기준 Superseded 상태다.[@ieee-802-11p-2010] IEEE 802.11bd-2022는 5.9 GHz와 60 GHz 대역의 차세대 [[v2x|V2X]] 통신을 위해 IEEE 802.11의 물리 계층과 MAC 부계층을 고쳤고, 역시 Superseded 상태다.[@ieee-802-11bd-2022] 같은 때 IEEE 802.11-2024는 Active 상태다.[@ieee-802-11-2024]
 

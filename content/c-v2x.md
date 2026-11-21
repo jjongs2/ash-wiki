@@ -10,7 +10,7 @@ verified: 2026-11-21
 
 FCC 규칙 § 90.7은 FCC 24-123이 더한 정의에서 **C-V2X**(Cellular Vehicle-to-Everything)를 노변 장치와 차량 탑재 장치 사이, 또는 차량 탑재 장치끼리 셀룰러 무선 기법으로 데이터를 주고받아 교통 흐름과 교통 안전 같은 ITS(Intelligent Transportation System) 응용을 하는 것으로 정의한다.[@fcc-24-123-2024]
 
-**sidelink**는 단말과 단말 사이의 인터페이스로, PC5 인터페이스에 해당한다.[@3gpp-ts-36-300-2026] LTE 기반 V2X 통신에는 PC5로 하는 모드와 LTE-Uu로 하는 모드가 있다.[@3gpp-ts-23-285-2025]
+**sidelink**는 단말과 단말 사이의 인터페이스로, PC5 인터페이스에 해당한다.[@3gpp-ts-36-300-2026] LTE 기반 [[v2x|V2X]] 통신에는 PC5로 하는 모드와 LTE-Uu로 하는 모드가 있다.[@3gpp-ts-23-285-2025]
 
 3GPP는 Release 14와 Release 15에서 LTE 기반 V2X를 정했고, Release 16에서 그 뒤를 잇는 5G NR(New Radio) 기반 sidelink를 V2X phase 3로 정했다.[@3gpp-tr-21-916-2022]
 
@@ -20,7 +20,7 @@ ETSI EN 303 613 V1.1.1은 LTE-V2X(Long Term Evolution based Vehicle-to-Everythin
 
 FCC 20-164(2020년 First Report and Order)는 미국 5.9 GHz 대역의 ITS 서비스가 전환 기간이 끝나면 C-V2X 기반 기술을 쓰도록 했다.[@fcc-20-164-2020]
 
-3GPP는 Release 14의 V2X 작업에서 CAM, DENM, BSM(Basic Safety Message) 같은 기본 도로 안전 서비스의 데이터 운반을 주로 겨냥했다.[@3gpp-tr-21-915-2019]
+3GPP는 Release 14의 V2X 작업에서 [[cooperative-awareness-message|CAM]], [[decentralized-environmental-notification-message|DENM]], BSM(Basic Safety Message) 같은 기본 도로 안전 서비스의 데이터 운반을 주로 겨냥했다.[@3gpp-tr-21-915-2019]
 
 ## 서비스 요구
 
@@ -43,7 +43,7 @@ V2X 통신은 PC5 reference point로 하는 것과 Uu reference point로 하는 
 
 ![[diagrams/v2x-pc5-uu-modes-cast-types.svg]]
 
-LTE의 PC5 통신은 단말이 LTE 망의 서비스를 받을 때와 받지 않을 때 모두 되고, 연결이 없어 연결 설정을 위한 PC5 제어 평면 신호가 없다. PC5로는 IP 기반과 non-IP 기반 V2X 메시지를 모두 보내고, IP 기반이면 [[ipv6|IPv6]]만 쓴다. non-IP 메시지에는 Non-IP Type 헤더가 붙어, 응용 계층이 쓰는 V2X 메시지 계열(예: IEEE 1609 계열의 메시지)을 가리킨다.[@3gpp-ts-23-285-2025]
+LTE의 PC5 통신은 단말이 LTE 망의 서비스를 받을 때와 받지 않을 때 모두 되고, 연결이 없어 연결 설정을 위한 PC5 제어 평면 신호가 없다. PC5로는 IP 기반과 non-IP 기반 V2X 메시지를 모두 보내고, IP 기반이면 [[ipv6|IPv6]]만 쓴다. non-IP 메시지에는 Non-IP Type 헤더가 붙어, 응용 계층이 쓰는 V2X 메시지 계열(예: [[ieee-1609|IEEE 1609]] 계열의 메시지)을 가리킨다.[@3gpp-ts-23-285-2025]
 
 3GPP TS 23.285 V19.0.0은 단말에 진행 중인 긴급 세션이 있으면 그 세션의 통신이 PC5 V2X 통신보다 앞서도록 정한다.[@3gpp-ts-23-285-2025]
 

@@ -45,7 +45,7 @@ dead reckoning은 마지막으로 안 위치에서 얼마나, 어느 방향으�
 
 차량 내비게이션의 map matching은 위치를 언제나 실제 도로 위에 보고하는데, 겹친 다층 도로에서는 어느 도로를 달리는지 가리기 어렵다. 3D dead reckoning이 주는 고도 정보가 이를 가리게 돕는다.[@ublox-3d-dead-reckoning-2014]
 
-ADASIS 백서에 따르면 차량을 자동으로 제어하려면 30 cm 미만의 위치 정확도가 필요하고, 이 정확도는 GNSS와 차량 센서(속도, 자이로, IMU(Inertial Measurement Unit))에 기댄 기존 측위로는 얻지 못한다. HD 지도의 차로 표시, 도로 시설물, localization 객체를 카메라·라이다로 본 것과 맞추면, GNSS와 IMU를 함께 쓸 때보다 훨씬 정확하게 지도 위의 위치를 정할 수 있다.[@adasis-white-paper-2024]
+ADASIS 백서에 따르면 차량을 자동으로 제어하려면 30 cm 미만의 위치 정확도가 필요하고, 이 정확도는 GNSS와 차량 센서(속도, 자이로, IMU(Inertial Measurement Unit))에 기댄 기존 측위로는 얻지 못한다. HD 지도의 차로 표시, 도로 시설물, localization 객체를 카메라·[[lidar|라이다]]로 본 것과 맞추면, GNSS와 IMU를 함께 쓸 때보다 훨씬 정확하게 지도 위의 위치를 정할 수 있다.[@adasis-white-paper-2024]
 
 ## ADASIS
 

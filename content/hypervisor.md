@@ -18,7 +18,7 @@ verified: 2026-11-07
 
 Arm의 Armv8-R 가상화 가이드에 따르면, ECU마다 프로세서가 [[rtos|RTOS]]를 돌리는 차량에서 ECU의 처리를 더 적은 프로세서로 모으면 제조 비용과 공간, 차량 무게가 준다. 이렇게 통합한 시스템에서도 ECU마다 RTOS가 돌지만, 그 RTOS는 하이퍼바이저가 다스리는 하드웨어 시스템 하나 위에서, 하이퍼바이저가 관리하는 가상 머신 안의 게스트 운영체제로 돈다.[@arm-102909-2026]
 
-Renesas는 2022년 RH850/U2x MCU와 ETAS의 하이퍼바이저 RTA-HVR을 묶은 ECU 가상화 플랫폼을 내놓았다. 이 플랫폼으로 MCU 기반의 [[zone-controller|존 ECU]] 하나에 논리 ECU 여럿을 둘 수 있다. RH850/U2x는 하이퍼바이저 하드웨어 지원과, freedom from interference를 위한 안전·보안 기능을 갖춘다. RTA-HVR은 하드웨어 가상화를 지원하는 MCU용 하이퍼바이저로, RH850/U2x의 하드웨어 가상화 기능으로 가상 머신을 하나 이상 만든다. 가상 머신끼리는 공간으로는 RH850/U2x의 memory protection unit과 guard 기능으로, 시간으로는 RTA-HVR의 VM 스케줄러로 떼어 놓는다. RTA-HVR의 가상 머신 하나는 가상 CPU 코어 하나 이상과 장치 메모리 공간의 일부, 주변장치 묶음으로 이뤄진다.[@renesas-ecu-virtualization-2022]
+Renesas는 2022년 RH850/U2x MCU와 ETAS(Bosch 자회사)의 하이퍼바이저 RTA-HVR을 묶은 ECU 가상화 플랫폼을 내놓았다.[@renesas-ecu-virtualization-2022][@etas-adas-software-foundation-2026] 이 플랫폼으로 MCU 기반의 [[zone-controller|존 ECU]] 하나에 논리 ECU 여럿을 둘 수 있다. RH850/U2x는 하이퍼바이저 하드웨어 지원과, freedom from interference를 위한 안전·보안 기능을 갖춘다. RTA-HVR은 하드웨어 가상화를 지원하는 MCU용 하이퍼바이저로, RH850/U2x의 하드웨어 가상화 기능으로 가상 머신을 하나 이상 만든다. 가상 머신끼리는 공간으로는 RH850/U2x의 MPU와 guard 기능으로, 시간으로는 RTA-HVR의 VM 스케줄러로 떼어 놓는다. RTA-HVR의 가상 머신 하나는 가상 CPU 코어 하나 이상과 장치 메모리 공간의 일부, 주변장치 묶음으로 이뤄진다.[@renesas-ecu-virtualization-2022]
 
 3세대 R-Car [[system-on-chip|SoC]]는 하이퍼바이저와 함께 쓰는 것을 전제로 설계되어, Arm CPU 코어와 그래픽 코어, 비디오·오디오 처리 블록 같은 기능에 가상화 기능이 있다. R-Car용 하이퍼바이저는 통합 콕핏과 커넥티드 카 응용에서 Linux, Android, RTOS 같은 게스트 운영체제 여럿을 칩 하나에서 서로 독립적으로 돌린다.[@renesas-rcar-virtualization-2018]
 
@@ -70,6 +70,6 @@ DMA 컨트롤러 같은 다른 마스터도 가상 머신에 배정할 수 있�
 
 Armv8-R 프로세서에서는 게스트 운영체제가 도는 EL1 위의 EL2에서 코드가 돌 수 있어 가상화가 된다. 하이퍼바이저는 이 특권 수준에서 게스트 운영체제 하나 이상 위에 놓인다. PMSA(Protected Memory System Architecture)는 메모리 영역을 정의하고 다른 영역의 접근을 막아 공간 분리를 이룬다. 그래서 한 게스트 운영체제는 대개 다른 게스트 운영체제가 쓰는 영역에 닿지 못하고, 게스트 운영체제의 코드는 하이퍼바이저의 코드나 데이터 영역에 닿지 못한다.[@arm-102909-2026]
 
-Arm Cortex-R52는 가상화 기술로 PMSA context 여럿을 한 코어에서 서로 떼어 담아 돌려, 어느 context도 자기보다 중요도가 높은 context의 응답 시간과 결정성에 영향을 주지 못하게 한다.[@arm-100026-2024]
+Arm Cortex-R52가 지원하는 Armv8-R AArch32 아키텍처의 메모리 모델 PMSAv8에서는 MPU가 메모리 접근의 권한과 속성을 정한다. Arm Cortex-R52는 가상화 기술로 PMSA context 여럿을 한 코어에서 서로 떼어 담아 돌려, 어느 context도 자기보다 중요도가 높은 context의 응답 시간과 결정성에 영향을 주지 못하게 한다.[@arm-100026-2024]
 
 Cortex-R52의 메모리 보호와 가상화는 [[memory-protection-unit#가상화 지원|MPU]]에서 다룬다.

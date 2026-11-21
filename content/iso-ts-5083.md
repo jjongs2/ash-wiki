@@ -23,4 +23,4 @@ status: 유효
 ## 개정 이력
 
 - 2025년: ISO/TS 5083:2025(1판)가 4월에 나왔다.[@iso-ts-5083-2025] 이 판은 ISO/TR 4804:2020(Road vehicles — Safety and cybersecurity for automated driving systems — Design, verification and validation)을 취소하고 대체했다. 범위를 전면 고치고, 규범 절에 목표와 요구사항을 넣었으며, ADS 개발에 적용하는 상위 안전 전략의 서술을 고쳐 ADS 밖에 할당할 가정과 요구사항을 분명히 했다. 사이버보안과의 연결을 더하고, 적용 예와 AI 안전 고려를 더 담도록 Annex를 고쳤다.[@iso-ts-5083-obp-2025]
-- 2026년 11월 기준 ISO/TS 5083:2025는 개정 대상(90.92)이고, 다음 판이 개발 중이다.[@iso-ts-5083-2025]
+- 2026년 11월 기준 ISO/TS 5083:2025는 개정 대상(90.92)이고, 다음 판이 ISO/WD(Working Draft) TS 5083으로 개발 중이다.[@iso-ts-5083-2025][@iso-wd-ts-5083-2026]
