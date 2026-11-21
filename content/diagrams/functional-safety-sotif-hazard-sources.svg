@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 517 200" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="ISO 26262와 ISO 21448이 다루는 해저드">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 517 200" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="ISO 26262와 ISO 21448이 다루는 hazard">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -13,7 +13,7 @@
   </g>
   <line x1="218.5" y1="20" x2="218.5" y2="112" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
 
-  <!-- 해저드의 원인 -->
+  <!-- hazard의 원인 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
     <rect x="20.75" y="46.75" width="179.5" height="62.5" rx="2" />
     <rect x="236.75" y="46.75" width="123.5" height="62.5" rx="2" />
@@ -30,12 +30,12 @@
     <text x="433.5" y="92">수 있는 오용</text>
   </g>
 
-  <!-- 해저드: 원인마다 화살표 하나 -->
+  <!-- hazard: 원인마다 화살표 하나 -->
   <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
     <path d="M110.5 110 V128 H249 V146" />
     <path d="M298.5 110 V146" />
     <path d="M433.5 110 V128 H348 V146" />
   </g>
   <rect x="219.75" y="150.75" width="158.5" height="26.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="299" y="168" text-anchor="middle" fill="var(--text, #727981)">해저드</text>
+  <text x="299" y="168" text-anchor="middle" fill="var(--text, #727981)">hazard</text>
 </svg>

@@ -89,7 +89,7 @@ TI의 2020년 백서에 따르면 그 무렵 흔한 차의 ECU는 대부분 단�
 
 AURIX TC3xx 제품군 가운데 TC375의 핵심 대상 응용은 다음과 같다.[@infineon-aurix-tc3xx-overview-2025]
 
-- 파워트레인: 엔진·변속기 제어와, 전동차의 인버터, [[battery-management-system|BMS]], 온보드 충전기 등
+- 파워트레인: 엔진·변속기 제어와, 전동차의 인버터, [[battery-management-system|BMS]], 탑재 충전기 등
 - 섀시·안전: 제동, 조향, 서스펜션, 에어백
 - [[adas|ADAS]]: 센서 데이터 융합, [[automotive-radar|차량 레이더]] 센서
 - 연결 [[gateway|게이트웨이]]: [[telematics-control-unit|텔레매틱스]], 게이트웨이·도메인 제어, 존 제어[@infineon-aurix-tc3xx-overview-2025]
