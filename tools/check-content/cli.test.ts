@@ -110,6 +110,7 @@ describe("check-content CLI", { concurrency: false }, () => {
     ])
     const expected: Record<string, string[]> = {
       frontmatter: [
+        "content/bad-dotted-standard-missing-edition.md:1",
         "content/bad-frontmatter.md:1",
         "content/bad-frontmatter.md:5",
         "content/bad-frontmatter.md:7",
