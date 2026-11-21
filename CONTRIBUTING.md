@@ -6,9 +6,9 @@
 
 - 모든 변경은 PR로 들어옵니다. main에 직접 push하지 않습니다.
 - 머지는 squash만 씁니다. main에는 PR 하나가 커밋 하나로 남습니다.
-- 강제 수단은 CI와 룰셋뿐입니다. 로컬 훅과 PR 제목·본문 검사는 두지 않습니다. CI는 [`ci.yml`](.github/workflows/ci.yml), 룰셋은 [`main.json`](.github/rulesets/main.json)입니다.
-- **PR 전 확인**: worktree에서 일하면 시작할 때 한 번, 만든 다음 바로 `EnterWorktree`로 들어가고, 먼저 `npm ci`를 돌립니다. 들어가기 전의 명령은 `cd` 없이 `git -C <worktree>`로 쓰고, 진입이 거부되면 시작 폴더로 돌아가 다시 들어갑니다. `cd`로 옮긴 세션은 진입이 거부되어 격리 없이 돌고, 메인 체크아웃의 `node_modules`를 쓰면 낡은 패치로 빌드가 실패하기 때문입니다. PR을 올리기 전에 `npm run check`를 통과시킵니다. CI와 같은 검사입니다. 표기 규칙은 [위키 규약](docs/wiki-conventions.md)에 있습니다.
-- 이슈, PR 본문, 리뷰 코멘트는 간결하게 씁니다.
+- 강제 수단은 CI와 룰셋뿐입니다. CI는 [`ci.yml`](.github/workflows/ci.yml), 룰셋은 [`main.json`](.github/rulesets/main.json)입니다.
+- **PR 전 확인**: worktree에서 일하면 먼저 `npm ci`를 돌립니다. 메인 체크아웃의 `node_modules`를 쓰면 낡은 패치로 빌드가 실패하기 때문입니다. PR을 올리기 전에 `npm run check`를 통과시킵니다. CI와 같은 검사입니다. 표기 규칙은 [위키 규약](docs/wiki-conventions.md)에 있습니다.
+- 사람이 읽는 글은 간결하게 씁니다.
 - 이 문서가 다루는 글에도 격리 경계가 적용됩니다. 적용 대상과 지킬 것은 [ADR 0001](docs/adr/0001-isolation-boundary.md)에 있습니다.
 - 조사 기록에 들일 수 있는 것은 [하네스 조사의 데이터 경계](docs/research/README.md#데이터-경계)가 정합니다.
 - 규칙마다 정본 문서를 하나 두고, 코드·스킬·프롬프트·다른 문서는 규칙을 다시 적지 않고 정본을 읽거나 가리킵니다.
@@ -38,34 +38,27 @@
 
 ## PR 본문
 
-머지하는 사람이 diff만으로 알 수 없는 것을 아래 차례로 씁니다. 흐름의 스킬이 본문에 더하는 항목도 이 기준을 따릅니다. [PR 템플릿](.github/PULL_REQUEST_TEMPLATE.md) 머리의 주석에 간결한 본문의 예시가 있습니다.
+PR-body 스킬(`mattpocock-skills:pr`)의 꼴로 씁니다. 저장소는 두 가지를 더합니다.
 
-- `Closes #N`: 이 PR이 닫는 이슈. 없으면 뺍니다
-- `결정 로그:`: 규칙 파일을 고친 PR이 두는 줄. 값은 [결정 로그](docs/decision-log.md)의 `D<n>`(여럿이면 쉼표로 가릅니다), `ADR <n>`, `없음` 가운데 하나이고, 리뷰의 Standards 축이 봅니다. 규칙 파일이 아니면 뺍니다
-- `## 소유자 확인 요청`: [리뷰](#리뷰) 절의 소유자 확인 요청 가운데 본문에 둘 항목. 항목마다 `<정한 것>. <까닭>. 권고: <이 PR에 이미 반영된 상태>` 꼴로 씁니다. 항목이 없으면 절을 두지 않습니다
-- `## Changes`: 무엇이 바뀌었는지. 검증 규칙이나 검증 에이전트의 결함을 고친 PR은 [위키 검증의 결함을 고칠 때](docs/wiki-verification.md#결함을-고칠-때)대로 그 결함이 닿았을 페이지를 다시 볼지도 적습니다
-- `## Verification`: 어떻게 확인했는지(실행한 명령과 결과)와, 두 가지로 읽히는 인수 기준을 어떻게 읽었는지
+- 맨 앞의 `Closes #N`: 이 PR이 닫는 이슈
+- Summary 앞의 `## Open Questions`: [리뷰](#리뷰) 절의 소유자 확인 요청 가운데 답이 없는 항목. `<정한 것>. <까닭>. 권고: <이 PR에 이미 반영된 상태>` 꼴이고, 없으면 절을 두지 않습니다
 
-규칙 파일은 `docs/` 아래 운영 문서, `.claude/`, `CONTRIBUTING.md`, `CLAUDE.md`, `.github/`, `tools/`, `ticket-runner.json`입니다. 다만 `docs/adr/`, `docs/wiki-terms.md`, 결정 로그, 조사 기록과 `docs/research/sources.md`, 데이터 목록(`docs/wiki-abbreviations.md`, `.claude/skills/wiki-news/outlets.md` 같은 것), 파이프라인이 소유한 파일(`docs/agents/pipeline-conventions.md`, `.claude/skills/ticket-runner/`)은 뺍니다.
-
-Changes·Verification의 수는 원 산출물(에이전트 반환, `git diff`, 검사 출력)에서 명령으로 센 값을 씁니다. 손으로 옮겨 적은 표나 메모의 수를 더하지 않습니다.
+두 가지로 읽히는 인수 기준은 어떻게 읽었는지 적고, 수는 원 산출물(에이전트 반환, `git diff`, 검사 출력)에서 명령으로 센 값을 씁니다.
 
 ## 리뷰
 
-1. PR을 올리기 전에 `/mattpocock-skills:code-review`로 두 축을 리뷰하고 반영합니다. 반영이 첫 push에 들어가, push와 CI, PR 본문 쓰기가 한 번에 끝납니다. 플러그인 없이 스킬만 깐 루틴 환경에서는 Skill 목록의 `code-review`(설명에 `along two axes: Standards … and Spec`가 있습니다)가 같은 스킬이고, 로컬에 이름이 같은 내장 리뷰는 다른 것입니다.
-   - Standards: 저장소 문서의 규칙을 지키는가
-   - Spec: 이슈가 요구한 것과 맞는가
+1. PR을 올리기 전에 `/mattpocock-skills:code-review`로 두 축(Standards, Spec)을 리뷰하고 반영합니다. 플러그인 없이 스킬만 깐 루틴 환경에서는 Skill 목록의 `code-review` 가운데 설명에 `along two axes`가 있는 것이 같은 스킬입니다.
 2. 이 리뷰에는 기준 커밋 `origin/main`과 스펙을 넘깁니다. 스펙은 PR이 닫을 이슈, 없으면 그 흐름의 스킬 문서입니다. 둘 다 없으면 스펙이 없다고 넘겨 Spec 축을 건너뜁니다. 넘기지 않으면 스킬이 묻고, 사람이 없는 흐름은 거기서 멈춥니다.
-3. 반영한 뒤 PR 전 확인을 다시 통과시킵니다. 위키 콘텐츠를 고친 PR은 [위키 검증의 검토](docs/wiki-verification.md#검토) 절이 정한 차례와 반영 뒤 단계를 따릅니다. 검토 절을 따르는 흐름의 PR은 두 축 리뷰를 그 절의 2회차에 함께 돌립니다.
+3. 반영한 뒤 PR 전 확인을 다시 통과시킵니다. 위키 콘텐츠를 고친 PR은 [위키 검증의 검토](docs/wiki-verification.md#검토) 절이 정한 차례와 반영 뒤 단계를 따릅니다.
 4. 머지는 사람이 합니다.
 
-리뷰 결과는 PR 코멘트로 남기지 않습니다. 머지 뒤에 읽는 곳이 없고, Spec의 결론은 이슈의 인수 기준 체크가 대신합니다. 인수 기준이 없는 이슈의 PR은 Spec의 결론을 Verification에 한 줄로 적습니다. 오래 남을 이유는 커밋 메시지나 문서에, 버린 대안은 [결정 로그](docs/decision-log.md)에 적습니다.
+**두 축 리뷰를 걸지 않는 곳**: 조사 기록 PR은 [하네스 조사의 머지까지](docs/research/README.md#머지까지) 절의 사실 확인 에이전트가 이 리뷰를 대신합니다. Dependabot PR은 리뷰 없이 CI만 돕니다.
 
-**소유자 확인 요청**: 에이전트가 스펙 밖에서 정한 것과 소유자에게 확인을 구하는 것은 PR을 열기 전에 세션에서 묻습니다. 소유자는 GitHub보다 세션에서 답하기 때문입니다. PR을 열 때 답이 없는 항목만 PR 본문의 `## 소유자 확인 요청` 절([PR 본문](#pr-본문))에 두고, 사람이 없는 흐름에서는 모든 항목을 둡니다. 남은 질문이 머지하는 자리에 보이게 하려는 것입니다. 답 없이 머지하면 권고대로 받아들인 것으로 봅니다. PR을 연 뒤 답을 받은 항목은 본문에서 빼고, 답이 권고와 달랐으면 본문의 다른 곳도 고칩니다.
+리뷰 결과는 PR 코멘트로 남기지 않습니다. Spec의 결론은 이슈의 인수 기준 체크가 대신하고, 인수 기준이 없는 이슈의 PR은 본문에 한 줄로 적습니다.
+
+**소유자 확인 요청**: 에이전트가 스펙 밖에서 정한 것과 소유자에게 확인을 구하는 것은 PR을 열기 전에 세션에서 묻습니다. PR을 열 때 답이 없는 항목만 PR 본문의 `## Open Questions` 절에 두고, 사람이 없는 흐름에서는 모든 항목을 둡니다. 답 없이 머지하면 권고대로 받아들인 것으로 봅니다. PR을 연 뒤 답을 받은 항목은 본문에서 빼고, 답이 권고와 달랐으면 본문의 다른 곳도 고칩니다.
 
 **소유자 결정**: 소유자의 답이 이 PR 밖에서도 따라야 할 결정이면 머지 전에 그 결정의 자리로 옮깁니다. 규칙이면 운영 문서, [결정 로그](docs/decision-log.md)나 ADR, 용어면 [용어 표기 결정](docs/wiki-terms.md) 목록, 인수 기준을 바꾸면 이슈의 `소유자 결정:` 코멘트입니다.
-
-리뷰 에이전트, 검토자, 외부 독자에게는 소스 노트 접근을 주지 않습니다([ADR 0001](docs/adr/0001-isolation-boundary.md)).
 
 ## 스킬과 에이전트
 
@@ -96,6 +89,9 @@ Changes·Verification의 수는 원 산출물(에이전트 반환, `git diff`, �
 | `lint`     | 린트가 넘긴, 의미를 바꾸는 항목. `lint: <주제나 구역> <YYYY-MM-DD>`                                             |
 | `edition`  | 판 확인의 모음 이슈(`edition: 판 확인 모음`)와, 거기서 나눈 출판물 하나의 판 바뀜. `edition: <출판물>`          |
 | `research` | 하네스 조사의 질문 묶음 하나. `research: <질문 묶음>`. 진행은 [하네스 조사](docs/research/README.md)를 따릅니다 |
+| `map`      | 목적지까지 갈 결정과 작업을 자식 티켓으로 나눠 따라가는 지도                                                    |
+| `decision` | 지도의 자식 가운데 선택지를 정하는 티켓                                                                         |
+| `task`     | 지도의 자식 가운데 작업을 하는 티켓                                                                             |
 
 그 밖의 이슈는 PR 타입을 접두사로 씁니다(`feat`, `docs`, `chore` 등).
 

@@ -10,6 +10,10 @@
 
 커밋, PR, 리뷰, 이슈, 스킬과 에이전트는 `CONTRIBUTING.md`를 따른다.
 
+## Worktree
+
+worktree에서 일하면 시작할 때 한 번, 만든 다음 바로 `EnterWorktree`로 들어간다. 들어가기 전의 명령은 `cd` 없이 `git -C <worktree>`로 쓰고, 진입이 거부되면 시작 폴더로 돌아가 다시 들어간다. `cd`로 옮긴 세션은 진입이 거부되어 격리 없이 돌기 때문이다. 들어간 뒤 `npm ci`는 `CONTRIBUTING.md` 원칙 절의 PR 전 확인을 따른다.
+
 ## Agent skills
 
 ### 이슈 트래커

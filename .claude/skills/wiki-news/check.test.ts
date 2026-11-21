@@ -323,7 +323,7 @@ describe("PR 본문", () => {
     )
     assert.deepStrictEqual(added, ["CARIAD", "36Kr", "Valeo"])
     const body = [
-      "## Changes",
+      "## Summary",
       "- 목록 추가 후보",
       "  - CARIAD: 3개월 9건, 뉴스룸 확인, 매체 목록",
       "  - 36Kr: 검색 질의 `https://news.google.com/rss/search?q=36kr+after:2026-09-01`, 2026-10-14 확인, 매체 목록",
