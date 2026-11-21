@@ -18,7 +18,7 @@ Platform Health Management는 Supervised Entity를 감시한다. Supervised Enti
 
 ## 복구
 
-Platform Health Management는 Supervised Entity의 failure를 디바운싱한 뒤 복구 동작이 필요하면 State Management에 알린다. State Management에 연결한 Global Supervision의 상태가 `kEXPIRED`로 바뀌면, Platform Health Management는 `ara::phm::RecoveryAction::RecoveryHandler` 메서드로 State Management에 알린다. 이때 `executionError` 파라미터에 해당 Function Group과, 지금 쓰는 프로세스 시작 설정(StartupConfig)에 정의한 오류 값(ApApplicationError)을 담고, `supervision` 파라미터에 그 전이를 일으킨 감시의 종류를 담아 넘긴다. State Management는 대개 문제가 된 Function Group을 다른 상태로 바꾸는 식으로 복구하고, failure를 처리할 수 없으면 `RecoveryHandler`의 반환값인 오류 코드 `kSMCanNotHandleRecovery`로 Platform Health Management에 watchdog 반응을 요청할 수 있다.[@autosar-ap-sws-platformhealthmanagement-2025]
+Platform Health Management는 Supervised Entity의 failure를 debouncing한 뒤 복구 동작이 필요하면 State Management에 알린다. State Management에 연결한 Global Supervision의 상태가 `kEXPIRED`로 바뀌면, Platform Health Management는 `ara::phm::RecoveryAction::RecoveryHandler` 메서드로 State Management에 알린다. 이때 `executionError` 파라미터에 해당 Function Group과, 지금 쓰는 프로세스 시작 설정(StartupConfig)에 정의한 오류 값(ApApplicationError)을 담고, `supervision` 파라미터에 그 전이를 일으킨 감시의 종류를 담아 넘긴다. State Management는 대개 문제가 된 Function Group을 다른 상태로 바꾸는 식으로 복구하고, failure를 처리할 수 없으면 `RecoveryHandler`의 반환값인 오류 코드 `kSMCanNotHandleRecovery`로 Platform Health Management에 watchdog 반응을 요청할 수 있다.[@autosar-ap-sws-platformhealthmanagement-2025]
 
 Platform Health Management는 안전 관련 failure 뒤 반응이 반드시 일어나도록 State Management가 알림을 받았는지 확인한다. `RecoveryHandler`의 반환을 State Management의 응답으로 보고, failure를 검출한 때부터 이 응답을 받기까지를 설정한 타임아웃 `recoveryNotificationTimeout`으로 지켜보며, 제때 응답이 없으면 WatchdogInterface에 보내던 alive 알림을 멈추고 watchdog 반응을 일으킨다.[@autosar-ap-sws-platformhealthmanagement-2025]
 

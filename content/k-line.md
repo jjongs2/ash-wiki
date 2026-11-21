@@ -6,7 +6,7 @@ tags:
 verified: 2026-11-07
 ---
 
-**K-Line**은 차량 진단 시스템이 [[electronic-control-unit|ECU]]와 외부 진단 장비 사이에 쓰는 [[serial-communication|UART]] 기반 직렬 통신 링크다. 진단 장비 쪽 기능이 클라이언트, ECU 쪽 기능이 서버이고, 이 직렬 링크는 K-Line 선과 선택적인 L-Line 선으로 이뤄진다. 확장 진단과 배출 관련 [[on-board-diagnostics|OBD]] 같은 진단 통신에 쓰이며, 통신은 초기화로 연다.[@iso-14230-2-obp-2016]
+**K-Line**은 차량 진단 시스템이 [[electronic-control-unit|ECU]]와 외부 시험 장비 사이에 쓰는 [[serial-communication|UART]] 기반 직렬 통신 링크다. 테스터 쪽 기능이 클라이언트, ECU 쪽 기능이 서버이고, 이 직렬 링크는 K-Line 선과 선택적인 L-Line 선으로 이뤄진다. 확장 진단과 배출 관련 [[on-board-diagnostics|OBD]] 같은 진단 통신에 쓰이며, 통신은 초기화로 연다.[@iso-14230-2-obp-2016]
 
 ![[diagrams/k-line-client-server.svg]]
 

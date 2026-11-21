@@ -38,6 +38,7 @@
 - callout: 콜아웃 (#359). AUTOSAR의 callout일 때. 마크다운의 콜아웃 블록은 그대로
 - CAN CC 풀이 CAN classic: CAN CC(CC: classic), CAN CC(Classical CAN), CAN classic(CC) (#564)
 - cascading failure: 연쇄 고장 (#291)
+- Category 5: 카테고리 5 (#763). 케이블 등급일 때
 - CDD 풀이 Complex Driver: Complex Device Driver (#440). 근거는 SWS BSWGeneral R25-11 [SWS_BSW_91001]과 FO TR Glossary R25-11 4.72. SW-C 종류 이름 "Complex Device Driver"(`autosar-software-component`)는 예외
 - channel: 채널 (#257). MCAL I/O 드라이버(ADC·DIO·ICU·OCU·PWM)의 channel일 때. 그 밖의 채널은 "채널". 예: ComM·NM의 채널, FlexRay 채널
 - chirp, AoA, Doppler-FFT, IF, range-FFT: 처프, 도래각 (#682). 레이더 신호 처리 용어일 때
@@ -57,6 +58,8 @@
 - DCC 풀이: 통일하지 않음 (#674). 인용한 출처의 풀이대로. TI SPRY178은 dual clock compare, SFFS277은 Dual Clock Comparator
 - DDT 풀이 Dynamic Driving Task: - (#682)
 - dead reckoning, map matching: 추측 항법 (#682)
+- debouncing, event memory, counter based, time based: 디바운싱, 이벤트 메모리 (#763). AUTOSAR 진단과 Platform Health Management의 용어일 때
+- DF 플래그: DF 비트 (#763). IPv4 헤더의 DF일 때
 - Diffie-Hellman: Diffie–Hellman (#288)
 - DMA 풀이 Direct Memory Access: direct memory access (#674)
 - dominant: 도미넌트 (#165). 조사는 원어의 발음대로. 예: "dominant가"
@@ -66,26 +69,32 @@
 - EDR 풀이 Event Data Recorder: - (#682)
 - EEPROM emulation: EEPROM 에뮬레이션 (#674)
 - endurance, data retention: 내구성, 데이터 보존 (#674). 플래시 메모리의 endurance와 data retention일 때
-- EU 규정 2019/2144, EU 위임 규정 2021/1341, EU 시행 규정 2022/1426: 규정 (EU) 2019/2144, EU 2019/2144 (#682, #742). EU 규정을 부르는 꼴 전체다. 2024/2847, 2024/1257, 2018/858 같은 다른 EU 규정도 종류(규정, 위임 규정, 시행 규정)를 앞에 둔 이 꼴로 부른다. EU 지침과 결정도 같은 꼴로 부른다. 예: EU 지침 2010/40, EU 시행 결정 2020/1426
+- EU 규정 2019/2144, EU 위임 규정 2021/1341, EU 시행 규정 2022/1426: 규정 (EU) 2019/2144, EU 2019/2144, 규정 (EC) No 715/2007, Art. 6 (#682, #742, #763). EU 규정을 부르는 꼴 전체다. 2024/2847, 2024/1257, 2018/858 같은 다른 EU 규정도 종류(규정, 위임 규정, 시행 규정)를 앞에 둔 이 꼴로 부른다. EU 지침과 결정도 같은 꼴로 부른다. 예: EU 지침 2010/40, EU 시행 결정 2020/1426. EC가 채택한 규정도 같은 꼴로 부르되 EC를 남긴다. 예: EC 규정 715/2007. 조 번호는 "제N조"로 쓴다. 예: EC 규정 715/2007 제6조
 - event-triggered: 이벤트 트리거 (#564)
 - failure: 실패, 고장, 장애 (#291). 합성어 포함. 예: dependent failure, failure mode, target failure measure. 동사("고장 나다", "실패하다"), 테스트의 pass/fail, 일반 낱말 "실패"는 그대로. ISTQB의 error·defect와 같은 문장, 곧 "실수"나 "결함"과 같은 문장에서는 "장애", 페이지에서 처음 쓸 때 "장애(failure)"
 - false positive: 거짓 양성 (#291). ISTQB 용어 이름은 false-positive result
 - fault seeding: 결함 심기 (#385)
+- FIBEX 풀이 Field Bus Data Exchange Format: Field Bus Exchange Format (#763)
 - functional cluster, Machine, Software Package, Vehicle Package: 기능 클러스터, 머신, 소프트웨어 패키지, 차량 패키지 (#359). AUTOSAR Adaptive Platform의 이름일 때. 물리 머신, 가상 머신 같은 일반 낱말은 그대로
-- GMII 풀이: 통일하지 않음 (#196). 페이지마다 그대로. `mii`는 Gigabit MII, `1000base-t1`은 Gigabit Media Independent Interface
+- generalReject, requestCorrectlyReceivedResponsePending 같은 NRC 이름: Response pending (#763). UDS의 NRC 이름일 때. AUTOSAR Dcm SWS가 camelCase로 적은 이름을 쓰고, 없으면 ISO 14229-1의 NRC 정의를 따른다
+- GMII 풀이 Gigabit MII: Gigabit Media Independent Interface (#196, #763)
 - hardware architectural metrics: 하드웨어 아키텍처 메트릭 (#396). 하위 용어(single-point fault, latent fault 등)도 원어로
 - HD 지도, SD 지도: HD map, SD map (#682)
 - Highway: 고속도로 (#682). UN R171 2.27의 Highway일 때. 첫 등장에 정의(보행자·자전거 금지, 반대 방향의 물리적 분리)를 풀어 쓴다
+- I-PDU 풀이 Interaction Layer Protocol Data Unit: Interaction Layer PDU (#763)
+- idle condition, protocol exception event: idle 조건, 프로토콜 예외 이벤트 (#763). CAN 프로토콜의 용어일 때
 - ITS 풀이: 통일하지 않음 (#742). 인용한 출처의 풀이대로. ETSI 명세를 인용하면 Intelligent Transport Systems, 미국 자료(FCC, IEEE 1609)를 인용하면 그 자료의 풀이. 예: FCC 24-123은 Intelligent Transportation System
 - ITS-S 풀이 ITS Station: ITS-Station, Intelligent Transport Systems Station (#742). 근거는 ETSI EN 302 637-2·EN 302 637-3·TS 102 940·TS 102 687의 3.3
+- J1939Tp 풀이 SAE J1939 Transport Layer: J1939 Transport Layer (#763). 근거는 AUTOSAR CP R25-11 BSW General의 모듈 표
 - Kanban: 칸반 (#393)
 - KDF 풀이 Key Derivation Function: Key-Derivation Function (#498)
 - KEM 풀이 Key-Encapsulation Mechanism: Key Encapsulation Mechanism (#498)
 - key word: - (#667). ISO 9141의 key word일 때
+- L-PDU 풀이 Data Link Layer Protocol Data Unit: Data Link Layer PDU (#763)
 - LBIST 풀이: 통일하지 않음 (#674). 인용한 출처의 풀이대로. TI는 logic built-in self-test, NXP FS26은 logical built-in self-test
 - LdCom 풀이 Large Data COM: - (#440). 근거는 SWS BSWGeneral R24-11 부록 A
 - MAC 풀이 Medium Access Control: Media Access Control (#165). 출처마다의 풀이를 비교하는 문장은 예외
-- MCU: 통일하지 않음 (#674). AUTOSAR 명세의 microcontroller를 옮긴 AUTOSAR·ECU 쪽 페이지는 "마이크로컨트롤러", 하드웨어 페이지는 MCU
+- MCU: 통일하지 않음 (#674, #763). AUTOSAR 명세의 microcontroller를 옮긴 AUTOSAR·ECU 쪽 페이지는 "마이크로컨트롤러", 하드웨어 페이지와 네트워크 페이지는 MCU
 - minimal risk manoeuvre, minimum risk manoeuvre: 통일하지 않음 (#682). 출처 철자대로. ISO 34503·EU 시행 규정 2022/1426은 minimal risk manoeuvre, UN R157은 minimum risk manoeuvre. 약어는 MRM. "최소 위험 기동"은 쓰지 않는다
 - MSD 풀이 Minimum Set of Data: Minimum Set of emergency related Data (#742). 근거는 UN R144와 3GPP TS 26.267
 - NACS 풀이 North American Charging System: North American Charging Standard (#678)
@@ -97,32 +106,38 @@
 - ODD 풀이 Operational Design Domain: - (#682)
 - offset correction, rate correction: - (#667). FlexRay 클록 동기화일 때
 - OOPSLA 풀이 Object-Oriented Programming, Systems, Languages, and Applications: Object-Oriented Programming, Systems, Languages & Applications (#291)
+- operation cycle: 운행 사이클, 운전 사이클 (#763). driving cycle은 "주행 주기"
 - OSEK OS: OSEK/VDX OS (#257). OS를 가리킬 때. 명세를 가리키는 "OSEK/VDX OS"는 그대로. 예: "OSEK/VDX OS 2.2.3 명세"
 - PKI: 공개 키 기반 구조 (#498). 제목과 본문은 약어, 한국어 이름은 `public-key-infrastructure`의 alias로만
 - PLC 풀이: 통일하지 않음 (#679). 전력선 통신일 때 인용한 출처의 풀이대로. 예: SAE J2847/2를 인용한 control-pilot은 powerline communications, SAE J2931/4를 인용한 homeplug-green-phy는 Power Line Communications, CharIN 구현 가이드를 인용한 combined-charging-system은 power line communication
 - PLL 풀이: 통일하지 않음 (#675). 인용한 출처의 풀이대로. 예: TI SPRY178은 phase lock loop, AUTOSAR 명세는 Phase-Locked Loop
 - Plug and Charge: Plug and charge, Plug & Charge (#678). 제목과 본문. Plug & Charge는 CharIN 로고 이름과 alias로만
 - PnC 풀이 Plug and Charge: park and charge (#678). ISO 15118-20:2022가 PnC를 park and charge라 부른다고 견주는 문장은 예외
+- production error: 양산 관련 오류 (#763). AUTOSAR 진단의 production error일 때
 - prototyping: 프로토타이핑 (#291). prototype도 같다. AUTOSAR의 prototype은 이 결정에 들지 않는다.
 - PSAP 풀이 Public Safety Answering Point: Public/Private Safety Answering Point, Primary Safety Answering Point (#742). 근거는 3GPP TS 26.267·23.167과 EU 규정 2015/758 3조
 - PWM 풀이: 통일하지 않음 (#441). 인용한 출처의 풀이대로. AUTOSAR 명세를 인용하면 Pulse Width Modulation, ISO 11898-1을 인용하면 Pulse-Width Modulation
 - read-while-write: - (#674). 플래시의 RWW일 때
 - recessive: 리세시브 (#165). 조사는 원어의 발음대로. 예: "recessive이고"
 - Reed-Solomon: Reed–Solomon (#498)
-- resource: 리소스 (#165). OSEK 객체일 때. 일반적인 뜻이면 "자원"
+- resource: 리소스 (#165, #763). OSEK 객체와, 프로토콜이 정한 resource(CoAP resource, LwM2M Resource, oneM2M resource, SOVD resource)일 때. 일반적인 뜻이면 "자원"
 - root of trust: 신뢰의 뿌리 (#288)
 - RSA 풀이 Rivest-Shamir-Adleman: Rivest–Shamir–Adleman (#288)
+- S3Server 타이머: S3 타이머 (#763). UDS의 S3Server일 때
 - safety case: - (#396)
 - SBC 풀이 System Basis Chip: System-Basis-Chip (#674)
 - scratch-pad RAM: Scratchpad SRAM (#674). AURIX의 PSPR·DSPR일 때
 - SerDes 풀이 Serializer/Deserializer: Serializer/De-Serializer (#682)
 - SoC 풀이 System on Chip: system-on-chip (#674)
+- stop 비트: 정지 비트 (#763). UART 프레임의 stop bit일 때
+- SubFunction: 서브펑션, 하위 기능 (#763). UDS 요청의 SubFunction일 때
 - syntax testing: 구문 테스트, 문법 테스트 (#385). "구문 테스트"는 statement testing
 - systematic fault: 체계적 fault (#578). systematic failure와 systematic error도 같다. 일반 낱말 "체계적으로"는 그대로
 - TDC 풀이 Transceiver Delay Compensation: Transmitter Delay Compensation (#311)
 - time-triggered: 시간 트리거 (#564)
 - Timing Analysis and Design 보고서: AUTOSAR 타이밍 분석 보고서 (#257). 본문에서 AUTOSAR 문서를 부르는 이름
 - Timing Extensions 명세: 타이밍 확장 명세 (#257). 본문에서 AUTOSAR 문서를 부르는 이름. "명세" 없이 쓴 "Timing Extensions"도 그대로
+- TLV 풀이: 통일하지 않음 (#763). 인용한 출처의 풀이대로. SOME/IP PRS를 인용하면 Tag, IEEE와 벤더 문서를 인용하면 Type으로 풀고, 하이픈과 쉼표 같은 철자도 출처대로
 - Type 1: Type-1 (#659). 하이퍼바이저의 갈래일 때. Type 2도 같다
 - USART 풀이 Universal Synchronous/Asynchronous Receiver/Transmitter: Universal Synchronous and Asynchronous Receiver Transmitter (#196)
 - use case: 유스케이스 (#394). 합성어 포함. 예: use case 테스트
@@ -138,6 +153,7 @@
 - 공개 키: 공개키 (#288)
 - 근적외선, 적외선 LED: IR LED (#682)
 - 기법: technique (#431). Automotive Threat Matrix의 technique일 때
+- 기본 세션, 프로그래밍 세션, 확장 진단 세션: default session, programming session, extended session (#763). UDS 진단 세션일 때
 - 길쌈 부호: convolutional 부호, 컨볼루션 부호 (#498). 페이지에서 처음 쓸 때 원어를 병기
 - 난수 생성기: random bit generator (#498). RBG는 `random-bit-generator`의 alias로만. DRBG·NRBG 같은 약어의 풀이는 그대로
 - 단계적 배포: phased rollout (#432)
@@ -145,10 +161,14 @@
 - 대칭 키: 대칭키 (#288)
 - 리스크: 위험 (#441). risk를 옮길 때. 합성어 포함. 예: 리스크 평가, 리스크 주도, 리스크 등급. hazard("위험원", "해저드")와 일반 낱말("위험하다", "충돌 위험", "단편화 위험")은 그대로
 - 리프 노드: 잎 노드 (#250)
+- 메서드, 필드: Method, Field (#763). AUTOSAR 서비스 인터페이스의 method와 field일 때
 - 메타모픽 테스트: 변성 테스트 (#385). metamorphic testing일 때. metamorphic relation은 "메타모픽 관계"
 - 무작위 테스트: 랜덤 테스트 (#385)
+- 발신: 출발 (#763). IP 패킷의 source 노드·호스트일 때. 이더넷 프레임의 출발지 주소는 그대로
+- 버스트 오류: 오류 버스트 (#763). burst error일 때. IEC 60050-721의 용어 이름 error burst는 원어로 병기해도 된다
 - 베이스라인: 기준선 (#579). 형상 관리와 계획의 baseline일 때
 - 변이 테스트: 뮤테이션 테스트 (#385). mutation testing일 때. mutant는 "변이체", equivalent mutant는 "동등 변이체". "뮤테이션 테스트"는 alias로만
+- 부호어: 코드워드 (#763). 오류 정정 부호의 codeword일 때. 자동 협상의 base page를 옮긴 "기본 링크 코드워드"는 그대로
 - 분류 트리 기법: 분류 트리 방법 (#385)
 - 비대칭 키: 비대칭키 (#288)
 - 비밀 키: 비밀키 (#288)
@@ -165,6 +185,7 @@
 - 실수: 오류 (#291). ISTQB의 error(사람의 실수)일 때. 기법 이름 "오류 추정"과 일반적인 error는 "오류"
 - 안전 메커니즘: 안전 기제 (#223)
 - 암호 primitive: 암호 프리미티브 (#169)
+- 약어 풀이의 대소문자와 문장부호: 통일하지 않음 (#763). 인용한 출처의 철자대로. 이 목록에 풀이 결정이 있는 약어는 그 결정대로
 - 에지: 엣지 (#441). 예: DoIP 에지 노드, 에지 브리지
 - 엔드 스테이션: 종단국 (#196)
 - 오브젝트 코드: 목적 코드 (#401)
@@ -172,6 +193,7 @@
 - 운용 프로파일: 운영 프로파일 (#385)
 - 운전 자동화 레벨: 자동화 레벨 (#653, #682). SAE J3016, ISO/SAE PAS 22736, ISO 21448의 레벨일 때. 페이지에서 처음은 "운전 자동화 레벨 2", 그 뒤는 "레벨 2"
 - 위협 시나리오: threat scenario (#252)
+- 응용: 애플리케이션 (#763). 개념 application일 때. 꼴은 "응용", "응용 프로그램", "응용 소프트웨어". 고유 이름과 코드 표기는 그대로
 - 응용 프로세서: application processor (#674)
 - 인수 기준: 인수 조건 (#385)
 - 입구 노드: 진입 노드 (#579). 제어 흐름 그래프의 entry node일 때
@@ -190,11 +212,14 @@
 - 취약점 처리: vulnerability handling (#431)
 - 카나리 릴리스: canary release, 카나리 배포 (#499)
 - 코드 플래시: 프로그램 플래시 (#674). 프로그램을 두는 플래시일 때. 제품의 구성 요소 이름(PFlash, P-Flash)은 그대로
+- 클록: 클럭 (#763). 합성어 포함. 예: 클록 신호, 클록 도메인
 - 타원 곡선 암호: ECC (#289). 타원 곡선 암호를 가리킬 때. ECDSA·ECDH 같은 알고리즘 이름은 그대로. 예: SP 800-56A의 ECC CDH는 "타원 곡선 CDH"
 - 태스크 그룹: 태스크 묶음 (#349). OSEK OS 명세의 group of tasks일 때
+- 테스터, 진단 테스터, 시험 장비: 진단 장비 (#763). 각각 tester, diagnostic tester, (external) test equipment일 때. 인용한 출처가 diagnostic equipment처럼 장비로 쓴 자리는 "진단 장비"
 - 테스트 기준: test basis (#291)
 - 테스트 케이스: 시험 사례, 시험 케이스 (#291)
 - 트랜시버 지연 보상: 송신 지연 보상 (#311). 약어와 함께 쓰면 `트랜시버 지연 보상(TDC, Transceiver Delay Compensation)`
+- 트레이닝: 학습 (#763). PHY의 training일 때. 스위치의 address learning은 "학습"
 - 특별특성: special characteristics (#394). 처음 쓸 때 "특별특성(special characteristics)". ASPICE 정보 항목 이름 17-57(Special characteristics)은 그대로
 - 특정개조 등: 特定改造等 (#432). 처음 쓸 때 원어를 병기
 - 프레임 간 공간: 인터프레임 공간 (#68). 원어는 병기하지 않는다.

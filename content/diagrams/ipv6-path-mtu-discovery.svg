@@ -8,7 +8,7 @@
 
   <!-- 경로: 노드와 링크 -->
   <rect x="60" y="32" width="100" height="32" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
-  <text x="110" y="53" text-anchor="middle" fill="var(--text, #727981)">출발 노드</text>
+  <text x="110" y="53" text-anchor="middle" fill="var(--text, #727981)">발신 노드</text>
   <rect x="250" y="32" width="100" height="32" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
   <text x="300" y="53" text-anchor="middle" fill="var(--text, #727981)">경로의 노드</text>
   <rect x="450" y="32" width="100" height="32" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 0 640 220" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="기본 세션과 기본이 아닌 세션 사이의 흐름">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="24.5 0.5 640 220" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="기본 세션과 기본이 아닌 세션 사이의 흐름">
   <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -30,5 +30,5 @@
 
   <!-- TesterPresent: 세션 유지 -->
   <path d="M470 160 V186 H550 V162" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="510" y="206" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Concurrent TesterPresent: S3 타이머 다시 시작</text>
+  <text x="510" y="206" text-anchor="middle" font-size="12" fill="var(--text, #727981)">Concurrent TesterPresent: S3Server 타이머 다시 시작</text>
 </svg>

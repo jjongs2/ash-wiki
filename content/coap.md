@@ -7,11 +7,11 @@ aliases:
 verified: 2026-10-22
 ---
 
-**CoAP**(Constrained Application Protocol)는 RFC 7252가 정하는 특수 목적의 웹 전송 프로토콜(web transfer protocol)로, 제약 노드와, 저전력이고 손실이 많은 네트워크 같은 제약 네트워크에서 쓴다. 제약 노드는 흔히 ROM과 RAM이 작은 8비트 [[microcontroller|마이크로컨트롤러]]를 갖춘다.[@ietf-rfc-7252-2014]
+**CoAP**(Constrained Application Protocol)는 RFC 7252가 정하는 특수 목적의 웹 전송 프로토콜(web transfer protocol)로, 제약 노드와, 저전력이고 손실이 많은 네트워크 같은 제약 네트워크에서 쓴다. 제약 노드는 흔히 ROM과 RAM이 작은 8비트 [[microcontroller|MCU]]를 갖춘다.[@ietf-rfc-7252-2014]
 
 ## 요청과 응답
 
-CoAP의 상호작용 모델은 HTTP의 클라이언트/서버 모델과 닮았다. 클라이언트는 서버에 있는, URI로 가리키는 자원에 Method Code로 동작을 요청하고, 서버는 Response Code를 담은 응답을 보낸다. HTTP와 달리 CoAP는 이 교환을 [[udp|UDP]] 같은 데이터그램 전송 위에서 비동기로 다룬다. CoAP는 HTTP로 쉽게 대응되는 기본 메서드 GET, POST, PUT, DELETE를 지원한다.[@ietf-rfc-7252-2014]
+CoAP의 상호작용 모델은 HTTP의 클라이언트/서버 모델과 닮았다. 클라이언트는 서버에 있는, URI로 가리키는 리소스에 Method Code로 동작을 요청하고, 서버는 Response Code를 담은 응답을 보낸다. HTTP와 달리 CoAP는 이 교환을 [[udp|UDP]] 같은 데이터그램 전송 위에서 비동기로 다룬다. CoAP는 HTTP로 쉽게 대응되는 기본 메서드 GET, POST, PUT, DELETE를 지원한다.[@ietf-rfc-7252-2014]
 
 ## 메시지
 
@@ -28,10 +28,10 @@ CoAP 메시지는 4바이트 고정 길이 이진 헤더로 시작하고, 그 �
 
 ## 보안과 포트
 
-CoAP는 보호 수단으로 [[transport-layer-security#DTLS|DTLS]] 바인딩을 둔다. 자원 발견(resource discovery)에 쓰는 자원을 내는 서버는 CoAP의 기본 [[port-number|포트]] 5683을 지원해야 한다. DTLS로 보호한 CoAP의 기본 포트 5684는 서버가 지원해도 된다.[@ietf-rfc-7252-2014]
+CoAP는 보호 수단으로 [[transport-layer-security#DTLS|DTLS]] 바인딩을 둔다. 리소스 발견(resource discovery)에 쓰는 리소스를 내는 서버는 CoAP의 기본 [[port-number|포트]] 5683을 지원해야 한다. DTLS로 보호한 CoAP의 기본 포트 5684는 서버가 지원해도 된다.[@ietf-rfc-7252-2014]
 
 ## 확장
 
-CoAP 클라이언트가 자원을 관찰(observe)하게 하는 확장은 RFC 7641이 정한다. 클라이언트는 자원의 표현(representation)을 받아 오고, 서버는 일정 기간 클라이언트가 받은 그 표현을 최신으로 유지해 준다.[@ietf-rfc-7641-2015]
+CoAP 클라이언트가 리소스를 관찰(observe)하게 하는 확장은 RFC 7641이 정한다. 클라이언트는 리소스의 표현(representation)을 받아 오고, 서버는 일정 기간 클라이언트가 받은 그 표현을 최신으로 유지해 준다.[@ietf-rfc-7641-2015]
 
 RFC 8323은 CoAP를 [[tcp|TCP]], [[transport-layer-security|TLS]], WebSocket 위에서 쓰는 데 필요한 변경을 정하고, 이 전송에서 쓰도록 RFC 7641을 갱신한다.[@ietf-rfc-8323-2018]

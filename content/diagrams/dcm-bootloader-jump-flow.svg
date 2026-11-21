@@ -30,7 +30,7 @@
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="120" y="81">DiagnosticSessionControl</text>
-    <text x="120" y="98" font-size="12">programming session</text>
+    <text x="120" y="98" font-size="12">프로그래밍 세션</text>
     <text x="120" y="151">BswM에 모드 전환으로 알림</text>
     <text x="120" y="168" font-size="12">부트로더로 넘어갈 준비</text>
     <text x="120" y="221">Dcm_SetProgConditions</text>

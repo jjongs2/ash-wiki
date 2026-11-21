@@ -16,7 +16,7 @@ verified: 2026-10-02
 
 이 표준은 **성능 저하**(degradation)를 아이템이나 요소의 기능, 성능 또는 둘 다가 줄어든 상태나 그 상태로 옮겨 가는 것으로 정의한다. 또 **warning and degradation strategy**를, 기능이 줄 수 있음을 운전자에게 어떻게 알리고 줄어든 기능을 어떻게 제공해 안전 상태에 이를지 정한 명세로 정의한다. 이 strategy는 운전자에게 주는 경고 신호, 안전 상태, 안전 상태로 옮기는 조건과 돌아오는 조건, 해당하면 emergency operation을 담는다.[@iso-26262-1-obp-2018]
 
-[[iso-21448|ISO 21448]]:2022는 **MRC**(Minimal Risk Condition)를 주어진 주행(trip)을 마칠 수 없을 때 리스크를 줄이려는 차량 상태로 정의한다. 같은 정의의 주석은 ISO 26262 시리즈에서 [[levels-of-driving-automation#ADS|MRC]]에 대응하는 [[functional-safety|기능 안전]]의 개념으로 안전 상태를 든다.[@iso-21448-obp-2022]
+[[iso-21448|ISO 21448]]:2022는 **MRC**(minimal risk condition)를 주어진 주행(trip)을 마칠 수 없을 때 리스크를 줄이려는 차량 상태로 정의한다. 같은 정의의 주석은 ISO 26262 시리즈에서 [[levels-of-driving-automation#ADS|MRC]]에 대응하는 [[functional-safety|기능 안전]]의 개념으로 안전 상태를 든다.[@iso-21448-obp-2022]
 
 IEC 60050은 **fail-safe**를 failure가 나도 안전을 지킬 수 있는 시스템의 성질로 정의하고[@iec-60050-192-10-06-2015], **fail-soft**를 fault가 났거나 failure가 임박했을 때 영향받은 기능을 우선순위에 따라 차츰 끝낼 수 있는 시스템의 성질로 정의한다.[@iec-60050-192-10-07-2015]
 

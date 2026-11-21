@@ -5,7 +5,7 @@ tags:
 verified: 2026-09-27
 ---
 
-**CAN 컨트롤러**는 [[can|CAN]]의 데이터 링크 계층([[iso-11898-1|ISO 11898-1]])을 하드웨어로 구현하는 장치다.[@ti-tcan4550-2020] [[microcontroller|MCU]] 안에 주변장치로 들어가기도 하고[@st-rm0008-2021], SPI(Serial Peripheral Interface)로 호스트 MCU에 붙는 독립형 칩으로 나오기도 한다.[@microchip-mcp2515-2019]
+**CAN 컨트롤러**는 [[can|CAN]]의 데이터 링크 계층([[iso-11898-1|ISO 11898-1]])을 하드웨어로 구현하는 장치다.[@ti-tcan4550-2020] [[microcontroller|MCU]] 안에 주변장치로 들어가기도 하고[@st-rm0008-2021], SPI(Serial Peripheral Interface)로 호스트 MCU에 붙는 독립형 칩으로 나오기도 한다.[@microchip-mcp2515-2019] NXP에 따르면 CAN 컨트롤러는 MCU에 통합되는 경우가 많다.[@nxp-can-101-2021]
 
 컨트롤러는 버스에 직접 닿지 않고, [[can-transceiver|CAN 트랜시버]]를 거쳐 CAN_H와 CAN_L 버스에 연결된다.[@st-rm0008-2021]
 
@@ -15,12 +15,12 @@ ISO 11898-1:2024와 Bosch CAN FD 1.0은 노드가 integrating, idle, receiver, t
 
 ISO 11898-1:2024는 **idle condition**을 샘플링한 [[dominant-and-recessive|recessive]] 비트가 11개 이어지는 것을 찾는 것으로 정의한다.[@iso-11898-1-obp-2024]
 
-| 상태        | 뜻                                                                                                                                                                                                                                                                                                   |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| integrating | 프로토콜 동작을 시작한 뒤나 [[can-fault-confinement\|bus-off]]에서 복구하는 동안 idle condition을 기다리는 상태로, Bosch CAN FD 1.0에서는 그 뒤 idle로 넘어간다. ISO 11898-1:2024는 [[can-xl#오류 신호\|프로토콜 예외 이벤트]] 뒤에도 이 상태를 둔다.[@iso-11898-1-obp-2024][@bosch-can-fd-1-0-2012] |
-| idle        | Bosch CAN FD 1.0은 SOF(Start of Frame)를 받을 준비가 되어 있고, 그 뒤 receiver나 transmitter로 넘어가는 상태로 정한다.[@bosch-can-fd-1-0-2012]                                                                                                                                                       |
-| receiver    | 버스가 idle이 아닌 동안 송신도 integrating도 하지 않는 노드를 **수신 노드**라 한다.[@iso-11898-1-obp-2024]                                                                                                                                                                                           |
-| transmitter | [[can-frame\|데이터 프레임]]이나 [[remote-frame\|리모트 프레임]]을 보내는 노드를 **송신 노드**라 한다. 노드는 버스가 다시 idle이 되거나 [[can-arbitration\|중재]]에서 질 때까지 송신 노드로 남는다.[@iso-11898-1-obp-2024][@bosch-can-2-0-1991]                                                      |
+| 상태        | 뜻                                                                                                                                                                                                                                                                                                       |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| integrating | 프로토콜 동작을 시작한 뒤나 [[can-fault-confinement\|bus-off]]에서 복구하는 동안 idle condition을 기다리는 상태로, Bosch CAN FD 1.0에서는 그 뒤 idle로 넘어간다. ISO 11898-1:2024는 [[can-xl#오류 신호\|protocol exception event]] 뒤에도 이 상태를 둔다.[@iso-11898-1-obp-2024][@bosch-can-fd-1-0-2012] |
+| idle        | Bosch CAN FD 1.0은 SOF(Start of Frame)를 받을 준비가 되어 있고, 그 뒤 receiver나 transmitter로 넘어가는 상태로 정한다.[@bosch-can-fd-1-0-2012]                                                                                                                                                           |
+| receiver    | 버스가 idle이 아닌 동안 송신도 integrating도 하지 않는 노드를 **수신 노드**라 한다.[@iso-11898-1-obp-2024]                                                                                                                                                                                               |
+| transmitter | [[can-frame\|데이터 프레임]]이나 [[remote-frame\|리모트 프레임]]을 보내는 노드를 **송신 노드**라 한다. 노드는 버스가 다시 idle이 되거나 [[can-arbitration\|중재]]에서 질 때까지 송신 노드로 남는다.[@iso-11898-1-obp-2024][@bosch-can-2-0-1991]                                                          |
 
 ![[diagrams/can-node-states.svg]]
 
@@ -32,13 +32,11 @@ ISO 11898-1:2024는 **idle condition**을 샘플링한 [[dominant-and-recessive|
 
 Bosch CAN FD 1.0은 공유 메모리에서 꺼내 보내는 메시지의 데이터 일관성을 두 방법 가운데 하나 이상으로 지키게 정한다. 하나는 송신을 시작하기 전에 보낼 메시지 전체를 임시 버퍼에 채워 두는 것이다. 다른 하나는 메시지를 넘기는 동안 데이터 오류(RAM 워드의 패리티 오류, 제때 오지 않은 데이터, 송신 중에 일부만 고쳐진 데이터 등)를 검사하는 것이다. 데이터 오류를 찾으면 송신을 시작하지 않고, 이미 시작했으면 노드를 Bus Monitoring 모드로 바꿔 수신 노드가 유효한 메시지를 보지 못하게 한다.[@bosch-can-fd-1-0-2012]
 
-컨트롤러의 송신 출력은 트랜시버의 TXD 핀에, 수신 입력은 트랜시버의 RXD 핀에 연결된다. 논리 비트와 버스 차동 전압 사이의 변환은 트랜시버가 맡는다.[@microchip-mcp2561-2fd-2014]
+컨트롤러의 송신 출력과 수신 입력은 트랜시버의 TXD 핀과 RXD 핀에 이어지고, 논리 비트와 버스 차동 전압 사이의 변환은 트랜시버가 맡는다.[@microchip-mcp2561-2fd-2014]
 
 ![[diagrams/can-node-bus.svg]]
 
-송신 노드는 내보낸 비트를 버스에서 되읽어 대조한다. 중재 구간에서 자기가 낸 recessive 비트가 dominant로 읽히면 즉시 송신을 그만두고 수신 노드로 넘어간다.[@bosch-can-2-0-1991]
-
-![[diagrams/can-arbitration.svg]]
+송신 노드는 내보낸 비트를 버스에서 되읽어 대조하고, 중재 구간의 [[can-arbitration#비트 비교|비트 비교]]에서 자기가 낸 recessive 비트가 dominant로 읽히면 즉시 송신을 그만두고 수신 노드로 넘어간다.[@bosch-can-2-0-1991]
 
 ## 자동 재전송
 
@@ -69,7 +67,7 @@ Bosch CAN 2.0 규격은 CAN 장치가 전력 소비를 줄이려고 슬립 모�
 
 ## 제품 예
 
-MCP2515는 SPI로 MCU와 통신하는 독립형 컨트롤러다. [[can-frame#기본 포맷과 확장 포맷|CAN 2.0B]]를 1 Mbit/s까지 지원하고, 송신 버퍼 3개, 수신 버퍼 2개, 수용 마스크 2개, 수용 필터 6개를 둔다.[@microchip-mcp2515-2019] Bosch M_CAN은 [[can-fd|CAN FD]]를 64바이트 데이터까지 지원하는 컨트롤러 IP(Intellectual Property) 모듈이다.[@bosch-m-can-2023]
+MCP2515는 SPI로 MCU와 통신하는 독립형 컨트롤러다. [[can-frame#기본 포맷과 확장 포맷|CAN 2.0B]]를 1 Mbit/s까지 지원하고, 송신 버퍼 3개, 수신 버퍼 2개, 수용 마스크 2개, 수용 필터 6개를 둔다.[@microchip-mcp2515-2019] STM32F103xx·STM32F105xx·STM32F107xx의 bxCAN(Basic Extended CAN)은 MCU에 주변장치로 들어간 컨트롤러다.[@st-rm0008-2021] Bosch M_CAN은 [[can-fd|CAN FD]]를 64바이트 데이터까지 지원하는 컨트롤러 IP(Intellectual Property) 모듈이다.[@bosch-m-can-2023]
 
 ## CAN FD 컨트롤러와의 차이
 

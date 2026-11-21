@@ -17,7 +17,7 @@ BMS는 배터리를 손상에서 지키고, 지능적인 충방전 알고리즘�
 
 ## 구성
 
-분산 BMS는 흔히 CSU(Cell Supervision Unit), BCU(Battery Control Unit), BDU(Battery Disconnect Unit)의 세 하위 시스템으로 이뤄진다. 업계는 CSU를 CSC(cell supervision circuit)나 CMU(cell monitor unit)로, BCU를 BEC(battery electrical controller), BECM(battery energy control module), BMU(battery management unit)로, BDU를 BJB(battery junction box)로도 부른다.[@ti-slyy218-2022]
+분산 BMS는 흔히 CSU(cell supervision unit), BCU(battery control unit), BDU(battery disconnect unit)의 세 하위 시스템으로 이뤄진다. 업계는 CSU를 CSC(cell supervision circuit)나 CMU(cell monitor unit)로, BCU를 BEC(battery electrical controller), BECM(battery energy control module), BMU(battery management unit)로, BDU를 BJB(battery junction box)로도 부른다.[@ti-slyy218-2022]
 
 CSU는 셀마다 전압과 온도를 재고, [[cell-balancing|셀 밸런싱]]으로 셀 사이의 차이를 메운다. CSU는 팩의 셀 가까이에서 [[battery-monitor-ic|배터리 모니터 IC]]의 배선을 이어, 팩의 데이터를 BCU로 보낸다. BCU는 CSU가 모은 정보에 팩의 전압과 전류를 더해, 셀마다의 상태에 따라 배터리를 어떻게 충방전할지 정한다. BCU는 절연 감시, 충돌이나 단락 때의 컨택터 제어, 온도 센서 감시, 들어온 값이 유효한지 보는 진단도 하고, 그 정보를 [[can|CAN]]으로 차량 제어 장치나 [[electronic-control-unit|ECU]]에 보낸다.[@ti-slyy218-2022]
 

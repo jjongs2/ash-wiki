@@ -28,9 +28,7 @@ IEEE 802.3-2022는 MII가 옥텟마다 니블 둘로 주고받되, 옥텟의 비
 
 ## 관리 인터페이스
 
-MDC(Management Data Clock)와 MDIO(Management Data Input/Output)는 PHY의 레지스터를 읽고 쓰는 관리 인터페이스로, MII 신호에 함께 든다. MDC는 PHY 바깥의 관리 쪽이 주는 클럭이고, MDIO는 양방향 데이터 선이다. 관리 프레임은 PHY 주소 5비트와 레지스터 주소 5비트를 담는다.[@ti-dp83822-2026][@st-rm0008-2021]
-
-![[diagrams/mdio-management-bus.svg]]
+MDC(Management Data Clock)와 MDIO(Management Data Input/Output)는 PHY의 레지스터를 읽고 쓰는 [[ethernet-phy#관리|관리 인터페이스]]로, MII 신호에 함께 든다.[@ti-dp83822-2026][@st-rm0008-2021]
 
 ## 한 쌍 PHY의 인터페이스
 

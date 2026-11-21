@@ -10,7 +10,7 @@ verified: 2026-10-03
 
 ## AUTOSAR Dcm의 부트로더 전환
 
-[[autosar|AUTOSAR]] R25-11의 Dcm(Diagnostic Communication Manager) 명세는 [[uds|UDS]]의 DiagnosticSessionControl로 요청된 세션이 [[bootloader|부트로더]] 전환을 허용하도록 설정돼 있으면(`DcmDspSessionForBoot`), Dcm이 모드 전환을 일으켜 OEM 부트로더나 시스템 공급자 부트로더로 넘어갈 준비를 하도록 정한다. Dcm은 이 모드 전환으로 [[basic-software-mode-manager|BswM]]에 부트로더로 넘어갈 준비를 하라고 알린다. Dcm은 하위 기능 `0x02`로 [[uds#진단 세션|programming session]]을 시작하는 DiagnosticSessionControl 요청을 받으면 `Dcm_SetProgConditions`로 재프로그래밍을 요청하는 ReprogrammingRequest 플래그를 세운다. 이 명세는 Dcm을 부트로더 안에서 쓰도록 의도하지 않는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
+[[autosar|AUTOSAR]] R25-11의 Dcm(Diagnostic Communication Manager) 명세는 [[uds|UDS]]의 DiagnosticSessionControl로 요청된 세션이 [[bootloader|부트로더]] 전환을 허용하도록 설정돼 있으면(`DcmDspSessionForBoot`), Dcm이 모드 전환을 일으켜 OEM 부트로더나 시스템 공급자 부트로더로 넘어갈 준비를 하도록 정한다. Dcm은 이 모드 전환으로 [[basic-software-mode-manager|BswM]]에 부트로더로 넘어갈 준비를 하라고 알린다. Dcm은 SubFunction `0x02`로 [[uds#진단 세션|프로그래밍 세션]]을 시작하는 DiagnosticSessionControl 요청을 받으면 `Dcm_SetProgConditions`로 재프로그래밍을 요청하는 ReprogrammingRequest 플래그를 세운다. 이 명세는 Dcm을 부트로더 안에서 쓰도록 의도하지 않는다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
 부트로더가 애플리케이션 재프로그래밍을 마치면 ApplUpdated 플래그를 갱신한다. ECU가 리셋된 뒤 새로 프로그래밍된 애플리케이션이 처음 시작되면, Dcm은 `Dcm_GetProgConditions`로 이 플래그를 읽어 BswM에 애플리케이션이 갱신됐음을 알린다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
@@ -28,7 +28,7 @@ verified: 2026-10-03
 
 ## Vector Flash Bootloader의 다운로드 시퀀스
 
-Vector의 Flash Bootloader 기술 문서가 정한 UDS 다운로드 시퀀스에서, 테스터는 DiagnosticSessionControl로 programming session에 들어가고 [[uds#보안 접근과 인증|SecurityAccess]]를 거친다. 그 뒤 논리 블록마다 RoutineControl로 메모리를 지우고, RequestDownload, TransferData, RequestTransferExit로 데이터를 보낸 다음 RoutineControl로 검사한다. 모든 블록을 마치면 RoutineControl로 프로그래밍 의존성을 확인하고, ECUReset으로 하드 리셋한다.[@vector-fbl-oem-download-sequence-2024]
+Vector의 Flash Bootloader 기술 문서가 정한 UDS 다운로드 시퀀스에서, 테스터는 DiagnosticSessionControl로 프로그래밍 세션에 들어가고 [[uds#보안 접근과 인증|SecurityAccess]]를 거친다. 그 뒤 논리 블록마다 RoutineControl로 메모리를 지우고, RequestDownload, TransferData, RequestTransferExit로 데이터를 보낸 다음 RoutineControl로 검사한다. 모든 블록을 마치면 RoutineControl로 프로그래밍 의존성을 확인하고, ECUReset으로 하드 리셋한다.[@vector-fbl-oem-download-sequence-2024]
 
 이 시퀀스의 단계 가운데 다음 셋은 이렇게 동작한다.[@vector-fbl-oem-download-sequence-2024]
 

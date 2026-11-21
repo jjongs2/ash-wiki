@@ -23,7 +23,7 @@ SPI는 데이터 선과 따로 클록 선(SCK)을 두고, 마스터가 클록을
 
 I2C는 직렬 데이터 선 SDA와 직렬 클록 선 SCL, 두 선을 쓰고, 전송을 시작하는 controller가 클록 신호를 낸다.[@nxp-um10204-2021]
 
-I2C 명세에 따르면 2선 직렬 버스인 I2C는 연결을 줄여 IC의 핀과 PCB(Printed Circuit Board) 배선이 적어진다.[@nxp-um10204-2021] TI의 LVDS(Low-Voltage Differential Signaling) 핸드북에 따르면 직렬화기(serializer)는 병렬 데이터를 직렬 스트림으로 바꿔 보내 연결선의 비용과 크기를 줄이고, 넓은 병렬 데이터를 더 적은 수의 전송 선로로 보낼 수 있게 한다.[@ti-slld009-2002]
+I2C 명세에 따르면 2선 직렬 버스인 I2C는 연결을 줄여 IC의 핀과 PCB(Printed-Circuit Board) 배선이 적어진다.[@nxp-um10204-2021] TI의 LVDS(Low-Voltage Differential Signaling) 핸드북에 따르면 직렬화기(serializer)는 병렬 데이터를 직렬 스트림으로 바꿔 보내 연결선의 비용과 크기를 줄이고, 넓은 병렬 데이터를 더 적은 수의 전송 선로로 보낼 수 있게 한다.[@ti-slld009-2002]
 
 ## 비동기 전송
 
@@ -35,6 +35,6 @@ UART는 문자마다 앞에 start 비트를, 뒤에 stop 비트를 붙여 보낸
 
 비동기 수신기는 송신 측과 수신 측 클록의 편차가 허용 오차 안에 있어야 제대로 받으며, 허용되는 편차는 프레임이 길수록 작다.[@st-rm0008-2021][@microchip-atmega328p-2020] Analog Devices 기술 문서에 따르면 UART 수신기는 프레임마다 다시 동기하므로 클록 차이에 따른 타이밍 오차는 한 프레임 안에서 쌓이고, 가장 큰 오차는 마지막 샘플링 지점인 stop 비트에서 난다.[@adi-uart-clock-accuracy-2003]
 
-Bosch CAN 2.0 규격은 버스를 비트를 나르는 채널 하나로 두고, 재동기화 정보를 이 데이터에서 얻게 한다. 이 규격은 비트 값이 바뀌는 에지로 재동기화하고, [[can-bit-timing#세그먼트|위상 버퍼 세그먼트]]를 늘이거나 줄여 에지의 위상 오차를 보정하도록 정한다.[@bosch-can-2-0-1991] 이 과정은 [[can-synchronization#재동기화|CAN 동기화]]에서 다룬다.
+Bosch CAN 2.0 규격은 버스를 비트를 나르는 채널 하나로 두고, [[can-synchronization#재동기화|재동기화]] 정보를 이 데이터에서 얻게 한다.[@bosch-can-2-0-1991]
 
 UART 프레임은 오류 검사용 [[parity-bit|패리티 비트]]를 둘 수 있다.[@ti-tl16c550d-2008][@microchip-atmega328p-2020] [[lin|LIN]] 프레임은 끝에 프레임 검증용 [[checksum|체크섬]] 바이트를 둔다.[@iso-17987-1-obp-2025] CAN 데이터 프레임은 [[cyclic-redundancy-check|CRC]] 필드를 두고, 수신 측은 CRC 오류를 검출한다.[@bosch-can-2-0-1991]

@@ -23,7 +23,7 @@ TI의 LVDS(Low-Voltage Differential Signaling) 핸드북에 따르면 두 선을
 
 ![[diagrams/twisted-pair-loop-cancellation.svg]]
 
-SN65HVD23x의 전형적인 응용에서 [[can|CAN]] 버스는 특성 임피던스 120 Ω의 꼬임쌍선이다.[@ti-sn65hvd230-2018] LVDS의 전송 매체로는 꼬임쌍선, twinax, 평판 리본 케이블, PCB(Printed Circuit Board) 배선을 쓸 수 있다.[@ti-sn65lvds31-2021]
+SN65HVD23x의 전형적인 응용에서 [[can|CAN]] 버스는 특성 임피던스 120 Ω의 꼬임쌍선이다.[@ti-sn65hvd230-2018] LVDS의 전송 매체로는 꼬임쌍선, twinax, 평판 리본 케이블, PCB(printed-circuit board) 배선을 쓸 수 있다.[@ti-sn65lvds31-2021]
 
 ## 쓰이는 곳
 

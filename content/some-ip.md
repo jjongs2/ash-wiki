@@ -12,7 +12,7 @@ verified: 2026-09-28
 
 ## 전송
 
-SOME/IP는 [[udp|UDP]]와 [[tcp|TCP]]를 전송 프로토콜로 지원한다. 한 ECU의 서버 쪽에서 같은 서비스의 인스턴스가 여럿이면 인스턴스마다 다른 [[port-number|포트 번호]]를 쓴다. 명세는 UDP에서 SOME/IP 페이로드를 0\~1400바이트로 두고, 이보다 크면 TCP로 보내거나 나눠 보내기를 권한다. UDP로 보내기에 큰 메시지는 SOME/IP-TP(SOME/IP Transport Protocol)로 나눈다.[@autosar-fo-prs-someipprotocol-2025]
+SOME/IP는 [[udp|UDP]]와 [[tcp|TCP]]를 전송 프로토콜로 지원한다. 한 ECU의 서버 쪽에서 같은 서비스의 인스턴스가 여럿이면 인스턴스마다 다른 [[port-number|포트 번호]]를 쓴다. 명세는 UDP에서 SOME/IP 페이로드를 0\~1400바이트로 두고, 이보다 크면 TCP로 보내거나 나눠 보내기를 권한다. TCP는 오류 시 지연 요구가 엄하지 않을 때만 쓰기를 권한다. UDP로 보내기에 큰 메시지는 SOME/IP-TP(SOME/IP Transport Protocol)로 나눈다.[@autosar-fo-prs-someipprotocol-2025]
 
 UDP 바인딩에서 SOME/IP는 메시지가 닿을 수도 있다는 "maybe" 신뢰성만 제공하고, 그 이상의 오류 처리는 애플리케이션이 맡는다. TCP 바인딩에서는 "exactly once"다.[@autosar-fo-prs-someipprotocol-2025]
 
