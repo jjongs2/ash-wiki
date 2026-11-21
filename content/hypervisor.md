@@ -18,7 +18,7 @@ verified: 2026-11-07
 
 Arm의 Armv8-R 가상화 가이드에 따르면, ECU마다 프로세서가 [[rtos|RTOS]]를 돌리는 차량에서 ECU의 처리를 더 적은 프로세서로 모으면 제조 비용과 공간, 차량 무게가 준다. 이렇게 통합한 시스템에서도 ECU마다 RTOS가 돌지만, 그 RTOS는 하이퍼바이저가 다스리는 하드웨어 시스템 하나 위에서, 하이퍼바이저가 관리하는 가상 머신 안의 게스트 운영체제로 돈다.[@arm-102909-2026]
 
-Renesas는 2022년 RH850/U2x MCU와 ETAS(Bosch 자회사로 세워진 차량 소프트웨어 회사)의 하이퍼바이저 RTA-HVR을 묶은 ECU 가상화 플랫폼을 내놓았다.[@etas-company-2026] 이 플랫폼으로 MCU 기반의 [[zone-controller|존 ECU]] 하나에 논리 ECU 여럿을 둘 수 있다. RH850/U2x는 하이퍼바이저 하드웨어 지원과, freedom from interference를 위한 안전·보안 기능을 갖춘다. RTA-HVR은 하드웨어 가상화를 지원하는 MCU용 하이퍼바이저로, RH850/U2x의 하드웨어 가상화 기능으로 가상 머신을 하나 이상 만든다. 가상 머신끼리는 공간으로는 RH850/U2x의 MPU와 guard 기능으로, 시간으로는 RTA-HVR의 VM 스케줄러로 떼어 놓는다. RTA-HVR의 가상 머신 하나는 가상 CPU 코어 하나 이상과 장치 메모리 공간의 일부, 주변장치 묶음으로 이뤄진다.[@renesas-ecu-virtualization-2022]
+Renesas는 2022년 RH850/U2x MCU와 ETAS(Bosch 자회사로 세워진 차량 소프트웨어 회사)의 하이퍼바이저 RTA-HVR을 묶은 ECU 가상화 플랫폼을 내놓았다.[@renesas-ecu-virtualization-2022][@etas-company-2026] 이 플랫폼으로 MCU 기반의 [[zone-controller|존 ECU]] 하나에 논리 ECU 여럿을 둘 수 있다. RH850/U2x는 하이퍼바이저 하드웨어 지원과, freedom from interference를 위한 안전·보안 기능을 갖춘다. RTA-HVR은 하드웨어 가상화를 지원하는 MCU용 하이퍼바이저로, RH850/U2x의 하드웨어 가상화 기능으로 가상 머신을 하나 이상 만든다. 가상 머신끼리는 공간으로는 RH850/U2x의 MPU와 guard 기능으로, 시간으로는 RTA-HVR의 VM 스케줄러로 떼어 놓는다. RTA-HVR의 가상 머신 하나는 가상 CPU 코어 하나 이상과 장치 메모리 공간의 일부, 주변장치 묶음으로 이뤄진다.[@renesas-ecu-virtualization-2022]
 
 3세대 R-Car [[system-on-chip|SoC]]는 하이퍼바이저와 함께 쓰는 것을 전제로 설계되어, Arm CPU 코어와 그래픽 코어, 비디오·오디오 처리 블록 같은 기능에 가상화 기능이 있다. R-Car용 하이퍼바이저는 통합 콕핏과 커넥티드 카 응용에서 Linux, Android, RTOS 같은 게스트 운영체제 여럿을 칩 하나에서 서로 독립적으로 돌린다.[@renesas-rcar-virtualization-2018]
 

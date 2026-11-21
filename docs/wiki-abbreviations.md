@@ -59,6 +59,7 @@
 - DIN: 조직
 - DIS: 표준·규격 이름
 - DoD: 조직
+- ECC: 소개하는 조직. Electronic Communications Committee일 때
 - ECMA: 소개하는 조직
 - ECU: 널리 쓰이는 약어
 - EEPROM: 널리 쓰이는 약어
