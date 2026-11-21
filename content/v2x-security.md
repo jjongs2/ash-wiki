@@ -6,7 +6,7 @@ tags:
 verified: 2026-11-21
 ---
 
-ETSI TS 102 940 V2.1.1은 ITS(Intelligent Transport System) 통신의 보안 구조를 정하고, 그 안에서 식별자·인증서 관리, [[public-key-infrastructure|PKI]] 절차와 인터페이스, 신뢰 수립의 기본 정책을 다룬다.[@etsi-ts-102-940-2021]
+ETSI TS 102 940 V2.1.1은 ITS(Intelligent Transport Systems) 통신의 보안 구조를 정하고, 그 안에서 식별자·인증서 관리, [[public-key-infrastructure|PKI]] 절차와 인터페이스, 신뢰 수립의 기본 정책을 다룬다.[@etsi-ts-102-940-2021]
 
 ETSI TS 102 941 V2.2.1은 [[cooperative-awareness-message|CAM]]과 [[decentralized-environmental-notification-message|DENM]] 같은 방송 응용에 기밀성 없이 인증, 인가, 무결성을 요구하고, 송신자가 AT(Authorization Ticket)로 서명해 이를 얻도록 정한다. 이 명세는 ITS 안전 메시지에 임시 식별자를 써 가명성을 주도록 하고, PKI 기관의 역할을 ITS-S(ITS Station)의 고유 식별자를 확인하는 EA(Enrolment Authority)와 서비스를 인가하고 관리하는 AA(Authorization Authority)로 나눈다.[@etsi-ts-102-941-2022]
 
@@ -29,7 +29,7 @@ PKI의 기능 요소와 그 역할은 다음과 같다.[@etsi-ts-102-940-2021]
 | AA                                    | AT를 발급하고 그 쓰임을 지켜보는 보안 관리 실체로, ITS-S에 특정 ITS 서비스를 써도 된다는 증명을 준다. |
 | MA(Misbehaviour Authority)            | misbehaviour 보고를 처리하고, misbehaviour가 의심되는 ITS-S를 조사해 대응한다.                        |
 
-Root CA는 늘 오프라인으로 쓰고 어떤 네트워크에도 잇지 않는다. 신뢰 영역에 root CA가 여럿 있어 서로 협력하면 보안 관리 시스템은 Certificate Trust List 방식을 따르고, 유럽에서는 최상위 관리 역할을 C-ITS(Cooperative Intelligent Transport System) Platform의 인증서 정책 문서가 정한다.[@etsi-ts-102-940-2021]
+Root CA는 늘 오프라인으로 쓰고 어떤 네트워크에도 잇지 않는다. 신뢰 영역에 root CA가 여럿 있어 서로 협력하면 보안 관리 시스템은 Certificate Trust List 방식을 따르고, 유럽에서는 최상위 관리 역할을 C-ITS(Cooperative Intelligent Transport Systems) Platform의 인증서 정책 문서가 정한다.[@etsi-ts-102-940-2021]
 
 최상위 신뢰 관리에서 TLM(Trust List Manager)은 root CA 인증서와 TLM 인증서의 목록을 만들어 서명한다. CPOC(C-ITS Point Of Contact)는 root CA 인증서를 모아 TLM에 건네고, TLM이 서명한 목록을 관심 있는 실체에 배포한다. TLM이 서명한 이 목록을 **ECTL**(European Certificate Trust List)이라 부른다.[@etsi-ts-102-940-2021][@etsi-ts-102-941-2022]
 
@@ -47,7 +47,7 @@ CAM은 모든 ITS-S가 초당 여러 번까지 주기적으로 보내고 위치 
 
 이 명세는 ITS-S의 프라이버시를 지키도록 AA가 ITS-S의 장기 신원인 등록 인증서를 알지 못하게 하고, EA가 단기 신원인 AT를 장기 신원에 잇지 못하게 한다. AA는 ITS-S에 수명 동안 쓸 AT, 곧 가명 인증서를 여럿 준다.[@etsi-ts-102-940-2021]
 
-프라이버시가 필요한 ITS-S는 가명 인증서를 자주 바꾸는 수단을 두어야 한다. AT를 바꿔도 모든 식별자를 함께 바꿔야 연결 불가능한 가명성이 되므로, 통신 스택의 모든 계층에서 ITS-S에 묶인 식별자를 AT와 함께 바꾼다. CAM과 DENM의 통신 프로파일에서는 [[mac-address|MAC 주소]], GeoNetworking 주소, stationID 같은 계층의 식별자를 보안 실체가 알려 주는 AT의 해시(HashedID8)에서 끌어내고, 더 짧은 식별자를 쓰는 계층은 그 하위 비트를 쓴다.[@etsi-ts-102-940-2021]
+프라이버시가 필요한 ITS-S는 가명 인증서를 자주 바꾸는 수단을 두어야 한다. AT를 바꿔도 모든 식별자를 함께 바꿔야 연결 불가능한 가명성이 되므로, 통신 스택의 모든 계층에서 ITS-S에 묶인 식별자를 AT와 함께 바꾼다. CAM과 DENM의 통신 프로파일에서는 [[mac-address|MAC 주소]], [[v2x#GeoNetworking과 BTP|GeoNetworking]] 주소, stationID 같은 계층의 식별자를 보안 실체가 알려 주는 AT의 해시(HashedID8)에서 끌어내고, 더 짧은 식별자를 쓰는 계층은 그 하위 비트를 쓴다.[@etsi-ts-102-940-2021]
 
 ETSI TS 102 941 V2.2.1은 ITS가 안전을 위해 ITS-S를 관찰할 수 있어야 하므로 익명성만으로는 ITS 사용자의 프라이버시를 지키기에 모자라다고 보고, 가명성(pseudonymity)과 연결 불가능성(unlinkability)을 기본 안전 메시지 송신자의 알맞은 보호로 둔다. **가명성**은 ITS-S가 신원을 드러내지 않고 자원이나 서비스를 쓰되 그 쓰임에 책임은 지는 것이고, **연결 불가능성**은 남이 한 ITS-S의 여러 쓰임을 서로 잇지 못하는 것이다.[@etsi-ts-102-941-2022]
 

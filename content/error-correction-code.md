@@ -46,7 +46,7 @@ Microchip CoreEDAC 사용자 가이드에 따르면 고치는 오류가 많을�
 
 TI TMS570LS0914는 [[flash-memory|플래시]]와 RAM에 ECC를 두어, 단일 비트 오류를 고치고 이중 비트 오류를 찾아낸다.[@ti-tms570ls0914-2016] NXP S32K1xx는 플래시와 SRAM에 ECC를 두어 단일 비트 오류를 고치고, 고칠 수 없는 오류는 알린다. S32K11x의 SRAM_L에는 ECC가 없다. SRAM에서 고친 단일 비트 오류는 ERM(Error Reporting Module) 인터럽트로 알릴 수 있다.[@nxp-an12522-2019]
 
-TI Hercules MCU는 SRAM과 플래시의 ECC를 실행 중의 하드웨어 [[safety-mechanism|안전 메커니즘]]으로 쓴다.[@ti-spry178-2011] NXP 앱노트 AN13566에 따르면 ECC 메모리는 [[iso-26262|ISO 26262]] 같은 [[functional-safety|기능 안전]] 준수가 필요한 시스템에 알맞다.[@nxp-an13566-2022]
+TI Hercules [[microcontroller|MCU]]는 SRAM과 플래시의 ECC를 실행 중의 하드웨어 [[safety-mechanism|안전 메커니즘]]으로 쓴다.[@ti-spry178-2011] NXP 앱노트 AN13566에 따르면 ECC 메모리는 [[iso-26262|ISO 26262]] 같은 [[functional-safety|기능 안전]] 준수가 필요한 시스템에 알맞다.[@nxp-an13566-2022]
 
 메모리의 ECC 회로는 고친 단일 비트 오류와 고칠 수 없는 오류를 따로 알린다.[@nxp-an12522-2019][@infineon-aurix-tc3xx-mtu-training-2020] TI TMS570LS31x/21x의 TCRAM(Tightly-Coupled RAM) 모듈은 단일 비트 오류와 다중 비트 오류를 알리는 신호를 ESM(Error Signaling Module)으로 내고, 그 오류가 난 횟수와 오류가 난 RAM 주소를 레지스터에 남긴다.[@ti-spnu499c-2018] Infineon AURIX TC3xx에서는 MTU(Memory Test Unit)가 SRAM의 correctable error 경보와 uncorrectable critical error 경보를 SMU(Safety Management Unit)로 보낸다.[@infineon-aurix-tc3xx-mtu-training-2020] ESM과 SMU가 하는 일은 [[safety-mechanism#MCU의 하드웨어 안전 메커니즘|안전 메커니즘]]에서 다룬다.
 

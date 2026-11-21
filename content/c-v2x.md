@@ -67,7 +67,7 @@ ETSI EN 303 613 V1.1.1의 Annex B는 동기 우선순위(SyncPriority)의 기본
 
 sidelink에서 MAC(Medium Access Control) 계층은 주로 V2X sidelink 통신의 자원 할당을, RLC(Radio Link Control) 계층은 SDU(Service Data Unit)의 분할과 연결을, PDCP(Packet Data Convergence Protocol) 계층은 IP와 non-IP 같은 SDU 종류의 구별을 맡는다.[@etsi-en-303-613-2020]
 
-Annex D(informative)는 GeoNetworking 패킷을 MAC, RLC, PDCP 헤더와 Non-IP Type 헤더 뒤에 싣는 프레임 구조와, 그때 PDCP 헤더의 SDU Type 필드를 Non-IP로, Non-IP Type 필드를 3(ETSI-ITS)으로 두는 설정을 제시한다.[@etsi-en-303-613-2020]
+Annex D(informative)는 [[v2x#GeoNetworking과 BTP|GeoNetworking]] 패킷을 MAC, RLC, PDCP 헤더와 Non-IP Type 헤더 뒤에 싣는 프레임 구조와, 그때 PDCP 헤더의 SDU Type 필드를 Non-IP로, Non-IP Type 필드를 3(ETSI-ITS)으로 두는 설정을 제시한다.[@etsi-en-303-613-2020]
 
 ![[diagrams/lte-v2x-geonetworking-packet-structure.svg]]
 

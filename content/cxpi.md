@@ -43,6 +43,6 @@ SAE는 2015년 10월 Information Report SAE J3076을 냈고, 2022년 12월 이 �
 
 ## 트랜시버
 
-S6BT112A01과 S6BT112A02는 MCU의 [[serial-communication|UART]]와 CXPI 버스 사이에 놓이는 CXPI 트랜시버로, 핀 하나의 입력 레벨로 master 노드와 slave 노드를 고른다. master로 쓰면 MCU가 클록 핀에 비트율 주파수의 클록을 넣고, slave로 쓰면 트랜시버가 그 핀으로 MCU에 클록을 낸다.[@infineon-s6bt112a-2021]
+S6BT112A01과 S6BT112A02는 [[microcontroller|MCU]]의 [[serial-communication|UART]]와 CXPI 버스 사이에 놓이는 CXPI 트랜시버로, 핀 하나의 입력 레벨로 master 노드와 slave 노드를 고른다. master로 쓰면 MCU가 클록 핀에 비트율 주파수의 클록을 넣고, slave로 쓰면 트랜시버가 그 핀으로 MCU에 클록을 낸다.[@infineon-s6bt112a-2021]
 
 BD41000AFJ-C도 MCU의 UART 송수신 핀과 CXPI 버스 사이에 놓이고, 외부 핀으로 master 모드와 slave 모드를 바꾼다. master로 쓰면 클록 핀이 입력이 되어, CXPI 통신을 하는 모드에서 MCU가 넣는 버스 클록을 받는다.[@rohm-bd41000afj-c-2019]

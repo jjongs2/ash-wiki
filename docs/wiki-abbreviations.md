@@ -144,6 +144,7 @@
 - ODVA: 소개하는 조직
 - OEM: 널리 쓰이는 약어
 - OMA: 소개하는 조직
+- OPEN Alliance: 조직
 - OPTIGA: 제품 이름
 - OSEK/VDX: 표준·규격 이름
 - PAS: 표준·규격 이름

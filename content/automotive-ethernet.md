@@ -29,7 +29,7 @@ IEEE SA에 따르면 차량 배선의 무게와 공간이 큰 과제여서 차�
 
 10BASE-T1S는 여러 노드가 한 쌍을 나눠 쓰는 [[10base-t1s#동작 모드|멀티드롭 모드]]도 선택 사항으로 둔다.[@ieee-802-3-2022]
 
-P802.3cy PAR(Project Authorization Request)는 차량 내 네트워크가 도메인 기반 구조에서 이더넷 링크로 이은 [[ee-architecture#존 아키텍처|존 아키텍처]]로 옮겨 가며 완전 자율주행을 지원하려면 차량 환경에서 10 Gbit/s를 넘는 속도가 필요해졌지만, IEEE 802.3은 아직 그 속도를 지원하지 않는다고 밝혔다.[@ieee-802-3cy-par-2020] 2026년 10월 기준 P802.3dm이 IEEE 802.3-2022에 대해 진행 중인 개정안이다.[@ieee-802-3-2022] P802.3dm PAR는 이 프로젝트가 차량 끝 노드의 카메라 링크에 맞춰, 한 방향으로 10 Gbit/s까지 내고 반대 방향은 더 낮은 속도로 동작하는 비대칭 전기 물리 계층을 정한다고 밝힌다. 이 PAR는 이 범위의 물리 계층 부분이 [[automotive-serdes#MIPI A-PHY|MIPI A-PHY]](MIPI: 모바일 기기의 인터페이스 명세를 만드는 국제 단체)를 채택한 IEEE 2977-2021과 일부 겹치고, [[automotive-serdes#ASA Motion Link|ASA]]의 MLE(Motion Link Ethernet) 명세도 일부 겹칠 수 있다고 밝힌다.[@ieee-802-3dm-par-2024][@mipi-about-us-2026]
+P802.3cy PAR(Project Authorization Request)는 차량 내 네트워크가 도메인 기반 구조에서 이더넷 링크로 이은 [[ee-architecture#존 아키텍처|존 아키텍처]]로 옮겨 가며 완전 자율주행을 지원하려면 차량 환경에서 10 Gbit/s를 넘는 속도가 필요해졌지만, IEEE 802.3은 아직 그 속도를 지원하지 않는다고 밝혔다.[@ieee-802-3cy-par-2020] 2026년 10월 기준 P802.3dm이 IEEE 802.3-2022에 대해 진행 중인 개정안이다.[@ieee-802-3-2022] P802.3dm PAR는 이 프로젝트가 차량 끝 노드의 [[automotive-camera|카메라]] 링크에 맞춰, 한 방향으로 10 Gbit/s까지 내고 반대 방향은 더 낮은 속도로 동작하는 비대칭 전기 물리 계층을 정한다고 밝힌다. 이 PAR는 이 범위의 물리 계층 부분이 [[automotive-serdes#MIPI A-PHY|MIPI A-PHY]](MIPI: 모바일 기기의 인터페이스 명세를 만드는 국제 단체)를 채택한 IEEE 2977-2021과 일부 겹치고, [[automotive-serdes#ASA Motion Link|ASA]]의 MLE(Motion Link Ethernet) 명세도 일부 겹칠 수 있다고 밝힌다.[@ieee-802-3dm-par-2024][@mipi-about-us-2026]
 
 ## 케이블
 
@@ -45,19 +45,19 @@ P802.3ch 태스크 포스는 비차폐 꼬임쌍선, 차폐 꼬임쌍선, 차폐
 
 ![[diagrams/automotive-ethernet-protocol-stack.svg]]
 
-IEEE 802.1 [[tsn|TSN]] 태스크 그룹은 IEEE 802 네트워크에서 지연 상한이 있는 패킷 전달을 목표로 삼으며, 옛 [[avb|AVB]] 태스크 그룹에서 이어졌다.[@ieee-802-1-tsn-tg-2026] IEEE SA에 따르면 AVB 표준은 차량 인포테인먼트 시스템에 쓰인다.[@ieee-tsn-automotive-flyer-2026] IEEE 802.1DG-2025는 TSN 표준에 기반해, 지연 상한이 있는 차량 내 브리지 IEEE 802.3 이더넷 네트워크의 [[tsn#프로파일|프로파일]]을 정한다.[@ieee-802-1dg-2025]
+IEEE 802.1 [[tsn|TSN]] 태스크 그룹은 IEEE 802 네트워크에서 지연 상한이 있는 패킷 전달을 목표로 삼으며, 옛 [[avb|AVB]] 태스크 그룹에서 이어졌다.[@ieee-802-1-tsn-tg-2026] IEEE SA에 따르면 AVB 표준은 차량 인포테인먼트 시스템에 쓰인다.[@ieee-tsn-automotive-flyer-2026] [[ieee-802-1dg|IEEE 802.1DG]]-2025는 TSN 표준에 기반해, 지연 상한이 있는 차량 내 브리지 IEEE 802.3 이더넷 네트워크의 [[tsn#프로파일|프로파일]]을 정한다.[@ieee-802-1dg-2025]
 
 ## OPEN Alliance 명세
 
 OPEN Alliance TC12는 100BASE-T1과 1000BASE-T1 PHY의 적합성 시험과 상호 운용성 시험 명세를 만들고 관리하며[@open-alliance-tc12-2026], OPEN Alliance는 두 PHY의 상호 운용성 시험 명세를 펴낸다.[@open-alliance-100base-t1-iop-2024][@open-alliance-1000base-t1-iop-2024]
 
-TC8은 [[osi-model|OSI]] 일곱 계층 전체에 걸쳐 차량용 이더넷 ECU의 시험 명세와 적합성 명세를 만들고 유지해, ECU 적합성 인증의 통일된 바탕을 세우려 한다. 시험 서비스를 하는 시험 기관의 자격을 위한 시험 절차와 요구사항도 정한다.[@open-alliance-tc8-2026]
+TC8은 [[osi-model|OSI]] 일곱 계층 전체에 걸쳐 차량용 이더넷 [[electronic-control-unit|ECU]]의 시험 명세와 적합성 명세를 만들고 유지해, ECU 적합성 인증의 통일된 바탕을 세우려 한다. 시험 서비스를 하는 시험 기관의 자격을 위한 시험 절차와 요구사항도 정한다.[@open-alliance-tc8-2026]
 
 TC9는 케이블 채널과 그에 딸린 부품(커넥터, 케이블, 케이블 어셈블리)의 전기적 요구사항과 시험 절차를 정하며, 이를 속도별 IEEE 802.3 차량용 이더넷 표준의 링크 세그먼트 요구사항에 맞춘다.[@open-alliance-tc9-2026]
 
 ## 차량 응용
 
-IEEE 802.3 작업 그룹은 차량용 이더넷 수요를 이끄는 것으로 카메라, 충돌 회피, 인포테인먼트처럼 대역을 많이 쓰는 차량 응용을 들었다.[@ieee-802-3bw-csd-2014] 이더넷을 쓰면 차량의 펌웨어 업데이트가 빨라진다.[@ieee-tsn-automotive-flyer-2026][@ti-szzy009-2018] TI 기술 기사에 따르면 IEEE 802.3bw와 802.3bp의 차량용 요구사항은 인포테인먼트, [[adas|ADAS]], 온보드 진단, 5G나 [[v2x|V2X]] 같은 외부 연결이 퍼지는 바탕이 되었다.[@ti-sszt730-2018] 차량용 이더넷 PHY는 ADAS의 레이더, [[lidar|라이다]], 카메라 같은 센서에도 쓰인다.[@nxp-tja1103-2026][@ti-dp83tg720s-q1-2026] TI 백서에 따르면 ADAS에서 카메라의 압축하지 않은 영상은 1 Gbit/s가 넘는 대역을 요구하기 쉽다.[@ti-szzy009-2018]
+IEEE 802.3 작업 그룹은 차량용 이더넷 수요를 이끄는 것으로 카메라, 충돌 회피, 인포테인먼트처럼 대역을 많이 쓰는 차량 응용을 들었다.[@ieee-802-3bw-csd-2014] 이더넷을 쓰면 차량의 펌웨어 업데이트가 빨라진다.[@ieee-tsn-automotive-flyer-2026][@ti-szzy009-2018] TI 기술 기사에 따르면 IEEE 802.3bw와 802.3bp의 차량용 요구사항은 인포테인먼트, [[adas|ADAS]], [[on-board-diagnostics|온보드 진단]], 5G나 [[v2x|V2X]] 같은 외부 연결이 퍼지는 바탕이 되었다.[@ti-sszt730-2018] 차량용 이더넷 PHY는 ADAS의 [[automotive-radar|레이더]], [[lidar|라이다]], 카메라 같은 센서에도 쓰인다.[@nxp-tja1103-2026][@ti-dp83tg720s-q1-2026] TI 백서에 따르면 ADAS에서 카메라의 압축하지 않은 영상은 1 Gbit/s가 넘는 대역을 요구하기 쉽다.[@ti-szzy009-2018]
 
 ## 차량 버스와의 차이
 

@@ -9,7 +9,7 @@ verified: 2026-09-29
 
 ## MAC과 물리 계층
 
-이더넷 노드는 MAC과 PHY로 나뉜다.[@microchip-enc28j60-2012][@renesas-r01an6628-2025] MAC은 송수신 데이터를 프레임으로 캡슐화하고(캡슐화에는 프레임 경계 구분과 동기가 든다), 주소를 처리하며, 오류를 검출한다.[@st-rm0008-2021][@renesas-r01an6628-2025] ENC28J60(Microchip의 단독형 이더넷 컨트롤러)의 PHY 모듈은 꼬임쌍선 인터페이스의 아날로그 데이터를 부호화하고 복호화한다.[@microchip-enc28j60-2012] MAC과 PHY 사이는 [[mii|MII]] 같은 매체 독립 인터페이스로 잇는다.[@ieee-802-3-2022][@st-rm0008-2021]
+이더넷 노드는 MAC과 [[ethernet-phy|PHY]]로 나뉜다.[@microchip-enc28j60-2012][@renesas-r01an6628-2025] MAC은 송수신 데이터를 프레임으로 캡슐화하고(캡슐화에는 프레임 경계 구분과 동기가 든다), 주소를 처리하며, 오류를 검출한다.[@st-rm0008-2021][@renesas-r01an6628-2025] ENC28J60(Microchip의 단독형 이더넷 컨트롤러)의 PHY 모듈은 꼬임쌍선 인터페이스의 아날로그 데이터를 부호화하고 복호화한다.[@microchip-enc28j60-2012] MAC과 PHY 사이는 [[mii|MII]] 같은 매체 독립 인터페이스로 잇는다.[@ieee-802-3-2022][@st-rm0008-2021]
 
 차량용 [[100base-t1|100BASE-T1]] PHY는 한 쌍의 비차폐 꼬임쌍선으로 100 Mbit/s를 송수신한다.[@nxp-tja1101b-2021][@ti-dp83tc811r-q1-2018] IEEE 802.3bw-2015는 단일 평형 꼬임쌍선 위에서 점대점 전이중 100 Mbit/s로 동작하는 100BASE-T1을 넣었다.[@ieee-802-3bw-2015]
 
@@ -19,7 +19,7 @@ STMicroelectronics의 STM32F107xx와 Renesas RA MCU는 이더넷 MAC을 내장�
 
 IEEE 802.3-2022는 MAC 부계층이 목적지 주소 필드에 자기 개별 주소나 브로드캐스트 주소, 또는 상위 계층이 활성화한 그룹 주소가 든 프레임을 알아보고 받도록 정한다. MAC 부계층은 promiscuous 수신 모드를 둘 수 있고, 이 모드에서는 목적지 주소와 상관없이 유효한 프레임을 모두 받는다. 이 표준은 관리 속성 aPromiscuousStatus를 참으로 두면 이 모드가 켜지게 하고, 이 모드 때문에만 받은 프레임도 오류가 없으면 정상 수신으로, 오류가 있으면 해당 오류 카운터로 세도록 정한다.[@ieee-802-3-2022]
 
-MCU에 내장된 이더넷 MAC은 전용 [[direct-memory-access|DMA]]를 둔다. STM32F107xx와 Renesas RA의 이더넷 MAC은 MCU 밖의 PHY와 MII나 RMII(Reduced MII)로 이어진다.[@st-rm0008-2021][@renesas-r01an6628-2025]
+[[microcontroller|MCU]]에 내장된 이더넷 MAC은 전용 [[direct-memory-access|DMA]]를 둔다. STM32F107xx와 Renesas RA의 이더넷 MAC은 MCU 밖의 PHY와 MII나 [[mii#RMII, GMII, RGMII와의 차이|RMII]]로 이어진다.[@st-rm0008-2021][@renesas-r01an6628-2025]
 
 ![[diagrams/ethernet-mcu-mac-phy.svg]]
 
@@ -47,4 +47,4 @@ Xerox PARC의 Metcalfe와 Boggs는 1976년 논문에서 동축 케이블 약 1 k
 
 ## CAN과의 차이
 
-[[can|CAN]]은 여러 노드가 동시에 송신을 시작하면 식별자로 비트 단위 중재를 해, 그 가운데 한 메시지를 정보도 시간도 잃지 않고 보낸다.[@bosch-can-2-0-1991] 반이중 이더넷에서는 동시에 송신하면 충돌이 생기고, 충돌한 스테이션은 [[bus-access-method#경쟁 방식|백오프]]만큼 기다렸다가 다시 송신한다.[@st-rm0008-2021][@microchip-enc28j60-2012] CAN에서는 수신 노드가 [[can-acknowledgement|ACK]] 슬롯에 [[dominant-and-recessive|dominant]] 비트를 보내 프레임을 제대로 받았음을 알린다.[@bosch-can-2-0-1991]
+[[can|CAN]]은 여러 노드가 동시에 송신을 시작하면 식별자로 비트 단위 [[can-arbitration|중재]]를 해, 그 가운데 한 메시지를 정보도 시간도 잃지 않고 보낸다.[@bosch-can-2-0-1991] 반이중 이더넷에서는 동시에 송신하면 충돌이 생기고, 충돌한 스테이션은 [[bus-access-method#경쟁 방식|백오프]]만큼 기다렸다가 다시 송신한다.[@st-rm0008-2021][@microchip-enc28j60-2012] CAN에서는 수신 노드가 [[can-acknowledgement|ACK]] 슬롯에 [[dominant-and-recessive|dominant]] 비트를 보내 프레임을 제대로 받았음을 알린다.[@bosch-can-2-0-1991]

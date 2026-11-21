@@ -5,11 +5,11 @@ tags:
 verified: 2026-09-27
 ---
 
-**버스**는 모든 노드가 양방향 전송이 되는 수동 링크로 닿는 네트워크 토폴로지다. [[can|CAN]]은 도로 차량의 ECU 사이에서 디지털 정보를 주고받는 [[serial-communication|직렬 통신]] 프로토콜이다.[@iso-11898-3-obp-2006] [[lin|LIN]]은 차량 ECU를 잇는 저비용 네트워크이고[@iso-17987-4-obp-2025], [[flexray|FlexRay]]는 차량 ECU를 잇는 time-triggered 네트워크다.[@iso-17458-4-obp-2013] 1993년 SAE 기술 논문 931808에 따르면 차량 내 네트워크는 제어기, 센서, 액추에이터가 정보를 나누는 매체다.[@sae-931808-1993]
+**버스**는 모든 노드가 양방향 전송이 되는 수동 링크로 닿는 네트워크 토폴로지다. [[can|CAN]]은 도로 차량의 [[electronic-control-unit|ECU]] 사이에서 디지털 정보를 주고받는 [[serial-communication|직렬 통신]] 프로토콜이다.[@iso-11898-3-obp-2006] [[lin|LIN]]은 차량 ECU를 잇는 저비용 네트워크이고[@iso-17987-4-obp-2025], [[flexray|FlexRay]]는 차량 ECU를 잇는 time-triggered 네트워크다.[@iso-17458-4-obp-2013] 1993년 SAE 기술 논문 931808에 따르면 차량 내 네트워크는 제어기, 센서, 액추에이터가 정보를 나누는 매체다.[@sae-931808-1993]
 
 ## 매체
 
-고속 CAN은 CAN_H와 CAN_L 두 선의 전압 차로 버스 상태를 나타낸다.[@iso-11898-2-obp-2026] 이 방식은 [[differential-signaling|차동 신호]]에서 다룬다. LIN은 접지를 기준으로 선 하나로 송수신하는 단선 매체를 쓴다.[@iso-17987-4-obp-2025] FlexRay의 전기 물리 계층은 두 선을 매체로 쓰고, 두 선 사이에 차동 전압을 걸어 버스에 신호를 보낸다.[@iso-17458-4-obp-2013]
+[[can-physical-layer#고속 CAN|고속 CAN]]은 CAN_H와 CAN_L 두 선의 전압 차로 버스 상태를 나타낸다.[@iso-11898-2-obp-2026] 이 방식은 [[differential-signaling|차동 신호]]에서 다룬다. LIN은 접지를 기준으로 선 하나로 송수신하는 단선 매체를 쓴다.[@iso-17987-4-obp-2025] FlexRay의 전기 물리 계층은 두 선을 매체로 쓰고, 두 선 사이에 차동 전압을 걸어 버스에 신호를 보낸다.[@iso-17458-4-obp-2013]
 
 [[cxpi|CXPI]]는 차량용 저속 단선 네트워크다.[@iso-20794-4-obp-2020] [[k-line|K-Line]] 진단 통신에서 클라이언트와 서버를 잇는 직렬 링크는 K-Line 선과 선택적인 L-Line 선으로 이뤄진다.[@iso-14230-2-obp-2016] Freescale 앱노트에 따르면 [[sae-j1850|J1850]]의 두 구현 가운데 VPW(Variable Pulse Width Modulation)는 단선 버스이고, PWM(Pulse Width Modulation)은 2선 버스다.[@freescale-an1731-2004]
 
@@ -41,7 +41,7 @@ LIN의 비트율은 최대 20 kbit/s이며, LIN은 차량의 저비용·저속 �
 
 CXPI는 비트율을 20 kbit/s까지 지원한다.[@iso-20794-4-obp-2020]
 
-Bosch CAN 2.0 규격은 자동차 전자 장치를 1 Mbit/s까지의 비트율로 CAN에 잇는 예를 든다.[@bosch-can-2-0-1991] 저속 내결함성 CAN은 비트율 $R_\mathrm{b}$가 $40\,\mathrm{kbit/s} < R_\mathrm{b} \le 125\,\mathrm{kbit/s}$인 범위에서 쓴다.[@iso-11898-3-obp-2006]
+Bosch CAN 2.0 규격은 자동차 전자 장치를 1 Mbit/s까지의 비트율로 CAN에 잇는 예를 든다.[@bosch-can-2-0-1991] [[can-physical-layer#저속 내결함성 CAN|저속 내결함성 CAN]]은 비트율 $R_\mathrm{b}$가 $40\,\mathrm{kbit/s} < R_\mathrm{b} \le 125\,\mathrm{kbit/s}$인 범위에서 쓴다.[@iso-11898-3-obp-2006]
 
 FlexRay의 비트율은 최대 10 Mbit/s이며, FlexRay는 차량의 고속 제어 응용을 위한 것이다.[@iso-17458-4-obp-2013] FlexRay는 10 Mbit/s 데이터율을 중심으로 정해졌지만, 물리 계층은 비트율 $R_\mathrm{b}$가 $2.5\,\mathrm{Mbit/s} \le R_\mathrm{b} \le 10\,\mathrm{Mbit/s}$인 시스템에서도 제대로 동작한다.[@iso-17458-5-obp-2013]
 

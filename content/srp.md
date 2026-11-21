@@ -12,7 +12,7 @@ verified: 2026-09-29
 
 ## MRP 응용
 
-IEEE 802.1ak-2007이 정한 MRP(Multiple Registration Protocol)는 MRP 응용의 참여자가 브리지로 이어진 LAN의 다른 참여자에게 속성을 등록하게 했다. 이 개정은 응용으로 [[virtual-lan|VLAN]]을 등록하는 MVRP(Multiple VLAN Registration Protocol)와 그룹 MAC(Medium Access Control) 주소를 등록하는 MMRP(Multiple MAC Registration Protocol) 둘을 정했다.[@ieee-802-1ak-project-2015] IEEE 802.1Q-2022는 MVRP와 MMRP도 정한다.[@ieee-802-1q-2022] EtherType은 SRP가 `0x22EA`, MVRP가 `0x88F5`, MMRP가 `0x88F6`이다.[@ieee-ra-ethertype-2024]
+IEEE 802.1ak-2007이 정한 MRP(Multiple Registration Protocol)는 MRP 응용의 참여자가 브리지로 이어진 LAN의 다른 참여자에게 속성을 등록하게 했다. 이 개정은 응용으로 [[virtual-lan|VLAN]]을 등록하는 MVRP(Multiple VLAN Registration Protocol)와 그룹 [[mac-address|MAC 주소]]를 등록하는 MMRP(Multiple MAC Registration Protocol) 둘을 정했다.[@ieee-802-1ak-project-2015] IEEE 802.1Q-2022는 MVRP와 MMRP도 정한다.[@ieee-802-1q-2022] EtherType은 SRP가 `0x22EA`, MVRP가 `0x88F5`, MMRP가 `0x88F6`이다.[@ieee-ra-ethertype-2024]
 
 IEEE 802.1Q의 MRP에서 참여자는 속성을 선언하거나 철회하고, 선언을 받은 다른 참여자는 그 속성을 등록하거나 등록을 푼다. 브리지 포트에 등록된 속성은 활성 토폴로지에 든 그 브리지의 다른 포트에서 다시 선언되므로, 선언은 응용의 모든 참여자에게 퍼진다. IEEE 802.1Q-2022는 MMRP, MVRP에 이어 MSRP(Multiple Stream Registration Protocol)를 MRP 응용으로 정하며, MSRP는 데이터 스트림의 특성을 등록하고 예약 요청을 퍼뜨려, QoS를 보장하도록 브리지 자원을 예약한다.[@ieee-802-1q-2022]
 
@@ -34,7 +34,7 @@ IEEE 802.1Q-2022는 MSRP 선언을 다섯 가지로 나눈다. talker의 선언�
 - **Listener Ready Failed**: 둘 이상의 listener가 스트림을 요청했고, 적어도 하나는 받을 수 있지만 하나 이상은 대역폭이나 자원 문제로 받을 수 없다.
 - **Listener Asking Failed**: 스트림을 요청한 listener 가운데 어느 것도 대역폭이나 자원 문제로 스트림을 받을 수 없다.[@ieee-802-1q-2022]
 
-이 표준은 **StreamID**를 스트림을 유일하게 가리는 64비트 필드로 정의하며, StreamID는 talker 등록을 그에 맞는 listener 등록과 짝짓는 데 쓰인다. StreamID는 스트림을 내보내는 talker에 연관된 48비트 [[mac-address|MAC 주소]]와, 같은 talker가 내보내는 여러 스트림을 가리는 16비트 Unique ID로 이루어진다.[@ieee-802-1q-2022]
+이 표준은 **StreamID**를 스트림을 유일하게 가리는 64비트 필드로 정의하며, StreamID는 talker 등록을 그에 맞는 listener 등록과 짝짓는 데 쓰인다. StreamID는 스트림을 내보내는 talker에 연관된 48비트 MAC 주소와, 같은 talker가 내보내는 여러 스트림을 가리는 16비트 Unique ID로 이루어진다.[@ieee-802-1q-2022]
 
 ![[diagrams/srp-stream-id-fields.svg]]
 

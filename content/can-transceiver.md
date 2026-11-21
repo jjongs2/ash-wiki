@@ -39,11 +39,11 @@ MCP2551은 슬루율 제어 모드에서 RFI(Radio Frequency Interference) 방�
 
 ## SIC와 FAST 모드
 
-ISO 11898-2:2026은 SIC 모드와 FAST 모드를 갖춘 PMA를 Annex A에 따로 규정한다.[@iso-11898-2-obp-2026]
+ISO 11898-2:2026은 SIC(Signal Improvement Capability) 모드와 FAST 모드를 갖춘 PMA를 Annex A에 따로 규정한다.[@iso-11898-2-obp-2026]
 
 ### SIC
 
-이 표준은 **SIC**(Signal Improvement Capability)를 MDI(Medium Dependent Interface)의 링잉을 억제하는 능력으로 정의한다. 이 표준은 dominant나 [[dominant-and-recessive#트랜시버 모드와 버스 상태|level_0]]에서 recessive로 넘어갈 때 정해진 시간 동안 공칭보다 낮은 임피던스로 구동하는 중간 출력을 **active recessive**로, 그 뒤 공칭 임피던스로 구동하는 마지막 출력을 **passive recessive**로 정의한다.[@iso-11898-2-obp-2026]
+이 표준은 **SIC**를 MDI(Medium Dependent Interface)의 링잉을 억제하는 능력으로 정의한다. 이 표준은 dominant나 [[dominant-and-recessive#트랜시버 모드와 버스 상태|level_0]]에서 recessive로 넘어갈 때 정해진 시간 동안 공칭보다 낮은 임피던스로 구동하는 중간 출력을 **active recessive**로, 그 뒤 공칭 임피던스로 구동하는 마지막 출력을 **passive recessive**로 정의한다.[@iso-11898-2-obp-2026]
 
 TJA1462는 ISO 11898-2:2024 파라미터 세트 C의 SIC를 갖춰 망의 링잉을 크게 줄이고, 그만큼 더 큰 토폴로지에서도 CAN FD 통신이 안정되게 한다.[@nxp-tja1462-2025]
 
@@ -71,7 +71,7 @@ TI CAN 트랜시버는 전원이 있든 없든 출력 임피던스가 높아, �
 
 ISO 11898-2:2026은 트랜시버가 송수신할 수 있는 모드를 **normal-power mode**로, 웨이크업 패턴(WUP, wake-up pattern)이나 웨이크업 프레임(WUF, wake-up frame)을 받는지 가리는 것 말고는 프레임을 송수신하지 못하는 모드를 **low-power mode**로 정의한다.[@iso-11898-2-obp-2026]
 
-TCAN1042의 Standby 모드에서는 드라이버와 일반 수신기를 끄고 저전력 수신기만 버스를 감시한다. 웨이크업 패턴을 감지하면 RXD를 low로 내려 MCU에 웨이크업 요청을 알린다.[@ti-tcan1042-q1-2021] TJA1042는 Standby 모드에서 버스의 dominant가 정해진 시간보다 오래 이어지면 RXD를 high로 되돌려, 단락된 버스가 웨이크업 요청을 계속 만들지 않게 한다.[@nxp-tja1042-2023]
+TCAN1042의 Standby 모드에서는 드라이버와 일반 수신기를 끄고 저전력 수신기만 버스를 감시한다. 웨이크업 패턴을 감지하면 RXD를 low로 내려 [[microcontroller|MCU]]에 웨이크업 요청을 알린다.[@ti-tcan1042-q1-2021] TJA1042는 Standby 모드에서 버스의 dominant가 정해진 시간보다 오래 이어지면 RXD를 high로 되돌려, 단락된 버스가 웨이크업 요청을 계속 만들지 않게 한다.[@nxp-tja1042-2023]
 
 TJA1462가 받아들이는 웨이크업 패턴은 dominant 구간, recessive 구간, dominant 구간이 차례로 이어진 것이고, 구간마다 정해진 최소 길이를 넘어야 한다. 구간 사이에 끼인 그보다 짧은 dominant나 recessive 비트는 무시하고, 패턴 전체를 정해진 시간 안에 받지 못하면 웨이크업 논리를 초기화한다.[@nxp-tja1462-2025]
 

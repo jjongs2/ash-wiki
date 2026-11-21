@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-06
 ---
 
-**CAN XL**(CAN Extended Data-Field Length)은 [[can|CAN]] 데이터 링크 계층에서 데이터 필드를 2048바이트까지 쓸 수 있게 한 프레임 포맷이다.[@iso-11898-1-obp-2024] CiA는 CAN XL을 classical CAN과 [[can-fd|CAN FD]]에 이은 셋째 세대 CAN 데이터 링크 계층 프로토콜이라 부른다.[@cia-can-history-2026]
+**CAN XL**(CAN Extended Data-Field Length)은 [[can|CAN]] 데이터 링크 계층에서 데이터 필드를 2048바이트까지 쓸 수 있게 한 프레임 포맷이다.[@iso-11898-1-obp-2024] CiA는 CAN XL을 Classical CAN과 [[can-fd|CAN FD]]에 이은 셋째 세대 CAN 데이터 링크 계층 프로토콜이라 부른다.[@cia-can-history-2026]
 
 [[iso-11898-1|ISO 11898-1:2024]]는 classic, CAN FD, CAN XL 프레임 포맷을 모두 지원하는 구현을 [[iso-11898-1#범위|구현 옵션]] 넷째로 둔다.[@iso-11898-1-obp-2024]
 
@@ -15,7 +15,7 @@ verified: 2026-10-06
 
 이 표준은 **XL 프레임 포맷**(XLFF, XL Frame Format)을 11비트 [[can-identifier|식별자]]를 쓰고 데이터를 2048바이트까지 담으며, [[can-fd#두 비트율|데이터 구간]]의 시작과 끝에서 비트율을 바꾸는 데이터 프레임 포맷으로 정의한다. 이 포맷을 쓰는 데이터 프레임은 **XL 프레임**으로 정의한다.[@iso-11898-1-obp-2024] 다른 프레임 포맷과의 비교는 [[can-frame#기본 포맷과 확장 포맷|CAN 프레임]]에서 다룬다.
 
-이 표준은 데이터 링크 계층을 LLC(Logical Link Control)와 MAC(Medium Access Control) 부계층으로 나누고, 둘 사이의 서비스 데이터 단위를 LLC 프레임으로 구현한다. LLC 프레임에는 상위 계층 프로토콜의 설정과 식별 정보를 주는 SDT(Service Data Unit Type)와 VCID(Virtual CAN Channel Identifier)를 두고, 상위 계층 기능을 어떻게 다루는지는 정하지 않는다.[@iso-11898-1-obp-2024]
+이 표준은 데이터 링크 계층을 LLC(Logical Link Control)와 MAC(Medium Access Control) 부계층으로 나누고, 둘 사이의 서비스 데이터 단위를 LLC 프레임으로 구현한다. LLC 프레임에는 [[can-higher-layer-protocol|상위 계층 프로토콜]]의 설정과 식별 정보를 주는 SDT(Service Data Unit Type)와 VCID(Virtual CAN Channel Identifier)를 두고, 상위 계층 기능을 어떻게 다루는지는 정하지 않는다.[@iso-11898-1-obp-2024]
 
 ## 물리 부호화와 트랜시버 모드
 
@@ -27,7 +27,7 @@ verified: 2026-10-06
 
 이 표준은 **protocol exception event**를, 앞으로 나올 새 프레임 포맷을 용인하려고 정해진 규칙에서 벗어나는 것이나 오류 신호를 끈 CAN XL에서 오류에 반응하는 것으로 정의한다. 이 표준은 protocol exception event 뒤에 idle 조건을 기다리는 노드도 [[can-controller#노드 상태|integrating]] 상태에 둔다.[@iso-11898-1-obp-2024]
 
-Bosch의 CAN XL 개요에 따르면 CAN XL에는 오류 신호를 켠 모드와 끈 모드가 있고, 모드는 실행 중에 소프트웨어로 설정하며, 한 네트워크의 노드는 모두 같은 모드를 써야 한다. 오류 신호를 켜면 CAN FD처럼 오류를 [[can-error-frame#오류 플래그|오류 플래그]]로 알리고, 버스에 classical CAN, CAN FD, CAN XL 프레임이 함께 다닐 수 있다. 오류 신호를 끄면 오류를 알리지 않는다. 수신 노드는 오류가 나면 진행 중인 송신이 끝나기를 기다려 다시 통합하고, 송신 노드는 송신 오류를 검사하지 않고 프레임을 끝까지 보낸다. 이 모드는 CAN FD와 호환되지 않아 버스에는 CAN XL 프레임만 다닌다.[@bosch-can-xl-overview-2023]
+Bosch의 CAN XL 개요에 따르면 CAN XL에는 오류 신호를 켠 모드와 끈 모드가 있고, 모드는 실행 중에 소프트웨어로 설정하며, 한 네트워크의 노드는 모두 같은 모드를 써야 한다. 오류 신호를 켜면 CAN FD처럼 오류를 [[can-error-frame#오류 플래그|오류 플래그]]로 알리고, 버스에 Classical CAN, CAN FD, CAN XL 프레임이 함께 다닐 수 있다. 오류 신호를 끄면 오류를 알리지 않는다. 수신 노드는 오류가 나면 진행 중인 송신이 끝나기를 기다려 다시 통합하고, 송신 노드는 송신 오류를 검사하지 않고 프레임을 끝까지 보낸다. 이 모드는 CAN FD와 호환되지 않아 버스에는 CAN XL 프레임만 다닌다.[@bosch-can-xl-overview-2023]
 
 Bosch X_CAN은 오류 신호를 끄는 설정 비트 `EFDI`를 켜면 오류 계수기를 올리지 않고 CAN XL 프레임만 보내며, dominant인 FDF(FD Format) 비트나 XLF(XL Format) 비트를 받으면 [[can-error-detection#다섯 가지 오류|형식 오류]]로 다룬다.[@bosch-x-can-2024]
 
@@ -62,7 +62,7 @@ CAN XL은 버스 접근 우선순위를 정하는 짧은 11비트 우선순위 I
 
 ## CAN FD와 섞어 쓰기
 
-CAN FD 프레임의 res 비트는 앞으로의 프로토콜 확장을 위해 남겨 둔 비트다. CAN FD 노드는 이 비트가 0이면 CAN FD 프레임을 기대하고, 1이면 수동으로 기다리는 버스 통합 상태에 들어가 recessive 11비트를 보고 CAN XL 프레임이 끝나면 통합을 마친다. 그래서 CAN FD 노드와 CAN XL 노드를 한 버스에 섞어 쓸 수 있고, 이때 CAN XL은 SIC(Signal Improvement Capability) 모드로만 동작해 트랜시버 모드를 바꾸지 않는다. 섞어 쓰려면 CAN XL의 오류 신호를 켜야 한다.[@bosch-can-xl-overview-2023]
+[[can-fd-frame|CAN FD 프레임]]의 res 비트는 앞으로의 프로토콜 확장을 위해 남겨 둔 비트다. CAN FD 노드는 이 비트가 0이면 CAN FD 프레임을 기대하고, 1이면 수동으로 기다리는 버스 통합 상태에 들어가 recessive 11비트를 보고 CAN XL 프레임이 끝나면 통합을 마친다. 그래서 CAN FD 노드와 CAN XL 노드를 한 버스에 섞어 쓸 수 있고, 이때 CAN XL은 SIC(Signal Improvement Capability) 모드로만 동작해 트랜시버 모드를 바꾸지 않는다. 섞어 쓰려면 CAN XL의 오류 신호를 켜야 한다.[@bosch-can-xl-overview-2023]
 
 ## 비트율
 
@@ -85,9 +85,9 @@ XS_CAN의 프로토콜 컨트롤러는 클록 160 MHz에서 CAN XL 데이터 구
 
 ## 제품 예
 
-Bosch X_CAN은 CAN XL을 지원하는 CAN 통신 컨트롤러 IP(Intellectual Property)로, [[system-on-chip|SoC]]에 넣을 수 있다. ISO 11898-1:2015와 CiA 610-1을 따르고, classical CAN은 8바이트·1 Mbit/s까지, CAN FD는 64바이트·8 Mbit/s까지, CAN XL은 2048바이트·20 Mbit/s까지 지원한다. 슬롯을 32개까지 둘 수 있는 우선순위 큐 1개와, 큐마다 메시지를 1024개까지 담는 송신 FIFO 큐와 수신 FIFO 큐를 8개씩 두고, 송신 필터 요소는 16개, 수신 필터 요소는 255개까지 둔다.[@bosch-x-can-2024]
+Bosch X_CAN은 CAN XL을 지원하는 CAN 통신 컨트롤러 IP(Intellectual Property)로, [[system-on-chip|SoC]]에 넣을 수 있다. ISO 11898-1:2015와 CiA 610-1을 따르고, Classical CAN은 8바이트·1 Mbit/s까지, CAN FD는 64바이트·8 Mbit/s까지, CAN XL은 2048바이트·20 Mbit/s까지 지원한다. 슬롯을 32개까지 둘 수 있는 우선순위 큐 1개와, 큐마다 메시지를 1024개까지 담는 송신 FIFO 큐와 수신 FIFO 큐를 8개씩 두고, 송신 필터 요소는 16개, 수신 필터 요소는 255개까지 둔다.[@bosch-x-can-2024]
 
-Bosch XS_CAN은 ISO 11898-1:2024에 따라 classical CAN, CAN FD, CAN XL로 통신하는 CAN 컨트롤러 IP이고, 버스에 이으려면 트랜시버가 따로 필요하다. 송신 FIFO 큐 1개, 수신 FIFO 큐 2개, 슬롯을 32개까지 둘 수 있는 송신 우선순위 큐 1개를 두고, 수신 필터 요소는 127개까지 둔다.[@bosch-xs-can-2026]
+Bosch XS_CAN은 ISO 11898-1:2024에 따라 Classical CAN, CAN FD, CAN XL로 통신하는 CAN 컨트롤러 IP이고, 버스에 이으려면 트랜시버가 따로 필요하다. 송신 FIFO 큐 1개, 수신 FIFO 큐 2개, 슬롯을 32개까지 둘 수 있는 송신 우선순위 큐 1개를 두고, 수신 필터 요소는 127개까지 둔다.[@bosch-xs-can-2026]
 
 ## 개발 경위
 
@@ -101,7 +101,7 @@ CiA 611 시리즈는 상위 계층의 PDU(Protocol Data Unit)를 CAN XL LLC 부�
 
 | 문서                     | 단계                              | 다루는 것                                                                                                                                                                                                                        |
 | ------------------------ | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CiA 611-1 version 2.0.0  | DSP(Draft Specification Proposal) | SDT 필드의 쓰임을 정한다. 내용 기반 주소 지정에 쓰는 SDT, classical CAN이나 CAN FD 프레임을 싣는 SDT, [[ieee-802-3\|IEEE 802.3]] MAC 프레임을 싣는 SDT를 둔다.[@cia-611-2026][@cia-can-xl-2026][@cia-can-community-news-13-2024] |
+| CiA 611-1 version 2.0.0  | DSP(Draft Specification Proposal) | SDT 필드의 쓰임을 정한다. 내용 기반 주소 지정에 쓰는 SDT, Classical CAN이나 CAN FD 프레임을 싣는 SDT, [[ieee-802-3\|IEEE 802.3]] MAC 프레임을 싣는 SDT를 둔다.[@cia-611-2026][@cia-can-xl-2026][@cia-can-community-news-13-2024] |
 | CiA 611-1 version 2.0.1  | WD(Work Draft)                    | version 2.0.0의 뒤 버전으로, 제목은 version 2.0.0과 같다.[@cia-611-2026]                                                                                                                                                         |
 | CiA 611-2 version 1.0.0  | DSP                               | 여러 PDU를 CAN XL 데이터 프레임 하나에 묶어 보내는 multi-PDU 프로토콜을 정한다.[@cia-611-2026]                                                                                                                                   |
 | CiA 612-1 version 0.0.9  | WD                                | 네트워크 설계, 클록 허용 오차, 비트 타이밍 설정, 트랜시버 동작 모드, MAC 프레임 필드의 쓰임, 우선순위 ID[@cia-612-2026]                                                                                                          |

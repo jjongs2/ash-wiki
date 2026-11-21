@@ -23,7 +23,7 @@ SPI는 데이터 선과 따로 클록 선(SCK)을 두고, 마스터가 클록을
 
 I2C는 직렬 데이터 선 SDA와 직렬 클록 선 SCL, 두 선을 쓰고, 전송을 시작하는 controller가 클록 신호를 낸다.[@nxp-um10204-2021]
 
-I2C 명세에 따르면 2선 직렬 버스인 I2C는 연결을 줄여 IC(Integrated Circuit)의 핀과 PCB(Printed Circuit Board) 배선이 적어진다.[@nxp-um10204-2021] TI의 LVDS(Low-Voltage Differential Signaling) 핸드북에 따르면 직렬화기(serializer)는 병렬 데이터를 직렬 스트림으로 바꿔 보내 연결선의 비용과 크기를 줄이고, 넓은 병렬 데이터를 더 적은 수의 전송 선로로 보낼 수 있게 한다.[@ti-slld009-2002]
+I2C 명세에 따르면 2선 직렬 버스인 I2C는 연결을 줄여 IC의 핀과 PCB(Printed Circuit Board) 배선이 적어진다.[@nxp-um10204-2021] TI의 LVDS(Low-Voltage Differential Signaling) 핸드북에 따르면 직렬화기(serializer)는 병렬 데이터를 직렬 스트림으로 바꿔 보내 연결선의 비용과 크기를 줄이고, 넓은 병렬 데이터를 더 적은 수의 전송 선로로 보낼 수 있게 한다.[@ti-slld009-2002]
 
 ## 비동기 전송
 

@@ -12,7 +12,7 @@ verified: 2026-10-06
 
 [[ieee-802-3|IEEE 802.3]]-2022는 1000 Mbit/s를 넘는 속도의 BASE-T1 [[ethernet-phy|PHY]]인 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1을 묶어 **MultiGBASE-T1**이라 부른다. 세 PHY는 PCS(Physical Coding Sublayer), PMA(Physical Medium Attachment), MDI(Medium Dependent Interface) 명세를 함께 쓰는 별개의 PHY 타입이고, 데이터율에 따라 주파수만 비례해 줄인다.[@ieee-802-3-2022] IEEE 802.3cy-2023은 이 정의에, Clause 149가 아닌 Clause 165로 정하는 25 Gbit/s의 25GBASE-T1을 더한다.[@ieee-802-3cy-2023]
 
-IEEE 802.3ch-2020이 2.5, 5, 10 Gbit/s의 차량용 전기 [[ethernet|이더넷]] 물리 계층을 넣었다.[@ieee-802-3ch-2020] IEEE 802.3 Multi-Gig Automotive Ethernet PHY 연구 그룹은 전이중 동작만 지원하고, 차량 환경(EMC(Electromagnetic Compatibility), 온도)에서 동작하며, 선택 사항으로 자동 협상과 [[energy-efficient-ethernet|EEE]]를, 알맞은 매체에서는 Clause 104의 [[podl|PoDL]]을 지원하는 것을 목표로 두었다.[@ieee-802-3ch-objectives-2017]
+IEEE 802.3ch-2020이 2.5, 5, 10 Gbit/s의 차량용 전기 [[ethernet|이더넷]] 물리 계층을 넣었다.[@ieee-802-3ch-2020] IEEE 802.3 Multi-Gig Automotive Ethernet PHY 연구 그룹은 전이중 동작만 지원하고, 차량 환경(EMC(Electromagnetic Compatibility), 온도)에서 동작하며, 선택 사항으로 [[ethernet-phy#자동 협상|자동 협상]]과 [[energy-efficient-ethernet|EEE]]를, 알맞은 매체에서는 Clause 104의 [[podl|PoDL]]을 지원하는 것을 목표로 두었다.[@ieee-802-3ch-objectives-2017]
 
 ## 동작
 
@@ -30,7 +30,7 @@ IEEE 802.3-2022는 2.5GBASE-T1, 5GBASE-T1, 10GBASE-T1이 평형 도체 한 쌍 �
 
 ## 마스터와 슬레이브
 
-이 표준은 MultiGBASE-T1 PHY가 실행 중 설정에 따라 마스터로도 슬레이브로도 동작할 수 있도록 정한다. 마스터는 로컬 클럭으로, 슬레이브는 받은 신호에서 복구한 클럭으로 송신 타이밍을 정한다. Clause 98의 [[ethernet-phy#자동 협상|자동 협상]]은 선택 사항이며, 쓰면 그 과정에서 두 PHY의 역할이 정해진다. 쓰지 않으면 관리나 하드웨어 설정으로 역할을 정하고, PHY Link Synchronization 기능으로 마스터와 슬레이브를 맞춘다.[@ieee-802-3-2022]
+이 표준은 MultiGBASE-T1 PHY가 실행 중 설정에 따라 마스터로도 슬레이브로도 동작할 수 있도록 정한다. 마스터는 로컬 클럭으로, 슬레이브는 받은 신호에서 복구한 클럭으로 송신 타이밍을 정한다. Clause 98의 자동 협상은 선택 사항이며, 쓰면 그 과정에서 두 PHY의 역할이 정해진다. 쓰지 않으면 관리나 하드웨어 설정으로 역할을 정하고, PHY Link Synchronization 기능으로 마스터와 슬레이브를 맞춘다.[@ieee-802-3-2022]
 
 ## EEE와 OAM
 

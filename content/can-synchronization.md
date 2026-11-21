@@ -35,7 +35,7 @@ PHASE_SEG를 늘리거나 줄이는 양의 상한을 **SJW**(Synchronization Jum
 - 하드 동기화를 한 비트 시간에는 재동기화하지 않는다.[@microchip-mcp2515-2019]
 - dominant 비트를 보내는 노드는 위상 오차가 양수인 에지로는 재동기화하지 않는다.[@bosch-can-2-0-1991]
 
-Bosch CAN FD 1.0은 이 규칙을 세 군데 바꾼다. 동기화는 한 비트 시간이 아니라 두 샘플 포인트 사이에 한 번만 한다. 하드 동기화는 버스 idle뿐 아니라 [[can-fault-confinement#상태마다 할 수 있는 일|송신 정지]] 중, [[can-frame#프레임 사이|인터미션]]의 둘째·셋째 비트의 recessive에서 dominant로 바뀌는 에지와, CAN FD 포맷 프레임의 [[can-fd-frame#포맷 표시 비트|EDL]]에서 [[can-fd-frame#제어 필드|r0]]으로 넘어가는 에지에서도 한다. 송신 노드는 CAN FD의 데이터 구간에서 송신하는 동안 재동기화하지 않는다.[@bosch-can-fd-1-0-2012]
+Bosch CAN FD 1.0은 이 규칙을 세 군데 바꾼다. 동기화는 한 비트 시간이 아니라 두 샘플 포인트 사이에 한 번만 한다. 하드 동기화는 버스 idle뿐 아니라 [[can-fault-confinement#상태마다 할 수 있는 일|송신 정지]] 중, [[can-frame#프레임 사이|인터미션]]의 둘째·셋째 비트의 recessive에서 dominant로 바뀌는 에지와, CAN FD 포맷 프레임의 [[can-fd-frame#포맷 표시 비트|EDL]]에서 [[can-fd-frame#제어 필드|r0]]으로 넘어가는 에지에서도 한다. 송신 노드는 CAN FD의 [[can-fd#두 비트율|데이터 구간]]에서 송신하는 동안 재동기화하지 않는다.[@bosch-can-fd-1-0-2012]
 
 ## 발진기 허용 오차
 
