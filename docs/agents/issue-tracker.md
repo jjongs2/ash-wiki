@@ -24,22 +24,28 @@ GitHub의 기본 issue dependencies 기능을 사용한다. UI에서도 보인�
 
 ## 보드
 
-triage를 거쳐 티켓이 되기 전의 발견 세 종류, 규약 검토, 용어 표기, 보강의 후속은 이슈 대신 [ash-wiki 보드](https://github.com/users/jjongs2/projects/4)(번호 4)의 draft로 둔다. 보드는 공개이고 이 저장소에 연결되어 있다. 발견 하나가 draft 하나다.
+triage를 거쳐 티켓이 되기 전의 발견 세 종류는 이슈 대신 [ash-wiki 보드](https://github.com/users/jjongs2/projects/4)(번호 4)의 draft로 둔다. 보드는 공개이고 이 저장소에 연결되어 있다. 발견 하나가 draft 하나다.
+
+| 종류        | 무엇                                                                        | 제목 접두사 |
+| ----------- | --------------------------------------------------------------------------- | ----------- |
+| 규약 검토   | PR 안에서 고치기보다 규약부터 다시 정해야 하는 항목                         | `docs:`     |
+| 용어 표기   | 용어 선택이 갈려 소유자의 결정이 필요한 항목                                | `term:`     |
+| 보강의 후속 | 보강이 티켓에 싣지 못한 후속과, 재조사의 `범위 밖`(게시된 페이지의 고칠 곳) | `content:`  |
 
 ### 필드
 
-| 필드      | 값                                                                              | 고르는 법                                                                                                                                                                                                                                                 |
-| --------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Status`  | `Inbox`, `Ticketed`, `Dropped`                                                  | 만들 때 `Inbox`. draft에는 라벨이 없어 `needs-triage` 대신 이 값을 쓴다. 나머지는 [triage](#triage)가 쓴다                                                                                                                                                |
-| `Origin`  | `wiki-ingest`, `wiki-verify`, `wiki-lint`, `wiki-reader-testing`, `wiki-enrich` | 항목이 나온 흐름. 검토 절에서 나온 항목은 그 검토를 돌린 흐름이다. 소유자가 직접 올린 항목은 비운다                                                                                                                                                       |
-| `Affects` | 텍스트                                                                          | 고침이 놓일 문서나 주제 하나. 규약 검토는 규칙 파일(예: `docs/wiki-conventions.md`), 보강의 후속은 주제 태그(예: `hardware/ee-architecture`)다. 용어 표기는 고침이 늘 [용어 표기 결정](../wiki-terms.md) 목록이라 비운다. 슬러그 목록은 Evidence에만 둔다 |
-| `Ticket`  | 텍스트                                                                          | 이 draft를 흡수한 이슈의 URL. 텍스트 필드는 `#N`을 링크로 바꾸지 않는다                                                                                                                                                                                   |
+| 필드      | 값                                                                              | 고르는 법                                                                                                                                                                                                                                                                                                         |
+| --------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Status`  | `Inbox`, `Ticketed`, `Dropped`                                                  | 만들 때 `Inbox`. draft에는 라벨이 없어 `needs-triage` 대신 이 값을 쓴다. 나머지는 [triage](#triage)가 쓴다                                                                                                                                                                                                        |
+| `Origin`  | `wiki-ingest`, `wiki-verify`, `wiki-lint`, `wiki-reader-testing`, `wiki-enrich` | 항목이 나온 흐름. 검토 절에서 나온 항목은 그 검토를 돌린 흐름이다. 소유자가 직접 올린 항목은 비운다                                                                                                                                                                                                               |
+| `Affects` | 텍스트                                                                          | 고침이 놓일 문서나 주제 하나. 규약 검토는 규칙 파일(예: `docs/wiki-conventions.md`), 보강의 후속은 주제 태그(예: `hardware/ee-architecture`)이고, 재조사의 `범위 밖`은 그 `verify:` 이슈의 주제 태그다. 용어 표기는 고침이 늘 [용어 표기 결정](../wiki-terms.md) 목록이라 비운다. 슬러그 목록은 Evidence에만 둔다 |
+| `Ticket`  | 텍스트                                                                          | 이 draft를 흡수한 이슈의 URL. 텍스트 필드는 `#N`을 링크로 바꾸지 않는다                                                                                                                                                                                                                                           |
 
 [`Inbox` 뷰](https://github.com/users/jjongs2/projects/4/views/3)는 `Status=Inbox`인 draft를 `Origin`으로 묶은 표다. 보관(archive)은 하지 않는다. 처리한 draft는 이 뷰에서 저절로 빠지고, 기록은 `status:Ticketed` 같은 필터로 본다.
 
 ### draft 꼴
 
-- 제목은 `<접두사>: <지금 일어나는 일>` 명사구다. 접두사는 `docs:`(규약 검토), `term:`(용어 표기), `content:`(보강의 후속)다. 예: `term: secure·protect의 "지키다"·"보호하다" 혼용`
+- 제목은 `<접두사>: <지금 일어나는 일>` 명사구다. 접두사는 위 종류 표에 있다. 예: `term: secure·protect의 "지키다"·"보호하다" 혼용`
 - 본문은 ticket-runner의 [Note 꼴](https://github.com/jjongs2/ticket-runner/blob/main/docs/templates/note-comment.md)에서 `**Evidence**:`, `**Impact**:`, `**Next**:` 세 칸을 쓴다. Next는 뺄 수 있다. 굵은 요약 줄은 제목으로 올리고, 표식 줄과 `From` 줄은 `Origin`이 대신한다.
   - Evidence: 어디서 무엇을 봤는지. 걸린 페이지의 슬러그는 `` `<슬러그>` ``로 적는다. [찾기](#찾기)가 이 꼴로 찾는다
   - Impact: 독자나 다음 흐름이 겪는 일
@@ -60,15 +66,14 @@ gh project item-edit --project-id PVT_kwHOBbs_rM4BslPJ --id <항목 ID> --field-
 
 첫 줄이 돌려준 ID가 `<항목 ID>`다. 둘째 줄은 `Status=Inbox`다. `Origin`이나 `Affects`가 비면 그 줄을 뺀다. `gh project item-create`는 본문을 파일로 받지 못해 쓰지 않는다.
 
-| `Origin` 값           | 값 ID      |
-| --------------------- | ---------- |
-| `wiki-ingest`         | `69c61930` |
-| `wiki-verify`         | `4b15ee5c` |
-| `wiki-lint`           | `955222c6` |
-| `wiki-reader-testing` | `7938b128` |
-| `wiki-enrich`         | `8d6101cd` |
+보드의 ID는 `PVT_kwHOBbs_rM4BslPJ`이고, 필드와 값의 ID는 아래와 같다.
 
-`Status`의 필드 ID는 `PVTSSF_lAHOBbs_rM4BslPJzhqyvGc`, 값 ID는 `Inbox` `248aadec`, `Ticketed` `4ec56be8`, `Dropped` `1d040bb3`이다. `Ticket`의 필드 ID는 `PVTF_lAHOBbs_rM4BslPJzhqyvTo`다.
+| 필드      | 필드 ID                          | 값과 값 ID                                                                                                                             |
+| --------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `Status`  | `PVTSSF_lAHOBbs_rM4BslPJzhqyvGc` | `Inbox` `248aadec`, `Ticketed` `4ec56be8`, `Dropped` `1d040bb3`                                                                        |
+| `Origin`  | `PVTSSF_lAHOBbs_rM4BslPJzhqyvQE` | `wiki-ingest` `69c61930`, `wiki-verify` `4b15ee5c`, `wiki-lint` `955222c6`, `wiki-reader-testing` `7938b128`, `wiki-enrich` `8d6101cd` |
+| `Affects` | `PVTF_lAHOBbs_rM4BslPJzhqyvRU`   | 텍스트                                                                                                                                 |
+| `Ticket`  | `PVTF_lAHOBbs_rM4BslPJzhqyvTo`   | 텍스트                                                                                                                                 |
 
 ### 찾기
 
@@ -88,7 +93,7 @@ gh project item-list 4 --owner jjongs2 --limit 500 --format json --query 'status
   gh project item-edit --project-id PVT_kwHOBbs_rM4BslPJ --id <항목 ID> --field-id PVTSSF_lAHOBbs_rM4BslPJzhqyvGc --single-select-option-id 4ec56be8
   ```
 
-- 버리는 draft는 `Status`를 `Dropped`(`1d040bb3`)로 둔다.
+- 버리는 draft는 `Status`를 `Dropped`로 둔다.
 - 용어 표기의 소유자 결정은 triage가 낸 티켓에 "소유자 결정:"으로 시작하는 코멘트로 적는다. draft에는 코멘트도 번호도 없기 때문이다. [용어 표기 결정](../wiki-terms.md) 목록의 줄은 그 티켓이나 적용 PR의 번호를 단다.
 
 ## Pull request를 triage 대상으로 다룰지 여부

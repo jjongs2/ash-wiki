@@ -94,6 +94,6 @@ PR-body 스킬(`mattpocock-skills:pr`)의 꼴로 씁니다. 저장소는 두 가
 
 그 밖의 이슈는 PR 타입을 접두사로 씁니다(`feat`, `docs`, `chore` 등).
 
-triage를 거쳐 티켓이 되기 전의 발견 세 종류는 이슈로 내지 않고 [보드](docs/agents/issue-tracker.md#보드)의 draft로 둡니다. PR 안에서 고치기보다 규약부터 다시 정해야 하는 항목(규약 검토), 용어 선택이 갈려 소유자의 결정이 필요한 항목(용어 표기), 보강이 티켓에 싣지 못한 후속입니다. draft의 꼴과 triage는 그 절을 따릅니다.
+triage를 거쳐 티켓이 되기 전의 규약 검토, 용어 표기, 보강의 후속은 이슈로 내지 않고 [보드](docs/agents/issue-tracker.md#보드)의 draft로 둡니다. 무엇이 어느 종류인지와 draft의 꼴, triage는 그 절을 따릅니다.
 
 `gh` 사용법은 [이슈 트래커](docs/agents/issue-tracker.md), 라벨은 [triage 라벨](docs/agents/triage-labels.md)을 참고하세요.
