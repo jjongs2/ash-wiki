@@ -8,7 +8,7 @@ verified: 2026-11-21
 
 ETSI TS 102 940 V2.1.1은 ITS(Intelligent Transport System) 통신의 보안 구조를 정하고, 그 안에서 식별자·인증서 관리, [[public-key-infrastructure|PKI]] 절차와 인터페이스, 신뢰 수립의 기본 정책을 다룬다.[@etsi-ts-102-940-2021]
 
-ETSI TS 102 941 V2.2.1은 CAM과 DENM 같은 방송 응용에 기밀성 없이 인증, 인가, 무결성을 요구하고, 송신자가 AT(Authorization Ticket)로 서명해 이를 얻도록 정한다. 이 명세는 ITS 안전 메시지에 임시 식별자를 써 가명성을 주도록 하고, PKI 기관의 역할을 ITS-S(ITS Station)의 고유 식별자를 확인하는 EA(Enrolment Authority)와 서비스를 인가하고 관리하는 AA(Authorization Authority)로 나눈다.[@etsi-ts-102-941-2022]
+ETSI TS 102 941 V2.2.1은 [[cooperative-awareness-message|CAM]]과 [[decentralized-environmental-notification-message|DENM]] 같은 방송 응용에 기밀성 없이 인증, 인가, 무결성을 요구하고, 송신자가 AT(Authorization Ticket)로 서명해 이를 얻도록 정한다. 이 명세는 ITS 안전 메시지에 임시 식별자를 써 가명성을 주도록 하고, PKI 기관의 역할을 ITS-S(ITS Station)의 고유 식별자를 확인하는 EA(Enrolment Authority)와 서비스를 인가하고 관리하는 AA(Authorization Authority)로 나눈다.[@etsi-ts-102-941-2022]
 
 ETSI TS 103 097 V2.2.1은 보안 헤더와 인증서 형식을 [[ieee-1609|IEEE 1609.2-2025]]를 기본 표준으로 삼는 프로파일로 정한다.[@etsi-ts-103-097-2026]
 
@@ -73,4 +73,4 @@ CAM 보안 프로파일에서 서명자(signer)는 기본으로 인증서 digest
 
 NHTSA는 2017년 차량 간 통신을 의무로 두자는 제안 규칙에서, Security Credential Management System에 바탕한 PKI [[digital-signature|디지털 서명]]으로 basic safety message를 서명하고 검증하는 메시지 인증 방식을 의무로 두자고 제안했다.[@nhtsa-v2v-nprm-2017]
 
-NXP SXF1800은 IEEE 1609.2와 ETSI TS 103 097에 따른 암호 서비스를 주는 V2X secure element다.[@nxp-sxf1800-2026] NXP SAF5400은 초당 메시지 2000개까지 ECDSA 서명을 검증한다.[@nxp-saf5400-2026]
+NXP SXF1800은 IEEE 1609.2와 ETSI TS 103 097에 따른 암호 서비스를 주는 [[v2x|V2X]] secure element다.[@nxp-sxf1800-2026] NXP SAF5400은 초당 메시지 2000개까지 ECDSA 서명을 검증한다.[@nxp-saf5400-2026]
