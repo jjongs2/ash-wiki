@@ -25,7 +25,7 @@
 
   <!-- 왕복 시간 -->
   <line x1="192" y1="170" x2="348" y2="170" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
-  <text x="270" y="162" text-anchor="middle" fill="var(--text, #727981)">Δ<tspan font-style="italic">t</tspan></text>
+  <text x="270" y="162" text-anchor="middle" fill="var(--text, #727981)"><tspan font-style="italic">t</tspan></text>
   <g font-size="12" fill="var(--text, #727981)">
     <text x="470" y="150" text-anchor="end">시간</text>
     <text x="310" y="206" text-anchor="middle">onsemi 백서에 따른 direct ToF</text>

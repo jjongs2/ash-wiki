@@ -26,15 +26,15 @@
     <line x1="112" y1="74" x2="112" y2="170" />
     <line x1="148" y1="74" x2="148" y2="170" />
     <line x1="184" y1="74" x2="184" y2="170" />
-    <line x1="256" y1="144" x2="256" y2="170" />
-    <line x1="328" y1="144" x2="328" y2="170" />
+    <line x1="256" y1="154" x2="256" y2="170" />
+    <line x1="328" y1="154" x2="328" y2="170" />
   </g>
 
   <!-- 기어 -->
   <g fill="var(--text, #727981)">
     <text x="40" y="34">v1.0과 v1.1의 하향 속도 기어</text>
-    <text x="328" y="96" text-anchor="end">v2.0이 더한</text>
-    <text x="328" y="114" text-anchor="end">하향 속도 기어</text>
+    <text x="328" y="90" text-anchor="end">v2.0이 더한</text>
+    <text x="328" y="106" text-anchor="end">하향 속도 기어</text>
   </g>
   <g fill="var(--ink, #727981)">
     <circle cx="58" cy="70" r="4" />
@@ -42,8 +42,8 @@
     <circle cx="112" cy="70" r="4" />
     <circle cx="148" cy="70" r="4" />
     <circle cx="184" cy="70" r="4" />
-    <circle cx="256" cy="140" r="4" />
-    <circle cx="328" cy="140" r="4" />
+    <circle cx="256" cy="150" r="4" />
+    <circle cx="328" cy="150" r="4" />
   </g>
   <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
     <text x="58" y="58">2</text>
@@ -51,7 +51,7 @@
     <text x="112" y="58">8</text>
     <text x="148" y="58">12</text>
     <text x="184" y="58">16</text>
-    <text x="256" y="130">24</text>
-    <text x="328" y="130">32</text>
+    <text x="256" y="138">24</text>
+    <text x="328" y="138">32</text>
   </g>
 </svg>
