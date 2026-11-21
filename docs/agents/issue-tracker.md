@@ -94,7 +94,7 @@ gh project item-list 4 --owner jjongs2 --limit 500 --format json --query 'status
   ```
 
 - 버리는 draft는 `Status`를 `Dropped`로 둔다.
-- 용어 표기의 소유자 결정은 triage가 낸 티켓에 "소유자 결정:"으로 시작하는 코멘트로 적는다. draft에는 코멘트도 번호도 없기 때문이다. [용어 표기 결정](../wiki-terms.md) 목록의 줄은 그 티켓이나 적용 PR의 번호를 단다.
+- 용어 표기의 소유자 결정은 triage가 낸 티켓에 요구로 적는다. draft에는 번호가 없어, [용어 표기 결정](../wiki-terms.md) 목록의 줄은 그 티켓이나 적용 PR의 번호를 단다.
 
 ## Pull request를 triage 대상으로 다룰지 여부
 
