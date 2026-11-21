@@ -39,6 +39,6 @@ Renesas R-Car S4, NXP S32G2, TI TDA4VM의 코어 구성은 다음과 같다. 세
 
 ## 외부 차량 MCU와의 차이
 
-TI 백서에 따르면 외부 차량 MCU는 내장 플래시를 써서 플래시가 커질수록 MCU 값이 크게 오르고, 응용 프로세서와 직렬 인터페이스 같은 외부 인터페이스로 통신한다. 이와 달리 Jacinto 7에 넣은 MCU는 외부 플래시를 쓰고, 칩 안의 IPC(inter-processor communication)로 더 빠르고 안전하게 통신한다.[@ti-spry337-2020]
+TI 백서에 따르면 외부 차량 MCU는 내장 [[flash-memory|플래시]]를 써서 플래시가 커질수록 MCU 값이 크게 오르고, 응용 프로세서와 직렬 인터페이스 같은 외부 인터페이스로 통신한다. 이와 달리 Jacinto 7에 넣은 MCU는 외부 플래시를 쓰고, 칩 안의 IPC(inter-processor communication)로 더 빠르고 안전하게 통신한다.[@ti-spry337-2020]
 
 ![[diagrams/external-vehicle-mcu-jacinto-7-mcu.svg]]

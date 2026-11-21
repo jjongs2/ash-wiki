@@ -30,7 +30,7 @@ TI 백서에 따르면 lockstep은 어떤 회로의 failure를 그 회로가 쓰
 
 AURIX TC3xx는 제품에 따라 CPU를 넷까지 lockstep으로 지키고, lockstep으로 지킨 CPU에서는 CPU를 주기적으로 시험하는 소프트웨어 자체 시험 없이 [[automotive-safety-integrity-level|ASIL]] D 응용까지 돌릴 수 있다.[@infineon-aurix-tc3xx-an0001-2025]
 
-TI Hercules의 RM4x와 TMS570 MCU는 safe island라는 안전 구조 개념을 함께 쓴다. 이 개념은 소프트웨어가 바르게 돌려면 꼭 있어야 하는 요소인 전원·클록·리셋, CPU, 플래시, SRAM과 그 연결에 상시 도는 하드웨어 [[safety-mechanism|안전 메커니즘]]을 두고, 이 요소들 위에서 도는 소프트웨어로 주변장치 같은 나머지 요소를 진단한다. 그 가운데 CPU에 두는 메커니즘이 lockstep이다.[@ti-spry178-2011]
+TI Hercules의 RM4x와 TMS570 MCU는 safe island라는 안전 구조 개념을 함께 쓴다. 이 개념은 소프트웨어가 바르게 돌려면 꼭 있어야 하는 요소인 전원·클록·리셋, CPU, [[flash-memory|플래시]], SRAM과 그 연결에 상시 도는 하드웨어 [[safety-mechanism|안전 메커니즘]]을 두고, 이 요소들 위에서 도는 소프트웨어로 주변장치 같은 나머지 요소를 진단한다. 그 가운데 CPU에 두는 메커니즘이 lockstep이다.[@ti-spry178-2011]
 
 ## Split-lock
 

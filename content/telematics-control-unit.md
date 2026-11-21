@@ -29,7 +29,7 @@ TCU 설계는 백업 배터리에서 시작하기 좋다. 백업 배터리는 6\
 
 ## 제품 예
 
-Infineon의 TCU 솔루션에서 차량 안 네트워크의 OTA 업데이트는 TRAVEO T2G나 AURIX [[microcontroller|MCU]]가 관리하고, 이 MCU들은 A/B swap을 위한 듀얼 뱅크 플래시와 [[hardware-security-module#EVITA의 HSM 등급|EVITA Full HSM]]을 갖춘다. 플랫폼 보안을 높이고 셀룰러 연결을 지키는 일은 별도 보안 IC인 OPTIGA [[hardware-security-module#TPM과의 차이|TPM]]이 맡는다.[@infineon-telematics-control-unit-2026]
+Infineon의 TCU 솔루션에서 차량 안 네트워크의 OTA 업데이트는 TRAVEO T2G나 AURIX [[microcontroller|MCU]]가 관리하고, 이 MCU들은 A/B swap을 위한 듀얼 뱅크 [[flash-memory|플래시]]와 [[hardware-security-module#EVITA의 HSM 등급|EVITA Full HSM]]을 갖춘다. 플랫폼 보안을 높이고 셀룰러 연결을 지키는 일은 별도 보안 IC인 OPTIGA [[hardware-security-module#TPM과의 차이|TPM]]이 맡는다.[@infineon-telematics-control-unit-2026]
 
 NXP의 S32K3 Automotive T-Box는 S32K344 MCU 기반의 참조 설계로, TCU, 차량 [[gateway|게이트웨이]], 커넥티드 차량 시스템의 개발에 쓰인다. [[ethernet|이더넷]] 포트 7개, CAN/[[can-fd|CAN FD]] 포트 6개, LIN 포트 4개를 두고, 5G와 Wi-Fi 6 모듈을 골라 달 수 있다.[@nxp-s32k3-t-box-2026]
 
