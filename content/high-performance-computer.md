@@ -17,7 +17,7 @@ ISO 17978-1:2026은 **HPC**(High Performance Computer)를 차량 안에서 높�
 
 ## 칩
 
-Renesas R-Car X5H는 ADAS(Advanced Driver Assistance Systems), 인포테인먼트, [[gateway|게이트웨이]] 기능을 칩 하나에 모아, 중앙 집중형 [[electronic-control-unit|ECU]]로 옮겨 가도록 나온 다중 도메인 칩이다. 소프트웨어 격리에 더해 하드웨어 기반 [[freedom-from-interference|freedom from interference]] 기술을 두어, 브레이크 바이 와이어 같은 안전 기능을 안전과 무관한 기능과 떼어 놓는다. 안전 기능에는 저마다 독립된 CPU 코어, 메모리, 인터페이스를 가진 이중화 영역을 따로 줄 수 있다.[@renesas-r-car-x5h-2024]
+Renesas R-Car X5H는 [[adas|ADAS]], 인포테인먼트, [[gateway|게이트웨이]] 기능을 칩 하나에 모아, 중앙 집중형 [[electronic-control-unit|ECU]]로 옮겨 가도록 나온 다중 도메인 칩이다. 소프트웨어 격리에 더해 하드웨어 기반 [[freedom-from-interference|freedom from interference]] 기술을 두어, 브레이크 바이 와이어 같은 안전 기능을 안전과 무관한 기능과 떼어 놓는다. 안전 기능에는 저마다 독립된 CPU 코어, 메모리, 인터페이스를 가진 이중화 영역을 따로 줄 수 있다.[@renesas-r-car-x5h-2024]
 
 NXP S32N55는 중앙 차량 제어기용 프로세서로, 온칩 하드웨어 격리와 가상화를 두고 [[hypervisor#하이퍼바이저의 갈래|Type 1 하이퍼바이저]]를 지원한다. 공유 자원에는 QoS 장치를 두어 통합한 ECU마다 접근과 대역을 보장한다.[@nxp-s32n55fs-2024] S32N5 제품군은 여러 ECU를 한 칩에 통합할 때 ECU마다 런타임 동작 모드, 안전 정지, 리셋을 따로 다룬다.[@nxp-s32n5-2026]
 

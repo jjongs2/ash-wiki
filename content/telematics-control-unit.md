@@ -29,7 +29,7 @@ TCU 설계는 백업 배터리에서 시작하기 좋다. 백업 배터리는 6\
 
 ## 제품 예
 
-Infineon의 TCU 솔루션에서 차량 안 네트워크의 OTA 업데이트는 TRAVEO T2G나 AURIX [[microcontroller|MCU]]가 관리하고, 이 MCU들은 A/B swap을 위한 듀얼 뱅크 플래시와 [[hardware-security-module#EVITA의 HSM 등급|EVITA Full HSM]]을 갖춘다. 플랫폼 보안을 높이고 셀룰러 연결을 지키는 일은 별도 보안 IC인 OPTIGA [[hardware-security-module#TPM과의 차이|TPM]]이 맡는다.[@infineon-telematics-control-unit-2026]
+Infineon의 TCU 솔루션에서 차량 안 네트워크의 OTA 업데이트는 TRAVEO T2G나 AURIX [[microcontroller|MCU]]가 관리하고, 이 MCU들은 [[ab-update|A/B swap]]을 위한 듀얼 뱅크 [[flash-memory|플래시]]와 [[hardware-security-module#EVITA의 HSM 등급|EVITA Full HSM]]을 갖춘다. 플랫폼 보안을 높이고 셀룰러 연결을 지키는 일은 별도 보안 IC인 OPTIGA [[hardware-security-module#TPM과의 차이|TPM]]이 맡는다.[@infineon-telematics-control-unit-2026]
 
 NXP의 S32K3 Automotive T-Box는 S32K344 MCU 기반의 참조 설계로, TCU, 차량 [[gateway|게이트웨이]], 커넥티드 차량 시스템의 개발에 쓰인다. [[ethernet|이더넷]] 포트 7개, CAN/[[can-fd|CAN FD]] 포트 6개, LIN 포트 4개를 두고, 5G와 Wi-Fi 6 모듈을 골라 달 수 있다.[@nxp-s32k3-t-box-2026]
 
@@ -37,6 +37,6 @@ NXP의 S32K3 Automotive T-Box는 S32K344 MCU 기반의 참조 설계로, TCU, �
 
 NXP 백서(2016)에 따르면 그 무렵 흔한 차량 네트워크는 보호되지 않아, TCU나 [[on-board-diagnostics|OBD]] 포트에 들어간 공격자가 위조한 CAN 메시지를 보내 브레이크 같은 안전에 중요한 기능을 조종할 수 있었다.[@nxp-multi-layer-vehicle-security-wp-2016]
 
-이 백서가 제시하는 첫 보호층은 TCU에 Secure Element를 붙여 보안을 더한다. Secure Element는 셀룰러나 Wi-Fi 연결 위에 [[transport-layer-security|TLS]] 같은 바깥과의 종단 간 보안 채널을 맺는 데 쓰이고, 키와 인증서를 지키는 금고 구실도 한다. 둘째 보호층에서는 중앙 게이트웨이 [[electronic-control-unit|ECU]]가 TCU와 OBD를 나머지 네트워크와 갈라 놓고, 차량 네트워크를 [[gateway#네트워크 분리|기능 도메인]]으로 나눈다.[@nxp-multi-layer-vehicle-security-wp-2016]
+이 백서가 제시하는 첫 보호층은 TCU에 Secure Element를 붙여 보안을 더한다. Secure Element는 셀룰러나 Wi-Fi 연결 위에 [[transport-layer-security|TLS]] 같은 바깥과의 종단 간 보안 채널을 맺는 데 쓰이고, 키와 [[public-key-infrastructure#공개 키 인증서|인증서]]를 지키는 금고 구실도 한다. 둘째 보호층에서는 중앙 게이트웨이 [[electronic-control-unit|ECU]]가 TCU와 OBD를 나머지 네트워크와 갈라 놓고, 차량 네트워크를 [[gateway#네트워크 분리|기능 도메인]]으로 나눈다.[@nxp-multi-layer-vehicle-security-wp-2016]
 
 ![[diagrams/tcu-gateway-protection-layers.svg]]
