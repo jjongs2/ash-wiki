@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="1 -1 534.5 153" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="KSS 단계와 DDAW 경고">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 판 -->
+  <text x="20" y="24" fill="var(--text, #727981)">EU 위임 규정 2021/1341, DDAW</text>
+
+  <!-- 경고: 7은 해도 되고 8 이상은 해야 한다 -->
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="390" y="56">경고해도 된다</text>
+    <text x="465" y="56">경고해야 한다</text>
+  </g>
+  <path d="M368 76 v-6 H412 v6" stroke="var(--orange, #b0540d)" stroke-width="1" />
+  <path d="M418 76 v-6 H512 v6" stroke="var(--red, #bb464d)" stroke-width="1" />
+
+  <!-- KSS 9단계: 맞붙는 칸이므로 모서리는 0 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="65" y="82" width="50" height="30" />
+    <rect x="115" y="82" width="50" height="30" />
+    <rect x="165" y="82" width="50" height="30" />
+    <rect x="215" y="82" width="50" height="30" />
+    <rect x="265" y="82" width="50" height="30" />
+    <rect x="315" y="82" width="50" height="30" />
+  </g>
+  <rect x="365" y="82" width="50" height="30" fill="var(--orange-tint, #b0540d)" stroke="var(--orange, #b0540d)" stroke-width="1.5" />
+  <g fill="var(--red-tint, #bb464d)" stroke="var(--red, #bb464d)" stroke-width="1.5">
+    <rect x="415" y="82" width="50" height="30" />
+    <rect x="465" y="82" width="50" height="30" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="90" y="101">1</text>
+    <text x="140" y="101">2</text>
+    <text x="190" y="101">3</text>
+    <text x="240" y="101">4</text>
+    <text x="290" y="101">5</text>
+    <text x="340" y="101">6</text>
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="390" y="101">7</text>
+    <text x="440" y="101">8</text>
+    <text x="490" y="101">9</text>
+  </g>
+
+  <text x="57" y="101" text-anchor="end" fill="var(--text, #727981)">KSS</text>
+
+  <!-- 양 끝의 뜻 -->
+  <g fill="var(--text, #727981)">
+    <text x="65" y="134">1: 아주 또렷이 깨어 있음</text>
+    <text x="515" y="134" text-anchor="end">9: 잠과 싸울 만큼 몹시 졸림</text>
+  </g>
+</svg>

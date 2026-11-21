@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 -1 538.5 214" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="DDAW가 켜지고 정상 동작하는 차속">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 판 -->
+  <text x="20" y="24" fill="var(--text, #727981)">EU 위임 규정 2021/1341, DDAW</text>
+
+  <!-- 차속 축: 1 km/h = 4 단위, 65 km/h = x 180, 70 = 200, 130 = 440. 65 km/h 아래는 끊어 그린다 -->
+  <g text-anchor="end" fill="var(--text, #727981)">
+    <text x="164" y="64.5">자동으로 켜짐</text>
+    <text x="164" y="100.5">켜진 뒤 정상 동작</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="180" y1="106" x2="180" y2="130" />
+    <line x1="200" y1="70" x2="200" y2="130" />
+    <line x1="440" y1="106" x2="440" y2="130" />
+  </g>
+
+  <!-- 범위: 축 위의 구간이므로 모서리는 0. 끝이 열린 범위는 오른쪽 변을 그리지 않는다 -->
+  <rect x="200" y="50" width="300" height="20" fill="var(--surface, none)" />
+  <path d="M500 50 H200 V70 H500" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <rect x="180" y="86" width="260" height="20" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="140" y1="130" x2="159" y2="130" />
+    <line x1="171" y1="130" x2="518" y2="130" marker-end="url(#arrow)" />
+    <path d="M156 136 l6 -12 M168 136 l6 -12" />
+  </g>
+  <path d="M180 130 v5 M200 130 v5 M440 130 v5" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="180" y="149">65</text>
+    <text x="200" y="149">70</text>
+    <text x="440" y="149">130</text>
+    <text x="350" y="169">차속 (km/h)</text>
+  </g>
+
+  <text x="20" y="195" fill="var(--text, #727981)">차량의 최고 허용 속도가 130 km/h보다 낮으면 정상 동작 범위는 그 속도까지다</text>
+</svg>

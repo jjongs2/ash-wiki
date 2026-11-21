@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 3 520 239" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="DMS 카메라 모듈과 DMS ECU의 연결">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 운전자, 근적외선 LED, 이미지 센서, DMS ECU -->
+  <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20.75" y="73.75" width="78.5" height="38.5" rx="2" />
+    <rect x="160.75" y="20.75" width="98.5" height="28.5" rx="2" />
+    <rect x="160.75" y="114.75" width="98.5" height="28.5" rx="2" />
+    <rect x="400.75" y="117.75" width="98.5" height="38.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="60" y="97">운전자</text>
+    <text x="210" y="39">근적외선 LED</text>
+    <text x="210" y="133">이미지 센서</text>
+    <text x="450" y="141">DMS ECU</text>
+  </g>
+
+  <!-- 카메라 모듈: 이미지 센서를 담는 틀 -->
+  <rect x="146.75" y="102.75" width="126.5" height="70.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="210" y="163" text-anchor="middle" fill="var(--text, #727981)">DMS 카메라 모듈</text>
+
+  <!-- 비추고 받는 빛 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M160 35 H60 V72" marker-end="url(#arrow)" />
+    <path d="M60 113 V129 H159" marker-end="url(#arrow)" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="110" y="28">근적외선</text>
+    <text x="110" y="122">반사</text>
+  </g>
+
+  <!-- 동축 케이블 하나로 영상 데이터와 전원 -->
+  <line x1="274" y1="137" x2="400" y2="137" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="302" y1="124" x2="372" y2="124" marker-end="url(#arrow)" />
+    <line x1="372" y1="150" x2="302" y2="150" marker-end="url(#arrow)" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="337" y="115">영상 데이터</text>
+    <text x="337" y="168">전원</text>
+  </g>
+
+  <g fill="var(--text, #727981)">
+    <text x="20" y="206">SerDes 링크: Power-over-Coax를 쓰면 동축 케이블 하나로 영상 데이터와 전원을 함께 나른다</text>
+    <text x="20" y="224">onsemi 레퍼런스 디자인에 따르면 조명은 DMS 카메라에 넣거나 카메라와 따로 둔다</text>
+  </g>
+</svg>

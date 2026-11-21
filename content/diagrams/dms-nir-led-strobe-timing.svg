@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 -1 538.5 243.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="근적외선 LED 펄스와 프레임 노출 시간">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 출처 -->
+  <text x="20" y="24" fill="var(--text, #727981)">onsemi 레퍼런스 디자인</text>
+
+  <!-- 프레임: 한 프레임 = 190 단위(x 130~320, 320~510). LED는 그 3%(5.7 단위)만 켠다 -->
+  <text x="225" y="52" text-anchor="middle" fill="var(--text, #727981)">프레임 시간</text>
+  <path d="M130 64 v-6 H320 v6" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="130" y1="64" x2="130" y2="190" />
+    <line x1="320" y1="64" x2="320" y2="190" />
+    <line x1="510" y1="64" x2="510" y2="190" />
+    <line x1="146" y1="96" x2="146" y2="136" />
+    <line x1="336" y1="96" x2="336" y2="136" />
+  </g>
+
+  <g text-anchor="end" fill="var(--text, #727981)">
+    <text x="114" y="88.5">이미지 센서</text>
+    <text x="114" y="122.5">strobe 신호</text>
+    <text x="114" y="168.5">LED 전류</text>
+  </g>
+
+  <!-- global shutter 이미지 센서의 프레임 노출 시간 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="140" y="74" width="110" height="20" />
+    <rect x="330" y="74" width="110" height="20" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="195" y="88.5">노출 시간</text>
+    <text x="385" y="88.5">노출 시간</text>
+  </g>
+
+  <!-- strobe 신호와 LED 전류 펄스 -->
+  <g stroke="var(--ink, #727981)" stroke-width="3" stroke-linejoin="round">
+    <path d="M130 126 H146 V110 H151.7 V126 H336 V110 H341.7 V126 H510" />
+    <path d="M130 180 H146 V140 H151.7 V180 H336 V140 H341.7 V180 H510" />
+  </g>
+  <text x="162" y="164" fill="var(--text, #727981)">듀티 3%(예)</text>
+
+  <line x1="130" y1="206" x2="518" y2="206" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="320" y="225" text-anchor="middle" fill="var(--text, #727981)">시간</text>
+</svg>
