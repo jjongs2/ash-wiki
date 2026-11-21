@@ -7,7 +7,7 @@ aliases:
 verified: 2026-11-21
 ---
 
-**DENM**(Decentralized Environmental Notification Message)은 도로 위의 해저드나 비정상 교통 상황에 관한 정보(종류, 위치 등)를 담는 메시지다. ITS-S(ITS Station) 응용이 요청하면 [[v2x#Facilities 계층|facilities 계층]]의 DEN(Decentralized Environmental Notification) service가 DENM을 만들고, DENM은 대개 지리적 영역 안의 ITS-S들에 전파된다. DENM이 알리는 사건은 종류, 기준 위치, 감지 시각, 지속 시간으로 나타낸다. 응용은 DENM의 정보를 주로 감지된 사건을 도로 사용자나 자동 운전 시스템에 알리는 데 쓴다.[@etsi-ts-103-831-2025]
+**DENM**(Decentralized Environmental Notification Message)은 도로 위의 hazard나 비정상 교통 상황에 관한 정보(종류, 위치 등)를 담는 메시지다. ITS-S(ITS Station) 응용이 요청하면 [[v2x#Facilities 계층|facilities 계층]]의 DEN(Decentralized Environmental Notification) service가 DENM을 만들고, DENM은 대개 지리적 영역 안의 ITS-S들에 전파된다. DENM이 알리는 사건은 종류, 기준 위치, 감지 시각, 지속 시간으로 나타낸다. 응용은 DENM의 정보를 주로 감지된 사건을 도로 사용자나 자동 운전 시스템에 알리는 데 쓴다.[@etsi-ts-103-831-2025]
 
 ## 쓰는 곳
 

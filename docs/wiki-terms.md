@@ -79,6 +79,7 @@
 - functional cluster, Machine, Software Package, Vehicle Package: 기능 클러스터, 머신, 소프트웨어 패키지, 차량 패키지 (#359). AUTOSAR Adaptive Platform의 이름일 때. 물리 머신, 가상 머신 같은 일반 낱말은 그대로
 - GMII 풀이: 통일하지 않음 (#196). 페이지마다 그대로. `mii`는 Gigabit MII, `1000base-t1`은 Gigabit Media Independent Interface
 - hardware architectural metrics: 하드웨어 아키텍처 메트릭 (#396). 하위 용어(single-point fault, latent fault 등)도 원어로
+- hazard: 해저드, 위험원 (#759). 합성어 포함. 원어 이름이 있으면 그 이름. 예: hazardous event, hazardous situation, hazardous behaviour, hazard rate. 그 밖은 "hazard 분석"처럼 쓴다
 - HD 지도, SD 지도: HD map, SD map (#682)
 - Highway: 고속도로 (#682). UN R171 2.27의 Highway일 때. 첫 등장에 정의(보행자·자전거 금지, 반대 방향의 물리적 분리)를 풀어 쓴다
 - HLC 풀이 high level communication: 고수준 통신, 고수준 통신(HLC) (#759)
@@ -150,7 +151,7 @@
 - 단계적 배포: phased rollout (#432)
 - 단위 테스트: 유닛 테스트 (#291)
 - 대칭 키: 대칭키 (#288)
-- 리스크: 위험 (#441). risk를 옮길 때. 합성어 포함. 예: 리스크 평가, 리스크 주도, 리스크 등급. hazard는 "해저드"(#759), 일반 낱말("위험하다", "충돌 위험", "단편화 위험")은 그대로
+- 리스크: 위험 (#441). risk를 옮길 때. 합성어 포함. 예: 리스크 평가, 리스크 주도, 리스크 등급. hazard는 원어(#759), 일반 낱말("위험하다", "충돌 위험", "단편화 위험")은 그대로
 - 리프 노드: 잎 노드 (#250)
 - 메타모픽 테스트: 변성 테스트 (#385). metamorphic testing일 때. metamorphic relation은 "메타모픽 관계"
 - 모니터 IC: 감시 IC (#759). 배터리 모니터 IC일 때
@@ -211,7 +212,6 @@
 - 프레임 간 공간: 인터프레임 공간 (#68). 원어는 병기하지 않는다.
 - 플래시: Flash (#257). 일반 낱말일 때. 모듈과 구성 요소의 이름(Fls(Flash Driver), Flash EEPROM Emulation, Flashing Adapter)은 예외
 - 하위 호환: 역호환 (#257)
-- 해저드: 위험원 (#759). hazard를 옮길 때
 - 행위 주도 개발: 행동 주도 개발 (#385)
 - 형식 오류: 폼 오류 (#441). CAN의 form error일 때
 - 획득자: 구매자 (#394). acquirer일 때. ISO/IEC/IEEE 29148이 acquirer의 다른 이름으로 드는 "구매자"는 그대로

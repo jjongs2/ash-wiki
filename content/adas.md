@@ -28,7 +28,7 @@ NHTSA의 설명에 따르면 FCW는 앞차와 충돌할 가능성을 감지해 �
 
 NHTSA에 따르면 능동 안전 시스템은 ADAS의 한 종류이고, ADAS는 임박한 위험을 예측해 피하도록 운전자를 도와 낮은 수준의 자동화를 준다.[@nhtsa-automated-vehicles-safety-2026]
 
-[[sae-j3016|SAE J3016]]:2026은 ESC(electronic stability control)·AEB 같은 능동 안전 시스템과 LKA 같은 일부 운전자 보조 시스템, 주행 환경의 해저드를 알리거나 경고하기만 하는 시스템을 [[levels-of-driving-automation|운전 자동화 레벨]]의 분류에서 뺀다.[@sae-j3016-2026]
+[[sae-j3016|SAE J3016]]:2026은 ESC(electronic stability control)·AEB 같은 능동 안전 시스템과 LKA 같은 일부 운전자 보조 시스템, 주행 환경의 hazard를 알리거나 경고하기만 하는 시스템을 [[levels-of-driving-automation|운전 자동화 레벨]]의 분류에서 뺀다.[@sae-j3016-2026]
 
 ## EU 규정
 

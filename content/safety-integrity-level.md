@@ -32,12 +32,12 @@ SIL과 ASIL의 비교는 [[automotive-safety-integrity-level#SIL과의 차이|AS
 
 IEC 61508:2010은 SIL을 정하는 데 정량적 리스크 분석을 요구하지 않고, 정량적 접근과 정성적 접근을 모두 허용한다.[@iec-functional-safety-faq-2023]
 
-정량적 접근에서 SIL을 정하는 길은 동작 모드에 따라 다르다. 해저드 발생률 $h$는 다른 보호 조치가 없을 때 지정된 해저드 사건이 일어날 것으로 추정되는 비율이다. Low demand mode에서는 $h = f_\mathrm{d} \cdot \mathrm{PFDavg}$이다. 그래서 [[functional-safety#안전과 리스크|허용 리스크]]를 이루는 데 필요한 PFDavg는 아래 식으로 얻고, 이 $h/f_\mathrm{d}$를 리스크 감소 계수(risk reduction factor)라 부르기도 한다.[@iec-functional-safety-faq-2023]
+정량적 접근에서 SIL을 정하는 길은 동작 모드에 따라 다르다. hazard rate $h$는 다른 보호 조치가 없을 때 지정된 hazardous event가 일어날 것으로 추정되는 비율이다. Low demand mode에서는 $h = f_\mathrm{d} \cdot \mathrm{PFDavg}$이다. 그래서 [[functional-safety#안전과 리스크|허용 리스크]]를 이루는 데 필요한 PFDavg는 아래 식으로 얻고, 이 $h/f_\mathrm{d}$를 리스크 감소 계수(risk reduction factor)라 부르기도 한다.[@iec-functional-safety-faq-2023]
 
 $$
 \mathrm{PFDavg} = \frac{h}{f_\mathrm{d}}
 $$
 
-이 관계는 E/E/PE 안전 관련 시스템이 EUC와 EUC 제어 시스템에서 생기는 지정된 상황에 대한 보호 시스템으로 동작할 때, EUC·EUC 제어 시스템과 안전 관련 시스템이 충분히 독립인 경우에만 성립한다. 독립성이 모자라면 둘 사이의 [[safety-analysis#Dependent failure 분석|common cause failure]]의 영향을 따져야 한다. High demand mode와 continuous mode에서는 PFH가 곧 해저드 발생률이고, 허용 리스크를 이룰 만큼 낮아야 한다.[@iec-functional-safety-faq-2023]
+이 관계는 E/E/PE 안전 관련 시스템이 EUC와 EUC 제어 시스템에서 생기는 지정된 상황에 대한 보호 시스템으로 동작할 때, EUC·EUC 제어 시스템과 안전 관련 시스템이 충분히 독립인 경우에만 성립한다. 독립성이 모자라면 둘 사이의 [[safety-analysis#Dependent failure 분석|common cause failure]]의 영향을 따져야 한다. High demand mode와 continuous mode에서는 PFH가 곧 hazard rate이고, 허용 리스크를 이룰 만큼 낮아야 한다.[@iec-functional-safety-faq-2023]
 
 IEC 61508-5:2010은 SIL을 정하는 여러 방법을 정량적 접근과 정성적 접근의 예로 제시한다. 어느 방법을 고를지는 응용 분야와 상황에 달렸고, 예는 원리를 보이려고 단순화한 것이라 결정판 설명이 아니다.[@iec-61508-5-preview-2010]

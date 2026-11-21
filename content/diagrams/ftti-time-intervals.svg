@@ -8,7 +8,7 @@
       <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
     </marker>
   </defs>
-  <!-- 시각: fault 발생 x=40, fault 검출 x=250, 안전 상태나 emergency operation 도달 x=340, 해저드 사건 x=415, 안전 상태 도달(emergency operation 뒤) x=465 -->
+  <!-- 시각: fault 발생 x=40, fault 검출 x=250, 안전 상태나 emergency operation 도달 x=340, hazardous event x=415, 안전 상태 도달(emergency operation 뒤) x=465 -->
 
   <text x="14" y="20" font-size="12" fill="var(--text, #727981)">ISO 26262-1:2018</text>
 
@@ -45,7 +45,7 @@
     <text x="50" y="282">emergency operation을 거칠 때</text>
   </g>
   <g font-size="12" fill="var(--text, #727981)" text-anchor="middle">
-    <text x="415" y="76">해저드 사건이 일어날 수 있는 때</text>
+    <text x="415" y="76">hazardous event가 일어날 수 있는 때</text>
     <text x="250" y="180">fault 검출</text>
     <text x="385" y="180">안전 상태</text>
     <text x="250" y="300">fault 검출</text>

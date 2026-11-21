@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-12
 ---
 
-**STPA**(System-Theoretic Process Analysis)는 확장된 사고 인과 모델에 바탕을 둔 해저드 분석 기법이다. 부품 failure에 더해, 어느 것도 고장 나지 않은 시스템 구성 요소 사이의 안전하지 않은 상호작용도 사고를 일으킬 수 있다고 본다. 분석에 소프트웨어와 사람 운용자를 넣고, 초기 개념 분석부터 쓸 수 있어 [[safety-requirement|안전 요구사항]]과 제약을 찾는 데 쓰인다.[@leveson-stpa-handbook-2018]
+**STPA**(System-Theoretic Process Analysis)는 확장된 사고 인과 모델에 바탕을 둔 hazard 분석 기법이다. 부품 failure에 더해, 어느 것도 고장 나지 않은 시스템 구성 요소 사이의 안전하지 않은 상호작용도 사고를 일으킬 수 있다고 본다. 분석에 소프트웨어와 사람 운용자를 넣고, 초기 개념 분석부터 쓸 수 있어 [[safety-requirement|안전 요구사항]]과 제약을 찾는 데 쓰인다.[@leveson-stpa-handbook-2018]
 
 ## 이론적 바탕
 

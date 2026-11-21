@@ -34,7 +34,7 @@
   </g>
 
   <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
-    <!-- 해저드 사건의 조합 -->
+    <!-- hazardous event의 조합 -->
     <rect x="40.75" y="158.75" width="128.5" height="26.5" rx="2" />
     <rect x="40.75" y="208.75" width="128.5" height="26.5" rx="2" />
     <rect x="40.75" y="258.75" width="128.5" height="26.5" rx="2" />
