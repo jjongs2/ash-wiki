@@ -29,7 +29,7 @@ PKI의 기능 요소와 그 역할은 다음과 같다.[@etsi-ts-102-940-2021]
 | AA                                    | AT를 발급하고 그 쓰임을 지켜보는 보안 관리 실체로, ITS-S에 특정 ITS 서비스를 써도 된다는 증명을 준다. |
 | MA(Misbehaviour Authority)            | misbehaviour 보고를 처리하고, misbehaviour가 의심되는 ITS-S를 조사해 대응한다.                        |
 
-Root CA는 늘 오프라인으로 쓰고 어떤 네트워크에도 잇지 않는다. 신뢰 영역에 root CA가 여럿 있어 서로 협력하면 보안 관리 시스템은 Certificate Trust List 방식을 따르고, 유럽에서는 최상위 관리 역할을 C-ITS Platform의 인증서 정책 문서가 정한다.[@etsi-ts-102-940-2021]
+Root CA는 늘 오프라인으로 쓰고 어떤 네트워크에도 잇지 않는다. 신뢰 영역에 root CA가 여럿 있어 서로 협력하면 보안 관리 시스템은 Certificate Trust List 방식을 따르고, 유럽에서는 최상위 관리 역할을 C-ITS(Cooperative Intelligent Transport System) Platform의 인증서 정책 문서가 정한다.[@etsi-ts-102-940-2021]
 
 최상위 신뢰 관리에서 TLM(Trust List Manager)은 root CA 인증서와 TLM 인증서의 목록을 만들어 서명한다. CPOC(C-ITS Point Of Contact)는 root CA 인증서를 모아 TLM에 건네고, TLM이 서명한 목록을 관심 있는 실체에 배포한다. TLM이 서명한 이 목록을 **ECTL**(European Certificate Trust List)이라 부른다.[@etsi-ts-102-940-2021][@etsi-ts-102-941-2022]
 
