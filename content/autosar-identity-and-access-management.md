@@ -26,7 +26,7 @@ IAM은 크게 두 논리 개체로 구현된다. **PDP**(Policy Decision Point)�
 
 ![[diagrams/iam-pep-pdp.svg]]
 
-AUTOSAR는 Adaptive Application의 식별을 완전히 정하지 않는다. 한 방법은 응용 프로세스를 운영체제 사용자(POSIX 사용자 등)로 따로 돌리는 것이다. 이때 [[autosar-execution-management|Execution Management]]가 응용 프로세스를 서로 다른 운영체제 사용자로 시작하고, IPC 채널에서 상대의 자격 증명을 묻는 운영체제 기능(Unix 도메인 소켓의 `getpeereid()` 등)을 쓸 수 있다. PEP는 실행 중의 신원(Unix 사용자 식별자 등)을 모델의 Process로 옮기고, PDP는 그 Process와 연관된 Grant, 곧 통합자가 그 응용의 intent를 승인해 만든 Grant로 접근을 허용하거나 거부한다.[@autosar-ap-exp-identityandaccessmanagement-2025]
+[[autosar|AUTOSAR]]는 Adaptive Application의 식별을 완전히 정하지 않는다. 한 방법은 응용 프로세스를 운영체제 사용자(POSIX 사용자 등)로 따로 돌리는 것이다. 이때 [[autosar-execution-management|Execution Management]]가 응용 프로세스를 서로 다른 운영체제 사용자로 시작하고, IPC 채널에서 상대의 자격 증명을 묻는 운영체제 기능(Unix 도메인 소켓의 `getpeereid()` 등)을 쓸 수 있다. PEP는 실행 중의 신원(Unix 사용자 식별자 등)을 모델의 Process로 옮기고, PDP는 그 Process와 연관된 Grant, 곧 통합자가 그 응용의 intent를 승인해 만든 Grant로 접근을 허용하거나 거부한다.[@autosar-ap-exp-identityandaccessmanagement-2025]
 
 functional cluster마다 그 소프트웨어 명세가 IAM 모델을 자기 자원에 맞춰 적용하고, 필요하면 새 모델링 요소를 정한다. 이 릴리스에서 IAM 모델링을 이미 정한 functional cluster는 [[autosar-communication-management|Communication Management]], [[autosar-firewall|Firewall]], [[autosar-crypto-stack#Adaptive Platform의 Cryptography|Cryptography]], [[autosar-diagnostic-management|Diagnostic Management]], [[intrusion-detection-system-manager|Intrusion Detection System Manager]], [[autosar-platform-health-management|Platform Health Management]]다. PEP의 구현은 각 functional cluster의 소프트웨어 명세가 정한다.[@autosar-ap-exp-identityandaccessmanagement-2025]
 

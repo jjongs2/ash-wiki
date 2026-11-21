@@ -30,7 +30,7 @@ verified: 2026-10-03
 
 Arm Platform Security Boot Guide 1.1은 차분 업데이트에서 이미지 매니페스트에 패치를 적용한 뒤 나올 최종 이미지의 해시를 담게 한다.[@arm-den0072-2020]
 
-RFC 9124에 따르면 매니페스트 정보 모델은 차분 업데이트처럼 기기에 특정 페이로드가 있어야 적용되는 업데이트를 위해, 그 선행 이미지의 다이제스트를 조건으로 다는 요소(precursor image digest condition)를 선택 요소로 둔다.[@ietf-rfc-9124-2022]
+RFC 9124에 따르면 [[suit#매니페스트 정보 모델|매니페스트 정보 모델]]은 차분 업데이트처럼 기기에 특정 페이로드가 있어야 적용되는 업데이트를 위해, 그 선행 이미지의 다이제스트를 조건으로 다는 요소(precursor image digest condition)를 선택 요소로 둔다.[@ietf-rfc-9124-2022]
 
 [[autosar|AUTOSAR]] R25-11 [[autosar-update-and-configuration-management|Update and Configuration Management]] 명세는 delta [[autosar-update-and-configuration-management#패키지|Software Package]]에 그 패키지를 적용할 [[autosar-software-cluster#Adaptive Platform의 Software Cluster와의 차이|Software Cluster]]의 버전(`deltaPackageApplicableVersion`)을 담게 하고, 그 버전이 설치된 Software Cluster의 버전과 다르면 패키지 처리를 kDeltaIncompatible 오류로 거부하게 한다.[@autosar-ap-sws-updateandconfigurationmanagement-2025]
 
@@ -42,7 +42,7 @@ Android imgdiff 소스의 설명에 따르면 gzip으로 압축한 데이터는 
 
 Android는 A/B 업데이트 패키지를 만들 때 deflate 스트림을 위한 결정적 패치 도구 Puffin으로 재압축과 차분을 처리한다. Android 9 이상에서 bsdiff 도구는 패치마다 가장 잘 압축되는 압축 알고리즘을 고른다.[@google-android-ota-reduce-size-2026]
 
-[[uptane|Uptane]] Standard 2.1.0은 사용 사례의 하나로, OEM이 [[uptane#두 저장소|Director]] repository의 사용자 정의 Targets 메타데이터에 delta 이미지를 적용하는 알고리즘과 delta 이미지의 Targets 메타데이터를 더해 ECU 하나를 delta 이미지로 업데이트하는 경우를 든다.[@uptane-standard-2-1-0-2023] Uptane Deployment Best Practices 2.1.0은 delta 이미지를 설치할 때 ECU마다 계산하는 dynamic delta update와, 있을 법한 delta 이미지를 미리 계산해 두는 precomputed delta update를 나눈다. 미리 계산한 delta 이미지는 Image repository에 둘 수 있어, Director repository가 침해되었을 때의 보안을 더한다.[@uptane-deployment-best-practices-2-1-0-2023]
+[[uptane|Uptane]] Standard 2.1.0은 사용 사례의 하나로, OEM이 [[uptane#두 저장소|Director]] repository의 사용자 정의 Targets 메타데이터에 delta 이미지를 적용하는 알고리즘과 delta 이미지의 Targets 메타데이터를 더해 [[electronic-control-unit|ECU]] 하나를 delta 이미지로 업데이트하는 경우를 든다.[@uptane-standard-2-1-0-2023] Uptane Deployment Best Practices 2.1.0은 delta 이미지를 설치할 때 ECU마다 계산하는 dynamic delta update와, 있을 법한 delta 이미지를 미리 계산해 두는 precomputed delta update를 나눈다. 미리 계산한 delta 이미지는 Image repository에 둘 수 있어, Director repository가 침해되었을 때의 보안을 더한다.[@uptane-deployment-best-practices-2-1-0-2023]
 
 ## 블록 해시 색인으로 받는 양 줄이기
 

@@ -35,6 +35,7 @@
 - basic signalling: basic signaling (#678). ISO 15118의 basic signalling일 때
 - baud: 보드레이트 (#496). 기호는 Bd. 음차 "보"도 쓰지 않는다. "Baud Rate Prescaler" 같은 이름은 그대로
 - Boolean: 불리언 (#579). 합성어 포함. 예: Boolean 식, Boolean 연산자. 번역어 "불"도 쓰지 않는다.
+- callout: 콜아웃 (#359). AUTOSAR의 callout일 때. 마크다운의 콜아웃 블록은 그대로
 - CAN CC 풀이 CAN classic: CAN CC(CC: classic), CAN CC(Classical CAN), CAN classic(CC) (#564)
 - cascading failure: 연쇄 고장 (#291)
 - CDD 풀이 Complex Driver: Complex Device Driver (#440). 근거는 SWS BSWGeneral R25-11 [SWS_BSW_91001]과 FO TR Glossary R25-11 4.72. SW-C 종류 이름 "Complex Device Driver"(`autosar-software-component`)는 예외
@@ -70,6 +71,7 @@
 - failure: 실패, 고장, 장애 (#291). 합성어 포함. 예: dependent failure, failure mode, target failure measure. 동사("고장 나다", "실패하다"), 테스트의 pass/fail, 일반 낱말 "실패"는 그대로. ISTQB의 error·defect와 같은 문장, 곧 "실수"나 "결함"과 같은 문장에서는 "장애", 페이지에서 처음 쓸 때 "장애(failure)"
 - false positive: 거짓 양성 (#291). ISTQB 용어 이름은 false-positive result
 - fault seeding: 결함 심기 (#385)
+- functional cluster, Machine, Software Package, Vehicle Package: 기능 클러스터, 머신, 소프트웨어 패키지, 차량 패키지 (#359). AUTOSAR Adaptive Platform의 이름일 때. 물리 머신, 가상 머신 같은 일반 낱말은 그대로
 - GMII 풀이: 통일하지 않음 (#196). 페이지마다 그대로. `mii`는 Gigabit MII, `1000base-t1`은 Gigabit Media Independent Interface
 - hardware architectural metrics: 하드웨어 아키텍처 메트릭 (#396). 하위 용어(single-point fault, latent fault 등)도 원어로
 - HD 지도, SD 지도: HD map, SD map (#682)

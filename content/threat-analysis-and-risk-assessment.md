@@ -59,13 +59,13 @@ Automotive SPICE for Cybersecurity 2.0의 MAN.7 Cybersecurity Risk Management는
 | BP6 | Monitor risks                                |
 | BP7 | Take corrective action                       |
 
-BP3의 노트는 리스크를 분석하는 방법의 예로 attack path analysis를 포함한 TARA, 시뮬레이션, ATA(Attack Tree Analysis), FTA(Fault Tree Analysis) 등을 든다. BP4는 리스크마다 retain, reduce, avoid, transfer(share) 가운데 하나를 처리 옵션으로 고르게 한다.[@vda-automotive-spice-cybersecurity-2025] FTA는 [[safety-analysis#FTA|안전 분석]]에서 다룬다.
+BP3의 노트는 리스크를 분석하는 방법의 예로 attack path analysis를 포함한 TARA, 시뮬레이션, [[attack-tree|ATA]](Attack Tree Analysis), FTA(Fault Tree Analysis) 등을 든다. BP4는 리스크마다 retain, reduce, avoid, transfer(share) 가운데 하나를 처리 옵션으로 고르게 한다.[@vda-automotive-spice-cybersecurity-2025] FTA는 [[safety-analysis#FTA|안전 분석]]에서 다룬다.
 
 Automotive SPICE for Cybersecurity 1.0은 MAN.7에 성과 여덟과 BP 여덟을 두어 성과마다 BP 하나를 대응시켰고, 처리 옵션을 accept, reduce, avoid, share(transfer)로 두었으며, accept나 share로 고른 리스크가 대개 cybersecurity claim을 정한다는 노트를 두었다.[@vda-automotive-spice-cybersecurity-2021] 2.0은 성과를 다섯, BP를 일곱으로 고치고, 옵션을 retain, reduce, avoid, transfer(share)로 둔다.[@vda-automotive-spice-cybersecurity-2025]
 
 ## EVITA와 HEAVENS의 방법
 
-[[hardware-security-module#EVITA의 HSM 등급|EVITA]] 프로젝트는 차량 온보드 네트워크의 보안 리스크 분석과 안전 리스크 분석을 하나로 묶은 접근을 만들었다. 프로젝트는 보안 조치가 필요할 [[use-case|use case]]를 먼저 고르고, 이를 바탕으로 e-safety 애플리케이션이 악용될 가능성을 그린 dark-side scenario를 세워 [[attack-tree|attack tree]]로 구조화했다.[@evita-d0-2012]
+[[hardware-security-module#EVITA의 HSM 등급|EVITA]] 프로젝트는 차량 온보드 네트워크의 보안 리스크 분석과 안전 리스크 분석을 하나로 묶은 접근을 만들었다. 프로젝트는 보안 조치가 필요할 [[use-case|use case]]를 먼저 고르고, 이를 바탕으로 e-safety 애플리케이션이 악용될 가능성을 그린 dark-side scenario를 세워 attack tree로 구조화했다.[@evita-d0-2012]
 
 Henniger 외는 2009년 논문에서 EVITA의 리스크 평가 절차를 내놓았다. 이 절차는 공격의 리스크를 심각도와 공격 성공 확률의 함수로 보고, 안전에 관한 위협에는 통제 가능성을 더한다. 심각도는 차량 안전 공학의 심각도 분류를 바탕으로, 안전, 프라이버시(제조사와 공급자의 지적 재산 포함), 재정, 운용 네 측면마다 0\~4 등급을 매겨 네 성분의 벡터로 나타낸다. 성공 확률은 ISO/IEC 15408과 ISO/IEC 18045의 [[attack-feasibility-rating#Attack potential|attack potential]]을 바탕으로, 경과 시간, 전문성, 시스템 지식, 기회의 창, 장비 다섯 요소의 값을 더한 합계를 Basic부터 Beyond High까지 다섯 수준으로 나누고, 이를 차례로 확률 5\~1에 대응시켜 Basic이 5, Beyond High가 1이 된다. 확률은 attack tree의 리프 노드에서 매기고, 위 노드로 올릴 때 OR 관계면 자식 가운데 가장 높은 확률을, AND 관계면 가장 낮은 확률을 취한다. 통제 가능성은 보통의 반응으로 사고를 대개 피할 수 있는 1부터 사람의 반응으로 상황에 영향을 줄 수 없는 4까지 네 등급으로 매긴다.[@henniger-security-requirements-2009]
 
@@ -79,7 +79,7 @@ Lautenbach 외는 2021년 HEAVENS 모델을 ISO/SAE 21434의 리스크 평가 �
 
 UN R155의 [[un-r155#Annex 5|Annex 5]]는 위협 분석이 가능한 공격 영향도 고려하도록 요구한다.[@unece-r155-2021]
 
-NHTSA의 2022년 지침(Cybersecurity Best Practices for the Safety of Modern Vehicles)은 리스크를 평가할 때 차량 탑승자와 다른 도로 사용자의 안전을 가장 먼저 고려하기를 권한다(G.5). 또 센서 취약점과, GPS 스푸핑, 도로 표지 변조, 라이다·레이더 재밍과 스푸핑, 카메라 블라인딩, 머신러닝의 false positive 유발 같은 센서 신호 조작의 리스크를 고려하기를 권한다(G.6).[@nhtsa-cybersecurity-best-practices-2022]
+NHTSA의 2022년 지침(Cybersecurity Best Practices for the Safety of Modern Vehicles)은 리스크를 평가할 때 차량 탑승자와 다른 도로 사용자의 안전을 가장 먼저 고려하기를 권한다(G.5). 또 센서 취약점과, GPS 스푸핑, 도로 표지 변조, [[lidar|라이다]]·[[automotive-radar|레이더]] 재밍과 스푸핑, [[automotive-camera|카메라]] 블라인딩, 머신러닝의 false positive 유발 같은 센서 신호 조작의 리스크를 고려하기를 권한다(G.6).[@nhtsa-cybersecurity-best-practices-2022]
 
 ENISA(EU의 사이버보안 기관)의 2019년 보고서 Good practices for security of smart cars는 사이버보안 리스크 분석을 설계 과정의 아주 이른 단계부터 하고, 적어도 해마다, 그리고 큰 변경이 있거나 심각한 보안 취약점을 찾거나 심각한 보안 incident가 일어났을 때 다시 보기를 권한다(PS-12).[@enisa-smart-cars-2019]
 

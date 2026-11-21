@@ -6,7 +6,7 @@ tags:
 verified: 2026-10-03
 ---
 
-[[iso-13400-2|ISO 13400-2]]:2025는 소개에서, 차량 진단 통신의 쓰임이 배출가스 관련 진단에서 시작해 캘리브레이션, 전자 부품의 소프트웨어 업데이트 같은 제조사별 쓰임으로 넓어졌다고 밝힌다.[@iso-13400-2-obp-2025] [[iso-14229-1|ISO 14229-1:2026]]은 부트 소프트웨어를 [[uds|서버]] 메모리의 특별한 영역에서 실행되며 주로 ECU를 부팅하고 서버를 프로그래밍하는 소프트웨어로 정의하고, 부트 소프트웨어 가운데 ECU를 재프로그래밍할 수 있게 하는 부분을 **재프로그래밍 소프트웨어**라 한다. 부트 소프트웨어가 있는 영역은 보통의 프로그래밍 과정에서 지워지지 않으므로, 서버 애플리케이션이 없거나 유효하지 않을 때도 부트 소프트웨어가 실행되어 서버를 다시 프로그래밍할 수 있다.[@iso-14229-1-obp-2026]
+[[iso-13400-2|ISO 13400-2]]:2025는 소개에서, 차량 진단 통신의 쓰임이 배출가스 관련 진단에서 시작해 캘리브레이션, 전자 부품의 소프트웨어 업데이트 같은 제조사별 쓰임으로 넓어졌다고 밝힌다.[@iso-13400-2-obp-2025] [[iso-14229-1|ISO 14229-1:2026]]은 부트 소프트웨어를 [[uds|서버]] 메모리의 특별한 영역에서 실행되며 주로 [[electronic-control-unit|ECU]]를 부팅하고 서버를 프로그래밍하는 소프트웨어로 정의하고, 부트 소프트웨어 가운데 ECU를 재프로그래밍할 수 있게 하는 부분을 **재프로그래밍 소프트웨어**라 한다. 부트 소프트웨어가 있는 영역은 보통의 프로그래밍 과정에서 지워지지 않으므로, 서버 애플리케이션이 없거나 유효하지 않을 때도 부트 소프트웨어가 실행되어 서버를 다시 프로그래밍할 수 있다.[@iso-14229-1-obp-2026]
 
 ## AUTOSAR Dcm의 부트로더 전환
 
@@ -20,7 +20,7 @@ verified: 2026-10-03
 
 이 명세는 다운로드에 쓰는 세 서비스를 다음처럼 다룬다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
-- RequestDownload: 다운로드의 시작을 요청한다. Dcm은 데이터를 쓸 서버 메모리의 시작 주소와 압축하기 전의 크기를 [[autosar-layered-architecture#Integration Code와 callout|콜아웃]] `Dcm_ProcessRequestDownload`에 넘기고, 긍정 응답의 maxNumberOfBlockLength로 한 블록의 최대 길이를 돌려준다.
+- RequestDownload: 다운로드의 시작을 요청한다. Dcm은 데이터를 쓸 서버 메모리의 시작 주소와 압축하기 전의 크기를 [[autosar-layered-architecture#Integration Code와 callout|callout]] `Dcm_ProcessRequestDownload`에 넘기고, 긍정 응답의 maxNumberOfBlockLength로 한 블록의 최대 길이를 돌려준다.
 - TransferData: 다운로드나 업로드 중에 데이터를 보낸다. Dcm은 그 앞에 RequestDownload나 RequestUpload를 받았는지 추적해 순서 오류를 검사하고, 블록 순서 계수기를 초기화한다.
 - RequestTransferExit: 다운로드나 업로드를 끝낸다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
@@ -40,13 +40,13 @@ Vector의 Flash Bootloader 기술 문서가 정한 UDS 다운로드 시퀀스에
 
 ## 전송 경로
 
-재프로그래밍에 쓰는 진단 메시지를 [[can|CAN]]과 IP([[doip|DoIP]]) 위로 나르는 방법은 [[uds#전송|UDS의 전송]]에서 다룬다. [[automotive-ethernet|차량용 이더넷]]을 쓰면 펌웨어 업데이트가 빨라진다.[@ieee-tsn-automotive-flyer-2026][@ti-szzy009-2018]
+재프로그래밍에 쓰는 진단 메시지를 [[can|CAN]]과 IP([[doip|DoIP]]) 위로 나르는 방법은 UDS의 [[uds#전송|전송]]에서 다룬다. [[automotive-ethernet|차량용 이더넷]]을 쓰면 펌웨어 업데이트가 빨라진다.[@ieee-tsn-automotive-flyer-2026][@ti-szzy009-2018]
 
 ## 정비소와 OTA
 
 ISO 15765 시리즈는 점검, 진단, 수리를 위해 차량에 연결하는 외부 시험 장비를 전제한다. [[iso-15765-2|ISO 15765-2]]:2024는 차량 안의 CAN 네트워크가 진단 링크 커넥터에 연결된 외부 장치와 통신을 맺고 유지하고 끝내는 요구사항을 정한다.[@iso-15765-2-obp-2024] ISO 14229-1:2026은 테스터의 예로 정비사가 쓰는 오프보드 스캔 툴을 들고, ECU 안에 온보드 테스터를 구현해 차량 통신 링크에서 진단 서비스를 쓰는 것도 막지 않는다.[@iso-14229-1-obp-2026]
 
-AUTOSAR R25-11의 [[autosar-update-and-configuration-management|UCM]] 명세에서 UCM은 [[over-the-air-update|OTA 업데이트]]와 진단으로 하는 정비소 업데이트를 구별하지 않는다. 진단 애플리케이션이나 V-UCM(Vehicle Update and Configuration Management) 같은 UCM 클라이언트가 그 차이를 감추고 데이터와 순서 제어 명령을 UCM에 넘긴다.[@autosar-ap-sws-updateandconfigurationmanagement-2025] V-UCM은 [[autosar-classic-platform|Classic Platform]] ECU처럼 진단으로 플래시하는 플랫폼을 업데이트할 때 Flashing Adapter를 쓴다. Flashing Adapter는 OEM마다의 진단 시퀀스를 담고 D-PDU(Diagnostic Protocol Data Unit) API(ISO 22900-2)로 [[vehicle-bus|차량 버스]]의 ECU와 통신하며, 그 D-PDU API 구현은 CAN 위의 UDS와 DoIP 위의 UDS를 지원해야 한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
+AUTOSAR R25-11의 [[autosar-update-and-configuration-management|UCM]] 명세에서 UCM은 [[over-the-air-update|OTA 업데이트]]와 진단으로 하는 정비소 업데이트를 구별하지 않는다. 진단 애플리케이션이나 [[autosar-update-and-configuration-management#Vehicle UCM|V-UCM]] 같은 UCM 클라이언트가 그 차이를 감추고 데이터와 순서 제어 명령을 UCM에 넘긴다.[@autosar-ap-sws-updateandconfigurationmanagement-2025] V-UCM은 [[autosar-classic-platform|Classic Platform]] ECU처럼 진단으로 플래시하는 플랫폼을 업데이트할 때 Flashing Adapter를 쓴다. Flashing Adapter는 OEM마다의 진단 시퀀스를 담고 D-PDU(Diagnostic Protocol Data Unit) API(ISO 22900-2)로 [[vehicle-bus|차량 버스]]의 ECU와 통신하며, 그 D-PDU API 구현은 CAN 위의 UDS와 DoIP 위의 UDS를 지원해야 한다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025]
 
 ![[diagrams/autosar-v-ucm-update-targets.svg]]
 
