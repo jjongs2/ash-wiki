@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 -1 540 317" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="ADDW의 Area 1, Area 2, Area 3">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 판 -->
+  <text x="20" y="24" fill="var(--text, #727981)">EU 위임 규정 2023/2590, ADDW</text>
+
+  <!-- 옆에서 본 모습: 앞은 오른쪽. 영역은 ocular reference point에서 본 방향으로 그린다 -->
+  <text x="20" y="52" fill="var(--text, #727981)">옆에서 본 모습</text>
+
+  <!-- Area 1(지붕, 기본 범주), Area 2(앞유리), Area 3(30° 아래 평면보다 낮은 곳) -->
+  <path d="M140 140 L100 90 H240 Z" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-linejoin="round" />
+  <path d="M140 140 L240 90 L290 150 Z" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" stroke-linejoin="round" />
+  <!-- Area 3: 실제 경계는 30° 아래 평면뿐이다. 잘라 낸 세로·아래 변은 테두리 없이 면만 둔다 -->
+  <path d="M140 140 L330 249.7 H140 Z" fill="var(--violet-tint, #825da9)" />
+  <line x1="140" y1="140" x2="330" y2="249.7" stroke="var(--violet, #825da9)" stroke-width="1.5" />
+  <g fill="var(--text, #727981)">
+    <text x="170" y="82" text-anchor="middle">지붕: Area 1</text>
+    <text x="272" y="112">앞유리: Area 2</text>
+  </g>
+  <text x="270" y="238" text-anchor="middle" fill="var(--on-fill, #f8fafd)">Area 3</text>
+
+  <!-- 수평 기준과 30° -->
+  <line x1="140" y1="140" x2="330" y2="140" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+  <path d="M190 140 A50 50 0 0 1 183.3 165" stroke="var(--ink, #727981)" stroke-width="1" />
+  <text x="196" y="161" fill="var(--text, #727981)">30°</text>
+
+  <!-- ocular reference point와 운전석 R 점 사이 635 mm -->
+  <g stroke="var(--ink, #727981)" stroke-width="1">
+    <path d="M104 140 H134 M104 230 H134" />
+    <line x1="110" y1="140" x2="110" y2="230" />
+  </g>
+  <g fill="var(--ink, #727981)">
+    <circle cx="140" cy="140" r="4" />
+    <circle cx="140" cy="230" r="4" />
+  </g>
+  <g fill="var(--text, #727981)" text-anchor="end">
+    <text x="102" y="156">ocular</text>
+    <text x="102" y="172">reference point</text>
+    <text x="102" y="203">635 mm</text>
+    <text x="128" y="248">운전석 R 점</text>
+  </g>
+
+  <!-- 위에서 본 모습: 앞은 위쪽 -->
+  <text x="360" y="52" fill="var(--text, #727981)">위에서 본 모습</text>
+
+  <!-- Area 1: 좌우 55° 평면의 바깥 -->
+  <path d="M380.4 147.2 L450 196 L519.6 147.2 V205 H380.4 Z" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-linejoin="round" />
+  <g fill="var(--text, #727981)">
+    <text x="388" y="197">Area 1</text>
+    <text x="512" y="197" text-anchor="end">Area 1</text>
+  </g>
+
+  <line x1="450" y1="196" x2="450" y2="100" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+  <line x1="450" y1="100" x2="450" y2="72" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="458" y="86" fill="var(--text, #727981)">앞</text>
+  <path d="M450 156 A40 40 0 0 1 482.8 173.1 M450 156 A40 40 0 0 0 417.2 173.1" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g fill="var(--text, #727981)">
+    <text x="465" y="150">55°</text>
+    <text x="435" y="150" text-anchor="end">55°</text>
+  </g>
+  <circle cx="450" cy="196" r="4" fill="var(--ink, #727981)" />
+  <text x="450" y="224" text-anchor="middle" fill="var(--text, #727981)">ocular reference point</text>
+
+  <g fill="var(--text, #727981)">
+    <text x="20" y="280">Area 2는 앞유리·창과 그 둘레 10°이다</text>
+    <text x="20" y="298">Area 1과 Area 2에 든 곳은 기본적으로 Area 3에서 뺀다</text>
+  </g>
+</svg>

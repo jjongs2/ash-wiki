@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 -1 538.5 232" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="ADDW가 경고하는 Area 3 시선 시간">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 판 -->
+  <text x="20" y="24" fill="var(--text, #727981)">EU 위임 규정 2023/2590, ADDW</text>
+
+  <!-- 시간 축: 1초 = 44 단위, 0초 = x 150, 3.5초 = 304, 6초 = 414 -->
+  <g text-anchor="end" fill="var(--text, #727981)">
+    <text x="136" y="64.5">v ≥ 50 km/h</text>
+    <text x="136" y="100.5">v ≥ 20 km/h</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="304" y1="70" x2="304" y2="130" />
+    <line x1="414" y1="106" x2="414" y2="130" />
+  </g>
+
+  <!-- nominal 상황의 시간: 축 위의 구간이므로 모서리는 0 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="150" y="50" width="154" height="20" />
+    <rect x="150" y="86" width="264" height="20" />
+  </g>
+  <!-- nominal이 아닌 상황에서 늘릴 수 있는 시간 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)">
+    <rect x="304" y="50" width="66" height="20" />
+    <rect x="414" y="86" width="66" height="20" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="337" y="64.5">+1.5초</text>
+    <text x="447" y="100.5">+1.5초</text>
+  </g>
+
+  <line x1="150" y1="130" x2="518" y2="130" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
+  <path d="M150 130 v5 M304 130 v5 M414 130 v5" stroke="var(--ink, #727981)" stroke-width="1" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="150" y="149">0</text>
+    <text x="304" y="149">3.5</text>
+    <text x="414" y="149">6</text>
+    <text x="334" y="169">시선이 Area 3에 머문 시간 (s)</text>
+  </g>
+
+  <g fill="var(--text, #727981)">
+    <text x="20" y="195">막대 끝: nominal 상황에서 늦어도 경고하는 때</text>
+    <text x="20" y="213">점선: nominal이 아닌 상황에서 늘릴 수 있는 시간</text>
+  </g>
+</svg>

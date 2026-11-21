@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 520 221" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="DMS 카메라 모듈과 DMS ECU의 연결">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 운전자, 근적외선 LED, 이미지 센서, DMS ECU -->
+  <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="20.75" y="79.75" width="78.5" height="38.5" rx="2" />
+    <rect x="160.75" y="26.75" width="98.5" height="28.5" rx="2" />
+    <rect x="160.75" y="120.75" width="98.5" height="28.5" rx="2" />
+    <rect x="400.75" y="124.75" width="98.5" height="38.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="60" y="103">운전자</text>
+    <text x="210" y="45">근적외선 LED</text>
+    <text x="210" y="139">이미지 센서</text>
+    <text x="450" y="148">DMS ECU</text>
+  </g>
+
+  <!-- 카메라 모듈: 이미지 센서를 담는 틀. 조명을 넣은 경우는 점선으로 넓힌다 -->
+  <rect x="146.75" y="108.75" width="126.5" height="70.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <path d="M146.75 108.75 V12.75 H273.25 V108.75" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="210" y="169" text-anchor="middle" fill="var(--text, #727981)">DMS 카메라 모듈</text>
+  <g fill="var(--text, #727981)">
+    <text x="290" y="27">onsemi 레퍼런스 디자인에 따르면</text>
+    <text x="290" y="43">조명은 카메라에 넣거나(점선)</text>
+    <text x="290" y="59">카메라와 따로 둔다</text>
+  </g>
+
+  <!-- 비추고 받는 빛 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M160 41 H60 V78" marker-end="url(#arrow)" />
+    <path d="M60 119 V135 H159" marker-end="url(#arrow)" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="110" y="34">근적외선</text>
+    <text x="110" y="128">반사</text>
+  </g>
+
+  <!-- 동축 케이블 하나로 영상 데이터와 전원 -->
+  <line x1="274" y1="144" x2="400" y2="144" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="302" y1="131" x2="372" y2="131" marker-end="url(#arrow)" />
+    <line x1="372" y1="157" x2="302" y2="157" marker-end="url(#arrow)" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="337" y="122">영상 데이터</text>
+    <text x="337" y="175">전원</text>
+    <text x="337" y="199">Power-over-Coax: 동축 케이블 하나</text>
+  </g>
+</svg>

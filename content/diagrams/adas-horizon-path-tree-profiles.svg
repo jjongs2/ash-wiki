@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 529 332" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="12" fill="none" aria-label="ADAS Horizon의 경로 트리와 ADASIS profile">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 범례 -->
+  <line x1="20" y1="26" x2="44" y2="26" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="52" y="30" fill="var(--text, #727981)">경로 트리</text>
+  <rect x="20.75" y="42.75" width="22.5" height="14.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <text x="52" y="54" fill="var(--text, #727981)">ADASIS profile</text>
+
+  <!-- 차량 -->
+  <rect x="20.75" y="98.75" width="34.5" height="22.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="38" y="114" text-anchor="middle" fill="var(--text, #727981)">차량</text>
+
+  <!-- 경로 트리: 가능한 경로가 갈림길마다 갈린다 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M56 110 H508" />
+    <path d="M200 110 L250 66 H508" />
+    <path d="M340 110 L390 154 H508" />
+  </g>
+
+  <!-- 경로마다 붙인 profile -->
+  <g stroke="var(--blue, #336fb8)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="130" y1="86" x2="130" y2="110" />
+    <line x1="290" y1="110" x2="290" y2="134" />
+    <line x1="430" y1="42" x2="430" y2="66" />
+    <line x1="450" y1="154" x2="450" y2="178" />
+  </g>
+  <g fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5">
+    <rect x="94.75" y="62.75" width="70.5" height="22.5" rx="2" />
+    <rect x="260.75" y="134.75" width="58.5" height="22.5" rx="2" />
+    <rect x="394.75" y="18.75" width="70.5" height="22.5" rx="2" />
+    <rect x="414.75" y="178.75" width="70.5" height="22.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="130" y="78">속도 제한</text>
+    <text x="290" y="150">곡률</text>
+    <text x="430" y="34">속도 제한</text>
+    <text x="450" y="194">곡률</text>
+  </g>
+
+  <!-- ECU마다 처리 능력에 맞게 고른 profile 종류 -->
+  <text x="20" y="242" fill="var(--text, #727981)">ECU마다 처리 능력에 맞게 고른 profile</text>
+  <g fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5">
+    <rect x="20.75" y="256.75" width="58.5" height="22.5" rx="2" />
+    <rect x="86.75" y="256.75" width="70.5" height="22.5" rx="2" />
+    <rect x="20.75" y="294.75" width="58.5" height="22.5" rx="2" />
+    <rect x="86.75" y="294.75" width="70.5" height="22.5" rx="2" />
+    <rect x="164.75" y="294.75" width="94.5" height="22.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="50" y="272">곡률</text>
+    <text x="122" y="272">속도 제한</text>
+    <text x="50" y="310">곡률</text>
+    <text x="122" y="310">속도 제한</text>
+    <text x="212" y="310">차로 수준 정보</text>
+  </g>
+  <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="340.75" y="256.75" width="166.5" height="22.5" rx="2" />
+    <rect x="340.75" y="294.75" width="166.5" height="22.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="424" y="272">처리 능력이 낮은 ECU</text>
+    <text x="424" y="310">처리 능력이 높은 ECU</text>
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="166" y1="268" x2="339" y2="268" />
+    <line x1="268" y1="306" x2="339" y2="306" />
+  </g>
+</svg>
