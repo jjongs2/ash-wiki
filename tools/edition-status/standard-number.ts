@@ -39,19 +39,35 @@ export function standardNumber(title: string): StandardNumber | undefined {
 // 하나만 겹치면 된다(ISO/IEC/IEEE 29119 페이지의 ISO/IEC TR 29119-6).
 export function inSeries(series: StandardNumber, number: StandardNumber): boolean {
   return (
-    series.bodies.some((body) => number.bodies.includes(body)) &&
+    sharesBody(series, number) &&
     (number.number === series.number || number.number.startsWith(`${series.number}-`))
   )
 }
 
+const sharesBody = (series: StandardNumber, number: StandardNumber) =>
+  series.bodies.some((body) => number.bodies.includes(body))
+
 // 시리즈의 부마다 인용한 가장 새 판의 연도. 연도가 없거나 프로젝트(DIS 등)인 엔트리는 판이 아니라 세지 않는다.
 // 예: ISO/IEC/IEEE 29119 → 29119-1은 2022, 29119-5는 2024. 옛 판(26262-1:2011)은 같은 부의 새 판에 가린다.
+// 점 번호는 번호 자체의 판을 하나도 인용하지 않을 때만 부로 센다(docs/wiki-conventions.md의 edition 줄).
+// 예: IEEE 1609 → 1609.2는 2025, 1609.3은 2020. IEEE 1722는 1722-2016을 인용해 1722.1-2021을 세지 않는다.
+// 판 확인의 inSeries는 점 번호를 세지 않는다.
 export function latestPartYears(series: StandardNumber, titles: string[]): Map<string, string> {
+  const editions = titles
+    .map((title) => standardNumber(title))
+    .filter(
+      (number): number is StandardNumber & { year: string } => !!number?.year && !number.project,
+    )
+  const countDotted = !editions.some(
+    (number) => sharesBody(series, number) && number.number === series.number,
+  )
   const latest = new Map<string, string>()
-  for (const title of titles) {
-    const number = standardNumber(title)
-    if (!number?.year || number.project || !inSeries(series, number)) continue
-    if (number.year > (latest.get(number.number) ?? "")) latest.set(number.number, number.year)
+  for (const number of editions) {
+    const part =
+      inSeries(series, number) ||
+      (countDotted && sharesBody(series, number) && number.number.startsWith(`${series.number}.`))
+    if (part && number.year > (latest.get(number.number) ?? ""))
+      latest.set(number.number, number.year)
   }
   return latest
 }
