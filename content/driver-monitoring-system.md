@@ -7,7 +7,7 @@ aliases:
 verified: 2026-11-21
 ---
 
-**DMS**(Driver Monitoring System)는 주의 분산, 피로, 무반응 같은 운전자의 상태를 판단하는 차량 시스템이다.[@onsemi-tnd6416-2023][@euroncap-driver-engagement-2026] TI 앱노트에 따르면 DMS는 판단한 경계 수준에 따라 경고를 내거나 차를 감속시킬 수 있다.[@ti-snvaa88-2023] 카메라 기반 DMS는 근적외선으로 비춘 운전자의 영상을 처리해 상태를 판단한다.[@onsemi-tnd6416-2023][@ti-snvaa88-2023]
+**DMS**(Driver Monitoring System)는 주의 분산, 피로, 무반응 같은 운전자의 상태를 판단하는 차량 시스템이다.[@onsemi-tnd6416-2023][@euroncap-driver-engagement-2026] TI 앱노트에 따르면 DMS는 판단한 경계 수준에 따라 경고를 내거나 차를 감속시킬 수 있다.[@ti-snvaa88-2023] [[automotive-camera|카메라]] 기반 DMS는 근적외선으로 비춘 운전자의 영상을 처리해 상태를 판단한다.[@onsemi-tnd6416-2023][@ti-snvaa88-2023]
 
 ## 쓰는 곳
 
