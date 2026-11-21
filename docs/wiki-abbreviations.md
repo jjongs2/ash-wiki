@@ -32,6 +32,7 @@
 - CD: 표준·규격 이름
 - CEN: 조직
 - CENELEC: 조직
+- CEPT: 소개하는 조직
 - CERT: 소개하는 조직
 - CharIN: 소개하는 조직
 - CiA: 조직
@@ -62,12 +63,14 @@
 - EN: 표준·규격 이름
 - ENISA: 소개하는 조직
 - ERTICO: 소개하는 조직
+- ES: 표준·규격 이름
 - ETAS: 소개하는 조직
 - ETSI: 조직
 - EU: 조직
 - Euro NCAP: 소개하는 조직
 - EVE: 소개하는 조직
 - FAA: 조직
+- FCC: 조직
 - FIFO: 널리 쓰이는 약어
 - FIPS: 표준·규격 이름
 - FIRST: 소개하는 조직
