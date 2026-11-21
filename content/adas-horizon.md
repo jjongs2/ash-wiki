@@ -19,7 +19,7 @@ EU 규정 2019/2144는 [[adas#EU 규정|ISA]]의 피드백이 도로 표지와 �
 
 ## 동작
 
-ADASIS에서는 ADASIS Horizon Provider(AHP)가 지도에서 도로망을 지나는 하나 이상의 가능한 경로(path)를 계산해 경로 트리로 만들고, 그 경로 트리와 속성을 차량 앞 정해진 범위까지 보낸다. 이 범위는 카메라 같은 센서의 범위보다 훨씬 멀리 닿을 수 있다. AHP는 차량 위치를 보낸 경로 트리에 map matching해 경로 위의 위치도 함께 준다. 응용 쪽의 ADASIS Horizon Reconstructor(AHR)는 받은 메시지를 해석해 Horizon의 사본을 다시 만든다.[@adasis-white-paper-2024]
+ADASIS에서는 ADASIS Horizon Provider(AHP)가 지도에서 도로망을 지나는 하나 이상의 가능한 경로(path)를 계산해 경로 트리로 만들고, 그 경로 트리와 속성을 차량 앞 정해진 범위까지 보낸다. 이 범위는 [[automotive-camera|카메라]] 같은 센서의 범위보다 훨씬 멀리 닿을 수 있다. AHP는 차량 위치를 보낸 경로 트리에 map matching해 경로 위의 위치도 함께 준다. 응용 쪽의 ADASIS Horizon Reconstructor(AHR)는 받은 메시지를 해석해 Horizon의 사본을 다시 만든다.[@adasis-white-paper-2024]
 
 ![[diagrams/adasis-horizon-provider-reconstructor.svg]]
 
