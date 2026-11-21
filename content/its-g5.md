@@ -64,18 +64,18 @@ IEEE 802.11-2024는 clause 17의 OFDM 물리 계층에서 채널 간격이 10 MH
 
 dot11OCBActivated가 true인 스테이션은 IEEE 802.11 LAN의 기본 구성 단위인 BSS(Basic Service Set)에 속하지 않고, BSS 밖에서 Data 프레임을 보낸다. 이 스테이션은 IEEE 802.11의 인증, 연결(association), data confidentiality 서비스를 쓰지 않고, BSS에 들거나 BSS를 시작하지 않는다. BSS의 구성원이 아니므로 공통 클록에 동기화할 필요도 없다. 처음에는 규제로 지정되었거나 다른 대역 밖 통신으로 미리 알려진 채널에서 송수신한다.[@ieee-802-11-2024]
 
-이 스테이션은 모든 관리 프레임과 Data 프레임의 BSSID(Basic Service Set Identifier) 필드를 모든 비트가 1인 wildcard BSSID로 두고, TSF(Timing Synchronization Function) 타이머를 유지하면 Timing Advertisement 프레임을 보낼 수 있다.[@ieee-802-11-2024]
+이 스테이션은 모든 관리 프레임과 Data 프레임의 BSSID(Basic Service Set Identifier) 필드를 모든 비트가 1인 wildcard BSSID로 둔다. 동기화가 아닌 목적으로 TSF(Timing Synchronization Function) 타이머를 유지할 수 있고, 유지하면 Timing Advertisement 프레임을 보낼 수 있다.[@ieee-802-11-2024]
 
-이 표준은 DMG(Directional Multi-Gigabit) 스테이션이 아닌 스테이션의 기본 MAC 접근 방식을 CSMA/CA(Carrier Sense Multiple Access with Collision Avoidance)인 DCF(Distributed Coordination Function)로 정한다. 스테이션은 송신하기 전에 매체를 감지하고, 정해진 최소 시간 동안 매체가 비어 있어야 송신한다. 매체가 차 있으면 지금의 송신이 끝날 때까지 미룬 뒤, backoff 카운터를 무작위 값으로 두고 매체가 비어 있는 동안 slot 시간마다 하나씩 줄인다. EDCA(Enhanced Distributed Channel Access)는 QoS BSS의 QoS 스테이션과 BSS 밖에서 동작하는 스테이션이 쓰는, 우선순위를 둔 CSMA/CA 접근 메커니즘이다. EDCA에서는 access category마다 DCF를 고친 함수가 EDCA 파라미터로 송신 기회를 다툰다. To DS 서브필드가 0인 group 주소 프레임은 GATS(Group Addressed Transmission Service)로 전달하지 않으면 받는 스테이션이 확인 응답(Ack 프레임)을 보내지 않는다.[@ieee-802-11-2024]
+이 표준은 DMG(Directional Multi-Gigabit) 스테이션이 아닌 스테이션의 기본 MAC 접근 방식을 CSMA/CA(Carrier Sense Multiple Access with Collision Avoidance)인 DCF(Distributed Coordination Function)로 정한다. 스테이션은 송신하기 전에 매체를 감지하고, 정해진 최소 시간 동안 매체가 비어 있어야 송신한다. 매체가 차 있으면 지금의 송신이 끝날 때까지 미룬 뒤, backoff 카운터를 무작위 값으로 두고 매체가 비어 있는 동안 slot 시간마다 하나씩 줄인다. **EDCA**(Enhanced Distributed Channel Access)는 QoS BSS의 QoS 스테이션과 BSS 밖에서 동작하는 스테이션이 쓰는, 우선순위를 둔 CSMA/CA 접근 메커니즘이다. EDCA에서는 access category마다 따로 도는, DCF를 고친 접근 함수가 자기 EDCA 파라미터로 송신 기회를 다툰다. To DS(Distribution System) 서브필드가 0인 group 주소 프레임을 GATS(Group Addressed Transmission Service) 없이 보내면, 받는 스테이션은 확인 응답(Ack 프레임)을 보내지 않는다.[@ieee-802-11-2024]
 
-dot11OCBActivated가 true일 때 QoS 프레임을 보내는 스테이션의 기본 EDCA 파라미터는 아래와 같다. access category마다의 대기 시간 AIFS(Arbitration Interframe Space)는 AIFSN(AIFS Number)으로 $\mathrm{AIFS} = \mathrm{AIFSN} \times \mathit{aSlotTime} + \mathit{aSIFSTime}$이다. 채널 간격이 10 MHz인 OFDM 물리 계층에서는 aCWmin이 15, aCWmax가 1023, aSIFSTime이 32 µs이고, aSlotTime은 dot11OperatingClassesRequired가 false면 13 µs다.[@ieee-802-11-2024]
+이 표준이 dot11OCBActivated가 true일 때 QoS 프레임을 보내는 스테이션에 정한 기본 EDCA 파라미터는 아래와 같다. access category마다의 대기 시간 AIFS(Arbitration Interframe Space)는 AIFSN(AIFS Number)으로 $\mathrm{AIFS} = \mathrm{AIFSN} \times \mathrm{aSlotTime} + \mathrm{aSIFSTime}$이다. 채널 간격이 10 MHz인 OFDM 물리 계층에서는 aCWmin이 15, aCWmax가 1023, aSIFSTime이 32 µs이고, aSlotTime은 dot11OperatingClassesRequired가 false면 13 µs다.[@ieee-802-11-2024]
 
-| access category | CWmin          | CWmax          | AIFSN |
-| --------------- | -------------- | -------------- | ----- |
-| `AC_BK`         | aCWmin         | aCWmax         | 9     |
-| `AC_BE`         | aCWmin         | aCWmax         | 6     |
-| `AC_VI`         | aCWmin         | aCWmax         | 4     |
-| `AC_VO`         | (aCWmin+1)/4−1 | (aCWmin+1)/2−1 | 2     |
+| access category | 쓰임        | CWmin                     | CWmax                     | AIFSN |
+| --------------- | ----------- | ------------------------- | ------------------------- | ----- |
+| AC_BK           | background  | aCWmin                    | aCWmax                    | 9     |
+| AC_BE           | best effort | aCWmin                    | aCWmax                    | 6     |
+| AC_VI           | video       | aCWmin                    | aCWmax                    | 4     |
+| AC_VO           | voice       | $(\mathrm{aCWmin}+1)/4-1$ | $(\mathrm{aCWmin}+1)/2-1$ | 2     |
 
 ## 이력
 
