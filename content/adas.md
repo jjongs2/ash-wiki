@@ -16,9 +16,9 @@ NHTSA에 따르면 운전자 보조 기술에는 충돌 위험을 경고하는 �
 | 갈래                                       | 드는 기능                                                                                                                                                                 |
 | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 충돌 경고(collision warning)               | FCW(forward collision warning), LDW(lane departure warning), blind spot warning, rear cross traffic warning[@nhtsa-driver-assistance-technologies-2026][@nhtsa-ncap-2022] |
-| 충돌 개입(collision intervention)          | AEB(automatic emergency braking), 보행자 AEB, 후진 자동 제동, 사각지대 개입[@nhtsa-driver-assistance-technologies-2026][@sae-j3016-2026]                                  |
+| 충돌 개입(collision intervention)          | AEB(automatic emergency braking), pedestrian AEB, rear automatic braking, blind spot intervention[@nhtsa-driver-assistance-technologies-2026][@sae-j3016-2026]            |
 | 운전 제어 보조(driving control assistance) | ACC(adaptive cruise control), lane centering assistance, LKA(lane keeping assistance)[@nhtsa-driver-assistance-technologies-2026][@sae-j3016-2026]                        |
-| 그 밖의 시스템                             | 자동 상향등, 후방 카메라, 자동 충돌 통보[@nhtsa-driver-assistance-technologies-2026]                                                                                      |
+| 그 밖의 시스템                             | automatic high beams, backup camera, automatic crash notification[@nhtsa-driver-assistance-technologies-2026]                                                             |
 
 NHTSA의 설명에 따르면 FCW는 앞차와 충돌할 가능성을 감지해 운전자에게 경고만 하고, AEB는 전방 충돌이 임박하면 자동으로 제동한다. LDW는 차로 안에서 차량의 위치를 살피다 차량이 차선에 다가가거나 차선을 넘으면 경고한다. ACC는 앞차와 미리 정한 간격을 지키도록 차속을 자동으로 조절하고, LKA는 차량이 차로를 벗어나지 않도록 자동으로 부드럽게 조향한다.[@nhtsa-driver-assistance-technologies-2026]
 
@@ -28,7 +28,7 @@ NHTSA의 설명에 따르면 FCW는 앞차와 충돌할 가능성을 감지해 �
 
 NHTSA에 따르면 능동 안전 시스템은 ADAS의 한 종류이고, ADAS는 임박한 위험을 예측해 피하도록 운전자를 도와 낮은 수준의 자동화를 준다.[@nhtsa-automated-vehicles-safety-2026]
 
-[[sae-j3016|SAE J3016]]:2026은 ESC(electronic stability control)·AEB 같은 능동 안전 시스템과 LKA 같은 일부 운전자 보조 시스템, 주행 환경의 위험원을 알리거나 경고하기만 하는 시스템을 [[levels-of-driving-automation|운전 자동화 레벨]]의 분류에서 뺀다.[@sae-j3016-2026]
+[[sae-j3016|SAE J3016]]:2026은 ESC(electronic stability control)·AEB 같은 능동 안전 시스템과 LKA 같은 일부 운전자 보조 시스템, 주행 환경의 해저드를 알리거나 경고하기만 하는 시스템을 [[levels-of-driving-automation|운전 자동화 레벨]]의 분류에서 뺀다.[@sae-j3016-2026]
 
 ## EU 규정
 
