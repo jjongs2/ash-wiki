@@ -26,7 +26,7 @@ Key-Value Storage의 모든 작업은 저장소를 열 때 만드는 임시 저�
 
 ## 무결성과 보안
 
-Persistency는 중복 정보로 저장한 데이터의 손상을 검출해 무결성을 지킨다. 중복 정보는 [[cyclic-redundancy-check|CRC]], [[cryptographic-hash-function|해시]] 값, "M out of N" 사본이고, 함께 쓰거나 따로 쓸 수 있다. Persistency는 이 중복을 바탕으로 safe storage도 제공한다. safe storage는 중복 데이터로 복구할 수 있었더라도 저장한 데이터에 문제가 있었는지를 응용에 알린다. 또 Persistency는 쓰는 자원의 통계를 내고, 정해진 쿼터를 넘지 않게 할 수 있다. 민감한 데이터는 물리 장치에 저장하기 전에 암호화해 기밀성을 지키고, [[message-authentication-code|MAC]]으로 진정성을 지킨다.[@autosar-ap-exp-platformdesign-2025]
+Persistency는 중복 정보로 저장한 데이터의 손상을 검출해 무결성을 지킨다. 중복 정보는 [[cyclic-redundancy-check|CRC]], [[cryptographic-hash-function|해시]] 값, "M out of N" 사본이고, 함께 쓰거나 따로 쓸 수 있다. Persistency는 이 중복을 바탕으로 safe storage도 제공한다. safe storage는 중복 데이터로 복구할 수 있었더라도 저장한 데이터에 문제가 있었는지를 응용에 알린다. 또 Persistency는 쓰는 자원의 통계를 내고, 정해진 쿼터를 넘지 않게 할 수 있다. 민감한 데이터는 물리 장치에 저장하기 전에 암호화해 기밀성을 지키고, [[message-authentication-code|MAC]]으로 [[cybersecurity-property#Authenticity, 부인 방지, 인가|authenticity]]를 지킨다.[@autosar-ap-exp-platformdesign-2025]
 
 응용 설계자는 중복을 요청하거나 쓸 수단을 미리 고르고, 통합자는 Target Configuration에서 실제 수단을 정한다. CRC나 해시 값을 설정하면 Persistency는 저장소나 그 요소를 저장할 때 값을 계산하고 다시 읽을 때 그 값으로 검사한다. M out of N을 설정하면 사본 N개를 저장하고, 다시 읽을 때 적어도 M개가 같은지 검사한다. 저장한 데이터가 손상되었으면 중복으로 복원을 시도하고, 복원하지 못하면 `kValidationFailed`를 알린다.[@autosar-ap-sws-persistency-2025]
 

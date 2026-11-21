@@ -14,24 +14,24 @@ ETSI TS 103 097 V2.2.1은 보안 헤더와 인증서 형식을 [[ieee-1609|IEEE 
 
 ## 보안 구조
 
-ETSI EN 302 665 V1.1.1은 ITS station 참조 구조에 보안 실체를 두고, 그 실체가 방화벽·침입 관리, 인증·인가와 프로파일 관리, 식별자·암호 키·인증서 관리, [[hardware-security-module|HSM]] 같은 보안 기능을 담도록 한다.[@etsi-en-302-665-2010]
+ETSI EN 302 665 V1.1.1은 ITS station 참조 구조에 보안 개체를 두고, 그 개체가 방화벽·침입 관리, 인증·인가와 프로파일 관리, 식별자·암호 키·인증서 관리, [[hardware-security-module|HSM]] 같은 보안 기능을 담도록 한다.[@etsi-en-302-665-2010]
 
-ETSI TS 102 940 V2.1.1은 ITS-S의 보안 방어 계층이 misbehaviour detection 기능을 담도록 요구한다. 보안 방어 계층은 시스템의 중요한 자산과 데이터에 대한 직접 공격을 막고, 공격자가 드러날 가능성을 높인다. 이 명세는 키 저장과 암호 기능을 보안 모듈, 되도록 tamper-resistant 하드웨어에 모아 키 자료를 지키고, 적절한 인가 아래 다른 응용과 보안 서비스에 암호 연산을 서비스로 주기를 권한다. 이 보안 모듈이 HSM이다.[@etsi-ts-102-940-2021]
+ETSI TS 102 940 V2.1.1은 ITS-S의 보안 방어 계층이 misbehaviour detection 기능을 담도록 요구한다. 보안 방어 계층은 시스템의 중요한 자산과 데이터에 대한 직접 공격을 막고, 공격자가 드러날 가능성을 높인다. 이 명세는 키 저장과 암호 기능을 보안 모듈, 되도록 tamper-resistant 하드웨어에 모아 키 재료를 지키고, 적절한 인가 아래 다른 응용과 보안 서비스에 암호 연산을 서비스로 주기를 권한다. 이 보안 모듈이 HSM이다.[@etsi-ts-102-940-2021]
 
-## PKI 실체
+## PKI 개체
 
 PKI의 기능 요소와 그 역할은 다음과 같다.[@etsi-ts-102-940-2021]
 
-| 실체                                  | 역할                                                                                                  |
+| 개체                                  | 역할                                                                                                  |
 | ------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | Root CA(Root Certification Authority) | 인증 계층의 맨 위에 있는 CA로, EA와 AA에 각각 등록 인증서와 AT를 발급할 수 있다는 증명을 준다.        |
-| EA                                    | 등록 인증서의 생명주기를 관리하는 보안 관리 실체로, ITS-S를 인증해 ITS 통신에 접근하게 한다.          |
-| AA                                    | AT를 발급하고 그 쓰임을 지켜보는 보안 관리 실체로, ITS-S에 특정 ITS 서비스를 써도 된다는 증명을 준다. |
+| EA                                    | 등록 인증서의 생명주기를 관리하는 보안 관리 개체로, ITS-S를 인증해 ITS 통신에 접근하게 한다.          |
+| AA                                    | AT를 발급하고 그 쓰임을 지켜보는 보안 관리 개체로, ITS-S에 특정 ITS 서비스를 써도 된다는 증명을 준다. |
 | MA(Misbehaviour Authority)            | misbehaviour 보고를 처리하고, misbehaviour가 의심되는 ITS-S를 조사해 대응한다.                        |
 
 Root CA는 늘 오프라인으로 쓰고 어떤 네트워크에도 잇지 않는다. 신뢰 영역에 root CA가 여럿 있어 서로 협력하면 보안 관리 시스템은 Certificate Trust List 방식을 따르고, 유럽에서는 최상위 관리 역할을 C-ITS(Cooperative Intelligent Transport Systems) Platform의 인증서 정책 문서가 정한다.[@etsi-ts-102-940-2021]
 
-최상위 신뢰 관리에서 TLM(Trust List Manager)은 root CA 인증서와 TLM 인증서의 목록을 만들어 서명한다. CPOC(C-ITS Point Of Contact)는 root CA 인증서를 모아 TLM에 건네고, TLM이 서명한 목록을 관심 있는 실체에 배포한다. TLM이 서명한 이 목록을 **ECTL**(European Certificate Trust List)이라 부른다.[@etsi-ts-102-940-2021][@etsi-ts-102-941-2022]
+최상위 신뢰 관리에서 TLM(Trust List Manager)은 root CA 인증서와 TLM 인증서의 목록을 만들어 서명한다. CPOC(C-ITS Point Of Contact)는 root CA 인증서를 모아 TLM에 건네고, TLM이 서명한 목록을 관심 있는 개체에 배포한다. TLM이 서명한 이 목록을 **ECTL**(European Certificate Trust List)이라 부른다.[@etsi-ts-102-940-2021][@etsi-ts-102-941-2022]
 
 ![[diagrams/v2x-pki-entities.svg]]
 
@@ -47,7 +47,7 @@ CAM은 모든 ITS-S가 초당 여러 번까지 주기적으로 보내고 위치 
 
 이 명세는 ITS-S의 프라이버시를 지키도록 AA가 ITS-S의 장기 신원인 등록 인증서를 알지 못하게 하고, EA가 단기 신원인 AT를 장기 신원에 잇지 못하게 한다. AA는 ITS-S에 수명 동안 쓸 AT, 곧 가명 인증서를 여럿 준다.[@etsi-ts-102-940-2021]
 
-프라이버시가 필요한 ITS-S는 가명 인증서를 자주 바꾸는 수단을 두어야 한다. AT를 바꿔도 모든 식별자를 함께 바꿔야 연결 불가능한 가명성이 되므로, 통신 스택의 모든 계층에서 ITS-S에 묶인 식별자를 AT와 함께 바꾼다. CAM과 DENM의 통신 프로파일에서는 [[mac-address|MAC 주소]], [[v2x#GeoNetworking과 BTP|GeoNetworking]] 주소, stationID 같은 계층의 식별자를 보안 실체가 알려 주는 AT의 해시(HashedID8)에서 끌어내고, 더 짧은 식별자를 쓰는 계층은 그 하위 비트를 쓴다.[@etsi-ts-102-940-2021]
+프라이버시가 필요한 ITS-S는 가명 인증서를 자주 바꾸는 수단을 두어야 한다. AT를 바꿔도 모든 식별자를 함께 바꿔야 연결 불가능한 가명성이 되므로, 통신 스택의 모든 계층에서 ITS-S에 묶인 식별자를 AT와 함께 바꾼다. CAM과 DENM의 통신 프로파일에서는 [[mac-address|MAC 주소]], [[v2x#GeoNetworking과 BTP|GeoNetworking]] 주소, stationID 같은 계층의 식별자를 보안 개체가 알려 주는 AT의 해시(HashedID8)에서 끌어내고, 더 짧은 식별자를 쓰는 계층은 그 하위 비트를 쓴다.[@etsi-ts-102-940-2021]
 
 ETSI TS 102 941 V2.2.1은 ITS가 안전을 위해 ITS-S를 관찰할 수 있어야 하므로 익명성만으로는 ITS 사용자의 프라이버시를 지키기에 모자라다고 보고, 가명성(pseudonymity)과 연결 불가능성(unlinkability)을 기본 안전 메시지 송신자의 알맞은 보호로 둔다. **가명성**은 ITS-S가 신원을 드러내지 않고 자원이나 서비스를 쓰되 그 쓰임에 책임은 지는 것이고, **연결 불가능성**은 남이 한 ITS-S의 여러 쓰임을 서로 잇지 못하는 것이다.[@etsi-ts-102-941-2022]
 
