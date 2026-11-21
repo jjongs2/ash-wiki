@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 **VFB**(Virtual Functional Bus)는 [[autosar-software-component#종류|원자 SW-C]]와 AUTOSAR 서비스 사이의 통신을 추상화한 것이다. 이 추상화에서는 통신 메커니즘을, 그 통신을 실현하는 구체적인 기술과 상관없이 정한다.[@autosar-fo-tr-glossary-2025]
 
-VFB 개념은 응용과 인프라를 엄격히 나눈다. 응용을 구현하는 SW-C는 다른 컴포넌트나 하드웨어와 주고받는 데 쓰는 통신 메커니즘에서 대체로 독립하며, 이것으로 AUTOSAR의 재배치성(relocatability) 목표를 채운다.[@autosar-cp-tr-vfb-2025]
+VFB 개념은 응용과 인프라를 엄격히 나눈다. 응용을 구현하는 [[autosar-software-component|SW-C]]는 다른 컴포넌트나 하드웨어와 주고받는 데 쓰는 통신 메커니즘에서 대체로 독립하며, 이것으로 AUTOSAR의 재배치성(relocatability) 목표를 채운다.[@autosar-cp-tr-vfb-2025]
 
 ## VFB view
 

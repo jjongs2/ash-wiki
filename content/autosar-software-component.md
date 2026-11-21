@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 **AUTOSAR 소프트웨어 컴포넌트**는 인터페이스를 제공하거나 요구하고, [[virtual-functional-bus|VFB]]로 서로 연결되는 아키텍처 요소다. 줄여서 SW-C(Software Component)나 SWC라 한다. 소프트웨어 컴포넌트는 원자 컴포넌트, 파라미터 컴포넌트, composition 가운데 하나다.[@autosar-fo-tr-glossary-2025]
 
-AUTOSAR는 응용을 서로 연결된 컴포넌트의 composition으로 모델링하며, 컴포넌트는 [[software-component-port|포트]]를 거쳐서만 다른 컴포넌트와 상호 작용한다.[@autosar-cp-tr-vfb-2025] 응용 소프트웨어는 자기 완결적인 원자 SW-C 단위로 짜이고, 각 단위는 포트로만 바깥과 연결된다. SW-C는 ECU나 통신 버스에 의존하지 않는 추상 통신 채널인 VFB를 대상으로 개발된다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+[[autosar|AUTOSAR]]는 응용을 서로 연결된 컴포넌트의 composition으로 모델링하며, 컴포넌트는 [[software-component-port|포트]]를 거쳐서만 다른 컴포넌트와 상호 작용한다.[@autosar-cp-tr-vfb-2025] 응용 소프트웨어는 자기 완결적인 원자 SW-C 단위로 짜이고, 각 단위는 포트로만 바깥과 연결된다. SW-C는 [[electronic-control-unit|ECU]]나 통신 버스에 의존하지 않는 추상 통신 채널인 VFB를 대상으로 개발된다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 [[virtual-functional-bus#ECU 배치|ECU에 매핑]]된 원자 SW-C는 그 ECU용으로 생성된 [[autosar-rte|RTE]]에 연결된다. RTE는 컴포넌트 사이, 그리고 컴포넌트와 BSW(Basic Software) 사이의 구체적인 인터페이스다.[@autosar-cp-tr-vfb-2025]
 

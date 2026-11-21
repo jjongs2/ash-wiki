@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-30
 ---
 
-**OIL**(OSEK Implementation Language)은 [[osek-vdx|OSEK/VDX]]를 쓰는 응용 프로그램의 구성을 기술하는 언어다. OSEK의 목표인 소프트웨어 이식성을 위해 정해졌다. 다루는 범위는 ECU 안의 CPU 하나이며, ECU 네트워크는 다루지 않고 CPU마다 OIL 기술이 하나다.[@osek-oil-2-5-2004]
+**OIL**(OSEK Implementation Language)은 [[osek-vdx|OSEK/VDX]]를 쓰는 응용 프로그램의 구성을 기술하는 언어다. OSEK의 목표인 소프트웨어 이식성을 위해 정해졌다. 다루는 범위는 [[electronic-control-unit|ECU]] 안의 CPU 하나이며, ECU 네트워크는 다루지 않고 CPU마다 OIL 기술이 하나다.[@osek-oil-2-5-2004]
 
 ## 객체와 속성
 
