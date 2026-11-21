@@ -36,7 +36,7 @@ AUTOSAR는 2003년 결성 때부터 3년씩 이어지는 세 계약 단계로 �
 - 2013년 3월: Release 4.1.0이 AUTOSAR Timing Concept, Ethernet Partial Networking, 응용이 [[internet-protocol-suite|TCP/IP]]로 통신하는 소켓 인터페이스, 대형 상용차와 [[j1939|J1939]] 지원 등을 새로 넣었다.[@autosar-cp-releaseoverview-r4-1-3-2014]
 - 2014년 6월: [[autosar-acceptance-tests|인수 시험]]이 Classic Platform 릴리스와 따로 Acceptance Test Release 1.0.0으로 나왔다.[@autosar-history-2026]
 - 2014년 10월: Release 4.2.1이 이더넷과 [[can-fd|CAN FD]]로 큰 데이터를 주고받는 통신([[ethernet-switch|이더넷 스위치]] 지원 등)과 safety·security 개선에 집중했다.[@autosar-cp-releaseoverview-r4-2-2-2015]
-- 2016년 11월: Release 4.3.0이 Crypto Interface와 Crypto Driver로 [[autosar-crypto-stack|암호 스택]]을 완성하고, V2X(Vehicle-to-X) 통신을 처음 지원했다.[@autosar-cp-releaseoverview-r4-3-1-2017]
+- 2016년 11월: Release 4.3.0이 Crypto Interface와 Crypto Driver로 [[autosar-crypto-stack|암호 스택]]을 완성하고, [[v2x|V2X]] 통신을 처음 지원했다.[@autosar-cp-releaseoverview-r4-3-1-2017]
 - 2018년 10월: Release 4.4.0이 나왔다.[@autosar-history-2026] 번호로 이름을 붙인 마지막 Classic Platform 릴리스다.[@autosar-cp-tr-releaseoverview-2025]
 - 2019년 11월: 릴리스 이름을 Ryy-mm(릴리스의 연도와 월) 꼴로 바꿔 R19-11이 나왔다. 이때부터 Classic Platform, Adaptive Platform, [[autosar#표준|Foundation]]을 한 AUTOSAR 릴리스로 함께 낸다. 번호는 내부 릴리스 번호로 이어져, R19-11은 R4.5.0, R25-11은 R4.11.0이다.[@autosar-cp-tr-releaseoverview-2025]
 - 2020년 11월: R20-11이 [[intrusion-detection-system-manager|IdsM]]과 [[autosar-software-cluster#Software Cluster Connection|Software Cluster Connection]](SwCluC)의 명세를 처음 넣었다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025][@autosar-cp-sws-softwareclusterconnection-2025] R20-11의 CAN Interface 명세는 Pretended Networking을 뺐다.[@autosar-cp-sws-caninterface-2025]

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 304" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="ITS station 참조 구조">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 가운데 블록: 위에서부터 Applications, Facilities, Networking & Transport, Access -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="120.75" y="20.75" width="118.5" height="58.5" rx="2" />
+    <rect x="120.75" y="88.75" width="118.5" height="58.5" rx="2" />
+    <rect x="120.75" y="156.75" width="118.5" height="58.5" rx="2" />
+    <rect x="120.75" y="224.75" width="118.5" height="58.5" rx="2" />
+    <!-- 곁의 개체: 왼쪽 Management, 오른쪽 Security -->
+    <rect x="20.75" y="20.75" width="90.5" height="262.5" rx="2" />
+    <rect x="248.75" y="20.75" width="90.5" height="262.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="180" y="47">Applications</text>
+    <text x="180" y="115">Facilities</text>
+    <text x="180" y="175">Networking &amp;</text>
+    <text x="180" y="192">Transport</text>
+    <text x="180" y="251">Access</text>
+    <text x="66" y="150">Management</text>
+    <text x="294" y="150">Security</text>
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="180" y="64">ITS-S 응용</text>
+    <text x="180" y="132">계층 5~7</text>
+    <text x="180" y="208">계층 3~4</text>
+    <text x="180" y="268">계층 1~2</text>
+    <text x="66" y="168">통신 관리</text>
+    <text x="294" y="168">보안 서비스</text>
+  </g>
+</svg>

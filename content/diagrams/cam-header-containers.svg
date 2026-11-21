@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 3.5 332 368" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="CAM의 header와 container">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- header -->
+  <rect x="20.75" y="46.75" width="62.5" height="274.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="52" y="189" text-anchor="middle" fill="var(--text, #727981)">header</text>
+
+  <!-- container 묶음(실선 틀). 점선 상자는 일부 CAM에만 넣는 container -->
+  <text x="202" y="34" text-anchor="middle" font-size="12" fill="var(--text, #727981)">container</text>
+  <rect x="91.75" y="46.75" width="220.5" height="274.5" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="103.75" y="58.75" width="196.5" height="42.5" rx="2" />
+    <rect x="103.75" y="110.75" width="196.5" height="42.5" rx="2" />
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)">
+    <rect x="103.75" y="162.75" width="196.5" height="42.5" rx="2" />
+    <rect x="103.75" y="214.75" width="196.5" height="42.5" rx="2" />
+    <rect x="103.75" y="266.75" width="196.5" height="42.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="202" y="77">basic container</text>
+    <text x="202" y="129">high frequency container</text>
+    <text x="202" y="181">low frequency container</text>
+    <text x="202" y="233">special vehicle container</text>
+    <text x="202" y="285">extension container</text>
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="202" y="94">모든 CAM</text>
+    <text x="202" y="146">모든 CAM</text>
+    <text x="202" y="198">차량 CAM만</text>
+    <text x="202" y="250">특정 역할을 맡은 차량만</text>
+    <text x="202" y="302">차량 CAM, Release 2</text>
+  </g>
+
+  <text x="20" y="348" font-size="12" fill="var(--text, #727981)">점선: 일부 CAM에만 넣는 container</text>
+</svg>

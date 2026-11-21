@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2.5 257.5 484" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="DENM의 종류와 보내는 ITS-S">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- New DENM을 만든 ITS-S: 위에서 아래로 New, Update, 다음 Update, Cancellation -->
+  <text x="20" y="32" font-size="12" fill="var(--text, #727981)">New DENM을 만든 ITS-S</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="70" y1="85" x2="70" y2="123" />
+    <line x1="70" y1="165" x2="70" y2="213" />
+    <line x1="70" y1="255" x2="70" y2="293" />
+  </g>
+  <!-- 두 Update 사이의 되풀이 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1">
+    <line x1="63" y1="178" x2="77" y2="178" />
+    <line x1="63" y1="188" x2="77" y2="188" />
+    <line x1="63" y1="198" x2="77" y2="198" />
+  </g>
+  <text x="86" y="192" font-size="12" fill="var(--text, #727981)">되풀이</text>
+
+  <!-- 다른 ITS-S: 앞의 흐름과 시간 관계를 두지 않도록 구분선 아래에 따로 -->
+  <line x1="20" y1="354" x2="234" y2="354" stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3" />
+  <text x="20" y="380" font-size="12" fill="var(--text, #727981)">다른 ITS-S</text>
+
+  <!-- DENM. 점선은 만드는 것이 선택인 DENM -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20.75" y="44.75" width="98.5" height="38.5" rx="2" />
+    <rect x="20.75" y="124.75" width="98.5" height="38.5" rx="2" />
+    <rect x="20.75" y="214.75" width="98.5" height="38.5" rx="2" />
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" fill="var(--surface, none)">
+    <rect x="20.75" y="294.75" width="98.5" height="38.5" rx="2" />
+    <rect x="20.75" y="392.75" width="98.5" height="38.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="70" y="69">New</text>
+    <text x="70" y="149">Update</text>
+    <text x="70" y="239">Update</text>
+    <text x="70" y="319">Cancellation</text>
+    <text x="70" y="417">Negation</text>
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="132" y="68">새 actionId</text>
+    <text x="132" y="148">referenceTime 새로</text>
+    <text x="132" y="238">referenceTime 새로</text>
+    <text x="132" y="318">사건 끝</text>
+    <text x="132" y="416">받은 DENM의 사건 끝</text>
+  </g>
+
+  <text x="20" y="464" font-size="12" fill="var(--text, #727981)">점선: 만드는 것이 선택인 DENM</text>
+</svg>

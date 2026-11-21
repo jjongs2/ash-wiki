@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 418" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="차량 CAM의 생성 조건">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 검사 -->
+  <rect x="80.75" y="20.75" width="238.5" height="36.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <text x="200" y="44" text-anchor="middle" fill="var(--text, #727981)">T_CheckCamGen마다 생성 조건 검사</text>
+
+  <!-- 두 조건 가운데 하나 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M200 58 V72 H105 V96" />
+    <path d="M200 72 H295 V96" />
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20.75" y="98.75" width="168.5" height="90.5" rx="2" />
+    <rect x="210.75" y="98.75" width="168.5" height="90.5" rx="2" />
+  </g>
+  <g fill="var(--text, #727981)">
+    <text x="32" y="120" font-weight="600">조건 1</text>
+    <text x="32" y="140">t ≥ T_GenCam_Dcc이고</text>
+    <text x="32" y="158">Δh &gt; 4°, Δp &gt; 4 m,</text>
+    <text x="32" y="176">Δv &gt; 0.5 m/s 가운데 하나</text>
+    <text x="222" y="120" font-weight="600">조건 2</text>
+    <text x="222" y="140">t ≥ T_GenCam이고</text>
+    <text x="222" y="158">t ≥ T_GenCam_Dcc</text>
+  </g>
+
+  <!-- 생성과 T_GenCam -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M105 190 V222" />
+    <path d="M295 190 V222" />
+  </g>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20.75" y="224.75" width="168.5" height="88.5" rx="2" />
+    <rect x="210.75" y="224.75" width="168.5" height="88.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="105" y="264">CAM 생성</text>
+    <text x="105" y="282">T_GenCam을 t로</text>
+    <text x="295" y="246">CAM 생성</text>
+    <text x="295" y="264">연속 N_GenCam개 뒤</text>
+    <text x="295" y="282">T_GenCam을</text>
+    <text x="295" y="300">T_GenCamMax로</text>
+  </g>
+
+  <!-- 기호 -->
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="20" y="342">t: 마지막 CAM 생성에서 흐른 시간</text>
+    <text x="20" y="360">Δh: 지난 CAM에 담은 heading과의 차이</text>
+    <text x="20" y="378">Δp: 지난 CAM에 담은 위치와의 거리</text>
+    <text x="20" y="396">Δv: 지난 CAM에 담은 속도와의 차이</text>
+  </g>
+</svg>
