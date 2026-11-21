@@ -71,7 +71,7 @@ NIST SP 800-38A의 Addendum에 따르면 **Ciphertext stealing**은 필요한 �
 
 ## 인증 암호 모드
 
-**AEAD**(Authenticated Encryption with Associated Data)는 평문에는 기밀성과 무결성·authenticity를 주고, 함께 넘기는 연관 데이터에는 무결성·authenticity를 더하는 암호 방식이다. 연관 데이터는 암호화하지 않지만 인증 대상에 든다.[@ietf-rfc-5116-2008]
+**AEAD**(Authenticated Encryption with Associated Data)는 평문에는 기밀성과 무결성·[[cybersecurity-property#Authenticity, 부인 방지, 인가|authenticity]]를 주고, 함께 넘기는 연관 데이터에는 무결성·authenticity를 더하는 암호 방식이다. 연관 데이터는 암호화하지 않지만 인증 대상에 든다.[@ietf-rfc-5116-2008]
 
 **CCM**(Counter with CBC-MAC)은 CTR 모드로 기밀성을 주고 CBC-MAC으로 인증한다. NIST SP 800-38C가 CCM을 정하며, 블록 크기가 128비트인 블록 암호를 쓰도록 한다.[@nist-sp-800-38c-2004]
 

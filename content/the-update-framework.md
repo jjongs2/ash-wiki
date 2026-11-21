@@ -72,7 +72,7 @@ TUF의 작업은 2009년 말에 시작됐고, TUF의 참조 구현은 Tor의 애
 
 Justin Samuel, Nick Mathewson, Justin Cappos, Roger Dingledine은 2010년 논문에서 TUF를 설계하고 구현했다.[@samuel-survivable-key-compromise-2010]
 
-TUF는 2017년 CNCF(비영리 Linux Foundation에 속한 클라우드 네이티브 오픈소스 재단)에 incubating 프로젝트로 들어갔고, 2019년 graduated 프로젝트가 됐다.[@cncf-tuf-project-2026][@cncf-who-we-are-2026]
+TUF는 2017년 CNCF(Linux Foundation 산하의 클라우드 네이티브 오픈소스 재단)에 incubating 프로젝트로 들어갔고, 2019년 graduated 프로젝트가 됐다.[@cncf-tuf-project-2026][@cncf-who-we-are-2026]
 
 ## 채택
 

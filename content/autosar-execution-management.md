@@ -51,7 +51,7 @@ Execution Management는 Machine을 올바르게 설정하는 일만 맡는다. �
 
 ## Trusted Platform
 
-Execution Management는 인증된 시작을 선택적으로 지원한다. 인증된 시작에서는 Trust Anchor에서 출발해 [[secure-boot#신뢰 사슬|신뢰 사슬]]을 유지하며 Adaptive Platform을 시작하고, Execution Management가 응용의 authenticity와 무결성을 검증해 위반을 찾으면 그 응용의 실행을 막을 수 있다. 이런 메커니즘으로 Trusted Platform을 세울 수 있다.[@autosar-ap-exp-platformdesign-2025]
+Execution Management는 인증된 시작을 선택적으로 지원한다. 인증된 시작에서는 Trust Anchor에서 출발해 [[secure-boot#신뢰 사슬|신뢰 사슬]]을 유지하며 Adaptive Platform을 시작하고, Execution Management가 응용의 [[cybersecurity-property#Authenticity, 부인 방지, 인가|authenticity]]와 무결성을 검증해 위반을 찾으면 그 응용의 실행을 막을 수 있다. 이런 메커니즘으로 Trusted Platform을 세울 수 있다.[@autosar-ap-exp-platformdesign-2025]
 
 Trusted Platform의 핵심은 Trust Anchor다. Trust Anchor는 [[secure-boot#Root of trust|root of trust]]라고도 부르며, 흔히 바꿀 수 없는 영속 메모리나 [[hardware-security-module|HSM]] 같은 안전한 환경에 저장한 공개 키로 구현한다. 시스템 설계자는 적어도 시스템이 Trust Anchor에서 시작하고 Execution Management가 실행될 때까지 신뢰가 유지되게 해야 한다. 운영체제는 Execution Management를 실행하기 전에, 이미 인증된 개체가 Execution Management의 authenticity를 확인했는지 보장해야 한다. 그 뒤로는 Execution Management가 Adaptive Application을 실행하기 전에 인증하는 책임을 맡는다.[@autosar-ap-exp-platformdesign-2025]
 
