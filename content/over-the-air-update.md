@@ -23,7 +23,7 @@ NHTSA의 2022년 모범 사례는 OTA를 무선 전송을 쓰는 소프트웨어
 
 ## 시스템 구성
 
-[[uptane|Uptane]] Standard 2.1.0은 차량의 버전 정보를 모아 서버에 보내고 자기와 다른 ECU를 위한 이미지를 내려받아 검증하는 ECU를 primary ECU라 한다.[@uptane-standard-2-1-0-2023] [[autosar|AUTOSAR]] R25-11의 [[autosar-adaptive-platform|Adaptive Platform]]에서는 functional cluster [[autosar-update-and-configuration-management#Vehicle UCM|V-UCM]]이 차량 안의 업데이트 캠페인을 조율해, 각 Machine의 [[autosar-update-and-configuration-management|UCM]]에 Software Package를 보낸다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] 진단으로 플래시하는 ECU를 V-UCM이 업데이트하는 방식은 ECU 재프로그래밍의 [[ecu-reprogramming#정비소와 OTA|정비소와 OTA]]에서 다룬다.
+[[uptane|Uptane]] Standard 2.1.0은 차량의 버전 정보를 모아 서버에 보내고 자기와 다른 ECU를 위한 이미지를 내려받아 검증하는 ECU를 primary ECU라 한다.[@uptane-standard-2-1-0-2023] [[autosar|AUTOSAR]] R25-11의 [[autosar-adaptive-platform|Adaptive Platform]]에서는 [[autosar-adaptive-platform#Functional cluster|functional cluster]] [[autosar-update-and-configuration-management#Vehicle UCM|V-UCM]]이 차량 안의 업데이트 캠페인을 조율해, 각 [[autosar-adaptive-platform#Machine과 프로세스|Machine]]의 [[autosar-update-and-configuration-management|UCM]]에 [[autosar-update-and-configuration-management#패키지|Software Package]]를 보낸다.[@autosar-ap-sws-vehicleupdateandconfigurationmanagement-2025] 진단으로 플래시하는 ECU를 V-UCM이 업데이트하는 방식은 ECU 재프로그래밍의 [[ecu-reprogramming#정비소와 OTA|정비소와 OTA]]에서 다룬다.
 
 NXP 백서에 따르면 OTA 업데이트에서 차량과 제조사 서버 사이의 연결은 보통 [[telematics-control-unit|텔레매틱스 유닛]]이 셀룰러 망 위에 맺고, 차량 안 ECU들의 업데이트를 관리하는 OTA 매니저는 [[gateway#중앙 게이트웨이|중앙 게이트웨이]]에 두기 알맞다.[@nxp-making-full-vehicle-ota-updates-reality-2016] AWS(Amazon Web Services) 백서에 따르면 AWS IoT Jobs로 차량 소프트웨어를 OTA 업데이트할 때, 차량의 에이전트는 [[mqtt|MQTT]]나 HTTPS로 Jobs 서비스에 접속해 예정된 업데이트가 있는지 확인한다.[@aws-vehicle-communication-mqtt-2024]
 
