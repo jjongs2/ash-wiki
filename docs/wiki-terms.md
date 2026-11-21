@@ -69,7 +69,7 @@
 - EDR 풀이 Event Data Recorder: - (#682)
 - EEPROM emulation: EEPROM 에뮬레이션 (#674)
 - endurance, data retention: 내구성, 데이터 보존 (#674). 플래시 메모리의 endurance와 data retention일 때
-- EU 규정 2019/2144, EU 위임 규정 2021/1341, EU 시행 규정 2022/1426: 규정 (EU) 2019/2144, EU 2019/2144, 규정 (EC) No 715/2007, Art. 6 (#682, #742, #763). EU 규정을 부르는 꼴 전체다. 2024/2847, 2024/1257, 2018/858 같은 다른 EU 규정도 종류(규정, 위임 규정, 시행 규정)를 앞에 둔 이 꼴로 부른다. EU 지침과 결정도 같은 꼴로 부른다. 예: EU 지침 2010/40, EU 시행 결정 2020/1426. EC가 채택한 규정도 같은 꼴로 부르되 EC를 남긴다. 예: EC 규정 715/2007. 조 번호는 "제N조"로 쓴다. 예: EC 규정 715/2007 제6조
+- EU 규정 2019/2144, EU 위임 규정 2021/1341, EU 시행 규정 2022/1426: 규정 (EU) 2019/2144, EU 2019/2144, 규정 (EC) No 715/2007, Art. 6 (#682, #742, #763). EU 규정을 부르는 꼴 전체다. 2024/2847, 2024/1257, 2018/858 같은 다른 EU 규정도 종류(규정, 위임 규정, 시행 규정)를 앞에 둔 이 꼴로 부른다. EU 지침과 결정도 같은 꼴로 부른다. 예: EU 지침 2010/40, EU 시행 결정 2020/1426. 유럽 공동체(EC) 시절의 규정도 같은 꼴로 부르되 EC를 남긴다. 예: EC 규정 715/2007. 조 번호는 "제N조"로 쓴다. 예: EC 규정 715/2007 제6조
 - event-triggered: 이벤트 트리거 (#564)
 - failure: 실패, 고장, 장애 (#291). 합성어 포함. 예: dependent failure, failure mode, target failure measure. 동사("고장 나다", "실패하다"), 테스트의 pass/fail, 일반 낱말 "실패"는 그대로. ISTQB의 error·defect와 같은 문장, 곧 "실수"나 "결함"과 같은 문장에서는 "장애", 페이지에서 처음 쓸 때 "장애(failure)"
 - false positive: 거짓 양성 (#291). ISTQB 용어 이름은 false-positive result
@@ -137,7 +137,7 @@
 - time-triggered: 시간 트리거 (#564)
 - Timing Analysis and Design 보고서: AUTOSAR 타이밍 분석 보고서 (#257). 본문에서 AUTOSAR 문서를 부르는 이름
 - Timing Extensions 명세: 타이밍 확장 명세 (#257). 본문에서 AUTOSAR 문서를 부르는 이름. "명세" 없이 쓴 "Timing Extensions"도 그대로
-- TLV 풀이: 통일하지 않음 (#763). 인용한 출처의 풀이대로. SOME/IP PRS를 인용하면 Tag, IEEE와 벤더 문서를 인용하면 Type으로 풀고, 하이픈과 쉼표 같은 철자도 출처대로
+- TLV 풀이: 통일하지 않음 (#763). 인용한 출처의 풀이대로. SOME/IP PRS를 인용하면 Tag, IEEE와 벤더 문서를 인용하면 Type으로 푼다
 - Type 1: Type-1 (#659). 하이퍼바이저의 갈래일 때. Type 2도 같다
 - USART 풀이 Universal Synchronous/Asynchronous Receiver/Transmitter: Universal Synchronous and Asynchronous Receiver Transmitter (#196)
 - use case: 유스케이스 (#394). 합성어 포함. 예: use case 테스트
