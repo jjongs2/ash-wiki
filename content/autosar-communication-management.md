@@ -7,11 +7,11 @@ verified: 2026-10-07
 
 AUTOSAR R25-11 Adaptive Platform 설계 설명서는 **Communication Management**(CM)를 분산 실시간 임베디드 환경에서 응용 사이 통신의 모든 측면을 맡는 [[autosar-adaptive-platform|AUTOSAR Adaptive Platform]]의 functional cluster로 정의한다. 통신 상대를 찾고 잇는 실제 메커니즘을 추상화해, 응용 소프트웨어 구현자가 응용 자체의 목적에 집중하게 하려는 것이다.[@autosar-ap-exp-platformdesign-2025]
 
-[[osi-model|OSI 모델]]의 데이터 링크 계층에서 Adaptive Platform의 통신은 [[ieee-802-3|IEEE 802.3]]의 [[ethernet|이더넷]] MAC(Medium Access Control) 프레임을 바탕으로 한다. 물리 계층으로는 [[100base-t1|100BASE-T1]], [[1000base-t1|1000BASE-T1]] 같은 [[automotive-ethernet|차량용 이더넷]] 기술을 쓸 수 있다. [[can-xl|CAN XL]] 네트워크도 Adaptive Platform의 물리 계층 선택지다. 이때 Adaptive Platform은 이더넷 프레임을 CAN XL 네트워크로 터널링하는 것만 지원하므로, Adaptive Platform이 보는 데이터 링크 계층은 그대로 이더넷 MAC 프레임이다.[@autosar-ap-exp-platformdesign-2025] 머신 안팎의 서비스 지향 통신에서 Communication Management가 맡는 역할은 [[service-oriented-communication#서비스 발견|서비스 지향 통신]]에서 다룬다.
+[[osi-model|OSI 모델]]의 데이터 링크 계층에서 Adaptive Platform의 통신은 [[ieee-802-3|IEEE 802.3]]의 [[ethernet|이더넷]] MAC(Medium Access Control) 프레임을 바탕으로 한다. 물리 계층으로는 [[100base-t1|100BASE-T1]], [[1000base-t1|1000BASE-T1]] 같은 [[automotive-ethernet|차량용 이더넷]] 기술을 쓸 수 있다. [[can-xl|CAN XL]] 네트워크도 Adaptive Platform의 물리 계층 선택지다. 이때 Adaptive Platform은 이더넷 프레임을 CAN XL 네트워크로 터널링하는 것만 지원하므로, Adaptive Platform이 보는 데이터 링크 계층은 그대로 이더넷 MAC 프레임이다.[@autosar-ap-exp-platformdesign-2025] Machine 안팎의 서비스 지향 통신에서 Communication Management가 맡는 역할은 [[service-oriented-communication#서비스 발견|서비스 지향 통신]]에서 다룬다.
 
 ## 서비스
 
-서비스는 기본 운영 소프트웨어가 이미 주는 것 너머로 응용에 제공하는 기능이다. Communication Management는 이런 서비스를 머신 안 통신과 머신 사이 통신에서 제공하거나 소비하는 메커니즘을 준다. 서비스는 Event, Method, Field의 조합으로 이뤄진다.[@autosar-ap-exp-platformdesign-2025] [[some-ip|SOME/IP]]에서 이 셋의 뜻은 [[service-oriented-communication#서비스 인터페이스|서비스 지향 통신]]에서 다룬다.
+서비스는 기본 운영 소프트웨어가 이미 주는 것 너머로 응용에 제공하는 기능이다. Communication Management는 이런 서비스를 Machine 안 통신과 Machine 사이 통신에서 제공하거나 소비하는 메커니즘을 준다. 서비스는 Event, Method, Field의 조합으로 이뤄진다.[@autosar-ap-exp-platformdesign-2025] [[some-ip|SOME/IP]]에서 이 셋의 뜻은 [[service-oriented-communication#서비스 인터페이스|서비스 지향 통신]]에서 다룬다.
 
 통신 상대 사이의 통신 경로는 설계 시점, 시작 시점, 실행 시점에 세울 수 있다. **Service Registry**는 중개를 맡는 Communication Management의 일부로, 그 메커니즘의 중요한 구성 요소다. 서비스를 제공하는 응용은 Service Registry에 서비스를 등록하고, 서비스를 쓰려는 응용은 Service Registry에 물어 필요한 서비스를 찾는다. 이 과정이 서비스 발견이다.[@autosar-ap-exp-platformdesign-2025]
 
