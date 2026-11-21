@@ -24,6 +24,7 @@ import WikiDiff, {
   alignBlocks,
   extractBlocks,
   markDiff,
+  navPages,
   pageChanges,
   similarity,
   tokenize,
@@ -371,6 +372,20 @@ describe("바뀐 페이지 목록", () => {
       removed: ["c.md"],
       changed: ["b.md", "d.md"],
     })
+  })
+
+  test("옮겨 다닐 목록은 새 페이지 뒤에 바뀐 페이지를 잇는다", () => {
+    assert.deepStrictEqual(navPages(changes), ["e", "b", "d"])
+  })
+
+  // 새 주제를 여는 인제스트는 대문의 구역 표를 고친다. 대문이 목록 중간에 끼면 거기서 시작해 앞 페이지를 건너뛴다.
+  test("대문이 바뀌었으면 옮겨 다닐 목록의 맨 앞에 둔다", () => {
+    const pages = navPages({
+      added: ["can-xl.md", "zonal.md"],
+      removed: ["old.md"],
+      changed: ["can.md", "index.md", "uds.md"],
+    })
+    assert.deepStrictEqual(pages, ["index", "can-xl", "zonal", "can", "uds"])
   })
 })
 
