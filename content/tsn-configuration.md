@@ -7,7 +7,7 @@ aliases:
 verified: 2026-10-06
 ---
 
-**TSN 설정**은 [[avb#Talker와 listener|talker]]와 listener가 자기 요구를 네트워크에 넘기면, 네트워크가 스트림마다 talker에서 listener까지의 브리지에 [[tsn|TSN]] 기능을 설정하는 과정이다. [[ieee-802-1q|IEEE 802.1Q]]-2022는 46장에서 이 설정을 정한다.[@ieee-802-1q-2022]
+**TSN 설정**은 [[avb#Talker와 listener|talker]]와 listener가 자기 요구를 네트워크에 넘기면, 네트워크가 스트림마다 talker에서 listener까지의 [[ethernet-switch#리피터, 브리지, 라우터와의 차이|브리지]]에 [[tsn|TSN]] 기능을 설정하는 과정이다. [[ieee-802-1q|IEEE 802.1Q]]-2022는 46장에서 이 설정을 정한다.[@ieee-802-1q-2022]
 
 ## UNI
 

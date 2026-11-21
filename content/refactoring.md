@@ -11,7 +11,7 @@ ISO/IEC/IEEE 24765 용어집은 refactor(리팩터링하다)를 소프트웨어 
 
 ## 기원
 
-William Opdyke는 1992년 일리노이 대학교 어배너-섐페인의 박사 논문에서, 객체지향 애플리케이션 프레임워크의 설계, 진화, 재사용을 돕는 프로그램 재구성 연산의 집합을 리팩터링으로 정의했다.[@opdyke-refactoring-frameworks-1992] Fowler는 『Refactoring』 초판을 1999년에, 2판을 2018년 말에 냈다.[@fowler-refactoring-book-2026] martinfowler.com의 일부인 refactoring.com은 2판의 리팩터링을 요약한 온라인 카탈로그를 싣는다.[@fowler-refactoring-2026]
+William Opdyke는 1992년 일리노이 대학교 어배너-섐페인의 박사 논문에서, 객체지향 응용 프레임워크의 설계, 진화, 재사용을 돕는 프로그램 재구성 연산의 집합을 리팩터링으로 정의했다.[@opdyke-refactoring-frameworks-1992] Fowler는 『Refactoring』 초판을 1999년에, 2판을 2018년 말에 냈다.[@fowler-refactoring-book-2026] martinfowler.com의 일부인 refactoring.com은 2판의 리팩터링을 요약한 온라인 카탈로그를 싣는다.[@fowler-refactoring-2026]
 
 ## 동작 보존
 

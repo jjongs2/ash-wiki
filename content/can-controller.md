@@ -26,7 +26,7 @@ ISO 11898-1:2024는 **idle condition**을 샘플링한 [[dominant-and-recessive|
 
 ## 송신
 
-애플리케이션은 빈 송신 버퍼에 [[can-identifier|식별자]], [[data-length-code|DLC]], 데이터를 넣고 송신을 요청한다.[@st-rm0008-2021] 컨트롤러는 버퍼 내용으로 프레임을 부호화하고, 비트열로 직렬화해 내보낸다.[@microchip-mcp251xxfd-frm-2018] 이때 같은 값의 비트가 5개 이어지면 반대 값의 비트를 하나 자동으로 넣는다([[can-bit-stuffing|비트 스터핑]]).[@bosch-can-2-0-1991]
+응용 프로그램은 빈 송신 버퍼에 [[can-identifier|식별자]], [[data-length-code|DLC]], 데이터를 넣고 송신을 요청한다.[@st-rm0008-2021] 컨트롤러는 버퍼 내용으로 프레임을 부호화하고, 비트열로 직렬화해 내보낸다.[@microchip-mcp251xxfd-frm-2018] 이때 같은 값의 비트가 5개 이어지면 반대 값의 비트를 하나 자동으로 넣는다([[can-bit-stuffing|비트 스터핑]]).[@bosch-can-2-0-1991]
 
 ![[diagrams/can-bit-stuffing.svg]]
 

@@ -11,12 +11,12 @@ verified: 2026-09-29
 
 ## 신호
 
-MII는 데이터를 4비트 단위로 주고받는다.[@ti-dp83822-2026][@microchip-ksz9477s-2019] 송신 쪽과 수신 쪽은 각각 데이터 선 넷, 클럭, 유효 표시, 오류 표시를 갖는다.[@microchip-ksz9477s-2019][@ti-dp83tc811r-q1-2018]
+MII는 데이터를 4비트 단위로 주고받는다.[@ti-dp83822-2026][@microchip-ksz9477s-2019] 송신 쪽과 수신 쪽은 각각 데이터 선 넷, 클록, 유효 표시, 오류 표시를 갖는다.[@microchip-ksz9477s-2019][@ti-dp83tc811r-q1-2018]
 
 | 구분      | 송신     | 수신     |
 | --------- | -------- | -------- |
 | 데이터    | TXD<3:0> | RXD<3:0> |
-| 클럭      | TX_CLK   | RX_CLK   |
+| 클록      | TX_CLK   | RX_CLK   |
 | 유효 표시 | TX_EN    | RX_DV    |
 | 오류 표시 | TX_ER    | RX_ER    |
 
@@ -42,8 +42,8 @@ OPEN Alliance TC6는 MAC과 PHY를 잇는 인터페이스(xMII)를 차량 네트
 
 ## RMII, GMII, RGMII와의 차이
 
-RMII(Reduced MII)는 MII를 바탕으로 핀 수를 줄인 인터페이스다. RMII는 CRS와 RX_DV를 CRS_DV 하나로 합치고, 송신과 수신이 함께 쓰는 50 MHz 기준 클럭에 맞춰 데이터를 2비트씩 보낸다.[@ti-dp83822-2026][@microchip-ksz9477s-2019]
+RMII(Reduced MII)는 MII를 바탕으로 핀 수를 줄인 인터페이스다. RMII는 CRS와 RX_DV를 CRS_DV 하나로 합치고, 송신과 수신이 함께 쓰는 50 MHz 기준 클록에 맞춰 데이터를 2비트씩 보낸다.[@ti-dp83822-2026][@microchip-ksz9477s-2019]
 
-IEEE 802.3-2022는 MII를 바탕으로 한 1 Gbit/s 전용 인터페이스로 GMII(Gigabit MII)를 정하며, GMII는 MII의 신호 이름과 관리 인터페이스를 이어받는다. GMII는 프리앰블과 SFD를 TX_EN을 올린 때부터 옥텟으로 보낸다.[@ieee-802-3-2022] GMII는 데이터를 8비트 단위로 125 MHz 클럭에 맞춰 보낸다.[@ti-dp83867ir-2026][@microchip-ksz9031mnx-2017] RGMII(Reduced GMII)는 1 Gbit/s에서 데이터 선 넷으로 클럭의 두 에지에 데이터를 실어, GMII의 24핀을 12핀으로 줄인다.[@microchip-ksz9477s-2019][@ti-dp83867ir-2026]
+IEEE 802.3-2022는 MII를 바탕으로 한 1 Gbit/s 전용 인터페이스로 GMII(Gigabit MII)를 정하며, GMII는 MII의 신호 이름과 관리 인터페이스를 이어받는다. GMII는 프리앰블과 SFD를 TX_EN을 올린 때부터 옥텟으로 보낸다.[@ieee-802-3-2022] GMII는 데이터를 8비트 단위로 125 MHz 클록에 맞춰 보낸다.[@ti-dp83867ir-2026][@microchip-ksz9031mnx-2017] RGMII(Reduced GMII)는 1 Gbit/s에서 데이터 선 넷으로 클록의 두 에지에 데이터를 실어, GMII의 24핀을 12핀으로 줄인다.[@microchip-ksz9477s-2019][@ti-dp83867ir-2026]
 
 차량용 PHY도 MII나 그 변형으로 MAC에 이어진다. 100BASE-T1 PHY인 DP83TC811R-Q1은 MII, RMII, RGMII를, TJA1101B는 MII와 RMII를 지원한다.[@ti-dp83tc811r-q1-2018][@nxp-tja1101b-2021]

@@ -61,7 +61,7 @@ ISTQB CTFL v4.0.1 강의계획서에 따르면 다음 결함은 정적 테스트
 
 ## 테스트 기법의 분류
 
-테스트 기법은 블랙박스(명세 기반), 화이트박스(구조 기반), 경험 기반의 세 갈래로 나뉜다.[@istqb-ctfl-syllabus-2024][@iso-iec-ieee-29119-4-obp-2021] SWEBOK V4.0a는 명세, 구조, 경험 말고도 찾아낼 결함, 예상되는 사용, 모델, 애플리케이션의 성격, 도출된 지식을 기법을 나누는 기준으로 든다.[@ieee-swebok-v4-0a-2026] 갈래마다 다음에 바탕을 둔다.[@istqb-ctfl-syllabus-2024]
+테스트 기법은 블랙박스(명세 기반), 화이트박스(구조 기반), 경험 기반의 세 갈래로 나뉜다.[@istqb-ctfl-syllabus-2024][@iso-iec-ieee-29119-4-obp-2021] SWEBOK V4.0a는 명세, 구조, 경험 말고도 찾아낼 결함, 예상되는 사용, 모델, 응용 프로그램의 성격, 도출된 지식을 기법을 나누는 기준으로 든다.[@ieee-swebok-v4-0a-2026] 갈래마다 다음에 바탕을 둔다.[@istqb-ctfl-syllabus-2024]
 
 - [[black-box-testing|블랙박스 기법]]: 내부 구조를 보지 않고 테스트 대상의 명세된 동작을 분석한다. 흔히 쓰는 블랙박스 기법으로는 [[equivalence-partitioning|동치 분할]], [[boundary-value-analysis|경계값 분석]], [[decision-table-testing|결정 테이블 테스트]], [[state-transition-testing|상태 전이 테스트]]가 있다.
 - [[white-box-testing|화이트박스 기법]]: 테스트 대상의 내부 구조와 처리를 분석한다. 흔히 쓰는 화이트박스 기법으로는 [[white-box-testing#커버리지로 케이스 끌어내기|구문 테스트와 분기 테스트]]가 있다.

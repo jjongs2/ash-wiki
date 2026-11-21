@@ -8,11 +8,11 @@ edition: 2022
 status: 유효
 ---
 
-**IEEE 802.1Q**는 브리지와 브리지로 이어진 네트워크를 정하는 IEEE 표준이다. 정식 제목은 "IEEE Standard for Local and Metropolitan Area Networks — Bridges and Bridged Networks"이다.[@ieee-802-1q-2022] IEEE 802.1 작업 그룹에 따르면 802.1Q는 예로부터 [[virtual-lan|VLAN]]과 VLAN 브리지를 정하는 표준이었다.[@ieee-802-1q-project-2014]
+**IEEE 802.1Q**는 [[ethernet-switch#리피터, 브리지, 라우터와의 차이|브리지]]와 브리지로 이어진 네트워크를 정하는 IEEE 표준이다. 정식 제목은 "IEEE Standard for Local and Metropolitan Area Networks — Bridges and Bridged Networks"이다.[@ieee-802-1q-2022] IEEE 802.1 작업 그룹에 따르면 802.1Q는 예로부터 [[virtual-lan|VLAN]]과 VLAN 브리지를 정하는 표준이었다.[@ieee-802-1q-project-2014]
 
 ## 범위
 
-브리지로 이어진 네트워크가 MAC(Medium Access Control) 서비스를 어떻게 지원하는지와 그 네트워크의 동작 원리를 정하고, [[ethernet-switch#전달|MAC 브리지]]와 VLAN 브리지의 동작을 관리, 프로토콜, 알고리즘까지 정한다. [[virtual-lan#VLAN 태그|VLAN 태그]]를 단 프레임이 VID(VLAN Identifier)와 우선순위 정보를 싣는 프레임 형식을 정하고, 우선순위와 drop precedence 표시로 서비스 품질이 서로 다른 [[traffic-class|트래픽 클래스]]를 지원하는 파라미터와 대응을 정한다. 브리지의 전달 과정에 [[per-stream-filtering-and-policing#Flow meter|flow metering]], 전송 큐 관리, [[traffic-class#전송 선택|전송 선택 알고리즘]]을 넣는 것도 이 표준이 정한다.[@ieee-802-1q-2022] 2022년판의 개정 802.1Qdy-2025는 이 표준의 [[spanning-tree-protocol#MSTP와 SPB|MSTP]](Multiple Spanning Tree Protocol) 요구사항을 다루고, [[spanning-tree-protocol|RSTP]]와 MSTP의 설정과 상태 보고에 쓰는 YANG(Yet Another Next Generation) 모델을 정한다.[@ieee-802-1qdy-2025]
+브리지로 이어진 네트워크가 MAC(Medium Access Control) 서비스를 어떻게 지원하는지와 그 네트워크의 동작 원리를 정하고, MAC 브리지와 VLAN 브리지의 동작을 관리, 프로토콜, 알고리즘까지 정한다. [[virtual-lan#VLAN 태그|VLAN 태그]]를 단 프레임이 VID(VLAN Identifier)와 우선순위 정보를 싣는 프레임 형식을 정하고, 우선순위와 drop precedence 표시로 서비스 품질이 서로 다른 [[traffic-class|트래픽 클래스]]를 지원하는 파라미터와 대응을 정한다. 브리지의 전달 과정에 [[per-stream-filtering-and-policing#Flow meter|flow metering]], 전송 큐 관리, [[traffic-class#전송 선택|전송 선택 알고리즘]]을 넣는 것도 이 표준이 정한다.[@ieee-802-1q-2022] 2022년판의 개정 802.1Qdy-2025는 이 표준의 [[spanning-tree-protocol#MSTP와 SPB|MSTP]](Multiple Spanning Tree Protocol) 요구사항을 다루고, [[spanning-tree-protocol|RSTP]]와 MSTP의 설정과 상태 보고에 쓰는 YANG(Yet Another Next Generation) 모델을 정한다.[@ieee-802-1qdy-2025]
 
 C-TAG(Customer VLAN Tag), S-TAG(Service VLAN Tag), B-TAG(Backbone VLAN Tag)는 이 표준이 정한 VLAN 태그이고, MVRP(Multiple VLAN Registration Protocol)도 이 표준이 정한다.[@ieee-ra-ethertype-2024]
 

@@ -11,7 +11,7 @@ verified: 2026-10-06
 
 이 표준은 **PAUSE**를 전이중 흐름 제어 메커니즘으로 정의한다. PAUSE 프레임은 MAC Control 프레임의 하나이고, MAC Control 프레임은 MAC(Medium Access Control)이 주고받는 다른 프레임과 [[ethernet-frame#길이/타입|길이/타입]] 필드로만 구별된다. 이 표준은 MAC Control 프레임의 길이/타입 필드 값을 EtherType `0x8808`로 정한다.[@ieee-802-3-2022]
 
-이 표준은 다른 스테이션의 데이터 프레임 송신을 막으려는 MAC Control 클라이언트가 멀티캐스트 주소 `01-80-C2-00-00-01`, PAUSE opcode, 막을 시간을 지정해 PAUSE를 요청하도록 정한다. PAUSE로는 MAC Control 프레임의 송신을 막을 수 없고, PAUSE 프레임은 전이중 모드로 설정된 DTE(Data Terminal Equipment)만 보낸다. [[ieee-802-1q|IEEE 802.1Q]]를 따르는 브리지는 포트의 상태나 MAC Control 부계층 구현 여부와 상관없이 이 멀티캐스트 주소로 가는 프레임을 전달하지 않으며, PAUSE를 구현하는 스테이션은 이 주소의 프레임을 받도록 MAC을 설정해야 한다.[@ieee-802-3-2022]
+이 표준은 다른 스테이션의 데이터 프레임 송신을 막으려는 MAC Control 클라이언트가 멀티캐스트 주소 `01-80-C2-00-00-01`, PAUSE opcode, 막을 시간을 지정해 PAUSE를 요청하도록 정한다. PAUSE로는 MAC Control 프레임의 송신을 막을 수 없고, PAUSE 프레임은 전이중 모드로 설정된 DTE(Data Terminal Equipment)만 보낸다. [[ieee-802-1q|IEEE 802.1Q]]를 따르는 [[ethernet-switch#리피터, 브리지, 라우터와의 차이|브리지]]는 포트의 상태나 MAC Control 부계층 구현 여부와 상관없이 이 멀티캐스트 주소로 가는 프레임을 전달하지 않으며, PAUSE를 구현하는 스테이션은 이 주소의 프레임을 받도록 MAC을 설정해야 한다.[@ieee-802-3-2022]
 
 이 표준은 막을 시간 pause_time을 2옥텟 부호 없는 정수로 두고, 그 단위 pause_quanta를 그 구현에서 512비트를 보내는 시간으로, 범위를 0부터 65535 pause_quanta까지로 정한다.[@ieee-802-3-2022]
 

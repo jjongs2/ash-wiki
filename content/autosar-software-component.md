@@ -9,7 +9,7 @@ verified: 2026-09-30
 
 **AUTOSAR 소프트웨어 컴포넌트**는 인터페이스를 제공하거나 요구하고, [[virtual-functional-bus|VFB]]로 서로 연결되는 아키텍처 요소다. 줄여서 SW-C(Software Component)나 SWC라 한다. 소프트웨어 컴포넌트는 원자 컴포넌트, 파라미터 컴포넌트, composition 가운데 하나다.[@autosar-fo-tr-glossary-2025]
 
-AUTOSAR는 애플리케이션을 서로 연결된 컴포넌트의 composition으로 모델링하며, 컴포넌트는 [[software-component-port|포트]]를 거쳐서만 다른 컴포넌트와 상호 작용한다.[@autosar-cp-tr-vfb-2025] 애플리케이션 소프트웨어는 자기 완결적인 원자 SW-C 단위로 짜이고, 각 단위는 포트로만 바깥과 연결된다. SW-C는 ECU나 통신 버스에 의존하지 않는 추상 통신 채널인 VFB를 대상으로 개발된다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+AUTOSAR는 응용을 서로 연결된 컴포넌트의 composition으로 모델링하며, 컴포넌트는 [[software-component-port|포트]]를 거쳐서만 다른 컴포넌트와 상호 작용한다.[@autosar-cp-tr-vfb-2025] 응용 소프트웨어는 자기 완결적인 원자 SW-C 단위로 짜이고, 각 단위는 포트로만 바깥과 연결된다. SW-C는 ECU나 통신 버스에 의존하지 않는 추상 통신 채널인 VFB를 대상으로 개발된다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 [[virtual-functional-bus#ECU 배치|ECU에 매핑]]된 원자 SW-C는 그 ECU용으로 생성된 [[autosar-rte|RTE]]에 연결된다. RTE는 컴포넌트 사이, 그리고 컴포넌트와 BSW(Basic Software) 사이의 구체적인 인터페이스다.[@autosar-cp-tr-vfb-2025]
 
@@ -29,7 +29,7 @@ component type은 아홉 종류다. SwComponentType 아래에 AtomicSwComponentT
 
 | 종류                  | 메타클래스                         | 하는 일                                                                                                                                                                                                                                                                                                                                                                                 |
 | --------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Application           | ApplicationSwComponentType         | 하드웨어와 독립적인 애플리케이션 소프트웨어를 나타낸다.[@autosar-cp-tps-softwarecomponenttemplate-2025]                                                                                                                                                                                                                                                                                 |
+| Application           | ApplicationSwComponentType         | 하드웨어와 독립적인 응용 소프트웨어를 나타낸다.[@autosar-cp-tps-softwarecomponenttemplate-2025]                                                                                                                                                                                                                                                                                         |
 | Sensor-Actuator       | SensorActuatorSwComponentType      | 특정 센서나 액추에이터를 위해 쓰이며, [[ecu-abstraction-layer\|ECU Abstraction Layer]]의 인터페이스를 써서 센서와 액추에이터의 물리값을 다른 SW-C에 제공한다. 구현은 마이크로컨트롤러와 ECU 하드웨어에 독립적이고 센서와 액추에이터에 의존하지만, 로컬 신호와 강하게 얽혀 있어 다른 ECU로 옮기기는 제한된다.[@autosar-cp-tr-vfb-2025][@autosar-cp-exp-layeredsoftwarearchitecture-2025] |
 | ECU Abstraction       | EcuAbstractionSwComponentType      | ECU마다 다른 입출력 기능을 쓸 수 있게 해 준다. ECU 주변장치에 접근하려는 SW-C와 [[microcontroller-abstraction-layer\|Microcontroller Abstraction]] 사이에 놓인다.[@autosar-cp-tps-softwarecomponenttemplate-2025]                                                                                                                                                                       |
 | Complex Device Driver | ComplexDeviceDriverSwComponentType | ECU 하드웨어에 직접 접근하므로 특정 ECU나 하드웨어에 묶인다. AUTOSAR가 다루지 않는 하드웨어용 드라이버도 이 종류로 만든다.[@autosar-cp-tr-vfb-2025][@autosar-cp-tps-softwarecomponenttemplate-2025]                                                                                                                                                                                     |
@@ -43,7 +43,7 @@ Service Proxy의 대표적인 쓰임은 차량 모드 전환 요청을 전달하
 
 ## Composition
 
-composition은 component prototype과 [[software-component-port#Connector|connector]]를 담고, delegation 포트로 자기 포트를 드러낸다. composition 자체가 component type이어서 더 큰 composition 안에 다시 들어갈 수 있으며, 그래서 SW-C는 계층 구조를 이룬다. 차량 전체의 애플리케이션 소프트웨어는 결국 composition 하나로 나타내며, 이를 **top-level composition**이라 한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
+composition은 component prototype과 [[software-component-port#Connector|connector]]를 담고, delegation 포트로 자기 포트를 드러낸다. composition 자체가 component type이어서 더 큰 composition 안에 다시 들어갈 수 있으며, 그래서 SW-C는 계층 구조를 이룬다. 차량 전체의 응용 소프트웨어는 결국 composition 하나로 나타내며, 이를 **top-level composition**이라 한다.[@autosar-cp-tps-softwarecomponenttemplate-2025]
 
 ![[diagrams/composition-assembly-delegation-connectors.svg]]
 

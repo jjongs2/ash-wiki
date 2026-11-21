@@ -16,7 +16,7 @@ Avnu Alliance는 네트워크·IT 인프라, 반도체, 장치 제조사가 모�
 ## 구성 표준
 
 - [[ieee-802-1as|IEEE 802.1AS-2025]]는 LAN에서 시각을 전달하는 프로토콜, 절차, 관리 객체를 정한다.[@ieee-802-1as-2025]
-- IEEE 802.1BA-2021은 시간에 민감한 오디오·비디오 스트림을 나를 수 있는 네트워크를 만들기 위해, 브리지·스테이션·LAN의 기능, 옵션, 설정, 기본값, 프로토콜, 절차를 고르는 [[tsn#프로파일|프로파일]]을 정한다. 기능과 옵션을 고르는 대상은 [[virtual-lan|VLAN]] 브리지를 정하는 [[ieee-802-1q|IEEE 802.1Q]], 시간 동기화 표준인 IEEE 802.1AS, 그리고 [[ieee-802-3|IEEE 802.3]], IEEE 802.11처럼 LAN 기술마다 매체 접근 제어와 물리 계층을 정하는 표준이다.[@ieee-802-1ba-2021]
+- IEEE 802.1BA-2021은 시간에 민감한 오디오·비디오 스트림을 나를 수 있는 네트워크를 만들기 위해, [[ethernet-switch#리피터, 브리지, 라우터와의 차이|브리지]]·스테이션·LAN의 기능, 옵션, 설정, 기본값, 프로토콜, 절차를 고르는 [[tsn#프로파일|프로파일]]을 정한다. 기능과 옵션을 고르는 대상은 [[virtual-lan|VLAN]] 브리지를 정하는 [[ieee-802-1q|IEEE 802.1Q]], 시간 동기화 표준인 IEEE 802.1AS, 그리고 [[ieee-802-3|IEEE 802.3]], IEEE 802.11처럼 LAN 기술마다 매체 접근 제어와 물리 계층을 정하는 표준이다.[@ieee-802-1ba-2021]
 - IEEE 802.1Qat-2010은 [[srp|SRP]]를 정했다.
 - IEEE 802.1Qav-2009는 [[credit-based-shaper|credit-based shaper]]를 정했다.[@ieee-802-1-tsn-tg-2017]
 
@@ -79,7 +79,7 @@ Avnu Alliance의 Automotive Ethernet AVB Functional and Interoperability Specifi
 
 tpl_250의 10 ms는 무선 구간 둘을 전제한 IEEE 802.1BA의 클래스 B 값을 차량에 맞게 줄인 값이다. 장치가 SR 클래스를 동시에 둘보다 많이 지원할 필요는 없다.[@avnu-automotive-avb-1-6-2019]
 
-미디어 형식으로는, AAF(AVTP Audio Format)를 지원하는 오디오 장치가 IEEE 1722-2016의 AAF와 16비트 정수 샘플 형식, 48 kHz와 44.1 kHz 가운데 하나 이상의 샘플링 레이트를 지원하게 한다. 미디어 클럭 기준을 주고받는 장치 가운데 오디오 talker가 IEEE 1722-2016의 오디오 샘플 CRF(Clock Reference Format)를 지원하게 한다.[@avnu-automotive-avb-1-6-2019]
+미디어 형식으로는, AAF(AVTP Audio Format)를 지원하는 오디오 장치가 IEEE 1722-2016의 AAF와 16비트 정수 샘플 형식, 48 kHz와 44.1 kHz 가운데 하나 이상의 샘플링 레이트를 지원하게 한다. 미디어 클록 기준을 주고받는 장치 가운데 오디오 talker가 IEEE 1722-2016의 오디오 샘플 CRF(Clock Reference Format)를 지원하게 한다.[@avnu-automotive-avb-1-6-2019]
 
 ## TSN과의 관계
 

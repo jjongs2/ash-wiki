@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-02
 ---
 
-**ASPICE 프로세스 참조 모델**(process reference model, PRM)은 [[automotive-spice|ASPICE]]가 평가할 프로세스를 모아 두고, 프로세스마다 ID(identifier), 이름, 목적, 성과를 정의한 모델이다. [[automotive-spice-process-assessment-model|프로세스 평가 모델]]은 이 모델의 프로세스에 지표를 더하고, 평가자는 그 지표로 객관적 증거를 모아 프로세스를 [[process-capability-level#등급 척도|평정]]한다. 이 모델은 프로세스가 무엇을 이뤄야 하는지를 정할 뿐, 그것을 [[software-process#프로세스 모델과 조직의 프로세스|어떻게 이룰지]]와 작업 산출물의 구조는 정하지 않는다.[@vda-automotive-spice-pam-4-1-2026]
+**ASPICE 프로세스 참조 모델**(process reference model, PRM)은 [[automotive-spice|ASPICE]]가 평가할 프로세스를 모아 두고, 프로세스마다 ID, 이름, 목적, 성과를 정의한 모델이다. [[automotive-spice-process-assessment-model|프로세스 평가 모델]]은 이 모델의 프로세스에 지표를 더하고, 평가자는 그 지표로 객관적 증거를 모아 프로세스를 [[process-capability-level#등급 척도|평정]]한다. 이 모델은 프로세스가 무엇을 이뤄야 하는지를 정할 뿐, 그것을 [[software-process#프로세스 모델과 조직의 프로세스|어떻게 이룰지]]와 작업 산출물의 구조는 정하지 않는다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 프로세스의 정의 요소
 

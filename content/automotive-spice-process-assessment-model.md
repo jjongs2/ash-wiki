@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-02
 ---
 
-**ASPICE 프로세스 평가 모델**(process assessment model, PAM)은 [[automotive-spice|ASPICE]]의 [[automotive-spice-process-reference-model|프로세스 참조 모델]]이 정의한 프로세스에 지표를 더해, 평가자가 프로세스 성과와 프로세스 속성 달성이 있는지 판단할 [[process-assessment#평가의 요소|객관적 증거]]를 모으게 하는 모델이다. ASPICE 4.1의 프로세스 평가 모델이 담는 프로세스는 프로세스 참조 모델의 것과 같고, 프로세스마다 참조 모델의 프로세스 ID(identifier), 이름, 목적, 성과를 함께 싣는다.[@vda-automotive-spice-pam-4-1-2026]
+**ASPICE 프로세스 평가 모델**(process assessment model, PAM)은 [[automotive-spice|ASPICE]]의 [[automotive-spice-process-reference-model|프로세스 참조 모델]]이 정의한 프로세스에 지표를 더해, 평가자가 프로세스 성과와 프로세스 속성 달성이 있는지 판단할 [[process-assessment#평가의 요소|객관적 증거]]를 모으게 하는 모델이다. ASPICE 4.1의 프로세스 평가 모델이 담는 프로세스는 프로세스 참조 모델의 것과 같고, 프로세스마다 참조 모델의 프로세스 ID, 이름, 목적, 성과를 함께 싣는다.[@vda-automotive-spice-pam-4-1-2026]
 
 ## 프로세스 차원과 능력 차원
 

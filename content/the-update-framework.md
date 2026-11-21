@@ -68,7 +68,7 @@ TUF 명세 1.0.37은 모든 메타데이터에 만료 시각을 두고, 클라�
 
 ## 개정 이력
 
-TUF의 작업은 2009년 말에 시작됐고, TUF의 참조 구현은 Tor의 애플리케이션 업데이터인 Thandy에 바탕을 둔다.[@tuf-specification-1-0-37-2026]
+TUF의 작업은 2009년 말에 시작됐고, TUF의 참조 구현은 Tor의 응용 프로그램 업데이터인 Thandy에 바탕을 둔다.[@tuf-specification-1-0-37-2026]
 
 Justin Samuel, Nick Mathewson, Justin Cappos, Roger Dingledine은 2010년 논문에서 TUF를 설계하고 구현했다.[@samuel-survivable-key-compromise-2010]
 

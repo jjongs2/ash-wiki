@@ -10,7 +10,7 @@ verified: 2026-09-30
 
 ## Scalability class
 
-AUTOSAR OS는 기능을 SC1부터 SC4까지 네 scalability class로 묶고, OS마다 애플리케이션의 필요에 맞춰 하나를 고른다. 기능마다 드는 등급은 다음과 같다.[@autosar-cp-sws-os-2025]
+AUTOSAR OS는 기능을 SC1부터 SC4까지 네 scalability class로 묶고, OS마다 응용의 필요에 맞춰 하나를 고른다. 기능마다 드는 등급은 다음과 같다.[@autosar-cp-sws-os-2025]
 
 | 기능                                                                                 | SC1 | SC2 | SC3 | SC4 |
 | ------------------------------------------------------------------------------------ | --- | --- | --- | --- |

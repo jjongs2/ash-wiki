@@ -23,7 +23,7 @@ BroadR-Reach는 Broadcom의 이더넷 [[ethernet-phy|PHY]] 기술이고, OPEN Al
 
 ## 마스터와 슬레이브
 
-링크의 두 PHY 가운데 하나는 마스터, 다른 하나는 슬레이브이며, 역할은 핀 설정(bootstrap)이나 레지스터로 정한다.[@ti-dp83tc811r-q1-2018][@nxp-tja1100-2017] IEEE 802.3-2022는 두 PHY가 같은 역할로 설정되면 동작을 정하지 않는다. 마스터는 로컬 클럭 소스에서, 슬레이브는 받은 신호에서 복구한 클럭에서 송신 클럭을 얻는다.[@ieee-802-3-2022] TJA1103은 두 역할을 LEADER와 FOLLOWER라 부르며, LEADER일 때는 외부 클럭이나 크리스털에서, FOLLOWER일 때는 MDI에서 복구한 클럭에서 MII 클럭을 얻는다.[@nxp-tja1103-2026]
+링크의 두 PHY 가운데 하나는 마스터, 다른 하나는 슬레이브이며, 역할은 핀 설정(bootstrap)이나 레지스터로 정한다.[@ti-dp83tc811r-q1-2018][@nxp-tja1100-2017] IEEE 802.3-2022는 두 PHY가 같은 역할로 설정되면 동작을 정하지 않는다. 마스터는 로컬 클록 소스에서, 슬레이브는 받은 신호에서 복구한 클록에서 송신 클록을 얻는다.[@ieee-802-3-2022] TJA1103은 두 역할을 LEADER와 FOLLOWER라 부르며, LEADER일 때는 외부 클록이나 크리스털에서, FOLLOWER일 때는 MDI에서 복구한 클록에서 MII 클록을 얻는다.[@nxp-tja1103-2026]
 
 ![[diagrams/t1-master-slave-clock.svg]]
 

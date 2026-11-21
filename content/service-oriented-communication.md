@@ -6,7 +6,7 @@ tags:
 verified: 2026-09-29
 ---
 
-[[autosar-adaptive-platform|AUTOSAR Adaptive Platform]] R25-11의 [[autosar-communication-management|Communication Management]] 규격은 **서비스 지향 통신**(service-oriented communication)을 서비스 제공자인 애플리케이션이 서비스를 내놓고(offer) 요청자인 애플리케이션이 그 서비스를 찾아(find) 호출하는(call) 통신으로 정의한다. 이 규격은 서비스 지향 통신을 Adaptive Platform 애플리케이션 사이의 주된 통신 방식으로 두고, Communication Management가 프로세스 안, 프로세스 사이, [[autosar-adaptive-platform#Machine과 프로세스|Machine]] 사이의 모든 수준에서 이를 맡게 한다. Communication Management는 시그널 기반 통신을 쓰는 쪽과 주고받는 시그널도 서비스 인터페이스의 요소로 내놓는다.[@autosar-ap-sws-communicationmanagement-2025] Adaptive Platform에는 서비스 지향 통신과 따로, 외부 [[electronic-control-unit|ECU]]와 원시 바이너리 데이터 스트림을 주고받는 독립 통신 API인 [[autosar-adaptive-platform#그 밖의 functional cluster|Raw Data Stream]]도 있다.[@autosar-ap-exp-platformdesign-2025]
+[[autosar-adaptive-platform|AUTOSAR Adaptive Platform]] R25-11의 [[autosar-communication-management|Communication Management]] 규격은 **서비스 지향 통신**(service-oriented communication)을 서비스 제공자인 응용이 서비스를 내놓고(offer) 요청자인 응용이 그 서비스를 찾아(find) 호출하는(call) 통신으로 정의한다. 이 규격은 서비스 지향 통신을 Adaptive Platform 응용 사이의 주된 통신 방식으로 두고, Communication Management가 프로세스 안, 프로세스 사이, [[autosar-adaptive-platform#Machine과 프로세스|Machine]] 사이의 모든 수준에서 이를 맡게 한다. Communication Management는 시그널 기반 통신을 쓰는 쪽과 주고받는 시그널도 서비스 인터페이스의 요소로 내놓는다.[@autosar-ap-sws-communicationmanagement-2025] Adaptive Platform에는 서비스 지향 통신과 따로, 외부 [[electronic-control-unit|ECU]]와 원시 바이너리 데이터 스트림을 주고받는 독립 통신 API인 [[autosar-adaptive-platform#그 밖의 functional cluster|Raw Data Stream]]도 있다.[@autosar-ap-exp-platformdesign-2025]
 
 [[some-ip|SOME/IP]]는 네트워크로 서비스 지향 통신을 하는 프로토콜이다.[@autosar-fo-prs-someipprotocol-2025] The Open Group은 SOA(Service-Oriented Architecture)를 서비스 지향을 지원하는 아키텍처 스타일로 정의한다.[@opengroup-w074-2007]
 
@@ -30,7 +30,7 @@ SOME/IP의 이벤트 알림은 발행·구독(publish/subscribe) 방식이며, �
 
 AUTOSAR R25-11의 SOME/IP-SD 명세에 따르면 SOME/IP-SD를 쓰는 클라이언트는 서비스 인스턴스의 엔드포인트를 정적으로 설정하지 않아도 되고, 실행 중에 서비스 인스턴스에 연결될 수 있다.[@autosar-fo-prs-someipservicediscoveryprotocol-2025]
 
-AUTOSAR Adaptive Platform의 Communication Management는 Machine 안과 Machine 사이의 서비스 지향 통신을 애플리케이션에 투명하게 제공한다. 그래서 서비스가 같은 ECU에 있든 다른 ECU에 있든 애플리케이션 코드가 같다.[@autosar-ap-exp-platformdesign-2025]
+AUTOSAR Adaptive Platform의 Communication Management는 Machine 안과 Machine 사이의 서비스 지향 통신을 응용에 투명하게 제공한다. 그래서 서비스가 같은 ECU에 있든 다른 ECU에 있든 응용 코드가 같다.[@autosar-ap-exp-platformdesign-2025]
 
 ## 시그널 기반 통신과의 차이
 
