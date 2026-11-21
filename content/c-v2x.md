@@ -16,7 +16,7 @@ FCC 규칙 § 90.7은 FCC 24-123이 더한 정의에서 **C-V2X**(Cellular Vehic
 
 ## 쓰는 곳
 
-ETSI EN 303 613 V1.1.1은 LTE-V2X(Long Term Evolution based Vehicle-to-Everything)를 ITS station 구조의 접속 계층 기술 가운데 하나로 둔다. 이 표준이 정하는 접속 계층은 ITS 전용 대역(5.855\~5.925 GHz)에서 쓰는 LTE-V2X의 sidelink, 곧 PC5 인터페이스다. LTE-V2X를 접속 계층 기술로 쓰는 ITS station은 ETSI TS 136 300이 정한 LTE-V2X sidelink 통신을 지원해야 한다.[@etsi-en-303-613-2020]
+ETSI EN 303 613 V1.1.1은 LTE-V2X(Long Term Evolution based Vehicle-to-Everything)를 ITS station 구조의 접속 계층 기술 가운데 하나로 둔다. 이 표준이 정하는 접속 계층은 ITS 전용 대역(5.855\~5.925 GHz)에서 쓰는 LTE-V2X의 sidelink, 곧 PC5 인터페이스다. LTE-V2X를 접속 계층 기술로 쓰는 ITS station은 ETSI TS 136 300(3GPP TS 36.300 V14.7.0)이 정한 LTE-V2X sidelink 통신을 지원해야 한다.[@etsi-en-303-613-2020]
 
 FCC 20-164(2020년 First Report and Order)는 미국 5.9 GHz 대역의 ITS 서비스가 전환 기간이 끝나면 C-V2X 기반 기술을 쓰도록 했다.[@fcc-20-164-2020]
 
@@ -28,18 +28,18 @@ FCC 20-164(2020년 First Report and Order)는 미국 5.9 GHz 대역의 ITS 서�
 
 3GPP TS 22.185 V19.0.0은 단말 사이의 메시지 전달에 아래 요구를 둔다. pre-crash sensing의 지연만 권고(should)다.[@3gpp-ts-22-185-2025]
 
-| 요구                                                           | 대상                                                                                                       |
-| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| 최대 지연 100 ms로 메시지를 나를 수 있어야 한다                | V2V(Vehicle-to-Vehicle)·V2P(Vehicle-to-Pedestrian) 응용을 지원하는 두 단말 사이(직접이나 노변 장치를 거쳐) |
-| 최대 지연 20 ms로 메시지를 나를 수 있기를 권한다               | pre-crash sensing에 한해, V2V 응용을 지원하는 두 단말 사이                                                 |
-| 50\~300바이트(보안 부분 제외)의 메시지를 나를 수 있어야 한다   | 주기 broadcast 메시지                                                                                      |
-| 최대 1200바이트(보안 부분 제외)의 메시지를 나를 수 있어야 한다 | 이벤트로 트리거되는 메시지                                                                                 |
-| 초당 최대 10건의 메시지를 지원해야 한다                        | 송신 단말 하나                                                                                             |
-| 상대 속도 최대 500 km/h에서 메시지를 나를 수 있어야 한다       | V2V 응용을 지원하는 단말 사이                                                                              |
+| 요구                                                            | 대상                                                                                                       |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| 최대 지연 100 ms로 메시지를 나를 수 있어야 한다.                | V2V(Vehicle-to-Vehicle)·V2P(Vehicle-to-Pedestrian) 응용을 지원하는 두 단말 사이(직접이나 노변 장치를 거쳐) |
+| 최대 지연 20 ms로 메시지를 나를 수 있기를 권한다.               | pre-crash sensing에 한해, V2V 응용을 지원하는 두 단말 사이                                                 |
+| 50\~300바이트(보안 부분 제외)의 메시지를 나를 수 있어야 한다.   | 주기 broadcast 메시지                                                                                      |
+| 최대 1200바이트(보안 부분 제외)의 메시지를 나를 수 있어야 한다. | 이벤트로 트리거되는 메시지                                                                                 |
+| 초당 최대 10건의 메시지를 지원해야 한다.                        | 송신 단말 하나                                                                                             |
+| 상대 속도 최대 500 km/h에서 메시지를 나를 수 있어야 한다.       | V2V 응용을 지원하는 단말 사이                                                                              |
 
 ## 통신 모드
 
-V2X 통신은 PC5 reference point로 하는 것과 Uu reference point로 하는 것 두 모드로 나뉘고, 단말은 두 모드를 송신과 수신에 따로 쓸 수 있다. LTE의 PC5는 broadcast만 쓰고, NR의 PC5는 broadcast, groupcast, unicast를 지원한다.[@3gpp-ts-23-287-2026]
+V2X 통신은 PC5 reference point로 하는 것과 Uu reference point로 하는 것 두 모드로 나뉜다. 단말은 두 모드를 송신과 수신에 따로 쓸 수 있다. LTE의 PC5는 broadcast만 쓰고, NR의 PC5는 broadcast, groupcast, unicast를 지원한다.[@3gpp-ts-23-287-2026] Uu는 단말과 NG-RAN(NG Radio Access Network) 사이의 reference point다.[@3gpp-ts-23-287-2026][@3gpp-ts-38-300-2026]
 
 ![[diagrams/v2x-pc5-uu-modes-cast-types.svg]]
 
