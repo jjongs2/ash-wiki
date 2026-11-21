@@ -22,7 +22,9 @@
 
   <!-- 범위: 축 위의 구간이므로 모서리는 0. 끝이 열린 범위는 오른쪽 변을 그리지 않는다 -->
   <rect x="195" y="50" width="320" height="20" fill="var(--surface, none)" />
-  <path d="M515 50 H195 V70 H515" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <path d="M515 50 H195 M195 70 H515" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <!-- v > 70 km/h: 70은 포함하지 않으므로 빈 점 -->
+  <circle cx="195" cy="60" r="4.25" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <rect x="170" y="86" width="325" height="20" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
 
   <g stroke="var(--ink, #727981)" stroke-width="1.5">

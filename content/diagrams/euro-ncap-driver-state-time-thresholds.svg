@@ -51,7 +51,7 @@
     <circle cx="335" cy="152" r="5" />
     <circle cx="470" cy="196" r="5" />
   </g>
-  <circle cx="335" cy="240" r="4.25" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <circle cx="335" cy="240" r="4.25" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
 
   <line x1="200" y1="272" x2="528" y2="272" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
   <path d="M200 272 v5 M245 272 v5 M290 272 v5 M335 272 v5 M380 272 v5 M470 272 v5" stroke="var(--ink, #727981)" stroke-width="1" />
@@ -68,6 +68,6 @@
   <!-- 범례 -->
   <circle cx="25" cy="327" r="5" fill="var(--ink, #727981)" />
   <text x="36" y="331" fill="var(--text, #727981)">그 값을 포함</text>
-  <circle cx="125" cy="327" r="4.25" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <circle cx="125" cy="327" r="4.25" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
   <text x="136" y="331" fill="var(--text, #727981)">그 값을 포함하지 않음</text>
 </svg>

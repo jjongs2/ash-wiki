@@ -32,7 +32,7 @@ NHTSA에 따르면 능동 안전 시스템은 ADAS의 한 종류이고, ADAS는 
 
 ## EU 규정
 
-EU 규정 2019/2144는 모든 자동차에 ISA(intelligent speed assistance), 음주 시동 잠금 장치 설치 편의, [[ddaw-and-addw|DDAW]], [[ddaw-and-addw|ADDW]], 비상 정지 신호, 후진 감지, [[un-r160|EDR]]을 갖추게 한다. M1·N1 범주에는 [[un-r152|AEBS]]와 ELKS(emergency lane-keeping system)를 더 요구하고, AEBS는 앞의 장애물과 움직이는 차량을 감지하는 첫 단계와 보행자·자전거까지 감지하는 둘째 단계로 나눠 갖추게 한다. M2·M3·N2·N3 범주에는 LDWS(lane departure warning system)와 AEBS를 요구한다.[@eu-2019-2144-2026][@eu-2021-1958-2021][@eu-2021-646-2021]
+EU 규정 2019/2144는 모든 자동차에 ISA(intelligent speed assistance), 음주 시동 잠금 장치 설치 편의, [[ddaw-and-addw|DDAW와 ADDW]], 비상 정지 신호, 후진 감지, [[un-r160|EDR]]을 갖추게 한다. M1·N1 범주에는 [[un-r152|AEBS]]와 ELKS(emergency lane-keeping system)를 더 요구하고, AEBS는 앞의 장애물과 움직이는 차량을 감지하는 첫 단계와 보행자·자전거까지 감지하는 둘째 단계로 나눠 갖추게 한다. M2·M3·N2·N3 범주에는 LDWS(lane departure warning system)와 AEBS를 요구한다.[@eu-2019-2144-2026][@eu-2021-1958-2021][@eu-2021-646-2021]
 
 ![[diagrams/eu-2019-2144-systems-by-vehicle-category.svg]]
 
