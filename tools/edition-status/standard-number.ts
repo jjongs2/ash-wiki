@@ -49,23 +49,23 @@ const sharesBody = (series: StandardNumber, number: StandardNumber) =>
 
 // 시리즈의 부마다 인용한 가장 새 판의 연도. 연도가 없거나 프로젝트(DIS 등)인 엔트리는 판이 아니라 세지 않는다.
 // 예: ISO/IEC/IEEE 29119 → 29119-1은 2022, 29119-5는 2024. 옛 판(26262-1:2011)은 같은 부의 새 판에 가린다.
-// IEEE는 부를 점으로도 잇는다(IEEE 1609 → 1609.2-2025, 1609.3-2020). 그러나 점 번호는 별개 표준이기도 하다
-// (IEEE 1722 페이지가 함께 인용하는 IEEE 1722.1-2021). 그래서 번호 자체의 판(IEEE 1722-2016)을 하나도 인용하지
-// 않은 페이지에서만 점 번호를 부로 센다. 판 확인의 inSeries는 점 번호를 세지 않는다.
+// 점 번호는 번호 자체의 판을 하나도 인용하지 않을 때만 부로 센다(docs/wiki-conventions.md의 edition 줄).
+// 예: IEEE 1609 → 1609.2는 2025, 1609.3은 2020. IEEE 1722는 1722-2016을 인용해 1722.1-2021을 세지 않는다.
+// 판 확인의 inSeries는 점 번호를 세지 않는다.
 export function latestPartYears(series: StandardNumber, titles: string[]): Map<string, string> {
   const editions = titles
     .map((title) => standardNumber(title))
     .filter(
       (number): number is StandardNumber & { year: string } => !!number?.year && !number.project,
     )
-  const dotted = !editions.some(
+  const countDotted = !editions.some(
     (number) => sharesBody(series, number) && number.number === series.number,
   )
   const latest = new Map<string, string>()
   for (const number of editions) {
     const part =
       inSeries(series, number) ||
-      (dotted && sharesBody(series, number) && number.number.startsWith(`${series.number}.`))
+      (countDotted && sharesBody(series, number) && number.number.startsWith(`${series.number}.`))
     if (part && number.year > (latest.get(number.number) ?? ""))
       latest.set(number.number, number.year)
   }
