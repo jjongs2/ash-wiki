@@ -89,9 +89,9 @@ TI의 2020년 백서에 따르면 그 무렵 흔한 차의 ECU는 대부분 단�
 
 AURIX TC3xx 제품군 가운데 TC375의 핵심 대상 응용은 다음과 같다.[@infineon-aurix-tc3xx-overview-2025]
 
-- 파워트레인: 엔진·변속기 제어와, 전동차의 인버터, BMS(battery management system), 온보드 충전기 등
+- 파워트레인: 엔진·변속기 제어와, 전동차의 인버터, [[battery-management-system|BMS]], 온보드 충전기 등
 - 섀시·안전: 제동, 조향, 서스펜션, 에어백
-- ADAS(Advanced Driver Assistance Systems): 센서 데이터 융합, 차량 레이더 센서
+- [[adas|ADAS]]: 센서 데이터 융합, [[automotive-radar|차량 레이더]] 센서
 - 연결 [[gateway|게이트웨이]]: [[telematics-control-unit|텔레매틱스]], 게이트웨이·도메인 제어, 존 제어[@infineon-aurix-tc3xx-overview-2025]
 
 Renesas RH850/U2A와 RH850/U2B는 바뀌어 가는 [[ee-architecture|E/E 아키텍처]]에서 여러 응용을 칩 하나에 모아 통합 ECU를 이루도록 나온 cross-domain MCU이고, 존·도메인용 MCU 시리즈에 든다.[@renesas-rh850-u2a-2026][@renesas-rh850-u2b-2026]

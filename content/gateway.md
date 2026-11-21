@@ -8,13 +8,13 @@ verified: 2026-09-29
 
 ISO/IEC 2382:2015는 **게이트웨이**(gateway)를 네트워크 구조가 서로 다른 두 컴퓨터 네트워크를 잇는 기능 단위로 정의하고[@iso-iec-2382-obp-2015], IEC 60050은 네트워크 구조와 프로토콜이 서로 다른 두 컴퓨터 네트워크를 잇는 기능 단위로 정의한다.[@iec-60050-732-01-17-2010]
 
-차량에서는 [[can|CAN]], [[lin|LIN]], [[flexray|FlexRay]], [[ethernet|이더넷]]처럼 서로 다른 차량 네트워크를 잇는 ECU가 게이트웨이 역할을 한다.[@nxp-autogwdevwpus-2018][@autosar-cp-sws-pdurouter-2025] NXP 백서에 따르면 차량 게이트웨이는 호환되지 않는 네트워크 사이에서 데이터와 제어 정보를 변환해 둘이 통신할 수 있게 한다.[@nxp-autogwdevwpus-2018]
+차량에서는 [[can|CAN]], [[lin|LIN]], [[flexray|FlexRay]], [[ethernet|이더넷]]처럼 서로 다른 차량 네트워크를 잇는 [[electronic-control-unit|ECU]]가 게이트웨이 역할을 한다.[@nxp-autogwdevwpus-2018][@autosar-cp-sws-pdurouter-2025] NXP 백서에 따르면 차량 게이트웨이는 호환되지 않는 네트워크 사이에서 데이터와 제어 정보를 변환해 둘이 통신할 수 있게 한다.[@nxp-autogwdevwpus-2018]
 
 SAE 기술 논문 931808에 따르면 데이터율 요구가 다른 하위 네트워크들은 브리지나 게이트웨이로 이어져 차량 전체의 데이터 일관성을 지킨다. 이 논문은 그 예로 [[sae-j1850|J1850]](Class B)과 CAN(Class C)을 잇는 브리지를 다룬다.[@sae-931808-1993] SAE Class는 [[vehicle-bus#비트율|차량 버스]]에서 다룬다.
 
 ## 중앙 게이트웨이
 
-NXP는 여러 차량 네트워크를 한데 잇는 중앙 허브 게이트웨이를 중앙 게이트웨이(central gateway)라 부른다. 게이트웨이는 네트워크 사이에서 데이터가 목적지에 닿도록 라우팅하고, 외부 진단 장비와 ECU 사이에서 진단 메시지를 라우팅한다. 이때 [[doip|DoIP]]와 [[uds|UDS]] 사이의 변환이 따를 수 있다. 게이트웨이는 파워트레인, 섀시·안전, 바디, 인포테인먼트, 텔레매틱스, ADAS(Advanced Driver Assistance Systems) 같은 기능 도메인 사이의 데이터를 라우팅한다.[@nxp-autogwdevwpus-2018]
+NXP는 여러 차량 네트워크를 한데 잇는 중앙 허브 게이트웨이를 중앙 게이트웨이(central gateway)라 부른다. 게이트웨이는 네트워크 사이에서 데이터가 목적지에 닿도록 라우팅하고, 외부 진단 장비와 ECU 사이에서 진단 메시지를 라우팅한다. 이때 [[doip|DoIP]]와 [[uds|UDS]] 사이의 변환이 따를 수 있다. 게이트웨이는 파워트레인, 섀시·안전, 바디, 인포테인먼트, 텔레매틱스, [[adas|ADAS]] 같은 기능 도메인 사이의 데이터를 라우팅한다.[@nxp-autogwdevwpus-2018]
 
 게이트웨이의 주요 기능으로는 그 밖에도 방화벽, 메시지 미러링(받은 데이터를 진단이나 데이터 기록을 위해 다른 인터페이스로 내보내는 것), 침입 탐지, 네트워크 관리, [[key-management|키 관리]], 게이트웨이를 거쳐 닿는 ECU의 [[over-the-air-update|OTA]] 펌웨어 업데이트 관리가 있다.[@nxp-autogwdevwpus-2018]
 
