@@ -40,7 +40,7 @@ Arm Platform Security Boot Guide 1.1은 리셋 직후 실행되는 첫 부트 �
 
 NHTSA의 2022년 지침(Cybersecurity Best Practices for the Safety of Modern Vehicles)은 자동차 제조사가 최신 기법을 써서, [[ecu-reprogramming|펌웨어를 고치는 능력]]을 인가되고 적절히 인증된 주체로 제한하기를 권한다. 이 지침은 디지털 서명 기법을 쓰면 [[electronic-control-unit|ECU]]가 변조되었거나 인가되지 않은 펌웨어 이미지로 부팅하는 것을 막을 수 있다고 본다.[@nhtsa-cybersecurity-best-practices-2022]
 
-ENISA(EU의 사이버보안 기관)의 2019년 보고서 Good practices for security of smart cars는 시스템의 무결성과 authenticity를 보장하는 secure boot 프로세스를 구현하기를 권하고, secure boot가 실제로 필요한 경우는 리스크 기반 접근으로 정해도 된다고 둔다. Annex C에 따르면 secure boot는 실행되는 소프트웨어의 authenticity와 무결성을 보장하는 데 필수이고, 제조사가 가진 개인 키로 소프트웨어에 서명한 뒤 secure boot 과정에서 대응하는 인증서로 그 서명을 검증하는 방식이다. 소프트웨어가 바뀌어 검증에 실패하면, 차량의 [[functional-safety|기능 안전]]을 지키려고 비상 프로그램을 실행하는 것처럼 부팅 과정이 그에 맞게 대응해야 한다.[@enisa-smart-cars-2019]
+ENISA(EU의 [[cybersecurity|사이버보안]] 기관)의 2019년 보고서 Good practices for security of smart cars는 시스템의 무결성과 [[cybersecurity-property#Authenticity, 부인 방지, 인가|authenticity]]를 보장하는 secure boot 프로세스를 구현하기를 권하고, secure boot가 실제로 필요한 경우는 리스크 기반 접근으로 정해도 된다고 둔다. Annex C에 따르면 secure boot는 실행되는 소프트웨어의 authenticity와 무결성을 보장하는 데 필수이고, 제조사가 가진 개인 키로 소프트웨어에 서명한 뒤 secure boot 과정에서 대응하는 인증서로 그 서명을 검증하는 방식이다. 소프트웨어가 바뀌어 검증에 실패하면, 차량의 [[functional-safety|기능 안전]]을 지키려고 비상 프로그램을 실행하는 것처럼 부팅 과정이 그에 맞게 대응해야 한다.[@enisa-smart-cars-2019]
 
 ## Measured boot와의 차이
 
