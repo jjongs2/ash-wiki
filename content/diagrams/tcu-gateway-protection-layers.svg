@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="8 9.5 524 248" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="13" fill="none" aria-label="NXP 백서의 첫 보호층과 둘째 보호층">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 바깥과의 보안 채널 -->
+  <line x1="90" y1="22" x2="90" y2="63" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="102" y="36">바깥과의 종단 간 보안 채널(TLS 등)</text>
+    <text x="102" y="52">셀룰러나 Wi-Fi 연결 위</text>
+  </g>
+
+  <!-- 첫 보호층: TCU에 붙인 Secure Element -->
+  <rect x="20.75" y="64.75" width="138.5" height="85.5" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="90" y="86" text-anchor="middle" fill="var(--text, #727981)">TCU</text>
+  <rect x="34.75" y="98.75" width="110.5" height="40.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <g font-size="12" text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="90" y="115">Secure Element</text>
+    <text x="90" y="131">(첫 보호층)</text>
+  </g>
+
+  <!-- OBD 포트 -->
+  <rect x="20.75" y="170.75" width="138.5" height="34.5" rx="2" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <text x="90" y="192.5" text-anchor="middle" fill="var(--text, #727981)">OBD 포트</text>
+
+  <!-- 둘째 보호층: TCU와 OBD를 나머지 네트워크와 갈라 놓고 기능 도메인으로 나누는 중앙 게이트웨이 ECU -->
+  <rect x="230.75" y="80.75" width="108.5" height="134.5" rx="2" fill="var(--blue-tint, #336fb8)" stroke="var(--blue, #336fb8)" stroke-width="1.5" />
+  <g text-anchor="middle" fill="var(--on-fill, #f8fafd)">
+    <text x="285" y="138.5">중앙 게이트웨이</text>
+    <text x="285" y="154.5">ECU</text>
+    <text x="285" y="170.5" font-size="12">(둘째 보호층)</text>
+  </g>
+
+  <!-- 기능 도메인 -->
+  <g fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5">
+    <rect x="410.75" y="82.75" width="108.5" height="34.5" rx="2" />
+    <rect x="410.75" y="130.75" width="108.5" height="34.5" rx="2" />
+    <rect x="410.75" y="178.75" width="108.5" height="34.5" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="465" y="104.5">기능 도메인</text>
+    <text x="465" y="152.5">기능 도메인</text>
+    <text x="465" y="200.5">기능 도메인</text>
+  </g>
+
+  <!-- 연결 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <path d="M160 107 H230" />
+    <path d="M160 188 H230" />
+    <path d="M340 148 H410" />
+    <path d="M375 148 V100 H410" />
+    <path d="M375 148 V196 H410" />
+  </g>
+
+  <text x="270" y="244" text-anchor="middle" font-size="12" fill="var(--text, #727981)">NXP 백서(2016)가 제시하는 보호층</text>
+</svg>

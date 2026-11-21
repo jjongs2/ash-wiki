@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="8 28 534 160" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="13" fill="none" aria-label="LTE-V2X 위 GeoNetworking 패킷의 프레임 구조">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 헤더 넷과 GeoNetworking 패킷이 맞붙은 한 줄 -->
+  <rect x="20.75" y="40.75" width="508.5" height="38.5" fill="var(--surface, none)" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g stroke="var(--ink, #727981)" stroke-width="1.5">
+    <line x1="96" y1="41.5" x2="96" y2="78.5" />
+    <line x1="172" y1="41.5" x2="172" y2="78.5" />
+    <line x1="256" y1="41.5" x2="256" y2="78.5" />
+    <line x1="380" y1="41.5" x2="380" y2="78.5" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="58" y="64.5">MAC 헤더</text>
+    <text x="134" y="64.5">RLC 헤더</text>
+    <text x="214" y="64.5">PDCP 헤더</text>
+    <text x="318" y="64.5">Non-IP Type 헤더</text>
+    <text x="455" y="64.5">GeoNetworking 패킷</text>
+  </g>
+
+  <!-- 필드 설정 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1">
+    <line x1="214" y1="80" x2="214" y2="100" />
+    <line x1="318" y1="80" x2="318" y2="128" />
+  </g>
+  <g font-size="12" text-anchor="middle" fill="var(--text, #727981)">
+    <text x="214" y="114">SDU Type: Non-IP</text>
+    <text x="318" y="142">Non-IP Type: 3 (ETSI-ITS)</text>
+    <text x="275" y="176">ETSI EN 303 613 V1.1.1의 Annex D(informative)가 제시하는 구조</text>
+  </g>
+</svg>

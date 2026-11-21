@@ -94,6 +94,6 @@ XCP 모듈은 ASAM이 정한 XCP를 구현한다. XCP는 마스터(도구)와 �
 
 IEEE1722Tp(IEEE1722 Transport Layer)는 브리지로 이은 LAN에서 시간에 민감한 응용이 [[ieee-1722|IEEE 1722]] 전송 프로토콜을 쓰게 하는 Classic Platform 모듈이다. 응용은 [[ieee-1722|AVTP]] 스트림으로 데이터를 주고받는다. 이 모듈은 IEEE 1722가 정한 AVTP subtype 가운데 일부를 지원해, 오디오·비디오 스트리밍, media clock 배포, CAN과 LIN 프레임 같은 버스 프레임의 캡슐화를 다룬다.[@autosar-cp-sws-ieee1722transportlayer-2025]
 
-AUTOSAR Classic Platform R25-11은 [[v2x|V2X]] 관련 명세(V2XBasicTransport, V2XFacilities, V2XGeoNetworking, V2XManagement, V2XDataManager, 중국 V2X 명세들)와 Cellular V2X Driver 명세를 obsolete로 돌렸다.[@autosar-cp-tr-releaseoverview-2025]
+AUTOSAR Classic Platform R25-11은 [[v2x|V2X]] 관련 명세(V2XBasicTransport, V2XFacilities, V2XGeoNetworking, V2XManagement, V2XDataManager, 중국 V2X 명세들)와 [[c-v2x|Cellular V2X]] Driver 명세를 obsolete로 돌렸다.[@autosar-cp-tr-releaseoverview-2025]
 
 J1939 모듈(J1939Tp, J1939Nm, J1939Rm, J1939Dcm, J1939Fscp)은 [[j1939#AUTOSAR의 J1939 지원|J1939]]에서 다룬다.[@autosar-cp-sws-bswgeneral-2025]

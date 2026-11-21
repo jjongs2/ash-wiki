@@ -40,7 +40,7 @@ Microcontroller Drivers에는 Core Test가, Memory Drivers에는 RAM Test와 Fla
 
 **I2C Driver**는 I2C(Inter-Integrated Circuit) 버스로 이어진 장치(예: EEPROM)를 읽고 쓰는 서비스를 주는 모듈이다. I2C Driver는 Controller 모드와 Target 모드를 구현하고, 위 층에 하드웨어에 독립적인 API를 주며, multi master mode를 지원한다. Controller는 다른 장치를 제어하며 전송을 시작하고 클록 신호를 만들고 전송을 끝내는 장치이고, Target은 Controller가 주소로 부르는 장치다.[@autosar-cp-sws-i2cdriver-2025]
 
-Wireless Communication Drivers에는 Wireless Ethernet Driver와 함께 Cellular [[v2x|V2X]] Driver도 든다.[@autosar-cp-sws-bswgeneral-2025] AUTOSAR R25-11은 두 모듈의 명세를 obsolete로 돌렸다.[@autosar-cp-tr-releaseoverview-2025]
+Wireless Communication Drivers에는 Wireless Ethernet Driver와 함께 [[c-v2x|Cellular V2X]] Driver도 든다.[@autosar-cp-sws-bswgeneral-2025] AUTOSAR R25-11은 두 모듈의 명세를 obsolete로 돌렸다.[@autosar-cp-tr-releaseoverview-2025]
 
 ## Channel, channel group, port
 
