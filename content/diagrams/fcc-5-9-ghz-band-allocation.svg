@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="34 0 502 235.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="13" fill="none" aria-label="미국 5.9 GHz 대역의 1999년 배분과 FCC 20-164의 재배분">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 1 MHz = 6, 5.850 GHz = 60 -->
+
+  <!-- 1999년 -->
+  <text x="60" y="22" fill="var(--text, #727981)">1999년 FCC</text>
+  <rect x="60" y="34" width="450" height="48" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="285" y="54">ITS 무선 서비스, 특히 DSRC 서비스</text>
+    <text x="285" y="71" font-size="12">75 MHz</text>
+  </g>
+
+  <!-- 2020년 FCC 20-164 -->
+  <text x="60" y="110" fill="var(--text, #727981)">2020년 FCC 20-164</text>
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="60" y="122" width="270" height="48" />
+    <rect x="330" y="122" width="180" height="48" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="195" y="142">비면허 용도</text>
+    <text x="420" y="142">ITS 무선 서비스</text>
+    <g font-size="12">
+      <text x="195" y="159">45 MHz</text>
+      <text x="420" y="159">30 MHz, 기술 표준 C-V2X</text>
+    </g>
+  </g>
+
+  <!-- 경계 보조선 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="330" y1="82" x2="330" y2="122" />
+    <line x1="60" y1="170" x2="60" y2="186" />
+    <line x1="330" y1="170" x2="330" y2="186" />
+    <line x1="510" y1="170" x2="510" y2="186" />
+  </g>
+
+  <!-- 주파수 축 -->
+  <line x1="60" y1="186" x2="510" y2="186" stroke="var(--ink, #727981)" stroke-width="1.5" />
+  <g stroke="var(--ink, #727981)" stroke-width="1">
+    <line x1="60" y1="186" x2="60" y2="192" />
+    <line x1="330" y1="186" x2="330" y2="192" />
+    <line x1="510" y1="186" x2="510" y2="192" />
+  </g>
+  <g text-anchor="middle" font-size="11" fill="var(--text, #727981)">
+    <text x="60" y="206">5.850</text>
+    <text x="330" y="206">5.895</text>
+    <text x="510" y="206">5.925</text>
+  </g>
+  <text x="285" y="222" text-anchor="middle" font-size="12" fill="var(--text, #727981)">주파수 (GHz)</text>
+</svg>

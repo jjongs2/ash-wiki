@@ -35,6 +35,8 @@ Root CA는 늘 오프라인으로 쓰고 어떤 네트워크에도 잇지 않는
 
 최상위 신뢰 관리에서 TLM(Trust List Manager)은 root CA 인증서와 TLM 인증서의 목록을 만들어 서명한다. CPOC(C-ITS Point Of Contact)는 root CA 인증서를 모아 TLM에 건네고, TLM이 서명한 목록을 관심 있는 실체에 배포한다.[@etsi-ts-102-940-2021] TLM이 서명한 이 목록을 ECTL(European Certificate Trust List)이라 부른다.[@etsi-ts-102-940-2021][@etsi-ts-102-941-2022]
 
+![[diagrams/v2x-pki-entities.svg]]
+
 ## ITS-S 생명주기
 
 ETSI TS 102 941 V2.2.1은 ITS-S 보안 생명주기를 제조 때의 초기 설정, 등록(enrolment), 인가(authorization), 운영과 유지, 수명 끝(end of life)의 단계로 둔다.[@etsi-ts-102-941-2022]

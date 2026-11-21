@@ -15,6 +15,8 @@ ETSI EN 302 571 V2.1.1은 5 GHz ITS 주파수 대역을 ITS-G5B(5855\~5875 MHz),
 
 EU 시행 결정 2020/1426은 회원국이 2021년 6월 30일까지 5875\~5935 MHz를 ITS에 지정하되, 5925\~5935 MHz는 urban rail ITS에만 쓰도록 요구한다. 5915 MHz 아래에서는 도로 ITS 응용이, 위에서는 urban rail ITS 응용이 우선이고, 5915\~5925 MHz에서 도로 ITS는 I2V(infrastructure-to-vehicle) 연결 응용만 쓸 수 있다.[@eu-2020-1426-2020]
 
+![[diagrams/its-g5-frequency-bands.svg]]
+
 EU 시행 결정 2026/1800은 2020/1426의 Annex를 바꿨다. 바뀐 Annex는 이 대역의 ITS 장비에 평균 EIRP로 스펙트럼 전력 밀도 최대 23 dBm/MHz와 전체 송신 전력 최대 33 dBm을 두고, TPC(transmit power control)가 전체 전력을 최대에서 3 dBm EIRP까지 낮출 수 있어야 한다고 정한다. 도로 ITS 응용은 5875 MHz에서 시작하는 10 MHz 블록마다 그 경계 안의 채널을 쓰고, 두 블록을 이어 20 MHz 채널 하나로 쓸 수 있다. 5905\~5925 MHz의 두 블록으로 만든 20 MHz 채널은 I2V 통신에만 쓴다.[@eu-2026-1800-2026]
 
 CEPT(유럽 우편·전기통신 주관청 회의)의 ECC/DEC/(08)01(2025년 3월 7일 마지막 개정)은 CEPT 주관청이 차량에 단 ITS 장비와 이동 ITS 장비를 모두 개별 면허에서 면제하도록 정한다.[@eu-2020-1426-2020][@cept-ecc-dec-08-01-2025]
