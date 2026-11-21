@@ -47,9 +47,7 @@ PR-body 스킬(`mattpocock-skills:pr`)의 꼴로 씁니다. 저장소는 두 가
 
 ## 리뷰
 
-1. PR을 올리기 전에 `/mattpocock-skills:code-review`로 두 축을 리뷰하고 반영합니다. 플러그인 없이 스킬만 깐 루틴 환경에서는 Skill 목록의 `code-review`(설명에 `along two axes: Standards … and Spec`가 있습니다)가 같은 스킬이고, 로컬에 이름이 같은 내장 리뷰는 다른 것입니다.
-   - Standards: 저장소 문서의 규칙을 지키는가
-   - Spec: 이슈가 요구한 것과 맞는가
+1. PR을 올리기 전에 `/mattpocock-skills:code-review`로 두 축(Standards, Spec)을 리뷰하고 반영합니다. 플러그인 없이 스킬만 깐 루틴 환경에서는 Skill 목록의 `code-review` 가운데 설명에 `along two axes`가 있는 것이 같은 스킬입니다.
 2. 이 리뷰에는 기준 커밋 `origin/main`과 스펙을 넘깁니다. 스펙은 PR이 닫을 이슈, 없으면 그 흐름의 스킬 문서입니다. 둘 다 없으면 스펙이 없다고 넘겨 Spec 축을 건너뜁니다. 넘기지 않으면 스킬이 묻고, 사람이 없는 흐름은 거기서 멈춥니다.
 3. 반영한 뒤 PR 전 확인을 다시 통과시킵니다. 위키 콘텐츠를 고친 PR은 [위키 검증의 검토](docs/wiki-verification.md#검토) 절이 정한 차례와 반영 뒤 단계를 따릅니다.
 4. 머지는 사람이 합니다.
