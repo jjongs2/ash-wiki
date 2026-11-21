@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="49.5 19.5 461 272.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="FMCW 레이더의 송수신 구성">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--blue, #336fb8)" />
+    </marker>
+  </defs>
+
+  <!-- 블록 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="60" y="30" width="100" height="36" rx="2" />
+    <rect x="250" y="30" width="110" height="36" rx="2" />
+    <rect x="250" y="150" width="110" height="36" rx="2" />
+    <rect x="60" y="150" width="100" height="36" rx="2" />
+    <rect x="430" y="90" width="70" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="110" y="53">합성기</text>
+    <text x="305" y="53">송신 안테나</text>
+    <text x="305" y="173">수신 안테나</text>
+    <text x="110" y="173">mixer</text>
+    <text x="465" y="113">물체</text>
+  </g>
+
+  <!-- 신호 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="160" y1="48" x2="248" y2="48" />
+    <line x1="360" y1="48" x2="440" y2="88" />
+    <line x1="110" y1="66" x2="110" y2="148" />
+    <line x1="110" y1="186" x2="110" y2="238" />
+  </g>
+  <g stroke="var(--blue, #336fb8)" stroke-width="1.5" marker-end="url(#arrow-blue)">
+    <line x1="440" y1="128" x2="360" y2="168" />
+    <line x1="250" y1="168" x2="162" y2="168" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="204" y="40" text-anchor="middle">chirp</text>
+    <text x="408" y="58">chirp</text>
+    <text x="408" y="166">반사된 chirp</text>
+    <text x="206" y="160" text-anchor="middle">수신 신호</text>
+    <text x="118" y="112">송신 신호</text>
+    <text x="110" y="256" text-anchor="middle">IF 신호</text>
+    <text x="280" y="280" text-anchor="middle">TI 백서에 따른 구성</text>
+  </g>
+</svg>

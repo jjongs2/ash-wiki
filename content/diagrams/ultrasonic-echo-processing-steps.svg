@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="30.5 19.5 481.5 188" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="에코 신호의 처리 단계">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 블록 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="90" y="30" width="120" height="36" rx="2" />
+    <rect x="240" y="30" width="60" height="36" rx="2" />
+    <rect x="330" y="30" width="110" height="36" rx="2" />
+    <rect x="90" y="120" width="60" height="36" rx="2" />
+    <rect x="180" y="120" width="90" height="36" rx="2" />
+    <rect x="330" y="120" width="90" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="150" y="53">잡음 거름·증폭</text>
+    <text x="270" y="53">ADC</text>
+    <text x="385" y="53">밴드패스 필터</text>
+    <text x="120" y="143">정류</text>
+    <text x="225" y="143">저역 필터</text>
+    <text x="375" y="143">문턱값 적용</text>
+  </g>
+  <text x="40" y="53" fill="var(--text, #727981)">에코</text>
+
+  <!-- 흐름 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="70" y1="48" x2="88" y2="48" />
+    <line x1="210" y1="48" x2="238" y2="48" />
+    <line x1="300" y1="48" x2="328" y2="48" />
+    <polyline points="385,66 385,93 120,93 120,118" />
+    <line x1="150" y1="138" x2="178" y2="138" />
+    <line x1="270" y1="138" x2="328" y2="138" />
+    <line x1="420" y1="138" x2="448" y2="138" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="299" y="130" text-anchor="middle">포락선</text>
+    <text x="454" y="134">비행 시간,</text>
+    <text x="454" y="150">폭, 세기</text>
+    <text x="280" y="196" text-anchor="middle">TI 앱노트에 따른 처리 단계</text>
+  </g>
+</svg>

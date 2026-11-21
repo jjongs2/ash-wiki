@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="57.5 18.5 422.5 199" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="direct ToF의 레이저 펄스와 반사광">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <g text-anchor="end" fill="var(--text, #727981)">
+    <text x="132" y="65">레이저 펄스</text>
+    <text x="132" y="135">반사광</text>
+  </g>
+
+  <!-- 기준선 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="190" y1="60" x2="190" y2="176" />
+    <line x1="350" y1="130" x2="350" y2="176" />
+  </g>
+
+  <!-- 펄스 -->
+  <g stroke="var(--ink, #727981)" stroke-width="3" stroke-linejoin="round">
+    <path d="M150 60 H190 V30 H202 V60 H470" />
+    <path d="M150 130 H350 V112 H362 V130 H470" />
+  </g>
+
+  <!-- 왕복 시간 -->
+  <line x1="192" y1="170" x2="348" y2="170" stroke="var(--ink, #727981)" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  <text x="270" y="162" text-anchor="middle" fill="var(--text, #727981)">Δ<tspan font-style="italic">t</tspan></text>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="470" y="150" text-anchor="end">시간</text>
+    <text x="310" y="206" text-anchor="middle">onsemi 백서에 따른 direct ToF</text>
+  </g>
+</svg>

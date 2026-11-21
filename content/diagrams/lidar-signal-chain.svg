@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="9.5 19.5 549.5 262" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="라이다 신호 체인">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink, #727981)" />
+    </marker>
+  </defs>
+
+  <!-- 수신 시스템 틀 -->
+  <rect x="112" y="96" width="356" height="72" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="122" y="112" font-size="12" fill="var(--text, #727981)">수신 시스템</text>
+
+  <!-- 블록 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="20" y="72" width="60" height="36" rx="2" />
+    <rect x="130" y="30" width="110" height="36" rx="2" />
+    <rect x="130" y="120" width="90" height="36" rx="2" />
+    <rect x="250" y="120" width="60" height="36" rx="2" />
+    <rect x="340" y="120" width="110" height="36" rx="2" />
+    <rect x="320" y="200" width="150" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="50" y="95">대상</text>
+    <text x="185" y="53">송신 시스템</text>
+    <text x="175" y="143">광검출기</text>
+    <text x="280" y="143">TIA</text>
+    <text x="395" y="143">ADC 또는 TDC</text>
+    <text x="395" y="223">디지털 처리 시스템</text>
+  </g>
+
+  <!-- 흐름 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="130" y1="48" x2="82" y2="78" />
+    <line x1="80" y1="102" x2="128" y2="132" />
+    <line x1="220" y1="138" x2="248" y2="138" />
+    <line x1="310" y1="138" x2="338" y2="138" />
+    <line x1="395" y1="156" x2="395" y2="198" />
+    <line x1="470" y1="218" x2="498" y2="218" />
+  </g>
+  <g font-size="12" fill="var(--text, #727981)">
+    <text x="100" y="52" text-anchor="end">빛</text>
+    <text x="86" y="130" text-anchor="end">반사 신호</text>
+    <text x="504" y="222">점군 정보</text>
+    <text x="280" y="270" text-anchor="middle">TI 백서에 따른 신호 체인</text>
+  </g>
+</svg>

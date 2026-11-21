@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="29.5 11 471 175.5" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="A-PHY의 PAL 위에 싣는 프로토콜">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 싣는 프로토콜 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)">
+    <rect x="40" y="40" width="70" height="44" rx="2" />
+    <rect x="120" y="40" width="70" height="44" rx="2" />
+    <rect x="200" y="40" width="130" height="44" rx="2" />
+    <rect x="340" y="40" width="70" height="44" rx="2" />
+    <rect x="420" y="40" width="70" height="44" rx="2" />
+    <rect x="40" y="94" width="450" height="36" rx="2" />
+    <rect x="40" y="140" width="450" height="36" rx="2" />
+  </g>
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="75" y="67">CSI-2</text>
+    <text x="155" y="67">DSI-2</text>
+    <text x="265" y="59">VESA의</text>
+    <text x="265" y="76">디스플레이 프로토콜</text>
+    <text x="375" y="67">GPIO</text>
+    <text x="455" y="67">이더넷</text>
+    <text x="265" y="117">PAL(protocol adaptation layer)</text>
+    <text x="265" y="163">A-PHY</text>
+  </g>
+  <text x="415" y="30" text-anchor="middle" font-size="12" fill="var(--text, #727981)">제어 채널</text>
+</svg>

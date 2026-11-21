@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="131.5 21.5 419 250" font-family="IBM Plex Sans, IBM Plex Sans KR, sans-serif" text-rendering="geometricPrecision" font-size="14" fill="none" aria-label="코너 레이더와 장거리 레이더의 배치">
+  <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+KR:wght@400;600;700&amp;display=swap");</style>
+
+  <!-- 감지 영역 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <path d="M200 90 L142.04 74.47 A60 60 0 0 1 184.47 32.04 Z" />
+    <path d="M360 90 L375.53 32.04 A60 60 0 0 1 417.96 74.47 Z" />
+    <path d="M200 170 L184.47 227.96 A60 60 0 0 1 142.04 185.53 Z" />
+    <path d="M360 170 L417.96 185.53 A60 60 0 0 1 375.53 227.96 Z" />
+    <path d="M360 130 L538.25 104.95 A180 180 0 0 1 538.25 155.05 Z" />
+  </g>
+
+  <!-- 차 -->
+  <rect x="200" y="90" width="160" height="80" rx="2" stroke="var(--ink, #727981)" stroke-width="1.5" fill="var(--surface, none)" />
+  <g text-anchor="middle" fill="var(--text, #727981)">
+    <text x="280" y="128">차</text>
+    <text x="280" y="148" font-size="12">앞쪽 →</text>
+  </g>
+
+  <!-- 레이더 -->
+  <g fill="var(--ink, #727981)">
+    <rect x="196" y="86" width="8" height="8" />
+    <rect x="356" y="86" width="8" height="8" />
+    <rect x="196" y="166" width="8" height="8" />
+    <rect x="356" y="166" width="8" height="8" />
+    <rect x="356" y="126" width="8" height="8" />
+  </g>
+
+  <!-- 이름표 -->
+  <g stroke="var(--ink, #727981)" stroke-width="1" stroke-dasharray="3 3">
+    <polyline points="230,58 200,58 200,84" />
+    <polyline points="330,58 360,58 360,84" />
+    <polyline points="230,202 200,202 200,176" />
+    <polyline points="330,202 360,202 360,176" />
+  </g>
+  <g text-anchor="middle" font-size="12" fill="var(--text, #727981)">
+    <text x="280" y="54">코너 레이더</text>
+    <text x="280" y="68">(단거리·중거리)</text>
+    <text x="280" y="200">코너 레이더</text>
+    <text x="280" y="214">(단거리·중거리)</text>
+    <text x="470" y="98">장거리 레이더</text>
+    <text x="340" y="260">Infineon에 따른 배치</text>
+  </g>
+</svg>
