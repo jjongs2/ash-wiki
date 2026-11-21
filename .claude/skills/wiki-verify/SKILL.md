@@ -1,13 +1,13 @@
 ---
 name: wiki-verify
-description: 재조사. `verify:` 이슈 하나의 미검증 주장을 재조사 에이전트, 원문 재대조, 사후 점검, 검토를 거쳐 PR과 이슈 본문 체크로 끝낸다. `verify:` 이슈를 맡았을 때 쓴다.
+description: 재조사. 열린 `verify:` 이슈 하나 이상의 미검증 주장을 재조사 에이전트, 원문 재대조, 사후 점검, 검토를 거쳐 PR 하나와 이슈 본문 체크로 끝낸다. `verify:` 이슈를 맡았을 때 쓴다. 인자는 `[#<verify 이슈> …]`이고, 없으면 열린 `verify:` 이슈를 모두 맡는다.
 ---
 
 # 재조사
 
-`verify:` 이슈 하나가 PR 하나가 된다. 절차의 정본은 위키 검증 문서의 재조사 절이고, 이 스킬은 그것을 실행 단계로 옮긴다. 용어는 `GLOSSARY.md`를 따른다.
+한 실행이 열린 `verify:` 이슈 하나 이상을 맡아 PR 하나로 닫는다. 인자로 받은 이슈를 맡고, 인자가 없으면 열린 `verify:` 이슈를 모두 맡는다(`gh issue list --state open --limit 100 --json number,title --jq '.[] | select(.title | startswith("verify:")) | .number'`). 막힌 이슈는 1단계에서 빠진다. 1단계, 5단계의 이슈 본문, 6단계의 형제 묶음 링크는 맡은 이슈마다 돌고, 나머지 단계는 맡은 이슈를 함께 놓고 돈다. 절차의 정본은 위키 검증 문서의 재조사 절이고, 이 스킬은 그것을 실행 단계로 옮긴다. 용어는 `GLOSSARY.md`를 따른다.
 
-먼저 읽는다: 이슈(`docs/agents/issue-tracker.md`의 이슈 읽기), `docs/wiki-verification.md`, `docs/source-hierarchy.md`, `docs/wiki-conventions.md`. 브랜치와 커밋은 `CONTRIBUTING.md`를 따르고, 타입은 `content`다.
+먼저 읽는다: 맡은 이슈(`docs/agents/issue-tracker.md`의 이슈 읽기), `docs/wiki-verification.md`, `docs/source-hierarchy.md`, `docs/wiki-conventions.md`. 브랜치와 커밋은 `CONTRIBUTING.md`를 따르고, 타입은 `content`다.
 
 `ASH_WIKI_NOTES`는 열지 않는다. 재조사는 이슈에 모인 주장과 출처, 게시된 페이지만 본다.
 
@@ -51,7 +51,9 @@ description: 재조사. `verify:` 이슈 하나의 미검증 주장을 재조사
 
 ## 1. 시작
 
-1. `gh api repos/<owner>/<repo>/issues/<n> --jq .issue_dependencies_summary.blocked_by`가 0인지 본다. 아니면 열린 blocker를 `docs/agents/issue-tracker.md`의 Blocking 절을 따라 찾아 번호를 알리고 멈춘다.
+맡은 이슈마다 한다.
+
+1. `gh api repos/<owner>/<repo>/issues/<n> --jq .issue_dependencies_summary.blocked_by`가 0인지 본다. 아니면 열린 blocker를 `docs/agents/issue-tracker.md`의 Blocking 절을 따라 찾아 번호를 알리고, 그 이슈는 맡지 않는다. 맡을 이슈가 남지 않으면 멈춘다.
 2. 위키 검증 재조사 1단계대로 코멘트를 모아 이슈 본문을 `## <미검증 사유>` 절로 다시 쓴다.
    - `## Parent`와 `## What to build`는 남기고, What to build 끝에 "시도한 출처는 묶음 코멘트에 있다."를 더한다. 시도한 출처는 본문에 옮기지 않는다.
    - 항목이 없는 사유 절은 뺀다. 항목의 주장은 코멘트의 글 그대로 옮긴다.
@@ -59,14 +61,14 @@ description: 재조사. `verify:` 이슈 하나의 미검증 주장을 재조사
 
 PR이 머지되기 전에 위계가 넓어지면 main으로 rebase하고, 남은 미검증 항목만 2단계부터 다시 돌린다.
 
-완료: blocked-by가 0이고, 이슈 본문이 사유별 절로 다시 쓰였고, 위계를 넓힌 커밋이 있는지 확인했다.
+완료: 맡은 이슈마다 blocked-by가 0이고, 이슈 본문이 사유별 절로 다시 쓰였고, 위계를 넓힌 커밋이 있는지 확인했다.
 
 ## 2. 재조사 에이전트
 
-사유 절마다 재조사 에이전트를 하나씩 Agent 도구(`general-purpose`)로 띄운다. 한 메시지에 모두 띄워 병렬로 돌린다. 프롬프트는 [reinvestigator.md](reinvestigator.md)를 채워 쓴다.
+맡은 이슈의 사유 절마다 재조사 에이전트를 하나씩 Agent 도구(`general-purpose`)로 띄운다. 한 메시지에 모두 띄워 병렬로 돌린다. 프롬프트는 [reinvestigator.md](reinvestigator.md)를 채워 쓴다.
 
 - 한 절의 항목이 15개를 넘으면 그 절은 페이지 단위로 나눈다.
-- 항목이 적은 절끼리는 에이전트 하나에 합쳐도 된다.
+- 같은 이슈 안에서 항목이 적은 절끼리는 에이전트 하나에 합쳐도 된다. 이슈를 넘어 합치지 않는다. 5단계에서 반환을 그 이슈 본문에 달기 때문이다.
 - 에이전트 수가 Agent 도구의 동시 실행 한도(지금 20)를 넘으면 한도 안에서 나눠 띄운다.
 
 에이전트에게는 맡은 항목 줄과 그 항목의 시도한 출처만 준다. `<작업 폴더>`는 `.work/` 아래 에이전트마다 다른 하위 폴더로 채운다. 1단계에서 위계를 넓힌 커밋을 찾았으면 더한 1층을 한 줄로 함께 준다.
@@ -113,17 +115,17 @@ PR이 머지되기 전에 위계가 넓어지면 main으로 rebase하고, 남은
 - 새 엔트리는 위키 규약의 인용 절을 따라 `bib/`에 더한다.
 - `verified`는 위키 규약의 페이지 타입과 프론트매터 절을 따라 둔다.
 - 항목의 페이지가 없으면(게시 기준에 못 미쳐 만들지 않은 페이지) 위키 검증의 게시 기준을 넘을 때만 만들고, PR 본문에 적는다. 넘지 못하면 그 페이지의 검증 완료 항목은 라벨을 `보류`로 바꾸고 반영안을 넣지 않는다.
-- 이슈 본문의 항목마다 [판정 라벨](#판정-라벨)의 꼴로 체크, 취소선, 메모를 단다. 검증자가 사유에 옮긴 원문 구절은 메모에 들이지 않는다(위키 검증 문서의 판정 절).
-- `범위 밖`은 모아 새 이슈로 낸다. 제목은 `CONTRIBUTING.md`의 이슈 절을 따라 `content: <주제>` 꼴이고, 라벨은 `needs-triage`다(`docs/agents/triage-labels.md`).
+- 항목마다 그 이슈 본문에 [판정 라벨](#판정-라벨)의 꼴로 체크, 취소선, 메모를 단다. 검증자가 사유에 옮긴 원문 구절은 메모에 들이지 않는다(위키 검증 문서의 판정 절).
+- `범위 밖`은 고칠 곳 하나마다 `content:` draft 하나를 `docs/agents/issue-tracker.md`의 보드 절대로 만든다.
 
-완료: 이슈 본문의 모든 항목에 라벨과 메모가 있고, `보류`가 아닌 검증 완료 항목의 반영안이 페이지에 있다.
+완료: 맡은 이슈마다 본문의 모든 항목에 라벨과 메모가 있고, `보류`가 아닌 검증 완료 항목의 반영안이 페이지에 있다.
 
 ## 6. 사후 점검
 
 - 항목 대응: 체크한 항목마다 diff나 메모에 적은 기존 페이지에 그 주장이 있고, diff의 문장마다 체크한 항목이 있다.
 - 새 bib 엔트리: 반영 뒤 `npm run source-status -- --url <URL> --url <URL> …`로 새 엔트리의 `url`을 모두 묻고 `url` 줄만 본다. `SKIP url-blocked`인 URL은 재조사 에이전트가 이미 연 출처라 다시 열지 않는다(`docs/source-access.md` 머리의 공통 줄).
 - 위키 검증 문서의 반영 뒤 점검.
-- 형제 묶음 링크: 위키 검증 재조사 절의 3과 4. 인제스트 티켓은 `gh api repos/<owner>/<repo>/issues/<verify 이슈>/dependencies/blocked_by --jq '.[].number'`로, 그 머지 커밋은 `gh pr list --state merged --json mergedAt,mergeCommit,closingIssuesReferences --jq '.[] | select(any(.closingIssuesReferences[]; .number == <티켓>)) | [.mergedAt, .mergeCommit.oid] | @tsv'`로 찾는다. 기준은 가장 먼저 머지된 PR의 머지 커밋의 부모(`<머지 커밋>^`)로, 묶음 PR의 diff를 모두 덮는다. 돌릴 명령은 `npm run check:diff -- --base <머지 커밋>^ --only first-link`와 인제스트 티켓마다의 `npm run check:diff -- --base <머지 커밋>^ --ticket <인제스트 티켓> --only owner-page`이고, 출력은 `.work/`에 받는다. 대상이 형제 묶음 페이지인 후보마다 위키 검증 문서 검토 절의 처리 줄을 `.work/처리.md`에 남긴다. `first-link` 후보는 건 링크나 걸지 않은 근거(규칙 절)이고, `owner-page` 후보는 [인제스트](../wiki-ingest/SKILL.md) 4단계 반영 뒤 점검의 주인 페이지 판정과 처리 줄 기준을 따른다. 링크를 걸어 문장이 바뀌면(링크 자리를 옮기거나 안내 문장을 지움) 3단계의 이음매 읽기를 한다.
+- 형제 묶음 링크: 위키 검증 재조사 절의 3과 4. 맡은 `verify:` 이슈마다 돌고, 후보는 그 이슈를 막던 인제스트 티켓의 페이지 사이에서만 판정한다. 인제스트 티켓은 `gh api repos/<owner>/<repo>/issues/<verify 이슈>/dependencies/blocked_by --jq '.[].number'`로, 그 머지 커밋은 `gh pr list --state merged --json mergedAt,mergeCommit,closingIssuesReferences --jq '.[] | select(any(.closingIssuesReferences[]; .number == <티켓>)) | [.mergedAt, .mergeCommit.oid] | @tsv'`로 찾는다. 기준은 가장 먼저 머지된 PR의 머지 커밋의 부모(`<머지 커밋>^`)로, 묶음 PR의 diff를 모두 덮는다. 돌릴 명령은 `npm run check:diff -- --base <머지 커밋>^ --only first-link`와 인제스트 티켓마다의 `npm run check:diff -- --base <머지 커밋>^ --ticket <인제스트 티켓> --only owner-page`이고, 출력은 `.work/`에 받는다. 대상이 형제 묶음 페이지인 후보마다 위키 검증 문서 검토 절의 처리 줄을 `.work/처리.md`에 남긴다. `first-link` 후보는 건 링크나 걸지 않은 근거(규칙 절)이고, `owner-page` 후보는 [인제스트](../wiki-ingest/SKILL.md) 4단계 반영 뒤 점검의 주인 페이지 판정과 처리 줄 기준을 따른다. 링크를 걸어 문장이 바뀌면(링크 자리를 옮기거나 안내 문장을 지움) 3단계의 이음매 읽기를 한다.
 - `CONTRIBUTING.md`의 PR 전 확인을 돌려 고친다.
 
 완료: 위 점검이 모두 끝났고, 형제 묶음 후보마다 처리 줄이 있고, PR 전 확인이 통과한다.
@@ -138,13 +140,13 @@ PR이 머지되기 전에 위계가 넓어지면 main으로 rebase하고, 남은
 
 ## 8. PR과 마무리
 
-게시한 검증 완료 항목도 6단계에서 건 형제 묶음 링크도 없으면 PR 없이 이슈를 닫는다(위키 검증 재조사 절의 5). `보류`는 검증 완료로 세지 않는다.
+게시한 검증 완료 항목도 6단계에서 건 형제 묶음 링크도 없는 이슈는 PR에 넣지 않고 그 실행에서 닫는다(위키 검증 재조사 절). 맡은 이슈가 모두 그러면 PR을 올리지 않는다. `보류`는 검증 완료로 세지 않는다.
 
 1. 위키 검증 문서 검토 절의 2회차를 돈다. 7단계의 검토가 1회차 커밋과의 diff를 보고, `CONTRIBUTING.md`의 리뷰 절대로 두 축 리뷰를 함께 돌린다. 2회차에서 나온 것만 반영하고 멈춘다.
 2. bib 엔트리를 더했으면 push 직전에 위키 규약의 열린 PR과 겹치는 파일 절을 따라 열린 PR과 키가 겹치는지 본다.
-3. PR을 올린다. 제목은 `content: <주제> 미검증 주장 재조사`, 본문은 `CONTRIBUTING.md`의 PR 본문 절을 따르고 `Closes #<verify 이슈>`와 아래를 적는다.
-   - 라벨별 항목 수, `출처와 어긋남` 항목의 결과, 더한 bib 수, 건 형제 묶음 링크 수. 항목별 결과는 이슈 본문을 가리킨다.
+3. PR을 올린다. 제목은 `content: <주제> 미검증 주장 재조사`이고, PR에 든 이슈가 여럿이면 `<주제>` 자리를 `<첫 이슈의 주제> 외 <n>개 주제`로 쓴다. 본문은 `CONTRIBUTING.md`의 PR 본문 절을 따르고 PR에 든 이슈마다 `Closes #<verify 이슈>`를 적고, 그 아래에 다음을 적는다. PR 없이 닫은 이슈는 번호만 한 줄로 적는다.
+   - 이슈마다 라벨별 항목 수, `출처와 어긋남` 항목의 결과, 더한 bib 수, 건 형제 묶음 링크 수. 항목별 결과는 이슈 본문을 가리킨다.
    - 6단계의 점검과 결과(형제 묶음 링크는 후보 수와 건 수), 원문 재대조에서 고친 문장 수, "재조사는 이슈에 모인 주장과 출처만 보고 했고, 소스 노트는 읽지 않았다."
 4. 소유자 리뷰를 반영하면 위키 검증 문서의 반영 뒤 점검을 다시 돌린다.
 
-완료: PR이 있고, 이슈 본문의 모든 항목이 체크, 취소선, 미검증 메모, 보류 메모 가운데 하나다. 체크한 항목의 메모가 게시된 문장과 같다. `범위 밖`이 있었으면 새 이슈가 있다.
+완료: PR에 든 이슈가 있으면 PR이 있고, PR 없이 닫을 이슈는 닫혔다. 맡은 이슈마다 본문의 모든 항목이 체크, 취소선, 미검증 메모, 보류 메모 가운데 하나다. 체크한 항목의 메모가 게시된 문장과 같다. `범위 밖`이 있었으면 고칠 곳마다 보드에 draft가 있다.
