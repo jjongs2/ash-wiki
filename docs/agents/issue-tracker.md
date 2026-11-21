@@ -24,7 +24,7 @@ GitHub의 기본 issue dependencies 기능을 사용한다. UI에서도 보인�
 
 ## 보드
 
-triage를 거쳐 티켓이 되기 전의 발견 세 종류는 이슈 대신 [ash-wiki 보드](https://github.com/users/jjongs2/projects/4)(번호 4)의 draft로 둔다. 보드는 공개이고 이 저장소에 연결되어 있다. 발견 하나가 draft 하나다.
+triage를 거쳐 티켓이 되기 전의 항목 세 종류는 이슈 대신 [ash-wiki 보드](https://github.com/users/jjongs2/projects/4)(번호 4)의 draft로 둔다. 보드는 공개이고 이 저장소에 연결되어 있다. 항목 하나가 draft 하나다.
 
 | 종류        | 무엇                                                                        | 제목 접두사 |
 | ----------- | --------------------------------------------------------------------------- | ----------- |
