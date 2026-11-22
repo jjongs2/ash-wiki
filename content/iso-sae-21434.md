@@ -19,22 +19,22 @@ ISO/SAE 21434:2021은 도로 차량의 E/E(Electrical/Electronic) 시스템과 �
 
 이 표준은 공급망 전체가 함께 이해할 바탕으로 사이버보안 엔지니어링의 용어, 목표, 요구사항, 지침을 준다. 사이버보안을 알맞게 고려하게 해, 도로 차량 E/E 시스템의 엔지니어링이 최신 기술과 진화하는 공격 방법을 따라가게 하려는 것이다.[@iso-sae-21434-obp-2021]
 
-이 표준의 4절부터 15절까지의 절 제목은 다음과 같다. 4절은 informative 절이다.[@iso-sae-21434-obp-2021]
+이 표준의 4절부터 15절까지의 절 제목과 다루는 것은 다음과 같다. 4절은 informative 절이다.[@iso-sae-21434-obp-2021]
 
-| 절  | 절 제목                                          |
-| --- | ------------------------------------------------ |
-| 4   | General considerations                           |
-| 5   | Organizational cybersecurity management          |
-| 6   | Project dependent cybersecurity management       |
-| 7   | Distributed cybersecurity activities             |
-| 8   | Continual cybersecurity activities               |
-| 9   | Concept                                          |
-| 10  | Product development                              |
-| 11  | Cybersecurity validation                         |
-| 12  | Production                                       |
-| 13  | Operations and maintenance                       |
-| 14  | End of cybersecurity support and decommissioning |
-| 15  | Threat analysis and risk assessment methods      |
+| 절  | 절 제목                                          | 다루는 것                                                                                                                           |
+| --- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| 4   | General considerations                           | 이 표준이 도로 차량 사이버보안 엔지니어링에 접근하는 맥락과 관점                                                                    |
+| 5   | Organizational cybersecurity management          | 조직 수준의 사이버보안 정책, 규칙, 프로세스를 정하고 관리하는 일                                                                    |
+| 6   | Project dependent cybersecurity management       | 프로젝트 단위의 사이버보안 관리와 활동                                                                                              |
+| 7   | Distributed cybersecurity activities             | 고객과 공급자 사이에 사이버보안 활동의 책임을 나누는 요구사항                                                                       |
+| 8   | Continual cybersecurity activities               | 진행 중인 리스크 평가에 쓸 정보를 주는 활동과, 사이버보안 지원이 끝날 때까지 E/E 시스템의 [[vulnerability-management\|취약점 관리]] |
+| 9   | Concept                                          | 아이템의 사이버보안 리스크, [[cybersecurity-goal\|cybersecurity goal]], 사이버보안 요구사항을 정하는 활동                           |
+| 10  | Product development                              | [[cybersecurity-specification\|cybersecurity specification]]을 정하고 사이버보안 요구사항을 구현하고 검증하는 활동                  |
+| 11  | Cybersecurity validation                         | 차량 수준에서 하는 아이템의 [[cybersecurity-verification-and-validation\|cybersecurity validation]]                                 |
+| 12  | Production                                       | 아이템이나 컴포넌트를 제조하고 조립하는 일의 사이버보안 측면                                                                        |
+| 13  | Operations and maintenance                       | 아이템이나 컴포넌트의 cybersecurity incident 대응과 업데이트에 관한 활동                                                            |
+| 14  | End of cybersecurity support and decommissioning | 아이템이나 컴포넌트의 사이버보안 지원을 끝내거나 폐기할 때 고려할 것                                                                |
+| 15  | Threat analysis and risk assessment methods      | 리스크를 처리할 수 있도록 사이버보안 리스크의 정도를 정하는 모듈식 분석·평가 방법                                                   |
 
 이 표준은 5절부터 15절까지 절마다 목표, 조항, 작업 산출물을 둔다. 조항은 요구사항, 권고, 허용으로 나뉜다. 조항과 작업 산출물에는 RQ(requirement), RC(recommendation), PM(permission), WP(work product) 뒤에 절 번호와 절 안의 순번을 붙인 식별자를 매긴다. 예를 들어 RQ-05-14는 5절의 열네 번째 요구사항이다.[@iso-sae-21434-obp-2021]
 

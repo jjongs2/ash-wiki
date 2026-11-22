@@ -57,7 +57,7 @@ Ford 차량은 자동 업데이트가 켜져 있으면 대부분의 소프트웨
 
 ## 보안
 
-R156 원판에 대한 해석 문서는 UN R156의 업데이트 [[cybersecurity-property#Authenticity, 부인 방지, 인가|authenticity]]·무결성 보호 요구가, 차량이 [[digital-signature|서명]] 등으로 업데이트의 authenticity와 무결성을 검증하기를 요구한다고 본다.[@unece-r156-interpretation-2025]
+R156 해석 문서는 UN R156의 업데이트 [[cybersecurity-property#Authenticity, 부인 방지, 인가|authenticity]]·무결성 보호 요구가, 차량이 [[digital-signature|서명]] 등으로 업데이트의 authenticity와 무결성을 검증하기를 요구한다고 본다.[@unece-r156-interpretation-2025][@unece-r156-interpretation-2026]
 
 NHTSA의 2022년 모범 사례는 OTA 업데이트 기능을 갖춘 차량의 제조사가 OTA 업데이트, 업데이트 서버, 전송 수단, 업데이트 과정 전반의 무결성을 지키고, 보안 대책을 설계할 때 서버 침해, 내부자 위협, 중간자 공격, 프로토콜 취약점의 리스크를 고려하기를 권한다. 서명 기법을 쓰는 펌웨어 업데이트 시스템은 인가된 출처에서 오지 않은 해로운 업데이트의 설치를 막을 수 있다.[@nhtsa-cybersecurity-best-practices-2022]
 
