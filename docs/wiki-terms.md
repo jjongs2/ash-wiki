@@ -31,6 +31,7 @@
 - Annex: 부속서, 부록 (#301). 원문이 Annex일 때. 원문이 Appendix인 "부록"은 그대로
 - aperiodic: 비주기 (#350). 합성어 포함. 예: aperiodic 태스크, aperiodic server. CANopen PDO의 주기·비주기 송신처럼 통신의 송신 방식은 예외
 - ASPICE: Automotive SPICE, A-SPICE (#231). 판을 붙이면 `ASPICE 4.1` 꼴. 정식 이름은 `automotive-spice` 머리말의 풀이에만, A-SPICE는 그 페이지의 alias로만. 문서 이름 "Automotive SPICE for Cybersecurity"와 슬러그는 예외
+- authenticity: 진정성, 진위성 (#762). 보안 속성 authenticity일 때. 예: "무결성과 authenticity"
 - auto addressing: - (#667). LIN의 auto addressing일 때
 - automated vehicle, fully automated vehicle: 완전 자동화 차량 (#682). EU 규정 2019/2144 3조의 정의 용어일 때
 - balanced media: - (#667). ISO 21806의 MOST50 bPHY 매체일 때
@@ -47,6 +48,7 @@
 - classic: classical (#311). ISO 11898-1:2024를 주어로 한 문장에서 이 판의 이름(약어 CC)을 쓸 때. 위키의 개념 이름 "Classical CAN"은 그대로
 - common cause failure: 공통 원인 고장 (#291)
 - Communication Management: 통신 관리 (#359). AUTOSAR Adaptive Platform의 functional cluster일 때
+- concept 단계, continual cybersecurity activities, retain, share: 개념 단계, 조직 사이버보안 관리, 프로젝트 의존 사이버보안 관리, 지속적 사이버보안 활동, 지속 활동, 보유하거나 공유 (#762). ISO/SAE 21434의 생명주기 단계·절 이름과 리스크 처리 옵션(avoid, reduce, share, retain)일 때. 단계는 원어 뒤에 "단계"를 붙이고, 절은 원문의 절 제목을 쓴다. UN R155의 development phase, production phase, post-production phase도 원어 그대로 쓴다. "개념부터 폐기까지" 같은 일반 설명과 다른 표준(ISO 26262, SAE J3061, GB 44495)의 단계는 들지 않는다
 - content addressing: 통일하지 않음 (#441). 인용한 출처의 이름대로. CiA의 content addressing은 "내용 주소 지정", Bosch의 content based addressing은 "내용 기반 주소 지정". node addressing도 CiA는 "노드 주소 지정", Bosch는 "노드 기반 주소 지정"
 - context: 문맥 (#142)
 - context switch: 문맥 전환 (#142)
@@ -119,6 +121,7 @@
 - read-while-write: - (#674). 플래시의 RWW일 때
 - recessive: 리세시브 (#165). 조사는 원어의 발음대로. 예: "recessive이고"
 - Reed-Solomon: Reed–Solomon (#498)
+- replay 공격: 재전송 공격 (#762). replay attack일 때. replay를 뜻하는 합성어도 같다. 예: replay 보호, replay 방지. 통신의 재전송(retransmission)은 들지 않는다
 - resource: 리소스 (#165). OSEK 객체일 때. 일반적인 뜻이면 "자원"
 - root of trust: 신뢰의 뿌리 (#288)
 - RSA 풀이 Rivest-Shamir-Adleman: Rivest–Shamir–Adleman (#288)
@@ -141,7 +144,9 @@
 - validation: 통일하지 않음 (#288). "확인"과 원어 cybersecurity validation을 맥락에 따라. 페이지 `cybersecurity-verification-and-validation`의 title과 정의는 "확인"
 - Virtual A/B: - (#432)
 - wakeup: 웨이크업 (#257). AUTOSAR가 다루는 wakeup일 때. 예: EcuM에 알리는 wakeup. 트랜시버와 버스의 웨이크업은 "웨이크업"
+- 갈루아체: 갈루아 체 (#762). Galois field일 때
 - 개인 키: 개인키 (#288)
+- 개체: 실체 (#762). 보안·통신 표준의 entity일 때. 추적성의 "논리적 실체"처럼 다른 분야의 실체는 들지 않는다
 - 결정 테이블: 결정표 (#441)
 - 결함 허용: - (#223)
 - 경량: 경차 (#678). light-duty vehicle일 때
@@ -202,6 +207,7 @@
 - 취약점 처리: vulnerability handling (#431)
 - 카나리 릴리스: canary release, 카나리 배포 (#499)
 - 코드 플래시: 프로그램 플래시 (#674). 프로그램을 두는 플래시일 때. 제품의 구성 요소 이름(PFlash, P-Flash)은 그대로
+- 키 재료: 키 자료 (#762). key material, keying material일 때
 - 타원 곡선 암호: ECC (#289). 타원 곡선 암호를 가리킬 때. ECDSA·ECDH 같은 알고리즘 이름은 그대로. 예: SP 800-56A의 ECC CDH는 "타원 곡선 CDH"
 - 태스크 그룹: 태스크 묶음 (#349). OSEK OS 명세의 group of tasks일 때
 - 테스트 기준: test basis (#291)
