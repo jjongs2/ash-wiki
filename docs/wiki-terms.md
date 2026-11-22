@@ -101,6 +101,8 @@
 - NMI 풀이: 통일하지 않음 (#675). 인용한 출처의 풀이대로. 예: Infineon AN0001을 인용한 safety-mechanism은 non-maskable interrupt, RTEMS 문서를 인용한 deferred-interrupt-handling은 Non-Maskable Interrupt
 - No Driving Automation, Driver Assistance, Partial·Conditional·High·Full Driving Automation: 부분 자동화 (#682). 운전 자동화 레벨의 이름일 때. 출처 문장 안에서 원어 그대로 쓴다
 - notification: 통지 (#257). AUTOSAR 모듈이 부르는 notification 콜백일 때. 동사로 쓴 자리("통지받는다")와 그 밖의 통지는 "통지"
+- OBC: 탑재 충전기, 온보드 충전기 (#759). on-board charger일 때. 원어 약어로 쓴다
+- OBC 풀이 on-board charger: onboard charger (#759)
 - OBD 풀이 On-Board Diagnostics: On-Board Diagnosis (#496)
 - ODD 풀이 Operational Design Domain: - (#682)
 - offset correction, rate correction: - (#667). FlexRay 클록 동기화일 때
@@ -201,7 +203,6 @@
 - 카나리 릴리스: canary release, 카나리 배포 (#499)
 - 코드 플래시: 프로그램 플래시 (#674). 프로그램을 두는 플래시일 때. 제품의 구성 요소 이름(PFlash, P-Flash)은 그대로
 - 타원 곡선 암호: ECC (#289). 타원 곡선 암호를 가리킬 때. ECDSA·ECDH 같은 알고리즘 이름은 그대로. 예: SP 800-56A의 ECC CDH는 "타원 곡선 CDH"
-- 탑재 충전기: 온보드 충전기 (#759). on-board charger일 때
 - 태스크 그룹: 태스크 묶음 (#349). OSEK OS 명세의 group of tasks일 때
 - 테스트 기준: test basis (#291)
 - 테스트 케이스: 시험 사례, 시험 케이스 (#291)

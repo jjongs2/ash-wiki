@@ -19,7 +19,7 @@ CharIN의 CCS Basic 구현 가이드 v1.1.1.1은 교류 충전의 IEC 62196-2 Ty
 
 CharIN은 CCS의 발전을 CCS Basic, CCS Extended, CCS Advanced 세 단계로 나누어 단계마다 기존 표준을 바탕으로 application profile을 정의하고, 이 가이드는 CCS Basic의 HLC를 DIN SPEC 70121이 정한 HomePlug Green PHY 기반 PLC로 둔다. 이 profile에는 IEC 61851-1의 Mode 2, Mode 3, Mode 4가 들고, 직류 충전소인 Mode 4의 충전 제어에는 HLC가 필요하다.[@charin-ccs-basic-implementation-guide-2023]
 
-TI 레퍼런스 디자인 TIDA-010939의 설계 가이드에 따르면 직류 충전에서는 차량의 탑재 충전기가 아니라 충전 설비가 충전기 노릇을 하므로, 배터리를 안전하게 충전할 전압 수준과 전류 한도를 알아내려면 아날로그 핸드셰이크에 더해 HLC가 필요하다.[@ti-tidufe6a-2025]
+TI 레퍼런스 디자인 TIDA-010939의 설계 가이드에 따르면 직류 충전에서는 차량의 OBC(on-board charger)가 아니라 충전 설비가 충전기 노릇을 하므로, 배터리를 안전하게 충전할 전압 수준과 전류 한도를 알아내려면 아날로그 핸드셰이크에 더해 HLC가 필요하다.[@ti-tidufe6a-2025]
 
 ## DIN 70121
 
