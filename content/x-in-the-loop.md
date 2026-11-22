@@ -16,7 +16,7 @@ ISTQB 용어집은 **테스트 환경**(test environment)을 테스트를 수행
 
 ## Closed loop와 open loop
 
-제어 시스템은 closed loop와 open loop로 나뉜다. 둘은 제어 장치가 환경에 반응하는 방식이 달라서, 가상 테스트 환경에 필요한 시뮬레이션도 다르다. 테스트에서 closed loop는 주로 제어기를 시험하는 데 쓰이며, 엔진과 변속 제어, ABS(anti-lock braking system)나 VDC(vehicle dynamics control) 같은 운전자 보조 시스템처럼 복잡한 기능을 시험할 수 있다. open loop에서는 시스템의 출력이 입력과 관계가 없어 되먹임 루프가 없고, 테스터가 테스트 절차에서 테스트 대상의 입력을 바로 정한다. ISTQB CT-AuT v2.1.1 강의계획서에 따르면 테스트 대상이 반응형으로 동작하거나 상태 기계를 따르면 open loop가 낫고, 실내와 섀시 전장의 조명, 스위치가 그 예다.[@istqb-ct-aut-syllabus-2025]
+제어 시스템은 closed loop와 open loop로 나뉜다. 둘은 제어 장치가 환경에 반응하는 방식이 달라서, 가상 테스트 환경에 필요한 시뮬레이션도 다르다. 테스트에서 closed loop는 주로 제어기를 시험하는 데 쓰이며, 엔진과 변속 제어, ABS나 VDC(vehicle dynamics control) 같은 운전자 보조 시스템처럼 복잡한 기능을 시험할 수 있다. open loop에서는 시스템의 출력이 입력과 관계가 없어 되먹임 루프가 없고, 테스터가 테스트 절차에서 테스트 대상의 입력을 바로 정한다. ISTQB CT-AuT v2.1.1 강의계획서에 따르면 테스트 대상이 반응형으로 동작하거나 상태 기계를 따르면 open loop가 낫고, 실내와 섀시 전장의 조명, 스위치가 그 예다.[@istqb-ct-aut-syllabus-2025]
 
 ![[diagrams/xil-open-loop.svg]]
 

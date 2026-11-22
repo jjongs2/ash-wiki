@@ -11,7 +11,7 @@ verified: 2026-10-01
 
 ASIL은 [[hazard-analysis-and-risk-assessment|HARA]]에서 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]]과 함께 정한다. ISO 26262-1:2018은 HARA의 파라미터 셋을 다음처럼 정의한다.[@iso-26262-1-obp-2018]
 
-- **심각도**(severity, S): 잠재적 해저드 사건에서 한 명 이상이 입을 수 있는 해의 정도를 추정한 값
+- **심각도**(severity, S): 잠재적 hazardous event에서 한 명 이상이 입을 수 있는 해의 정도를 추정한 값
 - **노출**(exposure, E): 분석하는 [[safety-analysis#FMEA|failure mode]]와 겹치면 위험해질 수 있는 운용 상황에 놓인 상태
 - **통제 가능성**(controllability, C): 관련된 사람이 제때 반응해 특정한 해나 손상을 피할 수 있는 능력. 관련된 사람에는 운전자, 승객, 차 밖의 사람이 들 수 있고, 외부 조치가 그 반응을 도울 수 있다.[@iso-26262-1-obp-2018]
 
