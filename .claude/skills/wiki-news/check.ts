@@ -3,7 +3,8 @@
 // 1이다. 규칙은 SKILL.md 7단계, docs/weekly-news.md, outlets.md의 열 절에 있다. PR 전 확인에 넣지 않는 것은 규칙이
 // 생기기 전의 지난 호가 소급해 실패하기 때문이다. 한국어 제목이 있을 자리(koreanTitlePresence)는 PR 전
 // 확인의 콘텐츠 테스트도 보지만, 그 테스트는 규칙이 생긴 주차부터의 호만 보므로 소급 조사의 호는 여기서 잡는다.
-// 이전 호 링크의 꼴과 앵커(priorLinkProblems)도 같다.
+// 이전 호 링크의 꼴과 앵커(priorLinkProblems)도 같다. --pr은 PR 본문이 매체 목록에 더한 줄의 건수와 지운 줄을
+// 적었는지 본다(SKILL.md 9. PR).
 // 사용: npx tsx .claude/skills/wiki-news/check.ts <주차나 달>...
 //       npx tsx .claude/skills/wiki-news/check.ts --pr <본문 파일> [--base <ref>]
 import fs from "node:fs"
@@ -323,6 +324,19 @@ export function addedOutlets(before: string, after: string): string[] {
   )
 }
 
+/** 매체 목록 표에서 빠진 매체 이름(빼는 기준으로 지운 줄). 받지 않은 후보 표로 옮긴 것도 든다. */
+export function removedOutlets(before: string, after: string): string[] {
+  const now = outletNames(after).listed
+  return [...outletNames(before).listed].filter((name) => !now.has(name))
+}
+
+/** 지운 매체마다 PR 본문에 그 이름이 있는가. 이유는 그 줄에 함께 적는다(SKILL.md 9. PR). */
+export function checkRemoved(body: string, removed: string[]): string[] {
+  return removed
+    .filter((name) => !body.includes(name))
+    .map((name) => `PR 본문: 매체 목록에서 지운 ${name}와 그 이유가 없다`)
+}
+
 /**
  * 줄에서 그 매체의 몫. 이름 뒤부터 다음에 더한 매체 이름 앞까지이고, 이름이 괄호 안 목록에 있으면 그 괄호가
  * 닫히는 곳까지다. 이름을 늘어놓은 줄 머리의 합계(`17곳: A, B`)와 목록을 닫은 뒤의 숫자는 어느 매체의 몫에도
@@ -421,9 +435,13 @@ function main(): number {
 
   if (values.pr) {
     const base = git(["merge-base", values.base!, "HEAD"]).trim()
-    const added = addedOutlets(git(["show", `${base}:${OUTLETS}`]), after)
-    const failures = checkPrBody(fs.readFileSync(path.resolve(values.pr), "utf8"), added)
+    const before = git(["show", `${base}:${OUTLETS}`])
+    const added = addedOutlets(before, after)
+    const removed = removedOutlets(before, after)
+    const body = fs.readFileSync(path.resolve(values.pr), "utf8")
+    const failures = [...checkPrBody(body, added), ...checkRemoved(body, removed)]
     console.log(`더한 매체 ${added.length}곳${added.length ? `: ${added.join(", ")}` : ""}`)
+    console.log(`지운 매체 ${removed.length}곳${removed.length ? `: ${removed.join(", ")}` : ""}`)
     for (const failure of failures) console.log(`실패: ${failure}`)
     return failures.length ? 1 : 0
   }

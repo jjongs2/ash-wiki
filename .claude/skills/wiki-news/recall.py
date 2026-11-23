@@ -4,8 +4,8 @@ python3 -B recall.py <평면 파일> <캠페인 번호>...
 python3 -B recall.py <평면 파일> --category <부품 분류> --date <YYYY-MM-DD>
 
 평면 파일은 https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip 이고, 받은 zip이나 푼 txt를 준다.
-필드는 https://static.nhtsa.gov/odi/ffdd/rcl/RCL.txt 에 있다. 문턱과 소프트웨어 리콜의 정의는 소식 조사
-6단계(SKILL.md)가 정본이고, 여기서는 그 정의를 필드로 옮긴다.
+필드는 https://static.nhtsa.gov/odi/ffdd/rcl/RCL.txt 에 있다. 리콜의 문턱과 소프트웨어 리콜의 정의는 소식 조사
+4단계(SKILL.md)가 정본이고, 여기서는 그 정의를 필드로 옮긴다. 문턱은 리콜을 싣는지만 정한다.
 
 - 대수는 `POTAFF`, 접수일은 `RCDATE`다. 캠페인의 행마다 같다.
 - 부품 분류는 `COMPNAME`의 첫 `:` 앞이다. 캠페인의 행마다 다를 수 있어 모두 모은다. NHTSA API는 행마다
@@ -13,7 +13,7 @@ python3 -B recall.py <평면 파일> --category <부품 분류> --date <YYYY-MM-
 - 소프트웨어 리콜은 `RCLTYPECD`가 `V`(차량)이고, 결함 요약 `DESC_DEFECT`에 낱말 software가 있거나
   `COMPNAME`에 `SOFTWARE`가 든 행이 하나라도 있는 캠페인이다.
 - 접수일 전 12개월은 그 전해 같은 날부터 접수일 전날까지다.
-- 6단계의 소프트웨어 리콜은 차량 리콜만 센다. 4단계가 싣는 장비 리콜은 이 정의 밖으로 나온다.
+- 새 결함 유형은 차량 리콜만 센다. 장비 리콜(`RCLTYPECD` E)은 대수로만 본다.
 
 --category와 --date는 NHTSA 밖의 리콜에 쓴다. 가장 가까운 NHTSA 부품 분류와 그 리콜의 날짜를 주면, 그 날 전
 12개월의 소프트웨어 리콜을 센다.
@@ -63,6 +63,7 @@ class Campaign:
         self.units = int(rows[0][POTAFF] or 0)
         self.categories = sorted({category(row) for row in rows})
         self.software = any(is_software(row) for row in rows)
+        self.kind = rows[0][RCLTYPECD]
 
 
 def campaigns(rows):
@@ -109,7 +110,12 @@ def counted(name, found):
 
 def report(all_campaigns, number):
     c = all_campaigns[number]
-    kind = "소프트웨어 리콜(6단계 정의)" if c.software else "6단계 소프트웨어 리콜 정의 밖"
+    units = "대수 10만 대 이상" if c.units >= THRESHOLD else "대수 10만 대 미만"
+    if c.kind == "E":
+        passed = "문턱을 넘음" if c.units >= THRESHOLD else "문턱을 넘지 않음"
+        head = f"{short(number)}: 접수일 {iso(c.date)}, 대수 {c.units:,}, 장비 리콜(대수로만 본다)"
+        return f"{head}\n  → {units}: {passed}"
+    kind = "소프트웨어 리콜(4단계 정의)" if c.software else "4단계 소프트웨어 리콜 정의 밖"
     lines = [f"{short(number)}: 접수일 {iso(c.date)}, 대수 {c.units:,}, {kind}"]
     lines.append(f"  접수일 전 12개월({iso(year_before(c.date))}부터) 같은 분류의 소프트웨어 리콜")
     new = []
@@ -119,7 +125,6 @@ def report(all_campaigns, number):
         if not found:
             new.append(name)
     verdict = f"새 결함 유형임({', '.join(new)})" if new else "새 결함 유형 아님"
-    units = "대수 10만 대 이상" if c.units >= THRESHOLD else "대수 10만 대 미만"
     passed = "문턱을 넘음" if new or c.units >= THRESHOLD else "문턱을 넘지 않음"
     lines.append(f"  → {verdict}, {units}: {passed}")
     return "\n".join(lines)
