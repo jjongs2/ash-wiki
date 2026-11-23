@@ -17,6 +17,10 @@ export interface Access {
   reason?: string
   shallow?: string
   differs?: string
+  /** 열었어도 일부를 열지 못한 것(게시일 API가 실패한 NHTSA 캠페인 등). 열지 못한 곳에 오른다. */
+  failed?: string[]
+  /** 찾는 법이 검색 질의인 줄에서, 비고의 피드나 뉴스룸을 열어 그 주 글의 제목과 날짜를 읽은 결과. */
+  direct?: string
 }
 
 /**
@@ -33,6 +37,7 @@ export interface ProcedureReport {
   unopened: string[]
   shallow: string[]
   differs: string[]
+  direct: string[]
   unknown: string[]
 }
 
@@ -68,6 +73,7 @@ export function checkProcedure(input: {
     unopened: [],
     shallow: [],
     differs: [],
+    direct: [],
     unknown: [],
   }
   const single = input.weeks.length === 1
@@ -90,6 +96,8 @@ export function checkProcedure(input: {
       const label = r.week ? `${source.name} ${r.week}` : source.name
       if (r.shallow?.trim()) report.shallow.push(`${label}: 가장 오래된 글 ${r.shallow.trim()}`)
       if (r.differs?.trim()) report.differs.push(`${label}: ${r.differs.trim()}`)
+      if (r.direct?.trim()) report.direct.push(`${label}: ${r.direct.trim()}`)
+      for (const f of r.failed ?? []) if (f.trim()) report.unopened.push(`${label}: ${f.trim()}`)
     }
   }
   const names = new Set(input.sources.map((s) => s.name))
@@ -131,9 +139,10 @@ function main(): number {
   }
   console.log(`실패 ${report.failures.length}건`)
   for (const line of report.failures) console.log(`- ${line}`)
-  section("이유를 적고 열지 않은 곳", report.unopened, "(PR 본문에 적는다)")
+  section("열지 못한 곳", report.unopened, "(PR 본문에 적는다)")
   section("얕아서 놓쳤을 수 있는 피드", report.shallow, "(PR 본문에 적는다)")
   section("비고와 다른 접속 결과", report.differs, "(실행 환경 탓이 아니면 그 줄을 고친다)")
+  section("피드나 뉴스룸이 열린 검색 질의 줄", report.direct, "(찾는 법을 옮긴다)")
   section("목록에 없는 이름", report.unknown, "(매체 목록의 이름과 다르게 적었는지 본다)")
   return report.failures.length ? 1 : 0
 }

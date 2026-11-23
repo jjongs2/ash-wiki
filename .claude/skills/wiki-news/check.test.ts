@@ -1,7 +1,16 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
 import { parseWeeklyNews } from "../../../plugins/weekly-news/index"
-import { addedOutlets, checkIssues, checkPrBody, outletNames, tableRows, type Issue } from "./check"
+import {
+  addedOutlets,
+  checkIssues,
+  checkPrBody,
+  checkRemoved,
+  outletNames,
+  removedOutlets,
+  tableRows,
+  type Issue,
+} from "./check"
 
 // npx tsx --test .claude/skills/wiki-news/check.test.ts
 
@@ -360,5 +369,22 @@ describe("PR 본문", () => {
       checkPrBody(body, added).map((f) => f.split("의 최근")[0]),
       ["PR 본문: 코렌스", "PR 본문: Foo", "PR 본문: Bar", "PR 본문: Baz"],
     )
+  })
+
+  test("매체 목록에서 지운 줄의 매체 이름이 본문에 없으면 실패한다", () => {
+    const removed = removedOutlets(
+      outletsMd(["Vector", "ETAS", "Kvaser", "EE Times", "EE Times Japan"], []),
+      outletsMd(["Vector", "EE Times Japan"], ["Kvaser"]),
+    )
+    assert.deepStrictEqual(removed, ["ETAS", "Kvaser", "EE Times"])
+    const names = ["Vector", "ETAS", "Kvaser", "EE Times", "EE Times Japan"]
+    const body = [
+      "- 목록에서 뺀 매체: ETAS(셋째 조건, 13주 판정표에 찾은 후보 없음)",
+      "- EE Times Japan 피드 확인",
+    ].join("\n")
+    assert.deepStrictEqual(checkRemoved(body, removed, names), [
+      "PR 본문에 매체 목록에서 지운 줄이 없다: Kvaser",
+      "PR 본문에 매체 목록에서 지운 줄이 없다: EE Times",
+    ])
   })
 })

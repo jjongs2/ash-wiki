@@ -3,9 +3,13 @@ import assert from "node:assert"
 import {
   exclusionCandidates,
   isoWeek,
+  lateMisses,
+  newsIssueWeeks,
   newsPulls,
   normalizeUrl,
+  parseVerdictTable,
   pastMatches,
+  recentWeeks,
   sameEvents,
   verdictTable,
   type Candidate,
@@ -294,18 +298,234 @@ describe("소식 파일을 고치는 열린 PR", () => {
 })
 
 describe("빼는 기준의 셋째 조건", () => {
-  test("13주 호에 항목이 없는 매체를 내고, 드물게 냄과 배포처는 뺀다", () => {
+  const md = [
+    "## 매체 목록",
+    "",
+    "| 매체 | 구역 | 찾는 법 | 거르기 | 비고 |",
+    "|---|---|---|---|---|",
+    "| Vector | network | 피드 | 제목으로 고름 | 무료 |",
+    "| KISA | security | 검색 질의 | 제목으로 고름 | 드물게 냄. 무료 |",
+    "| PR Newswire | 기타 | 뉴스룸 | 제목으로 고름 | 배포처. 무료 |",
+    "| ETAS | sw-engineering | 피드 | 제목으로 고름 | 무료 |",
+    "| EE Times | 기타 | 검색 질의 | 제목으로 고름 | 무료 |",
+    "",
+  ].join("\n")
+  const window = recentWeeks("2026-w53", 13)
+
+  test("호의 주차로 최근 13주는 끝 주차까지 13개 주차다", () => {
+    assert.strictEqual(window.length, 13)
+    assert.strictEqual(window[0], "2026-w41")
+    assert.strictEqual(window[12], "2026-w53")
+    assert.deepStrictEqual(recentWeeks("2027-w02", 3), ["2026-w53", "2027-w01", "2027-w02"])
+  })
+
+  test("판정표 코멘트에서 행의 매체와 판정을 읽는다", () => {
+    const body = [
+      "<details><summary>후보 판정표 3건(실림 1, 뺌 2)</summary>",
+      "",
+      "| 번호 | 날짜 | 매체 | 제목 | 판정 | 이유 |",
+      "| --- | --- | --- | --- | --- | --- |",
+      "| A12 |  | SAE International | J3391 \\| Vehicle | 뺌 | 기간: 발행일을 확인하지 못함 |",
+      "| R11 | 2026-10-29 | NHTSA 리콜 | Recall 26V721 | 뺌 | 기간: w44 |",
+      "| - | 2026-11-10 | Vector | CANoe 19 | 실림 | 후보 밖에서 더함 |",
+      "",
+      "</details>",
+    ].join("\n")
+    assert.deepStrictEqual(parseVerdictTable(body), [
+      { date: "", outlet: "SAE International" },
+      { date: "2026-10-29", outlet: "NHTSA 리콜" },
+      { date: "2026-11-10", outlet: "Vector" },
+    ])
+    assert.strictEqual(parseVerdictTable("검토 기록입니다"), undefined)
+  })
+
+  const rows = (outlets: string[]) => outlets.map((outlet) => ({ date: "", outlet }))
+  const tables = (weeks: string[], outlets: string[]) =>
+    weeks.map((w) => ({ weeks: [w], rows: rows(outlets) }))
+
+  test("13주 판정표에 그 매체가 찾은 후보가 없는 줄을 내고, 드물게 냄과 배포처는 뺀다", () => {
+    const result = exclusionCandidates(
+      md,
+      [
+        ...tables(window.slice(0, 12), ["Vector"]),
+        { weeks: ["2026-w53"], rows: rows(["EE Times"]) },
+      ],
+      window,
+    )
+    assert.strictEqual(result.applied, true)
+    assert.deepStrictEqual(result.candidates, ["ETAS"])
+  })
+
+  test("판정표가 13주를 다 덮지 못하면 조건을 걸지 않는다", () => {
+    const result = exclusionCandidates(md, tables(window.slice(1), ["Vector"]), window)
+    assert.strictEqual(result.applied, false)
+    assert.deepStrictEqual(result.covered.length, 12)
+    assert.deepStrictEqual(result.candidates, [])
+  })
+
+  test("창 밖 주차의 판정표는 세지 않는다", () => {
+    const result = exclusionCandidates(
+      md,
+      [...tables(window, ["Vector"]), { weeks: ["2026-w40"], rows: rows(["ETAS", "EE Times"]) }],
+      window,
+    )
+    assert.deepStrictEqual(result.candidates, ["ETAS", "EE Times"])
+  })
+})
+
+describe("창에 일부만 걸친 판정표", () => {
+  test("창 밖 주차의 행은 세지 않는다", () => {
     const md = [
       "## 매체 목록",
       "",
       "| 매체 | 구역 | 찾는 법 | 거르기 | 비고 |",
       "|---|---|---|---|---|",
       "| Vector | network | 피드 | 제목으로 고름 | 무료 |",
-      "| KISA | security | 검색 질의 | 제목으로 고름 | 드물게 냄. 무료 |",
-      "| PR Newswire | 기타 | 뉴스룸 | 제목으로 고름 | 배포처. 무료 |",
       "| ETAS | sw-engineering | 피드 | 제목으로 고름 | 무료 |",
+      "| Kvaser | network | 피드 | 제목으로 고름 | 무료 |",
       "",
     ].join("\n")
-    assert.deepStrictEqual(exclusionCandidates(md, new Map([["Vector", 3]])), ["ETAS"])
+    const window = recentWeeks("2026-w53", 13)
+    const month = {
+      weeks: ["2026-w40", "2026-w41"],
+      rows: [
+        { date: "2026-09-30", outlet: "ETAS" },
+        { date: "2026-10-06", outlet: "Kvaser" },
+      ],
+    }
+    const rest = window
+      .slice(1)
+      .map((w) => ({ weeks: [w], rows: [{ date: "", outlet: "Vector" }] }))
+    assert.deepStrictEqual(exclusionCandidates(md, [month, ...rest], window).candidates, ["ETAS"])
+  })
+})
+
+describe("소식 PR의 주차", () => {
+  test("PR 제목의 주차나 달에 드는, 고친 호의 주차만 판정표의 주차다", () => {
+    assert.deepStrictEqual(
+      newsIssueWeeks("content: 2026년 46주차 주간 소식", [
+        "content/news/2026-w46.md",
+        "content/news/2026-w45.md",
+      ]),
+      ["2026-w46"],
+    )
+    assert.deepStrictEqual(
+      newsIssueWeeks("content: 2026년 10월 주간 소식", [
+        "content/news/2026-w40.md",
+        "content/news/2026-w41.md",
+        "content/news/2026-w42.md",
+        "content/news/2026-w39.md",
+      ]),
+      ["2026-w40", "2026-w41", "2026-w42"],
+    )
+  })
+})
+
+describe("판정표의 매체", () => {
+  test("매체 열은 그 소식을 찾은 매체다", () => {
+    const { markdown } = verdictTable(
+      [
+        candidate("C01", { outlet: "Vector", found_outlet: "EE Times" }),
+        candidate("C02", { outlet: "ETAS", verdict: "빼기", reason: "문턱: 새 사양 없음" }),
+      ],
+      [],
+      [
+        {
+          url: "https://example.org/C01",
+          title: "CCCC 0000 1111",
+          outlet: "Vector",
+          date: "2026-09-08",
+        },
+      ],
+    )
+    assert.match(markdown, /\| C01 \| 2026-09-08 \| EE Times \|.*\| 실림 \|/)
+    assert.match(markdown, /\| C02 \| 2026-09-08 \| ETAS \|/)
+  })
+})
+
+describe("늦게 찾은 놓침", () => {
+  const md = [
+    "## 매체 목록",
+    "",
+    "| 매체 | 구역 | 찾는 법 | 거르기 | 비고 |",
+    "|---|---|---|---|---|",
+    "| Vector | network | 피드 | 제목으로 고름 | 무료 |",
+    "",
+    "## 받지 않은 후보",
+    "",
+    "| 매체 | 확인일 | 사유 |",
+    "|---|---|---|",
+    "| Valeo | 2026-10-19 | 꾸준함 미달 |",
+    "",
+  ].join("\n")
+  const late = (id: string, fields: Partial<Candidate>) =>
+    candidate(id, {
+      week: "2026-w46",
+      verdict: "빼기",
+      reason: "기간: 다룬 발표는 앞 주",
+      ...fields,
+    })
+
+  test("기간으로 뺀 후보 가운데 다룬 발표가 앞 주차이고 지난 호에 없는 것을 세고, 목록 밖의 1차 발표처를 낸다", () => {
+    const result = lateMisses(
+      [
+        late("D01", {
+          outlet: "EE Times",
+          date: "2026-11-10",
+          event_date: "2026-11-05",
+          primary_outlet: "Synopsys",
+        }),
+        late("D02", {
+          outlet: "Valeo",
+          date: "2026-11-05",
+          event_date: "2026-11-05",
+          primary_outlet: "Valeo",
+        }),
+        late("D03", { outlet: "Vector", date: "2026-11-06", primary_outlet: "Vector" }),
+        late("D04", {
+          outlet: "EE Times",
+          date: "2026-11-11",
+          event_date: "2026-11-11",
+          primary_outlet: "Bosch",
+        }),
+        late("D05", {
+          outlet: "ATTI",
+          date: "2026-11-12",
+          event_date: "2026-10-07",
+          primary_outlet: "ISO",
+          title: "ISO/PAS 34506 published",
+        }),
+        candidate("D06", {
+          week: "2026-w46",
+          date: "2026-11-04",
+          event_date: "2026-11-04",
+          verdict: "빼기",
+          reason: "광고성 기사: 행사 안내",
+          primary_outlet: "Acme",
+        }),
+        late("D07", {
+          outlet: "Electronics Weekly",
+          date: "2026-11-12",
+          event_date: "2026-11-05",
+          primary_outlet: "Synopsys",
+          same_event_seen_at: ["https://example.org/D01"],
+        }),
+      ],
+      [
+        past({
+          week: "2026-w41",
+          title: "ISO/PAS 34506:2026 published",
+          url: "https://www.iso.org/standard/1.html",
+          outlet: "ISO",
+        }),
+      ],
+      "2026-w46",
+      md,
+    )
+    assert.deepStrictEqual(
+      result.misses.map((m) => m.ids),
+      [["D01", "D07"], ["D02"], ["D03"]],
+    )
+    assert.deepStrictEqual(result.additions, ["Synopsys"])
   })
 })

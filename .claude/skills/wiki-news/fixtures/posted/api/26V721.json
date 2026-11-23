@@ -1,0 +1,54 @@
+{
+  "results": [
+    {
+      "recalls": [
+        {
+          "nhtsaCampaignNumber": "26V721000",
+          "reportReceivedDate": "2026-10-29T20:13:15Z",
+          "associatedDocuments": [
+            {
+              "summary": "Recall 573 Report",
+              "fileName": "RCLRPT-26V721-7592.pdf",
+              "loadDate": "2026-11-10T08:00:27Z"
+            },
+            {
+              "summary": "RCAK - Recall Acknowledgement",
+              "fileName": "RCAK-26V721-6050.pdf",
+              "loadDate": "2026-11-10T08:00:27Z"
+            },
+            {
+              "summary": "Notice to Dealers",
+              "fileName": "RCMN-26V721-9755.pdf",
+              "loadDate": "2026-11-13T08:00:27Z"
+            },
+            {
+              "summary": "Notice to Dealers",
+              "fileName": "RCMN-26V721-6352.pdf",
+              "loadDate": "2026-11-13T08:00:27Z"
+            },
+            {
+              "summary": "Service Bulletin",
+              "fileName": "RCSB-26V721-2153.pdf",
+              "loadDate": "2026-11-13T08:00:27Z"
+            },
+            {
+              "summary": "Notice to Dealers",
+              "fileName": "RCMN-26V721-1682.pdf",
+              "loadDate": "2026-11-13T08:00:27Z"
+            },
+            {
+              "summary": "Notice to Dealers",
+              "fileName": "RCMN-26V721-4573.pdf",
+              "loadDate": "2026-11-13T08:00:27Z"
+            },
+            {
+              "summary": "Service Bulletin",
+              "fileName": "RCSB-26V721-2125.pdf",
+              "loadDate": "2026-11-13T08:00:27Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

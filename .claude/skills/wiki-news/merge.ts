@@ -1,9 +1,11 @@
-// 소식 조사의 병합 스크립트(SKILL.md의 1. 주차, 2. 지난 호, 5. 중복, 9. PR). 조사 에이전트가 낸 후보를 합치고, 같은 사건으로
+// 소식 조사의 병합 스크립트(SKILL.md의 1. 주차, 2. 지난 호, 5. 중복, 7. 쓰기, 9. PR). 조사 에이전트가 낸 후보를 합치고, 같은 사건으로
 // 보이는 후보와 지난 호 항목을 이유와 함께 알린다. 묶음은 제안이고, 무엇을 실을지는 5단계가 정한다. 후보와 검토
 // 기록의 꼴은 researcher.md와 news-reviewer.md에 있다.
 // 사용: npx tsx .claude/skills/wiki-news/merge.ts open
-//       npx tsx .claude/skills/wiki-news/merge.ts past <작업 폴더> [--ref <브랜치>]... [--today <YYYY-MM-DD>]
+//       npx tsx .claude/skills/wiki-news/merge.ts past <작업 폴더> [--ref <브랜치>]...
 //       npx tsx .claude/skills/wiki-news/merge.ts merge <작업 폴더> [--force]
+//       npx tsx .claude/skills/wiki-news/merge.ts late <작업 폴더> <주차나 달>...
+//       npx tsx .claude/skills/wiki-news/merge.ts exclude <작업 폴더> <주차나 달>...
 //       npx tsx .claude/skills/wiki-news/merge.ts drop <작업 폴더> --reason <이유> <번호>...
 //       npx tsx .claude/skills/wiki-news/merge.ts table <작업 폴더> <주차나 달>...
 import fs from "node:fs"
@@ -11,9 +13,14 @@ import { spawnSync } from "node:child_process"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 import { parseArgs } from "node:util"
-import { parseWeeklyNews, weekDays, type NewsItem } from "../../../plugins/weekly-news/index"
+import {
+  monthWeeks,
+  parseWeeklyNews,
+  weekDays,
+  type NewsItem,
+} from "../../../plugins/weekly-news/index"
 import { repoRoot as root } from "../../../tools/repo"
-import { LISTED, OUTLETS, tableRows, visibleText } from "./check"
+import { LISTED, OUTLETS, outletNames, tableRows, visibleText } from "./check"
 import { git, readJsonl, weeksOf, writeJsonl } from "./work"
 
 /** 조사 에이전트의 후보 한 줄(researcher.md의 출력). id는 병합이 붙인다. */
@@ -23,7 +30,12 @@ export interface Candidate {
   title: string
   url: string
   outlet: string
+  /** 그 소식을 찾은 매체. 판정표의 매체 열이고 빼는 기준의 셋째 조건이 센다. */
+  found_outlet?: string
   date: string
+  /** 다룬 발표의 날짜와 그 발표를 낸 곳. 늦게 찾은 놓침이 쓴다. */
+  event_date?: string
+  primary_outlet?: string
   verdict: "싣기" | "빼기"
   reason: string
   event?: { org: string; subject: string }
@@ -211,6 +223,8 @@ const cell = (text: string) =>
 
 // 원문이 열리지 않아 뺀 후보의 이유 머리(SKILL.md 4. 고르기). 9단계가 PR 본문의 열지 못한 곳에 적는다.
 const UNOPENED = "열리지 않음"
+// 기간으로 뺀 후보의 이유 머리(SKILL.md 4. 고르기). 늦게 찾은 놓침이 센다.
+const PERIOD = "기간"
 
 /**
  * 후보별 판정표(번호, 날짜, 매체, 제목, 판정, 이유). 싣기로 남은 후보만 호의 소식 항목에 맞추고, 검토가 원문을
@@ -247,6 +261,7 @@ export function verdictTable(
   const rows: { date: string; id: string; verdict: string; cells: string[] }[] = []
   candidates.forEach((c, ci) => {
     const review = reviewOf[ci]
+    // 판정표의 매체 열은 찾은 매체다(빼는 기준의 셋째 조건이 이 열을 센다).
     let verdict = "뺌"
     let reason = ""
     if (matched.has(ci)) {
@@ -264,7 +279,7 @@ export function verdictTable(
       date: c.date,
       id: c.id ?? "-",
       verdict,
-      cells: [c.date, c.outlet, c.title, verdict, reason],
+      cells: [c.date, foundOutlet(c), c.title, verdict, reason],
     })
   })
   for (const [pi, p] of published.entries()) {
@@ -292,15 +307,153 @@ export function verdictTable(
 
 // 빼는 기준의 셋째 조건(outlets.md)으로 빼지 않는 줄의 표시.
 const EXEMPT = ["드물게 냄", "배포처"]
+// 셋째 조건이 보는 판정표의 주차 수(outlets.md 빼는 기준, 더하는 기준의 꾸준함과 같은 3개월).
+export const RECENT_WEEKS = 13
 
-/** 매체 목록의 매체 가운데 counts(13주 호의 매체별 항목 수)에 없고, 비고에 EXEMPT 표시가 없는 것. */
-export function exclusionCandidates(outletsMd: string, counts: Map<string, number>): string[] {
-  return tableRows(outletsMd, LISTED)
-    .filter(([name, , , , note = ""]) => !counts.get(name) && !EXEMPT.some((m) => note.includes(m)))
-    .map(([name]) => name)
+/** last까지 n개 주차(오래된 것부터). */
+export function recentWeeks(last: string, n: number): string[] {
+  const monday = Date.parse(weekDays(last).start)
+  return Array.from({ length: n }, (_, i) =>
+    isoWeek(new Date(monday - (n - 1 - i) * 7 * DAY).toISOString().slice(0, 10)),
+  )
+}
+
+/** 판정표 한 줄 가운데 셋째 조건이 쓰는 칸. 매체는 찾은 매체다. */
+export interface VerdictRow {
+  date: string
+  outlet: string
+}
+
+const TABLE_HEAD = "<details><summary>후보 판정표"
+
+/** 판정표 코멘트(verdictTable의 markdown)의 행. 판정표 코멘트가 아니면 undefined. */
+export function parseVerdictTable(body: string): VerdictRow[] | undefined {
+  if (!body.trimStart().startsWith(TABLE_HEAD)) return undefined
+  return body
+    .split("\n")
+    .filter(
+      (line) =>
+        line.startsWith("| ") && !line.startsWith("| 번호 |") && !line.startsWith("| --- |"),
+    )
+    .map((line) => {
+      const cells = line
+        .trim()
+        .slice(1, -1)
+        .split(/(?<!\\)\|/)
+        .map((c) => c.trim().replace(/\\([|~])/g, "$1"))
+      const [, date = "", outlet = ""] = cells
+      return { date, outlet }
+    })
+}
+
+/** 판정표 하나: 그 표가 다룬 호의 주차와 행. */
+export interface FoundTable {
+  weeks: string[]
+  rows: VerdictRow[]
+}
+
+/** 후보를 찾은 매체. 예전 후보처럼 찾은 매체가 없으면 원문의 매체다. */
+export const foundOutlet = (c: Candidate) => c.found_outlet?.trim() || c.outlet
+
+/**
+ * 셋째 조건: window(최근 13주) 판정표에 그 매체가 찾은 후보가 없고 비고에 EXEMPT 표시가 없는 매체 목록의 줄.
+ * window의 주차를 판정표가 모두 덮지 못하면(13주치가 쌓이기 전) 조건을 걸지 않는다.
+ */
+export function exclusionCandidates(
+  outletsMd: string,
+  tables: FoundTable[],
+  window: string[],
+): { applied: boolean; covered: string[]; candidates: string[] } {
+  const inside = tables.filter((t) => t.weeks.some((w) => window.includes(w)))
+  const covered = window.filter((w) => inside.some((t) => t.weeks.includes(w)))
+  // 창에 일부만 걸친 표(달 단위 소급)는 날짜가 창 안인 행만 센다.
+  const counted = (t: FoundTable) =>
+    t.weeks.every((w) => window.includes(w))
+      ? t.rows
+      : t.rows.filter((r) => /^\d{4}-\d{2}-\d{2}$/.test(r.date) && window.includes(isoWeek(r.date)))
+  const found = new Set(inside.flatMap((t) => counted(t).map((r) => r.outlet)))
+  const applied = covered.length === window.length
+  const candidates = applied
+    ? tableRows(outletsMd, LISTED)
+        .filter(
+          ([name, , , , note = ""]) => !found.has(name) && !EXEMPT.some((m) => note.includes(m)),
+        )
+        .map(([name]) => name)
+    : []
+  return { applied, covered, candidates }
+}
+
+/** 늦게 찾은 놓침 하나. 같은 사건의 후보는 한 놓침으로 묶는다. */
+export interface LateMiss {
+  ids: string[]
+  title: string
+  eventDate: string
+  primary: string
+}
+
+/**
+ * 늦게 찾은 놓침(SKILL.md 7. 쓰기): 기간으로 뺀 후보 가운데 다룬 발표(event_date, 없으면 발행일)가 first 주차
+ * 전에 나왔고 지난 호에 없는 것. additions는 그 1차 발표처 가운데 매체 목록과 받지 않은 후보 표에 없는 곳이다.
+ * 이번 실행이 찾은 것만 세므로 하한이다.
+ */
+export function lateMisses(
+  candidates: Candidate[],
+  past: PastItem[],
+  first: string,
+  outletsMd: string,
+): { misses: LateMiss[]; additions: string[] } {
+  const start = weekDays(first).start
+  const late = candidates.filter((c) => {
+    const day = (c.event_date || c.date || "").trim()
+    return (
+      c.verdict === "빼기" &&
+      c.reason.trim().startsWith(PERIOD) &&
+      /^\d{4}-\d{2}-\d{2}$/.test(day) &&
+      day < start &&
+      !pastMatches(c, past).length
+    )
+  })
+  const groups = sameEvents(late.map((c) => ({ ...c, verdict: "싣기" as const })))
+  const grouped = new Set(groups.flatMap((g) => g.ids))
+  const misses = [
+    ...groups.map((g) => late.filter((c) => g.ids.includes(c.id ?? ""))),
+    ...late.filter((c) => !grouped.has(c.id ?? "")).map((c) => [c]),
+  ]
+    .map((cs) => ({
+      ids: cs.map((c) => c.id ?? c.url),
+      title: cs[0].title,
+      eventDate: cs[0].event_date || cs[0].date,
+      primary: cs.map((c) => c.primary_outlet?.trim()).find(Boolean) || cs[0].outlet,
+    }))
+    .sort(
+      (a, b) =>
+        candidates.findIndex((c) => (c.id ?? c.url) === a.ids[0]) -
+        candidates.findIndex((c) => (c.id ?? c.url) === b.ids[0]),
+    )
+  const { listed, rejected } = outletNames(outletsMd)
+  const additions = [...new Set(misses.map((m) => m.primary))].filter(
+    (name) => !listed.has(name) && !rejected.has(name),
+  )
+  return { misses, additions }
 }
 
 const ISSUE = /^content\/news\/(\d{4}-w\d{2})\.md$/
+// 소식 PR의 제목(SKILL.md 9. PR): `content: 2026년 41주차 주간 소식`, 소급 조사는 `content: 2026년 1월 주간 소식`.
+const NEWS_TITLE = /^content: (\d{4})년 (?:(\d{1,2})주차|(\d{1,2})월) 주간 소식$/
+
+/**
+ * 소식 PR의 판정표가 다룬 호의 주차: 고친 호 가운데 제목의 주차나 달에 드는 것. 같은 PR이 고친 지난 호는
+ * 들지 않는다.
+ */
+export function newsIssueWeeks(title: string, files: string[]): string[] {
+  const m = title.match(NEWS_TITLE)
+  if (!m) return []
+  const [, year, week, month] = m
+  const named = week
+    ? [`${year}-w${week.padStart(2, "0")}`]
+    : monthWeeks(`${year}-${month.padStart(2, "0")}`)
+  return files.flatMap((f) => f.match(ISSUE)?.[1] ?? []).filter((w) => named.includes(w))
+}
 
 /** 열린 PR 하나와 그 PR이 고친 파일. */
 export interface Pull {
@@ -374,11 +527,7 @@ function issuesAt(refs: string[]): Map<string, { ref: string; items: NewsItem[] 
 
 const tsv = (text: string) => text.replace(/[\t\n\r]+/g, " ").trim()
 
-function kstToday(): string {
-  return new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10)
-}
-
-function past(folder: string, refs: string[], today: string): number {
+function past(folder: string, refs: string[]): number {
   const main = "origin/main"
   const issues = issuesAt([main, ...refs])
   const lines = [...issues]
@@ -395,23 +544,21 @@ function past(folder: string, refs: string[], today: string): number {
   console.log(`past.tsv: 호 ${issues.size}개, 항목 ${lines.length}건`)
   console.log(`열린 PR의 호: ${fromOpen.length ? fromOpen.join(", ") : "없음"}`)
 
-  const monday = weekDays(isoWeek(today)).start
-  const from = new Date(Date.parse(monday) - 13 * 7 * DAY).toISOString().slice(0, 10)
-  const counts = new Map<string, number>()
-  let weeks = 0
-  for (const [week, { ref, items }] of issues) {
-    const start = weekDays(week).start
-    if (ref !== main || start < from || start >= monday) continue
-    weeks++
-    for (const it of items) counts.set(it.outlet, (counts.get(it.outlet) ?? 0) + 1)
-  }
-  const outletsMd = fs.readFileSync(path.join(root, OUTLETS), "utf8")
-  const excluded = exclusionCandidates(outletsMd, counts)
-  console.log(`\n빼는 기준의 셋째 조건: main의 ${from}부터 ${monday} 전까지 호 ${weeks}개`)
-  console.log(
-    `목록 제외 후보 ${excluded.length}곳${excluded.length ? `: ${excluded.join(", ")}` : ""}`,
-  )
   return 0
+}
+
+function readPast(folder: string): PastItem[] {
+  const pastFile = path.join(folder, "past.tsv")
+  return fs.existsSync(pastFile)
+    ? fs
+        .readFileSync(pastFile, "utf8")
+        .split("\n")
+        .filter(Boolean)
+        .map((line) => {
+          const [week, title, url, outlet, date, summary = "", id] = line.split("\t")
+          return { week, title, url, outlet, date, summary, id }
+        })
+    : []
 }
 
 function merge(folder: string, force: boolean): number {
@@ -461,17 +608,7 @@ function merge(folder: string, force: boolean): number {
     for (const id of g.ids) console.log(`  - ${label(id)}`)
   }
 
-  const pastFile = path.join(folder, "past.tsv")
-  const items: PastItem[] = fs.existsSync(pastFile)
-    ? fs
-        .readFileSync(pastFile, "utf8")
-        .split("\n")
-        .filter(Boolean)
-        .map((line) => {
-          const [week, title, url, outlet, date, summary = "", id] = line.split("\t")
-          return { week, title, url, outlet, date, summary, id }
-        })
-    : []
+  const items = readPast(folder)
   if (!items.length) console.log("\npast.tsv가 없거나 비었다(2단계)")
   const hits = keep.flatMap((c) => {
     const found = pastMatches(c, items).map(
@@ -501,6 +638,87 @@ function drop(folder: string, ids: string[], reason: string): number {
     rows.map((r) => (ids.includes(r.id!) ? { ...r, verdict: "빼기", reason } : r)),
   )
   console.log(`${ids.length}건을 빼기로: ${reason}`)
+  return 0
+}
+
+function lateCommand(folder: string, weeks: string[]): number {
+  const candidates = readJsonl<Candidate>(path.join(folder, "merged.jsonl"))
+  const outletsMd = fs.readFileSync(path.join(root, OUTLETS), "utf8")
+  const { misses, additions } = lateMisses(
+    candidates,
+    readPast(folder),
+    [...weeks].sort()[0],
+    outletsMd,
+  )
+  console.log(`늦게 찾은 놓침 ${misses.length}건(하한: 이번 실행이 찾은 것만 센다)`)
+  for (const m of misses)
+    console.log(`- ${m.ids.join(", ")} ${m.eventDate} ${m.primary} | ${m.title.slice(0, 70)}`)
+  console.log(
+    `\n목록 추가 후보로 확인할 1차 발표처 ${additions.length}곳(두 번 이상 실린 조건 없이)${additions.length ? `: ${additions.join(", ")}` : ""}`,
+  )
+  return 0
+}
+
+/** 머지된 소식 PR의 판정표. REST로 읽는다(루틴 환경은 GraphQL이 막혀 있다). since 뒤에 머지된 PR만 본다. */
+function mergedTables(since: string): FoundTable[] {
+  const pulls = lines(
+    gh([
+      "api",
+      "--paginate",
+      "repos/{owner}/{repo}/pulls?state=closed&per_page=100",
+      "--jq",
+      `.[] | select(.merged_at != null and .merged_at >= "${since}") | [.number, .title] | @tsv`,
+    ]),
+  )
+  return pulls.flatMap((line) => {
+    const [number, title] = line.split("\t")
+    if (!NEWS_TITLE.test(title)) return []
+    const files = lines(
+      gh([
+        "api",
+        "--paginate",
+        `repos/{owner}/{repo}/pulls/${number}/files?per_page=100`,
+        "--jq",
+        ".[].filename",
+      ]),
+    )
+    const weeks = newsIssueWeeks(title, files)
+    const comments = JSON.parse(
+      gh([
+        "api",
+        "--paginate",
+        "--slurp",
+        `repos/{owner}/{repo}/issues/${number}/comments?per_page=100`,
+      ]),
+    ) as { body: string }[][]
+    const rows = comments.flat().flatMap((c) => parseVerdictTable(c.body) ?? [])
+    return weeks.length && rows.length ? [{ weeks, rows }] : []
+  })
+}
+
+function exclude(folder: string, weeks: string[]): number {
+  const last = [...weeks].sort().at(-1)!
+  const window = recentWeeks(last, RECENT_WEEKS)
+  const current: FoundTable = {
+    weeks,
+    rows: readJsonl<Candidate>(path.join(folder, "merged.jsonl")).map((c) => ({
+      date: c.date,
+      outlet: foundOutlet(c),
+    })),
+  }
+  const outletsMd = fs.readFileSync(path.join(root, OUTLETS), "utf8")
+  const tables = [...mergedTables(weekDays(window[0]).start), current]
+  const { applied, covered, candidates } = exclusionCandidates(outletsMd, tables, window)
+  console.log(
+    `빼는 기준의 셋째 조건: ${window[0]}부터 ${last}까지 ${RECENT_WEEKS}주 가운데 판정표가 있는 주 ${covered.length}개(이번 실행 포함)`,
+  )
+  if (!applied) {
+    console.log(`판정표가 ${RECENT_WEEKS}주를 다 덮지 못해 조건을 걸지 않는다`)
+    return 0
+  }
+  console.log(
+    `지울 줄 ${candidates.length}곳${candidates.length ? `: ${candidates.join(", ")}` : ""}`,
+  )
   return 0
 }
 
@@ -535,7 +753,6 @@ function main(): number {
     allowPositionals: true,
     options: {
       ref: { type: "string", multiple: true, default: [] },
-      today: { type: "string", default: kstToday() },
       force: { type: "boolean", default: false },
       reason: { type: "string" },
     },
@@ -543,7 +760,9 @@ function main(): number {
   const [command, folder, ...rest] = positionals
   if (command === "open") return openPulls()
   const dir = folder && path.resolve(folder)
-  if (dir && command === "past") return past(dir, values.ref!, values.today!)
+  if (dir && command === "past") return past(dir, values.ref!)
+  if (dir && command === "late" && rest.length) return lateCommand(dir, weeksOf(rest))
+  if (dir && command === "exclude" && rest.length) return exclude(dir, weeksOf(rest))
   if (dir && command === "merge") return merge(dir, values.force!)
   if (dir && command === "drop" && values.reason && rest.length)
     return drop(dir, rest, values.reason)
