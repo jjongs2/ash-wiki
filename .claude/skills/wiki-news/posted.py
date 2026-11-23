@@ -64,8 +64,10 @@ def posted_date(response):
     ]
     if not loads:
         return None
-    moment = min(datetime.datetime.fromisoformat(load.replace("Z", "+00:00")) for load in loads)
-    return moment.astimezone(KST).date()
+    moments = [datetime.datetime.fromisoformat(load.replace("Z", "+00:00")) for load in loads]
+    # 시간대가 없는 값은 UTC로 본다(API는 `Z`를 붙여 준다).
+    moments = [m if m.tzinfo else m.replace(tzinfo=datetime.timezone.utc) for m in moments]
+    return min(moments).astimezone(KST).date()
 
 
 def fetch(number):

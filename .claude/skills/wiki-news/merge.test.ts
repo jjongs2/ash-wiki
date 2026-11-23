@@ -4,6 +4,7 @@ import {
   exclusionCandidates,
   isoWeek,
   lateMisses,
+  newsIssueWeeks,
   newsPulls,
   normalizeUrl,
   parseVerdictTable,
@@ -330,23 +331,25 @@ describe("빼는 기준의 셋째 조건", () => {
       "",
       "</details>",
     ].join("\n")
-    assert.deepStrictEqual(
-      parseVerdictTable(body)?.map((r) => [r.outlet, r.title, r.verdict]),
-      [
-        ["SAE International", "J3391 | Vehicle", "뺌"],
-        ["NHTSA 리콜", "Recall 26V721", "뺌"],
-        ["Vector", "CANoe 19", "실림"],
-      ],
-    )
+    assert.deepStrictEqual(parseVerdictTable(body), [
+      { date: "", outlet: "SAE International" },
+      { date: "2026-10-29", outlet: "NHTSA 리콜" },
+      { date: "2026-11-10", outlet: "Vector" },
+    ])
     assert.strictEqual(parseVerdictTable("검토 기록입니다"), undefined)
   })
 
-  const tables = (weeks: string[], outlets: string[]) => weeks.map((w) => ({ weeks: [w], outlets }))
+  const rows = (outlets: string[]) => outlets.map((outlet) => ({ date: "", outlet }))
+  const tables = (weeks: string[], outlets: string[]) =>
+    weeks.map((w) => ({ weeks: [w], rows: rows(outlets) }))
 
   test("13주 판정표에 그 매체가 찾은 후보가 없는 줄을 내고, 드물게 냄과 배포처는 뺀다", () => {
     const result = exclusionCandidates(
       md,
-      [...tables(window.slice(0, 12), ["Vector"]), { weeks: ["2026-w53"], outlets: ["EE Times"] }],
+      [
+        ...tables(window.slice(0, 12), ["Vector"]),
+        { weeks: ["2026-w53"], rows: rows(["EE Times"]) },
+      ],
       window,
     )
     assert.strictEqual(result.applied, true)
@@ -363,10 +366,58 @@ describe("빼는 기준의 셋째 조건", () => {
   test("창 밖 주차의 판정표는 세지 않는다", () => {
     const result = exclusionCandidates(
       md,
-      [...tables(window, ["Vector"]), { weeks: ["2026-w40"], outlets: ["ETAS", "EE Times"] }],
+      [...tables(window, ["Vector"]), { weeks: ["2026-w40"], rows: rows(["ETAS", "EE Times"]) }],
       window,
     )
     assert.deepStrictEqual(result.candidates, ["ETAS", "EE Times"])
+  })
+})
+
+describe("창에 일부만 걸친 판정표", () => {
+  test("창 밖 주차의 행은 세지 않는다", () => {
+    const md = [
+      "## 매체 목록",
+      "",
+      "| 매체 | 구역 | 찾는 법 | 거르기 | 비고 |",
+      "|---|---|---|---|---|",
+      "| Vector | network | 피드 | 제목으로 고름 | 무료 |",
+      "| ETAS | sw-engineering | 피드 | 제목으로 고름 | 무료 |",
+      "| Kvaser | network | 피드 | 제목으로 고름 | 무료 |",
+      "",
+    ].join("\n")
+    const window = recentWeeks("2026-w53", 13)
+    const month = {
+      weeks: ["2026-w40", "2026-w41"],
+      rows: [
+        { date: "2026-09-30", outlet: "ETAS" },
+        { date: "2026-10-06", outlet: "Kvaser" },
+      ],
+    }
+    const rest = window
+      .slice(1)
+      .map((w) => ({ weeks: [w], rows: [{ date: "", outlet: "Vector" }] }))
+    assert.deepStrictEqual(exclusionCandidates(md, [month, ...rest], window).candidates, ["ETAS"])
+  })
+})
+
+describe("소식 PR의 주차", () => {
+  test("PR 제목의 주차나 달에 드는, 고친 호의 주차만 판정표의 주차다", () => {
+    assert.deepStrictEqual(
+      newsIssueWeeks("content: 2026년 46주차 주간 소식", [
+        "content/news/2026-w46.md",
+        "content/news/2026-w45.md",
+      ]),
+      ["2026-w46"],
+    )
+    assert.deepStrictEqual(
+      newsIssueWeeks("content: 2026년 10월 주간 소식", [
+        "content/news/2026-w40.md",
+        "content/news/2026-w41.md",
+        "content/news/2026-w42.md",
+        "content/news/2026-w39.md",
+      ]),
+      ["2026-w40", "2026-w41", "2026-w42"],
+    )
   })
 })
 

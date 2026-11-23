@@ -330,11 +330,18 @@ export function removedOutlets(before: string, after: string): string[] {
   return [...outletNames(before).listed].filter((name) => !now.has(name))
 }
 
-/** 지운 매체마다 PR 본문에 그 이름이 있는가. 이유는 그 줄에 함께 적는다(SKILL.md 9. PR). */
-export function checkRemoved(body: string, removed: string[]): string[] {
+/**
+ * 지운 매체마다 PR 본문에 그 이름이 있는가. 이유는 그 줄에 함께 적는다(SKILL.md 9. PR). 그 이름을 품은 더 긴
+ * 매체 이름(`EE Times Japan`의 `EE Times`)은 지우고 찾는다.
+ */
+export function checkRemoved(body: string, removed: string[], names: string[]): string[] {
   return removed
-    .filter((name) => !body.includes(name))
-    .map((name) => `PR 본문: 매체 목록에서 지운 ${name}와 그 이유가 없다`)
+    .filter((name) => {
+      const longer = names.filter((other) => other !== name && other.includes(name))
+      const text = longer.reduce((t, other) => t.split(other).join(" "), body)
+      return !text.includes(name)
+    })
+    .map((name) => `PR 본문에 매체 목록에서 지운 줄이 없다: ${name}`)
 }
 
 /**
@@ -439,7 +446,8 @@ function main(): number {
     const added = addedOutlets(before, after)
     const removed = removedOutlets(before, after)
     const body = fs.readFileSync(path.resolve(values.pr), "utf8")
-    const failures = [...checkPrBody(body, added), ...checkRemoved(body, removed)]
+    const names = [...outletNames(before).listed, ...outletNames(after).listed]
+    const failures = [...checkPrBody(body, added), ...checkRemoved(body, removed, names)]
     console.log(`더한 매체 ${added.length}곳${added.length ? `: ${added.join(", ")}` : ""}`)
     console.log(`지운 매체 ${removed.length}곳${removed.length ? `: ${removed.join(", ")}` : ""}`)
     for (const failure of failures) console.log(`실패: ${failure}`)

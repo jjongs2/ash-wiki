@@ -373,13 +373,18 @@ describe("PR 본문", () => {
 
   test("매체 목록에서 지운 줄의 매체 이름이 본문에 없으면 실패한다", () => {
     const removed = removedOutlets(
-      outletsMd(["Vector", "ETAS", "Kvaser"], []),
-      outletsMd(["Vector"], ["Kvaser"]),
+      outletsMd(["Vector", "ETAS", "Kvaser", "EE Times", "EE Times Japan"], []),
+      outletsMd(["Vector", "EE Times Japan"], ["Kvaser"]),
     )
-    assert.deepStrictEqual(removed, ["ETAS", "Kvaser"])
-    const body = "- 목록에서 뺀 매체: ETAS(셋째 조건, 13주 판정표에 찾은 후보 없음)"
-    assert.deepStrictEqual(checkRemoved(body, removed), [
-      "PR 본문: 매체 목록에서 지운 Kvaser와 그 이유가 없다",
+    assert.deepStrictEqual(removed, ["ETAS", "Kvaser", "EE Times"])
+    const names = ["Vector", "ETAS", "Kvaser", "EE Times", "EE Times Japan"]
+    const body = [
+      "- 목록에서 뺀 매체: ETAS(셋째 조건, 13주 판정표에 찾은 후보 없음)",
+      "- EE Times Japan 피드 확인",
+    ].join("\n")
+    assert.deepStrictEqual(checkRemoved(body, removed, names), [
+      "PR 본문에 매체 목록에서 지운 줄이 없다: Kvaser",
+      "PR 본문에 매체 목록에서 지운 줄이 없다: EE Times",
     ])
   })
 })

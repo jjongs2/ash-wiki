@@ -13,7 +13,12 @@ import { spawnSync } from "node:child_process"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 import { parseArgs } from "node:util"
-import { parseWeeklyNews, weekDays, type NewsItem } from "../../../plugins/weekly-news/index"
+import {
+  monthWeeks,
+  parseWeeklyNews,
+  weekDays,
+  type NewsItem,
+} from "../../../plugins/weekly-news/index"
 import { repoRoot as root } from "../../../tools/repo"
 import { LISTED, OUTLETS, outletNames, tableRows, visibleText } from "./check"
 import { git, readJsonl, weeksOf, writeJsonl } from "./work"
@@ -274,7 +279,7 @@ export function verdictTable(
       date: c.date,
       id: c.id ?? "-",
       verdict,
-      cells: [c.date, c.found_outlet?.trim() || c.outlet, c.title, verdict, reason],
+      cells: [c.date, foundOutlet(c), c.title, verdict, reason],
     })
   })
   for (const [pi, p] of published.entries()) {
@@ -313,13 +318,10 @@ export function recentWeeks(last: string, n: number): string[] {
   )
 }
 
-/** 판정표 한 줄. */
+/** 판정표 한 줄 가운데 셋째 조건이 쓰는 칸. 매체는 찾은 매체다. */
 export interface VerdictRow {
   date: string
   outlet: string
-  title: string
-  verdict: string
-  reason: string
 }
 
 const TABLE_HEAD = "<details><summary>후보 판정표"
@@ -339,16 +341,19 @@ export function parseVerdictTable(body: string): VerdictRow[] | undefined {
         .slice(1, -1)
         .split(/(?<!\\)\|/)
         .map((c) => c.trim().replace(/\\([|~])/g, "$1"))
-      const [, date = "", outlet = "", title = "", verdict = "", reason = ""] = cells
-      return { date, outlet, title, verdict, reason }
+      const [, date = "", outlet = ""] = cells
+      return { date, outlet }
     })
 }
 
-/** 판정표 하나가 다룬 주차와 그 행의 매체. */
-export interface Table {
+/** 판정표 하나: 그 표가 다룬 호의 주차와 행. */
+export interface FoundTable {
   weeks: string[]
-  outlets: string[]
+  rows: VerdictRow[]
 }
+
+/** 후보를 찾은 매체. 예전 후보처럼 찾은 매체가 없으면 원문의 매체다. */
+export const foundOutlet = (c: Candidate) => c.found_outlet?.trim() || c.outlet
 
 /**
  * 셋째 조건: window(최근 13주) 판정표에 그 매체가 찾은 후보가 없고 비고에 EXEMPT 표시가 없는 매체 목록의 줄.
@@ -356,12 +361,17 @@ export interface Table {
  */
 export function exclusionCandidates(
   outletsMd: string,
-  tables: Table[],
+  tables: FoundTable[],
   window: string[],
 ): { applied: boolean; covered: string[]; candidates: string[] } {
   const inside = tables.filter((t) => t.weeks.some((w) => window.includes(w)))
   const covered = window.filter((w) => inside.some((t) => t.weeks.includes(w)))
-  const found = new Set(inside.flatMap((t) => t.outlets))
+  // 창에 일부만 걸친 표(달 단위 소급)는 날짜가 창 안인 행만 센다.
+  const counted = (t: FoundTable) =>
+    t.weeks.every((w) => window.includes(w))
+      ? t.rows
+      : t.rows.filter((r) => /^\d{4}-\d{2}-\d{2}$/.test(r.date) && window.includes(isoWeek(r.date)))
+  const found = new Set(inside.flatMap((t) => counted(t).map((r) => r.outlet)))
   const applied = covered.length === window.length
   const candidates = applied
     ? tableRows(outletsMd, LISTED)
@@ -428,6 +438,22 @@ export function lateMisses(
 }
 
 const ISSUE = /^content\/news\/(\d{4}-w\d{2})\.md$/
+// 소식 PR의 제목(SKILL.md 9. PR): `content: 2026년 41주차 주간 소식`, 소급 조사는 `content: 2026년 1월 주간 소식`.
+const NEWS_TITLE = /^content: (\d{4})년 (?:(\d{1,2})주차|(\d{1,2})월) 주간 소식$/
+
+/**
+ * 소식 PR의 판정표가 다룬 호의 주차: 고친 호 가운데 제목의 주차나 달에 드는 것. 같은 PR이 고친 지난 호는
+ * 들지 않는다.
+ */
+export function newsIssueWeeks(title: string, files: string[]): string[] {
+  const m = title.match(NEWS_TITLE)
+  if (!m) return []
+  const [, year, week, month] = m
+  const named = week
+    ? [`${year}-w${week.padStart(2, "0")}`]
+    : monthWeeks(`${year}-${month.padStart(2, "0")}`)
+  return files.flatMap((f) => f.match(ISSUE)?.[1] ?? []).filter((w) => named.includes(w))
+}
 
 /** 열린 PR 하나와 그 PR이 고친 파일. */
 export interface Pull {
@@ -634,17 +660,19 @@ function lateCommand(folder: string, weeks: string[]): number {
 }
 
 /** 머지된 소식 PR의 판정표. REST로 읽는다(루틴 환경은 GraphQL이 막혀 있다). since 뒤에 머지된 PR만 본다. */
-function mergedTables(since: string): Table[] {
+function mergedTables(since: string): FoundTable[] {
   const pulls = lines(
     gh([
       "api",
       "--paginate",
       "repos/{owner}/{repo}/pulls?state=closed&per_page=100",
       "--jq",
-      `.[] | select(.merged_at != null and .merged_at >= "${since}") | select(.title | test("^content: .*주간 소식$")) | .number`,
+      `.[] | select(.merged_at != null and .merged_at >= "${since}") | [.number, .title] | @tsv`,
     ]),
   )
-  return pulls.flatMap((number) => {
+  return pulls.flatMap((line) => {
+    const [number, title] = line.split("\t")
+    if (!NEWS_TITLE.test(title)) return []
     const files = lines(
       gh([
         "api",
@@ -654,8 +682,8 @@ function mergedTables(since: string): Table[] {
         ".[].filename",
       ]),
     )
-    const weeks = files.flatMap((f) => f.match(ISSUE)?.[1] ?? [])
-    const bodies = JSON.parse(
+    const weeks = newsIssueWeeks(title, files)
+    const comments = JSON.parse(
       gh([
         "api",
         "--paginate",
@@ -663,19 +691,20 @@ function mergedTables(since: string): Table[] {
         `repos/{owner}/{repo}/issues/${number}/comments?per_page=100`,
       ]),
     ) as { body: string }[][]
-    const rows = bodies.flat().flatMap((c) => parseVerdictTable(c.body) ?? [])
-    return weeks.length && rows.length ? [{ weeks, outlets: rows.map((r) => r.outlet) }] : []
+    const rows = comments.flat().flatMap((c) => parseVerdictTable(c.body) ?? [])
+    return weeks.length && rows.length ? [{ weeks, rows }] : []
   })
 }
 
 function exclude(folder: string, weeks: string[]): number {
   const last = [...weeks].sort().at(-1)!
   const window = recentWeeks(last, RECENT_WEEKS)
-  const current: Table = {
+  const current: FoundTable = {
     weeks,
-    outlets: readJsonl<Candidate>(path.join(folder, "merged.jsonl")).map(
-      (c) => c.found_outlet?.trim() || c.outlet,
-    ),
+    rows: readJsonl<Candidate>(path.join(folder, "merged.jsonl")).map((c) => ({
+      date: c.date,
+      outlet: foundOutlet(c),
+    })),
   }
   const outletsMd = fs.readFileSync(path.join(root, OUTLETS), "utf8")
   const tables = [...mergedTables(weekDays(window[0]).start), current]
