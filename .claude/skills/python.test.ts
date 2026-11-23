@@ -8,15 +8,15 @@ import path from "node:path"
 // 새 Python 테스트는 따로 등록하지 않아도 돈다.
 // npx tsx --test .claude/skills/python.test.ts
 
-const skills = import.meta.dirname
+const skillsDir = import.meta.dirname
 
-const files = readdirSync(skills, { recursive: true, encoding: "utf8" })
+const files = readdirSync(skillsDir, { recursive: true, encoding: "utf8" })
   .filter((f) => /^test_.*\.py$/.test(path.basename(f)))
   .sort()
 
 for (const file of files) {
   test(file, () => {
-    const dir = path.join(skills, path.dirname(file))
+    const dir = path.join(skillsDir, path.dirname(file))
     const result = spawnSync(
       "python3",
       ["-B", "-m", "unittest", "discover", "-s", dir, "-p", path.basename(file)],
