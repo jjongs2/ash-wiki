@@ -14,7 +14,7 @@ SecOC 프로토콜은 자원을 적게 쓰는 인증 메커니즘을 PDU 수준�
 
 ## Secured I-PDU
 
-AUTOSAR [[autosar-classic-platform|Classic Platform]] R25-11의 SecOC 명세는 무단 조작과 재전송 공격에서 지킬 [[autosar-communication-stack#PDU의 이름|I-PDU]]를 **Authentic I-PDU**라 하고, Authentic I-PDU의 페이로드에 인증 정보를 덧붙인 I-PDU를 **Secured I-PDU**라 한다. 인증 정보는 Authenticator와, 선택적으로 Freshness Value로 이루어진다. Authenticator는 대칭 방식에서는 MAC, 비대칭 방식에서는 디지털 서명이다.[@autosar-cp-sws-secureonboardcommunication-2025]
+AUTOSAR [[autosar-classic-platform|Classic Platform]] R25-11의 SecOC 명세는 무단 조작과 replay 공격에서 지킬 [[autosar-communication-stack#PDU의 이름|I-PDU]]를 **Authentic I-PDU**라 하고, Authentic I-PDU의 페이로드에 인증 정보를 덧붙인 I-PDU를 **Secured I-PDU**라 한다. 인증 정보는 Authenticator와, 선택적으로 Freshness Value로 이루어진다. Authenticator는 대칭 방식에서는 MAC, 비대칭 방식에서는 디지털 서명이다.[@autosar-cp-sws-secureonboardcommunication-2025]
 
 송신 측 SecOC는 나가는 Authentic I-PDU에 인증 정보를 붙여 Secured I-PDU를 만든다. Freshness Value를 Secured I-PDU에 싣든 싣지 않든 Authenticator를 만들 때는 반영한다. Authenticator는 키로 Secured I-PDU의 Data Identifier, Authentic I-PDU의 보호할 부분, 완전한 Freshness Value를 이어 붙인 데이터를 계산해 얻는다. 수신 측 SecOC는 송신 측이 붙인 인증 정보를 검증해 Authentic I-PDU의 authenticity와 신선도를 확인한다. 그러려면 수신 측 SecOC가 받은 Secured I-PDU가 송신 측 SecOC가 내놓은 Secured I-PDU와 같아야 하고, 수신 측은 송신 측이 Authenticator를 만들 때 쓴 Freshness Value를 알아야 한다. 수신 측은 Data Identifier, 받은 Authentic I-PDU, Freshness Value로 Authenticator를 계산할 데이터를 다시 만들어 검증한다.[@autosar-cp-sws-secureonboardcommunication-2025]
 

@@ -15,7 +15,8 @@
 
 - (informative): (참고), 참고 Annex (#566). 표준의 informative Annex와 절. 꾸밈말 꼴도 같다. 예: "informative Annex로". 원문이 다른 말로 적으면 그 말. 예: 원문이 non-normative라 적은 장은 "(non-normative)". 조사는 괄호 앞의 Annex 이름이나 절 번호에 맞춘다. 예: "Annex U(informative)는"
 - 5 baud initialization, fast initialization: - (#667). K-Line 초기화일 때
-- ACC, BSD, FCW, LCA, LDW, LKA, RCTA: 전방 충돌 경고, 적응형 순항 제어 (#682). ADAS 기능 이름일 때. 풀이는 Clearing the Confusion·NHTSA의 풀이. 한국어 기능 설명은 산문에만 쓴다
+- ABS: 잠김 방지 제동 기능 (#759). 원어 약어로 쓴다. 출처가 약어 없이 기능 이름으로 쓰면 그 원어 이름. 예: UN R152의 anti-lock braking function
+- ACC, BSD, FCW, LCA, LDW, LKA, RCTA: 전방 충돌 경고, 적응형 순항 제어 (#682, #759). ADAS 기능 이름일 때. 풀이는 인용한 출처의 풀이. BSD·LCA·RCTA는 Infineon의 blind spot detection·lane change assistance·rear cross traffic alert. NHTSA의 blind spot warning·rear cross traffic warning·lane centering assistance는 약어 없이 쓴다. 한국어 기능 설명은 산문에만 쓰고, ADAS 기능 표의 기능 이름은 이 줄에 없는 기능도 원어로 쓴다
 - action point: - (#667). FlexRay의 action point일 때
 - adaptive update: - (#432)
 - ADAS 풀이 Advanced Driver Assistance Systems: Advanced Driver Assistance System (#659)
@@ -24,17 +25,20 @@
 - ADDW, ALKS, DCAS, DDAW, DMS, EDR, ODD: 자동 차로 유지 시스템, 사고기록장치, 운행 설계 영역, 운전자 감시 시스템 (#682). 원어 약어로 쓴다
 - ADS: 자동 운전 시스템, 자율주행 시스템 (#682). 레벨 3\~5의 시스템일 때. `sotif`의 "레벨 2 자동 운전 시스템"은 ISO 21448의 Level 2 문구라 조건 밖이다. `x-in-the-loop`의 "자율주행 시스템"(dSPACE의 autonomous driving systems)은 레벨이 드러나지 않아 이 결정에 들지 않는다
 - ADS 풀이 Automated Driving System: - (#682)
+- AEB 풀이: 통일하지 않음 (#759). 인용한 출처의 풀이대로. NHTSA·ISO/SAE PAS 22736은 automatic emergency braking, Euro NCAP은 autonomous emergency braking
 - AEB, AEBS: 통일하지 않음 (#682). UN R152·EU 규정의 시스템은 AEBS, ADAS 기능 이름은 AEB
 - ALKS 풀이 Automated Lane Keeping System: - (#682). UN R157 2.1의 단수 꼴
 - Annex: 부속서, 부록 (#301). 원문이 Annex일 때. 원문이 Appendix인 "부록"은 그대로
 - aperiodic: 비주기 (#350). 합성어 포함. 예: aperiodic 태스크, aperiodic server. CANopen PDO의 주기·비주기 송신처럼 통신의 송신 방식은 예외
 - ASPICE: Automotive SPICE, A-SPICE (#231). 판을 붙이면 `ASPICE 4.1` 꼴. 정식 이름은 `automotive-spice` 머리말의 풀이에만, A-SPICE는 그 페이지의 alias로만. 문서 이름 "Automotive SPICE for Cybersecurity"와 슬러그는 예외
+- authenticity: 진정성, 진위성 (#762). 보안 속성 authenticity일 때. 예: "무결성과 authenticity"
 - auto addressing: - (#667). LIN의 auto addressing일 때
 - automated vehicle, fully automated vehicle: 완전 자동화 차량 (#682). EU 규정 2019/2144 3조의 정의 용어일 때
 - balanced media: - (#667). ISO 21806의 MOST50 bPHY 매체일 때
 - basic signalling: basic signaling (#678). ISO 15118의 basic signalling일 때
 - baud: 보드레이트 (#496). 기호는 Bd. 음차 "보"도 쓰지 않는다. "Baud Rate Prescaler" 같은 이름은 그대로
 - Boolean: 불리언 (#579). 합성어 포함. 예: Boolean 식, Boolean 연산자. 번역어 "불"도 쓰지 않는다.
+- CA 풀이: 통일하지 않음 (#759). 인용한 출처의 풀이대로. RFC 5280·ETSI TS 102 940은 Certification Authority, ISO 15118-20은 certificate authority
 - callout: 콜아웃 (#359). AUTOSAR의 callout일 때. 마크다운의 콜아웃 블록은 그대로
 - CAN CC 풀이 CAN classic: CAN CC(CC: classic), CAN CC(Classical CAN), CAN classic(CC) (#564)
 - cascading failure: 연쇄 고장 (#291)
@@ -45,6 +49,7 @@
 - classic: classical (#311). ISO 11898-1:2024를 주어로 한 문장에서 이 판의 이름(약어 CC)을 쓸 때. 위키의 개념 이름 "Classical CAN"은 그대로
 - common cause failure: 공통 원인 고장 (#291)
 - Communication Management: 통신 관리 (#359). AUTOSAR Adaptive Platform의 functional cluster일 때
+- concept 단계, continual cybersecurity activities, retain, share: 개념 단계, 조직 사이버보안 관리, 프로젝트 의존 사이버보안 관리, 지속적 사이버보안 활동, 지속 활동, 보유하거나 공유 (#762). ISO/SAE 21434의 생명주기 단계·절 이름과 리스크 처리 옵션(avoid, reduce, share, retain)일 때. 단계는 원어 뒤에 "단계"를 붙이고, 절은 원문의 절 제목을 쓴다. UN R155의 development phase, production phase, post-production phase도 원어 그대로 쓴다. "개념부터 폐기까지" 같은 일반 설명과 다른 표준(ISO 26262, SAE J3061, GB 44495)의 단계는 들지 않는다
 - content addressing: 통일하지 않음 (#441). 인용한 출처의 이름대로. CiA의 content addressing은 "내용 주소 지정", Bosch의 content based addressing은 "내용 기반 주소 지정". node addressing도 CiA는 "노드 주소 지정", Bosch는 "노드 기반 주소 지정"
 - context: 문맥 (#142)
 - context switch: 문맥 전환 (#142)
@@ -63,7 +68,9 @@
 - Diffie-Hellman: Diffie–Hellman (#288)
 - DMA 풀이 Direct Memory Access: direct memory access (#674)
 - dominant: 도미넌트 (#165). 조사는 원어의 발음대로. 예: "dominant가"
+- DSI-2 풀이: 통일하지 않음 (#759). 인용한 출처의 풀이대로. MIPI A-PHY 페이지는 Display Serial Interface, MIPI DSI-2 명세 페이지는 Display Serial Interface 2
 - DSRC 풀이: 통일하지 않음 (#742). 인용한 출처의 풀이대로. 유럽 ETSI 명세(EN 302 571, EN 302 663)의 DSRC는 5.8 GHz 전자 요금 징수의 CEN DSRC이고, 미국 FCC 자료의 DSRC는 5.9 GHz ITS 통신이라 뜻도 다르다
+- duty cycle: 듀티비, 듀티 (#759)
 - EdDSA 풀이 Edwards-Curve Digital Signature Algorithm: Edwards-curve Digital Signature Algorithm, Edwards Curve Digital Signature Algorithm (#528)
 - edge: 에지 (#257). AUTOSAR 드라이버가 설정과 API로 다루는 edge일 때. 그 밖의 신호 에지는 "에지". 예: CAN 동기화의 에지
 - EDR 풀이 Event Data Recorder: - (#682)
@@ -79,8 +86,10 @@
 - generalReject, requestCorrectlyReceivedResponsePending 같은 NRC 이름: Response pending (#763). UDS의 NRC 이름일 때. AUTOSAR Dcm SWS가 camelCase로 적은 이름을 쓰고, 없으면 ISO 14229-1의 NRC 정의를 따른다
 - GMII 풀이 Gigabit MII: Gigabit Media Independent Interface (#196, #763)
 - hardware architectural metrics: 하드웨어 아키텍처 메트릭 (#396). 하위 용어(single-point fault, latent fault 등)도 원어로
+- hazard: 해저드, 위험원 (#759). 합성어 포함. 원어 이름이 있으면 그 이름. 예: hazardous event, hazardous situation, hazardous behaviour. 그 밖은 "hazard 분석"처럼 쓴다
 - HD 지도, SD 지도: HD map, SD map (#682)
 - Highway: 고속도로 (#682). UN R171 2.27의 Highway일 때. 첫 등장에 정의(보행자·자전거 금지, 반대 방향의 물리적 분리)를 풀어 쓴다
+- HLC 풀이 high level communication: 고수준 통신, 고수준 통신(HLC) (#759)
 - I-PDU 풀이 Interaction Layer Protocol Data Unit: Interaction Layer PDU (#763)
 - idle condition, protocol exception event: idle 조건, 프로토콜 예외 이벤트 (#763). CAN 프로토콜의 용어일 때
 - ITS 풀이: 통일하지 않음 (#742). 인용한 출처의 풀이대로. ETSI 명세를 인용하면 Intelligent Transport Systems, 미국 자료(FCC, IEEE 1609)를 인용하면 그 자료의 풀이. 예: FCC 24-123은 Intelligent Transportation System
@@ -94,6 +103,7 @@
 - LBIST 풀이: 통일하지 않음 (#674). 인용한 출처의 풀이대로. TI는 logic built-in self-test, NXP FS26은 logical built-in self-test
 - LdCom 풀이 Large Data COM: - (#440). 근거는 SWS BSWGeneral R24-11 부록 A
 - MAC 풀이 Medium Access Control: Media Access Control (#165). 출처마다의 풀이를 비교하는 문장은 예외
+- Mbit/s: Mbps (#759)
 - MCU: 통일하지 않음 (#674, #763). AUTOSAR 명세의 microcontroller를 옮긴 AUTOSAR·ECU 쪽 페이지는 "마이크로컨트롤러", 하드웨어 페이지와 네트워크 페이지는 MCU
 - minimal risk manoeuvre, minimum risk manoeuvre: 통일하지 않음 (#682). 출처 철자대로. ISO 34503·EU 시행 규정 2022/1426은 minimal risk manoeuvre, UN R157은 minimum risk manoeuvre. 약어는 MRM. "최소 위험 기동"은 쓰지 않는다
 - MSD 풀이 Minimum Set of Data: Minimum Set of emergency related Data (#742). 근거는 UN R144와 3GPP TS 26.267
@@ -102,6 +112,8 @@
 - NMI 풀이: 통일하지 않음 (#675). 인용한 출처의 풀이대로. 예: Infineon AN0001을 인용한 safety-mechanism은 non-maskable interrupt, RTEMS 문서를 인용한 deferred-interrupt-handling은 Non-Maskable Interrupt
 - No Driving Automation, Driver Assistance, Partial·Conditional·High·Full Driving Automation: 부분 자동화 (#682). 운전 자동화 레벨의 이름일 때. 출처 문장 안에서 원어 그대로 쓴다
 - notification: 통지 (#257). AUTOSAR 모듈이 부르는 notification 콜백일 때. 동사로 쓴 자리("통지받는다")와 그 밖의 통지는 "통지"
+- OBC: 탑재 충전기, 온보드 충전기 (#759). on-board charger일 때. 원어 약어로 쓴다
+- OBC 풀이 on-board charger: onboard charger (#759)
 - OBD 풀이 On-Board Diagnostics: On-Board Diagnosis (#496)
 - ODD 풀이 Operational Design Domain: - (#682)
 - offset correction, rate correction: - (#667). FlexRay 클럭 동기화일 때
@@ -120,6 +132,7 @@
 - read-while-write: - (#674). 플래시의 RWW일 때
 - recessive: 리세시브 (#165). 조사는 원어의 발음대로. 예: "recessive이고"
 - Reed-Solomon: Reed–Solomon (#498)
+- replay 공격: 재전송 공격 (#762). replay attack일 때. replay를 뜻하는 합성어도 같다. 예: replay 보호, replay 방지. 통신의 재전송(retransmission)은 들지 않는다
 - resource: 리소스 (#165, #763). OSEK 객체일 때. 일반적인 뜻이면 "자원". 예외로 프로토콜이 정한 resource(CoAP resource, LwM2M Resource, oneM2M resource, SOVD resource)는 "리소스"
 - root of trust: 신뢰의 뿌리 (#288)
 - RSA 풀이 Rivest-Shamir-Adleman: Rivest–Shamir–Adleman (#288)
@@ -146,7 +159,9 @@
 - validation: 통일하지 않음 (#288). "확인"과 원어 cybersecurity validation을 맥락에 따라. 페이지 `cybersecurity-verification-and-validation`의 title과 정의는 "확인"
 - Virtual A/B: - (#432)
 - wakeup: 웨이크업 (#257). AUTOSAR가 다루는 wakeup일 때. 예: EcuM에 알리는 wakeup. 트랜시버와 버스의 웨이크업은 "웨이크업"
+- 갈루아체: 갈루아 체 (#762). Galois field일 때
 - 개인 키: 개인키 (#288)
+- 개체: 실체 (#762). 보안·통신 표준의 entity일 때. 추적성의 "논리적 실체"처럼 다른 분야의 실체는 들지 않는다
 - 결정 테이블: 결정표 (#441)
 - 결함 허용: - (#223)
 - 경량: 경차 (#678). light-duty vehicle일 때
@@ -159,10 +174,11 @@
 - 단계적 배포: phased rollout (#432)
 - 단위 테스트: 유닛 테스트 (#291)
 - 대칭 키: 대칭키 (#288)
-- 리스크: 위험 (#441). risk를 옮길 때. 합성어 포함. 예: 리스크 평가, 리스크 주도, 리스크 등급. hazard("위험원", "해저드")와 일반 낱말("위험하다", "충돌 위험", "단편화 위험")은 그대로
+- 리스크: 위험 (#441). risk를 옮길 때. 합성어 포함. 예: 리스크 평가, 리스크 주도, 리스크 등급. hazard는 원어(#759), 일반 낱말("위험하다", "충돌 위험", "단편화 위험")은 그대로
 - 리프 노드: 잎 노드 (#250)
 - 메서드, 필드: Method, Field (#763). AUTOSAR 서비스 인터페이스의 method와 field일 때
 - 메타모픽 테스트: 변성 테스트 (#385). metamorphic testing일 때. metamorphic relation은 "메타모픽 관계"
+- 모니터 IC: 감시 IC (#759). 배터리 모니터 IC일 때
 - 무작위 테스트: 랜덤 테스트 (#385)
 - 발신: 출발 (#763). IP 패킷의 source 노드·호스트일 때. 이더넷 프레임의 출발지 주소는 그대로
 - 버스트 오류: 오류 버스트 (#763). burst error일 때. IEC 60050-721의 용어 이름 error burst는 원어로 병기해도 된다
@@ -203,6 +219,7 @@
 - 전술: tactic (#431). Automotive Threat Matrix의 tactic일 때
 - 정의의 주석: Note (#566). ISO/IEC Directives를 따르는 문서의 용어 항목에 단 주석(Note # to entry)일 때. 번호는 "정의의 둘째 주석"처럼 쓴다. 본문 NOTE와 ASPICE의 BP·GP Note는 그대로
 - 존 제어기: 존 모듈 (#659). 존 아키텍처의 zone controller와 zone module일 때
+- 지능형 BJB: 스마트 BJB (#759). intelligent·smart battery junction box일 때
 - 차량 사이버보안: 汽车信息安全 (#431). GB 44495의 汽车信息安全일 때
 - 차량 신호: 차량 시그널 (#659). VSS의 vehicle signal일 때. AUTOSAR COM의 signal은 "시그널" 그대로
 - 차량용 레이더, 차량용 카메라, 차량용 SerDes: 차량 레이더 (#682). 제목
@@ -213,6 +230,7 @@
 - 카나리 릴리스: canary release, 카나리 배포 (#499)
 - 코드 플래시: 프로그램 플래시 (#674). 프로그램을 두는 플래시일 때. 제품의 구성 요소 이름(PFlash, P-Flash)은 그대로
 - 클럭: 클록 (#763). 합성어 포함. 예: 클럭 신호, 클럭 도메인
+- 키 재료: 키 자료 (#762). key material, keying material일 때
 - 타원 곡선 암호: ECC (#289). 타원 곡선 암호를 가리킬 때. ECDSA·ECDH 같은 알고리즘 이름은 그대로. 예: SP 800-56A의 ECC CDH는 "타원 곡선 CDH"
 - 태스크 그룹: 태스크 묶음 (#349). OSEK OS 명세의 group of tasks일 때
 - 테스터, 진단 테스터, 시험 장비: 진단 장비 (#763). 각각 tester, diagnostic tester, (external) test equipment일 때. 인용한 출처가 diagnostic equipment처럼 장비로 쓴 자리는 "진단 장비"
@@ -222,6 +240,7 @@
 - 트레이닝: 학습 (#763). PHY의 training일 때. 스위치의 address learning은 "학습"
 - 특별특성: special characteristics (#394). 처음 쓸 때 "특별특성(special characteristics)". ASPICE 정보 항목 이름 17-57(Special characteristics)은 그대로
 - 특정개조 등: 特定改造等 (#432). 처음 쓸 때 원어를 병기
+- 평형 도체 한 쌍: 단일 쌍 (#759). single-pair Ethernet일 때
 - 프레임 간 공간: 인터프레임 공간 (#68). 원어는 병기하지 않는다.
 - 플래시: Flash (#257). 일반 낱말일 때. 모듈과 구성 요소의 이름(Fls(Flash Driver), Flash EEPROM Emulation, Flashing Adapter)은 예외
 - 하위 호환: 역호환 (#257)

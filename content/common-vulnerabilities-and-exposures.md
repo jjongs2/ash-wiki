@@ -19,7 +19,7 @@ CVE Record는 다음 세 상태 가운데 하나에 있다.[@cve-glossary-2026]
 - **Published**: CNA가 CVE ID에 딸린 데이터를 채워 CVE Record를 게시한 상태
 - **Rejected**: CVE ID와 CVE Record를 더는 쓰지 않아야 하는 상태. 사용자가 무효임을 알 수 있게 CVE List에 남겨 둔다.[@cve-glossary-2026]
 
-CVE Record Format은 CNA가 CVE Record를 게시할 때 [[common-vulnerability-scoring-system|CVSS]] 점수를 넣을 수 있게 한다. CVSS는 FIRST(보안 사고 대응팀들의 국제 협의체)가 운영하는, CVE와 별개의 프로그램이다.[@cve-related-efforts-2026][@first-mission-2026]
+CVE Record Format은 CNA가 CVE Record를 게시할 때 [[common-vulnerability-scoring-system|CVSS]] 점수를 넣을 수 있게 한다.[@cve-related-efforts-2026]
 
 ## CVE Record 생명주기
 
@@ -28,7 +28,7 @@ CVE 프로그램은 CVE Record의 생명주기를 여섯 단계로 둔다.[@cve-
 1. 발견(Discover): 개인이나 조직이 새 취약점을 찾는다.
 2. 보고(Report): 발견자가 CVE 프로그램의 파트너에게 취약점을 알린다.
 3. 요청(Request): 보고자가 CVE ID를 요청하면 파트너가 CVE ID를 매긴다.
-4. 예약(Reserve): 매긴 ID가 보고된 취약점에 예약된다. 이것이 CVE Record의 첫 상태다. 이 상태에서 이해관계자는 이 ID로 취약점의 초기 조정과 관리를 하고, CNA는 아직 취약점을 공개할 준비가 되지 않았다.
+4. 예약(Reserve): 매긴 ID가 예약된다. 이 Reserved 상태에서 이해관계자는 이 ID로 취약점의 초기 조정과 관리를 하고, CNA는 아직 취약점을 공개할 준비가 되지 않았다.
 5. 제출(Submit): 파트너가 영향받는 제품, 영향받거나 고쳐진 제품 버전, 취약점의 유형이나 근본 원인이나 영향, 하나 이상의 공개 참고 자료 같은 세부를 낸다.
 6. 게시(Publish): 최소 필수 데이터 요소가 갖춰지면 책임 CNA가 CVE Record를 CVE List에 게시하고, 누구나 이를 보고 내려받을 수 있다.[@cve-process-2026]
 

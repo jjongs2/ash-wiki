@@ -4,7 +4,7 @@ python3 -B -m unittest discover -s .claude/skills/wiki-news
 
 fixtures/recalls.tsv는 NHTSA 리콜 평면 파일(2026-10-21 받음)에서 고정한 행이다. 2025-03~2026-08에
 `FORWARD COLLISION AVOIDANCE`나 `SERVICE BRAKES` 분류가 든 캠페인 19개를, 캠페인과 분류마다 한 행씩
-옮겼다. 소프트웨어 리콜이 아닌 캠페인(25V639, 25V711 등)도 들어 있다.
+옮겼다. 소프트웨어 리콜이 아닌 캠페인(25V639, 25V711 등)도 들어 있다. 끝 줄은 장비 리콜 26E073(2026-11-23 받음)이다.
 """
 
 import os
@@ -51,6 +51,13 @@ class RecallTest(unittest.TestCase):
             result = run(archive, "26V084000")
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("26V084: 접수일 2026-02-12", result.stdout)
+
+    def test_equipment_recall_is_judged_by_units_only(self):
+        result = run(ROWS, "26E073")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("26E073: 접수일 2026-10-20, 대수 3,376, 장비 리콜(대수로만 본다)", result.stdout)
+        self.assertNotIn("같은 분류의 소프트웨어 리콜", result.stdout)
+        self.assertIn("→ 대수 10만 대 미만: 문턱을 넘지 않음", result.stdout)
 
     def test_unknown_campaign_fails(self):
         result = run(ROWS, "26V999")

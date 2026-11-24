@@ -16,7 +16,7 @@ verified: 2026-09-29
 
 선점을 지원하는 MAC(Medium Access Control)은 express MAC(eMAC)과 preemptable MAC(pMAC)을 둔다. express 큐의 프레임은 eMAC이, preemptable 큐의 프레임은 pMAC이 보낸다.[@adi-adin3310-adin6310-2025][@nxp-realtimeedgeug-2026] IEEE 802.3의 MAC Merge 부계층은 eMAC과 pMAC을 RS(Reconciliation Sublayer) 하나에 붙여, 두 MAC의 전송을 [[ethernet-phy|PHY]] 하나의 point-to-point 링크로 합친다.[@ieee-802-3-2022]
 
-IEEE 802.3de-2022는 IEEE 802.3-2022의 개정으로, 10 Mbit/s 단일 쌍 이더넷의 점대점 PHY도 MAC Merge 부계층과 TSSI(Time Synchronization Service Interface)를 쓸 수 있도록 두 기능을 고쳤다.[@ieee-802-3de-2022] IEEE 802.3cg-2019가 정한 점대점 10 Mbit/s PHY는 그전까지 MAC Merge와 TSSI 가운데 하나 이상을 쓸 수 없었다.[@ieee-802-3de-par-2021]
+IEEE 802.3de-2022는 IEEE 802.3-2022의 개정으로, 평형 도체 한 쌍을 쓰는 10 Mbit/s [[ethernet|이더넷]]의 점대점 PHY도 MAC Merge 부계층과 TSSI(Time Synchronization Service Interface)를 쓸 수 있도록 두 기능을 고쳤다.[@ieee-802-3de-2022] IEEE 802.3cg-2019가 정한 점대점 10 Mbit/s PHY는 그전까지 MAC Merge와 TSSI 가운데 하나 이상을 쓸 수 없었다.[@ieee-802-3de-par-2021]
 
 구현은 송신 큐나 [[traffic-class|트래픽 클래스]]마다 express인지 preemptable인지를 설정으로 정한다.[@ti-processor-sdk-linux-am64x-iet-2026][@nxp-realtimeedgeug-2026] IEEE 802.1Q-2022는 선점을 지원하는 포트에서 priority 값마다 express인지 preemptable인지를 frame preemption status 표로 정하고, 그에 따라 프레임을 eMAC이나 pMAC으로 보낸다. 기본값은 모든 priority가 express이고, 같은 트래픽 클래스에 대응하는 priority들에는 같은 값을 주기를 권한다.[@ieee-802-1q-2022]
 

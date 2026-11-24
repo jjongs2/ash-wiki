@@ -5,7 +5,7 @@ tags:
 verified: 2026-10-02
 ---
 
-**안전 분석**(safety analysis)은 [[iso-26262|ISO 26262]]-9:2018이 dependent failure 분석과 함께 요구사항을 정하는 분석이다. 이 표준은 7절에서 dependent failure 분석을, 8절에서 안전 분석을 다룬다. 이 표준은 [[automotive-safety-integrity-level#ASIL decomposition|ASIL tailoring을 위한 요구사항 분해]]와 [[freedom-from-interference|요소의 공존 기준]]에 대한 요구사항도 정한다.[@iso-26262-9-obp-2018] 분석 기법인 FMEA(Failure Modes and Effects Analysis), FTA(Fault Tree Analysis), HAZOP(Hazard and Operability study)은 IEC 60812:2018[@iec-60812-2018], IEC 61025:2006[@iec-61025-preview-2006], IEC 61882:2016이 각각 적용 지침을 둔다.[@iec-61882-preview-2016] [[stpa|STPA]]는 어느 것도 고장 나지 않은 시스템 구성 요소 사이의 안전하지 않은 상호작용도 사고를 일으킬 수 있다고 보는 [[hazard-analysis-and-risk-assessment#용어|해저드]] 분석 기법이다.[@leveson-stpa-handbook-2018]
+**안전 분석**(safety analysis)은 [[iso-26262|ISO 26262]]-9:2018이 dependent failure 분석과 함께 요구사항을 정하는 분석이다. 이 표준은 7절에서 dependent failure 분석을, 8절에서 안전 분석을 다룬다. 이 표준은 [[automotive-safety-integrity-level#ASIL decomposition|ASIL tailoring을 위한 요구사항 분해]]와 [[freedom-from-interference|요소의 공존 기준]]에 대한 요구사항도 정한다.[@iso-26262-9-obp-2018] 분석 기법인 FMEA(Failure Modes and Effects Analysis), FTA(Fault Tree Analysis), HAZOP(Hazard and Operability study)은 IEC 60812:2018[@iec-60812-2018], IEC 61025:2006[@iec-61025-preview-2006], IEC 61882:2016이 각각 적용 지침을 둔다.[@iec-61882-preview-2016] [[stpa|STPA]]는 어느 것도 고장 나지 않은 시스템 구성 요소 사이의 안전하지 않은 상호작용도 사고를 일으킬 수 있다고 보는 [[hazard-analysis-and-risk-assessment#용어|hazard]] 분석 기법이다.[@leveson-stpa-handbook-2018]
 
 ## FMEA
 
@@ -37,9 +37,9 @@ IEC 61025:2006은 1990년 1판을 대체하며 fault tree 방법론의 자세한
 
 ## HAZOP
 
-IEC 61882:2016은 **HAZOP**을 정해진 시스템을 구조적이고 체계적으로 살펴 해저드 같은 리스크와 운용상의 문제를 찾는 기법으로 두고, guide word로 설계 의도에서 벗어난 것(deviation)을 찾게 정한다.[@iec-61882-preview-2016]
+IEC 61882:2016은 **HAZOP**을 정해진 시스템을 구조적이고 체계적으로 살펴 hazard 같은 리스크와 운용상의 문제를 찾는 기법으로 두고, guide word로 설계 의도에서 벗어난 것(deviation)을 찾게 정한다.[@iec-61882-preview-2016]
 
-HAZOP의 특징은 study leader가 이끄는 여러 분야의 팀이 설계나 시스템의 관련 부분을 모두 체계적으로 살피는 검토 회의다. 이 기법은 공정 산업에서 나왔다. 이 표준은 checklist HAZOP, knowledge-based HAZOP처럼 다른 해저드 식별 기법에 HAZOP이라는 이름을 쓰는 것을 부적절하다고 보아, 그런 기법을 범위에서 뺀다.[@iec-61882-preview-2016]
+HAZOP의 특징은 study leader가 이끄는 여러 분야의 팀이 설계나 시스템의 관련 부분을 모두 체계적으로 살피는 검토 회의다. 이 기법은 공정 산업에서 나왔다. 이 표준은 checklist HAZOP, knowledge-based HAZOP처럼 다른 hazard 식별 기법에 HAZOP이라는 이름을 쓰는 것을 부적절하다고 보아, 그런 기법을 범위에서 뺀다.[@iec-61882-preview-2016]
 
 IEC 61882:2016은 개선된 절차(procedural) HAZOP 사례 연구를 새로 넣었다.[@iec-61882-preview-2016]
 

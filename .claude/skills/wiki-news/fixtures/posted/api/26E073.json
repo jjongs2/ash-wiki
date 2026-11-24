@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "recalls": [
+        {
+          "nhtsaCampaignNumber": "26E073000",
+          "reportReceivedDate": "2026-10-20T19:28:26Z",
+          "associatedDocuments": [
+            {
+              "summary": "Recall 573 Report",
+              "fileName": "RCLRPT-26E073-3158.pdf",
+              "loadDate": "2026-10-24T11:00:27Z"
+            },
+            {
+              "summary": "RCAK - Recall Acknowledgement",
+              "fileName": "RCAK-26E073-7855.pdf",
+              "loadDate": "2026-10-24T11:00:27Z"
+            },
+            {
+              "summary": "Notice to Dealers",
+              "fileName": "RCMN-26E073-1836.pdf",
+              "loadDate": "2026-10-27T11:00:28Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

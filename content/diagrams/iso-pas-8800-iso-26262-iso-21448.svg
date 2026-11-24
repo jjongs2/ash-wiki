@@ -14,13 +14,13 @@
   </g>
   <g text-anchor="middle" fill="var(--text, #727981)">
     <text x="120.5" y="40" font-size="13">ISO 26262 시리즈</text>
-    <text x="120.5" y="58">차량 수준의 해저드 분석과</text>
+    <text x="120.5" y="58">차량 수준의 hazard 분석과</text>
     <text x="120.5" y="74">리스크 분석을 다룸</text>
     <text x="400.5" y="40" font-size="13">ISO 21448</text>
-    <text x="400.5" y="58">차량 수준의 해저드 분석과</text>
+    <text x="400.5" y="58">차량 수준의 hazard 분석과</text>
     <text x="400.5" y="74">리스크 분석을 다룸</text>
     <text x="260.5" y="179" font-size="13">ISO/PAS 8800:2024</text>
-    <text x="260.5" y="197">해저드 분석과 리스크 분석은 범위 밖</text>
+    <text x="260.5" y="197">hazard 분석과 리스크 분석은 범위 밖</text>
   </g>
 
   <!-- 넓히는 관계 -->

@@ -31,7 +31,7 @@ TI 기술 기사는 ECU를 기능에 따라 다섯 도메인으로 나눈다.[@t
 | 바디 전자·조명                    | 바디 제어 모듈, 도어 모듈, 전조등 제어 모듈                                                               |
 | 수동 안전                         | 에어백·제동·섀시 제어 모듈                                                                                |
 
-[[battery-management-system|BMS]]에 관한 TI 백서에 따르면 도메인 아키텍처에서는 예컨대 탑재 충전기, 직류-직류 컨버터, 트랙션 인버터, BMS가 하이브리드 전기차와 전기차의 제어 도메인을 이루어 [[microcontroller|MCU]] 하나를 나눠 쓸 수 있다.[@ti-slyy226-2025]
+[[battery-management-system|BMS]]에 관한 TI 백서에 따르면 도메인 아키텍처에서는 예컨대 OBC(on-board charger), 직류-직류 컨버터, 트랙션 인버터, BMS가 하이브리드 전기차와 전기차의 제어 도메인을 이루어 [[microcontroller|MCU]] 하나를 나눠 쓸 수 있다.[@ti-slyy226-2025]
 
 도메인마다 네트워크가 다를 수 있어 [[gateway|게이트웨이]]가 도메인 사이를 잇고, [[gateway#중앙 게이트웨이|중앙 게이트웨이]] 모듈이 여러 도메인에 붙는다.[@ti-sszt211-2023][@nxp-autogwdevwpus-2018] NXP 백서에 따르면 도메인 기반 네트워크에서는 [[ethernet|이더넷]]이 도메인 제어기들을 잇는 통신 백본이 된다.[@nxp-fvnecua4wp-2017]
 

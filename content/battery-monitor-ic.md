@@ -23,11 +23,11 @@ TI의 BMS [[functional-safety|기능 안전]] 백서에 따르면 고전압 팩�
 | 제품       | 셀 수    | 절연 방식                           | 체인 통신                                                                                                                                          |
 | ---------- | -------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | BQ7961x-Q1 | 6\~16    | 커패시터만, 커패시터와 초크, 변압기 | -[@ti-bq79616-q1-2026]                                                                                                                             |
-| MC33771C   | 7\~14    | -                                   | 절연된 2.0 Mbps 차동 통신, 노드 63개까지[@nxp-mc33771c-2024]                                                                                       |
+| MC33771C   | 7\~14    | -                                   | 절연된 2.0 Mbit/s 차동 통신, 노드 63개까지[@nxp-mc33771c-2024]                                                                                     |
 | TLE9012DQU | 12개까지 | -                                   | 절연 데이지 체인 인터페이스 iso UART(universal asynchronous receiver-transmitter), 2 Mbit/s, 38개까지[@infineon-tle9012dqu-2023][@ti-slyy197-2020] |
-| ADBMS6830B | 16개까지 | 커패시터나 변압기                   | isoSPI(절연 직렬 포트), 2 Mbps[@adi-adbms6830b-2024]                                                                                               |
-| L9963E     | 4\~14    | 변압기, 커패시터                    | 절연 [[serial-communication\|직렬 통신]], 2.66 Mbps[@st-l9963e-2022]                                                                               |
-| ISL78714   | 14개까지 | 커패시터나 변압기                   | 독자 2선 데이지 체인, 1 Mbps까지, 마스터에 29개를 더[@renesas-isl78714-2026]                                                                       |
+| ADBMS6830B | 16개까지 | 커패시터나 변압기                   | isoSPI(절연 직렬 포트), 2 Mbit/s[@adi-adbms6830b-2024]                                                                                             |
+| L9963E     | 4\~14    | 변압기, 커패시터                    | 절연 [[serial-communication\|직렬 통신]], 2.66 Mbit/s[@st-l9963e-2022]                                                                             |
+| ISL78714   | 14개까지 | 커패시터나 변압기                   | 독자 2선 데이지 체인, 1 Mbit/s까지, 마스터에 29개를 더[@renesas-isl78714-2026]                                                                     |
 
 MC33771C는 측정값을 SPI(Serial Peripheral Interface)나 TPL(Transformer physical layer)로 [[microcontroller|MCU]]에 보낸다.[@nxp-mc33771c-2024]
 

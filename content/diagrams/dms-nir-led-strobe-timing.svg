@@ -41,7 +41,7 @@
     <path d="M130 126 H146 V110 H151.7 V126 H336 V110 H341.7 V126 H510" />
     <path d="M130 180 H146 V140 H151.7 V180 H336 V140 H341.7 V180 H510" />
   </g>
-  <text x="162" y="164" fill="var(--text, #727981)">듀티 3%(예)</text>
+  <text x="162" y="164" fill="var(--text, #727981)">duty cycle 3%(예)</text>
 
   <line x1="130" y1="206" x2="518" y2="206" stroke="var(--ink, #727981)" stroke-width="1.5" marker-end="url(#arrow)" />
   <text x="320" y="225" text-anchor="middle" fill="var(--text, #727981)">시간</text>

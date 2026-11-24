@@ -138,4 +138,34 @@ describe("절차 검사", () => {
     assert.deepStrictEqual(report.differs, ["Vector: 피드 주소가 /news/feed로 옮김(사이트 쪽)"])
     assert.deepStrictEqual(report.unknown, ["Vectr"])
   })
+
+  test("열었어도 일부를 열지 못한 것(게시일 API가 실패한 캠페인)은 열지 못한 곳에 오른다", () => {
+    const report = checkProcedure({
+      sources: [{ name: "NHTSA 리콜", perWeek: false }],
+      weeks: ["2026-w46"],
+      records: [
+        {
+          ...opened("NHTSA 리콜"),
+          failed: ["26V740: HTTPError: HTTP Error 503, 접수일로 판정"],
+        },
+      ],
+    })
+    assert.deepStrictEqual(report.failures, [])
+    assert.deepStrictEqual(report.unopened, [
+      "NHTSA 리콜: 26V740: HTTPError: HTTP Error 503, 접수일로 판정",
+    ])
+  })
+
+  test("피드나 뉴스룸이 열린 검색 질의 줄은 찾는 법을 옮길 줄로 알린다", () => {
+    const report = checkProcedure({
+      sources: [{ name: "KISA", perWeek: true }],
+      weeks: ["2026-w46"],
+      records: [
+        { ...opened("KISA"), direct: "뉴스룸 https://www.kisa.or.kr/401 Node fetch, 그 주 2건" },
+      ],
+    })
+    assert.deepStrictEqual(report.direct, [
+      "KISA: 뉴스룸 https://www.kisa.or.kr/401 Node fetch, 그 주 2건",
+    ])
+  })
 })

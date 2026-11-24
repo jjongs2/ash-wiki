@@ -87,4 +87,4 @@ ENISA(EU의 사이버보안 기관)의 2019년 보고서 Good practices for secu
 
 ## HARA와의 차이
 
-[[hazard-analysis-and-risk-assessment|HARA]]는 아이템의 오동작이 일으키는 해저드 사건을 심각도, 노출, 통제 가능성으로 분류해 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]]과 [[automotive-safety-integrity-level|ASIL]]을 정한다.[@iso-26262-1-obp-2018] TARA가 다루는 attack path는 공격자가 일부러 하는 행위들이고, 리스크는 attack feasibility와 impact로 나타낸다.[@iso-sae-21434-obp-2021]
+[[hazard-analysis-and-risk-assessment|HARA]]는 아이템의 오동작이 일으키는 hazardous event를 심각도, 노출, 통제 가능성으로 분류해 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]]과 [[automotive-safety-integrity-level|ASIL]]을 정한다.[@iso-26262-1-obp-2018] TARA가 다루는 attack path는 공격자가 일부러 하는 행위들이고, 리스크는 attack feasibility와 impact로 나타낸다.[@iso-sae-21434-obp-2021]

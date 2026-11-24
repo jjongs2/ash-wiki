@@ -22,9 +22,9 @@ E-Gas 감시 개념 6.0판은 엔진 제어기의 감시를 세 층으로 나눈
 
 ![[diagrams/e-gas-three-level-monitoring.svg]]
 
-이 개념은 참조 문서로 [[iso-26262|ISO 26262]] 1판(2011-11-15)을 들고, 시스템 정의, 해저드 분석과 리스크 분석, functional safety concept, technical safety concept의 순서로 절을 둔다.[@egas-monitoring-concept-2015]
+이 개념은 참조 문서로 [[iso-26262|ISO 26262]] 1판(2011-11-15)을 들고, 시스템 정의, hazard 분석과 리스크 분석, functional safety concept, technical safety concept의 순서로 절을 둔다.[@egas-monitoring-concept-2015]
 
-해저드 분석과 리스크 분석의 결과로 이 개념은 SZ-01부터 SZ-04까지 식별 번호를 붙인 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]] 넷을 정한다. 의도하지 않은 가속의 방지(SZ-01)는 [[automotive-safety-integrity-level|ASIL]] B다. 가속이 없는 것의 방지(SZ-02), 의도하지 않은 감속의 방지(SZ-03), 감속이 없는 것의 방지(SZ-04)는 통제 가능한 상태를 나타내므로 이 개념에서 다루지 않는다.[@egas-monitoring-concept-2015]
+hazard 분석과 리스크 분석의 결과로 이 개념은 SZ-01부터 SZ-04까지 식별 번호를 붙인 [[hazard-analysis-and-risk-assessment#Safety goal|safety goal]] 넷을 정한다. 의도하지 않은 가속의 방지(SZ-01)는 [[automotive-safety-integrity-level|ASIL]] B다. 가속이 없는 것의 방지(SZ-02), 의도하지 않은 감속의 방지(SZ-03), 감속이 없는 것의 방지(SZ-04)는 통제 가능한 상태를 나타내므로 이 개념에서 다루지 않는다.[@egas-monitoring-concept-2015]
 
 이 개념에서 **주행 주기**(driving cycle)는 키로 엔진을 시동한 때부터 정지할 때까지의 운용 시간이고, 엔진 제어기의 power latch 시간을 포함한다. **Latent error**는 다음 주행 주기에 엔진 제어기도 운전자도 검출하지 못한 error다.[@egas-monitoring-concept-2015]
 

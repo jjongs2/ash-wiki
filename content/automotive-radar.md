@@ -11,9 +11,9 @@ verified: 2026-11-21
 
 ## 쓰는 곳
 
-ADAS에서는 ACC, [[adas#기능|AEB]], blind spot detection, lane change assistance, rear cross traffic alert, 주차 보조 같은 기능에 레이더를 쓴다.[@infineon-radar-sensors-automotive-2026][@nxp-saf85xxfs-2022] 차량용 레이더는 감지 거리에 따라 단거리, 중거리, 장거리 레이더로 나뉜다.[@infineon-radar-sensors-automotive-2026][@nxp-tef82xxfs-2020]
+ADAS에서는 ACC, [[adas#기능|AEB]], BSD(blind spot detection), LCA(lane change assistance), RCTA(rear cross traffic alert), 주차 보조 같은 기능에 레이더를 쓴다.[@infineon-radar-sensors-automotive-2026][@nxp-saf85xxfs-2022] 차량용 레이더는 감지 거리에 따라 단거리, 중거리, 장거리 레이더로 나뉜다.[@infineon-radar-sensors-automotive-2026][@nxp-tef82xxfs-2020]
 
-Infineon에 따르면 단거리 레이더는 차가 느리게 움직이거나 장애물이 가까이 있는 blind spot detection과 lane change assistance에 쓴다. 단거리·중거리 레이더를 차의 네 모서리에 둔 것을 **코너 레이더**라 하며, 코너 레이더는 운전자가 보기 전에 장애물이나 보행자를 찾아 AEB를 작동시킬 수 있다. 장거리 레이더는 먼 앞쪽의 교통 변화를 더 잘 감지하므로 주로 차 앞쪽에 둔다.[@infineon-radar-sensors-automotive-2026]
+Infineon에 따르면 단거리 레이더는 차가 느리게 움직이거나 장애물이 가까이 있는 BSD와 LCA에 쓴다. 단거리·중거리 레이더를 차의 네 모서리에 둔 것을 **코너 레이더**라 하며, 코너 레이더는 운전자가 보기 전에 장애물이나 보행자를 찾아 AEB를 작동시킬 수 있다. 장거리 레이더는 먼 앞쪽의 교통 변화를 더 잘 감지하므로 주로 차 앞쪽에 둔다.[@infineon-radar-sensors-automotive-2026]
 
 ![[diagrams/radar-corner-long-range-placement.svg]]
 

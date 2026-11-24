@@ -12,9 +12,9 @@ verified: 2026-10-07
 
 ## 보안 이벤트의 수집
 
-IdsM은 차량 안 보안 이벤트(security event, SEv)를 받는 표준 인터페이스를 준다. 보안 이벤트는 BSW 모듈과 [[autosar-software-component|SW-C]]에 구현된 보안 센서가 보고하며, 이벤트 종류나 의심스러운 데이터 같은 context data를 덧붙일 수 있다. Context data는 백엔드에서 하는 보안 포렌식에 쓸모 있을 수 있는 정보다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
+IdsM은 차량 안 보안 이벤트(security event, SEv)를 받는 표준 인터페이스를 준다. 보안 이벤트는 보안 센서가 보고하며, 이벤트 종류나 의심스러운 데이터 같은 context data를 덧붙일 수 있다. Context data는 백엔드에서 하는 보안 포렌식에 쓸모 있을 수 있는 정보다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
 
-**보안 이벤트**는 공격이 진행 중임을 가리키거나 차량의 보안 상태를 평가하는 데 알맞은 이벤트로, 공격이 없는 정상 동작 중에도 생길 수 있다. 보안 이벤트를 보고하는 **센서**는 BSW 모듈, 독자 CDD(Complex Driver), SW-C 응용일 수 있다. Context data의 내용과 인코딩은 센서가 바깥에서 정하며, IdsM은 이를 알지 못한다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
+**보안 이벤트**는 공격이 진행 중임을 가리키거나 차량의 보안 상태를 평가하는 데 알맞은 이벤트로, 공격이 없는 정상 동작 중에도 생길 수 있다. 보안 이벤트를 보고하는 **센서**는 BSW 모듈, 독자 CDD(Complex Driver), [[autosar-software-component|SW-C]] 응용일 수 있다. Context data의 내용과 인코딩은 센서가 바깥에서 정하며, IdsM은 이를 알지 못한다.[@autosar-cp-sws-intrusiondetectionsystemmanager-2025]
 
 [[secure-onboard-communication|SecOC]]는 수신 [[secure-onboard-communication#Freshness Value|Freshness Value]]를 얻지 못하거나 [[secure-onboard-communication#Secured I-PDU|Authenticator]] 검증이 복구할 수 없는 오류로 끝나면 IdsM에 보안 이벤트를 보고한다.[@autosar-cp-sws-secureonboardcommunication-2025] [[autosar-firewall|AUTOSAR firewall]]도 IDS 센서로서 보안 이벤트를 IdsM에 보고한다.[@autosar-cp-sws-firewall-2025]
 
