@@ -15,8 +15,8 @@ Avnu Alliance는 네트워크·IT 인프라, 반도체, 장치 제조사가 모�
 
 ## 구성 표준
 
-- [[ieee-802-1as|IEEE 802.1AS-2025]]는 LAN에서 시각을 전달하는 프로토콜, 절차, 관리 객체를 정한다. 동기화된 시각의 전달과 timing source의 선택이 여기에 든다.[@ieee-802-1as-2025]
-- IEEE 802.1BA-2021은 시간에 민감한 오디오·비디오 스트림을 나를 수 있는 네트워크를 만들기 위해, 브리지·스테이션·LAN의 기능, 옵션, 설정, 기본값, 프로토콜, 절차를 고르는 [[tsn#프로파일|프로파일]]을 정한다. 기능과 옵션을 고르는 대상은 [[virtual-lan|VLAN]] 브리지를 정하는 [[ieee-802-1q|IEEE 802.1Q]], 시간 동기화 표준인 IEEE 802.1AS, 그리고 [[ieee-802-3|IEEE 802.3]], IEEE 802.11처럼 LAN 기술마다 매체 접근 제어와 물리 계층을 정하는 표준이다.[@ieee-802-1ba-2021]
+- [[ieee-802-1as|IEEE 802.1AS-2025]]는 LAN에서 시각을 전달하는 프로토콜, 절차, 관리 객체를 정한다.[@ieee-802-1as-2025]
+- IEEE 802.1BA-2021은 시간에 민감한 오디오·비디오 스트림을 나를 수 있는 네트워크를 만들기 위해, [[ethernet-switch#리피터, 브리지, 라우터와의 차이|브리지]]·스테이션·LAN의 기능, 옵션, 설정, 기본값, 프로토콜, 절차를 고르는 [[tsn#프로파일|프로파일]]을 정한다. 기능과 옵션을 고르는 대상은 [[virtual-lan|VLAN]] 브리지를 정하는 [[ieee-802-1q|IEEE 802.1Q]], 시간 동기화 표준인 IEEE 802.1AS, 그리고 [[ieee-802-3|IEEE 802.3]], IEEE 802.11처럼 LAN 기술마다 매체 접근 제어와 물리 계층을 정하는 표준이다.[@ieee-802-1ba-2021]
 - IEEE 802.1Qat-2010은 [[srp|SRP]]를 정했다.
 - IEEE 802.1Qav-2009는 [[credit-based-shaper|credit-based shaper]]를 정했다.[@ieee-802-1-tsn-tg-2017]
 
@@ -24,7 +24,7 @@ Avnu Alliance는 네트워크·IT 인프라, 반도체, 장치 제조사가 모�
 
 ## Talker와 listener
 
-스트림을 내보내는 엔드포인트를 talker, 받는 엔드포인트를 listener라 한다.[@xmos-xm000102-2014][@ti-snaa333-2020] XMOS의 AVB 엔드포인트 설계 가이드에 따르면 한 엔드포인트가 둘 다일 수 있다. talker가 스위치에 스트림을 알리고 listener가 받겠다고 등록하면, AVB 스위치가 대역폭이 보장된 종단 간 경로를 예약한다. 대역폭이 모자라면 등록이 실패한다.[@xmos-xm000102-2014]
+스트림을 내보내는 엔드포인트를 talker, 받는 엔드포인트를 listener라 한다.[@xmos-xm000102-2014][@ti-snaa333-2020] XMOS의 AVB 엔드포인트 설계 가이드에 따르면 한 엔드포인트가 둘 다일 수 있다. talker가 스위치에 스트림을 알리고 listener가 받겠다고 등록하면, AVB 스위치가 대역폭이 보장된 종단 간 경로를 [[srp#예약 과정|예약]]한다.[@xmos-xm000102-2014]
 
 ## SR 클래스
 
@@ -53,7 +53,7 @@ IEEE 802.1BA-2021은 AVB를 지원한다고 내세우는 장치의 최소 요구
 - 브리지: 모든 브리지는 SR 클래스 B를 지원하고, IEEE 802.3 포트가 둘 이상인 브리지는 그 포트 모두에서 SR 클래스 A도 지원해야 한다. [[srp#MRP 응용|talker pruning]]은 지원하지 않아야 한다. AVB를 지원하는 모든 포트는 아래를 지원해야 한다.
   - FQTSS(Forwarding and Queuing Enhancements for Time-Sensitive Streams)를 지원하는 트래픽 클래스에 묶인 스트림 예약 하나
   - 스트림 하나의 MSRP(Multiple Stream Registration Protocol) 속성의 등록·선언·전파
-  - BMCA(best master clock algorithm)를 구현한 gPTP 도메인 0
+  - BMCA(Best Master Clock Algorithm)를 구현한 gPTP 도메인 0
 - talker: 스트림 하나를 보낼 수 있고, 그 스트림의 talker 선언을 하고 그에 따른 listener 선언을 등록할 수 있어야 한다. 포트는 BMCA를 구현한 gPTP 도메인 0을 지원하고, talker를 동기화하는 [[ieee-802-1as#범위|PTP Instance]]는 [[ptp#시계의 계층|grandmaster]]가 될 수 있어야 한다.[@ieee-802-1ba-2021]
 
 이 표준은 [[ethernet-flow-control|흐름 제어]]를 지원하는 AVB 시스템에 AV 스트림을 나르는 포트의 MAC(Medium Access Control) control PAUSE를 끄게 한다. SR 클래스의 우선순위에 PFC(Priority-based Flow Control)를 켠 포트는 그 SR 클래스의 SRP 도메인 경계 포트로 둔다. 흐름 제어가 AVB의 지연 보장을 깨뜨릴 수 있기 때문이다.[@ieee-802-1ba-2021]
@@ -83,4 +83,4 @@ tpl_250의 10 ms는 무선 구간 둘을 전제한 IEEE 802.1BA의 클래스 B �
 
 ## TSN과의 관계
 
-AV Bridging 태스크 그룹은 네트워크 지연을 더 줄이려고 [[frame-preemption|프레임 선점]](P802.1Qbu)과 [[time-aware-shaper|scheduled traffic]](P802.1Qbv) 프로젝트를 시작했고, 이중화와 처리량 향상을 위한 다중 경로 작업도 검토했다.[@ieee-802-1-avb-tg-2013] TSN 태스크 그룹은 AVB 태스크 그룹에서 이어졌고 AVB 표준을 이어받았으며, scheduled traffic(IEEE 802.1Qbv)과 프레임 선점(IEEE 802.1Qbu)을 더했다.[@ieee-802-1-tsn-tg-2017] 이중 전송을 위해 프레임을 복제하고 중복을 없애는 [[ieee-802-1cb|IEEE 802.1CB]]도 TSN 태스크 그룹에서 나왔다.[@ieee-802-1cb-project-2017]
+AV Bridging 태스크 그룹은 네트워크 지연을 더 줄이려고 [[frame-preemption|프레임 선점]](P802.1Qbu)과 [[time-aware-shaper|scheduled traffic]](P802.1Qbv) 프로젝트를 시작했고, 이중화와 처리량 향상을 위한 다중 경로 작업도 검토했다.[@ieee-802-1-avb-tg-2013] TSN 태스크 그룹은 AVB 태스크 그룹에서 이어졌고 AVB 표준을 이어받았으며, scheduled traffic(IEEE 802.1Qbv)과 프레임 선점(IEEE 802.1Qbu)을 더했다.[@ieee-802-1-tsn-tg-2017] 중복 전송을 위해 프레임을 복제하고 겹친 복제본을 없애는 [[ieee-802-1cb|IEEE 802.1CB]]도 TSN 태스크 그룹에서 나왔다.[@ieee-802-1cb-project-2017]

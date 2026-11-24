@@ -65,6 +65,6 @@ NXP 앱노트는 이미지를 하나만 두고 그 자리를 새 이미지로 �
 
 이미지 하나를 덮어쓰는 업데이트는 덮어쓰는 동안 평소 이미지로 동작할 수 없어, 업데이트를 맡는 별도 환경(부트로더, 복구 모드)에서 진행한다.[@nxp-an12323-2018][@google-android-ota-nonab-2026] Android의 non-A/B 업데이트는 업데이트 패키지를 받아 [[digital-signature|서명]]을 확인한 뒤 복구(recovery) 모드로 재부팅하고, 복구 모드에서 서명을 다시 확인한 뒤 파티션을 덮어쓴다.[@google-android-ota-nonab-2026]
 
-이미지 한 벌에 작은 업데이트 전용 시스템을 더한 구성에서는, 업데이트가 실패하면 다시 업데이트에 성공하기 전까지 본 애플리케이션으로 돌아갈 수 없다.[@rauc-scenarios-2026][@swupdate-overview-2026] RAUC는 대칭 A/B 구성에 더해, 평소의 업데이트가 고치지 않는 rescue 슬롯을 둘 수 있다.[@rauc-scenarios-2026]
+이미지 한 벌에 작은 업데이트 전용 시스템을 더한 구성에서는, 업데이트가 실패하면 다시 업데이트에 성공하기 전까지 본 응용 프로그램으로 돌아갈 수 없다.[@rauc-scenarios-2026][@swupdate-overview-2026] RAUC는 대칭 A/B 구성에 더해, 평소의 업데이트가 고치지 않는 rescue 슬롯을 둘 수 있다.[@rauc-scenarios-2026]
 
 Android에서 A/B 기기는 recovery 파티션과 cache 파티션이 필요 없다. 복구 모드의 코드는 boot 파티션에 두고, 내려받은 업데이트 패키지는 data 파티션에 둔다.[@google-android-ota-ab-implement-2026] Android는 Android 15부터 non-A/B 업데이트를 deprecated로 두었다.[@google-android-ota-2026]

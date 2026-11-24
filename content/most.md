@@ -47,7 +47,7 @@ MOST는 MOST 노드를 하나 이상 담은 여러 멀티미디어 장치를 잇
 
 ## 데이터 전송
 
-MOST는 데이터 종류마다 채널을 따로 두어 낮은 지연으로 나르고, 네트워크 클록은 연속한 데이터 신호로 준다. 비등시(anisochronous) 패킷 데이터는 제어 데이터, 스트리밍 데이터와 따로 보내며, 이 세 데이터는 서로 간섭하지 않는다. MOST 네트워크의 장치들은 제어 채널 하나와 패킷 채널 하나를 함께 쓴다.[@iso-21806-1-obp-2020]
+MOST는 데이터 종류마다 채널을 따로 두어 낮은 지연으로 나르고, 네트워크 클럭은 연속한 데이터 신호로 준다. 비등시(anisochronous) 패킷 데이터는 제어 데이터, 스트리밍 데이터와 따로 보내며, 이 세 데이터는 서로 간섭하지 않는다. MOST 네트워크의 장치들은 제어 채널 하나와 패킷 채널 하나를 함께 쓴다.[@iso-21806-1-obp-2020]
 
 채널은 나르는 데이터에 따라 아래처럼 나뉜다. **스트리밍 데이터**는 동기나 등시로 보내는 오디오·비디오 같은 내용이다.[@iso-21806-1-obp-2020]
 
@@ -68,7 +68,7 @@ ISO 21806-1:2020은 MOST Specification Rev. 3.0 E2를 인용 규격(normative re
 
 **MOST 장치**는 광 MOST 부품이나 전기 MOST 부품을 담은 [[electronic-control-unit|ECU]]이고, **MOST 네트워크**는 MOST 장치를 잇는 통신 네트워크다. MOST 장치 안의 MOST 네트워크 컨트롤러(MNC, MOST Network Controller)는 라우팅을 하고 MOST 네트워크의 자원을 관리한다. **MOST 노드**는 배정할 수 있는 논리 노드 주소를 갖고 MOST network service 라이브러리를 구현한 MOST 네트워크 안의 개체다. 하드웨어인 MOST 장치 하나가 노드를 둘 이상 담을 수도 있다.[@iso-21806-1-obp-2020]
 
-노드는 TimingMaster, TimingSlave, listen-only 노드 가운데 하나다. **TimingMaster**는 네트워크 클록을 주고, **TimingSlave**는 MOST 네트워크에서 네트워크 클록을 얻는다. **listen-only 노드**는 네트워크 프레임의 내용을 바꾸지 않는다. 노드 사이의 점대점 전송에는 노드 위치와 상관없이 배정할 수 있는 논리 노드 주소를 쓴다.[@iso-21806-1-obp-2020]
+노드는 TimingMaster, TimingSlave, listen-only 노드 가운데 하나다. **TimingMaster**는 네트워크 클럭을 주고, **TimingSlave**는 MOST 네트워크에서 네트워크 클럭을 얻는다. **listen-only 노드**는 네트워크 프레임의 내용을 바꾸지 않는다. 노드 사이의 점대점 전송에는 노드 위치와 상관없이 배정할 수 있는 논리 노드 주소를 쓴다.[@iso-21806-1-obp-2020]
 
 ISO 21806-2:2020은 논리 노드 주소와 기능 주소를 대응시키는 조회 표인 central registry를 관리하는 노드를 **NetworkMaster**로, 자기 FBlock을 NetworkMaster에 알리는 노드를 **NetworkSlave**로 정의한다. MOST 네트워크의 기동과 종료를 제어하는 노드는 **PowerMaster**다. FBlock 가운데 스트리밍 연결을 관리하는 connection manager에 인터페이스를 주는 것은 **ConnectionMaster**다.[@iso-21806-2-obp-2020]
 

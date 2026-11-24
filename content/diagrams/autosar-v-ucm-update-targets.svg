@@ -27,7 +27,7 @@
     <text x="115" y="60" font-size="12">소프트웨어 패키지 보관</text>
     <text x="115" y="158">OTA Client</text>
     <text x="115" y="176" font-size="12">패키지 내려받기</text>
-    <text x="408" y="166.5">진단 애플리케이션</text>
+    <text x="408" y="166.5">진단 응용 프로그램</text>
     <text x="115" y="270">V-UCM</text>
     <text x="115" y="288" font-size="12">업데이트 캠페인 조율</text>
     <text x="408" y="278.5">각 머신의 UCM</text>

@@ -14,7 +14,7 @@ verified: 2026-09-30
 PduR는 I-PDU를 주고받는 모듈을 쓰는 API에 따라 두 부류로 나눈다.[@autosar-cp-sws-pdurouter-2025]
 
 - **통신 인터페이스 모듈**(communication interface module): I-PDU 하나를 호출 한 번으로 통째로 넘기는 모듈이다. 상위에는 AUTOSAR COM과 IpduM(I-PDU Multiplexer)이, 하위에는 [[autosar-network-management|CanNm]], FrNm(FlexRay Network Management), IpduM, LSduR가 든다. IpduM은 두 역할을 한다. PduR를 거쳐 AUTOSAR COM과 주고받을 때는 PduR의 하위 모듈이고, PduR를 거쳐 하위 통신 인터페이스 모듈과 주고받을 때는 PduR의 상위 모듈이다.
-- **전송 프로토콜 모듈**(transport protocol module): 프레임보다 긴 I-PDU도 조각인 N-PDU(Network Layer Protocol Data Unit)로 나눠 주고받을 수 있는 모듈이다. PduR와 이 모듈 사이에서 오가는 것은 I-PDU이고, PduR는 I-PDU를 N-PDU 하나에 실리는 조각마다 복사해 옮긴다. 상위에는 AUTOSAR COM과 Dcm이, 하위에는 CanTp(CAN Transport Layer), FrTp(FlexRay ISO Transport Layer), LinTp(LIN Transport Protocol), J1939Tp(J1939 Transport Layer)가 든다.[@autosar-cp-sws-pdurouter-2025]
+- **전송 프로토콜 모듈**(transport protocol module): 프레임보다 긴 I-PDU도 조각인 N-PDU(Network Layer Protocol Data Unit)로 나눠 주고받을 수 있는 모듈이다. PduR와 이 모듈 사이에서 오가는 것은 I-PDU이고, PduR는 I-PDU를 N-PDU 하나에 실리는 조각마다 복사해 옮긴다. 상위에는 AUTOSAR COM과 Dcm이, 하위에는 CanTp(CAN Transport Layer), FrTp(FlexRay ISO Transport Layer), LinTp(LIN Transport Protocol), J1939Tp(SAE J1939 Transport Layer)[@autosar-cp-sws-bswgeneral-2025]가 든다.[@autosar-cp-sws-pdurouter-2025]
 
 ![[diagrams/pdur-upper-lower-modules.svg]]
 

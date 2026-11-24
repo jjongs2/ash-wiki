@@ -21,7 +21,7 @@ category 2 ISR이 category 1 ISR을 끊고 태스크를 활성화하거나 [[ose
 
 ## 정의
 
-애플리케이션 안에서 category 2 ISR은 `ISR(FuncName)` 꼴로 정의한다. 시스템 생성은 키워드 `ISR`로 소스 코드의 함수와 ISR을 구별한다. category 1 ISR의 정의 꼴은 명세가 정하지 않고 구현이 정한다.[@osek-os-2-2-3-2005]
+응용 프로그램 안에서 category 2 ISR은 `ISR(FuncName)` 꼴로 정의한다. 시스템 생성은 키워드 `ISR`로 소스 코드의 함수와 ISR을 구별한다. category 1 ISR의 정의 꼴은 명세가 정하지 않고 구현이 정한다.[@osek-os-2-2-3-2005]
 
 ## 재스케줄링
 

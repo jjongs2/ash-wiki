@@ -16,7 +16,7 @@ IEEE 802.3-2022는 이중 POF 위에서 1000 Mbit/s로 동작하는 PCS(Physical
 
 ![[diagrams/1000base-rhx-port-types.svg]]
 
-1000BASE-RHC의 PMD는 리셉터클과 짝 플러그로 SI-POF(Step Index POF) 매체에 이어지고, PMD, 인라인 커넥터, 케이블은 Kojiri-safe, 먼지 보호, 진동 견딤, 인장 강도처럼 차량에 설치하는 데 필요한 요구를 맞춰야 한다. 1000BASE-H PCS는 [[mii#RMII, GMII, RGMII와의 차이|GMII]]의 송신 데이터를 65비트 블록으로 묶어 스크램블하고, MLCC(Multi-Level Coset Code)로 부호화해 PAM16(Pulse Amplitude Modulation 16) 심볼의 코드워드를 만든다. 심볼은 공칭 325 [[serial-communication#비트율|MBd]]로 보낸다.[@ieee-802-3-2022]
+1000BASE-RHC의 PMD는 리셉터클과 짝 플러그로 SI-POF(Step Index POF) 매체에 이어지고, PMD, 인라인 커넥터, 케이블은 Kojiri-safe, 먼지 보호, 진동 견딤, 인장 강도처럼 차량에 설치하는 데 필요한 요구를 맞춰야 한다. 1000BASE-H PCS는 [[mii#RMII, GMII, RGMII와의 차이|GMII]]의 송신 데이터를 65비트 블록으로 묶어 스크램블하고, MLCC(Multi-Level Coset Code)로 부호화해 PAM16(Pulse Amplitude Modulation 16) 심볼의 [[error-correction-code|부호어]]를 만든다. 심볼은 공칭 325 [[serial-communication#비트율|MBd]]로 보낸다.[@ieee-802-3-2022]
 
 P802.3bv PAR(Project Authorization Request)는 POF가 설치가 쉽고, 차량과 산업 네트워크 같은 거친 환경에서 견고함으로 이점을 주며, 이들 네트워크가 이더넷으로 옮겨 가고 있어 많은 제조사에게 POF를 매체 선택지로 남기는 것이 필요하다고 밝혔다.[@ieee-802-3bv-par-2014]
 

@@ -27,7 +27,7 @@ IEEE 802.3-2022는 모든 10BASE-T1S [[ethernet-phy|PHY]]가 링크 상대 하�
 
 이 표준은 mixing segment에서 동작하는 10BASE-T1S에 송신 기회를 만들어 주는 방법을 **PLCA**(Physical Layer Collision Avoidance)라 부르고, Clause 148의 RS(Reconciliation Sublayer)로 정한다. PLCA는 멀티드롭 모드의 반이중 10BASE-T1S PHY에서 쓰는 선택 기능이고, 관리 인터페이스로 켜고 끌 수 있으며, 끄면 RS의 대응은 Clause 22와 같다. 켜면 PLCA RS는 MAC(Medium Access Control)의 데이터를 물리 계층의 송신 기회에 맞춘다. PLCA를 켠 물리 계층은 부하가 큰 [[bus-access-method#경쟁 방식|CSMA/CD]] 반이중 공유 매체 네트워크에서 대역을 더 쓰게 하고 접근 지연을 줄일 수 있다.[@ieee-802-3-2022]
 
-mixing segment의 송신 기회는 로컬 충돌 도메인 안에서 겹치지 않는 노드 ID(identifier) 순서로 돌아가며 주어진다. 노드 ID는 관리 엔티티가 정하며, 정하는 방법은 이 표준의 범위 밖이다. ID가 0인 노드가 매체에 BEACON을 보내고, BEACON을 받으면 송신 기회의 새 주기가 시작된다. 노드는 자기 송신 기회에 패킷 하나를 보내고, 설정한 한도까지 패킷을 더 보내도록 할 수도 있다.[@ieee-802-3-2022]
+mixing segment의 송신 기회는 로컬 충돌 도메인 안에서 겹치지 않는 노드 ID 순서로 돌아가며 주어진다. 노드 ID는 관리 엔티티가 정하며, 정하는 방법은 이 표준의 범위 밖이다. ID가 0인 노드가 매체에 BEACON을 보내고, BEACON을 받으면 송신 기회의 새 주기가 시작된다. 노드는 자기 송신 기회에 패킷 하나를 보내고, 설정한 한도까지 패킷을 더 보내도록 할 수도 있다.[@ieee-802-3-2022]
 
 ![[diagrams/plca-transmit-opportunity-cycle.svg]]
 
@@ -43,7 +43,7 @@ IEEE 802.3da-2026은 IEEE 802.3-2022에 대한 개정으로, 10BASE-T1S 물리 �
 
 OPEN Alliance TC14는 차량에서 10BASE-T1S를 쓸 수 있게 하려고 적합성, 상호 운용성, EMC(Electromagnetic Compatibility) 시험 명세와 고급 진단 기능, 시스템 구현 명세, PMD(Physical Medium Dependent) 트랜시버 인터페이스, PLCA 레지스터, 토폴로지 탐색 방법을 정한다. TC14는 [[mii#한 쌍 PHY의 인터페이스|TC6]]와 꾸린 공동 작업 그룹에서 [[mii|MII]]·SPI(Serial Peripheral Interface) 명세의 표준화도 돕는다.[@open-alliance-tc14-2026]
 
-LAN8650/1은 MAC과 10BASE-T1S PHY를 한 칩에 담아, MAC이 없는 [[microcontroller|마이크로컨트롤러]]도 10BASE-T1S 네트워크에 붙게 한다. 마이크로컨트롤러와는 4핀 SPI 하나로 잇고, 이더넷 패킷을 OPEN Alliance 10BASE-T1x MAC-PHY Serial Interface 명세에 따라 나누어 보낸다.[@microchip-lan8650-2025]
+LAN8650/1은 MAC과 10BASE-T1S PHY를 한 칩에 담아, MAC이 없는 [[microcontroller|MCU]]도 10BASE-T1S 네트워크에 붙게 한다. MCU와는 4핀 SPI 하나로 잇고, 이더넷 패킷을 OPEN Alliance 10BASE-T1x MAC-PHY Serial Interface 명세에 따라 나누어 보낸다.[@microchip-lan8650-2025]
 
 ## 쓰는 곳
 

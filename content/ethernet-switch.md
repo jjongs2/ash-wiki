@@ -19,7 +19,7 @@ IEEE 802.1Q-2022는 학습한 주소 정보를 [[virtual-lan|VLAN]]끼리 함께
 
 목적지 주소가 주소 표에 있으면 스위치는 그 포트로만 프레임을 보낸다.[@microchip-ksz9477s-2019][@nxp-um10944-2017]
 
-브리지의 전달 프로세스는 반사 릴레이(reflective relay)를 쓰는 포트가 아니면 받은 포트를 뺀 포트를 전달 후보로 삼고, 목적지 MAC 주소, VLAN 식별자, 필터링 데이터베이스의 정보, 포트의 기본 그룹 필터링 동작 등을 바탕으로 후보를 걸러 낸다. VLAN을 모르는 MAC 브리지는 VLAN 식별자를 쓰지 않는다. [[message-addressing#주소를 싣는 프레임|그룹 주소]] 프레임의 기본 동작 가운데 Forward All Groups는 정적 필터링 항목이 걸러 내라고 명시하지 않는 한 프레임을 전달하고, 동적으로 등록된 그룹 주소 정보는 무시한다. 기본 필터링 서비스만 지원하는 브리지는 모든 포트에서 Forward All Groups로 동작하고, 확장 필터링 서비스를 지원하는 브리지도 관리로 바꾸지 않은 초기 상태에서는 Forward All Groups로 동작한다.[@ieee-802-1q-2022]
+브리지의 전달 프로세스는 받은 포트의 [[spanning-tree-protocol#포트 상태|전달]]이 참이면, 받은 포트를 뺀 포트 가운데 전달이 참인 포트를 전달 후보로 삼는다. 다만 받은 포트가 EVB(Edge Virtual Bridging) Bridge 모드이고 반사 릴레이(reflective relay)를 켰으면 받은 포트도 후보에 든다. 전달 프로세스는 목적지 MAC 주소, VLAN 식별자, 필터링 데이터베이스의 정보, 포트의 기본 그룹 필터링 동작 등을 바탕으로 후보를 걸러 낸다. VLAN을 모르는 MAC 브리지는 VLAN 식별자를 쓰지 않는다. [[message-addressing#주소를 싣는 프레임|그룹 주소]] 프레임의 기본 동작 가운데 Forward All Groups는 정적 필터링 항목이 걸러 내라고 명시하지 않는 한 프레임을 전달하고, 동적으로 등록된 그룹 주소 정보는 무시한다. 기본 필터링 서비스만 지원하는 브리지는 모든 포트에서 Forward All Groups로 동작하고, 확장 필터링 서비스를 지원하는 브리지도 관리로 바꾸지 않은 초기 상태에서는 Forward All Groups로 동작한다.[@ieee-802-1q-2022]
 
 KSZ9477S는 찾은 목적지 포트가 프레임을 받은 포트와 같으면 그 프레임을 전달하지 않는다. 기본 설정에서는 목적지 주소가 주소 표에 없는 유니캐스트·멀티캐스트 프레임과 브로드캐스트 프레임을, 받은 포트를 뺀 모든 포트로 보낸다. KSZ9477S 데이터시트는 목적지를 몰라 여러 포트로 보내는 유니캐스트 프레임을 flooded unicast라 부른다.[@microchip-ksz9477s-2019] SJA1105TEL은 목적지를 모르는 프레임과 브로드캐스트 프레임을 받은 포트마다 설정한 포트 집합으로 보내며, 받은 포트는 그 집합에서 빼야 한다.[@nxp-um10944-2017]
 
@@ -45,11 +45,11 @@ OPEN Alliance TC11은 차량용 이더넷 네트워크에 맞는 이더넷 스�
 
 ## 관리형과 비관리형
 
-KSZ9477S는 레이어 2 관리형 스위치로, SPI(Serial Peripheral Interface)나 I2C(Inter-Integrated Circuit) 같은 호스트 인터페이스, 또는 인밴드 관리로 내부 레지스터에 접근해 설정한다.[@microchip-ksz9477s-2019] Microchip의 기가비트 이더넷 스위치(KSZ9896C, KSZ9477S 등)는 VLAN과 QoS를 [[microcontroller|마이크로컨트롤러]], 인밴드 접근, 호스트 프로세서로 설정하고, 설정 스트랩으로는 기본 설정과 [[ethernet-phy#자동 협상|자동 협상]]만 정한다. Microchip AN2577에 따르면 비관리형 이더넷 스위치는 기능을 관리할 외부 마이크로컨트롤러나 프로세서 없이 스트랩 설정만으로 동작한다.[@microchip-an2577-2017]
+KSZ9477S는 레이어 2 관리형 스위치로, SPI(Serial Peripheral Interface)나 I2C(Inter-Integrated Circuit) 같은 호스트 인터페이스, 또는 인밴드 관리로 내부 레지스터에 접근해 설정한다.[@microchip-ksz9477s-2019] Microchip의 기가비트 이더넷 스위치(KSZ9896C, KSZ9477S 등)는 VLAN과 QoS를 [[microcontroller|MCU]], 인밴드 접근, 호스트 프로세서로 설정하고, 설정 스트랩으로는 기본 설정과 [[ethernet-phy#자동 협상|자동 협상]]만 정한다. Microchip AN2577에 따르면 비관리형 이더넷 스위치는 기능을 관리할 외부 MCU나 프로세서 없이 스트랩 설정만으로 동작한다.[@microchip-an2577-2017]
 
 ## AUTOSAR의 스위치 모델
 
-[[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 Ethernet Switch Driver 명세는 스위치 포트에 역할을 줄 수 있게 한다. Host port는 스위치를 제어하는 [[electronic-control-unit|ECU]](host ECU)와 이어진 포트이고, up link port는 같은 ECU 안의 다른 스위치 포트와 이어져 cascaded switch를 나타내는 포트다. 역할을 주지 않은 포트는 보통 포트다. 스위치 하나는 host port를 꼭 하나 갖거나 up link port를 하나 이상 가지며, host port가 있는 스위치도 up link port를 여럿 가질 수 있다. Master switch는 host port 하나로 host ECU와 잇고, slave switch는 up link port 하나로 master switch와 잇는다. 내부 클록을 동기화할 수 있는 스위치끼리 up link port로 이어져 있을 때 그 클록 동기화를 켜면(`EthSwtClockSynchronizationSupport`가 `TRUE`), 이어진 두 up link port 사이의 지연은 잴 필요가 없다.[@autosar-cp-sws-ethernetswitchdriver-2025]
+[[autosar-classic-platform|AUTOSAR Classic Platform]] R25-11의 Ethernet Switch Driver 명세는 스위치 포트에 역할을 줄 수 있게 한다. Host port는 스위치를 제어하는 [[electronic-control-unit|ECU]](host ECU)와 이어진 포트이고, up link port는 같은 ECU 안의 다른 스위치 포트와 이어져 cascaded switch를 나타내는 포트다. 역할을 주지 않은 포트는 보통 포트다. 스위치 하나는 host port를 꼭 하나 갖거나 up link port를 하나 이상 가지며, host port가 있는 스위치도 up link port를 여럿 가질 수 있다. Master switch는 host port 하나로 host ECU와 잇고, slave switch는 up link port 하나로 master switch와 잇는다. 내부 클럭을 동기화할 수 있는 스위치끼리 up link port로 이어져 있을 때 그 클럭 동기화를 켜면(`EthSwtClockSynchronizationSupport`가 `TRUE`), 이어진 두 up link port 사이의 지연은 잴 필요가 없다.[@autosar-cp-sws-ethernetswitchdriver-2025]
 
 ![[diagrams/autosar-switch-port-roles.svg]]
 

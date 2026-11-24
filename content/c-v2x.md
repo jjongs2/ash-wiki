@@ -73,7 +73,7 @@ Annex D(informative)는 [[v2x#GeoNetworking과 BTP|GeoNetworking]] 패킷을 MAC
 
 ## 보안과 프라이버시
 
-3GPP TS 33.185 V19.0.0은 LTE의 PC5 통신 계층에 보안을 두지 않는다. V2X 통신에 걸리는 보안 요구는 IEEE나 ETSI ITS 같은 다른 표준 기구가 정한 응용 계층 보안으로 모두 채워진다고 보고, 그 응용 계층 보안을 쓰는 일은 3GPP 범위 밖에 둔다.[@3gpp-ts-33-185-2025]
+3GPP TS 33.185 V19.0.0은 LTE의 PC5 통신 계층에 보안을 두지 않는다. V2X 통신에 걸리는 보안 요구는 IEEE나 ETSI ITS 같은 다른 표준 기구가 정한 [[v2x-security|응용 계층 보안]]으로 모두 채워진다고 보고, 그 응용 계층 보안을 쓰는 일은 3GPP 범위 밖에 둔다.[@3gpp-ts-33-185-2025]
 
 3GPP TS 33.536 V19.0.0은 NR의 PC5 broadcast 모드에는 보안 요구를 두지 않고, PC5 unicast의 사용자 평면 데이터에는 기밀성, 무결성, replay 보호를 지원하도록 요구한다.[@3gpp-ts-33-536-2025]
 

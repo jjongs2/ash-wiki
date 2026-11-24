@@ -59,7 +59,7 @@ extended 태스크는 끝나지 않은 채 waiting 상태로 들어가 CPU를 �
 
 ## 조회
 
-`GetTaskID`는 지금 running인 태스크의 ID(identifier)를 돌려준다. running인 태스크가 없으면 INVALID_TASK를 돌려준다.[@osek-os-2-2-3-2005]
+`GetTaskID`는 지금 running인 태스크의 ID를 돌려준다. running인 태스크가 없으면 INVALID_TASK를 돌려준다.[@osek-os-2-2-3-2005]
 
 `GetTaskState`는 부른 시점의 태스크 상태(running, ready, waiting, suspended)를 돌려준다. 완전 선점 시스템에서 태스크가 부르면 결과를 쓸 때는 이미 맞지 않을 수 있다. 여러 번 활성화된 태스크는 인스턴스 하나라도 running이면 running으로 돌려준다.[@osek-os-2-2-3-2005]
 

@@ -58,7 +58,7 @@ $$
 
 ## 동기화
 
-responder는 sync 바이트 필드 패턴의 하강 에지로 commander의 비트 타이밍에 동기화하고, 이로 비트 폭을 잴 수 있다.[@ti-slla383a-2022][@atmel-avr308-2002] responder는 sync로 commander에 맞추므로 수정 발진기 없이 동작할 수 있다.[@ti-slla383a-2022][@freescale-brinvehiclenet-2006] TI 앱노트에 따르면 LIN 노드는 값싼 온칩 발진기를 쓰므로 비트율 허용 오차가 ±14%이고, 이 정확도로 break를 알아챈 뒤 sync 바이트 필드로 타이밍을 보정해 메시지를 주고받는다.[@ti-slla383a-2022] 선 하나만 쓰고 responder가 수정 발진기 없이 동기화하므로 LIN은 싸게 구현할 수 있다.[@ti-slla383a-2022][@atmel-avr308-2002]
+responder는 sync 바이트 필드 패턴의 하강 에지로 commander의 비트 타이밍에 동기화하고, 이로 비트 폭을 잴 수 있다.[@ti-slla383a-2022][@atmel-avr308-2002] TI 앱노트에 따르면 LIN 노드는 값싼 온칩 발진기를 쓰므로 비트율 허용 오차가 ±14%이고, 이 정확도로 break를 알아챈 뒤 sync 바이트 필드로 타이밍을 보정해 메시지를 주고받는다.[@ti-slla383a-2022] 선 하나만 쓰고 responder가 수정 발진기 없이 동기화하므로 LIN은 싸게 구현할 수 있다.[@ti-slla383a-2022][@atmel-avr308-2002]
 
 ## 체크섬
 

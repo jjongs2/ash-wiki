@@ -62,7 +62,7 @@ ETSI EN 302 571 V2.1.1은 5795\~5815 MHz의 전자 요금 징수를 해로운 �
 
 IEEE 802.11-2024는 clause 17의 OFDM 물리 계층에서 채널 간격이 10 MHz일 때 부반송파를 52개(데이터 48개, 파일럿 4개)로, OFDM 심볼 간격을 8 µs로 둔다.[@ieee-802-11-2024]
 
-dot11OCBActivated가 true인 스테이션은 IEEE 802.11 LAN의 기본 구성 단위인 BSS(Basic Service Set)에 속하지 않고, BSS 밖에서 Data 프레임을 보낸다. 이 스테이션은 IEEE 802.11의 인증, 연결(association), data confidentiality 서비스를 쓰지 않고, BSS에 들거나 BSS를 시작하지 않는다. BSS의 구성원이 아니므로 공통 클록에 동기화할 필요도 없다. 처음에는 규제로 지정되었거나 다른 대역 밖 통신으로 미리 알려진 채널에서 송수신한다.[@ieee-802-11-2024]
+dot11OCBActivated가 true인 스테이션은 IEEE 802.11 LAN의 기본 구성 단위인 BSS(Basic Service Set)에 속하지 않고, BSS 밖에서 Data 프레임을 보낸다. 이 스테이션은 IEEE 802.11의 인증, 연결(association), data confidentiality 서비스를 쓰지 않고, BSS에 들거나 BSS를 시작하지 않는다. BSS의 구성원이 아니므로 공통 클럭에 동기화할 필요도 없다. 처음에는 규제로 지정되었거나 다른 대역 밖 통신으로 미리 알려진 채널에서 송수신한다.[@ieee-802-11-2024]
 
 이 스테이션은 모든 관리 프레임과 Data 프레임의 BSSID(Basic Service Set Identifier) 필드를 모든 비트가 1인 wildcard BSSID로 둔다.[@ieee-802-11-2024]
 

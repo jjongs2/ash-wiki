@@ -36,7 +36,7 @@ ISO 26262-1:2018은 결함 주입의 예로 다음을 든다.[@iso-26262-1-obp-2
 
 ## 주입 대상과 방식
 
-결함 주입 테스트에서 테스터는 외부 컴포넌트(예: 센서의 그럴듯하지 않은 값을 검출하는지), 인터페이스(예: 단락이나 메시지 손실), 애플리케이션 내부에 결함을 골라 넣을 수 있다. 결함을 넣는 방식은 시스템과 테스트 환경에 따라 다르다. 고전적 결함 주입은 물리적 시험 대상을 조작하고, 외부와 인터페이스의 결함은 [[x-in-the-loop#HiL|HiL]] 환경에서 FIU(fault insertion unit)로 실행 중에 흉내 내며, 소프트웨어 결함은 [[x-in-the-loop#SiL|SiL]] 환경이나 개발 환경에서 디버거나 XCP(Universal Measurement and Calibration Protocol) 같은 도구로 흉내 내는 일이 많다.[@istqb-ct-aut-syllabus-2025]
+결함 주입 테스트에서 테스터는 외부 컴포넌트(예: 센서의 그럴듯하지 않은 값을 검출하는지), 인터페이스(예: 단락이나 메시지 손실), 응용 프로그램 내부에 결함을 골라 넣을 수 있다. 결함을 넣는 방식은 시스템과 테스트 환경에 따라 다르다. 고전적 결함 주입은 물리적 시험 대상을 조작하고, 외부와 인터페이스의 결함은 [[x-in-the-loop#HiL|HiL]] 환경에서 FIU(fault insertion unit)로 실행 중에 흉내 내며, 소프트웨어 결함은 [[x-in-the-loop#SiL|SiL]] 환경이나 개발 환경에서 디버거나 XCP(Universal Measurement and Calibration Protocol) 같은 도구로 흉내 내는 일이 많다.[@istqb-ct-aut-syllabus-2025]
 
 ## Fault seeding
 

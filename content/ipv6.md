@@ -82,4 +82,4 @@ IPv4 주소가 32비트인 데 비해 IPv6 주소는 128비트다. IPv6가 IPv4�
 
 IPv4 헤더와 달리 IPv6 헤더에는 헤더 [[checksum|체크섬]] 필드가 없다. 또 IPv4와 달리 IPv6에서는 [[udp#체크섬|UDP 체크섬]]을 기본적으로 생략할 수 없다.[@ietf-rfc-8200-2017]
 
-[[neighbor-discovery|Neighbor Discovery]]는 IPv4의 [[arp|ARP]], [[icmp|ICMP]] Router Discovery, ICMP [[icmp#주요 메시지|Redirect]]를 합친 것에 대응한다. IPv6에서는 Neighbor Discovery가 같은 링크 노드의 링크 계층 주소를 알아낸다.[@ietf-rfc-4861-2007] IPv6에서 오류 보고는 ICMPv6가 맡는다.[@ietf-rfc-4443-2006]
+[[neighbor-discovery|Neighbor Discovery]]는 IPv4의 [[arp|ARP]], [[icmp|ICMP]] Router Discovery, ICMP [[icmp#주요 메시지|Redirect]]를 합친 것에 대응한다.[@ietf-rfc-4861-2007] IPv6에서 오류 보고는 ICMPv6가 맡는다.[@ietf-rfc-4443-2006]

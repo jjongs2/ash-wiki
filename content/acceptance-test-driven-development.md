@@ -9,7 +9,7 @@ aliases:
 verified: 2026-10-13
 ---
 
-**인수 테스트 주도 개발**(ATDD, Acceptance Test-Driven Development)은 이해관계자의 도메인 언어로 [[acceptance-testing|인수 테스트]]를 정의하는, 협업에 바탕을 둔 테스트 우선 접근법이다.[@istqb-glossary-acceptance-test-driven-development-2026] ATDD는 시스템 설계 과정의 일부로 인수 기준에서 테스트를 끌어내고, 애플리케이션의 해당 부분을 개발하기 전에 그 테스트를 먼저 쓴다.[@istqb-ctfl-syllabus-2024]
+**인수 테스트 주도 개발**(ATDD, Acceptance Test-Driven Development)은 이해관계자의 도메인 언어로 [[acceptance-testing|인수 테스트]]를 정의하는, 협업에 바탕을 둔 테스트 우선 접근법이다.[@istqb-glossary-acceptance-test-driven-development-2026] ATDD는 시스템 설계 과정의 일부로 인수 기준에서 테스트를 끌어내고, 응용 프로그램의 해당 부분을 개발하기 전에 그 테스트를 먼저 쓴다.[@istqb-ctfl-syllabus-2024]
 
 ## 테스트로 개발을 이끄는 접근
 
@@ -52,6 +52,6 @@ SWEBOK V4.0a는 ATDD에서 설계나 구현 전에 엔지니어와 업무 도메
 
 ## 행위 주도 개발
 
-**행위 주도 개발**(BDD)은 팀이 고객을 위해 컴포넌트나 시스템의 기대 동작을 내놓는 데 집중하고, 그 동작이 테스트의 바탕이 되는 협업 개발 접근법이다.[@istqb-glossary-behavior-driven-development-2026] BDD는 애플리케이션에 바라는 동작을 이해관계자가 이해하기 쉬운 단순한 자연어 꼴의 테스트 케이스로 나타내고, 대개 Given/When/Then 꼴을 쓴다. 이 테스트 케이스는 그 뒤 실행할 수 있는 테스트로 자동으로 옮긴다.[@istqb-ctfl-syllabus-2024]
+**행위 주도 개발**(BDD)은 팀이 고객을 위해 컴포넌트나 시스템의 기대 동작을 내놓는 데 집중하고, 그 동작이 테스트의 바탕이 되는 협업 개발 접근법이다.[@istqb-glossary-behavior-driven-development-2026] BDD는 응용 프로그램에 바라는 동작을 이해관계자가 이해하기 쉬운 단순한 자연어 꼴의 테스트 케이스로 나타내고, 대개 Given/When/Then 꼴을 쓴다. 이 테스트 케이스는 그 뒤 실행할 수 있는 테스트로 자동으로 옮긴다.[@istqb-ctfl-syllabus-2024]
 
 BDD에서는 기능 단위를 사용자 스토리로 적고, 그로부터 Given/When/Then 꼴의 시나리오를 찾는다. 인수 테스트 케이스는 이 시나리오에서 바로 나온다. SWEBOK V4.0a에 따르면 업무 도메인 전문가는 겉보기에 덜 기술적인 BDD를 대개 ATDD보다 더 좋아한다.[@ieee-swebok-v4-0a-2026]

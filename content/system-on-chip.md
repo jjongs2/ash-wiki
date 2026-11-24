@@ -5,7 +5,7 @@ tags:
 verified: 2026-11-12
 ---
 
-**SoC**(System on Chip)는 여러 칩으로 나눠 구현하던 전자 시스템의 기능을 칩 하나에 모은 집적 회로다.[@bosch-soc-glossary-2026][@nxp-fvnecua4wp-2017] Bosch에 따르면 SoC에는 CPU 코어, 메모리 컨트롤러, 입출력 인터페이스, 아날로그 프런트엔드, 그리고 디지털 신호 프로세서나 그래픽 가속기 같은 특수 처리 장치가 흔히 들고, 전원 관리 장치와 클록 생성 회로도 흔히 넣는다. 차량용 SoC는 [[can|CAN]], [[ethernet|이더넷]], [[flexray|FlexRay]] 통신 컨트롤러를 흔히 넣는다. 차량에서 SoC는 [[electronic-control-unit|ECU]], 인포테인먼트, [[adas|ADAS]], [[gateway|게이트웨이]] 모듈에 쓰인다.[@bosch-soc-glossary-2026]
+**SoC**(System on Chip)는 여러 칩으로 나눠 구현하던 전자 시스템의 기능을 칩 하나에 모은 집적 회로다.[@bosch-soc-glossary-2026][@nxp-fvnecua4wp-2017] Bosch에 따르면 SoC에는 CPU 코어, 메모리 컨트롤러, 입출력 인터페이스, 아날로그 프런트엔드, 그리고 디지털 신호 프로세서나 그래픽 가속기 같은 특수 처리 장치가 흔히 들고, 전원 관리 장치와 클럭 생성 회로도 흔히 넣는다. 차량용 SoC는 [[can|CAN]], [[ethernet|이더넷]], [[flexray|FlexRay]] 통신 컨트롤러를 흔히 넣는다. 차량에서 SoC는 [[electronic-control-unit|ECU]], 인포테인먼트, [[adas|ADAS]], [[gateway|게이트웨이]] 모듈에 쓰인다.[@bosch-soc-glossary-2026]
 
 TI Jacinto 7 SoC는 차량 [[microcontroller|MCU]]를 응용 프로세서에 넣어, 칩 안에 따로 된 MCU domain을 둔다.[@ti-spry337-2020]
 
@@ -19,7 +19,7 @@ ECU의 블록을 SoC로 합치는 구성은 ECU의 [[electronic-control-unit#구
 
 TI 백서에 따르면 ADAS나 자동차 게이트웨이처럼 복잡한 차량 임베디드 시스템은 차량 MCU에 더해 더 강력한 응용 프로세서를 두고, 계산을 둘로 나눈다. 응용 프로세서는 단일·멀티코어일 수 있고, 고수준 운영체제 하나나 여럿을 돌리며 디스플레이, 그래픽, [[automotive-camera|카메라]]·비전 처리를 맡는다. 차량 MCU는 wake-up MCU라고도 부르며, 응용 프로세서를 감시해 그 계산 결과를 평가하고, 차량 네트워크와의 통신과 웨이크업·대기를 맡는다.[@ti-spry337-2020]
 
-Jacinto 7 프로세서 제품군에는 DRA8xx와 TDA4xx SoC가 든다. Jacinto 7 SoC는 차량 MCU를 응용 프로세서에 넣어 칩을 서로 독립된 main domain과 MCU domain으로 나눈다. main domain은 마이크로프로세서와 그래픽 처리 장치 같은 고성능 계산 코어, 멀티미디어 가속기, 디지털 신호 프로세서를 포함한 비전 하드웨어 가속기와, 입출력·영상 인터페이스를 둔다. MCU domain은 흔히 외부 차량 MCU가 맡던 기능을 대신한다. 두 도메인은 전압, 전원, 클록, 리셋을 따로 두고, 하드웨어 방화벽이 둘 사이의 [[freedom-from-interference|freedom from interference]]를 보장한다.[@ti-spry337-2020]
+Jacinto 7 프로세서 제품군에는 DRA8xx와 TDA4xx SoC가 든다. Jacinto 7 SoC는 차량 MCU를 응용 프로세서에 넣어 칩을 서로 독립된 main domain과 MCU domain으로 나눈다. main domain은 마이크로프로세서와 그래픽 처리 장치 같은 고성능 계산 코어, 멀티미디어 가속기, 디지털 신호 프로세서를 포함한 비전 하드웨어 가속기와, 입출력·영상 인터페이스를 둔다. MCU domain은 흔히 외부 차량 MCU가 맡던 기능을 대신한다. 두 도메인은 전압, 전원, 클럭, 리셋을 따로 두고, 하드웨어 방화벽이 둘 사이의 [[freedom-from-interference|freedom from interference]]를 보장한다.[@ti-spry337-2020]
 
 MCU domain은 lockstep이나 split 모드로 설정하는 Arm Cortex-R5F 둘과, [[can-fd|CAN FD]] 여럿, 이더넷, 여러 입출력 주변장치를 두고, SoC 전체의 부트 마스터이자 보안 마스터다. MCU domain에는 전원을 따로 주므로, 흔한 쓰임에서는 MCU domain을 꺼 두었다가 CAN 활동이 있을 때만 깨우고, 받은 메시지에 따라 시스템 전체를 켜거나 다시 끈다.[@ti-spry337-2020]
 

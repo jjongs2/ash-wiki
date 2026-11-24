@@ -23,7 +23,7 @@ DLC가 알려 주는 것은 데이터 필드의 길이다. 데이터가 무엇�
 
 그래서 [[can-fd-frame|CAN FD 프레임]]의 데이터 필드 길이는 0~8, 12, 16, 20, 24, 32, 48, 64바이트 가운데 하나다. 8바이트를 넘는 데이터는 이 일곱 길이 가운데 하나로만 보낼 수 있다.[@bosch-can-fd-1-0-2012] 보낼 데이터가 DLC가 나타내는 데이터 필드 길이보다 짧으면, 남는 바이트를 패딩 값으로 채워 보낸다.[@bosch-m-can-2023][@autosar-cp-sws-candriver-2025] 예를 들어 [[autosar|AUTOSAR]] [[autosar-can-stack#모듈|CAN Driver]]는 보낼 데이터의 길이가 DLC로 나타낼 수 있는 길이와 맞지 않으면, 그 길이보다 긴 데이터 필드를 나타내는 DLC 가운데 가장 작은 것으로 보내고 남는 바이트를 설정한 패딩 값으로 채운다.[@autosar-cp-sws-candriver-2025]
 
-CAN FD 포맷 프레임에서는 DLC가 [[can-crc|CRC]]의 길이도 고른다. 데이터 필드의 바이트 수 $n$이 $n \le 16$이면 17비트 CRC를, $n > 16$이면 21비트 CRC를 쓴다.[@bosch-can-fd-1-0-2012]
+CAN FD 포맷 프레임에서는 DLC가 [[can-crc#CAN FD 프레임과의 차이|CRC 길이]]도 고른다.[@bosch-can-fd-1-0-2012]
 
 ![[diagrams/can-fd-dlc-data-length.svg]]
 

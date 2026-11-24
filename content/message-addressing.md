@@ -15,7 +15,7 @@ CAN에서는 노드를 더해도 어느 노드의 소프트웨어나 하드웨�
 
 ## 필터링
 
-STM32F10x의 [[can#노드 구성|bxCAN]]은 하드웨어 필터로 소프트웨어에 필요한 식별자의 메시지만 받아들이고, 나머지는 소프트웨어가 관여하지 않고 버린다.[@st-rm0008-2021] 이 기능은 [[acceptance-filter|수용 필터]]에서 다룬다.
+STM32F10x의 [[can-controller#제품 예|bxCAN]]은 하드웨어 필터로 소프트웨어에 필요한 식별자의 메시지만 받아들이고, 나머지는 소프트웨어가 관여하지 않고 버린다.[@st-rm0008-2021] 이 기능은 [[acceptance-filter|수용 필터]]에서 다룬다.
 
 ![[diagrams/can-broadcast-identifier-filter.svg]]
 

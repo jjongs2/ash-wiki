@@ -21,13 +21,11 @@ CAN은 멀티마스터 방식이라, 버스가 비어 있으면 어느 노드든
 ISO 11898 시리즈는 칩 설계자를 위한 표준으로, [[can-controller|CAN 프로토콜 컨트롤러]]에는 ISO 11898-1:2024를, [[can-transceiver|CAN 트랜시버]]에는 ISO 11898-2:2026을 쓸 수 있다.[@iso-11898-1-obp-2024][@iso-11898-2-obp-2026]
 
 > [!note]
-> Bosch의 CAN 2.0 규격은 버스 매체를 정하지 않고, 단선과 접지, 차동 두 선, 광섬유 등을 예로 든다.[@bosch-can-2-0-1991]
+> Bosch의 CAN 2.0 규격은 버스 매체를 정하지 않고, 단선과 접지, [[differential-signaling|차동]] 두 선, 광섬유 등을 예로 든다.[@bosch-can-2-0-1991]
 
 ## 노드 구성
 
-CAN 컨트롤러는 호스트 CPU에 붙어 ISO 11898-1에 따라 통신하고, 버스에 연결하려면 트랜시버가 따로 필요하다.[@bosch-m-can-2023] CAN 컨트롤러는 STM32F103xx·STM32F105xx·STM32F107xx의 bxCAN(Basic Extended CAN)처럼 [[microcontroller|MCU]]에 주변장치로 들어가기도 하고[@st-rm0008-2021], MCP2515처럼 SPI(Serial Peripheral Interface)로 MCU에 붙는 단독 칩으로 나오기도 한다.[@microchip-mcp2515-2019] NXP에 따르면 CAN 컨트롤러는 MCU에 통합되는 경우가 많다.[@nxp-can-101-2021] CAN 트랜시버는 컨트롤러의 디지털 신호를 버스의 [[differential-signaling|차동 신호]]로 바꾸고, 버스의 차동 전압을 다시 논리 레벨로 되돌린다.[@microchip-mcp2561-2fd-2014] 버스 양 끝에는 120 Ω [[can-physical-layer#종단|종단 저항]]을 단다.[@microchip-an228-2002][@ti-tcan1042-q1-2021]
-
-![[diagrams/can-node-bus.svg]]
+CAN 컨트롤러는 호스트 CPU에 붙어 ISO 11898-1에 따라 통신하고, 버스에 연결하려면 트랜시버가 따로 필요하다.[@bosch-m-can-2023]
 
 Bosch CAN 2.0 규격은 버스에 잇는 노드 수에 이론적 한계를 두지 않고, 실제 수는 지연 시간과 버스의 전기적 부하가 제한한다고 정한다.[@bosch-can-2-0-1991]
 
@@ -49,7 +47,7 @@ Bosch CAN 2.0 규격은 버스에 잇는 노드 수에 이론적 한계를 두�
 
 CiA에 따르면 1980년대 초 Bosch의 엔지니어들은 기존 직렬 버스가 승용차의 요구를 채우지 못한다고 보았고, Uwe Kiencke가 1983년에 새 직렬 버스 개발을 시작했다. 자문으로 참여한 Wolfhard Lawrenz 교수가 'Controller Area Network'라는 이름을 붙였고, 1986년 발표 때의 이름은 'Automotive Serial Controller Area Network'였다.[@cia-can-history-2026]
 
-첫 CAN 컨트롤러 칩은 Intel이 1987년 중반에 내놓은 82526이고, 곧이어 Philips Semiconductors가 82C200을 내놓았다. 두 칩은 수용 필터링과 프레임 처리가 달라, Intel의 FullCAN은 Philips의 BasicCAN보다 연결된 MCU의 CPU 부하를 덜었지만 받을 수 있는 프레임 수가 제한되었다. 2026년 9월 기준 CAN 컨트롤러는 두 방식을 섞어 구현하고, 그래서 BasicCAN과 FullCAN이라는 말은 쓰이지 않게 되었다.[@cia-can-history-2026]
+첫 CAN 컨트롤러 칩은 Intel이 1987년 중반에 내놓은 82526이고, 곧이어 Philips Semiconductors가 82C200을 내놓았다. 두 칩은 수용 필터링과 프레임 처리가 달라, Intel의 FullCAN은 Philips의 BasicCAN보다 연결된 [[microcontroller|MCU]]의 CPU 부하를 덜었지만 받을 수 있는 프레임 수가 제한되었다. 2026년 9월 기준 CAN 컨트롤러는 두 방식을 섞어 구현하고, 그래서 BasicCAN과 FullCAN이라는 말은 쓰이지 않게 되었다.[@cia-can-history-2026]
 
 Mercedes-Benz는 1991년부터 고급 승용차에 CAN을 썼고, 처음에는 엔진 관리 [[electronic-control-unit|ECU]]들을 CAN으로 이었다.[@cia-can-history-2026]
 

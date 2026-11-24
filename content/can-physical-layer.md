@@ -13,7 +13,7 @@ verified: 2026-09-27
 
 ## PMA 선택지
 
-CiA는 CAN의 PMA 선택지로 고속 트랜시버, [[can-fd|CAN FD]] 트랜시버, [[can-transceiver#SIC|CAN SIC]] 트랜시버, CAN SIC XL 트랜시버, 저속 내결함성 트랜시버(ISO 11898-3:2006), 트럭·트레일러용 트랜시버(ISO 11992-1), 단선 CAN 트랜시버(SAE J2411)를 든다. 이 가운데 저속 내결함성 트랜시버와 단선 CAN 트랜시버는 새 설계에 더는 권하지 않는다.[@cia-physical-layer-options-2026]
+CiA는 CAN의 PMA 선택지로 고속 [[can-transceiver|트랜시버]], [[can-fd|CAN FD]] 트랜시버, [[can-transceiver#SIC와 FAST 모드|CAN SIC]] 트랜시버, CAN SIC XL 트랜시버, 저속 내결함성 트랜시버(ISO 11898-3:2006), 트럭·트레일러용 트랜시버(ISO 11992-1), 단선 CAN 트랜시버(SAE J2411)를 든다. 이 가운데 저속 내결함성 트랜시버와 단선 CAN 트랜시버는 새 설계에 더는 권하지 않는다.[@cia-physical-layer-options-2026]
 
 ## 차동 전송
 
@@ -23,7 +23,7 @@ CiA는 CAN의 PMA 선택지로 고속 트랜시버, [[can-fd|CAN FD]] 트랜시�
 
 ## 고속 CAN
 
-고속 [[can-transceiver|트랜시버]]는 [[dominant-and-recessive|dominant]]에서 CAN_H를 약 3.5 V, CAN_L을 약 1.5 V로 구동해 두 선의 전압 차를 약 2 V로 벌린다.[@nxp-tja1042-2023][@microchip-an228-2002]
+고속 트랜시버는 [[dominant-and-recessive|dominant]]에서 CAN_H를 약 3.5 V, CAN_L을 약 1.5 V로 구동해 두 선의 전압 차를 약 2 V로 벌린다.[@nxp-tja1042-2023][@microchip-an228-2002]
 
 recessive에서 고속 트랜시버는 Normal 모드일 때 두 선을 0.5 VCC(5 V 전원에서 2.5 V)로 바이어스해 전압 차가 거의 0이다. Standby 모드에서는 공급 전류를 줄이려고 버스 선을 접지로 바이어스한다.[@nxp-tja1042-2023][@ti-tcan1042-q1-2021]
 

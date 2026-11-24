@@ -7,7 +7,7 @@ aliases:
 verified: 2026-09-29
 ---
 
-**TSN**(Time-Sensitive Networking)은 IEEE 802가 정한 표준들의 묶음을 부르는 이름이다. 이 표준들을 만드는 곳은 IEEE 802.1 작업 그룹의 TSN 태스크 그룹이며, 태스크 그룹은 IEEE 802 네트워크에서 결정적인 연결, 곧 지연에 상한이 있고 지연 변동과 패킷 손실이 적은 전달을 보장하는 것을 목표로 한다.[@ieee-802-1-tsn-tg-2026] TSN 태스크 그룹은 옛 [[avb|AVB]] 태스크 그룹에서 이어졌다. AV Bridging 태스크 그룹이 2012년 11월에 이름을 TSN 태스크 그룹으로 바꾸었다.[@ieee-802-1-tsn-tg-2026][@ieee-802-1-avb-tg-2013] TSN 태스크 그룹에는 옛 IEEE 802.1 Interworking 태스크 그룹도 들어 있다.[@ieee-802-1-tsn-tg-2026]
+**TSN**(Time-Sensitive Networking)은 IEEE 802가 정한 표준들의 묶음을 부르는 이름이다. 이 표준들을 만드는 곳은 IEEE 802.1 작업 그룹의 TSN 태스크 그룹이며, 태스크 그룹은 IEEE 802 네트워크에서 결정적인 연결, 곧 지연에 상한이 있고 지연 변동과 패킷 손실이 적은 전달을 보장하는 것을 목표로 한다.[@ieee-802-1-tsn-tg-2026] TSN 태스크 그룹은 옛 [[avb|AVB]] 태스크 그룹에서 이어졌으며, AVB 태스크 그룹은 2012년 11월에 지금 이름으로 바뀌었다.[@ieee-802-1-tsn-tg-2026][@ieee-802-1-avb-tg-2013] TSN 태스크 그룹에는 옛 IEEE 802.1 Interworking 태스크 그룹도 들어 있다.[@ieee-802-1-tsn-tg-2026]
 
 ## 도구
 
@@ -30,7 +30,7 @@ TSN 태스크 그룹이 마친 프로젝트에는 802.1AS, 802.1CB, 802.1Qbv, 80
 
 IEEE 802.1CB-2017은 중복 전송을 위한 패킷의 복제와 중복 제거를 정한다.[@ieee-802-1cb-2017]
 
-IEEE 802.1DC-2024는 [[per-stream-filtering-and-policing|스트림별 필터링과 policing]], 큐잉, 전송 선택, 스트림 제어, 프레임 선점처럼 IEEE 802.1Q가 정한 QoS 기능의 절차와 관리 객체를, 브리지가 아닌 네트워크 시스템에 대해 정한다.[@ieee-802-1dc-2024]
+IEEE 802.1DC-2024는 [[per-stream-filtering-and-policing|스트림별 필터링과 policing]], 큐잉, 전송 선택, 스트림 제어, 프레임 선점처럼 IEEE 802.1Q가 정한 QoS 기능의 절차와 관리 객체를, [[ethernet-switch#리피터, 브리지, 라우터와의 차이|브리지]]가 아닌 네트워크 시스템에 대해 정한다.[@ieee-802-1dc-2024]
 
 도구 가운데 몇몇은 IEEE 802.1Q의 개정으로 나왔다.[@ieee-802-1-tsn-tg-2026]
 
