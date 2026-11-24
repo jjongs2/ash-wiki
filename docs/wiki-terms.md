@@ -90,7 +90,7 @@
 - HD 지도, SD 지도: HD map, SD map (#682)
 - Highway: 고속도로 (#682). UN R171 2.27의 Highway일 때. 첫 등장에 정의(보행자·자전거 금지, 반대 방향의 물리적 분리)를 풀어 쓴다
 - HLC 풀이 high level communication: 고수준 통신, 고수준 통신(HLC) (#759)
-- I-PDU 풀이 Interaction Layer Protocol Data Unit: Interaction Layer PDU (#763)
+- I-PDU 풀이 Interaction Layer Protocol Data Unit: Interaction Layer PDU (#763). 예외로 같은 문단에서 PDU를 이미 풀었으면 Interaction Layer PDU
 - idle condition, protocol exception event: idle 조건, 프로토콜 예외 이벤트 (#763). CAN 프로토콜의 용어일 때
 - ITS 풀이: 통일하지 않음 (#742). 인용한 출처의 풀이대로. ETSI 명세를 인용하면 Intelligent Transport Systems, 미국 자료(FCC, IEEE 1609)를 인용하면 그 자료의 풀이. 예: FCC 24-123은 Intelligent Transportation System
 - ITS-S 풀이 ITS Station: ITS-Station, Intelligent Transport Systems Station (#742). 근거는 ETSI EN 302 637-2·EN 302 637-3·TS 102 940·TS 102 687의 3.3
@@ -99,7 +99,7 @@
 - KDF 풀이 Key Derivation Function: Key-Derivation Function (#498)
 - KEM 풀이 Key-Encapsulation Mechanism: Key Encapsulation Mechanism (#498)
 - key word: - (#667). ISO 9141의 key word일 때
-- L-PDU 풀이 Data Link Layer Protocol Data Unit: Data Link Layer PDU (#763)
+- L-PDU 풀이 Data Link Layer Protocol Data Unit: Data Link Layer PDU (#763). 예외로 같은 문단에서 PDU를 이미 풀었으면 Data Link Layer PDU
 - LBIST 풀이: 통일하지 않음 (#674). 인용한 출처의 풀이대로. TI는 logic built-in self-test, NXP FS26은 logical built-in self-test
 - LdCom 풀이 Large Data COM: - (#440). 근거는 SWS BSWGeneral R24-11 부록 A
 - MAC 풀이 Medium Access Control: Media Access Control (#165). 출처마다의 풀이를 비교하는 문장은 예외
