@@ -36,18 +36,18 @@ ISO 14229-1:2026은 SubFunction 파라미터가 있는 요청 메시지와 없�
 
 Dcm은 응용이 지원하고 `Dcm_NegativeResponseCodeType`에 정의된 NRC(Negative Response Code)를 모두 다룬다. 이 형이 정하는 값 가운데 몇은 아래와 같다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
-| NRC    | 이름                                   |
-| ------ | -------------------------------------- |
-| `0x10` | generalReject                          |
-| `0x11` | Service not supported                  |
-| `0x12` | SubFunction not supported              |
-| `0x13` | incorrectMessageLengthOrInvalidFormat  |
-| `0x22` | conditionsNotCorrect                   |
-| `0x24` | requestSequenceError                   |
-| `0x31` | requestOutOfRange                      |
-| `0x33` | securityAccessDenied                   |
-| `0x7E` | subFunctionNotSupportedInActiveSession |
-| `0x7F` | serviceNotSupportedInActiveSession     |
+| NRC    | 이름                                                                                                           |
+| ------ | -------------------------------------------------------------------------------------------------------------- |
+| `0x10` | generalReject[@autosar-cp-sws-diagnosticcommunicationmanager-2025]                                             |
+| `0x11` | ServiceNotSupported[@autosar-cp-sws-diagnosticcommunicationmanager-2025]                                       |
+| `0x12` | SubFunctionNotSupported[@autosar-cp-sws-diagnosticcommunicationmanager-2025][@autosar-ap-sws-diagnostics-2025] |
+| `0x13` | incorrectMessageLengthOrInvalidFormat[@autosar-cp-sws-diagnosticcommunicationmanager-2025]                     |
+| `0x22` | conditionsNotCorrect[@autosar-cp-sws-diagnosticcommunicationmanager-2025]                                      |
+| `0x24` | requestSequenceError[@autosar-cp-sws-diagnosticcommunicationmanager-2025]                                      |
+| `0x31` | requestOutOfRange[@autosar-cp-sws-diagnosticcommunicationmanager-2025]                                         |
+| `0x33` | securityAccessDenied[@autosar-cp-sws-diagnosticcommunicationmanager-2025]                                      |
+| `0x7E` | subFunctionNotSupportedInActiveSession[@autosar-cp-sws-diagnosticcommunicationmanager-2025]                    |
+| `0x7F` | serviceNotSupportedInActiveSession[@autosar-cp-sws-diagnosticcommunicationmanager-2025]                        |
 
 기능 주소 지정(functional addressing)으로 받은 요청의 처리 결과가 부정이면, Dcm은 NRC `0x11`, `0x12`, `0x31`, `0x7E`, `0x7F`의 부정 응답을 보내지 않는다. 요청받은 진단 작업을 할 수는 있지만 마치고 응답을 준비하는 데 시간이 더 걸리면, Dcm은 응답 시간에 이를 때 NRC `0x78`(requestCorrectlyReceivedResponsePending) 부정 응답을 보낸다. 한 요청에 보내는 NRC `0x78` 부정 응답 수의 상한은 `DcmDslDiagRespMaxNumRespPend`로 설정할 수 있고, 설정하지 않으면 무한이다.[@autosar-cp-sws-diagnosticcommunicationmanager-2025]
 
